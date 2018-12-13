@@ -2,55 +2,57 @@ Return-Path: <SRS0=UlVA=OW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E8F2CC67839
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 08:41:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 376DDC65BAE
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 08:42:19 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B8B742075B
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 08:41:07 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 02BD52075B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 08:42:19 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qXETfRDN"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B8B742075B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tGrEP927"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 02BD52075B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=IZopYnEESFGdz/ElZiFyh0Rnd2wTSuTjK4KW8qDeZxE=; b=qXETfRDNb1bCVu
-	Fumsv2uD7rQUKKXFD8owHnUQ00+v+UfJ4qy4tJWI4w/r1KlBhtMrQJMaWflPzebLxbAKBJKRUtEwt
-	EZqiTy7gD6Y4TozJb0C/dsYy9mmHHLDBpiWMWleGEmcgtMX5muNnF9PNq976xVUpTDNK3iAk4/bUV
-	MVuUUN//ZlYYQhFj97n4xR3A8bFamcD6MTzrQTN+oFhc+5HXbM4Rmo7Z1nFhEGQ3Js/zCbALyHuUQ
-	ttnl4nLhKmtYZUV+ECWmP4m50FZkFCwsHUr/SjSTYNguHoxc/cvFy0Ww6KlpOhfjvhpcqxcNodImL
-	5SfA+D+9XSfv8q1zyqAg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=82UDZCTC89otbyuQY82Ck8gZdT2B/durF4v1iItmsGU=; b=tGrEP927I/XhwM
+	ufPVJ9o8APalLrSDH6hXVwsS7DZZdNWEQmMrP0BXL4cFwt+6dHHKCc3TpyXh/eUmnlUJkfFr6hNPR
+	1/9HQORlkvdwxD7SOF1y/VmxDJrChbtbyYnAUZcjXC5x4SnlbhrDXAS/1c69W/rTWj0+/Vz07CLej
+	V5HgpzgTfvNs/JBm/jQY7nVvRUjCxG63igoYDzYgQCrXIEBKUt5R3zLyUcBhoAHbLb15qUPhbiM+O
+	tv2m1jbz54o0DeB6Xdri4fUmAyZ6qxxQ+ulj8XR6zr/2SUG1dymBXp+IoO8ThzrufnHbi0No35jTS
+	3MJjlM0vcTDHOByMh/6Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gXMYH-0005OI-KC; Thu, 13 Dec 2018 08:41:01 +0000
+	id 1gXMZQ-0006Nu-RN; Thu, 13 Dec 2018 08:42:12 +0000
 Received: from mail-sz2.amlogic.com ([211.162.65.114])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gXMX3-0002cQ-6x; Thu, 13 Dec 2018 08:39:50 +0000
+ id 1gXMXo-0004Zj-HB; Thu, 13 Dec 2018 08:41:08 +0000
 Received: from localhost.localdomain (10.28.8.16) by mail-sz2.amlogic.com
  (10.28.11.6) with Microsoft SMTP Server id 15.0.1320.4; Thu, 13 Dec 2018
- 16:39:52 +0800
+ 16:40:02 +0800
 From: Sunny Luo <sunny.luo@amlogic.com>
 To: Mark Brown <broonie@kernel.org>
-Subject: [PATCH v2 0/3] spi: meson-axg: add few enhanced features
-Date: Thu, 13 Dec 2018 16:39:11 +0800
-Message-ID: <1544690354-16409-1-git-send-email-sunny.luo@amlogic.com>
+Subject: [PATCH v2 2/3] spi: meson-axg: enhance output enable feature
+Date: Thu, 13 Dec 2018 16:39:13 +0800
+Message-ID: <1544690354-16409-3-git-send-email-sunny.luo@amlogic.com>
 X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1544690354-16409-1-git-send-email-sunny.luo@amlogic.com>
+References: <1544690354-16409-1-git-send-email-sunny.luo@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.28.8.16]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181213_003946_177495_EE5C1DAB 
-X-CRM114-Status: UNSURE (   5.74  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20181213_004033_203269_E32C2783 
+X-CRM114-Status: GOOD (  11.04  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -64,35 +66,96 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Jianxin Pan <jianxin.pan@amlogic.com>,
  Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, Sunny Luo <sunny.luo@amlogic.com>,
- Xingyu Chen <xingyu.chen@amlogic.com>, Jerome Brunet <jbrunet@baylibre.com>
+ Yixun Lan <yixun.lan@amlogic.com>, linux-kernel@vger.kernel.org,
+ linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
+ Sunny Luo <sunny.luo@amlogic.com>, Xingyu Chen <xingyu.chen@amlogic.com>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-add a few enhanced features for the SPICC controller of Meson-AXG SoC.
+The SPICC controller in Meson-AXG is capable of driving the CLK/MOSI/SS
+signal lines through the idle state (between two transmission operation),
+which avoid the signals floating in unexpected state.
 
-These patches are actually quite independent from each other, I send them
-together in case to avoid the file conflicts.
+Signed-off-by: Sunny Luo <sunny.luo@amlogic.com>
+Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+---
+ drivers/spi/spi-meson-spicc.c | 28 ++++++++++++++++++++++++++--
+ 1 file changed, 26 insertions(+), 2 deletions(-)
 
-Changes since v1 at [1]
-- Add OF and COMMON_CLK dependence for SPICC in Kconfig to avoid compiling
-  error.
-
-[1] https://lore.kernel.org/lkml/20180503213645.20694-1-yixun.lan@amlogic.com
-
-Sunny Luo (3):
-  spi: meson-axg: support MAX 80M clock
-  spi: meson-axg: enhance output enable feature
-  spi: meson-axg: add a linear clock divider support
-
- drivers/spi/Kconfig           |   2 +-
- drivers/spi/spi-meson-spicc.c | 270 ++++++++++++++++++++++++++++++++++--------
- 2 files changed, 223 insertions(+), 49 deletions(-)
-
+diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
+index b56249d..0384c28 100644
+--- a/drivers/spi/spi-meson-spicc.c
++++ b/drivers/spi/spi-meson-spicc.c
+@@ -115,6 +115,13 @@
+ 
+ #define SPICC_DWADDR	0x24	/* Write Address of DMA */
+ 
++#define SPICC_ENH_CTL0	0x38	/* Enhanced Feature */
++#define SPICC_ENH_MOSI_OEN		BIT(25)
++#define SPICC_ENH_CLK_OEN		BIT(26)
++#define SPICC_ENH_CS_OEN		BIT(27)
++#define SPICC_ENH_CLK_CS_DELAY_EN	BIT(28)
++#define SPICC_ENH_MAIN_CLK_AO		BIT(29)
++
+ #define writel_bits_relaxed(mask, val, addr) \
+ 	writel_relaxed((readl_relaxed(addr) & ~(mask)) | (val), addr)
+ 
+@@ -123,6 +130,7 @@
+ 
+ struct meson_spicc_data {
+ 	unsigned int			max_speed_hz;
++	bool				has_oen;
+ };
+ 
+ struct meson_spicc_device {
+@@ -145,6 +153,19 @@ struct meson_spicc_device {
+ 	bool				is_last_burst;
+ };
+ 
++static void meson_spicc_oen_enable(struct meson_spicc_device *spicc)
++{
++	u32 conf;
++
++	if (!spicc->data->has_oen)
++		return;
++
++	conf = readl_relaxed(spicc->base + SPICC_ENH_CTL0) |
++		SPICC_ENH_MOSI_OEN | SPICC_ENH_CLK_OEN | SPICC_ENH_CS_OEN;
++
++	writel_relaxed(conf, spicc->base + SPICC_ENH_CTL0);
++}
++
+ static inline bool meson_spicc_txfull(struct meson_spicc_device *spicc)
+ {
+ 	return !!FIELD_GET(SPICC_TF,
+@@ -453,6 +474,8 @@ static int meson_spicc_prepare_message(struct spi_master *master,
+ 
+ 	writel_bits_relaxed(BIT(24), BIT(24), spicc->base + SPICC_TESTREG);
+ 
++	meson_spicc_oen_enable(spicc);
++
+ 	return 0;
+ }
+ 
+@@ -610,11 +633,12 @@ static int meson_spicc_remove(struct platform_device *pdev)
+ }
+ 
+ static const struct meson_spicc_data meson_spicc_gx_data = {
+-	.max_speed_hz	= 30000000,
++	.max_speed_hz		= 30000000,
+ };
+ 
+ static const struct meson_spicc_data meson_spicc_axg_data = {
+-	.max_speed_hz	= 80000000,
++	.max_speed_hz		= 80000000,
++	.has_oen		= true,
+ };
+ 
+ static const struct of_device_id meson_spicc_of_match[] = {
 -- 
 2.7.4
 
