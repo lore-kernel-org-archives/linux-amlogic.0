@@ -2,63 +2,70 @@ Return-Path: <SRS0=UlVA=OW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.6 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_PASS,T_MIXED_ES,USER_AGENT_MUTT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SIGNED_OFF_BY,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 38464C67839
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 16:34:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AE066C65BAE
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 18:11:27 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 044912080F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 16:34:51 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8545420880
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 18:11:27 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MDHN+9ho"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 044912080F
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arm.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bF2yxIyg";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="gRJ6T3mS"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8545420880
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:
+	In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ILYan+8KOwy+lFRv3xBvD5mWHx99Mphp+L1DKaodzEo=; b=MDHN+9ho/fPzIZ
-	j6jjzy/x84Zv/Ab8ZOB2gMrlquERy1HMVgQXphuKX8WDgrkwb5B331/51s3H/+cKuFYGiKFchUycJ
-	FeV1rUPGt0Glt21ogPtuPO6B+RjxrQrwSlENisJWwRu+sdM9LqQw6URuQjAe5RAJKy+cFTO253XK2
-	oxpEBW+kTtbrbMDz9otXcrj6AxlciABsnjkAZ6mIwzwE9wG4qOGx8CC+EW73N14w/KHoebgX8I+fT
-	/U69haNFopBhZ7cVK93kbPcSjyIXdDagXLcxAxEhPA5C/495tNBNYsRGYeZC50XHG/8OLajrM2BJR
-	UModi/QNh5oKVciiOHRw==;
+	References:List-Owner; bh=tAge2+r+42HOZlP1eq9FLvCCObC8+4Xa6x80G2E1uIg=; b=bF2
+	yxIygXd2mVRetANGXleI/IlfudUccex5WK2D9S2cDO2jHx+NiUG1yPCe2R6N5MU7MPGhj4UfacVCe
+	FzE+S+emO57987K2BH17OE1V2CyjZzuPDM8mZRnQLQl5KWglRw6N0nk4uf0tuzFlXoeEwHPFsy8eT
+	zxQuLy7W0vtOu83vgarZib53+mQzmrcOzwbZk/rBNQeZCBym3ALaDcwxwG669WtOurZP69smEYD8C
+	bvgJXTJkPccc/SP+VuQPMIm0I3IuIHHiX27V1626AYEHr9QuEvbGJK2AjQP7Q0zLrHceqG+O3HBRH
+	81qUL5hb6cCXaMgXMJbJhEkWoZFqtVw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gXTwi-000578-8s; Thu, 13 Dec 2018 16:34:44 +0000
-Received: from foss.arm.com ([217.140.101.70])
- by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gXTwd-00055x-Fj; Thu, 13 Dec 2018 16:34:41 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A6A36A78;
- Thu, 13 Dec 2018 08:34:28 -0800 (PST)
-Received: from e107981-ln.cambridge.arm.com (e107981-ln.cambridge.arm.com
- [10.1.197.40])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 48D5C3F614;
- Thu, 13 Dec 2018 08:34:25 -0800 (PST)
-Date: Thu, 13 Dec 2018 16:34:19 +0000
-From: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To: Hanjie Lin <hanjie.lin@amlogic.com>
-Subject: Re: [PATCH v7 2/2] PCI: amlogic: Add the Amlogic Meson PCIe
- controller driver
-Message-ID: <20181213163419.GA8501@e107981-ln.cambridge.arm.com>
-References: <1544097760-85834-1-git-send-email-hanjie.lin@amlogic.com>
- <1544097760-85834-3-git-send-email-hanjie.lin@amlogic.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1544097760-85834-3-git-send-email-hanjie.lin@amlogic.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+	id 1gXVSC-0003u5-UZ; Thu, 13 Dec 2018 18:11:20 +0000
+Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
+ by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1gXVSA-0003tF-5M
+ for linux-amlogic@lists.infradead.org; Thu, 13 Dec 2018 18:11:19 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
+ Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+ List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
+ List-Archive; bh=d5nEPPG99hGb9NnBzfz1aDvxs86ohilkb71VFmHkFtc=; b=gRJ6T3mS2Ugs
+ 2QrsVhC5GraQjbi2z3riV7v5YL77UA/YrbeufmzVz/74Oj4gG615hIfWBFklEPTeEaqBPUtnpjm4E
+ 93dMcBHem9Qot1n8ClHLNFu/2NemQd2hYGjeUuKsoUjvDP9CQgZBCjoMPTBQm+vNbMs3CvHjHGxRM
+ 1gSLI=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net
+ ([82.37.168.47] helo=debutante.sirena.org.uk)
+ by heliosphere.sirena.org.uk with esmtpa (Exim 4.89)
+ (envelope-from <broonie@sirena.org.uk>)
+ id 1gXVRt-0002Ow-GE; Thu, 13 Dec 2018 18:11:01 +0000
+Received: by debutante.sirena.org.uk (Postfix, from userid 1000)
+ id 3188611254D1; Thu, 13 Dec 2018 18:11:01 +0000 (GMT)
+From: Mark Brown <broonie@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Subject: Applied "ASoC: meson: fix do_div warning in spdifin" to the asoc tree
+In-Reply-To: <20181213154428.6070-1-jbrunet@baylibre.com>
+X-Patchwork-Hint: ignore
+Message-Id: <20181213181101.3188611254D1@debutante.sirena.org.uk>
+Date: Thu, 13 Dec 2018 18:11:01 +0000 (GMT)
+X-Bad-Reply: In-Reply-To but no 'Re:' in Subject.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181213_083439_540546_A14EE79C 
-X-CRM114-Status: GOOD (  24.55  )
+X-CRM114-CacheID: sfid-20181213_101118_349761_A0F4DCC6 
+X-CRM114-Status: GOOD (  13.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -70,726 +77,77 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Yixun Lan <yixun.lan@amlogic.com>, Rob Herring <robh@kernel.org>,
- Jianxin Pan <jianxin.pan@amlogic.com>, Kevin Hilman <khilman@baylibre.com>,
- Shawn Lin <shawn.lin@rock-chips.com>,
- Philippe Ombredanne <pombredanne@nexb.com>, linux-pci@vger.kernel.org,
- linux-kernel@vger.kernel.org, Yue Wang <yue.wang@amlogic.com>,
- Carlo Caione <carlo@caione.org>, Jian Hu <jian.hu@amlogic.com>,
- Liang Yang <liang.yang@amlogic.com>,
- Cyrille Pitchen <cyrille.pitchen@free-electrons.com>,
- Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
- Bjorn Helgaas <bhelgaas@google.com>, linux-amlogic@lists.infradead.org,
- Qiufang Dai <qiufang.dai@amlogic.com>, linux-arm-kernel@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ Mark Brown <broonie@kernel.org>, Carlo Caione <carlo@caione.org>,
+ linux-amlogic@lists.infradead.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Dec 06, 2018 at 08:02:38PM +0800, Hanjie Lin wrote:
-> From: Yue Wang <yue.wang@amlogic.com>
-> 
-> The Amlogic Meson PCIe host controller is based on the Synopsys DesignWare
-> PCI core. This patch adds the driver support for Meson PCIe controller.
-> 
-> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
-> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
-> ---
->  MAINTAINERS                            |   7 +
->  drivers/pci/controller/dwc/Kconfig     |  10 +
->  drivers/pci/controller/dwc/Makefile    |   1 +
->  drivers/pci/controller/dwc/pci-meson.c | 603 +++++++++++++++++++++++++++++++++
->  4 files changed, 621 insertions(+)
->  create mode 100644 drivers/pci/controller/dwc/pci-meson.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 7fe120f..21ed916 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -11600,6 +11600,13 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/lpieralisi/pci.git/
->  S:	Supported
->  F:	drivers/pci/controller/
->  
-> +PCIE DRIVER FOR AMLOGIC MESON
-> +M:	Yue Wang <yue.wang@Amlogic.com>
-> +L:	linux-pci@vger.kernel.org
-> +L:	linux-amlogic@lists.infradead.org
-> +S:	Maintained
-> +F:	drivers/pci/controller/dwc/pci-meson.c
-> +
->  PCIE DRIVER FOR AXIS ARTPEC
->  M:	Jesper Nilsson <jesper.nilsson@axis.com>
->  L:	linux-arm-kernel@axis.com
-> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> index 91b0194..7800322 100644
-> --- a/drivers/pci/controller/dwc/Kconfig
-> +++ b/drivers/pci/controller/dwc/Kconfig
-> @@ -193,4 +193,14 @@ config PCIE_HISI_STB
->  	help
->            Say Y here if you want PCIe controller support on HiSilicon STB SoCs
->  
-> +config PCI_MESON
-> +	bool "MESON PCIe controller"
-> +	depends on PCI_MSI_IRQ_DOMAIN
-> +	select PCIE_DW_HOST
-> +	help
-> +	  Say Y here if you want to enable PCI controller support on Amlogic
-> +	  SoCs. The PCI controller on Amlogic is based on DesignWare hardware
-> +	  and therefore the driver re-uses the DesignWare core functions to
-> +	  implement the driver.
-> +
->  endmenu
-> diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
-> index fcf91ea..e05a015 100644
-> --- a/drivers/pci/controller/dwc/Makefile
-> +++ b/drivers/pci/controller/dwc/Makefile
-> @@ -14,6 +14,7 @@ obj-$(CONFIG_PCIE_ARMADA_8K) += pcie-armada8k.o
->  obj-$(CONFIG_PCIE_ARTPEC6) += pcie-artpec6.o
->  obj-$(CONFIG_PCIE_KIRIN) += pcie-kirin.o
->  obj-$(CONFIG_PCIE_HISI_STB) += pcie-histb.o
-> +obj-$(CONFIG_PCI_MESON) += pci-meson.o
->  
->  # The following drivers are for devices that use the generic ACPI
->  # pci_root.c driver but don't support standard ECAM config access.
-> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-> new file mode 100644
-> index 0000000..428ed42
-> --- /dev/null
-> +++ b/drivers/pci/controller/dwc/pci-meson.c
-> @@ -0,0 +1,603 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * PCIe host controller driver for Amlogic MESON SoCs
-> + *
-> + * Copyright (c) 2018 Amlogic, inc.
-> + * Author: Yue Wang <yue.wang@amlogic.com>
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of_gpio.h>
-> +#include <linux/pci.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/resource.h>
-> +#include <linux/types.h>
-> +#include <linux/reset.h>
+The patch
 
-Alphabetical order.
+   ASoC: meson: fix do_div warning in spdifin
 
-> +#include "pcie-designware.h"
-> +
-> +#define to_meson_pcie(x) dev_get_drvdata((x)->dev)
-> +
-> +/* External local bus interface registers */
-> +#define PLR_OFFSET			0x700
-> +#define PCIE_PORT_LINK_CTRL_OFF		(PLR_OFFSET + 0x10)
-> +#define FAST_LINK_MODE			BIT(7)
-> +#define LINK_CAPABLE_MASK		GENMASK(21, 16)
-> +#define LINK_CAPABLE_X1			BIT(16)
-> +
-> +#define PCIE_GEN2_CTRL_OFF		(PLR_OFFSET + 0x10c)
-> +#define NUM_OF_LANES_MASK		GENMASK(12, 8)
-> +#define NUM_OF_LANES_X1			BIT(8)
-> +#define DIRECT_SPEED_CHANGE		BIT(17)
-> +
-> +#define TYPE1_HDR_OFFSET		0x0
-> +#define PCIE_STATUS_COMMAND		(TYPE1_HDR_OFFSET + 0x04)
-> +#define PCI_IO_EN			BIT(0)
-> +#define PCI_MEM_SPACE_EN		BIT(1)
-> +#define PCI_BUS_MASTER_EN		BIT(2)
-> +
-> +#define PCIE_BASE_ADDR0			(TYPE1_HDR_OFFSET + 0x10)
-> +#define PCIE_BASE_ADDR1			(TYPE1_HDR_OFFSET + 0x14)
-> +
-> +#define PCIE_CAP_OFFSET			0x70
-> +#define PCIE_DEV_CTRL_DEV_STUS		(PCIE_CAP_OFFSET + 0x08)
-> +#define PCIE_CAP_MAX_PAYLOAD_MASK	GENMASK(7, 5)
-> +#define PCIE_CAP_MAX_PAYLOAD_SIZE(x)	((x) << 5)
-> +#define PCIE_CAP_MAX_READ_REQ_MASK	GENMASK(14, 12)
-> +#define PCIE_CAP_MAX_READ_REQ_SIZE(x)	((x) << 12)
-> +
-> +#define PCI_CLASS_REVISION_MASK		GENMASK(7, 0)
+has been applied to the asoc tree at
 
-Unused.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git 
 
-> +/* PCIe specific config registers */
-> +#define PCIE_CFG0			0x0
-> +#define APP_LTSSM_ENABLE		BIT(7)
-> +
-> +#define PCIE_CFG_STATUS12		0x30
-> +#define IS_SMLH_LINK_UP(x)		((x) & (1 << 6))
-> +#define IS_RDLH_LINK_UP(x)		((x) & (1 << 16))
-> +#define IS_LTSSM_UP(x)			((((x) >> 10) & 0x1f) == 0x11)
-> +
-> +#define PCIE_CFG_STATUS17		0x44
-> +#define PM_CURRENT_STATE(x)		(((x) >> 7) & 0x1)
-> +
-> +#define WAIT_LINKUP_TIMEOUT		2000
-> +#define PORT_CLK_RATE			100000000UL
-> +#define MAX_PAYLOAD_SIZE		256
-> +#define MAX_READ_REQ_SIZE		256
-> +#define MESON_PCIE_PHY_POWERUP		0x1c
-> +#define PCIE_RESET_DELAY		500
-> +#define PCIE_SHARED_RESET		1
-> +#define PCIE_NORMAL_RESET		0
-> +
-> +enum pcie_data_rate {
-> +	PCIE_GEN1,
-> +	PCIE_GEN2,
-> +	PCIE_GEN3,
-> +	PCIE_GEN4
-> +};
-> +
-> +struct meson_pcie_mem_res {
-> +	void __iomem *elbi_base;
-> +	void __iomem *cfg_base;
-> +	void __iomem *phy_base;
-> +};
-> +
-> +struct meson_pcie_clk_res {
-> +	struct clk *clk;
-> +	struct clk *mipi_gate;
-> +	struct clk *port_clk;
-> +	struct clk *general_clk;
-> +};
-> +
-> +struct meson_pcie_rc_reset {
-> +	struct reset_control *phy;
-> +	struct reset_control *port;
-> +	struct reset_control *apb;
-> +};
-> +
-> +struct meson_pcie {
-> +	struct dw_pcie pci;
-> +	struct meson_pcie_mem_res mem_res;
-> +	struct meson_pcie_clk_res clk_res;
-> +	struct meson_pcie_rc_reset mrst;
-> +	struct gpio_desc *reset_gpio;
-> +
-> +	enum of_gpio_flags gpio_flag;
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
 
-Unused.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-> +	int pcie_num;
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-Unused.
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-> +	u32 port_num;
+Thanks,
+Mark
 
-Unused.
+From 165be3c260f88a5f8c55d89458ad1f1d9efd701f Mon Sep 17 00:00:00 2001
+From: Jerome Brunet <jbrunet@baylibre.com>
+Date: Thu, 13 Dec 2018 16:44:28 +0100
+Subject: [PATCH] ASoC: meson: fix do_div warning in spdifin
 
-Please check these details before resubmitting.
+Even if this spdif input driver is only supposed to be used on 64bits
+platform, there is possible problem with 32bits and do_div, as reported
+by the kbuild robot. Just fix it.
 
-> +};
-> +
-> +static struct reset_control *meson_pcie_get_reset(struct meson_pcie *mp,
-> +						  const char *id,
-> +						  u32 reset_type)
-> +{
-> +	struct device *dev = mp->pci.dev;
-> +	struct reset_control *reset;
-> +
-> +	if (reset_type == PCIE_SHARED_RESET)
-> +		reset = devm_reset_control_get_shared(dev, id);
-> +	else
-> +		reset = devm_reset_control_get(dev, id);
-> +
-> +	return reset;
-> +}
-> +
-> +static int meson_pcie_get_resets(struct meson_pcie *mp)
-> +{
-> +	struct meson_pcie_rc_reset *mrst = &mp->mrst;
-> +
-> +	mrst->phy = meson_pcie_get_reset(mp, "phy", PCIE_SHARED_RESET);
-> +	if (IS_ERR(mrst->phy))
-> +		return PTR_ERR(mrst->phy);
-> +	reset_control_deassert(mrst->phy);
-> +
-> +	mrst->port = meson_pcie_get_reset(mp, "port", PCIE_NORMAL_RESET);
-> +	if (IS_ERR(mrst->port))
-> +		return PTR_ERR(mrst->port);
-> +	reset_control_deassert(mrst->port);
-> +
-> +	mrst->apb = meson_pcie_get_reset(mp, "apb", PCIE_SHARED_RESET);
-> +	if (IS_ERR(mrst->apb))
-> +		return PTR_ERR(mrst->apb);
-> +	reset_control_deassert(mrst->apb);
-> +
-> +	return 0;
-> +}
-> +
-> +static void __iomem *meson_pcie_get_mem(struct platform_device *pdev,
-> +					struct meson_pcie *mp,
-> +					const char *id)
-> +{
-> +	struct device *dev = mp->pci.dev;
-> +	struct resource *res;
-> +
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, id);
-> +
-> +	return devm_ioremap_resource(dev, res);
-> +}
-> +
-> +static void __iomem *meson_pcie_get_mem_shared(struct platform_device *pdev,
-> +					       struct meson_pcie *mp,
-> +					       const char *id)
-> +{
-> +	struct device *dev = mp->pci.dev;
-> +	struct resource *res;
-> +
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, id);
-> +	if (!res) {
-> +		dev_err(dev, "No REG resource %s\n", id);
-> +		return ERR_PTR(-ENXIO);
-> +	}
-> +
-> +	return devm_ioremap(dev, res->start, resource_size(res));
-> +}
-> +
-> +static int meson_pcie_get_mems(struct platform_device *pdev,
-> +			       struct meson_pcie *mp)
-> +{
-> +	mp->mem_res.elbi_base = meson_pcie_get_mem(pdev, mp, "elbi");
-> +	if (IS_ERR(mp->mem_res.elbi_base))
-> +		return PTR_ERR(mp->mem_res.elbi_base);
-> +
-> +	mp->mem_res.cfg_base = meson_pcie_get_mem(pdev, mp, "cfg");
-> +	if (IS_ERR(mp->mem_res.cfg_base))
-> +		return PTR_ERR(mp->mem_res.cfg_base);
-> +
-> +	/* Meson SoC has two PCI controllers use same phy register*/
-> +	mp->mem_res.phy_base = meson_pcie_get_mem_shared(pdev, mp, "phy");
-> +	if (IS_ERR(mp->mem_res.phy_base))
-> +		return PTR_ERR(mp->mem_res.phy_base);
-> +
-> +	return 0;
-> +}
-> +
-> +static void meson_pcie_power_on(struct meson_pcie *mp)
-> +{
-> +	writel(MESON_PCIE_PHY_POWERUP, mp->mem_res.phy_base);
-> +}
-> +
-> +static void meson_pcie_reset(struct meson_pcie *mp)
-> +{
-> +	struct meson_pcie_rc_reset *mrst = &mp->mrst;
-> +
-> +	reset_control_assert(mrst->phy);
-> +	udelay(PCIE_RESET_DELAY);
-> +	reset_control_deassert(mrst->phy);
-> +	udelay(PCIE_RESET_DELAY);
-> +
-> +	reset_control_assert(mrst->port);
-> +	reset_control_assert(mrst->apb);
-> +	udelay(PCIE_RESET_DELAY);
-> +	reset_control_deassert(mrst->port);
-> +	reset_control_deassert(mrst->apb);
-> +	udelay(PCIE_RESET_DELAY);
-> +}
-> +
-> +static inline struct clk *meson_pcie_probe_clock(struct device *dev,
-> +						 const char *id, u64 rate)
-> +{
-> +	struct clk *clk;
-> +	int ret;
-> +
-> +	clk = devm_clk_get(dev, id);
-> +	if (IS_ERR(clk))
-> +		return clk;
-> +
-> +	if (rate) {
-> +		ret = clk_set_rate(clk, rate);
-> +		if (ret) {
-> +			dev_err(dev, "set clk rate failed, ret = %d\n", ret);
-> +			return ERR_PTR(ret);
-> +		}
-> +	}
-> +
-> +	ret = clk_prepare_enable(clk);
-> +	if (ret) {
-> +		dev_err(dev, "couldn't enable clk\n");
-> +		return ERR_PTR(ret);
-> +	}
-> +
-> +	devm_add_action_or_reset(dev,
-> +				 (void (*) (void *))clk_disable_unprepare,
-> +				 clk);
-> +
-> +	return clk;
-> +}
-> +
-> +static int meson_pcie_probe_clocks(struct meson_pcie *mp)
-> +{
-> +	struct device *dev = mp->pci.dev;
-> +	struct meson_pcie_clk_res *res = &mp->clk_res;
-> +
-> +	res->port_clk = meson_pcie_probe_clock(dev, "port", PORT_CLK_RATE);
-> +	if (IS_ERR(res->port_clk))
-> +		return PTR_ERR(res->port_clk);
-> +
-> +	res->mipi_gate = meson_pcie_probe_clock(dev, "pcie_mipi_en", 0);
-> +	if (IS_ERR(res->mipi_gate))
-> +		return PTR_ERR(res->mipi_gate);
-> +
-> +	res->general_clk = meson_pcie_probe_clock(dev, "pcie_general", 0);
-> +	if (IS_ERR(res->general_clk))
-> +		return PTR_ERR(res->general_clk);
-> +
-> +	res->clk = meson_pcie_probe_clock(dev, "pcie", 0);
-> +	if (IS_ERR(res->clk))
-> +		return PTR_ERR(res->clk);
-> +
-> +	return 0;
-> +}
-> +
-> +static inline void meson_elb_writel(struct meson_pcie *mp, u32 val, u32 reg)
-> +{
-> +	writel(val, mp->mem_res.elbi_base + reg);
-> +}
-> +
-> +static inline u32 meson_elb_readl(struct meson_pcie *mp, u32 reg)
-> +{
-> +	return readl(mp->mem_res.elbi_base + reg);
-> +}
-> +
-> +static inline u32 meson_cfg_readl(struct meson_pcie *mp, u32 reg)
-> +{
-> +	return readl(mp->mem_res.cfg_base + reg);
-> +}
-> +
-> +static inline void meson_cfg_writel(struct meson_pcie *mp, u32 val, u32 reg)
-> +{
-> +	writel(val, mp->mem_res.cfg_base + reg);
-> +}
-> +
-> +static void meson_pcie_assert_reset(struct meson_pcie *mp)
-> +{
-> +	gpiod_set_value_cansleep(mp->reset_gpio, 0);
-> +	udelay(500);
-> +	gpiod_set_value_cansleep(mp->reset_gpio, 1);
-> +}
-> +
-> +static void meson_pcie_init_dw(struct meson_pcie *mp)
-> +{
-> +	u32 val;
-> +
-> +	val = meson_cfg_readl(mp, PCIE_CFG0);
-> +	val |= APP_LTSSM_ENABLE;
-> +	meson_cfg_writel(mp, val, PCIE_CFG0);
-> +
-> +	val = meson_elb_readl(mp, PCIE_PORT_LINK_CTRL_OFF);
-> +	val &= ~LINK_CAPABLE_MASK;
-> +	meson_elb_writel(mp, val, PCIE_PORT_LINK_CTRL_OFF);
-> +
-> +	val = meson_elb_readl(mp, PCIE_PORT_LINK_CTRL_OFF);
-> +	val |= LINK_CAPABLE_X1 | FAST_LINK_MODE;
-> +	meson_elb_writel(mp, val, PCIE_PORT_LINK_CTRL_OFF);
-> +
-> +	val = meson_elb_readl(mp, PCIE_GEN2_CTRL_OFF);
-> +	val &= ~NUM_OF_LANES_MASK;
-> +	meson_elb_writel(mp, val, PCIE_GEN2_CTRL_OFF);
-> +
-> +	val = meson_elb_readl(mp, PCIE_GEN2_CTRL_OFF);
-> +	val |= NUM_OF_LANES_X1 | DIRECT_SPEED_CHANGE;
-> +	meson_elb_writel(mp, val, PCIE_GEN2_CTRL_OFF);
-> +
-> +	meson_elb_writel(mp, 0x0, PCIE_BASE_ADDR0);
-> +	meson_elb_writel(mp, 0x0, PCIE_BASE_ADDR1);
-> +}
-> +
-> +static int meson_size_to_payload(struct meson_pcie *mp, int size)
-> +{
-> +	struct device *dev = mp->pci.dev;
-> +
-> +	/*
-> +	 * dwc supports 2^(val+7) payload size, which val is 0~5 default to 1.
-> +	 * So if input size is not 2^order alignment or less than 2^7 or bigger
-> +	 * than 2^12, just set to default size 2^(1+7).
-> +	 */
-> +	if (!is_power_of_2(size) || size < 128 || size > 4096) {
-> +		dev_warn(dev, "playload size %d, set to default 256\n", size);
-> +		return 1;
-> +	}
-> +
-> +	return fls(size) - 8;
-> +}
-> +
-> +static void meson_set_max_payload(struct meson_pcie *mp, int size)
-> +{
-> +	u32 val = 0;
-> +	int max_payload_size = meson_size_to_payload(mp, size);
-> +
-> +	val = meson_elb_readl(mp, PCIE_DEV_CTRL_DEV_STUS);
-> +	val &= ~PCIE_CAP_MAX_PAYLOAD_MASK;
-> +	meson_elb_writel(mp, val, PCIE_DEV_CTRL_DEV_STUS);
-> +
-> +	val = meson_elb_readl(mp, PCIE_DEV_CTRL_DEV_STUS);
-> +	val |= PCIE_CAP_MAX_PAYLOAD_SIZE(max_payload_size);
-> +	meson_elb_writel(mp, val, PCIE_DEV_CTRL_DEV_STUS);
-> +}
-> +
-> +static void meson_set_max_rd_req_size(struct meson_pcie *mp, int size)
-> +{
-> +	u32 val;
-> +	int max_rd_req_size = meson_size_to_payload(mp, size);
-> +
-> +	val = meson_elb_readl(mp, PCIE_DEV_CTRL_DEV_STUS);
-> +	val &= ~PCIE_CAP_MAX_READ_REQ_MASK;
-> +	meson_elb_writel(mp, val, PCIE_DEV_CTRL_DEV_STUS);
-> +
-> +	val = meson_elb_readl(mp, PCIE_DEV_CTRL_DEV_STUS);
-> +	val |= PCIE_CAP_MAX_READ_REQ_SIZE(max_rd_req_size);
-> +	meson_elb_writel(mp, val, PCIE_DEV_CTRL_DEV_STUS);
-> +}
-> +
-> +static inline void meson_enable_memory_space(struct meson_pcie *mp)
-> +{
-> +	/* Set the RC Bus Master, Memory Space and I/O Space enables */
-> +	meson_elb_writel(mp, PCI_IO_EN | PCI_MEM_SPACE_EN | PCI_BUS_MASTER_EN,
-> +			 PCIE_STATUS_COMMAND);
-> +}
-> +
-> +static int meson_pcie_establish_link(struct meson_pcie *mp)
-> +{
-> +	struct dw_pcie *pci = &mp->pci;
-> +	struct pcie_port *pp = &pci->pp;
-> +
-> +	meson_pcie_init_dw(mp);
-> +	meson_set_max_payload(mp, MAX_PAYLOAD_SIZE);
-> +	meson_set_max_rd_req_size(mp, MAX_READ_REQ_SIZE);
-> +
-> +	dw_pcie_setup_rc(pp);
-> +	meson_enable_memory_space(mp);
-> +
-> +	meson_pcie_assert_reset(mp);
-> +
-> +	return dw_pcie_wait_for_link(pci);
-> +}
-> +
-> +static void meson_pcie_enable_interrupts(struct meson_pcie *mp)
-> +{
-> +	if (IS_ENABLED(CONFIG_PCI_MSI))
-> +		dw_pcie_msi_init(&mp->pci.pp);
-> +}
-> +
-> +static int meson_pcie_rd_own_conf(struct pcie_port *pp, int where, int size,
-> +				  u32 *val)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	int ret;
-> +
-> +	ret = dw_pcie_read(pci->dbi_base + where, size, val);
-> +	if (ret != PCIBIOS_SUCCESSFUL)
-> +		return ret;
-> +
-> +	/*
-> +	 * There is a bug in the MESON AXG pcie controller whereby software
-> +	 * cannot programme the PCI_CLASS_DEVICE register, so we must fabricate
-> +	 * the return value in the config accessors.
-> +	 */
-> +	if (where == PCI_CLASS_REVISION && size == 4)
-> +		*val = (PCI_CLASS_BRIDGE_PCI << 16) | (*val & 0xffff);
-> +	else if (where == PCI_CLASS_DEVICE && size == 2)
-> +		*val = PCI_CLASS_BRIDGE_PCI;
-> +	else if (where == PCI_CLASS_DEVICE && size == 1)
-> +		*val = PCI_CLASS_BRIDGE_PCI & 0xff;
-> +	else if (where == PCI_CLASS_DEVICE + 1 && size == 1)
-> +		*val = (PCI_CLASS_BRIDGE_PCI >> 8) & 0xff;
-> +
-> +	return PCIBIOS_SUCCESSFUL;
-> +}
-> +
-> +static int meson_pcie_wr_own_conf(struct pcie_port *pp, int where,
-> +				  int size, u32 val)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +
-> +	return dw_pcie_write(pci->dbi_base + where, size, val);
-> +}
-> +
-> +static int meson_pcie_link_up(struct dw_pcie *pci)
-> +{
-> +	struct meson_pcie *mp = to_meson_pcie(pci);
-> +	struct device *dev = pci->dev;
-> +	u32 smlh_up = 0;
-> +	u32 ltssm_up = 0;
-> +	u32 rdlh_up = 0;
-> +	u32 speed_okay = 0;
-> +	u32 cnt = 0;
-> +	u32 state12, state17;
-> +
+Fixes: 5ce5658375e6 ("ASoC: meson: add axg spdif input")
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ sound/soc/meson/axg-spdifin.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Nit: a
+diff --git a/sound/soc/meson/axg-spdifin.c b/sound/soc/meson/axg-spdifin.c
+index 09f385a2bbba..01b2035fa841 100644
+--- a/sound/soc/meson/axg-spdifin.c
++++ b/sound/soc/meson/axg-spdifin.c
+@@ -146,8 +146,8 @@ static void axg_spdifin_write_mode_param(struct regmap *map, int mode,
+ 					 unsigned int base_reg,
+ 					 unsigned int width)
+ {
+-	unsigned int offset = mode, rem;
+-	unsigned int reg, shift;
++	uint64_t offset = mode;
++	unsigned int reg, shift, rem;
+ 
+ 	rem = do_div(offset, num_per_reg);
+ 
+-- 
+2.19.0.rc2
 
-do {
-
-} while (...)
-
-makes more sense given the variables you are checking.
-
-Lorenzo
-
-> +	while (smlh_up == 0 || rdlh_up == 0 || ltssm_up == 0 ||
-> +	       speed_okay == 0) {
-> +		udelay(20);
-> +
-> +		state12 = meson_cfg_readl(mp, PCIE_CFG_STATUS12);
-> +		state17 = meson_cfg_readl(mp, PCIE_CFG_STATUS17);
-> +		smlh_up = IS_SMLH_LINK_UP(state12);
-> +		rdlh_up = IS_RDLH_LINK_UP(state12);
-> +		ltssm_up = IS_LTSSM_UP(state12);
-> +
-> +		if (PM_CURRENT_STATE(state17) < PCIE_GEN3)
-> +			speed_okay = 1;
-> +
-> +		if (smlh_up)
-> +			dev_dbg(dev, "smlh_link_up is on\n");
-> +		if (rdlh_up)
-> +			dev_dbg(dev, "rdlh_link_up is on\n");
-> +		if (ltssm_up)
-> +			dev_dbg(dev, "ltssm_up is on\n");
-> +		if (speed_okay)
-> +			dev_dbg(dev, "speed_okay\n");
-> +
-> +		cnt++;
-> +
-> +		if (cnt >= WAIT_LINKUP_TIMEOUT) {
-> +			dev_err(dev, "Error: Wait linkup timeout.\n");
-> +			return 0;
-> +		}
-> +	}
-> +
-> +	return 1;
-> +}
-> +
-> +static int meson_pcie_host_init(struct pcie_port *pp)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct meson_pcie *mp = to_meson_pcie(pci);
-> +	int ret;
-> +
-> +	ret = meson_pcie_establish_link(mp);
-> +	if (ret)
-> +		return ret;
-> +
-> +	meson_pcie_enable_interrupts(mp);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct dw_pcie_host_ops meson_pcie_host_ops = {
-> +	.rd_own_conf = meson_pcie_rd_own_conf,
-> +	.wr_own_conf = meson_pcie_wr_own_conf,
-> +	.host_init = meson_pcie_host_init,
-> +};
-> +
-> +static int meson_add_pcie_port(struct meson_pcie *mp,
-> +			       struct platform_device *pdev)
-> +{
-> +	struct dw_pcie *pci = &mp->pci;
-> +	struct pcie_port *pp = &pci->pp;
-> +	struct device *dev = &pdev->dev;
-> +	int ret;
-> +
-> +	if (IS_ENABLED(CONFIG_PCI_MSI)) {
-> +		pp->msi_irq = platform_get_irq(pdev, 0);
-> +		if (pp->msi_irq < 0) {
-> +			dev_err(dev, "failed to get msi irq\n");
-> +			return pp->msi_irq;
-> +		}
-> +	}
-> +
-> +	pp->ops = &meson_pcie_host_ops;
-> +	pci->dbi_base = mp->mem_res.elbi_base;
-> +
-> +	ret = dw_pcie_host_init(pp);
-> +	if (ret) {
-> +		dev_err(dev, "failed to initialize host\n");
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct dw_pcie_ops dw_pcie_ops = {
-> +	.link_up = meson_pcie_link_up,
-> +};
-> +
-> +static int meson_pcie_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct dw_pcie *pci;
-> +	struct meson_pcie *mp;
-> +	int ret;
-> +
-> +	mp = devm_kzalloc(dev, sizeof(*mp), GFP_KERNEL);
-> +	if (!mp)
-> +		return -ENOMEM;
-> +
-> +	pci = &mp->pci;
-> +	pci->dev = dev;
-> +	pci->ops = &dw_pcie_ops;
-> +
-> +	mp->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-> +	if (IS_ERR(mp->reset_gpio)) {
-> +		dev_err(dev, "Get reset gpio failed\n");
-> +		return PTR_ERR(mp->reset_gpio);
-> +	}
-> +
-> +	ret = meson_pcie_get_resets(mp);
-> +	if (ret) {
-> +		dev_err(dev, "Get reset resource failed, %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = meson_pcie_get_mems(pdev, mp);
-> +	if (ret) {
-> +		dev_err(dev, "Get memory resource failed, %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	meson_pcie_power_on(mp);
-> +	meson_pcie_reset(mp);
-> +
-> +	ret = meson_pcie_probe_clocks(mp);
-> +	if (ret) {
-> +		dev_err(dev, "Init clock resources failed, %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	platform_set_drvdata(pdev, mp);
-> +
-> +	ret = meson_add_pcie_port(mp, pdev);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Add PCIE port failed, %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id meson_pcie_of_match[] = {
-> +	{
-> +		.compatible = "amlogic,axg-pcie",
-> +	},
-> +	{},
-> +};
-> +
-> +static struct platform_driver meson_pcie_driver = {
-> +	.probe = meson_pcie_probe,
-> +	.driver = {
-> +		.name = "meson-pcie",
-> +		.of_match_table = meson_pcie_of_match,
-> +	},
-> +};
-> +
-> +builtin_platform_driver(meson_pcie_driver);
-> -- 
-> 2.7.4
-> 
 
 _______________________________________________
 linux-amlogic mailing list
