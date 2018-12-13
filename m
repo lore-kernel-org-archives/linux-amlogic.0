@@ -2,22 +2,22 @@ Return-Path: <SRS0=UlVA=OW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-4.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED
+	SIGNED_OFF_BY,SPF_PASS,T_MIXED_ES,UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8A406C67872
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 08:53:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EB660C67839
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 08:55:33 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2298320672
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 08:53:36 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9CD0520849
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 08:55:33 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="twjHeZ1i";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="b/0V1/Iu"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2298320672
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rpKx8Xug";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="qEsaR7je"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9CD0520849
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7ZzhDWS5TScfn/RJ0gSANE3fxKpYzSWOJvyRvbc+ubA=; b=twjHeZ1ixGivWy
-	48kyZAfCK6z4/YqNaLadrb+kQmr6fZ/wyNadRppOWiGZae9apBWAI0dx8jIaYxzO/9mou4FDgbIqp
-	XiWqK09x76GVSHm/M6kk2uTN+Qpi5JPaCjWdDJ/kVRbNfCM9RWmc5pNgz3mbD69BOaMQ5C4CRqduu
-	jAkIY/wZRTUEIJ4td+sbTgmY/MlNih9n1FcwfKylnMGEOCB6CGorWZ2iiG2upwZ/qHQwpgbHmFYAb
-	EV+5vGCU8k1fCuei/X/JIHPp4bxTfXQz/0uC8C5uwnOFBPn+ciE+IH7nR02TS6osZSacfvj5KR33N
-	p/PZ4Izf486cMzzejnlw==;
+	List-Owner; bh=R16hOY/h0ferQyqesgz5CrrSEEgwdhzL0jTZORHihb8=; b=rpKx8Xugx1AkJd
+	jS0aQCHPyoB3HQd+T22X3yarFPFLGySfXXBr2ovm/xr2YDa03SHk+yvqIr7Q9R/UZL3cYD33XRT1X
+	qeZ/a2NlPOZkemNImwfDXDmT+Z1pxuyyUlyBZrmpkE9sNC58qKlKhkt+JyYMW3B9aPLj8zFkfdTn5
+	0mjD27VjspaKXIL07yBXf4Ui0B17vy5HQ24eDOQsAT8D1Ax9AeJL83lx64Id23c8/PKR4juTmKomK
+	byn058RkUHnjypM+MJjVQpCoG0LAgloD80RcizO59KrOOWis6JOdVUbZ6It4J+zRAvVwbtrpJcpV2
+	Z6xaqWmvYfqjkkfQTBvA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gXMkL-0003cC-Ur; Thu, 13 Dec 2018 08:53:29 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1gXMmG-0005jI-AF; Thu, 13 Dec 2018 08:55:28 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gXMk6-0003Kh-Jw
- for linux-amlogic@lists.infradead.org; Thu, 13 Dec 2018 08:53:18 +0000
-Received: by mail-wr1-x442.google.com with SMTP id q18so1090335wrx.9
- for <linux-amlogic@lists.infradead.org>; Thu, 13 Dec 2018 00:53:04 -0800 (PST)
+ id 1gXMmC-0005hD-9b
+ for linux-amlogic@lists.infradead.org; Thu, 13 Dec 2018 08:55:26 +0000
+Received: by mail-wr1-x444.google.com with SMTP id u4so130410wrp.3
+ for <linux-amlogic@lists.infradead.org>; Thu, 13 Dec 2018 00:55:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=6/Irh3/0npcPy69nhVVg258eNFc0df0dV7pRNRrxaCA=;
- b=b/0V1/IuASfW/tPVKQcfO7QEZz3x+TP4TRe+dvyNftip44W9Gi4+HSluesf0KoE9ds
- 0NCbn3xs7lrQf5vo41JQJzh09QXXd8Io+h1or0YmuLpMbKTbaQdLWxmaPh3RAJzpkSGu
- G8pl3JBmJvxfXm0ZJaK3qa4JNlhYBgtUfvzyhNTvcuV2G2PjcIUXm3SuPraEmI8IUDxo
- vE3BFoyemj7oJYNguC8TJMAxIFrW9IUuOXvbDKw7yuDGA2khavSfIMLIc+O4yFENGIPJ
- piOp1E7idRldAtcDPn0oAenYww9R8kP/2gJkuFKAgdae9VkAt0xMoi/RoPCNKRzJpfDf
- H1/A==
+ bh=h54WoB3PvoLevlfzcCTG32nZUmvQxFmjfx5dijvUHbs=;
+ b=qEsaR7je8eXCPRlABC7BYFFURBNTueU8K+siQk42i8oFvCtaoyZvmNe9S4ma53lKki
+ 4p6WR0l9FSz1Mt323oDSg4LTaaxVTkjnVb6jenCyn6LedE1rsUhW3etP+eVHvOKt01EQ
+ 3e5vKUHYRpAnt8LJPr3b3feekKDCh8z8No7aAOhaa5HZR1o8l936yFgfI3wC2FyeCzBB
+ 5vp+p9z0IPTasWzDKhD8v5HxNE1ciQ04IsbfmBMcx5boquKytG5Sk+LxbOzJYFiAM6/u
+ pDYARsyMsKBf8wiHAsmyZmVDpbVRCMQ9NmAcJcXowuTX7dPPu5KN+2ueJwQjeyCLK3Bo
+ yPwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=6/Irh3/0npcPy69nhVVg258eNFc0df0dV7pRNRrxaCA=;
- b=DJJNiZv/+i04NVOY6VTfqPFY4fduXZapqyx2VPs3+sUD3D4krBYzfKXIV8MBizYYbq
- E06BQenlR+0nHkcBxbh5ZtQGPKIyxsvb9M+f46yeOTXU+x+7eiDq2LkCLC7UTfc32ja+
- cL9G9wQ3S7BEdyavGtgUYTD/E6d8y6AxSZkEsQW+NTDHvbJG8/qdrMNBFxOqH4xU0xxi
- HwEo2dlHN2WnqPbp8CG3htKcPxFjYlUw64M46zwuCV1Kfj4HER0eplhy+D5VcK+5q4nC
- Da3zikVvOFW0MRrMW1BiU2eXGX5l0q+obRTDP0LLDbvg9CSzcSd9nR+9Wc+OkVLfBFjH
- ahWw==
-X-Gm-Message-State: AA+aEWaGwXFZlB9vfSAcBvP/cN5rXdVu2crsnml26lbpluQuNGrr9j+t
- 3aWA+YpU7fW/3GI69kg0RgSqVA==
-X-Google-Smtp-Source: AFSGD/UPTkx1RJPg3Ktv6CqscyAap/dz326hOEhPKaFMyrqdhYYkBaKE7F+6qbFjcwj6MpWXAl8ZNg==
-X-Received: by 2002:adf:b783:: with SMTP id s3mr21310084wre.274.1544691182605; 
- Thu, 13 Dec 2018 00:53:02 -0800 (PST)
+ bh=h54WoB3PvoLevlfzcCTG32nZUmvQxFmjfx5dijvUHbs=;
+ b=BDkiIWuNkPNAJ4rXeIDIEVfyU61knoFk8Mj+AbZpSQU/ZuXFsYQln4QeGSWkD4BGJF
+ J+xnf+9BH2Qjoa5r2OYrqKDEKKzsSPMk2viMemHRRuYEhW34GzfmeB5PmYShQX8gKkIt
+ iFp5p3hI0Y/11/D5hBDmHp0t7f1VkOnL2FssQOAI1HWt5LFY6uM08sgBlEKeYlT2H3O4
+ uXorC6QgrxiTNUpGh5W+mpT4Tl6z/zHEG/Y+vZeRoNUQgXxPOFHcagFgGFrsIvPEXT4x
+ Y4N7rfbieBxaPEYhKkRKqJNGBfcXDYuJHXydjGPykLg+GLNnlf+ANNETgA/6k8DU2xhT
+ USBA==
+X-Gm-Message-State: AA+aEWZlilBcboUOzwrgbxLEPu/xbbmy7h5YjefiT77TaaKT1NkDZ3YL
+ 9Z4sAqlyAiPq5mArVQ9Mliw9dQ==
+X-Google-Smtp-Source: AFSGD/Uo1wModIhOoy6vsAwuoUmjWzm7krnLl9jPnNsqNh97/IH7jP+/KMZXHgwphXPJ2/33RqrFPg==
+X-Received: by 2002:adf:c108:: with SMTP id r8mr21191920wre.233.1544691312657; 
+ Thu, 13 Dec 2018 00:55:12 -0800 (PST)
 Received: from ?IPv6:2a01:cb1d:4ce:ea00:a5f8:3197:dbfa:c157?
  ([2a01:cb1d:4ce:ea00:a5f8:3197:dbfa:c157])
- by smtp.gmail.com with ESMTPSA id 129sm1363145wmd.18.2018.12.13.00.53.00
+ by smtp.gmail.com with ESMTPSA id y1sm1323242wme.1.2018.12.13.00.55.11
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 13 Dec 2018 00:53:01 -0800 (PST)
-Subject: Re: [PATCH v2 2/3] spi: meson-axg: enhance output enable feature
+ Thu, 13 Dec 2018 00:55:12 -0800 (PST)
+Subject: Re: [PATCH v2 3/3] spi: meson-axg: add a linear clock divider support
 To: Sunny Luo <sunny.luo@amlogic.com>, Mark Brown <broonie@kernel.org>
 References: <1544690354-16409-1-git-send-email-sunny.luo@amlogic.com>
- <1544690354-16409-3-git-send-email-sunny.luo@amlogic.com>
+ <1544690354-16409-4-git-send-email-sunny.luo@amlogic.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -131,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <6ba11b0a-3629-5378-61c7-3cc364237f5c@baylibre.com>
-Date: Thu, 13 Dec 2018 09:53:00 +0100
+Message-ID: <3cc699dc-4021-b993-2b47-b00b40f380f8@baylibre.com>
+Date: Thu, 13 Dec 2018 09:55:11 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.2.1
 MIME-Version: 1.0
-In-Reply-To: <1544690354-16409-3-git-send-email-sunny.luo@amlogic.com>
+In-Reply-To: <1544690354-16409-4-git-send-email-sunny.luo@amlogic.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181213_005314_797919_6E693778 
-X-CRM114-Status: GOOD (  20.73  )
+X-CRM114-CacheID: sfid-20181213_005524_359967_DEB5FE92 
+X-CRM114-Status: GOOD (  25.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -165,105 +165,334 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 Hi Sunny,
 
 On 13/12/2018 09:39, Sunny Luo wrote:
-> The SPICC controller in Meson-AXG is capable of driving the CLK/MOSI/SS
-> signal lines through the idle state (between two transmission operation),
-> which avoid the signals floating in unexpected state.
+> The SPICC controller in Meson-AXG SoC is capable of using
+> a linear clock divider to reach a much fine tuned range of clocks,
+> while the old controller only use a power of two clock divider,
+> result at a more coarse clock range.
 
-This is welcome, because it's really missing on GX...
-I tried implementing it with pinctrl at [1], but it's complex.
+This patch should definitely go before patch 1.
 
-Can you provide more info on how we should implement in on GX to be on par ?
-
-[1] https://github.com/superna9999/linux/commit/9c3a95659dd532d186556c1570c54d79ea5a4d45
-
+> 
+> Also convert the clock registration into Common Clock Framework.
 > 
 > Signed-off-by: Sunny Luo <sunny.luo@amlogic.com>
 > Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
 > ---
->  drivers/spi/spi-meson-spicc.c | 28 ++++++++++++++++++++++++++--
->  1 file changed, 26 insertions(+), 2 deletions(-)
+>  drivers/spi/Kconfig           |   2 +-
+>  drivers/spi/spi-meson-spicc.c | 209 ++++++++++++++++++++++++++++++++++--------
+>  2 files changed, 170 insertions(+), 41 deletions(-)
 > 
+> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
+> index 9f89cb1..75f7362 100644
+> --- a/drivers/spi/Kconfig
+> +++ b/drivers/spi/Kconfig
+> @@ -384,7 +384,7 @@ config SPI_FSL_ESPI
+>  
+>  config SPI_MESON_SPICC
+>  	tristate "Amlogic Meson SPICC controller"
+> -	depends on ARCH_MESON || COMPILE_TEST
+> +	depends on OF && COMMON_CLK && (ARCH_MESON || COMPILE_TEST)
+>  	help
+>  	  This enables master mode support for the SPICC (SPI communication
+>  	  controller) available in Amlogic Meson SoCs.
 > diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
-> index b56249d..0384c28 100644
+> index 0384c28..59af18e 100644
 > --- a/drivers/spi/spi-meson-spicc.c
 > +++ b/drivers/spi/spi-meson-spicc.c
-> @@ -115,6 +115,13 @@
->  
+> @@ -116,6 +116,9 @@
 >  #define SPICC_DWADDR	0x24	/* Write Address of DMA */
 >  
-> +#define SPICC_ENH_CTL0	0x38	/* Enhanced Feature */
-> +#define SPICC_ENH_MOSI_OEN		BIT(25)
-> +#define SPICC_ENH_CLK_OEN		BIT(26)
-> +#define SPICC_ENH_CS_OEN		BIT(27)
-> +#define SPICC_ENH_CLK_CS_DELAY_EN	BIT(28)
-> +#define SPICC_ENH_MAIN_CLK_AO		BIT(29)
-> +
->  #define writel_bits_relaxed(mask, val, addr) \
->  	writel_relaxed((readl_relaxed(addr) & ~(mask)) | (val), addr)
->  
-> @@ -123,6 +130,7 @@
->  
+>  #define SPICC_ENH_CTL0	0x38	/* Enhanced Feature */
+> +#define SPICC_ENH_CLK_CS_DELAY_MASK	GENMASK(15, 0)
+> +#define SPICC_ENH_DATARATE_MASK		GENMASK(23, 16)
+> +#define SPICC_ENH_DATARATE_EN		BIT(24)
+>  #define SPICC_ENH_MOSI_OEN		BIT(25)
+>  #define SPICC_ENH_CLK_OEN		BIT(26)
+>  #define SPICC_ENH_CS_OEN		BIT(27)
+> @@ -131,6 +134,7 @@
 >  struct meson_spicc_data {
 >  	unsigned int			max_speed_hz;
-> +	bool				has_oen;
+>  	bool				has_oen;
+> +	bool				has_enhance_clk_div;
 >  };
 >  
 >  struct meson_spicc_device {
-> @@ -145,6 +153,19 @@ struct meson_spicc_device {
->  	bool				is_last_burst;
->  };
+> @@ -138,6 +142,7 @@ struct meson_spicc_device {
+>  	struct platform_device		*pdev;
+>  	void __iomem			*base;
+>  	struct clk			*core;
+> +	struct clk			*clk;
+>  	struct spi_message		*message;
+>  	struct spi_transfer		*xfer;
+>  	const struct meson_spicc_data	*data;
+> @@ -325,40 +330,6 @@ static irqreturn_t meson_spicc_irq(int irq, void *data)
+>  	return IRQ_HANDLED;
+>  }
 >  
-> +static void meson_spicc_oen_enable(struct meson_spicc_device *spicc)
-> +{
-> +	u32 conf;
-> +
-> +	if (!spicc->data->has_oen)
-> +		return;
-> +
-> +	conf = readl_relaxed(spicc->base + SPICC_ENH_CTL0) |
-> +		SPICC_ENH_MOSI_OEN | SPICC_ENH_CLK_OEN | SPICC_ENH_CS_OEN;
-> +
-> +	writel_relaxed(conf, spicc->base + SPICC_ENH_CTL0);
-> +}
-> +
->  static inline bool meson_spicc_txfull(struct meson_spicc_device *spicc)
+> -static u32 meson_spicc_setup_speed(struct meson_spicc_device *spicc, u32 conf,
+> -				   u32 speed)
+> -{
+> -	unsigned long parent, value;
+> -	unsigned int i, div;
+> -
+> -	parent = clk_get_rate(spicc->core);
+> -
+> -	/* Find closest inferior/equal possible speed */
+> -	for (i = 0 ; i < 7 ; ++i) {
+> -		/* 2^(data_rate+2) */
+> -		value = parent >> (i + 2);
+> -
+> -		if (value <= speed)
+> -			break;
+> -	}
+> -
+> -	/* If provided speed it lower than max divider, use max divider */
+> -	if (i > 7) {
+> -		div = 7;
+> -		dev_warn_once(&spicc->pdev->dev, "unable to get close to speed %u\n",
+> -			      speed);
+> -	} else
+> -		div = i;
+> -
+> -	dev_dbg(&spicc->pdev->dev, "parent %lu, speed %u -> %lu (%u)\n",
+> -		parent, speed, value, div);
+> -
+> -	conf &= ~SPICC_DATARATE_MASK;
+> -	conf |= FIELD_PREP(SPICC_DATARATE_MASK, div);
+> -
+> -	return conf;
+> -}
+> -
+>  static void meson_spicc_setup_xfer(struct meson_spicc_device *spicc,
+>  				   struct spi_transfer *xfer)
 >  {
->  	return !!FIELD_GET(SPICC_TF,
-> @@ -453,6 +474,8 @@ static int meson_spicc_prepare_message(struct spi_master *master,
+> @@ -367,9 +338,6 @@ static void meson_spicc_setup_xfer(struct meson_spicc_device *spicc,
+>  	/* Read original configuration */
+>  	conf = conf_orig = readl_relaxed(spicc->base + SPICC_CONREG);
 >  
->  	writel_bits_relaxed(BIT(24), BIT(24), spicc->base + SPICC_TESTREG);
->  
-> +	meson_spicc_oen_enable(spicc);
+> -	/* Select closest divider */
+> -	conf = meson_spicc_setup_speed(spicc, conf, xfer->speed_hz);
+> -
+>  	/* Setup word width */
+>  	conf &= ~SPICC_BITLENGTH_MASK;
+>  	conf |= FIELD_PREP(SPICC_BITLENGTH_MASK,
+> @@ -378,6 +346,8 @@ static void meson_spicc_setup_xfer(struct meson_spicc_device *spicc,
+>  	/* Ignore if unchanged */
+>  	if (conf != conf_orig)
+>  		writel_relaxed(conf, spicc->base + SPICC_CONREG);
 > +
+> +	clk_set_rate(spicc->clk, xfer->speed_hz);
+>  }
+>  
+>  static int meson_spicc_transfer_one(struct spi_master *master,
+> @@ -486,9 +456,6 @@ static int meson_spicc_unprepare_transfer(struct spi_master *master)
+>  	/* Disable all IRQs */
+>  	writel(0, spicc->base + SPICC_INTREG);
+>  
+> -	/* Disable controller */
+> -	writel_bits_relaxed(SPICC_ENABLE, 0, spicc->base + SPICC_CONREG);
+> -
+>  	device_reset_optional(&spicc->pdev->dev);
+>  
 >  	return 0;
+> @@ -528,6 +495,157 @@ static void meson_spicc_cleanup(struct spi_device *spi)
+>  	spi->controller_state = NULL;
 >  }
 >  
-> @@ -610,11 +633,12 @@ static int meson_spicc_remove(struct platform_device *pdev)
->  }
->  
->  static const struct meson_spicc_data meson_spicc_gx_data = {
-> -	.max_speed_hz	= 30000000,
-> +	.max_speed_hz		= 30000000,
+> +/*
+> + * The Clock Mux
+> + *            x-----------------x   x------------x    x------\
+> + *        |---| 0) fixed factor |---| 1) old div |----|      |
+> + *        |   x-----------------x   x------------x    |      |
+> + * src ---|                                           |5) mux|-- out
+> + *        |   x-----------------x   x------------x    |      |
+> + *        |---| 2) fixed factor |---| 3) new div |0---|      |
+> + *            x-----------------x   x------------x    x------/
+> + *
+> + * Clk path for GX series:
+> + *    src -> 0 -> 1 -> out
+> + *
+> + * Clk path for AXG series:
+> + *    src -> 0 -> 1 -> 5 -> out
+> + *    src -> 2 -> 3 -> 5 -> out
+> + */
+> +
+> +/* algorithm for div0 + div1: rate = freq / 4 / (2 ^ N) */
+> +static struct clk_fixed_factor meson_spicc_div0 = {
+> +	.mult	= 1,
+> +	.div	= 4,
+> +};
+> +
+> +static struct clk_divider meson_spicc_div1 = {
+> +	.reg	= (void *)SPICC_CONREG,
+> +	.shift	= 16,
+> +	.width	= 3,
+> +	.flags	= CLK_DIVIDER_POWER_OF_TWO,
+> +};
+> +
+> +/* algorithm for div2 + div3: rate = freq / 2 / (N + 1) */
+> +static struct clk_fixed_factor meson_spicc_div2 = {
+> +	.mult	= 1,
+> +	.div	= 2,
+> +};
+> +
+> +static struct clk_divider meson_spicc_div3 = {
+> +	.reg	= (void *)SPICC_ENH_CTL0,
+> +	.shift	= 16,
+> +	.width	= 8,
+> +};
+> +
+> +static struct clk_mux meson_spicc_sel = {
+> +	.reg	= (void *)SPICC_ENH_CTL0,
+> +	.mask	= 0x1,
+> +	.shift	= 24,
+> +};
+> +
+> +static int meson_spicc_clk_init(struct meson_spicc_device *spicc)
+> +{
+> +	struct device *dev = &spicc->pdev->dev;
+> +	struct clk_fixed_factor *div0;
+> +	struct clk_divider *div1;
+> +	struct clk_mux *mux;
+> +	struct clk_init_data init;
+> +	struct clk *clk;
+> +	const char *parent_names[1];
+> +	const char *mux_parent_names[2];
+> +	char name[32];
+> +
+> +	div0 = &meson_spicc_div0;
+> +	snprintf(name, sizeof(name), "%s#_div0", dev_name(dev));
+> +	init.name = name;
+> +	init.ops = &clk_fixed_factor_ops;
+> +	init.flags = 0;
+> +	parent_names[0] = __clk_get_name(spicc->core);
+> +	init.parent_names = parent_names;
+> +	init.num_parents = 1;
+> +
+> +	div0->hw.init = &init;
+> +
+> +	clk = devm_clk_register(dev, &div0->hw);
+> +	if (WARN_ON(IS_ERR(clk)))
+> +		return PTR_ERR(clk);
+> +
+> +	div1 = &meson_spicc_div1;
+> +	snprintf(name, sizeof(name), "%s#_div1", dev_name(dev));
+> +	init.name = name;
+> +	init.ops = &clk_divider_ops;
+> +	init.flags = CLK_SET_RATE_PARENT;
+> +	parent_names[0] = __clk_get_name(clk);
+> +	init.parent_names = parent_names;
+> +	init.num_parents = 1;
+> +
+> +	div1->reg = spicc->base + (u64)div1->reg;
+> +	div1->hw.init = &init;
+> +
+> +	clk = devm_clk_register(dev, &div1->hw);
+> +	if (WARN_ON(IS_ERR(clk)))
+> +		return PTR_ERR(clk);
+> +
+> +	if (!spicc->data->has_enhance_clk_div) {
+> +		spicc->clk = clk;
+> +		return 0;
+> +	}
+> +
+> +	mux_parent_names[0] = __clk_get_name(clk);
+> +
+> +	div0 = &meson_spicc_div2;
+> +	snprintf(name, sizeof(name), "%s#_div2", dev_name(dev));
+> +	init.name = name;
+> +	init.ops = &clk_fixed_factor_ops;
+> +	init.flags = 0;
+> +	parent_names[0] = __clk_get_name(spicc->core);
+> +	init.parent_names = parent_names;
+> +	init.num_parents = 1;
+> +
+> +	div0->hw.init = &init;
+> +
+> +	clk = devm_clk_register(dev, &div0->hw);
+> +	if (WARN_ON(IS_ERR(clk)))
+> +		return PTR_ERR(clk);
+> +
+> +	div1 = &meson_spicc_div3;
+> +	snprintf(name, sizeof(name), "%s#_div3", dev_name(dev));
+> +	init.name = name;
+> +	init.ops = &clk_divider_ops;
+> +	init.flags = CLK_SET_RATE_PARENT;
+> +	parent_names[0] = __clk_get_name(clk);
+> +	init.parent_names = parent_names;
+> +	init.num_parents = 1;
+> +
+> +	div1->reg = spicc->base + (u64)div1->reg;
+> +	div1->hw.init = &init;
+> +
+> +	clk = devm_clk_register(dev, &div1->hw);
+> +	if (WARN_ON(IS_ERR(clk)))
+> +		return PTR_ERR(clk);
+> +
+> +	mux_parent_names[1] = __clk_get_name(clk);
+> +
+> +	mux = &meson_spicc_sel;
+> +	snprintf(name, sizeof(name), "%s#_sel", dev_name(dev));
+> +	init.name = name;
+> +	init.ops = &clk_mux_ops;
+> +	init.parent_names = mux_parent_names;
+> +	init.num_parents = 2;
+> +	init.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT;
+> +
+> +	mux->reg = spicc->base + (u64)mux->reg;
+> +	mux->hw.init = &init;
+> +
+> +	spicc->clk = devm_clk_register(dev, &mux->hw);
+> +	if (WARN_ON(IS_ERR(spicc->clk)))
+> +		return PTR_ERR(spicc->clk);
+> +
+> +	clk_set_parent(spicc->clk, clk);
+> +	return 0;
+> +}
 
-Nitpick, but I would have kept the indentation here ...
+I'll let Jerome review this !
 
->  };
+> +
+>  static int meson_spicc_probe(struct platform_device *pdev)
+>  {
+>  	struct spi_master *master;
+> @@ -557,6 +675,10 @@ static int meson_spicc_probe(struct platform_device *pdev)
+>  		goto out_master;
+>  	}
 >  
+> +	/* Set master mode and enable controller */
+> +	writel_relaxed(SPICC_ENABLE | SPICC_MODE_MASTER,
+> +		       spicc->base + SPICC_CONREG);
+
+Please remove it from meson_spicc_prepare_message() now.
+
+> +
+>  	/* Disable all IRQs */
+>  	writel_relaxed(0, spicc->base + SPICC_INTREG);
+>  
+> @@ -603,6 +725,12 @@ static int meson_spicc_probe(struct platform_device *pdev)
+>  	master->max_speed_hz = min_t(unsigned int, rate >> 1,
+>  				     spicc->data->max_speed_hz);
+>  
+> +	ret = meson_spicc_clk_init(spicc);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "clock registration failed\n");
+> +		goto out_master;
+> +	}
+> +
+>  	ret = devm_spi_register_master(&pdev->dev, master);
+>  	if (ret) {
+>  		dev_err(&pdev->dev, "spi master registration failed\n");
+> @@ -639,6 +767,7 @@ static const struct meson_spicc_data meson_spicc_gx_data = {
 >  static const struct meson_spicc_data meson_spicc_axg_data = {
-> -	.max_speed_hz	= 80000000,
-> +	.max_speed_hz		= 80000000,
-> +	.has_oen		= true,
-
-same here
-
+>  	.max_speed_hz		= 80000000,
+>  	.has_oen		= true,
+> +	.has_enhance_clk_div	= true,
 >  };
 >  
 >  static const struct of_device_id meson_spicc_of_match[] = {
 > 
 
-Anywy it's nitpick,
-
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
