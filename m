@@ -2,63 +2,72 @@ Return-Path: <SRS0=UlVA=OW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,UNWANTED_LANGUAGE_BODY autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6C30CC67839
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 11:55:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5C16CC67872
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 12:09:08 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 387C02086D
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 11:55:36 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 27E0A2145D
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 12:09:08 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oueB6dop"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 387C02086D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YF/sFJI1";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="Txbvjk5I"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 27E0A2145D
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=VzpubGoqzoNBCx7yuhjHe43qcv17o7Y0C3qY5mRs3oM=; b=oueB6doplBiYRWWoWk4n+WiYD
-	lNGZAvr0s/YNd5Yljo8Q03mumSO/A2otZjYUDF07uFLPBX35zM1XEzQuxDbFZjN7QHox1xR/14lns
-	6Ug8YqWzE8TGUDevqqr6fiqX7e8sBdadH7vgzrUk1Bju22PtXLATKx8xDeoN16jEq1TW13ivNqz2l
-	E516DQYmGkp3zflazd+xPKLeqJvG4zmMDnL8hvohpI8X1HqXZkPJyRVXAyeaulb6ZN3RP/lO33OZu
-	gOb30arelfjPG5p41/lnGxEPvkuvOkLUj2TxIzYU6xTqMtgFr6H3itqZfEfTi0DgocUntfIl97g/T
-	42PXkQonA==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:
+	In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	References:List-Owner; bh=FuemK6VMnbzeJv6OCSvx2lm9ps50iLWKZcYYzTjUjxA=; b=YF/
+	sFJI1EylRzYbFF946KfotC/lwHVDLEkGihIBxC8lRaVAMn9E9moCsNmR3tOar8Y8dALiZVFOz44z/
+	fAYZVdjKj+5RePN7lJEXcIfgXK0STe6r1y4ZFgVIdpRQ4DaEqrxDZjNiazPfurJe0/C/jJYfsIP58
+	dg7MPhni9qENfxeTF8uEmobbxfB2afWz+bak9ZmF3FC2JPtZdzmO0bVew2oJCtZPDkC0QcfpwKcMX
+	2ZmaPcv5Y2CvCn0I6IwVbxktplZLrGuEYGr0oUbyKxaVSW8wxWJb07s0DZ1bWqI4rdmSd5BFe5YP7
+	C9i3iLM7xilhJ86ZIgjJkh6Hb1LzESA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gXPaU-0000T0-Ij; Thu, 13 Dec 2018 11:55:30 +0000
-Received: from mail-sz2.amlogic.com ([211.162.65.114])
+	id 1gXPnb-0007gg-JH; Thu, 13 Dec 2018 12:09:03 +0000
+Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gXPaC-0007DH-4r; Thu, 13 Dec 2018 11:55:14 +0000
-Received: from [10.28.18.96] (10.28.18.96) by mail-sz2.amlogic.com
- (10.28.11.6) with Microsoft SMTP Server (TLS) id 15.0.1320.4; Thu, 13 Dec
- 2018 19:55:15 +0800
-Subject: Re: [PATCH v2 1/3] spi: meson-axg: support MAX 80M clock
-To: Neil Armstrong <narmstrong@baylibre.com>, Mark Brown <broonie@kernel.org>
-References: <1544690354-16409-1-git-send-email-sunny.luo@amlogic.com>
- <1544690354-16409-2-git-send-email-sunny.luo@amlogic.com>
- <2d438907-91b5-7443-24f9-57a406aaa040@baylibre.com>
-From: Sunny Luo <sunny.luo@amlogic.com>
-Message-ID: <13e10889-50ce-4f67-cf60-f7a4917f84f5@amlogic.com>
-Date: Thu, 13 Dec 2018 19:55:15 +0800
-User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:60.0) Gecko/20100101
- Thunderbird/60.3.3
-MIME-Version: 1.0
-In-Reply-To: <2d438907-91b5-7443-24f9-57a406aaa040@baylibre.com>
-Content-Language: en-GB
-X-Originating-IP: [10.28.18.96]
-X-ClientProxiedBy: mail-sz2.amlogic.com (10.28.11.6) To mail-sz2.amlogic.com
- (10.28.11.6)
+ id 1gXPnX-0007VC-7v
+ for linux-amlogic@lists.infradead.org; Thu, 13 Dec 2018 12:09:01 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
+ Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+ List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
+ List-Archive; bh=IxTRNukDKABFeyuNYETUnkxqv/pjSeC320eG86XAj/Q=; b=Txbvjk5Ibt2Y
+ hFuKRJ0PbHnBK40iZa5MAefH+8knM2nVzpvX37ZsixHBjEYROlyRtkHkNiIKc1O0P2sgtWANn6ilD
+ Ti9JdMxQxmcyQmuYZLsQMy7ORXsxqHcS7pm7A2i6KYaXFm8qDFvE82hkKCTj10RUSTbKnZe+hy7Sg
+ F0tQ4=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net
+ ([82.37.168.47] helo=debutante.sirena.org.uk)
+ by heliosphere.sirena.org.uk with esmtpa (Exim 4.89)
+ (envelope-from <broonie@sirena.org.uk>)
+ id 1gXPnH-0000y0-RN; Thu, 13 Dec 2018 12:08:43 +0000
+Received: by debutante.sirena.org.uk (Postfix, from userid 1000)
+ id 876CB11254D1; Thu, 13 Dec 2018 12:08:43 +0000 (GMT)
+From: Mark Brown <broonie@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Subject: Applied "ASoC: meson: add axg spdif input DT binding documentation"
+ to the asoc tree
+In-Reply-To: <20181211134713.4908-3-jbrunet@baylibre.com>
+X-Patchwork-Hint: ignore
+Message-Id: <20181213120843.876CB11254D1@debutante.sirena.org.uk>
+Date: Thu, 13 Dec 2018 12:08:43 +0000 (GMT)
+X-Bad-Reply: In-Reply-To but no 'Re:' in Subject.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181213_035512_276351_52FCB13E 
-X-CRM114-Status: GOOD (  14.18  )
+X-CRM114-CacheID: sfid-20181213_040859_436931_55399FB9 
+X-CRM114-Status: GOOD (  12.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -70,138 +79,88 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Jianxin Pan <jianxin.pan@amlogic.com>, Kevin Hilman <khilman@baylibre.com>,
- Yixun Lan <yixun.lan@amlogic.com>, linux-kernel@vger.kernel.org,
- linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
- Xingyu Chen <xingyu.chen@amlogic.com>, Jerome Brunet <jbrunet@baylibre.com>
+Cc: devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ Mark Brown <broonie@kernel.org>, Carlo Caione <carlo@caione.org>,
+ linux-amlogic@lists.infradead.org
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil,
+The patch
 
-On 2018/12/13 16:49, Neil Armstrong wrote:
-> Hi Sunny,
-> 
-> On 13/12/2018 09:39, Sunny Luo wrote:
->> The SPICC controller in Meson-AXG is capable of running at 80M clock.
->> The ASIC IP is improved and the clock is actually running higher than
->> previous old SoCs.
->>
->> Signed-off-by: Sunny Luo <sunny.luo@amlogic.com>
->> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
->> ---
->>   drivers/spi/spi-meson-spicc.c | 37 +++++++++++++++++++++++++++++--------
->>   1 file changed, 29 insertions(+), 8 deletions(-)
->>
->> diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
->> index 7fe4488..b56249d 100644
->> --- a/drivers/spi/spi-meson-spicc.c
->> +++ b/drivers/spi/spi-meson-spicc.c
->> @@ -9,11 +9,13 @@
->>   
->>   #include <linux/bitfield.h>
->>   #include <linux/clk.h>
->> +#include <linux/clk-provider.h>
->>   #include <linux/device.h>
->>   #include <linux/io.h>
->>   #include <linux/kernel.h>
->>   #include <linux/module.h>
->>   #include <linux/of.h>
->> +#include <linux/of_device.h>
->>   #include <linux/platform_device.h>
->>   #include <linux/spi/spi.h>
->>   #include <linux/types.h>
->> @@ -34,7 +36,6 @@
->>    *   to have a CS go down over the full transfer
->>    */
->>   
->> -#define SPICC_MAX_FREQ	30000000
->>   #define SPICC_MAX_BURST	128
->>   
->>   /* Register Map */
->> @@ -120,6 +121,10 @@
->>   #define SPICC_BURST_MAX	16
->>   #define SPICC_FIFO_HALF 10
->>   
->> +struct meson_spicc_data {
->> +	unsigned int			max_speed_hz;
->> +};
->> +
->>   struct meson_spicc_device {
->>   	struct spi_master		*master;
->>   	struct platform_device		*pdev;
->> @@ -127,6 +132,7 @@ struct meson_spicc_device {
->>   	struct clk			*core;
->>   	struct spi_message		*message;
->>   	struct spi_transfer		*xfer;
->> +	const struct meson_spicc_data	*data;
->>   	u8				*tx_buf;
->>   	u8				*rx_buf;
->>   	unsigned int			bytes_per_word;
->> @@ -517,6 +523,9 @@ static int meson_spicc_probe(struct platform_device *pdev)
->>   	spicc->pdev = pdev;
->>   	platform_set_drvdata(pdev, spicc);
->>   
->> +	spicc->data = (const struct meson_spicc_data *)
->> +		of_device_get_match_data(&pdev->dev);
->> +
->>   	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->>   	spicc->base = devm_ioremap_resource(&pdev->dev, res);
->>   	if (IS_ERR(spicc->base)) {
->> @@ -567,11 +576,9 @@ static int meson_spicc_probe(struct platform_device *pdev)
->>   	master->unprepare_transfer_hardware = meson_spicc_unprepare_transfer;
->>   	master->transfer_one = meson_spicc_transfer_one;
->>   
->> -	/* Setup max rate according to the Meson GX datasheet */
->> -	if ((rate >> 2) > SPICC_MAX_FREQ)
->> -		master->max_speed_hz = SPICC_MAX_FREQ;
->> -	else
->> -		master->max_speed_hz = rate >> 2;
->> +	/* Setup max rate according to the Meson datasheet */
->> +	master->max_speed_hz = min_t(unsigned int, rate >> 1,
->> +				     spicc->data->max_speed_hz);
-> 
-> I think "rate >> 1" here depends on patch 3, either move patch 3 before this one
-> or keep "rate >> 2" and change it back to "rate >> 1" on patch 3.
-> 
-Yes, this change should be in patch 3.
+   ASoC: meson: add axg spdif input DT binding documentation
 
->>   
->>   	ret = devm_spi_register_master(&pdev->dev, master);
->>   	if (ret) {
->> @@ -602,9 +609,23 @@ static int meson_spicc_remove(struct platform_device *pdev)
->>   	return 0;
->>   }
->>   
->> +static const struct meson_spicc_data meson_spicc_gx_data = {
->> +	.max_speed_hz	= 30000000,
->> +};
->> +
->> +static const struct meson_spicc_data meson_spicc_axg_data = {
->> +	.max_speed_hz	= 80000000,
->> +};
->> +
->>   static const struct of_device_id meson_spicc_of_match[] = {
->> -	{ .compatible = "amlogic,meson-gx-spicc", },
->> -	{ .compatible = "amlogic,meson-axg-spicc", },
->> +	{
->> +		.compatible	= "amlogic,meson-gx-spicc",
->> +		.data		= &meson_spicc_gx_data,
->> +	},
->> +	{
->> +		.compatible = "amlogic,meson-axg-spicc",
->> +		.data		= &meson_spicc_axg_data,
->> +	},
->>   	{ /* sentinel */ }
->>   };
->>   MODULE_DEVICE_TABLE(of, meson_spicc_of_match);
->>
-> 
-> .
-> 
+has been applied to the asoc tree at
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git 
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+From 18dc4665fb6f3bb617c2e6d7da3f19586d06ab17 Mon Sep 17 00:00:00 2001
+From: Jerome Brunet <jbrunet@baylibre.com>
+Date: Tue, 11 Dec 2018 14:47:11 +0100
+Subject: [PATCH] ASoC: meson: add axg spdif input DT binding documentation
+
+Add the DT binding documentation for axg's SPDIF input.
+
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ .../bindings/sound/amlogic,axg-spdifin.txt    | 22 +++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt
+
+diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt
+new file mode 100644
+index 000000000000..2e6cb7d9b202
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt
+@@ -0,0 +1,22 @@
++* Amlogic Audio SPDIF Input
++
++Required properties:
++- compatible: 'amlogic,axg-spdifin'
++- interrupts: interrupt specifier for the spdif input.
++- clocks: list of clock phandle, one for each entry clock-names.
++- clock-names: should contain the following:
++  * "pclk" : peripheral clock.
++  * "refclk" : spdif input reference clock
++- #sound-dai-cells: must be 0.
++
++Example on the A113 SoC:
++
++spdifin: audio-controller@400 {
++	compatible = "amlogic,axg-spdifin";
++	reg = <0x0 0x400 0x0 0x30>;
++	#sound-dai-cells = <0>;
++	interrupts = <GIC_SPI 87 IRQ_TYPE_EDGE_RISING>;
++	clocks = <&clkc_audio AUD_CLKID_SPDIFIN>,
++		 <&clkc_audio AUD_CLKID_SPDIFIN_CLK>;
++	clock-names = "pclk", "refclk";
++};
+-- 
+2.19.0.rc2
+
 
 _______________________________________________
 linux-amlogic mailing list
