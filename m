@@ -2,20 +2,21 @@ Return-Path: <SRS0=UlVA=OW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	T_MIXED_ES autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C9A07C65BAE
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 04:55:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C5708C65BAE
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 08:03:48 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9704B2080F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 04:55:31 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 96BCF20672
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Dec 2018 08:03:48 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pz7s7Jg9"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9704B2080F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jyrFXPUP"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 96BCF20672
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,42 +25,42 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FZHXy6XDuUBVyKTNnkMhb89Ryug+7BQjldT9l9IU3CM=; b=pz7s7Jg9AwXtVo
-	9+Zz44ZNrpksVTEhjQKvdDw4icx4zXCIriyzkpT5mj0aR4gQVimRJufyFyXEYG44N0qnPPvTaEyAB
-	6mjo1NpoK/oqUqXoFjDIjnR3cT5LYp01+hg7UpejwZMX/McDR5BnhacL5frDGyElheaD4J7bOdfv1
-	uLjvcRKBwEqlkEGOa5VEqN+yygV50QOvOqYAApFJSJWjk3BcKd0SNbQYg5ZDA8oCCF7IdOakb7xap
-	CVm6yu3jVTtH9PeOOkPDqvYbLldU1EhebbRu7KJsvdgvaJomO8CfE/nqedC/hT2iAD5cKJumruO/u
-	t6CC6Gsa5YnW9oIE2iEw==;
+	List-Owner; bh=cxjHpIQBhk6QkebesdvRf6xqZ3m7IRI1V0gh85UHYRY=; b=jyrFXPUPUJ7+g3
+	xV0lYxwwcosnIVKMKnHqbfuepM6XATbXVEAnlHsm17n7a9p+b5HQj7GZrpHRduX1rNXEsML2wYeB3
+	/eMlKzQGW4Jd7apgjjmMzkCYKg7DVYyN8wlwzZEhXYsS43yVaykBXQVXJXZWcEvwVJPfSJSbRxyey
+	/DFfrGq7S3vTjuk3CTy6wixO3zuYzrKBqzofypMLiMlIFE7xaV5u2Xi0G2D7VIxKy5hT1i/8Wd2Xv
+	eP94KcLsiB0I/ETjmnoAwPoM/BAyh0ic7YGI9B5b6GdAvHfaNyE2EYi0wFKATrWiy8GXte0l/ZT3r
+	fK053XdfOPC1wrRYm18w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gXJ1y-0005ci-3R; Thu, 13 Dec 2018 04:55:26 +0000
+	id 1gXLy9-0006E6-Ot; Thu, 13 Dec 2018 08:03:41 +0000
 Received: from mail-sh2.amlogic.com ([58.32.228.45])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gXJ1u-0005bg-HF; Thu, 13 Dec 2018 04:55:24 +0000
+ id 1gXLy6-0006Co-D1; Thu, 13 Dec 2018 08:03:40 +0000
 Received: from [10.18.29.207] (10.18.29.207) by mail-sh2.amlogic.com
  (10.18.11.6) with Microsoft SMTP Server (TLS) id 15.0.1320.4; Thu, 13 Dec
- 2018 12:55:25 +0800
-Subject: Re: [PATCH RESEND v7 3/4] clk: meson: add sub MMC clock controller
- driver
+ 2018 16:03:40 +0800
+Subject: Re: [PATCH RESEND v7 4/4] clk: meson: add one based divider support
+ for sclk divider
 To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
  <narmstrong@baylibre.com>
 References: <1544457877-51301-1-git-send-email-jianxin.pan@amlogic.com>
- <1544457877-51301-4-git-send-email-jianxin.pan@amlogic.com>
- <10f2875c9724d9d9dd4bd32eab1fa3f8e42a809c.camel@baylibre.com>
+ <1544457877-51301-5-git-send-email-jianxin.pan@amlogic.com>
+ <4da764c237b8f752af1dc33a011e2a4b73068f02.camel@baylibre.com>
 From: Jianxin Pan <jianxin.pan@amlogic.com>
-Message-ID: <11bb5068-2c93-a415-b295-6ca994621280@amlogic.com>
-Date: Thu, 13 Dec 2018 12:55:25 +0800
+Message-ID: <d748a030-441f-dab0-83f7-aa8fc1106cb4@amlogic.com>
+Date: Thu, 13 Dec 2018 16:03:39 +0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
  Thunderbird/60.3.2
 MIME-Version: 1.0
-In-Reply-To: <10f2875c9724d9d9dd4bd32eab1fa3f8e42a809c.camel@baylibre.com>
+In-Reply-To: <4da764c237b8f752af1dc33a011e2a4b73068f02.camel@baylibre.com>
 Content-Language: en-US
 X-Originating-IP: [10.18.29.207]
 X-ClientProxiedBy: mail-sh2.amlogic.com (10.18.11.6) To mail-sh2.amlogic.com
  (10.18.11.6)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181212_205522_748881_EA68DA53 
-X-CRM114-Status: GOOD (  20.58  )
+X-CRM114-CacheID: sfid-20181213_000338_616502_0AC396F2 
+X-CRM114-Status: GOOD (  21.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -87,332 +88,149 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 2018/12/12 0:59, Jerome Brunet wrote:
+Hi Jerome,
+
+Thanks for the fully review, we really appreciate your time.
+
+On 2018/12/12 1:16, Jerome Brunet wrote:
 > On Tue, 2018-12-11 at 00:04 +0800, Jianxin Pan wrote:
->> From: Yixun Lan <yixun.lan@amlogic.com>
+>> When CLK_DIVIDER_ONE_BASED flag is set, the sclk divider will be:
+>> one based divider (div = val), and zero value gates the clock
 >>
-[...]
+>> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+>> ---
+>>  drivers/clk/meson/clkc-audio.h |  1 +
+>>  drivers/clk/meson/sclk-div.c   | 28 ++++++++++++++++++----------
+>>  2 files changed, 19 insertions(+), 10 deletions(-)
+> 
+> Such a patch should be done earlier in the series, at least before using sclk
+> in your controller, otherwise thing will be broken in between
+> 
+I will move it to the first one of the patchset. 
+> In general, I would prefer if you had added two helper function to deal with
+> the translation between register value and divider value.
+> 
+> Only these function should care about CLK_DIVIDER_ONE_BASED, the rest should
+> just call them.
+> 
+> This, we will be able to deal the with HI (duty cycle) part as well, which you
+> completly skiped.
+> 
+> I know your device does not have this, but still the code has to make sense.
+> 
+OK, I will add two helper for value and register translation, and then appy them to both div and hi.
+>>
+>> diff --git a/drivers/clk/meson/clkc-audio.h b/drivers/clk/meson/clkc-audio.h
+>> index 0a7c157..9bd6ced 100644
+>> --- a/drivers/clk/meson/clkc-audio.h
+>> +++ b/drivers/clk/meson/clkc-audio.h
+>> @@ -20,6 +20,7 @@ struct meson_sclk_div_data {
+>>  	struct parm hi;
+>>  	unsigned int cached_div;
+>>  	struct clk_duty cached_duty;
+>> +	u8	flags;
+>>  };
 >>  
->> +config COMMON_CLK_MMC_MESON
->> +	tristate "Meson MMC Sub Clock Controller Driver"
->> +	select MFD_SYSCON
->> +	select COMMON_CLK_AMLOGIC
->> +	select COMMON_CLK_AMLOGIC_AUDIO
+>>  extern const struct clk_ops meson_clk_triphase_ops;
+>> diff --git a/drivers/clk/meson/sclk-div.c b/drivers/clk/meson/sclk-div.c
+>> index bc64019..d98707b 100644
+>> --- a/drivers/clk/meson/sclk-div.c
+>> +++ b/drivers/clk/meson/sclk-div.c
+>> @@ -24,22 +24,23 @@
+>>  	return (struct meson_sclk_div_data *)clk->data;
+>>  }
+>>  
+>> -static int sclk_div_maxval(struct meson_sclk_div_data *sclk)
+>> -{
+>> -	return (1 << sclk->div.width) - 1;
+>> -}
+>> -
+>>  static int sclk_div_maxdiv(struct meson_sclk_div_data *sclk)
+>>  {
+>> -	return sclk_div_maxval(sclk) + 1;
+>> +	if (sclk->flags & CLK_DIVIDER_ONE_BASED)
+>> +		return clk_div_mask(sclk->div.width);
+>> +	else
+>> +		return clk_div_mask(sclk->div.width) + 1;
 > 
-> No it is wrong for the mmc to select AUDIO clocks.
-> If as a result of your patch sclk is needed for things, make the necessary
-> change in the Makefile.
-OK, I will add COMMON_CLK_AMLOGIC_SCLKDIV for sclk-div.
+> seems over complicated.
+> why no call clk_div_mask just once, and add 1 if necessary ?
+Yes, I will use helper here.
 > 
-[...]>> +#include <linux/clk.h>
->> +#include <linux/clk-provider.h>
->> +#include <linux/module.h>
->> +#include <linux/regmap.h>
->> +#include <linux/slab.h>
->> +#include <linux/of_device.h>
->> +#include <linux/mfd/syscon.h>
->> +#include <linux/platform_device.h>
->> +#include <dt-bindings/clock/amlogic,mmc-clkc.h>
->> +
->> +#include "clkc.h"
->> +#include "clkc-audio.h"
+>>  }
+>>  
+>>  static int sclk_div_getdiv(struct clk_hw *hw, unsigned long rate,
+>>  			   unsigned long prate, int maxdiv)
+>>  {
+>>  	int div = DIV_ROUND_CLOSEST_ULL((u64)prate, rate);
+>> +	struct clk_regmap *clk = to_clk_regmap(hw);
+>> +	struct meson_sclk_div_data *sclk = meson_sclk_div_data(clk);
+>> +	int mindiv = (sclk->flags & CLK_DIVIDER_ONE_BASED) ? 1 : 2;
 > 
-> Again having audio in the mmc controller is wrong.
-> Please make the necessary rework.
-Yes, I will split out sclk-div.h from clkc-audio.h in the next version.
-Thanks for your time.
+> This is why I want helpers, don't like this above
+OK, I will replace it with helpers.
 > 
+>>  
+>> -	return clamp(div, 2, maxdiv);
+>> +	return clamp(div, mindiv, maxdiv);
+>>  }
+>>  
+>>  static int sclk_div_bestdiv(struct clk_hw *hw, unsigned long rate,
+>> @@ -47,7 +48,7 @@ static int sclk_div_bestdiv(struct clk_hw *hw, unsigned
+>> long rate,
+>>  			    struct meson_sclk_div_data *sclk)
+>>  {
+>>  	struct clk_hw *parent = clk_hw_get_parent(hw);
+>> -	int bestdiv = 0, i;
+>> +	int bestdiv = 0, i, mindiv;
+>>  	unsigned long maxdiv, now, parent_now;
+>>  	unsigned long best = 0, best_parent = 0;
+>>  
+>> @@ -64,8 +65,9 @@ static int sclk_div_bestdiv(struct clk_hw *hw, unsigned
+>> long rate,
+>>  	 * unsigned long in rate * i below
+>>  	 */
+>>  	maxdiv = min(ULONG_MAX / rate, maxdiv);
+>> +	mindiv = (sclk->flags & CLK_DIVIDER_ONE_BASED) ? 1 : 2;
+>>  
+>> -	for (i = 2; i <= maxdiv; i++) {
+>> +	for (i = mindiv; i <= maxdiv; i++) {
+>>  		/*
+>>  		 * It's the most ideal case if the requested rate can be
+>>  		 * divided from parent clock without needing to change
+>> @@ -153,10 +155,14 @@ static int sclk_div_get_duty_cycle(struct clk_hw *hw,
+>>  static void sclk_apply_divider(struct clk_regmap *clk,
+>>  			       struct meson_sclk_div_data *sclk)
+>>  {
+>> +	unsigned int div;
 >> +
->> +/* clock ID used by internal driver */
->> +#define CLKID_MMC_MUX			0
->> +
->> +#define   SD_EMMC_CLOCK		0
->            ^
-> why the multiple space here ? this looks odd
-I will check the alignement  in the whole patchset and fix them, Thank you.
+>>  	if (MESON_PARM_APPLICABLE(&sclk->hi))
+>>  		sclk_apply_ratio(clk, sclk);
+>>  
+>> -	meson_parm_write(clk->map, &sclk->div, sclk->cached_div - 1);
+>> +	div = (sclk->flags & CLK_DIVIDER_ONE_BASED) ?
+>> +		sclk->cached_div : (sclk->cached_div - 1);
 > 
->> +#define   CLK_DELAY_STEP_PS		200
+> helpers again.
+OK!
 > 
-> Please keep thing aligned aligned consistently.
+>> +	meson_parm_write(clk->map, &sclk->div, div);
+>>  }
+>>  
+>>  static int sclk_div_set_rate(struct clk_hw *hw, unsigned long rate,
+>> @@ -223,6 +229,8 @@ static void sclk_div_init(struct clk_hw *hw)
+>>  	/* if the divider is initially disabled, assume max */
+>>  	if (!val)
+>>  		sclk->cached_div = sclk_div_maxdiv(sclk);
+>> +	else if (sclk->flags & CLK_DIVIDER_ONE_BASED)
+>> +		sclk->cached_div = val;
+>>  	else
+>>  		sclk->cached_div = val + 1;
 > 
->> +
->> +#define MUX_CLK_NUM_PARENTS		2
->> +#define MMC_MAX_CLKS			5
->> +
->> +struct mmc_clkc_data {
->> +	struct meson_clk_phase_delay_data	tx;
->> +	struct meson_clk_phase_delay_data	rx;
+> same ...
+OK, I will fix them. Thanks again for your time!
 > 
-> Why use a tab above ?
-OK
-> 
->> +};
->> +
->> +static struct clk_regmap_mux_data mmc_clkc_mux_data = {
->> +	.offset		= SD_EMMC_CLOCK,
->> +	.mask		= 0x3,
->> +	.shift		= 6,
->> +};
->> +
->> +static const struct meson_sclk_div_data mmc_clkc_div_data = {
->> +	.div = {
->> +		.reg_off = SD_EMMC_CLOCK,
->> +		.shift   = (0),
->> +		.width   = (6),
-> 
-> Please remove the unncessary parenthesis
-OK, I will remove them.
-> 
->> +	},
->> +	.hi = {
->> +		.width   = 0,
->> +	},
-> 
-> structure is a static const, all non-list members will be zero
-> drop the 
-OK, I will remove it in the next version. 
-> 
->> +	.flags = CLK_DIVIDER_ONE_BASED,
->> +};
->> +
->> +static struct meson_clk_phase_data mmc_clkc_core_phase = {
->> +	.ph = {
->> +		.reg_off	= SD_EMMC_CLOCK,
->> +		.shift	= 8,
->> +		.width	= 2,
->> +	}
->> +};
->> +
->> +static const struct mmc_clkc_data mmc_clkc_gx_data = {
->> +	.tx = {
->> +		.phase = {
->> +			.reg_off	= SD_EMMC_CLOCK,
->> +			.shift	= 10,
->> +			.width	= 2,
->> +		},
->> +		.delay = {
->> +			.reg_off	= SD_EMMC_CLOCK,
->> +			.shift	= 16,
->> +			.width	= 4,
->> +		},
-> 
-> Again, an effort on alignement would appreciated, same below
-OK, I will fix them.
-> 
->> +		.delay_step_ps	= CLK_DELAY_STEP_PS,
->> +	},
->> +	.rx = {
->> +		.phase = {
->> +			.reg_off	= SD_EMMC_CLOCK,
->> +			.shift	= 12,
->> +			.width	= 2,
->> +		},
->> +		.delay = {
->> +			.reg_off	= SD_EMMC_CLOCK,
->> +			.shift	= 20,
->> +			.width	= 4,
->> +		},
->> +		.delay_step_ps	= CLK_DELAY_STEP_PS,
->> +	},
->> +};
->> +
->> +static const struct mmc_clkc_data mmc_clkc_axg_data = {
->> +	.tx = {
->> +		.phase = {
->> +			.reg_off	= SD_EMMC_CLOCK,
->> +			.shift	= 10,
->> +			.width	= 2,
->> +		},
->> +		.delay = {
->> +			.reg_off	= SD_EMMC_CLOCK,
->> +			.shift	= 16,
->> +			.width	= 6,
->> +		},
->> +		.delay_step_ps	= CLK_DELAY_STEP_PS,
->> +	},
->> +	.rx = {
->> +		.phase = {
->> +			.reg_off	= SD_EMMC_CLOCK,
->> +			.shift	= 12,
->> +			.width	= 2,
->> +		},
->> +		.delay = {
->> +			.reg_off	= SD_EMMC_CLOCK,
->> +			.shift	= 22,
->> +			.width	= 6,
->> +		},
->> +		.delay_step_ps	= CLK_DELAY_STEP_PS,
->> +	},
->> +};
->> +
->> +static const struct of_device_id mmc_clkc_match_table[] = {
->> +	{
->> +		.compatible	= "amlogic,gx-mmc-clkc",
->> +		.data		= &mmc_clkc_gx_data
->> +	},
->> +	{
->> +		.compatible	= "amlogic,axg-mmc-clkc",
->> +		.data		= &mmc_clkc_axg_data
->> +	},
->> +	{}
->> +};
->> +MODULE_DEVICE_TABLE(of, mmc_clkc_match_table);
->> +
->> +static struct clk_regmap *
->> +mmc_clkc_register_clk(struct device *dev, struct regmap *map,
->> +		      struct clk_init_data *init,
->> +		      const char *suffix, void *data)
->> +{
->> +	struct clk_regmap *clk;
->> +	char *name;
->> +	int ret;
->> +
->> +	clk = devm_kzalloc(dev, sizeof(*clk), GFP_KERNEL);
->> +	if (!clk)
->> +		return ERR_PTR(-ENOMEM);
->> +
->> +	name = kasprintf(GFP_KERNEL, "%s#%s", dev_name(dev), suffix);
->> +	if (!name)
->> +		return ERR_PTR(-ENOMEM);
->> +
->> +	init->name = name;
->> +
-> 
-> nitpick: remove this newline
-OK.
-> 
->> +	clk->map = map;
->> +	clk->data = data;
->> +	clk->hw.init = init;
->> +
->> +	ret = devm_clk_hw_register(dev, &clk->hw);
->> +	if (ret)
->> +		clk = ERR_PTR(ret);
->> +
->> +	kfree(name);
->> +	return clk;
->> +}
->> +
->> +static struct clk_regmap *mmc_clkc_register_mux(struct device *dev,
->> +						struct regmap *map)
->> +{
->> +	const char *parent_names[MUX_CLK_NUM_PARENTS];
->> +	struct clk_init_data init;
->> +	struct clk_regmap *mux;
->> +	struct clk *clk;
->> +	int i;
->> +
->> +	for (i = 0; i < MUX_CLK_NUM_PARENTS; i++) {
->> +		char name[8];
->> +
->> +		snprintf(name, sizeof(name), "clkin%d", i);
->> +		clk = devm_clk_get(dev, name);
->> +		if (IS_ERR(clk)) {
->> +			if (clk != ERR_PTR(-EPROBE_DEFER))
->> +				dev_err(dev, "Missing clock %s\n", name);
->> +			return ERR_PTR((long)clk);
-> 
-> I don't think this cast is necessary     ^
-Yes, return clk is ok here.
-> 
->> +		}
->> +
->> +		parent_names[i] = __clk_get_name(clk);
->> +	}
->> +
->> +	init.ops = &clk_regmap_mux_ops;
->> +	init.flags = CLK_SET_RATE_PARENT;
->> +	init.parent_names = parent_names;
->> +	init.num_parents = MUX_CLK_NUM_PARENTS;
->> +
->> +	mux = mmc_clkc_register_clk(dev, map, &init, "mux",
->> &mmc_clkc_mux_data);
->> +	if (IS_ERR(mux))
->> +		dev_err(dev, "Mux clock registration failed\n");
->> +
->> +	return mux;
->> +}
->> +
->> +static struct clk_regmap *
->> +mmc_clkc_register_clk_with_parent(struct device *dev, struct regmap *map,
->> +				  char *suffix, const struct clk_hw *hw,
->> +				  unsigned long flags,
->> +				  const struct clk_ops *ops, void *data)
->> +{
->> +	struct clk_init_data init;
->> +	struct clk_regmap *clk;
->> +	const char *parent_name = clk_hw_get_name(hw);
->> +
->> +	init.ops = ops;
->> +	init.flags = flags;
->> +	init.parent_names = &parent_name;
->> +	init.num_parents = 1;
->> +
->> +	clk = mmc_clkc_register_clk(dev, map, &init, suffix, data);
->> +	if (IS_ERR(clk))
->> +		dev_err(dev, "Core %s clock registration failed\n", suffix);
-> 
->                                ^
-> this function is not only called by the core clock, is it ?
-OK, I will drop "Core" in this line.
-> 
->> +
->> +	return clk;
->> +}
->> +
->> +static int mmc_clkc_probe(struct platform_device *pdev)
->> +{
->> +	struct clk_hw_onecell_data *onecell_data;
->> +	struct device *dev = &pdev->dev;
->> +	struct mmc_clkc_data *data;
->> +	struct regmap *map;
->> +	struct clk_regmap *clk, *core;
->> +	struct meson_sclk_div_data *div_data;
->> +
->> +	/*cast to drop the const in match->data*/
->> +	data = (struct mmc_clkc_data *)of_device_get_match_data(dev);
->> +	if (!data)
->> +		return -ENODEV;
->> +
->> +	map = syscon_node_to_regmap(dev->of_node);
->> +	if (IS_ERR(map)) {
->> +		dev_err(dev, "could not find mmc clock controller\n");
->> +		return PTR_ERR(map);
->> +	}
->> +
->> +	onecell_data = devm_kzalloc(dev, sizeof(*onecell_data) +
->> +				    sizeof(*onecell_data->hws) * MMC_MAX_CLKS,
->> +				    GFP_KERNEL);
->> +	if (!onecell_data)
->> +		return -ENOMEM;
->> +
->> +	clk = mmc_clkc_register_mux(dev, map);
->> +	if (IS_ERR(clk))
->> +		return PTR_ERR(clk);
->> +	onecell_data->hws[CLKID_MMC_MUX]		= &clk->hw,
-> 
-> It does not really need to have an ID or be in the onecell data if you are not
-> going to expose it. On the other controllers, we are using the onecell for the
-> registration as well, which is why there is unexpeosed IDs, but it is not the
-> case here.
-> 
-> ... and please, stop with this unnecessary tab. a space will do. same below.
-CLKID_MMC_MUX is an internal clock, and I will remove the ID and onecell date in the next version.
-And I will double check and fix tabs. Thank you.
-> 
->> +
->> +	div_data = devm_kzalloc(dev, sizeof(*div_data), GFP_KERNEL);
->> +	if (!div_data)
->> +		return -ENOMEM;
->> +	*div_data = mmc_clkc_div_data;
-> 
-> memcpy would be more appropriate.
-Sure.
-> 
->> +
->> +	clk = mmc_clkc_register_clk_with_parent(dev, map, "div",
->> +						&clk->hw,
-[...]
+>>  
 > 
 > 
 > .
