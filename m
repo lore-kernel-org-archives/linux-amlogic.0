@@ -4,58 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-3.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_NEOMUTT autolearn=ham autolearn_force=no
+	URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8106AC43387
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Dec 2018 14:06:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BCDD7C43444
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Dec 2018 16:24:58 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4A3172133F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Dec 2018 14:06:58 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8D23E20874
+	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Dec 2018 16:24:58 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YH/m+yvD"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4A3172133F
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=bootlin.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YqZPFilx"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8D23E20874
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=okUNQJW2CXhgp3Un+GbGrOX3brUUq5qgNib/Q6gPzno=; b=YH/m+yvDEfncXwsj8Uu+WSMlO
-	zNMUDThH4I97O4a/xHcTYo5CPo5itgwTmI73BFIcQ+wK0Z/ZcYxUMARJZAc68JwpBcDGzHbZhc5ET
-	C9d4aKK97qwi8PLvPhT1FUxfQwqrbIj8/J3e3t8rxsoamYmvpBQLOA1Y2SnNUtbNuvkI5vtVoj/M/
-	FMTzxLWWSr1f41fL5UFyR1sgJbaKZJKC2ixT0oT8/CgENkr8CAB86K9luUYl3h4rDEGPQ3E/7mejJ
-	Ptj1iVRn0t/bk/xVFHfVSR0w7qNaPzJ8dfkhmToMoOyBBFAU7Z9uNUzcHl1v53SkHPNIdaFeDWgSE
-	DcsqPapOg==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ZIDuorXBeiUytsh6BFgdgXZO8qeHOH+igdHyW4l0WG4=; b=YqZPFilxl2VGY8
+	udADuuzi5IcuJoHELJoD/DIJaH6IQkpa6y+t9GAbN/kE6N7Q3kq2XOfjVApBK7BJy8SN2CENUsyPx
+	gB7hsPZmbLs2KIDBtie2VQUo/3+yEpQpUZEUwQGQFhUmdLL9KQ6mdJcwoED8Ik3twCbmxKLKtwdRa
+	+94MXfA6XhDe4PjCYL1/tDiDq3dXCGOuJE6sjutfdoRYoNaNOvsfLmeewdXrFLYxSf6rdWLyu6o8+
+	+4QgILuxw7zfH5em4smj7SSyyH83RUj4G77XtBKwYL8cDZgEajz1fENXHBOzINLI0ZuUz6YnuOgKH
+	J+WT+MRNVIkGxqY1cf0Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gYtXm-00056a-AH; Mon, 17 Dec 2018 14:06:50 +0000
-Received: from mail.bootlin.com ([62.4.15.54])
- by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gYtXg-000508-Lu; Mon, 17 Dec 2018 14:06:48 +0000
-Received: by mail.bootlin.com (Postfix, from userid 110)
- id 2DC4320CE3; Mon, 17 Dec 2018 15:06:33 +0100 (CET)
-Received: from localhost (aaubervilliers-681-1-89-7.w90-88.abo.wanadoo.fr
- [90.88.30.7])
- by mail.bootlin.com (Postfix) with ESMTPSA id EDFE820711;
- Mon, 17 Dec 2018 15:06:22 +0100 (CET)
-Date: Mon, 17 Dec 2018 15:06:23 +0100
-From: Maxime Ripard <maxime.ripard@bootlin.com>
-To: Grygorii Strashko <grygorii.strashko@ti.com>
-Subject: Re: [PATCH v3 0/5] phy: core: rework phy_set_mode to accept phy mode
- and submode
-Message-ID: <20181217140623.2zze2kfclup7wjti@flea>
-References: <20181120012424.11802-1-grygorii.strashko@ti.com>
+	id 1gYvhJ-00037D-Ij; Mon, 17 Dec 2018 16:24:49 +0000
+Received: from mail-sh2.amlogic.com ([58.32.228.45])
+ by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1gYvhF-000358-7M; Mon, 17 Dec 2018 16:24:46 +0000
+Received: from localhost.localdomain (10.18.11.217) by mail-sh2.amlogic.com
+ (10.18.11.6) with Microsoft SMTP Server id 15.0.1320.4; Tue, 18 Dec 2018
+ 00:24:49 +0800
+From: Jianxin Pan <jianxin.pan@amlogic.com>
+To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
+ <narmstrong@baylibre.com>
+Subject: [PATCH v8 0/4] clk: meson: add a sub EMMC clock controller support
+Date: Tue, 18 Dec 2018 00:24:06 +0800
+Message-ID: <1545063850-21504-1-git-send-email-jianxin.pan@amlogic.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <20181120012424.11802-1-grygorii.strashko@ti.com>
-User-Agent: NeoMutt/20180716
+X-Originating-IP: [10.18.11.217]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181217_060644_992432_D655C691 
-X-CRM114-Status: GOOD (  23.32  )
+X-CRM114-CacheID: sfid-20181217_082445_268093_DC98AB7D 
+X-CRM114-Status: GOOD (  10.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -67,136 +63,107 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Quentin Schulz <quentin.schulz@bootlin.com>,
- Manu Gautam <mgautam@codeaurora.org>, Tony Lindgren <tony@atomide.com>,
- netdev@vger.kernel.org, Antoine Tenart <antoine.tenart@free-electrons.com>,
- Sekhar Nori <nsekhar@ti.com>, Russell King - ARM Linux <linux@armlinux.org.uk>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>,
- Chunfeng Yun <chunfeng.yun@mediatek.com>, Chen-Yu Tsai <wens@csie.org>,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Vivek Gautam <vivek.gautam@codeaurora.org>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, Kishon Vijay Abraham I <kishon@ti.com>,
- "David S. Miller" <davem@davemloft.net>, linux-kernel@vger.kernel.org,
- Matthias Brugger <matthias.bgg@gmail.com>
-Content-Type: multipart/mixed; boundary="===============6565187912781437302=="
+Cc: Rob Herring <robh@kernel.org>, Hanjie Lin <hanjie.lin@amlogic.com>,
+ Victor Wan <victor.wan@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ devicetree@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Yixun Lan <yixun.lan@amlogic.com>,
+ linux-kernel@vger.kernel.org, Boris Brezillon <boris.brezillon@bootlin.com>,
+ Liang Yang <liang.yang@amlogic.com>, Jian Hu <jian.hu@amlogic.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>, Carlo Caione <carlo@caione.org>,
+ linux-amlogic@lists.infradead.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Qiufang Dai <qiufang.dai@amlogic.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+This driver will add a MMC clock controller driver support.
+The original idea about adding a clock controller is during the
+discussion in the NAND driver mainline effort[1].
 
---===============6565187912781437302==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="553g4on6q5epsg5z"
-Content-Disposition: inline
+This driver is tested in the S400 board (AXG platform) with NAND driver.
 
+Changes since v7 [8]
+ - move meson_clk_get_phase_delay_data() from header to driver
+ - CONFIG sclk-div with COMMON_CLK_AMLOGIC instead of COMMON_CLK_AMLOGIC_AUDIO
+ - remove onecell date and ID for internal MUX clk
+ - use helper for functions for ONE_BASED in sclk-div
+ - add ONE_BASED support for duty cycle
 
---553g4on6q5epsg5z
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes since v6 [7]:
+ - add one based support for sclk divier
+ - alloc sclk in probe for multiple instance
+ - fix coding styles
 
-Hi Grygorii, Kishon,
+Changes since v5 [6]:
+ - remove divider ops with .init and use sclk_div instead
+ - drop CLK_DIVIDER_ROUND_CLOSEST in mux and div
+ - drop the useless type cast 
 
-On Mon, Nov 19, 2018 at 07:24:19PM -0600, Grygorii Strashko wrote:
-> Thank you for your review.
-> I've not added "Tested-by"/"Acked-by" tags due to code changes in v3.
->=20
-> As was discussed in [1] I'm posting series which introduces rework of
-> phy_set_mode to accept phy mode and submode. I've dropped TI specific pat=
-ches as
-> this change is pretty big by itself.
->=20
-> Patch 1 is cumulative change which refactors PHY framework code to
-> support dual level PHYs mode configuration - PHY mode and PHY submode. It
-> extends .set_mode() callback to support additional parameter "int submode"
-> and converts all corresponding PHY drivers to support new .set_mode()
-> callback declaration.
-> The new extended PHY API
->  int phy_set_mode_ext(struct phy *phy, enum phy_mode mode, int submode)
-> is introduced to support dual level PHYs mode configuration and existing
-> phy_set_mode() API is converted to macros, so PHY framework consumers do
-> not need to be changed (~21 matches).
->=20
-> Patches 2-4: Add new PHY's mode to be used by Ethernet PHY interface driv=
-ers or
-> multipurpose PHYs like serdes and convert ocelot-serdes and mvebu-cp110-c=
-omphy
-> PHY drivers to use recently introduced PHY_MODE_ETHERNET and phy_set_mode=
-_ext().
->=20
-> Patch 5 - removes unused, ethernet specific phy modes from enum phy_mode.
->=20
-> Testing:
->  - series tested on TI am335x/am437x/am5(dra7) paltforms.
->  - other driver build tested.
+Changes since v4 [5]:
+ - use struct parm in phase delay driver
+ - remove 0 delay releted part in phase delay driver
+ - don't rebuild the parent name once again
+ - add divider ops with .init
 
-I realise I'm a bit late to the party, but while working on the D-PHY
-support, I noticed a few things that could be improved.
+Changes since v3 [4]:
+ - separate clk-phase-delay driver
+ - replace clk_get_rate() with clk_hw_get_rate()
+ - collect Rob's R-Y
+ - drop 'meson-' prefix from compatible string
 
-I guess the main issue is that the sub-mode is completely opaque to
-the generic phy framework now. This might not be a big issue, and I
-assume that it has been done that way because the net framework
-already has a define for the submode it wants.
+ Changes since v2 [3]:
+ - squash dt-binding clock-id patch
+ - update license
+ - fix alignment
+ - construct a clk register helper() function
 
-However, this creates a bunch of drawbacks at the phy framework level:
+Changes since v1 [2]:
+ - implement phase clock
+ - update compatible name
+ - adjust file name
+ - divider probe() into small functions, and re-use them
 
- - phy_set_mode will now pass a submode of 0, all the time. This means
-   that the behaviour is undefined for all the modes not using the
-   submodes at the moment, and phy_interface_t seems to have the value
-   PHY_INTERFACE_MODE_NA matching 0, but I guess this could change in
-   the future (or the guarantee is not documented anywhere).
- - on a similar note, there's no documentation for which value to pass
-   to phy_set_mode_ext when used with something else than a
-   PHY_MODE_ETHERNET.
- - at the provider level, if you're supporting a phy that isn't using
-   the submodes, you have no way to filter out or reject any subnode,
-   since you have no idea what the "no submode" value is.
+[1] https://lkml.kernel.org/r/20180628090034.0637a062@xps13
+[2] https://lkml.kernel.org/r/20180703145716.31860-1-yixun.lan@amlogic.com
+[3] https://lkml.kernel.org/r/20180710163658.6175-1-yixun.lan@amlogic.com
+[4] https://lkml.kernel.org/r/20180712211244.11428-1-yixun.lan@amlogic.com
+[5] https://lkml.kernel.org/r/20180809070724.11935-4-yixun.lan@amlogic.com
+[6] https://lkml.kernel.org/r/1539839245-13793-1-git-send-email-jianxin.pan@amlogic.com
+[7] https://lkml.kernel.org/r/1541089855-19356-1-git-send-email-jianxin.pan@amlogic.com
+[8] https://lkml.kernel.org/r/1544457877-51301-1-git-send-email-jianxin.pan@amlogic.com
 
-I guess this can be addressed by:
+Jianxin Pan (1):
+  clk: meson: add one based divider support for sclk divider
 
-A) defining a generic phy framework wide unused / invalid phy submode,
-that wouldn't collide with the subnode values (such as -1?), and
-making phy_set_mode_ext use that.
+Yixun Lan (3):
+  clk: meson: add emmc sub clock phase delay driver
+  clk: meson: add DT documentation for emmc clock controller
+  clk: meson: add sub MMC clock controller driver
 
-B) moving the phy submodes definition to the generic phy headers. This
-would allow to have a documented, obvious link between a mode and its
-subnodes, for all the actors involved (consumer, provider, and
-framework) without prior knowledge.
+ .../devicetree/bindings/clock/amlogic,mmc-clkc.txt |  39 +++
+ drivers/clk/meson/Kconfig                          |   9 +
+ drivers/clk/meson/Makefile                         |   5 +-
+ drivers/clk/meson/clk-phase-delay.c                |  70 +++++
+ drivers/clk/meson/clkc-audio.h                     |   8 -
+ drivers/clk/meson/clkc.h                           |  17 +-
+ drivers/clk/meson/mmc-clkc.c                       | 304 +++++++++++++++++++++
+ drivers/clk/meson/sclk-div.c                       |  59 ++--
+ include/dt-bindings/clock/amlogic,mmc-clkc.h       |  17 ++
+ 9 files changed, 498 insertions(+), 30 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.txt
+ create mode 100644 drivers/clk/meson/clk-phase-delay.c
+ create mode 100644 drivers/clk/meson/mmc-clkc.c
+ create mode 100644 include/dt-bindings/clock/amlogic,mmc-clkc.h
 
-C) Document what the submodes expectations are
+-- 
+1.9.1
 
-What do you think?
-Maxime
-
---=20
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---553g4on6q5epsg5z
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXBetXwAKCRDj7w1vZxhR
-xeUGAQCR50AQDteX+9l+EKki80/VMKbK438CYL7PPVfr3Qu84AEAjDNV9Y+LVbAp
-XRC0B5OfKDq6wnecuDvlw4UyOlmKWAo=
-=hd40
------END PGP SIGNATURE-----
-
---553g4on6q5epsg5z--
-
-
---===============6565187912781437302==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============6565187912781437302==--
-
