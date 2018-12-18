@@ -1,85 +1,57 @@
-Return-Path: <SRS0=aiPH=O2=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=QuO6=O3=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C55DDC43387
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Dec 2018 23:48:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 23C3EC43387
+	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Dec 2018 07:57:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8FDA52145D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 17 Dec 2018 23:48:40 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E6D8C20874
+	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Dec 2018 07:57:16 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Ld2Z4Ydz";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="LnP2TPxd"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8FDA52145D
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cjj1TyhU"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E6D8C20874
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Syu1XXxfYYmzk0f4n012/qoPRG07gXrJaxeg9O1hBhk=; b=Ld2Z4YdzoqNTVB
-	0X2pRnLwo8Z1wqwjg93/fFlmtXBNEXo389QeGXNXxiwYWjUIH4s9Oje7C0Bj+s6f0iekJC+h5p0HH
-	IgiOiKNFuSoo8l1kXpZ9nIfoIEKMKSl4vfZh5CS3d6X+9rLjxQx5pOTY3PsSQ1WR0lyXPi4XIvKs7
-	oz5QDErG5b1XR2OO466dzh+XxkKcm77h6gRAOIBNXUUsO3HfM6Z77JLSOI5vDIetaPgJB114M4fx1
-	v/9yU1gVhF5gkl97fICxeEZG9qPSXP65GqVKIzPdSax95Z32jVInIHPm79HgXxLG479lLS/aieYZM
-	z/hlSHLP4RnJEgD+Wp3Q==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=72Auks8sUtnm/qrgNNULyFhKeqe1jw0Jgf6dbKeKFRo=; b=cjj1TyhU21ZuGe
+	8akcvc8V9bYEbr32I/DAkZvaEdrz/XRFoGJTjFz3XA146V7dOurShf+bvQ/QgqIemhwgdBx+qgSix
+	Y36hgddu7ho7LH5YZRgwKa5MKhUs8byZLjmywDsf/SCniXcfBq2MJgHtdW4WUWzB9qoSIYEZsbS29
+	sK/Ca+GIELBA40vm8Pd15TfhFpfooPDaSmfxW8rxYAawibnNNEg0RSkWkN3bBbLq2wl75yVCgSnsf
+	ze/dSM9WKPd+R8SP3i8inyYYTRMCOILeSUUOgumHhpvBJbb8xnwBfdVL1QuiGGZoNufRhw1Bq5T4L
+	590VvK2s17RcIgm0t0SQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gZ2ch-0003Ma-VA; Mon, 17 Dec 2018 23:48:32 +0000
-Received: from mail-ot1-x343.google.com ([2607:f8b0:4864:20::343])
+	id 1gZAFY-0001E3-L1; Tue, 18 Dec 2018 07:57:08 +0000
+Received: from mail-sh2.amlogic.com ([58.32.228.45])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gZ2ce-0003He-SV; Mon, 17 Dec 2018 23:48:30 +0000
-Received: by mail-ot1-x343.google.com with SMTP id a11so13916966otr.10;
- Mon, 17 Dec 2018 15:48:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=rt7CdRQssFR6XPEPPXiILF4IcZMbBsZnZ/kJsmQYXDs=;
- b=LnP2TPxdt7Tual/++38WGq5Y7xCiAY8oRDzCDoH7fo+aw5XbfLmfqSligXTECc9WER
- i6SUD0p0eoxdrcGvniU6JzjCwdS+cPa4A4EY1M8oENIfTAOOhgEpjbNyO6Z5zpcizagp
- W55Ovf1E3Jy6iomn23NZabRyEc93k2EDZDveeLSukEWjv7xB6PnKcSEtBcSVYZdCLfgU
- NP2yzh8mpHrPMLn9C+5jJ9Wb+LgEKXi6grW6Y/3DSZJHGRb84io1D0bFPZTEcZ/U7O9k
- 421QmfExwvYLKZz0mYJ0AAZm+DIT87yc/PrWTiYVCNuKamRS9gX5b3McaunpnniNKfDR
- 6cFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=rt7CdRQssFR6XPEPPXiILF4IcZMbBsZnZ/kJsmQYXDs=;
- b=atxm0bR9qfhLG4RAduMbcHT/vMaHNhf6kYUxmJBBIHWaMjqPr9z03KifPJiGS7DUOl
- poSSZiFUk7TOnrvljmCtT/MJ8uisj5YLcSnQJ3C0RZMdoh/JzJzLlTe2UCcVIfB9HxVB
- OTiV3hrBiKuJbQCCrQjH+Jug72ie3dl1ypNaNgsdsqBeD+2XzceZJw9hQE8Mtmz9NKZh
- kUzc46B9kKq+4yVxoxv+7aX5YeNOuwZWK3PXJOCWeRkm0MZ91tiG5VowTg8fpCnfaXm0
- ouVrdP0RdLTwqYqgtJgtbIPyED3W9RDEB/EIPCAZElPZ5rQa6Kwsz0Xx0zRPhF1ZNXYy
- 4SVg==
-X-Gm-Message-State: AA+aEWY18DIrSS6uEeS63tNNRhVHg8JzpMRkuF/eInTtXW4+fDDgneUj
- Tn5HJuwN0SXwjfqoNp2NzhF3QMLUcBnWIllvByteRETf
-X-Google-Smtp-Source: AFSGD/WgOUrjzw3r7cF0wdB9sAFysppeNnwH1UIZjLX5ZG2xx0bUQIN6nohG5gztj/9cysAu5C7Ipj2FwmLigttYsSo=
-X-Received: by 2002:a9d:7749:: with SMTP id t9mr11457998otl.342.1545090496291; 
- Mon, 17 Dec 2018 15:48:16 -0800 (PST)
+ id 1gZAFV-0001C8-4t; Tue, 18 Dec 2018 07:57:06 +0000
+Received: from droid10.amlogic.com (10.18.11.213) by mail-sh2.amlogic.com
+ (10.18.11.6) with Microsoft SMTP Server id 15.0.1320.4; Tue, 18 Dec 2018
+ 15:57:13 +0800
+From: Hanjie Lin <hanjie.lin@amlogic.com>
+To: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, Bjorn Helgaas
+ <bhelgaas@google.com>
+Subject: [PATCH v7 0/2] add the Amlogic Meson PCIe controller driver
+Date: Tue, 18 Dec 2018 15:56:48 +0800
+Message-ID: <1545119811-26911-1-git-send-email-hanjie.lin@amlogic.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20181202220847.24364-1-martin.blumenstingl@googlemail.com>
- <20181202220847.24364-3-martin.blumenstingl@googlemail.com>
- <85aa8e12-0bca-6432-e1a8-0faceff1dd5e@codethink.co.uk>
- <CAFBinCBDUxTc+ofCYm-zEeiFdU90U6DQOkX4B659q=MvRK64fg@mail.gmail.com>
-In-Reply-To: <CAFBinCBDUxTc+ofCYm-zEeiFdU90U6DQOkX4B659q=MvRK64fg@mail.gmail.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 18 Dec 2018 00:48:05 +0100
-Message-ID: <CAFBinCAY7+-zA5-hY6oXmFz2i8aj9wFJsb-HBbKt_Swn9BtMMg@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] rtc: support for the Amlogic Meson RTC
-To: ben.dooks@codethink.co.uk
+X-Originating-IP: [10.18.11.213]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181217_154828_929211_A4EA201B 
-X-CRM114-Status: GOOD (  11.67  )
+X-CRM114-CacheID: sfid-20181217_235705_194583_83BF1007 
+X-CRM114-Status: UNSURE (   9.82  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -91,43 +63,90 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-rtc@vger.kernel.org, a.zummo@towertech.it,
- alexandre.belloni@bootlin.com, ccaione@baylibre.com,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+Cc: Yixun Lan <yixun.lan@amlogic.com>, Rob Herring <robh@kernel.org>,
+ Hanjie Lin <hanjie.lin@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
+ Shawn Lin <shawn.lin@rock-chips.com>,
+ Philippe Ombredanne <pombredanne@nexb.com>, linux-pci@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Qiufang Dai <qiufang.dai@amlogic.com>,
+ Jian Hu <jian.hu@amlogic.com>, Liang Yang <liang.yang@amlogic.com>,
+ Cyrille Pitchen <cyrille.pitchen@free-electrons.com>,
+ Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+ Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Ben,
+The Amlogic Meson PCIe host controller is based on the Synopsys DesignWare
+PCI core. This patchset add the driver and dt-bindings of the controller.
+Changes since v7: [6]
+ - include files in alphabetical order
+ - get rid of unused MACROs and variables
+ - optimize meson_pcie_link_up() while loop
+ 
+Changes since v6: [5]
+ - fix bad usage of ERR_PTR(ENXIO)
+ - fix meson_pcie_rd_own_conf() when read PCI_CLASS_DEVICE reg 
 
-On Wed, Dec 5, 2018 at 11:15 PM Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-[...]
-> > > Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
-> > > [resurrected Ben's patches after 2 years]
-> > > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> >
-> > Just checking if the change of author is deliberate?
-> > not sure how to do >1 author on patches like this.
-> I changed the author on purpose after seeing how much I changed
-> (compared to your v4). this is also why I added you to the CC list
-> however, I left in your copyright (just like you kept Carlo's
-> copyright note) and MODULE_AUTHOR
-please let me know:
-1. whether you want to be the author of the patch or if you're fine
-with my name in there
-2. if you are fine with both of us being listed as Signed-off-by or if
-you want me to switch to Co-authored-by
-3. about any other concerns you have
+Changes since v5: [4]
+ - update MAINTAINER file in alphabetical order
+ - remove meaningless comment
+ - use ERR_PTR function instead of (void *) cast
+ - use is_power_of_2(size) instead of size & (size - 1)
+ - add comment for PCI_CLASS_REVISION register operation
+ 
+Changes since v4: [3]
+ - fix kbuild test robot and compile warnings
 
-I would like to update this patch next weekend so it can be reviewed
-(and merged once all is fine) for v4.22
+Changes since v3: [2]
+ - modify subject format
+ - update Kconfig
+ - update MAINTAINER file
+ - add comment and error handle for meson_pcie_get_mem_shared()
+ - drop useless initialization code
+ - add comment for meson_size_to_payload()
+ - optimize meson_pcie_establish_link() return code
+ - optimize meson_pcie_enable_interrupts() redundant function
+ - drop device_attch related code
+ - drop dw_pcie_ops read_dbi and write_dbi function
+ - add error handle for meson_add_pcie_port() when probe
 
+Changes since v2: [1]
+ - abandon phy driver, move reset to the controller
+ - use devm_add_action_or_reset() to use clock res
+ - format correcting
 
-Kind Regards
-Martin
+Changes since v1: [0]
+ - use gpio lib instead open code
+ - move 'apb' and 'port' reset from phy driver
+ - format correcting
+
+[0] : https://lkml.kernel.org/r/1534227522-186798-1-git-send-email-hanjie.lin@amlogic.com
+[1] : https://lkml.kernel.org/r/1535096165-45827-1-git-send-email-hanjie.lin@amlogic.com
+[2] : https://lkml.kernel.org/r/1537509820-52040-1-git-send-email-hanjie.lin@amlogic.com 
+[3] : https://lkml.kernel.org/r/1538999834-156423-3-git-send-email-hanjie.lin@amlogic.com
+[4] : https://lkml.kernel.org/r/1539049990-30810-1-git-send-email-hanjie.lin@amlogic.com
+[5] : https://lkml.kernel.org/r/1542876836-191355-1-git-send-email-hanjie.lin@amlogic.com
+
+Yue Wang (2):
+  dt-bindings: PCI: meson: add DT bindings for Amlogic Meson PCIe
+    controller
+  PCI: amlogic: Add the Amlogic Meson PCIe controller driver
+
+ .../devicetree/bindings/pci/amlogic,meson-pcie.txt |  70 +++
+ MAINTAINERS                                        |   7 +
+ drivers/pci/controller/dwc/Kconfig                 |  10 +
+ drivers/pci/controller/dwc/Makefile                |   1 +
+ drivers/pci/controller/dwc/pci-meson.c             | 595 +++++++++++++++++++++
+ 5 files changed, 683 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
+ create mode 100644 drivers/pci/controller/dwc/pci-meson.c
+
+-- 
+2.7.4
+
 
 _______________________________________________
 linux-amlogic mailing list
