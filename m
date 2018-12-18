@@ -2,85 +2,68 @@ Return-Path: <SRS0=QuO6=O3=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.6 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED,USER_AGENT_MUTT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BBC83C43612
-	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Dec 2018 21:30:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 84BF6C43387
+	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Dec 2018 22:47:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8C9C621871
-	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Dec 2018 21:30:46 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5582921841
+	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Dec 2018 22:47:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="S8T/aMvJ";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linaro.org header.i=@linaro.org header.b="JT/ZsqfQ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8C9C621871
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VwxaBpXh";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="Awod3BNW"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5582921841
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:References:
-	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=ma5bAIidHSb/HRld8b+TCJyP9yx4yIxbav1QYkmIyZg=; b=S8T/aMvJuxFwuthMCnmyW/GpIn
-	6Tqgd8d07A5y7Lwj/zAZDcw2J+TvD80NZJcxE/qb0jt9G8q0yxjQ9oIR3N2t3ncwHvSPA+f+l61Bi
-	T6NkPkK7PsFA46YYGD1KsF4LMnGObEhvCIXavvFtU80iUv4rC06cRMnB7c6i2NRPjnNHAx0YzJ2vW
-	0d+kzsVf663VJoodNPwIG0mMdb0s8M9DOmBIInCOrvZ0V3p/tL06Cy3B49g9ZhW5f5WxW6hoZxKu1
-	pOc4BdSYNDRZuHbahiWs+CbTbsyz24dxWFe2jpTInhLklnl7HHD71xb4fe3WSoOfjT8Lk/y3G5Sw1
-	CQSdum4w==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=HUxjlBuJL8Nct0NUrlaeGY7Xh4Z7K4uqil+XIB+l2a8=; b=VwxaBpXh1oEfn6
+	hvKLiDX3tOHubtuuJ4yKeuqIKapwhRpTBcfXa4cCmsYbnAnvnixocmlqg+A9FmORo+LeTzU1i06bV
+	DoTNZ4uVisQAek6kG7knnZ06tgMYJNB/3iEhdqeRDwg8afOtAqnh+YUMIZKY32rhtU08xLpPUpgLL
+	O9g15H1wvUdGJkKD97nhTJoUJnB3nw38DA+gpZ4Qdmdcia3E1yWtqWa22dlW8hZoJzKlbNzFR/WNq
+	nYktKsugHpjhdz/yTC1ptMkIcV8zFvAj/iIcodcIV3DgB1kCVf/vULQguHrOGoB44mBWrQf8EbrL8
+	ejvIZKEW0F1JHcaxrF5A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gZMws-0003Gz-9j; Tue, 18 Dec 2018 21:30:42 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1gZO95-0000al-Bl; Tue, 18 Dec 2018 22:47:23 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gZMvj-0000sS-Ly
- for linux-amlogic@lists.infradead.org; Tue, 18 Dec 2018 21:29:48 +0000
-Received: by mail-wm1-x343.google.com with SMTP id m1so4098453wml.2
- for <linux-amlogic@lists.infradead.org>; Tue, 18 Dec 2018 13:29:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=+kk49u2E8Mo1JNxE8BrR9oOARp9WmK1DmRN/2CO3j/8=;
- b=JT/ZsqfQLVVSX+jbMOMwvdmTraAUh2j/2iIoSl0jGXgA15MSLhzzoSfM9jCn+rNy9i
- k0FnfddkVZjRaa3CS8Q2P9eoYYMhlpkT6CslTRnZ7GLniqwBtx4ehL/B93ISFzEMf//6
- fG7g3U/ReKJQHa6S/EMTgVhtGkPbKfd0r9bC4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=+kk49u2E8Mo1JNxE8BrR9oOARp9WmK1DmRN/2CO3j/8=;
- b=jaZtzQCnnWqHdmWfnSTV1nLp/TxPh7MLbaHdVOWXrlYarUnNxhY/ScTCpSZEZbYr94
- uYXNubchZO5VVP+BLUZ+FHttT2Nsh1LpGE02sdeMQnMPi2ZsRTMNb9hCcJxmWY1xCaIO
- tyefcw/71Hr1hBuvwmCE2ioy7vNtoOeKMiGty5UgVHZuKLN9+pDJYjcK/n9yDUJJ0AE5
- oVWm1XhRwP+soq8HOYhCG/3pPs8Kv2aAge3uCex1pWkP02srqbk250neZ0syvNJ1RrKg
- GU55H7xSvHTfmEkJ+nnqjc8w/a0VIpqoimmNenBmC77hl0tZSHVfzWx+XFGbwUQdLZuF
- RJpg==
-X-Gm-Message-State: AA+aEWa2YJtUHOyhtgpTGMpqhAhPqFee9F2wsZVab57g5BLvzQitYfM5
- sZnv80dDV6zHSrypxO8JDI2kgg==
-X-Google-Smtp-Source: AFSGD/XiEeq+vDeKGNZkt57dLzm/xXk4gUU9JTvpHHo4mRvG7y+KrZgN/UlfX6m1Ak8NNfX0sYi5hg==
-X-Received: by 2002:a1c:ae88:: with SMTP id x130mr4442834wme.91.1545168559808; 
- Tue, 18 Dec 2018 13:29:19 -0800 (PST)
-Received: from localhost.localdomain (105.50.92.92.rev.sfr.net. [92.92.50.105])
- by smtp.gmail.com with ESMTPSA id o4sm4153485wrq.66.2018.12.18.13.29.18
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 18 Dec 2018 13:29:19 -0800 (PST)
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-To: tglx@linutronix.de
-Subject: [PATCH 07/25] clocksource/drivers/meson6_timer: Implement the ARM
- delay timer
-Date: Tue, 18 Dec 2018 22:28:25 +0100
-Message-Id: <20181218212844.30445-7-daniel.lezcano@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20181218212844.30445-1-daniel.lezcano@linaro.org>
-References: <d3f1255a-592d-13d9-5d3f-bd3ec7a36742@linaro.org>
- <20181218212844.30445-1-daniel.lezcano@linaro.org>
+ id 1gZO93-0000ZH-5X; Tue, 18 Dec 2018 22:47:22 +0000
+Received: from localhost (unknown [69.71.4.100])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 1894221871;
+ Tue, 18 Dec 2018 22:47:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1545173230;
+ bh=cnK5XvLVRJ49GBJdmk7hCbJ8Up1l19H1A9AWUVBiAus=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=Awod3BNW073KN9DVtn3VhAkdFK+WH3vOTctETw/JfwkJwGZHl0RHyuR0Cjuo2tE/6
+ 1YBGfxDYGlVweug7AQGTYUl1MoAt97mRz+zaLmo7f3+yhhAy60hDXY/oaGpAy6xvUm
+ EA1QJ8u+HjHA73K6yjpWDIepyjDKVHOhM9GaRpSI=
+Date: Tue, 18 Dec 2018 16:47:08 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Hanjie Lin <hanjie.lin@amlogic.com>
+Subject: Re: [PATCH v8 2/2] PCI: amlogic: Add the Amlogic Meson PCIe
+ controller driver
+Message-ID: <20181218224708.GB22610@google.com>
+References: <1545120286-129258-1-git-send-email-hanjie.lin@amlogic.com>
+ <1545120286-129258-3-git-send-email-hanjie.lin@amlogic.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <1545120286-129258-3-git-send-email-hanjie.lin@amlogic.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181218_132932_284515_39DA3EE7 
-X-CRM114-Status: GOOD (  11.65  )
+X-CRM114-CacheID: sfid-20181218_144721_243869_5A750F94 
+X-CRM114-Status: GOOD (  15.72  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -92,88 +75,119 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- Carlo Caione <carlo@caione.org>,
- "open list:ARM/Amlogic Meson SoC support" <linux-amlogic@lists.infradead.org>,
- "moderated list:ARM/Amlogic Meson SoC support"
- <linux-arm-kernel@lists.infradead.org>
-MIME-Version: 1.0
+Cc: Yixun Lan <yixun.lan@amlogic.com>, Rob Herring <robh@kernel.org>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, Kevin Hilman <khilman@baylibre.com>,
+ Shawn Lin <shawn.lin@rock-chips.com>,
+ Philippe Ombredanne <pombredanne@nexb.com>, linux-pci@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Yue Wang <yue.wang@amlogic.com>,
+ Qiufang Dai <qiufang.dai@amlogic.com>, Jian Hu <jian.hu@amlogic.com>,
+ Liang Yang <liang.yang@amlogic.com>,
+ Cyrille Pitchen <cyrille.pitchen@free-electrons.com>,
+ Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+ Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On Tue, Dec 18, 2018 at 04:04:46PM +0800, Hanjie Lin wrote:
+> From: Yue Wang <yue.wang@amlogic.com>
+> 
+> The Amlogic Meson PCIe host controller is based on the Synopsys DesignWare
+> PCI core. This patch adds the driver support for Meson PCIe controller.
 
-Implement an ARM delay timer to be used for udelay(). This allows us to
-skip the delay loop calibration at boot.
+I don't have any comments on the code itself; just the trivial things
+below.  No need to repost for these unless you're changing something
+else.
 
-With this patch udelay() is now independent of CPU frequency changes.
-This is a good thing on Meson8, Meson8b and Meson8m2 because changing
-the CPU frequency requires running the CPU clock off the XTAL while
-changing the PLL or it's dividers. After changing the CPU clocks we need
-to wait a few usecs for the clock to become stable. So having an
-udelay() implementation that doesn't depend on the CPU frequency is
-beneficial.
+I thought it looked very pretty overall, thanks for paying attention
+to that!
 
-Suggested-by: Jianxin Pan <jianxin.pan@amlogic.com>
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
----
- drivers/clocksource/meson6_timer.c | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+> +static int meson_size_to_payload(struct meson_pcie *mp, int size)
+> +{
+> +	struct device *dev = mp->pci.dev;
+> +
+> +	/*
+> +	 * dwc supports 2^(val+7) payload size, which val is 0~5 default to 1.
+> +	 * So if input size is not 2^order alignment or less than 2^7 or bigger
+> +	 * than 2^12, just set to default size 2^(1+7).
+> +	 */
+> +	if (!is_power_of_2(size) || size < 128 || size > 4096) {
+> +		dev_warn(dev, "playload size %d, set to default 256\n", size);
 
-diff --git a/drivers/clocksource/meson6_timer.c b/drivers/clocksource/meson6_timer.c
-index 23c7638e2bb3..84bd9479c3f8 100644
---- a/drivers/clocksource/meson6_timer.c
-+++ b/drivers/clocksource/meson6_timer.c
-@@ -22,6 +22,10 @@
- #include <linux/of_address.h>
- #include <linux/of_irq.h>
- 
-+#ifdef CONFIG_ARM
-+#include <linux/delay.h>
-+#endif
-+
- #define MESON_ISA_TIMER_MUX					0x00
- #define MESON_ISA_TIMER_MUX_TIMERD_EN				BIT(19)
- #define MESON_ISA_TIMER_MUX_TIMERC_EN				BIT(18)
-@@ -54,6 +58,18 @@
- 
- static void __iomem *timer_base;
- 
-+#ifdef CONFIG_ARM
-+static unsigned long meson6_read_current_timer(void)
-+{
-+	return readl_relaxed(timer_base + MESON_ISA_TIMERE);
-+}
-+
-+static struct delay_timer meson6_delay_timer = {
-+	.read_current_timer = meson6_read_current_timer,
-+	.freq = 1000 * 1000,
-+};
-+#endif
-+
- static u64 notrace meson6_timer_sched_read(void)
- {
- 	return (u64)readl(timer_base + MESON_ISA_TIMERE);
-@@ -192,6 +208,12 @@ static int __init meson6_timer_init(struct device_node *node)
- 
- 	clockevents_config_and_register(&meson6_clockevent, USEC_PER_SEC,
- 					1, 0xfffe);
-+
-+#ifdef CONFIG_ARM
-+	/* Also use MESON_ISA_TIMERE for delays */
-+	register_current_timer_delay(&meson6_delay_timer);
-+#endif
-+
- 	return 0;
- }
- TIMER_OF_DECLARE(meson6, "amlogic,meson6-timer",
--- 
-2.17.1
+s/playload/payload/
 
+> +static void meson_set_max_payload(struct meson_pcie *mp, int size)
+> +{
+> +	u32 val = 0;
+
+Unnecessary initialization.
+
+> +	int max_payload_size = meson_size_to_payload(mp, size);
+> +
+> +	val = meson_elb_readl(mp, PCIE_DEV_CTRL_DEV_STUS);
+
+> +static int meson_pcie_rd_own_conf(struct pcie_port *pp, int where, int size,
+> +				  u32 *val)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	int ret;
+> +
+> +	ret = dw_pcie_read(pci->dbi_base + where, size, val);
+> +	if (ret != PCIBIOS_SUCCESSFUL)
+> +		return ret;
+> +
+> +	/*
+> +	 * There is a bug in the MESON AXG pcie controller whereby software
+> +	 * cannot programme the PCI_CLASS_DEVICE register, so we must fabricate
+> +	 * the return value in the config accessors.
+
+s/pcie/PCIe/
+s/programme/program/ (IIUC, "programme" is British and only used as a
+noun, where here you need a verb)
+
+> +static int meson_pcie_link_up(struct dw_pcie *pci)
+> +{
+> +	struct meson_pcie *mp = to_meson_pcie(pci);
+> +	struct device *dev = pci->dev;
+> +	u32 smlh_up = 0;
+> +	u32 ltssm_up = 0;
+> +	u32 rdlh_up = 0;
+
+Unnecessary initialization of smlh_up, ltssm_up, and rdlh_up.
+
+> +	u32 speed_okay = 0;
+> +	u32 cnt = 0;
+> +	u32 state12, state17;
+> +
+> +	do {
+> +		state12 = meson_cfg_readl(mp, PCIE_CFG_STATUS12);
+> +		state17 = meson_cfg_readl(mp, PCIE_CFG_STATUS17);
+> +		smlh_up = IS_SMLH_LINK_UP(state12);
+> +		rdlh_up = IS_RDLH_LINK_UP(state12);
+> +		ltssm_up = IS_LTSSM_UP(state12);
+
+> +	dev_err(dev, "Error: Wait linkup timeout.\n");
+
+Message doesn't match others from driver (capitalization and trailing
+period).
+
+> +			dev_err(dev, "failed to get msi irq\n");
+
+s/msi irq/MSI IRQ/
+
+> +	ret = meson_add_pcie_port(mp, pdev);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Add PCIE port failed, %d\n", ret);
+
+s/PCIE/PCIe/
+
+All the messages in this function are capitalized differently than
+other messages in the driver.
+
+Bjorn
 
 _______________________________________________
 linux-amlogic mailing list
