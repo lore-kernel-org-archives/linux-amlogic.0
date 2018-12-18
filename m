@@ -2,22 +2,22 @@ Return-Path: <SRS0=QuO6=O3=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-7.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 74F0AC43387
-	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Dec 2018 12:25:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 51A86C43387
+	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Dec 2018 12:37:18 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 41B162080D
-	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Dec 2018 12:25:42 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1EABF20874
+	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Dec 2018 12:37:18 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="e237AjEL";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="DUIqVVAO"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 41B162080D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eb+0JWUQ";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="K6giZNtm"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1EABF20874
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=samsung.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,110 +26,105 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:MIME-Version:
 	Date:Message-ID:From:To:Subject:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Y6u6orIo16UXN/DfhDU8pzhP0gQbLV+ZljM13/CV5E8=; b=e237AjEL7v65SI
-	1XMHEFjNsWwC97I7tkq7ty0JFTUDAKhdcx+70VX7WeMzz3ktXamV1xth9vggAPkSTsQG+y64WSE9k
-	q+/xGH9iOgj613l3Yw3v2XjDaXjFNn32xfZMNwxADvI2rzx9OZy+ARsjVJTwlRb1bjMX2zOHzaRjb
-	uXSr9r7Ew2l+yBdFWHXdUESg/q2Q+TLnwPe2q6vsGtKBkNqj1MpruyNYYyOLAlddnkml5DfSUfwnY
-	9ovtqGiawbu8K8dNkyEYZZSKu8lSORXRZ7npMlH6SfX+o425uy5vPQufMLKJHLfI8s+2kZAuTPHKg
-	mG4e9lPN4XCxkGUjDoyw==;
+	List-Owner; bh=ub1sOL2RsfEHUnH1ThqcCdiFmJfqUApYoSVxuJUzfW8=; b=eb+0JWUQ8s5K9m
+	pJRmDOwWzBPvCsE3ob5t5k59eh/iLdEH7nv8CxxMKlhsHvbwbPiO5QjhPWGoH9CXn2ZK6r5tlG4Ul
+	6E3P0V1XKb+ag+32NV+o6cJBHUzU6wMe7ozUa7wkv4gyUsJqamDZY3Z6A5JA/Rh7eCcA2IOrdEklA
+	dRsKAWWhKxsZFz2RaObz6NgqCemLx09Jxowv5xm/eme+oK1mj3mloQPbWL67A7ja38XVKZZnPBaxb
+	xRi8K914IpN2yl7flixd6UFppzqJAVkv2a0lCNt2EFUUqZOJyjZp0AKruVm7ch9ry+cvekbWkZZI+
+	gRx2YvKyvgpMzLu9ervQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gZERJ-0000f8-UT; Tue, 18 Dec 2018 12:25:33 +0000
-Received: from mailout2.w1.samsung.com ([210.118.77.12])
+	id 1gZEcb-0004rq-9x; Tue, 18 Dec 2018 12:37:13 +0000
+Received: from mailout1.w1.samsung.com ([210.118.77.11])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gZERG-0000dp-5A
- for linux-amlogic@lists.infradead.org; Tue, 18 Dec 2018 12:25:32 +0000
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
- by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id
- 20181218122514euoutp028d926f0faee59dd5207f7a2dd48ef404~xbO2Bf0uk1571115711euoutp023
- for <linux-amlogic@lists.infradead.org>; Tue, 18 Dec 2018 12:25:14 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com
- 20181218122514euoutp028d926f0faee59dd5207f7a2dd48ef404~xbO2Bf0uk1571115711euoutp023
+ id 1gZEcX-0004qZ-U0
+ for linux-amlogic@lists.infradead.org; Tue, 18 Dec 2018 12:37:11 +0000
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+ by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id
+ 20181218123656euoutp016b923323b2af4e29eb3911cb85d48149~xbZD6OoSx1299112991euoutp01U
+ for <linux-amlogic@lists.infradead.org>; Tue, 18 Dec 2018 12:36:56 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com
+ 20181218123656euoutp016b923323b2af4e29eb3911cb85d48149~xbZD6OoSx1299112991euoutp01U
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
- s=mail20170921; t=1545135914;
- bh=TZdB6BoLIaIoWgLX2JzgN1BqyZzc6Ely6skPYcaYgqo=;
+ s=mail20170921; t=1545136616;
+ bh=sN51+L1qpmmimXm3dIBpmjz7d0Eq94dyN9a5ffpOtHA=;
  h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
- b=DUIqVVAOzK/sb7lD0p4WaDw0WkK0xwzYJkMX5E3YDWMTZStuwaFOhxo2jx/gbk+xd
- NBZuiVI0DdlVTd2QvVcbAnqczO/GBfd6B/oIg2KA4bCnMLJ16J0orJtJE4uFy94sbS
- FW1dk/hbQw4tyKRaaG1quItpqnj19PRvy+QPGRMM=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+ b=K6giZNtmjbfmASXS3nH9/Yq3VUleR5DKUPGrpygKTgAyZNw/JpjnyGLBhaz6W9uCc
+ Y25ukreiM0wWD7+YVQzGyo2X5BGAWBkfbs6aZq6Z/0Z+XalrflU3twprepRVbbKonI
+ Gen/xO8oLT/iq+IXB1trTp0y8BQ6fN6nScYoVtPM=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
  eucas1p2.samsung.com (KnoxPortal) with ESMTP id
- 20181218122513eucas1p2487f99c8d9967cf6e4cd511503d392a8~xbO1OpOXJ0666006660eucas1p2c;
- Tue, 18 Dec 2018 12:25:13 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
- eusmges2new.samsung.com (EUCPMTA) with SMTP id 1A.6F.04294.927E81C5; Tue, 18
- Dec 2018 12:25:13 +0000 (GMT)
+ 20181218123656eucas1p2d62525156c23879692613e6d010a65e0~xbZDjbUEH3061330613eucas1p2_;
+ Tue, 18 Dec 2018 12:36:56 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+ eusmges3new.samsung.com (EUCPMTA) with SMTP id FB.19.04806.7E9E81C5; Tue, 18
+ Dec 2018 12:36:55 +0000 (GMT)
 Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
- eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
- 20181218122512eucas1p23885bab4434bb7aaa350c26e0247067b~xbO0LeNa40666106661eucas1p2W;
- Tue, 18 Dec 2018 12:25:12 +0000 (GMT)
+ eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+ 20181218123655eucas1p1e45a37e79c605233f944ad8c9a5767c6~xbZCu4Ztg3004830048eucas1p1p;
+ Tue, 18 Dec 2018 12:36:55 +0000 (GMT)
 Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
  eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
- 20181218122512eusmtrp28f9032a85eb55613c02067cbcf1db262~xbOz8n8UL1809718097eusmtrp2z;
- Tue, 18 Dec 2018 12:25:12 +0000 (GMT)
-X-AuditID: cbfec7f4-84fff700000010c6-72-5c18e72989f2
+ 20181218123655eusmtrp2549f8123cc7229b924aa013a0a097b9e~xbZCglWa72146021460eusmtrp2Q;
+ Tue, 18 Dec 2018 12:36:55 +0000 (GMT)
+X-AuditID: cbfec7f5-367ff700000012c6-63-5c18e9e77684
 Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
- eusmgms1.samsung.com (EUCPMTA) with SMTP id E8.64.04284.827E81C5; Tue, 18
- Dec 2018 12:25:12 +0000 (GMT)
+ eusmgms1.samsung.com (EUCPMTA) with SMTP id D0.F5.04284.7E9E81C5; Tue, 18
+ Dec 2018 12:36:55 +0000 (GMT)
 Received: from [106.120.43.17] (unknown [106.120.43.17]) by
  eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
- 20181218122511eusmtip29664c29c913ff835a46415e191e4a532~xbOzal3kM1639516395eusmtip2P;
- Tue, 18 Dec 2018 12:25:11 +0000 (GMT)
-Subject: Re: [PATCH RFC v2 1/8] drm/bridge: dw-hdmi: Add SCDC and TMDS
- Scrambling support
+ 20181218123654eusmtip244840fab46e6dd4cfb6276fe208e35f8~xbZCNb4He1938419384eusmtip2q;
+ Tue, 18 Dec 2018 12:36:54 +0000 (GMT)
+Subject: Re: [PATCH RFC v2 2/8] drm/meson: add HDMI div40 TMDS mode
 To: Neil Armstrong <narmstrong@baylibre.com>, architt@codeaurora.org,
- Laurent.pinchart@ideasonboard.com, Philipp Zabel <p.zabel@pengutronix.de>,
- Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=c3=bcbner?=
- <heiko@sntech.de>, maxime.ripard@bootlin.com
+ Laurent.pinchart@ideasonboard.com
 From: Andrzej Hajda <a.hajda@samsung.com>
-Message-ID: <66eb4d1d-8924-2ee7-7fa4-5b78ae8cea0f@samsung.com>
-Date: Tue, 18 Dec 2018 13:25:10 +0100
+Message-ID: <d63e5df4-2250-178e-2b1e-3a8ac8dcb6df@samsung.com>
+Date: Tue, 18 Dec 2018 13:36:53 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.2.1
 MIME-Version: 1.0
-In-Reply-To: <20181130134301.17963-2-narmstrong@baylibre.com>
+In-Reply-To: <20181130134301.17963-3-narmstrong@baylibre.com>
 Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrBKsWRmVeSWpSXmKPExsWy7djP87qazyViDDrXiFk0dbxltbjy9T2b
- xf9Hr1kt5k6qteicuITdYsFsbovLu+awWTx4uZ/R4lBftMXS3+8YLe7eO8Fi0fByJ7MDj8f7
- G63sHvPWVHtc7utl8pjdMZPV4373cSaPzUvqPfr/Gnj8nbWfxWP7tXnMHp83yQVwRXHZpKTm
- ZJalFunbJXBlLDviWvDJuWLqytdsDYybzLoYOTkkBEwkeifvYuxi5OIQEljBKDH79l0WCOcL
- o8SepjXsEM5nRom2l5uYYVranh1ghUgsZ5T4c3kSVNVbRol7H+8xglQJC0RLbLi3HWywiEAL
- k8T3GU+ZQRxmgc2MEn2/JoLNYhPQlPi7+SYbiM0rYCcxt/8rE4jNIqAq8ffCBLBJogIREh33
- V0PVCEqcnPmEBcTmFLCV6GtcB2YzC8hLNG+dzQxhi0vcejKfCWSZhMBXdonT/3ZBHe4icX3/
- e0YIW1ji1fEt7BC2jMT/nfOZIOx6iaaZV5ghmjsYJU4sXs4GkbCWOHz8ItDXHEAbNCXW79KH
- CDtKrFk/lxkkLCHAJ3HjrSDEDXwSk7ZNhwrzSnS0CUFUK0rcP7sV6hpxiaUXvrJNYFSaheSz
- WUi+mYXkm1kIexcwsqxiFE8tLc5NTy02ykst1ytOzC0uzUvXS87P3cQITG+n/x3/soNx15+k
- Q4wCHIxKPLwrjorHCLEmlhVX5h5ilOBgVhLhvVUqESPEm5JYWZValB9fVJqTWnyIUZqDRUmc
- t5rhQbSQQHpiSWp2ampBahFMlomDU6qBkScsb8O69pYrn5v0ejTsYjLEMp1mvTZ9uMDz4ffj
- Ko5Le7JvV4RzV8cYh39JsA/YuHipfMSFW6c/aqgGhGmcUZjXsVVomf6tB92ROY+++sgZKlqc
- CZzXc/Zj2WELJa/fxgs2v6q/pLbpUnic4qa/5/gmJXZF3ji3y6ImVbv1Q3Xg7NNhtxpNlViK
- MxINtZiLihMBzlCSmWsDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrJIsWRmVeSWpSXmKPExsVy+t/xe7oazyViDD4d4bZo6njLanHl63s2
- i/+PXrNazJ1Ua9E5cQm7xYLZ3BaXd81hs3jwcj+jxaG+aIulv98xWty9d4LFouHlTmYHHo/3
- N1rZPeatqfa43NfL5DG7Yyarx/3u40wem5fUe/T/NfD4O2s/i8f2a/OYPT5vkgvgitKzKcov
- LUlVyMgvLrFVija0MNIztLTQMzKx1DM0No+1MjJV0rezSUnNySxLLdK3S9DLWHbEteCTc8XU
- la/ZGhg3mXUxcnJICJhItD07wNrFyMUhJLCUUWLh6zvsEAlxid3z3zJD2MISf651sUEUvWaU
- OHNpOlhCWCBaYsO97YwgtohAC5PEy+fWIEXMApsZJU6dXA1WJCRwmFHiyoQaEJtNQFPi7+ab
- bCA2r4CdxNz+r0wgNouAqsTfCxPABokKREicfbmOEaJGUOLkzCcsIDangK1EX+M6MJtZQF3i
- z7xLzBC2vETz1tlQtrjErSfzmSYwCs1C0j4LScssJC2zkLQsYGRZxSiSWlqcm55bbKhXnJhb
- XJqXrpecn7uJERjN24793LyD8dLG4EOMAhyMSjy8DCfEY4RYE8uKK3MPMUpwMCuJ8N4qlYgR
- 4k1JrKxKLcqPLyrNSS0+xGgK9NxEZinR5HxgoskriTc0NTS3sDQ0NzY3NrNQEuc9b1AZJSSQ
- nliSmp2aWpBaBNPHxMEp1cCYbX/2xsqwxJDpRrvPpDpvsXlhUBR4eGtFZm90i/O1QNGnky7U
- m+R/WqK7PXPh/gn3+Nzf9/7nElE3nz31T/wsycyZ3LLN6qIdM6bclBaevCvDx/CFdh6bQMgl
- syOv3ilp9Xc4KEb+2bvPrXoHQ1O4emSeFV9V+E6dzcssbcrS4pzkmCcmWCqxFGckGmoxFxUn
- AgAG1OjO/AIAAA==
-X-CMS-MailID: 20181218122512eucas1p23885bab4434bb7aaa350c26e0247067b
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrOKsWRmVeSWpSXmKPExsWy7djPc7rPX0rEGLx/ZWXR1PGW1eLK1/ds
+ Fp0Tl7BbLJjNbXF51xw2i0N90Q5sHu9vtLJ7XO7rZfKY3TGT1eN+93Emj81L6j0+b5ILYIvi
+ sklJzcksSy3St0vgyvjz6h1zwXaxiq+vdzA3MO4Q6mLk5JAQMJHomfKKrYuRi0NIYAWjxO6d
+ z5ggnC+MEr2rf7BAOJ8ZJc69uc0E0/Lh0QmoluWMEv1/HzJDOG8ZJRacmwKU4eAQFnCWOLbY
+ FqRBRCBT4mffUnYQm1kgTeLWjEOsIDabgKbE38032UBsXgE7ib6tEAtYBFQl5vUvAIuLCkRI
+ dNxfDVUjKHFy5hMWEJtTwFZia9sDFoiZ8hLb385hhrDFJW49mQ/2goTAOnaJxXeuMENc7SKx
+ Z9Z9KFtY4tXxLewQtozE/53zoT6rl2iaeYUZormDUeLE4uVsEAlricPHL7KCPMYMdPX6XfoQ
+ YUeJSx8fgP0rIcAnceOtIMQNfBKTtk1nhgjzSnS0QYNaUeL+2a1QF4hLLL3wlW0Co9IsJJ/N
+ QvLNLCTfzELYu4CRZRWjeGppcW56arFxXmq5XnFibnFpXrpecn7uJkZg8jn97/jXHYz7/iQd
+ YhTgYFTi4WU4IR4jxJpYVlyZe4hRgoNZSYT3VqlEjBBvSmJlVWpRfnxRaU5q8SFGaQ4WJXHe
+ aoYH0UIC6YklqdmpqQWpRTBZJg5OqQbGikiXCVE+P2ef6uPvYtt+4vJPoftZM+9EvmsXFXg3
+ fYXmJCGHdzt3ywp2VrhGfzj2joldprP3ha/DP7sD+t/sGdPF8t8l7Qh/asPDeXl/cMG0gofe
+ M7P2fXtjdOdjperkqkWrk/LtYhcr9fx5Ye5oY9czf0fVqX3vl9reLem6efPGbMt1f87/UGIp
+ zkg01GIuKk4EAPP4NS46AwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrFIsWRmVeSWpSXmKPExsVy+t/xe7rPX0rEGCz9z2zR1PGW1eLK1/ds
+ Fp0Tl7BbLJjNbXF51xw2i0N90Q5sHu9vtLJ7XO7rZfKY3TGT1eN+93Emj81L6j0+b5ILYIvS
+ synKLy1JVcjILy6xVYo2tDDSM7S00DMysdQzNDaPtTIyVdK3s0lJzcksSy3St0vQy/jz6h1z
+ wXaxiq+vdzA3MO4Q6mLk5JAQMJH48OgEWxcjF4eQwFJGibauJ8wQCXGJ3fPfQtnCEn+udUEV
+ vWaUeN+8gamLkYNDWMBZ4thiW5AaEYFMiQdTLjKC2MwCaRJ/noL0gtQfZpT4+/A7E0iCTUBT
+ 4u/mm2wgNq+AnUTf1ttgcRYBVYl5/QvA4qICERJnX65jhKgRlDg58wkLiM0pYCuxte0BC8QC
+ dYk/8y4xQ9jyEtvfzoGyxSVuPZnPNIFRaBaS9llIWmYhaZmFpGUBI8sqRpHU0uLc9NxiQ73i
+ xNzi0rx0veT83E2MwHjbduzn5h2MlzYGH2IU4GBU4uFlOCEeI8SaWFZcmXuIUYKDWUmE91ap
+ RIwQb0piZVVqUX58UWlOavEhRlOg5yYyS4km5wNTQV5JvKGpobmFpaG5sbmxmYWSOO95g8oo
+ IYH0xJLU7NTUgtQimD4mDk6pBsaClhXS21XUH/74pjXlasLaRm7TGyUhk7kVeBWLLZw+KsW/
+ 6y5PDv9+L86iJqbiQs+SyTtPp0j9n/x9uWb67ptLepm3Xf7gUsn+xOKj5/2trnUBbld2nip6
+ HKEb9n33ZUb+OW4hhtseL0kWNr0ezLInOmxV3oLgnsKKVbdvCPCW7ff8tfwP3yslluKMREMt
+ 5qLiRAC8j0xIzQIAAA==
+X-CMS-MailID: 20181218123655eucas1p1e45a37e79c605233f944ad8c9a5767c6
 X-Msg-Generator: CA
-X-RootMTR: 20181130134341epcas3p330f854d94ebca73704d6582158d7d5b7
+X-RootMTR: 20181130134341epcas3p47020dea94fe298a3a58ab3007bfd5d75
 X-EPHeader: CA
 CMS-TYPE: 201P
-X-CMS-RootMailID: 20181130134341epcas3p330f854d94ebca73704d6582158d7d5b7
+X-CMS-RootMailID: 20181130134341epcas3p47020dea94fe298a3a58ab3007bfd5d75
 References: <20181130134301.17963-1-narmstrong@baylibre.com>
- <CGME20181130134341epcas3p330f854d94ebca73704d6582158d7d5b7@epcas3p3.samsung.com>
- <20181130134301.17963-2-narmstrong@baylibre.com>
+ <CGME20181130134341epcas3p47020dea94fe298a3a58ab3007bfd5d75@epcas3p4.samsung.com>
+ <20181130134301.17963-3-narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181218_042530_468227_0FD0EDA6 
-X-CRM114-Status: GOOD (  29.88  )
+X-CRM114-CacheID: sfid-20181218_043710_104609_1350AE7B 
+X-CRM114-Status: GOOD (  16.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -141,163 +136,94 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, Nickey Yang <nickey.yang@rock-chips.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Huicong Xu <xhc@rock-chips.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgTmVpbCwKCgpPbiAzMC4xMS4yMDE4IDE0OjQyLCBOZWlsIEFybXN0cm9uZyB3cm90ZToKPiBB
-ZGQgc3VwcG9ydCBmb3IgU0NEQyBTZXR1cCBmb3IgVE1EUyBDbG9jayA+IDMuNEdIeiBhbmQgZW5h
-YmxlIFRNRFMKPiBTY3JhbWJsaW5nIHdoZW4gc3VwcG9ydGVkIG9yIG1hbmRhdG9yeS4KPgo+IFRo
-aXMgcGF0Y2ggYWxzbyBhZGRzIGFuIGhlbHBlciB0byBzZXR1cCB0aGUgY29udHJvbCBiaXQgdG8g
-c3VwcG9ydAo+IHRoZSBoaWdoIFRNRFMgQml0IFBlcmlvZC9UTURTIENsb2NrLVBlcmlvZCBSYXRp
-byBhcyByZXF1aXJlZCB3aXRoCj4gVE1EUyBDbG9jayA+IDMuNEdIeiBmb3IgSERNSTIuMCAzODQw
-eDIxNjBANjAvNTAgbW9kZXMuCj4KPiBUaGVzZSBjaGFuZ2VzIHdlcmUgYmFzZWQgb24gd29yayBk
-b25lIGJ5IEh1aWNvbmcgWHUgPHhoY0Byb2NrLWNoaXBzLmNvbT4KPiBhbmQgTmlja2V5IFlhbmcg
-PG5pY2tleS55YW5nQHJvY2stY2hpcHMuY29tPiB0byBzdXBwb3J0IEhETUkyLjAgbW9kZXMKPiBv
-biB0aGUgUm9ja2NoaXAgNC40IEJTUCBrZXJuZWwgYXQgWzFdCj4KPiBbMV0gaHR0cHM6Ly9naXRo
-dWIuY29tL3JvY2tjaGlwLWxpbnV4L2tlcm5lbC90cmVlL3JlbGVhc2UtNC40Cj4KPiBDYzogTmlj
-a2V5IFlhbmcgPG5pY2tleS55YW5nQHJvY2stY2hpcHMuY29tPgo+IENjOiBIdWljb25nIFh1IDx4
-aGNAcm9jay1jaGlwcy5jb20+Cj4gU2lnbmVkLW9mZi1ieTogTmVpbCBBcm1zdHJvbmcgPG5hcm1z
-dHJvbmdAYmF5bGlicmUuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL3N5bm9w
-c3lzL2R3LWhkbWkuYyB8IDg4ICsrKysrKysrKysrKysrKysrKysrKystCj4gIGRyaXZlcnMvZ3B1
-L2RybS9icmlkZ2Uvc3lub3BzeXMvZHctaGRtaS5oIHwgIDEgKwo+ICBpbmNsdWRlL2RybS9icmlk
-Z2UvZHdfaGRtaS5oICAgICAgICAgICAgICB8ICAxICsKPiAgMyBmaWxlcyBjaGFuZ2VkLCA4NyBp
-bnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9icmlkZ2Uvc3lub3BzeXMvZHctaGRtaS5jIGIvZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9z
-eW5vcHN5cy9kdy1oZG1pLmMKPiBpbmRleCA2NGMzY2YwMjc1MTguLmZjZDk0MWQ1Mjc1MyAxMDA2
-NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vYnJpZGdlL3N5bm9wc3lzL2R3LWhkbWkuYwo+ICsr
-KyBiL2RyaXZlcnMvZ3B1L2RybS9icmlkZ2Uvc3lub3BzeXMvZHctaGRtaS5jCj4gQEAgLTI4LDYg
-KzI4LDcgQEAKPiAgI2luY2x1ZGUgPGRybS9kcm1fY3J0Y19oZWxwZXIuaD4KPiAgI2luY2x1ZGUg
-PGRybS9kcm1fZWRpZC5oPgo+ICAjaW5jbHVkZSA8ZHJtL2RybV9lbmNvZGVyX3NsYXZlLmg+Cj4g
-KyNpbmNsdWRlIDxkcm0vZHJtX3NjZGNfaGVscGVyLmg+Cj4gICNpbmNsdWRlIDxkcm0vYnJpZGdl
-L2R3X2hkbWkuaD4KPiAgCj4gICNpbmNsdWRlIDx1YXBpL2xpbnV4L21lZGlhLWJ1cy1mb3JtYXQu
-aD4KPiBAQCAtNDMsNiArNDQsMTEgQEAKPiAgCj4gICNkZWZpbmUgSERNSV9FRElEX0xFTgkJNTEy
-Cj4gIAo+ICsvKiBEVy1IRE1JIENvbnRyb2xsZXIgPj0gMHgyMDBhIGFyZSBhdCBsZWFzdCBjb21w
-bGlhbnQgd2l0aCBTQ0RDIHZlcnNpb24gMSAqLwo+ICsjZGVmaW5lIFNDRENfTUlOX1NPVVJDRV9W
-RVJTSU9OCTB4MQo+ICsKPiArI2RlZmluZSBIRE1JMTRfTUFYX1RNRFNDTEsJMzQwMDAwMDAwCj4g
-Kwo+ICBlbnVtIGhkbWlfZGF0YW1hcCB7Cj4gIAlSR0I0NDRfOEIgPSAweDAxLAo+ICAJUkdCNDQ0
-XzEwQiA9IDB4MDMsCj4gQEAgLTEwMTUsNiArMTAyMSwzMyBAQCB2b2lkIGR3X2hkbWlfcGh5X2ky
-Y193cml0ZShzdHJ1Y3QgZHdfaGRtaSAqaGRtaSwgdW5zaWduZWQgc2hvcnQgZGF0YSwKPiAgfQo+
-ICBFWFBPUlRfU1lNQk9MX0dQTChkd19oZG1pX3BoeV9pMmNfd3JpdGUpOwo+ICAKPiArLyoKPiAr
-ICogSERNSTIuMCBTcGVjaWZpZXMgdGhlIGZvbGxvd2luZyBwcm9jZWR1cmUgZm9yIEhpZ2ggVE1E
-UyBCaXQgUmF0ZXM6Cj4gKyAqIC0gVGhlIFNvdXJjZSBzaGFsbCBzdXNwZW5kIHRyYW5zbWlzc2lv
-biBvZiB0aGUgVE1EUyBjbG9jayBhbmQgZGF0YQo+ICsgKiAtIFRoZSBTb3VyY2Ugc2hhbGwgd3Jp
-dGUgdG8gdGhlIFRNRFNfQml0X0Nsb2NrX1JhdGlvIGJpdCB0byBjaGFuZ2UgaXQKPiArICogZnJv
-bSBhIDAgdG8gYSAxIG9yIGZyb20gYSAxIHRvIGEgMAo+ICsgKiAtIFRoZSBTb3VyY2Ugc2hhbGwg
-YWxsb3cgYSBtaW5pbXVtIG9mIDEgbXMgYW5kIGEgbWF4aW11bSBvZiAxMDAgbXMgZnJvbQo+ICsg
-KiB0aGUgdGltZSB0aGUgVE1EU19CaXRfQ2xvY2tfUmF0aW8gYml0IGlzIHdyaXR0ZW4gdW50aWwg
-cmVzdW1pbmcKPiArICogdHJhbnNtaXNzaW9uIG9mIFRNRFMgY2xvY2sgYW5kIGRhdGEKPiArICoK
-PiArICogVG8gcmVzcGVjdCB0aGUgMTAwbXMgbWF4aW11bSBkZWxheSwgdGhlIGR3X2hkbWlfc2V0
-X2hpZ2hfdG1kc19jbG9ja19yYXRpbygpCj4gKyAqIGhlbHBlciBzaG91bGQgY2FsbGVkIHJpZ2h0
-IGJlZm9yZSBlbmFibGluZyB0aGUgVE1EUyBDbG9jayBhbmQgRGF0YSBpbgo+ICsgKiB0aGUgUEhZ
-IGNvbmZpZ3VyYXRpb24gY2FsbGJhY2suCj4gKyAqLwo+ICt2b2lkIGR3X2hkbWlfc2V0X2hpZ2hf
-dG1kc19jbG9ja19yYXRpbyhzdHJ1Y3QgZHdfaGRtaSAqaGRtaSkKPiArewo+ICsJdW5zaWduZWQg
-bG9uZyBtdG1kc2Nsb2NrID0gaGRtaS0+aGRtaV9kYXRhLnZpZGVvX21vZGUubXBpeGVsY2xvY2s7
-Cj4gKwo+ICsJLyogQ29udHJvbCBmb3IgVE1EUyBCaXQgUGVyaW9kL1RNRFMgQ2xvY2stUGVyaW9k
-IFJhdGlvICovCj4gKwlpZiAoaGRtaS0+Y29ubmVjdG9yLmRpc3BsYXlfaW5mby5oZG1pLnNjZGMu
-c3VwcG9ydGVkKSB7Cj4gKwkJaWYgKG10bWRzY2xvY2sgPiBIRE1JMTRfTUFYX1RNRFNDTEspCj4g
-KwkJCWRybV9zY2RjX3NldF9oaWdoX3RtZHNfY2xvY2tfcmF0aW8oaGRtaS0+ZGRjLCAxKTsKPiAr
-CQllbHNlCj4gKwkJCWRybV9zY2RjX3NldF9oaWdoX3RtZHNfY2xvY2tfcmF0aW8oaGRtaS0+ZGRj
-LCAwKTsKPiArCX0KPiArfQo+ICtFWFBPUlRfU1lNQk9MX0dQTChkd19oZG1pX3NldF9oaWdoX3Rt
-ZHNfY2xvY2tfcmF0aW8pOwo+ICsKPiAgc3RhdGljIHZvaWQgZHdfaGRtaV9waHlfZW5hYmxlX3Bv
-d2VyZG93bihzdHJ1Y3QgZHdfaGRtaSAqaGRtaSwgYm9vbCBlbmFibGUpCj4gIHsKPiAgCWhkbWlf
-bWFza193cml0ZWIoaGRtaSwgIWVuYWJsZSwgSERNSV9QSFlfQ09ORjAsCj4gQEAgLTEyMTYsNiAr
-MTI0OSw4IEBAIHN0YXRpYyBpbnQgaGRtaV9waHlfY29uZmlndXJlKHN0cnVjdCBkd19oZG1pICpo
-ZG1pKQo+ICAKPiAgCWR3X2hkbWlfcGh5X3Bvd2VyX29mZihoZG1pKTsKPiAgCj4gKwlkd19oZG1p
-X3NldF9oaWdoX3RtZHNfY2xvY2tfcmF0aW8oaGRtaSk7Cj4gKwo+ICAJLyogTGVhdmUgbG93IHBv
-d2VyIGNvbnN1bXB0aW9uIG1vZGUgYnkgYXNzZXJ0aW5nIFNWU1JFVC4gKi8KPiAgCWlmIChwaHkt
-Pmhhc19zdnNyZXQpCj4gIAkJZHdfaGRtaV9waHlfZW5hYmxlX3N2c3JldChoZG1pLCAxKTsKPiBA
-QCAtMTIzNyw2ICsxMjcyLDEwIEBAIHN0YXRpYyBpbnQgaGRtaV9waHlfY29uZmlndXJlKHN0cnVj
-dCBkd19oZG1pICpoZG1pKQo+ICAJCXJldHVybiByZXQ7Cj4gIAl9Cj4gIAo+ICsJLyogV2FpdCBm
-b3IgcmVzdW1pbmcgdHJhbnNtaXNzaW9uIG9mIFRNRFMgY2xvY2sgYW5kIGRhdGEgKi8KPiArCWlm
-IChtcGl4ZWxjbG9jayA+IEhETUkxNF9NQVhfVE1EU0NMSykKPiArCQltc2xlZXAoMTAwKTsKPiAr
-Cj4gIAlyZXR1cm4gZHdfaGRtaV9waHlfcG93ZXJfb24oaGRtaSk7Cj4gIH0KPiAgCj4gQEAgLTEz
-NDAsMTEgKzEzNzksMTIgQEAgc3RhdGljIHZvaWQgaGRtaV90eF9oZGNwX2NvbmZpZyhzdHJ1Y3Qg
-ZHdfaGRtaSAqaGRtaSkKPiAgCj4gIHN0YXRpYyB2b2lkIGhkbWlfY29uZmlnX0FWSShzdHJ1Y3Qg
-ZHdfaGRtaSAqaGRtaSwgc3RydWN0IGRybV9kaXNwbGF5X21vZGUgKm1vZGUpCj4gIHsKPiArCWJv
-b2wgaXNfaGRtaTJfc2luayA9IGhkbWktPmNvbm5lY3Rvci5kaXNwbGF5X2luZm8uaGRtaS5zY2Rj
-LnN1cHBvcnRlZDsKPiAgCXN0cnVjdCBoZG1pX2F2aV9pbmZvZnJhbWUgZnJhbWU7Cj4gIAl1OCB2
-YWw7Cj4gIAo+ICAJLyogSW5pdGlhbGlzZSBpbmZvIGZyYW1lIGZyb20gRFJNIG1vZGUgKi8KPiAt
-CWRybV9oZG1pX2F2aV9pbmZvZnJhbWVfZnJvbV9kaXNwbGF5X21vZGUoJmZyYW1lLCBtb2RlLCBm
-YWxzZSk7Cj4gKwlkcm1faGRtaV9hdmlfaW5mb2ZyYW1lX2Zyb21fZGlzcGxheV9tb2RlKCZmcmFt
-ZSwgbW9kZSwgaXNfaGRtaTJfc2luayk7Cj4gIAo+ICAJaWYgKGhkbWlfYnVzX2ZtdF9pc195dXY0
-NDQoaGRtaS0+aGRtaV9kYXRhLmVuY19vdXRfYnVzX2Zvcm1hdCkpCj4gIAkJZnJhbWUuY29sb3Jz
-cGFjZSA9IEhETUlfQ09MT1JTUEFDRV9ZVVY0NDQ7Cj4gQEAgLTE1MDMsNyArMTU0Myw4IEBAIHN0
-YXRpYyB2b2lkIGhkbWlfY29uZmlnX3ZlbmRvcl9zcGVjaWZpY19pbmZvZnJhbWUoc3RydWN0IGR3
-X2hkbWkgKmhkbWksCj4gIHN0YXRpYyB2b2lkIGhkbWlfYXZfY29tcG9zZXIoc3RydWN0IGR3X2hk
-bWkgKmhkbWksCj4gIAkJCSAgICAgY29uc3Qgc3RydWN0IGRybV9kaXNwbGF5X21vZGUgKm1vZGUp
-Cj4gIHsKPiAtCXU4IGludl92YWw7Cj4gKwl1OCBpbnZfdmFsLCBieXRlczsKPiArCXN0cnVjdCBk
-cm1faGRtaV9pbmZvICpoZG1pX2luZm8gPSAmaGRtaS0+Y29ubmVjdG9yLmRpc3BsYXlfaW5mby5o
-ZG1pOwo+ICAJc3RydWN0IGhkbWlfdm1vZGUgKnZtb2RlID0gJmhkbWktPmhkbWlfZGF0YS52aWRl
-b19tb2RlOwo+ICAJaW50IGhibGFuaywgdmJsYW5rLCBoX2RlX2hzLCB2X2RlX3ZzLCBoc3luY19s
-ZW4sIHZzeW5jX2xlbjsKPiAgCXVuc2lnbmVkIGludCB2ZGlzcGxheTsKPiBAQCAtMTUxMyw3ICsx
-NTU0LDkgQEAgc3RhdGljIHZvaWQgaGRtaV9hdl9jb21wb3NlcihzdHJ1Y3QgZHdfaGRtaSAqaGRt
-aSwKPiAgCWRldl9kYmcoaGRtaS0+ZGV2LCAiZmluYWwgcGl4Y2xrID0gJWRcbiIsIHZtb2RlLT5t
-cGl4ZWxjbG9jayk7Cj4gIAo+ICAJLyogU2V0IHVwIEhETUlfRkNfSU5WSURDT05GICovCj4gLQlp
-bnZfdmFsID0gKGhkbWktPmhkbWlfZGF0YS5oZGNwX2VuYWJsZSA/Cj4gKwlpbnZfdmFsID0gKGhk
-bWktPmhkbWlfZGF0YS5oZGNwX2VuYWJsZSB8fAo+ICsJCSAgIHZtb2RlLT5tcGl4ZWxjbG9jayA+
-IEhETUkxNF9NQVhfVE1EU0NMSyB8fAo+ICsJCSAgIGhkbWlfaW5mby0+c2NkYy5zY3JhbWJsaW5n
-Lmxvd19yYXRlcyA/Cj4gIAkJSERNSV9GQ19JTlZJRENPTkZfSERDUF9LRUVQT1VUX0FDVElWRSA6
-Cj4gIAkJSERNSV9GQ19JTlZJRENPTkZfSERDUF9LRUVQT1VUX0lOQUNUSVZFKTsKPiAgCj4gQEAg
-LTE1NjIsNiArMTYwNSw0NSBAQCBzdGF0aWMgdm9pZCBoZG1pX2F2X2NvbXBvc2VyKHN0cnVjdCBk
-d19oZG1pICpoZG1pLAo+ICAJCXZzeW5jX2xlbiAvPSAyOwo+ICAJfQo+ICAKPiArCS8qIFNjcmFt
-YmxpbmcgQ29udHJvbCAqLwo+ICsJaWYgKGhkbWlfaW5mby0+c2NkYy5zdXBwb3J0ZWQpIHsKPiAr
-CQlpZiAodm1vZGUtPm1waXhlbGNsb2NrID4gSERNSTE0X01BWF9UTURTQ0xLIHx8Cj4gKwkJICAg
-IGhkbWlfaW5mby0+c2NkYy5zY3JhbWJsaW5nLmxvd19yYXRlcykgewo+ICsJCQkvKgo+ICsJCQkg
-KiBIRE1JMi4wIFNwZWNpZmllcyB0aGUgZm9sbG93aW5nIHByb2NlZHVyZToKPiArCQkJICogQWZ0
-ZXIgdGhlIFNvdXJjZSBEZXZpY2UgaGFzIGRldGVybWluZWQgdGhhdAo+ICsJCQkgKiBTQ0RDX1By
-ZXNlbnQgaXMgc2V0ICg9MSksIHRoZSBTb3VyY2UgRGV2aWNlIHNob3VsZAo+ICsJCQkgKiB3cml0
-ZSB0aGUgYWNjdXJhdGUgVmVyc2lvbiBvZiB0aGUgU291cmNlIERldmljZQo+ICsJCQkgKiB0byB0
-aGUgU291cmNlIFZlcnNpb24gZmllbGQgaW4gdGhlIFNDRENTLgo+ICsJCQkgKiBTb3VyY2UgRGV2
-aWNlcyBjb21wbGlhbnQgc2hhbGwgc2V0IHRoZQo+ICsJCQkgKiBTb3VyY2UgVmVyc2lvbiA9IDEu
-Cj4gKwkJCSAqLwo+ICsJCQlkcm1fc2NkY19yZWFkYigmaGRtaS0+aTJjLT5hZGFwLCBTQ0RDX1NJ
-TktfVkVSU0lPTiwKPiArCQkJCSAgICAgICAmYnl0ZXMpOwo+ICsJCQlkcm1fc2NkY193cml0ZWIo
-JmhkbWktPmkyYy0+YWRhcCwgU0NEQ19TT1VSQ0VfVkVSU0lPTiwKPiArCQkJCW1pbl90KHU4LCBi
-eXRlcywgU0NEQ19NSU5fU09VUkNFX1ZFUlNJT04pKTsKPiArCj4gKwkJCS8qIEVuYWJsZWQgU2Ny
-YW1ibGluZyBpbiB0aGUgU2luayAqLwo+ICsJCQlkcm1fc2NkY19zZXRfc2NyYW1ibGluZygmaGRt
-aS0+aTJjLT5hZGFwLCAxKTsKPiArCj4gKwkJCS8qCj4gKwkJCSAqIFRvIGFjdGl2YXRlIHRoZSBz
-Y3JhbWJsZXIgZmVhdHVyZSwgeW91IG11c3QgZW5zdXJlCj4gKwkJCSAqIHRoYXQgdGhlIHF1YXNp
-LXN0YXRpYyBjb25maWd1cmF0aW9uIGJpdAo+ICsJCQkgKiBmY19pbnZpZGNvbmYuSERDUF9rZWVw
-b3V0IGlzIHNldCBhdCBjb25maWd1cmF0aW9uCj4gKwkJCSAqIHRpbWUsIGJlZm9yZSB0aGUgcmVx
-dWlyZWQgbWNfc3dyc3R6cmVxLnRtZHNzd3JzdF9yZXEKPiArCQkJICogcmVzZXQgcmVxdWVzdCBp
-cyBpc3N1ZWQuCj4gKwkJCSAqLwo+ICsJCQloZG1pX3dyaXRlYihoZG1pLCAodTgpfkhETUlfTUNf
-U1dSU1RaX1RNRFNTV1JTVF9SRVEsCgoKQXJlIHlvdSBzdXJlIHlvdSBuZWVkIGNhc3RpbmcgdG8g
-dTg/CgoKPiArCQkJCSAgICBIRE1JX01DX1NXUlNUWik7Cj4gKwkJCWhkbWlfd3JpdGViKGhkbWks
-IDEsIEhETUlfRkNfU0NSQU1CTEVSX0NUUkwpOwo+ICsJCX0gZWxzZSB7Cj4gKwkJCWhkbWlfd3Jp
-dGViKGhkbWksIDAsIEhETUlfRkNfU0NSQU1CTEVSX0NUUkwpOwo+ICsJCQloZG1pX3dyaXRlYiho
-ZG1pLCAodTgpfkhETUlfTUNfU1dSU1RaX1RNRFNTV1JTVF9SRVEsCj4gKwkJCQkgICAgSERNSV9N
-Q19TV1JTVFopOwo+ICsJCQlkcm1fc2NkY19zZXRfc2NyYW1ibGluZygmaGRtaS0+aTJjLT5hZGFw
-LCAwKTsKPiArCQl9Cj4gKwl9Cj4gKwo+ICAJLyogU2V0IHVwIGhvcml6b250YWwgYWN0aXZlIHBp
-eGVsIHdpZHRoICovCj4gIAloZG1pX3dyaXRlYihoZG1pLCBtb2RlLT5oZGlzcGxheSA+PiA4LCBI
-RE1JX0ZDX0lOSEFDVFYxKTsKPiAgCWhkbWlfd3JpdGViKGhkbWksIG1vZGUtPmhkaXNwbGF5LCBI
-RE1JX0ZDX0lOSEFDVFYwKTsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9z
-eW5vcHN5cy9kdy1oZG1pLmggYi9kcml2ZXJzL2dwdS9kcm0vYnJpZGdlL3N5bm9wc3lzL2R3LWhk
-bWkuaAo+IGluZGV4IDlkOTBlYjljNDZlNS4uM2YzYzYxNmViYTk3IDEwMDY0NAo+IC0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9icmlkZ2Uvc3lub3BzeXMvZHctaGRtaS5oCj4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL2JyaWRnZS9zeW5vcHN5cy9kdy1oZG1pLmgKPiBAQCAtMjU1LDYgKzI1NSw3IEBACj4g
-ICNkZWZpbmUgSERNSV9GQ19NQVNLMiAgICAgICAgICAgICAgICAgICAgICAgICAgIDB4MTBEQQo+
-ICAjZGVmaW5lIEhETUlfRkNfUE9MMiAgICAgICAgICAgICAgICAgICAgICAgICAgICAweDEwREIK
-PiAgI2RlZmluZSBIRE1JX0ZDX1BSQ09ORiAgICAgICAgICAgICAgICAgICAgICAgICAgMHgxMEUw
-Cj4gKyNkZWZpbmUgSERNSV9GQ19TQ1JBTUJMRVJfQ1RSTCAgICAgICAgICAgICAgICAgIDB4MTBF
-MQo+ICAKPiAgI2RlZmluZSBIRE1JX0ZDX0dNRF9TVEFUICAgICAgICAgICAgICAgICAgICAgICAg
-MHgxMTAwCj4gICNkZWZpbmUgSERNSV9GQ19HTURfRU4gICAgICAgICAgICAgICAgICAgICAgICAg
-IDB4MTEwMQo+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2RybS9icmlkZ2UvZHdfaGRtaS5oIGIvaW5j
-bHVkZS9kcm0vYnJpZGdlL2R3X2hkbWkuaAo+IGluZGV4IDljNTY0MTJiYjJjZi4uN2EwMjc0NGNl
-MGJjIDEwMDY0NAo+IC0tLSBhL2luY2x1ZGUvZHJtL2JyaWRnZS9kd19oZG1pLmgKPiArKysgYi9p
-bmNsdWRlL2RybS9icmlkZ2UvZHdfaGRtaS5oCj4gQEAgLTE1Nyw2ICsxNTcsNyBAQCB2b2lkIGR3
-X2hkbWlfc2V0dXBfcnhfc2Vuc2Uoc3RydWN0IGR3X2hkbWkgKmhkbWksIGJvb2wgaHBkLCBib29s
-IHJ4X3NlbnNlKTsKPiAgdm9pZCBkd19oZG1pX3NldF9zYW1wbGVfcmF0ZShzdHJ1Y3QgZHdfaGRt
-aSAqaGRtaSwgdW5zaWduZWQgaW50IHJhdGUpOwo+ICB2b2lkIGR3X2hkbWlfYXVkaW9fZW5hYmxl
-KHN0cnVjdCBkd19oZG1pICpoZG1pKTsKPiAgdm9pZCBkd19oZG1pX2F1ZGlvX2Rpc2FibGUoc3Ry
-dWN0IGR3X2hkbWkgKmhkbWkpOwo+ICt2b2lkIGR3X2hkbWlfc2V0X2hpZ2hfdG1kc19jbG9ja19y
-YXRpbyhzdHJ1Y3QgZHdfaGRtaSAqaGRtaSk7Cj4gIAo+ICAvKiBQSFkgY29uZmlndXJhdGlvbiAq
-Lwo+ICB2b2lkIGR3X2hkbWlfcGh5X2kyY19zZXRfYWRkcihzdHJ1Y3QgZHdfaGRtaSAqaGRtaSwg
-dTggYWRkcmVzcyk7CgpSZXZpZXdlZC1ieTogQW5kcnplaiBIYWpkYSA8YS5oYWpkYUBzYW1zdW5n
-LmNvbT4KCsKgLS0KUmVnYXJkcwpBbmRyemVqCgoKCgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1h
-bWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On 30.11.2018 14:42, Neil Armstrong wrote:
+> Add support for TMDS Clock > 3.4GHz for HDMI2.0 display modes.
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  drivers/gpu/drm/meson/meson_dw_hdmi.c | 24 ++++++++++++++++++++----
+>  1 file changed, 20 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+> index 807111ebfdd9..b8775102b100 100644
+> --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
+> +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+> @@ -365,7 +365,8 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
+>  	unsigned int wr_clk =
+>  		readl_relaxed(priv->io_base + _REG(VPU_HDMI_SETTING));
+>  
+> -	DRM_DEBUG_DRIVER("%d:\"%s\"\n", mode->base.id, mode->name);
+> +	DRM_DEBUG_DRIVER("%d:\"%s\" div%d\n", mode->base.id, mode->name,
+> +			 mode->clock > 340000 ? 40 : 10);
+>  
+>  	/* Enable clocks */
+>  	regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL, 0xffff, 0x100);
+> @@ -385,9 +386,17 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
+>  	/* Enable normal output to PHY */
+>  	dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_BIST_CNTL, BIT(12));
+>  
+> -	/* TMDS pattern setup (TOFIX pattern for 4k2k scrambling) */
+> -	dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_01, 0x001f001f);
+> -	dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_23, 0x001f001f);
+> +	/* TMDS pattern setup (TOFIX Handle the YUV420 case) */
+> +	if (mode->clock > 340000) {
+> +		dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_01, 0);
+> +		dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_23,
+> +				  0x03ff03ff);
+> +	} else {
+> +		dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_01,
+> +				  0x001f001f);
+> +		dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_23,
+> +				  0x001f001f);
+> +	}
+>  
+>  	/* Load TMDS pattern */
+>  	dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_CNTL, 0x1);
+> @@ -413,6 +422,8 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
+>  	/* Disable clock, fifo, fifo_wr */
+>  	regmap_update_bits(priv->hhi, HHI_HDMI_PHY_CNTL1, 0xf, 0);
+>  
+> +	dw_hdmi_set_high_tmds_clock_ratio(hdmi);
+> +
+>  	msleep(100);
+>  
+>  	/* Reset PHY 3 times in a row */
+> @@ -562,6 +573,11 @@ dw_hdmi_mode_valid(struct drm_connector *connector,
+>  		mode->vdisplay, mode->vsync_start,
+>  		mode->vsync_end, mode->vtotal, mode->type, mode->flags);
+>  
+> +	/* If sink max TMDS clock < 340MHz, we reject the HDMI2.0 modes */
+> +	if (mode->clock > 340000 &&
+> +	    connector->display_info.max_tmds_clock < 340000)
+> +		return MODE_BAD;
+> +
+
+
+Why not just:
+
+if (mode->clock > connector->display_info.max_tmds_clock)
+	return MODE_BAD;
+
+
+Regards
+
+Andrzej
+
+
+>  	/* Check against non-VIC supported modes */
+>  	if (!vic) {
+>  		status = meson_venc_hdmi_supported_mode(mode);
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
