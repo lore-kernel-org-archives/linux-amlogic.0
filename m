@@ -2,57 +2,59 @@ Return-Path: <SRS0=QuO6=O3=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-9.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EFCE9C43387
-	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Dec 2018 08:04:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 23627C43387
+	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Dec 2018 08:05:18 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C0B0A2133F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Dec 2018 08:04:57 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DF9002133F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Dec 2018 08:05:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UMmWxtbg"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C0B0A2133F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PO1ubc8D"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DF9002133F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=zz7dpFgUFTARfIxCJHpK/wzQesnRvUZX90floUZ8Rso=; b=UMmWxtbgs+hxXp
-	krwXInnDOuvIyzKZkMkjaaUeI7c827EUDoRGFqbOij5VIgwnDZq2LjmNXpoGz6JIeZSCDKr3RczoE
-	D5YhhI+q7hxczsWKAq5MI+TvFlOvJ7Uq76gO736gvXf9wMkrxcOIR4tr/266WQORSeBSj0QFXqZss
-	vcDgNUROuIDtHt0eKJ52ygzF/8+sBlt1JZIXNxXc3TohNtIpRyKc1DCQP6QdmLeUFy5fxi3k01kuP
-	8LlZp7j4jw5TZjXySXZc+sLyhROJdK6QNQZ1QEPLSvjKYCbamGfr9Bm605hY54Uxem1eMbV6gVEMA
-	1RNwQ02h7qr4XkDxGnCg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=aptePX5wMnhzGFUt+xz0/7bVrbK3hsQfPXajQJOL9n8=; b=PO1ubc8D5wEbn2
+	ZxemF1KyohJ2knJJ3TdxBleryZEUWuYQXePZFTqVGAdBRrrp3+zTI6qm8u8K57fSUwwTN5ZnioAm1
+	WHMIk9UUiAnLv6K9hgesmqH+m2GsLnDlcKhMItwx/Pn+Jxd4kuul3lm2QMHV13I8dnUYGwEWPkjKh
+	CwlzrtKOSdF1EBzuQQn2yBarkXzmIHt1ad32D4K10/Q+ISc+zeDjW2ht+IeXPvEUJWgp+d6hRuTzx
+	d8/NBWbE4NmOQBd9lki6cMVT37AU+0w8+GLqrteU3+TQ1GiUB9+T6H7LPRLKhwm/jlCGT5eCUXJUL
+	xdvUU8ABrnwHNxnnLJ/A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gZAN2-0005W0-Iu; Tue, 18 Dec 2018 08:04:52 +0000
+	id 1gZANN-0006nB-An; Tue, 18 Dec 2018 08:05:13 +0000
 Received: from mail-sh2.amlogic.com ([58.32.228.45])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gZAN0-0005V2-4Q; Tue, 18 Dec 2018 08:04:51 +0000
+ id 1gZAND-0005Vz-96; Tue, 18 Dec 2018 08:05:11 +0000
 Received: from droid10.amlogic.com (10.18.11.213) by mail-sh2.amlogic.com
  (10.18.11.6) with Microsoft SMTP Server id 15.0.1320.4; Tue, 18 Dec 2018
  16:05:07 +0800
 From: Hanjie Lin <hanjie.lin@amlogic.com>
 To: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, Bjorn Helgaas
  <bhelgaas@google.com>
-Subject: [PATCH v8 0/2 RESEND] add the Amlogic Meson PCIe controller driver
-Date: Tue, 18 Dec 2018 16:04:44 +0800
-Message-ID: <1545120286-129258-1-git-send-email-hanjie.lin@amlogic.com>
+Subject: [PATCH v8 1/2] dt-bindings: PCI: meson: add DT bindings for Amlogic
+ Meson PCIe controller
+Date: Tue, 18 Dec 2018 16:04:45 +0800
+Message-ID: <1545120286-129258-2-git-send-email-hanjie.lin@amlogic.com>
 X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1545120286-129258-1-git-send-email-hanjie.lin@amlogic.com>
+References: <1545120286-129258-1-git-send-email-hanjie.lin@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.18.11.213]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181218_000450_172846_D177F34D 
-X-CRM114-Status: UNSURE (   9.51  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20181218_000504_151800_A094595A 
+X-CRM114-Status: GOOD (  10.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -69,8 +71,9 @@ Cc: Yixun Lan <yixun.lan@amlogic.com>, Rob Herring <robh@kernel.org>,
  devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
  Shawn Lin <shawn.lin@rock-chips.com>,
  Philippe Ombredanne <pombredanne@nexb.com>, linux-pci@vger.kernel.org,
- linux-kernel@vger.kernel.org, Qiufang Dai <qiufang.dai@amlogic.com>,
- Jian Hu <jian.hu@amlogic.com>, Liang Yang <liang.yang@amlogic.com>,
+ linux-kernel@vger.kernel.org, Yue Wang <yue.wang@amlogic.com>,
+ Qiufang Dai <qiufang.dai@amlogic.com>, Jian Hu <jian.hu@amlogic.com>,
+ Liang Yang <liang.yang@amlogic.com>,
  Cyrille Pitchen <cyrille.pitchen@free-electrons.com>,
  Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
  Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
@@ -80,74 +83,96 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+From: Yue Wang <yue.wang@amlogic.com>
+
 The Amlogic Meson PCIe host controller is based on the Synopsys DesignWare
-PCI core. This patchset add the driver and dt-bindings of the controller.
+PCI core. This patch adds documentation for the DT bindings in Meson PCIe
+controller.
 
-Changes since v7: [6]
- - include files in alphabetical order
- - get rid of unused MACROs and variables
- - optimize meson_pcie_link_up() while loop
- - correct cover-letter version
-
-Changes since v6: [5]
- - fix bad usage of ERR_PTR(ENXIO)
- - fix meson_pcie_rd_own_conf() when read PCI_CLASS_DEVICE reg 
-
-Changes since v5: [4]
- - update MAINTAINER file in alphabetical order
- - remove meaningless comment
- - use ERR_PTR function instead of (void *) cast
- - use is_power_of_2(size) instead of size & (size - 1)
- - add comment for PCI_CLASS_REVISION register operation
- 
-Changes since v4: [3]
- - fix kbuild test robot and compile warnings
-
-Changes since v3: [2]
- - modify subject format
- - update Kconfig
- - update MAINTAINER file
- - add comment and error handle for meson_pcie_get_mem_shared()
- - drop useless initialization code
- - add comment for meson_size_to_payload()
- - optimize meson_pcie_establish_link() return code
- - optimize meson_pcie_enable_interrupts() redundant function
- - drop device_attch related code
- - drop dw_pcie_ops read_dbi and write_dbi function
- - add error handle for meson_add_pcie_port() when probe
-
-Changes since v2: [1]
- - abandon phy driver, move reset to the controller
- - use devm_add_action_or_reset() to use clock res
- - format correcting
-
-Changes since v1: [0]
- - use gpio lib instead open code
- - move 'apb' and 'port' reset from phy driver
- - format correcting
-
-[0] : https://lkml.kernel.org/r/1534227522-186798-1-git-send-email-hanjie.lin@amlogic.com
-[1] : https://lkml.kernel.org/r/1535096165-45827-1-git-send-email-hanjie.lin@amlogic.com
-[2] : https://lkml.kernel.org/r/1537509820-52040-1-git-send-email-hanjie.lin@amlogic.com 
-[3] : https://lkml.kernel.org/r/1538999834-156423-3-git-send-email-hanjie.lin@amlogic.com
-[4] : https://lkml.kernel.org/r/1539049990-30810-1-git-send-email-hanjie.lin@amlogic.com
-[5] : https://lkml.kernel.org/r/1542876836-191355-1-git-send-email-hanjie.lin@amlogic.com
-[6] : https://lkml.kernel.org/r/1544097760-85834-1-git-send-email-hanjie.lin@amlogic.com
-
-Yue Wang (2):
-  dt-bindings: PCI: meson: add DT bindings for Amlogic Meson PCIe
-    controller
-  PCI: amlogic: Add the Amlogic Meson PCIe controller driver
-
- .../devicetree/bindings/pci/amlogic,meson-pcie.txt |  70 +++
- MAINTAINERS                                        |   7 +
- drivers/pci/controller/dwc/Kconfig                 |  10 +
- drivers/pci/controller/dwc/Makefile                |   1 +
- drivers/pci/controller/dwc/pci-meson.c             | 595 +++++++++++++++++++++
- 5 files changed, 683 insertions(+)
+Signed-off-by: Yue Wang <yue.wang@amlogic.com>
+Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../devicetree/bindings/pci/amlogic,meson-pcie.txt | 70 ++++++++++++++++++++++
+ 1 file changed, 70 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
- create mode 100644 drivers/pci/controller/dwc/pci-meson.c
 
+diff --git a/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt b/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
+new file mode 100644
+index 0000000..12b18f8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
+@@ -0,0 +1,70 @@
++Amlogic Meson AXG DWC PCIE SoC controller
++
++Amlogic Meson PCIe host controller is based on the Synopsys DesignWare PCI core.
++It shares common functions with the PCIe DesignWare core driver and
++inherits common properties defined in
++Documentation/devicetree/bindings/pci/designware-pci.txt.
++
++Additional properties are described here:
++
++Required properties:
++- compatible:
++	should contain "amlogic,axg-pcie" to identify the core.
++- reg:
++	should contain the configuration address space.
++- reg-names: Must be
++	- "elbi"	External local bus interface registers
++	- "cfg"		Meson specific registers
++	- "phy"		Meson PCIE PHY registers
++	- "config"	PCIe configuration space
++- reset-gpios: The GPIO to generate PCIe PERST# assert and deassert signal.
++- clocks: Must contain an entry for each entry in clock-names.
++- clock-names: Must include the following entries:
++	- "pclk"       PCIe GEN 100M PLL clock
++	- "port"       PCIe_x(A or B) RC clock gate
++	- "general"    PCIe Phy clock
++	- "mipi"       PCIe_x(A or B) 100M ref clock gate
++- resets: phandle to the reset lines.
++- reset-names: must contain "phy" "port" and "apb"
++       - "phy"         Share PHY reset
++       - "port"        Port A or B reset
++       - "apb"         Share APB reset
++- device_type:
++	should be "pci". As specified in designware-pcie.txt
++
++
++Example configuration:
++
++	pcie: pcie@f9800000 {
++			compatible = "amlogic,axg-pcie", "snps,dw-pcie";
++			reg = <0x0 0xf9800000 0x0 0x400000
++					0x0 0xff646000 0x0 0x2000
++					0x0 0xff644000 0x0 0x2000
++					0x0 0xf9f00000 0x0 0x100000>;
++			reg-names = "elbi", "cfg", "phy", "config";
++			reset-gpios = <&gpio GPIOX_19 GPIO_ACTIVE_HIGH>;
++			interrupts = <GIC_SPI 177 IRQ_TYPE_EDGE_RISING>;
++			#interrupt-cells = <1>;
++			interrupt-map-mask = <0 0 0 0>;
++			interrupt-map = <0 0 0 0 &gic GIC_SPI 179 IRQ_TYPE_EDGE_RISING>;
++			bus-range = <0x0 0xff>;
++			#address-cells = <3>;
++			#size-cells = <2>;
++			device_type = "pci";
++			ranges = <0x82000000 0 0 0x0 0xf9c00000 0 0x00300000>;
++
++			clocks = <&clkc CLKID_USB
++					&clkc CLKID_MIPI_ENABLE
++					&clkc CLKID_PCIE_A
++					&clkc CLKID_PCIE_CML_EN0>;
++			clock-names = "general",
++					"mipi",
++					"pclk",
++					"port";
++			resets = <&reset RESET_PCIE_PHY>,
++				<&reset RESET_PCIE_A>,
++				<&reset RESET_PCIE_APB>;
++			reset-names = "phy",
++					"port",
++					"apb";
++	};
 -- 
 2.7.4
 
