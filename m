@@ -2,68 +2,83 @@ Return-Path: <SRS0=QuO6=O3=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED,USER_AGENT_MUTT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 84BF6C43387
-	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Dec 2018 22:47:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E1B8FC43387
+	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Dec 2018 23:15:13 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5582921841
-	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Dec 2018 22:47:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B0BBB2184C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 18 Dec 2018 23:15:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VwxaBpXh";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="Awod3BNW"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5582921841
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LC/VymSJ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="OxpD0mQe"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B0BBB2184C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HUxjlBuJL8Nct0NUrlaeGY7Xh4Z7K4uqil+XIB+l2a8=; b=VwxaBpXh1oEfn6
-	hvKLiDX3tOHubtuuJ4yKeuqIKapwhRpTBcfXa4cCmsYbnAnvnixocmlqg+A9FmORo+LeTzU1i06bV
-	DoTNZ4uVisQAek6kG7knnZ06tgMYJNB/3iEhdqeRDwg8afOtAqnh+YUMIZKY32rhtU08xLpPUpgLL
-	O9g15H1wvUdGJkKD97nhTJoUJnB3nw38DA+gpZ4Qdmdcia3E1yWtqWa22dlW8hZoJzKlbNzFR/WNq
-	nYktKsugHpjhdz/yTC1ptMkIcV8zFvAj/iIcodcIV3DgB1kCVf/vULQguHrOGoB44mBWrQf8EbrL8
-	ejvIZKEW0F1JHcaxrF5A==;
+	List-Owner; bh=MLdatrN7BF6hIDtB7cv4dH3RkQhgRwrWgwpM/6qIE9E=; b=LC/VymSJV8PR99
+	xObp/HqNiCwknTG/Sq/BJ15FE6UtWEy1/DpQr48WxGX4yxCLqYO1bi0BUq/FC0zDuwj8Ol6bl7X4b
+	4w6yr2dHu8yhCN/k6/+yKp8FzJKZL/gTtdtTj7mLcY8Mo8AlsVVem6PKgEli8mqv00+yagGKZzdbw
+	1lpjhLviyvSBO29Ug+P/2KYJNlCGJYPnrHElYm2rKqMvaQPQGTeuQ1+blEFGYR9KS2ft46id9iR7e
+	bXnxjT//iEVsBYvmmnvdkKrGYkA5NVKT74OlCFJbT4I8FjrmofvokRDUgIX7qQn+KhjdAtNlyUHIR
+	xx7pFk7IBA7Jdo8XWxkw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gZO95-0000al-Bl; Tue, 18 Dec 2018 22:47:23 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1gZOZv-0002aT-AV; Tue, 18 Dec 2018 23:15:07 +0000
+Received: from mail-oi1-x243.google.com ([2607:f8b0:4864:20::243])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gZO93-0000ZH-5X; Tue, 18 Dec 2018 22:47:22 +0000
-Received: from localhost (unknown [69.71.4.100])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 1894221871;
- Tue, 18 Dec 2018 22:47:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1545173230;
- bh=cnK5XvLVRJ49GBJdmk7hCbJ8Up1l19H1A9AWUVBiAus=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Awod3BNW073KN9DVtn3VhAkdFK+WH3vOTctETw/JfwkJwGZHl0RHyuR0Cjuo2tE/6
- 1YBGfxDYGlVweug7AQGTYUl1MoAt97mRz+zaLmo7f3+yhhAy60hDXY/oaGpAy6xvUm
- EA1QJ8u+HjHA73K6yjpWDIepyjDKVHOhM9GaRpSI=
-Date: Tue, 18 Dec 2018 16:47:08 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Hanjie Lin <hanjie.lin@amlogic.com>
-Subject: Re: [PATCH v8 2/2] PCI: amlogic: Add the Amlogic Meson PCIe
- controller driver
-Message-ID: <20181218224708.GB22610@google.com>
-References: <1545120286-129258-1-git-send-email-hanjie.lin@amlogic.com>
- <1545120286-129258-3-git-send-email-hanjie.lin@amlogic.com>
+ id 1gZOZs-0001rg-CX; Tue, 18 Dec 2018 23:15:05 +0000
+Received: by mail-oi1-x243.google.com with SMTP id y1so103076oie.12;
+ Tue, 18 Dec 2018 15:14:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=LM+SCpKm1SU1QFp2bGgNH/8e9PzJQO0K0O14ThmeN3w=;
+ b=OxpD0mQeuQeGBYU0leEKzPXqYmm4bbtVOTuO+KqCGT1rsd9uGsQXwQAY/VJdiRT46w
+ jMa/7G3gHNKgzX+TLge4JHMpygzlsKC7RgAtUo8gcP2C5fM6h4lKNv8ezVbyJHeh1qOR
+ zP//bDkR3/jxxGAD6wqgFJFI7CCJVC0CWfb+B7eBduNixQcyphOtZnDXXlSoWC9g8LoM
+ G51s88dNk2Uv0rVizGY0hdoO4tE/PhTvw651rYL5PqBezW7fTylEi7anV1dqRbTR1ttu
+ ajnNsxOjDWhMHGXm3o6iqmAWXM8SXrU6QNbOP/elQtYPxU3F2wT1wbeG1t1mmE0Mfu2x
+ /qZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=LM+SCpKm1SU1QFp2bGgNH/8e9PzJQO0K0O14ThmeN3w=;
+ b=BkCRdj5IhshWwUd8XK40DZjc3btenuziOj1hcMqvLakduus30lCAUN0uBDTKBKpV6d
+ Qm5VA/FT+rrKw8Q7+ktf+ugJzSnJckNdZsbAviRUwHIH+ww3+lH0CsiWyqoAH7SgIVc+
+ edjKC4McBje5VfI/yyIs0Y9H7uO1LTPLmDHD1s4lC9OdhN4M4e1oWp0tNWtbyK8mvNCM
+ CNO4AjhR6xcpONMyhePIJ/aqOohSucfqY7kYGBQa18sWi8jydYKuQNkBk1PZZFx8uTm0
+ 9g7p4ook03U1atTuBYlG6TCPH5T2rcYO4BiwFEDvBb0WXgMY6WzCQlsEzsaQ/3uXKx4j
+ RDDg==
+X-Gm-Message-State: AA+aEWbOFH6Op2zO5f1OzUqIyW/cxAXWPw3venu9TxevSlTJjJyi5wX1
+ Kv1ZbG7lgMaWud3hBi3qbAC8SlZiiq+0nMY2+VUklOkd
+X-Google-Smtp-Source: AFSGD/UYqTj4MR4JR5pzJ+fkoG2pt0w0GjynKLFCNxcIFpA7U8r/WDYWTwbT1b8Rmvj11JB06oFrZ/iSCeCNJcYWpvY=
+X-Received: by 2002:aca:58d7:: with SMTP id m206mr9368690oib.140.1545174887971; 
+ Tue, 18 Dec 2018 15:14:47 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1545120286-129258-3-git-send-email-hanjie.lin@amlogic.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1545120286-129258-1-git-send-email-hanjie.lin@amlogic.com>
+ <1545120286-129258-2-git-send-email-hanjie.lin@amlogic.com>
+In-Reply-To: <1545120286-129258-2-git-send-email-hanjie.lin@amlogic.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Wed, 19 Dec 2018 00:14:37 +0100
+Message-ID: <CAFBinCD1x7jcJJx78yNx87MOmKQ2HuSBeRpDRQE0hyNCwm1JAg@mail.gmail.com>
+Subject: Re: [PATCH v8 1/2] dt-bindings: PCI: meson: add DT bindings for
+ Amlogic Meson PCIe controller
+To: Rob Herring <robh@kernel.org>, Hanjie Lin <hanjie.lin@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181218_144721_243869_5A750F94 
-X-CRM114-Status: GOOD (  15.72  )
+X-CRM114-CacheID: sfid-20181218_151504_454063_44CA5ED2 
+X-CRM114-Status: GOOD (  10.20  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -75,119 +90,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Yixun Lan <yixun.lan@amlogic.com>, Rob Herring <robh@kernel.org>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>, Kevin Hilman <khilman@baylibre.com>,
- Shawn Lin <shawn.lin@rock-chips.com>,
- Philippe Ombredanne <pombredanne@nexb.com>, linux-pci@vger.kernel.org,
- linux-kernel@vger.kernel.org, Yue Wang <yue.wang@amlogic.com>,
+Cc: devicetree@vger.kernel.org, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, linux-pci@vger.kernel.org,
+ Kevin Hilman <khilman@baylibre.com>, Shawn Lin <shawn.lin@rock-chips.com>,
+ Yixun Lan <yixun.lan@amlogic.com>, linux-kernel@vger.kernel.org,
+ Yue Wang <yue.wang@amlogic.com>, Carlo Caione <carlo@caione.org>,
  Qiufang Dai <qiufang.dai@amlogic.com>, Jian Hu <jian.hu@amlogic.com>,
- Liang Yang <liang.yang@amlogic.com>,
+ Philippe Ombredanne <pombredanne@nexb.com>,
+ Bjorn Helgaas <bhelgaas@google.com>,
  Cyrille Pitchen <cyrille.pitchen@free-electrons.com>,
+ linux-amlogic@lists.infradead.org,
  Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
- Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+ Liang Yang <liang.yang@amlogic.com>, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Dec 18, 2018 at 04:04:46PM +0800, Hanjie Lin wrote:
-> From: Yue Wang <yue.wang@amlogic.com>
-> 
-> The Amlogic Meson PCIe host controller is based on the Synopsys DesignWare
-> PCI core. This patch adds the driver support for Meson PCIe controller.
+Hi Rob, Hi Hanjie,
 
-I don't have any comments on the code itself; just the trivial things
-below.  No need to repost for these unless you're changing something
-else.
+(sorry for being late with my question)
 
-I thought it looked very pretty overall, thanks for paying attention
-to that!
+On Tue, Dec 18, 2018 at 9:05 AM Hanjie Lin <hanjie.lin@amlogic.com> wrote:
+[...]
+> +- reg-names: Must be
+> +       - "elbi"        External local bus interface registers
+> +       - "cfg"         Meson specific registers
+> +       - "phy"         Meson PCIE PHY registers
+I have learned that there are two PHY register designs:
+- AXG only has a PCIe PHY
+- G12A has a PHY which supports PCIe and USB 3.0. The PCIe part of
+this PHY design is compatible with AXG, but this design also supports
+a USB 3.0 port (it's an exclusive choice: either PCIe *or* USB 3.0)
 
-> +static int meson_size_to_payload(struct meson_pcie *mp, int size)
-> +{
-> +	struct device *dev = mp->pci.dev;
-> +
-> +	/*
-> +	 * dwc supports 2^(val+7) payload size, which val is 0~5 default to 1.
-> +	 * So if input size is not 2^order alignment or less than 2^7 or bigger
-> +	 * than 2^12, just set to default size 2^(1+7).
-> +	 */
-> +	if (!is_power_of_2(size) || size < 128 || size > 4096) {
-> +		dev_warn(dev, "playload size %d, set to default 256\n", size);
+The PCIe controller itself is identical on both, AXG and G12A.
+This patch adds support for the AXG PCIe controller and PHY within one
+device-tree node.
 
-s/playload/payload/
+For G12A I propose to add a separate "phys" property with a phandle to
+the "combo" PCIe and USB3.0 PHY - this can be part of a separate patch
+though.
+I would like to know whether it's OK that for AXG the PCIe PHY is
+described in the same device-tree node as the PCIe controller (in
+other words: we're not using a "phys" property here)?
 
-> +static void meson_set_max_payload(struct meson_pcie *mp, int size)
-> +{
-> +	u32 val = 0;
 
-Unnecessary initialization.
-
-> +	int max_payload_size = meson_size_to_payload(mp, size);
-> +
-> +	val = meson_elb_readl(mp, PCIE_DEV_CTRL_DEV_STUS);
-
-> +static int meson_pcie_rd_own_conf(struct pcie_port *pp, int where, int size,
-> +				  u32 *val)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	int ret;
-> +
-> +	ret = dw_pcie_read(pci->dbi_base + where, size, val);
-> +	if (ret != PCIBIOS_SUCCESSFUL)
-> +		return ret;
-> +
-> +	/*
-> +	 * There is a bug in the MESON AXG pcie controller whereby software
-> +	 * cannot programme the PCI_CLASS_DEVICE register, so we must fabricate
-> +	 * the return value in the config accessors.
-
-s/pcie/PCIe/
-s/programme/program/ (IIUC, "programme" is British and only used as a
-noun, where here you need a verb)
-
-> +static int meson_pcie_link_up(struct dw_pcie *pci)
-> +{
-> +	struct meson_pcie *mp = to_meson_pcie(pci);
-> +	struct device *dev = pci->dev;
-> +	u32 smlh_up = 0;
-> +	u32 ltssm_up = 0;
-> +	u32 rdlh_up = 0;
-
-Unnecessary initialization of smlh_up, ltssm_up, and rdlh_up.
-
-> +	u32 speed_okay = 0;
-> +	u32 cnt = 0;
-> +	u32 state12, state17;
-> +
-> +	do {
-> +		state12 = meson_cfg_readl(mp, PCIE_CFG_STATUS12);
-> +		state17 = meson_cfg_readl(mp, PCIE_CFG_STATUS17);
-> +		smlh_up = IS_SMLH_LINK_UP(state12);
-> +		rdlh_up = IS_RDLH_LINK_UP(state12);
-> +		ltssm_up = IS_LTSSM_UP(state12);
-
-> +	dev_err(dev, "Error: Wait linkup timeout.\n");
-
-Message doesn't match others from driver (capitalization and trailing
-period).
-
-> +			dev_err(dev, "failed to get msi irq\n");
-
-s/msi irq/MSI IRQ/
-
-> +	ret = meson_add_pcie_port(mp, pdev);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Add PCIE port failed, %d\n", ret);
-
-s/PCIE/PCIe/
-
-All the messages in this function are capitalized differently than
-other messages in the driver.
-
-Bjorn
+Kind Regards
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
