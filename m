@@ -2,57 +2,78 @@ Return-Path: <SRS0=yw6d=O4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-5.6 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_MUTT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7E934C43387
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Dec 2018 11:44:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 17A6FC43444
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Dec 2018 14:22:24 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4B9CF217D7
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Dec 2018 11:44:41 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D8FA321841
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Dec 2018 14:22:23 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PsrYeCqu"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4B9CF217D7
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="I9J5dcoQ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D8FA321841
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=558IKUIUFOuqA7tBWsEf9ivnT/o5nTw26RHLVqSuUZM=; b=PsrYeCquzY7ws/
-	pku0KGRmP61gqVwQLN9zddR9ImevG5DFQZZDIpfKoRVBGTzQefSyyUkrzNgWilTrw0ng494cxti0I
-	cvU/tX9LZTnC4gFQoCWjYEO8IX14aOAixaG29uQYAumwm0Y5L+lBcjkFa/v5bFVxC2hN8NeDNTacR
-	57Zlkt3KVrbuWkJwWTmiNhWqcpII24Ilib7CYQD2uLqVsnLcD2CpW0YMHcn7R8wwLt9picXEfv/5n
-	CPWbeSk2/ZpnTbrDrAVbQ/5B+EmJeW6orfWUFcychehw6eXbSsSvkCG/GW6V2aoJrQVKZq5GucGdU
-	k0kwiVcBt3ZqRH7m7IvQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ZXSjDv5o9N/8P2ekXY4YQ5RmscszeGBf9HAez7lHkC8=; b=I9J5dcoQ4U/JIw
+	5+Ueg+X2GacWjTkvEV5s8+tvDjaJxrh+95fxHorTbH3RORf5XuUxszXsDChuwRrsDWNxUPxUFvn+D
+	CqkM9SKijKpa88rw5lGqPOGupz2yXiQLxx3HV8CmdcNJpWYTaN1LHXcDyi2sW8hf750igd4frAs2b
+	AknuZAvsM2uBHlNEtnJ81I54bYcBhzQY3j9knkyfwamWHe4kvF2AMDvh8mNzXWCL6ypDPSMsoKsj5
+	CuNiWcAB3gtozvvRndbXJ6X6qi9wbAYr9xHulxGiNqPadMqVJBmEgcjHQCf/ZLdkNC2DLmQc/bX+R
+	N2jECyu2SOudXgxx8yVQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gZaHE-0007W7-KL; Wed, 19 Dec 2018 11:44:36 +0000
-Received: from mail-sh2.amlogic.com ([58.32.228.45])
+	id 1gZcjo-0006K7-5s; Wed, 19 Dec 2018 14:22:16 +0000
+Received: from mail-ot1-f66.google.com ([209.85.210.66])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gZaH3-000794-6A; Wed, 19 Dec 2018 11:44:33 +0000
-Received: from localhost.localdomain (10.18.11.217) by mail-sh2.amlogic.com
- (10.18.11.6) with Microsoft SMTP Server id 15.0.1320.4; Wed, 19 Dec 2018
- 19:41:18 +0800
-From: Jianxin Pan <jianxin.pan@amlogic.com>
-To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
- <narmstrong@baylibre.com>
-Subject: [PATCH RESEND v8 0/4] clk: meson: add a sub EMMC clock controller
- support
-Date: Wed, 19 Dec 2018 19:40:38 +0800
-Message-ID: <1545219642-9834-1-git-send-email-jianxin.pan@amlogic.com>
-X-Mailer: git-send-email 1.9.1
+ id 1gZcjk-0006IG-5d; Wed, 19 Dec 2018 14:22:13 +0000
+Received: by mail-ot1-f66.google.com with SMTP id 81so19231835otj.2;
+ Wed, 19 Dec 2018 06:22:01 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=ASkGQXhK5UigqgkVZTikfy6yutOp5zh9GOy6IF50t1U=;
+ b=P5UbIjPxo6MXxNueYqDpqNBY+isBJbbb1LmlQuyH565dRnNJ4J5pe2cHDvtDDRt0kz
+ kudM3lCKc2QXVIchodf/uapzXiGzkLU8cKvQr7Wr6fwFSQf7YVO18SU9SeLhPcSzSW9i
+ +8kngoUxQOstzp51dGni3xvxqxoU0BhrCWgNbWZyNNbyU8itZlkBAb0GDgkVZjxg0g5t
+ 6W29nq/uhr+LLlUcjSjsR9U8TY9SIugviO6dnPbhE9OKuDV53h9eARwlIbBJir19hM3g
+ YxaLFSruAoFNHEI3w1ROlj5lONwjPL4PEfDwFcGJQWe9mInGNiMtg9T7g9D+2GL74r40
+ lZRA==
+X-Gm-Message-State: AA+aEWbzdXxowLKqHZVZ5UhWLRaDYSM/vO8GI9t37q6Bb3udxikDVBmu
+ vpMo7xkIrzZHprYWSwmQAS1qNm0=
+X-Google-Smtp-Source: AFSGD/VjQ85kDeN76ltR7pXDaMXLvYQ39GmIrpHX4jbf434rawhxuKzSU6Bl8nUA+TTa58Pb6T/TvQ==
+X-Received: by 2002:a9d:7a8c:: with SMTP id l12mr13485073otn.335.1545229320912; 
+ Wed, 19 Dec 2018 06:22:00 -0800 (PST)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net.
+ [24.155.109.49])
+ by smtp.gmail.com with ESMTPSA id m207sm9106325oig.2.2018.12.19.06.22.00
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Wed, 19 Dec 2018 06:22:00 -0800 (PST)
+Date: Wed, 19 Dec 2018 08:21:59 -0600
+From: Rob Herring <robh@kernel.org>
+To: Xingyu Chen <xingyu.chen@amlogic.com>
+Subject: Re: [PATCH 1/2] dt-bindings: interrupt-controller: New binding for
+ Meson-G12A SoC
+Message-ID: <20181219142159.GA3700@bogus>
+References: <20181203061324.36248-1-xingyu.chen@amlogic.com>
+ <20181203061324.36248-2-xingyu.chen@amlogic.com>
 MIME-Version: 1.0
-X-Originating-IP: [10.18.11.217]
+Content-Disposition: inline
+In-Reply-To: <20181203061324.36248-2-xingyu.chen@amlogic.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181219_034425_667422_793079FE 
-X-CRM114-Status: GOOD (  11.46  )
+X-CRM114-CacheID: sfid-20181219_062212_457005_4D35BDC8 
+X-CRM114-Status: GOOD (  11.42  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -64,105 +85,30 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Hanjie Lin <hanjie.lin@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
- devicetree@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Yixun Lan <yixun.lan@amlogic.com>,
- linux-kernel@vger.kernel.org, Boris Brezillon <boris.brezillon@bootlin.com>,
- Liang Yang <liang.yang@amlogic.com>, Jian Hu <jian.hu@amlogic.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Qiufang Dai <qiufang.dai@amlogic.com>
+Cc: devicetree@vger.kernel.org, Jason Cooper <jason@lakedaemon.net>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, Marc Zyngier <marc.zyngier@arm.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Carlo Caione <carlo@caione.org>,
+ linux-amlogic@lists.infradead.org, Thomas Gleixner <tglx@linutronix.de>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Xingyu Chen <xingyu.chen@amlogic.com>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This driver will add a MMC clock controller driver support.
-The original idea about adding a clock controller is during the
-discussion in the NAND driver mainline effort[1].
+On Mon, 3 Dec 2018 14:13:23 +0800, Xingyu Chen wrote:
+> Update the dt-binding document to support new compatible string for the
+> GPIO interrupt controller which found in Amlogic's Meson-G12A SoC.
+> 
+> Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
+> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+> ---
+>  .../bindings/interrupt-controller/amlogic,meson-gpio-intc.txt    | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-This driver is tested in the S400 board (AXG platform) with NAND driver.
-
-Changes since v7 [8]
- - move meson_clk_get_phase_delay_data() from header to driver
- - CONFIG sclk-div with COMMON_CLK_AMLOGIC instead of COMMON_CLK_AMLOGIC_AUDIO
- - remove onecell date and ID for internal MUX clk
- - use helper for functions for ONE_BASED in sclk-div
- - add ONE_BASED support for duty cycle
-
-Changes since v6 [7]:
- - add one based support for sclk divier
- - alloc sclk in probe for multiple instance
- - fix coding styles
-
-Changes since v5 [6]:
- - remove divider ops with .init and use sclk_div instead
- - drop CLK_DIVIDER_ROUND_CLOSEST in mux and div
- - drop the useless type cast 
-
-Changes since v4 [5]:
- - use struct parm in phase delay driver
- - remove 0 delay releted part in phase delay driver
- - don't rebuild the parent name once again
- - add divider ops with .init
-
-Changes since v3 [4]:
- - separate clk-phase-delay driver
- - replace clk_get_rate() with clk_hw_get_rate()
- - collect Rob's R-Y
- - drop 'meson-' prefix from compatible string
-
- Changes since v2 [3]:
- - squash dt-binding clock-id patch
- - update license
- - fix alignment
- - construct a clk register helper() function
-
-Changes since v1 [2]:
- - implement phase clock
- - update compatible name
- - adjust file name
- - divider probe() into small functions, and re-use them
-
-[1] https://lkml.kernel.org/r/20180628090034.0637a062@xps13
-[2] https://lkml.kernel.org/r/20180703145716.31860-1-yixun.lan@amlogic.com
-[3] https://lkml.kernel.org/r/20180710163658.6175-1-yixun.lan@amlogic.com
-[4] https://lkml.kernel.org/r/20180712211244.11428-1-yixun.lan@amlogic.com
-[5] https://lkml.kernel.org/r/20180809070724.11935-4-yixun.lan@amlogic.com
-[6] https://lkml.kernel.org/r/1539839245-13793-1-git-send-email-jianxin.pan@amlogic.com
-[7] https://lkml.kernel.org/r/1541089855-19356-1-git-send-email-jianxin.pan@amlogic.com
-[8] https://lkml.kernel.org/r/1544457877-51301-1-git-send-email-jianxin.pan@amlogic.com
-
-Jianxin Pan (1):
-  clk: meson: add one based divider support for sclk divider
-
-Yixun Lan (3):
-  clk: meson: add emmc sub clock phase delay driver
-  clk: meson: add DT documentation for emmc clock controller
-  clk: meson: add sub MMC clock controller driver
-
- .../devicetree/bindings/clock/amlogic,mmc-clkc.txt |  39 +++
- drivers/clk/meson/Kconfig                          |   9 +
- drivers/clk/meson/Makefile                         |   5 +-
- drivers/clk/meson/clk-phase-delay.c                |  73 +++++
- drivers/clk/meson/clkc-audio.h                     |   8 -
- drivers/clk/meson/clkc.h                           |  17 +-
- drivers/clk/meson/mmc-clkc.c                       | 304 +++++++++++++++++++++
- drivers/clk/meson/sclk-div.c                       |  59 ++--
- include/dt-bindings/clock/amlogic,mmc-clkc.h       |  17 ++
- 9 files changed, 501 insertions(+), 30 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/clock/amlogic,mmc-clkc.txt
- create mode 100644 drivers/clk/meson/clk-phase-delay.c
- create mode 100644 drivers/clk/meson/mmc-clkc.c
- create mode 100644 include/dt-bindings/clock/amlogic,mmc-clkc.h
-
--- 
-1.9.1
-
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
