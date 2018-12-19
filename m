@@ -2,79 +2,88 @@ Return-Path: <SRS0=yw6d=O4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.6 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_MUTT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9A2F5C43387
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Dec 2018 18:55:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4CFB5C43387
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Dec 2018 23:32:22 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6D6772084A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Dec 2018 18:55:54 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 17A4820869
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Dec 2018 23:32:22 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iOlPuk7k"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6D6772084A
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HyqYs6Pg";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="XabPlfjq"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 17A4820869
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+ShOYGXHOEQcHpbGrpY5w/IBGXcpgOiq+4EmIwS/khI=; b=iOlPuk7kCOUYk2
-	Ut9QF9GtLvgdFVAfCBvp/bJCpHY3HVYmPXw97jgVbqlfRKZZSvrt2VvKtfOnGSEU2P27//VevdRnT
-	GHIOfiQEx/RUeQAFLk9qVrr70soxPJJYcZkBF23r7bRBPZ1MGd+mxvs0jj5hrVbU53zUYaFhT8g/k
-	hkBMl/OQEz5iXxieKp4E01z1iXCJtoV/lAG8TDWF58rimO/Fn+DveTqeKetw5BVppKbE20flX/e74
-	I8a4xwkVkj/khXD/8JyNlO9MqcxZ4DghBUowojLAmrC3n6anwEMV4x8HYd9X/jFDeSZ7dbrxJFvH3
-	atyqOpkaqY6B2Z3wg7Xw==;
+	List-Owner; bh=eZmSLep/rwMJOR6ANSEodhrGEDjk+juenqIr9YMqCVI=; b=HyqYs6PgPltljL
+	Wgkaz6HjjH6GH1rq3ntidH3eFekAd3Ksn98GHWIuMuAiM/O8jwiNEv+Up2uLpHtnNGogPr1yTMxrA
+	oP6qgGVHOn+wMJdtKKxFK4A1R3ap2CvE50jT3qVs+t1VruuywCxoKp6CpLhrWw30Wp+YCzebyCVcq
+	6YKsKGM3WksHcYkBZOc4TXjtOxP0jKHCXihgMgKNCVpiy+7U9/Uo2UTzzdoUKod7DaQa2dZWh/xPX
+	8Df8HD/Qwmu7+prwxl9aROAA6Nc86nd0OquJRZLcj/R7oTDnvVKoZDhx0+ei25zXk0PjnVau/8sQy
+	B8xhAttOZuwopiNKABIA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gZh0V-0000Xv-Bu; Wed, 19 Dec 2018 18:55:47 +0000
-Received: from mail-ot1-f67.google.com ([209.85.210.67])
+	id 1gZlK1-0000mG-MT; Wed, 19 Dec 2018 23:32:13 +0000
+Received: from mail-pf1-x443.google.com ([2607:f8b0:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gZh0S-0000X1-NC
- for linux-amlogic@lists.infradead.org; Wed, 19 Dec 2018 18:55:46 +0000
-Received: by mail-ot1-f67.google.com with SMTP id 32so20035499ota.12
- for <linux-amlogic@lists.infradead.org>; Wed, 19 Dec 2018 10:55:34 -0800 (PST)
+ id 1gZlJx-0000ko-N4
+ for linux-amlogic@lists.infradead.org; Wed, 19 Dec 2018 23:32:11 +0000
+Received: by mail-pf1-x443.google.com with SMTP id z9so10565059pfi.2
+ for <linux-amlogic@lists.infradead.org>; Wed, 19 Dec 2018 15:31:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=AnhRXD8JtTDZx8cD48gAZvL0e/SPIdCg74t+erkzhw8=;
+ b=XabPlfjqjZ2sDUIEKjY0NlvuZaTbnCC84JlBVi1M8eYwlpdarY4LY3GKzR20v4p8oX
+ UwF4A7UuK8Il1O5AShvDPU6WlYn7PGPmH4TVojoJW1YyyuHvp+r33kAMJabnEihOL1KX
+ VnPk3ykcVPhyUVZ/r+J/A+POlQKn/J1NzLZlfjSPH0gJHIg5NAfIYE9lR3rwrW3zBiyN
+ Ysv469wHriALdEgluq61GWgCBeBI721NSBFWt6lYgsTTreWT0b6Lq/FkBPKBzAgdI0NJ
+ TNlNkP1aLIIqzUH3wOH1JQNejzkXCG68LCTjbLE6lkhrNoEkTfxoFDTIAh/xATp5TIVi
+ 69TA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=7HUiX94SswtmPoBx8ulvQvKbQnVaVrrXa2kPGfNaJmA=;
- b=RbgWK7sNGWF0H635gWxmebMgweLW53lYzFivH2MeyRyLzpCP3nwZlh3iiApAHj08xj
- lP94V7TbgwZCs7Os+ZYwsL0Terd3RKetzSUcE1dtyb5773FTcB9ApZme3R9aTR3tkRTn
- pkFOtn1Kh1ksgp3CKViYsgOTQYObwXzQ2td/8BTIQh5AlZWPKwlceBUaMbS/a4dkrJ2K
- 30vl4kJf+8RliWnkpuXOUwgSSOBek2QDDV37MpJf3CaZ3Z24nLGJa+uSWhTTZS17xT4D
- zXxZmbljvb8bi3QRMyMx9TEtBL64rbrK5Z2mq6p/kmMMa8G36sghM2XRdoF6M3L8VQbh
- 42Lw==
-X-Gm-Message-State: AA+aEWZWnvXwD3umPEAC1volh/Jlx48oMh/7LuAvPJjMO/wldXj/OpcY
- lCojtgs9tSMw3nqHtrPcYa58Jxs=
-X-Google-Smtp-Source: AFSGD/VA3IeSpI4dOqWG8JdMkU6bNwBHLzrT0RuSxICdlpmpsZ16HctWXin0Pkg413rmy4udhGa0eQ==
-X-Received: by 2002:a9d:5f06:: with SMTP id f6mr16508683oti.258.1545245733637; 
- Wed, 19 Dec 2018 10:55:33 -0800 (PST)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net.
- [24.155.109.49])
- by smtp.gmail.com with ESMTPSA id m129sm9265078oif.50.2018.12.19.10.55.32
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=AnhRXD8JtTDZx8cD48gAZvL0e/SPIdCg74t+erkzhw8=;
+ b=NBZORaU4IgP/WPNphCbxJexYlOj0aGEw7YzzxzKcp2JhE4TmcqjYqvFQaYSZTrVMER
+ 2gkjiLppdOPZx9Bqw8EXl/5GR0gGMKD9EcXpMCOwr6yVZR3n1f3di1cT8uUCOl6UjIgm
+ 1vHhkhsCe8d6JF5TH7zaOWKgEMWC3PXWFdEC5OwZwX7ImuCsDr9CXmyF3GIwrgUEAKf6
+ nsHyheZ7mztGsmmyX/dLgM0U4l2N2I7Gd5Nx5nV69ADBwgDDeR38wXNq0K/79NHBY/XW
+ P5YsAvAotOTRUTd3eSU4pBXbyant5xuAvTt+KG95+w86xnsW1aLul71cnuFduXsc/3nO
+ LLzg==
+X-Gm-Message-State: AA+aEWb8AJ4fkLf27JfhuJI3WzHV1N1DOIcYy2+itewehXRmpnS8dl0K
+ zTTLhf+APDGE964p7d2FZNG3Ww==
+X-Google-Smtp-Source: AFSGD/Vk+oAwHw2fSDYe/2wyNoPZCwhQbXe7pcXZ9REiPskAlY5PhXYHaTvVnVKsVN2Mdw15m+5HiA==
+X-Received: by 2002:a63:c10f:: with SMTP id w15mr20926225pgf.199.1545262318198; 
+ Wed, 19 Dec 2018 15:31:58 -0800 (PST)
+Received: from localhost ([2601:602:9200:a1a5:4dea:8076:74d1:94e1])
+ by smtp.googlemail.com with ESMTPSA id w88sm31550074pfk.11.2018.12.19.15.31.57
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Wed, 19 Dec 2018 10:55:33 -0800 (PST)
-Date: Wed, 19 Dec 2018 12:55:32 -0600
-From: Rob Herring <robh@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Subject: Re: [PATCH 1/5] dt-bindings: clk: meson: add ao slow clock path ids
-Message-ID: <20181219185532.GA23002@bogus>
-References: <20181204165310.20806-1-jbrunet@baylibre.com>
- <20181204165310.20806-2-jbrunet@baylibre.com>
+ Wed, 19 Dec 2018 15:31:57 -0800 (PST)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Peter Korsgaard <peter@korsgaard.com>
+Subject: Re: [PATCH 2/2] arm64: dts: meson: add g12a x96 max board
+In-Reply-To: <877eg51olo.fsf@dell.be.48ers.dk>
+References: <20181219002620.12138-1-khilman@baylibre.com>
+ <20181219002620.12138-2-khilman@baylibre.com>
+ <877eg51olo.fsf@dell.be.48ers.dk>
+Date: Wed, 19 Dec 2018 15:31:56 -0800
+Message-ID: <7himzpt7o3.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20181204165310.20806-2-jbrunet@baylibre.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181219_105544_760500_01D66E77 
-X-CRM114-Status: UNSURE (   9.74  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20181219_153209_803606_520B46DA 
+X-CRM114-Status: GOOD (  14.84  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -86,26 +95,57 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue,  4 Dec 2018 17:53:06 +0100, Jerome Brunet wrote:
-> Add the CLKIDs for the slow clock generation path
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  include/dt-bindings/clock/axg-aoclkc.h  | 7 ++++++-
->  include/dt-bindings/clock/gxbb-aoclkc.h | 7 +++++++
->  2 files changed, 13 insertions(+), 1 deletion(-)
-> 
+Peter Korsgaard <peter@korsgaard.com> writes:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+>>>>>> "Kevin" == Kevin Hilman <khilman@baylibre.com> writes:
+>
+>  > Add the G12a (S905X2) based X96 Max board[1].
+>  > There is no branding for the manufacturer anywhere on the product, so it
+>  > took some digging to find the manufacturer.  But since there's nothing
+>  > about the maker on the product I've left it out of the DT name because
+>  > 1) nobody will no that name and 2) keeps the DT filename shorter.
+>
+> s/no/know/
+
+Thanks.
+
+>  > [1] https://www.cnx-software.com/2018/09/25/x96-max-amlogic-s905x2-tv-box/
+>
+>  > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>  > Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+>  > ---
+>  > Special thanks to Martin Blumenstingl for extra digging for the manufacturer
+>
+>  >  .../boot/dts/amlogic/meson-g12a-x96-max.dts   | 28 +++++++++++++++++++
+>  >  1 file changed, 28 insertions(+)
+>  >  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
+>
+>  > diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
+>  > b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
+>  > new file mode 100644
+>  > index 000000000000..fe94765b671e
+>  > --- /dev/null
+>  > +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
+>  > @@ -0,0 +1,28 @@
+>  > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>  > +/*
+>  > + * Copyright (c) 2018 Amlogic, Inc. All rights reserved.
+>
+> Amlogic? Shouldn't that be Baylibre?
+
+Yes.
+
+Thanks for the review,
+
+Kevin
 
 _______________________________________________
 linux-amlogic mailing list
