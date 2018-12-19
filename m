@@ -2,91 +2,65 @@ Return-Path: <SRS0=yw6d=O4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-2.6 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	USER_AGENT_MUTT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 995B2C43387
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Dec 2018 14:45:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D5672C43387
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Dec 2018 15:14:22 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 669C021841
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Dec 2018 14:45:12 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9DF3D21841
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Dec 2018 15:14:22 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pKuy7Y8m";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="hUWRqlbb"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 669C021841
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="g1a2RY3X"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9DF3D21841
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arm.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Mime-Version:References:In-Reply-To:
-	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jvLFMSZKXyIX2a18xB8/UV8gooFRjhqj9ANycdObH9g=; b=pKuy7Y8mUUOllJ
-	gbNHsADFztriw6PDDn6M32rr8L3nfHMtnPZd9aedgPRjavBEGYn243zLASJrJ2h0KOfw9fodr372X
-	wiQhmc5ipuedsa7D8dJN8O3ljGBPzWOwp7Fv++hTf7TE1jUOVeLlLEBVMsty/OS/ezL94KVLCexQU
-	OpjR/A/M6x86LalzhtQO+k5PWCp4Myd/EtJnclB0bGWtI29CWaY9GRPbABYIq3XxO3UBxZ/tknk0e
-	2BEEJA+ohdthzd5P5bzWnG+qCPBGWX3O4fGhmKs+Gr4hCePaAuXGuEta40pIPwOsyUHzHp6bbNPKm
-	R6SBkdGA5A6YEfS0RwXw==;
+	List-Owner; bh=kS4qzws4Ht3LKax+ntVF+Jl9hS6AJOK10w/HobE2xus=; b=g1a2RY3XnQaXQA
+	PgzlBhusBcQViLJd5ddaC2B6nSAMd7bJVpki7N1ij6Ke674PODXsc88/gXXB34YV1A+/McaAZmJAL
+	eoSVJJIi6DQj80mjFQNMrHBIw+E2poL4u1bbvNRCgVDZILwXMariNjiMZRdMd6PZNW0RaUGVKFKkt
+	d7m68HqSWfbBYIbO/XkhxEJRyp9lDZ6/f1+sVbRoMd6Oi0n/u63nK6oQ+zWPGohMN9PWaV78CdCmV
+	RiZPI9AFtQFks38gMNlUi/OFI9rXck7fn2jLD/oRdqKHVJwTX02kxvB4jPEkXmWuQKpkb3nziXJKE
+	nE0OKNjvpxVT5oUt+HxA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gZd5v-00070A-81; Wed, 19 Dec 2018 14:45:07 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
- by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gZd5r-0006IW-Ky
- for linux-amlogic@lists.infradead.org; Wed, 19 Dec 2018 14:45:06 +0000
-Received: by mail-wm1-x344.google.com with SMTP id p6so6438067wmc.1
- for <linux-amlogic@lists.infradead.org>; Wed, 19 Dec 2018 06:44:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:cc:date:in-reply-to:references
- :user-agent:mime-version:content-transfer-encoding;
- bh=sab6zG16J4LQDU3B8SJF0jzz8G7TdQt5SdX+9frJtok=;
- b=hUWRqlbbrCn+7QOM7kZ37Z26656Zqx1S0orgGqt2o2HFLrvkrh7juRv/EBp24aMKXf
- Er4x3MKgJ4sLYNdi0kHZ8KeIwqVv/83dPqpV7nDv4h7GCUwtdg24sQrAzmQl/s/OcLJd
- Z00L7IWWGLiJ07r7sprnOAjosSYEb2nHcI/K7NajK2YbwAGD6pWl/suuXG6brLrT1uj6
- I5xCalR9wVuORBYX6LqxG28VSY99I6utqhTOnzbKTNkUGn7kQOLJBMvHMzimj4V7ouSy
- /ye5ycpX7UbH0Ikw6blXDNHuSi402PGiOpd0fBgv3bbv5ZqGyksgT1SO3RdVvSUfr074
- rgIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=sab6zG16J4LQDU3B8SJF0jzz8G7TdQt5SdX+9frJtok=;
- b=XpYtz7gbGTYJUob0gRoOEwigyAch6h6bc1aYa2hMJXYAsrIXDZf9XdlXTO56WcYflj
- CSnrWAqRR26Wy8Ss0Lvcxy1whl0NA3aPnVl52xvBmxVLIUkuF/iHGamhrRIHlbDkE7f0
- DV4rf/o9avs4gDlt3T+hfciSIEzyEdZRQODkHikfxASHVaNWOsjpXSkSi+2zS4j0G5gR
- xgrBjCBdTXOeaTr13XA3W7aT6L22LCk15aVpTwdvUh12KXSUl0XNafGF1wER2stbMFa0
- 7bpa0IpV4UNgcOwZdsYVAUPWjuIej04bsGZLykDFoRwawvtyfhz1H9esBuN86+2E6GRL
- fkZg==
-X-Gm-Message-State: AA+aEWaKT0YhNW7urwQLfsm04TwKDH1FiAcno3a4i/N4cJKowHINtCsX
- cXJAkVxsfbSVQ6aOmPkOUEYp9Q==
-X-Google-Smtp-Source: AFSGD/VHBZSurs2jem629eslZpDzfnygX5HewFT5bWT2T4drPuWUUIYXpAhfHMYzGo73oZF1aUC1MA==
-X-Received: by 2002:a1c:af89:: with SMTP id y131mr7295925wme.105.1545230690937; 
- Wed, 19 Dec 2018 06:44:50 -0800 (PST)
-Received: from boomer.baylibre.com ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
- by smtp.gmail.com with ESMTPSA id
- i192sm5172026wmg.7.2018.12.19.06.44.49
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Wed, 19 Dec 2018 06:44:50 -0800 (PST)
-Message-ID: <cd3818ab3d8edc0a4f55a375204204297131f96a.camel@baylibre.com>
-Subject: Re: [U-Boot] [PATCH u-boot] arm: dts: s400: Fix status for eMMC and
- SDIO ports
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <narmstrong@baylibre.com>, u-boot@lists.denx.de, 
- trini@konsulko.com
-Date: Wed, 19 Dec 2018 15:44:47 +0100
-In-Reply-To: <20181217092616.31001-1-narmstrong@baylibre.com>
-References: <20181217092616.31001-1-narmstrong@baylibre.com>
-User-Agent: Evolution 3.30.3 (3.30.3-1.fc29) 
-Mime-Version: 1.0
+	id 1gZdY9-0001RS-DV; Wed, 19 Dec 2018 15:14:17 +0000
+Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]
+ helo=foss.arm.com)
+ by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1gZdY7-0001QI-7u; Wed, 19 Dec 2018 15:14:16 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9FFE6EBD;
+ Wed, 19 Dec 2018 07:14:03 -0800 (PST)
+Received: from e107981-ln.cambridge.arm.com (e107981-ln.cambridge.arm.com
+ [10.1.197.40])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 61BF33F675;
+ Wed, 19 Dec 2018 07:14:00 -0800 (PST)
+Date: Wed, 19 Dec 2018 15:13:55 +0000
+From: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To: Hanjie Lin <hanjie.lin@amlogic.com>
+Subject: Re: [PATCH v8 2/2] PCI: amlogic: Add the Amlogic Meson PCIe
+ controller driver
+Message-ID: <20181219151355.GA25410@e107981-ln.cambridge.arm.com>
+References: <1545120286-129258-1-git-send-email-hanjie.lin@amlogic.com>
+ <1545120286-129258-3-git-send-email-hanjie.lin@amlogic.com>
+ <20181218224708.GB22610@google.com>
+ <df9e974d-cac8-3522-fdbe-1811160bb4fc@amlogic.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <df9e974d-cac8-3522-fdbe-1811160bb4fc@amlogic.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181219_064503_757586_E00D801E 
-X-CRM114-Status: GOOD (  15.80  )
+X-CRM114-CacheID: sfid-20181219_071415_293907_3254849D 
+X-CRM114-Status: GOOD (  23.60  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -98,49 +72,139 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org
+Cc: Yixun Lan <yixun.lan@amlogic.com>, Rob Herring <robh@kernel.org>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, Kevin Hilman <khilman@baylibre.com>,
+ Shawn Lin <shawn.lin@rock-chips.com>,
+ Philippe Ombredanne <pombredanne@nexb.com>, linux-pci@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Yue Wang <yue.wang@amlogic.com>,
+ Qiufang Dai <qiufang.dai@amlogic.com>, Jian Hu <jian.hu@amlogic.com>,
+ Liang Yang <liang.yang@amlogic.com>, Bjorn Helgaas <helgaas@kernel.org>,
+ Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+ Carlo Caione <carlo@caione.org>,
+ Cyrille Pitchen <cyrille.pitchen@free-electrons.com>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 2018-12-17 at 10:26 +0100, Neil Armstrong wrote:
-> Under U-boot, the WiFi SDIO Module should be disabled and the
-> eMMC modules should be enabled, so this patch adds an s400-u-boot.dtsi
-> include file specific for U-Boot that will be included by the build system.
+On Wed, Dec 19, 2018 at 07:13:47PM +0800, Hanjie Lin wrote:
 > 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-
-Tested-by: Jerome Brunet <jbrunet@baylibre.com>
-
-> ---
->  arch/arm/dts/meson-axg-s400-u-boot.dtsi | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->  create mode 100644 arch/arm/dts/meson-axg-s400-u-boot.dtsi
 > 
-> diff --git a/arch/arm/dts/meson-axg-s400-u-boot.dtsi b/arch/arm/dts/meson-
-> axg-s400-u-boot.dtsi
-> new file mode 100644
-> index 0000000000..c46eb3f38d
-> --- /dev/null
-> +++ b/arch/arm/dts/meson-axg-s400-u-boot.dtsi
-> @@ -0,0 +1,14 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2017 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +/* wifi module */
-> +&sd_emmc_b {
-> +	status = "disabled";
-> +};
-> +
-> +/* emmc storage */
-> +&sd_emmc_c {
-> +	status = "okay";
-> +};
+> On 2018/12/19 6:47, Bjorn Helgaas wrote:
+> > On Tue, Dec 18, 2018 at 04:04:46PM +0800, Hanjie Lin wrote:
+> >> From: Yue Wang <yue.wang@amlogic.com>
+> >>
+> >> The Amlogic Meson PCIe host controller is based on the Synopsys DesignWare
+> >> PCI core. This patch adds the driver support for Meson PCIe controller.
+> > 
+> > I don't have any comments on the code itself; just the trivial things
+> > below.  No need to repost for these unless you're changing something
+> > else.
+> > 
+> > I thought it looked very pretty overall, thanks for paying attention
+> > to that!
+> > 
+> >> +static int meson_size_to_payload(struct meson_pcie *mp, int size)
+> >> +{
+> >> +	struct device *dev = mp->pci.dev;
+> >> +
+> >> +	/*
+> >> +	 * dwc supports 2^(val+7) payload size, which val is 0~5 default to 1.
+> >> +	 * So if input size is not 2^order alignment or less than 2^7 or bigger
+> >> +	 * than 2^12, just set to default size 2^(1+7).
+> >> +	 */
+> >> +	if (!is_power_of_2(size) || size < 128 || size > 4096) {
+> >> +		dev_warn(dev, "playload size %d, set to default 256\n", size);
+> > 
+> > s/playload/payload/
+> > 
+> >> +static void meson_set_max_payload(struct meson_pcie *mp, int size)
+> >> +{
+> >> +	u32 val = 0;
+> > 
+> > Unnecessary initialization.
+> > 
+> >> +	int max_payload_size = meson_size_to_payload(mp, size);
+> >> +
+> >> +	val = meson_elb_readl(mp, PCIE_DEV_CTRL_DEV_STUS);
+> > 
+> >> +static int meson_pcie_rd_own_conf(struct pcie_port *pp, int where, int size,
+> >> +				  u32 *val)
+> >> +{
+> >> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> >> +	int ret;
+> >> +
+> >> +	ret = dw_pcie_read(pci->dbi_base + where, size, val);
+> >> +	if (ret != PCIBIOS_SUCCESSFUL)
+> >> +		return ret;
+> >> +
+> >> +	/*
+> >> +	 * There is a bug in the MESON AXG pcie controller whereby software
+> >> +	 * cannot programme the PCI_CLASS_DEVICE register, so we must fabricate
+> >> +	 * the return value in the config accessors.
+> > 
+> > s/pcie/PCIe/
+> > s/programme/program/ (IIUC, "programme" is British and only used as a
+> > noun, where here you need a verb)
+> > 
+> >> +static int meson_pcie_link_up(struct dw_pcie *pci)
+> >> +{
+> >> +	struct meson_pcie *mp = to_meson_pcie(pci);
+> >> +	struct device *dev = pci->dev;
+> >> +	u32 smlh_up = 0;
+> >> +	u32 ltssm_up = 0;
+> >> +	u32 rdlh_up = 0;
+> > 
+> > Unnecessary initialization of smlh_up, ltssm_up, and rdlh_up.
+> > 
+> >> +	u32 speed_okay = 0;
+> >> +	u32 cnt = 0;
+> >> +	u32 state12, state17;
+> >> +
+> >> +	do {
+> >> +		state12 = meson_cfg_readl(mp, PCIE_CFG_STATUS12);
+> >> +		state17 = meson_cfg_readl(mp, PCIE_CFG_STATUS17);
+> >> +		smlh_up = IS_SMLH_LINK_UP(state12);
+> >> +		rdlh_up = IS_RDLH_LINK_UP(state12);
+> >> +		ltssm_up = IS_LTSSM_UP(state12);
+> > 
+> >> +	dev_err(dev, "Error: Wait linkup timeout.\n");
+> > 
+> > Message doesn't match others from driver (capitalization and trailing
+> > period).
+> > 
+> >> +			dev_err(dev, "failed to get msi irq\n");
+> > 
+> > s/msi irq/MSI IRQ/
+> > 
+> >> +	ret = meson_add_pcie_port(mp, pdev);
+> >> +	if (ret < 0) {
+> >> +		dev_err(dev, "Add PCIE port failed, %d\n", ret);
+> > 
+> > s/PCIE/PCIe/
+> > 
+> > All the messages in this function are capitalized differently than
+> > other messages in the driver.
+> > 
+> > Bjorn
+> > 
+> > .
+> > 
+> 
+> hi Bjorn:
+> 
+> Thanks for the all suggestions and corrections.
+> 
+> There were too many code details unnecessary initialization, typing errors
+> and coding style etc. I will pay more attention to these rules and code-details
+> in the future patches also my daily work.
 
+I have merged your patches with Bjorn's suggestions in my pci/amlogic
+branch, aiming at v4.21, please have a look.
 
+Lorenzo
 
 _______________________________________________
 linux-amlogic mailing list
