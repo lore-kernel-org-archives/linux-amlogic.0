@@ -2,70 +2,64 @@ Return-Path: <SRS0=yw6d=O4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-1.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A8B92C43387
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Dec 2018 07:50:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EAC5BC43387
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Dec 2018 10:57:58 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7952321850
-	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Dec 2018 07:50:23 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B91E521850
+	for <linux-amlogic@archiver.kernel.org>; Wed, 19 Dec 2018 10:57:58 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iafk9zzf";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="QEPFQzFn"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7952321850
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DFv7kCF9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B91E521850
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NLM4RvASF9jHgH7DpjQjeRQDjGcAtdQkSTPZkdHT7oY=; b=iafk9zzfLf4ot4
-	xOOSCOdeX5SYUw8AO5+fzhSZAYcCNapN8mERd3sXvLQYgbHv7wapMMd1AEuF+Tex+42REvNvkKqze
-	hznTjWI2PyKj/cQDWSUaA5HgzQwiCrd5IvT9cz02UJC8NQltGZeDdQBTaX6z9y3pswoPdzGFe40Go
-	pilYEf9HcQWBdW7NfIlDnkL8Nc/HiX6yBUZI34uQ6xZ3A4BGJUyeR+JUcIqZFnDN5cGH5baEGXMOe
-	j+GATr3V+LLCzjBtCYbsIqGM58kVYr0fOPzJI0WUtO0lzNSqQNOVLq9uuugYpx9299wBWDtl2eQW+
-	1M3BqpCAjWpAWGjZbIAw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=iiEHC3X6PYd/QW1OzBsYU0+3MhQ1hoeak4vctw373z0=; b=DFv7kCF948eq7U
+	XFdJ3UQIggxQjnTlFFcUufFGyJaFBXcjcah0ZZym3BzKFX0yWekrihxfU2V81WprAgqhGlniTgTsF
+	k4Wo+b0jwRPxfGSiFbEzHQmanJ3Lc154Pf8I7zr6Wp5EpUa9fE5vmHjgM+5llJya/oj7X/Skaj46/
+	kqWIGNIp/iapztqrWfVcBTYJbwCBCleYRaDtFa+7RDJihQjtro8WSQ11OUMnIlc4Q2Uk8jxW78Jra
+	ELs5OSUf+sLT1eIXrejDhy2VggTHbw/UQU1wa8vMj9rGIa3eFwb2sESLNxWRBb0gMvVrssi6gb05a
+	a02rsAlBnc2ka6UyuPYA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gZWcR-0000IU-GC; Wed, 19 Dec 2018 07:50:15 +0000
-Received: from perceval.ideasonboard.com
- ([2001:4b98:dc2:55:216:3eff:fef7:d647])
+	id 1gZZXz-0004cd-AR; Wed, 19 Dec 2018 10:57:51 +0000
+Received: from mail-sh2.amlogic.com ([58.32.228.45])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gZWcN-0007VD-N4
- for linux-amlogic@lists.infradead.org; Wed, 19 Dec 2018 07:50:13 +0000
-Received: from avalon.localnet (dfj612ybrt5fhg77mgycy-3.rev.dnainternet.fi
- [IPv6:2001:14ba:21f5:5b00:2e86:4862:ef6a:2804])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 49A72549;
- Wed, 19 Dec 2018 08:49:48 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1545205788;
- bh=grnD64F2pIVb+OTdVEfqQsHwloRCBH3nUg7YKxbzC6s=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=QEPFQzFnGt3TKWweOk1w28PJ1eMs2Klh3Oix5lDV6ZQDwGCh9tor7zZ/7qFjxPXZI
- /acM5Jv0SE5c0/hi3kUjtnaLXPag/yH5cyy5EACTts+7ZGu7x4eNX6jK9DjjL3GpLm
- 47xEh3HCjMDs8rAVILRZcE/XfNL5AQjMdc1rAOlk=
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Andrzej Hajda <a.hajda@samsung.com>
-Subject: Re: [PATCH RFC v2 5/8] drm/bridge: dw-hdmi: support dynamically get
- input/out color info
-Date: Wed, 19 Dec 2018 09:50:41 +0200
-Message-ID: <1690671.DkqnqcUgQk@avalon>
-Organization: Ideas on Board Oy
-In-Reply-To: <3cd791c0-8a7b-a3d1-09fa-5ddf0ea9c380@samsung.com>
-References: <20181130134301.17963-1-narmstrong@baylibre.com>
- <20181130134301.17963-6-narmstrong@baylibre.com>
- <3cd791c0-8a7b-a3d1-09fa-5ddf0ea9c380@samsung.com>
+ id 1gZZXo-0004UQ-UN; Wed, 19 Dec 2018 10:57:42 +0000
+Received: from [10.18.29.147] (10.18.29.147) by mail-sh2.amlogic.com
+ (10.18.11.6) with Microsoft SMTP Server (TLS) id 15.0.1320.4; Wed, 19 Dec
+ 2018 18:57:48 +0800
+Subject: Re: [PATCH v8 1/2] dt-bindings: PCI: meson: add DT bindings for
+ Amlogic Meson PCIe controller
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Rob Herring
+ <robh@kernel.org>
+References: <1545120286-129258-1-git-send-email-hanjie.lin@amlogic.com>
+ <1545120286-129258-2-git-send-email-hanjie.lin@amlogic.com>
+ <CAFBinCD1x7jcJJx78yNx87MOmKQ2HuSBeRpDRQE0hyNCwm1JAg@mail.gmail.com>
+From: Hanjie Lin <hanjie.lin@amlogic.com>
+Message-ID: <e3cce5d7-354c-4042-bf76-c22f3893d72c@amlogic.com>
+Date: Wed, 19 Dec 2018 18:57:48 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.3.3
 MIME-Version: 1.0
+In-Reply-To: <CAFBinCD1x7jcJJx78yNx87MOmKQ2HuSBeRpDRQE0hyNCwm1JAg@mail.gmail.com>
+Content-Language: en-US
+X-Originating-IP: [10.18.29.147]
+X-ClientProxiedBy: mail-sh2.amlogic.com (10.18.11.6) To mail-sh2.amlogic.com
+ (10.18.11.6)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181218_235012_056015_C17CA4BA 
-X-CRM114-Status: GOOD (  20.88  )
+X-CRM114-CacheID: sfid-20181219_025740_973342_1AB434BF 
+X-CRM114-Status: GOOD (  16.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -77,176 +71,74 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: architt@codeaurora.org, Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
- Neil Armstrong <narmstrong@baylibre.com>, maxime.ripard@bootlin.com,
- Sandy Huang <hjc@rock-chips.com>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
- linux-amlogic@lists.infradead.org, Zheng Yang <zhengyang@rock-chips.com>
+Cc: devicetree@vger.kernel.org, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, linux-pci@vger.kernel.org,
+ Kevin Hilman <khilman@baylibre.com>, Shawn Lin <shawn.lin@rock-chips.com>,
+ Yixun Lan <yixun.lan@amlogic.com>, linux-kernel@vger.kernel.org,
+ Yue Wang <yue.wang@amlogic.com>, Carlo Caione <carlo@caione.org>,
+ Qiufang Dai <qiufang.dai@amlogic.com>, Jian Hu <jian.hu@amlogic.com>,
+ Philippe Ombredanne <pombredanne@nexb.com>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Cyrille Pitchen <cyrille.pitchen@free-electrons.com>,
+ linux-amlogic@lists.infradead.org,
+ Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+ Liang Yang <liang.yang@amlogic.com>, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello,
 
-On Wednesday, 19 December 2018 09:26:08 EET Andrzej Hajda wrote:
-> On 30.11.2018 14:42, Neil Armstrong wrote:
-> > From: Zheng Yang <zhengyang@rock-chips.com>
-> > 
-> > To get input/output bus_format/enc_format dynamically, this patch
-> > 
-> > introduce following funstion in plat_data:
-> > 	- get_input_bus_format
-> > 	- get_output_bus_format
-> > 	- get_enc_in_encoding
-> > 	- get_enc_out_encoding
+
+On 2018/12/19 7:14, Martin Blumenstingl wrote:
+> Hi Rob, Hi Hanjie,
 > 
-> It seems fishy. On one side description says about dynamic resolution of
-> formats and encodings.
+> (sorry for being late with my question)
 > 
-> On the other side these functions as only argument takes platform_data
-> which should be rather static.
+> On Tue, Dec 18, 2018 at 9:05 AM Hanjie Lin <hanjie.lin@amlogic.com> wrote:
+> [...]
+>> +- reg-names: Must be
+>> +       - "elbi"        External local bus interface registers
+>> +       - "cfg"         Meson specific registers
+>> +       - "phy"         Meson PCIE PHY registers
+> I have learned that there are two PHY register designs:
+> - AXG only has a PCIe PHY
+> - G12A has a PHY which supports PCIe and USB 3.0. The PCIe part of
+> this PHY design is compatible with AXG, but this design also supports
+> a USB 3.0 port (it's an exclusive choice: either PCIe *or* USB 3.0)
 > 
-> Where is this "dynamic" thing? The only usage of these callbacks I have
-> found in next patches is also not dynamic, the functions just return
-> some static value.
+> The PCIe controller itself is identical on both, AXG and G12A.
+> This patch adds support for the AXG PCIe controller and PHY within one
+> device-tree node.
 > 
-> Moreover function takes void* argument, which is again something
-> suspicious, why cannot you pass know structure?
+> For G12A I propose to add a separate "phys" property with a phandle to
+> the "combo" PCIe and USB3.0 PHY - this can be part of a separate patch
+> though.
+> I would like to know whether it's OK that for AXG the PCIe PHY is
+> described in the same device-tree node as the PCIe controller (in
+> other words: we're not using a "phys" property here)?
 > 
-> And finally encoding usually should depend on display mode, it should
-> not depend only static data.
 > 
+> Kind Regards
+> Martin
 > 
-> What kind of problems do you want to solve here?
+> .
+> 
 
-I would add that this doesn't seem to be specific to dw-hdmi in any way. I'd 
-prefer an API at the drm_bridge level to handle this.
+hi matrin,
 
-> > Signed-off-by: Zheng Yang <zhengyang@rock-chips.com>
-> > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> > ---
-> > 
-> >  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 28 +++++++++++++++++------
-> >  include/drm/bridge/dw_hdmi.h              |  5 ++++
-> >  2 files changed, 26 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> > b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c index
-> > 4a9a24e854db..bd564ffdf18b 100644
-> > --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> > +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> > @@ -1810,6 +1810,7 @@ static void hdmi_disable_overflow_interrupts(struct
-> > dw_hdmi *hdmi)> 
-> >  static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode
-> >  *mode) {
-> >  
-> >  	int ret;
-> > 
-> > +	void *data = hdmi->plat_data->phy_data;
-> > 
-> >  	hdmi_disable_overflow_interrupts(hdmi);
-> > 
-> > @@ -1821,10 +1822,13 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi,
-> > struct drm_display_mode *mode)> 
-> >  		dev_dbg(hdmi->dev, "CEA mode used vic=%d\n", hdmi->vic);
-> >  	
-> >  	}
-> > 
-> > -	if ((hdmi->vic == 6) || (hdmi->vic == 7) ||
-> > -	    (hdmi->vic == 21) || (hdmi->vic == 22) ||
-> > -	    (hdmi->vic == 2) || (hdmi->vic == 3) ||
-> > -	    (hdmi->vic == 17) || (hdmi->vic == 18))
-> > +	if (hdmi->plat_data->get_enc_out_encoding)
-> > +		hdmi->hdmi_data.enc_out_encoding =
-> > +			hdmi->plat_data->get_enc_out_encoding(data);
-> > +	else if ((hdmi->vic == 6) || (hdmi->vic == 7) ||
-> > +		 (hdmi->vic == 21) || (hdmi->vic == 22) ||
-> > +		 (hdmi->vic == 2) || (hdmi->vic == 3) ||
-> > +		 (hdmi->vic == 17) || (hdmi->vic == 18))
-> > 
-> >  		hdmi->hdmi_data.enc_out_encoding = V4L2_YCBCR_ENC_601;
-> >  	
-> >  	else
-> >  	
-> >  		hdmi->hdmi_data.enc_out_encoding = V4L2_YCBCR_ENC_709;
-> > 
-> > @@ -1833,21 +1837,31 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi,
-> > struct drm_display_mode *mode)> 
-> >  	hdmi->hdmi_data.video_mode.mpixelrepetitioninput = 0;
-> >  	
-> >  	/* TOFIX: Get input format from plat data or fallback to RGB888 */
-> > 
-> > -	if (hdmi->plat_data->input_bus_format)
-> > +	if (hdmi->plat_data->get_input_bus_format)
-> > +		hdmi->hdmi_data.enc_in_bus_format =
-> > +			hdmi->plat_data->get_input_bus_format(data);
-> > +	else if (hdmi->plat_data->input_bus_format)
-> > 
-> >  		hdmi->hdmi_data.enc_in_bus_format =
-> >  		
-> >  			hdmi->plat_data->input_bus_format;
-> >  	
-> >  	else
-> >  	
-> >  		hdmi->hdmi_data.enc_in_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
-> >  	
-> >  	/* TOFIX: Get input encoding from plat data or fallback to none */
-> > 
-> > -	if (hdmi->plat_data->input_bus_encoding)
-> > +	if (hdmi->plat_data->get_enc_in_encoding)
-> > +		hdmi->hdmi_data.enc_in_encoding =
-> > +			hdmi->plat_data->get_enc_in_encoding(data);
-> > +	else if (hdmi->plat_data->input_bus_encoding)
-> > 
-> >  		hdmi->hdmi_data.enc_in_encoding =
-> >  		
-> >  			hdmi->plat_data->input_bus_encoding;
-> >  	
-> >  	else
-> >  	
-> >  		hdmi->hdmi_data.enc_in_encoding = V4L2_YCBCR_ENC_DEFAULT;
-> >  	
-> >  	/* TOFIX: Default to RGB888 output format */
-> > 
-> > -	hdmi->hdmi_data.enc_out_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
-> > +	if (hdmi->plat_data->get_output_bus_format)
-> > +		hdmi->hdmi_data.enc_out_bus_format =
-> > +			hdmi->plat_data->get_output_bus_format(data);
-> > +	else
-> > +		hdmi->hdmi_data.enc_out_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
-> > 
-> >  	hdmi->hdmi_data.pix_repet_factor = 0;
-> >  	hdmi->hdmi_data.hdcp_enable = 0;
-> > 
-> > diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
-> > index 7a02744ce0bc..2e797f782c51 100644
-> > --- a/include/drm/bridge/dw_hdmi.h
-> > +++ b/include/drm/bridge/dw_hdmi.h
-> > @@ -142,6 +142,11 @@ struct dw_hdmi_plat_data {
-> > 
-> >  	int (*configure_phy)(struct dw_hdmi *hdmi,
-> >  	
-> >  			     const struct dw_hdmi_plat_data *pdata,
-> >  			     unsigned long mpixelclock);
-> > 
-> > +
-> > +	unsigned long (*get_input_bus_format)(void *data);
-> > +	unsigned long (*get_output_bus_format)(void *data);
-> > +	unsigned long (*get_enc_in_encoding)(void *data);
-> > +	unsigned long (*get_enc_out_encoding)(void *data);
-> > 
-> >  };
-> >  
-> >  struct dw_hdmi *dw_hdmi_probe(struct platform_device *pdev,
+We do had a dedicated PHY driver for a time at the begining
+of this patch series, but we decided to remove it and integrate
+into the controller driver after series reviews and disscussions,
+and the main reason is it's too overkill to have a dedicated 
+PHY driver which only do the RESET job.
 
+Of course we can consider the dedicated PHY driver for G12A upstream
+in future.
 
--- 
-Regards,
-
-Laurent Pinchart
-
-
+thanks
+hanjie
 
 
 _______________________________________________
