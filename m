@@ -5,19 +5,19 @@ X-Spam-Level:
 X-Spam-Status: No, score=-6.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BF7C4C43444
-	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Dec 2018 17:01:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F09D5C43387
+	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Dec 2018 17:07:51 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8EDC321B6B
-	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Dec 2018 17:01:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BE03921939
+	for <linux-amlogic@archiver.kernel.org>; Sat, 22 Dec 2018 17:07:51 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XQtnDyqt";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="QhR58r5R"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8EDC321B6B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="uIlNHL1r";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="r5QhxR9N"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BE03921939
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8CMjS3KNhlNcjeprHKqy6zLulqdwgKgurZbltSw2BWQ=; b=XQtnDyqt4g0jWo
-	19WOwgTHFOdMB5BQRfc9v3LWR+sEO0kpiH0K7VmS4ewNTWwxS6QYt7dNc/F0OTJNyLVjdIFvU5L3a
-	5GaimjEvDJHyXj+7IdN7bNu81lQinafesp5sdqprvtGfyOSP2Ubvgmn8OA9f3GUIdlaVrc7w6D0r3
-	AY20KzdXFOJo5pe2ZglJ/RSP096/tntvmmOfHzAOhd1kGeImtgA0taVn478630CczqsGrvtYfXHGY
-	LMgb3Cpf7/iRF1OudpCfDMFqNp79ir9zkBZ79ZdDfXeDQepaK+kydFTIFk6cOv1aWw80wiEWnckwr
-	NXVUTFvbVGDCogNC23XA==;
+	List-Owner; bh=3QFCloKgFzaj0+mcHi96izUfaQ8mcQm6ftviPFPX1wY=; b=uIlNHL1rlONve2
+	02rMFStIAeBlL5DPU5qwCiyA0absXcyhqq8yYRVz1/q6dcyeC73f1PznUL7MWKoRDGao9mkgEN8EB
+	n6qfy/K436jvWpG0nD5qEUSu3cnFg4GryGQw1CYFI3yZNm+EmxWK319GcQta2EV4igkQuF6oT0GQl
+	yi526dmY7eTkO3fFfmwy6WjrEXrUdRRiElQ6zrTsuLAqnuKOr0RC7jmzrsyDKqQmN7ZPTcz/IxT4v
+	PGdtO5mAvfjNxxDbuxf+2zYwroY6Wysyqi6x6uUdsZmo5a7offPw0QCMW6dyixGlD41NQf259TPac
+	FaJWJ7AcXeETjwU7J8bQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gakek-0006P2-L2; Sat, 22 Dec 2018 17:01:42 +0000
-Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
+	id 1gakkb-0008JR-9Z; Sat, 22 Dec 2018 17:07:45 +0000
+Received: from mail-ot1-x341.google.com ([2607:f8b0:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gakei-0006NX-4R
- for linux-amlogic@lists.infradead.org; Sat, 22 Dec 2018 17:01:41 +0000
-Received: by mail-ot1-x344.google.com with SMTP id f18so7879454otl.11
- for <linux-amlogic@lists.infradead.org>; Sat, 22 Dec 2018 09:01:29 -0800 (PST)
+ id 1gakkQ-0008A2-2K; Sat, 22 Dec 2018 17:07:35 +0000
+Received: by mail-ot1-x341.google.com with SMTP id k98so7920218otk.3;
+ Sat, 22 Dec 2018 09:07:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ymXbQn4yh640Md6ALwIiwWx/ogGOI+5wQMm4YP9kOu4=;
- b=QhR58r5R7kwV9P3mQBtR3YCduxyw9gz2mKx6PepVhPV1lQkGoIAsg7ekUHcLCcVIZt
- fYNc83pspJbYeA+hJxUZ2xkZz+jtJu/nKwvx7at3dK+3Cwm/04L5CYcHIPuwcqyUGcAo
- wLS6Qhz0Vzrv7riGc3vB+8m3+Ot5GsvR+BD1pYbO/2J4ZhOdDED/Jp813hPUP69V2ZYD
- azPT3+HDztPbZBdxOQkRfAISQCQroto6LALGYyk1t+zTj1MStFrPDaTdGTAFnJrL9RRd
- ln4S48VtxwADhLNAym85muotDdIjpcaJK5zuYpjNq0rNxcgQVO+HyOccZOj0298ZY/qH
- ewTQ==
+ :cc; bh=K39DZ/tNuiOgoTKEhunBwHj8o6t9D0Ccp0K9bHFYS2I=;
+ b=r5QhxR9NGhKbvg+vbeKXtr4hERJgX60w0vPTRquSZQjBlaueHqgEISySE9YGy+PqLL
+ I1Jjg3u126vyaa2PNsXsuF1K/edTCfmJpIZZU2QidaY0jKN5G4FotyAxlznyz0bsJ4NH
+ 14TH+UDjWroSO2J9AnwLZVL4IzweIYc5ia+jcJs0c3HNpbbrtCFzGhBaqQgtzFaYhJ3c
+ HViJYjsld+2BK2xNm25nqlZ/x2F4oGvkThJeLCAo56LgjYKuWuVHFtp0jLhMCrvG0V70
+ HvwXawN8FJsoKOToH8X9oO1rv5D0LjWVKqIQyTa2F9kJHByygK3k8EIUPqcbG7zmGkJV
+ /yXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=ymXbQn4yh640Md6ALwIiwWx/ogGOI+5wQMm4YP9kOu4=;
- b=be+N9w9WzbWohpTaOZELir0Il8h/95s7N7rbbh/xn8N59SOOkzRuNENrzYKbRNmCOf
- sUaevsUC5fp8WHArA9bSHXQyxYv6hgaMuwL7oyxO/0qY3ulLuy2AxswDKvpYO+eRbd0x
- BGuBOxwSkdLQYC8IWJ9YZOoJA9u7pVxCich798AwVEdKzRsL/olCleyMxkgzB24Z/NJs
- mpZOAJ8UzftwffSkyrRiF0Vt62aP4mOjxkS2FFe6sPAju3l21qDdolaPgDuO3T8Qb4bZ
- 9IktOl19PymNrmMnVUjNxrB4bEztLEbWm3iKgW2MGYj4Xo+FPtSqvlcD0ew7/gdaF0GA
- dODQ==
-X-Gm-Message-State: AJcUukdq3DCdc6ciaJpKZmbp6dkC52kOUVC3oiorCPWsXKnx082qwW6Z
- AgEdGrjILuB38hSuhHBJq3PyaOKaJan8g15pwTE=
-X-Google-Smtp-Source: ALg8bN5WJlgaCIiYvli3IBWCIDt7q0Fi5ozCsUYwacVpePPnpbdn09bZRuOVuNV8/ayz411Ne11XKoIQx4y20ydUYCo=
-X-Received: by 2002:a9d:7749:: with SMTP id t9mr4971581otl.342.1545498089169; 
- Sat, 22 Dec 2018 09:01:29 -0800 (PST)
+ bh=K39DZ/tNuiOgoTKEhunBwHj8o6t9D0Ccp0K9bHFYS2I=;
+ b=hi+llUllaA1uL7+1xCBEL3hOJQTv75KfP/hMAfBscr0rRzM6a/fI5MZEKScwAF0TsB
+ n4j8bPBwjpbscP8b2ewuuzSCLHJvS1O+ZXTvHqd4S9wUJJzeqEc7/cOM8KxdicY0796N
+ bnLdINXinbwX/5rOEMfAf0KZ73YeTIAaiC72NDCywybUvFHKeoreabWv8cIfbpTmIc7X
+ HVYbmF/BtfnJwIi7r751coNN/i88Dno35OVUCt20rJDjF+xqofIpBCc5xDOWIeP2oi3E
+ gJ7S4M08VKGbVQU1SCvrbV4d9/vQ86zFGMGdTZkyq+YfQUcRK0o5HuhkatOZYntsmEsp
+ pQUA==
+X-Gm-Message-State: AJcUukd9akfTqB1wloR8n3zrnMF1F92IyvTkGTveSybHxQygSqhM4FNo
+ QBVpLM0HIAb/USX0+DLvPkMcxUdVl/I5zUKoqS8=
+X-Google-Smtp-Source: ALg8bN7ltVqzELgL3yHYAconL5GJ9Nwk1nwCzH6ms0XRnediWweGNySRMtZjZPlrzXEtKCDnmXhaqcUWp64Ic8lnC98=
+X-Received: by 2002:a9d:491e:: with SMTP id e30mr4931145otf.131.1545498442989; 
+ Sat, 22 Dec 2018 09:07:22 -0800 (PST)
 MIME-Version: 1.0
-References: <20181220161037.23756-1-jbrunet@baylibre.com>
- <20181220161037.23756-3-jbrunet@baylibre.com>
-In-Reply-To: <20181220161037.23756-3-jbrunet@baylibre.com>
+References: <1545392724-6637-1-git-send-email-jianxin.pan@amlogic.com>
+ <1545392724-6637-3-git-send-email-jianxin.pan@amlogic.com>
+In-Reply-To: <1545392724-6637-3-git-send-email-jianxin.pan@amlogic.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 22 Dec 2018 18:01:18 +0100
-Message-ID: <CAFBinCBQkpLxUZYp2NQoXEA=8t_XCJMHauM+DwTz-p0FA57CrA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: meson: libretech-cc: switch eMMC to 1.8v
-To: Jerome Brunet <jbrunet@baylibre.com>
+Date: Sat, 22 Dec 2018 18:07:12 +0100
+Message-ID: <CAFBinCAeDtu-KTy=4bmAtBY9hGK8rRo=OW70tgEOyRBnQcdz1g@mail.gmail.com>
+Subject: Re: [PATCH RESEND v8 2/2] mtd: rawnand: meson: add support for
+ Amlogic NAND flash controller
+To: Jianxin Pan <jianxin.pan@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181222_090140_175788_4CC1BEBC 
-X-CRM114-Status: GOOD (  15.17  )
+X-CRM114-CacheID: sfid-20181222_090734_109688_AEE7CD3C 
+X-CRM114-Status: GOOD (  18.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -90,47 +90,70 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Carlo Caione <carlo@caione.org>, Kevin Hilman <khilman@baylibre.com>,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Hanjie Lin <hanjie.lin@amlogic.com>,
+ Victor Wan <victor.wan@amlogic.com>, Marek Vasut <marek.vasut@gmail.com>,
+ Richard Weinberger <richard@nod.at>, Neil Armstrong <narmstrong@baylibre.com>,
+ Yixun Lan <yixun.lan@amlogic.com>, linux-kernel@vger.kernel.org,
+ Boris Brezillon <boris.brezillon@bootlin.com>, Jian Hu <jian.hu@amlogic.com>,
+ Liang Yang <liang.yang@amlogic.com>, linux-mtd@lists.infradead.org,
+ Kevin Hilman <khilman@baylibre.com>, Miquel Raynal <miquel.raynal@bootlin.com>,
+ Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
+ Brian Norris <computersforpeace@gmail.com>,
+ David Woodhouse <dwmw2@infradead.org>, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jerome,
+Hi Jianxin, Hi Liang,
 
-On Thu, Dec 20, 2018 at 5:11 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
+On Fri, Dec 21, 2018 at 12:45 PM Jianxin Pan <jianxin.pan@amlogic.com> wrote:
 >
-> While some 3.3v eMMC 4.0 are available from libretech, the default
-> option for the aml-s905x-cc seems to 1.8v 5.0 modules.
-nit-pick:
-can you please state which module (storage size) you used for testing?
-you probably still remember that we had some confusion on Odroid-C2
-which eMMC module works and which doesn't, so let's be explicit here
-
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> From: Liang Yang <liang.yang@amlogic.com>
+>
+> Add initial support for the Amlogic NAND flash controller which found
+> in the Meson-GXBB/GXL/AXG SoCs.
+>
+> Signed-off-by: Liang Yang <liang.yang@amlogic.com>
+> Signed-off-by: Yixun Lan <yixun.lan@amlogic.com>
+> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
 > ---
->  .../boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts    | 9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
+>  drivers/mtd/nand/raw/Kconfig      |   10 +
+>  drivers/mtd/nand/raw/Makefile     |    1 +
+>  drivers/mtd/nand/raw/meson_nand.c | 1468 +++++++++++++++++++++++++++++++++++++
+>  3 files changed, 1479 insertions(+)
+>  create mode 100644 drivers/mtd/nand/raw/meson_nand.c
 >
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-> index daad007fac1f..d0d202cf7161 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-> @@ -118,8 +118,8 @@
->         vddio_boot: regulator-vddio_boot {
->                 compatible = "regulator-fixed";
->                 regulator-name = "VDDIO_BOOT";
-> -               regulator-min-microvolt = <3300000>;
-> -               regulator-max-microvolt = <3300000>;
-> +               regulator-min-microvolt = <1800000>;
-> +               regulator-max-microvolt = <1800000>;
-is there a 3.3V -> 1.8V regulator on the eMMC module?
-I'm not sure about the schematics but it seems to be that the board
-itself supplies only 3.3V to the eMMC connector, so I'm not sure where
-1.8V come from in this case
-can you please add a comment to the .dts about this?
+> diff --git a/drivers/mtd/nand/raw/Kconfig b/drivers/mtd/nand/raw/Kconfig
+> index 1a55d3e..d05ff20 100644
+> --- a/drivers/mtd/nand/raw/Kconfig
+> +++ b/drivers/mtd/nand/raw/Kconfig
+> @@ -541,4 +541,14 @@ config MTD_NAND_TEGRA
+>           is supported. Extra OOB bytes when using HW ECC are currently
+>           not supported.
+>
+> +config MTD_NAND_MESON
+> +       tristate "Support for NAND controller on Amlogic's Meson SoCs"
+> +       depends on ARCH_MESON || COMPILE_TEST
+> +       depends on COMMON_CLK_AMLOGIC
+> +       select COMMON_CLK_REGMAP_MESON
+I believe that "depends on COMMON_CLK_AMLOGIC" and "select
+COMMON_CLK_REGMAP_MESON" are not necessary:
+the driver should build fine without them because it's only
+interfacing with the common clock framework.
+the common clock framework is enabled by ARCH_MESON and for the
+COMPILE_TEST case the common clock framework provides stub
+implementations inside the headers.
+
+> +       select MFD_SYSCON
+> +       help
+> +         Enables support for NAND controller on Amlogic's Meson SoCs.
+> +         This controller is found on Meson GXBB, GXL, AXG SoCs.
+you are explicitly mentioning GXBB here but you don't add a "GXBB" compatible.
+I suggest to shorten this sentence ("This controller is found on Meson
+SoCs.") because this driver can also support the 32-bit
+Meson8/Meson8b/Meson8m2 SoCs with minor adjustments.
 
 
 Regards
