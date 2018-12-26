@@ -6,66 +6,65 @@ X-Spam-Status: No, score=-9.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
 	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 428DBC43387
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Dec 2018 22:36:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5F84AC43387
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Dec 2018 22:40:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 14C77218FC
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Dec 2018 22:36:40 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2E9F221902
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Dec 2018 22:40:15 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rv/KoeNS";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="lj8/h9Fu"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 14C77218FC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="d1J7ksTd";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="VV+YmzOf"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2E9F221902
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=T/Sp+cJuwEdFAHHiG1ESBij5GP5OZHx7sD9bA8nRLlU=; b=rv/KoeNSp/qDfj
-	+g5JFGZjpdtpruZEgXj7tTvBKTUbIDkVw3P1NJ2RuvpRjAkmixGK48aDUT+XZFgn++vICDKFvWo8d
-	CvdTc95z8nLy8mtXQROLzeIWsYvOPGuLT1q4b/yV9kgtoPKTdZs1inHwJSryaZ4V0GIASQ2PaivkH
-	tCG7N8Pc2MSEvj5au/FAEIhBV1Dd1bNtyTSayopxN0bxwzlwM0QgL/WdADWNrElVBukRJFINTk6eB
-	41NqMR+Oe6TnbZMyn+CIq1ePPAD5g3QFY183GoiwVfn9gRq/qN1EPLL4qGuUeP/KFMGlWQE2C3xZ5
-	rNG0+dvfmozrbWrgZzHA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=WVKnKj/XhdcqRnPHqdVFODOTOWoGwLXWPI5HyyxZPZo=; b=d1J7ksTd7HarlV
+	y2uLUjh34N58WLuE3WIoeMHaB3+Euly/n7IV/PSRhwfZgyFODvbZg/Lov+PkWJpH6RABDoG3QDrsS
+	dYzsgRX2Y334taWIAcYCtX2rhsSFDGG3VEGMXpdKz7BfRuZOeMrofiv4SsPIHYnx2Nv+YHKpD7hgu
+	9NxhUMKW0k54vOI6gKDT3GA4K4LdJwhuIEtLGwLNJClyUdImXbakZYe+rKgino9q6cj8AKlMRZBG1
+	0Qw3EdQ+5kMg6xi/zlD6OzE4pKe6ZhRJltOYJjzC6xQGxbRhThlFHYvdNxIw8298ZMmWBeVGesaXd
+	ZBBeBnX9mBuHbMDs2Udw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gcHmj-0007Wk-08; Wed, 26 Dec 2018 22:36:17 +0000
+	id 1gcHqU-0001cu-3i; Wed, 26 Dec 2018 22:40:10 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gcHmg-0007V6-2I
- for linux-amlogic@lists.infradead.org; Wed, 26 Dec 2018 22:36:15 +0000
+ id 1gcHqR-0000MJ-PJ
+ for linux-amlogic@lists.infradead.org; Wed, 26 Dec 2018 22:40:09 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 2E372218EA;
- Wed, 26 Dec 2018 22:36:02 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id ADD812054F;
+ Wed, 26 Dec 2018 22:39:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1545863762;
- bh=+UsXK8ncnqHvF5avdfkuyb3u1krBLvbmjzTngtqA4h4=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=lj8/h9Fug/1vjyMaN9jOnT0mcps+eedLSojmDSMBPR59uUQPYF2ymTIqz53TZRoC0
- u2Z5uuGLUeJT7eJcQJ3cnbqGQsfLmgDS5+oD1RMUz0OoP7JkePsvaYWU+0/otfWfhm
- GMwXe0+HKwt91kHMN8/oI3JHPrcDNzyPEolLRn10=
+ s=default; t=1545863997;
+ bh=pP6hb9A13E/UpzViz3OCPKObvmNPMcAEWslKKvarim8=;
+ h=From:To:Cc:Subject:Date:From;
+ b=VV+YmzOf7j/RA7SE9/aEnyiPnzeWMf3v1ggHZ5nCB5A0e0VXQdDhrYqSSw1EDNs3y
+ u/9K1BwbTWL0k9Y7swK7k4xGCig5yn8TYPHuANhgr0BeBW1Hgd6rG+h6VWomc/p0L6
+ bp3bPbyQXwoGbME9bcQelvyQoocek9sK+tOkogV8=
 From: Sasha Levin <sashal@kernel.org>
 To: stable@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 02/97] pinctrl: meson: fix pull enable register
+Subject: [PATCH AUTOSEL 4.14 01/59] pinctrl: meson: fix pull enable register
  calculation
-Date: Wed, 26 Dec 2018 17:34:22 -0500
-Message-Id: <20181226223557.149329-2-sashal@kernel.org>
+Date: Wed, 26 Dec 2018 17:37:41 -0500
+Message-Id: <20181226223839.150262-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.19.1
-In-Reply-To: <20181226223557.149329-1-sashal@kernel.org>
-References: <20181226223557.149329-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181226_143614_122882_DB8003F5 
-X-CRM114-Status: GOOD (  10.13  )
+X-CRM114-CacheID: sfid-20181226_144007_847301_C02222FA 
+X-CRM114-Status: UNSURE (   9.80  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -108,10 +107,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
-index 4f3ab18636a3..c8eff70fdb1c 100644
+index 6c43322dbb97..2998941fdeca 100644
 --- a/drivers/pinctrl/meson/pinctrl-meson.c
 +++ b/drivers/pinctrl/meson/pinctrl-meson.c
-@@ -191,7 +191,8 @@ static int meson_pinconf_set(struct pinctrl_dev *pcdev, unsigned int pin,
+@@ -272,7 +272,8 @@ static int meson_pinconf_set(struct pinctrl_dev *pcdev, unsigned int pin,
  		case PIN_CONFIG_BIAS_DISABLE:
  			dev_dbg(pc->dev, "pin %u: disable bias\n", pin);
  
