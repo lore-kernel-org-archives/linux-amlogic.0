@@ -1,70 +1,94 @@
-Return-Path: <SRS0=WmWE=PD=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=PWIy=PE=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1CE47C43387
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Dec 2018 22:54:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 90739C43387
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Dec 2018 21:51:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D9463218A5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Dec 2018 22:54:08 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 50716214C6
+	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Dec 2018 21:51:11 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="stIK26Pu";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="m9IKD45N"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D9463218A5
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eoJMfoDa";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="kD97fW8f"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 50716214C6
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=bqEEo2krgfq2VgQB6zOXc8obQ6PELl/NUrFkzgy4lTk=; b=stIK26PuVTb8BG
-	FVCPB6+iucoHwqoZauZVFtdNWdsikEztN07yhlOQQ/Nkr5C1y1+QWr3BQ6N3vqk61dOTutz+QnO8s
-	FzWe4ZSHjsFL90smwexi+r3qmdXZDA7aP7ST1cu8TPmzUUoY8yAVZf9HwIIILkqc7T6U58mSCHeNu
-	obIAwWwoaQxhTW+J6XqPu+CKmihY+ipMZmT4Q6I22kbLbpLaGlhaaTh8sPk80B+pYFFwDyOq4kOSb
-	zMPatBLZzwcpnbZg1q6B+CXI6wCh3z0JUVDeYVZdEXbVWcH1KEEDYoIy9BPbFGd3nBMdUgRNKPpAb
-	tYRzgjx8RLK3nVzmnlwg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=NTZgH3dmXqWbcuG2NieUDyLi9FRcW0krrqj7ynN88tk=; b=eoJMfoDaDOFF02
+	ItYpExQtSxbNXGjFTm9pzlxTRdjROsAhSaACGBaoIJojgk7Uvymc+KoK40MEokS+taaabPpNjATh3
+	ye3HiIhIcv7BjPy/99saiR5AUg4MZHws/BtZ8AbSey817QmL0AyEdUnRgI7u2LI1W0WfbmXgVPbFM
+	OfKG9f18lRvYu8TJQmDCmlE5tRw+tNMp6JJ/fBtZHPI1wAL5WfrnOH8UydNtv+sGM3mhoagdGEX0V
+	axkAMYdnc+yOfLJgEkQsK8eprhshq9FEfg16jQASthn/mMeEzPX2P1FVqXoDHJ3WF7vejxWKF+VQy
+	5vlHQ1kkComa1hpkfxZA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gcI3u-0005Vq-Fh; Wed, 26 Dec 2018 22:54:02 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1gcdYT-0001zL-NW; Thu, 27 Dec 2018 21:51:01 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gcI3r-0005T8-Mw
- for linux-amlogic@lists.infradead.org; Wed, 26 Dec 2018 22:54:01 +0000
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
- [73.47.72.35])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 850F3214D8;
- Wed, 26 Dec 2018 22:53:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1545864829;
- bh=1Yp7zP8uM3yN/NFZY7X+bZKZu3Y0LwesC7zdloffXHs=;
- h=From:To:Cc:Subject:Date:From;
- b=m9IKD45NfFBbL12fsE9mEVmiKIp1EopZBPi1f3NkOvl7+fB5Xz316xiFXPOb0nOpM
- ReRCPXxWCsH/ZttW1Ev7QTDqTcGd2vWYTRdj2m1Nue7RSxAFUVsNGH13E/Bg07l3O0
- My0hK8lNbXZlXzPwUNELAc7e7XLcdYIebUqLcImQ=
-From: Sasha Levin <sashal@kernel.org>
-To: stable@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.9 01/35] pinctrl: meson: fix pull enable register
- calculation
-Date: Wed, 26 Dec 2018 17:41:08 -0500
-Message-Id: <20181226224142.150866-1-sashal@kernel.org>
-X-Mailer: git-send-email 2.19.1
+ id 1gcdYQ-0001xO-G0; Thu, 27 Dec 2018 21:50:59 +0000
+Received: by mail-wr1-x441.google.com with SMTP id 96so19465081wrb.2;
+ Thu, 27 Dec 2018 13:50:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=vwjI45tfNGokg0tQ5bvI2hO5i8EXM3XX5a012DEAbX0=;
+ b=kD97fW8f4BIW1Dp2BscUjoKLy6dxZKcu/RDYP0FusvauFwMXuNiBIjOS4H22WWWm/U
+ gUwGq+ox9b2Dxs2kyyNq8vO2/CSEtqKsQanjvDqwSYti+BzQi/EsDS8Xsn7RmS2OO6vW
+ kg5Fpht89pPLhjreYktKtcDeuclxUEc2Oax4pTTwEknSwZVderdQrGI5roanjllObz+1
+ R9xyJ4UlENObC/qrxlgvgVmwW7O0zEIi3uYWOeRwwmRvLNT0LInKSEbySLn/jfbf0UzP
+ 4wCjIOHssZ5zWArdqD4f0v7w9EHqYrKPE3dxaDLbjkZ4E9x+Yf0Mot8uxH+9CjNbUEXj
+ EIBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=vwjI45tfNGokg0tQ5bvI2hO5i8EXM3XX5a012DEAbX0=;
+ b=pFYJVhPQHvh8WWgZi5u7lpkMc3XMFqwoRV62KFStUfTRUM5Gda9mlQVUYAxcEyXRlo
+ EgxVlmHwWVf5wwuAamwxMEVKGO/tI18Bc+1Pjlvql/1ETdkzyUZw+HozPy9DbC14J+xb
+ MDTurSShi+bouZohnHopsd0x5jzah6NIjzFI1a+eI3ncwQ2gJgbLPTejtdTaysQNBfBT
+ KFQSC4SwdIUzHMPOQmPYEzy8fYH7jThUEwRuGOlWYqcUTK0ORGX9Dqb5ttr8yProp1oY
+ gRzTVkzxJpjfwq7fHyQJBmrKr/ucAc63EO7XtvsiuvklQFm2Garsj8w4m4fOaIfbndWY
+ +UaA==
+X-Gm-Message-State: AJcUukewnSfOuPETaxPLmx1ZFWOisHTnk5hGSJXGficN38QzsjwC3dv/
+ BLoydEE6feBTfnlW/vuc81vgls7W
+X-Google-Smtp-Source: ALg8bN5aFigp/wAZszU57y2/4eApQU0EgVujJSumDoMaGdpnm99RxIlzwQ/C/S5x71cqzLPyFlSECA==
+X-Received: by 2002:adf:81b6:: with SMTP id 51mr24928584wra.240.1545947445287; 
+ Thu, 27 Dec 2018 13:50:45 -0800 (PST)
+Received: from blackbox.darklights.net
+ (p200300DCD711B00071582302E30AD474.dip0.t-ipconnect.de.
+ [2003:dc:d711:b000:7158:2302:e30a:d474])
+ by smtp.googlemail.com with ESMTPSA id m4sm34538164wmi.3.2018.12.27.13.50.44
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 27 Dec 2018 13:50:44 -0800 (PST)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org, jic23@kernel.org, lars@metafoo.de,
+ pmeerw@pmeerw.net, robh+dt@kernel.org, mark.rutland@arm.com
+Subject: [PATCH 1/2] dt-bindings: iio: adc: meson-saradc: update temperature
+ sensor support
+Date: Thu, 27 Dec 2018 22:50:19 +0100
+Message-Id: <20181227215020.9803-2-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20181227215020.9803-1-martin.blumenstingl@googlemail.com>
+References: <20181227215020.9803-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
-X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181226_145359_768404_0C5471F4 
-X-CRM114-Status: UNSURE (   9.80  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20181227_135058_537866_D8CFD4E9 
+X-CRM114-Status: GOOD (  10.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -76,52 +100,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, linux-gpio@vger.kernel.org,
- Linus Walleij <linus.walleij@linaro.org>, linux-amlogic@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: balbes-150@yandex.ru,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Jerome Brunet <jbrunet@baylibre.com>
+Meson8b and Meson8m2 use a 5-bit wide TSC (temperature sensor
+coefficient). The SAR ADC registers however can only store (the lower)
+4 bits. The fifth (upper-most) bit is stored inside the
+MESON_HHI_DPLL_TOP_0[9] register from the HHI register area.
+This adds a syscon property to the HHI register area so a driver can
+fetch the HHI register map and store the fifth TSC bit in there.
 
-[ Upstream commit 614b1868a125a0ba24be08f3a7fa832ddcde6bca ]
-
-We just changed the code so we apply bias disable on the correct
-register but forgot to align the register calculation. The result
-is that we apply the change on the correct register, but possibly
-at the incorrect offset/bit
-
-This went undetected because offsets tends to be the same between
-REG_PULL and REG_PULLEN for a given pin the EE controller. This
-is not true for the AO controller.
-
-Fixes: e39f9dd8206a ("pinctrl: meson: fix pinconf bias disable")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- drivers/pinctrl/meson/pinctrl-meson.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ .../devicetree/bindings/iio/adc/amlogic,meson-saradc.txt      | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
-index df61a71420b1..8e73641bd823 100644
---- a/drivers/pinctrl/meson/pinctrl-meson.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson.c
-@@ -274,7 +274,8 @@ static int meson_pinconf_set(struct pinctrl_dev *pcdev, unsigned int pin,
- 		case PIN_CONFIG_BIAS_DISABLE:
- 			dev_dbg(pc->dev, "pin %u: disable bias\n", pin);
+diff --git a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
+index 325090e43ce6..75c775954102 100644
+--- a/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
++++ b/Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
+@@ -23,6 +23,10 @@ Required properties:
+ - #io-channel-cells: must be 1, see ../iio-bindings.txt
  
--			meson_calc_reg_and_bit(bank, pin, REG_PULL, &reg, &bit);
-+			meson_calc_reg_and_bit(bank, pin, REG_PULLEN, &reg,
-+					       &bit);
- 			ret = regmap_update_bits(pc->reg_pullen, reg,
- 						 BIT(bit), 0);
- 			if (ret)
+ Optional properties:
++- amlogic,hhi-sysctrl:	phandle to the syscon which contains the 5th bit
++			of the TSC (temperature sensor coefficient) on
++			Meson8b and Meson8m2 (which used to calibrate the
++			temperature sensor)
+ - nvmem-cells:		phandle to the temperature_calib eFuse cells
+ - nvmem-cell-names:	if present (to enable the temperature sensor
+ 			calibration) this must contain "temperature_calib"
 -- 
-2.19.1
+2.20.1
 
 
 _______________________________________________
