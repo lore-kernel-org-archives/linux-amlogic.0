@@ -2,78 +2,82 @@ Return-Path: <SRS0=R8f+=PG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 67D86C43387
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Dec 2018 05:18:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3B038C43444
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Dec 2018 12:26:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 273D620857
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Dec 2018 05:18:39 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 08DDF20836
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Dec 2018 12:26:14 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dbIowtGK";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="EHDkEx6J"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 273D620857
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="c9gTf+y8";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="vA4cPQdi"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 08DDF20836
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=k8urPVogWrl/cLs9c4In+zYh/pWn5AwlKRmEIj4OhBY=; b=dbIowtGK1vzr/O
-	FArv5U5qApjfFiMgIzvjUvZC3uub9jAt8LKrYAH8sSZGZsr9xoSe5gdjFHgwLvXslOnuRaCDuEPJH
-	Fo1KkWvpkMHv6PGld4V4VbwhuoQpZ6//mXorDKdTMlmcjUP3SVp+V3IFjwsSiWXNHU/m5k60t1PGI
-	oS5lrhhtkvlnnuqFUfRv18z+7WuM4adSJYZHpXU//8nxJzqq+EdDsQ95qo4jfQdto7GiTkSkKglEg
-	Ehl/V+wamf3XJJQpsrz2lO6WWCX21SX0H28YM6wVYbhk4Jqj7RrHP+xiS0a1tZ6ILEhJSME8nzpkU
-	3KetMBJaecYvXQxyw1kQ==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=y8gj9za2S8WD3rf1Oyl4cvq+HlLspCBwojBHMGDU3y4=; b=c9gTf+y8E1pHEa
+	XypTfdeaooAcLUtqXA1lOQoIiLu4PGECpNmaEt4mTFQ2d59w4WMTm9o/Cb7E/Ie2C9A+79rDzgsBz
+	s+fn1y3jCgseMSeapveR1YFzz5unOWMx28ab7yDvKcWHJgMeN8d3PU11e8oW89n7snACFbR+pFkwl
+	jGD141xhIEU/QAmMvAOZEDp6q2wt+aV6/BBglor3ii8x8srDkq7qsGEbOaK5J35Q8yjTjZzzzv1iF
+	mvHBdG4QaGcgAKJo0UUTQ72oi3r33Yto12Bmi0351FQLziL6lT8FH9kRjJ0kOq9DxD4Icfldevh3z
+	X+VW7Xbncho+m12uT2IQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gd713-0000Ja-Eb; Sat, 29 Dec 2018 05:18:29 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1gdDgn-00020q-3U; Sat, 29 Dec 2018 12:26:01 +0000
+Received: from mail-oi1-x241.google.com ([2607:f8b0:4864:20::241])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gd712-0000JL-5S; Sat, 29 Dec 2018 05:18:28 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:MIME-Version:Date:Message-ID:From:References:CC:To:Subject:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=76quiIRXNo94of8FwVdgBTWP6Ho7FAathenH62/uM80=; b=EHDkEx6JC26pw0VriaIEDPl4r7
- xFEoDxGqWUe9n1fZudBYoGWmQFZMBbUqm0czcsqZ9X+3ZWByPtz7p9gEqaw0l7VW7R7LV3I0SL6+S
- ZGzQ7lwj8KVYaNVuFhZ4NZ8cVwGJU3Aqow6+NDNo9fMRrS7aze1qENlCJXjS/iMDKJh5K7Ve//4m8
- OTurquYpCz8mCpNP4I+i/HaH3j1vBmXm/SzcTGTX7FlVJDQ1d5KRgqr4pKJqDdDG7BjKN5flFUIkV
- Afk+rgCYbnBRpCgM9cg0FPmgqcUOjYXq2tF3/rJgOpEmLcB0TMpLF9azktBoO0meSctSL00yDOaLc
- 3UxfWfzw==;
-Received: from mail-sh2.amlogic.com ([58.32.228.45])
- by casper.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gd70y-0002s5-UI; Sat, 29 Dec 2018 05:18:26 +0000
-Received: from [192.168.0.111] (223.166.104.240) by mail-sh2.amlogic.com
- (10.18.11.6) with Microsoft SMTP Server (TLS) id 15.0.1320.4; Sat, 29 Dec
- 2018 13:18:04 +0800
-Subject: Re: [PATCH v2 0/1] Meson8b RGMII Ethernet pin cleanup
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- <linux-amlogic@lists.infradead.org>, <khilman@baylibre.com>,
- <ingrassia@epigenesys.com>
-References: <20181229000829.16571-1-martin.blumenstingl@googlemail.com>
-From: Jianxin Pan <jianxin.pan@amlogic.com>
-Message-ID: <491fb35b-3e2a-89ab-94c6-c9e8d89a1b01@amlogic.com>
-Date: Sat, 29 Dec 2018 13:18:04 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.3.2
+ id 1gdDgj-000205-3H; Sat, 29 Dec 2018 12:25:58 +0000
+Received: by mail-oi1-x241.google.com with SMTP id c206so19170972oib.0;
+ Sat, 29 Dec 2018 04:25:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=At8Z0beYHRSvlsti0QXxf9k/j7v0y/lOrHlNXb8ApqA=;
+ b=vA4cPQdiCPDwi8tCWrgz2yrTchJYFabxsJHtPXqdKjyzhWFyNosk+4VRJLS8yaOTHp
+ ghA3gyKa8gqIuhnbqdMJUIee1lB2CxijsDxnuKbTSC/LEmsiapVmD5uV3eOHRs0yuHBq
+ rR6U5ljOtOHsX34LWb6ftwVDyD+zpzqOP2z6JSAEPq9ZdddUHt0IKXw43ivunWQfk78f
+ u8lOdZCHcFzWzgnHO6Ee9SHx2qHkbgb8ukxmRKYYQVE+Irc0qTof4TZRYEvtp5+eSKM4
+ AZjC+J5OT0cK3gOtVeec/oXISU18heuofdMQ6zH61lGXhBmhIOFU/tmKZQngA/XRJDLe
+ CxRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=At8Z0beYHRSvlsti0QXxf9k/j7v0y/lOrHlNXb8ApqA=;
+ b=ggZ1ckN5qqjncscjA9SdZZtNmGob076pT20kKyQC24gvlw90LAzReyxbXOAFv4Ttnq
+ 9bC4ZfbuXl3ytL5tAqesOpiyYsjfc0tW146vi5RcGIozBfjItwvRYb7ycWiuHLfilyGC
+ WdruLG+7BkqV9wj8nA5svqEhETEvMkjlM4+Cfrzjj4aGlQ5O2lFLe9Bi34SkDKJIlAii
+ pjEOIBuZzAj5fSTklzPPA61pmVv+VGclGkLeBEx/RdB0bg1hygNAi/tkygBJCzF3sLmO
+ lYTQ62OQff6BlfWcSB/RWpKjNf+N5TXldTnjOmFwmxse9CeqMG9XC524BFORy1yNQRTK
+ dr7A==
+X-Gm-Message-State: AA+aEWbSGvMI5d/PYFcj28lcSKK4Erqr8Q0uMbRQJjwqe5tn8MkIOtY0
+ URGX0O0xEFEfeJZ4Js98gSmmuhDpBmDWSRMHKCxmnA==
+X-Google-Smtp-Source: AFSGD/UM07oeCxok/vDA5zAaLLhhI1w7whF31E7mxEiwZ0gyP5okanSECLlXcf/+1HhJ9I+pfa8zBL1iNplB7YMOAIs=
+X-Received: by 2002:aca:4b48:: with SMTP id y69mr20722247oia.200.1546086343742; 
+ Sat, 29 Dec 2018 04:25:43 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20181229000829.16571-1-martin.blumenstingl@googlemail.com>
-Content-Language: en-US
-X-Originating-IP: [223.166.104.240]
-X-ClientProxiedBy: mail-sh2.amlogic.com (10.18.11.6) To mail-sh2.amlogic.com
- (10.18.11.6)
+References: <20181229000829.16571-1-martin.blumenstingl@googlemail.com>
+ <491fb35b-3e2a-89ab-94c6-c9e8d89a1b01@amlogic.com>
+In-Reply-To: <491fb35b-3e2a-89ab-94c6-c9e8d89a1b01@amlogic.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sat, 29 Dec 2018 13:25:32 +0100
+Message-ID: <CAFBinCCQgpyoNGRh0WBziL0piyB6fas1cg6JSTNcZ3G6Jxo1OA@mail.gmail.com>
+Subject: Re: [PATCH v2 0/1] Meson8b RGMII Ethernet pin cleanup
+To: Jianxin Pan <jianxin.pan@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181229_051824_971479_C83BE016 
-X-CRM114-Status: GOOD (  15.32  )
+X-CRM114-CacheID: sfid-20181229_042557_169724_B6726498 
+X-CRM114-Status: GOOD (  14.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -85,51 +89,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linus.luessing@c0d3.blue, linux-arm-kernel@lists.infradead.org
+Cc: linus.luessing@c0d3.blue, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, ingrassia@epigenesys.com,
+ khilman@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin, 
+Hi Jianxin,
+
+that was very quick!
+
+On Sat, Dec 29, 2018 at 6:17 AM Jianxin Pan <jianxin.pan@amlogic.com> wrote:
+>
+> Hi Martin,
+>
+>
+> PERIPHS_PIN_MUX_7:
+> - register 7 bit 22: ETH_RXD3 (DIF_TTL_2_P)
+> - register 7 bit 23: ETH_RXD2 (DIF_TTL_2_N)
+perfect, thank you - that is exactly the information I need to add the
+missing bits to the pinctrl-meson8b driver
+finally Odroid-C1 won't drop packets when transferring data anymore
+and we rely less on the bootloader to set up the pin mux :)
+
+> On 2018/12/29 8:08, Martin Blumenstingl wrote:
+> > Hi Emiliano, Hi Linus, Hi Jianxin,
+> >
+> > could you please test the patch from this series on your Odroid-C1?
+> > I tested it on mine and Ethernet seems to be improve Ethernet transmit
+> > speeds greatly (at the cost of a small drop in receive performance).
+> >
+> > Jianxin, can you please give us the description for pin mux register 7
+> > (PERIPHS_PIN_MUX_7) bits 22 and 23 on Meson8b (S805). The public
+> > datasheet doesn't mention them so we're missing the name of the function
+> > and the pin(s) which are controlled by each bit.
+I will send an updated series (which will include a pinctrl-meson8b
+patch and an updated .dts patch) later on
 
 
-PERIPHS_PIN_MUX_7: 
-- register 7 bit 22: ETH_RXD3 (DIF_TTL_2_P)
-- register 7 bit 23: ETH_RXD2 (DIF_TTL_2_N)
-
-On 2018/12/29 8:08, Martin Blumenstingl wrote:
-> Hi Emiliano, Hi Linus, Hi Jianxin,
-> 
-> could you please test the patch from this series on your Odroid-C1?
-> I tested it on mine and Ethernet seems to be improve Ethernet transmit
-> speeds greatly (at the cost of a small drop in receive performance).
-> 
-> Jianxin, can you please give us the description for pin mux register 7
-> (PERIPHS_PIN_MUX_7) bits 22 and 23 on Meson8b (S805). The public
-> datasheet doesn't mention them so we're missing the name of the function
-> and the pin(s) which are controlled by each bit.
-> 
-> 
-> Changes since v1 at [0]:
-> - rebased so it applies on top of "ARM: dts: meson: meson8b: add the CPU
->   OPP tables" which will be part of v4.20-rc1 once the arm-soc tree is
->   merged into mainline
-> - updated patch description with more details
-> 
-> 
-> [0] http://lists.infradead.org/pipermail/linux-amlogic/2018-May/007274.html
-> 
-> 
-> Martin Blumenstingl (1):
->   ARM: dts: meson8b: drop eth_txd0_1 and eth_txd1_1 from eth_rgmii_pins
-> 
->  arch/arm/boot/dts/meson8b.dtsi | 2 --
->  1 file changed, 2 deletions(-)
-> 
-
-
-
+Regards
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
