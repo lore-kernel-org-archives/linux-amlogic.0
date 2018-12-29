@@ -1,91 +1,89 @@
-Return-Path: <SRS0=7NJC=PF=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=R8f+=PG=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7CBC4C43387
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Dec 2018 10:51:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C0F20C43387
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Dec 2018 00:09:14 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4CECB20855
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Dec 2018 10:51:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9232F20811
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Dec 2018 00:09:14 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RgJaX+X/";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="aFwiDCyS"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4CECB20855
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Qv++l5IS";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="cHtQglq8"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9232F20811
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:References:
-	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=6fNhrYyszzz616K5/m28TweUiIbSnHkmM2blMYe6zQA=; b=RgJaX+X/Zv9YIajPTY6X1xpOWd
-	bCnoaw0BgaRgb9ysZQyy/+tw8TycHZX1ICYz2mPFaKf6YTOwcRlQm3HYxuwJHxQHakr9idpzW6+Ln
-	3v2V2uw0G11Ox2GJbTigvgqG6i3CIWe/Yf5rYV6L2m+x/OOuFW0sV5PZLbF/2HBgZcJPWuaqZtnO8
-	O/M6eNzoMe49TZJB0zGMWQ/v3XrfhwSzySUPECIO770CBxKBNkdNHO1tGaaOnEngz+OzQ7Zhvna0h
-	WIPqGDtO00Km0Fvy6vGDqdBCdiwOhEc8Vxf0TyzmByxla2+jL7r0aNn4TPK0JWnTcdXd7xD8adySQ
-	MJpIrtRg==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=uGoN9wBzoQRm8FvMLvDPMY/o9O2qvLRDvJmIMML9uTk=; b=Qv++l5IS41C26D
+	CiMIJKNRlERU6uwN3SIutbXDKWFrKbOWtjpWAKRw2G3XogLo/POMA9rC/oRjc84an0k/tzzgnDonL
+	j6IGq7IgjIzLVbuoL1IwYKNW5ypUv+f65YlKeU4vgaSzsFg9gWtsUhWrN0esD9T/81RUGmpSkRIdS
+	McTCdYnRGjzbkPayvsWhUoHH+HYt6EQBGXZ9aTloTxtkAYn/qTcKT5N2ZHonnfsVxmblZ72ykMu1Z
+	WKy6oeqSc5Ahf7nrW7RowO7ra0DdW/7VikRCCnXjphKRNpjqOQq1b9nX9+1fIVYv3eOLA3Z0o8ll6
+	iRKrPH3qdNNZzTSWxgbg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gcpjx-00023L-V6; Fri, 28 Dec 2018 10:51:41 +0000
-Received: from mail-ed1-x542.google.com ([2a00:1450:4864:20::542])
+	id 1gd2Be-0003e6-8S; Sat, 29 Dec 2018 00:09:06 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gcpju-0001te-Mu
- for linux-amlogic@lists.infradead.org; Fri, 28 Dec 2018 10:51:40 +0000
-Received: by mail-ed1-x542.google.com with SMTP id f23so17259156edb.3
- for <linux-amlogic@lists.infradead.org>; Fri, 28 Dec 2018 02:51:28 -0800 (PST)
+ id 1gd2Bb-0003dF-Gk; Sat, 29 Dec 2018 00:09:05 +0000
+Received: by mail-wm1-x342.google.com with SMTP id t200so8799801wmt.0;
+ Fri, 28 Dec 2018 16:08:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=pN+0H3y7M98gFOz3pfkSQa2FcPvqO1nl4jQ3jTi1QzQ=;
- b=aFwiDCySvFSvTZrm8Ir/JlvumNXzF/UxvhR/BFapRrZXBaldRpztzlW9s0R8SkXb21
- HgwATwjxkaZG5/qQRA3ppFge4e8M26J6ECXYoYijcYGQxwQaCjVNmsDSxffRGruVBHg1
- pxA/MVX6cQPIGw0HSgnbyrbL+sAvzjdCmKITuvEOjtpbZhviZ2lRAV+cvZdzaeR4vm+2
- NIDRyykqdK+rTfLiPzb/8hXgLPTXottM0XllCmpGrwUBMsOtj0mV7qOsGfvOp73WiZ/0
- VMHgl5Wcqsy9Y+B3LLW06NUJqIYFd1Lc7XkTRLc9BHUaWp6Ph5NrwPK8UhdR9PfPtajt
- k+fw==
+ d=googlemail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=h3edaX4wyMbrYE7r0apmKbA/nQOmneme80hZKJKOv7M=;
+ b=cHtQglq872JWG+//GLzPKWmI/yZFH4ums72ISaehwqhmIwOdh/2BMtyEYmcO3R0QjP
+ Fp1scW8NEAlyjRw8ueL8c5HuuCAXidAr3DB3XcYsJscc1OMQhu8ZPIpA8rkCScqbnaA7
+ rH0z7g2LlJ2RcODLCO8fBAOuHlSwuyOnZPAyzdQT7IyG+Mrgcx48rTa7A2JNPWtNkqV/
+ 0FL5SSTfkNgBAtScw9JvfsCIwK29dAdB+unnyurHARxmyxq4P8X59oMJAWA3yY694F+Y
+ SHAS07QfFcpgj42+E6Z5HExqsDQxKZUahx869rgDq2Ujm5A1C3tFLYX49gbLgijQ7hPf
+ 6l8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=pN+0H3y7M98gFOz3pfkSQa2FcPvqO1nl4jQ3jTi1QzQ=;
- b=FQ0C8XHaRZAVcWASASAB8nKE/RuNXAgKDzIV8+7fZmWBwhKybbeo5F23JleJ7JRsdJ
- OdhM7Geg2o0E1Bwy/1GU1YdCXE2l81dfPJXmBuoLc11GMyriJuD+L9bxDIIWllhJIYpw
- S/n1dMeqQCWlLILOjPBcdjy6Z/ojkpeNV0Pf8njZ0uCDUd84FAfjHq5PTf2KlLLzHRdw
- CfHYcM412pUosoccLO3Wf7UQZYlyobvCeoFaoA4Vn1FD2TkQzVdydLuyb+zoIp3LvY6Z
- oPGZSgseTuKOZy312TFiu7wZSOj1xekRiF5JCsZIK8rVJk2RNxp/kJXVDs5ITVxoiyVS
- HMzA==
-X-Gm-Message-State: AA+aEWYQB9+C6190VNb85tSV3fbQgdcD6qmo8AbTLJjoVlzxTspANz0T
- IMrQn9NXilOj5BPGb0UMC9E19Q==
-X-Google-Smtp-Source: AFSGD/WjvTnSh/NAGr8ZC5gwuY2lQUjlJrvrB15WUgGdHqZ/hiMx46btTXX2yJGIxKdqCY0Ac0YYIQ==
-X-Received: by 2002:a17:906:914:: with SMTP id
- i20-v6mr18483859ejd.225.1545994287118; 
- Fri, 28 Dec 2018 02:51:27 -0800 (PST)
-Received: from loys-ubuntu-BY1835A49200471.home
- (anice-157-1-157-17.w83-201.abo.wanadoo.fr. [83.201.132.17])
- by smtp.googlemail.com with ESMTPSA id b45sm12919494eda.34.2018.12.28.02.51.25
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Fri, 28 Dec 2018 02:51:26 -0800 (PST)
-From: Loys Ollivier <lollivier@baylibre.com>
-To: devicetree@vger.kernel.org,
-	Johan Hovold <johan@kernel.org>
-Subject: [PATCH 4/4] gnss: add driver for globaltop receivers
-Date: Fri, 28 Dec 2018 11:50:35 +0100
-Message-Id: <1545994235-8309-5-git-send-email-lollivier@baylibre.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1545994235-8309-1-git-send-email-lollivier@baylibre.com>
-References: <1545994235-8309-1-git-send-email-lollivier@baylibre.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=h3edaX4wyMbrYE7r0apmKbA/nQOmneme80hZKJKOv7M=;
+ b=SWXc2ILB2CEuA23BZBAvYUo4quWFQzjWvPi15qgnKooogB/sfn0gbUYbm57COkBSnl
+ p4y0X3x2M0F0fXZcNi/xfImBSVopqLnr4z1GuyPnmilKtRvAYn/OfBfzYCGmhUH4lI5K
+ MJV/1DZZ73QWbgWUc9jOTPsg4UxDnJgc0gEfAlltXIsytPLxYMgn68tE7biZoYkC5tJb
+ Cv9dFjSQ/qKjBwhV4QX3DYm9WYB6yC1CaFtn0X2kzipeLiN2NMpyhFeweBw6V6L2Gsaw
+ aSWTSGzeGITMr8C6uaEb5sGx+pLh3k+KV+aDJPCmq1SlMlRd/H0qNTHoPXemAkIilI4v
+ tZXw==
+X-Gm-Message-State: AJcUukfWc+fSROkeRIX7NdZKtaDanRj2KiZeyynY4vJf6/5NXod8EJLK
+ 0ruHm/ytLgDN2uuncuJZeVQ=
+X-Google-Smtp-Source: AFSGD/UKuU7V7yYzp2yKMH0U5RU8skBJKQhFBo82EC3l2ajkDUR2QSGq9iM1EgHkyD5oUsLxv9McPw==
+X-Received: by 2002:a1c:9183:: with SMTP id t125mr24498450wmd.79.1546042131071; 
+ Fri, 28 Dec 2018 16:08:51 -0800 (PST)
+Received: from blackbox.darklights.net
+ (p200300DCD7294600658C35E37AF585B6.dip0.t-ipconnect.de.
+ [2003:dc:d729:4600:658c:35e3:7af5:85b6])
+ by smtp.googlemail.com with ESMTPSA id f18sm24420570wrs.92.2018.12.28.16.08.49
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 28 Dec 2018 16:08:50 -0800 (PST)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: jianxin.pan@amlogic.com, linux-amlogic@lists.infradead.org,
+ khilman@baylibre.com, ingrassia@epigenesys.com
+Subject: [PATCH v2 0/1] Meson8b RGMII Ethernet pin cleanup
+Date: Sat, 29 Dec 2018 01:08:28 +0100
+Message-Id: <20181229000829.16571-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181228_025138_743532_8243312D 
-X-CRM114-Status: GOOD (  19.03  )
+X-CRM114-CacheID: sfid-20181228_160903_582426_FDDA50F9 
+X-CRM114-Status: GOOD (  10.46  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,245 +95,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Kevin Hilman <khilman@baylibre.com>,
- Loys Ollivier <lollivier@baylibre.com>, linux-kernel@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, linux-amlogic@lists.infradead.org
-MIME-Version: 1.0
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linus.luessing@c0d3.blue, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add driver for serial-connected GlobalTop GNSS receivers.
+Hi Emiliano, Hi Linus, Hi Jianxin,
 
-These devices typically boot transmitting vendor specific NMEA output
-sequences. The serial port bit rate is read from the device tree
-"current-speed".
+could you please test the patch from this series on your Odroid-C1?
+I tested it on mine and Ethernet seems to be improve Ethernet transmit
+speeds greatly (at the cost of a small drop in receive performance).
 
-Note that the driver uses the generic GNSS serial implementation and
-therefore essentially only manages power abstracted into three power
-states: ACTIVE, STANDBY, and OFF.
+Jianxin, can you please give us the description for pin mux register 7
+(PERIPHS_PIN_MUX_7) bits 22 and 23 on Meson8b (S805). The public
+datasheet doesn't mention them so we're missing the name of the function
+and the pin(s) which are controlled by each bit.
 
-For globaltop receivers with a main supply and no enable-gpios, this simply
-means that the main supply is disabled in STANDBY and OFF (the optional
-backup supply is kept enabled while the driver is bound).
 
-Note that the timepulse-support is left unimplemented.
+Changes since v1 at [0]:
+- rebased so it applies on top of "ARM: dts: meson: meson8b: add the CPU
+  OPP tables" which will be part of v4.20-rc1 once the arm-soc tree is
+  merged into mainline
+- updated patch description with more details
 
-Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
----
- drivers/gnss/Kconfig  |  13 +++++
- drivers/gnss/Makefile |   3 +
- drivers/gnss/core.c   |   1 +
- drivers/gnss/gtop.c   | 152 ++++++++++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 169 insertions(+)
- create mode 100644 drivers/gnss/gtop.c
 
-diff --git a/drivers/gnss/Kconfig b/drivers/gnss/Kconfig
-index 6abc88514512..c93ad134656b 100644
---- a/drivers/gnss/Kconfig
-+++ b/drivers/gnss/Kconfig
-@@ -40,4 +40,17 @@ config GNSS_UBX_SERIAL
- 
- 	  If unsure, say N.
- 
-+config GNSS_GTOP_SERIAL
-+	tristate "GlobalTop GNSS receiver support"
-+	depends on SERIAL_DEV_BUS
-+	select GNSS_SERIAL
-+	help
-+	  Say Y here if you have a GlobalTop GNSS receiver which uses a serial
-+	  interface.
-+
-+	  To compile this driver as a module, choose M here: the module will
-+	  be called gnss-gtop.
-+
-+	  If unsure, say N.
-+
- endif # GNSS
-diff --git a/drivers/gnss/Makefile b/drivers/gnss/Makefile
-index 5cf0ebe0330a..becc45f24b8b 100644
---- a/drivers/gnss/Makefile
-+++ b/drivers/gnss/Makefile
-@@ -14,3 +14,6 @@ gnss-sirf-y := sirf.o
- 
- obj-$(CONFIG_GNSS_UBX_SERIAL)		+= gnss-ubx.o
- gnss-ubx-y := ubx.o
-+
-+obj-$(CONFIG_GNSS_GTOP_SERIAL)		+= gnss-gtop.o
-+gnss-gtop-y := gtop.o
-diff --git a/drivers/gnss/core.c b/drivers/gnss/core.c
-index 4291a0dd22aa..0b5cd82b1fb7 100644
---- a/drivers/gnss/core.c
-+++ b/drivers/gnss/core.c
-@@ -334,6 +334,7 @@ static const char * const gnss_type_names[GNSS_TYPE_COUNT] = {
- 	[GNSS_TYPE_NMEA]	= "NMEA",
- 	[GNSS_TYPE_SIRF]	= "SiRF",
- 	[GNSS_TYPE_UBX]		= "UBX",
-+	[GNSS_TYPE_GTOP]	= "GTOP",
- };
- 
- static const char *gnss_type_name(struct gnss_device *gdev)
-diff --git a/drivers/gnss/gtop.c b/drivers/gnss/gtop.c
-new file mode 100644
-index 000000000000..6fa7b425d711
---- /dev/null
-+++ b/drivers/gnss/gtop.c
-@@ -0,0 +1,152 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * GlobalTop GNSS receiver driver
-+ *
-+ * Copyright (C) 2018 Loys Ollivier <loys.ollivier@gmail.com>
-+ */
-+
-+#include <linux/errno.h>
-+#include <linux/gnss.h>
-+#include <linux/init.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/serdev.h>
-+
-+#include "serial.h"
-+
-+struct gtop_data {
-+	struct regulator *v_bckp;
-+	struct regulator *vcc;
-+};
-+
-+static int gtop_set_active(struct gnss_serial *gserial)
-+{
-+	struct gtop_data *data = gnss_serial_get_drvdata(gserial);
-+	int ret;
-+
-+	ret = regulator_enable(data->vcc);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int gtop_set_standby(struct gnss_serial *gserial)
-+{
-+	struct gtop_data *data = gnss_serial_get_drvdata(gserial);
-+	int ret;
-+
-+	ret = regulator_disable(data->vcc);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int gtop_set_power(struct gnss_serial *gserial,
-+				enum gnss_serial_pm_state state)
-+{
-+	switch (state) {
-+	case GNSS_SERIAL_ACTIVE:
-+		return gtop_set_active(gserial);
-+	case GNSS_SERIAL_OFF:
-+	case GNSS_SERIAL_STANDBY:
-+		return gtop_set_standby(gserial);
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static const struct gnss_serial_ops gtop_gserial_ops = {
-+	.set_power = gtop_set_power,
-+};
-+
-+static int gtop_probe(struct serdev_device *serdev)
-+{
-+	struct gnss_serial *gserial;
-+	struct gtop_data *data;
-+	int ret;
-+
-+	gserial = gnss_serial_allocate(serdev, sizeof(*data));
-+	if (IS_ERR(gserial)) {
-+		ret = PTR_ERR(gserial);
-+		return ret;
-+	}
-+
-+	gserial->ops = &gtop_gserial_ops;
-+
-+	gserial->gdev->type = GNSS_TYPE_GTOP;
-+
-+	data = gnss_serial_get_drvdata(gserial);
-+
-+	data->vcc = devm_regulator_get(&serdev->dev, "vcc");
-+	if (IS_ERR(data->vcc)) {
-+		ret = PTR_ERR(data->vcc);
-+		goto err_free_gserial;
-+	}
-+
-+	data->v_bckp = devm_regulator_get_optional(&serdev->dev, "v-bckp");
-+	if (IS_ERR(data->v_bckp)) {
-+		ret = PTR_ERR(data->v_bckp);
-+		if (ret == -ENODEV)
-+			data->v_bckp = NULL;
-+		else
-+			goto err_free_gserial;
-+	}
-+
-+	if (data->v_bckp) {
-+		ret = regulator_enable(data->v_bckp);
-+		if (ret)
-+			goto err_free_gserial;
-+	}
-+
-+	ret = gnss_serial_register(gserial);
-+	if (ret)
-+		goto err_disable_v_bckp;
-+
-+	return 0;
-+
-+err_disable_v_bckp:
-+	if (data->v_bckp)
-+		regulator_disable(data->v_bckp);
-+err_free_gserial:
-+	gnss_serial_free(gserial);
-+
-+	return ret;
-+}
-+
-+static void gtop_remove(struct serdev_device *serdev)
-+{
-+	struct gnss_serial *gserial = serdev_device_get_drvdata(serdev);
-+	struct gtop_data *data = gnss_serial_get_drvdata(gserial);
-+
-+	gnss_serial_deregister(gserial);
-+	if (data->v_bckp)
-+		regulator_disable(data->v_bckp);
-+	gnss_serial_free(gserial);
-+};
-+
-+#ifdef CONFIG_OF
-+static const struct of_device_id gtop_of_match[] = {
-+	{ .compatible = "globaltop,pa6h" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, gtop_of_match);
-+#endif
-+
-+static struct serdev_device_driver gtop_driver = {
-+	.driver	= {
-+		.name		= "gnss-gtop",
-+		.of_match_table	= of_match_ptr(gtop_of_match),
-+		.pm		= &gnss_serial_pm_ops,
-+	},
-+	.probe	= gtop_probe,
-+	.remove	= gtop_remove,
-+};
-+module_serdev_device_driver(gtop_driver);
-+
-+MODULE_AUTHOR("Loys Ollivier <loys.ollivier@gmail.com>");
-+MODULE_DESCRIPTION("GlobalTop GNSS receiver driver");
-+MODULE_LICENSE("GPL v2");
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2018-May/007274.html
+
+
+Martin Blumenstingl (1):
+  ARM: dts: meson8b: drop eth_txd0_1 and eth_txd1_1 from eth_rgmii_pins
+
+ arch/arm/boot/dts/meson8b.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
+
 -- 
-2.7.4
+2.20.1
 
 
 _______________________________________________
