@@ -2,82 +2,88 @@ Return-Path: <SRS0=R8f+=PG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-3.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3B038C43444
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Dec 2018 12:26:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5FF41C43387
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Dec 2018 12:57:54 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 08DDF20836
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Dec 2018 12:26:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2674E2176F
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Dec 2018 12:57:54 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="c9gTf+y8";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="vA4cPQdi"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 08DDF20836
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KgGcDfr0";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="fP1kLUwi"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2674E2176F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=y8gj9za2S8WD3rf1Oyl4cvq+HlLspCBwojBHMGDU3y4=; b=c9gTf+y8E1pHEa
-	XypTfdeaooAcLUtqXA1lOQoIiLu4PGECpNmaEt4mTFQ2d59w4WMTm9o/Cb7E/Ie2C9A+79rDzgsBz
-	s+fn1y3jCgseMSeapveR1YFzz5unOWMx28ab7yDvKcWHJgMeN8d3PU11e8oW89n7snACFbR+pFkwl
-	jGD141xhIEU/QAmMvAOZEDp6q2wt+aV6/BBglor3ii8x8srDkq7qsGEbOaK5J35Q8yjTjZzzzv1iF
-	mvHBdG4QaGcgAKJo0UUTQ72oi3r33Yto12Bmi0351FQLziL6lT8FH9kRjJ0kOq9DxD4Icfldevh3z
-	X+VW7Xbncho+m12uT2IQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=DnUU0zcNzv+0t/vatN/g57H0L052+89J7dyIRobUzg4=; b=KgGcDfr0cEByDF
+	sOjXi4nRdsO5ASZ+w0rKN87WrxEnHV8wsGMVMLpZs2arLg7WdoJ79EBqNr7mbwjMnotgxmGL9bz0A
+	qZqFhDyZCLKBxIahg6m3drHIiO1d9AWzMQP8WaoDXBdWEG6AJROmxCscynEWymW6nFty5/gglbJvt
+	y7xAqcMIBaOQoixUrX4VrV4fgDacvT9gSUmrDc+vdvQDpQTh86b29NlJY3pqzUSxbmbqcH7WZEwXT
+	l4Ji3xk9tZ/l+n5K3MzvhyoKy0581cI3nyNZGc49WFwdeFcJ2+yQ0mRofy2+Xa+uGD7HwGgf5WljS
+	c1OFt9KG/ycVgIMKGNIw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gdDgn-00020q-3U; Sat, 29 Dec 2018 12:26:01 +0000
-Received: from mail-oi1-x241.google.com ([2607:f8b0:4864:20::241])
+	id 1gdEBY-0002yn-SV; Sat, 29 Dec 2018 12:57:48 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gdDgj-000205-3H; Sat, 29 Dec 2018 12:25:58 +0000
-Received: by mail-oi1-x241.google.com with SMTP id c206so19170972oib.0;
- Sat, 29 Dec 2018 04:25:44 -0800 (PST)
+ id 1gdEBV-0002wd-Ig; Sat, 29 Dec 2018 12:57:47 +0000
+Received: by mail-wr1-x444.google.com with SMTP id p4so23050703wrt.7;
+ Sat, 29 Dec 2018 04:57:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=At8Z0beYHRSvlsti0QXxf9k/j7v0y/lOrHlNXb8ApqA=;
- b=vA4cPQdiCPDwi8tCWrgz2yrTchJYFabxsJHtPXqdKjyzhWFyNosk+4VRJLS8yaOTHp
- ghA3gyKa8gqIuhnbqdMJUIee1lB2CxijsDxnuKbTSC/LEmsiapVmD5uV3eOHRs0yuHBq
- rR6U5ljOtOHsX34LWb6ftwVDyD+zpzqOP2z6JSAEPq9ZdddUHt0IKXw43ivunWQfk78f
- u8lOdZCHcFzWzgnHO6Ee9SHx2qHkbgb8ukxmRKYYQVE+Irc0qTof4TZRYEvtp5+eSKM4
- AZjC+J5OT0cK3gOtVeec/oXISU18heuofdMQ6zH61lGXhBmhIOFU/tmKZQngA/XRJDLe
- CxRA==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=nErJpKAwV6v3cNENjeI9CDTkclquEZvVeh0G8X/uw04=;
+ b=fP1kLUwipjo7o1AqmxrKUs+2djifqLaZq7ixEd5WR2bwQNpe+MxQGxRo5utxAxCII3
+ JIBrbENkC71sIdgqJE09HU97vnmUmlCZ+ZNsJgGbEJuS3W5ByTXxgQ6kQmxpBJ6UlqMh
+ fHMsVbLYOHbJBP4RcO0Bv9ngO+EJUTgmusktd/whH3lL+5SHCtvbfSYs/dXfUNNItck0
+ pceYtHZRFP8cEg/LgW7TWw0VUSxkik6s1fkqpsxu793FSZkQoeOkAsIsCQQuMrlYot0x
+ p1Vf9lfg6XUOQkB1nOorC7GyEqoqJiPb51gVk0uStIalXnncFX2WX+Bzc+x+cz5LfGSd
+ Fylg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=At8Z0beYHRSvlsti0QXxf9k/j7v0y/lOrHlNXb8ApqA=;
- b=ggZ1ckN5qqjncscjA9SdZZtNmGob076pT20kKyQC24gvlw90LAzReyxbXOAFv4Ttnq
- 9bC4ZfbuXl3ytL5tAqesOpiyYsjfc0tW146vi5RcGIozBfjItwvRYb7ycWiuHLfilyGC
- WdruLG+7BkqV9wj8nA5svqEhETEvMkjlM4+Cfrzjj4aGlQ5O2lFLe9Bi34SkDKJIlAii
- pjEOIBuZzAj5fSTklzPPA61pmVv+VGclGkLeBEx/RdB0bg1hygNAi/tkygBJCzF3sLmO
- lYTQ62OQff6BlfWcSB/RWpKjNf+N5TXldTnjOmFwmxse9CeqMG9XC524BFORy1yNQRTK
- dr7A==
-X-Gm-Message-State: AA+aEWbSGvMI5d/PYFcj28lcSKK4Erqr8Q0uMbRQJjwqe5tn8MkIOtY0
- URGX0O0xEFEfeJZ4Js98gSmmuhDpBmDWSRMHKCxmnA==
-X-Google-Smtp-Source: AFSGD/UM07oeCxok/vDA5zAaLLhhI1w7whF31E7mxEiwZ0gyP5okanSECLlXcf/+1HhJ9I+pfa8zBL1iNplB7YMOAIs=
-X-Received: by 2002:aca:4b48:: with SMTP id y69mr20722247oia.200.1546086343742; 
- Sat, 29 Dec 2018 04:25:43 -0800 (PST)
-MIME-Version: 1.0
-References: <20181229000829.16571-1-martin.blumenstingl@googlemail.com>
- <491fb35b-3e2a-89ab-94c6-c9e8d89a1b01@amlogic.com>
-In-Reply-To: <491fb35b-3e2a-89ab-94c6-c9e8d89a1b01@amlogic.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=nErJpKAwV6v3cNENjeI9CDTkclquEZvVeh0G8X/uw04=;
+ b=m5UatkBXy0OIRaJy6fJIWxs6uvPCdr1M+JR4cxchL7IWOuhbCWBj7kMiiWZMtOB8bT
+ 4GUo9cPL+xNtUoTcW3nHWrcxF5RTKzHc14UpEjoWYC4FNTzocYoCbHrbCxBuvFYhgssQ
+ TO84tGi0rGn95qmn7iNIqVDK02KoE5O0bHh6D5Unm5NVySRDcJk2WQJgGQ2b+2p4VszI
+ 94EtI4/6n+YlxtEEsxJF7gdVySxgl585DHVDdXEjEO2K0lj2qdDZqBBaIPPfbGP5GHyN
+ 7EScGHePfxAVkmtiQNjm8pHOzQ0M7o3jxGVaL+QPjYvZYam6TqSNJdT+OPzcdvBU0wpX
+ Vviw==
+X-Gm-Message-State: AJcUukfSi/FTV44IE28dc7cabT9DIf5y2QbXjqozFGkK/eGghvsL1fTq
+ jaEUdMBuczcducHnJiZW3YCeL5k1
+X-Google-Smtp-Source: ALg8bN4fyuA4pZj7UtJ0m0t5JRJztB1zmBIcdw+CwAo3wQgD6BECjRbGyBfOFc+P5eHHqvHYX4wegw==
+X-Received: by 2002:adf:a28d:: with SMTP id s13mr29769487wra.100.1546088253189; 
+ Sat, 29 Dec 2018 04:57:33 -0800 (PST)
+Received: from blackbox.darklights.net
+ (p200300DCD7294600914F24DE1716D3FC.dip0.t-ipconnect.de.
+ [2003:dc:d729:4600:914f:24de:1716:d3fc])
+ by smtp.googlemail.com with ESMTPSA id h17sm31987059wrt.59.2018.12.29.04.57.31
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Sat, 29 Dec 2018 04:57:32 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 29 Dec 2018 13:25:32 +0100
-Message-ID: <CAFBinCCQgpyoNGRh0WBziL0piyB6fas1cg6JSTNcZ3G6Jxo1OA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/1] Meson8b RGMII Ethernet pin cleanup
-To: Jianxin Pan <jianxin.pan@amlogic.com>
+To: linux-amlogic@lists.infradead.org, khilman@baylibre.com,
+ linus.walleij@linaro.org
+Subject: [PATCH 0/3] ARM: dts: meson: fix SD card cd-gpio (pre v4.21-rc)
+Date: Sat, 29 Dec 2018 13:57:08 +0100
+Message-Id: <20181229125711.5205-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181229_042557_169724_B6726498 
-X-CRM114-Status: GOOD (  14.32  )
+X-CRM114-CacheID: sfid-20181229_045745_621539_68E43994 
+X-CRM114-Status: GOOD (  15.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -89,48 +95,78 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linus.luessing@c0d3.blue, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, ingrassia@epigenesys.com,
- khilman@baylibre.com
+Cc: linus.luessing@c0d3.blue, bgolaszewski@baylibre.com, balbes-150@yandex.ru,
+ linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux@roeck-us.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jianxin,
+Today I noticed that my Odroid-C1 doesn't see it's SD card anymore.
+My board is not the only one, Odroid-C1 on KernelCI suffers from the
+same problem:
+v4.20-6428-g00c569b567c7 still sees the SD card (mmc0): [0]
+v4.20-8955-g903b77c63167 doesn't see the SD card (mmc0) anymore: [1]
 
-that was very quick!
+My Endless Mini (EC-100) is also affected by this issue.
 
-On Sat, Dec 29, 2018 at 6:17 AM Jianxin Pan <jianxin.pan@amlogic.com> wrote:
->
-> Hi Martin,
->
->
-> PERIPHS_PIN_MUX_7:
-> - register 7 bit 22: ETH_RXD3 (DIF_TTL_2_P)
-> - register 7 bit 23: ETH_RXD2 (DIF_TTL_2_N)
-perfect, thank you - that is exactly the information I need to add the
-missing bits to the pinctrl-meson8b driver
-finally Odroid-C1 won't drop packets when transferring data anymore
-and we rely less on the bootloader to set up the pin mux :)
+a git bisect run points to this commit:
+89a5e15bcba87df5120d4656e0ff33d4f7cd6152 ("gpio/mmc/of: Respect polarity
+in the device tree")
 
-> On 2018/12/29 8:08, Martin Blumenstingl wrote:
-> > Hi Emiliano, Hi Linus, Hi Jianxin,
-> >
-> > could you please test the patch from this series on your Odroid-C1?
-> > I tested it on mine and Ethernet seems to be improve Ethernet transmit
-> > speeds greatly (at the cost of a small drop in receive performance).
-> >
-> > Jianxin, can you please give us the description for pin mux register 7
-> > (PERIPHS_PIN_MUX_7) bits 22 and 23 on Meson8b (S805). The public
-> > datasheet doesn't mention them so we're missing the name of the function
-> > and the pin(s) which are controlled by each bit.
-I will send an updated series (which will include a pinctrl-meson8b
-patch and an updated .dts patch) later on
+and indeed, reverting it makes my Odroid-C1 and EC-100 see the SD card
+again.
+
+However, while reviewing the .dts files for the 32-bit Amlogic Meson
+boards I found that the cd-gpios are specified incorrectly in the .dts.
+Documentation/devicetree/bindings/mmc/mmc.txt states: "[...] using the
+"cd-inverted" property means, that the CD line is active high, i.e. it
+is high, when a card is inserted".
+This is not the case on all currently supported 32-bit Meson boards, so
+this switches the cd-gpios
+- from GPIO_ACTIVE_HIGH with the "cd-inverted" property being set
+- to GPIO_ACTIVE_LOW with the "cd-inverted" property being absent
+
+This fix also works even if the following two commits are reverted:
+- 89a5e15bcba87d ("gpio/mmc/of: Respect polarity in the device tree")
+- 81c85ec15a1946 ("gpio: OF: Parse MMC-specific CD and WP properties")
+
+Linus, I have seen that there was some fallout that commit
+89a5e15bcba87d ("gpio/mmc/of: Respect polarity in the device tree") is
+supposed to fix. In commit 81c85ec15a1946 ("gpio: OF: Parse
+MMC-specific CD and WP properties") you mentioned "the [MMC]  core will
+use the MMC_CAP2_CD_ACTIVE_HIGH [...] I plan to clean this up at a later
+point passing the handling of inversion semantics over to gpiolib". I'm
+not sure how the MMC core / GPIO subsystem is supposed to handle the
+"cd-inverted" case since I believe this property is now evaluated twice:
+- first in of_gpio_flags_quirks
+- but also in mmc_gpio_get_cd (using ctx->override_cd_active_level)
+doesn't this essentially make "cd-inverted" a no-op?
+(attention: this series only fixes three 32-bit Meson boards, but I
+believe that this issue is not limited to the 32-bit Meson boards)
 
 
-Regards
-Martin
+[0] https://kernelci.org/boot/id/5c25a73d59b51464fb6edd2c/
+[1] https://kernelci.org/boot/id/5c27306159b514268f6edd2e/
+
+
+Martin Blumenstingl (3):
+  ARM: dts: meson8b: odroidc1: mark the SD card detection GPIO
+    active-low
+  ARM: dts: meson8b: ec100: mark the SD card detection GPIO active-low
+  ARM: dts: meson8m2: mxiii-plus: mark the SD card detection GPIO
+    active-low
+
+ arch/arm/boot/dts/meson8b-ec100.dts       | 3 +--
+ arch/arm/boot/dts/meson8b-odroidc1.dts    | 3 +--
+ arch/arm/boot/dts/meson8m2-mxiii-plus.dts | 3 +--
+ 3 files changed, 3 insertions(+), 6 deletions(-)
+
+-- 
+2.20.1
+
 
 _______________________________________________
 linux-amlogic mailing list
