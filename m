@@ -2,83 +2,78 @@ Return-Path: <SRS0=R8f+=PG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
-	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E9693C43387
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Dec 2018 00:18:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 67D86C43387
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Dec 2018 05:18:39 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B843E218FD
-	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Dec 2018 00:18:36 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 273D620857
+	for <linux-amlogic@archiver.kernel.org>; Sat, 29 Dec 2018 05:18:39 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KylVCi5b";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="bVJw7CmI"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B843E218FD
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dbIowtGK";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="EHDkEx6J"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 273D620857
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vIT+eMJXy25zjhzJEi8yLPo1vDniNWwX2TurNozEIWQ=; b=KylVCi5biuGcCD
-	SugRj00Al5U81sXIinbz9Ao83BpYCckrNRSZPS07ogmsDHaXPXA9AkGNywC4M/KxyFVbjNbXlNhfl
-	U3AZt7CGNWfgeypAeyEb23gFZGrPDyYcLMVLnrjv3ew31spKxiKdmRPI+robi0yCWG2C7jeWnLMRc
-	bqtnpGISz6yoKC7pHdqfmWp0NTwMaq3+6LLQ7sUwzn2cDjQLgGHXHwsgGK6bouQ+ucoNxjnsEycau
-	91rJcoTyfB0d/d/er+bpZeM70tB3fp75UHG96D9L6tQCHiXvFjC++YMvMiN8wXsBgN2WfU5gmWTRx
-	YiMIb4AetwTRAJ+HeuSw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=k8urPVogWrl/cLs9c4In+zYh/pWn5AwlKRmEIj4OhBY=; b=dbIowtGK1vzr/O
+	FArv5U5qApjfFiMgIzvjUvZC3uub9jAt8LKrYAH8sSZGZsr9xoSe5gdjFHgwLvXslOnuRaCDuEPJH
+	Fo1KkWvpkMHv6PGld4V4VbwhuoQpZ6//mXorDKdTMlmcjUP3SVp+V3IFjwsSiWXNHU/m5k60t1PGI
+	oS5lrhhtkvlnnuqFUfRv18z+7WuM4adSJYZHpXU//8nxJzqq+EdDsQ95qo4jfQdto7GiTkSkKglEg
+	Ehl/V+wamf3XJJQpsrz2lO6WWCX21SX0H28YM6wVYbhk4Jqj7RrHP+xiS0a1tZ6ILEhJSME8nzpkU
+	3KetMBJaecYvXQxyw1kQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gd2Kl-0007Dq-C0; Sat, 29 Dec 2018 00:18:31 +0000
-Received: from mail-oi1-x243.google.com ([2607:f8b0:4864:20::243])
+	id 1gd713-0000Ja-Eb; Sat, 29 Dec 2018 05:18:29 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gd2KW-00072H-La; Sat, 29 Dec 2018 00:18:18 +0000
-Received: by mail-oi1-x243.google.com with SMTP id i6so18433703oia.6;
- Fri, 28 Dec 2018 16:18:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=/On4rl9nC7fHOxodibFe92k7SNjM00V6xHIulJ25/jA=;
- b=bVJw7CmI3eIc3IjaAZPQRqsrJcGKGho8tU7ysgOaYEyrgOYUONb+GS3cKNBawnSoJ8
- 9bQeXGZBUYF+7Ij6H3fkYG2IeGihWOwhjtlarmY1J5YtkAcp7xgenYo8rPud1rtmQOxI
- bl6dSKUhX9hTZnuTq35FGvRuD9Q+InmV3AAHxAtBaL+HHMepnHHKf8DuaUydB1hBZSxn
- nQ/WwA+EEP5+rFoJ99hpF9cLd7VD6ozsAZPOTGo84S556REIjFENI3w+iWHYMBGg/M8I
- WdU/lvjlDATGI/WeAX8yPym/+ZWQX0E24L0zDQudZo3MFBy441J/LUYQkiXiB2LjKT5k
- 0LsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=/On4rl9nC7fHOxodibFe92k7SNjM00V6xHIulJ25/jA=;
- b=DPV4hMu4d7u5tx88ef98VbiUsy4tO0SemrsS6c2iz4Eodx9CVPjJaINEzgM+os8rHS
- KVZOW0qBPy7MIuVv5EomGpeJ4lO7AefgP56NfeYr4hy9vAjsZ4Kx5YC8aAVEBcwEOvEX
- vGe8L+p71ed8XUD/R1b57kSc794u9OTHGnD1ITaqXAEWktYc7FQBGuJZ7GXqVsTbVg7f
- wiD3DNxa/M9RS39W/EwBsrdNuWfairx76ZmJdmeRv2c2s1gTNNVl7cilwH5K1pkUI/cU
- /5Fw5ITAxPO0J3A+pKlWiFEeNTTsHHCAkNd9ZF/aHTtomztJJ/Gqyi6eM0LJy9qBv7mu
- 8JOg==
-X-Gm-Message-State: AJcUukf8D8gqBFyxAjhnRPiwEr5sXlXCeUOpumAXi+xRbaMWEetxjgK6
- OWO5qwEN4bl/LzMHGybIy7gLDOyH8OfL/LevfaM=
-X-Google-Smtp-Source: ALg8bN4kZ9qH4CKHPn3NRj1kjj+2giJc1xhESoNNtMUbOQobOaaokUruVgWuguOWuGdVRasSE4ZkTZUSRxNOsoJP78o=
-X-Received: by 2002:aca:34c2:: with SMTP id
- b185mr19655201oia.321.1546042685526; 
- Fri, 28 Dec 2018 16:18:05 -0800 (PST)
+ id 1gd712-0000JL-5S; Sat, 29 Dec 2018 05:18:28 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
+ In-Reply-To:MIME-Version:Date:Message-ID:From:References:CC:To:Subject:Sender
+ :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=76quiIRXNo94of8FwVdgBTWP6Ho7FAathenH62/uM80=; b=EHDkEx6JC26pw0VriaIEDPl4r7
+ xFEoDxGqWUe9n1fZudBYoGWmQFZMBbUqm0czcsqZ9X+3ZWByPtz7p9gEqaw0l7VW7R7LV3I0SL6+S
+ ZGzQ7lwj8KVYaNVuFhZ4NZ8cVwGJU3Aqow6+NDNo9fMRrS7aze1qENlCJXjS/iMDKJh5K7Ve//4m8
+ OTurquYpCz8mCpNP4I+i/HaH3j1vBmXm/SzcTGTX7FlVJDQ1d5KRgqr4pKJqDdDG7BjKN5flFUIkV
+ Afk+rgCYbnBRpCgM9cg0FPmgqcUOjYXq2tF3/rJgOpEmLcB0TMpLF9azktBoO0meSctSL00yDOaLc
+ 3UxfWfzw==;
+Received: from mail-sh2.amlogic.com ([58.32.228.45])
+ by casper.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1gd70y-0002s5-UI; Sat, 29 Dec 2018 05:18:26 +0000
+Received: from [192.168.0.111] (223.166.104.240) by mail-sh2.amlogic.com
+ (10.18.11.6) with Microsoft SMTP Server (TLS) id 15.0.1320.4; Sat, 29 Dec
+ 2018 13:18:04 +0800
+Subject: Re: [PATCH v2 0/1] Meson8b RGMII Ethernet pin cleanup
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ <linux-amlogic@lists.infradead.org>, <khilman@baylibre.com>,
+ <ingrassia@epigenesys.com>
+References: <20181229000829.16571-1-martin.blumenstingl@googlemail.com>
+From: Jianxin Pan <jianxin.pan@amlogic.com>
+Message-ID: <491fb35b-3e2a-89ab-94c6-c9e8d89a1b01@amlogic.com>
+Date: Sat, 29 Dec 2018 13:18:04 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.3.2
 MIME-Version: 1.0
-References: <20181207105231.25593-1-ccaione@baylibre.com>
- <20181207105231.25593-3-ccaione@baylibre.com>
-In-Reply-To: <20181207105231.25593-3-ccaione@baylibre.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 29 Dec 2018 01:17:54 +0100
-Message-ID: <CAFBinCAbOdPnsH4TLLBmMnR5tS+jHfHagWudVLjaH6X89vtgDQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] arm: dts: meson: Fix IRQ trigger type for macirq
-To: Carlo Caione <ccaione@baylibre.com>
+In-Reply-To: <20181229000829.16571-1-martin.blumenstingl@googlemail.com>
+Content-Language: en-US
+X-Originating-IP: [223.166.104.240]
+X-ClientProxiedBy: mail-sh2.amlogic.com (10.18.11.6) To mail-sh2.amlogic.com
+ (10.18.11.6)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181228_161816_733711_C65B8526 
-X-CRM114-Status: GOOD (  13.89  )
+X-CRM114-CacheID: sfid-20181229_051824_971479_C83BE016 
+X-CRM114-Status: GOOD (  15.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -90,60 +85,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mark.rutland@arm.com, devicetree@vger.kernel.org, khilman@baylibre.com,
- robh+dt@kernel.org, ingrassia@epigenesys.com,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: linus.luessing@c0d3.blue, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Carlo,
-
-On Fri, Dec 7, 2018 at 11:52 AM Carlo Caione <ccaione@baylibre.com> wrote:
->
-> A long running stress test on a custom board shipping an AXG SoCs and a
-> Realtek RTL8211F PHY revealed that after a few hours the connection
-> speed would drop drastically, from ~1000Mbps to ~3Mbps. At the same time
-> the 'macirq' (eth0) IRQ would stop being triggered at all and as
-> consequence the GMAC IRQs never ACKed.
->
-> After a painful investigation the problem seemed to be due to a wrong
-> defined IRQ type for the GMAC IRQ that should be LEVEL_HIGH instead of
-> EDGE_RISING.
->
-> The change in the macirq IRQ type also solved another long standing
-> issue affecting this SoC/PHY where EEE was causing the network
-> connection to die after stressing it with iperf3 (even though much
-> sooner). It's now possible to remove the 'eee-broken-1000t' quirk as
-> well.
-(disclaimer: I was not able to reproduce this bug without your
-patches, but I didn't run iperf3 for more than a couple of minutes)
-I did test your patch with and without my "Meson8b RGMII Ethernet pin
-cleanup" from [0] which shows that there's another performance related
-problem:
-1) before and after your patch receive speeds were fine (above
-700Mbit/s and no transmit errors / retries in iperf3) but the transmit
-speed was bad (<200Mbit/s and >1500 retries in perf3)
-2) transmit errors (when Odroid-C1 is sending) are not occurring
-anymore after my patch from [0]
-
-thus I believe your patch is fine, especially since we already have
-IRQ_TYPE_LEVEL_HIGH for the dwc2 controllers
-
-> Fixes: 9c15795a4f96 ("ARM: dts: meson8b-odroidc1: ethernet support")
-> Signed-off-by: Carlo Caione <ccaione@baylibre.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-
-I wonder if Kevin can send this as a fix for v4.20
+Hi Martin, 
 
 
-Regards
-Martin
+PERIPHS_PIN_MUX_7: 
+- register 7 bit 22: ETH_RXD3 (DIF_TTL_2_P)
+- register 7 bit 23: ETH_RXD2 (DIF_TTL_2_N)
+
+On 2018/12/29 8:08, Martin Blumenstingl wrote:
+> Hi Emiliano, Hi Linus, Hi Jianxin,
+> 
+> could you please test the patch from this series on your Odroid-C1?
+> I tested it on mine and Ethernet seems to be improve Ethernet transmit
+> speeds greatly (at the cost of a small drop in receive performance).
+> 
+> Jianxin, can you please give us the description for pin mux register 7
+> (PERIPHS_PIN_MUX_7) bits 22 and 23 on Meson8b (S805). The public
+> datasheet doesn't mention them so we're missing the name of the function
+> and the pin(s) which are controlled by each bit.
+> 
+> 
+> Changes since v1 at [0]:
+> - rebased so it applies on top of "ARM: dts: meson: meson8b: add the CPU
+>   OPP tables" which will be part of v4.20-rc1 once the arm-soc tree is
+>   merged into mainline
+> - updated patch description with more details
+> 
+> 
+> [0] http://lists.infradead.org/pipermail/linux-amlogic/2018-May/007274.html
+> 
+> 
+> Martin Blumenstingl (1):
+>   ARM: dts: meson8b: drop eth_txd0_1 and eth_txd1_1 from eth_rgmii_pins
+> 
+>  arch/arm/boot/dts/meson8b.dtsi | 2 --
+>  1 file changed, 2 deletions(-)
+> 
 
 
-[0] http://lists.infradead.org/pipermail/linux-amlogic/2018-December/009665.html
+
 
 _______________________________________________
 linux-amlogic mailing list
