@@ -6,17 +6,17 @@ X-Spam-Status: No, score=-6.4 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
 	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EA586C43387
-	for <linux-amlogic@archiver.kernel.org>; Sun, 30 Dec 2018 19:55:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 594C2C43387
+	for <linux-amlogic@archiver.kernel.org>; Sun, 30 Dec 2018 19:55:30 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id ADC112070D
-	for <linux-amlogic@archiver.kernel.org>; Sun, 30 Dec 2018 19:55:03 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 135EB2070D
+	for <linux-amlogic@archiver.kernel.org>; Sun, 30 Dec 2018 19:55:30 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fHx56fmz";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linaro.org header.i=@linaro.org header.b="Jljtcpvv"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ADC112070D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="JWiOYj9T";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linaro.org header.i=@linaro.org header.b="BsQj5an/"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 135EB2070D
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,57 +25,57 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=q/IPdkFRhl2YvdP7QYB3j3fNv/jGl6aIGcXAXi9e2to=; b=fHx56fmz1Nyr/t
-	CaEaL26qn3IqlW2VZXiT8pdRJY+nPek4m40EG0YFsCNdDqTqn1zguF9YsTxP3ABVZaKOW1kiB2y60
-	aLcLx2qVOy+rCxotXjJFMcTXK0Jcn1KBsk57JZxY5rNa5PmhYStW9zWbFzLQ7EoF1ZUzI4mwmUJgI
-	vIvfpypQkDWnTJFyAzJXeJor8r6K83LQun/wf5IEaHh/22QZGSbAjAHqxri8l8sbnZABI2iCdojiQ
-	Uj/MIUT9+kr/IjnLYI0NUScINQLmuKq+kmq5kKuggNSrxH/wdmxAKPa5ahhxvunvNmdZTzHDziYb/
-	QXw9rSNl0AdQnqIX9FdA==;
+	List-Owner; bh=jptb8Vv1rZgrpGMDO+KhXPdYxvwBy7ZBMov1HkYkHKI=; b=JWiOYj9TVxrD6f
+	XPW51CyMfWzQlnuWiGOlr3gPltx3w1PqiGPxmm3XNRYgLBXB+jG35d8hj0l+ZwQh+UhfhEzo9Tnt8
+	NMxMz+dxvVnTJFSevArYmS1sqb6wW5xzliFX2f29YYKK67pI8ar7ioNkU9mQ5ac5fetnTJqhN26Ri
+	8RF+Kk0BY5cokI5WNL8e07EDLikedDamD4gZcW8mdtb6NAY7BfjS793ZxFgWcrW1nsNy6mz0Wzoby
+	PPQOzc4x6hwlxHRqbBFkHRqu/gPiF2CE70jg0ZU6bjuo7B7EKrl0csLnkb3Kl4eTKvEaTApwp9K8k
+	VzgIbM8wrxykW0aCxOcg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gdhAo-0007Rh-8c; Sun, 30 Dec 2018 19:54:58 +0000
-Received: from mail-lj1-x243.google.com ([2a00:1450:4864:20::243])
+	id 1gdhBF-0000dg-Lg; Sun, 30 Dec 2018 19:55:25 +0000
+Received: from mail-lj1-x241.google.com ([2a00:1450:4864:20::241])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gdhAl-0007MG-1f
- for linux-amlogic@lists.infradead.org; Sun, 30 Dec 2018 19:54:56 +0000
-Received: by mail-lj1-x243.google.com with SMTP id t18-v6so22473749ljd.4
- for <linux-amlogic@lists.infradead.org>; Sun, 30 Dec 2018 11:54:44 -0800 (PST)
+ id 1gdhBD-00085O-5y
+ for linux-amlogic@lists.infradead.org; Sun, 30 Dec 2018 19:55:24 +0000
+Received: by mail-lj1-x241.google.com with SMTP id t9-v6so22488853ljh.6
+ for <linux-amlogic@lists.infradead.org>; Sun, 30 Dec 2018 11:55:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=aYtSk6UmrVbeFiJrPCWrDNJtF//zE/XhWTWZsfzZlr0=;
- b=JljtcpvvjvfZsyE41qtX+X1tW/+yg99c4/1+k84FYtW9k7CskCsttxkAjewQKzhwg3
- 76je7ajEx5nc1J2d/WTVnZkuHRQICDO0Yzrd8D1mqevOpSAhpj03OrwwRiksZeryK6vc
- AyWwTLAJowftNyr1BxoGbNQt3nzuPyOXE1mic=
+ :cc; bh=yIn4U0qW3N/sR2rJp1t1BrNn2uTxmVDd5xkS5R3pMd0=;
+ b=BsQj5an/X8xEClqipG3lN1DCbdnlefcgddiKNKUgDPeD1lZIeA67NZVjSVUeuNbcCQ
+ YkZIQ+6u+o58MZOHxx6iSLyf4FanDnQmgeakBCWu53X71UtGKbCQDPFdNvuYYfHVst7h
+ t2ATh+wE4y23iVyFB9yEEzafBNUlH9F2kNJ7g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=aYtSk6UmrVbeFiJrPCWrDNJtF//zE/XhWTWZsfzZlr0=;
- b=CC3dVo1xyuti0tIFAfnptGpyjq6XjJ7hooCVhRekSEF+U/SdJLk/0Z5/hQCo33toDY
- jbZ+E25pdyjEbLwIRj4uW1pBToocoKn8D7yBm9YfpWkE/4Hidqi0qDoEUWT9W3/LN+Ls
- G4y8MYYEVw/3g/PCct4X4st5U2IXhUHlyHFk/oKohOo0ZhwRUd98mBNxrHgBvlMvyi7j
- u9yq9hIE6ogS7mL5o9Ua3fqu1QgubQ5IGSxMlR9wePkf3LFFhDGlijiJSmwxD0EQprnS
- DApMV2KDYr04obx2HRYWkU7bIDvavagBq6UddaJToQNb+1jMzg41L35+iVaQWB10it/R
- vBjw==
-X-Gm-Message-State: AJcUukcwPvY8Tfn9vsYlH2juXTdrxLxt47NN0PTi+RnDrqiZWXcQI5It
- JzQtY8WcuXSZLSnfig0B7955V5+tVu0A5N8NMcMiLQ==
-X-Google-Smtp-Source: ALg8bN5rAd2E7nHQaFoEWAqqQx+/TmpYhhPdSZKd7GYiQQ+ISJS4dPPsG5gktd5lvzYxEjI2VJkCIOPNWb5H2puplv0=
-X-Received: by 2002:a2e:7e04:: with SMTP id
- z4-v6mr19207070ljc.97.1546199683181; 
- Sun, 30 Dec 2018 11:54:43 -0800 (PST)
+ bh=yIn4U0qW3N/sR2rJp1t1BrNn2uTxmVDd5xkS5R3pMd0=;
+ b=B9T/rpnaJ9NwUgKFR9OdJd8og0mUZkeD/QWfQ1KUBA5fjg7RWYpal8Il5f/wlIQy4N
+ 4MHFp5uywTja45B6Bxdh7PaLWR0wbptCUEFwZ3LXY5S0/1rcNy0PVN+9SoR+04OGLy8H
+ TOgtbnmt7rq/5JNtyhmPtAB0gDqpC0fzclS6dYjE2YxYPEXxkjaFEZOmUgPo9RvXa1e2
+ l4tWgusoIIOPOZri8RrjxB97HC97ysF81/Jo1sZ0zR7FkE/ftmm0Ii5P3E+hpusMcdaU
+ HkOarLza4vmUlff6Xt1WGsdOEm2tEAv7hofgHR3ebBPPapJhxvooKkaOaN7aEm63qxYb
+ jjtw==
+X-Gm-Message-State: AJcUukc7oSssqcRHnBVu+rRj9QIUS9Ov0YgB5sWvq1bzqeUmEjQCYOv7
+ 6V+gwd4ohPYefJuxLyKxYDEFu5GprrMYZjSNIUC7xg==
+X-Google-Smtp-Source: ALg8bN5sdDP3ht0Q+3dpNs8F0AW5GNK00neISF9JIf5Tsy/rBBEp+pnWQiMVHO6fuPR/yh5LJP3x7ljjX3aazzgLwdw=
+X-Received: by 2002:a2e:29d7:: with SMTP id
+ p84-v6mr19907373ljp.12.1546199711415; 
+ Sun, 30 Dec 2018 11:55:11 -0800 (PST)
 MIME-Version: 1.0
 References: <20181229125711.5205-1-martin.blumenstingl@googlemail.com>
- <20181229125711.5205-3-martin.blumenstingl@googlemail.com>
-In-Reply-To: <20181229125711.5205-3-martin.blumenstingl@googlemail.com>
+ <20181229125711.5205-4-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20181229125711.5205-4-martin.blumenstingl@googlemail.com>
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Sun, 30 Dec 2018 20:54:31 +0100
-Message-ID: <CACRpkdYQLvCEvNaA_O2SP4VXh7Lp7sD31wOBD9ZDoZwx3c+ZuQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] ARM: dts: meson8b: ec100: mark the SD card detection
- GPIO active-low
+Date: Sun, 30 Dec 2018 20:54:59 +0100
+Message-ID: <CACRpkdZ95J8LmVbBDJ=ms0sJwV+T4jvQeN-huXOE_pmtB+Ykwg@mail.gmail.com>
+Subject: Re: [PATCH 3/3] ARM: dts: meson8m2: mxiii-plus: mark the SD card
+ detection GPIO active-low
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20181230_115455_087286_71CFFCE0 
-X-CRM114-Status: GOOD (  10.72  )
+X-CRM114-CacheID: sfid-20181230_115523_230024_4B542E7D 
+X-CRM114-Status: GOOD (  10.80  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -105,16 +105,16 @@ On Sat, Dec 29, 2018 at 1:57 PM Martin Blumenstingl
 > After commit 89a5e15bcba87d ("gpio/mmc/of: Respect polarity in the device
 > tree") SD cards are not detected anymore.
 >
-> The CD GPIO is "active low" on the EC-100. The MMC dt-bindings specify:
-> "[...] using the "cd-inverted" property means, that the CD line is active
-> high, i.e. it is high, when a card is inserted".
+> The CD GPIO is "active low" on the MXIII-Plus. The MMC dt-bindings
+> specify: "[...] using the "cd-inverted" property means, that the CD line
+> is active high, i.e. it is high, when a card is inserted".
 >
 > Fix the description of the SD card by marking it as GPIO_ACTIVE_LOW and
 > drop the "cd-inverted" property. This makes the definition consistent
 > with the existing dt-bindings and fixes the check whether an SD card is
 > inserted.
 >
-> Fixes: bbedc1f1d90e33 ("ARM: dts: meson8b: Add support for the Endless Mini (EC-100)")
+> Fixes: 35ee52bea66c74 ("ARM: dts: meson8m2: add support for the Tronsmart MXIII Plus")
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
