@@ -4,88 +4,130 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-3.4 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7E1C1C43387
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Jan 2019 12:46:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9E951C43387
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Jan 2019 21:01:55 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4BA6A2171F
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Jan 2019 12:46:34 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6BF3521479
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Jan 2019 21:01:55 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HrUxQ0yF";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="EWZgWqUt"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4BA6A2171F
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="R62a/aAt";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=nio365.onmicrosoft.com header.i=@nio365.onmicrosoft.com header.b="G56ywN6X"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6BF3521479
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ni.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Mime-Version:References:In-Reply-To:
-	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Cc:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:
+	In-Reply-To:References:Message-ID:Date:Subject:To:From:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LVglcXtlquuUwNf2IVXTeOcy9d16xXBLZmV/fhrqUQY=; b=HrUxQ0yF0039sH
-	OvQGYfA4pdzlPgaRI1uA3EXFawrYMhcm3zsoOj4sjK6pZ8QnMkXV3wOnNFWUi0uvz/N2qJT1n6MRL
-	Nfi3Tswsfe1dR9vFMM/TPCc+0288Dab5P+gi7xzhgQaOW+X4sg6xty/z3BaQyS/ZDSDfkJv41uBlk
-	gT4fxW0XGDImTcRGrSAZkkCdQqx//GW9efQ07sZTEimlTk+12eqicUDrFacZdwsdWfwSdbSNG52yY
-	6LgXTadG/ynACM5EcIdkZF8IUfPJEFv0RWTZ8jQ24nLyQXdxL/d15wP+OUqmIXXuCZXGRjMA5AxEb
-	qmYytEyXUPfxt02W8fng==;
+	List-Owner; bh=4v/P8CfTrfqETsIxYFIIlyixujeqoIwbRmo0/pWbkNU=; b=R62a/aAtpZVlQx
+	/omyHs6XPE/Fn6DLf9DvWtfGZWk/kwojXOFqC9HMUw2W1G4lPiqUE4z1mcKziKX/B7gVyOucw7RV9
+	KOI9UVx8TqdxXdt1W/vO0qBawaUu13RVH0h3/fzITcTrhQzI/xIXXoANCtEkmBQUylCSFe1fX6Kf7
+	G8caMzg01d6vFHB4BvLH7bxJAf7cc3u5s6bDXWTVtCYuWxoHY1IIkn5KM9YcHeW53l8qC4creg8iE
+	K8UJWoUx2mgK83QFwMDpCCJjZmRbc0Tw4hHcoBWt2Ua7RFYs9+pR+fH4Y1W+CtNMe5Bf455BgU93n
+	JuOjgzI0t+YPUGJOPEEA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gefum-0000ib-1b; Wed, 02 Jan 2019 12:46:28 +0000
-Received: from mail-ed1-x541.google.com ([2a00:1450:4864:20::541])
+	id 1gene8-00061I-0f; Wed, 02 Jan 2019 21:01:48 +0000
+Received: from mx0a-00010702.pphosted.com ([148.163.156.75]
+ helo=mx0b-00010702.pphosted.com)
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gefui-0000hg-Mb
- for linux-amlogic@lists.infradead.org; Wed, 02 Jan 2019 12:46:26 +0000
-Received: by mail-ed1-x541.google.com with SMTP id b14so26055867edt.6
- for <linux-amlogic@lists.infradead.org>; Wed, 02 Jan 2019 04:46:23 -0800 (PST)
+ id 1gene4-00060i-Lz
+ for linux-amlogic@lists.infradead.org; Wed, 02 Jan 2019 21:01:46 +0000
+Received: from pps.filterd (m0098781.ppops.net [127.0.0.1])
+ by mx0a-00010702.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id
+ x02L0wD2023104
+ for <linux-amlogic@lists.infradead.org>; Wed, 2 Jan 2019 15:01:40 -0600
+Authentication-Results: ppops.net;
+ dkim=pass header.d=nio365.onmicrosoft.com header.s=selector1-ni-com
+Received: from nam03-co1-obe.outbound.protection.outlook.com
+ (mail-co1nam03lp2056.outbound.protection.outlook.com [104.47.40.56])
+ by mx0a-00010702.pphosted.com with ESMTP id 2ps1ncggk5-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT)
+ for <linux-amlogic@lists.infradead.org>; Wed, 02 Jan 2019 15:01:40 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:cc:date:in-reply-to:references
- :user-agent:mime-version:content-transfer-encoding;
- bh=jWYtroL2CqhWj6bXnI5dboJDLzbLdRv4JwKj7ZxvKBI=;
- b=EWZgWqUtrGjNF7V2Uaoq2Toh3HSQZtuH8v+mrbrrv88fL4qd9hLjNur0qJW5BYm1o0
- VKH45G7l2He5rD52tcDoHVyPK9ieYxS0z3ajyUYhUKXne60HWjGlaNBWMSEzRHKf3vBt
- f5+5sHM0CwQErIh7ArJYjEnFn7m/DnhPAAOkVtX0Gj8pjdFWl3vQS61XbIrdye8ThOfy
- O9mJFPTvt92nA45j5ZrCM/C+y00lGo7lRgeKK2BWbTR4Mda/MLtMR+HGJgWOCLQLg4uu
- elT5r36XfdZ7s9q2PBNF18d/e7G9Y6Jty4p1xFg4k4IyXtGetzod64OeTObL5bWtD/cO
- X07w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=jWYtroL2CqhWj6bXnI5dboJDLzbLdRv4JwKj7ZxvKBI=;
- b=UZQKQrnTNMqsDf91yPUM732u6ZfbQjWGBp0D6qARTLh7KxI9oOwPBWB3EEMKrHXHlj
- bfoAXsp8v7Tyn1pr+nPg3nGXHK7bl7nojrg+WsWbQHEoo33znjETnKRkLw3Q3vq0jwf8
- I4BRP1VnlGIe/Y3YkdTcAGVE0Zq8vDbLgOvnNiBjyo4GiNUTeYwPNFo+8Dg9FslvzIkJ
- Whc4ez8Cc9yagksYdUeUvHo18oieIH2/Iuw/5h/n3+/jRcM8p9I1wbNP/GI3MRKfNMQe
- 5Y2+wR/tBIhYYYBREFPEgMN+sNIjuG3anb8YilyFmBCjtxn/J9QTm+nSUnDVNXINelH7
- 3xoQ==
-X-Gm-Message-State: AA+aEWYwQmO9QFGJDYowONAEHUVEw5Oiaubk9ryb3oCb3TRuG+gXyKg/
- pKf+6RMiS43Am7iTYil8NqbZLw==
-X-Google-Smtp-Source: AFSGD/Vy3OSJ6pNRR/l9vqY9gzNvkFb97nE2PnjrcFzwVI2kDcHK5ftCvqgRHizHGNI+pSaAOzrQiQ==
-X-Received: by 2002:a50:f5f4:: with SMTP id x49mr40057079edm.26.1546433181585; 
- Wed, 02 Jan 2019 04:46:21 -0800 (PST)
-Received: from boomer.baylibre.com
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id e35sm21881660eda.13.2019.01.02.04.46.20
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Wed, 02 Jan 2019 04:46:20 -0800 (PST)
-Message-ID: <db2580c8740ca202d02f37ef567be0e273eca6d7.camel@baylibre.com>
-Subject: Re: [PATCH 0/4] mmc: meson-gx: chained descriptor fixup and
- improvements
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Wed, 02 Jan 2019 13:46:19 +0100
-In-Reply-To: <CAFBinCCUO6ihxNWDup5ZVKWBc8+oiW_-j8OUxRhb+tjpGsUBkg@mail.gmail.com>
-References: <20181206151828.24417-1-jbrunet@baylibre.com>
- <CAFBinCCUO6ihxNWDup5ZVKWBc8+oiW_-j8OUxRhb+tjpGsUBkg@mail.gmail.com>
-User-Agent: Evolution 3.30.3 (3.30.3-1.fc29) 
-Mime-Version: 1.0
+ d=nio365.onmicrosoft.com; s=selector1-ni-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=67TcenH3xgfkB6dMrtZmOOeXRM2PaJRv+lSK8Otf3Hw=;
+ b=G56ywN6XoPb63KDCVOK8mZZt0Z1PPwscHtGcnKTjLWlE2Mmd8U+9D/9JO/2MpM4J4U0jslyIkvG5HJJZzrYtsdvzZmDO7ZMeUX/KIjr5qQO3OO3G9BcF8sRKlMr5/2hEp4lBUpTT1b3B5XSP45eTt2IQVoOTqJJDGkbskGEgFYc=
+Received: from DM5PR04MB0381.namprd04.prod.outlook.com (10.173.169.14) by
+ DM5PR04MB0507.namprd04.prod.outlook.com (10.173.170.12) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1495.6; Wed, 2 Jan 2019 21:01:37 +0000
+Received: from DM5PR04MB0381.namprd04.prod.outlook.com
+ ([fe80::dca4:420f:c838:206c]) by DM5PR04MB0381.namprd04.prod.outlook.com
+ ([fe80::dca4:420f:c838:206c%9]) with mapi id 15.20.1495.005; Wed, 2 Jan 2019
+ 21:01:37 +0000
+From: Joe Hershberger <joe.hershberger@ni.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [U-Boot] [PATCH u-boot 0/2] net: designware: add meson meson
+ compatibles
+Thread-Topic: [U-Boot] [PATCH u-boot 0/2] net: designware: add meson meson
+ compatibles
+Thread-Index: AQHUeDd1JQbh1iqebkmN6rX5LCymHaWczCWA
+Date: Wed, 2 Jan 2019 21:01:36 +0000
+Message-ID: <CANr=Z=ZUEaEihfqN14nma3TM0XomEZidtb0F6dU1NRBB2vFDPQ@mail.gmail.com>
+References: <1541773260-16197-1-git-send-email-narmstrong@baylibre.com>
+In-Reply-To: <1541773260-16197-1-git-send-email-narmstrong@baylibre.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: YTOPR0101CA0043.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00:14::20) To DM5PR04MB0381.namprd04.prod.outlook.com
+ (2603:10b6:3:9d::14)
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [209.85.166.172]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; DM5PR04MB0507;
+ 6:IISTj6QM/zRRdo6kiwKcDUQEaGEvicc1hlBcFwdb5HLQYOUDDsYbAsgp+3+NW09c180mUCcbEOHJH0L32UsWToDIcagyI1sxWvht+uzfPYueDHDRK143rpWwwnOpNN6im63Gs9tIB4Mq+y3g6KB51gkK/UPMefgODHljko+3IB/vJePqgt8fHMwWmXMegNzA2u6gGH/+i83MC9iI8taYxGFPzAi9+v8YbzsnXBYTjQ1/CfQY5tVJUAo4rSMNFH6LBNR1P9M00gcBPMJwIabmZMTYBJns8lZeQA6r4m7/43UJZ9BTuBr2MCnily9zYGz2oBImW0dRtPxsn0V9gkNRwKohWOKlqtzoP2nTbtoUT/jyUNkGfhx3eMmQgAMnfU0BhxSHgYH2gFe/HXILfQpTp+cHsmSwcziyKAevNaG/r/L51ziRl1qSg7jzbrVHi7bdvvFu5qBsHtOorhblWwYrSQ==;
+ 5:j8KiufgRMHmZrfNf0GunHkn1qrpkSIxIAl4pDvrcPOfMgc3xH7YtyuplMLeEgbKsAIzYLmxqZykqXX6PFbCt7sTwYW0wMMkczCeCvBrFdI0BFsmSdhwaMsadc8Ff1ymSlreUiXAsF+scsvHY4f4VtvHoDTk+RPrv/q1kKSyV3r+CAdeN1xbPLeiz7nIo9XIrtRTh3hAFPow14L7I2zkrGw==;
+ 7:jKx69ZHXX76we+8GuTd/zcWpuFq4T8Y7AzaDTu18hup2QIUG0l3xINBqDgj8g9iL7D2+4YGTJTjPYl8/jemLdmfRAoo502Kick5GIfjX6TaGCogsZws+dCKGnXmoR65kfJsHEHcwqamaaomw6kDXZg==
+x-ms-office365-filtering-correlation-id: ae7bf1b6-3513-446a-4fc6-08d670f57bd5
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600109)(711020)(2017052603328)(7153060)(7193020);
+ SRVR:DM5PR04MB0507; 
+x-ms-traffictypediagnostic: DM5PR04MB0507:
+x-microsoft-antispam-prvs: <DM5PR04MB050712414683DC5A9EFF8C7DF68C0@DM5PR04MB0507.namprd04.prod.outlook.com>
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+ RULEID:(8211001083)(3230021)(908002)(999002)(5005026)(6040522)(8220060)(2401047)(8121501046)(3002001)(3231475)(944501520)(52105112)(93006095)(93001095)(10201501046)(6041310)(20161123564045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123558120)(20161123560045)(20161123562045)(201708071742011)(7699051)(76991095);
+ SRVR:DM5PR04MB0507; BCL:0; PCL:0; RULEID:; SRVR:DM5PR04MB0507; 
+x-forefront-prvs: 0905A6B2C7
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10019020)(136003)(366004)(396003)(346002)(376002)(39860400002)(199004)(189003)(256004)(14454004)(99286004)(6862004)(105586002)(7736002)(2906002)(53936002)(6436002)(97736004)(6486002)(6246003)(52116002)(498394004)(9686003)(478600001)(8936002)(6512007)(33896004)(98316002)(76176011)(5660300001)(61726006)(476003)(68736007)(43066004)(316002)(6116002)(26005)(305945005)(61266001)(3846002)(66066001)(81156014)(71190400001)(71200400001)(53546011)(186003)(229853002)(6506007)(4326008)(386003)(106356001)(446003)(55446002)(54906003)(81166006)(11346002)(102836004)(8676002)(25786009)(486006);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:DM5PR04MB0507;
+ H:DM5PR04MB0381.namprd04.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: ni.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: /n5n+OmRBMCMYyaf4Gjy+gBYD+EuJAElSEjZzsns6hBp5DxhBshksJ5DXx8Dz6oZ4uyP8L0h/0xvI02crS2meW9RzYSMIxPoE5XxRzZZoNpyPxpZcUMat02EocJhKWvCXVO4fcpAAl/dnJXdRk1sDSqgKp//+2QxEFiwq+GTdbmzMgbbtQos1GzvYIRsEJNWe4IydIMcI5IMhyIuOCYvNMsGBU/tXJlNXX68SXveJOj1FvX/ayWTk1ER8GT06Wxu5xQ3Au0rFaWMA1YNq3x6KdeWNXSZ6Cw6PyQ8tk6lXZixhvybTrQKtUmDSwSHvTLa
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
+Content-ID: <0CE02293240FAC418326C4A661EE4C8C@namprd04.prod.outlook.com>
+MIME-Version: 1.0
+X-OriginatorOrg: ni.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ae7bf1b6-3513-446a-4fc6-08d670f57bd5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Jan 2019 21:01:36.9692 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR04MB0507
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
+ definitions=2019-01-02_08:, , signatures=0
+X-Proofpoint-Spam-Details: rule=inbound_policy_notspam policy=inbound_policy
+ score=30
+ priorityscore=1501 malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0
+ spamscore=0 clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 adultscore=0 classifier=spam adjust=30 reason=mlx
+ scancount=1 engine=8.0.1-1810050000 definitions=main-1901020184
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190102_044624_805401_0BCF1E5E 
-X-CRM114-Status: GOOD (  25.14  )
+X-CRM114-CacheID: sfid-20190102_130144_799034_DAF6F2BD 
+X-CRM114-Status: GOOD (  10.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,111 +139,32 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
- linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
- Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org
+Reply-To: joe.hershberger@ni.com
+Cc: u-boot <u-boot@lists.denx.de>,
+ "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+ Joseph Hershberger <joseph.hershberger@ni.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, 2018-12-22 at 18:28 +0100, Martin Blumenstingl wrote:
-> Hi Jerome,
-> 
-> On Thu, Dec 6, 2018 at 4:18 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
-> > The goal of the patchset was mainly to address the following warning:
-> > 
-> > WARNING: CPU: 0 PID: 0 at /usr/src/kernel/drivers/mmc/host/meson-gx-
-> > mmc.c:1025 meson_mmc_irq+0xc0/0x1e0
-> > Modules linked in: crc32_ce crct10dif_ce ipv6 overlay
-> > CPU: 0 PID: 0 Comm: swapper/0 Tainted: G        W         4.19.1 #1
-> > Hardware name: Some A113 Board (DT)
-> > pstate: 40000085 (nZcv daIf -PAN -UAO)
-> > pc : meson_mmc_irq+0xc0/0x1e0
-> > lr : __handle_irq_event_percpu+0x70/0x180
-> > sp : ffff000008003980
-> > x29: ffff000008003980 x28: 0000000000000000
-> > [...]
-> > x1 : ffff80001a71bd40 x0 : 0000000000000000
-> > Call trace:
-> >  meson_mmc_irq+0xc0/0x1e0
-> >  __handle_irq_event_percpu+0x70/0x180
-> >  handle_irq_event_percpu+0x34/0x88
-> >  handle_irq_event+0x48/0x78
-> >  handle_fasteoi_irq+0xa0/0x180
-> >  generic_handle_irq+0x24/0x38
-> >  __handle_domain_irq+0x5c/0xb8
-> >  gic_handle_irq+0x58/0xa8
-> > 
-> > This happens when using the chained descriptor mode. If there is an
-> > error, we call mmc_request_done(), loosing any reference to the cmd. It
-> > turns out that the chained descriptor does really stops when we do so, at
-> > least not completly. Most of the time, it can be seen with this harmless
-> > warning because the descriptor will raise another unexpected IRQ. On rare
-> > occasion, it will completly break the MMC.
-> > 
-> > This is mostly adressed by patch #1.
-> > With this fixed, I took (yet) another look at the ultra-high speed modes
-> > and the tuning.
-> > 
-> > I came up with new settings in patch 3 and 4. I've tested them on eMMC,
-> > sdcard and sdio on the following platforms:
-> >  * gxbb p200
-> >  * gxl p230, libretech (eMMC only), kvim.
-> >  * axg s400
-> > 
-> > So far, these new settings seems to be working great but I think it
-> > would be nice if others could test this and provide their feedback.
-> > This why  patch 3 and 4 are RFT tagged.
-> > 
-> > Jerome Brunet (4):
-> >   mmc: meson-gx: make sure the descriptor is stopped on errors
-> >   mmc: meson-gx: remove useless lock
-> >   mmc: meson-gx: align default phase on soc vendor tree
-> >   mmc: meson-gx: add signal resampling
-> I gave all four patches a go on my Khadas VIM2 Basic (16GB eMMC).
-> regardless of whether I have your patch applied or not: eMMC
-> sporadically fails tuning (if I reboot the board a few times it starts
-> to work)
-> [    4.172686] mmc1: tuning execution failed: -5
-> [    4.182535] mmc1: error -5 whilst initialising MMC card
+On Fri, Nov 9, 2018 at 8:21 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> Add the compatible strings in the Synopsys DWMAC driver for :
+> - The Amlogic GXBB (and other GX) SoC
+> - The Amlogic AXG (and other GX) SoC
+>
+> Neil Armstrong (2):
+>   net: designware: add meson meson gxbb comptatible
+>   net: designware: add meson meson axg compatible
 
-Damn ...
+Hi Neil,
 
-This particular device is set to use hs400 ATM. Could you try with hs200 only
-? (removing mmc-hs400-1_8v from meson-gxm-khadas-vim2.dts) 
+Trying to catch up on patches - I don't see this series in patchwork -
+should it be?
 
-I might be wrong but I think tuning is supposed to be done with hs200, before
-activating DDR mode to switch to hs400. In theory, removing hs400 should not
-change anything (so I expect the tuning to still fail) but it is worth
-checking.
-
-> 
-> I'm not sure if this issue is specific to my Khadas VIM2 so this is
-> *not* a nack for your patches.
-
-I'll check if I can get my hands on this device.
-
-When cooking this series, I tried another trick which was cycling on the
-resampling delays (see ADJUST_ADJ_DELAY_MASK). At the time, I could not see
-any significant improvement while doing it, so I dropped it.
-
-If possible. could you check if any particular value in this field, between 0
-and 5, makes things any better ?
-
-Alternatively, if you find another combination of phase for the mmc_clk and
-tx_clk that works better for this device, feel free to let me know. Maybe we
-can work something out.
-
-Cheers
-
-> 
-> 
-> Regards
-> Martin
-
-
-
+Thanks,
+-Joe
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
