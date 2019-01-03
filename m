@@ -2,89 +2,79 @@ Return-Path: <SRS0=hrph=PL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.4 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.4 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4FD53C43387
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Jan 2019 16:04:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 58BB7C43387
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Jan 2019 22:06:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1B1372070D
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Jan 2019 16:04:51 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 277E721479
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Jan 2019 22:06:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kW74ZbwL";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="z3ZCsZrQ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1B1372070D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lIDS4B1l";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linaro.org header.i=@linaro.org header.b="Hbd1jrD7"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 277E721479
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:In-reply-to:Subject:To:
-	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=msWADdc4bP9oaW42jlUHN69lhpZe2awScqJx6iChsFs=; b=kW74ZbwLR7bqjzZJmhF4M4BxB
-	dvnDPloK4v0yGY42XE6p/M0sMvwr1WkH1WqcquFY74WCJjQ999Brd7eLKS6qRr/9HWv8Tfpn6RVXi
-	bGbdv3LAtK7xv7GCqXXkyO38RqlzrZ8bmxB/9Ni8eGrchrJs1EN6uZAueJq+xcTG61MFFH86WgULC
-	BV3dzoSmOF9BcG3k8PBqm1IE7F/w2ZSVzhpmzyVMpSHyiKJpTa7RbrD2U8AEfcNMQbWkbKOhFQKOU
-	5+BoOsmKWbAVUT6XmxakZH7OUYMEfZWWFfDRk+uHfaLGdRTnk3c6FmQI9VZtgGIDOz8RnFRhovYq8
-	Ear2V5t/Q==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=jNXRdBMcWpIU8mvKBMAn7zLFn7BEi+mlo7K4dvqBfX8=; b=lIDS4B1lC5195Z
+	zDNWUH6DAxGlkLxHOpvYuJGtknzoxXB5Zk0fEg9nQ1X8R+963aNRv7eO5B6IoqiTW1VNJhpfK2KzD
+	PIVSLUYsUe7UECvhwTiu3VkmRKVZFa8/OMF7jZFmazbYYO8bTguaODuTK7Z5xeycFy5n6GcKYN5W3
+	+zDrPLQn+IMuF36BNiduXeXO9nla2pnvxyWrOzFDe1R/EofDCenMIIcgJp143LdPO2WMd1LFfx9+g
+	Vxo0E7gPMeEbPjGErJkzKI/HQUnSqBKQCYZgGAklE71zplzXjXlpkE1FpNPSvofTUrKuNXHBtEhg6
+	ir0t0jUG4McC2QvqtK+g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gf5UB-0008LL-Fw; Thu, 03 Jan 2019 16:04:43 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1gfB85-0008PJ-Le; Thu, 03 Jan 2019 22:06:17 +0000
+Received: from mail-lf1-x143.google.com ([2a00:1450:4864:20::143])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gf5U8-0008Kz-MS
- for linux-amlogic@lists.infradead.org; Thu, 03 Jan 2019 16:04:42 +0000
-Received: by mail-wm1-x341.google.com with SMTP id b11so29690554wmj.1
- for <linux-amlogic@lists.infradead.org>; Thu, 03 Jan 2019 08:04:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version;
- bh=WJAQvMs1Q0JN1b84t4wRcxNWwOJ+O3BW6vUmppGF/AY=;
- b=z3ZCsZrQDcEIzAIG8LechOUoUaDZcaOYNfECx4T0WAavtUc94kAfJJYdPwjczxEh/h
- 1DIAb6ErTuFqm5XUtF7IQbWjG3fPD+TLo6ztlCx5059w+5aoKZjgWkh4wFBQvmLXise5
- iXO3k7bXdMFyees72jwJ8nSYG3P2PPiVvbuf/w9Z6Uss9GknXfX48BXmSiia5x+rOgRI
- vh7gWwyFgPUhfmKxocJk9l/YVoQb/QmRxHRZLkbSy3gIhb++S6sgIQrwOmSz+our9lmv
- kkv4tZPr8l/qQ4ffzlGZpj63KW2G1ak6RmTtYD9ojBWwzdLwOj8SgTKJ2O4WGr417MLV
- XVXA==
+ id 1gfB82-0008Oc-QG
+ for linux-amlogic@lists.infradead.org; Thu, 03 Jan 2019 22:06:16 +0000
+Received: by mail-lf1-x143.google.com with SMTP id c16so24186942lfj.8
+ for <linux-amlogic@lists.infradead.org>; Thu, 03 Jan 2019 14:06:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=QANzhaPy2nInN5aENUoqLEJcdEF1QIInnXqWfKquhOc=;
+ b=Hbd1jrD7A+vhILx94F/SWpVdty2SiC8QhLzF2aEBsuBUeqzp2oNXvc/PVHmpDewDC3
+ SB68Nyh5j5/V+hKR7sawydxDYHMd/WQjC5uTkiQVHUlz3ghpiReKLvexEpHLg3j91Owy
+ 8+yLJ2xMs+JzwcJ5Z76kdmNmH4o0IV5gzrNuo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version;
- bh=WJAQvMs1Q0JN1b84t4wRcxNWwOJ+O3BW6vUmppGF/AY=;
- b=W+FElu6mD6mJuPVw8sXrB1hvrSx2joojeze+I26DS9GVK59MhjsHZen7eaGjAodIXk
- kk1dTPQ6B6f/SLiof7TjMg6yrRbhOR5q8v1JGymhxXuNiDcj7Ru98NtrKtfvzoK+nH2X
- WL2G7fbZ+RndvpCIJ/4YPki9HLwfVBDsaEPrHyKfJOcbL3ipF8xocxbI6yVXq2BD0Fs3
- MWubjExsXQPJO2NvITwKOpRl6tjrfTeBG/Le8zApx+6AbWDCYl6fKn1bzzSaLZCkHCvF
- vv13OEnGSfObxFyap1yDulYa/9YCdsfgj+nUS7KyoyFyeS73oF3BaUgnF81nnxZLQ4iC
- 130g==
-X-Gm-Message-State: AA+aEWb/bJe1IUzDyfZT+t+Q2kYAsLORWNDi7RC9jyr8gorkt0Qe1OUa
- xuG0PyNOeJreSJKXmiclzNkLEQ==
-X-Google-Smtp-Source: ALg8bN504hOREMbUdM3X7NXPDv625PjizpIF3Ff+xFy842xI6GNnXUXL8u+iQx8lGSejUlNsZWzX6w==
-X-Received: by 2002:a1c:2787:: with SMTP id
- n129mr39893190wmn.128.1546531478712; 
- Thu, 03 Jan 2019 08:04:38 -0800 (PST)
-Received: from localhost ([2620:10d:c092:180::1:3f9a])
- by smtp.gmail.com with ESMTPSA id v1sm58979609wrw.90.2019.01.03.08.04.37
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 03 Jan 2019 08:04:37 -0800 (PST)
-References: <1545994235-8309-1-git-send-email-lollivier@baylibre.com>
-User-agent: mu4e 1.0; emacs 25.3.2
-From: Loys Ollivier <lollivier@baylibre.com>
-To: Loys Ollivier <lollivier@baylibre.com>, devicetree@vger.kernel.org,
- Johan Hovold <johan@kernel.org>
-Subject: Re: [PATCH 0/4] Add driver for globaltop GNSS receivers
-In-reply-to: <1545994235-8309-1-git-send-email-lollivier@baylibre.com>
-Date: Thu, 03 Jan 2019 17:04:35 +0100
-Message-ID: <86bm4x6830.fsf@baylibre.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=QANzhaPy2nInN5aENUoqLEJcdEF1QIInnXqWfKquhOc=;
+ b=nQ84DrkGACfy4PfCvhowbA6h+L8hl5GZ3laHN+sUXLi7KuhetGhe5vmazwTf6lJaBg
+ tWRbTPgCZabkLdjCWWUpSYhxpiaMdfI/2FPpuV3wgDzvhVYg1mvEL78IsQpbml/gwxU2
+ uvxy+6ezaH6tZg8J4Uo6k/1NkF1IWQ7r1JhPQjQVEKW5njHNht36paBX8iYRkSRSFmCw
+ W1wxgWZm53KCPXPUd3LCiNLJxKlOwCsKUli+5NGsdCz7w6JNP8ILzqG/R9+rdfym69jG
+ fPuWoDOXiU//RV42dVe+rOteEVL0bhXFnnV+0jdrZxukmFmCO2AEheZfbQhW9QB5j4Fi
+ 5Lfg==
+X-Gm-Message-State: AA+aEWamIrMzY038RbkP1q2Vz0CE/9p+XMwHpIsQC8MOLKiDW9shVYcr
+ xW3csXsDe9c07/oqtlac/SyQDjTeb4l7+Ng5ZCBNkg==
+X-Google-Smtp-Source: AFSGD/V6sctot3rrsm0a1rVanqephXcBXWfb5keoZcQC1sH4d3mWuWxkF+m3ZZkEo45EGjf4qFfoZ73jur3SLZ8zHC0=
+X-Received: by 2002:a19:41c4:: with SMTP id o187mr25749042lfa.32.1546553170201; 
+ Thu, 03 Jan 2019 14:06:10 -0800 (PST)
 MIME-Version: 1.0
+References: <20190101194414.24766-1-martin.blumenstingl@googlemail.com>
+ <20190101194414.24766-2-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20190101194414.24766-2-martin.blumenstingl@googlemail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 3 Jan 2019 23:05:57 +0100
+Message-ID: <CACRpkda8cSt7J8+2P1xpOn13KkS_xmeO1MBRR9dXZcWXgzpQwQ@mail.gmail.com>
+Subject: Re: [PATCH 1/1] mmc: core: don't override the CD GPIO level when
+ "cd-inverted" is set
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190103_080440_785431_A22DA3E4 
-X-CRM114-Status: GOOD (  17.55  )
+X-CRM114-CacheID: sfid-20190103_140614_855788_720FA0FE 
+X-CRM114-Status: GOOD (  15.25  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,112 +86,56 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- linux-amlogic@lists.infradead.org
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+ linux-mmc <linux-mmc@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Guenter Roeck <linux@roeck-us.net>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Tue, Jan 1, 2019 at 8:44 PM Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
 
-As suggested by Neil Armstrong - this GNSS device seems to behave 
-like
-most generic GNSS receivers.
-I'll send a v2 with a generic driver that works for both GlobalTop 
-and
-u-blox.
-
-Please ignore this serie.
-
-Thanks,
-
-Loys
-
-Loys Ollivier writes:
-
-> Hello !
+> Since commit 89a5e15bcba87d ("gpio/mmc/of: Respect polarity in the device
+> tree") gpiolib-of parses the "cd-gpios" property and flips the polarity
+> if "cd-inverted" is also set. This results in the "cd-inverted" property
+> being evaluated twice, which effectively makes it a no-op:
+> - first in drivers/gpio/gpiolib-of.c (of_xlate_and_get_gpiod_flags) when
+>   setting up the CD GPIO
+> - then again in drivers/mmc/core/slot-gpio.c (mmc_gpio_get_cd) when
+>   reading the CD GPIO value at runtime
 >
-> This patch series adds a new GNSS driver for the globaltop GNSS 
-> receivers.
-> These receivers transmits NMEA output sequence as soon as they 
-> have booted.
-> Power management can be done via the main supply and optional 
-> backup supply
-> as defined in the device tree.
+> On boards which are using device-tree with the "cd-inverted" property
+> being set any inserted card are not detected anymore. This is due to the
+> MMC core treating the CD GPIO with the wrong polarity.
 >
-> The driver has been tested using a GlobalTop pa6h chipset on a 
-> Libretech-cc
-> board using the expansion header. Changes made in the board 
-> device tree can
-> be found below for reference and testing.
+> Disable "override_cd_active_level" for the card detection GPIO which is
+> parsed using mmc_of_parse. This fixes SD card detection on the boards
+> which are currently using the "cd-inverted" device-tree property (tested
+> on Meson8b Odroid-C1 and Meson8b EC-100).
 >
-> Loys
+> This does not remove the CD GPIO inversion logic from the MMC core
+> because there's at least one driver (sdhci-pci-core for Intel BayTrail
+> based boards) which still passes "override_cd_active_level = true" to
+> mmc_gpiod_request_cd(). Due to lack of hardware for testing this is left
+> untouched.
+> In the future the GPIO inversion logic for both, card and read-only
+> detection can be removed once no driver is using it anymore.
 >
-> Loys Ollivier (4):
->   dt-bindings: Add vendor prefix for "GlobalTop Technology, 
->   Inc."
->   dt-bindings: gnss: add gtop binding
->   gnss: add gtop receiver type support
->   gnss: add driver for globaltop receivers
->
->  Documentation/devicetree/bindings/gnss/gtop.txt    |  33 +++++
->  .../devicetree/bindings/vendor-prefixes.txt        |   1 +
->  drivers/gnss/Kconfig                               |  13 ++
->  drivers/gnss/Makefile                              |   3 +
->  drivers/gnss/core.c                                |   1 +
->  drivers/gnss/gtop.c                                | 152 
->  +++++++++++++++++++++
->  include/linux/gnss.h                               |   1 +
->  7 files changed, 204 insertions(+)
->  create mode 100644 
->  Documentation/devicetree/bindings/gnss/gtop.txt
->  create mode 100644 drivers/gnss/gtop.c
->
-> ---
-> diff --git 
-> a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts 
-> b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-> index 90a56af967a7..3b3d4dcc47aa 100644
-> --- 
-> a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-> +++ 
-> b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-> @@ -17,6 +17,7 @@
->  
->         aliases {
->                 serial0 = &uart_AO;
-> +               serial1 = &uart_A;
->                 ethernet0 = &ethmac;
->         };
->  
-> @@ -269,7 +270,20 @@
->         pinctrl-names = "default";
->  };
->  
-> +/* This is brought out on the UART_A_TX (8) and UART_A_RX (10) 
-> pins: */
-> +&uart_A {
-> +       status = "okay";
-> +       pinctrl-0 = <&uart_a_pins>;
-> +       pinctrl-names = "default";
-> +
-> +       gnss {
-> +               compatible = "globaltop,pa6h";
-> +               v-bckp-supply = <&vcc_3v3>;
-> +               vcc-supply = <&vcc_3v3>;
-> +               current-speed = <9600>;
-> +       };
-> +};
-> +
->  &usb0 {
->         status = "okay";
->  };
+> Fixes: 89a5e15bcba87d ("gpio/mmc/of: Respect polarity in the device tree")
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
+OK two steps forward, one step back, that's a good fix for now, I
+can fix it properly for v4.22.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
--- 
--L
+Yours,
+Linus Walleij
 
 _______________________________________________
 linux-amlogic mailing list
