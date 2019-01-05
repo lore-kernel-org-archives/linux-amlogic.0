@@ -6,17 +6,17 @@ X-Spam-Status: No, score=-9.4 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
 	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3DEB7C43444
-	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Jan 2019 16:41:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 23104C43612
+	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Jan 2019 16:44:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0DF472087F
-	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Jan 2019 16:41:31 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DF5152087F
+	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Jan 2019 16:44:41 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YxXjH4Hk";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="pz2cZDP1"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0DF472087F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="OES8HMG+";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="fzZappER"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DF5152087F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,44 +25,44 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=U6cIbn5hjQjTxfJf91ojKD0SS5iiPu9795uw1VeX9Q8=; b=YxXjH4Hk50Exzy
-	yfFFlUsX2Qa05Z0zlBxoLoMb4zxA0MunjMzgrmD8je+xKmt9SmdMBzMrW0rxJYS9DvXdRJOA8QeSc
-	Oj8TrOesBl6bkg5PiFKlr9YDh39oYwbkVYWxde4zdlvDsSzloB9Ueb3EADV37eCsDeOMJcYFQevdu
-	AbgmQgdjC9oqt8xm/XcLg3GrvhgvsCW+OLtF/u6x1UFQMGgpyZYsfKUoRaXVG/GQuZnQWjI5es3WJ
-	ZwTS6KCNPC0H8O4EYHwh1V4Rcoujxf9HGMeOG3Psj/n5dDbD+3ECFypAvz7lV80dORFyHGVZa44XV
-	pbgcx8vEZTZEkENUbdeQ==;
+	List-Owner; bh=qSuwzL5EjQrykh9BCqFJIbt93eb+ExfvJjLssJExX8A=; b=OES8HMG+Q9KxKW
+	pQCKXNgKSmpcIEL5aJYpfsfdq7PYC0fATSjAMCQeFeSyo9lRMYgl9GKKpPTZqhK6UVcCBf+HiYtvH
+	U2NDql2VGBXRvM68XX9wtL+CeEOOfCCJjAxUZVUQg5PsIr2nnG6LNBg+jaUWMMpFy4hg2abimpBY6
+	SefEfOsnMPli4ygLq+pbufPJYAGrBt1GRAIPtDNDT9cXyUEhWjnERzWsfYanjlqVSFigzrNrdYxsn
+	H4FC5HrF83vxa/wXpDVcECdERj+o7/k2b/h4+Opkht62bk//MFP92Qr0gJVV+kWC8SlncbHESTxgH
+	nch+o/KGMwkuqeVZM7OQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gfp0n-0002z7-Lv; Sat, 05 Jan 2019 16:41:25 +0000
+	id 1gfp3s-0003Rl-4A; Sat, 05 Jan 2019 16:44:36 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gfp0k-0002yh-FL; Sat, 05 Jan 2019 16:41:24 +0000
+ id 1gfp3p-0003RM-4I; Sat, 05 Jan 2019 16:44:35 +0000
 Received: from archlinux (cpc91196-cmbg18-2-0-cust659.5-4.cable.virginm.net
  [81.96.234.148])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 3F4A52085A;
- Sat,  5 Jan 2019 16:41:20 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id D2CF020868;
+ Sat,  5 Jan 2019 16:44:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1546706482;
- bh=MEygMgqeG8M0f2Aor83TanJM1pYbahZ3kO+b7rece5M=;
+ s=default; t=1546706672;
+ bh=y6g3RC2jupLKkYvU50Kw8dU3yHjiAEgyUOv6lo+XkOo=;
  h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=pz2cZDP1FJw1+o/Tllm71StwEgLCHDLj6WEqMqa+SfzNibCgqB6D1+qGFWOwDS8DX
- fOV2tK+UZEUHUkd6k1ct9Lqlu8zk+G993GLU4rAg31nsDVI1OdbfL7zPr6NjMnlsJa
- VHZwH4EZ/xyeLOfwYoytFfT95ZbGnzhE6j/9YX40=
-Date: Sat, 5 Jan 2019 16:41:17 +0000
+ b=fzZappERtnQP9KuQ5fMhPitA0oHB5+b9fwrz28GoS+iOfXL+Pr/rtPyf/uR5q9uv6
+ Og9Fxp7c57oB/EMsR18oiIfthR3a980t7Rk/9X6RRwisVm5fEqIExFY4sFNE8m5UyW
+ BjsCZg3VMJp0uXYUy0rQadR118JSTx6tihcySmOY=
+Date: Sat, 5 Jan 2019 16:44:27 +0000
 From: Jonathan Cameron <jic23@kernel.org>
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Subject: Re: [PATCH 2/2] iio: adc: meson-saradc: enable the temperature
  sensor two more SoCs
-Message-ID: <20190105164117.125fbba8@archlinux>
+Message-ID: <20190105164427.03e2a013@archlinux>
 In-Reply-To: <20181227215020.9803-3-martin.blumenstingl@googlemail.com>
 References: <20181227215020.9803-1-martin.blumenstingl@googlemail.com>
  <20181227215020.9803-3-martin.blumenstingl@googlemail.com>
 X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190105_084122_549853_9D75F3B3 
+X-CRM114-CacheID: sfid-20190105_084433_624710_2ED263DF 
 X-CRM114-Status: GOOD (  22.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -105,8 +105,8 @@ Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
 > calculation logic.
 > 
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Applied to the togreg branch of iio.git and pushed out as testing for the
-autobuilders to play with it.
+Applied to the togreg branch of iio.git and pushed out as testing for
+the autobuilders to play with it.
 
 Thanks,
 
