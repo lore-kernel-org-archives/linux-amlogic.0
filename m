@@ -1,75 +1,70 @@
-Return-Path: <SRS0=8QoF=PM=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=wai9=PN=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-6.4 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 64848C43387
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Jan 2019 17:54:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 98FC6C43387
+	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Jan 2019 16:40:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3697721872
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Jan 2019 17:54:19 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5EEA72087F
+	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Jan 2019 16:40:15 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pkePtgZH";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="qbdZX4vO"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3697721872
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="P2XGEejR";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="hqRt4ped"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5EEA72087F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DH+yuF8LYgSDadl4LjloAewUo0tMp04EroJQs9j5MzI=; b=pkePtgZHe+TZM4
-	0psRzQQbBBFZxbZcnPVQzggz0Tr5f69k4+pSn+nLFE0vb7HiFNa5vz3Y+VQLtIneoQ02OLjzJM399
-	06mxYDefp2mCMHgWbHJg1uUV4y/Y2PbX2dDNfal+wbzjCVwksb/IDRn86SWfbr2JZS/SPK2+405lC
-	ozUTLbUUwrnna/oG7WvMZjydDJZXYnpLBdkmruuIZIq3tLcxhlhZH5MTRu8v+NzxUDNJjntHwxTGr
-	ysi35yAYxnqop5OliNV2DYUhM3+QwHwNcRwN4OxvFKGcFU3UDs07YrB/Wdi8lVYn1XyMGuN4RM9/M
-	2DVAAlmJS/nAs/G65Vhg==;
+	List-Owner; bh=fGKUk+EIeXo3XM3Ib1Q8LDcVoKgpl27J8oUfd5v5tPE=; b=P2XGEejR0OLWfp
+	QJOSAGb61hKToqsSqWna+Rnyx5viySKlxLhnB90sDq8o4IqU7+rkfqIQgmwZN4C6I5HqspXARTZVB
+	WZ5tx4pUJuV2QhE4UmcU2ouqQA3aiQ+SIODiJnXu0x5Q27H3qXsS7qF6jmfAdQ2QErOYxUWOdjD4q
+	pX1yVJXtZ2in0sjLGtS9lY1MK5c+nDZLaigzK9lc6bBZ+SSkrtf1yaelAKAwyifIjbw1mRCtd82Zb
+	FruhAwlaZO77u7c7/4jHAywnmz51WwEWiCHEBIOKyW6vYsvQf6398be5HEsuEI6XVGaUcq4ZuijIH
+	fPfmqwdpXyisbwQ+Q94Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gfTff-0001Ui-Eh; Fri, 04 Jan 2019 17:54:11 +0000
+	id 1gfozV-0001vj-Bh; Sat, 05 Jan 2019 16:40:05 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gfTdc-0007gF-PO
- for linux-amlogic@lists.infradead.org; Fri, 04 Jan 2019 17:53:25 +0000
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com
- [209.85.160.169])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ id 1gfozT-0001To-0F; Sat, 05 Jan 2019 16:40:04 +0000
+Received: from archlinux (cpc91196-cmbg18-2-0-cust659.5-4.cable.virginm.net
+ [81.96.234.148])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id F1814218E0
- for <linux-amlogic@lists.infradead.org>; Fri,  4 Jan 2019 17:52:03 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 509102085A;
+ Sat,  5 Jan 2019 16:39:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1546624324;
- bh=+su/Qs+Cz0cYpN2qfT/2Jx3q5qizXMee64zZMYwRNDY=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=qbdZX4vOxsE6R2gKeCL5QY/yuke8CSeK63lwUf+fPp3IjSq3TrQnLRaSbYj5VozIW
- KYrU8RCwwGFnM+b30xL3lhKmJ9RwnMFsxazdQxqoaqCd/WQ1J42fHyLdS3YRT3ZNxP
- W4faCiAcjEUWOX9DqwZLOLcfFv3vtzwnJko+mXzc=
-Received: by mail-qt1-f169.google.com with SMTP id i7so41199005qtj.10
- for <linux-amlogic@lists.infradead.org>; Fri, 04 Jan 2019 09:52:03 -0800 (PST)
-X-Gm-Message-State: AJcUukf5chi7aqEXhEPwuKAHuQi6+3SJUQrPPVPC58Z5mXozrz1LTR6n
- WeK1UlqilAfiR7DXUMmlU1A+upZbe8k2aejKlg==
-X-Google-Smtp-Source: ALg8bN6A9gvdJDThaQyJEb2fcsKCnaiR7oYm2mjGYtl6z5WvAVM9xp8LskHUwx9Txu8y2EMxmGAhexuYuZ8/nBJ8+d0=
-X-Received: by 2002:a0c:c389:: with SMTP id o9mr51688167qvi.90.1546624323140; 
- Fri, 04 Jan 2019 09:52:03 -0800 (PST)
+ s=default; t=1546706401;
+ bh=ySrb+rbphNkf3LVkBFKXb5+bZ+pG16+NCn9BcPz+c0U=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=hqRt4pednMW15qjLV1NdpZWilBWag6MHnC+FOXqFgx5Fi1p0xkDSipIvAckZ/m3Dz
+ cxhT5lbzbpQgJ49R0ERzBb+ectmTp4YkAV8Pv5ggOdYUSv41kTSrph55GnN5so5zUK
+ 6J8sQ1u5v1bYd8OHD6Ha12Allgv3MYRJJUiV4cRk=
+Date: Sat, 5 Jan 2019 16:39:56 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: meson-saradc: update
+ temperature sensor support
+Message-ID: <20190105163956.195752d6@archlinux>
+In-Reply-To: <20190103230209.GA21801@bogus>
+References: <20181227215020.9803-1-martin.blumenstingl@googlemail.com>
+ <20181227215020.9803-2-martin.blumenstingl@googlemail.com>
+ <20190103230209.GA21801@bogus>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <1545994235-8309-1-git-send-email-lollivier@baylibre.com>
-In-Reply-To: <1545994235-8309-1-git-send-email-lollivier@baylibre.com>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Fri, 4 Jan 2019 11:51:51 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLvSWF60eqLsXUcP5GL0ijgfE6XwvectiM1D1Y9LPpOkA@mail.gmail.com>
-Message-ID: <CAL_JsqLvSWF60eqLsXUcP5GL0ijgfE6XwvectiM1D1Y9LPpOkA@mail.gmail.com>
-Subject: Re: [PATCH 0/4] Add driver for globaltop GNSS receivers
-To: Loys Ollivier <lollivier@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190104_095205_170562_BBB93F2B 
-X-CRM114-Status: GOOD (  19.79  )
+X-CRM114-CacheID: sfid-20190105_084003_070253_2BD83FE5 
+X-CRM114-Status: GOOD (  12.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -81,64 +76,41 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
- Kevin Hilman <khilman@baylibre.com>, Johan Hovold <johan@kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- linux-amlogic@lists.infradead.org
+Cc: mark.rutland@arm.com, devicetree@vger.kernel.org, lars@metafoo.de,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, balbes-150@yandex.ru,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, robh+dt@kernel.org,
+ pmeerw@pmeerw.net, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Dec 28, 2018 at 4:51 AM Loys Ollivier <lollivier@baylibre.com> wrote:
->
-> Hello !
->
-> This patch series adds a new GNSS driver for the globaltop GNSS receivers.
-> These receivers transmits NMEA output sequence as soon as they have booted.
-> Power management can be done via the main supply and optional backup supply
-> as defined in the device tree.
->
-> The driver has been tested using a GlobalTop pa6h chipset on a Libretech-cc
-> board using the expansion header. Changes made in the board device tree can
-> be found below for reference and testing.
->
-> Loys
->
-> Loys Ollivier (4):
->   dt-bindings: Add vendor prefix for "GlobalTop Technology, Inc."
->   dt-bindings: gnss: add gtop binding
->   gnss: add gtop receiver type support
->   gnss: add driver for globaltop receivers
->
->  Documentation/devicetree/bindings/gnss/gtop.txt    |  33 +++++
->  .../devicetree/bindings/vendor-prefixes.txt        |   1 +
->  drivers/gnss/Kconfig                               |  13 ++
->  drivers/gnss/Makefile                              |   3 +
->  drivers/gnss/core.c                                |   1 +
->  drivers/gnss/gtop.c                                | 152 +++++++++++++++++++++
->  include/linux/gnss.h                               |   1 +
->  7 files changed, 204 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gnss/gtop.txt
->  create mode 100644 drivers/gnss/gtop.c
->
-> ---
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-> index 90a56af967a7..3b3d4dcc47aa 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-> @@ -17,6 +17,7 @@
->
->         aliases {
->                 serial0 = &uart_AO;
-> +               serial1 = &uart_A;
+On Thu, 3 Jan 2019 17:02:09 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-You should not need this as the UART is not used as a tty. It could be
-that the serial driver requires aliases, but that should be fixed.
-There should be some examples of fixing this in other serial drivers.
+> On Thu, 27 Dec 2018 22:50:19 +0100, Martin Blumenstingl wrote:
+> > Meson8b and Meson8m2 use a 5-bit wide TSC (temperature sensor
+> > coefficient). The SAR ADC registers however can only store (the lower)
+> > 4 bits. The fifth (upper-most) bit is stored inside the
+> > MESON_HHI_DPLL_TOP_0[9] register from the HHI register area.
+> > This adds a syscon property to the HHI register area so a driver can
+> > fetch the HHI register map and store the fifth TSC bit in there.
+> > 
+> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > ---
+> >  .../devicetree/bindings/iio/adc/amlogic,meson-saradc.txt      | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> >   
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+Applied to the togreg branch of iio.git and pushed out as testing for
+the autobuilders to play with it.
 
->                 ethernet0 = &ethmac;
->         };
+Thanks,
+
+Jonathan
+
 
 _______________________________________________
 linux-amlogic mailing list
