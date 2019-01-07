@@ -2,146 +2,88 @@ Return-Path: <SRS0=/OEX=PP=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.6 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 97DE4C43387
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Jan 2019 14:36:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9451DC43387
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Jan 2019 16:22:13 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5B8C32173C
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Jan 2019 14:36:34 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5EFBF2147C
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Jan 2019 16:22:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ouZJZQIp";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="FHYh63dv"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5B8C32173C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NZojl5p8";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Ln75HulD"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5EFBF2147C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PAt7j4KLTH4x6Tfc6Zqa8VPfw/XcTyE5eqJgUNgT55o=; b=ouZJZQIpWmyMji
-	F0IW+6bX+dLgSh/JZ/Z7l3ZTQollhvWQak8d5v94Yv+ffcFehcwDzdvsRVhwreRkK8FNplRE5/8HJ
-	D1AfpOzVh9ST7Y/RmD7szYoSauk+Sh9LNDP1NNekmAF4tIerAYU5+yZa/tXasjnLCQaKLf0UYXClP
-	yANWq1dH9DbfOG8qzhcFxTOiyOn1i+QQ4iVF1QyV0dQvhbdw7ixA0ci2ff2j75tCyHvuzaWcuMmqD
-	Qsrup/CFdRqp19JiYRSs+hRqzZg0gQzxK9oU2/txo4cVH1rtJ9OTcBTgszebftkqevSrMJNKf4miJ
-	B7WKQeBBSf6eM7g9VepQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:In-reply-to:Subject:To:
+	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=yzKRNPXf9CMMoaniXyij/nloL7Zdo86NBgh+MOeUuQM=; b=NZojl5p8N9zwG/6mWwBPme40K
+	unuZQpnl6bs+BEvSlhvdQ/RMLAl8OoAdXRs5jxRs7aJ3DJ47oSAt4hUIcpfTsrpWvmzfaH/DUtc1+
+	3kWWJnMYPUkBlju4L6lUIxKh3thhDHt4NE4nT1qvffogyGtEZEpDR9K1DBhwXvaEwHS9Fomp0VkU9
+	9CPC2LfRve5d/4WEyVpwX7XZRbgxed0CHNvIfhWxj/43aC990fHogDYFd5f2eGsIKZy7HuIy2Hcvo
+	1sjvX+a7wQYiMxiJQO7NrH/S9dyW9yPrpIxcY4opNLqzi0+zFmj1a+nhrnte46nlgBVsXcA8jbmf/
+	mx+R01OYg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1ggW0y-00020t-8N; Mon, 07 Jan 2019 14:36:28 +0000
-Received: from mail-ed1-x541.google.com ([2a00:1450:4864:20::541])
+	id 1ggXfC-000100-Fv; Mon, 07 Jan 2019 16:22:06 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1ggW0r-0001qa-4G
- for linux-amlogic@lists.infradead.org; Mon, 07 Jan 2019 14:36:26 +0000
-Received: by mail-ed1-x541.google.com with SMTP id g22so1073703edr.7
- for <linux-amlogic@lists.infradead.org>; Mon, 07 Jan 2019 06:36:20 -0800 (PST)
+ id 1ggXf9-0000zH-Ey
+ for linux-amlogic@lists.infradead.org; Mon, 07 Jan 2019 16:22:05 +0000
+Received: by mail-wr1-x444.google.com with SMTP id p4so1027906wrt.7
+ for <linux-amlogic@lists.infradead.org>; Mon, 07 Jan 2019 08:22:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=O2VPNPn3DSLCDcwGDDQnewrk+6t8gZb6lnFZBdvUIjE=;
- b=FHYh63dv94tyY7PjeLQlFH6NVBr7kgbD2Z+dPeucvAunuPEx6fMzNz0MKOJvSLnXX3
- khTgwAXO8hflp1wgAb3SwWm9rOmfU0NupnqAqfWnADCcdXO6xE0SUYauVTIi936qnEpe
- nBoMEFmg7sH0kAbJLN/AyaiY/LVa8W5oajWuKXJNztY8WC7rOkUl5dekTxDLm7O6eqI9
- yp6omT2JM1mlglxICT3XHOzMrz77slZU9xk29DVLiNbaJ+dQMuOKwMpi0iRET7gs0iem
- eqCn5wkb2x80A/NylVg1aLjEtfGVN1qm+6bx+9TG/C3ieYbN4zHguAdjpO4UynPnJTGK
- /ieA==
+ h=references:user-agent:from:to:cc:subject:in-reply-to:date
+ :message-id:mime-version;
+ bh=2cCUr7PlaXmiRjtgfpz3Nae1G4BEEyhXg8rSKqZZ88E=;
+ b=Ln75HulD8kMo5118jQgIXCZQlJUcI3zzOfGV84h9A+YsQGyAuRom1MI3NByIeZOEbx
+ I8CYyid/j/wWWwAlfA7uGvHTXdmzU/AZPcljWcOSJj88jTak20ZGXSFwqS7CCf2fIJpl
+ IjXL74DmjHKYgfuffzbNbk3mFjArmI8lpYLF5G3KHMiJLqyjCWqChh1BMyR/6ioqQNJm
+ H1nT5DZZC7dyPQh5PUioBLtOOocZvDk634WZjHOm+5m1XTnQPXl4lqrRzsR3LX4++jGA
+ EXTHsdOU8V/uswf4btvMnxZrNjoUBUHEUd/oDaGunuQ9Rjs61VUWC8k4lcUxdMtxeA+d
+ a7Tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=O2VPNPn3DSLCDcwGDDQnewrk+6t8gZb6lnFZBdvUIjE=;
- b=OX3mZFB432+VBffLq2M+Bj5wO0jDwBe5xs9o7MJgZA7bUqDB5iHzxxA5inZnPDscuX
- lUF8GdB3KfYVDw43bCVOsLd+da/VfpDALFOo5xS3CDGepMz7fTkjbqhWmED00lmL0zOE
- stAGNWraCd9WVxDr5PVczaIYyW3Cug3qkwyBzLLgN42T8gSxWsy9DOcPIjNC/PXwzpWN
- u6MnZ8/rTSKwwQPJ0a8uQVxiuCuh2ihC+/C6yDRWvV8HsyEPTmGS3jB6oMlBI6ZONaYW
- m+FW5e0EHO/hRxLFVWufGTmAyQBWXtj3kXfNiaAjqz44x5cQ0/lXZeuIMkxwUjGUp5As
- 6oJA==
-X-Gm-Message-State: AA+aEWavmGtMLtNhEEwITsGXttmPByVDpAn0eQ/Mz+waDFMei0qJTWgF
- OvEjVNnnHQsE0J1BQmlcVXzKBg==
-X-Google-Smtp-Source: AFSGD/Vv+JGbWQwMgXLkvKMrD0jMh+S2sFjO0gZLs2qm7fTTXzT0lBSGmB07JYPTNvUFv0OJbya9mQ==
-X-Received: by 2002:a17:906:7a18:: with SMTP id
- d24-v6mr47458645ejo.16.1546871779190; 
- Mon, 07 Jan 2019 06:36:19 -0800 (PST)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id k20sm31344034eda.71.2019.01.07.06.36.18
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:date:message-id:mime-version;
+ bh=2cCUr7PlaXmiRjtgfpz3Nae1G4BEEyhXg8rSKqZZ88E=;
+ b=UEbZGG+7S9BhoKeHWqBHZSnfV5c2muGKLATVhjFQrQQ/a5ibYdWPJdv6VB2In/OHDd
+ jJdfzUUHexm5o5Kt/lRjW9kCPyHDM6SnOSyhPAzj2YFJbsi4vSgusIlDuTyLvqORO46p
+ VMyswvKvc92kjjET5Y8d3PeVAysBgSszq/W/uK/OxxQ88XBbWCtRoomSFXw3NBfSuGXy
+ FuDluRqtsAJMsSORMwrxBPyzxy1p5YWaB8+ZJVBCpgSs2/0G5L5FhefSycnzswZsZCL7
+ hVzqHXbh9QwBhdmdH9XBHLyijHnSFqpKLp8y4DGlXaKL9rzZ9HGtsAYkBFQR9D3qAETF
+ fEZQ==
+X-Gm-Message-State: AJcUukfr8sptYIieHgpS0or/tcdsgRLqMKPMX38YKqoxhDnAcXCftU5l
+ Pj7RkJrr/3c8hbQwJTxiasmAkQ==
+X-Google-Smtp-Source: ALg8bN6Xo4Re/va2IqW4tTrg+DLn7mq9r7Vs2LxOISxe2uenpNQHJZSwLoa0ZCbXvWIA4iKPOPiOKw==
+X-Received: by 2002:a5d:6105:: with SMTP id v5mr50787171wrt.63.1546878120518; 
+ Mon, 07 Jan 2019 08:22:00 -0800 (PST)
+Received: from localhost ([2620:10d:c092:180::1:9696])
+ by smtp.gmail.com with ESMTPSA id y185sm6216760wmg.34.2019.01.07.08.21.59
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 07 Jan 2019 06:36:18 -0800 (PST)
-Subject: Re: [PATCH 0/5] Meson (32-bit): add support for the Mali GPU
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- jbrunet@baylibre.com, khilman@baylibre.com, robh+dt@kernel.org
-References: <20181208171247.22238-1-martin.blumenstingl@googlemail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <13bd9d3a-3cbe-3952-03bb-ef5da6eec401@baylibre.com>
-Date: Mon, 7 Jan 2019 15:36:17 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.2.1
+ Mon, 07 Jan 2019 08:21:59 -0800 (PST)
+References: <1545994235-8309-1-git-send-email-lollivier@baylibre.com>
+ <86bm4x6830.fsf@baylibre.com> <20190104091937.GA4737@localhost>
+User-agent: mu4e 1.0; emacs 25.3.2
+From: Loys Ollivier <lollivier@baylibre.com>
+To: Johan Hovold <johan@kernel.org>
+Subject: Re: [PATCH 0/4] Add driver for globaltop GNSS receivers
+In-reply-to: <20190104091937.GA4737@localhost>
+Date: Mon, 07 Jan 2019 17:21:58 +0100
+Message-ID: <86ftu41lqx.fsf@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20181208171247.22238-1-martin.blumenstingl@googlemail.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190107_063622_240135_7039408D 
-X-CRM114-Status: GOOD (  25.63  )
+X-CRM114-CacheID: sfid-20190107_082203_561319_5153CA0C 
+X-CRM114-Status: GOOD (  18.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -153,83 +95,61 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Loys Ollivier <lollivier@baylibre.com>, linux-kernel@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, linux-amlogic@lists.infradead.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 08/12/2018 18:12, Martin Blumenstingl wrote:
-> This series adds support for the Mali-450 GPU on Meson8 and Meson8b.
-> Meson6 uses a Mali-400 GPU but since we don't have a clock driver (and
-> I don't have a device for testing) Meson6 is left out in this series.
-> 
-> Meson8 uses a Mali-450 MP6 with six pixel processors. Meson8b (as
-> cost-reduced SoC) uses a Mali-450 MP2 with two pixel processors.
-> I tested both using the open source lima driver and a patched mesa
-> from the lima project as well. Since we don't have display support
-> on the 32-bit SoCs I used off-screen rendering as described in [0].
-> The result is (for example): [1]
-> 
-> The bootloader (at least on my boards) leaves the Mali clock disabled
-> by default. The board crashes when trying to access the Mali registers
-> with the "core" clock disabled.
-> Thus this series also implements the required clock driver changes. The
-> Mali clock tree on Meson8b and Meson8m2 is almost identical to the one
-> on GXBB (see the description of patch #3 for more details). Only Meson8
-> is slightly different as it doesn't have a glitch-free mux. Patch #2
-> prepares the meson8b clock driver so we can have different clocks per
-> SoC.
-> 
-> Dependencies:
-> - the .dts changes depend on my other series "ARM: dts: meson: add the
->   APB/APB2 busses" from [2]
-> - the .dts changes from this series have no compile-time dependency on
->   the clock driver changes because CLKID_MALI was defined in the
->   dt-bindings since the first version of the clock driver (but it was
->   not used until now).
-> - the .dts changes from this series have a runtime dependency on the
->   clock driver changes (also from this series) if you have a kernel
->   patched with the lima driver (without the lima driver there's no
->   runtime dependency)
-> 
-> Other notes:
-> By default the GPU runs off the XTAL clock (24MHz). The lima driver
-> currently does not update the GPU clock rate. Different frequencies
-> have to be requested by adding the following properties to the Mali
-> GPU node (to run it at 510MHz for example):
->   assigned-clocks = <&clkc CLKID_MALI>;
->   assigned-clock-rates = <510000000>;
-> 
-> 
-> [0] https://gitlab.freedesktop.org/lima/web/wikis/home
-> [1] https://abload.de/img/dump0myic0.png
-> [2] https://patchwork.kernel.org/cover/10719445/
-> 
-> 
-> Martin Blumenstingl (5):
->   dt-bindings: gpu: mali-utgard: add Amlogic Meson8 and Meson8b
->     compatible
->   clk: meson: meson8b: use a separate clock table for Meson8
->   clk: meson: meson8b: add the GPU clock tree
->   ARM: dts: meson8: add the Mali-450 MP6 GPU
->   ARM: dts: meson8b: add the Mali-450 MP2 GPU
-> 
->  .../bindings/gpu/arm,mali-utgard.txt          |   6 +
->  arch/arm/boot/dts/meson8.dtsi                 |  58 +++
->  arch/arm/boot/dts/meson8b.dtsi                |  46 +++
->  drivers/clk/meson/meson8b.c                   | 349 +++++++++++++++++-
->  drivers/clk/meson/meson8b.h                   |   9 +-
->  5 files changed, 461 insertions(+), 7 deletions(-)
-> 
 
-Applied patches 2 & 3 to next/drivers for Linux 5.1
+On Fri 04 Jan 2019 at 09:19, Johan Hovold wrote:
 
-Kevin, have fun with the other patches !
+> On Thu, Jan 03, 2019 at 05:04:35PM +0100, Loys Ollivier wrote:
+>> 
+>> As suggested by Neil Armstrong - this GNSS device seems to behave like
+>> most generic GNSS receivers.
+>> I'll send a v2 with a generic driver that works for both GlobalTop and
+>> u-blox.
+>
+> That doesn't sound right to me. Judging from a quick look, this device
+> appears to be based on a mediatek chipset, so I suggest reworking
+> (renaming) this as a Mediatek driver (gnss type would be MTK, reflecting
+> the vendor protocol) even if it happens to look a lot like the current
+> u-blox driver.
+>
+OK, agreed - will rename the driver as Mediatek.
+Would you recommend keeping any reference to Globaltop ? Such as in the
+devicetree gnss bindings.
+Or only keep "mediatek,mt3339" for any solution based on that chipset.
+> If we ever add more features, like support for some part of the vendor
+> protocol or maybe 1pps, things will start diverging. As you noticed you
+> already have the generic serial gnss implementation to handle a lot of
+> the common bits.
+Yes, I would like indeed to look into 1pps after that patch series.
+>
+>> Loys Ollivier writes:
+>> 
+>> > Hello !
+>> >
+>> > This patch series adds a new GNSS driver for the globaltop GNSS
+>> > receivers.  These receivers transmits NMEA output sequence as soon
+>> > as they have booted.  Power management can be done via the main
+>> > supply and optional backup supply as defined in the device tree.
+>> >
+>> > The driver has been tested using a GlobalTop pa6h chipset on a
+>> > Libretech-cc board using the expansion header. Changes made in the
+>> > board device tree can be found below for reference and testing.
+>
+> Thanks,
+> Johan
 
-Neil
+Will send a v2.
+
+-- 
+-L
 
 _______________________________________________
 linux-amlogic mailing list
