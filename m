@@ -4,19 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BA7A3C43387
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Jan 2019 14:16:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 97DE4C43387
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Jan 2019 14:36:34 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 826FF2070B
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Jan 2019 14:16:36 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5B8C32173C
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Jan 2019 14:36:34 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CIOufKkg";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="0JOPhN4+"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 826FF2070B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ouZJZQIp";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="FHYh63dv"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5B8C32173C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,59 +25,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aDHTSj65cITdgh2J/t3Sgukuso6/Zg3l/OyQ5+sCvMI=; b=CIOufKkg4DOJUN
-	7SncsLUiT7wrNnQtcwgGWNVhu890XchnZ6Hz8EhtYEaLk1BJ33LH5yP7RzzzsWhdvjzY/Cd2LE3bx
-	9t1qcUymOCUyN9kN+IIq+8oJaT1bcToRxR5V8R5GUEk8vbSTtXAFq5JhS7xUkkgj321LlMwm1/0qh
-	S0DUR4YcvjVam/gqKd/1D4lO1ytjtJskZxsI81BPm7Hb5WDlDixuDyS8o63cJPhGHfbjA1g9amMir
-	c4Edf+sXdBbDvIB8pN/L+/IDhjFtoW2TMVIh7KjLlLVCO5yEfujsFblv+GmLiOMOz2heuwLlB08nr
-	a/aV+PDJJ5/Aw6y617Bw==;
+	List-Owner; bh=PAt7j4KLTH4x6Tfc6Zqa8VPfw/XcTyE5eqJgUNgT55o=; b=ouZJZQIpWmyMji
+	F0IW+6bX+dLgSh/JZ/Z7l3ZTQollhvWQak8d5v94Yv+ffcFehcwDzdvsRVhwreRkK8FNplRE5/8HJ
+	D1AfpOzVh9ST7Y/RmD7szYoSauk+Sh9LNDP1NNekmAF4tIerAYU5+yZa/tXasjnLCQaKLf0UYXClP
+	yANWq1dH9DbfOG8qzhcFxTOiyOn1i+QQ4iVF1QyV0dQvhbdw7ixA0ci2ff2j75tCyHvuzaWcuMmqD
+	Qsrup/CFdRqp19JiYRSs+hRqzZg0gQzxK9oU2/txo4cVH1rtJ9OTcBTgszebftkqevSrMJNKf4miJ
+	B7WKQeBBSf6eM7g9VepQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1ggVhf-0002Wc-He; Mon, 07 Jan 2019 14:16:31 +0000
-Received: from mail-ed1-x542.google.com ([2a00:1450:4864:20::542])
+	id 1ggW0y-00020t-8N; Mon, 07 Jan 2019 14:36:28 +0000
+Received: from mail-ed1-x541.google.com ([2a00:1450:4864:20::541])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1ggVhb-0002Vc-N6
- for linux-amlogic@lists.infradead.org; Mon, 07 Jan 2019 14:16:30 +0000
-Received: by mail-ed1-x542.google.com with SMTP id b3so1045763ede.1
- for <linux-amlogic@lists.infradead.org>; Mon, 07 Jan 2019 06:16:26 -0800 (PST)
+ id 1ggW0r-0001qa-4G
+ for linux-amlogic@lists.infradead.org; Mon, 07 Jan 2019 14:36:26 +0000
+Received: by mail-ed1-x541.google.com with SMTP id g22so1073703edr.7
+ for <linux-amlogic@lists.infradead.org>; Mon, 07 Jan 2019 06:36:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=KHzLH8hmDewoquII+Xcdqdc5pt2HOJhBok89GWmD+hQ=;
- b=0JOPhN4+g5F+nVzR/5MInS9O0lMTJBQRUnZdWpVN2wzstB8V7ABszzmOd1wbEzHgcv
- JZ+1s01+HFjAGfqRNViZNKBFUmS2bDGlL81LHT9PmyueJ/413CXTvCaep5h7q5P4oz+Y
- mUL669aUk5GdMr1bS59ljZMv4eqeoYLImbIsRfyGHPf+1uLIkdkh3hvqYPqOZRHI2WxT
- QebmN5Bdon9z5ZPy5RYZg/KW9EzaLjMB4sJbyMNy83wlsszaulPFDtAxrAIjIJAv/V8O
- TyRrK/1ZIrgJoqubY1VeRLzoHBsflOwbOIvTlZEQjik95DEw997GwhcnAFy+K+2zosWu
- DORw==
+ bh=O2VPNPn3DSLCDcwGDDQnewrk+6t8gZb6lnFZBdvUIjE=;
+ b=FHYh63dv94tyY7PjeLQlFH6NVBr7kgbD2Z+dPeucvAunuPEx6fMzNz0MKOJvSLnXX3
+ khTgwAXO8hflp1wgAb3SwWm9rOmfU0NupnqAqfWnADCcdXO6xE0SUYauVTIi936qnEpe
+ nBoMEFmg7sH0kAbJLN/AyaiY/LVa8W5oajWuKXJNztY8WC7rOkUl5dekTxDLm7O6eqI9
+ yp6omT2JM1mlglxICT3XHOzMrz77slZU9xk29DVLiNbaJ+dQMuOKwMpi0iRET7gs0iem
+ eqCn5wkb2x80A/NylVg1aLjEtfGVN1qm+6bx+9TG/C3ieYbN4zHguAdjpO4UynPnJTGK
+ /ieA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=KHzLH8hmDewoquII+Xcdqdc5pt2HOJhBok89GWmD+hQ=;
- b=uFxumpWLQURBvbQbQZq2FrnxXzPL0bLIdpUwwS25HxZToCgD9mYo9INFbz19icksGY
- JVYP4d1CAKd/FWImcj9sk85Ft9eVbqger10Olewe9sgy/H585dQzSLPON14GiHKH1A4P
- fNS9npYpBKF5/PxlLVHK51aq+05h4q6JoB/oDG03DjUrdckGVjF+Q+P8eNQWfe056puK
- w3+elKqWNjoYlPYVGQVy+6GiF6yl/gmsySPqDach7BOKZ5jhmA6a0mMCu8pNITDfl40o
- 4WMuuAKxoH845bQ7254mtjlphJ1BjnZNPbLOJrUuNjrgjbO8h3xpPdgCA/6UVWB91c9W
- yLbw==
-X-Gm-Message-State: AA+aEWadlUQw7/0ZtFOnT5pxbAEOQaVAPLDZZW9+oGDKp2zBRKSSKX3+
- r6DgwM2aGbFkmhNwrrJVkuiJJn71f/X3Hw==
-X-Google-Smtp-Source: AFSGD/UERWKmac/kAK3jdGJF6xAjInJb7wa1GXLHbmaLXMadS6Pnx45uEOdHxlf7w6E8JJGpY9956g==
-X-Received: by 2002:aa7:d29a:: with SMTP id w26mr56932634edq.30.1546870585492; 
- Mon, 07 Jan 2019 06:16:25 -0800 (PST)
+ bh=O2VPNPn3DSLCDcwGDDQnewrk+6t8gZb6lnFZBdvUIjE=;
+ b=OX3mZFB432+VBffLq2M+Bj5wO0jDwBe5xs9o7MJgZA7bUqDB5iHzxxA5inZnPDscuX
+ lUF8GdB3KfYVDw43bCVOsLd+da/VfpDALFOo5xS3CDGepMz7fTkjbqhWmED00lmL0zOE
+ stAGNWraCd9WVxDr5PVczaIYyW3Cug3qkwyBzLLgN42T8gSxWsy9DOcPIjNC/PXwzpWN
+ u6MnZ8/rTSKwwQPJ0a8uQVxiuCuh2ihC+/C6yDRWvV8HsyEPTmGS3jB6oMlBI6ZONaYW
+ m+FW5e0EHO/hRxLFVWufGTmAyQBWXtj3kXfNiaAjqz44x5cQ0/lXZeuIMkxwUjGUp5As
+ 6oJA==
+X-Gm-Message-State: AA+aEWavmGtMLtNhEEwITsGXttmPByVDpAn0eQ/Mz+waDFMei0qJTWgF
+ OvEjVNnnHQsE0J1BQmlcVXzKBg==
+X-Google-Smtp-Source: AFSGD/Vv+JGbWQwMgXLkvKMrD0jMh+S2sFjO0gZLs2qm7fTTXzT0lBSGmB07JYPTNvUFv0OJbya9mQ==
+X-Received: by 2002:a17:906:7a18:: with SMTP id
+ d24-v6mr47458645ejo.16.1546871779190; 
+ Mon, 07 Jan 2019 06:36:19 -0800 (PST)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id d7-v6sm18454653ejx.68.2019.01.07.06.16.24
+ by smtp.gmail.com with ESMTPSA id k20sm31344034eda.71.2019.01.07.06.36.18
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 07 Jan 2019 06:16:24 -0800 (PST)
-Subject: Re: [PATCH v2 0/5] clk: meson: axg: add 32k clock generation
-To: Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman
- <khilman@baylibre.com>, Carlo Caione <carlo@caione.org>
-References: <20181221160239.26265-1-jbrunet@baylibre.com>
+ Mon, 07 Jan 2019 06:36:18 -0800 (PST)
+Subject: Re: [PATCH 0/5] Meson (32-bit): add support for the Mali GPU
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ jbrunet@baylibre.com, khilman@baylibre.com, robh+dt@kernel.org
+References: <20181208171247.22238-1-martin.blumenstingl@googlemail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -130,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <bb5fef84-3bcd-d273-e8f8-0664e0828785@baylibre.com>
-Date: Mon, 7 Jan 2019 15:16:23 +0100
+Message-ID: <13bd9d3a-3cbe-3952-03bb-ef5da6eec401@baylibre.com>
+Date: Mon, 7 Jan 2019 15:36:17 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.2.1
 MIME-Version: 1.0
-In-Reply-To: <20181221160239.26265-1-jbrunet@baylibre.com>
+In-Reply-To: <20181208171247.22238-1-martin.blumenstingl@googlemail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190107_061628_351132_18B1BD6E 
-X-CRM114-Status: GOOD (  15.24  )
+X-CRM114-CacheID: sfid-20190107_063622_240135_7039408D 
+X-CRM114-Status: GOOD (  25.63  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -151,58 +153,81 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 21/12/2018 17:02, Jerome Brunet wrote:
-> The goal of this patchset is to add the internal generation of the
-> 32768Hz clock within the axg AO clock controller.
+On 08/12/2018 18:12, Martin Blumenstingl wrote:
+> This series adds support for the Mali-450 GPU on Meson8 and Meson8b.
+> Meson6 uses a Mali-400 GPU but since we don't have a clock driver (and
+> I don't have a device for testing) Meson6 is left out in this series.
 > 
-> This was initially added has the CEC clock on gxbb. To properly
-> integrate it on the axg, a simpler 'dual divider' driver is added.
-> Then gxbb AO clock controller is reworked to use it. Finally the 32k
-> clock tree is added to the AXG.
+> Meson8 uses a Mali-450 MP6 with six pixel processors. Meson8b (as
+> cost-reduced SoC) uses a Mali-450 MP2 with two pixel processors.
+> I tested both using the open source lima driver and a patched mesa
+> from the lima project as well. Since we don't have display support
+> on the 32-bit SoCs I used off-screen rendering as described in [0].
+> The result is (for example): [1]
 > 
-> This patchset *no longer* requires depends on this CCF change [0].
-> There is a work around in place until a solution gets merged in
-> the framework.
+> The bootloader (at least on my boards) leaves the Mali clock disabled
+> by default. The board crashes when trying to access the Mali registers
+> with the "core" clock disabled.
+> Thus this series also implements the required clock driver changes. The
+> Mali clock tree on Meson8b and Meson8m2 is almost identical to the one
+> on GXBB (see the description of patch #3 for more details). Only Meson8
+> is slightly different as it doesn't have a glitch-free mux. Patch #2
+> prepares the meson8b clock driver so we can have different clocks per
+> SoC.
 > 
-> Changes since v1: [1]
->  * Add work around for [0] in gxbb-aoclk
+> Dependencies:
+> - the .dts changes depend on my other series "ARM: dts: meson: add the
+>   APB/APB2 busses" from [2]
+> - the .dts changes from this series have no compile-time dependency on
+>   the clock driver changes because CLKID_MALI was defined in the
+>   dt-bindings since the first version of the clock driver (but it was
+>   not used until now).
+> - the .dts changes from this series have a runtime dependency on the
+>   clock driver changes (also from this series) if you have a kernel
+>   patched with the lima driver (without the lima driver there's no
+>   runtime dependency)
 > 
-> [0]: https://lkml.kernel.org/r/20181204163257.32085-1-jbrunet@baylibre.com
-> [1]: https://lkml.kernel.org/r/20181204165310.20806-1-jbrunet@baylibre.com
+> Other notes:
+> By default the GPU runs off the XTAL clock (24MHz). The lima driver
+> currently does not update the GPU clock rate. Different frequencies
+> have to be requested by adding the following properties to the Mali
+> GPU node (to run it at 510MHz for example):
+>   assigned-clocks = <&clkc CLKID_MALI>;
+>   assigned-clock-rates = <510000000>;
 > 
-> Jerome Brunet (5):
->   dt-bindings: clk: meson: add ao slow clock path ids
->   clk: meson: clean-up clock registration
->   clk: meson: add dual divider clock driver
->   clk: meson: gxbb-ao: replace cec-32k with the dual divider
->   clk: meson: axg-ao: add 32k generation subtree
 > 
->  drivers/clk/meson/Makefile              |   4 +-
->  drivers/clk/meson/axg-aoclk.c           | 175 +++++++++++++++--
->  drivers/clk/meson/axg-aoclk.h           |  13 +-
->  drivers/clk/meson/clk-dualdiv.c         | 130 ++++++++++++
->  drivers/clk/meson/clkc.h                |  19 ++
->  drivers/clk/meson/gxbb-aoclk-32k.c      | 193 ------------------
->  drivers/clk/meson/gxbb-aoclk.c          | 251 +++++++++++++++++++-----
->  drivers/clk/meson/gxbb-aoclk.h          |  20 +-
->  drivers/clk/meson/meson-aoclk.c         |  15 +-
->  include/dt-bindings/clock/axg-aoclkc.h  |   7 +-
->  include/dt-bindings/clock/gxbb-aoclkc.h |   7 +
->  11 files changed, 540 insertions(+), 294 deletions(-)
->  create mode 100644 drivers/clk/meson/clk-dualdiv.c
->  delete mode 100644 drivers/clk/meson/gxbb-aoclk-32k.c
+> [0] https://gitlab.freedesktop.org/lima/web/wikis/home
+> [1] https://abload.de/img/dump0myic0.png
+> [2] https://patchwork.kernel.org/cover/10719445/
+> 
+> 
+> Martin Blumenstingl (5):
+>   dt-bindings: gpu: mali-utgard: add Amlogic Meson8 and Meson8b
+>     compatible
+>   clk: meson: meson8b: use a separate clock table for Meson8
+>   clk: meson: meson8b: add the GPU clock tree
+>   ARM: dts: meson8: add the Mali-450 MP6 GPU
+>   ARM: dts: meson8b: add the Mali-450 MP2 GPU
+> 
+>  .../bindings/gpu/arm,mali-utgard.txt          |   6 +
+>  arch/arm/boot/dts/meson8.dtsi                 |  58 +++
+>  arch/arm/boot/dts/meson8b.dtsi                |  46 +++
+>  drivers/clk/meson/meson8b.c                   | 349 +++++++++++++++++-
+>  drivers/clk/meson/meson8b.h                   |   9 +-
+>  5 files changed, 461 insertions(+), 7 deletions(-)
 > 
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Applied patches 2 & 3 to next/drivers for Linux 5.1
 
-And applied to next/drivers for Linux 5.1
+Kevin, have fun with the other patches !
 
 Neil
 
