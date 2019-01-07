@@ -1,69 +1,83 @@
-Return-Path: <SRS0=wai9=PN=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=/OEX=PP=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.4 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
-	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 23104C43612
-	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Jan 2019 16:44:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BA71EC43387
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Jan 2019 08:51:23 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DF5152087F
-	for <linux-amlogic@archiver.kernel.org>; Sat,  5 Jan 2019 16:44:41 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 849B120881
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Jan 2019 08:51:23 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="OES8HMG+";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="fzZappER"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DF5152087F
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Zwnr0dmn";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CX/HLUl3"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 849B120881
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qSuwzL5EjQrykh9BCqFJIbt93eb+ExfvJjLssJExX8A=; b=OES8HMG+Q9KxKW
-	pQCKXNgKSmpcIEL5aJYpfsfdq7PYC0fATSjAMCQeFeSyo9lRMYgl9GKKpPTZqhK6UVcCBf+HiYtvH
-	U2NDql2VGBXRvM68XX9wtL+CeEOOfCCJjAxUZVUQg5PsIr2nnG6LNBg+jaUWMMpFy4hg2abimpBY6
-	SefEfOsnMPli4ygLq+pbufPJYAGrBt1GRAIPtDNDT9cXyUEhWjnERzWsfYanjlqVSFigzrNrdYxsn
-	H4FC5HrF83vxa/wXpDVcECdERj+o7/k2b/h4+Opkht62bk//MFP92Qr0gJVV+kWC8SlncbHESTxgH
-	nch+o/KGMwkuqeVZM7OQ==;
+	List-Owner; bh=bKmFMJAgfkPknfQBfy9OJPZZGH+Hr6OT7EAw2TUkSbM=; b=Zwnr0dmnpqKuSK
+	gIujTUTfwVo/LCMezs8+qd5iskzdHbj4e69MI/IUySRzwUlc2DZcrrX7Mx0YwzShgSMYWkDH5vtXm
+	PVXP0IdB+lKqOPgQLaiy3ivINWhldEfMKkDrkoAmjo4EhtUlp5QV3kq+on5bJ4+OWjLQ3Bw3MHMiA
+	kxi+v1Wis6HTmp/iGAh4Ei4FlBlTi4bHpg4IyXbL1oHWww3GLnQYGKGi/f8EMwySUX4c8KKHIv7ej
+	Kjsab4ey4eMSthHIs41CJey/RxsuwuV6AKPr1ebNOmG/Bsd/Lz3YEJO0Ehiy4jyUrcs97SGfKhuEd
+	OcHc176A0lM8k2Oz1IBQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gfp3s-0003Rl-4A; Sat, 05 Jan 2019 16:44:36 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1ggQcs-0008QT-6v; Mon, 07 Jan 2019 08:51:14 +0000
+Received: from mail-oi1-x242.google.com ([2607:f8b0:4864:20::242])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gfp3p-0003RM-4I; Sat, 05 Jan 2019 16:44:35 +0000
-Received: from archlinux (cpc91196-cmbg18-2-0-cust659.5-4.cable.virginm.net
- [81.96.234.148])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id D2CF020868;
- Sat,  5 Jan 2019 16:44:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1546706672;
- bh=y6g3RC2jupLKkYvU50Kw8dU3yHjiAEgyUOv6lo+XkOo=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=fzZappERtnQP9KuQ5fMhPitA0oHB5+b9fwrz28GoS+iOfXL+Pr/rtPyf/uR5q9uv6
- Og9Fxp7c57oB/EMsR18oiIfthR3a980t7Rk/9X6RRwisVm5fEqIExFY4sFNE8m5UyW
- BjsCZg3VMJp0uXYUy0rQadR118JSTx6tihcySmOY=
-Date: Sat, 5 Jan 2019 16:44:27 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH 2/2] iio: adc: meson-saradc: enable the temperature
- sensor two more SoCs
-Message-ID: <20190105164427.03e2a013@archlinux>
-In-Reply-To: <20181227215020.9803-3-martin.blumenstingl@googlemail.com>
-References: <20181227215020.9803-1-martin.blumenstingl@googlemail.com>
- <20181227215020.9803-3-martin.blumenstingl@googlemail.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+ id 1ggQcp-0008Pm-BV; Mon, 07 Jan 2019 08:51:12 +0000
+Received: by mail-oi1-x242.google.com with SMTP id i6so35237134oia.6;
+ Mon, 07 Jan 2019 00:51:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=uLkUJ/jQT20r97kkh5KC+O126E2HctWoslGRzVy4yDk=;
+ b=CX/HLUl3wl2NivwD29cMoT1PZ2jGokD8piMg4yBTA/lntVFgiI/HZQpDMz7IxDRx/z
+ kdEc7l+//xTEejGeg1OQQRJJAbwAzD6t4vxEnSP9+tm1V6X8AZHLtFibBmX3uCBy6atj
+ NVZHjOayB671Mls4YN8ci+KPbyA0Azh8nUELbBCDB5KwsGS0nTYxkJIbLfyufe/K6CLy
+ EhSl+S92TXiUq7VZXGetAUo1WNPvXtqHf8eUMyhun4nMVJ1NL/L5+ZPJDdjO4GarHNUC
+ Iyldp2iZC7ja1JJFMnUc04KTCxa5er7lF3mnY/mpPEUkNglfbZ3D6NqVOUyvp0EPKUk2
+ f2Bw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=uLkUJ/jQT20r97kkh5KC+O126E2HctWoslGRzVy4yDk=;
+ b=IG3QeqWCyDN2uO43Sh0mspYJNv90/2xHC9+nTfGzNUWGmxHHiFEjxlfQ5PKkFHN7DZ
+ dBReGZE/FLoMS2fKIFpAXqa8bdP9dmwqDvWz0fYs16/krAWgzMzFuz41hh/H0tmaS9V0
+ AhL6u61GGTqB8jJGvivxuedKLbid0ai2XK4TTre/hlOGUwxCZbRmk4wjfO6tT4R68Rzr
+ NESpB/rN0VYlBw5dMv1oozUe4MbVnFac9AKFBtIz6r0Vxv2AyvJXg/4itcPXgb3hJOB0
+ wcblcwqQO7+l93q1OgNtSTt+ArcXSE1uUkFyFMJsGlbJ4tIY8hvOZk0XmuqUxrsggulh
+ XWjQ==
+X-Gm-Message-State: AJcUukc7k/jq9VXfkAJEW4SKctRadj5eFNOaTj1X/A6pN17ocEgVcJuh
+ GWR0gNZcQ049SWyUAnhbPfS4/6Q4Zj08ugZXjsk=
+X-Google-Smtp-Source: ALg8bN4NLaA58IS0fvAgCKx3JFYLrH2SkYBDfyBYb4VBBoUIh+dCDZ884Z+nOWvJkU3EpICjjnCONB/Lc88yVJ+oy68=
+X-Received: by 2002:aca:3fc6:: with SMTP id m189mr7750837oia.142.1546851070063; 
+ Mon, 07 Jan 2019 00:51:10 -0800 (PST)
 MIME-Version: 1.0
+References: <20181229125711.5205-1-martin.blumenstingl@googlemail.com>
+ <20181229125711.5205-2-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20181229125711.5205-2-martin.blumenstingl@googlemail.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Mon, 7 Jan 2019 14:21:01 +0530
+Message-ID: <CANAwSgQjoXqbV2hDs4W3kR=7ULK0gkR24V6SiEJw2+mYsaNcVQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] ARM: dts: meson8b: odroidc1: mark the SD card
+ detection GPIO active-low
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190105_084433_624710_2ED263DF 
-X-CRM114-Status: GOOD (  22.37  )
+X-CRM114-CacheID: sfid-20190107_005111_393055_223BEF3C 
+X-CRM114-Status: GOOD (  18.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -75,127 +89,74 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mark.rutland@arm.com, devicetree@vger.kernel.org, lars@metafoo.de,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, balbes-150@yandex.ru,
- robh+dt@kernel.org, pmeerw@pmeerw.net, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+Cc: =?UTF-8?Q?Linus_L=C3=BCssing?= <linus.luessing@c0d3.blue>,
+ linux-gpio@vger.kernel.org, balbes-150@yandex.ru,
+ Kevin Hilman <khilman@baylibre.com>, Linus Walleij <linus.walleij@linaro.org>,
+ linux-mmc@vger.kernel.org, bgolaszewski@baylibre.com,
+ Guenter Roeck <linux@roeck-us.net>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, 27 Dec 2018 22:50:20 +0100
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
+Hi Martin,
 
-> Meson8b and Meson8m2 use the same logic to convert the ADC register
-> value to celsius, which is different from Meson8:
-> - Meson8 has different multiplier and divider values
-> - Meson8 uses a 4-bit TSC (temperature sensor coefficient) which fits
->   into the 4-bit field in the MESON_SAR_ADC_DELTA_10 register:
->   MESON_SAR_ADC_DELTA_10_TS_C_MASK. Meson8b and Meson8m2 have a 5-bit
->   TSC which requires writing the upper-most bit into the
->   MESON_HHI_DPLL_TOP_0[9] register from the HHI register area.
-> 
-> This adds support for the temperature sensor on the Meson8b and Meson8m2
-> SoCs by implementing the logic to write the upper-most TSC bit into the
-> HHI register area. The SoC-specific values (temperature_trimming_bits,
-> temperature_multiplier, temperature_divider) are added - these simply
-> integrate into the existing infrastructure (which was implemented for
-> Meson8) and thus require no further changes to the existing temperature
-> calculation logic.
-> 
+On Sat, 29 Dec 2018 at 18:28, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> After commit 89a5e15bcba87d ("gpio/mmc/of: Respect polarity in the device
+> tree") SD cards are not detected anymore.
+>
+> The CD GPIO is "active low" on Odroid-C1. The MMC dt-bindings specify:
+> "[...] using the "cd-inverted" property means, that the CD line is active
+> high, i.e. it is high, when a card is inserted".
+>
+> Fix the description of the SD card by marking it as GPIO_ACTIVE_LOW and
+> drop the "cd-inverted" property. This makes the definition consistent
+> with the existing dt-bindings and fixes the check whether an SD card is
+> inserted.
+>
+> Fixes: e03efbce6bebf5 ("ARM: dts: meson8b-odroidc1: add microSD support")
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Applied to the togreg branch of iio.git and pushed out as testing for
-the autobuilders to play with it.
-
-Thanks,
-
-Jonathan
-
 > ---
->  drivers/iio/adc/meson_saradc.c | 33 +++++++++++++++++++++++++++++++++
->  1 file changed, 33 insertions(+)
-> 
-> diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-> index 729becb2d3d9..f8600fbcdfe3 100644
-> --- a/drivers/iio/adc/meson_saradc.c
-> +++ b/drivers/iio/adc/meson_saradc.c
-> @@ -26,6 +26,7 @@
->  #include <linux/platform_device.h>
->  #include <linux/regmap.h>
->  #include <linux/regulator/consumer.h>
-> +#include <linux/mfd/syscon.h>
->  
->  #define MESON_SAR_ADC_REG0					0x00
->  	#define MESON_SAR_ADC_REG0_PANEL_DETECT			BIT(31)
-> @@ -174,6 +175,9 @@
->  #define MESON_SAR_ADC_EFUSE_BYTE3_UPPER_ADC_VAL			GENMASK(6, 0)
->  #define MESON_SAR_ADC_EFUSE_BYTE3_IS_CALIBRATED			BIT(7)
->  
-> +#define MESON_HHI_DPLL_TOP_0					0x318
-> +#define MESON_HHI_DPLL_TOP_0_TSC_BIT4				BIT(9)
-> +
->  /* for use with IIO_VAL_INT_PLUS_MICRO */
->  #define MILLION							1000000
->  
-> @@ -280,6 +284,7 @@ struct meson_sar_adc_priv {
->  	struct completion			done;
->  	int					calibbias;
->  	int					calibscale;
-> +	struct regmap				*tsc_regmap;
->  	bool					temperature_sensor_calibrated;
->  	u8					temperature_sensor_coefficient;
->  	u16					temperature_sensor_adc_val;
-> @@ -727,6 +732,15 @@ static int meson_sar_adc_temp_sensor_init(struct iio_dev *indio_dev)
->  		return ret;
->  	}
->  
-> +	priv->tsc_regmap =
-> +		syscon_regmap_lookup_by_phandle(indio_dev->dev.parent->of_node,
-> +						"amlogic,hhi-sysctrl");
-> +	if (IS_ERR(priv->tsc_regmap)) {
-> +		dev_err(indio_dev->dev.parent,
-> +			"failed to get amlogic,hhi-sysctrl regmap\n");
-> +		return PTR_ERR(priv->tsc_regmap);
-> +	}
-> +
->  	read_len = MESON_SAR_ADC_EFUSE_BYTES;
->  	buf = nvmem_cell_read(temperature_calib, &read_len);
->  	if (IS_ERR(buf)) {
-> @@ -861,6 +875,22 @@ static int meson_sar_adc_init(struct iio_dev *indio_dev)
->  				    priv->temperature_sensor_coefficient);
->  		regmap_update_bits(priv->regmap, MESON_SAR_ADC_DELTA_10,
->  				   MESON_SAR_ADC_DELTA_10_TS_C_MASK, regval);
-> +
-> +		if (priv->param->temperature_trimming_bits == 5) {
-> +			if (priv->temperature_sensor_coefficient & BIT(4))
-> +				regval = MESON_HHI_DPLL_TOP_0_TSC_BIT4;
-> +			else
-> +				regval = 0;
-> +
-> +			/*
-> +			 * bit [4] (the 5th bit when starting to count at 1)
-> +			 * of the TSC is located in the HHI register area.
-> +			 */
-> +			regmap_update_bits(priv->tsc_regmap,
-> +					   MESON_HHI_DPLL_TOP_0,
-> +					   MESON_HHI_DPLL_TOP_0_TSC_BIT4,
-> +					   regval);
-> +		}
->  	} else {
->  		regmap_update_bits(priv->regmap, MESON_SAR_ADC_DELTA_10,
->  				   MESON_SAR_ADC_DELTA_10_TS_REVE1, 0);
-> @@ -1064,6 +1094,9 @@ static const struct meson_sar_adc_param meson_sar_adc_meson8b_param = {
->  	.bandgap_reg = MESON_SAR_ADC_DELTA_10,
->  	.regmap_config = &meson_sar_adc_regmap_config_meson8,
->  	.resolution = 10,
-> +	.temperature_trimming_bits = 5,
-> +	.temperature_multiplier = 10,
-> +	.temperature_divider = 32,
->  };
->  
->  static const struct meson_sar_adc_param meson_sar_adc_gxbb_param = {
+>  arch/arm/boot/dts/meson8b-odroidc1.dts | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+>
+> diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
+> index 58669abda259..070d69889f3e 100644
+> --- a/arch/arm/boot/dts/meson8b-odroidc1.dts
+> +++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
+> @@ -273,8 +273,7 @@
+>                 cap-sd-highspeed;
+>                 disable-wp;
+>
+> -               cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+> -               cd-inverted;
+> +               cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+>
+>                 vmmc-supply = <&tflash_vdd>;
+>                 vqmmc-supply = <&tf_io>;
+> --
+> 2.20.1
+>
 
+Please add my on my Odroid c1+
+
+Tested-by: Anand Moon <linux.amoon@gmail.com>
+
+My Odroid C2 is also fails to bootup with out these changes.
+Can you send patch to fix them as well.
+
+Best Regards
+
+-Anand
+
+>
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
 _______________________________________________
 linux-amlogic mailing list
