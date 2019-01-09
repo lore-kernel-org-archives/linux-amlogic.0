@@ -2,67 +2,83 @@ Return-Path: <SRS0=re6n=PR=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_PASS,UNWANTED_LANGUAGE_BODY,
-	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2EAEBC43612
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Jan 2019 20:49:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 519C9C43444
+	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Jan 2019 22:15:19 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F2CA920859
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Jan 2019 20:49:06 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2079220685
+	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Jan 2019 22:15:19 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kdRkA4yy";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="RzUey9Nk"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F2CA920859
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qhnCFMwP";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="iv234rAt"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2079220685
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:References:From:
-	In-Reply-To:To:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZQw9SEHgQmpifdT1nfzUE25lEsfNfQtvjNY8x0TSwF0=; b=kdRkA4yytit9Cs
-	noGtkPRf0DqGcAgfJJgflTiXZ2ZaoazJlwSJKHaUiOcChhiyl5gvLQDzGi2/DG++MMxewC8YT5BHD
-	fbEVPs8Egv2XQgO7OZAYz9lGeDbvUWNKIfpy+CrNYSYfEQd8jFXgLwMzosBNj9C7wCKKbMpcX0h9b
-	LZYJ9XT2bymG/fcVxHuGm0Yc5yRKXpfZqy2Afn+znWzoPb/An+pUbogHs+5ZhdD5D05hG0L7/Cna9
-	mq7XdiNSTUTWnn98QsXSM2/5xYf/TQiSvrAgHWRfqo48HBEkbuAegZ32Tk/gnXFgL6YzXdiOq4JU0
-	gyxHgaifXy3nOmGs7Gjg==;
+	List-Owner; bh=V2gkhtzbk9xXtyIHxNItShZy57wrAihh5qkq+CS1o4U=; b=qhnCFMwPtxF85D
+	kS4T4DeuCN2puWUDQqFHE1pUsHW//b3DToWGrmSoM2Rf6z7c66CgG91LiItGqL6H+167U5NYuhL/d
+	jxU9T4g5JwEN6Q6mIRymM6xH7LB2H8jL8Q9fOrk7GV1hBkrdb8N1YZNbGyNygNEPy7oZbf3OUnBOw
+	+NaYVkt/82dbWJSbNqQGsIuzFihJT72cXCaHjDhxS8xmjfHues2X/Jb1zKiQIZrMGw0wZnYOwxHex
+	9iqNFPldVF/MTWabsj8ayHToLw48b9Q7FEfndFLKumeo1DMRjjqSZF5YxKRz7EdUDPIe/bjP5xqPC
+	zbWFOwgosGmgE36bO8Pg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1ghKma-0004cn-M9; Wed, 09 Jan 2019 20:49:00 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1ghM81-0004xA-3s; Wed, 09 Jan 2019 22:15:13 +0000
+Received: from mail-oi1-x241.google.com ([2607:f8b0:4864:20::241])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1ghKmY-0004cN-O0; Wed, 09 Jan 2019 20:49:00 +0000
-Received: from localhost (unknown [104.132.0.74])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 0549D206B7;
- Wed,  9 Jan 2019 20:48:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1547066938;
- bh=cb0SYlVzLEaJ/SdiLk39dlCFU+6Ho8pDktRsskgpI9o=;
- h=Subject:Cc:To:In-Reply-To:From:References:Date:From;
- b=RzUey9NkunWOHBzLzzBYeFXcQ6tvuKr3e1L5WoqF9VG2Gajz1G/JZN6yxYhI0yGxn
- dQokodwVbFtGDELH7FgVJlGXhcfm8Ih48iKGOovTtnFyC77ohAbPPjWWnF5n1h2nnT
- PsnhuhCaSvtcuHMEEuTRQC/KP5zzLp+HuYJOnKvI=
+ id 1ghM7y-0004hT-IB; Wed, 09 Jan 2019 22:15:12 +0000
+Received: by mail-oi1-x241.google.com with SMTP id a77so7635730oii.5;
+ Wed, 09 Jan 2019 14:15:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Y20vyWCNfVs+m7NNZt80MMEIx2g9VSVEjKCx98AL8Io=;
+ b=iv234rAtcDgwWLa+LY9sZhNlZpZlVvhQKUCzM5JF6cQmOUMRsCWJq2mtNCdjuRtiZl
+ 9swjh5oJetfMm3tsxTXCYcaNyosYfEcDugMfSPlu7f00sS2CAW1EJq3je3HauJJvw2e9
+ khXz+1aSe4p/OomWk3beJivi3icV1bE4pK8fVEdvRNTKMCHZSQT0vhjdBWYcG4Nc3nFa
+ 4lMzYeLkebCu/9R46cgzPy3W2uUZmkGmRKovflOgu7e5EVpUMkEEvpELfxQThZn5n2Bk
+ iX9F8yR8zUxLZjAthiMpSP9rkBT3HiOi/i5Ma3rGkYEF6cfub4w//zh1o+iptReubFCc
+ U5wQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Y20vyWCNfVs+m7NNZt80MMEIx2g9VSVEjKCx98AL8Io=;
+ b=hBqM8x4BT5LgaPHSBEau0yG1kqzRojXOXkHXxb/g+R4l6wB2Tt6VaYKAlkKY/AkjF6
+ qax9v/IQo87b8K0bPGbZ9QtyGFoY0PmRJ5XWfdyim6wEMeZq/hPszN/888786m2E5UyP
+ CeT99hj7Cvy5t5qvdSFtcjNzo9uWY+qnfv1kXkH2VEMgrUoLLpHijguNKN/O+YCzNrFN
+ A29kyalbin3/aVWYyc7d2H0a0sY0wbxCd0qM0kwfeRoHPSWRNHPpU9iUPJXn7kzTRBsA
+ g0l+3WosMpBj5E9/n3pDn/MJUu4QaobDA79OBPyvmv9aXQHGKjuT/y5kkAgrmowZGgoA
+ CCxg==
+X-Gm-Message-State: AJcUukc1Fq13DlaKiOAmkosNln6MvHnm+V7GKA2Li++Qu2Fn/e7XINew
+ mEpsyf40ceKliN+p0O4byK8fExRgQ03iXh2I6O//qA==
+X-Google-Smtp-Source: ALg8bN7OHt5BPL8i7w5mIoSdh8CnFfeu2HUjv+4v+6dZBtVWkyVQ65ydAX6Hm76tcpcp4QKN+gKjXVpLf/WHYODKeqM=
+X-Received: by 2002:aca:5b43:: with SMTP id p64mr4768763oib.41.1547072108641; 
+ Wed, 09 Jan 2019 14:15:08 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: [PATCH v8 4/4] clk: meson: add sub MMC clock controller driver
-To: Jerome Brunet <jbrunet@baylibre.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>
-In-Reply-To: <1545063850-21504-5-git-send-email-jianxin.pan@amlogic.com>
-From: Stephen Boyd <sboyd@kernel.org>
-User-Agent: alot/0.8
-References: <1545063850-21504-1-git-send-email-jianxin.pan@amlogic.com>
- <1545063850-21504-5-git-send-email-jianxin.pan@amlogic.com>
-Message-ID: <154706693724.15366.10802936604309826132@swboyd.mtv.corp.google.com>
-Date: Wed, 09 Jan 2019 12:48:57 -0800
+References: <1547042198-17601-1-git-send-email-lollivier@baylibre.com>
+ <CACRpkdbhVB7-Y9EBhBC6GAxqFt8zujS2QJ4CzGDJnDMDjj2Ptg@mail.gmail.com>
+In-Reply-To: <CACRpkdbhVB7-Y9EBhBC6GAxqFt8zujS2QJ4CzGDJnDMDjj2Ptg@mail.gmail.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Wed, 9 Jan 2019 23:14:57 +0100
+Message-ID: <CAFBinCBf+yJu4z1JYNdH7B4h07-U_0ckysV_=nC65nd5ByOCvA@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: meson: Fix mmc cd-gpio polarity
+To: Linus Walleij <linus.walleij@linaro.org>,
+ Loys Ollivier <lollivier@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190109_124858_818038_DAEBE029 
-X-CRM114-Status: GOOD (  10.95  )
+X-CRM114-CacheID: sfid-20190109_141510_646647_E14477A3 
+X-CRM114-Status: GOOD (  14.57  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -74,92 +90,57 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Hanjie Lin <hanjie.lin@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Yixun Lan <yixun.lan@amlogic.com>,
- linux-kernel@vger.kernel.org, Boris Brezillon <boris.brezillon@bootlin.com>,
- Liang Yang <liang.yang@amlogic.com>, Jian Hu <jian.hu@amlogic.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Qiufang Dai <qiufang.dai@amlogic.com>
+Cc: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Jianxin Pan (2018-12-17 08:24:10)
-> diff --git a/drivers/clk/meson/mmc-clkc.c b/drivers/clk/meson/mmc-clkc.c
-> new file mode 100644
-> index 0000000..2582a98
-> --- /dev/null
-> +++ b/drivers/clk/meson/mmc-clkc.c
-> @@ -0,0 +1,304 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Amlogic Meson MMC Sub Clock Controller Driver
-> + *
-> + * Copyright (c) 2017 Baylibre SAS.
-> + * Author: Jerome Brunet <jbrunet@baylibre.com>
-> + *
-> + * Copyright (c) 2018 Amlogic, inc.
-> + * Author: Yixun Lan <yixun.lan@amlogic.com>
-> + * Author: Jianxin Pan <jianxin.pan@amlogic.com>
-> + */
-> +
-> +#include <linux/clk.h>
+Hi,
 
-Do you need this include?
+On Wed, Jan 9, 2019 at 7:31 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> Hi Ollivier!
+>
+> On Wed, Jan 9, 2019 at 2:56 PM Loys Ollivier <lollivier@baylibre.com> wrote:
+>
+> > Commit 89a5e15bcba8 ("gpio/mmc/of: Respect polarity in the device tree")
+> > changed the behavior of "cd-inverted" to follow the device tree bindings
+> > specification.
+> > Lines specifying "cd-inverted" are now "acitve high".
+there's a typo in the description - it should be "active"
 
-> +#include <linux/clk-provider.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +#include <linux/slab.h>
-> +#include <linux/of_device.h>
-> +#include <linux/mfd/syscon.h>
+> >
+> > Fix the SD card for meson by setting the cd-gpio as "active low" according
+> > to the boards specifications.
+> >
+> > Fixes: 89a5e15bcba8 ("gpio/mmc/of: Respect polarity in the device tree")
+> > Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
+> >
+> > v2: fix more occurences, also in other meson boards.
+>
+> This is a good change in itself since it gets rid of some occasions
+> of the dreaded "cd-inverted" property. I think Martin Blumenstingl
+> already sent patches like these though (I might be confused).
+I sent patches for the 32-bit Amlogic SoCs
+my TODO-list is now a bit longer, I'll test this series on my Khadas
+VIM, VIM2 and Libretech CC during the weekend
 
-Is this used?
+> But we should keep the old device trees working as well.
+> Can you test if Martins patch:
+> https://marc.info/?l=linux-mmc&m=154637189021211&w=2
+>
+> Also makes your boards work?
+feedback on that patch is appreciated
 
-> +#include <linux/platform_device.h>
-[...]
-> +       init.num_parents = 1;
-> +
-> +       clk = mmc_clkc_register_clk(dev, map, &init, suffix, data);
-> +       if (IS_ERR(clk))
-> +               dev_err(dev, "%s clock registration failed\n", suffix);
-> +
-> +       return clk;
-> +}
-> +
-> +static int mmc_clkc_probe(struct platform_device *pdev)
-> +{
-> +       struct clk_hw_onecell_data *onecell_data;
-> +       struct device *dev = &pdev->dev;
-> +       struct mmc_clkc_data *data;
-> +       struct regmap *map;
-> +       struct clk_regmap *clk, *core;
-> +       struct meson_sclk_div_data *div_data;
-> +
-> +       /*cast to drop the const in match->data*/
-> +       data = (struct mmc_clkc_data *)of_device_get_match_data(dev);
 
-Is that necessary? Maybe the users of this should take a const argument
-and copy things?
-
-> +       if (!data)
-> +               return -ENODEV;
-> +
-> +       map = syscon_node_to_regmap(dev->of_node);
-> +       if (IS_ERR(map)) {
-> +               dev_err(dev, "could not find mmc clock controller\n");
-> +               return PTR_ERR(map);
-> +       }
-> +
-> +       onecell_data = devm_kzalloc(dev, sizeof(*onecell_data) +
-> +                                   sizeof(*onecell_data->hws) * MMC_MAX_CLKS,
-
-struct_size()?
+Regards
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
