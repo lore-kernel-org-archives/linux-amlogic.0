@@ -2,113 +2,85 @@ Return-Path: <SRS0=r/fn=PS=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-13.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A287AC43387
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Jan 2019 14:46:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 68F5CC43387
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Jan 2019 15:40:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 686A420660
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Jan 2019 14:46:09 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 31B8920685
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Jan 2019 15:40:42 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Wrvwb9D6";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=CAVIUMNETWORKS.onmicrosoft.com header.i=@CAVIUMNETWORKS.onmicrosoft.com header.b="Ot8XTzvG"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 686A420660
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=cavium.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lcgSUFI6";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="sC/UuYdZ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 31B8920685
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
-	References:Message-ID:Date:Subject:To:From:Reply-To:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hhHWxN5dk8thgDKwhh0rqKFe7gWDc43Mc7/H/OZBJeA=; b=Wrvwb9D6iW0dNu
-	CLbCv2BPT8X+9y4QCv9hcMTt01K19V2MMAmHH6HqlKHaeMFN3S/u+gVt/ph86USy4ty8GoqBZDI5a
-	HdpuxIBgoaEmR7XPkEekXEwIkJDiG1OFBPedXn6Uxo6cK+cxJOX8PZwG2Dg4iN6uF8R5yd1AdZur2
-	ZAlzeci2WsOpsN7sqUwenlA+s+MBaPPyeFyMz/zo6Lh/t2o+EvD7ElsZTx51kVsnd82NDMjlrVrBE
-	ViYTZABJPPMvcCLKhNjKP9tWthhBuv6XFAu3TeBn2G3+qOgtR5TcGis1qoXWZTjdgsp8BsfoDPDgO
-	eXxFGUDUz1CVfK+V22Jg==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=vgCGBOaJ/SzSfwXkjKSVUGe0K/+19oavSy2ZTgt3f6Q=; b=lcg
+	SUFI67hwh/kxeRIe3jgyMdWssJhAvREcW6uEYBsuUQezIKWNZVpb8zI9xHcGzFnmKcj4Ts8sXvp81
+	opMWW+zdfXR3P3XfjLP0cJUKEIyNzabEc8OxZCifw0/iCedgU00TLDbDbOyIk4CfIPzmVo9UuPW/2
+	4vTSscjhBiaik0u4r5PLBSRiAjD19wbFEEcmCr9DovkZpulZTwtLsw+a2P5x9iPgNCbig5pDYECe1
+	gN3EnWgLbhXZwyAoJv4zNJD2HKMSIJQvrnWXPJqRdCDZy+suo+K9zWbYcADCbcmIHgGhUrYdK2eyZ
+	fRxBRjRLH3xkD3CB0R2K9qUgbzFThsQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1ghbas-00078s-5w; Thu, 10 Jan 2019 14:46:02 +0000
-Received: from mail-eopbgr820084.outbound.protection.outlook.com
- ([40.107.82.84] helo=NAM01-SN1-obe.outbound.protection.outlook.com)
+	id 1ghcRe-0004Cn-W5; Thu, 10 Jan 2019 15:40:35 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1ghbap-000781-8u; Thu, 10 Jan 2019 14:46:00 +0000
+ id 1ghcRa-0004Bo-BO
+ for linux-amlogic@lists.infradead.org; Thu, 10 Jan 2019 15:40:33 +0000
+Received: by mail-wr1-x441.google.com with SMTP id u4so11911771wrp.3
+ for <linux-amlogic@lists.infradead.org>; Thu, 10 Jan 2019 07:40:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=CAVIUMNETWORKS.onmicrosoft.com; s=selector1-cavium-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KO8uUxiz9vbYVEe3Xc8qO5/WuGWbwU3DgSNoE6vAv68=;
- b=Ot8XTzvGxTAmWLWClKd7GkQoYMl1VSqim9Ma5WDju8UPqjk5pg+g0nrfJx19jYBH1KSrIFKyTzeGWvWtWWXAky9izlKn2ENyNf3S4JnmjTDlX5SxHRgunXIwFIiuc6/frt/tQop9WE0nadV52jnc6HcYWzd+Q9za991kwY4Szoo=
-Received: from SN6PR07MB5326.namprd07.prod.outlook.com (52.135.105.33) by
- SN6PR07MB4333.namprd07.prod.outlook.com (52.135.90.138) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1495.7; Thu, 10 Jan 2019 14:45:52 +0000
-Received: from SN6PR07MB5326.namprd07.prod.outlook.com
- ([fe80::40f7:7564:c308:58a7]) by SN6PR07MB5326.namprd07.prod.outlook.com
- ([fe80::40f7:7564:c308:58a7%3]) with mapi id 15.20.1516.015; Thu, 10 Jan 2019
- 14:45:52 +0000
-From: "Richter, Robert" <Robert.Richter@cavium.com>
-To: Rob Herring <robh@kernel.org>, "Nair, Jayachandran"
- <Jayachandran.Nair@cavium.com>
-Subject: Re: [PATCH] arm64: dts: Remove inconsistent use of 'arm,armv8'
- compatible string
-Thread-Topic: [PATCH] arm64: dts: Remove inconsistent use of 'arm,armv8'
- compatible string
-Thread-Index: AQHUqFoPLrHRVLG6+UOUMPoBHyYQvKWolZkA
-Date: Thu, 10 Jan 2019 14:45:51 +0000
-Message-ID: <20190110144537.p5setcurwu6bwrtl@rric.localdomain>
-References: <20190109202934.29304-1-robh@kernel.org>
-In-Reply-To: <20190109202934.29304-1-robh@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: AM5P194CA0002.EURP194.PROD.OUTLOOK.COM
- (2603:10a6:203:8f::12) To SN6PR07MB5326.namprd07.prod.outlook.com
- (2603:10b6:805:73::33)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Robert.Richter@cavium.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [77.191.60.191]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; SN6PR07MB4333;
- 6:DLuqaK4cjzUBnzHDVnIuAeo2//8hafoFB/7/2YuaTLutfJL09aHmCY2vJj+wG9sDEOsqNHi8dJhBystIfvlAUIW537vaUsMO+LfL3a48gowxKggoWtLkYLc+NxXOCvaD41W6BEHT0JNTBVlfSwpimhq37pW1wL7m6Sigpg/j3DfkCcVuod84u1vkVM3M50S+beZqawtAQW3OlInSLaGbjKQoJmBJaDi29MiEmP8XIn/b5PpmS6MflIum0dVeXKsBvGuo/dXCe6C3Jo+UvIgtWMDleBUBJmvq+i/b4wdVbjJxxGWWS1kvrMYGyj/DcyvBb+Azh/q5/3KgcCgFwX/72+DhlYjWbdI0h/LAUGS9G7zoSSauwU+fT+6/CbOxmGj8fpNK3jGZISg52jWitU+58tqgQSZfItO3iuOS74M70gXsP7vU0h0LNfpJxiOyxQ0K42EzExLFXoZ4Mna6JYQzYg==;
- 5:zlEGKXjDlu9cWkE3oV+kjxJYRNFAir3vusmXoCgpGTpMYXJCCo7ZhBTSbc7AwpeGTPSE/b1rNHRPmlzyoVHiQXaaiMxjuxk96m5HDMaS+JwEVuhaS8O7lX0HFG5m88YuYFF+zfUJ2yO8VGxHyWT9cfUQVN+iS0j6YJmOdFiwe0+qECNmfY7Axd/GPoTaQhdXhuc0zdPRae3mv+O1XUlYpQ==;
- 7:aB0hHGG3puGL3eKfxM/BUuIyVM4APqpX2q0/S1VT+ZHk8Cj5caF4jM2ChNJXY91Uyn5/wAz7GY21MSmXgDgdCbFFiV0pc7oFjiTEaqskDUynFPYq7dOeLx57I8rR3RMzO6MjFzCjB33CiW0u/cltGA==
-x-ms-office365-filtering-correlation-id: c9cd2d87-a61d-44b6-7950-08d6770a50cb
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600109)(711020)(2017052603328)(7153060)(7193020);
- SRVR:SN6PR07MB4333; 
-x-ms-traffictypediagnostic: SN6PR07MB4333:
-x-microsoft-antispam-prvs: <SN6PR07MB4333FA71EFB6A1542C4C43EAF1840@SN6PR07MB4333.namprd07.prod.outlook.com>
-x-forefront-prvs: 0913EA1D60
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(376002)(366004)(136003)(346002)(396003)(39860400002)(199004)(189003)(8936002)(106356001)(3846002)(53546011)(256004)(71190400001)(97736004)(99286004)(71200400001)(111086002)(386003)(26005)(6506007)(14454004)(186003)(6636002)(102836004)(8676002)(81156014)(76176011)(33896004)(52116002)(81166006)(2906002)(66066001)(105586002)(25786009)(476003)(5660300001)(305945005)(446003)(1076003)(316002)(110136005)(7366002)(7406005)(7416002)(54906003)(11346002)(7736002)(68736007)(72206003)(478600001)(6436002)(486006)(53936002)(86362001)(9686003)(6512007)(6246003)(39060400002)(4326008)(6116002)(229853002)(6486002)(142933001);
- DIR:OUT; SFP:1101; SCL:1; SRVR:SN6PR07MB4333;
- H:SN6PR07MB5326.namprd07.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: cavium.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: kI/I4zGjygmeh2iFLczAofsUAuK1/q+wiqX5flLF1WUz/76We4+MHpCD8LXWZCmYr/yzXYxCqT1zGFhQB57E0DXUpnGz1QsFEV1Bsrg1kotsAFDQoDfkJ/Cs+oK/9vhuo19urPcjv6I0THZunoz9AQT0JiA81v5mrC57sT5xLoTu1ok0f4Kv9oP5n/17ftVcfE75msACVsO1vHK23X5PNGxiQHYi/7wrgj4Rhrxom/QlSLiFJBCZLdvd9iRxnzftrZssLaJoSoFIbIKKSjnQcrAs+UPc2MtLD7v0k1WCB1Abu+Gzq+RsUZ05CM+ma54M
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
-Content-ID: <09F322A8707A4F4AB2C73BCBE4014E40@namprd07.prod.outlook.com>
-MIME-Version: 1.0
-X-OriginatorOrg: cavium.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c9cd2d87-a61d-44b6-7950-08d6770a50cb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jan 2019 14:45:51.9792 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 711e4ccf-2e9b-4bcf-a551-4094005b6194
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR07MB4333
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id;
+ bh=V9rCXdwFQ912EEViaZFliq7MrgmbybjfHv7F+8qyBT8=;
+ b=sC/UuYdZFJJDxNYpYHZqKnaJ1OhTmrlu5RUodLU9wXttl96CuBI3zHhPqPs+81sTn+
+ 5TxD139hdOGc/ZTmvTweF6yUhBHX2rsWDGRmPVsehxkt5O9IqWfB5HKSmmv0ppKb+/1R
+ qW/yU/dEuxEKspPf4PXd/3x99ZFp4c9y/SNvffTKmBfPZGFvMW4Xqwqu/FOrDrUSVpTy
+ 4698sP8nU5iaZ27OkO216ltszQqVA19NlexLLAnoWbv29krZv3nCwGgxhsnD42mnnIzX
+ Flq+aPtI1k9ai81QqhRlensAaNM62kbEVyxzaf9CuCX+Lf1ImBeoT+S0QlDvC0l1T0mj
+ 9gxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=V9rCXdwFQ912EEViaZFliq7MrgmbybjfHv7F+8qyBT8=;
+ b=reOdrq8U3JtETmhkDiAVdRCjUVvsrBQljnqsric6fPkU9JAWcbLrgdwK0OqjWDF5a6
+ AT1HsrrjoC8FcPWfA3ZeYE7MOLpGmfqofsy5M0IgD6Gv4mwivkw+C0fvFSx8F0ToOGKX
+ kLXsW6YgHAtRc/7uk9NNN077TL4+Y5nyTFVG3vMAKnfcSiA9fMgdxccWK0mMMOfyiKUT
+ WKmGd7dz4qmsjPckriYBCXB6yElpXqJ07wbRzKm9NVUJpLaiblyJOQRcrnRkiAI7uHAy
+ 1OPRggf10a6Hh01pA0lINNF4ugPv5YE463JOde3WA1k2+9QLZoG026UIAVawzxhHLbZT
+ nSCA==
+X-Gm-Message-State: AJcUukcppaMmbtje2dIhi11JX7CxDZX+BHN/tSgNDurg/Qo2zBiuOTdu
+ Xrq/RP8UMf3RDZ356WAaUxHvjw==
+X-Google-Smtp-Source: ALg8bN5gwy6guv6OLbftNleV1OlHsgTK9ZVUvYMAIsf6u3WqifYpeSYuir6Ufn0+IbXX5ctDS4UJxQ==
+X-Received: by 2002:a5d:6b09:: with SMTP id v9mr10183906wrw.304.1547134828319; 
+ Thu, 10 Jan 2019 07:40:28 -0800 (PST)
+Received: from loys-ubuntu-BY1835A49200471.thefacebook.com
+ ([2620:10d:c092:180::1:f5ef]) by smtp.googlemail.com with ESMTPSA id
+ h131sm22694198wmd.17.2019.01.10.07.40.26
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+ Thu, 10 Jan 2019 07:40:27 -0800 (PST)
+From: Loys Ollivier <lollivier@baylibre.com>
+To: devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
+ linux-amlogic@lists.infradead.org
+Subject: [PATCH v3] arm64: dts: meson: Fix mmc cd-gpios polarity
+Date: Thu, 10 Jan 2019 16:40:22 +0100
+Message-Id: <1547134822-18498-1-git-send-email-lollivier@baylibre.com>
+X-Mailer: git-send-email 2.7.4
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190110_064559_359495_96F7678C 
-X-CRM114-Status: GOOD (  17.42  )
+X-CRM114-CacheID: sfid-20190110_074030_530826_E52E2060 
+X-CRM114-Status: GOOD (  10.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -120,91 +92,248 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Nishanth Menon <nm@ti.com>, Andrew Lunn <andrew@lunn.ch>,
- Heiko Stuebner <heiko@sntech.de>, Maxime Ripard <maxime.ripard@bootlin.com>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- Liviu Dudau <liviu.dudau@arm.com>, David Brown <david.brown@linaro.org>,
- Thierry Reding <thierry.reding@gmail.com>, Wei Xu <xuwei5@hisilicon.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Mark Rutland <mark.rutland@arm.com>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Magnus Damm <magnus.damm@gmail.com>, Michal Simek <michal.simek@xilinx.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
- "linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, "arm@kernel.org" <arm@kernel.org>,
- "bcm-kernel-feedback-list@broadcom.com"
- <bcm-kernel-feedback-list@broadcom.com>, Baolin Wang <baolin.wang@linaro.org>,
- Andy Gross <andy.gross@linaro.org>, Orson Zhai <orsonzhai@gmail.com>,
- Tsahee Zidenberg <tsahee@annapurnalabs.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
- Jason Cooper <jason@lakedaemon.net>,
- Antoine Tenart <antoine.tenart@bootlin.com>, Ray Jui <rjui@broadcom.com>,
- Simon Horman <horms@verge.net.au>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
- Will Deacon <will.deacon@arm.com>, Scott Branden <sbranden@broadcom.com>,
- Masahiro Yamada <yamada.masahiro@socionext.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>, Chanho Min <chanho.min@lge.com>,
- Duc Dang <dhdang@apm.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Tero Kristo <t-kristo@ti.com>, Dinh Nguyen <dinguyen@kernel.org>,
- Jisheng Zhang <Jisheng.Zhang@synaptics.com>, Kukjin Kim <kgene@kernel.org>,
- Sudeep Holla <sudeep.holla@arm.com>, Jun Nie <jun.nie@linaro.org>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Shawn Guo <shawnguo@kernel.org>,
- =?iso-8859-1?Q?Andreas_F=E4rber?= <afaerber@suse.de>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Loys Ollivier <lollivier@baylibre.com>, linux-mmc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Rob,
+Commit 89a5e15bcba8 ("gpio/mmc/of: Respect polarity in the device tree")
+changed the behavior of "cd-inverted" to follow the device tree bindings
+specification.
+Lines specifying "cd-inverted" are now "active high".
 
-On 09.01.19 14:29:34, Rob Herring wrote:
-> External Email
-> 
-> The 'arm,armv8' compatible string is only for software models. It adds
-> little value otherwise and is inconsistently used as a fallback on some
-> platforms. Remove it from those platforms.
-> 
-> This fixes warnings generated by the DT schema.
-> 
-> Reported-by: Michal Simek <michal.simek@xilinx.com>
-> Cc: Mark Rutland <mark.rutland@arm.com>
-> Cc: Will Deacon <will.deacon@arm.com>
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> armsoc folks, Please apply directly.
+Fix the SD card for meson by setting the cd-gpios as "active low" according
+to the boards specifications.
 
-> diff --git a/arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi b/arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi
-> index ff5c4c47b22b..c616132f7d6d 100644
-> --- a/arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi
-> +++ b/arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi
-> @@ -27,28 +27,28 @@
-> 
->                 cpu@0 {
->                         device_type = "cpu";
-> -                       compatible = "cavium,thunder2", "brcm,vulcan", "arm,armv8";
-> +                       compatible = "cavium,thunder2";
+Fixes: 89a5e15bcba8 ("gpio/mmc/of: Respect polarity in the device tree")
+Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
+---
 
-We are just checking if removing the "brcm,vulcan" string has any
-impact on early silicon revisions we want to support (see also
-BRCM_CPU_PART_VULCAN).
+v3: fix typos in the commit message
 
-Maybe you make this a separate change?
+v2: fix more occurences, also in other meson boards.
 
--Robert
+ arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi            | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts           | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts         | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts            | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi               | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi           | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi              | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts   | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts    | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi          | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts          | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts            | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts             | 3 +--
+ 14 files changed, 14 insertions(+), 28 deletions(-)
 
->                         reg = <0x0 0x0>;
->                         enable-method = "psci";
->                 };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
+index e14e0ce7e89f..016641a41694 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
+@@ -187,8 +187,7 @@
+ 	max-frequency = <100000000>;
+ 	disable-wp;
+ 
+-	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+-	cd-inverted;
++	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+ 
+ 	vmmc-supply = <&vddao_3v3>;
+ 	vqmmc-supply = <&vddio_boot>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+index 8cd50b75171d..ade2ee09ae96 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+@@ -305,8 +305,7 @@
+ 	max-frequency = <200000000>;
+ 	disable-wp;
+ 
+-	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+-	cd-inverted;
++	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+ 
+ 	vmmc-supply = <&vddio_ao3v3>;
+ 	vqmmc-supply = <&vddio_tf>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
+index 4cf7f6e80c6a..25105ac96d55 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
+@@ -238,8 +238,7 @@
+ 	max-frequency = <100000000>;
+ 	disable-wp;
+ 
+-	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+-	cd-inverted;
++	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+ 
+ 	vmmc-supply = <&vddao_3v3>;
+ 	vqmmc-supply = <&vddio_card>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+index 2e1cd5e3a246..1cc9dc68ef00 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+@@ -258,8 +258,7 @@
+ 	max-frequency = <100000000>;
+ 	disable-wp;
+ 
+-	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+-	cd-inverted;
++	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+ 
+ 	vmmc-supply = <&tflash_vdd>;
+ 	vqmmc-supply = <&tf_io>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+index ce862266b9aa..0be0f2a5d2fe 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+@@ -196,8 +196,7 @@
+ 	max-frequency = <100000000>;
+ 	disable-wp;
+ 
+-	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+-	cd-inverted;
++	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+ 
+ 	vmmc-supply = <&vddao_3v3>;
+ 	vqmmc-supply = <&vddio_card>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+index 93a4acf2c46c..ad4d50bd9d77 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+@@ -154,8 +154,7 @@
+ 	max-frequency = <100000000>;
+ 	disable-wp;
+ 
+-	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+-	cd-inverted;
++	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+ 
+ 	vmmc-supply = <&vcc_3v3>;
+ };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi
+index ec09bb5792b7..2d2db783c44c 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi
+@@ -211,8 +211,7 @@
+ 	max-frequency = <100000000>;
+ 	disable-wp;
+ 
+-	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+-	cd-inverted;
++	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+ 
+ 	vmmc-supply = <&vddao_3v3>;
+ 	vqmmc-supply = <&vcc_3v3>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
+index f1c410e2da2b..796baea7a0bf 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
+@@ -131,8 +131,7 @@
+ 	max-frequency = <100000000>;
+ 	disable-wp;
+ 
+-	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+-	cd-inverted;
++	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+ 
+ 	vmmc-supply = <&vddao_3v3>;
+ 	vqmmc-supply = <&vddio_card>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+index db293440e4ca..255cede7b447 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+@@ -238,8 +238,7 @@
+ 	max-frequency = <100000000>;
+ 	disable-wp;
+ 
+-	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+-	cd-inverted;
++	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+ 
+ 	vmmc-supply = <&vcc_3v3>;
+ 	vqmmc-supply = <&vcc_card>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
+index 6739697be1de..9cbdb85fb591 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
+@@ -183,8 +183,7 @@
+ 	max-frequency = <100000000>;
+ 	disable-wp;
+ 
+-	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+-	cd-inverted;
++	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+ 
+ 	vmmc-supply = <&vddao_3v3>;
+ 	vqmmc-supply = <&vddio_card>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
+index a1b31013ab6e..bc811a2faf42 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
+@@ -137,8 +137,7 @@
+ 	max-frequency = <100000000>;
+ 	disable-wp;
+ 
+-	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+-	cd-inverted;
++	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+ 
+ 	vmmc-supply = <&vddao_3v3>;
+ 	vqmmc-supply = <&vddio_boot>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+index 3c3a667a8df8..3f086ed7de05 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+@@ -356,8 +356,7 @@
+ 	max-frequency = <100000000>;
+ 	disable-wp;
+ 
+-	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+-	cd-inverted;
++	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+ 
+ 	vmmc-supply = <&vddao_3v3>;
+ 	vqmmc-supply = <&vddio_boot>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
+index f7a1cffab4a8..8acfd40090d2 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
+@@ -147,8 +147,7 @@
+ 	max-frequency = <100000000>;
+ 	disable-wp;
+ 
+-	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+-	cd-inverted;
++	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+ 
+ 	vmmc-supply = <&vddao_3v3>;
+ 	vqmmc-supply = <&vddio_boot>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
+index 7212dc4531e4..7fa20a8ede17 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
+@@ -170,8 +170,7 @@
+ 	max-frequency = <100000000>;
+ 	disable-wp;
+ 
+-	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+-	cd-inverted;
++	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+ 
+ 	vmmc-supply = <&vddao_3v3>;
+ 	vqmmc-supply = <&vddio_boot>;
+-- 
+2.7.4
+
 
 _______________________________________________
 linux-amlogic mailing list
