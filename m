@@ -2,84 +2,89 @@ Return-Path: <SRS0=r/fn=PS=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E55C7C43387
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Jan 2019 12:04:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E0A95C43387
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Jan 2019 12:58:50 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AD58A214C6
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Jan 2019 12:04:00 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B24FC20879
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Jan 2019 12:58:50 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dwmsv0F5";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ti.com header.i=@ti.com header.b="A8LKni+s"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AD58A214C6
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=ti.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Y3UxSrgs";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="uZkhceZf"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B24FC20879
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
 	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:In-reply-to:Subject:To:
+	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=ED1gcrnorSWiCRbnkpmRvwOY90547A5DYtxNFrBWZvQ=; b=dwmsv0F5LcSFvlHtyjnup9BUw
-	JhKQqy6HpvUVPPwwdXWdOwrvP7JzbvPH7xPcK78x9jJq9x1X2c5dxxDspiO/5H80QH7oNk9DtbRYW
-	Ib95x4d7sqIiRBMq1HXQthi5ec+m/usu9ygj2SXm1kFqqDszy2W2yHJKBjdO9jP/Uk4kEdcyN/mVN
-	a5rP+IAPiyOeywsAjUYu9MwhgDJ4Zf8FqvWDBlFlSWHI2l/tBRvL72P/iP6AaqPA4shgkhVEMCJgq
-	ZJRLHqxhnEyzK0Jt3AFE95ZDOQwdFDN+OttoFdZBhZC/iSFRb/3uY2FmkaT8ODCHWvzjBMtTcFiY2
-	c3+z1aaNg==;
+	 bh=vk2cv84I2zS2hCWYLhZdKh/DS8T2n9GN6N905EWxQ+8=; b=Y3UxSrgsFJ6Ej2IxcND+t0Gnd
+	2JnwmamuMtbbbMdFKuigF/EnHA92oy9pJaw+J+Sn3pcV9wL3EAWE45Bafwk3Env9kN7T/UqjHRTzw
+	k4SeAZe90aNMhNdA42318LGzk5GhOJVBrO1fIlLUqJD77s+1g0/3qPP4YbuJNvn1bViA/QLq/u9SM
+	k13jczfhrBbB5x0lNbrcSKS6TNlxse8/JZU7YQKRSi2JB4907DYNkw5rvUamcDLnbasJ5o9lyZH4B
+	YoRTp1YOckoFdJrGbD4KB6jWZdLCV6UxbE4bHF6DxEq2ZfD0xekjjfSJlxmHsNfzseX2pNHku6ZV9
+	wW3fajcmQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1ghZ3y-0003aL-DX; Thu, 10 Jan 2019 12:03:54 +0000
-Received: from lelv0143.ext.ti.com ([198.47.23.248])
+	id 1ghZv1-0000Bv-Ti; Thu, 10 Jan 2019 12:58:43 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1ghZ3u-0003Zg-V1; Thu, 10 Jan 2019 12:03:52 +0000
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
- by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x0AC3FHN054410;
- Thu, 10 Jan 2019 06:03:15 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
- s=ti-com-17Q1; t=1547121795;
- bh=OyuVuS0dvACu0IYjNFtvfiLuQnIb0mcS/0UniGkPiHQ=;
- h=Subject:To:CC:References:From:Date:In-Reply-To;
- b=A8LKni+sy0CH7EoDTp5hl0FcDXiRhZz2KDjalKt02+OJ+vgZsihAYgm5KvmbVI1C5
- JjHr3jMqZGw8uGY8KwMlxI0aN190H1A8XOTPszejBuB3nT2hpIy5jmY1dB/NEd2Mm+
- a/6DR8FuTVVtQjKv4T1n5aj4UKM1LbDT8o8p5tLc=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
- by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x0AC3FXZ098271
- (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
- Thu, 10 Jan 2019 06:03:15 -0600
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10; Thu, 10
- Jan 2019 06:03:13 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_0,
- cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend Transport;
- Thu, 10 Jan 2019 06:03:13 -0600
-Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
- by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id x0AC2v7G011148;
- Thu, 10 Jan 2019 06:02:58 -0600
-Subject: Re: [PATCH] arm64: dts: Remove inconsistent use of 'arm,armv8'
- compatible string
-To: Nishanth Menon <nm@ti.com>, Rob Herring <robh@kernel.org>
-References: <20190109202934.29304-1-robh@kernel.org>
- <20190110022709.kh5vlave65jn7m4g@kahuna>
-From: Tero Kristo <t-kristo@ti.com>
-Message-ID: <4c934f57-5e99-1224-ae25-8384f8d5eb27@ti.com>
-Date: Thu, 10 Jan 2019 14:02:12 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.2.1
+ id 1ghZuy-0000AU-0u
+ for linux-amlogic@lists.infradead.org; Thu, 10 Jan 2019 12:58:42 +0000
+Received: by mail-wr1-x441.google.com with SMTP id c14so11334433wrr.0
+ for <linux-amlogic@lists.infradead.org>; Thu, 10 Jan 2019 04:58:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=references:user-agent:from:to:cc:subject:in-reply-to:date
+ :message-id:mime-version;
+ bh=Ghyg2fTNZ6AJK2z+KTbcv4WJQiMtAvnC4S83tmSQRP4=;
+ b=uZkhceZfR2py7d6JlA3P0T64RdjXetk+fy7ZlrB/rXbQM1ZqBQslgfCLQDudjuyZIQ
+ NzgwTpP32zvzf0WLV4rOKvjxVBOtNL/r90R2A8QMQq92fZCAMeRijpyu+xUh5Qfo4D0m
+ SHtucDgiaiGLhMnmexlAvsHqfmORbsxOMsBu215v575BibZeuIIq8QDzZmZPjQ2XWfbn
+ tvggYsbWc+98qiQ9alJ/h8qhSqxA2+ygUNcqFKYg24mb9BfoVPkkuNKO+KMjvGy5RK4F
+ GK/LDtZozttRlbdiWmhw0swd1IngtGQdbKx/FJw2V9iEBsCwpvxiU9VR86Qc0NcEfDmY
+ ViTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:date:message-id:mime-version;
+ bh=Ghyg2fTNZ6AJK2z+KTbcv4WJQiMtAvnC4S83tmSQRP4=;
+ b=lrihzSVtKFCMlIeqtV+T7+ZFBQLegsM9Y5KvZct0Pf0TFZGoHwbWavxKI3FDUDMnFU
+ 6lBdBT9mN7loR612+6Aq3+f7To57qp2m9U4snldrd8e2As9cLjs5Qk0pu/xFWl4DtLq2
+ GIq7Sj8NalJCki0dgc3m2d/v0QXg5kkoStaNBpp+tXCkExHGcnwTsfKbQkKS/R4yWUZ5
+ u6EZRml/cugkOJsW7UelYCKlIcXw3GGPQBNyOy+DQqY8mXVc3KPxU/fTVtlaorRwAWhb
+ Ulodw4OgR27V36wbUBRJd590nDL3Nw6aWbktglp2oZHhNqofriGGDDisA1ZWYRqbH5gi
+ cdVA==
+X-Gm-Message-State: AJcUukdrhS3KerPHVwLoYowuXqQkove7SWsG/kI/e9sRUDZoUY6TxVAv
+ PVFRYBIWxfV7reAVs834o+/LQA==
+X-Google-Smtp-Source: ALg8bN7ZvUqgP30iZI3R3hJE7O5uNU4561ChgR0QgZwSUBjUeUDw23zKFoy1+ebR3rzZufclLCwtsA==
+X-Received: by 2002:adf:a58a:: with SMTP id g10mr9030831wrc.3.1547125118267;
+ Thu, 10 Jan 2019 04:58:38 -0800 (PST)
+Received: from localhost ([2620:10d:c092:180::1:f5ef])
+ by smtp.gmail.com with ESMTPSA id v16sm49800567wrs.75.2019.01.10.04.58.36
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 10 Jan 2019 04:58:37 -0800 (PST)
+References: <1547042198-17601-1-git-send-email-lollivier@baylibre.com>
+ <CACRpkdbhVB7-Y9EBhBC6GAxqFt8zujS2QJ4CzGDJnDMDjj2Ptg@mail.gmail.com>
+ <CAFBinCBf+yJu4z1JYNdH7B4h07-U_0ckysV_=nC65nd5ByOCvA@mail.gmail.com>
+User-agent: mu4e 1.0; emacs 25.3.2
+From: Loys Ollivier <lollivier@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH v2] arm64: dts: meson: Fix mmc cd-gpio polarity
+In-reply-to: <CAFBinCBf+yJu4z1JYNdH7B4h07-U_0ckysV_=nC65nd5ByOCvA@mail.gmail.com>
+Date: Thu, 10 Jan 2019 13:58:35 +0100
+Message-ID: <861s5ku0sk.fsf@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20190110022709.kh5vlave65jn7m4g@kahuna>
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190110_040351_082519_1DC7E2D0 
-X-CRM114-Status: GOOD (  22.20  )
+X-CRM114-CacheID: sfid-20190110_045840_141273_5F5000D6 
+X-CRM114-Status: GOOD (  15.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -91,124 +96,79 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Andrew Lunn <andrew@lunn.ch>,
- Heiko Stuebner <heiko@sntech.de>, Maxime Ripard <maxime.ripard@bootlin.com>,
- linux-arm-msm@vger.kernel.org, Liviu Dudau <liviu.dudau@arm.com>,
- David Brown <david.brown@linaro.org>,
- Thierry Reding <thierry.reding@gmail.com>, Wei Xu <xuwei5@hisilicon.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, arm@kernel.org,
- linux-rockchip@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Magnus Damm <magnus.damm@gmail.com>, Michal Simek <michal.simek@xilinx.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
- linux-samsung-soc@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
- Kukjin Kim <kgene@kernel.org>, bcm-kernel-feedback-list@broadcom.com,
- Baolin Wang <baolin.wang@linaro.org>, Andy Gross <andy.gross@linaro.org>,
- Orson Zhai <orsonzhai@gmail.com>, Tsahee Zidenberg <tsahee@annapurnalabs.com>,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- Jason Cooper <jason@lakedaemon.net>,
- Antoine Tenart <antoine.tenart@bootlin.com>, Ray Jui <rjui@broadcom.com>,
- Robert Richter <rrichter@cavium.com>, Simon Horman <horms@verge.net.au>,
- linux-mediatek@lists.infradead.org, Jayachandran C <jnair@caviumnetworks.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Will Deacon <will.deacon@arm.com>,
- Scott Branden <sbranden@broadcom.com>,
- Masahiro Yamada <yamada.masahiro@socionext.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>, Chanho Min <chanho.min@lge.com>,
- Duc Dang <dhdang@apm.com>, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, Dinh Nguyen <dinguyen@kernel.org>,
- Jisheng Zhang <Jisheng.Zhang@synaptics.com>,
- Sudeep Holla <sudeep.holla@arm.com>, Jun Nie <jun.nie@linaro.org>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Shawn Guo <shawnguo@kernel.org>,
- =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
+Cc: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Loys Ollivier <lollivier@baylibre.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 10/01/2019 04:27, Nishanth Menon wrote:
-> On 14:29-20190109, Rob Herring wrote:
->> The 'arm,armv8' compatible string is only for software models. It adds
->> little value otherwise and is inconsistently used as a fallback on some
->> platforms. Remove it from those platforms.
+Hi,
+
+On Wed 09 Jan 2019 at 22:14, Martin Blumenstingl wrote:
+
+> Hi,
+>
+> On Wed, Jan 9, 2019 at 7:31 PM Linus Walleij <linus.walleij@linaro.org> 
+> wrote:
 >>
->> This fixes warnings generated by the DT schema.
+>> Hi Ollivier!
 >>
->> Reported-by: Michal Simek <michal.simek@xilinx.com>
->> Cc: Mark Rutland <mark.rutland@arm.com>
->> Cc: Will Deacon <will.deacon@arm.com>
->> Signed-off-by: Rob Herring <robh@kernel.org>
->> ---
-> [...]
-> 
-> ARM SoC maintainers, At least on a quick look (I could be wrong), I
-> think we don't have any explicit processor bindings documentation.
-> 
-> However, most of SoC folks seem to key off matches else where I
-> guess..
-> 
-> Not sure, while at this, you if you are planning on fixing up
-> Documentation/devicetree/bindings/arm/arm-boards:
-> compatible = "arm,cortex-a53","arm,armv8";
-> Documentation/devicetree/bindings/arm/cpu-capacity.txt:
-> compatible = "arm,cortex-a53","arm,armv8";
-> 
-> Anyways, for TI SoC:
-> 
->>   arch/arm64/boot/dts/ti/k3-am654.dtsi          |   8 +-
->> diff --git a/arch/arm64/boot/dts/ti/k3-am654.dtsi b/arch/arm64/boot/dts/ti/k3-am654.dtsi
->> index 2affa6f6617e..b221abf43ac2 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am654.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am654.dtsi
->> @@ -34,7 +34,7 @@
->>   		};
->>   
->>   		cpu0: cpu@0 {
->> -			compatible = "arm,cortex-a53", "arm,armv8";
->> +			compatible = "arm,cortex-a53";
->>   			reg = <0x000>;
->>   			device_type = "cpu";
->>   			enable-method = "psci";
->> @@ -48,7 +48,7 @@
->>   		};
->>   
->>   		cpu1: cpu@1 {
->> -			compatible = "arm,cortex-a53", "arm,armv8";
->> +			compatible = "arm,cortex-a53";
->>   			reg = <0x001>;
->>   			device_type = "cpu";
->>   			enable-method = "psci";
->> @@ -62,7 +62,7 @@
->>   		};
->>   
->>   		cpu2: cpu@100 {
->> -			compatible = "arm,cortex-a53", "arm,armv8";
->> +			compatible = "arm,cortex-a53";
->>   			reg = <0x100>;
->>   			device_type = "cpu";
->>   			enable-method = "psci";
->> @@ -76,7 +76,7 @@
->>   		};
->>   
->>   		cpu3: cpu@101 {
->> -			compatible = "arm,cortex-a53", "arm,armv8";
->> +			compatible = "arm,cortex-a53";
->>   			reg = <0x101>;
->>   			device_type = "cpu";
->>   			enable-method = "psci";
-> 
-> Acked-by: Nishanth Menon <nm@ti.com>
-> 
+>> On Wed, Jan 9, 2019 at 2:56 PM Loys Ollivier <lollivier@baylibre.com> 
+>> wrote:
+>>
+>> > Commit 89a5e15bcba8 ("gpio/mmc/of: Respect polarity in the device tree")
+>> > changed the behavior of "cd-inverted" to follow the device tree bindings
+>> > specification.
+>> > Lines specifying "cd-inverted" are now "acitve high".
+> there's a typo in the description - it should be "active"
+>
+Thanks I'll fix it.
+>> >
+>> > Fix the SD card for meson by setting the cd-gpio as "active low" 
+>> > according
+>> > to the boards specifications.
+>> >
+>> > Fixes: 89a5e15bcba8 ("gpio/mmc/of: Respect polarity in the device tree")
+>> > Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
+>> >
+>> > v2: fix more occurences, also in other meson boards.
+>>
+>> This is a good change in itself since it gets rid of some occasions
+>> of the dreaded "cd-inverted" property. I think Martin Blumenstingl
+>> already sent patches like these though (I might be confused).
+> I sent patches for the 32-bit Amlogic SoCs
+> my TODO-list is now a bit longer, I'll test this series on my Khadas
+> VIM, VIM2 and Libretech CC during the weekend
+>
+I have seen Martin's patch for the arm boards.
+This adresses arm64 boards.
+Tested on libretech-cc.
 
-TI portion looks fine to me also, so:
+>> But we should keep the old device trees working as well.
+>> Can you test if Martins patch:
+>> https://marc.info/?l=linux-mmc&m=154637189021211&w=2
+>>
+>> Also makes your boards work?
+> feedback on that patch is appreciated
+>
+Answered to the patch mail directly. Tested on libretech-cc, it works.
+Fixing the meson boards DT for future release would still be valid imho.
 
-Acked-by: Tero Kristo <t-kristo@ti.com>
+>
+> Regards
+> Martin
 
--Tero
---
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+Best,
+Loys
+-- 
+-L
 
 _______________________________________________
 linux-amlogic mailing list
