@@ -2,61 +2,74 @@ Return-Path: <SRS0=r/fn=PS=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_MUTT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 65D94C43387
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Jan 2019 18:33:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ABD14C43387
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Jan 2019 18:41:09 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 328AA20874
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Jan 2019 18:33:40 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7E82120874
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Jan 2019 18:41:09 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YxiFwklE"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 328AA20874
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="URGcOy01";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="ZRwjWpd8"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7E82120874
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=triplefau.lt
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QI0XhaDep3GrcNj95BgWQv/PVrXyqjG/mnlwYq2DU4o=; b=YxiFwklEx5RM/+
-	B8vmim0dZJuWJM6GJjdwGtikBngAbVwshNRt2d+qmlA9zdrLFEUC7CpzfmiKg1OiPHcMxcaQVqqdq
-	iZRfp8eXMaoeKvgWkLj3Aaq80ddR4+mCeg7FbUPx9OPiY/v+vgV0oPldUvMj3I0ktmSr47vsxT7ey
-	k9XGgB4qKD1P7CuP7Nrjft6GJxxQ9BPc5SSV1HlN1xMjVrh+Xxma9aDd07HdFgHAa4hhAgimkj6Zn
-	c0TYw4pp+07Vq7ZUZzRGqRVe/WLtLznJkb4nVniV8Tj27GcVwn1t/mI0KkxlK6xBA9uH5g7htYgkU
-	wvgOaxcwBi9e1GprKTWA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=SERgCQ+1yGA4dJbmIHziqSbwddmtHVuupuoq4IGL2mA=; b=URGcOy0106n9Yi
+	8w6BPiNnaD7tbqOiQmooz7yOXFhxqZZxoLh1GRsreKAq9UuXrZhfx/H74+bfvyDreUJwcBpdJftRr
+	1cPmCue7VSg7/cVkFu0rj8xCu/sGZaJeU/+PSrYyZiMjVsPJgDP8pbOVln8zh25O7M2iWLglg8CkZ
+	vA+4fav5XwShSbxZXtkSL5eq79IzjUKbE8LIQ8qnlemEA0eHgL/FrMyIlKZC09h5//MNzPCUb+KCT
+	UG99EAYP+PmUg+pj0lO7cFE85eF3FxxpDRKA+sTgi2tu2LRDb5BD82Ekl9AEljy8EkHK0jASmAmKR
+	bsnyHNKjQUhrm8hkc2bg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1ghf92-0008LN-Gk; Thu, 10 Jan 2019 18:33:32 +0000
-Received: from relay6-d.mail.gandi.net ([217.70.183.198])
+	id 1ghfGK-0002pa-LR; Thu, 10 Jan 2019 18:41:04 +0000
+Received: from merlin.infradead.org ([2001:8b0:10b:1231::1])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1ghf8z-0008Ky-5X
- for linux-amlogic@lists.infradead.org; Thu, 10 Jan 2019 18:33:31 +0000
+ id 1ghfGJ-0002pG-Ro
+ for linux-amlogic@bombadil.infradead.org; Thu, 10 Jan 2019 18:41:03 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:MIME-Version:
+ Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=U3HCQlu52kLavno/YB+dfn90fwFxF0gMqTd49DNwwMw=; b=ZRwjWpd8XqGJ11axrNTx3u2Omn
+ DnX6/XcE+mYkhqK/bdOZmZOM5bhGlytchNUqdlhwAM1V2cAkb89CCLOO3lmrUhYB7E2XZNmkGCfdT
+ W53Zzfvutq4kch9nGP7JGoPJhTTzeKmpnPCZwt0uVF/QQmRaFiOF3rBjWBxKtwizZ48JpEwtJz6cF
+ EPpY9YwnXGl/2M89/Hq7v0unt6CEzikktBgegx2sqNC+8M2PRzp7o/ZSyxFgEQXpsCucUTqJ5x0kF
+ 7ykDNt4oCCz8fGnfNHufOcg2mebHU1oj1ZjGY9BtdfSGMjD+cIsnf7diEYAzszx/3H1phorZ34Ypo
+ KV/MB0Vw==;
+Received: from relay5-d.mail.gandi.net ([217.70.183.197])
+ by merlin.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1ghfGF-0006V5-Kq
+ for linux-amlogic@lists.infradead.org; Thu, 10 Jan 2019 18:41:01 +0000
 X-Originating-IP: 88.190.179.123
 Received: from localhost (unknown [88.190.179.123])
  (Authenticated sender: repk@triplefau.lt)
- by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id A7E13C0006;
- Thu, 10 Jan 2019 18:33:20 +0000 (UTC)
-Date: Thu, 10 Jan 2019 19:42:38 +0100
+ by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 830221C0007;
+ Thu, 10 Jan 2019 18:40:24 +0000 (UTC)
 From: Remi Pommarel <repk@triplefau.lt>
-To: Elie Roudninski <xademax@gmail.com>
-Subject: Re: Kernel segmentation fault unbinding eMMC on AML-S905X-CC
-Message-ID: <20190110184238.GB982@voidbox.localdomain>
-References: <5c3744c0.1c69fb81.93dc1.2aff@mx.google.com>
- <20190110140829.GA982@voidbox.localdomain>
- <CAJJ5kauWzt07njVUfhmab-CTYtCBzZF0PeV==5WqJnqtr8sNGA@mail.gmail.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>, Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCH] mmc: meson-gx: Free irq in release() callback
+Date: Thu, 10 Jan 2019 19:49:08 +0100
+Message-Id: <20190110184908.27413-1-repk@triplefau.lt>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAJJ5kauWzt07njVUfhmab-CTYtCBzZF0PeV==5WqJnqtr8sNGA@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190110_103329_480813_B8870AE4 
-X-CRM114-Status: GOOD (  12.27  )
+X-CRM114-CacheID: sfid-20190110_134059_787486_764DEBFC 
+X-CRM114-Status: GOOD (  10.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -68,82 +81,97 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-mmc@vger.kernel.org
+Cc: Elie Roudninski <xademax@gmail.com>, linux-amlogic@lists.infradead.org,
+ Remi Pommarel <repk@triplefau.lt>, linux-mmc@vger.kernel.org,
+ linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jan 10, 2019 at 04:43:31PM +0000, Elie Roudninski wrote:
-[ ... ]
-> Your patch seems to work. I still got a stacktrace but not a segfault
-> anymore, and it appears to be related to something else:
-> [  148.133895] WARNING: CPU: 1 PID: 580 at
-> drivers/mmc/host/meson-gx-mmc.c:1027 meson_mmc_irq+0x210/0x2a0
-> [  148.137535] Modules linked in: cfg80211 rfkill 8021q garp mrp stp
-> llc dw_hdmi_cec meson_dw_hdmi dw_hdmi meson_drm dwmac_generic
-> drm_kms_helper dwmac_meson8b drm crct10dif_ce stmmac_platform stmmac
-> drm_panel_orientation_quirks meson_ir ptp syscopyarea rc_core
-> sysfillrect sysimgblt fb_sys_fops pps_core meson_canvas meson_gxbb_wdt
-> [  148.166345] CPU: 1 PID: 580 Comm: bash Tainted: G        W
-> 4.20.0_2 #1
-> [  148.173498] Hardware name: amlogic p212/p212, BIOS
-> 2019.01-rc2-00176-gf97c49d6a2 01/10/2019
-> [  148.181780] pstate: 60400085 (nZCv daIf +PAN -UAO)
-> [  148.186527] pc : meson_mmc_irq+0x210/0x2a0
-> [  148.190586] lr : __free_irq+0x184/0x318
-> [  148.194370] sp : ffff0000108efac0
-> [  148.197647] x29: ffff0000108efac0 x28: ffff800005cfb600
-> [  148.202908] x27: 0000000000000000 x26: 0000000000000000
-> [  148.208169] x25: 0000000000000000 x24: ffff8000105e8228
-> [  148.213431] x23: 0000000000000013 x22: ffff8000105e8358
-> [  148.218692] x21: ffff800005e61f00 x20: ffff8000105e8200
-> [  148.223953] x19: ffff800005e61f00 x18: 0000000000000000
-> [  148.229214] x17: 0000000000000000 x16: 0000000000000000
-> [  148.234476] x15: ffffffffffffffff x14: 6d6d2e3030303437
-> [  148.239737] x13: 3030642f6270612e x12: 0000000000000040
-> [  148.244998] x11: 0000000000000228 x10: 0000000000000040
-> [  148.250259] x9 : ffff000009fa9de8 x8 : ffff000009fa9de0
-> [  148.255521] x7 : ffff800007e7e050 x6 : 0000000000000000
-> [  148.260782] x5 : ffff800007e7df90 x4 : 0000000000000000
-> [  148.266043] x3 : 0000000000000000 x2 : ffff000008b90080
-> [  148.271304] x1 : ffff800005e61f00 x0 : 0000000000000000
-> [  148.276566] Call trace:
-> [  148.278984]  meson_mmc_irq+0x210/0x2a0
-> [  148.282692]  __free_irq+0x184/0x318
-> [  148.286142]  free_irq+0x40/0x80
-> [  148.289247]  meson_mmc_remove+0x48/0x190
-> [  148.293130]  platform_drv_remove+0x30/0x50
-> [  148.297190]  device_release_driver_internal+0x1b0/0x248
-> [  148.302357]  device_release_driver+0x28/0x38
-> [  148.306583]  unbind_store+0xdc/0x148
-> [  148.310119]  drv_attr_store+0x40/0x58
-> [  148.313743]  sysfs_kf_write+0x5c/0x78
-> [  148.317364]  kernfs_fop_write+0xe8/0x1e0
-> [  148.321247]  __vfs_write+0x60/0x190
-> [  148.324695]  vfs_write+0xac/0x1b0
-> [  148.327972]  ksys_write+0x6c/0xd0
-> [  148.331250]  __arm64_sys_write+0x24/0x30
-> [  148.335133]  el0_svc_common+0x94/0xe8
-> [  148.338754]  el0_svc_handler+0x38/0x80
-> [  148.342463]  el0_svc+0x8/0xc
-> [  148.345308] ---[ end trace eb849c1a635abc72 ]---
-> [  148.350408] meson-gx-mmc d0074000.mmc: Dropping the link to regulator.3
-> [  148.356575] meson-gx-mmc d0074000.mmc: Dropping the link to regulator.1
-> 
+Because the irq was requested through device managed resources API
+(devm_request_threaded_irq()) it was freed after meson_mmc_remove()
+completion, thus after mmc_free_host() has reclaimed meson_host memory.
+As this irq is IRQF_SHARED, while using CONFIG_DEBUG_SHIRQ, its handler
+get called by free_irq(). So meson_mmc_irq() was called after the
+meson_host memory reclamation and was using invalid memory.
 
-Yes should be fixed in 4.21 by https://lkml.org/lkml/2018/12/6/748.
+We ended up with the following scenario:
+device_release_driver()
+	meson_mmc_remove()
+		mmc_free_host() /* Freeing host memory */
+	...
+	devres_release_all()
+		devm_irq_release()
+			__free_irq()
+				meson_mmc_irq() /* Uses freed memory */
 
-> Moreover when I bind the eMMC after the unbind, Linux detects it
-> properly, its a huge improvement!
-> Thank you very much!
-> 
+To avoid this, the irq is released in meson_mmc_remove() before
+mmc_free_host() gets called.
 
-Good, so I have submitted a slightly modified version of this patch
-https://patchwork.kernel.org/patch/10756449/.
+This fixes https://marc.info/?l=linux-mmc&m=154707415208716.
 
+Signed-off-by: Remi Pommarel <repk@triplefau.lt>
+---
+ drivers/mmc/host/meson-gx-mmc.c | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index c2690c1a50ff..412cfd16bf15 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -179,6 +179,8 @@ struct meson_host {
+ 	struct sd_emmc_desc *descs;
+ 	dma_addr_t descs_dma_addr;
+ 
++	int irq;
++
+ 	bool vqmmc_enabled;
+ };
+ 
+@@ -1231,7 +1233,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	struct resource *res;
+ 	struct meson_host *host;
+ 	struct mmc_host *mmc;
+-	int ret, irq;
++	int ret;
+ 
+ 	mmc = mmc_alloc_host(sizeof(struct meson_host), &pdev->dev);
+ 	if (!mmc)
+@@ -1276,8 +1278,8 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 		goto free_host;
+ 	}
+ 
+-	irq = platform_get_irq(pdev, 0);
+-	if (irq <= 0) {
++	host->irq = platform_get_irq(pdev, 0);
++	if (host->irq <= 0) {
+ 		dev_err(&pdev->dev, "failed to get interrupt resource.\n");
+ 		ret = -EINVAL;
+ 		goto free_host;
+@@ -1331,9 +1333,8 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	writel(IRQ_CRC_ERR | IRQ_TIMEOUTS | IRQ_END_OF_CHAIN,
+ 	       host->regs + SD_EMMC_IRQ_EN);
+ 
+-	ret = devm_request_threaded_irq(&pdev->dev, irq, meson_mmc_irq,
+-					meson_mmc_irq_thread, IRQF_SHARED,
+-					NULL, host);
++	ret = devm_request_threaded_irq(&pdev->dev, host->irq, meson_mmc_irq,
++			meson_mmc_irq_thread, IRQF_SHARED, NULL, host);
+ 	if (ret)
+ 		goto err_init_clk;
+ 
+@@ -1387,6 +1388,7 @@ static int meson_mmc_remove(struct platform_device *pdev)
+ 
+ 	/* disable interrupts */
+ 	writel(0, host->regs + SD_EMMC_IRQ_EN);
++	devm_free_irq(host->dev, host->irq, host);
+ 
+ 	dma_free_coherent(host->dev, SD_EMMC_DESC_BUF_LEN,
+ 			  host->descs, host->descs_dma_addr);
 -- 
-Remi
+2.20.1
+
 
 _______________________________________________
 linux-amlogic mailing list
