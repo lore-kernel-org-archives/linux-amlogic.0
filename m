@@ -2,60 +2,75 @@ Return-Path: <SRS0=r/fn=PS=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_MUTT autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 85968C43387
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Jan 2019 13:59:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 215A4C43387
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Jan 2019 14:16:47 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 54C6A20660
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Jan 2019 13:59:34 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E2500214C6
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Jan 2019 14:16:46 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LZ1TpkFY"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 54C6A20660
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=triplefau.lt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bHXj9/yB";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="A+tndoSa"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E2500214C6
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/CgOhgYE5MEpYMqAmpmmboxnWQlDmoayiZcGtZTgz2w=; b=LZ1TpkFYFe8SN3
-	5zwRjtFKjdfn53DeT+SHAsGpNIPwYXQmSYhupiDA2SIbeuMr6FZXM1tHazgsZLFEnYBHLjxT2YjeU
-	DpBS0t8O785OU3SRCjunseMPnZ/LSwk5Du8HN7OKsbDOA4QZX0UYNVsspbeNwPByOT4IZwTNH64Y3
-	8cFYG8IZ0FxiLT9cMFKBAmRK8NCTk0Mx/xg1DtuQnGvpCo1kn7lBxAw2MPskPENIwpx3LQAvgvzed
-	5fB3ba46Zc7P0P4kZDAQRpLimGKPyHCcErV4Py/rpfoh0DiDlKNJ3YuPrkPbXYs9x5XVSsJxzdLXm
-	chBdHqfFUWyYFUpVGABQ==;
+	List-Owner; bh=FD+V+FaKnHHF/mSfJJVAUH7lzYhWNfC0VL9KY2optZ4=; b=bHXj9/yBomFShQ
+	tt1RQZ/ijRe8z4jl5DHVMxilt/JGF8rPQus0+RyfO34sGTS7pEtxt4RFjSom2scz/QOrWs0BBQlSo
+	GF6mkDfQ+Um01VRKF++4tnGjWM4kJ+B8xjGqW3F81WBxekeNTu/aGm8z/INwLGRXuK2wHj2C0jMfe
+	fG/xtkvPLtwa7/Dm+Diyp+iFTD8HxJ1YnMlhSTNSb/ceKypf8ytze4tSRGPmq9L7TPIKtrG8ZqIXn
+	9XCn65iiW3Rr0edAkXesioTmFq9J61pGJdp0ftgEn5bsZ51iQglaJIaYcCzXOvrUBAd83rdppkT6t
+	Aqzo5ZsB1xr4RukGAtEw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gharo-0001Ze-7x; Thu, 10 Jan 2019 13:59:28 +0000
-Received: from relay6-d.mail.gandi.net ([217.70.183.198])
+	id 1ghb8T-0002kE-Mi; Thu, 10 Jan 2019 14:16:41 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gharl-0001ZH-5t
- for linux-amlogic@lists.infradead.org; Thu, 10 Jan 2019 13:59:27 +0000
-X-Originating-IP: 88.190.179.123
-Received: from localhost (unknown [88.190.179.123])
- (Authenticated sender: repk@triplefau.lt)
- by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 69604C001B;
- Thu, 10 Jan 2019 13:59:11 +0000 (UTC)
-Date: Thu, 10 Jan 2019 15:08:29 +0100
-From: Remi Pommarel <repk@triplefau.lt>
-To: Elie Roudninski <xademax@gmail.com>
-Subject: Re: Kernel segmentation fault unbinding eMMC on AML-S905X-CC
-Message-ID: <20190110140829.GA982@voidbox.localdomain>
-References: <5c3744c0.1c69fb81.93dc1.2aff@mx.google.com>
+ id 1ghb8R-0002jk-2b; Thu, 10 Jan 2019 14:16:40 +0000
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com
+ [209.85.160.169])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 7CF132177B;
+ Thu, 10 Jan 2019 14:16:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1547129798;
+ bh=xiLverLmjO1H4frH2Iqsxa5YFhIzP2zShwLrYPbZdHQ=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=A+tndoSau3deFmLcMTlKucfGGboW6X2mPI1jiqlfKteaMLto5AtEjS3ok81V8Ai4e
+ xnwoinwuzweot3rROy9QSCqnvisl45L4q4Oy78UXOf8y/abSu/Fp8U5QMlinErFqtm
+ VsDyn6Ql675ZIZa1RB1iN152QonEHwzDG3MIBT1o=
+Received: by mail-qt1-f169.google.com with SMTP id n32so12866478qte.11;
+ Thu, 10 Jan 2019 06:16:38 -0800 (PST)
+X-Gm-Message-State: AJcUukeyX1Ukx73lb4jvjoRGurAZDJMepqULu7D1QeBo49RQptWCGqck
+ fxKnM2sNe7yJYLkz3P/KjMkKYSYwSknXHw9YBQ==
+X-Google-Smtp-Source: ALg8bN6+RrFtzpf3r/v1bKo4xBmuZXYdWQNE65mGMEkCqirXXd0SsVwIy/geSPU/IPwzcy9o7DiUmmKenJOybKBbu2M=
+X-Received: by 2002:ac8:2d2b:: with SMTP id n40mr9508318qta.38.1547129796672; 
+ Thu, 10 Jan 2019 06:16:36 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <5c3744c0.1c69fb81.93dc1.2aff@mx.google.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190109202934.29304-1-robh@kernel.org>
+ <20190110022709.kh5vlave65jn7m4g@kahuna>
+In-Reply-To: <20190110022709.kh5vlave65jn7m4g@kahuna>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 10 Jan 2019 08:16:24 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLkWAFpQckQO9RTKYcA1tQE7WTPuydqm78PU8pAoi7gpw@mail.gmail.com>
+Message-ID: <CAL_JsqLkWAFpQckQO9RTKYcA1tQE7WTPuydqm78PU8pAoi7gpw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: Remove inconsistent use of 'arm,armv8'
+ compatible string
+To: Nishanth Menon <nm@ti.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190110_055925_490830_E0343C1C 
-X-CRM114-Status: GOOD (  11.08  )
+X-CRM114-CacheID: sfid-20190110_061639_154507_45B44280 
+X-CRM114-Status: GOOD (  17.74  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -67,77 +82,86 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-mmc@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Mark Rutland <mark.rutland@arm.com>, Andrew Lunn <andrew@lunn.ch>,
+ Heiko Stuebner <heiko@sntech.de>, Maxime Ripard <maxime.ripard@bootlin.com>,
+ linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+ Liviu Dudau <liviu.dudau@arm.com>, David Brown <david.brown@linaro.org>,
+ Thierry Reding <thierry.reding@gmail.com>, Wei Xu <xuwei5@hisilicon.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ "open list:MEDIA DRIVERS FOR RENESAS - FCP"
+ <linux-renesas-soc@vger.kernel.org>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ ARM-SoC Maintainers <arm@kernel.org>,
+ "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Gregory Clement <gregory.clement@bootlin.com>,
+ Magnus Damm <magnus.damm@gmail.com>, Michal Simek <michal.simek@xilinx.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
+ linux-samsung-soc@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+ Kukjin Kim <kgene@kernel.org>,
+ "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE"
+ <bcm-kernel-feedback-list@broadcom.com>, Baolin Wang <baolin.wang@linaro.org>,
+ Andy Gross <andy.gross@linaro.org>, Orson Zhai <orsonzhai@gmail.com>,
+ Tsahee Zidenberg <tsahee@annapurnalabs.com>, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, Jason Cooper <jason@lakedaemon.net>,
+ Antoine Tenart <antoine.tenart@bootlin.com>, Ray Jui <rjui@broadcom.com>,
+ Robert Richter <rrichter@cavium.com>, Simon Horman <horms@verge.net.au>,
+ "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
+ Jayachandran C <jnair@caviumnetworks.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, linux-amlogic@lists.infradead.org,
+ "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>, Will Deacon <will.deacon@arm.com>,
+ Scott Branden <sbranden@broadcom.com>,
+ Masahiro Yamada <yamada.masahiro@socionext.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>, Chanho Min <chanho.min@lge.com>,
+ Duc Dang <dhdang@apm.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Tero Kristo <t-kristo@ti.com>, Dinh Nguyen <dinguyen@kernel.org>,
+ Jisheng Zhang <Jisheng.Zhang@synaptics.com>,
+ Sudeep Holla <sudeep.holla@arm.com>, Jun Nie <jun.nie@linaro.org>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Shawn Guo <shawnguo@kernel.org>,
+ =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gV2VkLCBKYW4gMDksIDIwMTkgYXQgMTA6NDg6NTBQTSArMDAwMCwgRWxpZSBSb3Vkbmluc2tp
-IHdyb3RlOgouLi4KCj4gWyAgNDQ0LjA2MDE2MV0gQ2FsbCB0cmFjZToKPiBbICA0NDQuMDYyNTgw
-XSAgcXVldWVkX3NwaW5fbG9ja19zbG93cGF0aCsweDIyOC8weDJkMAo+IFsgIDQ0NC4wNjczMjJd
-ICBtZXNvbl9tbWNfaXJxKzB4MjkwLzB4MmEwCj4gWyAgNDQ0LjA3MTAzMl0gIF9fZnJlZV9pcnEr
-MHgxODQvMHgzMTgKPiBbICA0NDQuMDc0NDgwXSAgZnJlZV9pcnErMHg0MC8weDgwCj4gWyAgNDQ0
-LjA3NzU4Nl0gIGRldm1faXJxX3JlbGVhc2UrMHgyNC8weDMwCj4gWyAgNDQ0LjA4MTM4Ml0gIHJl
-bGVhc2Vfbm9kZXMrMHgxZTAvMHgyZTAKPiBbICA0NDQuMDg1MDg5XSAgZGV2cmVzX3JlbGVhc2Vf
-YWxsKzB4NjAvMHg4OAo+IFsgIDQ0NC4wODkwNTddICBkZXZpY2VfcmVsZWFzZV9kcml2ZXJfaW50
-ZXJuYWwrMHgxYzgvMHgyNDgKPiBbICA0NDQuMDk0MjMxXSAgZGV2aWNlX3JlbGVhc2VfZHJpdmVy
-KzB4MjgvMHgzOAo+IFsgIDQ0NC4wOTg0NTldICB1bmJpbmRfc3RvcmUrMHhkYy8weDE0OAo+IFsg
-IDQ0NC4xMDE5OTRdICBkcnZfYXR0cl9zdG9yZSsweDQwLzB4NTgKPiBbICA0NDQuMTA1NjI3XSAg
-c3lzZnNfa2Zfd3JpdGUrMHg1Yy8weDc4Cj4gWyAgNDQ0LjEwOTI0MF0gIGtlcm5mc19mb3Bfd3Jp
-dGUrMHhlOC8weDFlMAo+IFsgIDQ0NC4xMTMxMjZdICBfX3Zmc193cml0ZSsweDYwLzB4MTkwCj4g
-WyAgNDQ0LjExNjU3MF0gIHZmc193cml0ZSsweGFjLzB4MWIwCj4gWyAgNDQ0LjExOTg0OF0gIGtz
-eXNfd3JpdGUrMHg2Yy8weGQwCj4gWyAgNDQ0LjEyMzEyNV0gIF9fYXJtNjRfc3lzX3dyaXRlKzB4
-MjQvMHgzMAo+IFsgIDQ0NC4xMjcwMTVdICBlbDBfc3ZjX2NvbW1vbisweDk0LzB4ZTgKPiBbICA0
-NDQuMTMwNjI5XSAgZWwwX3N2Y19oYW5kbGVyKzB4MzgvMHg4MAo+IFsgIDQ0NC4xMzQzNDBdICBl
-bDBfc3ZjKzB4OC8weGMKPiBbICA0NDQuMTM3MTg3XSBDb2RlOiBkMzdjMDQwMSA5MTAwMjBjMCA4
-YjAxMDA0MSBmODY1ZDhlNSAoZjgyNTY4MjYpCj4gWyAgNDQ0LjE0MzIyM10gLS0tWyBlbmQgdHJh
-Y2UgNjI1NDFlYzJmZmUwMjBmMiBdLS0tCj4gU2VnbWVudGF0aW9uIGZhdWx0CgouLi4KCkhlcmUg
-YXJlIG15IHR3byBjZW50cyBvbiB0aGlzLgoKVGhlIGlycSB0aGF0IGlzIGJlaW5nIGZyZWVkIHdh
-cyBhbGxvY2F0ZWQgdGhyb3VnaCBkZXZpY2UgbWFuYWdlbWVudAooaS5lLiB3aXRoIGRldm1fcmVx
-dWVzdF90aHJlYWRlZF9pcnEoKSkuIFNvIHRoaXMgaXJxIHdpbGwgYmUgcmVsZWFzZWQKYWZ0ZXIg
-bWVzb25fbW1jX3JlbW92ZSgpIGNvbXBsZXRpb24sIHRodXMgYWZ0ZXIgdGhhdCBtbWNfZnJlZV9o
-b3N0KCkKaGFzIGJlZW4gY2FsbGVkLiBCZWNhdXNlIHRoaXMgaXJxIGhhcyBiZWVuIHJlZ2lzdGVy
-ZWQgd2l0aCBJUlFGX1NIQVJFRAphbmQgaWYgeW91IGhhdmUgQ09ORklHX0RFQlVHX1NISVJRIChk
-byB5b3UgPykgdGhlIGlycSBoYW5kbGVyIHdpbGwgYmUKY2FsbGVkIHdoaWxlIHRoZSBpcnEgaXMg
-ZnJlZWQuCgpTbyBtZXNvbl9tbWNfaXJxIGNvdWxkIGJlIGNhbGxlZCBhZnRlciBtbWNfZnJlZV9o
-b3N0KCkgaGFzIGZyZWVkIHRoZQptZXNvbl9ob3N0IHBvaW50ZXIgY2F1c2luZyBpdCB0byBkZXJl
-ZmVyZW5jZSBhbiBpbnZhbGlkIHBvaW50ZXIuCgpTbyBpZiB5b3UgaGF2ZSBDT05GSUdfREVCVUdf
-U0hJUlEgY291bGQgeW91IHBsZWFzZSB0ZXN0IHRoZSBmb2xsb3dpbmcKcGF0Y2g6CgotLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tIDg8IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0KZGlmZiAtLWdpdCBhL2RyaXZlcnMvbW1jL2hvc3QvbWVzb24tZ3gtbW1jLmMgYi9kcml2
-ZXJzL21tYy9ob3N0L21lc29uLWd4LW1tYy5jCmluZGV4IGMyNjkwYzFhNTBmZi4uM2E5Njc5NTMx
-NTIwIDEwMDY0NAotLS0gYS9kcml2ZXJzL21tYy9ob3N0L21lc29uLWd4LW1tYy5jCisrKyBiL2Ry
-aXZlcnMvbW1jL2hvc3QvbWVzb24tZ3gtbW1jLmMKQEAgLTE3OSw2ICsxNzksOCBAQCBzdHJ1Y3Qg
-bWVzb25faG9zdCB7CiAJc3RydWN0IHNkX2VtbWNfZGVzYyAqZGVzY3M7CiAJZG1hX2FkZHJfdCBk
-ZXNjc19kbWFfYWRkcjsKIAorCWludCBpcnE7CisKIAlib29sIHZxbW1jX2VuYWJsZWQ7CiB9Owog
-CkBAIC0xMjMxLDcgKzEyMzMsNyBAQCBzdGF0aWMgaW50IG1lc29uX21tY19wcm9iZShzdHJ1Y3Qg
-cGxhdGZvcm1fZGV2aWNlICpwZGV2KQogCXN0cnVjdCByZXNvdXJjZSAqcmVzOwogCXN0cnVjdCBt
-ZXNvbl9ob3N0ICpob3N0OwogCXN0cnVjdCBtbWNfaG9zdCAqbW1jOwotCWludCByZXQsIGlycTsK
-KwlpbnQgcmV0OwogCiAJbW1jID0gbW1jX2FsbG9jX2hvc3Qoc2l6ZW9mKHN0cnVjdCBtZXNvbl9o
-b3N0KSwgJnBkZXYtPmRldik7CiAJaWYgKCFtbWMpCkBAIC0xMjc2LDggKzEyNzgsOCBAQCBzdGF0
-aWMgaW50IG1lc29uX21tY19wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQogCQln
-b3RvIGZyZWVfaG9zdDsKIAl9CiAKLQlpcnEgPSBwbGF0Zm9ybV9nZXRfaXJxKHBkZXYsIDApOwot
-CWlmIChpcnEgPD0gMCkgeworCWhvc3QtPmlycSA9IHBsYXRmb3JtX2dldF9pcnEocGRldiwgMCk7
-CisJaWYgKGhvc3QtPmlycSA8PSAwKSB7CiAJCWRldl9lcnIoJnBkZXYtPmRldiwgImZhaWxlZCB0
-byBnZXQgaW50ZXJydXB0IHJlc291cmNlLlxuIik7CiAJCXJldCA9IC1FSU5WQUw7CiAJCWdvdG8g
-ZnJlZV9ob3N0OwpAQCAtMTMzMSw5ICsxMzMzLDggQEAgc3RhdGljIGludCBtZXNvbl9tbWNfcHJv
-YmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikKIAl3cml0ZWwoSVJRX0NSQ19FUlIgfCBJ
-UlFfVElNRU9VVFMgfCBJUlFfRU5EX09GX0NIQUlOLAogCSAgICAgICBob3N0LT5yZWdzICsgU0Rf
-RU1NQ19JUlFfRU4pOwogCi0JcmV0ID0gZGV2bV9yZXF1ZXN0X3RocmVhZGVkX2lycSgmcGRldi0+
-ZGV2LCBpcnEsIG1lc29uX21tY19pcnEsCi0JCQkJCW1lc29uX21tY19pcnFfdGhyZWFkLCBJUlFG
-X1NIQVJFRCwKLQkJCQkJTlVMTCwgaG9zdCk7CisJcmV0ID0gcmVxdWVzdF90aHJlYWRlZF9pcnEo
-aG9zdC0+aXJxLCBtZXNvbl9tbWNfaXJxLAorCQkJbWVzb25fbW1jX2lycV90aHJlYWQsIElSUUZf
-U0hBUkVELCBOVUxMLCBob3N0KTsKIAlpZiAocmV0KQogCQlnb3RvIGVycl9pbml0X2NsazsKIApA
-QCAtMTM4Nyw2ICsxMzg4LDcgQEAgc3RhdGljIGludCBtZXNvbl9tbWNfcmVtb3ZlKHN0cnVjdCBw
-bGF0Zm9ybV9kZXZpY2UgKnBkZXYpCiAKIAkvKiBkaXNhYmxlIGludGVycnVwdHMgKi8KIAl3cml0
-ZWwoMCwgaG9zdC0+cmVncyArIFNEX0VNTUNfSVJRX0VOKTsKKwlmcmVlX2lycShob3N0LT5pcnEs
-IGhvc3QpOwogCiAJZG1hX2ZyZWVfY29oZXJlbnQoaG9zdC0+ZGV2LCBTRF9FTU1DX0RFU0NfQlVG
-X0xFTiwKIAkJCSAgaG9zdC0+ZGVzY3MsIGhvc3QtPmRlc2NzX2RtYV9hZGRyKTsKLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLSA4PCAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tCgpUaGlzIGJhc2ljYWxseSBmcmVlZCB0aGUgaXJxIGluIHRoZSBtZXNvbl9tbWNfcmVtb3Zl
-KCkgc28gdGhlCm1lc29uX21tY19pcnEoKSBpcyBjYWxsZWQgYmVmb3JlIG1tY19mcmVlX2hvc3Qo
-KS4KCi0tIApSw6ltaSBQb21tYXJlbAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0Bs
-aXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlz
-dGluZm8vbGludXgtYW1sb2dpYwo=
+On Wed, Jan 9, 2019 at 8:27 PM Nishanth Menon <nm@ti.com> wrote:
+>
+> On 14:29-20190109, Rob Herring wrote:
+> > The 'arm,armv8' compatible string is only for software models. It adds
+> > little value otherwise and is inconsistently used as a fallback on some
+> > platforms. Remove it from those platforms.
+> >
+> > This fixes warnings generated by the DT schema.
+> >
+> > Reported-by: Michal Simek <michal.simek@xilinx.com>
+> > Cc: Mark Rutland <mark.rutland@arm.com>
+> > Cc: Will Deacon <will.deacon@arm.com>
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> [...]
+>
+> ARM SoC maintainers, At least on a quick look (I could be wrong), I
+> think we don't have any explicit processor bindings documentation.
+
+bindings/arm/cpus.yaml
+
+> However, most of SoC folks seem to key off matches else where I
+> guess..
+>
+> Not sure, while at this, you if you are planning on fixing up
+> Documentation/devicetree/bindings/arm/arm-boards:
+> compatible = "arm,cortex-a53","arm,armv8";
+> Documentation/devicetree/bindings/arm/cpu-capacity.txt:
+> compatible = "arm,cortex-a53","arm,armv8";
+
+I'll handle documentation separately.
+
+Rob
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
