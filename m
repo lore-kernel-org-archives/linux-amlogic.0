@@ -1,80 +1,83 @@
-Return-Path: <SRS0=re6n=PR=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=r/fn=PS=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.6 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_NEOMUTT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 718A7C43387
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Jan 2019 22:49:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 774E7C43387
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Jan 2019 02:28:22 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 379F1206B7
-	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Jan 2019 22:49:11 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 305DB2075C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Jan 2019 02:28:22 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tlEW2xkb";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LzPVXhz8"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 379F1206B7
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DlkGzwQw";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ti.com header.i=@ti.com header.b="oUzn7u/a"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 305DB2075C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	MIME-Version:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=qcJK5q/p+NCn1oAA5gZe5AgJHAPPuDtVwEaaNAA2kbM=; b=tlE
-	W2xkbNzgmwdidiPnePjrlHnX96THhYEN7SpQtZOQP2+dYTtbWt9Cx5K/SacIsahY/nx9xsS/L8M6c
-	+HZLiPVO4k+MiotNWRQKrsBoLg1TCbztNRaXuUFfTgfcCL53EQ0Vw2lUy6CvmFLbs3Y2nfi+6awMW
-	NrQ+DyFUghyZF2SimCu3+YkRh76KqmfvRcAZSfaNBp2V7AVBJiUmfVfc06rI4NUAu1+S5RUgUm6TU
-	oNqxHn140RCgKauEpwYPj6s2UlpNoV3iYluuez315VDml57MepcQ6NVOCEF7S8LOuAF2EC8Ba58oc
-	5kYptRnMbD1hBVxEuRHJODSdtde2y+A==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=crkwwbeIkB0+kH8oVf4RVPHdRRRmCiDZKm+jwkIm0XI=; b=DlkGzwQwz6qCYL
+	CPuqQc+G6x2iFL86/ySOPLW1obr9Hx8a5QPXt9llBPsRiCB7+AHDwvGxa2XdvGV/P6GigjhALQ6QZ
+	KdFQyKh8eTavONWXdNVTXfegqFagE6hc7D7BF9wHUxK/2zI0u1yzHAzFFRvdqI7acjjc9Wd5PeKLO
+	wXmnKyiZ1Y362X6cpVdtxZv2kJgx/mjNetUKu8Y01zYp9Ivt1VpTtMuBMMfxWAXpaYqAKamFiz1Ht
+	KmbxMx7C321TYKc+k/nXPKrlQ2n+jYfQ4dzH2XT1nQ0auTcbR50wyYkZtUuLKLqXnPP1EEL9q/P7K
+	R5fM0CFZqBxTJjAKFKFA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1ghMen-0008NU-J0; Wed, 09 Jan 2019 22:49:05 +0000
-Received: from mail-ot1-x341.google.com ([2607:f8b0:4864:20::341])
+	id 1ghQ4s-0003nc-0p; Thu, 10 Jan 2019 02:28:14 +0000
+Received: from lelv0142.ext.ti.com ([198.47.23.249])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1ghMek-0008Ms-J5
- for linux-amlogic@lists.infradead.org; Wed, 09 Jan 2019 22:49:04 +0000
-Received: by mail-ot1-x341.google.com with SMTP id s5so8221385oth.7
- for <linux-amlogic@lists.infradead.org>; Wed, 09 Jan 2019 14:49:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=O5uvsXnvbEx2D+KwGF1Rf8+iNCqkoCQHQpiITeD8wS8=;
- b=LzPVXhz8h1XvS5KGepMmec8Iq/lUvD35XThGhuSwelj1CFcG1FZ9xCPI7OZs2wQzOm
- JLPiGbeqltqUs0Wq+8DsrB0TFC0JxWJk/WRoc/fFjYG7bfmFQAfrp/m25egxZP1TkWRU
- agUpiHDnEWBknjaUjwUukjFG/RgjC6ZRwimikm+qA8HTZz8NYDqKwzNzaNp6R8s2ac8y
- +FAEGDdg29TGJxSvT88Btu/IMymH1oBAHdCBc6oUua9L0RkAOUmbl9K1lA+75nfPznU9
- xCZWSFt0wuKz+fGbCKrHhU9/6X/TRjJIiUJ45uAMlhzR7cVfdJmo2f9OEKINk0kdIqYY
- ZkJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=O5uvsXnvbEx2D+KwGF1Rf8+iNCqkoCQHQpiITeD8wS8=;
- b=CFNMwv3+vbSsJ0qRN9FiWSIp08xZCxj57Njw1wD3eIfBWKLFfcpG8wklf6uHkkwUAJ
- yYFbi9aLhEcAnZdEE+2ivxu4RpIvzRPGMIRKppkWE2S9vG/rDanmnGky77twtMyqrbJc
- wQHHk8pTZYWvdZ2jly75Toqzfbf/zVxPHc+tviPdH+x/wr2JljWI8bo9ZOyJWDVtPegS
- wpRoKxYkcn3to2321l1qHaOWh7d1VcdxPYi6lMsRGBUjwUFiP+rrNL/fDMpAcLlkphXt
- bx7DpXzgdO/cGla00hJ/ZbC6juJCepnj2vihG3CftrLJGtSyn8FFbeFTAyNDd9K96+Kg
- 7k6A==
-X-Gm-Message-State: AJcUuke7I5iD2+oTTVGrgKE3kifZnh96FUDxBmDiZwOqw62fVf3fEHsa
- U8CNYQkXQI4Bo/bQMgBSRJDDV8Qp+kANTYltpilRBu5gixE=
-X-Google-Smtp-Source: ALg8bN4jtEoMZwtMjjTE0EEZRhxTIIedV/g4Z2aTnR3En6UNFnbXVVDjsxyMHlmFRn/O3FByTCyKcBDHlW4mr766jm0=
-X-Received: by 2002:a9d:1296:: with SMTP id g22mr4928475otg.305.1547074141219; 
- Wed, 09 Jan 2019 14:49:01 -0800 (PST)
+ id 1ghQ4n-0003mN-F2; Thu, 10 Jan 2019 02:28:11 +0000
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+ by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x0A2RcFQ021728;
+ Wed, 9 Jan 2019 20:27:38 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+ s=ti-com-17Q1; t=1547087258;
+ bh=ko73XwOEP4cBfgrt7k+ziRTOtAN4yy0+0SxLyhwXUZU=;
+ h=Date:From:To:CC:Subject:References:In-Reply-To;
+ b=oUzn7u/auA/OYgBlzxLnx1VhGJNUyoUM6kLlIpuhJKkZ3gnmwxRxOSTMdvwIqOHmI
+ 1kr/J9b8HsTIPgIns7UIwUxTHDJd6oBkILXxkyhR66o572U8L1hY0RWIFv5TJffEf+
+ SmNVgeQanuKoDYc/oypwwrQ/NQBgk7pEnCYxo+d8=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+ by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x0A2RbFR036543
+ (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+ Wed, 9 Jan 2019 20:27:38 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10; Wed, 9
+ Jan 2019 20:27:37 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_0,
+ cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend Transport;
+ Wed, 9 Jan 2019 20:27:37 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+ by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id x0A2RbvF003845;
+ Wed, 9 Jan 2019 20:27:37 -0600
+Date: Wed, 9 Jan 2019 20:27:09 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH] arm64: dts: Remove inconsistent use of 'arm,armv8'
+ compatible string
+Message-ID: <20190110022709.kh5vlave65jn7m4g@kahuna>
+References: <20190109202934.29304-1-robh@kernel.org>
 MIME-Version: 1.0
-From: Elie Roudninski <xademax@gmail.com>
-Date: Wed, 9 Jan 2019 22:48:50 +0000
-Message-ID: <CAJJ5kat3q8oJzu1U0Pw8ZqGw4vHY8mHjBERB9rCw9vYMSSb8OA@mail.gmail.com>
-Subject: Kernel segmentation fault unbinding eMMC on AML-S905X-CC
-To: linux-amlogic@lists.infradead.org, linux-mmc@vger.kernel.org
+Content-Disposition: inline
+In-Reply-To: <20190109202934.29304-1-robh@kernel.org>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190109_144902_654617_DBAD4702 
-X-CRM114-Status: UNSURE (   6.35  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190109_182809_628298_22663E09 
+X-CRM114-Status: GOOD (  20.04  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -86,108 +89,119 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: Mark Rutland <mark.rutland@arm.com>, Andrew Lunn <andrew@lunn.ch>,
+ Heiko Stuebner <heiko@sntech.de>, Maxime Ripard <maxime.ripard@bootlin.com>,
+ linux-arm-msm@vger.kernel.org, Liviu Dudau <liviu.dudau@arm.com>,
+ David Brown <david.brown@linaro.org>,
+ Thierry Reding <thierry.reding@gmail.com>, Wei Xu <xuwei5@hisilicon.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ linux-renesas-soc@vger.kernel.org,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, arm@kernel.org,
+ linux-rockchip@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>,
+ Gregory Clement <gregory.clement@bootlin.com>,
+ Magnus Damm <magnus.damm@gmail.com>, Michal Simek <michal.simek@xilinx.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
+ linux-samsung-soc@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+ Kukjin Kim <kgene@kernel.org>, bcm-kernel-feedback-list@broadcom.com,
+ Baolin Wang <baolin.wang@linaro.org>, Andy Gross <andy.gross@linaro.org>,
+ Orson Zhai <orsonzhai@gmail.com>, Tsahee Zidenberg <tsahee@annapurnalabs.com>,
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+ Jason Cooper <jason@lakedaemon.net>,
+ Antoine Tenart <antoine.tenart@bootlin.com>, Ray Jui <rjui@broadcom.com>,
+ Robert Richter <rrichter@cavium.com>, Simon Horman <horms@verge.net.au>,
+ linux-mediatek@lists.infradead.org, Jayachandran C <jnair@caviumnetworks.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Will Deacon <will.deacon@arm.com>,
+ Scott Branden <sbranden@broadcom.com>,
+ Masahiro Yamada <yamada.masahiro@socionext.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>, Chanho Min <chanho.min@lge.com>,
+ Duc Dang <dhdang@apm.com>, linux-kernel@vger.kernel.org,
+ Tero Kristo <t-kristo@ti.com>, Dinh Nguyen <dinguyen@kernel.org>,
+ Jisheng Zhang <Jisheng.Zhang@synaptics.com>,
+ Sudeep Holla <sudeep.holla@arm.com>, Jun Nie <jun.nie@linaro.org>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Shawn Guo <shawnguo@kernel.org>,
+ Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello everyone,
+On 14:29-20190109, Rob Herring wrote:
+> The 'arm,armv8' compatible string is only for software models. It adds
+> little value otherwise and is inconsistently used as a fallback on some
+> platforms. Remove it from those platforms.
+> 
+> This fixes warnings generated by the DT schema.
+> 
+> Reported-by: Michal Simek <michal.simek@xilinx.com>
+> Cc: Mark Rutland <mark.rutland@arm.com>
+> Cc: Will Deacon <will.deacon@arm.com>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+[...]
 
-I am the owner of an AML-S905X-CC ARM board, also called "Le Potato"
-with a full GNU/Linux system running on an SD card using kernel 4.20.
-I also bought an eMMC 5.x module on loverpi:
-https://www.loverpi.com/collections/libre-computer-project/products/libre-computer-board-emmc-5-x-module?variant=4173557729
+ARM SoC maintainers, At least on a quick look (I could be wrong), I
+think we don't have any explicit processor bindings documentation.
 
-I tried to use the eMMC module in order to put the system on it. Once
-the system is booted from SD card, i plugged the eMMC module and tried
-to detect it using the same command used by lc_redetect_emmc script
-provided by libre computer:
-> $ echo -n d0074000.mmc > /sys/bus/platform/drivers/meson-gx-mmc/unbind
-> $ echo -n d0074000.mmc > /sys/bus/platform/drivers/meson-gx-mmc/bind
+However, most of SoC folks seem to key off matches else where I
+guess..
 
-On the first command (the unbind) i get a kernel segfault:
------------------------------- 8< ---------------------------
-[  443.872211] Unable to handle kernel paging request at virtual
-address fffe0000138a03c8
-[  443.874469] Mem abort info:
-[  443.877228]   ESR = 0x96000044
-[  443.880246]   Exception class = DABT (current EL), IL = 32 bits
-[  443.886109]   SET = 0, FnV = 0
-[  443.889128]   EA = 0, S1PTW = 0
-[  443.892232] Data abort info:
-[  443.895079]   ISV = 0, ISS = 0x00000044
-[  443.898874]   CM = 0, WnR = 1
-[  443.901807] [fffe0000138a03c8] address between user and kernel address ranges
-[  443.908882] Internal error: Oops: 96000044 [#1] SMP
-[  443.913711] Modules linked in: cfg80211 rfkill 8021q garp mrp stp
-llc dw_hdmi_cec meson_dw_hdmi dw_hdmi meson_drm drm_kms_helper
-dwmac_generic drm dwmac_meson8b stmmac_platform
-drm_panel_orientation_quirks crc32_ce stmmac syscopyarea crct10dif_ce
-sysfi
-llrect sysimgblt ptp fb_sys_fops pps_core meson_ir rc_core meson_gxbb_wdt
-[  443.942176] CPU: 0 PID: 467 Comm: bash Tainted: G        W
-4.19.13_1 #1
-[  443.949416] Hardware name: amlogic p212/p212, BIOS
-2019.01-rc2-00176-gf97c49d6a2 01/02/2019
-[  443.957699] pstate: 00400085 (nzcv daIf +PAN -UAO)
-[  443.962450] pc : queued_spin_lock_slowpath+0x228/0x2d0
-[  443.967533] lr : meson_mmc_irq+0x290/0x2a0
-[  443.971583] sp : ffff00000fb0fa00
-[  443.974860] x29: ffff00000fb0fa00 x28: ffff8000105ef118
-[  443.980121] x27: ffff8000105ef118 x26: 0000000000000000
-[  443.985382] x25: 0000000000000000 x24: ffff800010633728
-[  443.990643] x23: 0000000000000013 x22: ffff800010633858
-[  443.995905] x21: ffff800005fab800 x20: 000000006b6b6b6b
-[  444.001166] x19: ffff800005fab820 x18: 0000000000000000
-[  444.006427] x17: 0000000000000000 x16: 0000000000000000
-[  444.011688] x15: ffffffffffffffff x14: 6d6d2e3030303437
-[  444.016950] x13: ff00000000000000 x12: 0000000000000040
-[  444.022211] x11: 0000000000000228 x10: 0000000000000020
-[  444.027472] x9 : 0000000000000000 x8 : 0000000000040000
-[  444.032734] x7 : ffff000009f24460 x6 : ffff80007fc7de80
-[  444.037995] x5 : ffff000009f42518 x4 : ffff80007fc7de80
-[  444.043256] x3 : ffff000009f236c8 x2 : ffff00000995de80
-[  444.048517] x1 : ffff00000995deb0 x0 : ffff80007fc7de88
-[  444.053781] Process bash (pid: 467, stack limit = 0x0000000086539f6f)
-[  444.060161] Call trace:
-[  444.062580]  queued_spin_lock_slowpath+0x228/0x2d0
-[  444.067322]  meson_mmc_irq+0x290/0x2a0
-[  444.071032]  __free_irq+0x184/0x318
-[  444.074480]  free_irq+0x40/0x80
-[  444.077586]  devm_irq_release+0x24/0x30
-[  444.081382]  release_nodes+0x1e0/0x2e0
-[  444.085089]  devres_release_all+0x60/0x88
-[  444.089057]  device_release_driver_internal+0x1c8/0x248
-[  444.094231]  device_release_driver+0x28/0x38
-[  444.098459]  unbind_store+0xdc/0x148
-[  444.101994]  drv_attr_store+0x40/0x58
-[  444.105627]  sysfs_kf_write+0x5c/0x78
-[  444.109240]  kernfs_fop_write+0xe8/0x1e0
-[  444.113126]  __vfs_write+0x60/0x190
-[  444.116570]  vfs_write+0xac/0x1b0
-[  444.119848]  ksys_write+0x6c/0xd0
-[  444.123125]  __arm64_sys_write+0x24/0x30
-[  444.127015]  el0_svc_common+0x94/0xe8
-[  444.130629]  el0_svc_handler+0x38/0x80
-[  444.134340]  el0_svc+0x8/0xc
-[  444.137187] Code: d37c0401 910020c0 8b010041 f865d8e5 (f8256826)
-[  444.143223] ---[ end trace 62541ec2ffe020f2 ]---
-Segmentation fault
------------------------------- 8< ---------------------------
+Not sure, while at this, you if you are planning on fixing up
+Documentation/devicetree/bindings/arm/arm-boards:
+compatible = "arm,cortex-a53","arm,armv8";
+Documentation/devicetree/bindings/arm/cpu-capacity.txt:
+compatible = "arm,cortex-a53","arm,armv8";
 
-I also tried this patch https://patchwork.kernel.org/cover/10739097/
-as advised by narmstrong without any luck.
-I also tried only removing the "non-removable" property also without luck.
+Anyways, for TI SoC:
 
-With or without those patches, when i plug the eMMC nothing happened,
-nothing in dmesg or any mmc device appearing in /dev
+>  arch/arm64/boot/dts/ti/k3-am654.dtsi          |   8 +-
+> diff --git a/arch/arm64/boot/dts/ti/k3-am654.dtsi b/arch/arm64/boot/dts/ti/k3-am654.dtsi
+> index 2affa6f6617e..b221abf43ac2 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am654.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am654.dtsi
+> @@ -34,7 +34,7 @@
+>  		};
+>  
+>  		cpu0: cpu@0 {
+> -			compatible = "arm,cortex-a53", "arm,armv8";
+> +			compatible = "arm,cortex-a53";
+>  			reg = <0x000>;
+>  			device_type = "cpu";
+>  			enable-method = "psci";
+> @@ -48,7 +48,7 @@
+>  		};
+>  
+>  		cpu1: cpu@1 {
+> -			compatible = "arm,cortex-a53", "arm,armv8";
+> +			compatible = "arm,cortex-a53";
+>  			reg = <0x001>;
+>  			device_type = "cpu";
+>  			enable-method = "psci";
+> @@ -62,7 +62,7 @@
+>  		};
+>  
+>  		cpu2: cpu@100 {
+> -			compatible = "arm,cortex-a53", "arm,armv8";
+> +			compatible = "arm,cortex-a53";
+>  			reg = <0x100>;
+>  			device_type = "cpu";
+>  			enable-method = "psci";
+> @@ -76,7 +76,7 @@
+>  		};
+>  
+>  		cpu3: cpu@101 {
+> -			compatible = "arm,cortex-a53", "arm,armv8";
+> +			compatible = "arm,cortex-a53";
+>  			reg = <0x101>;
+>  			device_type = "cpu";
+>  			enable-method = "psci";
 
-It must also be noted that the eMMC is shipped with a system that work
-properly so some working code must exist somewhere :)
+Acked-by: Nishanth Menon <nm@ti.com>
 
+-- 
 Regards,
-
-Elie
+Nishanth Menon
 
 _______________________________________________
 linux-amlogic mailing list
