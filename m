@@ -2,79 +2,79 @@ Return-Path: <SRS0=DVbv=PT=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_MUTT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 80587C43387
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 14:29:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 93AF7C43612
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 14:40:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 520B22063F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 14:29:06 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 64DFE21848
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 14:40:11 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="SIHcD+q5";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=linaro.org header.i=@linaro.org header.b="f3xk4iLQ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 520B22063F
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VYkoXIh7"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 64DFE21848
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ayu51MH6mKcDNCPTB7926O6LO/6XhLhqRukQUzsv/6A=; b=SIHcD+q5Yb/KEq
-	p73UOuJbK41szJsriXOHqmveRHKy+p4UrSHL8W3hCz57y9bCS0z4iJJa8BmTggChDbC0FHBKWVR8M
-	qg37QtZdiBtUlYXgVqhGrFGfNIsNVsUfmuW5Q4RhD0b5hZTvaEYwwbx+Joc0gO8f/PvSxZrs010x7
-	t87FmM4IpYoSNYs5QSkT5cLQwZ4o9n/UK+FMlUxwy7L+V4KfbGu+wjmq4X64YJm9/lHJuAhfNxkXy
-	moNnMnjmMahOfgQ7HU2SRMafuITVznlcMUZP8s+yMaH7tkvVxOsaC3Du+6ZNsI/vP1PqXYKueqojV
-	b6RaV4Nkyb67foPSMj1A==;
+	List-Owner; bh=5RillHU6FGV36PuhCCGaVGgegG1CjdFLy4YB2Yp/ek8=; b=VYkoXIh75Ynzch
+	ZpFxZaVPfCgmD9IdoEdTZs8ODtRfbX3DB9C2r4PS6pbAVpcsLZJ3nfZn7EBoenF61bd4MjpA+znCY
+	JZ8ogwstPCWt3upPEvP7dL+xdliPECtoYO+sJB21N3ld6e76tg9CAJjrawPBccw5xsb759kRBTUyh
+	reHYXU+aeezmX5yTDmsVA2fSQwt1Jj3O5wubHy36pMdVsRXPynA321dTZORHtSZGChUXqmjBllpjn
+	aL99ZKzCNQ/VE9BZaKWyGu+EE13hpsA0nsTeUWftDUbprQX85vr+owWcUr/+Wgkon9c32Gwv2Q2Et
+	emRR1SI7YaYTkJvNJtBQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1ghxnv-0007AD-Vo; Fri, 11 Jan 2019 14:28:59 +0000
-Received: from mail-lf1-x143.google.com ([2a00:1450:4864:20::143])
+	id 1ghxyg-0004HC-6g; Fri, 11 Jan 2019 14:40:06 +0000
+Received: from mail-oi1-f193.google.com ([209.85.167.193])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1ghxnt-00079N-Lp
- for linux-amlogic@lists.infradead.org; Fri, 11 Jan 2019 14:28:59 +0000
-Received: by mail-lf1-x143.google.com with SMTP id l10so10902978lfh.9
- for <linux-amlogic@lists.infradead.org>; Fri, 11 Jan 2019 06:28:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=a68uOIb5ZDVt/3oFh0J5AJJs418dr+JmnW1hZ4ubUw4=;
- b=f3xk4iLQIbRtksZiPsGNWVpN2YF29MeyhjoPA7WsereW42MwDsyL2g1Ytp0E3vsNKm
- hIX7/zDnYD3A6256FUcucP2sY2xhhoRmKreDCQVpoLwEyGV4niu26sDcpcdlQxsuaUUw
- pO1M7u5DUxZRPIx5f/Lsp3DJzZLVwfV5253Kg=
+ id 1ghxyd-0003o6-V5
+ for linux-amlogic@lists.infradead.org; Fri, 11 Jan 2019 14:40:05 +0000
+Received: by mail-oi1-f193.google.com with SMTP id u18so12343865oie.10
+ for <linux-amlogic@lists.infradead.org>; Fri, 11 Jan 2019 06:40:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=a68uOIb5ZDVt/3oFh0J5AJJs418dr+JmnW1hZ4ubUw4=;
- b=HPhaKAO5KOJSImJJ5TvnKHwbetCXCuKn0NPabSJsSiNp63abZedqChxmGJtaqmhwrY
- 0ghAdT9ahnod8L9XKG6mWvXbU+A34UQzftoBBPhkOWorewe1Xo0qCZFouqcf/GLvg62c
- DN9+V0HLbR7esIfvnsQLcNfUT5ZW8JwHPeutYjOHGGm0Hd7V9uV0AXsr00iCzYin1O4n
- 0DFyJWWH9tChs2LgL7LO1qCSnV//Kh0uGUZn50JT2aS/SEXjLLMFf3pV+98OOB2o8S6i
- Vj0SlpAsQ8Qtw32/FUS0V6WE4fU4AX8L2VmQlmGoUUr+93aXiR3Se9jHy3PC9monygUf
- oBLw==
-X-Gm-Message-State: AJcUukd4r1tL/WA+B85SSCjCIMTMOmFZKMLon2YXi7TWdY7R2/GU5MmT
- wsR4fL83nxsXcg1QnIPWte6MdomquniuMDa7bglizg==
-X-Google-Smtp-Source: ALg8bN5hFINfVBmhOZ2HmXhdjlyAZ04TFQAsAfgHaLttPizJlepmSC215GQ61tU3bonAeZ2fHtisULHDFk9QejRZ09E=
-X-Received: by 2002:a19:f813:: with SMTP id a19mr7894964lff.67.1547216935938; 
- Fri, 11 Jan 2019 06:28:55 -0800 (PST)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=5AgKfumJTmCJZDmWpituxPz/5EgWlc5vUnvJmAPLvks=;
+ b=MzhK+sKdm3zTfdeGSVecEfi3oDRlsb6UHCo243whQB3BxdZ+MNPOvoml5t4ZG8AXiP
+ ehyEH6pBHVw+ThqZArExa0UvM6aMcM8r/R/0bo88jOtb043zUlqNIllmoQJpSG+T7ygq
+ N2K0MH3EaKSdBJ5OWDW9jNsfMKMsmuTBeSTixCGeZkT5kXpm7tMiov2PkSJO/6ku8PIo
+ 8EbOjIxdQhLFMnLc2LuhMHhRMpwZDxyRsH7YGmEHu1XFr9EJYCkLsfGAB2oFiZBy+CRl
+ fn4Ej381OPCI8g8i+men/q8JtW2TBLkjbJye1vR+6THq7RFG3yF0oKPvqYSk6SwMPjBt
+ +/bA==
+X-Gm-Message-State: AJcUukf31cU07xk3KjGAWSgQ7fgxr0WLPLGcKQc7biYmZ/ESaGz6tuFq
+ FsC/yVvaT46w31Otw90SdA==
+X-Google-Smtp-Source: ALg8bN4bJFgaKoQ7VYgBSgmYkRY3W7YKzzvZdns3BLB2bWN6DX1G1CMUvo4gxJZJ3WjHk8MKSlD0Tg==
+X-Received: by 2002:aca:5205:: with SMTP id g5mr9644565oib.149.1547217602122; 
+ Fri, 11 Jan 2019 06:40:02 -0800 (PST)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net.
+ [24.155.109.49])
+ by smtp.gmail.com with ESMTPSA id k130sm36530903oia.47.2019.01.11.06.40.01
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Fri, 11 Jan 2019 06:40:01 -0800 (PST)
+Date: Fri, 11 Jan 2019 08:40:01 -0600
+From: Rob Herring <robh@kernel.org>
+To: Loys Ollivier <lollivier@baylibre.com>
+Subject: Re: [PATCH 1/4] dt-bindings: Add vendor prefix for "GlobalTop
+ Technology, Inc."
+Message-ID: <20190111144001.GA28255@bogus>
+References: <1545994235-8309-1-git-send-email-lollivier@baylibre.com>
+ <1545994235-8309-2-git-send-email-lollivier@baylibre.com>
 MIME-Version: 1.0
-References: <20190101194414.24766-1-martin.blumenstingl@googlemail.com>
- <20190101194414.24766-2-martin.blumenstingl@googlemail.com>
-In-Reply-To: <20190101194414.24766-2-martin.blumenstingl@googlemail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 11 Jan 2019 15:28:44 +0100
-Message-ID: <CACRpkdYTQjiPbLGQ8E_mByAY0e_byN8iW=jBVPw3QRxh4_fB_A@mail.gmail.com>
-Subject: Re: [PATCH 1/1] mmc: core: don't override the CD GPIO level when
- "cd-inverted" is set
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Content-Disposition: inline
+In-Reply-To: <1545994235-8309-2-git-send-email-lollivier@baylibre.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190111_062857_738501_608C8CF9 
-X-CRM114-Status: GOOD (  16.22  )
+X-CRM114-CacheID: sfid-20190111_064004_031222_099C2389 
+X-CRM114-Status: GOOD (  12.91  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -86,57 +86,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>,
- linux-mmc <linux-mmc@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Guenter Roeck <linux@roeck-us.net>
+Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+ Kevin Hilman <khilman@baylibre.com>, Johan Hovold <johan@kernel.org>,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Jan 1, 2019 at 8:44 PM Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
+On Fri, Dec 28, 2018 at 11:50:32AM +0100, Loys Ollivier wrote:
+> Add globaltop vendor definition.
+> 
+> Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.txt b/Documentation/devicetree/bindings/vendor-prefixes.txt
+> index 4b1a2a8fcc16..a9214767afa8 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.txt
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.txt
+> @@ -153,6 +153,7 @@ goodix	Shenzhen Huiding Technology Co., Ltd.
+>  google	Google, Inc.
+>  grinn	Grinn
+>  grmn	Garmin Limited
+> +globaltop	GlobalTop Technology, Inc.
 
-> Since commit 89a5e15bcba87d ("gpio/mmc/of: Respect polarity in the device
-> tree") gpiolib-of parses the "cd-gpios" property and flips the polarity
-> if "cd-inverted" is also set. This results in the "cd-inverted" property
-> being evaluated twice, which effectively makes it a no-op:
-> - first in drivers/gpio/gpiolib-of.c (of_xlate_and_get_gpiod_flags) when
->   setting up the CD GPIO
-> - then again in drivers/mmc/core/slot-gpio.c (mmc_gpio_get_cd) when
->   reading the CD GPIO value at runtime
->
-> On boards which are using device-tree with the "cd-inverted" property
-> being set any inserted card are not detected anymore. This is due to the
-> MMC core treating the CD GPIO with the wrong polarity.
->
-> Disable "override_cd_active_level" for the card detection GPIO which is
-> parsed using mmc_of_parse. This fixes SD card detection on the boards
-> which are currently using the "cd-inverted" device-tree property (tested
-> on Meson8b Odroid-C1 and Meson8b EC-100).
->
-> This does not remove the CD GPIO inversion logic from the MMC core
-> because there's at least one driver (sdhci-pci-core for Intel BayTrail
-> based boards) which still passes "override_cd_active_level = true" to
-> mmc_gpiod_request_cd(). Due to lack of hardware for testing this is left
-> untouched.
-> In the future the GPIO inversion logic for both, card and read-only
-> detection can be removed once no driver is using it anymore.
->
-> Fixes: 89a5e15bcba87d ("gpio/mmc/of: Respect polarity in the device tree")
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Alphabetical order please.
 
-I applied this to the GPIO fixes with the ACKs.
-
-Ulf is on vacation but I managed to get his ACK over chat,
-so I will try to get this upstream ASAP.
-
-Yours,
-Linus Walleij
+>  gumstix	Gumstix, Inc.
+>  gw	Gateworks Corporation
+>  hannstar	HannStar Display Corporation
+> -- 
+> 2.7.4
+> 
 
 _______________________________________________
 linux-amlogic mailing list
