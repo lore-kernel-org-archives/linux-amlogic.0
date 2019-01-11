@@ -1,57 +1,87 @@
-Return-Path: <SRS0=r/fn=PS=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=DVbv=PT=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-15.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 70B9DC43387
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Jan 2019 22:52:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 254E8C43387
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 00:14:36 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3EC99206B6
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Jan 2019 22:52:44 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DFC132133F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 00:14:35 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tRkQjiCU"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3EC99206B6
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=triplefau.lt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GIxxRDtm";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Jy9hngyp"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DFC132133F
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
 	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=MEc59dDoNEoopEA/Xwz5hqu2cXfzFKFIij6rh28e7Vk=; b=tRkQjiCUtXMKfa
-	0yoc2Q6B/qryH90LTKNFyqpSSl2APRWMG0m/3nPflZNKQIgtPwM+DC8HTYUcyhXocUDCsGw80zcdk
-	MmJjCPXalvvmtZ7r5bv65kkfoCf3bWiWU1l0qjSdwiG1EZXKn6cq7EFY53Rg8p0gFpa/A3F/NZoGL
-	uPCla2Cqz5KYonU2xHu7t9CWBOofjElysbF62htYJqQx6h7mDDtgnRmUVyz97a5+jbScLfCUYEp6o
-	m4D8a7COWSoxD6skqDChnuXbW+UJZz8awHuZCc9hFqXzRMtFxUd3FAaKR4nPpPqzNdtzKGxWWK6s9
-	gr24Bal5eguMJP4tfjAg==;
+	List-Owner; bh=JFJlMMMWWfCiKG5nWhGcbt0mTevUvPYFRsHlC2GloZ8=; b=GIxxRDtmS+h1jo
+	rzflRu+4a+ywb3pp8Ydp1F24esSFCM12j1/o0ZD4MQKf+TlDW3OTOHGtIuMItLEBHnk/yK3swKgcD
+	bGyKzzAEiCOsbQb2y/l6jmL9G/1KX4paDuiQRqUsn4iwFACBuMpFfxiHGfkul9vHh5+6JIva2Zb2s
+	jKiiXL7CVOD4jlBwzrQsp4Wjc0Wks3chl05Nx2o/yiYuXIBsa/vuHbU9vd6Lvqdo69prKRSIFSXwC
+	D6gQYKRnqsbkZptpzeu+gFMx1ZGcWNlWJuVh+9ELH6AThKORCB+zLMlPWFTCWs5wNTFRbX+1nVe9W
+	wt5nN2YVnOenBHUFDYdw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1ghjBm-0005AE-C5; Thu, 10 Jan 2019 22:52:38 +0000
-Received: from relay12.mail.gandi.net ([217.70.178.232])
+	id 1ghkSw-0006NX-2u; Fri, 11 Jan 2019 00:14:26 +0000
+Received: from mail-pl1-x641.google.com ([2607:f8b0:4864:20::641])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1ghjBi-00059P-LO
- for linux-amlogic@lists.infradead.org; Thu, 10 Jan 2019 22:52:36 +0000
-Received: from localhost (unknown [88.190.179.123])
- (Authenticated sender: repk@triplefau.lt)
- by relay12.mail.gandi.net (Postfix) with ESMTPSA id 7F141200003;
- Thu, 10 Jan 2019 22:52:26 +0000 (UTC)
-From: Remi Pommarel <repk@triplefau.lt>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH v2] mmc: meson-gx: Free irq in release() callback
-Date: Fri, 11 Jan 2019 00:01:35 +0100
-Message-Id: <20190110230135.19555-1-repk@triplefau.lt>
-X-Mailer: git-send-email 2.20.1
+ id 1ghkSj-0006EE-EI
+ for linux-amlogic@lists.infradead.org; Fri, 11 Jan 2019 00:14:15 +0000
+Received: by mail-pl1-x641.google.com with SMTP id u18so5913864plq.7
+ for <linux-amlogic@lists.infradead.org>; Thu, 10 Jan 2019 16:14:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=RlyNJmh4No0SkRNKfsYkuijXsVwd4v2lCvL0JlZfoZ4=;
+ b=Jy9hngyp29zXDoU66xxMfoHZOLjvAqwABp3sLeUxCFgyokz+eAnNqg0Wt5hrZNH/nO
+ tUMSHNIbt50DI3UnexSDAMhotzI6cuGzB4/Qi66Uuc9tKgDAaHqBP9N3GTG0HBuGX82V
+ WpA8Sxv6ggp5TA4mUATp8RJZQJXKkMwD19nQnxR+CaKOhvCdE7qEWJiZTmZ7zuQvhz0Z
+ ir+Hz6BpbmFmua93gYvK1jw16MIPnQ/qre9xzyM+BWVtotI+rjUred/3niv8mVFbUm2p
+ SeNO7xwOd4SAnFkTxXzigdbfjmzLYaBielVAR+HOwBAMJzDcXrlMyLqAN6bzPob89o2U
+ EJsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version;
+ bh=RlyNJmh4No0SkRNKfsYkuijXsVwd4v2lCvL0JlZfoZ4=;
+ b=Adq1tjhcXXzmMEWrOPEHKfoTxEHGvs4QDsqP6X4DJDYLe3E8BZzTmwS4tyDyRQobBl
+ TTIRAl1k9ZSDAvFfnt2QsJ4vbXZrETe1H7R7MDCQE4R27CWJOW1fhEec/L4n+FVpnXN+
+ JWlVT8eSxPD8Qu2yy2MwbM02KNX2NpBAeG3Nht5IrosmPwJRYgutmtIB6Jg6ap9UyFKZ
+ +M1HXWd+3SGcphRaci22C6RHa4XF0FB9zsO8C5oX+kU1h73lDgr5FAd+RDpUJxtTrxXq
+ CVexOScIWhXa5zaEbebvDGWh4T33pzbyebADjninbTrOcrD2MwkoLFvY9xnsdU5JJ1pq
+ NWuQ==
+X-Gm-Message-State: AJcUukeCworasi3f6tajgz5cKEl4kgGrtUkDD2yEt/NG7qpuV1UvU8Ix
+ HwkMnydilaVXHUUmFIL/rkUryg==
+X-Google-Smtp-Source: ALg8bN6p2ZwQHecHkD4DJ9BIAAnhjbSFpT7noF1jxCMkikmbZgU/y25G9OLaAR2KUt4ZewfAVxAAvQ==
+X-Received: by 2002:a17:902:27a8:: with SMTP id
+ d37mr12612641plb.182.1547165650942; 
+ Thu, 10 Jan 2019 16:14:10 -0800 (PST)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
+ [71.197.186.152])
+ by smtp.googlemail.com with ESMTPSA id h9sm124389823pgd.53.2019.01.10.16.14.10
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Thu, 10 Jan 2019 16:14:10 -0800 (PST)
+From: Kevin Hilman <khilman@baylibre.com>
+To: arm@kernel.org
+Subject: [GIT PULL] Amlogic fixes for v5.0-rc
+Date: Thu, 10 Jan 2019 16:14:09 -0800
+Message-ID: <7hzhs8qcdq.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190110_145234_970928_CF06F621 
-X-CRM114-Status: GOOD (  11.17  )
+X-CRM114-CacheID: sfid-20190110_161413_531456_78F25485 
+X-CRM114-Status: UNSURE (   8.46  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -63,118 +93,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Elie Roudninski <xademax@gmail.com>, linux-amlogic@lists.infradead.org,
- Remi Pommarel <repk@triplefau.lt>, linux-mmc@vger.kernel.org,
- linux-kernel@vger.kernel.org
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Because the irq was requested through device managed resources API
-(devm_request_threaded_irq()) it was freed after meson_mmc_remove()
-completion, thus after mmc_free_host() has reclaimed meson_host memory.
-As this irq is IRQF_SHARED, while using CONFIG_DEBUG_SHIRQ, its handler
-get called by free_irq(). So meson_mmc_irq() was called after the
-meson_host memory reclamation and was using invalid memory.
+A single fix for the early -rc.
 
-We ended up with the following scenario:
-device_release_driver()
-	meson_mmc_remove()
-		mmc_free_host() /* Freeing host memory */
-	...
-	devres_release_all()
-		devm_irq_release()
-			__free_irq()
-				meson_mmc_irq() /* Uses freed memory */
+This is actually one that I missed including in the defconfig updtes for
+v5.0, and fixes the out-of-the box sound card support for the newly
+added s400 board.
 
-To avoid this, the irq is released in meson_mmc_remove() and in
-mseon_mmc_probe() error path before mmc_free_host() gets called.
+Kevin
 
-This fixes https://marc.info/?l=linux-mmc&m=154707415208716.
 
-Signed-off-by: Remi Pommarel <repk@triplefau.lt>
----
-Changes since v1:
-- Fix it also in the error handling of probe callback
----
- drivers/mmc/host/meson-gx-mmc.c | 18 +++++++++++-------
- 1 file changed, 11 insertions(+), 7 deletions(-)
+The following changes since commit bfeffd155283772bbe78c6a05dec7c0128ee500c:
 
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index c2690c1a50ff..f115d7c63ffe 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -179,6 +179,8 @@ struct meson_host {
- 	struct sd_emmc_desc *descs;
- 	dma_addr_t descs_dma_addr;
- 
-+	int irq;
-+
- 	bool vqmmc_enabled;
- };
- 
-@@ -1231,7 +1233,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 	struct resource *res;
- 	struct meson_host *host;
- 	struct mmc_host *mmc;
--	int ret, irq;
-+	int ret;
- 
- 	mmc = mmc_alloc_host(sizeof(struct meson_host), &pdev->dev);
- 	if (!mmc)
-@@ -1276,8 +1278,8 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 		goto free_host;
- 	}
- 
--	irq = platform_get_irq(pdev, 0);
--	if (irq <= 0) {
-+	host->irq = platform_get_irq(pdev, 0);
-+	if (host->irq <= 0) {
- 		dev_err(&pdev->dev, "failed to get interrupt resource.\n");
- 		ret = -EINVAL;
- 		goto free_host;
-@@ -1331,9 +1333,8 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 	writel(IRQ_CRC_ERR | IRQ_TIMEOUTS | IRQ_END_OF_CHAIN,
- 	       host->regs + SD_EMMC_IRQ_EN);
- 
--	ret = devm_request_threaded_irq(&pdev->dev, irq, meson_mmc_irq,
--					meson_mmc_irq_thread, IRQF_SHARED,
--					NULL, host);
-+	ret = request_threaded_irq(host->irq, meson_mmc_irq,
-+			meson_mmc_irq_thread, IRQF_SHARED, NULL, host);
- 	if (ret)
- 		goto err_init_clk;
- 
-@@ -1351,7 +1352,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
- 	if (host->bounce_buf == NULL) {
- 		dev_err(host->dev, "Unable to map allocate DMA bounce buffer.\n");
- 		ret = -ENOMEM;
--		goto err_init_clk;
-+		goto err_free_irq;
- 	}
- 
- 	host->descs = dma_alloc_coherent(host->dev, SD_EMMC_DESC_BUF_LEN,
-@@ -1370,6 +1371,8 @@ static int meson_mmc_probe(struct platform_device *pdev)
- err_bounce_buf:
- 	dma_free_coherent(host->dev, host->bounce_buf_size,
- 			  host->bounce_buf, host->bounce_dma_addr);
-+err_free_irq:
-+	free_irq(host->irq, host);
- err_init_clk:
- 	clk_disable_unprepare(host->mmc_clk);
- err_core_clk:
-@@ -1387,6 +1390,7 @@ static int meson_mmc_remove(struct platform_device *pdev)
- 
- 	/* disable interrupts */
- 	writel(0, host->regs + SD_EMMC_IRQ_EN);
-+	free_irq(host->irq, host);
- 
- 	dma_free_coherent(host->dev, SD_EMMC_DESC_BUF_LEN,
- 			  host->descs, host->descs_dma_addr);
--- 
-2.20.1
+  Linux 5.0-rc1 (2019-01-06 17:08:20 -0800)
 
+are available in the Git repository at:
+
+  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-fixes
+
+for you to fetch changes up to 19a220dd1e8a1b1d8e5e2f8f4a25313c4b02d527:
+
+  arm64: defconfig: enable modules for amlogic s400 sound card (2019-01-08 15:27:50 -0800)
+
+----------------------------------------------------------------
+Amlogic DT fixes for v5.0-rc
+- arm64: defconfig: enable modules for amlogic s400 sound card
+
+----------------------------------------------------------------
+Jerome Brunet (1):
+      arm64: defconfig: enable modules for amlogic s400 sound card
+
+ arch/arm64/configs/defconfig | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 _______________________________________________
 linux-amlogic mailing list
