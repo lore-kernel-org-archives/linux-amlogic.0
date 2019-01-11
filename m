@@ -2,87 +2,80 @@ Return-Path: <SRS0=DVbv=PT=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_MUTT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 14374C43387
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 09:23:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 05AB0C43387
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 09:36:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D617920872
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 09:23:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A5AF32146F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 09:36:14 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="flwQL+Cu";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l0sqpMDP"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D617920872
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ujBn8OYW"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A5AF32146F
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=epigenesys.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=r/MexBRiJ/SvfXMf5TmSi+SaZ9j5XVaqt8qtaIismSk=; b=flwQL+Cu17WvoV
-	/iq17oxsUOTOM4I6VQPWtxtZyqexIb1dNgSGt6TgpYSA8fItD3a7tbO22ZsxsO7nuA09F7o/3bDWu
-	BgpQa++SUpnfkFuO1ba73s4Kkc6RYyy2dUWe5mESFp7thDs5681fCaGJxgXpKXoKllpYWyVw/fNKg
-	SlP7LzeShbfiiC5ZI7yhJsebSKa/NYvOXbL+vMLE4EX6aqmvjp7wSF/z0ubCioasqfyNW217qovE8
-	B7mzVadWHmPyln6V2KjZQfidA4ZH00vYJJJIr27/CxabLr2ZjMreJdfJMKnnwiqfaDBu8+xmnkyTz
-	ARusNDluJvPFDpEotgAw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=OPGnM2LJXGhtUZzG7GXmiETQOObeHOQe9Qw9f42kbtM=; b=ujBn8OYWnAQhUR
+	zzKZ+4vjOoOGAYbgebSQS3MMx+lE9faiWG2SeJ+p3gxaovL2asTSQtmfJcGhwnXPXsU+Ks8hC0ayd
+	JH0B+5e0Cd1YRV3H/idEk12sRlk4jnvxTUtEsGMmxE1e6mzAWnzOXmZdHGRCDcPIaTs2fTrf2eYnK
+	7x6+WfWmLZY0NIS4JTXShMe3cmEqP5Vb8Lv5gMRtqR0aEjJ7PpoIRSTX9aVVxf3e2RSaa4Vv4jNSW
+	vT97Gi+o8TzL3EAnl6sXv6+EIhiiT6woY+5ST5OW175V2Dz8A5Q2AjMhZjGgFhYTmA7mee5+XpMie
+	dt874iSRyQiILORQ8orw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1ght1v-0004EO-C8; Fri, 11 Jan 2019 09:23:07 +0000
-Received: from mail-pl1-x642.google.com ([2607:f8b0:4864:20::642])
+	id 1ghtEX-0000r2-EI; Fri, 11 Jan 2019 09:36:09 +0000
+Received: from mail-wm1-f65.google.com ([209.85.128.65])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1ght1i-00043P-VT; Fri, 11 Jan 2019 09:22:56 +0000
-Received: by mail-pl1-x642.google.com with SMTP id w4so6526506plz.1;
- Fri, 11 Jan 2019 01:22:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=JgweMQq5cDlqCc0BvnL1YU2JSCEJOrEfkNsdQxAwwqw=;
- b=l0sqpMDPIdE/maNw/fLRJKTbWowLfopxspHdAIE25mYhqvzXhOTplF3rZjWiShKsBZ
- rTG3O50j7Whgb+DV0Bo0rxqLyJvCcNNv8GXktOrvZjfOIN+doq9K2GSTPKoRFu8YgRPl
- jTnqeCdhTh7ze1gU9PYMlWJ7GeLqoihrmPQLwUG0UzZwIDTtdwt8fMtbY44NlOxCGZsW
- xLAiCWXwWHFp6SvpfvNl/QKq5s3qirPTZ0+W2zyGq2iNESoEX4MMzThUH/aIWbzCFEBJ
- iVh5ZunmTB1rMJMPoh2QN5PepjuNaG8MnHraZa2zC9HOxx5vNVwcW5XnfyvWk/dm0hlo
- mx4A==
+ id 1ghtEU-0000ou-GC; Fri, 11 Jan 2019 09:36:08 +0000
+Received: by mail-wm1-f65.google.com with SMTP id g67so1675553wmd.2;
+ Fri, 11 Jan 2019 01:36:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=JgweMQq5cDlqCc0BvnL1YU2JSCEJOrEfkNsdQxAwwqw=;
- b=PXQMI/sa+Z9FN4C+5AU4EDnqRXYgf+21EJ3GnF/KW2DH3FU/iiMAcm/wRQ7rJGy3YT
- h+3nqA3WeUWkRBt4cbw4kRo4K+a4mIjXNmul7F2FkGqA7S//Sko6IuhXWyysP/kh4Izl
- +vRYputMQjjG9rAtYw9f9hszuet0GtYuXAkrm3nWW8zmabbJ9r2UQe622VWJXw5LDIS8
- JXVRGG+ylWBzJSo4whzNbj8dr8aY86eVwRC8j7tlUg+F7ccvUQQOQSEpeGj5jOB2awNu
- mMddWYtOS2MXEfgT1Nt3u11Gp+Ltjw1OYAg4N+RtBqak39x/C54iHBwMsnhIp8k5qXvO
- N7nA==
-X-Gm-Message-State: AJcUukdXkQvdRSnB1mhIgAnAB5dtNQFhA0oYnRLuhdabLu2cvV+oVzuG
- 5j6hBfcW05zyQJZOFPAtG1c=
-X-Google-Smtp-Source: ALg8bN6BOFiMpCfsaGfi9V6CMp1OM3KTRFl6uy0J+NU7fPZQUsBcHahhHnXodIXBmrFJ2eZHKg7kKw==
-X-Received: by 2002:a17:902:7296:: with SMTP id
- d22mr14219890pll.265.1547198574060; 
- Fri, 11 Jan 2019 01:22:54 -0800 (PST)
-Received: from localhost.localdomain ([103.51.74.128])
- by smtp.gmail.com with ESMTPSA id u126sm178115558pgb.2.2019.01.11.01.22.50
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 11 Jan 2019 01:22:53 -0800 (PST)
-From: Anand Moon <linux.amoon@gmail.com>
-To: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM64: dts: meson-gxbb-odroidc2: Fix usb phy regulator warning
-Date: Fri, 11 Jan 2019 14:52:35 +0530
-Message-Id: <20190111092235.28161-1-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.19.1
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=JQOucpdrnT7+zXl7VJsymkDpIfXi+qUvv0538yBHyEw=;
+ b=IzhEqYB/8nEPIo9CEecXBUQbozwRcPMRN7DVzRz2W/M/VpdD5CYlHUMrytsaX1z+up
+ lgzyNlTmd8g2l8O+cbDEWEgFEPi99hSBD0p0JFy8q5J7rUX0w0a0lm8jVWuhpFHHTj2A
+ oNhQZnPQXf1MRuNphw4ruD8q+Sy2LeaPD0V8r09/OiOnaukyvGzbzHeWlIhfrvuSTJ4C
+ q3i19NC1ValZj9l9Tgd2+jDuvgqr95lvuOUfxMvKKZmfdsN0F63GIlw+uzOSW6hBFrgL
+ XDkZz5G1P42NqudQrC/MFR3RcoJcDrLunjaoRl8VPtZMhIFBJ3+vLC/CCAY8lGPPsc25
+ rYhg==
+X-Gm-Message-State: AJcUukd03tjiGnIt4wFlq/ZgyxNPQxszkCP0tm08H09Ynkq5oCupicmJ
+ LzWboAUnJIc2OQ9Vv9CFSgc=
+X-Google-Smtp-Source: ALg8bN53WXc9adTnVt1Z0sGXBGd7z6TZvEz4OPmr1sNYS7g9NKv0bNGRKrhlE0yvJww+I3vh4VIHzw==
+X-Received: by 2002:a1c:dc02:: with SMTP id t2mr1481865wmg.78.1547199363530;
+ Fri, 11 Jan 2019 01:36:03 -0800 (PST)
+Received: from ingrassia.epigenesys.com
+ (host194-85-static.3-79-b.business.telecomitalia.it. [79.3.85.194])
+ by smtp.gmail.com with ESMTPSA id k15sm98426875wru.8.2019.01.11.01.36.02
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Fri, 11 Jan 2019 01:36:02 -0800 (PST)
+Date: Fri, 11 Jan 2019 10:36:00 +0100
+From: Emiliano Ingrassia <ingrassia@epigenesys.com>
+To: Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [PATCH v3 1/2] pinctrl: meson: meson8b: add the eth_rxd2 and
+ eth_rxd3 pins
+Message-ID: <20190111093600.GA30612@ingrassia.epigenesys.com>
+References: <20181229143556.27339-1-martin.blumenstingl@googlemail.com>
+ <20181229143556.27339-2-martin.blumenstingl@googlemail.com>
+ <7hzhs8ovag.fsf@baylibre.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <7hzhs8ovag.fsf@baylibre.com>
+User-Agent: Mutt/1.11.1 (2018-12-01)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190111_012255_039038_56B32CF7 
-X-CRM114-Status: GOOD (  12.23  )
+X-CRM114-CacheID: sfid-20190111_013606_552506_586C4B57 
+X-CRM114-Status: GOOD (  11.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -94,140 +87,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ khilman@baylibre.com, linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add missing vin-supply 5V regulator node on usb_phy nodes needed
-to power usb bus ports. Override the dr_mode from "host" to "peripheral"
-for initialization of dwc2 usb0 phy node,changes fix the below
-warning for usb initialization.
+On Thu, Jan 10, 2019 at 05:08:39PM -0800, Kevin Hilman wrote:
+> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+>
+> > Gigabit Ethernet requires the Ethernet TXD0..3 and RXD0..3 data lines.
+> > Add the missing eth_rxd2 and eth_rxd3 definitions so we don't have to
+> > rely on the bootloader to set them up correctly.
+> >
+> > The vendor u-boot sources for Odroid-C1 use the following Ethernet
+> > pinmux configuration:
+> >   SET_CBUS_REG_MASK(PERIPHS_PIN_MUX_6, 0x3f4f);
+> >   SET_CBUS_REG_MASK(PERIPHS_PIN_MUX_7, 0xf00000);
+> > This translates to the following pin groups in the mainline kernel:
+> > - register 6 bit  0: eth_rxd1 (DIF_0_P)
+> > - register 6 bit  1: eth_rxd0 (DIF_0_N)
+> > - register 6 bit  2: eth_rx_dv (DIF_1_P)
+> > - register 6 bit  3: eth_rx_clk (DIF_1_N)
+> > - register 6 bit  6: eth_tx_en (DIF_3_P)
+> > - register 6 bit  8: eth_ref_clk (DIF_3_N)
+> > - register 6 bit  9: eth_mdc (DIF_4_P)
+> > - register 6 bit 10: eth_mdio_en (DIF_4_N)
+> > - register 6 bit 11: eth_tx_clk (GPIOH_9)
+> > - register 6 bit 12: eth_txd2 (GPIOH_8)
+> > - register 6 bit 13: eth_txd3 (GPIOH_7)
+> > - register 7 bit 20: eth_txd0_0 (GPIOH_6)
+> > - register 7 bit 21: eth_txd1_0 (GPIOH_5)
+> > - register 7 bit 22: eth_rxd3 (DIF_2_P)
+> > - register 7 bit 23: eth_rxd2 (DIF_2_N)
+> >
+> > All functions except eth_rxd2 and eth_rxd3 are already supported by the
+> > pinctrl-meson8b driver.
+> >
+> > Suggested-by: Jianxin Pan <jianxin.pan@amlogic.com>
+> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>
+> Reviewed-by: Kevin Hilman <khilman@baylibre.com>
 
-[    1.203900] phy phy-c0000000.phy.0: USB ID detect failed!
-[    1.208048] phy phy-c0000000.phy.0: phy poweron failed --> -22
-[    1.213877] WARNING: CPU: 1 PID: 44 at drivers/regulator/core.c:2054 _regulator_put.part.11+0xf0/0xf8
-[    1.222953] Modules linked in:
-[    1.225976] CPU: 1 PID: 44 Comm: kworker/1:1 Not tainted 5.0.0-rc1-xc2ml #3
-[    1.232872] Hardware name: Hardkernel ODROID-C2 (DT)
-[    1.237794] Workqueue: events deferred_probe_work_func
-[    1.242878] pstate: 80000005 (Nzcv daif -PAN -UAO)
-[    1.247623] pc : _regulator_put.part.11+0xf0/0xf8
-[    1.252280] lr : regulator_put+0x34/0x48
-[    1.256159] sp : ffff00001176bb00
-[    1.259437] x29: ffff00001176bb00 x28: 0000000000000000
-[    1.264698] x27: ffff80007f31beb8 x26: ffff000010eeb7e0
-[    1.269959] x25: 0000000000000000 x24: 0000000000000009
-[    1.275220] x23: ffff00001176bbc8 x22: ffff80007ed9d500
-[    1.280482] x21: ffff0000111bd6c8 x20: ffff80007ed9d700
-[    1.285743] x19: ffff80007ed9d700 x18: 000000000000006f
-[    1.291004] x17: 0000000000000000 x16: 0000000000000000
-[    1.296265] x15: 0000000000000400 x14: 0000000000000400
-[    1.301527] x13: ff00000000000000 x12: ffffffffffffffff
-[    1.306788] x11: 0000000000000038 x10: 0000000000000040
-[    1.312049] x9 : ffff0000111d58b0 x8 : ffff0000111d58a8
-[    1.317310] x7 : ffff80007ed9db00 x6 : ffff80007ec21b00
-[    1.322571] x5 : ffff80007f400248 x4 : ffff80007fba9b00
-[    1.327833] x3 : ffff0000112d9eb8 x2 : ffff80007ec21b00
-[    1.333094] x1 : 0000000000000000 x0 : 0000000000000001
-[    1.338356] Call trace:
-[    1.340773]  _regulator_put.part.11+0xf0/0xf8
-[    1.345085]  regulator_put+0x34/0x48
-[    1.348621]  regulator_bulk_free+0x30/0x50
-[    1.352675]  devm_regulator_bulk_release+0x18/0x20
-[    1.357421]  release_nodes+0x1b0/0x220
-[    1.361127]  devres_release_all+0x34/0x50
-[    1.365094]  really_probe+0xec/0x290
-[    1.368630]  driver_probe_device+0x54/0xe8
-[    1.372684]  __device_attach_driver+0xb8/0xe8
-[    1.376997]  bus_for_each_drv+0x78/0xc8
-[    1.380792]  __device_attach+0xd4/0x130
-[    1.384587]  device_initial_probe+0x10/0x18
-[    1.388727]  bus_probe_device+0x90/0x98
-[    1.392522]  deferred_probe_work_func+0x6c/0xa0
-[    1.397010]  process_one_work+0x1e0/0x318
-[    1.400975]  worker_thread+0x228/0x428
-[    1.404684]  kthread+0x124/0x128
-[    1.407876]  ret_from_fork+0x10/0x18
-[    1.411410] ---[ end trace de5fd1b262c1f56a ]---
-[    1.416055] WARNING: CPU: 1 PID: 44 at drivers/regulator/core.c:2054 _regulator_put.part.11+0xf0/0xf8
-[    1.425123] Modules linked in:
-[    1.428144] CPU: 1 PID: 44 Comm: kworker/1:1 Tainted: G        W         5.0.0-rc1-xc2ml #3
-[    1.436422] Hardware name: Hardkernel ODROID-C2 (DT)
-[    1.441340] Workqueue: events deferred_probe_work_func
-
-Fixes: 5a0803bd5ae (ARM64: dts: meson-gxbb-odroidc2: Enable USB Nodes)
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
-Fix the following power issue with usb device
-
-[  795.380156] usb 1-1.2: reset high-speed USB device number 3 using dwc2
-[  798.356073] usb 1-1.2: reset high-speed USB device number 3 using dwc2
-[  801.331999] usb 1-1.2: reset high-speed USB device number 3 using dwc2
-[  804.307919] usb 1-1.2: reset high-speed USB device number 3 using dwc2
-[  807.283844] usb 1-1.2: reset high-speed USB device number 3 using dwc2
-
-[alarm@archl-c2m ~]$ lsusb -t
-/:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
-    |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
-        |__ Port 1: Dev 4, If 0, Class=Mass Storage, Driver=usb-storage, 480M
-        |__ Port 2: Dev 5, If 3, Class=Audio, Driver=, 480M
-        |__ Port 2: Dev 5, If 1, Class=Video, Driver=uvcvideo, 480M
-        |__ Port 2: Dev 5, If 2, Class=Audio, Driver=, 480M
-        |__ Port 2: Dev 5, If 0, Class=Video, Driver=uvcvideo, 480M
-        |__ Port 3: Dev 3, If 0, Class=Vendor Specific Class, Driver=, 480M
-
-Similar Fix is need for Odroid C1+ to power on the phy nodes
----
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index 2e1cd5e3a246..b4e14ff614c4 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -28,6 +28,13 @@
- 		reg = <0x0 0x0 0x0 0x80000000>;
- 	};
- 
-+	p5v0: regulator-p5v0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "P5V0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
- 	usb_otg_pwr: regulator-usb-pwrs {
- 		compatible = "regulator-fixed";
- 
-@@ -36,6 +43,8 @@
- 		regulator-min-microvolt = <5000000>;
- 		regulator-max-microvolt = <5000000>;
- 
-+		vin-supply = <&p5v0>;
-+
- 		gpio = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
- 		enable-active-high;
- 	};
-@@ -303,6 +312,7 @@
- 
- &usb0 {
- 	status = "okay";
-+	dr_mode = "peripheral";
- };
- 
- &usb1 {
--- 
-2.19.1
-
+Tested-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
+Reviewed-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
 
 _______________________________________________
 linux-amlogic mailing list
