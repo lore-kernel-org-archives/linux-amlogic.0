@@ -2,83 +2,147 @@ Return-Path: <SRS0=DVbv=PT=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_MUTT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-11.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DFA1BC43612
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 10:13:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 76447C43444
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 13:41:13 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B0B662146F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 10:13:58 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4213D20874
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 13:41:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="J7JTuAvr"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B0B662146F
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=epigenesys.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="idJVenW1";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="LhYxhcxl"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4213D20874
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hTM0Ri5ihb3rBJp8tU4kusTnlsc0sDy0JwiPuinwCMY=; b=J7JTuAvrTHyCsa
-	jH60MkJeh8IvRRASc582qosSJR/xIgBdexokVWaYXR6nveIlWIpJsTI8yyBA523XfeFlXuTIJhr65
-	Nmn2494mm9br7faNV5zBKB5JIJdhD0GD5IUG5AooONybPD0EGaNCLp0vO1nUXzduUbWuL3jBnVR3i
-	KGAVG+C+S/DkccbZjinjqNUNwHanb1UwMG0kiePgPCmv9I8XeKhUI/R7MSj/Hd8v6KHWwGgSWHQkk
-	p0psBkPkpw5iOqD3TObMRsV4Z/DkT4JJVbgmCeXV3+2u+X4z06SAX9QiOZ0hCz0scSCAdUqdomgSt
-	yl88rG2oZK9zO/N7nkBQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=zyogv1Uy84iFIV1d6zbRYpnRLu8+CGsAOpbEuLBjqFY=; b=idJVenW19DfqJF
+	WRfTzweVV/ERMuZ32WbpSc/HIplkt/OfC7sn90zuwi9JXPHTgtKGGYaCc7zfceaeJcNUhUlUi5BLi
+	2iuE1fuLoSdGm+u4THJgFU7AQUKIp/BsIAKdFbWYXCw2eeS942Rimh7Qs1tUNZrQzYCJmd1tskJNE
+	8tesDU1HcNpmbDcEc24FsypeE+ncyf1EYOVXDBUD24j9DBFKkwW55Qnwf7gDCbkekxYIuoKH3EhS4
+	RY7B/GZnIm+St65n50i3+4kiSKsDAZT3suOaz+4jKZo6nBMUB4Igej0136Zte763qp08KV0Xxwnlu
+	TExJO8mh1RJiuolKbxEg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1ghtp3-0001dV-EI; Fri, 11 Jan 2019 10:13:53 +0000
-Received: from mail-wr1-f66.google.com ([209.85.221.66])
+	id 1ghx3Z-0003rY-4S; Fri, 11 Jan 2019 13:41:05 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1ghtp0-0001cp-Jp; Fri, 11 Jan 2019 10:13:52 +0000
-Received: by mail-wr1-f66.google.com with SMTP id r10so14529292wrs.10;
- Fri, 11 Jan 2019 02:13:50 -0800 (PST)
+ id 1ghx3N-0003iL-9Q
+ for linux-amlogic@lists.infradead.org; Fri, 11 Jan 2019 13:40:55 +0000
+Received: by mail-wm1-x342.google.com with SMTP id m22so2423422wml.3
+ for <linux-amlogic@lists.infradead.org>; Fri, 11 Jan 2019 05:40:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=rZvM6AGLXmUr5fPKn5eYC16tJhXhQxqc+a0po0UH4Wg=;
+ b=LhYxhcxlB0EEHQ5dNSzGCQnyilJ9O78UnI82rqKrVdiT/rtCGn7QtRDS4SEKFsfGAP
+ fOccq9NkqxWcIgHJsJwgwySejvsDDPq+M4YWMz6hv66CaovIwlNzvWZ5724h5bP446wK
+ wb5qGZ+pHD25wy6JJ0I9hE6e9WV0ycpvRGAmjm68KDhecNBNTczs/jJsVYqYS6CS1wgf
+ 9jseUsX8eDZKUBA0N/df4sl32qjEj5vvgJhnN399Cu/v663RcgEPrPSmT1U6S9lQC+Cv
+ +JiuCVF+O6h9aRbHhWQdiZC1YwzbNdYmZX6UH2F8TeMiwBxDDg4SKtAY+IiG/LIFdAdH
+ ZdmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to:user-agent;
- bh=OePOV6n/Kmg9WhJzcGlyqkLo6gzzRwfvOj4eo4aEWm8=;
- b=IXYVbP5KXjC5zVFnAfX6iR4KarLGC6w7FlZo2v6tygZ0HMTQUE8N7J67Gj9eyyk24F
- g/SHIwi9FlPMndF/KYEe/NgzqgiZCI1CXFjDhU9SC30xpYjWxLbj1vSG0fMcMiAXHFqo
- xVKPBPedEBQnBIjEREWFsolr94csLdJ1pjX4c45nsg6Uruvbq1X1HqbfPfRiXWR7CSEN
- V60QoAOOczjfU3sCNZ6P2v7d9SaZEjNstMIrgEvwtwd4zUARFsdd1eBaao/B4FkbHRyh
- 26aDMZ1h26amJtAcmUIbB3bIkd6HVLEmO9Z+xs9cyJK6kIJAxFKkLM2Z7870hmUjJ6o2
- gyVg==
-X-Gm-Message-State: AJcUukdSmP2HvPRmGwunJR5LYOGmmivRkm3wbojiOTdNI7ZQkyBEWVz+
- rFDy0cQc8GG1BfIsdWxoFWA=
-X-Google-Smtp-Source: ALg8bN5ruiul8+7DhD+ryOEoZYxY+0P9U33hOFuaJ9izgVtdXQqfmyZi7/dE+8IjveQ9cx8sCm/FmA==
-X-Received: by 2002:a5d:494a:: with SMTP id r10mr13264491wrs.272.1547201628803; 
- Fri, 11 Jan 2019 02:13:48 -0800 (PST)
-Received: from ingrassia.epigenesys.com
- (host194-85-static.3-79-b.business.telecomitalia.it. [79.3.85.194])
- by smtp.gmail.com with ESMTPSA id b7sm55299188wrs.47.2019.01.11.02.13.47
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Fri, 11 Jan 2019 02:13:48 -0800 (PST)
-Date: Fri, 11 Jan 2019 11:13:46 +0100
-From: Emiliano Ingrassia <ingrassia@epigenesys.com>
-To: Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v3 2/2] ARM: dts: meson8b: fix the Ethernet data line
- signals in eth_rgmii_pins
-Message-ID: <20190111101315.GA2461@ingrassia.epigenesys.com>
-References: <20181229143556.27339-1-martin.blumenstingl@googlemail.com>
- <20181229143556.27339-3-martin.blumenstingl@googlemail.com>
- <7hwoncov8k.fsf@baylibre.com>
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=rZvM6AGLXmUr5fPKn5eYC16tJhXhQxqc+a0po0UH4Wg=;
+ b=hewhXMYo4EP1qWo0DMLYLxM5ytQ259ukIDrnNyaoVMulhPu5aLxd7IoMXOrnpY2QTY
+ 1SXH6z3gT+gHppdHAJJLCthN+9Haw8VpeZ90W+/PdHZ511abwucWY5oWUrGKd8Rg17vX
+ 8zxuNb+LltyV4yTn0vLQZC0EB+Rp3GzZ4WRfO69NHGfcks2Ms4/Q4t53tQdLj5q4YvLq
+ YcOTm6dZrWLydJaJnVvWZk/vzNBGBprwjPEEHlkRcz2Sv+NKHZk7744EjsRg7lx84zRM
+ uG6jtcfNwXQmnCsFd0RAN+B1iq7K1rv6319nma/lzyajkuit6WDiq6oLV9yZ2fECLeFa
+ ZcTg==
+X-Gm-Message-State: AJcUukeVwXWV+8shjZMjFV/W3vyw+UbOr1DbRzRSQf6D45FDoYPAvgAT
+ +BCkQTIx6GVAbgorYDwAJ7l5bw==
+X-Google-Smtp-Source: ALg8bN6df0mMuC1VxzZFFQ4hCtQI4gb19CCTq5ZYvDxsD4pUhe1FBYXhBxGLKZUROI0X/+YW5lIfbQ==
+X-Received: by 2002:a1c:aad2:: with SMTP id t201mr2313044wme.148.1547214050715; 
+ Fri, 11 Jan 2019 05:40:50 -0800 (PST)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id t5sm13254870wmg.43.2019.01.11.05.40.49
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 11 Jan 2019 05:40:49 -0800 (PST)
+Subject: Re: [PATCH] ARM64: dts: meson-gxbb-odroidc2: Fix usb phy regulator
+ warning
+To: Anand Moon <linux.amoon@gmail.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20190111092235.28161-1-linux.amoon@gmail.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <772bd70c-2cd9-a1be-d18f-7824a9ea0556@baylibre.com>
+Date: Fri, 11 Jan 2019 14:40:49 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.2.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <7hwoncov8k.fsf@baylibre.com>
-User-Agent: Mutt/1.11.1 (2018-12-01)
+In-Reply-To: <20190111092235.28161-1-linux.amoon@gmail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190111_021350_655958_26840354 
-X-CRM114-Status: GOOD (  17.74  )
+X-CRM114-CacheID: sfid-20190111_054053_471569_B71D0DE1 
+X-CRM114-Status: GOOD (  20.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -90,64 +154,149 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-arm-kernel@lists.infradead.org, jianxin.pan@amlogic.com,
- linus.luessing@c0d3.blue
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Mark Rutland <mark.rutland@arm.com>, Kevin Hilman <khilman@baylibre.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gVGh1LCBKYW4gMTAsIDIwMTkgYXQgMDU6MDk6NDdQTSAtMDgwMCwgS2V2aW4gSGlsbWFuIHdy
-b3RlOgo+IE1hcnRpbiBCbHVtZW5zdGluZ2wgPG1hcnRpbi5ibHVtZW5zdGluZ2xAZ29vZ2xlbWFp
-bC5jb20+IHdyaXRlczoKPgo+ID4gQWNjb3JkaW5nIHRvIHRoZSBPZHJvaWQtQzErIHNjaGVtYXRp
-Y3MgdGhlIEV0aGVybmV0IFRYRDEgc2lnbmFsIGlzCj4gPiByb3V0ZWQgdG8gR1BJT0hfNSBhbmQg
-dGhlIFRYRDAgc2lnbmFsIGlzIHJvdXRlZCB0byBHUElPSF82Lgo+ID4gVGhlIHB1YmxpYyBTODA1
-IGRhdGFzaGVldCBzaG93cyB0aGF0IFRYRDAgY2FuIGJlIHJvdXRlZCB0byBESUZfMl9QIGFuZAo+
-ID4gVFhEMSBjYW4gYmUgcm91dGVkIHRvIERJRl8yX04gaW5zdGVhZC4KPiA+Cj4gPiBUaGUgcGlu
-IGdyb3VwcyBldGhfdHhkMF8wIChHUElPSF82KSBhbmQgZXRoX3R4ZDBfMSAoRElGXzJfUCkgYXJl
-IGJvdGgKPiA+IGNvbmZpZ3VyZWQgYXMgRXRoZXJuZXQgVFhEMCBhbmQgVFhEMSBkYXRhIGxpbmVz
-IGluIG1lc29uOGIuZHRzaS4gQXQgdGhlCj4gPiBzYW1lIHRpbWUgZXRoX3R4ZDFfMCAoR1BJT0hf
-NSkgYW5kIGV0aF90eGQxXzEgKERJRl8yX04pIGFyZSBjb25maWd1cmVkCj4gPiBhcyBUWEQwIGFu
-ZCBUWEQxIGRhdGEgbGluZXMgYXMgd2VsbC4KPiA+IFRoaXMgcmVzdWx0cyBpbiBhIGJhZCBFdGhl
-cm5ldCByZWNlaXZlIHBlcmZvcm1hbmNlLiBQcmVzdW1hYmx5IHRoaXMgaXMKPiA+IGR1ZSB0byB0
-aGUgZXRoX3R4ZDAgYW5kIGV0aF90eGQxIHNpZ25hbCBiZWluZyByb3V0ZWQgdG8gdGhlIHdyb25n
-IHBpbnMuCj4gPiBBcyBhIHJlc3VsdCBvZiB0aGF0IGRhdGEgY2FuIG9ubHkgYmUgdHJhbnNtaXR0
-ZWQgb24gZXRoX3R4ZDIgYW5kCj4gPiBldGhfdHhkMy4gSG93ZXZlciwgSSBoYXZlIG5vIHNjb3Bl
-IHRvIGZ1bGx5IGNvbmZpcm0gdGhpcyBhc3N1bXB0aW9uLgo+ID4KPiA+IFRoZSB2ZW5kb3IgdS1i
-b290IHNvdXJjZXMgZm9yIE9kcm9pZC1DMSB1c2UgdGhlIGZvbGxvd2luZyBFdGhlcm5ldAo+ID4g
-cGlubXV4IGNvbmZpZ3VyYXRpb246Cj4gPiAgIFNFVF9DQlVTX1JFR19NQVNLKFBFUklQSFNfUElO
-X01VWF82LCAweDNmNGYpOwo+ID4gICBTRVRfQ0JVU19SRUdfTUFTSyhQRVJJUEhTX1BJTl9NVVhf
-NywgMHhmMDAwMDApOwo+ID4gVGhpcyB0cmFuc2xhdGVzIHRvIHRoZSBmb2xsb3dpbmcgcGluIGdy
-b3VwcyBpbiB0aGUgbWFpbmxpbmUga2VybmVsOgo+ID4gLSByZWdpc3RlciA2IGJpdCAgMDogZXRo
-X3J4ZDEgKERJRl8wX1ApCj4gPiAtIHJlZ2lzdGVyIDYgYml0ICAxOiBldGhfcnhkMCAoRElGXzBf
-TikKPiA+IC0gcmVnaXN0ZXIgNiBiaXQgIDI6IGV0aF9yeF9kdiAoRElGXzFfUCkKPiA+IC0gcmVn
-aXN0ZXIgNiBiaXQgIDM6IGV0aF9yeF9jbGsgKERJRl8xX04pCj4gPiAtIHJlZ2lzdGVyIDYgYml0
-ICA2OiBldGhfdHhfZW4gKERJRl8zX1ApCj4gPiAtIHJlZ2lzdGVyIDYgYml0ICA4OiBldGhfcmVm
-X2NsayAoRElGXzNfTikKPiA+IC0gcmVnaXN0ZXIgNiBiaXQgIDk6IGV0aF9tZGMgKERJRl80X1Ap
-Cj4gPiAtIHJlZ2lzdGVyIDYgYml0IDEwOiBldGhfbWRpb19lbiAoRElGXzRfTikKPiA+IC0gcmVn
-aXN0ZXIgNiBiaXQgMTE6IGV0aF90eF9jbGsgKEdQSU9IXzkpCj4gPiAtIHJlZ2lzdGVyIDYgYml0
-IDEyOiBldGhfdHhkMiAoR1BJT0hfOCkKPiA+IC0gcmVnaXN0ZXIgNiBiaXQgMTM6IGV0aF90eGQz
-IChHUElPSF83KQo+ID4gLSByZWdpc3RlciA3IGJpdCAyMDogZXRoX3R4ZDBfMCAoR1BJT0hfNikK
-PiA+IC0gcmVnaXN0ZXIgNyBiaXQgMjE6IGV0aF90eGQxXzAgKEdQSU9IXzUpCj4gPiAtIHJlZ2lz
-dGVyIDcgYml0IDIyOiBldGhfcnhkMyAoRElGXzJfUCkKPiA+IC0gcmVnaXN0ZXIgNyBiaXQgMjM6
-IGV0aF9yeGQyIChESUZfMl9OKQo+ID4KPiA+IERyb3AgdGhlIGV0aF90eGQwXzEgYW5kIGV0aF90
-eGQxXzEgZ3JvdXBzIGZyb20gZXRoX3JnbWlpX3BpbnMgdG8gZml4IHRoZQo+ID4gRXRoZXJuZXQg
-dHJhbnNtaXQgcGVyZm9ybWFuY2Ugb24gT2Ryb2lkLUMxLiBBbHNvIGFkZCB0aGUgZXRoX3J4ZDIg
-YW5kCj4gPiBldGhfcnhkMyBncm91cHMgc28gd2UgZG9uJ3QgcmVseSBvbiB0aGUgYm9vdGxvYWRl
-ciB0byBzZXQgdGhlbSB1cC4KPiA+Cj4gPiBpcGVyZjMgc3RhdGlzdGljcyBiZWZvcmUgdGhpcyBj
-aGFuZ2U6Cj4gPiAtIHRyYW5zbWl0dGluZyBmcm9tIE9kcm9pZC1DMTogNzQxIE1iaXRzL3NlYyAo
-MCByZXRyaWVzKQo+ID4gLSByZWNlaXZpbmcgb24gT2Ryb2lkLUMxOiAxOTkgTWJpdHMvc2VjICgx
-NzEzIHJldHJpZXMpCj4gPgo+ID4gaXBlcmYzIHN0YXRpc3RpY3MgYWZ0ZXIgdGhpcyBjaGFuZ2U6
-Cj4gPiAtIHRyYW5zbWl0dGluZyBmcm9tIE9kcm9pZC1DMTogNjY3IE1iaXRzL3NlYyAoMCByZXRy
-aWVzKQo+ID4gLSByZWNlaXZpbmcgb24gT2Ryb2lkLUMxOiA3NTAgTWJpdHMvc2VjICgwIHJldHJp
-ZXMpCj4gPgo+ID4gRml4ZXM6IGI5NjQ0NjU0MWQ4MzkwICgiQVJNOiBkdHM6IG1lc29uOGI6IGV4
-dGVuZCBldGhlcm5ldCBjb250cm9sbGVyIGRlc2NyaXB0aW9uIikKPiA+IFNpZ25lZC1vZmYtYnk6
-IE1hcnRpbiBCbHVtZW5zdGluZ2wgPG1hcnRpbi5ibHVtZW5zdGluZ2xAZ29vZ2xlbWFpbC5jb20+
-Cj4gPiBDYzogRW1pbGlhbm8gSW5ncmFzc2lhIDxpbmdyYXNzaWFAZXBpZ2VuZXN5cy5jb20+Cj4g
-PiBDYzogTGludXMgTMO8c3NpbmcgPGxpbnVzLmx1ZXNzaW5nQGMwZDMuYmx1ZT4KPgo+IFF1ZXVl
-ZCBmb3IgdjUuMSAoYnJhbmNoOiB2NS4xL2R0KQo+Cj4gS2V2aW4KClRlc3RlZC1ieTogRW1pbGlh
-bm8gSW5ncmFzc2lhIDxpbmdyYXNzaWFAZXBpZ2VuZXN5cy5jb20+ClJldmlld2VkLWJ5OiBFbWls
-aWFubyBJbmdyYXNzaWEgPGluZ3Jhc3NpYUBlcGlnZW5lc3lzLmNvbT4KCkVtaWxpYW5vCgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2lj
-IG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xp
-c3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+Hi Anand,
+
+On 11/01/2019 10:22, Anand Moon wrote:
+> Add missing vin-supply 5V regulator node on usb_phy nodes needed
+> to power usb bus ports. Override the dr_mode from "host" to "peripheral"
+> for initialization of dwc2 usb0 phy node,changes fix the below
+> warning for usb initialization.
+
+I would have switch the dr_mode to peripheral in another patch,
+fix the regulator issue in this patch only.
+
+Neil
+
+> 
+> [    1.203900] phy phy-c0000000.phy.0: USB ID detect failed!
+> [    1.208048] phy phy-c0000000.phy.0: phy poweron failed --> -22
+> [    1.213877] WARNING: CPU: 1 PID: 44 at drivers/regulator/core.c:2054 _regulator_put.part.11+0xf0/0xf8
+> [    1.222953] Modules linked in:
+> [    1.225976] CPU: 1 PID: 44 Comm: kworker/1:1 Not tainted 5.0.0-rc1-xc2ml #3
+> [    1.232872] Hardware name: Hardkernel ODROID-C2 (DT)
+> [    1.237794] Workqueue: events deferred_probe_work_func
+> [    1.242878] pstate: 80000005 (Nzcv daif -PAN -UAO)
+> [    1.247623] pc : _regulator_put.part.11+0xf0/0xf8
+> [    1.252280] lr : regulator_put+0x34/0x48
+> [    1.256159] sp : ffff00001176bb00
+> [    1.259437] x29: ffff00001176bb00 x28: 0000000000000000
+> [    1.264698] x27: ffff80007f31beb8 x26: ffff000010eeb7e0
+> [    1.269959] x25: 0000000000000000 x24: 0000000000000009
+> [    1.275220] x23: ffff00001176bbc8 x22: ffff80007ed9d500
+> [    1.280482] x21: ffff0000111bd6c8 x20: ffff80007ed9d700
+> [    1.285743] x19: ffff80007ed9d700 x18: 000000000000006f
+> [    1.291004] x17: 0000000000000000 x16: 0000000000000000
+> [    1.296265] x15: 0000000000000400 x14: 0000000000000400
+> [    1.301527] x13: ff00000000000000 x12: ffffffffffffffff
+> [    1.306788] x11: 0000000000000038 x10: 0000000000000040
+> [    1.312049] x9 : ffff0000111d58b0 x8 : ffff0000111d58a8
+> [    1.317310] x7 : ffff80007ed9db00 x6 : ffff80007ec21b00
+> [    1.322571] x5 : ffff80007f400248 x4 : ffff80007fba9b00
+> [    1.327833] x3 : ffff0000112d9eb8 x2 : ffff80007ec21b00
+> [    1.333094] x1 : 0000000000000000 x0 : 0000000000000001
+> [    1.338356] Call trace:
+> [    1.340773]  _regulator_put.part.11+0xf0/0xf8
+> [    1.345085]  regulator_put+0x34/0x48
+> [    1.348621]  regulator_bulk_free+0x30/0x50
+> [    1.352675]  devm_regulator_bulk_release+0x18/0x20
+> [    1.357421]  release_nodes+0x1b0/0x220
+> [    1.361127]  devres_release_all+0x34/0x50
+> [    1.365094]  really_probe+0xec/0x290
+> [    1.368630]  driver_probe_device+0x54/0xe8
+> [    1.372684]  __device_attach_driver+0xb8/0xe8
+> [    1.376997]  bus_for_each_drv+0x78/0xc8
+> [    1.380792]  __device_attach+0xd4/0x130
+> [    1.384587]  device_initial_probe+0x10/0x18
+> [    1.388727]  bus_probe_device+0x90/0x98
+> [    1.392522]  deferred_probe_work_func+0x6c/0xa0
+> [    1.397010]  process_one_work+0x1e0/0x318
+> [    1.400975]  worker_thread+0x228/0x428
+> [    1.404684]  kthread+0x124/0x128
+> [    1.407876]  ret_from_fork+0x10/0x18
+> [    1.411410] ---[ end trace de5fd1b262c1f56a ]---
+> [    1.416055] WARNING: CPU: 1 PID: 44 at drivers/regulator/core.c:2054 _regulator_put.part.11+0xf0/0xf8
+> [    1.425123] Modules linked in:
+> [    1.428144] CPU: 1 PID: 44 Comm: kworker/1:1 Tainted: G        W         5.0.0-rc1-xc2ml #3
+> [    1.436422] Hardware name: Hardkernel ODROID-C2 (DT)
+> [    1.441340] Workqueue: events deferred_probe_work_func
+> 
+> Fixes: 5a0803bd5ae (ARM64: dts: meson-gxbb-odroidc2: Enable USB Nodes)
+> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Cc: Jerome Brunet <jbrunet@baylibre.com>
+> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> ---
+> Fix the following power issue with usb device
+> 
+> [  795.380156] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> [  798.356073] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> [  801.331999] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> [  804.307919] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> [  807.283844] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> 
+> [alarm@archl-c2m ~]$ lsusb -t
+> /:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
+>     |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
+>         |__ Port 1: Dev 4, If 0, Class=Mass Storage, Driver=usb-storage, 480M
+>         |__ Port 2: Dev 5, If 3, Class=Audio, Driver=, 480M
+>         |__ Port 2: Dev 5, If 1, Class=Video, Driver=uvcvideo, 480M
+>         |__ Port 2: Dev 5, If 2, Class=Audio, Driver=, 480M
+>         |__ Port 2: Dev 5, If 0, Class=Video, Driver=uvcvideo, 480M
+>         |__ Port 3: Dev 3, If 0, Class=Vendor Specific Class, Driver=, 480M
+> 
+> Similar Fix is need for Odroid C1+ to power on the phy nodes
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> index 2e1cd5e3a246..b4e14ff614c4 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> @@ -28,6 +28,13 @@
+>  		reg = <0x0 0x0 0x0 0x80000000>;
+>  	};
+>  
+> +	p5v0: regulator-p5v0 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "P5V0";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +	};
+> +
+>  	usb_otg_pwr: regulator-usb-pwrs {
+>  		compatible = "regulator-fixed";
+>  
+> @@ -36,6 +43,8 @@
+>  		regulator-min-microvolt = <5000000>;
+>  		regulator-max-microvolt = <5000000>;
+>  
+> +		vin-supply = <&p5v0>;
+> +
+>  		gpio = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
+>  		enable-active-high;
+>  	};
+> @@ -303,6 +312,7 @@
+>  
+>  &usb0 {
+>  	status = "okay";
+> +	dr_mode = "peripheral";
+>  };
+>  
+>  &usb1 {
+> 
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
