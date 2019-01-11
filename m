@@ -2,70 +2,82 @@ Return-Path: <SRS0=DVbv=PT=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_MUTT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6FC9EC43387
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 09:41:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F2334C43612
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 10:09:31 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3DCD22146F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 09:41:52 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BD7E220872
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 10:09:31 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eretFE94"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3DCD22146F
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VAObqh5W"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BD7E220872
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=epigenesys.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tw84hgAa2mrDe90e3nF5JSADtYEcRJXbGrTzZqjPGYA=; b=eretFE94H2EkXN
-	zc9p4R6GFyiKCl4PR8Mxyrt7k+Og6wBROwrL8gVWuOnzQTUdYe2GXPNBwERp3xbr3lJJ3tdua7cLE
-	aqOFvXi1Bheg/dEP10A80o56dqNNJ90leMeo2lHWJhe9f1+GHZbauTOUaSiYHVajc8DcTBL82c5+u
-	mdxjYpaCTZGAa2BPcEZ3KdWvG531OId0xpU78DAHQ9BqEyKH0JdC/qVkvfg97SfxrHus9p0b9FjPg
-	lqdO3vcXtgct5mBCssDt9EGnzkSZ1EZ5RvttLrPmYlTeKeL6UnttxCsV4OIA+VUThe0CQYoQ55luO
-	1aRdk4xDF+0COEiCOB6g==;
+	List-Owner; bh=PqFkaj+dNfj3aDsZs/67wTY/4wK5I/3Aj7Q4aZeN4RE=; b=VAObqh5WvIJZiv
+	FEN6oi9dJl5X/aNoijT7ytWG6Q/OxlFCaF05zPRyZhVz3JLfZfgthcL8eOYv2StNuC2KFFIqN6bx1
+	FKaBE4oGnpxoLQGY9v6hHS+jYK1TL5p6V8R2yo7P0lNqBoySafGs9ezNO/IYATK5WIC2IX6xHeonn
+	WGvgiUfpXYHfgr0itF5J+EViB0/R6us40W7HTb2C/oRsZVK8LzSk6gFrDEltxm2jhepEFSild0D/6
+	ji8tb4fdcN+GdQtlAOanoEULsNp7OtdtPABaxaO7FfaYb6xOSCRuv9ZET6VP0V3He1Oiz/U8FymWk
+	z+OnSbpZvvUuvtR5xGtw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1ghtJz-0003oW-M3; Fri, 11 Jan 2019 09:41:47 +0000
-Received: from mail-oi1-f196.google.com ([209.85.167.196])
+	id 1ghtkk-0008MX-4D; Fri, 11 Jan 2019 10:09:26 +0000
+Received: from mail-wr1-f68.google.com ([209.85.221.68])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1ghtJv-0003mu-Kk
- for linux-amlogic@lists.infradead.org; Fri, 11 Jan 2019 09:41:45 +0000
-Received: by mail-oi1-f196.google.com with SMTP id t204so11699624oie.7
- for <linux-amlogic@lists.infradead.org>; Fri, 11 Jan 2019 01:41:43 -0800 (PST)
+ id 1ghtkf-0008M4-PP; Fri, 11 Jan 2019 10:09:23 +0000
+Received: by mail-wr1-f68.google.com with SMTP id s12so14550052wrt.4;
+ Fri, 11 Jan 2019 02:09:19 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=lq5kxItlnpnFbfKz4N5S5DXe16Fa09lPVZ+gHUIVQH4=;
- b=QwTq/yLCrLNlhSf95jqPdez5XMuHL5a9DGtZKcrDf2oV97VT25FT6v91fWKm44H+qT
- AaPoJjkacydLz8iGiZBYU1aDfq2PUVyssu0gJ6scjCBj/yYY2d01i7HymqB3mhf5qlPE
- cO6juFS7Q7NuAkR1SL9iu/hRLjXH4TAHlwHLSsbzsL0qTfPeteVSbxmUl4gzWHyU1fxH
- q4aRqiuH/C8StzDTFIHbgdS2tWFJKds9iXCA1qvJESkX8aDtwueMX6ATgm9sctPfuzeI
- XNcJkQ3uUTQrCPIfslSnXUW9gcCUw3xRHLsUY0Hhwv7Xz2FaY5GhYVaKtjIPyHacUDdS
- xt8A==
-X-Gm-Message-State: AJcUukeaAzh0Jdc7P8415i5aunLuW5kFqgzWgSjQZ0np1gFy1V3vmnQD
- 1JpmorAkPqqQKdIFcVFTTRX7Ha6uJmDZqdyr7KU=
-X-Google-Smtp-Source: ALg8bN7WN6InQu+GEgdjDknIBEwAQMOcMxBtRyBgo8GHQNnxyS0fIoCurmwPZLHW2hLaR++Vt2UPA44PmCBsqW2Jf5Q=
-X-Received: by 2002:aca:6c8b:: with SMTP id h133mr8866617oic.33.1547199702255; 
- Fri, 11 Jan 2019 01:41:42 -0800 (PST)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=8Cm8N29ZZkzJ+aKri/826wyw0qgzRNXjm7btz3NeNmg=;
+ b=pS5BGE8fupknsd/NFIOYzItDZzav/aEsCD2iWXfbJMYdec+9IREbeHT7+D/GQTG9Dr
+ pQoecCOCFUBirPw429H/R2BTexWbICnue8g3DLwV76mJQbDX1NSOzdkraZ5WafZPrMYz
+ 72YxambHpfU1uK+ZB0TXU2rgoqnlwEDProLmLwwF8DLwhEovfwA0i8mXFF/FEYDM+Dmi
+ g1wULRPDcbdI2B6aV62wVHsjG7B/JX0nxtBW71mi7SIy4q4Lnrj3rj3r6tBXpcr9Mcaf
+ zrsJNqRas6AYTZbCkOLO3GEsdXRvYZIslphlwX1YFP/i1bxNkHgVgky71NAM1QDitk3M
+ pJCg==
+X-Gm-Message-State: AJcUukf1SmtAcYLWtCaah8o/KkRkE8JB63iwT7xj7KvZGAX7To7LjgIF
+ AYNBCZRTJy8F2cwFe3srrpc=
+X-Google-Smtp-Source: ALg8bN6AB6zkuRUT+PP+3FWuMC+fPfh7qIn6BzfbzwCKgjTlffKWlLwG1wHbRoeVKPqGugCz7zH1ng==
+X-Received: by 2002:adf:e247:: with SMTP id n7mr12149671wri.205.1547201358361; 
+ Fri, 11 Jan 2019 02:09:18 -0800 (PST)
+Received: from ingrassia.epigenesys.com
+ (host194-85-static.3-79-b.business.telecomitalia.it. [79.3.85.194])
+ by smtp.gmail.com with ESMTPSA id k15sm98544710wru.8.2019.01.11.02.09.17
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Fri, 11 Jan 2019 02:09:17 -0800 (PST)
+Date: Fri, 11 Jan 2019 11:09:15 +0100
+From: Emiliano Ingrassia <ingrassia@epigenesys.com>
+To: Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v3 1/2] pinctrl: meson: meson8b: add the eth_rxd2 and
+ eth_rxd3 pins
+Message-ID: <20190111100915.GA1716@ingrassia.epigenesys.com>
+References: <20181229143556.27339-1-martin.blumenstingl@googlemail.com>
+ <20181229143556.27339-2-martin.blumenstingl@googlemail.com>
+ <7hzhs8ovag.fsf@baylibre.com>
 MIME-Version: 1.0
-References: <20181221162341.9847-1-jbrunet@baylibre.com>
-In-Reply-To: <20181221162341.9847-1-jbrunet@baylibre.com>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Fri, 11 Jan 2019 10:41:30 +0100
-Message-ID: <CAJZ5v0jaGwxcLf81R0eeLmoaJbUpPr9g6OzN38hWPfyX4C_6Dw@mail.gmail.com>
-Subject: Re: [PATCH] driver core: silence device link messages unless debugging
-To: Jerome Brunet <jbrunet@baylibre.com>
+Content-Disposition: inline
+In-Reply-To: <7hzhs8ovag.fsf@baylibre.com>
+User-Agent: Mutt/1.11.1 (2018-12-01)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190111_014143_683349_FC3F5837 
-X-CRM114-Status: GOOD (  15.31  )
+X-CRM114-CacheID: sfid-20190111_020922_353485_1925C9ED 
+X-CRM114-Status: GOOD (  12.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -77,60 +89,66 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-amlogic@lists.infradead.org,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- "Rafael J . Wysocki" <rafael@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, jianxin.pan@amlogic.com,
+ linus.luessing@c0d3.blue
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Dec 21, 2018 at 5:23 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
->
-> On platforms making a fair use of regulators, the dev_info() messages
-> coming from the device link function are a bit too verbose. The amount
-> of message will increase further with the clock framework joining the
-> device link party.
->
-> These messages looks valuable for people debugging device link related
-> issues, so dev_dbg() looks more appropriate than dev_info().
->
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Hi Kevin,
 
-Reviewed-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+sorry to bother you.
 
-> ---
->  drivers/base/core.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+On Thu, Jan 10, 2019 at 05:08:39PM -0800, Kevin Hilman wrote:
+> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 >
-> diff --git a/drivers/base/core.c b/drivers/base/core.c
-> index 04bbcd779e11..8d330f921ad7 100644
-> --- a/drivers/base/core.c
-> +++ b/drivers/base/core.c
-> @@ -301,7 +301,7 @@ struct device_link *device_link_add(struct device *consumer,
->         list_add_tail_rcu(&link->s_node, &supplier->links.consumers);
->         list_add_tail_rcu(&link->c_node, &consumer->links.suppliers);
+> > Gigabit Ethernet requires the Ethernet TXD0..3 and RXD0..3 data lines.
+> > Add the missing eth_rxd2 and eth_rxd3 definitions so we don't have to
+> > rely on the bootloader to set them up correctly.
+> >
+> > The vendor u-boot sources for Odroid-C1 use the following Ethernet
+> > pinmux configuration:
+> >   SET_CBUS_REG_MASK(PERIPHS_PIN_MUX_6, 0x3f4f);
+> >   SET_CBUS_REG_MASK(PERIPHS_PIN_MUX_7, 0xf00000);
+> > This translates to the following pin groups in the mainline kernel:
+> > - register 6 bit  0: eth_rxd1 (DIF_0_P)
+> > - register 6 bit  1: eth_rxd0 (DIF_0_N)
+> > - register 6 bit  2: eth_rx_dv (DIF_1_P)
+> > - register 6 bit  3: eth_rx_clk (DIF_1_N)
+> > - register 6 bit  6: eth_tx_en (DIF_3_P)
+> > - register 6 bit  8: eth_ref_clk (DIF_3_N)
+> > - register 6 bit  9: eth_mdc (DIF_4_P)
+> > - register 6 bit 10: eth_mdio_en (DIF_4_N)
+> > - register 6 bit 11: eth_tx_clk (GPIOH_9)
+> > - register 6 bit 12: eth_txd2 (GPIOH_8)
+> > - register 6 bit 13: eth_txd3 (GPIOH_7)
+> > - register 7 bit 20: eth_txd0_0 (GPIOH_6)
+> > - register 7 bit 21: eth_txd1_0 (GPIOH_5)
+> > - register 7 bit 22: eth_rxd3 (DIF_2_P)
+> > - register 7 bit 23: eth_rxd2 (DIF_2_N)
+> >
+> > All functions except eth_rxd2 and eth_rxd3 are already supported by the
+> > pinctrl-meson8b driver.
+> >
+> > Suggested-by: Jianxin Pan <jianxin.pan@amlogic.com>
+> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 >
-> -       dev_info(consumer, "Linked as a consumer to %s\n", dev_name(supplier));
-> +       dev_dbg(consumer, "Linked as a consumer to %s\n", dev_name(supplier));
->
->   out:
->         device_pm_unlock();
-> @@ -327,8 +327,8 @@ static void __device_link_del(struct kref *kref)
->  {
->         struct device_link *link = container_of(kref, struct device_link, kref);
->
-> -       dev_info(link->consumer, "Dropping the link to %s\n",
-> -                dev_name(link->supplier));
-> +       dev_dbg(link->consumer, "Dropping the link to %s\n",
-> +               dev_name(link->supplier));
->
->         if (link->flags & DL_FLAG_PM_RUNTIME)
->                 pm_runtime_drop_link(link->consumer);
-> --
-> 2.19.2
->
+> Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+
+For both patches of this series I gave:
+Tested-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
+Reviewed-by: Emiliano Ingrassia <ingrassia@epigenesys.com>
+
+They were in the answer to the cover letter of this series.
+I note that they were not included in the commit message of the first patch.
+
+Did I miss something or did something wrong?
+Please, let me know.
+
+Thank you,
+
+Emiliano
 
 _______________________________________________
 linux-amlogic mailing list
