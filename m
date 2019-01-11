@@ -4,19 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
+	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EB078C43387
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 00:15:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 47B91C43387
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 00:21:26 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B6A1B2133F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 00:15:28 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0E4E72133F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 00:21:26 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VXkQHY2p";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="f/XbIiUg"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B6A1B2133F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jrpWZhJ3";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="GSnRMTVE"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0E4E72133F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,66 +25,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Whn+atVye2ngUhJXuyFURbqOJmqSD9t+vS6nSGQGMBg=; b=VXkQHY2pVWBNYT
-	vemSTKjVcQrJjWtS6R5/nWLpLWVMnvmdLgti42fdUAhmTmOWmKZuSioOYi72AGBMwCDn57xO4dbeL
-	Onkkgn05azrhABfIEVlFLMFRoO5MRTQwQBoOWEMgZ54YhYQqN5egyWXF7fe1xEiw29UiRbQq6U1kX
-	nlHij/F5RQT+vhjltK22rmRoOI43ZdWukUWQBpET1Aou7mlNZBaHDQbpWlhXkDaOKecyttA6pHKoS
-	I+V8/96AnYk1Hva43GBmzJSCkivmQxEfU6VUaoWgEc82o2jkzrU6RNlUmRdeQjEp+azXnRy+VVM4s
-	VudzfvOI2pTZ1N4dkRjA==;
+	List-Owner; bh=AQj28KFyahry4sw3FG+e4uUIke4YQnnWOh5fDgRQOlI=; b=jrpWZhJ3vipOkE
+	SF9IpvXJsseYYlehfIKwonMk7RaMBBoIgaPKPKozbnPFmFGIeVDem8zbAReh55vrWEoc3uBCVL5uu
+	VPb1/PEmRV9Vk8ccLtyibJe+rLm4eTWj74XEiywU1Nid5gMKNtG2TU6sQOEzoqmNJd9wl+8g8mJr4
+	RC4x+lmnH20xwEh7s5lMbLIINUESACo+rrNhh8a7iVbyETfROosFkeEpuI71mF87wKv8Ld7K8gSkD
+	HrPFEx979cTxr5xHTsgha/bcS3hGylwA+dIAt4UbuzRpxP0edLVazo/6dpPr1hB2sMBHcMA7GaqWQ
+	xHgCofW3tEkfD/ZGBvhg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1ghkTq-0008DL-CZ; Fri, 11 Jan 2019 00:15:22 +0000
-Received: from mail-pf1-x443.google.com ([2607:f8b0:4864:20::443])
+	id 1ghkZb-0001sv-WB; Fri, 11 Jan 2019 00:21:20 +0000
+Received: from mail-pl1-x644.google.com ([2607:f8b0:4864:20::644])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1ghkTc-0007jc-LE
- for linux-amlogic@lists.infradead.org; Fri, 11 Jan 2019 00:15:10 +0000
-Received: by mail-pf1-x443.google.com with SMTP id b7so6064040pfi.8
- for <linux-amlogic@lists.infradead.org>; Thu, 10 Jan 2019 16:15:08 -0800 (PST)
+ id 1ghkZY-0001sD-5C
+ for linux-amlogic@lists.infradead.org; Fri, 11 Jan 2019 00:21:17 +0000
+Received: by mail-pl1-x644.google.com with SMTP id w4so5920621plz.1
+ for <linux-amlogic@lists.infradead.org>; Thu, 10 Jan 2019 16:21:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=lrRYkQOX8oabBI7evmXJhlETKhOiCG5tJ57nJBVZseI=;
- b=f/XbIiUg+sKbMwHVCYO1u5rTsudsHeZsgVXAtIuG8QXpvvdyWs1xIDFJIEgnr7cq27
- vPbOApd2jwWdwhMSW6K53xmOkKq85kwxm5VCzRIRRxAKWM+ZvbHx8G9Uv/YvA7HTxuCK
- qRrv6fJCITronI4nz8ipRMrXhCi8E1WXqczyqZHC8B5fggZZphKkiMwt2FAauHQ/jYCE
- n2jrMeljN05Z0/GL3zQfiexo75lPpbvH39zNeAMBDv8bqE2MH0tSAIIKvriy0Rg/lOxN
- UwQkCj61ACmlHSwWoJ2lnkQeDhXaOq2DHlIsIerp5NDpqa+MhQuC4qLWd1J+Jp6L+zVw
- HGSw==
+ :mime-version; bh=U5ied4IpUVo0pHUmsHibr0IXWO/yNrasETY2g43N018=;
+ b=GSnRMTVEQIOAn5/ac55f+bPtbB0vLJc5Q5RLD2gZ1eVov4WuW4XdmZRXjYkL3uBITz
+ MBP5SSQbJO42xGViJbJRRbBH2wlHpRyFsGvVCzVlvMJYys0XgHHHVDi6PNyxX/9iDIzX
+ pJWDvlAJ1GHRwErhfE6PEEPJSFJDzjj99SvoS7wTNgV57GuloN5FzV60L9ztphtjjtQx
+ rv9/SjAw3sQGbB6lnIS0fdGnYJ6coQp0dEf+wUzVxoOFbEwJ5yjhpsUprLTNkp8oh47W
+ DVM8Z8iSC9wu7lJg2AsBg1D4P4yfinK8zM8i/KaX3Z5ckU9xeUD7iwBs++LicSZEAWYp
+ lcEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=lrRYkQOX8oabBI7evmXJhlETKhOiCG5tJ57nJBVZseI=;
- b=m+N9JibT1eXouh7J1Isa44E8zslXw7Ar4ekB8IAGGCoB9OcHXBQ8LIbr9e6376RjRA
- r+Dt4YXSYsL+XsyosnmjA7NCpTI4hGcrpBXYRczAdOuBZ1Ibu0ywzUF6V+ZbTi7dq73b
- KbJBNakyDLPVS3WUk5/4m2gKNCfpqnwo5ibWnDhfKAci4TAefycE7zdIQzMzdqYcwghA
- ouDcz7w1JF0GJ4eJu1XwhLGLjRtirj9+SKVj33tQEw7ZWF1SAvPEtwxJt2srJHBcHkdR
- A24YDVB4HU7D48u7hb/pF52bLKoJVDwx/Sw7YwJ/V62+nrqCbMd+ZD+Ub8XpPWuJhVqZ
- Kzkw==
-X-Gm-Message-State: AJcUukftANvtPuK7H4qdS6ESBbKL0FXCN97JRXK2hykHVibRI2S7jLl7
- 8kNLVfe7Rbruoh6PIlNBaVuA5g==
-X-Google-Smtp-Source: ALg8bN53KR6/M8+Mt+5jqUyjitraKHDVbewmPsYnLuVNvTwlPDbyhBscf+tOeAMebs9YqWXTlpBzZg==
-X-Received: by 2002:a63:9809:: with SMTP id q9mr11371259pgd.109.1547165708097; 
- Thu, 10 Jan 2019 16:15:08 -0800 (PST)
+ bh=U5ied4IpUVo0pHUmsHibr0IXWO/yNrasETY2g43N018=;
+ b=YSvN63q+4qEuAE2MMC0Yk9M6ap0NSGebJXntqzvHa0b8fX9tNTRHt/qSoS2So7Tas0
+ 3Ga0wMT3Q3jVP+AazOFbk1ZtnCEe0bqM/KC/FxzMeUm91Wu9cyXrTYyiLT//U2UgYBuE
+ u7MMgKTqOQfpweFh19TNFgrdjLQ/78vL/FOWhWnpC+TRWvDBnYK64jiBWfXSmLVtIzn0
+ 60Ks1VNZXuMcBGqo2aApKKSVJLXu3we6XIP2j/E4CKiDk/JqkFJvoQccsVC1rb9oXf3e
+ YQSRKssHf46SZ1rMgsQ+4yRtVrNGQk9plsKP+k9kuBf4+2KO/gzeG2xPX4YvsvQd0tTH
+ 0ilg==
+X-Gm-Message-State: AJcUuke5GsbkGRp4NTa8WkuFS4CGG1LqTfleX++vf/pgVJB/+dZkRqJq
+ XuG6xbyKiIsYSgt8CELQ8jfgDg==
+X-Google-Smtp-Source: ALg8bN5uPOktJrpj7ce1wLi9pSB5u80P34ytQ6EYAHFCV2NXGoFCHVzYDGrv5Dvdnbht11jwx/hcHw==
+X-Received: by 2002:a17:902:8ec8:: with SMTP id
+ x8mr12542185plo.210.1547166075478; 
+ Thu, 10 Jan 2019 16:21:15 -0800 (PST)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152])
- by smtp.googlemail.com with ESMTPSA id i5sm19828838pfg.34.2019.01.10.16.15.07
+ [71.197.186.152]) by smtp.googlemail.com with ESMTPSA id
+ b68sm115136686pfg.160.2019.01.10.16.21.14
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Thu, 10 Jan 2019 16:15:07 -0800 (PST)
+ Thu, 10 Jan 2019 16:21:14 -0800 (PST)
 From: Kevin Hilman <khilman@baylibre.com>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Subject: Re: [PATCH] arm64: defconfig: enable modules for amlogic s400 sound
- card
-In-Reply-To: <6770759de6ed04ecabaa163eb550769d43dfc901.camel@baylibre.com>
-References: <20180828122735.28919-1-jbrunet@baylibre.com>
- <7hmusmvw6z.fsf@baylibre.com>
- <6770759de6ed04ecabaa163eb550769d43dfc901.camel@baylibre.com>
-Date: Thu, 10 Jan 2019 16:15:06 -0800
-Message-ID: <7htvigqcc5.fsf@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Carlo Caione <ccaione@baylibre.com>
+Subject: Re: [PATCH v2 2/2] arm: dts: meson: Fix IRQ trigger type for macirq
+In-Reply-To: <CAFBinCAbOdPnsH4TLLBmMnR5tS+jHfHagWudVLjaH6X89vtgDQ@mail.gmail.com>
+References: <20181207105231.25593-1-ccaione@baylibre.com>
+ <20181207105231.25593-3-ccaione@baylibre.com>
+ <CAFBinCAbOdPnsH4TLLBmMnR5tS+jHfHagWudVLjaH6X89vtgDQ@mail.gmail.com>
+Date: Thu, 10 Jan 2019 16:21:14 -0800
+Message-ID: <7hpnt4qc1x.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190110_161508_700890_05620254 
-X-CRM114-Status: GOOD (  13.16  )
+X-CRM114-CacheID: sfid-20190110_162116_197204_E536D6B2 
+X-CRM114-Status: GOOD (  13.72  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,39 +97,59 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
+Cc: mark.rutland@arm.com, devicetree@vger.kernel.org, robh+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ ingrassia@epigenesys.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> On Wed, 2018-09-12 at 21:49 -0700, Kevin Hilman wrote:
->> Jerome Brunet <jbrunet@baylibre.com> writes:
->> 
->> > Compile the necessary drivers as modules, including codecs, for the
->> > s400 sound card.
->> > 
->> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->> 
->> Applied to v4.20/defconfig.
+> Hi Carlo,
 >
-> Hi Kevin,
+> On Fri, Dec 7, 2018 at 11:52 AM Carlo Caione <ccaione@baylibre.com> wrote:
+>>
+>> A long running stress test on a custom board shipping an AXG SoCs and a
+>> Realtek RTL8211F PHY revealed that after a few hours the connection
+>> speed would drop drastically, from ~1000Mbps to ~3Mbps. At the same time
+>> the 'macirq' (eth0) IRQ would stop being triggered at all and as
+>> consequence the GMAC IRQs never ACKed.
+>>
+>> After a painful investigation the problem seemed to be due to a wrong
+>> defined IRQ type for the GMAC IRQ that should be LEVEL_HIGH instead of
+>> EDGE_RISING.
+>>
+>> The change in the macirq IRQ type also solved another long standing
+>> issue affecting this SoC/PHY where EEE was causing the network
+>> connection to die after stressing it with iperf3 (even though much
+>> sooner). It's now possible to remove the 'eee-broken-1000t' quirk as
+>> well.
+> (disclaimer: I was not able to reproduce this bug without your
+> patches, but I didn't run iperf3 for more than a couple of minutes)
+> I did test your patch with and without my "Meson8b RGMII Ethernet pin
+> cleanup" from [0] which shows that there's another performance related
+> problem:
+> 1) before and after your patch receive speeds were fine (above
+> 700Mbit/s and no transmit errors / retries in iperf3) but the transmit
+> speed was bad (<200Mbit/s and >1500 retries in perf3)
+> 2) transmit errors (when Odroid-C1 is sending) are not occurring
+> anymore after my patch from [0]
 >
-> This patch was supposed to be merged for v4.20 but I'm still not seing it in
-> the 5.0-rc1
+> thus I believe your patch is fine, especially since we already have
+> IRQ_TYPE_LEVEL_HIGH for the dwc2 controllers
 >
-> Could you tell me if there is a problem with it ?
+>> Fixes: 9c15795a4f96 ("ARM: dts: meson8b-odroidc1: ethernet support")
+>> Signed-off-by: Carlo Caione <ccaione@baylibre.com>
+> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>
+> I wonder if Kevin can send this as a fix for v4.20
 
-No problem with the patch, just a problem with the maintainer.  Not sure
-how/why this one slipped through the cracks.
-
-Thanks for the ping, just sent a request to have it merge for v5.0-rc.
+Queued as a fix for v5.0-rc
 
 Kevin
-
 
 _______________________________________________
 linux-amlogic mailing list
