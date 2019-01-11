@@ -2,62 +2,82 @@ Return-Path: <SRS0=DVbv=PT=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 445BBC43387
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 15:33:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BA4E4C43387
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 16:17:28 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1679120836
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 15:33:09 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8A9F520836
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 16:17:28 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CjZWnKAX"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1679120836
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=hisilicon.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eSqQlN/f";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="qyzkOV3X"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8A9F520836
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4MfmbnP7RNsJ5QnSseFyn7u2r9gjiZf1zv6R07ucbug=; b=CjZWnKAXisaz4S
-	qRppIRhcg654rmNUfmWnmV6IYGAT80Bf/QlRhmQ5zGlmlDzgOXiM7RWCN17pcpz189QoJEkQQswBS
-	cgdQNZDZwJwCbPrNL0YWE3dhFDDMpKkWN7a6B4ew+bPkYTlHiqJ8N6G+SkqFQUzkQIGz0LLm/reFm
-	vmFO1YLlN3TW4QyYU1CJj1GresQlXRPfOUpvHCHkkMvwHacku+LyAjvK0tnMFGCQ1Xx39Q80ukaVA
-	tuS+/OIqohIIQOZ7bDI+lSsYdXWTC347qXNKzMrxN/k1n+O66kTHALiq/myxUWGsUaD75guI14cTJ
-	lfls0UX4N2oU/HStMocQ==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Yo8jgEzISEibA2Fe5IfTFSxgAOBgTP+AHOGq4aj4i6A=; b=eSqQlN/fIN14+t
+	jzPkMqyd+xDzysHSb97dGNpf+x9GtSNwFwxKpthwdnH52K1Nv2681t9eoxCOWira6YtY63R98IaIs
+	i/KVRx9qDSfQEt9S7eSVWWN5Fi56zeNidnFD9Ch7Eqhvj8nVXoz0TJQtwsU7fti+KeQZ2FBm/Y0zw
+	SG7jzmQmL/6sB5MFsBKJO18q4L6UwJGx6Cl5QoDa0cG3auuIbeebxMpQ5lUPbKnhFETljmyumZQAy
+	EcqEtzzaGiApjUpZbW4QnvfwD2GXkatCOOr/sOwOjvyPMPyV/OCGcRZ0d48An2X5MrrC72vfFOE6W
+	1hx044F/X3Z3CViKR2qw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1ghynu-0002d0-DL; Fri, 11 Jan 2019 15:33:02 +0000
-Received: from lhrrgout.huawei.com ([185.176.76.210] helo=huawei.com)
+	id 1ghzUl-0001lp-KR; Fri, 11 Jan 2019 16:17:19 +0000
+Received: from mail-oi1-x241.google.com ([2607:f8b0:4864:20::241])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1ghynk-0002O2-24; Fri, 11 Jan 2019 15:32:58 +0000
-Received: from LHREML713-CAH.china.huawei.com (unknown [172.18.7.107])
- by Forcepoint Email with ESMTP id 13C39125A3909D61D286;
- Fri, 11 Jan 2019 15:32:45 +0000 (GMT)
-Received: from [127.0.0.1] (10.202.226.42) by LHREML713-CAH.china.huawei.com
- (10.201.108.36) with Microsoft SMTP Server id 14.3.408.0; Fri, 11 Jan 2019
- 15:32:41 +0000
-Subject: Re: [PATCH] arm64: dts: Remove inconsistent use of 'arm,armv8'
- compatible string
-To: Rob Herring <robh@kernel.org>, <arm@kernel.org>
-References: <20190109202934.29304-1-robh@kernel.org>
-From: Wei Xu <xuwei5@hisilicon.com>
-Message-ID: <5C38B715.8030008@hisilicon.com>
-Date: Fri, 11 Jan 2019 15:32:37 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:38.0) Gecko/20100101
- Thunderbird/38.6.0
+ id 1ghzUb-0001cG-7Q; Fri, 11 Jan 2019 16:17:10 +0000
+Received: by mail-oi1-x241.google.com with SMTP id v6so12623315oif.2;
+ Fri, 11 Jan 2019 08:17:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=bWNIUmVkQq9RqCOAhq6V7vBzdtgOZN3aim6OqBC9ISw=;
+ b=qyzkOV3XpP2QSnQcYovZSZ/p9yP6u1dFCjziL1iPRXVsZ9NHVu0rg2qAjMvxc8WIqb
+ X30fz4ESX+mqReTDbBiMlumG0bO5yFMLMSazEayxK4CcsZwUbo2ehSDRuKNoOQUwbE0U
+ Dl0g9plrBaDDJ29E0NGBgqZZLupZw3HUuKZFe+xIral4slgQjf0LhUIWQBrEdrTUQY4x
+ Iiw8AA999b1WFHBpzJR8SDRkMjU4YNh0Ay13KyiRWOQlIxr2OiSDkiIEmVYZus2qRrpl
+ nZsHHq4gagublhLh5X1unExoZJUwrzrm9t403SGP8dnFInxZB2no+gDQPhIqI+ycBgJw
+ ZYeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=bWNIUmVkQq9RqCOAhq6V7vBzdtgOZN3aim6OqBC9ISw=;
+ b=Y7OgtLuC9IGyfBc40ZgeUU0dgysZJ7dtOgBX5hYlqxjQThz0FimvDUIXkHXIfWKthQ
+ s8wjDBbzvCdlptbLKD36fjcSO44Z5t1O2a7BOIGOhWGaMJEBYDlIKbbzXM3x4Dlf+04l
+ Nbw6dnokt2ENORwxhoBsTUm9aUzaXYQq9Isl3+Jm+AzugSpD90LKLSWWL+UVSAYbb0RG
+ TJxA6w+6zw9km57s6wdImwrIR7T3//E9BsFuwHFwnkoh2wIV1sYmTA2Cs66hRaTW1tvh
+ vEjNhiIvNW8MNdz0l5taXHvCIlv1VeZbsbW2XIdjJdAX31oHod0rDp94yb3/tkNUdvEo
+ 0L9w==
+X-Gm-Message-State: AJcUukf59l8NLb3dl64lPHXJtQYbPlqd95T09FAVS/qSD/jkXnYvql2m
+ y8A0VsIghuIN9dAlnFdPNFt7AIr2quS87yz5kpbm5g==
+X-Google-Smtp-Source: ALg8bN7yzKlmiVp0aUaPqAYAlcqGrt+sXHqjwCj/dwiD7FfIOJFw5yrBwyDp24QeSfHEB8dykoZaNONHyhR/qx8kRMM=
+X-Received: by 2002:aca:5b88:: with SMTP id p130mr9138692oib.96.1547223428215; 
+ Fri, 11 Jan 2019 08:17:08 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20190109202934.29304-1-robh@kernel.org>
-X-Originating-IP: [10.202.226.42]
-X-CFilter-Loop: Reflected
+References: <20190111092235.28161-1-linux.amoon@gmail.com>
+ <772bd70c-2cd9-a1be-d18f-7824a9ea0556@baylibre.com>
+In-Reply-To: <772bd70c-2cd9-a1be-d18f-7824a9ea0556@baylibre.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Fri, 11 Jan 2019 21:46:56 +0530
+Message-ID: <CANAwSgTX4Rs7xXzjpNi-zizRyyO0FiFF0baOuQZ0fx9WEM9NCA@mail.gmail.com>
+Subject: Re: [PATCH] ARM64: dts: meson-gxbb-odroidc2: Fix usb phy regulator
+ warning
+To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190111_073252_533648_1FAEE6B9 
-X-CRM114-Status: GOOD (  12.99  )
+X-CRM114-CacheID: sfid-20190111_081709_292922_E39751C9 
+X-CRM114-Status: GOOD (  10.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -69,103 +89,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Nishanth Menon <nm@ti.com>, Andrew Lunn <andrew@lunn.ch>,
- Heiko Stuebner <heiko@sntech.de>, Maxime Ripard <maxime.ripard@bootlin.com>,
- linux-arm-msm@vger.kernel.org, Liviu Dudau <liviu.dudau@arm.com>,
- David Brown <david.brown@linaro.org>,
- Thierry Reding <thierry.reding@gmail.com>, Will Deacon <will.deacon@arm.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Mark Rutland <mark.rutland@arm.com>, linux-renesas-soc@vger.kernel.org,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- linux-rockchip@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Magnus Damm <magnus.damm@gmail.com>, Michal Simek <michal.simek@xilinx.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
- linux-samsung-soc@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
- Kukjin Kim <kgene@kernel.org>, bcm-kernel-feedback-list@broadcom.com,
- Baolin Wang <baolin.wang@linaro.org>, Andy Gross <andy.gross@linaro.org>,
- Orson Zhai <orsonzhai@gmail.com>, Tsahee Zidenberg <tsahee@annapurnalabs.com>,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- Jason Cooper <jason@lakedaemon.net>,
- Antoine Tenart <antoine.tenart@bootlin.com>, Ray
- Jui <rjui@broadcom.com>, Robert Richter <rrichter@cavium.com>,
- Simon Horman <horms@verge.net.au>, linux-mediatek@lists.infradead.org,
- Jayachandran C <jnair@caviumnetworks.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Scott Branden <sbranden@broadcom.com>,
- Masahiro Yamada <yamada.masahiro@socionext.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>, Chanho Min <chanho.min@lge.com>,
- Duc Dang <dhdang@apm.com>, linux-kernel@vger.kernel.org,
- Tero Kristo <t-kristo@ti.com>, Dinh Nguyen <dinguyen@kernel.org>,
- Jisheng Zhang <Jisheng.Zhang@synaptics.com>,
- Sudeep Holla <sudeep.holla@arm.com>, Jun Nie <jun.nie@linaro.org>, Sebastian
- Hesselbarth <sebastian.hesselbarth@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
- =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
+Cc: Mark Rutland <mark.rutland@arm.com>,
+ devicetree <devicetree@vger.kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Linux Kernel <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Rob,
+Hi Neil,
 
-On 2019/1/9 20:29, Rob Herring wrote:
-> The 'arm,armv8' compatible string is only for software models. It adds
-> little value otherwise and is inconsistently used as a fallback on some
-> platforms. Remove it from those platforms.
-> 
-> This fixes warnings generated by the DT schema.
-> 
-> Reported-by: Michal Simek <michal.simek@xilinx.com>
-> Cc: Mark Rutland <mark.rutland@arm.com>
-> Cc: Will Deacon <will.deacon@arm.com>
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> armsoc folks, Please apply directly.
-> 
-> Note that there's still a case left in msm8998 that needs a new 
-> compatible string.
-> 
-> Rob
-> 
->  arch/arm64/boot/dts/actions/s700.dtsi         |   8 +-
->  arch/arm64/boot/dts/actions/s900.dtsi         |   8 +-
->  arch/arm64/boot/dts/al/alpine-v2.dtsi         |   8 +-
->  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |   8 +-
->  arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi  |   8 +-
->  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |   8 +-
->  .../boot/dts/altera/socfpga_stratix10.dtsi    |   8 +-
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |   8 +-
->  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi   |   8 +-
->  arch/arm64/boot/dts/amlogic/meson-gx.dtsi     |   8 +-
->  arch/arm64/boot/dts/amlogic/meson-gxm.dtsi    |   8 +-
->  arch/arm64/boot/dts/apm/apm-shadowcat.dtsi    |  16 +--
->  arch/arm64/boot/dts/apm/apm-storm.dtsi        |  16 +--
->  arch/arm64/boot/dts/arm/juno-r1.dts           |  12 +-
->  arch/arm64/boot/dts/arm/juno-r2.dts           |  12 +-
->  arch/arm64/boot/dts/arm/juno.dts              |  12 +-
->  .../boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts |   4 +-
->  .../boot/dts/broadcom/northstar2/ns2.dtsi     |   8 +-
->  .../boot/dts/broadcom/stingray/stingray.dtsi  |  16 +--
->  arch/arm64/boot/dts/cavium/thunder-88xx.dtsi  |  96 ++++++-------
->  arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi |   8 +-
->  arch/arm64/boot/dts/exynos/exynos5433.dtsi    |  16 +--
->  arch/arm64/boot/dts/exynos/exynos7.dtsi       |   8 +-
->  arch/arm64/boot/dts/hisilicon/hi3660.dtsi     |  16 +--
->  arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |  16 +--
->  arch/arm64/boot/dts/hisilicon/hi6220.dtsi     |  16 +--
->  arch/arm64/boot/dts/hisilicon/hip05.dtsi      |  32 ++---
->  arch/arm64/boot/dts/hisilicon/hip06.dtsi      |  32 ++---
->  arch/arm64/boot/dts/hisilicon/hip07.dtsi      | 128 +++++++++---------
+On Fri, 11 Jan 2019 at 19:10, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> Hi Anand,
+>
+> On 11/01/2019 10:22, Anand Moon wrote:
+> > Add missing vin-supply 5V regulator node on usb_phy nodes needed
+> > to power usb bus ports. Override the dr_mode from "host" to "peripheral"
+> > for initialization of dwc2 usb0 phy node,changes fix the below
+> > warning for usb initialization.
+>
+> I would have switch the dr_mode to peripheral in another patch,
+> fix the regulator issue in this patch only.
+>
+> Neil
+>
+[snip]
 
-For hisilicon,
+Ok will split this into two patches and send after next dts updates.
 
-Acked-by: Wei Xu <xuwei5@hisilicon.com>
-
-Thanks!
-
-Best Regards,
-Wei
-
+Best Regards
+-Anand
 
 _______________________________________________
 linux-amlogic mailing list
