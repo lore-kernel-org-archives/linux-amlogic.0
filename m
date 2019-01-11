@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
 	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6E6BAC43387
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 19:47:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2E625C43387
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 19:52:26 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 474BB206B7
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 19:47:08 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 05EB6206B7
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 19:52:26 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QhndxqDl";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="bqaaOx3s"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 474BB206B7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DS5963gX";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="XBmdOYir"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 05EB6206B7
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,58 +26,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vjiKsSl3mTHitFly3nF5fxhVBvsHH7Zdxk719NZtXpM=; b=QhndxqDlr9OyKS
-	m4hLAebQCQ1FEfDEVKFoW5DOxw9etMqJaddZhcMSzDb9PApQCs5lPYstdOWAsWRaAB5kVTLQjBPK8
-	Qb8fjTteK+UGKj0V/2AmkKM0JYa3sgRQVxL7cec0nq+SnavXXvN+g5I4V9zAGfl6L9YopGwu1q1+D
-	tfMM6rHgZocPY7BxSfbRkLlLezFQObsxHCGRfRnIHgm0enZHoecdcYTKYC2UkfsY2BLddODQUa7Qu
-	QpsppDYuTrEvThIUdgjAp/SRGATmg7DYzpxHqAP2eU8LiaHyH0aVpYfE9lhOM7q3BJVCvL4qgmfg6
-	0X5KIPRFpx3UYacL4y8A==;
+	List-Owner; bh=6EgbkgfqHzNXs34pumqe9ee3DWYyF6MjqjKoy6xGkNM=; b=DS5963gXE/Ufh2
+	YkK6l1zu9mlErNPKSMgXK4QGD//dDQG4d9pl3ed2pcJg4Q/qhM5mExTwmDpeke4XbDrgZLnCCSvqv
+	nC4vaseFSFG9mTX2Ymf/yKn+ON5wMGrvpJED/xwutBe23ssFTcsDNJQ+cej8lrx4d3GQqXFpUrUqp
+	Bujo0A+jjI/OQ3oxQgMINEA6XTkJEOkct58u1zPzxpfuwUU6PFurUoesPmwAn3OE12S0otQsQl45L
+	fcU7CdDEl52aWOSZkqeIB+vf1uE/rFP0idtvQYzb9nmbmrM/tVKky6ilC5VNoJSspBvH57Qzy6htj
+	FN4uXO14KgcsAQscJJzw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gi2lh-0006SS-5s; Fri, 11 Jan 2019 19:47:01 +0000
-Received: from mail-ot1-x343.google.com ([2607:f8b0:4864:20::343])
+	id 1gi2qq-0000GU-N4; Fri, 11 Jan 2019 19:52:20 +0000
+Received: from mail-oi1-x242.google.com ([2607:f8b0:4864:20::242])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gi2lf-0006Rw-41; Fri, 11 Jan 2019 19:47:00 +0000
-Received: by mail-ot1-x343.google.com with SMTP id k98so14164497otk.3;
- Fri, 11 Jan 2019 11:46:58 -0800 (PST)
+ id 1gi2qo-0000G0-31; Fri, 11 Jan 2019 19:52:19 +0000
+Received: by mail-oi1-x242.google.com with SMTP id x23so13182919oix.3;
+ Fri, 11 Jan 2019 11:52:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=EwTgfDXrGBWBRBGzaiJXo8VHk0775DRmtyXsq02SAvM=;
- b=bqaaOx3sssmsTrQ3h7GuQyKeOcWKYkpbOSjvxdKeUQ1DJnlQ4qHQ/9A4ILpe1W5rQv
- E8GTyW759XNnfbcfdJhmUFGhLD+LPw8vkttUxQfCCLP4iuTZPuv1H7o+nr0ilGw4zgSB
- bufGrBdMn7rx3pl+wJiC8weSNEiEyZAxh8TfodqjZWaYyPmaVL8QBOghJLlBm4F9GWNo
- fQhDfnnNQgHa76oPSsX1ov3+wo9xqm7UMQwFQ53+IcUnhD5dcIklXdXPGOqBdVp9IEGX
- kEwru6EZqygU0npbrl5AE8vT+p9tmX12AnuPl5mwDiWLtSpLxlB/7bWhZ/Mf1FosKDRY
- ftbw==
+ :cc; bh=xlwQkgyNwlUr5Jjz4XNzir1Eeh82iUGOAQkdFKFSUPg=;
+ b=XBmdOYirXjcuvUZxXQQMn7t3KNJOL/6qXpGSeoGclD6mRe8xHHONelyIXYVscs812W
+ pyUwJm0Yjzzicg8a1QIDyIm7OI1dMSxjTt/wgoxXsxfzkGgFoCJ1ff4aT+GIyOfpFZG5
+ diKNYJwfGLthWb27PdC7giVHdMe77rVoWKvMeUEQ0oDKtt+hcbQU6jWb0R6eFcCzOHaI
+ WXxHhGTOzNHtXfYzhzsT+LbwpTGsD8r3USMXSHn7qZPYoXWftFp6U0TLXiOlx2CkAO7g
+ 3fM3qCVZCkVAV6eLZWB7IE0DPqUgNb/JK+AVdN/hL67k7GHSkAvddKJM1Yp8JlzAIdTx
+ RZIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=EwTgfDXrGBWBRBGzaiJXo8VHk0775DRmtyXsq02SAvM=;
- b=gJ2+npVC/bCndqppi2U4IoCnFyx5jrbC/aTi3Hz7U8nJpy7ClMEdbl/2FBpVpOW+QA
- BqcJqyGFrNG9BRSVY0M002UJFUCB7Bk7m0IBcme2+ehJqfjg7qLmf/jaoFtMRJ2YnP05
- NiKEGFS/ndl9NDzXA87vPNe3jVMOCutz3LzTw7N1U8vC4IC1L1ldQwiI+KA36kmJrVJU
- TONfJTOkIGciWJvOfO0AJl1dZ+Razq8DJEZLA6FYwTJr5u+3UX3W4+sz4r5FKR57kJhn
- gVGFsQdr7sVlr47j3rrj0Gp73QNjCMs8HQ7+xRtpS/8NmzG8TTtD7KO6lMudjpxf3IN/
- ljxA==
-X-Gm-Message-State: AJcUukfgu8fLfD47Iekx6D9oL4fJA/LiAYrtmXf7fnhPzffIqUZBbdQd
- d3JGVzs/v7CxZ/i7eMZWmLSqGFXiu+mg0mlNZ4I=
-X-Google-Smtp-Source: ALg8bN5f4HT8rVu0DCXSn8Hw4Osm2eSQ9//ixSJf68In5OGFFe5oVpm2OYQ+jKTrNLv4mr9Dpt9hbraZ+jo0dkayi14=
-X-Received: by 2002:a9d:7749:: with SMTP id t9mr11061364otl.342.1547236017328; 
- Fri, 11 Jan 2019 11:46:57 -0800 (PST)
+ bh=xlwQkgyNwlUr5Jjz4XNzir1Eeh82iUGOAQkdFKFSUPg=;
+ b=LpIxRdfLFNMDnmhKQ+MOe/m/ueS6bHkxfmsc0D1i5/2DDSRbSEcpL+laDlSh0lRiJG
+ ipWDwdwLkKG8e4Yo+w7bsCoKAXpWv+A4aMYom43z6kc61/ZYAmghyYLLayJeuwdM+nzv
+ xIOQrkoziqBYSR0HW6fiEvv2G5lsZjZQce9649lpr1opuXMlbegI9Fb8VeA6OjlZKILU
+ K7sTnJ6UKeS7waF4cizQ23aLRkFi4ffoOMWsCeqfPCFaYTXTNhGOggibEfjujgtyNuee
+ yxKnvB+HyrU9VPQ+NF1MRvHHHkCm+fdQsBCejvTlYByG+OUs+i89bA7lZY87KfK4fZSi
+ CkAg==
+X-Gm-Message-State: AJcUukfK9ma5cEZ9YYQEEntM2CXvcH6hn/GEiOcxTrvZc2rCcTuz2qPL
+ Cp1ngr6czYLgp5UHMy3O5+Kw6B8G/LK4cQJytU0=
+X-Google-Smtp-Source: ALg8bN79rynvo1Vl7drC9biJf9lXxlfHsJLs60Dc1QworIZ2SOFoshUxkeKGzFMrSXkF+ZG3zpAhrgsbpXo9SDWVVHU=
+X-Received: by 2002:aca:e884:: with SMTP id
+ f126mr10323054oih.181.1547236336666; 
+ Fri, 11 Jan 2019 11:52:16 -0800 (PST)
 MIME-Version: 1.0
-References: <1547134822-18498-1-git-send-email-lollivier@baylibre.com>
-In-Reply-To: <1547134822-18498-1-git-send-email-lollivier@baylibre.com>
+References: <20181229143556.27339-1-martin.blumenstingl@googlemail.com>
+ <20181229143556.27339-2-martin.blumenstingl@googlemail.com>
+ <7hzhs8ovag.fsf@baylibre.com>
+In-Reply-To: <7hzhs8ovag.fsf@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Fri, 11 Jan 2019 20:46:46 +0100
-Message-ID: <CAFBinCDM4BTx0Ude-M=O6B2bXPE9EdfD=VxZfFzR9Dc=yT+xWQ@mail.gmail.com>
-Subject: Re: [PATCH v3] arm64: dts: meson: Fix mmc cd-gpios polarity
-To: Loys Ollivier <lollivier@baylibre.com>
+Date: Fri, 11 Jan 2019 20:52:05 +0100
+Message-ID: <CAFBinCB41iRf-5AdUir9Z9AYPGP4-yfD4B3Yn9+v+dxSFJoELA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] pinctrl: meson: meson8b: add the eth_rxd2 and
+ eth_rxd3 pins
+To: Kevin Hilman <khilman@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190111_114659_189768_2AF7BB30 
-X-CRM114-Status: UNSURE (   9.70  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190111_115218_138943_0EB3EC30 
+X-CRM114-Status: GOOD (  13.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -89,46 +92,61 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
- Linus Walleij <linus.walleij@linaro.org>, linux-mmc@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Cc: linus.luessing@c0d3.blue, jianxin.pan@amlogic.com, linus.walleij@linaro.org,
+ linux-gpio@vger.kernel.org, ingrassia@epigenesys.com,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Hi Kevin,
 
-some nit-picks as well as my Tested-by (in case it's not too late) below.
-thank you for taking care of this!
-
-On Thu, Jan 10, 2019 at 4:40 PM Loys Ollivier <lollivier@baylibre.com> wrote:
+On Fri, Jan 11, 2019 at 2:08 AM Kevin Hilman <khilman@baylibre.com> wrote:
 >
-> Commit 89a5e15bcba8 ("gpio/mmc/of: Respect polarity in the device tree")
-> changed the behavior of "cd-inverted" to follow the device tree bindings
-> specification.
-> Lines specifying "cd-inverted" are now "active high".
-this depends on the polarity from the cd-gpios property. above commit
-caused cd-inverted to be applied twice (effectively making it a
-no-op). thus "cd-inverted" only means "active high" if cd-gpios also
-sets GPIO_ACTIVE_HIGH. if the polarity in cd-gpios is GPIO_ACTIVE_LOW
-together with "cd-inverted" then the GPIO will be treated as active
-low.
+> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+>
+> > Gigabit Ethernet requires the Ethernet TXD0..3 and RXD0..3 data lines.
+> > Add the missing eth_rxd2 and eth_rxd3 definitions so we don't have to
+> > rely on the bootloader to set them up correctly.
+> >
+> > The vendor u-boot sources for Odroid-C1 use the following Ethernet
+> > pinmux configuration:
+> >   SET_CBUS_REG_MASK(PERIPHS_PIN_MUX_6, 0x3f4f);
+> >   SET_CBUS_REG_MASK(PERIPHS_PIN_MUX_7, 0xf00000);
+> > This translates to the following pin groups in the mainline kernel:
+> > - register 6 bit  0: eth_rxd1 (DIF_0_P)
+> > - register 6 bit  1: eth_rxd0 (DIF_0_N)
+> > - register 6 bit  2: eth_rx_dv (DIF_1_P)
+> > - register 6 bit  3: eth_rx_clk (DIF_1_N)
+> > - register 6 bit  6: eth_tx_en (DIF_3_P)
+> > - register 6 bit  8: eth_ref_clk (DIF_3_N)
+> > - register 6 bit  9: eth_mdc (DIF_4_P)
+> > - register 6 bit 10: eth_mdio_en (DIF_4_N)
+> > - register 6 bit 11: eth_tx_clk (GPIOH_9)
+> > - register 6 bit 12: eth_txd2 (GPIOH_8)
+> > - register 6 bit 13: eth_txd3 (GPIOH_7)
+> > - register 7 bit 20: eth_txd0_0 (GPIOH_6)
+> > - register 7 bit 21: eth_txd1_0 (GPIOH_5)
+> > - register 7 bit 22: eth_rxd3 (DIF_2_P)
+> > - register 7 bit 23: eth_rxd2 (DIF_2_N)
+> >
+> > All functions except eth_rxd2 and eth_rxd3 are already supported by the
+> > pinctrl-meson8b driver.
+> >
+> > Suggested-by: Jianxin Pan <jianxin.pan@amlogic.com>
+> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>
+> Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+thank you for reviewing this!
 
-> Fix the SD card for meson by setting the cd-gpios as "active low" according
-> to the boards specifications.
-not only switching to GPIO_ACTIVE_LOW, also dropping "cd-inverted"
-
-> Fixes: 89a5e15bcba8 ("gpio/mmc/of: Respect polarity in the device tree")
-in my patches for the 32-bit boards I used the commit which added SD
-card support to the board for the Fixes tag. however, I'm fine with
-this as well (I just wanted to point out that there's a small
-difference in our commits).
-
-> Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
-on my Khadas VIM(1), using Kevin's v5.0/fixes branch:
-Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+I just realized that I forgot to CC the linux-gpio mailing list as
+well as Linus Walleij on this patch (fixing that with this mail) -
+sorry for that.
+right now this patch is applied to linux-amlogic.git's v5.1/dt branch.
+please let me know whether you would like to keep it in your tree or
+if you would like me to re-send it (including Linus and the linux-gpio
+list this time...)
 
 
 Regards
