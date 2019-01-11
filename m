@@ -4,20 +4,21 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-13.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_MUTT autolearn=ham autolearn_force=no
-	version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_MUTT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BC3F9C43387
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 14:51:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9AE20C43387
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 14:57:18 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 777EC206B6
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 14:51:08 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3EF7E20872
+	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Jan 2019 14:57:18 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gHpUGrYB"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 777EC206B6
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=bootlin.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QjPJ4A56";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="FnOE6ybx"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3EF7E20872
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ffwll.ch
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
@@ -25,34 +26,62 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=18X0mKlCkicyMPFwHJazk3AosOyQOYd0BwCc3q08Bco=; b=gHpUGrYB6pe6BA
-	aozDuNZOZBplzsY6LzXWjMdUQF1hGkWGQBCrmMEetGh2oZ6W2+QIKxhz7SRMFZKBJZ8xWt44T/gvD
-	4FuAs73fQYARpO7iMNGiDrk4B8e+WylF2fVWVQ/eNINE7Asv+S1JmHkHjb9FYTcUrL4MiJF/PwjbB
-	/DWWaae6pGIGl+y+xvqeNLH59F8SZCVE3k+ywEdaEuxTrpwtvmaIdH4APBcFy+1nFwmALrWvKhzZa
-	eRxk+V3bjcLL1y8tyCIM4koyJoZHp3BdBP6vkUZe6oQ0r9+8CATLmKna9nnqyih9v20yrgVCnYh03
-	4747hvtTZb017WaF7U6g==;
+	List-Owner; bh=O/5kC9wIScInqI7AVu6XGLVGSxay83sSLBVA1me7lHg=; b=QjPJ4A569sJBem
+	z1LknD5VHdKySVLpngK5DWhJfTzvZfxzzy6IjHaodo0EEEFaIEfGA7PAIK1NIREdQ2E5qMqaHJivF
+	GVKIRkYt3Wd2jE/90lDO5lAnjmqq7y0h/iEgDdxxnQ9aaO56SanM8uweuCl0N/kac9UHR5Ck/3Ll/
+	YLYnCagKtk2I8Tm1QYBW5uWLSb7iI7RROms1cKTzAaPr/JjDFCWWROvT0ccaOsklRLDC6g11Q4N3T
+	/uqm9SN01rqHP+LXYxmNULAHrBfPgvMAi6JEIN03BtIYAb94+uONzpzsfoSTdUnMSAU01neyCU3E3
+	kNyygbibRTQNXxNAH30A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1ghy9F-0000Du-FK; Fri, 11 Jan 2019 14:51:01 +0000
-Received: from mail.bootlin.com ([62.4.15.54])
- by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
- id 1ghy94-0000Ch-F8; Fri, 11 Jan 2019 14:51:00 +0000
-Received: by mail.bootlin.com (Postfix, from userid 110)
- id 7B9AA209D7; Fri, 11 Jan 2019 15:50:45 +0100 (CET)
-Received: from localhost (lfbn-1-2078-236.w90-76.abo.wanadoo.fr
- [90.76.143.236])
- by mail.bootlin.com (Postfix) with ESMTPSA id 1D28F209D7;
- Fri, 11 Jan 2019 15:50:35 +0100 (CET)
-Date: Fri, 11 Jan 2019 15:50:35 +0100
-From: Antoine Tenart <antoine.tenart@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH] arm64: dts: Remove inconsistent use of 'arm,armv8'
- compatible string
-Message-ID: <20190111145035.GB8703@kwain>
-References: <20190109202934.29304-1-robh@kernel.org>
+	id 1ghyFD-0003JO-Ar; Fri, 11 Jan 2019 14:57:11 +0000
+Received: from mail-ed1-x544.google.com ([2a00:1450:4864:20::544])
+ by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1ghyEb-0002qh-9o
+ for linux-amlogic@lists.infradead.org; Fri, 11 Jan 2019 14:57:08 +0000
+Received: by mail-ed1-x544.google.com with SMTP id f23so13330794edb.3
+ for <linux-amlogic@lists.infradead.org>; Fri, 11 Jan 2019 06:56:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=sender:date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to
+ :user-agent; bh=HBeT14zSDY6p0WdqxH4DYlUS5mJX0DW1y1gymwOYwP0=;
+ b=FnOE6ybxbPdvU+Udnx3agSTDCWlkuti/hZFnOTE3V+EFP4zKOXM0tdkaRliszaR+0P
+ zLSgeZOdXwDfFxRhG1zNfGddnyFqB4G6o/MVIeuVrLiKriEZvpC7av+XMM/MtIrOp5U1
+ M37/qcLeV605TVa231SvW16nLzVAuVay+/CNo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+ :references:mime-version:content-disposition
+ :content-transfer-encoding:in-reply-to:user-agent;
+ bh=HBeT14zSDY6p0WdqxH4DYlUS5mJX0DW1y1gymwOYwP0=;
+ b=fIywOk1I9aEF1w716KZCeNf8if3LqIMdebDJFEeHp773lJQuxtQ0nOmoOsHGVFxOs1
+ TdR2AHAmKoApjzxLm4IfuGXfd3bi1xxwPcWms6OEaFt5uOFIPM9CkJ1zBHOvxpbCz2II
+ lg2nvArZLaA3hqmthjmJST+0TEw2x0bjlmZE5v02YQqG+0jvc+jZ+XOIQph2EIZEd2xC
+ 2Wuepaa/5DyB5ZYoVSrHPaP7XQ6E4xtdwZR7kqIukBgrimRtXcriKXPA3Z/en2VQ6Lvi
+ ljBEe6tbCzDr485RwdeP8yH821V1Nz79LlO4QhxYy6Iy7fjxwzdcWLrAd+a2cSF6LeAA
+ Dalw==
+X-Gm-Message-State: AJcUukc45KLslsmrMdWb934vRLuHMysPgjRZroZZTBNdjicDSKSHJN61
+ kUidPAAicF1uShDpw2lNuf5L2w==
+X-Google-Smtp-Source: ALg8bN7JskC4wTihe2qVOlfKsJTKqT+6bFUn4mj4YWRUJ69DygBiAIVcy1y/kAlxAJrYJHH/bFT7KQ==
+X-Received: by 2002:a50:84a9:: with SMTP id 38mr13424545edq.185.1547218589897; 
+ Fri, 11 Jan 2019 06:56:29 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:569e:0:3106:d637:d723:e855])
+ by smtp.gmail.com with ESMTPSA id k24-v6sm1443283eja.60.2019.01.11.06.56.27
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Fri, 11 Jan 2019 06:56:28 -0800 (PST)
+Date: Fri, 11 Jan 2019 15:56:25 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Benjamin Gaignard <benjamin.gaignard@linaro.org>
+Subject: Re: [Intel-gfx] [PATCH 7/7] drm: Split out drm_probe_helper.h
+Message-ID: <20190111145625.GX21184@phenom.ffwll.local>
+References: <20181217194303.14397-1-daniel.vetter@ffwll.ch>
+ <20181217194303.14397-7-daniel.vetter@ffwll.ch>
+ <20181217204755.GD54091@intel.com>
+ <CA+M3ks7+gd6zSsoQ1861nEYddObwPXU9RmD_KGP=Si2KyV6LhA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20190109202934.29304-1-robh@kernel.org>
+In-Reply-To: <CA+M3ks7+gd6zSsoQ1861nEYddObwPXU9RmD_KGP=Si2KyV6LhA@mail.gmail.com>
+X-Operating-System: Linux phenom 4.18.0-2-amd64 
 User-Agent: Mutt/1.10.1 (2018-07-13)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -65,4504 +94,3398 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Nishanth Menon <nm@ti.com>, Andrew Lunn <andrew@lunn.ch>,
- Heiko Stuebner <heiko@sntech.de>, Maxime Ripard <maxime.ripard@bootlin.com>,
- linux-arm-msm@vger.kernel.org, Liviu Dudau <liviu.dudau@arm.com>,
- David Brown <david.brown@linaro.org>,
- Thierry Reding <thierry.reding@gmail.com>, Wei Xu <xuwei5@hisilicon.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Mark Rutland <mark.rutland@arm.com>, linux-renesas-soc@vger.kernel.org,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, arm@kernel.org,
- linux-rockchip@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Magnus Damm <magnus.damm@gmail.com>, Michal Simek <michal.simek@xilinx.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
- linux-samsung-soc@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
- Kukjin Kim <kgene@kernel.org>, bcm-kernel-feedback-list@broadcom.com,
- Baolin Wang <baolin.wang@linaro.org>, Andy Gross <andy.gross@linaro.org>,
- Orson Zhai <orsonzhai@gmail.com>, Tsahee Zidenberg <tsahee@annapurnalabs.com>,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- Jason Cooper <jason@lakedaemon.net>,
- Antoine Tenart <antoine.tenart@bootlin.com>, Ray Jui <rjui@broadcom.com>,
- Robert Richter <rrichter@cavium.com>, Simon Horman <horms@verge.net.au>,
- linux-mediatek@lists.infradead.org, Jayachandran C <jnair@caviumnetworks.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Will Deacon <will.deacon@arm.com>,
- Scott Branden <sbranden@broadcom.com>,
- Masahiro Yamada <yamada.masahiro@socionext.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>, Chanho Min <chanho.min@lge.com>,
- Duc Dang <dhdang@apm.com>, linux-kernel@vger.kernel.org,
- Tero Kristo <t-kristo@ti.com>, Dinh Nguyen <dinguyen@kernel.org>,
- Jisheng Zhang <Jisheng.Zhang@synaptics.com>,
- Sudeep Holla <sudeep.holla@arm.com>, Jun Nie <jun.nie@linaro.org>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Shawn Guo <shawnguo@kernel.org>,
- Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>
+Cc: "moderated list:ARM/S5P EXYNOS AR..." <linux-samsung-soc@vger.kernel.org>,
+ spice-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ linux-stm32@st-md-mailman.stormreply.com, etnaviv@lists.freedesktop.org,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ virtualization@lists.linux-foundation.org, linux-renesas-soc@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ amd-gfx@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ linux-tegra@vger.kernel.org, Daniel Vetter <daniel.vetter@intel.com>,
+ linux-amlogic@lists.infradead.org, xen-devel@lists.xen.org,
+ freedreno@lists.freedesktop.org,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Rob,
-
-On Wed, Jan 09, 2019 at 02:29:34PM -0600, Rob Herring wrote:
-> The 'arm,armv8' compatible string is only for software models. It adds
-> little value otherwise and is inconsistently used as a fallback on some
-> platforms. Remove it from those platforms.
+On Tue, Dec 18, 2018 at 10:27:47AM +0100, Benjamin Gaignard wrote:
+> Le lun. 17 d=E9c. 2018 =E0 21:48, Rodrigo Vivi <rodrigo.vivi@intel.com> a=
+ =E9crit :
+> >
+> > On Mon, Dec 17, 2018 at 08:43:03PM +0100, Daniel Vetter wrote:
+> > > Having the probe helper stuff (which pretty much everyone needs) in
+> > > the drm_crtc_helper.h file (which atomic drivers should never need) is
+> > > confusing. Split them out.
+> > >
+> > > To make sure I actually achieved the goal here I went through all
+> > > drivers. And indeed, all atomic drivers are now free of
+> > > drm_crtc_helper.h includes.
+> > >
+> > > v2: Make it compile. There was so much compile fail on arm drivers
+> > > that I figured I'll better not include any of the acks on v1.
+> > >
+> > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > > Cc: linux-arm-kernel@lists.infradead.org
+> > > Cc: virtualization@lists.linux-foundation.org
+> > > Cc: etnaviv@lists.freedesktop.org
+> > > Cc: linux-samsung-soc@vger.kernel.org
+> > > Cc: intel-gfx@lists.freedesktop.org
+> >
+> > Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > =
 
-> This fixes warnings generated by the DT schema.
+> With this version I'm able to compile sti driver so,
 > =
 
-> Reported-by: Michal Simek <michal.simek@xilinx.com>
-> Cc: Mark Rutland <mark.rutland@arm.com>
-> Cc: Will Deacon <will.deacon@arm.com>
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> armsoc folks, Please apply directly.
+> Acked-by: Benjamin Gaignard <benjamin.gaignard@linaro.org>
+
+I merged the first 3 patches, but now I'm stuck because I'm missing review
+on patches 5&6. Anyone volunteering?
+
+Thanks, Daniel
+
 > =
 
-> Note that there's still a case left in msm8998 that needs a new =
-
-> compatible string.
-> =
-
-> Rob
-> =
-
->  arch/arm64/boot/dts/actions/s700.dtsi         |   8 +-
->  arch/arm64/boot/dts/actions/s900.dtsi         |   8 +-
->  arch/arm64/boot/dts/al/alpine-v2.dtsi         |   8 +-
-
-For Alpine,
-
-Acked-by: Antoine Tenart <antoine.tenart@bootlin.com>
-
-Thanks!
-Antoine
-
->  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |   8 +-
->  arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi  |   8 +-
->  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |   8 +-
->  .../boot/dts/altera/socfpga_stratix10.dtsi    |   8 +-
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |   8 +-
->  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi   |   8 +-
->  arch/arm64/boot/dts/amlogic/meson-gx.dtsi     |   8 +-
->  arch/arm64/boot/dts/amlogic/meson-gxm.dtsi    |   8 +-
->  arch/arm64/boot/dts/apm/apm-shadowcat.dtsi    |  16 +--
->  arch/arm64/boot/dts/apm/apm-storm.dtsi        |  16 +--
->  arch/arm64/boot/dts/arm/juno-r1.dts           |  12 +-
->  arch/arm64/boot/dts/arm/juno-r2.dts           |  12 +-
->  arch/arm64/boot/dts/arm/juno.dts              |  12 +-
->  .../boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts |   4 +-
->  .../boot/dts/broadcom/northstar2/ns2.dtsi     |   8 +-
->  .../boot/dts/broadcom/stingray/stingray.dtsi  |  16 +--
->  arch/arm64/boot/dts/cavium/thunder-88xx.dtsi  |  96 ++++++-------
->  arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi |   8 +-
->  arch/arm64/boot/dts/exynos/exynos5433.dtsi    |  16 +--
->  arch/arm64/boot/dts/exynos/exynos7.dtsi       |   8 +-
->  arch/arm64/boot/dts/hisilicon/hi3660.dtsi     |  16 +--
->  arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |  16 +--
->  arch/arm64/boot/dts/hisilicon/hi6220.dtsi     |  16 +--
->  arch/arm64/boot/dts/hisilicon/hip05.dtsi      |  32 ++---
->  arch/arm64/boot/dts/hisilicon/hip06.dtsi      |  32 ++---
->  arch/arm64/boot/dts/hisilicon/hip07.dtsi      | 128 +++++++++---------
->  arch/arm64/boot/dts/lg/lg1312.dtsi            |   8 +-
->  arch/arm64/boot/dts/lg/lg1313.dtsi            |   8 +-
->  arch/arm64/boot/dts/marvell/armada-372x.dtsi  |   2 +-
->  arch/arm64/boot/dts/marvell/armada-37xx.dtsi  |   2 +-
->  .../boot/dts/marvell/armada-ap806-dual.dtsi   |   4 +-
->  .../boot/dts/marvell/armada-ap806-quad.dtsi   |   8 +-
->  .../marvell/armada-ap810-ap0-octa-core.dtsi   |  16 +--
->  arch/arm64/boot/dts/mediatek/mt7622.dtsi      |   4 +-
->  arch/arm64/boot/dts/nvidia/tegra132.dtsi      |   4 +-
->  arch/arm64/boot/dts/nvidia/tegra186.dtsi      |  12 +-
->  arch/arm64/boot/dts/nvidia/tegra194.dtsi      |  16 +--
->  arch/arm64/boot/dts/qcom/ipq8074.dtsi         |   8 +-
->  arch/arm64/boot/dts/qcom/msm8916.dtsi         |   8 +-
->  arch/arm64/boot/dts/qcom/msm8992.dtsi         |   2 +-
->  arch/arm64/boot/dts/qcom/msm8994.dtsi         |   2 +-
->  arch/arm64/boot/dts/realtek/rtd1295.dtsi      |   8 +-
->  arch/arm64/boot/dts/renesas/r8a774a1.dtsi     |  12 +-
->  arch/arm64/boot/dts/renesas/r8a7795.dtsi      |  16 +--
->  arch/arm64/boot/dts/renesas/r8a7796.dtsi      |  12 +-
->  arch/arm64/boot/dts/renesas/r8a77965.dtsi     |   4 +-
->  arch/arm64/boot/dts/renesas/r8a77970.dtsi     |   4 +-
->  arch/arm64/boot/dts/renesas/r8a77980.dtsi     |   8 +-
->  arch/arm64/boot/dts/renesas/r8a77990.dtsi     |   4 +-
->  arch/arm64/boot/dts/renesas/r8a77995.dtsi     |   2 +-
->  arch/arm64/boot/dts/rockchip/px30.dtsi        |   8 +-
->  arch/arm64/boot/dts/rockchip/rk3328.dtsi      |   8 +-
->  arch/arm64/boot/dts/rockchip/rk3368.dtsi      |  16 +--
->  arch/arm64/boot/dts/rockchip/rk3399.dtsi      |  12 +-
->  .../boot/dts/socionext/uniphier-ld11.dtsi     |   4 +-
->  .../boot/dts/socionext/uniphier-ld20.dtsi     |   8 +-
->  .../boot/dts/socionext/uniphier-pxs3.dtsi     |   8 +-
->  arch/arm64/boot/dts/sprd/sc9836.dtsi          |   8 +-
->  arch/arm64/boot/dts/sprd/sc9860.dtsi          |  16 +--
->  arch/arm64/boot/dts/synaptics/as370.dtsi      |   8 +-
->  arch/arm64/boot/dts/synaptics/berlin4ct.dtsi  |   8 +-
->  arch/arm64/boot/dts/ti/k3-am654.dtsi          |   8 +-
->  arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |   8 +-
->  arch/arm64/boot/dts/zte/zx296718.dtsi         |   8 +-
->  67 files changed, 427 insertions(+), 427 deletions(-)
-> =
-
-> diff --git a/arch/arm64/boot/dts/actions/s700.dtsi b/arch/arm64/boot/dts/=
-actions/s700.dtsi
-> index 192c7b39c8c1..273a1b169efc 100644
-> --- a/arch/arm64/boot/dts/actions/s700.dtsi
-> +++ b/arch/arm64/boot/dts/actions/s700.dtsi
-> @@ -18,28 +18,28 @@
->  =
-
->  		cpu0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x0>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x1>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu2: cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x2>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu3: cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x3>;
->  			enable-method =3D "psci";
->  		};
-> diff --git a/arch/arm64/boot/dts/actions/s900.dtsi b/arch/arm64/boot/dts/=
-actions/s900.dtsi
-> index 491ddccc9038..9e75782b438f 100644
-> --- a/arch/arm64/boot/dts/actions/s900.dtsi
-> +++ b/arch/arm64/boot/dts/actions/s900.dtsi
-> @@ -18,28 +18,28 @@
->  =
-
->  		cpu0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x0>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x1>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu2: cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x2>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu3: cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x3>;
->  			enable-method =3D "psci";
->  		};
-> diff --git a/arch/arm64/boot/dts/al/alpine-v2.dtsi b/arch/arm64/boot/dts/=
-al/alpine-v2.dtsi
-> index 5b7bef684256..d5e7e2bb4e6c 100644
-> --- a/arch/arm64/boot/dts/al/alpine-v2.dtsi
-> +++ b/arch/arm64/boot/dts/al/alpine-v2.dtsi
-> @@ -47,28 +47,28 @@
->  		#size-cells =3D <0>;
->  =
-
->  		cpu@0 {
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x0>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu@1 {
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x1>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu@2 {
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x2>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu@3 {
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x3>;
->  			enable-method =3D "psci";
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/b=
-oot/dts/allwinner/sun50i-a64.dtsi
-> index 837a03dee875..1583afd034ae 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> @@ -84,7 +84,7 @@
->  		#size-cells =3D <0>;
->  =
-
->  		cpu0: cpu@0 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0>;
->  			enable-method =3D "psci";
-> @@ -92,7 +92,7 @@
->  		};
->  =
-
->  		cpu1: cpu@1 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <1>;
->  			enable-method =3D "psci";
-> @@ -100,7 +100,7 @@
->  		};
->  =
-
->  		cpu2: cpu@2 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <2>;
->  			enable-method =3D "psci";
-> @@ -108,7 +108,7 @@
->  		};
->  =
-
->  		cpu3: cpu@3 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <3>;
->  			enable-method =3D "psci";
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi b/arch/arm64/bo=
-ot/dts/allwinner/sun50i-h5.dtsi
-> index c22621b4b8e9..96acafd3a852 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
-> @@ -48,28 +48,28 @@
->  		#size-cells =3D <0>;
->  =
-
->  		cpu0: cpu@0 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu@1 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <1>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu@2 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <2>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu@3 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <3>;
->  			enable-method =3D "psci";
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/bo=
-ot/dts/allwinner/sun50i-h6.dtsi
-> index d93a7add67e7..48e170a2b141 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> @@ -22,28 +22,28 @@
->  		#size-cells =3D <0>;
->  =
-
->  		cpu0: cpu@0 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu1: cpu@1 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <1>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu2: cpu@2 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <2>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu3: cpu@3 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <3>;
->  			enable-method =3D "psci";
-> diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm=
-64/boot/dts/altera/socfpga_stratix10.dtsi
-> index b2c9bb664595..af4d00741644 100644
-> --- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-> +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
-> @@ -42,28 +42,28 @@
->  		#size-cells =3D <0>;
->  =
-
->  		cpu0: cpu@0 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
->  			reg =3D <0x0>;
->  		};
->  =
-
->  		cpu1: cpu@1 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
->  			reg =3D <0x1>;
->  		};
->  =
-
->  		cpu2: cpu@2 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
->  			reg =3D <0x2>;
->  		};
->  =
-
->  		cpu3: cpu@3 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
->  			reg =3D <0x3>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot=
-/dts/amlogic/meson-axg.dtsi
-> index fffd55787981..1b69efabd49a 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> @@ -68,7 +68,7 @@
->  =
-
->  		cpu0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x0>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&l2>;
-> @@ -77,7 +77,7 @@
->  =
-
->  		cpu1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x1>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&l2>;
-> @@ -86,7 +86,7 @@
->  =
-
->  		cpu2: cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x2>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&l2>;
-> @@ -95,7 +95,7 @@
->  =
-
->  		cpu3: cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x3>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&l2>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boo=
-t/dts/amlogic/meson-g12a.dtsi
-> index 3b82a975c663..10418e4b048a 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-> @@ -20,7 +20,7 @@
->  =
-
->  		cpu0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x0>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&l2>;
-> @@ -28,7 +28,7 @@
->  =
-
->  		cpu1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x1>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&l2>;
-> @@ -36,7 +36,7 @@
->  =
-
->  		cpu2: cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x2>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&l2>;
-> @@ -44,7 +44,7 @@
->  =
-
->  		cpu3: cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x3>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&l2>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/=
-dts/amlogic/meson-gx.dtsi
-> index 44c5c51ff1fa..3b63ead4f4ed 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> @@ -56,7 +56,7 @@
->  =
-
->  		cpu0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x0>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&l2>;
-> @@ -65,7 +65,7 @@
->  =
-
->  		cpu1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x1>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&l2>;
-> @@ -74,7 +74,7 @@
->  =
-
->  		cpu2: cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x2>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&l2>;
-> @@ -83,7 +83,7 @@
->  =
-
->  		cpu3: cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x3>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&l2>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi b/arch/arm64/boot=
-/dts/amlogic/meson-gxm.dtsi
-> index 247888d68a3a..ed3a3d5adf31 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
-> @@ -44,7 +44,7 @@
->  =
-
->  		cpu4: cpu@100 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x100>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&l2>;
-> @@ -53,7 +53,7 @@
->  =
-
->  		cpu5: cpu@101 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x101>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&l2>;
-> @@ -62,7 +62,7 @@
->  =
-
->  		cpu6: cpu@102 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x102>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&l2>;
-> @@ -71,7 +71,7 @@
->  =
-
->  		cpu7: cpu@103 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x103>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&l2>;
-> diff --git a/arch/arm64/boot/dts/apm/apm-shadowcat.dtsi b/arch/arm64/boot=
-/dts/apm/apm-shadowcat.dtsi
-> index d8ecd1661461..7faea28a37b0 100644
-> --- a/arch/arm64/boot/dts/apm/apm-shadowcat.dtsi
-> +++ b/arch/arm64/boot/dts/apm/apm-shadowcat.dtsi
-> @@ -21,7 +21,7 @@
->  =
-
->  		cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "apm,strega", "arm,armv8";
-> +			compatible =3D "apm,strega";
->  			reg =3D <0x0 0x000>;
->  			enable-method =3D "spin-table";
->  			cpu-release-addr =3D <0x1 0x0000fff8>;
-> @@ -31,7 +31,7 @@
->  		};
->  		cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "apm,strega", "arm,armv8";
-> +			compatible =3D "apm,strega";
->  			reg =3D <0x0 0x001>;
->  			enable-method =3D "spin-table";
->  			cpu-release-addr =3D <0x1 0x0000fff8>;
-> @@ -41,7 +41,7 @@
->  		};
->  		cpu@100 {
->  			device_type =3D "cpu";
-> -			compatible =3D "apm,strega", "arm,armv8";
-> +			compatible =3D "apm,strega";
->  			reg =3D <0x0 0x100>;
->  			enable-method =3D "spin-table";
->  			cpu-release-addr =3D <0x1 0x0000fff8>;
-> @@ -51,7 +51,7 @@
->  		};
->  		cpu@101 {
->  			device_type =3D "cpu";
-> -			compatible =3D "apm,strega", "arm,armv8";
-> +			compatible =3D "apm,strega";
->  			reg =3D <0x0 0x101>;
->  			enable-method =3D "spin-table";
->  			cpu-release-addr =3D <0x1 0x0000fff8>;
-> @@ -61,7 +61,7 @@
->  		};
->  		cpu@200 {
->  			device_type =3D "cpu";
-> -			compatible =3D "apm,strega", "arm,armv8";
-> +			compatible =3D "apm,strega";
->  			reg =3D <0x0 0x200>;
->  			enable-method =3D "spin-table";
->  			cpu-release-addr =3D <0x1 0x0000fff8>;
-> @@ -71,7 +71,7 @@
->  		};
->  		cpu@201 {
->  			device_type =3D "cpu";
-> -			compatible =3D "apm,strega", "arm,armv8";
-> +			compatible =3D "apm,strega";
->  			reg =3D <0x0 0x201>;
->  			enable-method =3D "spin-table";
->  			cpu-release-addr =3D <0x1 0x0000fff8>;
-> @@ -81,7 +81,7 @@
->  		};
->  		cpu@300 {
->  			device_type =3D "cpu";
-> -			compatible =3D "apm,strega", "arm,armv8";
-> +			compatible =3D "apm,strega";
->  			reg =3D <0x0 0x300>;
->  			enable-method =3D "spin-table";
->  			cpu-release-addr =3D <0x1 0x0000fff8>;
-> @@ -91,7 +91,7 @@
->  		};
->  		cpu@301 {
->  			device_type =3D "cpu";
-> -			compatible =3D "apm,strega", "arm,armv8";
-> +			compatible =3D "apm,strega";
->  			reg =3D <0x0 0x301>;
->  			enable-method =3D "spin-table";
->  			cpu-release-addr =3D <0x1 0x0000fff8>;
-> diff --git a/arch/arm64/boot/dts/apm/apm-storm.dtsi b/arch/arm64/boot/dts=
-/apm/apm-storm.dtsi
-> index 00e82b8e9a19..94d637d17262 100644
-> --- a/arch/arm64/boot/dts/apm/apm-storm.dtsi
-> +++ b/arch/arm64/boot/dts/apm/apm-storm.dtsi
-> @@ -21,7 +21,7 @@
->  =
-
->  		cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "apm,potenza", "arm,armv8";
-> +			compatible =3D "apm,potenza";
->  			reg =3D <0x0 0x000>;
->  			enable-method =3D "spin-table";
->  			cpu-release-addr =3D <0x1 0x0000fff8>;
-> @@ -29,7 +29,7 @@
->  		};
->  		cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "apm,potenza", "arm,armv8";
-> +			compatible =3D "apm,potenza";
->  			reg =3D <0x0 0x001>;
->  			enable-method =3D "spin-table";
->  			cpu-release-addr =3D <0x1 0x0000fff8>;
-> @@ -37,7 +37,7 @@
->  		};
->  		cpu@100 {
->  			device_type =3D "cpu";
-> -			compatible =3D "apm,potenza", "arm,armv8";
-> +			compatible =3D "apm,potenza";
->  			reg =3D <0x0 0x100>;
->  			enable-method =3D "spin-table";
->  			cpu-release-addr =3D <0x1 0x0000fff8>;
-> @@ -45,7 +45,7 @@
->  		};
->  		cpu@101 {
->  			device_type =3D "cpu";
-> -			compatible =3D "apm,potenza", "arm,armv8";
-> +			compatible =3D "apm,potenza";
->  			reg =3D <0x0 0x101>;
->  			enable-method =3D "spin-table";
->  			cpu-release-addr =3D <0x1 0x0000fff8>;
-> @@ -53,7 +53,7 @@
->  		};
->  		cpu@200 {
->  			device_type =3D "cpu";
-> -			compatible =3D "apm,potenza", "arm,armv8";
-> +			compatible =3D "apm,potenza";
->  			reg =3D <0x0 0x200>;
->  			enable-method =3D "spin-table";
->  			cpu-release-addr =3D <0x1 0x0000fff8>;
-> @@ -61,7 +61,7 @@
->  		};
->  		cpu@201 {
->  			device_type =3D "cpu";
-> -			compatible =3D "apm,potenza", "arm,armv8";
-> +			compatible =3D "apm,potenza";
->  			reg =3D <0x0 0x201>;
->  			enable-method =3D "spin-table";
->  			cpu-release-addr =3D <0x1 0x0000fff8>;
-> @@ -69,7 +69,7 @@
->  		};
->  		cpu@300 {
->  			device_type =3D "cpu";
-> -			compatible =3D "apm,potenza", "arm,armv8";
-> +			compatible =3D "apm,potenza";
->  			reg =3D <0x0 0x300>;
->  			enable-method =3D "spin-table";
->  			cpu-release-addr =3D <0x1 0x0000fff8>;
-> @@ -77,7 +77,7 @@
->  		};
->  		cpu@301 {
->  			device_type =3D "cpu";
-> -			compatible =3D "apm,potenza", "arm,armv8";
-> +			compatible =3D "apm,potenza";
->  			reg =3D <0x0 0x301>;
->  			enable-method =3D "spin-table";
->  			cpu-release-addr =3D <0x1 0x0000fff8>;
-> diff --git a/arch/arm64/boot/dts/arm/juno-r1.dts b/arch/arm64/boot/dts/ar=
-m/juno-r1.dts
-> index b2b7ced633cf..5f290090b0cf 100644
-> --- a/arch/arm64/boot/dts/arm/juno-r1.dts
-> +++ b/arch/arm64/boot/dts/arm/juno-r1.dts
-> @@ -85,7 +85,7 @@
->  		};
->  =
-
->  		A57_0: cpu@0 {
-> -			compatible =3D "arm,cortex-a57","arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x0 0x0>;
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
-> @@ -102,7 +102,7 @@
->  		};
->  =
-
->  		A57_1: cpu@1 {
-> -			compatible =3D "arm,cortex-a57","arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x0 0x1>;
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
-> @@ -119,7 +119,7 @@
->  		};
->  =
-
->  		A53_0: cpu@100 {
-> -			compatible =3D "arm,cortex-a53","arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x100>;
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
-> @@ -136,7 +136,7 @@
->  		};
->  =
-
->  		A53_1: cpu@101 {
-> -			compatible =3D "arm,cortex-a53","arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x101>;
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
-> @@ -153,7 +153,7 @@
->  		};
->  =
-
->  		A53_2: cpu@102 {
-> -			compatible =3D "arm,cortex-a53","arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x102>;
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
-> @@ -170,7 +170,7 @@
->  		};
->  =
-
->  		A53_3: cpu@103 {
-> -			compatible =3D "arm,cortex-a53","arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x103>;
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
-> diff --git a/arch/arm64/boot/dts/arm/juno-r2.dts b/arch/arm64/boot/dts/ar=
-m/juno-r2.dts
-> index ab77adb4f3c2..4e693bd957b2 100644
-> --- a/arch/arm64/boot/dts/arm/juno-r2.dts
-> +++ b/arch/arm64/boot/dts/arm/juno-r2.dts
-> @@ -85,7 +85,7 @@
->  		};
->  =
-
->  		A72_0: cpu@0 {
-> -			compatible =3D "arm,cortex-a72","arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x0 0x0>;
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
-> @@ -102,7 +102,7 @@
->  		};
->  =
-
->  		A72_1: cpu@1 {
-> -			compatible =3D "arm,cortex-a72","arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x0 0x1>;
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
-> @@ -119,7 +119,7 @@
->  		};
->  =
-
->  		A53_0: cpu@100 {
-> -			compatible =3D "arm,cortex-a53","arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x100>;
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
-> @@ -136,7 +136,7 @@
->  		};
->  =
-
->  		A53_1: cpu@101 {
-> -			compatible =3D "arm,cortex-a53","arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x101>;
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
-> @@ -153,7 +153,7 @@
->  		};
->  =
-
->  		A53_2: cpu@102 {
-> -			compatible =3D "arm,cortex-a53","arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x102>;
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
-> @@ -170,7 +170,7 @@
->  		};
->  =
-
->  		A53_3: cpu@103 {
-> -			compatible =3D "arm,cortex-a53","arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x103>;
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
-> diff --git a/arch/arm64/boot/dts/arm/juno.dts b/arch/arm64/boot/dts/arm/j=
-uno.dts
-> index 08d4ba1716c3..148eb533f7a0 100644
-> --- a/arch/arm64/boot/dts/arm/juno.dts
-> +++ b/arch/arm64/boot/dts/arm/juno.dts
-> @@ -84,7 +84,7 @@
->  		};
->  =
-
->  		A57_0: cpu@0 {
-> -			compatible =3D "arm,cortex-a57","arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x0 0x0>;
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
-> @@ -101,7 +101,7 @@
->  		};
->  =
-
->  		A57_1: cpu@1 {
-> -			compatible =3D "arm,cortex-a57","arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x0 0x1>;
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
-> @@ -118,7 +118,7 @@
->  		};
->  =
-
->  		A53_0: cpu@100 {
-> -			compatible =3D "arm,cortex-a53","arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x100>;
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
-> @@ -135,7 +135,7 @@
->  		};
->  =
-
->  		A53_1: cpu@101 {
-> -			compatible =3D "arm,cortex-a53","arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x101>;
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
-> @@ -152,7 +152,7 @@
->  		};
->  =
-
->  		A53_2: cpu@102 {
-> -			compatible =3D "arm,cortex-a53","arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x102>;
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
-> @@ -169,7 +169,7 @@
->  		};
->  =
-
->  		A53_3: cpu@103 {
-> -			compatible =3D "arm,cortex-a53","arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x103>;
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
-> diff --git a/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts b/arch/=
-arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
-> index 8981c3d2ff18..22383c26bb03 100644
-> --- a/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
-> +++ b/arch/arm64/boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts
-> @@ -43,14 +43,14 @@
->  =
-
->  		cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0 0>;
->  			next-level-cache =3D <&L2_0>;
->  		};
->  =
-
->  		cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0 1>;
->  			next-level-cache =3D <&L2_0>;
->  		};
-> diff --git a/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi b/arch/arm6=
-4/boot/dts/broadcom/northstar2/ns2.dtsi
-> index ea854f689fda..15f7b0ed3836 100644
-> --- a/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
-> +++ b/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
-> @@ -47,7 +47,7 @@
->  =
-
->  		A57_0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0 0>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&CLUSTER0_L2>;
-> @@ -55,7 +55,7 @@
->  =
-
->  		A57_1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0 1>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&CLUSTER0_L2>;
-> @@ -63,7 +63,7 @@
->  =
-
->  		A57_2: cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0 2>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&CLUSTER0_L2>;
-> @@ -71,7 +71,7 @@
->  =
-
->  		A57_3: cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0 3>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&CLUSTER0_L2>;
-> diff --git a/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi b/arch/a=
-rm64/boot/dts/broadcom/stingray/stingray.dtsi
-> index cfeaa855bd05..35c4670c00d1 100644
-> --- a/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
-> +++ b/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
-> @@ -44,7 +44,7 @@
->  =
-
->  		cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x0 0x0>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&CLUSTER0_L2>;
-> @@ -52,7 +52,7 @@
->  =
-
->  		cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x0 0x1>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&CLUSTER0_L2>;
-> @@ -60,7 +60,7 @@
->  =
-
->  		cpu@100 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x0 0x100>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&CLUSTER1_L2>;
-> @@ -68,7 +68,7 @@
->  =
-
->  		cpu@101 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x0 0x101>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&CLUSTER1_L2>;
-> @@ -76,7 +76,7 @@
->  =
-
->  		cpu@200 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x0 0x200>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&CLUSTER2_L2>;
-> @@ -84,7 +84,7 @@
->  =
-
->  		cpu@201 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x0 0x201>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&CLUSTER2_L2>;
-> @@ -92,7 +92,7 @@
->  =
-
->  		cpu@300 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x0 0x300>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&CLUSTER3_L2>;
-> @@ -100,7 +100,7 @@
->  =
-
->  		cpu@301 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x0 0x301>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&CLUSTER3_L2>;
-> diff --git a/arch/arm64/boot/dts/cavium/thunder-88xx.dtsi b/arch/arm64/bo=
-ot/dts/cavium/thunder-88xx.dtsi
-> index 1a9103b269cb..e0a71795261b 100644
-> --- a/arch/arm64/boot/dts/cavium/thunder-88xx.dtsi
-> +++ b/arch/arm64/boot/dts/cavium/thunder-88xx.dtsi
-> @@ -64,289 +64,289 @@
->  =
-
->  		cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x000>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x001>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x002>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x003>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@4 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x004>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@5 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x005>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@6 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x006>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@7 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x007>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@8 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x008>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@9 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x009>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@a {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x00a>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@b {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x00b>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@c {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x00c>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@d {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x00d>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@e {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x00e>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@f {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x00f>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@100 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x100>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@101 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x101>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@102 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x102>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@103 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x103>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@104 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x104>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@105 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x105>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@106 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x106>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@107 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x107>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@108 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x108>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@109 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x109>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@10a {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x10a>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@10b {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x10b>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@10c {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x10c>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@10d {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x10d>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@10e {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x10e>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@10f {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x10f>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@200 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x200>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@201 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x201>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@202 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x202>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@203 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x203>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@204 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x204>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@205 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x205>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@206 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x206>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@207 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x207>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@208 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x208>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@209 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x209>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@20a {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x20a>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@20b {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x20b>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@20c {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x20c>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@20d {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x20d>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@20e {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x20e>;
->  			enable-method =3D "psci";
->  		};
->  		cpu@20f {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder", "arm,armv8";
-> +			compatible =3D "cavium,thunder";
->  			reg =3D <0x0 0x20f>;
->  			enable-method =3D "psci";
->  		};
-> diff --git a/arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi b/arch/arm64/b=
-oot/dts/cavium/thunder2-99xx.dtsi
-> index ff5c4c47b22b..c616132f7d6d 100644
-> --- a/arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi
-> +++ b/arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi
-> @@ -27,28 +27,28 @@
->  =
-
->  		cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder2", "brcm,vulcan", "arm,armv8";
-> +			compatible =3D "cavium,thunder2";
->  			reg =3D <0x0 0x0>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder2", "brcm,vulcan", "arm,armv8";
-> +			compatible =3D "cavium,thunder2";
->  			reg =3D <0x0 0x1>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder2", "brcm,vulcan", "arm,armv8";
-> +			compatible =3D "cavium,thunder2";
->  			reg =3D <0x0 0x2>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "cavium,thunder2", "brcm,vulcan", "arm,armv8";
-> +			compatible =3D "cavium,thunder2";
->  			reg =3D <0x0 0x3>;
->  			enable-method =3D "psci";
->  		};
-> diff --git a/arch/arm64/boot/dts/exynos/exynos5433.dtsi b/arch/arm64/boot=
-/dts/exynos/exynos5433.dtsi
-> index e7cd3b67d818..a04e80327b6e 100644
-> --- a/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-> @@ -29,7 +29,7 @@
->  =
-
->  		cpu0: cpu@100 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			enable-method =3D "psci";
->  			reg =3D <0x100>;
->  			clock-frequency =3D <1300000000>;
-> @@ -41,7 +41,7 @@
->  =
-
->  		cpu1: cpu@101 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			enable-method =3D "psci";
->  			reg =3D <0x101>;
->  			clock-frequency =3D <1300000000>;
-> @@ -51,7 +51,7 @@
->  =
-
->  		cpu2: cpu@102 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			enable-method =3D "psci";
->  			reg =3D <0x102>;
->  			clock-frequency =3D <1300000000>;
-> @@ -61,7 +61,7 @@
->  =
-
->  		cpu3: cpu@103 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			enable-method =3D "psci";
->  			reg =3D <0x103>;
->  			clock-frequency =3D <1300000000>;
-> @@ -71,7 +71,7 @@
->  =
-
->  		cpu4: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			enable-method =3D "psci";
->  			reg =3D <0x0>;
->  			clock-frequency =3D <1900000000>;
-> @@ -83,7 +83,7 @@
->  =
-
->  		cpu5: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			enable-method =3D "psci";
->  			reg =3D <0x1>;
->  			clock-frequency =3D <1900000000>;
-> @@ -93,7 +93,7 @@
->  =
-
->  		cpu6: cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			enable-method =3D "psci";
->  			reg =3D <0x2>;
->  			clock-frequency =3D <1900000000>;
-> @@ -103,7 +103,7 @@
->  =
-
->  		cpu7: cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			enable-method =3D "psci";
->  			reg =3D <0x3>;
->  			clock-frequency =3D <1900000000>;
-> diff --git a/arch/arm64/boot/dts/exynos/exynos7.dtsi b/arch/arm64/boot/dt=
-s/exynos/exynos7.dtsi
-> index 75ad724c487e..967558a93d82 100644
-> --- a/arch/arm64/boot/dts/exynos/exynos7.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynos7.dtsi
-> @@ -34,28 +34,28 @@
->  =
-
->  		cpu_atlas0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x0>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu_atlas1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x1>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu_atlas2: cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x2>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu_atlas3: cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x3>;
->  			enable-method =3D "psci";
->  		};
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi b/arch/arm64/boot/=
-dts/hisilicon/hi3660.dtsi
-> index 20ae40df61d5..2f19e0e5b7cf 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-> @@ -56,7 +56,7 @@
->  		};
->  =
-
->  		cpu0: cpu@0 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x0>;
->  			enable-method =3D "psci";
-> @@ -70,7 +70,7 @@
->  		};
->  =
-
->  		cpu1: cpu@1 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x1>;
->  			enable-method =3D "psci";
-> @@ -83,7 +83,7 @@
->  		};
->  =
-
->  		cpu2: cpu@2 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x2>;
->  			enable-method =3D "psci";
-> @@ -96,7 +96,7 @@
->  		};
->  =
-
->  		cpu3: cpu@3 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x3>;
->  			enable-method =3D "psci";
-> @@ -109,7 +109,7 @@
->  		};
->  =
-
->  		cpu4: cpu@100 {
-> -			compatible =3D "arm,cortex-a73", "arm,armv8";
-> +			compatible =3D "arm,cortex-a73";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x100>;
->  			enable-method =3D "psci";
-> @@ -123,7 +123,7 @@
->  		};
->  =
-
->  		cpu5: cpu@101 {
-> -			compatible =3D "arm,cortex-a73", "arm,armv8";
-> +			compatible =3D "arm,cortex-a73";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x101>;
->  			enable-method =3D "psci";
-> @@ -136,7 +136,7 @@
->  		};
->  =
-
->  		cpu6: cpu@102 {
-> -			compatible =3D "arm,cortex-a73", "arm,armv8";
-> +			compatible =3D "arm,cortex-a73";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x102>;
->  			enable-method =3D "psci";
-> @@ -149,7 +149,7 @@
->  		};
->  =
-
->  		cpu7: cpu@103 {
-> -			compatible =3D "arm,cortex-a73", "arm,armv8";
-> +			compatible =3D "arm,cortex-a73";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x103>;
->  			enable-method =3D "psci";
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/=
-dts/hisilicon/hi3670.dtsi
-> index a5bd6d80b226..2ed06e4588b8 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> @@ -56,56 +56,56 @@
->  		};
->  =
-
->  		cpu0: cpu@0 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x0>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu1: cpu@1 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x1>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu2: cpu@2 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x2>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu3: cpu@3 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x3>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu4: cpu@100 {
-> -			compatible =3D "arm,cortex-a73", "arm,armv8";
-> +			compatible =3D "arm,cortex-a73";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x100>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu5: cpu@101 {
-> -			compatible =3D "arm,cortex-a73", "arm,armv8";
-> +			compatible =3D "arm,cortex-a73";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x101>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu6: cpu@102 {
-> -			compatible =3D "arm,cortex-a73", "arm,armv8";
-> +			compatible =3D "arm,cortex-a73";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x102>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu7: cpu@103 {
-> -			compatible =3D "arm,cortex-a73", "arm,armv8";
-> +			compatible =3D "arm,cortex-a73";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x103>;
->  			enable-method =3D "psci";
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi b/arch/arm64/boot/=
-dts/hisilicon/hi6220.dtsi
-> index aec9e371c2a7..732a9db45b23 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-> @@ -81,7 +81,7 @@
->  		};
->  =
-
->  		cpu0: cpu@0 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x0>;
->  			enable-method =3D "psci";
-> @@ -94,7 +94,7 @@
->  		};
->  =
-
->  		cpu1: cpu@1 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x1>;
->  			enable-method =3D "psci";
-> @@ -107,7 +107,7 @@
->  		};
->  =
-
->  		cpu2: cpu@2 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x2>;
->  			enable-method =3D "psci";
-> @@ -120,7 +120,7 @@
->  		};
->  =
-
->  		cpu3: cpu@3 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x3>;
->  			enable-method =3D "psci";
-> @@ -133,7 +133,7 @@
->  		};
->  =
-
->  		cpu4: cpu@100 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x100>;
->  			enable-method =3D "psci";
-> @@ -146,7 +146,7 @@
->  		};
->  =
-
->  		cpu5: cpu@101 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x101>;
->  			enable-method =3D "psci";
-> @@ -159,7 +159,7 @@
->  		};
->  =
-
->  		cpu6: cpu@102 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x102>;
->  			enable-method =3D "psci";
-> @@ -172,7 +172,7 @@
->  		};
->  =
-
->  		cpu7: cpu@103 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x0 0x103>;
->  			enable-method =3D "psci";
-> diff --git a/arch/arm64/boot/dts/hisilicon/hip05.dtsi b/arch/arm64/boot/d=
-ts/hisilicon/hip05.dtsi
-> index 4b472a302cd8..d321edc09c3f 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hip05.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hip05.dtsi
-> @@ -87,7 +87,7 @@
->  =
-
->  		cpu0: cpu@20000 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x20000>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster0_l2>;
-> @@ -95,7 +95,7 @@
->  =
-
->  		cpu1: cpu@20001 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x20001>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster0_l2>;
-> @@ -103,7 +103,7 @@
->  =
-
->  		cpu2: cpu@20002 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x20002>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster0_l2>;
-> @@ -111,7 +111,7 @@
->  =
-
->  		cpu3: cpu@20003 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x20003>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster0_l2>;
-> @@ -119,7 +119,7 @@
->  =
-
->  		cpu4: cpu@20100 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x20100>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster1_l2>;
-> @@ -127,7 +127,7 @@
->  =
-
->  		cpu5: cpu@20101 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x20101>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster1_l2>;
-> @@ -135,7 +135,7 @@
->  =
-
->  		cpu6: cpu@20102 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x20102>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster1_l2>;
-> @@ -143,7 +143,7 @@
->  =
-
->  		cpu7: cpu@20103 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x20103>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster1_l2>;
-> @@ -151,7 +151,7 @@
->  =
-
->  		cpu8: cpu@20200 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x20200>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster2_l2>;
-> @@ -159,7 +159,7 @@
->  =
-
->  		cpu9: cpu@20201 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x20201>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster2_l2>;
-> @@ -167,7 +167,7 @@
->  =
-
->  		cpu10: cpu@20202 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x20202>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster2_l2>;
-> @@ -175,7 +175,7 @@
->  =
-
->  		cpu11: cpu@20203 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x20203>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster2_l2>;
-> @@ -183,7 +183,7 @@
->  =
-
->  		cpu12: cpu@20300 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x20300>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster3_l2>;
-> @@ -191,7 +191,7 @@
->  =
-
->  		cpu13: cpu@20301 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x20301>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster3_l2>;
-> @@ -199,7 +199,7 @@
->  =
-
->  		cpu14: cpu@20302 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x20302>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster3_l2>;
-> @@ -207,7 +207,7 @@
->  =
-
->  		cpu15: cpu@20303 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x20303>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster3_l2>;
-> diff --git a/arch/arm64/boot/dts/hisilicon/hip06.dtsi b/arch/arm64/boot/d=
-ts/hisilicon/hip06.dtsi
-> index d78a6a755d03..56625587b6de 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hip06.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hip06.dtsi
-> @@ -87,7 +87,7 @@
->  =
-
->  		cpu0: cpu@10000 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x10000>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster0_l2>;
-> @@ -95,7 +95,7 @@
->  =
-
->  		cpu1: cpu@10001 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x10001>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster0_l2>;
-> @@ -103,7 +103,7 @@
->  =
-
->  		cpu2: cpu@10002 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x10002>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster0_l2>;
-> @@ -111,7 +111,7 @@
->  =
-
->  		cpu3: cpu@10003 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x10003>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster0_l2>;
-> @@ -119,7 +119,7 @@
->  =
-
->  		cpu4: cpu@10100 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x10100>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster1_l2>;
-> @@ -127,7 +127,7 @@
->  =
-
->  		cpu5: cpu@10101 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x10101>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster1_l2>;
-> @@ -135,7 +135,7 @@
->  =
-
->  		cpu6: cpu@10102 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x10102>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster1_l2>;
-> @@ -143,7 +143,7 @@
->  =
-
->  		cpu7: cpu@10103 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x10103>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster1_l2>;
-> @@ -151,7 +151,7 @@
->  =
-
->  		cpu8: cpu@10200 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x10200>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster2_l2>;
-> @@ -159,7 +159,7 @@
->  =
-
->  		cpu9: cpu@10201 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x10201>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster2_l2>;
-> @@ -167,7 +167,7 @@
->  =
-
->  		cpu10: cpu@10202 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x10202>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster2_l2>;
-> @@ -175,7 +175,7 @@
->  =
-
->  		cpu11: cpu@10203 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x10203>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster2_l2>;
-> @@ -183,7 +183,7 @@
->  =
-
->  		cpu12: cpu@10300 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x10300>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster3_l2>;
-> @@ -191,7 +191,7 @@
->  =
-
->  		cpu13: cpu@10301 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x10301>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster3_l2>;
-> @@ -199,7 +199,7 @@
->  =
-
->  		cpu14: cpu@10302 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x10302>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster3_l2>;
-> @@ -207,7 +207,7 @@
->  =
-
->  		cpu15: cpu@10303 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x10303>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster3_l2>;
-> diff --git a/arch/arm64/boot/dts/hisilicon/hip07.dtsi b/arch/arm64/boot/d=
-ts/hisilicon/hip07.dtsi
-> index c33adefc3061..28bd4389441f 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hip07.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hip07.dtsi
-> @@ -270,7 +270,7 @@
->  =
-
->  		cpu0: cpu@10000 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x10000>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster0_l2>;
-> @@ -279,7 +279,7 @@
->  =
-
->  		cpu1: cpu@10001 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x10001>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster0_l2>;
-> @@ -288,7 +288,7 @@
->  =
-
->  		cpu2: cpu@10002 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x10002>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster0_l2>;
-> @@ -297,7 +297,7 @@
->  =
-
->  		cpu3: cpu@10003 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x10003>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster0_l2>;
-> @@ -306,7 +306,7 @@
->  =
-
->  		cpu4: cpu@10100 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x10100>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster1_l2>;
-> @@ -315,7 +315,7 @@
->  =
-
->  		cpu5: cpu@10101 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x10101>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster1_l2>;
-> @@ -324,7 +324,7 @@
->  =
-
->  		cpu6: cpu@10102 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x10102>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster1_l2>;
-> @@ -333,7 +333,7 @@
->  =
-
->  		cpu7: cpu@10103 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x10103>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster1_l2>;
-> @@ -342,7 +342,7 @@
->  =
-
->  		cpu8: cpu@10200 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x10200>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster2_l2>;
-> @@ -351,7 +351,7 @@
->  =
-
->  		cpu9: cpu@10201 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x10201>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster2_l2>;
-> @@ -360,7 +360,7 @@
->  =
-
->  		cpu10: cpu@10202 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x10202>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster2_l2>;
-> @@ -369,7 +369,7 @@
->  =
-
->  		cpu11: cpu@10203 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x10203>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster2_l2>;
-> @@ -378,7 +378,7 @@
->  =
-
->  		cpu12: cpu@10300 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x10300>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster3_l2>;
-> @@ -387,7 +387,7 @@
->  =
-
->  		cpu13: cpu@10301 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x10301>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster3_l2>;
-> @@ -396,7 +396,7 @@
->  =
-
->  		cpu14: cpu@10302 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x10302>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster3_l2>;
-> @@ -405,7 +405,7 @@
->  =
-
->  		cpu15: cpu@10303 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x10303>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster3_l2>;
-> @@ -414,7 +414,7 @@
->  =
-
->  		cpu16: cpu@30000 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x30000>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster4_l2>;
-> @@ -423,7 +423,7 @@
->  =
-
->  		cpu17: cpu@30001 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x30001>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster4_l2>;
-> @@ -432,7 +432,7 @@
->  =
-
->  		cpu18: cpu@30002 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x30002>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster4_l2>;
-> @@ -441,7 +441,7 @@
->  =
-
->  		cpu19: cpu@30003 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x30003>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster4_l2>;
-> @@ -450,7 +450,7 @@
->  =
-
->  		cpu20: cpu@30100 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x30100>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster5_l2>;
-> @@ -459,7 +459,7 @@
->  =
-
->  		cpu21: cpu@30101 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x30101>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster5_l2>;
-> @@ -468,7 +468,7 @@
->  =
-
->  		cpu22: cpu@30102 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x30102>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster5_l2>;
-> @@ -477,7 +477,7 @@
->  =
-
->  		cpu23: cpu@30103 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x30103>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster5_l2>;
-> @@ -486,7 +486,7 @@
->  =
-
->  		cpu24: cpu@30200 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x30200>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster6_l2>;
-> @@ -495,7 +495,7 @@
->  =
-
->  		cpu25: cpu@30201 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x30201>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster6_l2>;
-> @@ -504,7 +504,7 @@
->  =
-
->  		cpu26: cpu@30202 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x30202>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster6_l2>;
-> @@ -513,7 +513,7 @@
->  =
-
->  		cpu27: cpu@30203 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x30203>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster6_l2>;
-> @@ -522,7 +522,7 @@
->  =
-
->  		cpu28: cpu@30300 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x30300>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster7_l2>;
-> @@ -531,7 +531,7 @@
->  =
-
->  		cpu29: cpu@30301 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x30301>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster7_l2>;
-> @@ -540,7 +540,7 @@
->  =
-
->  		cpu30: cpu@30302 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x30302>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster7_l2>;
-> @@ -549,7 +549,7 @@
->  =
-
->  		cpu31: cpu@30303 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x30303>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster7_l2>;
-> @@ -558,7 +558,7 @@
->  =
-
->  		cpu32: cpu@50000 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x50000>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster8_l2>;
-> @@ -567,7 +567,7 @@
->  =
-
->  		cpu33: cpu@50001 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x50001>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster8_l2>;
-> @@ -576,7 +576,7 @@
->  =
-
->  		cpu34: cpu@50002 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x50002>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster8_l2>;
-> @@ -585,7 +585,7 @@
->  =
-
->  		cpu35: cpu@50003 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x50003>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster8_l2>;
-> @@ -594,7 +594,7 @@
->  =
-
->  		cpu36: cpu@50100 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x50100>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster9_l2>;
-> @@ -603,7 +603,7 @@
->  =
-
->  		cpu37: cpu@50101 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x50101>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster9_l2>;
-> @@ -612,7 +612,7 @@
->  =
-
->  		cpu38: cpu@50102 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x50102>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster9_l2>;
-> @@ -621,7 +621,7 @@
->  =
-
->  		cpu39: cpu@50103 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x50103>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster9_l2>;
-> @@ -630,7 +630,7 @@
->  =
-
->  		cpu40: cpu@50200 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x50200>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster10_l2>;
-> @@ -639,7 +639,7 @@
->  =
-
->  		cpu41: cpu@50201 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x50201>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster10_l2>;
-> @@ -648,7 +648,7 @@
->  =
-
->  		cpu42: cpu@50202 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x50202>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster10_l2>;
-> @@ -657,7 +657,7 @@
->  =
-
->  		cpu43: cpu@50203 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x50203>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster10_l2>;
-> @@ -666,7 +666,7 @@
->  =
-
->  		cpu44: cpu@50300 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x50300>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster11_l2>;
-> @@ -675,7 +675,7 @@
->  =
-
->  		cpu45: cpu@50301 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x50301>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster11_l2>;
-> @@ -684,7 +684,7 @@
->  =
-
->  		cpu46: cpu@50302 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x50302>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster11_l2>;
-> @@ -693,7 +693,7 @@
->  =
-
->  		cpu47: cpu@50303 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x50303>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster11_l2>;
-> @@ -702,7 +702,7 @@
->  =
-
->  		cpu48: cpu@70000 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x70000>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster12_l2>;
-> @@ -711,7 +711,7 @@
->  =
-
->  		cpu49: cpu@70001 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x70001>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster12_l2>;
-> @@ -720,7 +720,7 @@
->  =
-
->  		cpu50: cpu@70002 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x70002>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster12_l2>;
-> @@ -729,7 +729,7 @@
->  =
-
->  		cpu51: cpu@70003 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x70003>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster12_l2>;
-> @@ -738,7 +738,7 @@
->  =
-
->  		cpu52: cpu@70100 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x70100>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster13_l2>;
-> @@ -747,7 +747,7 @@
->  =
-
->  		cpu53: cpu@70101 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x70101>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster13_l2>;
-> @@ -756,7 +756,7 @@
->  =
-
->  		cpu54: cpu@70102 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x70102>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster13_l2>;
-> @@ -765,7 +765,7 @@
->  =
-
->  		cpu55: cpu@70103 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x70103>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster13_l2>;
-> @@ -774,7 +774,7 @@
->  =
-
->  		cpu56: cpu@70200 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x70200>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster14_l2>;
-> @@ -783,7 +783,7 @@
->  =
-
->  		cpu57: cpu@70201 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x70201>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster14_l2>;
-> @@ -792,7 +792,7 @@
->  =
-
->  		cpu58: cpu@70202 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x70202>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster14_l2>;
-> @@ -801,7 +801,7 @@
->  =
-
->  		cpu59: cpu@70203 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x70203>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster14_l2>;
-> @@ -810,7 +810,7 @@
->  =
-
->  		cpu60: cpu@70300 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x70300>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster15_l2>;
-> @@ -819,7 +819,7 @@
->  =
-
->  		cpu61: cpu@70301 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x70301>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster15_l2>;
-> @@ -828,7 +828,7 @@
->  =
-
->  		cpu62: cpu@70302 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x70302>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster15_l2>;
-> @@ -837,7 +837,7 @@
->  =
-
->  		cpu63: cpu@70303 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x70303>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&cluster15_l2>;
-> diff --git a/arch/arm64/boot/dts/lg/lg1312.dtsi b/arch/arm64/boot/dts/lg/=
-lg1312.dtsi
-> index 4bde7b6f2b11..c8dc9c20fba3 100644
-> --- a/arch/arm64/boot/dts/lg/lg1312.dtsi
-> +++ b/arch/arm64/boot/dts/lg/lg1312.dtsi
-> @@ -21,27 +21,27 @@
->  =
-
->  		cpu0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x0>;
->  			next-level-cache =3D <&L2_0>;
->  		};
->  		cpu1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x1>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&L2_0>;
->  		};
->  		cpu2: cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x2>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&L2_0>;
->  		};
->  		cpu3: cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x3>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&L2_0>;
-> diff --git a/arch/arm64/boot/dts/lg/lg1313.dtsi b/arch/arm64/boot/dts/lg/=
-lg1313.dtsi
-> index 16ced1ff1ad3..82c6645b58b7 100644
-> --- a/arch/arm64/boot/dts/lg/lg1313.dtsi
-> +++ b/arch/arm64/boot/dts/lg/lg1313.dtsi
-> @@ -21,27 +21,27 @@
->  =
-
->  		cpu0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x0>;
->  			next-level-cache =3D <&L2_0>;
->  		};
->  		cpu1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x1>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&L2_0>;
->  		};
->  		cpu2: cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x2>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&L2_0>;
->  		};
->  		cpu3: cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x3>;
->  			enable-method =3D "psci";
->  			next-level-cache =3D <&L2_0>;
-> diff --git a/arch/arm64/boot/dts/marvell/armada-372x.dtsi b/arch/arm64/bo=
-ot/dts/marvell/armada-372x.dtsi
-> index 6800945a88ad..5ce55bdbb995 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-372x.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-372x.dtsi
-> @@ -18,7 +18,7 @@
->  	cpus {
->  		cpu1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53","arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x1>;
->  			clocks =3D <&nb_periph_clk 16>;
->  			enable-method =3D "psci";
-> diff --git a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi b/arch/arm64/bo=
-ot/dts/marvell/armada-37xx.dtsi
-> index e05594ea15fb..3087da80c72b 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
-> @@ -42,7 +42,7 @@
->  		#size-cells =3D <0>;
->  		cpu0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0>;
->  			clocks =3D <&nb_periph_clk 16>;
->  			enable-method =3D "psci";
-> diff --git a/arch/arm64/boot/dts/marvell/armada-ap806-dual.dtsi b/arch/ar=
-m64/boot/dts/marvell/armada-ap806-dual.dtsi
-> index d3c0636558ff..861fd21922c4 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-ap806-dual.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-ap806-dual.dtsi
-> @@ -17,13 +17,13 @@
->  =
-
->  		cpu0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x000>;
->  			enable-method =3D "psci";
->  		};
->  		cpu1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x001>;
->  			enable-method =3D "psci";
->  		};
-> diff --git a/arch/arm64/boot/dts/marvell/armada-ap806-quad.dtsi b/arch/ar=
-m64/boot/dts/marvell/armada-ap806-quad.dtsi
-> index 01ea662afba8..2baafe12ebd4 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-ap806-quad.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-ap806-quad.dtsi
-> @@ -17,25 +17,25 @@
->  =
-
->  		cpu0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x000>;
->  			enable-method =3D "psci";
->  		};
->  		cpu1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x001>;
->  			enable-method =3D "psci";
->  		};
->  		cpu2: cpu@100 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x100>;
->  			enable-method =3D "psci";
->  		};
->  		cpu3: cpu@101 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x101>;
->  			enable-method =3D "psci";
->  		};
-> diff --git a/arch/arm64/boot/dts/marvell/armada-ap810-ap0-octa-core.dtsi =
-b/arch/arm64/boot/dts/marvell/armada-ap810-ap0-octa-core.dtsi
-> index b788cb63caf2..d1a7143ef3d4 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-ap810-ap0-octa-core.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-ap810-ap0-octa-core.dtsi
-> @@ -15,49 +15,49 @@
->  =
-
->  		cpu0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x000>;
->  			enable-method =3D "psci";
->  		};
->  		cpu1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x001>;
->  			enable-method =3D "psci";
->  		};
->  		cpu2: cpu@100 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x100>;
->  			enable-method =3D "psci";
->  		};
->  		cpu3: cpu@101 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x101>;
->  			enable-method =3D "psci";
->  		};
->  		cpu4: cpu@200 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x200>;
->  			enable-method =3D "psci";
->  		};
->  		cpu5: cpu@201 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x201>;
->  			enable-method =3D "psci";
->  		};
->  		cpu6: cpu@300 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x300>;
->  			enable-method =3D "psci";
->  		};
->  		cpu7: cpu@301 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x301>;
->  			enable-method =3D "psci";
->  		};
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7622.dtsi b/arch/arm64/boot/d=
-ts/mediatek/mt7622.dtsi
-> index 8fc4aa77f012..0806daa12541 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-> @@ -70,7 +70,7 @@
->  =
-
->  		cpu0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x0>;
->  			clocks =3D <&infracfg CLK_INFRA_MUX1_SEL>,
->  				 <&apmixedsys CLK_APMIXED_MAIN_CORE_EN>;
-> @@ -84,7 +84,7 @@
->  =
-
->  		cpu1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x1>;
->  			clocks =3D <&infracfg CLK_INFRA_MUX1_SEL>,
->  				 <&apmixedsys CLK_APMIXED_MAIN_CORE_EN>;
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra132.dtsi b/arch/arm64/boot/d=
-ts/nvidia/tegra132.dtsi
-> index fa5a7c4bc807..631a7f77c386 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra132.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra132.dtsi
-> @@ -1082,13 +1082,13 @@
->  =
-
->  		cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "nvidia,denver", "arm,armv8";
-> +			compatible =3D "nvidia,denver";
->  			reg =3D <0>;
->  		};
->  =
-
->  		cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "nvidia,denver", "arm,armv8";
-> +			compatible =3D "nvidia,denver";
->  			reg =3D <1>;
->  		};
->  	};
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arch/arm64/boot/d=
-ts/nvidia/tegra186.dtsi
-> index 22815db4a3ed..66ea7e7c79f5 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-> @@ -982,37 +982,37 @@
->  		#size-cells =3D <0>;
->  =
-
->  		cpu@0 {
-> -			compatible =3D "nvidia,tegra186-denver", "arm,armv8";
-> +			compatible =3D "nvidia,tegra186-denver";
->  			device_type =3D "cpu";
->  			reg =3D <0x000>;
->  		};
->  =
-
->  		cpu@1 {
-> -			compatible =3D "nvidia,tegra186-denver", "arm,armv8";
-> +			compatible =3D "nvidia,tegra186-denver";
->  			device_type =3D "cpu";
->  			reg =3D <0x001>;
->  		};
->  =
-
->  		cpu@2 {
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			device_type =3D "cpu";
->  			reg =3D <0x100>;
->  		};
->  =
-
->  		cpu@3 {
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			device_type =3D "cpu";
->  			reg =3D <0x101>;
->  		};
->  =
-
->  		cpu@4 {
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			device_type =3D "cpu";
->  			reg =3D <0x102>;
->  		};
->  =
-
->  		cpu@5 {
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			device_type =3D "cpu";
->  			reg =3D <0x103>;
->  		};
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/d=
-ts/nvidia/tegra194.dtsi
-> index 6dfa1ca0b851..35e290c35550 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-> @@ -871,56 +871,56 @@
->  		#size-cells =3D <0>;
->  =
-
->  		cpu@0 {
-> -			compatible =3D "nvidia,tegra194-carmel", "arm,armv8";
-> +			compatible =3D "nvidia,tegra194-carmel";
->  			device_type =3D "cpu";
->  			reg =3D <0x10000>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu@1 {
-> -			compatible =3D "nvidia,tegra194-carmel", "arm,armv8";
-> +			compatible =3D "nvidia,tegra194-carmel";
->  			device_type =3D "cpu";
->  			reg =3D <0x10001>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu@2 {
-> -			compatible =3D "nvidia,tegra194-carmel", "arm,armv8";
-> +			compatible =3D "nvidia,tegra194-carmel";
->  			device_type =3D "cpu";
->  			reg =3D <0x100>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu@3 {
-> -			compatible =3D "nvidia,tegra194-carmel", "arm,armv8";
-> +			compatible =3D "nvidia,tegra194-carmel";
->  			device_type =3D "cpu";
->  			reg =3D <0x101>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu@4 {
-> -			compatible =3D "nvidia,tegra194-carmel", "arm,armv8";
-> +			compatible =3D "nvidia,tegra194-carmel";
->  			device_type =3D "cpu";
->  			reg =3D <0x200>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu@5 {
-> -			compatible =3D "nvidia,tegra194-carmel", "arm,armv8";
-> +			compatible =3D "nvidia,tegra194-carmel";
->  			device_type =3D "cpu";
->  			reg =3D <0x201>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu@6 {
-> -			compatible =3D "nvidia,tegra194-carmel", "arm,armv8";
-> +			compatible =3D "nvidia,tegra194-carmel";
->  			device_type =3D "cpu";
->  			reg =3D <0x10300>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu@7 {
-> -			compatible =3D "nvidia,tegra194-carmel", "arm,armv8";
-> +			compatible =3D "nvidia,tegra194-carmel";
->  			device_type =3D "cpu";
->  			reg =3D <0x10301>;
->  			enable-method =3D "psci";
-> diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/=
-qcom/ipq8074.dtsi
-> index 18226980f7c3..aea1dbc3f53e 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> @@ -441,7 +441,7 @@
->  =
-
->  		CPU0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0>;
->  			next-level-cache =3D <&L2_0>;
->  			enable-method =3D "psci";
-> @@ -449,7 +449,7 @@
->  =
-
->  		CPU1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			enable-method =3D "psci";
->  			reg =3D <0x1>;
->  			next-level-cache =3D <&L2_0>;
-> @@ -457,7 +457,7 @@
->  =
-
->  		CPU2: cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			enable-method =3D "psci";
->  			reg =3D <0x2>;
->  			next-level-cache =3D <&L2_0>;
-> @@ -465,7 +465,7 @@
->  =
-
->  		CPU3: cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			enable-method =3D "psci";
->  			reg =3D <0x3>;
->  			next-level-cache =3D <&L2_0>;
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/=
-qcom/msm8916.dtsi
-> index c5348c3da5a2..bfa61ca1b1c5 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-> @@ -106,7 +106,7 @@
->  =
-
->  		CPU0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0>;
->  			next-level-cache =3D <&L2_0>;
->  			enable-method =3D "psci";
-> @@ -118,7 +118,7 @@
->  =
-
->  		CPU1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x1>;
->  			next-level-cache =3D <&L2_0>;
->  			enable-method =3D "psci";
-> @@ -130,7 +130,7 @@
->  =
-
->  		CPU2: cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x2>;
->  			next-level-cache =3D <&L2_0>;
->  			enable-method =3D "psci";
-> @@ -142,7 +142,7 @@
->  =
-
->  		CPU3: cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x3>;
->  			next-level-cache =3D <&L2_0>;
->  			enable-method =3D "psci";
-> diff --git a/arch/arm64/boot/dts/qcom/msm8992.dtsi b/arch/arm64/boot/dts/=
-qcom/msm8992.dtsi
-> index cf5cacdd624d..50cefb822d6d 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8992.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8992.dtsi
-> @@ -38,7 +38,7 @@
->  =
-
->  		CPU0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x0>;
->  			next-level-cache =3D <&L2_0>;
->  			L2_0: l2-cache {
-> diff --git a/arch/arm64/boot/dts/qcom/msm8994.dtsi b/arch/arm64/boot/dts/=
-qcom/msm8994.dtsi
-> index f33c41d01c86..6a4049aae0c3 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8994.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8994.dtsi
-> @@ -40,7 +40,7 @@
->  =
-
->  		CPU0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0>;
->  			next-level-cache =3D <&L2_0>;
->  			L2_0: l2-cache {
-> diff --git a/arch/arm64/boot/dts/realtek/rtd1295.dtsi b/arch/arm64/boot/d=
-ts/realtek/rtd1295.dtsi
-> index 8d9ac05d17dc..41d7858da826 100644
-> --- a/arch/arm64/boot/dts/realtek/rtd1295.dtsi
-> +++ b/arch/arm64/boot/dts/realtek/rtd1295.dtsi
-> @@ -17,28 +17,28 @@
->  =
-
->  		cpu0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x0>;
->  			next-level-cache =3D <&l2>;
->  		};
->  =
-
->  		cpu1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x1>;
->  			next-level-cache =3D <&l2>;
->  		};
->  =
-
->  		cpu2: cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x2>;
->  			next-level-cache =3D <&l2>;
->  		};
->  =
-
->  		cpu3: cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x3>;
->  			next-level-cache =3D <&l2>;
->  		};
-> diff --git a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi b/arch/arm64/boot/=
-dts/renesas/r8a774a1.dtsi
-> index 20745a8528c5..2c11b18b7d78 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-> @@ -61,7 +61,7 @@
->  		#size-cells =3D <0>;
->  =
-
->  		a57_0: cpu@0 {
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x0>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A774A1_PD_CA57_CPU0>;
-> @@ -71,7 +71,7 @@
->  		};
->  =
-
->  		a57_1: cpu@1 {
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x1>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A774A1_PD_CA57_CPU1>;
-> @@ -81,7 +81,7 @@
->  		};
->  =
-
->  		a53_0: cpu@100 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x100>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A774A1_PD_CA53_CPU0>;
-> @@ -91,7 +91,7 @@
->  		};
->  =
-
->  		a53_1: cpu@101 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x101>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A774A1_PD_CA53_CPU1>;
-> @@ -101,7 +101,7 @@
->  		};
->  =
-
->  		a53_2: cpu@102 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x102>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A774A1_PD_CA53_CPU2>;
-> @@ -111,7 +111,7 @@
->  		};
->  =
-
->  		a53_3: cpu@103 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x103>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A774A1_PD_CA53_CPU3>;
-> diff --git a/arch/arm64/boot/dts/renesas/r8a7795.dtsi b/arch/arm64/boot/d=
-ts/renesas/r8a7795.dtsi
-> index af9605d5db27..4bb8a877cdf8 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a7795.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a7795.dtsi
-> @@ -149,7 +149,7 @@
->  		};
->  =
-
->  		a57_0: cpu@0 {
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x0>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A7795_PD_CA57_CPU0>;
-> @@ -162,7 +162,7 @@
->  		};
->  =
-
->  		a57_1: cpu@1 {
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x1>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A7795_PD_CA57_CPU1>;
-> @@ -175,7 +175,7 @@
->  		};
->  =
-
->  		a57_2: cpu@2 {
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x2>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A7795_PD_CA57_CPU2>;
-> @@ -188,7 +188,7 @@
->  		};
->  =
-
->  		a57_3: cpu@3 {
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x3>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A7795_PD_CA57_CPU3>;
-> @@ -201,7 +201,7 @@
->  		};
->  =
-
->  		a53_0: cpu@100 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x100>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A7795_PD_CA53_CPU0>;
-> @@ -213,7 +213,7 @@
->  		};
->  =
-
->  		a53_1: cpu@101 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x101>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A7795_PD_CA53_CPU1>;
-> @@ -225,7 +225,7 @@
->  		};
->  =
-
->  		a53_2: cpu@102 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x102>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A7795_PD_CA53_CPU2>;
-> @@ -237,7 +237,7 @@
->  		};
->  =
-
->  		a53_3: cpu@103 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x103>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A7795_PD_CA53_CPU3>;
-> diff --git a/arch/arm64/boot/dts/renesas/r8a7796.dtsi b/arch/arm64/boot/d=
-ts/renesas/r8a7796.dtsi
-> index afedbf5728ec..f613d3cefab2 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a7796.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a7796.dtsi
-> @@ -154,7 +154,7 @@
->  		};
->  =
-
->  		a57_0: cpu@0 {
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x0>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A7796_PD_CA57_CPU0>;
-> @@ -167,7 +167,7 @@
->  		};
->  =
-
->  		a57_1: cpu@1 {
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x1>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A7796_PD_CA57_CPU1>;
-> @@ -180,7 +180,7 @@
->  		};
->  =
-
->  		a53_0: cpu@100 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x100>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A7796_PD_CA53_CPU0>;
-> @@ -192,7 +192,7 @@
->  		};
->  =
-
->  		a53_1: cpu@101 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x101>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A7796_PD_CA53_CPU1>;
-> @@ -204,7 +204,7 @@
->  		};
->  =
-
->  		a53_2: cpu@102 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x102>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A7796_PD_CA53_CPU2>;
-> @@ -216,7 +216,7 @@
->  		};
->  =
-
->  		a53_3: cpu@103 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x103>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A7796_PD_CA53_CPU3>;
-> diff --git a/arch/arm64/boot/dts/renesas/r8a77965.dtsi b/arch/arm64/boot/=
-dts/renesas/r8a77965.dtsi
-> index 6dc9b1fef830..979f14d1fcc4 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a77965.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
-> @@ -105,7 +105,7 @@
->  		#size-cells =3D <0>;
->  =
-
->  		a57_0: cpu@0 {
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x0>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A77965_PD_CA57_CPU0>;
-> @@ -116,7 +116,7 @@
->  		};
->  =
-
->  		a57_1: cpu@1 {
-> -			compatible =3D "arm,cortex-a57", "arm,armv8";
-> +			compatible =3D "arm,cortex-a57";
->  			reg =3D <0x1>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A77965_PD_CA57_CPU1>;
-> diff --git a/arch/arm64/boot/dts/renesas/r8a77970.dtsi b/arch/arm64/boot/=
-dts/renesas/r8a77970.dtsi
-> index 563428d1cdc2..5b6164d4b8e3 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a77970.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a77970.dtsi
-> @@ -37,7 +37,7 @@
->  =
-
->  		a53_0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0>;
->  			clocks =3D <&cpg CPG_CORE R8A77970_CLK_Z2>;
->  			power-domains =3D <&sysc R8A77970_PD_CA53_CPU0>;
-> @@ -47,7 +47,7 @@
->  =
-
->  		a53_1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <1>;
->  			clocks =3D <&cpg CPG_CORE R8A77970_CLK_Z2>;
->  			power-domains =3D <&sysc R8A77970_PD_CA53_CPU1>;
-> diff --git a/arch/arm64/boot/dts/renesas/r8a77980.dtsi b/arch/arm64/boot/=
-dts/renesas/r8a77980.dtsi
-> index 5bd9b2547c36..4081622d548a 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a77980.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a77980.dtsi
-> @@ -38,7 +38,7 @@
->  =
-
->  		a53_0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0>;
->  			clocks =3D <&cpg CPG_CORE R8A77980_CLK_Z2>;
->  			power-domains =3D <&sysc R8A77980_PD_CA53_CPU0>;
-> @@ -48,7 +48,7 @@
->  =
-
->  		a53_1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <1>;
->  			clocks =3D <&cpg CPG_CORE R8A77980_CLK_Z2>;
->  			power-domains =3D <&sysc R8A77980_PD_CA53_CPU1>;
-> @@ -58,7 +58,7 @@
->  =
-
->  		a53_2: cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <2>;
->  			clocks =3D <&cpg CPG_CORE R8A77980_CLK_Z2>;
->  			power-domains =3D <&sysc R8A77980_PD_CA53_CPU2>;
-> @@ -68,7 +68,7 @@
->  =
-
->  		a53_3: cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <3>;
->  			clocks =3D <&cpg CPG_CORE R8A77980_CLK_Z2>;
->  			power-domains =3D <&sysc R8A77980_PD_CA53_CPU3>;
-> diff --git a/arch/arm64/boot/dts/renesas/r8a77990.dtsi b/arch/arm64/boot/=
-dts/renesas/r8a77990.dtsi
-> index b2f606e286ce..5ce2dcea5136 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a77990.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
-> @@ -60,7 +60,7 @@
->  		#size-cells =3D <0>;
->  =
-
->  		a53_0: cpu@0 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A77990_PD_CA53_CPU0>;
-> @@ -69,7 +69,7 @@
->  		};
->  =
-
->  		a53_1: cpu@1 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <1>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A77990_PD_CA53_CPU1>;
-> diff --git a/arch/arm64/boot/dts/renesas/r8a77995.dtsi b/arch/arm64/boot/=
-dts/renesas/r8a77995.dtsi
-> index 8530d9fc1371..5bf3af246e14 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a77995.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a77995.dtsi
-> @@ -27,7 +27,7 @@
->  		#size-cells =3D <0>;
->  =
-
->  		a53_0: cpu@0 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0>;
->  			device_type =3D "cpu";
->  			power-domains =3D <&sysc R8A77995_PD_CA53_CPU0>;
-> diff --git a/arch/arm64/boot/dts/rockchip/px30.dtsi b/arch/arm64/boot/dts=
-/rockchip/px30.dtsi
-> index 9aa8d5ef9e45..eb992d60e6ba 100644
-> --- a/arch/arm64/boot/dts/rockchip/px30.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/px30.dtsi
-> @@ -40,7 +40,7 @@
->  =
-
->  		cpu0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a35", "arm,armv8";
-> +			compatible =3D "arm,cortex-a35";
->  			reg =3D <0x0 0x0>;
->  			enable-method =3D "psci";
->  			clocks =3D <&cru ARMCLK>;
-> @@ -52,7 +52,7 @@
->  =
-
->  		cpu1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a35", "arm,armv8";
-> +			compatible =3D "arm,cortex-a35";
->  			reg =3D <0x0 0x1>;
->  			enable-method =3D "psci";
->  			clocks =3D <&cru ARMCLK>;
-> @@ -64,7 +64,7 @@
->  =
-
->  		cpu2: cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a35", "arm,armv8";
-> +			compatible =3D "arm,cortex-a35";
->  			reg =3D <0x0 0x2>;
->  			enable-method =3D "psci";
->  			clocks =3D <&cru ARMCLK>;
-> @@ -76,7 +76,7 @@
->  =
-
->  		cpu3: cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a35", "arm,armv8";
-> +			compatible =3D "arm,cortex-a35";
->  			reg =3D <0x0 0x3>;
->  			enable-method =3D "psci";
->  			clocks =3D <&cru ARMCLK>;
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/d=
-ts/rockchip/rk3328.dtsi
-> index ecd7f19c3542..0f72bb33ce86 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-> @@ -37,7 +37,7 @@
->  =
-
->  		cpu0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x0>;
->  			clocks =3D <&cru ARMCLK>;
->  			#cooling-cells =3D <2>;
-> @@ -49,7 +49,7 @@
->  =
-
->  		cpu1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x1>;
->  			clocks =3D <&cru ARMCLK>;
->  			#cooling-cells =3D <2>;
-> @@ -61,7 +61,7 @@
->  =
-
->  		cpu2: cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x2>;
->  			clocks =3D <&cru ARMCLK>;
->  			#cooling-cells =3D <2>;
-> @@ -73,7 +73,7 @@
->  =
-
->  		cpu3: cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x3>;
->  			clocks =3D <&cru ARMCLK>;
->  			#cooling-cells =3D <2>;
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3368.dtsi b/arch/arm64/boot/d=
-ts/rockchip/rk3368.dtsi
-> index 7014d10b954c..06e7c31d7d07 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3368.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3368.dtsi
-> @@ -73,7 +73,7 @@
->  =
-
->  		cpu_l0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x0>;
->  			enable-method =3D "psci";
->  			#cooling-cells =3D <2>; /* min followed by max */
-> @@ -81,7 +81,7 @@
->  =
-
->  		cpu_l1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x1>;
->  			enable-method =3D "psci";
->  			#cooling-cells =3D <2>; /* min followed by max */
-> @@ -89,7 +89,7 @@
->  =
-
->  		cpu_l2: cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x2>;
->  			enable-method =3D "psci";
->  			#cooling-cells =3D <2>; /* min followed by max */
-> @@ -97,7 +97,7 @@
->  =
-
->  		cpu_l3: cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x3>;
->  			enable-method =3D "psci";
->  			#cooling-cells =3D <2>; /* min followed by max */
-> @@ -105,7 +105,7 @@
->  =
-
->  		cpu_b0: cpu@100 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x100>;
->  			enable-method =3D "psci";
->  			#cooling-cells =3D <2>; /* min followed by max */
-> @@ -113,7 +113,7 @@
->  =
-
->  		cpu_b1: cpu@101 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x101>;
->  			enable-method =3D "psci";
->  			#cooling-cells =3D <2>; /* min followed by max */
-> @@ -121,7 +121,7 @@
->  =
-
->  		cpu_b2: cpu@102 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x102>;
->  			enable-method =3D "psci";
->  			#cooling-cells =3D <2>; /* min followed by max */
-> @@ -129,7 +129,7 @@
->  =
-
->  		cpu_b3: cpu@103 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x103>;
->  			enable-method =3D "psci";
->  			#cooling-cells =3D <2>; /* min followed by max */
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/d=
-ts/rockchip/rk3399.dtsi
-> index 6cc1c9fa4ea6..db9d948c0b03 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> @@ -68,7 +68,7 @@
->  =
-
->  		cpu_l0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x0>;
->  			enable-method =3D "psci";
->  			clocks =3D <&cru ARMCLKL>;
-> @@ -79,7 +79,7 @@
->  =
-
->  		cpu_l1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x1>;
->  			enable-method =3D "psci";
->  			clocks =3D <&cru ARMCLKL>;
-> @@ -90,7 +90,7 @@
->  =
-
->  		cpu_l2: cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x2>;
->  			enable-method =3D "psci";
->  			clocks =3D <&cru ARMCLKL>;
-> @@ -101,7 +101,7 @@
->  =
-
->  		cpu_l3: cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x3>;
->  			enable-method =3D "psci";
->  			clocks =3D <&cru ARMCLKL>;
-> @@ -112,7 +112,7 @@
->  =
-
->  		cpu_b0: cpu@100 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x0 0x100>;
->  			enable-method =3D "psci";
->  			clocks =3D <&cru ARMCLKB>;
-> @@ -123,7 +123,7 @@
->  =
-
->  		cpu_b1: cpu@101 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0x0 0x101>;
->  			enable-method =3D "psci";
->  			clocks =3D <&cru ARMCLKB>;
-> diff --git a/arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi b/arch/arm6=
-4/boot/dts/socionext/uniphier-ld11.dtsi
-> index 31ba52b14e99..a3cd475b48d2 100644
-> --- a/arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi
-> +++ b/arch/arm64/boot/dts/socionext/uniphier-ld11.dtsi
-> @@ -33,7 +33,7 @@
->  =
-
->  		cpu0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0 0x000>;
->  			clocks =3D <&sys_clk 33>;
->  			enable-method =3D "psci";
-> @@ -42,7 +42,7 @@
->  =
-
->  		cpu1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0 0x001>;
->  			clocks =3D <&sys_clk 33>;
->  			enable-method =3D "psci";
-> diff --git a/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi b/arch/arm6=
-4/boot/dts/socionext/uniphier-ld20.dtsi
-> index 4a0c46cb11cd..7a68ee1a35d5 100644
-> --- a/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi
-> +++ b/arch/arm64/boot/dts/socionext/uniphier-ld20.dtsi
-> @@ -43,7 +43,7 @@
->  =
-
->  		cpu0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0 0x000>;
->  			clocks =3D <&sys_clk 32>;
->  			enable-method =3D "psci";
-> @@ -53,7 +53,7 @@
->  =
-
->  		cpu1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a72", "arm,armv8";
-> +			compatible =3D "arm,cortex-a72";
->  			reg =3D <0 0x001>;
->  			clocks =3D <&sys_clk 32>;
->  			enable-method =3D "psci";
-> @@ -63,7 +63,7 @@
->  =
-
->  		cpu2: cpu@100 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0 0x100>;
->  			clocks =3D <&sys_clk 33>;
->  			enable-method =3D "psci";
-> @@ -73,7 +73,7 @@
->  =
-
->  		cpu3: cpu@101 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0 0x101>;
->  			clocks =3D <&sys_clk 33>;
->  			enable-method =3D "psci";
-> diff --git a/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi b/arch/arm6=
-4/boot/dts/socionext/uniphier-pxs3.dtsi
-> index 4f57c9e9d7a8..152c89a64da5 100644
-> --- a/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi
-> +++ b/arch/arm64/boot/dts/socionext/uniphier-pxs3.dtsi
-> @@ -39,7 +39,7 @@
->  =
-
->  		cpu0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0 0x000>;
->  			clocks =3D <&sys_clk 33>;
->  			enable-method =3D "psci";
-> @@ -48,7 +48,7 @@
->  =
-
->  		cpu1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0 0x001>;
->  			clocks =3D <&sys_clk 33>;
->  			enable-method =3D "psci";
-> @@ -57,7 +57,7 @@
->  =
-
->  		cpu2: cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0 0x002>;
->  			clocks =3D <&sys_clk 33>;
->  			enable-method =3D "psci";
-> @@ -66,7 +66,7 @@
->  =
-
->  		cpu3: cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0 0x003>;
->  			clocks =3D <&sys_clk 33>;
->  			enable-method =3D "psci";
-> diff --git a/arch/arm64/boot/dts/sprd/sc9836.dtsi b/arch/arm64/boot/dts/s=
-prd/sc9836.dtsi
-> index 4bcdbb709c01..286d7173f94f 100644
-> --- a/arch/arm64/boot/dts/sprd/sc9836.dtsi
-> +++ b/arch/arm64/boot/dts/sprd/sc9836.dtsi
-> @@ -18,28 +18,28 @@
->  =
-
->  		cpu0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x0>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x1>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu2: cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x2>;
->  			enable-method =3D "psci";
->  		};
->  =
-
->  		cpu3: cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x3>;
->  			enable-method =3D "psci";
->  		};
-> diff --git a/arch/arm64/boot/dts/sprd/sc9860.dtsi b/arch/arm64/boot/dts/s=
-prd/sc9860.dtsi
-> index 5f57bf055cde..b25d19977170 100644
-> --- a/arch/arm64/boot/dts/sprd/sc9860.dtsi
-> +++ b/arch/arm64/boot/dts/sprd/sc9860.dtsi
-> @@ -50,7 +50,7 @@
->  =
-
->  		CPU0: cpu@530000 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x530000>;
->  			enable-method =3D "psci";
->  			cpu-idle-states =3D <&CORE_PD &CLUSTER_PD>;
-> @@ -58,7 +58,7 @@
->  =
-
->  		CPU1: cpu@530001 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x530001>;
->  			enable-method =3D "psci";
->  			cpu-idle-states =3D <&CORE_PD &CLUSTER_PD>;
-> @@ -66,7 +66,7 @@
->  =
-
->  		CPU2: cpu@530002 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x530002>;
->  			enable-method =3D "psci";
->  			cpu-idle-states =3D <&CORE_PD &CLUSTER_PD>;
-> @@ -74,7 +74,7 @@
->  =
-
->  		CPU3: cpu@530003 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x530003>;
->  			enable-method =3D "psci";
->  			cpu-idle-states =3D <&CORE_PD &CLUSTER_PD>;
-> @@ -82,7 +82,7 @@
->  =
-
->  		CPU4: cpu@530100 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x530100>;
->  			enable-method =3D "psci";
->  			cpu-idle-states =3D <&CORE_PD &CLUSTER_PD>;
-> @@ -90,7 +90,7 @@
->  =
-
->  		CPU5: cpu@530101 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x530101>;
->  			enable-method =3D "psci";
->  			cpu-idle-states =3D <&CORE_PD &CLUSTER_PD>;
-> @@ -98,7 +98,7 @@
->  =
-
->  		CPU6: cpu@530102 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x530102>;
->  			enable-method =3D "psci";
->  			cpu-idle-states =3D <&CORE_PD &CLUSTER_PD>;
-> @@ -106,7 +106,7 @@
->  =
-
->  		CPU7: cpu@530103 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x530103>;
->  			enable-method =3D "psci";
->  			cpu-idle-states =3D <&CORE_PD &CLUSTER_PD>;
-> diff --git a/arch/arm64/boot/dts/synaptics/as370.dtsi b/arch/arm64/boot/d=
-ts/synaptics/as370.dtsi
-> index 7331acf3874e..addeb0efc616 100644
-> --- a/arch/arm64/boot/dts/synaptics/as370.dtsi
-> +++ b/arch/arm64/boot/dts/synaptics/as370.dtsi
-> @@ -23,7 +23,7 @@
->  		#size-cells =3D <0>;
->  =
-
->  		cpu0: cpu@0 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x0>;
->  			enable-method =3D "psci";
-> @@ -32,7 +32,7 @@
->  		};
->  =
-
->  		cpu1: cpu@1 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x1>;
->  			enable-method =3D "psci";
-> @@ -41,7 +41,7 @@
->  		};
->  =
-
->  		cpu2: cpu@2 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x2>;
->  			enable-method =3D "psci";
-> @@ -50,7 +50,7 @@
->  		};
->  =
-
->  		cpu3: cpu@3 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x3>;
->  			enable-method =3D "psci";
-> diff --git a/arch/arm64/boot/dts/synaptics/berlin4ct.dtsi b/arch/arm64/bo=
-ot/dts/synaptics/berlin4ct.dtsi
-> index 216767e2edf6..15625b99e336 100644
-> --- a/arch/arm64/boot/dts/synaptics/berlin4ct.dtsi
-> +++ b/arch/arm64/boot/dts/synaptics/berlin4ct.dtsi
-> @@ -27,7 +27,7 @@
->  		#size-cells =3D <0>;
->  =
-
->  		cpu0: cpu@0 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x0>;
->  			enable-method =3D "psci";
-> @@ -36,7 +36,7 @@
->  		};
->  =
-
->  		cpu1: cpu@1 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x1>;
->  			enable-method =3D "psci";
-> @@ -45,7 +45,7 @@
->  		};
->  =
-
->  		cpu2: cpu@2 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x2>;
->  			enable-method =3D "psci";
-> @@ -54,7 +54,7 @@
->  		};
->  =
-
->  		cpu3: cpu@3 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			reg =3D <0x3>;
->  			enable-method =3D "psci";
-> diff --git a/arch/arm64/boot/dts/ti/k3-am654.dtsi b/arch/arm64/boot/dts/t=
-i/k3-am654.dtsi
-> index 2affa6f6617e..b221abf43ac2 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am654.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am654.dtsi
-> @@ -34,7 +34,7 @@
->  		};
->  =
-
->  		cpu0: cpu@0 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x000>;
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
-> @@ -48,7 +48,7 @@
->  		};
->  =
-
->  		cpu1: cpu@1 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x001>;
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
-> @@ -62,7 +62,7 @@
->  		};
->  =
-
->  		cpu2: cpu@100 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x100>;
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
-> @@ -76,7 +76,7 @@
->  		};
->  =
-
->  		cpu3: cpu@101 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x101>;
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts=
-/xilinx/zynqmp.dtsi
-> index fa4fd777d90e..9aa67340a4d8 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> @@ -22,7 +22,7 @@
->  		#size-cells =3D <0>;
->  =
-
->  		cpu0: cpu@0 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
->  			operating-points-v2 =3D <&cpu_opp_table>;
-> @@ -31,7 +31,7 @@
->  		};
->  =
-
->  		cpu1: cpu@1 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
->  			reg =3D <0x1>;
-> @@ -40,7 +40,7 @@
->  		};
->  =
-
->  		cpu2: cpu@2 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
->  			reg =3D <0x2>;
-> @@ -49,7 +49,7 @@
->  		};
->  =
-
->  		cpu3: cpu@3 {
-> -			compatible =3D "arm,cortex-a53", "arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			device_type =3D "cpu";
->  			enable-method =3D "psci";
->  			reg =3D <0x3>;
-> diff --git a/arch/arm64/boot/dts/zte/zx296718.dtsi b/arch/arm64/boot/dts/=
-zte/zx296718.dtsi
-> index 6eef64761009..cc54837ff4ba 100644
-> --- a/arch/arm64/boot/dts/zte/zx296718.dtsi
-> +++ b/arch/arm64/boot/dts/zte/zx296718.dtsi
-> @@ -86,7 +86,7 @@
->  =
-
->  		cpu0: cpu@0 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53","arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x0>;
->  			enable-method =3D "psci";
->  			clocks =3D <&topcrm A53_GATE>;
-> @@ -95,7 +95,7 @@
->  =
-
->  		cpu1: cpu@1 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53","arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x1>;
->  			enable-method =3D "psci";
->  			clocks =3D <&topcrm A53_GATE>;
-> @@ -104,7 +104,7 @@
->  =
-
->  		cpu2: cpu@2 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53","arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x2>;
->  			enable-method =3D "psci";
->  			clocks =3D <&topcrm A53_GATE>;
-> @@ -113,7 +113,7 @@
->  =
-
->  		cpu3: cpu@3 {
->  			device_type =3D "cpu";
-> -			compatible =3D "arm,cortex-a53","arm,armv8";
-> +			compatible =3D "arm,cortex-a53";
->  			reg =3D <0x0 0x3>;
->  			enable-method =3D "psci";
->  			clocks =3D <&topcrm A53_GATE>;
-> -- =
-
-> 2.19.1
-> =
-
+> >
+> > > Cc: linux-mediatek@lists.infradead.org
+> > > Cc: linux-amlogic@lists.infradead.org
+> > > Cc: linux-arm-msm@vger.kernel.org
+> > > Cc: freedreno@lists.freedesktop.org
+> > > Cc: nouveau@lists.freedesktop.org
+> > > Cc: spice-devel@lists.freedesktop.org
+> > > Cc: amd-gfx@lists.freedesktop.org
+> > > Cc: linux-renesas-soc@vger.kernel.org
+> > > Cc: linux-rockchip@lists.infradead.org
+> > > Cc: linux-stm32@st-md-mailman.stormreply.com
+> > > Cc: linux-tegra@vger.kernel.org
+> > > Cc: xen-devel@lists.xen.org
+> > > ---
+> > >  .../gpu/drm/amd/amdgpu/amdgpu_connectors.c    |  2 +-
+> > >  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |  2 +-
+> > >  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  2 +-
+> > >  drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h      |  1 +
+> > >  .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  2 +-
+> > >  .../amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c  |  2 +-
+> > >  .../display/amdgpu_dm/amdgpu_dm_services.c    |  2 +-
+> > >  drivers/gpu/drm/arc/arcpgu_crtc.c             |  2 +-
+> > >  drivers/gpu/drm/arc/arcpgu_drv.c              |  2 +-
+> > >  drivers/gpu/drm/arc/arcpgu_sim.c              |  2 +-
+> > >  drivers/gpu/drm/arm/hdlcd_crtc.c              |  2 +-
+> > >  drivers/gpu/drm/arm/hdlcd_drv.c               |  2 +-
+> > >  drivers/gpu/drm/arm/malidp_crtc.c             |  2 +-
+> > >  drivers/gpu/drm/arm/malidp_drv.c              |  2 +-
+> > >  drivers/gpu/drm/arm/malidp_mw.c               |  2 +-
+> > >  drivers/gpu/drm/armada/armada_510.c           |  2 +-
+> > >  drivers/gpu/drm/armada/armada_crtc.c          |  2 +-
+> > >  drivers/gpu/drm/armada/armada_crtc.h          |  2 +
+> > >  drivers/gpu/drm/armada/armada_drv.c           |  2 +-
+> > >  drivers/gpu/drm/armada/armada_fb.c            |  2 +-
+> > >  drivers/gpu/drm/ast/ast_drv.c                 |  1 +
+> > >  drivers/gpu/drm/ast/ast_mode.c                |  1 +
+> > >  .../gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c    |  2 +-
+> > >  drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h  |  2 +-
+> > >  drivers/gpu/drm/bochs/bochs_drv.c             |  1 +
+> > >  drivers/gpu/drm/bochs/bochs_kms.c             |  1 +
+> > >  drivers/gpu/drm/bridge/adv7511/adv7511.h      |  5 +-
+> > >  drivers/gpu/drm/bridge/analogix-anx78xx.c     |  2 +-
+> > >  .../drm/bridge/analogix/analogix_dp_core.c    |  2 +-
+> > >  drivers/gpu/drm/bridge/cdns-dsi.c             |  2 +-
+> > >  drivers/gpu/drm/bridge/dumb-vga-dac.c         |  2 +-
+> > >  .../bridge/megachips-stdpxxxx-ge-b850v3-fw.c  |  2 +-
+> > >  drivers/gpu/drm/bridge/nxp-ptn3460.c          |  2 +-
+> > >  drivers/gpu/drm/bridge/panel.c                |  2 +-
+> > >  drivers/gpu/drm/bridge/parade-ps8622.c        |  2 +-
+> > >  drivers/gpu/drm/bridge/sii902x.c              |  2 +-
+> > >  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c     |  2 +-
+> > >  drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c |  2 +-
+> > >  drivers/gpu/drm/bridge/tc358764.c             |  2 +-
+> > >  drivers/gpu/drm/bridge/tc358767.c             |  2 +-
+> > >  drivers/gpu/drm/bridge/ti-sn65dsi86.c         |  2 +-
+> > >  drivers/gpu/drm/bridge/ti-tfp410.c            |  2 +-
+> > >  drivers/gpu/drm/cirrus/cirrus_drv.c           |  1 +
+> > >  drivers/gpu/drm/cirrus/cirrus_mode.c          |  1 +
+> > >  drivers/gpu/drm/drm_atomic_helper.c           |  1 -
+> > >  drivers/gpu/drm/drm_dp_mst_topology.c         |  2 +-
+> > >  drivers/gpu/drm/drm_modeset_helper.c          |  2 +-
+> > >  drivers/gpu/drm/drm_probe_helper.c            |  2 +-
+> > >  drivers/gpu/drm/drm_simple_kms_helper.c       |  2 +-
+> > >  drivers/gpu/drm/etnaviv/etnaviv_drv.h         |  1 -
+> > >  drivers/gpu/drm/exynos/exynos_dp.c            |  3 +-
+> > >  drivers/gpu/drm/exynos/exynos_drm_crtc.c      |  2 +-
+> > >  drivers/gpu/drm/exynos/exynos_drm_dpi.c       |  2 +-
+> > >  drivers/gpu/drm/exynos/exynos_drm_drv.c       |  2 +-
+> > >  drivers/gpu/drm/exynos/exynos_drm_dsi.c       |  2 +-
+> > >  drivers/gpu/drm/exynos/exynos_drm_fb.c        |  2 +-
+> > >  drivers/gpu/drm/exynos/exynos_drm_fbdev.c     |  2 +-
+> > >  drivers/gpu/drm/exynos/exynos_drm_vidi.c      |  2 +-
+> > >  drivers/gpu/drm/exynos/exynos_hdmi.c          |  2 +-
+> > >  drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_crtc.c    |  2 +-
+> > >  drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c     |  2 +-
+> > >  drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_kms.c     |  2 +-
+> > >  drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_plane.c   |  2 +-
+> > >  drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_rgb.c     |  2 +-
+> > >  drivers/gpu/drm/gma500/psb_intel_drv.h        |  1 +
+> > >  .../gpu/drm/hisilicon/hibmc/hibmc_drm_de.c    |  2 +-
+> > >  .../gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c   |  2 +-
+> > >  .../gpu/drm/hisilicon/hibmc/hibmc_drm_fbdev.c |  2 +-
+> > >  .../gpu/drm/hisilicon/hibmc/hibmc_drm_vdac.c  |  2 +-
+> > >  drivers/gpu/drm/hisilicon/kirin/dw_drm_dsi.c  |  2 +-
+> > >  .../gpu/drm/hisilicon/kirin/kirin_drm_ade.c   |  2 +-
+> > >  .../gpu/drm/hisilicon/kirin/kirin_drm_drv.c   |  2 +-
+> > >  drivers/gpu/drm/i2c/ch7006_priv.h             |  1 +
+> > >  drivers/gpu/drm/i2c/sil164_drv.c              |  2 +-
+> > >  drivers/gpu/drm/i2c/tda998x_drv.c             |  2 +-
+> > >  drivers/gpu/drm/i915/i915_drv.c               |  2 +-
+> > >  drivers/gpu/drm/i915/intel_crt.c              |  2 +-
+> > >  drivers/gpu/drm/i915/intel_display.c          |  2 +-
+> > >  drivers/gpu/drm/i915/intel_dp.c               |  2 +-
+> > >  drivers/gpu/drm/i915/intel_dp_mst.c           |  2 +-
+> > >  drivers/gpu/drm/i915/intel_drv.h              |  2 +-
+> > >  drivers/gpu/drm/imx/dw_hdmi-imx.c             |  2 +-
+> > >  drivers/gpu/drm/imx/imx-drm-core.c            |  2 +-
+> > >  drivers/gpu/drm/imx/imx-ldb.c                 |  2 +-
+> > >  drivers/gpu/drm/imx/imx-tve.c                 |  2 +-
+> > >  drivers/gpu/drm/imx/ipuv3-crtc.c              |  2 +-
+> > >  drivers/gpu/drm/imx/parallel-display.c        |  2 +-
+> > >  drivers/gpu/drm/mediatek/mtk_dpi.c            |  2 +-
+> > >  drivers/gpu/drm/mediatek/mtk_drm_crtc.c       |  2 +-
+> > >  drivers/gpu/drm/mediatek/mtk_drm_drv.c        |  2 +-
+> > >  drivers/gpu/drm/mediatek/mtk_drm_fb.c         |  2 +-
+> > >  drivers/gpu/drm/mediatek/mtk_dsi.c            |  2 +-
+> > >  drivers/gpu/drm/mediatek/mtk_hdmi.c           |  2 +-
+> > >  drivers/gpu/drm/meson/meson_crtc.c            |  2 +-
+> > >  drivers/gpu/drm/meson/meson_drv.c             |  2 +-
+> > >  drivers/gpu/drm/meson/meson_dw_hdmi.c         |  2 +-
+> > >  drivers/gpu/drm/meson/meson_venc_cvbs.c       |  2 +-
+> > >  drivers/gpu/drm/mgag200/mgag200_mode.c        |  1 +
+> > >  drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c      |  2 +-
+> > >  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c   |  2 +-
+> > >  drivers/gpu/drm/msm/disp/mdp4/mdp4_crtc.c     |  2 +-
+> > >  .../gpu/drm/msm/disp/mdp4/mdp4_dsi_encoder.c  |  2 +-
+> > >  .../gpu/drm/msm/disp/mdp4/mdp4_dtv_encoder.c  |  2 +-
+> > >  .../gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c |  2 +-
+> > >  .../gpu/drm/msm/disp/mdp5/mdp5_cmd_encoder.c  |  2 +-
+> > >  drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c     |  2 +-
+> > >  drivers/gpu/drm/msm/disp/mdp5/mdp5_encoder.c  |  2 +-
+> > >  drivers/gpu/drm/msm/msm_drv.h                 |  2 +-
+> > >  drivers/gpu/drm/msm/msm_fb.c                  |  2 +-
+> > >  drivers/gpu/drm/mxsfb/mxsfb_crtc.c            |  2 +-
+> > >  drivers/gpu/drm/mxsfb/mxsfb_drv.c             |  2 +-
+> > >  drivers/gpu/drm/mxsfb/mxsfb_out.c             |  2 +-
+> > >  drivers/gpu/drm/nouveau/dispnv04/tvnv17.c     |  1 +
+> > >  drivers/gpu/drm/nouveau/dispnv50/disp.c       |  2 +-
+> > >  drivers/gpu/drm/nouveau/nouveau_connector.c   |  1 +
+> > >  drivers/gpu/drm/nouveau/nouveau_display.c     |  1 +
+> > >  drivers/gpu/drm/omapdrm/omap_connector.c      |  2 +-
+> > >  drivers/gpu/drm/omapdrm/omap_crtc.c           |  2 +-
+> > >  drivers/gpu/drm/omapdrm/omap_drv.c            |  2 +-
+> > >  drivers/gpu/drm/omapdrm/omap_drv.h            |  2 +-
+> > >  drivers/gpu/drm/omapdrm/omap_encoder.c        |  2 +-
+> > >  drivers/gpu/drm/omapdrm/omap_fb.c             |  2 +-
+> > >  drivers/gpu/drm/pl111/pl111_drv.c             |  2 +-
+> > >  drivers/gpu/drm/qxl/qxl_display.c             |  2 +-
+> > >  drivers/gpu/drm/qxl/qxl_drv.c                 |  3 +-
+> > >  drivers/gpu/drm/qxl/qxl_fb.c                  |  2 +-
+> > >  drivers/gpu/drm/qxl/qxl_kms.c                 |  2 +-
+> > >  drivers/gpu/drm/radeon/radeon_acpi.c          |  1 +
+> > >  drivers/gpu/drm/radeon/radeon_connectors.c    |  1 +
+> > >  drivers/gpu/drm/radeon/radeon_device.c        |  1 +
+> > >  drivers/gpu/drm/radeon/radeon_display.c       |  1 +
+> > >  drivers/gpu/drm/radeon/radeon_dp_mst.c        |  1 +
+> > >  drivers/gpu/drm/radeon/radeon_drv.c           |  1 +
+> > >  drivers/gpu/drm/radeon/radeon_irq_kms.c       |  1 +
+> > >  drivers/gpu/drm/rcar-du/rcar_du_crtc.c        |  2 +-
+> > >  drivers/gpu/drm/rcar-du/rcar_du_drv.c         |  2 +-
+> > >  drivers/gpu/drm/rcar-du/rcar_du_encoder.c     |  2 +-
+> > >  drivers/gpu/drm/rcar-du/rcar_du_kms.c         |  2 +-
+> > >  drivers/gpu/drm/rcar-du/rcar_du_plane.c       |  2 +-
+> > >  drivers/gpu/drm/rcar-du/rcar_du_vsp.c         |  2 +-
+> > >  drivers/gpu/drm/rcar-du/rcar_lvds.c           |  2 +-
+> > >  .../gpu/drm/rockchip/analogix_dp-rockchip.c   |  2 +-
+> > >  drivers/gpu/drm/rockchip/cdn-dp-core.c        |  2 +-
+> > >  drivers/gpu/drm/rockchip/cdn-dp-core.h        |  2 +-
+> > >  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c   |  2 +-
+> > >  drivers/gpu/drm/rockchip/inno_hdmi.c          |  2 +-
+> > >  drivers/gpu/drm/rockchip/rockchip_drm_drv.c   |  2 +-
+> > >  drivers/gpu/drm/rockchip/rockchip_drm_fb.c    |  2 +-
+> > >  drivers/gpu/drm/rockchip/rockchip_drm_fbdev.c |  2 +-
+> > >  drivers/gpu/drm/rockchip/rockchip_drm_psr.c   |  2 +-
+> > >  drivers/gpu/drm/rockchip/rockchip_drm_vop.c   |  2 +-
+> > >  drivers/gpu/drm/rockchip/rockchip_lvds.c      |  2 +-
+> > >  drivers/gpu/drm/rockchip/rockchip_rgb.c       |  2 +-
+> > >  drivers/gpu/drm/shmobile/shmob_drm_crtc.c     |  1 +
+> > >  drivers/gpu/drm/shmobile/shmob_drm_drv.c      |  1 +
+> > >  drivers/gpu/drm/shmobile/shmob_drm_kms.c      |  1 +
+> > >  drivers/gpu/drm/sti/sti_crtc.c                |  2 +-
+> > >  drivers/gpu/drm/sti/sti_drv.c                 |  2 +-
+> > >  drivers/gpu/drm/sti/sti_dvo.c                 |  2 +-
+> > >  drivers/gpu/drm/sti/sti_hda.c                 |  2 +-
+> > >  drivers/gpu/drm/sti/sti_hdmi.c                |  2 +-
+> > >  drivers/gpu/drm/sti/sti_tvout.c               |  2 +-
+> > >  drivers/gpu/drm/stm/drv.c                     |  2 +-
+> > >  drivers/gpu/drm/stm/ltdc.c                    |  2 +-
+> > >  drivers/gpu/drm/sun4i/sun4i_backend.c         |  2 +-
+> > >  drivers/gpu/drm/sun4i/sun4i_crtc.c            |  2 +-
+> > >  drivers/gpu/drm/sun4i/sun4i_drv.c             |  2 +-
+> > >  drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c        |  2 +-
+> > >  drivers/gpu/drm/sun4i/sun4i_lvds.c            |  2 +-
+> > >  drivers/gpu/drm/sun4i/sun4i_rgb.c             |  2 +-
+> > >  drivers/gpu/drm/sun4i/sun4i_tcon.c            |  2 +-
+> > >  drivers/gpu/drm/sun4i/sun4i_tv.c              |  2 +-
+> > >  drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c        |  2 +-
+> > >  drivers/gpu/drm/sun4i/sun8i_mixer.c           |  2 +-
+> > >  drivers/gpu/drm/sun4i/sun8i_ui_layer.c        |  2 +-
+> > >  drivers/gpu/drm/sun4i/sun8i_vi_layer.c        |  2 +-
+> > >  drivers/gpu/drm/tegra/drm.h                   |  2 +-
+> > >  drivers/gpu/drm/tegra/fb.c                    |  1 +
+> > >  drivers/gpu/drm/tegra/hdmi.c                  |  2 +-
+> > >  drivers/gpu/drm/tegra/hub.c                   |  2 +-
+> > >  drivers/gpu/drm/tilcdc/tilcdc_drv.c           |  1 +
+> > >  drivers/gpu/drm/tilcdc/tilcdc_drv.h           |  1 -
+> > >  drivers/gpu/drm/tilcdc/tilcdc_external.c      |  1 +
+> > >  drivers/gpu/drm/tilcdc/tilcdc_panel.c         |  1 +
+> > >  drivers/gpu/drm/tilcdc/tilcdc_tfp410.c        |  1 +
+> > >  drivers/gpu/drm/tinydrm/core/tinydrm-core.c   |  2 +-
+> > >  drivers/gpu/drm/tinydrm/core/tinydrm-pipe.c   |  2 +-
+> > >  drivers/gpu/drm/tve200/tve200_drv.c           |  2 +-
+> > >  drivers/gpu/drm/udl/udl_connector.c           |  1 +
+> > >  drivers/gpu/drm/udl/udl_drv.c                 |  1 +
+> > >  drivers/gpu/drm/udl/udl_main.c                |  1 +
+> > >  drivers/gpu/drm/vc4/vc4_crtc.c                |  2 +-
+> > >  drivers/gpu/drm/vc4/vc4_dpi.c                 |  2 +-
+> > >  drivers/gpu/drm/vc4/vc4_dsi.c                 |  2 +-
+> > >  drivers/gpu/drm/vc4/vc4_hdmi.c                |  2 +-
+> > >  drivers/gpu/drm/vc4/vc4_kms.c                 |  2 +-
+> > >  drivers/gpu/drm/vc4/vc4_txp.c                 |  2 +-
+> > >  drivers/gpu/drm/vc4/vc4_vec.c                 |  2 +-
+> > >  drivers/gpu/drm/virtio/virtgpu_display.c      |  2 +-
+> > >  drivers/gpu/drm/virtio/virtgpu_drv.h          |  2 +-
+> > >  drivers/gpu/drm/vkms/vkms_crtc.c              |  2 +-
+> > >  drivers/gpu/drm/vkms/vkms_drv.c               |  2 +-
+> > >  drivers/gpu/drm/vkms/vkms_output.c            |  2 +-
+> > >  drivers/gpu/drm/vmwgfx/vmwgfx_kms.h           |  2 +-
+> > >  drivers/gpu/drm/xen/xen_drm_front.c           |  2 +-
+> > >  drivers/gpu/drm/xen/xen_drm_front_conn.c      |  2 +-
+> > >  drivers/gpu/drm/xen/xen_drm_front_gem.c       |  2 +-
+> > >  drivers/gpu/drm/xen/xen_drm_front_kms.c       |  2 +-
+> > >  drivers/gpu/drm/zte/zx_drm_drv.c              |  2 +-
+> > >  drivers/gpu/drm/zte/zx_hdmi.c                 |  2 +-
+> > >  drivers/gpu/drm/zte/zx_tvenc.c                |  2 +-
+> > >  drivers/gpu/drm/zte/zx_vga.c                  |  2 +-
+> > >  drivers/gpu/drm/zte/zx_vou.c                  |  2 +-
+> > >  drivers/staging/vboxvideo/vbox_irq.c          |  2 +-
+> > >  drivers/staging/vboxvideo/vbox_mode.c         |  2 +-
+> > >  include/drm/drm_crtc_helper.h                 | 16 ------
+> > >  include/drm/drm_probe_helper.h                | 50 +++++++++++++++++=
+++
+> > >  217 files changed, 268 insertions(+), 199 deletions(-)
+> > >  create mode 100644 include/drm/drm_probe_helper.h
+> > >
+> > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c b/drivers=
+/gpu/drm/amd/amdgpu/amdgpu_connectors.c
+> > > index 69ad6ec0a4f3..f0d36787d8d1 100644
+> > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
+> > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c
+> > > @@ -25,7 +25,7 @@
+> > >   */
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_edid.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/amdgpu_drm.h>
+> > >  #include "amdgpu.h"
+> > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu=
+/drm/amd/amdgpu/amdgpu_device.c
+> > > index 00c86c33f9a2..35bbc64f53bb 100644
+> > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+> > > @@ -30,7 +30,7 @@
+> > >  #include <linux/console.h>
+> > >  #include <linux/slab.h>
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/amdgpu_drm.h>
+> > >  #include <linux/vgaarb.h>
+> > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/dr=
+m/amd/amdgpu/amdgpu_drv.c
+> > > index 9c77eaa45982..1246925db06b 100644
+> > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+> > > @@ -32,7 +32,7 @@
+> > >  #include <linux/module.h>
+> > >  #include <linux/pm_runtime.h>
+> > >  #include <linux/vga_switcheroo.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include "amdgpu.h"
+> > >  #include "amdgpu_irq.h"
+> > > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h b/drivers/gpu/d=
+rm/amd/amdgpu/amdgpu_mode.h
+> > > index aadd0fa42e43..2c99ef35db79 100644
+> > > --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
+> > > +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_mode.h
+> > > @@ -36,6 +36,7 @@
+> > >  #include <drm/drm_dp_helper.h>
+> > >  #include <drm/drm_fixed.h>
+> > >  #include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > >  #include <linux/i2c.h>
+> > > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.=
+c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+> > > index 39997d977efb..78173311f718 100644
+> > > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+> > > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_helpers.c
+> > > @@ -29,7 +29,7 @@
+> > >  #include <linux/i2c.h>
+> > >
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/amdgpu_drm.h>
+> > >  #include <drm/drm_edid.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c=
+ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
+> > > index 9d2d6986b983..7ef99037167a 100644
+> > > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
+> > > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_pp_smu.c
+> > > @@ -25,7 +25,7 @@
+> > >  #include <linux/acpi.h>
+> > >
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/amdgpu_drm.h>
+> > >  #include "dm_services.h"
+> > >  #include "amdgpu.h"
+> > > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_services=
+.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_services.c
+> > > index 516795342dd2..d915e8c8769b 100644
+> > > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_services.c
+> > > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_services.c
+> > > @@ -27,7 +27,7 @@
+> > >  #include <linux/acpi.h>
+> > >
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/amdgpu_drm.h>
+> > >  #include "dm_services.h"
+> > >  #include "amdgpu.h"
+> > > diff --git a/drivers/gpu/drm/arc/arcpgu_crtc.c b/drivers/gpu/drm/arc/=
+arcpgu_crtc.c
+> > > index 62f51f70606d..6ba96415e683 100644
+> > > --- a/drivers/gpu/drm/arc/arcpgu_crtc.c
+> > > +++ b/drivers/gpu/drm/arc/arcpgu_crtc.c
+> > > @@ -15,7 +15,7 @@
+> > >   */
+> > >
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > > diff --git a/drivers/gpu/drm/arc/arcpgu_drv.c b/drivers/gpu/drm/arc/a=
+rcpgu_drv.c
+> > > index 206a76abf771..dc72648bd783 100644
+> > > --- a/drivers/gpu/drm/arc/arcpgu_drv.c
+> > > +++ b/drivers/gpu/drm/arc/arcpgu_drv.c
+> > > @@ -15,7 +15,7 @@
+> > >   */
+> > >
+> > >  #include <linux/clk.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > > diff --git a/drivers/gpu/drm/arc/arcpgu_sim.c b/drivers/gpu/drm/arc/a=
+rcpgu_sim.c
+> > > index 6530d88f7293..ebee4748f5d9 100644
+> > > --- a/drivers/gpu/drm/arc/arcpgu_sim.c
+> > > +++ b/drivers/gpu/drm/arc/arcpgu_sim.c
+> > > @@ -14,7 +14,7 @@
+> > >   *
+> > >   */
+> > >
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >
+> > >  #include "arcpgu.h"
+> > > diff --git a/drivers/gpu/drm/arm/hdlcd_crtc.c b/drivers/gpu/drm/arm/h=
+dlcd_crtc.c
+> > > index e4d67b70244d..99c188de8651 100644
+> > > --- a/drivers/gpu/drm/arm/hdlcd_crtc.c
+> > > +++ b/drivers/gpu/drm/arm/hdlcd_crtc.c
+> > > @@ -13,7 +13,7 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > > diff --git a/drivers/gpu/drm/arm/hdlcd_drv.c b/drivers/gpu/drm/arm/hd=
+lcd_drv.c
+> > > index dfad8d06d108..fba307c8afa5 100644
+> > > --- a/drivers/gpu/drm/arm/hdlcd_drv.c
+> > > +++ b/drivers/gpu/drm/arm/hdlcd_drv.c
+> > > @@ -22,7 +22,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > > diff --git a/drivers/gpu/drm/arm/malidp_crtc.c b/drivers/gpu/drm/arm/=
+malidp_crtc.c
+> > > index e1b72782848c..56aad288666e 100644
+> > > --- a/drivers/gpu/drm/arm/malidp_crtc.c
+> > > +++ b/drivers/gpu/drm/arm/malidp_crtc.c
+> > > @@ -14,7 +14,7 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <linux/clk.h>
+> > >  #include <linux/pm_runtime.h>
+> > >  #include <video/videomode.h>
+> > > diff --git a/drivers/gpu/drm/arm/malidp_drv.c b/drivers/gpu/drm/arm/m=
+alidp_drv.c
+> > > index 505f316a192e..ab50ad06e271 100644
+> > > --- a/drivers/gpu/drm/arm/malidp_drv.c
+> > > +++ b/drivers/gpu/drm/arm/malidp_drv.c
+> > > @@ -23,7 +23,7 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > > diff --git a/drivers/gpu/drm/arm/malidp_mw.c b/drivers/gpu/drm/arm/ma=
+lidp_mw.c
+> > > index 91472e5e0c8b..041a64dc7167 100644
+> > > --- a/drivers/gpu/drm/arm/malidp_mw.c
+> > > +++ b/drivers/gpu/drm/arm/malidp_mw.c
+> > > @@ -8,7 +8,7 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drmP.h>
+> > > diff --git a/drivers/gpu/drm/armada/armada_510.c b/drivers/gpu/drm/ar=
+mada/armada_510.c
+> > > index 2f7c048c5361..0e91d27921bd 100644
+> > > --- a/drivers/gpu/drm/armada/armada_510.c
+> > > +++ b/drivers/gpu/drm/armada/armada_510.c
+> > > @@ -9,7 +9,7 @@
+> > >   */
+> > >  #include <linux/clk.h>
+> > >  #include <linux/io.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include "armada_crtc.h"
+> > >  #include "armada_drm.h"
+> > >  #include "armada_hw.h"
+> > > diff --git a/drivers/gpu/drm/armada/armada_crtc.c b/drivers/gpu/drm/a=
+rmada/armada_crtc.c
+> > > index da9360688b55..c68c3da9e17f 100644
+> > > --- a/drivers/gpu/drm/armada/armada_crtc.c
+> > > +++ b/drivers/gpu/drm/armada/armada_crtc.c
+> > > @@ -12,7 +12,7 @@
+> > >  #include <linux/platform_device.h>
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include "armada_crtc.h"
+> > > diff --git a/drivers/gpu/drm/armada/armada_crtc.h b/drivers/gpu/drm/a=
+rmada/armada_crtc.h
+> > > index 7ebd337b60af..08761ff01739 100644
+> > > --- a/drivers/gpu/drm/armada/armada_crtc.h
+> > > +++ b/drivers/gpu/drm/armada/armada_crtc.h
+> > > @@ -8,6 +8,8 @@
+> > >  #ifndef ARMADA_CRTC_H
+> > >  #define ARMADA_CRTC_H
+> > >
+> > > +#include <drm/drm_crtc.h>
+> > > +
+> > >  struct armada_gem_object;
+> > >
+> > >  struct armada_regs {
+> > > diff --git a/drivers/gpu/drm/armada/armada_drv.c b/drivers/gpu/drm/ar=
+mada/armada_drv.c
+> > > index fa31589b4fc0..e660c5ca52ae 100644
+> > > --- a/drivers/gpu/drm/armada/armada_drv.c
+> > > +++ b/drivers/gpu/drm/armada/armada_drv.c
+> > > @@ -10,7 +10,7 @@
+> > >  #include <linux/module.h>
+> > >  #include <linux/of_graph.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_of.h>
+> > >  #include "armada_crtc.h"
+> > > diff --git a/drivers/gpu/drm/armada/armada_fb.c b/drivers/gpu/drm/arm=
+ada/armada_fb.c
+> > > index 6bd638a54579..058ac7d9920f 100644
+> > > --- a/drivers/gpu/drm/armada/armada_fb.c
+> > > +++ b/drivers/gpu/drm/armada/armada_fb.c
+> > > @@ -5,7 +5,7 @@
+> > >   * it under the terms of the GNU General Public License version 2 as
+> > >   * published by the Free Software Foundation.
+> > >   */
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_modeset_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > >  #include "armada_drm.h"
+> > > diff --git a/drivers/gpu/drm/ast/ast_drv.c b/drivers/gpu/drm/ast/ast_=
+drv.c
+> > > index bf589c53b908..3871b39d4dea 100644
+> > > --- a/drivers/gpu/drm/ast/ast_drv.c
+> > > +++ b/drivers/gpu/drm/ast/ast_drv.c
+> > > @@ -30,6 +30,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include "ast_drv.h"
+> > >
+> > > diff --git a/drivers/gpu/drm/ast/ast_mode.c b/drivers/gpu/drm/ast/ast=
+_mode.c
+> > > index 8bb355d5d43d..97fed0627d1c 100644
+> > > --- a/drivers/gpu/drm/ast/ast_mode.c
+> > > +++ b/drivers/gpu/drm/ast/ast_mode.c
+> > > @@ -32,6 +32,7 @@
+> > >  #include <drm/drm_crtc.h>
+> > >  #include <drm/drm_crtc_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include "ast_drv.h"
+> > >
+> > >  #include "ast_tables.h"
+> > > diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c b/drivers=
+/gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c
+> > > index 96f4082671fe..8070a558d7b1 100644
+> > > --- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c
+> > > +++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c
+> > > @@ -24,7 +24,7 @@
+> > >  #include <linux/pinctrl/consumer.h>
+> > >
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drmP.h>
+> > >
+> > >  #include <video/videomode.h>
+> > > diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h b/drivers/g=
+pu/drm/atmel-hlcdc/atmel_hlcdc_dc.h
+> > > index 4cc1e03f0aee..70bd540d644e 100644
+> > > --- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h
+> > > +++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h
+> > > @@ -31,7 +31,7 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > > diff --git a/drivers/gpu/drm/bochs/bochs_drv.c b/drivers/gpu/drm/boch=
+s/bochs_drv.c
+> > > index f3dd66ae990a..e5a48e87b137 100644
+> > > --- a/drivers/gpu/drm/bochs/bochs_drv.c
+> > > +++ b/drivers/gpu/drm/bochs/bochs_drv.c
+> > > @@ -9,6 +9,7 @@
+> > >  #include <linux/module.h>
+> > >  #include <linux/slab.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include "bochs.h"
+> > >
+> > > diff --git a/drivers/gpu/drm/bochs/bochs_kms.c b/drivers/gpu/drm/boch=
+s/bochs_kms.c
+> > > index f87c284dd93d..5f1eb69dd167 100644
+> > > --- a/drivers/gpu/drm/bochs/bochs_kms.c
+> > > +++ b/drivers/gpu/drm/bochs/bochs_kms.c
+> > > @@ -7,6 +7,7 @@
+> > >
+> > >  #include "bochs.h"
+> > >  #include <drm/drm_plane_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  static int defx =3D 1024;
+> > >  static int defy =3D 768;
+> > > diff --git a/drivers/gpu/drm/bridge/adv7511/adv7511.h b/drivers/gpu/d=
+rm/bridge/adv7511/adv7511.h
+> > > index 73d8ccb97742..d52ffab41eb4 100644
+> > > --- a/drivers/gpu/drm/bridge/adv7511/adv7511.h
+> > > +++ b/drivers/gpu/drm/bridge/adv7511/adv7511.h
+> > > @@ -14,8 +14,11 @@
+> > >  #include <linux/regmap.h>
+> > >  #include <linux/regulator/consumer.h>
+> > >
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_mipi_dsi.h>
+> > > +#include <drm/drm_connector.h>
+> > > +#include <drm/drm_modes.h>
+> > > +#include <drm/drm_bridge.h>
+> > >
+> > >  #define ADV7511_REG_CHIP_REVISION            0x00
+> > >  #define ADV7511_REG_N0                               0x01
+> > > diff --git a/drivers/gpu/drm/bridge/analogix-anx78xx.c b/drivers/gpu/=
+drm/bridge/analogix-anx78xx.c
+> > > index f8433c93f463..f39a91e3f9e0 100644
+> > > --- a/drivers/gpu/drm/bridge/analogix-anx78xx.c
+> > > +++ b/drivers/gpu/drm/bridge/analogix-anx78xx.c
+> > > @@ -31,7 +31,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_dp_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/dri=
+vers/gpu/drm/bridge/analogix/analogix_dp_core.c
+> > > index 753e96129ab7..c1da8ae3c408 100644
+> > > --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+> > > +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+> > > @@ -26,7 +26,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_panel.h>
+> > >
+> > >  #include <drm/bridge/analogix_dp.h>
+> > > diff --git a/drivers/gpu/drm/bridge/cdns-dsi.c b/drivers/gpu/drm/brid=
+ge/cdns-dsi.c
+> > > index ce9496d13986..48ed444cad50 100644
+> > > --- a/drivers/gpu/drm/bridge/cdns-dsi.c
+> > > +++ b/drivers/gpu/drm/bridge/cdns-dsi.c
+> > > @@ -7,7 +7,7 @@
+> > >
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_bridge.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_mipi_dsi.h>
+> > >  #include <drm/drm_panel.h>
+> > >  #include <video/mipi_display.h>
+> > > diff --git a/drivers/gpu/drm/bridge/dumb-vga-dac.c b/drivers/gpu/drm/=
+bridge/dumb-vga-dac.c
+> > > index 9b706789a341..0805801f4e94 100644
+> > > --- a/drivers/gpu/drm/bridge/dumb-vga-dac.c
+> > > +++ b/drivers/gpu/drm/bridge/dumb-vga-dac.c
+> > > @@ -18,7 +18,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  struct dumb_vga {
+> > >       struct drm_bridge       bridge;
+> > > diff --git a/drivers/gpu/drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c=
+ b/drivers/gpu/drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c
+> > > index 2136c97aeb8e..9687a1a0e737 100644
+> > > --- a/drivers/gpu/drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c
+> > > +++ b/drivers/gpu/drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c
+> > > @@ -36,7 +36,7 @@
+> > >  #include <linux/of.h>
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include <drm/drmP.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/bridge/nxp-ptn3460.c b/drivers/gpu/drm/b=
+ridge/nxp-ptn3460.c
+> > > index a3e817abace1..a56306421bc7 100644
+> > > --- a/drivers/gpu/drm/bridge/nxp-ptn3460.c
+> > > +++ b/drivers/gpu/drm/bridge/nxp-ptn3460.c
+> > > @@ -22,7 +22,7 @@
+> > >  #include <linux/of_gpio.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include <drm/drm_of.h>
+> > >  #include <drm/drm_panel.h>
+> > > diff --git a/drivers/gpu/drm/bridge/panel.c b/drivers/gpu/drm/bridge/=
+panel.c
+> > > index 7cbaba213ef6..caf12b8fd572 100644
+> > > --- a/drivers/gpu/drm/bridge/panel.c
+> > > +++ b/drivers/gpu/drm/bridge/panel.c
+> > > @@ -12,7 +12,7 @@
+> > >  #include <drm/drm_panel.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_connector.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_encoder.h>
+> > >  #include <drm/drm_modeset_helper_vtables.h>
+> > >  #include <drm/drm_panel.h>
+> > > diff --git a/drivers/gpu/drm/bridge/parade-ps8622.c b/drivers/gpu/drm=
+/bridge/parade-ps8622.c
+> > > index 7334d1b62b71..483a7142c5ea 100644
+> > > --- a/drivers/gpu/drm/bridge/parade-ps8622.c
+> > > +++ b/drivers/gpu/drm/bridge/parade-ps8622.c
+> > > @@ -26,7 +26,7 @@
+> > >  #include <linux/regulator/consumer.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_of.h>
+> > >  #include <drm/drm_panel.h>
+> > >  #include <drm/drmP.h>
+> > > diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridg=
+e/sii902x.c
+> > > index bfa902013aa4..61b1502f566c 100644
+> > > --- a/drivers/gpu/drm/bridge/sii902x.c
+> > > +++ b/drivers/gpu/drm/bridge/sii902x.c
+> > > @@ -30,7 +30,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >
+> > >  #define SII902X_TPI_VIDEO_DATA                       0x0
+> > > diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/=
+drm/bridge/synopsys/dw-hdmi.c
+> > > index 64c3cf027518..360a7ec39861 100644
+> > > --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> > > +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+> > > @@ -25,7 +25,7 @@
+> > >  #include <drm/drm_of.h>
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include <drm/drm_encoder_slave.h>
+> > >  #include <drm/bridge/dw_hdmi.h>
+> > > diff --git a/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c b/drivers/=
+gpu/drm/bridge/synopsys/dw-mipi-dsi.c
+> > > index 2f4b145b73af..09a38ae81e52 100644
+> > > --- a/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
+> > > +++ b/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
+> > > @@ -19,7 +19,7 @@
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_bridge.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_mipi_dsi.h>
+> > >  #include <drm/drm_of.h>
+> > >  #include <drm/bridge/dw_mipi_dsi.h>
+> > > diff --git a/drivers/gpu/drm/bridge/tc358764.c b/drivers/gpu/drm/brid=
+ge/tc358764.c
+> > > index afd491018bfc..282092019e82 100644
+> > > --- a/drivers/gpu/drm/bridge/tc358764.c
+> > > +++ b/drivers/gpu/drm/bridge/tc358764.c
+> > > @@ -9,7 +9,7 @@
+> > >
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_mipi_dsi.h>
+> > >  #include <drm/drm_of.h>
+> > > diff --git a/drivers/gpu/drm/bridge/tc358767.c b/drivers/gpu/drm/brid=
+ge/tc358767.c
+> > > index 8e28e738cb52..5c0ff4a16572 100644
+> > > --- a/drivers/gpu/drm/bridge/tc358767.c
+> > > +++ b/drivers/gpu/drm/bridge/tc358767.c
+> > > @@ -34,7 +34,7 @@
+> > >  #include <linux/slab.h>
+> > >
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_dp_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include <drm/drm_of.h>
+> > > diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi86.c b/drivers/gpu/drm/=
+bridge/ti-sn65dsi86.c
+> > > index 10243965ee7c..e74e2c928f51 100644
+> > > --- a/drivers/gpu/drm/bridge/ti-sn65dsi86.c
+> > > +++ b/drivers/gpu/drm/bridge/ti-sn65dsi86.c
+> > > @@ -6,7 +6,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_dp_helper.h>
+> > >  #include <drm/drm_mipi_dsi.h>
+> > >  #include <drm/drm_of.h>
+> > > diff --git a/drivers/gpu/drm/bridge/ti-tfp410.c b/drivers/gpu/drm/bri=
+dge/ti-tfp410.c
+> > > index c3e32138c6bb..7bfb4f338813 100644
+> > > --- a/drivers/gpu/drm/bridge/ti-tfp410.c
+> > > +++ b/drivers/gpu/drm/bridge/ti-tfp410.c
+> > > @@ -20,7 +20,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #define HOTPLUG_DEBOUNCE_MS          1100
+> > >
+> > > diff --git a/drivers/gpu/drm/cirrus/cirrus_drv.c b/drivers/gpu/drm/ci=
+rrus/cirrus_drv.c
+> > > index db40b77c7f7c..8ec880f3a322 100644
+> > > --- a/drivers/gpu/drm/cirrus/cirrus_drv.c
+> > > +++ b/drivers/gpu/drm/cirrus/cirrus_drv.c
+> > > @@ -12,6 +12,7 @@
+> > >  #include <linux/console.h>
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include "cirrus_drv.h"
+> > >
+> > > diff --git a/drivers/gpu/drm/cirrus/cirrus_mode.c b/drivers/gpu/drm/c=
+irrus/cirrus_mode.c
+> > > index ed7dcf212a34..a830e70fc0bb 100644
+> > > --- a/drivers/gpu/drm/cirrus/cirrus_mode.c
+> > > +++ b/drivers/gpu/drm/cirrus/cirrus_mode.c
+> > > @@ -17,6 +17,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_crtc_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include <video/cirrus.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/dr=
+m_atomic_helper.c
+> > > index 69cbafd5ebee..54417fce5e5c 100644
+> > > --- a/drivers/gpu/drm/drm_atomic_helper.c
+> > > +++ b/drivers/gpu/drm/drm_atomic_helper.c
+> > > @@ -29,7 +29,6 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_uapi.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_writeback.h>
+> > >  #include <drm/drm_damage_helper.h>
+> > > diff --git a/drivers/gpu/drm/drm_dp_mst_topology.c b/drivers/gpu/drm/=
+drm_dp_mst_topology.c
+> > > index 2ab16c9e6243..6d8f21e8e3d6 100644
+> > > --- a/drivers/gpu/drm/drm_dp_mst_topology.c
+> > > +++ b/drivers/gpu/drm/drm_dp_mst_topology.c
+> > > @@ -33,7 +33,7 @@
+> > >  #include <drm/drm_fixed.h>
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  /**
+> > >   * DOC: dp mst helper
+> > > diff --git a/drivers/gpu/drm/drm_modeset_helper.c b/drivers/gpu/drm/d=
+rm_modeset_helper.c
+> > > index 9150fa385bba..6f48137d7192 100644
+> > > --- a/drivers/gpu/drm/drm_modeset_helper.c
+> > > +++ b/drivers/gpu/drm/drm_modeset_helper.c
+> > > @@ -21,7 +21,7 @@
+> > >   */
+> > >
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_modeset_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > > diff --git a/drivers/gpu/drm/drm_probe_helper.c b/drivers/gpu/drm/drm=
+_probe_helper.c
+> > > index a1bb157bfdfa..c83fee652502 100644
+> > > --- a/drivers/gpu/drm/drm_probe_helper.c
+> > > +++ b/drivers/gpu/drm/drm_probe_helper.c
+> > > @@ -32,11 +32,11 @@
+> > >  #include <linux/export.h>
+> > >  #include <linux/moduleparam.h>
+> > >
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_client.h>
+> > >  #include <drm/drm_crtc.h>
+> > >  #include <drm/drm_fourcc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include <drm/drm_modeset_helper_vtables.h>
+> > > diff --git a/drivers/gpu/drm/drm_simple_kms_helper.c b/drivers/gpu/dr=
+m/drm_simple_kms_helper.c
+> > > index 917812448d1b..9fc26a69ab79 100644
+> > > --- a/drivers/gpu/drm/drm_simple_kms_helper.c
+> > > +++ b/drivers/gpu/drm/drm_simple_kms_helper.c
+> > > @@ -10,7 +10,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > >  #include <drm/drm_simple_kms_helper.h>
+> > >  #include <linux/slab.h>
+> > > diff --git a/drivers/gpu/drm/etnaviv/etnaviv_drv.h b/drivers/gpu/drm/=
+etnaviv/etnaviv_drv.h
+> > > index 8d02d1b7dcf5..ea743d4fa3f8 100644
+> > > --- a/drivers/gpu/drm/etnaviv/etnaviv_drv.h
+> > > +++ b/drivers/gpu/drm/etnaviv/etnaviv_drv.h
+> > > @@ -21,7 +21,6 @@
+> > >  #include <linux/mm_types.h>
+> > >
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_gem.h>
+> > >  #include <drm/etnaviv_drm.h>
+> > > diff --git a/drivers/gpu/drm/exynos/exynos_dp.c b/drivers/gpu/drm/exy=
+nos/exynos_dp.c
+> > > index c8449ae4f4fe..9f1c6215be0b 100644
+> > > --- a/drivers/gpu/drm/exynos/exynos_dp.c
+> > > +++ b/drivers/gpu/drm/exynos/exynos_dp.c
+> > > @@ -23,7 +23,8 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > > +#include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_of.h>
+> > >  #include <drm/drm_panel.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/exynos/exynos_drm_crtc.c b/drivers/gpu/d=
+rm/exynos/exynos_drm_crtc.c
+> > > index 2696289ecc78..12d3816356ef 100644
+> > > --- a/drivers/gpu/drm/exynos/exynos_drm_crtc.c
+> > > +++ b/drivers/gpu/drm/exynos/exynos_drm_crtc.c
+> > > @@ -13,7 +13,7 @@
+> > >   */
+> > >
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_encoder.h>
+> > > diff --git a/drivers/gpu/drm/exynos/exynos_drm_dpi.c b/drivers/gpu/dr=
+m/exynos/exynos_drm_dpi.c
+> > > index 2f0babb67c51..fa95af1dc534 100644
+> > > --- a/drivers/gpu/drm/exynos/exynos_drm_dpi.c
+> > > +++ b/drivers/gpu/drm/exynos/exynos_drm_dpi.c
+> > > @@ -11,7 +11,7 @@
+> > >  */
+> > >
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_panel.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/exynos/exynos_drm_drv.c b/drivers/gpu/dr=
+m/exynos/exynos_drm_drv.c
+> > > index 2c75e789b2a7..a941d64875f6 100644
+> > > --- a/drivers/gpu/drm/exynos/exynos_drm_drv.c
+> > > +++ b/drivers/gpu/drm/exynos/exynos_drm_drv.c
+> > > @@ -15,7 +15,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >
+> > >  #include <linux/component.h>
+> > > diff --git a/drivers/gpu/drm/exynos/exynos_drm_dsi.c b/drivers/gpu/dr=
+m/exynos/exynos_drm_dsi.c
+> > > index d81e62ae286a..8d28cdbfcddd 100644
+> > > --- a/drivers/gpu/drm/exynos/exynos_drm_dsi.c
+> > > +++ b/drivers/gpu/drm/exynos/exynos_drm_dsi.c
+> > > @@ -13,7 +13,7 @@
+> > >  #include <asm/unaligned.h>
+> > >
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_mipi_dsi.h>
+> > >  #include <drm/drm_panel.h>
+> > > diff --git a/drivers/gpu/drm/exynos/exynos_drm_fb.c b/drivers/gpu/drm=
+/exynos/exynos_drm_fb.c
+> > > index 31eb538a44ae..0dc1a688b502 100644
+> > > --- a/drivers/gpu/drm/exynos/exynos_drm_fb.c
+> > > +++ b/drivers/gpu/drm/exynos/exynos_drm_fb.c
+> > > @@ -14,7 +14,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > diff --git a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c b/drivers/gpu/=
+drm/exynos/exynos_drm_fbdev.c
+> > > index ce9604ca8041..f057082a9b30 100644
+> > > --- a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
+> > > +++ b/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
+> > > @@ -15,7 +15,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_crtc.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/exynos_drm.h>
+> > >
+> > >  #include <linux/console.h>
+> > > diff --git a/drivers/gpu/drm/exynos/exynos_drm_vidi.c b/drivers/gpu/d=
+rm/exynos/exynos_drm_vidi.c
+> > > index 19697c1362d8..1b0e4e0f52fe 100644
+> > > --- a/drivers/gpu/drm/exynos/exynos_drm_vidi.c
+> > > +++ b/drivers/gpu/drm/exynos/exynos_drm_vidi.c
+> > > @@ -20,7 +20,7 @@
+> > >  #include <drm/exynos_drm.h>
+> > >
+> > >  #include <drm/drm_edid.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >
+> > >  #include "exynos_drm_drv.h"
+> > > diff --git a/drivers/gpu/drm/exynos/exynos_hdmi.c b/drivers/gpu/drm/e=
+xynos/exynos_hdmi.c
+> > > index 2092a650df7d..231f70b13b37 100644
+> > > --- a/drivers/gpu/drm/exynos/exynos_hdmi.c
+> > > +++ b/drivers/gpu/drm/exynos/exynos_hdmi.c
+> > > @@ -16,7 +16,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_edid.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >
+> > >  #include "regs-hdmi.h"
+> > > diff --git a/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_crtc.c b/drivers/gpu=
+/drm/fsl-dcu/fsl_dcu_drm_crtc.c
+> > > index 18afc94e4dff..bf256971063d 100644
+> > > --- a/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_crtc.c
+> > > +++ b/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_crtc.c
+> > > @@ -16,7 +16,7 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <video/videomode.h>
+> > >
+> > >  #include "fsl_dcu_drm_crtc.h"
+> > > diff --git a/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c b/drivers/gpu/=
+drm/fsl-dcu/fsl_dcu_drm_drv.c
+> > > index ceddc3e29258..a66fa80be8e8 100644
+> > > --- a/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c
+> > > +++ b/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c
+> > > @@ -24,7 +24,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > > diff --git a/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_kms.c b/drivers/gpu/=
+drm/fsl-dcu/fsl_dcu_drm_kms.c
+> > > index ddc68e476a4d..741de83955ec 100644
+> > > --- a/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_kms.c
+> > > +++ b/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_kms.c
+> > > @@ -11,7 +11,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_plane.c b/drivers/gp=
+u/drm/fsl-dcu/fsl_dcu_drm_plane.c
+> > > index 9554b245746e..593f9291b8e2 100644
+> > > --- a/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_plane.c
+> > > +++ b/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_plane.c
+> > > @@ -14,7 +14,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > > diff --git a/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_rgb.c b/drivers/gpu/=
+drm/fsl-dcu/fsl_dcu_drm_rgb.c
+> > > index 2298ed2a9e1c..577fb1be2d59 100644
+> > > --- a/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_rgb.c
+> > > +++ b/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_rgb.c
+> > > @@ -14,7 +14,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_of.h>
+> > >  #include <drm/drm_panel.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/gma500/psb_intel_drv.h b/drivers/gpu/drm=
+/gma500/psb_intel_drv.h
+> > > index e05e5399af2d..313552d2a69d 100644
+> > > --- a/drivers/gpu/drm/gma500/psb_intel_drv.h
+> > > +++ b/drivers/gpu/drm/gma500/psb_intel_drv.h
+> > > @@ -23,6 +23,7 @@
+> > >  #include <linux/i2c-algo-bit.h>
+> > >  #include <drm/drm_crtc.h>
+> > >  #include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_encoder.h>
+> > >  #include <linux/gpio.h>
+> > >  #include "gma_display.h"
+> > > diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_de.c b/drivers=
+/gpu/drm/hisilicon/hibmc/hibmc_drm_de.c
+> > > index a956545774a3..2ac593956529 100644
+> > > --- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_de.c
+> > > +++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_de.c
+> > > @@ -18,7 +18,7 @@
+> > >
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > >
+> > >  #include "hibmc_drm_drv.h"
+> > > diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c b/driver=
+s/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c
+> > > index 68c0c297b3a5..85a701af6530 100644
+> > > --- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c
+> > > +++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c
+> > > @@ -20,7 +20,7 @@
+> > >  #include <linux/module.h>
+> > >
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include "hibmc_drm_drv.h"
+> > >  #include "hibmc_drm_regs.h"
+> > > diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_fbdev.c b/driv=
+ers/gpu/drm/hisilicon/hibmc/hibmc_drm_fbdev.c
+> > > index edcca1761500..c442aa2dd00f 100644
+> > > --- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_fbdev.c
+> > > +++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_fbdev.c
+> > > @@ -17,7 +17,7 @@
+> > >   */
+> > >
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >
+> > >  #include "hibmc_drm_drv.h"
+> > > diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_vdac.c b/drive=
+rs/gpu/drm/hisilicon/hibmc/hibmc_drm_vdac.c
+> > > index 744956cea749..d2cf7317930a 100644
+> > > --- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_vdac.c
+> > > +++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_vdac.c
+> > > @@ -17,7 +17,7 @@
+> > >   */
+> > >
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include "hibmc_drm_drv.h"
+> > >  #include "hibmc_drm_regs.h"
+> > > diff --git a/drivers/gpu/drm/hisilicon/kirin/dw_drm_dsi.c b/drivers/g=
+pu/drm/hisilicon/kirin/dw_drm_dsi.c
+> > > index b4c7af3ab6ae..788ec1e53794 100644
+> > > --- a/drivers/gpu/drm/hisilicon/kirin/dw_drm_dsi.c
+> > > +++ b/drivers/gpu/drm/hisilicon/kirin/dw_drm_dsi.c
+> > > @@ -19,7 +19,7 @@
+> > >  #include <linux/component.h>
+> > >
+> > >  #include <drm/drm_of.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_mipi_dsi.h>
+> > >  #include <drm/drm_encoder_slave.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > diff --git a/drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c b/driver=
+s/gpu/drm/hisilicon/kirin/kirin_drm_ade.c
+> > > index bb774202a5a1..8ad7ab7ece9f 100644
+> > > --- a/drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c
+> > > +++ b/drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c
+> > > @@ -24,7 +24,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > > diff --git a/drivers/gpu/drm/hisilicon/kirin/kirin_drm_drv.c b/driver=
+s/gpu/drm/hisilicon/kirin/kirin_drm_drv.c
+> > > index e6a62d5a00a3..e0f410ce28b2 100644
+> > > --- a/drivers/gpu/drm/hisilicon/kirin/kirin_drm_drv.c
+> > > +++ b/drivers/gpu/drm/hisilicon/kirin/kirin_drm_drv.c
+> > > @@ -24,7 +24,7 @@
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_of.h>
+> > >
+> > >  #include "kirin_drm_drv.h"
+> > > diff --git a/drivers/gpu/drm/i2c/ch7006_priv.h b/drivers/gpu/drm/i2c/=
+ch7006_priv.h
+> > > index dc6414af5d79..25f0abd4fdab 100644
+> > > --- a/drivers/gpu/drm/i2c/ch7006_priv.h
+> > > +++ b/drivers/gpu/drm/i2c/ch7006_priv.h
+> > > @@ -28,6 +28,7 @@
+> > >  #define __DRM_I2C_CH7006_PRIV_H__
+> > >
+> > >  #include <drm/drmP.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_crtc_helper.h>
+> > >  #include <drm/drm_encoder_slave.h>
+> > >  #include <drm/i2c/ch7006.h>
+> > > diff --git a/drivers/gpu/drm/i2c/sil164_drv.c b/drivers/gpu/drm/i2c/s=
+il164_drv.c
+> > > index c52d7a3af786..14c1fc96a157 100644
+> > > --- a/drivers/gpu/drm/i2c/sil164_drv.c
+> > > +++ b/drivers/gpu/drm/i2c/sil164_drv.c
+> > > @@ -27,7 +27,7 @@
+> > >  #include <linux/module.h>
+> > >
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_encoder_slave.h>
+> > >  #include <drm/i2c/sil164.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/i2c/tda998x_drv.c b/drivers/gpu/drm/i2c/=
+tda998x_drv.c
+> > > index f8a1d70a31c7..b7d0eb181793 100644
+> > > --- a/drivers/gpu/drm/i2c/tda998x_drv.c
+> > > +++ b/drivers/gpu/drm/i2c/tda998x_drv.c
+> > > @@ -26,7 +26,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include <drm/drm_of.h>
+> > >  #include <drm/i2c/tda998x.h>
+> > > diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i=
+915_drv.c
+> > > index caa055ac9472..b5b89b01e376 100644
+> > > --- a/drivers/gpu/drm/i915/i915_drv.c
+> > > +++ b/drivers/gpu/drm/i915/i915_drv.c
+> > > @@ -42,7 +42,7 @@
+> > >  #include <acpi/video.h>
+> > >
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/i915_drm.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/intel_crt.c b/drivers/gpu/drm/i915/=
+intel_crt.c
+> > > index 0a41e58d61de..c2d0b1d5166f 100644
+> > > --- a/drivers/gpu/drm/i915/intel_crt.c
+> > > +++ b/drivers/gpu/drm/i915/intel_crt.c
+> > > @@ -30,7 +30,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include "intel_drv.h"
+> > >  #include <drm/i915_drm.h>
+> > > diff --git a/drivers/gpu/drm/i915/intel_display.c b/drivers/gpu/drm/i=
+915/intel_display.c
+> > > index 849a677763b9..f500470a68f5 100644
+> > > --- a/drivers/gpu/drm/i915/intel_display.c
+> > > +++ b/drivers/gpu/drm/i915/intel_display.c
+> > > @@ -42,7 +42,7 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_dp_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > >  #include <drm/drm_rect.h>
+> > >  #include <drm/drm_atomic_uapi.h>
+> > > diff --git a/drivers/gpu/drm/i915/intel_dp.c b/drivers/gpu/drm/i915/i=
+ntel_dp.c
+> > > index 62484e129563..30c882942ed9 100644
+> > > --- a/drivers/gpu/drm/i915/intel_dp.c
+> > > +++ b/drivers/gpu/drm/i915/intel_dp.c
+> > > @@ -35,7 +35,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_dp_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include <drm/drm_hdcp.h>
+> > > diff --git a/drivers/gpu/drm/i915/intel_dp_mst.c b/drivers/gpu/drm/i9=
+15/intel_dp_mst.c
+> > > index f05427b74e34..32e3c0366876 100644
+> > > --- a/drivers/gpu/drm/i915/intel_dp_mst.c
+> > > +++ b/drivers/gpu/drm/i915/intel_dp_mst.c
+> > > @@ -27,7 +27,7 @@
+> > >  #include "i915_drv.h"
+> > >  #include "intel_drv.h"
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >
+> > >  static bool intel_dp_mst_compute_config(struct intel_encoder *encode=
+r,
+> > > diff --git a/drivers/gpu/drm/i915/intel_drv.h b/drivers/gpu/drm/i915/=
+intel_drv.h
+> > > index cb3a055f18c8..c6d2eff0e19e 100644
+> > > --- a/drivers/gpu/drm/i915/intel_drv.h
+> > > +++ b/drivers/gpu/drm/i915/intel_drv.h
+> > > @@ -32,7 +32,7 @@
+> > >  #include <drm/i915_drm.h>
+> > >  #include "i915_drv.h"
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_encoder.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_dp_dual_mode_helper.h>
+> > > diff --git a/drivers/gpu/drm/imx/dw_hdmi-imx.c b/drivers/gpu/drm/imx/=
+dw_hdmi-imx.c
+> > > index 77a26fd3a44a..06393cd1067d 100644
+> > > --- a/drivers/gpu/drm/imx/dw_hdmi-imx.c
+> > > +++ b/drivers/gpu/drm/imx/dw_hdmi-imx.c
+> > > @@ -13,7 +13,7 @@
+> > >  #include <linux/regmap.h>
+> > >  #include <drm/drm_of.h>
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include <drm/drm_encoder_slave.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/imx/imx-drm-core.c b/drivers/gpu/drm/imx=
+/imx-drm-core.c
+> > > index 820c7e3878f0..4db26cbed08f 100644
+> > > --- a/drivers/gpu/drm/imx/imx-drm-core.c
+> > > +++ b/drivers/gpu/drm/imx/imx-drm-core.c
+> > > @@ -13,7 +13,7 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > > diff --git a/drivers/gpu/drm/imx/imx-ldb.c b/drivers/gpu/drm/imx/imx-=
+ldb.c
+> > > index 2c5bbe317353..ffa742f64d44 100644
+> > > --- a/drivers/gpu/drm/imx/imx-ldb.c
+> > > +++ b/drivers/gpu/drm/imx/imx-ldb.c
+> > > @@ -12,7 +12,7 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_of.h>
+> > >  #include <drm/drm_panel.h>
+> > >  #include <linux/mfd/syscon.h>
+> > > diff --git a/drivers/gpu/drm/imx/imx-tve.c b/drivers/gpu/drm/imx/imx-=
+tve.c
+> > > index 293dd5752583..e725af8a0025 100644
+> > > --- a/drivers/gpu/drm/imx/imx-tve.c
+> > > +++ b/drivers/gpu/drm/imx/imx-tve.c
+> > > @@ -17,7 +17,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <video/imx-ipu-v3.h>
+> > >
+> > >  #include "imx-drm.h"
+> > > diff --git a/drivers/gpu/drm/imx/ipuv3-crtc.c b/drivers/gpu/drm/imx/i=
+puv3-crtc.c
+> > > index 058b53c0aa7e..95ddcbf2f6eb 100644
+> > > --- a/drivers/gpu/drm/imx/ipuv3-crtc.c
+> > > +++ b/drivers/gpu/drm/imx/ipuv3-crtc.c
+> > > @@ -12,7 +12,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <linux/clk.h>
+> > >  #include <linux/errno.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > > diff --git a/drivers/gpu/drm/imx/parallel-display.c b/drivers/gpu/drm=
+/imx/parallel-display.c
+> > > index f3ce51121dd6..670919781ded 100644
+> > > --- a/drivers/gpu/drm/imx/parallel-display.c
+> > > +++ b/drivers/gpu/drm/imx/parallel-display.c
+> > > @@ -10,7 +10,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_of.h>
+> > >  #include <drm/drm_panel.h>
+> > >  #include <linux/videodev2.h>
+> > > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/med=
+iatek/mtk_dpi.c
+> > > index 62a9d47df948..22e68a100e7b 100644
+> > > --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > > +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > > @@ -13,7 +13,7 @@
+> > >   */
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_of.h>
+> > >  #include <linux/kernel.h>
+> > >  #include <linux/component.h>
+> > > diff --git a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c b/drivers/gpu/dr=
+m/mediatek/mtk_drm_crtc.c
+> > > index 92ecb9bf982c..96709318ad8c 100644
+> > > --- a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+> > > +++ b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+> > > @@ -14,7 +14,7 @@
+> > >  #include <asm/barrier.h>
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > >  #include <linux/clk.h>
+> > >  #include <linux/pm_runtime.h>
+> > > diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm=
+/mediatek/mtk_drm_drv.c
+> > > index 6422e99952fe..8a48a317cbd3 100644
+> > > --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> > > +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> > > @@ -15,7 +15,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_gem.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_of.h>
+> > > diff --git a/drivers/gpu/drm/mediatek/mtk_drm_fb.c b/drivers/gpu/drm/=
+mediatek/mtk_drm_fb.c
+> > > index be5f6f1daf55..e20fcaef2851 100644
+> > > --- a/drivers/gpu/drm/mediatek/mtk_drm_fb.c
+> > > +++ b/drivers/gpu/drm/mediatek/mtk_drm_fb.c
+> > > @@ -12,7 +12,7 @@
+> > >   */
+> > >
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_modeset_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_gem.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > > diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/med=
+iatek/mtk_dsi.c
+> > > index 27b507eb4a99..04bfba71aebf 100644
+> > > --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
+> > > +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
+> > > @@ -13,7 +13,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_mipi_dsi.h>
+> > >  #include <drm/drm_panel.h>
+> > >  #include <drm/drm_of.h>
+> > > diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi.c b/drivers/gpu/drm/me=
+diatek/mtk_hdmi.c
+> > > index 862f3ec22131..607287797073 100644
+> > > --- a/drivers/gpu/drm/mediatek/mtk_hdmi.c
+> > > +++ b/drivers/gpu/drm/mediatek/mtk_hdmi.c
+> > > @@ -14,7 +14,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include <linux/arm-smccc.h>
+> > >  #include <linux/clk.h>
+> > > diff --git a/drivers/gpu/drm/meson/meson_crtc.c b/drivers/gpu/drm/mes=
+on/meson_crtc.c
+> > > index 75d97f1b2e8f..ec573c04206b 100644
+> > > --- a/drivers/gpu/drm/meson/meson_crtc.c
+> > > +++ b/drivers/gpu/drm/meson/meson_crtc.c
+> > > @@ -30,7 +30,7 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_flip_work.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include "meson_crtc.h"
+> > >  #include "meson_plane.h"
+> > > diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meso=
+n/meson_drv.c
+> > > index 3ee4d4a4ecba..6b29447fd09e 100644
+> > > --- a/drivers/gpu/drm/meson/meson_drv.c
+> > > +++ b/drivers/gpu/drm/meson/meson_drv.c
+> > > @@ -31,7 +31,7 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_flip_work.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > > diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/=
+meson/meson_dw_hdmi.c
+> > > index 807111ebfdd9..b6299f3f4310 100644
+> > > --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
+> > > +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+> > > @@ -27,7 +27,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_edid.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/bridge/dw_hdmi.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/meson/meson_venc_cvbs.c b/drivers/gpu/dr=
+m/meson/meson_venc_cvbs.c
+> > > index f7945bae3b4a..64de3a7026d0 100644
+> > > --- a/drivers/gpu/drm/meson/meson_venc_cvbs.c
+> > > +++ b/drivers/gpu/drm/meson/meson_venc_cvbs.c
+> > > @@ -27,7 +27,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_edid.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >
+> > >  #include "meson_venc_cvbs.h"
+> > > diff --git a/drivers/gpu/drm/mgag200/mgag200_mode.c b/drivers/gpu/drm=
+/mgag200/mgag200_mode.c
+> > > index acf7bfe68454..7481a3d556ad 100644
+> > > --- a/drivers/gpu/drm/mgag200/mgag200_mode.c
+> > > +++ b/drivers/gpu/drm/mgag200/mgag200_mode.c
+> > > @@ -16,6 +16,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_crtc_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include "mgag200_drv.h"
+> > >
+> > > diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/d=
+rm/msm/disp/dpu1/dpu_crtc.c
+> > > index 9be7c355debd..660c324f861f 100644
+> > > --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+> > > +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
+> > > @@ -22,7 +22,7 @@
+> > >  #include <linux/ktime.h>
+> > >  #include <drm/drm_mode.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_flip_work.h>
+> > >  #include <drm/drm_rect.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c b/drivers/gp=
+u/drm/msm/disp/dpu1/dpu_encoder.c
+> > > index 36158b7d99cd..36af231bb73f 100644
+> > > --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> > > +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+> > > @@ -24,7 +24,7 @@
+> > >  #include "msm_drv.h"
+> > >  #include "dpu_kms.h"
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include "dpu_hwio.h"
+> > >  #include "dpu_hw_catalog.h"
+> > >  #include "dpu_hw_intf.h"
+> > > diff --git a/drivers/gpu/drm/msm/disp/mdp4/mdp4_crtc.c b/drivers/gpu/=
+drm/msm/disp/mdp4/mdp4_crtc.c
+> > > index 8f2359dc87b4..299686ba248a 100644
+> > > --- a/drivers/gpu/drm/msm/disp/mdp4/mdp4_crtc.c
+> > > +++ b/drivers/gpu/drm/msm/disp/mdp4/mdp4_crtc.c
+> > > @@ -16,7 +16,7 @@
+> > >   */
+> > >
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_flip_work.h>
+> > >  #include <drm/drm_mode.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/msm/disp/mdp4/mdp4_dsi_encoder.c b/drive=
+rs/gpu/drm/msm/disp/mdp4/mdp4_dsi_encoder.c
+> > > index 6a1ebdace391..86cbe173106e 100644
+> > > --- a/drivers/gpu/drm/msm/disp/mdp4/mdp4_dsi_encoder.c
+> > > +++ b/drivers/gpu/drm/msm/disp/mdp4/mdp4_dsi_encoder.c
+> > > @@ -18,7 +18,7 @@
+> > >   */
+> > >
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include "mdp4_kms.h"
+> > >
+> > > diff --git a/drivers/gpu/drm/msm/disp/mdp4/mdp4_dtv_encoder.c b/drive=
+rs/gpu/drm/msm/disp/mdp4/mdp4_dtv_encoder.c
+> > > index a8fd14d4846b..731d628eaabf 100644
+> > > --- a/drivers/gpu/drm/msm/disp/mdp4/mdp4_dtv_encoder.c
+> > > +++ b/drivers/gpu/drm/msm/disp/mdp4/mdp4_dtv_encoder.c
+> > > @@ -16,7 +16,7 @@
+> > >   */
+> > >
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include "mdp4_kms.h"
+> > >
+> > > diff --git a/drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c b/driv=
+ers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c
+> > > index c9e34501a89e..b23e60b2317b 100644
+> > > --- a/drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c
+> > > +++ b/drivers/gpu/drm/msm/disp/mdp4/mdp4_lcdc_encoder.c
+> > > @@ -17,7 +17,7 @@
+> > >   */
+> > >
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include "mdp4_kms.h"
+> > >
+> > > diff --git a/drivers/gpu/drm/msm/disp/mdp5/mdp5_cmd_encoder.c b/drive=
+rs/gpu/drm/msm/disp/mdp5/mdp5_cmd_encoder.c
+> > > index c1962f29ec7d..34d41e76ba6f 100644
+> > > --- a/drivers/gpu/drm/msm/disp/mdp5/mdp5_cmd_encoder.c
+> > > +++ b/drivers/gpu/drm/msm/disp/mdp5/mdp5_cmd_encoder.c
+> > > @@ -12,7 +12,7 @@
+> > >   */
+> > >
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include "mdp5_kms.h"
+> > >
+> > > diff --git a/drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c b/drivers/gpu/=
+drm/msm/disp/mdp5/mdp5_crtc.c
+> > > index c5fde1a4191a..2872c89c82c3 100644
+> > > --- a/drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c
+> > > +++ b/drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c
+> > > @@ -19,7 +19,7 @@
+> > >  #include <linux/sort.h>
+> > >  #include <drm/drm_mode.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_flip_work.h>
+> > >
+> > >  #include "mdp5_kms.h"
+> > > diff --git a/drivers/gpu/drm/msm/disp/mdp5/mdp5_encoder.c b/drivers/g=
+pu/drm/msm/disp/mdp5/mdp5_encoder.c
+> > > index fcd44d1d1068..b32c662dcb60 100644
+> > > --- a/drivers/gpu/drm/msm/disp/mdp5/mdp5_encoder.c
+> > > +++ b/drivers/gpu/drm/msm/disp/mdp5/mdp5_encoder.c
+> > > @@ -17,7 +17,7 @@
+> > >   */
+> > >
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include "mdp5_kms.h"
+> > >
+> > > diff --git a/drivers/gpu/drm/msm/msm_drv.h b/drivers/gpu/drm/msm/msm_=
+drv.h
+> > > index 9cd6a96c6bf2..353a6fb98adb 100644
+> > > --- a/drivers/gpu/drm/msm/msm_drv.h
+> > > +++ b/drivers/gpu/drm/msm/msm_drv.h
+> > > @@ -39,7 +39,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/msm_drm.h>
+> > > diff --git a/drivers/gpu/drm/msm/msm_fb.c b/drivers/gpu/drm/msm/msm_f=
+b.c
+> > > index 67dfd8d3dc12..2e62c943571d 100644
+> > > --- a/drivers/gpu/drm/msm/msm_fb.c
+> > > +++ b/drivers/gpu/drm/msm/msm_fb.c
+> > > @@ -16,7 +16,7 @@
+> > >   */
+> > >
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > >
+> > >  #include "msm_drv.h"
+> > > diff --git a/drivers/gpu/drm/mxsfb/mxsfb_crtc.c b/drivers/gpu/drm/mxs=
+fb/mxsfb_crtc.c
+> > > index 24b1f0c1432e..38cdde9841e2 100644
+> > > --- a/drivers/gpu/drm/mxsfb/mxsfb_crtc.c
+> > > +++ b/drivers/gpu/drm/mxsfb/mxsfb_crtc.c
+> > > @@ -19,7 +19,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > > diff --git a/drivers/gpu/drm/mxsfb/mxsfb_drv.c b/drivers/gpu/drm/mxsf=
+b/mxsfb_drv.c
+> > > index 88ba003979e6..9c117352fca9 100644
+> > > --- a/drivers/gpu/drm/mxsfb/mxsfb_drv.c
+> > > +++ b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
+> > > @@ -31,7 +31,7 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > > diff --git a/drivers/gpu/drm/mxsfb/mxsfb_out.c b/drivers/gpu/drm/mxsf=
+b/mxsfb_out.c
+> > > index e5edf016a439..1bec96baf948 100644
+> > > --- a/drivers/gpu/drm/mxsfb/mxsfb_out.c
+> > > +++ b/drivers/gpu/drm/mxsfb/mxsfb_out.c
+> > > @@ -16,7 +16,7 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_of.h>
+> > > diff --git a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c b/drivers/gpu/=
+drm/nouveau/dispnv04/tvnv17.c
+> > > index 8fd8124d72ba..26fd71c06626 100644
+> > > --- a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
+> > > +++ b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
+> > > @@ -26,6 +26,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include "nouveau_drv.h"
+> > >  #include "nouveau_reg.h"
+> > >  #include "nouveau_encoder.h"
+> > > diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/dr=
+m/nouveau/dispnv50/disp.c
+> > > index 26af45785939..8ece696dd1a1 100644
+> > > --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> > > +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+> > > @@ -32,7 +32,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_dp_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > > diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gp=
+u/drm/nouveau/nouveau_connector.c
+> > > index 3f463c91314a..4116ee62adaf 100644
+> > > --- a/drivers/gpu/drm/nouveau/nouveau_connector.c
+> > > +++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+> > > @@ -33,6 +33,7 @@
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_atomic.h>
+> > >
+> > >  #include "nouveau_reg.h"
+> > > diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/=
+drm/nouveau/nouveau_display.c
+> > > index 5d273a655479..0b58709f0406 100644
+> > > --- a/drivers/gpu/drm/nouveau/nouveau_display.c
+> > > +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+> > > @@ -29,6 +29,7 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >
+> > >  #include <nvif/class.h>
+> > > diff --git a/drivers/gpu/drm/omapdrm/omap_connector.c b/drivers/gpu/d=
+rm/omapdrm/omap_connector.c
+> > > index b81302c4bf9e..4fef6293f6c0 100644
+> > > --- a/drivers/gpu/drm/omapdrm/omap_connector.c
+> > > +++ b/drivers/gpu/drm/omapdrm/omap_connector.c
+> > > @@ -17,7 +17,7 @@
+> > >
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include "omap_drv.h"
+> > >
+> > > diff --git a/drivers/gpu/drm/omapdrm/omap_crtc.c b/drivers/gpu/drm/om=
+apdrm/omap_crtc.c
+> > > index caffc547ef97..aab1b1a49a87 100644
+> > > --- a/drivers/gpu/drm/omapdrm/omap_crtc.c
+> > > +++ b/drivers/gpu/drm/omapdrm/omap_crtc.c
+> > > @@ -18,7 +18,7 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_mode.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > >  #include <linux/math64.h>
+> > > diff --git a/drivers/gpu/drm/omapdrm/omap_drv.c b/drivers/gpu/drm/oma=
+pdrm/omap_drv.c
+> > > index 5e67d58cbc28..3a78f0cf3321 100644
+> > > --- a/drivers/gpu/drm/omapdrm/omap_drv.c
+> > > +++ b/drivers/gpu/drm/omapdrm/omap_drv.c
+> > > @@ -21,7 +21,7 @@
+> > >
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >
+> > >  #include "omap_dmm_tiler.h"
+> > > diff --git a/drivers/gpu/drm/omapdrm/omap_drv.h b/drivers/gpu/drm/oma=
+pdrm/omap_drv.h
+> > > index bd7f2c227a25..513ae8ab5e64 100644
+> > > --- a/drivers/gpu/drm/omapdrm/omap_drv.h
+> > > +++ b/drivers/gpu/drm/omapdrm/omap_drv.h
+> > > @@ -23,7 +23,7 @@
+> > >  #include <linux/workqueue.h>
+> > >
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_gem.h>
+> > >  #include <drm/omap_drm.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/omapdrm/omap_encoder.c b/drivers/gpu/drm=
+/omapdrm/omap_encoder.c
+> > > index 933ebc9f9faa..47c86b85906a 100644
+> > > --- a/drivers/gpu/drm/omapdrm/omap_encoder.c
+> > > +++ b/drivers/gpu/drm/omapdrm/omap_encoder.c
+> > > @@ -18,7 +18,7 @@
+> > >  #include <linux/list.h>
+> > >
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >
+> > >  #include "omap_drv.h"
+> > > diff --git a/drivers/gpu/drm/omapdrm/omap_fb.c b/drivers/gpu/drm/omap=
+drm/omap_fb.c
+> > > index 4d264fd554d8..4f8eb9d08f99 100644
+> > > --- a/drivers/gpu/drm/omapdrm/omap_fb.c
+> > > +++ b/drivers/gpu/drm/omapdrm/omap_fb.c
+> > > @@ -18,7 +18,7 @@
+> > >  #include <linux/seq_file.h>
+> > >
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_modeset_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > >
+> > >  #include "omap_dmm_tiler.h"
+> > > diff --git a/drivers/gpu/drm/pl111/pl111_drv.c b/drivers/gpu/drm/pl11=
+1/pl111_drv.c
+> > > index 33e0483d62ae..9dbb11cfbb20 100644
+> > > --- a/drivers/gpu/drm/pl111/pl111_drv.c
+> > > +++ b/drivers/gpu/drm/pl111/pl111_drv.c
+> > > @@ -64,7 +64,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > > diff --git a/drivers/gpu/drm/qxl/qxl_display.c b/drivers/gpu/drm/qxl/=
+qxl_display.c
+> > > index 72a1784dae54..1de03d60bf23 100644
+> > > --- a/drivers/gpu/drm/qxl/qxl_display.c
+> > > +++ b/drivers/gpu/drm/qxl/qxl_display.c
+> > > @@ -24,9 +24,9 @@
+> > >   */
+> > >
+> > >  #include <linux/crc32.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/qxl/qxl_drv.c b/drivers/gpu/drm/qxl/qxl_=
+drv.c
+> > > index 13c8a662f9b4..fd987d62d902 100644
+> > > --- a/drivers/gpu/drm/qxl/qxl_drv.c
+> > > +++ b/drivers/gpu/drm/qxl/qxl_drv.c
+> > > @@ -33,7 +33,8 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_modeset_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include "qxl_drv.h"
+> > >  #include "qxl_object.h"
+> > >
+> > > diff --git a/drivers/gpu/drm/qxl/qxl_fb.c b/drivers/gpu/drm/qxl/qxl_f=
+b.c
+> > > index a819d24225d2..996cdb8fb4fa 100644
+> > > --- a/drivers/gpu/drm/qxl/qxl_fb.c
+> > > +++ b/drivers/gpu/drm/qxl/qxl_fb.c
+> > > @@ -28,7 +28,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/qxl/qxl_kms.c b/drivers/gpu/drm/qxl/qxl_=
+kms.c
+> > > index 15238a413f9d..85e13afa1808 100644
+> > > --- a/drivers/gpu/drm/qxl/qxl_kms.c
+> > > +++ b/drivers/gpu/drm/qxl/qxl_kms.c
+> > > @@ -26,7 +26,7 @@
+> > >  #include "qxl_drv.h"
+> > >  #include "qxl_object.h"
+> > >
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <linux/io-mapping.h>
+> > >
+> > >  int qxl_log_level;
+> > > diff --git a/drivers/gpu/drm/radeon/radeon_acpi.c b/drivers/gpu/drm/r=
+adeon/radeon_acpi.c
+> > > index 8d3251a10cd4..224cc21bbe38 100644
+> > > --- a/drivers/gpu/drm/radeon/radeon_acpi.c
+> > > +++ b/drivers/gpu/drm/radeon/radeon_acpi.c
+> > > @@ -29,6 +29,7 @@
+> > >  #include <acpi/video.h>
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include "radeon.h"
+> > >  #include "radeon_acpi.h"
+> > >  #include "atom.h"
+> > > diff --git a/drivers/gpu/drm/radeon/radeon_connectors.c b/drivers/gpu=
+/drm/radeon/radeon_connectors.c
+> > > index 414642e5b7a3..88239c1e7c5b 100644
+> > > --- a/drivers/gpu/drm/radeon/radeon_connectors.c
+> > > +++ b/drivers/gpu/drm/radeon/radeon_connectors.c
+> > > @@ -26,6 +26,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_dp_mst_helper.h>
+> > >  #include <drm/radeon_drm.h>
+> > > diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm=
+/radeon/radeon_device.c
+> > > index 59c8a6647ff2..53f29a115104 100644
+> > > --- a/drivers/gpu/drm/radeon/radeon_device.c
+> > > +++ b/drivers/gpu/drm/radeon/radeon_device.c
+> > > @@ -29,6 +29,7 @@
+> > >  #include <linux/slab.h>
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_cache.h>
+> > >  #include <drm/radeon_drm.h>
+> > >  #include <linux/pm_runtime.h>
+> > > diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/dr=
+m/radeon/radeon_display.c
+> > > index 92332226e5cf..e252ab3832a5 100644
+> > > --- a/drivers/gpu/drm/radeon/radeon_display.c
+> > > +++ b/drivers/gpu/drm/radeon/radeon_display.c
+> > > @@ -32,6 +32,7 @@
+> > >
+> > >  #include <linux/pm_runtime.h>
+> > >  #include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > > diff --git a/drivers/gpu/drm/radeon/radeon_dp_mst.c b/drivers/gpu/drm=
+/radeon/radeon_dp_mst.c
+> > > index a0c70e27ab65..8d85540bbb43 100644
+> > > --- a/drivers/gpu/drm/radeon/radeon_dp_mst.c
+> > > +++ b/drivers/gpu/drm/radeon/radeon_dp_mst.c
+> > > @@ -3,6 +3,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_dp_mst_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include "radeon.h"
+> > >  #include "atom.h"
+> > > diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/ra=
+deon/radeon_drv.c
+> > > index 99c63eeb2866..8897c3d18fbb 100644
+> > > --- a/drivers/gpu/drm/radeon/radeon_drv.c
+> > > +++ b/drivers/gpu/drm/radeon/radeon_drv.c
+> > > @@ -43,6 +43,7 @@
+> > >  #include <drm/drm_fb_helper.h>
+> > >
+> > >  #include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  /*
+> > >   * KMS wrapper.
+> > > diff --git a/drivers/gpu/drm/radeon/radeon_irq_kms.c b/drivers/gpu/dr=
+m/radeon/radeon_irq_kms.c
+> > > index afaf10db47cc..1d5e3ba7383e 100644
+> > > --- a/drivers/gpu/drm/radeon/radeon_irq_kms.c
+> > > +++ b/drivers/gpu/drm/radeon/radeon_irq_kms.c
+> > > @@ -27,6 +27,7 @@
+> > >   */
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/radeon_drm.h>
+> > >  #include "radeon_reg.h"
+> > >  #include "radeon.h"
+> > > diff --git a/drivers/gpu/drm/rcar-du/rcar_du_crtc.c b/drivers/gpu/drm=
+/rcar-du/rcar_du_crtc.c
+> > > index 90dacab67be5..b15d2b3a07f1 100644
+> > > --- a/drivers/gpu/drm/rcar-du/rcar_du_crtc.c
+> > > +++ b/drivers/gpu/drm/rcar-du/rcar_du_crtc.c
+> > > @@ -15,7 +15,7 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > > diff --git a/drivers/gpu/drm/rcar-du/rcar_du_drv.c b/drivers/gpu/drm/=
+rcar-du/rcar_du_drv.c
+> > > index f50a3b1864bb..60862858d041 100644
+> > > --- a/drivers/gpu/drm/rcar-du/rcar_du_drv.c
+> > > +++ b/drivers/gpu/drm/rcar-du/rcar_du_drv.c
+> > > @@ -19,7 +19,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > > diff --git a/drivers/gpu/drm/rcar-du/rcar_du_encoder.c b/drivers/gpu/=
+drm/rcar-du/rcar_du_encoder.c
+> > > index 1877764bd6d9..0b440f554aed 100644
+> > > --- a/drivers/gpu/drm/rcar-du/rcar_du_encoder.c
+> > > +++ b/drivers/gpu/drm/rcar-du/rcar_du_encoder.c
+> > > @@ -11,7 +11,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_panel.h>
+> > >
+> > >  #include "rcar_du_drv.h"
+> > > diff --git a/drivers/gpu/drm/rcar-du/rcar_du_kms.c b/drivers/gpu/drm/=
+rcar-du/rcar_du_kms.c
+> > > index 9c7007d45408..af337c918d84 100644
+> > > --- a/drivers/gpu/drm/rcar-du/rcar_du_kms.c
+> > > +++ b/drivers/gpu/drm/rcar-du/rcar_du_kms.c
+> > > @@ -11,7 +11,7 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > > diff --git a/drivers/gpu/drm/rcar-du/rcar_du_plane.c b/drivers/gpu/dr=
+m/rcar-du/rcar_du_plane.c
+> > > index 39d5ae3fdf72..b7fa278ca745 100644
+> > > --- a/drivers/gpu/drm/rcar-du/rcar_du_plane.c
+> > > +++ b/drivers/gpu/drm/rcar-du/rcar_du_plane.c
+> > > @@ -11,7 +11,7 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > > diff --git a/drivers/gpu/drm/rcar-du/rcar_du_vsp.c b/drivers/gpu/drm/=
+rcar-du/rcar_du_vsp.c
+> > > index 4576119e7777..35b2a4d3ae74 100644
+> > > --- a/drivers/gpu/drm/rcar-du/rcar_du_vsp.c
+> > > +++ b/drivers/gpu/drm/rcar-du/rcar_du_vsp.c
+> > > @@ -10,7 +10,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > > diff --git a/drivers/gpu/drm/rcar-du/rcar_lvds.c b/drivers/gpu/drm/rc=
+ar-du/rcar_lvds.c
+> > > index 534a128a869d..24cb74e30fcd 100644
+> > > --- a/drivers/gpu/drm/rcar-du/rcar_lvds.c
+> > > +++ b/drivers/gpu/drm/rcar-du/rcar_lvds.c
+> > > @@ -19,7 +19,7 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_bridge.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_panel.h>
+> > >
+> > >  #include "rcar_lvds_regs.h"
+> > > diff --git a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c b/driver=
+s/gpu/drm/rockchip/analogix_dp-rockchip.c
+> > > index 080f05352195..2f6b4a4a9d6b 100644
+> > > --- a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+> > > +++ b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+> > > @@ -21,7 +21,7 @@
+> > >  #include <linux/clk.h>
+> > >
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_dp_helper.h>
+> > >  #include <drm/drm_of.h>
+> > >  #include <drm/drm_panel.h>
+> > > diff --git a/drivers/gpu/drm/rockchip/cdn-dp-core.c b/drivers/gpu/drm=
+/rockchip/cdn-dp-core.c
+> > > index 8ad0d773dc33..7896b3c28676 100644
+> > > --- a/drivers/gpu/drm/rockchip/cdn-dp-core.c
+> > > +++ b/drivers/gpu/drm/rockchip/cdn-dp-core.c
+> > > @@ -14,7 +14,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_dp_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include <drm/drm_of.h>
+> > > diff --git a/drivers/gpu/drm/rockchip/cdn-dp-core.h b/drivers/gpu/drm=
+/rockchip/cdn-dp-core.h
+> > > index f57e296401b8..7000b53dddcb 100644
+> > > --- a/drivers/gpu/drm/rockchip/cdn-dp-core.h
+> > > +++ b/drivers/gpu/drm/rockchip/cdn-dp-core.h
+> > > @@ -16,7 +16,7 @@
+> > >  #define _CDN_DP_CORE_H
+> > >
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_dp_helper.h>
+> > >  #include <drm/drm_panel.h>
+> > >  #include "rockchip_drm_drv.h"
+> > > diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gp=
+u/drm/rockchip/dw_hdmi-rockchip.c
+> > > index 89c63cfde5c8..1e2cc2b02a31 100644
+> > > --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> > > +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> > > @@ -16,7 +16,7 @@
+> > >
+> > >  #include <drm/drm_of.h>
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include <drm/bridge/dw_hdmi.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/rockchip/inno_hdmi.c b/drivers/gpu/drm/r=
+ockchip/inno_hdmi.c
+> > > index 1c02b3e61299..9db4a706b450 100644
+> > > --- a/drivers/gpu/drm/rockchip/inno_hdmi.c
+> > > +++ b/drivers/gpu/drm/rockchip/inno_hdmi.c
+> > > @@ -26,7 +26,7 @@
+> > >  #include <drm/drm_of.h>
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >
+> > >  #include "rockchip_drm_drv.h"
+> > > diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c b/drivers/gp=
+u/drm/rockchip/rockchip_drm_drv.c
+> > > index be6c2573039a..d2b69a533692 100644
+> > > --- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+> > > +++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+> > > @@ -15,7 +15,7 @@
+> > >   */
+> > >
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_of.h>
+> > > diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_fb.c b/drivers/gpu=
+/drm/rockchip/rockchip_drm_fb.c
+> > > index ea18cb2a76c0..567605fc2898 100644
+> > > --- a/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
+> > > +++ b/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
+> > > @@ -17,7 +17,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > >
+> > >  #include "rockchip_drm_drv.h"
+> > > diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_fbdev.c b/drivers/=
+gpu/drm/rockchip/rockchip_drm_fbdev.c
+> > > index 361604e51361..7bd3b89022be 100644
+> > > --- a/drivers/gpu/drm/rockchip/rockchip_drm_fbdev.c
+> > > +++ b/drivers/gpu/drm/rockchip/rockchip_drm_fbdev.c
+> > > @@ -15,7 +15,7 @@
+> > >  #include <drm/drm.h>
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include "rockchip_drm_drv.h"
+> > >  #include "rockchip_drm_gem.h"
+> > > diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_psr.c b/drivers/gp=
+u/drm/rockchip/rockchip_drm_psr.c
+> > > index 01ff3c858875..b165e248c2e6 100644
+> > > --- a/drivers/gpu/drm/rockchip/rockchip_drm_psr.c
+> > > +++ b/drivers/gpu/drm/rockchip/rockchip_drm_psr.c
+> > > @@ -13,7 +13,7 @@
+> > >   */
+> > >
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include "rockchip_drm_drv.h"
+> > >  #include "rockchip_drm_psr.h"
+> > > diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop.c b/drivers/gp=
+u/drm/rockchip/rockchip_drm_vop.c
+> > > index db8358e6d230..fa6d48f5a120 100644
+> > > --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop.c
+> > > +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop.c
+> > > @@ -16,7 +16,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_flip_work.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > > diff --git a/drivers/gpu/drm/rockchip/rockchip_lvds.c b/drivers/gpu/d=
+rm/rockchip/rockchip_lvds.c
+> > > index 456bd9f13bae..fd21901880e6 100644
+> > > --- a/drivers/gpu/drm/rockchip/rockchip_lvds.c
+> > > +++ b/drivers/gpu/drm/rockchip/rockchip_lvds.c
+> > > @@ -16,7 +16,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_dp_helper.h>
+> > >  #include <drm/drm_panel.h>
+> > >  #include <drm/drm_of.h>
+> > > diff --git a/drivers/gpu/drm/rockchip/rockchip_rgb.c b/drivers/gpu/dr=
+m/rockchip/rockchip_rgb.c
+> > > index 96ac1458a59c..bec197c9a3cf 100644
+> > > --- a/drivers/gpu/drm/rockchip/rockchip_rgb.c
+> > > +++ b/drivers/gpu/drm/rockchip/rockchip_rgb.c
+> > > @@ -16,7 +16,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_dp_helper.h>
+> > >  #include <drm/drm_panel.h>
+> > >  #include <drm/drm_of.h>
+> > > diff --git a/drivers/gpu/drm/shmobile/shmob_drm_crtc.c b/drivers/gpu/=
+drm/shmobile/shmob_drm_crtc.c
+> > > index 499b5fdb869f..8e77ba8186a8 100644
+> > > --- a/drivers/gpu/drm/shmobile/shmob_drm_crtc.c
+> > > +++ b/drivers/gpu/drm/shmobile/shmob_drm_crtc.c
+> > > @@ -13,6 +13,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_crtc.h>
+> > >  #include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > > diff --git a/drivers/gpu/drm/shmobile/shmob_drm_drv.c b/drivers/gpu/d=
+rm/shmobile/shmob_drm_drv.c
+> > > index 8554102a6ead..fc09bd6ad592 100644
+> > > --- a/drivers/gpu/drm/shmobile/shmob_drm_drv.c
+> > > +++ b/drivers/gpu/drm/shmobile/shmob_drm_drv.c
+> > > @@ -17,6 +17,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >
+> > >  #include "shmob_drm_drv.h"
+> > > diff --git a/drivers/gpu/drm/shmobile/shmob_drm_kms.c b/drivers/gpu/d=
+rm/shmobile/shmob_drm_kms.c
+> > > index a17268444c6d..2e866af7b9e7 100644
+> > > --- a/drivers/gpu/drm/shmobile/shmob_drm_kms.c
+> > > +++ b/drivers/gpu/drm/shmobile/shmob_drm_kms.c
+> > > @@ -10,6 +10,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_crtc.h>
+> > >  #include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > > diff --git a/drivers/gpu/drm/sti/sti_crtc.c b/drivers/gpu/drm/sti/sti=
+_crtc.c
+> > > index ed76e52eb213..7aa3b1d04b78 100644
+> > > --- a/drivers/gpu/drm/sti/sti_crtc.c
+> > > +++ b/drivers/gpu/drm/sti/sti_crtc.c
+> > > @@ -11,7 +11,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > >
+> > >  #include "sti_compositor.h"
+> > > diff --git a/drivers/gpu/drm/sti/sti_drv.c b/drivers/gpu/drm/sti/sti_=
+drv.c
+> > > index ac54e0f9caea..dc932ac58ba9 100644
+> > > --- a/drivers/gpu/drm/sti/sti_drv.c
+> > > +++ b/drivers/gpu/drm/sti/sti_drv.c
+> > > @@ -14,7 +14,7 @@
+> > >
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > > diff --git a/drivers/gpu/drm/sti/sti_dvo.c b/drivers/gpu/drm/sti/sti_=
+dvo.c
+> > > index b08376b7611b..d0fcb20e9614 100644
+> > > --- a/drivers/gpu/drm/sti/sti_dvo.c
+> > > +++ b/drivers/gpu/drm/sti/sti_dvo.c
+> > > @@ -13,7 +13,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_panel.h>
+> > >
+> > >  #include "sti_awg_utils.h"
+> > > diff --git a/drivers/gpu/drm/sti/sti_hda.c b/drivers/gpu/drm/sti/sti_=
+hda.c
+> > > index 19b9b5ed1297..40a0b392fa51 100644
+> > > --- a/drivers/gpu/drm/sti/sti_hda.c
+> > > +++ b/drivers/gpu/drm/sti/sti_hda.c
+> > > @@ -12,7 +12,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  /* HDformatter registers */
+> > >  #define HDA_ANA_CFG                     0x0000
+> > > diff --git a/drivers/gpu/drm/sti/sti_hdmi.c b/drivers/gpu/drm/sti/sti=
+_hdmi.c
+> > > index ccf718404a1c..989bf2cb0249 100644
+> > > --- a/drivers/gpu/drm/sti/sti_hdmi.c
+> > > +++ b/drivers/gpu/drm/sti/sti_hdmi.c
+> > > @@ -15,7 +15,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >
+> > >  #include <sound/hdmi-codec.h>
+> > > diff --git a/drivers/gpu/drm/sti/sti_tvout.c b/drivers/gpu/drm/sti/st=
+i_tvout.c
+> > > index ea4a3b87fa55..c42f2fa7053c 100644
+> > > --- a/drivers/gpu/drm/sti/sti_tvout.c
+> > > +++ b/drivers/gpu/drm/sti/sti_tvout.c
+> > > @@ -15,7 +15,7 @@
+> > >  #include <linux/seq_file.h>
+> > >
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_atomic_helper.h>
+> > >
+> > >  #include "sti_crtc.h"
+> > >  #include "sti_drv.h"
+> > > diff --git a/drivers/gpu/drm/stm/drv.c b/drivers/gpu/drm/stm/drv.c
+> > > index 8dec001b9d37..c64c5f27a229 100644
+> > > --- a/drivers/gpu/drm/stm/drv.c
+> > > +++ b/drivers/gpu/drm/stm/drv.c
+> > > @@ -13,7 +13,7 @@
+> > >
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > > diff --git a/drivers/gpu/drm/stm/ltdc.c b/drivers/gpu/drm/stm/ltdc.c
+> > > index 61dd661aa0ac..8189b5df7ece 100644
+> > > --- a/drivers/gpu/drm/stm/ltdc.c
+> > > +++ b/drivers/gpu/drm/stm/ltdc.c
+> > > @@ -16,7 +16,7 @@
+> > >
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_of.h>
+> > > diff --git a/drivers/gpu/drm/sun4i/sun4i_backend.c b/drivers/gpu/drm/=
+sun4i/sun4i_backend.c
+> > > index 9e9255ee59cd..df9d3f548568 100644
+> > > --- a/drivers/gpu/drm/sun4i/sun4i_backend.c
+> > > +++ b/drivers/gpu/drm/sun4i/sun4i_backend.c
+> > > @@ -14,7 +14,7 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > > diff --git a/drivers/gpu/drm/sun4i/sun4i_crtc.c b/drivers/gpu/drm/sun=
+4i/sun4i_crtc.c
+> > > index 3eedf335a935..3d58d8951474 100644
+> > > --- a/drivers/gpu/drm/sun4i/sun4i_crtc.c
+> > > +++ b/drivers/gpu/drm/sun4i/sun4i_crtc.c
+> > > @@ -13,7 +13,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_modes.h>
+> > >
+> > >  #include <linux/clk-provider.h>
+> > > diff --git a/drivers/gpu/drm/sun4i/sun4i_drv.c b/drivers/gpu/drm/sun4=
+i/sun4i_drv.c
+> > > index 9e4c375ccc96..45c85be54ce0 100644
+> > > --- a/drivers/gpu/drm/sun4i/sun4i_drv.c
+> > > +++ b/drivers/gpu/drm/sun4i/sun4i_drv.c
+> > > @@ -16,7 +16,7 @@
+> > >  #include <linux/of_reserved_mem.h>
+> > >
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > > diff --git a/drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c b/drivers/gpu/drm=
+/sun4i/sun4i_hdmi_enc.c
+> > > index 061d2e0d9011..60b3e44e6792 100644
+> > > --- a/drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c
+> > > +++ b/drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c
+> > > @@ -11,7 +11,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include <drm/drm_encoder.h>
+> > >  #include <drm/drm_of.h>
+> > > diff --git a/drivers/gpu/drm/sun4i/sun4i_lvds.c b/drivers/gpu/drm/sun=
+4i/sun4i_lvds.c
+> > > index e7eb0d1e17be..87ba8db71a54 100644
+> > > --- a/drivers/gpu/drm/sun4i/sun4i_lvds.c
+> > > +++ b/drivers/gpu/drm/sun4i/sun4i_lvds.c
+> > > @@ -8,7 +8,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_of.h>
+> > >  #include <drm/drm_panel.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/sun4i/sun4i_rgb.c b/drivers/gpu/drm/sun4=
+i/sun4i_rgb.c
+> > > index f4a22689eb54..f6f7f4de2e69 100644
+> > > --- a/drivers/gpu/drm/sun4i/sun4i_rgb.c
+> > > +++ b/drivers/gpu/drm/sun4i/sun4i_rgb.c
+> > > @@ -14,7 +14,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_of.h>
+> > >  #include <drm/drm_panel.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/sun4i/sun4i_tcon.c b/drivers/gpu/drm/sun=
+4i/sun4i_tcon.c
+> > > index 0420f5c978b9..3a09d8e28c25 100644
+> > > --- a/drivers/gpu/drm/sun4i/sun4i_tcon.c
+> > > +++ b/drivers/gpu/drm/sun4i/sun4i_tcon.c
+> > > @@ -14,7 +14,7 @@
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_connector.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_encoder.h>
+> > >  #include <drm/drm_modes.h>
+> > >  #include <drm/drm_of.h>
+> > > diff --git a/drivers/gpu/drm/sun4i/sun4i_tv.c b/drivers/gpu/drm/sun4i=
+/sun4i_tv.c
+> > > index 1a838d208211..62fbdef8fffb 100644
+> > > --- a/drivers/gpu/drm/sun4i/sun4i_tv.c
+> > > +++ b/drivers/gpu/drm/sun4i/sun4i_tv.c
+> > > @@ -18,7 +18,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_of.h>
+> > >  #include <drm/drm_panel.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c b/drivers/gpu/drm=
+/sun4i/sun6i_mipi_dsi.c
+> > > index e3b34a345546..dfa2d15d7b36 100644
+> > > --- a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
+> > > +++ b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c
+> > > @@ -19,7 +19,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_mipi_dsi.h>
+> > >  #include <drm/drm_panel.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/sun4i/sun8i_mixer.c b/drivers/gpu/drm/su=
+n4i/sun8i_mixer.c
+> > > index 44a9ba7d8433..9ef1b494e48d 100644
+> > > --- a/drivers/gpu/drm/sun4i/sun8i_mixer.c
+> > > +++ b/drivers/gpu/drm/sun4i/sun8i_mixer.c
+> > > @@ -14,7 +14,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > > diff --git a/drivers/gpu/drm/sun4i/sun8i_ui_layer.c b/drivers/gpu/drm=
+/sun4i/sun8i_ui_layer.c
+> > > index 18534263a05d..e29cbd60a59b 100644
+> > > --- a/drivers/gpu/drm/sun4i/sun8i_ui_layer.c
+> > > +++ b/drivers/gpu/drm/sun4i/sun8i_ui_layer.c
+> > > @@ -16,7 +16,7 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > > diff --git a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c b/drivers/gpu/drm=
+/sun4i/sun8i_vi_layer.c
+> > > index 87be898f9b7a..1669460106de 100644
+> > > --- a/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
+> > > +++ b/drivers/gpu/drm/sun4i/sun8i_vi_layer.c
+> > > @@ -10,7 +10,7 @@
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > > diff --git a/drivers/gpu/drm/tegra/drm.h b/drivers/gpu/drm/tegra/drm.h
+> > > index 1012335bb489..40d38f3d9d9e 100644
+> > > --- a/drivers/gpu/drm/tegra/drm.h
+> > > +++ b/drivers/gpu/drm/tegra/drm.h
+> > > @@ -17,7 +17,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include <drm/drm_encoder.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > > diff --git a/drivers/gpu/drm/tegra/fb.c b/drivers/gpu/drm/tegra/fb.c
+> > > index b947e82bbeb1..5ee48a6bb3ad 100644
+> > > --- a/drivers/gpu/drm/tegra/fb.c
+> > > +++ b/drivers/gpu/drm/tegra/fb.c
+> > > @@ -15,6 +15,7 @@
+> > >  #include "drm.h"
+> > >  #include "gem.h"
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > > +#include <drm/drm_modeset_helper.h>
+> > >
+> > >  #ifdef CONFIG_DRM_FBDEV_EMULATION
+> > >  static inline struct tegra_fbdev *to_tegra_fbdev(struct drm_fb_helpe=
+r *helper)
+> > > diff --git a/drivers/gpu/drm/tegra/hdmi.c b/drivers/gpu/drm/tegra/hdm=
+i.c
+> > > index 0082468f703c..11f5e5668b14 100644
+> > > --- a/drivers/gpu/drm/tegra/hdmi.c
+> > > +++ b/drivers/gpu/drm/tegra/hdmi.c
+> > > @@ -18,7 +18,7 @@
+> > >
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include <sound/hda_verbs.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/tegra/hub.c b/drivers/gpu/drm/tegra/hub.c
+> > > index 71cc3cf60066..ba9b3cfb8c3d 100644
+> > > --- a/drivers/gpu/drm/tegra/hub.c
+> > > +++ b/drivers/gpu/drm/tegra/hub.c
+> > > @@ -19,7 +19,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include "drm.h"
+> > >  #include "dc.h"
+> > > diff --git a/drivers/gpu/drm/tilcdc/tilcdc_drv.c b/drivers/gpu/drm/ti=
+lcdc/tilcdc_drv.c
+> > > index 3dac08b24140..9d9dc79a6e97 100644
+> > > --- a/drivers/gpu/drm/tilcdc/tilcdc_drv.c
+> > > +++ b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
+> > > @@ -22,6 +22,7 @@
+> > >  #include <linux/suspend.h>
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/tilcdc/tilcdc_drv.h b/drivers/gpu/drm/ti=
+lcdc/tilcdc_drv.h
+> > > index 62cea5ff5558..028bfed667f0 100644
+> > > --- a/drivers/gpu/drm/tilcdc/tilcdc_drv.h
+> > > +++ b/drivers/gpu/drm/tilcdc/tilcdc_drv.h
+> > > @@ -30,7 +30,6 @@
+> > >  #include <linux/list.h>
+> > >
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_bridge.h>
+> > > diff --git a/drivers/gpu/drm/tilcdc/tilcdc_external.c b/drivers/gpu/d=
+rm/tilcdc/tilcdc_external.c
+> > > index b4eaf9bc87f8..385fb4d2f66f 100644
+> > > --- a/drivers/gpu/drm/tilcdc/tilcdc_external.c
+> > > +++ b/drivers/gpu/drm/tilcdc/tilcdc_external.c
+> > > @@ -11,6 +11,7 @@
+> > >  #include <linux/component.h>
+> > >  #include <linux/of_graph.h>
+> > >  #include <drm/drm_of.h>
+> > > +#include <drm/drm_atomic_helper.h>
+> > >
+> > >  #include "tilcdc_drv.h"
+> > >  #include "tilcdc_external.h"
+> > > diff --git a/drivers/gpu/drm/tilcdc/tilcdc_panel.c b/drivers/gpu/drm/=
+tilcdc/tilcdc_panel.c
+> > > index a1acab39d87f..5c21ef6e6510 100644
+> > > --- a/drivers/gpu/drm/tilcdc/tilcdc_panel.c
+> > > +++ b/drivers/gpu/drm/tilcdc/tilcdc_panel.c
+> > > @@ -22,6 +22,7 @@
+> > >  #include <video/display_timing.h>
+> > >  #include <video/of_display_timing.h>
+> > >  #include <video/videomode.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >
+> > >  #include "tilcdc_drv.h"
+> > > diff --git a/drivers/gpu/drm/tilcdc/tilcdc_tfp410.c b/drivers/gpu/drm=
+/tilcdc/tilcdc_tfp410.c
+> > > index daebf1aa6b0a..fe59fbfdde69 100644
+> > > --- a/drivers/gpu/drm/tilcdc/tilcdc_tfp410.c
+> > > +++ b/drivers/gpu/drm/tilcdc/tilcdc_tfp410.c
+> > > @@ -21,6 +21,7 @@
+> > >  #include <linux/pinctrl/pinmux.h>
+> > >  #include <linux/pinctrl/consumer.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include "tilcdc_drv.h"
+> > >  #include "tilcdc_tfp410.h"
+> > > diff --git a/drivers/gpu/drm/tinydrm/core/tinydrm-core.c b/drivers/gp=
+u/drm/tinydrm/core/tinydrm-core.c
+> > > index 01a6f2d42440..d4174a564336 100644
+> > > --- a/drivers/gpu/drm/tinydrm/core/tinydrm-core.c
+> > > +++ b/drivers/gpu/drm/tinydrm/core/tinydrm-core.c
+> > > @@ -9,7 +9,7 @@
+> > >
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > >  #include <drm/tinydrm/tinydrm.h>
+> > > diff --git a/drivers/gpu/drm/tinydrm/core/tinydrm-pipe.c b/drivers/gp=
+u/drm/tinydrm/core/tinydrm-pipe.c
+> > > index eacfc0ec8ff1..50ab05a65ca4 100644
+> > > --- a/drivers/gpu/drm/tinydrm/core/tinydrm-pipe.c
+> > > +++ b/drivers/gpu/drm/tinydrm/core/tinydrm-pipe.c
+> > > @@ -8,7 +8,7 @@
+> > >   */
+> > >
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > >  #include <drm/drm_modes.h>
+> > >  #include <drm/tinydrm/tinydrm.h>
+> > > diff --git a/drivers/gpu/drm/tve200/tve200_drv.c b/drivers/gpu/drm/tv=
+e200/tve200_drv.c
+> > > index 28e2d03c0ccf..138a9a158254 100644
+> > > --- a/drivers/gpu/drm/tve200/tve200_drv.c
+> > > +++ b/drivers/gpu/drm/tve200/tve200_drv.c
+> > > @@ -43,7 +43,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > > diff --git a/drivers/gpu/drm/udl/udl_connector.c b/drivers/gpu/drm/ud=
+l/udl_connector.c
+> > > index 68e88bed77ca..66885c24590f 100644
+> > > --- a/drivers/gpu/drm/udl/udl_connector.c
+> > > +++ b/drivers/gpu/drm/udl/udl_connector.c
+> > > @@ -14,6 +14,7 @@
+> > >  #include <drm/drm_crtc.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include "udl_connector.h"
+> > >  #include "udl_drv.h"
+> > >
+> > > diff --git a/drivers/gpu/drm/udl/udl_drv.c b/drivers/gpu/drm/udl/udl_=
+drv.c
+> > > index a63e3011e971..22cd2d13e272 100644
+> > > --- a/drivers/gpu/drm/udl/udl_drv.c
+> > > +++ b/drivers/gpu/drm/udl/udl_drv.c
+> > > @@ -9,6 +9,7 @@
+> > >  #include <linux/module.h>
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include "udl_drv.h"
+> > >
+> > >  static int udl_usb_suspend(struct usb_interface *interface,
+> > > diff --git a/drivers/gpu/drm/udl/udl_main.c b/drivers/gpu/drm/udl/udl=
+_main.c
+> > > index 1b014d92855b..9086d0d1b880 100644
+> > > --- a/drivers/gpu/drm/udl/udl_main.c
+> > > +++ b/drivers/gpu/drm/udl/udl_main.c
+> > > @@ -12,6 +12,7 @@
+> > >   */
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include "udl_drv.h"
+> > >
+> > >  /* -BULK_SIZE as per usb-skeleton. Can we get full page and avoid ov=
+erhead? */
+> > > diff --git a/drivers/gpu/drm/vc4/vc4_crtc.c b/drivers/gpu/drm/vc4/vc4=
+_crtc.c
+> > > index 3ce136ba8791..11ec7c31824e 100644
+> > > --- a/drivers/gpu/drm/vc4/vc4_crtc.c
+> > > +++ b/drivers/gpu/drm/vc4/vc4_crtc.c
+> > > @@ -34,7 +34,7 @@
+> > >
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_atomic_uapi.h>
+> > >  #include <linux/clk.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > > diff --git a/drivers/gpu/drm/vc4/vc4_dpi.c b/drivers/gpu/drm/vc4/vc4_=
+dpi.c
+> > > index f185812970da..a4d5a13598ba 100644
+> > > --- a/drivers/gpu/drm/vc4/vc4_dpi.c
+> > > +++ b/drivers/gpu/drm/vc4/vc4_dpi.c
+> > > @@ -24,7 +24,7 @@
+> > >
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_bridge.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include <drm/drm_of.h>
+> > >  #include <drm/drm_panel.h>
+> > > diff --git a/drivers/gpu/drm/vc4/vc4_dsi.c b/drivers/gpu/drm/vc4/vc4_=
+dsi.c
+> > > index 0c607eb33d7e..4c2f5e143d11 100644
+> > > --- a/drivers/gpu/drm/vc4/vc4_dsi.c
+> > > +++ b/drivers/gpu/drm/vc4/vc4_dsi.c
+> > > @@ -30,7 +30,7 @@
+> > >   */
+> > >
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include <drm/drm_mipi_dsi.h>
+> > >  #include <drm/drm_of.h>
+> > > diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4=
+_hdmi.c
+> > > index fd5522fd179e..ce3cc2a6a169 100644
+> > > --- a/drivers/gpu/drm/vc4/vc4_hdmi.c
+> > > +++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
+> > > @@ -43,7 +43,7 @@
+> > >   */
+> > >
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include <linux/clk.h>
+> > >  #include <linux/component.h>
+> > > diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_=
+kms.c
+> > > index 0490edb192a1..8dbb81571773 100644
+> > > --- a/drivers/gpu/drm/vc4/vc4_kms.c
+> > > +++ b/drivers/gpu/drm/vc4/vc4_kms.c
+> > > @@ -17,7 +17,7 @@
+> > >  #include <drm/drm_crtc.h>
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > >  #include "vc4_drv.h"
+> > > diff --git a/drivers/gpu/drm/vc4/vc4_txp.c b/drivers/gpu/drm/vc4/vc4_=
+txp.c
+> > > index 6e23c50168f9..8ac1b95d01c4 100644
+> > > --- a/drivers/gpu/drm/vc4/vc4_txp.c
+> > > +++ b/drivers/gpu/drm/vc4/vc4_txp.c
+> > > @@ -9,7 +9,7 @@
+> > >
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include <drm/drm_panel.h>
+> > >  #include <drm/drm_writeback.h>
+> > > diff --git a/drivers/gpu/drm/vc4/vc4_vec.c b/drivers/gpu/drm/vc4/vc4_=
+vec.c
+> > > index 8e7facb6514e..e8b09c670ee6 100644
+> > > --- a/drivers/gpu/drm/vc4/vc4_vec.c
+> > > +++ b/drivers/gpu/drm/vc4/vc4_vec.c
+> > > @@ -25,7 +25,7 @@
+> > >   */
+> > >
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include <drm/drm_panel.h>
+> > >  #include <linux/clk.h>
+> > > diff --git a/drivers/gpu/drm/virtio/virtgpu_display.c b/drivers/gpu/d=
+rm/virtio/virtgpu_display.c
+> > > index e1c223e18d86..4c5b939ddc74 100644
+> > > --- a/drivers/gpu/drm/virtio/virtgpu_display.c
+> > > +++ b/drivers/gpu/drm/virtio/virtgpu_display.c
+> > > @@ -26,7 +26,7 @@
+> > >   */
+> > >
+> > >  #include "virtgpu_drv.h"
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/virtio/virtgpu_drv.h b/drivers/gpu/drm/v=
+irtio/virtgpu_drv.h
+> > > index 63704915f8ce..329f6c652e39 100644
+> > > --- a/drivers/gpu/drm/virtio/virtgpu_drv.h
+> > > +++ b/drivers/gpu/drm/virtio/virtgpu_drv.h
+> > > @@ -34,7 +34,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_gem.h>
+> > >  #include <drm/drm_atomic.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_encoder.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/ttm/ttm_bo_api.h>
+> > > diff --git a/drivers/gpu/drm/vkms/vkms_crtc.c b/drivers/gpu/drm/vkms/=
+vkms_crtc.c
+> > > index 177bbcb38306..2696c370fe9b 100644
+> > > --- a/drivers/gpu/drm/vkms/vkms_crtc.c
+> > > +++ b/drivers/gpu/drm/vkms/vkms_crtc.c
+> > > @@ -8,7 +8,7 @@
+> > >
+> > >  #include "vkms_drv.h"
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  static void _vblank_handle(struct vkms_output *output)
+> > >  {
+> > > diff --git a/drivers/gpu/drm/vkms/vkms_drv.c b/drivers/gpu/drm/vkms/v=
+kms_drv.c
+> > > index 2a16b86196dc..b733c9700a78 100644
+> > > --- a/drivers/gpu/drm/vkms/vkms_drv.c
+> > > +++ b/drivers/gpu/drm/vkms/vkms_drv.c
+> > > @@ -16,7 +16,7 @@
+> > >
+> > >  #include <linux/module.h>
+> > >  #include <drm/drm_gem.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > > diff --git a/drivers/gpu/drm/vkms/vkms_output.c b/drivers/gpu/drm/vkm=
+s/vkms_output.c
+> > > index 271a0eb9042c..878ff3142473 100644
+> > > --- a/drivers/gpu/drm/vkms/vkms_output.c
+> > > +++ b/drivers/gpu/drm/vkms/vkms_output.c
+> > > @@ -7,7 +7,7 @@
+> > >   */
+> > >
+> > >  #include "vkms_drv.h"
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >
+> > >  static void vkms_connector_destroy(struct drm_connector *connector)
+> > > diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.h b/drivers/gpu/drm/vm=
+wgfx/vmwgfx_kms.h
+> > > index 655abbcd4058..d560f6159bb1 100644
+> > > --- a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.h
+> > > +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.h
+> > > @@ -29,7 +29,7 @@
+> > >  #define VMWGFX_KMS_H_
+> > >
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_encoder.h>
+> > >  #include "vmwgfx_drv.h"
+> > >
+> > > diff --git a/drivers/gpu/drm/xen/xen_drm_front.c b/drivers/gpu/drm/xe=
+n/xen_drm_front.c
+> > > index 6b6d5ab82ec3..fd390dd64b13 100644
+> > > --- a/drivers/gpu/drm/xen/xen_drm_front.c
+> > > +++ b/drivers/gpu/drm/xen/xen_drm_front.c
+> > > @@ -10,7 +10,7 @@
+> > >
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_gem.h>
+> > >
+> > >  #include <linux/of_device.h>
+> > > diff --git a/drivers/gpu/drm/xen/xen_drm_front_conn.c b/drivers/gpu/d=
+rm/xen/xen_drm_front_conn.c
+> > > index 54af2669b1b3..9f5f31f77f1e 100644
+> > > --- a/drivers/gpu/drm/xen/xen_drm_front_conn.c
+> > > +++ b/drivers/gpu/drm/xen/xen_drm_front_conn.c
+> > > @@ -9,7 +9,7 @@
+> > >   */
+> > >
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include <video/videomode.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/xen/xen_drm_front_gem.c b/drivers/gpu/dr=
+m/xen/xen_drm_front_gem.c
+> > > index 47ff019d3aef..9cf847e26cf1 100644
+> > > --- a/drivers/gpu/drm/xen/xen_drm_front_gem.c
+> > > +++ b/drivers/gpu/drm/xen/xen_drm_front_gem.c
+> > > @@ -11,7 +11,7 @@
+> > >  #include "xen_drm_front_gem.h"
+> > >
+> > >  #include <drm/drmP.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_gem.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/xen/xen_drm_front_kms.c b/drivers/gpu/dr=
+m/xen/xen_drm_front_kms.c
+> > > index a3479eb72d79..f536d9f5a796 100644
+> > > --- a/drivers/gpu/drm/xen/xen_drm_front_kms.c
+> > > +++ b/drivers/gpu/drm/xen/xen_drm_front_kms.c
+> > > @@ -13,7 +13,7 @@
+> > >  #include <drm/drmP.h>
+> > >  #include <drm/drm_atomic.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_gem.h>
+> > >  #include <drm/drm_gem_framebuffer_helper.h>
+> > >
+> > > diff --git a/drivers/gpu/drm/zte/zx_drm_drv.c b/drivers/gpu/drm/zte/z=
+x_drm_drv.c
+> > > index f5ea32ae8600..91eaaa475d36 100644
+> > > --- a/drivers/gpu/drm/zte/zx_drm_drv.c
+> > > +++ b/drivers/gpu/drm/zte/zx_drm_drv.c
+> > > @@ -18,7 +18,7 @@
+> > >
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > > diff --git a/drivers/gpu/drm/zte/zx_hdmi.c b/drivers/gpu/drm/zte/zx_h=
+dmi.c
+> > > index 78655269d843..8bfb011ce655 100644
+> > > --- a/drivers/gpu/drm/zte/zx_hdmi.c
+> > > +++ b/drivers/gpu/drm/zte/zx_hdmi.c
+> > > @@ -20,7 +20,7 @@
+> > >  #include <linux/of_device.h>
+> > >
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_edid.h>
+> > >  #include <drm/drm_of.h>
+> > >  #include <drm/drmP.h>
+> > > diff --git a/drivers/gpu/drm/zte/zx_tvenc.c b/drivers/gpu/drm/zte/zx_=
+tvenc.c
+> > > index b73afb212fb2..87b5d86413d2 100644
+> > > --- a/drivers/gpu/drm/zte/zx_tvenc.c
+> > > +++ b/drivers/gpu/drm/zte/zx_tvenc.c
+> > > @@ -14,7 +14,7 @@
+> > >  #include <linux/regmap.h>
+> > >
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drmP.h>
+> > >
+> > >  #include "zx_drm_drv.h"
+> > > diff --git a/drivers/gpu/drm/zte/zx_vga.c b/drivers/gpu/drm/zte/zx_vg=
+a.c
+> > > index 23d1ff4355a0..e14c1d709740 100644
+> > > --- a/drivers/gpu/drm/zte/zx_vga.c
+> > > +++ b/drivers/gpu/drm/zte/zx_vga.c
+> > > @@ -13,7 +13,7 @@
+> > >  #include <linux/regmap.h>
+> > >
+> > >  #include <drm/drm_atomic_helper.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drmP.h>
+> > >
+> > >  #include "zx_drm_drv.h"
+> > > diff --git a/drivers/gpu/drm/zte/zx_vou.c b/drivers/gpu/drm/zte/zx_vo=
+u.c
+> > > index 442311d31110..9d97f4417698 100644
+> > > --- a/drivers/gpu/drm/zte/zx_vou.c
+> > > +++ b/drivers/gpu/drm/zte/zx_vou.c
+> > > @@ -15,7 +15,7 @@
+> > >
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_crtc.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_fb_cma_helper.h>
+> > >  #include <drm/drm_fb_helper.h>
+> > >  #include <drm/drm_gem_cma_helper.h>
+> > > diff --git a/drivers/staging/vboxvideo/vbox_irq.c b/drivers/staging/v=
+boxvideo/vbox_irq.c
+> > > index 09f858ec1369..b9b716776b7b 100644
+> > > --- a/drivers/staging/vboxvideo/vbox_irq.c
+> > > +++ b/drivers/staging/vboxvideo/vbox_irq.c
+> > > @@ -27,7 +27,7 @@
+> > >   *          Hans de Goede <hdegoede@redhat.com>
+> > >   */
+> > >
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >
+> > >  #include "vbox_drv.h"
+> > >  #include "vboxvideo.h"
+> > > diff --git a/drivers/staging/vboxvideo/vbox_mode.c b/drivers/staging/=
+vboxvideo/vbox_mode.c
+> > > index 6acc965247ff..c72e4f251bc0 100644
+> > > --- a/drivers/staging/vboxvideo/vbox_mode.c
+> > > +++ b/drivers/staging/vboxvideo/vbox_mode.c
+> > > @@ -33,7 +33,7 @@
+> > >   */
+> > >  #include <linux/export.h>
+> > >  #include <drm/drm_atomic.h>
+> > > -#include <drm/drm_crtc_helper.h>
+> > > +#include <drm/drm_probe_helper.h>
+> > >  #include <drm/drm_plane_helper.h>
+> > >  #include <drm/drm_atomic_helper.h>
+> > >
+> > > diff --git a/include/drm/drm_crtc_helper.h b/include/drm/drm_crtc_hel=
+per.h
+> > > index 0ee9a96b70da..a6d520d5b6ca 100644
+> > > --- a/include/drm/drm_crtc_helper.h
+> > > +++ b/include/drm/drm_crtc_helper.h
+> > > @@ -58,20 +58,4 @@ int drm_helper_connector_dpms(struct drm_connector=
+ *connector, int mode);
+> > >  void drm_helper_resume_force_mode(struct drm_device *dev);
+> > >  int drm_helper_force_disable_all(struct drm_device *dev);
+> > >
+> > > -/* drm_probe_helper.c */
+> > > -int drm_helper_probe_single_connector_modes(struct drm_connector
+> > > -                                         *connector, uint32_t maxX,
+> > > -                                         uint32_t maxY);
+> > > -int drm_helper_probe_detect(struct drm_connector *connector,
+> > > -                         struct drm_modeset_acquire_ctx *ctx,
+> > > -                         bool force);
+> > > -void drm_kms_helper_poll_init(struct drm_device *dev);
+> > > -void drm_kms_helper_poll_fini(struct drm_device *dev);
+> > > -bool drm_helper_hpd_irq_event(struct drm_device *dev);
+> > > -void drm_kms_helper_hotplug_event(struct drm_device *dev);
+> > > -
+> > > -void drm_kms_helper_poll_disable(struct drm_device *dev);
+> > > -void drm_kms_helper_poll_enable(struct drm_device *dev);
+> > > -bool drm_kms_helper_is_poll_worker(void);
+> > > -
+> > >  #endif
+> > > diff --git a/include/drm/drm_probe_helper.h b/include/drm/drm_probe_h=
+elper.h
+> > > new file mode 100644
+> > > index 000000000000..96c060c16a1e
+> > > --- /dev/null
+> > > +++ b/include/drm/drm_probe_helper.h
+> > > @@ -0,0 +1,50 @@
+> > > +/*
+> > > + * Copyright =A9 2006 Keith Packard
+> > > + * Copyright =A9 2007-2008 Dave Airlie
+> > > + * Copyright =A9 2007-2008 Intel Corporation
+> > > + *   Jesse Barnes <jesse.barnes@intel.com>
+> > > + *
+> > > + * Permission is hereby granted, free of charge, to any person obtai=
+ning a
+> > > + * copy of this software and associated documentation files (the "So=
+ftware"),
+> > > + * to deal in the Software without restriction, including without li=
+mitation
+> > > + * the rights to use, copy, modify, merge, publish, distribute, subl=
+icense,
+> > > + * and/or sell copies of the Software, and to permit persons to whom=
+ the
+> > > + * Software is furnished to do so, subject to the following conditio=
+ns:
+> > > + *
+> > > + * The above copyright notice and this permission notice shall be in=
+cluded in
+> > > + * all copies or substantial portions of the Software.
+> > > + *
+> > > + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, E=
+XPRESS OR
+> > > + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTA=
+BILITY,
+> > > + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVEN=
+T SHALL
+> > > + * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAM=
+AGES OR
+> > > + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERW=
+ISE,
+> > > + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE US=
+E OR
+> > > + * OTHER DEALINGS IN THE SOFTWARE.
+> > > + */
+> > > +
+> > > +#ifndef __DRM_PROBE_HELPER_H__
+> > > +#define __DRM_PROBE_HELPER_H__
+> > > +
+> > > +#include <linux/types.h>
+> > > +
+> > > +struct drm_connector;
+> > > +struct drm_device;
+> > > +struct drm_modeset_acquire_ctx;
+> > > +
+> > > +int drm_helper_probe_single_connector_modes(struct drm_connector
+> > > +                                         *connector, uint32_t maxX,
+> > > +                                         uint32_t maxY);
+> > > +int drm_helper_probe_detect(struct drm_connector *connector,
+> > > +                         struct drm_modeset_acquire_ctx *ctx,
+> > > +                         bool force);
+> > > +void drm_kms_helper_poll_init(struct drm_device *dev);
+> > > +void drm_kms_helper_poll_fini(struct drm_device *dev);
+> > > +bool drm_helper_hpd_irq_event(struct drm_device *dev);
+> > > +void drm_kms_helper_hotplug_event(struct drm_device *dev);
+> > > +
+> > > +void drm_kms_helper_poll_disable(struct drm_device *dev);
+> > > +void drm_kms_helper_poll_enable(struct drm_device *dev);
+> > > +bool drm_kms_helper_is_poll_worker(void);
+> > > +
+> > > +#endif
+> > > --
+> > > 2.20.0.rc1
+> > >
+> > > _______________________________________________
+> > > Intel-gfx mailing list
+> > > Intel-gfx@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> > _______________________________________________
+> > dri-devel mailing list
+> > dri-devel@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
 
 -- =
 
-Antoine T=E9nart, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 
 _______________________________________________
 linux-amlogic mailing list
