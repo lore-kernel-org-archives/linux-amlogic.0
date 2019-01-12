@@ -2,86 +2,88 @@ Return-Path: <SRS0=0OJt=PU=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-3.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C9F43C43387
-	for <linux-amlogic@archiver.kernel.org>; Sat, 12 Jan 2019 12:52:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 68F20C43387
+	for <linux-amlogic@archiver.kernel.org>; Sat, 12 Jan 2019 12:59:43 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 99C202086C
-	for <linux-amlogic@archiver.kernel.org>; Sat, 12 Jan 2019 12:52:21 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2FE1920854
+	for <linux-amlogic@archiver.kernel.org>; Sat, 12 Jan 2019 12:59:43 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="JqHd9y0K";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="q1pgoOHo"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 99C202086C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rqo/m+nI";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Y3klEJ3U"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2FE1920854
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=SfThy8tL/6ZFYOE8Q5sg3nhkv1HkkkrhyfG5dkxDGls=; b=JqHd9y0K+kLmD4
-	OKfAWc23dqptzPG+3YZylf+nU8chgQXhmVhXmY2pJcFgPMVyONB+X5otvrWHj3rZnRITBFfAYm/1D
-	R4VywEt9T3iWk/Z92yqh4+m2Uec3r2rT+E+FnkqLcl5rYAAuBQZgflGTw0mHw2SJ/ARwuTIB42uTt
-	3Gz79DcZNalwVPSwjtebD0fKFw0zdzM+v8AFjzcRuPrj3pdZNRjOErt39sOI+0ff2Jdgf30+J/4tL
-	LSWOWy434ZPr+oH3YD4ed2QBrzzrsV8YbO7BKmIshRhCeTpqnjqRcIgopfrXSFUz5IUYG7jKB5kS3
-	5axWvMwxFtt3hiFaHIig==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ohr2lHQFJhwLkKg5tlBSKTrnDpTHjxq04FoLnyOAqf8=; b=rqo/m+nIJUpQD1
+	vcBipbwpB8PjWTqUZt2HpZ+nWKhlGyxH5kn8nCd7ZviPdouP5sChGVPEDNwiIxaS54W2NQzVF5fVm
+	kSOwgWgAmNHNDoNPEgMv8RQrBQO1iJn0qCfQGXawg6xgmzJGwGoFg97kz/bxNXLo18VkGj1UvKbQ0
+	ctVVrvcvj2V0ZKLcVg1t950YQ9s/pv3mSSHIcGkSrDFjFjusRVnk4ikZNu0Wvx/FAHKR6IK0ufkrh
+	WjB+2CsVvKBGQ/LdyLzLOIH+giGF5JX7lsMJ3JwwSJaujlU8rnUul+jBOaIiwnDOZSSEA9UKiZdbm
+	2E//2OghwlaLBNxfrxhQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1giIlq-00026Y-1M; Sat, 12 Jan 2019 12:52:14 +0000
-Received: from mail-oi1-x242.google.com ([2607:f8b0:4864:20::242])
+	id 1giIsz-0004Qh-NQ; Sat, 12 Jan 2019 12:59:37 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1giIln-000266-Qm; Sat, 12 Jan 2019 12:52:13 +0000
-Received: by mail-oi1-x242.google.com with SMTP id r62so14484484oie.1;
- Sat, 12 Jan 2019 04:52:11 -0800 (PST)
+ id 1giIsx-0004Q0-2g; Sat, 12 Jan 2019 12:59:36 +0000
+Received: by mail-wm1-x341.google.com with SMTP id y139so4760795wmc.5;
+ Sat, 12 Jan 2019 04:59:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=rc8PgVwzxQsHlZQUrvGoUgiJPD5Df1DMbVLjyQh0zEo=;
- b=q1pgoOHotLgRiITJMwR3Nr21zMoGSFOGtz6P5PnhJRSfFw8BXzxKwQpM2T1Qc1ZMlr
- SixSB9PBF882HCXbda+ZBauuRJ5F829xkYrydd192rBQpzSjrvIRkR3y0ptL17E+y9i7
- nAefVELdfy25SJ9Dc16gwjRS/SuTXGMtIs9vf+z9t50lEMByk6Ro2a8pLUyJXGweN5P/
- vpCj3oyB37wwXAf+TSEePtAo5o9FTBcAn2jhCcfB8frDfwBrLw8vZ3ipYcCq7DrXluyE
- HloibFgd30nkhG2XuOLMNtt1WrGvBfe/R8J/ObRRi4naLp8OIf3A9Zx4qu9IV/JPRyEk
- UNkw==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=eTpP1WjuCUG+0L8LD9GMYRrNbo3+PL/+r7PzDANtlnQ=;
+ b=Y3klEJ3UdKzJf+eRpC+l0RjmvR85WZG3ckZ9KGcZCC3CZ78ye4aLXeZ7s9XY3gX80G
+ uuv04pVOSzOCe4NCgb9G3RTkZBpM12rRy/HMT0a8GXyqBBu3t15JbYdTm657545TIeDH
+ Uexf1F2TntB9iohM5fR75WYeaSWXaqoRI7KtrVBMXt0vBykoJkItl2xz/xqXR6bftqW9
+ WB3dU2CCMWKzuRJ/klY19R4fjLcXe7McB7AciziYbEZc3OdK8HhpgESrI9J8GQuP9HWG
+ L8IRE0ds8npiJaTBwshl0XU+tqxXNQQoAl/gFzDCuaPO+EJtcvRmRwjKx74pymVRY60T
+ XpHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=rc8PgVwzxQsHlZQUrvGoUgiJPD5Df1DMbVLjyQh0zEo=;
- b=ijJTPDmlyZllBr0Vb60B+d5Q5u0ykbgbopSCZVv9dEH2LJfsQrvjiTLKoAOJjJqUO4
- k67oUqbz8WIkg1vbVbNMf4R2Y0dRJBZXJKeebi8QZSx2t7mN4A2U7lKnOXZK5TxzLfq3
- cXkAf9dCzUFLgw9NvWGQeupSr83zmvj/kP6jnyI0XoaGYXHfljP2EYi5WSyJK/PhEnG9
- eshzzZ2A1xJx6xSEqUEOdHhP0RL7oglgA0fB/ooeh6u3E/4E5ECV7/mwyNqSrhd2+lqz
- BR6FjgIx33Mh85CrQGl1efXePMQMM43r7TicKmGgqs/O9W0oCna7YVg2GogEEF58uF9t
- lrxA==
-X-Gm-Message-State: AJcUukezJZswbf9GIHgZoDgXk1RlF963wuer7iC1b/JIwD88REIf94tx
- WOKXYDhhEitbf7I4tmqm0Ov2q5khGCSySusaKO8=
-X-Google-Smtp-Source: ALg8bN4s/+TIOtaCGkyhh7CyvpozXsXOtaZQJBwt7+upDR/L+/pzeM+4SuHESOQYRYmAIP/g3kFWjvWzYSNapsi+MGg=
-X-Received: by 2002:aca:4ace:: with SMTP id
- x197mr12016181oia.129.1547297530740; 
- Sat, 12 Jan 2019 04:52:10 -0800 (PST)
-MIME-Version: 1.0
-References: <20181202220847.24364-1-martin.blumenstingl@googlemail.com>
- <20181202220847.24364-3-martin.blumenstingl@googlemail.com>
- <85aa8e12-0bca-6432-e1a8-0faceff1dd5e@codethink.co.uk>
- <CAFBinCBDUxTc+ofCYm-zEeiFdU90U6DQOkX4B659q=MvRK64fg@mail.gmail.com>
- <CAFBinCAY7+-zA5-hY6oXmFz2i8aj9wFJsb-HBbKt_Swn9BtMMg@mail.gmail.com>
-In-Reply-To: <CAFBinCAY7+-zA5-hY6oXmFz2i8aj9wFJsb-HBbKt_Swn9BtMMg@mail.gmail.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=eTpP1WjuCUG+0L8LD9GMYRrNbo3+PL/+r7PzDANtlnQ=;
+ b=CRbze8KLfNLoZ9RveqL2ooJJTXR6um/fmbyn5L4pudb4pBdpJM3LRMnjPnLmVXviwL
+ ujm+mV2iahE9+tD4MCfI0SEL59mLyLz2dPH8BZGo5LMUKCVGI6fkG2WwnXt3Bh+m+B5I
+ HzivohPy9pGRKJg07qHiSDEjyO18dIMILwUlqAWLRNogKqiMHj62kcwJ2a0QOFpc/UA7
+ rXfkxXTHJcdD/L2YFoLNTmTNEz/kT5fyVnQOAA4f6Wy6LXHWu8W2jxBOfuDNT2gAUEOs
+ dM8GAMXD6eVlVpzgfUnTbOrNToUZstjw0qwczb2RRy6u52/a40rAKXFWSr0k0FKSWkO4
+ TcEw==
+X-Gm-Message-State: AJcUukdq06Ah/YpDHbKnrJxnBTI7U7ggDEqqYXeAOIZ9MykAueLOLaXU
+ G+8zepzcUWoxfqOh4RW5HMN3FDCg
+X-Google-Smtp-Source: ALg8bN7NbmwzeRYFuipzJXxW8+HEgYsF4LBXvU7a1Mfj6OqtR2+GpuKrrmef0y+r8k057RYxGFb1aQ==
+X-Received: by 2002:a1c:990c:: with SMTP id b12mr5952834wme.106.1547297972773; 
+ Sat, 12 Jan 2019 04:59:32 -0800 (PST)
+Received: from blackbox.darklights.net
+ (p200300DCD7329F008D685E3E728ED25E.dip0.t-ipconnect.de.
+ [2003:dc:d732:9f00:8d68:5e3e:728e:d25e])
+ by smtp.googlemail.com with ESMTPSA id m4sm15034676wmi.3.2019.01.12.04.59.31
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Sat, 12 Jan 2019 04:59:32 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 12 Jan 2019 13:52:00 +0100
-Message-ID: <CAFBinCCKeb+wGJ4h_PfsT-Ms8AtLmNSwStTpeMqA3shkySjGkg@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] rtc: support for the Amlogic Meson RTC
-To: ben.dooks@codethink.co.uk
+To: linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org,
+ linus.walleij@linaro.org
+Subject: [PATCH v4 0/1] Meson8b RGMII Ethernet pin fixes
+Date: Sat, 12 Jan 2019 13:59:12 +0100
+Message-Id: <20190112125913.22085-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190112_045211_871313_8EF8DE78 
-X-CRM114-Status: GOOD (  14.59  )
+X-CRM114-CacheID: sfid-20190112_045935_116867_1C4C4EFF 
+X-CRM114-Status: GOOD (  12.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -93,49 +95,59 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-rtc@vger.kernel.org, a.zummo@towertech.it,
- alexandre.belloni@bootlin.com, ccaione@baylibre.com,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ khilman@baylibre.com, ingrassia@epigenesys.com,
  linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Ben,
-
-On Tue, Dec 18, 2018 at 12:48 AM Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> Hi Ben,
->
-> On Wed, Dec 5, 2018 at 11:15 PM Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
-> [...]
-> > > > Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
-> > > > [resurrected Ben's patches after 2 years]
-> > > > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> > >
-> > > Just checking if the change of author is deliberate?
-> > > not sure how to do >1 author on patches like this.
-> > I changed the author on purpose after seeing how much I changed
-> > (compared to your v4). this is also why I added you to the CC list
-> > however, I left in your copyright (just like you kept Carlo's
-> > copyright note) and MODULE_AUTHOR
-> please let me know:
-> 1. whether you want to be the author of the patch or if you're fine
-> with my name in there
-> 2. if you are fine with both of us being listed as Signed-off-by or if
-> you want me to switch to Co-authored-by
-> 3. about any other concerns you have
->
-> I would like to update this patch next weekend so it can be reviewed
-> (and merged once all is fine) for v4.22
-gentle ping on this one now that the holiday season is over.
+This series fixes Ethernet RX performance on boards using a Gigabit PHY
+and a Meson8b SoC.
+We now reach near Gigabit speeds in RX and TX direction (when data is
+flowing in only one direction, full-duplex seems be have another issue
+which is probably not related to pinctrl).
 
 
-Regards
-Martin
+Changes since v3 at [2]:
+- Collected Emiliano's and Kevin's Reviewed-by/Tested-by
+- dropped patch #2 (.dts patch) as it has been applied by Kevin already
+- include the linux-gpio mailing list this time
+
+
+Changes since v2 at [1]:
+- Thanks to Jianxin for providing the documentation for the two missing
+  bits in pin mux register 7
+- added a patch to add the missing eth_rxd2 and eth_rxd3 pin groups to
+  the pinctrl-meson8b driver
+- update the meson8.dtsi patch to include the eth_rxd2 and eth_rxd3 pin
+  groups on top of the previous change which only removed eth_txd0_1
+  and eth_txd1_1 (including the patch description)
+- update subject of the cover-letter and the meson8b.dtsi patch
+
+
+Changes since v1 at [0]:
+- rebased so it applies on top of "ARM: dts: meson: meson8b: add the CPU
+  OPP tables" which will be part of v4.20-rc1 once the arm-soc tree is
+  merged into mainline
+- updated patch description with more details
+
+
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2018-May/007274.html
+[1] https://patchwork.kernel.org/cover/10744709/
+[2] https://patchwork.kernel.org/cover/10744905/
+
+
+Martin Blumenstingl (1):
+  pinctrl: meson: meson8b: add the eth_rxd2 and eth_rxd3 pins
+
+ drivers/pinctrl/meson/pinctrl-meson8b.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+-- 
+2.20.1
+
 
 _______________________________________________
 linux-amlogic mailing list
