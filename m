@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CF48DC43387
-	for <linux-amlogic@archiver.kernel.org>; Sat, 12 Jan 2019 13:07:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 515FDC43387
+	for <linux-amlogic@archiver.kernel.org>; Sat, 12 Jan 2019 13:08:05 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A35F120854
-	for <linux-amlogic@archiver.kernel.org>; Sat, 12 Jan 2019 13:07:55 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 23D3020854
+	for <linux-amlogic@archiver.kernel.org>; Sat, 12 Jan 2019 13:08:05 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mlPOHVWD";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Bz418p6J"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A35F120854
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="IBOI1krM";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Qv1nZQT7"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 23D3020854
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,67 +27,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xyHQ12Y9hsV8z7ga/HpJJrRFQZOJMwOxS/sMO+XIpLs=; b=mlPOHVWDxixhgr
-	aixENY9h360P6SZG+KN/88/IAdhfELkkiVHf+QTVg+O1bAjzFJCgw+IpvESVp0kE0+zqPeU3YJRvK
-	SJeAKMt9inmRXEpR46DDgiNhmY3t3g+EO/NlpIgt8Zm8pN/far9eFamu7oOX0KOs2G8lrqUov3GKM
-	fPy0uaGPYd3svzDeh6CzVylbZXOXvZNIuKh9jEbhoufTTgRkwJykLl/V51td0crmvpo29PuVqyl/F
-	ZTcjB6+BXyXcEUzHJDNfGEiO8hN6GStupCVjR/ozai3Rq4xjI0Pl7YGds2TH2WXJsuY67Yeks4ko6
-	nu1CI2Wc8KBoU5RgHdHw==;
+	List-Owner; bh=NaVBfw3NH2Q6O3EZU7JWmqNTbl7yHlKEMY1CKUFSz7Q=; b=IBOI1krMuVeMYg
+	XMYmi8D16T67ncNOmTptZhRMyKZO3ZMt9VIaccEhaz/dFvQvmGlxmEHk/R69a7uAHJUnXdKTuHB3l
+	y19o+fJcQ7vEBz5PLTVvWxxmZunx5uDosb78/n6LhbMGrCGoJ3M58M0qRY6/ibgZYZDtuGmlBCyMY
+	x2VKBuIvCI46HeQ0NUmwgBr5fVM+k87sgaYcsbBHhAopeAdR+82cUoYuCkKNxZJp0MgBFV8+NK92H
+	No9A6NO/AH43aHKE/i4LQnoSlgjQ1hiHBlSoWWfj1tSMTJ3qbtUS5LVK0SUcRX27o+Z9X9Iig9YSL
+	QT1FQ6x9IMrsNxsyjdFg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1giJ0v-0000Gm-Ol; Sat, 12 Jan 2019 13:07:49 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1giJ14-0000RP-O2; Sat, 12 Jan 2019 13:07:58 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1giJ0A-0007t2-V5; Sat, 12 Jan 2019 13:07:09 +0000
-Received: by mail-wr1-x441.google.com with SMTP id j2so18107043wrw.1;
- Sat, 12 Jan 2019 05:07:02 -0800 (PST)
+ id 1giJ09-0007ri-Va; Sat, 12 Jan 2019 13:07:10 +0000
+Received: by mail-wr1-x444.google.com with SMTP id u4so18056596wrp.3;
+ Sat, 12 Jan 2019 05:07:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=XHAyIX/toFB+9Ta7kl1IOzRCmFz0Mv8bQkAxb45dusY=;
- b=Bz418p6Jg7WkyPY9KXLFlpbta/vYzsjeaTLzeb6J4i3WYT0eNe4upQPNT76umfNpR1
- DeAwnjp/b67tJOm8qsyWeuOSB+wRAvq8hMqqdFMgMBqOLY+wTuroaHo6bqJP23efwvqB
- YrBmogdcpn4pBaM9741EWTCjAoL/oCbBkEayibpnO24u/zuENoBynQSAKnMwuJ/DAd4P
- yEGj70Yql5oO0TfqgXogAZhz/LHPaAUToMxymnV+t1dNwwIjtAjtdnJUxhGrvEBJ2MTO
- Go0u58mnT9mqosC94SQKFk1v2+srJjE9jM6OiaQhosnfZGdckZssIHVnp482ySp2mts8
- lOHg==
+ bh=6l6WolcewijNZ7C3qoRDiIawTtYi7pkKh2E+h6KjBjU=;
+ b=Qv1nZQT7lbDeJyhdLuUrTSn4WSa4vTbILXfVwfvX2G13FsMWoYzWsrWXI4iAIHp1sV
+ cPqDmv2lAU+alvmscrDWgkUVXH5hlnzfjfjSxcclVKgWUJ0/mCSTqg4TPeegGOUHZVom
+ mRh6b5yKOUScsQ1vihq7L2YbfWhHXUYcIkWsE5JM3AcwrnlAceM5os/Re2JZDYvFxaj2
+ tdFonFQdzwtpD143ztPtceU5Oz+EZ3ecZO25usCGikxSnl2DGmbiFvz6tCbp+J4kR7hP
+ 2viFrSvgItDM+Hz9a75GCRI34V4Imvxqd9QCdkIFUjHLR1TiCXpONHHbr+6bpk6CvreM
+ KzJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=XHAyIX/toFB+9Ta7kl1IOzRCmFz0Mv8bQkAxb45dusY=;
- b=XHSA6CLx4/25irroMxYnei3lI25yJdhPMCTyvGAqlfRC3+OsdT12aQ+Tt4bp1m67/K
- gu0YazGTSKAMvmfOecBAuiTOQM/ra+XFC+VU6EUil6Y5+aHwFxXTBw47+MxQQiqKTrsw
- rvamafgQzuSjpujC7jUWGqW2JMzpcAvqEwF6hrsLK9+Fjv0Sp3FL3GQr5bLUFnwOt8cD
- 1Xbs8UCCum8FsMI0L0nK93dSvgfRNTJ8pla6PLLhijb05pSH3LtvxUd0zDnF34anh4z4
- 2eKu571isNAdQWiumhm2cUQVUgHK0+Uoz3yf8Bj8sDsi0vZWbsnyfPbx/H1d8kSc+TJR
- ijOA==
-X-Gm-Message-State: AJcUukc7ZqIxtwCNy6mXOd8UgGYgXActxDdidoOoHs1/KGC3ZmuvV6LY
- zhdk31NNYV7qV2SO6q570gq2cDLZ
-X-Google-Smtp-Source: ALg8bN4K4jHCkjSlK5KlzD08vGrljo6QkafYS6/Nb8v4bi9vW6rau54FGsZu+5ommDt4JWW/SS5ouw==
-X-Received: by 2002:adf:ce02:: with SMTP id p2mr18780598wrn.185.1547298421224; 
- Sat, 12 Jan 2019 05:07:01 -0800 (PST)
+ bh=6l6WolcewijNZ7C3qoRDiIawTtYi7pkKh2E+h6KjBjU=;
+ b=JADq+xvur+gbMN+ullwXkrkJDl1+9GD3vC4i4pHkOo9c8CAlxUbu2PwbJ0Qz+Qfa85
+ qGb+Uwg5Mtks7vonDjH0ATdP9rqoXMV3AHvOn2uJAmL5eMR4b0IwJs0sWP3QXimFWCkw
+ BJCPVG4w67o/038jzLeOA6EUXY0qM5q3A86yW660oQAWpLJ1rb3NZfxNR7H3jettvhzG
+ iHO3NULbKHKfp6b7VC9hNjCb/qFfjUuTExX0ESRVZDhuwPt68eNvZ0vnsaUvPRYM0FkP
+ h0XQiqx9DKMfE53O4xoqZp/A0FK+HB2BrUeVTZJSpiinzQGv5pEmIy0FL8lPsdjGwjMY
+ mxXA==
+X-Gm-Message-State: AJcUukeHx4njnjAdWUUDoi0oZQynHzt/4NUj6XZhbdFRyx1+eZlpLcOy
+ BZrPx2QKNLVzm0l4Wm+EoxAscjJC
+X-Google-Smtp-Source: ALg8bN4vldF5n3FNip2AuU3Ba+zsVUgaeBCbCX8DpJ54f65UlIR3VnFy5T6CmGZCPHzXegSLwB03/A==
+X-Received: by 2002:adf:e78f:: with SMTP id n15mr17666919wrm.115.1547298420120; 
+ Sat, 12 Jan 2019 05:07:00 -0800 (PST)
 Received: from blackbox.darklights.net
  (p200300DCD7329F008D685E3E728ED25E.dip0.t-ipconnect.de.
  [2003:dc:d732:9f00:8d68:5e3e:728e:d25e])
- by smtp.googlemail.com with ESMTPSA id o5sm37804630wmg.25.2019.01.12.05.07.00
+ by smtp.googlemail.com with ESMTPSA id o5sm37804630wmg.25.2019.01.12.05.06.59
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sat, 12 Jan 2019 05:07:00 -0800 (PST)
+ Sat, 12 Jan 2019 05:06:59 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org,
 	khilman@baylibre.com
-Subject: [PATCH 6/6] ARM: dts: meson8m2: mxiii-plus: add iio-hwmon for the
- chip temperature
-Date: Sat, 12 Jan 2019 14:06:49 +0100
-Message-Id: <20190112130649.23838-7-martin.blumenstingl@googlemail.com>
+Subject: [PATCH 5/6] ARM: dts: meson8b: odroidc1: add iio-hwmon for the chip
+ temperature
+Date: Sat, 12 Jan 2019 14:06:48 +0100
+Message-Id: <20190112130649.23838-6-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190112130649.23838-1-martin.blumenstingl@googlemail.com>
 References: <20190112130649.23838-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190112_050703_476302_A165C757 
-X-CRM114-Status: GOOD (  10.35  )
+X-CRM114-CacheID: sfid-20190112_050702_415669_BFBD5BA0 
+X-CRM114-Status: GOOD (  10.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -111,15 +111,15 @@ This can be made available to the hwmon subsystem by using iio-hwmon.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- arch/arm/boot/dts/meson8m2-mxiii-plus.dts | 5 +++++
+ arch/arm/boot/dts/meson8b-odroidc1.dts | 5 +++++
  1 file changed, 5 insertions(+)
 
-diff --git a/arch/arm/boot/dts/meson8m2-mxiii-plus.dts b/arch/arm/boot/dts/meson8m2-mxiii-plus.dts
-index 6ac02beb5fa7..18528101376b 100644
---- a/arch/arm/boot/dts/meson8m2-mxiii-plus.dts
-+++ b/arch/arm/boot/dts/meson8m2-mxiii-plus.dts
-@@ -44,6 +44,11 @@
- 		};
+diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
+index 0f0a46ddf3ff..8c83590810a8 100644
+--- a/arch/arm/boot/dts/meson8b-odroidc1.dts
++++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
+@@ -118,6 +118,11 @@
+ 			  1800000 1>;
  	};
  
 +	iio-hwmon {
@@ -127,9 +127,9 @@ index 6ac02beb5fa7..18528101376b 100644
 +		io-channels = <&saradc 8>;
 +	};
 +
- 	vcc_3v3: regulator-vcc3v3 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "VCC3V3";
+ 	vcc_1v8: regulator-vcc-1v8 {
+ 		/*
+ 		 * RICHTEK RT9179 configured for a fixed output voltage of
 -- 
 2.20.1
 
