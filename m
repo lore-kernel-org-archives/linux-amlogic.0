@@ -8,83 +8,80 @@ X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F5F8C43387
-	for <linux-amlogic@archiver.kernel.org>; Sun, 13 Jan 2019 15:31:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3F63DC43387
+	for <linux-amlogic@archiver.kernel.org>; Sun, 13 Jan 2019 18:18:46 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F11CF20675
-	for <linux-amlogic@archiver.kernel.org>; Sun, 13 Jan 2019 15:31:10 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 157F6206B7
+	for <linux-amlogic@archiver.kernel.org>; Sun, 13 Jan 2019 18:18:46 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="E7jCUVPl";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="oMCeWlRQ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F11CF20675
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CyM76aHB";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Lu8DqyCU"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 157F6206B7
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OG+kAHpE7RtC+/18RLwK9hrLO/tuTdgl9n9YESCbW7I=; b=E7jCUVPli/ap5N
-	pHbx/Uap5nQPS5nMIESwpM1n3Vwu/ZCw0Cwvwr+6oS4+824pVEePv9x/WPVxEILAaFrBt8ftvAR65
-	gu96BKJwBLosiohdk3WwtAhosnTLQT4ioUGP81PLC+wsYiguIp8yMKVyuIkC84yvGG7QCUf+ckd1f
-	4JPqCEZ0v4EuvMI66HnqM+rdmxwQQG66+9r5aQZlb+MuH3a8nMN/Aybp33p7yR1MaWtBmEuRTcMa0
-	3Yu3JO0FQ+1Ex2yCWGE58BGtdvg/TMibG9QzDFI2qEI3nJT4fvznrr2Uq2b+7wpiTCxLEdedKmG32
-	H38jWYMHYWOSxsjcidFQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=9Fsjtr4S72/E5RM+Fz6dN9VyS57Q0gieLrc978K4JFg=; b=CyM76aHBPrh3WV
+	MvFvq1nZR4gx/4ajVm0CgsyqRiNRztmMTJJHJQik7GEOmK7nrmS0kbDf8u1Iznf/gPTq0Q1vGErch
+	endSlG/ctiFnklb/+O2b/Hf8mtfUoJxoA49EYZvrBErfaAPMDzg3r811RDu8dFb1e0TsQkyUWe2WU
+	tN06wob5tr36MzAm6wfuZ1kCD/R+5lQTxdAg6VVYlxF/6hDwvo1e6xOIulhteMIVF7HfZbOlm4Ppf
+	2H3lPesgOqR46V+JpwDyMTGE11Br8pCNMM1Z8DINh3W9a2KoWMsCNfxiisH5hSWeAE269R9JV2DVB
+	FcJSFD+9k6HF3+HZEK7g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gihj5-0003L2-TR; Sun, 13 Jan 2019 15:31:03 +0000
-Received: from mail-pg1-x52d.google.com ([2607:f8b0:4864:20::52d])
+	id 1gikLF-0008Li-Qf; Sun, 13 Jan 2019 18:18:37 +0000
+Received: from mail-pf1-x443.google.com ([2607:f8b0:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gihie-0002l9-LR; Sun, 13 Jan 2019 15:30:38 +0000
-Received: by mail-pg1-x52d.google.com with SMTP id j10so8405615pga.1;
- Sun, 13 Jan 2019 07:30:36 -0800 (PST)
+ id 1gikL5-0008Dn-79; Sun, 13 Jan 2019 18:18:29 +0000
+Received: by mail-pf1-x443.google.com with SMTP id h3so9291085pfg.1;
+ Sun, 13 Jan 2019 10:18:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=2wWJQP3qlm0dkufRBC92pArEv03qZqPjGRD3HuPdEs4=;
- b=oMCeWlRQ2QQqDoLvuxXcKMQqQxJ3rnJyehBfMkQnCGpd75xUohqetHPmz7/hOvPjvv
- Bo7wMBLAvepX1ovx6F1Xf/iaRHKFWP7vcCT+pYtux3u4X+kwJzRybT7UeKCXSpM9b+R0
- Th2TtbFEFnZfDuVDw1YZ9mQFoUPjIZfhN7VQ7ULzlY2U20C670jKRlDCxzcGstdoFnEa
- +l2msuHLFuBXsnWUMyB4HJrgSOltWMH7TFE1t+LY3z1qDa3a7UAEHBDc2YCxOXyoO5yA
- Zw+3qFAvyDsfXZItEmCRDWTlHNyg90P052Aio2IonMceuP79RDFmsD+E1QdobbScvpES
- 6Fxg==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=TB8imBtf4PAjNqPCC8uvdtsm3BgS79eWnXlUKq9cCOM=;
+ b=Lu8DqyCUTBNJTP2Zg+KMuvhg78dhNHDuYUrCNqHkIk5Y0lyXE+PP3blssrwJBUrBS2
+ f+qFZr7GVdTH66Mn+1KZmvdfS+wngEGvKFAWmQebB2N9dItWOtFoJ5UH0NWZnH+EYFed
+ vx3U/luIECC8l37riW1c2jL5q/X3iU2nEsMJp5vAVW236vyOraRK4E5UXbELGVtWZ5O/
+ FApS1PevImQJ0LStkptdWirEFrIRu161kcUkfTlcRBQ/jiTqD0UBIbnfMZ3ZA4UuV4NV
+ TrPSr6TjvN2tV8duA3jI4z4/ZOn2uYVtHq6fg/rVihCEVQykI8ZHPz/zm2/Gy1bCxHOY
+ WpPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=2wWJQP3qlm0dkufRBC92pArEv03qZqPjGRD3HuPdEs4=;
- b=WYG51O1Zp9Qml5GwDbwd++Tb9gnpWWCxKcw7np9qusmMU6tQZZcjTksKMI1vK1oBNp
- ZPReYSTS056fTIUFXg20oyOWgSOQEuGbPU314iAmfVwtwyoaRy8yTgh1ue4fRTqkX2l7
- yi/qpq3UYmA1OBsmrWS73s4uSuSEOwbRDLEQujgExUfQqcyhwgzdQ0BD5lSX4BuhJCqx
- 6sxr0CRFMIGPh98O+auTMueViTKW7nSbx5uTXhHcNVtkf2yPiBQB9jUaACj2vwCYSIOt
- 1R0VefGQ2cdNBQjh2H0dv0iRNqBlaisFGtwkQKqrTFGFtg1x/eZWU2pjEAFb7zdq+Zx1
- f1NA==
-X-Gm-Message-State: AJcUukdMUo4GAolBxFZbQobLvNtiCpV49L0FqQV+Q3Tjv0fJT66AE6xD
- fuORISUDuHHTgvRpfg5yVQM=
-X-Google-Smtp-Source: ALg8bN6EAWVUOAov0iU9P6gxA9IZF0kFm2UfrixriBbFO3+1uZIiRssPAD7nEeGcG9U3UZuYMfA8Dg==
-X-Received: by 2002:a62:4e16:: with SMTP id c22mr21686745pfb.167.1547393435804; 
- Sun, 13 Jan 2019 07:30:35 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=TB8imBtf4PAjNqPCC8uvdtsm3BgS79eWnXlUKq9cCOM=;
+ b=Nd1YwNoJWDWpMnRUzK9uFLCoOqFS4eKtmy3nb3vh7Lhqo0d2ORKMtJ5YeNm73RYhgZ
+ kPr8ghZ75dMxDil2WZTZLtEYdpLFbnsStzABvHUluPn4H51oWymdvAAIoF94uN0eFFDm
+ dkOQhppPp4j1RmxWGPruFWPva2dWrdg7pH1SXEJVd+x3qkWBrjbYJIc9SzBrTTk6ycHz
+ E890eJnK/Ct9fbDlEnp8wnDnj8dc/T51BC+MputSPvvG2THizYKRUNxM5JZmkqN8LJaG
+ jcOWS3WRwA7RBzBWnYDVm8lWhcND5EQ27uN2akdPqximGgrgyVhq4TpvK8Z7Q5KfVu/t
+ O0tA==
+X-Gm-Message-State: AJcUukd1QgasVyNa01dn7h5O0bHhGdlnn3ZSV0MJyCsezgO5R4t/uYF9
+ mABTEb5eOHQst80c7y6r5iI=
+X-Google-Smtp-Source: ALg8bN4a2ZUCLZRINvNgsuR6mrYyrMJJLN5xkgJSj4vVCIJxdpGVcRBD33NTjum/uqUXRiR/2dFIVQ==
+X-Received: by 2002:a63:fc05:: with SMTP id j5mr20595026pgi.434.1547403504814; 
+ Sun, 13 Jan 2019 10:18:24 -0800 (PST)
 Received: from localhost.localdomain ([103.51.74.105])
- by smtp.gmail.com with ESMTPSA id r187sm265107745pfc.63.2019.01.13.07.30.32
+ by smtp.gmail.com with ESMTPSA id i193sm157504416pgc.22.2019.01.13.10.18.21
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sun, 13 Jan 2019 07:30:35 -0800 (PST)
+ Sun, 13 Jan 2019 10:18:24 -0800 (PST)
 From: Anand Moon <linux.amoon@gmail.com>
 To: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PatchV2 2/2] ARM64: dts: meson-gxbb-odroidc2: Fix usb phy reset
- warning
-Date: Sun, 13 Jan 2019 15:30:22 +0000
-Message-Id: <20190113153022.5040-2-linux.amoon@gmail.com>
+Subject: [PATCH 1/2] ARM: dts: meson8b: odroidc1: Enable usb phy node
+Date: Sun, 13 Jan 2019 18:18:07 +0000
+Message-Id: <20190113181808.5768-1-linux.amoon@gmail.com>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190113153022.5040-1-linux.amoon@gmail.com>
-References: <20190113153022.5040-1-linux.amoon@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190113_073036_826208_92303055 
-X-CRM114-Status: UNSURE (   9.36  )
+X-CRM114-CacheID: sfid-20190113_101827_286714_339F7F79 
+X-CRM114-Status: UNSURE (   9.97  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -97,66 +94,102 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
- Neil Armstrong <narmstrong@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>
+ Emiliano Ingrassia <ingrassia@epigenesys.com>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add missing vin-supply node 5.0V regulator setting to power
-to usb ports, changes help fix the usb reset warning.
+Add missing vbus-supply link to phy controller for usb_phy0
+and usb_phy1 nodes, this changes fixed the power issue
+on usb ports usb, changes help fix usb reset warning.
 
-[  795.380156] usb 1-1.2: reset high-speed USB device number 3 using dwc2
-[  798.356073] usb 1-1.2: reset high-speed USB device number 3 using dwc2
-[  801.331999] usb 1-1.2: reset high-speed USB device number 3 using dwc2
-[  804.307919] usb 1-1.2: reset high-speed USB device number 3 using dwc2
-[  807.283844] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+[  821.991470] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+[  825.243385] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+[  828.151310] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+[  830.991241] usb 1-1.2: reset high-speed USB device number 3 using dwc2
 
-Fixes: 5a0803bd5ae (ARM64: dts: meson-gxbb-odroidc2: Enable USB Nodes)
-Tested-by: Kevin Hilman <khilman@baylibre.com>
+Fixes: 2eb79a4d15ff (ARM: dts: meson: enabling the USB Host controller on Odroid-C1/C1+ board)
 Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc: Jerome Brunet <jbrunet@baylibre.com>
 Cc: Neil Armstrong <narmstrong@baylibre.com>
 Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 ---
 Rebased on Kevin's amlogic/v5.0/fixes branch
-Changes from patch v1 [0] https://lore.kernel.org/patchwork/patch/1031243/
-- Split the patch into two part: new patch
-- Fix the commit message
-- Added Tested by Kevin Hilman
----
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 9 +++++++++
- 1 file changed, 9 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index 25a36d117183..a947b46bfaa8 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -28,6 +28,13 @@
- 		reg = <0x0 0x0 0x0 0x80000000>;
+[alarm@archl-c1t ~]$ lsusb -t
+/:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
+    |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
+        |__ Port 1: Dev 4, If 0, Class=Mass Storage, Driver=usb-storage, 480M
+        |__ Port 3: Dev 3, If 0, Class=Video, Driver=uvcvideo, 480M
+        |__ Port 3: Dev 3, If 1, Class=Video, Driver=uvcvideo, 480M
+        |__ Port 3: Dev 3, If 2, Class=Audio, Driver=snd-usb-audio, 480M
+        |__ Port 3: Dev 3, If 3, Class=Audio, Driver=snd-usb-audio, 480M
+[alarm@archl-c1t ~]$
+[alarm@archl-c1t ~]$ lsusb -v|egrep "^Bus|MaxPower"
+Couldn't open device, some information will be missing
+Bus 001 Device 003: ID 1b71:0056 Fushicai
+    MaxPower              500mA
+Couldn't open device, some information will be missing
+Bus 001 Device 004: ID 152d:0578 JMicron Technology Corp. / JMicron USA Technology Corp. JMS567 SATA 6Gb/s bridge
+    MaxPower               30mA
+Couldn't open device, some information will be missing
+Couldn't open device, some information will be missing
+Bus 001 Device 002: ID 05e3:0610 Genesys Logic, Inc. 4-port hub
+    MaxPower              100mA
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+    MaxPower                0mA
+---
+ arch/arm/boot/dts/meson8b-odroidc1.dts | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
+index 0f0a46ddf3ff..a49a8509b288 100644
+--- a/arch/arm/boot/dts/meson8b-odroidc1.dts
++++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
+@@ -83,6 +83,19 @@
+ 		regulator-max-microvolt = <5000000>;
  	};
  
-+	p5v0: regulator-p5v0 {
++	usb_vbus: regulator-usb-vbus {
 +		compatible = "regulator-fixed";
-+		regulator-name = "P5V0";
++
++		regulator-name = "USB_VBUS";
 +		regulator-min-microvolt = <5000000>;
 +		regulator-max-microvolt = <5000000>;
-+	};
 +
- 	usb_otg_pwr: regulator-usb-pwrs {
- 		compatible = "regulator-fixed";
- 
-@@ -36,6 +43,8 @@
- 		regulator-min-microvolt = <5000000>;
- 		regulator-max-microvolt = <5000000>;
- 
 +		vin-supply = <&p5v0>;
 +
- 		gpio = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
- 		enable-active-high;
- 	};
++		gpio = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
+ 	tflash_vdd: regulator-tflash_vdd {
+ 		/*
+ 		 * signal name from schematics: TFLASH_VDD_EN
+@@ -293,8 +306,18 @@
+ 	pinctrl-names = "default";
+ };
+ 
++&usb0_phy {
++	status = "okay";
++	vbus-supply = <&usb_vbus>;
++};
++
+ &usb1_phy {
+ 	status = "okay";
++	vbus-supply = <&usb_vbus>;
++};
++
++&usb0 {
++	status = "okay";
+ };
+ 
+ &usb1 {
 -- 
 2.20.1
 
