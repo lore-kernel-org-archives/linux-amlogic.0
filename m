@@ -1,93 +1,69 @@
-Return-Path: <SRS0=0OJt=PU=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=Cs6g=PV=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
+X-Spam-Status: No, score=-13.6 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D1B82C43387
-	for <linux-amlogic@archiver.kernel.org>; Sat, 12 Jan 2019 13:12:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5303EC43387
+	for <linux-amlogic@archiver.kernel.org>; Sun, 13 Jan 2019 00:26:38 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A42552084E
-	for <linux-amlogic@archiver.kernel.org>; Sat, 12 Jan 2019 13:12:10 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1FF4720836
+	for <linux-amlogic@archiver.kernel.org>; Sun, 13 Jan 2019 00:26:38 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tWLpEH5a";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="JtAaer6H"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A42552084E
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jL6Hc//4";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=araneo.si header.i=@araneo.si header.b="aTEaHLeO"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1FF4720836
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=araneo.si
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OgXficcnMKI0/c/aTlDa0KuFz8em7W/Ud2HL3K71xaI=; b=tWLpEH5a3QADsh
-	Im3QlYJAj9stpk1zO25dm/QBegpLyeT7exVareL7hNMWREybNSkE2LyFC+NGTOIw57SLwn4Lp4jq5
-	wX5OcPnlrxljPB4qK1FpKEtiPIMc1Zo5fViQRkdNHnf7oc09O6evRcRGY1apQeF2S0hUK9V1cjgut
-	lfcrVB4jcbcdS0udSk4zurWI4ctrcTcr9XPyppr0UpTYMEmb63jLTvSoF7O/r4OI6aZSsYUY+roKF
-	dS6BQDytWHspMvB12Ydwc5Z8EE8D/OGOSNm3xwwXcWgXNxQQDlrIQhynqk74rB5KVtwfSVMXVFyok
-	81bwqhGuFm88B6f4Oq7g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=JtWiPzCMr1R0J+et4sGtz4fpkJfrlaJK0U48D6R8ds0=; b=jL6Hc//4vikF2m
+	vlbRDG+MozbCACJ4pPrgfKTtDmb97ifXKTjtqBilraS1zhRlxqOlrMfQ/i+SEjsrD7PgVD5LKeax6
+	UW9PQsFbqoTTeJZwk1KJWiVOb1lrjNNFTOF6OoVKTVC4YHjTUNg3BbaoIpVSPFRzy00tRLGSb0GFc
+	+NSg7YVamr9m7M88jwwv+z2Ln/et+Vuwc6G3SG5Cmk8ulopmWrl85Z4yVahW/ajkYcgqLu909IfSC
+	JkHSOknUzZaPlKD2BgZw2DME8n55dC9G+BH4uOXcSGAybP7GD/BXsl9+TWYaqVrhm2/9L8JavQuoO
+	RPWdb7M5bjqzy84sG85Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1giJ53-0002lS-1V; Sat, 12 Jan 2019 13:12:05 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1giTbg-0001jE-9H; Sun, 13 Jan 2019 00:26:28 +0000
+Received: from bsn-77-101-244.static.siol.net ([193.77.101.244] helo=araneo.si)
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1giJ09-0007qp-LD; Sat, 12 Jan 2019 13:07:09 +0000
-Received: by mail-wr1-x443.google.com with SMTP id 96so18060169wrb.2;
- Sat, 12 Jan 2019 05:07:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=tvVOVw+uJ/NYlsQPCS926U6L3ZI+t9KgIAVNoiuYO3Q=;
- b=JtAaer6HEDFiWaLeOIH0/8LzIGdzppw9B1QdfxxmSQ+wBGHNKH/f/y1U7psRoR6bmK
- 4eDsTGHkMQUl7L+jj5FS1zUIN17JWkFvP5Tu3qsAiBxOLxub7GESVQ3IP6IfDajUrS93
- vGiC6vvItxDzIWQCsECTFO9+ANMhYiYUMREycCELnG2ywNblWMSsapKqRfJzwmQIOuE5
- HupJHVB1mqJsmP48ey8DNhyjmfX5AhKvaiwnlQd6QrkcXJI+2YI+/oZ1XXMcOOfFQHgz
- 9PWPwJkjbR/Eu5ir4RX2X1q1AQh2PkWdr8Rh1VQN1sDYCrPXAWAaWgl73Qc84sDb8iED
- sRHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=tvVOVw+uJ/NYlsQPCS926U6L3ZI+t9KgIAVNoiuYO3Q=;
- b=lLjPMKBKDdksfS1QzCnpuk2EL4daglv5/1PBwNvUjYXvnEy7oKFvh4zkGr651+QB46
- MNEWRSJ5GMUpyLgxMAubFGNlZtnxbZ+XkgbC69CLmmUjB302SC50SsjS+ZoKxBN8SZ3t
- QdrDrih6/gEAE8HVj3H+LA7c5r5+FwKv3Xku+eFGIW3AnfU6bfqh76QR4dJCwIz9w7JV
- /+IToFescFVcHbQFCEDaO4srgR3GI3mJKflNj3MAu9hPjXHz0ZMZ5ca4MiXYzDqmpZ+g
- b0cNiONI4FWpm8lE+DaefZfi2To0wwijZMzYX9pJ2xMGp+hQzLNozGJkSUrTujMQfh8a
- n2bw==
-X-Gm-Message-State: AJcUukcQP/KD+DWH/5rX2B62WV53d2sZoqZIGPIES2ce/EURip9B603Y
- 6MnJ1amM5UG2euOXqhOiZjIkDbNl
-X-Google-Smtp-Source: ALg8bN4+1n9EJa6KyREXsijp+byyuXSYwf5FBrOHQvmPSU3bVcW8xDYR/SFpgYajq7HzAoZGO3lzcA==
-X-Received: by 2002:adf:f1cb:: with SMTP id z11mr17100664wro.35.1547298418976; 
- Sat, 12 Jan 2019 05:06:58 -0800 (PST)
-Received: from blackbox.darklights.net
- (p200300DCD7329F008D685E3E728ED25E.dip0.t-ipconnect.de.
- [2003:dc:d732:9f00:8d68:5e3e:728e:d25e])
- by smtp.googlemail.com with ESMTPSA id o5sm37804630wmg.25.2019.01.12.05.06.57
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sat, 12 Jan 2019 05:06:58 -0800 (PST)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: linux-amlogic@lists.infradead.org,
-	khilman@baylibre.com
-Subject: [PATCH 4/6] ARM: dts: meson8b: ec100: add iio-hwmon for the chip
- temperature
-Date: Sat, 12 Jan 2019 14:06:47 +0100
-Message-Id: <20190112130649.23838-5-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190112130649.23838-1-martin.blumenstingl@googlemail.com>
-References: <20190112130649.23838-1-martin.blumenstingl@googlemail.com>
+ id 1giTbc-0001iV-Oe; Sun, 13 Jan 2019 00:26:27 +0000
+Received: from araneo.si (localhost.lan [127.0.0.1])
+ by araneo.si (OpenSMTPD) with ESMTP id b0aeee70;
+ Sun, 13 Jan 2019 00:26:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=araneo.si; h=from:to:cc
+ :subject:date:message-id:mime-version:content-transfer-encoding;
+ s=20180623; bh=WYcNJzRkBf9RHhM51jGxPIUl8eY=; b=aTEaHLeOvRzZa6Ub
+ HXoBN6O4i7lDaWY0sSZaH+q9N/sNrKv46ZvtoWqosP0VZRFu0bk2n5dPH3El3EO6
+ AWW4Yky1ej87I4hBD7Ht1GkfAfJm3JnYSOEVJti07gxD6DCKW893SJrw7ZK1juz6
+ GFV/FVJtDKn3hBLrZ+99OeH7e0hQ1CoPEzhSAwEpYRcVprwjZr4XceAuDAVcEjnP
+ hJKyKGTNLY7qWeweRjhIRUzIu6IzXoGtX52gIBRSO1ee/bUYqWxLkHYQgyWRehy0
+ DJrmktcY1DJTccKQk772+eHyZqfETF/NwFzenIFwrgvkzsVVNqanrgoJBavZsr/j
+ RScdoQ==
+Received: by araneo.si (OpenSMTPD) with ESMTPSA id 25b476e9
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256:NO); 
+ Sun, 13 Jan 2019 00:26:07 +0000 (UTC)
+From: Timotej Lazar <timotej.lazar@araneo.si>
+To: "David S. Miller" <davem@davemloft.net>
+Subject: [PATCH net] net: phy: meson-gxl: Use the genphy_soft_reset callback
+Date: Sun, 13 Jan 2019 01:22:55 +0100
+Message-Id: <20190113002255.15310-1-timotej.lazar@araneo.si>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190112_050702_028311_9387A366 
-X-CRM114-Status: GOOD (  10.65  )
+X-CRM114-CacheID: sfid-20190112_162625_270941_6824C713 
+X-CRM114-Status: UNSURE (   8.30  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -99,37 +75,38 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-arm-kernel@lists.infradead.org
+Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Timotej Lazar <timotej.lazar@araneo.si>, Kevin Hilman <khilman@baylibre.com>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Heiner Kallweit <hkallweit1@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SAR ADC enabled channel 8 can be used to measure the chip temperature.
-This can be made available to the hwmon subsystem by using iio-hwmon.
+Since the referenced commit, Ethernet fails to come up at boot on the
+board meson-gxl-s905x-libretech-cc. Fix this by re-enabling the
+genphy_soft_reset callback for the Amlogic Meson GXL PHY driver.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Fixes: 6e2d85ec0559 ("net: phy: Stop with excessive soft reset")
+Signed-off-by: Timotej Lazar <timotej.lazar@araneo.si>
 ---
- arch/arm/boot/dts/meson8b-ec100.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/net/phy/meson-gxl.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/meson8b-ec100.dts b/arch/arm/boot/dts/meson8b-ec100.dts
-index d50fc2f60fa3..cba0006e2de0 100644
---- a/arch/arm/boot/dts/meson8b-ec100.dts
-+++ b/arch/arm/boot/dts/meson8b-ec100.dts
-@@ -64,6 +64,11 @@
- 		timeout-ms = <20000>;
- 	};
- 
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&saradc 8>;
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 
+diff --git a/drivers/net/phy/meson-gxl.c b/drivers/net/phy/meson-gxl.c
+index b03bcf2c388a..3ddaf9595697 100644
+--- a/drivers/net/phy/meson-gxl.c
++++ b/drivers/net/phy/meson-gxl.c
+@@ -233,6 +233,7 @@ static struct phy_driver meson_gxl_phy[] = {
+ 		.name		= "Meson GXL Internal PHY",
+ 		.features	= PHY_BASIC_FEATURES,
+ 		.flags		= PHY_IS_INTERNAL,
++		.soft_reset     = genphy_soft_reset,
+ 		.config_init	= meson_gxl_config_init,
+ 		.aneg_done      = genphy_aneg_done,
+ 		.read_status	= meson_gxl_read_status,
 -- 
 2.20.1
 
