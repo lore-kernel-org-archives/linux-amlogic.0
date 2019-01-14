@@ -7,79 +7,81 @@ X-Spam-Status: No, score=-8.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 27068C43387
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jan 2019 15:33:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D2A3EC43387
+	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jan 2019 15:34:39 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E64F820873
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jan 2019 15:33:26 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9629420873
+	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jan 2019 15:34:39 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pQWhhvd1";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="13fgKkMU"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E64F820873
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tV/PIjC0";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="nxhGnXIC"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9629420873
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	Message-ID:References:To:From:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Kq/pYOG+XHVBgE+bC8Bn8AkWmWxIAHmbYv06xWDbnjw=; b=pQWhhvd1DX2KNq
-	hGC0qkeP7m2HJA6hpIzSLDdqQE/1UBXbS2bV3R9svwz0mQBZCRnC6Kw6OV1Bvd17MGqYMvUSsYcnh
-	gqbry37rBAJZfVpcJzvczBHpWXLAH+foKIrbqB/F/fV7Myk93EEtG7NW6IEo3BORfWXdARRVITyF0
-	k3OlXArFeuyS9Fga/lg+zN/bHrHJ9L/RvR3I6hYiNWHAj8jstTtw5xNuJeV8r8Cn8G0mIkp5e6JH5
-	2A+siY9DduIfjhFFewbEyxqdvvmmUyFhtJFI5AuqB6LUpz1F/683BVQitcWrRdbJnk4pfhDuVtAcS
-	/tx2ZuP45tZ6IBF5N3Bw==;
+	List-Owner; bh=ujOKuoLdwz/FJryXUgFB963bDw319MvE0fI8sZ8BOaM=; b=tV/PIjC0mvwfCD
+	uzheeUs9XQ1L9tDkUZIK3OGjAA6MLljWIfw9SNAUnhYxb7+WaYzTXvehDFhB00LwhPqgKWZo4IBBJ
+	Z7FPhm7UAOLJg3QuxSrUC+6oDV5iE/EGOxn5MkvdJN/Uh3T0bkfRXlU86XKsX/H1hQWy5zJTAcBSl
+	k4Ke1BQh0dMUlbXSUBWCas7tecoLZ0/u1p88qUTKDHcU3fULjxj9Ddub1r1zgkkAjnokWIGl6qXPz
+	1v104Smg6v/erGYz7MnytdjHPCxqQhXqPtaxTPtR0exQfTAG7/GAQKHSL9cFQi+z7ELABqdmcf5Fo
+	11TeZB7bmPc8ySDbBA7w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gj4Ep-0005aa-6K; Mon, 14 Jan 2019 15:33:19 +0000
+	id 1gj4G1-00069K-QN; Mon, 14 Jan 2019 15:34:33 +0000
 Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gj4EX-0005Iw-9Z
- for linux-amlogic@lists.infradead.org; Mon, 14 Jan 2019 15:33:04 +0000
-Received: by mail-wm1-x344.google.com with SMTP id p6so9279966wmc.1
- for <linux-amlogic@lists.infradead.org>; Mon, 14 Jan 2019 07:33:00 -0800 (PST)
+ id 1gj4Fn-00060F-Uy
+ for linux-amlogic@lists.infradead.org; Mon, 14 Jan 2019 15:34:25 +0000
+Received: by mail-wm1-x344.google.com with SMTP id d15so9376890wmb.3
+ for <linux-amlogic@lists.infradead.org>; Mon, 14 Jan 2019 07:34:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ h=subject:from:to:cc:references:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=+O05ljDB432NQtxALGl6ShYbAmOX/If9lvRTBq+ufOg=;
- b=13fgKkMUWKwnVVM3rT5uMzNRJNjRTp39N3lf7CQhFYc3jschziMZQBuwDRz4+x2PFo
- 6R2671mdo9MAMl1SpdCJ6q+/YPvifK9kL40OE56ud7s23M11xMm5g4yGWC4G0NJtcQeI
- PyUqC2D4k9xUIyi2DO5ShdqNLv1rwRKnKvmCq6ZXk9baCT/HYBkN0zfiUAPzQFdHFO3J
- qacArYjn6I7Cx9h7sipTQk1CmzUunvFqCbWmCVSb5qqG+qdFjwdOxPocxTPFju0pw2Ej
- sSDpwJdI7GfzGZ1Vah4qGqLNyvT8+0GBZdfL/8a2tyRGxNB5WI0CsyejQgI2ZkLeHSqc
- LaMQ==
+ bh=7CpENgUYFuaKkwmwSVJ/+AjrvPwUExByKZFzFxjT7kI=;
+ b=nxhGnXICfpq9zz6mE65kV48XNAq8yJYi1WQ53qLZmbYXfHVeMROBuYcoN1PiErCvEK
+ zZJ7igpCtcAlqlyT845dHrZFWGKKub5mh3a7WkjcPAhHLwabIjnNWSDim2IS+XZ6xTih
+ qMIVR5ecf9sbFD/SWe3thf4r/lV9KUKZ6Xhk4zduX0ecBVWAtzEdQwYZFTQOpn4vD2aM
+ pQTEx1izH11+yo5sW4HV4QtArpI43XZOo5Vlg/rDeZzELmdkTQE6k/00IfooEK/wcnez
+ F4CISryCl3FVh5y1/EXUAKKsln9gcCiNBwceXQXw0ga1uNmKajb0XOt6008ZSlu/j6SA
+ qd9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ h=x-gm-message-state:subject:from:to:cc:references:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=+O05ljDB432NQtxALGl6ShYbAmOX/If9lvRTBq+ufOg=;
- b=rz272yuRe/hr+xjIMERFpYGZHs0ImxOcITYjZLFWPisFdtFOcFadk0u+55ULPGAiiT
- fDPwQmeyXM2cwKIxGaFXj2b+9M4GG77UAQbukDCMh7NCjPTTneRHrdBs4z88Uby9chpa
- 1BVUeY8Qv07mvJMDk58UGx5oIs34hnhleJZ8LOnT0H+umUKLnrqet1xhksJkGfMuJdmq
- TgFSvf3DrYyzGY7gAAK3Kbw4GBB+CXAK5i83phGmi/l17U/27m/SZ+XLWw6xkBcrk3W9
- Td4/CZ+n1PVeAcg5Z1B1Pajjg295AILhqosa9mpXw1a+S2it9aP6YTLGBqahmAHIKa+2
- VQOQ==
-X-Gm-Message-State: AJcUukfliNR+8QyQJgwRX7JgaZABFqwe4Z7HMBTf0srQTP8BIlRESShY
- R15+4//xY5dDxd/zhHHlElHcliBQcWjMpw==
-X-Google-Smtp-Source: ALg8bN5jv9lD+Ssv/lQ/GwCHV/kiUsXTozY0EMSSQupT76uVe2KsX7sY6xXp7EfeThR9WEhZExd2Ww==
-X-Received: by 2002:a1c:87cc:: with SMTP id j195mr12046394wmd.2.1547479979455; 
- Mon, 14 Jan 2019 07:32:59 -0800 (PST)
+ bh=7CpENgUYFuaKkwmwSVJ/+AjrvPwUExByKZFzFxjT7kI=;
+ b=jYyrGW96i0RJsp9n/T8gX3YnQH8Rd5okH9FwAFKGK4sW6uu0mdjbS7MSdiQv+3a+FZ
+ dSnznHZCRN5X4cT0YDYWN9pSCJYDB/aNdRgkBYt4nymFWy55/BQtrIi/H1iiEmb3hV20
+ FGWtStVIlBePHEHd0HXROQJ44xMK2wWpUAv/S5dnFxwEJiKTcZUEfTTyOiwJ2673llZG
+ rVTo4CxqFm6SlzTKuIFgzoNnUojQRWrBjZFSto6rMUI70psbQ73oHrX0oxqhXDW7Qcqq
+ QoK0sJc8W3RFq7jp+cx6mJEHLw64THYNTGa0qVKTJXJVY5Vp8INBH/y6o6O9+2O9hypk
+ Btbw==
+X-Gm-Message-State: AJcUukceQ3Xca81TqeSLb2hOEB79Bk1xvXDUBTbpccQ0iME/HFrmhYCz
+ IsCOJYLjQV9MZav+y4zGoECQhQ==
+X-Google-Smtp-Source: ALg8bN4pPQqyKVszuoPcZDhe9Kfxso9uzbz6Ls2znnZniKErRx0tlvkDqxvSuBFaVfWsyNrAz5TYpQ==
+X-Received: by 2002:a1c:bb04:: with SMTP id l4mr12408307wmf.142.1547480058333; 
+ Mon, 14 Jan 2019 07:34:18 -0800 (PST)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id p4sm59237075wrs.74.2019.01.14.07.32.58
+ by smtp.gmail.com with ESMTPSA id 124sm31308374wmh.22.2019.01.14.07.34.17
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 14 Jan 2019 07:32:58 -0800 (PST)
-Subject: Re: [PATCH 3/3] drm/meson: add missing of_node_put
-To: Julia Lawall <Julia.Lawall@lip6.fr>
-References: <1547372691-28324-1-git-send-email-Julia.Lawall@lip6.fr>
- <1547372691-28324-4-git-send-email-Julia.Lawall@lip6.fr>
+ Mon, 14 Jan 2019 07:34:17 -0800 (PST)
+Subject: Re: [PATCH RESEND] drm/meson: remove firmware framebuffers
 From: Neil Armstrong <narmstrong@baylibre.com>
+To: Maxime Jourdan <mjourdan@baylibre.com>
+References: <20181210092853.13050-1-mjourdan@baylibre.com>
+ <c5138091-d801-8b2a-85ab-d815f0508933@baylibre.com>
+ <CAMO6nay4+8Y_O2iTWJ041Bt0+3VUuOQj0WEN3Pyf6L80vuxHTA@mail.gmail.com>
+ <19df7254-3fec-fb60-7581-54cf22e10509@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -131,16 +133,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <30e505cf-fdfa-b546-c75d-5eb23366f7bb@baylibre.com>
-Date: Mon, 14 Jan 2019 16:32:58 +0100
+Message-ID: <f510a201-ef9b-9107-3f2b-038e6a69f001@baylibre.com>
+Date: Mon, 14 Jan 2019 16:34:17 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.2.1
 MIME-Version: 1.0
-In-Reply-To: <1547372691-28324-4-git-send-email-Julia.Lawall@lip6.fr>
+In-Reply-To: <19df7254-3fec-fb60-7581-54cf22e10509@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190114_073301_337659_01F9B2CA 
-X-CRM114-Status: GOOD (  17.60  )
+X-CRM114-CacheID: sfid-20190114_073419_998421_F659E23E 
+X-CRM114-Status: GOOD (  16.28  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -152,90 +154,83 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, Kevin Hilman <khilman@baylibre.com>,
- kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Julia,
-
-On 13/01/2019 10:44, Julia Lawall wrote:
-> Add an of_node_put when the result of of_graph_get_remote_port_parent is
-> not available.
+On 12/12/2018 13:39, Neil Armstrong wrote:
+> On 12/12/2018 13:22, Maxime Jourdan wrote:
+>> Hi Neil,
+>> On Wed, Dec 12, 2018 at 10:55 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>>
+>>> Hi Maxime,
+>>>
+>>> On 10/12/2018 10:28, Maxime Jourdan wrote:
+>>>> In case we are using simplefb or another conflicting framebuffer, make
+>>>> the call to drm_fb_helper_remove_conflicting_framebuffers()
+>>>>
+>>>> Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
+>>>> ---
+>>>>  drivers/gpu/drm/meson/meson_drv.c | 20 ++++++++++++++++++++
+>>>>  1 file changed, 20 insertions(+)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+>>>> index d3443125e661..afbb3d707d15 100644
+>>>> --- a/drivers/gpu/drm/meson/meson_drv.c
+>>>> +++ b/drivers/gpu/drm/meson/meson_drv.c
+>>>> @@ -159,6 +159,23 @@ static void meson_vpu_init(struct meson_drm *priv)
+>>>>       writel_relaxed(0x20000, priv->io_base + _REG(VPU_WRARB_MODE_L2C1));
+>>>>  }
+>>>>
+>>>> +static void meson_remove_framebuffers(void)
+>>>> +{
+>>>> +     struct apertures_struct *ap;
+>>>> +
+>>>> +     ap = alloc_apertures(1);
+>>>> +     if (!ap)
+>>>> +             return;
+>>>> +
+>>>> +     /* The framebuffer can be located anywhere in RAM */
+>>>> +     ap->ranges[0].base = 0;
+>>>> +     ap->ranges[0].size = ~0;
+>>>> +
+>>>> +     drm_fb_helper_remove_conflicting_framebuffers(ap, "meson-drm-fb",
+>>>> +                                                   false);
+>>>
+>>> I always wondered, where does the "meson-drm-fb" comes from ???
+>>>
+>>> Neil
+>>>
+>>
+>> This name ultimately ends up in a printk and has no functional impact.
+>> See drivers/video/fbdev/core/fbmem.c:1613 :
+>>
+>> printk(KERN_INFO "fb%d: switching to %s from %s\n", i, name,
+>> registered_fb[i]->fix.id);
+>>
+>> I just picked one that was similar to the names of other drm drivers
+>> calling drm_fb_helper_remove_conflicting_framebuffers().
 > 
-> An of_node_put is also needed when meson_probe_remote completes.  This was
-> present at the recursive call, but not in the call from meson_drv_probe.
+> Ok Cool !
 > 
-> The semantic match that finds this problem is as follows
-> (http://coccinelle.lip6.fr):
+>>
+>> Maxime
+>>
 > 
-> // <smpl>
-> @r exists@
-> local idexpression e;
-> expression x;
-> @@
-> e = of_graph_get_remote_port_parent(...);
-> ... when != x = e
->     when != true e == NULL
->     when != of_node_put(e)
->     when != of_fwnode_handle(e)
-> (
-> return e;
-> |
-> *return ...;
-> )
-> // </smpl>
+> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 > 
-> Signed-off-by: Julia Lawall <Julia.Lawall@lip6.fr>
+> I'll push it when the bindings are acked and when v4.21-rc1 is tagged !
+> 
+> Neil
+> 
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Applied to drm-misc-next.
 
-And applied to drm-misc-fixes.
-
+Thanks,
 Neil
-
-> 
-> ---
->  drivers/gpu/drm/meson/meson_drv.c |    9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-> index 3ee4d4a4e..b59c757 100644
-> --- a/drivers/gpu/drm/meson/meson_drv.c
-> +++ b/drivers/gpu/drm/meson/meson_drv.c
-> @@ -388,8 +388,10 @@ static int meson_probe_remote(struct platform_device *pdev,
->  		remote_node = of_graph_get_remote_port_parent(ep);
->  		if (!remote_node ||
->  		    remote_node == parent || /* Ignore parent endpoint */
-> -		    !of_device_is_available(remote_node))
-> +		    !of_device_is_available(remote_node)) {
-> +			of_node_put(remote_node);
->  			continue;
-> +		}
->  
->  		count += meson_probe_remote(pdev, match, remote, remote_node);
->  
-> @@ -408,10 +410,13 @@ static int meson_drv_probe(struct platform_device *pdev)
->  
->  	for_each_endpoint_of_node(np, ep) {
->  		remote = of_graph_get_remote_port_parent(ep);
-> -		if (!remote || !of_device_is_available(remote))
-> +		if (!remote || !of_device_is_available(remote)) {
-> +			of_node_put(remote);
->  			continue;
-> +		}
->  
->  		count += meson_probe_remote(pdev, &match, np, remote);
-> +		of_node_put(remote);
->  	}
->  
->  	if (count && !match)
-> 
-
 
 _______________________________________________
 linux-amlogic mailing list
