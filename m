@@ -7,142 +7,82 @@ X-Spam-Status: No, score=-8.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D2A3EC43387
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jan 2019 15:34:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 13405C43387
+	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jan 2019 16:02:24 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9629420873
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jan 2019 15:34:39 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D7DBA2086D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jan 2019 16:02:23 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tV/PIjC0";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="nxhGnXIC"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9629420873
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TBEdnlyT";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="u6LF4EnM"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D7DBA2086D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:References:To:From:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ujOKuoLdwz/FJryXUgFB963bDw319MvE0fI8sZ8BOaM=; b=tV/PIjC0mvwfCD
-	uzheeUs9XQ1L9tDkUZIK3OGjAA6MLljWIfw9SNAUnhYxb7+WaYzTXvehDFhB00LwhPqgKWZo4IBBJ
-	Z7FPhm7UAOLJg3QuxSrUC+6oDV5iE/EGOxn5MkvdJN/Uh3T0bkfRXlU86XKsX/H1hQWy5zJTAcBSl
-	k4Ke1BQh0dMUlbXSUBWCas7tecoLZ0/u1p88qUTKDHcU3fULjxj9Ddub1r1zgkkAjnokWIGl6qXPz
-	1v104Smg6v/erGYz7MnytdjHPCxqQhXqPtaxTPtR0exQfTAG7/GAQKHSL9cFQi+z7ELABqdmcf5Fo
-	11TeZB7bmPc8ySDbBA7w==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=tv6TOEBxh5O5xHzDsrevbzqo7dwxiLk2JY2WGtuWhJk=; b=TBEdnlyTAn+Epo
+	hCasIFkfW/zwZL7/lYC9X4ywBpM0iZgXyKnJstt/pul3GaMkRyaEWyyeGn5BvgdCJWaHwVxgdWJk7
+	xnaN41D911wmXAJgbcCoKLkIIGY6l6+KOj4NBPHMrT4xBhh2Mfn8UoDkxyY5vNAbMYefVU7xi7rdj
+	3/zG/G+7eGDFocpCF+FFCB1/ezd6XogDrtxkpKDVgANcWPAHVhM18LKQdfvzBNqBVHWxsG15XE9y2
+	veyrCVEo+8PFa5sTmcUMR8eAoNN+6sb+CmtKUceWOf0HjPIoTCsO64id+91wgwZk1Iowy461YRIDX
+	rzvr8mgjI8+H/9AM9Q8A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gj4G1-00069K-QN; Mon, 14 Jan 2019 15:34:33 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1gj4gp-0002gR-K2; Mon, 14 Jan 2019 16:02:15 +0000
+Received: from mail-pf1-x444.google.com ([2607:f8b0:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gj4Fn-00060F-Uy
- for linux-amlogic@lists.infradead.org; Mon, 14 Jan 2019 15:34:25 +0000
-Received: by mail-wm1-x344.google.com with SMTP id d15so9376890wmb.3
- for <linux-amlogic@lists.infradead.org>; Mon, 14 Jan 2019 07:34:19 -0800 (PST)
+ id 1gj4gb-0002Vu-5E
+ for linux-amlogic@lists.infradead.org; Mon, 14 Jan 2019 16:02:07 +0000
+Received: by mail-pf1-x444.google.com with SMTP id h3so10548377pfg.1
+ for <linux-amlogic@lists.infradead.org>; Mon, 14 Jan 2019 08:02:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:from:to:cc:references:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=7CpENgUYFuaKkwmwSVJ/+AjrvPwUExByKZFzFxjT7kI=;
- b=nxhGnXICfpq9zz6mE65kV48XNAq8yJYi1WQ53qLZmbYXfHVeMROBuYcoN1PiErCvEK
- zZJ7igpCtcAlqlyT845dHrZFWGKKub5mh3a7WkjcPAhHLwabIjnNWSDim2IS+XZ6xTih
- qMIVR5ecf9sbFD/SWe3thf4r/lV9KUKZ6Xhk4zduX0ecBVWAtzEdQwYZFTQOpn4vD2aM
- pQTEx1izH11+yo5sW4HV4QtArpI43XZOo5Vlg/rDeZzELmdkTQE6k/00IfooEK/wcnez
- F4CISryCl3FVh5y1/EXUAKKsln9gcCiNBwceXQXw0ga1uNmKajb0XOt6008ZSlu/j6SA
- qd9g==
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=gxQ9Aw15DeoI4moC2VJqIEkTVG5aPdFcj18MDxQPjp8=;
+ b=u6LF4EnMcOiNZleiyUm60OYosTyyMBuTJkgzetBREixHUihHy64QhffGHhRwVYZOgn
+ 713kL5F9xO9dm89eF9WjAHzRAo9ySU30/Xor0qQgljNkKYtirlBr2ctPAKNtRyu3GZ0g
+ 0lu9ZM3YTFTMje+A5P2sB32oliaBRbEHr9cvFx1wmBQ/pxXarJjPUN+xQKGCEmsNbsNr
+ xFsYBusxfz0mf+1RZ0NRi3aDJa+eB2wXksZzBvsBggLpJXs+aB5ya90qjxEH/rAsbNZH
+ MqZiodIr8P1grE54/VuD2RiwDlRCr6hvQXvqXHfxEZQshHJlLluiltwfu7OAyQMkKI4J
+ u62g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:from:to:cc:references:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=7CpENgUYFuaKkwmwSVJ/+AjrvPwUExByKZFzFxjT7kI=;
- b=jYyrGW96i0RJsp9n/T8gX3YnQH8Rd5okH9FwAFKGK4sW6uu0mdjbS7MSdiQv+3a+FZ
- dSnznHZCRN5X4cT0YDYWN9pSCJYDB/aNdRgkBYt4nymFWy55/BQtrIi/H1iiEmb3hV20
- FGWtStVIlBePHEHd0HXROQJ44xMK2wWpUAv/S5dnFxwEJiKTcZUEfTTyOiwJ2673llZG
- rVTo4CxqFm6SlzTKuIFgzoNnUojQRWrBjZFSto6rMUI70psbQ73oHrX0oxqhXDW7Qcqq
- QoK0sJc8W3RFq7jp+cx6mJEHLw64THYNTGa0qVKTJXJVY5Vp8INBH/y6o6O9+2O9hypk
- Btbw==
-X-Gm-Message-State: AJcUukceQ3Xca81TqeSLb2hOEB79Bk1xvXDUBTbpccQ0iME/HFrmhYCz
- IsCOJYLjQV9MZav+y4zGoECQhQ==
-X-Google-Smtp-Source: ALg8bN4pPQqyKVszuoPcZDhe9Kfxso9uzbz6Ls2znnZniKErRx0tlvkDqxvSuBFaVfWsyNrAz5TYpQ==
-X-Received: by 2002:a1c:bb04:: with SMTP id l4mr12408307wmf.142.1547480058333; 
- Mon, 14 Jan 2019 07:34:18 -0800 (PST)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id 124sm31308374wmh.22.2019.01.14.07.34.17
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 14 Jan 2019 07:34:17 -0800 (PST)
-Subject: Re: [PATCH RESEND] drm/meson: remove firmware framebuffers
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: Maxime Jourdan <mjourdan@baylibre.com>
-References: <20181210092853.13050-1-mjourdan@baylibre.com>
- <c5138091-d801-8b2a-85ab-d815f0508933@baylibre.com>
- <CAMO6nay4+8Y_O2iTWJ041Bt0+3VUuOQj0WEN3Pyf6L80vuxHTA@mail.gmail.com>
- <19df7254-3fec-fb60-7581-54cf22e10509@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <f510a201-ef9b-9107-3f2b-038e6a69f001@baylibre.com>
-Date: Mon, 14 Jan 2019 16:34:17 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.2.1
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=gxQ9Aw15DeoI4moC2VJqIEkTVG5aPdFcj18MDxQPjp8=;
+ b=oq5ALVDwW9Up5E6MX60Gxi4bMcnX7XzoTfLR/lJfbD60FSlhA3mVqFZUowQMFLTAy6
+ NqoOnAu9VldFQdWEsjflJdkikOZgN6K+kjzbaiktxA/46ens0EY7FWLSTGHI7wXQvONr
+ jO1kzwD2whzfW8OdiKNJBPuG5E/j2jmOIRdY0s7uunzXRh/U3AvWEZmPQClysQXNvDJ8
+ krW4XVZ4etDWNJr23F3l4+J00wIkNLH2R13Ab2T0LrsGIt39fTpkCQBG2BSdhSxpY8vh
+ BF5vexxq928Z1QpPPA+wEVWLQ6/v0otPFtp5Ow9fZ06HPfEO3KVZQ6Fm7KZjmOrbfKUW
+ d5KA==
+X-Gm-Message-State: AJcUukeCxcSHO0AzMEYGJOwrckYncpscPnq9Q8Lnsfdb3JHUxWvSztU8
+ b4HH3ArOGJjBJH1sRV3lPR+bdw==
+X-Google-Smtp-Source: ALg8bN7V4VHmna7sTIrCzjOgXoN+d6ul2XCD6IFFD9PFMk7wYXCXYda1AUSEEWorhVnYNT+v2bGFng==
+X-Received: by 2002:a62:3141:: with SMTP id x62mr25828025pfx.12.1547481719762; 
+ Mon, 14 Jan 2019 08:01:59 -0800 (PST)
+Received: from localhost ([2601:602:9200:a1a5:55a3:6ea4:4b91:28a5])
+ by smtp.googlemail.com with ESMTPSA id 5sm977151pfz.149.2019.01.14.08.01.58
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Mon, 14 Jan 2019 08:01:58 -0800 (PST)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Loys Ollivier <lollivier@baylibre.com>, devicetree@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v4] arm64: dts: meson: Fix mmc cd-gpios polarity
+In-Reply-To: <1547477061-31543-1-git-send-email-lollivier@baylibre.com>
+References: <1547477061-31543-1-git-send-email-lollivier@baylibre.com>
+Date: Mon, 14 Jan 2019 08:01:58 -0800
+Message-ID: <7hh8ebmdmx.fsf@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <19df7254-3fec-fb60-7581-54cf22e10509@baylibre.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190114_073419_998421_F659E23E 
-X-CRM114-Status: GOOD (  16.28  )
+X-CRM114-CacheID: sfid-20190114_080201_205492_D6361831 
+X-CRM114-Status: GOOD (  12.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -154,83 +94,258 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Loys Ollivier <lollivier@baylibre.com>, linux-mmc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 12/12/2018 13:39, Neil Armstrong wrote:
-> On 12/12/2018 13:22, Maxime Jourdan wrote:
->> Hi Neil,
->> On Wed, Dec 12, 2018 at 10:55 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->>>
->>> Hi Maxime,
->>>
->>> On 10/12/2018 10:28, Maxime Jourdan wrote:
->>>> In case we are using simplefb or another conflicting framebuffer, make
->>>> the call to drm_fb_helper_remove_conflicting_framebuffers()
->>>>
->>>> Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
->>>> ---
->>>>  drivers/gpu/drm/meson/meson_drv.c | 20 ++++++++++++++++++++
->>>>  1 file changed, 20 insertions(+)
->>>>
->>>> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
->>>> index d3443125e661..afbb3d707d15 100644
->>>> --- a/drivers/gpu/drm/meson/meson_drv.c
->>>> +++ b/drivers/gpu/drm/meson/meson_drv.c
->>>> @@ -159,6 +159,23 @@ static void meson_vpu_init(struct meson_drm *priv)
->>>>       writel_relaxed(0x20000, priv->io_base + _REG(VPU_WRARB_MODE_L2C1));
->>>>  }
->>>>
->>>> +static void meson_remove_framebuffers(void)
->>>> +{
->>>> +     struct apertures_struct *ap;
->>>> +
->>>> +     ap = alloc_apertures(1);
->>>> +     if (!ap)
->>>> +             return;
->>>> +
->>>> +     /* The framebuffer can be located anywhere in RAM */
->>>> +     ap->ranges[0].base = 0;
->>>> +     ap->ranges[0].size = ~0;
->>>> +
->>>> +     drm_fb_helper_remove_conflicting_framebuffers(ap, "meson-drm-fb",
->>>> +                                                   false);
->>>
->>> I always wondered, where does the "meson-drm-fb" comes from ???
->>>
->>> Neil
->>>
->>
->> This name ultimately ends up in a printk and has no functional impact.
->> See drivers/video/fbdev/core/fbmem.c:1613 :
->>
->> printk(KERN_INFO "fb%d: switching to %s from %s\n", i, name,
->> registered_fb[i]->fix.id);
->>
->> I just picked one that was similar to the names of other drm drivers
->> calling drm_fb_helper_remove_conflicting_framebuffers().
-> 
-> Ok Cool !
-> 
->>
->> Maxime
->>
-> 
-> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-> 
-> I'll push it when the bindings are acked and when v4.21-rc1 is tagged !
-> 
-> Neil
-> 
+Loys Ollivier <lollivier@baylibre.com> writes:
 
-Applied to drm-misc-next.
+> Commit 89a5e15bcba8 ("gpio/mmc/of: Respect polarity in the device tree")
+> changed the behavior of "cd-inverted" to follow the device tree bindings
+> specification:
+> According to SDHCI standard, CD lines are specified as "active low".
+> Using the "cd-inverted" property means that the CD line is "active high".
+>
+> Fix the SD card description for meson by setting the cd-gpios as
+> "active low", according to the boards specifications, and dropping the
+> "cd-inverted" property.
+>
+> Fixes: 89a5e15bcba8 ("gpio/mmc/of: Respect polarity in the device tree")
+> Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
 
-Thanks,
-Neil
+Queued as fix for v5.0-rc. (I replaced v3 in my fixes branch with this
+one)
+
+Kevin
+
+> ---
+>
+> v4: commit message clarification on the "cd-inverted" property and usage.
+>
+> v3: fix typos in the commit message.
+>
+> v2: fix more occurences, also in other meson boards.
+>
+>  arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi            | 3 +--
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts           | 3 +--
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts         | 3 +--
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts            | 3 +--
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi               | 3 +--
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi           | 3 +--
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi              | 3 +--
+>  arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts | 3 +--
+>  arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts   | 3 +--
+>  arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts    | 3 +--
+>  arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi          | 3 +--
+>  arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts          | 3 +--
+>  arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts            | 3 +--
+>  arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts             | 3 +--
+>  14 files changed, 14 insertions(+), 28 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
+> index e14e0ce7e89f..016641a41694 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi
+> @@ -187,8 +187,7 @@
+>  	max-frequency = <100000000>;
+>  	disable-wp;
+>  
+> -	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+> -	cd-inverted;
+> +	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+>  
+>  	vmmc-supply = <&vddao_3v3>;
+>  	vqmmc-supply = <&vddio_boot>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+> index 8cd50b75171d..ade2ee09ae96 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+> @@ -305,8 +305,7 @@
+>  	max-frequency = <200000000>;
+>  	disable-wp;
+>  
+> -	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+> -	cd-inverted;
+> +	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+>  
+>  	vmmc-supply = <&vddio_ao3v3>;
+>  	vqmmc-supply = <&vddio_tf>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
+> index 4cf7f6e80c6a..25105ac96d55 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
+> @@ -238,8 +238,7 @@
+>  	max-frequency = <100000000>;
+>  	disable-wp;
+>  
+> -	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+> -	cd-inverted;
+> +	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+>  
+>  	vmmc-supply = <&vddao_3v3>;
+>  	vqmmc-supply = <&vddio_card>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> index 2e1cd5e3a246..1cc9dc68ef00 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> @@ -258,8 +258,7 @@
+>  	max-frequency = <100000000>;
+>  	disable-wp;
+>  
+> -	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+> -	cd-inverted;
+> +	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+>  
+>  	vmmc-supply = <&tflash_vdd>;
+>  	vqmmc-supply = <&tf_io>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+> index ce862266b9aa..0be0f2a5d2fe 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+> @@ -196,8 +196,7 @@
+>  	max-frequency = <100000000>;
+>  	disable-wp;
+>  
+> -	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+> -	cd-inverted;
+> +	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+>  
+>  	vmmc-supply = <&vddao_3v3>;
+>  	vqmmc-supply = <&vddio_card>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+> index 93a4acf2c46c..ad4d50bd9d77 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
+> @@ -154,8 +154,7 @@
+>  	max-frequency = <100000000>;
+>  	disable-wp;
+>  
+> -	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+> -	cd-inverted;
+> +	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+>  
+>  	vmmc-supply = <&vcc_3v3>;
+>  };
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi
+> index ec09bb5792b7..2d2db783c44c 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi
+> @@ -211,8 +211,7 @@
+>  	max-frequency = <100000000>;
+>  	disable-wp;
+>  
+> -	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+> -	cd-inverted;
+> +	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+>  
+>  	vmmc-supply = <&vddao_3v3>;
+>  	vqmmc-supply = <&vcc_3v3>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
+> index f1c410e2da2b..796baea7a0bf 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
+> @@ -131,8 +131,7 @@
+>  	max-frequency = <100000000>;
+>  	disable-wp;
+>  
+> -	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+> -	cd-inverted;
+> +	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+>  
+>  	vmmc-supply = <&vddao_3v3>;
+>  	vqmmc-supply = <&vddio_card>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+> index db293440e4ca..255cede7b447 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+> @@ -238,8 +238,7 @@
+>  	max-frequency = <100000000>;
+>  	disable-wp;
+>  
+> -	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+> -	cd-inverted;
+> +	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+>  
+>  	vmmc-supply = <&vcc_3v3>;
+>  	vqmmc-supply = <&vcc_card>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
+> index 6739697be1de..9cbdb85fb591 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
+> @@ -183,8 +183,7 @@
+>  	max-frequency = <100000000>;
+>  	disable-wp;
+>  
+> -	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+> -	cd-inverted;
+> +	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+>  
+>  	vmmc-supply = <&vddao_3v3>;
+>  	vqmmc-supply = <&vddio_card>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
+> index a1b31013ab6e..bc811a2faf42 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
+> @@ -137,8 +137,7 @@
+>  	max-frequency = <100000000>;
+>  	disable-wp;
+>  
+> -	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+> -	cd-inverted;
+> +	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+>  
+>  	vmmc-supply = <&vddao_3v3>;
+>  	vqmmc-supply = <&vddio_boot>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+> index 3c3a667a8df8..3f086ed7de05 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+> @@ -356,8 +356,7 @@
+>  	max-frequency = <100000000>;
+>  	disable-wp;
+>  
+> -	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+> -	cd-inverted;
+> +	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+>  
+>  	vmmc-supply = <&vddao_3v3>;
+>  	vqmmc-supply = <&vddio_boot>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
+> index f7a1cffab4a8..8acfd40090d2 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts
+> @@ -147,8 +147,7 @@
+>  	max-frequency = <100000000>;
+>  	disable-wp;
+>  
+> -	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+> -	cd-inverted;
+> +	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+>  
+>  	vmmc-supply = <&vddao_3v3>;
+>  	vqmmc-supply = <&vddio_boot>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
+> index 7212dc4531e4..7fa20a8ede17 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
+> @@ -170,8 +170,7 @@
+>  	max-frequency = <100000000>;
+>  	disable-wp;
+>  
+> -	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_HIGH>;
+> -	cd-inverted;
+> +	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+>  
+>  	vmmc-supply = <&vddao_3v3>;
+>  	vqmmc-supply = <&vddio_boot>;
+> -- 
+> 2.7.4
 
 _______________________________________________
 linux-amlogic mailing list
