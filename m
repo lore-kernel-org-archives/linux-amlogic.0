@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-8.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5EAB9C43387
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jan 2019 16:13:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ED662C43387
+	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jan 2019 16:17:44 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2B87520873
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jan 2019 16:13:32 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BD0BC20873
+	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jan 2019 16:17:44 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VWPwv+xL";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="1r+r30rD"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2B87520873
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Gc+6WTi4";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="vdRyWEq7"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BD0BC20873
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,58 +26,62 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uK0nhuMeUc40XYa42HX21cvoROgzx82A3egYxDAlIxQ=; b=VWPwv+xLXLIXoj
-	RQj4TI4ixZ2dZQDNpnndl84NMDN7AnFP3gg8XiyoqMKwnM128rw9+81qEqtli+2Js5Pj3BMJBmiFr
-	Qk9jZc2ZpD4oezZnNM1YyekCvfw9klnV5tZGxBhRlc1bcIe2U8twXzj1kHKMelc5MHsHgZHkaI/jT
-	spRZCYFKsxqM0sHXfBjhyWH2ktbV/iITXIZ4XRyIQCoy1rqxX5PLJowe2MAUnBofm1TAKUPooo8jY
-	WZ/NUdwImb5qLyckNAVFp0Ud4cFqQKCMXGSx7we5k/tOu1e/WGmgJB7ihoNZ9OUMmHeoZEt+NgPfE
-	nRY0GkoABe6FcDHM9eJg==;
+	List-Owner; bh=inOzvww5fUnbNx/TkU5IsrF9IghkIupcMT6GfbxXt68=; b=Gc+6WTi4u5tR3x
+	/YPhDYvk/nfhrSnVsCEB6mt6wHGfqSMQrUyLRLeDDY7OLTsSwK7SGBGGme/D+VOqEsdj2DL8K6Wkm
+	RbH8ov1WHNFDd6yroygPCbvOMrJ45T4cRR9UqWRzR7FdHBZ7Goase/r26S855yK4+AeMOGFa4iEIF
+	1QYPr5zOc9L3V3xhiASR9HEeNYYgNHIdAge58NjlZxXRN/xI4auBUaqK5Awkn+lYhGM6MgLVk2Ox4
+	AINEr3LT424cF2fqMlMKpWXW3QZd7apW1Ix9vEMWCeGbIMmds6iY6NnuKBJT6MncjhLT8gqUpJ1ZZ
+	4dPs7bT75GlqKHhv6qYQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gj4rc-00087J-Jk; Mon, 14 Jan 2019 16:13:24 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1gj4vj-0001pp-69; Mon, 14 Jan 2019 16:17:39 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gj4qM-0006jJ-LJ
- for linux-amlogic@lists.infradead.org; Mon, 14 Jan 2019 16:12:21 +0000
-Received: by mail-wr1-x444.google.com with SMTP id x10so23498932wrs.8
- for <linux-amlogic@lists.infradead.org>; Mon, 14 Jan 2019 08:12:04 -0800 (PST)
+ id 1gj4vf-0001oh-3E
+ for linux-amlogic@lists.infradead.org; Mon, 14 Jan 2019 16:17:36 +0000
+Received: by mail-wm1-x342.google.com with SMTP id r24so7747966wmh.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 14 Jan 2019 08:17:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=eqCnO1r8WwRB+cE0U0gOSoMANgOiG6mRV4IgCN9xOZE=;
- b=1r+r30rD5AvngMhJ69QUawH2pJUAtUfuPA4ZYlQa/NAKrW1a+xWQqR+HIppCeWydOW
- QBB6eIqkcTit5Q1PbNXm/wBIxPDExlXpBI70hsaEEQDj3K6NWWRe1EGt1Fgky7BtaTp6
- ST4ft3b6e3yW2H2nhAU+4m4zYOIIQKMOIqBp0DQQ1Lobt3SpHYHcJm24FlAJppA+z8Sh
- gD/GzpX/Bi65oYM427UkrrsHBIzLflPQDNdi4BfMfFASPyq329kyV/4mNkO7COIQ0h3P
- Zf9XAKpv6+GDdnrJyQxa6XJhh/V7p9k+sNWxU1KbGBDmykPtRDAZ7x2EA04KhSUw4cwR
- AgRQ==
+ bh=hDPJLjGBthVQ4DdFYqh9h+HDOS6KLaQYF9loO/RXddg=;
+ b=vdRyWEq7pMlPm4eYTffAf5hdsKCHGtBQMaGcwd/VrZHsE2jQ3Vnuh3TYqLTlAeISfL
+ veNuvDpPAGXYScn0LD7/17XjPh3Xk6SW8B7l+586kHQp9MmYYMTGPI2MJZn+ta+wmR87
+ G2J2+MJfokf91+6wpT/StHojN73XZK3eatrQ1mf2L+HiEZhD4mGuQ0T4xp2vNvAHvvqh
+ VSM36Kv/OG7e33gXxvnoRIEcL5q/n785yhZHPYZCGzyJfnsWRbBiB+Doi8bX0iTdaa9A
+ bM/CxFS32euzf4d/jEL47H1+gEEbNMaSyf/ZriDLgygTiR4dsUZBRe6H8jp4mFz7nGmo
+ FP4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=eqCnO1r8WwRB+cE0U0gOSoMANgOiG6mRV4IgCN9xOZE=;
- b=Y9FBzqX6alE4X2sg1Z5CSaRtGMkeeW6olf4Bn8M4e4sF0gZB8bJHsTR0hAx62vZQun
- H6ffRc6VBWPqwOYIBdeLgeYwaUiAB+QfF9Yxxv0k7BNHLSP2r4BAEB51/MeuVGUcQo3d
- 7XVrGAnWDst5zP5VCafGNS5gB4hYHe50+0JGYfIa2R8Dk3ekau7ntmBBrSbD2rntrX2a
- touA7bTYWnVJb7erQLWa3lcgJrrEfKRKFOJ8Jb3H02Gy83svow7vflA+T+vJJlcb9jcL
- zu14o+LvDtc1Qfac6p4e3AhhveeUf1v/GxuNHw+1vdzb2ZiCA3HctdymRfjDnLT+D+o2
- bM6g==
-X-Gm-Message-State: AJcUukf5bEu0R1fM+exgMwulxl5tnaoTPwnSK1s9fP/bivjh/G0wcbum
- RwRTVCPr9ANyQcn0kR+lN9LuTQFkBIv6jA==
-X-Google-Smtp-Source: ALg8bN4uM8Se6cJ8ghl69hAVRZg2OyS5jH8yX0tamGHM9AR9hjgCSJ0a5fsgPNxkKokr9KxbB5Qz0A==
-X-Received: by 2002:adf:f101:: with SMTP id r1mr25532840wro.32.1547482322378; 
- Mon, 14 Jan 2019 08:12:02 -0800 (PST)
+ bh=hDPJLjGBthVQ4DdFYqh9h+HDOS6KLaQYF9loO/RXddg=;
+ b=j1EltjLcz/eR01lJ+JuBPbDDX3H9/qQgc1ysi23fChMvhOBUVtClQFt3NdeV70A04A
+ MWRngKvhUGo3sQUg+GreqSjDAw3+Ouo0AyVYYHzkxUNEqg1HsOKJ1NHDIGpvc/B9GUd7
+ cRVtt/3kVfTFOeRtwxNnZDTJpmQWw4IiukcucHMdYKTF17410drYn0v7nyqtWza6FAcf
+ DN1u1ScpVhKNEU9TRm9gmBiew3GhFRdQqJiPOcP+zBkA1dnzjfduXHPd/nWPIYaWc4n9
+ BCfY3INM72zVPjC+pPsvrOa/lVp3Ht/MG3JcziU8SmawqKv6fBFyiFfHJwhkLCgDQoQ+
+ XJmw==
+X-Gm-Message-State: AJcUukd8Xh1dcfhVlYI/6uvmx8R4fuNI6VWNnh1KkgruMAABUAkKmjcz
+ JfgrFllVvDgsrXP0TvTsxgrp7A==
+X-Google-Smtp-Source: ALg8bN7vdLgEhi0uUIILFFPt70H1fD1WsvCfjObWF/lapGF7nmPGQj9dJgyMEKN+ZM/rw6yU9+cMRQ==
+X-Received: by 2002:a1c:4c10:: with SMTP id z16mr12901155wmf.117.1547482653120; 
+ Mon, 14 Jan 2019 08:17:33 -0800 (PST)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id v1sm99417599wrw.90.2019.01.14.08.12.01
+ by smtp.gmail.com with ESMTPSA id v16sm58420893wrs.75.2019.01.14.08.17.31
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 14 Jan 2019 08:12:01 -0800 (PST)
-Subject: Re: [PATCH u-boot] pinctrl: meson: add pinconf support
-To: Jerome Brunet <jbrunet@baylibre.com>, trini@konsulko.com
-References: <20190104144434.5672-1-jbrunet@baylibre.com>
+ Mon, 14 Jan 2019 08:17:32 -0800 (PST)
+Subject: Re: [PatchV2 2/2] ARM64: dts: meson-gxbb-odroidc2: Fix usb phy reset
+ warning
+To: Anand Moon <linux.amoon@gmail.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20190113153022.5040-1-linux.amoon@gmail.com>
+ <20190113153022.5040-2-linux.amoon@gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -130,16 +134,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <509d3c4e-b6e7-4983-f31f-3da4cd21dc24@baylibre.com>
-Date: Mon, 14 Jan 2019 17:12:00 +0100
+Message-ID: <6223f912-156a-342c-07c3-a0b2a6229b08@baylibre.com>
+Date: Mon, 14 Jan 2019 17:17:31 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.2.1
 MIME-Version: 1.0
-In-Reply-To: <20190104144434.5672-1-jbrunet@baylibre.com>
+In-Reply-To: <20190113153022.5040-2-linux.amoon@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190114_081206_931026_3E2A3949 
-X-CRM114-Status: GOOD (  22.13  )
+X-CRM114-CacheID: sfid-20190114_081735_141265_34BA193C 
+X-CRM114-Status: GOOD (  16.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -151,295 +155,77 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: u-boot@lists.denx.de, linux-amlogic@lists.infradead.org
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jerome,
+Hi Anand,
 
-On 04/01/2019 15:44, Jerome Brunet wrote:
-> Adding pinconf support is necessary to enable boot from SPI
-> without breaking the eMMC. When booting from SPI, the ROM code
-> leave pull downs on the eMMC pad.
+On 13/01/2019 16:30, Anand Moon wrote:
+> Add missing vin-supply node 5.0V regulator setting to power
+> to usb ports, changes help fix the usb reset warning.
 > 
-> We need to set pinconf provided in DT to solve this
+> [  795.380156] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> [  798.356073] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> [  801.331999] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> [  804.307919] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> [  807.283844] usb 1-1.2: reset high-speed USB device number 3 using dwc2
 > 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> Fixes: 5a0803bd5ae (ARM64: dts: meson-gxbb-odroidc2: Enable USB Nodes)
+> Tested-by: Kevin Hilman <khilman@baylibre.com>
+> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Cc: Jerome Brunet <jbrunet@baylibre.com>
+> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 > ---
->  drivers/pinctrl/meson/Kconfig                 |   1 +
->  drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c |  10 ++
->  drivers/pinctrl/meson/pinctrl-meson-gx-pmx.c  |  10 ++
->  drivers/pinctrl/meson/pinctrl-meson.c         | 101 ++++++++++++++++--
->  drivers/pinctrl/meson/pinctrl-meson.h         |   8 ++
->  5 files changed, 123 insertions(+), 7 deletions(-)
+> Rebased on Kevin's amlogic/v5.0/fixes branch
+> Changes from patch v1 [0] https://lore.kernel.org/patchwork/patch/1031243/
+> - Split the patch into two part: new patch
+> - Fix the commit message
+> - Added Tested by Kevin Hilman
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
-> diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
-> index ee820a57a0e0..162642d7289b 100644
-> --- a/drivers/pinctrl/meson/Kconfig
-> +++ b/drivers/pinctrl/meson/Kconfig
-> @@ -2,6 +2,7 @@ if ARCH_MESON
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> index 25a36d117183..a947b46bfaa8 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> @@ -28,6 +28,13 @@
+>  		reg = <0x0 0x0 0x0 0x80000000>;
+>  	};
 >  
->  config PINCTRL_MESON
->  	select PINCTRL_GENERIC
-> +	select PINCONF
->  	bool
->  
->  config PINCTRL_MESON_GX_PMX
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c b/drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c
-> index c82413d08f34..f9065723eea9 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c
-> @@ -93,6 +93,12 @@ static int meson_axg_pinmux_group_set(struct udevice *dev,
->  	return 0;
->  }
->  
-> +const struct pinconf_param meson_axg_pinconf_params[] = {
-> +	{ "bias-disable", PIN_CONFIG_BIAS_DISABLE, 0 },
-> +	{ "bias-pull-up", PIN_CONFIG_BIAS_PULL_UP, 1 },
-> +	{ "bias-pull-down", PIN_CONFIG_BIAS_PULL_DOWN, 1 },
-> +};
+> +	p5v0: regulator-p5v0 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "P5V0";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +	};
 > +
->  const struct pinctrl_ops meson_axg_pinctrl_ops = {
->  	.get_groups_count = meson_pinctrl_get_groups_count,
->  	.get_group_name = meson_pinctrl_get_group_name,
-> @@ -100,6 +106,10 @@ const struct pinctrl_ops meson_axg_pinctrl_ops = {
->  	.get_function_name = meson_pinmux_get_function_name,
->  	.pinmux_group_set = meson_axg_pinmux_group_set,
->  	.set_state = pinctrl_generic_set_state,
-> +	.pinconf_params = meson_axg_pinconf_params
-> +	.pinconf_num_params = ARRAY_SIZE(meson_axg_pinconf_params),
-> +	.pinconf_set = meson_pinconf_set,
-> +	.pinconf_group_set = meson_pinconf_group_set,
->  };
+>  	usb_otg_pwr: regulator-usb-pwrs {
+>  		compatible = "regulator-fixed";
 >  
->  static int meson_axg_gpio_request(struct udevice *dev,
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson-gx-pmx.c b/drivers/pinctrl/meson/pinctrl-meson-gx-pmx.c
-> index fc1538ea719e..cf72576b6ce2 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson-gx-pmx.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson-gx-pmx.c
-> @@ -72,6 +72,12 @@ static int meson_gx_pinmux_group_set(struct udevice *dev,
->  	return 0;
->  }
+> @@ -36,6 +43,8 @@
+>  		regulator-min-microvolt = <5000000>;
+>  		regulator-max-microvolt = <5000000>;
 >  
-> +const struct pinconf_param meson_gx_pinconf_params[] = {
-> +	{ "bias-disable", PIN_CONFIG_BIAS_DISABLE, 0 },
-> +	{ "bias-pull-up", PIN_CONFIG_BIAS_PULL_UP, 1 },
-> +	{ "bias-pull-down", PIN_CONFIG_BIAS_PULL_DOWN, 1 },
-> +};
+> +		vin-supply = <&p5v0>;
 > +
->  const struct pinctrl_ops meson_gx_pinctrl_ops = {
->  	.get_groups_count = meson_pinctrl_get_groups_count,
->  	.get_group_name = meson_pinctrl_get_group_name,
-> @@ -79,6 +85,10 @@ const struct pinctrl_ops meson_gx_pinctrl_ops = {
->  	.get_function_name = meson_pinmux_get_function_name,
->  	.pinmux_group_set = meson_gx_pinmux_group_set,
->  	.set_state = pinctrl_generic_set_state,
-> +	.pinconf_params = meson_gx_pinconf_params,
-> +	.pinconf_num_params = ARRAY_SIZE(meson_gx_pinconf_params),
-> +	.pinconf_set = meson_pinconf_set,
-> +	.pinconf_group_set = meson_pinconf_group_set,
->  };
->  
->  static const struct dm_gpio_ops meson_gx_gpio_ops = {
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
-> index b539749752c8..fa3d78858a9e 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson.c
-> @@ -57,7 +57,7 @@ static int meson_gpio_calc_reg_and_bit(struct udevice *dev, unsigned int offset,
->  				       enum meson_reg_type reg_type,
->  				       unsigned int *reg, unsigned int *bit)
->  {
-> -	struct meson_pinctrl *priv = dev_get_priv(dev->parent);
-> +	struct meson_pinctrl *priv = dev_get_priv(dev);
->  	struct meson_bank *bank = NULL;
->  	struct meson_reg_desc *desc;
->  	unsigned int pin;
-> @@ -89,7 +89,8 @@ int meson_gpio_get(struct udevice *dev, unsigned int offset)
->  	unsigned int reg, bit;
->  	int ret;
->  
-> -	ret = meson_gpio_calc_reg_and_bit(dev, offset, REG_IN, &reg, &bit);
-> +	ret = meson_gpio_calc_reg_and_bit(dev->parent, offset, REG_IN, &reg,
-> +					  &bit);
->  	if (ret)
->  		return ret;
->  
-> @@ -102,7 +103,8 @@ int meson_gpio_set(struct udevice *dev, unsigned int offset, int value)
->  	unsigned int reg, bit;
->  	int ret;
->  
-> -	ret = meson_gpio_calc_reg_and_bit(dev, offset, REG_OUT, &reg, &bit);
-> +	ret = meson_gpio_calc_reg_and_bit(dev->parent, offset, REG_OUT, &reg,
-> +					  &bit);
->  	if (ret)
->  		return ret;
->  
-> @@ -117,7 +119,8 @@ int meson_gpio_get_direction(struct udevice *dev, unsigned int offset)
->  	unsigned int reg, bit, val;
->  	int ret;
->  
-> -	ret = meson_gpio_calc_reg_and_bit(dev, offset, REG_DIR, &reg, &bit);
-> +	ret = meson_gpio_calc_reg_and_bit(dev->parent, offset, REG_DIR, &reg,
-> +					  &bit);
->  	if (ret)
->  		return ret;
->  
-> @@ -132,7 +135,8 @@ int meson_gpio_direction_input(struct udevice *dev, unsigned int offset)
->  	unsigned int reg, bit;
->  	int ret;
->  
-> -	ret = meson_gpio_calc_reg_and_bit(dev, offset, REG_DIR, &reg, &bit);
-> +	ret = meson_gpio_calc_reg_and_bit(dev->parent, offset, REG_DIR, &reg,
-> +					  &bit);
->  	if (ret)
->  		return ret;
->  
-> @@ -148,13 +152,15 @@ int meson_gpio_direction_output(struct udevice *dev,
->  	unsigned int reg, bit;
->  	int ret;
->  
-> -	ret = meson_gpio_calc_reg_and_bit(dev, offset, REG_DIR, &reg, &bit);
-> +	ret = meson_gpio_calc_reg_and_bit(dev->parent, offset, REG_DIR, &reg,
-> +					  &bit);
->  	if (ret)
->  		return ret;
->  
->  	clrbits_le32(priv->reg_gpio + reg, BIT(bit));
->  
-> -	ret = meson_gpio_calc_reg_and_bit(dev, offset, REG_OUT, &reg, &bit);
-> +	ret = meson_gpio_calc_reg_and_bit(dev->parent, offset, REG_OUT, &reg,
-> +					  &bit);
->  	if (ret)
->  		return ret;
->  
-> @@ -163,6 +169,72 @@ int meson_gpio_direction_output(struct udevice *dev,
->  	return 0;
->  }
->  
-> +static int meson_pinconf_bias_set(struct udevice *dev, unsigned int pin,
-> +				  unsigned int param)
-> +{
-> +	struct meson_pinctrl *priv = dev_get_priv(dev);
-> +	unsigned int offset = pin - priv->data->pin_base;
-> +	unsigned int reg, bit;
-> +	int ret;
-> +
-> +	ret = meson_gpio_calc_reg_and_bit(dev, offset, REG_PULLEN, &reg, &bit);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (param == PIN_CONFIG_BIAS_DISABLE) {
-> +		clrsetbits_le32(priv->reg_pullen + reg, BIT(bit), 0);
-> +		return 0;
-> +	}
-> +
-> +	/* othewise, enable the bias and select level */
-> +	clrsetbits_le32(priv->reg_pullen + reg, BIT(bit), 1);
-> +	ret = meson_gpio_calc_reg_and_bit(dev, offset, REG_PULL, &reg, &bit);
-> +	if (ret)
-> +		return ret;
-> +
-> +	clrsetbits_le32(priv->reg_pull + reg, BIT(bit),
-> +			param == PIN_CONFIG_BIAS_PULL_UP);
-> +
-> +	return 0;
-> +}
-> +
-> +int meson_pinconf_set(struct udevice *dev, unsigned int pin,
-> +		      unsigned int param, unsigned int arg)
-> +{
-> +	int ret;
-> +
-> +	switch (param) {
-> +	case PIN_CONFIG_BIAS_DISABLE:
-> +	case PIN_CONFIG_BIAS_PULL_UP:
-> +	case PIN_CONFIG_BIAS_PULL_DOWN:
-> +		ret = meson_pinconf_bias_set(dev, pin, param);
-> +		break;
-> +
-> +	default:
-> +		dev_err(dev, "unsupported configuration parameter %u\n", param);
-> +		return -EINVAL;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +int meson_pinconf_group_set(struct udevice *dev,
-> +			    unsigned int group_selector,
-> +			    unsigned int param, unsigned int arg)
-> +{
-> +	struct meson_pinctrl *priv = dev_get_priv(dev);
-> +	struct meson_pmx_group *grp = &priv->data->groups[group_selector];
-> +	int i, ret;
-> +
-> +	for (i = 0; i < grp->num_pins; i++) {
-> +		ret = meson_pinconf_set(dev, grp->pins[i], param, arg);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  int meson_gpio_probe(struct udevice *dev)
->  {
->  	struct meson_pinctrl *priv = dev_get_priv(dev->parent);
-> @@ -240,6 +312,21 @@ int meson_pinctrl_probe(struct udevice *dev)
->  		return -EINVAL;
->  	}
->  	priv->reg_gpio = (void __iomem *)addr;
-> +
-> +	addr = parse_address(gpio, "pull", na, ns);
-> +	if (addr == FDT_ADDR_T_NONE) {
-> +		debug("pull address not found\n");
-> +		return -EINVAL;
-> +	}
-> +	priv->reg_pull = (void __iomem *)addr;
-> +
-> +	addr = parse_address(gpio, "pull-enable", na, ns);
-> +	/* Use pull region if pull-enable one is not present */
-> +	if (addr == FDT_ADDR_T_NONE)
-> +		priv->reg_pullen = priv->reg_pull;
-> +	else
-> +		priv->reg_pullen = (void __iomem *)addr;
-> +
->  	priv->data = (struct meson_pinctrl_data *)dev_get_driver_data(dev);
->  
->  	/* Lookup GPIO driver */
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson.h b/drivers/pinctrl/meson/pinctrl-meson.h
-> index bdee721fc007..28085a7495d4 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson.h
-> +++ b/drivers/pinctrl/meson/pinctrl-meson.h
-> @@ -39,6 +39,8 @@ struct meson_pinctrl {
->  	struct meson_pinctrl_data *data;
->  	void __iomem *reg_mux;
->  	void __iomem *reg_gpio;
-> +	void __iomem *reg_pull;
-> +	void __iomem *reg_pullen;
->  };
->  
->  /**
-> @@ -130,4 +132,10 @@ int meson_gpio_direction_output(struct udevice *dev, unsigned int offset,
->  				int value);
->  int meson_gpio_probe(struct udevice *dev);
->  
-> +int meson_pinconf_set(struct udevice *dev, unsigned int pin,
-> +		      unsigned int param, unsigned int arg);
-> +int meson_pinconf_group_set(struct udevice *dev,
-> +			    unsigned int group_selector,
-> +			    unsigned int param, unsigned int arg);
-> +
->  #endif /* __PINCTRL_MESON_H__ */
+>  		gpio = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
+>  		enable-active-high;
+>  	};
 > 
 
-Looks good to me,
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Applied to u-boot-amlogic
+PS: Please add a cover-letter next time !
 
 Neil
+
 
 _______________________________________________
 linux-amlogic mailing list
