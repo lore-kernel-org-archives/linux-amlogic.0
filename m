@@ -2,90 +2,93 @@ Return-Path: <SRS0=InoK=PW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 40F5AC43444
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jan 2019 13:30:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 402DDC43387
+	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jan 2019 14:36:16 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0445520651
-	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jan 2019 13:30:36 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CFE9E206B7
+	for <linux-amlogic@archiver.kernel.org>; Mon, 14 Jan 2019 14:36:15 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UGF9sMzK";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="L6aZMDkn"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0445520651
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="a/G1lAoF";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cDmDxoZI"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CFE9E206B7
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=korsgaard.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:In-reply-to:Subject:To:
-	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=smHZmJLuTQ9s8tVPDykLZBFM+9t9SfofXu5RaO5kzBA=; b=UGF9sMzK8ekmq0dCjhSNSL+Y/
-	0Frg76RBhFSkkh2qkys4JmX0CzkRMsoo4/RDN7sj516E6MjkWcE9RRSJtzlXgPcKXK0H6z9UBu5z5
-	7M/+cMEOE6d2nStBkMl8G1JD7pyRs56+97q2js9ZA9yqU14iLh1t2YuT42uCv292D64k6MBw2kTGi
-	dKQ9Ygz1Z5RH/lKqb+zaMtk6yOOvzuc5cn+Jm73UUc2UKxBuypZVHeYCzsMv6pOfqgmFfFc4h89pI
-	upA3CtznAGUFcj0D0z9EBKA/guoq8fcZIFnQZEBmxH7lRK0ZWepqTBMWjCE83C27cqxfQ5Q9SaX+d
-	jc1RqmwSA==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=UJDs7rtsU8v5tZvZlx9BgcHyNgjBVPulNrlfde+7OEo=; b=a/G1lAoFd4CsHL
+	QKVrg2j8tQ3os7/tX0MxD+rQPD2A6B7VS9WL/u/44qyPwUlsjFww+Vu/QkXhoWTv9UHYlUHbJfifH
+	pUtaQMlwHynU71MEhPDqB7Gsq1BBOWX6nIw9EcpG0F0cxLj3pl7LfPBrJSTlXhPyIYvLfIXYKu2dI
+	Q+L4jng70u26/bq7F1sfssYfxQjH8Tsr3nmc9fuxSqj4YoC55QgvCQbGuLTgUhJFPuctNNtY0bPEF
+	7psykRQcnMb5pOOzRN8imncw2MdQA7UwSUb0di+NLDyUoxIdof8rQqtBZlC7SsCt7XW7f3NbrzFns
+	rxnYJzhx/+8QpNRiaxOg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gj2Jx-0000Tm-DQ; Mon, 14 Jan 2019 13:30:29 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1gj3LO-000246-N1; Mon, 14 Jan 2019 14:36:02 +0000
+Received: from mail-ed1-x52e.google.com ([2a00:1450:4864:20::52e])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gj2Jt-0000Sx-O5
- for linux-amlogic@lists.infradead.org; Mon, 14 Jan 2019 13:30:28 +0000
-Received: by mail-wm1-x343.google.com with SMTP id y139so8837146wmc.5
- for <linux-amlogic@lists.infradead.org>; Mon, 14 Jan 2019 05:30:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version;
- bh=m+dqoUTZ553nDWQVkK+5miIXYXnjGts+7dZ1viX+uA0=;
- b=L6aZMDkn0eXQpSur/59udmyHKkaaqYwVzoCYf8j2+nP6g+CvW/03enBcLIM3yUGvP6
- azqss3Nh/1NvgSnfTRVq+l/zdWPpi4pimmTjWfZ26dVPWyHviJrLsma20gQoBhaF7eBl
- bs+yyQ5vTi8wGO89Rdpw4T7wNmAmCQez12XjPP0rgy6aAmqwpHMBAXYyj1GARHOHcIO/
- 4+woaaNHLLMcGeB8rVn+QT59stAKLeqPPv2KVsUHelSKJPm8AeB6IDgBgd37D1LGKROf
- zjJBUBAcAurH6t4pccnNOYz0wnFBy8TsXDKFAx6SblfKjndg3cpqXpAd3pYvXBB3ndh/
- Tfjg==
+ id 1gj3LL-00023Z-KF
+ for linux-amlogic@lists.infradead.org; Mon, 14 Jan 2019 14:36:01 +0000
+Received: by mail-ed1-x52e.google.com with SMTP id b3so18915381ede.1
+ for <linux-amlogic@lists.infradead.org>; Mon, 14 Jan 2019 06:35:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=sender:from:to:cc:subject:references:date:in-reply-to:message-id
+ :user-agent:mime-version;
+ bh=7ezDtzsn3dkuP6TBdyRQ8AexhGqfywi8FAUO1lvBi8g=;
+ b=cDmDxoZIeCy+UnHGh1vNa4uSWs3K4c22TGkKy1rtZI/P1TCN1/PWO3M3/Cs0S32k15
+ zm95xg02UYkPYjp4Tjni1hZUavh9giVS0sK7B30+dp2900mbWkCz1RAv84UupBB508QN
+ +FPIw9oDYLzeAxsoiSoa2zOb4JG+mdh8bMJMmiFociiZ1W0fgOaamN2SCulSQAAIgSUz
+ xCC6Pxf1U68UWflkXJnH+MrPuS5H9dZ/Zx0J4gLajHzr/WAeccpGFp1oLwOOuvCVD8Cb
+ D10WFmS5LjzprXej92b1G+KLvSdessA+3qKvR5a+DWHdM32TXRvbmYvBi1tZsXzvyd/m
+ Tdig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version;
- bh=m+dqoUTZ553nDWQVkK+5miIXYXnjGts+7dZ1viX+uA0=;
- b=eR7pxrLGzR2sOEudSi15KuMWKnIT7263idZwlviaqj/Q79lofDlYAZe0P1efqI7xBm
- EJsRbMdFbRJq0JCQVATHDXN9VL+D8uMtiHdbFqxKStsKyTeDVglFVR889gnLOqefnQhw
- MNgbYRukbrwzVQN7YeoeUZJzKC7AioLKvMn1ryc1c91g8DQWGCti7vYbk2eHqwZXNejH
- IIFRermWkV5dr930VID/VKrmkzbat2Df0hnITIkILQnN58cyeahgjOGIf5HWR5K9rLT3
- ubjIlEP2IuPqsxq7YwmyNDn0b/z7tlmwue937UcsseDxFspnQrCbCtjLuv2fwATBByr0
- Ln1A==
-X-Gm-Message-State: AJcUukcETNFfumt1VJZTmdv/B/OEz9mCRmu81Hc/XZP1oKr3572Lhx+g
- mGCbOB90H1sGVSaDQerrLJ++E1e41PhwKqBha8c=
-X-Google-Smtp-Source: ALg8bN4g7XhzTK3a7x2ZyBppxsQ2dbnyUnSPT2LvpdX3jVsV/BVKMSu4gDm2frVgSD2pvww/Boqx8g==
-X-Received: by 2002:a1c:8b44:: with SMTP id n65mr12332007wmd.104.1547472623560; 
- Mon, 14 Jan 2019 05:30:23 -0800 (PST)
-Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id a1sm64329218wrw.76.2019.01.14.05.30.22
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 14 Jan 2019 05:30:22 -0800 (PST)
-References: <1547134822-18498-1-git-send-email-lollivier@baylibre.com>
- <CAFBinCDM4BTx0Ude-M=O6B2bXPE9EdfD=VxZfFzR9Dc=yT+xWQ@mail.gmail.com>
- <7hy37rm0j6.fsf@baylibre.com>
-User-agent: mu4e 1.0; emacs 25.3.2
-From: Loys Ollivier <lollivier@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH v3] arm64: dts: meson: Fix mmc cd-gpios polarity
-In-reply-to: <7hy37rm0j6.fsf@baylibre.com>
-Date: Mon, 14 Jan 2019 14:30:20 +0100
-Message-ID: <861s5fmknn.fsf@baylibre.com>
+ h=x-gm-message-state:sender:from:to:cc:subject:references:date
+ :in-reply-to:message-id:user-agent:mime-version;
+ bh=7ezDtzsn3dkuP6TBdyRQ8AexhGqfywi8FAUO1lvBi8g=;
+ b=jDoS1CndoDELjAeePKive+YuEFavRk09gMZTW7pWq6+xdnLFBFCI87jm+ErHM28kEA
+ 0fIcXX237STYaDaSH6XxrDGLM/7ObQJzm53J4jeuSptg8BrDVVf8whpl/KFzsx7iDYqL
+ ZQXdI4MwmniEiwzpC86a2hYVQRi2gM/opFyJR4SoVVOV/bLiTqUp9z3gryIpFl2zNlZg
+ 1bUqxKN2vbB9CXgEAcfNuDhcxsljT2dqgncgtx4ngU9yBIjfUvGKlTtoWnitV9+6CpIi
+ P3gwdru92pIGZrZXCIHKE4xcXd78Dqfz3QcOY6sE/2fVSuP+1N8x3G8T0cR2K9AThTgM
+ agSw==
+X-Gm-Message-State: AJcUukcW3naW2vqscd9iPUusAjNPVjdadyup3lf78l57rRQqRNDt+FFp
+ qQqAvRQKdVdcGI/OM4RehmU=
+X-Google-Smtp-Source: ALg8bN6CM/m8j5rUdfew5lz3lFK/RvLnVpqqrOLMMh+Eo/k/gkTsdKtkl4S1l6BG3Ct7+GE8rFE2wg==
+X-Received: by 2002:a17:906:738b:: with SMTP id
+ f11-v6mr20255186ejl.234.1547476554228; 
+ Mon, 14 Jan 2019 06:35:54 -0800 (PST)
+Received: from dell.be.48ers.dk (d528f5fe4.static.telenet.be. [82.143.95.228])
+ by smtp.gmail.com with ESMTPSA id
+ y26-v6sm2412473ejb.24.2019.01.14.06.35.52
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Mon, 14 Jan 2019 06:35:52 -0800 (PST)
+Received: from peko by dell.be.48ers.dk with local (Exim 4.89)
+ (envelope-from <peter@korsgaard.com>)
+ id 1gj3LE-00056m-Ct; Mon, 14 Jan 2019 15:35:52 +0100
+From: Peter Korsgaard <peter@korsgaard.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: amlogic mmc_partitions support
+References: <CALtMJECdszQv+ZqbPv9dfq2QbogVJMfth+fNL40pgwh0_RtbCw@mail.gmail.com>
+ <1d699426-5744-5149-f136-66db54b87056@baylibre.com>
+Date: Mon, 14 Jan 2019 15:35:52 +0100
+In-Reply-To: <1d699426-5744-5149-f136-66db54b87056@baylibre.com> (Neil
+ Armstrong's message of "Mon, 14 Jan 2019 11:00:04 +0100")
+Message-ID: <87ef9fxq5z.fsf@dell.be.48ers.dk>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190114_053025_848897_D5585686 
-X-CRM114-Status: GOOD (  12.59  )
+X-CRM114-CacheID: sfid-20190114_063559_698277_581939C6 
+X-CRM114-Status: GOOD (  11.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,78 +100,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Loys Ollivier <lollivier@baylibre.com>, linux-mmc@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, Andreas Fenkart <afenkart@gmail.com>,
+ krzysztof.michonski@digitalstrom.com
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+>>>>> "Neil" == Neil Armstrong <narmstrong@baylibre.com> writes:
 
-Hello,
+ > Hi Andreas,
+ > On 14/01/2019 10:54, Andreas Fenkart wrote:
+ >> Hi,
+ >> 
+ >> What is a feasible way to port the vendor supplied
+ >> drivers/amlogic/mmc/emmc_partitions.c into something that could be
+ >> mainlined? My thought is to create a custom block/partition/amlogic.c
+ >> driver. Would that have a chance to be included in mainline?
 
-On Fri 11 Jan 2019 at 19:55, Kevin Hilman wrote:
+ > Basically, Amlogic uses the eMMC main partition as a MTD devices and uses a
+ > custom DT partition scheme to export named MTD partitions to user-space.
 
-> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
->
->> Hi,
->>
->> some nit-picks as well as my Tested-by (in case it's not too late) below.
->> thank you for taking care of this!
->>
-You're welcome !
->> On Thu, Jan 10, 2019 at 4:40 PM Loys Ollivier <lollivier@baylibre.com> 
->> wrote:
->>>
->>> Commit 89a5e15bcba8 ("gpio/mmc/of: Respect polarity in the device tree")
->>> changed the behavior of "cd-inverted" to follow the device tree bindings
->>> specification.
->>> Lines specifying "cd-inverted" are now "active high".
->> this depends on the polarity from the cd-gpios property. above commit
->> caused cd-inverted to be applied twice (effectively making it a
->> no-op). thus "cd-inverted" only means "active high" if cd-gpios also
->> sets GPIO_ACTIVE_HIGH. if the polarity in cd-gpios is GPIO_ACTIVE_LOW
->> together with "cd-inverted" then the GPIO will be treated as active
->> low.
->>
-Hum ok so there's more to it than the commit message. I'll come by with
-something clearer for a v4. Thank you for the clarification.
->>> Fix the SD card for meson by setting the cd-gpios as "active low" 
->>> according
->>> to the boards specifications.
->> not only switching to GPIO_ACTIVE_LOW, also dropping "cd-inverted"
->>
-Indeed.
->>> Fixes: 89a5e15bcba8 ("gpio/mmc/of: Respect polarity in the device tree")
->> in my patches for the 32-bit boards I used the commit which added SD
->> card support to the board for the Fixes tag. however, I'm fine with
->> this as well (I just wanted to point out that there's a small
->> difference in our commits).
->>
-OK, I treat fixes tags as:
-from the introduction (or discovery) of a regression (or bug), the
-"Fixes" commit will patch the commit that introduced the regression.
-Hence why I tagged the commit from which the platform was not acting
-correctly anymore. If that's fine for you it's fine for me as well :) 
->>> Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
->> on my Khadas VIM(1), using Kevin's v5.0/fixes branch:
->> Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->
-> I can add this tested-by tag in my v5.0/fixes branch for now, and can
-> replace it with a follow up if Loys can update the changelog with your
-> suggestions/clarifications.
->
-Will do.
-> Thanks,
->
-> Kevin
+ > They don't use any "standard" partitions schemes on the eMMC main HW partition.
 
+ > Mainline will never support DT-defined MMC partitions, and will never support
+ > a MTD indirection to a MMC HW partition either.
+
+ > You can try to implement something similar using FUSE, but it won't be simple.
+
+Not knowing anything about the vendor driver, if this is just about
+splitting up a single eMMC partition in sub blocks and not about MTD,
+then this can be easily done with the dm-linear target of device mapper,
+E.G. something like:
+
+dmsetup create FOO --table "0 <size> linear /dev/mmcblk0 <offset>"
 
 -- 
--L
+Bye, Peter Korsgaard
 
 _______________________________________________
 linux-amlogic mailing list
