@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 81BC7C43444
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Jan 2019 12:33:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2307FC43612
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Jan 2019 12:33:39 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5329120657
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Jan 2019 12:33:33 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E44D520657
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Jan 2019 12:33:38 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ofgtdzaY";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="pNLYa2k8"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5329120657
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="g2292TzX";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="QYthVx2L"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E44D520657
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=sHLKzJuMkQR833+gxJC5GacQ43OQPnKMzi0qgqpV1S0=; b=ofgtdzaYVUiQP1
-	kZn0FIAKrqherKukHfgnvSQ8G6s+p+gFVMRbieJgv+fQZ8k74kMMiJw8xVvbECmGLtq5iXh8mUbp7
-	qp99Ben2zuecnMDsF9MM+wB/hhHEXRTDuW/aoBiHSyvVW8f7eZgl4TP5RYLgflY0Ggkpwdifpcwla
-	e2khFtqSTlgG/mRH0tZrQQXp2xh97sHyo0G26DTTg2kYb45DR5Tde0XtWfmm33c6C594EFvxv9Fyr
-	6MFv4yjRIVqQkwl/fSLDpI17Zyw6SeoxXeHjsNC/jC8wt+WvF8HCmtmemavRI+f+bhfBXzgfAybjf
-	4ClwyQMIDIMQoN16fDvQ==;
+	List-Owner; bh=npMmDTQmdzentBNWrH8WHnSku5nNk3Oc3/YefbvF+Rs=; b=g2292TzXQBBWYV
+	1apkkfjAyLwD4QgIn3b4SnDQiLpwQF8cdE5HJpgK6PN60m3O8t+Ofl9/d5yeU/Jjz4Fa2PbHp3ntO
+	PIYmeELMbCRRwE1o0690PoGiE+qY+duUBMES2+6j/E1taqWBVvfCQzrFf/PF05qyyrEso80I31YHf
+	pnZnkjJXsUIXDQ519sR2j+NBJ+Erk3EeNiPOfUuzzDex/V7ok8VoYduDeunh5Xzwv+m2zKiKqXzX/
+	VS441qpFupKURStm53IdOHzkgwxodSbkF8/kkvoDf/1iKx9V3xTDbZnQTmh5wGkANDNGwmxkGzCfD
+	lx4ZhFPjdC6u8xS2Ls4g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gjNuK-0006i5-As; Tue, 15 Jan 2019 12:33:28 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1gjNuO-0006nQ-MX; Tue, 15 Jan 2019 12:33:32 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gjNuG-0006f7-FM
- for linux-amlogic@lists.infradead.org; Tue, 15 Jan 2019 12:33:25 +0000
-Received: by mail-wr1-x441.google.com with SMTP id p4so2751396wrt.7
- for <linux-amlogic@lists.infradead.org>; Tue, 15 Jan 2019 04:33:24 -0800 (PST)
+ id 1gjNuH-0006fD-7i
+ for linux-amlogic@lists.infradead.org; Tue, 15 Jan 2019 12:33:27 +0000
+Received: by mail-wr1-x442.google.com with SMTP id c14so2811473wrr.0
+ for <linux-amlogic@lists.infradead.org>; Tue, 15 Jan 2019 04:33:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=ZoSJXtrtyktFuA6EDyaYkMwS7WZFT2t11rt0gb5clag=;
- b=pNLYa2k8DzaJ5bRo4yOsTJ+BpalhSUM0Z1/CQwVkR+BvknyK2/I5Hczdw02rfzmJU9
- Wk8X7PJFzc5POBSHyYbNZLBgmTzIshTwognX4AgIlD6bKON9QMZiTeEy3O/WxVb/x9we
- abx2936dNB/tfYeKU0C6F7UJzMsmS+N5u8I4rczT6A3ZjM2sReA+9LmGrjcVz5LDBhSY
- AIgkTSGXEMLJp7+yns7Knau8b38v4x/lrvZBT/FtkDm6FXiiTeACqygljG8e24FdadZX
- TJ3h/l1Dj5QV2A3EppaCtWsipWWJM1EMNTQtTTXBfIEskkV9Jgw5QaVqvKpv2+GEmWSF
- Sfag==
+ bh=1W+lbP0SbjGIMhxY+ggbwt4nGlITxeB1OhuVLZxhZ14=;
+ b=QYthVx2LP2RKJHMt/0LEdagK5t8SoOriABnSaL84/UTRxp/dVjCaKaKYXxzB6V59ma
+ No514ZSY/Eg3bga3v/ueyNefKKPoRkV/RdAW2sMXaAobJohGoc9VixMAVYFsm5Qwbiku
+ aUsoMa1lpxuyNqhSI3ktUBR0m/m+3kDQCEDr0l4GpNpLs+QltrU6mzVDhuiX/ZtbZ7eG
+ 1/LBbR0SStGa24hEbaIhv7+6yI5jKkpZGNT0UNk0caYxGzcHKpMvvF9uEtdQROapV98g
+ ZowsON7IPVduodv+7vyFaY2d4Eji7yNfEytfaKrrrXlP7HCmNoUsyxCxcpmBai2c+zYT
+ Q/BQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=ZoSJXtrtyktFuA6EDyaYkMwS7WZFT2t11rt0gb5clag=;
- b=mvj5A7f61fqCnJyS5sR2XF3MagoOhFjjqOrY51DZ/izkpV5gWZNi+hzCYt12Fb/64e
- 1xsNuvKHXQfoWO+yqUlq3rir+lkm6mG3U6wGBoDLrBBZ1SyrWU2LDsiQbZ0o3d8nPSha
- 4Ls5+PEl9rESRfor3VrRhJ+IoqLmP71nwJ5jE1nyeadO53LZbeNv4MIEjoZL+2dXXWvO
- TDPdeWT5yu9uF5yCSVRXuijm7ejG20BWWIyU3JBRJNOMqr8e6wGgbMfp7hdo5sBsMeeC
- 9ytgPKxV//y4MWYRMsIr0IrCXPh/qmJHf0pSeMtx45vl8PQZhdwUYes9Owhp5MxdOU2f
- Ag8A==
-X-Gm-Message-State: AJcUukd1nPlcvSFAmoJQ5lTziaDFJGiPlJZrJ0YxOV+yvUyGFcN+QGUd
- g81VZdnLV0WiS3AhY1g6Gwbpfw==
-X-Google-Smtp-Source: ALg8bN4i58w4bkRUz3m3QOvTSyG+ZrKKVWiERMufXp0oy/32IQn5WJ/MmaVQihAG0Y3ZHnTEqBEjZw==
-X-Received: by 2002:adf:8484:: with SMTP id 4mr2943238wrg.249.1547555602625;
- Tue, 15 Jan 2019 04:33:22 -0800 (PST)
+ bh=1W+lbP0SbjGIMhxY+ggbwt4nGlITxeB1OhuVLZxhZ14=;
+ b=f05CorKNjjMISndwie00fRSIIqevXfwOp8Dz26K6WiH3f4hJlpBelpTc3PZeSVH7n1
+ wGxenFATqbtJkAdPaPmOc4obJmpf6Xfjpbun2C9Js6P0FWmv1KNPX516jz10eY7KDEgE
+ 15x+70nTZdpxEr/juPZlziVE66Ra8ATvvNi2WSNnGK2wxCHYtBrcBi42sbQ8x8QbOza0
+ 9IuG95R4Tsi549eUYwO92cqMia7dEV5KztxeTTz7u/Ul2RTv74IkNb+oQi6mR5zcW78c
+ 6jL8Wm5KeXuX+IYCmFa0/RSmM52Ih0SrjXKJnEYOM1rrfefktQldl/wWh3L00FQbZpze
+ dSjg==
+X-Gm-Message-State: AJcUuke192M36iXPkCUnAd2ZdkMfqsVPiSVlZUF4o3Nq9Ki1JskzD3ES
+ A7gy+l15ZEsC1yD60Rtl4+gepg==
+X-Google-Smtp-Source: ALg8bN7OsDHasv+8VVuqmmtrBH0Aa8tMLeqgL9ao4RCNk9LnYdYKvcDKknGt7btAKWwQqs+bLcTLbQ==
+X-Received: by 2002:a5d:5409:: with SMTP id g9mr3058434wrv.88.1547555603725;
+ Tue, 15 Jan 2019 04:33:23 -0800 (PST)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id x15sm75658842wrs.27.2019.01.15.04.33.21
+ by smtp.gmail.com with ESMTPSA id x15sm75658842wrs.27.2019.01.15.04.33.22
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Tue, 15 Jan 2019 04:33:21 -0800 (PST)
+ Tue, 15 Jan 2019 04:33:22 -0800 (PST)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: a.hajda@samsung.com,
 	Laurent.pinchart@ideasonboard.com
-Subject: [PATCH 2/8] drm/meson: add HDMI div40 TMDS mode
-Date: Tue, 15 Jan 2019 13:33:09 +0100
-Message-Id: <20190115123315.11069-3-narmstrong@baylibre.com>
+Subject: [PATCH 3/8] drm/meson: add support for HDMI2.0 2160p modes
+Date: Tue, 15 Jan 2019 13:33:10 +0100
+Message-Id: <20190115123315.11069-4-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190115123315.11069-1-narmstrong@baylibre.com>
 References: <20190115123315.11069-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190115_043324_509172_C8E6B9AC 
-X-CRM114-Status: GOOD (  13.22  )
+X-CRM114-CacheID: sfid-20190115_043325_290933_27D59478 
+X-CRM114-Status: GOOD (  10.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -104,68 +104,29 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add support for TMDS Clock > 3.4GHz for HDMI2.0 display modes.
+Now we support the TMDS Clock > 3.4GHz and support the SCDC Control
+operation in the DW-HDMI Controller, we can enable support for the
+HDMI2.0 3840x2160@60/50 RGB444 display modes.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Andrzej Hajda <a.hajda@samsung.com>
 ---
- drivers/gpu/drm/meson/meson_dw_hdmi.c | 23 +++++++++++++++++++----
- 1 file changed, 19 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/meson/meson_venc.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-index 807111ebfdd9..3d8decb77019 100644
---- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-@@ -365,7 +365,8 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
- 	unsigned int wr_clk =
- 		readl_relaxed(priv->io_base + _REG(VPU_HDMI_SETTING));
+diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
+index 0ba04f6813e6..66d73a932d19 100644
+--- a/drivers/gpu/drm/meson/meson_venc.c
++++ b/drivers/gpu/drm/meson/meson_venc.c
+@@ -848,6 +848,8 @@ struct meson_hdmi_venc_vic_mode {
+ 	{ 93, &meson_hdmi_encp_mode_2160p24 },
+ 	{ 94, &meson_hdmi_encp_mode_2160p25 },
+ 	{ 95, &meson_hdmi_encp_mode_2160p30 },
++	{ 96, &meson_hdmi_encp_mode_2160p25 },
++	{ 97, &meson_hdmi_encp_mode_2160p30 },
+ 	{ 0, NULL}, /* sentinel */
+ };
  
--	DRM_DEBUG_DRIVER("%d:\"%s\"\n", mode->base.id, mode->name);
-+	DRM_DEBUG_DRIVER("%d:\"%s\" div%d\n", mode->base.id, mode->name,
-+			 mode->clock > 340000 ? 40 : 10);
- 
- 	/* Enable clocks */
- 	regmap_update_bits(priv->hhi, HHI_HDMI_CLK_CNTL, 0xffff, 0x100);
-@@ -385,9 +386,17 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
- 	/* Enable normal output to PHY */
- 	dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_BIST_CNTL, BIT(12));
- 
--	/* TMDS pattern setup (TOFIX pattern for 4k2k scrambling) */
--	dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_01, 0x001f001f);
--	dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_23, 0x001f001f);
-+	/* TMDS pattern setup (TOFIX Handle the YUV420 case) */
-+	if (mode->clock > 340000) {
-+		dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_01, 0);
-+		dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_23,
-+				  0x03ff03ff);
-+	} else {
-+		dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_01,
-+				  0x001f001f);
-+		dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_23,
-+				  0x001f001f);
-+	}
- 
- 	/* Load TMDS pattern */
- 	dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_CNTL, 0x1);
-@@ -413,6 +422,8 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
- 	/* Disable clock, fifo, fifo_wr */
- 	regmap_update_bits(priv->hhi, HHI_HDMI_PHY_CNTL1, 0xf, 0);
- 
-+	dw_hdmi_set_high_tmds_clock_ratio(hdmi);
-+
- 	msleep(100);
- 
- 	/* Reset PHY 3 times in a row */
-@@ -562,6 +573,10 @@ dw_hdmi_mode_valid(struct drm_connector *connector,
- 		mode->vdisplay, mode->vsync_start,
- 		mode->vsync_end, mode->vtotal, mode->type, mode->flags);
- 
-+	/* If sink max TMDS clock, we reject the mode */
-+	if (mode->clock > connector->display_info.max_tmds_clock)
-+		return MODE_BAD;
-+
- 	/* Check against non-VIC supported modes */
- 	if (!vic) {
- 		status = meson_venc_hdmi_supported_mode(mode);
 -- 
 2.20.1
 
