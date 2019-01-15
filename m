@@ -2,90 +2,64 @@ Return-Path: <SRS0=K5c1=PX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-7.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1F194C43387
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Jan 2019 12:33:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 63A4FC43387
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Jan 2019 14:29:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DDFA920657
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Jan 2019 12:33:48 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3077A2063F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Jan 2019 14:29:42 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mQatxRPG";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="XkXrkhcM"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DDFA920657
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="D1gc9eK2";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="JmClL8V1"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3077A2063F
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xlV3QdVB6MiQj1v6Z1jenH2hA1KLVhRuitKQGr23v3s=; b=mQatxRPGfvLtoK
-	Ize602g65yw2ywi7rXLSWyw5Ftqx1h+45Ar4C+HhNNxEaxCqM+Rbwm/Vp4VlZNEEW5xqEvXGir9Ht
-	J2lzpLRkk4chnaQw8gMGGvAaILgRc/l88s2gtuawwLWEJbuSqNAFGmeGCm984TouMRRaW3E9sj8Gy
-	2uDA+gK+nxfLyGdLz3ycFeWWKbET1A7rWitZYdTyid9Qf87XcSfBLjg3pVIh456souHWbR4TnobHQ
-	Fth4EhnKwPbN2xZpt0ZZjzLfA8E01rH1e7PA6PzPXDF9Mu6wPCt/bUzBqcvLZjOzo969K95Y4P5wR
-	6qVZT9hWYyWPXtVeyUfA==;
+	List-Owner; bh=ig+312WNY7Vfg/SzRR1Co+dzTZVM8ias/yAjJXewnNs=; b=D1gc9eK2CregxV
+	tRC4nshoYGUGWmyGMLhQktRAN/jrMCaDIYeOgYCSdjhDB02ThWTmNUqT1xgNWwXMj7SabMPpFxrZA
+	FK/SbE9Xqi0gQZ/qs7Du1vJydcyN39FUYS8WP1OunjBfSPaY5CFeklA86Z0GBzUaEUVvBsoXOSxXi
+	xBFhp87hX2pExR5z9WrCSZf6my/suExY6yl6O3uIylJhMObj5vNGIUErFD2Skq0y8KG1hJjn3TFzn
+	A4Es3C+1Yaznc4dAYjv5AO/AXM6iB/Kj0rDS+QR1v5v2Z+dSbKJa7dRsuuwFutzm1kdmsTvK2vM9r
+	Rv1J7l3x5pG921lfyG+w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gjNuZ-0006xy-8I; Tue, 15 Jan 2019 12:33:43 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1gjPif-0007AE-JI; Tue, 15 Jan 2019 14:29:33 +0000
+Received: from perceval.ideasonboard.com ([213.167.242.64])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gjNuM-0006jn-9G
- for linux-amlogic@lists.infradead.org; Tue, 15 Jan 2019 12:33:36 +0000
-Received: by mail-wm1-x342.google.com with SMTP id y8so3000635wmi.4
- for <linux-amlogic@lists.infradead.org>; Tue, 15 Jan 2019 04:33:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=KPhdr7mUHtSIzRO3uh1XMCpuoWe2XZEGHzoJJ2G/Zj8=;
- b=XkXrkhcMzTwXbEffkyqD6qhcEDUWyFiy89u4gHmZnO+fNxisXEmeNhh8aGEjSJAuMw
- b2SU2/D+cFQRYP8loajKocDt5oKaOYfOdi7WoLrYIGL56mjfXRETHZ7mhULetH99ke+G
- KlbvuBaRAWxFxMUdbenyAHES88CHTDJd2lTxzea6tUJSAd8jAcJHEqrtJU/zSZUA0zO7
- dnBMj/t1ZhlRN748ZvtN21NVk5yptcysYwkUMoz+nI4+ujM5CACCdzCHukDNNBsfaBrJ
- gOazxPDN5ePjAlXl6zLytz/1B7fQJtz8R7WX4UgVXU4KkfWEndK1KJUWPDqX25ydCRdp
- Hrog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=KPhdr7mUHtSIzRO3uh1XMCpuoWe2XZEGHzoJJ2G/Zj8=;
- b=Am5Inpgm75PNQUr12vHXf1d+HbVUi97lJBXNWzjxbMwFvZ4ZCQqqZiLxFANeSo3K88
- v0TSAdSTQ/ETAPULNbNKesy6mEIPtb/v/MusRRCKcdaKkfPShmuPDSDihosxQE1NBvAY
- xQyNnTqMPTjM/8LRqWy9cR9vg2J9v4C05YjcA6BOm3Ff0FaxDaxA7VOf2IGXpPbzOn6U
- Gj4h/FvznRKHKVDxyL/r76XNSKIKM0Og5aIPOnyf0p6oS/Vnw5Hk/pueTKOQ7RLq2RQ0
- vd+dYiHqqmsU0rndbtcfZUOn9YgK0NJVeQ7gP9GF+xVOcxHiBAQlIk25mcluNctm9e60
- RFHw==
-X-Gm-Message-State: AJcUukf/l941fEgdskKHs1wf5lVsXymalLkMnmQcWaxqLaUg723HzqLy
- Fpo8Sr0SC1T//fhgQi/FpRgP5A==
-X-Google-Smtp-Source: ALg8bN4rtwtN1OgL74m69rATZtVkikvs9PUDzAA6ImgElWhXFkmpWq1fF75RXvGcn5Jgw59PfBSPvA==
-X-Received: by 2002:a1c:9c0a:: with SMTP id f10mr3270546wme.73.1547555608640; 
- Tue, 15 Jan 2019 04:33:28 -0800 (PST)
-Received: from bender.baylibre.local
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id x15sm75658842wrs.27.2019.01.15.04.33.27
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Tue, 15 Jan 2019 04:33:27 -0800 (PST)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: a.hajda@samsung.com,
-	Laurent.pinchart@ideasonboard.com
-Subject: [PATCH 7/8] drm/meson: Add YUV420 output support
-Date: Tue, 15 Jan 2019 13:33:14 +0100
-Message-Id: <20190115123315.11069-8-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190115123315.11069-1-narmstrong@baylibre.com>
-References: <20190115123315.11069-1-narmstrong@baylibre.com>
+ id 1gjPib-00079J-PV; Tue, 15 Jan 2019 14:29:32 +0000
+Received: from avalon.localnet (dfj612ybrt5fhg77mgycy-3.rev.dnainternet.fi
+ [IPv6:2001:14ba:21f5:5b00:2e86:4862:ef6a:2804])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id 104374F8;
+ Tue, 15 Jan 2019 15:29:13 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1547562554;
+ bh=6Lt8GE7mqRAOiWSVFaVewmz6sdGOGz5y3RFGYDTXlrM=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=JmClL8V1yzOm1NiPOiRt3AbPAmmwS/zsVSQUlk77juViLMw3UAtIXX7MXO00MAwm8
+ vLeQVyWLKOo8hlJkFmP+xwzjmOk8y1TswwpAQ0SKPj2x5w7T+klz75gA62UJ+RSUmv
+ LidnlD3AcVFwKpjHIs/6TJc/qh3P3wqlowbun6aQ=
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: Re: [PATCH] drm: Split out drm_probe_helper.h
+Date: Tue, 15 Jan 2019 16:30:29 +0200
+Message-ID: <5798967.qfukvHqhlx@avalon>
+Organization: Ideas on Board Oy
+In-Reply-To: <20190115104137.25695-1-daniel.vetter@ffwll.ch>
+References: <20190115104137.25695-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190115_043330_784247_E36CC360 
-X-CRM114-Status: GOOD (  23.24  )
+X-CRM114-CacheID: sfid-20190115_062930_281835_53378566 
+X-CRM114-Status: GOOD (  28.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,583 +71,394 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Neil Armstrong <narmstrong@baylibre.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: nouveau@lists.freedesktop.org,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ virtualization@lists.linux-foundation.org,
+ Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+ Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
+ linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
+ spice-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ etnaviv@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ linux-mediatek@lists.infradead.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, xen-devel@lists.xen.org,
+ linux-renesas-soc@vger.kernel.org, freedreno@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patch adds support for the YUV420 output from the Amlogic Meson SoCs
-Video Processing Unit to the HDMI Controller.
+Hi Daniel,
 
-The YUV420 is obtained by generating a YUV444 pixel stream like
-the classic HDMI display modes, but then the Video Encoder output
-can be configured to down-sample the YUV444 pixel stream to a YUV420
-stream.
-In addition if pixel stream down-sampling, the Y Cb Cr components must
-also be mapped differently to align with the HDMI2.0 specifications.
+Thank you for the patch.
 
-This mode needs a different clock generation scheme since the TMDS PHY
-clock must match the 10x ration with the YUV420 pixel clock, but
-the video encoder must run at 2x the pixel clock.
+On Tuesday, 15 January 2019 12:41:37 EET Daniel Vetter wrote:
+> Having the probe helper stuff (which pretty much everyone needs) in
+> the drm_crtc_helper.h file (which atomic drivers should never need) is
+> confusing. Split them out.
+> =
 
-This patch adds the TMDS PHY clock value in all the video clock setup
-in order to better support these specific uses cases and switch
-to the Common Clock framework for clocks handling in the future.
+> To make sure I actually achieved the goal here I went through all
+> drivers. And indeed, all atomic drivers are now free of
+> drm_crtc_helper.h includes.
+> =
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/gpu/drm/meson/meson_dw_hdmi.c   | 110 ++++++++++++++++++++----
- drivers/gpu/drm/meson/meson_vclk.c      |  93 +++++++++++++++-----
- drivers/gpu/drm/meson/meson_vclk.h      |   7 +-
- drivers/gpu/drm/meson/meson_venc.c      |   6 +-
- drivers/gpu/drm/meson/meson_venc.h      |  11 +++
- drivers/gpu/drm/meson/meson_venc_cvbs.c |   3 +-
- 6 files changed, 184 insertions(+), 46 deletions(-)
+> v2: Make it compile. There was so much compile fail on arm drivers
+> that I figured I'll better not include any of the acks on v1.
+> =
 
-diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-index 3d8decb77019..068b56a991b5 100644
---- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-@@ -141,6 +141,8 @@ struct meson_dw_hdmi {
- 	struct regulator *hdmi_supply;
- 	u32 irq_stat;
- 	struct dw_hdmi *hdmi;
-+	unsigned long input_bus_format;
-+	unsigned long output_bus_format;
- };
- #define encoder_to_meson_dw_hdmi(x) \
- 	container_of(x, struct meson_dw_hdmi, encoder)
-@@ -323,25 +325,36 @@ static void dw_hdmi_set_vclk(struct meson_dw_hdmi *dw_hdmi,
- {
- 	struct meson_drm *priv = dw_hdmi->priv;
- 	int vic = drm_match_cea_mode(mode);
-+	unsigned int phy_freq;
- 	unsigned int vclk_freq;
- 	unsigned int venc_freq;
- 	unsigned int hdmi_freq;
- 
- 	vclk_freq = mode->clock;
- 
-+	/* For 420, pixel clock is half unlike venc clock */
-+	if (dw_hdmi->input_bus_format == MEDIA_BUS_FMT_UYYVYY8_0_5X24)
-+		vclk_freq /= 2;
-+
-+	/* TMDS clock is pixel_clock * 10 */
-+	phy_freq = vclk_freq * 10;
-+
- 	if (!vic) {
--		meson_vclk_setup(priv, MESON_VCLK_TARGET_DMT, vclk_freq,
--				 vclk_freq, vclk_freq, false);
-+		meson_vclk_setup(priv, MESON_VCLK_TARGET_DMT, phy_freq,
-+				 vclk_freq, vclk_freq, vclk_freq, false);
- 		return;
- 	}
- 
-+	/* 480i/576i needs global pixel doubling */
- 	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
- 		vclk_freq *= 2;
- 
- 	venc_freq = vclk_freq;
- 	hdmi_freq = vclk_freq;
- 
--	if (meson_venc_hdmi_venc_repeat(vic))
-+	/* VENC double pixels for 1080i, 720p and YUV420 modes */
-+	if (meson_venc_hdmi_venc_repeat(vic) ||
-+	    dw_hdmi->input_bus_format == MEDIA_BUS_FMT_UYYVYY8_0_5X24)
- 		venc_freq *= 2;
- 
- 	vclk_freq = max(venc_freq, hdmi_freq);
-@@ -349,11 +362,11 @@ static void dw_hdmi_set_vclk(struct meson_dw_hdmi *dw_hdmi,
- 	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
- 		venc_freq /= 2;
- 
--	DRM_DEBUG_DRIVER("vclk:%d venc=%d hdmi=%d enci=%d\n",
--		vclk_freq, venc_freq, hdmi_freq,
-+	DRM_DEBUG_DRIVER("vclk:%d phy=%d venc=%d hdmi=%d enci=%d\n",
-+		phy_freq, vclk_freq, venc_freq, hdmi_freq,
- 		priv->venc.hdmi_use_enci);
- 
--	meson_vclk_setup(priv, MESON_VCLK_TARGET_HDMI, vclk_freq,
-+	meson_vclk_setup(priv, MESON_VCLK_TARGET_HDMI, phy_freq, vclk_freq,
- 			 venc_freq, hdmi_freq, priv->venc.hdmi_use_enci);
- }
- 
-@@ -386,8 +399,9 @@ static int dw_hdmi_phy_init(struct dw_hdmi *hdmi, void *data,
- 	/* Enable normal output to PHY */
- 	dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_BIST_CNTL, BIT(12));
- 
--	/* TMDS pattern setup (TOFIX Handle the YUV420 case) */
--	if (mode->clock > 340000) {
-+	/* TMDS pattern setup */
-+	if (mode->clock > 340000 &&
-+	    dw_hdmi->input_bus_format == MEDIA_BUS_FMT_YUV8_1X24) {
- 		dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_01, 0);
- 		dw_hdmi_top_write(dw_hdmi, HDMITX_TOP_TMDS_CLK_PTTN_23,
- 				  0x03ff03ff);
-@@ -560,6 +574,8 @@ dw_hdmi_mode_valid(struct drm_connector *connector,
- 		   const struct drm_display_mode *mode)
- {
- 	struct meson_drm *priv = connector->dev->dev_private;
-+	bool is_hdmi2_sink = connector->display_info.hdmi.scdc.supported;
-+	unsigned int phy_freq;
- 	unsigned int vclk_freq;
- 	unsigned int venc_freq;
- 	unsigned int hdmi_freq;
-@@ -573,8 +589,10 @@ dw_hdmi_mode_valid(struct drm_connector *connector,
- 		mode->vdisplay, mode->vsync_start,
- 		mode->vsync_end, mode->vtotal, mode->type, mode->flags);
- 
--	/* If sink max TMDS clock, we reject the mode */
--	if (mode->clock > connector->display_info.max_tmds_clock)
-+	/* If sink does not support 540MHz, reject the non-420 HDMI2 modes */
-+	if (mode->clock > connector->display_info.max_tmds_clock &&
-+	    !drm_mode_is_420_only(&connector->display_info, mode) &&
-+	    !drm_mode_is_420_also(&connector->display_info, mode))
- 		return MODE_BAD;
- 
- 	/* Check against non-VIC supported modes */
-@@ -590,6 +608,15 @@ dw_hdmi_mode_valid(struct drm_connector *connector,
- 
- 	vclk_freq = mode->clock;
- 
-+	/* For 420, pixel clock is half unlike venc clock */
-+	if (drm_mode_is_420_only(&connector->display_info, mode) ||
-+	    (!is_hdmi2_sink &&
-+	     drm_mode_is_420_also(&connector->display_info, mode)))
-+		vclk_freq /= 2;
-+
-+	/* TMDS clock is pixel_clock * 10 */
-+	phy_freq = vclk_freq * 10;
-+
- 	/* 480i/576i needs global pixel doubling */
- 	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
- 		vclk_freq *= 2;
-@@ -597,8 +624,11 @@ dw_hdmi_mode_valid(struct drm_connector *connector,
- 	venc_freq = vclk_freq;
- 	hdmi_freq = vclk_freq;
- 
--	/* VENC double pixels for 1080i and 720p modes */
--	if (meson_venc_hdmi_venc_repeat(vic))
-+	/* VENC double pixels for 1080i, 720p and YUV420 modes */
-+	if (meson_venc_hdmi_venc_repeat(vic) ||
-+	    drm_mode_is_420_only(&connector->display_info, mode) ||
-+	    (!is_hdmi2_sink &&
-+	     drm_mode_is_420_also(&connector->display_info, mode)))
- 		venc_freq *= 2;
- 
- 	vclk_freq = max(venc_freq, hdmi_freq);
-@@ -606,10 +636,10 @@ dw_hdmi_mode_valid(struct drm_connector *connector,
- 	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
- 		venc_freq /= 2;
- 
--	dev_dbg(connector->dev->dev, "%s: vclk:%d venc=%d hdmi=%d\n", __func__,
--		vclk_freq, venc_freq, hdmi_freq);
-+	dev_dbg(connector->dev->dev, "%s: vclk:%d phy=%d venc=%d hdmi=%d\n",
-+		__func__, phy_freq, vclk_freq, venc_freq, hdmi_freq);
- 
--	return meson_vclk_vic_supported_freq(vclk_freq);
-+	return meson_vclk_vic_supported_freq(phy_freq, vclk_freq);
- }
- 
- /* Encoder */
-@@ -627,6 +657,21 @@ static int meson_venc_hdmi_encoder_atomic_check(struct drm_encoder *encoder,
- 					struct drm_crtc_state *crtc_state,
- 					struct drm_connector_state *conn_state)
- {
-+	struct meson_dw_hdmi *dw_hdmi = encoder_to_meson_dw_hdmi(encoder);
-+	struct drm_display_info *info = &conn_state->connector->display_info;
-+	struct drm_display_mode *mode = &crtc_state->mode;
-+	bool is_hdmi2_sink =
-+		conn_state->connector->display_info.hdmi.scdc.supported;
-+
-+	if (drm_mode_is_420_only(info, mode) ||
-+	    (!is_hdmi2_sink && drm_mode_is_420_also(info, mode))) {
-+		dw_hdmi->input_bus_format = MEDIA_BUS_FMT_UYYVYY8_0_5X24;
-+		dw_hdmi->output_bus_format = MEDIA_BUS_FMT_UYYVYY8_0_5X24;
-+	} else {
-+		dw_hdmi->input_bus_format = MEDIA_BUS_FMT_YUV8_1X24;
-+		dw_hdmi->output_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
-+	}
-+
- 	return 0;
- }
- 
-@@ -664,18 +709,30 @@ static void meson_venc_hdmi_encoder_mode_set(struct drm_encoder *encoder,
- 	struct meson_dw_hdmi *dw_hdmi = encoder_to_meson_dw_hdmi(encoder);
- 	struct meson_drm *priv = dw_hdmi->priv;
- 	int vic = drm_match_cea_mode(mode);
-+	unsigned int ycrcb_map = MESON_VENC_MAP_CB_Y_CR;
-+	bool yuv420_mode = false;
- 
- 	DRM_DEBUG_DRIVER("%d:\"%s\" vic %d\n",
- 			 mode->base.id, mode->name, vic);
- 
-+	if (dw_hdmi->input_bus_format == MEDIA_BUS_FMT_UYYVYY8_0_5X24) {
-+		ycrcb_map = MESON_VENC_MAP_CR_Y_CB;
-+		yuv420_mode = true;
-+	}
-+
- 	/* VENC + VENC-DVI Mode setup */
--	meson_venc_hdmi_mode_set(priv, vic, mode);
-+	meson_venc_hdmi_mode_set(priv, vic, ycrcb_map, yuv420_mode, mode);
- 
- 	/* VCLK Set clock */
- 	dw_hdmi_set_vclk(dw_hdmi, mode);
- 
--	/* Setup YUV444 to HDMI-TX, no 10bit diphering */
--	writel_relaxed(0, priv->io_base + _REG(VPU_HDMI_FMT_CTRL));
-+	if (dw_hdmi->input_bus_format == MEDIA_BUS_FMT_UYYVYY8_0_5X24)
-+		/* Setup YUV420 to HDMI-TX, no 10bit diphering */
-+		writel_relaxed(2 | (2 << 2),
-+			       priv->io_base + _REG(VPU_HDMI_FMT_CTRL));
-+	else
-+		/* Setup YUV444 to HDMI-TX, no 10bit diphering */
-+		writel_relaxed(0, priv->io_base + _REG(VPU_HDMI_FMT_CTRL));
- }
- 
- static const struct drm_encoder_helper_funcs
-@@ -714,6 +771,20 @@ static const struct regmap_config meson_dw_hdmi_regmap_config = {
- 	.fast_io = true,
- };
- 
-+static unsigned long meson_dw_hdmi_get_in_bus_format(void *data)
-+{
-+	struct meson_dw_hdmi *dw_hdmi = (struct meson_dw_hdmi *)data;
-+
-+	return dw_hdmi->input_bus_format;
-+}
-+
-+static unsigned long meson_dw_hdmi_get_out_bus_format(void *data)
-+{
-+	struct meson_dw_hdmi *dw_hdmi = (struct meson_dw_hdmi *)data;
-+
-+	return dw_hdmi->output_bus_format;
-+}
-+
- static bool meson_hdmi_connector_is_available(struct device *dev)
- {
- 	struct device_node *ep, *remote;
-@@ -890,6 +961,9 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
- 	dw_plat_data->phy_data = meson_dw_hdmi;
- 	dw_plat_data->input_bus_format = MEDIA_BUS_FMT_YUV8_1X24;
- 	dw_plat_data->input_bus_encoding = V4L2_YCBCR_ENC_709;
-+	dw_plat_data->get_input_bus_format = meson_dw_hdmi_get_in_bus_format;
-+	dw_plat_data->get_output_bus_format = meson_dw_hdmi_get_out_bus_format;
-+	dw_plat_data->ycbcr_420_allowed = true;
- 
- 	platform_set_drvdata(pdev, meson_dw_hdmi);
- 
-diff --git a/drivers/gpu/drm/meson/meson_vclk.c b/drivers/gpu/drm/meson/meson_vclk.c
-index f6ba35a405f8..27c9c5ead234 100644
---- a/drivers/gpu/drm/meson/meson_vclk.c
-+++ b/drivers/gpu/drm/meson/meson_vclk.c
-@@ -337,12 +337,17 @@ enum {
- /* 2970 /1 /1 /1 /5 /2  => /1 /1 */
- 	MESON_VCLK_HDMI_297000,
- /* 5940 /1 /1 /2 /5 /1  => /1 /1 */
--	MESON_VCLK_HDMI_594000
-+	MESON_VCLK_HDMI_594000,
-+/* 2970 /1 /1 /1 /5 /1  => /1 /2 */
-+	MESON_VCLK_HDMI_594000_YUV420,
- };
- 
- struct meson_vclk_params {
-+	unsigned int pll_freq;
-+	unsigned int phy_freq;
-+	unsigned int vclk_freq;
-+	unsigned int venc_freq;
- 	unsigned int pixel_freq;
--	unsigned int pll_base_freq;
- 	unsigned int pll_od1;
- 	unsigned int pll_od2;
- 	unsigned int pll_od3;
-@@ -350,8 +355,11 @@ struct meson_vclk_params {
- 	unsigned int vclk_div;
- } params[] = {
- 	[MESON_VCLK_HDMI_ENCI_54000] = {
-+		.pll_freq = 4320000,
-+		.phy_freq = 270000,
-+		.vclk_freq = 54000,
-+		.venc_freq = 54000,
- 		.pixel_freq = 54000,
--		.pll_base_freq = 4320000,
- 		.pll_od1 = 4,
- 		.pll_od2 = 4,
- 		.pll_od3 = 1,
-@@ -359,8 +367,11 @@ struct meson_vclk_params {
- 		.vclk_div = 1,
- 	},
- 	[MESON_VCLK_HDMI_DDR_54000] = {
--		.pixel_freq = 54000,
--		.pll_base_freq = 4320000,
-+		.pll_freq = 4320000,
-+		.phy_freq = 270000,
-+		.vclk_freq = 54000,
-+		.venc_freq = 54000,
-+		.pixel_freq = 27000,
- 		.pll_od1 = 4,
- 		.pll_od2 = 4,
- 		.pll_od3 = 1,
-@@ -368,8 +379,11 @@ struct meson_vclk_params {
- 		.vclk_div = 1,
- 	},
- 	[MESON_VCLK_HDMI_DDR_148500] = {
--		.pixel_freq = 148500,
--		.pll_base_freq = 2970000,
-+		.pll_freq = 2970000,
-+		.phy_freq = 742500,
-+		.vclk_freq = 148500,
-+		.venc_freq = 148500,
-+		.pixel_freq = 74250,
- 		.pll_od1 = 4,
- 		.pll_od2 = 1,
- 		.pll_od3 = 1,
-@@ -377,8 +391,11 @@ struct meson_vclk_params {
- 		.vclk_div = 1,
- 	},
- 	[MESON_VCLK_HDMI_74250] = {
-+		.pll_freq = 2970000,
-+		.phy_freq = 742500,
-+		.vclk_freq = 74250,
-+		.venc_freq = 74250,
- 		.pixel_freq = 74250,
--		.pll_base_freq = 2970000,
- 		.pll_od1 = 2,
- 		.pll_od2 = 2,
- 		.pll_od3 = 2,
-@@ -386,8 +403,11 @@ struct meson_vclk_params {
- 		.vclk_div = 1,
- 	},
- 	[MESON_VCLK_HDMI_148500] = {
-+		.pll_freq = 2970000,
-+		.phy_freq = 1485000,
-+		.vclk_freq = 148500,
-+		.venc_freq = 148500,
- 		.pixel_freq = 148500,
--		.pll_base_freq = 2970000,
- 		.pll_od1 = 1,
- 		.pll_od2 = 2,
- 		.pll_od3 = 2,
-@@ -395,8 +415,11 @@ struct meson_vclk_params {
- 		.vclk_div = 1,
- 	},
- 	[MESON_VCLK_HDMI_297000] = {
-+		.pll_freq = 2970000,
-+		.phy_freq = 2970000,
-+		.venc_freq = 297000,
-+		.vclk_freq = 297000,
- 		.pixel_freq = 297000,
--		.pll_base_freq = 2970000,
- 		.pll_od1 = 1,
- 		.pll_od2 = 1,
- 		.pll_od3 = 1,
-@@ -404,14 +427,29 @@ struct meson_vclk_params {
- 		.vclk_div = 2,
- 	},
- 	[MESON_VCLK_HDMI_594000] = {
-+		.pll_freq = 5940000,
-+		.phy_freq = 5940000,
-+		.venc_freq = 594000,
-+		.vclk_freq = 594000,
- 		.pixel_freq = 594000,
--		.pll_base_freq = 5940000,
- 		.pll_od1 = 1,
- 		.pll_od2 = 1,
- 		.pll_od3 = 2,
- 		.vid_pll_div = VID_PLL_DIV_5,
- 		.vclk_div = 1,
- 	},
-+	[MESON_VCLK_HDMI_594000_YUV420] = {
-+		.pll_freq = 2970000,
-+		.phy_freq = 2970000,
-+		.venc_freq = 594000,
-+		.vclk_freq = 594000,
-+		.pixel_freq = 297000,
-+		.pll_od1 = 1,
-+		.pll_od2 = 1,
-+		.pll_od3 = 1,
-+		.vid_pll_div = VID_PLL_DIV_5,
-+		.vclk_div = 1,
-+	},
- 	{ /* sentinel */ },
- };
- 
-@@ -616,6 +654,7 @@ static void meson_hdmi_pll_generic_set(struct meson_drm *priv,
- 	unsigned int od, m, frac, od1, od2, od3;
- 
- 	if (meson_hdmi_pll_find_params(priv, pll_freq, &m, &frac, &od)) {
-+		/* OD2 goes to the PHY, and needs to be *10, so keep OD3=1 */
- 		od3 = 1;
- 		if (od < 4) {
- 			od1 = 2;
-@@ -638,21 +677,28 @@ static void meson_hdmi_pll_generic_set(struct meson_drm *priv,
- }
- 
- enum drm_mode_status
--meson_vclk_vic_supported_freq(unsigned int freq)
-+meson_vclk_vic_supported_freq(unsigned int phy_freq,
-+			      unsigned int vclk_freq)
- {
- 	int i;
- 
--	DRM_DEBUG_DRIVER("freq = %d\n", freq);
-+	DRM_DEBUG_DRIVER("phy_freq = %d vclk_freq = %d\n",
-+			 phy_freq, vclk_freq);
- 
- 	for (i = 0 ; params[i].pixel_freq ; ++i) {
- 		DRM_DEBUG_DRIVER("i = %d pixel_freq = %d alt = %d\n",
- 				 i, params[i].pixel_freq,
- 				 FREQ_1000_1001(params[i].pixel_freq));
-+		DRM_DEBUG_DRIVER("i = %d phy_freq = %d alt = %d\n",
-+				 i, params[i].phy_freq,
-+				 FREQ_1000_1001(params[i].phy_freq/10)*10);
- 		/* Match strict frequency */
--		if (freq == params[i].pixel_freq)
-+		if (phy_freq == params[i].phy_freq &&
-+		    vclk_freq == params[i].vclk_freq)
- 			return MODE_OK;
- 		/* Match 1000/1001 variant */
--		if (freq == FREQ_1000_1001(params[i].pixel_freq))
-+		if (phy_freq == (FREQ_1000_1001(params[i].phy_freq/10)*10) &&
-+		    vclk_freq == FREQ_1000_1001(params[i].vclk_freq))
- 			return MODE_OK;
- 	}
- 
-@@ -863,8 +909,9 @@ static void meson_vclk_set(struct meson_drm *priv, unsigned int pll_base_freq,
- }
- 
- void meson_vclk_setup(struct meson_drm *priv, unsigned int target,
--		      unsigned int vclk_freq, unsigned int venc_freq,
--		      unsigned int dac_freq, bool hdmi_use_enci)
-+		      unsigned int phy_freq, unsigned int vclk_freq,
-+		      unsigned int venc_freq, unsigned int dac_freq,
-+		      bool hdmi_use_enci)
- {
- 	bool vic_alternate_clock = false;
- 	unsigned int freq;
-@@ -883,7 +930,7 @@ void meson_vclk_setup(struct meson_drm *priv, unsigned int target,
- 		 * - venc_div = 1
- 		 * - encp encoder
- 		 */
--		meson_vclk_set(priv, vclk_freq * 10, 0, 0, 0,
-+		meson_vclk_set(priv, phy_freq, 0, 0, 0,
- 			       VID_PLL_DIV_5, 2, 1, 1, false, false);
- 		return;
- 	}
-@@ -905,9 +952,11 @@ void meson_vclk_setup(struct meson_drm *priv, unsigned int target,
- 	}
- 
- 	for (freq = 0 ; params[freq].pixel_freq ; ++freq) {
--		if (vclk_freq == params[freq].pixel_freq ||
--		    vclk_freq == FREQ_1000_1001(params[freq].pixel_freq)) {
--			if (vclk_freq != params[freq].pixel_freq)
-+		if ((phy_freq == params[freq].phy_freq ||
-+		     phy_freq == FREQ_1000_1001(params[freq].phy_freq/10)*10) &&
-+		    (vclk_freq == params[freq].vclk_freq ||
-+		     vclk_freq == FREQ_1000_1001(params[freq].vclk_freq))) {
-+			if (vclk_freq != params[freq].vclk_freq)
- 				vic_alternate_clock = true;
- 			else
- 				vic_alternate_clock = false;
-@@ -936,7 +985,7 @@ void meson_vclk_setup(struct meson_drm *priv, unsigned int target,
- 		return;
- 	}
- 
--	meson_vclk_set(priv, params[freq].pll_base_freq,
-+	meson_vclk_set(priv, params[freq].pll_freq,
- 		       params[freq].pll_od1, params[freq].pll_od2,
- 		       params[freq].pll_od3, params[freq].vid_pll_div,
- 		       params[freq].vclk_div, hdmi_tx_div, venc_div,
-diff --git a/drivers/gpu/drm/meson/meson_vclk.h b/drivers/gpu/drm/meson/meson_vclk.h
-index 4bd8752da02a..c4d19ddfcd79 100644
---- a/drivers/gpu/drm/meson/meson_vclk.h
-+++ b/drivers/gpu/drm/meson/meson_vclk.h
-@@ -33,10 +33,11 @@ enum {
- enum drm_mode_status
- meson_vclk_dmt_supported_freq(struct meson_drm *priv, unsigned int freq);
- enum drm_mode_status
--meson_vclk_vic_supported_freq(unsigned int freq);
-+meson_vclk_vic_supported_freq(unsigned int phy_freq, unsigned int vclk_freq);
- 
- void meson_vclk_setup(struct meson_drm *priv, unsigned int target,
--		      unsigned int vclk_freq, unsigned int venc_freq,
--		      unsigned int dac_freq, bool hdmi_use_enci);
-+		      unsigned int phy_freq, unsigned int vclk_freq,
-+		      unsigned int venc_freq, unsigned int dac_freq,
-+		      bool hdmi_use_enci);
- 
- #endif /* __MESON_VCLK_H */
-diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
-index 66d73a932d19..04956e3b64b1 100644
---- a/drivers/gpu/drm/meson/meson_venc.c
-+++ b/drivers/gpu/drm/meson/meson_venc.c
-@@ -956,6 +956,8 @@ bool meson_venc_hdmi_venc_repeat(int vic)
- EXPORT_SYMBOL_GPL(meson_venc_hdmi_venc_repeat);
- 
- void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
-+			      unsigned int ycrcb_map,
-+			      bool yuv420_mode,
- 			      struct drm_display_mode *mode)
- {
- 	union meson_hdmi_venc_mode *vmode = NULL;
-@@ -1506,8 +1508,8 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 	writel_relaxed((use_enci ? 1 : 2) |
- 		       (mode->flags & DRM_MODE_FLAG_PHSYNC ? 1 << 2 : 0) |
- 		       (mode->flags & DRM_MODE_FLAG_PVSYNC ? 1 << 3 : 0) |
--		       4 << 5 |
--		       (venc_repeat ? 1 << 8 : 0) |
-+		       (ycrcb_map << 5) |
-+		       (venc_repeat || yuv420_mode ? 1 << 8 : 0) |
- 		       (hdmi_repeat ? 1 << 12 : 0),
- 		       priv->io_base + _REG(VPU_HDMI_SETTING));
- 
-diff --git a/drivers/gpu/drm/meson/meson_venc.h b/drivers/gpu/drm/meson/meson_venc.h
-index 97eaebbfa0c4..5580bf38e381 100644
---- a/drivers/gpu/drm/meson/meson_venc.h
-+++ b/drivers/gpu/drm/meson/meson_venc.h
-@@ -33,6 +33,15 @@ enum {
- 	MESON_VENC_MODE_HDMI,
- };
- 
-+enum {
-+	MESON_VENC_MAP_CR_Y_CB = 0,
-+	MESON_VENC_MAP_Y_CB_CR,
-+	MESON_VENC_MAP_Y_CR_CB,
-+	MESON_VENC_MAP_CB_CR_Y,
-+	MESON_VENC_MAP_CB_Y_CR,
-+	MESON_VENC_MAP_CR_CB_Y,
-+};
-+
- struct meson_cvbs_enci_mode {
- 	unsigned int mode_tag;
- 	unsigned int hso_begin; /* HSO begin position */
-@@ -70,6 +79,8 @@ extern struct meson_cvbs_enci_mode meson_cvbs_enci_ntsc;
- void meson_venci_cvbs_mode_set(struct meson_drm *priv,
- 			       struct meson_cvbs_enci_mode *mode);
- void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
-+			      unsigned int ycrcb_map,
-+			      bool yuv420_mode,
- 			      struct drm_display_mode *mode);
- unsigned int meson_venci_get_field(struct meson_drm *priv);
- 
-diff --git a/drivers/gpu/drm/meson/meson_venc_cvbs.c b/drivers/gpu/drm/meson/meson_venc_cvbs.c
-index f7945bae3b4a..38a1117b1183 100644
---- a/drivers/gpu/drm/meson/meson_venc_cvbs.c
-+++ b/drivers/gpu/drm/meson/meson_venc_cvbs.c
-@@ -207,7 +207,8 @@ static void meson_venc_cvbs_encoder_mode_set(struct drm_encoder *encoder,
- 			/* Setup 27MHz vclk2 for ENCI and VDAC */
- 			meson_vclk_setup(priv, MESON_VCLK_TARGET_CVBS,
- 					 MESON_VCLK_CVBS, MESON_VCLK_CVBS,
--					 MESON_VCLK_CVBS, true);
-+					 MESON_VCLK_CVBS, MESON_VCLK_CVBS,
-+					 true);
- 			break;
- 		}
- 	}
--- 
-2.20.1
+> v3: Massive rebase because i915 has lost a lot of drmP.h includes, but
+> not all: Through drm_crtc_helper.h > drm_modeset_helper.h -> drmP.h
+> there was still one, which this patch largely removes. Which means
+> rolling out lots more includes all over.
+> =
+
+> This will also conflict with ongoing drmP.h cleanup by others I
+> expect.
+> =
+
+> v3: Rebase on top of atomic bochs.
+> =
+
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com> (v2)
+> Acked-by: Benjamin Gaignard <benjamin.gaignard@linaro.org> (v2)
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: virtualization@lists.linux-foundation.org
+> Cc: etnaviv@lists.freedesktop.org
+> Cc: linux-samsung-soc@vger.kernel.org
+> Cc: intel-gfx@lists.freedesktop.org
+> Cc: linux-mediatek@lists.infradead.org
+> Cc: linux-amlogic@lists.infradead.org
+> Cc: linux-arm-msm@vger.kernel.org
+> Cc: freedreno@lists.freedesktop.org
+> Cc: nouveau@lists.freedesktop.org
+> Cc: spice-devel@lists.freedesktop.org
+> Cc: amd-gfx@lists.freedesktop.org
+> Cc: linux-renesas-soc@vger.kernel.org
+> Cc: linux-rockchip@lists.infradead.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
+> Cc: linux-tegra@vger.kernel.org
+> Cc: xen-devel@lists.xen.org
+> ---
+> Merging this is going to be a bit a mess due to all the ongoing drmP.h
+> cleanups. I think the following should work:
+> - Apply Sam's prep patches for removing drmP.h from
+>   drm_modeset_helper.h
+> - Get the i915 drmP.h cleanup backmerged into drm-misc-next
+> - Apply this patch.
+> - Apply Sam's patch to remove drmP.h from drm_modeset_helper.h
+> - All through drm-misc-next, which has some potential for trivial
+>   conflicts around #includes with other drivers unfortunately.
+> =
+
+> I hope there's no other driver who'll blow up accidentally because
+> someone else is doing a drmP.h cleanup. Laurent maybe?
+
+There's a drmP.h cleanup in the R-Car DU driver, but it doesn't conflict wi=
+th =
+
+this patch, the combination of both compiles fine.
+
+> Jani, ack on this?
+> -Daniel
+> ---
+
+[snip]
+
+>  drivers/gpu/drm/bridge/adv7511/adv7511.h      |  5 +-
+>  drivers/gpu/drm/bridge/analogix-anx78xx.c     |  2 +-
+>  drivers/gpu/drm/bridge/dumb-vga-dac.c         |  2 +-
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c     |  2 +-
+>  drivers/gpu/drm/bridge/ti-tfp410.c            |  2 +-
+>  drivers/gpu/drm/drm_atomic_helper.c           |  1 -
+>  drivers/gpu/drm/drm_dp_mst_topology.c         |  2 +-
+>  drivers/gpu/drm/drm_modeset_helper.c          |  2 +-
+>  drivers/gpu/drm/drm_probe_helper.c            |  2 +-
+>  drivers/gpu/drm/drm_simple_kms_helper.c       |  2 +-
+>  drivers/gpu/drm/omapdrm/omap_connector.c      |  2 +-
+>  drivers/gpu/drm/omapdrm/omap_crtc.c           |  2 +-
+>  drivers/gpu/drm/omapdrm/omap_drv.c            |  2 +-
+>  drivers/gpu/drm/omapdrm/omap_drv.h            |  2 +-
+>  drivers/gpu/drm/omapdrm/omap_encoder.c        |  2 +-
+>  drivers/gpu/drm/omapdrm/omap_fb.c             |  2 +-
+>  drivers/gpu/drm/rcar-du/rcar_du_crtc.c        |  2 +-
+>  drivers/gpu/drm/rcar-du/rcar_du_drv.c         |  2 +-
+>  drivers/gpu/drm/rcar-du/rcar_du_encoder.c     |  2 +-
+>  drivers/gpu/drm/rcar-du/rcar_du_kms.c         |  2 +-
+>  drivers/gpu/drm/rcar-du/rcar_du_plane.c       |  2 +-
+>  drivers/gpu/drm/rcar-du/rcar_du_vsp.c         |  2 +-
+>  drivers/gpu/drm/rcar-du/rcar_lvds.c           |  2 +-
+>  drivers/gpu/drm/shmobile/shmob_drm_crtc.c     |  1 +
+>  drivers/gpu/drm/shmobile/shmob_drm_drv.c      |  1 +
+>  drivers/gpu/drm/shmobile/shmob_drm_kms.c      |  1 +
+>  include/drm/drm_crtc_helper.h                 | 16 ------
+>  include/drm/drm_probe_helper.h                | 50 +++++++++++++++++++
+
+For the above files, with the comments below addressed,
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+>  227 files changed, 289 insertions(+), 200 deletions(-)
+>  create mode 100644 include/drm/drm_probe_helper.h
+
+[snip]
+
+> diff --git a/drivers/gpu/drm/bridge/adv7511/adv7511.h
+> b/drivers/gpu/drm/bridge/adv7511/adv7511.h index 73d8ccb97742..d52ffab41e=
+b4
+> 100644
+> --- a/drivers/gpu/drm/bridge/adv7511/adv7511.h
+> +++ b/drivers/gpu/drm/bridge/adv7511/adv7511.h
+> @@ -14,8 +14,11 @@
+>  #include <linux/regmap.h>
+>  #include <linux/regulator/consumer.h>
+> =
+
+> -#include <drm/drm_crtc_helper.h>
+> +#include <drm/drm_probe_helper.h>
+
+The probe helpers are needed in adv7511_drv.c only, I would move the includ=
+e =
+
+there.
+
+>  #include <drm/drm_mipi_dsi.h>
+> +#include <drm/drm_connector.h>
+> +#include <drm/drm_modes.h>
+> +#include <drm/drm_bridge.h>
+
+Please keep the headers alphabetically sorted, here and in all other driver=
+s.
+
+>  #define ADV7511_REG_CHIP_REVISION		0x00
+>  #define ADV7511_REG_N0				0x01
+
+[snip]
+
+> diff --git a/drivers/gpu/drm/omapdrm/omap_crtc.c
+> b/drivers/gpu/drm/omapdrm/omap_crtc.c index 40acf4ce7c9f..9beb0edd5ffa
+> 100644
+> --- a/drivers/gpu/drm/omapdrm/omap_crtc.c
+> +++ b/drivers/gpu/drm/omapdrm/omap_crtc.c
+> @@ -18,7 +18,7 @@
+>  #include <drm/drm_atomic.h>
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_crtc.h>
+> -#include <drm/drm_crtc_helper.h>
+> +#include <drm/drm_probe_helper.h>
+
+This file doesn't use the probe helpers, you can drop this.
+
+>  #include <drm/drm_mode.h>
+>  #include <drm/drm_plane_helper.h>
+>  #include <linux/math64.h>
+
+[snip]
+
+> diff --git a/drivers/gpu/drm/omapdrm/omap_drv.h
+> b/drivers/gpu/drm/omapdrm/omap_drv.h index bd7f2c227a25..513ae8ab5e64
+> 100644
+> --- a/drivers/gpu/drm/omapdrm/omap_drv.h
+> +++ b/drivers/gpu/drm/omapdrm/omap_drv.h
+> @@ -23,7 +23,7 @@
+>  #include <linux/workqueue.h>
+> =
+
+>  #include <drm/drmP.h>
+> -#include <drm/drm_crtc_helper.h>
+> +#include <drm/drm_probe_helper.h>
+
+This isn't needed globally in the driver either.
+
+>  #include <drm/drm_gem.h>
+>  #include <drm/omap_drm.h>
+> =
+
+> diff --git a/drivers/gpu/drm/omapdrm/omap_encoder.c
+> b/drivers/gpu/drm/omapdrm/omap_encoder.c index 148b6b20274f..cd2328fa4ba6
+> 100644
+> --- a/drivers/gpu/drm/omapdrm/omap_encoder.c
+> +++ b/drivers/gpu/drm/omapdrm/omap_encoder.c
+> @@ -18,7 +18,7 @@
+>  #include <linux/list.h>
+> =
+
+>  #include <drm/drm_crtc.h>
+> -#include <drm/drm_crtc_helper.h>
+> +#include <drm/drm_atomic_helper.h>
+
+As far as I can tell this is only used to include =
+
+drm_modeset_helper_vtables.h. Should we include that file instead ?
+
+>  #include <drm/drm_edid.h>
+> =
+
+>  #include "omap_drv.h"
+
+[snip]
+
+> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_crtc.c
+> b/drivers/gpu/drm/rcar-du/rcar_du_crtc.c index 90dacab67be5..b15d2b3a07f1
+> 100644
+> --- a/drivers/gpu/drm/rcar-du/rcar_du_crtc.c
+> +++ b/drivers/gpu/drm/rcar-du/rcar_du_crtc.c
+> @@ -15,7 +15,7 @@
+>  #include <drm/drm_atomic.h>
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_crtc.h>
+> -#include <drm/drm_crtc_helper.h>
+> +#include <drm/drm_probe_helper.h>
+
+Not needed either.
+
+>  #include <drm/drm_fb_cma_helper.h>
+>  #include <drm/drm_gem_cma_helper.h>
+>  #include <drm/drm_plane_helper.h>
+
+[snip]
+
+> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_encoder.c
+> b/drivers/gpu/drm/rcar-du/rcar_du_encoder.c index
+> 1877764bd6d9..0b440f554aed 100644
+> --- a/drivers/gpu/drm/rcar-du/rcar_du_encoder.c
+> +++ b/drivers/gpu/drm/rcar-du/rcar_du_encoder.c
+> @@ -11,7 +11,7 @@
+> =
+
+>  #include <drm/drmP.h>
+>  #include <drm/drm_crtc.h>
+> -#include <drm/drm_crtc_helper.h>
+> +#include <drm/drm_atomic_helper.h>
+
+As far as I can tell this is only used to include =
+
+drm_modeset_helper_vtables.h. Should we include that file instead ?
+
+>  #include <drm/drm_panel.h>
+> =
+
+>  #include "rcar_du_drv.h"
+
+[snip]
+
+> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_plane.c
+> b/drivers/gpu/drm/rcar-du/rcar_du_plane.c index 39d5ae3fdf72..b7fa278ca745
+> 100644
+> --- a/drivers/gpu/drm/rcar-du/rcar_du_plane.c
+> +++ b/drivers/gpu/drm/rcar-du/rcar_du_plane.c
+> @@ -11,7 +11,7 @@
+>  #include <drm/drm_atomic.h>
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_crtc.h>
+> -#include <drm/drm_crtc_helper.h>
+> +#include <drm/drm_probe_helper.h>
+
+Not needed.
+
+>  #include <drm/drm_fb_cma_helper.h>
+>  #include <drm/drm_gem_cma_helper.h>
+>  #include <drm/drm_plane_helper.h>
+> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_vsp.c
+> b/drivers/gpu/drm/rcar-du/rcar_du_vsp.c index 4576119e7777..35b2a4d3ae74
+> 100644
+> --- a/drivers/gpu/drm/rcar-du/rcar_du_vsp.c
+> +++ b/drivers/gpu/drm/rcar-du/rcar_du_vsp.c
+> @@ -10,7 +10,7 @@
+>  #include <drm/drmP.h>
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_crtc.h>
+> -#include <drm/drm_crtc_helper.h>
+> +#include <drm/drm_probe_helper.h>
+
+Not needed.
+
+>  #include <drm/drm_fb_cma_helper.h>
+>  #include <drm/drm_gem_cma_helper.h>
+>  #include <drm/drm_gem_framebuffer_helper.h>
+
+[snip]
+
+> diff --git a/include/drm/drm_probe_helper.h b/include/drm/drm_probe_helpe=
+r.h
+> new file mode 100644
+> index 000000000000..96c060c16a1e
+> --- /dev/null
+> +++ b/include/drm/drm_probe_helper.h
+> @@ -0,0 +1,50 @@
+> +/*
+> + * Copyright =A9 2006 Keith Packard
+> + * Copyright =A9 2007-2008 Dave Airlie
+> + * Copyright =A9 2007-2008 Intel Corporation
+> + *   Jesse Barnes <jesse.barnes@intel.com>
+> + *
+> + * Permission is hereby granted, free of charge, to any person obtaining=
+ a
+> + * copy of this software and associated documentation files (the
+> "Software"), + * to deal in the Software without restriction, including
+> without limitation + * the rights to use, copy, modify, merge, publish,
+> distribute, sublicense, + * and/or sell copies of the Software, and to
+> permit persons to whom the + * Software is furnished to do so, subject to
+> the following conditions: + *
+> + * The above copyright notice and this permission notice shall be includ=
+ed
+> in + * all copies or substantial portions of the Software.
+> + *
+> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRE=
+SS
+> OR + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+> MERCHANTABILITY, + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT=
+. =
+
+> IN NO EVENT SHALL + * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR
+> ANY CLAIM, DAMAGES OR + * OTHER LIABILITY, WHETHER IN AN ACTION OF
+> CONTRACT, TORT OR OTHERWISE, + * ARISING FROM, OUT OF OR IN CONNECTION WI=
+TH
+> THE SOFTWARE OR THE USE OR + * OTHER DEALINGS IN THE SOFTWARE.
+
+Let's use an SPDX tag instead.
+
+> + */
+> +
+> +#ifndef __DRM_PROBE_HELPER_H__
+> +#define __DRM_PROBE_HELPER_H__
+> +
+> +#include <linux/types.h>
+> +
+> +struct drm_connector;
+> +struct drm_device;
+> +struct drm_modeset_acquire_ctx;
+> +
+> +int drm_helper_probe_single_connector_modes(struct drm_connector
+> +					    *connector, uint32_t maxX,
+> +					    uint32_t maxY);
+> +int drm_helper_probe_detect(struct drm_connector *connector,
+> +			    struct drm_modeset_acquire_ctx *ctx,
+> +			    bool force);
+> +void drm_kms_helper_poll_init(struct drm_device *dev);
+> +void drm_kms_helper_poll_fini(struct drm_device *dev);
+> +bool drm_helper_hpd_irq_event(struct drm_device *dev);
+> +void drm_kms_helper_hotplug_event(struct drm_device *dev);
+> +
+> +void drm_kms_helper_poll_disable(struct drm_device *dev);
+> +void drm_kms_helper_poll_enable(struct drm_device *dev);
+> +bool drm_kms_helper_is_poll_worker(void);
+> +
+> +#endif
+
+-- =
+
+Regards,
+
+Laurent Pinchart
+
+
 
 
 _______________________________________________
