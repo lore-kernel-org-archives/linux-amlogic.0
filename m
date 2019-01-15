@@ -2,62 +2,91 @@ Return-Path: <SRS0=K5c1=PX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_MUTT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 58518C43387
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Jan 2019 10:56:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6DF61C43387
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Jan 2019 12:06:46 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 295A22085A
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Jan 2019 10:56:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3912F20657
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Jan 2019 12:06:46 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tdBlAcLm"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 295A22085A
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.intel.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HSaBWuJE";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="CpJk+rx9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3912F20657
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ffwll.ch
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9DyvV8k9Rwd55FMnLL1eKKq1mxofd05GFbae4i+glAE=; b=tdBlAcLm5Mzb6l
-	RltShMrnKGpJPVAmV8ZXln+OpCtuP81yFUVe4Paxf6YX3TtOq91v/VEdvgJVPaEE1hmLDMmB92uzc
-	/qFqHNZOzQ7MIsy26KSlMDHK9swBuE4yrkul5nxmReUu5yP6WKQdu4tBdaQ7dNzfCzIrE1bVnpFob
-	x5QTSo47Lmnoj665IR6CVjdK0RK/bLiX+zsO9te1GV0isnUJT9p5F/ImmwboutQbZS9E9F4z791GM
-	M3lw4ayPtqRkQmE4j7GNasYym0948R3tGrm0XFGoHGJ6lD0D9/TtdiuZWfPjcR5Tz8sLe8NkSAkC8
-	0af7PQfAgkGlGeX3lu/w==;
+	List-Owner; bh=DPxowh93W/dM+TqX8P+oI7B0QYZvUZ8p5D2sHljtzIY=; b=HSaBWuJEzsXdKS
+	Mw90fS9uFbRRf69IZgwsfCGc+iy8U3mWEkvwyOXPwn5MQoeqp8RJOPy3QHmBpZOWfxPPQfn62NMoU
+	wFkZg78KnTs3PJFF0+++MCQvN66hP5RVVyyiITSGvRUOzqitrFiZh+T7mYjOEleMB8dfipG1FdTvW
+	8YCN6rakBBOohGnzZmqxp22ZKWHjxfZ1DYNHL+bf4DKTq+nEi7LEcK7M5wWixCjE49JdnXERYcyhF
+	LbcdtMeByGRsB0OwvmbEvie8ZPoaECztS3blgvoCfOHYy1XgZcy7QvIFyU73g3FA6UH7RUAPdrWsa
+	cjTALJ/KI1oUhqUhSoGQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gjMO6-0001o3-Sn; Tue, 15 Jan 2019 10:56:06 +0000
-Received: from mga17.intel.com ([192.55.52.151])
+	id 1gjNUN-0005hK-IH; Tue, 15 Jan 2019 12:06:39 +0000
+Received: from mail-ed1-x543.google.com ([2a00:1450:4864:20::543])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gjMNr-0001bM-PT; Tue, 15 Jan 2019 10:55:53 +0000
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2019 02:55:49 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.56,481,1539673200"; d="scan'208";a="138414978"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.72.79])
- by fmsmga001.fm.intel.com with ESMTP; 15 Jan 2019 02:55:43 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm: Split out drm_probe_helper.h
-In-Reply-To: <20190115104137.25695-1-daniel.vetter@ffwll.ch>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20190115104137.25695-1-daniel.vetter@ffwll.ch>
-Date: Tue, 15 Jan 2019 12:57:33 +0200
-Message-ID: <87tvia5gte.fsf@intel.com>
+ id 1gjNU8-0005Vk-2o
+ for linux-amlogic@lists.infradead.org; Tue, 15 Jan 2019 12:06:37 +0000
+Received: by mail-ed1-x543.google.com with SMTP id f23so2356093edb.3
+ for <linux-amlogic@lists.infradead.org>; Tue, 15 Jan 2019 04:06:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=sender:date:from:to:cc:subject:message-id:mail-followup-to
+ :references:mime-version:content-disposition:in-reply-to:user-agent;
+ bh=D7vlcoyUllA9eQct930F/KkGGFJ9+BIhtUvTMKgo/sE=;
+ b=CpJk+rx94mRjufv/Ma/whdLZEya+BR6is3bhPJwROLhksCVE7UA/w89cON96mmPuCM
+ JL2ofrrhbukgdOcRcsC/EEjcMfTAvV4CLeldgTaa7sHPYjaisOYiQ0uoIjMpnCb9NdxU
+ 3i3WeQs8YzdUOHK+qyn27oPQqcOlyDzfamnWI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to:user-agent;
+ bh=D7vlcoyUllA9eQct930F/KkGGFJ9+BIhtUvTMKgo/sE=;
+ b=hHgk+wIuzdNXBzck4FlsYW6539+jVQn2xINKH5p3qGvyOmlPmwQqd5T3ZCx7WimPBi
+ 0Xt+VHy+dF5fgWvn+XM7H7AEyQkP0EM1MHp7awWwY8ngkReApMnqQw+5iXKewLLQ1Y6q
+ 3SKqRhLG9uYhV4zavpmeuYUjb3tPhNxjq6lrsFX8LjaQ91u/HrXQt8BcH4wEZYcKXZtQ
+ r2SD2KcMQ2Qfv4VvkBO1z+Z5/X97Rs8dTLOKXjlzB4opMKpSgIDmmThB4w9tcTKq1yXw
+ +uBqtePykHE95PhUOV7RDLlS7INvi5AJgBPX7A1pN4Qxd+AGB+CH+PNScLuG7CKrgtE3
+ YDyQ==
+X-Gm-Message-State: AJcUukdkRVXdwKyXvmCv1CqESiKFjDmUV4BfnalMKoaN1DCpN9uDoGj6
+ pRng0iaQKziw93trbr6rNLM3Hg==
+X-Google-Smtp-Source: ALg8bN4ejPU8lMEYgxVh7LnxB9yjcS0RZt76rfn7YQpjt4uxuS9P6Q6j74WWqBHEfK31oQ+pWaLmFg==
+X-Received: by 2002:a17:906:2cd3:: with SMTP id
+ r19-v6mr2912773ejr.38.1547553981673; 
+ Tue, 15 Jan 2019 04:06:21 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:569e:0:3106:d637:d723:e855])
+ by smtp.gmail.com with ESMTPSA id r7-v6sm2676274ejs.36.2019.01.15.04.06.20
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Tue, 15 Jan 2019 04:06:20 -0800 (PST)
+Date: Tue, 15 Jan 2019 13:06:18 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH v2] drm/meson: Fix atomic mode switching regression
+Message-ID: <20190115120618.GM10517@phenom.ffwll.local>
+Mail-Followup-To: Neil Armstrong <narmstrong@baylibre.com>,
+ dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Tony McKahan <tonymckahan@gmail.com>
+References: <20190114153118.8024-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20190114153118.8024-1-narmstrong@baylibre.com>
+X-Operating-System: Linux phenom 4.19.0-1-amd64 
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190115_025551_832395_490E65F9 
-X-CRM114-Status: GOOD (  15.07  )
+X-CRM114-CacheID: sfid-20190115_040624_669598_7BB22D50 
+X-CRM114-Status: GOOD (  17.87  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -69,92 +98,134 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- virtualization@lists.linux-foundation.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
- linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- nouveau@lists.freedesktop.org, spice-devel@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, etnaviv@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, xen-devel@lists.xen.org,
- linux-renesas-soc@vger.kernel.org, freedreno@lists.freedesktop.org
+Cc: linux-amlogic@lists.infradead.org, Tony McKahan <tonymckahan@gmail.com>,
+ dri-devel@lists.freedesktop.org, daniel@ffwll.ch, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 15 Jan 2019, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> Having the probe helper stuff (which pretty much everyone needs) in
-> the drm_crtc_helper.h file (which atomic drivers should never need) is
-> confusing. Split them out.
->
-> To make sure I actually achieved the goal here I went through all
-> drivers. And indeed, all atomic drivers are now free of
-> drm_crtc_helper.h includes.
->
-> v2: Make it compile. There was so much compile fail on arm drivers
-> that I figured I'll better not include any of the acks on v1.
->
-> v3: Massive rebase because i915 has lost a lot of drmP.h includes, but
-> not all: Through drm_crtc_helper.h > drm_modeset_helper.h -> drmP.h
-> there was still one, which this patch largely removes. Which means
-> rolling out lots more includes all over.
->
-> This will also conflict with ongoing drmP.h cleanup by others I
-> expect.
->
-> v3: Rebase on top of atomic bochs.
->
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com> (v2)
-> Acked-by: Benjamin Gaignard <benjamin.gaignard@linaro.org> (v2)
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: virtualization@lists.linux-foundation.org
-> Cc: etnaviv@lists.freedesktop.org
-> Cc: linux-samsung-soc@vger.kernel.org
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: linux-mediatek@lists.infradead.org
-> Cc: linux-amlogic@lists.infradead.org
-> Cc: linux-arm-msm@vger.kernel.org
-> Cc: freedreno@lists.freedesktop.org
-> Cc: nouveau@lists.freedesktop.org
-> Cc: spice-devel@lists.freedesktop.org
-> Cc: amd-gfx@lists.freedesktop.org
-> Cc: linux-renesas-soc@vger.kernel.org
-> Cc: linux-rockchip@lists.infradead.org
-> Cc: linux-stm32@st-md-mailman.stormreply.com
-> Cc: linux-tegra@vger.kernel.org
-> Cc: xen-devel@lists.xen.org
+On Mon, Jan 14, 2019 at 04:31:18PM +0100, Neil Armstrong wrote:
+> Since commit 2bcd3ecab773 when switching mode from X11 (ubuntu mate for
+> example) the display gets blurry, looking like an invalid framebuffer width.
+> 
+> This commit fixed atomic crtc modesetting in a totally wrong way and
+> introduced a local unnecessary ->enabled crtc state.
+> 
+> This commit reverts the crctc _begin() and _enable() changes and simply
+> adds drm_atomic_helper_commit_tail_rpm as helper.
+> 
+> Reported-by: Tony McKahan <tonymckahan@gmail.com>
+> Suggested-by: Daniel Vetter <daniel@ffwll.ch>
+> Fixes: 2bcd3ecab773 ("drm/meson: Fixes for drm_crtc_vblank_on/off support")
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+
+For the record (I already acked this on irc):
+
+Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 > ---
-> Merging this is going to be a bit a mess due to all the ongoing drmP.h
-> cleanups. I think the following should work:
-> - Apply Sam's prep patches for removing drmP.h from
->   drm_modeset_helper.h
-> - Get the i915 drmP.h cleanup backmerged into drm-misc-next
-> - Apply this patch.
-> - Apply Sam's patch to remove drmP.h from drm_modeset_helper.h
-> - All through drm-misc-next, which has some potential for trivial
->   conflicts around #includes with other drivers unfortunately.
->
-> I hope there's no other driver who'll blow up accidentally because
-> someone else is doing a drmP.h cleanup. Laurent maybe?
->
-> Jani, ack on this?
-
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-
-
+>  drivers/gpu/drm/meson/meson_crtc.c | 23 ++---------------------
+>  drivers/gpu/drm/meson/meson_drv.c  |  6 ++++++
+>  2 files changed, 8 insertions(+), 21 deletions(-)
+> 
+> Changes since v1:
+> - drop the unecessary local ->enabled logic
+> - use drm_atomic_helper_commit_tail_rpm as atomic_commit_tail helper
+> 
+> diff --git a/drivers/gpu/drm/meson/meson_crtc.c b/drivers/gpu/drm/meson/meson_crtc.c
+> index 75d97f1b2e8f..4f5c67f70c4d 100644
+> --- a/drivers/gpu/drm/meson/meson_crtc.c
+> +++ b/drivers/gpu/drm/meson/meson_crtc.c
+> @@ -46,7 +46,6 @@ struct meson_crtc {
+>  	struct drm_crtc base;
+>  	struct drm_pending_vblank_event *event;
+>  	struct meson_drm *priv;
+> -	bool enabled;
+>  };
+>  #define to_meson_crtc(x) container_of(x, struct meson_crtc, base)
+>  
+> @@ -82,7 +81,8 @@ static const struct drm_crtc_funcs meson_crtc_funcs = {
+>  
+>  };
+>  
+> -static void meson_crtc_enable(struct drm_crtc *crtc)
+> +static void meson_crtc_atomic_enable(struct drm_crtc *crtc,
+> +				     struct drm_crtc_state *old_state)
+>  {
+>  	struct meson_crtc *meson_crtc = to_meson_crtc(crtc);
+>  	struct drm_crtc_state *crtc_state = crtc->state;
+> @@ -108,20 +108,6 @@ static void meson_crtc_enable(struct drm_crtc *crtc)
+>  
+>  	drm_crtc_vblank_on(crtc);
+>  
+> -	meson_crtc->enabled = true;
+> -}
+> -
+> -static void meson_crtc_atomic_enable(struct drm_crtc *crtc,
+> -				     struct drm_crtc_state *old_state)
+> -{
+> -	struct meson_crtc *meson_crtc = to_meson_crtc(crtc);
+> -	struct meson_drm *priv = meson_crtc->priv;
+> -
+> -	DRM_DEBUG_DRIVER("\n");
+> -
+> -	if (!meson_crtc->enabled)
+> -		meson_crtc_enable(crtc);
+> -
+>  	priv->viu.osd1_enabled = true;
+>  }
+>  
+> @@ -153,8 +139,6 @@ static void meson_crtc_atomic_disable(struct drm_crtc *crtc,
+>  
+>  		crtc->state->event = NULL;
+>  	}
+> -
+> -	meson_crtc->enabled = false;
+>  }
+>  
+>  static void meson_crtc_atomic_begin(struct drm_crtc *crtc,
+> @@ -163,9 +147,6 @@ static void meson_crtc_atomic_begin(struct drm_crtc *crtc,
+>  	struct meson_crtc *meson_crtc = to_meson_crtc(crtc);
+>  	unsigned long flags;
+>  
+> -	if (crtc->state->enable && !meson_crtc->enabled)
+> -		meson_crtc_enable(crtc);
+> -
+>  	if (crtc->state->event) {
+>  		WARN_ON(drm_crtc_vblank_get(crtc) != 0);
+>  
+> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+> index 3ee4d4a4ecba..a74d861ddceb 100644
+> --- a/drivers/gpu/drm/meson/meson_drv.c
+> +++ b/drivers/gpu/drm/meson/meson_drv.c
+> @@ -75,6 +75,11 @@ static const struct drm_mode_config_funcs meson_mode_config_funcs = {
+>  	.fb_create           = drm_gem_fb_create,
+>  };
+>  
+> +
+> +static const struct drm_mode_config_helper_funcs meson_mode_config_helpers = {
+> +	.atomic_commit_tail = drm_atomic_helper_commit_tail_rpm,
+> +};
+> +
+>  static irqreturn_t meson_irq(int irq, void *arg)
+>  {
+>  	struct drm_device *dev = arg;
+> @@ -266,6 +271,7 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+>  	drm->mode_config.max_width = 3840;
+>  	drm->mode_config.max_height = 2160;
+>  	drm->mode_config.funcs = &meson_mode_config_funcs;
+> +	drm->mode_config.helper_private	= &meson_mode_config_helpers;
+>  
+>  	/* Hardware Initialization */
+>  
+> -- 
+> 2.20.1
+> 
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 
 _______________________________________________
 linux-amlogic mailing list
