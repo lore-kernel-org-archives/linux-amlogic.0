@@ -2,112 +2,147 @@ Return-Path: <SRS0=K5c1=PX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 549B8C43387
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Jan 2019 08:52:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5EBA2C43387
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Jan 2019 09:35:41 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1B6E620656
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Jan 2019 08:52:32 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2BBDA20656
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Jan 2019 09:35:41 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lGnb9Aee";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=CAVIUMNETWORKS.onmicrosoft.com header.i=@CAVIUMNETWORKS.onmicrosoft.com header.b="EOksdIfm"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1B6E620656
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=cavium.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="P1ycZ8z3";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="JHLY9fVS"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2BBDA20656
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
-	References:Message-ID:Date:Subject:To:From:Reply-To:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9k9uewHtxi0yyxBEUjswO8xnxLUnXZvKi29ZjJYebtA=; b=lGnb9Aee/KrkiU
-	WWnmQZcjQMp1BngsQ2ay4VDOj93SU5+nCIVDuUS2nF5m6hXk+sAMemlnUzmBpjXFNCFnCyLd6p7tU
-	/s1DdsDVElZpsnPlWA+3jT8o7QlcH9ut77ta58JR2NYR+GOlhDhSb9Xa1icKchgKJk+/w/s29qi6j
-	TWNM9QgMrTyRBxJtDZrdli9k9nczBcDLWFVd9zzEjAUR5WC3z+GgpJEx8QnD8c352Viw9u5HTYDTw
-	EfKEXJI+JFsLavNb4Jv8ZJ+80r+VPqNMczpFKxgwGXsOB7XFbmK+xyVYGsyUw75OeXYJG8H4hlctf
-	J99b0TbqPtznziRdjwvA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=fEL0S/9DryC5p+QSXqpb4NEqYhW9ns6iEo8HgD/8jpc=; b=P1ycZ8z3vc3ULP
+	DdN/VHvoFg3KPyTu8DNXTQ+dyplfrWigczjA6PYYXkjsSzd1JMzKium6cSMPG2mTbi2SgEoTCwNu6
+	JvTZbPx2uMy9788gGUGWZpJtr7LGFw7PsVYLVAanXwC2UX1ytDmt2jEiDWVJZYeAORsd0AyxOiued
+	R9I/+auFI6IGBJZ6splipHVobfK8RVVlq/M9diDwzpgvdrTol1mX7DXunY6lyVqsgF/3OjSLJXSiP
+	zC+tz3fUtrnWvarTn20eCMhNNkb9AcB36ICCAUfktl+fmC0yDwkLToHsltjWs1QvNjivYVNA3g8G/
+	tp/vXpTk5pXUDD2INipw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gjKSQ-0008Hg-7v; Tue, 15 Jan 2019 08:52:26 +0000
-Received: from mail-eopbgr770072.outbound.protection.outlook.com
- ([40.107.77.72] helo=NAM02-SN1-obe.outbound.protection.outlook.com)
+	id 1gjL88-0006or-Ht; Tue, 15 Jan 2019 09:35:32 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gjKSM-0008HB-Km; Tue, 15 Jan 2019 08:52:24 +0000
+ id 1gjL85-0006np-Ip
+ for linux-amlogic@lists.infradead.org; Tue, 15 Jan 2019 09:35:31 +0000
+Received: by mail-wm1-x341.google.com with SMTP id p6so2442399wmc.1
+ for <linux-amlogic@lists.infradead.org>; Tue, 15 Jan 2019 01:35:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=CAVIUMNETWORKS.onmicrosoft.com; s=selector1-cavium-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FE/jlRbjiFQupd2ihH5RFotk9ej21sxmIdOgDF4q/kk=;
- b=EOksdIfmh8vfmhxjrTIghEsS1sct7cQY+2iuyc+TaRuoJzu4VkwBUcD2QratsB/co92JdEf8V9cHUYvQM0wHWg/8b35l1kWYShOQYS/HkOYs92SIaMoBi607wL3qRsGh9y4NRZ6sSCjzKKwpoPLCUUOhftB7txYDS4qMByVVxys=
-Received: from SN6PR07MB5326.namprd07.prod.outlook.com (52.135.105.33) by
- SN6PR07MB5791.namprd07.prod.outlook.com (20.177.249.203) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1516.19; Tue, 15 Jan 2019 08:52:14 +0000
-Received: from SN6PR07MB5326.namprd07.prod.outlook.com
- ([fe80::40f7:7564:c308:58a7]) by SN6PR07MB5326.namprd07.prod.outlook.com
- ([fe80::40f7:7564:c308:58a7%3]) with mapi id 15.20.1516.019; Tue, 15 Jan 2019
- 08:52:14 +0000
-From: "Richter, Robert" <Robert.Richter@cavium.com>
-To: Rob Herring <robh@kernel.org>, "Nair, Jayachandran"
- <Jayachandran.Nair@cavium.com>
-Subject: Re: [PATCH] arm64: dts: Remove inconsistent use of 'arm,armv8'
- compatible string
-Thread-Topic: [PATCH] arm64: dts: Remove inconsistent use of 'arm,armv8'
- compatible string
-Thread-Index: AQHUqFoPLrHRVLG6+UOUMPoBHyYQvKWwDnSA
-Date: Tue, 15 Jan 2019 08:52:14 +0000
-Message-ID: <20190115085201.kkdz4azpw6qmegiz@rric.localdomain>
-References: <20190109202934.29304-1-robh@kernel.org>
-In-Reply-To: <20190109202934.29304-1-robh@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: AM5PR0601CA0026.eurprd06.prod.outlook.com
- (2603:10a6:203:68::12) To SN6PR07MB5326.namprd07.prod.outlook.com
- (2603:10b6:805:73::33)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Robert.Richter@cavium.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [78.55.2.26]
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; SN6PR07MB5791;
- 6:sr1tQPs9GOyT4l5DE8iEajFAZheRMXohOg++uINwZanI8FcJpo4gv5vMqWAroLb86e79XoHS1+10+fJJf3R/OMn6m38Sz26kQ4mNwecfZVY68jbghCjcCMRHuAf2lHNxp2rPaWIq2507P00vyMX26Cw7nlQH5HOuiYTsDo1UfjjWV2n866Y51cywaYmWP+GjmtDEipdEYisvlzbB8AVby4HrtArgCTcgDPwLqqe7UYGBFZZ+EOFSkpWOvaNirGw3f4+xfuYZhtqIcG7YtsDz/FFZL3q+rDa31I/c+ctwHZQTPSItiupKr2mu+GVueoV0yVtT63cgo88E5lr9/EHs5HmFlDf9ukqSgluyZaNHYaS/rl3uVRLXnsD+f3I4VYTHIkJMCeSQ0fhUtP7q37aMXIcsChb3qKCcj6Gbym2766hFxKSNd5/RQVuViOTa84cXGVNwzPk31fD3x7BWCbDWrA==;
- 5:c6G13/IuwKQ74bmNa9WDUuJIT96QWcR67zBpv8FS5wkOZtZW+s6VYEt8G1sZQuucsZCODAst43Xz/kNSuEbf7ezAoPrlfddnFvx2oNOqbxsmbjz0itI3OWPDO1n1blbMHiPCXzhH9PqRQE5dX/7FPNY4K7/xCKFmpvx3JCbS7vYVGAOJBBEJh4sN1q19d3DTR+HYmnjeORE2p90ckBmZAg==;
- 7:bUCo5PQCGphkI2KFM1WT0/3+WPHoMyrlMC3x7G75Ta/sMMZUGUxproW4OdbrCVM8oNbfGtRdUPv2Z8WMfoseu4jQpzEMh6IFfwQ6NQCWbIKuD34a4N6DEE0/9FzQfir3FXSZRDmACXQyY218wLK4DA==
-x-ms-office365-filtering-correlation-id: 0924a94c-8f91-4743-d322-08d67ac6be80
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600109)(711020)(2017052603328)(7153060)(7193020);
- SRVR:SN6PR07MB5791; 
-x-ms-traffictypediagnostic: SN6PR07MB5791:
-x-microsoft-antispam-prvs: <SN6PR07MB57917AB4A3A8178D068E82E9F1810@SN6PR07MB5791.namprd07.prod.outlook.com>
-x-forefront-prvs: 0918748D70
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(39860400002)(346002)(136003)(376002)(366004)(396003)(199004)(189003)(1076003)(110136005)(54906003)(4326008)(111086002)(316002)(386003)(6506007)(39060400002)(33896004)(53936002)(76176011)(305945005)(7736002)(52116002)(7416002)(6512007)(9686003)(7406005)(7366002)(5660300001)(68736007)(66066001)(25786009)(6246003)(8936002)(81166006)(2906002)(81156014)(8676002)(105586002)(106356001)(99286004)(6436002)(186003)(102836004)(71200400001)(71190400001)(6116002)(86362001)(4744005)(26005)(3846002)(229853002)(6636002)(6486002)(478600001)(53546011)(97736004)(72206003)(486006)(476003)(256004)(446003)(11346002)(14454004)(142933001);
- DIR:OUT; SFP:1101; SCL:1; SRVR:SN6PR07MB5791;
- H:SN6PR07MB5326.namprd07.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: cavium.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 5iBrCZ+JRp4XDYk3nQnclRgUGJotVnaeI4HzaB9TxBuGQ9/sV+ywCpxtEK16d8NtQaLRDfEowZEta7LH87DAECemlkBd7P3j610ZGv7t+Bg8uFX7E+UcOAtp1eh6u1NUyjJKGtfvqcXpufTsJ/Nqo2PkyomFqnEQIYyBXIFm9OLVrkR6idQBJlPiTE7YlhwYesaHVivh2h5g/TPB+UteTsII1z5ValbU0YaOHjE2HbcpJ89+4KcMk0PavEnTnAhGFepOnHPp3v+iVLtNV/TS2pifCW4GenTFM3o/OKrpJzYmX5RxMbZd+G1ImUrnZv5Z+m59orDSSnb1SunitYQhp1F6otWNuDN8/kRznFcgutRdOwFNR5zw7yE1CqscFeuacE3FWqFG+i4KP+RluPWS4yBblb2gmcdAWYA0aAluIYo=
-spamdiagnosticoutput: 1:99
-spamdiagnosticmetadata: NSPM
-Content-ID: <18D894F4658C7F4B85E3834DBCAF4807@namprd07.prod.outlook.com>
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=aNT8R4nDenkhHQrcIrbqltLAoB52x6AFUaaow5IgO2o=;
+ b=JHLY9fVSQc03TlFCv2umySWbV471ssxSpzlbrLn6LdgD93DD0RFuxrpgv3fG6/ynIu
+ EoKDEPCFvACpMElosg4cHPzKeHTMWxsKfCbaNKvQ0va6fbdsC4QTGUZEGzq6ROEFmAgx
+ UKlnf6PNxKQCCYT0/OvWWP5qntH4YwgsVXampfikhbgF2xSqCZk10oSItFyCtiG5Zz0G
+ 6PbUhSMVNCow0Lq/9ku1YvhgRtnh6BxMvB61j5IC6uY0AItLmeugEbz47IL0CPPAcSny
+ RmUPnfNS5MR3Ax+qAeSYQZv+jkygmdYUFEsud1c/HtQWSThNs6adR5aq4KsJmx5qHD0I
+ UK7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=aNT8R4nDenkhHQrcIrbqltLAoB52x6AFUaaow5IgO2o=;
+ b=tlBIwfW9NixonNlAZ/wR2MWkKHFfTfcikk1xc4vGi2tJJKPoIuuTdwJ3fF2Zy/hCQz
+ +lyqcinf1d5UmhJ9bVSHq1en6ekmDzjgclgHO8GoQOYRep0cRVhytUjOfBMOlwpRjK/O
+ wRYig5ucuRhwS7mlDNsgZoe5NsXa1G/iWCn2gzM3/Q12LIPNe5G2uyUiZD5eaPUHkVn1
+ JHMon/8nWj012+FHFwxva+sGbXUR68ZCaVviH72YYKFPcG1GMJBFP14LXS58b+FMhklu
+ LtKATMWxUhTJQ0tJXEqTz/87uGqZHK0LhvrC/zGbjXYRP/OsjaSluFhQRSRrNWw8amNb
+ yOtA==
+X-Gm-Message-State: AJcUukc9OmoYpGxxrTTL8Anoo8IBNHd66JxTK1wZe2BmLbjKX7hDg5IX
+ wzEGS3L4MohiHWzkSTmpjQJpNQ==
+X-Google-Smtp-Source: ALg8bN50df8OT4E8WsmPQHxQiHGURzea/ko3SrUhSQa/LOJ2HCoknLqBFHCcnUW6HXWlS77QNVFanA==
+X-Received: by 2002:a1c:e1d5:: with SMTP id y204mr2512449wmg.65.1547544927232; 
+ Tue, 15 Jan 2019 01:35:27 -0800 (PST)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id o16sm91249445wrn.11.2019.01.15.01.35.26
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 15 Jan 2019 01:35:26 -0800 (PST)
+Subject: Re: [PATCH] tty: serial: meson: if no alias specified use an
+ available id
+To: Loys Ollivier <lollivier@baylibre.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby
+ <jslaby@suse.com>, Kevin Hilman <khilman@baylibre.com>
+References: <1547484866-3600-1-git-send-email-lollivier@baylibre.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <0186aad7-24fa-a6bd-ac52-845325d74b6f@baylibre.com>
+Date: Tue, 15 Jan 2019 10:35:25 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.2.1
 MIME-Version: 1.0
-X-OriginatorOrg: cavium.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0924a94c-8f91-4743-d322-08d67ac6be80
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jan 2019 08:52:04.8878 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 711e4ccf-2e9b-4bcf-a551-4094005b6194
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR07MB5791
+In-Reply-To: <1547484866-3600-1-git-send-email-lollivier@baylibre.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190115_005222_681917_A5A00185 
-X-CRM114-Status: GOOD (  16.06  )
+X-CRM114-CacheID: sfid-20190115_013529_629762_3054E6DB 
+X-CRM114-Status: GOOD (  20.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -119,76 +154,72 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Nishanth Menon <nm@ti.com>, Andrew Lunn <andrew@lunn.ch>,
- Heiko Stuebner <heiko@sntech.de>, Maxime Ripard <maxime.ripard@bootlin.com>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- Liviu Dudau <liviu.dudau@arm.com>, David Brown <david.brown@linaro.org>,
- Thierry Reding <thierry.reding@gmail.com>, Wei Xu <xuwei5@hisilicon.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Mark Rutland <mark.rutland@arm.com>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Magnus Damm <magnus.damm@gmail.com>, Michal Simek <michal.simek@xilinx.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
- "linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, "arm@kernel.org" <arm@kernel.org>,
- "bcm-kernel-feedback-list@broadcom.com"
- <bcm-kernel-feedback-list@broadcom.com>, Baolin Wang <baolin.wang@linaro.org>,
- Andy Gross <andy.gross@linaro.org>, Orson Zhai <orsonzhai@gmail.com>,
- Tsahee Zidenberg <tsahee@annapurnalabs.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
- Jason Cooper <jason@lakedaemon.net>,
- Antoine Tenart <antoine.tenart@bootlin.com>, Ray Jui <rjui@broadcom.com>,
- Simon Horman <horms@verge.net.au>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
- Will Deacon <will.deacon@arm.com>, Scott Branden <sbranden@broadcom.com>,
- Masahiro Yamada <yamada.masahiro@socionext.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>, Chanho Min <chanho.min@lge.com>,
- Duc Dang <dhdang@apm.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Tero Kristo <t-kristo@ti.com>, Dinh Nguyen <dinguyen@kernel.org>,
- Jisheng Zhang <Jisheng.Zhang@synaptics.com>, Kukjin Kim <kgene@kernel.org>,
- Sudeep Holla <sudeep.holla@arm.com>, Jun Nie <jun.nie@linaro.org>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Shawn Guo <shawnguo@kernel.org>,
- =?iso-8859-1?Q?Andreas_F=E4rber?= <afaerber@suse.de>
+Cc: linux-amlogic@lists.infradead.org, linux-serial@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 09.01.19 14:29:34, Rob Herring wrote:
-> The 'arm,armv8' compatible string is only for software models. It adds
-> little value otherwise and is inconsistently used as a fallback on some
-> platforms. Remove it from those platforms.
+On 14/01/2019 17:54, Loys Ollivier wrote:
+> At probe, the uart driver tries to get an id from a device tree alias.
+> When no alias was specified, the driver would return an error and probing
+> would fail.
 > 
-> This fixes warnings generated by the DT schema.
+> Providing an alias for registering a serial device should not be mandatory.
+> If the device tree does not specify an alias, provide an id from a reserved
+> range so that the probing can continue.
 > 
-> Reported-by: Michal Simek <michal.simek@xilinx.com>
-> Cc: Mark Rutland <mark.rutland@arm.com>
-> Cc: Will Deacon <will.deacon@arm.com>
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
 > ---
-> armsoc folks, Please apply directly.
+>  drivers/tty/serial/meson_uart.c | 13 ++++++++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
 > 
-> Note that there's still a case left in msm8998 that needs a new
-> compatible string.
+> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+> index 8a842591b37c..fbc5bc022a39 100644
+> --- a/drivers/tty/serial/meson_uart.c
+> +++ b/drivers/tty/serial/meson_uart.c
+> @@ -72,7 +72,8 @@
+>  #define AML_UART_BAUD_USE		BIT(23)
+>  #define AML_UART_BAUD_XTAL		BIT(24)
+>  
+> -#define AML_UART_PORT_NUM		6
+> +#define AML_UART_PORT_NUM		12
+> +#define AML_UART_PORT_OFFSET		6
+>  #define AML_UART_DEV_NAME		"ttyAML"
+>  
+>  
+> @@ -654,10 +655,20 @@ static int meson_uart_probe(struct platform_device *pdev)
+>  	struct resource *res_mem, *res_irq;
+>  	struct uart_port *port;
+>  	int ret = 0;
+> +	int id = -1;
+>  
+>  	if (pdev->dev.of_node)
+>  		pdev->id = of_alias_get_id(pdev->dev.of_node, "serial");
+>  
+> +	if (pdev->id < 0) {
+> +		for (id = AML_UART_PORT_OFFSET; id < AML_UART_PORT_NUM; id++) {
+> +			if (!meson_ports[id]) {
+> +				pdev->id = id;
+> +				break;
+> +			}
+> +		}
+> +	}
+> +
+>  	if (pdev->id < 0 || pdev->id >= AML_UART_PORT_NUM)
+>  		return -EINVAL;
+>  
 > 
-> Rob
 
->  arch/arm64/boot/dts/cavium/thunder-88xx.dtsi  |  96 ++++++-------
->  arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi |   8 +-
+This is welcome !
 
-For both files:
+You could also add:
+Suggested-by: Rob Herring <robh@kernel.org>
 
-Acked-by: Robert Richter <rrichter@cavium.com>
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
