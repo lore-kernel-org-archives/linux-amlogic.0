@@ -2,64 +2,59 @@ Return-Path: <SRS0=K5c1=PX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DE1FEC43387
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Jan 2019 16:29:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 694C7C43612
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Jan 2019 16:52:58 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A7AD820657
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Jan 2019 16:29:19 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3951D20645
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Jan 2019 16:52:58 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="aLA8hu0X"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A7AD820657
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Se9ij9ki"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3951D20645
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=bootlin.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:References:To:Subject:From:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wr9zois/bUa+whGulvtBGSrCVd2RfoMRuxMC3HMwHDQ=; b=aLA8hu0XL2c4SA
-	TCZF9R7Lrmj7RFAEYwA+USRVz1ibbmMmor4RqSfO+XtPU39n0q23j75VbiU01Xfp4g7ft4UgQCnNt
-	HsZjiLPK4+IlPMm2dRgSEa3HjYsGfQr+rIOYbsfCtYP8uveQ425acGv7dMPBlYBDTKdtYnnvuxrVq
-	Ljn4A8YfEuy4J/uQ50zpryUlCckYJqgppX5aZCcltwiMjUuKV71rqUuJjmGApJE7A09uXD5ldel31
-	xPKTOiWvkz03kjZQXMA7YzCvtHMdWQg8lAWbJXWZA73EaKVJmro3iLfJpWI6JH0EWkqYR+catv6sL
-	2f+YolLfNBc8QBc5o/vA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=2KFNPpoqTtGhb8dfbj8dGfGZ8DEJS6LJmmsDoCwq0b4=; b=Se9ij9ki08mnom
+	zpcTkhSx1K6cvOu9SMEniIexNDJK8vX5s3EWAjIibBe8ScyKJv4QnmrkujQ+viHDbbfstp6ze6efO
+	bRK/FgZmyZ4L93/UVFKZ7IW0UofhstB0q37W8RwRmneEOhLHRz0f7RQwPJwHNAEf+GNax0ovEmtOg
+	hhbN9o0/t/uTkiijLzeNM9naJdkjnnXI6BqPHaLQ4NNXNf2USlbFaCZtFJrgFMeM4pyagL4J4JNSj
+	oqjN0LwUhlMqhX3AHhmDWi0xuayCm+5bQIQFRYbZ5rVcpmEIROLT/+7w0CiTz6tSRuWXF2okyGxF2
+	S1rbu6OwYUUabuLrdsmQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gjRaU-0002a8-Gl; Tue, 15 Jan 2019 16:29:14 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
- by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gjRaS-0002ZU-4F; Tue, 15 Jan 2019 16:29:13 +0000
-Received: from [192.168.0.111] (223.166.104.240) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1591.10; Wed, 16 Jan
- 2019 00:29:52 +0800
-From: Jianxin Pan <jianxin.pan@amlogic.com>
-Subject: Re: [PATCH v8 4/4] clk: meson: add sub MMC clock controller driver
-To: Stephen Boyd <sboyd@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
- Neil Armstrong <narmstrong@baylibre.com>
-References: <1545063850-21504-1-git-send-email-jianxin.pan@amlogic.com>
- <1545063850-21504-5-git-send-email-jianxin.pan@amlogic.com>
- <154706693724.15366.10802936604309826132@swboyd.mtv.corp.google.com>
-Message-ID: <5d25f6a4-7a5f-b2c7-f8b3-c59fa36fe989@amlogic.com>
-Date: Wed, 16 Jan 2019 00:29:51 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.3.2
+	id 1gjRxJ-0003r7-D5; Tue, 15 Jan 2019 16:52:49 +0000
+Received: from mail.bootlin.com ([62.4.15.54])
+ by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1gjRxG-0003qh-RC; Tue, 15 Jan 2019 16:52:48 +0000
+Received: by mail.bootlin.com (Postfix, from userid 110)
+ id 856E920A9B; Tue, 15 Jan 2019 17:52:45 +0100 (CET)
+Received: from xps13 (173.203.136.77.rev.sfr.net [77.136.203.173])
+ by mail.bootlin.com (Postfix) with ESMTPSA id 0F2BA207A3;
+ Tue, 15 Jan 2019 17:52:34 +0100 (CET)
+Date: Tue, 15 Jan 2019 17:52:32 +0100
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Jianxin Pan <jianxin.pan@amlogic.com>
+Subject: Re: [PATCH v9 0/2]  mtd: rawnand: meson: add Amlogic NAND driver
+ support
+Message-ID: <20190115175232.3d82d4a9@xps13>
+In-Reply-To: <1547566684-57472-1-git-send-email-jianxin.pan@amlogic.com>
+References: <1547566684-57472-1-git-send-email-jianxin.pan@amlogic.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <154706693724.15366.10802936604309826132@swboyd.mtv.corp.google.com>
-Content-Language: en-US
-X-Originating-IP: [223.166.104.240]
-X-ClientProxiedBy: mail-sh2.amlogic.com (10.18.11.6) To mail-sh.amlogic.com
- (10.18.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190115_082912_171623_C07AD4A7 
-X-CRM114-Status: GOOD (  12.68  )
+X-CRM114-CacheID: sfid-20190115_085247_015552_97A708F1 
+X-CRM114-Status: GOOD (  11.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -71,111 +66,34 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Hanjie Lin <hanjie.lin@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>,
+Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ Hanjie Lin <hanjie.lin@amlogic.com>, Victor Wan <victor.wan@amlogic.com>,
+ Marek Vasut <marek.vasut@gmail.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, Yixun Lan <yixun.lan@amlogic.com>,
+ Richard Weinberger <richard@nod.at>, Neil Armstrong <narmstrong@baylibre.com>,
  linux-kernel@vger.kernel.org, Boris Brezillon <boris.brezillon@bootlin.com>,
- Liang Yang <liang.yang@amlogic.com>, Jian Hu <jian.hu@amlogic.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Qiufang Dai <qiufang.dai@amlogic.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ Jian Hu <jian.hu@amlogic.com>, Liang Yang <liang.yang@amlogic.com>,
+ linux-mtd@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>,
+ Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
+ Brian Norris <computersforpeace@gmail.com>,
+ David Woodhouse <dwmw2@infradead.org>, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Stephen,
-
-Thank you for your time.
-Please see my comments below.
-
-On 2019/1/10 4:48, Stephen Boyd wrote:
-> Quoting Jianxin Pan (2018-12-17 08:24:10)
->> diff --git a/drivers/clk/meson/mmc-clkc.c b/drivers/clk/meson/mmc-clkc.c
->> new file mode 100644
->> index 0000000..2582a98
->> --- /dev/null
->> +++ b/drivers/clk/meson/mmc-clkc.c
->> @@ -0,0 +1,304 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Amlogic Meson MMC Sub Clock Controller Driver
->> + *
->> + * Copyright (c) 2017 Baylibre SAS.
->> + * Author: Jerome Brunet <jbrunet@baylibre.com>
->> + *
->> + * Copyright (c) 2018 Amlogic, inc.
->> + * Author: Yixun Lan <yixun.lan@amlogic.com>
->> + * Author: Jianxin Pan <jianxin.pan@amlogic.com>
->> + */
->> +
->> +#include <linux/clk.h>
-> 
-> Do you need this include?
-> 
-Yes, It's also a clock-consumer. 
-devm_clk_get() gets clock from dts as the parent of mux.
-Thank you for your review.
->> +#include <linux/clk-provider.h>
->> +#include <linux/module.h>
->> +#include <linux/regmap.h>
->> +#include <linux/slab.h>
->> +#include <linux/of_device.h>
->> +#include <linux/mfd/syscon.h>
-> 
-> Is this used?
-Yes, syscon_node_to_regmap() is used in mmc_clkc_probe().
-> 
->> +#include <linux/platform_device.h>
-> [...]
->> +       init.num_parents = 1;
->> +
->> +       clk = mmc_clkc_register_clk(dev, map, &init, suffix, data);
->> +       if (IS_ERR(clk))
->> +               dev_err(dev, "%s clock registration failed\n", suffix);
->> +
->> +       return clk;
->> +}
->> +
->> +static int mmc_clkc_probe(struct platform_device *pdev)
->> +{
->> +       struct clk_hw_onecell_data *onecell_data;
->> +       struct device *dev = &pdev->dev;
->> +       struct mmc_clkc_data *data;
->> +       struct regmap *map;
->> +       struct clk_regmap *clk, *core;
->> +       struct meson_sclk_div_data *div_data;
->> +
->> +       /*cast to drop the const in match->data*/
->> +       data = (struct mmc_clkc_data *)of_device_get_match_data(dev);
-> 
-> Is that necessary? Maybe the users of this should take a const argument
-> and copy things?
-OK, I can alloc two extra memory for PHASE_RX and PHASE_TX data, and then copy from const data to them.
-> 
->> +       if (!data)
->> +               return -ENODEV;
->> +
->> +       map = syscon_node_to_regmap(dev->of_node);
->> +       if (IS_ERR(map)) {
->> +               dev_err(dev, "could not find mmc clock controller\n");
->> +               return PTR_ERR(map);
->> +       }
->> +
->> +       onecell_data = devm_kzalloc(dev, sizeof(*onecell_data) +
->> +                                   sizeof(*onecell_data->hws) * MMC_MAX_CLKS,
-> 
-> struct_size()?
-> 
-OK, I will change it in the next version.
-Thank you for your review.
-> .
-> 
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgSmlhbnhpbiwKCkppYW54aW4gUGFuIDxqaWFueGluLnBhbkBhbWxvZ2ljLmNvbT4gd3JvdGUg
+b24gVHVlLCAxNSBKYW4gMjAxOQoyMzozODowMiArMDgwMDoKCj4gVGhlc2UgdHdvIHBhdGNoZXMg
+dHJ5IHRvIGFkZCBpbml0aWFsIE5BTkQgZHJpdmVyIHN1cHBvcnQgZm9yIEFtbG9naWMgTWVzb24K
+PiBTb0NzLCBjdXJyZW50IGl0IGhhcyBiZWVuIHRlc3RlZCBvbiBHWEwocDIxMikgYW5kIEFYRyhz
+NDAwKSBwbGF0Zm9ybS4KPiAKPiBDaGFuZ2VzIHNpbmNlIFY4IGF0IFs5XQo+ICAtIGZpeCBidWls
+ZCBmYWlscmUgYXQgb2JqZWN0X2lzX29uX3N0YWNrCj4gIC0gdXBkYXRlIEtjb25maWcgYXMgTWFy
+dGluJ3Mgc3VnZ2VzdGVkCgpUaGFua3MgZm9yIHRoaXMgbGFzdCB2ZXJzaW9uLCBsb29rcyBnb29k
+IHRvIG1lLiBDb3VsZCB5b3UgcGxlYXNlIHNlbmQgYQpwYXRjaCB0byBhZGQgYSBNQUlOVEFJTkVS
+UyBlbnRyeT8KCkFsc28sIGNhbiB3ZSBmYWNlIGFueSBkZWFkbHkgZmFpbHVyZSBpZiBzb21lb25l
+IGNvbXBpbGVzIHRoaXMgZHJpdmVyCndpdGhvdXQgdGhlIE1NQyBjbG9jayBkcml2ZXIgdXBkYXRl
+ZD8KClRoYW5rcywKTWlxdcOobAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0
+cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGlu
+Zm8vbGludXgtYW1sb2dpYwo=
