@@ -2,63 +2,73 @@ Return-Path: <SRS0=5vFS=PY=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	USER_AGENT_MUTT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B8B27C43612
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Jan 2019 18:10:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 688F8C43387
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Jan 2019 19:10:58 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8B2EC20840
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Jan 2019 18:10:33 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 215CC206C2
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Jan 2019 19:10:58 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="uk7GWyV6"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8B2EC20840
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="l5qBmccE";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="TD9aAYc6"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 215CC206C2
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=G8T3Cl5pFWIgrTzEUY0UaLFShORJSTPaSZMLoGrrpdI=; b=uk7GWyV67nFNXq
-	0rg1v4w2twPrpVVKmeOcc1d41EbRo4BbCmsZgswypExe7Dfxjdd1ThavpE1ScR4CUj5jS39ufWrSL
-	JzWOneDmd2HrxHttskgyyXCylyavhn2yKATbSt9SiPL1NCK1XWLT4xqI4rJ/MGoS4n2WS6JbjEO8M
-	Bi86DfpY5mcx2o05jdrOfaVdkfY7mqeebE05Uw+FR1eSMYwRZ1moQvjPMEiqnZxMZpg9TPEiYBZ7L
-	Vn5XeLa+xXM5sxCb2rPMo7oeg1R/yvDN/iBf0pWTFzdBKm8TMqupX60s3pbw2cgjysYwXfzm0TiPz
-	sBjkQRo1hKBtu/dpitWQ==;
+	List-Owner; bh=j9W/x4oQy5qehn6m9PE0QOaySQE1uu7dPdavUXlIyN8=; b=l5qBmccE0ZnFGx
+	V2YpqiSw+Lvx2NtXxWT7rm3SGMHTe5uUA6c9d2xADTU+amB19NbedYHXB7kbp+FgOe7zmSzp3e3Za
+	Tae9AvPqO2c8WkP2gig/DqClNJLs0XsctSDsDUoWWMSc+MSElyX+iMs2lWBfvbpqb+F2T0Un1gX8M
+	clbCO769gCa861CNZdlbB5NU9n1lxV9aoRVEarNbMlEBPmkHr7tN2MWJU84LVCJU93HhG1E7FvjEu
+	qj53u6lXOHXkwSplESROEc5iPEcvpgxOK09tdtB7Q4iJgH5Fshw4TGUsuRNxxFDkLdkfwq4aFXMGZ
+	KA/GWCs5Lk0roXBUdRWw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gjpdz-00019T-Om; Wed, 16 Jan 2019 18:10:27 +0000
-Received: from asavdk3.altibox.net ([109.247.116.14])
+	id 1gjqaP-00030A-LG; Wed, 16 Jan 2019 19:10:49 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gjpdx-00018w-1c; Wed, 16 Jan 2019 18:10:26 +0000
-Received: from ravnborg.org (unknown [158.248.194.18])
+ id 1gjqaM-0002zd-Ar; Wed, 16 Jan 2019 19:10:47 +0000
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com
+ [209.85.222.181])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by asavdk3.altibox.net (Postfix) with ESMTPS id A95CA20049;
- Wed, 16 Jan 2019 19:10:19 +0100 (CET)
-Date: Wed, 16 Jan 2019 19:10:18 +0100
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: Re: [PATCH] drm: Split out drm_probe_helper.h
-Message-ID: <20190116181018.GA27364@ravnborg.org>
-References: <20190116163442.12622-1-daniel.vetter@ffwll.ch>
+ by mail.kernel.org (Postfix) with ESMTPSA id 82F8920868;
+ Wed, 16 Jan 2019 19:10:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1547665845;
+ bh=Ly8oTXf+wW25XTLQh/4VVi0iiDCrw9QU0sqGmXLQHck=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=TD9aAYc6ndoChArx2GQZ1BfbOk7c9nRrThJ4AM3D27XL/MQyHI9D/5mOmQqT15ql+
+ cIuVG1M9GbsRrrwHssI/bpIVkYnUrdIVN95Z6hdtkcCysl5mD+tqLPSVtLtX0agYfX
+ 4qdCNlLcHww/8NveIyhmp+9rVeGqyQmSJzcTNYRw=
+Received: by mail-qk1-f181.google.com with SMTP id z18so4458658qkj.10;
+ Wed, 16 Jan 2019 11:10:45 -0800 (PST)
+X-Gm-Message-State: AJcUukdNE5E6Uyb6jGHyXEUdz9I1SZNczRCVKzZ6WD06PK4RG/Qs8bcv
+ ih8WJcVIkhZBBrHGNXXRHf5YOLQ4f+9Uy0rAHg==
+X-Google-Smtp-Source: ALg8bN4tamKw2hTyuVvxfODr8h3Fkesx6ZuaHOjSxfO2ri6dQ2EN6wh7YDA+jwFGDI4SWaopa4/Plj2nkrHn0C01W30=
+X-Received: by 2002:a37:5686:: with SMTP id k128mr7465693qkb.29.1547665844734; 
+ Wed, 16 Jan 2019 11:10:44 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20190116163442.12622-1-daniel.vetter@ffwll.ch>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=dqr19Wo4 c=1 sm=1 tr=0
- a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
- a=kj9zAlcOel0A:10 a=7gkXJVJtAAAA:8 a=p2dIKQH6C7GrL7qBjIgA:9
- a=CjuIK1q_8ugA:10 a=E9Po1WZjFZOl8hwRPBS3:22
+References: <20190116103632.17754-1-jbrunet@baylibre.com>
+In-Reply-To: <20190116103632.17754-1-jbrunet@baylibre.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 16 Jan 2019 13:10:33 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJx5_K=HtfE6pjirffFJ8kU8aEq+Etjxip2gFUpFSpCBw@mail.gmail.com>
+Message-ID: <CAL_JsqJx5_K=HtfE6pjirffFJ8kU8aEq+Etjxip2gFUpFSpCBw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: reset: meson-axg: fix SPDX license id
+To: Jerome Brunet <jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190116_101025_257064_341F4415 
-X-CRM114-Status: GOOD (  12.12  )
+X-CRM114-CacheID: sfid-20190116_111046_398009_CB39AE3A 
+X-CRM114-Status: GOOD (  12.74  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -70,66 +80,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, nouveau@lists.freedesktop.org,
- Liviu Dudau <liviu.dudau@arm.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- virtualization@lists.linux-foundation.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- amd-gfx@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- CK Hu <ck.hu@mediatek.com>, spice-devel@lists.freedesktop.org,
- Jani Nikula <jani.nikula@intel.com>, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>, linux-mediatek@lists.infradead.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-tegra@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- xen-devel@lists.xen.org, linux-renesas-soc@vger.kernel.org,
- Alex Deucher <alexander.deucher@amd.com>, freedreno@lists.freedesktop.org
+Cc: devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>, Yixun Lan <yixun.lan@amlogic.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Carlo Caione <carlo@caione.org>,
+ linux-amlogic@lists.infradead.org, Thomas Gleixner <tglx@linutronix.de>,
+ "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Daniel.
+On Wed, Jan 16, 2019 at 4:36 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
+>
+> As reported, the SPDX license id is not placed correctly and the variant
+> of the BSD License used should be specified.
+>
+> Fixes: c16292578ffa ("dt-bindings: reset: Add bindings for the Meson-AXG SoC Reset Controller")
+> Reported-by: Thomas Gleixner <tglx@linutronix.de>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>
+>  Sorry for the delay Thomas.
+>
+>  Regards
+>  Jerome
+>
+>  include/dt-bindings/reset/amlogic,meson-axg-reset.h | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
 
-> v5: Actually try to sort them, and while at it, sort all the ones I
-> touch.
+Applied, thanks.
 
-Applied this variant on top of drm-misc and did a build test.
-Looked good for ia64, x86 and alpha.
-
-Took a closer look at the changes to atmel_hlcd - and they looked OK.
-
-But I noticed that atmel_hlcdc uses only drm_kms_helper_poll_init() and
-drm_kms_helper_poll_fini().
-But there are no hits on DRM_CONNECTOR_POLL - so I think we maybe
-have a driver here where we have plugged the drm_poll infrastructure,
-but it is not in use.
-
->  include/drm/drm_crtc_helper.h                 | 16 -----------
-
-The list of include files in this file could be dropped and replaced by:
-struct drm_connector;
-struct drm_device;
-struct drm_display_mode;
-struct drm_encoder;
-struct drm_framebuffer;
-struct drm_mode_set;
-struct drm_modeset_acquire_ctx;
-
-I tried to do so on top of your patch.
-But there were too many build errros and I somehow lost the motivation.
-
-
->  include/drm/drm_probe_helper.h                | 27 +++++++++++++++++++
-This on the other hand is fine - as expected as this is a new file.
-
-But the above is just some random comments so:
-
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
+Rob
 
 _______________________________________________
 linux-amlogic mailing list
