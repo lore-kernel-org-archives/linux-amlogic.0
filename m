@@ -2,73 +2,64 @@ Return-Path: <SRS0=5vFS=PY=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,USER_AGENT_MUTT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 688F8C43387
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Jan 2019 19:10:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 067D1C43444
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Jan 2019 21:29:45 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 215CC206C2
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Jan 2019 19:10:58 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C6F7920675
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Jan 2019 21:29:44 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="l5qBmccE";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="TD9aAYc6"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 215CC206C2
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ESLQzta2"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C6F7920675
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=bootlin.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=j9W/x4oQy5qehn6m9PE0QOaySQE1uu7dPdavUXlIyN8=; b=l5qBmccE0ZnFGx
-	V2YpqiSw+Lvx2NtXxWT7rm3SGMHTe5uUA6c9d2xADTU+amB19NbedYHXB7kbp+FgOe7zmSzp3e3Za
-	Tae9AvPqO2c8WkP2gig/DqClNJLs0XsctSDsDUoWWMSc+MSElyX+iMs2lWBfvbpqb+F2T0Un1gX8M
-	clbCO769gCa861CNZdlbB5NU9n1lxV9aoRVEarNbMlEBPmkHr7tN2MWJU84LVCJU93HhG1E7FvjEu
-	qj53u6lXOHXkwSplESROEc5iPEcvpgxOK09tdtB7Q4iJgH5Fshw4TGUsuRNxxFDkLdkfwq4aFXMGZ
-	KA/GWCs5Lk0roXBUdRWw==;
+	List-Owner; bh=K3Gi0/Np+iMc7Nf2zuW+Y2veDrRaiw0Aexl+/XhsJFk=; b=ESLQzta2/GR6xN
+	W9R2srRsSTo6yRE0nYJi6B1VcpZ0YGshmPKqr3dk3aYiIxJCZPmPEpaNQDznSQ1ZGHhF95oFTCn4h
+	wrzmBrv/+OfGNhDTfzJc+JIEEzSikF1s0Q4hpbaITYyyDDkWD8NLMrTL6lzQ9MKj+09tDEsam13vS
+	PIWYa1W/f7jhCBEp7KhjP9WE05YeYqZrSlLVx5a3MjV3O6J2Ev+sk5gZBGb1tdsn9k1x4E+N+q/bK
+	WUuQaxAOgDvipGPnJgtJJ9GZobdAE1dkRwWf3mKHNiHQgqyelcULv6J6m+c1Nd/PdBXVOCQ3XTPxL
+	A3DJMfCmRb/p62vkIlXw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gjqaP-00030A-LG; Wed, 16 Jan 2019 19:10:49 +0000
-Received: from mail.kernel.org ([198.145.29.99])
- by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gjqaM-0002zd-Ar; Wed, 16 Jan 2019 19:10:47 +0000
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com
- [209.85.222.181])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 82F8920868;
- Wed, 16 Jan 2019 19:10:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1547665845;
- bh=Ly8oTXf+wW25XTLQh/4VVi0iiDCrw9QU0sqGmXLQHck=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=TD9aAYc6ndoChArx2GQZ1BfbOk7c9nRrThJ4AM3D27XL/MQyHI9D/5mOmQqT15ql+
- cIuVG1M9GbsRrrwHssI/bpIVkYnUrdIVN95Z6hdtkcCysl5mD+tqLPSVtLtX0agYfX
- 4qdCNlLcHww/8NveIyhmp+9rVeGqyQmSJzcTNYRw=
-Received: by mail-qk1-f181.google.com with SMTP id z18so4458658qkj.10;
- Wed, 16 Jan 2019 11:10:45 -0800 (PST)
-X-Gm-Message-State: AJcUukdNE5E6Uyb6jGHyXEUdz9I1SZNczRCVKzZ6WD06PK4RG/Qs8bcv
- ih8WJcVIkhZBBrHGNXXRHf5YOLQ4f+9Uy0rAHg==
-X-Google-Smtp-Source: ALg8bN4tamKw2hTyuVvxfODr8h3Fkesx6ZuaHOjSxfO2ri6dQ2EN6wh7YDA+jwFGDI4SWaopa4/Plj2nkrHn0C01W30=
-X-Received: by 2002:a37:5686:: with SMTP id k128mr7465693qkb.29.1547665844734; 
- Wed, 16 Jan 2019 11:10:44 -0800 (PST)
+	id 1gjski-0004Sp-Kw; Wed, 16 Jan 2019 21:29:36 +0000
+Received: from mail.bootlin.com ([62.4.15.54])
+ by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1gjskd-0004R8-Sk; Wed, 16 Jan 2019 21:29:34 +0000
+Received: by mail.bootlin.com (Postfix, from userid 110)
+ id 05F3B207AC; Wed, 16 Jan 2019 22:29:26 +0100 (CET)
+Received: from localhost (lfbn-lyo-1-59-119.w86-202.abo.wanadoo.fr
+ [86.202.150.119])
+ by mail.bootlin.com (Postfix) with ESMTPSA id CFEB0206A6;
+ Wed, 16 Jan 2019 22:29:25 +0100 (CET)
+Date: Wed, 16 Jan 2019 22:29:26 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH v5 2/2] rtc: support for the Amlogic Meson RTC
+Message-ID: <20190116212926.GG2627@piout.net>
+References: <20181202220847.24364-1-martin.blumenstingl@googlemail.com>
+ <20181202220847.24364-3-martin.blumenstingl@googlemail.com>
+ <85aa8e12-0bca-6432-e1a8-0faceff1dd5e@codethink.co.uk>
+ <CAFBinCBDUxTc+ofCYm-zEeiFdU90U6DQOkX4B659q=MvRK64fg@mail.gmail.com>
+ <CAFBinCAY7+-zA5-hY6oXmFz2i8aj9wFJsb-HBbKt_Swn9BtMMg@mail.gmail.com>
+ <CAFBinCCKeb+wGJ4h_PfsT-Ms8AtLmNSwStTpeMqA3shkySjGkg@mail.gmail.com>
 MIME-Version: 1.0
-References: <20190116103632.17754-1-jbrunet@baylibre.com>
-In-Reply-To: <20190116103632.17754-1-jbrunet@baylibre.com>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 16 Jan 2019 13:10:33 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJx5_K=HtfE6pjirffFJ8kU8aEq+Etjxip2gFUpFSpCBw@mail.gmail.com>
-Message-ID: <CAL_JsqJx5_K=HtfE6pjirffFJ8kU8aEq+Etjxip2gFUpFSpCBw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: reset: meson-axg: fix SPDX license id
-To: Jerome Brunet <jbrunet@baylibre.com>
+Content-Disposition: inline
+In-Reply-To: <CAFBinCCKeb+wGJ4h_PfsT-Ms8AtLmNSwStTpeMqA3shkySjGkg@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190116_111046_398009_CB39AE3A 
-X-CRM114-Status: GOOD (  12.74  )
+X-CRM114-CacheID: sfid-20190116_132932_081205_37D510D1 
+X-CRM114-Status: GOOD (  18.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -80,39 +71,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, Yixun Lan <yixun.lan@amlogic.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, Thomas Gleixner <tglx@linutronix.de>,
- "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>
+Cc: linux-rtc@vger.kernel.org, a.zummo@towertech.it, ccaione@baylibre.com,
+ linux-kernel@vger.kernel.org, ben.dooks@codethink.co.uk,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jan 16, 2019 at 4:36 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
->
-> As reported, the SPDX license id is not placed correctly and the variant
-> of the BSD License used should be specified.
->
-> Fixes: c16292578ffa ("dt-bindings: reset: Add bindings for the Meson-AXG SoC Reset Controller")
-> Reported-by: Thomas Gleixner <tglx@linutronix.de>
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->
->  Sorry for the delay Thomas.
->
->  Regards
->  Jerome
->
->  include/dt-bindings/reset/amlogic,meson-axg-reset.h | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
+On 12/01/2019 13:52:00+0100, Martin Blumenstingl wrote:
+> Hi Ben,
+> 
+> On Tue, Dec 18, 2018 at 12:48 AM Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+> >
+> > Hi Ben,
+> >
+> > On Wed, Dec 5, 2018 at 11:15 PM Martin Blumenstingl
+> > <martin.blumenstingl@googlemail.com> wrote:
+> > [...]
+> > > > > Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
+> > > > > [resurrected Ben's patches after 2 years]
+> > > > > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > > >
+> > > > Just checking if the change of author is deliberate?
+> > > > not sure how to do >1 author on patches like this.
+> > > I changed the author on purpose after seeing how much I changed
+> > > (compared to your v4). this is also why I added you to the CC list
+> > > however, I left in your copyright (just like you kept Carlo's
+> > > copyright note) and MODULE_AUTHOR
+> > please let me know:
+> > 1. whether you want to be the author of the patch or if you're fine
+> > with my name in there
+> > 2. if you are fine with both of us being listed as Signed-off-by or if
+> > you want me to switch to Co-authored-by
+> > 3. about any other concerns you have
+> >
+> > I would like to update this patch next weekend so it can be reviewed
+> > (and merged once all is fine) for v4.22
+> gentle ping on this one now that the holiday season is over.
+> 
 
-Applied, thanks.
+I would think you can resend as they are. Or, you could resend v4 from
+Ben and then a patch with your modifications.
 
-Rob
+
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 _______________________________________________
 linux-amlogic mailing list
