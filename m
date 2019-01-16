@@ -2,90 +2,90 @@ Return-Path: <SRS0=5vFS=PY=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2D7C0C43387
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Jan 2019 12:41:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 14DE5C43387
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Jan 2019 13:13:01 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F1A6A20651
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Jan 2019 12:41:31 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D9B1620651
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Jan 2019 13:13:00 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nOfcBJ2a";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="sdNmOfjy"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F1A6A20651
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hzE4Z6xJ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="XfexWVJS"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D9B1620651
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Mime-Version:References:In-Reply-To:
+	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eUfmqOayCWL5xm6TPGnP9ljh8z/CP3AeUgB9KAMCY8U=; b=nOfcBJ2aGhbPv9
-	H3gt67erms6PxevwRrlZQI5RoYTYt/PfUCycoQsutk3v3jJ9MbUsbhT96Bwq78Zb9NUXmXjA7vEMO
-	o16+oe54XOFM2O/UiC14w2YKssl+wxD9pnyH/qstLEaexiIrdRGEY2V/d0WxMBfrCiWy4+uh2XrBO
-	ZZlnVJGDYk+oUAZLsuKDdv9kZUR5UwvdbxlOtBi12rL8223D2M17rR9gGrDrPQMBQnlkXjSjF58fe
-	VHRHT2QCWLAwUdJ9ymDL59NA2COR8BCK6kZ+3UBcOhMVZ3VVHhx1CgUUOUcM99gxQV21tTvkk9Qo7
-	ux+KaGH+K8ctF+HLDx+A==;
+	List-Owner; bh=OOZBF1NRlP9NGPAAQ7VuGq2G81z+/ZWHnmo7LoX74Mg=; b=hzE4Z6xJ9Oi6Y9
+	QPSWai3CMiUf/aRS0b6igcgCXPrBIzE8txm6OenZjhY1azunN4tkJuO0MTOvhXTHzVy47MetOK1+8
+	0s3lKmgLtv/6f4r/sa3aORV9etBs5TufEIENZ375x5auvvqXwB8+4wRfIZTwZlnuSLRkjTiT9FZjT
+	LMUe4lkGd2lA4DnzTbBq+m/OycyVbR7sOMRbHlUr50sIaoQ51SBUoGszcqFnNZemsLTZLishPVPOw
+	UOyxdHvZK8JReAkrxEXx/ksi+0hXCU2QlcDLQq6e2rh+lsok2H2Fb2SA/GwC9Jih8UsSwe+MuYUYe
+	3c7qhRSzwLfArq9sA3XA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gjkVa-00011Y-Gz; Wed, 16 Jan 2019 12:41:26 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1gjl03-0004w0-G8; Wed, 16 Jan 2019 13:12:55 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gjkV3-0000Rk-BP
- for linux-amlogic@lists.infradead.org; Wed, 16 Jan 2019 12:40:57 +0000
-Received: by mail-wr1-x444.google.com with SMTP id 96so6773476wrb.2
- for <linux-amlogic@lists.infradead.org>; Wed, 16 Jan 2019 04:40:52 -0800 (PST)
+ id 1gjkzv-0004oC-TB
+ for linux-amlogic@lists.infradead.org; Wed, 16 Jan 2019 13:12:53 +0000
+Received: by mail-wm1-x336.google.com with SMTP id f188so1918657wmf.5
+ for <linux-amlogic@lists.infradead.org>; Wed, 16 Jan 2019 05:12:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=7SKzOiXnEB8V8kNaFY7oKymTvoiedc8KfN1lhPOUJLQ=;
- b=sdNmOfjysUBiHQzQOlVgU9thQydqg7F9721m/P1nntU/bI87Q05/SdSZPbtinWIhvw
- YB/cfPs/Xic9YIF45uUf0Ledm7NaJXEanw2hrwp/22RG8s4Vs8jYevkn10iDOtG6Lopf
- Gne5XMBYU1FJM1HrpznZnwRpjepE9EZu6Obyo2cUQnBg+Lc9D68J4D+cCEcDzD3b8FyU
- FwUFeDf7N7cgMixQhAFXhP4t4WvqmhtHcWbF1Muqk0X8j8ycwOMnPmwbMtd+c9n6tNwe
- nVSegEppOLUWzhYNRRe834fre/pmExe4UI/JivQ0AHnO5LGA6qVLWlKCb8qiA1mqFA2N
- doyg==
+ h=message-id:subject:from:to:cc:date:in-reply-to:references
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=qcRY4/cxb5HseSHQsP6xRpavxrwzw5SoZ9PvkAyeBrY=;
+ b=XfexWVJSpKWItKsalRjvLN/AGiZqgn3JZQe915Lae6K713z7/zTxmskcEVD0l3jYtM
+ dktwAXA/ufaX+hFfpwtN407bBy98MFr7qRimT4zLoqkq4u00rfisy0I8+36KDfTcSUMs
+ KMZNeMHqIkQG1/EyZPlxgP/j9HymEqn3ZQN9Ehkey7v7HVh5h8+2mlRjRPlsS5Rb320e
+ faPqdO1LCJwqU6qDdH8LUJZMTyrmvfGhzTGJfR/LJl0Mpv7SPP83EquvwPfSSjq068hQ
+ Ig37LJdkyujnihCoYMyv1jMq7StMA6f8kI2uMNuO3FyafHGWNfpnaF9xaI2v4UgVK2qj
+ ivKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=7SKzOiXnEB8V8kNaFY7oKymTvoiedc8KfN1lhPOUJLQ=;
- b=UEm57QdeyCIiCGY/3h8XcDC/UrSTlMCkaZ+PsrFYNz8sbjUAG3A5GxGiJt7CmiCF4S
- ogLxKZMFTrewp0PLR9rdEpXVwVDFQaV4Gvt0Y0MSe6I3rpXcJfQ+wPula4bGixecCr6d
- yGnkvhUD8tu2XwbOLRbPRZgos4pphMRVN2m8uAR8cCvX6f7vvA/t6FRpSwPaRSfcAIUb
- ZRKauxTpuSt9cNCNF1t3AElXTMRBsRNNNGWptf5UqnFftO7bdREY4s82R6tQHf3pZINs
- 5CS0tNixq9NZ98yfkm5EKkjy7hwZKYLqhU0SPCkl5pnH14mGWwhrRa2Dp+2oI7sUt+Ya
- l2MA==
-X-Gm-Message-State: AJcUukcXEijYsulaX+5TkAFBR2tL+8jaAqPcMleJncoJaNVVYfvsDofP
- RBOyS2KNIXOoxuvguzWt5DTN3A==
-X-Google-Smtp-Source: ALg8bN6yLrI0OTJGtrbuy9q9DabN1JFPLpuKV1aLSXgp6noeMQiOcpXxpCoePzh9jihsnvankH7iMA==
-X-Received: by 2002:adf:9382:: with SMTP id 2mr7302974wrp.269.1547642451498;
- Wed, 16 Jan 2019 04:40:51 -0800 (PST)
-Received: from mjourdan-pc.numericable.fr (abo-99-183-68.mtp.modulonet.fr.
- [85.68.183.99])
- by smtp.gmail.com with ESMTPSA id q3sm80304040wrn.84.2019.01.16.04.40.50
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 16 Jan 2019 04:40:50 -0800 (PST)
-From: Maxime Jourdan <mjourdan@baylibre.com>
-To: Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH v3 2/2] arm64: dts: meson-gx: add support for simplefb
-Date: Wed, 16 Jan 2019 13:40:30 +0100
-Message-Id: <20190116124030.16882-3-mjourdan@baylibre.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190116124030.16882-1-mjourdan@baylibre.com>
-References: <20190116124030.16882-1-mjourdan@baylibre.com>
-MIME-Version: 1.0
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=qcRY4/cxb5HseSHQsP6xRpavxrwzw5SoZ9PvkAyeBrY=;
+ b=FlLLRqsZaHTyp6hdXw8O7IFYDnuHn6U9KI16AKUNvOARMckqSpjiuZ/+XwlooupJ+a
+ yq44bnrwctwe04OU8ipYXhWEJfv/4Uu+KAzKDJL20/mKaK7MQK03Hct7ntH7QErBUnK3
+ GJG+jcmWx/8Txd1Anrcf+sS5NONBYZ+vdJsmS551VxMKxKUc3ZJf1cdlqemaIzmE5FDn
+ eQnT03D9jCDMo+kp0Mm/SZl5MK7MbnhKiKx6RhPF2Mr4eU6BUT0ws1KiLjpzv6yPJ0um
+ dx15rTaiVDVkXZCC0Vgq43C7N6t7G2gFGXVRz4tLYuPFqO2q/silN8MimJavMKmOdRIc
+ 1I3g==
+X-Gm-Message-State: AJcUukdPLk8dMBGQstCsl+kP0VFBTM5B72XS8zcn9/sLI+JAG1y/ZCKy
+ q9sfQ8gQXX/cqMjWmdT2OzY+Nw==
+X-Google-Smtp-Source: ALg8bN6Gf8xHLTDvJdbwjohmlrUT2YXjWA6FOFuzu1KeFPysp/Tn18/GWarVGdtp9KtAw+g+g/ZebA==
+X-Received: by 2002:a1c:bdc5:: with SMTP id n188mr7937854wmf.69.1547644365736; 
+ Wed, 16 Jan 2019 05:12:45 -0800 (PST)
+Received: from boomer.baylibre.com
+ (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id w80sm47432040wme.38.2019.01.16.05.12.44
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Wed, 16 Jan 2019 05:12:44 -0800 (PST)
+Message-ID: <820343bf1c43f4ca79fa33a1f1390375ebfb7e62.camel@baylibre.com>
+Subject: Re: regression caused by: "amlogic: mmc: meson-gx: add signal
+ resampling"
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>, Andreas Fenkart <afenkart@gmail.com>
+Date: Wed, 16 Jan 2019 14:12:43 +0100
+In-Reply-To: <CAPDyKFoLS3tWwDSrHmtqenknyX9r_JAA_UYAPk3Vq5P3PJ6JUQ@mail.gmail.com>
+References: <CALtMJECrcEKgZKkP9=DcScr_fvPu+P1AkFf-qJn84Jeh2NXqQQ@mail.gmail.com>
+ <CAPDyKFoLS3tWwDSrHmtqenknyX9r_JAA_UYAPk3Vq5P3PJ6JUQ@mail.gmail.com>
+User-Agent: Evolution 3.30.4 (3.30.4-1.fc29) 
+Mime-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190116_044053_394290_4B1B6F72 
-X-CRM114-Status: UNSURE (   9.67  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190116_051248_333058_181469B7 
+X-CRM114-Status: GOOD (  15.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,96 +97,76 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Maxime Jourdan <mjourdan@baylibre.com>, devicetree@vger.kernel.org,
- Neil Armstrong <narmstrong@baylibre.com>, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ linux-mmc <linux-mmc@vger.kernel.org>, krzysztof.michonski@digitalstrom.com,
+ Kevin Hilman <khilman@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SimpleFB allows transferring a framebuffer from the firmware/bootloader
-to the kernel, while making sure the related clocks and power supplies
-stay enabled.
+On Wed, 2019-01-16 at 12:14 +0100, Ulf Hansson wrote:
+> + Jerome, Kevin
+> 
+> On Wed, 16 Jan 2019 at 11:13, Andreas Fenkart <afenkart@gmail.com> wrote:
+> > failed to initialize builtin emmc device:
+> > "mmc1: error -110 whilst initialising MMC card"
+> > 
+> > amlogic/meson-gxl-s905x-p212.dtb
+> > linux-5.0-rc2 / 1c7fc5cbc
+> > 
+> > I bisected the problem and after reverting the following patch, mmc is
+> > found again:
+> > 
+> > commit 71645e65729f0c5aef8dccf961c97fa766835bd4 (tag: mmc_bad_resable)
+> > Author: Jerome Brunet <jbrunet@baylibre.com>
+> > Date:   Thu Dec 6 16:18:28 2018 +0100
+> > 
+> >     mmc: meson-gx: add signal resampling
+> > 
+> >     With some eMMC devices, there is still issues with the new phase
+> >     settings. Enabling signal resampling seems to solve the problem
+> >     for these.
+> > 
+> >     Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> >     Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+> > 
+> > /Andi
+> 
+> Andi, thanks for reporting and bisecting!
+> 
+> I have looped in Jerome and Kevin to see if they can have a look.
+> Let's give them a few days before we consider the revert.
 
-Add nodes for CVBS and HDMI Simple Framebuffers.
+Hi Andi,
 
-Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi   | 22 +++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi |  6 ++++++
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  |  6 ++++++
- 3 files changed, 34 insertions(+)
+There an actual s905x p212 in kernelci which is not showing any issue, AFAIK.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index 44c5c51ff1fa..a6ffdbba37b9 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -50,6 +50,28 @@
- 		};
- 	};
- 
-+	chosen {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		simplefb_cvbs: framebuffer-cvbs {
-+			compatible = "amlogic,simple-framebuffer",
-+				     "simple-framebuffer";
-+			amlogic,pipeline = "vpu-cvbs";
-+			power-domains = <&pwrc_vpu>;
-+			status = "disabled";
-+		};
-+
-+		simplefb_hdmi: framebuffer-hdmi {
-+			compatible = "amlogic,simple-framebuffer",
-+				     "simple-framebuffer";
-+			amlogic,pipeline = "vpu-hdmi";
-+			power-domains = <&pwrc_vpu>;
-+			status = "disabled";
-+		};
-+	};
-+
- 	cpus {
- 		#address-cells = <0x2>;
- 		#size-cells = <0x0>;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-index a7b883ced0a8..a60d3652beee 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
-@@ -784,6 +784,12 @@
- 	resets = <&reset RESET_SD_EMMC_C>;
- };
- 
-+&simplefb_hdmi {
-+	clocks = <&clkc CLKID_HDMI_PCLK>,
-+		 <&clkc CLKID_CLK81>,
-+		 <&clkc CLKID_GCLK_VENCI_INT0>;
-+};
-+
- &spicc {
- 	clocks = <&clkc CLKID_SPICC>;
- 	clock-names = "core";
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-index d5c3d78aafeb..3093ae421b17 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-@@ -787,6 +787,12 @@
- 	resets = <&reset RESET_SD_EMMC_C>;
- };
- 
-+&simplefb_hdmi {
-+	clocks = <&clkc CLKID_HDMI_PCLK>,
-+		 <&clkc CLKID_CLK81>,
-+		 <&clkc CLKID_GCLK_VENCI_INT0>;
-+};
-+
- &spicc {
- 	clocks = <&clkc CLKID_SPICC>;
- 	clock-names = "core";
--- 
-2.20.1
+https://kernelci.org/boot/meson-gxl-s905x-p212/
+
+Have a look a this recent boot of mainline/arm64:
+https://storage.kernelci.org/mainline/master/v5.0-rc2-36-gfe76fc6aaf53/arm64/defconfig/lab-baylibre-seattle/boot-meson-gxl-s905x-p212.txt
+
+Has the p212 is ref design of the s905x, we often see the related DT used on
+other device.
+
+Is your board actually a p212 ?
+If yes, could you tell us about any of the marking on PCB, such as the board
+revision ?
+If not, could you tell us more about your device ?
+
+We proposing this series, I flagged that this patch and the other one (on
+phase settings) needed broader testing. It could possibly cause regression for
+tunning and high speed modes ... this typically show with error -5 (tunning
+failed)
+
+Here your eMMC timedout during init, so even before an attempt is made to tune
+which is odd. Could you try to enable signal resampling only when going forhigh speed modes ? 
+
+> 
+> Kind regards
+> Uffe
+
 
 
 _______________________________________________
