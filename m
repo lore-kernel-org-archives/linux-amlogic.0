@@ -2,64 +2,90 @@ Return-Path: <SRS0=bSlY=PZ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_MUTT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 346FAC43444
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jan 2019 17:45:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E6B91C43387
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jan 2019 18:14:22 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0334320868
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jan 2019 17:45:46 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B745820855
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jan 2019 18:14:22 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RuskIGVA"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0334320868
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="n7ahSWrX";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="idTX8LHZ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B745820855
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Mime-Version:References:In-Reply-To:
+	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mMv9y/jDz6shJz85GmJ1RFI17UVVQ4usGyRHiZFg/UI=; b=RuskIGVAUCQlpK
-	K+CBWnBgSYR0FqtxY6Vc0gbSxi3aQc32xgvXOb1BmGo3Y/7rMfPCI18Hqz16xzDmlmsxzNQeu7Mb4
-	sdRa9ez/pKmXnOOGDQNns+cgrRFDy30JwE2zO01Av+ntLyzJgo3n0H6cz6IBIyuuR6RVcquEG8zkF
-	+Kwozws7okGPqWFcSAq6/uSUgqy8q746yYMZeC9TdYde6FFBX3XrdDoeWq/vfAuWU3/zw1mEtlfjw
-	mAfw4J+oEHBWFZ7rFgrCtEfh38IwEUqL7nYCfTA4SqmtCONDaaeRuHKyfFqWy1uYjtlTexrgDkZWp
-	dXeW7o2aAYRlRE+ZgtuA==;
+	List-Owner; bh=+yvncbQh7JV2m/OlG2bgpXb/nKEDY6vvp7wCXMjLNhY=; b=n7ahSWrX7TRd70
+	AQhv6S0k6n2VcMfrbbNN/rxlsikuHCj/3Sb67Y3uC4rpemsafo7jsIy47+9UoS2jk+ir711Dn8xJk
+	Ler1R86snPZS44zbezyIhQ14pe8uQvQYpqc462A7OQRzTJMV+b+50au67MDQTBP4QQVz3mhzv3zWh
+	HCRHyI2TQ7Tv63kqnkG2C1PKpghJstBG2HL0MoHpvtLkk/tRs/2vAghh4Sdx3RKWVaxNRRQrA3hOf
+	CNdsH3Xaotankt9Lx7TZSoj3GE5q5fXX2BSb6G8jNJA+RvuD1/P6OK2/+y/BHELPNOnjVAOoUhTAf
+	lGoUB5EaICl89LuJvh9A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gkBjY-0006l8-PN; Thu, 17 Jan 2019 17:45:40 +0000
-Received: from asavdk4.altibox.net ([109.247.116.15])
+	id 1gkCBC-0001l6-Jx; Thu, 17 Jan 2019 18:14:14 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gkBjV-0006kd-A0; Thu, 17 Jan 2019 17:45:39 +0000
-Received: from ravnborg.org (unknown [158.248.194.18])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by asavdk4.altibox.net (Postfix) with ESMTPS id C974F8036E;
- Thu, 17 Jan 2019 18:45:32 +0100 (CET)
-Date: Thu, 17 Jan 2019 18:45:31 +0100
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH] drm: Split out drm_probe_helper.h
-Message-ID: <20190117174531.GA14041@ravnborg.org>
-References: <20190116163442.12622-1-daniel.vetter@ffwll.ch>
- <20190116181018.GA27364@ravnborg.org>
- <20190117164541.GE3271@phenom.ffwll.local>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20190117164541.GE3271@phenom.ffwll.local>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=UpRNyd4B c=1 sm=1 tr=0
- a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
- a=kj9zAlcOel0A:10 a=xwHcfvD0iotqNkNuR-sA:9 a=CjuIK1q_8ugA:10
+ id 1gkCB8-0001Zl-Lu
+ for linux-amlogic@lists.infradead.org; Thu, 17 Jan 2019 18:14:12 +0000
+Received: by mail-wm1-x342.google.com with SMTP id g67so2067439wmd.2
+ for <linux-amlogic@lists.infradead.org>; Thu, 17 Jan 2019 10:14:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:cc:date:in-reply-to:references
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=ykscII2ksBNyB/Hjd+f+Vn2Obzc7BvKpk00Ux9/48dY=;
+ b=idTX8LHZ8CxERMf+DA/UY4F4Rn4+V0awRVM0LO6N2FU0DpFk/ciy/xH4a2JO1dCYQa
+ JO9SVtiOk/8w/kfnJWB3qANrb8agrtc9lQdnPro3uqIlwX5Gla/IUIT227LTqDPLEVN5
+ eRJQjiu6n6mZg/Xfk6DGX2BEaMRR+Yb9za5k6ZAYZaJQK3UHSux6OyJQETYka2POfS+i
+ cpBqagzjtkxlSv7cCSHbmni9sonEaqCCEGMKExn/I9C9auOvinAKFMBufBG0gn1zSWps
+ H+1xWsXZPkMjHRPi+Ho3HmqCeXmRbXdZ5Hey1W9WwPVpA1t9Q2z36TLZb+TaJxyuFS9h
+ CZnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=ykscII2ksBNyB/Hjd+f+Vn2Obzc7BvKpk00Ux9/48dY=;
+ b=oK5Bou5ee58aAJs3iJsdiGhmTtPh4qcS6UQuz/adX0GBtJ13Qi1XAC+qNe+mhl5kxM
+ SjNFWGW2iv9mva7vvYxPzIsPDxojwSZmzGC1xzaBdD2j0VAyL3GP7rKGT5qQKH2hSv55
+ 6wZhuUu7w59dAKuAz08BVMxPeH/nKWoMS9XNjzVE8mruy5FcTHuUq7abl+twMLj3GCvN
+ VW+8J8xZoSWOsxKwYHKVy91UmgoB1CGx5R6/9XH4lXpmWi6aLl4dk/52crRh8n7ExoxO
+ lPeJXnCSaR+GjpiFr8dHL/FCXGsgUFlV9mLRp8cpeCa+SzeA9C+/D5h+kMHCG7qfhRa+
+ w6sQ==
+X-Gm-Message-State: AJcUukemvM7q1ZxJaoKRgJlVh+W5JV3LJYF37TfeXjwH8zEE1GVAggcA
+ dRZYIeYOBd2TQdVIPSbM2yZzYQ==
+X-Google-Smtp-Source: ALg8bN6ddt/5ZTwc41pOMsPMLu+R4ReEZJ+2EgW2MwUYFXlPJbClaf1jOaeveGEvKpxgeJAAp1Tndw==
+X-Received: by 2002:a1c:570d:: with SMTP id l13mr13183908wmb.139.1547748847669; 
+ Thu, 17 Jan 2019 10:14:07 -0800 (PST)
+Received: from boomer.baylibre.com ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
+ by smtp.gmail.com with ESMTPSA id
+ y13sm40912021wme.2.2019.01.17.10.14.06
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Thu, 17 Jan 2019 10:14:07 -0800 (PST)
+Message-ID: <284838d9e1672f2d733e687cedbda1239eab5279.camel@baylibre.com>
+Subject: Re: [PATCH 4/4] arm64: dts: meson: g12a: add clk measure support
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Kevin Hilman <khilman@baylibre.com>
+Date: Thu, 17 Jan 2019 19:14:05 +0100
+In-Reply-To: <20190117164838.8008-5-jbrunet@baylibre.com>
+References: <20190117164838.8008-1-jbrunet@baylibre.com>
+ <20190117164838.8008-5-jbrunet@baylibre.com>
+User-Agent: Evolution 3.30.4 (3.30.4-1.fc29) 
+Mime-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190117_094537_700247_5ACEF66E 
-X-CRM114-Status: GOOD (  22.11  )
+X-CRM114-CacheID: sfid-20190117_101410_857876_B2E33016 
+X-CRM114-Status: GOOD (  13.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -71,90 +97,50 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Liviu Dudau <liviu.dudau@arm.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- virtualization@lists.linux-foundation.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- amd-gfx@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- nouveau@lists.freedesktop.org, spice-devel@lists.freedesktop.org,
- Jani Nikula <jani.nikula@intel.com>, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, xen-devel@lists.xen.org,
- linux-renesas-soc@vger.kernel.org, Alex Deucher <alexander.deucher@amd.com>,
- freedreno@lists.freedesktop.org
+Cc: linux-amlogic@lists.infradead.org, patchwork-bot+notify@kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jan 17, 2019 at 05:45:41PM +0100, Daniel Vetter wrote:
-> On Wed, Jan 16, 2019 at 07:10:18PM +0100, Sam Ravnborg wrote:
-> > Hi Daniel.
-> > 
-> > > v5: Actually try to sort them, and while at it, sort all the ones I
-> > > touch.
-> > 
-> > Applied this variant on top of drm-misc and did a build test.
-> > Looked good for ia64, x86 and alpha.
-> > 
-> > Took a closer look at the changes to atmel_hlcd - and they looked OK.
-> > 
-> > But I noticed that atmel_hlcdc uses only drm_kms_helper_poll_init() and
-> > drm_kms_helper_poll_fini().
-> > But there are no hits on DRM_CONNECTOR_POLL - so I think we maybe
-> > have a driver here where we have plugged the drm_poll infrastructure,
-> > but it is not in use.
-> > 
-> > >  include/drm/drm_crtc_helper.h                 | 16 -----------
-> > 
-> > The list of include files in this file could be dropped and replaced by:
-> > struct drm_connector;
-> > struct drm_device;
-> > struct drm_display_mode;
-> > struct drm_encoder;
-> > struct drm_framebuffer;
-> > struct drm_mode_set;
-> > struct drm_modeset_acquire_ctx;
-> > 
-> > I tried to do so on top of your patch.
-> > But there were too many build errros and I somehow lost the motivation.
+On Thu, 2019-01-17 at 17:48 +0100, Jerome Brunet wrote:
+> Add the clock measure device to the g12a SoC family
 > 
-> Yeah the drm_crtc_helper.h header is a bit the miniature drmP.h for legacy
-> kms drivers. Just removing it from all the atomic drivers caused lots of
-> fallout, I expect even more if you entirely remove the includes it has.
-> Maybe a todo, care to pls create that patch since it's your idea?
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> index bd24de947a5b..0d3d3af8ea6f 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> @@ -181,6 +181,11 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		clk_msr: clock-sensor@ffd18000 {
+> +			compatible = "amlogic,meson-g12a-clk-measure";
+> +			reg = <0x0 0xffd18000 0x0 0x10>;
+> +		};
+> +
 
-The main reason I bailed out initially was that this would create
-small changes to several otherwise seldomly touched files.
-And then we would later come and remove drmP.h - so lots of
-small but incremental changes to the same otherwise seldomly
-edited files.
-And the job was only partially done.
+Hi Kevin,
+I just noticed that I hace misplaced this node if, like for the axg, we are
+ordering them by address
 
-I will try to experiment with an approach where I clean up the
-include/drm/*.h files a little (like suggested above, +delete drmP.h
-and maybe a bit more).
+It should be under the GIC node.
+Can you fix this on the fly or do you want me to resend ?
 
-Then to try on a driver by driver basis to make it build with a
-cleaned set of include files.
-I hope that the cleaned up driver can still build without the
-cleaned header files so the changes can be submitted piecemal.
+Cheers
+Jerome
 
-Will do so with an eye on the lesser maintained drivers to try it
-out to avoid creating too much chrunch for others.
+>  		gic: interrupt-controller@ffc01000 {
+>  			compatible = "arm,gic-400";
+>  			reg = <0x0 0xffc01000 0 0x1000>,
 
-And if it works out I expect the active drivers to follow the
-example.
-
-todo.rst item will wait until I run out of energy.
-
-	Sam
 
 
 _______________________________________________
