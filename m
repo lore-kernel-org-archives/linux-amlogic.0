@@ -2,86 +2,99 @@ Return-Path: <SRS0=bSlY=PZ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9917DC43387
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jan 2019 21:20:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C608C43444
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jan 2019 21:24:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 66BEB20855
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jan 2019 21:20:45 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id ED47220855
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jan 2019 21:24:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kKXmUmI3";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="QC4t6mv5"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 66BEB20855
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CXqUXrj2"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ED47220855
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=gmx.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3mqVzcVwSwFqWNZImaZRi5Pr5C6chWeviqoMlfxN/lA=; b=kKXmUmI3OuOnf1
-	a3OjFRlMYgIroxjg9Ds8gagfWvHfzfWTj25mG5cMvzZpGgIyCDoujTDtmmE8B+GQar+YK4E0hDIsL
-	GOfYx7AJCH3wFKU4S/x6yS8MXnAQDh/V6piaBkZjrKd8hlFCiaV18zNQD8Jj9UXpoVcV37AuMVY5p
-	TC6aMwNMKjge/Ol7ycwaM4jRjr3CPAbWfiXO6m8H6eyjgiSmJmgHg/g1vfRSmLhEdl+XudV2EDs64
-	lWIYAQoaWYIS5iKoGHg5bjy02ZvF42KKy9d0bPawYGKxUXobBkYAsiFGT/+5ZsyjP4PFzMNUkNyZl
-	TA11K5BzPnJn4CTNGomg==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=fMkHoZEsmT7Bc9UqTtA5VNPL7VcUQPZ4k8tIttY74kk=; b=CXqUXrj2NPgJ6KB5ob+0ZsaFdN
+	Wzkri2Pgx3Jbl4Uiq3ePLu4dniksFLKX5ePuuH4rE2owzSxzYHqSGB9nppM8tsvb+ygkb2WImqsRL
+	xfZKvrHoVrfrAotjYtB1KZccUTewZYXSG/8YPEgooq3HNbXfM6rfZ72xiPUu3GWMWBvJfJCYsK2Rd
+	gUN/yGtC9hhG7c0c3y8pg1In1UhPfrfMrqmoqFfbfeaLE+TPMk8nmetohCq1vFjgid5IHKHdkN6LT
+	Zlxf4rgrhMcVnAqPwZtr729sJuztaRq7k879QkXkzaEiUb4Lb6WyxEhja/e3K/C6pX2kyVJTPeNRx
+	Iw3/JMVQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gkF5c-0006x8-17; Thu, 17 Jan 2019 21:20:40 +0000
-Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
+	id 1gkF8v-0007Iy-Qt; Thu, 17 Jan 2019 21:24:05 +0000
+Received: from mout.gmx.net ([212.227.17.20])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gkF5Y-0006wh-Ef
- for linux-amlogic@lists.infradead.org; Thu, 17 Jan 2019 21:20:38 +0000
-Received: by mail-ot1-x344.google.com with SMTP id u16so12476167otk.8
- for <linux-amlogic@lists.infradead.org>; Thu, 17 Jan 2019 13:20:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ogy6xz8UHuvcLvCW7Q7NOZfiiBOXpv3rBQwAFzf/+KA=;
- b=QC4t6mv5clBrgJeb5yOqPcQvERHHSxayfB+G0Vc4TstrM4tU4AfZIlz1XeOQS8Gzq5
- fhLg2NJxUFfgr9hewjStmoJFfA/lCOCA/hWmSB+bckHP0QsZFRAVf9ZGWnYdLi1ZhS//
- ywyWtHG3xex3kEXDbmqr0PG6mXMOYtaqTMKkrgksvMSQrB90l8bvlRui/ujMeqQ1GSt3
- C5pKKOoo+Hd8z3kctEdT3cUIyVD/wk//txsRnnD2p8eNl7wWNE6oK5PdL/2hQaqL9SMZ
- tR8C1W6EO1JyBJYQ7u7tOLMotLy5ljXgZOSaQXn7k5jn2hS931+SsdosZUOtmkXmxnqA
- cu2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=ogy6xz8UHuvcLvCW7Q7NOZfiiBOXpv3rBQwAFzf/+KA=;
- b=T1y7uxJJn/JVhOpVs5TpOTARQpnuRVlFpUp0aBi2sfH4c5x0W9F6k/HdIHOfgkyrIZ
- 8ViuZz2eSw/MLoUGyiaSadAZ8PEQPeS/0qAajB78vkUH1Kqa0g7hUtznlQ7VVe6Ub63a
- +3MI2OBSjjKVNvclz4xlbBxxo39+ntwTEJvntiYogXbqzPn137AxBqXDSaV8aUoBb1rP
- cW7Z57kvuIh7+Zjyyln+nrUFrJwbjmGsjWWyOqya4QSMzxIg/pAn++RD77MU05oiZZhI
- 9imNOzpfYb6AsBdRczxJ3PyqZvNm9QA9cck1gUCb9AYZPjfV2RYY/ADiyd078qayfimZ
- FNSA==
-X-Gm-Message-State: AJcUukdeHpbNgptIJP95oWSQGgjkZCdkgdWidqnZxselmzZ/T5oKzWHs
- mUyXsDOH8qdUwL46nudb5k/HjvjkvWSlWvdodYQ0ig==
-X-Google-Smtp-Source: ALg8bN6zst1xaYMIOyQa7NlrqiKzfcgl9QtzmKCH5E70P+hJyxC4aj13MrXwTJggDhix1GJAP580g9IvFG5B1TNqkb8=
-X-Received: by 2002:a9d:491e:: with SMTP id e30mr10306229otf.131.1547760034647; 
- Thu, 17 Jan 2019 13:20:34 -0800 (PST)
+ id 1gkF8s-0007IE-W4
+ for linux-amlogic@lists.infradead.org; Thu, 17 Jan 2019 21:24:04 +0000
+Received: from [10.10.11.100] ([95.88.178.171]) by mail.gmx.com (mrgmx101
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 0MbsV8-1gUE9t1YNq-00JIAU; Thu, 17
+ Jan 2019 22:23:55 +0100
+Subject: Re: stmmac / meson8b-dwmac
+To: martin.blumenstingl@googlemail.com, linux-amlogic@lists.infradead.org,
+ netdev@vger.kernel.org, Gpeppe.cavallaro@st.com, alexandre.torgue@st.com
+References: <a38e643c-ed9f-c306-cc95-84f70ebc1f10@gmx.de>
+ <CAFBinCDebPOsmrhSXecx48nGWHh7g_OGPbr1Y0M+n_v9Ht91ew@mail.gmail.com>
+From: Simon Huelck <simonmail@gmx.de>
+Openpgp: preference=signencrypt
+Autocrypt: addr=simonmail@gmx.de; prefer-encrypt=mutual; keydata=
+ mQGiBD/bCNARBACE3URTBXZ/AA03NwRNtz03ewQn3uhvYSTjfqgplBtb3dfC4a79BXDRIWVX
+ xPGH9Ewios1c8gMu3/RI2l3JzXoISfw5b0L/5igyPKV+sGuUA2FD27kYtPaaF/TqEWIv+Yxp
+ 9DCjCX5IQSYyvCfcxcyEkY8eVWxnaAlV3zKRR8wn0wCglWIOtAugBcg1YXmoLpFZE8Ca0fkD
+ /jG+n4U9DPfCgkbgjQ/dv2W2a0ZDHccA9N8AW/FTXGyXXO0e7ql9/kORJnp7jD7/Z9HCKpeS
+ HajgxuX9Vhfx6bH1dAMfsg88+K8pOO9oulNX1+YffQyZWOfdbmnZDUzBt9HKR9Wgh8WoIyw9
+ TVluclzn6hYz+z9jbqHWMOsiCu8zA/0apHbW8vaIDT4+nNUxNdqU1TKa9kW47vNjwYYL0jZW
+ TXNjDIRpqJVSugYVc/U847GoVoxyvtzre4TAbBV8h0BAOeMdxI5En67RGWzeNaMDJV1bwapj
+ qdfj3e/X8rnGIfwz47rwztLNKoAIUlKrATwroiI7UNT+84G7H5qalu+Eu7QqU2ltb24gSHVl
+ bGNrIDxzaW1vbi5odWVsY2tAZ29vZ2xlbWFpbC5jb20+iGIEExECACIFAlH7wL4CGyMGCwkI
+ BwMCBhUIAgkKCwQWAgMBAh4BAheAAAoJEJNSVvfBt05KlBQAn1JDO7e4H3N0WFJkZnxvObhk
+ 2kiAAJwPdDd6T1TuGo4iDIENRhAX4AH2KrkBDQQ/2wjSEAQAj6JnDDQzIIYzPGsrHRvaq8vw
+ n8VrZCbPRvkngGvtQIss5pH/MLeu9jLepDGO9WHByFSg4QJh8cINYwTLtX8Bu0naA6ZI46hn
+ GyfxdRlxSU9dRqHpU3G0tymL1w3AER6aVSfdXQTmFgf61anKunbIIptkqzZurkjnxkwCE/RM
+ RscABA0D/jhglpj8siSIAxs8XLVfKJrjzbYM9/wS0NfdSXBeQJiYtKrY0WMNsqjY50wDnLMg
+ anORN/odT6mCwKI6xChzxEv/ta4+teZl92aitziSuqmtl+jm23DpOcUC7UBz2W1+TvnrhPR+
+ MKu8pPKAgsE8AI5uwCcNJx7V3bczYkIGaXybiEYEGBECAAYFAj/bCNIACgkQk1JW98G3Tko6
+ 3wCfZBpZAUhUz/Rcp2rfg/YSKl4YLlEAoJN7e322OvHc2GQ9n1+tKLi6Og4c
+Message-ID: <e05b7448-cd95-cdeb-c88d-3a324d5f1ddc@gmx.de>
+Date: Thu, 17 Jan 2019 22:23:53 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.4.0
 MIME-Version: 1.0
-References: <20190116165236.8330-1-jbrunet@baylibre.com>
- <CAFBinCBFge2tir-MXw+ojTxzW+7n9Uf4FzCahrw0MDzAYV2SSg@mail.gmail.com>
- <f7289814e316ad5879848fb8c379db396f615828.camel@baylibre.com>
- <CAFBinCDhryOWHmRKp7GhWp2O+NpJziEgHoUE4HKVitTPDMrrBQ@mail.gmail.com>
- <ba1f56258e7873041a0f75996e376170563c9e6e.camel@baylibre.com>
-In-Reply-To: <ba1f56258e7873041a0f75996e376170563c9e6e.camel@baylibre.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Thu, 17 Jan 2019 22:20:23 +0100
-Message-ID: <CAFBinCAdJu2C-LWspiHR4vVr=PUD2HGNi4zz+CSJP96ZE4GoJw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: meson: fix g12a buses
-To: Jerome Brunet <jbrunet@baylibre.com>
+In-Reply-To: <CAFBinCDebPOsmrhSXecx48nGWHh7g_OGPbr1Y0M+n_v9Ht91ew@mail.gmail.com>
+X-Provags-ID: V03:K1:JzXQiyj7YoQP1D+x4rOh+bnzN5vA0b6sOATJ4t+/KoaotmlZ+A5
+ Zd2VLxiKn3vmQnKpxgP3YXQ+tq3r7Q4ynH//PiNuInNn5cGyfcxnRa2tX9C3Kl1QpSUAo+s
+ 2O8bHuID63Tn7S4dFHljjtMwL00VHYhMd+R0Mlg8Vf7YGKTqEKa2RR+i4/qNKJ4t7dErq45
+ b3JfYXprFU/4cGb+y27Lg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:JkEv7LX2id0=:RuQXAXsDjE10P+cdJBDcN9
+ Xifsrw0OiLZNTT2NLlx6tDYYaQ3LHEDmVaYwP/Siv3VLXFz7mfHx3I8s7H08XG1Aj3yz5PMgi
+ COUSxKf+R/K5wmI4lS1oAmY0zLr/Xof4tBVmCqJ6H4UjNP3+72QChhHIGBxecElKSoAGtKbnB
+ KJtHOsmuX9OOrFsjv/BkWRCjVbsNxkHjgx6t4t5gRtbqmpEfumvCgVDzNRQxUA4FQ1sCtHpNc
+ G7Y250m1taQ42TJb4LTUOHiZJZabc83nf1twsstyfTqKon3nI68pgb3AS3sSowqB5f5jcx/ur
+ IVX3S97MoGIyk3Q+Z+0BfyHmOzLGsGyDmFdKE5/e8pTtADfMojVW98dwv0Wh25oPAWa9GbkcD
+ SKhXE2Lqa95XP7D8aTcypi2ApsXFPDdYTKUA7eLaRaS9h4l/qQJOa3uGV3gLuKiqPOMeRa+x6
+ upWSz9X0xTdcJQrfupm1ObuIhtWo6MGSgi9uF0GnCQhRsLLDoalpymiS/O2MIk1kU7MICRK0z
+ fkh0Gl09pH+EbaidRju0yR3zdk9lzOi5uHX2Yof3FclLqWn3xpyoFJHu/A3jXK0Jkm4E1uSdH
+ Hg7ZL+LYXpw/lafl6AUiZpBafNwJSWSjsOSLDkyZ0hz3/PyfngsJKlZHnRUrQzPSe8igETmbM
+ xpWNZASJureBynP2HElKM4Mt+6bfW8pUrTxJHSBaMCAmPUBbyDm63+7aMAs8uMFQ5OLrE+XqM
+ 00Y2lGI/uv2dDHZMLpppnpuPOovOrc4zezPbTdHDNAAsK60WJWvUFfXBahQDEpaoXwrFgCaJT
+ awx6gBwdElmn3FSfWymENaUk3ggTpUW/wnwX9/n23xQII8RMWIrSxf7r94wjMYBL8KH3NYPfG
+ AF4JlgUC0ucWTnMj9p9dL/l69//b3vNFV/+NoL56eFPUYfrNZD0NVhBb+Rxbl2DEVOAlPrzqp
+ bmTJVQ1qoig==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190117_132036_546751_E27FC274 
-X-CRM114-Status: GOOD (  15.96  )
+X-CRM114-CacheID: sfid-20190117_132403_330412_CBCC0B93 
+X-CRM114-Status: GOOD (  19.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -93,62 +106,107 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, jianxin.pan@amlogic.com,
- linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jan 17, 2019 at 9:39 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
+Am 17.01.2019 um 21:57 schrieb Martin Blumenstingl:
+> Hi Simon,
 >
-> On Thu, 2019-01-17 at 21:27 +0100, Martin Blumenstingl wrote:
-> > OK, but we had incorrect documentation in the past. did you check this
-> > with someone from Amlogic?
-> >
-> > I'm curious because there seem to be two different approaches here:
-> > 1) hiubus name and offsets are being fixed within this patch
-> > 2) aobus is being dropped here and re-introduced with a different name later
-> > on
-> >
+> On Thu, Jan 17, 2019 at 7:53 PM Simon Huelck <simonmail@gmx.de> wrote:
+>> Hi Martin,
+>>
+>>
+>> deutsch ?
+> theoretisch: ja, das endet bei mir aber in einem komischen Mix aus
+> deutsch und englisch, von daher...
 >
-> because hiu exist and aobus does not, for which both the name and size was
-> wrong
+>> I got problems with my ODROID c2 running on 4.19.16 ( and some releases
+>> earlier ). the stmmac / dwmac driver doesnt provide the 800M/900M
+>> performance that i was used to earlier.
+>>
+>>
+>> Now im stuck near 550M/600M in the same environment. but what really
+>> confuses me that duplex does hurt even more.
+> interesting that you see this on the Odroid-C2 as well.
+> previously I have only observed it on an Odroid-C1
 >
-> > approach 1) can also be used for the "rti" region (at least in my
-> > opinion, the patch doesn't explain why it can't be done):
+>> PC --- VLAN3 --> switch --VLAN3--> ODROID
+>>
+>> NAS <-- VLAN1 -- switch <-- VLAN1-- ODROID
+>>
+>>
+>> this means when im doing a iperf from PC to NAS, that my ODROID has load
+>> on RX/TX same time (duplex). this shouldnt be an issue , all is 1GBits
+>> FD. And in the past that wasnt an issue.
+>>
+>>
+>> Now what happens:
+>>
+>> - benchmark between PC - ODROID is roughly 550M
+>>
+>> - benchmark between NAS - ODROID is roughly 550M
+>>
+>> - benchmark between PC - NAS is only around 300M
+>>
+>>
+>> and like i said i was easliy able to hit 800 or even 900M to my NAS
+>> earlier. I applied some .dtb fixes for interrupt levels for the
+>> meson-gx.dtsi and meson-gxbb-odroid-c2.dtb, which will be mainlined ,
+>> but the effect stayed identical.
+> good that you have the interrupt patches already applied
+> I believe it don't fix any performance issues - it's a fix for the
+> Ethernet controller seemingly getting "stuck" (not processing data
+> anymore). however, that already rules out one potential issue
 >
-> THe patch remove aobus (instead of fixing name and size) because, of the
-> multiple region documented covered by this 'made region', I did not anticipate
-> which one will be required and I did not want to add them all.
->
-> Better to add them as needed, which is want I done for pinctrl as you pointed
-> out
->
-> > rename "aobus" to "rti" and change the size to either 0x1000 or 0xb000
-> > (both values can be found in mesong12a.dtsi from
-> > buildroot_openlinux_kernel_4.9_fbdev_20180706)
->
-> RTI is added here:
-> https://lkml.kernel.org/r/20190117103151.3349-1-jbrunet@baylibre.com
->
-> I don't really understand the problem ? result is the same
-the actual problem is "me" as I have conflicting information:
-- Amlogic's buildroot kernel (for G12A) uses similar bus definitions
-as the GX SoCs (for which there are public datasheets) - this is how
-Jianxin added it to meson-g12a.dtsi originally
-- this patch does it different - but cannot check if this is correct
-(no public datasheet is available for G12A or AXG) nor do I have a
-"big picture" of upcoming changes
+>> are you aware of this problem ? Earlier kernel versions were all
+>> perfectly fine and i stepped ( self compiled) kernel through all major
+>> releases since odroid c2 was mainlined.
+> I'm not aware of this - so it would be great if you could re-send your mail to:
+> - the mainline Amlogic mailing list at: linux-amlogic@lists.infradead.org
+> - the netdev mailing list (where all the networking people discuss
+> their issues): netdev@vger.kernel.org
+> - the stmmac maintainers: Gpeppe.cavallaro@st.com,
+> alexandre.torgue@st.com, joabreu@synopsys.com
 
-Cc'ing Jianxin: can you please review Jerome's patch and give some
-more details on the memory map on G12A so further contributions can be
-reviewed easier?
+
+ok , will do so
+
+>
+> it's great that you stepped through various releases in the past.
+> you can even help us to get closer to the root cause of the problem
+> using git bisect. in case you haven't used git bisect yet::
+> - git bisect start
+> - git bisect good v4.18 (assuming v4.18 was good)
+> - git bisect bad v4.19 (assuming v4.19 is bad)
+> - the repeat the following:
+> -- (git will checkout a different revision and ask you to test it)
+> -- compile, boot the kernel and test whether your problem still exists
+> -- enter either "git bisect good", "git bisect bad" or "git bisect
+> skip" (for example if the revision doesn't compile, your board doesn't
+> start with it, ...)
+>
+> git bisect will output one commit which is likely to be the cause (or
+> at least a puzzle piece which points to the root cause)
 
 
-Regards
-Martin
+the problem is that i dont have these kernel sources anymore :-(. but i
+can provide some testing and numbers. maybe i dig if i got these kernel
+configs somewhere around but i did not change much during migrating
+
+
+
+im using a zyxel gs1900-8 switch and a qnap ts231p , and as i said i
+didnt change my setup. i was able to hit 100MByte/s from my NAS , so
+close to the benchmarks of 900MBit/s
+
+>
+>
+> Regards
+> Martin
+
+
 
 _______________________________________________
 linux-amlogic mailing list
