@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2B2F9C43387
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jan 2019 10:27:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 70087C43387
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jan 2019 10:28:16 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id ECD622054F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jan 2019 10:27:26 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3BC8B2054F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jan 2019 10:28:16 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CQrVDvi2";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="YECdKmns"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ECD622054F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Tk6SVc2P";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="0E6lQZS9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3BC8B2054F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,65 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1AxUEOFlhl7AzIhXBRWHKnPpTPndTJG8pnpu1hfDuiA=; b=CQrVDvi249yK6Q
-	tdxOBF4WV/kttLisIRxalXJNiW6DTA+8bnjT3xx3ydK5HKqdb1Bg3X9/Rl43A0ipWy9/7ssePh4lI
-	vQQ5rg+PU7C1+tMN7EXd/+fkoRRuJQKaUmJ/3R+VMTCf4wZfRJfLLV/1A+UZarLZpbe8ilS6fYz9g
-	a8zd7UZ0MSLI0rS+LE2mVAstMVRW1hjhTZLwfg8GvrTG0cI0pk2oHoPb9z2VKrzfYfjnhhvD1aSPK
-	SPDNTc3QBcUHM7GrNbQLL0KGUmh8bBmr71vqWHl6yfM/OefbkOYsK7eOnpI/yPEisAMcwt3ADNHS6
-	uLniEy9426+/C4KwzGEA==;
+	List-Owner; bh=T8oNjCW4cWJ4xbXPxv0PwBJGieBmfq+K99Fv1O3r4Sg=; b=Tk6SVc2PtceV8z
+	FDZqLpcR12UbhgpfhIhLda7Dw/IrNFoy2ssJB/HD43k3TfOkGRvDKH9Se89ju5x7AZJrL5UeGMue6
+	dKGWcsZ2G5vsFgbOv+va3K/M1x9LI7U27eGQXg4K6BKgtuxThreCcD85sg71JIwkH/effj6/OBXlN
+	uFJvEZLQWDREfZlVunsORUue6ZXVgBtS4zMb5So/LQfT/2ARijhg3R5vkdCLivRzf2WaTZS5SKAsD
+	DOaOMsqTvsLnfsHvabOQgm2ZKnhpb4AhWCdjtQtslomxDyMy0zvoon+L3wRlPFxeenalBf/pECz+0
+	1p+SjqdjLNtkKupvL+EA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gk4pj-0004li-22; Thu, 17 Jan 2019 10:23:35 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1gk4pe-0004iI-K7; Thu, 17 Jan 2019 10:23:30 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gk4pd-0004gl-Gx
- for linux-amlogic@lists.infradead.org; Thu, 17 Jan 2019 10:23:30 +0000
-Received: by mail-wr1-x442.google.com with SMTP id c14so10408863wrr.0
- for <linux-amlogic@lists.infradead.org>; Thu, 17 Jan 2019 02:23:29 -0800 (PST)
+ id 1gk4pa-0004fb-4S
+ for linux-amlogic@lists.infradead.org; Thu, 17 Jan 2019 10:23:27 +0000
+Received: by mail-wm1-x343.google.com with SMTP id g67so451656wmd.2
+ for <linux-amlogic@lists.infradead.org>; Thu, 17 Jan 2019 02:23:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=/Tf+jWcbQvaP/wZHxbjP4tGEHKpoydocGjOeujE6LsY=;
- b=YECdKmnsLma30+5hkWrT0/AErkw+qY1sW+4PEBA5VOPC3jiyD4mfoO7JIHmc8iFBsC
- EtYlOtTc0y7kuXV5Yslhbp/mze3r5AzNYQYCo3oBHahOoaJHA9SuDD+KGTZprnVb7d1y
- gqOR7mOgTpyQmGXveaMybagkJaVIfxpwDvBx3+E8gyDREbSHSX5r3cfb6RJtSnwKI8z1
- D7fiXOrbVWV4H2+l6YnuwFg+mT41dt0DtBtpuFPD5GfjL4JgeWcLSFTV7mEeJiUs21GF
- K6qTTvMdfiG4gfmZsxMq4FknElK5Kt6pS5E3DoKjQYUs9tWhkLvCbfkc6DH2JoJeJ0Eo
- upoQ==
+ bh=arU82ZeX78CY4qS47DMaU2XgnlqLaod0sJ3wwiKXdJQ=;
+ b=0E6lQZS9zPkUt5xcP+4AMSa1H4NYJRIuU4bWqFMTzdbvL+uRMYXfuhwHxOIGyja/u1
+ 0LiFUR2AM06a0Vnf9p6n1HwdZdxDOV15xV8f//fuc1jIVx8bcl0vpDbmGpDru/NtBu4h
+ ivi6ZDNvISNA/Vm6BJBuvtPxiKjx8LNkbijxrby0qTkY6UDJY+XYg4E3np27WWdJfVqE
+ Wp9q3ln9vEQpZXxjN58sUJCTJCvMaLFcDey/nsptyfPsxOdERxu+Aw63B9t9L7R02adf
+ u8UM0O4GXVK56hn0aogtwTQOje6YdQrsvIcFPiyu8M82BeR7UaadCCXkmh5iswDy7eEK
+ cYzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=/Tf+jWcbQvaP/wZHxbjP4tGEHKpoydocGjOeujE6LsY=;
- b=tf24yWOYyK+WlOkYesV4yiR7D/XFCtqtGJPHzTkD/3CB97z+WLdwIEZYuBP+xlkSVL
- DqsRsA61DSOxu+wa2mgygXbm8nnuuE+p7ho+sa3Fe98NwL2sunWKdAZC4DdgCfrOSKkU
- MY3YX4d+Z/eMxgVrqPryo1EtpMZxjSVp6zjY7eBCt0VH9vShAQKY6RIKJrQLZdgz0/pR
- VY6hAEiVwYFRJRGrtR5Qllr9yIr6rc8X7sZq/tJSKg9EkOXUrrThDElQEsb95c+bpWyI
- qL0BtuPyykQtS1SgSRbODAH5z2pWQGunmHCWNYh2VNPYrg2gZUs7fAfRrOdfBMsiUkE8
- NGgA==
-X-Gm-Message-State: AJcUukejSXh/ERL3GbnBisf5vNeykI0TBTmcg1cVGLWKw0c/i54oASRZ
- sKYwyp7cAuLn01QeqI9awgER9uglRp8=
-X-Google-Smtp-Source: ALg8bN6gLhA6yd4aO0Nf1n+/DxbTHZN1epiKdGM4gxJ24u11pxa+cNjFrMswgsx6iwMKyyPVXfCrZw==
-X-Received: by 2002:adf:9382:: with SMTP id 2mr11151661wrp.269.1547720607627; 
- Thu, 17 Jan 2019 02:23:27 -0800 (PST)
+ bh=arU82ZeX78CY4qS47DMaU2XgnlqLaod0sJ3wwiKXdJQ=;
+ b=UKYKqhJLPIsr7kvTjAxJue6hXBbF55qpJNgh/GL0DdcyJhhfiPs5kufZ3cmvHWvFib
+ fXTmlwZGa8/s0wNJWgz81ULDohAZm96/diVCblhyJFGF75afpvewKab+FY4hla3li+xu
+ 82RoiPBHSmf6M1xPCEYHEn7uNi2htEZBmfYgm0bctA/+uAPMr5q1J1TgGPSIEhFdRRna
+ 4v716Rvsxw6eUvliro6DUwrvmTCQfh6mEps2zjHr7xa07RbWARCRdQWyCtOwWYHBlGiW
+ 0DHN6jNXBPXwagF41CKiAMIJHkI3nCwzK0lKhsf+/erEq3KmMyOYUKEF4gbUVi/vBIQ/
+ 0yIw==
+X-Gm-Message-State: AJcUukcFtbGs9jOMrNY7OGkzjZzINeNe7FZtokeEtgYG8tlkZZnIvV8D
+ 8W6kp1RPxe8S1p6a8qLV/lTnqw==
+X-Google-Smtp-Source: ALg8bN6+r6UxGkve+2SVzOFUokDcQ6JsEowB8X71IJ2tKx2zjB42OXexglSwjfpg1+jJT/u1rBsqcg==
+X-Received: by 2002:a7b:cb18:: with SMTP id u24mr10685287wmj.138.1547720604286; 
+ Thu, 17 Jan 2019 02:23:24 -0800 (PST)
 Received: from boomer.local ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
- by smtp.googlemail.com with ESMTPSA id u10sm66400530wrr.33.2019.01.17.02.23.26
+ by smtp.googlemail.com with ESMTPSA id u10sm66400530wrr.33.2019.01.17.02.23.22
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Thu, 17 Jan 2019 02:23:27 -0800 (PST)
+ Thu, 17 Jan 2019 02:23:23 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Linus Walleij <linus.walleij@linaro.org>,
  Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH 3/3] pinctrl: meson: add optional region for drive strength
-Date: Thu, 17 Jan 2019 11:23:15 +0100
-Message-Id: <20190117102315.1833-4-jbrunet@baylibre.com>
+Subject: [PATCH 1/3] dt-bindings: pinctrl: meson: update register descriptions
+Date: Thu, 17 Jan 2019 11:23:13 +0100
+Message-Id: <20190117102315.1833-2-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190117102315.1833-1-jbrunet@baylibre.com>
 References: <20190117102315.1833-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190117_022329_566805_C7CE4D6D 
-X-CRM114-Status: GOOD (  11.57  )
+X-CRM114-CacheID: sfid-20190117_022326_170216_5FE64256 
+X-CRM114-Status: GOOD (  13.20  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -104,45 +104,46 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On the G12a, there is a new 'region' to handle the drive-strength.
-This is optional since the older do not have this.
+like pull-enable, pull should be optional has this region is available on
+every controllers. Also, the g12a feature a new region "ds" for the
+drive-strength
 
-Fixes: 29ae0952e85f ("pinctrl: meson-g12a: add pinctrl driver support")
+All this region thing is one big mess. I suspect that there is only one
+big GPIO region with holes in it. All registers between the current
+regions reads '0' so it is probably just spare space to handle more pins.
+
+Since we need to continue to handle the existing controllers, switching to
+one single region now would not simplify things. However, if more
+organisation layouts and features keep on being added, we may have to look
+at this again
+
+Fixes: 3cd3c83f6752 ("pinctrl: Add compatibles for Amlogic Meson G12A pin controllers")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/pinctrl/meson/pinctrl-meson.c | 6 ++++++
- drivers/pinctrl/meson/pinctrl-meson.h | 1 +
- 2 files changed, 7 insertions(+)
+ .../devicetree/bindings/pinctrl/meson,pinctrl.txt      | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
-index a4ae1ac5369e..96a4a72708e4 100644
---- a/drivers/pinctrl/meson/pinctrl-meson.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson.c
-@@ -507,6 +507,12 @@ static int meson_pinctrl_parse_dt(struct meson_pinctrl *pc,
- 	if (IS_ERR(pc->reg_pullen))
- 		pc->reg_pullen = pc->reg_pull;
+diff --git a/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
+index 82ead40311f6..a47dd990a8d3 100644
+--- a/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
++++ b/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
+@@ -23,11 +23,11 @@ The GPIO bank for the controller is represented as a sub-node and it acts as a
+ GPIO controller.
  
-+	pc->reg_ds = meson_map_resource(pc, gpio_np, "ds");
-+	if (IS_ERR(pc->reg_ds)) {
-+		dev_dbg(pc->dev, "ds registers not found - skipping\n");
-+		pc->reg_ds = NULL;
-+	}
-+
- 	return 0;
- }
+ Required properties for sub-nodes are:
+- - reg: should contain address and size for mux, pull-enable, pull and
+-   gpio register sets
+- - reg-names: an array of strings describing the "reg" entries. Must
+-   contain "mux", "pull" and "gpio". "pull-enable" is optional and
+-   when it is missing the "pull" registers are used instead
++ - reg: should contain a list of address and size, one tuple for each entry
++   in reg-names.
++ - reg-names: an array of strings describing the "reg" entries.
++   Must contain "mux" and "gpio".
++   May contain "pull", "pull-enable" and "ds" when appropriate.
+  - gpio-controller: identifies the node as a gpio controller
+  - #gpio-cells: must be 2
  
-diff --git a/drivers/pinctrl/meson/pinctrl-meson.h b/drivers/pinctrl/meson/pinctrl-meson.h
-index eff61ea1c67e..5eaab925f427 100644
---- a/drivers/pinctrl/meson/pinctrl-meson.h
-+++ b/drivers/pinctrl/meson/pinctrl-meson.h
-@@ -120,6 +120,7 @@ struct meson_pinctrl {
- 	struct regmap *reg_pullen;
- 	struct regmap *reg_pull;
- 	struct regmap *reg_gpio;
-+	struct regmap *reg_ds;
- 	struct gpio_chip chip;
- 	struct device_node *of_node;
- };
 -- 
 2.20.1
 
