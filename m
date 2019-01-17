@@ -4,85 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3BFC3C43387
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jan 2019 10:02:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AA779C43387
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jan 2019 10:27:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0940020657
-	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jan 2019 10:02:55 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 776AA2054F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 17 Jan 2019 10:27:11 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iU62al2d";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="NPUGQJaw"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0940020657
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="f/NS8OXi";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="HzOoNuPd"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 776AA2054F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ipvN9Fsc1Fcq7piBwO9bU9r0Hem5zZMrvJuUwiVOEHA=; b=iU62al2dgIjIpO
-	oLr5mzwK1wQR5u7RpByPBdx3i8au5r0j/qk99iBl2OrFXYMC1Ta7h6Jr8HWVcPCDrfc3i36O39jvj
-	Fn7RYST8aOGRXz8HRIBQmwnlAZsaEUdtFgfavWkDRXozBYUdfSu7snJv6zUAVKGGgwF3omj1nkhOM
-	fIoXd67CQL8z8BymQQ6cKi3qf9mKP7rAaNyZ0UOG2giKpn3D/ierC8M8iVAoINElM1xZnERHqpPNl
-	A7YUJf4nVZzp0CETHPyB9OfKm8ycHGeLOMVZkcZQLUEysbun7JLTj5iQ7l49xB6ihTW6lBaQF2YAq
-	XkvFuArzvQj/v3dBenNg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=9JIrU2TaftBMvkm+jxprS7WV3zbs2wp/4RQNwfrWQpg=; b=f/NS8OXily/wsB
+	e2vD2JB4Yy63OW/RN9iVeSzTkLPxGAzdmX+UE5e9PuhOaTzSiXI0qWujZdRw8Uf2Dsh6b2YvsHTNl
+	fhgKsdO8kqfeHweWcLLtqDVOXquf3qLzyeq2fHJjlmcs1ybaLHOqLBY6zjQtM5HNlW4auJBVznkIr
+	N1SFhFuToC0va3Y/NU42cBQMQD0zQwzO4z8ichhpyKgSLB+6RVK/WEXub+44uvns6P1IuJrgKKAS0
+	nZeDdOAhUI7TS+/jtCjcgL4rxHhEgV5Fj6pRL7x9XXD4vsigYP01boN3GMUuru3UZLyivkJiagBCN
+	Izte3sa1R2wrIbbJGWVg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gk4Vc-0005Ix-F5; Thu, 17 Jan 2019 10:02:48 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1gk4ph-0004kc-R0; Thu, 17 Jan 2019 10:23:33 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gk4VZ-0005IG-Dh
- for linux-amlogic@lists.infradead.org; Thu, 17 Jan 2019 10:02:47 +0000
-Received: by mail-wr1-x444.google.com with SMTP id s12so10291769wrt.4
- for <linux-amlogic@lists.infradead.org>; Thu, 17 Jan 2019 02:02:44 -0800 (PST)
+ id 1gk4pb-0004g5-It
+ for linux-amlogic@lists.infradead.org; Thu, 17 Jan 2019 10:23:29 +0000
+Received: by mail-wm1-x343.google.com with SMTP id y139so434981wmc.5
+ for <linux-amlogic@lists.infradead.org>; Thu, 17 Jan 2019 02:23:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=4uoPwbzVmG0pBQc6Fwdx/UP9yYpRHZ47Q7K07lERNqk=;
- b=NPUGQJaw4kZBQYuNueE0TOpGQ4x55G34jfUjvfSA86luMICgsgBwyI/Kz4fAr/2s+a
- b3AAcABP5foCeiXTZaG2p+hBk5oorN3aFpolQliIAiBo6ScVl7LvuYgb5/ScpWy+xz3s
- QQGnzaL6eLL24OW+5h7KAZV2A5WXtrHP+GwDLdCPIv6yXHih6IaCZmeVlclnid/aCh8B
- TuD2B/qT3p8Emh0w4f+13g4orC83BkqavRYRV8Rvbv1iX4Wh7A2WNNt7XYmid0nNf6hc
- cBG2LKgbJFZiCK4VFeJOkpj4yiyWX1lZRKj0p4WxXb2F7YcePDnPQjADZnrRajF/UQSY
- 6EYw==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=9Y0Y5B6s0w0R3Gp1L8M/91nvIc1hUn7ja0tycQpJro8=;
+ b=HzOoNuPdoK9zHB3vqZE86aLSUSENong1ks01P2QHeVQ6ZAHt5MqnxRh8hf1J/cwIo6
+ GqRcSKTR03esabYqdhw0iJkLipx5NqOqTkny55JN+wxHdeuqzLGSt/M0I36Tn7Z+pPik
+ 2QacXWzVG+re0r3nAtURi3FSsSjyuL+S2XbS0rla/qUP5N6Dv6t8fUQG2cH4RrRzLnau
+ g/DnhUptnm7Z13p5IoN79X642DJTDCQyDzhOkR+8/Q9WsgSy0yudjp4xKuLNOPJF6D0Q
+ OUydwcTgOzE/g9VugndT90IAdQ9fagXP5YBeaYyehkLvo+vluMNnOkl7rmkrOZwkv9+n
+ +2/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=4uoPwbzVmG0pBQc6Fwdx/UP9yYpRHZ47Q7K07lERNqk=;
- b=bPm2lQPumWGkWQUa4thmgfarN37YEow8bBQqvNgUhLdtKBW05Q0pUl5/+5vl0DYw0P
- oDQR624qkFTmJdmV9hBXshJr/3VmUPFpAZigEw0ImjEAViZokE4qbTMswyL29n0TIqWE
- RoqOgln7A6IOAFeg4k1961Y/CDaRTctJTkda2s3dkDBVkndpsi0ngwrE1pyuotorWA3U
- thLaIO8FRQtsHU24ndTizLwaNi9NabL6PLG4QUrURN8pvRq2naMOHf/nG+A5Xx0g7GRi
- cYpXoiVEDD+Gk1JjUuFZDYoyAN/dst1bz5SEUk3bfFiFvqzKQKH099pFCnMrLrxaGtDW
- XvXg==
-X-Gm-Message-State: AJcUukfJ+oIapy0FszM33wXUEIWa0quaMgRpen0vmuo5o0y2mJ/RVCGS
- nKiq3jRUB+mZ3Vv+VSaviO2Law==
-X-Google-Smtp-Source: ALg8bN4tVyNpfVLViPQ5T6QpaxT+xLmF982ZuRYczgIq4JM57KieEv6D9bsniU15Fhbhe7JbKtCeyQ==
-X-Received: by 2002:adf:f401:: with SMTP id g1mr11581670wro.103.1547719363455; 
- Thu, 17 Jan 2019 02:02:43 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=9Y0Y5B6s0w0R3Gp1L8M/91nvIc1hUn7ja0tycQpJro8=;
+ b=JA761B3yHCjcW4MTGOJZQYuNdPkDe4ELBoXE+wfSEu1zmxeEj8EbRvV/1QmIeiSoCd
+ qIndjqSNThWOrmcf7UQKiMXvaslNwuvoyl05b9vVq2e9p2vs9uvr2rdK3VNO9UdT8C9x
+ IG+tRw3qeudgC9YepUmZEk53CIRyF8oAC+S7gKEX7pSruW5FuVwJ1AzHQ6DvsTNJkJh7
+ kdijG6w4JFVvRdpn++T5/Y74jBk+dFcLG23F/eGKgi8hjtxXVl0hNZC4ZdubbvxcSIpL
+ h4j3qZa3emImtPcYvBAlX8hXCQn6yDmEm7L0hQDSjhdIGvGeZctT3A30zxFoXs9/wCpS
+ y3DQ==
+X-Gm-Message-State: AJcUukeV8F/CMXUMzGAQ1glsNeh0YMV2GH2EgYW7Tea3t+dYnQl7CkNy
+ 0XFWDYvspjdsKDdhtL2JkeZEVg==
+X-Google-Smtp-Source: ALg8bN6oj3zTDxDK/3lEWYmXIfBdJ8/WDqpeY/FgGXn5Hhv/4j6+xjMsB0USmaApqRcJRBcid+MceQ==
+X-Received: by 2002:a1c:f509:: with SMTP id t9mr11758492wmh.76.1547720606130; 
+ Thu, 17 Jan 2019 02:23:26 -0800 (PST)
 Received: from boomer.local ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
- by smtp.googlemail.com with ESMTPSA id t199sm23557992wmt.1.2019.01.17.02.02.42
+ by smtp.googlemail.com with ESMTPSA id u10sm66400530wrr.33.2019.01.17.02.23.24
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Thu, 17 Jan 2019 02:02:42 -0800 (PST)
+ Thu, 17 Jan 2019 02:23:25 -0800 (PST)
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH] arm64: dts: meson-axg: add efuse device
-Date: Thu, 17 Jan 2019 11:02:34 +0100
-Message-Id: <20190117100234.30989-1-jbrunet@baylibre.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCH 2/3] pinctrl: meson: fix G12A ao pull registers base address
+Date: Thu, 17 Jan 2019 11:23:14 +0100
+Message-Id: <20190117102315.1833-3-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190117102315.1833-1-jbrunet@baylibre.com>
+References: <20190117102315.1833-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190117_020245_525566_1FDA2C0D 
-X-CRM114-Status: UNSURE (   8.78  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190117_022327_706307_F7221A59 
+X-CRM114-Status: GOOD (  14.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -94,40 +96,94 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- patchwork-bot+notify@kernel.org, linux-kernel@vger.kernel.org,
+Cc: devicetree@vger.kernel.org, Jianxin Pan <jianxin.pan@amlogic.com>,
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, Xingyu Chen <xingyu.chen@amlogic.com>,
  Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add efuse to the AXG family
+From: Xingyu Chen <xingyu.chen@amlogic.com>
 
+Since Meson G12A SoC, Introduce new ao registers AO_RTI_PULL_UP_EN_REG
+and AO_GPIO_O.
+
+These bits of controlling output level are remapped to the new register
+AO_GPIO_O, and the AO_GPIO_O_EN_N support only controlling output enable.
+
+These bits of controlling pull enable are remapped to the new register
+AO_RTI_PULL_UP_EN_REG, and the AO_RTI_PULL_UP_REG support only controlling
+pull type(up/down).
+
+The new layout of ao gpio/pull registers is as follows:
+- AO_GPIO_O_EN_N        [offset: 0x9 << 2]
+- AO_GPIO_I             [offset: 0xa << 2]
+- AO_RTI_PULL_UP_REG    [offset: 0xb << 2]
+- AO_RTI_PULL_UP_EN_REG [offset: 0xc << 2]
+- AO_GPIO_O             [offset: 0xd << 2]
+
+From above, we can see ao GPIO registers region has been separated by the
+ao pull registers. In order to ensure the continuity of the region on
+software, the ao GPIO and ao pull registers use the same base address, but
+can be identified by the offset.
+
+Fixes: 29ae0952e85f ("pinctrl: meson-g12a: add pinctrl driver support")
+Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
+Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/pinctrl/meson/pinctrl-meson.c | 22 ++++++++++++----------
+ 1 file changed, 12 insertions(+), 10 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-index ae336cb34e29..0e0abb1a03e2 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -111,6 +111,14 @@
- 		compatible = "amlogic,meson-gxbb-sm";
- 	};
+diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
+index ea87d739f534..a4ae1ac5369e 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson.c
++++ b/drivers/pinctrl/meson/pinctrl-meson.c
+@@ -31,6 +31,9 @@
+  * In some cases the register ranges for pull enable and pull
+  * direction are the same and thus there are only 3 register ranges.
+  *
++ * Since Meson G12A SoC, the ao register ranges for gpio, pull enable
++ * and pull direction are the same, so there are only 2 register ranges.
++ *
+  * For the pull and GPIO configuration every bank uses a contiguous
+  * set of bits in the register sets described above; the same register
+  * can be shared by more banks with different offsets.
+@@ -488,23 +491,22 @@ static int meson_pinctrl_parse_dt(struct meson_pinctrl *pc,
+ 		return PTR_ERR(pc->reg_mux);
+ 	}
  
-+	efuse: efuse {
-+		compatible = "amlogic,meson-gxbb-efuse";
-+		clocks = <&clkc CLKID_EFUSE>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		read-only;
-+	};
+-	pc->reg_pull = meson_map_resource(pc, gpio_np, "pull");
+-	if (IS_ERR(pc->reg_pull)) {
+-		dev_err(pc->dev, "pull registers not found\n");
+-		return PTR_ERR(pc->reg_pull);
++	pc->reg_gpio = meson_map_resource(pc, gpio_np, "gpio");
++	if (IS_ERR(pc->reg_gpio)) {
++		dev_err(pc->dev, "gpio registers not found\n");
++		return PTR_ERR(pc->reg_gpio);
+ 	}
+ 
++	pc->reg_pull = meson_map_resource(pc, gpio_np, "pull");
++	/* Use gpio region if pull one is not present */
++	if (IS_ERR(pc->reg_pull))
++		pc->reg_pull = pc->reg_gpio;
 +
- 	psci {
- 		compatible = "arm,psci-1.0";
- 		method = "smc";
+ 	pc->reg_pullen = meson_map_resource(pc, gpio_np, "pull-enable");
+ 	/* Use pull region if pull-enable one is not present */
+ 	if (IS_ERR(pc->reg_pullen))
+ 		pc->reg_pullen = pc->reg_pull;
+ 
+-	pc->reg_gpio = meson_map_resource(pc, gpio_np, "gpio");
+-	if (IS_ERR(pc->reg_gpio)) {
+-		dev_err(pc->dev, "gpio registers not found\n");
+-		return PTR_ERR(pc->reg_gpio);
+-	}
+-
+ 	return 0;
+ }
+ 
 -- 
 2.20.1
 
