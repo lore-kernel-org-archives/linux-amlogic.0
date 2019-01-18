@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E5A28C61CE3
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jan 2019 22:53:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EB02BC5AE5E
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jan 2019 22:53:41 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B5EE920823
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jan 2019 22:53:10 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B02C520823
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jan 2019 22:53:41 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tf3cE4R3";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="pzZL7ZNt"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B5EE920823
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NjJ8KsGZ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="MrkxwyVu"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B02C520823
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,68 +27,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=j5fvqOZa1RrDfywJjsOz1vOBrR/A2HkcUjW8SVxnU2s=; b=tf3cE4R3ZFVl1X
-	wNIG2p1OPBfSfGyf4ck6EjS8qUt0p0CFxFxBth90tDOedpoaCYiocQ1sh/eLgWpUI1j6tm3pZubD6
-	NOO2axvYijG17toUUxC1kOdX+r3Pa3HhzAMDfJisfiDPna8s2UbuLyqofwluVR/TF68SUxqIxJ2YD
-	PfKOy0P+9xBy2vfkw772hz77DYeqeNmTc2XxeEptU68/yW074ynYIbE9zDjwn2iaMgdU/lf3zfVmB
-	bG7cXcCc3SqIx5udg4iU5NPgY57T+dLPFNamX45cO9ipGgQP7Xrm7oajSg8wvNqxY00JaVVmfBlgJ
-	wqsoYppRLVFUuqgWZA1Q==;
+	List-Owner; bh=nnPbduBwXvBVrQOmtBgJc8YY4OTettNaScyMt14ajJM=; b=NjJ8KsGZELL26x
+	HMzonVfvD3nvGzuLOHDO9pSJKeNXiPUrzw15fCKCeb8IS3sy9zk7eulTwBpdxy8Q+qQrADo5Yte6q
+	jV2Tp1igvgAFDI5/hek8N/bABRF70isEdKF/T5siKZcr68pzEs2UI+P2siqwtoNme8aYy1T5vOtaT
+	GTtFNBSnbi+p7nzceUmGInIl0dpAsAd4kO819SfDjj9OWaVVRlcocRLgVl1eiM5cJk2Jq49YBXBJl
+	pc5Xqo3FqEY5IyxLMDk7QOunNDpLYHsMR1/eWf+MdsTUVjdeuLQEsGDDaMXSayYR3ry1xP+J8gMMZ
+	VEmCs1CiikEmx8BlEaQA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gkd0Z-0000pR-IY; Fri, 18 Jan 2019 22:53:03 +0000
+	id 1gkd15-0001Mc-PE; Fri, 18 Jan 2019 22:53:35 +0000
 Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gkd0V-0000nc-FC; Fri, 18 Jan 2019 22:53:00 +0000
-Received: by mail-wm1-x342.google.com with SMTP id y8so5916075wmi.4;
- Fri, 18 Jan 2019 14:52:59 -0800 (PST)
+ id 1gkd0X-0000o5-IF; Fri, 18 Jan 2019 22:53:02 +0000
+Received: by mail-wm1-x342.google.com with SMTP id y185so1968960wmd.1;
+ Fri, 18 Jan 2019 14:53:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=LV+y+UpHX9FeIZtZHWd/evuufcRscKJVbJ2RwwXxQPM=;
- b=pzZL7ZNt9u6bmL3/3BjOTXM3b2jHFnFqkUqqPUBOiQp/vy6sLqRmmzhTIn1SXuYqxl
- 2tkBC/X6AEwB5/ktBUfMoRFD9CYANBLWN2FLGPFeRzUa+4GsC+Aw6pwqyyrKFRXrtA5K
- SjiHnVyRodk6wleHwO5ygboxyUr/FhfTz1K6RB++av/vWXE3nUmPG0pnvo1yIp38zz7K
- YadipCLWhOQOc2evYad9scx46AhiJtcu2h7s3IYPCSUdU1YTP2yEE2rgEzpSarkiCqz9
- YYG+G+3ANvzYTL9vX3jmZrhHaCXpISdGgWxDuMb/k6qTX8DDt/TvBpMVpXXV00rGy1hR
- F/sA==
+ bh=5llSdIDYBFr0D2hZn/CaNdENBIdD2RMZQMIhtJVQII8=;
+ b=MrkxwyVuM/VrYzj6MfmBklx7MzwFAEQIs1gfYfaA6tn4rJHOfg9APHhUL46whRp2BC
+ 3fZt86+ZfVuhgbl9vUwcY7EMNCbqezFJA3J5CmtT7x1Ywa/ayOht8NXh2J5eSJhdtaCd
+ KK0iWHaent6ROazwLewuC8vn+naTUfYaooWXan86ZYkvFHW1c6KUz64EMly2tUi3CwF9
+ WsfKvNvy4oV0r/Hc/cnrWE8pNvp7OqIy5b7FfJYXiisBeQKF/lF0Na3SL8Ge4/pEPaAR
+ JUVRTpyz0XI8FswEM64kNLXuKQtTH6XCyYp5NItNpTGB0SKuw3IZDdJMe3UG9GcWzZs1
+ oVDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=LV+y+UpHX9FeIZtZHWd/evuufcRscKJVbJ2RwwXxQPM=;
- b=ny9KWZEt5PcwJAgD5el2c6nVgzQXG/7ZacBgzpwXbBlmS2Ez3fLxCZ2TeBFgL80uao
- 9lB9gkHpaAH5/ZZk3BsQ+iuRvAlV1Cxg2vKve/o++RBpg0vz7stx1VPjLfUGE8LSS+YO
- 1p2u5+GXQA5mqQgMoZChIo+HXSmDSLB9RXf+lg/fz/Zx2febfj7c9hh3qfQROFEzS7om
- Tcrtr33sSArvZXl9LHzKReuJGnG36GcWDvZt83DfcT1COlawLhMP6KZcKkUD/ezzMTXH
- 1+7vTfnu6DxiirwXxvO2AAwcXB5hpLf0ncQz5UUIcTPfL+6AGPcBbDAjWmdskIRaIxam
- dVAg==
-X-Gm-Message-State: AJcUukedv3VamsZ56Xjgw01P5nvIk0+q1y54KikUi1lWqbaSXFufnwFu
- Q+tYl8EgvkKFscE5TfM1IIhoX/Yi
-X-Google-Smtp-Source: ALg8bN6MmlJcNtUsMaN+yz3jO+4reckkyzHvE3QfUYFgBlWA5UvDA3cTPMgLNR5P2ZOhqA7hkhACag==
-X-Received: by 2002:a1c:2501:: with SMTP id l1mr17817293wml.102.1547851977684; 
- Fri, 18 Jan 2019 14:52:57 -0800 (PST)
+ bh=5llSdIDYBFr0D2hZn/CaNdENBIdD2RMZQMIhtJVQII8=;
+ b=knGfEVu4kCtvsyS0L7PRufrrFkLit8aYsBwtptUeYjwe9uxaKHQ5xLXbNLL0XQHxvM
+ ClIWJCYlyjWS+2I1cvuaQvBwllFISVpeWbt59BMthW84l9imETEMBgMJfhqVpaeXqUBr
+ Ap0Y9Eq71EyKJxCTkeOMNqAvI3OZiPuk/XfnvI89vLemn6JOKmDBqM5G9Lj0toHJotf9
+ /QQuN+qv8g6EwwK0yvv25K+rPC5IxCnpKKj7bursPofJTB/HDVv40BuQ4rKpAh/wyglw
+ nSa3xxBz9xnjmmKFaufsRJLEbZfHbIEpbvBQmudoDOlXu/lfxR5IOxCz/FNNSM96Ec3a
+ nklg==
+X-Gm-Message-State: AJcUukcmZ/8Fj9tPl7l8e+TEH2Ek/jB/1klET+bKKjiheWQY6dVzNNtB
+ K8MOBqWtGCEy6IW2amKsXUev42Fu
+X-Google-Smtp-Source: ALg8bN6eJLlKs2a/VmCQZuefCkTrGEhlPszBp6t/Hjlia6Y1TZYYAmxKHbB50kFASV1Men1u1VOmvQ==
+X-Received: by 2002:a1c:ac85:: with SMTP id v127mr15414023wme.62.1547851979902; 
+ Fri, 18 Jan 2019 14:52:59 -0800 (PST)
 Received: from blackbox.darklights.net
  (p200300DCD73A810039E290CB771389D7.dip0.t-ipconnect.de.
  [2003:dc:d73a:8100:39e2:90cb:7713:89d7])
  by smtp.googlemail.com with ESMTPSA id
- x186sm51197352wmg.41.2019.01.18.14.52.56
+ x186sm51197352wmg.41.2019.01.18.14.52.58
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 18 Jan 2019 14:52:56 -0800 (PST)
+ Fri, 18 Jan 2019 14:52:59 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org,
 	khilman@baylibre.com
-Subject: [PATCH v2 1/7] ARM: dts: meson: switch the clock controller to the
- HHI register area
-Date: Fri, 18 Jan 2019 23:52:21 +0100
-Message-Id: <20190118225227.6516-2-martin.blumenstingl@googlemail.com>
+Subject: [PATCH v2 3/7] ARM: dts: meson8: add the temperature calibration data
+ for the SAR ADC
+Date: Fri, 18 Jan 2019 23:52:23 +0100
+Message-Id: <20190118225227.6516-4-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190118225227.6516-1-martin.blumenstingl@googlemail.com>
 References: <20190118225227.6516-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190118_145259_536444_9238F151 
-X-CRM114-Status: GOOD (  11.54  )
+X-CRM114-CacheID: sfid-20190118_145301_605047_BE349436 
+X-CRM114-Status: GOOD (  11.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -101,115 +101,57 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The clock controller on Meson8/Meson8m2 and Meson8b is part of a
-register region called "HHI". This register area contains more
-functionality than just a clock controller:
-- the clock controller
-- some reset controller bits
-- temperature sensor calibration data (on Meson8b and Meson8m2 only)
-- HDMI controller
+The SAR ADC can measure the chip temperature of the SoC. This only
+works if the chip is calibrated and if the calibration data is written
+to the correct registers. The calibration data is stored in the upper
+two bytes of eFuse offset 0x1f4.
 
-Allow access to this HHI register area as "system controller". Also
-migrate the Meson8 and Meson8b clock controllers to this new node.
+This adds the eFuse cell for the temperature calibration data and
+passes it to the SAR ADC. We also need to pass the HHI sysctrl node to
+the SAR ADC because the 4th TSC (temperature sensor calibration
+coefficient) bit is stored in the HHI region (unlike bits [3:0] which
+are stored directly inside the SAR ADC's register area).
+
+On boards that have the SAR ADC enabled channel 8 can be used to
+measure the chip temperature.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm/boot/dts/meson.dtsi   |  7 +++++++
- arch/arm/boot/dts/meson8.dtsi  | 15 ++++++++-------
- arch/arm/boot/dts/meson8b.dtsi | 15 ++++++++-------
- 3 files changed, 23 insertions(+), 14 deletions(-)
+ arch/arm/boot/dts/meson8.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
-index 2ab74860d962..61486a7402f9 100644
---- a/arch/arm/boot/dts/meson.dtsi
-+++ b/arch/arm/boot/dts/meson.dtsi
-@@ -72,6 +72,13 @@
- 			#size-cells = <1>;
- 			ranges = <0x0 0xc1100000 0x200000>;
- 
-+			hhi: system-controller@4000 {
-+				compatible = "amlogic,meson-hhi-sysctrl",
-+					     "simple-mfd",
-+					     "syscon";
-+				reg = <0x4000 0x400>;
-+			};
-+
- 			assist: assist@7c00 {
- 				compatible = "amlogic,meson-mx-assist", "syscon";
- 				reg = <0x7c00 0x200>;
 diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
-index 83ed92dae892..829984be4ed8 100644
+index 829984be4ed8..c9bd46120cb5 100644
 --- a/arch/arm/boot/dts/meson8.dtsi
 +++ b/arch/arm/boot/dts/meson8.dtsi
-@@ -327,13 +327,6 @@
- };
- 
- &cbus {
--	clkc: clock-controller@4000 {
--		#clock-cells = <1>;
--		#reset-cells = <1>;
--		compatible = "amlogic,meson8-clkc";
--		reg = <0x8000 0x4>, <0x4000 0x400>;
--	};
--
- 	reset: reset-controller@4404 {
- 		compatible = "amlogic,meson8b-reset";
- 		reg = <0x4404 0x9c>;
-@@ -468,6 +461,14 @@
- 	status = "okay";
- };
- 
-+&hhi {
-+	clkc: clock-controller {
-+		compatible = "amlogic,meson8-clkc";
-+		#clock-cells = <1>;
-+		#reset-cells = <1>;
-+	};
-+};
+@@ -449,6 +449,11 @@
+ 	compatible = "amlogic,meson8-efuse";
+ 	clocks = <&clkc CLKID_EFUSE>;
+ 	clock-names = "core";
 +
- &hwrng {
- 	compatible = "amlogic,meson8-rng", "amlogic,meson-rng";
- 	clocks = <&clkc CLKID_RNG0>;
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index 57c2a3678110..aa798259bf88 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -276,13 +276,6 @@
- };
- 
- &cbus {
--	clkc: clock-controller@4000 {
--		#clock-cells = <1>;
--		#reset-cells = <1>;
--		compatible = "amlogic,meson8b-clkc";
--		reg = <0x8000 0x4>, <0x4000 0x400>;
--	};
--
- 	reset: reset-controller@4404 {
- 		compatible = "amlogic,meson8b-reset";
- 		reg = <0x4404 0x9c>;
-@@ -437,6 +430,14 @@
- 	status = "okay";
- };
- 
-+&hhi {
-+	clkc: clock-controller {
-+		compatible = "amlogic,meson8-clkc";
-+		#clock-cells = <1>;
-+		#reset-cells = <1>;
++	temperature_calib: calib@1f4 {
++		/* only the upper two bytes are relevant */
++		reg = <0x1f4 0x4>;
 +	};
-+};
-+
- &hwrng {
- 	compatible = "amlogic,meson8b-rng", "amlogic,meson-rng";
- 	clocks = <&clkc CLKID_RNG0>;
+ };
+ 
+ &ethmac {
+@@ -536,6 +541,9 @@
+ 	clocks = <&clkc CLKID_XTAL>,
+ 		<&clkc CLKID_SAR_ADC>;
+ 	clock-names = "clkin", "core";
++	amlogic,hhi-sysctrl = <&hhi>;
++	nvmem-cells = <&temperature_calib>;
++	nvmem-cell-names = "temperature_calib";
+ };
+ 
+ &sdio {
 -- 
 2.20.1
 
