@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
 	SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 76F23C1B0FD
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jan 2019 22:07:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9942EC1B0FD
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jan 2019 22:29:39 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 43F622087E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jan 2019 22:07:10 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 660712054F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jan 2019 22:29:39 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="r0sZE0Uh";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="oNJTYYuO"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 43F622087E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eM+Dr9a7";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="S9Vm3z4B"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 660712054F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +26,57 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3XUPcDy0X+SmWj2Mg7tIqp0ox9QW/gH1g7vZqFkmBMk=; b=r0sZE0UhgssX/l
-	l15xcyb/uh5ZpHQNl9zTANBeRTBKES4xXid344RZYu097uIjT9bh01oyrgF7e3HId3w62vRHlLSs3
-	5jo1QcHV7Nt0L4bvq3n/+fBGRhtwzlYMidV2wK22zp6hYsl21PEGh+3grLRc/7zwR0Ns2vLuewS5X
-	q8E5LkI8JPGlNSFBpe5p7OuE5BcHp9gak9cZ6p3tqhS4BiksZZzgZynONlDDLkoQPOpLZ7kg2pUAk
-	F+9S0Sid/YsgsWQSIZaLrWBvnruujfp2ccCMq4/CdoNnEEkqI2AWDAppuai6rPIspFp3xLHfHuv9z
-	mZv9y3U8vmirN/5gOu6A==;
+	List-Owner; bh=GNTiMUoyH1yCgDRlcWmZB0V3fCYTonQbZlKNYGIzqBA=; b=eM+Dr9a7Gbuk7z
+	x+6xh0W5tEHxZW11ePUZbYAIt93iRW0YSDAHOiN2Ex+NlDbulEPCQPWsX4bCLOAlBsm7ngmMkv1XP
+	4qKhMCMdOVRApIzUGnRpQ36y0v7bUK0CRdF2MYgn9AQkCbhvxRg2fKl8eW3UkoMia60sxJVw8fpYR
+	4gGk+3uaNMbiwcHvlv7TMOf0WS7SnvlpT5JAzaQ96ULtCIHLvcEyR7z5F/kPhb3l1NC6n8omoExG3
+	RDzs4SFhFqXPq4G3dzJ063jJJ1RgWV1IRjgmsNV5hGOcwSvw1O4+Y+M4e9i4dggCz9+XFN23sTP9K
+	HxCEfsqIsldDr1z+vHdA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gkcI2-0001mH-0o; Fri, 18 Jan 2019 22:07:02 +0000
+	id 1gkcdp-0001IR-Gg; Fri, 18 Jan 2019 22:29:33 +0000
 Received: from mail-ot1-x342.google.com ([2607:f8b0:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gkcHo-0001bL-Bg; Fri, 18 Jan 2019 22:06:50 +0000
-Received: by mail-ot1-x342.google.com with SMTP id t5so10729815otk.1;
- Fri, 18 Jan 2019 14:06:48 -0800 (PST)
+ id 1gkcdc-00018N-KC; Fri, 18 Jan 2019 22:29:22 +0000
+Received: by mail-ot1-x342.google.com with SMTP id n8so15807977otl.6;
+ Fri, 18 Jan 2019 14:29:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=LUSvv6gyP/U0jb8swx6kbJOKJ75Cx8i7+Ck6/NBHcX0=;
- b=oNJTYYuO/R2XMxoEYLVk3BuofcbSO2Jal56gIgxesN3nRoMwa8kQQeoALeU/jcioAY
- 0BMPTGKc0jxuJfvJiBGXy4FEh6QOa1vNE4KfNVWxsjr/OuF0lw7BOPhf/Tjh1939Hesr
- R7bO1MgW1JlIatvJsLhiYDd0HRb7GXE2SVUDiS+lpkAM/2ZGbLZSVPXQe79lFwJsd43Y
- 1gjHPxFRAsvqbYyVis5tnL0yFoQwyl6X5di/X0GfxZXh3YpaNjiMZSiqYiL8M/vpmJYb
- EaPDBANJvfwULOAitQgiNU6/ViUEoOaksobKoQgUi3BbeOchsHJrlDyBA/z0SMchOtIE
- jS1A==
+ :cc; bh=xuPmhton+yX3VA6muOEeXBbfE8RTlQObRyhUQXHiKAI=;
+ b=S9Vm3z4BNCRj2UH7sKeYVNcKp749mkNvbKeIajajDIMj3p6qhIL8/xZ9wGNqq8rQHI
+ 9cOgtQliDJKqYfxcb+bWc5xKVrqdjtegGvDFwUnoqK23PliOwg0LEeaI8tt+vGKSkXiD
+ dWf1kCtRn7nPdyMENuhdZlZFRKjeQGuIVQUxrZRN2EHYbtRCYh19JXf9kbgqXzfmNCX/
+ BbqGcNCwbg92n7WMHGmWEv+O6xy3YvlU0D2vJua0R0aaoY4P0rFOM7R592fWXHXhBr8W
+ cDvlB6wCTETA8hqyuN3c2VgOcawyaWtGFr9BLwjhLb7GwQHaiXc2VBBEC4ledKEY71R8
+ 6AFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=LUSvv6gyP/U0jb8swx6kbJOKJ75Cx8i7+Ck6/NBHcX0=;
- b=UNhrJFUyTsfKT6FlvxTTj9XsltbpsbD+6E6YfmV6cZ5x3LiHbhket7G6GaNF+j6P+W
- dhvsyG+2IM/jERxTQnRr8zYQwCTAN6U90R4SSYF4QMN0jsGFcSkgHHXT3ikFpRifGIuE
- JdkPQKSuvTqVP7GwYK0q9NSzTgiL7T2ROmsLu61+Lldk0YxV2be/a9rMZr82xfkEnPKt
- 0H5UlPMwJubrn/fJ/D5S4HaX9kBMbsnCG1KBwjbJJ94ZUS7u55/+8JegSXweo3ExoaQe
- 8LdE+m/LhAGACS/2nA9PrGBCIeh3lzCZui6UgfuWUkJs+NT6/5oBxr1TKmMVFiOarThc
- p33A==
-X-Gm-Message-State: AJcUukeLf31MSen6OhE/AGq8Uuf/c/Bbv6M+sD0WElGyB+xURLnvTeiq
- 2qlETA7sy/nIHwJfPaqxunuRAnfHwRXoT1HywDbfaMks
-X-Google-Smtp-Source: ALg8bN7xKjfGKRIT4sZ8SnCLXx+7BK9Umi6LGxI5bTxrXMe+VPJ0gK6OA0ZF+r82cglIYKY8bNcJWselXYRCDrFlTFw=
-X-Received: by 2002:a9d:a48:: with SMTP id 66mr12918180otg.308.1547849207355; 
- Fri, 18 Jan 2019 14:06:47 -0800 (PST)
+ bh=xuPmhton+yX3VA6muOEeXBbfE8RTlQObRyhUQXHiKAI=;
+ b=SrnroCEPzfFqL/ktXeZzNeiRHIjBFV8axXZ7XSOjX4ieadOMZ1ZcvgdtLPQ0UusopR
+ rnsSo/a2U3S8FiMe4aJ8g9Cg4Ij3NBkEV0rpMncawakznIEwee9LC2uPjtMssrxYSooY
+ 8dTLDX64xfnPXNb3Vc+NASHwtY+CQDhtcfQED+hdvUh7hRj0gikhRqBkyLW/FBlMDm0o
+ U7wHbslTJa9TDJ8qEnU8X+2NNqGIl0Si8UG6UQoKJA0xLRX8p+XTNyLulHGLvb3rlhvJ
+ wd03JTKiw7znO5cvpkPMQb2gLSP6z2iLvQTDJZXZ3qVwp7w5ZpY9AodK2+4fD3CiZqP9
+ 5Y5g==
+X-Gm-Message-State: AJcUukfRrHVttxEe0gqFbEWKWJdKkiv3pdHzIQntFOJVCsgNOPSdCHXI
+ st04+KvtpAV8ncHcIksmaewA+S0vF1EMRHDjMAg=
+X-Google-Smtp-Source: ALg8bN4d5HjHdtfOJ/6DIUBXOrk78hsXNjOMxJAiSXWGu4Ke5iRldaWx9dI1JkQakC2EzKqnce2wIn/ZBnn53shz6Vs=
+X-Received: by 2002:a9d:a48:: with SMTP id 66mr12962970otg.308.1547850559350; 
+ Fri, 18 Jan 2019 14:29:19 -0800 (PST)
 MIME-Version: 1.0
 References: <20190113181808.5768-1-linux.amoon@gmail.com>
- <20190113181808.5768-2-linux.amoon@gmail.com>
-In-Reply-To: <20190113181808.5768-2-linux.amoon@gmail.com>
+In-Reply-To: <20190113181808.5768-1-linux.amoon@gmail.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Fri, 18 Jan 2019 23:06:36 +0100
-Message-ID: <CAFBinCCNpW=m4P=dqkn4eKeDPJyi_RML07ZhPKQeFH5j7mXkkg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] ARM: dts: meson8b: odroidc1: Fix usb phy regulator
- power failed warning
+Date: Fri, 18 Jan 2019 23:29:08 +0100
+Message-ID: <CAFBinCCD4o0cXEht_7bgV6moCK2WfVRvZq8UUZD3gDo-TaRKbQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] ARM: dts: meson8b: odroidc1: Enable usb phy node
 To: Anand Moon <linux.amoon@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190118_140648_412189_0AB7A38D 
-X-CRM114-Status: GOOD (  18.39  )
+X-CRM114-CacheID: sfid-20190118_142920_705048_CBF44157 
+X-CRM114-Status: GOOD (  19.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -103,108 +101,142 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi Anand,
 
+thank you for this patch!
+
 On Sun, Jan 13, 2019 at 7:18 PM Anand Moon <linux.amoon@gmail.com> wrote:
 >
-> Override the dr_mode from "host" to "peripheral" for dwc2
-> usb_phy0->usb0 initialization of OTG Micro-B type.
-> Changes fix the below warning for phy poweron failed --> -22
+> Add missing vbus-supply link to phy controller for usb_phy0
+> and usb_phy1 nodes, this changes fixed the power issue
+> on usb ports usb, changes help fix usb reset warning.
+I trust you on the fact that GPIOAO_5 controls VBUS of USB0 and USB1
+
+to me the schematics are not 100% clear or I'm bad at interpreting them:
+- I'll refer to odroid-c1+_rev0.4_20150615.pdf
+- page 1 lists GPIOAO.BIT5 as input for the PWREN signal of the
+USB_OTG controller (usb0)
+- page 1 also shows a PWREN signal in the USB_HOST controller (usb1)
+but not it's input
+- based on your patch I assume that PWREN is the same signal for both
+USB controllers
+
+> [  821.991470] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> [  825.243385] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> [  828.151310] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> [  830.991241] usb 1-1.2: reset high-speed USB device number 3 using dwc2
 >
-> This fix the initialization of c9040000.usb phy.
->
-> [    1.639706] phy phy-c1108800.phy.0: USB ID detect failed!
-> [    1.643850] phy phy-c1108800.phy.0: phy poweron failed --> -22
-> [    1.649706] ------------[ cut here ]------------
-> [    1.654273] WARNING: CPU: 0 PID: 29 at drivers/regulator/core.c:2054 _regulator_put.part.8+0xf8/0xfc
-> [    1.663400] Modules linked in:
-> [    1.666439] CPU: 0 PID: 29 Comm: kworker/0:1 Not tainted 4.20.0-xc1ml #11
-> [    1.673192] Hardware name: Amlogic Meson platform
-> [    1.677894] Workqueue: events deferred_probe_work_func
-> [    1.683027] [<c0312204>] (unwind_backtrace) from [<c030cb8c>] (show_stack+0x10/0x14)
-> [    1.690746] [<c030cb8c>] (show_stack) from [<c0e223b8>] (dump_stack+0x8c/0xa0)
-> [    1.697953] [<c0e223b8>] (dump_stack) from [<c0346334>] (__warn.part.3+0xbc/0xd8)
-> [    1.705418] [<c0346334>] (__warn.part.3) from [<c03464b0>] (warn_slowpath_null+0x44/0x4c)
-> [    1.713579] [<c03464b0>] (warn_slowpath_null) from [<c07df6b8>] (_regulator_put.part.8+0xf8/0xfc)
-> [    1.722437] [<c07df6b8>] (_regulator_put.part.8) from [<c07df6e4>] (regulator_put+0x28/0x38)
-> [    1.730859] [<c07df6e4>] (regulator_put) from [<c07df71c>] (regulator_bulk_free+0x28/0x38)
-> [    1.739112] [<c07df71c>] (regulator_bulk_free) from [<c0943858>] (release_nodes+0x1bc/0x200)
-> [    1.747537] [<c0943858>] (release_nodes) from [<c093f82c>] (really_probe+0x110/0x2cc)
-> [    1.755350] [<c093f82c>] (really_probe) from [<c093fb4c>] (driver_probe_device+0x60/0x16c)
-> [    1.763599] [<c093fb4c>] (driver_probe_device) from [<c093dcd4>] (bus_for_each_drv+0x80/0xc4)
-> [    1.772110] [<c093dcd4>] (bus_for_each_drv) from [<c093f6ac>] (__device_attach+0xd0/0x138)
-> [    1.780359] [<c093f6ac>] (__device_attach) from [<c093eae4>] (bus_probe_device+0x84/0x8c)
-> [    1.788522] [<c093eae4>] (bus_probe_device) from [<c093ef80>] (deferred_probe_work_func+0x60/0x8c)
-> [    1.797470] [<c093ef80>] (deferred_probe_work_func) from [<c035fdb8>] (process_one_work+0x218/0x504)
-> [    1.806585] [<c035fdb8>] (process_one_work) from [<c0360ea8>] (worker_thread+0x2a8/0x5bc)
-> [    1.814748] [<c0360ea8>] (worker_thread) from [<c0365a18>] (kthread+0x14c/0x154)
-> [    1.822128] [<c0365a18>] (kthread) from [<c03010e8>] (ret_from_fork+0x14/0x2c)
-> [    1.829331] Exception stack(0xee0ebfb0 to 0xee0ebff8)
-> [    1.834369] bfa0:                                     00000000 00000000 00000000 00000000
-> [    1.842534] bfc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-> [    1.850695] bfe0: 00000000 00000000 00000000 00000000 00000013 00000000
-> [    1.857311] ---[ end trace e28bbc26874282a4 ]---
-> [    1.861984] ------------[ cut here ]------------
-> [    1.866524] WARNING: CPU: 0 PID: 29 at drivers/regulator/core.c:2054 _regulator_put.part.8+0xf8/0xfc
-> [    1.875629] Modules linked in:
-> [    1.878658] CPU: 0 PID: 29 Comm: kworker/0:1 Tainted: GW         4.20.0-xc1ml #11
-> [    1.886817] Hardware name: Amlogic Meson platform
-> [    1.891513] Workqueue: events deferred_probe_work_func
-> [    1.896641] [<c0312204>] (unwind_backtrace) from [<c030cb8c>] (show_stack+0x10/0x14)
-> [    1.904366] [<c030cb8c>] (show_stack) from [<c0e223b8>] (dump_stack+0x8c/0xa0)
-> [    1.911573] [<c0e223b8>] (dump_stack) from [<c0346334>] (__warn.part.3+0xbc/0xd8)
-> [    1.919041] [<c0346334>] (__warn.part.3) from [<c03464b0>] (warn_slowpath_null+0x44/0x4c)
-> [    1.927203] [<c03464b0>] (warn_slowpath_null) from [<c07df6b8>] (_regulator_put.part.8+0xf8/0xfc)
-> [    1.936060] [<c07df6b8>] (_regulator_put.part.8) from [<c07df6e4>] (regulator_put+0x28/0x38)
-> [    1.944483] [<c07df6e4>] (regulator_put) from [<c07df71c>] (regulator_bulk_free+0x28/0x38)
-> [    1.952734] [<c07df71c>] (regulator_bulk_free) from [<c0943858>] (release_nodes+0x1bc/0x200)
-> [    1.961159] [<c0943858>] (release_nodes) from [<c093f82c>] (really_probe+0x110/0x2cc)
-> [    1.968974] [<c093f82c>] (really_probe) from [<c093fb4c>] (driver_probe_device+0x60/0x16c)
-> [    1.977224] [<c093fb4c>] (driver_probe_device) from [<c093dcd4>] (bus_for_each_drv+0x80/0xc4)
-> [    1.985734] [<c093dcd4>] (bus_for_each_drv) from [<c093f6ac>] (__device_attach+0xd0/0x138)
-> [    1.993984] [<c093f6ac>] (__device_attach) from [<c093eae4>] (bus_probe_device+0x84/0x8c)
-> [    2.002147] [<c093eae4>] (bus_probe_device) from [<c093ef80>] (deferred_probe_work_func+0x60/0x8c)
-> [    2.011092] [<c093ef80>] (deferred_probe_work_func) from [<c035fdb8>] (process_one_work+0x218/0x504)
-> [    2.020209] [<c035fdb8>] (process_one_work) from [<c0360ea8>] (worker_thread+0x2a8/0x5bc)
-> [    2.028371] [<c0360ea8>] (worker_thread) from [<c0365a18>] (kthread+0x14c/0x154)
-> [    2.035752] [<c0365a18>] (kthread) from [<c03010e8>] (ret_from_fork+0x14/0x2c)
-> [    2.042955] Exception stack(0xee0ebfb0 to 0xee0ebff8)
-> [    2.047993] bfa0:                                     00000000 00000000 00000000 00000000
-> [    2.056158] bfc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-> [    2.064320] bfe0: 00000000 00000000 00000000 00000000 00000013 00000000
-> [    2.070934] ---[ end trace e28bbc26874282a5 ]---
->
+> Fixes: 2eb79a4d15ff (ARM: dts: meson: enabling the USB Host controller on Odroid-C1/C1+ board)
+you already split your original patch into two, however I suggest
+splitting these patches differently:
+- this one (personally I would choose "ARM: dts: meson8b: odroidc1:
+fix USB VBUS supplies" as title), which contains the Fixes tag, adds
+the "usb_vbus" and references it in the "usb0" and "usb1" nodes
+- enables usb0_phy and usb0 as part of your second patch (I would call
+that "ARM: dts: meson8b: odroidc1: enable the OTG capable USB
+controller")
+
 > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > Cc: Jerome Brunet <jbrunet@baylibre.com>
 > Cc: Neil Armstrong <narmstrong@baylibre.com>
 > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 > ---
 > Rebased on Kevin's amlogic/v5.0/fixes branch
-> Note the warning is not getting produced on the latest kernel.
+>
+> [alarm@archl-c1t ~]$ lsusb -t
+> /:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
+>     |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
+>         |__ Port 1: Dev 4, If 0, Class=Mass Storage, Driver=usb-storage, 480M
+>         |__ Port 3: Dev 3, If 0, Class=Video, Driver=uvcvideo, 480M
+>         |__ Port 3: Dev 3, If 1, Class=Video, Driver=uvcvideo, 480M
+>         |__ Port 3: Dev 3, If 2, Class=Audio, Driver=snd-usb-audio, 480M
+>         |__ Port 3: Dev 3, If 3, Class=Audio, Driver=snd-usb-audio, 480M
+> [alarm@archl-c1t ~]$
+> [alarm@archl-c1t ~]$ lsusb -v|egrep "^Bus|MaxPower"
+> Couldn't open device, some information will be missing
+> Bus 001 Device 003: ID 1b71:0056 Fushicai
+>     MaxPower              500mA
+> Couldn't open device, some information will be missing
+> Bus 001 Device 004: ID 152d:0578 JMicron Technology Corp. / JMicron USA Technology Corp. JMS567 SATA 6Gb/s bridge
+>     MaxPower               30mA
+> Couldn't open device, some information will be missing
+> Couldn't open device, some information will be missing
+> Bus 001 Device 002: ID 05e3:0610 Genesys Logic, Inc. 4-port hub
+>     MaxPower              100mA
+> Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+>     MaxPower                0mA
 > ---
->  arch/arm/boot/dts/meson8b-odroidc1.dts | 1 +
->  1 file changed, 1 insertion(+)
+>  arch/arm/boot/dts/meson8b-odroidc1.dts | 23 +++++++++++++++++++++++
+>  1 file changed, 23 insertions(+)
 >
 > diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
-> index a49a8509b288..9d7f725cfe35 100644
+> index 0f0a46ddf3ff..a49a8509b288 100644
 > --- a/arch/arm/boot/dts/meson8b-odroidc1.dts
 > +++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
-> @@ -318,6 +318,7 @@
+> @@ -83,6 +83,19 @@
+>                 regulator-max-microvolt = <5000000>;
+>         };
 >
->  &usb0 {
->         status = "okay";
-> +       dr_mode = "peripheral";
->  };
-with this change I get the following message during boot:
-  dwc2 c9040000.usb: Configuration mismatch. dr_mode forced to host
+> +       usb_vbus: regulator-usb-vbus {
+please add a comment here with some details about the regulator and
+add a hint that the signal in the schematics is called "PWREN"
 
-as far as I understand your original problem is the following error
-from the USB2 PHY driver:
-  phy phy-c1108800.phy.0: USB ID detect failed!
-  phy phy-c1108800.phy.0: phy poweron failed --> -22
-maybe we should fix that instead?
+> +               compatible = "regulator-fixed";
+> +
+> +               regulator-name = "USB_VBUS";
+> +               regulator-min-microvolt = <5000000>;
+> +               regulator-max-microvolt = <5000000>;
+> +
+> +               vin-supply = <&p5v0>;
+> +
+> +               gpio = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
+> +               enable-active-high;
+> +       };
+> +
+>         tflash_vdd: regulator-tflash_vdd {
+>                 /*
+>                  * signal name from schematics: TFLASH_VDD_EN
+> @@ -293,8 +306,18 @@
+>         pinctrl-names = "default";
+>  };
+>
+> +&usb0_phy {
+> +       status = "okay";
+> +       vbus-supply = <&usb_vbus>;
+> +};
+> +
+>  &usb1_phy {
+>         status = "okay";
+> +       vbus-supply = <&usb_vbus>;
+> +};
+> +
+> +&usb0 {
+> +       status = "okay";
+>  };
+I believe there's a problem with the usb/usb_phy nodes here. on my
+Odroid-C1 this results in:
+# cat /sys/kernel/debug/regulator/regulator_summary | grep USB_VBUS
+   USB_VBUS                      0    0      0 unknown  5000mV     0mA
+ 5000mV  5000mV
+(open count is 0)
+
+if I move "vbus-supply" to the "usb1" node (just as an example) then I get:
+# cat /sys/kernel/debug/regulator/regulator_summary | grep USB_VBUS
+   USB_VBUS                      1    1      0 unknown  5000mV     0mA
+ 5000mV  5000mV
+
+unfortunately neither your original patch nor the modified version
+seem to enable USB VBUS on my Odroid-C1.
+I have documented my findings already back in December, see "USB
+issues on Odroid-C1" [0]
+help on that would be highly appreciated :)
+
+on which board revision have you tested this patch?
 
 
 Regards
 Martin
+
+
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2018-December/009451.html
 
 _______________________________________________
 linux-amlogic mailing list
