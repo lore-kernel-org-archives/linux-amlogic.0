@@ -2,89 +2,92 @@ Return-Path: <SRS0=part=P2=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B26CDC5AE5E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jan 2019 23:44:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 38F01C5AE5E
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jan 2019 23:44:14 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 63CAE20652
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jan 2019 23:44:01 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C306620896
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jan 2019 23:44:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="M6992TNU";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Nj0hvXct"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 63CAE20652
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="m2sZlIJu";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="R7zFH8Qm"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C306620896
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=4EX+xMH8NqNP6s1mO+MphjwamCbQvfQ6bwAwJ9syBVQ=; b=M6992TNUb6uaZu
-	y7IggdE+QzfjcrNSNGbQJkPvHzqsDO1DZ4mT+1QXQYOK8UwKywABp3KOIX2rPC0mIfPeAQnodUAE3
-	Qz5LB1w4nDQnyUdueg/lmmtAakLZhfrU9aMFL9KUoqyzVseeMjZt7kuSL/el/5eeKYbe7s5vvirXr
-	TThwaauiTUPNSetaUL1sQbDUB114+tQvaQ8Lz5t+AKugVXc/IK9avp8pNcEQX+OtBKZgVBwnOjlL8
-	am/MsKt1ELOk2HC4Wignh7wfr0R25QWS01YXHuwYo7xMz0stTutD97/lEC7k2kmx/j0esOGCtOt4n
-	PK4T9//HsmAGcGa562ug==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Kea5NjYs8rMm0/M18sP609+8Umk9KycmviDiwJlOOqc=; b=m2sZlIJumc3THC
+	Mr64kHF1hO2CMxxFvxNnKQNpfDpH0T5MpEiXC3yeAbrv/cSAuHyVuZKuJ2ROlwIGq7XxjKwo2xrpr
+	qPeG1QqSZq3H/Cwy34vnYX9NecAAAqtAaq1/cYS6PwuwnVWf351NX6wQusWkgJ56FxNhU6ZRERqe+
+	CNzeL2BaBOcjXG4fxmr716ViLbGXd/qe7nO2GJPm47/j+ar9v6Fmub7+J2f/uKHITu8o1/OGzixgY
+	Kj8i4CZSRwav0r8pNEp0euF7E62tB6uN+zIdFe9WyWFLFCWD5P1JojwHqhaAkXteciJAM3grxzA1W
+	soRsqKSFzRQX/DEDLltw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gkdnk-0004tc-C7; Fri, 18 Jan 2019 23:43:52 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1gkdnv-00054G-07; Fri, 18 Jan 2019 23:44:03 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gkdnh-0004sT-Al; Fri, 18 Jan 2019 23:43:50 +0000
-Received: by mail-wr1-x442.google.com with SMTP id t27so17052313wra.6;
- Fri, 18 Jan 2019 15:43:48 -0800 (PST)
+ id 1gkdni-0004sU-5O; Fri, 18 Jan 2019 23:43:51 +0000
+Received: by mail-wr1-x441.google.com with SMTP id v13so17068857wrw.5;
+ Fri, 18 Jan 2019 15:43:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=n5cr0JQQx+k6H3hLbyZqc4ntkq2OhwQVeP+zfLqqTw8=;
- b=Nj0hvXct8bvi6Jr4n2cwN/R+AebCvtPLOyp6z6dXoNUMlAc2P6jznbjgJbZEP/D2uN
- Ip2ZW2WWI7hNV/G+GpiBkrGD4DebjigEw/2j5jCYGm2aw8xuTUKz8d+hs/qYOpFHTvQF
- hdjP8nmV2Upp+R5m/NFdlYfTYRr5GW+2oEPGrGHPV9dwGOGDmhx85OVSAHKHW8iD+qx7
- IXhqW4aZ3t6C/tn1GowA7jcPEQTgcRGcd/6UyraiSb9Zw7Xpm492bEYkMgvJWUaf2uCI
- ADiYH29BDzPaIV7ti+mPRopLpnBf6FEuBCTEO1M7Qw8kKyg9mKz05OS0g0J02irB5cji
- RARg==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=ZMi2KnKdLTkomqgDyETnU89SoNC5t5pFsNQhVgdxAsk=;
+ b=R7zFH8QmzxDxUva/dxd35XSbZuKcbQwf7kO+t7wVTRNnoU88SlmsdRqgF3LnpY+83s
+ cqab5l8YqCrzID/lngSv1SRpEKvGolxjzBasn9u8A4a6dEeHA6Ax+7bAgyRo49FWnNGu
+ x63YoI9Jj31EWSEWdv/7v6H962jZ90AnvaI2YZwZU2EswEpeNdJKyywVEvE/M0bnhGJh
+ b5yNo6/7qkX9MTVpCXdrHojVx/bnjq1bIf5hEk+D0/XtI4BCusKwtKCRWdl/KidAOaZi
+ bVzJcPTdmAY0VWlTwTHhKArc07ga8AkY8dNaTGMkNLvS9DPccxfWReW4P37P9XPKQsMc
+ DZyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=n5cr0JQQx+k6H3hLbyZqc4ntkq2OhwQVeP+zfLqqTw8=;
- b=IMJwNgWO0/0wZKWb7aNEEMah4Qf5AAeT+0Yg6SJuhmj4J0uSMsLh+QwSMv6b5korY2
- H+oEqCkSmcjBuYou0E5xib+k4HYGKpgSgXNBXuGKwHPmowDtX+F4RVpt5RyTU+UTGhii
- hN+eBEZ/VweiZKVLYHgQMDqtZeh4r3e1xPfoEyUyxQyHVpIM5aeMq8z2NrFlkPS9ls9b
- xt5cFIuFcZVbj0wJoYPBZhdVAVEfc33yEtJ8reaNxAx2E97q/e3qYURVWH6eSU1bsKi+
- StXqsgtEwGB4kfYHFhDJ01Oe5qYphqdmHLyIAGbW0VnuHyt752TgoPW1xf3RPIbhK7Uq
- V/MA==
-X-Gm-Message-State: AJcUukfAbUh8mVqT6Mqzx7NsAJhE8J0s8YddM9pAxKOJPXnsfaePLM6B
- 57E42Nw+JBGDjNovB9Mz1UiIKDl4
-X-Google-Smtp-Source: ALg8bN4UxRWQ+4bOB7olbpWXPYI5xh1CP1WH80LY2M8YlFh2yx5YG/I4Aid4xxw7Cq5lVzpAxq5D4g==
-X-Received: by 2002:a5d:678b:: with SMTP id v11mr19878153wru.245.1547855026947; 
- Fri, 18 Jan 2019 15:43:46 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=ZMi2KnKdLTkomqgDyETnU89SoNC5t5pFsNQhVgdxAsk=;
+ b=TTS+gOXnhqo5cO6PbzSOjOnl0/A4jj/erNbC6B4gmf8nXTu7lB6iWU0gRW7jM5j96w
+ XjwT9YyHNmM7jCslP8kZFmYDwdb/3CarmrQ9Vepnj2IZgiLiIS8BsAz2zeAu8VWIBiEp
+ rpdsHgSMSq8LzP7zd39nt7OxvPMV7emJxbjsqYAv/tevgZUWs11rlS41y0ib+XawxT9t
+ 1hkLYhE6sl9AKR0d1FKwlrWFHZNxJCl8DoYEcDl+8/RuXCfr1vZB44jXXQEoHOhuswJ/
+ g6TB2ihyTnTKGH8SCRvPvaa5+jw/XLHkvv6rX4DSqWytXQsItC+HV79sVh0dtUifrsF4
+ Jz6A==
+X-Gm-Message-State: AJcUukcpj1SjVuT4xRv5Wqcf4T1xxNd6YsWz/PccFd2TeSABgXU7Utve
+ ENeCFalu7X25AUQVszGz00G41k7q
+X-Google-Smtp-Source: ALg8bN4g84Xd0gKFdHPXGt8CIQhNFPIzZ5EV5+dktJPoN1l35xvgbXIeLNawIALCArqn2BGrHMnVjA==
+X-Received: by 2002:adf:e509:: with SMTP id j9mr19605782wrm.76.1547855028053; 
+ Fri, 18 Jan 2019 15:43:48 -0800 (PST)
 Received: from blackbox.darklights.net
  (p200300DCD73A810039E290CB771389D7.dip0.t-ipconnect.de.
  [2003:dc:d73a:8100:39e2:90cb:7713:89d7])
- by smtp.googlemail.com with ESMTPSA id j8sm108970024wmd.0.2019.01.18.15.43.45
+ by smtp.googlemail.com with ESMTPSA id j8sm108970024wmd.0.2019.01.18.15.43.46
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 18 Jan 2019 15:43:46 -0800 (PST)
+ Fri, 18 Jan 2019 15:43:47 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org,
 	khilman@baylibre.com
-Subject: [PATCH 0/3] ARM: dts: meson8b: ec100: improvements
-Date: Sat, 19 Jan 2019 00:43:36 +0100
-Message-Id: <20190118234339.16050-1-martin.blumenstingl@googlemail.com>
+Subject: [PATCH 1/3] ARM: dts: meson8b: ec100: enable the Ethernet PHY
+ interrupt
+Date: Sat, 19 Jan 2019 00:43:37 +0100
+Message-Id: <20190118234339.16050-2-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190118234339.16050-1-martin.blumenstingl@googlemail.com>
+References: <20190118234339.16050-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190118_154349_402854_741CB4C3 
-X-CRM114-Status: UNSURE (   8.71  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190118_154350_200088_0BC5D84D 
+X-CRM114-Status: GOOD (  10.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -103,31 +106,31 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This brings various small improvements for the Endless Mini EC-100
-board:
-- the Ethernet PHY status is not polled anymore, instead interrupt
-  support from the IP101GR PHY is used
-- general update for the regulators which adds missing ones, links
-  the parents correctly and adds some notes about the actual components
-  on the board for anyone who is curious
-- show the GPIO line names in debugfs for easier comparison of the GPIO
-  definitions from the .dts and the schematics / vendor kernel sources
+The INTR32 pin of the IP101GR Ethernet PHY is routed to the GPIOH_3 pad
+on the SoC.
+Enable the interrupt function of the PHY's INTR32 pin to switch it from
+it's default "receive error" mode to "interrupt pin" mode.
 
-This applies on top of version 2 of my other patchset "ARM: dts: meson:
-chip temperature (hwmon) support" from [0]
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ arch/arm/boot/dts/meson8b-ec100.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-
-[0] https://patchwork.kernel.org/cover/10771753/
-
-
-Martin Blumenstingl (3):
-  ARM: dts: meson8b: ec100: enable the Ethernet PHY interrupt
-  ARM: dts: meson8b: ec100: improve the description of the regulators
-  ARM: dts: meson8b: ec100: add the GPIO line names
-
- arch/arm/boot/dts/meson8b-ec100.dts | 122 ++++++++++++++++++++++++++++
- 1 file changed, 122 insertions(+)
-
+diff --git a/arch/arm/boot/dts/meson8b-ec100.dts b/arch/arm/boot/dts/meson8b-ec100.dts
+index cba0006e2de0..1a41d89d1fa5 100644
+--- a/arch/arm/boot/dts/meson8b-ec100.dts
++++ b/arch/arm/boot/dts/meson8b-ec100.dts
+@@ -169,6 +169,10 @@
+ 		eth_phy0: ethernet-phy@0 {
+ 			/* IC Plus IP101A/G (0x02430c54) */
+ 			reg = <0>;
++			icplus,select-interrupt;
++			interrupt-parent = <&gpio_intc>;
++			/* GPIOH_3 */
++			interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
+ 		};
+ 	};
+ };
 -- 
 2.20.1
 
