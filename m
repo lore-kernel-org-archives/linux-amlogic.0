@@ -2,143 +2,89 @@ Return-Path: <SRS0=part=P2=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BB4BDC43387
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jan 2019 09:51:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7AB3CC43387
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jan 2019 10:06:13 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8C7AB2086D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jan 2019 09:51:02 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 48BC820855
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jan 2019 10:06:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="OU6KWMyo";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="t+Dk55GB"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8C7AB2086D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="snDYfORT";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gYGZ2N6o"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 48BC820855
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GOQPqnZtWL7zsUKYnk2o4W6SlxzAD+XxORw6laqVz3w=; b=OU6KWMyoUenTeg
-	zIpK0CE1wGv/8fcQxFUE0n+feoj4YGj7pqxzNFJLpczId1BofbukKaOi4HQNdffz7+my9Gy8YW8t/
-	cl6YLR3hDOSlrw7MtzRKYG8wdfb0V+erG+WBRk9eKIY8AVXorJD2o1+Xh0W778nFOMIUB5Oa4rjWx
-	0CkFyBTlnFESuhK904FOswY7X41Dg5khJIZ63UgoQblZbrPmQCvApy7E3MqG47l5QFBPSIiq+GZG0
-	DP892fjSpo8P8lbbrevlWMSQfhMU95NFD8LD7IEDTDSbCGxgtaNU73c/niM0N2hy0qZ6W10EY8YlA
-	o54pcJNAXTZQv/l5KdEA==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=HLVgk7no6g3VWUMYU4scO2GcgHS3fQGaJxlW9Xv/lmY=; b=snDYfORTMHuEQ8
+	szDTjjVQXK7p8KIKeAoCF8oVlzZGj65yC8z5PHkmMaoHXI0aScRdtAh+rpuKO8mJX8zZlXKYKU2t/
+	omneaL68d6qCFwbljiMMM7hyfJMr0QIb1j0hzF4g8Mw57KkVgtXhan01KxLm5mwISwDWFgimD29aJ
+	d/7aRL12J/iOOaTovem3x8RoohmjPBR0Aqu9zk4J9ibc9Ii8vFCZLSRAWJHHZdfznV1sl2scvChF6
+	SfjvYm0ZjRSxl4FU3piRqxrgreqrnxPt9Ch4DF4Wic6lTODDd2bW+Gehr8NwLkngBLW4qAs5RCDvS
+	qSbe5fPaVIyZNM+gva0g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gkQng-00085X-UA; Fri, 18 Jan 2019 09:50:56 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1gkR2N-0006Un-L5; Fri, 18 Jan 2019 10:06:07 +0000
+Received: from mail-ot1-x329.google.com ([2607:f8b0:4864:20::329])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gkQnd-00084p-AO
- for linux-amlogic@lists.infradead.org; Fri, 18 Jan 2019 09:50:55 +0000
-Received: by mail-wm1-x341.google.com with SMTP id y8so3837285wmi.4
- for <linux-amlogic@lists.infradead.org>; Fri, 18 Jan 2019 01:50:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=9B3qQz2jRrUxvqhO6MTS8K+j34dnh0frQL5SvmEk0mY=;
- b=t+Dk55GBtLHSU7i+zV8bcDYuC18GIQ0qolZaIgdfDEiH8dc6UDA2jhel8NSNz1xHGz
- NY50v/+cwoQdGwSVFtEoelTrPD0Dj97V5S2FOdtcupiHc28uK38wkhAF2FP8i2auBNUO
- Gtv8Q01jGttFhuPeDtpBiUX+5bF5TFoKp77pLlJn9WmB6qC8LEa4Dw+9KDOiAUmNWRqF
- KxQTKTlafaQx2FlNviLrZBKrOP/YFAzMtaDsEi3FrO1CXYpsYyFUfuRPKSppH4pxK1IF
- bqSk8drqSQ0Uk6KRBXG/jMqAf2pf13lbyA6VlYuLJTw1K3oZny1RBCLbvMRrTnQ63Gwh
- +NkQ==
+ id 1gkR2J-0006UG-Sq
+ for linux-amlogic@lists.infradead.org; Fri, 18 Jan 2019 10:06:05 +0000
+Received: by mail-ot1-x329.google.com with SMTP id t5so8853736otk.1
+ for <linux-amlogic@lists.infradead.org>; Fri, 18 Jan 2019 02:06:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=QpOjmXyyyT66cs7u7Zhd/0TezetfKEhZpcSbBcNja9w=;
+ b=gYGZ2N6oXni9REfflNsTdmyvVKjk804Bjur7RHzkljoaK4xgg/Y8wJP2Wng4bC6NcY
+ q9l0+3g2mt0iNjUTjdcawN203CpjXn0rMh/R0GkbQwQmLQAFsYTjOFHy62n9z7vDnnWs
+ 3huQbubFjrotWEYCZUS/Gp2i4JhpM/7QqGwvlfB4NJnUW7Vu1lzeQNtvpXEvyBrqbHat
+ YoIZL3Z++wVB33E161r9s5EEKcn/2ufYmkD6J1rkdOTwg3eiiCac1nPcfqJVvzJ2nJlR
+ Pg2lUEe8SZwkdUe8a89YTSMrFOOpH1fNNj36ly4s44zkyykYU2MEkm15fSXKSwNszDhf
+ Xavw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=9B3qQz2jRrUxvqhO6MTS8K+j34dnh0frQL5SvmEk0mY=;
- b=ZkPkVVC9kYRg9YDi/sYyXq0toCCgWhVSzsVvsJGBprwSQRBgDb4XJ8jntS+yUPcd6A
- a6AcB88CZkJ6UWrzNklEMA3fhlLAdNDfobrMD22S6r0TaKg/VVq0SwU7TEv4H13wEUJ/
- Rgtcd6MmOMyiajWLfbode0tiD5me8GKBj2KeeG6dcFihf27pE3wGnCWskCNKAqCsiwy/
- T+ve5O+Mgngl034/9rMouOx3mRD53IFy1dzK3nniCorW9s5XgBtk6esdl+gKmpFodlJ3
- lc2zfC4+Is0uatIZoKl0DKA0RH2ANpb1PqaKx6LWuXkVtrE5XA2CJp3NHM+eVKjJ+dir
- wKeQ==
-X-Gm-Message-State: AJcUukeS6ojL+2XPc5zVBFiYLmXXeTzHSr1oLEDjcY0Cq+bdKL3CUdQD
- DkyQEpg+ZbuSNQx2Qr2SbKBtCw==
-X-Google-Smtp-Source: ALg8bN7DpNhHkhHSh5wPjIYNFZsPnzXm2SrxFmUpA2yE8+99rLK+YWwoKKp+iYCxifg8ngmxxHBBOQ==
-X-Received: by 2002:a1c:1383:: with SMTP id 125mr15529112wmt.71.1547805051385; 
- Fri, 18 Jan 2019 01:50:51 -0800 (PST)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id g67sm82072647wmd.38.2019.01.18.01.50.50
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 18 Jan 2019 01:50:50 -0800 (PST)
-Subject: Re: [PATCH 0/3] clk: meson: claim input clocks through DT
-To: Jerome Brunet <jbrunet@baylibre.com>
-References: <20190116175435.4990-1-jbrunet@baylibre.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <3d579ebf-1fea-d54f-e253-217ac301de67@baylibre.com>
-Date: Fri, 18 Jan 2019 10:50:48 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.2.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=QpOjmXyyyT66cs7u7Zhd/0TezetfKEhZpcSbBcNja9w=;
+ b=NSeYKPp1OfiN97KLLhkmZFHOhmAxYtBBq3caYZTq9DKqUZ2MZ/rZxXiwFBcJlDLB/f
+ oyeX7yI+SGSbibyAXwSiSytOmWYuQTKZc1WrLGGDeFdndXz6wNBxMdpsi8vTtp6t2R0M
+ R7HbwObpj0tGhn9xXu9gjhuB1TeS9KDfnBhhAoJtMGkKRkxY8bkEHmw0bwpBFfVjOH9K
+ vVdsX1znSt1DAZgEQM+EXy1/Qm/PTq7W43kUlVe8T/+4BNudojc2ujGxQKJvEyMKTUYX
+ H5JKk/CpefAzpCLPFDTkAOZbDADOiA7qArrzRgqtvzNaX2Eype4VyuSRdTQbSFMSB/iK
+ TsBw==
+X-Gm-Message-State: AJcUukcilAmGFTTPyyE6Hbjo0mgopsO22O9UzWJ1zUvbBGIy43BpR2ra
+ 9LZg1/e1AJm+IbyAuqMr0ZYxkL92Lc3ei8e9jgg=
+X-Google-Smtp-Source: ALg8bN7xdrXlfCPC4nMkeVOSE5dA+S6+6UVCCTrVvz2fzTdCrCI8Bs4DMFJaE+M+JbatVKXpZX8Z5QLrwYdEcpbbhPk=
+X-Received: by 2002:a9d:beb:: with SMTP id 98mr11870681oth.284.1547805962757; 
+ Fri, 18 Jan 2019 02:06:02 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20190116175435.4990-1-jbrunet@baylibre.com>
-Content-Language: en-US
+References: <CALtMJECrcEKgZKkP9=DcScr_fvPu+P1AkFf-qJn84Jeh2NXqQQ@mail.gmail.com>
+ <CAPDyKFoLS3tWwDSrHmtqenknyX9r_JAA_UYAPk3Vq5P3PJ6JUQ@mail.gmail.com>
+ <820343bf1c43f4ca79fa33a1f1390375ebfb7e62.camel@baylibre.com>
+ <CALtMJECrsHDHxYRHMFfOCCoymGudGiVxjtK2f2T6ZK8mfNZ6_g@mail.gmail.com>
+ <CALtMJEBPVWFDYYphbOSRZ91Cg954QB33pF7=Qkum9R6-8yQqZA@mail.gmail.com>
+ <150bb9f497ba4a2bee055f49557b4dd8216bfa22.camel@baylibre.com>
+ <CALtMJEAp0DJmNYsDWe9WJGH0zeZ2sVyFKe909ehzv87ita4ehw@mail.gmail.com>
+ <c0ab226f363d22f31e13db5ae0af85ea7f7b451e.camel@baylibre.com>
+In-Reply-To: <c0ab226f363d22f31e13db5ae0af85ea7f7b451e.camel@baylibre.com>
+From: Andreas Fenkart <afenkart@gmail.com>
+Date: Fri, 18 Jan 2019 11:05:51 +0100
+Message-ID: <CALtMJEC=MUp-rigViGP3LkAwBpqooVfhq1zHu7VrLZmmM6+qQA@mail.gmail.com>
+Subject: Re: regression caused by: "amlogic: mmc: meson-gx: add signal
+ resampling"
+To: Jerome Brunet <jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190118_015053_388632_AAB708C1 
-X-CRM114-Status: GOOD (  10.88  )
+X-CRM114-CacheID: sfid-20190118_020603_940747_A700114E 
+X-CRM114-Status: GOOD (  21.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -150,45 +96,180 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
- patchwork-bot+notify@kernel.org, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>, linux-mmc <linux-mmc@vger.kernel.org>,
+ krzysztof.michonski@digitalstrom.com, Kevin Hilman <khilman@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 16/01/2019 18:54, Jerome Brunet wrote:
-> Following the preparation series [0] sent in the last cycle, this
-> patchset adds clock input claim through DT in the gxbb and axg clock
-> controllers
-> 
-> [0]: https://lkml.kernel.org/r/20181203171640.12110-1-jbrunet@baylibre.com
-> 
-> Jerome Brunet (3):
->   clk: meson: gxbb: claim clock controller input clock from DT
->   clk: meson: axg: claim clock controller input clock from DT
->   clk: meson: ao-clkc: claim clock controller input clocks from DT
-> 
->  drivers/clk/meson/axg-aoclk.c   | 22 +++++++++++++++-----
->  drivers/clk/meson/axg.c         | 27 +++++++++++++++++-------
->  drivers/clk/meson/gxbb-aoclk.c  | 25 ++++++++++++++++------
->  drivers/clk/meson/gxbb.c        | 37 +++++++++++++++++++++------------
->  drivers/clk/meson/meson-aoclk.c | 37 ++++++++++++++++++++++++++++++++-
->  drivers/clk/meson/meson-aoclk.h | 12 +++++++++--
->  6 files changed, 125 insertions(+), 35 deletions(-)
-> 
+From 7ea0b63ddfc841251cbcc33c8ed0151e52e372f2 Mon Sep 17 00:00:00 2001
+From: Andreas Fenkart <afenkart@gmail.com>
+Date: Thu, 17 Jan 2019 15:39:52 +0100
+Subject: [PATCH] mmc: meson-gx: enable signal re-sampling together with tuning
 
-Looks good for me :
+card detection fails on "BeeLink Mini M8 SII" if enabled too early
+mmc1: error -110 whilst initialising MMC card
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Fixes: 71645e65729f ("mmc: meson-gx: add signal resampling")
+Signed-off-by: Andreas Fenkart <afenkart@gmail.com>
+---
+ drivers/mmc/host/meson-gx-mmc.c | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
 
-and
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index c2690c1a50ff..dba499009d0c 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -738,6 +738,11 @@ static int meson_mmc_clk_phase_tuning(struct
+mmc_host *mmc, u32 opcode,
+ static int meson_mmc_execute_tuning(struct mmc_host *mmc, u32 opcode)
+ {
+  struct meson_host *host = mmc_priv(mmc);
++ int adj = 0;
++
++ /* enable signal resampling w/o delay */
++ adj = ADJUST_ADJ_EN;
++ writel(adj, host->regs + host->data->adjust);
 
-Applied on next/drivers for Linux 5.1-rc1
+  return meson_mmc_clk_phase_tuning(mmc, opcode, host->rx_clk);
+ }
+@@ -768,6 +773,9 @@ static void meson_mmc_set_ios(struct mmc_host
+*mmc, struct mmc_ios *ios)
+  if (!IS_ERR(mmc->supply.vmmc))
+  mmc_regulator_set_ocr(mmc, mmc->supply.vmmc, ios->vdd);
 
-Neil
++ /* disable signal resampling */
++ writel(0, host->regs + host->data->adjust);
++
+  /* Reset rx phase */
+  clk_set_phase(host->rx_clk, 0);
+
+@@ -1166,7 +1174,7 @@ static int meson_mmc_get_cd(struct mmc_host *mmc)
+
+ static void meson_mmc_cfg_init(struct meson_host *host)
+ {
+- u32 cfg = 0, adj = 0;
++ u32 cfg = 0;
+
+  cfg |= FIELD_PREP(CFG_RESP_TIMEOUT_MASK,
+    ilog2(SD_EMMC_CFG_RESP_TIMEOUT));
+@@ -1177,10 +1185,6 @@ static void meson_mmc_cfg_init(struct meson_host *host)
+  cfg |= CFG_ERR_ABORT;
+
+  writel(cfg, host->regs + SD_EMMC_CFG);
+-
+- /* enable signal resampling w/o delay */
+- adj = ADJUST_ADJ_EN;
+- writel(adj, host->regs + host->data->adjust);
+ }
+
+ static int meson_mmc_card_busy(struct mmc_host *mmc)
+-- 
+2.20.1
+
+Am Do., 17. Jan. 2019 um 16:08 Uhr schrieb Jerome Brunet <jbrunet@baylibre.com>:
+>
+> On Thu, 2019-01-17 at 15:47 +0100, Andreas Fenkart wrote:
+> > From: Andreas Fenkart <afenkart@gmail.com>
+> > Date: Thu, 17 Jan 2019 15:39:52 +0100
+> > Subject: [PATCH] mmc: meson-gx: enable signal re-sampling together with
+> > tuning
+> >
+> > card detection fails on some p212 derived boards if enabled too early
+>
+> Please clearly mention what board you are using, this is too vague.
+>
+> > mmc1: error -110 whilst initialising MMC card
+> >
+>
+> missing the 'Fixes' tag here
+>
+> > Signed-off-by: Andreas Fenkart <afenkart@gmail.com>
+> > ---
+> >  drivers/mmc/host/meson-gx-mmc.c | 16 ++++++++++------
+> >  1 file changed, 10 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-
+> > mmc.c
+> > index c2690c1a50ff..b65ec4bea980 100644
+> > --- a/drivers/mmc/host/meson-gx-mmc.c
+> > +++ b/drivers/mmc/host/meson-gx-mmc.c
+> > @@ -709,7 +709,8 @@ static int meson_mmc_find_tuning_point(unsigned long
+> > *test)
+> >  static int meson_mmc_clk_phase_tuning(struct mmc_host *mmc, u32 opcode,
+> >         struct clk *clk)
+> >  {
+> > - int point, ret;
+> > + struct meson_host *host = mmc_priv(mmc);
+> > + int point, ret, adj = 0;
+> >   DECLARE_BITMAP(test, CLK_PHASE_POINT_NUM);
+> >
+> >   dev_dbg(mmc_dev(mmc), "%s phase/delay tunning...\n",
+> > @@ -729,6 +730,10 @@ static int meson_mmc_clk_phase_tuning(struct
+> > mmc_host *mmc, u32 opcode,
+> >   if (point < 0)
+> >   return point; /* tuning failed */
+> >
+> > + /* enable signal resampling w/o delay */
+> > + adj = ADJUST_ADJ_EN;
+> > + writel(adj, host->regs + host->data->adjust);
+> > +
+>
+> That's really what I meant.
+>
+> Here, you are enabling the signal resampling after the tuning.
+> Several boards won't tune without signal resampling.
+>
+> This should be done at the very beginning of the function at least.
+> I would prefer if it was done in meson_mmc_execute_tuning() before calling
+> meson_mmc_clk_phase_tuning()
+>
+> Signal resampling should not be dealt with in the unrelated phase tuning
+> function
+>
+> >   clk_set_phase(clk, point * CLK_PHASE_STEP);
+> >   dev_dbg(mmc_dev(mmc), "success with phase: %d\n",
+> >   clk_get_phase(clk));
+> > @@ -768,6 +773,9 @@ static void meson_mmc_set_ios(struct mmc_host
+> > *mmc, struct mmc_ios *ios)
+> >   if (!IS_ERR(mmc->supply.vmmc))
+> >   mmc_regulator_set_ocr(mmc, mmc->supply.vmmc, ios->vdd);
+> >
+> > + /* disable signal resampling w/o delay */
+>
+> nitpick : 'disable signal resampling' is enough.
+> when disabled, the delay does not matter.
+>
+> > + writel(0, host->regs + host->data->adjust);
+> > +
+> >   /* Reset rx phase */
+> >   clk_set_phase(host->rx_clk, 0);
+> >
+> > @@ -1166,7 +1174,7 @@ static int meson_mmc_get_cd(struct mmc_host *mmc)
+> >
+> >  static void meson_mmc_cfg_init(struct meson_host *host)
+> >  {
+> > - u32 cfg = 0, adj = 0;
+> > + u32 cfg = 0;
+> >
+> >   cfg |= FIELD_PREP(CFG_RESP_TIMEOUT_MASK,
+> >     ilog2(SD_EMMC_CFG_RESP_TIMEOUT));
+> > @@ -1177,10 +1185,6 @@ static void meson_mmc_cfg_init(struct meson_host
+> > *host)
+> >   cfg |= CFG_ERR_ABORT;
+> >
+> >   writel(cfg, host->regs + SD_EMMC_CFG);
+> > -
+> > - /* enable signal resampling w/o delay */
+> > - adj = ADJUST_ADJ_EN;
+> > - writel(adj, host->regs + host->data->adjust);
+> >  }
+> >
+> >  static int meson_mmc_card_busy(struct mmc_host *mmc)
+>
+>
 
 _______________________________________________
 linux-amlogic mailing list
