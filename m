@@ -1,93 +1,89 @@
-Return-Path: <SRS0=part=P2=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=rSxG=P3=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-3.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 35410C5AE5E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jan 2019 23:44:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 70199C6369F
+	for <linux-amlogic@archiver.kernel.org>; Sat, 19 Jan 2019 14:44:22 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F0F8120652
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Jan 2019 23:44:45 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3FD892084C
+	for <linux-amlogic@archiver.kernel.org>; Sat, 19 Jan 2019 14:44:22 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fASmQ5VB";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="BPYg7qpa"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F0F8120652
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iEKAalyZ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="RVCm9poN"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3FD892084C
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=IT+lXFw2sJDW+cXr+XkEKn/dk57WzPcbuOAIe05Kj8Y=; b=fASmQ5VBLwy8CO
-	h/GufMrBYuKXy4X8Vd3fEFER+ym5hiewV+jECYxZIdeHfc1ZbV8c7tQLroUvF6N/nHOsIoIMvxeyM
-	pENGg3YZUq9pA2XqD95y5P65IlL2sTPsl8X+/JrDuKW/lsCJzvrOJJPakQQmWX/Lk/iRrPQxTgTFO
-	bIZyMsVOCAfyO4K1WadUJuZudTec9rh2kjAf78wgXFCs6cs9Ow/jcM1+PgmVqtGV8gyigJUlbdkNP
-	LJefgHoB/IY1JPAa5i3bwdNgHclwIIsCZTPdUhnGVtRH9takLzgwM+D5WkjWpKo7FCfWoEMackSwf
-	7fwbzacX83q9QXumhjkA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=n8x0FxOUpCVOg1kFum0CPn2KKcJIxsmg3AI6l06kyLY=; b=iEKAalyZKHgTIs
+	RcqfuB6Ht0oT8cE2HHqTDcO24xu2ldBtY41h/CXYUxvOR+hH22GS05QV+lkeFDFdxBWB923d5zo6O
+	W7Kcy9z4UbzHS5ZH+Eqh9gZ3WxzpA2r1MCqGkNy3ySDLR/cjjILz7HaBVV0CZDU9FI9VqWvfwGp2w
+	AQvCdIkna+WZwDrR8+aMql475vbZgn/PB+4+gL/+GZuzbIqeU+LKfSeLkrVDnHPQqTzbl3RHYVgTM
+	BaK1hMvxe7FPbYe/36Bb/jVZya9HZ6smyAqZdThLS64IyJe3p2FAYwzoc4PswrcSdUHPran1f7Gp0
+	UToMlBTeoiBeuoTf3tJg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gkdoW-0005gt-Fz; Fri, 18 Jan 2019 23:44:40 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1gkrr2-0005ii-Aa; Sat, 19 Jan 2019 14:44:12 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gkdnj-0004tA-Sx; Fri, 18 Jan 2019 23:43:53 +0000
-Received: by mail-wr1-x441.google.com with SMTP id t6so17000368wrr.12;
- Fri, 18 Jan 2019 15:43:51 -0800 (PST)
+ id 1gkrqy-0005hj-Ic; Sat, 19 Jan 2019 14:44:10 +0000
+Received: by mail-wm1-x341.google.com with SMTP id t200so7078356wmt.0;
+ Sat, 19 Jan 2019 06:44:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=JrTHYLjAfqH/LuOKfXauzd+5MsTXoqD9khhUxUFncuc=;
- b=BPYg7qpaZFjAc7NNQRxZmfxiV+7x0dKNUqPiB26iok4tLYZJhmO1Yk2HRcBEN60mob
- Ox4YXc3CgEXxW+2PbZFOoOhhiU+5OOIKQDb9M/o7XkpsZBrKQaomMsriqrKU6RMdC2jl
- FqusnfMbQ+czsDrxJZPMrjndv7cnmAF0fDJSt2stmZiZwMBfKAnTH5pAkhhzVwMMNrkM
- 9Bx1huBitgYtq1TQhO07fJYU84xRDaLjdCfj5JdRVz56gSUrAKxXkc2tSFw0V7kh0zUR
- ez/6B5xOCVMQUsijwZvmsPOhr1ZVviKwIBp+PFO/TLlzAXxXSJfj84cvQx4byEBCpFJ3
- lO7g==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=/Ozus3BivcOK8itZMfeG08VWoPokGwR0TyZe9F4Jeso=;
+ b=RVCm9poNqeGO0XaOQsekVrBPk0GVIVBV0TKKizJQX72qm+6J0y7SBg9KrIw5MUzqxm
+ zqYYUMK2Phu+a/QMVXpbdxqmBvGqiaANPJrZj8VwY1oWzgtASWg5kQGBS7DhEOb2swgw
+ MPiHenHOAc6Id3q6f1BI5mX4jmzu7t+L5E3Mu1mlMaPyFIMWUBn9MijC+Mpr7+aqszQ/
+ WwhrkApj+NikrwEjIq1lM+ivieDTHBoCJ8A6b5ODiBRpCNip85HQ4ez017BbxvZ/E6Zr
+ fXO1UKpqRT6BYK+FyOADn/iRCo5jUeV/FmR2Kq7tI2TB5YU4Z1FR88V/rhma444O2nW4
+ z6ZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=JrTHYLjAfqH/LuOKfXauzd+5MsTXoqD9khhUxUFncuc=;
- b=kzQZgkqExZTr09GcANDACitc1ALnnyZYyTt1BRHnuq5+oX4svZKOVew+i7DrU85zrV
- H4OaGQ1XI6Dt92fOsayl+Zdg6h0Wb7uEgSc4WYno3R1UOrp6akbZ8P7BH9v6TW8nDMOn
- +VmjIa6LOFpcIzBMAaSjJ0n/LcI8Lxr2vR7u7t0+nfsame/0zzf6rQ4ktElJp4CJ90iO
- w3iIpVQCogAXmsbk34Z4Kq/BkNhrCa13Uq5JUsySsKS296X0RPMDNXp0hTdwDYs1h5d2
- Hj84Hzmc4JexV/Rt9fxdakBDOC4ugoZatJ4SZcpF3PPZhrFNUDm4n9Z4pm5fwz8BobLC
- IbzA==
-X-Gm-Message-State: AJcUukdGnTi3aL1QctGr9VVnFJr8G+ObVF1OZkBWRsLOz2GPlIqpjQyC
- svYoGTMgKdxqpnN0X+s+SPmPaaG/
-X-Google-Smtp-Source: ALg8bN4RVl5PElSfM/oj+M/ToPesknq8DM7ILVmATxDEfk0+W0FQ7TMHx58BvnX1ctSqh2vdTao+8Q==
-X-Received: by 2002:adf:9246:: with SMTP id 64mr19635198wrj.130.1547855030195; 
- Fri, 18 Jan 2019 15:43:50 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=/Ozus3BivcOK8itZMfeG08VWoPokGwR0TyZe9F4Jeso=;
+ b=sx2x2j1Vq5TV2zdkfaLzPtupLLxHXaFgDO94F0ytqUZhlCjZMTR5M2Fd7RLhq7q2s4
+ E6IEhRrFL1vKyHmLgt7BXGrwDKMgBJAHakOyd+mLf9d/J1McDfpcwor3wG41HuEr+n0W
+ UbKXIAcb6EN3VRivUv4HgeHbZaFmAO3QBsrcnPUi5KWERPpXtdIL227bxzYqo6SetYMj
+ SLAjotM9CMAAQdMKkJvSJbndKa/bTQj5wjo7N1rytJx+kwjBcf+6CB/U0waiQheJb+Qf
+ 92jlTCXoEULdw8O/22i5iCnsgzGPAWddNSDHI5wDkBLOKsETrGnoIQP450b7wx86InSP
+ mNVg==
+X-Gm-Message-State: AJcUukfih76wbVjoQ8IqAEXuX27PzgSgtGvA3+vssZHuAtCrxJU8DgeM
+ Ly/8y95R4eRODK1IeO8x1Sz+I5at
+X-Google-Smtp-Source: ALg8bN4p4IfQL++SQBe0pA1973D4G5SDBovaqtlVTU4LWq5/7fgzfuGe6lVdeThrHVBMn1R00p6sPA==
+X-Received: by 2002:a1c:e18a:: with SMTP id y132mr20259510wmg.48.1547909045808; 
+ Sat, 19 Jan 2019 06:44:05 -0800 (PST)
 Received: from blackbox.darklights.net
- (p200300DCD73A810039E290CB771389D7.dip0.t-ipconnect.de.
- [2003:dc:d73a:8100:39e2:90cb:7713:89d7])
- by smtp.googlemail.com with ESMTPSA id j8sm108970024wmd.0.2019.01.18.15.43.49
+ (p200300DCD73A8100FDA9BD4E9DEACC2C.dip0.t-ipconnect.de.
+ [2003:dc:d73a:8100:fda9:bd4e:9dea:cc2c])
+ by smtp.googlemail.com with ESMTPSA id b7sm80452772wrs.47.2019.01.19.06.44.04
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 18 Jan 2019 15:43:49 -0800 (PST)
+ Sat, 19 Jan 2019 06:44:05 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: linux-amlogic@lists.infradead.org,
-	khilman@baylibre.com
-Subject: [PATCH 3/3] ARM: dts: meson8b: ec100: add the GPIO line names
-Date: Sat, 19 Jan 2019 00:43:39 +0100
-Message-Id: <20190118234339.16050-4-martin.blumenstingl@googlemail.com>
+To: linux-amlogic@lists.infradead.org, linux-rtc@vger.kernel.org,
+ alexandre.belloni@bootlin.com, a.zummo@towertech.it
+Subject: [PATCH v6 0/2] Amlogic Meson6/8/8b/8m2 SoC RTC driver
+Date: Sat, 19 Jan 2019 15:43:30 +0100
+Message-Id: <20190119144332.11984-1-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190118234339.16050-1-martin.blumenstingl@googlemail.com>
-References: <20190118234339.16050-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190118_154351_928378_B753A1B7 
-X-CRM114-Status: UNSURE (   9.13  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190119_064408_649701_9A6ACB30 
+X-CRM114-Status: GOOD (  16.85  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -100,81 +96,89 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-arm-kernel@lists.infradead.org
+ ben.dooks@codethink.co.uk, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, ccaione@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This adds the GPIO line names from the schematics to get them displayed
-in the debugfs output of each GPIO controller.
+This series adds support for the RTC on the 32-bit Amlogic Meson SoCs.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm/boot/dts/meson8b-ec100.dts | 50 +++++++++++++++++++++++++++++
- 1 file changed, 50 insertions(+)
+The series does not have any build dependencies, but does require
+device-tree entries for the relevant boards.
 
-diff --git a/arch/arm/boot/dts/meson8b-ec100.dts b/arch/arm/boot/dts/meson8b-ec100.dts
-index 5ecd787e9265..b35b1c6b8fdc 100644
---- a/arch/arm/boot/dts/meson8b-ec100.dts
-+++ b/arch/arm/boot/dts/meson8b-ec100.dts
-@@ -288,6 +288,56 @@
- 	};
- };
- 
-+&gpio_ao {
-+	gpio-line-names = "Linux_TX", "Linux_RX",
-+			  "SLP_S5_N", "USB2_OC_FLAG#",
-+			  "HUB_RST", "USB_PWR_EN",
-+			  "I2S_IN", "SLP_S1_N",
-+			  "TCK", "TMS", "TDI", "TDO",
-+			  "HDMI_CEC", "5640_IRQ",
-+			  "MUTE", "S805_TEST#";
-+};
-+
-+&gpio {
-+	gpio-line-names = /* Bank GPIOX */
-+			  "WIFI_SD_D0", "WIFI_SD_D1", "WIFI_SD_D2",
-+			  "WIFI_SD_D3", "BTPCM_DOUT", "BTPCM_DIN",
-+			  "BTPCM_SYNC", "BTPCM_CLK", "WIFI_SD_CLK",
-+			  "WIFI_SD_CMD", "WIFI_32K", "WIFI_PWREN",
-+			  "UART_B_TX", "UART_B_RX", "UART_B_CTS_N",
-+			  "UART_B_RTS_N", "BT_EN", "WIFI_WAKE_HOST",
-+			  /* Bank GPIOY */
-+			  "", "", "", "", "", "", "", "", "", "",
-+			  "", "",
-+			  /* Bank GPIODV */
-+			  "VCCK_PWM_C", "I2C_SDA_A", "I2C_SCL_A",
-+			  "I2C_SDA_B", "I2C_SCL_B", "VDDEE_PWM_D",
-+			  "VDDEE_PWM 3V3_5V_EN",
-+			  /* Bank GPIOH */
-+			  "HDMI_HPD", "HDMI_I2C_SDA", "HDMI_I2C_SCL",
-+			  "RMII_IRQ", "RMII_RST#", "RMII_TXD1",
-+			  "RMII_TXD0", "AV_select_1", "AV_select_2",
-+			  "MCU_Control_S",
-+			  /* Bank CARD */
-+			  "SD_D1_B", "SD_D0_B", "SD_CLK_8726MX",
-+			  "SD_CMD_8726MX", "SD_D3_B", "SD_D2_B",
-+			  "CARD_EN_DET (CARD_DET)",
-+			  /* Bank BOOT */
-+			  "NAND_D0 (EMMC)", "NAND_D1 (EMMC)",
-+			  "NAND_D2 (EMMC)", "NAND_D3 (EMMC)",
-+			  "NAND_D4 (EMMC)", "NAND_D5 (EMMC)",
-+			  "NAND_D6 (EMMC)", "NAND_D7 (EMMC)",
-+			  "NAND_CS1 (EMMC)", "NAND_CS2 iNAND_RS1 (EMMC)",
-+			  "NAND_nR/B iNAND_CMD (EMMC)", "NAND_ALE (EMMC)",
-+			  "NAND_CLE (EMMC)", "nRE_S1 NAND_nRE (EMMC)",
-+			  "nWE_S1 NAND_nWE (EMMC)",  "", "", "SPI_CS",
-+			  /* Bank DIF */
-+			  "RMII_RXD1", "RMII_RXD0", "RMII_CRS_DV",
-+			  "RMII_50M_IN", "GPIODIF_4", "GPIODIF_5",
-+			  "RMII_TXEN", "CPUETH_25MOUT", "RMII_MDC",
-+			  "RMII_MDIO";
-+};
-+
- &pwm_cd {
- 	status = "okay";
- 	pinctrl-0 = <&pwm_c1_pins>;
+The series is tested by myself on the Meson8b EC-100 board. Earlier
+versions of this series were tested on an Odroid-C1 board with a
+battery pack attached by Ben Dooks and Kevin Hilman.
+
+I will send the DT changes in a second series so that they can be
+merged once the dependencies have been satisfied.
+
+
+Changes since v5 at [1]:
+- get rid of a dependency on the SZ_16 macro (fixes a kbuild test robot
+  compile error)
+- rebased on top of v5.0-rc1
+- I kept the copyrights / author as in v4 because Ben didn't ask me to
+  do it yet (please speak up if I should change it)
+
+Changes since v4 at [0]:
+- resurrected Ben's patches after 2 years: first I made it apply
+  onto linux-next again
+- I decided to update the author of the patch to my own name since I
+  made a lot of changes compared to Ben's implementation (list of
+  changes below, the diff-stat was: 223 insertions, 163 deletions)
+- make the dt-bindings file name (rtc-meson.txt) match the driver name
+- add a Meson8m2 compatible
+- add the clocks and vdd-supply properties to the match the actual IP
+  block implementation
+- make the resets and interrupts properties mandatory to match the
+  actual IP block implementation
+- removed the status property from the dt-bindings example
+- fix MODULE_LICENSE to match the actual license (GPL v2)
+- switch to SPDX-License-Identifier
+- sort the Kconfig option alphabetically
+- use BIT() and GENMASK() macros consistenly
+- replace #define RTC_REG(x) with actual #defines which match the names
+  from the public S805 datasheet
+- adjust existing #defines to align with the public S805 datasheet
+- add support for the 4x32bit NVMEM (regmem) data
+- implement regmap_bus to access the serial registers. this allows
+  getting rid of the custom locking code and makes the NVMEM
+  implementation much easier.
+- use regmap also for accessing the peripheral registers to make the
+  code shorter
+- add support for the vdd-supply regulator
+- switch from devm_rtc_device_register to devm_rtc_allocate_device and
+  rtc_register_device
+- set range_max to U32_MAX
+- use rtc_time64_to_tm and rtc_tm_to_time64
+- simplify timeout handling and use shorter timeouts (the driver from
+  the 3.10 BSP kernel uses udelay resolution (100us after the reset, 5us
+  for the "comm delay") as well as busy-looping from 0..40000 to wait
+  for "s_ready"
+- removed debug messages which are only printing register values (as
+  these can now be seen in
+  <debugfs>/regmap/c8100740.rtc-peripheral-registers/registers)
+
+
+[0] https://www.spinics.net/lists/devicetree/msg135413.html
+[1] https://patchwork.ozlabs.org/cover/1006597/
+
+
+Martin Blumenstingl (2):
+  dt-bindings: rtc: add device-tree bindings for the Amlogic Meson RTC
+  rtc: support for the Amlogic Meson RTC
+
+ .../devicetree/bindings/rtc/rtc-meson.txt     |  32 ++
+ drivers/rtc/Kconfig                           |  11 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-meson.c                       | 409 ++++++++++++++++++
+ 4 files changed, 453 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/rtc-meson.txt
+ create mode 100644 drivers/rtc/rtc-meson.c
+
 -- 
 2.20.1
 
