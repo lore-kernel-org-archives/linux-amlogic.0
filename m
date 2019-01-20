@@ -2,59 +2,81 @@ Return-Path: <SRS0=Jxtm=P4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AFF90C676ED
-	for <linux-amlogic@archiver.kernel.org>; Sun, 20 Jan 2019 15:06:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 30FDAC26640
+	for <linux-amlogic@archiver.kernel.org>; Sun, 20 Jan 2019 18:44:57 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7E9D620861
-	for <linux-amlogic@archiver.kernel.org>; Sun, 20 Jan 2019 15:06:25 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id F144320861
+	for <linux-amlogic@archiver.kernel.org>; Sun, 20 Jan 2019 18:44:56 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AyU1WKow"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7E9D620861
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=bootlin.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EmWYL3mJ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PGhFNI6/"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F144320861
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/as6KmAZkDLDVPYV70yrKU3FkuCHWXL2Vg8r+d8Ppro=; b=AyU1WKowGhW8je
-	M+c3xtmbZI0LiuPbotG3HhkaNbRBtCY1LMnfUHBxjuDhKFK2aHVSI0QWSewI/t76dhdjJlofdTEMO
-	6G+m0Uk9l85ctA37qLJNfaUMbwAwWRLCy8+LtgVMOxsrphi1Zr4O6tlE3sLniH47g0RWwFBUQblaE
-	flHqrh+E9w0pULywYlHPeqiq7IGu/laDB+MpLcLKJiM0q+T4RJ6+wqOuGbRIRC/9rA5YR1Cjrsm33
-	YNWOKTt1fb4Psn7Akjqy2g2S4JZQ2inOJFE9Zv2G+cuivzeFPZHx4phZyGDHBp+5XfO0g4NW9P2fz
-	LtyOk4xMwWuZk2+7z/iw==;
+	List-Owner; bh=5eYYnNB2LMzR4nZ4A5GOT09SYtTWfib920nJv4goBuk=; b=EmWYL3mJ+rM9Cm
+	/GQSQqkF4H5zq54L/LQAuCFM3WuWUguwkYGEnmhpW3i9BHV7b9UkE89ZMz31Za0NVi/XzyR5Hddqs
+	ht8ER8uMICo3PHRhP0ObHclqCJyf2BAJNfsoEBIYqKDOL3vkm6/kr/4vZMFfEKTzGR7IIYRvyOE8/
+	p1KKvmnPD8PiG8+p/zUr2pkMg5GHTH8UP95YoVJAe5yIp1wcdui9rAiX84vx69dBQrk9qbrOetYO7
+	eBZxcmDjg52+XTLN9G1gmUOfr9MeeAxtd7BOYTrxMgFPMgN8jkFInu0Gn8YfFUdIdvQl3PDL3IicP
+	RneNtvpYmoXwBs3y8bdA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1glEfv-000359-TU; Sun, 20 Jan 2019 15:06:15 +0000
-Received: from mail.bootlin.com ([62.4.15.54])
- by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
- id 1glEfs-00034a-3w; Sun, 20 Jan 2019 15:06:14 +0000
-Received: by mail.bootlin.com (Postfix, from userid 110)
- id 54D372074A; Sun, 20 Jan 2019 16:06:08 +0100 (CET)
-Received: from xps13 (unknown [77.136.42.183])
- by mail.bootlin.com (Postfix) with ESMTPSA id E1A0C20654;
- Sun, 20 Jan 2019 16:06:06 +0100 (CET)
-Date: Sun, 20 Jan 2019 16:06:05 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Jianxin Pan <jianxin.pan@amlogic.com>
-Subject: Re: [PATCH] MAINTAINERS: Add entry for Amlogic NAND controller driver
-Message-ID: <20190120160605.33689354@xps13>
-In-Reply-To: <1547917355-13179-1-git-send-email-jianxin.pan@amlogic.com>
-References: <1547917355-13179-1-git-send-email-jianxin.pan@amlogic.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+	id 1glI5P-0004g5-K5; Sun, 20 Jan 2019 18:44:47 +0000
+Received: from mail-oi1-x241.google.com ([2607:f8b0:4864:20::241])
+ by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1glI5B-0004XD-K7; Sun, 20 Jan 2019 18:44:38 +0000
+Received: by mail-oi1-x241.google.com with SMTP id j21so12876777oii.8;
+ Sun, 20 Jan 2019 10:44:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=gQsmGb1YRsLxdDZf2IXmLQaC4Iit+gXYd0AXQqBzsUw=;
+ b=PGhFNI6/9ymWDFeZDJDX1spuiIKY0OaxrIH0qYIOiig3DQ3fuegceGX5/1iws1uzps
+ m5e9gnQXPceENJWIfJ11cKBD1tQw638lGse1NzAz5CZS/gaQTSck4R665VCgOIfcKOrM
+ LPWkJfnGmQvOXIc3SscPM19xps6+A1eeVhdnGwqycPJn9V1OwAOBLKYxo39CTc3IfxjM
+ n7sCCkOgMaaJYB+s3tU4nx55dwmDZOqD9j7sBtYhyFvMjoe0cFWTad9nOMaaccmnujXK
+ 0TebbR6uPPrMJ0Z27mw5Hr1ynn7PRJ8IxEyuC/223ZgtLdtYMHN/9x6LjfFkqoHUlMwP
+ AeXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=gQsmGb1YRsLxdDZf2IXmLQaC4Iit+gXYd0AXQqBzsUw=;
+ b=VfscwDr/n6XhQ4w+P1yD709fObUpajU3ekW4EnZ7KqHepD4GKt9VHf3/mnlxkCQ4Sv
+ XDGv66w/vxPUXKAb2xAal6SGOudohtvmoHa8ne8WQHuKcotEN0mhijfQpkqBvmsUw0/f
+ S8u563ITRpf5JyCwXNJLyWdK2ErXnK1Uqoo0BG9HP0HUc8p84PUfG3IC/kUwZZixdADj
+ aIe80RPfnpf5fU8UXmACClCjZEcejz4aE5WIAowbZowHNN8T1v+VKyE7IhaANAk1R7Yy
+ Wls0w05cGoAGvjfq+ZufxUY7foYl9W46ipKXGyBccpsaab9P4Vp3/mFkTcuQAeaW2+nA
+ YXCQ==
+X-Gm-Message-State: AJcUukfRnRcfzcnROB6BWK12lZEL6gpAg70W2f3OnWBXR+rcnf5o07PQ
+ UL0eCslMJOVlDEXzaErxZ/J1l1L5DlI74UtvxXQ=
+X-Google-Smtp-Source: ALg8bN6Yuuhwt5IlhBG0oKTVso9J2h8Vm1A95vUdhOiaBOjha8W1PN8dvLMaQnEH93bjhr1CY0AgEa0CQAhVA8XUbtg=
+X-Received: by 2002:aca:5d57:: with SMTP id r84mr3952894oib.243.1548009867634; 
+ Sun, 20 Jan 2019 10:44:27 -0800 (PST)
 MIME-Version: 1.0
+References: <20190113181808.5768-1-linux.amoon@gmail.com>
+ <CAFBinCCD4o0cXEht_7bgV6moCK2WfVRvZq8UUZD3gDo-TaRKbQ@mail.gmail.com>
+In-Reply-To: <CAFBinCCD4o0cXEht_7bgV6moCK2WfVRvZq8UUZD3gDo-TaRKbQ@mail.gmail.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Mon, 21 Jan 2019 00:14:15 +0530
+Message-ID: <CANAwSgQNNRqr3rZRgr71iy7+0zuuYykd+4-1W3LB+Voux6KioQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] ARM: dts: meson8b: odroidc1: Enable usb phy node
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190120_070612_296914_12DFCC8A 
-X-CRM114-Status: GOOD (  12.57  )
+X-CRM114-CacheID: sfid-20190120_104433_691868_4FA4D100 
+X-CRM114-Status: GOOD (  30.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -66,45 +88,210 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- Hanjie Lin <hanjie.lin@amlogic.com>, Victor Wan <victor.wan@amlogic.com>,
- Marek Vasut <marek.vasut@gmail.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Richard Weinberger <richard@nod.at>, Neil Armstrong <narmstrong@baylibre.com>,
- linux-kernel@vger.kernel.org, Boris Brezillon <boris.brezillon@bootlin.com>,
- Jian Hu <jian.hu@amlogic.com>, Liang Yang <liang.yang@amlogic.com>,
- linux-mtd@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>,
- Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
- Brian Norris <computersforpeace@gmail.com>,
- David Woodhouse <dwmw2@infradead.org>, linux-arm-kernel@lists.infradead.org,
+Cc: devicetree <devicetree@vger.kernel.org>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Linux Kernel <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Emiliano Ingrassia <ingrassia@epigenesys.com>,
+ linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
  Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgSmlhbnhpbiwKCkppYW54aW4gUGFuIDxqaWFueGluLnBhbkBhbWxvZ2ljLmNvbT4gd3JvdGUg
-b24gU3VuLCAyMCBKYW4gMjAxOQowMTowMjozNSArMDgwMDoKCj4gQWRkIGVudHJ5IGZvciBBbWxv
-Z2ljIE5BTkQgY29udHJvbGxlciBkcml2ZXIgYW5kIGl0cyBiaW5kaW5nc1swXS4KPiAKPiBbMF0g
-aHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGttbC8xNTQ3NTY2Njg0LTU3NDcyLTEtZ2l0LXNlbmQt
-ZW1haWwtamlhbnhpbi5wYW5AYW1sb2dpYy5jb20vCj4gCj4gU2lnbmVkLW9mZi1ieTogTGlhbmcg
-WWFuZyA8bGlhbmcueWFuZ0BhbWxvZ2ljLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBKaWFueGluIFBh
-biA8amlhbnhpbi5wYW5AYW1sb2dpYy5jb20+CgpJZiB5b3UgYXJlIHRoZSBhdXRob3Igb2YgdGhl
-IHBhdGNoIHlvdXIgU2lnbmVkLW9mZi1ieSBzaG91bGQgY29tZSBmaXJzdC4KCkFsc28sIHdoeSBp
-cyBMaWFuZyB0aGUgTWFpbnRhaW5lcj8gV2h5IG5vdCB5b3U/Cgo+IC0tLQo+ICBNQUlOVEFJTkVS
-UyB8IDcgKysrKysrKwo+ICAxIGZpbGUgY2hhbmdlZCwgNyBpbnNlcnRpb25zKCspCj4gCj4gZGlm
-ZiAtLWdpdCBhL01BSU5UQUlORVJTIGIvTUFJTlRBSU5FUlMKPiBpbmRleCAwYWJlY2M1Li43ZDk3
-NmExIDEwMDY0NAo+IC0tLSBhL01BSU5UQUlORVJTCj4gKysrIGIvTUFJTlRBSU5FUlMKPiBAQCAt
-OTYyOCw2ICs5NjI4LDEzIEBAIEY6CWRyaXZlcnMvbWVkaWEvcGxhdGZvcm0vbWVzb24vYW8tY2Vj
-LmMKPiAgRjoJRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21lZGlhL21lc29uLWFv
-LWNlYy50eHQKPiAgVDoJZ2l0IGdpdDovL2xpbnV4dHYub3JnL21lZGlhX3RyZWUuZ2l0Cj4gIAo+
-ICtNRVNPTiBOQU5EIENPTlRST0xMRVIgRFJJVkVSIEZPUiBBTUxPR0lDIFNPQ1MKPiArTToJTGlh
-bmcgWWFuZyA8bGlhbmcueWFuZ0BhbWxvZ2ljLmNvbT4KPiArTDoJbGludXgtbXRkQGxpc3RzLmlu
-ZnJhZGVhZC5vcmcKPiArUzoJTWFpbnRhaW5lZAo+ICtGOglkcml2ZXJzL210ZC9uYW5kL3Jhdy9t
-ZXNvbl8qCj4gK0Y6CURvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tdGQvYW1sb2dp
-YyxtZXNvbi1uYW5kLnR4dAo+ICsKPiAgTUlDUk9CTEFaRSBBUkNISVRFQ1RVUkUKPiAgTToJTWlj
-aGFsIFNpbWVrIDxtb25zdHJAbW9uc3RyLmV1Pgo+ICBXOglodHRwOi8vd3d3Lm1vbnN0ci5ldS9m
-ZHQvCgpUaGFua3MsCk1pcXXDqGwKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlz
-dHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2xpbnV4LWFtbG9naWMK
+Hi Martin,
+
+Thanks for your review comments.
+
+On Sat, 19 Jan 2019 at 03:59, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> Hi Anand,
+>
+> thank you for this patch!
+>
+> On Sun, Jan 13, 2019 at 7:18 PM Anand Moon <linux.amoon@gmail.com> wrote:
+> >
+> > Add missing vbus-supply link to phy controller for usb_phy0
+> > and usb_phy1 nodes, this changes fixed the power issue
+> > on usb ports usb, changes help fix usb reset warning.
+> I trust you on the fact that GPIOAO_5 controls VBUS of USB0 and USB1
+>
+> to me the schematics are not 100% clear or I'm bad at interpreting them:
+> - I'll refer to odroid-c1+_rev0.4_20150615.pdf
+> - page 1 lists GPIOAO.BIT5 as input for the PWREN signal of the
+> USB_OTG controller (usb0)
+> - page 1 also shows a PWREN signal in the USB_HOST controller (usb1)
+> but not it's input
+> - based on your patch I assume that PWREN is the same signal for both
+> USB controllers
+>
+As per the schematics odroid-c1+_rev0.4_20150615.pdf
+
+It seem that their  vbus setting for *OTG* port. *Bus 01.Port 1* using
+*GPIOAO.BIT5* gpio
+But we also need set power supply for *USB_B* port. *Bus 02.Port 1* ?
+I don't know but I will try to find solution.
+We need to enable some bit in phy driver ?
+
+> > [  821.991470] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> > [  825.243385] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> > [  828.151310] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> > [  830.991241] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> >
+> > Fixes: 2eb79a4d15ff (ARM: dts: meson: enabling the USB Host controller on Odroid-C1/C1+ board)
+> you already split your original patch into two, however I suggest
+> splitting these patches differently:
+> - this one (personally I would choose "ARM: dts: meson8b: odroidc1:
+> fix USB VBUS supplies" as title), which contains the Fixes tag, adds
+> the "usb_vbus" and references it in the "usb0" and "usb1" nodes
+> - enables usb0_phy and usb0 as part of your second patch (I would call
+> that "ARM: dts: meson8b: odroidc1: enable the OTG capable USB
+> controller")
+
+Ok I will fix this as per you suggestion in the next version.
+
+>
+> > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > Cc: Jerome Brunet <jbrunet@baylibre.com>
+> > Cc: Neil Armstrong <narmstrong@baylibre.com>
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > ---
+> > Rebased on Kevin's amlogic/v5.0/fixes branch
+> >
+> > [alarm@archl-c1t ~]$ lsusb -t
+> > /:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
+> >     |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
+> >         |__ Port 1: Dev 4, If 0, Class=Mass Storage, Driver=usb-storage, 480M
+> >         |__ Port 3: Dev 3, If 0, Class=Video, Driver=uvcvideo, 480M
+> >         |__ Port 3: Dev 3, If 1, Class=Video, Driver=uvcvideo, 480M
+> >         |__ Port 3: Dev 3, If 2, Class=Audio, Driver=snd-usb-audio, 480M
+> >         |__ Port 3: Dev 3, If 3, Class=Audio, Driver=snd-usb-audio, 480M
+> > [alarm@archl-c1t ~]$
+> > [alarm@archl-c1t ~]$ lsusb -v|egrep "^Bus|MaxPower"
+> > Couldn't open device, some information will be missing
+> > Bus 001 Device 003: ID 1b71:0056 Fushicai
+> >     MaxPower              500mA
+> > Couldn't open device, some information will be missing
+> > Bus 001 Device 004: ID 152d:0578 JMicron Technology Corp. / JMicron USA Technology Corp. JMS567 SATA 6Gb/s bridge
+> >     MaxPower               30mA
+> > Couldn't open device, some information will be missing
+> > Couldn't open device, some information will be missing
+> > Bus 001 Device 002: ID 05e3:0610 Genesys Logic, Inc. 4-port hub
+> >     MaxPower              100mA
+> > Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+> >     MaxPower                0mA
+> > ---
+> >  arch/arm/boot/dts/meson8b-odroidc1.dts | 23 +++++++++++++++++++++++
+> >  1 file changed, 23 insertions(+)
+> >
+> > diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
+> > index 0f0a46ddf3ff..a49a8509b288 100644
+> > --- a/arch/arm/boot/dts/meson8b-odroidc1.dts
+> > +++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
+> > @@ -83,6 +83,19 @@
+> >                 regulator-max-microvolt = <5000000>;
+> >         };
+> >
+> > +       usb_vbus: regulator-usb-vbus {
+> please add a comment here with some details about the regulator and
+> add a hint that the signal in the schematics is called "PWREN"
+Ok I will add this comment in the next patch.
+>
+> > +               compatible = "regulator-fixed";
+> > +
+> > +               regulator-name = "USB_VBUS";
+> > +               regulator-min-microvolt = <5000000>;
+> > +               regulator-max-microvolt = <5000000>;
+> > +
+> > +               vin-supply = <&p5v0>;
+> > +
+> > +               gpio = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
+> > +               enable-active-high;
+> > +       };
+> > +
+> >         tflash_vdd: regulator-tflash_vdd {
+> >                 /*
+> >                  * signal name from schematics: TFLASH_VDD_EN
+> > @@ -293,8 +306,18 @@
+> >         pinctrl-names = "default";
+> >  };
+> >
+> > +&usb0_phy {
+> > +       status = "okay";
+> > +       vbus-supply = <&usb_vbus>;
+> > +};
+> > +
+> >  &usb1_phy {
+> >         status = "okay";
+> > +       vbus-supply = <&usb_vbus>;
+> > +};
+> > +
+> > +&usb0 {
+> > +       status = "okay";
+> >  };
+> I believe there's a problem with the usb/usb_phy nodes here. on my
+> Odroid-C1 this results in:
+> # cat /sys/kernel/debug/regulator/regulator_summary | grep USB_VBUS
+>    USB_VBUS                      0    0      0 unknown  5000mV     0mA
+>  5000mV  5000mV
+> (open count is 0)
+>
+> if I move "vbus-supply" to the "usb1" node (just as an example) then I get:
+> # cat /sys/kernel/debug/regulator/regulator_summary | grep USB_VBUS
+>    USB_VBUS                      1    1      0 unknown  5000mV     0mA
+>  5000mV  5000mV
+
+Sorry for the mixing the vbus-supply node.
+
+After fix the phy driver code and dts changes I am getting this changes.
+# cat /sys/kernel/debug/regulator/regulator_summary | grep USB_VBUS
+    USB_VBUS                      1    2      0 unknown  5000mV
+0mA  5000mV  5000mV
+
+Now I am able to enable both *Bus 01.Port 1* and *Bus 02.Port 1*
+
+# lsusb -t
+/:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
+    |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
+        |__ Port 1: Dev 4, If 0, Class=Mass Storage, Driver=usb-storage, 480M
+        |__ Port 3: Dev 3, If 0, Class=Video, Driver=uvcvideo, 480M
+        |__ Port 3: Dev 3, If 1, Class=Video, Driver=uvcvideo, 480M
+        |__ Port 3: Dev 3, If 2, Class=Audio, Driver=snd-usb-audio, 480M
+        |__ Port 3: Dev 3, If 3, Class=Audio, Driver=snd-usb-audio, 480M
+/:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
+
+But not usb device are getting enable on *Bus 01.Port 1*
+
+>
+> unfortunately neither your original patch nor the modified version
+> seem to enable USB VBUS on my Odroid-C1.
+> I have documented my findings already back in December, see "USB
+> issues on Odroid-C1" [0]
+> help on that would be highly appreciated :)
+>
+> on which board revision have you tested this patch?
+>
+
+I have with me for testing
+
+ODROID-C0 REV 0.4 20151217
+ODROID-C1+ REV 0.4 20150615 ----> current testing on
+ODROID-C1+ REV 0.4 20160226
+
+>
+> Regards
+> Martin
+>
+>
+> [0] http://lists.infradead.org/pipermail/linux-amlogic/2018-December/009451.html
+
+Best Regards
+
+-Anand
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
