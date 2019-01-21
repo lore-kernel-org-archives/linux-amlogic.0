@@ -2,20 +2,20 @@ Return-Path: <SRS0=UU9i=P5=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,UNWANTED_LANGUAGE_BODY,
-	USER_AGENT_MUTT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.6 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,USER_AGENT_MUTT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C3B73C31684
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jan 2019 17:09:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DA63DC31681
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jan 2019 17:10:33 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8C7C320879
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jan 2019 17:09:21 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A9B3D20879
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jan 2019 17:10:33 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="X4PSUl43"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8C7C320879
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Mt+rH10A"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A9B3D20879
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,57 +24,55 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LyLWLJ2wnqcvGi19o8Zyit+uwnE16qvMbZ6d4wfjerI=; b=X4PSUl4338Jfm1
-	PE2kpzVSYmyqmFuCzUq354ZkN17xJfs2mnKlRN18FACrtWZGO2Eh7eC0nRPmqGASFo6EPEBYpGeYK
-	nLcCsH+jT4DFx3sB7aQePbv+/icWKkS7lEFatKJ4f54Mw+5N17biSxCf00DaqRBVNfqLCYv9vJ8NH
-	gXOoJ0rmTt43UIoVjQNwgylmC26CJ+ss2qC95sMDBhDaCBcaZKBLhvY/Lq7SwfSu0A6m/wdDDDj/F
-	sHWjNnH2E06lyEdDgiWJ7rovPUhxOeIHJM0o19ip1LOiVy6vE5lFvRXG2DMKO/KjWoa9l0t0TWbXW
-	NpYkzRByk1KP3va13Hkg==;
+	List-Owner; bh=B1E9gDRG7ZyPYVml89eBYP5ThiPpFPXyQ4VQnLT3SrU=; b=Mt+rH10Ai7CiYv
+	kXnWiuN/ZZFXwfunFLB1mzSok+YuLLrkiqibuyvXK555zssJyceBwJnvvct9J8TbG9w7SXH/AHF7u
+	UjDGNh14XXIp4E+gUoa4rMDnmLhquNR+NdCkvIXeOkl+mPhw6md914IX++Q4f/GmUHcgQXflT3+US
+	vY7AtwzLZm7szlG2ad+G4EaurPQGYIWupZbU7F8RlCScfX8oSAjeQ5K2tqjoaOaVSgj4aYPiCytqT
+	Srwd8ZD2L1dY3u39EpLQa/GwFUWyPdvwZyfc9FGCj1FJfS49HErR5pJ8Nv58LCpUy1BclF5K6KkUw
+	ITKMVfONupoM4ekxpUMQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gld4U-00064s-Dd; Mon, 21 Jan 2019 17:09:14 +0000
-Received: from mail-ot1-f65.google.com ([209.85.210.65])
+	id 1gld5g-0007uh-9M; Mon, 21 Jan 2019 17:10:28 +0000
+Received: from mail-oi1-f194.google.com ([209.85.167.194])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gld4S-00064O-1Z; Mon, 21 Jan 2019 17:09:13 +0000
-Received: by mail-ot1-f65.google.com with SMTP id k98so21156965otk.3;
- Mon, 21 Jan 2019 09:09:11 -0800 (PST)
+ id 1gld5Z-0007tE-Bt; Mon, 21 Jan 2019 17:10:27 +0000
+Received: by mail-oi1-f194.google.com with SMTP id v6so15119546oif.2;
+ Mon, 21 Jan 2019 09:10:21 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to:user-agent;
- bh=vxe1DFDMhLD+4kqrUQTKR+OGErAZITvYwBYiudjM6vI=;
- b=l8Y4lZWzmot0O/KeMtxMCp6gcPi75fJ7IZszOQgFPT0z+eYq/r8gJr0CTIFihYmSWn
- QUQRnvUkT74d6Rhe/GvOx0vzsPYpFJmDADJnMfFv8988LpVgpMGTZD/n1hRYCbFRF85K
- HZMw7H+4oIcHJ+RuU37fkAdEdYmNlJ7veXO1fj/nVJaIJ/HfSpRmTd94I7FeQE+3sxWp
- oHtFzZPvB62bq2l0uPNrjJMElBXsIOW+wvwq9iIVgfIwZMIcFZnXEaaPT1HvM0s3/RAZ
- v+xuEv1XHwujpKA3E5ZcX+o7AzVh7Dk+vgsoYhjqGD1NirRWsBiqgX/u7TiMB5ry0j0o
- 9lfg==
-X-Gm-Message-State: AJcUukcWvOSfrdCfCT3zRQ8dPdmfePxw8/79//B0f4Vy9c6Gh2ZSy+T/
- gfsAVvnAukdRQDiyxV4f3A==
-X-Google-Smtp-Source: ALg8bN70UicKRfjEbeAmBk3kNr0Bl1UzyYzhbpkChDu+hQDdebX0i1p813vFb8bGrLNVb7yXvHNCjQ==
-X-Received: by 2002:a9d:620f:: with SMTP id g15mr18845099otj.296.1548090551140; 
- Mon, 21 Jan 2019 09:09:11 -0800 (PST)
+ bh=LQZ0RN34D2hW12PR3UPXkOMhkhpjo0tL1Zas8kCCPco=;
+ b=AkVGvGaaf3gho2sgDag0Aex+T1cykQtRDgIIM6Ie5v17J9xYnIxCGbyTKCLw1zNEMC
+ Kaj0Eyjy9vQxdqKm+1r1mzI3/KB/+Lw6FJid2UqacgnDiaaOtVp4vNhi9URWEQ44NYKj
+ 4s+6bQZyM/Rqmm68pQUqhMVP8OVDBBbAT+FllkLBolTuAtCn9noioEFQJl6cSy1C+AuW
+ yN3iwi9SBHTpQ8WKOpI8m0xoul7Mofh/R69hSlA98NxLf4UqRNFgZlJO5I1bMfn7bwc3
+ cB+hX2Uk2huN82CG0A+2+f+sctPeF/JyVIK4QyE5AxnUZZUxvBM7KUTFuB1M8VMIN6CH
+ XGlw==
+X-Gm-Message-State: AJcUukfOJZbWeSJLjfBthNIW2v0u/T8PwEvK1dbW9D3J4Rua8bqRV4PD
+ sxfkSgbSWJLah3uO0q1ziw==
+X-Google-Smtp-Source: ALg8bN6vlKKmgSljeMVxbOa2VFpltgrb28B5/EXX8WtrovBjZqgkEA0Pz3WFpXGzoUyVaZ71ts4u2Q==
+X-Received: by 2002:aca:5241:: with SMTP id g62mr3103336oib.354.1548090620362; 
+ Mon, 21 Jan 2019 09:10:20 -0800 (PST)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net.
  [24.155.109.49])
- by smtp.gmail.com with ESMTPSA id l6sm5754831otk.51.2019.01.21.09.09.10
+ by smtp.gmail.com with ESMTPSA id v1sm5775452otq.80.2019.01.21.09.10.19
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 21 Jan 2019 09:09:10 -0800 (PST)
-Date: Mon, 21 Jan 2019 11:09:09 -0600
+ Mon, 21 Jan 2019 09:10:19 -0800 (PST)
+Date: Mon, 21 Jan 2019 11:10:19 -0600
 From: Rob Herring <robh@kernel.org>
 To: Loys Ollivier <lollivier@baylibre.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: Add vendor prefix for "GlobalTop
- Technology, Inc."
-Message-ID: <20190121170909.GA928@bogus>
+Subject: Re: [PATCH v2 2/4] dt-bindings: gnss: add mediatek binding
+Message-ID: <20190121171019.GA2903@bogus>
 References: <1547744074-28308-1-git-send-email-lollivier@baylibre.com>
- <1547744074-28308-2-git-send-email-lollivier@baylibre.com>
+ <1547744074-28308-3-git-send-email-lollivier@baylibre.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <1547744074-28308-2-git-send-email-lollivier@baylibre.com>
+In-Reply-To: <1547744074-28308-3-git-send-email-lollivier@baylibre.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190121_090912_091473_E9165CCA 
-X-CRM114-Status: UNSURE (   9.51  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190121_091025_772138_BAAE79C3 
+X-CRM114-Status: GOOD (  10.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,16 +95,21 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, 17 Jan 2019 17:54:31 +0100, Loys Ollivier wrote:
-> Add globaltop vendor definition.
+On Thu, 17 Jan 2019 17:54:32 +0100, Loys Ollivier wrote:
+> Add binding for Mediatek-based GNSS receivers.
 > 
 > Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
 > ---
 > 
-> v2: Alphabetical order
+> v2:
+> Renamed bindings from Globaltop/gtop to Mediatek/mtk.
+> Moved current-speed as an optional propertie.
+> Removed the status line in the example.
+> Added "mediatek,mt3339" compatible.
 > 
->  Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/gnss/mediatek.txt          | 39 ++++++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gnss/mediatek.txt
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
