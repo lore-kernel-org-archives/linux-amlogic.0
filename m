@@ -2,90 +2,75 @@ Return-Path: <SRS0=UU9i=P5=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 673D3C31680
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jan 2019 18:37:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 62EF3C31680
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jan 2019 18:44:58 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3E30621721
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jan 2019 18:37:59 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3474D21726
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jan 2019 18:44:58 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Hm+SlTEa";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="BzicyZlR"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3E30621721
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="BqOQ4Dxt";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="ukQfKm8O"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3474D21726
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=XOUeZz32vrxa/8800OZrsNyW5UT3yqiJLEjVa+ZdNEQ=; b=Hm+SlTEaosQ8Qv
-	gtsFGASaf5wJXNd9Tpt/3f5E5xwAX6lv4CL3zuHv2aAqSAgJHVmQL2WH1nzB2rdD0TL5yrd0Pqclu
-	Lim1+RrjNx2MmaDQGugjYH8znscRdOz14wYnbcW++U+1Vs627GBzxKPCaE+mRr3c5tgQch7cX5zog
-	KA1XCfYqhOU0bjoFpp4AyqmnLsOvvmPcfwB3dD7qzZohpvbime2Ft5CPZ+lfN3X4hVR7EE5GI3QZM
-	4t1pclHMgGPLK9TZLFz6Bci3mVpF4mNKQJ8SdXrmMtUOmdKZeeRxagzVsYUKTEAs/xL1noAT7vj4u
-	u705danXLWcPSHqbNmqg==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=guUM+Bn06d5/tPePqK+NrF9quoQVJPQ25HlaB8Pfe4k=; b=BqOQ4DxtOCz9C7
+	ybegvP8UiP3u07gzeVgOOS74ffj/kCkwFbAfeZCQk0VEDhWVLH1MEM1GJvSQyWTLqy4nMs5otKZRj
+	CpP+hr1xjqsOAuZzIG2QZZ1WIqe8j8JLb42x4nTO8rHO7w1RNm2AwOGpbkeYiAWuaslStgRKf+70I
+	it8MdsZFh7bnu6izPArbne/sGdfXbusx3XEAWpReDWa9VbwDg+q1FgRYIk0WMO7jlhZYiaYumC7l6
+	MgZwBUPXjOmbJeslkD1r64++4gX+s9EcQfTSEKkdBVc0mvvwYw4Osc9LGhulYXTJxS9BfXKLbf1/e
+	f1nUUotYnriThyaASuPQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gleSF-00089f-3k; Mon, 21 Jan 2019 18:37:51 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1gleZ2-0002e7-CD; Mon, 21 Jan 2019 18:44:52 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gleS0-0007wH-Fq
- for linux-amlogic@lists.infradead.org; Mon, 21 Jan 2019 18:37:37 +0000
-Received: by mail-wm1-x344.google.com with SMTP id p6so11795720wmc.1
- for <linux-amlogic@lists.infradead.org>; Mon, 21 Jan 2019 10:37:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=IbM0DOHyY5jDzz8JUksEJIkvkZh69ojXO6oQ2IQ4b2c=;
- b=BzicyZlRZpKGla3A8MH48unLgy+9GDe/MS88i0gFXdjLs1rRegmgg9w2PdUkxzVHIz
- UA+F7FOTX0CfsTi/OituDbsyCkKFu9YbU0qZ13U3pgX+yXtzryClDXMk9UUx9SVT2uNO
- ImWIP4GdzJRaV0yNNZ6K4CvukXY0Q2sl+sVHjmhmExOS/uyZPLinl0a2GxJSk73lDdBA
- 0q6h1iwrU0wL2MfwwcRupUTeTkUHS0aXxbZ+WLVFGZz16K4F6uJrXnPXtw4IgNqmzlw5
- DYdb78zJrUorRillGFqghAgH4aZFW+rg0CztXKgFLO8lp4nvIFSyR3M+NJVxOeDtCCwA
- 4XVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=IbM0DOHyY5jDzz8JUksEJIkvkZh69ojXO6oQ2IQ4b2c=;
- b=OaBJm2W0LIOQ0loNCVgU4EpKUXY3rQOYzzRTdpLd4Tq1fgPFjsnVCsAXCfaYpBvKN6
- cSyraY/D3tAYilS2QBUqIFnHtofzR0ou2q26VmQCXQOwixMrqcLnNtipGQHw1STSqn5K
- LH/a9ppz/kBTDgbljjqfQfWvMUH++4wj5Meaf3bk7XVrH9LrnSTp36OXTJEwFF5slxlR
- SPKihDrYPIkIdd7rX0HiXeAHSo2F2BRftfOia3eHKLcYDtQ78z8yfUJEQ2asp4rjR1M0
- x6U0ZDwTH98AwiEwtrru2y7ZP/sqY0V9qO2+Rt78MDmNq/w6v5708X86F9r6MHt8RtTL
- ejAA==
-X-Gm-Message-State: AJcUukeuFGkX+D7hKySXAofhdI173oUhF8MO4n6fl303Q4dNaqeDENWR
- RjKzCzh+qcI2oKRKS0bTFpc=
-X-Google-Smtp-Source: ALg8bN74X/1kQ/ljU1/EePf8kWlSiqNK9rZIXDijxhcGCIIwumXTi2t0vB0hJmKupiT0YVZJHT5iCQ==
-X-Received: by 2002:a1c:2d42:: with SMTP id t63mr535619wmt.9.1548095854572;
- Mon, 21 Jan 2019 10:37:34 -0800 (PST)
-Received: from blackbox.darklights.net
- (p200300DCD73A8100428D5CFFFEB99DB8.dip0.t-ipconnect.de.
- [2003:dc:d73a:8100:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id 199sm55700630wmh.21.2019.01.21.10.37.33
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 21 Jan 2019 10:37:33 -0800 (PST)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: lgirdwood@gmail.com,
-	broonie@kernel.org
-Subject: [PATCH 0/1] pwm-regulator: reduce noise on EPROBE_DEFER
-Date: Mon, 21 Jan 2019 19:37:22 +0100
-Message-Id: <20190121183723.25231-1-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.20.1
+ id 1gleYz-0002df-1e; Mon, 21 Jan 2019 18:44:50 +0000
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
+ [209.85.221.47])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 0572521736;
+ Mon, 21 Jan 2019 18:44:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1548096288;
+ bh=WkBPCGNsdmn4jUhxAXGoZLrFy2EOGBTLPTLOWLTc7Nw=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=ukQfKm8OCoVpXwwuS7QE4vGrQMxA0Q+R+t7u+Cl0gJlmAGeeF3jsIPzsITocDS+gX
+ jHRs2poRKOtbXC0TEcXhBGcSnpo1mu6pEaMthQAJ8ptG+hpR+q5cMEAy5dcF1/SwK+
+ OLnjuhqlujJKMJN0IWQSqpdLQNoPyiQqgy3E1XDE=
+Received: by mail-wr1-f47.google.com with SMTP id v13so24599388wrw.5;
+ Mon, 21 Jan 2019 10:44:47 -0800 (PST)
+X-Gm-Message-State: AJcUukelIq6C4OC4mn+lwuuXnYSfnkwxT7zOFVNPlM7ycSLt8Jg1u1Ec
+ EzSXJCm5NXi+xmgMIjpj8UrLc8ylgbJU8Lms7mc=
+X-Google-Smtp-Source: ALg8bN5jhLVM7PhuAyOsnPvXiFgHqX1g/kuXwBtzPZxKMWJHYa11vtn8xHyCLRMHpDn/srbc4qfsdmcu7tYK/jdu2tc=
+X-Received: by 2002:adf:b243:: with SMTP id y3mr30303350wra.184.1548096286455; 
+ Mon, 21 Jan 2019 10:44:46 -0800 (PST)
 MIME-Version: 1.0
+References: <1547744074-28308-1-git-send-email-lollivier@baylibre.com>
+ <1547744074-28308-3-git-send-email-lollivier@baylibre.com>
+ <20190121171019.GA2903@bogus> <86imyhapl9.fsf@baylibre.com>
+In-Reply-To: <86imyhapl9.fsf@baylibre.com>
+From: Sean Wang <sean.wang@kernel.org>
+Date: Mon, 21 Jan 2019 10:44:35 -0800
+X-Gmail-Original-Message-ID: <CAGp9LzpgZDEdKFH4ZLqxtO60unxXRJoXNsGugNT=oojHDMp+3g@mail.gmail.com>
+Message-ID: <CAGp9LzpgZDEdKFH4ZLqxtO60unxXRJoXNsGugNT=oojHDMp+3g@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] dt-bindings: gnss: add mediatek binding
+To: Loys Ollivier <lollivier@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190121_103736_545725_B433A290 
-X-CRM114-Status: UNSURE (   9.64  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190121_104449_099620_56FB2B2D 
+X-CRM114-Status: GOOD (  16.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,42 +82,64 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, thierry.reding@gmail.com,
- linux-kernel@vger.kernel.org, boris.brezillon@free-electrons.com
+Cc: Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, Johan Hovold <johan@kernel.org>,
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-pwm-regulator can be a bit noisy during boot.
+On Mon, Jan 21, 2019 at 9:29 AM Loys Ollivier <lollivier@baylibre.com> wrote:
+>
+>
+> On Mon 21 Jan 2019 at 17:10, Rob Herring wrote:
+>
+> > On Thu, 17 Jan 2019 17:54:32 +0100, Loys Ollivier wrote:
+> >> Add binding for Mediatek-based GNSS receivers.
+> >>
+> >> Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
+> >> ---
+> >>
+> >> v2:
+> >> Renamed bindings from Globaltop/gtop to Mediatek/mtk.
+> >> Moved current-speed as an optional propertie.
+> >> Removed the status line in the example.
+> >> Added "mediatek,mt3339" compatible.
+> >>
+> >>  .../devicetree/bindings/gnss/mediatek.txt          | 39
+> >>  ++++++++++++++++++++++
+> >>  1 file changed, 39 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/gnss/mediatek.txt
+> >>
+> >
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+>
+> Thanks Rob,
+> If there are no objections by others, I'll stop sending these two patch
+> (1/4 and 2/4) and reference any new patch serie for 3 and 4 as depending
+> on those two.
+>
 
-One example are the 32-bit Amlogic SoCs when using
-multi_v7_defconfig (which has CONFIG_REGULATOR_PWM=y and
-CONFIG_PWM_MESON=m). During boot the pwm-regulator is probed multiple
-times - the first five tries end with EPROBE_DEFER. This is expected
-because the pwm-meson driver is only loaded once rootfs is ready (as
-it's compiled as kernel module).
+Hi Loys,
 
-Other drivers typically suppress an error message for EPROBE_DEFER
-cases, so let's do the same for the pwm-regulator driver.
+Thanks for adding the first GPS device driver. It's really nice to see
+more device drivers added to upstream support.
 
-Example boot log where multiple "pwm-regulator regulator-vcck: Failed
-to get PWM: -517" messages are logged (Odroid-C1, v5.0-rc3): [0]
+Do you mind send the series again with Cc linux-mediatek@lists.infradead.org ?
 
+Sean
 
-[0] https://storage.kernelci.org/mainline/master/v5.0-rc3/arm/multi_v7_defconfig/lab-baylibre/boot-meson8b-odroidc1.html
-
-
-Martin Blumenstingl (1):
-  regulator: pwm: suppress EPROBE_DEFER error message
-
- drivers/regulator/pwm-regulator.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
--- 
-2.20.1
-
+> --
+> -L
+>
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
 
 _______________________________________________
 linux-amlogic mailing list
