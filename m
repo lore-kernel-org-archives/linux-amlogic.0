@@ -2,72 +2,83 @@ Return-Path: <SRS0=UU9i=P5=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.6 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SPF_PASS,USER_AGENT_MUTT autolearn=ham
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0FAECC31680
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jan 2019 19:18:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 62A15C37120
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jan 2019 20:56:09 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CD5B72089F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jan 2019 19:18:36 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3302320861
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jan 2019 20:56:09 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="BKLY0FQM";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="NQPzqF3t"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CD5B72089F
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Pz0O/jik";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="i+M98hlX"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3302320861
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=YFcOaW3Mz5U07/3IYWfT4Ml4JMOOnTlZDhlF5L/Yjn4=; b=BKLY0FQM+ubRivU/hV4X12KKU
-	pztEjVJ1BNf9+ERuw9JgUQQ4Fk/aSV+nIxFigrTpNUCMWTM4rJl5J8vsOIrM5mrb2T5YiD8UO6Oi2
-	Lspx498tbftaSYzQXj8UC6FlhFKVEtcZJP2O/0x3Y0RBfdCgEA6wuk7WL1asZw1SyXrdXHif2m5TS
-	mGylAdO6p2BzEmOKnnzrcxrphPFnnxrQ+89ooK4OHNbUpIG0+LWqNyjs6gtFJ39XtFLe+5xv4Rc8L
-	J21yXuN9v13PsAKUh0sMC66N2ie32wZgVMC5MhWZSIvPeSmedfw93oKZ3crqFo0iTwtgK/jewAjxj
-	/1+/VFxiw==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=pmF1eV/q8kKopw/9hHWGIz6FRqdFNzc5DJYzJWYfnow=; b=Pz0O/jikt1XDP0
+	I4FS77lhUwcSpzV9M6fPlly0VM24pmIPx1W5I4UaY9V9S3WUg7YBwpt/nF2Ehe2BbrpSKvWV8Q/Og
+	THmsYWg+xdGiCYhmEYAexFRNkcOjqMozi5JHe9Bz3uZqEufw7NLzDCP+xhUMCUYYlteOBTee23J9d
+	FteAjmZJBtiMeMG8kEH+R06Y+0mMycdXIPnYeBueYbJq1CbU4QNn4VQrFs9DFFdtx72RyizKbEk+g
+	LwdcqSNMAZyT6DTJ68Puo2JrZobkAg1vopsaCP5GcnWdEZy+kiML1Y4DVuyk0INr00lT9E4QEBWNy
+	LL71Er/ZI6LP3A0sDK8g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1glf5Z-0004f1-7g; Mon, 21 Jan 2019 19:18:29 +0000
-Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
+	id 1glgby-0002Uh-Vv; Mon, 21 Jan 2019 20:56:02 +0000
+Received: from mail-oi1-x242.google.com ([2607:f8b0:4864:20::242])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1glf5Q-0004Tl-Qz
- for linux-amlogic@lists.infradead.org; Mon, 21 Jan 2019 19:18:24 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=ahi+dxguvwUuZsF+8UEgo9xEwYr6sdmy1TqWwWNKKrg=; b=NQPzqF3t54TN5eY8xloDb9A5I
- Dr5MlEc6Spj4SFS0MTdZmAyY9AhkCOO6WAMQjuj1soP53DOYcBdY2HDNIs04UpL3PHzRIDCJ3Af6g
- PeQZGxg+2W5gLNEW15CHtfOhsWraxRksNUJf0DuWKTz4v4KwRdLCvZH5NTYDqNtrphk7M=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net
- ([82.37.168.47] helo=debutante.sirena.org.uk)
- by heliosphere.sirena.org.uk with esmtpa (Exim 4.89)
- (envelope-from <broonie@sirena.org.uk>)
- id 1glf5N-0004zU-5g; Mon, 21 Jan 2019 19:18:17 +0000
-Received: by debutante.sirena.org.uk (Postfix, from userid 1000)
- id 9DB561127D00; Mon, 21 Jan 2019 19:18:16 +0000 (GMT)
-Date: Mon, 21 Jan 2019 19:18:16 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH 0/1] pwm-regulator: reduce noise on EPROBE_DEFER
-Message-ID: <20190121191816.GH12679@sirena.org.uk>
-References: <20190121183723.25231-1-martin.blumenstingl@googlemail.com>
+ id 1glgbw-0002UM-7g
+ for linux-amlogic@lists.infradead.org; Mon, 21 Jan 2019 20:56:01 +0000
+Received: by mail-oi1-x242.google.com with SMTP id r62so15674659oie.1
+ for <linux-amlogic@lists.infradead.org>; Mon, 21 Jan 2019 12:55:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=OKBB/nbJ0k8tun2GicnRPygSL370rUx/qPCIojnYS0w=;
+ b=i+M98hlX6664mZd9+nua5s9g6bLxv0FGNXsz3McPTtf/FwqdnjsxGesCDOxtWv3b8k
+ EMOqYulUZbIz2lLdzeMG8zMkRUgNOAyd0L32iG6TOGq8jZqo1RP7xG+8G6SPv7dBIZpQ
+ 1IuBlAoiTp8fJFPhhEQJHrnKI7bGZbJoO8k7uhtDAExivTGAqO1bNqZBUY0kTNEIFiV2
+ zzAjdq7/FSEeR3LZsHhnn8BxeNl4P1dXj61mwAKAUsrYWvypCKd61W3UUnWf1jZZnKkJ
+ +uSJrrBp1Q1Kj9db9BnnDIr0w+bkypMmexcOmZlYTpR1aSq/uXlEQA2Ahh0UCY4kgLRX
+ 9asg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=OKBB/nbJ0k8tun2GicnRPygSL370rUx/qPCIojnYS0w=;
+ b=s/qPUQ6DO0fBtyF5Ui1O+7REWZ0q1a3LnwtQHXswXjB5+svpOX8P+YfSGefs7TP2f7
+ 1grWGdFcgM3WG7MX89Potn928HoG8/DL+K8q8/qbiRUQ/RgeLlCtjSbj+X5oP9K0wi/v
+ MqINi3Xm9y1hlx/HsMdoUm2xVqQZ+4XH91tmzYd/L4LWqoPG7oTWuTePHE6+BrEJ58Pg
+ K3SQ17zoT6WrmpQwOUnn3BuKgOY8YbMcVB+TNcADNZk7u4qBKshl0JayRuFGSbWXEb9k
+ wwc6WAZ3J9XVZ+GuKNMQcql8xSqRGzvqNs2k8Mg2izOqlpSi+guqEYXlzo570vQRIXJ/
+ Vwyw==
+X-Gm-Message-State: AJcUukc90HBiv+LBUq3ME7Ju6blM9PuN1pFAcRweJxTNfYkM6dKee/4H
+ YUtwaGDf9OIEYra6xVPnWiGf/KpHvzPWZF5S6Iw=
+X-Google-Smtp-Source: ALg8bN4X1zBlAOtMn3AK2UnD6WwjYDQBNQMWLd6229NDPn97fNAKJngoaxEUjD8Ikm67FEJxdtNL0qtx0r4PzhWdrhQ=
+X-Received: by 2002:aca:5b43:: with SMTP id p64mr6309612oib.41.1548104158237; 
+ Mon, 21 Jan 2019 12:55:58 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20190121183723.25231-1-martin.blumenstingl@googlemail.com>
-X-Cookie: Body by Nautilus, Brain by Mattel.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190121183723.25231-1-martin.blumenstingl@googlemail.com>
+ <20190121191816.GH12679@sirena.org.uk>
+In-Reply-To: <20190121191816.GH12679@sirena.org.uk>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Mon, 21 Jan 2019 21:55:47 +0100
+Message-ID: <CAFBinCDK92yZZFzkoZriCSObm+jf1=RQ99K4uAGSCKSnTXhURA@mail.gmail.com>
+Subject: Re: [PATCH 0/1] pwm-regulator: reduce noise on EPROBE_DEFER
+To: Mark Brown <broonie@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190121_111821_454894_EACC2C12 
-X-CRM114-Status: UNSURE (   7.87  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190121_125600_292501_17522E01 
+X-CRM114-Status: GOOD (  11.74  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -82,62 +93,39 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Cc: linux-amlogic@lists.infradead.org, thierry.reding@gmail.com,
  boris.brezillon@free-electrons.com, lgirdwood@gmail.com,
  linux-kernel@vger.kernel.org
-Content-Type: multipart/mixed; boundary="===============5090431300204055993=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Mark,
 
---===============5090431300204055993==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4LFBTxd4L5NLO6ly"
-Content-Disposition: inline
+On Mon, Jan 21, 2019 at 8:18 PM Mark Brown <broonie@kernel.org> wrote:
+>
+> On Mon, Jan 21, 2019 at 07:37:22PM +0100, Martin Blumenstingl wrote:
+> > pwm-regulator can be a bit noisy during boot.
+> >
+> > One example are the 32-bit Amlogic SoCs when using
+> > multi_v7_defconfig (which has CONFIG_REGULATOR_PWM=y and
+>
+> Please don't send cover letters for single patches, if there is anything
+> that needs saying put it in the changelog of the patch or after the ---
+> if it's administrative stuff.  This reduces mail volume and ensures that
+> any important information is recorded in the changelog rather than being
+> lost.
+noted - sorry for the noise.
 
-
---4LFBTxd4L5NLO6ly
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Jan 21, 2019 at 07:37:22PM +0100, Martin Blumenstingl wrote:
-> pwm-regulator can be a bit noisy during boot.
->=20
-> One example are the 32-bit Amlogic SoCs when using
-> multi_v7_defconfig (which has CONFIG_REGULATOR_PWM=3Dy and
-
-Please don't send cover letters for single patches, if there is anything
-that needs saying put it in the changelog of the patch or after the ---
-if it's administrative stuff.  This reduces mail volume and ensures that=20
-any important information is recorded in the changelog rather than being
-lost.=20
-
---4LFBTxd4L5NLO6ly
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAlxGGvcACgkQJNaLcl1U
-h9A5rgf6AtxZSaBfnctsJOk/GS0x/WFOmJUoUIpp7rv7v2vkx/BA45InnEMRVvBY
-gcYd/xIOpOPMj/rhYooVuOfPtRjBxh64Wh8hDR7Kjn1EtJv4INM1rr2O4hKATupB
-JuR5lNtrnFb20nmN/fsi7aearRB74Pohikt22TI/Bi2yyTxwb1bIE4b/her0/s7u
-kWN2U7IhZGsHu3a99e7vJhb0yNT7tSldrb6tyKcJIrWbMY3co6ZdQYzYJgF1m5fV
-MVgy7m2rjNuDqAAMrUIEZbBTts41fbNNi+BuSr7XFoXBZML6/Aenc01qk6nRkPRq
-aj6eZJp/3Dn9gW1aGpD4VNGpk1eSEQ==
-=WlEa
------END PGP SIGNATURE-----
-
---4LFBTxd4L5NLO6ly--
+the patch description already contains all relevant information, so I
+won't re-send the patch.
+only the KernelCI link is not included because I'm not sure how long
+it's valid (instead the description includes all relevant information
+which also can be seen in the KernelCI link)
 
 
---===============5090431300204055993==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Regards
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============5090431300204055993==--
-
