@@ -2,21 +2,21 @@ Return-Path: <SRS0=UU9i=P5=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C09CC282DB
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jan 2019 10:40:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C2A09C282DB
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jan 2019 10:43:59 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EFAC120663
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jan 2019 10:40:28 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8F70220663
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jan 2019 10:43:59 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Kmofvh/1";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ie8YfUMQ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EFAC120663
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="M+Q9Mxaa";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="p5kViwRy"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8F70220663
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,59 +25,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NwSEdpQ+KtEOStS86htM0gdbfh2JzkG+zfH7SWGljZA=; b=Kmofvh/19MRlBT
-	+aqnrakdTV02z7h/bT7GK99c03/RWxZqxjM3ivIh8oO6SWGj5lmcq5/tcsYK680KuFmvHe+Usz0To
-	rVl+EbK4V2WO7W6KI7iIK6Mjs/mJgFVgC+MbO35Pubq/daBgAWqZFSh1cs0Z9B52w1S3kmcVAMdI2
-	H7ljSa+B7Nk44Rqw7+nQhf5tHrWtcUVWTTp0r+tKGCZYpqhhgY3/y7dJlnm+00ojldbPU6z0EIEdE
-	CRmHNzVS1caFKgMZ/cVWc7MJtD5xVhbICBmXJ4gNM1cSuWitXW2cbtEmbU7TSAUuqn9rc7G4dUI0p
-	ham0CtPzlAvPjOFR9DZQ==;
+	List-Owner; bh=jn07TjJa0qeJGtAt3uiD2oiQmHZ3bHLWcAq9/UG3j1k=; b=M+Q9MxaatUgnIf
+	E16/cF7IciKEY3OvNWD5Ep+eVnTxLTae8M03cKYjNCLu5SxeKXef591Hr0S4cstXIlONQn85efkvB
+	yM59pRbC0kZZr/EimDYgUCGs1dSinhdzxuxy0g0IOpcfXX4xWOVidlOb1Cqx3yv6275BkAizvkU7E
+	OJKOW5YiWQe999NI7Dm6tOfis0Yp0KqTXW/qrTCi/UgNxeRRkK56W7ZzFTFXECUkmsbGFr3sxN9Ft
+	ANm8ci2zZTliu/HuFNkJkaQ5lCC6gG3bndwjByTJvisVgJoMbhWv3qMOmfyxIgZWw6pEICGJ2ZO0U
+	eJ+ZHwcYkXHocmmh1tVg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1glX09-0005wX-4V; Mon, 21 Jan 2019 10:40:21 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1glX3a-0007Q9-9C; Mon, 21 Jan 2019 10:43:54 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1glWzw-0005Sg-6u
- for linux-amlogic@lists.infradead.org; Mon, 21 Jan 2019 10:40:10 +0000
-Received: by mail-wr1-x441.google.com with SMTP id j2so22787974wrw.1
- for <linux-amlogic@lists.infradead.org>; Mon, 21 Jan 2019 02:40:07 -0800 (PST)
+ id 1glX3V-0007Oj-2n
+ for linux-amlogic@lists.infradead.org; Mon, 21 Jan 2019 10:43:51 +0000
+Received: by mail-wm1-x344.google.com with SMTP id b11so10283060wmj.1
+ for <linux-amlogic@lists.infradead.org>; Mon, 21 Jan 2019 02:43:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=5vqSlw8jTKegwdUbwXQvRlhZ9eq8gX9muxfUQQ2yNuY=;
- b=ie8YfUMQ1jD5Cjjt+PwbHL56nOhR95piLXX/3w9q3ltv4KSuhiMgTbOm+77YQH90ne
- 28AVB4UDg6HW7SZmv/HXCPN7lQDZd/HKTINahFq+V+/aB5NJEq/x/Wzxs0mzCNtwi9vr
- 5DqSTBm9bxuPxXYt2gaFpQ9RGaNwsaNnyuAwo6cIj8TXa7fqWh6nf9dy+GbzNlvPsIl9
- 9tkN3lBBSshB5DonbxwCZlh0jCbxTXs6qhb+EquPVE6ihyjRxAXknJtlDsngofJyB2jK
- f7Or8RIXAvISI0fpm0hQq+aSxeOANAOrgBwRtT+KS9xdHneqXNE0isEBTU5XoVZO1fLi
- omlw==
+ bh=/4znaKOnnQaUwcAHjnUQBIaVhim37glqAErd+3uIIoA=;
+ b=p5kViwRyBT1wES6LKPJwoX6HzBeq/fW5fpO0HjPgZoNfjtLGK+j5KvtrD7NKTxEMUE
+ 4o0wyIFrWevmrPNPfrwxp8VMoWQreXsLnTW6Ymo5on2jj6+crSUonG8dUhpcuPSmVnUB
+ NtlttIKtIT/d3LrGPI4HAbO65/DOnsHCrRjid+xeZ2ZJivGpXCK5e+Wmw4IhywNLghp3
+ dmL+tesFaVmRLvMSFsGcyC7f4rZqetm+KJNU00SthH0x3AMfy8jk+xa0u/upp7+VGizh
+ g9iL0FVg4xC38dI2xytLGMmUqI2todWrbj0+k39GInCITjTQwCLPwfwYbpBLta7ULY+x
+ cvBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=5vqSlw8jTKegwdUbwXQvRlhZ9eq8gX9muxfUQQ2yNuY=;
- b=FQIrZA3GzjEZNvjGUd0FrSof9p6wdtnFIL27C5GP6FaWLLDqsrO90/HlB/nULsRX7K
- 9ipfKXGNH7SBw5i3M3qFS8Ts5uR4mGvr9xTOvJtx+EhdxgQzn1UZwZZ9KbXaO462V19v
- rh8cdgeYa77j1BBsNTX5ozWhh2Q5DDLE7+BqnaQLnKutiWSWu0T4yS4sxfVQb+agqcxR
- 4aNc0mpHAoOgnEyADrdRVMH94PoJNTGrcH/7ePA4oFjsg9YLatI7YfJ2Uami90pnyFpY
- OmdCPetbUZ4SC6IW8M62LHkUqNb9VfJYiam7XLobGaOjIpoAyAGp433T2vcQaqTeU2T3
- JfzA==
-X-Gm-Message-State: AJcUukf7Os5lhCn0bKecCjAW3EXDjW5B7c1T3pqXB9c/VNUelL5wv9GA
- 7XFg4JS0VQ3Qve2+1f8Y/fB3Mw==
-X-Google-Smtp-Source: ALg8bN7IinZ+f7LaTizYs5N6yQcpOwg3OztH9V2tnjwOM7I8ePYjY5/bDm5yqvarZW12Z5K41Vgpdg==
-X-Received: by 2002:a5d:470b:: with SMTP id y11mr27392045wrq.16.1548067205900; 
- Mon, 21 Jan 2019 02:40:05 -0800 (PST)
+ bh=/4znaKOnnQaUwcAHjnUQBIaVhim37glqAErd+3uIIoA=;
+ b=Zagwc7Bm2oJDdqsFys23/vKJDupMwsKfoO3YkDfXQ1vJL9rLWegH7pw/5gDmOCAQES
+ IYELuNSCTjakbNpWzyxtWyBBqd/pbEMSmbml8+Sp0DQ1G8uVbfQZYUCE79KHq0AwNrlN
+ NNPmmMPydDZh67BWH54FEcgRRgOGN2uZZBQUTZuVXDfsxtV/cLJCyVRFy9gY2HzBlYT5
+ tuoHzhdn81cmJ73fgi6YPGN7axMFUgCVpt9kZPS2WHDnCCnWPvQNu/y5WwC0aolgGWlU
+ mASnM/n07MHj4nJvkftzaT+wcoZmfSMVBYCaEYEOy307MrafIu/0EIsnxWmt7YCGXlN6
+ lqPg==
+X-Gm-Message-State: AJcUukc6jhpChqfEa5roT9sC6/dykBRyyhMrffzlySBhCeVxTVuNM4re
+ gmwSN2FISsXgeyBGg21kSp4LQA==
+X-Google-Smtp-Source: ALg8bN7YdF2L3BY8RKWm9FdUNwmu+tfwsm1xi7kUonIDcoUSTJ7P0t9BLmmiTKoYRQ40GrNSMuyqIQ==
+X-Received: by 2002:a1c:58ce:: with SMTP id m197mr25253370wmb.31.1548067426964; 
+ Mon, 21 Jan 2019 02:43:46 -0800 (PST)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id n9sm75159972wrx.80.2019.01.21.02.40.04
+ by smtp.gmail.com with ESMTPSA id c14sm35476059wme.13.2019.01.21.02.43.46
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 21 Jan 2019 02:40:05 -0800 (PST)
-Subject: Re: [PATCH v2 0/2] clk: meson8b: fix typo "ABP" -> "APB"
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, jbrunet@baylibre.com
-References: <20190119205121.9621-1-martin.blumenstingl@googlemail.com>
+ Mon, 21 Jan 2019 02:43:46 -0800 (PST)
+Subject: Re: [PATCH v2 2/2] arm64: dts: meson: add g12a x96 max board
+To: Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org
+References: <20181219233519.35287-1-khilman@baylibre.com>
+ <20181219233519.35287-2-khilman@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -130,16 +130,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <095d0dca-f8d5-df7c-dbd0-7c2c50fcab82@baylibre.com>
-Date: Mon, 21 Jan 2019 11:40:04 +0100
+Message-ID: <4d1ae3a6-874a-f032-a873-a715a67a3992@baylibre.com>
+Date: Mon, 21 Jan 2019 11:43:46 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.2.1
 MIME-Version: 1.0
-In-Reply-To: <20190119205121.9621-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20181219233519.35287-2-khilman@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190121_024008_304365_D9383AA6 
-X-CRM114-Status: GOOD (  16.56  )
+X-CRM114-CacheID: sfid-20190121_024349_125991_42AE61E4 
+X-CRM114-Status: GOOD (  12.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -151,49 +151,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: sboyd@kernel.org, mturquette@baylibre.com, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 19/01/2019 21:51, Martin Blumenstingl wrote:
-> It turns out that I'm not good at spelling "APB". Unfortunately an ABP
-> (instead of APB) typo snug into two clocks in v5.0.
-> 
-> Currently there are no users of that clock yet, so fix it now
-> before it's too late (meaning before it's used by <something>).
-> 
-> I decided to go the "normal" route where we can have separate
-> branches for the dt-bindings and the drivers in the clk-meson
-> repo. This means:
-> - new (typo-free) clock #define
-> - change the clock controller to use the new #define
-> - (next development cycle) drop the old #define
-> 
-> 
-> Changes since v1 at [0]:
-> - split into a dt-bindings and clock controller driver patch
-> 
-> 
-> [0] https://patchwork.kernel.org/cover/10742001/
-> 
-> 
-> Martin Blumenstingl (2):
->   dt-bindings: clock: meson8b: add APB clock definition
->   clk: meson: meson8b: fix the naming of the APB clocks
-> 
->  drivers/clk/meson/meson8b.c              | 26 ++++++++++++------------
->  drivers/clk/meson/meson8b.h              |  2 +-
->  include/dt-bindings/clock/meson8b-clkc.h |  1 +
->  3 files changed, 15 insertions(+), 14 deletions(-)
-> 
+Hi Kevin,
 
-Once rob acks it, I'll apply both to next/drivers since it's not used (yet ?)
-and not a critical fix.
+On 20/12/2018 00:35, Kevin Hilman wrote:
+> Add the G12a (S905X2) based X96 Max board[1].
+> 
+> There is no branding for the manufacturer anywhere on the product, so it
+> took some digging to find the manufacturer.  But since there's nothing
+> about the maker on the product I've left it out of the DT name because
+> 1) nobody will know that name and 2) keeps the DT filename shorter.
+> 
+> [1] https://www.cnx-software.com/2018/09/25/x96-max-amlogic-s905x2-tv-box/
+> 
+> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+> ---
+>  .../boot/dts/amlogic/meson-g12a-x96-max.dts   | 28 +++++++++++++++++++
+
+Just found out you forgot to update the Makefile !!
 
 Neil
+
+[snip]
+
+> +
+> +&uart_AO {
+> +	status = "okay";
+> +};
+> 
+
 
 _______________________________________________
 linux-amlogic mailing list
