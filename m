@@ -2,63 +2,144 @@ Return-Path: <SRS0=UU9i=P5=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CCD04C282DB
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jan 2019 09:11:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C09CC282DB
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jan 2019 10:40:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9D7AC2085A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jan 2019 09:11:59 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id EFAC120663
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Jan 2019 10:40:28 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ddDyddw7"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9D7AC2085A
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=bootlin.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Kmofvh/1";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ie8YfUMQ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EFAC120663
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=80jCSJGxIv3ryET5/kkjtVW1+rT8E0PQyn6E4pfDlYw=; b=ddDyddw7XBlzWR
-	TDsQMY6UBwXCOxYKcVthpTSsHPC0IRnrudPsmeh8CrhaNc6J/jTO4mdz1+BLjToP/5FccXgPqzQq6
-	WQJDi9aj+BIF3+DRytvOkDKZHoduYf4c45FKXOMGSuXW1RnvTLz+AabTlWJ0syE8zuWuMhaWivPl3
-	O1w9cZN6UO2ERWaVmbVeeTH2UCKgoF37s7RLkJf/C8K4HwtWDJAQhI7zLSZ83QfkrPVb/xuBpIuDU
-	DZhuQIKL5wAmZE2gdhdbSet0Ob3//W9SUF4iVY3HzufVF+qFkEx3R5HzV68KbjH4GQbTGC5ofD0uL
-	EgLF/LQw2Q95e2Kpz2pQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=NwSEdpQ+KtEOStS86htM0gdbfh2JzkG+zfH7SWGljZA=; b=Kmofvh/19MRlBT
+	+aqnrakdTV02z7h/bT7GK99c03/RWxZqxjM3ivIh8oO6SWGj5lmcq5/tcsYK680KuFmvHe+Usz0To
+	rVl+EbK4V2WO7W6KI7iIK6Mjs/mJgFVgC+MbO35Pubq/daBgAWqZFSh1cs0Z9B52w1S3kmcVAMdI2
+	H7ljSa+B7Nk44Rqw7+nQhf5tHrWtcUVWTTp0r+tKGCZYpqhhgY3/y7dJlnm+00ojldbPU6z0EIEdE
+	CRmHNzVS1caFKgMZ/cVWc7MJtD5xVhbICBmXJ4gNM1cSuWitXW2cbtEmbU7TSAUuqn9rc7G4dUI0p
+	ham0CtPzlAvPjOFR9DZQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1glVcX-0004SG-5v; Mon, 21 Jan 2019 09:11:53 +0000
-Received: from mail.bootlin.com ([62.4.15.54])
- by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
- id 1glVbS-0003Ul-G3; Mon, 21 Jan 2019 09:10:52 +0000
-Received: by mail.bootlin.com (Postfix, from userid 110)
- id B65A420898; Mon, 21 Jan 2019 10:10:44 +0100 (CET)
-Received: from xps13 (aaubervilliers-681-1-37-87.w90-88.abo.wanadoo.fr
- [90.88.156.87])
- by mail.bootlin.com (Postfix) with ESMTPSA id 251FF2078C;
- Mon, 21 Jan 2019 10:10:30 +0100 (CET)
-Date: Mon, 21 Jan 2019 10:10:30 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Liang Yang <liang.yang@amlogic.com>
-Subject: Re: [PATCH] MAINTAINERS: Add entry for Amlogic NAND controller driver
-Message-ID: <20190121101030.2efbee17@xps13>
-In-Reply-To: <54e8156f-2362-21db-3e6c-e5b68147c49c@amlogic.com>
-References: <1547917355-13179-1-git-send-email-jianxin.pan@amlogic.com>
- <20190120160605.33689354@xps13>
- <3f098e44-9d9b-3d0a-3e19-5913077aeb07@amlogic.com>
- <20190121092106.2c97ebe2@xps13>
- <54e8156f-2362-21db-3e6c-e5b68147c49c@amlogic.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+	id 1glX09-0005wX-4V; Mon, 21 Jan 2019 10:40:21 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+ by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1glWzw-0005Sg-6u
+ for linux-amlogic@lists.infradead.org; Mon, 21 Jan 2019 10:40:10 +0000
+Received: by mail-wr1-x441.google.com with SMTP id j2so22787974wrw.1
+ for <linux-amlogic@lists.infradead.org>; Mon, 21 Jan 2019 02:40:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=5vqSlw8jTKegwdUbwXQvRlhZ9eq8gX9muxfUQQ2yNuY=;
+ b=ie8YfUMQ1jD5Cjjt+PwbHL56nOhR95piLXX/3w9q3ltv4KSuhiMgTbOm+77YQH90ne
+ 28AVB4UDg6HW7SZmv/HXCPN7lQDZd/HKTINahFq+V+/aB5NJEq/x/Wzxs0mzCNtwi9vr
+ 5DqSTBm9bxuPxXYt2gaFpQ9RGaNwsaNnyuAwo6cIj8TXa7fqWh6nf9dy+GbzNlvPsIl9
+ 9tkN3lBBSshB5DonbxwCZlh0jCbxTXs6qhb+EquPVE6ihyjRxAXknJtlDsngofJyB2jK
+ f7Or8RIXAvISI0fpm0hQq+aSxeOANAOrgBwRtT+KS9xdHneqXNE0isEBTU5XoVZO1fLi
+ omlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=5vqSlw8jTKegwdUbwXQvRlhZ9eq8gX9muxfUQQ2yNuY=;
+ b=FQIrZA3GzjEZNvjGUd0FrSof9p6wdtnFIL27C5GP6FaWLLDqsrO90/HlB/nULsRX7K
+ 9ipfKXGNH7SBw5i3M3qFS8Ts5uR4mGvr9xTOvJtx+EhdxgQzn1UZwZZ9KbXaO462V19v
+ rh8cdgeYa77j1BBsNTX5ozWhh2Q5DDLE7+BqnaQLnKutiWSWu0T4yS4sxfVQb+agqcxR
+ 4aNc0mpHAoOgnEyADrdRVMH94PoJNTGrcH/7ePA4oFjsg9YLatI7YfJ2Uami90pnyFpY
+ OmdCPetbUZ4SC6IW8M62LHkUqNb9VfJYiam7XLobGaOjIpoAyAGp433T2vcQaqTeU2T3
+ JfzA==
+X-Gm-Message-State: AJcUukf7Os5lhCn0bKecCjAW3EXDjW5B7c1T3pqXB9c/VNUelL5wv9GA
+ 7XFg4JS0VQ3Qve2+1f8Y/fB3Mw==
+X-Google-Smtp-Source: ALg8bN7IinZ+f7LaTizYs5N6yQcpOwg3OztH9V2tnjwOM7I8ePYjY5/bDm5yqvarZW12Z5K41Vgpdg==
+X-Received: by 2002:a5d:470b:: with SMTP id y11mr27392045wrq.16.1548067205900; 
+ Mon, 21 Jan 2019 02:40:05 -0800 (PST)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id n9sm75159972wrx.80.2019.01.21.02.40.04
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 21 Jan 2019 02:40:05 -0800 (PST)
+Subject: Re: [PATCH v2 0/2] clk: meson8b: fix typo "ABP" -> "APB"
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, jbrunet@baylibre.com
+References: <20190119205121.9621-1-martin.blumenstingl@googlemail.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <095d0dca-f8d5-df7c-dbd0-7c2c50fcab82@baylibre.com>
+Date: Mon, 21 Jan 2019 11:40:04 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.2.1
 MIME-Version: 1.0
+In-Reply-To: <20190119205121.9621-1-martin.blumenstingl@googlemail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190121_011046_915785_09687453 
-X-CRM114-Status: GOOD (  14.58  )
+X-CRM114-CacheID: sfid-20190121_024008_304365_D9383AA6 
+X-CRM114-Status: GOOD (  16.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -70,48 +151,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Hanjie Lin <hanjie.lin@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
- Marek Vasut <marek.vasut@gmail.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Richard Weinberger <richard@nod.at>, Neil Armstrong <narmstrong@baylibre.com>,
- linux-kernel@vger.kernel.org, Boris Brezillon <boris.brezillon@bootlin.com>,
- devicetree@vger.kernel.org, Jian Hu <jian.hu@amlogic.com>,
- linux-mtd@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>,
- Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
- Brian Norris <computersforpeace@gmail.com>,
- David Woodhouse <dwmw2@infradead.org>, linux-arm-kernel@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: sboyd@kernel.org, mturquette@baylibre.com, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgTGlhbmcsCgpMaWFuZyBZYW5nIDxsaWFuZy55YW5nQGFtbG9naWMuY29tPiB3cm90ZSBvbiBN
-b24sIDIxIEphbiAyMDE5IDE2OjU5OjQyCiswODAwOgoKPiBIaSBNaXF1ZWzvvIwKPiAKPiBPbiAy
-MDE5LzEvMjEgMTY6MjEsIE1pcXVlbCBSYXluYWwgd3JvdGU6Cj4gPiBIaSBKaWFueGluLAo+ID4g
-Cj4gPiBKaWFueGluIFBhbiA8amlhbnhpbi5wYW5AYW1sb2dpYy5jb20+IHdyb3RlIG9uIE1vbiwg
-MjEgSmFuIDIwMTkKPiA+IDEyOjE4OjE4ICswODAwOgo+ID4gICAKPiA+PiBIaSBNaXF1ZWwsCj4g
-Pj4KPiA+PiBPbiAyMDE5LzEvMjAgMjM6MDYsIE1pcXVlbCBSYXluYWwgd3JvdGU6ICAKPiA+Pj4g
-SGkgSmlhbnhpbiwKPiA+Pj4KPiA+Pj4gSmlhbnhpbiBQYW4gPGppYW54aW4ucGFuQGFtbG9naWMu
-Y29tPiB3cm90ZSBvbiBTdW4sIDIwIEphbiAyMDE5Cj4gPj4+IDAxOjAyOjM1ICswODAwOiAgCj4g
-Pj4+ICAgID4+Pj4gQWRkIGVudHJ5IGZvciBBbWxvZ2ljIE5BTkQgY29udHJvbGxlciBkcml2ZXIg
-YW5kIGl0cyBiaW5kaW5nc1swXS4gIAo+ID4+Pj4KPiA+Pj4+IFswXSBodHRwczovL2xvcmUua2Vy
-bmVsLm9yZy9sa21sLzE1NDc1NjY2ODQtNTc0NzItMS1naXQtc2VuZC1lbWFpbC1qaWFueGluLnBh
-bkBhbWxvZ2ljLmNvbS8KPiA+Pj4+Cj4gPj4+PiBTaWduZWQtb2ZmLWJ5OiBMaWFuZyBZYW5nIDxs
-aWFuZy55YW5nQGFtbG9naWMuY29tPgo+ID4+Pj4gU2lnbmVkLW9mZi1ieTogSmlhbnhpbiBQYW4g
-PGppYW54aW4ucGFuQGFtbG9naWMuY29tPiAgCj4gPj4+Cj4gPj4+IElmIHlvdSBhcmUgdGhlIGF1
-dGhvciBvZiB0aGUgcGF0Y2ggeW91ciBTaWduZWQtb2ZmLWJ5IHNob3VsZCBjb21lIGZpcnN0LiAg
-Cj4gPj4gT0suICAKPiA+Pj4KPiA+Pj4gQWxzbywgd2h5IGlzIExpYW5nIHRoZSBNYWludGFpbmVy
-PyBXaHkgbm90IHlvdT8gIAo+ID4+PiAgICA+PiBZYW5nbGlhbmcgaXMgQW1sb2dpYyBtYWludGFp
-bmVyIGZvciBOQU5EIGNvbnRyb2xsZXIuIEFuZCBhbGwgcGF0Y2hlcyBhYm91dCBhbWxvZ2ljIE5B
-TkQgY29udHJvbGxlciBhcmUgZnJvbSBoaW0uICAKPiA+IAo+ID4gTWF5YmUgYnV0IGhlIG5ldmVy
-IHdyb3RlIHRvIHRoZSBNTCwgdGhlIG1haW50YWluZXIgbWF5IGJlIHNvbWVvbmUgZWxzZQo+ID4g
-dGhhbiB0aGUgb3JpZ2luYWwgYXV0aG9yLCBJIGp1c3Qgd2FudCBzb21lb25lIHRvIHJldmlldyBw
-YXRjaGVzIGFuZAo+ID4gaGVscCB0byBtYWludGFpbiB0aGUgZHJpdmVyLgo+ID4gCj4gPiBZYW5n
-bGlhbmcgYXJlIHlvdSB3aWxsaW5nIHRvIGRvIHRoYXQ/Cj4gPiBPZiBjb3Vyc2UuaXQgaXMgbXkg
-cGxlYXN1cmUgYW5kIHJlc3BvbnNpYmlsaXR5LgoKT2sgdGhlbiwgaXQncyBmaW5lIGZvciBtZSEK
-CgpUaGFua3MsCk1pcXXDqGwKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMu
-aW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2xpbnV4LWFtbG9naWMK
+On 19/01/2019 21:51, Martin Blumenstingl wrote:
+> It turns out that I'm not good at spelling "APB". Unfortunately an ABP
+> (instead of APB) typo snug into two clocks in v5.0.
+> 
+> Currently there are no users of that clock yet, so fix it now
+> before it's too late (meaning before it's used by <something>).
+> 
+> I decided to go the "normal" route where we can have separate
+> branches for the dt-bindings and the drivers in the clk-meson
+> repo. This means:
+> - new (typo-free) clock #define
+> - change the clock controller to use the new #define
+> - (next development cycle) drop the old #define
+> 
+> 
+> Changes since v1 at [0]:
+> - split into a dt-bindings and clock controller driver patch
+> 
+> 
+> [0] https://patchwork.kernel.org/cover/10742001/
+> 
+> 
+> Martin Blumenstingl (2):
+>   dt-bindings: clock: meson8b: add APB clock definition
+>   clk: meson: meson8b: fix the naming of the APB clocks
+> 
+>  drivers/clk/meson/meson8b.c              | 26 ++++++++++++------------
+>  drivers/clk/meson/meson8b.h              |  2 +-
+>  include/dt-bindings/clock/meson8b-clkc.h |  1 +
+>  3 files changed, 15 insertions(+), 14 deletions(-)
+> 
+
+Once rob acks it, I'll apply both to next/drivers since it's not used (yet ?)
+and not a critical fix.
+
+Neil
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
