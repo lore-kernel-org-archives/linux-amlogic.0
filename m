@@ -6,17 +6,17 @@ X-Spam-Status: No, score=-5.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
 	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1FC1EC282C3
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Jan 2019 08:48:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 656F2C282C3
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Jan 2019 08:49:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E27992084C
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Jan 2019 08:48:04 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 31D4A2084C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Jan 2019 08:49:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lUZYkqh+";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="uM6MvBg2"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E27992084C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="o+l+mkCs";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="GXFRACbU"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 31D4A2084C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,68 +25,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:In-reply-to:Subject:To:
 	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=HF3WV2BwIKiVYuZwndVZM7OiRydJydILnm+AzDDMEPk=; b=lUZYkqh+foma6H6pZEMKFlxoW
-	Ie7wvpa+4VY5J5K1DbyEhLH9hXfq2n1NZQDj9PlI0Soww2+vO8quZHXdzuhCZZaLgPdq7d8kBb7g9
-	ztKiUctHXxZLV057CH/wnc0pC87rz+pg3foiMt/gjyYBr/t/TqJeZfb7c8gNhPTfOL+8ua8354JBa
-	Q59Hf7e4DOfykuCU3HlDykYdDIu6clQTzxX0H1L0X3XdZDg9whOq6dNzz2z6Hb64G0n5D6sklf4vr
-	+dxvWIWmed3+PIW4+LbIRymf+f6VLXT8hnHGYm3utu0gqIwJt7xTJEzSjF9ildp+5fBY64rgzH1LJ
-	o4ztIINXg==;
+	 bh=YDzjx84Bh7CW45SVNu4yzgMycZgu7C+yHRKGBA6lUkM=; b=o+l+mkCsM8KFH4hyZvmTfPSng
+	7ebtXKRYDlFbh39IAhpojA/RnQsGbMvErsoSPFfml+lOxOOXEz5kNHe+uJqiIhK7FcJQRTdbdhYhl
+	e4oXSaAjgxCaBe0DoU5Y/9XRuTCAHg+y6mW++X2Scwx0QfnrokNEpOkLNLet5hvSYNECpigKbOi16
+	po7mAPI3AVDrIgw4OJBo79FczuK0l1ZKQCIFRXm46PbihLO6EmpA6fU/a9y5M9jT+S2gI8SjZRL7B
+	gAsPbKT3Y2g5/LstZb5t5IJAMF6h8SiT4EWRQ7gtew5C/titd5OL5fbQEipD/cZoXB7ExI3+f25Es
+	0Q+gjs+KA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1glriw-0007ET-Fi; Tue, 22 Jan 2019 08:47:58 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1glrkD-0007aV-Oz; Tue, 22 Jan 2019 08:49:17 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1glrir-0007D1-1w
- for linux-amlogic@lists.infradead.org; Tue, 22 Jan 2019 08:47:56 +0000
-Received: by mail-wm1-x341.google.com with SMTP id f188so13222131wmf.5
- for <linux-amlogic@lists.infradead.org>; Tue, 22 Jan 2019 00:47:52 -0800 (PST)
+ id 1glrkB-0007ZQ-5c
+ for linux-amlogic@lists.infradead.org; Tue, 22 Jan 2019 08:49:16 +0000
+Received: by mail-wm1-x343.google.com with SMTP id m22so13358034wml.3
+ for <linux-amlogic@lists.infradead.org>; Tue, 22 Jan 2019 00:49:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=references:user-agent:from:to:cc:subject:in-reply-to:date
  :message-id:mime-version;
- bh=kZr0fYXLTDuQhA7Idwn8AXJc8cbOUQt42CeU5kkGDzM=;
- b=uM6MvBg20Qq29jwM8GsPMKR9cmQ2IwbVjzJWQRJbIKtfHk/YMlI/y9l2jhdRxNrUqC
- W8DULMM40djroBFBgxiSzwKtAEHM3HMJC3JaL45AS3w2xxCzGUv3A0oifxCuWiLK2Lmv
- Rvq1fZlE4RVqfoKaWZSXhGUa8dkkSF1pNCxqqf/S4UrRR+XJPeSXF3ydYKeZFbNLph85
- cUMAIK23+V846EyJbzly4lQp24CGWg94vAIqxxM9qSZUqGLkiBdpXyblmiQnwdRXgNwl
- WhZ1vvWDD8hZ3zhq1Xn2kHiR1ojSw3FvHROCgcNMjoRBKCToJG6N9tB/J2FynqZWpg8o
- crtg==
+ bh=jsZVf9y2K5LHFnrE1GBsBerxCpBqq1IDtHSFbWLJLe0=;
+ b=GXFRACbUCd5av9832M3y7+x0jssy3Rl6gykAD6/iyFlZsbDYt3/B3O+mwJ/9wHpGwq
+ lr1XC6eYO8DrLF2sTNRAEHT+gM3ddDixAOkZM922l9bBAQVqyhtuHJX9QBrr4wLIS305
+ emSys4QcKtjnie+SndHAWHue/n6RHJ3qgqUJuzOlzyW735dB2dSn8QUMqOF4CVohSMnM
+ EA0tW5eGmt2KtS1E+1g3cizqQDPaD8mMJpnqE00gmuW1kbKyfHNiPCJRoiYKDkdVNfMY
+ ps+12Q0IgULqBWATSicnA9Sr6n2WP3H9A2X3bk+gyvC2ZzibRVyySVv84az4ytM+yZ0l
+ vX8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:references:user-agent:from:to:cc:subject
  :in-reply-to:date:message-id:mime-version;
- bh=kZr0fYXLTDuQhA7Idwn8AXJc8cbOUQt42CeU5kkGDzM=;
- b=Rxy18Is6YomGEmERI6j9TbkWre/TeG+BmExshjDld7b3JSZF/Ckj7RdwTKVn+MreKQ
- WEdDwjkE68vXhJs9yBvnorEneAo2TLDqmJaH0icgSgwb2k1dVfNEOKiQFaonACdJspYT
- kO2wHoAtHlAC1BN3HBLYWyFmNAKHc2ZUomrk4MLs4d0P+FSyRgj3o+w7p7D1d21jG2A0
- 2kwG2XPZIkN2m1NOAhegkzxV4GUq8fBNACx8iQ1SvS1jaDtKCw9Moe6pj7uGA8pUwJQn
- eNnnLAZx9AiysnyoIooiUqEMXHn/m979a2+Csx53w0y7MUi0lddHTaZOSAXKFPuwW7fd
- npcw==
-X-Gm-Message-State: AJcUukcKatI7XuGtet8K/OEZCcy8ZWeleYLCCDH1uGHsGhcTqk7heLdT
- vrj0RzHYI8DnCuthtaNOE0SeJg==
-X-Google-Smtp-Source: ALg8bN4hP9cUm8TfDSALBx3GgvgF7ZFeOYtqq7C86ZxIP4jA64gAuD4khKmkql26XdrLqVWmVWmNRA==
-X-Received: by 2002:a1c:13d1:: with SMTP id 200mr2654672wmt.4.1548146870859;
- Tue, 22 Jan 2019 00:47:50 -0800 (PST)
+ bh=jsZVf9y2K5LHFnrE1GBsBerxCpBqq1IDtHSFbWLJLe0=;
+ b=XMhQNJCUud3EHK3/nrp4lMbGaxO5fubCnXb97rtd1WmbJ2kb0qYx3fChDJ/NXG/61N
+ JbGbt6cj/SJWz/TM9Rt/MxXXk8R4Wat+J3MqYiQpz1YG4J2Cs1eIojeoW2KBEgju69qp
+ rBE9tuw8DabR7IHF/uG/aq6bKq2B962c4iQSmzalnLIVLOkT+947y4kxZu0QZjbIrCnF
+ E87wgl9CjcHsgtZf4LT8IvXqKlG+EzRw2Lxr7Li3unTFv7yFFechZLR4Wc4bMJX4DAgO
+ AXhn7+G51mx9q8iexqAIwZ8rZOKKbeQwiglSHDp29EKylb7vTL/mo4m1IYj5Pwkr7ahI
+ qJwQ==
+X-Gm-Message-State: AJcUukc7/iXpAsZl8ni/OS568V+/UlaAcQMaBEbh1kHjGGy8Q7fLsXz7
+ e9sAmBfYk0EpMyDO+zn/t+bHnw==
+X-Google-Smtp-Source: ALg8bN5PUGA1BWoPvnuNjH3HWDpP7aN0lqtUu1dsis3w0jNzwjnlhrgSXW1VdWZPoO5ZQjSgX4dXJw==
+X-Received: by 2002:a1c:f707:: with SMTP id v7mr2744114wmh.18.1548146953452;
+ Tue, 22 Jan 2019 00:49:13 -0800 (PST)
 Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id f191sm9370369wmg.12.2019.01.22.00.47.49
+ by smtp.gmail.com with ESMTPSA id n11sm33115268wrw.60.2019.01.22.00.49.12
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 22 Jan 2019 00:47:50 -0800 (PST)
+ Tue, 22 Jan 2019 00:49:12 -0800 (PST)
 References: <1547744074-28308-1-git-send-email-lollivier@baylibre.com>
  <1547744074-28308-3-git-send-email-lollivier@baylibre.com>
  <20190121171019.GA2903@bogus> <86imyhapl9.fsf@baylibre.com>
- <CAGp9LzpgZDEdKFH4ZLqxtO60unxXRJoXNsGugNT=oojHDMp+3g@mail.gmail.com>
+ <CAL_JsqKVgWnLXGWxydj5HKiKeZ5Vf7HAgyr8+PkvrviUAwNW8w@mail.gmail.com>
 User-agent: mu4e 1.0; emacs 25.3.2
 From: Loys Ollivier <lollivier@baylibre.com>
-To: Sean Wang <sean.wang@kernel.org>
+To: Rob Herring <robh@kernel.org>
 Subject: Re: [PATCH v2 2/4] dt-bindings: gnss: add mediatek binding
-In-reply-to: <CAGp9LzpgZDEdKFH4ZLqxtO60unxXRJoXNsGugNT=oojHDMp+3g@mail.gmail.com>
-Date: Tue, 22 Jan 2019 09:47:48 +0100
-Message-ID: <86imyh13kb.fsf@baylibre.com>
+In-reply-to: <CAL_JsqKVgWnLXGWxydj5HKiKeZ5Vf7HAgyr8+PkvrviUAwNW8w@mail.gmail.com>
+Date: Tue, 22 Jan 2019 09:49:11 +0100
+Message-ID: <86h8e113i0.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190122_004753_160322_136585C9 
-X-CRM114-Status: GOOD (  14.41  )
+X-CRM114-CacheID: sfid-20190122_004915_218849_1CFE32F9 
+X-CRM114-Status: GOOD (  12.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -98,22 +98,24 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org,
+Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Kevin Hilman <khilman@baylibre.com>, Loys Ollivier <lollivier@baylibre.com>,
- Johan Hovold <johan@kernel.org>, linux-kernel@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+ Johan Hovold <johan@kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
+ linux-amlogic@lists.infradead.org,
+ "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Mon 21 Jan 2019 at 18:44, Sean Wang wrote:
+On Mon 21 Jan 2019 at 21:51, Rob Herring wrote:
 
-> On Mon, Jan 21, 2019 at 9:29 AM Loys Ollivier <lollivier@baylibre.com> 
+> On Mon, Jan 21, 2019 at 11:29 AM Loys Ollivier <lollivier@baylibre.com> 
 > wrote:
 >>
 >>
@@ -143,33 +145,16 @@ On Mon 21 Jan 2019 at 18:44, Sean Wang wrote:
 >> If there are no objections by others, I'll stop sending these two patch
 >> (1/4 and 2/4) and reference any new patch serie for 3 and 4 as depending
 >> on those two.
->>
 >
-> Hi Loys,
+> Generally, you should just resend the whole series unless the
+> maintainer has applied some of the patches. I could apply this but
+> usually the whole series goes in together.
 >
-> Thanks for adding the first GPS device driver. It's really nice to see
-> more device drivers added to upstream support.
->
-Hi Sean,
+> Rob
 
-Glad to know you're supporting this initiative.
+OK understood, I'll resend the whole series if needed then.
 
-> Do you mind send the series again with Cc linux-mediatek@lists.infradead.org 
-> ?
->
-The series already has linux-mediatek@lists.infradead.org in Cc. Does it
-need a resend ?
-
-> Sean
->
->> --
->> -L
->>
->> _______________________________________________
->> Linux-mediatek mailing list
->> Linux-mediatek@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-mediatek
-
+Loys
 
 -- 
 -L
