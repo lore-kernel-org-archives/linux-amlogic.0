@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
 	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 68DB2C282C0
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Jan 2019 15:12:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 93DB0C282C0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Jan 2019 15:13:45 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 37287217D4
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Jan 2019 15:12:59 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 61FF7217D4
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Jan 2019 15:13:45 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="g7LNyV2o";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Shd8ATuX"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 37287217D4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Wbv3F2Eq";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U/tk8Ju7"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 61FF7217D4
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,64 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EXuixTP9nbJZjYVLKWjoAIRYibgDy9HiBrY3rVSsSJ8=; b=g7LNyV2omTbkr4
-	hOnhfVH08USyxvbrAPvotu4AM9AFm2eJElypx2hte2Ps3nGv+ERHF58+0Lyy5zqGhd0SsQyk6IWPt
-	P/j0/8Sk8zCm36W5GdRdo4xjHo9VEo/4VOeduFCEuTcvJELZ/x4RlvliU3ohPm/h5z4UwUqjJ0Nuh
-	FOtf4aYgor4SDuV1X/U+t0+qTHF9DUU0+bJWUYBm0QpcVTzv1wvCR3jQNZEF/LFyo3xdY7FR/GXK1
-	iDAnharNwUF1Mk+lfkSCMxsudXvuhC1DylLqaAp70kiSVDiLAZT2yU+Z14rvE1joTb53Wn6xXZAYW
-	19qf2ErDStiK6DcAkTgg==;
+	List-Owner; bh=CqdfEplhYEMzb/TO8rb0czRP4edsZZc52FDtk7hE9p8=; b=Wbv3F2Eq8oK8Wz
+	lMMhklFm8K25SyzhWPoD6G1VdNrmX99ThP0WGjG41SBMB9gfm5KWNq/hrwYet9G11duomUaGQHbvb
+	Nrv2RpsP7Z82REmmc9KtSVQ859E/fdQlfxETdWSIEdaT7W4y/6toYl24uWYGxht8xRr7puazJ1tUX
+	UvaKgFdVelYlH3ZXWX+Pln6XQTmZnFdeu48d0Ac4CEYEVubxKnpu6vEACGLiUlWxj2VT1bD3ZzGpT
+	BGk56Gfb6T0IcO50ZpeI6I3jjnfxRcvAqtRgnyhkntChSfMnlTJIjmFWKnsjmx8GDLX3Dne+FHSKb
+	SVGEF0kr18HAOS/YG5vw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gmKCz-00040U-I8; Wed, 23 Jan 2019 15:12:53 +0000
-Received: from mail-pg1-x543.google.com ([2607:f8b0:4864:20::543])
+	id 1gmKDk-0004dE-1I; Wed, 23 Jan 2019 15:13:40 +0000
+Received: from mail-pl1-x641.google.com ([2607:f8b0:4864:20::641])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gmKCn-0003rp-34; Wed, 23 Jan 2019 15:12:43 +0000
-Received: by mail-pg1-x543.google.com with SMTP id v28so1191411pgk.10;
- Wed, 23 Jan 2019 07:12:41 -0800 (PST)
+ id 1gmKCq-0003ss-Oq; Wed, 23 Jan 2019 15:12:52 +0000
+Received: by mail-pl1-x641.google.com with SMTP id g9so1326030plo.3;
+ Wed, 23 Jan 2019 07:12:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=+ltNVYcC6CkDbXmacb4vM3Xb4R9iKDUJk3cvtKU9Vkw=;
- b=Shd8ATuXHOENy4yxqV9u/fdY8+QjiykPRBSFzhvO+drMSv7DXV2XIT38Iv/PC6Fdr+
- d+GoNhUh2NjwE3Bg2fmcKhj/kEgVcwD/w3VlsQsYuXvUis5bmZMjb+e/3gswrX0yyH+A
- /+YLg70wu1GmoqMCItw4aS833hEUY98faggUcHOBENBt6nD2MnXG9zykMbO76jvbhal/
- r/gGqDHlVu3Qd0bsliQHw80vNFtb6hwsQYY0Ccrbn0SzVLEP6SNrKjD6LhjjWtDFR8+n
- Qb69JDtGmB0hnLuIYOmwk+pAEWRrPNcAIBTlWpSISS4BfwDgqzYKePU517vT2LvUpE+O
- 6NAA==
+ bh=pfLooB/O2lngy8XNJ7ymPuTZs17F4K8WiubH/3VL7po=;
+ b=U/tk8Ju764NMOYteaqMOFJvaQFTLli7pnMauiw+GFwORrMtDA/dg9zEx4i0zLdR6Sb
+ o6O0YPX+pW3XGGi1ts6l+zGX63JLk1Mg2qvBsuzxByw+NRojdf2fUgZPDo86GXAuru05
+ IEjP8ids0Mpn6zactF/SyiDnt64nX1ZtHzI8g4Mj0F3fdBSBhlwoUGm2m+YNXhjppmf/
+ 9+V+Vw8P6+NXFuTwCRVl8XeMGU3rVH0uYCDfGY8t1yIXxufdkJaVyMvDQyJRia8wezOu
+ NnDxPLkojBScp0ERfQ2kH493YZNUU6TjDsAd1D2MZynWoASUjqMYsujPiM1fbsjSA8h8
+ zYcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=+ltNVYcC6CkDbXmacb4vM3Xb4R9iKDUJk3cvtKU9Vkw=;
- b=okHI6eA7K64rzZ631ZeCW8wkQYQPTRW5MI/uQg5ZQpzFMtNHJI05W0H7DSAU/FRaKb
- 69+vkSlLdWEO7wSy+fmmvV1Qpe+jVeYt6S2vpBqqNh45HGZc3vQA6ClM8gbVlJMC70n5
- Sxnfl/VNQNiytY0wpXqNYHSeuXaKtYADoIJJrpkW/a6lOmzTdtKt6ZC3R1BDhpu0bxmU
- ccavcXix3E02gBZNEe+EuCBJkjTaQCn8duMu19mbQwBZN4lZPVeDAsjj3oJOL+NNqqaM
- NaLe7NAzAS7XIC7nS8EE2z3RrsqVYvWLIxVpP1QzWgpsZ4xNrt+jkpHFD+T53g1DRHcd
- B4sg==
-X-Gm-Message-State: AJcUukcWf0cFnwqym6LW1TGNyW0vlbISGhC4/C6t2n9K0M0TdMXa+VsG
- r7A+OJYYoFVKSRguW0DAtiDXdNCa
-X-Google-Smtp-Source: ALg8bN6z1EqnfX0EW8KZXDhQmFCm/nm+rYoTZiMWD2tbmCfKhfRfR9pKc+4Z6evbttkt5ZK6BqHfFg==
-X-Received: by 2002:a62:6503:: with SMTP id z3mr2241122pfb.169.1548256360169; 
- Wed, 23 Jan 2019 07:12:40 -0800 (PST)
+ bh=pfLooB/O2lngy8XNJ7ymPuTZs17F4K8WiubH/3VL7po=;
+ b=ZRpD0hJnAj8tGBsORMD0Hri88g/MrJAdpAvPfQYaSS0av6kKDBZnWbg9wP2PEztfh9
+ jDW5atwmN6eFgfwVnbet+5EqwaPM+r1jQNFzC0WeV9Fq7MR4pwiDwstVLM3hpqe01OnV
+ UdbI0098Bb1tg5f1UaLfY3J5AAqSBaXfRu8MRAteznwILCKJxVxob8NEC2d9QxUouR+P
+ leMqfovTSi1BTi7n9gWlnaUl3zuJikrzkPcz5So4HgQy+1/FoyNVYmUWgYPiFQ2vRIgE
+ nMLej8nLaP8WHT/RQdRyqAMMu7T3Q5O0G+YaX1thrJYSnlOnxI62TL1N0kG79IuHVbW0
+ TcFQ==
+X-Gm-Message-State: AJcUukfVIGHY26j9iaCtIZh/IeNKkmkkLhEVU8/aw5JFSgDCbAndahq2
+ 9MCiYKUna4dsn5cGZIAoU3pugMRh
+X-Google-Smtp-Source: ALg8bN5bU+iHdNinzeAQuQUW5nOYLv8kZqVuIB34AyJdAS/Tv08UM08whGcuUq6Rzvj2cFEWWDbvSQ==
+X-Received: by 2002:a17:902:2dc3:: with SMTP id
+ p61mr2521996plb.166.1548256363733; 
+ Wed, 23 Jan 2019 07:12:43 -0800 (PST)
 Received: from localhost.localdomain ([103.51.74.133])
- by smtp.gmail.com with ESMTPSA id v9sm24772468pfe.49.2019.01.23.07.12.36
+ by smtp.gmail.com with ESMTPSA id v9sm24772468pfe.49.2019.01.23.07.12.40
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 23 Jan 2019 07:12:39 -0800 (PST)
+ Wed, 23 Jan 2019 07:12:43 -0800 (PST)
 From: Anand Moon <linux.amoon@gmail.com>
 To: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org
-Subject: [RFCv1 1/3] phy: meson8b-usb2: Enable otg phy controller on Meson8b
- SoCs
-Date: Wed, 23 Jan 2019 15:12:07 +0000
-Message-Id: <20190123151209.2080-2-linux.amoon@gmail.com>
+Subject: [RFCv1 2/3] ARM: dts: meson8b: odroidc1: fix USB power supplies for
+ phy
+Date: Wed, 23 Jan 2019 15:12:08 +0000
+Message-Id: <20190123151209.2080-3-linux.amoon@gmail.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190123151209.2080-1-linux.amoon@gmail.com>
 References: <20190123151209.2080-1-linux.amoon@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190123_071241_249050_36A3AFD2 
-X-CRM114-Status: GOOD (  11.82  )
+X-CRM114-CacheID: sfid-20190123_071245_106373_778CC828 
+X-CRM114-Status: GOOD (  12.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -104,67 +105,84 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Meson8b support two USB phy controller, one with otg port and
-other usb host controller. USB OTG controller ie. otg port can
-be used to power on board or host port for usb device.
-Changes enable usb otg host controller when dr_mode is set to otg.
-Currenly otg port can be used to power on the board.
+This patch enables the USB Host controller (USB0) and the relative USB0 PHY.
+From the shematics GPIOAO.BIT5 gpio input for the PWREN signal of the
+USB_OTG controller (usb0) which is also linked to USB_HOST controller (usb1).
+Add missing phy-supply link to both  USB0 and USB1 phy controller
+This changes fixed the power issue on usb ports. Changes help fix usb reset warning.
 
+[  821.991470] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+[  825.243385] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+[  828.151310] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+[  830.991241] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+
+Fixes: 2eb79a4d15ff ("ARM: dts: meson: enabling the USB Host controller on Odroid-C1/C1+ board")
 Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc: Jerome Brunet <jbrunet@baylibre.com>
 Cc: Neil Armstrong <narmstrong@baylibre.com>
 Cc: Kevin Hilman <khilman@baylibre.com>
 Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 ---
-New patch in this series.
---TOTO enable OTG port to work as host.
---Currently we can power on the board from this OTG port.
+Changes from previous patch.
 
-/:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
-    |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
-        |__ Port 1: Dev 4, If 0, Class=Mass Storage, Driver=usb-storage, 480M
-        |__ Port 3: Dev 3, If 0, Class=Video, Driver=uvcvideo, 480M
-        |__ Port 3: Dev 3, If 1, Class=Video, Driver=uvcvideo, 480M
-        |__ Port 3: Dev 3, If 2, Class=Audio, Driver=snd-usb-audio, 480M
-        |__ Port 3: Dev 3, If 3, Class=Audio, Driver=snd-usb-audio, 480M
-/:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
+Fix the subject and commit message as per Martin's request
+ --Add the signal name in the comment
+ --Replace vbus-supply with phy-supply linking the power supply to phy node as pointed by Marine
+   which a PWREN signal in the USB_HOST controller (usb1)
+
+USB_VBUS                      4    2      0 unknown  5000mV     0mA  5000mV  5000mV
+   phy-c1108820.phy.1         2                                 0mA     0mV     0mV
+   phy-c1108800.phy.0         2                                 0mA     0mV     0mV
 ---
- drivers/phy/amlogic/phy-meson8b-usb2.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ arch/arm/boot/dts/meson8b-odroidc1.dts | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-diff --git a/drivers/phy/amlogic/phy-meson8b-usb2.c b/drivers/phy/amlogic/phy-meson8b-usb2.c
-index 9c01b7e19b06..1333c77e9172 100644
---- a/drivers/phy/amlogic/phy-meson8b-usb2.c
-+++ b/drivers/phy/amlogic/phy-meson8b-usb2.c
-@@ -109,6 +109,7 @@
+diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
+index 58669abda259..bfa472a679d9 100644
+--- a/arch/arm/boot/dts/meson8b-odroidc1.dts
++++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
+@@ -83,6 +83,22 @@
+ 		regulator-max-microvolt = <5000000>;
+ 	};
  
- #define RESET_COMPLETE_TIME				500
- #define ACA_ENABLE_COMPLETE_TIME			50
-+#define DCD_ENABLE_COMPLETE_TIME			10
- 
- struct phy_meson8b_usb2_priv {
- 	void __iomem		*regs;
-@@ -188,6 +189,20 @@ static int phy_meson8b_usb2_power_on(struct phy *phy)
- 
- 		udelay(ACA_ENABLE_COMPLETE_TIME);
- 
-+		if (phy_meson8b_usb2_read(priv, REG_ADP_BC) &
-+			REG_ADP_BC_ACA_PIN_FLOAT) {
-+			dev_warn(&phy->dev, "USB ID detect failed!\n");
-+			clk_disable_unprepare(priv->clk_usb);
-+			clk_disable_unprepare(priv->clk_usb_general);
-+			return -EINVAL;
-+		}
-+	} else if (priv->dr_mode == USB_DR_MODE_OTG) {
-+		phy_meson8b_usb2_mask_bits(priv, REG_ADP_BC,
-+					   REG_ADP_BC_DCD_ENABLE,
-+					   REG_ADP_BC_DCD_ENABLE);
++	usb_vbus: regulator-usb-vbus {
++		compatible = "regulator-fixed";
 +
-+		udelay(DCD_ENABLE_COMPLETE_TIME);
++		regulator-name = "USB_VBUS";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
 +
- 		if (phy_meson8b_usb2_read(priv, REG_ADP_BC) &
- 			REG_ADP_BC_ACA_PIN_FLOAT) {
- 			dev_warn(&phy->dev, "USB ID detect failed!\n");
++		vin-supply = <&p5v0>;
++
++		/*
++		 * signal name from schematics: PWREN
++		 */
++		gpio = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
+ 	tflash_vdd: regulator-tflash_vdd {
+ 		/*
+ 		 * signal name from schematics: TFLASH_VDD_EN
+@@ -295,8 +311,18 @@
+ 	pinctrl-names = "default";
+ };
+ 
++&usb0_phy {
++	status = "okay";
++	phy-supply = <&usb_vbus>;
++};
++
+ &usb1_phy {
+ 	status = "okay";
++	phy-supply = <&usb_vbus>;
++};
++
++&usb0 {
++	status = "okay";
+ };
+ 
+ &usb1 {
 -- 
 2.20.1
 
