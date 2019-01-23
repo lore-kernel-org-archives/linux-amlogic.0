@@ -2,22 +2,22 @@ Return-Path: <SRS0=kAbd=P7=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 15533C282C0
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Jan 2019 15:26:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CEB7FC282C0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Jan 2019 15:27:46 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D59DE2184C
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Jan 2019 15:26:11 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9FA8C2133D
+	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Jan 2019 15:27:46 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="WEvwLskQ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KML8GqdS"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D59DE2184C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="brhZrOJK";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="D+6WJkTR"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9FA8C2133D
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,61 +26,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lVrh3Ot1rmxfYckSmWV/mwYvbjtGb+OSvHASqmX9znk=; b=WEvwLskQwbuQi4
-	mmuSlS7irObo8GmG+fXhmhDZUt+s84qhIVOqiFBYn/ovGegS7aOai/smi8A0X0lSMJNJN1uKP/J3A
-	abRt9WM4SJGRbPpW8DmyCL6KjNX08AQ0XKSORMmv2VcainKir24+xjpwDHaPOiUG9G3JmiLTEbtfH
-	3SaG7TveJfXxkrKBjCcizOIbNrY1YNYJch6a8Q2I8xdntiFR0+Hanck+9Iucx3QucQ2oOqqMCxYha
-	I/wmZLyv7YeNzYZAvRKE5sTwrVNAxAFnncmkwiUPyGY4b7VAkBGo9egTTwxvwr70ZkxbtEGTsOaz7
-	tcYz2xNlJp1B1NHJ7YCA==;
+	List-Owner; bh=BDkyB7GarSgcCOJaK3OvrtvKArQfJt02pwVV5ytSl68=; b=brhZrOJKemVFgP
+	SZtkHerNztl6QVzsAIyI3FSdqRI0wp560KXLPZ8JUyC6aWUzLcpzbQumi/faGKJKzUWiv7Bj51OWV
+	PDp4AkvDGOdMbI6CQs09EDsqtFUa8omeWYp2/1pySopk3fJ3tgIdNM9OJCc1BOR4apjuu7pdIVuo5
+	VPcRACvTqix5bQWMcMx76Z5QQh7Mk8uNwz979P7GWZ+Kg0Lgc+k34Q/vj/HwMslvcGpNAq1iUIqsK
+	caCfx/4wNY5+ehTrI9gd0a9J3+bGa4D35PPAdRR8GZKQA640DqTFu6VxlSUBAMUGn3t5X/GX3ClBq
+	8mMnn7kYNCflYW6oeidA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gmKPm-0003DC-2g; Wed, 23 Jan 2019 15:26:06 +0000
-Received: from mail-ot1-x341.google.com ([2607:f8b0:4864:20::341])
+	id 1gmKRH-0003MM-KZ; Wed, 23 Jan 2019 15:27:39 +0000
+Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gmKPH-00030t-7k; Wed, 23 Jan 2019 15:25:46 +0000
-Received: by mail-ot1-x341.google.com with SMTP id a11so2203124otr.10;
- Wed, 23 Jan 2019 07:25:34 -0800 (PST)
+ id 1gmKRE-0003M3-Sj
+ for linux-amlogic@lists.infradead.org; Wed, 23 Jan 2019 15:27:38 +0000
+Received: by mail-ot1-x344.google.com with SMTP id s5so2227976oth.7
+ for <linux-amlogic@lists.infradead.org>; Wed, 23 Jan 2019 07:27:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=PeJ1lzHyz15Q+LQw+4xFJCCYkmt41gRzhJUcmx397lo=;
- b=KML8GqdSLOIxG7OjxbwNZCcYQgovMt28NiQKf/VrU5oaaOFkrhJsbAOuhIKr932LNE
- vTRcm1Qv/1MCpannQaZt3BiAVMkNUTOpbaeblCapIcCZW8aG/tm9q291+WYeYecIliqT
- 3p/UL/xdXKYcFSY5drz/sYWs+wRKu0lESoIIREpQgBoSCC2jTH6IllXkD8yvg0KXqRkH
- 9OtMxpN0TinppFUQ7NZhVEh9BMDvy8c3tkJ/2X67ISXaWzOi0JUkSC/ownN+ywZepIvQ
- QEuftmb+vUL5aaRmEP3tX/OQsc3eLewb/MMYn+a2TIXDb8V8JBZ8rEn8gth1ZWzzwsMx
- rP+Q==
+ :cc; bh=dYpHC0eFfgfiP/v5zSDaYT6m96U+a6iTQdTmvMW8q6I=;
+ b=D+6WJkTR5fCtbRLAGcaLmJ53KCYTxvIqk0WAN4hqrqvuaak9DG3mfO9fydZ14YVAN9
+ HnGEJx3OZnfXVqrPj2SRN2nCgR0bWaQJzhPVpSf1kaoYAHlhdm1pirYM9xCFlmaXmVgP
+ HfRnJcTrEyKdqKw029R5YPcQ+Swzik4xhRezVnFTsN8Pn7PAyhZfr+zNM2lrpwCnT/yY
+ cgRO9HmmKj6NxQlUCeskMQ3FtlImhtsN5LOHh36PVsJ7qf8LzrCCxbcivMuccsGe0FQN
+ 6y/IB2y9r8tlYv9GiTiwc0yiej69u+X+cLfSKmuALn6ZbHmzLNCn1PJWkQYGfCGjdRJi
+ vtsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=PeJ1lzHyz15Q+LQw+4xFJCCYkmt41gRzhJUcmx397lo=;
- b=tHi76pJKji7On8NUPqpvu+FOSSLq8MbHrI8kwmJGpI0DMOipuLKnRK9NGtP61ry+J5
- hswiRgAkeRt9eMxjAo3ebnc/uYFVc/aYWoMbVXwHH5rXDHYPJpV/zMxiY7TBhVICZzhE
- vEcyeuGoevn3htOyizpq1p+TGIwrvBHhWt77FIWS1mBLvWUewfeJenTJ3ee4Qw5RCmOg
- xTGlY4uPK6EAQY9rCFV8MvNx5OKdp27IuyvoxIHWA8zW9+egcseN72KxMZeaqrI9/cRx
- a3pydhtOXEOMM+5DGTCYytXMAnWzBKMhVJSCvo9qhz6MudY3UOt1wiiZSkNeMYmwmDYK
- 3L0Q==
-X-Gm-Message-State: AJcUukdYprFRk89U+JVC7bvb+Y2GlGgU7EJmMNJnsMZqeFWMd3l/eYwN
- 224JfVtRjNoIL08Bet0CKB4gR5jq3EgGcufFWD0f0w==
-X-Google-Smtp-Source: ALg8bN5qPK3pLuDMdw/Oxpsa83PWCxXHCfURZRJncWze3dqKkYww1ZUPXNhue8LyfETNhHKcYPx/4+bSh0bZIgckqTc=
-X-Received: by 2002:a9d:3424:: with SMTP id v33mr1625714otb.167.1548257134167; 
- Wed, 23 Jan 2019 07:25:34 -0800 (PST)
+ bh=dYpHC0eFfgfiP/v5zSDaYT6m96U+a6iTQdTmvMW8q6I=;
+ b=iIWMf1nP0XqtPxG4NUQ7fhqFLI9Q8WcRPeimhnOY3HhU1izW3g0yDyn4IsGg55gUIx
+ DfXSvpDrAJ4kCS3qJmwxzlcxPQIjO27OTouq/rHXzWNpUqlQyWxIYciD7cHPy0bvaQ45
+ kVOYHWK8sjhP4oe8vRT9CYWYUoYo1bgRTgNai2I22FqkGZQSLiROxbm5Tx5g/Bw1FSNj
+ pjksZvj1CiSDTrcq7qVediXerK7uY0HbuS2X5TAOgfAdTbq3IJntq8G6GhG9y8bhxJZe
+ RLTjXlcHWGc46LEKNdipHk/wY7w4D63uHLg3+RoY1Bfe1cdPMtfkXSEPCnUXdirCfvdR
+ Zjew==
+X-Gm-Message-State: AJcUukdrfEHSbqOGiJt1CxbuT2In3wd5yFUQMcMXpyRhF2oHc8KXIotw
+ 0+qBMoXpg+qczaTf0VpJeBt8Vf68NAmNv9h+T+8=
+X-Google-Smtp-Source: ALg8bN6S2adO5EraSEuvb8Y7TCZgSjjqMbNUEonAK5TKhk9TdZbK+uLw9Q+ECp8E2VL79QRgct4/wYJei9BWlAgmscU=
+X-Received: by 2002:a9d:6297:: with SMTP id x23mr1574564otk.63.1548257255993; 
+ Wed, 23 Jan 2019 07:27:35 -0800 (PST)
 MIME-Version: 1.0
-References: <20190113181808.5768-1-linux.amoon@gmail.com>
- <CAFBinCCD4o0cXEht_7bgV6moCK2WfVRvZq8UUZD3gDo-TaRKbQ@mail.gmail.com>
- <CANAwSgQNNRqr3rZRgr71iy7+0zuuYykd+4-1W3LB+Voux6KioQ@mail.gmail.com>
- <CAFBinCCXufowepJaHgkPwhhNrogXDP-0x0ZS09OGCM=ua-=5MQ@mail.gmail.com>
- <CANAwSgR6gGGx6RgAszwHp+FYeJTdBvMAzc4p4TNpWnFXdxDf4w@mail.gmail.com>
- <CAFBinCBuQx+JVXzs4=+Ko++1CsEc5GqUX6+xUym=c25ZtLz3BA@mail.gmail.com>
-In-Reply-To: <CAFBinCBuQx+JVXzs4=+Ko++1CsEc5GqUX6+xUym=c25ZtLz3BA@mail.gmail.com>
+References: <20190121183723.25231-1-martin.blumenstingl@googlemail.com>
+ <20190121183723.25231-2-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20190121183723.25231-2-martin.blumenstingl@googlemail.com>
 From: Anand Moon <linux.amoon@gmail.com>
-Date: Wed, 23 Jan 2019 20:55:21 +0530
-Message-ID: <CANAwSgSURxQm2=d5gcRnuDHcQVdnWgoLkP-FWPMSueh4NNAOQA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] ARM: dts: meson8b: odroidc1: Enable usb phy node
+Date: Wed, 23 Jan 2019 20:57:23 +0530
+Message-ID: <CANAwSgQp2bc+HdTdX915bSUHRdZaJbXoriV7guK58G0bNwBtyQ@mail.gmail.com>
+Subject: Re: [PATCH 1/1] regulator: pwm: suppress EPROBE_DEFER error message
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190123_072535_479331_59C90249 
-X-CRM114-Status: GOOD (  44.60  )
+X-CRM114-CacheID: sfid-20190123_072736_930736_3879436F 
+X-CRM114-Status: GOOD (  18.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -92,13 +89,9 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree <devicetree@vger.kernel.org>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Linux Kernel <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Emiliano Ingrassia <ingrassia@epigenesys.com>,
- linux-amlogic@lists.infradead.org,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: boris.brezillon@free-electrons.com, Liam Girdwood <lgirdwood@gmail.com>,
+ Linux Kernel <linux-kernel@vger.kernel.org>, Mark Brown <broonie@kernel.org>,
+ Thierry Reding <thierry.reding@gmail.com>, linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
@@ -106,197 +99,59 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi Martin,
 
-On Tue, 22 Jan 2019 at 00:22, Martin Blumenstingl
+On Tue, 22 Jan 2019 at 00:07, Martin Blumenstingl
 <martin.blumenstingl@googlemail.com> wrote:
 >
-> Hi Anand,
+> Suppress the "Failed to get PWM" error output if the actual error code
+> is EPROBE_DEFER. This makes the behavior of the pwm-regulator driver
+> consistent with what most other drivers do (which is: print all errors
+> except EPROBE_DEFER).
 >
-> On Mon, Jan 21, 2019 at 7:37 AM Anand Moon <linux.amoon@gmail.com> wrote:
-> >
-> > Hi Martin,
-> >
-> > Thanks for you comments.
-> >
-> > On Mon, 21 Jan 2019 at 03:21, Martin Blumenstingl
-> > <martin.blumenstingl@googlemail.com> wrote:
-> > >
-> > > Hi Anand,
-> > >
-> > > On Sun, Jan 20, 2019 at 7:44 PM Anand Moon <linux.amoon@gmail.com> wrote:
-> > > >
-> > > > Hi Martin,
-> > > >
-> > > > Thanks for your review comments.
-> > > >
-> > > > On Sat, 19 Jan 2019 at 03:59, Martin Blumenstingl
-> > > > <martin.blumenstingl@googlemail.com> wrote:
-> > > > >
-> > > > > Hi Anand,
-> > > > >
-> > > > > thank you for this patch!
-> > > > >
-> > > > > On Sun, Jan 13, 2019 at 7:18 PM Anand Moon <linux.amoon@gmail.com> wrote:
-> > > > > >
-> > > > > > Add missing vbus-supply link to phy controller for usb_phy0
-> > > > > > and usb_phy1 nodes, this changes fixed the power issue
-> > > > > > on usb ports usb, changes help fix usb reset warning.
-> > > > > I trust you on the fact that GPIOAO_5 controls VBUS of USB0 and USB1
-> > > > >
-> > > > > to me the schematics are not 100% clear or I'm bad at interpreting them:
-> > > > > - I'll refer to odroid-c1+_rev0.4_20150615.pdf
-> > > > > - page 1 lists GPIOAO.BIT5 as input for the PWREN signal of the
-> > > > > USB_OTG controller (usb0)
-> > > > > - page 1 also shows a PWREN signal in the USB_HOST controller (usb1)
-> > > > > but not it's input
-> > > > > - based on your patch I assume that PWREN is the same signal for both
-> > > > > USB controllers
-> > > > >
-> > > > As per the schematics odroid-c1+_rev0.4_20150615.pdf
-> > > >
-> > > > It seem that their  vbus setting for *OTG* port. *Bus 01.Port 1* using
-> > > > *GPIOAO.BIT5* gpio
-> > > that matches my interpretation of the schematics
-> >
-> > Yep, I feel that GPIOAO.BIT5 enable the PWREN power on  Bus 02.Port (usb1)
-> > But I could not get this to enable on Bus 01.Port (usb0).
-> >
-> > usb hot-plug of devices is working fine on *usb1* but not on *usb0*.
-> > I have tried different combination but it's not working for me.
-> >
-> > I am attaching small changes to phy which enables the Bus 01.Port
-> > (usb0) on Odroid C1+/Odroidc2.
-> > we need to set dr_mode="otg" to enable this bus in dts.
-> I need to get my multimeter out and measure on my own Odroid-C1
-> I *believe* to have observed that toggling GPIOAO.BIT5 changes the
-> voltage at at the OTG port, but it's been a few weeks since then...
-> let me know if you want me to do the measurements on my Odroid-C1+ again
+> An example where this cleans up the kernel log are the 32-bit Amlogic
+> Meson boards:
+> multi_v7_defconfig has CONFIG_REGULATOR_PWM=y and CONFIG_PWM_MESON=m.
+> When booting such a board (for example the Meson8b Odroid-C1) the
+> following message is printed five times during boot:
+>   pwm-regulator regulator-vcck: Failed to get PWM: -517
+> On the sixth call the pwm-meson driver is finally loaded (as rootfs
+> becomes ready) and the "VCCK" pwm-regulator comes up fine.
 >
-> > > > But we also need set power supply for *USB_B* port. *Bus 02.Port 1* ?
-> > > > I don't know but I will try to find solution.
-> > > I assume we also have to enable VBUS for the host only port, but I
-> > > don't know how
-> > >
-> > > > We need to enable some bit in phy driver ?
-> > > I'm not aware of any bit in the PHY driver which can toggle VBUS
-> > >
-> > > (trying to be creative here) maybe the GPIO is incorrectly configured
-> > > to pull up or down?
-> >
-> > I have tried this but no luck.
-> OK, too bad
+> Fixes: aa66cc6630a408 ("regulator: pwm-regulator: get voltage and duty table from dts")
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  drivers/regulator/pwm-regulator.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 >
-> [...]
-> > > > After fix the phy driver code and dts changes I am getting this changes.
-> > > > # cat /sys/kernel/debug/regulator/regulator_summary | grep USB_VBUS
-> > > >     USB_VBUS                      1    2      0 unknown  5000mV
-> > > > 0mA  5000mV  5000mV
-> > > >
-> > > > Now I am able to enable both *Bus 01.Port 1* and *Bus 02.Port 1*
-> > > >
-> > > > # lsusb -t
-> > > > /:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
-> > > >     |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
-> > > >         |__ Port 1: Dev 4, If 0, Class=Mass Storage, Driver=usb-storage, 480M
-> > > >         |__ Port 3: Dev 3, If 0, Class=Video, Driver=uvcvideo, 480M
-> > > >         |__ Port 3: Dev 3, If 1, Class=Video, Driver=uvcvideo, 480M
-> > > >         |__ Port 3: Dev 3, If 2, Class=Audio, Driver=snd-usb-audio, 480M
-> > > >         |__ Port 3: Dev 3, If 3, Class=Audio, Driver=snd-usb-audio, 480M
-> > > so this is the host-only controller (usb1) and it's working fine for
-> > > you - very nice!
-> > >
-> > > > /:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
-> > > >
-> > > > But not usb device are getting enable on *Bus 01.Port 1*
-> > > so you have something plugged into the OTG capable controller (usb0)
-> > > using an OTG cable?
-> >
-> > Yes I have connected USB-OTG cable with storage device attached,
-> > led lights on the device is blinking, but no power to the port is enable.
-> > so not hotplug of device is working on this port.
-> thanks for confirming this!
-> can you please send an updated version of both patches? if you want
-> someone else to test and/or review the patches before they are applied
-> you can use the subject prefix "RFT PATCH n/m" or "RFC PATCH n/m" (RFT
-> means "request for testing", "RFC" means "request for comments")
+> diff --git a/drivers/regulator/pwm-regulator.c b/drivers/regulator/pwm-regulator.c
+> index 3f53f9134b32..7789d181ae67 100644
+> --- a/drivers/regulator/pwm-regulator.c
+> +++ b/drivers/regulator/pwm-regulator.c
+> @@ -357,7 +357,9 @@ static int pwm_regulator_probe(struct platform_device *pdev)
+>         drvdata->pwm = devm_pwm_get(&pdev->dev, NULL);
+>         if (IS_ERR(drvdata->pwm)) {
+>                 ret = PTR_ERR(drvdata->pwm);
+> -               dev_err(&pdev->dev, "Failed to get PWM: %d\n", ret);
+> +               if (ret != -EPROBE_DEFER)
+> +                       dev_err(&pdev->dev, "Failed to get PWM: %d\n", ret);
+> +
+>                 return ret;
+>         }
 >
+> --
+> 2.20.1
+>
+Please add my. tested on Odroid c1+
 
-I have tried to address the issue in the next series of patches.
-
-> > > I've not tried this before on my Odroid-C1 because I'm using the micro
-> > > USB connector to power the board
-> >
-> > Correct me if I am wrong, we need to tune USB phy driver to enable as
-> > power the board ?
-> so far I have seen two designs on Amlogic boards:
-> - VBUS is hardwired to +5V
-> - VBUS is controlled by a regulator/current limiting switch/etc. which
-> can be toggled using a GPIO
->
-> the PHY is involved in this because for the OTG port it senses the ID
-> line to decide whether the controller has to go into host or device
-> (peripheral) mode.
-> however, this part is not implemented in the mainline phy-meson8b-usb2
-> driver yet
->
-> in case someone is interested in *why* dwc2 doesn't do OTG on the
-> Amlogic SoCs yet - here are the notes from the top of my head:
-> - the dwc2 controller doesn't get an interrupt when switching between
-> host and peripheral mode
-> - instead the Amlogic vendor kernel has a timer which polls the PHY registers
-> - if the timer handler detects a "mode change" in the PHY registers it
-> changes the dwc2 mode
-> - however, in mainline the PHY can't notify the USB controller driver
-> (dwc2) to change the mode (yet)
->
-Thanks for your input.
-
-Yep I tired to study the code changes in the u-boot from amlogic.
-I tried to enable few bit in the phy to test enable of usb otg port
-but no success.
-I have tested that otg port is used to power on the board.
-
-> > >
-> > > do you get VBUS (maybe you have a USB thumb drive with an LED which
-> > > lights up when you connect it)?
-> > > do you get any errors or warnings from the dwc2 driver during boot?
-> > >
-> >
-> > Please find the boot log of my Odroid C1+ here
-> > [0]: https://pastebin.com/PiDmVmEC
-> >
-> > I dont see any major error on usb side.
-> that looks very good indeed. as I already mentioned above: please send
-> an updated version of the patches so I can try to reproduce your test
-> results!
->
-> > > > > on which board revision have you tested this patch?
-> > > > >
-> > > >
-> > > > I have with me for testing
-> > > >
-> > > > ODROID-C0 REV 0.4 20151217
-> > > > ODROID-C1+ REV 0.4 20150615 ----> current testing on
-> > > I have the exact same Odroid-C1+ board revision
-> > > this is my u-boot version:
-> > > U-boot-00000-gb7b8dc2-dirty(odroidc@b7b8dc21) (Sep 01 2017 - 01:18:22)
-> > > -> b7b8dc21 is the lastest commit of the hardkernel odroidc-v2011.03
-> > > u-boot branch at the time of writing
-> > >
-> >
-> > I am using the the u-boot from archlinux.
-> > If their is another u-boot for Odroid c1 plz let me know, I will try
-> > to install this on my system.
-> I don't remember where I got my u-boot version from.
-> maybe I should switch to the Arch Linux ARM one instead (so I'm back
-> to a well-known state). but let's wait for the test results from your
-> updated patches first.
->
->
-> Regards
-> Martin
+Tested-by: Anand Moon <linux.amoon@gmail.com>
 
 Best Regards
 -Anand
+
+>
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
 _______________________________________________
 linux-amlogic mailing list
