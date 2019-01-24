@@ -2,89 +2,79 @@ Return-Path: <SRS0=E298=QA=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.6 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_MUTT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BF3E6C282C3
-	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Jan 2019 12:39:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 229A4C282C3
+	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Jan 2019 14:22:23 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8BEA821855
-	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Jan 2019 12:39:57 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E736221872
+	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Jan 2019 14:22:22 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HWdNNZYL";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="Xs+sILNw"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8BEA821855
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ffwll.ch
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="BdOFqcjH";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b3AYFbIr"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E736221872
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jTprez1r/PO4jrMyBtiK0e32GJusbi7yeO0Akh8L6sY=; b=HWdNNZYLi/YLyJ
-	9EVqY/S6GpuDGWSpdB31URRNUU9tR4/EKBz4rsWmf4lbecjugTrYQZxwjhoY5Hw737kwmD1q1ycVi
-	7ZgZRkUUCzwL6NR75M5cptxFSd4vUy17vmUlNHEywP0B6MaiYpAIktJNlME6+XYads6P13Am7Cktp
-	bHzmpFDuIxCwdR05kOdP8WCYnglnbYKhhWBNMk5E2NKkeaSYw+XKxVtElizKWoQaa7M80KzFWRf7w
-	NQrp9RrpzqC5Lgh6EFTOpANEHxUAfSWOkgMtbNe9ixG6iRi3a1tZaP7YvUVrmv5a+iTpTq/69XTQr
-	reIRklowWA5LglwA3wew==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	MIME-Version:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=QlQ9TPgnkWB5hdVwc0/4N1Rma9eOK37uHU3ozIRqtro=; b=BdO
+	FqcjHNwuWFB/SiweWW8hy/wWpQuYHKnIrOnuPls0RldJiCV6b7DF5wTyL+P170fbpzXUsaNurvJ3N
+	k9MrSDRRqzhHAchx4Iju0O1Eru7J2ivcj9cqMV4nwQdN3pEOy/nltRcMJE/lRjfLaLij7KrkSn18i
+	FTliQ9vp8GbtdxDDfDUrHNs4Cx3txt8ahBq0eZXSxxM4w0zon7UKFuUjsj1dHAiaRGwru5/7DonrV
+	TDptpwZJMWAkCu2OkpXvvrRWQxm5lt2aP4NE5DNZi8ZJDhjDwRIAm+f1vwkgEkC/rhr4ZZOBogQ4w
+	4ed6sz+sCNFE9Fqhmq4R90PT4E+cUBg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gmeIP-0004uU-Mm; Thu, 24 Jan 2019 12:39:49 +0000
-Received: from mail-ed1-x542.google.com ([2a00:1450:4864:20::542])
+	id 1gmftY-00061a-HJ; Thu, 24 Jan 2019 14:22:16 +0000
+Received: from mail-it1-x143.google.com ([2607:f8b0:4864:20::143])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gmeIN-0004sr-0F
- for linux-amlogic@lists.infradead.org; Thu, 24 Jan 2019 12:39:48 +0000
-Received: by mail-ed1-x542.google.com with SMTP id g22so4441052edr.7
- for <linux-amlogic@lists.infradead.org>; Thu, 24 Jan 2019 04:39:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=sender:date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=c1mNI5T4m20SpCB9OCXSFUEgo9wAKUIT7bb59B02sTo=;
- b=Xs+sILNwFnhsMsInizUcnZQT7V6t07Wg+2m5qm8T9+gfHD8JMXDGyRdXasDYGeBRu5
- jfY5eN5cBRzg5Km3phmLAArdGGj70YK8XC66ga0dLHTFYJi0rxT7RKfW0wqm/MaKA5Oi
- FmnqtX1mKk9fgUoAmJF4yfX9mLYc+pQLAInls=
+ id 1gmftU-00060W-Sz
+ for linux-amlogic@lists.infradead.org; Thu, 24 Jan 2019 14:22:14 +0000
+Received: by mail-it1-x143.google.com with SMTP id h193so4575434ita.5
+ for <linux-amlogic@lists.infradead.org>; Thu, 24 Jan 2019 06:22:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=TzuGwlH/0Mzr/AQFH1v+FMxuAlr4J0f7x0FsIxp6yuA=;
+ b=b3AYFbIrlVIhiqQd7R+jjQA4rcBFV233QrbG3B6huCP8t9FrtAlovtXCBxeJ1PkOF2
+ ep5mempTggp3feqihyy472xNO9CcBF2gWm10yzhL5c0MX446seB1TMifZObY3Qj4R5Vl
+ HZI7HCtG9ot4OLptBYMzGITBVfBf2diCsaY7QhgHJmFfqpGGd3dLx9aRq3i8MtLNhfE5
+ ve0tOzeFqHTHsZAFaoRKXd/5QyahdyTPdmmkfT2oSjtAp0BGn/dgjT8bUCG7Vo1pqnAV
+ DqrRAM5/2dexyxI8yWhy8mDaKA3vdHoFA8+x6ICx2cilJR/jEksTOCSYx0b4z8ZWuQMW
+ Vi9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
- :references:mime-version:content-disposition:in-reply-to:user-agent;
- bh=c1mNI5T4m20SpCB9OCXSFUEgo9wAKUIT7bb59B02sTo=;
- b=T4bw7S8URSphppB8RhWqOplr+8QjDxrjBXujC7PsqDZ9HhR0HNYSteR1o+f+ow4nDX
- 3+UOVwbXsFUCusM5eKYTNFE/Z4eVtcSjogRHLnNmw+pZh00JsInTG3mpEE75T6yMQwzD
- 5OP75TRFnq46Ncli12daE8DwT6O6WpG1/kmBsnmfnV9dQG1QwuurnJGVNpLwUcVHHmx+
- 8FOEubThPDgLGZYtO7PeeqBfFcISwtRsK816G6Wafo8HkhYmFlNsjfSJ6uKOhw9+1bf0
- PE19mKqbV0u6eoOY1wTEmr+foz6uR8Yc58NfDzaDq4oj/youDCRB6cqwJhvwgmKEkMkv
- LJOQ==
-X-Gm-Message-State: AJcUukcIYZoQhi4zzQwQb/ntobL4UgSJ/5+pGoyczaNmRGqRA7oUtKDN
- FqcGzL3/IYXjQ4NjOwPTdHwzPA==
-X-Google-Smtp-Source: ALg8bN6QWswlzohggrLEqf84UNCuXug1KlzboVlv+Uh2BRu5bdykRE7vK7zKCjeeWxzlybhwkDdnrg==
-X-Received: by 2002:a17:906:3281:: with SMTP id
- 1-v6mr5845104ejw.103.1548333585024; 
- Thu, 24 Jan 2019 04:39:45 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:569e:0:3106:d637:d723:e855])
- by smtp.gmail.com with ESMTPSA id x30sm10994617edd.30.2019.01.24.04.39.43
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Thu, 24 Jan 2019 04:39:44 -0800 (PST)
-Date: Thu, 24 Jan 2019 13:39:41 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [PATCH] drm: Split out drm_probe_helper.h
-Message-ID: <20190124123941.GW3271@phenom.ffwll.local>
-References: <20190116181018.GA27364@ravnborg.org>
- <20190117210334.13234-1-daniel.vetter@ffwll.ch>
- <20190123170015.GA23138@ravnborg.org>
- <20190124094646.GR3271@phenom.ffwll.local>
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=TzuGwlH/0Mzr/AQFH1v+FMxuAlr4J0f7x0FsIxp6yuA=;
+ b=EOmgFljw88h/q9Kgay4LNFtQbWFna5c5n9CoZiUojQ4lJ0nKB8IwvcDVDqWjIBiU2J
+ slvSWmyI/yEYXS3YErdc3mQbqUOws7+Wvdy9ITztrn/nDaiDlMuRN3EoSplBF0Q1c/hU
+ bRy4GuEp/2+fYOAdTbLd5OSwG/zpBbDwskjJKv3BspNBlbUOUi0LbFewvyiZtzEWL0Qe
+ xz5JUQKArdcxq0V6MyVjREI30nsdYAAQhJQBb8vnoktekQ7QZpDSK3pljE1ylTWlAYre
+ aeHZjcD+M6tVRpoi7KrKn6E/C53Lm+laCeOrmuyHPgk2yx/M9Q7HP1CpWohb7nSfVw+i
+ YHng==
+X-Gm-Message-State: AJcUukftWM93/LD7T18bc6/3VC0lrR3XTlZGghB1KCAICXOkFU4cGCdp
+ ta26IHvpBQWBUlkKEkTtXukSouEnnltEyEyzTZuIi12Q
+X-Google-Smtp-Source: ALg8bN48QoxqxN0hm5cU938eyMd0C+irIx6i8wOr5nKMS4jHre0krGYPT6U75VlAesP1YgNO32tLyzOLOXjlXZblWBM=
+X-Received: by 2002:a24:9144:: with SMTP id i65mr1619084ite.115.1548339731247; 
+ Thu, 24 Jan 2019 06:22:11 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20190124094646.GR3271@phenom.ffwll.local>
-X-Operating-System: Linux phenom 4.19.0-1-amd64 
-User-Agent: Mutt/1.10.1 (2018-07-13)
+From: Piero <ottuzzi@gmail.com>
+Date: Thu, 24 Jan 2019 15:22:00 +0100
+Message-ID: <CAPo5REEKkqctyS2+X8xjn8YgH93RrtAqBu4nELxzgSo0TCgeAQ@mail.gmail.com>
+Subject: odroidc1 eth0 problem with 250HZ
+To: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190124_043947_129291_31B928AE 
-X-CRM114-Status: GOOD (  13.21  )
+X-CRM114-CacheID: sfid-20190124_062212_955382_E5CBA80B 
+X-CRM114-Status: UNSURE (   4.45  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,57 +86,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, Liviu Dudau <liviu.dudau@arm.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- virtualization@lists.linux-foundation.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- amd-gfx@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- nouveau@lists.freedesktop.org, CK Hu <ck.hu@mediatek.com>,
- spice-devel@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- linux-mediatek@lists.infradead.org, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, xen-devel@lists.xen.org,
- linux-renesas-soc@vger.kernel.org, Alex Deucher <alexander.deucher@amd.com>,
- freedreno@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jan 24, 2019 at 10:46:47AM +0100, Daniel Vetter wrote:
-> On Wed, Jan 23, 2019 at 06:00:15PM +0100, Sam Ravnborg wrote:
-> > Hi Daniel.
-> > 
-> > On Thu, Jan 17, 2019 at 10:03:34PM +0100, Daniel Vetter wrote:
-> > > Having the probe helper stuff (which pretty much everyone needs) in
-> > > the drm_crtc_helper.h file (which atomic drivers should never need) is
-> > > confusing. Split them out.
-> > > 
-> > > To make sure I actually achieved the goal here I went through all
-> > > drivers. And indeed, all atomic drivers are now free of
-> > > drm_crtc_helper.h includes.
-> > 
-> > How are the plans to get this patchset merged?
-> > There were dependencies on onging drmP.h removal in i915 IIRC?
-> > I guess my "Minimize drmP.h dependencies" patch-set also have a role in this.
-> 
-> Working on it, a pull request got lost. I originally wanted to get this
-> all resolved this week, probably going to be next week now :-(
+Hi,
 
-We're lucky, all sorted now & patch merged. I'm also merging your series,
-correctly interleaved.
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+    I tested armbian distribution on my odroid C1+ using kernel
+4.19.17 and later.
+I observed that with 250HZ kernel eth0 is non-functional giving the
+following error:
+
+[   14.853086] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
+[   14.853367] meson8b-dwmac c9410000.ethernet eth0: device MAC
+address b6:e8:26:b6:da:4a
+[   14.853378] meson8b-dwmac c9410000.ethernet eth0: Could not attach to PHY
+[   14.853386] meson8b-dwmac c9410000.ethernet eth0: stmmac_open:
+Cannot attach to PHY (error: -19)
+[   15.064433] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
+[   15.084471] meson8b-dwmac c9410000.ethernet eth0: Could not attach to PHY
+[   15.084486] meson8b-dwmac c9410000.ethernet eth0: stmmac_open:
+Cannot attach to PHY (error: -19)
+[   15.193033] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
+[   15.225926] meson8b-dwmac c9410000.ethernet eth0: Could not attach to PHY
+[   15.225958] meson8b-dwmac c9410000.ethernet eth0: stmmac_open:
+Cannot attach to PHY (error: -19)
+[   15.239227] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
+[   15.293190] meson8b-dwmac c9410000.ethernet eth0: Could not attach to PHY
+[   15.293213] meson8b-dwmac c9410000.ethernet eth0: stmmac_open:
+Cannot attach to PHY (error: -19)
+[   15.306038] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
+[   15.352091] meson8b-dwmac c9410000.ethernet eth0: Could not attach to PHY
+[   15.352111] meson8b-dwmac c9410000.ethernet eth0: stmmac_open:
+Cannot attach to PHY (error: -19)
+[   15.370056] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
+
+Only changing 250HZ to 100HZ is enough to fix this problem.
+Some more details on armbian forum[1].
+Can you check it please?
+I can provide more logs and details if requested. If needed I can test fixes.
+
+Thanks in advance
+**Bye
+Piero
+[1]https://forum.armbian.com/topic/9138-odroid-c0c1c1-please-update-the-mainline-kernel-version/
 
 _______________________________________________
 linux-amlogic mailing list
