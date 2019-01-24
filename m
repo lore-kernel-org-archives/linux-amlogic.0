@@ -2,79 +2,86 @@ Return-Path: <SRS0=E298=QA=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 229A4C282C3
-	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Jan 2019 14:22:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2A79FC282C5
+	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Jan 2019 16:58:53 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E736221872
-	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Jan 2019 14:22:22 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E5DC22184B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Jan 2019 16:58:52 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="BdOFqcjH";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b3AYFbIr"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E736221872
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PpeXct/W";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="UyjIjctW"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E5DC22184B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ffwll.ch
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	MIME-Version:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=QlQ9TPgnkWB5hdVwc0/4N1Rma9eOK37uHU3ozIRqtro=; b=BdO
-	FqcjHNwuWFB/SiweWW8hy/wWpQuYHKnIrOnuPls0RldJiCV6b7DF5wTyL+P170fbpzXUsaNurvJ3N
-	k9MrSDRRqzhHAchx4Iju0O1Eru7J2ivcj9cqMV4nwQdN3pEOy/nltRcMJE/lRjfLaLij7KrkSn18i
-	FTliQ9vp8GbtdxDDfDUrHNs4Cx3txt8ahBq0eZXSxxM4w0zon7UKFuUjsj1dHAiaRGwru5/7DonrV
-	TDptpwZJMWAkCu2OkpXvvrRWQxm5lt2aP4NE5DNZi8ZJDhjDwRIAm+f1vwkgEkC/rhr4ZZOBogQ4w
-	4ed6sz+sCNFE9Fqhmq4R90PT4E+cUBg==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=KjGNsxvVhLojni07PNkrilaCJozVKSNX05JpMiMq3b8=; b=PpeXct/WFn66DR
+	3aNf2tb8gC6/PbepqXliAc70Z6crZgcSwERPTSmQdtypRg/zdhI47+5zQ6He0lUZEQFJqUeOCQxRY
+	vPoglIZRV8CmOMEKmQSpzWj30Wsxb1n6Cq/BUmCbVrNRfEK68s/Pip2FqiAtP8jimsh/pmo9SpoJy
+	gb8S8+EJMAv7+AFYIJS/O9t1sVkJpl+RgM6w5wSKU5ewu1A5tgJ0E8LM49XB7j43/Fcjl6XWmhEf6
+	sP7b604R7woRq2cv8/X9IlfPFfduzsJamR4yaRRCARWO9V7FnNeM/lUGxIHoIvJgG6Mvkhpg6yc/w
+	yjpSecTmPWObFvVezZSQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gmftY-00061a-HJ; Thu, 24 Jan 2019 14:22:16 +0000
-Received: from mail-it1-x143.google.com ([2607:f8b0:4864:20::143])
+	id 1gmiKz-0000eg-0L; Thu, 24 Jan 2019 16:58:45 +0000
+Received: from mail-ed1-x541.google.com ([2a00:1450:4864:20::541])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gmftU-00060W-Sz
- for linux-amlogic@lists.infradead.org; Thu, 24 Jan 2019 14:22:14 +0000
-Received: by mail-it1-x143.google.com with SMTP id h193so4575434ita.5
- for <linux-amlogic@lists.infradead.org>; Thu, 24 Jan 2019 06:22:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=TzuGwlH/0Mzr/AQFH1v+FMxuAlr4J0f7x0FsIxp6yuA=;
- b=b3AYFbIrlVIhiqQd7R+jjQA4rcBFV233QrbG3B6huCP8t9FrtAlovtXCBxeJ1PkOF2
- ep5mempTggp3feqihyy472xNO9CcBF2gWm10yzhL5c0MX446seB1TMifZObY3Qj4R5Vl
- HZI7HCtG9ot4OLptBYMzGITBVfBf2diCsaY7QhgHJmFfqpGGd3dLx9aRq3i8MtLNhfE5
- ve0tOzeFqHTHsZAFaoRKXd/5QyahdyTPdmmkfT2oSjtAp0BGn/dgjT8bUCG7Vo1pqnAV
- DqrRAM5/2dexyxI8yWhy8mDaKA3vdHoFA8+x6ICx2cilJR/jEksTOCSYx0b4z8ZWuQMW
- Vi9w==
+ id 1gmiKv-0000bX-Pp
+ for linux-amlogic@lists.infradead.org; Thu, 24 Jan 2019 16:58:43 +0000
+Received: by mail-ed1-x541.google.com with SMTP id d39so5131136edb.12
+ for <linux-amlogic@lists.infradead.org>; Thu, 24 Jan 2019 08:58:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=qxRGPjapyeBHN2idsi07sfu0XUlyhsatL/XtHnBDJ1Q=;
+ b=UyjIjctWHA4u0NpOfbFMmb98ZkgpIysCj9913XhrnW+jRnwloMc3iZFBxxfCJf1B7U
+ A48XKD7/BE//P+bwysH8n03RsbxDCsZ7532ATb0ty5CRiaD6CLkJ9ApNcUxjs7TYCaWY
+ gFOy3jUexAWdr1ZpFjm7YaKKpB10gX/bdezpg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=TzuGwlH/0Mzr/AQFH1v+FMxuAlr4J0f7x0FsIxp6yuA=;
- b=EOmgFljw88h/q9Kgay4LNFtQbWFna5c5n9CoZiUojQ4lJ0nKB8IwvcDVDqWjIBiU2J
- slvSWmyI/yEYXS3YErdc3mQbqUOws7+Wvdy9ITztrn/nDaiDlMuRN3EoSplBF0Q1c/hU
- bRy4GuEp/2+fYOAdTbLd5OSwG/zpBbDwskjJKv3BspNBlbUOUi0LbFewvyiZtzEWL0Qe
- xz5JUQKArdcxq0V6MyVjREI30nsdYAAQhJQBb8vnoktekQ7QZpDSK3pljE1ylTWlAYre
- aeHZjcD+M6tVRpoi7KrKn6E/C53Lm+laCeOrmuyHPgk2yx/M9Q7HP1CpWohb7nSfVw+i
- YHng==
-X-Gm-Message-State: AJcUukftWM93/LD7T18bc6/3VC0lrR3XTlZGghB1KCAICXOkFU4cGCdp
- ta26IHvpBQWBUlkKEkTtXukSouEnnltEyEyzTZuIi12Q
-X-Google-Smtp-Source: ALg8bN48QoxqxN0hm5cU938eyMd0C+irIx6i8wOr5nKMS4jHre0krGYPT6U75VlAesP1YgNO32tLyzOLOXjlXZblWBM=
-X-Received: by 2002:a24:9144:: with SMTP id i65mr1619084ite.115.1548339731247; 
- Thu, 24 Jan 2019 06:22:11 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=qxRGPjapyeBHN2idsi07sfu0XUlyhsatL/XtHnBDJ1Q=;
+ b=nd0lB8aGazbSVeoh1JKKNS7yjUuW3Q4MpzQq4KgHkUhHNz18U61U+V9smxBuQtKvLS
+ lq5g+eOWelsedQGhpE2uJFA11bP5LZkbQKYkztOCjiqvmhKp0t7LqiCwFbSjQX0IWUgi
+ +u67OV1LagxJWmBCLtj3RNHt1xBDT89abs2vfxLzUwkv94ZUj6ihW+KCjz8K9O3LFRqP
+ r73JDXtOuljL+VLZqSpfHmS9VHEYdDJewpL+fFSMpFHK9TJkOc8Ur525EiTqHOW58h/0
+ xmaBMUm40JLYBqHzl59Sk4zcrJSn0VR38jD/hjwjvpKV+RxaU/zvEX/I/LGjU1YLyBHR
+ 5bpw==
+X-Gm-Message-State: AJcUukeNpa4hibrWOA2YG8BJEK3ZJW83O6BBHmKrQCLuqqqFXxYXBNw+
+ d6ZQLEOBmQ/NI0kn8qY4wFiLEA==
+X-Google-Smtp-Source: ALg8bN45J2W+F8q+tt4rP/5cexe8AntV5M5teTc6dDkvp2whDbKPk7otnGIHLX6c7TU85WuSuAR4mA==
+X-Received: by 2002:a17:906:5ace:: with SMTP id
+ x14mr6551472ejs.64.1548349119495; 
+ Thu, 24 Jan 2019 08:58:39 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:569e:0:3106:d637:d723:e855])
+ by smtp.gmail.com with ESMTPSA id w31sm11219233edw.82.2019.01.24.08.58.37
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 24 Jan 2019 08:58:38 -0800 (PST)
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Subject: [PATCH 01/26] drm/irq: Don't check for DRIVER_HAVE_IRQ in
+ drm_irq_(un)install
+Date: Thu, 24 Jan 2019 17:58:06 +0100
+Message-Id: <20190124165831.16427-2-daniel.vetter@ffwll.ch>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190124165831.16427-1-daniel.vetter@ffwll.ch>
+References: <20190124165831.16427-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-From: Piero <ottuzzi@gmail.com>
-Date: Thu, 24 Jan 2019 15:22:00 +0100
-Message-ID: <CAPo5REEKkqctyS2+X8xjn8YgH93RrtAqBu4nELxzgSo0TCgeAQ@mail.gmail.com>
-Subject: odroidc1 eth0 problem with 250HZ
-To: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190124_062212_955382_E5CBA80B 
-X-CRM114-Status: UNSURE (   4.45  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190124_085841_901875_F6E9F017 
+X-CRM114-Status: GOOD (  14.60  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -86,51 +93,288 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: Daniel Vetter <daniel.vetter@intel.com>, linux-arm-msm@vger.kernel.org,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linux-renesas-soc@vger.kernel.org, spice-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, linux-amlogic@lists.infradead.org,
+ freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+If a non-legacy driver calls these it's valid to assume there is
+interrupt support. The flag is really only needed for legacy drivers.
 
-    I tested armbian distribution on my odroid C1+ using kernel
-4.19.17 and later.
-I observed that with 250HZ kernel eth0 is non-functional giving the
-following error:
+Also remove all the flag usage from non-legacy drivers.
 
-[   14.853086] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
-[   14.853367] meson8b-dwmac c9410000.ethernet eth0: device MAC
-address b6:e8:26:b6:da:4a
-[   14.853378] meson8b-dwmac c9410000.ethernet eth0: Could not attach to PHY
-[   14.853386] meson8b-dwmac c9410000.ethernet eth0: stmmac_open:
-Cannot attach to PHY (error: -19)
-[   15.064433] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
-[   15.084471] meson8b-dwmac c9410000.ethernet eth0: Could not attach to PHY
-[   15.084486] meson8b-dwmac c9410000.ethernet eth0: stmmac_open:
-Cannot attach to PHY (error: -19)
-[   15.193033] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
-[   15.225926] meson8b-dwmac c9410000.ethernet eth0: Could not attach to PHY
-[   15.225958] meson8b-dwmac c9410000.ethernet eth0: stmmac_open:
-Cannot attach to PHY (error: -19)
-[   15.239227] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
-[   15.293190] meson8b-dwmac c9410000.ethernet eth0: Could not attach to PHY
-[   15.293213] meson8b-dwmac c9410000.ethernet eth0: stmmac_open:
-Cannot attach to PHY (error: -19)
-[   15.306038] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
-[   15.352091] meson8b-dwmac c9410000.ethernet eth0: Could not attach to PHY
-[   15.352111] meson8b-dwmac c9410000.ethernet eth0: stmmac_open:
-Cannot attach to PHY (error: -19)
-[   15.370056] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-amlogic@lists.infradead.org
+Cc: linux-arm-msm@vger.kernel.org
+Cc: freedreno@lists.freedesktop.org
+Cc: virtualization@lists.linux-foundation.org
+Cc: spice-devel@lists.freedesktop.org
+Cc: amd-gfx@lists.freedesktop.org
+Cc: linux-renesas-soc@vger.kernel.org
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c      | 2 +-
+ drivers/gpu/drm/arm/hdlcd_drv.c              | 2 +-
+ drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c | 2 +-
+ drivers/gpu/drm/drm_irq.c                    | 6 ------
+ drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c    | 2 +-
+ drivers/gpu/drm/gma500/psb_drv.c             | 2 +-
+ drivers/gpu/drm/i915/i915_drv.c              | 2 +-
+ drivers/gpu/drm/meson/meson_drv.c            | 2 +-
+ drivers/gpu/drm/msm/msm_drv.c                | 3 +--
+ drivers/gpu/drm/mxsfb/mxsfb_drv.c            | 3 +--
+ drivers/gpu/drm/qxl/qxl_drv.c                | 2 +-
+ drivers/gpu/drm/radeon/radeon_drv.c          | 2 +-
+ drivers/gpu/drm/shmobile/shmob_drm_drv.c     | 2 +-
+ drivers/gpu/drm/tilcdc/tilcdc_drv.c          | 2 +-
+ drivers/gpu/drm/vc4/vc4_drv.c                | 1 -
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c          | 2 +-
+ drivers/staging/vboxvideo/vbox_drv.c         | 2 +-
+ 17 files changed, 15 insertions(+), 24 deletions(-)
 
-Only changing 250HZ to 100HZ is enough to fix this problem.
-Some more details on armbian forum[1].
-Can you check it please?
-I can provide more logs and details if requested. If needed I can test fixes.
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index 0c22bae0c736..22502417c18c 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -1189,7 +1189,7 @@ amdgpu_get_crtc_scanout_position(struct drm_device *dev, unsigned int pipe,
+ static struct drm_driver kms_driver = {
+ 	.driver_features =
+ 	    DRIVER_USE_AGP | DRIVER_ATOMIC |
+-	    DRIVER_HAVE_IRQ | DRIVER_IRQ_SHARED | DRIVER_GEM |
++	    DRIVER_IRQ_SHARED | DRIVER_GEM |
+ 	    DRIVER_PRIME | DRIVER_RENDER | DRIVER_MODESET | DRIVER_SYNCOBJ,
+ 	.load = amdgpu_driver_load_kms,
+ 	.open = amdgpu_driver_open_kms,
+diff --git a/drivers/gpu/drm/arm/hdlcd_drv.c b/drivers/gpu/drm/arm/hdlcd_drv.c
+index e68935b80917..8fc0b884c428 100644
+--- a/drivers/gpu/drm/arm/hdlcd_drv.c
++++ b/drivers/gpu/drm/arm/hdlcd_drv.c
+@@ -229,7 +229,7 @@ static int hdlcd_debugfs_init(struct drm_minor *minor)
+ DEFINE_DRM_GEM_CMA_FOPS(fops);
+ 
+ static struct drm_driver hdlcd_driver = {
+-	.driver_features = DRIVER_HAVE_IRQ | DRIVER_GEM |
++	.driver_features = DRIVER_GEM |
+ 			   DRIVER_MODESET | DRIVER_PRIME |
+ 			   DRIVER_ATOMIC,
+ 	.irq_handler = hdlcd_irq,
+diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
+index 034a91112098..0be13eceedba 100644
+--- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
++++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
+@@ -720,7 +720,7 @@ static void atmel_hlcdc_dc_irq_uninstall(struct drm_device *dev)
+ DEFINE_DRM_GEM_CMA_FOPS(fops);
+ 
+ static struct drm_driver atmel_hlcdc_dc_driver = {
+-	.driver_features = DRIVER_HAVE_IRQ | DRIVER_GEM |
++	.driver_features = DRIVER_GEM |
+ 			   DRIVER_MODESET | DRIVER_PRIME |
+ 			   DRIVER_ATOMIC,
+ 	.irq_handler = atmel_hlcdc_dc_irq_handler,
+diff --git a/drivers/gpu/drm/drm_irq.c b/drivers/gpu/drm/drm_irq.c
+index 45a07652fa00..c5babb3e4752 100644
+--- a/drivers/gpu/drm/drm_irq.c
++++ b/drivers/gpu/drm/drm_irq.c
+@@ -103,9 +103,6 @@ int drm_irq_install(struct drm_device *dev, int irq)
+ 	int ret;
+ 	unsigned long sh_flags = 0;
+ 
+-	if (!drm_core_check_feature(dev, DRIVER_HAVE_IRQ))
+-		return -EOPNOTSUPP;
+-
+ 	if (irq == 0)
+ 		return -EINVAL;
+ 
+@@ -174,9 +171,6 @@ int drm_irq_uninstall(struct drm_device *dev)
+ 	bool irq_enabled;
+ 	int i;
+ 
+-	if (!drm_core_check_feature(dev, DRIVER_HAVE_IRQ))
+-		return -EOPNOTSUPP;
+-
+ 	irq_enabled = dev->irq_enabled;
+ 	dev->irq_enabled = false;
+ 
+diff --git a/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c b/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c
+index 54ace3436605..dfc73aade325 100644
+--- a/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c
++++ b/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c
+@@ -137,7 +137,7 @@ static irqreturn_t fsl_dcu_drm_irq(int irq, void *arg)
+ DEFINE_DRM_GEM_CMA_FOPS(fsl_dcu_drm_fops);
+ 
+ static struct drm_driver fsl_dcu_drm_driver = {
+-	.driver_features	= DRIVER_HAVE_IRQ | DRIVER_GEM | DRIVER_MODESET
++	.driver_features	= DRIVER_GEM | DRIVER_MODESET
+ 				| DRIVER_PRIME | DRIVER_ATOMIC,
+ 	.load			= fsl_dcu_load,
+ 	.unload			= fsl_dcu_unload,
+diff --git a/drivers/gpu/drm/gma500/psb_drv.c b/drivers/gpu/drm/gma500/psb_drv.c
+index ac32ab5aa002..7cf14aeb1c28 100644
+--- a/drivers/gpu/drm/gma500/psb_drv.c
++++ b/drivers/gpu/drm/gma500/psb_drv.c
+@@ -468,7 +468,7 @@ static const struct file_operations psb_gem_fops = {
+ };
+ 
+ static struct drm_driver driver = {
+-	.driver_features = DRIVER_HAVE_IRQ | DRIVER_IRQ_SHARED | \
++	.driver_features = DRIVER_IRQ_SHARED | \
+ 			   DRIVER_MODESET | DRIVER_GEM,
+ 	.load = psb_driver_load,
+ 	.unload = psb_driver_unload,
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index 337ee650d2de..550cfb945942 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -3010,7 +3010,7 @@ static struct drm_driver driver = {
+ 	 * deal with them for Intel hardware.
+ 	 */
+ 	.driver_features =
+-	    DRIVER_HAVE_IRQ | DRIVER_IRQ_SHARED | DRIVER_GEM | DRIVER_PRIME |
++	    DRIVER_IRQ_SHARED | DRIVER_GEM | DRIVER_PRIME |
+ 	    DRIVER_RENDER | DRIVER_MODESET | DRIVER_ATOMIC | DRIVER_SYNCOBJ,
+ 	.release = i915_driver_release,
+ 	.open = i915_driver_open,
+diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+index 2cbc6c7bb823..2281ed3eb774 100644
+--- a/drivers/gpu/drm/meson/meson_drv.c
++++ b/drivers/gpu/drm/meson/meson_drv.c
+@@ -94,7 +94,7 @@ static irqreturn_t meson_irq(int irq, void *arg)
+ DEFINE_DRM_GEM_CMA_FOPS(fops);
+ 
+ static struct drm_driver meson_driver = {
+-	.driver_features	= DRIVER_HAVE_IRQ | DRIVER_GEM |
++	.driver_features	= DRIVER_GEM |
+ 				  DRIVER_MODESET | DRIVER_PRIME |
+ 				  DRIVER_ATOMIC,
+ 
+diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
+index d2cdc7b553fe..8747fb32a106 100644
+--- a/drivers/gpu/drm/msm/msm_drv.c
++++ b/drivers/gpu/drm/msm/msm_drv.c
+@@ -1063,8 +1063,7 @@ static const struct file_operations fops = {
+ };
+ 
+ static struct drm_driver msm_driver = {
+-	.driver_features    = DRIVER_HAVE_IRQ |
+-				DRIVER_GEM |
++	.driver_features    = DRIVER_GEM |
+ 				DRIVER_PRIME |
+ 				DRIVER_RENDER |
+ 				DRIVER_ATOMIC |
+diff --git a/drivers/gpu/drm/mxsfb/mxsfb_drv.c b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
+index 54c8cdaeb576..967379f3f571 100644
+--- a/drivers/gpu/drm/mxsfb/mxsfb_drv.c
++++ b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
+@@ -322,8 +322,7 @@ DEFINE_DRM_GEM_CMA_FOPS(fops);
+ 
+ static struct drm_driver mxsfb_driver = {
+ 	.driver_features	= DRIVER_GEM | DRIVER_MODESET |
+-				  DRIVER_PRIME | DRIVER_ATOMIC |
+-				  DRIVER_HAVE_IRQ,
++				  DRIVER_PRIME | DRIVER_ATOMIC,
+ 	.irq_handler		= mxsfb_irq_handler,
+ 	.irq_preinstall		= mxsfb_irq_preinstall,
+ 	.irq_uninstall		= mxsfb_irq_preinstall,
+diff --git a/drivers/gpu/drm/qxl/qxl_drv.c b/drivers/gpu/drm/qxl/qxl_drv.c
+index 56f2c65969c6..44daac129205 100644
+--- a/drivers/gpu/drm/qxl/qxl_drv.c
++++ b/drivers/gpu/drm/qxl/qxl_drv.c
+@@ -243,7 +243,7 @@ static struct pci_driver qxl_pci_driver = {
+ 
+ static struct drm_driver qxl_driver = {
+ 	.driver_features = DRIVER_GEM | DRIVER_MODESET | DRIVER_PRIME |
+-			   DRIVER_HAVE_IRQ | DRIVER_IRQ_SHARED |
++			   DRIVER_IRQ_SHARED |
+ 			   DRIVER_ATOMIC,
+ 
+ 	.dumb_create = qxl_mode_dumb_create,
+diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon/radeon_drv.c
+index 8897c3d18fbb..450a9d473c30 100644
+--- a/drivers/gpu/drm/radeon/radeon_drv.c
++++ b/drivers/gpu/drm/radeon/radeon_drv.c
+@@ -535,7 +535,7 @@ radeon_get_crtc_scanout_position(struct drm_device *dev, unsigned int pipe,
+ static struct drm_driver kms_driver = {
+ 	.driver_features =
+ 	    DRIVER_USE_AGP |
+-	    DRIVER_HAVE_IRQ | DRIVER_IRQ_SHARED | DRIVER_GEM |
++	    DRIVER_IRQ_SHARED | DRIVER_GEM |
+ 	    DRIVER_PRIME | DRIVER_RENDER,
+ 	.load = radeon_driver_load_kms,
+ 	.open = radeon_driver_open_kms,
+diff --git a/drivers/gpu/drm/shmobile/shmob_drm_drv.c b/drivers/gpu/drm/shmobile/shmob_drm_drv.c
+index 2002e7c55e80..cb821adfc321 100644
+--- a/drivers/gpu/drm/shmobile/shmob_drm_drv.c
++++ b/drivers/gpu/drm/shmobile/shmob_drm_drv.c
+@@ -127,7 +127,7 @@ static irqreturn_t shmob_drm_irq(int irq, void *arg)
+ DEFINE_DRM_GEM_CMA_FOPS(shmob_drm_fops);
+ 
+ static struct drm_driver shmob_drm_driver = {
+-	.driver_features	= DRIVER_HAVE_IRQ | DRIVER_GEM | DRIVER_MODESET
++	.driver_features	= DRIVER_GEM | DRIVER_MODESET
+ 				| DRIVER_PRIME,
+ 	.irq_handler		= shmob_drm_irq,
+ 	.gem_free_object_unlocked = drm_gem_cma_free_object,
+diff --git a/drivers/gpu/drm/tilcdc/tilcdc_drv.c b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
+index 13b11acd4a5e..3030af9e7b35 100644
+--- a/drivers/gpu/drm/tilcdc/tilcdc_drv.c
++++ b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
+@@ -512,7 +512,7 @@ static int tilcdc_debugfs_init(struct drm_minor *minor)
+ DEFINE_DRM_GEM_CMA_FOPS(fops);
+ 
+ static struct drm_driver tilcdc_driver = {
+-	.driver_features    = (DRIVER_HAVE_IRQ | DRIVER_GEM | DRIVER_MODESET |
++	.driver_features    = (DRIVER_GEM | DRIVER_MODESET |
+ 			       DRIVER_PRIME | DRIVER_ATOMIC),
+ 	.irq_handler        = tilcdc_irq,
+ 	.gem_free_object_unlocked = drm_gem_cma_free_object,
+diff --git a/drivers/gpu/drm/vc4/vc4_drv.c b/drivers/gpu/drm/vc4/vc4_drv.c
+index f6f5cd80c04d..5fcd2f0da7f7 100644
+--- a/drivers/gpu/drm/vc4/vc4_drv.c
++++ b/drivers/gpu/drm/vc4/vc4_drv.c
+@@ -175,7 +175,6 @@ static struct drm_driver vc4_drm_driver = {
+ 	.driver_features = (DRIVER_MODESET |
+ 			    DRIVER_ATOMIC |
+ 			    DRIVER_GEM |
+-			    DRIVER_HAVE_IRQ |
+ 			    DRIVER_RENDER |
+ 			    DRIVER_PRIME |
+ 			    DRIVER_SYNCOBJ),
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+index 25afb1d594e3..d159d0400013 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+@@ -1582,7 +1582,7 @@ static const struct file_operations vmwgfx_driver_fops = {
+ };
+ 
+ static struct drm_driver driver = {
+-	.driver_features = DRIVER_HAVE_IRQ | DRIVER_IRQ_SHARED |
++	.driver_features = DRIVER_IRQ_SHARED |
+ 	DRIVER_MODESET | DRIVER_PRIME | DRIVER_RENDER | DRIVER_ATOMIC,
+ 	.load = vmw_driver_load,
+ 	.unload = vmw_driver_unload,
+diff --git a/drivers/staging/vboxvideo/vbox_drv.c b/drivers/staging/vboxvideo/vbox_drv.c
+index cc6532d8c2fa..78cbcd68d4f3 100644
+--- a/drivers/staging/vboxvideo/vbox_drv.c
++++ b/drivers/staging/vboxvideo/vbox_drv.c
+@@ -221,7 +221,7 @@ static void vbox_master_drop(struct drm_device *dev, struct drm_file *file_priv)
+ 
+ static struct drm_driver driver = {
+ 	.driver_features =
+-	    DRIVER_MODESET | DRIVER_GEM | DRIVER_HAVE_IRQ | DRIVER_IRQ_SHARED |
++	    DRIVER_MODESET | DRIVER_GEM | DRIVER_IRQ_SHARED |
+ 	    DRIVER_PRIME | DRIVER_ATOMIC,
+ 	.dev_priv_size = 0,
+ 
+-- 
+2.20.1
 
-Thanks in advance
-**Bye
-Piero
-[1]https://forum.armbian.com/topic/9138-odroid-c0c1c1-please-update-the-mainline-kernel-version/
 
 _______________________________________________
 linux-amlogic mailing list
