@@ -4,18 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.6 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
-	USER_AGENT_MUTT autolearn=ham autolearn_force=no version=3.4.0
+	URIBL_BLOCKED,USER_AGENT_MUTT autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D127C282C0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Jan 2019 09:13:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 82AABC282C0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Jan 2019 09:30:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0D175218D0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Jan 2019 09:13:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 544B7218DE
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Jan 2019 09:30:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KFtamPey"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0D175218D0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="I3s9PoIK"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 544B7218DE
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,59 +25,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=S0OoYe3uJfodiPCK+7R5A5STKZrkC10b+6HOLUqndoQ=; b=KFtamPeylSHbW0
-	hjKWtqureFwyXZyBW71KnUqxb/oVm+OeED1JvnrP4mOxlRUUytOWjql6GX4rW50JiB7WOLIGR+axx
-	HaaA++RHWTQcJ+EAxW+ktSsHdjYf0snDeckBcgRsnIHM3lFN/xXyWdU/Iwp77ekaklijPMoIWe+Kn
-	17U7aVqe6082Py0hQ/fxqA8M/JQBxXZrxFeide2W1d789Bj9d2yjBedhpjW0WqzMp7kRZrMGUZ13Q
-	1+jVO4qRXz5TURFuaTBiMhZCSKZrYj2W00lv+pgHp+OMU37W7ZjtOyHsPlxUnr1OqjdKl/cQb3TK9
-	4u335nFm7EfpNz5LWNfQ==;
+	List-Owner; bh=Abh6D9SUh2plsfK4PzEPvaFkXpnkWazW2CpeimK8YdM=; b=I3s9PoIK34Knti
+	Bw85uEKhn9BQTJuW3GlSM2qhzBnT+9sHg0+aEJ5deMoVlcX/R6moBVomSgTbDMNkfXsLKhOJgxrAx
+	zaybgZMOtmK74MmMUJ/uelQumVgmzS5BOyK1LDBsaslAZc4F2Y/Uq68sNSaM3ZF7mLUyTdU8DUL7L
+	sh7LKEwecdbG0MgnqiAqtn0HiK5059sf0zDQYaOmDisl4pDgTVsC7dkEKNrCo4DnQMnx0AwDP+um0
+	ZSfL0W+GsNlwQTZFRakzHricYUX2Lk8a1CN9BDKbk0CYl0+cqhnkxfGarxsYfD/15duPi4Tjg19Q0
+	/iHZF/iCNQWuu5abKiqg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gmxXu-0002J1-Vk; Fri, 25 Jan 2019 09:13:06 +0000
-Received: from mail-lj1-f194.google.com ([209.85.208.194])
+	id 1gmxod-0001VL-E3; Fri, 25 Jan 2019 09:30:23 +0000
+Received: from mail-lf1-f65.google.com ([209.85.167.65])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gmxXs-0002Ia-5i; Fri, 25 Jan 2019 09:13:05 +0000
-Received: by mail-lj1-f194.google.com with SMTP id g11-v6so7770632ljk.3;
- Fri, 25 Jan 2019 01:13:03 -0800 (PST)
+ id 1gmxoa-0001Ud-AX; Fri, 25 Jan 2019 09:30:21 +0000
+Received: by mail-lf1-f65.google.com with SMTP id b20so6421857lfa.12;
+ Fri, 25 Jan 2019 01:30:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to:user-agent;
- bh=LQ44fZmqYtGeW5F/n2jrFDteHxp9GGkSJWCW+fdudJ8=;
- b=FcTYdKxU5c8Lrxt2ArryDxPgrGChgwcYWJqtGUYIc4BjJRI0ltkuQ+EpV4Xn/6/5u2
- 5RYvH9XIE91qF9k1IyBFW2mkP80QrQHvpwTEJsKwpvx0XiDt04X5/3wNchuytt8/Pwk4
- XdSLJzYRoLht7Kuhbf2l4+K6vn9E/bH7VizuOprfJC/xy6lxcqbkmoF2p6MLRGAkSKa2
- FtIR3yMRGVYHEVG0LL/mrQcZXR7Son+PWYgASilbxPMPXr62O66JcCy5bS7FjrMfqdRr
- 1/oIKrdPV2SwXs3hsAYeR7MY1S2V1leR4GP2nqP0ssEQY+SesV6DxuRgzRXVuHR6G4DL
- aMQA==
-X-Gm-Message-State: AJcUukfy1ZfjMqVeZKhqhrj3GQ1nAt+bxpG8h/vruIjEOWD5FgXauCHT
- slfjxyJsBQKsX1BIZtwDDuw=
-X-Google-Smtp-Source: ALg8bN46wgzeffg+A48b2CVK6j+VylLkMph4ohZEx0Aa+pDQARjUIwYBp6sKuFbjkO5jI7xSVa4csg==
-X-Received: by 2002:a2e:2d11:: with SMTP id
- t17-v6mr8401264ljt.159.1548407582221; 
- Fri, 25 Jan 2019 01:13:02 -0800 (PST)
+ bh=d1dF8hLUpMhjJtda9RcMAKA/Cd7XgQRPFWL4srruzhM=;
+ b=G+4J4RA1+0P2ILy8nE5FcU2nIwANpaE3CihljZ0YdJGCNSYX22SYHghPjUSxlMjVJz
+ LubUHOzwSblBWSMfGWNcfOHj29ldsj2PL41qKKTundyh5RfiOMK+ebaCSl0EsK6Xp8Rf
+ U11QVK8S+sYtFJJcHdv7/+poEN47kcoZceZBkUgPXFCcK0xrYcgvbEDalMknFFd1P6aP
+ rudEp+h2p1VUmrIcShwewdTrZ9rrxFJZqCma97QVB983DecYX10ad3Z5OWmFn7s7pCli
+ Hc8jcS5bxG6t3Pf2n9/tdB7BX7QYvcoA4JBsY+bUeBXamVW128sEsVJhbPsAsXSAmogH
+ IFXA==
+X-Gm-Message-State: AJcUukcTt7SwzjOjbtlQ4Pfy5bv6CdII1vMUsFCo2KeHrtVppDTqMT6K
+ OykGnwsHO9GDhYWpWuAcHC0=
+X-Google-Smtp-Source: ALg8bN7yEBGtS+JZv5a+QHP1LYATg1srUrpXJnCuKCLfo3JPjIapdTDxZE3cOiP76cl+EjOnXEFc3A==
+X-Received: by 2002:a19:984:: with SMTP id 126mr8131773lfj.166.1548408618501; 
+ Fri, 25 Jan 2019 01:30:18 -0800 (PST)
 Received: from xi.terra (c-74bee655.07-184-6d6c6d4.bbcust.telenor.se.
  [85.230.190.116])
- by smtp.gmail.com with ESMTPSA id 11-v6sm1379976ljv.1.2019.01.25.01.13.00
+ by smtp.gmail.com with ESMTPSA id f1sm1374318lfm.22.2019.01.25.01.30.17
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 25 Jan 2019 01:13:01 -0800 (PST)
+ Fri, 25 Jan 2019 01:30:17 -0800 (PST)
 Received: from johan by xi.terra with local (Exim 4.91)
  (envelope-from <johan@kernel.org>)
- id 1gmxXk-00087N-V0; Fri, 25 Jan 2019 10:12:57 +0100
-Date: Fri, 25 Jan 2019 10:12:56 +0100
+ id 1gmxoT-0001kS-1y; Fri, 25 Jan 2019 10:30:13 +0100
+Date: Fri, 25 Jan 2019 10:30:13 +0100
 From: Johan Hovold <johan@kernel.org>
 To: Loys Ollivier <lollivier@baylibre.com>
-Subject: Re: [PATCH v2 3/4] gnss: add mtk receiver type support
-Message-ID: <20190125091256.GC3691@localhost>
+Subject: Re: [PATCH v2 4/4] gnss: add driver for mediatek receivers
+Message-ID: <20190125093013.GD3691@localhost>
 References: <1547744074-28308-1-git-send-email-lollivier@baylibre.com>
- <1547744074-28308-4-git-send-email-lollivier@baylibre.com>
+ <1547744074-28308-5-git-send-email-lollivier@baylibre.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <1547744074-28308-4-git-send-email-lollivier@baylibre.com>
+In-Reply-To: <1547744074-28308-5-git-send-email-lollivier@baylibre.com>
 User-Agent: Mutt/1.11.2 (2019-01-07)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190125_011304_211787_2F003222 
-X-CRM114-Status: GOOD (  13.54  )
+X-CRM114-CacheID: sfid-20190125_013020_470660_E1F7E072 
+X-CRM114-Status: GOOD (  25.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -99,37 +99,138 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jan 17, 2019 at 05:54:33PM +0100, Loys Ollivier wrote:
-> Add an MTK (Mediatek) type to the "GNSS_TYPE" attribute.
+On Thu, Jan 17, 2019 at 05:54:34PM +0100, Loys Ollivier wrote:
+> Add driver for serial-connected Mediatek-based GNSS receivers.
 > 
-> Note that MTK receivers support a subset of NMEA 0183 with vendor
-> extensions (e.g. to allow switching to the vendor protocol).
-
-Copy paste error? AFAICT there is no Mediatek vendor protocol, only the
-extensions to NMEA.
-
+> These devices typically boot transmitting vendor specific NMEA output
+> sequences. The serial port bit rate is read from the device tree
+> "current-speed".
+> 
+> Note that the driver uses the generic GNSS serial implementation and
+> therefore essentially only manages power abstracted into three power
+> states: ACTIVE, STANDBY, and OFF.
+> 
+> For mediatek receivers with a main supply and no enable-gpios, this simply
+> means that the main supply is disabled in STANDBY and OFF (the optional
+> backup supply is kept enabled while the driver is bound).
+>
+> Note that the timepulse-support is left unimplemented.
+> 
 > Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
 > ---
 > 
-> v2: renamed from GTOP to MTK.
+> v2: 
+> Renamed from gtop/Globaltop to mtk/Mediatek.
+> Added "mediatek,mt3339" compatible.
 > 
->  include/linux/gnss.h | 1 +
->  1 file changed, 1 insertion(+)
+>  drivers/gnss/Kconfig  |  13 +++++
+>  drivers/gnss/Makefile |   3 +
+>  drivers/gnss/core.c   |   1 +
+>  drivers/gnss/mtk.c    | 153 ++++++++++++++++++++++++++++++++++++++++++++++++++
+>  4 files changed, 170 insertions(+)
+>  create mode 100644 drivers/gnss/mtk.c
 > 
-> diff --git a/include/linux/gnss.h b/include/linux/gnss.h
-> index 43546977098c..36968a0f33e8 100644
-> --- a/include/linux/gnss.h
-> +++ b/include/linux/gnss.h
-> @@ -22,6 +22,7 @@ enum gnss_type {
->  	GNSS_TYPE_NMEA = 0,
->  	GNSS_TYPE_SIRF,
->  	GNSS_TYPE_UBX,
-> +	GNSS_TYPE_MTK,
+> diff --git a/drivers/gnss/Kconfig b/drivers/gnss/Kconfig
+> index 6abc88514512..51e6282d092a 100644
+> --- a/drivers/gnss/Kconfig
+> +++ b/drivers/gnss/Kconfig
+> @@ -40,4 +40,17 @@ config GNSS_UBX_SERIAL
 >  
->  	GNSS_TYPE_COUNT
->  };
+>  	  If unsure, say N.
+>  
+> +config GNSS_MTK_SERIAL
+> +	tristate "Mediatek GNSS receiver support"
+> +	depends on SERIAL_DEV_BUS
+> +	select GNSS_SERIAL
+> +	help
+> +	  Say Y here if you have a Mediatek-based GNSS receiver which uses a
+> +	  serial interface.
+> +
+> +	  To compile this driver as a module, choose M here: the module will
+> +	  be called gnss-mtk.
+> +
+> +	  If unsure, say N.
 
-Add the gnss_type_names string in this patch along with the define.
+Add before the SiRF entry too keep the entries sorted.
+
+> +
+>  endif # GNSS
+> diff --git a/drivers/gnss/Makefile b/drivers/gnss/Makefile
+> index 5cf0ebe0330a..43318375aa51 100644
+> --- a/drivers/gnss/Makefile
+> +++ b/drivers/gnss/Makefile
+> @@ -14,3 +14,6 @@ gnss-sirf-y := sirf.o
+>  
+>  obj-$(CONFIG_GNSS_UBX_SERIAL)		+= gnss-ubx.o
+>  gnss-ubx-y := ubx.o
+> +
+> +obj-$(CONFIG_GNSS_MTK_SERIAL)		+= gnss-mtk.o
+> +gnss-mtk-y := mtk.o
+
+Ditto.
+
+> diff --git a/drivers/gnss/core.c b/drivers/gnss/core.c
+> index 4291a0dd22aa..320cfca80d5f 100644
+> --- a/drivers/gnss/core.c
+> +++ b/drivers/gnss/core.c
+> @@ -334,6 +334,7 @@ static const char * const gnss_type_names[GNSS_TYPE_COUNT] = {
+>  	[GNSS_TYPE_NMEA]	= "NMEA",
+>  	[GNSS_TYPE_SIRF]	= "SiRF",
+>  	[GNSS_TYPE_UBX]		= "UBX",
+> +	[GNSS_TYPE_MTK]		= "MTK",
+>  };
+>  
+>  static const char *gnss_type_name(struct gnss_device *gdev)
+
+So this should go in the previous patch.
+
+> diff --git a/drivers/gnss/mtk.c b/drivers/gnss/mtk.c
+> new file mode 100644
+> index 000000000000..c91d4d251098
+> --- /dev/null
+> +++ b/drivers/gnss/mtk.c
+> @@ -0,0 +1,153 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Mediatek GNSS receiver driver
+> + *
+> + * Copyright (C) 2018 Loys Ollivier <lollivier@baylibre.com>
+
+As this just a copy of the ubx driver with the "ubx" prefix replaced
+with "mtk", you need to retain the original copyright statement.
+
+I'm not even sure the search and replace work is copyrightable at all...
+
+I see now why you wanted merge this with the ubx driver, but I still
+think they should be kept apart for now. Maybe we can move common bits
+into the generic implementation (library) when we get a third "copy".
+
+The rest of the driver obviously looks fine. ;) Possibly with the
+exception of the added mediatek compatible as mentioned before.
+
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id mtk_of_match[] = {
+> +	{ .compatible = "globaltop,pa6h" },
+> +	{ .compatible = "mediatek,mt3339" },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, mtk_of_match);
+> +#endif
+> +
+> +static struct serdev_device_driver mtk_driver = {
+> +	.driver	= {
+> +		.name		= "gnss-mtk",
+> +		.of_match_table	= of_match_ptr(mtk_of_match),
+> +		.pm		= &gnss_serial_pm_ops,
+> +	},
+> +	.probe	= mtk_probe,
+> +	.remove	= mtk_remove,
+> +};
+> +module_serdev_device_driver(mtk_driver);
+> +
+> +MODULE_AUTHOR("Loys Ollivier <lollivier@baylibre.com>");
+> +MODULE_DESCRIPTION("Mediatek GNSS receiver driver");
+> +MODULE_LICENSE("GPL v2");
 
 Johan
 
