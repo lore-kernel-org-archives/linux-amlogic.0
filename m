@@ -1,87 +1,81 @@
-Return-Path: <SRS0=E298=QA=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=B80X=QB=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.6 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
+	USER_AGENT_MUTT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2A79FC282C5
-	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Jan 2019 16:58:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 50455C282C0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Jan 2019 09:08:16 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E5DC22184B
-	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Jan 2019 16:58:52 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1EE7E217D7
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Jan 2019 09:08:16 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PpeXct/W";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="UyjIjctW"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E5DC22184B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ffwll.ch
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TbEvwCw2"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1EE7E217D7
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KjGNsxvVhLojni07PNkrilaCJozVKSNX05JpMiMq3b8=; b=PpeXct/WFn66DR
-	3aNf2tb8gC6/PbepqXliAc70Z6crZgcSwERPTSmQdtypRg/zdhI47+5zQ6He0lUZEQFJqUeOCQxRY
-	vPoglIZRV8CmOMEKmQSpzWj30Wsxb1n6Cq/BUmCbVrNRfEK68s/Pip2FqiAtP8jimsh/pmo9SpoJy
-	gb8S8+EJMAv7+AFYIJS/O9t1sVkJpl+RgM6w5wSKU5ewu1A5tgJ0E8LM49XB7j43/Fcjl6XWmhEf6
-	sP7b604R7woRq2cv8/X9IlfPFfduzsJamR4yaRRCARWO9V7FnNeM/lUGxIHoIvJgG6Mvkhpg6yc/w
-	yjpSecTmPWObFvVezZSQ==;
+	List-Owner; bh=nOHbDmGQ1717/QYjHVyjv1+gFaGf6cSEwJa2HIrfMkY=; b=TbEvwCw29zAWvb
+	TOVUciSZn3JCqjRQMogItpYr6Yvg3smVMju8M16ijkyYqFUZPaiGj7wAMapUOxCCY49XlyQ9EOCKv
+	WvtFmvgUF8tn1xsMozeBjdkDy07Ow5uMnH04527qLLI1eONSB5lMR+bfQtfbfmEDoPnBByshj7ohM
+	5C2wEzRbJDn9qE6ORzfFZ/BPXSGtaXm84zpuR55wechxdnz/YCn+SBAV7k2o14M9IBvbVV5Tu1cff
+	1zTHGr69BJXgaSjXqkowLKJz/dcn56OXmPz+pYxO0ek4qwu4A6Q7m17GUtHa0v1DHS+czYfptuZ2L
+	9y8lnJF5pGk2GYfoyu1g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gmiKz-0000eg-0L; Thu, 24 Jan 2019 16:58:45 +0000
-Received: from mail-ed1-x541.google.com ([2a00:1450:4864:20::541])
+	id 1gmxT4-0000Kt-M3; Fri, 25 Jan 2019 09:08:06 +0000
+Received: from mail-lf1-f65.google.com ([209.85.167.65])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gmiKv-0000bX-Pp
- for linux-amlogic@lists.infradead.org; Thu, 24 Jan 2019 16:58:43 +0000
-Received: by mail-ed1-x541.google.com with SMTP id d39so5131136edb.12
- for <linux-amlogic@lists.infradead.org>; Thu, 24 Jan 2019 08:58:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=qxRGPjapyeBHN2idsi07sfu0XUlyhsatL/XtHnBDJ1Q=;
- b=UyjIjctWHA4u0NpOfbFMmb98ZkgpIysCj9913XhrnW+jRnwloMc3iZFBxxfCJf1B7U
- A48XKD7/BE//P+bwysH8n03RsbxDCsZ7532ATb0ty5CRiaD6CLkJ9ApNcUxjs7TYCaWY
- gFOy3jUexAWdr1ZpFjm7YaKKpB10gX/bdezpg=
+ id 1gmxT2-0000KL-52; Fri, 25 Jan 2019 09:08:05 +0000
+Received: by mail-lf1-f65.google.com with SMTP id z13so6376529lfe.11;
+ Fri, 25 Jan 2019 01:08:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=qxRGPjapyeBHN2idsi07sfu0XUlyhsatL/XtHnBDJ1Q=;
- b=nd0lB8aGazbSVeoh1JKKNS7yjUuW3Q4MpzQq4KgHkUhHNz18U61U+V9smxBuQtKvLS
- lq5g+eOWelsedQGhpE2uJFA11bP5LZkbQKYkztOCjiqvmhKp0t7LqiCwFbSjQX0IWUgi
- +u67OV1LagxJWmBCLtj3RNHt1xBDT89abs2vfxLzUwkv94ZUj6ihW+KCjz8K9O3LFRqP
- r73JDXtOuljL+VLZqSpfHmS9VHEYdDJewpL+fFSMpFHK9TJkOc8Ur525EiTqHOW58h/0
- xmaBMUm40JLYBqHzl59Sk4zcrJSn0VR38jD/hjwjvpKV+RxaU/zvEX/I/LGjU1YLyBHR
- 5bpw==
-X-Gm-Message-State: AJcUukeNpa4hibrWOA2YG8BJEK3ZJW83O6BBHmKrQCLuqqqFXxYXBNw+
- d6ZQLEOBmQ/NI0kn8qY4wFiLEA==
-X-Google-Smtp-Source: ALg8bN45J2W+F8q+tt4rP/5cexe8AntV5M5teTc6dDkvp2whDbKPk7otnGIHLX6c7TU85WuSuAR4mA==
-X-Received: by 2002:a17:906:5ace:: with SMTP id
- x14mr6551472ejs.64.1548349119495; 
- Thu, 24 Jan 2019 08:58:39 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:569e:0:3106:d637:d723:e855])
- by smtp.gmail.com with ESMTPSA id w31sm11219233edw.82.2019.01.24.08.58.37
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=CtSiaZshpaEHWQ5nMsvhKse3z+gGNNoMcIPdg+hmKao=;
+ b=qcYvODfuBfLRhT0LX/LD8pNyYndZkaJOivqMlSGxZ9Js7R/fNl+QswwGpG5PjKfPKp
+ y5uHt7AmAggslhzqrzX8eh33YCWkqQvWdBjF/USuTV5GPhIgPKz5VQ9I3pDl1IhZ0xla
+ 6TsqOPAeaIvUh1ILgzMGEEjrhniHUzBwSf/cxyR/lsl+B5HtJ+haBDWmqh+pu5963AOa
+ fmrm7e14WVIzDdF8ou1LNcXjHBE04PJ1v1eeDoJqgxVWsFBX03TF4C7j71P01b+4vzS/
+ lsIP7bVVG/bx41E9ULGp/kOZTKySsz9OMtfQq/XlB7hYZardILtYGjyNzvlfKTAJA5Ty
+ 7msg==
+X-Gm-Message-State: AJcUukea5OIYcOSdw7v7RT6zSclNnIAllM2K5zZtrLOLRyLxaNtge+7n
+ UUSjB70ELokjV2u7iwVPVBA=
+X-Google-Smtp-Source: ALg8bN4hjUbb2J0veFYxOi3Xj3vFjhLPqZsi5bvN9C4W0SeD9l+Gh4TE6iiMo5YCkesO/U5cVC2hsA==
+X-Received: by 2002:a19:3b45:: with SMTP id i66mr8315754lfa.28.1548407281364; 
+ Fri, 25 Jan 2019 01:08:01 -0800 (PST)
+Received: from xi.terra (c-74bee655.07-184-6d6c6d4.bbcust.telenor.se.
+ [85.230.190.116])
+ by smtp.gmail.com with ESMTPSA id n8-v6sm1524606lji.90.2019.01.25.01.08.00
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 24 Jan 2019 08:58:38 -0800 (PST)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Subject: [PATCH 01/26] drm/irq: Don't check for DRIVER_HAVE_IRQ in
- drm_irq_(un)install
-Date: Thu, 24 Jan 2019 17:58:06 +0100
-Message-Id: <20190124165831.16427-2-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190124165831.16427-1-daniel.vetter@ffwll.ch>
-References: <20190124165831.16427-1-daniel.vetter@ffwll.ch>
+ Fri, 25 Jan 2019 01:08:00 -0800 (PST)
+Received: from johan by xi.terra with local (Exim 4.91)
+ (envelope-from <johan@kernel.org>)
+ id 1gmxSt-00085A-G3; Fri, 25 Jan 2019 10:07:56 +0100
+Date: Fri, 25 Jan 2019 10:07:55 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Loys Ollivier <lollivier@baylibre.com>
+Subject: Re: [PATCH v2 2/4] dt-bindings: gnss: add mediatek binding
+Message-ID: <20190125090755.GB3691@localhost>
+References: <1547744074-28308-1-git-send-email-lollivier@baylibre.com>
+ <1547744074-28308-3-git-send-email-lollivier@baylibre.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <1547744074-28308-3-git-send-email-lollivier@baylibre.com>
+User-Agent: Mutt/1.11.2 (2019-01-07)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190124_085841_901875_F6E9F017 
-X-CRM114-Status: GOOD (  14.60  )
+X-CRM114-CacheID: sfid-20190125_010804_192840_66A3948F 
+X-CRM114-Status: GOOD (  18.74  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -93,288 +87,100 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>, linux-arm-msm@vger.kernel.org,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
- linux-renesas-soc@vger.kernel.org, spice-devel@lists.freedesktop.org,
- Daniel Vetter <daniel.vetter@ffwll.ch>, linux-amlogic@lists.infradead.org,
- freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org
+Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, Johan Hovold <johan@kernel.org>,
+ linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-If a non-legacy driver calls these it's valid to assume there is
-interrupt support. The flag is really only needed for legacy drivers.
+On Thu, Jan 17, 2019 at 05:54:32PM +0100, Loys Ollivier wrote:
+> Add binding for Mediatek-based GNSS receivers.
+> 
+> Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
+> ---
+> 
+> v2:
+> Renamed bindings from Globaltop/gtop to Mediatek/mtk.
+> Moved current-speed as an optional propertie.
+> Removed the status line in the example.
+> Added "mediatek,mt3339" compatible.
+> 
+>  .../devicetree/bindings/gnss/mediatek.txt          | 39 ++++++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gnss/mediatek.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/gnss/mediatek.txt b/Documentation/devicetree/bindings/gnss/mediatek.txt
+> new file mode 100644
+> index 000000000000..fd984b4a9a6d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gnss/mediatek.txt
+> @@ -0,0 +1,39 @@
+> +Mediatek-based GNSS Receiver DT binding
+> +
+> +Mediatek chipsets are used in GNSS-receiver modules produced by several
+> +vendors and can use UART, SPI or I2C interfaces.
+> +
+> +Please see Documentation/devicetree/bindings/gnss/gnss.txt for generic
+> +properties.
+> +
+> +Required properties:
+> +
+> +- compatible	: Must be one of
+> +
+> +			"globaltop,pa6h"
+> +			"mediatek,mt3339"
 
-Also remove all the flag usage from non-legacy drivers.
+I'm not sure it makes sense to add the GPS chip itself as it cannot be
+used stand-alone AFAIU, and either not way would require a lot more
+resources to be defined than what you add to this binding.
 
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: intel-gfx@lists.freedesktop.org
-Cc: linux-amlogic@lists.infradead.org
-Cc: linux-arm-msm@vger.kernel.org
-Cc: freedreno@lists.freedesktop.org
-Cc: virtualization@lists.linux-foundation.org
-Cc: spice-devel@lists.freedesktop.org
-Cc: amd-gfx@lists.freedesktop.org
-Cc: linux-renesas-soc@vger.kernel.org
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c      | 2 +-
- drivers/gpu/drm/arm/hdlcd_drv.c              | 2 +-
- drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c | 2 +-
- drivers/gpu/drm/drm_irq.c                    | 6 ------
- drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c    | 2 +-
- drivers/gpu/drm/gma500/psb_drv.c             | 2 +-
- drivers/gpu/drm/i915/i915_drv.c              | 2 +-
- drivers/gpu/drm/meson/meson_drv.c            | 2 +-
- drivers/gpu/drm/msm/msm_drv.c                | 3 +--
- drivers/gpu/drm/mxsfb/mxsfb_drv.c            | 3 +--
- drivers/gpu/drm/qxl/qxl_drv.c                | 2 +-
- drivers/gpu/drm/radeon/radeon_drv.c          | 2 +-
- drivers/gpu/drm/shmobile/shmob_drm_drv.c     | 2 +-
- drivers/gpu/drm/tilcdc/tilcdc_drv.c          | 2 +-
- drivers/gpu/drm/vc4/vc4_drv.c                | 1 -
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.c          | 2 +-
- drivers/staging/vboxvideo/vbox_drv.c         | 2 +-
- 17 files changed, 15 insertions(+), 24 deletions(-)
+> +
+> +- vcc-supply	: Main voltage regulator (pin name: 3V3_IN, VCC, VDD)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-index 0c22bae0c736..22502417c18c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
-@@ -1189,7 +1189,7 @@ amdgpu_get_crtc_scanout_position(struct drm_device *dev, unsigned int pipe,
- static struct drm_driver kms_driver = {
- 	.driver_features =
- 	    DRIVER_USE_AGP | DRIVER_ATOMIC |
--	    DRIVER_HAVE_IRQ | DRIVER_IRQ_SHARED | DRIVER_GEM |
-+	    DRIVER_IRQ_SHARED | DRIVER_GEM |
- 	    DRIVER_PRIME | DRIVER_RENDER | DRIVER_MODESET | DRIVER_SYNCOBJ,
- 	.load = amdgpu_driver_load_kms,
- 	.open = amdgpu_driver_open_kms,
-diff --git a/drivers/gpu/drm/arm/hdlcd_drv.c b/drivers/gpu/drm/arm/hdlcd_drv.c
-index e68935b80917..8fc0b884c428 100644
---- a/drivers/gpu/drm/arm/hdlcd_drv.c
-+++ b/drivers/gpu/drm/arm/hdlcd_drv.c
-@@ -229,7 +229,7 @@ static int hdlcd_debugfs_init(struct drm_minor *minor)
- DEFINE_DRM_GEM_CMA_FOPS(fops);
- 
- static struct drm_driver hdlcd_driver = {
--	.driver_features = DRIVER_HAVE_IRQ | DRIVER_GEM |
-+	.driver_features = DRIVER_GEM |
- 			   DRIVER_MODESET | DRIVER_PRIME |
- 			   DRIVER_ATOMIC,
- 	.irq_handler = hdlcd_irq,
-diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
-index 034a91112098..0be13eceedba 100644
---- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
-+++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
-@@ -720,7 +720,7 @@ static void atmel_hlcdc_dc_irq_uninstall(struct drm_device *dev)
- DEFINE_DRM_GEM_CMA_FOPS(fops);
- 
- static struct drm_driver atmel_hlcdc_dc_driver = {
--	.driver_features = DRIVER_HAVE_IRQ | DRIVER_GEM |
-+	.driver_features = DRIVER_GEM |
- 			   DRIVER_MODESET | DRIVER_PRIME |
- 			   DRIVER_ATOMIC,
- 	.irq_handler = atmel_hlcdc_dc_irq_handler,
-diff --git a/drivers/gpu/drm/drm_irq.c b/drivers/gpu/drm/drm_irq.c
-index 45a07652fa00..c5babb3e4752 100644
---- a/drivers/gpu/drm/drm_irq.c
-+++ b/drivers/gpu/drm/drm_irq.c
-@@ -103,9 +103,6 @@ int drm_irq_install(struct drm_device *dev, int irq)
- 	int ret;
- 	unsigned long sh_flags = 0;
- 
--	if (!drm_core_check_feature(dev, DRIVER_HAVE_IRQ))
--		return -EOPNOTSUPP;
--
- 	if (irq == 0)
- 		return -EINVAL;
- 
-@@ -174,9 +171,6 @@ int drm_irq_uninstall(struct drm_device *dev)
- 	bool irq_enabled;
- 	int i;
- 
--	if (!drm_core_check_feature(dev, DRIVER_HAVE_IRQ))
--		return -EOPNOTSUPP;
--
- 	irq_enabled = dev->irq_enabled;
- 	dev->irq_enabled = false;
- 
-diff --git a/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c b/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c
-index 54ace3436605..dfc73aade325 100644
---- a/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c
-+++ b/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c
-@@ -137,7 +137,7 @@ static irqreturn_t fsl_dcu_drm_irq(int irq, void *arg)
- DEFINE_DRM_GEM_CMA_FOPS(fsl_dcu_drm_fops);
- 
- static struct drm_driver fsl_dcu_drm_driver = {
--	.driver_features	= DRIVER_HAVE_IRQ | DRIVER_GEM | DRIVER_MODESET
-+	.driver_features	= DRIVER_GEM | DRIVER_MODESET
- 				| DRIVER_PRIME | DRIVER_ATOMIC,
- 	.load			= fsl_dcu_load,
- 	.unload			= fsl_dcu_unload,
-diff --git a/drivers/gpu/drm/gma500/psb_drv.c b/drivers/gpu/drm/gma500/psb_drv.c
-index ac32ab5aa002..7cf14aeb1c28 100644
---- a/drivers/gpu/drm/gma500/psb_drv.c
-+++ b/drivers/gpu/drm/gma500/psb_drv.c
-@@ -468,7 +468,7 @@ static const struct file_operations psb_gem_fops = {
- };
- 
- static struct drm_driver driver = {
--	.driver_features = DRIVER_HAVE_IRQ | DRIVER_IRQ_SHARED | \
-+	.driver_features = DRIVER_IRQ_SHARED | \
- 			   DRIVER_MODESET | DRIVER_GEM,
- 	.load = psb_driver_load,
- 	.unload = psb_driver_unload,
-diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index 337ee650d2de..550cfb945942 100644
---- a/drivers/gpu/drm/i915/i915_drv.c
-+++ b/drivers/gpu/drm/i915/i915_drv.c
-@@ -3010,7 +3010,7 @@ static struct drm_driver driver = {
- 	 * deal with them for Intel hardware.
- 	 */
- 	.driver_features =
--	    DRIVER_HAVE_IRQ | DRIVER_IRQ_SHARED | DRIVER_GEM | DRIVER_PRIME |
-+	    DRIVER_IRQ_SHARED | DRIVER_GEM | DRIVER_PRIME |
- 	    DRIVER_RENDER | DRIVER_MODESET | DRIVER_ATOMIC | DRIVER_SYNCOBJ,
- 	.release = i915_driver_release,
- 	.open = i915_driver_open,
-diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-index 2cbc6c7bb823..2281ed3eb774 100644
---- a/drivers/gpu/drm/meson/meson_drv.c
-+++ b/drivers/gpu/drm/meson/meson_drv.c
-@@ -94,7 +94,7 @@ static irqreturn_t meson_irq(int irq, void *arg)
- DEFINE_DRM_GEM_CMA_FOPS(fops);
- 
- static struct drm_driver meson_driver = {
--	.driver_features	= DRIVER_HAVE_IRQ | DRIVER_GEM |
-+	.driver_features	= DRIVER_GEM |
- 				  DRIVER_MODESET | DRIVER_PRIME |
- 				  DRIVER_ATOMIC,
- 
-diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
-index d2cdc7b553fe..8747fb32a106 100644
---- a/drivers/gpu/drm/msm/msm_drv.c
-+++ b/drivers/gpu/drm/msm/msm_drv.c
-@@ -1063,8 +1063,7 @@ static const struct file_operations fops = {
- };
- 
- static struct drm_driver msm_driver = {
--	.driver_features    = DRIVER_HAVE_IRQ |
--				DRIVER_GEM |
-+	.driver_features    = DRIVER_GEM |
- 				DRIVER_PRIME |
- 				DRIVER_RENDER |
- 				DRIVER_ATOMIC |
-diff --git a/drivers/gpu/drm/mxsfb/mxsfb_drv.c b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-index 54c8cdaeb576..967379f3f571 100644
---- a/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-+++ b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-@@ -322,8 +322,7 @@ DEFINE_DRM_GEM_CMA_FOPS(fops);
- 
- static struct drm_driver mxsfb_driver = {
- 	.driver_features	= DRIVER_GEM | DRIVER_MODESET |
--				  DRIVER_PRIME | DRIVER_ATOMIC |
--				  DRIVER_HAVE_IRQ,
-+				  DRIVER_PRIME | DRIVER_ATOMIC,
- 	.irq_handler		= mxsfb_irq_handler,
- 	.irq_preinstall		= mxsfb_irq_preinstall,
- 	.irq_uninstall		= mxsfb_irq_preinstall,
-diff --git a/drivers/gpu/drm/qxl/qxl_drv.c b/drivers/gpu/drm/qxl/qxl_drv.c
-index 56f2c65969c6..44daac129205 100644
---- a/drivers/gpu/drm/qxl/qxl_drv.c
-+++ b/drivers/gpu/drm/qxl/qxl_drv.c
-@@ -243,7 +243,7 @@ static struct pci_driver qxl_pci_driver = {
- 
- static struct drm_driver qxl_driver = {
- 	.driver_features = DRIVER_GEM | DRIVER_MODESET | DRIVER_PRIME |
--			   DRIVER_HAVE_IRQ | DRIVER_IRQ_SHARED |
-+			   DRIVER_IRQ_SHARED |
- 			   DRIVER_ATOMIC,
- 
- 	.dumb_create = qxl_mode_dumb_create,
-diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon/radeon_drv.c
-index 8897c3d18fbb..450a9d473c30 100644
---- a/drivers/gpu/drm/radeon/radeon_drv.c
-+++ b/drivers/gpu/drm/radeon/radeon_drv.c
-@@ -535,7 +535,7 @@ radeon_get_crtc_scanout_position(struct drm_device *dev, unsigned int pipe,
- static struct drm_driver kms_driver = {
- 	.driver_features =
- 	    DRIVER_USE_AGP |
--	    DRIVER_HAVE_IRQ | DRIVER_IRQ_SHARED | DRIVER_GEM |
-+	    DRIVER_IRQ_SHARED | DRIVER_GEM |
- 	    DRIVER_PRIME | DRIVER_RENDER,
- 	.load = radeon_driver_load_kms,
- 	.open = radeon_driver_open_kms,
-diff --git a/drivers/gpu/drm/shmobile/shmob_drm_drv.c b/drivers/gpu/drm/shmobile/shmob_drm_drv.c
-index 2002e7c55e80..cb821adfc321 100644
---- a/drivers/gpu/drm/shmobile/shmob_drm_drv.c
-+++ b/drivers/gpu/drm/shmobile/shmob_drm_drv.c
-@@ -127,7 +127,7 @@ static irqreturn_t shmob_drm_irq(int irq, void *arg)
- DEFINE_DRM_GEM_CMA_FOPS(shmob_drm_fops);
- 
- static struct drm_driver shmob_drm_driver = {
--	.driver_features	= DRIVER_HAVE_IRQ | DRIVER_GEM | DRIVER_MODESET
-+	.driver_features	= DRIVER_GEM | DRIVER_MODESET
- 				| DRIVER_PRIME,
- 	.irq_handler		= shmob_drm_irq,
- 	.gem_free_object_unlocked = drm_gem_cma_free_object,
-diff --git a/drivers/gpu/drm/tilcdc/tilcdc_drv.c b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
-index 13b11acd4a5e..3030af9e7b35 100644
---- a/drivers/gpu/drm/tilcdc/tilcdc_drv.c
-+++ b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
-@@ -512,7 +512,7 @@ static int tilcdc_debugfs_init(struct drm_minor *minor)
- DEFINE_DRM_GEM_CMA_FOPS(fops);
- 
- static struct drm_driver tilcdc_driver = {
--	.driver_features    = (DRIVER_HAVE_IRQ | DRIVER_GEM | DRIVER_MODESET |
-+	.driver_features    = (DRIVER_GEM | DRIVER_MODESET |
- 			       DRIVER_PRIME | DRIVER_ATOMIC),
- 	.irq_handler        = tilcdc_irq,
- 	.gem_free_object_unlocked = drm_gem_cma_free_object,
-diff --git a/drivers/gpu/drm/vc4/vc4_drv.c b/drivers/gpu/drm/vc4/vc4_drv.c
-index f6f5cd80c04d..5fcd2f0da7f7 100644
---- a/drivers/gpu/drm/vc4/vc4_drv.c
-+++ b/drivers/gpu/drm/vc4/vc4_drv.c
-@@ -175,7 +175,6 @@ static struct drm_driver vc4_drm_driver = {
- 	.driver_features = (DRIVER_MODESET |
- 			    DRIVER_ATOMIC |
- 			    DRIVER_GEM |
--			    DRIVER_HAVE_IRQ |
- 			    DRIVER_RENDER |
- 			    DRIVER_PRIME |
- 			    DRIVER_SYNCOBJ),
-diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
-index 25afb1d594e3..d159d0400013 100644
---- a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
-+++ b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
-@@ -1582,7 +1582,7 @@ static const struct file_operations vmwgfx_driver_fops = {
- };
- 
- static struct drm_driver driver = {
--	.driver_features = DRIVER_HAVE_IRQ | DRIVER_IRQ_SHARED |
-+	.driver_features = DRIVER_IRQ_SHARED |
- 	DRIVER_MODESET | DRIVER_PRIME | DRIVER_RENDER | DRIVER_ATOMIC,
- 	.load = vmw_driver_load,
- 	.unload = vmw_driver_unload,
-diff --git a/drivers/staging/vboxvideo/vbox_drv.c b/drivers/staging/vboxvideo/vbox_drv.c
-index cc6532d8c2fa..78cbcd68d4f3 100644
---- a/drivers/staging/vboxvideo/vbox_drv.c
-+++ b/drivers/staging/vboxvideo/vbox_drv.c
-@@ -221,7 +221,7 @@ static void vbox_master_drop(struct drm_device *dev, struct drm_file *file_priv)
- 
- static struct drm_driver driver = {
- 	.driver_features =
--	    DRIVER_MODESET | DRIVER_GEM | DRIVER_HAVE_IRQ | DRIVER_IRQ_SHARED |
-+	    DRIVER_MODESET | DRIVER_GEM | DRIVER_IRQ_SHARED |
- 	    DRIVER_PRIME | DRIVER_ATOMIC,
- 	.dev_priv_size = 0,
- 
--- 
-2.20.1
+The pin names in parenthesis were copied from the sirf-star binding and
+were used to capture the various names given to this supply by different
+vendors. Please drop as it doesn't apply here.
 
+> +
+> +Required properties (I2C):
+> +- reg		: I2C slave address
+> +
+> +Required properties (SPI):
+> +- reg		: SPI chip select address
+
+While the mt3339 appears to support these interfaces, the globaltop one
+does not.
+
+Have you looked around for a small sample of mt3339-based receivers, to
+see whether anyone actually provides these?
+
+> +Optional properties:
+> +
+> +- timepulse-gpios	: Time pulse GPIO
+> +- v-bckp-supply		: Backup voltage regulator
+> +- current-speed		: Default UART baud rate
+
+Looks like you forgot the optional NRESET input and 3D-FIX output (even
+if the latter might be of limited use).
+
+> +
+> +Example:
+> +
+> +serial@1234 {
+> +	compatible = "ns16550a";
+> +
+> +	gnss {
+> +		compatible = "globaltop,pa6h";
+> +		vcc-supply = <&vcc_3v3>;
+> +	};
+> +};
+
+Johan
 
 _______________________________________________
 linux-amlogic mailing list
