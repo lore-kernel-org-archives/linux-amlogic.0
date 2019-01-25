@@ -2,22 +2,21 @@ Return-Path: <SRS0=B80X=QB=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.6 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_MUTT autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-6.6 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,USER_AGENT_MUTT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 82AABC282C0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Jan 2019 09:30:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2DFCEC282C0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Jan 2019 10:43:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 544B7218DE
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Jan 2019 09:30:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id EE5BA218A2
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Jan 2019 10:43:41 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="I3s9PoIK"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 544B7218DE
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="U3e4sVc2"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EE5BA218A2
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
@@ -25,58 +24,46 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Abh6D9SUh2plsfK4PzEPvaFkXpnkWazW2CpeimK8YdM=; b=I3s9PoIK34Knti
-	Bw85uEKhn9BQTJuW3GlSM2qhzBnT+9sHg0+aEJ5deMoVlcX/R6moBVomSgTbDMNkfXsLKhOJgxrAx
-	zaybgZMOtmK74MmMUJ/uelQumVgmzS5BOyK1LDBsaslAZc4F2Y/Uq68sNSaM3ZF7mLUyTdU8DUL7L
-	sh7LKEwecdbG0MgnqiAqtn0HiK5059sf0zDQYaOmDisl4pDgTVsC7dkEKNrCo4DnQMnx0AwDP+um0
-	ZSfL0W+GsNlwQTZFRakzHricYUX2Lk8a1CN9BDKbk0CYl0+cqhnkxfGarxsYfD/15duPi4Tjg19Q0
-	/iHZF/iCNQWuu5abKiqg==;
+	List-Owner; bh=i0hJk8cv0B+2azewuWA+QtvXVoOCCRyniz5ipyxdHyM=; b=U3e4sVc2agbz5j
+	sP7HrIXn4s4+Ml9Ucn6fYibF7kUsKcQ9Rl7MHvh98yCsxZQx4a1104PI6GpHizce7XPxy1vcBj92K
+	Y0bQlOYvretvqZfEOS7Bm+Fy7gU2lDonEUThdyiMzFjky/IRkGnPq5hM1ELNQOkhDtVr4niLzM9MW
+	wq9bwR9qQs6rQQIhWy3xafSosn8ItdBY2ci8tmJFuDNqKSww0cB88SrLKlWVl4P77g3+lPDvoIVbX
+	FodB/Vuus0gZnHxUYEZSINUY94yMRzAme8+gVzTfPRfAdZP2atVV0QJdmlqX4d6HDj34lmNpWs6BT
+	iBkbAdXXFAT2CjXMmGiw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gmxod-0001VL-E3; Fri, 25 Jan 2019 09:30:23 +0000
-Received: from mail-lf1-f65.google.com ([209.85.167.65])
+	id 1gmyxT-00006n-Ck; Fri, 25 Jan 2019 10:43:35 +0000
+Received: from asavdk3.altibox.net ([109.247.116.14])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gmxoa-0001Ud-AX; Fri, 25 Jan 2019 09:30:21 +0000
-Received: by mail-lf1-f65.google.com with SMTP id b20so6421857lfa.12;
- Fri, 25 Jan 2019 01:30:20 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=d1dF8hLUpMhjJtda9RcMAKA/Cd7XgQRPFWL4srruzhM=;
- b=G+4J4RA1+0P2ILy8nE5FcU2nIwANpaE3CihljZ0YdJGCNSYX22SYHghPjUSxlMjVJz
- LubUHOzwSblBWSMfGWNcfOHj29ldsj2PL41qKKTundyh5RfiOMK+ebaCSl0EsK6Xp8Rf
- U11QVK8S+sYtFJJcHdv7/+poEN47kcoZceZBkUgPXFCcK0xrYcgvbEDalMknFFd1P6aP
- rudEp+h2p1VUmrIcShwewdTrZ9rrxFJZqCma97QVB983DecYX10ad3Z5OWmFn7s7pCli
- Hc8jcS5bxG6t3Pf2n9/tdB7BX7QYvcoA4JBsY+bUeBXamVW128sEsVJhbPsAsXSAmogH
- IFXA==
-X-Gm-Message-State: AJcUukcTt7SwzjOjbtlQ4Pfy5bv6CdII1vMUsFCo2KeHrtVppDTqMT6K
- OykGnwsHO9GDhYWpWuAcHC0=
-X-Google-Smtp-Source: ALg8bN7yEBGtS+JZv5a+QHP1LYATg1srUrpXJnCuKCLfo3JPjIapdTDxZE3cOiP76cl+EjOnXEFc3A==
-X-Received: by 2002:a19:984:: with SMTP id 126mr8131773lfj.166.1548408618501; 
- Fri, 25 Jan 2019 01:30:18 -0800 (PST)
-Received: from xi.terra (c-74bee655.07-184-6d6c6d4.bbcust.telenor.se.
- [85.230.190.116])
- by smtp.gmail.com with ESMTPSA id f1sm1374318lfm.22.2019.01.25.01.30.17
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 25 Jan 2019 01:30:17 -0800 (PST)
-Received: from johan by xi.terra with local (Exim 4.91)
- (envelope-from <johan@kernel.org>)
- id 1gmxoT-0001kS-1y; Fri, 25 Jan 2019 10:30:13 +0100
-Date: Fri, 25 Jan 2019 10:30:13 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Loys Ollivier <lollivier@baylibre.com>
-Subject: Re: [PATCH v2 4/4] gnss: add driver for mediatek receivers
-Message-ID: <20190125093013.GD3691@localhost>
-References: <1547744074-28308-1-git-send-email-lollivier@baylibre.com>
- <1547744074-28308-5-git-send-email-lollivier@baylibre.com>
+ id 1gmywd-0006Mx-F8; Fri, 25 Jan 2019 10:43:15 +0000
+Received: from ravnborg.org (unknown [158.248.194.18])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by asavdk3.altibox.net (Postfix) with ESMTPS id A78E720057;
+ Fri, 25 Jan 2019 11:40:33 +0100 (CET)
+Date: Fri, 25 Jan 2019 11:40:32 +0100
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: Re: [PATCH 01/26] drm/irq: Don't check for DRIVER_HAVE_IRQ in
+ drm_irq_(un)install
+Message-ID: <20190125104032.GA27214@ravnborg.org>
+References: <20190124165831.16427-1-daniel.vetter@ffwll.ch>
+ <20190124165831.16427-2-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <1547744074-28308-5-git-send-email-lollivier@baylibre.com>
-User-Agent: Mutt/1.11.2 (2019-01-07)
+In-Reply-To: <20190124165831.16427-2-daniel.vetter@ffwll.ch>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=dqr19Wo4 c=1 sm=1 tr=0
+ a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+ a=kj9zAlcOel0A:10 a=QyXUC8HyAAAA:8 a=JfrnYn6hAAAA:8 a=e5mUnYsNAAAA:8
+ a=VwQbUJbxAAAA:8 a=Z4Rwk6OoAAAA:8 a=7gkXJVJtAAAA:8 a=-wFMkYpdgSpu5CXY80EA:9
+ a=CjuIK1q_8ugA:10 a=1CNFftbPRP8L7MoqJWF3:22 a=Vxmtnl_E_bksehYqCbjh:22
+ a=AjGcO6oz07-iQ99wixmX:22 a=HkZW87K1Qel5hWWM3VKY:22
+ a=E9Po1WZjFZOl8hwRPBS3:22
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190125_013020_470660_E1F7E072 
-X-CRM114-Status: GOOD (  25.31  )
+X-CRM114-CacheID: sfid-20190125_024244_653687_D4089F59 
+X-CRM114-Status: GOOD (  10.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -88,151 +75,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Johan Hovold <johan@kernel.org>,
- linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
+Cc: linux-arm-msm@vger.kernel.org,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux-foundation.org,
+ linux-renesas-soc@vger.kernel.org,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ spice-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>,
+ linux-amlogic@lists.infradead.org, freedreno@lists.freedesktop.org,
  linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jan 17, 2019 at 05:54:34PM +0100, Loys Ollivier wrote:
-> Add driver for serial-connected Mediatek-based GNSS receivers.
+Hi Daniel.
+
+On Thu, Jan 24, 2019 at 05:58:06PM +0100, Daniel Vetter wrote:
+> If a non-legacy driver calls these it's valid to assume there is
+> interrupt support. The flag is really only needed for legacy drivers.
 > 
-> These devices typically boot transmitting vendor specific NMEA output
-> sequences. The serial port bit rate is read from the device tree
-> "current-speed".
+> Also remove all the flag usage from non-legacy drivers.
 > 
-> Note that the driver uses the generic GNSS serial implementation and
-> therefore essentially only manages power abstracted into three power
-> states: ACTIVE, STANDBY, and OFF.
-> 
-> For mediatek receivers with a main supply and no enable-gpios, this simply
-> means that the main supply is disabled in STANDBY and OFF (the optional
-> backup supply is kept enabled while the driver is bound).
->
-> Note that the timepulse-support is left unimplemented.
-> 
-> Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
-> ---
-> 
-> v2: 
-> Renamed from gtop/Globaltop to mtk/Mediatek.
-> Added "mediatek,mt3339" compatible.
-> 
->  drivers/gnss/Kconfig  |  13 +++++
->  drivers/gnss/Makefile |   3 +
->  drivers/gnss/core.c   |   1 +
->  drivers/gnss/mtk.c    | 153 ++++++++++++++++++++++++++++++++++++++++++++++++++
->  4 files changed, 170 insertions(+)
->  create mode 100644 drivers/gnss/mtk.c
-> 
-> diff --git a/drivers/gnss/Kconfig b/drivers/gnss/Kconfig
-> index 6abc88514512..51e6282d092a 100644
-> --- a/drivers/gnss/Kconfig
-> +++ b/drivers/gnss/Kconfig
-> @@ -40,4 +40,17 @@ config GNSS_UBX_SERIAL
->  
->  	  If unsure, say N.
->  
-> +config GNSS_MTK_SERIAL
-> +	tristate "Mediatek GNSS receiver support"
-> +	depends on SERIAL_DEV_BUS
-> +	select GNSS_SERIAL
-> +	help
-> +	  Say Y here if you have a Mediatek-based GNSS receiver which uses a
-> +	  serial interface.
-> +
-> +	  To compile this driver as a module, choose M here: the module will
-> +	  be called gnss-mtk.
-> +
-> +	  If unsure, say N.
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: intel-gfx@lists.freedesktop.org
+> Cc: linux-amlogic@lists.infradead.org
+> Cc: linux-arm-msm@vger.kernel.org
+> Cc: freedreno@lists.freedesktop.org
+> Cc: virtualization@lists.linux-foundation.org
+> Cc: spice-devel@lists.freedesktop.org
+> Cc: amd-gfx@lists.freedesktop.org
+> Cc: linux-renesas-soc@vger.kernel.org
 
-Add before the SiRF entry too keep the entries sorted.
+The actual code changes looks good.
+But if this is the right thing to do I cannot tell.
 
-> +
->  endif # GNSS
-> diff --git a/drivers/gnss/Makefile b/drivers/gnss/Makefile
-> index 5cf0ebe0330a..43318375aa51 100644
-> --- a/drivers/gnss/Makefile
-> +++ b/drivers/gnss/Makefile
-> @@ -14,3 +14,6 @@ gnss-sirf-y := sirf.o
->  
->  obj-$(CONFIG_GNSS_UBX_SERIAL)		+= gnss-ubx.o
->  gnss-ubx-y := ubx.o
-> +
-> +obj-$(CONFIG_GNSS_MTK_SERIAL)		+= gnss-mtk.o
-> +gnss-mtk-y := mtk.o
-
-Ditto.
-
-> diff --git a/drivers/gnss/core.c b/drivers/gnss/core.c
-> index 4291a0dd22aa..320cfca80d5f 100644
-> --- a/drivers/gnss/core.c
-> +++ b/drivers/gnss/core.c
-> @@ -334,6 +334,7 @@ static const char * const gnss_type_names[GNSS_TYPE_COUNT] = {
->  	[GNSS_TYPE_NMEA]	= "NMEA",
->  	[GNSS_TYPE_SIRF]	= "SiRF",
->  	[GNSS_TYPE_UBX]		= "UBX",
-> +	[GNSS_TYPE_MTK]		= "MTK",
->  };
->  
->  static const char *gnss_type_name(struct gnss_device *gdev)
-
-So this should go in the previous patch.
-
-> diff --git a/drivers/gnss/mtk.c b/drivers/gnss/mtk.c
-> new file mode 100644
-> index 000000000000..c91d4d251098
-> --- /dev/null
-> +++ b/drivers/gnss/mtk.c
-> @@ -0,0 +1,153 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Mediatek GNSS receiver driver
-> + *
-> + * Copyright (C) 2018 Loys Ollivier <lollivier@baylibre.com>
-
-As this just a copy of the ubx driver with the "ubx" prefix replaced
-with "mtk", you need to retain the original copyright statement.
-
-I'm not even sure the search and replace work is copyrightable at all...
-
-I see now why you wanted merge this with the ubx driver, but I still
-think they should be kept apart for now. Maybe we can move common bits
-into the generic implementation (library) when we get a third "copy".
-
-The rest of the driver obviously looks fine. ;) Possibly with the
-exception of the added mediatek compatible as mentioned before.
-
-> +#ifdef CONFIG_OF
-> +static const struct of_device_id mtk_of_match[] = {
-> +	{ .compatible = "globaltop,pa6h" },
-> +	{ .compatible = "mediatek,mt3339" },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, mtk_of_match);
-> +#endif
-> +
-> +static struct serdev_device_driver mtk_driver = {
-> +	.driver	= {
-> +		.name		= "gnss-mtk",
-> +		.of_match_table	= of_match_ptr(mtk_of_match),
-> +		.pm		= &gnss_serial_pm_ops,
-> +	},
-> +	.probe	= mtk_probe,
-> +	.remove	= mtk_remove,
-> +};
-> +module_serdev_device_driver(mtk_driver);
-> +
-> +MODULE_AUTHOR("Loys Ollivier <lollivier@baylibre.com>");
-> +MODULE_DESCRIPTION("Mediatek GNSS receiver driver");
-> +MODULE_LICENSE("GPL v2");
-
-Johan
+On this (limited) basis I provide an:
+Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
 
 _______________________________________________
 linux-amlogic mailing list
