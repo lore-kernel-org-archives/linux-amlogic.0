@@ -2,59 +2,82 @@ Return-Path: <SRS0=B80X=QB=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 19CEFC282C0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Jan 2019 12:30:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 76871C282C0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Jan 2019 15:13:04 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DCADC2146E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Jan 2019 12:30:06 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 455A0218D0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 25 Jan 2019 15:13:04 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="C4uK2byJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DCADC2146E
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=bootlin.com
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="SszRNREI";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gn2eoqLK"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 455A0218D0
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zf4jsCBZs1a5/JmU6GYfcHKcFfh1cH4cqHLDMLHlJtI=; b=C4uK2byJZS7+RY
-	amx0LZoFWlB009URR85OPt0zRSdU1UTWVT0LSw1J4K86N6rCFLGNwJD6hcP5nro6CpZUnv537Jm5C
-	GCOlAOeiBnVKbmPqDOVyUKCyTRKTr+GIgPqPOyB4T+iy8hWo1FWurRJJJBCoMr0h2oEVXdXeZJF8x
-	APbVFNub91PgkrncozQXuGP1xN6YITGbNKqJL+P1VokTvfeWxkGKjdGdRTmWMHgWsE8OKHtPvPKsK
-	gxkR3JnEcGky3uyqBwXErY61PDJNrKJ/FEeqmW309LPkm8PZNpDKWrtmDeL9OV+GMYhpq/s0G2lyQ
-	NSDF2kq1TKjd4ShgqsXQ==;
+	List-Owner; bh=MbT9QUm1FjmjprEoztkw9Jb8VGE694I7Sw3gfRwaseI=; b=SszRNREISNpO0U
+	qVRtgj7AonabBKyU/6YkSZoh4/GM7w8l34dHXsDu5Jg9Dp8XfUT9BIKgbZ14dwJu85YDhnUIKritY
+	7+URImHMlLId2YGvVx13BmHCh0IE/sDMUo2H93v81hjgZDu4ErQqo6TKxO+1CjlzadiYgQz1zMQEV
+	9HeJmaKHNQ6tQC9UKu9bxViAZ3OWO4FIgOOA+7hU8AzBkIw+2zubTxwFIukDWsGkoJZvDPEKy/ak+
+	S2MC0CvY3FL2jXWAjF64HdbRkJ2BgThGQZET1pjIUjLjPXBHSeqndqcm+qVY+a4Do5bjbvl97RlW8
+	zyOoKnIb5I2pooWdwdGg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gn0cU-0001UR-UR; Fri, 25 Jan 2019 12:30:02 +0000
-Received: from mail.bootlin.com ([62.4.15.54])
- by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gn0cR-0001Mk-H2; Fri, 25 Jan 2019 12:30:01 +0000
-Received: by mail.bootlin.com (Postfix, from userid 110)
- id 23418207B0; Fri, 25 Jan 2019 13:29:58 +0100 (CET)
-Received: from xps13 (aaubervilliers-681-1-87-206.w90-88.abo.wanadoo.fr
- [90.88.29.206])
- by mail.bootlin.com (Postfix) with ESMTPSA id 8F2DD209BF;
- Fri, 25 Jan 2019 13:29:20 +0100 (CET)
-Date: Fri, 25 Jan 2019 13:29:20 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Jianxin Pan <jianxin.pan@amlogic.com>
-Subject: Re: [PATCH] MAINTAINERS: Add entry for Amlogic NAND controller driver
-Message-ID: <20190125132920.7354c0ec@xps13>
-In-Reply-To: <1547917355-13179-1-git-send-email-jianxin.pan@amlogic.com>
-References: <1547917355-13179-1-git-send-email-jianxin.pan@amlogic.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+	id 1gn3A8-0006LU-Nf; Fri, 25 Jan 2019 15:12:56 +0000
+Received: from mail-vs1-xe42.google.com ([2607:f8b0:4864:20::e42])
+ by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1gn3A6-0006L4-Du; Fri, 25 Jan 2019 15:12:55 +0000
+Received: by mail-vs1-xe42.google.com with SMTP id z3so5847259vsf.7;
+ Fri, 25 Jan 2019 07:12:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=qeeS4c88knSK89mk8R7AcXjNNhDwhbuq8XG6IWuEQUk=;
+ b=gn2eoqLKbhkShzqIB3CeXdajIYFk17aTIdPZdkEeNNHuHTnorLv57GuUFcRyyRLpl/
+ fJTwVJdNyXDk+somaX/sl7vN/EjYYZyrihbBBbSo6ZiyE0IJn8P5MMxI5pY8h9SE2VhM
+ zKpG9/qf+nFTvbqr2By762JF/pDZeq+rDqW7Ry/cVEvV6AHDdcgG15vSM9tNsNxadfNE
+ Pl8ISJlu5u+cVEEEz2hm74/KSsh8DO8wWOqYFB84KMOig9r6VNCDcmiLj1A8knbulC5I
+ 65lFE2rgoq48vrzmIoXYJaRX07PTCm+QQTPJWK2rEm9xPzL7EpaLVRysFVPbDu+doaoq
+ 0KLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=qeeS4c88knSK89mk8R7AcXjNNhDwhbuq8XG6IWuEQUk=;
+ b=nFjdaOeiH2BYfQAxrkqIsZUkL3IsZ1oRvyp52/UQwzIBloZr98pS+SHHLpCHgtrMrZ
+ oQBmBEaAECqoJsyIa7uSlC5O4lZzkydSMZqpjQ2pN+oNKoDjZf3FsTH8lxkRtLLMeMb0
+ Wg4ji0WKakvTeLUdTTnKey0hUXX/S83x3R4EevbHfLPdrsQ5nsTIuzcT972q7WMG7OD9
+ ynLg/o3KOSfrr88JMya7EyKvgXT+6nYkocjXITuMABrORGZpPSfdsKlzuoSfTYqvec++
+ O0M+lO46jkFJ1MLImWnOsqvvajzA+vdHsJgvQT51oHuTvXvbBPlJRE2uj2cUHzqFaNlR
+ zj7A==
+X-Gm-Message-State: AJcUukeJJmfV2FTt5RaN1Rq1aqR+BVs+IYkqfcn18tC6mb+jzoH9Lkju
+ SyrpImijrQ+N3irkLZKbfdeb5pO4L0AYctQy4RI=
+X-Google-Smtp-Source: ALg8bN4TdPePO5U3SZKFlVwm6CHk+iHb487nVCQWm00orfsqe8O/kc6JsiOLu8DUZqBq5yIaJW7RSm7lKVV6TgnDTu0=
+X-Received: by 2002:a67:cf02:: with SMTP id y2mr4613740vsl.118.1548429171526; 
+ Fri, 25 Jan 2019 07:12:51 -0800 (PST)
 MIME-Version: 1.0
+References: <20190124165831.16427-1-daniel.vetter@ffwll.ch>
+ <20190124165831.16427-2-daniel.vetter@ffwll.ch>
+In-Reply-To: <20190124165831.16427-2-daniel.vetter@ffwll.ch>
+From: Emil Velikov <emil.l.velikov@gmail.com>
+Date: Fri, 25 Jan 2019 15:09:00 +0000
+Message-ID: <CACvgo52A2Cb3RLRZdGopcbUb6424XnVJkU2PYC0sJGFie4ueyg@mail.gmail.com>
+Subject: Re: [PATCH 01/26] drm/irq: Don't check for DRIVER_HAVE_IRQ in
+ drm_irq_(un)install
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190125_042959_718463_2E8CCEF1 
-X-CRM114-Status: UNSURE (   8.35  )
+X-CRM114-CacheID: sfid-20190125_071254_495891_A33100BE 
+X-CRM114-Status: UNSURE (   7.27  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -67,31 +90,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- Hanjie Lin <hanjie.lin@amlogic.com>, Victor Wan <victor.wan@amlogic.com>,
- Marek Vasut <marek.vasut@gmail.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Richard Weinberger <richard@nod.at>, Neil Armstrong <narmstrong@baylibre.com>,
- linux-kernel@vger.kernel.org, Boris Brezillon <boris.brezillon@bootlin.com>,
- Jian Hu <jian.hu@amlogic.com>, Liang Yang <liang.yang@amlogic.com>,
- linux-mtd@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>,
- Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
- Brian Norris <computersforpeace@gmail.com>,
- David Woodhouse <dwmw2@infradead.org>, linux-arm-kernel@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ amd-gfx mailing list <amd-gfx@lists.freedesktop.org>,
+ "open list:VIRTIO GPU DRIVER" <virtualization@lists.linux-foundation.org>,
+ linux-renesas-soc@vger.kernel.org,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ spice-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@intel.com>,
+ linux-amlogic@lists.infradead.org, freedreno@lists.freedesktop.org,
+ LAKML <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgSmlhbnhpbiwKCkppYW54aW4gUGFuIDxqaWFueGluLnBhbkBhbWxvZ2ljLmNvbT4gd3JvdGUg
-b24gU3VuLCAyMCBKYW4gMjAxOQowMTowMjozNSArMDgwMDoKCj4gQWRkIGVudHJ5IGZvciBBbWxv
-Z2ljIE5BTkQgY29udHJvbGxlciBkcml2ZXIgYW5kIGl0cyBiaW5kaW5nc1swXS4KPiAKPiBbMF0g
-aHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGttbC8xNTQ3NTY2Njg0LTU3NDcyLTEtZ2l0LXNlbmQt
-ZW1haWwtamlhbnhpbi5wYW5AYW1sb2dpYy5jb20vCj4gCj4gU2lnbmVkLW9mZi1ieTogTGlhbmcg
-WWFuZyA8bGlhbmcueWFuZ0BhbWxvZ2ljLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBKaWFueGluIFBh
-biA8amlhbnhpbi5wYW5AYW1sb2dpYy5jb20+CgpBcHBsaWVkIHRvIG5hbmQvbmV4dC4KClRoYW5r
-cywKTWlxdcOobAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRl
-YWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgt
-YW1sb2dpYwo=
+On Thu, 24 Jan 2019 at 16:58, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+>
+> If a non-legacy driver calls these it's valid to assume there is
+> interrupt support. The flag is really only needed for legacy drivers.
+
+... legacy drivers which issue the IRQ via the DRM_IOCTL_CONTROL legacy IOCTL.
+
+At a later stage, we might as well add LEGACY to the name:
+DRIVER_LEGACY_HAVE_IRQ?
+
+
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c      | 2 +-
+>  drivers/gpu/drm/arm/hdlcd_drv.c              | 2 +-
+>  drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c | 2 +-
+>  drivers/gpu/drm/drm_irq.c                    | 6 ------
+>  drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c    | 2 +-
+>  drivers/gpu/drm/gma500/psb_drv.c             | 2 +-
+>  drivers/gpu/drm/i915/i915_drv.c              | 2 +-
+>  drivers/gpu/drm/meson/meson_drv.c            | 2 +-
+>  drivers/gpu/drm/msm/msm_drv.c                | 3 +--
+>  drivers/gpu/drm/mxsfb/mxsfb_drv.c            | 3 +--
+>  drivers/gpu/drm/qxl/qxl_drv.c                | 2 +-
+>  drivers/gpu/drm/radeon/radeon_drv.c          | 2 +-
+>  drivers/gpu/drm/shmobile/shmob_drm_drv.c     | 2 +-
+>  drivers/gpu/drm/tilcdc/tilcdc_drv.c          | 2 +-
+>  drivers/gpu/drm/vc4/vc4_drv.c                | 1 -
+>  drivers/gpu/drm/vmwgfx/vmwgfx_drv.c          | 2 +-
+>  drivers/staging/vboxvideo/vbox_drv.c         | 2 +-
+
+Local grep shows one more non-legacy entry in
+drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c
+
+With that file addressed and trivial comment additions, patches: 1, 2,
+3 and 26 are
+Reviewed-by: Emil Velikov <emil.velikov@collabora.com>
+
+HTH
+Emil
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
