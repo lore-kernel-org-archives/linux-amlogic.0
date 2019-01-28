@@ -2,71 +2,72 @@ Return-Path: <SRS0=PsYD=QE=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 52D75C282C8
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 15:56:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C4D1EC282CF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 16:02:10 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 23B8D21841
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 15:56:35 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 979DB2175B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 16:02:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="N6TeM/VI";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="ACWuQdLL"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 23B8D21841
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Esytg2HS"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 979DB2175B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=denx.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NV7/z7D/ugaRj/eE9NQ9wdecrmCpI2jjFpaU9Ocj1BE=; b=N6TeM/VI9nSyEy
-	5tp+It9np9Sl5bwfhbDMYwBbfSudX1XEbgkm5SFQcFsKxf27HZbC+lLMrA1HEL9mPDWYCiWQJnMcj
-	PdW2mWM4CGRoOmymhpy+dGYFS5ETK0d5dq4uSU2sysfy6V49fRce2sdmhZPS04QfLZ0IypK0utX6b
-	KvlKQfEazvXM/yeNYZKLK7LL/kOc67CQOc4CxI75AYmZghyFiOxsrOIB70wj+dta6n3ESY7zrMmRZ
-	UTerpJN19AT/ZJqa5ZS9N5bwvXQN+6YKxvAQgkKVeEg1gwtC6or/77nx/Vj5lZh/Hq4sX+/Mp0iFR
-	ii+gthmIS1j98NGcq3Ag==;
+	List-Owner; bh=6TfJRvZ7Uw06B/VsFt68/VT8r5opeIOu9J2+JcuwUzo=; b=Esytg2HSY12Z38
+	HaKxaH+fSHbuvGWV5JV4ROqzT+WAmAhnNS4W9AIxAXr6rXJrYmIOwCqlg+8pCwmedcmMLKW0ejRrr
+	yyFHUt0JhMzJ4XO8jMiKHvpzYr3mJfC8qjs6cUZ9nW6BFUUkmiCAPi+StQgDwJlHn0AHesW9tbKUV
+	hIdjkz1llCPE5zTFn+nX/5HfeZKCIwZ7Dr8rporQTkB21PsHXOx4Otd3ii3cV1xn172AeQWhVME9y
+	kapxB+mm+e2pkfQvR6NMBrYOHNQQf84FojoNrjszhSLs3pGM41RvqVEtuV4oG6Wct9KVlO2UaqLEE
+	ebgs3ngrjsCi0Tyzcviw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1go9Gx-0007bz-0M; Mon, 28 Jan 2019 15:56:31 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1go9MJ-0002EY-Gs; Mon, 28 Jan 2019 16:02:03 +0000
+Received: from mail-out.m-online.net ([2001:a60:0:28:0:1:25:1])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1go9Gu-0007aB-1M
- for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 15:56:29 +0000
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
- [73.47.72.35])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ id 1go9LK-0001xZ-1S
+ for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 16:01:03 +0000
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+ by mail-out.m-online.net (Postfix) with ESMTP id 43pDrB0LDTz1r41r;
+ Mon, 28 Jan 2019 17:00:58 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+ by mail.m-online.net (Postfix) with ESMTP id 43pDr96lHzz1qr5l;
+ Mon, 28 Jan 2019 17:00:57 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+ by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new,
+ port 10024)
+ with ESMTP id 53BRWFAN07Ov; Mon, 28 Jan 2019 17:00:57 +0100 (CET)
+X-Auth-Info: pSt+q9HVhwLsSY9ExNLNhIchfV2uaUcz5jVxpFra+V4=
+Received: from crub (p508DEA88.dip0.t-ipconnect.de [80.141.234.136])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 339872175B;
- Mon, 28 Jan 2019 15:56:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1548690987;
- bh=fDc2F4IluctCFREreD9HEoOujKnzfNxxqkUVymgUkME=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=ACWuQdLLANLg6sCqKHmJwR1xsNSKuuXWf+DJkMIdoVmrBA0nAP0ki6nMu6J8FQXk1
- r3G0BzK00jcybJwJa8l/uLgU6gyFzFRM0k+TmV3rXwMom385N/z+yU23CjbA74U+x/
- Ky4Anp1xvpcsggdzYdEPWvgh82wbiPIl0g3D5fc4=
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.20 256/304] pinctrl: meson: meson8b: fix the GPIO
- function for the GPIOAO pins
-Date: Mon, 28 Jan 2019 10:42:53 -0500
-Message-Id: <20190128154341.47195-256-sashal@kernel.org>
-X-Mailer: git-send-email 2.19.1
-In-Reply-To: <20190128154341.47195-1-sashal@kernel.org>
-References: <20190128154341.47195-1-sashal@kernel.org>
+ by mail.mnet-online.de (Postfix) with ESMTPSA;
+ Mon, 28 Jan 2019 17:00:57 +0100 (CET)
+Date: Mon, 28 Jan 2019 17:00:56 +0100
+From: Anatolij Gustschin <agust@denx.de>
+To: Neil Armstrong <narmstrong@baylibre.com>, u-boot@lists.denx.de
+Subject: Re: [PATCH u-boot 02/11] video: dw_hdmi: support SoC specific
+ read/write ops
+Message-ID: <20190128170056.6a4191d6@crub>
+In-Reply-To: <20190115161759.1657-3-narmstrong@baylibre.com>
+References: <20190115161759.1657-1-narmstrong@baylibre.com>
+ <20190115161759.1657-3-narmstrong@baylibre.com>
 MIME-Version: 1.0
-X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190128_075628_099650_8F554D03 
-X-CRM114-Status: GOOD (  10.94  )
+X-CRM114-CacheID: sfid-20190128_080102_231871_109B6921 
+X-CRM114-Status: UNSURE (   7.07  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -78,74 +79,32 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Sasha Levin <sashal@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org
+Cc: mjourdan@baylibre.com, linux-amlogic@lists.infradead.org,
+ Jorge Ramirez-Ortiz <jramirez@baylibre.com>, jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Hi Neil,
 
-[ Upstream commit 2b745ac3cceb8fc1d9985990c8241a821ea97e53 ]
+On Tue, 15 Jan 2019 17:17:50 +0100
+Neil Armstrong narmstrong@baylibre.com wrote:
 
-The GPIOAO pins (as well as the two exotic GPIO_BSD_EN and GPIO_TEST_N)
-only belong to the pin controller in the AO domain. With the current
-definition these pins cannot be referred to in .dts files as group
-(which is possible on GXBB and GXL for example).
+> From: Jorge Ramirez-Ortiz <jramirez@baylibre.com>
+> 
+> Some IPs like the meson VPU have a specific way to write to dw_hdmi
+> registers. Make it configurable.
+> 
+> Signed-off-by: Jorge Ramirez-Ortiz <jramirez@baylibre.com>
+> [added commit description]
+> Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Add a separate "gpio_aobus" function to fix the mapping between the pin
-controller and the GPIO pins in the AO domain. This is similar to how
-the GXBB and GXL drivers implement this functionality.
+Reviewed-by: Anatolij Gustschin <agust@denx.de>
 
-Fixes: 9dab1868ec0db4 ("pinctrl: amlogic: Make driver independent from two-domain configuration")
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/pinctrl/meson/pinctrl-meson8b.c | 13 ++++++++-----
- 1 file changed, 8 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/pinctrl/meson/pinctrl-meson8b.c b/drivers/pinctrl/meson/pinctrl-meson8b.c
-index 647ad15d5c3c..91cffc051055 100644
---- a/drivers/pinctrl/meson/pinctrl-meson8b.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson8b.c
-@@ -646,16 +646,18 @@ static const char * const gpio_groups[] = {
- 	"BOOT_10", "BOOT_11", "BOOT_12", "BOOT_13", "BOOT_14",
- 	"BOOT_15", "BOOT_16", "BOOT_17", "BOOT_18",
- 
--	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3",
--	"GPIOAO_4", "GPIOAO_5", "GPIOAO_6", "GPIOAO_7",
--	"GPIOAO_8", "GPIOAO_9", "GPIOAO_10", "GPIOAO_11",
--	"GPIOAO_12", "GPIOAO_13", "GPIO_BSD_EN", "GPIO_TEST_N",
--
- 	"DIF_0_P", "DIF_0_N", "DIF_1_P", "DIF_1_N",
- 	"DIF_2_P", "DIF_2_N", "DIF_3_P", "DIF_3_N",
- 	"DIF_4_P", "DIF_4_N"
- };
- 
-+static const char * const gpio_aobus_groups[] = {
-+	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3",
-+	"GPIOAO_4", "GPIOAO_5", "GPIOAO_6", "GPIOAO_7",
-+	"GPIOAO_8", "GPIOAO_9", "GPIOAO_10", "GPIOAO_11",
-+	"GPIOAO_12", "GPIOAO_13", "GPIO_BSD_EN", "GPIO_TEST_N"
-+};
-+
- static const char * const sd_a_groups[] = {
- 	"sd_d0_a", "sd_d1_a", "sd_d2_a", "sd_d3_a", "sd_clk_a",
- 	"sd_cmd_a"
-@@ -871,6 +873,7 @@ static struct meson_pmx_func meson8b_cbus_functions[] = {
- };
- 
- static struct meson_pmx_func meson8b_aobus_functions[] = {
-+	FUNCTION(gpio_aobus),
- 	FUNCTION(uart_ao),
- 	FUNCTION(uart_ao_b),
- 	FUNCTION(i2c_slave_ao),
--- 
-2.19.1
-
+--
+Anatolij
 
 _______________________________________________
 linux-amlogic mailing list
