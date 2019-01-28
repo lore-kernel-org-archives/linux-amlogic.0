@@ -4,19 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+	URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B37BEC282C8
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C535FC4151A
 	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 15:46:54 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 856EA21741
+	by mail.kernel.org (Postfix) with ESMTPS id 94C352175B
 	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 15:46:54 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XU26t8ag";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="CFPSIw9F"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 856EA21741
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="g6MMnkpG";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="gInBz2C3"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 94C352175B
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,47 +26,47 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3EBHEjYzPHgd/nyTn0W1UieKa+0fQ0Zd8fQseuTKBgc=; b=XU26t8agPS+2LG
-	HQ/JWuEgKERzDwCj7OMH2SVZLnwOp3EgpQ+OkESPgpCa9hZUZJeMBB80Y5R+rZVpytgCma3PTNGwB
-	qdp6N9DG8K0icxJtU1Xkw/E9Fd6+BDm7y+7TG9bnJXMIxLMFLZhyyyoGd4qj5YSKGCG9NkH0/s4g7
-	r1tWvGERVKJwrXhQ32qlxhtIrmNWbeQcW0MiqtVFgWZNTceINvSdrWHn4+7+XiejEgO3I/IfGjBPI
-	+VT1Up73+2sGND8Iu9f1CVFT1Dkh+qy/BM/iHojTMjgCJxrtGon82C5UOu1Dnhgx8xwOLQ7G5GpjC
-	C2u/Kma79b0R0paYbgSA==;
+	List-Owner; bh=AJy/pIBeLF84GFYiLU6Xl3Vdm9VAAP1lnAxpexmjpgY=; b=g6MMnkpGuqSssQ
+	ZTtzm3/gam+Yo/1mixaVL7E6ZEGyZQb3RFRBvmfUC5Gbp16VJxNAvvfJlT+n5N0WG9gQeBY1BnOfe
+	4On858rZAAqGooKSRYBNR1jsLY1Rl7H1rDhhyg4dNGFYOMMqDG3bTYfsRMi6UZvh7bZG0ir4L/REy
+	fYltSD72RXyUWRUOP78egioLtzhbonzrwRdyh80UN+f3FHOwhvLD86mMo/7Vr9f+6Q40BTGenQtp+
+	EyPc7nSRTm64oNgIuVE6yL4zdqQ5h/+c/HL8/MhO+Z4j+49SO6w6D3GOsofEdgh5U2TDJSZWlKbTi
+	ar+t/9bqI6QPWeHaQ1wA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1go97Y-0000Jz-6k; Mon, 28 Jan 2019 15:46:48 +0000
+	id 1go97X-0000Jb-Hs; Mon, 28 Jan 2019 15:46:47 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1go97V-0000If-2J
- for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 15:46:46 +0000
+ id 1go97U-0000I7-6u
+ for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 15:46:45 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 8868E20880;
- Mon, 28 Jan 2019 15:46:43 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 80DCA2175B;
+ Mon, 28 Jan 2019 15:46:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1548690404;
- bh=h/8E9Te9IzF9OE4JWBOsNsRFIzBuwefo23Zv7qScLnM=;
+ s=default; t=1548690403;
+ bh=lGqp12kRjIPhNiniLm81wkp0dzvtQF+diNyccXoRzyY=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=CFPSIw9F9BmVh9uppWgdl+ewlBoRRu1RZJ2gBI9tmk3xvSZbqLutUHUN/x4FGCd3b
- +g2U0y7LPF+QLfADmIrju2mL2TZQvYW7I5xcoEcwXempYWjLyaGxysQ3wQML8mM/4F
- b+5yPVUnGKfERtY25ZUOy12LzQd5xLaR2gYL1PGM=
+ b=gInBz2C3KDek4nh9BsVv6Sni5vgh0lcU0RGUwSx0EZ06FsLs2SxPTLPltL95uPPM8
+ nN+xw0FQuBsfeD0FKa0M+mnxDFxUeYo9gw30Ox5k4inR/mP9kzuCobzWPR5ynDeMBn
+ GM5+ROY6zoyEpfQxYFhgRzxJHikqIjJbkXtbpGL0=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.20 074/304] clk: meson: meson8b: fix the width of
- the cpu_scale_div clock
-Date: Mon, 28 Jan 2019 10:39:51 -0500
-Message-Id: <20190128154341.47195-74-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.20 073/304] clk: meson: meson8b: do not use cpu_div3
+ for cpu_scale_out_sel
+Date: Mon, 28 Jan 2019 10:39:50 -0500
+Message-Id: <20190128154341.47195-73-sashal@kernel.org>
 X-Mailer: git-send-email 2.19.1
 In-Reply-To: <20190128154341.47195-1-sashal@kernel.org>
 References: <20190128154341.47195-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190128_074645_121705_FABBC61E 
-X-CRM114-Status: GOOD (  14.71  )
+X-CRM114-CacheID: sfid-20190128_074644_291131_8BFDEFCD 
+X-CRM114-Status: GOOD (  11.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -87,46 +88,62 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-[ Upstream commit a8662eadd1032018f31e37deda811790b2326662 ]
+[ Upstream commit a5ac1ead32c9aac285f6436e09b4f6111996e9b8 ]
 
-According to the public S805 datasheet HHI_SYS_CPU_CLK_CNTL1[29:20] is
-the register for the CPU scale_div clock. This matches the code in
-Amlogic's 3.10 GPL kernel sources:
-N = (aml_read_reg32(P_HHI_SYS_CPU_CLK_CNTL1) >> 20) & 0x3FF;
+The cpu_div3 clock (cpu_in divided by 3) generates a signal with a duty
+cycle of 33%. The CPU clock however requires a clock signal with a duty
+cycle of 50% to run stable.
+cpu_div3 was observed to be problematic when cycling through all
+available CPU frequencies (with additional patches on top of this one)
+while running "stress --cpu 4" in the background. This caused sporadic
+hangs where the whole system would fully lock up.
 
-This means that the divider register is 10 bit wide instead of 9 bits.
-So far this is not a problem since all u-boot versions I have seen are
-not using the cpu_scale_div clock at all (instead they are configuring
-the CPU clock to run off cpu_in_sel directly).
+Amlogic's 3.10 kernel code also does not use the cpu_div3 clock either
+when changing the CPU clock.
 
-The fixes tag points to the latest rework of the CPU clocks. However,
-even before the rework it was wrong. Commit 7a29a869434e8b ("clk: meson:
-Add support for Meson clock controller") defines MESON_N_WIDTH as 9 (in
-drivers/clk/meson/clk-cpu.c). But since the old clk-cpu implementation
-this only carries the fixes tag for the CPU clock rewordk.
-
-Fixes: 251b6fd38bcb9c ("clk: meson: rework meson8b cpu clock")
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Link: https://lkml.kernel.org/r/20180927085921.24627-3-martin.blumenstingl@googlemail.com
+Link: https://lkml.kernel.org/r/20181115224048.13511-3-martin.blumenstingl@googlemail.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/clk/meson/meson8b.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/clk/meson/meson8b.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index 328fcf50d9e8..9160a3b2e668 100644
+index 1d39273d7a04..328fcf50d9e8 100644
 --- a/drivers/clk/meson/meson8b.c
 +++ b/drivers/clk/meson/meson8b.c
-@@ -599,7 +599,7 @@ static struct clk_regmap meson8b_cpu_scale_div = {
- 	.data = &(struct clk_regmap_div_data){
- 		.offset =  HHI_SYS_CPU_CLK_CNTL1,
- 		.shift = 20,
--		.width = 9,
-+		.width = 10,
- 		.table = cpu_scale_table,
- 		.flags = CLK_DIVIDER_ALLOW_ZERO,
+@@ -612,20 +612,27 @@ static struct clk_regmap meson8b_cpu_scale_div = {
  	},
+ };
+ 
++static u32 mux_table_cpu_scale_out_sel[] = { 0, 1, 3 };
+ static struct clk_regmap meson8b_cpu_scale_out_sel = {
+ 	.data = &(struct clk_regmap_mux_data){
+ 		.offset = HHI_SYS_CPU_CLK_CNTL0,
+ 		.mask = 0x3,
+ 		.shift = 2,
++		.table = mux_table_cpu_scale_out_sel,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "cpu_scale_out_sel",
+ 		.ops = &clk_regmap_mux_ro_ops,
++		/*
++		 * NOTE: We are skipping the parent with value 0x2 (which is
++		 * "cpu_div3") because it results in a duty cycle of 33% which
++		 * makes the system unstable and can result in a lockup of the
++		 * whole system.
++		 */
+ 		.parent_names = (const char *[]) { "cpu_in_sel",
+ 						   "cpu_div2",
+-						   "cpu_div3",
+ 						   "cpu_scale_div" },
+-		.num_parents = 4,
++		.num_parents = 3,
+ 		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
 -- 
 2.19.1
 
