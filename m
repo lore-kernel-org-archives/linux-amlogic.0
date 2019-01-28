@@ -2,89 +2,99 @@ Return-Path: <SRS0=PsYD=QE=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_MUTT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BE549C282CF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 16:39:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0BCB1C282C8
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 16:55:53 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8EBAF20879
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 16:39:22 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D0E5A2147A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 16:55:52 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="M/sU+Om3";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="jCkIK7qO"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8EBAF20879
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XZ2v2iF8";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kroah.com header.i=@kroah.com header.b="Jzi06Ann";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="YZ/O8caE"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D0E5A2147A
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=kroah.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:References:
-	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=rfnVix7GSG6/E6coG3aKv+rSDUrgBm8mPi8VVK43uMY=; b=M/sU+Om3xJgyMfVhof+6LEaXxw
-	qNg0tHvsoifT3s0XGtBH2jUHU4PqUsyKuNZrEf9NvmF+P3wh8ISHT9v3CVgoNjMVIYD/KZf+EDto0
-	bM8dcMajNp49O8dETUbilNE6CsoBdqi3mrJmL0UH2w476gzRiri278HrBT+hIlqmY4E7KNlmbvbzo
-	OmNdF7T3brYDE0M/Z1rdZCaLiFW3hTjvSJUwuvO8WPk4gBO3fNS28M8ZwL3fg/bY2MfjdXvBmukB5
-	tV3DtLRuVS5iQQlnGakq9pRRPVBH8aRxPgfrOi4CZn5tqLztst1GDRZyK2qiey730y1hwV+nmZRam
-	lj5dWAZA==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=RdMffiKpW7NYUkLzAmyTMluJuhP1K2cvfu5PGE8ZiOw=; b=XZ2v2iF8yEerVv
+	IzKkWhjPTNgBYhz7mSSjNt9DPXOWp7Ro1SkOg9Nb5Ms3Svzw1pThWY6Hgcz4L6s1JEUw8VKBCDAC6
+	vDJZ6wF+zg/qcmXYbySAyi3dAKJRc+dQjajcJZodSuWEbT2p8TyvKZqL0jf19iiFd7RwxGuGZj3pg
+	h1ty7EO5EIp200M7e1Hdz14I2EoDMGHskHzTtfiRi0S+NnJ7/15MDKRaJcpAdWgjaesbJapuxxuyo
+	yIiMProXcci4eiy/N6t29yZv2fH22QqTCD1u/snViXhMyGGTL+FwSzJ1GxQp5CiO5OIAJsD3RSckb
+	7XlWbjWKQtRr9tAU+SwA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1go9wM-0007fc-ED; Mon, 28 Jan 2019 16:39:18 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1goACH-00084j-2K; Mon, 28 Jan 2019 16:55:45 +0000
+Received: from new1-smtp.messagingengine.com ([66.111.4.221])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1go9vH-0006ls-Qg
- for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 16:38:27 +0000
-Received: by mail-wr1-x442.google.com with SMTP id t6so18754893wrr.12
- for <linux-amlogic@lists.infradead.org>; Mon, 28 Jan 2019 08:38:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=J7q2ZjQCinm0IA/wotZbsDzW17KZqQK/HytBY9aOmww=;
- b=jCkIK7qOU+oQ1Qf34xBNH44bu15/Eyc78HQubpYXfrNqRhzbGg3DLSspO5WFomgfxQ
- ci7q5n3OMQVcMVv4ouYs3jdw8Bl9a29EfuewI2VUXE+o99WXguBy4COns+R1Jy4pUuPO
- GCAKPLG+EJpDA1hrhDo2vLPv1oWl4fhuwHBI2/qksQuGYUkCa+Z+Fi3Ng1ipN4fh9PPU
- NLIrrFaHrfT0pVMt/FfGAd8c2ldttUAuWPUMA6fYtinkc2rI9D0uSos4KvDod3NPbZIR
- KNNYoff6rjsNQWcGRMxK5grcIt2BEhRZ9c4Q8P+6l6g91fcANuGpSC9G7rDhAd6fFCGb
- IEPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=J7q2ZjQCinm0IA/wotZbsDzW17KZqQK/HytBY9aOmww=;
- b=tLSyppCuT1F9FTY0rl6kSNkXHtWF0YLLOzCgCoS/1dm3haXYZPig072o7usC5exWag
- ludMUogOJsvJ/BSBAVKqu1cyHHX+HnhbHdldbjre9TkcrF5KYTw8xecDf8iPNBiN/1fF
- 0ImbyMVXBYqhM04qq8KXfOo8IG5wd78tN1gb+qpyVVgmfdaFyG46hZUdtAN0IgZVda0x
- AqBqFl6zvjVZQR0Le5Ot0Z8dY0Uq+DDpxYrRgjUpl1AWC/FnwLNAbZIn2ZEv6mwu+5FH
- dZ4Tc8tfYqn9k/tuYLG8mNDBxD81RTZ7wMiVPZ8f7Lb/JOXGvH5mCNM/EOqwhi6Lx1/T
- dTkA==
-X-Gm-Message-State: AJcUukfYKVOnjN3Ny5P+/xyu/Xfaafg8jGTELwTKnNy//SLWJAvAE3nW
- 0/d87ucgdAqyKFKDZIk8I9veYQ==
-X-Google-Smtp-Source: ALg8bN7blyEvsvwmNr8fUFPB28n210TFW2WoUsaWbisBlgkZPfBc9rYG0fS4DpIKo7pWK/NFlt6Kfw==
-X-Received: by 2002:adf:ae41:: with SMTP id u1mr21558974wrd.20.1548693490439; 
- Mon, 28 Jan 2019 08:38:10 -0800 (PST)
-Received: from loys-ubuntu-BY1835A49200471.thefacebook.com
- ([2620:10d:c092:180::1:d40b])
- by smtp.googlemail.com with ESMTPSA id s3sm52388982wmj.23.2019.01.28.08.38.09
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Mon, 28 Jan 2019 08:38:09 -0800 (PST)
-From: Loys Ollivier <lollivier@baylibre.com>
-To: devicetree@vger.kernel.org,
-	Johan Hovold <johan@kernel.org>
-Subject: [PATCH v3 4/4] gnss: add driver for mediatek receivers
-Date: Mon, 28 Jan 2019 17:38:01 +0100
-Message-Id: <1548693481-1162-5-git-send-email-lollivier@baylibre.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1548693481-1162-1-git-send-email-lollivier@baylibre.com>
-References: <1548693481-1162-1-git-send-email-lollivier@baylibre.com>
+ id 1goAC4-0007t3-Sb
+ for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 16:55:34 +0000
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+ by mailnew.nyi.internal (Postfix) with ESMTP id 2565E11169;
+ Mon, 28 Jan 2019 11:55:28 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute6.internal (MEProxy); Mon, 28 Jan 2019 11:55:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=
+ date:from:to:cc:subject:message-id:references:mime-version
+ :content-type:in-reply-to; s=fm2; bh=haZopF8nVy5HljMZVXg9juG9aGL
+ 3ZbX5pWk6x4bp6Cs=; b=Jzi06Annyq6MY09iMlY9XYyy2BEhHGKcGjlB8mvF6zG
+ bxYIFWcmks812YRIBWKRZieJ9BkSvxBY/fpXM/XH0+Hzv4FiRoNo8r+ecuVu7C6n
+ IyXXIN0oX4yBOR1Ki+NMyzoJcjn/0s+b/8Jy0DkDCIsKGxxH7ZEoJ6q88UndPaGG
+ BAVkxN/79d1MaSs5sfJ/r/GegMLeqCeHcwAwn5i1nwysXsWtbbCsD77+zv4fGLcl
+ h729R3YYYoB1xv4zwdZEnxR4jOnMlaXSOJ7qyBgDlI085W20dU8sBlAZan3WQp5J
+ 6yFSOkSgz/FJWumH8jkw7LbM/gJskgRrq5h6VagQM8w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=haZopF
+ 8nVy5HljMZVXg9juG9aGL3ZbX5pWk6x4bp6Cs=; b=YZ/O8caEXNTawBqPDrl3kD
+ u8b1x+zrqSDvF4xALabCg2fbelXJrLxhJdsfpruM4IgfZ+Ucv3IHcUNYkZKcIp84
+ JDK0QpWcs7WHlFeR2Bh6xDtbLHdzCPBQgYjcj1yHg+61PWO01hVnSEvBOymtIkHx
+ 2+fYPsp4qJbbvmUxps7W/GUonoc8W0hVM8+vDuVYlcoLyXU7KWziw7PwX7wrcP5M
+ TJdWB0i8XPBHM/UPkgVD1xxup67kCse3JJIcJPp1pPcEsQdViTwXv3cEB1L9RmQV
+ FUZtBT98l30XXsm5//tUWGme0TMe+0/YFuniGFh4GUsbV0SB4dMzukPUaKkCmAHg
+ ==
+X-ME-Sender: <xms:_zNPXDZYRaTjkAEyrC6KM2tgmIRKN6qKClE28RTLrgtPS_4K9XQtZg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedtledrjedtgddutddtucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfquhhtnecuuegrihhlohhuthemucef
+ tddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenogfuphgrmhfkphculdeftd
+ dtmdenucfjughrpeffhffvuffkfhggtggujggfsehttdertddtredvnecuhfhrohhmpefi
+ rhgvghcumffjuceoghhrvghgsehkrhhorghhrdgtohhmqeenucfkphepkeefrdekiedrke
+ elrddutdejnecurfgrrhgrmhepmhgrihhlfhhrohhmpehgrhgvgheskhhrohgrhhdrtgho
+ mhenucevlhhushhtvghrufhiiigvpedt
+X-ME-Proxy: <xmx:_zNPXCkv5CElCJ0DxvtFpbT4FEd7DlND5IWTPIwziQttIX-ow91lfA>
+ <xmx:_zNPXIlPNsx3ThUsaW9mNyNnJ7qyYqgsN36ZQR6GjLFkMrYUYEVgBA>
+ <xmx:_zNPXFPqYDWbDPXui1EpB0IYREuGOI9-YM7LzYly-Ylyl3sS-RELJA>
+ <xmx:ADRPXIo8AfMUO2soO-r2dcjWl0C830z3LdXYjAoOS3QyuuuUzBcYzQ>
+Received: from localhost (5356596b.cm-6-7b.dynamic.ziggo.nl [83.86.89.107])
+ by mail.messagingengine.com (Postfix) with ESMTPA id 2820F1030D;
+ Mon, 28 Jan 2019 11:55:27 -0500 (EST)
+Date: Mon, 28 Jan 2019 17:55:25 +0100
+From: Greg KH <greg@kroah.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH v2] drm/meson: Fix atomic mode switching regression
+Message-ID: <20190128165525.GB16213@kroah.com>
+References: <20190114153118.8024-1-narmstrong@baylibre.com>
+ <2148dfd9-3263-2049-8fd8-d7a4cec97655@baylibre.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <2148dfd9-3263-2049-8fd8-d7a4cec97655@baylibre.com>
+User-Agent: Mutt/1.11.2 (2019-01-07)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190128_083812_028533_2764FEC7 
-X-CRM114-Status: GOOD (  18.50  )
+X-CRM114-CacheID: sfid-20190128_085533_076659_972A9442 
+X-CRM114-Status: UNSURE (   8.70  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,251 +106,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Loys Ollivier <lollivier@baylibre.com>,
- linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-MIME-Version: 1.0
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Tony McKahan <tonymckahan@gmail.com>, stable@vger.kernel.org, daniel@ffwll.ch,
+ linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add driver for serial-connected Mediatek-based GNSS receivers.
+On Mon, Jan 28, 2019 at 05:21:12PM +0100, Neil Armstrong wrote:
+> Hi Stable kernel team,
+> 
+> On 14/01/2019 16:31, Neil Armstrong wrote:
+> > Since commit 2bcd3ecab773 when switching mode from X11 (ubuntu mate for
+> > example) the display gets blurry, looking like an invalid framebuffer width.
+> > 
+> > This commit fixed atomic crtc modesetting in a totally wrong way and
+> > introduced a local unnecessary ->enabled crtc state.
+> > 
+> > This commit reverts the crctc _begin() and _enable() changes and simply
+> > adds drm_atomic_helper_commit_tail_rpm as helper.
+> > 
+> > Reported-by: Tony McKahan <tonymckahan@gmail.com>
+> > Suggested-by: Daniel Vetter <daniel@ffwll.ch>
+> > Fixes: 2bcd3ecab773 ("drm/meson: Fixes for drm_crtc_vblank_on/off support")
+> > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> 
+> This fix has landed in linus master with id ce0210c12433031aba3bbacd75f4c02ab77f2004
+> 
+> could it be applied to 4.19 and 4.20 stable trees ?
 
-These devices typically boot transmitting vendor specific NMEA output
-sequences. The serial port bit rate is read from the device tree
-"current-speed".
+Now queued up, thanks.
 
-Note that the driver uses the generic GNSS serial implementation and
-therefore essentially only manages power abstracted into three power
-states: ACTIVE, STANDBY, and OFF.
-
-For mediatek receivers with a main supply and no enable-gpios, this simply
-means that the main supply is disabled in STANDBY and OFF (the optional
-backup supply is kept enabled while the driver is bound).
-
-Note that the timepulse-support is left unimplemented.
-
-Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
----
-
-v3:
-Sorted the Kconfig and Makefile
-Retained the original Copyright
-Removed "mediatek,mt3339" compatible.
-
-v2: 
-Renamed from gtop/Globaltop to mtk/Mediatek.
-Added "mediatek,mt3339" compatible.
-
- drivers/gnss/Kconfig  |  13 +++++
- drivers/gnss/Makefile |   3 +
- drivers/gnss/mtk.c    | 152 ++++++++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 168 insertions(+)
- create mode 100644 drivers/gnss/mtk.c
-
-diff --git a/drivers/gnss/Kconfig b/drivers/gnss/Kconfig
-index 6abc88514512..6d8c8027e1cd 100644
---- a/drivers/gnss/Kconfig
-+++ b/drivers/gnss/Kconfig
-@@ -15,6 +15,19 @@ if GNSS
- config GNSS_SERIAL
- 	tristate
- 
-+config GNSS_MTK_SERIAL
-+	tristate "Mediatek GNSS receiver support"
-+	depends on SERIAL_DEV_BUS
-+	select GNSS_SERIAL
-+	help
-+	  Say Y here if you have a Mediatek-based GNSS receiver which uses a
-+	  serial interface.
-+
-+	  To compile this driver as a module, choose M here: the module will
-+	  be called gnss-mtk.
-+
-+	  If unsure, say N.
-+
- config GNSS_SIRF_SERIAL
- 	tristate "SiRFstar GNSS receiver support"
- 	depends on SERIAL_DEV_BUS
-diff --git a/drivers/gnss/Makefile b/drivers/gnss/Makefile
-index 5cf0ebe0330a..451f11401ecc 100644
---- a/drivers/gnss/Makefile
-+++ b/drivers/gnss/Makefile
-@@ -9,6 +9,9 @@ gnss-y := core.o
- obj-$(CONFIG_GNSS_SERIAL)		+= gnss-serial.o
- gnss-serial-y := serial.o
- 
-+obj-$(CONFIG_GNSS_MTK_SERIAL)		+= gnss-mtk.o
-+gnss-mtk-y := mtk.o
-+
- obj-$(CONFIG_GNSS_SIRF_SERIAL)		+= gnss-sirf.o
- gnss-sirf-y := sirf.o
- 
-diff --git a/drivers/gnss/mtk.c b/drivers/gnss/mtk.c
-new file mode 100644
-index 000000000000..a5aad08fb9d7
---- /dev/null
-+++ b/drivers/gnss/mtk.c
-@@ -0,0 +1,152 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Mediatek GNSS receiver driver
-+ *
-+ * Copyright (C) 2018 Johan Hovold <johan@kernel.org>
-+ */
-+
-+#include <linux/errno.h>
-+#include <linux/gnss.h>
-+#include <linux/init.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/serdev.h>
-+
-+#include "serial.h"
-+
-+struct mtk_data {
-+	struct regulator *v_bckp;
-+	struct regulator *vcc;
-+};
-+
-+static int mtk_set_active(struct gnss_serial *gserial)
-+{
-+	struct mtk_data *data = gnss_serial_get_drvdata(gserial);
-+	int ret;
-+
-+	ret = regulator_enable(data->vcc);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int mtk_set_standby(struct gnss_serial *gserial)
-+{
-+	struct mtk_data *data = gnss_serial_get_drvdata(gserial);
-+	int ret;
-+
-+	ret = regulator_disable(data->vcc);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int mtk_set_power(struct gnss_serial *gserial,
-+			 enum gnss_serial_pm_state state)
-+{
-+	switch (state) {
-+	case GNSS_SERIAL_ACTIVE:
-+		return mtk_set_active(gserial);
-+	case GNSS_SERIAL_OFF:
-+	case GNSS_SERIAL_STANDBY:
-+		return mtk_set_standby(gserial);
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static const struct gnss_serial_ops mtk_gserial_ops = {
-+	.set_power = mtk_set_power,
-+};
-+
-+static int mtk_probe(struct serdev_device *serdev)
-+{
-+	struct gnss_serial *gserial;
-+	struct mtk_data *data;
-+	int ret;
-+
-+	gserial = gnss_serial_allocate(serdev, sizeof(*data));
-+	if (IS_ERR(gserial)) {
-+		ret = PTR_ERR(gserial);
-+		return ret;
-+	}
-+
-+	gserial->ops = &mtk_gserial_ops;
-+
-+	gserial->gdev->type = GNSS_TYPE_MTK;
-+
-+	data = gnss_serial_get_drvdata(gserial);
-+
-+	data->vcc = devm_regulator_get(&serdev->dev, "vcc");
-+	if (IS_ERR(data->vcc)) {
-+		ret = PTR_ERR(data->vcc);
-+		goto err_free_gserial;
-+	}
-+
-+	data->v_bckp = devm_regulator_get_optional(&serdev->dev, "v-bckp");
-+	if (IS_ERR(data->v_bckp)) {
-+		ret = PTR_ERR(data->v_bckp);
-+		if (ret == -ENODEV)
-+			data->v_bckp = NULL;
-+		else
-+			goto err_free_gserial;
-+	}
-+
-+	if (data->v_bckp) {
-+		ret = regulator_enable(data->v_bckp);
-+		if (ret)
-+			goto err_free_gserial;
-+	}
-+
-+	ret = gnss_serial_register(gserial);
-+	if (ret)
-+		goto err_disable_v_bckp;
-+
-+	return 0;
-+
-+err_disable_v_bckp:
-+	if (data->v_bckp)
-+		regulator_disable(data->v_bckp);
-+err_free_gserial:
-+	gnss_serial_free(gserial);
-+
-+	return ret;
-+}
-+
-+static void mtk_remove(struct serdev_device *serdev)
-+{
-+	struct gnss_serial *gserial = serdev_device_get_drvdata(serdev);
-+	struct mtk_data *data = gnss_serial_get_drvdata(gserial);
-+
-+	gnss_serial_deregister(gserial);
-+	if (data->v_bckp)
-+		regulator_disable(data->v_bckp);
-+	gnss_serial_free(gserial);
-+};
-+
-+#ifdef CONFIG_OF
-+static const struct of_device_id mtk_of_match[] = {
-+	{ .compatible = "globaltop,pa6h" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, mtk_of_match);
-+#endif
-+
-+static struct serdev_device_driver mtk_driver = {
-+	.driver	= {
-+		.name		= "gnss-mtk",
-+		.of_match_table	= of_match_ptr(mtk_of_match),
-+		.pm		= &gnss_serial_pm_ops,
-+	},
-+	.probe	= mtk_probe,
-+	.remove	= mtk_remove,
-+};
-+module_serdev_device_driver(mtk_driver);
-+
-+MODULE_AUTHOR("Loys Ollivier <lollivier@baylibre.com>");
-+MODULE_DESCRIPTION("Mediatek GNSS receiver driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.7.4
-
+greg k-h
 
 _______________________________________________
 linux-amlogic mailing list
