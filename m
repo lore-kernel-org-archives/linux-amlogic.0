@@ -2,70 +2,85 @@ Return-Path: <SRS0=PsYD=QE=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BCDA0C282CD
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 16:23:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A8627C282C8
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 16:38:34 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9194B2171F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 16:23:19 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7844920844
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 16:38:34 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mQ13Dcfk";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="cbBWNY1o"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9194B2171F
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eh8Tx9QH";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="yzIDRLO9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7844920844
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EFAtgsvOXEQgkwsVBS2I8bQhfffxIi1Zpg1cYazYnb0=; b=mQ13DcfkVrE2qT
-	11U/SY844K4iE5tAOg1O0kJyZuMUHtHJbLU8Swff+OO27lt9khBD5orWtdSlVfUYg9z3KU3zTCSgg
-	M/95KrEX4RHzeiUL0TAHO5PpmPPQWB5udrkr+xlu4EJL0lI294bz1aGCeb26D5u7bP87u6EVAsv3S
-	GEnD9bcCpu+xbqKYEYTvrH0UM+8lBBm1d39aGzP/s8nNUadxdR5/n8lKi2mdyDJXqeXvXEwj6+JqA
-	9SbwuWliRmab3CrH5fKuumIn/RHNQE+kDJudxh7aVVefeJRp0OG720c2KZcok2+NnhgQJfne0axU6
-	TufzVqA0nzGqA2lELpiA==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=KS42P/YPnk3g4dDzr6lsWeYzrCP/slMgBHS4Tt0SquQ=; b=eh8
+	Tx9QHwLBLqlhBhAiWIlTRnuyONZEJFeZNhTp+356wYBZvf23wpZlA/7wIIdlvSAdarcihEF872cUA
+	FzpT0uns//3J8hsaE3N7sZu5HMnBvap/dEUpO9JXk6sd1k/npV8W1bq905hu66+r2K//yLHVPTs/2
+	2ZahE1yt5DTG/zcEEg7zYc5XriCirjLoTHUDnbF5QmVTel/iEXzNpK+egwqdRRulTB6gi/5Vy59EA
+	lPwfgThY5PM/U3c6LnxYzs2iRIepEn7I4YjWMvs/bUE9IyNlO/SN8gU+qxriDbDytwFud5wBoeCdo
+	y02UBuvSVRH4MjA4+A8nNQ30bxXKsLQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1go9go-0006Ur-9p; Mon, 28 Jan 2019 16:23:14 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1go9vW-0006zl-Ux; Mon, 28 Jan 2019 16:38:26 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1go9gk-0006SP-92
- for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 16:23:11 +0000
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
- [73.47.72.35])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 13FDB2184D;
- Mon, 28 Jan 2019 16:23:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1548692590;
- bh=uO8/kNyU6GngTABTfGA7E1O5CA6sSDHYKYncwhoEBZY=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=cbBWNY1og/LrTyDdBI1XrS9MPCt1zES5mI0UBvrY1E6r6w1Q7acBOLr/6XnXkoYji
- ksGmv3VSUYd2D4pV+bkn9zdUd9fW6L87+LmKQ4thatBypu6i6ubyqPSQnS/3FESEU/
- rWlBvVLCJE7wzzuh6GUWpHPJkrDQqeckJHwruilo=
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.9 081/107] pinctrl: meson: meson8b: fix the GPIO
- function for the GPIOAO pins
-Date: Mon, 28 Jan 2019 11:19:21 -0500
-Message-Id: <20190128161947.57405-81-sashal@kernel.org>
-X-Mailer: git-send-email 2.19.1
-In-Reply-To: <20190128161947.57405-1-sashal@kernel.org>
-References: <20190128161947.57405-1-sashal@kernel.org>
-MIME-Version: 1.0
-X-Patchwork-Hint: Ignore
+ id 1go9vD-0006iK-7y
+ for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 16:38:10 +0000
+Received: by mail-wr1-x443.google.com with SMTP id 96so18833716wrb.2
+ for <linux-amlogic@lists.infradead.org>; Mon, 28 Jan 2019 08:38:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id;
+ bh=L7bmc/MKBpCEs68YcmIGpGX/6J5igsqYwSDPtXbpF5I=;
+ b=yzIDRLO9X+802YPKhcWAQgT3HiXDB380oqYdqf6CP1G19Qkvqfbs58ODce5fIKqtNa
+ eDnwsGju3DQS4WTAt09TRz+ANV1Wi+Ti1M9Ajro2biB5h3AbGNeHOATtrroDIwBfM8FJ
+ z3U2ckMCCPgEYHVoqsLKtmtQHO4RJD9wGqQX+nxlEC80cMLJtyLZhdUDC+fkR13/mvpM
+ YJTUK4Aa74JoWrl0LpImzYg0mdrfcgNAq76di6GBU0q+2SEal1IUcPR2fyqfIEtk5G1N
+ hoCj+M/CpkRVFiLa8K+q0g0zu7c+UOiQvY39wngNKGB8IyFCO9n+346yAcy93jGXn9bb
+ XN2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=L7bmc/MKBpCEs68YcmIGpGX/6J5igsqYwSDPtXbpF5I=;
+ b=YZO3WTfOH8M9K0X+gw9JZpf6AE2GdqkhREPrhpkM7WLHU+I0HbR3C2sTsRIXYzVNeE
+ ccwmL9KbLdKzYlOuw4kQ+5Zg+EWsCtm1ALJ8xCoLwbswkRq8+GlwmC4ZT2IhMUKpm1Dx
+ PzRS0HS1Pm4NE8SYeSuAF+NEHGSAIA3J5HeRsV2zBHpwgM93MFnYMeTgqD4X6y/9cqn+
+ mMMMNCl6cllXRjKlioWDpJaQTKGZhXH7tKXKYRemQCHToUU4AvR4CmdOgXqLWC2d4nrM
+ OW4V4ydhEz+aF/RniWSZgml8Mmaec2cFEMmQxVxT77pDAlzqn+ocPjR+7L5lv+lC3CVp
+ L5jQ==
+X-Gm-Message-State: AJcUukco7Le6zlp7FYhbmPy5qKYyPd+kJpw5NqsbElhGOBnlMsve9tHG
+ 24D5EBUnbUHROLwDSteu3qx8WQ==
+X-Google-Smtp-Source: ALg8bN6/AeMbB9ztw2/OPA4aRkoO7jNQPii37d8PbkqqGlfnMk8N/2tBzzZxaU1owHOurlYxWl9Q3Q==
+X-Received: by 2002:a5d:6b81:: with SMTP id n1mr24066949wrx.149.1548693485628; 
+ Mon, 28 Jan 2019 08:38:05 -0800 (PST)
+Received: from loys-ubuntu-BY1835A49200471.thefacebook.com
+ ([2620:10d:c092:180::1:d40b])
+ by smtp.googlemail.com with ESMTPSA id s3sm52388982wmj.23.2019.01.28.08.38.04
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+ Mon, 28 Jan 2019 08:38:05 -0800 (PST)
+From: Loys Ollivier <lollivier@baylibre.com>
+To: devicetree@vger.kernel.org,
+	Johan Hovold <johan@kernel.org>
+Subject: [PATCH v3 0/4] Add driver for Mediatek-based GNSS receivers
+Date: Mon, 28 Jan 2019 17:37:57 +0100
+Message-Id: <1548693481-1162-1-git-send-email-lollivier@baylibre.com>
+X-Mailer: git-send-email 2.7.4
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190128_082310_337733_076A1593 
-X-CRM114-Status: GOOD (  10.94  )
+X-CRM114-CacheID: sfid-20190128_083807_302235_17501F74 
+X-CRM114-Status: GOOD (  16.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -77,74 +92,101 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Sasha Levin <sashal@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org
+Cc: Mark Rutland <mark.rutland@arm.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, Loys Ollivier <lollivier@baylibre.com>,
+ linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Hi,
 
-[ Upstream commit 2b745ac3cceb8fc1d9985990c8241a821ea97e53 ]
+This patch series adds a new GNSS driver for the Mediatek-based GNSS receivers.
+These receivers transmits NMEA output sequence after boot.
+Power management can be done via the main supply and optional backup supply
+as defined in the device tree.
 
-The GPIOAO pins (as well as the two exotic GPIO_BSD_EN and GPIO_TEST_N)
-only belong to the pin controller in the AO domain. With the current
-definition these pins cannot be referred to in .dts files as group
-(which is possible on GXBB and GXL for example).
+The driver has been tested using a GlobalTop pa6h chipset on a Libretech-cc
+board using the expansion header. Changes made in the board device tree can
+be found below for reference and testing.
 
-Add a separate "gpio_aobus" function to fix the mapping between the pin
-controller and the GPIO pins in the AO domain. This is similar to how
-the GXBB and GXL drivers implement this functionality.
+Loys
 
-Fixes: 9dab1868ec0db4 ("pinctrl: amlogic: Make driver independent from two-domain configuration")
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Version 3 changes:
+- driver: Removed "mediatek,mt3339" compatible
+- driver: moved gnss_types_names string diff in the GNSS_TYPE patch
+- driver: edited [patch 3/4] commit message to remove ref to vendor protocol
+- driver: retained the original copyright
+- dt: removed interfaces that are not available on the globaltop SoC
+- dt: Added missing pins documentation
+- dt: added optional properties pin names
+
+Version 2 changes:
+- driver: Renamed driver from Globaltop/gtop to Mediatek/mtk
+- driver: Added "mediatek,mt3339" compatible
+- dt: Renamed bindings from Globaltop to Mediatek
+- dt: Moved the current-speed property as optional
+- dt: removed the status line in example
+- cover-letter: removed the alias that is not needed anymore
+
+Loys Ollivier (4):
+  dt-bindings: Add vendor prefix for "GlobalTop Technology, Inc."
+  dt-bindings: gnss: add mediatek binding
+  gnss: add mtk receiver type support
+  gnss: add driver for mediatek receivers
+
+ .../devicetree/bindings/gnss/mediatek.txt          |  37 +++++
+ .../devicetree/bindings/vendor-prefixes.txt        |   1 +
+ drivers/gnss/Kconfig                               |  13 ++
+ drivers/gnss/Makefile                              |   3 +
+ drivers/gnss/core.c                                |   1 +
+ drivers/gnss/mtk.c                                 | 152 +++++++++++++++++++++
+ include/linux/gnss.h                               |   1 +
+ 7 files changed, 208 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gnss/mediatek.txt
+ create mode 100644 drivers/gnss/mtk.c
+
 ---
- drivers/pinctrl/meson/pinctrl-meson8b.c | 13 ++++++++-----
- 1 file changed, 8 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/pinctrl/meson/pinctrl-meson8b.c b/drivers/pinctrl/meson/pinctrl-meson8b.c
-index f87ef5a0ee6c..cbe5f5cbddb8 100644
---- a/drivers/pinctrl/meson/pinctrl-meson8b.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson8b.c
-@@ -643,16 +643,18 @@ static const char * const gpio_groups[] = {
- 	"BOOT_10", "BOOT_11", "BOOT_12", "BOOT_13", "BOOT_14",
- 	"BOOT_15", "BOOT_16", "BOOT_17", "BOOT_18",
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+index 90a56af967a7..3b3d4dcc47aa 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+@@ -17,6 +17,7 @@
  
--	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3",
--	"GPIOAO_4", "GPIOAO_5", "GPIOAO_6", "GPIOAO_7",
--	"GPIOAO_8", "GPIOAO_9", "GPIOAO_10", "GPIOAO_11",
--	"GPIOAO_12", "GPIOAO_13", "GPIO_BSD_EN", "GPIO_TEST_N",
--
- 	"DIF_0_P", "DIF_0_N", "DIF_1_P", "DIF_1_N",
- 	"DIF_2_P", "DIF_2_N", "DIF_3_P", "DIF_3_N",
- 	"DIF_4_P", "DIF_4_N"
+        aliases {
+                serial0 = &uart_AO;
+                ethernet0 = &ethmac;
+        };
+ 
+@@ -269,7 +270,20 @@
+        pinctrl-names = "default";
  };
  
-+static const char * const gpio_aobus_groups[] = {
-+	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3",
-+	"GPIOAO_4", "GPIOAO_5", "GPIOAO_6", "GPIOAO_7",
-+	"GPIOAO_8", "GPIOAO_9", "GPIOAO_10", "GPIOAO_11",
-+	"GPIOAO_12", "GPIOAO_13", "GPIO_BSD_EN", "GPIO_TEST_N"
++/* This is brought out on the UART_A_TX (8) and UART_A_RX (10) pins: */
++&uart_A {
++       status = "okay";
++       pinctrl-0 = <&uart_a_pins>;
++       pinctrl-names = "default";
++
++       gnss {
++               compatible = "globaltop,pa6h";
++               v-bckp-supply = <&vcc_3v3>;
++               vcc-supply = <&vcc_3v3>;
++               current-speed = <9600>;
++       };
 +};
 +
- static const char * const sd_a_groups[] = {
- 	"sd_d0_a", "sd_d1_a", "sd_d2_a", "sd_d3_a", "sd_clk_a",
- 	"sd_cmd_a"
-@@ -868,6 +870,7 @@ static struct meson_pmx_func meson8b_cbus_functions[] = {
+ &usb0 {
+        status = "okay";
  };
- 
- static struct meson_pmx_func meson8b_aobus_functions[] = {
-+	FUNCTION(gpio_aobus),
- 	FUNCTION(uart_ao),
- 	FUNCTION(uart_ao_b),
- 	FUNCTION(i2c_slave_ao),
--- 
-2.19.1
 
+-- 
+2.7.4
 
 _______________________________________________
 linux-amlogic mailing list
