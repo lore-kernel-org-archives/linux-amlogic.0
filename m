@@ -2,90 +2,71 @@ Return-Path: <SRS0=PsYD=QE=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E9FDAC282CF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 15:47:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 31F6EC282C8
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 15:47:14 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B92DE2175B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 15:47:11 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 03DB420880
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 15:47:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FegleA2Y";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="xemMwMlw"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B92DE2175B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jrVkk/41";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="JKUABrPz"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 03DB420880
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:In-reply-to:Subject:To:
-	From:References:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=+zy2MN170rr8m5ZAKUyyiy7pZfVQj1V2KDxtyL0Jc9A=; b=FegleA2YjaUWvlR6uWnsvofOB
-	/YwIs2t5sia+z9zEmS9EMZiH+8Fyj4aff5xi4GGqEZ2MjB62DoXwiosroHjgs4S3GMqomtQhE+ZQ5
-	8TDQllkuTDEQC2fF/MfND2y702xpsHfx+1i5h/ETnY23hBEak0RoUD8ufz2vxwhfJmHTsD14o3Q3l
-	bI5rTynkLm3PE2ZPjaluaXvcF2zUMpYe2hNgttDrQZOA2a5niJsv67+KgMC8EaMGctj91hsQk6jkH
-	ds3d4meyYPOIX86BJ9YahXxG+pG/OTyrs+hxqjyxqVar2MoDH18DKPAtfEOr3f1dTBHlerxj1pnja
-	7K+fllXKw==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=bocq0BcRrafpw/X9Swt6TSCJUy/B1AYCw3hUNImnTnQ=; b=jrVkk/41R9lnbR
+	SSSVCx36EOUjKuAg6Z1kFGVggY7nn3ZwrWEBK6YdgTdLETSycWBRJNdSExSsSn7nKW3Ss0vDh8zMV
+	Df/e8bo6e18ANiGFRxVaPjWNUWzBSdfyNB48N29e019IETDqZF1HzYnsjYlPKTpVQUHL/2GvBYS9c
+	rzmdX38tGYGy2kKSVA8yqMKlWA33shUjRCvy1bTqNOTzjPq8pyh10KMnRYkn8BMc4IjSza013wqFf
+	SbIAN0RR8WOXUTGPesObAIGJ3T4us2yDnxyqSc4ELfPyXlnuSeTFJBD0HBLGooyccjOADlq3KOA9s
+	/6o01MiXfQRF64wGBffA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1go97q-0000Xj-Ou; Mon, 28 Jan 2019 15:47:06 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1go97t-0000Za-DQ; Mon, 28 Jan 2019 15:47:09 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1go97k-0000Qc-Gs
- for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 15:47:03 +0000
-Received: by mail-wm1-x342.google.com with SMTP id m22so14495579wml.3
- for <linux-amlogic@lists.infradead.org>; Mon, 28 Jan 2019 07:46:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version;
- bh=24NjDh3BgzGxjDtL0C3I6Y10gxo/KZPwGxzMjFIVtMI=;
- b=xemMwMlwXf0BKqEfwRqgiOIMoMN8z7uXTejRabvpUg1OmgIO5e4E+nkKCTNHXOiRTi
- BV1XTNcTMnQhJm5Mb6QRGqoKSOvOIMpUa15/eYbBsL3FcM77mV6Kqi4bcpzjLO6Ucf4f
- mTiRQC+gtANadgMmekUTIWJV4CW4y5XZ/gWY/Dawp7l+CXRVUm7tjmD0lTd9FnddIVO9
- njCh1/gsIXcsyorEu28o/maE6XBko7M7h0/vgD9CynxuJ5kX7Xh4/NiGzfBM22D1L6TW
- 6bXRkf73eQYrfhu0snVhyTTjOKvlsSeNkZGTNpPRhjw8eyShoaukER1fNagUMfl4p4Gj
- wrRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version;
- bh=24NjDh3BgzGxjDtL0C3I6Y10gxo/KZPwGxzMjFIVtMI=;
- b=onb4qTgVUqsQ3wjB7mpVDXojgiyZlJsvWySet1QdibTfybq+1L8KZIqwnnCDNitqdQ
- c70EB46RK7RGQkYkrbpYOuxj6C7us3eRSysIp+toCAGRnQU51dmNtmvchbf3mdPnftUF
- xRvWHFmajRJf6IvIfQz2m/tYNSFobWA8XBJ6LgOz0siN6kljMqo7zx3iJIkFDj7zJXLl
- wOtgBQhoDhQZFMAXT6T5Sghdj2H5Z4sWNmdXlrTfrJvdhE3W3tolX6AvF+5omEPoCtfk
- uXnSMvMRrifCQHQSRAMXPDVsthMuVjbDvNobBxkuvhk026OkX+YGj4GE1u212SHZ6cM+
- bqVQ==
-X-Gm-Message-State: AJcUukdS2jHudN7Fe05nL/vVwYaPqKPSuTb5A2V+oGsoSSHv3OnSraO4
- 12TaXAjd8lBwZAGl6yd20DGLhw==
-X-Google-Smtp-Source: ALg8bN6vhE491KDsiIHapLz+m/0OKAtWRRjjytp9mM2ieqMYH7gW7G2QPAcsU1sb6TwEVWuZnYRmUQ==
-X-Received: by 2002:a1c:5fd7:: with SMTP id
- t206mr18536987wmb.145.1548690415418; 
- Mon, 28 Jan 2019 07:46:55 -0800 (PST)
-Received: from localhost ([2620:10d:c092:180::1:d40b])
- by smtp.gmail.com with ESMTPSA id r22sm23802wmh.2.2019.01.28.07.46.54
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 28 Jan 2019 07:46:54 -0800 (PST)
-References: <1547744074-28308-1-git-send-email-lollivier@baylibre.com>
- <1547744074-28308-3-git-send-email-lollivier@baylibre.com>
- <20190125090755.GB3691@localhost>
-User-agent: mu4e 1.0; emacs 25.3.2
-From: Loys Ollivier <lollivier@baylibre.com>
-To: Johan Hovold <johan@kernel.org>
-Subject: Re: [PATCH v2 2/4] dt-bindings: gnss: add mediatek binding
-In-reply-to: <20190125090755.GB3691@localhost>
-Date: Mon, 28 Jan 2019 16:46:53 +0100
-Message-ID: <867eeo7pjm.fsf@baylibre.com>
+ id 1go97m-0000Un-88
+ for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 15:47:05 +0000
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
+ [73.47.72.35])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id D906420880;
+ Mon, 28 Jan 2019 15:46:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1548690421;
+ bh=lMrhYFkrtu2AQ8XSDmofkJaojQnx5bpb7QiiXQL2ng4=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=JKUABrPzSu2zJ1wlFhu36lgLtfSTmJxATN+GqYhN6sVYp0DUP265uf5crDckbXfer
+ 8mAK7exrB9lE5PliUXAm+QoGl6D1X5o4atAGFFJAeLbJgYHO+5Gc2ZKsKFlfBFg+ez
+ i269wjdxhA7pEHxeFfLEPQDMCOi/YAbtgc07chXw=
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.20 080/304] iio: adc: meson-saradc: fix internal
+ clock names
+Date: Mon, 28 Jan 2019 10:39:57 -0500
+Message-Id: <20190128154341.47195-80-sashal@kernel.org>
+X-Mailer: git-send-email 2.19.1
+In-Reply-To: <20190128154341.47195-1-sashal@kernel.org>
+References: <20190128154341.47195-1-sashal@kernel.org>
 MIME-Version: 1.0
+X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190128_074700_602417_F9240A96 
-X-CRM114-Status: GOOD (  20.79  )
+X-CRM114-CacheID: sfid-20190128_074702_478223_1517F1A8 
+X-CRM114-Status: GOOD (  11.43  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,128 +78,75 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Loys Ollivier <lollivier@baylibre.com>,
- linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Sasha Levin <sashal@kernel.org>, linux-amlogic@lists.infradead.org,
+ linux-iio@vger.kernel.org, Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-On Fri 25 Jan 2019 at 09:07, Johan Hovold wrote:
+[ Upstream commit 50314f98b0ac468218e7c9af8c99f215a35436df ]
 
-> On Thu, Jan 17, 2019 at 05:54:32PM +0100, Loys Ollivier wrote:
->> Add binding for Mediatek-based GNSS receivers.
->> 
->> Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
->> ---
->> 
->> v2:
->> Renamed bindings from Globaltop/gtop to Mediatek/mtk.
->> Moved current-speed as an optional propertie.
->> Removed the status line in the example.
->> Added "mediatek,mt3339" compatible.
->> 
->>  .../devicetree/bindings/gnss/mediatek.txt          | 39 
->>  ++++++++++++++++++++++
->>  1 file changed, 39 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/gnss/mediatek.txt
->> 
->> diff --git a/Documentation/devicetree/bindings/gnss/mediatek.txt 
->> b/Documentation/devicetree/bindings/gnss/mediatek.txt
->> new file mode 100644
->> index 000000000000..fd984b4a9a6d
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/gnss/mediatek.txt
->> @@ -0,0 +1,39 @@
->> +Mediatek-based GNSS Receiver DT binding
->> +
->> +Mediatek chipsets are used in GNSS-receiver modules produced by several
->> +vendors and can use UART, SPI or I2C interfaces.
->> +
->> +Please see Documentation/devicetree/bindings/gnss/gnss.txt for generic
->> +properties.
->> +
->> +Required properties:
->> +
->> +- compatible	: Must be one of
->> +
->> +			"globaltop,pa6h"
->> +			"mediatek,mt3339"
->
-> I'm not sure it makes sense to add the GPS chip itself as it cannot be
-> used stand-alone AFAIU, and either not way would require a lot more
-> resources to be defined than what you add to this binding.
->
+Before this patch we are registering the internal clocks (for example on
+Meson8b, where the SAR ADC IP block implements the divider and gate
+clocks) with the following names:
+- /soc/cbus@c1100000/adc@8680#adc_div
+- /soc/cbus@c1100000/adc@8680#adc_en
 
-OK, I find it a bit confusing to have Mediatek bindings but no
-compatible Mediatek SoCs.
-But it is true that it can't be used stand-alone. I will remove this
-reference and also remove it from the mtk.c driver code from this patch
-serie.
+This is bad because the common clock framework uses the clock to create
+a directory in <debugfs>/clk. With such name, the directory creation
+(silently) fails and the debugfs entry ends up being created at the
+debugfs root.
 
->> +
->> +- vcc-supply	: Main voltage regulator (pin name: 3V3_IN, VCC, VDD)
->
-> The pin names in parenthesis were copied from the sirf-star binding and
-> were used to capture the various names given to this supply by different
-> vendors. Please drop as it doesn't apply here.
->
->> +
->> +Required properties (I2C):
->> +- reg		: I2C slave address
->> +
->> +Required properties (SPI):
->> +- reg		: SPI chip select address
->
-> While the mt3339 appears to support these interfaces, the globaltop one
-> does not.
->
-> Have you looked around for a small sample of mt3339-based receivers, to
-> see whether anyone actually provides these?
->
+With this change, the new clock names are:
+- c1108680.adc#adc_div
+- c1108680.adc#adc_en
 
-Again I'm confused by the fact that it is the Mediatek bindings.
-Hence why I have added it and why it was not present in the v1 that was
-only for Globaltop.
-I find it odd mentionning the chipset but not all its interfaces.
-I will remove these sections and only list supported interfaces (i.e.
-UART). Other interfaces can be added afterward if one finds a board that
-provides them.
+This matches the clock naming scheme used in the PWM, Ethernet and MMC
+drivers. It also fixes the problem with debugfs.
+The idea is shamelessly taken from commit b96e9eb62841c5 ("pwm: meson:
+Fix mux clock names").
 
->> +Optional properties:
->> +
->> +- timepulse-gpios	: Time pulse GPIO
->> +- v-bckp-supply		: Backup voltage regulator
->> +- current-speed		: Default UART baud rate
->
-> Looks like you forgot the optional NRESET input and 3D-FIX output (even
-> if the latter might be of limited use).
->
+Fixes: 3921db46a8c5bc ("iio: Convert to using %pOF instead of full_name")
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/iio/adc/meson_saradc.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-Thanks I will clean this section.
-
->> +
->> +Example:
->> +
->> +serial@1234 {
->> +	compatible = "ns16550a";
->> +
->> +	gnss {
->> +		compatible = "globaltop,pa6h";
->> +		vcc-supply = <&vcc_3v3>;
->> +	};
->> +};
->
-> Johan
-
-
+diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+index 672a5dee4a9d..ba4b42429a2a 100644
+--- a/drivers/iio/adc/meson_saradc.c
++++ b/drivers/iio/adc/meson_saradc.c
+@@ -587,8 +587,8 @@ static int meson_sar_adc_clk_init(struct iio_dev *indio_dev,
+ 	struct clk_init_data init;
+ 	const char *clk_parents[1];
+ 
+-	init.name = devm_kasprintf(&indio_dev->dev, GFP_KERNEL, "%pOF#adc_div",
+-				   indio_dev->dev.of_node);
++	init.name = devm_kasprintf(&indio_dev->dev, GFP_KERNEL, "%s#adc_div",
++				   dev_name(indio_dev->dev.parent));
+ 	if (!init.name)
+ 		return -ENOMEM;
+ 
+@@ -609,8 +609,8 @@ static int meson_sar_adc_clk_init(struct iio_dev *indio_dev,
+ 	if (WARN_ON(IS_ERR(priv->adc_div_clk)))
+ 		return PTR_ERR(priv->adc_div_clk);
+ 
+-	init.name = devm_kasprintf(&indio_dev->dev, GFP_KERNEL, "%pOF#adc_en",
+-				   indio_dev->dev.of_node);
++	init.name = devm_kasprintf(&indio_dev->dev, GFP_KERNEL, "%s#adc_en",
++				   dev_name(indio_dev->dev.parent));
+ 	if (!init.name)
+ 		return -ENOMEM;
+ 
 -- 
--L
+2.19.1
+
 
 _______________________________________________
 linux-amlogic mailing list
