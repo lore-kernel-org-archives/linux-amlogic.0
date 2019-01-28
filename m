@@ -2,83 +2,81 @@ Return-Path: <SRS0=PsYD=QE=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-11.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 67FA0C282C8
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 10:09:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D25ADC282C8
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 13:09:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 143EA2148E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 10:09:08 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A25862082F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 13:09:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nbjaaSj0";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="XsPof6+t"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 143EA2148E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RkD4b31V";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="UJw17P3g"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A25862082F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=t3aYdMy9EmX3LFclgXCSMBB0wLM8tC8I3JR3pNTal9E=; b=nbjaaSj0hpci2UGOkVZB6vkl8V
-	8b8PMqgRt0BamJDuPJkT1GmnGMp/y86qyM++lsGvs6DU4F6J1vNeKNDzfvTnjcNB35IHT7B3ThXOu
-	7efNiCex0AvjGF6sKXa+PsEix+40hBfAQ00ynRarcjsX+9CJ/2vhglXKhFydDv5iTLA1tGDbYNoh6
-	Kylw5aLJsxSPNJLmnn2WkG3FpGBNJQpO5iA7+dni4QJv+jwMGLUM3sXh//UEzJV/pARaImXSqqU7b
-	X+oqaq5E841e/pdcK3dqUNMU7nYBTDL7vmdEKKIBTZu/UNiG4yx0ay0d6kSL1q2uOcm0HTQFxx8YO
-	iR8bLChg==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:To:Subject
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=3b3Dniw88e0gRNUI8QJTRddqIUged799nb0kKtisNNU=; b=RkD4b31VXBKpyg
+	A7h47yZ24rFwXrz5GcgEqkG3Hf6wB0z9Z+u/TEKcM+xHL9g0YUatuJy8y1OBGRMCrjAtFoMGfwphm
+	i+A8Xmb5xyvXsfupADEVIt8fOm7K241OELww5w8b48ma8bDPTOVrypwzz6WIBmqc/nJgQVyLUK7X8
+	HTA0s/yj1Tcrcd+R1Lc8uLlK+KXlYfQMeFf69A/kapn3Ei7fUI189Ge0qmG+R9b++s48KSQnUe4M7
+	CFkg06n40KjWDx9FqlAO418Y6vQD4/kyixkf0Ddd0C9v25NcZ4Xd9j/Fc6Pa3GHtH+w9iqEQB0+d5
+	6rTj98jzizk43UGKf7sw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1go3qf-0007ja-MJ; Mon, 28 Jan 2019 10:09:01 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1go6fC-0001bI-DO; Mon, 28 Jan 2019 13:09:22 +0000
+Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1go3qc-0007j4-9Q
- for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 10:09:00 +0000
-Received: by mail-wm1-x343.google.com with SMTP id f188so13134393wmf.5
- for <linux-amlogic@lists.infradead.org>; Mon, 28 Jan 2019 02:08:57 -0800 (PST)
+ id 1go6f7-0001ay-49
+ for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 13:09:19 +0000
+Received: by mail-wr1-x42c.google.com with SMTP id t27so17968827wra.6
+ for <linux-amlogic@lists.infradead.org>; Mon, 28 Jan 2019 05:09:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=em0GnEijPJTtpGUpNkQzPVaAGdU3YXiw+3o/5IZSo0I=;
- b=XsPof6+tLHaowDfSxOTlEHVn5/0uOpnzCriFSc7BjDBDv3r7zcuuHnUVLfVLU8+wc9
- oQUGL0npdVIb4BU09+cZmbMDYw4ly2bZSAsmspmzJvXncSxt5TOq+tTC1nyvRGjY5f9Z
- lppiNeuSIrDDTjSrAOJ1hBSnfX9ZiQsqgJh6RQHwxvzD11ouTF39lbZ9g8HcckQDKh6I
- lmjmm0E/lCLeLXGjgLLLvJ2UjLTA6USyi11J0cST1hPwUQF4U7d+inoyzB8j7HQhGmhh
- 4jy8XfIPD/OGAMuhyhLr3T8fze8bLVQHLuTfatQD2BL7gYod1WG7Sd4wsSKaktt8oxCd
- +kvQ==
+ h=from:subject:to:cc:openpgp:autocrypt:organization:message-id:date
+ :user-agent:mime-version:content-language:content-transfer-encoding;
+ bh=uU2bV+lGv2kQG4/+ivXxmszA/20YHZ1A/0MxbUOvD7A=;
+ b=UJw17P3gXzGkCHipaHgkqaN9I7K0KcZBmA3ytD99+SOIfEr9ls4L/+ogbqw47ORQaX
+ L+TO2IRsDF96h36Lw6n3tFVAgHSlNHdHTD0m2TOm5gy9ZE6a1ETySGWoGN1uiUdZUoeo
+ p2wg63bFNRNUh3dVSvfo14CmawfNTN0QiNlmB8q5EpUOIQCCEJErP4uD2OCOrk72Tzx2
+ WOcr+HTiroJzY+yeiKZ0RaGm3M5G+gfUKpUwGmK1vdRJF90P2DoSdRNUZgXafrvBK1Qr
+ 1pLptmDXuVdLrWlCUR3uhIvDsJumsxTVVLboEL2NUEM+7GsDsrzANriPc1R/fQZxQvwk
+ fbQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
+ h=x-gm-message-state:from:subject:to:cc:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version
  :content-language:content-transfer-encoding;
- bh=em0GnEijPJTtpGUpNkQzPVaAGdU3YXiw+3o/5IZSo0I=;
- b=X1WnJy5nrMerrSkozk0RHgk5VmeFukkPk8kzSfjmweqW1DPzqDPBmp6jRx2jOUJDoB
- /67s4nY6uqlPuWHDwYpAbnVJHuEhF/wprNbh9E3Y5oYaLk0Du6jylyWTRyhKtO8DTiM9
- imx1l5PiaS9TV6Va8A5E6klvXENisAyb7KxmWLA35VbW2rGrt1VoHCJBSEa4wv3PFA+P
- xCDx7SB+Og62E22xiSQUd5+M4fN9IoiFlL9cUrhf2XAD/znMvgdFR2+ly4T4uE6946w4
- JsuKMayYRDTdz0td+wvJW0bFwcB1ra5x7pdInyI5y3IPuonGLuOQWoFffzXUUnUEWk/C
- aNzg==
-X-Gm-Message-State: AJcUukdeiTTFFpKi40P4uI56lkLQHT8YZuZO6bPxfRIC78/rCApDNReO
- azfDmVEUoEDkAOtcSGY62dfQGEnqo3vigA==
-X-Google-Smtp-Source: ALg8bN6Qhzy4jNd6+gtt2VE3MNwgeAKkyUAJC2p1KW+PomYkqfdVyK00g1RZxidDRhDpNroisev77A==
-X-Received: by 2002:a1c:96ce:: with SMTP id y197mr17017563wmd.36.1548670135625; 
- Mon, 28 Jan 2019 02:08:55 -0800 (PST)
+ bh=uU2bV+lGv2kQG4/+ivXxmszA/20YHZ1A/0MxbUOvD7A=;
+ b=hsAYAEPwSt2yvZasXmoHBkX4HvAoXAFt+XX4rELRIZiwFG+8D536QyUGwNVlVBKfTO
+ Iav3iklRi7VQtppiOMC2NroFScxo1MDkcbSOeM40Ys84pmGK1vChJNjCZy88Mgk+djDE
+ wH+c0Yj6LVZLpMK8Vg12iNru9F9Hrwf/GOdIqsHT6B80oLJxKU0bWZZyVbJ6u5A0tNaO
+ v+Eaak7Sg//ImBxdKOoMfOLCcKPMJB/6eqZQJfS0+2IenwrHQN7tOIvpRe2/S4pMmi6+
+ RPACn6QP9yN37iCXNfCEajBGGTDQT+kkVF6MyNAfSoapdntQXZyi5iJpZXtMb82SwBRA
+ Lz9w==
+X-Gm-Message-State: AJcUukfuokGmkpW26CucELmNAVDRQrkzsC47V5YXbuHOSLDRYnu/uKY9
+ 1z1UDTXKXsj89g8RNROae/A7zvRu3fPkKg==
+X-Google-Smtp-Source: ALg8bN61LaQIYl/WmSO46Pu46UupwE3WSMBv0s+emiWkj4uXd6a09mX7JPDaDTqwDiUgC87dTPQKKg==
+X-Received: by 2002:adf:9246:: with SMTP id 64mr23070973wrj.130.1548680955079; 
+ Mon, 28 Jan 2019 05:09:15 -0800 (PST)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id h16sm231907307wrb.62.2019.01.28.02.08.54
+ by smtp.gmail.com with ESMTPSA id z9sm123237260wrs.63.2019.01.28.05.09.14
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 28 Jan 2019 02:08:54 -0800 (PST)
-Subject: Re: odroidc1 eth0 problem with 250HZ
-To: Piero <ottuzzi@gmail.com>, linux-amlogic@lists.infradead.org
-References: <CAPo5REEKkqctyS2+X8xjn8YgH93RrtAqBu4nELxzgSo0TCgeAQ@mail.gmail.com>
+ Mon, 28 Jan 2019 05:09:14 -0800 (PST)
 From: Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PULL u-boot] Please pull u-boot-amlogic-20190128
+To: trini@konsulko.com
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -130,16 +128,15 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <d017efc7-e5ba-ea5f-4218-0f05ed86bbec@baylibre.com>
-Date: Mon, 28 Jan 2019 11:08:53 +0100
+Message-ID: <e2aa97d7-bd82-ba11-c881-5eb6861a12cc@baylibre.com>
+Date: Mon, 28 Jan 2019 14:09:13 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.2.1
 MIME-Version: 1.0
-In-Reply-To: <CAPo5REEKkqctyS2+X8xjn8YgH93RrtAqBu4nELxzgSo0TCgeAQ@mail.gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190128_020858_332904_869671FC 
-X-CRM114-Status: GOOD (  15.17  )
+X-CRM114-CacheID: sfid-20190128_050917_301955_48D6E5D4 
+X-CRM114-Status: GOOD (  12.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -151,69 +148,47 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: linux-amlogic@lists.infradead.org,
+ U-Boot Mailing List <u-boot@lists.denx.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Hi Tom,
 
-On 24/01/2019 15:22, Piero wrote:
-> Hi,
-> 
->     I tested armbian distribution on my odroid C1+ using kernel
-> 4.19.17 and later.
-> I observed that with 250HZ kernel eth0 is non-functional giving the
-> following error:
-> 
-> [   14.853086] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
-> [   14.853367] meson8b-dwmac c9410000.ethernet eth0: device MAC
-> address b6:e8:26:b6:da:4a
-> [   14.853378] meson8b-dwmac c9410000.ethernet eth0: Could not attach to PHY
-> [   14.853386] meson8b-dwmac c9410000.ethernet eth0: stmmac_open:
-> Cannot attach to PHY (error: -19)
-> [   15.064433] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
-> [   15.084471] meson8b-dwmac c9410000.ethernet eth0: Could not attach to PHY
-> [   15.084486] meson8b-dwmac c9410000.ethernet eth0: stmmac_open:
-> Cannot attach to PHY (error: -19)
-> [   15.193033] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
-> [   15.225926] meson8b-dwmac c9410000.ethernet eth0: Could not attach to PHY
-> [   15.225958] meson8b-dwmac c9410000.ethernet eth0: stmmac_open:
-> Cannot attach to PHY (error: -19)
-> [   15.239227] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
-> [   15.293190] meson8b-dwmac c9410000.ethernet eth0: Could not attach to PHY
-> [   15.293213] meson8b-dwmac c9410000.ethernet eth0: stmmac_open:
-> Cannot attach to PHY (error: -19)
-> [   15.306038] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
-> [   15.352091] meson8b-dwmac c9410000.ethernet eth0: Could not attach to PHY
-> [   15.352111] meson8b-dwmac c9410000.ethernet eth0: stmmac_open:
-> Cannot attach to PHY (error: -19)
-> [   15.370056] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
-> 
-> Only changing 250HZ to 100HZ is enough to fix this problem.
-> Some more details on armbian forum[1].
-> Can you check it please?
-> I can provide more logs and details if requested. If needed I can test fixes.
+First of all, greetings from BayLibre for the new year (a bit late) !
 
-This is weird, it could be a sleep not long enough with the changed HZ, can you test other values ?
+Here is single patch adding support for pinconf on the amlogic pinctrl driver.
 
-Do you have other failures ?
-
+Thanks,
 Neil
 
-> 
-> Thanks in advance
-> **Bye
-> Piero
-> [1]https://forum.armbian.com/topic/9138-odroid-c0c1c1-please-update-the-mainline-kernel-version/
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-> 
+The following changes since commit 0da90255083681a02b24528f80da9d4062ff634a:
 
+  Merge branch '2019-01-25-master-imports' (2019-01-26 22:47:55 -0500)
 
+are available in the Git repository at:
+
+  git://git.denx.de/u-boot-amlogic.git tags/u-boot-amlogic-20190128
+
+for you to fetch changes up to ed7bef7336a992f1edac1106de5d0f36405faa5b:
+
+  pinctrl: meson: add pinconf support (2019-01-28 14:04:58 +0100)
+
+----------------------------------------------------------------
+Adds pinconf support for the Amlogic pinctrl driver
+
+----------------------------------------------------------------
+Jerome Brunet (1):
+      pinctrl: meson: add pinconf support
+
+ drivers/pinctrl/meson/Kconfig                 |   1 +
+ drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c |  10 +++
+ drivers/pinctrl/meson/pinctrl-meson-gx-pmx.c  |  10 +++
+ drivers/pinctrl/meson/pinctrl-meson.c         | 101 ++++++++++++++++++++++++--
+ drivers/pinctrl/meson/pinctrl-meson.h         |   8 ++
+ 5 files changed, 123 insertions(+), 7 deletions(-)
 
 _______________________________________________
 linux-amlogic mailing list
