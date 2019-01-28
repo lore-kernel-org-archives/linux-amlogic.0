@@ -4,20 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=3.4.0
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E25DBC282C8
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 16:13:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7A256C282C8
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 16:18:38 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B2C922175B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 16:13:45 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 49FE02148E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 16:18:38 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pZVX6xdi";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="f1XRwJU7"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B2C922175B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MQ6JDWMw";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wv/1IHTn"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 49FE02148E
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,47 +25,47 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dfFf6ezn0QWALGVTRlJ9yzy0P02B/5vmXOkzs7xzQH0=; b=pZVX6xdiUjtmgf
-	kx0VjKTJLqJIo8Pd+BQ+1VaJVhTXAmMLEgicrNW2jeajSzp0Nb2rcN0PpFR3RGpOvQHLZvyiXE7ZR
-	e3qv3b3+WcT7y51GLiCtZawu14DNRbhuQgFafC5edoDGS44OnzJxaFYlEHfxrJV2Dadv+QKlZLnST
-	q1o790dqdDaJmfmKH1tMdEa2CFxVef9AsZLz+7/Nha07KfeGKC1R6vzAtZEmhgmNEo64yMH+ER0Dd
-	QDX2g6FbOOTTKQoYNSxfd/2ZegdLgIOSO557tSetzpa2r20r+E24E3PmwVoE7o24IhHoA/00qyDaA
-	MbP/EsK1WUB4PkHT/zsQ==;
+	List-Owner; bh=ODOeeAO6bTmzQp+XXf30qUELkKClbS2fw0QgBwfOQJU=; b=MQ6JDWMwubOMIa
+	pi1P7BECGZVV+c7a81kIWCtQPbazLCH1sEF7Q9T5COnkZv42l4RZYXFOiMHLQauMxaCI9xshoWoU1
+	TrOOdn0FX6swtVPDaVCdVcSY/82G+kJ3KzyDrCFCOkHG/Dze7C86nYFjCmUFy1SCLUiZvn7xkoA/p
+	Hvp4+ZY+dp7wB4c6DiIQbcesZkvHOwKBprYZj9/aw3oskxaOIMlGzXCEhVcQz0C5ABd9Exz7OvCLd
+	Vkf4jKGKu/1hwCXtjhzCOXtpYeOJl+6WseH1by1aQCeIZ2uUvJoW6xfW4MQ4a+IXVJcaeAF3gEdq4
+	onTKRrJqv5KQFVJ7wk9Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1go9XZ-0000Qa-Mi; Mon, 28 Jan 2019 16:13:41 +0000
+	id 1go9cF-0003hn-9x; Mon, 28 Jan 2019 16:18:31 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1go9XX-0000PU-82
- for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 16:13:40 +0000
+ id 1go9bf-0003BH-4J
+ for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 16:18:08 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 6CDDE2148E;
- Mon, 28 Jan 2019 16:13:35 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 43BCF2177E;
+ Mon, 28 Jan 2019 16:17:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1548692019;
- bh=lkyY0tObXL8LZJZtu8aaksFzniZLcRHe6ULix8ZaTjQ=;
+ s=default; t=1548692274;
+ bh=WUC3X5ix2QqbDcWK08YhqSQonDlY1Sq2XaG/F7LqYwI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=f1XRwJU7TPEKtFxrzSIbapEF3VaBUVGfHWkdtRqqxS4cWLq85B3V8j3oZR939ctoY
- FS117MqthBeOokCQnRDxja2Zwtv+oKj0rkdDc/3h2MXTIbyVIwIsVOV4PIGNnNlRxk
- 7+TLwsWH3XLCZo5EM3tGYL0WSJLazGK9IgWYpgeU=
+ b=Wv/1IHTnB06nLJ613Pmm2OUUie2RCpf5FlARHrfi6aa831jxCpS0RNqAeXaSUfxFP
+ DeZGdPMREayg5GLhtssHGVr3vcj4eU56jGTN+rN/Iet4eWsE2Uf0LHR0IYpsV196qT
+ hlFKW6wXV3tkOvrKvP2AHt5H1e1hIdFH0bGG9S/E=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 040/170] iio: adc: meson-saradc: fix internal
- clock names
-Date: Mon, 28 Jan 2019 11:09:50 -0500
-Message-Id: <20190128161200.55107-40-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 135/170] pinctrl: meson: meson8: fix the GPIO
+ function for the GPIOAO pins
+Date: Mon, 28 Jan 2019 11:11:25 -0500
+Message-Id: <20190128161200.55107-135-sashal@kernel.org>
 X-Mailer: git-send-email 2.19.1
 In-Reply-To: <20190128161200.55107-1-sashal@kernel.org>
 References: <20190128161200.55107-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190128_081339_304331_819D320C 
-X-CRM114-Status: GOOD (  11.43  )
+X-CRM114-CacheID: sfid-20190128_081756_074693_BCF35E84 
+X-CRM114-Status: GOOD (  10.55  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -79,8 +78,8 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Sasha Levin <sashal@kernel.org>, linux-amlogic@lists.infradead.org,
- linux-iio@vger.kernel.org, Jonathan Cameron <Jonathan.Cameron@huawei.com>
+ Sasha Levin <sashal@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
@@ -88,62 +87,47 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-[ Upstream commit 50314f98b0ac468218e7c9af8c99f215a35436df ]
+[ Upstream commit 42f9b48cc5402be11d2364275eb18c257d2a79e8 ]
 
-Before this patch we are registering the internal clocks (for example on
-Meson8b, where the SAR ADC IP block implements the divider and gate
-clocks) with the following names:
-- /soc/cbus@c1100000/adc@8680#adc_div
-- /soc/cbus@c1100000/adc@8680#adc_en
+The GPIOAO pins (as well as the two exotic GPIO_BSD_EN and GPIO_TEST_N)
+only belong to the pin controller in the AO domain. With the current
+definition these pins cannot be referred to in .dts files as group
+(which is possible on GXBB and GXL for example).
 
-This is bad because the common clock framework uses the clock to create
-a directory in <debugfs>/clk. With such name, the directory creation
-(silently) fails and the debugfs entry ends up being created at the
-debugfs root.
+Add a separate "gpio_aobus" function to fix the mapping between the pin
+controller and the GPIO pins in the AO domain. This is similar to how
+the GXBB and GXL drivers implement this functionality.
 
-With this change, the new clock names are:
-- c1108680.adc#adc_div
-- c1108680.adc#adc_en
-
-This matches the clock naming scheme used in the PWM, Ethernet and MMC
-drivers. It also fixes the problem with debugfs.
-The idea is shamelessly taken from commit b96e9eb62841c5 ("pwm: meson:
-Fix mux clock names").
-
-Fixes: 3921db46a8c5bc ("iio: Convert to using %pOF instead of full_name")
+Fixes: 9dab1868ec0db4 ("pinctrl: amlogic: Make driver independent from two-domain configuration")
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/iio/adc/meson_saradc.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/pinctrl/meson/pinctrl-meson8.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index 9a52a91166d2..2515badf8b28 100644
---- a/drivers/iio/adc/meson_saradc.c
-+++ b/drivers/iio/adc/meson_saradc.c
-@@ -583,8 +583,8 @@ static int meson_sar_adc_clk_init(struct iio_dev *indio_dev,
- 	struct clk_init_data init;
- 	const char *clk_parents[1];
+diff --git a/drivers/pinctrl/meson/pinctrl-meson8.c b/drivers/pinctrl/meson/pinctrl-meson8.c
+index 970f6f14502c..591b01657378 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson8.c
++++ b/drivers/pinctrl/meson/pinctrl-meson8.c
+@@ -808,7 +808,9 @@ static const char * const gpio_groups[] = {
+ 	"BOOT_5", "BOOT_6", "BOOT_7", "BOOT_8", "BOOT_9",
+ 	"BOOT_10", "BOOT_11", "BOOT_12", "BOOT_13", "BOOT_14",
+ 	"BOOT_15", "BOOT_16", "BOOT_17", "BOOT_18",
++};
  
--	init.name = devm_kasprintf(&indio_dev->dev, GFP_KERNEL, "%pOF#adc_div",
--				   indio_dev->dev.of_node);
-+	init.name = devm_kasprintf(&indio_dev->dev, GFP_KERNEL, "%s#adc_div",
-+				   dev_name(indio_dev->dev.parent));
- 	if (!init.name)
- 		return -ENOMEM;
++static const char * const gpio_aobus_groups[] = {
+ 	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3",
+ 	"GPIOAO_4", "GPIOAO_5", "GPIOAO_6", "GPIOAO_7",
+ 	"GPIOAO_8", "GPIOAO_9", "GPIOAO_10", "GPIOAO_11",
+@@ -1030,6 +1032,7 @@ static struct meson_pmx_func meson8_cbus_functions[] = {
+ };
  
-@@ -605,8 +605,8 @@ static int meson_sar_adc_clk_init(struct iio_dev *indio_dev,
- 	if (WARN_ON(IS_ERR(priv->adc_div_clk)))
- 		return PTR_ERR(priv->adc_div_clk);
- 
--	init.name = devm_kasprintf(&indio_dev->dev, GFP_KERNEL, "%pOF#adc_en",
--				   indio_dev->dev.of_node);
-+	init.name = devm_kasprintf(&indio_dev->dev, GFP_KERNEL, "%s#adc_en",
-+				   dev_name(indio_dev->dev.parent));
- 	if (!init.name)
- 		return -ENOMEM;
- 
+ static struct meson_pmx_func meson8_aobus_functions[] = {
++	FUNCTION(gpio_aobus),
+ 	FUNCTION(uart_ao),
+ 	FUNCTION(remote),
+ 	FUNCTION(i2c_slave_ao),
 -- 
 2.19.1
 
