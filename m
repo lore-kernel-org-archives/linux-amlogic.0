@@ -6,17 +6,17 @@ X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
 	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8ECC2C282C8
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 16:23:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BCDA0C282CD
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 16:23:19 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5F7E22171F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 16:23:16 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9194B2171F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 16:23:19 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Ll2STRJa";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="TNaqK552"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5F7E22171F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mQ13Dcfk";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="cbBWNY1o"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9194B2171F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,47 +25,47 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ckdhar8lZsSu7aECZzNgrlbW0bTD7F0bM17z/n54Img=; b=Ll2STRJauN3zfA
-	YXCjpMJcgcBYSMNuvDeDGxWzE+ECYAMR0+ij/e5Hkp/vFS7+NvJSKcjDkGO3PcbTBRwLaClh89cm3
-	3tLJrjNOPyTqLu66/Jj6XRbBO9lFtHoGAqnrbPk1Gxqn7HckxSHibiX8O8CZSSj1dEWEkUEUM/zP/
-	nIrswhld9nAmjExB9SUuwiS/6VB8fsjkHPpMsvTDQDIHKUeJsX8EyODUIWMIXKRXMK3bvfbAD5/6F
-	iu0aN1vBrBwf5uni8sHeQ4QGu68zEjZzztUOBUKNmGVzKAxj3Ealwl2kL1Nrh+GJq4N2SyGp8Fsof
-	zaqcC856E5noecUVnl3w==;
+	List-Owner; bh=EFAtgsvOXEQgkwsVBS2I8bQhfffxIi1Zpg1cYazYnb0=; b=mQ13DcfkVrE2qT
+	11U/SY844K4iE5tAOg1O0kJyZuMUHtHJbLU8Swff+OO27lt9khBD5orWtdSlVfUYg9z3KU3zTCSgg
+	M/95KrEX4RHzeiUL0TAHO5PpmPPQWB5udrkr+xlu4EJL0lI294bz1aGCeb26D5u7bP87u6EVAsv3S
+	GEnD9bcCpu+xbqKYEYTvrH0UM+8lBBm1d39aGzP/s8nNUadxdR5/n8lKi2mdyDJXqeXvXEwj6+JqA
+	9SbwuWliRmab3CrH5fKuumIn/RHNQE+kDJudxh7aVVefeJRp0OG720c2KZcok2+NnhgQJfne0axU6
+	TufzVqA0nzGqA2lELpiA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1go9gl-0006T1-IR; Mon, 28 Jan 2019 16:23:11 +0000
+	id 1go9go-0006Ur-9p; Mon, 28 Jan 2019 16:23:14 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1go9gi-0006Rt-U4
- for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 16:23:10 +0000
+ id 1go9gk-0006SP-92
+ for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 16:23:11 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id B1AEF2147A;
- Mon, 28 Jan 2019 16:23:07 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 13FDB2184D;
+ Mon, 28 Jan 2019 16:23:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1548692588;
- bh=docGBKSUYjYs1fqytRBJRL043K9NsNIgwjIYItyrVOo=;
+ s=default; t=1548692590;
+ bh=uO8/kNyU6GngTABTfGA7E1O5CA6sSDHYKYncwhoEBZY=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=TNaqK552+9RkZSbKB9GUercQwttH+8o6+c0wUsdSst7QpkUgzgDfE5dH3uO0nvZdY
- TPII/dzrvIqfYNc8MtCKX2xI0Q/GzVbLHc2vU4cU7V7YSAD7qsHvC2pvmUL958lHvT
- BD02/2fIJQjPhr28sclde/s0a1zA2FIdQNndt5iA=
+ b=cbBWNY1og/LrTyDdBI1XrS9MPCt1zES5mI0UBvrY1E6r6w1Q7acBOLr/6XnXkoYji
+ ksGmv3VSUYd2D4pV+bkn9zdUd9fW6L87+LmKQ4thatBypu6i6ubyqPSQnS/3FESEU/
+ rWlBvVLCJE7wzzuh6GUWpHPJkrDQqeckJHwruilo=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.9 080/107] pinctrl: meson: meson8: fix the GPIO
+Subject: [PATCH AUTOSEL 4.9 081/107] pinctrl: meson: meson8b: fix the GPIO
  function for the GPIOAO pins
-Date: Mon, 28 Jan 2019 11:19:20 -0500
-Message-Id: <20190128161947.57405-80-sashal@kernel.org>
+Date: Mon, 28 Jan 2019 11:19:21 -0500
+Message-Id: <20190128161947.57405-81-sashal@kernel.org>
 X-Mailer: git-send-email 2.19.1
 In-Reply-To: <20190128161947.57405-1-sashal@kernel.org>
 References: <20190128161947.57405-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190128_082308_982166_1E15E0E6 
-X-CRM114-Status: GOOD (  10.65  )
+X-CRM114-CacheID: sfid-20190128_082310_337733_076A1593 
+X-CRM114-Status: GOOD (  10.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -87,7 +87,7 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-[ Upstream commit 42f9b48cc5402be11d2364275eb18c257d2a79e8 ]
+[ Upstream commit 2b745ac3cceb8fc1d9985990c8241a821ea97e53 ]
 
 The GPIOAO pins (as well as the two exotic GPIO_BSD_EN and GPIO_TEST_N)
 only belong to the pin controller in the AO domain. With the current
@@ -103,30 +103,44 @@ Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/pinctrl/meson/pinctrl-meson8.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/pinctrl/meson/pinctrl-meson8b.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/pinctrl/meson/pinctrl-meson8.c b/drivers/pinctrl/meson/pinctrl-meson8.c
-index 07f1cb21c1b8..0de7fa414beb 100644
---- a/drivers/pinctrl/meson/pinctrl-meson8.c
-+++ b/drivers/pinctrl/meson/pinctrl-meson8.c
-@@ -736,7 +736,9 @@ static const char * const gpio_groups[] = {
- 	"BOOT_5", "BOOT_6", "BOOT_7", "BOOT_8", "BOOT_9",
+diff --git a/drivers/pinctrl/meson/pinctrl-meson8b.c b/drivers/pinctrl/meson/pinctrl-meson8b.c
+index f87ef5a0ee6c..cbe5f5cbddb8 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson8b.c
++++ b/drivers/pinctrl/meson/pinctrl-meson8b.c
+@@ -643,16 +643,18 @@ static const char * const gpio_groups[] = {
  	"BOOT_10", "BOOT_11", "BOOT_12", "BOOT_13", "BOOT_14",
  	"BOOT_15", "BOOT_16", "BOOT_17", "BOOT_18",
-+};
  
-+static const char * const gpio_aobus_groups[] = {
- 	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3",
- 	"GPIOAO_4", "GPIOAO_5", "GPIOAO_6", "GPIOAO_7",
- 	"GPIOAO_8", "GPIOAO_9", "GPIOAO_10", "GPIOAO_11",
-@@ -908,6 +910,7 @@ static struct meson_pmx_func meson8_cbus_functions[] = {
+-	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3",
+-	"GPIOAO_4", "GPIOAO_5", "GPIOAO_6", "GPIOAO_7",
+-	"GPIOAO_8", "GPIOAO_9", "GPIOAO_10", "GPIOAO_11",
+-	"GPIOAO_12", "GPIOAO_13", "GPIO_BSD_EN", "GPIO_TEST_N",
+-
+ 	"DIF_0_P", "DIF_0_N", "DIF_1_P", "DIF_1_N",
+ 	"DIF_2_P", "DIF_2_N", "DIF_3_P", "DIF_3_N",
+ 	"DIF_4_P", "DIF_4_N"
  };
  
- static struct meson_pmx_func meson8_aobus_functions[] = {
++static const char * const gpio_aobus_groups[] = {
++	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3",
++	"GPIOAO_4", "GPIOAO_5", "GPIOAO_6", "GPIOAO_7",
++	"GPIOAO_8", "GPIOAO_9", "GPIOAO_10", "GPIOAO_11",
++	"GPIOAO_12", "GPIOAO_13", "GPIO_BSD_EN", "GPIO_TEST_N"
++};
++
+ static const char * const sd_a_groups[] = {
+ 	"sd_d0_a", "sd_d1_a", "sd_d2_a", "sd_d3_a", "sd_clk_a",
+ 	"sd_cmd_a"
+@@ -868,6 +870,7 @@ static struct meson_pmx_func meson8b_cbus_functions[] = {
+ };
+ 
+ static struct meson_pmx_func meson8b_aobus_functions[] = {
 +	FUNCTION(gpio_aobus),
  	FUNCTION(uart_ao),
- 	FUNCTION(remote),
+ 	FUNCTION(uart_ao_b),
  	FUNCTION(i2c_slave_ao),
 -- 
 2.19.1
