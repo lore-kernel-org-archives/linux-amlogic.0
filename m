@@ -2,85 +2,91 @@ Return-Path: <SRS0=PsYD=QE=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A8627C282C8
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 16:38:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 96290C282C8
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 16:38:36 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7844920844
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 16:38:34 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6816720811
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 16:38:36 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eh8Tx9QH";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="yzIDRLO9"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7844920844
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oec7nR74";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="AvL9UiD3"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6816720811
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=KS42P/YPnk3g4dDzr6lsWeYzrCP/slMgBHS4Tt0SquQ=; b=eh8
-	Tx9QHwLBLqlhBhAiWIlTRnuyONZEJFeZNhTp+356wYBZvf23wpZlA/7wIIdlvSAdarcihEF872cUA
-	FzpT0uns//3J8hsaE3N7sZu5HMnBvap/dEUpO9JXk6sd1k/npV8W1bq905hu66+r2K//yLHVPTs/2
-	2ZahE1yt5DTG/zcEEg7zYc5XriCirjLoTHUDnbF5QmVTel/iEXzNpK+egwqdRRulTB6gi/5Vy59EA
-	lPwfgThY5PM/U3c6LnxYzs2iRIepEn7I4YjWMvs/bUE9IyNlO/SN8gU+qxriDbDytwFud5wBoeCdo
-	y02UBuvSVRH4MjA4+A8nNQ30bxXKsLQ==;
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:References:
+	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=/40hcdwyay/hnkLBYSgduLW8uxOgsGXYj+d7/FSHqVw=; b=oec7nR74tFhZAGsBIWxHiL2ilq
+	cpDekbyV5u4DvDT7m4CLmOVNUqP/grLjHEkcC0XRLDcjGb9aakWQgIUB4+Q5L2nF/iuIk/S5uQ0Ye
+	nXwHnd+82MuBZkUoPLFyFK72NgHoBpAVgGU1CHDvYJ1cqatjYOgeApSq0L6PCsd8FM+dNFU5ueXi6
+	gmGjJrPwNPsOC55me8Xc3Nh/KTSLaEmp4gvfw/V2P7d1i5vc5bDD9g/CizLGmqdFAZZkoTmo/Db7n
+	M9Y1gsrAVtT+uxd8TbWXJZ1E5WxarACv/ztqO+USFsBKj7oJstjnsNQWHNUsNCKh3S4M4zeNbG+6U
+	RJShnynw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1go9vW-0006zl-Ux; Mon, 28 Jan 2019 16:38:26 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1go9vZ-00073P-MX; Mon, 28 Jan 2019 16:38:29 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1go9vD-0006iK-7y
- for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 16:38:10 +0000
-Received: by mail-wr1-x443.google.com with SMTP id 96so18833716wrb.2
- for <linux-amlogic@lists.infradead.org>; Mon, 28 Jan 2019 08:38:07 -0800 (PST)
+ id 1go9vE-0006jC-9g
+ for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 16:38:11 +0000
+Received: by mail-wr1-x444.google.com with SMTP id s12so18785246wrt.4
+ for <linux-amlogic@lists.infradead.org>; Mon, 28 Jan 2019 08:38:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id;
- bh=L7bmc/MKBpCEs68YcmIGpGX/6J5igsqYwSDPtXbpF5I=;
- b=yzIDRLO9X+802YPKhcWAQgT3HiXDB380oqYdqf6CP1G19Qkvqfbs58ODce5fIKqtNa
- eDnwsGju3DQS4WTAt09TRz+ANV1Wi+Ti1M9Ajro2biB5h3AbGNeHOATtrroDIwBfM8FJ
- z3U2ckMCCPgEYHVoqsLKtmtQHO4RJD9wGqQX+nxlEC80cMLJtyLZhdUDC+fkR13/mvpM
- YJTUK4Aa74JoWrl0LpImzYg0mdrfcgNAq76di6GBU0q+2SEal1IUcPR2fyqfIEtk5G1N
- hoCj+M/CpkRVFiLa8K+q0g0zu7c+UOiQvY39wngNKGB8IyFCO9n+346yAcy93jGXn9bb
- XN2Q==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references;
+ bh=DwXU/DABY03ITJwoWyaouwbE8TjJuTN6E6OnLCAmCoA=;
+ b=AvL9UiD3J4AerEcQE13yxgFPcrNzEyvgVO/Oed9HUx52ap7/tMpLGzKcGWXRGxciNK
+ ZdRFq9lnPpRcfvosrhlsegfVAVUgGprCIx2a1cscd0T90+lG1RfGJ+pyg90BTmK4JXB1
+ +ifa2QS9EZd00bpcesusSxt9OZC6c6+v2Y8TlJL+ILgy2nG3wkyeVbaJZ0uV9TjxYOXS
+ DNkQCUG28w5ZJogOBquDxyApdURnAZdJpFoMcU7vt8jwxyH7Mabs6MCuA3PLNlazBkYR
+ IJVCZNnSnsei5MriMsg3c4hjn9z6IKnWjDEZ0ASkG5I9PgdHeOzA3NEHWSTyOistHo9+
+ 0Now==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=L7bmc/MKBpCEs68YcmIGpGX/6J5igsqYwSDPtXbpF5I=;
- b=YZO3WTfOH8M9K0X+gw9JZpf6AE2GdqkhREPrhpkM7WLHU+I0HbR3C2sTsRIXYzVNeE
- ccwmL9KbLdKzYlOuw4kQ+5Zg+EWsCtm1ALJ8xCoLwbswkRq8+GlwmC4ZT2IhMUKpm1Dx
- PzRS0HS1Pm4NE8SYeSuAF+NEHGSAIA3J5HeRsV2zBHpwgM93MFnYMeTgqD4X6y/9cqn+
- mMMMNCl6cllXRjKlioWDpJaQTKGZhXH7tKXKYRemQCHToUU4AvR4CmdOgXqLWC2d4nrM
- OW4V4ydhEz+aF/RniWSZgml8Mmaec2cFEMmQxVxT77pDAlzqn+ocPjR+7L5lv+lC3CVp
- L5jQ==
-X-Gm-Message-State: AJcUukco7Le6zlp7FYhbmPy5qKYyPd+kJpw5NqsbElhGOBnlMsve9tHG
- 24D5EBUnbUHROLwDSteu3qx8WQ==
-X-Google-Smtp-Source: ALg8bN6/AeMbB9ztw2/OPA4aRkoO7jNQPii37d8PbkqqGlfnMk8N/2tBzzZxaU1owHOurlYxWl9Q3Q==
-X-Received: by 2002:a5d:6b81:: with SMTP id n1mr24066949wrx.149.1548693485628; 
- Mon, 28 Jan 2019 08:38:05 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references;
+ bh=DwXU/DABY03ITJwoWyaouwbE8TjJuTN6E6OnLCAmCoA=;
+ b=WefEPCYgLfK8yJyhPbSiWw0nsJSAMwnq/KWAyB7mj4R2HMgQr811tXxXT9VHJlp2en
+ H39WC3aM/JjNIXBZtW5koNTm2obPPdzjWX95pc0WiVIhtAtiZGJOtTvK44R7lJ4aMYF4
+ nDsU4SahKKkqi2Jz9kTia2fBAV/hRmBXx2z3U7dOWZMZq91vRbGgQNX1cPr4C4FpiYBO
+ NeDWmaE63VEoCY+UPU4NlxY6Z/KlIebzABvZr4NGbrvb0iHPpkG0Ss6YJvGDyd0TSuD3
+ fzvgoWIqpYdu2qdL0fy4DYsL4e835F8wLfm4goUCLxmUsAtN22DDlYHEORhhsUIpHnBe
+ DF/g==
+X-Gm-Message-State: AJcUukc/NdFd4FJ80+DL7UmIWjF47dr94CGzG1fAbRrrDB/lNUSu1cgB
+ NdFPoQMCM2yIXdb+HltYJMSFhw==
+X-Google-Smtp-Source: ALg8bN5KMG1QHbxfXu8KVWN1cLvVGhJydZpy2RUk7wZ6NpeR6bHPzOsCNI6QCr0tfyobn6ULK0jr6g==
+X-Received: by 2002:a5d:56d2:: with SMTP id m18mr23651374wrw.113.1548693486851; 
+ Mon, 28 Jan 2019 08:38:06 -0800 (PST)
 Received: from loys-ubuntu-BY1835A49200471.thefacebook.com
  ([2620:10d:c092:180::1:d40b])
- by smtp.googlemail.com with ESMTPSA id s3sm52388982wmj.23.2019.01.28.08.38.04
+ by smtp.googlemail.com with ESMTPSA id s3sm52388982wmj.23.2019.01.28.08.38.05
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Mon, 28 Jan 2019 08:38:05 -0800 (PST)
+ Mon, 28 Jan 2019 08:38:06 -0800 (PST)
 From: Loys Ollivier <lollivier@baylibre.com>
 To: devicetree@vger.kernel.org,
 	Johan Hovold <johan@kernel.org>
-Subject: [PATCH v3 0/4] Add driver for Mediatek-based GNSS receivers
-Date: Mon, 28 Jan 2019 17:37:57 +0100
-Message-Id: <1548693481-1162-1-git-send-email-lollivier@baylibre.com>
+Subject: [PATCH v3 1/4] dt-bindings: Add vendor prefix for "GlobalTop
+ Technology, Inc."
+Date: Mon, 28 Jan 2019 17:37:58 +0100
+Message-Id: <1548693481-1162-2-git-send-email-lollivier@baylibre.com>
 X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1548693481-1162-1-git-send-email-lollivier@baylibre.com>
+References: <1548693481-1162-1-git-send-email-lollivier@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190128_083807_302235_17501F74 
-X-CRM114-Status: GOOD (  16.99  )
+X-CRM114-CacheID: sfid-20190128_083808_457621_CDF01DD0 
+X-CRM114-Status: UNSURE (   9.41  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -104,89 +110,33 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Add globaltop vendor definition.
 
-This patch series adds a new GNSS driver for the Mediatek-based GNSS receivers.
-These receivers transmits NMEA output sequence after boot.
-Power management can be done via the main supply and optional backup supply
-as defined in the device tree.
-
-The driver has been tested using a GlobalTop pa6h chipset on a Libretech-cc
-board using the expansion header. Changes made in the board device tree can
-be found below for reference and testing.
-
-Loys
-
-Version 3 changes:
-- driver: Removed "mediatek,mt3339" compatible
-- driver: moved gnss_types_names string diff in the GNSS_TYPE patch
-- driver: edited [patch 3/4] commit message to remove ref to vendor protocol
-- driver: retained the original copyright
-- dt: removed interfaces that are not available on the globaltop SoC
-- dt: Added missing pins documentation
-- dt: added optional properties pin names
-
-Version 2 changes:
-- driver: Renamed driver from Globaltop/gtop to Mediatek/mtk
-- driver: Added "mediatek,mt3339" compatible
-- dt: Renamed bindings from Globaltop to Mediatek
-- dt: Moved the current-speed property as optional
-- dt: removed the status line in example
-- cover-letter: removed the alias that is not needed anymore
-
-Loys Ollivier (4):
-  dt-bindings: Add vendor prefix for "GlobalTop Technology, Inc."
-  dt-bindings: gnss: add mediatek binding
-  gnss: add mtk receiver type support
-  gnss: add driver for mediatek receivers
-
- .../devicetree/bindings/gnss/mediatek.txt          |  37 +++++
- .../devicetree/bindings/vendor-prefixes.txt        |   1 +
- drivers/gnss/Kconfig                               |  13 ++
- drivers/gnss/Makefile                              |   3 +
- drivers/gnss/core.c                                |   1 +
- drivers/gnss/mtk.c                                 | 152 +++++++++++++++++++++
- include/linux/gnss.h                               |   1 +
- 7 files changed, 208 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/gnss/mediatek.txt
- create mode 100644 drivers/gnss/mtk.c
-
+Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
 ---
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-index 90a56af967a7..3b3d4dcc47aa 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-@@ -17,6 +17,7 @@
- 
-        aliases {
-                serial0 = &uart_AO;
-                ethernet0 = &ethmac;
-        };
- 
-@@ -269,7 +270,20 @@
-        pinctrl-names = "default";
- };
- 
-+/* This is brought out on the UART_A_TX (8) and UART_A_RX (10) pins: */
-+&uart_A {
-+       status = "okay";
-+       pinctrl-0 = <&uart_a_pins>;
-+       pinctrl-names = "default";
-+
-+       gnss {
-+               compatible = "globaltop,pa6h";
-+               v-bckp-supply = <&vcc_3v3>;
-+               vcc-supply = <&vcc_3v3>;
-+               current-speed = <9600>;
-+       };
-+};
-+
- &usb0 {
-        status = "okay";
- };
 
+v3: No changes
+
+v2: Alphabetical order
+
+ Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.txt b/Documentation/devicetree/bindings/vendor-prefixes.txt
+index 389508584f48..d80a70343b36 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.txt
++++ b/Documentation/devicetree/bindings/vendor-prefixes.txt
+@@ -150,6 +150,7 @@ geniatech	Geniatech, Inc.
+ giantec	Giantec Semiconductor, Inc.
+ giantplus	Giantplus Technology Co., Ltd.
+ globalscale	Globalscale Technologies, Inc.
++globaltop	GlobalTop Technology, Inc.
+ gmt	Global Mixed-mode Technology, Inc.
+ goodix	Shenzhen Huiding Technology Co., Ltd.
+ google	Google, Inc.
 -- 
 2.7.4
+
 
 _______________________________________________
 linux-amlogic mailing list
