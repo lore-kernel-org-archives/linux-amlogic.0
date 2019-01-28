@@ -6,17 +6,17 @@ X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
 	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AACDAC282CF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 15:46:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 410D0C282CF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 15:47:05 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7C6D321741
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 15:46:55 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 11A012177E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 15:47:05 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pPK59lII";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="U4sPStVc"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7C6D321741
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="usY2bNl6";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="heyLqA2C"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 11A012177E
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,47 +25,48 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vbcLkHL3fSShKdmkq3oDI+OkgWiPNOJ7UbOlgkiZjLs=; b=pPK59lIIxAX1RO
-	Kyja30O88KXjb14Ckda/7nsmmr6eOjg2q5pmw8VX7uJJ7v9W0wZIcH/TKeEEpjHQtbFRyZiKGB+qs
-	ZXDRO7Atz+nuRr73QJtU35tPWf/GDvKEywHkWLHTAGueD8A9GxbklPd9eXxJ7FaX7LMO7Gk4GoQDh
-	UEreHAOXXbboefxWgS4nxzkhett6bv+jkUwzsUR7Loa5zcahXwQFTu5rWHjmasN9emT2cVlKYlww9
-	JtPzhVEIrPj4ia4zzDvEXjYD1818OeqmOqqGykINVZmIi5ilVD1rtAGpD7JluYLfYdJ+wDszo+o6U
-	dZUSuyYvYaiwyYhlL6ew==;
+	List-Owner; bh=C4I7W7IC/BrPeC1pP0jevah5wt4iHNTxRsU3CiWX/5U=; b=usY2bNl6DACCHy
+	Yp/r4H/kHqO+A8n6yJLS6Ut0LhMDM/mUgFoLF56WxfYHGWIkzuuQN2BWgj9ilH1wIyjLhPABd7xAk
+	EZbWfuta5hWlYfqAzzmw8MW9FTnD6Nlp1tFCDEsSgqufGLM4RdJgTl+M0YYJaczp68YExJzWotpHc
+	dFQBKZuk6yGpzWZJxmy83RWcn4I4sxYQiF1j44ewUNhEi0qpIa8al7i6Jv8mo8AZN+zwM1w5cai9/
+	0KXs0Ol1+5gbrWyvxK4sKtlW8ogMSvI1BdhmGwU1WVVjZjehtLCX1gOQTfhuYVz70VCCxCdDA7Afa
+	YcRzGGflG4RveVPkzTcw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1go97b-0000Mc-De; Mon, 28 Jan 2019 15:46:51 +0000
+	id 1go97k-0000TJ-Qu; Mon, 28 Jan 2019 15:47:00 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1go97X-0000JN-94
- for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 15:46:49 +0000
+ id 1go97h-0000Qw-DZ
+ for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 15:46:59 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 570572177E;
- Mon, 28 Jan 2019 15:46:45 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id BDA0B2147A;
+ Mon, 28 Jan 2019 15:46:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1548690407;
- bh=W6Ee+8Na3o8JSRghgx72JSwGnzYakdYkq9XKLYI6xoQ=;
+ s=default; t=1548690417;
+ bh=fbFe8DlZvj0NZ61TLj7w1CkS7E42p1s7wUWOC2ZTcIc=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=U4sPStVcwSBOBL0nR0rcp5CrzxW5RKQxgSyhVFe/Ce4l/h+WLLlhjLrJwPn+aeVFP
- 7AbydorX7SG0AdIDW2S3MfWEgm4DAvNJf9+9BZt/g+O5B945HZFgRSsVILlap1QZZU
- xsWxIrNGkpCimzWoPYmLTzh+Q/HtQ9ctx2dYHsOU=
+ b=heyLqA2CLY1ZjoiAk/+NnpMu4utADR6WSxkUdhuhGTsw52GfEnpnvekKassvOSwpB
+ GjpMNAwgNKV3OeHB3pWufVHjmVfxsHTNmZRqf23PC/qhhIEyWWEq1IFzVqjFi0R9cC
+ RI1k89mRpuCMybDN7EYYbIFs8vMMbe26eE8VWX1I=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.20 075/304] clk: meson: meson8b: mark the CPU clock
- as CLK_IS_CRITICAL
-Date: Mon, 28 Jan 2019 10:39:52 -0500
-Message-Id: <20190128154341.47195-75-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.20 079/304] iio: adc: meson-saradc: check for
+ devm_kasprintf failure
+Date: Mon, 28 Jan 2019 10:39:56 -0500
+Message-Id: <20190128154341.47195-79-sashal@kernel.org>
 X-Mailer: git-send-email 2.19.1
 In-Reply-To: <20190128154341.47195-1-sashal@kernel.org>
 References: <20190128154341.47195-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190128_074647_329808_8BB6683C 
-X-CRM114-Status: GOOD (  14.61  )
+X-CRM114-CacheID: sfid-20190128_074657_879128_AC4919B4 
+X-CRM114-Status: UNSURE (   8.97  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -77,59 +78,58 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Sasha Levin <sashal@kernel.org>, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>
+Cc: Sasha Levin <sashal@kernel.org>, linux-iio@vger.kernel.org,
+ linux-amlogic@lists.infradead.org,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ Nicholas Mc Guire <hofrat@osadl.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+From: Nicholas Mc Guire <hofrat@osadl.org>
 
-[ Upstream commit 0dad1ec65bc30a549aba38d34a727309bbf41bc8 ]
+[ Upstream commit aad172b017617994343e36d8659c69e14cd694fd ]
 
-We don't want the common clock framework to disable the "cpu_clk" if
-it's not used by any device. The cpufreq-dt driver does not enable the
-CPU clocks. However, even if it would we would still want the CPU clock
-to be enabled at all times because the CPU clock is also required even
-if we disable CPU frequency scaling on a specific board.
+devm_kasprintf() may return NULL on failure of internal allocation thus
+the assignments to  init.name  are not safe if not checked. On error
+meson_sar_adc_clk_init() returns negative values so -ENOMEM in the
+(unlikely) failure case of devm_kasprintf() should be fine here.
 
-The reason why we want the CPU clock to be enabled is a clock further up
-in the tree:
-Since commit 6f888e7bc7bd58 ("clk: meson: clk-pll: add enable bit") the
-sys_pll can be disabled. However, since the CPU clock is derived from
-sys_pll we don't want sys_pll to get disabled. The common clock
-framework takes care of that for us by enabling all parent clocks of our
-CPU clock when we mark the CPU clock with CLK_IS_CRITICAL.
-
-Until now this is not a problem yet because all clocks in the CPU
-clock's tree (including sys_pll) are read-only. However, once we allow
-modifications to the clocks in that tree we will need this.
-
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Acked-by: Jerome Brunet <jbrunet@baylibre.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Link: https://lkml.kernel.org/r/20181115224048.13511-4-martin.blumenstingl@googlemail.com
+Signed-off-by: Nicholas Mc Guire <hofrat@osadl.org>
+Fixes: 3adbf3427330 ("iio: adc: add a driver for the SAR ADC found in Amlogic Meson SoCs")
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/clk/meson/meson8b.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/iio/adc/meson_saradc.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index 9160a3b2e668..a3a826419c16 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -650,7 +650,8 @@ static struct clk_regmap meson8b_cpu_clk = {
- 						  "cpu_scale_out_sel" },
- 		.num_parents = 2,
- 		.flags = (CLK_SET_RATE_PARENT |
--			  CLK_SET_RATE_NO_REPARENT),
-+			  CLK_SET_RATE_NO_REPARENT |
-+			  CLK_IS_CRITICAL),
- 	},
- };
+diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+index 028ccd218f82..672a5dee4a9d 100644
+--- a/drivers/iio/adc/meson_saradc.c
++++ b/drivers/iio/adc/meson_saradc.c
+@@ -589,6 +589,9 @@ static int meson_sar_adc_clk_init(struct iio_dev *indio_dev,
  
+ 	init.name = devm_kasprintf(&indio_dev->dev, GFP_KERNEL, "%pOF#adc_div",
+ 				   indio_dev->dev.of_node);
++	if (!init.name)
++		return -ENOMEM;
++
+ 	init.flags = 0;
+ 	init.ops = &clk_divider_ops;
+ 	clk_parents[0] = __clk_get_name(priv->clkin);
+@@ -608,6 +611,9 @@ static int meson_sar_adc_clk_init(struct iio_dev *indio_dev,
+ 
+ 	init.name = devm_kasprintf(&indio_dev->dev, GFP_KERNEL, "%pOF#adc_en",
+ 				   indio_dev->dev.of_node);
++	if (!init.name)
++		return -ENOMEM;
++
+ 	init.flags = CLK_SET_RATE_PARENT;
+ 	init.ops = &clk_gate_ops;
+ 	clk_parents[0] = __clk_get_name(priv->adc_div_clk);
 -- 
 2.19.1
 
