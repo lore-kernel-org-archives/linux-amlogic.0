@@ -2,22 +2,22 @@ Return-Path: <SRS0=PsYD=QE=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-4.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS,UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 20EF0C282C8
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 14:15:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 958B6C282C8
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 14:16:38 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E2D28214DA
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 14:15:31 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5ECB3214DA
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 14:16:38 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GXmVE65a";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="LkhAwghL"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E2D28214DA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="O5MGuzZk";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="k1JUHV/j"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5ECB3214DA
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rU8POGgmw925Vqb0TwR5xPbdnC/QP5+dzHI9PHjmGnk=; b=GXmVE65aVyH9ko
-	wWnv1eqmO6bB+k2jN/o5yQbjK9fMG6aHmJUGON+smNJUTXZSrzfQj+sf6ljb+qMGgPBuZeDBaE+k4
-	TrQNyJSpk6rNEpU6qVGhMW6HMopop38KJ5KbXaBQef3IDlT9P7Xet5O12D8odQ8IZPqeBJhzayQHQ
-	TzGkPBe1bMeyyeHV49ExcYdGS+/2/7hOe46ghSNHLtmD1El0gDwHswrfA56XY9XI8RhJ5ACYsj9h1
-	gKMyZwOQnpzffyKz6sf847YOEyPsVV/iCySDA3bv3sNzXBeIvJoJYVlS3QHt4Side1H+JL98hn25d
-	MmTXuzgRNfWl4X4OrKgA==;
+	List-Owner; bh=BwvQi2ZniPHYWQFf7xtDXmJOTvBoq/PQx7/6KsIF/Is=; b=O5MGuzZkcPq6V7
+	24DlY15pLjQNkoaoKkbymX35nmzSIJ3wv0Mat0y4UaCQpA9hxTh/36jxIwC7WVJk8LnZ+UqvZcS0m
+	DGc2rbnWmWplDJT25U/cP5Uc/oiOlO48aXf7qrXjJe6LGQCmPQGYO95I1e4h2BIprtp6fn3VYjmBt
+	X/dTTp4xSizzN9XpKbjYB/LWEObql07mWnqr2n12CvqlR2aOqAJEXsNAnrp24C1NwciTw8WTDFQ+j
+	dCnqy3wiTJoRFourn92PnUNk2KLZDv+0k7NF2VAevrNklJLFT6HXpTlMLqZKabtmalWL8G2I8zFxO
+	tQpyIc1QMDeOQblbTIPQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1go7h8-0002Yz-2i; Mon, 28 Jan 2019 14:15:26 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1go7iC-0002tg-2L; Mon, 28 Jan 2019 14:16:32 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1go7h5-0002YK-7s
- for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 14:15:24 +0000
-Received: by mail-wr1-x441.google.com with SMTP id p4so18225747wrt.7
- for <linux-amlogic@lists.infradead.org>; Mon, 28 Jan 2019 06:15:23 -0800 (PST)
+ id 1go7i9-0002t1-9a
+ for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 14:16:31 +0000
+Received: by mail-wr1-x444.google.com with SMTP id z5so18192509wrt.11
+ for <linux-amlogic@lists.infradead.org>; Mon, 28 Jan 2019 06:16:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=x4YuElUFvXM+jspMtTXi2Zz6Txv0fF2eSTzfV5GBVH0=;
- b=LkhAwghLjN22cdykRzOgEY+n/6YWJ8tg9iPgRR54h8TkDvVLFrVzj4Cu7Mf6hGSaYK
- Qh4Y8P9Q5a8G5Xh/aJECt8F2PjuJoK+Jgr3WyZ29ZcnG6q1iMvtQfPA3IHWTy9E6lUJL
- BohdWyQihe+9l7QpvRW61DFiCJpz+ju1Vbi9OQhI6lXsKV0TMaQ5YPnbVmyPuasiiC7y
- v/CFmyR8MNLGLSUn2TSoaTZIQhWplbv6DizBiar0uUSSQNMFYbmc816yiKkqL0IwsM44
- IVta94KDWiLBov6UNzeRjFe06mNhgjSyUtg/8LXWiE7D0/maahN0s6qgUgFyO87Lf47y
- KRLA==
+ bh=WFXp9OBXvSFGVcgyvI/Y0RZSKnRdU6of7n7isfHStKw=;
+ b=k1JUHV/jGT3gxCIdF5gowaJLo2tiOZhk275u/S4PoAtQ4kI2buQlguy3B3UlybqqND
+ xUItBjFSKnnZjVgWxSb9JY90tinZ6WTghJG7+UnwSDWyRZdRqhwNutw0O4w0UPdasBzi
+ qFNvgpbuJRfbZsvFTLOpXLSOc2/QMo9VSeuIcw738Vky973TdKcJGQc0CM4F/8yL2cNc
+ chGAc8Hdg4Pq0mQZWdYi07ktNeqZ0hj7z9mFwyOzfD6S3vsI5UBfmW8kt76YDA+KQMrA
+ UJc9u8Ao+PftmhqKFwllhSRs1eRBoN+bpqDOIm+dx2ZUhZp1db5iAocrV0SWpsi5MmPZ
+ IQPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=x4YuElUFvXM+jspMtTXi2Zz6Txv0fF2eSTzfV5GBVH0=;
- b=cj14nCl9blAX4QCvKbCT/IB3xxkBXWR/KxrY5+QYUaHyRP1uXL/pxh+LeAKegaKGr4
- qFh7p5E8afLqZf+0RAfndG9syM4bBvrCy/gK5Q3ZQOlIbvrOVkEwMg1CTsCQIJmmdLf6
- hS5WPEQvJ3cyvs39wp7m5uXESSCW1Xk/2hWPcQmQTPfwNGSCEKfsDFpiuCLGwbXPamEU
- nWad+gUx5q8F0iwHvdqCboIS0pNjYMejX/pEHk8vvTwEa3uVjd4r1fQgxQO1B1792Rnu
- 44UbkAURI+/UIeFuZT8byPbhMllqh4evamWn2+cS0F5lBBaYh6YLhX6zCABRwZG5sX92
- aXLA==
-X-Gm-Message-State: AJcUukcgV8YVFEMEoFbGYrNVU7Lpl82DCVi/5s1X0S3dHBhIwHAeQ5XP
- WKtam5/ZfNLIfWLAL6jbzBogUQ==
-X-Google-Smtp-Source: ALg8bN54MZhffjGVXH+k3g02EKTUD6LYyUYEUlkiVbW8X4uFrneCHcW40BEnuPJQOfmeaypelVrx4g==
-X-Received: by 2002:adf:8143:: with SMTP id 61mr21287097wrm.47.1548684921557; 
- Mon, 28 Jan 2019 06:15:21 -0800 (PST)
+ bh=WFXp9OBXvSFGVcgyvI/Y0RZSKnRdU6of7n7isfHStKw=;
+ b=B6PdgBm4EIqiH4e382O2huvw4mJkCGmCpdXKBNOVlmZvy9dTYu/z8tTBUdSqnWZ1Yj
+ LrAJH2wKe1zgpFJy1jTYSwPLkUAaam9yw8VuglgG3oL17NJRqXQ3A7CEMADO8NTwIvct
+ FhQxaplA9KCztjSkwE4D9aC1wbpGW+sIIrtF2QQYnH0zv2oI2CdtlPwOPE9WdYroG+ga
+ uODI0c6alI2Yqn+D1wlBISnkqjYMnE/hsgzTZzZYeVKGVDAppr837bMzW/lA1yspGBWw
+ TnMaFg9d3jGIdvKQey8AwMgPyzGbL9sd5yMX2FfDJqfnQyK92zMi3Y57+5UkRs0pIBId
+ bVtA==
+X-Gm-Message-State: AJcUukcxfHRyHHlasEHjmmW3pkAA0M93F8Q7ki7O86OEl2FLcimeaq23
+ NZ+nyXD42hB5r7X3cfCruyaJpw==
+X-Google-Smtp-Source: ALg8bN5Nn1gvT+TK8ScyzBqXr9WeD1aDRHGjnrdGxAqN0AUBZBS50ZafVvOD6mP9IkEeTC8wpWVegg==
+X-Received: by 2002:adf:fe43:: with SMTP id m3mr21366756wrs.290.1548684987774; 
+ Mon, 28 Jan 2019 06:16:27 -0800 (PST)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id y145sm55057569wmd.30.2019.01.28.06.15.20
+ by smtp.gmail.com with ESMTPSA id z206sm90151466wmc.18.2019.01.28.06.16.26
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 28 Jan 2019 06:15:20 -0800 (PST)
-Subject: Re: [PATCH 2/2] reset: meson: add g12a and generic compatible string
+ Mon, 28 Jan 2019 06:16:27 -0800 (PST)
+Subject: Re: [PATCH 1/2] dt-bindings: reset: meson: add g12a bindings
 To: Jerome Brunet <jbrunet@baylibre.com>,
  Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>
 References: <20190128141330.21927-1-jbrunet@baylibre.com>
- <20190128141330.21927-3-jbrunet@baylibre.com>
+ <20190128141330.21927-2-jbrunet@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -132,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <8ad946b3-db95-5cd3-efc7-4971ed13ce89@baylibre.com>
-Date: Mon, 28 Jan 2019 15:15:19 +0100
+Message-ID: <c5bdc421-1afa-f0d3-65d6-2d062f06267e@baylibre.com>
+Date: Mon, 28 Jan 2019 15:16:26 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.2.1
 MIME-Version: 1.0
-In-Reply-To: <20190128141330.21927-3-jbrunet@baylibre.com>
+In-Reply-To: <20190128141330.21927-2-jbrunet@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190128_061523_327938_9CD6EE91 
-X-CRM114-Status: GOOD (  15.61  )
+X-CRM114-CacheID: sfid-20190128_061629_452256_AF8FFDEC 
+X-CRM114-Status: GOOD (  16.74  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -161,28 +161,176 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 28/01/2019 15:13, Jerome Brunet wrote:
-> Add a compatible for the new g12a SoC family.
+> Add device tree bindings for the reset controller of g12a SoC family.
 > 
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
->  drivers/reset/reset-meson.c | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/reset/amlogic,meson-reset.txt    |   7 +-
+>  .../reset/amlogic,meson-g12a-reset.h          | 134 ++++++++++++++++++
+>  2 files changed, 139 insertions(+), 2 deletions(-)
+>  create mode 100644 include/dt-bindings/reset/amlogic,meson-g12a-reset.h
 > 
-> diff --git a/drivers/reset/reset-meson.c b/drivers/reset/reset-meson.c
-> index 5242e0679df7..a8f6549b3af4 100644
-> --- a/drivers/reset/reset-meson.c
-> +++ b/drivers/reset/reset-meson.c
-> @@ -134,6 +134,7 @@ static const struct of_device_id meson_reset_dt_ids[] = {
->  	 { .compatible = "amlogic,meson8b-reset" },
->  	 { .compatible = "amlogic,meson-gxbb-reset" },
->  	 { .compatible = "amlogic,meson-axg-reset" },
-> +	 { .compatible = "amlogic,meson-g12a-reset" },
->  	 { /* sentinel */ },
->  };
+> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt
+> index 28ef6c295c76..053cb1322ee3 100644
+> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt
+> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt
+> @@ -5,8 +5,11 @@ Please also refer to reset.txt in this directory for common reset
+>  controller binding usage.
 >  
+>  Required properties:
+> -- compatible: Should be "amlogic,meson8b-reset", "amlogic,meson-gxbb-reset" or
+> -	"amlogic,meson-axg-reset".
+> +- compatible: Should be
+> + * "amlogic,meson8b-reset" or
+> + * "amlogic,meson-gxbb-reset" or
+> + * "amlogic,meson-axg-reset" or
+> + * "amlogic,meson-g12a-reset"
+>  - reg: should contain the register address base
+>  - #reset-cells: 1, see below
+>  
+> diff --git a/include/dt-bindings/reset/amlogic,meson-g12a-reset.h b/include/dt-bindings/reset/amlogic,meson-g12a-reset.h
+> new file mode 100644
+> index 000000000000..8063e8314eef
+> --- /dev/null
+> +++ b/include/dt-bindings/reset/amlogic,meson-g12a-reset.h
+> @@ -0,0 +1,134 @@
+> +/* SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause */
+> +/*
+> + * Copyright (c) 2019 BayLibre, SAS.
+> + * Author: Jerome Brunet <jbrunet@baylibre.com>
+> + *
+> + */
+> +
+> +#ifndef _DT_BINDINGS_AMLOGIC_MESON_G12A_RESET_H
+> +#define _DT_BINDINGS_AMLOGIC_MESON_G12A_RESET_H
+> +
+> +/*	RESET0					*/
+> +#define RESET_HIU			0
+> +/*					1	*/
+> +#define RESET_DOS			2
+> +/*					3-4	*/
+> +#define RESET_VIU			5
+> +#define RESET_AFIFO			6
+> +#define RESET_VID_PLL_DIV		7
+> +/*					8-9	*/
+> +#define RESET_VENC			10
+> +#define RESET_ASSIST			11
+> +#define RESET_PCIE_CTRL_A		12
+> +#define RESET_VCBUS			13
+> +#define RESET_PCIE_PHY			14
+> +#define RESET_PCIE_APB			15
+> +#define RESET_GIC			16
+> +#define RESET_CAPB3_DECODE		17
+> +/*					18	*/
+> +#define RESET_HDMITX_CAPB3		19
+> +#define RESET_DVALIN_CAPB3		20
+> +#define RESET_DOS_CAPB3			21
+> +/*					22	*/
+> +#define RESET_CBUS_CAPB3		23
+> +#define RESET_AHB_CNTL			24
+> +#define RESET_AHB_DATA			25
+> +#define RESET_VCBUS_CLK81		26
+> +/*					27-31	*/
+> +/*	RESET1					*/
+> +/*					32	*/
+> +#define RESET_DEMUX			33
+> +#define RESET_USB			34
+> +#define RESET_DDR			35
+> +/*					36	*/
+> +#define RESET_BT656			37
+> +#define RESET_AHB_SRAM			38
+> +/*					39	*/
+> +#define RESET_PARSER			40
+> +/*					41	*/
+> +#define RESET_ISA			42
+> +#define RESET_ETHERNET			43
+> +#define RESET_SD_EMMC_A			44
+> +#define RESET_SD_EMMC_B			45
+> +#define RESET_SD_EMMC_C			46
+> +/*					47-60 */
+> +#define RESET_AUDIO_CODEC		61
+> +/*					62-63	*/
+> +/*	RESET2					*/
+> +/*					64	*/
+> +#define RESET_AUDIO			65
+> +#define RESET_HDMITX_PHY		66
+> +/*					67	*/
+> +#define RESET_MIPI_DSI_HOST		68
+> +#define RESET_ALOCKER			69
+> +#define RESET_GE2D			70
+> +#define RESET_PARSER_REG		71
+> +#define RESET_PARSER_FETCH		72
+> +#define RESET_CTL			73
+> +#define RESET_PARSER_TOP		74
+> +/*					75-77	*/
+> +#define RESET_DVALIN			78
+> +#define RESET_HDMITX			79
+> +/*					80-95	*/
+> +/*	RESET3					*/
+> +/*					96-95	*/
+> +#define RESET_DEMUX_TOP			105
+> +#define RESET_DEMUX_DES_PL		106
+> +#define RESET_DEMUX_S2P_0		107
+> +#define RESET_DEMUX_S2P_1		108
+> +#define RESET_DEMUX_0			109
+> +#define RESET_DEMUX_1			110
+> +#define RESET_DEMUX_2			111
+> +/*					112-127	*/
+> +/*	RESET4					*/
+> +/*					128-129	*/
+> +#define RESET_MIPI_DSI_PHY		130
+> +/*					131-132	*/
+> +#define RESET_RDMA			133
+> +#define RESET_VENCI			134
+> +#define RESET_VENCP			135
+> +/*					136	*/
+> +#define RESET_VDAC			137
+> +/*					138-139 */
+> +#define RESET_VDI6			140
+> +#define RESET_VENCL			141
+> +#define RESET_I2C_M1			142
+> +#define RESET_I2C_M2			143
+> +/*					144-159	*/
+> +/*	RESET5					*/
+> +/*					160-191	*/
+> +/*	RESET6					*/
+> +#define RESET_GEN			192
+> +#define RESET_SPICC0			193
+> +#define RESET_SC			194
+> +#define RESET_SANA_3			195
+> +#define RESET_I2C_M0			196
+> +#define RESET_TS_PLL			197
+> +#define RESET_SPICC1			198
+> +#define RESET_STREAM			199
+> +#define RESET_TS_CPU			200
+> +#define RESET_UART0			201
+> +#define RESET_UART1_2			202
+> +#define RESET_ASYNC0			203
+> +#define RESET_ASYNC1			204
+> +#define RESET_SPIFC0			205
+> +#define RESET_I2C_M3			206
+> +/*					207-223	*/
+> +/*	RESET7					*/
+> +#define RESET_USB_DDR_0			224
+> +#define RESET_USB_DDR_1			225
+> +#define RESET_USB_DDR_2			226
+> +#define RESET_USB_DDR_3			227
+> +#define RESET_TS_GPU			228
+> +#define RESET_DEVICE_MMC_ARB		229
+> +#define RESET_DVALIN_DMC_PIPL		230
+> +#define RESET_VID_LOCK			231
+> +#define RESET_NIC_DMC_PIPL		232
+> +#define RESET_DMC_VPU_PIPL		233
+> +#define RESET_GE2D_DMC_PIPL		234
+> +#define RESET_HCODEC_DMC_PIPL		235
+> +#define RESET_WAVE420_DMC_PIPL		236
+> +#define RESET_HEVCF_DMC_PIPL		237
+> +/*					238-255	*/
+> +
+> +#endif
 > 
 
-Tested-by: Neil Armstrong <narmstrong@baylibre.com>
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
