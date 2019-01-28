@@ -2,110 +2,143 @@ Return-Path: <SRS0=PsYD=QE=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D1336C282CC
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 02:41:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EBBDEC282C8
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 09:10:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A11B720881
-	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 02:41:30 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B2B8D20989
+	for <linux-amlogic@archiver.kernel.org>; Mon, 28 Jan 2019 09:10:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qfrW7RTf";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=Synaptics.onmicrosoft.com header.i=@Synaptics.onmicrosoft.com header.b="FJnl228+"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A11B720881
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=synaptics.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="BDi/hvaE";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="j29qEjTo"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B2B8D20989
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
-	References:Message-ID:Date:Subject:To:From:Reply-To:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fgMTd5VPoorc7kSABBmIUMtnKwRrO+GFt7JS2dxFxTo=; b=qfrW7RTfnXT4OH
-	bDdb5I289By5V2SWvoPR6mOLzc5/ajA6krZ8LR9NDWopDo1S0ZNbIZUonhtKuZVeOQW5tzAXpbcUG
-	QGF+VZc1IuS1AqFqGM3kaXjf7AnvUkKkmEWd7nvt0VvbD7uUGTQEuHbwhN9Rvcgdezw1PgYAtr4+m
-	4PA38Ulnv2qkP3HioIW1A2AvVa4G6y03L4A9UfUluai4GhJPLiiBTNq07XWxT24IMqaO7r+dZUj4I
-	oSvnAaZYQKt9dv+Ys3BFdOBa787XtoyzFjM0g+ixtcgnfXB9WsmYr4PddP4K0zJRNPKJJSDxonWb8
-	3LAT+4TfOwl6d2ylDogA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ubjrskbrrPWkAx7P1gENB/o1TQwXaq4Bu/uUsTLjjks=; b=BDi/hvaEO39Op5
+	pkS3+t1KlWwoIpdQm/tqN3ebPHHNzC3A0/9VX4zMPxKemz30dtTuZeWDeu0bQsCHmiVsh24HmDor/
+	AKGo4HpwTp+pEPp+LNbdjCiYVfC8aFbCeTSSlaLaSLV7X0TD8PvKUw/RIKhciBTh2DDtqCvlEOmvf
+	j8TNO0aEU/c7M9Gd1F48X0E7rKrt8fGB9H2MnAjPoGTwDLCw69M6hz5z4feYR7GxB6EEOOq0dfnPq
+	nf/7VPJY+zGRmY0UAH4CbPkpdcJj2plg8nwzhGcWiF117m+3uw+S5bfnT2kBNs5cB6HPiOaQFaQzr
+	/yFo06zM6ajBBZ/IhZLQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gnwrQ-0006n1-N8; Mon, 28 Jan 2019 02:41:20 +0000
-Received: from mail-eopbgr800081.outbound.protection.outlook.com
- ([40.107.80.81] helo=NAM03-DM3-obe.outbound.protection.outlook.com)
+	id 1go2vq-0002GP-Df; Mon, 28 Jan 2019 09:10:18 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gnwrN-0006mS-04; Mon, 28 Jan 2019 02:41:18 +0000
+ id 1go2vm-0002G6-LN
+ for linux-amlogic@lists.infradead.org; Mon, 28 Jan 2019 09:10:16 +0000
+Received: by mail-wr1-x442.google.com with SMTP id v13so17078718wrw.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 28 Jan 2019 01:10:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Synaptics.onmicrosoft.com; s=selector1-synaptics-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=urVwT0/hws//l8OYAgzRy4wO/2fg0fzrwBbznoLPPeA=;
- b=FJnl228+aYEW/45K6k3l+k5HQfAbgzZ5QTOj50eUwx4NCrLHNn71iheIChSlIUevuYoYu+QzjXaAc/MaDha4vMECh/2KNRNEcO751kHCLUruLlRsmHOvXqLEgqqhnwwX7YQMqpiYMi340GHx5dSnCKwghIr8cd45BIcQEqPzDn0=
-Received: from BYAPR03MB4773.namprd03.prod.outlook.com (20.179.92.152) by
- BYAPR03MB4471.namprd03.prod.outlook.com (20.178.49.144) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.1558.16; Mon, 28 Jan 2019 02:41:12 +0000
-Received: from BYAPR03MB4773.namprd03.prod.outlook.com
- ([fe80::e1b2:2ee5:3d08:634e]) by BYAPR03MB4773.namprd03.prod.outlook.com
- ([fe80::e1b2:2ee5:3d08:634e%4]) with mapi id 15.20.1558.023; Mon, 28 Jan 2019
- 02:41:12 +0000
-From: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-To: Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH] arm64: dts: Remove inconsistent use of 'arm,armv8'
- compatible string
-Thread-Topic: [PATCH] arm64: dts: Remove inconsistent use of 'arm,armv8'
- compatible string
-Thread-Index: AQHUqFoOEouoq79y5EC8H02OXZaDA6XEE1iA
-Date: Mon, 28 Jan 2019 02:41:11 +0000
-Message-ID: <20190128103443.2b765f30@xhacker.debian>
-References: <20190109202934.29304-1-robh@kernel.org>
-In-Reply-To: <20190109202934.29304-1-robh@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [199.33.119.15]
-x-clientproxiedby: TY2PR0101CA0020.apcprd01.prod.exchangelabs.com
- (2603:1096:404:92::32) To BYAPR03MB4773.namprd03.prod.outlook.com
- (2603:10b6:a03:134::24)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Jisheng.Zhang@synaptics.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-x-ms-publictraffictype: Email
-x-microsoft-exchange-diagnostics: 1; BYAPR03MB4471;
- 6:qwTa3VA2LsA+TrpbgRe/VTYhovDxndzb6GjJuAc7lgpqJdzsUnq4vB9N0xav7SOr3ZNG0K5nTtDAVm1rH66FW7ZSq2qwyTSwrGdExshnEyYhwH4Bu2hUT8B3CZXYjfq3nWB07c2VkP2mGB1IV1qu6+CM9dTHkpIyKeT8uYKt7hClE5UNexrKlY+wIedQcBPrhlcXEbXJtEjnHKqaIIAVQg9h9IZTAd0G2GnouUC9C0kXMueQtD7nSjiDw+RkJ/e7n6w06tQCgGP9zQ4P0Qmkp9EpOh5GnSpWoWk78UkOajldS1XqIFA9jhpxIsJSItZ6Cw9G+rkTQbGNvxZ6PN3BWHVeNt1ajZUyewiMsL4A9zS7TZ5/RAPEX5bcNgRvduIp7kYNGY9ZDFBZXGyaFu0gNPIwkhpHvQdBrZEZsSu8zQasVYS6HzDQfh49La0d7h5YVJcaMh2qmRsUn+0Ig3E2IQ==;
- 5:2GVQ+YZYJi6voWZscMeIfcv3MmGnxMk1mFyHFzLxPid+OBymVeOATcyzckqGfBcTCGy2/rVI6LGIQixe2qX3f9I/RWJpDMgCU0Uus4ha2ESaGioS0VrnRIyWCAHrnERksSJA1en1AhNQzeMcrzwZftr2pMY+NmVvdtvjryfqwHQfbaGwwO4pv//xi4gDJ14mOCc8l7bb3eHYzKm1b0tlNg==;
- 7:wCkWZaoBJi0OHstmiUIBMYhX6AKbUaIJ+XeVJ8gJkzZsobt1fN5q5bposL7cavMQssNnYK9MgrVK9pminY8RMjW1lwfLyu7E+FJlxgWbTGagztDMq0xSdv97qWX/X1GivfYAoj+IGyR3Onr/lbaHxw==
-x-ms-office365-filtering-correlation-id: 36bde970-c1cf-44bb-1f83-08d684ca1073
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600110)(711020)(4605077)(2017052603328)(7153060)(7193020);
- SRVR:BYAPR03MB4471; 
-x-ms-traffictypediagnostic: BYAPR03MB4471:
-x-microsoft-antispam-prvs: <BYAPR03MB447101FA2D3B8FC37F60ECB2ED960@BYAPR03MB4471.namprd03.prod.outlook.com>
-x-forefront-prvs: 0931CB1479
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(366004)(346002)(376002)(136003)(39850400004)(396003)(189003)(199004)(486006)(53936002)(39060400002)(4326008)(256004)(72206003)(14454004)(6246003)(97736004)(478600001)(86362001)(54906003)(33896004)(316002)(76176011)(99286004)(105586002)(111086002)(52116002)(2906002)(106356001)(6486002)(186003)(7736002)(6436002)(71200400001)(6116002)(25786009)(7366002)(8676002)(81156014)(476003)(11346002)(7416002)(66066001)(446003)(81166006)(6512007)(9686003)(6916009)(50226002)(8936002)(1076003)(71190400001)(7406005)(102836004)(305945005)(3846002)(26005)(386003)(6506007)(68736007)(229853002)(142933001)(39210200001);
- DIR:OUT; SFP:1101; SCL:1; SRVR:BYAPR03MB4471;
- H:BYAPR03MB4773.namprd03.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:0; 
-received-spf: None (protection.outlook.com: synaptics.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 1w921yMBUd2AvVKtFLR+6zG+5snclyiyTidN7Y7yb/K0Uov5y+M47rHOShYKSgViiX3pILHK3PV/Gz/F4PVgS6pIHWxjU+zfbK2qFeWKiyBcPLjt+YmSyJvKNlsPAynaPufrpE9HUMvy2I3hOGSy3v9sQ8sk2N4yg4eln7UfI8eDgq6U1+Ulw3bhnpftz/Ff3wJWnPzTbJqU5XWnz/rndeHfn9Y5+EA453x6gtws8kz8SNME4CYJ7hTfDggeXT7GXC/xa7RNL5AHQV9knZYmwPKLfx2DX8K+nQ5NGnAYvKJEJyBXO/7uABfYXYGtIx+OfSVLh2E1mgHaYCqGUmBwnAPbxgkXPecgtQOqd+ZqFgaUBcvqNbc8K9MjuNuzooXUqZj/sGyXXu58wuTlgpJwtvLD3Q+p26KATZYATXTdC74=
-Content-ID: <351B42FC5B54A246AEE6DF57AF45078A@namprd03.prod.outlook.com>
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=vGjs1h5UxGDElJy+pqo4oLl+0ds9NUR3IfOqXTVnYHo=;
+ b=j29qEjToJ6gNOlkLktvn1syJJLSwoR8UBaP/eF1ZjEHGCMwwHwjTkojKHyf+4ziyAj
+ zE+97jH7mypc2syCmkvq2h9DMvSQnRYSz6dT1uIu+U1jYNcGEbHV5RdpOBonUanI4bH2
+ kf87EQH6h48EnV+UMQr3lG0KNbU1FpkJDFHq6IXntGibiXKPfughwUk3ab+nZxwjBuhD
+ OnP6wBbtkVNrgBVRkLyPiCLl719khcb5Oso0kpwVsuPZzN4tarQYRuJ9rbrHwOdR+qq0
+ Y3bn75tRr/RjX4iFiXIjy0nXV6Gx9P7mIdlggXa2V0XRjUd9784URbdxPTm5BEqvwkGG
+ enzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=vGjs1h5UxGDElJy+pqo4oLl+0ds9NUR3IfOqXTVnYHo=;
+ b=foOfHdI8u1xCsVZYmdqaU/4O+bOkOuDddX7VGECQ2jht1N+peV3lcecQTX+JqcoarK
+ O/CWE8eqAzVqjbz01Vq5GpH4nEkLMtU/cpgF9Puk2iM+OO4DYNF6RXV7V8/FtmkIGKYq
+ rWLkUTVjiH/ogEjukPGBiMC6DnKtZPoHHEB0ZCKEVpSMAq/dq4CkOmAE+5qtJYIKPqjh
+ +yTk8vb+arUxGOTY68w0Iu0yDpu4luNYNGBJNTR5rqnneRUAdyW2ksN7CpRo8KmSFi0U
+ 9CSLbLuuOup64Kzsh8vc/mnJWxxpUvTJGpvDKl7JvGfMjE7n4fcll5vxXyjMyQxPKq3l
+ H8CA==
+X-Gm-Message-State: AJcUuke1uZtUmdrLlcmvjIkqRyCu1WFes/T1lEYFsUTiQylQJjZKOSle
+ izIYURVsd7POSl2YZKBtr8gU3tkU2Yd7VA==
+X-Google-Smtp-Source: ALg8bN5/QmOvU7O46zyXSTepT8d1WO/wDVvh3fuGBH8yJpwQV6eN12Y9eG5JANKorp5KtXLLrv+Lrw==
+X-Received: by 2002:adf:9467:: with SMTP id 94mr20502221wrq.305.1548666611767; 
+ Mon, 28 Jan 2019 01:10:11 -0800 (PST)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id m15sm99699195wrr.95.2019.01.28.01.10.10
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 28 Jan 2019 01:10:11 -0800 (PST)
+Subject: Re: [PATCH u-boot 00/11] meson: add support for Video Output
+To: agust@denx.de, Tom Rini <trini@konsulko.com>
+References: <20190115161759.1657-1-narmstrong@baylibre.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <f18da31d-d1ac-efcb-099c-cdfcd225fd60@baylibre.com>
+Date: Mon, 28 Jan 2019 10:10:10 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.2.1
 MIME-Version: 1.0
-X-OriginatorOrg: synaptics.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 36bde970-c1cf-44bb-1f83-08d684ca1073
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jan 2019 02:40:58.0017 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 335d1fbc-2124-4173-9863-17e7051a2a0e
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR03MB4471
+In-Reply-To: <20190115161759.1657-1-narmstrong@baylibre.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190127_184117_069247_A70449A2 
-X-CRM114-Status: GOOD (  14.74  )
+X-CRM114-CacheID: sfid-20190128_011014_770342_5A35D4EF 
+X-CRM114-Status: GOOD (  20.89  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -117,144 +150,123 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Nishanth Menon <nm@ti.com>, Andrew Lunn <andrew@lunn.ch>,
- Heiko Stuebner <heiko@sntech.de>, Maxime Ripard <maxime.ripard@bootlin.com>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- Liviu Dudau <liviu.dudau@arm.com>, David Brown <david.brown@linaro.org>,
- Thierry Reding <thierry.reding@gmail.com>, Wei Xu <xuwei5@hisilicon.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Mark Rutland <mark.rutland@arm.com>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- "arm@kernel.org" <arm@kernel.org>,
- "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Magnus Damm <magnus.damm@gmail.com>, Michal Simek <michal.simek@xilinx.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
- "linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, Kukjin Kim <kgene@kernel.org>,
- "bcm-kernel-feedback-list@broadcom.com"
- <bcm-kernel-feedback-list@broadcom.com>, Baolin Wang <baolin.wang@linaro.org>,
- Andy Gross <andy.gross@linaro.org>, Orson Zhai <orsonzhai@gmail.com>,
- Tsahee Zidenberg <tsahee@annapurnalabs.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
- Jason Cooper <jason@lakedaemon.net>,
- Antoine Tenart <antoine.tenart@bootlin.com>, Ray Jui <rjui@broadcom.com>,
- Robert Richter <rrichter@cavium.com>, Simon Horman <horms@verge.net.au>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- Jayachandran C <jnair@caviumnetworks.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
- Will Deacon <will.deacon@arm.com>, Scott Branden <sbranden@broadcom.com>,
- Masahiro Yamada <yamada.masahiro@socionext.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>, Chanho Min <chanho.min@lge.com>,
- Duc Dang <dhdang@apm.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Tero Kristo <t-kristo@ti.com>, Dinh Nguyen <dinguyen@kernel.org>,
- Sudeep Holla <sudeep.holla@arm.com>, Jun Nie <jun.nie@linaro.org>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Shawn Guo <shawnguo@kernel.org>,
- =?iso-8859-1?Q?Andreas_F=E4rber?= <afaerber@suse.de>
+Cc: mjourdan@baylibre.com, u-boot@lists.denx.de,
+ linux-amlogic@lists.infradead.org, jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 9 Jan 2019 14:29:34 -0600
-Rob Herring <robh@kernel.org> wrote:
+Hi Anatolij, Tom,
 
-> The 'arm,armv8' compatible string is only for software models. It adds
-> little value otherwise and is inconsistently used as a fallback on some
-> platforms. Remove it from those platforms.
-> 
-> This fixes warnings generated by the DT schema.
-> 
-> Reported-by: Michal Simek <michal.simek@xilinx.com>
-> Cc: Mark Rutland <mark.rutland@arm.com>
-> Cc: Will Deacon <will.deacon@arm.com>
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> armsoc folks, Please apply directly.
-> 
-> Note that there's still a case left in msm8998 that needs a new 
-> compatible string.
-> 
-> Rob
-> 
->  arch/arm64/boot/dts/actions/s700.dtsi         |   8 +-
->  arch/arm64/boot/dts/actions/s900.dtsi         |   8 +-
->  arch/arm64/boot/dts/al/alpine-v2.dtsi         |   8 +-
->  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |   8 +-
->  arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi  |   8 +-
->  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |   8 +-
->  .../boot/dts/altera/socfpga_stratix10.dtsi    |   8 +-
->  arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |   8 +-
->  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi   |   8 +-
->  arch/arm64/boot/dts/amlogic/meson-gx.dtsi     |   8 +-
->  arch/arm64/boot/dts/amlogic/meson-gxm.dtsi    |   8 +-
->  arch/arm64/boot/dts/apm/apm-shadowcat.dtsi    |  16 +--
->  arch/arm64/boot/dts/apm/apm-storm.dtsi        |  16 +--
->  arch/arm64/boot/dts/arm/juno-r1.dts           |  12 +-
->  arch/arm64/boot/dts/arm/juno-r2.dts           |  12 +-
->  arch/arm64/boot/dts/arm/juno.dts              |  12 +-
->  .../boot/dts/arm/vexpress-v2f-1xv7-ca53x2.dts |   4 +-
->  .../boot/dts/broadcom/northstar2/ns2.dtsi     |   8 +-
->  .../boot/dts/broadcom/stingray/stingray.dtsi  |  16 +--
->  arch/arm64/boot/dts/cavium/thunder-88xx.dtsi  |  96 ++++++-------
->  arch/arm64/boot/dts/cavium/thunder2-99xx.dtsi |   8 +-
->  arch/arm64/boot/dts/exynos/exynos5433.dtsi    |  16 +--
->  arch/arm64/boot/dts/exynos/exynos7.dtsi       |   8 +-
->  arch/arm64/boot/dts/hisilicon/hi3660.dtsi     |  16 +--
->  arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |  16 +--
->  arch/arm64/boot/dts/hisilicon/hi6220.dtsi     |  16 +--
->  arch/arm64/boot/dts/hisilicon/hip05.dtsi      |  32 ++---
->  arch/arm64/boot/dts/hisilicon/hip06.dtsi      |  32 ++---
->  arch/arm64/boot/dts/hisilicon/hip07.dtsi      | 128 +++++++++---------
->  arch/arm64/boot/dts/lg/lg1312.dtsi            |   8 +-
->  arch/arm64/boot/dts/lg/lg1313.dtsi            |   8 +-
->  arch/arm64/boot/dts/marvell/armada-372x.dtsi  |   2 +-
->  arch/arm64/boot/dts/marvell/armada-37xx.dtsi  |   2 +-
->  .../boot/dts/marvell/armada-ap806-dual.dtsi   |   4 +-
->  .../boot/dts/marvell/armada-ap806-quad.dtsi   |   8 +-
->  .../marvell/armada-ap810-ap0-octa-core.dtsi   |  16 +--
->  arch/arm64/boot/dts/mediatek/mt7622.dtsi      |   4 +-
->  arch/arm64/boot/dts/nvidia/tegra132.dtsi      |   4 +-
->  arch/arm64/boot/dts/nvidia/tegra186.dtsi      |  12 +-
->  arch/arm64/boot/dts/nvidia/tegra194.dtsi      |  16 +--
->  arch/arm64/boot/dts/qcom/ipq8074.dtsi         |   8 +-
->  arch/arm64/boot/dts/qcom/msm8916.dtsi         |   8 +-
->  arch/arm64/boot/dts/qcom/msm8992.dtsi         |   2 +-
->  arch/arm64/boot/dts/qcom/msm8994.dtsi         |   2 +-
->  arch/arm64/boot/dts/realtek/rtd1295.dtsi      |   8 +-
->  arch/arm64/boot/dts/renesas/r8a774a1.dtsi     |  12 +-
->  arch/arm64/boot/dts/renesas/r8a7795.dtsi      |  16 +--
->  arch/arm64/boot/dts/renesas/r8a7796.dtsi      |  12 +-
->  arch/arm64/boot/dts/renesas/r8a77965.dtsi     |   4 +-
->  arch/arm64/boot/dts/renesas/r8a77970.dtsi     |   4 +-
->  arch/arm64/boot/dts/renesas/r8a77980.dtsi     |   8 +-
->  arch/arm64/boot/dts/renesas/r8a77990.dtsi     |   4 +-
->  arch/arm64/boot/dts/renesas/r8a77995.dtsi     |   2 +-
->  arch/arm64/boot/dts/rockchip/px30.dtsi        |   8 +-
->  arch/arm64/boot/dts/rockchip/rk3328.dtsi      |   8 +-
->  arch/arm64/boot/dts/rockchip/rk3368.dtsi      |  16 +--
->  arch/arm64/boot/dts/rockchip/rk3399.dtsi      |  12 +-
->  .../boot/dts/socionext/uniphier-ld11.dtsi     |   4 +-
->  .../boot/dts/socionext/uniphier-ld20.dtsi     |   8 +-
->  .../boot/dts/socionext/uniphier-pxs3.dtsi     |   8 +-
->  arch/arm64/boot/dts/sprd/sc9836.dtsi          |   8 +-
->  arch/arm64/boot/dts/sprd/sc9860.dtsi          |  16 +--
->  arch/arm64/boot/dts/synaptics/as370.dtsi      |   8 +-
->  arch/arm64/boot/dts/synaptics/berlin4ct.dtsi  |   8 +-
+Could you have a look at patches 2, 3 & 4 ?
+Is there a more dedicated reviewer for this ?
 
-For Synaptics SoC,
+Thanks,
+Neil
 
-Acked-by: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+On 15/01/2019 17:17, Neil Armstrong wrote:
+> This patchset adds support for CVBS and/or HDMI output for Amlogic
+> Meson GX SoCs (GXBB, GXL and GXM) based on the Linux Meson DRM driver
+> ported to the U-Boot Video DM model. It supports only the "DMT" video
+> modes reported by the monitors since AVI InfoFrame management is
+> missing from the U-Boot video model.
+> 
+> The port includes some changes in the dw-hdmi driver to support custom
+> PHY calls and support for the ColorSpace converter since the
+> Amlogic Meson GX video pipeline can only output un YUV444 mode, thus
+> activating the CSC is needed to output RGB for HDMI.
+> 
+> Video Support needs some tweaks in the DT like the u-boot,dm-pre-reloc for
+> the VPU node and a tweak to access the HHI registers from the DW-HDMI
+> glue driver. A port of a linux patch is also necessary to hook a regulator
+> to enable HDMI.
+> 
+> Finally, it enables console mux and console env for all Amlogic boards
+> and enabled Video Support for the Libre Computer AML-S905X-CC board.
+> 
+> Jorge Ramirez-Ortiz (2):
+>   video: dw_hdmi: support SoC specific read/write ops
+>   video: dw_hdmi: add support for color conversion
+> 
+> Maxime Jourdan (6):
+>   power: domain: meson-gx-pwrc-vpu: add missing depends
+>   arm64: dts: meson-gx: vpu should be probed before relocation
+>   arm64: dts: meson-gx: add hhi reg entry to hdmi_tx
+>   arm: meson: board-gx: Setup VPU in fdt
+>   arm: meson64: enable console mux and console env by default
+>   arm: libretech-cc: enable video by default
+> 
+> Neil Armstrong (3):
+>   video: Add Meson Video Processing Unit Driver
+>   arm64: dts: meson-gx: Add hdmi_5v regulator as hdmi tx supply
+>   configs: meson64: use vidconsole and usbkbd if enabled
+> 
+>  arch/arm/dts/meson-gx-u-boot.dtsi             |   21 +
+>  arch/arm/dts/meson-gxbb-nanopi-k2-u-boot.dtsi |    7 +
+>  arch/arm/dts/meson-gxbb-odroidc2-u-boot.dtsi  |    7 +
+>  .../meson-gxl-s905x-khadas-vim-u-boot.dtsi    |    7 +
+>  arch/arm/dts/meson-gxl-s905x-khadas-vim.dts   |    1 +
+>  .../meson-gxl-s905x-libretech-cc-u-boot.dtsi  |    7 +
+>  arch/arm/dts/meson-gxl-s905x-libretech-cc.dts |    1 +
+>  arch/arm/dts/meson-gxl-s905x-p212-u-boot.dtsi |    7 +
+>  arch/arm/dts/meson-gxl-s905x-p212.dts         |    1 +
+>  .../arm/dts/meson-gxm-khadas-vim2-u-boot.dtsi |    7 +
+>  arch/arm/dts/meson-gxm-khadas-vim2.dts        |    1 +
+>  arch/arm/include/asm/arch-meson/meson-vpu.h   |   13 +
+>  arch/arm/mach-meson/board-gx.c                |    5 +
+>  configs/khadas-vim2_defconfig                 |    2 +
+>  configs/khadas-vim_defconfig                  |    2 +
+>  configs/libretech-cc_defconfig                |    8 +
+>  configs/odroid-c2_defconfig                   |    2 +
+>  configs/p212_defconfig                        |    2 +
+>  drivers/power/domain/Kconfig                  |    2 +-
+>  drivers/video/Kconfig                         |    2 +
+>  drivers/video/Makefile                        |    1 +
+>  drivers/video/dw_hdmi.c                       |  267 ++-
+>  drivers/video/meson/Kconfig                   |   12 +
+>  drivers/video/meson/Makefile                  |    9 +
+>  drivers/video/meson/meson_canvas.c            |   45 +
+>  drivers/video/meson/meson_dw_hdmi.c           |  445 +++++
+>  drivers/video/meson/meson_dw_hdmi.h           |  134 ++
+>  drivers/video/meson/meson_plane.c             |  177 ++
+>  drivers/video/meson/meson_registers.h         | 1393 ++++++++++++++++
+>  drivers/video/meson/meson_vclk.c              |  893 ++++++++++
+>  drivers/video/meson/meson_venc.c              | 1464 +++++++++++++++++
+>  drivers/video/meson/meson_vpu.c               |  211 +++
+>  drivers/video/meson/meson_vpu.h               |   97 ++
+>  drivers/video/meson/meson_vpu_init.c          |  440 +++++
+>  drivers/video/meson/simplefb_common.c         |   29 +
+>  drivers/video/meson/simplefb_common.h         |   21 +
+>  include/configs/meson64.h                     |   23 +
+>  include/dw_hdmi.h                             |   74 +
+>  include/media_bus_format.h                    |  156 ++
+>  39 files changed, 5992 insertions(+), 4 deletions(-)
+>  create mode 100644 arch/arm/dts/meson-gx-u-boot.dtsi
+>  create mode 100644 arch/arm/dts/meson-gxbb-nanopi-k2-u-boot.dtsi
+>  create mode 100644 arch/arm/dts/meson-gxbb-odroidc2-u-boot.dtsi
+>  create mode 100644 arch/arm/dts/meson-gxl-s905x-khadas-vim-u-boot.dtsi
+>  create mode 100644 arch/arm/dts/meson-gxl-s905x-libretech-cc-u-boot.dtsi
+>  create mode 100644 arch/arm/dts/meson-gxl-s905x-p212-u-boot.dtsi
+>  create mode 100644 arch/arm/dts/meson-gxm-khadas-vim2-u-boot.dtsi
+>  create mode 100644 arch/arm/include/asm/arch-meson/meson-vpu.h
+>  create mode 100644 drivers/video/meson/Kconfig
+>  create mode 100644 drivers/video/meson/Makefile
+>  create mode 100644 drivers/video/meson/meson_canvas.c
+>  create mode 100644 drivers/video/meson/meson_dw_hdmi.c
+>  create mode 100644 drivers/video/meson/meson_dw_hdmi.h
+>  create mode 100644 drivers/video/meson/meson_plane.c
+>  create mode 100644 drivers/video/meson/meson_registers.h
+>  create mode 100644 drivers/video/meson/meson_vclk.c
+>  create mode 100644 drivers/video/meson/meson_venc.c
+>  create mode 100644 drivers/video/meson/meson_vpu.c
+>  create mode 100644 drivers/video/meson/meson_vpu.h
+>  create mode 100644 drivers/video/meson/meson_vpu_init.c
+>  create mode 100644 drivers/video/meson/simplefb_common.c
+>  create mode 100644 drivers/video/meson/simplefb_common.h
+>  create mode 100644 include/media_bus_format.h
+> 
 
-Sorry for being late,
-Jisheng
 
 _______________________________________________
 linux-amlogic mailing list
