@@ -4,19 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EAE17C169C4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 10:58:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F1994C169C4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 12:45:13 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B976D20882
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 10:58:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C02652087E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 12:45:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tH5omvRA"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B976D20882
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YewAP+UD"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C02652087E
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=canonical.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,22 +25,22 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
 	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=jVkQbvYMsKFiLDi8pc/tC64G9rWK+zID191BXZbdssg=; b=tH5omvRAE6Wn6c
-	l3kNU1r18RXRFURYFV1Gxc89B1MjC4n0By9OQknzKiC6zze3ARCRHLrHNKSSrF2YF/2s3Q8095S9c
-	dvsYjflPen0vKBC/WVALVqn3iS57+dbVj8nb064v9BEb8HnwpkXgtSCD0jk0KFOg/OZNwE08Nv3hV
-	rEUDnjK0QtGnMbqkEm2+F3se+IXEW3+5QKX3mPF+iTMTd8IavTWhagoUPUUFsVJCJalC+MLrembGl
-	NPonN9iq2SgN1QIepb8RddsDnlhQJ9tBAjI9wJUbgiq1C+5JXs5FVXQ3SpnkJG1Iv963wLy5h7agT
-	DIuIqY7EsRTLsm1yP67A==;
+	List-Owner; bh=1Sc6oPt8OEbyfYshnnIWOWwuDz64ijPOguH100emRWA=; b=YewAP+UDXFDjvu
+	k3zeagfFtHdq37Av8ck2zNnz36zydLbvBpEkaXO5FZgUwCv/0txiojxonxcFzAEihSyU2VzsniR1p
+	yO6WHgEvmbfH6Xh+FlAn9RfcndbKEcoh55SJXMFLsoUHeiFLSWKrd91bf7BAy8Mk8rPnIWDz2NeK8
+	CpHMIbmBKNtpukC2+PE2d7zkxYxhX3KSAHplP2iCbdW3HVAdst5EN0HdblQiE5LUIA0iI8n2OPFSX
+	9WD0kr+zzXp915rYeRRtFDB309f2n1w2BRVXn8lOk4mYoEKG0g7g0SV+6OvG7xiGGNW18vKEC+ql/
+	f9F8BMdkBHW5gZ9YCTsw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1goR6G-00005i-IB; Tue, 29 Jan 2019 10:58:40 +0000
+	id 1goSlF-0005ky-Ib; Tue, 29 Jan 2019 12:45:05 +0000
 Received: from youngberry.canonical.com ([91.189.89.112])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1goR5o-00083F-M5; Tue, 29 Jan 2019 10:58:14 +0000
+ id 1goSkm-0005Fc-Qg; Tue, 29 Jan 2019 12:44:38 +0000
 Received: from 1.general.cking.uk.vpn ([10.172.193.212] helo=localhost)
  by youngberry.canonical.com with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
  (Exim 4.76) (envelope-from <colin.king@canonical.com>)
- id 1goR5a-0007Ug-Ax; Tue, 29 Jan 2019 10:57:58 +0000
+ id 1goSkf-0003g1-Vd; Tue, 29 Jan 2019 12:44:30 +0000
 From: Colin King <colin.king@canonical.com>
 To: Liang Yang <liang.yang@amlogic.com>,
  Boris Brezillon <bbrezillon@kernel.org>,
@@ -50,15 +50,14 @@ To: Liang Yang <liang.yang@amlogic.com>,
  Marek Vasut <marek.vasut@gmail.com>, Kevin Hilman <khilman@baylibre.com>,
  linux-mtd@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org
-Subject: [PATCH][next] mtd: rawnand: meson: fix missing assignment of ret on a
- call to meson_chip_buffer_init
-Date: Tue, 29 Jan 2019 10:57:57 +0000
-Message-Id: <20190129105757.19138-1-colin.king@canonical.com>
+Subject: [PATCH][next] mtd: rawnand: meson:: make several functions static
+Date: Tue, 29 Jan 2019 12:44:29 +0000
+Message-Id: <20190129124429.19829-1-colin.king@canonical.com>
 X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190129_025812_855246_4C9A2A91 
-X-CRM114-Status: GOOD (  12.27  )
+X-CRM114-CacheID: sfid-20190129_044436_996149_1E6686C3 
+X-CRM114-Status: GOOD (  10.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -78,28 +77,64 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Colin Ian King <colin.king@canonical.com>
 
-The call to meson_chip_buffer_init is not assigning ret, however, ret
-is being checked for failure. Fix this by adding in the missing assignment.
+There are several functions that are local to the source and do
+not need to be in global scope, so make them static.
 
-Fixes: 2d570b34b41a ("mtd: rawnand: meson: add support for Amlogic NAND flash controller")
+Cleans up sparse warnings.
+
 Signed-off-by: Colin Ian King <colin.king@canonical.com>
 ---
- drivers/mtd/nand/raw/meson_nand.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/mtd/nand/raw/meson_nand.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-index e858d58d97b0..b9c543d1054c 100644
+index b9c543d1054c..9557bd94dcd2 100644
 --- a/drivers/mtd/nand/raw/meson_nand.c
 +++ b/drivers/mtd/nand/raw/meson_nand.c
-@@ -1206,7 +1206,7 @@ static int meson_nand_attach_chip(struct nand_chip *nand)
- 		dev_err(nfc->dev, "16bits bus width not supported");
- 		return -EINVAL;
- 	}
--	meson_chip_buffer_init(nand);
-+	ret = meson_chip_buffer_init(nand);
- 	if (ret)
- 		return -ENOMEM;
+@@ -829,14 +829,14 @@ static int meson_nfc_read_oob(struct nand_chip *nand, int page)
+ 	return meson_nfc_read_page_hwecc(nand, NULL, 1, page);
+ }
  
+-bool meson_nfc_is_buffer_dma_safe(const void *buffer)
++static bool meson_nfc_is_buffer_dma_safe(const void *buffer)
+ {
+ 	if (virt_addr_valid(buffer) && (!object_is_on_stack(buffer)))
+ 		return true;
+ 	return false;
+ }
+ 
+-void *
++static void *
+ meson_nand_op_get_dma_safe_input_buf(const struct nand_op_instr *instr)
+ {
+ 	if (WARN_ON(instr->type != NAND_OP_DATA_IN_INSTR))
+@@ -848,7 +848,7 @@ meson_nand_op_get_dma_safe_input_buf(const struct nand_op_instr *instr)
+ 	return kzalloc(instr->ctx.data.len, GFP_KERNEL);
+ }
+ 
+-void
++static void
+ meson_nand_op_put_dma_safe_input_buf(const struct nand_op_instr *instr,
+ 				     void *buf)
+ {
+@@ -863,7 +863,7 @@ meson_nand_op_put_dma_safe_input_buf(const struct nand_op_instr *instr,
+ 	kfree(buf);
+ }
+ 
+-void *
++static void *
+ meson_nand_op_get_dma_safe_output_buf(const struct nand_op_instr *instr)
+ {
+ 	if (WARN_ON(instr->type != NAND_OP_DATA_OUT_INSTR))
+@@ -876,7 +876,7 @@ meson_nand_op_get_dma_safe_output_buf(const struct nand_op_instr *instr)
+ 		       instr->ctx.data.len, GFP_KERNEL);
+ }
+ 
+-void
++static void
+ meson_nand_op_put_dma_safe_output_buf(const struct nand_op_instr *instr,
+ 				      const void *buf)
+ {
 -- 
 2.19.1
 
