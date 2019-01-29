@@ -2,83 +2,84 @@ Return-Path: <SRS0=Lc8Q=QF=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.9 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-11.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 47BC1C169C4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 14:11:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B6CD0C282C7
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 15:06:50 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1579021473
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 14:11:00 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 876182184D
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 15:06:50 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="T9J12/Pn";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EXl+S7ZE"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1579021473
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tzE2C6pf";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="oeTPzLfQ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 876182184D
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=z64SlhtgxvGEu5G390mCymdm0TD2xf83qKeDi9Kta8w=; b=T9J12/Pnsn3O6e
-	YDanKm54YM16L0rWXi4tJZeFuQEelCBol6nWIqcgOTjsYFoSbJUDTcLIPfncvRNusLxuPILPd++M9
-	pvm+XxcTJzn7UQUDV1cOCZjdp23XPCi/U3TUW0KNHF8/qGyMTt/2Nd7n6ArvESg8jTlHit0JyMd2K
-	eGqIZsfALqxCpTK2GnjkH4bt+pn/ICPZeh3w603l8dTDyKiZfjaWTFNeA8qwyRYlq0UqQb8NM6vEK
-	YEake9r8hgzAShHkeVnQsROw4YR0ssgeWh/L0gEyFTsoq4EqGcisJ9tKKTBERXyxZDmzmp1RBVSyN
-	xkFAbvfhHaNg6Rrdpm1A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=XHmYJ9Q8CEr19FeWyhshJVGtIo5RiNICFNsRrSrqk/k=; b=tzE2C6pf7S+5FN
+	I6Wwtygg2YqSFWwf6D2POWb67r+pRKzgPmy8pQ6dds4YeQkaGNXkGoXnFgFcf+Ct+Fnm423Vv45EA
+	DDg/mkGV0fX5N567YP4Oq6pX78mMjAY36FhGFmts9X2lrKJkeP2894r5EbfeSrX1rNSbxwU1IR+ME
+	YREctNwgt9Tvmzd9tX+P7E+KpF0Yef64ioQFXsAY+Fyxka10TVoM8e5sWz3QA32daSni/a/LtRq4y
+	7apjMDF1Z2OFW1aVJqCkrBedMLQQ0FpRQsZjl9vp3bzwezuRGEe3pYL5lW9LFpzvYwD+/ThQU4Zrm
+	bXZmUMjFmUPlgK6KbBUg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1goU6G-0006EP-KG; Tue, 29 Jan 2019 14:10:52 +0000
-Received: from mail-ot1-x342.google.com ([2607:f8b0:4864:20::342])
+	id 1goUyJ-0006WX-D9; Tue, 29 Jan 2019 15:06:43 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1goU6E-0006Dz-8l; Tue, 29 Jan 2019 14:10:51 +0000
-Received: by mail-ot1-x342.google.com with SMTP id u16so17950850otk.8;
- Tue, 29 Jan 2019 06:10:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=gU2ZEhyopkeXdOTOPy+kCaKJkggmiITencoUrx7FyNs=;
- b=EXl+S7ZEQKjdO3txQz74AYzQqAeSBok1zKvD96cNKPLQpwen23U3vvAiOEwiJXMEEG
- oU73mXLK7BOumPVvED06fjKCx9YXYh+UrJPJQ5YPMMvlYQIEyhNcPwg04ZuJY2wPpxrq
- 8omEuq9drr0/Lsis7bHNwd2OQCYKCEp9X+754Z39Trq11PJ+VpbbO4IaSrB2ou6rZjh8
- GFJbZMNuGOUQ1GkFimXNv9dGL1WykS1KfXoshoy2o64niYKvi8x6UQcSzABfjIWvHx3Y
- EoPW4fOQj3TFezfy8fQQ91p0cmkxfhcLQSC8ntu1ijEGPCCIQYtijYe1u0VXb54I9vSV
- e5EQ==
+ id 1goUxx-0006Bv-4r
+ for linux-amlogic@lists.infradead.org; Tue, 29 Jan 2019 15:06:26 +0000
+Received: by mail-wr1-x442.google.com with SMTP id r10so22417583wrs.10
+ for <linux-amlogic@lists.infradead.org>; Tue, 29 Jan 2019 07:06:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=OLlFYobvrVCEvJ/v10DiH4jgeYW49SGz+qMGFPAwork=;
+ b=oeTPzLfQ1PI6hEU7/MZAVvqosyQ5/M72gnKTRrcyWXR5C08A9baQ8QTRwTz5kkOx7D
+ 9eVhKYnCm0EEjS0eozWL17lh/RxYKvk/RGstvx+RKF+cgefQiNbLw7jfxgCWxzeMcRfL
+ At6FlPf6MpsQa8zRhYnjZCR0nV8jaieVHpze0aaQRT7RVGpAa1s7C9XGYYQQ4SymcLh0
+ eEHaPT11nRlBF3p8PmPq7KOcAsGuNcgt9Kbb69X8geSR3G6x3lF47kP+ABaA31cc1+Sy
+ AgSyYKsHp+fURKi+dh1PUJsAdKK2nPGBLpeMjPOLi14V4VTBvT6Ld0OBWisrUGdyvI+Z
+ bChw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=gU2ZEhyopkeXdOTOPy+kCaKJkggmiITencoUrx7FyNs=;
- b=F2F0L4E3N+JBywVrnFpXouIy1LYiwSxCfNVj5EqK4v97M28PD0zI4S4n5tDOkX+vJy
- mumNhE5NFZTtFTMag90SQMFmcmSJcKv14tcwU+xvDwDRaFjXn/hGoIqD50y5in08iA2D
- UwgPN83pHL+phql76cno0v79PzMkY3o/LBVESSJtid/7imoaiBEodUxqghJY0+viM2uy
- XzVDafW+gY9kMW1OIbUARWiBB0RaL5G3KKJSa2MTX35WQMllkLuFInabAZBWdy1fH6vR
- YZK9bWdBxmLiBL3qqDPfvae7j6B3VHyZcJwYZOxzFjooVRgZZStCNORMn5f/jYhGZSVw
- TzSQ==
-X-Gm-Message-State: AJcUukceeoGmumNhiJ/wt6n352JxJtWd71QF5HErKRNRvqLvvWqCg07S
- 7n9IWmKIB9lvR+ClAOzMbWGKjIgw0Rb1tCpc09o=
-X-Google-Smtp-Source: ALg8bN7xxqjjZx1W54SUdLzCnpGFk2dGZjl4zOYaaYV3yNm+hvyJaNQB272BR5O/qlYyIHWASYRpY8BL8cRhx6J4yuo=
-X-Received: by 2002:a9d:7a8c:: with SMTP id l12mr20069957otn.335.1548771049131; 
- Tue, 29 Jan 2019 06:10:49 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version;
+ bh=OLlFYobvrVCEvJ/v10DiH4jgeYW49SGz+qMGFPAwork=;
+ b=aF/KXasse4SeACiEpE7gENN48CjOShRErDIlcmkTA0I2nihvXFmiu5ZYIq6LUe1yjt
+ eVeqGYp+AmV+Ft3fj1Pakm5/mnx8prManj9sJ35GIUR44x8YuUOS3CL9JK9eMfJ2AUoh
+ opizVyDI5DhMVWW9chDbUg6EO72aGN74aogahrYNJ8xfHsyoUFP6QfwaYc0zU6KiRSqk
+ cwMzkilcuHsAlDxs9HVmi3WPmIROWVSDYMRdRr5TiesvFcMSutm0VEVNQYVMik8kaRc1
+ R5ue0KzNotYhxMmqzogbfblcYJUgpKk4JyfpqSmQm97OEjJZKGeWsNf2HKoPb3YwMfs2
+ CbSg==
+X-Gm-Message-State: AJcUukcsNbtGBg5Qynmhpg6WIHrOKAvsJBdqtCjC1Tp2TgRG+jVKFY6e
+ XJbB9Dqz4VJABzoCN8UYmJ1zsA==
+X-Google-Smtp-Source: ALg8bN4qMyOdqX0ZXW8+zv7IaYrO8aLSJ1pm8WZVte3+zfDZnOGYNDYFYJKGdySWTM7xrTBOLyzUVg==
+X-Received: by 2002:adf:80cf:: with SMTP id 73mr26225724wrl.57.1548774378089; 
+ Tue, 29 Jan 2019 07:06:18 -0800 (PST)
+Received: from localhost (aputeaux-684-1-12-29.w90-86.abo.wanadoo.fr.
+ [90.86.215.29])
+ by smtp.googlemail.com with ESMTPSA id l6sm107476541wrv.70.2019.01.29.07.06.16
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Tue, 29 Jan 2019 07:06:17 -0800 (PST)
+From: Kevin Hilman <khilman@baylibre.com>
+To: arm@kernel.org
+Subject: [GIT PULL] Amlogic fixes for v5.0-rc, round 2 (redo)
+Date: Tue, 29 Jan 2019 16:06:16 +0100
+Message-ID: <7h1s4vpkpj.fsf@baylibre.com>
 MIME-Version: 1.0
-References: <7hh8dsqyv8.fsf@baylibre.com>
- <CANAwSgQzXg0MW4bH=NpbxmZ6a0bf7rr0F4_gP+bDUMurJsA9bQ@mail.gmail.com>
- <7hk1inpxrh.fsf@baylibre.com>
-In-Reply-To: <7hk1inpxrh.fsf@baylibre.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Tue, 29 Jan 2019 19:40:37 +0530
-Message-ID: <CANAwSgQkkoj4U9ivptW=NJw0XH4UTqHE7m0-oGZMztou=6MWig@mail.gmail.com>
-Subject: Re: [GIT PULL] Amlogic fixes for v5.0-rc, round 2
-To: Kevin Hilman <khilman@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190129_061050_328583_8445AD8B 
-X-CRM114-Status: GOOD (  15.54  )
+X-CRM114-CacheID: sfid-20190129_070621_668933_BBAC28F9 
+X-CRM114-Status: GOOD (  10.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -90,75 +91,71 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, arm@kernel.org,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Kevin,
+Olof, Arnd,
 
-On Tue, 29 Jan 2019 at 15:54, Kevin Hilman <khilman@baylibre.com> wrote:
->
-> Anand Moon <linux.amoon@gmail.com> writes:
->
-> > Hi Kevin,
-> >
-> > On Tue, 29 Jan 2019 at 02:33, Kevin Hilman <khilman@baylibre.com> wrote:
-> >>
-> >> Olof, Arnd,
-> >>
-> >> Below is round 2 of Amlogic fixes for v5.0-rc, based on top of the first
-> >> round.
-> >>
-> >> Kevin
-> >>
-> >>
-> >> The following changes since commit 19a220dd1e8a1b1d8e5e2f8f4a25313c4b02d527:
-> >>
-> >>   arm64: defconfig: enable modules for amlogic s400 sound card (2019-01-08 15:27:50 -0800)
-> >>
-> >> are available in the Git repository at:
-> >>
-> >>   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-fixes-2
-> >>
-> >> for you to fetch changes up to c90c44d8aaf5895320da1621b0a502ed5528e437:
-> >>
-> >>   ARM64: dts: meson-gxbb-odroidc2: Fix usb phy reset warning (2019-01-17 14:40:45 -0800)
-> >>
-> >> ----------------------------------------------------------------
-> >> Amlogic fixes for v5.0-rc, round 2
-> >> - several fixups for the GPIO cd-inverted change
-> >> - IRQ trigger fixes for MAC IRQ
-> >> - USB PHY reset/power fixes
-> >>
-> >> ----------------------------------------------------------------
-> >> Anand Moon (2):
-> >>       ARM64: dts: meson-gxbb-odroidc2: Fix usb phy regulator power failed warning
-> >>       ARM64: dts: meson-gxbb-odroidc2: Fix usb phy reset warning
-> >>
-> >
-> > Sorry I would like to resend my patch again, just waiting for feedback
-> > on below patch.
-> >
-> > [0] https://www.spinics.net/lists/arm-kernel/msg701859.html
-> >
-> > I will resend send these patches.,
-> > so please drop above patches for now.
-> > Sorry for the trouble.
->
-> I already dropped your odroid-c1 (32-bit) patches as you requested, but
-> these are for odroid-c2 (64-bit). You want me to drop those also?
->
-> Kevin
+Below is a redo of round 2 of Amlogic fixes for v5.0-rc, based on top of
+the first round.
 
-Yes please, thanks!.
-I have resend with correct changes for review.
-Hope those will fix the issue for now.
+This drops the a couple fixes as requested by Anand Moon so he can
+rework them.
 
-Best Regards
--Anand
+Kevin
+
+
+The following changes since commit 19a220dd1e8a1b1d8e5e2f8f4a25313c4b02d527:
+
+  arm64: defconfig: enable modules for amlogic s400 sound card (2019-01-08 15:27:50 -0800)
+
+are available in the Git repository at:
+
+  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-fixes-2.1
+
+for you to fetch changes up to f29200c8b1e267b109242677ae7f2146c7682d14:
+
+  arm64: dts: meson: Fix mmc cd-gpios polarity (2019-01-14 07:59:40 -0800)
+
+----------------------------------------------------------------
+Amlogic fixes for v5.0-rc, round 2
+- several fixups for the GPIO cd-inverted change
+- IRQ trigger fixes for MAC IRQ
+
+----------------------------------------------------------------
+Carlo Caione (1):
+      arm: dts: meson: Fix IRQ trigger type for macirq
+
+Loys Ollivier (1):
+      arm64: dts: meson: Fix mmc cd-gpios polarity
+
+Martin Blumenstingl (3):
+      ARM: dts: meson8b: odroidc1: mark the SD card detection GPIO active-low
+      ARM: dts: meson8b: ec100: mark the SD card detection GPIO active-low
+      ARM: dts: meson8m2: mxiii-plus: mark the SD card detection GPIO active-low
+
+ arch/arm/boot/dts/meson.dtsi                                   | 2 +-
+ arch/arm/boot/dts/meson8b-ec100.dts                            | 3 +--
+ arch/arm/boot/dts/meson8b-odroidc1.dts                         | 4 +---
+ arch/arm/boot/dts/meson8m2-mxiii-plus.dts                      | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gx-p23x-q20x.dtsi            | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts           | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts         | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts            | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi               | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi           | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi              | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts   | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts    | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi          | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts          | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts            | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts             | 3 +--
+ 18 files changed, 18 insertions(+), 36 deletions(-)
 
 _______________________________________________
 linux-amlogic mailing list
