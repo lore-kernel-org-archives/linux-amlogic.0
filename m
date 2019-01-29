@@ -2,62 +2,83 @@ Return-Path: <SRS0=Lc8Q=QF=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.9 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F1994C169C4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 12:45:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 47BC1C169C4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 14:11:00 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C02652087E
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 12:45:13 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1579021473
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 14:11:00 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YewAP+UD"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C02652087E
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=canonical.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="T9J12/Pn";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EXl+S7ZE"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1579021473
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=1Sc6oPt8OEbyfYshnnIWOWwuDz64ijPOguH100emRWA=; b=YewAP+UDXFDjvu
-	k3zeagfFtHdq37Av8ck2zNnz36zydLbvBpEkaXO5FZgUwCv/0txiojxonxcFzAEihSyU2VzsniR1p
-	yO6WHgEvmbfH6Xh+FlAn9RfcndbKEcoh55SJXMFLsoUHeiFLSWKrd91bf7BAy8Mk8rPnIWDz2NeK8
-	CpHMIbmBKNtpukC2+PE2d7zkxYxhX3KSAHplP2iCbdW3HVAdst5EN0HdblQiE5LUIA0iI8n2OPFSX
-	9WD0kr+zzXp915rYeRRtFDB309f2n1w2BRVXn8lOk4mYoEKG0g7g0SV+6OvG7xiGGNW18vKEC+ql/
-	f9F8BMdkBHW5gZ9YCTsw==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=z64SlhtgxvGEu5G390mCymdm0TD2xf83qKeDi9Kta8w=; b=T9J12/Pnsn3O6e
+	YDanKm54YM16L0rWXi4tJZeFuQEelCBol6nWIqcgOTjsYFoSbJUDTcLIPfncvRNusLxuPILPd++M9
+	pvm+XxcTJzn7UQUDV1cOCZjdp23XPCi/U3TUW0KNHF8/qGyMTt/2Nd7n6ArvESg8jTlHit0JyMd2K
+	eGqIZsfALqxCpTK2GnjkH4bt+pn/ICPZeh3w603l8dTDyKiZfjaWTFNeA8qwyRYlq0UqQb8NM6vEK
+	YEake9r8hgzAShHkeVnQsROw4YR0ssgeWh/L0gEyFTsoq4EqGcisJ9tKKTBERXyxZDmzmp1RBVSyN
+	xkFAbvfhHaNg6Rrdpm1A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1goSlF-0005ky-Ib; Tue, 29 Jan 2019 12:45:05 +0000
-Received: from youngberry.canonical.com ([91.189.89.112])
+	id 1goU6G-0006EP-KG; Tue, 29 Jan 2019 14:10:52 +0000
+Received: from mail-ot1-x342.google.com ([2607:f8b0:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1goSkm-0005Fc-Qg; Tue, 29 Jan 2019 12:44:38 +0000
-Received: from 1.general.cking.uk.vpn ([10.172.193.212] helo=localhost)
- by youngberry.canonical.com with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
- (Exim 4.76) (envelope-from <colin.king@canonical.com>)
- id 1goSkf-0003g1-Vd; Tue, 29 Jan 2019 12:44:30 +0000
-From: Colin King <colin.king@canonical.com>
-To: Liang Yang <liang.yang@amlogic.com>,
- Boris Brezillon <bbrezillon@kernel.org>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, David Woodhouse <dwmw2@infradead.org>,
- Brian Norris <computersforpeace@gmail.com>,
- Marek Vasut <marek.vasut@gmail.com>, Kevin Hilman <khilman@baylibre.com>,
- linux-mtd@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
-Subject: [PATCH][next] mtd: rawnand: meson:: make several functions static
-Date: Tue, 29 Jan 2019 12:44:29 +0000
-Message-Id: <20190129124429.19829-1-colin.king@canonical.com>
-X-Mailer: git-send-email 2.19.1
+ id 1goU6E-0006Dz-8l; Tue, 29 Jan 2019 14:10:51 +0000
+Received: by mail-ot1-x342.google.com with SMTP id u16so17950850otk.8;
+ Tue, 29 Jan 2019 06:10:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=gU2ZEhyopkeXdOTOPy+kCaKJkggmiITencoUrx7FyNs=;
+ b=EXl+S7ZEQKjdO3txQz74AYzQqAeSBok1zKvD96cNKPLQpwen23U3vvAiOEwiJXMEEG
+ oU73mXLK7BOumPVvED06fjKCx9YXYh+UrJPJQ5YPMMvlYQIEyhNcPwg04ZuJY2wPpxrq
+ 8omEuq9drr0/Lsis7bHNwd2OQCYKCEp9X+754Z39Trq11PJ+VpbbO4IaSrB2ou6rZjh8
+ GFJbZMNuGOUQ1GkFimXNv9dGL1WykS1KfXoshoy2o64niYKvi8x6UQcSzABfjIWvHx3Y
+ EoPW4fOQj3TFezfy8fQQ91p0cmkxfhcLQSC8ntu1ijEGPCCIQYtijYe1u0VXb54I9vSV
+ e5EQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=gU2ZEhyopkeXdOTOPy+kCaKJkggmiITencoUrx7FyNs=;
+ b=F2F0L4E3N+JBywVrnFpXouIy1LYiwSxCfNVj5EqK4v97M28PD0zI4S4n5tDOkX+vJy
+ mumNhE5NFZTtFTMag90SQMFmcmSJcKv14tcwU+xvDwDRaFjXn/hGoIqD50y5in08iA2D
+ UwgPN83pHL+phql76cno0v79PzMkY3o/LBVESSJtid/7imoaiBEodUxqghJY0+viM2uy
+ XzVDafW+gY9kMW1OIbUARWiBB0RaL5G3KKJSa2MTX35WQMllkLuFInabAZBWdy1fH6vR
+ YZK9bWdBxmLiBL3qqDPfvae7j6B3VHyZcJwYZOxzFjooVRgZZStCNORMn5f/jYhGZSVw
+ TzSQ==
+X-Gm-Message-State: AJcUukceeoGmumNhiJ/wt6n352JxJtWd71QF5HErKRNRvqLvvWqCg07S
+ 7n9IWmKIB9lvR+ClAOzMbWGKjIgw0Rb1tCpc09o=
+X-Google-Smtp-Source: ALg8bN7xxqjjZx1W54SUdLzCnpGFk2dGZjl4zOYaaYV3yNm+hvyJaNQB272BR5O/qlYyIHWASYRpY8BL8cRhx6J4yuo=
+X-Received: by 2002:a9d:7a8c:: with SMTP id l12mr20069957otn.335.1548771049131; 
+ Tue, 29 Jan 2019 06:10:49 -0800 (PST)
 MIME-Version: 1.0
+References: <7hh8dsqyv8.fsf@baylibre.com>
+ <CANAwSgQzXg0MW4bH=NpbxmZ6a0bf7rr0F4_gP+bDUMurJsA9bQ@mail.gmail.com>
+ <7hk1inpxrh.fsf@baylibre.com>
+In-Reply-To: <7hk1inpxrh.fsf@baylibre.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Tue, 29 Jan 2019 19:40:37 +0530
+Message-ID: <CANAwSgQkkoj4U9ivptW=NJw0XH4UTqHE7m0-oGZMztou=6MWig@mail.gmail.com>
+Subject: Re: [GIT PULL] Amlogic fixes for v5.0-rc, round 2
+To: Kevin Hilman <khilman@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190129_044436_996149_1E6686C3 
-X-CRM114-Status: GOOD (  10.66  )
+X-CRM114-CacheID: sfid-20190129_061050_328583_8445AD8B 
+X-CRM114-Status: GOOD (  15.54  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -69,75 +90,75 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: linux-amlogic@lists.infradead.org, arm@kernel.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Colin Ian King <colin.king@canonical.com>
+Hi Kevin,
 
-There are several functions that are local to the source and do
-not need to be in global scope, so make them static.
+On Tue, 29 Jan 2019 at 15:54, Kevin Hilman <khilman@baylibre.com> wrote:
+>
+> Anand Moon <linux.amoon@gmail.com> writes:
+>
+> > Hi Kevin,
+> >
+> > On Tue, 29 Jan 2019 at 02:33, Kevin Hilman <khilman@baylibre.com> wrote:
+> >>
+> >> Olof, Arnd,
+> >>
+> >> Below is round 2 of Amlogic fixes for v5.0-rc, based on top of the first
+> >> round.
+> >>
+> >> Kevin
+> >>
+> >>
+> >> The following changes since commit 19a220dd1e8a1b1d8e5e2f8f4a25313c4b02d527:
+> >>
+> >>   arm64: defconfig: enable modules for amlogic s400 sound card (2019-01-08 15:27:50 -0800)
+> >>
+> >> are available in the Git repository at:
+> >>
+> >>   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-fixes-2
+> >>
+> >> for you to fetch changes up to c90c44d8aaf5895320da1621b0a502ed5528e437:
+> >>
+> >>   ARM64: dts: meson-gxbb-odroidc2: Fix usb phy reset warning (2019-01-17 14:40:45 -0800)
+> >>
+> >> ----------------------------------------------------------------
+> >> Amlogic fixes for v5.0-rc, round 2
+> >> - several fixups for the GPIO cd-inverted change
+> >> - IRQ trigger fixes for MAC IRQ
+> >> - USB PHY reset/power fixes
+> >>
+> >> ----------------------------------------------------------------
+> >> Anand Moon (2):
+> >>       ARM64: dts: meson-gxbb-odroidc2: Fix usb phy regulator power failed warning
+> >>       ARM64: dts: meson-gxbb-odroidc2: Fix usb phy reset warning
+> >>
+> >
+> > Sorry I would like to resend my patch again, just waiting for feedback
+> > on below patch.
+> >
+> > [0] https://www.spinics.net/lists/arm-kernel/msg701859.html
+> >
+> > I will resend send these patches.,
+> > so please drop above patches for now.
+> > Sorry for the trouble.
+>
+> I already dropped your odroid-c1 (32-bit) patches as you requested, but
+> these are for odroid-c2 (64-bit). You want me to drop those also?
+>
+> Kevin
 
-Cleans up sparse warnings.
+Yes please, thanks!.
+I have resend with correct changes for review.
+Hope those will fix the issue for now.
 
-Signed-off-by: Colin Ian King <colin.king@canonical.com>
----
- drivers/mtd/nand/raw/meson_nand.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-index b9c543d1054c..9557bd94dcd2 100644
---- a/drivers/mtd/nand/raw/meson_nand.c
-+++ b/drivers/mtd/nand/raw/meson_nand.c
-@@ -829,14 +829,14 @@ static int meson_nfc_read_oob(struct nand_chip *nand, int page)
- 	return meson_nfc_read_page_hwecc(nand, NULL, 1, page);
- }
- 
--bool meson_nfc_is_buffer_dma_safe(const void *buffer)
-+static bool meson_nfc_is_buffer_dma_safe(const void *buffer)
- {
- 	if (virt_addr_valid(buffer) && (!object_is_on_stack(buffer)))
- 		return true;
- 	return false;
- }
- 
--void *
-+static void *
- meson_nand_op_get_dma_safe_input_buf(const struct nand_op_instr *instr)
- {
- 	if (WARN_ON(instr->type != NAND_OP_DATA_IN_INSTR))
-@@ -848,7 +848,7 @@ meson_nand_op_get_dma_safe_input_buf(const struct nand_op_instr *instr)
- 	return kzalloc(instr->ctx.data.len, GFP_KERNEL);
- }
- 
--void
-+static void
- meson_nand_op_put_dma_safe_input_buf(const struct nand_op_instr *instr,
- 				     void *buf)
- {
-@@ -863,7 +863,7 @@ meson_nand_op_put_dma_safe_input_buf(const struct nand_op_instr *instr,
- 	kfree(buf);
- }
- 
--void *
-+static void *
- meson_nand_op_get_dma_safe_output_buf(const struct nand_op_instr *instr)
- {
- 	if (WARN_ON(instr->type != NAND_OP_DATA_OUT_INSTR))
-@@ -876,7 +876,7 @@ meson_nand_op_get_dma_safe_output_buf(const struct nand_op_instr *instr)
- 		       instr->ctx.data.len, GFP_KERNEL);
- }
- 
--void
-+static void
- meson_nand_op_put_dma_safe_output_buf(const struct nand_op_instr *instr,
- 				      const void *buf)
- {
--- 
-2.19.1
-
+Best Regards
+-Anand
 
 _______________________________________________
 linux-amlogic mailing list
