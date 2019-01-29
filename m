@@ -2,89 +2,68 @@ Return-Path: <SRS0=Lc8Q=QF=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6FCD4C169C4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 15:14:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 498E6C169C4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 18:05:12 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4154C21874
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 15:14:04 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1C0E921848
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 18:05:12 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iKxhzkd4";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="bOAusRFS"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4154C21874
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HTPVUUc4";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="EtuQZhH5"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1C0E921848
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Date:To:Message-ID:In-Reply-To:From:
+	References:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=h1wCwSuZtYGZHAMn4YZJ5ovKQcyHOrJjnLWXRIfRKCs=; b=iKxhzkd4pPD48u
-	PgSlniEJHP5G8o3tF0X/sRQxBYyHC4fnkCH25wzy1bf7lYfDBK2SND8EHuSu47Sm7jZOjLwpvYHuq
-	ZTWh3pPrtnPc0MiEua2e/HRSyyxNqs4n51QbZVr/GcFxCeCTcnTc2v7C2HBOoC7zrUnCmCci/n0/Y
-	gMpJw6bVscwIyVLNPz24AeXmGvlmiMWLU86OdX+5/xnav5F6IuWOsHrgfMxaBRouArQ1/I+J8oiiU
-	qg4gg8EwULgozHr6LrY4n+q4TB40+zlIKEwywsR23DuUQtEmlU6ym/yzhv2TaRHT5ASFM9755vJ9c
-	hNJsuaZbhDCbCxhhmrMQ==;
+	List-Owner; bh=lEK3XGiHmhiX7BRhLRikslT+2O4cRFnkBBc5aIr/XaQ=; b=HTPVUUc4baDpGJ
+	ow/cTv8NN0Jxl3sQDOcpOFa85JfxeFAjTAcBLu30r74pniUn7o6JQuKfNu9atS+Wccu77N0S36k39
+	usA1LQdIH4ARl/eYCo1AB7yAV29jQIpPfgrhFqfqtTo8/awf2pgX4ZkTaOcqVWrKhD7INAnE6QYvz
+	DWcNUAXNODbDuEQUZIK2cs/fqTXUBvKsLvMbhIzJq1cg3hQhSkun1fCgGfybqFfhJ2JcS/ZOt3wM5
+	OtR10VsVhahuKSsYY4f8s4Zopl4jsNQevgPXkkr2hAk0jqSjalEXWXApl7Z3W1Bd86rVTOAM9Qjla
+	kQmeotPEyykj1M6uByyw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1goV5K-0000xJ-ME; Tue, 29 Jan 2019 15:13:58 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1goXku-0001cL-DG; Tue, 29 Jan 2019 18:05:04 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1goV5G-0000wK-Sa
- for linux-amlogic@lists.infradead.org; Tue, 29 Jan 2019 15:13:56 +0000
-Received: by mail-wr1-x444.google.com with SMTP id q18so22465689wrx.9
- for <linux-amlogic@lists.infradead.org>; Tue, 29 Jan 2019 07:13:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=27crw1VW5sqn8gRQ6TWrOWNRWUldhuowUTumXA1nqng=;
- b=bOAusRFSOPtEKq4C8UeENp2l/pPZj8gJ/TYRPuoOwYr1LoRqgyEI6IH1vIBEu8Cl0U
- WWkp4GNnaAh4Hd1iUtv3xJLHTCpGbPfMh/cB/n/aaCgM1RBIVzEQrO65eq7I064FcCWm
- 8uW4aHhU7eVxp+h54tdN13R090KJSCeBiyjKYUiFqGkpK8ynpzOhmZCyMq8tgF9+saPk
- MERDTQiWAisPGseeq2hpTspASF3qVW6i37tq5M+v+vID3Wu4R4SspBIPaJHbDB3cyq/T
- zvH7yPn0vcDsabzRv5Y4bFbr1GQ3P1Sie0o0mdUsYiq/XANsIn8Dm61WSQm54fRvDwva
- +KPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=27crw1VW5sqn8gRQ6TWrOWNRWUldhuowUTumXA1nqng=;
- b=GxgAy4SLAf0eL16AZ0L051FSMANDI0TtxEqmF7MWF5KcGsJNLAPyA/XG2sV8eHkhE+
- Md6evuy495/fpKbc0rQaTOnHBrhqWK6krHBdGA/8F2+wxxDXWIqM5Q7EBC4P++Que/RI
- 4puRgIflHDLsxcyZ1yhyJGLszcflcEBV8WskJWedtmZoOrjqkQ5VaeDB1ntLohY1svub
- a9hRTBTdRp/2i4/cVZ1JEyz6Mw86UHQRjkhuvSRKw0kTQMrADsCDge5zC49K2OuaIfRg
- xTNukjQsg9P56/aK9nGGh/SJIiOcQK7VgCj2+9KCX01LiMptYxqkzSvypXtPPMeunt/R
- peew==
-X-Gm-Message-State: AJcUukfMLWMVeZjVjiZWK2gc2kXGVn/c9+Nr/Cxb/c8IAmU+5C/XPzBO
- laRFQAORIhUFBaImzAnCak/SJL1A7tNo8g==
-X-Google-Smtp-Source: ALg8bN4JoDbGF5m3o8wSNKcglTTPjDs67NF019Xv9tBJBkyZ1Q0u+igBmp7STQr0l8cn/zNYqhqSCw==
-X-Received: by 2002:a5d:418b:: with SMTP id m11mr24467282wrp.8.1548774833067; 
- Tue, 29 Jan 2019 07:13:53 -0800 (PST)
-Received: from localhost (aputeaux-684-1-12-29.w90-86.abo.wanadoo.fr.
- [90.86.215.29])
- by smtp.googlemail.com with ESMTPSA id k128sm4715177wmd.37.2019.01.29.07.13.52
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Tue, 29 Jan 2019 07:13:52 -0800 (PST)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Anand Moon <linux.amoon@gmail.com>
-Subject: Re: [GIT PULL] Amlogic fixes for v5.0-rc, round 2
-In-Reply-To: <CANAwSgQkkoj4U9ivptW=NJw0XH4UTqHE7m0-oGZMztou=6MWig@mail.gmail.com>
-References: <7hh8dsqyv8.fsf@baylibre.com>
- <CANAwSgQzXg0MW4bH=NpbxmZ6a0bf7rr0F4_gP+bDUMurJsA9bQ@mail.gmail.com>
- <7hk1inpxrh.fsf@baylibre.com>
- <CANAwSgQkkoj4U9ivptW=NJw0XH4UTqHE7m0-oGZMztou=6MWig@mail.gmail.com>
-Date: Tue, 29 Jan 2019 16:13:51 +0100
-Message-ID: <7hmunjo5sg.fsf@baylibre.com>
+ id 1goXkr-0001XL-Ex; Tue, 29 Jan 2019 18:05:02 +0000
+Received: from localhost (unknown [104.132.0.74])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id A9F6621848;
+ Tue, 29 Jan 2019 18:05:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1548785100;
+ bh=/0MckasgqQJ/KD2MVKBvKpBYnZf749g0hqFHF7Q6ugE=;
+ h=Subject:References:Cc:From:In-Reply-To:To:Date:From;
+ b=EtuQZhH5S7Jt5X39Vn6nIl1wQjXoLV/fGCwx7xD0XHJYSMdwkFvI6tQAP2NpV3pK1
+ kOK4BiUJlUVCPm0tGNQaBjgx98RLyIj6gCpz4nqObNLewNEoB+w3NWwRThLA/Qud1S
+ wplb8AI53+IMvC7vEFcf1P+Ko92BM/X5xXAP+mHE=
 MIME-Version: 1.0
+Subject: Re: [PATCH 04/14] clk: meson: move MESON_GATE to clk-regmap.h
+References: <20190128180430.28689-1-jbrunet@baylibre.com>
+ <20190128180430.28689-5-jbrunet@baylibre.com>
+User-Agent: alot/0.8
+From: Stephen Boyd <sboyd@kernel.org>
+In-Reply-To: <20190128180430.28689-5-jbrunet@baylibre.com>
+Message-ID: <154878509992.136743.15892625146758066106@swboyd.mtv.corp.google.com>
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>
+Date: Tue, 29 Jan 2019 10:04:59 -0800
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190129_071354_953524_2C4A38B9 
-X-CRM114-Status: UNSURE (   9.34  )
+X-CRM114-CacheID: sfid-20190129_100501_521906_6C2E326E 
+X-CRM114-Status: UNSURE (   4.19  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -97,50 +76,21 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, arm@kernel.org,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Cc: Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Anand Moon <linux.amoon@gmail.com> writes:
+Quoting Jerome Brunet (2019-01-28 10:04:20)
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
 
-[...]
+And also make clk-regmap.c a module? Having any commit text would be
+good.
 
->> >> ----------------------------------------------------------------
->> >> Amlogic fixes for v5.0-rc, round 2
->> >> - several fixups for the GPIO cd-inverted change
->> >> - IRQ trigger fixes for MAC IRQ
->> >> - USB PHY reset/power fixes
->> >>
->> >> ----------------------------------------------------------------
->> >> Anand Moon (2):
->> >>       ARM64: dts: meson-gxbb-odroidc2: Fix usb phy regulator power failed warning
->> >>       ARM64: dts: meson-gxbb-odroidc2: Fix usb phy reset warning
->> >>
->> >
->> > Sorry I would like to resend my patch again, just waiting for feedback
->> > on below patch.
->> >
->> > [0] https://www.spinics.net/lists/arm-kernel/msg701859.html
->> >
->> > I will resend send these patches.,
->> > so please drop above patches for now.
->> > Sorry for the trouble.
->>
->> I already dropped your odroid-c1 (32-bit) patches as you requested, but
->> these are for odroid-c2 (64-bit). You want me to drop those also?
-
-> Yes please, thanks!.
-> I have resend with correct changes for review.
-> Hope those will fix the issue for now.
-
-OK, I've dropped them and sent a redo of this round 2 pull request.
-
-Arnd, Olof, please ignore this one.  "round 2 (redo)" just sent.
-
-Kevin
 
 _______________________________________________
 linux-amlogic mailing list
