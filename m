@@ -7,136 +7,83 @@ X-Spam-Status: No, score=-11.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 49C20C169C4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 10:22:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 226D8C169C4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 10:24:40 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 199CD2148E
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 10:22:26 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E73E321473
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 10:24:39 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QjgB4L0t";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="rjqxMCou"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 199CD2148E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Fl5il3jT";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="NMSowhbE"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E73E321473
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:To:Subject
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=A06y6yhq47ohMHhuynXicZxKihlSKHw0fJLuJ5Lg6m8=; b=QjgB4L0t7kbRwH
-	A756k5wGDg8Pq3JcsniyxSRr/Zf9RA9MwA6gdshHo1djR6OZ7KYuaDbQxDLMya1x0XdNB4ksgLwzH
-	hA/XoPbmExJQtbuqrkXLVD1Bhk+kSo5X3JB2AwRb6klAZav3INFnLt+ypnneFuAMs8uxUdzzwykL5
-	K9dOgi5L7s+fTWljom5dZLRKb9oFKRQfb75RfuNzPTAaZdpB040ccycsQqA8cTE8RpeKHzsBF63JJ
-	wmPH30fILs1Rb2kalb4nyYhQoiNXZCDEZ3jOaedxiOMixp/Y7EDfNE0CQ1u7IokZFnD3BRc8/e61k
-	iFLksaRhQERK/iBkLd4g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Mxt5EYzt2LjFsnR+C0MqpMIheVYI1rPOVe24gQAMSxs=; b=Fl5il3jTIx78L4
+	j9LPu5cWeVmn9eIDL4tXPlBLdVdryx7qxPnkv6MFMev/e6pb1X2ki+Moob2yXglWt74fpBATC7/Vb
+	YNqr3xnFPiGkoPGEO/v6VF2Zy5NQJBuFuwc7KDIupocbJ/IT/bB8Q+8emGPWgebHBU2uluZG4ow1/
+	Dr2M5mYaZKgjfjug4d+6Be+QXy4HaUEuhuYgZYT8rGBYPHYoc4uPFQtLw9ApkSozTXVqkTrY2ZrAJ
+	Zxurs6JTmubW8hQLb+hJMhI0qvWB+C//wJW58JrJX2j4qlzqHtZxI0q1GZZpfdsSeCebTtRBlMFEP
+	YNa7sqTqJqlwPgyf5gFg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1goQX6-0007uh-6L; Tue, 29 Jan 2019 10:22:20 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1goQZG-0000YP-IL; Tue, 29 Jan 2019 10:24:34 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1goQX4-0007uG-7X
- for linux-amlogic@lists.infradead.org; Tue, 29 Jan 2019 10:22:19 +0000
-Received: by mail-wr1-x443.google.com with SMTP id l9so21321385wrt.13
- for <linux-amlogic@lists.infradead.org>; Tue, 29 Jan 2019 02:22:17 -0800 (PST)
+ id 1goQZ4-0000MG-Ql
+ for linux-amlogic@lists.infradead.org; Tue, 29 Jan 2019 10:24:24 +0000
+Received: by mail-wr1-x441.google.com with SMTP id l9so21328766wrt.13
+ for <linux-amlogic@lists.infradead.org>; Tue, 29 Jan 2019 02:24:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:subject:to:cc:openpgp:autocrypt:organization:message-id:date
- :user-agent:mime-version:content-language:content-transfer-encoding;
- bh=UReCA8aX4LyNJ5554td2K/q8wdjj401ZTwgOTAMu5A8=;
- b=rjqxMCoul6V3WH1rB4bh1fA/I6ph523p8kbz7Y1srcpNFa096kDPKFhyCG8r1q2ntl
- Tcq3y/CjTC08DrOt88byF8sfvRyRYWkMFoxgIldkYMHN6oohdVf9Pwkoop/cO6Z70isP
- WY6oGkQRON6CTxjmSIZDRpmipn1FR/PkxO8rWuOx6bwoabfe8Dj9WGd3zHm37uJd+lzz
- m0KkAGGDWOgN4tVMEM/qxSKAZyMUbgbNfJ0IIt3TNjbY4HeDq4DCRs2JOEet1sgZsdkb
- MgK8OqtRFnDrIDkoojMJBDXJ9V3kJI91TdZkYgAAmdmA4OGp/JsqhhUL6MDsOMRbkuZ4
- Wcrg==
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=XIWwWKt6+oCOO6cq2DZHb0F9eETVOES12psz3Sr+1T8=;
+ b=NMSowhbEAadq0sol8vCSD6RPOw6gzLfVzMboboIzUBYoBTZEkL0uv73xb2H7pHY+9i
+ FmXZ9lTnYyTw4DNIdyJ0TRNqGTVteuB2uxG++EfKMEPhTHJZnkUpkVDa7xUOV8KURJ3s
+ Y+Kzp9mRZHkB+C3hXPhpWCPjXGQlAr/nta2QcIT5gCb7CAE7xOHmsJsKDTH+j4ZzX4ep
+ //p1w8nerEUkGGfkni2Cqz/AZgac+EKRulTvQih8iL2LrR7qX3Ul4cuTOAqsU99JPrHy
+ g8okrIHedoFg8w4ztgiVVWOps9Qa4XiJgTYKbY8Hk+GLTk220ADZDKoV8pRLmncyQbwR
+ 9Tuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:subject:to:cc:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version
- :content-language:content-transfer-encoding;
- bh=UReCA8aX4LyNJ5554td2K/q8wdjj401ZTwgOTAMu5A8=;
- b=Mi0G0nEJNMqWXLKLU4qOJ4S2lqGwXmL4TbNAhs7g6X1cVDjrPL/HU3AXT3As0gaVd/
- M8t8lesdZOQmMhbiiYM9usG10cbMQy04dY6w5T7wR4qZyqqQBp2JSInSaxOYlo4tUDKV
- 1rlfzlgj72hlOoKm/bqqrdwVsLuQS1GrzCRXujqafmHrf4fND5FoYQMhn6ScJHU19EZ6
- /xmj1jDVMW2KZtJXoFw5I+Oxlh88StmvQpivlFM+x2zXuKcjUzEM4xIT394qJ7bZ8+5O
- FgjXyX+/w2WsVDCFo0/SnvQPPrsMEurKx1D1WcPZQBJ95iHRVojMI2TAmNEBOUuYbIbz
- lyVw==
-X-Gm-Message-State: AJcUukdxLDVubuCWhlSeJsrRg9fUL6ARTEkoXGXfQCTRDv+fRtuM3cVi
- WlraB0ekIExCMTkwrPxHSxho/A==
-X-Google-Smtp-Source: ALg8bN45uKGhu1pUERKS7dNXIV18OAhgdc95ffJlq4/pxyzRG+wLEpIf1OAeisaDV58S4wOLvyWjkQ==
-X-Received: by 2002:adf:8001:: with SMTP id 1mr24388256wrk.23.1548757336090;
- Tue, 29 Jan 2019 02:22:16 -0800 (PST)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id o81sm4325263wmd.10.2019.01.29.02.22.15
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 29 Jan 2019 02:22:15 -0800 (PST)
-From: Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PULL u-boot] Please pull u-boot-amlogic-20190129
-To: trini@konsulko.com
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <65195f2f-1a96-babe-a08d-aa9f2899de33@baylibre.com>
-Date: Tue, 29 Jan 2019 11:22:15 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.2.1
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=XIWwWKt6+oCOO6cq2DZHb0F9eETVOES12psz3Sr+1T8=;
+ b=de19OSEcQGYGYjbxiXnDEdDExwtNQ8h+gQ+UUivPC00sg3Kx7aKJwOliNAkqM+pPyQ
+ exMQN6FiKbd3beWLH0bcBHkgILqWt3gTYrjfx0+wdshXPd9j/75WO/w77e0kx20P+Jq6
+ HCQgiUpjypVon4VrR1CYbEuL4lFk+fRleIKu0w/poNDO7Axp3DSZOEDVf3qaXFBvNBNr
+ Mf7ggYI7T70YLcVli522478PB7T9w77189s0oEAHYYXrOJyE9zKSk3ZkDMfyiDspSAA4
+ ZWGcG4m6Zwf/50wVCpbcE12ctY4buY+kfxqvueDHKE32tcnPrjGNhD5Mnb7tbwfFt4Ne
+ /WAQ==
+X-Gm-Message-State: AJcUukeZ5uT4oCarIqBok/DcWlm16O/ajJ6rp4VSOAOpYUJw1mRnQq+H
+ kGy+JnWsxlGev/9WJiaDT+CKFw==
+X-Google-Smtp-Source: ALg8bN6YajtzxgYWfRDSV2s0O4N8XF9CMQ3zgRKk1+I8NpKTZ+iAvmK5GNgDrfA9guKccz3fDOGXfg==
+X-Received: by 2002:adf:dfd1:: with SMTP id q17mr26692099wrn.27.1548757459920; 
+ Tue, 29 Jan 2019 02:24:19 -0800 (PST)
+Received: from localhost (aputeaux-684-1-12-29.w90-86.abo.wanadoo.fr.
+ [90.86.215.29])
+ by smtp.googlemail.com with ESMTPSA id 129sm3442270wmd.18.2019.01.29.02.24.18
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Tue, 29 Jan 2019 02:24:19 -0800 (PST)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Anand Moon <linux.amoon@gmail.com>
+Subject: Re: [GIT PULL] Amlogic fixes for v5.0-rc, round 2
+In-Reply-To: <CANAwSgQzXg0MW4bH=NpbxmZ6a0bf7rr0F4_gP+bDUMurJsA9bQ@mail.gmail.com>
+References: <7hh8dsqyv8.fsf@baylibre.com>
+ <CANAwSgQzXg0MW4bH=NpbxmZ6a0bf7rr0F4_gP+bDUMurJsA9bQ@mail.gmail.com>
+Date: Tue, 29 Jan 2019 11:24:18 +0100
+Message-ID: <7hk1inpxrh.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190129_022218_271619_4D9558C8 
-X-CRM114-Status: GOOD (  11.34  )
+X-CRM114-CacheID: sfid-20190129_022422_868475_B15EE89E 
+X-CRM114-Status: GOOD (  10.72  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -148,47 +95,64 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org,
- U-Boot Mailing List <u-boot@lists.denx.de>
+Cc: linux-amlogic@lists.infradead.org, arm@kernel.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Tom,
+Anand Moon <linux.amoon@gmail.com> writes:
 
-Here is single patch adding support for pinconf on the amlogic pinctrl driver,
-fixed after a build failure report from Anatolij.
-This PR replaces u-boot-amlogic-20190128.
+> Hi Kevin,
+>
+> On Tue, 29 Jan 2019 at 02:33, Kevin Hilman <khilman@baylibre.com> wrote:
+>>
+>> Olof, Arnd,
+>>
+>> Below is round 2 of Amlogic fixes for v5.0-rc, based on top of the first
+>> round.
+>>
+>> Kevin
+>>
+>>
+>> The following changes since commit 19a220dd1e8a1b1d8e5e2f8f4a25313c4b02d527:
+>>
+>>   arm64: defconfig: enable modules for amlogic s400 sound card (2019-01-08 15:27:50 -0800)
+>>
+>> are available in the Git repository at:
+>>
+>>   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-fixes-2
+>>
+>> for you to fetch changes up to c90c44d8aaf5895320da1621b0a502ed5528e437:
+>>
+>>   ARM64: dts: meson-gxbb-odroidc2: Fix usb phy reset warning (2019-01-17 14:40:45 -0800)
+>>
+>> ----------------------------------------------------------------
+>> Amlogic fixes for v5.0-rc, round 2
+>> - several fixups for the GPIO cd-inverted change
+>> - IRQ trigger fixes for MAC IRQ
+>> - USB PHY reset/power fixes
+>>
+>> ----------------------------------------------------------------
+>> Anand Moon (2):
+>>       ARM64: dts: meson-gxbb-odroidc2: Fix usb phy regulator power failed warning
+>>       ARM64: dts: meson-gxbb-odroidc2: Fix usb phy reset warning
+>>
+>
+> Sorry I would like to resend my patch again, just waiting for feedback
+> on below patch.
+>
+> [0] https://www.spinics.net/lists/arm-kernel/msg701859.html
+>
+> I will resend send these patches.,
+> so please drop above patches for now.
+> Sorry for the trouble.
 
-Thanks,
-Neil
+I already dropped your odroid-c1 (32-bit) patches as you requested, but
+these are for odroid-c2 (64-bit). You want me to drop those also?
 
-The following changes since commit 0da90255083681a02b24528f80da9d4062ff634a:
-
-  Merge branch '2019-01-25-master-imports' (2019-01-26 22:47:55 -0500)
-
-are available in the Git repository at:
-
-  git://git.denx.de/u-boot-amlogic.git tags/u-boot-amlogic-20190129
-
-for you to fetch changes up to c4c726c26bdc09a2c907e230fdf6c75adcc2b674:
-
-  pinctrl: meson: add pinconf support (2019-01-29 11:19:15 +0100)
-
-----------------------------------------------------------------
-Adds pinconf support for the Amlogic pinctrl driver (fixed)
-
-----------------------------------------------------------------
-Jerome Brunet (1):
-      pinctrl: meson: add pinconf support
-
- drivers/pinctrl/meson/Kconfig                 |   1 +
- drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c |  10 +++
- drivers/pinctrl/meson/pinctrl-meson-gx-pmx.c  |  10 +++
- drivers/pinctrl/meson/pinctrl-meson.c         | 101 ++++++++++++++++++++++++--
- drivers/pinctrl/meson/pinctrl-meson.h         |   8 ++
- 5 files changed, 123 insertions(+), 7 deletions(-)
+Kevin
 
 _______________________________________________
 linux-amlogic mailing list
