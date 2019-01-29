@@ -2,83 +2,81 @@ Return-Path: <SRS0=Lc8Q=QF=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-11.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EA4D8C169C4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 10:18:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 49C20C169C4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 10:22:26 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B32B821473
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 10:18:57 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 199CD2148E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 10:22:26 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZBU5YrNz";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="f0bpQZ9V"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B32B821473
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QjgB4L0t";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="rjqxMCou"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 199CD2148E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=b3JRWAZHY6roy2ul1l6gAj6BXle4Fgtjnvx18tyJKVk=; b=ZBU5YrNzt1SJc1
-	FxdTRpf37vunL72eLWkSXk4KvZuV5Kn2AwclRL8HAs+H+ZGZFm52VKHUpkgGdnN8LaFHBkKI4JA/1
-	3zFfFvl48IxpstCL1XZ+CoyYqfRQq8c8EoSt3EcbKnWCeG0cUPMmpRmfQEZoDMOmRS4XkOmACk7Lk
-	+VqdQlW9NVcihjPAIn/w5bzBvK6MdOTg6aJlJZxzbFzUsNzfIUr5ma0HcgzZn344PqhuCwiDQyaDi
-	iHOp1KkNuq8bx+zaf9PdqBFQmMXm4k7nlX2LsmYF6WDusA7msw0pCGEgW1LMnP0LbF9YC43cCxj2F
-	LtcvS5co5Z5rpRvASpGw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:To:Subject
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=A06y6yhq47ohMHhuynXicZxKihlSKHw0fJLuJ5Lg6m8=; b=QjgB4L0t7kbRwH
+	A756k5wGDg8Pq3JcsniyxSRr/Zf9RA9MwA6gdshHo1djR6OZ7KYuaDbQxDLMya1x0XdNB4ksgLwzH
+	hA/XoPbmExJQtbuqrkXLVD1Bhk+kSo5X3JB2AwRb6klAZav3INFnLt+ypnneFuAMs8uxUdzzwykL5
+	K9dOgi5L7s+fTWljom5dZLRKb9oFKRQfb75RfuNzPTAaZdpB040ccycsQqA8cTE8RpeKHzsBF63JJ
+	wmPH30fILs1Rb2kalb4nyYhQoiNXZCDEZ3jOaedxiOMixp/Y7EDfNE0CQ1u7IokZFnD3BRc8/e61k
+	iFLksaRhQERK/iBkLd4g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1goQTk-0006Ac-Sv; Tue, 29 Jan 2019 10:18:52 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1goQX6-0007uh-6L; Tue, 29 Jan 2019 10:22:20 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1goQTg-0006A0-M1
- for linux-amlogic@lists.infradead.org; Tue, 29 Jan 2019 10:18:50 +0000
-Received: by mail-wm1-x334.google.com with SMTP id p6so17061569wmc.1
- for <linux-amlogic@lists.infradead.org>; Tue, 29 Jan 2019 02:18:47 -0800 (PST)
+ id 1goQX4-0007uG-7X
+ for linux-amlogic@lists.infradead.org; Tue, 29 Jan 2019 10:22:19 +0000
+Received: by mail-wr1-x443.google.com with SMTP id l9so21321385wrt.13
+ for <linux-amlogic@lists.infradead.org>; Tue, 29 Jan 2019 02:22:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=UmXHTUDFsHxZQ5Qi6Fyo17cNdftcV+H++bCwy+qrk9s=;
- b=f0bpQZ9VDIVN7DLVzJYZbPkSwQM0qDTzq0bcDc0YcNuMGiS//LoGyHCzniWSgg23CO
- 2sg0RLjdgoxynt9I70EkEiiRmlR2dKVwzCr41g2eQ+Cbps9Fs+7rAgKiR2RNUWy5CrQd
- bfhP5bKtSctt10WT9KkbDYsZEbPSi5YG9GJ6Td0ZYeaLRvIvJDcxPyF8InwS+c2W/iOL
- QRLJ9Le8Jw+h+vVTzL7Le5P2oamTtBpTakZ0zZWtYcjpsngRl3Z7pnYyrLID5zp363O4
- R0GVWQmlMEjP7g2ojYInQF4jM2SGarPJ/ivTiEjZ2joQQsy/M55UjTmcMSlU72cfKcZR
- 1TAQ==
+ h=from:subject:to:cc:openpgp:autocrypt:organization:message-id:date
+ :user-agent:mime-version:content-language:content-transfer-encoding;
+ bh=UReCA8aX4LyNJ5554td2K/q8wdjj401ZTwgOTAMu5A8=;
+ b=rjqxMCoul6V3WH1rB4bh1fA/I6ph523p8kbz7Y1srcpNFa096kDPKFhyCG8r1q2ntl
+ Tcq3y/CjTC08DrOt88byF8sfvRyRYWkMFoxgIldkYMHN6oohdVf9Pwkoop/cO6Z70isP
+ WY6oGkQRON6CTxjmSIZDRpmipn1FR/PkxO8rWuOx6bwoabfe8Dj9WGd3zHm37uJd+lzz
+ m0KkAGGDWOgN4tVMEM/qxSKAZyMUbgbNfJ0IIt3TNjbY4HeDq4DCRs2JOEet1sgZsdkb
+ MgK8OqtRFnDrIDkoojMJBDXJ9V3kJI91TdZkYgAAmdmA4OGp/JsqhhUL6MDsOMRbkuZ4
+ Wcrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
+ h=x-gm-message-state:from:subject:to:cc:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version
  :content-language:content-transfer-encoding;
- bh=UmXHTUDFsHxZQ5Qi6Fyo17cNdftcV+H++bCwy+qrk9s=;
- b=EziEmoo4KUjOi+Byn8MajLjWsXRnCJ8K5FAK30Y3sDoEfcZVAkKdYiItchZCVI1g6E
- fsiWc9815ag/sNrgSjTY8W9u54frHhdXHmz9sePGQVtpVWlt3yunoY4aF639Q/6X+0b7
- +IXw8YCgRYADSfvpWnHseX+Bi9gkecAg4rwVvUW37Sr/zwnE8ZgABtgtrEzqN7iDYakF
- 6WGSrvEN3zqF3A83lg98SaPyc0tVZ4d4ctU3swym/lADnYxYksLe6Ehb26FKhh4BuFpF
- PXKfjX9KON+fSHfVfmdonfFYrUY7TVmquKbzM6PAr4veegx2+QTO5XrzwKxQmMGcDoft
- yY5A==
-X-Gm-Message-State: AJcUukc7GPFwSKrjpQ3KJsQNU7ntoBgtoeKzgMBio7EAM64Wj3kTr9Sc
- YKKgMS6qUZ2sIW7Vs0tESeOZ4A==
-X-Google-Smtp-Source: ALg8bN636stFvr3vL8FhcTX4roPaSwGMY+ZKW9bRbDZXL7I/R0fwxEXWNxeD2HGYeZcVeEEZ7hCiGA==
-X-Received: by 2002:a1c:7706:: with SMTP id t6mr19454168wmi.57.1548757125986; 
- Tue, 29 Jan 2019 02:18:45 -0800 (PST)
+ bh=UReCA8aX4LyNJ5554td2K/q8wdjj401ZTwgOTAMu5A8=;
+ b=Mi0G0nEJNMqWXLKLU4qOJ4S2lqGwXmL4TbNAhs7g6X1cVDjrPL/HU3AXT3As0gaVd/
+ M8t8lesdZOQmMhbiiYM9usG10cbMQy04dY6w5T7wR4qZyqqQBp2JSInSaxOYlo4tUDKV
+ 1rlfzlgj72hlOoKm/bqqrdwVsLuQS1GrzCRXujqafmHrf4fND5FoYQMhn6ScJHU19EZ6
+ /xmj1jDVMW2KZtJXoFw5I+Oxlh88StmvQpivlFM+x2zXuKcjUzEM4xIT394qJ7bZ8+5O
+ FgjXyX+/w2WsVDCFo0/SnvQPPrsMEurKx1D1WcPZQBJ95iHRVojMI2TAmNEBOUuYbIbz
+ lyVw==
+X-Gm-Message-State: AJcUukdxLDVubuCWhlSeJsrRg9fUL6ARTEkoXGXfQCTRDv+fRtuM3cVi
+ WlraB0ekIExCMTkwrPxHSxho/A==
+X-Google-Smtp-Source: ALg8bN45uKGhu1pUERKS7dNXIV18OAhgdc95ffJlq4/pxyzRG+wLEpIf1OAeisaDV58S4wOLvyWjkQ==
+X-Received: by 2002:adf:8001:: with SMTP id 1mr24388256wrk.23.1548757336090;
+ Tue, 29 Jan 2019 02:22:16 -0800 (PST)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id p10sm57052491wrt.25.2019.01.29.02.18.45
+ by smtp.gmail.com with ESMTPSA id o81sm4325263wmd.10.2019.01.29.02.22.15
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 29 Jan 2019 02:18:45 -0800 (PST)
-Subject: Re: [U-Boot] [PULL u-boot] Please pull u-boot-amlogic-20190128
-To: Anatolij Gustschin <agust@denx.de>
-References: <e2aa97d7-bd82-ba11-c881-5eb6861a12cc@baylibre.com>
- <20190129111441.23a51645@crub>
+ Tue, 29 Jan 2019 02:22:15 -0800 (PST)
 From: Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PULL u-boot] Please pull u-boot-amlogic-20190129
+To: trini@konsulko.com
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -130,16 +128,15 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <a28cc1ad-beb6-0cca-ef37-07e244bfaef2@baylibre.com>
-Date: Tue, 29 Jan 2019 11:18:44 +0100
+Message-ID: <65195f2f-1a96-babe-a08d-aa9f2899de33@baylibre.com>
+Date: Tue, 29 Jan 2019 11:22:15 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.2.1
 MIME-Version: 1.0
-In-Reply-To: <20190129111441.23a51645@crub>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190129_021848_726104_1ADE8862 
-X-CRM114-Status: GOOD (  12.73  )
+X-CRM114-CacheID: sfid-20190129_022218_271619_4D9558C8 
+X-CRM114-Status: GOOD (  11.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -151,51 +148,47 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: U-Boot Mailing List <u-boot@lists.denx.de>, trini@konsulko.com,
- linux-amlogic@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org,
+ U-Boot Mailing List <u-boot@lists.denx.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Hi Tom,
 
-On 29/01/2019 11:14, Anatolij Gustschin wrote:
-> Hi Neil,
-> 
-> On Mon, 28 Jan 2019 14:09:13 +0100
-> Neil Armstrong narmstrong@baylibre.com wrote:
-> ...
->> ----------------------------------------------------------------
->> Adds pinconf support for the Amlogic pinctrl driver
->>
->> ----------------------------------------------------------------
->> Jerome Brunet (1):
->>       pinctrl: meson: add pinconf support
->>
->>  drivers/pinctrl/meson/Kconfig                 |   1 +
->>  drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c |  10 +++
-> 
-> This change breaks building, please see error log here [1].
-> I think, a comma is missing after
-> 
->  .pinconf_params = meson_axg_pinconf_params
-> 
-> Please fix.
-
-Thanks for reporting,
-I'm fixing it and I'll push another PR.
+Here is single patch adding support for pinconf on the amlogic pinctrl driver,
+fixed after a build failure report from Anatolij.
+This PR replaces u-boot-amlogic-20190128.
 
 Thanks,
 Neil
 
-> 
-> [1] https://travis-ci.org/trini/u-boot/jobs/485695412#L1033
-> 
-> --
-> Anatolij
-> 
+The following changes since commit 0da90255083681a02b24528f80da9d4062ff634a:
 
+  Merge branch '2019-01-25-master-imports' (2019-01-26 22:47:55 -0500)
+
+are available in the Git repository at:
+
+  git://git.denx.de/u-boot-amlogic.git tags/u-boot-amlogic-20190129
+
+for you to fetch changes up to c4c726c26bdc09a2c907e230fdf6c75adcc2b674:
+
+  pinctrl: meson: add pinconf support (2019-01-29 11:19:15 +0100)
+
+----------------------------------------------------------------
+Adds pinconf support for the Amlogic pinctrl driver (fixed)
+
+----------------------------------------------------------------
+Jerome Brunet (1):
+      pinctrl: meson: add pinconf support
+
+ drivers/pinctrl/meson/Kconfig                 |   1 +
+ drivers/pinctrl/meson/pinctrl-meson-axg-pmx.c |  10 +++
+ drivers/pinctrl/meson/pinctrl-meson-gx-pmx.c  |  10 +++
+ drivers/pinctrl/meson/pinctrl-meson.c         | 101 ++++++++++++++++++++++++--
+ drivers/pinctrl/meson/pinctrl-meson.h         |   8 ++
+ 5 files changed, 123 insertions(+), 7 deletions(-)
 
 _______________________________________________
 linux-amlogic mailing list
