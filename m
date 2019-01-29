@@ -2,68 +2,87 @@ Return-Path: <SRS0=Lc8Q=QF=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
-	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.9 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9357BC169C4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 18:09:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 381C5C169C4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 21:47:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6902D21848
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 18:09:24 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0161520882
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Jan 2019 21:47:41 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UdPTQbSt";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="f9qXvm99"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6902D21848
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YAdTT8CB";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O1Z2U+FF"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0161520882
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:To:Message-ID:In-Reply-To:From:
-	References:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1tliSY/BLPM6hndNPF6Pi/rOMPvIle2DDhygP8R2pas=; b=UdPTQbStDhuhix
-	R47H4NUQRB2O1Tlo6UwyLbLnwZ8G6DSEAu9TA8uEqYcS0CdH+oB95otxllJAVrcMYOfBULh+eacNL
-	7YdT1WO8vlffrAk8ySKQxF9ifzCfQPNM+Z67cqFvg+39fA6rlE5qxEusbyFOjoC4w1Z8zr77qhj3b
-	4Am9Y7D46bmeU1hNTHw4PHe6iEvHESSpYTTKTB2MTQcWRJgdY3v+HW6OZnBjBFMNM1r6fk7ldYGBd
-	zhA+rYzhmvJgQyTinRNVWcVfpHyfGe1KeVZkk5hF4faf7eBjbGJ3Xgs424BUq9yf/zz3dT/J6WMFD
-	zFAuURsB+ASEQtH8DcMw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=45fawhnFo3pn4EgROPEnHgtZDYEw/n2Ia+4TbxP8n6Q=; b=YAdTT8CBgisJ48
+	hrwi1CgMTbQf+bvYzQMBbw3xoGKHkJa4uYvDgBAj91okrYSevhnbuvSPfRU+NPLrElZRBZh4xkZ/B
+	33T0yYZrHIOWORPjtdD28rhs36ufE3uJDb2tmEYn0Aep2ihYe414auffRKPo6X/4fpPbAlH5b0Ysu
+	RkSHX6ugXAXm70rYLIUAwRseGqPKJl8oOw0mp943x6T/5GhVTdw5GIStvnftlIIzaSbZY/90jYGrR
+	G8wWP3L2xnSz4N68FFfpINKP8sWuekH5h51SSSss8i2BJNezHliIyOaxPSwNUFHTBW0McrXckWWjX
+	+QUcG7tCtBNJ/rRFVf1w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1goXp1-0005TB-D4; Tue, 29 Jan 2019 18:09:19 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1gobE9-0000mB-MJ; Tue, 29 Jan 2019 21:47:29 +0000
+Received: from mail-ed1-x544.google.com ([2a00:1450:4864:20::544])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1goXoy-0005Si-64; Tue, 29 Jan 2019 18:09:17 +0000
-Received: from localhost (unknown [104.132.0.74])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id C00DC2084A;
- Tue, 29 Jan 2019 18:09:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1548785355;
- bh=VkDWohIUenCSmi9fACRiHhRgqBorJR6nclSPdr+2RTs=;
- h=Subject:References:Cc:From:In-Reply-To:To:Date:From;
- b=f9qXvm99ZMZhTWgYI1q+gleMChm6HixUeTL9EhMS7/Ws+3CqA28jh6ILM43noIppx
- VFIXZ1qDRS5A8Xmdux7V/zADLocuzbQcRjGuVSbZiGcH54yidfAdTD8R+pzpyRN4d1
- nlmX2oStBM3gx99tICOIhZHDiYUDIoap8uWseBmM=
+ id 1gobDn-0000Nc-4m; Tue, 29 Jan 2019 21:47:08 +0000
+Received: by mail-ed1-x544.google.com with SMTP id b3so17372731ede.1;
+ Tue, 29 Jan 2019 13:47:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=n8XV4iq9rA+fxnqZgdrOpJNvxbAjFgBIFBi+69D7N30=;
+ b=O1Z2U+FFs/xXdhyfCIX4vQ/y60cjlT6HDkQbbCzsFOYaAYRvGEkqWzMxH11eUvLywW
+ gBC+m1/yoJuwnGH7V1gi5rIVNPCWa+nNl1hC7Sd+KBIMIbbX5SBL+9onypPIPsR2noru
+ HnKTU1rdKKgFWt+ypI5KA39EYIQyXaSjgBiBKTTmFcXMgPw5MJCzTEJs+z790N1/x+8t
+ +S2rcqQ3F+CTQvGHasCuk7VWgQGkoerq+fzYx2HRoIETjKXC/Lq6o+vIH07RMxm/o1b9
+ m7r70uUp9Gw+59LBw9u7Q5j8kOD7XcvLQlSqTqs3L8PuLVaZqZ0rPG10CIHFAtvwhSXD
+ +BAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=n8XV4iq9rA+fxnqZgdrOpJNvxbAjFgBIFBi+69D7N30=;
+ b=GuZrZwNsowWznfwlPWjsmHOzPTOqCFjOIOx2lUQrQUtgLOnmURCkxhhjjwaJK1kn8R
+ u8bOYtsIVP+uXVj+6eJqILFCxZ5Fakhw0Dmf8QqndBKtjru5wmWOseTZCtszzJapRzmF
+ W3QlPf0sggnqfQA1xPa4nnoQjQAapezEhJZuLNnsU6P7+bCNWNrrYl1aFusoP2gMSMen
+ YiHCL4iZ0Nydq+j0Fr5FBJ1uPrYoFfU7C3aIzTTak5Lv11iAcq7A0xA5R3UuX3DlVmOH
+ UfSjpw7Ciniu8gnEmtrC6v+/t3l3mS6GMV30a0109SmPmx1tyRPFBWUxHRGyQLpLUo7G
+ 7ZTw==
+X-Gm-Message-State: AJcUukfHWa+0OJ0UKhaIM2b9mI6gZjC8Vqg7gdOQyBIbsHWIuZFATCHF
+ q6hvHcz3VL8NanH/hhCQbHY=
+X-Google-Smtp-Source: ALg8bN47o6Rqe+uaZF9wFXjaoxci4e+cXndEnBBvjiH+TT4ecdA3X+dxfIjNsZrcwc7TRCDv49DITw==
+X-Received: by 2002:a50:8d12:: with SMTP id s18mr27666403eds.32.1548798424905; 
+ Tue, 29 Jan 2019 13:47:04 -0800 (PST)
+Received: from localhost.localdomain ([2a01:4f9:2a:1fae::2])
+ by smtp.gmail.com with ESMTPSA id y16sm8342edb.41.2019.01.29.13.47.03
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 29 Jan 2019 13:47:03 -0800 (PST)
+From: Nathan Chancellor <natechancellor@gmail.com>
+To: Liang Yang <liang.yang@amlogic.com>,
+ Boris Brezillon <bbrezillon@kernel.org>,
+ Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH] mtd: rawnand: meson: Fix linking error on 32-bit platforms
+Date: Tue, 29 Jan 2019 14:46:57 -0700
+Message-Id: <20190129214657.5877-1-natechancellor@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [PATCH 14/14] clk: meson: rework and clean drivers dependencies
-References: <20190128180430.28689-1-jbrunet@baylibre.com>
- <20190128180430.28689-15-jbrunet@baylibre.com>
-User-Agent: alot/0.8
-From: Stephen Boyd <sboyd@kernel.org>
-In-Reply-To: <20190128180430.28689-15-jbrunet@baylibre.com>
-Message-ID: <154878535502.136743.7217447718652873910@swboyd.mtv.corp.google.com>
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>,
- Neil Armstrong <narmstrong@baylibre.com>
-Date: Tue, 29 Jan 2019 10:09:15 -0800
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190129_100916_256874_68894587 
-X-CRM114-Status: GOOD (  13.56  )
+X-CRM114-CacheID: sfid-20190129_134707_202230_E9690B4F 
+X-CRM114-Status: GOOD (  11.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -75,75 +94,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Cc: Richard Weinberger <richard@nod.at>, linux-kernel@vger.kernel.org,
+ linux-mtd@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>,
+ linux-amlogic@lists.infradead.org,
+ Nathan Chancellor <natechancellor@gmail.com>,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Jerome Brunet (2019-01-28 10:04:30)
-> Initially, the meson clock directory only hosted 2 controllers drivers,
-> for meson8 and gxbb. At the time, both used the same set of clock drivers
-> so managing the dependencies was not a big concern.
-> 
-> Since this ancient time, entropy did its job, controllers with different
-> requirement and specific clock drivers have been added. Unfortunately, we
-> did not do a great job at managing the dependencies between the
-> controllers and the different clock drivers. Some drivers, such as
-> clk-phase or vid-pll-div, are compiled even if they are useless on the
-> target (meson8). As we are adding new controllers, we need to be able to
-> pick a driver w/o pulling the whole thing.
-> 
-> The patch aims to clean things up by:
-> * providing a dedicated CONFIG_ for each clock drivers
-> * allowing clock drivers to be compiled as a modules, if possible
-> * stating explicitly which drivers are required by each controller.
-> 
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+On arm little endian allyesconfig:
 
-Sounds good to me.
+  ld.lld: error: undefined symbol: __aeabi_uldivmod
+  >>> referenced by meson_nand.c
+  >>> mtd/nand/raw/meson_nand.o:(meson_nfc_setup_data_interface) in archive drivers/built-in.a
 
-> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-> index 2b9490dd9878..8baec10a49a1 100644
-> --- a/drivers/clk/meson/Makefile
-> +++ b/drivers/clk/meson/Makefile
-> @@ -2,12 +2,17 @@
->  # Makefile for Meson specific clk
->  #
->  
+The dividend tBERS_max is u64, meaning we need to use DIV_ROUND_UP_ULL
+(which wraps do_div) to prevent the compiler from emitting
+__aebi_uldivmod.
 
-Add a comment here that these are all the clk library parts or something
-like that?
+Fixes: 2d570b34b41a ("mtd: rawnand: meson: add support for Amlogic NAND flash controller")
+Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
+---
+ drivers/mtd/nand/raw/meson_nand.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> -obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-pll.o clk-mpll.o clk-phase.o vid-pll-div.o
-> -obj-$(CONFIG_COMMON_CLK_AMLOGIC) += clk-input.o clk-dualdiv.o
-> -obj-$(CONFIG_COMMON_CLK_AMLOGIC_AUDIO) += sclk-div.o
-> -obj-$(CONFIG_COMMON_CLK_MESON_AO) += meson-aoclk.o
-> +obj-$(CONFIG_COMMON_CLK_MESON_INPUT) += clk-input.o
-> +obj-$(CONFIG_COMMON_CLK_MESON_REGMAP) += clk-regmap.o
-> +obj-$(CONFIG_COMMON_CLK_MESON_DUALDIV) += clk-dualdiv.o
-> +obj-$(CONFIG_COMMON_CLK_MESON_MPLL) += clk-mpll.o
-> +obj-$(CONFIG_COMMON_CLK_MESON_PHASE) += clk-phase.o
-> +obj-$(CONFIG_COMMON_CLK_MESON_PLL) += clk-pll.o
-> +obj-$(CONFIG_COMMON_CLK_MESON_SCLK_DIV) += sclk-div.o
-> +obj-$(CONFIG_COMMON_CLK_MESON_VID_PLL_DIV) += vid-pll-div.o
-> +obj-$(CONFIG_COMMON_CLK_MESON_AO_CLKC) += meson-aoclk.o
-> +
-
-And maybe add a comment here indicating that SoC drivers go below?
-
->  obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
-> -obj-$(CONFIG_COMMON_CLK_GXBB)   += gxbb.o gxbb-aoclk.o
-> -obj-$(CONFIG_COMMON_CLK_AXG)    += axg.o axg-aoclk.o
-> -obj-$(CONFIG_COMMON_CLK_AXG_AUDIO)     += axg-audio.o
-> -obj-$(CONFIG_COMMON_CLK_REGMAP_MESON)  += clk-regmap.o
-> +obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
-> +obj-$(CONFIG_COMMON_CLK_AXG) += axg.o axg-aoclk.o
-> +obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
-
-And sort them by config name alphanumerically?
+diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+index e858d58d97b0..6f12a96195d1 100644
+--- a/drivers/mtd/nand/raw/meson_nand.c
++++ b/drivers/mtd/nand/raw/meson_nand.c
+@@ -1116,8 +1116,8 @@ int meson_nfc_setup_data_interface(struct nand_chip *nand, int csline,
+ 				       div * NFC_CLK_CYCLE);
+ 	meson_chip->tadl = DIV_ROUND_UP(PSEC_TO_NSEC(timings->tADL_min),
+ 					div * NFC_CLK_CYCLE);
+-	tbers_clocks = DIV_ROUND_UP(PSEC_TO_NSEC(timings->tBERS_max),
+-				    div * NFC_CLK_CYCLE);
++	tbers_clocks = DIV_ROUND_UP_ULL(PSEC_TO_NSEC(timings->tBERS_max),
++					div * NFC_CLK_CYCLE);
+ 	meson_chip->tbers_max = ilog2(tbers_clocks);
+ 	if (!is_power_of_2(tbers_clocks))
+ 		meson_chip->tbers_max++;
+-- 
+2.20.1
 
 
 _______________________________________________
