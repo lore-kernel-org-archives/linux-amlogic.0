@@ -2,20 +2,21 @@ Return-Path: <SRS0=1mM9=QG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_MUTT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_MUTT autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F28E2C282D8
-	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Jan 2019 15:49:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8EC68C282D7
+	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Jan 2019 15:50:36 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B4AB12084A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Jan 2019 15:49:04 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5E3F7218A3
+	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Jan 2019 15:50:36 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AKuVdGMt"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B4AB12084A
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="D2dCqUWn"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5E3F7218A3
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,57 +25,55 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=J7TLRVIi8HM2GHU9Sh+FWQj5buluMeqyD45hT17UVrE=; b=AKuVdGMtdCo0Nt
-	FPTWR2rU+ttGuafMwxHVAwKQ1b23ZG2N/kRf0psG4NN50uMcWkBSl7Qq/ndlZI3eTAnuFiuUUd1mJ
-	16Sg2Cw9EHHltMf6eP3rQGzoBIJFsHNO1/KBwtuGOctCMq3HbNLyy/4ljc/y4Nd6xF28QiY0pjQLi
-	re1lYtakLW8LtbQDmpdp5e3mHBP8gTpuWe2/wWwAWIlNfPbmVQ7dqJU4mYTcnoFL8v042Yhi/mUS9
-	pDy1Q/FB2FJ4CU06OMDMja+5tEgohY1pBDaL9FWedDg7S/9IHsL8VAeFnIijL7GEuFfTNQEpUdTh6
-	wAPdTsgOq7LiFJ3GjMPQ==;
+	List-Owner; bh=iqehJk5G9oanPccKcyQ0rkZQ3xrgxkydr6cy+q062Ck=; b=D2dCqUWn69nNF1
+	/YzEFeZAwyEyikjcyM9qb1u/89osydcRNq5knK2+Bt3PxAF5DMOoGAf6IaeEA+kJVMhDIIG5Zt7wl
+	ijX1IBb/X7xs+EtTCyi/g+i+a+rbc9u804KaFegwIt7cR4AysyHgpHjkbt1j9yXKGDrrW9ndjJNs6
+	vdNXb2ip/IHq1Ra/YxoduoUdzOInm+IVpsyIwWmHpDA/AqBk+td6MI2GeTLt2+ClAxJ3eAWEpZrPN
+	HmLc7YMMin/FMva5ZsS1zSFui+iYcUKL4k64/JiZhnMrgFIHhATt7TVDA0pwFWKEC5+Y36nAw+2Al
+	pEnkKxxSgXJSPXg451TA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gos6l-0003Kf-9C; Wed, 30 Jan 2019 15:48:59 +0000
-Received: from mail-oi1-f196.google.com ([209.85.167.196])
+	id 1gos8D-0005nT-Rm; Wed, 30 Jan 2019 15:50:29 +0000
+Received: from mail-oi1-f194.google.com ([209.85.167.194])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gos6i-0003Je-Nh; Wed, 30 Jan 2019 15:48:58 +0000
-Received: by mail-oi1-f196.google.com with SMTP id y23so19588965oia.4;
- Wed, 30 Jan 2019 07:48:53 -0800 (PST)
+ id 1gos83-00051N-7L; Wed, 30 Jan 2019 15:50:27 +0000
+Received: by mail-oi1-f194.google.com with SMTP id m6so19539435oig.11;
+ Wed, 30 Jan 2019 07:50:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to:user-agent;
- bh=TIvFbso9rnJrc5OUL5DT5uU7me/DauI6rCgSdMwHq74=;
- b=HcwbhHRUKoZRcp3pXCaW5kdEcAwlloQlWmEg5NWmCsFP68u7qkwm29XemJDAvVDvIq
- nS0F6lOQlkwuPd96mMc5st8D9xL4DQjfVMuuyGGHCG2Rdeaz78NKIVo8AyLuPdRwN6kL
- IwVyXdpw3qLbAjdqogKZQaShTa6AvDtNQClitO4F8B2TNmlh8bFyaw/ZJ/4EGZp2auek
- 2AE5XkiRk+TEx05XGVOYrwH/zKnrN+UuV0rxOBhbfGPXrkbumwT8yiC/4VfwCyfgVsVb
- JL2iKshgBzIiBob/rem+X1bPiYNuECM8zwerI6tDY46/BSrTiFbxkBM2f5Zd7xdfs4mB
- wKqA==
-X-Gm-Message-State: AJcUukcqcNjg4fedefPmrV+Olcyx6yT/vv4uFYs2Pxnw43ZB9KA+1vva
- Q9Lf8xnlnaYcj9nuk1u9jQ==
-X-Google-Smtp-Source: ALg8bN6BdpW1svsWz+hMd4KSbH83B5V9J2pCHmbjB3JwtmmpCQKlFv75L8YHhL0y+4eyWKqfb3sSUg==
-X-Received: by 2002:aca:2ecf:: with SMTP id
- u198mr13048124oiu.338.1548863333031; 
- Wed, 30 Jan 2019 07:48:53 -0800 (PST)
+ bh=P2qq8+E4g/m+cCmMeaSfpaPEUpdAovlDLmemICtL6O4=;
+ b=tcM+vgLB+xuq2YHhK67h3a2mmnXHaQJ6mlJ+DKneMqRyv7CRW/ok+IDMs7yzPoqlIO
+ DmTzK4+A6Vh6QMHsPxUb4dF+mTxxZsS9wS8MM4YCqZZibzFCCrgroyQh9SnuySk1Gcyk
+ Py/fs5EHtq+9oyOR3FhlHxvu/wQyNnR82fw6meVXSxXZ+g9VoHAd/lkdS0MEhNRhs7y+
+ AnZ8juuuoJSKexokN/F02d+xQ5HyK5uN+l1vJUwSGWSh9eHZA+4QI6gfhPU+ZDPmt+CT
+ hKIDGa2zsWw5ryzI3ruPgsbFXMPWJ5gI/PmM936QZlFWg7MnrZpQI48gkrAU+dY9HPUU
+ Hjew==
+X-Gm-Message-State: AJcUukdhOjm5ceQ0/VKyCN7McGk/mYcVB/3jxgo7t+jjk1QTKwAQvhuW
+ pp6GsI3yQi1sBdSusIeUqA==
+X-Google-Smtp-Source: ALg8bN7YUdJsKMpCX953MaNa6vxwhOhFB2rvS6C+vX5gSNPtizkLZmOQ0v4ZTva+YKvus3IQry/J6A==
+X-Received: by 2002:aca:ba02:: with SMTP id k2mr13254932oif.177.1548863417913; 
+ Wed, 30 Jan 2019 07:50:17 -0800 (PST)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net.
  [24.155.109.49])
- by smtp.gmail.com with ESMTPSA id g138sm831598oib.26.2019.01.30.07.48.52
+ by smtp.gmail.com with ESMTPSA id t201sm751720oie.37.2019.01.30.07.50.16
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Wed, 30 Jan 2019 07:48:52 -0800 (PST)
-Date: Wed, 30 Jan 2019 09:48:51 -0600
+ Wed, 30 Jan 2019 07:50:17 -0800 (PST)
+Date: Wed, 30 Jan 2019 09:50:16 -0600
 From: Rob Herring <robh@kernel.org>
 To: Loys Ollivier <lollivier@baylibre.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: Add vendor prefix for "GlobalTop
- Technology, Inc."
-Message-ID: <20190130154851.GA25794@bogus>
+Subject: Re: [PATCH v3 2/4] dt-bindings: gnss: add mediatek binding
+Message-ID: <20190130155016.GA26536@bogus>
 References: <1548693481-1162-1-git-send-email-lollivier@baylibre.com>
- <1548693481-1162-2-git-send-email-lollivier@baylibre.com>
+ <1548693481-1162-3-git-send-email-lollivier@baylibre.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <1548693481-1162-2-git-send-email-lollivier@baylibre.com>
+In-Reply-To: <1548693481-1162-3-git-send-email-lollivier@baylibre.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190130_074856_770448_1CC1AABA 
-X-CRM114-Status: GOOD (  11.05  )
+X-CRM114-CacheID: sfid-20190130_075019_757055_FB787686 
+X-CRM114-Status: GOOD (  16.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -88,34 +87,85 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Loys Ollivier <lollivier@baylibre.com>,
- Johan Hovold <johan@kernel.org>, linux-kernel@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+ Kevin Hilman <khilman@baylibre.com>, Johan Hovold <johan@kernel.org>,
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 28 Jan 2019 17:37:58 +0100, Loys Ollivier wrote:
-> Add globaltop vendor definition.
+On Mon, Jan 28, 2019 at 05:37:59PM +0100, Loys Ollivier wrote:
+> Add binding for Mediatek-based GNSS receivers.
 > 
 > Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
 > ---
 > 
-> v3: No changes
+> v3:
+> Removed the I2C and SPI interfaces references.
+> Removed the "mediatek,mt3339" compatible line.
+> Added the optional propertied (reset, fix)
+> Added the pin names for the optional properties.
 > 
-> v2: Alphabetical order
+> v2:
+> Renamed bindings from Globaltop/gtop to Mediatek/mtk.
+> Moved current-speed as an optional propertie.
+> Removed the status line in the example.
+> Added "mediatek,mt3339" compatible.
 > 
->  Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/gnss/mediatek.txt          | 37 ++++++++++++++++++++++
+>  1 file changed, 37 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gnss/mediatek.txt
 > 
+> diff --git a/Documentation/devicetree/bindings/gnss/mediatek.txt b/Documentation/devicetree/bindings/gnss/mediatek.txt
+> new file mode 100644
+> index 000000000000..00650d81c5c8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gnss/mediatek.txt
+> @@ -0,0 +1,37 @@
+> +Mediatek-based GNSS Receiver DT binding
+> +
+> +Mediatek chipsets are used in GNSS-receiver modules produced by several
+> +vendors and can use an UART interface.
+> +
+> +Please see Documentation/devicetree/bindings/gnss/gnss.txt for generic
+> +properties.
+> +
+> +Required properties:
+> +
+> +- compatible	: Must be
+> +
+> +			"globaltop,pa6h"
+> +
+> +- vcc-supply	: Main voltage regulator (pin name: VCC)
+> +
+> +Optional properties:
+> +
+> +- gtop,reset-gpios	: GPIO used to reset the device
+> +  			  (pin name: RESET, NRESET)
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+reset-gpios is the standard name.
 
-If a tag was not added on purpose, please state why and what changed.
+> +- gtop,fix-gpios	: GPIO used to determine device position fix state
+> +			  (pin name: FIX, 3D_FIX)
+> +- timepulse-gpios	: Time pulse GPIO (pin name: PPS1, 1PPS)
+> +- v-bckp-supply		: Backup voltage regulator
+> +  			  (pin name: VBAT, VBACKUP)
+> +- current-speed		: Default UART baud rate
+> +
+> +Example:
+> +
+> +serial@1234 {
+> +	compatible = "ns16550a";
+> +
+> +	gnss {
+> +		compatible = "globaltop,pa6h";
+> +		vcc-supply = <&vcc_3v3>;
+> +	};
+> +};
+> -- 
+> 2.7.4
+> 
 
 _______________________________________________
 linux-amlogic mailing list
