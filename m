@@ -7,62 +7,55 @@ X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 27969C282D7
-	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Jan 2019 09:27:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B13D0C282D9
+	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Jan 2019 09:32:39 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CE42B21874
-	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Jan 2019 09:27:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7EE4F20882
+	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Jan 2019 09:32:39 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fPwZW52r"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CE42B21874
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Q0IKetUT"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7EE4F20882
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=bootlin.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=3MWKXv4V9U2uGrAeBiN31LoATvG89AO1F8DXEQHWyWE=; b=fPwZW52rw4LHS1Xr71/xtepup
-	0i++CntxYUxW26pbeLyWSAejkF7JRunt4654evrTDqR3uC11cDN/3rDN1gDwNK1Jl3YhNjz9jtyR7
-	cHQ4HDlrKSPOJFN+uKG3YdTPcjOEvb5PcdZgtwaUAt+T7JLLQO+qSzLsVDm9DnQWghA/Iaya5T9hk
-	H5k/QPtrl2ffF987+PDScRZjdOTVBiMEi7YsU9VOZgXm2Rc/jJXPL0JG9IhCYVeD2woDfv4bbaYgD
-	XyT91yft1DNpxrdv4e0ghfpp5DrGGmIc9f6JNppn5hxP8HaMMFOigukJnRPKZhTcGbu7cxSIgpbaB
-	ltRFjVQ4A==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=nFwCiqKOVYxQMAsE/fScNdLvEZKREcLhjX2Ffc6rWLA=; b=Q0IKetUTujxUXF
+	rx/qrfehQhRgkQ/Qc4fFIanubA5hVK4c9jkfGCLTPbH9UbeoO+mNrp2DaQxehjOvu4MR61lwvEYk2
+	bPI7Du0H+6Ibz623WpU5ECB49DIGzFEy8SSgnCLhignbH76ZWbUhuoKaSvvpc2tKYyvQwZxDwCek6
+	2mPQZ6q4iG63BGCPmrbSbN+A+DDipRIepZ0abGAKM68TtHOPmgrfvsrdfe/IaBYlmM6yj0/UV1hne
+	AvSLxNwizVouBHt2FOFDd1gWv/9CraImA6O8YzObI5B9VgNo5xMrLLQqE22T/CYwPHwZ5z4iX16yN
+	1TlXFxmNJxS2Rwjaiyhw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gom9E-0004mB-Fk; Wed, 30 Jan 2019 09:27:08 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1gomEU-000791-4g; Wed, 30 Jan 2019 09:32:34 +0000
+Received: from relay2-d.mail.gandi.net ([217.70.183.194])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gom8T-00040a-1X; Wed, 30 Jan 2019 09:26:26 +0000
-Received: from [10.28.18.236] (10.28.18.236) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Wed, 30 Jan
- 2019 17:27:10 +0800
-Subject: Re: [PATCH][next] mtd: rawnand: meson:: make several functions static
-To: Colin King <colin.king@canonical.com>, Boris Brezillon
- <bbrezillon@kernel.org>, Miquel Raynal <miquel.raynal@bootlin.com>, Richard
- Weinberger <richard@nod.at>, David Woodhouse <dwmw2@infradead.org>, Brian
- Norris <computersforpeace@gmail.com>, Marek Vasut <marek.vasut@gmail.com>,
- Kevin Hilman <khilman@baylibre.com>, <linux-mtd@lists.infradead.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>
-References: <20190129124429.19829-1-colin.king@canonical.com>
-From: Liang Yang <liang.yang@amlogic.com>
-Message-ID: <a1f6dfbd-3434-be6a-c623-794398393609@amlogic.com>
-Date: Wed, 30 Jan 2019 17:27:10 +0800
-User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:60.0) Gecko/20100101
- Thunderbird/60.4.0
+ id 1gomEQ-00078Y-6F; Wed, 30 Jan 2019 09:32:32 +0000
+X-Originating-IP: 90.88.147.226
+Received: from xps13 (aaubervilliers-681-1-27-226.w90-88.abo.wanadoo.fr
+ [90.88.147.226]) (Authenticated sender: miquel.raynal@bootlin.com)
+ by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id B2F1240018;
+ Wed, 30 Jan 2019 09:32:21 +0000 (UTC)
+Date: Wed, 30 Jan 2019 10:32:20 +0100
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Liang Yang <liang.yang@amlogic.com>
+Subject: Re: [PATCH] mtd: rawnand: meson: Fix linking error on 32-bit platforms
+Message-ID: <20190130103220.27b13ab9@xps13>
+In-Reply-To: <42d2e92e-9f5a-62b2-c0af-b7f3544d79d2@amlogic.com>
+References: <20190129214657.5877-1-natechancellor@gmail.com>
+ <42d2e92e-9f5a-62b2-c0af-b7f3544d79d2@amlogic.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20190129124429.19829-1-colin.king@canonical.com>
-Content-Language: en-US
-X-Originating-IP: [10.28.18.236]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190130_012621_581208_121A3AF2 
-X-CRM114-Status: GOOD (  13.94  )
+X-CRM114-CacheID: sfid-20190130_013230_386658_A88A1B2B 
+X-CRM114-Status: GOOD (  14.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -74,84 +67,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: Boris Brezillon <bbrezillon@kernel.org>,
+ Richard Weinberger <richard@nod.at>, linux-kernel@vger.kernel.org,
+ linux-mtd@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>,
+ linux-amlogic@lists.infradead.org,
+ Nathan Chancellor <natechancellor@gmail.com>,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Colin,
-
-On 2019/1/29 20:44, Colin King wrote:
-> From: Colin Ian King <colin.king@canonical.com>
-> 
-> There are several functions that are local to the source and do
-> not need to be in global scope, so make them static.
-> 
-> Cleans up sparse warnings.
-> 
-> Signed-off-by: Colin Ian King <colin.king@canonical.com>
-> ---
->   drivers/mtd/nand/raw/meson_nand.c | 10 +++++-----
->   1 file changed, 5 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-> index b9c543d1054c..9557bd94dcd2 100644
-> --- a/drivers/mtd/nand/raw/meson_nand.c
-> +++ b/drivers/mtd/nand/raw/meson_nand.c
-> @@ -829,14 +829,14 @@ static int meson_nfc_read_oob(struct nand_chip *nand, int page)
->   	return meson_nfc_read_page_hwecc(nand, NULL, 1, page);
->   }
->   
-> -bool meson_nfc_is_buffer_dma_safe(const void *buffer)
-> +static bool meson_nfc_is_buffer_dma_safe(const void *buffer)
->   {
->   	if (virt_addr_valid(buffer) && (!object_is_on_stack(buffer)))
->   		return true;
->   	return false;
->   }
->   
-> -void *
-> +static void *
->   meson_nand_op_get_dma_safe_input_buf(const struct nand_op_instr *instr)
->   {
->   	if (WARN_ON(instr->type != NAND_OP_DATA_IN_INSTR))
-> @@ -848,7 +848,7 @@ meson_nand_op_get_dma_safe_input_buf(const struct nand_op_instr *instr)
->   	return kzalloc(instr->ctx.data.len, GFP_KERNEL);
->   }
->   
-> -void
-> +static void
->   meson_nand_op_put_dma_safe_input_buf(const struct nand_op_instr *instr,
->   				     void *buf)
->   {
-> @@ -863,7 +863,7 @@ meson_nand_op_put_dma_safe_input_buf(const struct nand_op_instr *instr,
->   	kfree(buf);
->   }
->   
-> -void *
-> +static void *
->   meson_nand_op_get_dma_safe_output_buf(const struct nand_op_instr *instr)
->   {
->   	if (WARN_ON(instr->type != NAND_OP_DATA_OUT_INSTR))
-> @@ -876,7 +876,7 @@ meson_nand_op_get_dma_safe_output_buf(const struct nand_op_instr *instr)
->   		       instr->ctx.data.len, GFP_KERNEL);
->   }
->   
-> -void
-> +static void
->   meson_nand_op_put_dma_safe_output_buf(const struct nand_op_instr *instr,
->   				      const void *buf)
->   {
-> 
-
-Looks good to me:
-
-Acked-by: Liang Yang <liang.yang@amlogic.com>
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgTGlhbmcsIE5hdGhhbiwKCkxpYW5nIFlhbmcgPGxpYW5nLnlhbmdAYW1sb2dpYy5jb20+IHdy
+b3RlIG9uIFdlZCwgMzAgSmFuIDIwMTkgMTc6MjY6MzkKKzA4MDA6Cgo+IEhpIE5hdGhhbiwKPiAK
+PiBPbiAyMDE5LzEvMzAgNTo0NiwgTmF0aGFuIENoYW5jZWxsb3Igd3JvdGU6Cj4gPiBPbiBhcm0g
+bGl0dGxlIGVuZGlhbiBhbGx5ZXNjb25maWc6Cj4gPiAKPiA+ICAgIGxkLmxsZDogZXJyb3I6IHVu
+ZGVmaW5lZCBzeW1ib2w6IF9fYWVhYmlfdWxkaXZtb2QgIAo+ID4gICAgPj4+IHJlZmVyZW5jZWQg
+YnkgbWVzb25fbmFuZC5jCj4gPiAgICA+Pj4gbXRkL25hbmQvcmF3L21lc29uX25hbmQubzoobWVz
+b25fbmZjX3NldHVwX2RhdGFfaW50ZXJmYWNlKSBpbiBhcmNoaXZlIGRyaXZlcnMvYnVpbHQtaW4u
+YSAgCj4gPiAKPiA+IFRoZSBkaXZpZGVuZCB0QkVSU19tYXggaXMgdTY0LCBtZWFuaW5nIHdlIG5l
+ZWQgdG8gdXNlIERJVl9ST1VORF9VUF9VTEwKPiA+ICh3aGljaCB3cmFwcyBkb19kaXYpIHRvIHBy
+ZXZlbnQgdGhlIGNvbXBpbGVyIGZyb20gZW1pdHRpbmcKPiA+IF9fYWViaV91bGRpdm1vZC4KPiA+
+IAo+ID4gRml4ZXM6IDJkNTcwYjM0YjQxYSAoIm10ZDogcmF3bmFuZDogbWVzb246IGFkZCBzdXBw
+b3J0IGZvciBBbWxvZ2ljIE5BTkQgZmxhc2ggY29udHJvbGxlciIpCj4gPiBTaWduZWQtb2ZmLWJ5
+OiBOYXRoYW4gQ2hhbmNlbGxvciA8bmF0ZWNoYW5jZWxsb3JAZ21haWwuY29tPgo+ID4gLS0tCj4g
+PiAgIGRyaXZlcnMvbXRkL25hbmQvcmF3L21lc29uX25hbmQuYyB8IDQgKystLQo+ID4gICAxIGZp
+bGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQo+ID4gCj4gPiBkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9tdGQvbmFuZC9yYXcvbWVzb25fbmFuZC5jIGIvZHJpdmVycy9tdGQv
+bmFuZC9yYXcvbWVzb25fbmFuZC5jCj4gPiBpbmRleCBlODU4ZDU4ZDk3YjAuLjZmMTJhOTYxOTVk
+MSAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvbXRkL25hbmQvcmF3L21lc29uX25hbmQuYwo+ID4g
+KysrIGIvZHJpdmVycy9tdGQvbmFuZC9yYXcvbWVzb25fbmFuZC5jCj4gPiBAQCAtMTExNiw4ICsx
+MTE2LDggQEAgaW50IG1lc29uX25mY19zZXR1cF9kYXRhX2ludGVyZmFjZShzdHJ1Y3QgbmFuZF9j
+aGlwICpuYW5kLCBpbnQgY3NsaW5lLAo+ID4gICAJCQkJICAgICAgIGRpdiAqIE5GQ19DTEtfQ1lD
+TEUpOwo+ID4gICAJbWVzb25fY2hpcC0+dGFkbCA9IERJVl9ST1VORF9VUChQU0VDX1RPX05TRUMo
+dGltaW5ncy0+dEFETF9taW4pLAo+ID4gICAJCQkJCWRpdiAqIE5GQ19DTEtfQ1lDTEUpOwo+ID4g
+LQl0YmVyc19jbG9ja3MgPSBESVZfUk9VTkRfVVAoUFNFQ19UT19OU0VDKHRpbWluZ3MtPnRCRVJT
+X21heCksCj4gPiAtCQkJCSAgICBkaXYgKiBORkNfQ0xLX0NZQ0xFKTsKPiA+ICsJdGJlcnNfY2xv
+Y2tzID0gRElWX1JPVU5EX1VQX1VMTChQU0VDX1RPX05TRUModGltaW5ncy0+dEJFUlNfbWF4KSwK
+PiA+ICsJCQkJCWRpdiAqIE5GQ19DTEtfQ1lDTEUpOyAgCj4gCj4gTG9va3MgZ29vZCB0byBtZToK
+PiAKPiBBY2tlZC1ieTogTGlhbmcgWWFuZyA8bGlhbmcueWFuZ0BhbWxvZ2ljLmNvbT4KClRoaXMg
+aXMgbmFuZC9uZXh0IG1hdGVyaWFsLCBzbyBpZiB5b3UgZG9uJ3QgbWluZCBJIHdvdWxkIGxpa2Ug
+dG8gc3F1YXNoCnRoaXMgZml4IGludG8gdGhlIG9yaWdpbmFsIGNvbW1pdCBpbnNlcnRpbmcgdGhl
+IGRyaXZlci4KCgpUaGFua3MsCk1pcXXDqGwKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9n
+aWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
