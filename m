@@ -2,88 +2,69 @@ Return-Path: <SRS0=1mM9=QG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-14.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 93C2EC282D7
-	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Jan 2019 09:53:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A3573C282D7
+	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Jan 2019 10:41:52 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 01DD62082C
-	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Jan 2019 09:53:26 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 758CE218AE
+	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Jan 2019 10:41:52 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="IAvSzEkO";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="RFHHbNsP"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 01DD62082C
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZUiG9cqm"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 758CE218AE
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arndb.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=EY2joab6T7L1hC25VK5o7O6RliprhtlPx7ulXDqneLw=; b=IAvSzEkOH1VOMq
-	xPSGA98wtdBxFdavS0ROxoMKlB8JFR+fCgf86wET4uFLG9Apz659v3k5c/P+NAQx726fFIbBF9xpW
-	7bZ3fK7qgteISjQL8FMXedXN3BfoteT2Oy1OXSo+hAiQi69y4PNtl0m2mQkL18qw3tfSgd1EfJEQ3
-	Vkhr9S1xd6bD6dsvKF7FSJL69U10velrZ0ZKF1lLUN3hdAh/iQPlyGnK9BK8Spnei9dak4T6mQTJe
-	ZiUGJcXY/MW+5yznOSAAw+yg8nKpa1jDGjEo1FqK2XBzfILBTZSSJnuyhfsg5r1R8+kssyGl6CKtd
-	gVSuOG06Bx/3v4WB1WzQ==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=1XKXLwCxlcNtB+vvYij5HXoFNYEhJsqjU5azAyUuy0I=; b=ZUiG9cqmtWptM0
+	e5EdLGvOS/7j9l3Qi7agaKHCOty/xPotDgiODdZQqvwdexrTAcdtxVyTHhM63GKJNbNs3ytvZm7qu
+	YSVPRjs1vsHO0wYRHs3xWxTyGEAfOD9FSXWl+63O/fXQPpb2LCKL9n1ipbqeUIiw58SHqu75JA486
+	CSw0jDNnrMjvNPLsEfSqWD7fZdL3HVclZk021XCXPFq7HQU6AWYifZgf46SRv3hlXBCpe9Hp+gbog
+	zQfCPbZH/Ei7KGvCuwDwfx6Le9c6TnkdR0fpSStdaJiFMp9cUyY9ppuPyiBH38joplV1T2CQee+N3
+	xgUJm7PkA5Qip9QCnQqA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gomYZ-0003Jq-Te; Wed, 30 Jan 2019 09:53:19 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1gonJP-0008Sc-Aq; Wed, 30 Jan 2019 10:41:43 +0000
+Received: from mail-qt1-f193.google.com ([209.85.160.193])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gomYW-0003JK-Cw
- for linux-amlogic@lists.infradead.org; Wed, 30 Jan 2019 09:53:18 +0000
-Received: by mail-wr1-x444.google.com with SMTP id l9so25216866wrt.13
- for <linux-amlogic@lists.infradead.org>; Wed, 30 Jan 2019 01:53:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=zaYUYldqP2jiiRgWiA6/KkBfuQPiUHZR5J7jgi2PgdM=;
- b=RFHHbNsPVVFZYNsYBu3mX4ksz06irgV/ndlYbHFVFxDr01+tB6mouSn4tneWqlHhyR
- At7XBIIT1qyc6CESESU6FRqIgHshP7V5A1UVcd1edGZ1Y/zG48NTFt5MwWyphDn+GTLe
- fIQUyNQ6rXVQxWbLhUqN6cyhZIIohXSRUJfEnMgdqTBdLCtInfNOVha4W497kfVXlMSl
- ep+u3FrCP5aQXCVXNeFgKo3aog5TKJXr3SeI+l3hicZQ1IeB9onKfSDr8DyOiDYUU+DV
- jk9fRmmSJ9ltgbpfc8aKgpRq1BP1yRrnTPeQP7zsLSM03vmrCrLyj9+1BPCSeZ/E5dvH
- WTlQ==
+ id 1gonJ4-00088S-0N; Wed, 30 Jan 2019 10:41:28 +0000
+Received: by mail-qt1-f193.google.com with SMTP id t33so25633363qtt.4;
+ Wed, 30 Jan 2019 02:41:21 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=zaYUYldqP2jiiRgWiA6/KkBfuQPiUHZR5J7jgi2PgdM=;
- b=kgv4schPhiFRi8smQ77kf8/aEKUYh848/APWuXYWrlrg6vqwu+oJT5lnLpOpmyOoum
- 7Vujf6+4+cmt8O4t4FgZh9ucijmm/A1os/DGyYaLOjKlgBVIKIoXGoP6uwVQRlKZAvNP
- 0zZHvEshtRGPiYUbTMzsWTgDlMy+6W3o9UeTurWN3tcXeDGMNwpE6izExlNYkshCzbQ/
- LFz+Ik2NXNr7VgoTnAKRqMlG/HY7SiB7v4qQbaQxmkSMZxQyszC57qg9ohzus08hPXHT
- f5QXLCsiL9Wjg6RYz9RGhYyaqs9F4dRzJWhurI7IFX1dWwfWxZwQ82ddZz16JQlDpRdl
- ZPIg==
-X-Gm-Message-State: AJcUukecWoce2J+JIwWFPjnnuPOQfl4bUiR/EQrCRbdeyr4St65kC//f
- IGuKWi6v3KSLESpNNRwqIi6Inj58Ep8VRw==
-X-Google-Smtp-Source: ALg8bN6fmcan1mK6/x+Ii1AQ10QnxrUAx2dKZmnlJgqKvEFXw/YFypjRZhf5qbIuCowLGALTnJPMWA==
-X-Received: by 2002:a05:6000:120a:: with SMTP id
- e10mr29627518wrx.85.1548841994505; 
- Wed, 30 Jan 2019 01:53:14 -0800 (PST)
-Received: from bender.baylibre.local
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id 126sm1074293wmd.1.2019.01.30.01.53.13
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Wed, 30 Jan 2019 01:53:13 -0800 (PST)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: u-boot@lists.denx.de
-Subject: [PATCH u-boot] MAINTAINERS: Add Amlogic entry
-Date: Wed, 30 Jan 2019 10:53:10 +0100
-Message-Id: <20190130095310.8803-1-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.20.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=kPRc4f6Jm7lnUZlf6/qwgNKnOho7c+Ceda89iiPHPGA=;
+ b=iHx+M/p3PjyquXzzNkxy+KD2KXontcpRCMD8Aty7geL9CpJQShfWAPYFOV8qu6RjQO
+ +IQdDZJmrgv1JVFnk1/2HFXz0kMmU2fnmTmLUEmkw31GNd74S+LbtNmZSdx4gsOulTHW
+ 9muKIH1X02XsLRmoTy8Z4PLPyA2eOFA5E3pO83We89diGHyqCWv6kSKf4aYtBmjDaZjF
+ DxGmFLR0YwpGW0pqc/jW9k/4zqsCU5AIfWZZYWp5oVQ0iyEljSXR3t24+tYg/TXgG7hc
+ 6CZeG/fllp3jho66J7Z2gU0ZiYTDLxIuZVwjJxYCXpweGdp1+O3II4O4D66YXFU0Jpkb
+ w4Eg==
+X-Gm-Message-State: AJcUukfhT6VlRqGIEBFcpZ2oLWskIk60iZyC5xUay30hzRHgIV/gQJP5
+ TLp47Gu0aEJ7gNqHrQ0EsY/biksxYdY10Nu0CyM=
+X-Google-Smtp-Source: ALg8bN4/ymL42ypcX143ueQL+KRrhWg2jXUVvjYS8h7BZWw8CyZJ3EL0ygdB+TmL20PQLljxIUMJeaZ7fDyLEj2hbvE=
+X-Received: by 2002:ac8:7451:: with SMTP id h17mr28905367qtr.319.1548844881094; 
+ Wed, 30 Jan 2019 02:41:21 -0800 (PST)
 MIME-Version: 1.0
+References: <7h1s4vpkpj.fsf@baylibre.com>
+In-Reply-To: <7h1s4vpkpj.fsf@baylibre.com>
+From: Arnd Bergmann <arnd@arndb.de>
+Date: Wed, 30 Jan 2019 11:41:04 +0100
+Message-ID: <CAK8P3a0UoHmbWdNWbvi6ykp5J6VVXbW0AB9SBDq0vYyZShT7aw@mail.gmail.com>
+Subject: Re: [GIT PULL] Amlogic fixes for v5.0-rc, round 2 (redo)
+To: Kevin Hilman <khilman@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190130_015316_436155_8F8F0578 
-X-CRM114-Status: UNSURE (   7.39  )
+X-CRM114-CacheID: sfid-20190130_024122_054035_E04BAC55 
+X-CRM114-Status: UNSURE (   9.68  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -96,37 +77,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, u-boot-amlogic@groups.io,
- Neil Armstrong <narmstrong@baylibre.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "open list:ARM/Amlogic Meson SoC support"
+ <linux-amlogic@lists.infradead.org>, arm-soc <arm@kernel.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-QWRkIGVudHJ5IGZvciBBbWxvZ2ljIFNvQyBtYWludGFpbmVkIGZpbGVzIGFuZCB0aGUgZnJlc2hs
-eQpjcmVhdGVkIG1haWxpbmctbGlzdC4KClNpZ25lZC1vZmYtYnk6IE5laWwgQXJtc3Ryb25nIDxu
-YXJtc3Ryb25nQGJheWxpYnJlLmNvbT4KLS0tCiBNQUlOVEFJTkVSUyB8IDIyICsrKysrKysrKysr
-KysrKysrKysrKysKIDEgZmlsZSBjaGFuZ2VkLCAyMiBpbnNlcnRpb25zKCspCgpOb3RpY2UgZm9y
-IG1lbWJlcnMgb2YgbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QsIEkgd2lsbCBzdG9wIENDCnRo
-aXMgbGlzdCBhbmQgQ0MgdGhlIG5ldyB1LWJvb3QtYW1sb2dpY0Bncm91cHMuaW8gZGVkaWNhdGVk
-IGZvcgpVLUJvb3QgZGV2ZWxvcG1lbnQuCllvdSBjYW4gc3Vic2NyaWJlIGF0IGh0dHBzOi8vZ3Jv
-dXBzLmlvL2cvdS1ib290LWFtbG9naWMKCmRpZmYgLS1naXQgYS9NQUlOVEFJTkVSUyBiL01BSU5U
-QUlORVJTCmluZGV4IDMzZjExMjdlNTAuLjVlZWQxNmQyZjUgMTAwNjQ0Ci0tLSBhL01BSU5UQUlO
-RVJTCisrKyBiL01BSU5UQUlORVJTCkBAIC05MSw2ICs5MSwyOCBAQCBTOglNYWludGFpbnRlZAog
-VDoJZ2l0IGdpdDovL2dpdC5kZW54LmRlL3UtYm9vdC1zb2NmcGdhLmdpdAogRjoJYXJjaC9hcm0v
-bWFjaC1zb2NmcGdhLwogCitBUk0gQU1MT0dJQyBTT0MgU1VQUE9SVAorTToJTmVpbCBBcm1zdHJv
-bmcgPG5hcm1zdHJvbmdAYmF5bGlicmUuY29tPgorUzoJTWFpbnRhaW5lZAorTDoJdS1ib290LWFt
-bG9naWNAZ3JvdXBzLmlvCitUOglnaXQgZ2l0Oi8vZ2l0LmRlbnguZGUvdS1ib290LWFtbG9naWMu
-Z2l0CitGOglhcmNoL2FybS9tYWNoLW1lc29uLworRjoJYXJjaC9hcm0vaW5jbHVkZS9hc20vYXJj
-aC1tZXNvbi8KK0Y6CWRyaXZlcnMvY2xrL2Nsa19tZXNvbioKK0Y6CWRyaXZlcnMvc2VyaWFsL3Nl
-cmlhbF9tZXNvbi5jCitGOglkcml2ZXJzL3Jlc2V0L3Jlc2V0LW1lc29uLmMKK0Y6CWRyaXZlcnMv
-aTJjL21lc29uX2kyYy5jCitGOglkcml2ZXJzL25ldC9waHkvbWVzb24tZ3hsLmMKK0Y6CWRyaXZl
-cnMvYWRjL21lc29uLXNhcmFkYy5jCitGOglkcml2ZXJzL3BoeS9tZXNvbioKK0Y6CWRyaXZlcnMv
-bW1jL21lc29uX2d4X21tYy5jCitGOglkcml2ZXJzL3NwaS9tZXNvbl9zcGlmYy5jCitGOglkcml2
-ZXJzL3BpbmN0cmwvbWVzb24vCitGOglkcml2ZXJzL3Bvd2VyL2RvbWFpbi9tZXNvbi1neC1wd3Jj
-LXZwdS5jCitGOglkcml2ZXJzL3ZpZGVvL21lc29uLworRjoJaW5jbHVkZS9jb25maWdzL21lc29u
-NjQuaAorTjoJbWVzb24KKwogQVJNIEFUTUVMIEFUOTEKIE06CUFuZHJlYXMgQmllw59tYW5uIDxh
-bmRyZWFzQGJpZXNzbWFubi5vcmc+CiBTOglNYWludGFpbmVkCi0tIAoyLjIwLjEKCgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1h
-aWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3Rz
-LmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On Tue, Jan 29, 2019 at 4:06 PM Kevin Hilman <khilman@baylibre.com> wrote:
+>
+> Olof, Arnd,
+>
+> Below is a redo of round 2 of Amlogic fixes for v5.0-rc, based on top of
+> the first round.
+>
+> This drops the a couple fixes as requested by Anand Moon so he can
+> rework them.
+
+Pulled this one now and dropped the earlier one. I think what happened
+is that you sent two different pull requests for the 'amlogic-fixes-2'
+tag, dated Jan 19 and Jan 28, respectively. You retracted
+the second one of those, and I removed it from my queue, but
+then pulled it anyway when I saw the older pull request.
+
+     Arnd
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
