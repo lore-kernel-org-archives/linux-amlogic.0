@@ -2,78 +2,69 @@ Return-Path: <SRS0=1mM9=QG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_MUTT autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8EC68C282D7
-	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Jan 2019 15:50:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F29CCC282D7
+	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Jan 2019 16:31:58 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5E3F7218A3
-	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Jan 2019 15:50:36 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BF8982087F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 30 Jan 2019 16:31:58 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="D2dCqUWn"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5E3F7218A3
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="a7HdBSri"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BF8982087F
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arndb.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=iqehJk5G9oanPccKcyQ0rkZQ3xrgxkydr6cy+q062Ck=; b=D2dCqUWn69nNF1
-	/YzEFeZAwyEyikjcyM9qb1u/89osydcRNq5knK2+Bt3PxAF5DMOoGAf6IaeEA+kJVMhDIIG5Zt7wl
-	ijX1IBb/X7xs+EtTCyi/g+i+a+rbc9u804KaFegwIt7cR4AysyHgpHjkbt1j9yXKGDrrW9ndjJNs6
-	vdNXb2ip/IHq1Ra/YxoduoUdzOInm+IVpsyIwWmHpDA/AqBk+td6MI2GeTLt2+ClAxJ3eAWEpZrPN
-	HmLc7YMMin/FMva5ZsS1zSFui+iYcUKL4k64/JiZhnMrgFIHhATt7TVDA0pwFWKEC5+Y36nAw+2Al
-	pEnkKxxSgXJSPXg451TA==;
+	List-Owner; bh=yCecQJ8nmoPb/QeJ5J18EC0jcFstLTdYGvyLiBCO4rc=; b=a7HdBSriuCInh/
+	Yl4EKK/DWvR73g3aiYxhpzLM/JWy5JeMQhvW7hLRg5bg9VfRYFLn9NcFBPxscbmrCg1gd44F/rkxK
+	N0Vyh1EImU51ZMBhGSjD09AopVOpfrU3KBmX25jWvHJqJN8bgFPRMqBTZL2e59EuNlhRCmHKBwI0J
+	+d3Ov8/bi6D7Ftk52xHz/37B1U64F5uqmVAxUdVR726123sXkdWHvsD1tem0IPD6YhT/OsmhfTiE5
+	Q9ao452G5CUETPJ9xQHUwY9fWwMlDsr8CMWliFEy4U5v6s/yP5fUsY5YgdbVI4Fh+jrwDaaMpNCi5
+	2rueWnq5l8UXcYkz+b3Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gos8D-0005nT-Rm; Wed, 30 Jan 2019 15:50:29 +0000
-Received: from mail-oi1-f194.google.com ([209.85.167.194])
+	id 1gosmH-00019j-02; Wed, 30 Jan 2019 16:31:53 +0000
+Received: from mail-qt1-f193.google.com ([209.85.160.193])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gos83-00051N-7L; Wed, 30 Jan 2019 15:50:27 +0000
-Received: by mail-oi1-f194.google.com with SMTP id m6so19539435oig.11;
- Wed, 30 Jan 2019 07:50:18 -0800 (PST)
+ id 1gosmD-00019I-K0; Wed, 30 Jan 2019 16:31:51 +0000
+Received: by mail-qt1-f193.google.com with SMTP id y20so88494qtm.13;
+ Wed, 30 Jan 2019 08:31:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=P2qq8+E4g/m+cCmMeaSfpaPEUpdAovlDLmemICtL6O4=;
- b=tcM+vgLB+xuq2YHhK67h3a2mmnXHaQJ6mlJ+DKneMqRyv7CRW/ok+IDMs7yzPoqlIO
- DmTzK4+A6Vh6QMHsPxUb4dF+mTxxZsS9wS8MM4YCqZZibzFCCrgroyQh9SnuySk1Gcyk
- Py/fs5EHtq+9oyOR3FhlHxvu/wQyNnR82fw6meVXSxXZ+g9VoHAd/lkdS0MEhNRhs7y+
- AnZ8juuuoJSKexokN/F02d+xQ5HyK5uN+l1vJUwSGWSh9eHZA+4QI6gfhPU+ZDPmt+CT
- hKIDGa2zsWw5ryzI3ruPgsbFXMPWJ5gI/PmM936QZlFWg7MnrZpQI48gkrAU+dY9HPUU
- Hjew==
-X-Gm-Message-State: AJcUukdhOjm5ceQ0/VKyCN7McGk/mYcVB/3jxgo7t+jjk1QTKwAQvhuW
- pp6GsI3yQi1sBdSusIeUqA==
-X-Google-Smtp-Source: ALg8bN7YUdJsKMpCX953MaNa6vxwhOhFB2rvS6C+vX5gSNPtizkLZmOQ0v4ZTva+YKvus3IQry/J6A==
-X-Received: by 2002:aca:ba02:: with SMTP id k2mr13254932oif.177.1548863417913; 
- Wed, 30 Jan 2019 07:50:17 -0800 (PST)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net.
- [24.155.109.49])
- by smtp.gmail.com with ESMTPSA id t201sm751720oie.37.2019.01.30.07.50.16
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Wed, 30 Jan 2019 07:50:17 -0800 (PST)
-Date: Wed, 30 Jan 2019 09:50:16 -0600
-From: Rob Herring <robh@kernel.org>
-To: Loys Ollivier <lollivier@baylibre.com>
-Subject: Re: [PATCH v3 2/4] dt-bindings: gnss: add mediatek binding
-Message-ID: <20190130155016.GA26536@bogus>
-References: <1548693481-1162-1-git-send-email-lollivier@baylibre.com>
- <1548693481-1162-3-git-send-email-lollivier@baylibre.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=mE2839Eu/L8jZo/jfini7SFxL2uXh0hAXh9/f8DGdfA=;
+ b=FULxPervWy27K+hhjlwKTYDIB6zRQWNEirqV/aWfhXejCXKiwsTu9IyHucB+KaRVBr
+ xGzra3ogkl9Sfs8fFk5CB+S4+sjwouWOcEo3i7Gwyl+HyIWCtmfmWkDibVDQ0gHJNZP9
+ 4EkfG3RFcmlT5HY5kxOdbHnMeOlT7IW8AAvOQr1DnliEqEsSqoDf5SqbXVOAjeY+sliL
+ HjPqq9UXphlQwpAnwy2SmbQi+k7nQ+/IA0SYIM0W9Dv1qhcAobLDTDCgZLJK3pI/XhcC
+ F2bkBMVzEwu2WkHD7qxxGLNMoKMfgMR6e8x9cB7Z1ds4MejAo1JhALgVb7qG+n3yUeD5
+ QWvg==
+X-Gm-Message-State: AJcUukd1mpAYHfjvz1NRr5MiYxCHX+dlipP4MR21B7NV2u90JrfvY2uo
+ m69ACJsk8XbWBqV8AK+wLFtJBsq1lrb4O5e+fPQ=
+X-Google-Smtp-Source: ALg8bN44if90JNA0lf0lqOB2ElvGnSGT4mzoxt0SoGosr5LzJ5k7nSyAUzTfFGYQ9G4NRPp4T3Gm2yvetnk9GpjH4sY=
+X-Received: by 2002:a0c:d992:: with SMTP id y18mr29860895qvj.161.1548865907585; 
+ Wed, 30 Jan 2019 08:31:47 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1548693481-1162-3-git-send-email-lollivier@baylibre.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190109162614.30855-1-robh@kernel.org> <87h8ehpwm2.fsf@FE-laptop>
+In-Reply-To: <87h8ehpwm2.fsf@FE-laptop>
+From: Arnd Bergmann <arnd@arndb.de>
+Date: Wed, 30 Jan 2019 17:31:31 +0100
+Message-ID: <CAK8P3a04uO2Nz-M4NVgMsGy2BPRx9pM1cCuUeS54Jf8N18-9NQ@mail.gmail.com>
+Subject: Re: [PATCH v2] ARM: dts: Kill off skeleton{64}.dtsi
+To: Gregory CLEMENT <gregory.clement@bootlin.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190130_075019_757055_FB787686 
-X-CRM114-Status: GOOD (  16.75  )
+X-CRM114-CacheID: sfid-20190130_083149_673069_509E7C5D 
+X-CRM114-Status: GOOD (  16.28  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -85,87 +76,72 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+Cc: Andrew Lunn <andrew@lunn.ch>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ Linus Walleij <linus.walleij@linaro.org>, linux-oxnas@groups.io,
+ Baruch Siach <baruch@tkos.co.il>, David Brown <david.brown@linaro.org>,
+ Jamie Iles <jamie@jamieiles.com>, Robert Jarzmik <robert.jarzmik@free.fr>,
+ linux-stm32@st-md-mailman.stormreply.com,
+ Alexandre Torgue <alexandre.torgue@st.com>, Rob Herring <robh@kernel.org>,
+ Jesper Nilsson <jesper.nilsson@axis.com>,
+ Florian Fainelli <f.fainelli@gmail.com>, Kevin Hilman <khilman@baylibre.com>,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>, linux-arm-kernel@axis.com,
+ Jon Mason <jonmason@broadcom.com>,
+ Ludovic Desroches <ludovic.desroches@microchip.com>, arm-soc <arm@kernel.org>,
+ bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+ Hauke Mehrtens <hauke@hauke-m.de>, Andy Gross <andy.gross@linaro.org>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Johan Hovold <johan@kernel.org>,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ linux-arm-msm@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
+ Jason Cooper <jason@lakedaemon.net>,
+ Antoine Tenart <antoine.tenart@bootlin.com>, Ray Jui <rjui@broadcom.com>,
+ Sylvain Lemieux <slemieux.tyco@gmail.com>,
+ Haojian Zhuang <haojian.zhuang@gmail.com>, Vladimir Zapolskiy <vz@mleia.com>,
+ "moderated list:ARM/Mediatek SoC..." <linux-mediatek@lists.infradead.org>,
+ Lars Persson <lars.persson@axis.com>, Gregory Fong <gregory.0xf0@gmail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ "open list:ARM/Amlogic Meson SoC support" <linux-amlogic@lists.infradead.org>,
+ linux-soc@vger.kernel.org, Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Barry Song <baohua@kernel.org>, Brian Norris <computersforpeace@gmail.com>,
+ Eric Miao <eric.y.miao@gmail.com>, Scott Branden <sbranden@broadcom.com>,
+ Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>, Li Yang <leoyang.li@nxp.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, Viresh Kumar <vireshk@kernel.org>,
+ Carlo Caione <carlo@caione.org>, Jun Nie <jun.nie@linaro.org>,
+ Tsahee Zidenberg <tsahee@annapurnalabs.com>, Shawn Guo <shawnguo@kernel.org>,
+ Daniel Mack <daniel@zonque.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jan 28, 2019 at 05:37:59PM +0100, Loys Ollivier wrote:
-> Add binding for Mediatek-based GNSS receivers.
-> 
-> Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
-> ---
-> 
-> v3:
-> Removed the I2C and SPI interfaces references.
-> Removed the "mediatek,mt3339" compatible line.
-> Added the optional propertied (reset, fix)
-> Added the pin names for the optional properties.
-> 
-> v2:
-> Renamed bindings from Globaltop/gtop to Mediatek/mtk.
-> Moved current-speed as an optional propertie.
-> Removed the status line in the example.
-> Added "mediatek,mt3339" compatible.
-> 
->  .../devicetree/bindings/gnss/mediatek.txt          | 37 ++++++++++++++++++++++
->  1 file changed, 37 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gnss/mediatek.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/gnss/mediatek.txt b/Documentation/devicetree/bindings/gnss/mediatek.txt
-> new file mode 100644
-> index 000000000000..00650d81c5c8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gnss/mediatek.txt
-> @@ -0,0 +1,37 @@
-> +Mediatek-based GNSS Receiver DT binding
-> +
-> +Mediatek chipsets are used in GNSS-receiver modules produced by several
-> +vendors and can use an UART interface.
-> +
-> +Please see Documentation/devicetree/bindings/gnss/gnss.txt for generic
-> +properties.
-> +
-> +Required properties:
-> +
-> +- compatible	: Must be
-> +
-> +			"globaltop,pa6h"
-> +
-> +- vcc-supply	: Main voltage regulator (pin name: VCC)
-> +
-> +Optional properties:
-> +
-> +- gtop,reset-gpios	: GPIO used to reset the device
-> +  			  (pin name: RESET, NRESET)
+On Wed, Jan 9, 2019 at 6:30 PM Gregory CLEMENT
+<gregory.clement@bootlin.com> wrote:
+>
+> Hi Rob,
+>
+>  On mer., janv. 09 2019, Rob Herring <robh@kernel.org> wrote:
+>
+> > Remove the usage of skeleton.dtsi in the remaining dts files. It was
+> > deprecated since commit 9c0da3cc61f1 ("ARM: dts: explicitly mark
+> > skeleton.dtsi as deprecated"). This will make adding a unit-address to
+> > memory nodes easier.
+> >
+> > The main tricky part to removing skeleton.dtsi is we could end up with
+> > no /memory node at all when a bootloader depends on one being present. I
+> > hacked up dtc to check for this condition.
+>
+>
+> Reviewed-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+> and for Armada 38x:
+> Tested-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+>
 
-reset-gpios is the standard name.
+Applied to arm/dt now, thanks!
 
-> +- gtop,fix-gpios	: GPIO used to determine device position fix state
-> +			  (pin name: FIX, 3D_FIX)
-> +- timepulse-gpios	: Time pulse GPIO (pin name: PPS1, 1PPS)
-> +- v-bckp-supply		: Backup voltage regulator
-> +  			  (pin name: VBAT, VBACKUP)
-> +- current-speed		: Default UART baud rate
-> +
-> +Example:
-> +
-> +serial@1234 {
-> +	compatible = "ns16550a";
-> +
-> +	gnss {
-> +		compatible = "globaltop,pa6h";
-> +		vcc-supply = <&vcc_3v3>;
-> +	};
-> +};
-> -- 
-> 2.7.4
-> 
+     Arnd
 
 _______________________________________________
 linux-amlogic mailing list
