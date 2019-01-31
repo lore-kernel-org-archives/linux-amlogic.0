@@ -6,126 +6,144 @@ X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
 	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B1049C169C4
-	for <linux-amlogic@archiver.kernel.org>; Thu, 31 Jan 2019 14:13:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 842D5C169C4
+	for <linux-amlogic@archiver.kernel.org>; Thu, 31 Jan 2019 15:50:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8417020881
-	for <linux-amlogic@archiver.kernel.org>; Thu, 31 Jan 2019 14:13:21 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 514FA20881
+	for <linux-amlogic@archiver.kernel.org>; Thu, 31 Jan 2019 15:50:15 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oHPR5JWU";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="fYGLPWlb"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8417020881
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=samsung.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="O4GzbIvT";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="btvwuliI"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 514FA20881
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:MIME-Version:
-	Date:Message-ID:From:To:Subject:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DS7vnkmg6DN9L27OClwevFq8VP7TciRGM8IQ2FGV2Tk=; b=oHPR5JWUjRF0Iq
-	RTpOrH1WEByHKd8xkyUj7U0ALQT+HWvDdt4FM2X777C8jK84K4ztl422vKjuTBQDvxHeh1XiUWKbM
-	sdHwaH3Rmr/4GjlIlMoiq2mAdRJ21cQwYIWWU0MOk+9tED2XEJz7SOhoPDmgSU/89uQpMVPrGN83C
-	X201lBZ8x2sDCYFOfym/6TW3ehaPcFfVGBvDCe382+ryPyA6cqIe7Pee5MVg5EOczeNM6Htte1VLl
-	EcG5OT0jBFDJBWWUWsFHw+YNdnRCwTive5Ln2edAHBQvyaiKU05hdBrWS3pdf+VUYnXyQ1GJY28tW
-	QO9w5bAvYxYzHr8bHNlg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=MxwndaEX0eKfzCyN6FfrMBv1XtPOgLDu0Bv55eOitaU=; b=O4GzbIvTdzLfOR
+	2ie2u7Dr/X6P76fYIxd8PHyhGEkKfdVSv/sUS8WDprrUH2CVx7UShWpXQB8oU375vG+7sRJgRWa+m
+	5V8c25LlBMVGaaSnCF0aJ8CtZ+aqx+2acktfyefHqyyGQeczWbL0leHEZSbJZp2HXTRwsLcJQOL3T
+	041J/pUhvDvDcju5xiHMQ/VWbAjxylGL4DVHVH87emuhyZjRDWk9QDM0QH/SnpMQqJrHpoKgNYDnK
+	ayjelUYX95sty3TP2fTrcnELs0OSGhfOp2qyyfpQTSO82+933keTUiyTGIBAq9CRT7FEXA8K/3Vb8
+	Fr5+4tYzaSoocIdYtZew==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gpD5e-00028N-RM; Thu, 31 Jan 2019 14:13:14 +0000
-Received: from mailout1.w1.samsung.com ([210.118.77.11])
+	id 1gpEbQ-00080y-Q0; Thu, 31 Jan 2019 15:50:08 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gpD5a-00027w-Lq
- for linux-amlogic@lists.infradead.org; Thu, 31 Jan 2019 14:13:13 +0000
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
- by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id
- 20190131141307euoutp0196383e06c442d4f47d878f4476b4457a~_9Fmb4LHM0996109961euoutp01P
- for <linux-amlogic@lists.infradead.org>; Thu, 31 Jan 2019 14:13:07 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com
- 20190131141307euoutp0196383e06c442d4f47d878f4476b4457a~_9Fmb4LHM0996109961euoutp01P
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
- s=mail20170921; t=1548943987;
- bh=q9+/Tz0/lxy0J7zMDIcbHQZTQBS5MXZf8fkUP10TNH8=;
- h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
- b=fYGLPWlbAA/n/eerrrBrQ+myIY3gI8K/1kR93BM/nY/kujVCNQk9gmRwF0hoqMmRN
- 7vxjfjv3S809dOobTaId8VDACr5c5+UDgZknHr0E2JbxPHAKhocCDRoCNP2pwnfeG5
- Bquic/v+xrkUvsoyt93J24W80YWoYAJE4aOII+jU=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
- eucas1p2.samsung.com (KnoxPortal) with ESMTP id
- 20190131141307eucas1p2eef21921ecc338b3498cf4fc9c858c10~_9FmG9wkN2194121941eucas1p2G;
- Thu, 31 Jan 2019 14:13:07 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
- eusmges1new.samsung.com (EUCPMTA) with SMTP id 14.C6.04441.272035C5; Thu, 31
- Jan 2019 14:13:06 +0000 (GMT)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
- eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
- 20190131141306eucas1p12ff493681222eb774466e949e8c69404~_9FlRVcqK1045910459eucas1p1U;
- Thu, 31 Jan 2019 14:13:06 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
- eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
- 20190131141306eusmtrp2d4fce58e3b2641e32c962c9058c47e08~_9FlCu7AJ1533915339eusmtrp20;
- Thu, 31 Jan 2019 14:13:06 +0000 (GMT)
-X-AuditID: cbfec7f2-a1ae89c000001159-9f-5c5302728d30
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
- eusmgms1.samsung.com (EUCPMTA) with SMTP id D4.14.04284.172035C5; Thu, 31
- Jan 2019 14:13:06 +0000 (GMT)
-Received: from [106.120.43.17] (unknown [106.120.43.17]) by
- eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
- 20190131141305eusmtip143bb2d54ad52b002c283151ddf3e14d7~_9FknS5TU0872208722eusmtip1L;
- Thu, 31 Jan 2019 14:13:05 +0000 (GMT)
+ id 1gpEbM-0007Qr-1N
+ for linux-amlogic@lists.infradead.org; Thu, 31 Jan 2019 15:50:06 +0000
+Received: by mail-wm1-x343.google.com with SMTP id g67so3079216wmd.2
+ for <linux-amlogic@lists.infradead.org>; Thu, 31 Jan 2019 07:50:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=AZlchqHweeitmzFOVEd86L1QbQOzSms3bkTBkjj4nY8=;
+ b=btvwuliIZO16Ip78BinCXjrvPMsV0zNyEu/5o+0I9PE8jeKZyf4a/p8qy6xuRqvcm/
+ uCV2vHD26HCbnnbqptdgppmZrgpRj/yXgDEOr3XfnHUHgxB9GLZvrJMsMDUTh4QJNJ17
+ uz3pr7XRxcplZAB686N2pjiZ3hRjQ4KrgBf1iinBNowAuUNKOzPZ54uTpDxemWkvi9/l
+ 0v0LS44Rnn4db5bZ1s/eCObFkTHEEVskiHREUCqIgbgOdG2JC8ulywTpQPlw2kEC7W0s
+ t7cSAZqn9Yc/TE7gep8whTVzPQoh2aaTJq6I0Bhk4L6zRgSTfzNbNj/7BzRwbUsxFRdy
+ 6TDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=AZlchqHweeitmzFOVEd86L1QbQOzSms3bkTBkjj4nY8=;
+ b=LaZm8CFF3crZkSPTiszoXYETE9PG/1rRrJmi2KqQKLTUpnh8K+on29rv7J5xdzGovg
+ 3WVdb7Ss5P/pyPUM4lmaOWxYPdd87V0wmGpg1faogeT+gNsT7gBmijjg+/rRhWx02Res
+ GkTloCrhS7KvFeCYxtwuaR+jhSTXcRXMsNu+dByQZDGzIMSU8s78ByqxXHz9W9mKzqNT
+ 6IsqDWqcMyF0zUT7WA2/rSwn8D9ntMVhyjHgvJoMcu8TDWfgK7L5t3lKyA94xMvF5bFR
+ AH/D4tKQMErw6M/GYYX9vRqsdfd6oxEBiQZ2VSUl1MY5VTlfC4Xi0wUsjSqJiRr6KPQe
+ fPDA==
+X-Gm-Message-State: AJcUukfeUh2JaW+L/qrlS/maEu/jGjF5yDHx1zNt7HTrUXQrhxPFSL7g
+ L+eyCdbEQ9VbVJXk5r8rTH+I5u13HTPTvQ==
+X-Google-Smtp-Source: ALg8bN5FXLrDkTvNVMJJ4ry3WKdpPwuqV9ojFR2rEx5/7D8rjIP3tbp1QPrVKhzzOSvQRBQvm4wD8g==
+X-Received: by 2002:a1c:1d8e:: with SMTP id d136mr29294760wmd.98.1548949801696; 
+ Thu, 31 Jan 2019 07:50:01 -0800 (PST)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id r12sm6572022wrq.3.2019.01.31.07.50.00
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 31 Jan 2019 07:50:01 -0800 (PST)
 Subject: Re: [PATCH 0/8] drm/meson: Add support for HDMI2.0 4k60
-To: Neil Armstrong <narmstrong@baylibre.com>,
- Laurent.pinchart@ideasonboard.com, Philipp Zabel <p.zabel@pengutronix.de>,
- Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=c3=bcbner?=
- <heiko@sntech.de>, maxime.ripard@bootlin.com
-From: Andrzej Hajda <a.hajda@samsung.com>
-Message-ID: <0fa602d6-a57e-0248-fcfd-929e3d9ceab1@samsung.com>
-Date: Thu, 31 Jan 2019 15:13:03 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.4.0
-MIME-Version: 1.0
-In-Reply-To: <a3de23a8-3fa4-f8c5-5b2a-33109c09a863@baylibre.com>
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrEKsWRmVeSWpSXmKPExsWy7djP87pFTMExBguWm1tc+fqezeL/o9es
- FnMn1Vp0TlzCbrFgNrfF5V1z2CwevNzPaHGoL9ri7r0TLA6cHu9vtLJ7zFtT7TG7Yyarx/3u
- 40wem5fUe/T/NfD4O2s/i8f2a/OYPT5vkgvgjOKySUnNySxLLdK3S+DK2NX2kLlgmkrFpwl7
- GRsYH8p0MXJySAiYSMx/8I65i5GLQ0hgBaNEz9JlTCAJIYEvjBJv5wpAJD4zSrTsO8wE09HZ
- /ZAJIrGcUaLzzBdWCOcto8Ss+dvYQaqEBRwkXpxdzAiSEBF4wyjxbeF2sHZmgTSJWzMOsYLY
- bAKaEn8332QDsXkF7CTaf69gBrFZBFQlJjR/YASxRQUiJA73vmOEqBGUODnzCQuIzQm04Per
- 96wQM+Ultr+dwwxhi0vcejIf7DwJgUvsEk+erWSBuNtFYkXTf2YIW1ji1fEt7BC2jMT/nfOh
- fquXaJp5hRmiuYNR4sTi5WwQCWuJw8cvAm3jANqgKbF+lz6IKSHgKNF7oAbC5JO48VYQ4gQ+
- iUnbpjNDhHklOtqEIGYoStw/uxXqAHGJpRe+sk1gVJqF5LFZSJ6ZheSZWQhrFzCyrGIUTy0t
- zk1PLTbMSy3XK07MLS7NS9dLzs/dxAhMWaf/Hf+0g/HrpaRDjAIcjEo8vBt+BcUIsSaWFVfm
- HmKU4GBWEuGVegAU4k1JrKxKLcqPLyrNSS0+xCjNwaIkzlvN8CBaSCA9sSQ1OzW1ILUIJsvE
- wSnVACTjgnkFfBs9TTQz2DeVTnbx3jzjL1fejaNPAqXTrt5SDLZl+vRicckVC51fjZc/uq3h
- 1798NvM5v3bwXbbzkRMWpqoeOr5iw9//20qaDhxS+qd9eiOj7V0GUY+COV4fhFe+1+HW+sg6
- a/t97YUXq3bcX8fxPEv/r+vJR/fdGG09Piz6/jrwiBJLcUaioRZzUXEiAHfpktxVAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrGIsWRmVeSWpSXmKPExsVy+t/xu7pFTMExBtsrLa58fc9m8f/Ra1aL
- uZNqLTonLmG3WDCb2+LyrjlsFg9e7me0ONQXbXH33gkWB06P9zda2T3mran2mN0xk9Xjfvdx
- Jo/NS+o9+v8aePydtZ/FY/u1ecwenzfJBXBG6dkU5ZeWpCpk5BeX2CpFG1oY6RlaWugZmVjq
- GRqbx1oZmSrp29mkpOZklqUW6dsl6GXsanvIXDBNpeLThL2MDYwPZboYOTkkBEwkOrsfMnUx
- cnEICSxllFg3s5kNIiEusXv+W2YIW1jiz7UuNoii14wS8w/OBysSFnCQeHF2MSNIQkTgDaPE
- 74mX2UESzAJpEn+egnSDdBxjlDhxcysjSIJNQFPi7+abYN28AnYS7b9XgK1gEVCVmND8AaxG
- VCBC4uPTfUwQNYISJ2c+YQGxOYG2/X71nhVigbrEn3mXmCFseYntb+dA2eISt57MZ5rAKDQL
- SfssJC2zkLTMQtKygJFlFaNIamlxbnpusaFecWJucWleul5yfu4mRmCcbjv2c/MOxksbgw8x
- CnAwKvHwbvgVFCPEmlhWXJl7iFGCg1lJhFfqAVCINyWxsiq1KD++qDQntfgQoynQcxOZpUST
- 84EpJK8k3tDU0NzC0tDc2NzYzEJJnPe8QWWUkEB6YklqdmpqQWoRTB8TB6dUA2OV33/bC0tP
- qj3btJz3pOpVoWX5tz5J50ervDy9xP7JgWVvKhpSMp75PbJwzlXadePrilXL2NJM+FivzFD5
- uPVn3OR/mpYTz2/+Ls383ds35NLT1l25ffMf7hCZefGCqezaFet3zW11f5p354pRblhu6vK2
- uMmcbLvm1JxOS2mT5bpc7Hvw3L9NSizFGYmGWsxFxYkAN6J0KukCAAA=
-X-CMS-MailID: 20190131141306eucas1p12ff493681222eb774466e949e8c69404
-X-Msg-Generator: CA
-X-RootMTR: 20190131132546epcas5p264ec54cb60053b409f0459f809825eef
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190131132546epcas5p264ec54cb60053b409f0459f809825eef
+To: Andrzej Hajda <a.hajda@samsung.com>, Laurent.pinchart@ideasonboard.com,
+ Philipp Zabel <p.zabel@pengutronix.de>, Sandy Huang <hjc@rock-chips.com>,
+ =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>, maxime.ripard@bootlin.com
 References: <20190115123315.11069-1-narmstrong@baylibre.com>
  <CGME20190131132546epcas5p264ec54cb60053b409f0459f809825eef@epcas5p2.samsung.com>
  <a3de23a8-3fa4-f8c5-5b2a-33109c09a863@baylibre.com>
+ <0fa602d6-a57e-0248-fcfd-929e3d9ceab1@samsung.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <3f28a247-f6d3-be03-ca9f-15dfee1939c2@baylibre.com>
+Date: Thu, 31 Jan 2019 16:50:00 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.4.0
+MIME-Version: 1.0
+In-Reply-To: <0fa602d6-a57e-0248-fcfd-929e3d9ceab1@samsung.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190131_061311_064913_811F91D3 
-X-CRM114-Status: GOOD (  22.89  )
+X-CRM114-CacheID: sfid-20190131_075004_266678_A55BB3A0 
+X-CRM114-Status: GOOD (  22.84  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -144,125 +162,137 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 31.01.2019 14:25, Neil Armstrong wrote:
-> Hi Andrzej, Laurent,
->
-> On 15/01/2019 13:33, Neil Armstrong wrote:
->> This patchset aims to add support for the following HDMI2.0 4k60 modes:
->> - 594Mhz TMDS frequency needing TMDS Scramling and 1/40 rate for RGB/YUV4:4:4
->> - 297MHz TMDS frequency with YUV4:2:0 encoding
+On 31/01/2019 15:13, Andrzej Hajda wrote:
+> On 31.01.2019 14:25, Neil Armstrong wrote:
+>> Hi Andrzej, Laurent,
 >>
->> The first mode uses the SCDC helpers introduced by intel to :
->> - discover where the monitor support SCDC
->> - setup the SCDC parameters
->> This is implemented in the dw-hdmi bridge driver by handling scrambling
->> support during the bridge setup and by exporting an helper for the PHY
->> setup to setup the SCDC configuration for the 1/40 TMDS rate.
->> This code will only be active if the encoder support a TMDS rate > 340MHz.
->>
->> This patch could eventually break support on different SoC when connected
->> on a 4k60 monitor with SCDC :
->> - i.MX correctly discards pixel clocks > 216MHz
->> - R-CAR discards discards pixel clocks > 297MHz since [1]
->> - Rockchip discards invalid pixel clocks not in the rockchip_mpll_cfg table
->> - sun8i correctly discards pixel clocks > 297MHz on a83t
->> - sun8i discards discards pixel clocks > 594Mhz on h6, which is already broken
->>
->> First patch should fix support for Allwinner H6.
->>
->> The second mode is implemented by added the missing 4:2:0 bypass handling
->> in the dw-hdmi bridge driver and adding a "mtmdsclock" separating the
->> pixel clock from the tmds clock in the mode setup phase.
->> We also enable support for these modes in the connector only if the platform
->> glue code explicits the support.
-> Do you think patches 1-4 could be applied ?
+>> On 15/01/2019 13:33, Neil Armstrong wrote:
+>>> This patchset aims to add support for the following HDMI2.0 4k60 modes:
+>>> - 594Mhz TMDS frequency needing TMDS Scramling and 1/40 rate for RGB/YUV4:4:4
+>>> - 297MHz TMDS frequency with YUV4:2:0 encoding
+>>>
+>>> The first mode uses the SCDC helpers introduced by intel to :
+>>> - discover where the monitor support SCDC
+>>> - setup the SCDC parameters
+>>> This is implemented in the dw-hdmi bridge driver by handling scrambling
+>>> support during the bridge setup and by exporting an helper for the PHY
+>>> setup to setup the SCDC configuration for the 1/40 TMDS rate.
+>>> This code will only be active if the encoder support a TMDS rate > 340MHz.
+>>>
+>>> This patch could eventually break support on different SoC when connected
+>>> on a 4k60 monitor with SCDC :
+>>> - i.MX correctly discards pixel clocks > 216MHz
+>>> - R-CAR discards discards pixel clocks > 297MHz since [1]
+>>> - Rockchip discards invalid pixel clocks not in the rockchip_mpll_cfg table
+>>> - sun8i correctly discards pixel clocks > 297MHz on a83t
+>>> - sun8i discards discards pixel clocks > 594Mhz on h6, which is already broken
+>>>
+>>> First patch should fix support for Allwinner H6.
+>>>
+>>> The second mode is implemented by added the missing 4:2:0 bypass handling
+>>> in the dw-hdmi bridge driver and adding a "mtmdsclock" separating the
+>>> pixel clock from the tmds clock in the mode setup phase.
+>>> We also enable support for these modes in the connector only if the platform
+>>> glue code explicits the support.
+>> Do you think patches 1-4 could be applied ?
+> 
+> 
+> For me they are OK.
+> 
+> Should I take them via drm-misc?
 
+OK for me !
 
-For me they are OK.
+Neil
 
-Should I take them via drm-misc?
-
-
->
-> Then we could focus on how we manage the bus format between the encoder
-> and the bridge ?
->
-> Especially patch 5 linked to patch 7.
->
-> Will one of you be at FOSDEM 2019 ? we could chat about this.
-
-
-Nope.
-
-
-Regards
-
-Andrzej
-
-
->
-> Following subjects on the table will be :
-> - HDR metadata transmission aligned with the last patchset sent by intel-gfx
-> - Colorspace connector property aligned with the last patchset sent by intel-gfx
-> - HDCP 1.4 and 2.2 handling
->
-> Neil
->
->> Only the meson DRM dw_hdmi glue allows ycbcr420 modes, so no breakage
->> is expected here.
+> 
+> 
 >>
->> The remaining patches adds support for :
->> - 1/40 TMDS rate aka DIV40 in the dw-hdmi meson PHY setup
->> - 4:2:0 output and clock setup
+>> Then we could focus on how we manage the bus format between the encoder
+>> and the bridge ?
 >>
->> The dw-hdmi support re-uses the support done by Rockchip engineers on the
->> Linux 4.4 BSP kernel.
+>> Especially patch 5 linked to patch 7.
 >>
->> These modes has been validated using a MuxLab HDMI Signal Analyser in
->> addition to different UHD TVs supporting full 4k60 or the 4:2:0 variant.
+>> Will one of you be at FOSDEM 2019 ? we could chat about this.
+> 
+> 
+> Nope.
+> 
+> 
+> Regards
+> 
+> Andrzej
+> 
+> 
 >>
->> Changes since RFC v2 at [3]:
->> - Collected tested-by and reviewed-by tags
->> - Changed if condition in "add HDMI div40 TMDS mode"
->> - Updated "Add YUV420 output support" with the same if condition
+>> Following subjects on the table will be :
+>> - HDR metadata transmission aligned with the last patchset sent by intel-gfx
+>> - Colorspace connector property aligned with the last patchset sent by intel-gfx
+>> - HDCP 1.4 and 2.2 handling
 >>
->> Changes since RFC v1 at [2]:
->> - Fix all comments from Laurent :
->> - Add define for HDMI 1.4 max tmds clock and SCDC supported version
->> - Call dw_hdmi_set_high_tmds_clock_ratio() in dw_hdmi_phy_enable_powerdown()
->> to unbreak Allwinner H6
->> - Pass in_t(u8, bytes, SCDC_MIN_SOURCE_VERSION) as SCDC version
->> - Finally add comments for SCDC and Scrambling process
+>> Neil
 >>
->> [1] https://patchwork.freedesktop.org/patch/263616/
->> [2] https://patchwork.freedesktop.org/series/52950/#rev1
->> [3] https://patchwork.freedesktop.org/series/52950/#rev2
+>>> Only the meson DRM dw_hdmi glue allows ycbcr420 modes, so no breakage
+>>> is expected here.
+>>>
+>>> The remaining patches adds support for :
+>>> - 1/40 TMDS rate aka DIV40 in the dw-hdmi meson PHY setup
+>>> - 4:2:0 output and clock setup
+>>>
+>>> The dw-hdmi support re-uses the support done by Rockchip engineers on the
+>>> Linux 4.4 BSP kernel.
+>>>
+>>> These modes has been validated using a MuxLab HDMI Signal Analyser in
+>>> addition to different UHD TVs supporting full 4k60 or the 4:2:0 variant.
+>>>
+>>> Changes since RFC v2 at [3]:
+>>> - Collected tested-by and reviewed-by tags
+>>> - Changed if condition in "add HDMI div40 TMDS mode"
+>>> - Updated "Add YUV420 output support" with the same if condition
+>>>
+>>> Changes since RFC v1 at [2]:
+>>> - Fix all comments from Laurent :
+>>> - Add define for HDMI 1.4 max tmds clock and SCDC supported version
+>>> - Call dw_hdmi_set_high_tmds_clock_ratio() in dw_hdmi_phy_enable_powerdown()
+>>> to unbreak Allwinner H6
+>>> - Pass in_t(u8, bytes, SCDC_MIN_SOURCE_VERSION) as SCDC version
+>>> - Finally add comments for SCDC and Scrambling process
+>>>
+>>> [1] https://patchwork.freedesktop.org/patch/263616/
+>>> [2] https://patchwork.freedesktop.org/series/52950/#rev1
+>>> [3] https://patchwork.freedesktop.org/series/52950/#rev2
+>>>
+>>> Neil Armstrong (7):
+>>>   drm/bridge: dw-hdmi: Add SCDC and TMDS Scrambling support
+>>>   drm/meson: add HDMI div40 TMDS mode
+>>>   drm/meson: add support for HDMI2.0 2160p modes
+>>>   drm/bridge: dw-hdmi: add support for YUV420 output
+>>>   drm/bridge: dw-hdmi: allow ycbcr420 modes for >= 0x200a
+>>>   drm/meson: Add YUV420 output support
+>>>   drm/meson: Output in YUV444 if sink supports it
+>>>
+>>> Zheng Yang (1):
+>>>   drm/bridge: dw-hdmi: support dynamically get input/out color info
+>>>
+>>>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 182 +++++++++++++++++++---
+>>>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.h |   1 +
+>>>  drivers/gpu/drm/meson/meson_dw_hdmi.c     | 128 ++++++++++++---
+>>>  drivers/gpu/drm/meson/meson_vclk.c        |  93 ++++++++---
+>>>  drivers/gpu/drm/meson/meson_vclk.h        |   7 +-
+>>>  drivers/gpu/drm/meson/meson_venc.c        |   8 +-
+>>>  drivers/gpu/drm/meson/meson_venc.h        |  11 ++
+>>>  drivers/gpu/drm/meson/meson_venc_cvbs.c   |   3 +-
+>>>  include/drm/bridge/dw_hdmi.h              |   7 +
+>>>  9 files changed, 374 insertions(+), 66 deletions(-)
+>>>
 >>
->> Neil Armstrong (7):
->>   drm/bridge: dw-hdmi: Add SCDC and TMDS Scrambling support
->>   drm/meson: add HDMI div40 TMDS mode
->>   drm/meson: add support for HDMI2.0 2160p modes
->>   drm/bridge: dw-hdmi: add support for YUV420 output
->>   drm/bridge: dw-hdmi: allow ycbcr420 modes for >= 0x200a
->>   drm/meson: Add YUV420 output support
->>   drm/meson: Output in YUV444 if sink supports it
 >>
->> Zheng Yang (1):
->>   drm/bridge: dw-hdmi: support dynamically get input/out color info
->>
->>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 182 +++++++++++++++++++---
->>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.h |   1 +
->>  drivers/gpu/drm/meson/meson_dw_hdmi.c     | 128 ++++++++++++---
->>  drivers/gpu/drm/meson/meson_vclk.c        |  93 ++++++++---
->>  drivers/gpu/drm/meson/meson_vclk.h        |   7 +-
->>  drivers/gpu/drm/meson/meson_venc.c        |   8 +-
->>  drivers/gpu/drm/meson/meson_venc.h        |  11 ++
->>  drivers/gpu/drm/meson/meson_venc_cvbs.c   |   3 +-
->>  include/drm/bridge/dw_hdmi.h              |   7 +
->>  9 files changed, 374 insertions(+), 66 deletions(-)
->>
->
->
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> 
 
 
 _______________________________________________
