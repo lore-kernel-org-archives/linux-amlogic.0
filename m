@@ -3,130 +3,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F6F6C282DA
-	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Feb 2019 12:48:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 594EEC282D8
+	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Feb 2019 12:50:30 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0187A2086C
-	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Feb 2019 12:48:52 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 211F021872
+	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Feb 2019 12:50:30 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KLfpA/RR";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Urs0iry/"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0187A2086C
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=samsung.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="m41AcGvQ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Y4Jt/4xM"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 211F021872
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:MIME-Version:
-	Date:Message-ID:From:To:Subject:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZC+9R0kOmSrJdB6wyq7v+bdrVJqet1fCFVHU18Nr4Uo=; b=KLfpA/RRKDwLG/
-	Ne8TJCU4Lt92i7cnBLhYq16HT7bnYL5ntMd9pxyx+wt3QjtqEWR2Dn0H9u76ihW5XjoiPVXfncG5k
-	xmzTVBKxMkIMo2dT9jMGJvzeFHnrNLW9TMkJAfzo+ydzGsTlx3nSbt0c8qPw+bi704Hq4asJIjNom
-	iQAT7wbbJeOCuBruuPkZ2DYc/AOCdckh4DLhmFWBikm19TyII6oGVFG+OYLKiiqihnUnqCUED9Fzl
-	WNqpTADWl/X7AJbaUXn4maq3X0+Qu9G1STsFqaBHcVf0CjxjndA5MlgjXgOcHG6bZYD/mZ5ASMd+t
-	HyXrPGsBIp7wyY+wEqbQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=NvAooKSIQd19GCwd2GX7oP5UC1gBjjSzaALk16ebeDg=; b=m41AcGvQnyP508
+	bOcTlEYSLvkA9QHJIVhAFcETAdZR9Rej1wTjQeDlEmWcvLPKG1g0p5mP+aKLYdPT1MMfM4Ox9cPwI
+	QS+zd6TvQCkpSSCdXVWF1xFugmBwWE9nZiq9Y7GuJCkcG/eDXFmDLGZT7lG/40SVnCX4vKFbbohLF
+	E2YWr5F/r/CQCTEkiijumnu9ePLihOEM+fatWuTIZivjLD/BIus5FEkr0GL5NlOzX81zHkVcvWP/b
+	MQloCZqRlktDNBZ6PixrJZsAfCEh0e3/lsuAie6gL7k+ajWRAdRs8azPnq1SkXmvmWl7T5Mt4VBLx
+	Pz3LW3aQmJUFD8yqxH2w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gpYFR-0008Kl-1t; Fri, 01 Feb 2019 12:48:45 +0000
-Received: from mailout1.w1.samsung.com ([210.118.77.11])
+	id 1gpYH2-0001cn-8J; Fri, 01 Feb 2019 12:50:24 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gpYFN-0008KO-LJ
- for linux-amlogic@lists.infradead.org; Fri, 01 Feb 2019 12:48:43 +0000
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
- by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id
- 20190201124838euoutp01607fe31db52ec1b644798a25387d0c82~-PlIEqv5X2609126091euoutp01S
- for <linux-amlogic@lists.infradead.org>; Fri,  1 Feb 2019 12:48:38 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com
- 20190201124838euoutp01607fe31db52ec1b644798a25387d0c82~-PlIEqv5X2609126091euoutp01S
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
- s=mail20170921; t=1549025318;
- bh=3e0Loc/9MtjGyaBeuppoLHtbSML3f5t0k5ohhsbpEWw=;
- h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
- b=Urs0iry/aKv9RM3yGCyyUFnZf+R8oQyrZ54T59+np+GOfNHMxCYBwZKkFUtJHUCN5
- YZW4vMzNsmViwdOW8rNtiNnaKlObSnf/qTnpedOXM9ob9mrC1f8+Wdnlag0CkVBXHj
- T6h2/9m97gd2FgCTRCsXc0NRNmcQVaZf6aXvTBmk=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
- eucas1p2.samsung.com (KnoxPortal) with ESMTP id
- 20190201124838eucas1p241ceb2549f6dec2f41762703bc4feca5~-PlHxnwP-0084200842eucas1p28;
- Fri,  1 Feb 2019 12:48:38 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
- eusmges3new.samsung.com (EUCPMTA) with SMTP id 20.04.04806.620445C5; Fri,  1
- Feb 2019 12:48:38 +0000 (GMT)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
- eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
- 20190201124837eucas1p2dd818b3b2380c3531e3f7c5368b87e1d~-PlHCFR4n3146631466eucas1p2R;
- Fri,  1 Feb 2019 12:48:37 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
- eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
- 20190201124837eusmtrp2a0fd166edbd273fe1fd953e53b00f0a8~-PlGzrJbb0847308473eusmtrp2T;
- Fri,  1 Feb 2019 12:48:37 +0000 (GMT)
-X-AuditID: cbfec7f5-367ff700000012c6-80-5c5440266090
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
- eusmgms1.samsung.com (EUCPMTA) with SMTP id 3E.CF.04284.520445C5; Fri,  1
- Feb 2019 12:48:37 +0000 (GMT)
-Received: from [106.120.43.17] (unknown [106.120.43.17]) by
- eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
- 20190201124836eusmtip1f7fd851ba6ab91440c1c83da8c665fa8~-PlGXOFxg0518305183eusmtip1f;
- Fri,  1 Feb 2019 12:48:36 +0000 (GMT)
-Subject: Re: [PATCH v2 4/8] drm/bridge: dw-hdmi: add support for YUV420 output
-To: Neil Armstrong <narmstrong@baylibre.com>,
- Laurent.pinchart@ideasonboard.com, p.zabel@pengutronix.de, Sandy Huang
- <hjc@rock-chips.com>, heiko@sntech.de, maxime.ripard@bootlin.com
-From: Andrzej Hajda <a.hajda@samsung.com>
-Message-ID: <4416a526-f4d4-89ee-4c53-41d9a3c1adb8@samsung.com>
-Date: Fri, 1 Feb 2019 13:48:36 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.4.0
+ id 1gpYGp-0001So-RB
+ for linux-amlogic@lists.infradead.org; Fri, 01 Feb 2019 12:50:13 +0000
+Received: by mail-wm1-x341.google.com with SMTP id b11so6015749wmj.1
+ for <linux-amlogic@lists.infradead.org>; Fri, 01 Feb 2019 04:50:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=yI5dyFXD0eCpqICzl94AW1c+UhnXLPpf4lVwvl+KCoM=;
+ b=Y4Jt/4xMCEgiOTu0QPE/DzgKbL1z6clS0ZyJp2ss28pRxNNk8n/gvQxw9aezLog4Im
+ MCD6T0mleFBR6kE8SS7sKd75uy7R+O4VzYqrGPcBMXrgX/kwqd/lQDLoJtGpy7NZ/C5v
+ QzCRY8mAxq3vnjeE/8Hn/VixXd5dj7LKoAVz6wV9zB+pmyPV0WhJPMvyyvdlK8m4FdDh
+ VhMddhv0WvdddG8aBgzVfVP9D3hsdCFyjlRW6Os+IBdJjJfQu1Uj0VY2jKJmucAy0bff
+ QFBNK23SMOdAaXINh2qyO0CENUH/fbWnqY1y4MemREIropXR5JJPcz4wbJMLxamrYkjl
+ Ux8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=yI5dyFXD0eCpqICzl94AW1c+UhnXLPpf4lVwvl+KCoM=;
+ b=Ng959wyZCPgjRQj2k6YKfAbs0h4ak4KNse7TaTny4EdSIEL/PqerlA0p+y13Ac3u2g
+ kgNo3I9fV0rto0HsGCepr5dkVn8KLsrkYmQSRG336mSJg7yL2HbWc5ALzzr1hJh+E14n
+ yCidUZwEityMzsHM9qKqpRE4hrceG6oS56z+j1niJFRe3JmDXjB5UT/tWfCbgjXCbxq4
+ gZIu0mx/O45iUWbf9poOpwVt39mVfaHuLTBySJNRcUUf7TCwL7suuCU5tg0iaBFmJldH
+ C/WYI7ULEB47C6G8HTp4OKO94WhEBD+LXDbLJ5SFOjiT7bZT2ILC7oLPX9DTmt0lBcu8
+ xN0w==
+X-Gm-Message-State: AHQUAua148QqonVEr52E/1Y+gYW5Ehddz5ssSO/ZZp2MiTGQw4zPq5o4
+ k/RHaYDjWs0ss7/2LvoxuuuuGg==
+X-Google-Smtp-Source: AHgI3Iagcxe5g+mTm+PlYI+lapgobHLUmmz5WFNAIkFaWEE4g5QJgWZZLBmL7mXUlnjN1TJFipaTGg==
+X-Received: by 2002:a1c:b455:: with SMTP id d82mr2425856wmf.78.1549025409830; 
+ Fri, 01 Feb 2019 04:50:09 -0800 (PST)
+Received: from boomer.local ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
+ by smtp.googlemail.com with ESMTPSA id w10sm4115884wmb.1.2019.02.01.04.50.08
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Fri, 01 Feb 2019 04:50:09 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCH v3] dt-bindings: reset: meson: add g12a bindings
+Date: Fri,  1 Feb 2019 13:50:03 +0100
+Message-Id: <20190201125003.25022-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <1549022873-40549-5-git-send-email-narmstrong@baylibre.com>
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrGKsWRmVeSWpSXmKPExsWy7djPc7pqDiExBs/v81lc+fqezeL/o9es
- FnMn1Vp0TlzCbrFgNrfF5V1z2CwevNzPaHGoL9ri7r0TLBbrW/QduDze32hl95i3ptpjdsdM
- Vo/73ceZPDYvqffo/2vg8XfWfhaP7dfmMXt83iQXwBnFZZOSmpNZllqkb5fAlXFt2kz2gl62
- ioOTORsY/7N0MXJySAiYSHz4sJO5i5GLQ0hgBaPEoUXLmCCcL4wSdyb8BasSEvjMKHGl362L
- kQOs49QrM4ia5YwSa++8ZoFw3jJKPF10kg2kQVggQGLv+Slgk0QEdjJKrPv7gw3EYRboZZTY
- 8vgcM0gVm4CmxN/NN8E6eAXsJM71XQZbxyKgItH4fzk7iC0qECFxuPcdI0SNoMTJmU/AajgF
- PCSauz6AzWEWkJfY/nYOlC0ucevJfLDNEgL32CVWTN/KDPGpi8Spk7tZIWxhiVfHt7BD2DIS
- /3eCNIDY9RJNM68wQzR3MEqcWLycDSJhLXH4+EVWUAAwA129fpc+RNhR4mXLbzZIuPBJ3Hgr
- CHEDn8SkbdOZIcK8Eh1tQhDVihL3z8JcIy6x9MJXtgmMSrOQfDYLyTezkHwzC2HvAkaWVYzi
- qaXFuempxcZ5qeV6xYm5xaV56XrJ+bmbGIGp6/S/4193MO77k3SIUYCDUYmHd8OvoBgh1sSy
- 4srcQ4wSHMxKIrwLpEJihHhTEiurUovy44tKc1KLDzFKc7AoifNWMzyIFhJITyxJzU5NLUgt
- gskycXBKNTBKRMzb9EJunu+hvwqhG06t4Mt5VJi+YxLr+43Z9wQPLBN8GebwVKz7Z6kK261Z
- /BfiDwffi5smEs7sNpF9k8k0w+5I6VWHp334wvOG+Xmw2yf73ElW3455na9+Na/Ewi72i7ZI
- 3DUOhthSY+uf96tP3bwZse4Mq9brR6tm71rhn3E9wfLO/aYwJZbijERDLeai4kQAbrCH3VkD
- AAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrFIsWRmVeSWpSXmKPExsVy+t/xu7qqDiExBve7pCyufH3PZvH/0WtW
- i7mTai06Jy5ht1gwm9vi8q45bBYPXu5ntDjUF21x994JFov1LfoOXB7vb7Sye8xbU+0xu2Mm
- q8f97uNMHpuX1Hv0/zXw+DtrP4vH9mvzmD0+b5IL4IzSsynKLy1JVcjILy6xVYo2tDDSM7S0
- 0DMysdQzNDaPtTIyVdK3s0lJzcksSy3St0vQy7g2bSZ7QS9bxcHJnA2M/1m6GDk4JARMJE69
- Muti5OIQEljKKLHv3RfWLkZOoLi4xO75b5khbGGJP9e62CCKXgMVHWlnAUkIC/hJrDq4mhUk
- ISKwk1Fiyax7LCAOs0Avo8Sbq1+YIFpuMkpsOLeNEaSFTUBT4u/mm2wgNq+AncS5vstgo1gE
- VCQa/y9nB7FFBSIkPj7dxwRRIyhxcuYTsBpOAQ+J5q4PYDcxC6hL/Jl3CcqWl9j+dg6ULS5x
- 68l8pgmMQrOQtM9C0jILScssJC0LGFlWMYqklhbnpucWG+oVJ+YWl+al6yXn525iBMbrtmM/
- N+9gvLQx+BCjAAejEg/vhl9BMUKsiWXFlbmHGCU4mJVEeBdIhcQI8aYkVlalFuXHF5XmpBYf
- YjQFem4is5Rocj4wleSVxBuaGppbWBqaG5sbm1koifOeN6iMEhJITyxJzU5NLUgtgulj4uCU
- amAUN2PYUBJlWPnebWGZ5P/Je446urRzxIVJTiyxXmtypCW+UDvctIVx5oTkGSZdKyRlt3x5
- kzv1uq3FHn7lE5dZXK35OOdNfhf9iL/Admrmf/uDbHv1v/nWKeyvvSXjvv/96Qsa58vOr+gr
- 8pzNEXIxmP3WDp9JdxYL5r26+vVfsa2r25t9fEuUWIozEg21mIuKEwHtCloQ7QIAAA==
-X-CMS-MailID: 20190201124837eucas1p2dd818b3b2380c3531e3f7c5368b87e1d
-X-Msg-Generator: CA
-X-RootMTR: 20190201120808epcas2p1f3b7a5f182f8f9815d95198f3a6177f8
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190201120808epcas2p1f3b7a5f182f8f9815d95198f3a6177f8
-References: <1549022873-40549-1-git-send-email-narmstrong@baylibre.com>
- <CGME20190201120808epcas2p1f3b7a5f182f8f9815d95198f3a6177f8@epcas2p1.samsung.com>
- <1549022873-40549-5-git-send-email-narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190201_044842_003683_DE99B5F6 
-X-CRM114-Status: GOOD (  12.81  )
+X-CRM114-CacheID: sfid-20190201_045011_937969_CA8496BA 
+X-CRM114-Status: UNSURE (   9.42  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -138,40 +94,171 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Zheng Yang <zhengyang@rock-chips.com>
+Cc: devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 01.02.2019 13:07, Neil Armstrong wrote:
-> In order to support the HDMI2.0 YUV420 display modes, this patch
-> adds support for the YUV420 TMDS Clock divided by 2 and the controller
-> passthrough mode.
->
-> YUV420 Synopsys PHY support will need some specific configuration table
-> to support theses modes.
->
-> This patch is based on work from Zheng Yang <zhengyang@rock-chips.com> in
-> the Rockchip Linux 4.4 BSP at [1]
->
-> [1] https://github.com/rockchip-linux/kernel/tree/release-4.4
->
-> Cc: Zheng Yang <zhengyang@rock-chips.com>
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Tested-by: Heiko Stuebner <heiko@sntech.de>
-> Reviewed-by: Andrzej Hajda <a.hajda@samsung.com>
-> ---
+Add device tree bindings for the reset controller of g12a SoC family.
 
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
 
-Patches 1-4 queued to drm-misc-next.
+Changes since v2 [0]:
+* Dropped useless g12a compatible
 
+[0]: https://lkml.kernel.org/r/20190128181316.30814-1-jbrunet@baylibre.com
 
-Regards
+ .../reset/amlogic,meson-g12a-reset.h          | 134 ++++++++++++++++++
+ 1 file changed, 134 insertions(+)
+ create mode 100644 include/dt-bindings/reset/amlogic,meson-g12a-reset.h
 
-Andrzej
-
+diff --git a/include/dt-bindings/reset/amlogic,meson-g12a-reset.h b/include/dt-bindings/reset/amlogic,meson-g12a-reset.h
+new file mode 100644
+index 000000000000..8063e8314eef
+--- /dev/null
++++ b/include/dt-bindings/reset/amlogic,meson-g12a-reset.h
+@@ -0,0 +1,134 @@
++/* SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause */
++/*
++ * Copyright (c) 2019 BayLibre, SAS.
++ * Author: Jerome Brunet <jbrunet@baylibre.com>
++ *
++ */
++
++#ifndef _DT_BINDINGS_AMLOGIC_MESON_G12A_RESET_H
++#define _DT_BINDINGS_AMLOGIC_MESON_G12A_RESET_H
++
++/*	RESET0					*/
++#define RESET_HIU			0
++/*					1	*/
++#define RESET_DOS			2
++/*					3-4	*/
++#define RESET_VIU			5
++#define RESET_AFIFO			6
++#define RESET_VID_PLL_DIV		7
++/*					8-9	*/
++#define RESET_VENC			10
++#define RESET_ASSIST			11
++#define RESET_PCIE_CTRL_A		12
++#define RESET_VCBUS			13
++#define RESET_PCIE_PHY			14
++#define RESET_PCIE_APB			15
++#define RESET_GIC			16
++#define RESET_CAPB3_DECODE		17
++/*					18	*/
++#define RESET_HDMITX_CAPB3		19
++#define RESET_DVALIN_CAPB3		20
++#define RESET_DOS_CAPB3			21
++/*					22	*/
++#define RESET_CBUS_CAPB3		23
++#define RESET_AHB_CNTL			24
++#define RESET_AHB_DATA			25
++#define RESET_VCBUS_CLK81		26
++/*					27-31	*/
++/*	RESET1					*/
++/*					32	*/
++#define RESET_DEMUX			33
++#define RESET_USB			34
++#define RESET_DDR			35
++/*					36	*/
++#define RESET_BT656			37
++#define RESET_AHB_SRAM			38
++/*					39	*/
++#define RESET_PARSER			40
++/*					41	*/
++#define RESET_ISA			42
++#define RESET_ETHERNET			43
++#define RESET_SD_EMMC_A			44
++#define RESET_SD_EMMC_B			45
++#define RESET_SD_EMMC_C			46
++/*					47-60 */
++#define RESET_AUDIO_CODEC		61
++/*					62-63	*/
++/*	RESET2					*/
++/*					64	*/
++#define RESET_AUDIO			65
++#define RESET_HDMITX_PHY		66
++/*					67	*/
++#define RESET_MIPI_DSI_HOST		68
++#define RESET_ALOCKER			69
++#define RESET_GE2D			70
++#define RESET_PARSER_REG		71
++#define RESET_PARSER_FETCH		72
++#define RESET_CTL			73
++#define RESET_PARSER_TOP		74
++/*					75-77	*/
++#define RESET_DVALIN			78
++#define RESET_HDMITX			79
++/*					80-95	*/
++/*	RESET3					*/
++/*					96-95	*/
++#define RESET_DEMUX_TOP			105
++#define RESET_DEMUX_DES_PL		106
++#define RESET_DEMUX_S2P_0		107
++#define RESET_DEMUX_S2P_1		108
++#define RESET_DEMUX_0			109
++#define RESET_DEMUX_1			110
++#define RESET_DEMUX_2			111
++/*					112-127	*/
++/*	RESET4					*/
++/*					128-129	*/
++#define RESET_MIPI_DSI_PHY		130
++/*					131-132	*/
++#define RESET_RDMA			133
++#define RESET_VENCI			134
++#define RESET_VENCP			135
++/*					136	*/
++#define RESET_VDAC			137
++/*					138-139 */
++#define RESET_VDI6			140
++#define RESET_VENCL			141
++#define RESET_I2C_M1			142
++#define RESET_I2C_M2			143
++/*					144-159	*/
++/*	RESET5					*/
++/*					160-191	*/
++/*	RESET6					*/
++#define RESET_GEN			192
++#define RESET_SPICC0			193
++#define RESET_SC			194
++#define RESET_SANA_3			195
++#define RESET_I2C_M0			196
++#define RESET_TS_PLL			197
++#define RESET_SPICC1			198
++#define RESET_STREAM			199
++#define RESET_TS_CPU			200
++#define RESET_UART0			201
++#define RESET_UART1_2			202
++#define RESET_ASYNC0			203
++#define RESET_ASYNC1			204
++#define RESET_SPIFC0			205
++#define RESET_I2C_M3			206
++/*					207-223	*/
++/*	RESET7					*/
++#define RESET_USB_DDR_0			224
++#define RESET_USB_DDR_1			225
++#define RESET_USB_DDR_2			226
++#define RESET_USB_DDR_3			227
++#define RESET_TS_GPU			228
++#define RESET_DEVICE_MMC_ARB		229
++#define RESET_DVALIN_DMC_PIPL		230
++#define RESET_VID_LOCK			231
++#define RESET_NIC_DMC_PIPL		232
++#define RESET_DMC_VPU_PIPL		233
++#define RESET_GE2D_DMC_PIPL		234
++#define RESET_HCODEC_DMC_PIPL		235
++#define RESET_WAVE420_DMC_PIPL		236
++#define RESET_HEVCF_DMC_PIPL		237
++/*					238-255	*/
++
++#endif
+-- 
+2.20.1
 
 
 _______________________________________________
