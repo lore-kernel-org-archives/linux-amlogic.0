@@ -2,92 +2,88 @@ Return-Path: <SRS0=EwLr=QI=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED,USER_AGENT_MUTT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4A7AAC282D8
-	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Feb 2019 08:17:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ED70FC282D8
+	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Feb 2019 08:30:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1A57520811
-	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Feb 2019 08:17:36 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B972A20869
+	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Feb 2019 08:30:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lGw+ZwaY";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="b1aRZWN1"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1A57520811
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jZrO/dvk";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=oracle.com header.i=@oracle.com header.b="SvZlCHlY"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B972A20869
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=oracle.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
-	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=0iZUc/SqzE4qCUk4YUA4kO4fIqK8oTa/78sYQgdKaG0=; b=lGw+ZwaYRBFSBXcQqYJUH5Q3vX
-	bLZmtSDKdt67yzZjUhsEwy8s1ibgvKbv25UBhufqtsOb4OCWP5LEwAsObJUuIcTdpc4EBVdeQjX6g
-	pftNL+Q9hRNOmOD/cbvz60ma0vtmRiI4U3FvQkq0ROVgsi/FSXzBPz9OKL18cmiODKQShpTucyEjV
-	IwC3TGInTwKGoNTGOtVBIEh6HWXyC7O9cjmgKVufzSMS0QTB/3j5F6dRI8gVkUq8dNT9Ep7RwPSY6
-	09DkLoFW8hBE+3tcVci93FKee66FDtIS8s9Kis5gRLPNS06Vo587HLMZWz7VZc3EZinbWcVCIlCro
-	RRhYndyw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:To:From
+	:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=tM1caZygXFHlKFo4N6eMZ0Uiy6n9WriWJp7qMMUfvD4=; b=jZrO/dvkCWSODZ
+	U50ifjWVGAoSkbTssbzskXJ7CHIu2G+Q4mglUHIO3l+OpY7+A4raW45NFK3EXE0vxRyyVeUVJ8bRi
+	rvGZCLHbQWirNnLglCpuFHJb9Q/bnfEnPHhw34ziM+r5c/oGPHujCh58VeYB5+l81YIeYjsChVDrr
+	H82UAJ2MIrQnUHElBq82typNf2RAalwJeACWQMBhHwFTZ3c9JdWOOENOHjTixS6Os3Fxfg72WpgkQ
+	U9YJVaQkok1QmRyxZBv/nNXrUZ+4dWYDDtotw2R03PlZ9G8P44TiG7FOlwAgBMxy0aCyHw2sN9ish
+	8IX3tzMRPY2t+VTvwj5g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gpU0v-0007F0-6i; Fri, 01 Feb 2019 08:17:29 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1gpUDE-0006Cx-Cv; Fri, 01 Feb 2019 08:30:12 +0000
+Received: from aserp2130.oracle.com ([141.146.126.79])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gpU0s-0007Di-0c
- for linux-amlogic@lists.infradead.org; Fri, 01 Feb 2019 08:17:27 +0000
-Received: by mail-wr1-x441.google.com with SMTP id r17so93590wrp.2
- for <linux-amlogic@lists.infradead.org>; Fri, 01 Feb 2019 00:17:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version;
- bh=hMhn/HTa/qYSZQG2pgokIUdkGkKp08wdGnM7svsUcXE=;
- b=b1aRZWN16i8ymJT6jms0uhE+xBqyzSWZD37o/CnUeqlfRnPgZZ1elzHfXkwdHL6kHC
- u7VEJ+4w323rnwkUfgE4FuUQgYWAcXmEzJd6uTkan+vZo3Brr9JVIxlgRZSpapPzOUkW
- TvL0p2SaIVS8dc3EuWc97ZlfpnEMjt6NhrrUYJ196yd+3/wMSSZGENSluhKFH6Hbsa3H
- KPmGh4UJxdNpS6NJEudlkjgCXFzzZsFy6rHw8tMni8fFVHLHMC/d/d93WF7CDGOH+oYf
- qBZGG9DqTvgOO08q8YvFrhM1lJHe5DuaCpPflSOwPWrjzVLuzRcexNakQprsuMoTYXJG
- E5Tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version;
- bh=hMhn/HTa/qYSZQG2pgokIUdkGkKp08wdGnM7svsUcXE=;
- b=D62nvNHrTF9oFi0sz1DAG5MBz6DiY0ciZ4zN5snxfgIiIvUT8n4I2oDjseoU+g2ubI
- Ra1skuSImxaY0ZfDATInLjFUzcwAdVo1se+5PuodxHUyadhcTa+MspoFIGPrwkQYyuh1
- pscCCPm/b/Nnt5AVGY3u1y4EYIo0w9zaNaYrb1a2zToBfD9Gp4mrZNab54zC4/+ExXp1
- 1wLPeRrGBrbsB2gHRjMMKsqjNWG89VqjXUr4lcy7UVRJk0873ov5a+Tvw2iwWBjoMLzQ
- joPfKeysbrIvkvKCfrhB6NAUr9RDJ6LlnrzAnbcB9SH7T5JXs2+WZVyDDc1FwODFTVdb
- MacA==
-X-Gm-Message-State: AJcUukesZnp2DxyVA47O9xO9RdD9YWlcv5/d6SSVXP7mhP1CybaWpQxd
- wcSCcbS0gzHteEt45JE/Zc2FLA==
-X-Google-Smtp-Source: ALg8bN5Zd5spjX/pV23rK/hUUGJ7dFezrvWFGyZNbqRuiuoalGir3/lBABKAOBYZczT5UM8Y1QPvXw==
-X-Received: by 2002:a05:6000:1251:: with SMTP id
- j17mr36437112wrx.315.1549009041493; 
- Fri, 01 Feb 2019 00:17:21 -0800 (PST)
-Received: from localhost ([2a01:cb1d:12c:8800:1e45:34e8:9e5f:f03])
- by smtp.gmail.com with ESMTPSA id v133sm1810559wmf.19.2019.02.01.00.17.20
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 01 Feb 2019 00:17:20 -0800 (PST)
-References: <1548693481-1162-1-git-send-email-lollivier@baylibre.com>
- <1548693481-1162-2-git-send-email-lollivier@baylibre.com>
- <20190130154851.GA25794@bogus>
-User-agent: mu4e 1.0; emacs 25.3.2
-From: Loys Ollivier <lollivier@baylibre.com>
-To: Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 1/4] dt-bindings: Add vendor prefix for "GlobalTop
- Technology, Inc."
-In-reply-to: <20190130154851.GA25794@bogus>
-Date: Fri, 01 Feb 2019 09:17:18 +0100
-Message-ID: <86womj3ott.fsf@baylibre.com>
+ id 1gpUCy-0005j5-S1; Fri, 01 Feb 2019 08:29:58 +0000
+Received: from pps.filterd (aserp2130.oracle.com [127.0.0.1])
+ by aserp2130.oracle.com (8.16.0.22/8.16.0.22) with SMTP id x118TIAG012377;
+ Fri, 1 Feb 2019 08:29:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=date : from : to : cc
+ : subject : message-id : mime-version : content-type; s=corp-2018-07-02;
+ bh=plq37cZSpTau/SpWlOV3RG9OD/Q93HdOlf0gJx+xkPo=;
+ b=SvZlCHlYqmFIV+kKne8Cd74CV//mtCm2LK3bgWXsZ2EoHFN9fHYMi6RBHlCsU+PWbCi3
+ +s1ff+Ku3kb+ycu4V4/xeUJozxkJjHfelHh3AK4LVfFh2K2VnfQy8Eew6hpDRczKT1bq
+ gTYzq6QiyfbQ+4Elni6ndeXJMbWC9XvoM7iC2X1X1JBiKpS9q0dPFM14JNrdX+zkVFvO
+ qTok1zu6NhS9ONlxz/ZFOA3iDXczZZjskS3fdbqnSN7iY+S845BWamuW5V4fvV4qZMY1
+ piPsL36ujbWhhSG+7r60NzLSerI0DXYQHpHWlmJgyCbWoHkjbzINvlbBza6ME+ak/1u/ 5g== 
+Received: from aserv0022.oracle.com (aserv0022.oracle.com [141.146.126.234])
+ by aserp2130.oracle.com with ESMTP id 2q8d2enc19-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 01 Feb 2019 08:29:41 +0000
+Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
+ by aserv0022.oracle.com (8.14.4/8.14.4) with ESMTP id x118TZIY014193
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 1 Feb 2019 08:29:35 GMT
+Received: from abhmp0016.oracle.com (abhmp0016.oracle.com [141.146.116.22])
+ by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id x118TX1J009720;
+ Fri, 1 Feb 2019 08:29:34 GMT
+Received: from kadam (/197.157.0.29) by default (Oracle Beehive Gateway v4.0)
+ with ESMTP ; Fri, 01 Feb 2019 00:29:33 -0800
+Date: Fri, 1 Feb 2019 11:29:22 +0300
+From: Dan Carpenter <dan.carpenter@oracle.com>
+To: Liang Yang <liang.yang@amlogic.com>
+Subject: [PATCH 1/3] mtd: rawnand: meson: Fix a limit test in
+ meson_nfc_select_chip()
+Message-ID: <20190201082922.GC8459@kadam>
 MIME-Version: 1.0
+Content-Disposition: inline
+X-Mailer: git-send-email haha only kidding
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-Virus-Version: vendor=nai engine=5900 definitions=9153
+ signatures=668682
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0
+ priorityscore=1501 malwarescore=0
+ suspectscore=0 phishscore=0 bulkscore=0 spamscore=0 clxscore=1011
+ lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=998 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1810050000
+ definitions=main-1902010064
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190201_001726_084255_5DDA06B3 
-X-CRM114-Status: GOOD (  11.06  )
+X-CRM114-CacheID: sfid-20190201_002956_988467_8CA0708E 
+X-CRM114-Status: GOOD (  16.61  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -99,44 +95,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Loys Ollivier <lollivier@baylibre.com>,
- Johan Hovold <johan@kernel.org>, linux-kernel@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+Cc: Boris Brezillon <bbrezillon@kernel.org>,
+ Richard Weinberger <richard@nod.at>, kernel-janitors@vger.kernel.org,
+ Marek Vasut <marek.vasut@gmail.com>, linux-mtd@lists.infradead.org,
+ Kevin Hilman <khilman@baylibre.com>, Miquel Raynal <miquel.raynal@bootlin.com>,
+ linux-amlogic@lists.infradead.org, Brian Norris <computersforpeace@gmail.com>,
+ David Woodhouse <dwmw2@infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+This test is off by one because the > should be >= and it's also testing
+against the wrong limit.  The MAX_CE_NUM is the maximum size that
+meson_chip->sels[] is allowed to be but meson_chip->nsels is the actual
+size.
 
-On Wed 30 Jan 2019 at 15:48, Rob Herring <robh@kernel.org> wrote:
+Fixes: 2d570b34b41a ("mtd: rawnand: meson: add support for Amlogic NAND flash controller ")
+Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+---
+ drivers/mtd/nand/raw/meson_nand.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> On Mon, 28 Jan 2019 17:37:58 +0100, Loys Ollivier wrote:
->> Add globaltop vendor definition.
->> 
->> Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
->> ---
->> 
->> v3: No changes
->> 
->> v2: Alphabetical order
->> 
->>  Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
->>  1 file changed, 1 insertion(+)
->> 
->
-> Please add Acked-by/Reviewed-by tags when posting new versions. However,
-> there's no need to repost patches *only* to add the tags. The upstream
-> maintainer will do that for acks received on the version they apply.
->
-> If a tag was not added on purpose, please state why and what changed.
-
-Oops apologies. I'll remember that for future submissions.
-
+diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+index e858d58d97b0..94c90be7e1e0 100644
+--- a/drivers/mtd/nand/raw/meson_nand.c
++++ b/drivers/mtd/nand/raw/meson_nand.c
+@@ -225,7 +225,7 @@ static void meson_nfc_select_chip(struct nand_chip *nand, int chip)
+ 	struct meson_nfc *nfc = nand_get_controller_data(nand);
+ 	int ret, value;
+ 
+-	if (chip < 0 || WARN_ON_ONCE(chip > MAX_CE_NUM))
++	if (chip < 0 || WARN_ON_ONCE(chip >= meson_chip->nsels))
+ 		return;
+ 
+ 	nfc->param.chip_select = meson_chip->sels[chip] ? NAND_CE1 : NAND_CE0;
 -- 
--L
+2.17.1
+
 
 _______________________________________________
 linux-amlogic mailing list
