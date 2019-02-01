@@ -2,88 +2,132 @@ Return-Path: <SRS0=EwLr=QI=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,USER_AGENT_MUTT autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BA05AC282D8
-	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Feb 2019 10:11:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 563DEC282D8
+	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Feb 2019 10:26:01 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 89D4421872
-	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Feb 2019 10:11:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2393B218AC
+	for <linux-amlogic@archiver.kernel.org>; Fri,  1 Feb 2019 10:26:01 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qVF/7gyt";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LTbMwTpN"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 89D4421872
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iVDqv2jQ";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="ovqWfZ7Z"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2393B218AC
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=samsung.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:MIME-Version:
+	Date:Message-ID:From:To:Subject:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=u3cCKqZQ2CTcBK/4+LkH31eaNDtCNVCT+EAwZk01Uac=; b=qVF/7gyt6IWZxh
-	iJwLM6kHy3xwbDcxJVKCwqh1ToQNGx5cUQ6g9CbuqPApfCD9RuPdNBFjD8FVfFyP1KFxHOGntncbO
-	rXDpIJj3cs7D281rhJW3JiE/FyUMHje8t+gB/vwTGrZvF9jEVPqMveWuKsXO5rXPN0JGoTHYAjQ0t
-	Z0N0xh9/GSTJGdNQuIpg3Xw9NcCajnMp6NTOfuMmJIATzEoexYsCMuPaPhZ75EWwQzqxAfSCF3d5p
-	Nbx22xT+NxiA6Jgd0PKCQSk3Lv/MHjmWNa0D4mTNTpW+cx5Vw/lpazIsSstjiV5RT/WH299HrQMJm
-	9QInEDnWM/vBsFh1rsiA==;
+	List-Owner; bh=n+cq/0aP6IuXT9isTVFTE/4GOqgbi3M4RkdmxZ1QkBg=; b=iVDqv2jQDx9Dmp
+	+h+zEdz6ZGbhOs0bB64luEGfc67elrhED0IU6VV3ijQaMCa7Td234Wu7/8Tfm6aKHfeDXxuOPwYzl
+	22qLlZ5ry6mHMspTiqtn/s854/Gc2AkSBSjAnAns8mwQPPPpImUqfnvMvGqEJeHOqNrNE2N/YWlZ7
+	BrFhjo3iGUl4IDPRds2ZUk3iY/URAcJ5v62vKahPqYMKo3g29gTZcwXVFedHdRxlaGNKTiwZ0ouxA
+	hWmeIJ1iGtRsTRFtQsDASpGl86T5kdypURo5DQnLV/+ubyXFJMejntDjBqWMQKWsQHrX3wiAlACvQ
+	MWfeR5oF1lRVdL1eC6QA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gpVmw-0004Bn-3e; Fri, 01 Feb 2019 10:11:10 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1gpW1C-00036g-Tj; Fri, 01 Feb 2019 10:25:54 +0000
+Received: from mailout2.w1.samsung.com ([210.118.77.12])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gpVms-0003mj-Gi; Fri, 01 Feb 2019 10:11:08 +0000
-Received: by mail-wm1-x342.google.com with SMTP id t200so5612254wmt.0;
- Fri, 01 Feb 2019 02:11:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=tQss5XY1in0Ch/QSiFhhlFeW8ftdKCddtzhbVyHetU0=;
- b=LTbMwTpNJLvXx/kUQ2ixglM++Tghi/f5C4rp0sXDrPdYubeRsnIsfXICQnd3WdExtK
- jWO8gO4h/HviPrwG6EoSCgHaH95mJgG3y9yx4FVXM2RwSVmEp5DoW0CX2dFvWz6/1Q6D
- FJT5Mj13JqveiDN5193vuZ/qfCdqYuAUbi0WJXPxf8NPR5HPkkj/pc6pbFfJLp0BzPIf
- 9i6WGZW6GuqaItTZH8s3QA00fbQA69sggtcX/aWNMR2mG87G+YnO4FULMvXmHXZ90bP/
- qcWgQNu6guUsLhH/cl63QtllAbtu7nbjf05HYTu7IEXzdPYmTUWyetsCp4wxjLnvdDrh
- T/tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=tQss5XY1in0Ch/QSiFhhlFeW8ftdKCddtzhbVyHetU0=;
- b=KU/KYRw350Ya6qzLMxOg/S5/mf4EbclqbJxDgavGuO0olj2H7nnIhh/DkEIjt6nbiq
- kGjKxoLPaOLSKDcQApYfCnS90Vx7EXMXcgC5lL85z/eVGfDDWaCfIPN3ZMRXRaUCOeQs
- ed4B3EL8l/RQVWXBTIQsNKpEoEa8pT/Ne60fSWVS/BeDZNA/fxYN2IEgP8BwkB/32V1n
- B1oNWcONgqUlFreom2rfigMwwijYmFVqC1X7JhBZxEbWvkpAgNXkWmERJC21b4frunpL
- 7oG2K8Gjc3t9Fj+ENY5hvudLkS31ETlwuNOUl1H/FIl3KRyKOQVI50bKDvTIFL+IaNK6
- dlzg==
-X-Gm-Message-State: AHQUAuZlg7QcvTaHww7vFWWtHvgWOI3rgw8NnOvQr6l1oV8D3jHKkSkY
- Q9HhqozRz8AcAXY7qT1jT3w=
-X-Google-Smtp-Source: AHgI3IbvCrZ4NBeOKvJJ40HFzb9DFFcEuxv7ALtQ8RFl9Pdmum1itt+Ujoi9Yx6NFhcl1YRtDuuSuQ==
-X-Received: by 2002:a1c:2e43:: with SMTP id u64mr1763632wmu.52.1549015859665; 
- Fri, 01 Feb 2019 02:10:59 -0800 (PST)
-Received: from Red ([2a01:cb1d:147:7200:2e56:dcff:fed2:c6d6])
- by smtp.googlemail.com with ESMTPSA id a14sm711892wrr.13.2019.02.01.02.10.58
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 01 Feb 2019 02:10:58 -0800 (PST)
-Date: Fri, 1 Feb 2019 11:10:56 +0100
-From: Corentin Labbe <clabbe.montjoie@gmail.com>
-To: Julien Masson <jmasson@baylibre.com>
-Subject: Re: [PATCH] tty: serial: meson_uart: Add support for kernel debugger
-Message-ID: <20190201101056.GA10039@Red>
-References: <1549015162-17418-1-git-send-email-jmasson@baylibre.com>
+ id 1gpW15-0002xY-V4
+ for linux-amlogic@lists.infradead.org; Fri, 01 Feb 2019 10:25:52 +0000
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+ by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id
+ 20190201102545euoutp02485ec30291337de24206e7b6d88e59bd~-NoXqPfkk0824908249euoutp02I
+ for <linux-amlogic@lists.infradead.org>; Fri,  1 Feb 2019 10:25:45 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com
+ 20190201102545euoutp02485ec30291337de24206e7b6d88e59bd~-NoXqPfkk0824908249euoutp02I
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+ s=mail20170921; t=1549016745;
+ bh=rjAPUt/t5Vs4pdnIhm0gbsT2cJYjlngkMnOhui83yG0=;
+ h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+ b=ovqWfZ7Z8cHACivL0sCv6FCDutN332/V1BrXxjO5xYE800BeUfrLAum6SlRHy5tcK
+ jx1NhToKanrID1C7Fnu1dSuwIbYmTrvZ1sxzuAYCNGOcYFtBDM+AU2guybXrbvnuNX
+ 5odzbGAB6qE7Su+3vz5YwHDFvfCacZoMNfR9YhuU=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+ eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+ 20190201102545eucas1p1269ef65d3b31eef1bb53ebae744248a6~-NoXXB15T0644206442eucas1p13;
+ Fri,  1 Feb 2019 10:25:45 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+ eusmges2new.samsung.com (EUCPMTA) with SMTP id 63.21.04294.8AE145C5; Fri,  1
+ Feb 2019 10:25:45 +0000 (GMT)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+ eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+ 20190201102544eucas1p2066d4e10423a04337eb1bd95d5f72550~-NoWkyseP2158621586eucas1p2b;
+ Fri,  1 Feb 2019 10:25:44 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+ eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+ 20190201102544eusmtrp206d3f1907357213efa1dea8db2a0638f~-NoWV4nz30170801708eusmtrp2c;
+ Fri,  1 Feb 2019 10:25:44 +0000 (GMT)
+X-AuditID: cbfec7f4-835ff700000010c6-57-5c541ea8fc6b
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+ eusmgms2.samsung.com (EUCPMTA) with SMTP id B3.55.04128.8AE145C5; Fri,  1
+ Feb 2019 10:25:44 +0000 (GMT)
+Received: from [106.120.43.17] (unknown [106.120.43.17]) by
+ eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+ 20190201102543eusmtip22a74b47d8916e8d99e0e39682d75e765~-NoV7yTlK2525925259eusmtip2B;
+ Fri,  1 Feb 2019 10:25:43 +0000 (GMT)
+Subject: Re: [PATCH 0/8] drm/meson: Add support for HDMI2.0 4k60
+To: Neil Armstrong <narmstrong@baylibre.com>,
+ Laurent.pinchart@ideasonboard.com, Philipp Zabel <p.zabel@pengutronix.de>,
+ Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=c3=bcbner?=
+ <heiko@sntech.de>, maxime.ripard@bootlin.com
+From: Andrzej Hajda <a.hajda@samsung.com>
+Message-ID: <9ba7a251-103e-0cfd-f77e-e78cc1e56ad8@samsung.com>
+Date: Fri, 1 Feb 2019 11:25:42 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.4.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1549015162-17418-1-git-send-email-jmasson@baylibre.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <3f28a247-f6d3-be03-ca9f-15dfee1939c2@baylibre.com>
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrPKsWRmVeSWpSXmKPExsWy7djPc7or5UJiDE4+Z7S48vU9m8X/R69Z
+ LeZOqrXonLiE3WLBbG6Ly7vmsFk8eLmf0eJQX7TF3XsnWBw4Pd7faGX3mLem2mN2x0xWj/vd
+ x5k8Ni+p9+j/a+Dxd9Z+Fo/t1+Yxe3zeJBfAGcVlk5Kak1mWWqRvl8CV8e3OZ5aCNs2K9Rdf
+ sTcwtit2MXJySAiYSBzu+cnUxcjFISSwglGie/8rdgjnC6PEvMmfWUCqhAQ+M0rsuxcM03Hn
+ 22tWiKLljBK/NsxggXDeMkq8OHGYFaRKWMBB4sXZxYwgCRGBN4wS3xZuZwJJMAukSez+sIkZ
+ xGYT0JT4u/kmG4jNK2AncaBvI5DNwcEioCLx5YYlSFhUIELicO87RogSQYmTM5+wgJRwAs2/
+ MD8XYqK8xPa3c5ghbHGJW0/mg70jIXCNXaL57D1WkHoJAReJHYdKIB4Qlnh1fAs7hC0j8X/n
+ fCYIu16iaeYVZojeDkaJE4uXs0EkrCUOH78INocZ6OT1u/QhRjpK9B6ogTD5JG68FYS4gE9i
+ 0rbpzBBhXomONiGIGYoS989uZYawxSWWXvjKNoFRaRaSt2Yh+WUWkl9mIaxdwMiyilE8tbQ4
+ Nz212CgvtVyvODG3uDQvXS85P3cTIzBZnf53/MsOxl1/kg4xCnAwKvHwbvgVFCPEmlhWXJl7
+ iFGCg1lJhHeBVEiMEG9KYmVValF+fFFpTmrxIUZpDhYlcd5qhgfRQgLpiSWp2ampBalFMFkm
+ Dk6pBkZ3nV+3v7he9/q38UoB15zDRxKZDy00efix4Hz9h6xNAT99/gfqLBaZfyDw+Ma5ljuZ
+ vxZw2Wn669ncqVqz78I9k8S5204ck+p7YjMldPORjr8/HL+vENw798wpz9LG2LsuS5eHT3ZU
+ yT7olrol1zfqi///pUX3VM0Fbkiscjqfxvf9h8y/zxGHlFiKMxINtZiLihMBtw5malIDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrKIsWRmVeSWpSXmKPExsVy+t/xe7or5EJiDO7v57a48vU9m8X/R69Z
+ LeZOqrXonLiE3WLBbG6Ly7vmsFk8eLmf0eJQX7TF3XsnWBw4Pd7faGX3mLem2mN2x0xWj/vd
+ x5k8Ni+p9+j/a+Dxd9Z+Fo/t1+Yxe3zeJBfAGaVnU5RfWpKqkJFfXGKrFG1oYaRnaGmhZ2Ri
+ qWdobB5rZWSqpG9nk5Kak1mWWqRvl6CX8e3OZ5aCNs2K9RdfsTcwtit2MXJySAiYSNz59pq1
+ i5GLQ0hgKaNE8/XnzBAJcYnd899C2cISf651sUEUvWaUmNq5khUkISzgIPHi7GJGkISIwBtG
+ id8TL7ODJJgF0iSeHd0M1bGRSWLfr6mMIAk2AU2Jv5tvsoHYvAJ2Egf6NgLZHBwsAioSX25Y
+ goRFBSIkPj7dxwRRIihxcuYTFpASTqBlF+bnQoxXl/gz7xIzhC0vsf3tHChbXOLWk/lMExiF
+ ZiHpnoWkZRaSlllIWhYwsqxiFEktLc5Nzy020itOzC0uzUvXS87P3cQIjNJtx35u2cHY9S74
+ EKMAB6MSD++GX0ExQqyJZcWVuYcYJTiYlUR4F0iFxAjxpiRWVqUW5ccXleakFh9iNAV6bSKz
+ lGhyPjCB5JXEG5oamltYGpobmxubWSiJ8543qIwSEkhPLEnNTk0tSC2C6WPi4JRqYNzUHGpw
+ b1eQ6uHkH4r+ZQovtIrutH3+cPDbt8NHfj7YrBcxf22ey8G+SYJJfnevxpfuX+jNPevGyysf
+ ORn+rf1t3hxas2t27z13zcwnn9bcUw93DV0w5/uTTR3KUwq6Ti0+mhbLWXJdqTjg9E4G72tB
+ Hbxubi8en9TsmcW0zKXg6rl/nEfF7p9TYinOSDTUYi4qTgQAENlhRugCAAA=
+X-CMS-MailID: 20190201102544eucas1p2066d4e10423a04337eb1bd95d5f72550
+X-Msg-Generator: CA
+X-RootMTR: 20190131132546epcas5p264ec54cb60053b409f0459f809825eef
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190131132546epcas5p264ec54cb60053b409f0459f809825eef
+References: <20190115123315.11069-1-narmstrong@baylibre.com>
+ <CGME20190131132546epcas5p264ec54cb60053b409f0459f809825eef@epcas5p2.samsung.com>
+ <a3de23a8-3fa4-f8c5-5b2a-33109c09a863@baylibre.com>
+ <0fa602d6-a57e-0248-fcfd-929e3d9ceab1@samsung.com>
+ <3f28a247-f6d3-be03-ca9f-15dfee1939c2@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190201_021106_568468_298E50DE 
-X-CRM114-Status: GOOD (  18.50  )
+X-CRM114-CacheID: sfid-20190201_022548_727405_ED5A1B3D 
+X-CRM114-Status: GOOD (  21.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -95,87 +139,150 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-kernel@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
- linux-serial@vger.kernel.org, Jiri Slaby <jslaby@suse.com>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Feb 01, 2019 at 10:59:22AM +0100, Julien Masson wrote:
-> The kgdb invokes the poll_put_char and poll_get_char when communicating
-> with the host. This patch implement the serial polling hooks for the
-> meson_uart to be used for KGDB debugging over serial line.
-> 
-> Signed-off-by: Julien Masson <jmasson@baylibre.com>
-> ---
-> It has been tested on "Le Potato" board:
-> https://libre.computer/products/boards/aml-s905x-cc/
-> 
-> Kernel command line arguments:
-> kgdboc=ttyAML0,115200 kgdbretry=4 nokaslr kgdbcon
-> 
-> Kernel modules:
-> CONFIG_DEBUG_INFO=y
-> CONFIG_DEBUG_KERNEL=y
-> CONFIG_FRAME_POINTER=y
-> CONFIG_KGDB=y
-> CONFIG_KGDB_SERIAL_CONSOLE=y
-> 
-> Warning: for single step instruction I had to apply this patch:
-> https://lore.kernel.org/patchwork/patch/562423/
-> 
->  drivers/tty/serial/meson_uart.c | 46 +++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 46 insertions(+)
-> 
-> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-> index 8a84259..49b20da 100644
-> --- a/drivers/tty/serial/meson_uart.c
-> +++ b/drivers/tty/serial/meson_uart.c
-> @@ -426,6 +426,48 @@ static void meson_uart_config_port(struct uart_port *port, int flags)
->  	}
->  }
->  
-> +#ifdef CONFIG_CONSOLE_POLL
-> +/*
-> + * Console polling routines for writing and reading from the uart while
-> + * in an interrupt or debug context (i.e. kgdb).
-> + */
-> +
-> +static int meson_uart_poll_get_char(struct uart_port *port)
-> +{
-> +	u32 c;
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&port->lock, flags);
-> +
-> +	if (readl(port->membase + AML_UART_STATUS) & AML_UART_RX_EMPTY)
-> +		c = NO_POLL_CHAR;
-> +	else
-> +		c = readl(port->membase + AML_UART_RFIFO);
-> +
-> +	spin_unlock_irqrestore(&port->lock, flags);
-> +
-> +	return c;
-> +}
-> +
-> +static void meson_uart_poll_put_char(struct uart_port *port, unsigned char c)
-> +{
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&port->lock, flags);
-> +
-> +	while (!(readl(port->membase + AML_UART_STATUS) & AML_UART_TX_EMPTY))
-> +		cpu_relax();
+On 31.01.2019 16:50, Neil Armstrong wrote:
+> On 31/01/2019 15:13, Andrzej Hajda wrote:
+>> On 31.01.2019 14:25, Neil Armstrong wrote:
+>>> Hi Andrzej, Laurent,
+>>>
+>>> On 15/01/2019 13:33, Neil Armstrong wrote:
+>>>> This patchset aims to add support for the following HDMI2.0 4k60 modes:
+>>>> - 594Mhz TMDS frequency needing TMDS Scramling and 1/40 rate for RGB/YUV4:4:4
+>>>> - 297MHz TMDS frequency with YUV4:2:0 encoding
+>>>>
+>>>> The first mode uses the SCDC helpers introduced by intel to :
+>>>> - discover where the monitor support SCDC
+>>>> - setup the SCDC parameters
+>>>> This is implemented in the dw-hdmi bridge driver by handling scrambling
+>>>> support during the bridge setup and by exporting an helper for the PHY
+>>>> setup to setup the SCDC configuration for the 1/40 TMDS rate.
+>>>> This code will only be active if the encoder support a TMDS rate > 340MHz.
+>>>>
+>>>> This patch could eventually break support on different SoC when connected
+>>>> on a 4k60 monitor with SCDC :
+>>>> - i.MX correctly discards pixel clocks > 216MHz
+>>>> - R-CAR discards discards pixel clocks > 297MHz since [1]
+>>>> - Rockchip discards invalid pixel clocks not in the rockchip_mpll_cfg table
+>>>> - sun8i correctly discards pixel clocks > 297MHz on a83t
+>>>> - sun8i discards discards pixel clocks > 594Mhz on h6, which is already broken
+>>>>
+>>>> First patch should fix support for Allwinner H6.
+>>>>
+>>>> The second mode is implemented by added the missing 4:2:0 bypass handling
+>>>> in the dw-hdmi bridge driver and adding a "mtmdsclock" separating the
+>>>> pixel clock from the tmds clock in the mode setup phase.
+>>>> We also enable support for these modes in the connector only if the platform
+>>>> glue code explicits the support.
+>>> Do you think patches 1-4 could be applied ?
+>>
+>> For me they are OK.
+>>
+>> Should I take them via drm-misc?
+> OK for me !
+>
+> Neil
 
-Hello
 
-Perhaps you could use read_poll_timeout() ?
-This will also permit to handle the timeout case.
+These patches do not apply. Could you rebase them on drm-misc-next.
+
 
 Regards
+
+Andrzej
+
+
+
+>
+>>
+>>> Then we could focus on how we manage the bus format between the encoder
+>>> and the bridge ?
+>>>
+>>> Especially patch 5 linked to patch 7.
+>>>
+>>> Will one of you be at FOSDEM 2019 ? we could chat about this.
+>>
+>> Nope.
+>>
+>>
+>> Regards
+>>
+>> Andrzej
+>>
+>>
+>>> Following subjects on the table will be :
+>>> - HDR metadata transmission aligned with the last patchset sent by intel-gfx
+>>> - Colorspace connector property aligned with the last patchset sent by intel-gfx
+>>> - HDCP 1.4 and 2.2 handling
+>>>
+>>> Neil
+>>>
+>>>> Only the meson DRM dw_hdmi glue allows ycbcr420 modes, so no breakage
+>>>> is expected here.
+>>>>
+>>>> The remaining patches adds support for :
+>>>> - 1/40 TMDS rate aka DIV40 in the dw-hdmi meson PHY setup
+>>>> - 4:2:0 output and clock setup
+>>>>
+>>>> The dw-hdmi support re-uses the support done by Rockchip engineers on the
+>>>> Linux 4.4 BSP kernel.
+>>>>
+>>>> These modes has been validated using a MuxLab HDMI Signal Analyser in
+>>>> addition to different UHD TVs supporting full 4k60 or the 4:2:0 variant.
+>>>>
+>>>> Changes since RFC v2 at [3]:
+>>>> - Collected tested-by and reviewed-by tags
+>>>> - Changed if condition in "add HDMI div40 TMDS mode"
+>>>> - Updated "Add YUV420 output support" with the same if condition
+>>>>
+>>>> Changes since RFC v1 at [2]:
+>>>> - Fix all comments from Laurent :
+>>>> - Add define for HDMI 1.4 max tmds clock and SCDC supported version
+>>>> - Call dw_hdmi_set_high_tmds_clock_ratio() in dw_hdmi_phy_enable_powerdown()
+>>>> to unbreak Allwinner H6
+>>>> - Pass in_t(u8, bytes, SCDC_MIN_SOURCE_VERSION) as SCDC version
+>>>> - Finally add comments for SCDC and Scrambling process
+>>>>
+>>>> [1] https://patchwork.freedesktop.org/patch/263616/
+>>>> [2] https://patchwork.freedesktop.org/series/52950/#rev1
+>>>> [3] https://patchwork.freedesktop.org/series/52950/#rev2
+>>>>
+>>>> Neil Armstrong (7):
+>>>>   drm/bridge: dw-hdmi: Add SCDC and TMDS Scrambling support
+>>>>   drm/meson: add HDMI div40 TMDS mode
+>>>>   drm/meson: add support for HDMI2.0 2160p modes
+>>>>   drm/bridge: dw-hdmi: add support for YUV420 output
+>>>>   drm/bridge: dw-hdmi: allow ycbcr420 modes for >= 0x200a
+>>>>   drm/meson: Add YUV420 output support
+>>>>   drm/meson: Output in YUV444 if sink supports it
+>>>>
+>>>> Zheng Yang (1):
+>>>>   drm/bridge: dw-hdmi: support dynamically get input/out color info
+>>>>
+>>>>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 182 +++++++++++++++++++---
+>>>>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.h |   1 +
+>>>>  drivers/gpu/drm/meson/meson_dw_hdmi.c     | 128 ++++++++++++---
+>>>>  drivers/gpu/drm/meson/meson_vclk.c        |  93 ++++++++---
+>>>>  drivers/gpu/drm/meson/meson_vclk.h        |   7 +-
+>>>>  drivers/gpu/drm/meson/meson_venc.c        |   8 +-
+>>>>  drivers/gpu/drm/meson/meson_venc.h        |  11 ++
+>>>>  drivers/gpu/drm/meson/meson_venc_cvbs.c   |   3 +-
+>>>>  include/drm/bridge/dw_hdmi.h              |   7 +
+>>>>  9 files changed, 374 insertions(+), 66 deletions(-)
+>>>>
+>>>
+>> _______________________________________________
+>> dri-devel mailing list
+>> dri-devel@lists.freedesktop.org
+>> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+>>
+>
+>
 
 
 _______________________________________________
