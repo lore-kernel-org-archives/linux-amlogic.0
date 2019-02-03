@@ -1,90 +1,111 @@
-Return-Path: <SRS0=Ii7+=QJ=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=woOx=QK=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.7 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	FORGED_HOTMAIL_RCVD2,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D2B61C282D7
-	for <linux-amlogic@archiver.kernel.org>; Sat,  2 Feb 2019 17:05:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7FC76C169C4
+	for <linux-amlogic@archiver.kernel.org>; Sun,  3 Feb 2019 05:37:20 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A28EF20856
-	for <linux-amlogic@archiver.kernel.org>; Sat,  2 Feb 2019 17:05:37 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4DAC72083B
+	for <linux-amlogic@archiver.kernel.org>; Sun,  3 Feb 2019 05:37:20 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="F9aNYRKn";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Qlip9jCJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A28EF20856
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VjvxvJx/";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="EzNTl8J/"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4DAC72083B
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=hotmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Subject:To:
-	MIME-Version:From:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kXh14t6OLf8iEyFh0jZkvogc+lHWIg3/M7AEY7WNAF4=; b=F9aNYRKn46MmF3
-	VEXuJNNnp/ZODrGd7rKmpjXuogCFvUsi6AfdNupOu/k3Eoimgdhox/QrhpC7JS+subpfXW+i4zmKh
-	JffUiItNSWj7J/Rifn+sZhIqE9oKmEChzj6Gc76naeJYQ8vPEPPi3sRd49OoNR8J/3iaf0xOVhj8W
-	C4yIr6d78ZDyW9pK7yHggYPEhTJxUWhZPe8ZqUaos8QufHun8EZyYzl1IjmencUdJcCwbdAcNB5a/
-	PgDlHqUqkvODnsqZos8U0Uqyuq6PfgGAIJ/yix7e6kPHkfY0W/FZ5tTXpCSbLGqoKoFjh34g3WkUk
-	K4pOsZ4mtnEwjONYqj6w==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=OTQMXHWJmc0/2etJ9b/xskXYUvy4bp4ILJZVzPw9iPk=; b=VjvxvJx/HtBnYJ
+	rqAX8vI5RcD4nt5s2Fo4DVo1Lfs8wuqIctHqGG08pLF0mFa60O8jMtbJidCRRb6grGpeF8vjQuUM/
+	Ruw9X9uJ6KzyGq8lAI3pfgzaRxdUO4wmLDdvYO+xz8VhHB5C+Ppywqe0UVb19TBy3BRTjgjfu3Q9S
+	LSRUeA5NULunBMOt47dS+oTm8MabOTwCo+x8N9b4a/V86vqK4Z5VUA8wlPrIyvjr/UgGr4xq3PVgo
+	d+Kf0PjdXT/9MPmbFmPrgPqwylEkBOOCHalcmqH0PcDtKcsG+1Y3xprmTcu91PlWh7LgjqvuGcNQy
+	xAoYH3Krsz2NZEU+r+0g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gpyjQ-0004yQ-2w; Sat, 02 Feb 2019 17:05:28 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1gqASu-0002NX-VN; Sun, 03 Feb 2019 05:37:13 +0000
+Received: from mail-oln040092254026.outbound.protection.outlook.com
+ ([40.92.254.26] helo=APC01-PU1-obe.outbound.protection.outlook.com)
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gpyjM-0004xn-Gd
- for linux-amlogic@lists.infradead.org; Sat, 02 Feb 2019 17:05:26 +0000
-Received: by mail-wm1-x344.google.com with SMTP id g67so9233730wmd.2
- for <linux-amlogic@lists.infradead.org>; Sat, 02 Feb 2019 09:05:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to:content-transfer-encoding;
- bh=1IqL4YH7JRK6UqQ4jzCJZZjsOuQR5UOkILRC9TNDD6Y=;
- b=Qlip9jCJpYOSk7slxaN+KL7agD3/IAQCgTOU3KDGTIaNhXxqprd57EP8sNvYuwxZc2
- ryXq86fq2GlgbG+GXqNws1nRcTA3rOc8XZGgHJ4n5PYjlOlzFXQltcxJzyKSMxVk/KbV
- fLnLvIAJlazNR3H8httcGVrqhISbj7teZnCU5uRf9L6dG2pzlf+zI9lN3xW/wlyl/9Hw
- t/63wMT5Qg+es4EgNRL6ed+pQ9hIuATOGY0IIZLJ1hP1a0XvHKC3nshYMiHcwLgSasqN
- ViSLqsm2Xvgn2IGrUCKD24GZHbyhvogf6hFsrGOljZG+AYKNBBzjYD5Sgpq1/yuFlZWV
- o3lA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to:content-transfer-encoding;
- bh=1IqL4YH7JRK6UqQ4jzCJZZjsOuQR5UOkILRC9TNDD6Y=;
- b=UrAFHtDWyQggnJQmesoCDytznde7OvaqlHXSOjfHwHoq6GSP3MEIC7QMZr9mTT/dFW
- i48Khx5OFYIJoz1dXB/SmlWsi20gHaQKyqgPnCpHQ3oAxUSLZR4cgc3lfLF3pTV5fhI7
- cgvGMuzKaUG6yenYBYsR1ogGKyjttQThJMxmsje4gprgT4FSbS1/uLfOBcNV+iSaUkVm
- BE1zFoVvdd0zUMWNuqw9jHHmJDgVfM//Fd2AyaoaCZDkd6AumEn39rWvrty+KCxCi/5N
- aRBIw5/3h0bG2Cy0rS86zKZAJEs1FYQotiQTzQSEiqxGC+RsOTQZVJwtA2UWMs5rlR3j
- MeyA==
-X-Gm-Message-State: AHQUAuYKrgpTov0aQalIMluJrsizjklo7mDGutz900UwcuxycY90Xksb
- fAJkhNI379Dlp9P1k2YOumtpVw==
-X-Google-Smtp-Source: AHgI3Ia9CCQAbf5xrzvNuyXB59dZY/GA1c2gME42bNFXpfH6sUICZwxdrKURnR7zeQlDbPslonrANw==
-X-Received: by 2002:a1c:8054:: with SMTP id b81mr6645486wmd.65.1549127122309; 
- Sat, 02 Feb 2019 09:05:22 -0800 (PST)
-Received: from Armstrongs-MacBook-Pro.local ([151.216.141.110])
- by smtp.gmail.com with ESMTPSA id t18sm3645527wmt.35.2019.02.02.09.05.19
- (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Sat, 02 Feb 2019 09:05:20 -0800 (PST)
-Message-ID: <5C55CDCE.9030502@baylibre.com>
-Date: Sat, 02 Feb 2019 18:05:18 +0100
-From: Neil Armstrong <narmstrong@baylibre.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13;
- rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+ id 1gqASk-0002Fy-FT; Sun, 03 Feb 2019 05:37:04 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OZqVZbj0SEKj6UgcjhrsNS98VRIx4dPUpP79Nah3Pro=;
+ b=EzNTl8J/wlnkFufVNQQYtyCiAFk+cYdOqBJTzA3jMPCiVTGI528XRmuVrXv+XjZgkgwuJRUnvJScmUy0dES4WrK7YAiCsS/+EfLCMpSB/YaU8SfGDa+64VZ1qBKwc+JHhW/+Rna/X4C3pj/EEobe2Y8SWpa0hlR25fUKmfNiIspqVQxTI86eZng+t3cGXoqWrWuOVPPtKmeDdDb+qcPjVswdmle+4uKo/kit921H/eXYvZ6wUnGh3lx5LhXoA+gY1ZrLuuAvGXtcWQ384ybw9Rx0Riz0tvBXx5/3JxDzuZ1l8BxA3boBt603Qm8aL7s68mLC3U/5k3qeI+f2k+gdRA==
+Received: from PU1APC01FT052.eop-APC01.prod.protection.outlook.com
+ (10.152.252.56) by PU1APC01HT197.eop-APC01.prod.protection.outlook.com
+ (10.152.253.183) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.1580.10; Sun, 3 Feb
+ 2019 05:36:57 +0000
+Received: from HK0PR02MB3634.apcprd02.prod.outlook.com (10.152.252.52) by
+ PU1APC01FT052.mail.protection.outlook.com (10.152.253.137) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1580.10 via Frontend Transport; Sun, 3 Feb 2019 05:36:56 +0000
+Received: from HK0PR02MB3634.apcprd02.prod.outlook.com
+ ([fe80::d582:b3ef:f46a:4735]) by HK0PR02MB3634.apcprd02.prod.outlook.com
+ ([fe80::d582:b3ef:f46a:4735%3]) with mapi id 15.20.1580.019; Sun, 3 Feb 2019
+ 05:36:56 +0000
+From: wen yang <yellowriver2010@hotmail.com>
+To: "khilman@baylibre.com" <khilman@baylibre.com>
+Subject: [PATCH] soc: amlogic: add missing of_node_put()
+Thread-Topic: [PATCH] soc: amlogic: add missing of_node_put()
+Thread-Index: AQHUu4J5Yp1eBC0MTkqqCRtUmrbz0Q==
+Date: Sun, 3 Feb 2019 05:36:56 +0000
+Message-ID: <HK0PR02MB3634702E1ABA268C57E70BFDB26C0@HK0PR02MB3634.apcprd02.prod.outlook.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: HK2P15301CA0016.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:202:1::26) To HK0PR02MB3634.apcprd02.prod.outlook.com
+ (2603:1096:203:97::14)
+x-incomingtopheadermarker: OriginalChecksum:5FCD8FF340D0DF9885E9810110C8BBB32B0790E603B588B95FEDAA0F5C573ABC;
+ UpperCasedChecksum:38C40C03BF34C453574BA0C16DCA7C347988D9D35EB2348897415F165CB1E972;
+ SizeAsReceived:8640; Count:63
+x-ms-exchange-messagesentrepresentingtype: 1
+x-mailer: git-send-email 2.7.4
+x-tmn: [jK9iFNbZsK8sHSca7gcaRUm44JiPUSOX]
+x-microsoft-original-message-id: <1549172041-6388-1-git-send-email-yellowriver2010@hotmail.com>
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1; PU1APC01HT197;
+ 6:fg7qfgXsC/PDjtjTK7gumqgSID2NV+3g+woMCyaq/9zU/1U99pn3t2gi6oB7XGP6Rv3AZDQ9+N5Stszf1ZpXFX8Slsvs/Owh+S7ZK3xN/f4IjntO6gDxiYZP8FFtMCvcJ920iUg6Xqblw1PzN9xJrWLxe5gpOqGf2MtRGkRoKP1VGrd9noHND4rdzak+LKGFvfPk5Tj6QcNHRXNHFdbvSnv+7eFqvJ5gbA4SVw374K3F7F+UNreqlxC//ToVFKiJGwrswJrlzg2Mbfx8vy/xmTGzCBilJI6juClHFkDhbvIgIYWuhmKG5VxBdNkbjoQMZ4Q8qZcS8PiSWOQlZmdkgn79+JW2sxVQJQkhE5HUvTAINP8+Arftkmn1XND3wOaB0UeBktHK0Bw3PSkFAqVhemQdJcUWbxuunvz4VubqOqKD4ddIH0pWtQZI2wpM17XwSnElCHO1XUjDTEBSuQh4CA==;
+ 5:1d90kyMWSUVc+Pr8qeDs70Wmq9buv6+U5+kIj3tUpW8C6nrMxFBKZgzzKdmXDipoEBfhsinJ7ibyGwWq+mq3d192YmNJIbb8NBBgq2L70M7XJULM4QcXjFYainZaLM11nWmtnQu5gKQaGziLCDrH5GJoMBC5V6SiAcJsUZK1DGRebrErOXSS2emdD2NE0qLbrZsiQSOzzENgAv8Jx1/+sw==;
+ 7:u5ulHIQd6Dxtl2X2cItPKtw6n0pLArOad5gaN98IUfRivdPSfJz1sHIAbowjctpRdSWt2FEgk3L0wmsLesdzKLpYJauZQR5q8QdkmMGNSvZ+EeKGUwsl+C0pr0kQmUE7XkWTCFCpWHofU+Vge1/XUw==
+x-incomingheadercount: 63
+x-eopattributedmessage: 0
+x-ms-exchange-slblob-mailprops: mBRmoEB1kyIUYo47VCffFdKtv5fcRcaCpUYkfU4DO/egScvCvIOzBLo9iALJP5PAI3lCC1NRyJr2eJIkJen0deoDCWq2xkR6Ust/l/kmGNZeuvKPazmSslPE0Gb9q1UnS8OaSjRE9hJZdqVvOI9xZNAygVvi0rYgxBcOaJnOuZmCrFpjSX41IMujdFP81sDtiAYBrhQsiF/4spYqFi7gWsDA/4YkJ0KO3v3OywZzWwDIHRYdsPeJbplPovljeq4H3wR007vZw9u8i4ljUvogYwJ3r6IDXtuYxO3Oco00MlcrMVixFmX0RypGtRKlll5MvXlHy81vlXiC1PYr56rhXI0goe1JxbA3eVZCvsOVrZOLuwOSGIy0pvMWkTPT8RDB4zAJjr9m9/INMg0EQ3EgI2A4IofXBoFkZ65JORBrIBND/HY4G11yU+mWkwJCdW9ut4tBKE1ysAMWIAsmfWFvpRJM8h53+ZEb0XztVWVf1VnuZiUzmOQ570pohDIJ9UzFG9+peuMgqYHDyEAp+IBhE4lU4vM1msWn2kJgE/KfYPL3SBABhj5qxQWd3FTG2VshT52B5b2X2qebZWulP7y9B0ZazJJJ8lGzMfP2nr6eBntuzCSopD31TUXMnCgw/Hl7p1KrwpODgToRP9SnpeNlw71T+Pkv6XuPB43CPese5LSSMRGVZs3rXC9XXJbLvrfru1Xz1Wxb5ZVvM4Dd/3aiyXT7bkjnli4SRmA8EmpJVhEJOdcfOXJveV9L4aiCN4U3/qfAtA1MRtI=
+x-microsoft-antispam: BCL:0; PCL:0;
+ RULEID:(2390118)(7020095)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(201702181274)(2017031323274)(2017031324274)(2017031322404)(1601125500)(1603101475)(1701031045);
+ SRVR:PU1APC01HT197; 
+x-ms-traffictypediagnostic: PU1APC01HT197:
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:(4566010)(82015058);
+ SRVR:PU1APC01HT197; BCL:0; PCL:0; RULEID:; SRVR:PU1APC01HT197; 
+x-microsoft-antispam-message-info: YAlyTbfowIWHLRsUzQM/X6krXthm68q00k4dacWE8wqGjgYEKkeQ9xrQnilP8AVe
 MIME-Version: 1.0
-To: Jerome Brunet <jbrunet@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>
-Subject: Re: [PATCH v6 0/4] clk: meson-g12a: Add EE clock controller driver
-References: <20190201145345.6795-1-jbrunet@baylibre.com>
-In-Reply-To: <20190201145345.6795-1-jbrunet@baylibre.com>
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 9a4e3081-9524-43cf-bfc3-dcaef82d5da1
+X-MS-Exchange-CrossTenant-Network-Message-Id: 344cd704-89f2-425a-3436-08d689999bbf
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 9a4e3081-9524-43cf-bfc3-dcaef82d5da1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Feb 2019 05:36:55.2272 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PU1APC01HT197
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190202_090524_556445_C98962B8 
-X-CRM114-Status: GOOD (  15.26  )
+X-CRM114-CacheID: sfid-20190202_213702_613134_C1632F52 
+X-CRM114-Status: UNSURE (   9.38  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,123 +117,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- Jian Hu <jian.hu@amlogic.com>, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+ wen yang <yellowriver2010@hotmail.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+The call to of_find_node_by_name returns a node pointer with refcount
+incremented thus it must be explicitly decremented here after the last
+usage.
 
-Le 01/02/2019 15:53, Jerome Brunet a =E9crit :
-> This purpose of this patchset is to the main clock controller of the
-> g12a SoC family
-> =
+Signed-off-by: Wen Yang <yellowriver2010@hotmail.com>
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+---
+ drivers/soc/amlogic/meson-canvas.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-> This patchset depends on the recent rework the meson clock directory [7].
-> =
+diff --git a/drivers/soc/amlogic/meson-canvas.c b/drivers/soc/amlogic/meson-canvas.c
+index fce33ca..87a6c6e 100644
+--- a/drivers/soc/amlogic/meson-canvas.c
++++ b/drivers/soc/amlogic/meson-canvas.c
+@@ -57,9 +57,12 @@ struct meson_canvas *meson_canvas_get(struct device *dev)
+ 		return ERR_PTR(-ENODEV);
+ 
+ 	canvas_pdev = of_find_device_by_node(canvas_node);
+-	if (!canvas_pdev)
++	if (!canvas_pdev) {
++		of_node_put(canvas_node);
+ 		return ERR_PTR(-EPROBE_DEFER);
++	}
+ 
++	of_node_put(canvas_node);
+ 	return dev_get_drvdata(&canvas_pdev->dev);
+ }
+ EXPORT_SYMBOL_GPL(meson_canvas_get);
+-- 
+2.7.4
 
-> Changes since v5 [6]:
->  * use clock input driver until something better comes along in CCF
->  * fix pll fractional param size
->  * fix broken gp0 and hifi pll param (<55)
->  * add hdmi pll
->  * fix fdiv2p5
->  * add mpll_50m
->  * fix mpll clock tree (missing fix 2 divider)
->  * add missing sdio clocks
->  * add vpu clocks
->  * add some RO clock gates
->  * rabase on clk-meson tree
-> =
-
-> Changes since v4 [5]:
->  * add bypass clock "g12a_ee_core" from DT
->  * fix Kconfig description
->  * change g12a_mpll0_div/g12a_mpll1_div/g12a_mpll2_div/g12a_mpll3_div
->    clock's parent name as fixed_pll_dco
->  * drop CLK_SET_RATE_PARENT flag for pll clock
->  * drop CLK_GET_RATE_NOCACHE flag for pll_dco clock
->  * delete usless note
->  * enable G12A clock driver
-> =
-
-> Changes since v3 [4]:
->  * add fixed clocks clk_regmap definition
-> =
-
-> Changes since v2 [2]:
->  * fix fixed clock descriptions
->  * fix alignment
->  * add enable bit for plls base on [3] patches
->  * add fixed clock gate bit
-> =
-
-> Changes since v1 [1]:
->  * fix typo of 'Everything'.
->  * change the word 'AmLogic' to 'Amlogic'
->  * squash patch 1 and 2.
->  * delete usless message of "Trying obsolete regs".
->  * delete the empty line in include/dt-bindings/clock/g12a-clkc.h.
->  * rebase on top of the "next/drivers" branch, and add g12a clock patch.
->  * add CLK_MUX_ROUND_CLOSEST for g12a_sd_emmc_b_clk0_sel and
->    g12a_sd_emmc_c_clk0_sel.
-> =
-
-> [1]: https://lkml.kernel.org/r/1531133549-25806-2-git-send-email-jian.hu@=
-amlogic.com
-> [2]: https://lkml.kernel.org/r/1531728707-192230-2-git-send-email-jian.hu=
-@amlogic.com
-> [3]: https://lkml.kernel.org/r/20180717095617.12240-1-jbrunet@baylibre.com
-> [4]: https://lkml.kernel.org/r/1533890858-113020-1-git-send-email-jian.hu=
-@amlogic.com
-> [5]: https://lkml.kernel.org/r/1541511349-121152-1-git-send-email-jian.hu=
-@amlogic.com
-> [6]: https://lkml.kernel.org/r/1543498917-98605-1-git-send-email-jian.hu@=
-amlogic.com
-> [7]: https://lkml.kernel.org/r/20190201125841.26785-1-jbrunet@baylibre.com
-> =
-
-> Jerome Brunet (2):
->   clk: meson: pll: update driver for the g12a
->   clk: meson: factorise meson64 peripheral clock controller drivers
-> =
-
-> Jian Hu (2):
->   dt-bindings: clk: meson: add g12a periph clock controller bindings
->   clk: meson: g12a: add peripheral clock controller
-> =
-
->  .../bindings/clock/amlogic,gxbb-clkc.txt      |    1 +
->  drivers/clk/meson/Kconfig                     |   21 +-
->  drivers/clk/meson/Makefile                    |    2 +
->  drivers/clk/meson/axg.c                       |   59 +-
->  drivers/clk/meson/clk-pll.c                   |  203 +-
->  drivers/clk/meson/clk-pll.h                   |   10 +-
->  drivers/clk/meson/clk-regmap.h                |    9 +-
->  drivers/clk/meson/g12a.c                      | 2359 +++++++++++++++++
->  drivers/clk/meson/g12a.h                      |  175 ++
->  drivers/clk/meson/gxbb.c                      |  272 +-
->  drivers/clk/meson/meson-eeclk.c               |   63 +
->  drivers/clk/meson/meson-eeclk.h               |   25 +
->  include/dt-bindings/clock/g12a-clkc.h         |  135 +
->  13 files changed, 3147 insertions(+), 187 deletions(-)
->  create mode 100644 drivers/clk/meson/g12a.c
->  create mode 100644 drivers/clk/meson/g12a.h
->  create mode 100644 drivers/clk/meson/meson-eeclk.c
->  create mode 100644 drivers/clk/meson/meson-eeclk.h
->  create mode 100644 include/dt-bindings/clock/g12a-clkc.h
-> =
-
-
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-
-I'm applying these to next/drivers for Linux 5.1-rc1, is it necessary to
-have a tag for the headers ?
-
-Neil
 
 _______________________________________________
 linux-amlogic mailing list
