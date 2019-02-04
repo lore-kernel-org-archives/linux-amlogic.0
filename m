@@ -2,89 +2,145 @@ Return-Path: <SRS0=P8k8=QL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DC093C282C4
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 09:14:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DAFFCC282D8
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 09:30:53 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A83E8206DD
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 09:14:37 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id ACB1921848
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 09:30:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="orwJnIf7";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="F/EZWYl4"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A83E8206DD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qnnV+myX";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="EeQk5jkq"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ACB1921848
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TBREFKYUmYod8m354QYn93c7HFPV/JrOcFWzfewagDA=; b=orwJnIf73yxkFr
-	k7y6tydQMt/Jn82oFnlfSUtjxMTZ7HIWyVLOPcFMPROW9A15WeyPJo51S8NqCBcYIDzdYoHO0AOr/
-	xAkAMvJul23rgUYIwtWcEvrjJd9LFh1cCXVCTfLG61pUou3ne0QWEzwl1FGaWmdlxrF0+KPfGQrEs
-	ZHxl/Ruq7natZjPP/gKhucDrNjKgzXRbofubJHKCkJzi+rlJUnq+uI7Tm2g2nS77/MdzOISpkKXCL
-	v78AEZrIIIVvE0hShpNUkaPttCiku9bh/kiQy6kqFLMVA7DR5F5dIXbRG45cK7b4zLBAqFQ/by+AN
-	ClHr8XKpgrJK82EWzc5g==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=rwpgbtXlvfEBOSeauBmBv/8nN5CxOKylZypaG2A6kX4=; b=qnnV+myXchtv9J
+	r8h01h/osGX30qjwp+OtrPxoDNKG3Txc/SGw5kVkdk5DLVsonOadugXnw9y2TLPOkXP/CiQAv+Gj7
+	sMRVDVGgJvm0RhiXMBuX92Eu7huabfODjnqReRXNR0KD0I3tKNMUFHZeCRAwG4is1yDMlm2l7BPUF
+	dYmiIco1S8H3j5uJ29ypwYmKiCOBdH92P4Oa9og2P4wpsa5UnFxzduTECZoJmJACPJATGSfsu0OEQ
+	5PfcVAs+uyP+7KabNWXyxGAeCFVPd9GzY9W4mhtIh1rI8bi2WMmVBDFejArKgtyzR5CIUzpdPAY0W
+	T0AUgBO/R3yEsjounkog==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gqaKn-0006wz-BT; Mon, 04 Feb 2019 09:14:33 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1gqaaW-0006SR-9M; Mon, 04 Feb 2019 09:30:48 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gqaJu-00062h-Pl
- for linux-amlogic@lists.infradead.org; Mon, 04 Feb 2019 09:13:41 +0000
-Received: by mail-wm1-x341.google.com with SMTP id t200so12592074wmt.0
- for <linux-amlogic@lists.infradead.org>; Mon, 04 Feb 2019 01:13:38 -0800 (PST)
+ id 1gqaaS-0006RR-Lv
+ for linux-amlogic@lists.infradead.org; Mon, 04 Feb 2019 09:30:46 +0000
+Received: by mail-wr1-x442.google.com with SMTP id l9so13505422wrt.13
+ for <linux-amlogic@lists.infradead.org>; Mon, 04 Feb 2019 01:30:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=3UarI4+3W7mnMe4XUlsYu1e+5Y7QEWwmpbhYQfY/fuY=;
- b=F/EZWYl4NVTlc9AFWCj+7+uToXz1gI/nz3s4gbzVPZ+ZTDCjlZRTjHcgauy89ZOlaC
- vJOOLbQ+h2RsSt2H7seiEQp42f0BqjZrYlosK72tnddbS4b5PdeA6iGJExYWRRLH79IK
- h0BRKONM4s9EVdNVyXNezoCkfWA7ueZl4/tSx9CJWEutS6K9+LIXSpJ8xul1BGq24zkx
- 23bxt7PB9a0ruYrQLzbLYqblN97QlqVS5hGGJmRMl2MuXdI9mVkuN4603Ze9p/nATe/z
- FtQJjVaxinrx7EC1vvfzk4QNLcLoKTGimAZrL1U1G84ytbLgrzUf+JDTSFrYKfyMIPZS
- QO4Q==
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=Ckv1zWWPiCPFFj9BR01nYrA7gOWLR8F4NBWAA21Uk0E=;
+ b=EeQk5jkquReXDNgiaWpgXSdp3Zvg7RSLPbtEXvy3tMY6RljX52pMgxKkTsPM9wYpzK
+ sTh6n7jYRYnFacH72Bq4fx3SUYxxrGOmo3BgZ9kg/Xcdibwg5B9jEl2l9u/+jjIXRRKW
+ ZcLSnfP+K4xAPR7vQTfCZadYV09QMQhbi059LBLyH9WFvL/PHU3gYtNGgTngMXPxjvXh
+ 5UfhCx+vBqnMC9kQlIy6ol9m7jmrtP0jTlb4ABKNtxfwZmewxYZ4YNCYGSu08dMy8coz
+ Zdib8czFo76ZKVJe0z0TpWTHx3yakmTMRnq83OPvTod2i5R7YS1W6szAPWGU2bNjTBYQ
+ 4y2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=3UarI4+3W7mnMe4XUlsYu1e+5Y7QEWwmpbhYQfY/fuY=;
- b=a7enRau4GFYcE9TQW5uoQ+0g//YUQcvUzeW3XP+P8BsK4qjUqeWQAdInkUfJTCINEL
- YAcnFBUVdSiJcp/IGJlTIeNw1LlQKn6ja9ZhclUZ5I1umx+itObMIlMuBgoQGkQksmZx
- XNzJjnoNCsLxaXj2266MJphgotcp1BKgl7iNVDZhC8dw8Dnreu+mezY+VqJrRaQGaMpr
- 2Nf5QNDI4GHgUcuc6YlVaFfWs1ee5XpUMkpDW13p3l0eZp9QWMLIf4vesEEgKDcCXQNr
- wUX5CV1oRWDeCuPhknG0VXDiX24WMA5yc9XAa2YaIVXfOnJUl5OB/CedzHKLjcgqUOCn
- Rhmw==
-X-Gm-Message-State: AHQUAuZTeAXyR/ylfwlwgIVp4htE9YcjVEU/Kf4oVdh8oyomNp4UF7OM
- 0Ng7cl9xgwzgKsxe2XBQBfLqvQ==
-X-Google-Smtp-Source: AHgI3IZAccSzhVXDnohjF17hqiFlLMg02NtGY7Yukq8xNScoFub47LYt3Y+x9MSeHcVcjxV80ZSPqg==
-X-Received: by 2002:a7b:c08f:: with SMTP id r15mr12751908wmh.118.1549271616569; 
- Mon, 04 Feb 2019 01:13:36 -0800 (PST)
-Received: from bender.baylibre.local
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id m21sm9371390wmi.43.2019.02.04.01.13.35
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Mon, 04 Feb 2019 01:13:35 -0800 (PST)
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=Ckv1zWWPiCPFFj9BR01nYrA7gOWLR8F4NBWAA21Uk0E=;
+ b=qzojZVEJh+Cg9rWOvrQhBEoXyj1Y3kgNFCZmrjQOOxgVZMzzcVyPCc5OO4laAXQKHt
+ ODMTQti5Akk8jr9qa1c8eNCrNtKHQwUWGRkWSfvEcSNem+Quea09KoXT7Dx6e1AexLIZ
+ HWXWVcOMgjwlvRv0oiadftAjrBkrp8YmBGyV3TE13A2I+SRTlKH/5ZKFl2+PhvN9J26D
+ c4TfCXUAcU+jBig/PJQDvb5OOQsNgqfw2r7Sz5uRfhsXNSXMBwIqKNwcz2p5JRM8UboC
+ IXF14Mnt8U7Erbm3Krc28U06WCU7a9lgVH8ZkWwgrnrU7bKQoiJOZUMYV+iRORCRMDFj
+ zZ+A==
+X-Gm-Message-State: AHQUAuaSPOXme/mDSTJWmfLGjU6sYg22xjG66lUhRE0LpP+qx+gnkeno
+ LpcwvAha169fUT5FBT4O2ClxsQ==
+X-Google-Smtp-Source: AHgI3IbN+eJ2BHSMtjYjNSlt5V48yExNIs/R/u4ukuyJvjHHQWmNXtvi5rvnVqoXZ3BSkWMlEfA1Qg==
+X-Received: by 2002:a5d:6487:: with SMTP id r7mr8714371wru.263.1549272642991; 
+ Mon, 04 Feb 2019 01:30:42 -0800 (PST)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id e7sm4924556wme.15.2019.02.04.01.30.42
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 04 Feb 2019 01:30:42 -0800 (PST)
+Subject: Re: [RESEND PATCH] soc: amlogic: add missing of_node_put()
+To: wen yang <yellowriver2010@hotmail.com>,
+ "khilman@baylibre.com" <khilman@baylibre.com>
+References: <HK0PR02MB3634BF379E6F17F7FC82906BB26C0@HK0PR02MB3634.apcprd02.prod.outlook.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
-To: jbrunet@baylibre.com
-Subject: [PATCH 2/2] clk: meson: Add G12A AO Clock + Reset Controller
-Date: Mon,  4 Feb 2019 10:13:30 +0100
-Message-Id: <20190204091331.9298-3-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190204091331.9298-1-narmstrong@baylibre.com>
-References: <20190204091331.9298-1-narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <c88b9f23-6d69-50f4-4a65-9e4fcd240beb@baylibre.com>
+Date: Mon, 4 Feb 2019 10:30:41 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.4.0
 MIME-Version: 1.0
+In-Reply-To: <HK0PR02MB3634BF379E6F17F7FC82906BB26C0@HK0PR02MB3634.apcprd02.prod.outlook.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190204_011338_872597_5518D98C 
-X-CRM114-Status: GOOD (  13.83  )
+X-CRM114-CacheID: sfid-20190204_013044_748057_CF0BF758 
+X-CRM114-Status: GOOD (  16.72  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,535 +152,58 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Neil Armstrong <narmstrong@baylibre.com>
+Cc: "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the Amlogic G12A AO Clock and Reset controller driver handling
-generation of Always-On clocks :
-- AO Clocks and Reset for Always-On modules
-- 32K Generation for USB and CEC
-- SAR ADC controller clock
+Hi,
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/clk/meson/Kconfig      |   2 +
- drivers/clk/meson/Makefile     |   2 +-
- drivers/clk/meson/g12a-aoclk.c | 448 +++++++++++++++++++++++++++++++++
- drivers/clk/meson/g12a-aoclk.h |  15 ++
- 4 files changed, 466 insertions(+), 1 deletion(-)
- create mode 100644 drivers/clk/meson/g12a-aoclk.c
- create mode 100644 drivers/clk/meson/g12a-aoclk.h
+On 03/02/2019 06:41, wen yang wrote:
+> The call to of_parse_phandle returns a node pointer with refcount
+> incremented thus it must be explicitly decremented here after the last
+> usage.
+> 
 
-diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-index b72439315340..3858747f5438 100644
---- a/drivers/clk/meson/Kconfig
-+++ b/drivers/clk/meson/Kconfig
-@@ -98,8 +98,10 @@ config COMMON_CLK_G12A
- 	bool
- 	depends on ARCH_MESON
- 	select COMMON_CLK_MESON_REGMAP
-+	select COMMON_CLK_MESON_DUALDIV
- 	select COMMON_CLK_MESON_MPLL
- 	select COMMON_CLK_MESON_PLL
-+	select COMMON_CLK_MESON_AO_CLKC
- 	select COMMON_CLK_MESON_EE_CLKC
- 	select MFD_SYSCON
- 	help
-diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
-index 32d17f18541e..021fc290e749 100644
---- a/drivers/clk/meson/Makefile
-+++ b/drivers/clk/meson/Makefile
-@@ -16,5 +16,5 @@ obj-$(CONFIG_COMMON_CLK_MESON_VID_PLL_DIV) += vid-pll-div.o
- obj-$(CONFIG_COMMON_CLK_AXG) += axg.o axg-aoclk.o
- obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
- obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
--obj-$(CONFIG_COMMON_CLK_G12A) += g12a.o
-+obj-$(CONFIG_COMMON_CLK_G12A) += g12a.o g12a-aoclk.o
- obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o
-diff --git a/drivers/clk/meson/g12a-aoclk.c b/drivers/clk/meson/g12a-aoclk.c
-new file mode 100644
-index 000000000000..3398cae86b45
---- /dev/null
-+++ b/drivers/clk/meson/g12a-aoclk.c
-@@ -0,0 +1,448 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Amlogic Meson-AXG Clock Controller Driver
-+ *
-+ * Copyright (c) 2016 Baylibre SAS.
-+ * Author: Michael Turquette <mturquette@baylibre.com>
-+ *
-+ * Copyright (c) 2019 Baylibre SAS.
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ */
-+#include <linux/clk-provider.h>
-+#include <linux/platform_device.h>
-+#include <linux/reset-controller.h>
-+#include <linux/mfd/syscon.h>
-+#include "meson-aoclk.h"
-+#include "g12a-aoclk.h"
-+
-+#include "clk-regmap.h"
-+#include "clk-dualdiv.h"
-+
-+#define IN_PREFIX "ao-in-"
-+
-+/*
-+ * AO Configuration Clock registers offsets
-+ * Register offsets from the data sheet must be multiplied by 4.
-+ */
-+#define AO_RTI_STATUS_REG3	0x0C
-+#define AO_RTI_PWR_CNTL_REG0	0x10
-+#define AO_RTI_GEN_CNTL_REG0	0x40
-+#define AO_CLK_GATE0		0x4c
-+#define AO_CLK_GATE0_SP		0x50
-+#define AO_OSCIN_CNTL		0x58
-+#define AO_CEC_CLK_CNTL_REG0	0x74
-+#define AO_CEC_CLK_CNTL_REG1	0x78
-+#define AO_SAR_CLK		0x90
-+#define AO_RTC_ALT_CLK_CNTL0	0x94
-+#define AO_RTC_ALT_CLK_CNTL1	0x98
-+
-+#define AXG_AO_GATE(_name, _reg, _bit)					\
-+static struct clk_regmap g12a_aoclk_##_name = {				\
-+	.data = &(struct clk_regmap_gate_data) {			\
-+		.offset = (_reg),					\
-+		.bit_idx = (_bit),					\
-+	},								\
-+	.hw.init = &(struct clk_init_data) {				\
-+		.name =  "g12a_ao_" #_name,				\
-+		.ops = &clk_regmap_gate_ops,				\
-+		.parent_names = (const char *[]){ IN_PREFIX "mpeg-clk" }, \
-+		.num_parents = 1,					\
-+		.flags = CLK_IGNORE_UNUSED,				\
-+	},								\
-+}
-+
-+AXG_AO_GATE(ahb, AO_CLK_GATE0, 0);
-+AXG_AO_GATE(ir_in, AO_CLK_GATE0, 1);
-+AXG_AO_GATE(i2c_m0, AO_CLK_GATE0, 2);
-+AXG_AO_GATE(i2c_s0, AO_CLK_GATE0, 3);
-+AXG_AO_GATE(uart, AO_CLK_GATE0, 4);
-+AXG_AO_GATE(prod_i2c, AO_CLK_GATE0, 5);
-+AXG_AO_GATE(uart2, AO_CLK_GATE0, 6);
-+AXG_AO_GATE(ir_out, AO_CLK_GATE0, 7);
-+AXG_AO_GATE(saradc, AO_CLK_GATE0, 8);
-+AXG_AO_GATE(mailbox, AO_CLK_GATE0_SP, 0);
-+AXG_AO_GATE(m3, AO_CLK_GATE0_SP, 1);
-+AXG_AO_GATE(ahb_sram, AO_CLK_GATE0_SP, 2);
-+AXG_AO_GATE(rti, AO_CLK_GATE0_SP, 3);
-+AXG_AO_GATE(m4_fclk, AO_CLK_GATE0_SP, 4);
-+AXG_AO_GATE(m4_hclk, AO_CLK_GATE0_SP, 5);
-+
-+static struct clk_regmap g12a_aoclk_cts_oscin = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = AO_RTI_PWR_CNTL_REG0,
-+		.bit_idx = 14,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "cts_oscin",
-+		.ops = &clk_regmap_gate_ro_ops,
-+		.parent_names = (const char *[]){ IN_PREFIX "xtal" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static const struct meson_clk_dualdiv_param g12a_32k_div_table[] = {
-+	{
-+		.dual	= 1,
-+		.n1	= 733,
-+		.m1	= 8,
-+		.n2	= 732,
-+		.m2	= 11,
-+	}, {}
-+};
-+
-+/* 32k_by_oscin clock */
-+
-+static struct clk_regmap g12a_aoclk_32k_by_oscin_pre = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = AO_RTC_ALT_CLK_CNTL0,
-+		.bit_idx = 31,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "g12a_ao_32k_by_oscin_pre",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "cts_oscin" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap g12a_aoclk_32k_by_oscin_div = {
-+	.data = &(struct meson_clk_dualdiv_data){
-+		.n1 = {
-+			.reg_off = AO_RTC_ALT_CLK_CNTL0,
-+			.shift   = 0,
-+			.width   = 12,
-+		},
-+		.n2 = {
-+			.reg_off = AO_RTC_ALT_CLK_CNTL0,
-+			.shift   = 12,
-+			.width   = 12,
-+		},
-+		.m1 = {
-+			.reg_off = AO_RTC_ALT_CLK_CNTL1,
-+			.shift   = 0,
-+			.width   = 12,
-+		},
-+		.m2 = {
-+			.reg_off = AO_RTC_ALT_CLK_CNTL1,
-+			.shift   = 12,
-+			.width   = 12,
-+		},
-+		.dual = {
-+			.reg_off = AO_RTC_ALT_CLK_CNTL0,
-+			.shift   = 28,
-+			.width   = 1,
-+		},
-+		.table = g12a_32k_div_table,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "g12a_ao_32k_by_oscin_div",
-+		.ops = &meson_clk_dualdiv_ops,
-+		.parent_names = (const char *[]){ "g12a_ao_32k_by_oscin_pre" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap g12a_aoclk_32k_by_oscin_sel = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = AO_RTC_ALT_CLK_CNTL1,
-+		.mask = 0x1,
-+		.shift = 24,
-+		.flags = CLK_MUX_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "g12a_ao_32k_by_oscin_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_names = (const char *[]){ "g12a_ao_32k_by_oscin_div",
-+						  "g12a_ao_32k_by_oscin_pre" },
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_aoclk_32k_by_oscin = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = AO_RTC_ALT_CLK_CNTL0,
-+		.bit_idx = 30,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "g12a_ao_32k_by_oscin",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "g12a_ao_32k_by_oscin_sel" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+/* cec clock */
-+
-+static struct clk_regmap g12a_aoclk_cec_pre = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = AO_CEC_CLK_CNTL_REG0,
-+		.bit_idx = 31,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "g12a_ao_cec_pre",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "cts_oscin" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap g12a_aoclk_cec_div = {
-+	.data = &(struct meson_clk_dualdiv_data){
-+		.n1 = {
-+			.reg_off = AO_CEC_CLK_CNTL_REG0,
-+			.shift   = 0,
-+			.width   = 12,
-+		},
-+		.n2 = {
-+			.reg_off = AO_CEC_CLK_CNTL_REG0,
-+			.shift   = 12,
-+			.width   = 12,
-+		},
-+		.m1 = {
-+			.reg_off = AO_CEC_CLK_CNTL_REG1,
-+			.shift   = 0,
-+			.width   = 12,
-+		},
-+		.m2 = {
-+			.reg_off = AO_CEC_CLK_CNTL_REG1,
-+			.shift   = 12,
-+			.width   = 12,
-+		},
-+		.dual = {
-+			.reg_off = AO_CEC_CLK_CNTL_REG0,
-+			.shift   = 28,
-+			.width   = 1,
-+		},
-+		.table = g12a_32k_div_table,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "g12a_ao_cec_div",
-+		.ops = &meson_clk_dualdiv_ops,
-+		.parent_names = (const char *[]){ "g12a_ao_cec_pre" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap g12a_aoclk_cec_sel = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = AO_CEC_CLK_CNTL_REG1,
-+		.mask = 0x1,
-+		.shift = 24,
-+		.flags = CLK_MUX_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "g12a_ao_cec_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_names = (const char *[]){ "g12a_ao_cec_div",
-+						  "g12a_ao_cec_pre" },
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_aoclk_cec = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = AO_CEC_CLK_CNTL_REG0,
-+		.bit_idx = 30,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "g12a_ao_cec",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "g12a_ao_cec_sel" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_aoclk_cts_rtc_oscin = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = AO_RTI_PWR_CNTL_REG0,
-+		.mask = 0x1,
-+		.shift = 10,
-+		.flags = CLK_MUX_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "g12a_ao_cts_rtc_oscin",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_names = (const char *[]){ "g12a_ao_32k_by_oscin",
-+						  IN_PREFIX "ext_32k-0" },
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_aoclk_clk81 = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = AO_RTI_PWR_CNTL_REG0,
-+		.mask = 0x1,
-+		.shift = 8,
-+		.flags = CLK_MUX_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "g12a_ao_clk81",
-+		.ops = &clk_regmap_mux_ro_ops,
-+		.parent_names = (const char *[]){ IN_PREFIX "mpeg-clk",
-+						  "g12a_ao_cts_rtc_oscin"},
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_aoclk_saradc_mux = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = AO_SAR_CLK,
-+		.mask = 0x3,
-+		.shift = 9,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "g12a_ao_saradc_mux",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_names = (const char *[]){ IN_PREFIX "xtal",
-+						  "g12a_ao_clk81" },
-+		.num_parents = 2,
-+	},
-+};
-+
-+static struct clk_regmap g12a_aoclk_saradc_div = {
-+	.data = &(struct clk_regmap_div_data) {
-+		.offset = AO_SAR_CLK,
-+		.shift = 0,
-+		.width = 8,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "g12a_ao_saradc_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_names = (const char *[]){ "g12a_ao_saradc_mux" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_aoclk_saradc_gate = {
-+	.data = &(struct clk_regmap_gate_data) {
-+		.offset = AO_SAR_CLK,
-+		.bit_idx = 8,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "g12a_ao_saradc_gate",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "g12a_ao_saradc_div" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static const unsigned int g12a_aoclk_reset[] = {
-+	[RESET_AO_IR_IN]	= 16,
-+	[RESET_AO_UART]		= 17,
-+	[RESET_AO_I2C_M]	= 18,
-+	[RESET_AO_I2C_S]	= 19,
-+	[RESET_AO_SAR_ADC]	= 20,
-+	[RESET_AO_UART2]	= 22,
-+	[RESET_AO_IR_OUT]	= 23,
-+};
-+
-+static struct clk_regmap *g12a_aoclk_regmap[] = {
-+	&g12a_aoclk_ahb,
-+	&g12a_aoclk_ir_in,
-+	&g12a_aoclk_i2c_m0,
-+	&g12a_aoclk_i2c_s0,
-+	&g12a_aoclk_uart,
-+	&g12a_aoclk_prod_i2c,
-+	&g12a_aoclk_uart2,
-+	&g12a_aoclk_ir_out,
-+	&g12a_aoclk_saradc,
-+	&g12a_aoclk_mailbox,
-+	&g12a_aoclk_m3,
-+	&g12a_aoclk_ahb_sram,
-+	&g12a_aoclk_rti,
-+	&g12a_aoclk_m4_fclk,
-+	&g12a_aoclk_m4_hclk,
-+	&g12a_aoclk_cts_oscin,
-+	&g12a_aoclk_32k_by_oscin_pre,
-+	&g12a_aoclk_32k_by_oscin_div,
-+	&g12a_aoclk_32k_by_oscin_sel,
-+	&g12a_aoclk_32k_by_oscin,
-+	&g12a_aoclk_cec_pre,
-+	&g12a_aoclk_cec_div,
-+	&g12a_aoclk_cec_sel,
-+	&g12a_aoclk_cec,
-+	&g12a_aoclk_cts_rtc_oscin,
-+	&g12a_aoclk_clk81,
-+	&g12a_aoclk_saradc_mux,
-+	&g12a_aoclk_saradc_div,
-+	&g12a_aoclk_saradc_gate,
-+};
-+
-+static const struct clk_hw_onecell_data g12a_aoclk_onecell_data = {
-+	.hws = {
-+		[CLKID_AO_AHB]		= &g12a_aoclk_ahb.hw,
-+		[CLKID_AO_IR_IN]	= &g12a_aoclk_ir_in.hw,
-+		[CLKID_AO_I2C_M0]	= &g12a_aoclk_i2c_m0.hw,
-+		[CLKID_AO_I2C_S0]	= &g12a_aoclk_i2c_s0.hw,
-+		[CLKID_AO_UART]		= &g12a_aoclk_uart.hw,
-+		[CLKID_AO_PROD_I2C]	= &g12a_aoclk_prod_i2c.hw,
-+		[CLKID_AO_UART2]	= &g12a_aoclk_uart2.hw,
-+		[CLKID_AO_IR_OUT]	= &g12a_aoclk_ir_out.hw,
-+		[CLKID_AO_SAR_ADC]	= &g12a_aoclk_saradc.hw,
-+		[CLKID_AO_MAILBOX]	= &g12a_aoclk_mailbox.hw,
-+		[CLKID_AO_M3]		= &g12a_aoclk_m3.hw,
-+		[CLKID_AO_AHB_SRAM]	= &g12a_aoclk_ahb_sram.hw,
-+		[CLKID_AO_RTI]		= &g12a_aoclk_rti.hw,
-+		[CLKID_AO_M4_FCLK]	= &g12a_aoclk_m4_fclk.hw,
-+		[CLKID_AO_M4_HCLK]	= &g12a_aoclk_m4_hclk.hw,
-+		[CLKID_AO_CLK81]	= &g12a_aoclk_clk81.hw,
-+		[CLKID_AO_SAR_ADC_SEL]	= &g12a_aoclk_saradc_mux.hw,
-+		[CLKID_AO_SAR_ADC_DIV]	= &g12a_aoclk_saradc_div.hw,
-+		[CLKID_AO_SAR_ADC_CLK]	= &g12a_aoclk_saradc_gate.hw,
-+		[CLKID_AO_CTS_OSCIN]	= &g12a_aoclk_cts_oscin.hw,
-+		[CLKID_AO_32K_PRE]	= &g12a_aoclk_32k_by_oscin_pre.hw,
-+		[CLKID_AO_32K_DIV]	= &g12a_aoclk_32k_by_oscin_div.hw,
-+		[CLKID_AO_32K_SEL]	= &g12a_aoclk_32k_by_oscin_sel.hw,
-+		[CLKID_AO_32K]		= &g12a_aoclk_32k_by_oscin.hw,
-+		[CLKID_AO_CEC_PRE]	= &g12a_aoclk_cec_pre.hw,
-+		[CLKID_AO_CEC_DIV]	= &g12a_aoclk_cec_div.hw,
-+		[CLKID_AO_CEC_SEL]	= &g12a_aoclk_cec_sel.hw,
-+		[CLKID_AO_CEC]		= &g12a_aoclk_cec.hw,
-+		[CLKID_AO_CTS_RTC_OSCIN] = &g12a_aoclk_cts_rtc_oscin.hw,
-+	},
-+	.num = NR_CLKS,
-+};
-+
-+static const struct meson_aoclk_input g12a_aoclk_inputs[] = {
-+	{ .name = "xtal",	.required = true  },
-+	{ .name = "mpeg-clk",	.required = true  },
-+	{ .name = "ext-32k-0",	.required = false },
-+};
-+
-+static const struct meson_aoclk_data g12a_aoclkc_data = {
-+	.reset_reg	= AO_RTI_GEN_CNTL_REG0,
-+	.num_reset	= ARRAY_SIZE(g12a_aoclk_reset),
-+	.reset		= g12a_aoclk_reset,
-+	.num_clks	= ARRAY_SIZE(g12a_aoclk_regmap),
-+	.clks		= g12a_aoclk_regmap,
-+	.hw_data	= &g12a_aoclk_onecell_data,
-+	.inputs		= g12a_aoclk_inputs,
-+	.num_inputs	= ARRAY_SIZE(g12a_aoclk_inputs),
-+	.input_prefix	= IN_PREFIX,
-+};
-+
-+static const struct of_device_id g12a_aoclkc_match_table[] = {
-+	{
-+		.compatible	= "amlogic,meson-g12a-aoclkc",
-+		.data		= &g12a_aoclkc_data,
-+	},
-+	{ }
-+};
-+
-+static struct platform_driver g12a_aoclkc_driver = {
-+	.probe		= meson_aoclkc_probe,
-+	.driver		= {
-+		.name	= "g12a-aoclkc",
-+		.of_match_table = g12a_aoclkc_match_table,
-+	},
-+};
-+
-+builtin_platform_driver(g12a_aoclkc_driver);
-diff --git a/drivers/clk/meson/g12a-aoclk.h b/drivers/clk/meson/g12a-aoclk.h
-new file mode 100644
-index 000000000000..9ebfa25688eb
---- /dev/null
-+++ b/drivers/clk/meson/g12a-aoclk.h
-@@ -0,0 +1,15 @@
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-+/*
-+ * Copyright (c) 2019 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ */
-+
-+#ifndef __G12A_AOCLKC_H
-+#define __G12A_AOCLKC_H
-+
-+#define NR_CLKS	29
-+
-+#include <dt-bindings/clock/g12a-aoclkc.h>
-+#include <dt-bindings/reset/g12a-aoclkc.h>
-+
-+#endif /* __G12A_AOCLKC_H */
--- 
-2.20.1
+Missing a Fixes tag.
 
+> Signed-off-by: Wen Yang <yellowriver2010@hotmail.com>
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-amlogic@lists.infradead.org
+> Cc: linux-kernel@vger.kernel.org
+> ---
+>  drivers/soc/amlogic/meson-canvas.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/soc/amlogic/meson-canvas.c b/drivers/soc/amlogic/meson-canvas.c
+> index fce33ca..87a6c6e 100644
+> --- a/drivers/soc/amlogic/meson-canvas.c
+> +++ b/drivers/soc/amlogic/meson-canvas.c
+> @@ -57,9 +57,12 @@ struct meson_canvas *meson_canvas_get(struct device *dev)
+>  		return ERR_PTR(-ENODEV);
+>  
+>  	canvas_pdev = of_find_device_by_node(canvas_node);
+> -	if (!canvas_pdev)
+> +	if (!canvas_pdev) {
+> +		of_node_put(canvas_node);
+>  		return ERR_PTR(-EPROBE_DEFER);
+> +	}
+>  
+> +	of_node_put(canvas_node);
+>  	return dev_get_drvdata(&canvas_pdev->dev);
+>  }
+>  EXPORT_SYMBOL_GPL(meson_canvas_get);
+> 
+
+Apart the missing Fixes tag :
+
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
