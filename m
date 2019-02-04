@@ -2,88 +2,83 @@ Return-Path: <SRS0=P8k8=QL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 93258C282C4
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 09:55:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DDDF4C282C4
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 09:59:57 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 61C4C2147A
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 09:55:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id ADF1B2081B
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 09:59:57 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lr06R/vW";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="005/w22S"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 61C4C2147A
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LoHCPiDC";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="CjwTCiI8"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ADF1B2081B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=H9os8kwC6UgYqnoiEqq/uhswTemW33qY9/YVubW9tWk=; b=lr06R/vW96AZIk
-	RWzPYm4uJPXLq9IvpbhFGRwNnhsbyRLC1EWpmL6m3RbPwoLiCyuiBorak7hH3tTuzc9fxMYedeOC2
-	wSPLwWCZXkTm3krNA3ST5iWFH6wGZ9SVN1D7uQavZ/adb1NVfJ1EzRDfk5zhExEcEOzQPbE2UU8SD
-	xHEScmSOIvU0TQxtdc1eOLEJFLFsHuGqib71i6iqKoW1nU7RSagss4NZIA3XMr41E0jjwPZOnwJQs
-	02m9Ka0OWsuubIZc7nzPcnjhnTHQu5oekboiee2JlBWEPOwLszcSHFRhXoug+VClnY0UWrjmbblR/
-	B+rfKSqlTe+FZbKUsPKw==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=WBtQRvVT7Z7SVsUvLxW2gZYes8bXC4eT+rHEFF+AAVU=; b=LoHCPiDCNRUhoy
+	ds4ORyMx/OXH191yKYqTuZbVsd+8LUufwjuZjw+Tu8VFkhSC1pIIcKLyODzQbA0Jvy4J526yQcED3
+	BLqFMXSyszW9RP/FP6qY2GrveOABq8s6MHK51Ve79hPlIZgD0scFtd7gseF/pukLXFWA8GPKubARD
+	RPEWWooA5bPnY3H/Sy04j3owrZ089koUNGpZjgjYpSa+hC+a2+r0HNLETMxPnfs2AYgVet2fANW6e
+	yEqUIMeEA6Q143ErIPVTDTtZfMf6oSeoIwgAvXqy8sz+T1Ffc8LHta9zbgCKSjdZhlIT2t3KKbLSJ
+	RFtoRXjy055Ro0jEdRdQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gqaya-00089r-GH; Mon, 04 Feb 2019 09:55:40 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1gqb2b-0001MZ-PM; Mon, 04 Feb 2019 09:59:49 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gqayX-00088i-43
- for linux-amlogic@lists.infradead.org; Mon, 04 Feb 2019 09:55:38 +0000
-Received: by mail-wm1-x343.google.com with SMTP id p6so12649413wmc.1
- for <linux-amlogic@lists.infradead.org>; Mon, 04 Feb 2019 01:55:36 -0800 (PST)
+ id 1gqb2Z-0001LS-5p
+ for linux-amlogic@lists.infradead.org; Mon, 04 Feb 2019 09:59:48 +0000
+Received: by mail-wr1-x444.google.com with SMTP id l9so13602526wrt.13
+ for <linux-amlogic@lists.infradead.org>; Mon, 04 Feb 2019 01:59:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=pkjz/f0QfqEm9NzY0SVdhwC//Bv3LcwK48URNAuYP+A=;
- b=005/w22SjKaKR+OcSUPI0xl637BCseo2Vn7Ri2qV4IF2msRMe2NJBsZ79L8nefX8cn
- Ym7ZT5o74573nDVQRufx8Jy1COyDtO0rVEFqJb+1ukeyEJ2YiQMTWbSzr2bFiouXKv44
- Td4xnY/yo5iCjCCRu8lEPixq/xI0MAwJL8ym/3wnylukSGIQkqforVcJbo4XoHLsMS5+
- Bqbl5dzaib6RDHfnYAuxLMTTJ8Fdjj8fqcuZZEYlUAGv3bA+q7O5jLiAUg3/O4xHKltb
- UkVxNTmaj4Ti3fjpFcB3cOoz5MTuGacokYr73H3eu7D9KfHD+Brx1r5tIxfuj9NBtNa6
- hzFg==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=aeI2DtFyd3cY+jY1489HFbl0luQvdWGB6TJ7lBabdo0=;
+ b=CjwTCiI8T4M3Hz/dfytA4ZuN726PaIpQZTJy2Xq/FvGNqvtthG1FC+Oe24vxhrffkb
+ 0wnNg1uPr3xSmRnTtrxaWp/kry6Qp6IIyqY3tWdsEAG8MUW9KS4geftLJqWAgMJlnuB+
+ Tw4XXVnRU7rtNXfMp/YB0jiKOGeUMB5EpxY4b8f/oASH6lfeHTGA98eNJ4PjgfeweNL3
+ 5k24J2MjXHaz+lEzkqN6jSpZkFhUZspCP0IsvkiNHPqi849m7XGHjqvIZ8Ky5onoozdC
+ OSr2HlfcTamOyLdhYf5fGt8PHwK7yUwVRL4N+alXI3IxPwhcZvY/ybEcntcBpEaT4Nce
+ M72w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=pkjz/f0QfqEm9NzY0SVdhwC//Bv3LcwK48URNAuYP+A=;
- b=DX6jAIEbjntEv/WWMf2ul8xNOFTs6uQATK5EcCmrMjIfqmp0Bq6XdyNfK/xQ9JIlly
- mVt52RNrP4TKqJgiXZeTh/Z/PY2f+WnEZ7NsPCI7o7+uOSGlqQuhalZZTK8LomqVo+2W
- Ikg/yDxmRapp6d6bFMVD/fY2tECc833Xq5L2lV0kkdG3CsZmqFzmWnbOsmqPsiR+olgt
- YXZdRtAE0Ejf/LZj7ZX8hUOih381lrxRN+29OPL/DCj1rJb8hT22nyOT5D+yOF5dOXLP
- 9yYeukIpqCtCgzzWEdToKnSN8Yr0toKBSy/GJlmSo/5WFIlf6avuwtniW5KX4JIwFZdV
- +AAA==
-X-Gm-Message-State: AHQUAuY3mCCS/0tZIai1R6hbv2aLJBuB4nQU/Hch6us6JoT/0BcZcesx
- fxvUaWKEaKnz6wAjkqYJrMu9u1htBzUsdA==
-X-Google-Smtp-Source: AHgI3IYQZtyGrCgztWDiCxQW2vcfV7LQU+ZmP5HkQx2m5TyjJ/4sZs9DC4i01BhL+drnz7l8aBEPZA==
-X-Received: by 2002:a1c:410b:: with SMTP id o11mr12752545wma.109.1549274135224; 
- Mon, 04 Feb 2019 01:55:35 -0800 (PST)
-Received: from bender.baylibre.local
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id y14sm12450683wro.92.2019.02.04.01.55.34
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Mon, 04 Feb 2019 01:55:34 -0800 (PST)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: daniel@ffwll.ch
-Subject: [PATCH] drm/meson: handle when meson_canvas_get returns -EPROBE_DEFER
-Date: Mon,  4 Feb 2019 10:55:32 +0100
-Message-Id: <20190204095532.27185-1-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.20.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=aeI2DtFyd3cY+jY1489HFbl0luQvdWGB6TJ7lBabdo0=;
+ b=Y3JXBAMsu4gjBafe27LndYRZuuiwBxbPCC7onj/J6BpB7fYknFRJ3v3Xk4ANuzwNrI
+ hVuzeMZDlAgx2LMsUomx+QYPd4jV3SDFjXHdX6Ojm0Oy6ZX5KZuM4F3+ta6FFoDO0zyb
+ OghxoYueAkli4yOoF1awccG2zoRu2DRFQkeFTZEMj90oaMTMevCLA4ZMHKfkjLXAIHUs
+ DMdFG03iCi6WbDDEmOKJ6gQrUU0yqR3chGXBZc2iSQs4HckrfA1qyoo/WG8VBtIeuvZN
+ aJ5dOzFtXllqVIlzNQumWY5GqjoMeOuIMJhsTwC3G1y9iQBHEUqxSZY0iohov84Yd2dD
+ HBeQ==
+X-Gm-Message-State: AJcUukd6k/DyPx+5U12FXBHRWJfo2nS5FvWsOYYrC8UgZcDXDuHwee5a
+ JFI3n3DSu5ecJUQRXCa3k6ZBzRakExToYaU0e6uV6w==
+X-Google-Smtp-Source: ALg8bN7lHMO6Hlgap21U4xcnbHcWEtLdg+eW0yH5Qmwtj7w62V9elNN46ayTwvt2/0GSaE1FI0Z1QIqG1JP7CaHzTno=
+X-Received: by 2002:adf:ef0d:: with SMTP id e13mr47728456wro.29.1549274385281; 
+ Mon, 04 Feb 2019 01:59:45 -0800 (PST)
 MIME-Version: 1.0
+References: <20190204094937.22763-1-narmstrong@baylibre.com>
+In-Reply-To: <20190204094937.22763-1-narmstrong@baylibre.com>
+From: Maxime Jourdan <mjourdan@baylibre.com>
+Date: Mon, 4 Feb 2019 10:59:34 +0100
+Message-ID: <CAMO6nawKrH3d2X=TikdJy8yjiPyuJJRnpaBjyfPYuRx3d=7vVA@mail.gmail.com>
+Subject: Re: [PATCH] soc: amlogic: canvas: Fix meson_canvas_get when probe
+ failed
+To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190204_015537_311131_C3EC60B9 
-X-CRM114-Status: UNSURE (   9.88  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190204_015947_214510_1DDA86C6 
+X-CRM114-Status: GOOD (  17.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -95,41 +90,78 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
- Neil Armstrong <narmstrong@baylibre.com>
+Cc: Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-When meson_canvas is not yet probed, meson_canvas_get returns -EPROBE_DEFER.
+Hi Neil,
+On Mon, Feb 4, 2019 at 10:49 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> When probe fails, a platforn_device is still associated to the node,
+> but dev_get_drvdata() returns NULL.
+>
+> Handle this case by returning a consistent error.
+>
+> Fixes: d4983983d987 ("soc: amlogic: add meson-canvas driver")
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  drivers/soc/amlogic/meson-canvas.c | 13 ++++++++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
+>
+> This fix depends on "soc: amlogic: add missing of_node_put()" at [1]
+>
+> [1] https://patchwork.kernel.org/patch/10794545/
+>
+> diff --git a/drivers/soc/amlogic/meson-canvas.c b/drivers/soc/amlogic/meson-canvas.c
+> index 87a6c6e23591..151aa84bc593 100644
+> --- a/drivers/soc/amlogic/meson-canvas.c
+> +++ b/drivers/soc/amlogic/meson-canvas.c
+> @@ -51,6 +51,7 @@ struct meson_canvas *meson_canvas_get(struct device *dev)
+>  {
+>         struct device_node *canvas_node;
+>         struct platform_device *canvas_pdev;
+> +       struct meson_canvas *canvas;
+>
+>         canvas_node = of_parse_phandle(dev->of_node, "amlogic,canvas", 0);
+>         if (!canvas_node)
+> @@ -63,7 +64,17 @@ struct meson_canvas *meson_canvas_get(struct device *dev)
+>         }
+>
+>         of_node_put(canvas_node);
+> -       return dev_get_drvdata(&canvas_pdev->dev);
+> +
+> +       /*
+> +        * If priv is NULL, it's probably because the canvas hasn't
+> +        * properly initialized. Bait out with -EINVAL because, in the
 
-Handle this case but deferring the probe of the drm driver aswell.
+Bait -> Bail ?
 
-Fixes: 66cae477c380 ("drm/meson: Use optional canvas provider")
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/gpu/drm/meson/meson_drv.c | 3 +++
- 1 file changed, 3 insertions(+)
+> +        * current state, this driver probe cannot return -EPROBE_DEFER
+> +        */
+> +       canvas = dev_get_drvdata(&canvas_pdev->dev);
+> +       if (!canvas)
+> +               return ERR_PTR(-EINVAL);
+> +
+> +       return canvas;
+>  }
+>  EXPORT_SYMBOL_GPL(meson_canvas_get);
+>
+> --
+> 2.20.1
+>
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
-diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-index ef4afaadaf8d..17e55d63daff 100644
---- a/drivers/gpu/drm/meson/meson_drv.c
-+++ b/drivers/gpu/drm/meson/meson_drv.c
-@@ -236,6 +236,9 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 			meson_canvas_free(priv->canvas, priv->canvas_id_vd1_1);
- 			goto free_drm;
- 		}
-+	} else if (PTR_ERR(priv->canvas) == -EPROBE_DEFER) {
-+		ret = PTR_ERR(priv->canvas);
-+		goto free_drm;
- 	} else {
- 		priv->canvas = NULL;
- 
--- 
-2.20.1
+Thanks for the patch, I missed the fact that a driver could have a
+pdev yet with a failed probe.
 
+Reviewed-by: Maxime Jourdan <mjourdan@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
