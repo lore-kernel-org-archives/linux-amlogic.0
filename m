@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AD1A9C282C4
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 20:39:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9A863C282C4
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 20:49:58 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 764532073D
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 20:39:23 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 63BD32073D
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 20:49:58 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oz4UsOF8";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="IwqoG7xc"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 764532073D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZTXiQf29";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="HrSLwR9X"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 63BD32073D
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +26,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VK435i6QK+kF2RKOfg0/b6F3bODKNI/gjbhBNPMhoSI=; b=oz4UsOF8p4oLbe
-	rjazAmKXx14R15TdQ84c/W27IyjhKROzfjLoo7rGcTFX1/YALpjib6dQPrgstUKlj+QSNPuDuujel
-	YHprw2Rl+2ybtQUgyx0lAZPDSHmTD7wG352mbVK6C+IKcrWFBtWI1LF054H7FuT7D7BmbMkUqcUfG
-	WnmWciBrX8PLp8u77QD3qPGL83dd1wwXi2yK5KzCsRmHwyQbGiy3Qpw6wnEAnUXyZN6ooAF6w9vu9
-	veYPwrPgkk+am5NxG4ooroSOM0EidIM863ld8Row5C2e1oA9Bcmsctp8EtLYrxYDGJ1pYHNbA491j
-	mqHdFSry0ZUd1xuddqow==;
+	List-Owner; bh=L48ch6/97J3ajO0SBwLxVNOLnlKo6kBdC4VavPblwBo=; b=ZTXiQf29P0aekY
+	ceyKlvekeACqC2mYy8U6Q/YePejrN1xa8HopFHap2KH0Y0V6s3y6Jln6eVIIY/K8CEdw+YkrdEpm3
+	BlBxxSkgniOuj2a0ZiiW0xloWpUNo57Mn1AkWdbJZ8UX1bh3KJyZNfZjnjXbG1lCkzvSgsKiIUq/w
+	KQKrFXIF83L/qm55niNE8Wz4LEUM4mZdpwj9ou599fl3oggtjAC6vWL6fv3/Pr/jHm1t5iYUZmViB
+	5+rBeaVsnNv6Z3sAbR5Rw39TiO06UBE4GfoE/GQinKwWcFjdk0vfM0kCqld5Ar50EzW8Cf/uWWrKV
+	8KobK5r+/jVDpJJKB8jA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gql1Q-00023b-Qp; Mon, 04 Feb 2019 20:39:16 +0000
-Received: from mail-ot1-x342.google.com ([2607:f8b0:4864:20::342])
+	id 1gqlBf-0006JL-3w; Mon, 04 Feb 2019 20:49:51 +0000
+Received: from mail-ot1-x343.google.com ([2607:f8b0:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gql1A-0001ny-Gx; Mon, 04 Feb 2019 20:39:01 +0000
-Received: by mail-ot1-x342.google.com with SMTP id w25so2051080otm.13;
- Mon, 04 Feb 2019 12:39:00 -0800 (PST)
+ id 1gqlBS-00068a-Fh; Mon, 04 Feb 2019 20:49:39 +0000
+Received: by mail-ot1-x343.google.com with SMTP id s5so2170072oth.7;
+ Mon, 04 Feb 2019 12:49:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=uXK+oSaz8Oqrh9EHtaflT5bRlHlYm132lPxhGZoFKUA=;
- b=IwqoG7xcTLfYaRl1kgehXVgrM8ooW82RdLPE/szWr5j+K3WqUtXyV3xD8Vt6CbB6cs
- fAY1/hBZQk2zvxZAK3S9TIIxN4I34oukRh0xc8tPIlvwQShjWAMvE1vy4vjPO4pfCJ7t
- 8yB771O+4eqU5fa14G+XzV83Lf72SynSjy9TnVr11zHj1s2AaI6JfsD0OCJAJ7P/9JwO
- z3wiRh5Ei2dNLjfDRw6vv8vClGwB+d28x5s46KyhqJ6y+UJsODlN9M+OIiHBzJs6d2RF
- uT1dy8RkYmd+0JkPFz6N6h2eBJRRE7Mxbia+MPfXmn8U8zq5JoBebioDK3NqenJmw0Eb
- fMMA==
+ :cc; bh=tord4prjwOyjm36JPqP6avPb7bbeEZzoWDKJvQIGCQA=;
+ b=HrSLwR9XJJbiuRMaCDrGJGSfib9zpAelRfvut2zDcp88SBz1UVj+1YvPB2QTRi9D/t
+ TLJmUGnMQTbo7ABMj0HCBfCBeodzc1BccKkDTCMu1o/GFgqgYXYpjcOpMihXowY97vX5
+ Sek73EP9mnoOcb5DgSVc5Vx9UrZFsVCQSiEHS5h3wtqg7xVcqBeIPO3KLkD3vPuFl8oS
+ qKWu+FetIxaY380DRdIBSBMgr2tI8rzS3EMoUBh1rO7//A2w1epZUg2YeHxkyXPw2aE7
+ 5WXUZAM14DdquEdOtYTcEv/s8aA5u0WlcisDp+M9OyByPOpyHjSBtHP/Kl3gLPGtQy9j
+ 1zSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=uXK+oSaz8Oqrh9EHtaflT5bRlHlYm132lPxhGZoFKUA=;
- b=buTQzIl5Bn+kb+lIX6HvtUqLSLVLL5p/y8cnsgtYUNlYwIX+q9QAMeYCcBu3wG+ygs
- AH4MwQpPitkQ/vys4s39qyna20Ctp4rzijp2eu+GOkEJln0Ef0LLIdd66pkpcYeZAnU8
- Lj5EOx/575xd2KPYkteGU2cLFHFFLfkp9Ltrl5J8JurBTAT2n16ivfsUAEHg2QqcPjfw
- ZhcVkBUFlZgyRPaOg6Tbz9ilEjJcQM9TXPpvH4wFOSCm+3I0NCdLHIhkEmhDOxpfcifJ
- VvPrzk9UA3OpsUZizqW5vxnUjYStmvaSoOgdpalAP/CbwvDKzBSQdC5G76gED3bJdOLn
- XzOQ==
-X-Gm-Message-State: AHQUAuYyblYILAWnV+ktwezNeP1Y4yGYs8+2x7OAlGOQpbfiiyKke3FM
- tEYSoOst9M1qKuDAvhmYeGpjzsezy93VtDTTLso=
-X-Google-Smtp-Source: AHgI3IbW2IM70Xtyb3MSm1rIL5r4TSzy0rTqMiqLwBb+QjUnKNXALt4e3gQGjoHfNWMdhW8yTaFx4tsGh5b/u78tnq0=
-X-Received: by 2002:a9d:a48:: with SMTP id 66mr695581otg.308.1549312739429;
- Mon, 04 Feb 2019 12:38:59 -0800 (PST)
+ bh=tord4prjwOyjm36JPqP6avPb7bbeEZzoWDKJvQIGCQA=;
+ b=IwzCrFTfpVfRAAUPzEZSofQjokMk13C/GochhBhXyd4SxWD7pW3mKZYzvsuGTAim2u
+ rVSm85WQ6JxTOjRz6OPYQ5zp5beKgWayHOZ9ErcqSiniXIkhmvt4xW8sLCvYNf5nH/ce
+ S5iUQitLDkAXR+jJsHcYtYXLVMk+ynROcDPMNOHxGsBAcUjddDPC2s27XTT571rA8JOT
+ Qf0lJNL7S8uiU76QRScpvHv+em01SfNZH8K9zLkFMJ3PIvCewmoyt4tXdnayUPZe9PNS
+ TIYBoQiqngyJ2aHNZMezniPKt3jLHgpCcs8R0d6kcokMEnZ+kr/QBTdmnwQbxQow7FNB
+ sMkw==
+X-Gm-Message-State: AHQUAub3xV1oc+VuJATEGzu8WkKB3BQaFkJCbN2Q84l6E5Ze/XUK1Jux
+ 8hD48lLQiiQ5F44gNvHM1I2Ofdf23aDdkwf5wyA=
+X-Google-Smtp-Source: AHgI3IZtxfCzW6NJ3v6eHXfXL6pGpISmEjJTIQBnGGW0QKPOSKtMRALRQdYHlwd4w9vR55gOzLGxHuWUQFWKRYN6GW0=
+X-Received: by 2002:aca:3586:: with SMTP id c128mr712196oia.47.1549313377317; 
+ Mon, 04 Feb 2019 12:49:37 -0800 (PST)
 MIME-Version: 1.0
-References: <20190123151209.2080-1-linux.amoon@gmail.com>
- <CAFBinCC1xjqogcLm94gu+iLS_b_zB8eNEXL+4bYhog==zN0S+A@mail.gmail.com>
- <CANAwSgT3tVss-hQ0jYzTaSvkfVkSQZtiRFhdq1KmUSL4idZmLw@mail.gmail.com>
-In-Reply-To: <CANAwSgT3tVss-hQ0jYzTaSvkfVkSQZtiRFhdq1KmUSL4idZmLw@mail.gmail.com>
+References: <20190129102521.4141-1-linux.amoon@gmail.com>
+ <20190129102521.4141-2-linux.amoon@gmail.com>
+ <CAFBinCDj=Y9HWEhJYMjo9FviAosxpHW5d61CceZ7HPV4ObZ79Q@mail.gmail.com>
+ <CANAwSgSnR-DWffg3vKStuXQXahLf8ONssxr4+byL=PSr5JR=xA@mail.gmail.com>
+In-Reply-To: <CANAwSgSnR-DWffg3vKStuXQXahLf8ONssxr4+byL=PSr5JR=xA@mail.gmail.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 4 Feb 2019 21:38:48 +0100
-Message-ID: <CAFBinCDj0jA9dT72J8RvfJtyL3bBKTy+PaRsHXukvTuKitaXqg@mail.gmail.com>
-Subject: Re: [RFCv1 0/3] Odroid c1+ usb fixs
+Date: Mon, 4 Feb 2019 21:49:26 +0100
+Message-ID: <CAFBinCBjF5iOkUjhxSGXpQa7Nc1=bWAzA=XjrfXRYxSPZO15nQ@mail.gmail.com>
+Subject: Re: [PATCHv3 1/2] ARM64: dts: meson-gxbb-odroidc2: Fix usb phy reset
+ warning
 To: Anand Moon <linux.amoon@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190204_123900_582455_CBB18EAE 
-X-CRM114-Status: GOOD (  12.33  )
+X-CRM114-CacheID: sfid-20190204_124938_590744_C95B727E 
+X-CRM114-Status: GOOD (  16.27  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -91,9 +93,11 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: devicetree <devicetree@vger.kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Kishon Vijay Abraham I <kishon@ti.com>,
- Rob Herring <robh+dt@kernel.org>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Linux Kernel <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
@@ -103,41 +107,38 @@ Hi Anand,
 
 On Mon, Feb 4, 2019 at 9:04 PM Anand Moon <linux.amoon@gmail.com> wrote:
 [...]
-> I dont have multi-meter to check this out on old and new kernel.
-> As per my observation Amlogic 3.10 (32 bit) and 3.14 (64 bit)
-> both use some state machine the tune the usb port.
+> > > @@ -36,6 +43,8 @@
+> > >                 regulator-min-microvolt = <5000000>;
+> > >                 regulator-max-microvolt = <5000000>;
+> > >
+> > > +               vin-supply = <&p5v0>;
+> > did you find out why this patch fixes the USB_OTG_PWR regulator?
+> > based on just reading the patch I can't find an explanation myself
+> >
 >
-> It's not clear that this will work with upstream kernel.
-do you have a filename / line number in Amlogic's kernel regarding
-this state machine and / or tuning logic?
-
-> I just checked with board booted with usb device connected we are observing
-> the bus and is getting power up and hot plugging of usb device is working fine.
+> As per the device tree binding we need this setting to enable power input source
+> [0] Documentation/devicetree/bindings/regulator/fixed-regulator.txt
 >
-> $ lsusb -v|egrep "^Bus|MaxPower"
-> Couldn't open device, some information will be missing
-> Bus 002 Device 003: ID 1b71:0056 Fushicai
->     MaxPower              500mA
-> Couldn't open device, some information will be missing
-> Bus 002 Device 004: ID 152d:0578 JMicron Technology Corp. / JMicron
-> USA Technology Corp. JMS567 SATA 6Gb/s bridge
->     MaxPower               30mA
-> Couldn't open device, some information will be missing
-> Couldn't open device, some information will be missing
-> Bus 002 Device 002: ID 05e3:0610 Genesys Logic, Inc. 4-port hub
->     MaxPower              100mA
-> Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-> Couldn't open device, some information will be missing
->     MaxPower                0mA
-> Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
->     MaxPower                0mA
-for me it stops at the Genesys Logic, Inc. 4-port hub (I see the root
-hub, the 4-port hub and then nothing more) using the mainline kernel
-(with or without your patches)
+> *I have observed few more place where this setting is missing*
+OK, I understand that we should describe the hierarchy of the regulators
 
-I'm not sure what to do with this information though.
-currently we have no reliable way to tell if GPIOAO_5 is only for the
-OTG port (usb0) or also for the host-only port (usb1).
+> > have you tested without this patch to rule out that you hit some bug
+> > in the regulator framework back when you wrote the patch?
+> > (I don't have an Odroid-C2 so I can't test this myself).
+> >
+>
+> Yes I have tested this patch.Some device like usb camera and usb hard drive
+> when connected to usb port will generate warning message.
+> which shows us that not enough power is being set to the port.
+I don't understand why adding "p5v0" as parent of "usb_otg_pwr"
+changes the output of "usb_otg_pwr":
+- "p5v0" is a fixed regulator which cannot be controlled at all (apart
+from removing power from it)
+- "usb_otg_pwr" does not have any current limits set inside the .dts
+- "usb_otg_pwr" has the same fixed voltage as the new "p5v0" regulator
+
+what are your steps-to-reproduce for your original issue ("reset
+high-speed USB device number 3 using dwc2")?
 
 
 Regards
