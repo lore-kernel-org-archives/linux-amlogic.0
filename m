@@ -2,22 +2,22 @@ Return-Path: <SRS0=P8k8=QL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D21D4C282CB
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 13:52:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 62D29C282C4
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 13:59:31 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9BCE62081B
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 13:52:10 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 34BD72082F
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 13:59:31 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZlLtFNwo";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Cb2eESD5"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9BCE62081B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DxIb0bRf";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="HzhvLDVC"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 34BD72082F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,58 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=H/XHSZshtoN8ctsWBDXPAVcGQGfCGRgCayLvaQzw7pw=; b=ZlLtFNwoDg5i2e
-	JHjGpCcdMsLvQKCf6d0x0aNRMR9yD9nTl69bKFiyajLdg5OR7m4r/CKZwn9sklDvEeDPp9S597VIH
-	XdJ8pjIfnxEEXZmXYK4LFHU0qyZJakGf2GuUV46cjMVNL02A6E+nHUV2l+9fbLN8NxT6suWoh/cMe
-	NxTI5kfMSPXL9Tt1L6JozJ2vuOzhK4bggf30NscyU0Gq1TQ+ruERKAW2qUMCXiW+lczeP8eXP9Hxp
-	ad2gZDNEeAhYLvGWCzGQqs/YS8YnXIlv0YHmhuBCDoRsqf1zjQ4LqNA6bBSaD97QKiZWU60daYOcP
-	PMZVSCe7qE5Q3p5YYWtg==;
+	List-Owner; bh=5ncIqn+KOnLFUu1L8GKw2B67hAmPqrW5Oa254eYqOsg=; b=DxIb0bRfsrSKYi
+	jeH6bxD1JK+A0iGvCQRjIPTLFKd4xJwwBXJXM3IwSI64o3MtKZUxtbqcmYjzvQDq5LzOUCkMSYoip
+	07KUb6W4W43IVDm1Sz1Jf3fiDzDGzXj6g0bxBIS4sJio6w+TxmLiaCaRvk3J1GrKs8oRDfxdAIQDp
+	UmxFZfGRbAELqYdQ83RwcUI09wPR4QmkGf0YhdjJTpfGYfZ3Bxvf+xbl4Rb7559w8y1k9v3RRB4Bs
+	OyjI8JYtXm/QXOaubheMXOu+kGLsN4r/wWPkDJX+xdYb5QoCpByFLLQSVcwkS0aLiAM9sMoX2EvJc
+	RQJt/2a8QX0OZ+oEJuSw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gqefM-0004Tl-PH; Mon, 04 Feb 2019 13:52:04 +0000
-Received: from mail-ot1-x342.google.com ([2607:f8b0:4864:20::342])
+	id 1gqemR-0006cg-OY; Mon, 04 Feb 2019 13:59:23 +0000
+Received: from mail-ot1-x343.google.com ([2607:f8b0:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gqef9-0004GC-JN; Mon, 04 Feb 2019 13:51:53 +0000
-Received: by mail-ot1-x342.google.com with SMTP id s5so12994676oth.7;
- Mon, 04 Feb 2019 05:51:51 -0800 (PST)
+ id 1gqemE-0006QV-TD; Mon, 04 Feb 2019 13:59:12 +0000
+Received: by mail-ot1-x343.google.com with SMTP id u16so13028645otk.8;
+ Mon, 04 Feb 2019 05:59:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=hX/Gv3eAPoFqfRH+eg7JFdfk4B9734x08+y90NP/qZE=;
- b=Cb2eESD5D+XNsn0ZoKHC+vPGpMJjt2COzGVp8vZfiOrnK/izxjGCH6YFprEkzQSlRy
- hQvqRcwNtfnk37LdhV1xsca0fx9pvRV/69Nlb/GJsnbNaRH6crJUFxN65teZMu+ABk+O
- J6v3G0q4TLG4Wqop4MDx556aUzKeeeWWRwb4Zzb/HDK911rF5x1mpsiad3REETUvt0RV
- OsBobzZ97EcF3p8KFpf7rXQS12o2jeGLe7Ij4F+o3SFxte53kb8yjNQa/i3w1tsoH3QK
- UxCpIeI0c7wbrLhM+jEF0zsIqnDs6TYpy5EMBOi589b/4+8iQq1bheeLbJqDQk1Dc4Da
- IsVg==
+ :cc; bh=KF1X/3cj948PjMeFbZfRlquxhga99uxMWr3+oeJo3s0=;
+ b=HzhvLDVCyjAlYQIP9Q99PYJ+n6RKuxMfJDeP/Xg8EYZJOrfoFS/vbUYy7rA2WFcSHQ
+ xsL9MWk536KDRcU/JY8zguE0848nvpan9b7tk9o8g6ZccbN/XYRpZrSMQx/HNkTvFunc
+ 590R/45JEiKFOxrSUGRzMuI57rCsjfuGP4WhJS4YVYThyk6e7xiSEr9vwD2vfAIfZvL9
+ 78+d8MwK/ZMVjtIkZ7yI7I7NEYdkVtcf0u/0bAXds0+sbKMloMhNLAXwEiJcFle32BVn
+ 3pKfdbx96V8Jay8+VH/IFz6fKWDWrOopXfCIbDxE9sqNEN4lQwgzRzA6ndj8e4gemnwL
+ EmYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=hX/Gv3eAPoFqfRH+eg7JFdfk4B9734x08+y90NP/qZE=;
- b=tn3egtsgHo56EeIKsQb6Luxv3MfVAo+r48SRe8PNkSY4DkMTj826UiJlcghUhyhj8e
- WuDWqXu5uwR+BX1V0nt8H9Pnwb0JqURFbT1Yvh9UFBAGbQcJxuFYn13iZoz2b85M1hEK
- KXdEYLcU5DIBojJjVAi7ozU9FUgBESBtUumQ/lWO7ugAz+KQcqKTDs1UW4M6+AYe+T+J
- tL3GbyQ37X8ta68eylmBrxJDgIRvIW6JXf7xSbu0cgNB/edsMP2RI6C81jXmDGC4j6jn
- efEsDqQb+UkJb+g5Ry53FX6nEVQqMTAhZsXEKFnARy5T698Nip1YGFYJiyoF9ygfdNdt
- q1vg==
-X-Gm-Message-State: AHQUAuY8hbem/sda0z5aE9lzuFTEF24ZRv84ZstCq9V12LbsdamDEPHx
- 48zNbxGWZjSYaLw80BW0M0NnB6DydB1m9Rh30ow=
-X-Google-Smtp-Source: AHgI3IZNFa42ANomdKRJBxYMahYuCaUmu8PVxmRLoI5CDbPN2G/jq6AufyAZFOQ+0I69yISqUV9k09JXdH3pDlahi48=
-X-Received: by 2002:aca:58d7:: with SMTP id
- m206mr27349786oib.140.1549288310656; 
- Mon, 04 Feb 2019 05:51:50 -0800 (PST)
+ bh=KF1X/3cj948PjMeFbZfRlquxhga99uxMWr3+oeJo3s0=;
+ b=qeghRZzFOp7A/SuqFq1i8ZRQoMbJooEkaxtsTj+u4waX7K2ouENhkNfRsFUfhbAXFb
+ SRkfupWS9b3ko3al+Ogr5+jq7ZZ1otRekzuPN+7uPem/oL/aTtn79wPUBCyqVyMeRZCX
+ J27njeAhaFQ4P7JA4nF6EAR2c2ceDZuynj9LHS6+OGaJrs4COaoVJn/NMMoI6xvzWKKM
+ EYopGL3eeTcdCIPaP9SHnWYmwd20S7BA0sFyik4l23ggcVtj9uizOkAu9tarXw9GNoy1
+ bUTztIKCNnt8sxPlsA8z38qJkmTokPXLB3pgIJGZKUE74Aokro7IuXAjym9fFOTko2tY
+ 1agQ==
+X-Gm-Message-State: AJcUukdWQPYELUCL/FmmPrF46Rpr5hI/vkw7rHRXlOvzvyYWaHMlabLt
+ PgUG0gLNIWbSIkQ3xRJTKVrz9MrfsZ7Lzl4ycoY=
+X-Google-Smtp-Source: ALg8bN7FU8oOdQZnUAXmiYPg3p0yWdVj2YngiQneYml9cjWV6TAYvY+/AgfilrX2oHq7gRPWkDTlYkWQK1Q+kior4os=
+X-Received: by 2002:a9d:715d:: with SMTP id y29mr37903772otj.148.1549288749719; 
+ Mon, 04 Feb 2019 05:59:09 -0800 (PST)
 MIME-Version: 1.0
-References: <20190123151209.2080-1-linux.amoon@gmail.com>
-In-Reply-To: <20190123151209.2080-1-linux.amoon@gmail.com>
+References: <20190129102521.4141-1-linux.amoon@gmail.com>
+ <20190129102521.4141-2-linux.amoon@gmail.com>
+In-Reply-To: <20190129102521.4141-2-linux.amoon@gmail.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 4 Feb 2019 14:51:39 +0100
-Message-ID: <CAFBinCC1xjqogcLm94gu+iLS_b_zB8eNEXL+4bYhog==zN0S+A@mail.gmail.com>
-Subject: Re: [RFCv1 0/3] Odroid c1+ usb fixs
+Date: Mon, 4 Feb 2019 14:58:58 +0100
+Message-ID: <CAFBinCDj=Y9HWEhJYMjo9FviAosxpHW5d61CceZ7HPV4ObZ79Q@mail.gmail.com>
+Subject: Re: [PATCHv3 1/2] ARM64: dts: meson-gxbb-odroidc2: Fix usb phy reset
+ warning
 To: Anand Moon <linux.amoon@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190204_055151_931315_4D93B8AA 
-X-CRM114-Status: GOOD (  12.12  )
+X-CRM114-CacheID: sfid-20190204_055910_942554_84C5EE8F 
+X-CRM114-Status: GOOD (  16.77  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -89,9 +90,10 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
- Kishon Vijay Abraham I <kishon@ti.com>, Rob Herring <robh+dt@kernel.org>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
@@ -99,66 +101,71 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi Anand,
 
-On Wed, Jan 23, 2019 at 4:12 PM Anand Moon <linux.amoon@gmail.com> wrote:
+On Tue, Jan 29, 2019 at 11:25 AM Anand Moon <linux.amoon@gmail.com> wrote:
 >
-> This is follow up on my previous patches.
+> Add missing vin-supply node 5.0V regulator setting to power
+> to usb ports, changes help fix the usb reset warning.
 >
-> [0] https://lore.kernel.org/patchwork/patch/1031616/
-> [1] https://lore.kernel.org/patchwork/patch/1031617/
+> [  795.380156] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> [  798.356073] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> [  801.331999] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> [  804.307919] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> [  807.283844] usb 1-1.2: reset high-speed USB device number 3 using dwc2
 >
-> As per Martin's suggestion and input I have tried to fix below issue.
+> Fixes: 5a0803bd5ae (ARM64: dts: meson-gxbb-odroidc2: Enable USB Nodes)
+> Tested-by: Kevin Hilman <khilman@baylibre.com>
+> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Cc: Jerome Brunet <jbrunet@baylibre.com>
+> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> ---
+> changes from prevoius
 >
-> Fixed the phy power issue on the usb port.
-> # cat /sys/kernel/debug/regulator/regulator_summary
->     USB_VBUS                      4    2      0 unknown  5000mV     0mA  5000mV  5000mV
->        phy-c1108820.phy.1         2                                 0mA     0mV     0mV
->        phy-c1108800.phy.0         2                                 0mA     0mV     0mV
+>  regulator                      use open bypass  opmode voltage current     min     max
+> ---------------------------------------------------------------------------------------
+>  regulator-dummy                  5    4      0 unknown     0mV     0mA     0mV     0mV
+>     c9100000.usb                  1                                 0mA     0mV     0mV
+>     c9100000.usb                  1                                 0mA     0mV     0mV
+>     c9000000.usb                  1                                 0mA     0mV     0mV
+>     c9000000.usb                  1                                 0mA     0mV     0mV
+>  P5V0                             1    1      0 unknown  5000mV     0mA  5000mV  5000mV
+>     USB_OTG_PWR                   4    2      0 unknown  5000mV     0mA  5000mV  5000mV
+>        phy-c0000020.phy.1         2                                 0mA     0mV     0mV
+>        phy-c0000000.phy.0         2                                 0mA     0mV     0mV
+> --
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 >
-> Fixed the OTG phy warning and initilizaion of usb0_phy
-> # lsusb -t
-> /:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
->     |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
->         |__ Port 1: Dev 5, If 0, Class=Mass Storage, Driver=usb-storage, 480M
->         |__ Port 2: Dev 3, If 0, Class=Mass Storage, Driver=usb-storage, 480M
->         |__ Port 3: Dev 4, If 1, Class=Video, Driver=uvcvideo, 480M
->         |__ Port 3: Dev 4, If 2, Class=Audio, Driver=snd-usb-audio, 480M
->         |__ Port 3: Dev 4, If 0, Class=Video, Driver=uvcvideo, 480M
->         |__ Port 3: Dev 4, If 3, Class=Audio, Driver=snd-usb-audio, 480M
-> /:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> index 2e1cd5e3a246..da729ed00408 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> @@ -28,6 +28,13 @@
+>                 reg = <0x0 0x0 0x0 0x80000000>;
+>         };
 >
-> Now hotpluing of usb device is working on odroid c1+ boards.
-unfortunately it's still not working for me :(
+> +       p5v0: regulator-p5v0 {
+> +               compatible = "regulator-fixed";
+> +               regulator-name = "P5V0";
+> +               regulator-min-microvolt = <5000000>;
+> +               regulator-max-microvolt = <5000000>;
+> +       };
+> +
+>         usb_otg_pwr: regulator-usb-pwrs {
+>                 compatible = "regulator-fixed";
+>
+> @@ -36,6 +43,8 @@
+>                 regulator-min-microvolt = <5000000>;
+>                 regulator-max-microvolt = <5000000>;
+>
+> +               vin-supply = <&p5v0>;
+did you find out why this patch fixes the USB_OTG_PWR regulator?
+based on just reading the patch I can't find an explanation myself
 
-all following descriptions are seen when looking at the PCB with the
-40-pin connector on the bottom, USB ports on the left, micro USB
-connector on the top right.
-
-my test-case is:
-- power-cycle the board
-- enter u-boot command prompt
-- gset GPIOAO_5 out high (or replace high with low)
-- measure
-
-I checked the voltage at RT9715EGB (U19) with a volt meter:
-GPIOAO_5 HIGH:
-- EN pin (bottom, left): 3.3V
-- VOUT pin (top right): 5V
-GPIOAO_5 LOW:
-- EN pin (bottom, left). 0V
-- VOUT pin (top right): 5V (not sure why...)
-
-I also checked the voltage at Q5 2N7002W with a volt meter:
-- gate (bottom, right): 0V
-- source (top, right): 3.3V
-- drain (left): 0V
-this is always the same, regardless of whether GPIOAO_5 is HIGH or LOW.
-however, with Armbian booted (which uses some Amlogic 3.10 kernel
-where USB works) I get:
-- gate (bottom, right): 0V
-- source (top, right): 0V
-- drain (left): 3.3V
-
-what do you get on your board?
+have you tested without this patch to rule out that you hit some bug
+in the regulator framework back when you wrote the patch?
+(I don't have an Odroid-C2 so I can't test this myself).
 
 
 Regards
