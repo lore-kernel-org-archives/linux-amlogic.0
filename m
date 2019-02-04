@@ -2,23 +2,22 @@ Return-Path: <SRS0=P8k8=QL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CCFBCC282C4
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 20:26:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 81379C282C4
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 20:35:35 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9485E2073D
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 20:26:45 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4A4CA2073D
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 20:35:35 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lZpxOMAv";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="AGUyB6ZH"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9485E2073D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fNjj4hMu";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="YAXPJ7dQ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4A4CA2073D
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,61 +26,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=R6CODt0eZ1GyGZ7fsv9r/MdVW13BNHZdy5m+XFkrHmM=; b=lZpxOMAvKBQtxG
-	1r7Uh/8Al3cYigGkaJC+FgH193x8Fx4d9qnugEAlkHII+EIeFBNVLk011oe+vN3QrDiwjhr5G6VZH
-	vJqfrpAokokDtTyk/BJJUozIS0KNaoxqmrmJ5z93EBIqXVa5zc5ntEuOEnzhlHNpX61jUgG+LdgJQ
-	kuuH19Yqh4hRqs65QLHjUQnxyKZ16BUmLG+G4wI0eKpYpGkJuO0l0opsJrcF+rUkYbDfuypKFkN2N
-	rzM4Fbe3UHUXP/4NbrMVd9/BvN2Ywji3xfkjWXGQSQPC/4gRsnWTQEyc+HqIbM6d3bFnElubAL5TA
-	xNKKh1QpXwfQfHWe4pnA==;
+	List-Owner; bh=G/G9JPe697D+x/ABN362kxMvt/PCUfrlW14pjJN+5zg=; b=fNjj4hMu0HnWey
+	K9f8lqqaGFxDRNLgbqjhtzKGkOcpLFjGTkzVAGsRn8sHGQm+scFl7AJx/+PSnNKDfAQI17ymHLZAe
+	pIslI4bshSD1tQHNGda3pLEHnPu33H6UjAqpbnE4wIESEoKbZLSg1WSH7aO5OO7Z3vf6uqch3UxGK
+	nyfACDyeStNzcpUQg0kTyEJEx16eEaviqdpKAf8N+tWYgABiRJqdnzlW1/9abrF9d435i6Ih7WV4A
+	a9VtG06JGBoN7lJ63+MhoTmNwNQ69uVEOalnOQEuLABkdIVIuGe1QvY6m6oGdtOZO/5EH6o4CWQdJ
+	sG59VbwRT44pUi8HPYtA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gqkpC-0004vS-OS; Mon, 04 Feb 2019 20:26:38 +0000
-Received: from mail-ot1-x342.google.com ([2607:f8b0:4864:20::342])
+	id 1gqkxl-000162-0D; Mon, 04 Feb 2019 20:35:29 +0000
+Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gqkoo-0004Uw-PC; Mon, 04 Feb 2019 20:26:18 +0000
-Received: by mail-ot1-x342.google.com with SMTP id i20so2135680otl.0;
- Mon, 04 Feb 2019 12:26:14 -0800 (PST)
+ id 1gqkxY-0000vk-Ap; Mon, 04 Feb 2019 20:35:18 +0000
+Received: by mail-ot1-x344.google.com with SMTP id w25so2032909otm.13;
+ Mon, 04 Feb 2019 12:35:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=DY0gPJjBNf77VAs41DOXSaN/jFf2cz+xZhibHQ04Z0k=;
- b=AGUyB6ZHqTLMXm69D0/bPqMTZR4Znm3wpS61YS2a/oTZTx07V0O/dpdgSozIf4+9dz
- eYyHwAYikUHLCyZO8/XQ+F8fDhJ5B3mzZ8iC51dwtkH6NGNwY3tbPm5Wssj3aFk54ELf
- I0VFOnSqt3DhsH9Wn7pJdswoAcIh6nOOtfsjOC2WUvJLwh9KA/FeiU3KNnNKh6GgUjqK
- O73cbWI6NRFKmhlPFjP9AE6wOZwcaAKci/4695BYvdL2Q8OeljBFiYLuuWVVJ+Qn2gWS
- wkI2OjLD7jPG9/mkaoGPtiZmBXVJQPBU5r5FpxyGnDx2CXG9wK8fo7l4A0yauj8XGTX6
- gDWQ==
+ :cc; bh=10CAiLoNEN4+70tAvWGz3Jre4j5v4KCJvTW+s2VWsHA=;
+ b=YAXPJ7dQy2do1KFowDHDAoEfFK3vuxRKBN5SVdPJ1ZAY1OrndMx86WCYFENj7kS1K0
+ MNv6P90gIAzOBKtyjSBQD0koeIavE3IA4zmPTQD6mvv3fk5BxtxdzRs8AfL/Z04ffrOZ
+ 1J3z2errJmQZhJe7izhfUzlZ6SHQRymzDv30fCNvx4L9qvNble/L9sJrGnpj7tQxfmNv
+ fOnQeMUJwz8drI6q+yuHp15u+JHfiYXRBH/QlfoJtMvzTwOBOynsoLiSHNjKUKOEJ+Jx
+ aym80KCfAZMcxfQp5L3aPWbuZtfdgmNe+YhFBBljWIZS+tsnIl4lQ5xuualBTT1OmE9z
+ +1JA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=DY0gPJjBNf77VAs41DOXSaN/jFf2cz+xZhibHQ04Z0k=;
- b=M0+ZgFiLqnEymrJbfSgzDHqnArIQp3TApGeuVOOcVaEeaMzMLopk8qqMneSeq/QlWL
- SIV4HUNbfgHTotOnPFaA3ioqKeaL3rW7+ksxT3pLmB01tqan3zUW7tBfoO6KTqtq49SH
- TxSRKn44s+4/fAF4Q8Y2jRIYsA81jib2zqVJGFLzbwFK+jsFrvBdtmh+UM+cWOICiCrm
- HVDHncmjNfgUd6UmLkFxa4w1Zl6U+NfHmN3TPqjkvxC1dM4K36mY/vvbSgHM4bDvF+rh
- HedS1afjRDcLiTRX8XRsGKWAbCgPAnYBsga/39F/2usz8ThNq6e/6Pn1pDmmdGy3vW2/
- HMCA==
-X-Gm-Message-State: AHQUAuZXz7Y8SdKRhK9XvCE9AsVTTi9Cwm6nPBJaxNC/rJzdeavALS+T
- x5/fxtg9xGaTHx8CcwPjgwYZLImco4ED21VfIjA=
-X-Google-Smtp-Source: AHgI3IYFzXVMuPIcyy3QoHxSGlBmRZzVlccedqISMuXE2hOKEB2CDHAfI5U83L17oOmJNoc9QjJIY4ZXxGr+fdVI48E=
-X-Received: by 2002:a9d:a48:: with SMTP id 66mr666511otg.308.1549311973807;
- Mon, 04 Feb 2019 12:26:13 -0800 (PST)
+ bh=10CAiLoNEN4+70tAvWGz3Jre4j5v4KCJvTW+s2VWsHA=;
+ b=Iqei12hihB0+xYDITux97dsO34Kjd4O0Q/8+s2f9hpI/fRjc2E7rBOcoC76NXtlrKG
+ w0umdjR+VYWf0sunY2N4uV1utqZHdxkX/ZSkdVDFHnkuHbiI4OrSwxwrs/7Aw5CN90xr
+ uxq3oKlWO0nagmW3l/99RCkSl6OIW6XOxpGkAYbgAoDoEgjQ1ucFmlybMJvAwspSJdGj
+ Tm1QrEj4ZxjyYZZMmpMrm/xZ6gWg49dZjKnEciUYlwFuZoTMZowIvk7o9eLtklJZ23zF
+ RxVQyqrrEfnL7/gFb9gsVJ7evli3fq/Ei8QyyL+zabbizHuoFmiWPEucqLGjSwDuVKdK
+ 1nEg==
+X-Gm-Message-State: AHQUAuZqlMs1lHhiVDRJoBjsG9y1iW7+em6rFA78fDpOGdGA9YS9bC2a
+ sM5/O70GWpAz2UqMwwMoYGaD2X/T04cZJ5SGvHo=
+X-Google-Smtp-Source: AHgI3IaCE3vvl0sKJXHpZg50AIqFS9S4xJD8EUs42SUIhYEfdY3ZLEvyJG+l0bjzMkG0+NEB7njegqdm1cjQE0zxtGY=
+X-Received: by 2002:a9d:a48:: with SMTP id 66mr687873otg.308.1549312515362;
+ Mon, 04 Feb 2019 12:35:15 -0800 (PST)
 MIME-Version: 1.0
 References: <20190123151209.2080-1-linux.amoon@gmail.com>
- <20190123151209.2080-2-linux.amoon@gmail.com>
- <CAFBinCCOQ_GqHZuYf6n8ba_ZMbOwKmUzc4EJAuXRpn4tTTCUKA@mail.gmail.com>
- <CANAwSgSQH2zta+tOcqnM3JPZ45XkqWEJAWOL3Do0Mnrbam8VSw@mail.gmail.com>
-In-Reply-To: <CANAwSgSQH2zta+tOcqnM3JPZ45XkqWEJAWOL3Do0Mnrbam8VSw@mail.gmail.com>
+ <20190123151209.2080-3-linux.amoon@gmail.com>
+ <CAFBinCAdf0rtt-7tON_LRNH_cpvGJXX3LX8g-i4xsC3wahZSVA@mail.gmail.com>
+ <CANAwSgQ4=Vn6RM4Kpd20UWkQNW81=mfg-qB0G73dsRem3qwjcA@mail.gmail.com>
+In-Reply-To: <CANAwSgQ4=Vn6RM4Kpd20UWkQNW81=mfg-qB0G73dsRem3qwjcA@mail.gmail.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 4 Feb 2019 21:26:02 +0100
-Message-ID: <CAFBinCD_O7FEX5iLyo2BzqE1KcrmATaZMMq5pFr-Q7wnRBPziw@mail.gmail.com>
-Subject: Re: [RFCv1 1/3] phy: meson8b-usb2: Enable otg phy controller on
- Meson8b SoCs
+Date: Mon, 4 Feb 2019 21:35:04 +0100
+Message-ID: <CAFBinCB=3kmuFb_xXzhW+m8dTasVrCHQp2wti+=5UjrAHk5TTg@mail.gmail.com>
+Subject: Re: [RFCv1 2/3] ARM: dts: meson8b: odroidc1: fix USB power supplies
+ for phy
 To: Anand Moon <linux.amoon@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190204_122614_827203_4464368C 
-X-CRM114-Status: GOOD (  34.98  )
+X-CRM114-CacheID: sfid-20190204_123516_382769_AB2B642D 
+X-CRM114-Status: GOOD (  33.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -110,134 +109,136 @@ On Mon, Feb 4, 2019 at 9:03 PM Anand Moon <linux.amoon@gmail.com> wrote:
 >
 > Hi Martin,
 >
-> Thanks for your review comment.
+> Thanks for your comments.
 > Please find my comments below.
 >
-> On Mon, 4 Feb 2019 at 18:51, Martin Blumenstingl
+> On Mon, 4 Feb 2019 at 18:59, Martin Blumenstingl
 > <martin.blumenstingl@googlemail.com> wrote:
 > >
 > > Hi Anand,
 > >
 > > On Wed, Jan 23, 2019 at 4:12 PM Anand Moon <linux.amoon@gmail.com> wrote:
 > > >
-> > > Meson8b support two USB phy controller, one with otg port and
-> > > other usb host controller. USB OTG controller ie. otg port can
-> > > be used to power on board or host port for usb device.
-> > > Changes enable usb otg host controller when dr_mode is set to otg.
-> > can you please add a sentence explaining *why* this allows enabling USB OTG?
+> > > This patch enables the USB Host controller (USB0) and the relative USB0 PHY.
+> > > From the shematics GPIOAO.BIT5 gpio input for the PWREN signal of the
+> > > USB_OTG controller (usb0) which is also linked to USB_HOST controller (usb1).
+> > > Add missing phy-supply link to both  USB0 and USB1 phy controller
+> > > This changes fixed the power issue on usb ports. Changes help fix usb reset warning.
+> > I prefer to change the way patches 2 and 3 are split:
+> > - this one should only add the regulators and link it with the USB controller
+> > - patch 3 should enable usb0 and usb0_phy
 > >
-> > > Currenly otg port can be used to power on the board.
-> > typo, should be "Currently"
->
-> Ok I will fix this next version.
->
+> > the reason behind this is the "Fixes" tag below. it's good to have it,
+> > so please keep it in this patch!
+> > however, enabling usb0 is not a fix for a commit which enables the
+> > "USB host controller on Odroid-C1/C1+" (which is why enabling usb0 and
+> > usb0_phy should be part of patch 3)
 > >
+>
+> Ok I will split this changes as per your suggestion.
+thank you!
+
+> > > [  821.991470] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> > > [  825.243385] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> > > [  828.151310] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> > > [  830.991241] usb 1-1.2: reset high-speed USB device number 3 using dwc2
+> > >
+> > > Fixes: 2eb79a4d15ff ("ARM: dts: meson: enabling the USB Host controller on Odroid-C1/C1+ board")
 > > > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > > > Cc: Jerome Brunet <jbrunet@baylibre.com>
 > > > Cc: Neil Armstrong <narmstrong@baylibre.com>
 > > > Cc: Kevin Hilman <khilman@baylibre.com>
 > > > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 > > > ---
-> > > New patch in this series.
-> > > --TOTO enable OTG port to work as host.
-> > > --Currently we can power on the board from this OTG port.
+> > > Changes from previous patch.
 > > >
-> > > /:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
-> > >     |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
-> > >         |__ Port 1: Dev 4, If 0, Class=Mass Storage, Driver=usb-storage, 480M
-> > >         |__ Port 3: Dev 3, If 0, Class=Video, Driver=uvcvideo, 480M
-> > >         |__ Port 3: Dev 3, If 1, Class=Video, Driver=uvcvideo, 480M
-> > >         |__ Port 3: Dev 3, If 2, Class=Audio, Driver=snd-usb-audio, 480M
-> > >         |__ Port 3: Dev 3, If 3, Class=Audio, Driver=snd-usb-audio, 480M
-> > > /:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
+> > > Fix the subject and commit message as per Martin's request
+> > >  --Add the signal name in the comment
+> > >  --Replace vbus-supply with phy-supply linking the power supply to phy node as pointed by Marine
+> > >    which a PWREN signal in the USB_HOST controller (usb1)
+> > >
+> > > USB_VBUS                      4    2      0 unknown  5000mV     0mA  5000mV  5000mV
+> > >    phy-c1108820.phy.1         2                                 0mA     0mV     0mV
+> > >    phy-c1108800.phy.0         2                                 0mA     0mV     0mV
 > > > ---
-> > >  drivers/phy/amlogic/phy-meson8b-usb2.c | 15 +++++++++++++++
-> > >  1 file changed, 15 insertions(+)
+> > >  arch/arm/boot/dts/meson8b-odroidc1.dts | 26 ++++++++++++++++++++++++++
+> > >  1 file changed, 26 insertions(+)
 > > >
-> > > diff --git a/drivers/phy/amlogic/phy-meson8b-usb2.c b/drivers/phy/amlogic/phy-meson8b-usb2.c
-> > > index 9c01b7e19b06..1333c77e9172 100644
-> > > --- a/drivers/phy/amlogic/phy-meson8b-usb2.c
-> > > +++ b/drivers/phy/amlogic/phy-meson8b-usb2.c
-> > > @@ -109,6 +109,7 @@
+> > > diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
+> > > index 58669abda259..bfa472a679d9 100644
+> > > --- a/arch/arm/boot/dts/meson8b-odroidc1.dts
+> > > +++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
+> > > @@ -83,6 +83,22 @@
+> > >                 regulator-max-microvolt = <5000000>;
+> > >         };
 > > >
-> > >  #define RESET_COMPLETE_TIME                            500
-> > >  #define ACA_ENABLE_COMPLETE_TIME                       50
-> > > +#define DCD_ENABLE_COMPLETE_TIME                       10
+> > > +       usb_vbus: regulator-usb-vbus {
+> > > +               compatible = "regulator-fixed";
+> > > +
+> > > +               regulator-name = "USB_VBUS";
+> > > +               regulator-min-microvolt = <5000000>;
+> > > +               regulator-max-microvolt = <5000000>;
+> > > +
+> > > +               vin-supply = <&p5v0>;
+> > > +
+> > > +               /*
+> > > +                * signal name from schematics: PWREN
+> > > +                */
+> > > +               gpio = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>;
+> > > +               enable-active-high;
+> > > +       };
+> > > +
+> > >         tflash_vdd: regulator-tflash_vdd {
+> > >                 /*
+> > >                  * signal name from schematics: TFLASH_VDD_EN
+> > > @@ -295,8 +311,18 @@
+> > >         pinctrl-names = "default";
+> > >  };
 > > >
-> > >  struct phy_meson8b_usb2_priv {
-> > >         void __iomem            *regs;
-> > > @@ -188,6 +189,20 @@ static int phy_meson8b_usb2_power_on(struct phy *phy)
-> > >
-> > >                 udelay(ACA_ENABLE_COMPLETE_TIME);
-> > >
-> > > +               if (phy_meson8b_usb2_read(priv, REG_ADP_BC) &
-> > > +                       REG_ADP_BC_ACA_PIN_FLOAT) {
-> > > +                       dev_warn(&phy->dev, "USB ID detect failed!\n");
-> > > +                       clk_disable_unprepare(priv->clk_usb);
-> > > +                       clk_disable_unprepare(priv->clk_usb_general);
-> > > +                       return -EINVAL;
-> > > +               }
-> > > +       } else if (priv->dr_mode == USB_DR_MODE_OTG) {
-> > > +               phy_meson8b_usb2_mask_bits(priv, REG_ADP_BC,
-> > > +                                          REG_ADP_BC_DCD_ENABLE,
-> > > +                                          REG_ADP_BC_DCD_ENABLE);
-> > where did you take this from?
->
-> As per the schematic it's otg phy,
-> I study the code to enable "host" mode for phy1 and on similar line I
-> tried to enable otg phy.
-dragons ahead!
-if you want to work on OTG support then I'm fine with this (from time
-to time people ask about this on IRC)!
-But beware that this needs more than a few changes to the PHY driver.
+> > > +&usb0_phy {
+> > > +       status = "okay";
+> > > +       phy-supply = <&usb_vbus>;
+> > I'm not sure whether phy-supply is correct here
+> > with the PHY framework and the dwc2 controller regulators can be set as:
+> > - phy-supply (inside the PHY node)
+> > - vbus-supply (inside the dwc2 controller node)
+> >
+> > phy-supply is always enabled when the PHY is enabled.
+> > vbus-supply is smarter: it's enabled whenever the controller is in
+> > host mode (or OTG detects hosts mode), but disabled in
+> > device/peripheral mode
+> >
+> phy-supply enables the power per port power setting which get on when
+> device is connected.
+the actual dt-bindings description is "a regulator that provides power
+to the PHY", see [0]
+(note that it states that it powers the PHY, not the bus or any
+connected device)
 
-Amlogic's code uses a timer to poll whether the port is in HOST or
-DEVICE mode and switches the mode accordingly, see [0]
-however, this is not just limited to the PHY but it also requires
-switching the dwc2 registers
+> vbus-supply controls the D+ D- signal during high seed data transfer.
+I believe this is not the case. the vbus-supply seems undocumented at the moment
 
-personally I would start with getting device / peripheral mode working for usb0.
-if you're lucky the PHY driver will work without any changes and you
-only need to set the correct dr_mode along with the g-* properties.
+however, the dwc2 driver has separate supplies for vusb_a (analog) and
+vusb_d (digital), see [1] (these are used here: [2])
 
-> this changes will come into effect when we set dr_mode="otg" in dts.
-> but it do not enable this as host port.
->
-> *Second thought this enable DCD which seem the be wrong. Thanks for porting out*
-> We could set this to 0 at initial state for now and it will work as it should.
-> I will send the correct fix later.
->
-> > $ grep -iR DCD arm-src-kernel-2015-01-15-321cfb5a46/drivers/amlogic/usb/dwc_otg/310/
-> > -> I only find code which clears REG_ADP_BC_DCD_ENABLE (your patch sets it):
-> >   adp_bc.b.dcd_enable = 0;
->
-> This usb port act as a changer port but it also depend on the how this
-> port is tuned to various states as shown below.
->
-> Standard Downstream Port (SDP) is a downstream port that complies
->               with the USB 2.0 or USB 3.0 definition of a host or hub.
-> Charging Downstream Port (CDP) is a downstream port that complies
->               with the USB 2.0 or USB 3.0 definition of a host or a hub.
-> Dedicated Charging Port (DCP)  is a downstream port on a device
->               that outputs power through a USB connector.
->
-> We cannot observe this now because this behave like a states machine which
-> is possible handled both in kernel driver and u-boot of Amlogic.
-> As per schematics this (page 7)  we have a external jumper set to
-> control the power path of the port.
->
-> Odroid Wiki also says so.
-> [0] https://wiki.odroid.com/odroid-c1/hardware/otg_power_enable
-this seems hard to implement, because the same wiki page also states:
-"If your C1+ PCB is previous version, you need to desolder the R94 as
-described in this link."
+VBUS (in my own words) is the +5V power signal which is provided by
+the USB host to power the USB device.
+
+my interpretationfor the Amlogic SoCs is:
+- vusb_a and vusb_d are generated internally, not sure if there's an
+external fixed regulator
+- there is no phy-supply (the PHY itself is powered by clock-gating
+using the CLKID_USB clock)
+- usb0 VBUS is controlled by GPIOAO_5
 
 
 Regards
 Martin
 
 
-[0] https://github.com/endlessm/linux-meson/blob/0672f0b61eb92ba63c91d858a678d2c3a0bba06a/drivers/amlogic/usb/dwc_otg/310/dwc_otg_driver.c#L716
+[0] https://elixir.bootlin.com/linux/v5.0-rc5/source/Documentation/devicetree/bindings/phy/phy-bindings.txt
+[1] https://elixir.bootlin.com/linux/v5.0-rc5/source/drivers/usb/dwc2/core.h#L72
+[2] https://elixir.bootlin.com/linux/v5.0-rc5/source/drivers/usb/dwc2/platform.c#L293
 
 _______________________________________________
 linux-amlogic mailing list
