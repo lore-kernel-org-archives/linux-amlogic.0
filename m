@@ -2,23 +2,23 @@ Return-Path: <SRS0=P8k8=QL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6E184C282CB
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 14:35:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 49194C282CB
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 20:03:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3CA532083B
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 14:35:02 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 181A02081B
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 20:03:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="sKGGiNkA";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="EfcXiOTz"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3CA532083B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GWU3sSRe";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gshQC59i"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 181A02081B
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
@@ -26,60 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MkpJ6voPKG1mmL8lbS5RVE4gETeSzYG9WD/RlmdnuaQ=; b=sKGGiNkAe3oevq
-	oDM67HGbT344ulie+KxOvf31TwoN6SMUmqsKb8AXNQZgLpzEgApdZnTS6VmRUDn22dwch6KFZh4Qr
-	jCS4gT2WsmEKpbZIFdt2iqp4KeFA5QRRthf1vobblrNVR1ABOeHfim+pdovxmz2DFp8A8rPmZNxoB
-	k/8THAilsO0oyfDfnyeBnUknY4EGjc4cF3JSB7CUYbjdhcwxcXWYJe9wQAUSpjKMrofb3RJWoZbz6
-	63QDnd8z984eLzhkjAOCs78Qc7wr1pjwd4wjvZiWOeZuXbwsg05h3ShJhDHlbz144IfMjKDiQ4mov
-	kZNrdn2UT93jm4Mg8imA==;
+	List-Owner; bh=karysTvqOQsXmgm7s1lrBQurfSiQxct8usw03JJry3k=; b=GWU3sSReTlippQ
+	UQoivDgtU3hjVRI7/EqelGuR/etrqrP0gsMwvqox7+r0fDU/LnsRG531LPslIDe1lIYbCiiysI7IJ
+	x52S7khLf9JiqTJjNlUcOAGAocBTRoSPcTGr5FhZYpuUUc+2XrLaznBNPjTXNo+nJ8bDx3/77M3oV
+	PW4LPkGrNoGNvv8I31rasfehODD2lWBqteSWOVeyCr3CdYEVcgLCN2pLXOmNqwVaxe+mVFISBf93q
+	0A1tLsI2nSRnQXnPPri1T28nOEIFVBf2xmjfe7qNxikaIieFDuDSIk7VjmNZPEEob7hZ+Y6zBHG47
+	0WvfoY+wslpXkW4IfePA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gqfKq-0004WG-TG; Mon, 04 Feb 2019 14:34:56 +0000
-Received: from mail-ot1-x343.google.com ([2607:f8b0:4864:20::343])
+	id 1gqkSZ-0001iY-DJ; Mon, 04 Feb 2019 20:03:15 +0000
+Received: from mail-ot1-x330.google.com ([2607:f8b0:4864:20::330])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gqfKn-0004Vx-N0
- for linux-amlogic@lists.infradead.org; Mon, 04 Feb 2019 14:34:55 +0000
-Received: by mail-ot1-x343.google.com with SMTP id e12so79653otl.5
- for <linux-amlogic@lists.infradead.org>; Mon, 04 Feb 2019 06:34:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
+ id 1gqkSN-0001Zh-4g; Mon, 04 Feb 2019 20:03:04 +0000
+Received: by mail-ot1-x330.google.com with SMTP id a11so1896125otr.10;
+ Mon, 04 Feb 2019 12:03:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=YW+9YZGrkmvhm7l1w0ntB2oUB66QBa6+CdYqZj8Ih3Y=;
- b=EfcXiOTzUvTiWfkHniWD3qCtUi+1wkO9Su+IvW3RJ56knV6R8x8YOwBEB+K+ARTiLz
- ZQHVXDz0iHk9zybxSAnu3x5E7oLq3BiJRSGmAAQV0yhJoTN/d49FuiWqtwkxF6PCDiYC
- dS38tlGqmz9Yic/KwTPy+K98wylTynkj1eANuIoEMYuQ6VBnn7EZcdjkeDJJfVA25Hn1
- 96cHgo4Y/vNDJ8KoanZndMvolCp0iGlXBg3ZquQGiNLSHqB2J5T+1Oattzh0puxXlNB2
- TgQqDviWGENgdEheglWjbVL+dn1BjGZkelab1un1xjmaPKB/4WBXxGhircRIXoJtVm5m
- u69A==
+ :cc; bh=dlSy7ECNsSOP0ebJimbZXxzz0cJdouA4zM6hfDf3yDI=;
+ b=gshQC59iQ0pgScLv8PD958XLzI0YMkfEt8du66Gke2M8dV8J7Kiz6APAiZWwwTo3nf
+ H3rGsL/Sbc7a0/Wlh+0eencU1PllvoJAKxR+9QHK3XTrsee6tn24qGWe4c3fDOsQGy/A
+ OGBt0grCE7VRH3pkxlaXtu8Ua8bjUiBWUVzoXHMYpFIhI7MRQHdo96uwMIHOibhY34A1
+ S0AKcIbr3agOwW1XEnHut+PnNXjBG/AdvPA2nGCcdp8yNwaG2/It6gprgSKG7+cNWZjC
+ L2GO49Tbi19IdnUsCeVlRIQwbS8nwT0yJkVS/DCk/0T8QZ8XM/6AlPmQbwDLi1yd0kTJ
+ ijqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=YW+9YZGrkmvhm7l1w0ntB2oUB66QBa6+CdYqZj8Ih3Y=;
- b=fnVduNvfcstbultXaByqakDaWELSry4tjl8GVm8uDa0kPXtrFJv6IahubmarUpc47N
- vzekkx+ga064rqh3tYs3zWu3H4nqGABB91EVRmoxSAK/7f6/x89QMqP8qOsZmnEObOkO
- 5tyEKsRnPDjLKHRHqtCjyzGfHLmHkz+27IWwwww30Gf72Jnoy0uUGbtn7sSFRQ4Vt7Jh
- N8FAG/Whkh96A3S+oBXm4cqqrzuDXZ9G+qF0rCB4pVheL/wvFli3uT+Wq8XA4w6sEGlw
- I/+W+O749cdGVisnFjwBL7sIBV95BJAHJ8TXL0XFXuYz8hIcfIDkns22lgAezWjFr7rH
- Rp0Q==
-X-Gm-Message-State: AJcUukeJACQmp5yGRUnzjpmSQGMEzdZuiLsD4v8qd9kToqUu/keznOss
- ZX+W26G5Toe6HtZtN6/cDs0n+fhv8vhdk2JDvc0=
-X-Google-Smtp-Source: ALg8bN6yg3eV9bDQqPvxC5WtRtkfJ0iZDqalodzAvBHZooMjI4TSyBAnAHtHD6jtrwfDS5dGZeVtmUv0wwdaYP7AEp8=
-X-Received: by 2002:a9d:6a8e:: with SMTP id l14mr36332484otq.348.1549290892681; 
- Mon, 04 Feb 2019 06:34:52 -0800 (PST)
+ bh=dlSy7ECNsSOP0ebJimbZXxzz0cJdouA4zM6hfDf3yDI=;
+ b=PKz8FhxCuUYrVPu6oRdLzbenveTr8lyla+Z8ZZs5dy6JMU5aMEHaTb0nyU2n9TwWMj
+ ZOjIrPo9RIEbibGeEMQO+GQUDo80XZ9C7kdsGZgiqqmt3kTQyF6rglBoa+PEKrM7S5JB
+ 5BN+An81XpG9g98FL6TpK7sw7Bo+rHJy61Bi22ul98WITmFvWMO1rQE/zOIm++cqTMS+
+ RBna6XdeZF3eSqNUJY62QtRGjgwZM+wmq4tShkVQmEFerQ2B8QtSl7bnDe/s5GTqhZrJ
+ 2tGmXeVje08hm4lLfTuIJxjEJmsG6FpnT1yKekP+B9fX1BRGiyGmKWdpvhyDEyIJlKO6
+ bBrw==
+X-Gm-Message-State: AHQUAub0SBgMJAnbF5Crw1c9JTugKqicC3zXfn9nTqLA7j2tPQ5PhhWo
+ GMDD1tE7/R6ZUDeX1mGgBbHEVmS8ouM/jy3fZtI=
+X-Google-Smtp-Source: AHgI3IYC1aeGh1mhE5emDQfTD1PoOgBc+rJ9MT3+lnlFnyHK2CXmOwg71wB1WCbZlHQSjjqPZ1RmE8pJ2K6DskPA+ws=
+X-Received: by 2002:a05:6830:186:: with SMTP id q6mr618591ota.76.1549310579846; 
+ Mon, 04 Feb 2019 12:02:59 -0800 (PST)
 MIME-Version: 1.0
-References: <a38e643c-ed9f-c306-cc95-84f70ebc1f10@gmx.de>
- <CAFBinCDebPOsmrhSXecx48nGWHh7g_OGPbr1Y0M+n_v9Ht91ew@mail.gmail.com>
- <e05b7448-cd95-cdeb-c88d-3a324d5f1ddc@gmx.de>
-In-Reply-To: <e05b7448-cd95-cdeb-c88d-3a324d5f1ddc@gmx.de>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 4 Feb 2019 15:34:41 +0100
-Message-ID: <CAFBinCAkXN42piiYsc_Qmuqv0w4dbK86gq10AbZyrB-zKuh9hg@mail.gmail.com>
-Subject: Re: stmmac / meson8b-dwmac
-To: ingrassia@epigenesys.com, Gpeppe.cavallaro@st.com, alexandre.torgue@st.com
+References: <20190123151209.2080-1-linux.amoon@gmail.com>
+ <20190123151209.2080-2-linux.amoon@gmail.com>
+ <CAFBinCCOQ_GqHZuYf6n8ba_ZMbOwKmUzc4EJAuXRpn4tTTCUKA@mail.gmail.com>
+In-Reply-To: <CAFBinCCOQ_GqHZuYf6n8ba_ZMbOwKmUzc4EJAuXRpn4tTTCUKA@mail.gmail.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Tue, 5 Feb 2019 01:32:45 +0530
+Message-ID: <CANAwSgSQH2zta+tOcqnM3JPZ45XkqWEJAWOL3Do0Mnrbam8VSw@mail.gmail.com>
+Subject: Re: [RFCv1 1/3] phy: meson8b-usb2: Enable otg phy controller on
+ Meson8b SoCs
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190204_063453_776050_D1DD0DF5 
-X-CRM114-Status: GOOD (  18.17  )
+X-CRM114-CacheID: sfid-20190204_120303_233505_4392DDC3 
+X-CRM114-Status: GOOD (  27.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -91,87 +90,143 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, Simon Huelck <simonmail@gmx.de>,
- netdev@vger.kernel.org
+Cc: devicetree <devicetree@vger.kernel.org>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Kishon Vijay Abraham I <kishon@ti.com>, Rob Herring <robh+dt@kernel.org>,
+ linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jan 17, 2019 at 10:23 PM Simon Huelck <simonmail@gmx.de> wrote:
-[...]
-> >> I got problems with my ODROID c2 running on 4.19.16 ( and some releases
-> >> earlier ). the stmmac / dwmac driver doesnt provide the 800M/900M
-> >> performance that i was used to earlier.
-> >>
-> >>
-> >> Now im stuck near 550M/600M in the same environment. but what really
-> >> confuses me that duplex does hurt even more.
-> > interesting that you see this on the Odroid-C2 as well.
-> > previously I have only observed it on an Odroid-C1
+Hi Martin,
+
+Thanks for your review comment.
+Please find my comments below.
+
+On Mon, 4 Feb 2019 at 18:51, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> Hi Anand,
+>
+> On Wed, Jan 23, 2019 at 4:12 PM Anand Moon <linux.amoon@gmail.com> wrote:
 > >
-> >> PC --- VLAN3 --> switch --VLAN3--> ODROID
-> >>
-> >> NAS <-- VLAN1 -- switch <-- VLAN1-- ODROID
-> >>
-> >>
-> >> this means when im doing a iperf from PC to NAS, that my ODROID has load
-> >> on RX/TX same time (duplex). this shouldnt be an issue , all is 1GBits
-> >> FD. And in the past that wasnt an issue.
-+Cc Emiliano who has seen a similar duplex issue on his Odroid-C1: [0]
-(please note that all kernels prior to v5.1 with the pending patches
-from [1] applied are only receiving data on RXD0 and RXD1 but not on
-RXD2 and RXD3)
+> > Meson8b support two USB phy controller, one with otg port and
+> > other usb host controller. USB OTG controller ie. otg port can
+> > be used to power on board or host port for usb device.
+> > Changes enable usb otg host controller when dr_mode is set to otg.
+> can you please add a sentence explaining *why* this allows enabling USB OTG?
+>
+> > Currenly otg port can be used to power on the board.
+> typo, should be "Currently"
 
-Emiliano, can you confirm the duplex issue observed by Simon is
-similar to the one you see on your Odroid-C1?
+Ok I will fix this next version.
 
-> >>
-> >>
-> >> Now what happens:
-> >>
-> >> - benchmark between PC - ODROID is roughly 550M
-> >>
-> >> - benchmark between NAS - ODROID is roughly 550M
-> >>
-> >> - benchmark between PC - NAS is only around 300M
-> >>
-> >>
-> >> and like i said i was easliy able to hit 800 or even 900M to my NAS
-> >> earlier. I applied some .dtb fixes for interrupt levels for the
-> >> meson-gx.dtsi and meson-gxbb-odroid-c2.dtb, which will be mainlined ,
-> >> but the effect stayed identical.
-> > good that you have the interrupt patches already applied
-> > I believe it don't fix any performance issues - it's a fix for the
-> > Ethernet controller seemingly getting "stuck" (not processing data
-> > anymore). however, that already rules out one potential issue
+>
+> > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > Cc: Jerome Brunet <jbrunet@baylibre.com>
+> > Cc: Neil Armstrong <narmstrong@baylibre.com>
+> > Cc: Kevin Hilman <khilman@baylibre.com>
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > ---
+> > New patch in this series.
+> > --TOTO enable OTG port to work as host.
+> > --Currently we can power on the board from this OTG port.
 > >
-> >> are you aware of this problem ? Earlier kernel versions were all
-> >> perfectly fine and i stepped ( self compiled) kernel through all major
-> >> releases since odroid c2 was mainlined.
-Guiseppe, Alexandre: what kind of data do you need from us if we see
-the speeds drop (in both directions) when we send and receive at the
-same time?
+> > /:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
+> >     |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
+> >         |__ Port 1: Dev 4, If 0, Class=Mass Storage, Driver=usb-storage, 480M
+> >         |__ Port 3: Dev 3, If 0, Class=Video, Driver=uvcvideo, 480M
+> >         |__ Port 3: Dev 3, If 1, Class=Video, Driver=uvcvideo, 480M
+> >         |__ Port 3: Dev 3, If 2, Class=Audio, Driver=snd-usb-audio, 480M
+> >         |__ Port 3: Dev 3, If 3, Class=Audio, Driver=snd-usb-audio, 480M
+> > /:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
+> > ---
+> >  drivers/phy/amlogic/phy-meson8b-usb2.c | 15 +++++++++++++++
+> >  1 file changed, 15 insertions(+)
+> >
+> > diff --git a/drivers/phy/amlogic/phy-meson8b-usb2.c b/drivers/phy/amlogic/phy-meson8b-usb2.c
+> > index 9c01b7e19b06..1333c77e9172 100644
+> > --- a/drivers/phy/amlogic/phy-meson8b-usb2.c
+> > +++ b/drivers/phy/amlogic/phy-meson8b-usb2.c
+> > @@ -109,6 +109,7 @@
+> >
+> >  #define RESET_COMPLETE_TIME                            500
+> >  #define ACA_ENABLE_COMPLETE_TIME                       50
+> > +#define DCD_ENABLE_COMPLETE_TIME                       10
+> >
+> >  struct phy_meson8b_usb2_priv {
+> >         void __iomem            *regs;
+> > @@ -188,6 +189,20 @@ static int phy_meson8b_usb2_power_on(struct phy *phy)
+> >
+> >                 udelay(ACA_ENABLE_COMPLETE_TIME);
+> >
+> > +               if (phy_meson8b_usb2_read(priv, REG_ADP_BC) &
+> > +                       REG_ADP_BC_ACA_PIN_FLOAT) {
+> > +                       dev_warn(&phy->dev, "USB ID detect failed!\n");
+> > +                       clk_disable_unprepare(priv->clk_usb);
+> > +                       clk_disable_unprepare(priv->clk_usb_general);
+> > +                       return -EINVAL;
+> > +               }
+> > +       } else if (priv->dr_mode == USB_DR_MODE_OTG) {
+> > +               phy_meson8b_usb2_mask_bits(priv, REG_ADP_BC,
+> > +                                          REG_ADP_BC_DCD_ENABLE,
+> > +                                          REG_ADP_BC_DCD_ENABLE);
+> where did you take this from?
 
-[...]
-> the problem is that i dont have these kernel sources anymore :-(. but i
-> can provide some testing and numbers. maybe i dig if i got these kernel
-> configs somewhere around but i did not change much during migrating
-do you remember the kernel version where it worked fine?
+As per the schematic it's otg phy,
+I study the code to enable "host" mode for phy1 and on similar line I
+tried to enable otg phy.
+this changes will come into effect when we set dr_mode="otg" in dts.
+but it do not enable this as host port.
 
-> im using a zyxel gs1900-8 switch and a qnap ts231p , and as i said i
-> didnt change my setup. i was able to hit 100MByte/s from my NAS , so
-> close to the benchmarks of 900MBit/s
-I typically only do small transfers or I have traffic only in one direction.
-thus it's likely that I missed this in my own tests
+*Second thought this enable DCD which seem the be wrong. Thanks for porting out*
+We could set this to 0 at initial state for now and it will work as it should.
+I will send the correct fix later.
+
+> $ grep -iR DCD arm-src-kernel-2015-01-15-321cfb5a46/drivers/amlogic/usb/dwc_otg/310/
+> -> I only find code which clears REG_ADP_BC_DCD_ENABLE (your patch sets it):
+>   adp_bc.b.dcd_enable = 0;
+
+This usb port act as a changer port but it also depend on the how this
+port is tuned to various states as shown below.
+
+Standard Downstream Port (SDP) is a downstream port that complies
+              with the USB 2.0 or USB 3.0 definition of a host or hub.
+Charging Downstream Port (CDP) is a downstream port that complies
+              with the USB 2.0 or USB 3.0 definition of a host or a hub.
+Dedicated Charging Port (DCP)  is a downstream port on a device
+              that outputs power through a USB connector.
+
+We cannot observe this now because this behave like a states machine which
+is possible handled both in kernel driver and u-boot of Amlogic.
+As per schematics this (page 7)  we have a external jumper set to
+control the power path of the port.
+
+Odroid Wiki also says so.
+[0] https://wiki.odroid.com/odroid-c1/hardware/otg_power_enable
+
+>
+> > +               udelay(DCD_ENABLE_COMPLETE_TIME);
+> from Amlogic's code: DWC_MDELAY(T_DCD_TIMEOUT);
+> while you are also using a delay of "10" the unit is different (your
+> patch: us, Amlogic: ms)
+>
+
+This timeout is basically used in the state machine in the kernel and
+u-boot to tune the phy
+Not sure this changes will affect the phy power state.
+
+>
+> Regards
+> Martin
+
+Best Regards
 
 
-Regards
-Martin
-
-
-[0] http://lists.infradead.org/pipermail/linux-amlogic/2018-December/009679.html
-[1] https://patchwork.kernel.org/cover/10744905/
+-Anand
 
 _______________________________________________
 linux-amlogic mailing list
