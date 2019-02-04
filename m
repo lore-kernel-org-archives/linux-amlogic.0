@@ -2,23 +2,23 @@ Return-Path: <SRS0=P8k8=QL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DDDF4C282C4
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 09:59:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E582C282C4
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 13:21:34 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id ADF1B2081B
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 09:59:57 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1D3622082F
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Feb 2019 13:21:34 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LoHCPiDC";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="CjwTCiI8"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ADF1B2081B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AK0zmDOw";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="KCLZCedu"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1D3622082F
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
@@ -26,59 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WBtQRvVT7Z7SVsUvLxW2gZYes8bXC4eT+rHEFF+AAVU=; b=LoHCPiDCNRUhoy
-	ds4ORyMx/OXH191yKYqTuZbVsd+8LUufwjuZjw+Tu8VFkhSC1pIIcKLyODzQbA0Jvy4J526yQcED3
-	BLqFMXSyszW9RP/FP6qY2GrveOABq8s6MHK51Ve79hPlIZgD0scFtd7gseF/pukLXFWA8GPKubARD
-	RPEWWooA5bPnY3H/Sy04j3owrZ089koUNGpZjgjYpSa+hC+a2+r0HNLETMxPnfs2AYgVet2fANW6e
-	yEqUIMeEA6Q143ErIPVTDTtZfMf6oSeoIwgAvXqy8sz+T1Ffc8LHta9zbgCKSjdZhlIT2t3KKbLSJ
-	RFtoRXjy055Ro0jEdRdQ==;
+	List-Owner; bh=Y4xXtcU/AXM8k2A9ceX2mjt/paoznTfQmJ9T0NC9u8o=; b=AK0zmDOwatm0df
+	jzsNNs/nInvD3YHgeri3GPBfh4srT6OM6bwSQQvh/4UA3J4PpSRo8nNp5Y0avVVNgd4h6eKqir4hv
+	4HCL4ty+CZZoW3TceQGOwtL3iJnUNZoqxxsi1NlyWNAobTnHu5+/4sSxACtma+2pY0tUABGSjAL+2
+	vVOVdZ/jcCiMAuf5vnyCG0VxX3j3DmO3YfNaA7k6ho52Vwtz7gie84JzhafN6l3zEdNsB4/UC1mSl
+	Pb7bPXELWVMX8hqeC5NEJu1PrbUSLY/XoFahxh6+gnObWx3klz6A6NjIuhjXRyh3mMUuuWU/ffuGh
+	V13i2tGKRR2/K/iDi3lw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gqb2b-0001MZ-PM; Mon, 04 Feb 2019 09:59:49 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1gqeBf-0000qa-Jo; Mon, 04 Feb 2019 13:21:23 +0000
+Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gqb2Z-0001LS-5p
- for linux-amlogic@lists.infradead.org; Mon, 04 Feb 2019 09:59:48 +0000
-Received: by mail-wr1-x444.google.com with SMTP id l9so13602526wrt.13
- for <linux-amlogic@lists.infradead.org>; Mon, 04 Feb 2019 01:59:46 -0800 (PST)
+ id 1gqeBT-0000h7-Vl; Mon, 04 Feb 2019 13:21:13 +0000
+Received: by mail-ot1-x344.google.com with SMTP id v23so12828286otk.9;
+ Mon, 04 Feb 2019 05:21:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=aeI2DtFyd3cY+jY1489HFbl0luQvdWGB6TJ7lBabdo0=;
- b=CjwTCiI8T4M3Hz/dfytA4ZuN726PaIpQZTJy2Xq/FvGNqvtthG1FC+Oe24vxhrffkb
- 0wnNg1uPr3xSmRnTtrxaWp/kry6Qp6IIyqY3tWdsEAG8MUW9KS4geftLJqWAgMJlnuB+
- Tw4XXVnRU7rtNXfMp/YB0jiKOGeUMB5EpxY4b8f/oASH6lfeHTGA98eNJ4PjgfeweNL3
- 5k24J2MjXHaz+lEzkqN6jSpZkFhUZspCP0IsvkiNHPqi849m7XGHjqvIZ8Ky5onoozdC
- OSr2HlfcTamOyLdhYf5fGt8PHwK7yUwVRL4N+alXI3IxPwhcZvY/ybEcntcBpEaT4Nce
- M72w==
+ :cc; bh=uZVG5DUNwChyTDNZ2apKIXVpZJJyZiLAB7MMLhzKa68=;
+ b=KCLZCedutreYPysnbSc8b8RxwO58xZsrrQBi9JekcpkBQVWntBqAzQ0wYixP3ytunc
+ cAHlqUUsEi5iD7MUHQNo2UZP1MX9zAiOllMWi6FmnkUAT1MF9pqJZJWsA9LMVVbnzr0V
+ fOcHAJgb1tNhTKbKkeU68ajpXaBk3O+HOFBnfJoWwE7+S8pfyiG+s/ut2tpJlZDmet+U
+ rMR/t6xO/0lueaTn+Snl85NuhqF9wP1MRltKBb4DXc6LREL3CwGyLaH1OMxDCe5RSySz
+ dGWBfXvIW0fO0Pgr14Cp2CS+NpFSC5XGmT/oRgg5gwDoQXOIqSbCNUD8Uk/ZbenqF5Rc
+ PVPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=aeI2DtFyd3cY+jY1489HFbl0luQvdWGB6TJ7lBabdo0=;
- b=Y3JXBAMsu4gjBafe27LndYRZuuiwBxbPCC7onj/J6BpB7fYknFRJ3v3Xk4ANuzwNrI
- hVuzeMZDlAgx2LMsUomx+QYPd4jV3SDFjXHdX6Ojm0Oy6ZX5KZuM4F3+ta6FFoDO0zyb
- OghxoYueAkli4yOoF1awccG2zoRu2DRFQkeFTZEMj90oaMTMevCLA4ZMHKfkjLXAIHUs
- DMdFG03iCi6WbDDEmOKJ6gQrUU0yqR3chGXBZc2iSQs4HckrfA1qyoo/WG8VBtIeuvZN
- aJ5dOzFtXllqVIlzNQumWY5GqjoMeOuIMJhsTwC3G1y9iQBHEUqxSZY0iohov84Yd2dD
- HBeQ==
-X-Gm-Message-State: AJcUukd6k/DyPx+5U12FXBHRWJfo2nS5FvWsOYYrC8UgZcDXDuHwee5a
- JFI3n3DSu5ecJUQRXCa3k6ZBzRakExToYaU0e6uV6w==
-X-Google-Smtp-Source: ALg8bN7lHMO6Hlgap21U4xcnbHcWEtLdg+eW0yH5Qmwtj7w62V9elNN46ayTwvt2/0GSaE1FI0Z1QIqG1JP7CaHzTno=
-X-Received: by 2002:adf:ef0d:: with SMTP id e13mr47728456wro.29.1549274385281; 
- Mon, 04 Feb 2019 01:59:45 -0800 (PST)
+ bh=uZVG5DUNwChyTDNZ2apKIXVpZJJyZiLAB7MMLhzKa68=;
+ b=EbjelTuSZBsdua94X7OWP7s0qyL6SwHcIAS6hmGljtE3kGvHUqBcRPfyd+k9tmiRUu
+ PIeRQxPmNZVwGIh8sip3jRCln+VCn6w25RxJH496GxY8HS17v4150972U7iIAf5WfQF3
+ 0wq5UtKbT5ssztobjdM3Tv+mRXRk3fQiYkF5V5HEZdH87hebbCSdI30MmPEFWPcvQUfi
+ WSj3zJQ4rIVqg/fe2Y7FQlnUKhxANPK+L58fjQRBfTDToO1WytDjGpCGqxMVk+BxBhLY
+ r08ToGEZ287ZnJF7zfLpKT4r4S1YUZPVVRMGhMZbtBKY6StNEnAphMJbEXxs5dKMF60B
+ QLGw==
+X-Gm-Message-State: AHQUAuYoWAQHrSapdL4DitN+JV8G0NZ4EwAvs7OMw6GJ6rBGntzDyH70
+ wl6TFV1mV11VpnMs7f5Url998a+BmtmcsYQMjoY=
+X-Google-Smtp-Source: ALg8bN5D/5xTQtm5YXR+JIeIdc8P/hfby9TCD9bpta4V9UwzGzyXvvkuHr2n1wlH7noN51JEHPRZLsKsP78Cwovx428=
+X-Received: by 2002:aca:3586:: with SMTP id c128mr27585274oia.47.1549286470256; 
+ Mon, 04 Feb 2019 05:21:10 -0800 (PST)
 MIME-Version: 1.0
-References: <20190204094937.22763-1-narmstrong@baylibre.com>
-In-Reply-To: <20190204094937.22763-1-narmstrong@baylibre.com>
-From: Maxime Jourdan <mjourdan@baylibre.com>
-Date: Mon, 4 Feb 2019 10:59:34 +0100
-Message-ID: <CAMO6nawKrH3d2X=TikdJy8yjiPyuJJRnpaBjyfPYuRx3d=7vVA@mail.gmail.com>
-Subject: Re: [PATCH] soc: amlogic: canvas: Fix meson_canvas_get when probe
- failed
-To: Neil Armstrong <narmstrong@baylibre.com>
+References: <20190123151209.2080-1-linux.amoon@gmail.com>
+ <20190123151209.2080-2-linux.amoon@gmail.com>
+In-Reply-To: <20190123151209.2080-2-linux.amoon@gmail.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Mon, 4 Feb 2019 14:20:59 +0100
+Message-ID: <CAFBinCCOQ_GqHZuYf6n8ba_ZMbOwKmUzc4EJAuXRpn4tTTCUKA@mail.gmail.com>
+Subject: Re: [RFCv1 1/3] phy: meson8b-usb2: Enable otg phy controller on
+ Meson8b SoCs
+To: Anand Moon <linux.amoon@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190204_015947_214510_1DDA86C6 
-X-CRM114-Status: GOOD (  17.37  )
+X-CRM114-CacheID: sfid-20190204_052112_050786_E0EEB238 
+X-CRM114-Status: GOOD (  18.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -90,78 +90,90 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+Cc: devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>, Kishon Vijay Abraham I <kishon@ti.com>,
+ Rob Herring <robh+dt@kernel.org>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil,
-On Mon, Feb 4, 2019 at 10:49 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+Hi Anand,
+
+On Wed, Jan 23, 2019 at 4:12 PM Anand Moon <linux.amoon@gmail.com> wrote:
 >
-> When probe fails, a platforn_device is still associated to the node,
-> but dev_get_drvdata() returns NULL.
->
-> Handle this case by returning a consistent error.
->
-> Fixes: d4983983d987 ("soc: amlogic: add meson-canvas driver")
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> Meson8b support two USB phy controller, one with otg port and
+> other usb host controller. USB OTG controller ie. otg port can
+> be used to power on board or host port for usb device.
+> Changes enable usb otg host controller when dr_mode is set to otg.
+can you please add a sentence explaining *why* this allows enabling USB OTG?
+
+> Currenly otg port can be used to power on the board.
+typo, should be "Currently"
+
+> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Cc: Jerome Brunet <jbrunet@baylibre.com>
+> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 > ---
->  drivers/soc/amlogic/meson-canvas.c | 13 ++++++++++++-
->  1 file changed, 12 insertions(+), 1 deletion(-)
+> New patch in this series.
+> --TOTO enable OTG port to work as host.
+> --Currently we can power on the board from this OTG port.
 >
-> This fix depends on "soc: amlogic: add missing of_node_put()" at [1]
+> /:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
+>     |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
+>         |__ Port 1: Dev 4, If 0, Class=Mass Storage, Driver=usb-storage, 480M
+>         |__ Port 3: Dev 3, If 0, Class=Video, Driver=uvcvideo, 480M
+>         |__ Port 3: Dev 3, If 1, Class=Video, Driver=uvcvideo, 480M
+>         |__ Port 3: Dev 3, If 2, Class=Audio, Driver=snd-usb-audio, 480M
+>         |__ Port 3: Dev 3, If 3, Class=Audio, Driver=snd-usb-audio, 480M
+> /:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=dwc2/1p, 480M
+> ---
+>  drivers/phy/amlogic/phy-meson8b-usb2.c | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 >
-> [1] https://patchwork.kernel.org/patch/10794545/
+> diff --git a/drivers/phy/amlogic/phy-meson8b-usb2.c b/drivers/phy/amlogic/phy-meson8b-usb2.c
+> index 9c01b7e19b06..1333c77e9172 100644
+> --- a/drivers/phy/amlogic/phy-meson8b-usb2.c
+> +++ b/drivers/phy/amlogic/phy-meson8b-usb2.c
+> @@ -109,6 +109,7 @@
 >
-> diff --git a/drivers/soc/amlogic/meson-canvas.c b/drivers/soc/amlogic/meson-canvas.c
-> index 87a6c6e23591..151aa84bc593 100644
-> --- a/drivers/soc/amlogic/meson-canvas.c
-> +++ b/drivers/soc/amlogic/meson-canvas.c
-> @@ -51,6 +51,7 @@ struct meson_canvas *meson_canvas_get(struct device *dev)
->  {
->         struct device_node *canvas_node;
->         struct platform_device *canvas_pdev;
-> +       struct meson_canvas *canvas;
+>  #define RESET_COMPLETE_TIME                            500
+>  #define ACA_ENABLE_COMPLETE_TIME                       50
+> +#define DCD_ENABLE_COMPLETE_TIME                       10
 >
->         canvas_node = of_parse_phandle(dev->of_node, "amlogic,canvas", 0);
->         if (!canvas_node)
-> @@ -63,7 +64,17 @@ struct meson_canvas *meson_canvas_get(struct device *dev)
->         }
+>  struct phy_meson8b_usb2_priv {
+>         void __iomem            *regs;
+> @@ -188,6 +189,20 @@ static int phy_meson8b_usb2_power_on(struct phy *phy)
 >
->         of_node_put(canvas_node);
-> -       return dev_get_drvdata(&canvas_pdev->dev);
-> +
-> +       /*
-> +        * If priv is NULL, it's probably because the canvas hasn't
-> +        * properly initialized. Bait out with -EINVAL because, in the
+>                 udelay(ACA_ENABLE_COMPLETE_TIME);
+>
+> +               if (phy_meson8b_usb2_read(priv, REG_ADP_BC) &
+> +                       REG_ADP_BC_ACA_PIN_FLOAT) {
+> +                       dev_warn(&phy->dev, "USB ID detect failed!\n");
+> +                       clk_disable_unprepare(priv->clk_usb);
+> +                       clk_disable_unprepare(priv->clk_usb_general);
+> +                       return -EINVAL;
+> +               }
+> +       } else if (priv->dr_mode == USB_DR_MODE_OTG) {
+> +               phy_meson8b_usb2_mask_bits(priv, REG_ADP_BC,
+> +                                          REG_ADP_BC_DCD_ENABLE,
+> +                                          REG_ADP_BC_DCD_ENABLE);
+where did you take this from?
+$ grep -iR DCD arm-src-kernel-2015-01-15-321cfb5a46/drivers/amlogic/usb/dwc_otg/310/
+-> I only find code which clears REG_ADP_BC_DCD_ENABLE (your patch sets it):
+  adp_bc.b.dcd_enable = 0;
 
-Bait -> Bail ?
+> +               udelay(DCD_ENABLE_COMPLETE_TIME);
+from Amlogic's code: DWC_MDELAY(T_DCD_TIMEOUT);
+while you are also using a delay of "10" the unit is different (your
+patch: us, Amlogic: ms)
 
-> +        * current state, this driver probe cannot return -EPROBE_DEFER
-> +        */
-> +       canvas = dev_get_drvdata(&canvas_pdev->dev);
-> +       if (!canvas)
-> +               return ERR_PTR(-EINVAL);
-> +
-> +       return canvas;
->  }
->  EXPORT_SYMBOL_GPL(meson_canvas_get);
->
-> --
-> 2.20.1
->
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
-Thanks for the patch, I missed the fact that a driver could have a
-pdev yet with a failed probe.
-
-Reviewed-by: Maxime Jourdan <mjourdan@baylibre.com>
+Regards
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
