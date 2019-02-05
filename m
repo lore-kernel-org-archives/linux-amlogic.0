@@ -2,85 +2,67 @@ Return-Path: <SRS0=hIX+=QM=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 28243C282CB
-	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Feb 2019 19:54:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 01EB7C282CB
+	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Feb 2019 22:18:32 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F21192080F
-	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Feb 2019 19:54:23 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C3BA82184D
+	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Feb 2019 22:18:31 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XZSVHyMM";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SHqISbjy"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F21192080F
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="B9JrBtgE";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="oyFrFIcj"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C3BA82184D
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Date:In-Reply-To:To:References:
+	Message-ID:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fssZGwco10ZTlvqfIujdw2YFS/3fovlLby3tPP8VKOw=; b=XZSVHyMMkwJhgW
-	b9Du/wsvE0MZdUJIXS71QxnkjPLufbg/JD39xWcmO3o22TqbBDEYTtqfUfDZnMZ+EN+Y4n7yA9YQf
-	AGcSdFk1Oi7pe+vCMRKSAJ+c6ne/luTlU44D9d9oZLNq7PlxVV2Z/i7kvz259nvPBuQj7UuLau1W4
-	ArCqXL5T2UEWcsIAvmecCNrbESyO7DfKXwkY0ZUic7WRw/EAc2J79lqZTV8gAtFXJ0eo2NxPohLUY
-	mANDxG1HlnC1Xn80Vi5ZqlRePgh/S0rCkEkrNYvXinVFiSlTbk6To7vPvq2MgL7ZBbT90L8xbCiKm
-	85AkKNmTx5rN6+ri+0cg==;
+	List-Owner; bh=c/02TE6lo64rr8D968T5xtPFkVAYjvOVePqM7vt7EvA=; b=B9JrBtgEVyzDjY
+	d5bGq2IN67BOqx0BdCAXQQeHbcRQqMGlkevfHKT0fYKcLdfOyLdtD59X9ZZwi+UqiKhmkgZy29FoX
+	bIcWO7aOv3B5/PPdOfBG52WGffN4oeQsyplCiJSC+3Bfj/FFQfKqlh9Ynkok9RdjyJyY8y8p+cRQm
+	8GHHHoDGIu1lYWBOgwaU4jKRhxN4o58dM6qtriX1p1ouAuW9ZL/9FQS7K81vRg3dl7ngmaUjdE42r
+	Z/YeqH3oXFN9N6ze5hlwMQYwTkaKMOIEYwpqcHGTeO0JrCszOcPddUqXWPkxW6rBpuAsHa2UHODyl
+	DuWhokspRs8FA7nEL43w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gr6nS-0003tM-EK; Tue, 05 Feb 2019 19:54:18 +0000
-Received: from mail-ot1-x341.google.com ([2607:f8b0:4864:20::341])
+	id 1gr92u-0003gi-Ev; Tue, 05 Feb 2019 22:18:24 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gr6n7-0003cJ-Tb; Tue, 05 Feb 2019 19:54:01 +0000
-Received: by mail-ot1-x341.google.com with SMTP id s13so7913611otq.4;
- Tue, 05 Feb 2019 11:53:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=dAazEzP0AmczIR8hnl6k673OVHEao5Qycj49uG7Q4W4=;
- b=SHqISbjyLvYyJyF1pUWvNbVYPPWCPS+UnJ8GM3X72AAOHfuGkx9aKB0p8H49zPJLZI
- W1i7QoHLJdYNa3CJg3WQfOz2759P9mShR93p/dCRwE7WugcQuJUn7ju7JVRxVt/u1kSM
- gw7PIbPfAbjbyR4xvmlhEawJMojn3HR6COLy1IiJxZOz5tvY+2U454bPjFUeVFCKMkbG
- Fp/WYKb0u4YJfFzJkbxBXbm5bRBtX81Zg5E3dKxB0tevBPmvIkK74QZO7imXL6xrXaMu
- S7hBOZ/GJfAtLJPf1UA1YInQSPflTWkYiTLhV90E9W1nWSjMX4totIWkrQ3pwwW1O6DT
- mxKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=dAazEzP0AmczIR8hnl6k673OVHEao5Qycj49uG7Q4W4=;
- b=hAYOL8Rvdmefx25nS2ppbQynhgepvgHa7kk/xWz+tvIQtrDg2JmYw2JTiA9Ni90o7w
- 3p4d+aS9mUzaQV29lBwgidyfP5RmrdOFOzWuXfcOieTLJBAdaBTBZBzc/pWHsyxvIFpy
- +t1KO1FT8BibCeWR41K8CTonTlmXaIl/hlRiUjq7c0W7y9heRyFqdkdSMastQu+p30Rk
- cQ1JTz0SRCEfJYJJD+aJLyxtQscjJGaoLBsjRcoPiw0BWUyZr2NUKHfIy8/4jU7+wYyY
- O1HhEZ4lt1R9zy/JX8eSsTDdbB8cKYxzQoMxRXVtDwSvS1b618Dzhi7zRaKNHXqTd6V6
- e6sA==
-X-Gm-Message-State: AHQUAuZOzUpMH0F4T6IeCjCV2VC6rPEWkKd6XoLphrUxL0mxhXk7FvGr
- n3PTwFZ6H8oEAEH+5fcGVYNQbr3hvkgyCpvIdWo=
-X-Google-Smtp-Source: AHgI3IbOs/NvbnBIEyAt1I3ymLP5OW3XBJtK9nMv8oS04YsfoAdHyaOoJGIVlmEq4XufBUaToL4HDR3Py6m/jKHBjUg=
-X-Received: by 2002:aca:915:: with SMTP id 21mr3517231oij.163.1549396437046;
- Tue, 05 Feb 2019 11:53:57 -0800 (PST)
+ id 1gr92s-0003gN-EW; Tue, 05 Feb 2019 22:18:23 +0000
+Received: from localhost (unknown [104.132.0.74])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 0AD1620823;
+ Tue,  5 Feb 2019 22:18:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1549405102;
+ bh=1KxpbNDUtd9p0XTakha1cU6vHm25z1i9tDxWJUMCw7c=;
+ h=Subject:From:Cc:References:To:In-Reply-To:Date:From;
+ b=oyFrFIcjMJYaAxzblv5l42Ewz9cWQvg6oEI2bptKXchFWFQCpUblc+uLViq4T3g+m
+ 3P+M0u3c6VkENXBTac+6SwKXxgtjOrtm1tuNlTOBleL9ol1BPl3gLnLfvbb8aaXaPl
+ 7dy9LFyEhAmmqtyt94msYQhGfs4WNHosJ6bS0uQE=
 MIME-Version: 1.0
-References: <20190129102521.4141-1-linux.amoon@gmail.com>
- <20190129102521.4141-2-linux.amoon@gmail.com>
- <CAFBinCDj=Y9HWEhJYMjo9FviAosxpHW5d61CceZ7HPV4ObZ79Q@mail.gmail.com>
- <CANAwSgSnR-DWffg3vKStuXQXahLf8ONssxr4+byL=PSr5JR=xA@mail.gmail.com>
- <CAFBinCBjF5iOkUjhxSGXpQa7Nc1=bWAzA=XjrfXRYxSPZO15nQ@mail.gmail.com>
-In-Reply-To: <CAFBinCBjF5iOkUjhxSGXpQa7Nc1=bWAzA=XjrfXRYxSPZO15nQ@mail.gmail.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Wed, 6 Feb 2019 01:23:45 +0530
-Message-ID: <CANAwSgT_q6zDVC8UVz+hrzA5Hn34eT_k-ZGB2LTO3dauT45T7g@mail.gmail.com>
-Subject: Re: [PATCHv3 1/2] ARM64: dts: meson-gxbb-odroidc2: Fix usb phy reset
- warning
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH 2/2] clk: meson: Add G12A AO Clock + Reset Controller
+From: Stephen Boyd <sboyd@kernel.org>
+Message-ID: <154940510132.169292.12584338453129084603@swboyd.mtv.corp.google.com>
+References: <20190204091331.9298-1-narmstrong@baylibre.com>
+ <20190204091331.9298-3-narmstrong@baylibre.com>
+User-Agent: alot/0.8
+To: Neil Armstrong <narmstrong@baylibre.com>, jbrunet@baylibre.com
+In-Reply-To: <20190204091331.9298-3-narmstrong@baylibre.com>
+Date: Tue, 05 Feb 2019 14:18:21 -0800
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190205_115358_506761_BBFEEF3E 
-X-CRM114-Status: GOOD (  21.19  )
+X-CRM114-CacheID: sfid-20190205_141822_505289_EB82FA6F 
+X-CRM114-Status: UNSURE (   6.66  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -92,75 +74,45 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree <devicetree@vger.kernel.org>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Linux Kernel <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
- linux-amlogic@lists.infradead.org,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-hi Martin,
+Quoting Neil Armstrong (2019-02-04 01:13:30)
+> + * Register offsets from the data sheet must be multiplied by 4.
+> + */
+> +#define AO_RTI_STATUS_REG3     0x0C
+> +#define AO_RTI_PWR_CNTL_REG0   0x10
+> +#define AO_RTI_GEN_CNTL_REG0   0x40
+> +#define AO_CLK_GATE0           0x4c
+> +#define AO_CLK_GATE0_SP                0x50
+> +#define AO_OSCIN_CNTL          0x58
+> +#define AO_CEC_CLK_CNTL_REG0   0x74
+> +#define AO_CEC_CLK_CNTL_REG1   0x78
+> +#define AO_SAR_CLK             0x90
+> +#define AO_RTC_ALT_CLK_CNTL0   0x94
+> +#define AO_RTC_ALT_CLK_CNTL1   0x98
+> +
+> +#define AXG_AO_GATE(_name, _reg, _bit)                                 \
+> +static struct clk_regmap g12a_aoclk_##_name = {                                \
+> +       .data = &(struct clk_regmap_gate_data) {                        \
+> +               .offset = (_reg),                                       \
+> +               .bit_idx = (_bit),                                      \
+> +       },                                                              \
+> +       .hw.init = &(struct clk_init_data) {                            \
+> +               .name =  "g12a_ao_" #_name,                             \
+> +               .ops = &clk_regmap_gate_ops,                            \
+> +               .parent_names = (const char *[]){ IN_PREFIX "mpeg-clk" }, \
+> +               .num_parents = 1,                                       \
+> +               .flags = CLK_IGNORE_UNUSED,                             \
 
-On Tue, 5 Feb 2019 at 02:19, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> Hi Anand,
->
-> On Mon, Feb 4, 2019 at 9:04 PM Anand Moon <linux.amoon@gmail.com> wrote:
-> [...]
-> > > > @@ -36,6 +43,8 @@
-> > > >                 regulator-min-microvolt = <5000000>;
-> > > >                 regulator-max-microvolt = <5000000>;
-> > > >
-> > > > +               vin-supply = <&p5v0>;
-> > > did you find out why this patch fixes the USB_OTG_PWR regulator?
-> > > based on just reading the patch I can't find an explanation myself
-> > >
-> >
-> > As per the device tree binding we need this setting to enable power input source
-> > [0] Documentation/devicetree/bindings/regulator/fixed-regulator.txt
-> >
-> > *I have observed few more place where this setting is missing*
-> OK, I understand that we should describe the hierarchy of the regulators
->
-> > > have you tested without this patch to rule out that you hit some bug
-> > > in the regulator framework back when you wrote the patch?
-> > > (I don't have an Odroid-C2 so I can't test this myself).
-> > >
-> >
-> > Yes I have tested this patch.Some device like usb camera and usb hard drive
-> > when connected to usb port will generate warning message.
-> > which shows us that not enough power is being set to the port.
-> I don't understand why adding "p5v0" as parent of "usb_otg_pwr"
-> changes the output of "usb_otg_pwr":
-> - "p5v0" is a fixed regulator which cannot be controlled at all (apart
-> from removing power from it)
-> - "usb_otg_pwr" does not have any current limits set inside the .dts
-> - "usb_otg_pwr" has the same fixed voltage as the new "p5v0" regulator
->
-> what are your steps-to-reproduce for your original issue ("reset
-> high-speed USB device number 3 using dwc2")?
->
+Can you please add a comment explaining why CLK_IGNORE_UNUSED is here?
+It will help future readers know what's going on with this special flag.
 
-I have tried to reproduce this but some how I cannot get the logs
-I might have enable some more debug options to reproduce but currently
-it's lost.
-because of over flashing of the operating system on sdcards.
-
-But definitely this fix the power issue needed to get usb-storage
-device to work on Odroid c1/c2 boards.
-
->
-> Regards
-> Martin
-
-Best Regards
-
--Anand
 
 _______________________________________________
 linux-amlogic mailing list
