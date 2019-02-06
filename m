@@ -2,81 +2,146 @@ Return-Path: <SRS0=Dt7e=QN=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	USER_AGENT_MUTT autolearn=unavailable autolearn_force=no version=3.4.0
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4FC50C169C4
-	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Feb 2019 10:37:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C14A9C169C4
+	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Feb 2019 10:38:39 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1E008206C2
-	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Feb 2019 10:37:01 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3DE62206C2
+	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Feb 2019 10:38:39 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="R99NrCtY"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1E008206C2
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=epigenesys.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VG2rIPfU";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="0bkUuKst"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3DE62206C2
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UU4dxQQnSGZOI6XErQxgLG9yLWNS63nBi6nJucYe5i4=; b=R99NrCtY9M/mGR
-	iVE58ny+BZdXgMMgGePlUEiOUjhENPsdeTX8wlpAtvO9M6h3zb7h/P78RDpAYL4zA9fj/KVo1UjLy
-	Dq4sToGRhnqFWy5g1Cvc70vLL0XYuhdVPHwtakhpgheAgxLRPRbDEXxocFqGnnZdq7d4mc4DsY9W9
-	6K3VT11dYs3VWG8qN0ZGGRnjOj8nSieoM/9RVoL/WVNrk89tavB+EJGPXUWDvkzO88brcpr2ZZo+P
-	8OJCBivjPZ7QEAD2Sy+LlS4uu91Sbg2/hBW6ZhNOeB5be7PnokqwwMpb/mmgmwx1WN9wCdxi5gU4I
-	R8UtPBouBPv6N6MD02zg==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=+lbBBdfvXU0GJr/hnhF+AwHTk6gip2QeteEX+BDJLrs=; b=VG2rIPfU89w+A0zk0Cnunov6tG
+	20Gz2CMJjZ2YnUCqT6Lt+yQRYCRCTL+/4CCCsKS0InyuFQXfiTxUxN81uPcknElDREsJaoIw3yxkE
+	wusHwzCRAzQc0d5ERs5b0wfxFQJaYUBow+nDG3diBxjy6Dzp9i8wQb6nlimgW7rirnAT3fhZVGCHe
+	V/acQxcU5eXAIZZpXCqJtj5LemwDJD2LIRT3EOj2Uz/RzuaY0NjE6mywSzrsoVW80Fck1gRVS0+n/
+	Rx/Wh+010PwuJa/Ya79mB5JHzamaMr1mIa6snUxI/4fpOp6bIQV+MjKaL8S2JiM3+Md6eai3vm3D7
+	2Iji3TsA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1grKZa-0003F6-Qu; Wed, 06 Feb 2019 10:36:54 +0000
-Received: from mail-wm1-f51.google.com ([209.85.128.51])
+	id 1grKbA-0003MW-Ir; Wed, 06 Feb 2019 10:38:32 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1grKZW-0003EK-I1
- for linux-amlogic@lists.infradead.org; Wed, 06 Feb 2019 10:36:52 +0000
-Received: by mail-wm1-f51.google.com with SMTP id z5so1912379wmf.0
- for <linux-amlogic@lists.infradead.org>; Wed, 06 Feb 2019 02:36:49 -0800 (PST)
+ id 1grKb6-0003MB-RI
+ for linux-amlogic@lists.infradead.org; Wed, 06 Feb 2019 10:38:30 +0000
+Received: by mail-wr1-x444.google.com with SMTP id z18so6194883wrh.2
+ for <linux-amlogic@lists.infradead.org>; Wed, 06 Feb 2019 02:38:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=omY6s92AV6ta6AFE+BpahdHubGIwW0wzRGif3fwQdOE=;
+ b=0bkUuKstdUIHHvmw4qH2vT55j4iAOjyuNkIYS/yHiKIf/AkLUw4IWax71DnyIKTXFy
+ Cgb4WQchWlVxWanLaVAoEdHSmiTWegUwM2AR9My4HkhdP8CVcNal/bxo8v2WiV2Go8uw
+ Vt4Zq/1jftRS3cm7CPiNDmfAUj1YALsSgzfT9GJJ0+l5bEgbVsFF4HSgzyqSq+I7TNmT
+ 9+Rp1REhqxny2vxlo80cvc6jwznMWfXBXcGw9HDXbhsNfODgEXGvn0s8B3Kl2CNXb+m9
+ HYS1xzWcKUSRe4HdN38iHQmAozo/f75EOwp/c7V/5CO3NdvOwXoOKtp1vPhasQW+4aXr
+ YicA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=Hhvay3GLrgDSFdChKsOwWqOK5P0x2cIJ2n3q49aTxoU=;
- b=C2df3jvTof6KpygwuzgylWSh0T4X1SIG7aD6FxTlGgBABCKX18TEpVqTeWRQa31Ccr
- cgOzsntEAToUSOz3TYEtO2WIcop5AB7GEE2RQ/lLjQvp1b1w202+8s9qkkwXlaueu/ZT
- mKTfDkbJX3R0ldBuxdvl0wwCPsklkLulHKLjJWXbFCEKiBJASUqEqDmdshOdOw4qztUR
- +u9TGhNechMRklWtuhy4EO2ZMj7sFxiUoLE5ZNnUhjPa5dS9aD/IJbBBKO5gGf3kTvRD
- IgD9YYBXNOLOVW4LGHn63tyWmyS2bXhtVYRLBiKl4oFscT2/0HHcAcTbmHh89qG4V7VZ
- 3LVw==
-X-Gm-Message-State: AHQUAuZhhtx8OTeL/RMej6Nu7eik3eSSM0tYAVBJ0rb/EvSXOBgw8P+D
- zgugl0etkoAKRXKFY6LtMvM=
-X-Google-Smtp-Source: AHgI3IZOzvmX2dhTofzTxbFaDQUIEk+5VO7JK+O8/6JjBtKA8CyheW3+740+pL1C8oTHd7Wu06TlnA==
-X-Received: by 2002:a1c:2382:: with SMTP id j124mr2597775wmj.14.1549449408234; 
- Wed, 06 Feb 2019 02:36:48 -0800 (PST)
-Received: from ingrassia.epigenesys.com
- (host194-85-static.3-79-b.business.telecomitalia.it. [79.3.85.194])
- by smtp.gmail.com with ESMTPSA id l6sm17410503wrv.70.2019.02.06.02.36.47
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Wed, 06 Feb 2019 02:36:47 -0800 (PST)
-Date: Wed, 6 Feb 2019 11:36:45 +0100
-From: Emiliano Ingrassia <ingrassia@epigenesys.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Simon Huelck <simonmail@gmx.de>
-Subject: Re: stmmac / meson8b-dwmac
-Message-ID: <20190206103645.GA2482@ingrassia.epigenesys.com>
-References: <a38e643c-ed9f-c306-cc95-84f70ebc1f10@gmx.de>
- <CAFBinCDebPOsmrhSXecx48nGWHh7g_OGPbr1Y0M+n_v9Ht91ew@mail.gmail.com>
- <e05b7448-cd95-cdeb-c88d-3a324d5f1ddc@gmx.de>
- <CAFBinCAkXN42piiYsc_Qmuqv0w4dbK86gq10AbZyrB-zKuh9hg@mail.gmail.com>
+ h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=omY6s92AV6ta6AFE+BpahdHubGIwW0wzRGif3fwQdOE=;
+ b=UhOtjEcCPV4FESaPlxWQxRgeSSmxnREwhJWfJDsLbmD7ZVFaHtfsHTBOnn8n+UFdZz
+ yKa1h3j4d9LP31lcfa+qVIM+K4zc43AjmBfNk92w+7ebflCYfdvR/xPuI70pbsRN2LhH
+ mNR0x9V5+vO2yJQAWOvcAInLBrzqPVSvDSZQn0aflsyRhd2GPnMfMNfNhGsGx7rYV5rJ
+ J6hjhaKq7RFV/AcWheZM01z7Yucgv0ICpudbEnFroFlPT+5gmSdUtMc0Bl4gxOOqo/R0
+ P9IDGSTUdtLWxX9ez65pS7zTNOLWE592g2uy/miuE37SWC72NJO1L/Rv96f8eIfFOLpy
+ Z/uQ==
+X-Gm-Message-State: AHQUAuajw5KNUn/sDDxg9UTRMfyWbi65lJ33tfBkYGBwnmv2vzg34col
+ DtOrUxyDWrtIJSpB3qWiluzFw81XJ4uT9A==
+X-Google-Smtp-Source: AHgI3IYvMJEr0QjlOciZRuEHXOrKQWQBjuuKUFONu5xjauywC2hZcwB+kHBjVGKz8fcSx3rVc4oyrw==
+X-Received: by 2002:a5d:4d87:: with SMTP id b7mr6948862wru.316.1549449506144; 
+ Wed, 06 Feb 2019 02:38:26 -0800 (PST)
+Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr.
+ [176.150.251.154])
+ by smtp.gmail.com with ESMTPSA id t4sm22005523wrb.64.2019.02.06.02.38.25
+ for <linux-amlogic@lists.infradead.org>
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 06 Feb 2019 02:38:25 -0800 (PST)
+Subject: Re: Add tsin pins for meson-gxbb/gxl/gxm
+To: linux-amlogic@lists.infradead.org
+References: <20190203115324.9097-1-afl2001@gmail.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <68678f7a-0c56-4caf-b73d-288786c61700@baylibre.com>
+Date: Wed, 6 Feb 2019 11:38:24 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.4.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAFBinCAkXN42piiYsc_Qmuqv0w4dbK86gq10AbZyrB-zKuh9hg@mail.gmail.com>
-User-Agent: Mutt/1.11.3 (2019-02-01)
+In-Reply-To: <20190203115324.9097-1-afl2001@gmail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190206_023650_589419_ACC18A35 
-X-CRM114-Status: GOOD (  25.53  )
+X-CRM114-CacheID: sfid-20190206_023828_930105_570DB619 
+X-CRM114-Status: UNSURE (   9.81  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -88,103 +153,34 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, netdev@vger.kernel.org,
- alexandre.torgue@st.com, Gpeppe.cavallaro@st.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin, Hi Simon,
+Hi,
 
-On Mon, Feb 04, 2019 at 03:34:41PM +0100, Martin Blumenstingl wrote:
-> On Thu, Jan 17, 2019 at 10:23 PM Simon Huelck <simonmail@gmx.de> wrote:
-> [...]
-> > >> I got problems with my ODROID c2 running on 4.19.16 ( and some releases
-> > >> earlier ). the stmmac / dwmac driver doesnt provide the 800M/900M
-> > >> performance that i was used to earlier.
-> > >>
 
-Simon, did you ever reach 1 Gbps full duplex speed?
-If yes, what was the kernel version did you use?
+On 03/02/2019 12:53, afl1 wrote:
+> ---
+> This commit add tsin pins for meson-gxbb/gxl/gxm. 
+> The commit was verified with 150balbes LE 9.1 - linux 4.20.5 with intrernal dvb support.
 
-> > >>
-> > >> Now im stuck near 550M/600M in the same environment. but what really
-> > >> confuses me that duplex does hurt even more.
-> > > interesting that you see this on the Odroid-C2 as well.
-> > > previously I have only observed it on an Odroid-C1
-> > >
-> > >> PC --- VLAN3 --> switch --VLAN3--> ODROID
-> > >>
-> > >> NAS <-- VLAN1 -- switch <-- VLAN1-- ODROID
-> > >>
-> > >>
-> > >> this means when im doing a iperf from PC to NAS, that my ODROID has load
-> > >> on RX/TX same time (duplex). this shouldnt be an issue , all is 1GBits
-> > >> FD. And in the past that wasnt an issue.
-> +Cc Emiliano who has seen a similar duplex issue on his Odroid-C1: [0]
-> (please note that all kernels prior to v5.1 with the pending patches
-> from [1] applied are only receiving data on RXD0 and RXD1 but not on
-> RXD2 and RXD3)
->
-> Emiliano, can you confirm the duplex issue observed by Simon is
-> similar to the one you see on your Odroid-C1?
->
+Thanks for sharing part of your work on the DVB demux support,
+but could you follow the steps described in https://www.kernel.org/doc/html/v4.20/process/submitting-patches.html ?
 
-It could be but, if I understand correctly, Simon is limited in
-speed also in half duplex transmission (~550/600 Mbps), while we can
-reach at least 900 Mbps.
+The main point is to sign-off with your name and follow the standard changes format !
 
-> > >>
-> > >>
-> > >> Now what happens:
-> > >>
-> > >> - benchmark between PC - ODROID is roughly 550M
-> > >>
-> > >> - benchmark between NAS - ODROID is roughly 550M
-> > >>
-> > >> - benchmark between PC - NAS is only around 300M
-> > >>
-> > >>
-> > >> and like i said i was easliy able to hit 800 or even 900M to my NAS
-> > >> earlier. I applied some .dtb fixes for interrupt levels for the
-> > >> meson-gx.dtsi and meson-gxbb-odroid-c2.dtb, which will be mainlined ,
-> > >> but the effect stayed identical.
-> > > good that you have the interrupt patches already applied
-> > > I believe it don't fix any performance issues - it's a fix for the
-> > > Ethernet controller seemingly getting "stuck" (not processing data
-> > > anymore). however, that already rules out one potential issue
-> > >
-> > >> are you aware of this problem ? Earlier kernel versions were all
-> > >> perfectly fine and i stepped ( self compiled) kernel through all major
-> > >> releases since odroid c2 was mainlined.
-> Guiseppe, Alexandre: what kind of data do you need from us if we see
-> the speeds drop (in both directions) when we send and receive at the
-> same time?
->
-> [...]
-> > the problem is that i dont have these kernel sources anymore :-(. but i
-> > can provide some testing and numbers. maybe i dig if i got these kernel
-> > configs somewhere around but i did not change much during migrating
-> do you remember the kernel version where it worked fine?
->
-> > im using a zyxel gs1900-8 switch and a qnap ts231p , and as i said i
-> > didnt change my setup. i was able to hit 100MByte/s from my NAS , so
-> > close to the benchmarks of 900MBit/s
-> I typically only do small transfers or I have traffic only in one direction.
-> thus it's likely that I missed this in my own tests
->
->
-> Regards
-> Martin
->
->
-> [0] http://lists.infradead.org/pipermail/linux-amlogic/2018-December/009679.html
-> [1] https://patchwork.kernel.org/cover/10744905/
+Thanks,
+Neil
 
-Regards,
+> 
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> 
 
-Emiliano
 
 _______________________________________________
 linux-amlogic mailing list
