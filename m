@@ -2,146 +2,87 @@ Return-Path: <SRS0=Dt7e=QN=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C14A9C169C4
-	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Feb 2019 10:38:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 54D0CC169C4
+	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Feb 2019 11:29:04 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3DE62206C2
-	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Feb 2019 10:38:39 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 224D620823
+	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Feb 2019 11:29:04 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VG2rIPfU";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="0bkUuKst"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3DE62206C2
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EL2wrldn";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="JKvmMgI+"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 224D620823
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=+lbBBdfvXU0GJr/hnhF+AwHTk6gip2QeteEX+BDJLrs=; b=VG2rIPfU89w+A0zk0Cnunov6tG
-	20Gz2CMJjZ2YnUCqT6Lt+yQRYCRCTL+/4CCCsKS0InyuFQXfiTxUxN81uPcknElDREsJaoIw3yxkE
-	wusHwzCRAzQc0d5ERs5b0wfxFQJaYUBow+nDG3diBxjy6Dzp9i8wQb6nlimgW7rirnAT3fhZVGCHe
-	V/acQxcU5eXAIZZpXCqJtj5LemwDJD2LIRT3EOj2Uz/RzuaY0NjE6mywSzrsoVW80Fck1gRVS0+n/
-	Rx/Wh+010PwuJa/Ya79mB5JHzamaMr1mIa6snUxI/4fpOp6bIQV+MjKaL8S2JiM3+Md6eai3vm3D7
-	2Iji3TsA==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=SD2o7h9x3gOEeYkxYQTiyadBQIugx8lNiqPc4YDsk3E=; b=EL2wrldnr/l6CF
+	jArSfWDVQ2KjG1joIA80bHjlaBmaklcel6sepiZoRQV0wkX0Vz/EkriAuKWCP7WmUIMeDSCxj6DoD
+	whymp77WA54vayDVotfGdXXv3T4dS4d5js4ButwUlF5RfQvo2zZ/0q77OyQ6JegkwgFTIMnoBllFR
+	5pnS09aFCAD4Clni1/j09qslEZiGezyW5RBowpGm66I91321/AhfIDwbvFM6mA27KciNgcGqmI0c+
+	7Ve17BLhM3iRmrf4U7KzmIx/IAtu4yPHwM7o7PrsXXxjqQMi6giVLSjZYCsrVXbWbEAPtjdqxgpoB
+	FuLzdy3+xmqFNA6+AdmA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1grKbA-0003MW-Ir; Wed, 06 Feb 2019 10:38:32 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1grLNx-0004i0-Ag; Wed, 06 Feb 2019 11:28:57 +0000
+Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1grKb6-0003MB-RI
- for linux-amlogic@lists.infradead.org; Wed, 06 Feb 2019 10:38:30 +0000
-Received: by mail-wr1-x444.google.com with SMTP id z18so6194883wrh.2
- for <linux-amlogic@lists.infradead.org>; Wed, 06 Feb 2019 02:38:28 -0800 (PST)
+ id 1grLNl-0004XE-1x; Wed, 06 Feb 2019 11:28:46 +0000
+Received: by mail-ot1-x344.google.com with SMTP id 32so11181022ota.12;
+ Wed, 06 Feb 2019 03:28:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=omY6s92AV6ta6AFE+BpahdHubGIwW0wzRGif3fwQdOE=;
- b=0bkUuKstdUIHHvmw4qH2vT55j4iAOjyuNkIYS/yHiKIf/AkLUw4IWax71DnyIKTXFy
- Cgb4WQchWlVxWanLaVAoEdHSmiTWegUwM2AR9My4HkhdP8CVcNal/bxo8v2WiV2Go8uw
- Vt4Zq/1jftRS3cm7CPiNDmfAUj1YALsSgzfT9GJJ0+l5bEgbVsFF4HSgzyqSq+I7TNmT
- 9+Rp1REhqxny2vxlo80cvc6jwznMWfXBXcGw9HDXbhsNfODgEXGvn0s8B3Kl2CNXb+m9
- HYS1xzWcKUSRe4HdN38iHQmAozo/f75EOwp/c7V/5CO3NdvOwXoOKtp1vPhasQW+4aXr
- YicA==
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=q6uxksyd4B7vRqtlr+5W33DQQzfWzcoKK5+Un05MXvs=;
+ b=JKvmMgI+O1towSFvmv+w7YwuBdOXO83XUBp6QYktR92TUzh8aIowl6PndOc+O5C4j8
+ 7X6ycgstGT/8U3ovsoEee9vcNkHpj7FIl1m1mydaP9USlGjBXSb3dX4B1fsS+wOYah1a
+ fGOBlcxau8uFofrQhWjqovEAcKpR/9Rn3ACNmwIux9Ntnqt0VjoJ0p6gENEyO5GB65d/
+ rO55pqUdPubYOr3+XH6EhOGgV5IakJ5JGI1xfQpddy7ldNEEP6IK2jmtwygN85rNBr46
+ +P0aX0oWOe+3Tawz2xGAiJUpZahJ763qLccUXcWMmVJNj6hwI0XOOkpq/BJb4t/MGzbj
+ hgMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=omY6s92AV6ta6AFE+BpahdHubGIwW0wzRGif3fwQdOE=;
- b=UhOtjEcCPV4FESaPlxWQxRgeSSmxnREwhJWfJDsLbmD7ZVFaHtfsHTBOnn8n+UFdZz
- yKa1h3j4d9LP31lcfa+qVIM+K4zc43AjmBfNk92w+7ebflCYfdvR/xPuI70pbsRN2LhH
- mNR0x9V5+vO2yJQAWOvcAInLBrzqPVSvDSZQn0aflsyRhd2GPnMfMNfNhGsGx7rYV5rJ
- J6hjhaKq7RFV/AcWheZM01z7Yucgv0ICpudbEnFroFlPT+5gmSdUtMc0Bl4gxOOqo/R0
- P9IDGSTUdtLWxX9ez65pS7zTNOLWE592g2uy/miuE37SWC72NJO1L/Rv96f8eIfFOLpy
- Z/uQ==
-X-Gm-Message-State: AHQUAuajw5KNUn/sDDxg9UTRMfyWbi65lJ33tfBkYGBwnmv2vzg34col
- DtOrUxyDWrtIJSpB3qWiluzFw81XJ4uT9A==
-X-Google-Smtp-Source: AHgI3IYvMJEr0QjlOciZRuEHXOrKQWQBjuuKUFONu5xjauywC2hZcwB+kHBjVGKz8fcSx3rVc4oyrw==
-X-Received: by 2002:a5d:4d87:: with SMTP id b7mr6948862wru.316.1549449506144; 
- Wed, 06 Feb 2019 02:38:26 -0800 (PST)
-Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr.
- [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id t4sm22005523wrb.64.2019.02.06.02.38.25
- for <linux-amlogic@lists.infradead.org>
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 06 Feb 2019 02:38:25 -0800 (PST)
-Subject: Re: Add tsin pins for meson-gxbb/gxl/gxm
-To: linux-amlogic@lists.infradead.org
-References: <20190203115324.9097-1-afl2001@gmail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <68678f7a-0c56-4caf-b73d-288786c61700@baylibre.com>
-Date: Wed, 6 Feb 2019 11:38:24 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.4.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=q6uxksyd4B7vRqtlr+5W33DQQzfWzcoKK5+Un05MXvs=;
+ b=EhhKxY5kFsJaMUoRb+2+be1Joj2NB7rDaW9zApNI7iXoOytBYPFdoRvUpnXsmWDOj8
+ mlE/LDPjHrk16RilxNdMp6dBW5FQTn8OfMbkeNDoshtEPWl5KELQZiystDXqO1zQux0w
+ TObsnN24FsnoWvRnBxzGVV+MdX6T2fdrR5I6SKy78S/ZdpRS5YdR2IaMbk1oFPeJp6t2
+ FvH3HsN/jhd3RsP682+nFvWXjkncOFXneiahQnSWlmm3Zyps6k6yLAZlFtXYx/5Swci9
+ Y8S4n3DpNXiRvx2fhPH8zEx5lb+OoS/MXQdqsWLY2TcHwt9/7ojWGKVRcNbt4E+O10/M
+ Ds+g==
+X-Gm-Message-State: AHQUAuYnzX6dl4B8QJ9tlrGxv0i32hpjVqmSLEF4NrgQWbtlvPz4Q0Ap
+ p2iTyoRFh5l/Iem8XdrpOrmp2yDlNc15cL/UibQ=
+X-Google-Smtp-Source: AHgI3IZnKAjfMiHnkbT1AerxK1Z3q8GXLb3dcvennBaAEK4TzTIhYlxFXLgzTkIO0igglWD4KIBL9R61Ep+UKiYnEgI=
+X-Received: by 2002:a9d:715d:: with SMTP id y29mr5428844otj.148.1549452522210; 
+ Wed, 06 Feb 2019 03:28:42 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20190203115324.9097-1-afl2001@gmail.com>
-Content-Language: en-US
+References: <20190123151209.2080-1-linux.amoon@gmail.com>
+ <20190123151209.2080-3-linux.amoon@gmail.com>
+ <CAFBinCAdf0rtt-7tON_LRNH_cpvGJXX3LX8g-i4xsC3wahZSVA@mail.gmail.com>
+ <CANAwSgQ4=Vn6RM4Kpd20UWkQNW81=mfg-qB0G73dsRem3qwjcA@mail.gmail.com>
+ <CAFBinCB=3kmuFb_xXzhW+m8dTasVrCHQp2wti+=5UjrAHk5TTg@mail.gmail.com>
+ <CANAwSgQnMkXECkCVjFKwNKB+2JoiPtVPQbateppmtgfPYCutZg@mail.gmail.com>
+In-Reply-To: <CANAwSgQnMkXECkCVjFKwNKB+2JoiPtVPQbateppmtgfPYCutZg@mail.gmail.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Wed, 6 Feb 2019 12:28:31 +0100
+Message-ID: <CAFBinCCFoBkbf-HvEoMk7mTYTBV27nJ9TF1X-DrLuHR9qDVDSA@mail.gmail.com>
+Subject: Re: [RFCv1 2/3] ARM: dts: meson8b: odroidc1: fix USB power supplies
+ for phy
+To: Anand Moon <linux.amoon@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190206_023828_930105_570DB619 
-X-CRM114-Status: UNSURE (   9.81  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190206_032845_119173_D79290FC 
+X-CRM114-Status: GOOD (  13.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -153,34 +94,61 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: devicetree <devicetree@vger.kernel.org>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Kishon Vijay Abraham I <kishon@ti.com>, Rob Herring <robh+dt@kernel.org>,
+ linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Hi Anand,
+
+On Tue, Feb 5, 2019 at 8:53 PM Anand Moon <linux.amoon@gmail.com> wrote:
+[...]
+> > my interpretationfor the Amlogic SoCs is:
+> > - vusb_a and vusb_d are generated internally, not sure if there's an
+> > external fixed regulator
+> > - there is no phy-supply (the PHY itself is powered by clock-gating
+> > using the CLKID_USB clock)
+> > - usb0 VBUS is controlled by GPIOAO_5
+> >
+>
+> But as per the device tree binding
+>
+> [0] https://elixir.bootlin.com/linux/v5.0-rc5/source/Documentation/devicetree/bindings/phy/meson8b-usb2-phy.txt
+> [1] https://elixir.bootlin.com/linux/v5.0-rc5/source/Documentation/devicetree/bindings/phy/phy-bindings.txt
+>
+> its uses phy-supply to enable power to usb phy which seem to be correct option.
+phy-bindings.txt states that "phy-supply" is a "Phandle to a regulator
+that provides power to the PHY".
+I have written the example in meson8b-usb2-phy.txt and I think it's
+wrong (back when I wrote it I didn't know about the "vbus-supply"
+property on the controller and I didn't know about the VBUS
+constraints).
+
+I believe that the phy-supply property is intended for PHYs which need
+an external power supply (for example because they are not embedded
+into a SoC or if the SoC has separate voltage inputs for the PHY).
+I'm not aware of any PHY supply voltage on the Amlogic SoCs (I believe
+this is done internally within the SoC). instead they use clock gating
+to power down the PHY.
+
+as far as I understand the VBUS signal it depends on the USB mode:
+- host provides VBUS
+- peripheral devices are powered using this voltage
+- with OTG VBUS needs to be turned on or off depending on the current
+mode (host or peripheral)
+with the "phy-supply" property there's no way to manage the regulator
+depending on the USB mode (host or peripheral), it will always be
+"on".
 
 
-On 03/02/2019 12:53, afl1 wrote:
-> ---
-> This commit add tsin pins for meson-gxbb/gxl/gxm. 
-> The commit was verified with 150balbes LE 9.1 - linux 4.20.5 with intrernal dvb support.
-
-Thanks for sharing part of your work on the DVB demux support,
-but could you follow the steps described in https://www.kernel.org/doc/html/v4.20/process/submitting-patches.html ?
-
-The main point is to sign-off with your name and follow the standard changes format !
-
-Thanks,
-Neil
-
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-> 
-
+Regards
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
