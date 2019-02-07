@@ -2,101 +2,92 @@ Return-Path: <SRS0=fppM=QO=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5D0BEC282C2
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Feb 2019 19:30:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 80168C282C2
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Feb 2019 20:11:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2BA722175B
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Feb 2019 19:30:42 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4AFB72080F
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Feb 2019 20:11:15 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Kc0QVnH2"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2BA722175B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=gmx.de
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="l7bFRJt2";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="sFzt0pva"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4AFB72080F
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tk5WqL3SmT8P3pbQcNZibLAW6lejeG2JgaVQeTfrRaY=; b=Kc0QVnH2tFPCbI
-	e1rR4TT6CbWV8ncBv+64+1JucF25VSd0+YCeY7Zm4li7mAA09MXryv5sWSwRsT+VB3qbnYy7DiXmW
-	G899kxDn5FdIy/VjgatMbf0m5cuHMCFBE8q3KQpL0HnhRosSW2yT+q9iPuqBeF4RA6bm03RK/ZyNL
-	2I0YZccbHwxZOy6uy1S/7vZtGNXelIakgomB5Ifson5sFQqi0/JI2SEvviFgBP9bTnXF13/Tc2jhm
-	Lm6T72iLyK9YRjgq2D5nvr2tG3ChqIX4nEAlKXuYBevLyliDB7Ufz5ZI9VE3HsSczwazPCZRVOQwu
-	AAYzJBG4mKIYKvttT6BQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Subject:To:
+	MIME-Version:From:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=DAsvFcJnvALqvHMA7n252RTF/ioF8NFZUEv4oivmf/w=; b=l7bFRJt2QVjV5R
+	UNUXNtLW7o/lVlLoVUaZZxEmOTSoZ7i9EY1XqSb2utxQZspriVif1KDy/JVvOgLLpg1jccDe5ZCeM
+	9aYDwQysoiSFOMWzstJlUJIrzbasXkdN9gGzdnVp573XnRrNIEZpxaAcj/QYzj9E7hnO8TFMdh9Gs
+	2g8dNbdSJaU+2Lbb5E2xaaQUyK+L8w0Negu+ape2NGcCRClcC7ZDKjlnhlmbA+qks9m8/LPmIQJYC
+	pTsyLVywr0rPKRk3hsCyTG10lDHNp2unNYMY7GQrxr7CHRdjwWaJL3adHFHnDrjprLOoaG8upTO+u
+	VYn9RF6l664H+gIcY+lw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1grpNa-0005pQ-6g; Thu, 07 Feb 2019 19:30:34 +0000
-Received: from mout.gmx.net ([212.227.17.21])
+	id 1grq0r-0000Ip-OI; Thu, 07 Feb 2019 20:11:09 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1grpNW-0005p7-1O
- for linux-amlogic@lists.infradead.org; Thu, 07 Feb 2019 19:30:32 +0000
-Received: from [10.10.11.100] ([95.88.178.171]) by mail.gmx.com (mrgmx103
- [212.227.17.168]) with ESMTPSA (Nemesis) id 0Lg1QN-1hTyDu22W3-00pcX0; Thu, 07
- Feb 2019 20:30:21 +0100
-Subject: Re: stmmac / meson8b-dwmac
-To: Emiliano Ingrassia <ingrassia@epigenesys.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <a38e643c-ed9f-c306-cc95-84f70ebc1f10@gmx.de>
- <CAFBinCDebPOsmrhSXecx48nGWHh7g_OGPbr1Y0M+n_v9Ht91ew@mail.gmail.com>
- <e05b7448-cd95-cdeb-c88d-3a324d5f1ddc@gmx.de>
- <CAFBinCAkXN42piiYsc_Qmuqv0w4dbK86gq10AbZyrB-zKuh9hg@mail.gmail.com>
- <20190206103645.GA2482@ingrassia.epigenesys.com>
-From: Simon Huelck <simonmail@gmx.de>
-Openpgp: preference=signencrypt
-Autocrypt: addr=simonmail@gmx.de; prefer-encrypt=mutual; keydata=
- mQGiBD/bCNARBACE3URTBXZ/AA03NwRNtz03ewQn3uhvYSTjfqgplBtb3dfC4a79BXDRIWVX
- xPGH9Ewios1c8gMu3/RI2l3JzXoISfw5b0L/5igyPKV+sGuUA2FD27kYtPaaF/TqEWIv+Yxp
- 9DCjCX5IQSYyvCfcxcyEkY8eVWxnaAlV3zKRR8wn0wCglWIOtAugBcg1YXmoLpFZE8Ca0fkD
- /jG+n4U9DPfCgkbgjQ/dv2W2a0ZDHccA9N8AW/FTXGyXXO0e7ql9/kORJnp7jD7/Z9HCKpeS
- HajgxuX9Vhfx6bH1dAMfsg88+K8pOO9oulNX1+YffQyZWOfdbmnZDUzBt9HKR9Wgh8WoIyw9
- TVluclzn6hYz+z9jbqHWMOsiCu8zA/0apHbW8vaIDT4+nNUxNdqU1TKa9kW47vNjwYYL0jZW
- TXNjDIRpqJVSugYVc/U847GoVoxyvtzre4TAbBV8h0BAOeMdxI5En67RGWzeNaMDJV1bwapj
- qdfj3e/X8rnGIfwz47rwztLNKoAIUlKrATwroiI7UNT+84G7H5qalu+Eu7QqU2ltb24gSHVl
- bGNrIDxzaW1vbi5odWVsY2tAZ29vZ2xlbWFpbC5jb20+iGIEExECACIFAlH7wL4CGyMGCwkI
- BwMCBhUIAgkKCwQWAgMBAh4BAheAAAoJEJNSVvfBt05KlBQAn1JDO7e4H3N0WFJkZnxvObhk
- 2kiAAJwPdDd6T1TuGo4iDIENRhAX4AH2KrkBDQQ/2wjSEAQAj6JnDDQzIIYzPGsrHRvaq8vw
- n8VrZCbPRvkngGvtQIss5pH/MLeu9jLepDGO9WHByFSg4QJh8cINYwTLtX8Bu0naA6ZI46hn
- GyfxdRlxSU9dRqHpU3G0tymL1w3AER6aVSfdXQTmFgf61anKunbIIptkqzZurkjnxkwCE/RM
- RscABA0D/jhglpj8siSIAxs8XLVfKJrjzbYM9/wS0NfdSXBeQJiYtKrY0WMNsqjY50wDnLMg
- anORN/odT6mCwKI6xChzxEv/ta4+teZl92aitziSuqmtl+jm23DpOcUC7UBz2W1+TvnrhPR+
- MKu8pPKAgsE8AI5uwCcNJx7V3bczYkIGaXybiEYEGBECAAYFAj/bCNIACgkQk1JW98G3Tko6
- 3wCfZBpZAUhUz/Rcp2rfg/YSKl4YLlEAoJN7e322OvHc2GQ9n1+tKLi6Og4c
-Message-ID: <3001f244-8904-1e89-9595-62a65a7b32ae@gmx.de>
-Date: Thu, 7 Feb 2019 20:30:19 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.5.0
+ id 1grq0d-00007M-DG
+ for linux-amlogic@lists.infradead.org; Thu, 07 Feb 2019 20:10:57 +0000
+Received: by mail-wr1-x441.google.com with SMTP id v13so1241241wrw.5
+ for <linux-amlogic@lists.infradead.org>; Thu, 07 Feb 2019 12:10:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=message-id:date:from:user-agent:mime-version:to:cc:subject
+ :references:in-reply-to:content-transfer-encoding;
+ bh=Ck/ivAOI6YZb4ffmZBEVM0UCgiu1gNXYgsW0Qt7/Rms=;
+ b=sFzt0pvanDFTGj4jnduJ9ugaudGws+XUzChJhp1JoJHy23W95TdCCQb7V7BnK2VXaZ
+ DvYH7ZiLTvnXmO0uLGA3qW+2m7MCvThnvRMoUHWfu9eZ3UVafBbU2c36+Kv0EgquMmer
+ C/TT8rNcnQvCgX5MFqzLw5BKkZSURfa8XFLuicReYga64+FWdkbGm0XKPfkdjcMiTR2U
+ 9+1JNUNZPfNd/moB3DszZpdjTDdaupgPVZJKkhJMxUvh3a3q2UmwguiKTPooHDRT4DH+
+ 9v9oWIlV030MCwgThjuNPb6k+e9IsdNpdEQuLmKe7hFENKmlYaU5kFu28pG69WPbikKr
+ ceuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+ :cc:subject:references:in-reply-to:content-transfer-encoding;
+ bh=Ck/ivAOI6YZb4ffmZBEVM0UCgiu1gNXYgsW0Qt7/Rms=;
+ b=P3P1d8wbia7IcVIG/Ntw5pZeKHCoeXQJZPGSXxp73BoBwRUHYQuOyKssLXnZtF4JVC
+ xgJPS2CjVkvIoBrkv6sqgAuidLujHtcTHNZd3zUupVf6y52b5ilhDDPebXeqwkIQHcMF
+ QGfmegF0LNRJaDd+vW445OYE0jdIgMnOULqRvioZXvWIpVCrNG3ZRb+0EwPsRMUyymlO
+ QT/+w7EVFXj4ltG/xjPDljZVSZClnGxBQ5QcdF5OkrQkeDC4kIEnKq8/MLhn/xTu1m1x
+ 2y+CkC6xEs3Uo6HbAxcqEBTSbpEcTURJ812nvK5tArZBVW1+pZIsWH6wRVbjIMa+M6Ay
+ izng==
+X-Gm-Message-State: AHQUAubDqTKFMHZf/5bLBBEM6Lend4tQkDMxbichsJGXl1hbvD4efd38
+ Nw14VzEKfF6yHKWT93KXcUJhRg==
+X-Google-Smtp-Source: AHgI3IZYQqgnqtTsRkvfKurjqv9pgAuxMfR8VAb+RAFqRGCPqUsQCM+FVtobKQXDw9jTbMAlJapfIQ==
+X-Received: by 2002:adf:c982:: with SMTP id f2mr8576140wrh.98.1549570252297;
+ Thu, 07 Feb 2019 12:10:52 -0800 (PST)
+Received: from Armstrongs-MacBook-Pro.local
+ (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr. [176.150.251.154])
+ by smtp.gmail.com with ESMTPSA id a15sm12008922wrx.58.2019.02.07.12.10.51
+ (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+ Thu, 07 Feb 2019 12:10:51 -0800 (PST)
+Message-ID: <5C5C90CA.8050409@baylibre.com>
+Date: Thu, 07 Feb 2019 21:10:50 +0100
+From: Neil Armstrong <narmstrong@baylibre.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13;
+ rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-In-Reply-To: <20190206103645.GA2482@ingrassia.epigenesys.com>
-X-Provags-ID: V03:K1:NQFMDHsQD1SwzfhOukAtggDqCziiGLTD+zWaEGiuRWbHPmlErml
- D6Ucw9rpG+DxZxcqYDaZ8Z5DMvS5RI01hX9T3LP2FmlI2dkUmEg7d9wB44AVbMS6rcnXsu2
- y6j0lc8qnqqeaIs43e/E6RhVPr/xeacnOSTxzSAlZ/fWoFYDuZLNRcrW5icyJ/0NdQdLEl5
- FCxRdh0B7DWC+ar2YtwnA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:dwzD9fBLulo=:O5ntJFASFBkbuvVy3BKqGt
- pYDjvnh10+1g5500srH6zbGmVAg1/PKsSFlFwzBnYFgiEvQoCsFwagocsZGMTpwcyeNFkOKuc
- RODaNw1YmuVZId7sTSTM3vjdW8XcGLmGxXSeKDb+IKvybBa/VSv+SK3QE9rupceXHl5pfaohl
- 3gkQlvAyIAoNi7SIrv/78fUNo2wjP211lZIbxetlMKLKY3xLikdMQBykF5H8OQoTzLDTsUixl
- IFB4HXmq6aF5HcdIa/4Ym6S3Zt+bqkLrEhRvtWIdZaja8jLP+p65SZ7LzQI33AE99DUdW5FaY
- yyOsSbam8GPZHhLZtny5dYhQqrelJ2x6ifcVNO6/PVZ//Fv6yVsUZbUKuyqSl9Eo2R5Cf7y+v
- sCjZq38CvopavzJGEgeG7GaUcrA5RViK1uZuKz9Mc5Xg5mvnpZl07FrwreQtPBUylVxU38Pv5
- NMHMufPh0atNUClUkTrYiV1PiWuk+4FQgCL1TXzWoN9akCy0WAzDjZ0YhmyvBbIhdPJrThP1/
- YQEjyrqSwhAC+rQ1VjbLGW/4Wg5cfh899aipmPzapB0OsTIWx/PfzpH60SREtP5O4sdkVUhtv
- HqICECVEn/1osHp0WFNPyV1wUwFLxF1l7MjnEDU6jmHvZT0wkLahl9lh46Knbv0chFakTqVU9
- peW9trsi40fSN1RI9MHkb+1lll52K5IVLhdmHQyH4DQ8V4+awHZRTOixNe0guqHWfndD6iBQm
- b/hWevd5c+iG/MLUs+Cr0jht7YFpVpPECqJe6pt5Tg13y+Cb+YbvjB9TouAwOEsGHMlw5zGDD
- r2sAsodoiaxPJ4TSWPX/B+oj+h37DnH5eMM1BEZ18xnr2dYzaZN5YzqzVOCm0EFvlXC2voXr4
- eInskLdgrygRSnev9CL5w6QpcxpzNIKkxP66NAj+DUsbJ4FfS3KvUT2iECkq+EmOjp8KxdX/A
- F+YSHn54ETA==
+To: Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: clk: add G12A AO Clock and Reset Bindings
+References: <20190204091331.9298-1-narmstrong@baylibre.com>	
+ <20190204091331.9298-2-narmstrong@baylibre.com>
+ <2f03298e4d1ca0aa08d683d6db14bc194607b974.camel@baylibre.com>
+In-Reply-To: <2f03298e4d1ca0aa08d683d6db14bc194607b974.camel@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190207_113030_382035_F1159065 
-X-CRM114-Status: GOOD (  15.13  )
+X-CRM114-CacheID: sfid-20190207_121055_493543_92C8B0F8 
+X-CRM114-Status: GOOD (  16.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -108,121 +99,87 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, netdev@vger.kernel.org,
- alexandre.torgue@st.com, Gpeppe.cavallaro@st.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Guys,
-
-
-i can confirm better performance with 4.14.29
-
-- ~900 MBits with iperf2 in one way
--~ 500 - 600MBits with iperf2 in duplex in both directions
-
-
-This wasnt the case with 4.17.9, not with 4.18, 4.19 or the 5.0 series.....
-
-
-How can i help further ?
-
-regards,
-Simon
-
-
-Am 06.02.2019 um 11:36 schrieb Emiliano Ingrassia:
-> Hi Martin, Hi Simon,
->
-> On Mon, Feb 04, 2019 at 03:34:41PM +0100, Martin Blumenstingl wrote:
->> On Thu, Jan 17, 2019 at 10:23 PM Simon Huelck <simonmail@gmx.de> wrote:
->> [...]
->>>>> I got problems with my ODROID c2 running on 4.19.16 ( and some releases
->>>>> earlier ). the stmmac / dwmac driver doesnt provide the 800M/900M
->>>>> performance that i was used to earlier.
->>>>>
-> Simon, did you ever reach 1 Gbps full duplex speed?
-> If yes, what was the kernel version did you use?
->
->>>>> Now im stuck near 550M/600M in the same environment. but what really
->>>>> confuses me that duplex does hurt even more.
->>>> interesting that you see this on the Odroid-C2 as well.
->>>> previously I have only observed it on an Odroid-C1
->>>>
->>>>> PC --- VLAN3 --> switch --VLAN3--> ODROID
->>>>>
->>>>> NAS <-- VLAN1 -- switch <-- VLAN1-- ODROID
->>>>>
->>>>>
->>>>> this means when im doing a iperf from PC to NAS, that my ODROID has load
->>>>> on RX/TX same time (duplex). this shouldnt be an issue , all is 1GBits
->>>>> FD. And in the past that wasnt an issue.
->> +Cc Emiliano who has seen a similar duplex issue on his Odroid-C1: [0]
->> (please note that all kernels prior to v5.1 with the pending patches
->> from [1] applied are only receiving data on RXD0 and RXD1 but not on
->> RXD2 and RXD3)
->>
->> Emiliano, can you confirm the duplex issue observed by Simon is
->> similar to the one you see on your Odroid-C1?
->>
-> It could be but, if I understand correctly, Simon is limited in
-> speed also in half duplex transmission (~550/600 Mbps), while we can
-> reach at least 900 Mbps.
->
->>>>>
->>>>> Now what happens:
->>>>>
->>>>> - benchmark between PC - ODROID is roughly 550M
->>>>>
->>>>> - benchmark between NAS - ODROID is roughly 550M
->>>>>
->>>>> - benchmark between PC - NAS is only around 300M
->>>>>
->>>>>
->>>>> and like i said i was easliy able to hit 800 or even 900M to my NAS
->>>>> earlier. I applied some .dtb fixes for interrupt levels for the
->>>>> meson-gx.dtsi and meson-gxbb-odroid-c2.dtb, which will be mainlined ,
->>>>> but the effect stayed identical.
->>>> good that you have the interrupt patches already applied
->>>> I believe it don't fix any performance issues - it's a fix for the
->>>> Ethernet controller seemingly getting "stuck" (not processing data
->>>> anymore). however, that already rules out one potential issue
->>>>
->>>>> are you aware of this problem ? Earlier kernel versions were all
->>>>> perfectly fine and i stepped ( self compiled) kernel through all major
->>>>> releases since odroid c2 was mainlined.
->> Guiseppe, Alexandre: what kind of data do you need from us if we see
->> the speeds drop (in both directions) when we send and receive at the
->> same time?
->>
->> [...]
->>> the problem is that i dont have these kernel sources anymore :-(. but i
->>> can provide some testing and numbers. maybe i dig if i got these kernel
->>> configs somewhere around but i did not change much during migrating
->> do you remember the kernel version where it worked fine?
->>
->>> im using a zyxel gs1900-8 switch and a qnap ts231p , and as i said i
->>> didnt change my setup. i was able to hit 100MByte/s from my NAS , so
->>> close to the benchmarks of 900MBit/s
->> I typically only do small transfers or I have traffic only in one direction.
->> thus it's likely that I missed this in my own tests
->>
->>
->> Regards
->> Martin
->>
->>
->> [0] http://lists.infradead.org/pipermail/linux-amlogic/2018-December/009679.html
->> [1] https://patchwork.kernel.org/cover/10744905/
-> Regards,
->
-> Emiliano
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+CgpMZSAwNy8wMi8yMDE5IDE2OjEwLCBKZXJvbWUgQnJ1bmV0IGEgw6ljcml0IDoKPiBPbiBNb24s
+IDIwMTktMDItMDQgYXQgMTA6MTMgKzAxMDAsIE5laWwgQXJtc3Ryb25nIHdyb3RlOgo+PiBBZGQg
+YmluZGluZ3MgZm9yIHRoZSBBbWxvZ2ljIEcxMkEgQU8gQ2xvY2sgYW5kIFJlc2V0IGNvbnRyb2xs
+ZXJzLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBOZWlsIEFybXN0cm9uZyA8bmFybXN0cm9uZ0BiYXls
+aWJyZS5jb20+Cj4+IC0tLQo+PiAgLi4uL2JpbmRpbmdzL2Nsb2NrL2FtbG9naWMsZ3hiYi1hb2Ns
+a2MudHh0ICAgIHwgIDEgKwo+PiAgaW5jbHVkZS9kdC1iaW5kaW5ncy9jbG9jay9nMTJhLWFvY2xr
+Yy5oICAgICAgIHwgNDMgKysrKysrKysrKysrKysrKysrKwo+PiAgaW5jbHVkZS9kdC1iaW5kaW5n
+cy9yZXNldC9nMTJhLWFvY2xrYy5oICAgICAgIHwgMTggKysrKysrKysKPj4gIDMgZmlsZXMgY2hh
+bmdlZCwgNjIgaW5zZXJ0aW9ucygrKQo+PiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGluY2x1ZGUvZHQt
+YmluZGluZ3MvY2xvY2svZzEyYS1hb2Nsa2MuaAo+PiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGluY2x1
+ZGUvZHQtYmluZGluZ3MvcmVzZXQvZzEyYS1hb2Nsa2MuaAo+Pgo+PiBkaWZmIC0tZ2l0IGEvRG9j
+dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Nsb2NrL2FtbG9naWMsZ3hiYi1hb2Nsa2Mu
+dHh0IAo+PiBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9jbG9jay9hbWxvZ2lj
+LGd4YmItYW9jbGtjLnR4dAo+PiBpbmRleCA3OTUxMWQ3YmIzMjEuLmM0MWYwYmU1ZDQzOCAxMDA2
+NDQKPj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Nsb2NrL2FtbG9n
+aWMsZ3hiYi1hb2Nsa2MudHh0Cj4+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
+aW5ncy9jbG9jay9hbWxvZ2ljLGd4YmItYW9jbGtjLnR4dAo+PiBAQCAtMTAsNiArMTAsNyBAQCBS
+ZXF1aXJlZCBQcm9wZXJ0aWVzOgo+PiAgCS0gR1hMIChTOTA1WCwgUzkwNUQpIDogImFtbG9naWMs
+bWVzb24tZ3hsLWFvY2xrYyIKPj4gIAktIEdYTSAoUzkxMikgOiAiYW1sb2dpYyxtZXNvbi1neG0t
+YW9jbGtjIgo+PiAgCS0gQVhHIChBMTEzRCwgQTExM1gpIDogImFtbG9naWMsbWVzb24tYXhnLWFv
+Y2xrYyIKPj4gKwktIEcxMkEgKFM5MDVYMiwgUzkwNUQyLCBTOTA1WTIpIDogImFtbG9naWMsbWVz
+b24tZzEyYS1hb2Nsa2MiCj4+ICAJZm9sbG93ZWQgYnkgdGhlIGNvbW1vbiAiYW1sb2dpYyxtZXNv
+bi1neC1hb2Nsa2MiCj4+ICAtIGNsb2NrczogbGlzdCBvZiBjbG9jayBwaGFuZGxlLCBvbmUgZm9y
+IGVhY2ggZW50cnkgY2xvY2stbmFtZXMuCj4+ICAtIGNsb2NrLW5hbWVzOiBzaG91bGQgY29udGFp
+biB0aGUgZm9sbG93aW5nOgo+PiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9kdC1iaW5kaW5ncy9jbG9j
+ay9nMTJhLWFvY2xrYy5oIGIvaW5jbHVkZS9kdC0KPj4gYmluZGluZ3MvY2xvY2svZzEyYS1hb2Ns
+a2MuaAo+PiBuZXcgZmlsZSBtb2RlIDEwMDY0NAo+PiBpbmRleCAwMDAwMDAwMDAwMDAuLjk5N2Fj
+YTE2Yzk0Zgo+PiAtLS0gL2Rldi9udWxsCj4+ICsrKyBiL2luY2x1ZGUvZHQtYmluZGluZ3MvY2xv
+Y2svZzEyYS1hb2Nsa2MuaAo+PiBAQCAtMCwwICsxLDQzIEBACj4+ICsvKiBTUERYLUxpY2Vuc2Ut
+SWRlbnRpZmllcjogKEdQTC0yLjArIE9SIEJTRC0zLUNsYXVzZSkgKi8KPj4gKy8qCj4+ICsgKiBD
+b3B5cmlnaHQgKGMpIDIwMTYgQmF5TGlicmUsIFNBUwo+PiArICogQXV0aG9yOiBOZWlsIEFybXN0
+cm9uZyA8bmFybXN0cm9uZ0BiYXlsaWJyZS5jb20+Cj4+ICsgKgo+PiArICogQ29weXJpZ2h0IChj
+KSAyMDE4IEFtbG9naWMsIGluYy4KPj4gKyAqIEF1dGhvcjogUWl1ZmFuZyBEYWkgPHFpdWZhbmcu
+ZGFpQGFtbG9naWMuY29tPgo+PiArICovCj4+ICsKPj4gKyNpZm5kZWYgRFRfQklORElOR1NfQ0xP
+Q0tfQU1MT0dJQ19NRVNPTl9HMTJBX0FPQ0xLCj4+ICsjZGVmaW5lIERUX0JJTkRJTkdTX0NMT0NL
+X0FNTE9HSUNfTUVTT05fRzEyQV9BT0NMSwo+PiArCj4+ICsjZGVmaW5lIENMS0lEX0FPX0FIQgkJ
+MAo+PiArI2RlZmluZSBDTEtJRF9BT19JUl9JTgkJMQo+PiArI2RlZmluZSBDTEtJRF9BT19JMkNf
+TTAJCTIKPj4gKyNkZWZpbmUgQ0xLSURfQU9fSTJDX1MwCQkzCj4+ICsjZGVmaW5lIENMS0lEX0FP
+X1VBUlQJCTQKPj4gKyNkZWZpbmUgQ0xLSURfQU9fUFJPRF9JMkMJNQo+PiArI2RlZmluZSBDTEtJ
+RF9BT19VQVJUMgkJNgo+PiArI2RlZmluZSBDTEtJRF9BT19JUl9PVVQJCTcKPj4gKyNkZWZpbmUg
+Q0xLSURfQU9fU0FSX0FEQwk4Cj4+ICsjZGVmaW5lIENMS0lEX0FPX01BSUxCT1gJOQo+PiArI2Rl
+ZmluZSBDTEtJRF9BT19NMwkJMTAKPj4gKyNkZWZpbmUgQ0xLSURfQU9fQUhCX1NSQU0JMTEKPj4g
+KyNkZWZpbmUgQ0xLSURfQU9fUlRJCQkxMgo+PiArI2RlZmluZSBDTEtJRF9BT19NNF9GQ0xLCTEz
+Cj4+ICsjZGVmaW5lIENMS0lEX0FPX000X0hDTEsJMTQKPj4gKyNkZWZpbmUgQ0xLSURfQU9fQ0xL
+ODEJCTE1Cj4+ICsjZGVmaW5lIENMS0lEX0FPX1NBUl9BRENfU0VMCTE2Cj4+ICsjZGVmaW5lIENM
+S0lEX0FPX1NBUl9BRENfRElWCTE3Cj4gCj4gRG8gd2UgbmVlZCB0byBleHBvcnQgdGhlIGludGVy
+bmFsIHBhcnQgb2YgdGhlc2UgY29tcG9zaXRlIGNsb2NrID8KPiBJIGtub3cgdGhlIG90aGVyIEFP
+IGNvbnRyb2xsZXIgZG8gaXQgYnV0IGl0IHdvdWxkIGJlIG5pY2UgdG8gYXZvaWQgaXQsIGxpa2UK
+PiBmb3IgdGhlIEVFIGNvbnRyb2xsZXJzIC4uLiB1bmxlc3MgdGhlcmUgaXMgZ29vZCByZWFzb24g
+b2YgY291cnNlLgoKSGlzdG9yaWNhbGx5LCB3ZSBleHBvc2VkIGV2ZXJ5dGhpbmcgZm9yIHRoZSBB
+TyBjb250cm9sbGVyLAp3ZSBjYW4gZm9sbG93IHRoZSBzYW1lIHNjaGVtZSBhcyB0aGUgRUUgY29u
+dHJvbGxlciBzdGFydGluZwpmcm9tIHRoaXMgb25lLgpUaGVyZSBpcyBubyBzdHJvbmcgcmVhc29u
+IHRvIGV4cG9zZSBldmVyeXRoaW5nLi4uCgpJJ2xsIHJlcy1waW4gYSB2MiB3aXRoIGJvdGggaXNz
+dWVzIGZpeGVkLgoKPiAKPiBTYW1lIGZvciB0aGUgb3RoZXJzIGJlbG93Lgo+IAo+PiArI2RlZmlu
+ZSBDTEtJRF9BT19TQVJfQURDX0NMSwkxOAo+PiArI2RlZmluZSBDTEtJRF9BT19DVFNfT1NDSU4J
+MTkKPj4gKyNkZWZpbmUgQ0xLSURfQU9fMzJLX1BSRQkyMAo+PiArI2RlZmluZSBDTEtJRF9BT18z
+MktfRElWCTIxCj4+ICsjZGVmaW5lIENMS0lEX0FPXzMyS19TRUwJMjIKPj4gKyNkZWZpbmUgQ0xL
+SURfQU9fMzJLCQkyMwo+PiArI2RlZmluZSBDTEtJRF9BT19DRUNfUFJFCTI0Cj4+ICsjZGVmaW5l
+IENMS0lEX0FPX0NFQ19ESVYJMjUKPj4gKyNkZWZpbmUgQ0xLSURfQU9fQ0VDX1NFTAkyNgo+PiAr
+I2RlZmluZSBDTEtJRF9BT19DRUMJCTI3Cj4+ICsjZGVmaW5lIENMS0lEX0FPX0NUU19SVENfT1ND
+SU4JMjgKPj4gKwo+PiArI2VuZGlmCj4+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2R0LWJpbmRpbmdz
+L3Jlc2V0L2cxMmEtYW9jbGtjLmggYi9pbmNsdWRlL2R0LQo+PiBiaW5kaW5ncy9yZXNldC9nMTJh
+LWFvY2xrYy5oCj4+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4+IGluZGV4IDAwMDAwMDAwMDAwMC4u
+YmQyZTIzMzcxMzVjCj4+IC0tLSAvZGV2L251bGwKPj4gKysrIGIvaW5jbHVkZS9kdC1iaW5kaW5n
+cy9yZXNldC9nMTJhLWFvY2xrYy5oCj4+IEBAIC0wLDAgKzEsMTggQEAKPj4gKy8qIFNQRFgtTGlj
+ZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMCsgT1IgQlNELTMtQ2xhdXNlKSAqLwo+PiArLyoKPj4g
+KyAqIENvcHlyaWdodCAoYykgMjAxNiBCYXlMaWJyZSwgU0FTCj4+ICsgKiBBdXRob3I6IE5laWwg
+QXJtc3Ryb25nIDxuYXJtc3Ryb25nQGJheWxpYnJlLmNvbT4KPj4gKyAqLwo+PiArCj4+ICsjaWZu
+ZGVmIERUX0JJTkRJTkdTX1JFU0VUX0FNTE9HSUNfTUVTT05fRzEyQV9BT0NMSwo+PiArI2RlZmlu
+ZSBEVF9CSU5ESU5HU19SRVNFVF9BTUxPR0lDX01FU09OX0cxMkFfQU9DTEsKPj4gKwo+PiArI2Rl
+ZmluZSBSRVNFVF9BT19JUl9JTgkJMAo+PiArI2RlZmluZSBSRVNFVF9BT19VQVJUCQkxCj4+ICsj
+ZGVmaW5lIFJFU0VUX0FPX0kyQ19NCQkyCj4+ICsjZGVmaW5lIFJFU0VUX0FPX0kyQ19TCQkzCj4+
+ICsjZGVmaW5lIFJFU0VUX0FPX1NBUl9BREMJNAo+PiArI2RlZmluZSBSRVNFVF9BT19VQVJUMgkJ
+NQo+PiArI2RlZmluZSBSRVNFVF9BT19JUl9PVVQJCTYKPj4gKwo+PiArI2VuZGlmCj4gCj4gCgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxv
+Z2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDov
+L2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
