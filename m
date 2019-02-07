@@ -2,141 +2,87 @@ Return-Path: <SRS0=fppM=QO=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1F8DAC282C2
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Feb 2019 13:24:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1D751C282C2
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Feb 2019 13:26:44 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E2D4A2175B
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Feb 2019 13:24:01 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D85102175B
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Feb 2019 13:26:43 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Xccqc4fI";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="TfzqPD/p"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E2D4A2175B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TQX/NXDh";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="aoHqqmsH"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D85102175B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:To:Subject
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
 	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=B8OOFT5rA6yHpxlu6M1VFBw8bzKWklb9aENpEwlKO4Q=; b=Xccqc4fIVvASUo
-	mUSB1coeWRs212KQolGNfhSkuVLsp+5cqWeKPmQzvOlUzcPu8FIoDlFMm0gdt6JxPxSsg6Hvhq94s
-	gn8UlxdpQx1HAaY2jsgtZwcsOEAw3Uq+L4kLbvE8308WGamOX/AumXBNtpkGBcXb/cCK6Q/nZ9/Hz
-	8F896/wqS9Ko/CTAy7GJtzE0KHslm7eoH2FfudxvmNfk/2BvY6eBdPyTQlxwTmm4wD9vknwvVLLjq
-	NH8apVoW6XesIwvuSZOxf/UviBs8RY0fTVUn8/XwHh+6pWNOMEKYwA6LYTVDwyLZSNRuwHW1H8Fbq
-	kMQ2i3MCxTi2MHQbHfjA==;
+	List-Owner; bh=QF81OqBPQlkZQQyUxiy9iaH1v2mukicky4tmA6Xt6+Y=; b=TQX/NXDhIbPyka
+	4ZTrAFlDPltSjDVV+E4dGBCeydU8xq3+V3eFDfI6RVtFeSIIK7oFEA7azM1SMR58WOlpN2XM3x4lT
+	nRplTuJIQnYxnZalZjx1qKNwlFN6Hx85trLXWgf5mWperbCigr8hbxCR9KpDFVQsnSNOR+maZSAkP
+	9GHQ1m+aZjbif49fAKnsFwElpM6OFqvCvx+3bulcuWVQAQ94ZyAVAT1I9U4wlYc70nntFgCPjN+j7
+	vdSkw3MAva0rlOx0TBh7AGjbA88fStMEoblZ9pYT3dlK46KS1drKOPL6GeE2P8KVPiS5kSb+50Lbd
+	SSC2cDzENyCpjPmqerHQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1grjem-0006qy-Vm; Thu, 07 Feb 2019 13:23:57 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1grjhN-0008Th-3b; Thu, 07 Feb 2019 13:26:37 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1grjei-0006qL-Rm
- for linux-amlogic@lists.infradead.org; Thu, 07 Feb 2019 13:23:55 +0000
-Received: by mail-wr1-x436.google.com with SMTP id v16so9658923wrn.11
- for <linux-amlogic@lists.infradead.org>; Thu, 07 Feb 2019 05:23:52 -0800 (PST)
+ id 1grjhA-0008JW-Rq
+ for linux-amlogic@lists.infradead.org; Thu, 07 Feb 2019 13:26:26 +0000
+Received: by mail-wr1-x443.google.com with SMTP id z15so9510622wrn.1
+ for <linux-amlogic@lists.infradead.org>; Thu, 07 Feb 2019 05:26:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:subject:to:cc:openpgp:autocrypt:organization:message-id:date
- :user-agent:mime-version:content-language:content-transfer-encoding;
- bh=bcyPyotbUDuv4bfeRvZ7+OPbaOd1twKCCuoweNM1QrU=;
- b=TfzqPD/pWuO2fgsXeficOb5vf1VEV9pZK9g75Mzar3tWK7bTUvQGOZWewabwOefcft
- Us9vRJSywkY5Z7w4tnlar4G3o7SzQpDV2+JhoUO1Hct6/u8djQKMYygSdkoDyd+FsmOl
- UL9ElHLMI4f8PjhGaHKQUHBVo11YT9kmjRr0vnP+WH2KdjqiSjigs5R4rTPUwwFSUBMv
- VzGUqi2CJmADdYogVXvpZLn624QHlhtVJTQoZm0+uV/tn6xfzZbSCreTwim6ARqBcpVN
- HhfZ9uDveDWJC4mb2YZyJBMw4u3jGT7wXsBLcSoxm2moTWFBTW2SdRQZewtN71axaXz0
- 1oEQ==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=68x/n4YDg6XvhOG3QrYH78pmnPYmUGv4xBBGZW37dwU=;
+ b=aoHqqmsHxLvaZVvK6pciw8h+RM2epyh5oRNkW/lYxfMtG9SHCRJ8YjI8S3M3Xt3PDC
+ G0szWkwjcx4owhd5rfuF8uwaJAypAEjtqTZFIZrjOldeMcodt5cAU0p/6BM8B9Am8LW/
+ vSI3zZnzhaQncChGJqELdAl0eA6+nfc/h8+ajDx8zt3SMccG4mn7uzZVTh8tMF5loobv
+ IISUKF3iGP04c7Z6AptUJk+S8tyPcVVyxWXOQKnFVrmBMoKRHkoA73ywRmzdhNmjw0no
+ 52U2/ClvSFPnNwJCd3kLMq+PErimLHuVhJD4rVUfJ2hv/GehYpLnU/dWMOnhT3JojQC/
+ KYQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:subject:to:cc:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version
- :content-language:content-transfer-encoding;
- bh=bcyPyotbUDuv4bfeRvZ7+OPbaOd1twKCCuoweNM1QrU=;
- b=lFciPJFC2fQV2Elgorm2NccoqnqNvM+UYN3CYRrC+fPlZwGgZiojMI6/2j7M1L78je
- LR/YmjSPitnlGt0PZMfiLTCa9+YwDBh9xCPxwdrb+RdV+foEgfsSNXRJDmJjErHxCwsJ
- 1iExMilBGGFlYLoQJkAVvAF1O3mQzozxjRi1oGfohzdfjUOyqAIJXgmb3uxCuMZLAZk0
- ws6ZDzrKcObej8BSgnxSMyddvc6+JSXGp61TUfUl8HUMN+LgFe5DhgiDGXr7EVbjAooq
- 1kF3NsMGs4gFvrdVHxKw4SiNDT7GUQLldLbik01U5cYHxYXApQcotJFmfa4RsXln7xBt
- c55g==
-X-Gm-Message-State: AHQUAubeQbYkfKlAPtbVkK2eUF9REeNqhza+e6HH2JDkZafBR4WCr7lD
- VYgEYLfrPfSsSNvDmhRLS/oUEjr1PYr7Pg==
-X-Google-Smtp-Source: AHgI3IZU+ckAoM8iWp0KO1lk1o4LPvCBOA/b/OVgKyrqDezOa7LqiMsiLT9aGpkNEZjOZiC4xrcKBA==
-X-Received: by 2002:adf:d146:: with SMTP id b6mr12495203wri.156.1549545830451; 
- Thu, 07 Feb 2019 05:23:50 -0800 (PST)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id x3sm33097696wrd.19.2019.02.07.05.23.49
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 07 Feb 2019 05:23:49 -0800 (PST)
-From: Neil Armstrong <narmstrong@baylibre.com>
-Subject: [GIT PULL] clk: meson: updates for v5.1
-To: sboyd@kernel.org, mturquette@baylibre.com
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <1c894e44-de4b-aef8-d3a3-f371bf2d2f68@baylibre.com>
-Date: Thu, 7 Feb 2019 14:23:49 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.4.0
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=68x/n4YDg6XvhOG3QrYH78pmnPYmUGv4xBBGZW37dwU=;
+ b=QIfWeeOUfjSN6KRH0NSBUP2olTdXQQuMt7/PjSMY7hjJ61HruhRUeojQl9alH4tlwg
+ juaKI2DMCWuSU6kUAEN+KEznHyz+Rc49s5OqabADXndb2UMsa0e78QBx9j/oU19bH6mN
+ Lb79UeJMQjODlT5RVYBM5kLt9XNFGZK+GVNsAJrxli5dW120aGI6G/Bff8tz1CSCb82A
+ BVhuw1y4Jy0FmABEtUsfxwjh9ZSbcf3ylnnXUttVJhtFsyqfv3qWvmKo+W4EywsRZFDR
+ VfYu/4x8exV5G+1Vz8luxpfQ54m4G47O6YcFdRS1UyDYA89fHn7Vr42FPSk+GWGWdf7d
+ YZ8g==
+X-Gm-Message-State: AHQUAuZNwepY3GDkMV97okU1IHIIdL8YRsq3/7ViQ9Z0NoKEIfso5aeE
+ unZBq1gJLtNY7gCOiMV88smKVg==
+X-Google-Smtp-Source: AHgI3IaT7VprTeH7c5oBcCf9wqY5VxyMXvWEVPQO0fZU1WAn9MivbluAN4VHwi6oWhJrQEi64aYjgw==
+X-Received: by 2002:a5d:4e82:: with SMTP id e2mr12028437wru.291.1549545983061; 
+ Thu, 07 Feb 2019 05:26:23 -0800 (PST)
+Received: from boomer.lan (cag06-3-82-243-161-21.fbx.proxad.net.
+ [82.243.161.21])
+ by smtp.googlemail.com with ESMTPSA id v22sm11061612wml.37.2019.02.07.05.26.21
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Thu, 07 Feb 2019 05:26:21 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCH 0/2] soc: amlogic: fixup clock measure
+Date: Thu,  7 Feb 2019 14:26:01 +0100
+Message-Id: <20190207132603.694-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190207_052353_014119_E2EE963B 
-X-CRM114-Status: GOOD (  17.32  )
+X-CRM114-CacheID: sfid-20190207_052624_906144_FA8CD50A 
+X-CRM114-Status: UNSURE (   7.96  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -148,129 +94,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- linux-clk@vger.kernel.org
+Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Dear clock maintainers,
+Hi Kevin,
 
-Below is a request to pull updates for Amlogic clocks.
+Here are 2 fixup for the clock measure series.
+First error was due to the rebase on the v2 of the bus fixup patch
+Second address some comments Martin had on the initial submission
 
-It covers essentially refactoring AXG and GXBB drivers to easily add
-support for 32k AO clock support and G12A clock controller.
-It also fixes Mali GPU clocks for Meson8 SoCs.
+Feel free to fold these fixups with the related changes if you wish.
 
-Thanks,
-Neil
+Jerome Brunet (2):
+  arm64: dts: meson: g12a: fix clk_msr node
+  soc: amlogic: clk-measure: fix-up some clock definitions
 
-The following changes since commit bfeffd155283772bbe78c6a05dec7c0128ee500c:
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 8 ++++----
+ drivers/soc/amlogic/meson-clk-measure.c     | 8 +++++---
+ 2 files changed, 9 insertions(+), 7 deletions(-)
 
-  Linux 5.0-rc1 (2019-01-06 17:08:20 -0800)
+-- 
+2.20.1
 
-are available in the Git repository at:
-
-  git://github.com/BayLibre/clk-meson.git tags/tags/meson-clk-5.1
-
-for you to fetch changes up to 6682bd4d443fad802e11a0a39332025cdfbf5108:
-
-  clk: meson: factorise meson64 peripheral clock controller drivers (2019-02-04 09:52:11 +0100)
-
-----------------------------------------------------------------
-- add 32k clock generation for AXG
-- add support for the Mali GPU clocks for Meson8
-- claim input clocks through DT for AXG and GXBB
-- rework drivers dependencies among meson clock drivers
-- add G12A EE clock controller driver
-
-----------------------------------------------------------------
-Jerome Brunet (14):
-      dt-bindings: clk: meson: add ao slow clock path ids
-      clk: meson: clean-up clock registration
-      clk: meson: add dual divider clock driver
-      clk: meson: gxbb-ao: replace cec-32k with the dual divider
-      clk: meson: axg-ao: add 32k generation subtree
-      clk: meson: gxbb: claim clock controller input clock from DT
-      clk: meson: axg: claim clock controller input clock from DT
-      clk: meson: ao-clkc: claim clock controller input clocks from DT
-      clk: export some clk_hw function symbols for module drivers
-      clk: meson: use CONFIG_ARCH_MESON to enter meson clk directory
-      clk: meson: axg-audio does not require syscon
-      clk: meson: rework and clean drivers dependencies
-      clk: meson: pll: update driver for the g12a
-      clk: meson: factorise meson64 peripheral clock controller drivers
-
-Jian Hu (2):
-      dt-bindings: clk: meson: add g12a periph clock controller bindings
-      clk: meson: g12a: add peripheral clock controller
-
-Martin Blumenstingl (2):
-      clk: meson: meson8b: use a separate clock table for Meson8
-      clk: meson: meson8b: add the GPU clock tree
-
- .../bindings/clock/amlogic,gxbb-clkc.txt           |    1 +
- drivers/clk/Makefile                               |    2 +-
- drivers/clk/clk.c                                  |    3 +
- drivers/clk/meson/Kconfig                          |   99 +-
- drivers/clk/meson/Makefile                         |   29 +-
- drivers/clk/meson/axg-aoclk.c                      |  193 +-
- drivers/clk/meson/axg-aoclk.h                      |   13 +-
- drivers/clk/meson/axg-audio.c                      |    5 +-
- drivers/clk/meson/axg.c                            |   69 +-
- drivers/clk/meson/clk-dualdiv.c                    |  138 ++
- drivers/clk/meson/clk-dualdiv.h                    |   33 +
- drivers/clk/meson/clk-input.c                      |    7 +-
- drivers/clk/meson/clk-input.h                      |   19 +
- drivers/clk/meson/clk-mpll.c                       |   12 +-
- drivers/clk/meson/clk-mpll.h                       |   30 +
- drivers/clk/meson/clk-phase.c                      |   75 +-
- drivers/clk/meson/clk-phase.h                      |   26 +
- drivers/clk/meson/clk-pll.c                        |  216 +-
- drivers/clk/meson/clk-pll.h                        |   49 +
- drivers/clk/meson/clk-regmap.c                     |    5 +
- drivers/clk/meson/clk-regmap.h                     |   20 +
- drivers/clk/meson/clk-triphase.c                   |   68 -
- drivers/clk/meson/clkc.h                           |  127 --
- drivers/clk/meson/g12a.c                           | 2359 ++++++++++++++++++++
- drivers/clk/meson/g12a.h                           |  175 ++
- drivers/clk/meson/gxbb-aoclk-32k.c                 |  193 --
- drivers/clk/meson/gxbb-aoclk.c                     |  268 ++-
- drivers/clk/meson/gxbb-aoclk.h                     |   20 +-
- drivers/clk/meson/gxbb.c                           |  296 ++-
- drivers/clk/meson/meson-aoclk.c                    |   54 +-
- drivers/clk/meson/meson-aoclk.h                    |   13 +-
- drivers/clk/meson/meson-eeclk.c                    |   63 +
- drivers/clk/meson/meson-eeclk.h                    |   25 +
- drivers/clk/meson/meson8b.c                        |  352 ++-
- drivers/clk/meson/meson8b.h                        |    9 +-
- drivers/clk/meson/parm.h                           |   46 +
- drivers/clk/meson/sclk-div.c                       |   10 +-
- drivers/clk/meson/{clkc-audio.h => sclk-div.h}     |   16 +-
- drivers/clk/meson/vid-pll-div.c                    |   10 +-
- drivers/clk/meson/vid-pll-div.h                    |   20 +
- include/dt-bindings/clock/axg-aoclkc.h             |    7 +-
- include/dt-bindings/clock/g12a-clkc.h              |  135 ++
- include/dt-bindings/clock/gxbb-aoclkc.h            |    7 +
- 43 files changed, 4572 insertions(+), 745 deletions(-)
- create mode 100644 drivers/clk/meson/clk-dualdiv.c
- create mode 100644 drivers/clk/meson/clk-dualdiv.h
- create mode 100644 drivers/clk/meson/clk-input.h
- create mode 100644 drivers/clk/meson/clk-mpll.h
- create mode 100644 drivers/clk/meson/clk-phase.h
- create mode 100644 drivers/clk/meson/clk-pll.h
- delete mode 100644 drivers/clk/meson/clk-triphase.c
- delete mode 100644 drivers/clk/meson/clkc.h
- create mode 100644 drivers/clk/meson/g12a.c
- create mode 100644 drivers/clk/meson/g12a.h
- delete mode 100644 drivers/clk/meson/gxbb-aoclk-32k.c
- create mode 100644 drivers/clk/meson/meson-eeclk.c
- create mode 100644 drivers/clk/meson/meson-eeclk.h
- create mode 100644 drivers/clk/meson/parm.h
- rename drivers/clk/meson/{clkc-audio.h => sclk-div.h} (54%)
- create mode 100644 drivers/clk/meson/vid-pll-div.h
- create mode 100644 include/dt-bindings/clock/g12a-clkc.h
 
 _______________________________________________
 linux-amlogic mailing list
