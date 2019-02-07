@@ -2,84 +2,101 @@ Return-Path: <SRS0=fppM=QO=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 75B94C282C4
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Feb 2019 17:30:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5D0BEC282C2
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Feb 2019 19:30:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 482CC218D3
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Feb 2019 17:30:36 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2BA722175B
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Feb 2019 19:30:42 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="baV1qC53";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="E/G1eVpc"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 482CC218D3
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Kc0QVnH2"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2BA722175B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=gmx.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=LP1RP5M4IndKrt1Ja+UWNmwTyYaRyE09JsFWtgArMBg=; b=baV1qC53hhvOjI
-	qB9Bp6+RncaoAoBIVBhxO0E5o7q5p+1VdaXd8HOaa8Egc6bq9mFquhEULmMznEcrmjGP/reo6JtOd
-	pYTkMoTfGD7fKJG1YeHdKUZKE8rd3L0ZxSNX1eVrVQ21+sbSGAfsmmOPCl9I+Hs10icCkLEzNoncc
-	bp4dEA4XGZfTeia9JXzcl7r5NEDecJ5qrKVAJR9nVTT5U/6YvoGzvBuEyEw3v3YzYhVOyBCTTxXNp
-	wRnAnaE9+CrRq4HwkV3A5RgXVnSqbQgFFy0fXIx8NtDpDv/W89Bv0n53l5pZJKOm4oEnNJuBEIwio
-	kgpzKbqvk6t1OvjIMbgg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=tk5WqL3SmT8P3pbQcNZibLAW6lejeG2JgaVQeTfrRaY=; b=Kc0QVnH2tFPCbI
+	e1rR4TT6CbWV8ncBv+64+1JucF25VSd0+YCeY7Zm4li7mAA09MXryv5sWSwRsT+VB3qbnYy7DiXmW
+	G899kxDn5FdIy/VjgatMbf0m5cuHMCFBE8q3KQpL0HnhRosSW2yT+q9iPuqBeF4RA6bm03RK/ZyNL
+	2I0YZccbHwxZOy6uy1S/7vZtGNXelIakgomB5Ifson5sFQqi0/JI2SEvviFgBP9bTnXF13/Tc2jhm
+	Lm6T72iLyK9YRjgq2D5nvr2tG3ChqIX4nEAlKXuYBevLyliDB7Ufz5ZI9VE3HsSczwazPCZRVOQwu
+	AAYzJBG4mKIYKvttT6BQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1grnVM-00045f-VG; Thu, 07 Feb 2019 17:30:28 +0000
-Received: from mail-ed1-x542.google.com ([2a00:1450:4864:20::542])
+	id 1grpNa-0005pQ-6g; Thu, 07 Feb 2019 19:30:34 +0000
+Received: from mout.gmx.net ([212.227.17.21])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1grnVA-0003w6-QW
- for linux-amlogic@lists.infradead.org; Thu, 07 Feb 2019 17:30:19 +0000
-Received: by mail-ed1-x542.google.com with SMTP id g4so556715eds.4
- for <linux-amlogic@lists.infradead.org>; Thu, 07 Feb 2019 09:30:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version;
- bh=goV4oeui+QjZXGASbWEnmi9tnJ5aRRm3TV6+qGVkZCw=;
- b=E/G1eVpclGbPqa6wEwR+w2v8D7LjGwl1tAIfNRowttC7eNOQpkPu667FDpDXYrNELx
- 5QCX2dVTrTZAu3VHSS9v+/14Q4WKrnAktZHQnCYhQ9zBaPPPCYy9otw/JYxe/dwQq2n1
- pbNLeVX7sgvao51xy6MK8X5Jz3EWf1YxW0Nju7yEqa7N0LhU7Ji2ExddPoPXbJtKiaIS
- C3q7393v1NxEk8BRT/i5rsTfe5VLQs5ZGYMBdVXZNCf3FMGV0d2HfSXa5yoMzVsLCtsN
- fjs2CJXo59KZTAgbsHExzLwyNorAH2U6mcTEhqaxjIWdMbJ4Q+1IISoBjmkkhzDbX3zZ
- yPEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version;
- bh=goV4oeui+QjZXGASbWEnmi9tnJ5aRRm3TV6+qGVkZCw=;
- b=lP4wTZhqMAIXJy784iTY3VmzAEIRtjrGnoH3dCk0MJu8b2Aka/kkINE3tyUfwXDgD0
- b22avqJuHFaC/Hs29DfyjyrHZZHeIZR3zTXx1liJTwVqBoj7Gcun2n6QP+ujKFpu1GKz
- GUYR3jmFRsfFYtGaY+Nz+DZ9W/mIw7m+VrCfVx5lf+ke1GCPo7oXsaS9fbAAj8JIvnIZ
- np69E7NNXy+1C7gvXiT2HeIvNUUc6qRIC08HiSBOx2RsdV6kcMkOEF/AnAcMXRF/yS7r
- cNa+1CSsvsGPlJttNt6fHIBgQ+nZeqI7zKjbOn++Ev/q+1/12pPDAbUbJCBGeV199cjo
- 1JAg==
-X-Gm-Message-State: AHQUAubGtIeRkTc6kKGGG1WUHN9CZXZLhGfRysi5rn8ovN3utg59/UrX
- 80g+tzoYiPnMt/U0A6M2yEt0YA==
-X-Google-Smtp-Source: AHgI3Ia1KW0iSGh1qbZtY6aDlkL1lwFh8uSLrKbWxO0couClL/4F1IkZWaqSpRyPGLODpi3nwn7HSg==
-X-Received: by 2002:a17:906:12cf:: with SMTP id
- l15mr7724322ejb.31.1549560614919; 
- Thu, 07 Feb 2019 09:30:14 -0800 (PST)
-Received: from localhost ([2620:10d:c092:180::1:a0f9])
- by smtp.gmail.com with ESMTPSA id w27sm4275214eje.76.2019.02.07.09.30.13
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 07 Feb 2019 09:30:13 -0800 (PST)
-From: Julien Masson <jmasson@baylibre.com>
-To: Kevin Hilman <khilman@baylibre.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: [PATCH v2] tty: serial: meson_uart: Add support for kernel debugger
-Date: Thu,  7 Feb 2019 18:11:29 +0100
-Message-ID: <86k1ibv74r.fsf@baylibre.com>
+ id 1grpNW-0005p7-1O
+ for linux-amlogic@lists.infradead.org; Thu, 07 Feb 2019 19:30:32 +0000
+Received: from [10.10.11.100] ([95.88.178.171]) by mail.gmx.com (mrgmx103
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 0Lg1QN-1hTyDu22W3-00pcX0; Thu, 07
+ Feb 2019 20:30:21 +0100
+Subject: Re: stmmac / meson8b-dwmac
+To: Emiliano Ingrassia <ingrassia@epigenesys.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <a38e643c-ed9f-c306-cc95-84f70ebc1f10@gmx.de>
+ <CAFBinCDebPOsmrhSXecx48nGWHh7g_OGPbr1Y0M+n_v9Ht91ew@mail.gmail.com>
+ <e05b7448-cd95-cdeb-c88d-3a324d5f1ddc@gmx.de>
+ <CAFBinCAkXN42piiYsc_Qmuqv0w4dbK86gq10AbZyrB-zKuh9hg@mail.gmail.com>
+ <20190206103645.GA2482@ingrassia.epigenesys.com>
+From: Simon Huelck <simonmail@gmx.de>
+Openpgp: preference=signencrypt
+Autocrypt: addr=simonmail@gmx.de; prefer-encrypt=mutual; keydata=
+ mQGiBD/bCNARBACE3URTBXZ/AA03NwRNtz03ewQn3uhvYSTjfqgplBtb3dfC4a79BXDRIWVX
+ xPGH9Ewios1c8gMu3/RI2l3JzXoISfw5b0L/5igyPKV+sGuUA2FD27kYtPaaF/TqEWIv+Yxp
+ 9DCjCX5IQSYyvCfcxcyEkY8eVWxnaAlV3zKRR8wn0wCglWIOtAugBcg1YXmoLpFZE8Ca0fkD
+ /jG+n4U9DPfCgkbgjQ/dv2W2a0ZDHccA9N8AW/FTXGyXXO0e7ql9/kORJnp7jD7/Z9HCKpeS
+ HajgxuX9Vhfx6bH1dAMfsg88+K8pOO9oulNX1+YffQyZWOfdbmnZDUzBt9HKR9Wgh8WoIyw9
+ TVluclzn6hYz+z9jbqHWMOsiCu8zA/0apHbW8vaIDT4+nNUxNdqU1TKa9kW47vNjwYYL0jZW
+ TXNjDIRpqJVSugYVc/U847GoVoxyvtzre4TAbBV8h0BAOeMdxI5En67RGWzeNaMDJV1bwapj
+ qdfj3e/X8rnGIfwz47rwztLNKoAIUlKrATwroiI7UNT+84G7H5qalu+Eu7QqU2ltb24gSHVl
+ bGNrIDxzaW1vbi5odWVsY2tAZ29vZ2xlbWFpbC5jb20+iGIEExECACIFAlH7wL4CGyMGCwkI
+ BwMCBhUIAgkKCwQWAgMBAh4BAheAAAoJEJNSVvfBt05KlBQAn1JDO7e4H3N0WFJkZnxvObhk
+ 2kiAAJwPdDd6T1TuGo4iDIENRhAX4AH2KrkBDQQ/2wjSEAQAj6JnDDQzIIYzPGsrHRvaq8vw
+ n8VrZCbPRvkngGvtQIss5pH/MLeu9jLepDGO9WHByFSg4QJh8cINYwTLtX8Bu0naA6ZI46hn
+ GyfxdRlxSU9dRqHpU3G0tymL1w3AER6aVSfdXQTmFgf61anKunbIIptkqzZurkjnxkwCE/RM
+ RscABA0D/jhglpj8siSIAxs8XLVfKJrjzbYM9/wS0NfdSXBeQJiYtKrY0WMNsqjY50wDnLMg
+ anORN/odT6mCwKI6xChzxEv/ta4+teZl92aitziSuqmtl+jm23DpOcUC7UBz2W1+TvnrhPR+
+ MKu8pPKAgsE8AI5uwCcNJx7V3bczYkIGaXybiEYEGBECAAYFAj/bCNIACgkQk1JW98G3Tko6
+ 3wCfZBpZAUhUz/Rcp2rfg/YSKl4YLlEAoJN7e322OvHc2GQ9n1+tKLi6Og4c
+Message-ID: <3001f244-8904-1e89-9595-62a65a7b32ae@gmx.de>
+Date: Thu, 7 Feb 2019 20:30:19 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.5.0
 MIME-Version: 1.0
+In-Reply-To: <20190206103645.GA2482@ingrassia.epigenesys.com>
+X-Provags-ID: V03:K1:NQFMDHsQD1SwzfhOukAtggDqCziiGLTD+zWaEGiuRWbHPmlErml
+ D6Ucw9rpG+DxZxcqYDaZ8Z5DMvS5RI01hX9T3LP2FmlI2dkUmEg7d9wB44AVbMS6rcnXsu2
+ y6j0lc8qnqqeaIs43e/E6RhVPr/xeacnOSTxzSAlZ/fWoFYDuZLNRcrW5icyJ/0NdQdLEl5
+ FCxRdh0B7DWC+ar2YtwnA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:dwzD9fBLulo=:O5ntJFASFBkbuvVy3BKqGt
+ pYDjvnh10+1g5500srH6zbGmVAg1/PKsSFlFwzBnYFgiEvQoCsFwagocsZGMTpwcyeNFkOKuc
+ RODaNw1YmuVZId7sTSTM3vjdW8XcGLmGxXSeKDb+IKvybBa/VSv+SK3QE9rupceXHl5pfaohl
+ 3gkQlvAyIAoNi7SIrv/78fUNo2wjP211lZIbxetlMKLKY3xLikdMQBykF5H8OQoTzLDTsUixl
+ IFB4HXmq6aF5HcdIa/4Ym6S3Zt+bqkLrEhRvtWIdZaja8jLP+p65SZ7LzQI33AE99DUdW5FaY
+ yyOsSbam8GPZHhLZtny5dYhQqrelJ2x6ifcVNO6/PVZ//Fv6yVsUZbUKuyqSl9Eo2R5Cf7y+v
+ sCjZq38CvopavzJGEgeG7GaUcrA5RViK1uZuKz9Mc5Xg5mvnpZl07FrwreQtPBUylVxU38Pv5
+ NMHMufPh0atNUClUkTrYiV1PiWuk+4FQgCL1TXzWoN9akCy0WAzDjZ0YhmyvBbIhdPJrThP1/
+ YQEjyrqSwhAC+rQ1VjbLGW/4Wg5cfh899aipmPzapB0OsTIWx/PfzpH60SREtP5O4sdkVUhtv
+ HqICECVEn/1osHp0WFNPyV1wUwFLxF1l7MjnEDU6jmHvZT0wkLahl9lh46Knbv0chFakTqVU9
+ peW9trsi40fSN1RI9MHkb+1lll52K5IVLhdmHQyH4DQ8V4+awHZRTOixNe0guqHWfndD6iBQm
+ b/hWevd5c+iG/MLUs+Cr0jht7YFpVpPECqJe6pt5Tg13y+Cb+YbvjB9TouAwOEsGHMlw5zGDD
+ r2sAsodoiaxPJ4TSWPX/B+oj+h37DnH5eMM1BEZ18xnr2dYzaZN5YzqzVOCm0EFvlXC2voXr4
+ eInskLdgrygRSnev9CL5w6QpcxpzNIKkxP66NAj+DUsbJ4FfS3KvUT2iECkq+EmOjp8KxdX/A
+ F+YSHn54ETA==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190207_093016_870550_05A6931D 
-X-CRM114-Status: GOOD (  13.29  )
+X-CRM114-CacheID: sfid-20190207_113030_382035_F1159065 
+X-CRM114-Status: GOOD (  15.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -91,130 +108,118 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Julien Masson <jmasson@baylibre.com>, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org, Jiri Slaby <jslaby@suse.com>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, netdev@vger.kernel.org,
+ alexandre.torgue@st.com, Gpeppe.cavallaro@st.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The kgdb invokes the poll_put_char and poll_get_char when communicating
-with the host. This patch implement the serial polling hooks for the
-meson_uart to be used for KGDB debugging over serial line.
+Hi Guys,
 
-Signed-off-by: Julien Masson <jmasson@baylibre.com>
----
 
-Changes since v1 [0]:
-* Use readl_poll_timeout_atomic instead of looping with read + cpu_relax
-  -> read every 5 usecs during 1 msec
-* add some comments
+i can confirm better performance with 4.14.29
 
-[0]: https://lore.kernel.org/lkml/1549015162-17418-1-git-send-email-jmasson@baylibre.com
+- ~900 MBits with iperf2 in one way
+-~ 500 - 600MBits with iperf2 in duplex in both directions
 
- drivers/tty/serial/meson_uart.c | 65 +++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 65 insertions(+)
 
-diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-index 8a84259..bcff572 100644
---- a/drivers/tty/serial/meson_uart.c
-+++ b/drivers/tty/serial/meson_uart.c
-@@ -14,6 +14,7 @@
- #include <linux/delay.h>
- #include <linux/init.h>
- #include <linux/io.h>
-+#include <linux/iopoll.h>
- #include <linux/module.h>
- #include <linux/kernel.h>
- #include <linux/of.h>
-@@ -75,6 +76,8 @@
- #define AML_UART_PORT_NUM		6
- #define AML_UART_DEV_NAME		"ttyAML"
- 
-+#define AML_UART_POLL_USEC		5
-+#define AML_UART_TIMEOUT_USEC		1000
- 
- static struct uart_driver meson_uart_driver;
- 
-@@ -426,6 +429,64 @@ static void meson_uart_config_port(struct uart_port *port, int flags)
- 	}
- }
- 
-+#ifdef CONFIG_CONSOLE_POLL
-+/*
-+ * Console polling routines for writing and reading from the uart while
-+ * in an interrupt or debug context (i.e. kgdb).
-+ */
-+
-+static int meson_uart_poll_get_char(struct uart_port *port)
-+{
-+	u32 c;
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&port->lock, flags);
-+
-+	if (readl(port->membase + AML_UART_STATUS) & AML_UART_RX_EMPTY)
-+		c = NO_POLL_CHAR;
-+	else
-+		c = readl(port->membase + AML_UART_RFIFO);
-+
-+	spin_unlock_irqrestore(&port->lock, flags);
-+
-+	return c;
-+}
-+
-+static void meson_uart_poll_put_char(struct uart_port *port, unsigned char c)
-+{
-+	unsigned long flags;
-+	u32 reg;
-+	int ret;
-+
-+	spin_lock_irqsave(&port->lock, flags);
-+
-+	/* Wait until FIFO is empty or timeout */
-+	ret = readl_poll_timeout_atomic(port->membase + AML_UART_STATUS, reg,
-+					reg & AML_UART_TX_EMPTY,
-+					AML_UART_POLL_USEC,
-+					AML_UART_TIMEOUT_USEC);
-+	if (ret == -ETIMEDOUT) {
-+		dev_err(port->dev, "Timeout waiting for UART TX EMPTY\n");
-+		goto out;
-+	}
-+
-+	/* Write the character */
-+	writel(c, port->membase + AML_UART_WFIFO);
-+
-+	/* Wait until FIFO is empty or timeout */
-+	ret = readl_poll_timeout_atomic(port->membase + AML_UART_STATUS, reg,
-+					reg & AML_UART_TX_EMPTY,
-+					AML_UART_POLL_USEC,
-+					AML_UART_TIMEOUT_USEC);
-+	if (ret == -ETIMEDOUT)
-+		dev_err(port->dev, "Timeout waiting for UART TX EMPTY\n");
-+
-+out:
-+	spin_unlock_irqrestore(&port->lock, flags);
-+}
-+
-+#endif /* CONFIG_CONSOLE_POLL */
-+
- static const struct uart_ops meson_uart_ops = {
- 	.set_mctrl      = meson_uart_set_mctrl,
- 	.get_mctrl      = meson_uart_get_mctrl,
-@@ -441,6 +502,10 @@ static const struct uart_ops meson_uart_ops = {
- 	.request_port	= meson_uart_request_port,
- 	.release_port	= meson_uart_release_port,
- 	.verify_port	= meson_uart_verify_port,
-+#ifdef CONFIG_CONSOLE_POLL
-+	.poll_get_char	= meson_uart_poll_get_char,
-+	.poll_put_char	= meson_uart_poll_put_char,
-+#endif
- };
- 
- #ifdef CONFIG_SERIAL_MESON_CONSOLE
--- 
-2.7.4
+This wasnt the case with 4.17.9, not with 4.18, 4.19 or the 5.0 series.....
+
+
+How can i help further ?
+
+regards,
+Simon
+
+
+Am 06.02.2019 um 11:36 schrieb Emiliano Ingrassia:
+> Hi Martin, Hi Simon,
+>
+> On Mon, Feb 04, 2019 at 03:34:41PM +0100, Martin Blumenstingl wrote:
+>> On Thu, Jan 17, 2019 at 10:23 PM Simon Huelck <simonmail@gmx.de> wrote:
+>> [...]
+>>>>> I got problems with my ODROID c2 running on 4.19.16 ( and some releases
+>>>>> earlier ). the stmmac / dwmac driver doesnt provide the 800M/900M
+>>>>> performance that i was used to earlier.
+>>>>>
+> Simon, did you ever reach 1 Gbps full duplex speed?
+> If yes, what was the kernel version did you use?
+>
+>>>>> Now im stuck near 550M/600M in the same environment. but what really
+>>>>> confuses me that duplex does hurt even more.
+>>>> interesting that you see this on the Odroid-C2 as well.
+>>>> previously I have only observed it on an Odroid-C1
+>>>>
+>>>>> PC --- VLAN3 --> switch --VLAN3--> ODROID
+>>>>>
+>>>>> NAS <-- VLAN1 -- switch <-- VLAN1-- ODROID
+>>>>>
+>>>>>
+>>>>> this means when im doing a iperf from PC to NAS, that my ODROID has load
+>>>>> on RX/TX same time (duplex). this shouldnt be an issue , all is 1GBits
+>>>>> FD. And in the past that wasnt an issue.
+>> +Cc Emiliano who has seen a similar duplex issue on his Odroid-C1: [0]
+>> (please note that all kernels prior to v5.1 with the pending patches
+>> from [1] applied are only receiving data on RXD0 and RXD1 but not on
+>> RXD2 and RXD3)
+>>
+>> Emiliano, can you confirm the duplex issue observed by Simon is
+>> similar to the one you see on your Odroid-C1?
+>>
+> It could be but, if I understand correctly, Simon is limited in
+> speed also in half duplex transmission (~550/600 Mbps), while we can
+> reach at least 900 Mbps.
+>
+>>>>>
+>>>>> Now what happens:
+>>>>>
+>>>>> - benchmark between PC - ODROID is roughly 550M
+>>>>>
+>>>>> - benchmark between NAS - ODROID is roughly 550M
+>>>>>
+>>>>> - benchmark between PC - NAS is only around 300M
+>>>>>
+>>>>>
+>>>>> and like i said i was easliy able to hit 800 or even 900M to my NAS
+>>>>> earlier. I applied some .dtb fixes for interrupt levels for the
+>>>>> meson-gx.dtsi and meson-gxbb-odroid-c2.dtb, which will be mainlined ,
+>>>>> but the effect stayed identical.
+>>>> good that you have the interrupt patches already applied
+>>>> I believe it don't fix any performance issues - it's a fix for the
+>>>> Ethernet controller seemingly getting "stuck" (not processing data
+>>>> anymore). however, that already rules out one potential issue
+>>>>
+>>>>> are you aware of this problem ? Earlier kernel versions were all
+>>>>> perfectly fine and i stepped ( self compiled) kernel through all major
+>>>>> releases since odroid c2 was mainlined.
+>> Guiseppe, Alexandre: what kind of data do you need from us if we see
+>> the speeds drop (in both directions) when we send and receive at the
+>> same time?
+>>
+>> [...]
+>>> the problem is that i dont have these kernel sources anymore :-(. but i
+>>> can provide some testing and numbers. maybe i dig if i got these kernel
+>>> configs somewhere around but i did not change much during migrating
+>> do you remember the kernel version where it worked fine?
+>>
+>>> im using a zyxel gs1900-8 switch and a qnap ts231p , and as i said i
+>>> didnt change my setup. i was able to hit 100MByte/s from my NAS , so
+>>> close to the benchmarks of 900MBit/s
+>> I typically only do small transfers or I have traffic only in one direction.
+>> thus it's likely that I missed this in my own tests
+>>
+>>
+>> Regards
+>> Martin
+>>
+>>
+>> [0] http://lists.infradead.org/pipermail/linux-amlogic/2018-December/009679.html
+>> [1] https://patchwork.kernel.org/cover/10744905/
+> Regards,
+>
+> Emiliano
+
 
 
 _______________________________________________
