@@ -1,93 +1,90 @@
-Return-Path: <SRS0=fppM=QO=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=3vaB=QP=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 80168C282C2
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Feb 2019 20:11:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 65189C282C2
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Feb 2019 00:32:13 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4AFB72080F
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Feb 2019 20:11:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 319AE2080D
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Feb 2019 00:32:12 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="l7bFRJt2";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="sFzt0pva"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4AFB72080F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="s4TNXtLN";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="wxLlntPq"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 319AE2080D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:Subject:To:
-	MIME-Version:From:Date:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DAsvFcJnvALqvHMA7n252RTF/ioF8NFZUEv4oivmf/w=; b=l7bFRJt2QVjV5R
-	UNUXNtLW7o/lVlLoVUaZZxEmOTSoZ7i9EY1XqSb2utxQZspriVif1KDy/JVvOgLLpg1jccDe5ZCeM
-	9aYDwQysoiSFOMWzstJlUJIrzbasXkdN9gGzdnVp573XnRrNIEZpxaAcj/QYzj9E7hnO8TFMdh9Gs
-	2g8dNbdSJaU+2Lbb5E2xaaQUyK+L8w0Negu+ape2NGcCRClcC7ZDKjlnhlmbA+qks9m8/LPmIQJYC
-	pTsyLVywr0rPKRk3hsCyTG10lDHNp2unNYMY7GQrxr7CHRdjwWaJL3adHFHnDrjprLOoaG8upTO+u
-	VYn9RF6l664H+gIcY+lw==;
+	List-Owner; bh=1/bQWkOTYfUd6DUwgPsKb9lTgOzigo4eu7BEeo3MiaU=; b=s4TNXtLN82rAVC
+	XwdnEONPoLKLborsrh/h6Mb/TRG5sy3+tGe5PkRYfQkNbdrwuITMtqAjzzum3/qMFXieAHfkzpDXv
+	63PtkPs3ytOrYPor+Xt6KY+skyu6ZXM+dpFyx/iTDS9v7U57/32DpsB/o6xFP2bmyPbPFbPZzZOEq
+	ItGjff1Mf+VBSs4qPzF+44lTL/VNVsizLa7e3VcWIfD0YpB8ryIc+pGq2i29J65HWz3OsVVQv5JH9
+	mQq3z9YCkBgRYyLKb5mQIP3X2+BCykXKNAVkNxdAlRJrEN9U3QbYd8WvFBAzPZ+lsrqixllUvZdAJ
+	hPHlofkZvRzRESnoz99w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1grq0r-0000Ip-OI; Thu, 07 Feb 2019 20:11:09 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1gru5J-0002P7-BI; Fri, 08 Feb 2019 00:32:01 +0000
+Received: from mail-pg1-x543.google.com ([2607:f8b0:4864:20::543])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1grq0d-00007M-DG
- for linux-amlogic@lists.infradead.org; Thu, 07 Feb 2019 20:10:57 +0000
-Received: by mail-wr1-x441.google.com with SMTP id v13so1241241wrw.5
- for <linux-amlogic@lists.infradead.org>; Thu, 07 Feb 2019 12:10:53 -0800 (PST)
+ id 1gru3u-00017H-H8
+ for linux-amlogic@lists.infradead.org; Fri, 08 Feb 2019 00:30:58 +0000
+Received: by mail-pg1-x543.google.com with SMTP id v28so754513pgk.10
+ for <linux-amlogic@lists.infradead.org>; Thu, 07 Feb 2019 16:30:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:date:from:user-agent:mime-version:to:cc:subject
- :references:in-reply-to:content-transfer-encoding;
- bh=Ck/ivAOI6YZb4ffmZBEVM0UCgiu1gNXYgsW0Qt7/Rms=;
- b=sFzt0pvanDFTGj4jnduJ9ugaudGws+XUzChJhp1JoJHy23W95TdCCQb7V7BnK2VXaZ
- DvYH7ZiLTvnXmO0uLGA3qW+2m7MCvThnvRMoUHWfu9eZ3UVafBbU2c36+Kv0EgquMmer
- C/TT8rNcnQvCgX5MFqzLw5BKkZSURfa8XFLuicReYga64+FWdkbGm0XKPfkdjcMiTR2U
- 9+1JNUNZPfNd/moB3DszZpdjTDdaupgPVZJKkhJMxUvh3a3q2UmwguiKTPooHDRT4DH+
- 9v9oWIlV030MCwgThjuNPb6k+e9IsdNpdEQuLmKe7hFENKmlYaU5kFu28pG69WPbikKr
- ceuA==
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=7S52tSANvStNoXW0WQ36+UsE+KrxcVitS5RILjsG2Rs=;
+ b=wxLlntPqF3hw5HcVUT4Uo8fC0zp8kVBeWdsXIK8VgDh0wHsBNx1SL+W2ZcrFugtQwj
+ 34dEwKPa5aGl7JeQz4Zr3e1KeeQoKS4PsdyRxPa5F1b6fFW3hez99X9GftDbqDO44udW
+ EeN13mmEb6/rplIGjSCTMzdFOS7McaHduPfgKOW0r4zY1Oc+RVaFHgCVUnhJCl9XjErQ
+ UAZw2LoS9xN1z7U/RcQKb4DJDWo/BITDoELtwXbnvwOBfqKDA7rJ46FL8OG6IZ8BOPlh
+ g8iV1j2Bmqhn6FznMKS1Xe4unyYrVF+6gAnvT7GRTsbkV0nOUAB2dphhEjAp0+7w3fPu
+ T8lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
- :cc:subject:references:in-reply-to:content-transfer-encoding;
- bh=Ck/ivAOI6YZb4ffmZBEVM0UCgiu1gNXYgsW0Qt7/Rms=;
- b=P3P1d8wbia7IcVIG/Ntw5pZeKHCoeXQJZPGSXxp73BoBwRUHYQuOyKssLXnZtF4JVC
- xgJPS2CjVkvIoBrkv6sqgAuidLujHtcTHNZd3zUupVf6y52b5ilhDDPebXeqwkIQHcMF
- QGfmegF0LNRJaDd+vW445OYE0jdIgMnOULqRvioZXvWIpVCrNG3ZRb+0EwPsRMUyymlO
- QT/+w7EVFXj4ltG/xjPDljZVSZClnGxBQ5QcdF5OkrQkeDC4kIEnKq8/MLhn/xTu1m1x
- 2y+CkC6xEs3Uo6HbAxcqEBTSbpEcTURJ812nvK5tArZBVW1+pZIsWH6wRVbjIMa+M6Ay
- izng==
-X-Gm-Message-State: AHQUAubDqTKFMHZf/5bLBBEM6Lend4tQkDMxbichsJGXl1hbvD4efd38
- Nw14VzEKfF6yHKWT93KXcUJhRg==
-X-Google-Smtp-Source: AHgI3IZYQqgnqtTsRkvfKurjqv9pgAuxMfR8VAb+RAFqRGCPqUsQCM+FVtobKQXDw9jTbMAlJapfIQ==
-X-Received: by 2002:adf:c982:: with SMTP id f2mr8576140wrh.98.1549570252297;
- Thu, 07 Feb 2019 12:10:52 -0800 (PST)
-Received: from Armstrongs-MacBook-Pro.local
- (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr. [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id a15sm12008922wrx.58.2019.02.07.12.10.51
- (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Thu, 07 Feb 2019 12:10:51 -0800 (PST)
-Message-ID: <5C5C90CA.8050409@baylibre.com>
-Date: Thu, 07 Feb 2019 21:10:50 +0100
-From: Neil Armstrong <narmstrong@baylibre.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13;
- rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=7S52tSANvStNoXW0WQ36+UsE+KrxcVitS5RILjsG2Rs=;
+ b=avteWb4P4aPi2iLCfkYo8TULd8teH/5OqHvkiC7lmfpJmyOwJH5vFrRjCWgrbnetew
+ X+6UPfwaKzsGCDDfPsKbr5BN+dU7eoY4idZ7Xvay4A9DmcFN1urtGCFSfA5v2cv587cS
+ 1tTYU/wan4UUaz7pVMCjkb2qYRASWgGvZHyfrJaZsN5LuSPjfLRjdbYXZl+Evd4Z+4u6
+ 2siaT1M7YEJM7JhR6JlaXIm87RjkCtjLbsy7odmfgQo67phQoNfZ+fiTnSOcgA3wdrSG
+ JpyCc9c68yaw5WTvgQN3S2bzRh+7Ujq+anp6fpf5MJtk1esIRCRojY2hoOdDcE36tGIf
+ GAnw==
+X-Gm-Message-State: AHQUAubA8wmOGcyMjQ3edgJlpgfHc1+vO/JozTNWnzUTU3ShiANT5821
+ Um97IZSK7zqVgE3O9oRFaG4BQwIWqsw=
+X-Google-Smtp-Source: AHgI3Iacn7cfZS8n6FK+FM9vJoGuj1NVYzdEqSF1aCfM0VmNR1kr4OSXJqQlxLJjIhjbrVoVWXeNUg==
+X-Received: by 2002:a63:2c8c:: with SMTP id
+ s134mr16359331pgs.269.1549585833487; 
+ Thu, 07 Feb 2019 16:30:33 -0800 (PST)
+Received: from localhost ([2601:602:9200:a1a5:1818:ce94:f47:7c12])
+ by smtp.googlemail.com with ESMTPSA id a13sm321291pgq.65.2019.02.07.16.30.32
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Thu, 07 Feb 2019 16:30:32 -0800 (PST)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Maxime Jourdan <mjourdan@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH] soc: amlogic: canvas: Fix meson_canvas_get when probe
+ failed
+In-Reply-To: <CAMO6nawKrH3d2X=TikdJy8yjiPyuJJRnpaBjyfPYuRx3d=7vVA@mail.gmail.com>
+References: <20190204094937.22763-1-narmstrong@baylibre.com>
+ <CAMO6nawKrH3d2X=TikdJy8yjiPyuJJRnpaBjyfPYuRx3d=7vVA@mail.gmail.com>
+Date: Thu, 07 Feb 2019 16:30:31 -0800
+Message-ID: <7h4l9fglzs.fsf@baylibre.com>
 MIME-Version: 1.0
-To: Jerome Brunet <jbrunet@baylibre.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: clk: add G12A AO Clock and Reset Bindings
-References: <20190204091331.9298-1-narmstrong@baylibre.com>	
- <20190204091331.9298-2-narmstrong@baylibre.com>
- <2f03298e4d1ca0aa08d683d6db14bc194607b974.camel@baylibre.com>
-In-Reply-To: <2f03298e4d1ca0aa08d683d6db14bc194607b974.camel@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190207_121055_493543_92C8B0F8 
-X-CRM114-Status: GOOD (  16.66  )
+X-CRM114-CacheID: sfid-20190207_163035_007561_AA44C768 
+X-CRM114-Status: GOOD (  13.27  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -99,87 +96,70 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-CgpMZSAwNy8wMi8yMDE5IDE2OjEwLCBKZXJvbWUgQnJ1bmV0IGEgw6ljcml0IDoKPiBPbiBNb24s
-IDIwMTktMDItMDQgYXQgMTA6MTMgKzAxMDAsIE5laWwgQXJtc3Ryb25nIHdyb3RlOgo+PiBBZGQg
-YmluZGluZ3MgZm9yIHRoZSBBbWxvZ2ljIEcxMkEgQU8gQ2xvY2sgYW5kIFJlc2V0IGNvbnRyb2xs
-ZXJzLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBOZWlsIEFybXN0cm9uZyA8bmFybXN0cm9uZ0BiYXls
-aWJyZS5jb20+Cj4+IC0tLQo+PiAgLi4uL2JpbmRpbmdzL2Nsb2NrL2FtbG9naWMsZ3hiYi1hb2Ns
-a2MudHh0ICAgIHwgIDEgKwo+PiAgaW5jbHVkZS9kdC1iaW5kaW5ncy9jbG9jay9nMTJhLWFvY2xr
-Yy5oICAgICAgIHwgNDMgKysrKysrKysrKysrKysrKysrKwo+PiAgaW5jbHVkZS9kdC1iaW5kaW5n
-cy9yZXNldC9nMTJhLWFvY2xrYy5oICAgICAgIHwgMTggKysrKysrKysKPj4gIDMgZmlsZXMgY2hh
-bmdlZCwgNjIgaW5zZXJ0aW9ucygrKQo+PiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGluY2x1ZGUvZHQt
-YmluZGluZ3MvY2xvY2svZzEyYS1hb2Nsa2MuaAo+PiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGluY2x1
-ZGUvZHQtYmluZGluZ3MvcmVzZXQvZzEyYS1hb2Nsa2MuaAo+Pgo+PiBkaWZmIC0tZ2l0IGEvRG9j
-dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Nsb2NrL2FtbG9naWMsZ3hiYi1hb2Nsa2Mu
-dHh0IAo+PiBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9jbG9jay9hbWxvZ2lj
-LGd4YmItYW9jbGtjLnR4dAo+PiBpbmRleCA3OTUxMWQ3YmIzMjEuLmM0MWYwYmU1ZDQzOCAxMDA2
-NDQKPj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Nsb2NrL2FtbG9n
-aWMsZ3hiYi1hb2Nsa2MudHh0Cj4+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
-aW5ncy9jbG9jay9hbWxvZ2ljLGd4YmItYW9jbGtjLnR4dAo+PiBAQCAtMTAsNiArMTAsNyBAQCBS
-ZXF1aXJlZCBQcm9wZXJ0aWVzOgo+PiAgCS0gR1hMIChTOTA1WCwgUzkwNUQpIDogImFtbG9naWMs
-bWVzb24tZ3hsLWFvY2xrYyIKPj4gIAktIEdYTSAoUzkxMikgOiAiYW1sb2dpYyxtZXNvbi1neG0t
-YW9jbGtjIgo+PiAgCS0gQVhHIChBMTEzRCwgQTExM1gpIDogImFtbG9naWMsbWVzb24tYXhnLWFv
-Y2xrYyIKPj4gKwktIEcxMkEgKFM5MDVYMiwgUzkwNUQyLCBTOTA1WTIpIDogImFtbG9naWMsbWVz
-b24tZzEyYS1hb2Nsa2MiCj4+ICAJZm9sbG93ZWQgYnkgdGhlIGNvbW1vbiAiYW1sb2dpYyxtZXNv
-bi1neC1hb2Nsa2MiCj4+ICAtIGNsb2NrczogbGlzdCBvZiBjbG9jayBwaGFuZGxlLCBvbmUgZm9y
-IGVhY2ggZW50cnkgY2xvY2stbmFtZXMuCj4+ICAtIGNsb2NrLW5hbWVzOiBzaG91bGQgY29udGFp
-biB0aGUgZm9sbG93aW5nOgo+PiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS9kdC1iaW5kaW5ncy9jbG9j
-ay9nMTJhLWFvY2xrYy5oIGIvaW5jbHVkZS9kdC0KPj4gYmluZGluZ3MvY2xvY2svZzEyYS1hb2Ns
-a2MuaAo+PiBuZXcgZmlsZSBtb2RlIDEwMDY0NAo+PiBpbmRleCAwMDAwMDAwMDAwMDAuLjk5N2Fj
-YTE2Yzk0Zgo+PiAtLS0gL2Rldi9udWxsCj4+ICsrKyBiL2luY2x1ZGUvZHQtYmluZGluZ3MvY2xv
-Y2svZzEyYS1hb2Nsa2MuaAo+PiBAQCAtMCwwICsxLDQzIEBACj4+ICsvKiBTUERYLUxpY2Vuc2Ut
-SWRlbnRpZmllcjogKEdQTC0yLjArIE9SIEJTRC0zLUNsYXVzZSkgKi8KPj4gKy8qCj4+ICsgKiBD
-b3B5cmlnaHQgKGMpIDIwMTYgQmF5TGlicmUsIFNBUwo+PiArICogQXV0aG9yOiBOZWlsIEFybXN0
-cm9uZyA8bmFybXN0cm9uZ0BiYXlsaWJyZS5jb20+Cj4+ICsgKgo+PiArICogQ29weXJpZ2h0IChj
-KSAyMDE4IEFtbG9naWMsIGluYy4KPj4gKyAqIEF1dGhvcjogUWl1ZmFuZyBEYWkgPHFpdWZhbmcu
-ZGFpQGFtbG9naWMuY29tPgo+PiArICovCj4+ICsKPj4gKyNpZm5kZWYgRFRfQklORElOR1NfQ0xP
-Q0tfQU1MT0dJQ19NRVNPTl9HMTJBX0FPQ0xLCj4+ICsjZGVmaW5lIERUX0JJTkRJTkdTX0NMT0NL
-X0FNTE9HSUNfTUVTT05fRzEyQV9BT0NMSwo+PiArCj4+ICsjZGVmaW5lIENMS0lEX0FPX0FIQgkJ
-MAo+PiArI2RlZmluZSBDTEtJRF9BT19JUl9JTgkJMQo+PiArI2RlZmluZSBDTEtJRF9BT19JMkNf
-TTAJCTIKPj4gKyNkZWZpbmUgQ0xLSURfQU9fSTJDX1MwCQkzCj4+ICsjZGVmaW5lIENMS0lEX0FP
-X1VBUlQJCTQKPj4gKyNkZWZpbmUgQ0xLSURfQU9fUFJPRF9JMkMJNQo+PiArI2RlZmluZSBDTEtJ
-RF9BT19VQVJUMgkJNgo+PiArI2RlZmluZSBDTEtJRF9BT19JUl9PVVQJCTcKPj4gKyNkZWZpbmUg
-Q0xLSURfQU9fU0FSX0FEQwk4Cj4+ICsjZGVmaW5lIENMS0lEX0FPX01BSUxCT1gJOQo+PiArI2Rl
-ZmluZSBDTEtJRF9BT19NMwkJMTAKPj4gKyNkZWZpbmUgQ0xLSURfQU9fQUhCX1NSQU0JMTEKPj4g
-KyNkZWZpbmUgQ0xLSURfQU9fUlRJCQkxMgo+PiArI2RlZmluZSBDTEtJRF9BT19NNF9GQ0xLCTEz
-Cj4+ICsjZGVmaW5lIENMS0lEX0FPX000X0hDTEsJMTQKPj4gKyNkZWZpbmUgQ0xLSURfQU9fQ0xL
-ODEJCTE1Cj4+ICsjZGVmaW5lIENMS0lEX0FPX1NBUl9BRENfU0VMCTE2Cj4+ICsjZGVmaW5lIENM
-S0lEX0FPX1NBUl9BRENfRElWCTE3Cj4gCj4gRG8gd2UgbmVlZCB0byBleHBvcnQgdGhlIGludGVy
-bmFsIHBhcnQgb2YgdGhlc2UgY29tcG9zaXRlIGNsb2NrID8KPiBJIGtub3cgdGhlIG90aGVyIEFP
-IGNvbnRyb2xsZXIgZG8gaXQgYnV0IGl0IHdvdWxkIGJlIG5pY2UgdG8gYXZvaWQgaXQsIGxpa2UK
-PiBmb3IgdGhlIEVFIGNvbnRyb2xsZXJzIC4uLiB1bmxlc3MgdGhlcmUgaXMgZ29vZCByZWFzb24g
-b2YgY291cnNlLgoKSGlzdG9yaWNhbGx5LCB3ZSBleHBvc2VkIGV2ZXJ5dGhpbmcgZm9yIHRoZSBB
-TyBjb250cm9sbGVyLAp3ZSBjYW4gZm9sbG93IHRoZSBzYW1lIHNjaGVtZSBhcyB0aGUgRUUgY29u
-dHJvbGxlciBzdGFydGluZwpmcm9tIHRoaXMgb25lLgpUaGVyZSBpcyBubyBzdHJvbmcgcmVhc29u
-IHRvIGV4cG9zZSBldmVyeXRoaW5nLi4uCgpJJ2xsIHJlcy1waW4gYSB2MiB3aXRoIGJvdGggaXNz
-dWVzIGZpeGVkLgoKPiAKPiBTYW1lIGZvciB0aGUgb3RoZXJzIGJlbG93Lgo+IAo+PiArI2RlZmlu
-ZSBDTEtJRF9BT19TQVJfQURDX0NMSwkxOAo+PiArI2RlZmluZSBDTEtJRF9BT19DVFNfT1NDSU4J
-MTkKPj4gKyNkZWZpbmUgQ0xLSURfQU9fMzJLX1BSRQkyMAo+PiArI2RlZmluZSBDTEtJRF9BT18z
-MktfRElWCTIxCj4+ICsjZGVmaW5lIENMS0lEX0FPXzMyS19TRUwJMjIKPj4gKyNkZWZpbmUgQ0xL
-SURfQU9fMzJLCQkyMwo+PiArI2RlZmluZSBDTEtJRF9BT19DRUNfUFJFCTI0Cj4+ICsjZGVmaW5l
-IENMS0lEX0FPX0NFQ19ESVYJMjUKPj4gKyNkZWZpbmUgQ0xLSURfQU9fQ0VDX1NFTAkyNgo+PiAr
-I2RlZmluZSBDTEtJRF9BT19DRUMJCTI3Cj4+ICsjZGVmaW5lIENMS0lEX0FPX0NUU19SVENfT1ND
-SU4JMjgKPj4gKwo+PiArI2VuZGlmCj4+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2R0LWJpbmRpbmdz
-L3Jlc2V0L2cxMmEtYW9jbGtjLmggYi9pbmNsdWRlL2R0LQo+PiBiaW5kaW5ncy9yZXNldC9nMTJh
-LWFvY2xrYy5oCj4+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4+IGluZGV4IDAwMDAwMDAwMDAwMC4u
-YmQyZTIzMzcxMzVjCj4+IC0tLSAvZGV2L251bGwKPj4gKysrIGIvaW5jbHVkZS9kdC1iaW5kaW5n
-cy9yZXNldC9nMTJhLWFvY2xrYy5oCj4+IEBAIC0wLDAgKzEsMTggQEAKPj4gKy8qIFNQRFgtTGlj
-ZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMCsgT1IgQlNELTMtQ2xhdXNlKSAqLwo+PiArLyoKPj4g
-KyAqIENvcHlyaWdodCAoYykgMjAxNiBCYXlMaWJyZSwgU0FTCj4+ICsgKiBBdXRob3I6IE5laWwg
-QXJtc3Ryb25nIDxuYXJtc3Ryb25nQGJheWxpYnJlLmNvbT4KPj4gKyAqLwo+PiArCj4+ICsjaWZu
-ZGVmIERUX0JJTkRJTkdTX1JFU0VUX0FNTE9HSUNfTUVTT05fRzEyQV9BT0NMSwo+PiArI2RlZmlu
-ZSBEVF9CSU5ESU5HU19SRVNFVF9BTUxPR0lDX01FU09OX0cxMkFfQU9DTEsKPj4gKwo+PiArI2Rl
-ZmluZSBSRVNFVF9BT19JUl9JTgkJMAo+PiArI2RlZmluZSBSRVNFVF9BT19VQVJUCQkxCj4+ICsj
-ZGVmaW5lIFJFU0VUX0FPX0kyQ19NCQkyCj4+ICsjZGVmaW5lIFJFU0VUX0FPX0kyQ19TCQkzCj4+
-ICsjZGVmaW5lIFJFU0VUX0FPX1NBUl9BREMJNAo+PiArI2RlZmluZSBSRVNFVF9BT19VQVJUMgkJ
-NQo+PiArI2RlZmluZSBSRVNFVF9BT19JUl9PVVQJCTYKPj4gKwo+PiArI2VuZGlmCj4gCj4gCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxv
-Z2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDov
-L2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+Maxime Jourdan <mjourdan@baylibre.com> writes:
+
+> On Mon, Feb 4, 2019 at 10:49 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>
+>> When probe fails, a platforn_device is still associated to the node,
+>> but dev_get_drvdata() returns NULL.
+>>
+>> Handle this case by returning a consistent error.
+>>
+>> Fixes: d4983983d987 ("soc: amlogic: add meson-canvas driver")
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>  drivers/soc/amlogic/meson-canvas.c | 13 ++++++++++++-
+>>  1 file changed, 12 insertions(+), 1 deletion(-)
+>>
+>> This fix depends on "soc: amlogic: add missing of_node_put()" at [1]
+>>
+>> [1] https://patchwork.kernel.org/patch/10794545/
+>>
+>> diff --git a/drivers/soc/amlogic/meson-canvas.c b/drivers/soc/amlogic/meson-canvas.c
+>> index 87a6c6e23591..151aa84bc593 100644
+>> --- a/drivers/soc/amlogic/meson-canvas.c
+>> +++ b/drivers/soc/amlogic/meson-canvas.c
+>> @@ -51,6 +51,7 @@ struct meson_canvas *meson_canvas_get(struct device *dev)
+>>  {
+>>         struct device_node *canvas_node;
+>>         struct platform_device *canvas_pdev;
+>> +       struct meson_canvas *canvas;
+>>
+>>         canvas_node = of_parse_phandle(dev->of_node, "amlogic,canvas", 0);
+>>         if (!canvas_node)
+>> @@ -63,7 +64,17 @@ struct meson_canvas *meson_canvas_get(struct device *dev)
+>>         }
+>>
+>>         of_node_put(canvas_node);
+>> -       return dev_get_drvdata(&canvas_pdev->dev);
+>> +
+>> +       /*
+>> +        * If priv is NULL, it's probably because the canvas hasn't
+>> +        * properly initialized. Bait out with -EINVAL because, in the
+>
+> Bait -> Bail ?
+
+Fixed this up locally.
+
+[...]
+
+> Thanks for the patch, I missed the fact that a driver could have a
+> pdev yet with a failed probe.
+>
+> Reviewed-by: Maxime Jourdan <mjourdan@baylibre.com>
+
+Queud for v5.1 with Maxime's tag. (branch: v5.1/drivers)
+
+Kevin
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
