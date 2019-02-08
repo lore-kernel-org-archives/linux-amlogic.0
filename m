@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D5C32C282CC
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Feb 2019 19:38:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 19EDCC282CB
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Feb 2019 19:44:31 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A6F7520823
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Feb 2019 19:38:59 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D523C2177B
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Feb 2019 19:44:30 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HlFMUEmB";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="frDJB5yT"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A6F7520823
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Nne9BYNd";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Rxmdn8JV"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D523C2177B
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,63 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mJHIkxFfu5ydOXXl8ODJ4mCexS/bZ5vY+pAHkaIfzwg=; b=HlFMUEmBiZoL0x
-	PvSoBS4bedbZ/Zf6psIJfx8RsbHYQBX2+ucQHMqCIUHFNldjWnRbUo8Juy0R5RR7Pi/bJrAVkJ8oa
-	Fqs+N6T596CIJWT5SV+oVhCFp2puy/JN8ZA0o/pirXZnn/dhaskGtkP4J6XIruyiSR4nBBejoHtcc
-	fXYLN1Sp1qByesr8OapTZbP7dcut8ebvLafq04ozk0BzIeTepRL56dRgQM0Zamq61l90PTB3PERkE
-	gIWSGGfV4wLzlrHByXy7zuzGFHRTkrI+4XPOEMl1wk6diUnb92MazvvFCpPWtocQ+wnBRD/Eg9M7N
-	GYoeUdmCjRZ7b2NV3TWg==;
+	List-Owner; bh=6pCgKdxmYi7p0XuvsxtypoY+EUy6tZY6P4GZjAqDriU=; b=Nne9BYNdx/4NFO
+	rSHj+8PfIHHeg+Pl49HczzqpYdDwXBBndcPGTgY1x6dVAm7A181BRD1XrMlYGb+ItbMPYtXb9Drsm
+	nQC4TcHzPA1L9g7uK18sHP6du3sjmXxHyE0b5g4yKXODY/lpHBdBzgibA7ObkMrq4TkGAc2b6eJy+
+	oNcNDYlLcp/uQftMFD780cW0s11ahoVrbDLqKYjSHhC77GlXq+Ot5cfAmd8mthLcKR1AA8/iBFepu
+	AS4V88rfOgGfyWSKJqoKMQpb77uhdIgefgrXHWGpNa/JRkUeU32sVPN5xklFGtVAONDcAwq3KxrzJ
+	Jntryv79PzHt7aUaG7eA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gsBzA-0000xD-Jd; Fri, 08 Feb 2019 19:38:52 +0000
-Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
+	id 1gsC4X-0003LT-Lf; Fri, 08 Feb 2019 19:44:25 +0000
+Received: from mail-ot1-x32d.google.com ([2607:f8b0:4864:20::32d])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gsBz7-0000wq-Hn; Fri, 08 Feb 2019 19:38:50 +0000
-Received: by mail-ot1-x344.google.com with SMTP id n8so7771724otl.6;
- Fri, 08 Feb 2019 11:38:48 -0800 (PST)
+ id 1gsC4V-0003LA-CE
+ for linux-amlogic@lists.infradead.org; Fri, 08 Feb 2019 19:44:24 +0000
+Received: by mail-ot1-x32d.google.com with SMTP id e24so7739113otp.11
+ for <linux-amlogic@lists.infradead.org>; Fri, 08 Feb 2019 11:44:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=DXIpWl5b+yrM9MNrm6OgioNthJkGr0ZFx09tr4O3T54=;
- b=frDJB5yTuzoJE6mcdGbiRksRwCg9LedugnZnQDy54kZgYr51Nv+vf5eSpM3YK5efne
- t2r+BrSc8TBuERHoMvcyVFHAwHTH/7NaM3z/XREy+8Xix3M2jZG5zkWfsNy9IBjU6uhj
- CzIxwdi1wzkxGrzI1oZGHNuUIo4OMH+1AOlbxp/MVlgmYc2CY6ynnchpWrkEiBjegqum
- 1PchFpBy8q3GqU+r86ihFfRdU9hlUbYPjNzOxOXEpLpkfnAnSiTYuma4MFe3c3aUvELB
- bQwaq91Itgb/Q/kP2mTLUz1IwTjwx9cRx/6M6WBewOKAKlQNt8WTrAcP9t8Ew/pVPoDR
- cXsw==
+ :cc; bh=0gj73Eq7KORGLu5kpJtfXxDvbV1NWQHvlfq8SYzy3b4=;
+ b=Rxmdn8JVARXFjbdZxQFJyvuEwIdKyyHakOfHwazsvx41FQay556Smqj40PiVjRk3ot
+ bE2reco8J257EPdeIhlSAmAwLnAZjjTPMvsUsuvqFz0vwjRFi+u8B8bsb4uRI0Wx7xiI
+ U0sQQotQg+zZkM+7LhZKCgp4CiR3UVoSJwIq1+xNvIfUI2/atiyvm+cb4owmiyVdN7aS
+ ckf0zeS8MZn5by3bONTQ8HYhI9ngciRJYTOp63NLxQeJrHdVMLy+GIUu5kGNZvigdx5b
+ VSZ6RU2biS1E7q1xWjm+Uf4s3ki2IeOCcFKtptQ0U9YZwKNohWnNBBgUH3AMuI8Fohfu
+ pduQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=DXIpWl5b+yrM9MNrm6OgioNthJkGr0ZFx09tr4O3T54=;
- b=X6KoWMEb5OiAFIwVajR4ONE9YpDhrm47zQaQ4Zta9piuhg+mAQYwjGQWeSsxHKfrwD
- 5ROtq6I34ohAZwF4ZnEaa97C8hnx4+31Qyrqey/ZkowfwVDhZVdijTpn2yt8IcAOUEZE
- Z11LtM+qMBglyfBGdmWtAkdtoa/DcEPiQvC8OVu/yiQu9VtgSdinJ92VeF2tBRJLMn4U
- bsSYRTYRQO0Tck0pw8snl6LP2pOXGpRrptD9kkoyJ6oNs5sVecXj3/8sNZ0BPg4vB1bH
- EVaAb5qBetpKXPVQ+Va/cb0dhAqIFK4M1JevyaEWjaSrsskXWyIoS+LaWqpSj/tkRoE0
- 4FZA==
-X-Gm-Message-State: AHQUAubLBivTmrOFEhgBB8SAP2DiyonFDY5CM5Hnp0K82dkKFr85tirn
- 7oZw57O0Aqtj6MAi7wKSCECclURq7Xft8iP1ovXKeg==
-X-Google-Smtp-Source: AHgI3Ia4CY5cKK9Cqnsy8OjTHoBkAI4wEAAXUo53kgXjeZmXiCtyl0HSKvI3qEqLJ612rjUFjIOA31rhbnaae9JZGa4=
-X-Received: by 2002:a05:6830:2115:: with SMTP id
- i21mr15220595otc.237.1549654727943; 
- Fri, 08 Feb 2019 11:38:47 -0800 (PST)
+ bh=0gj73Eq7KORGLu5kpJtfXxDvbV1NWQHvlfq8SYzy3b4=;
+ b=SbRMDANz5odcg20SifD+luyAkGnnZ63GN4CH1Xq97WZ9SWw3m8jQbWqz/rzIIzBM2r
+ s96DpWQVXFikw4Ny/RkjonsHK6mLwl+L1EYQw8cxnRcLLVnXVZQvQWA3RFkMzQy5vJg8
+ pYf9CtvzENqjmoXcWgB8GzmQoMaYNaKerCI0zUeP0PI8f/ClScu/TRr3QoyqpchnNCqg
+ N0QYiH37pKotUYazaFCrlF8ovlH0ERHrbgpagrMimcRUX4Wx41ZamCekcwAIOroU4ISB
+ erwA+4z/Djt0dCYbg5DFG/7NC04Wk/ATkrLWA2a92mIoZXyxRIqZsBKoc3yhM8cY7TCY
+ iqhQ==
+X-Gm-Message-State: AHQUAubT1oHEgmEHkNcF0F7n+NG+10kIeWYuPKbm4DnbrHYcRZK3v/Mx
+ 7d2clAnC9bOKDg2SlRYFeBTZIhbKDLu1AROUjN7hRepy
+X-Google-Smtp-Source: AHgI3Ib1dboDu8O25/m0xDOodTeRUPluCB1/040Z2qMF0Ze8EOW/nxnzJ/F232hICYRpZeLydpmckouTLnRUkWLvPNA=
+X-Received: by 2002:a05:6830:2010:: with SMTP id
+ e16mr14035404otp.86.1549655062387; 
+ Fri, 08 Feb 2019 11:44:22 -0800 (PST)
 MIME-Version: 1.0
-References: <20181229143556.27339-1-martin.blumenstingl@googlemail.com>
- <20181229143556.27339-3-martin.blumenstingl@googlemail.com>
- <7hwoncov8k.fsf@baylibre.com>
- <CAFBinCAJhiW0kLgEoPWZRshPAP=UaK2jOBCBeftjz9E+sP2YGA@mail.gmail.com>
- <7hd0o4i9id.fsf@baylibre.com>
-In-Reply-To: <7hd0o4i9id.fsf@baylibre.com>
+References: <CAPo5REH3dQww=+Jv4U5dh1m8JpsGN+J0Bs500hLhrq-dJyM60A@mail.gmail.com>
+In-Reply-To: <CAPo5REH3dQww=+Jv4U5dh1m8JpsGN+J0Bs500hLhrq-dJyM60A@mail.gmail.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Fri, 8 Feb 2019 20:38:34 +0100
-Message-ID: <CAFBinCAuBbNQrE4cXtBd9j=BaUuty57Tj_CYqG_3mM4URWeDFg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] ARM: dts: meson8b: fix the Ethernet data line
- signals in eth_rgmii_pins
-To: Kevin Hilman <khilman@baylibre.com>
+Date: Fri, 8 Feb 2019 20:44:11 +0100
+Message-ID: <CAFBinCCnfVjKaB5pPcBphvuZgwa1QSD0DSHe0DHPT=dH-wBisg@mail.gmail.com>
+Subject: Re: Odroidc1 DVFS
+To: Piero <ottuzzi@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190208_113849_615610_60045EC6 
-X-CRM114-Status: UNSURE (   8.56  )
+X-CRM114-CacheID: sfid-20190208_114423_442347_E6119AF0 
+X-CRM114-Status: UNSURE (   8.21  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -95,21 +91,36 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- jianxin.pan@amlogic.com, ingrassia@epigenesys.com, linus.luessing@c0d3.blue
+Cc: linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Feb 7, 2019 at 4:05 AM Kevin Hilman <khilman@baylibre.com> wrote:
-[...]
-> >> Queued for v5.1 (branch: v5.1/dt)
-> > do you know what happened to this patch? I can't find it in v5.1/dt
+Hi,
+
+On Thu, Feb 7, 2019 at 3:53 PM Piero <ottuzzi@gmail.com> wrote:
 >
-> Hmm, I'm not sure what happened to it, but I (re)added it to v5.1/dt
-> just now.
-perfect - thank you!
+> Hi,
+>
+>    looking at linux-meson website[1] it looks like DVFS is available
+> for odroidc1 but from my test compiling 5.0.0-rc5 from amlogic integ
+> branch[2] I cannot see it working: what am I missing?
+can you please show us your kernel .config as well?
+I believe you're missing the PWM driver: CONFIG_PWM_MESON
+
+> Attached you can find dmesg.
+pwm-regulator regulator-vcck: Failed to get PWM: -517
+it's "OK" that this message is shown a few times (assuming you have
+CONFIG_PWM_MESON=m). Linux will solve it once modules are loaded, then
+you'll get the following message:
+pwm-regulator: supplied by regulator-dummy
+(from that point on "lscpu", "cpupower frequency-info" or other tools
+should show DVFS support)
+
+
+Regards
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
