@@ -2,89 +2,89 @@ Return-Path: <SRS0=GL6B=QQ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2E75BC169C4
-	for <linux-amlogic@archiver.kernel.org>; Sat,  9 Feb 2019 00:37:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C517CC282CB
+	for <linux-amlogic@archiver.kernel.org>; Sat,  9 Feb 2019 00:59:26 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F1DF820821
-	for <linux-amlogic@archiver.kernel.org>; Sat,  9 Feb 2019 00:37:08 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 97265217D8
+	for <linux-amlogic@archiver.kernel.org>; Sat,  9 Feb 2019 00:59:26 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="WZXoBL3Q";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="kAiCBo4u"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F1DF820821
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LCpowYE4";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="F01ENsqK"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 97265217D8
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=afzFa5LF85/a8txOW7+929IwV6tx34/dkmyeKg1TIsk=; b=WZXoBL3QOmmIfx
-	3NCNeCkyMBn2C1Dwa1Y4YV+NbdOswinNK3k8QNtnGI1PGehl8kWgOHtR4tInGL+uMGyMOaIgXRQBg
-	4MMFE59hjERIIevkKzEGDePCg8CdQZVk/sFAuycJk7fbK6BGUPqnukSxrEsZd7TH7VLPetALJLgZt
-	DaUhVJ4CpUYmWMf3jWk90VOzbiaYUSuVNCdjKt3F3JGQzCdMc+9pLDxRbtR7DrpeEEO+wuJWwIV13
-	X5tfq6vd4zkuQFhvUgpRsyHGnaYnhaoL1WNr8QoPcnsSGHCaH1s7g4ibYIrw/fNrDmjy2LknjumAO
-	pV/BdbNMNe2YJFEePjvg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=F4q4OMIayiVK7fpwC+96OtqTupxyS5ilh4RqBT6sO14=; b=LCpowYE4MKPhLH
+	g4S47pUsopH2k6vhajhIimwu6aG5aU+HIFZmhe6e58LcdtqSMDPHwVemCb6R0grjB1JY34113737n
+	otLvs6wSIZIgTT0qS2XXrHAX6O1H6m/oCYE/rAkoOVRdsT3H12CyP2rIlGPIGkbHkLO/kKcyYrWjM
+	slUTWxyvGQmVUd66w2qGOuubUXC/br0Nu7MWVQVNxaL0B7CjnG+ZFEY42j4PkqqHy9/l+Jcbr/B3H
+	DJHpoTRDphPKt5r7DUoAhIM/FCHIHb71o59nZUVQSNGVR9USKEEEvruMSEdtXeu0DizfK0nePFdp6
+	0kaJ0oqXsucME62MmFOw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gsGdf-0001iC-0v; Sat, 09 Feb 2019 00:36:59 +0000
-Received: from mail-ot1-x342.google.com ([2607:f8b0:4864:20::342])
+	id 1gsGzI-0001Hm-Uw; Sat, 09 Feb 2019 00:59:20 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gsGdS-0001Yo-T0; Sat, 09 Feb 2019 00:36:48 +0000
-Received: by mail-ot1-x342.google.com with SMTP id w25so8844464otm.13;
- Fri, 08 Feb 2019 16:36:46 -0800 (PST)
+ id 1gsGzF-0001HN-G4; Sat, 09 Feb 2019 00:59:18 +0000
+Received: by mail-wm1-x344.google.com with SMTP id x10so947616wmg.2;
+ Fri, 08 Feb 2019 16:59:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=XSyFFD1tXOyt7+5H9xdZxTpu5l3Skgu7KUaohJNSucA=;
- b=kAiCBo4uG16Tw8YgQTCoNeBgeKffRP1RYeGrFIcXXS9xQoU/MK0GItFB+PwTst/AYw
- z8CDLuwxn2YfBPU332A/12autb/ZlZcl1++2U5I5f9xIEzgbeptkopmWcI8Zr98xpjkE
- ADRR6DD6WNvQqQwzZx8Ti+Nrdm2qY3TSzt3aU8ArTKn/vuIPO7rynpWQYCi0vH/e85xF
- uj+oRN1PodmCi0X7GfZ2yB3CUR748uu1MJRbijkjgIuBGMVRRvSjZK+s/wA8bJZC29dw
- UEvMqXirJ8zOsHWbM4OKICwKdqHCWbAL4pSxcVcgGoyZXm3CfRF5vfjMRwpBE1iMrIso
- HPOA==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=DGa6W9vj/kUe70sQNoT86/G0huD4FXwnKFkVKgNXoQw=;
+ b=F01ENsqK16OGY4RxNKc2OMzBwf5yrZ4wCIwWQNO/4LYg6MLIEJlc02wPBw38WP9955
+ 82iyOgVKyl739KuDZSYORecXu0aFYc3Q22CiolTLTRiVaazZLddybRDZq18/YOafuZMT
+ /Of/WJq875aZkhs3/AyHXXeMPmGswnLHTBU7nfVOtTQxYIp0RR4j2UbOHLQwiLAAjkIu
+ 4RDTuG9dYBjBnxkS8jJGohfe17c3JhIPUVVt9BTvWNKO1gUNALcJSQUcpRltbAQNuliz
+ 5QhGOIlvSKCi8v8yIdeA4MhapXGJYhIRGtt7Jg0qfeBww6uoAtPP5Y7QjpxpqMsyUlhu
+ +czw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=XSyFFD1tXOyt7+5H9xdZxTpu5l3Skgu7KUaohJNSucA=;
- b=tWSxCeWtiyEefj41TKWs7bgBPdbVgkrG//bjBOzl3Xd+5TlFOcZfqzXExviAOzw5Uy
- IH5MVz/K1jvrfBfXZ3FZNabDNMjCcHlpHQwGi8hGIKW58S9UwrHij/fnCxeIWXotfERv
- iR/geE3pCl0tvPPVoFfXM62v7J5cJKsomEnGVmATBTE3CU6uCcje3CHXSureIh7xmGT7
- 9kLdSz0c5KoU873FQR4gxOCHlLCZWOMWSRglHT7P2tF0p/CGQlwWuh6dMzQ3sB6S6die
- BIOkAlHo9FiTB1eLDZs7Cilb+GqEaBEKGgJizFvNjLQXL6sGgWtJItvUSFaqw+yvizXE
- eu4Q==
-X-Gm-Message-State: AHQUAuY/tdmujIIrytSktYe3L+jf49qSt+KkvwD+NejSXFid/7aEdbHe
- YLOkFB4N8Bqxyi/arpTwQHgaNyAnvO6zsOJRhqk=
-X-Google-Smtp-Source: AHgI3IbXu+EiU25KtcaqSaHn9gtbnvIAR3IbyX0cVi0mpy3HUlbb29LwfKW5wGNAB2E6mnoE6Yst139B5iK/s5eoanE=
-X-Received: by 2002:a9d:7749:: with SMTP id t9mr4543027otl.342.1549672605967; 
- Fri, 08 Feb 2019 16:36:45 -0800 (PST)
-MIME-Version: 1.0
-References: <20190123151209.2080-1-linux.amoon@gmail.com>
- <20190123151209.2080-3-linux.amoon@gmail.com>
- <CAFBinCAdf0rtt-7tON_LRNH_cpvGJXX3LX8g-i4xsC3wahZSVA@mail.gmail.com>
- <CANAwSgQ4=Vn6RM4Kpd20UWkQNW81=mfg-qB0G73dsRem3qwjcA@mail.gmail.com>
- <CAFBinCB=3kmuFb_xXzhW+m8dTasVrCHQp2wti+=5UjrAHk5TTg@mail.gmail.com>
- <CANAwSgQnMkXECkCVjFKwNKB+2JoiPtVPQbateppmtgfPYCutZg@mail.gmail.com>
- <CAFBinCCFoBkbf-HvEoMk7mTYTBV27nJ9TF1X-DrLuHR9qDVDSA@mail.gmail.com>
- <CANAwSgRtBWzKiFLUV6twxv+TnvjLdHXv=U8+ppQ7=9uBBLEH+Q@mail.gmail.com>
-In-Reply-To: <CANAwSgRtBWzKiFLUV6twxv+TnvjLdHXv=U8+ppQ7=9uBBLEH+Q@mail.gmail.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=DGa6W9vj/kUe70sQNoT86/G0huD4FXwnKFkVKgNXoQw=;
+ b=aJrsvuV37uUIcnFlyR9nhY8JM7DxF12BTrNYP1xIHQ2iCKyag5olvWZzbOqleVdQll
+ xOqdhYmnY9X8MStvX/J8jeewQYeMS/YlPXdmEBS49bU3BMlpwSBcI0mhCp8J7ygs3ro4
+ PSyE2pFVRCts1Z5wkbBEQKXk/2MX5uv6ZcT5ccBqV5g/oIXLL2fg/PsIsn1SfoRK4das
+ RPZFMaBgSqsyf9Lzhgr9MNmMG204YbzSoiFMONFq/J/Ob7jhMp5zaNooCZX4UDRgK4XE
+ NeVSh3XiUa2jNg+k+yQG1da7phUdb52iGKSk9vm8q6prfotyNHh2Xec7zSuLMZASWQ4C
+ rEtg==
+X-Gm-Message-State: AHQUAuagQ9h1Z9EuFUC7YWALD5+kj9k7fvOqXH5JBXC9bhfoZOEgNawq
+ 5IikijqQtpzdWFAx0FIXC5Z8XDDe
+X-Google-Smtp-Source: AHgI3IahYwaG7K5cuPcQT4k4GJabsekXAkbkB/xF0Km+P0CJfaT1QoD960AjYh+fBRPNoCwkKcH/5Q==
+X-Received: by 2002:a1c:be11:: with SMTP id o17mr843180wmf.111.1549673955796; 
+ Fri, 08 Feb 2019 16:59:15 -0800 (PST)
+Received: from blackbox.darklights.net
+ (p200300DCD70B4600C545FEF64E1C6C81.dip0.t-ipconnect.de.
+ [2003:dc:d70b:4600:c545:fef6:4e1c:6c81])
+ by smtp.googlemail.com with ESMTPSA id r14sm4927201wrr.65.2019.02.08.16.59.14
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 08 Feb 2019 16:59:14 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 9 Feb 2019 01:36:35 +0100
-Message-ID: <CAFBinCD_Pddu+pBEKwMS6467J5nxKF4T5-LxVo06nFvyUSLpew@mail.gmail.com>
-Subject: Re: [RFCv1 2/3] ARM: dts: meson8b: odroidc1: fix USB power supplies
- for phy
-To: Anand Moon <linux.amoon@gmail.com>
+To: ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
+Subject: [PATCH] mmc: meson-gx: fix interrupt name
+Date: Sat,  9 Feb 2019 01:58:50 +0100
+Message-Id: <20190209005850.11457-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190208_163646_954602_8727E6AB 
-X-CRM114-Status: GOOD (  26.46  )
+X-CRM114-CacheID: sfid-20190208_165917_564106_88E4DEC9 
+X-CRM114-Status: GOOD (  11.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,122 +96,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree <devicetree@vger.kernel.org>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Kishon Vijay Abraham I <kishon@ti.com>, Rob Herring <robh+dt@kernel.org>,
- linux-amlogic@lists.infradead.org,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: xademax@gmail.com, Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ repk@triplefau.lt, linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Anand,
+Commit bb364890323cca ("mmc: meson-gx: Free irq in release() callback")
+changed the _probe code to use request_threaded_irq() instead of
+devm_request_threaded_irq().
+Unfortunately this removes a fallback for the interrupt name:
+devm_request_threaded_irq() uses the device name as fallback if the
+given IRQ name is NULL. request_threaded_irq() has no such fallback,
+thus /proc/interrupts shows "(null)" instead.
 
-On Thu, Feb 7, 2019 at 7:33 AM Anand Moon <linux.amoon@gmail.com> wrote:
->
-> Hi Martin,
->
-> On Wed, 6 Feb 2019 at 16:58, Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
-> >
-> > Hi Anand,
-> >
-> > On Tue, Feb 5, 2019 at 8:53 PM Anand Moon <linux.amoon@gmail.com> wrote:
-> > [...]
-> > > > my interpretationfor the Amlogic SoCs is:
-> > > > - vusb_a and vusb_d are generated internally, not sure if there's an
-> > > > external fixed regulator
-> > > > - there is no phy-supply (the PHY itself is powered by clock-gating
-> > > > using the CLKID_USB clock)
-> > > > - usb0 VBUS is controlled by GPIOAO_5
-> > > >
-> > >
-> > > But as per the device tree binding
-> > >
-> > > [0] https://elixir.bootlin.com/linux/v5.0-rc5/source/Documentation/devicetree/bindings/phy/meson8b-usb2-phy.txt
-> > > [1] https://elixir.bootlin.com/linux/v5.0-rc5/source/Documentation/devicetree/bindings/phy/phy-bindings.txt
-> > >
-> > > its uses phy-supply to enable power to usb phy which seem to be correct option.
-> > phy-bindings.txt states that "phy-supply" is a "Phandle to a regulator
-> > that provides power to the PHY".
-> > I have written the example in meson8b-usb2-phy.txt and I think it's
-> > wrong (back when I wrote it I didn't know about the "vbus-supply"
-> > property on the controller and I didn't know about the VBUS
-> > constraints).
-> >
-> > I believe that the phy-supply property is intended for PHYs which need
-> > an external power supply (for example because they are not embedded
-> > into a SoC or if the SoC has separate voltage inputs for the PHY).
-> > I'm not aware of any PHY supply voltage on the Amlogic SoCs (I believe
-> > this is done internally within the SoC). instead they use clock gating
-> > to power down the PHY.
-> >
-> > as far as I understand the VBUS signal it depends on the USB mode:
-> > - host provides VBUS
-> > - peripheral devices are powered using this voltage
-> > - with OTG VBUS needs to be turned on or off depending on the current
-> > mode (host or peripheral)
-> > with the "phy-supply" property there's no way to manage the regulator
-> > depending on the USB mode (host or peripheral), it will always be
-> > "on".
-> >
-> >
-> > Regards
-> > Martin
->
-> Thanks for the clarification.
-> But this dose not work setting the usb1_phy to use vbus-supply.
->
->  &usb1_phy {
->         status = "okay";
-> +       vbus-supply = <&usb_vbus>;
->  };
->
-> I am attaching a small patch for testing.
-> [0] usbvbus.patch
-indeed, this is not working for me either.
-I checked my old notes at [0] -> it works for me when setting
-"vbus-supply" at the usb controller (not the PHY).
+Explicitly pass the dev_name() so we get the IRQ name shown in
+/proc/interrupts again.
+While here, also fix the indentation of the request_threaded_irq()
+parameter list.
 
-with the following snippet:
-  &usb1 {
-    status = "okay";
-    vbus-supply = <&usb_vbus>;
-  };
-I get:
-# cat /sys/kernel/debug/regulator/regulator_summary | grep -i usb
-   c90c0000.usb                  1                                 0mA
-    0mV     0mV
-   c90c0000.usb                  1                                 0mA
-    0mV     0mV
-   USB_VBUS                      1    1      0 unknown  5000mV     0mA
- 5000mV  5000mV
-      c90c0000.usb               1                                 0mA
-    0mV     0mV
+Fixes: bb364890323cca ("mmc: meson-gx: Free irq in release() callback")
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/mmc/host/meson-gx-mmc.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-can you please try this on your board as well?
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index f19ec60bcbdc..2eba507790e4 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -1338,7 +1338,8 @@ static int meson_mmc_probe(struct platform_device *pdev)
+ 	       host->regs + SD_EMMC_IRQ_EN);
+ 
+ 	ret = request_threaded_irq(host->irq, meson_mmc_irq,
+-			meson_mmc_irq_thread, IRQF_SHARED, NULL, host);
++				   meson_mmc_irq_thread, IRQF_SHARED,
++				   dev_name(&pdev->dev), host);
+ 	if (ret)
+ 		goto err_init_clk;
+ 
+-- 
+2.20.1
 
-> Here is the summary of the above patch.
->
-> 1. hot-plugins of usb device is not working.
-> 2. only cold/warm boot let the device come up.
-> 3. not power is supplied to the usb ports.
-> 4. no power module is registered with the regulator summary.
-with "vbus-supply" moved to the usb1 node I get the following result:
-1. same: hot-plugins of usb device is not working
-2. different: a reboot doesn't make devices come up
-3. same: no power is supplied to the USB ports (in my case this causes
-#2, but it's not clear why there's no power...)
-4. different: the regulator is registered with the USB controller in debugfs
-
-
-Regards
-Martin
-
-
-[0] https://lkml.org/lkml/2019/1/18/960
 
 _______________________________________________
 linux-amlogic mailing list
