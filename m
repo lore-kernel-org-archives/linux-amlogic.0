@@ -2,61 +2,92 @@ Return-Path: <SRS0=Q/al=QR=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_MUTT autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AD694C282C2
-	for <linux-amlogic@archiver.kernel.org>; Sun, 10 Feb 2019 21:22:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AD868C282C2
+	for <linux-amlogic@archiver.kernel.org>; Sun, 10 Feb 2019 22:22:16 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7B0FA2145D
-	for <linux-amlogic@archiver.kernel.org>; Sun, 10 Feb 2019 21:22:17 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 794CC2084D
+	for <linux-amlogic@archiver.kernel.org>; Sun, 10 Feb 2019 22:22:16 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="X02LBSgl"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7B0FA2145D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=bootlin.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QJUfeBfH";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="lJjNQ1VF"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 794CC2084D
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9f7WuYj9RmZhgGJEge+VF6f1mdhSpPeCQZT1b/uEE04=; b=X02LBSgl1M0+t4
-	G2uZovOJ9lHhQpVRMX+IjsgKy2th6I9Gn5lGxPsa3l7N7NUUd6DDen2s9fjFeGbXq9igaTuR0I+Ln
-	QToXgwLEZxeTtEOYy7xRreHHzK44pXxD6AZR8d3NB9hf8kB92uU8jrRz4YTRlPs60a5ZWGlnSkzwK
-	zjUftC89M2Ce+A6uhD3eP3/1U49gQ7Ue3gZaQvu7Q7EGpI5fvlVM5UR+5FWE32trZvruNPvPpK6ck
-	bbvh0ygMeLSMqdNlNx1Bh6/XXdYWPkcGna2ZKssrs0hdjhOoikRrnS1sxtCHCjvEVEX8dRA8gDGxS
-	sHmUGiSB4dSwfM6g75Kw==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:To:
+	Subject:Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=psVRBTVvbzHmRWZc8iSieEEI0twpu0dfM8/ibwIbdKU=; b=QJUfeBfHEm0hQq49D+1UTkWiz
+	413TGXELJRRA1Sz6LUy2cpPX3wu2rW72Kzxlsf1gqMPfVOZv1heaIxMJczK5PfylhBt0U2BQ+jdJ9
+	JFjlHceQ/9UYs7JV8cATvLpUrS4oTUB04OCS8ZYhV8SvE8BNvQorbzJ1QTY84rjTdaiczSCs/uow3
+	0Je1phDpI4QxKQuK1BoeTD/zIVA6m8L21YmPtbISgthvb5zj9O0bklbxbujvto+SxD3Qj6r4ryzwf
+	quQJJf0wXEJnuR+K+BcyLwlGGsY7pL9JYEABQGAeF/8S7DKWsm0aY6okDp5NM9CesGB7jW5paNBLg
+	FgQizXyUg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gswYH-0005So-66; Sun, 10 Feb 2019 21:22:13 +0000
-Received: from relay6-d.mail.gandi.net ([217.70.183.198])
+	id 1gsxUE-0007ax-GN; Sun, 10 Feb 2019 22:22:06 +0000
+Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gswYE-0005Oj-2L; Sun, 10 Feb 2019 21:22:12 +0000
-X-Originating-IP: 86.202.231.219
-Received: from localhost (lfbn-lyo-1-149-219.w86-202.abo.wanadoo.fr
- [86.202.231.219])
- (Authenticated sender: alexandre.belloni@bootlin.com)
- by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 3F402C0004;
- Sun, 10 Feb 2019 21:22:00 +0000 (UTC)
-Date: Sun, 10 Feb 2019 22:21:59 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH v7 2/2] rtc: support for the Amlogic Meson RTC
-Message-ID: <20190210212159.GK23062@piout.net>
-References: <20190209001813.6792-1-martin.blumenstingl@googlemail.com>
- <20190209001813.6792-3-martin.blumenstingl@googlemail.com>
+ id 1gsxTy-0007Ov-Q0; Sun, 10 Feb 2019 22:21:52 +0000
+Received: by mail-ot1-x344.google.com with SMTP id 32so14435444ota.12;
+ Sun, 10 Feb 2019 14:21:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=AdoNSob177L31r3KUHrqyxvfDROGvKI6dmmHVkyG6PU=;
+ b=lJjNQ1VFmtCgWvEQj/lCcLa2FWeXQlU9sc12GR03KUiA19YLK1cNkEe4Gzpf2vYSko
+ P2Go5oGQTxdISMFwlk5XJ6Kf2sF7fSQlnpDniYzg1/1fPq/GoNi6cTvAUmJxQZU92+ft
+ c7xZ0jDmg/tTZ9KhSQ6KEkGT13liKAL2Ifllv5CSYul/5y8bIDIP01lUlF+B6GdnOUzR
+ TU0cRH1rqI/rwUy7q0bqlsawLrZ5P96B8Eg3Ak4nV0Hlu4PEqVRxZN2b1mo5kzUXdZwJ
+ Avyv8Znqoc1VPpZ8/XBuqsqIniEtTUnbv0xo8Vpea40h6RgfvIqWC25imoYWXmtBuBwY
+ hN7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=AdoNSob177L31r3KUHrqyxvfDROGvKI6dmmHVkyG6PU=;
+ b=sqAwzmrCZEukIq1k5dcGCUgRDmdNOcj/n+SmFBQbq+K87yQnA/9EK54fuhIsnuyXnY
+ gEbSPPYFonciN7HiWsrAvMoSFyFjzv9pV/KARq6uV4AivDoZWZihHXsEhsOCr4zzXCa3
+ 6ZmQyYe+eSIPzqtBH5LibiEHDzx7lom66nExybfOjbwQO2FLcMpsEzmCu4AdmlO+PBXe
+ U0mZpL3ei/fQ/ZaINYEX4b2Gaya/soYyYRcSS64DvZG1VhGTW9/wL2gT4kG56jx6+t1E
+ UKBtxgW56rpVATqhxFiYAIjXY3QvCA9oA8HL1L7DP51SIfC/iJXznWQqfaP2P7DrI16d
+ S7Eg==
+X-Gm-Message-State: AHQUAubkb19bitYDvwbj6G/XWDngZsYGoRhyjECSWrzs3jSyKfsi5Y0L
+ TH83IMOLZX3Vqw/JX2ANQafwS0iW6I++5v90bDM=
+X-Google-Smtp-Source: AHgI3IYqImZcEVjHaDdTwo9jf08MmMfx3OmNGuIhpms8Pi5HvYZuyIdWIHNMj2MLy6nKkLDwmpSXxgo7BaICKx7h4EU=
+X-Received: by 2002:a9d:491e:: with SMTP id e30mr25719918otf.131.1549837307094; 
+ Sun, 10 Feb 2019 14:21:47 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20190209001813.6792-3-martin.blumenstingl@googlemail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190123151209.2080-1-linux.amoon@gmail.com>
+ <20190123151209.2080-3-linux.amoon@gmail.com>
+ <CAFBinCAdf0rtt-7tON_LRNH_cpvGJXX3LX8g-i4xsC3wahZSVA@mail.gmail.com>
+ <CANAwSgQ4=Vn6RM4Kpd20UWkQNW81=mfg-qB0G73dsRem3qwjcA@mail.gmail.com>
+ <CAFBinCB=3kmuFb_xXzhW+m8dTasVrCHQp2wti+=5UjrAHk5TTg@mail.gmail.com>
+ <CANAwSgQnMkXECkCVjFKwNKB+2JoiPtVPQbateppmtgfPYCutZg@mail.gmail.com>
+ <CAFBinCCFoBkbf-HvEoMk7mTYTBV27nJ9TF1X-DrLuHR9qDVDSA@mail.gmail.com>
+ <CANAwSgRtBWzKiFLUV6twxv+TnvjLdHXv=U8+ppQ7=9uBBLEH+Q@mail.gmail.com>
+ <CAFBinCD_Pddu+pBEKwMS6467J5nxKF4T5-LxVo06nFvyUSLpew@mail.gmail.com>
+ <CANAwSgSQRwF+_VR1jJFg=Q9wSdanEH0GmnFaeegt=hRMXiHX3Q@mail.gmail.com>
+In-Reply-To: <CANAwSgSQRwF+_VR1jJFg=Q9wSdanEH0GmnFaeegt=hRMXiHX3Q@mail.gmail.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sun, 10 Feb 2019 23:21:36 +0100
+Message-ID: <CAFBinCBwDg21t+HT6w7CcUgH_aDuwh-UgoPs7GuZo9rABvPDig@mail.gmail.com>
+Subject: Re: [RFCv1 2/3] ARM: dts: meson8b: odroidc1: fix USB power supplies
+ for phy
+To: Anand Moon <linux.amoon@gmail.com>
+Content-Type: multipart/mixed; boundary="0000000000002656590581919e73"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190210_132210_308230_E0582976 
-X-CRM114-Status: GOOD (  14.30  )
+X-CRM114-CacheID: sfid-20190210_142150_868987_A83C863E 
+X-CRM114-Status: GOOD (  24.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -68,46 +99,162 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-rtc@vger.kernel.org, a.zummo@towertech.it, ccaione@baylibre.com,
- linux-kernel@vger.kernel.org, ben.dooks@codethink.co.uk,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: devicetree <devicetree@vger.kernel.org>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Kishon Vijay Abraham I <kishon@ti.com>, Rob Herring <robh+dt@kernel.org>,
+ linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 09/02/2019 01:18:13+0100, Martin Blumenstingl wrote:
-> Add support for the RTC block on the 32-bit Amlogic Meson6, Meson8,
-> Meson8b and Meson8m2 SoCs.
-> 
-> The RTC is split in to two parts, which are both managed by this driver:
-> - the AHB front end
-> - and a simple serial connection to the actual registers
-> 
-> The RTC_COUNTER register which holds the time is 32-bits wide.
-> 
-> There are four 32-bit wide (in total: 16 bytes) "regmem" registers which
-> are exposed using nvmem. On Amlogic's 3.10 kernel this is used to store
-> data which needs to survive a suspend / resume cycle.
-> 
-> Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
-> [resurrected Ben's patches after 2 years]
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  drivers/rtc/Kconfig     |  11 ++
->  drivers/rtc/Makefile    |   1 +
->  drivers/rtc/rtc-meson.c | 410 ++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 422 insertions(+)
->  create mode 100644 drivers/rtc/rtc-meson.c
-> 
-Applied, thanks.
+--0000000000002656590581919e73
+Content-Type: text/plain; charset="UTF-8"
 
--- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Hi Anand,
+
+On Sat, Feb 9, 2019 at 6:55 PM Anand Moon <linux.amoon@gmail.com> wrote:
+[...]
+> > > But this dose not work setting the usb1_phy to use vbus-supply.
+> > >
+> > >  &usb1_phy {
+> > >         status = "okay";
+> > > +       vbus-supply = <&usb_vbus>;
+> > >  };
+> > >
+> > > I am attaching a small patch for testing.
+> > > [0] usbvbus.patch
+> > indeed, this is not working for me either.
+> > I checked my old notes at [0] -> it works for me when setting
+> > "vbus-supply" at the usb controller (not the PHY).
+> >
+> > with the following snippet:
+> >   &usb1 {
+> >     status = "okay";
+> >     vbus-supply = <&usb_vbus>;
+> >   };
+> > I get:
+> > # cat /sys/kernel/debug/regulator/regulator_summary | grep -i usb
+> >    c90c0000.usb                  1                                 0mA
+> >     0mV     0mV
+> >    c90c0000.usb                  1                                 0mA
+> >     0mV     0mV
+> >    USB_VBUS                      1    1      0 unknown  5000mV     0mA
+> >  5000mV  5000mV
+> >       c90c0000.usb               1                                 0mA
+> >     0mV     0mV
+> >
+> > can you please try this on your board as well?
+> >
+> > > Here is the summary of the above patch.
+> > >
+> > > 1. hot-plugins of usb device is not working.
+> > > 2. only cold/warm boot let the device come up.
+> > > 3. not power is supplied to the usb ports.
+> > > 4. no power module is registered with the regulator summary.
+> > with "vbus-supply" moved to the usb1 node I get the following result:
+> > 1. same: hot-plugins of usb device is not working
+> > 2. different: a reboot doesn't make devices come up
+> > 3. same: no power is supplied to the USB ports (in my case this causes
+> > #2, but it's not clear why there's no power...)
+> > 4. different: the regulator is registered with the USB controller in debugfs
+> >
+> Here the the logs after I applied the above changes
+>
+> [1] https://pastebin.com/rVa8gxNG
+can you please provide the .dts patch for this log?
+I can see the following message in your log:
+[    1.977367] USB_VBUS: disabling
+
+I have tried it with the attached patch, then I get:
+# dmesg | grep VBUS
+#
+# cat /sys/kernel/debug/regulator/regulator_summary
+regulator                      use open bypass  opmode voltage current
+    min     max
+---------------------------------------------------------------------------------------
+regulator-dummy                  4    3      0 unknown     0mV     0mA
+    0mV     0mV
+   c90c0000.usb                  1                                 0mA
+    0mV     0mV
+   c90c0000.usb                  1                                 0mA
+    0mV     0mV
+   VCCK                          1    1      0 unknown   860mV     0mA
+  860mV  1140mV
+      cpu0                       0                                 0mA
+  860mV   860mV
+P5V0                             3    4      0 unknown  5000mV     0mA
+ 5000mV  5000mV
+   VCC1V8                        2    2      0 unknown  1800mV     0mA
+ 1800mV  1800mV
+      c1108680.adc               1                                 0mA
+    0mV     0mV
+      c1108e00.mmc               1                                 0mA
+ 1800mV  1950mV
+   VCC3V3                        2    3      0 unknown  3300mV     0mA
+ 3300mV  3300mV
+      c1108e00.mmc               1                                 0mA
+ 3300mV  3400mV
+      VDD_RTC                    0    0      0 unknown   900mV     0mA
+  900mV   900mV
+      TFLASH_VDD                 1    1      0 unknown  3300mV     0mA
+ 3300mV  3300mV
+         c1108c20.mmc:slot@1     1                                 0mA
+ 3300mV  3400mV
+   DDR_VDDC                      0    0      0 unknown  1500mV     0mA
+ 1500mV  1500mV
+   USB_VBUS                      1    1      0 unknown  5000mV     0mA
+ 5000mV  5000mV
+      c90c0000.usb               1                                 0mA
+    0mV     0mV
+TF_IO                            0    1      0 unknown  3300mV     0mA
+ 1800mV  3300mV
+   c1108c20.mmc:slot@1           0                                 0mA
+    0mV     0mV
+
+(my kernel build includes two more changes on top of Kevin's v5.1/dt
+branch which add two new regulators: it enables the RTC and the SDHC
+MMC controller, but these are not related to USB at all)
+
+USB ist still not working for me, but I believe my problem is
+different to yours.
+
+
+Regards
+
+Martin
+
+--0000000000002656590581919e73
+Content-Type: application/x-patch; name="vbus-supply.patch"
+Content-Disposition: attachment; filename="vbus-supply.patch"
+Content-Transfer-Encoding: base64
+Content-ID: <f_jrzgyt8b0>
+X-Attachment-Id: f_jrzgyt8b0
+
+ZGlmZiAtLWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL21lc29uOGItb2Ryb2lkYzEuZHRzIGIvYXJj
+aC9hcm0vYm9vdC9kdHMvbWVzb244Yi1vZHJvaWRjMS5kdHMKaW5kZXggMGYwYTQ2ZGRmM2ZmLi40
+NGI5ZTZjYmUyZWQgMTAwNjQ0Ci0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRzL21lc29uOGItb2Ryb2lk
+YzEuZHRzCisrKyBiL2FyY2gvYXJtL2Jvb3QvZHRzL21lc29uOGItb2Ryb2lkYzEuZHRzCkBAIC0x
+MTgsNiArMTE4LDIyIEBACiAJCQkgIDE4MDAwMDAgMT47CiAJfTsKIAorCXVzYl92YnVzOiByZWd1
+bGF0b3ItdXNiLXZidXMgeworCQljb21wYXRpYmxlID0gInJlZ3VsYXRvci1maXhlZCI7CisKKwkJ
+cmVndWxhdG9yLW5hbWUgPSAiVVNCX1ZCVVMiOworCQlyZWd1bGF0b3ItbWluLW1pY3Jvdm9sdCA9
+IDw1MDAwMDAwPjsKKwkJcmVndWxhdG9yLW1heC1taWNyb3ZvbHQgPSA8NTAwMDAwMD47CisKKwkJ
+dmluLXN1cHBseSA9IDwmcDV2MD47CisKKwkJLyoKKwkJICogc2lnbmFsIG5hbWUgZnJvbSBzY2hl
+bWF0aWNzOiBQV1JFTgorCQkgKi8KKwkJZ3BpbyA9IDwmZ3Bpb19hbyBHUElPQU9fNSBHUElPX0FD
+VElWRV9ISUdIPjsKKwkJZW5hYmxlLWFjdGl2ZS1oaWdoOworCX07CisKIAl2Y2NfMXY4OiByZWd1
+bGF0b3ItdmNjLTF2OCB7CiAJCS8qCiAJCSAqIFJJQ0hURUsgUlQ5MTc5IGNvbmZpZ3VyZWQgZm9y
+IGEgZml4ZWQgb3V0cHV0IHZvbHRhZ2Ugb2YKQEAgLTI5OSw0ICszMTUsNSBAQAogCiAmdXNiMSB7
+CiAJc3RhdHVzID0gIm9rYXkiOworCXZidXMtc3VwcGx5ID0gPCZ1c2JfdmJ1cz47CiB9Owo=
+--0000000000002656590581919e73
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--0000000000002656590581919e73--
+
