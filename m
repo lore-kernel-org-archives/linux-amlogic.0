@@ -2,89 +2,92 @@ Return-Path: <SRS0=Q/al=QR=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D777CC282C2
-	for <linux-amlogic@archiver.kernel.org>; Sun, 10 Feb 2019 22:26:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1C132C282C2
+	for <linux-amlogic@archiver.kernel.org>; Sun, 10 Feb 2019 22:27:09 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A0F5720844
-	for <linux-amlogic@archiver.kernel.org>; Sun, 10 Feb 2019 22:26:50 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D96C220844
+	for <linux-amlogic@archiver.kernel.org>; Sun, 10 Feb 2019 22:27:08 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lLHgCOgx";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="dfbqIpIy"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A0F5720844
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Bik5rDs+";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="bJi0a0br"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D96C220844
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=17BjrmDny4s0uktxD7IMVt4Rl7PfD/7YFvvmHDItP3I=; b=lLHgCOgxkpO23C
-	l65TroNfYWOgoc/tcZb5C3XyDBPMNZ6IWNC+RJU6tshIOdI48OQTJuQHT0qTi7ITOk3spJdo5XHmZ
-	JxVhscOiDrwaaj5vwo1eR0hGfTnqZ6kmibDL6BBe0cOZUzcKHe2OfOjrsVHmMNvrZsIjghjKpbt+5
-	CRC7J7jCK6tbI259stgbkdbW/goa3u1fx/54Rb8bq/O6xtyQaKzElY/M9hCy6KNJR0220FSgnFjiI
-	UnN23zSk+cB3QFjd3ZMjIoDL8kqeUDUoop4AyEY3zSkKvCcT7x6seCqRfpt2YxywYFhCbFF9KqHN9
-	jQQDKWiI4Q3T0xJwwSMQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=DZf4yPmVwaLXF+B3y9bHhWK3nihNgiVYJBMYHQAX4/M=; b=Bik5rDs+nB24gB
+	nN5j0oDJyFhUxtUHuw66F1iDb0jTBuj8AwJTg8j9JvruWkF0/RGHoavWo/NQ11t42fcxeL1mByRVt
+	IrGpuwX8k38W32Ly1ebxMbuGh+hvkV9HPw2+mvrv5p6cbITXzCYjD1PS0nlCnw5Ezju/7/vNU8vvI
+	qGUuZDBccMcytWonxBCmt16QrR6yXzLv14h9YTgIUaEb2oH/rms0TIl/0LgyJ70c6Oh3cqOBs0fpS
+	nNQulh69VlPbn1cn1qch7778qgfBUA65WuNzUB5+J9s031LQ4bGbhKAhjSUhGVxaQNybSaIdv+GgF
+	jSLSxkUow9I0NFIPrs+w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gsxYi-00015G-NQ; Sun, 10 Feb 2019 22:26:44 +0000
+	id 1gsxZ0-0001NB-Re; Sun, 10 Feb 2019 22:27:02 +0000
 Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gsxYU-0000rQ-Ei; Sun, 10 Feb 2019 22:26:31 +0000
-Received: by mail-wm1-x343.google.com with SMTP id m1so13889176wml.2;
- Sun, 10 Feb 2019 14:26:27 -0800 (PST)
+ id 1gsxYU-0000rX-Er; Sun, 10 Feb 2019 22:26:32 +0000
+Received: by mail-wm1-x343.google.com with SMTP id p6so13317820wmc.1;
+ Sun, 10 Feb 2019 14:26:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=g0VNVBLfeMjVI3jgvlleGnqheZI5FIaCWf24UqkIZVw=;
- b=dfbqIpIyT7tIU7DCGZ1kMLCz1tsQ64q+jSr3EMLek7FVU3QWCuV1AB9D2bj5owXDlQ
- It9AlrdsQHz9ru/4xPj7Y2XvM7n1Pfj01sVYRZuoFzyFUvm1l/dADiAiU4V8S6phoiCG
- ltGdkHNwrrXiz58RNo2P9Jip9MfeXeWxSukGvRKMjrKH0b1VBJg3HlQlPoGyZ6gBLr+Z
- YUZzIVmB8xUzR2ENWkm257rqrb3JR7t3rKBbP/Q4m2UbqpyWlXohSZKPrOWyNYIaPv3b
- 83Dfi9fnNCr3ixv9nc5bfIRCEGrRDDkn/00Ur7/SPXQ7Mx0mD4iaqyma0+OnJ2+lXH7P
- NeiA==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=d9TVCi4BNICq2gxmx5zxYBJwQZn7VtKY6OR4lKjIRLA=;
+ b=bJi0a0brTJm18tD1GZq18LRx2ISjf9B7E1g5n6s+IuqGwFqIlV5KLWnW8RqTvij2WD
+ b2uChcio4hBJMuggJMY6uYfzGQs/Vi8DFk5OIBxosoM3lny9UEdqN8oXvBUIPfYA4X0k
+ hbORLq5rDJi5FEwaaRJrj+Z5BQMlsmE3AOxiL7zMgF4WZs98WJ+OkZez2tUZXg3XInYg
+ TABtNmflnT8Q23vuCUh6Vtn+Zbc2CnybQIhZx2rzTJYQ9rAClFBG2akqngyxRBN/nUO1
+ sORnL7dhRyT2VPJS26GSl9zFG+9rZxdjPYqQwBeeSe///u/n+k/SHVJLNJF9O0sATWVU
+ ebWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=g0VNVBLfeMjVI3jgvlleGnqheZI5FIaCWf24UqkIZVw=;
- b=KpG6QyEjrJJbf0VKBindIfSFYqh/u4DVbIiP8T+vbBhv2uNkyaOKcHUkm1W0swSoIZ
- 8jVWPNRwztPJTUdJ2YHRcGwOHRW1E7AWYj8vjQ7wsMsJZNcAeRj65jPZLn50Uc42O6Bo
- Tud31drTofj8fmJXPX3b0JIjGqEDMBCS16WVA3cP2ak68GeAiAA/H+H6b97EXWeZ0BwF
- zVN/ay4tLJ1BMXhhfuI+gA+gJ4W5If5prHU54rxeHHfpx+TiqUBCYXAHCFiiapZ6vxLm
- u7h3zxhmamkR8u/E35Cx+Glll9W1ZY/S6ZRpqKmavdlrrHEahvCix0LlOSv+eMCdfNUQ
- PPqA==
-X-Gm-Message-State: AHQUAuYnXb6q/lj9jK6efUrwIOZ4yD9qcV2py+7xqqIAVV2hhFt61SAx
- 6DUvUveYw0n1VI9DKt6hIiZyg8aa
-X-Google-Smtp-Source: AHgI3IYUeFOpVMeqnkBbllGykDGA8NKIZkt1iXsShS9GP0FIqAjNz+WXawdELDgMkFsvmecslMPFqw==
-X-Received: by 2002:a1c:9dcf:: with SMTP id g198mr6573118wme.116.1549837586256; 
- Sun, 10 Feb 2019 14:26:26 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=d9TVCi4BNICq2gxmx5zxYBJwQZn7VtKY6OR4lKjIRLA=;
+ b=ffvvPc7srL81JW2xpIyBVesql0TwY1uKLMfyrx+GjXugOHLGKwociFJYSF6xrppTg9
+ Nwky+73Ua00AgACQ2K8pB0N565JFpY2PN3Ruztwd/iDkjbmHC8H5Z/ATT3Mrz/+xt/2R
+ zBnY7F9KZhUjHsIspy7GXFhKuMxXKSIEVGcAxYyYAsPJj284XRyF//XG/AtdLioUZWOc
+ hdMSR3IO1aJJORxMyF+IXc2jmBdzQylxYyRU2QrsriS0hWqVvJHw/ZR3sVcbA/KLyXMx
+ zCJC/4uLJFuBlP8ENpmCSKiLyZKQMHLqNAt8QIapfxUz+ZBHcI17tEIeh/voo6YrbTo0
+ rQSA==
+X-Gm-Message-State: AHQUAub9ZEUWZ8jul+nVhX95kU1zG2j96yE68+gKFaRZHuvLbxPs2TSN
+ EEH9GG/oEH/u2a00KD5UeAwgKkWX
+X-Google-Smtp-Source: AHgI3IbfxM8tKqJeMQysco4NbTaCmbBKD6am73OmrGJ6Rkrk1V4lpsD5tZ73YkKKLXSLnOgJBG/5sg==
+X-Received: by 2002:a1c:720f:: with SMTP id n15mr2648738wmc.64.1549837588716; 
+ Sun, 10 Feb 2019 14:26:28 -0800 (PST)
 Received: from blackbox.darklights.net
  (p200300DCD70B4600C064670D88EA61CD.dip0.t-ipconnect.de.
  [2003:dc:d70b:4600:c064:670d:88ea:61cd])
- by smtp.googlemail.com with ESMTPSA id b14sm15523330wrx.36.2019.02.10.14.26.25
+ by smtp.googlemail.com with ESMTPSA id b14sm15523330wrx.36.2019.02.10.14.26.27
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sun, 10 Feb 2019 14:26:25 -0800 (PST)
+ Sun, 10 Feb 2019 14:26:28 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org, narmstrong@baylibre.com,
  robh+dt@kernel.org, devicetree@vger.kernel.org
-Subject: [RESEND PATCH v2 0/2] clk: meson8b: fix typo "ABP" -> "APB"
-Date: Sun, 10 Feb 2019 23:26:01 +0100
-Message-Id: <20190210222603.6404-1-martin.blumenstingl@googlemail.com>
+Subject: [RESEND PATCH v2 2/2] clk: meson: meson8b: fix the naming of the APB
+ clocks
+Date: Sun, 10 Feb 2019 23:26:03 +0100
+Message-Id: <20190210222603.6404-3-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190210222603.6404-1-martin.blumenstingl@googlemail.com>
+References: <20190210222603.6404-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190210_142630_496060_FFE854C6 
-X-CRM114-Status: UNSURE (   9.73  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190210_142630_570018_62B7670C 
+X-CRM114-Status: GOOD (  11.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -105,39 +108,107 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-It turns out that I'm not good at spelling "APB". Unfortunately an ABP
-(instead of APB) typo snug into two clocks in v5.0.
+Fix a typo in the APB clock names by renaming them from "abp" to "apb".
+No functional changes.
 
-Currently there are no users of that clock yet, so fix it now
-before it's too late (meaning before it's used by <something>).
+Fixes: a7d19b05ce817d ("clk: meson: meson8b: add the CPU clock post divider clocks")
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/clk/meson/meson8b.c | 26 +++++++++++++-------------
+ drivers/clk/meson/meson8b.h |  2 +-
+ 2 files changed, 14 insertions(+), 14 deletions(-)
 
-I decided to go the "normal" route where we can have separate
-branches for the dt-bindings and the drivers in the clk-meson
-repo. This means:
-- new (typo-free) clock #define
-- change the clock controller to use the new #define
-- (next development cycle) drop the old #define
-
-resend - changes since v2 at [1]:
-- include the device-tree maintainers / mailing list
-
-Changes since v1 at [0]:
-- split into a dt-bindings and clock controller driver patch
-
-
-[0] https://patchwork.kernel.org/cover/10742001/
-[1] https://patchwork.kernel.org/cover/10772199/
-
-
-Martin Blumenstingl (2):
-  dt-bindings: clock: meson8b: add APB clock definition
-  clk: meson: meson8b: fix the naming of the APB clocks
-
- drivers/clk/meson/meson8b.c              | 26 ++++++++++++------------
- drivers/clk/meson/meson8b.h              |  2 +-
- include/dt-bindings/clock/meson8b-clkc.h |  1 +
- 3 files changed, 15 insertions(+), 14 deletions(-)
-
+diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+index 748552c5f6c8..5136300c7915 100644
+--- a/drivers/clk/meson/meson8b.c
++++ b/drivers/clk/meson/meson8b.c
+@@ -803,16 +803,16 @@ static struct clk_fixed_factor meson8b_cpu_clk_div8 = {
+ 	},
+ };
+ 
+-static u32 mux_table_abp[] = { 1, 2, 3, 4, 5, 6, 7 };
+-static struct clk_regmap meson8b_abp_clk_sel = {
++static u32 mux_table_apb[] = { 1, 2, 3, 4, 5, 6, 7 };
++static struct clk_regmap meson8b_apb_clk_sel = {
+ 	.data = &(struct clk_regmap_mux_data){
+ 		.offset = HHI_SYS_CPU_CLK_CNTL1,
+ 		.mask = 0x7,
+ 		.shift = 3,
+-		.table = mux_table_abp,
++		.table = mux_table_apb,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+-		.name = "abp_clk_sel",
++		.name = "apb_clk_sel",
+ 		.ops = &clk_regmap_mux_ops,
+ 		.parent_names = (const char *[]){ "cpu_clk_div2",
+ 						  "cpu_clk_div3",
+@@ -825,16 +825,16 @@ static struct clk_regmap meson8b_abp_clk_sel = {
+ 	},
+ };
+ 
+-static struct clk_regmap meson8b_abp_clk_gate = {
++static struct clk_regmap meson8b_apb_clk_gate = {
+ 	.data = &(struct clk_regmap_gate_data){
+ 		.offset = HHI_SYS_CPU_CLK_CNTL1,
+ 		.bit_idx = 16,
+ 		.flags = CLK_GATE_SET_TO_DISABLE,
+ 	},
+ 	.hw.init = &(struct clk_init_data){
+-		.name = "abp_clk_dis",
++		.name = "apb_clk_dis",
+ 		.ops = &clk_regmap_gate_ro_ops,
+-		.parent_names = (const char *[]){ "abp_clk_sel" },
++		.parent_names = (const char *[]){ "apb_clk_sel" },
+ 		.num_parents = 1,
+ 		.flags = CLK_SET_RATE_PARENT,
+ 	},
+@@ -1910,8 +1910,8 @@ static struct clk_hw_onecell_data meson8_hw_onecell_data = {
+ 		[CLKID_CPU_CLK_DIV6]	    = &meson8b_cpu_clk_div6.hw,
+ 		[CLKID_CPU_CLK_DIV7]	    = &meson8b_cpu_clk_div7.hw,
+ 		[CLKID_CPU_CLK_DIV8]	    = &meson8b_cpu_clk_div8.hw,
+-		[CLKID_ABP_SEL]		    = &meson8b_abp_clk_sel.hw,
+-		[CLKID_ABP]		    = &meson8b_abp_clk_gate.hw,
++		[CLKID_APB_SEL]		    = &meson8b_apb_clk_sel.hw,
++		[CLKID_APB]		    = &meson8b_apb_clk_gate.hw,
+ 		[CLKID_PERIPH_SEL]	    = &meson8b_periph_clk_sel.hw,
+ 		[CLKID_PERIPH]		    = &meson8b_periph_clk_gate.hw,
+ 		[CLKID_AXI_SEL]		    = &meson8b_axi_clk_sel.hw,
+@@ -2092,8 +2092,8 @@ static struct clk_hw_onecell_data meson8b_hw_onecell_data = {
+ 		[CLKID_CPU_CLK_DIV6]	    = &meson8b_cpu_clk_div6.hw,
+ 		[CLKID_CPU_CLK_DIV7]	    = &meson8b_cpu_clk_div7.hw,
+ 		[CLKID_CPU_CLK_DIV8]	    = &meson8b_cpu_clk_div8.hw,
+-		[CLKID_ABP_SEL]		    = &meson8b_abp_clk_sel.hw,
+-		[CLKID_ABP]		    = &meson8b_abp_clk_gate.hw,
++		[CLKID_APB_SEL]		    = &meson8b_apb_clk_sel.hw,
++		[CLKID_APB]		    = &meson8b_apb_clk_gate.hw,
+ 		[CLKID_PERIPH_SEL]	    = &meson8b_periph_clk_sel.hw,
+ 		[CLKID_PERIPH]		    = &meson8b_periph_clk_gate.hw,
+ 		[CLKID_AXI_SEL]		    = &meson8b_axi_clk_sel.hw,
+@@ -2261,8 +2261,8 @@ static struct clk_regmap *const meson8b_clk_regmaps[] = {
+ 	&meson8b_fixed_pll_dco,
+ 	&meson8b_hdmi_pll_dco,
+ 	&meson8b_sys_pll_dco,
+-	&meson8b_abp_clk_sel,
+-	&meson8b_abp_clk_gate,
++	&meson8b_apb_clk_sel,
++	&meson8b_apb_clk_gate,
+ 	&meson8b_periph_clk_sel,
+ 	&meson8b_periph_clk_gate,
+ 	&meson8b_axi_clk_sel,
+diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
+index f212e2304ff5..b8c58faeae52 100644
+--- a/drivers/clk/meson/meson8b.h
++++ b/drivers/clk/meson/meson8b.h
+@@ -92,7 +92,7 @@
+ #define CLKID_CPU_CLK_DIV6	120
+ #define CLKID_CPU_CLK_DIV7	121
+ #define CLKID_CPU_CLK_DIV8	122
+-#define CLKID_ABP_SEL		123
++#define CLKID_APB_SEL		123
+ #define CLKID_PERIPH_SEL	125
+ #define CLKID_AXI_SEL		127
+ #define CLKID_L2_DRAM_SEL	129
 -- 
 2.20.1
 
