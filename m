@@ -1,93 +1,82 @@
-Return-Path: <SRS0=Q/al=QR=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=yrQE=QS=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1C132C282C2
-	for <linux-amlogic@archiver.kernel.org>; Sun, 10 Feb 2019 22:27:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A029CC169C4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Feb 2019 08:16:33 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D96C220844
-	for <linux-amlogic@archiver.kernel.org>; Sun, 10 Feb 2019 22:27:08 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 65B3720873
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Feb 2019 08:16:33 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Bik5rDs+";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="bJi0a0br"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D96C220844
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="e/8VDecV";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZWvoY2MU"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 65B3720873
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DZf4yPmVwaLXF+B3y9bHhWK3nihNgiVYJBMYHQAX4/M=; b=Bik5rDs+nB24gB
-	nN5j0oDJyFhUxtUHuw66F1iDb0jTBuj8AwJTg8j9JvruWkF0/RGHoavWo/NQ11t42fcxeL1mByRVt
-	IrGpuwX8k38W32Ly1ebxMbuGh+hvkV9HPw2+mvrv5p6cbITXzCYjD1PS0nlCnw5Ezju/7/vNU8vvI
-	qGUuZDBccMcytWonxBCmt16QrR6yXzLv14h9YTgIUaEb2oH/rms0TIl/0LgyJ70c6Oh3cqOBs0fpS
-	nNQulh69VlPbn1cn1qch7778qgfBUA65WuNzUB5+J9s031LQ4bGbhKAhjSUhGVxaQNybSaIdv+GgF
-	jSLSxkUow9I0NFIPrs+w==;
+	List-Owner; bh=JAYwYquBu/N+/TbO/Tq/eXRUZNFoed5pvodQy7H4r5Y=; b=e/8VDecVeykpqg
+	iyQPcTIhNgnpzkpx5U3Gtk4rFpI/XrYiF9pEBAoPWxaKjqHCOtwXcRFrXyA0t2VyXfiIwfB/TaW8M
+	pIxjeV7JVN/a0rV9RUfpCnwHKS9NH3JqlxhTmvISG0iSDPQJbl4A4bbUXE3hZeKSK/M+ZkJSh+NRZ
+	2v9oaHiVo7xzxf7qwfEjRe9E/0Yj4Iz4PhIF81CklRR2/osjAvAjlLkq5pzQPisBdrvFHHQpKPxrc
+	JF3MUmL3g2sNgQqttbDeJGYwHkKA0eM4SzGWYYWD01wlmqkJ1M5TXQKrseHSzBCgO7Mmp3N0zCCRz
+	g1Aab17pmBOwG3qP/dAQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gsxZ0-0001NB-Re; Sun, 10 Feb 2019 22:27:02 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1gt6lM-0000Hk-0V; Mon, 11 Feb 2019 08:16:24 +0000
+Received: from mail-lf1-x144.google.com ([2a00:1450:4864:20::144])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gsxYU-0000rX-Er; Sun, 10 Feb 2019 22:26:32 +0000
-Received: by mail-wm1-x343.google.com with SMTP id p6so13317820wmc.1;
- Sun, 10 Feb 2019 14:26:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=d9TVCi4BNICq2gxmx5zxYBJwQZn7VtKY6OR4lKjIRLA=;
- b=bJi0a0brTJm18tD1GZq18LRx2ISjf9B7E1g5n6s+IuqGwFqIlV5KLWnW8RqTvij2WD
- b2uChcio4hBJMuggJMY6uYfzGQs/Vi8DFk5OIBxosoM3lny9UEdqN8oXvBUIPfYA4X0k
- hbORLq5rDJi5FEwaaRJrj+Z5BQMlsmE3AOxiL7zMgF4WZs98WJ+OkZez2tUZXg3XInYg
- TABtNmflnT8Q23vuCUh6Vtn+Zbc2CnybQIhZx2rzTJYQ9rAClFBG2akqngyxRBN/nUO1
- sORnL7dhRyT2VPJS26GSl9zFG+9rZxdjPYqQwBeeSe///u/n+k/SHVJLNJF9O0sATWVU
- ebWA==
+ id 1gt6lI-0000GB-PP
+ for linux-amlogic@lists.infradead.org; Mon, 11 Feb 2019 08:16:22 +0000
+Received: by mail-lf1-x144.google.com with SMTP id q12so7045688lfm.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 11 Feb 2019 00:16:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=3rOeLj/zzZBpsUzwQ4Gl0C5dRDYfMa0NPqlhcNE/Mh8=;
+ b=ZWvoY2MUdc978cQven92P/Vf4iHZKtRyBolu+Ld+IbzdNWHmmDRgLzQh0WFZZsdVr+
+ a0vTkvYJ1bMZjAtnuYWJa3EIcu1n8+EqbkO0sGox34JjJ+2r0h0lwXWxinjlozPpxbJ6
+ yfjEN0jpGT/uHCflstsHEY1/s0Tov39OW3gp/AvlYTFMwmB6DJaZGBl2nQKbMGXNfl38
+ ygynFodafAOmsgs3eyYad9QF2gzi0PrR3rXqyQXB5HWYmr3O8ilRFJSw7ciVWF6Rg4sE
+ saqCJinu1mxqjHCE8TKPun2E+LhK9U0dov2G1BIQwmMCYxwY1XW+Zr8L0M/j69KsuFjk
+ NfHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=d9TVCi4BNICq2gxmx5zxYBJwQZn7VtKY6OR4lKjIRLA=;
- b=ffvvPc7srL81JW2xpIyBVesql0TwY1uKLMfyrx+GjXugOHLGKwociFJYSF6xrppTg9
- Nwky+73Ua00AgACQ2K8pB0N565JFpY2PN3Ruztwd/iDkjbmHC8H5Z/ATT3Mrz/+xt/2R
- zBnY7F9KZhUjHsIspy7GXFhKuMxXKSIEVGcAxYyYAsPJj284XRyF//XG/AtdLioUZWOc
- hdMSR3IO1aJJORxMyF+IXc2jmBdzQylxYyRU2QrsriS0hWqVvJHw/ZR3sVcbA/KLyXMx
- zCJC/4uLJFuBlP8ENpmCSKiLyZKQMHLqNAt8QIapfxUz+ZBHcI17tEIeh/voo6YrbTo0
- rQSA==
-X-Gm-Message-State: AHQUAub9ZEUWZ8jul+nVhX95kU1zG2j96yE68+gKFaRZHuvLbxPs2TSN
- EEH9GG/oEH/u2a00KD5UeAwgKkWX
-X-Google-Smtp-Source: AHgI3IbfxM8tKqJeMQysco4NbTaCmbBKD6am73OmrGJ6Rkrk1V4lpsD5tZ73YkKKLXSLnOgJBG/5sg==
-X-Received: by 2002:a1c:720f:: with SMTP id n15mr2648738wmc.64.1549837588716; 
- Sun, 10 Feb 2019 14:26:28 -0800 (PST)
-Received: from blackbox.darklights.net
- (p200300DCD70B4600C064670D88EA61CD.dip0.t-ipconnect.de.
- [2003:dc:d70b:4600:c064:670d:88ea:61cd])
- by smtp.googlemail.com with ESMTPSA id b14sm15523330wrx.36.2019.02.10.14.26.27
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sun, 10 Feb 2019 14:26:28 -0800 (PST)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: linux-amlogic@lists.infradead.org, narmstrong@baylibre.com,
- robh+dt@kernel.org, devicetree@vger.kernel.org
-Subject: [RESEND PATCH v2 2/2] clk: meson: meson8b: fix the naming of the APB
- clocks
-Date: Sun, 10 Feb 2019 23:26:03 +0100
-Message-Id: <20190210222603.6404-3-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190210222603.6404-1-martin.blumenstingl@googlemail.com>
-References: <20190210222603.6404-1-martin.blumenstingl@googlemail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=3rOeLj/zzZBpsUzwQ4Gl0C5dRDYfMa0NPqlhcNE/Mh8=;
+ b=FTqwFcQWSSu9oTKWVGyXJcLI19smmdvtxyQoPyQMnp87h43okWuTkW6UEPFdt+7wOX
+ 8+tkYawQNOkV3LiaorMHYLhN6wJty4+GDxKkGzNgR/laaAZvitwcvgFIytzJGqJucLGP
+ 093qCBVE5DrbhT+wOGOM0YMTbNu84Xp4xdzy95PTU1UmMq2fAm/kAf9XwC0kyUvOsecO
+ z3es5X9NZXL9dmfOYvh7EIx+wlG1hGXda8pVrfek8+utfI3tiDXGAER8FyyC/Yx04yyk
+ eT6x2a9nLjtsgYAZSqoz/eSyccSAKwHYFfFcHtIsKDCBd6WoQcxZoTvVZXWb8LbtaSP2
+ tU7A==
+X-Gm-Message-State: AHQUAuZbhY3/VLpyAKgQ+qE7svYmOMS6ihRjwxO6wleg8Y5d2x8H4WQ5
+ nu6Kt0f0mDNrNukgYf7Peo+lZPI4XVsdWdW3UMn3qw==
+X-Google-Smtp-Source: AHgI3IYRwiauksWbzzhVv/buhcfZlPVVNva9j5Ck1EjuNTHYFYEXIgDLOIWrcLp1Aob/2SQDsMtqEuzShuyFaVmsLm4=
+X-Received: by 2002:a19:7dc2:: with SMTP id y185mr21953938lfc.27.1549872976524; 
+ Mon, 11 Feb 2019 00:16:16 -0800 (PST)
 MIME-Version: 1.0
+References: <20190209010101.12210-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20190209010101.12210-1-martin.blumenstingl@googlemail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 11 Feb 2019 09:16:05 +0100
+Message-ID: <CACRpkdY3ygTU3UvA=Gu36S+Gte_WpR3stX5H-8Od42fJyDdSug@mail.gmail.com>
+Subject: Re: [PATCH] pinctrl: meson: meson8b: fix the sdxc_a data 1..3 pins
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190210_142630_570018_62B7670C 
-X-CRM114-Status: GOOD (  11.34  )
+X-CRM114-CacheID: sfid-20190211_001620_856131_EB279AB0 
+X-CRM114-Status: UNSURE (   8.78  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -99,119 +88,29 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mark.rutland@arm.com, sboyd@kernel.org, mturquette@baylibre.com,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- jbrunet@baylibre.com
+Cc: "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Fix a typo in the APB clock names by renaming them from "abp" to "apb".
-No functional changes.
+On Sat, Feb 9, 2019 at 2:01 AM Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
 
-Fixes: a7d19b05ce817d ("clk: meson: meson8b: add the CPU clock post divider clocks")
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/clk/meson/meson8b.c | 26 +++++++++++++-------------
- drivers/clk/meson/meson8b.h |  2 +-
- 2 files changed, 14 insertions(+), 14 deletions(-)
+> Fix the mismatch between the "sdxc_d13_1_a" pin group definition from
+> meson8b_cbus_groups and the entry in sdxc_a_groups ("sdxc_d0_13_1_a").
+> This makes it possible to use "sdxc_d13_1_a" in device-tree files to
+> route the MMC data 1..3 pins to GPIOX_1..3.
+>
+> Fixes: 0fefcb6 ("pinctrl: Add support for Meson8b")
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index 748552c5f6c8..5136300c7915 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -803,16 +803,16 @@ static struct clk_fixed_factor meson8b_cpu_clk_div8 = {
- 	},
- };
- 
--static u32 mux_table_abp[] = { 1, 2, 3, 4, 5, 6, 7 };
--static struct clk_regmap meson8b_abp_clk_sel = {
-+static u32 mux_table_apb[] = { 1, 2, 3, 4, 5, 6, 7 };
-+static struct clk_regmap meson8b_apb_clk_sel = {
- 	.data = &(struct clk_regmap_mux_data){
- 		.offset = HHI_SYS_CPU_CLK_CNTL1,
- 		.mask = 0x7,
- 		.shift = 3,
--		.table = mux_table_abp,
-+		.table = mux_table_apb,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "abp_clk_sel",
-+		.name = "apb_clk_sel",
- 		.ops = &clk_regmap_mux_ops,
- 		.parent_names = (const char *[]){ "cpu_clk_div2",
- 						  "cpu_clk_div3",
-@@ -825,16 +825,16 @@ static struct clk_regmap meson8b_abp_clk_sel = {
- 	},
- };
- 
--static struct clk_regmap meson8b_abp_clk_gate = {
-+static struct clk_regmap meson8b_apb_clk_gate = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = HHI_SYS_CPU_CLK_CNTL1,
- 		.bit_idx = 16,
- 		.flags = CLK_GATE_SET_TO_DISABLE,
- 	},
- 	.hw.init = &(struct clk_init_data){
--		.name = "abp_clk_dis",
-+		.name = "apb_clk_dis",
- 		.ops = &clk_regmap_gate_ro_ops,
--		.parent_names = (const char *[]){ "abp_clk_sel" },
-+		.parent_names = (const char *[]){ "apb_clk_sel" },
- 		.num_parents = 1,
- 		.flags = CLK_SET_RATE_PARENT,
- 	},
-@@ -1910,8 +1910,8 @@ static struct clk_hw_onecell_data meson8_hw_onecell_data = {
- 		[CLKID_CPU_CLK_DIV6]	    = &meson8b_cpu_clk_div6.hw,
- 		[CLKID_CPU_CLK_DIV7]	    = &meson8b_cpu_clk_div7.hw,
- 		[CLKID_CPU_CLK_DIV8]	    = &meson8b_cpu_clk_div8.hw,
--		[CLKID_ABP_SEL]		    = &meson8b_abp_clk_sel.hw,
--		[CLKID_ABP]		    = &meson8b_abp_clk_gate.hw,
-+		[CLKID_APB_SEL]		    = &meson8b_apb_clk_sel.hw,
-+		[CLKID_APB]		    = &meson8b_apb_clk_gate.hw,
- 		[CLKID_PERIPH_SEL]	    = &meson8b_periph_clk_sel.hw,
- 		[CLKID_PERIPH]		    = &meson8b_periph_clk_gate.hw,
- 		[CLKID_AXI_SEL]		    = &meson8b_axi_clk_sel.hw,
-@@ -2092,8 +2092,8 @@ static struct clk_hw_onecell_data meson8b_hw_onecell_data = {
- 		[CLKID_CPU_CLK_DIV6]	    = &meson8b_cpu_clk_div6.hw,
- 		[CLKID_CPU_CLK_DIV7]	    = &meson8b_cpu_clk_div7.hw,
- 		[CLKID_CPU_CLK_DIV8]	    = &meson8b_cpu_clk_div8.hw,
--		[CLKID_ABP_SEL]		    = &meson8b_abp_clk_sel.hw,
--		[CLKID_ABP]		    = &meson8b_abp_clk_gate.hw,
-+		[CLKID_APB_SEL]		    = &meson8b_apb_clk_sel.hw,
-+		[CLKID_APB]		    = &meson8b_apb_clk_gate.hw,
- 		[CLKID_PERIPH_SEL]	    = &meson8b_periph_clk_sel.hw,
- 		[CLKID_PERIPH]		    = &meson8b_periph_clk_gate.hw,
- 		[CLKID_AXI_SEL]		    = &meson8b_axi_clk_sel.hw,
-@@ -2261,8 +2261,8 @@ static struct clk_regmap *const meson8b_clk_regmaps[] = {
- 	&meson8b_fixed_pll_dco,
- 	&meson8b_hdmi_pll_dco,
- 	&meson8b_sys_pll_dco,
--	&meson8b_abp_clk_sel,
--	&meson8b_abp_clk_gate,
-+	&meson8b_apb_clk_sel,
-+	&meson8b_apb_clk_gate,
- 	&meson8b_periph_clk_sel,
- 	&meson8b_periph_clk_gate,
- 	&meson8b_axi_clk_sel,
-diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
-index f212e2304ff5..b8c58faeae52 100644
---- a/drivers/clk/meson/meson8b.h
-+++ b/drivers/clk/meson/meson8b.h
-@@ -92,7 +92,7 @@
- #define CLKID_CPU_CLK_DIV6	120
- #define CLKID_CPU_CLK_DIV7	121
- #define CLKID_CPU_CLK_DIV8	122
--#define CLKID_ABP_SEL		123
-+#define CLKID_APB_SEL		123
- #define CLKID_PERIPH_SEL	125
- #define CLKID_AXI_SEL		127
- #define CLKID_L2_DRAM_SEL	129
--- 
-2.20.1
+Patch applied for fixes.
 
+Yours,
+Linus Walleij
 
 _______________________________________________
 linux-amlogic mailing list
