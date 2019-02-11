@@ -2,91 +2,91 @@ Return-Path: <SRS0=yrQE=QS=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A008EC282CE
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Feb 2019 14:18:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 91D63C169C4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Feb 2019 15:09:31 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6DA10222B8
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Feb 2019 14:18:02 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5A2A8222B0
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Feb 2019 15:09:31 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LsUWNt48";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="yqJpqGvS"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6DA10222B8
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LlHLDECr";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e5Ep3Fan"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5A2A8222B0
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
-	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=rux9cvSnjbPOrhpojcv9cLoswAcjgskq2XpZKzrYx2U=; b=LsUWNt48spcbP8Ji1XWHWBc6I2
-	yWoH2sCI+HTFux0Wc8ywC9dqcWDLtsrHmUpPBzu3D+MWeTA25H+IMwJgLyNrZqfgNGgclk9JJwSQ2
-	59omEtIj2R7Bgb/r7gbIUPN1Gvv7e1f4n2fzZKdjZ4Hqs4e4YR1kJE4w883YDNUjjhK3MeMCliR21
-	ZZr8Jt/ybvlFJiQoj/6W5t7dnee/eyLBoIvpZZBRR23SqcVl1g8hAxdLRKJDTimbehGdSOl2jCVrf
-	AnnAoCRZKdAUF4/JGoLlgqU7Twa1l10ZVdjX3r6ltvo33gvtFKw7psms8zAvzK9fU4QQUAzWaRJ2/
-	HNcj4UVw==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=0o9LdEsWzWEuMCQtVYKdhm++8v86vJc4n+M7qj6KFm0=; b=LlHLDECrO5TpFp
+	QgUjPBo0jR4AmCFTBNvaTxC6cmOkr1OqYpetOegfQvk/usXryNZTeHwbCf4723m0YkeBqFZCotkfo
+	kvIlMYTfwYQHjMXXzh+dALn2G+owW+MUCEpazkAm0T9evt39eRIfw44dGcCkq/54lRxjAFa40Ex93
+	c3hQv7RaNvjZVHA/NgBACaPXIQVaTx0NLoP1Y0jJcWJl4Sd8Ljkesl3/R+TngMnlEOd8lH3u42S/u
+	IniyMTh5lwdrOPAA4r082FqJVBdT/YSElzFOJk7NXwWMPRHg13Uglk7d8GMHAihrnp9fOdYJqOaSd
+	Ljqj2Flb/j/Lfnqnc05A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gtCPE-00089w-OP; Mon, 11 Feb 2019 14:17:56 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1gtDD2-0004DW-AD; Mon, 11 Feb 2019 15:09:24 +0000
+Received: from mail-ot1-x32f.google.com ([2607:f8b0:4864:20::32f])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gtCP7-00085E-2K
- for linux-amlogic@lists.infradead.org; Mon, 11 Feb 2019 14:17:55 +0000
-Received: by mail-wr1-x442.google.com with SMTP id r2so4849641wrv.10
- for <linux-amlogic@lists.infradead.org>; Mon, 11 Feb 2019 06:17:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version;
- bh=puv3gC+Nk3BQy/pOka+RnqNUGH1wGRY9YNG6l/8aQic=;
- b=yqJpqGvSf5YixOGoEcFDrKq5ChskDq62jsL5L3y5M7thAP0oQTeMKOpDimNZuBVE9E
- +QMfyTbR0AhLVdlPtWQyYEJWjcZjbaB+K6C/SbGWg8vyGUMHHuvHVVyjz2g51gLEuTUe
- Pl+Y+t1MIh/zK6U4Bq9tiDqPy4ltj07oAUNZX82Y0HXHCZy88to3r+N1M4C0tYAg+Nav
- lYWfkD7TFIfWN3akMIYJcbnvFGPuZG/9Tyty2+JDqYfixssDX9OUl+8nmvkugWIiO3wb
- r2uYYRZ8Smuv/6oCYEqY60HUPvsVfyHr9iiloT/Cry8s6du1lfpU4pN+zGAg0EzcaxuQ
- gA5w==
+ id 1gtDCp-000446-3O; Mon, 11 Feb 2019 15:09:12 +0000
+Received: by mail-ot1-x32f.google.com with SMTP id u16so17948408otk.8;
+ Mon, 11 Feb 2019 07:09:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=hjKCVZ/bmZGTdwmuQtnAdZRdYCaqe6ccuR6GBolul7w=;
+ b=e5Ep3FansPOAsgIaCOmRCbFrWWk7rxtXm9UXtEwj6YUkmty+RYm6R3wmmXFezLitLt
+ wj5t9JV/T79tJmF84OHMDOtmwDHbvNh+EhN47eoTOYnV1+Cwv/MAFLt70Fj51jwEZLUW
+ nVHLpIrj+e2mvPQgnxLFHCjZ1HPtVWlR5R8Fnro03IsfaBBNVbOUSeCO57AyWGg95PUX
+ DcQhknbgp27sq+VwvB0vT3GrWmL88Oa29tZ6vpxkrW5+CKLXpc345Pf5jbLji5e6VKHM
+ tmDofEp+P/xoyMVdAJm+EMynzp5dNMZmhxaUlDh5kdLy/UxxNlVCw2vMed+ejTSg/DUj
+ J7Og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version;
- bh=puv3gC+Nk3BQy/pOka+RnqNUGH1wGRY9YNG6l/8aQic=;
- b=BZZzJlATSyuvH1QdG//VxHSTC7fS1E26znuqg/gvkuhoixF0FZflhEkMkRwSqApIeA
- zQYl1NPW8FC7UTuzB6mCjwtOXIdRHKfOmsWdUzrCpLZXGK/3luBUqSNTkNo6tUcWxPQO
- bvRSY9oHfAaKui8ihw/aitLISY8+0WrJuWAK0pZuZuLHKyScyDargcsNUiB1CtwyorpD
- 0pXBZ1VtKtet79TqWLTUABfdr9DdpK/3nE2IL0I5WkVwB236g+DUIPvVEnDUO413XMXO
- 1yqidNwkIoIt4YZC9SUiCaW+nUiJvgrDa6w+II+Sv0ba+gAb0/cO0oge8BIa1llLWqP7
- Y4Zw==
-X-Gm-Message-State: AHQUAubLVJg36tCIp8WF9W6ELBuS4BgRMUHGa8HbQqWoUcxQOGKS/5DB
- YsulinnFSbCwVyNh6fF/P64DJQ==
-X-Google-Smtp-Source: AHgI3Ib/CPu+ZVEuPdcvWu+xqlLLULGHwy4ZWV9srPnleOSXHl+Ub8ku+HZuh37LDIVAyXxqsOxi4A==
-X-Received: by 2002:adf:9ecc:: with SMTP id b12mr7013674wrf.83.1549894667289; 
- Mon, 11 Feb 2019 06:17:47 -0800 (PST)
-Received: from localhost ([2620:10d:c092:180::1:7e84])
- by smtp.gmail.com with ESMTPSA id t199sm55863947wmt.1.2019.02.11.06.17.46
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 11 Feb 2019 06:17:46 -0800 (PST)
-References: <1547744074-28308-1-git-send-email-lollivier@baylibre.com>
- <1547744074-28308-3-git-send-email-lollivier@baylibre.com>
- <20190125090755.GB3691@localhost> <867eeo7pjm.fsf@baylibre.com>
- <20190211083349.GU4686@localhost>
-User-agent: mu4e 1.0; emacs 25.3.2
-From: Loys Ollivier <lollivier@baylibre.com>
-To: Johan Hovold <johan@kernel.org>
-Subject: Re: [PATCH v2 2/4] dt-bindings: gnss: add mediatek binding
-In-reply-to: <20190211083349.GU4686@localhost>
-Date: Mon, 11 Feb 2019 15:17:44 +0100
-Message-ID: <86mun2v27r.fsf@baylibre.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=hjKCVZ/bmZGTdwmuQtnAdZRdYCaqe6ccuR6GBolul7w=;
+ b=Dj7h7BSrgdPrD7B/eRJt4ydXgq2rQpYUOFhMZNIJawkoLJoV5aPiZaiOej4KHksJZI
+ OP/AcjXwVXV5Hpe8d8agMdwG/Wq/xKbIvaFED5vDShygnr83LtVTve0Mkn2f89fFC58P
+ FyJwXY04Y23EuagJejTQ6sNYRX1yNmmMreNLf5GsEvJe5F8LA5zQUCSzBLgwscaWn+rC
+ ayJyd7n6Oegg3NvjWYTd5kDZ92LjvdttOa8gyaDO5nl6k2znfwTlmVALZ99frBSxWX1d
+ N15BI4ZTuDtHeYfal3bXHcU9OrTggvVSWmujuPpw3TmsLk8hcBYsgs3MnjPp3RcVxZ4h
+ wzyA==
+X-Gm-Message-State: AHQUAuYVY+zVlq6fGHP0Ooskr1d5zO/NwopVg+Mwxl+KvpH+LArol0iN
+ 7RAfaf/KbrI9XrRky2LXoJ0/1wBwLm1I35EqO7o=
+X-Google-Smtp-Source: AHgI3IYYRJsrxvUATL+z3YdUmabO7s/9sWTypwNrKCSsht6wag/Nd08ZOTwco99M583xcTNNctqFGPZTDmJePpC4e48=
+X-Received: by 2002:a9d:3bc7:: with SMTP id k65mr28869547otc.11.1549897749441; 
+ Mon, 11 Feb 2019 07:09:09 -0800 (PST)
 MIME-Version: 1.0
+References: <20190123151209.2080-1-linux.amoon@gmail.com>
+ <20190123151209.2080-3-linux.amoon@gmail.com>
+ <CAFBinCAdf0rtt-7tON_LRNH_cpvGJXX3LX8g-i4xsC3wahZSVA@mail.gmail.com>
+ <CANAwSgQ4=Vn6RM4Kpd20UWkQNW81=mfg-qB0G73dsRem3qwjcA@mail.gmail.com>
+ <CAFBinCB=3kmuFb_xXzhW+m8dTasVrCHQp2wti+=5UjrAHk5TTg@mail.gmail.com>
+ <CANAwSgQnMkXECkCVjFKwNKB+2JoiPtVPQbateppmtgfPYCutZg@mail.gmail.com>
+ <CAFBinCCFoBkbf-HvEoMk7mTYTBV27nJ9TF1X-DrLuHR9qDVDSA@mail.gmail.com>
+ <CANAwSgRtBWzKiFLUV6twxv+TnvjLdHXv=U8+ppQ7=9uBBLEH+Q@mail.gmail.com>
+ <CAFBinCD_Pddu+pBEKwMS6467J5nxKF4T5-LxVo06nFvyUSLpew@mail.gmail.com>
+ <CANAwSgSQRwF+_VR1jJFg=Q9wSdanEH0GmnFaeegt=hRMXiHX3Q@mail.gmail.com>
+ <CAFBinCBwDg21t+HT6w7CcUgH_aDuwh-UgoPs7GuZo9rABvPDig@mail.gmail.com>
+In-Reply-To: <CAFBinCBwDg21t+HT6w7CcUgH_aDuwh-UgoPs7GuZo9rABvPDig@mail.gmail.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Mon, 11 Feb 2019 20:38:57 +0530
+Message-ID: <CANAwSgRKgWCyNoDUxrK4asjZ_6z77Rew2nGCg1Yq9m3pi0Amrw@mail.gmail.com>
+Subject: Re: [RFCv1 2/3] ARM: dts: meson8b: odroidc1: fix USB power supplies
+ for phy
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190211_061749_478930_ABAEE0CF 
-X-CRM114-Status: GOOD (  18.91  )
+X-CRM114-CacheID: sfid-20190211_070911_166312_686AE31F 
+X-CRM114-Status: GOOD (  25.82  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -98,100 +98,151 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Loys Ollivier <lollivier@baylibre.com>,
- linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+Cc: devicetree <devicetree@vger.kernel.org>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Kishon Vijay Abraham I <kishon@ti.com>, Rob Herring <robh+dt@kernel.org>,
+ linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Martin,
 
-On Mon 11 Feb 2019 at 08:33, Johan Hovold <johan@kernel.org> wrote:
+On Mon, 11 Feb 2019 at 03:51, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> Hi Anand,
+>
+> On Sat, Feb 9, 2019 at 6:55 PM Anand Moon <linux.amoon@gmail.com> wrote:
+> [...]
+> > > > But this dose not work setting the usb1_phy to use vbus-supply.
+> > > >
+> > > >  &usb1_phy {
+> > > >         status = "okay";
+> > > > +       vbus-supply = <&usb_vbus>;
+> > > >  };
+> > > >
+> > > > I am attaching a small patch for testing.
+> > > > [0] usbvbus.patch
+> > > indeed, this is not working for me either.
+> > > I checked my old notes at [0] -> it works for me when setting
+> > > "vbus-supply" at the usb controller (not the PHY).
+> > >
+> > > with the following snippet:
+> > >   &usb1 {
+> > >     status = "okay";
+> > >     vbus-supply = <&usb_vbus>;
+> > >   };
+> > > I get:
+> > > # cat /sys/kernel/debug/regulator/regulator_summary | grep -i usb
+> > >    c90c0000.usb                  1                                 0mA
+> > >     0mV     0mV
+> > >    c90c0000.usb                  1                                 0mA
+> > >     0mV     0mV
+> > >    USB_VBUS                      1    1      0 unknown  5000mV     0mA
+> > >  5000mV  5000mV
+> > >       c90c0000.usb               1                                 0mA
+> > >     0mV     0mV
+> > >
+> > > can you please try this on your board as well?
+> > >
+> > > > Here is the summary of the above patch.
+> > > >
+> > > > 1. hot-plugins of usb device is not working.
+> > > > 2. only cold/warm boot let the device come up.
+> > > > 3. not power is supplied to the usb ports.
+> > > > 4. no power module is registered with the regulator summary.
+> > > with "vbus-supply" moved to the usb1 node I get the following result:
+> > > 1. same: hot-plugins of usb device is not working
+> > > 2. different: a reboot doesn't make devices come up
+> > > 3. same: no power is supplied to the USB ports (in my case this causes
+> > > #2, but it's not clear why there's no power...)
+> > > 4. different: the regulator is registered with the USB controller in debugfs
+> > >
+> > Here the the logs after I applied the above changes
+> >
+> > [1] https://pastebin.com/rVa8gxNG
+> can you please provide the .dts patch for this log?
+> I can see the following message in your log:
+> [    1.977367] USB_VBUS: disabling
+>
+Sorry for the confusion on the logs.
+Above logs are generated with below setting.
 
-> On Mon, Jan 28, 2019 at 04:46:53PM +0100, Loys Ollivier wrote:
->> 
->> On Fri 25 Jan 2019 at 09:07, Johan Hovold wrote:
->> 
->> > On Thu, Jan 17, 2019 at 05:54:32PM +0100, Loys Ollivier wrote:
->> >> Add binding for Mediatek-based GNSS receivers.
->> >> 
->> >> Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
->> >> ---
->> >> 
->> >> v2:
->> >> Renamed bindings from Globaltop/gtop to Mediatek/mtk.
->> >> Moved current-speed as an optional propertie.
->> >> Removed the status line in the example.
->> >> Added "mediatek,mt3339" compatible.
->
->> >> +++ b/Documentation/devicetree/bindings/gnss/mediatek.txt
->> >> @@ -0,0 +1,39 @@
->> >> +Mediatek-based GNSS Receiver DT binding
->> >> +
->> >> +Mediatek chipsets are used in GNSS-receiver modules produced by several
->> >> +vendors and can use UART, SPI or I2C interfaces.
->> >> +
->> >> +Please see Documentation/devicetree/bindings/gnss/gnss.txt for generic
->> >> +properties.
->> >> +
->> >> +Required properties:
->> >> +
->> >> +- compatible	: Must be one of
->> >> +
->> >> +			"globaltop,pa6h"
->> >> +			"mediatek,mt3339"
->> >
->> > I'm not sure it makes sense to add the GPS chip itself as it cannot be
->> > used stand-alone AFAIU, and either not way would require a lot more
->> > resources to be defined than what you add to this binding.
->> 
->> OK, I find it a bit confusing to have Mediatek bindings but no
->> compatible Mediatek SoCs.
->> But it is true that it can't be used stand-alone. I will remove this
->> reference and also remove it from the mtk.c driver code from this patch
->> serie.
->
->> >> +Required properties (I2C):
->> >> +- reg		: I2C slave address
->> >> +
->> >> +Required properties (SPI):
->> >> +- reg		: SPI chip select address
->> >
->> > While the mt3339 appears to support these interfaces, the globaltop one
->> > does not.
->> >
->> > Have you looked around for a small sample of mt3339-based receivers, to
->> > see whether anyone actually provides these?
->> 
->> Again I'm confused by the fact that it is the Mediatek bindings.
->> Hence why I have added it and why it was not present in the v1 that was
->> only for Globaltop.
->
-> This is no different from the sirfstar driver for receivers based on
-> those chipsets but manufactured by various other vendors.
->
-Indeed.
+&usb1 {
+   status = "okay";
+    vbus-supply = <&usb_vbus>;
+ };
 
->> I find it odd mentionning the chipset but not all its interfaces.
->> I will remove these sections and only list supported interfaces (i.e.
->> UART). Other interfaces can be added afterward if one finds a board that
->> provides them.
+> I have tried it with the attached patch, then I get:
+> # dmesg | grep VBUS
+> #
+> # cat /sys/kernel/debug/regulator/regulator_summary
+> regulator                      use open bypass  opmode voltage current
+>     min     max
+> ---------------------------------------------------------------------------------------
+> regulator-dummy                  4    3      0 unknown     0mV     0mA
+>     0mV     0mV
+>    c90c0000.usb                  1                                 0mA
+>     0mV     0mV
+>    c90c0000.usb                  1                                 0mA
+>     0mV     0mV
+>    VCCK                          1    1      0 unknown   860mV     0mA
+>   860mV  1140mV
+>       cpu0                       0                                 0mA
+>   860mV   860mV
+> P5V0                             3    4      0 unknown  5000mV     0mA
+>  5000mV  5000mV
+>    VCC1V8                        2    2      0 unknown  1800mV     0mA
+>  1800mV  1800mV
+>       c1108680.adc               1                                 0mA
+>     0mV     0mV
+>       c1108e00.mmc               1                                 0mA
+>  1800mV  1950mV
+>    VCC3V3                        2    3      0 unknown  3300mV     0mA
+>  3300mV  3300mV
+>       c1108e00.mmc               1                                 0mA
+>  3300mV  3400mV
+>       VDD_RTC                    0    0      0 unknown   900mV     0mA
+>   900mV   900mV
+>       TFLASH_VDD                 1    1      0 unknown  3300mV     0mA
+>  3300mV  3300mV
+>          c1108c20.mmc:slot@1     1                                 0mA
+>  3300mV  3400mV
+>    DDR_VDDC                      0    0      0 unknown  1500mV     0mA
+>  1500mV  1500mV
+>    USB_VBUS                      1    1      0 unknown  5000mV     0mA
+>  5000mV  5000mV
+>       c90c0000.usb               1                                 0mA
+>     0mV     0mV
+> TF_IO                            0    1      0 unknown  3300mV     0mA
+>  1800mV  3300mV
+>    c1108c20.mmc:slot@1           0                                 0mA
+>     0mV     0mV
 >
-> Right, but please do look around for other receivers using this chipset
-> so that we can make the binding generic enough to cover those as well
-> (e.g. by choosing representative resource names).
+> (my kernel build includes two more changes on top of Kevin's v5.1/dt
+> branch which add two new regulators: it enables the RTC and the SDHC
+> MMC controller, but these are not related to USB at all)
 >
-OK will have a look.
+> USB ist still not working for me, but I believe my problem is
+> different to yours.
+>
+>
+> Regards
+>
+> Martin
 
-> Johan
+Can we have other people who can test both the approach for
+*vbus-supply* vs *phy-supply* setting.
+Then we can conclude on the correct approach.
 
+Honestly I am using power supply from dc jack rather than power via usb otg.
 
--- 
--L
+Best Regards
+-Anand
 
 _______________________________________________
 linux-amlogic mailing list
