@@ -2,22 +2,22 @@ Return-Path: <SRS0=yrQE=QS=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-9.4 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS autolearn=ham
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS,SUBJ_ALL_CAPS autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 880E4C169C4
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Feb 2019 20:41:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E3E3C169C4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Feb 2019 20:49:10 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 55FDD2084D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Feb 2019 20:41:07 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1D80E218A4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Feb 2019 20:49:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kH9k4gOC";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="PouLwnYF"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 55FDD2084D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="uYKGN/aH";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="kyfi3dan"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1D80E218A4
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
 	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=WviF4JaK+gXVy5oyIvZLfDBscCmSnYtUd/JQTE1vfw4=; b=kH9k4gOCVFZTAn
-	18O1F8Z87SvUvXK9Dd0mssCLD2D68KHaD91KaOclEBMqqaLGCGozac3Rur3Y0meE0X+oP1oTpv/sJ
-	kjzISDYaEld1IB4+aJEShI9a5TPLL5ivT1OH2EyRMSeHZQeQ0z10aJCOp7Z+eQxl/HzAX4Zs9PgAu
-	Wm98twAcRuXrbfIHgPIoIX23rkWBT40WnOd2PFQ0rSRL9q8euwynNYwd4QllJm3pzZ77i0DS5Cepj
-	pmR1jUluDqNgubfF2y5oYlL9XQ1Y0gnuQFLXsv9KANaYAlh6ICv5Fx9x7nfSydoRpbsAVgrrNDDAz
-	cX3sCxWTS8yuz4iMwHRA==;
+	List-Owner; bh=jodMnxiSfcM6rKl4VuQC4pI3Iqk20OeaYse9PZWy0Oo=; b=uYKGN/aH7YnkWT
+	OKH7pVFHx12zaldes3Wly+kO1vWu6GBJr4aW7Rr/XApXRSEU2eMCMefhvUaQGHtcIkUdv/owzkRkO
+	84BTydhqyze8zyWWBcvtivWSdZ8SEgti4nErBgDKDL3+9Vd5Rw3cvfDZCytPrejAL3GkFJkkHbBP1
+	B9QN6Zu3PU91F7/qleXpLInDkKgGl88hRp6US94Un6REd/9EF+RoXP8AEUeG0xS3vIVSM8ESoBHtK
+	a64DJo8tT9mk8aaGcc3z+rj/N/WZqk32fxB5lNXMU/T17eP5kCvPkxc7aukVjLsUrFw1wkXSav/7m
+	CrBEIDXoMdeINCyOHXJw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gtINw-0007F8-ML; Mon, 11 Feb 2019 20:41:00 +0000
-Received: from mail-pf1-x444.google.com ([2607:f8b0:4864:20::444])
+	id 1gtIVj-0001KD-Mw; Mon, 11 Feb 2019 20:49:03 +0000
+Received: from mail-pf1-x441.google.com ([2607:f8b0:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gtINk-00075e-OP
- for linux-amlogic@lists.infradead.org; Mon, 11 Feb 2019 20:40:51 +0000
-Received: by mail-pf1-x444.google.com with SMTP id c123so131847pfb.0
- for <linux-amlogic@lists.infradead.org>; Mon, 11 Feb 2019 12:40:48 -0800 (PST)
+ id 1gtIVg-0001JS-8F
+ for linux-amlogic@lists.infradead.org; Mon, 11 Feb 2019 20:49:02 +0000
+Received: by mail-pf1-x441.google.com with SMTP id c123so141315pfb.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 11 Feb 2019 12:49:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:mime-version;
- bh=qaAwhFAqBZ1GfDiWGBctc/I7nn7/IozezkQ049IDIIw=;
- b=PouLwnYFSreBN5YeSDK7wcqoKf5oD76zHuQfTt3fjYE65708tyAcOUNkcwALvWtgxx
- u0fSy1OcpHUszm2K/Gx6Nh1EU1aYlzXKmlszvDAtKXVrKnlwc4eC7OYwhVB8MrGYJxo7
- Fv51p8Oc+FJtZS6fr1DSZdUVv16g83cbunzjlDXDFzGAyZgscV8KeQEhjBdu+RKdeITO
- 0q/0hZrFyLm0fr7oEbLKJ0SC7zP3esjrCSkbR8vi7S25dGQ3Cq27RC7TERFFLX3bI53q
- gSMRQULKHZ38hVt6d8+G+JbBqtA5FBuUHxhoDRdcI0vjcFPZ+2OWjkxfaZMHAWgyPvCg
- BV3Q==
+ bh=iD/2fmc3WOR75xKs3SOI8RznZuRTsGWHd3f6jaHVDts=;
+ b=kyfi3danVhowRODs3bHSnz2xGgr0DF4P4v+EjPqfmcAG6qPV5XUQQj7/ezwvx6sr/M
+ 2KkYAkp33KRAciQUISTrFMCKZ4BHAmLZMUubk/pGjzadyehjxo1BEAcjiI+X/h/TI3HN
+ igBtu0iU4lHzu8uKr+ZEiM+dbG5WjU31hiG5465F0BG3rN67vmov8yWT9hRw4suQxztJ
+ CUiOfz2oUpwVPE8O0ys7inkeaURGwK1WHs8NF8xCHCpFq3nbcjKWs1gQfsKn4TgeMY7T
+ W/1N/MhpoPJhjdHc6bjIy5cdok5de9/9BzYazHu9759G9rm5J7ZR+qjV1McVVpa6aQ+8
+ Lruw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version;
- bh=qaAwhFAqBZ1GfDiWGBctc/I7nn7/IozezkQ049IDIIw=;
- b=ikBdWiTRA38SXB36TMPaie9Vrgx0cJzucf2xR1hgoFV0czKSqKG9fKHCEE5/FMuuWW
- jvdQJwl597x+dGGpEQ2cbz/0bp22hDv3y98a9PchK3MNiatDsrQ4a9uZl2kGcrN2hUIQ
- PwjlUaYTQIYIkdHZGUK3xCSCylJGme2Liyq1bf02kanEM3W5R9xkKLxsYEwAti6eCDWb
- ksWqsbU13pE/EOOddd3v1i2JLR95zAs4xzyscH3sGeZCnDtxiz8+FPFfPFEe8SN5ya3j
- hTfpJbpfeofs4APIKw3ix7gVzquEJU2pkS581kcVXFcEq44cii4NhIEFVS+fZt1U3u2f
- I4Eg==
-X-Gm-Message-State: AHQUAuahFUdyx7wn/hbAgqOdq6aVJGSAAFtJJvQ5VsdIYO94nnxzUVIP
- uAE7BepYJ6ol7lK47y8q+15mQA==
-X-Google-Smtp-Source: AHgI3IZlhFzTTycRgR2hXxQV4KXEwpon4M8m9h0a9ZvP3IX/btB6OkD0AKCo/RS7nMSsXb0/J3TXRg==
-X-Received: by 2002:a65:488a:: with SMTP id n10mr77642pgs.261.1549917647471;
- Mon, 11 Feb 2019 12:40:47 -0800 (PST)
+ bh=iD/2fmc3WOR75xKs3SOI8RznZuRTsGWHd3f6jaHVDts=;
+ b=qAh+8fYVGoamz8JYpQQlWowgFBrIEdMEN4e1YnZKB9wYaEwTgaKbNUjqphXRNfY7sp
+ ENzEGMfE1yDr74/eoJzqtIs7yKc6M/XP5HvTBFej12m+U/dwZA+kPh4x0EzJqhRgeNBW
+ PJ5NkNM5l6VSSDL/eUeXL3M3J+JSxTbyezh5b+L0jO4rAAnBWM9/7BLnwgHGaCsdHpul
+ d1JFlKIN/j4uHKwRnAWg/k4+gJxWYvo9YOVwcYHWSAWEP4Rqm9BKyF+Vujndp2elC2y6
+ 2ipAqeR7X0IlTFZQ178tgfr6Lvb2C3PV3SkMmS0zhTtQ5G4/1dO9mgw258y/CrwLKtHC
+ e6Fw==
+X-Gm-Message-State: AHQUAuZ2isVHwrLlJKFemqcU42WhuCiCOVAY7azPzT0nFlKD8Hoyhuny
+ md+rKHDjNFwIje0+MXYkU1zh2Q==
+X-Google-Smtp-Source: AHgI3Ib4lf6z9Qjmrs9M7eL8SvaRqCk8Uf+gA800Vg6jAcWnU5WVJAuxDkgR4V0sfijIpomyMSqfQA==
+X-Received: by 2002:a63:f201:: with SMTP id v1mr140486pgh.232.1549918139610;
+ Mon, 11 Feb 2019 12:48:59 -0800 (PST)
 Received: from localhost ([2601:602:9200:a1a5:1d1:285e:6b85:3bfc])
- by smtp.googlemail.com with ESMTPSA id 27sm4203597pgn.56.2019.02.11.12.40.46
+ by smtp.googlemail.com with ESMTPSA id 10sm17683708pfq.146.2019.02.11.12.48.58
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 11 Feb 2019 12:40:46 -0800 (PST)
+ Mon, 11 Feb 2019 12:48:59 -0800 (PST)
 From: Kevin Hilman <khilman@baylibre.com>
 To: arm@kernel.org
-Subject: [GIT PULL] Amlogic: driver updates for v5.1
-Date: Mon, 11 Feb 2019 12:40:46 -0800
-Message-ID: <7hlg2mdpo1.fsf@baylibre.com>
+Subject: [GIT PULL] 
+Date: Mon, 11 Feb 2019 12:48:58 -0800
+Message-ID: <7himxqdpad.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190211_124048_858443_EDD2A508 
-X-CRM114-Status: UNSURE (   9.20  )
+X-CRM114-CacheID: sfid-20190211_124900_289495_42AC9176 
+X-CRM114-Status: UNSURE (   8.28  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -103,32 +103,26 @@ The following changes since commit bfeffd155283772bbe78c6a05dec7c0128ee500c:
 
 are available in the Git repository at:
 
-  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-drivers
+  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-soc
 
-for you to fetch changes up to 19e0bde7bf6a18a910e5d633ef606d6ff298c2cb:
+for you to fetch changes up to b3077ffcfa24b05c05af3b990d97a392ef88b22e:
 
-  soc: amlogic: clk-measure: add axg and g12a support (2019-02-07 16:50:36 -0800)
-
-----------------------------------------------------------------
-Amlogic: driver updates for v5.1
-- clock measure: add support for G12a SoC family
-- misc. fixes
+  arm64: meson: enable g12a clock controller (2019-02-08 09:30:25 -0800)
 
 ----------------------------------------------------------------
-Jerome Brunet (2):
-      dt-bindings: amlogic: add new compatible devices to clk_measure
-      soc: amlogic: clk-measure: add axg and g12a support
+Amlogic SoC Kconfig updates for v5.1:
+- arm64: meson: enable g12a clock controller
+- drop unneeded COMMON_CLK_AMLOGIC
 
-Neil Armstrong (1):
-      soc: amlogic: canvas: Fix meson_canvas_get when probe failed
+----------------------------------------------------------------
+Jerome Brunet (3):
+      arm64: meson: remove COMMON_CLK_AMLOGIC selection
+      ARM: meson: remove COMMON_CLK_AMLOGIC selection
+      arm64: meson: enable g12a clock controller
 
-wen yang (1):
-      soc: amlogic: add missing of_node_put()
-
- Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt |   2 ++
- drivers/soc/amlogic/meson-canvas.c                            |  18 ++++++++++--
- drivers/soc/amlogic/meson-clk-measure.c                       | 196 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 214 insertions(+), 2 deletions(-)
+ arch/arm/mach-meson/Kconfig  | 1 -
+ arch/arm64/Kconfig.platforms | 5 +++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
 _______________________________________________
 linux-amlogic mailing list
