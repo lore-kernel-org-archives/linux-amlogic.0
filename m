@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 39963C282C4
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B06FBC282CE
 	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Feb 2019 14:03:24 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0446220823
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Feb 2019 14:03:23 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 76CF620823
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Feb 2019 14:03:24 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="n3tGD2Nk";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="DDKaRtFg"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0446220823
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nV6uEwLI";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="xwTOHJme"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 76CF620823
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=X+L4jmYNHegFeTUCeHFIOwVKhfcdTvDcC31M5EVpc1c=; b=n3tGD2NkeNwM1t
-	xUOz4G9oUaxrHha7DtqAOfzT4nkoORA8gbrfImLCKwsd8ijoBREY+OKLT2N96Rcg1P6Zc2fmGq111
-	14fBei/Om0PKvfOjcGsrOhq8zHOOEoIhf+z2wIm/eSi+Eg6P4KQJcCmnASN3C6oekiKD3SJCRjSE/
-	xZZ4HzxeKSc0QLH6sQMgGnNma2YrLAMVs9yIc7EA+lV3zIv2QSCUAHY/PFWlS+35rxovb5l7IQ2cF
-	5glN3h3KD/x8W3nRGhhm4ZzvIh4sTWIBa8Ew3buCMM2g2cvHfYxn0oc/XIPUnlPso/M4/Pq4otnsA
-	+M6SN0uS2KQEfNNqaCqg==;
+	List-Owner; bh=6chTJ2IAQhYnCUf9bRr49WSLT+57TqrbFMAoSlpDjrQ=; b=nV6uEwLIoClChn
+	lu650JWw42k4tNHmtuaLy6tkoVV7yS6UUkIqOdMfExymc07BGb+lOGjlz2UBjhjLBd6sr0YM0q2UX
+	/wHE8qoMrSiLPVDKY8Ge1bVWWoWEfffvgmrxacpbwKk+QUhl9QLuZ3/Xhg0bctZa809fZwGpvX3G/
+	b20jzxve5TnnhXZY80fS/Md8e99DFLjIIo2OS7vHLD4u1KfT3MVPYfQUaxWwIsQTmj4CUX1pZcc+d
+	s5tPRx0dSgjtkWHxd57wvx6JGUlwe4RgQIQm1+mEkEm7uK+tWaiO406UxuzEh9gglMz/EtOZpWN9K
+	RJ8zPg3Bde+yVVYEBN0w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gtYea-0003jY-Mw; Tue, 12 Feb 2019 14:03:16 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1gtYec-0003lH-7z; Tue, 12 Feb 2019 14:03:18 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gtYeP-0003Yl-At
+ id 1gtYeP-0003ZC-Qi
  for linux-amlogic@lists.infradead.org; Tue, 12 Feb 2019 14:03:07 +0000
-Received: by mail-wm1-x341.google.com with SMTP id q21so3132436wmc.5
- for <linux-amlogic@lists.infradead.org>; Tue, 12 Feb 2019 06:03:04 -0800 (PST)
+Received: by mail-wr1-x444.google.com with SMTP id l9so2760554wrt.13
+ for <linux-amlogic@lists.infradead.org>; Tue, 12 Feb 2019 06:03:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=dulm1bU9WtsfyglzYBfpic3H5/a+/roIjKv2vYQ8/qg=;
- b=DDKaRtFgKO7VzFN3HDS4BSseE07cHdEL2YnMBj5rNfi4sdbaVkIJHhlvDCSgVwbNgc
- wcTWHqrO4lr5n1X2fyNzKUlAyr94HWE1W4vyjSIlMWbgs6O0YqrUBsXo4X0R42s8W9+A
- 3+4PA7KeXrPYmDkwPdLwp9KEltX4bvhCs9rf5nWy9x1Q24o9NM0DR3/6M7Pmw45c97Wt
- M2wrfLuZy4gAqor7FHhhDO9sKcuU8ywd8BMXZtwGSXWPWAr5b6kcStJPlpuoqwvgAoi3
- PZY76QWsSBEVeqzXnvkiHgjwmKSSLuBdR55cJf0DqQofKrr0G+b7MwjgnLnwZX9BZI1r
- IWqw==
+ bh=jN5KUzfKX2ndr6TNL6ZWjgGyp82IoCOhgEMTMPUGQYI=;
+ b=xwTOHJmeN1oYM8JlE57RDbdCpUcSAWOeO9lHTdXDTKiVHQiIa+5MBD5cuOrtV+0BHf
+ mMQbWeeGTZpryJnbTRQvgb8Dd0l4MIxbnkR/BtWzOsXqqPf9ZYD8dVToUAz04ksTJnwr
+ HlwbJRaQTmmZHasPLGYwDUVxMsFJ2HNQqTJKc38+zJmF+q+5dWh0IEvOo9/ilMYqiHRh
+ abPQ79/KOJz3yNucAqOb59c76LpLe5kMbO6nBh6TsVbXKHXlgrNr1fqwyhhAMiRkpGM4
+ Mp5tPJ/Ow2L5EcksZWxkKAtCSO4qN6OCeGdkck59td7MhioNMYzAN71KbGTfY7XKgMa7
+ GBXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=dulm1bU9WtsfyglzYBfpic3H5/a+/roIjKv2vYQ8/qg=;
- b=o16XbpoNHx9Cd0tJi79xjRlbxoh6Hmn6Qe+0G4XWYbADkEntrCWZhSKtlNq/buPZeu
- E7zoDbzU6M1ASaIcfEwvq5CXeaYbmDHHGTI6pBPDcM+uIPGQ75PGlE6ri/0IrwRoo4QQ
- T3ECvttJHIwxNhG9rG6X1qfxi3B+3tnk+x3t97GvH9tWplR9S//nSGRnxp/A2CHYPw3l
- ZCKRNkpxvdQxzeUN++oE9IuhBUWyRQ++vy0lh6bPGxkgeup2XmOwlBwz8d7D/k83L44J
- HK5x+Xu/e4mlJUZqF+RVvDd6UrKXxZBwOIl/BkNsMHIDZKPsdMy5oeZAeJZEotbbOVrw
- Dq+Q==
-X-Gm-Message-State: AHQUAuaVAWU2VMgKKBRHHf+y+prumhH51SmRhVM6xx4TAZFwOvBIzSO1
- xbVTRPajOzhQuDWgI2GCtevn8g==
-X-Google-Smtp-Source: AHgI3IYMiZchpHwXlRRXUxNBcje3WNreoRMlf+KDfkg3zQC6oxYJP3FScpJukr1yLGZK+OO4ykSc/Q==
-X-Received: by 2002:a1c:eb18:: with SMTP id j24mr2886191wmh.119.1549980183432; 
- Tue, 12 Feb 2019 06:03:03 -0800 (PST)
+ bh=jN5KUzfKX2ndr6TNL6ZWjgGyp82IoCOhgEMTMPUGQYI=;
+ b=GIC9TepP1cF7dvV1xb5pGjwhgaWxJ1Lnd5rbmkyBaWrWrtMLKm5gE9ihCqs28C+3yv
+ dsJCY8mpPQ3V013Wd3poaC9CeCAig7N8SynuZm38OB9pYsXXaanQe/omRqNFGAevYaEA
+ wKYz52sCY6ym1miwByZIMY8mbXGBFPQNeMD2JO9It3v21BbJ44GII+dQ9Li1Lchw4m3s
+ YrQ4N2M1Mq6gRZl93ByTlDvcQkYDc00Hss/K8xqgRQXiKz3MAJaanWP7pNbjy8PbpT7t
+ HquEjoz+jazDmzszXMvl0EjIteyyB5NI/MTA/WebLdCqXqanvO2hYncHNdJ9a1krFyUP
+ 0VEw==
+X-Gm-Message-State: AHQUAuYPHZeFrZRd12a9AKMSbA2aYWdTgwGeMjvd/My+wHoq5WlBhnBb
+ AlRBBBifhjUYtyMWEpNw+26scA==
+X-Google-Smtp-Source: AHgI3IZX1WfsdFtWbVrcdrN2oLFP3xvftMrl/I8QnMfuGABwxEYTBvnxag+iyshx+3R1mAnqm4jStA==
+X-Received: by 2002:adf:9083:: with SMTP id i3mr3030823wri.124.1549980184261; 
+ Tue, 12 Feb 2019 06:03:04 -0800 (PST)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id g10sm23435678wrq.81.2019.02.12.06.03.02
+ by smtp.gmail.com with ESMTPSA id g10sm23435678wrq.81.2019.02.12.06.03.03
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Tue, 12 Feb 2019 06:03:02 -0800 (PST)
+ Tue, 12 Feb 2019 06:03:03 -0800 (PST)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: khilman@baylibre.com
-Subject: [PATCH 1/2] vendor-prefixes: Add prefix for Shenzhen SEI Robotics Co., Ltd
-Date: Tue, 12 Feb 2019 15:02:58 +0100
-Message-Id: <20190212140259.9537-2-narmstrong@baylibre.com>
+Subject: [PATCH 2/2] arm64: dts: Add SEI Robotics SEI510 Board
+Date: Tue, 12 Feb 2019 15:02:59 +0100
+Message-Id: <20190212140259.9537-3-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190212140259.9537-1-narmstrong@baylibre.com>
 References: <20190212140259.9537-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190212_060305_372893_9426694A 
-X-CRM114-Status: UNSURE (   9.28  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190212_060305_860128_9B26A66B 
+X-CRM114-Status: GOOD (  13.73  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -105,27 +104,96 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add vendor prefix for the Shenzhen SEI Robotics Co., Ltd, a chinese ODM
-specialized in Android TV HDMI Stick, OTT Box, Hybrid STB,
-Smart Home Gateway & more.
+The SEI Robotics SEI510 Board is based on the Amlogic G12A S905X2
+and has the following features :
+- Amlogic G12A S905X2 SoC
+- 10/100 Ethernet
+- USB2 + USB3 ports
+- Micro SDCard Port
+- Audio + CVBS AV Jack port
+- HDMI 2.1 + CEC Port
+- ADC Touch Button
+- Far-Field Microphone Array + Mono HP
+- IR Sensor
+- IR Emmiter LED Array
+- RGB Led
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.txt | 1 +
- 1 file changed, 1 insertion(+)
+ .../devicetree/bindings/arm/amlogic.txt       |  1 +
+ arch/arm64/boot/dts/amlogic/Makefile          |  1 +
+ .../boot/dts/amlogic/meson-g12a-sei510.dts    | 38 +++++++++++++++++++
+ 3 files changed, 40 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.txt b/Documentation/devicetree/bindings/vendor-prefixes.txt
-index 4615d4b9d11e..921ad8f88ed3 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.txt
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.txt
-@@ -343,6 +343,7 @@ sandisk	Sandisk Corporation
- sbs	Smart Battery System
- schindler	Schindler
- seagate	Seagate Technology PLC
-+seirobotics	Shenzhen SEI Robotics Co., Ltd
- semtech	Semtech Corporation
- sensirion	Sensirion AG
- sff	Small Form Factor Committee
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
+index 7f40cb5f490b..061f7b98a07f 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.txt
++++ b/Documentation/devicetree/bindings/arm/amlogic.txt
+@@ -110,6 +110,7 @@ Board compatible values (alphabetically, grouped by SoC):
+ 
+   - "amlogic,u200" (Meson g12a s905d2)
+   - "amediatech,x96-max" (Meson g12a s905x2)
++  - "seirobotics,sei510" (Meson g12a s905x2)
+ 
+ Amlogic Meson Firmware registers Interface
+ ------------------------------------------
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index 0821fed4c074..2709f7ede908 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -1,6 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0
+ dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
++dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nanopi-k2.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nexbox-a95x.dtb
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+new file mode 100644
+index 000000000000..6a7c3241862a
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+@@ -0,0 +1,38 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2019 BayLibre SAS. All rights reserved.
++ */
++
++/dts-v1/;
++
++#include "meson-g12a.dtsi"
++
++/ {
++	compatible = "seirobotics,sei510", "amlogic,g12a";
++	model = "SEI Robotics SEI510";
++
++	aliases {
++		serial0 = &uart_AO;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	memory@0 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x40000000>;
++	};
++
++	reserved-memory {
++		/* TEE Reserved Memory */
++		bl32_reserved: bl32@5000000 {
++			reg = <0x0 0x05300000 0x0 0x2000000>;
++			no-map;
++		};
++	};
++};
++
++&uart_AO {
++	status = "okay";
++};
 -- 
 2.20.1
 
