@@ -2,89 +2,86 @@ Return-Path: <SRS0=SW07=QT=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9DA29C282C4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Feb 2019 14:24:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A0FCCC282C4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Feb 2019 14:24:44 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 43A1A2075B
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Feb 2019 14:24:26 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 709092075B
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Feb 2019 14:24:44 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DHI5yaz+";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="bWuUTyTk"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 43A1A2075B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EMxg8sTM";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="o9dUh1Wu"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 709092075B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cQ6AbjjK5HCaPQB+ryM7cQOHqgPjEz5jJGblDq6+os0=; b=DHI5yaz+CdLSUB
-	bL+FREIN1PNH1oBOLvxHudKXwTqGMwylLnS/UeZjEpkiWWnBT8JKW0+r0G533BaXUYmFT5uhfHQZA
-	6jNArjxwo5y64j6FzEyAE8Nh2DTyIqusy3f9UOUXi/WoxpUsspriCo1wuyPyKLV3bYwlRV+mfqq27
-	gyuch8EWV0F+NBAUKUTbAlMTucY6u3L3svRwGC5XKH7Q1HcoVgxX0SpA6IKhqtGq6gfJA8lScJoxm
-	nfUAb9J+J6LGmQBPtTL6ceqAJwRb7xDRWBtrGb1xjv9RCo8xQcZuRNNddsaA4gpAM1rfsoWhattPn
-	SX0WXacZ1dUDok8tflLQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=jptWYRNcyhmJBTnWHmmQ/crWaRCIoWbnHDUM6f1ROZA=; b=EMxg8sTMIGpOy5
+	ME3zKzVW49RiDL7elEnp8QzNOjiQbqc3xugKzNWDjapgzi/a9/eRTLMI4tyDDZUUGtqfb7vNnWXu+
+	MBSNIET2aF4l3+HTru/sioPdGP8Va+05ShlCvrxcznrn8zrNqPFOgB2hU5RAwe3AcOpUEZNIg5o5Z
+	Nr8C/4ZGw3MmpIgLvDOwNtHPHq9yZyZ+2u45kr1hWx1BPk9Dk/21U323tknE+b2wDtYMHCQW7CNtb
+	RxqnYGU3NJiokpqOGrd7W5Ky17pH5+zLM0J1ANZXGXAZ/UJ/kf11JUXNnAjQwHUezUYXlzRiO3eGY
+	QnjEb/7/39TcD5C+GpJQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gtYyv-0003Ye-TE; Tue, 12 Feb 2019 14:24:17 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1gtYzF-0003ro-1g; Tue, 12 Feb 2019 14:24:37 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gtYyU-00036R-1A
- for linux-amlogic@lists.infradead.org; Tue, 12 Feb 2019 14:23:51 +0000
-Received: by mail-wr1-x444.google.com with SMTP id l9so2840633wrt.13
- for <linux-amlogic@lists.infradead.org>; Tue, 12 Feb 2019 06:23:49 -0800 (PST)
+ id 1gtYyS-00035X-3Y
+ for linux-amlogic@lists.infradead.org; Tue, 12 Feb 2019 14:23:54 +0000
+Received: by mail-wr1-x441.google.com with SMTP id f14so2921952wrg.1
+ for <linux-amlogic@lists.infradead.org>; Tue, 12 Feb 2019 06:23:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=Yod8/2mWK4Qd4G4cKjNo2LDaZQqOzQK+ax711W0cspI=;
- b=bWuUTyTk+K7IOE1U0JkgR78suNjCu4uZMTdc4aHjtqrSjR1Ohnv8ODAP/grJKpMKJL
- 5VEFSJxRm7lL0A+b4GP7fVNY/kMnlz4tUYa3IMojDRemFMgV45VHHkFcq8yDQos25jDj
- Z/bpINroM+UX2Gz19ehPSV2sEMb/AqVu+b+G9cLn6g43mzSOYBJcpcWzqBgpzmlK5u7z
- QK9d8y2UjqJ9BcpxdthXDCGZtV1LKpM7BHuVLy+De0J7uoC8OOByKi/uKDFIDMWiHKlh
- MvFls1QBrZx91hu7Cc9AufpyzpIW4mnkpQKGs9oCUFkWL9qX0bl/fLkxd9OGXtce4UG8
- GRQA==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=ZG3De299oLFFk5dERNO5JVx+5pMyQTogB9vh2Bdbvnw=;
+ b=o9dUh1Wuu24ngMSSyOBxY02FUnv3Fdp8Gl6X2n+1tetyTCMSSHivsSd9WAha1CXsAf
+ Oe6+A8J/7HLJ1a7ayNLe28Ujgr37+GFay8S9/aJ9CkkLaZ/SZNomKyh1Rg4AEt1kgRbU
+ YLLluatgf7y2J7yIE2wQZHjWT5PXQiimgZBtxe7a+DsUc4BzwT7KBa8U0SXL98mcy2f9
+ Z9/zeEx86QX+xZ75QIvPxg3RsS7/ui4WJTi/m4hpn5w/5cABXhEOhQX9L/3GL2sk4WMn
+ zS7pAmw+mT+lM+Nvpn8G2ICTRJeoCOunaT1+IZ6mvmcV7ZIK3UKQRmy8Qe/JpQa3SaW4
+ YVBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=Yod8/2mWK4Qd4G4cKjNo2LDaZQqOzQK+ax711W0cspI=;
- b=O1suZqlHHOKchP82bBGZSebpHPhyd50Gj68oE+ohL8SaF0vfxV0LNLwUnAaH64cJag
- cGdm4Ms/3pry3iFzFsOlB2JlATd2Lx7qHaTRbeIQtM3asSt6zt+yu+JvuV4LP+a5C2rv
- jW9gw3doIq+a8yT0Xo8AAGphN1i4O9CVD2Reg8juk5KZbTk+TGyuTMHAFIA4+qRWb7J5
- wqtRSEO8t2g5G8Ij4XaOIM4hl+LNTolMYh+/X2APsj5C/BQYmoBkl/37IIlvFUB/pCoX
- OeaJBpLMmbuNl5ki9WVe3hoRJZFgLWuPQTFtcv9WaIF8/rdD+Zmx2LjMHznupOhMHULP
- E/kA==
-X-Gm-Message-State: AHQUAuZXAcglkVHYaT2LgtxFAenYgeubF7L3/fj0tONmt/XiPD6GMbH8
- OBtWktOG9QDpYEAgNrfkIGWsxA==
-X-Google-Smtp-Source: AHgI3IYLGpRQ1uFj2rXREsPDErxHuMzviiqaPR2IY3RnkyVn5W5JuVEQmaiQ+qlymVpSwLdvFK5RAg==
-X-Received: by 2002:adf:9061:: with SMTP id h88mr3094553wrh.65.1549981428568; 
- Tue, 12 Feb 2019 06:23:48 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=ZG3De299oLFFk5dERNO5JVx+5pMyQTogB9vh2Bdbvnw=;
+ b=SJlA3oiPuLxsOOE9YmNaKT+s4FCKfpc6rcLUoZS3hcrY1m6LDDFtlUfUtR2j/7853F
+ UlIAOHvAdlNt+FwbxeqiWlQwunIIRuEZB1sc5rTt/KGf+G8hthsxqFz8k5iEcMppRaw4
+ VGtN8mtInXjJNjQ0x6Hx9zUmPgmOY6Dyprzx8xhPLfyVGmDXhoKM+UNOzHlGQ6rTP8NM
+ 70eoL1J8R++HZYIauQDWVnpCWH3EzCC2sM3XM3oxtNJp3HRqsWnzchgQjMJlQY/gt6GE
+ Ud4sSpwqRAZAoibiyAt9qYSzS3W/MtNEw4iNuKh5FStYESKbDqzyU9AMrchBclcLC0Bv
+ 92jw==
+X-Gm-Message-State: AHQUAuajbhRH1BTnb6tW+D9EYERrgLy0szUUYQBC662ZHddCla7u5bMu
+ xS6jXBY6zYmxgjTNL7sEVGenpg==
+X-Google-Smtp-Source: AHgI3IbCXBU8Yp+zJ34yAUx1SNdEn3jRMsPv1Fy9to0JPtp1vVW0scNwQdvOLfil0egE64Imk+RufA==
+X-Received: by 2002:adf:e641:: with SMTP id b1mr3007847wrn.213.1549981426490; 
+ Tue, 12 Feb 2019 06:23:46 -0800 (PST)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id y22sm39043216wrd.45.2019.02.12.06.23.47
+ by smtp.gmail.com with ESMTPSA id y22sm39043216wrd.45.2019.02.12.06.23.45
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Tue, 12 Feb 2019 06:23:47 -0800 (PST)
+ Tue, 12 Feb 2019 06:23:45 -0800 (PST)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: khilman@baylibre.com
-Subject: [PATCH 2/3] soc: amlogic: gx-socinfo: Add new SoC IDs and Packages IDs
-Date: Tue, 12 Feb 2019 15:23:43 +0100
-Message-Id: <20190212142344.13634-3-narmstrong@baylibre.com>
+Subject: [PATCH 0/3] arm64: meson: Add SoC ID detection for G12A
+Date: Tue, 12 Feb 2019 15:23:41 +0100
+Message-Id: <20190212142344.13634-1-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190212142344.13634-1-narmstrong@baylibre.com>
-References: <20190212142344.13634-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190212_062350_072526_7CF8A5D8 
-X-CRM114-Status: UNSURE (   8.65  )
+X-CRM114-CacheID: sfid-20190212_062348_148723_97B3CE08 
+X-CRM114-Status: UNSURE (   6.73  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -104,41 +101,20 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This adds the G12A and G12B SoC ids and the S90X2 package ID.
+This patchset :
+- Fixes the package id detection for S905 variants and AXG packages
+- Adds new SoC IDs and Packages IDs for G12A/G12B
+- Adds Add AO Secure node for G12A dtsi
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/soc/amlogic/meson-gx-socinfo.c | 5 +++++
- 1 file changed, 5 insertions(+)
+Neil Armstrong (3):
+  soc: amlogic: gx-socinfo: Add mask for each SoC packages
+  soc: amlogic: gx-socinfo: Add new SoC IDs and Packages IDs
+  arm64: dts: meson-g12a: Add AO Secure node
 
-diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
-index 1ae339f5eadb..c1a9c34d861b 100644
---- a/drivers/soc/amlogic/meson-gx-socinfo.c
-+++ b/drivers/soc/amlogic/meson-gx-socinfo.c
-@@ -37,6 +37,8 @@ static const struct meson_gx_soc_id {
- 	{ "AXG", 0x25 },
- 	{ "GXLX", 0x26 },
- 	{ "TXHD", 0x27 },
-+	{ "G12A", 0x28 },
-+	{ "G12B", 0x29 },
- };
- 
- static const struct meson_gx_package_id {
-@@ -53,11 +55,14 @@ static const struct meson_gx_package_id {
- 	{ "S905W", 0x21, 0xa0, 0xf0 },
- 	{ "S905L", 0x21, 0xc0, 0xf0 },
- 	{ "S905M2", 0x21, 0xe0, 0xf0 },
-+	{ "S805X", 0x21, 0x30, 0xf0 },
-+	{ "S805Y", 0x21, 0xb0, 0xf0 },
- 	{ "S912", 0x22, 0, 0x0 }, /* Only S912 is known for GXM */
- 	{ "962X", 0x24, 0x10, 0xf0 },
- 	{ "962E", 0x24, 0x20, 0xf0 },
- 	{ "A113X", 0x25, 0x37, 0xff },
- 	{ "A113D", 0x25, 0x22, 0xff },
-+	{ "S905X2", 0x28, 0x40, 0xf0 },
- };
- 
- static inline unsigned int socinfo_to_major(u32 socinfo)
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi |  6 ++++
+ drivers/soc/amlogic/meson-gx-socinfo.c      | 37 ++++++++++++---------
+ 2 files changed, 28 insertions(+), 15 deletions(-)
+
 -- 
 2.20.1
 
