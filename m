@@ -2,87 +2,75 @@ Return-Path: <SRS0=SW07=QT=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
+	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 058D2C282C4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Feb 2019 16:38:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CA076C282C4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Feb 2019 21:19:12 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CA75120855
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Feb 2019 16:38:55 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8FEC12075C
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Feb 2019 21:19:12 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dFswaZvp";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="t45TfQUB"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CA75120855
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ALaN4cON";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="QdssbfCL"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8FEC12075C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=yzCsMZ2+/AhHpPDArfaIBBmPx/LbHylmVh4K7twu89g=; b=dFswaZvpK/xR7q
-	JZOc9lEVxZyB7XwgiXdPVXxPU5Tq8W1qhZZ0o7NnNivi/O/mSvHr0eiuc5sAp71Qt3yQn+Pzcb2WL
-	zjAIGCqHfdxHUag19PmnDXVP+muq9WrM+RCaAsNWkI62Hbqq1nCHSbTRq53JhKn0E3iZ+2Iq0PXCU
-	f9ckKwchOMFz1RZqAKwvV3ufTaKazhtGHA81XAGFJeqYO4BlmhT406UYEKJEekHMV34KrNHUceQz8
-	ePp16/8wqunA5hbeLmN5s5Vv1FvNYS2yTrBcATURqHHmd/OKpfBfz0FSzt5mWb4cIN+8b1OT0zACu
-	XYRo0htoPtxF61voSurA==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=YdBkVnHp+wb0/pylkZc0REkdB010rLBvzviufBxsyyM=; b=ALaN4cONpWiauK
+	ff9/S0oRXdxkms1NSp9P3W3A1W2USndIZlJqBDw46jCM/v+hzs4zkqsQ+fT1CmKAynIqJgYIcJaDq
+	rwBuwfE36kxHxariDrB3RSXCF1sl7mIi1hPTmFc2q/uDSAO6kW4aCgyfe3EZ7Mw8TMFPNnewiFwkL
+	4ENRn1a+Vp68b+frLUTxf3XOEJULaUpgFRZqshoPMPZoNXdO6ID9HYNObb8agGuX9+wfK92v6HHDE
+	F+kriLLeC8+Oehz96kSV+WHoBE363jIzr2+jQ8WF9BJ12P3hkq0ytzt3geAdSl2/tvsthNc1cTBWg
+	L01bQb3xY7Hp8YW0TpSg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gtb57-000329-0z; Tue, 12 Feb 2019 16:38:49 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1gtfSK-0007PS-UG; Tue, 12 Feb 2019 21:19:04 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gtb54-00031W-4W
- for linux-amlogic@lists.infradead.org; Tue, 12 Feb 2019 16:38:48 +0000
-Received: by mail-wr1-x444.google.com with SMTP id t27so3404568wra.6
- for <linux-amlogic@lists.infradead.org>; Tue, 12 Feb 2019 08:38:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=ClTUzezi3cfuWIoAAbFTrjOhNUbiBoeL1rpDXNmQzB4=;
- b=t45TfQUBTPQ+9tg2cFrO4qK/7DJLyUHFwlXzvpynxsp4PrnN/0h9ZjidtgSuF1xuMw
- i1WmiU+eQLrvqbJfTBEWVEJ+jxcJu44n3Qkefc07sC/pzAePq+zIYieXrUksRb30gNqb
- wy6gNLVd+YQXMFP1jIXR92XeoNcZ8xL6KK7olZp+VeYeWn2jiseLnDdKXDm33nmm0p5D
- OaU2xUthA+UJjSJ0UINM7zU7SVUmtkS/kF/6jwjs2NZddUQtk2RmHu+f+YMOg7bBLfW0
- 0S3mvIimyaHiU/Jwo72ANMpoXlfhKUolmRnbqZx3RKiH07eBYl7q3sIhYEapz9wGwi/6
- iKdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=ClTUzezi3cfuWIoAAbFTrjOhNUbiBoeL1rpDXNmQzB4=;
- b=PN8uzxt1CB2bA6zG09r1ou+OVTs/wOQQrDqyOn9i1BWThLKKsngDTkhIPpIgCBu08s
- i58weSsI8eUTKeIfYr3LRFu3Zc6WJef0wLeI5jlXbBRn4IYL26iLz2I4f+uoP1dLMF5S
- 619ik3+ZriPDnFFMPheS2thc6iWheYYw0xONRK/PAzkzdC8YmM6IzdPVDtzfxYlApITc
- tx08md1HDoxf87q1eLmR7LaIk7Jpg+sv0pPbMggoH7pEhmlyGfMvdFmZpgPPKlw4fqOK
- Q10UQHg4h6WcNy/E5s3pg8OOsoBtrp58zKcEk4DS4lxX4UxvBKGfu8FSzLZ4dk5wIrjZ
- 5Cog==
-X-Gm-Message-State: AHQUAub9hOlSXFiu591dChzeJdVJaJEIHnxw1/puk1Sx2eaC77P2seeP
- NJw9fNhfQb/qok59FVWAj+qTsg==
-X-Google-Smtp-Source: AHgI3IYKvyjBpIFDL2NL4yYJsmSAtaHCmuisSBlNRPvAGGCeHH/otyUc+Rht553ENztIiMblhDsiZQ==
-X-Received: by 2002:adf:eb07:: with SMTP id s7mr3670318wrn.158.1549989524502; 
- Tue, 12 Feb 2019 08:38:44 -0800 (PST)
-Received: from bender.baylibre.local
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id v6sm10325610wro.57.2019.02.12.08.38.43
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Tue, 12 Feb 2019 08:38:43 -0800 (PST)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: daniel@ffwll.ch
-Subject: [PATCH v2] dt-bindings: gpu: add bindings for the ARM Mali Bifrost GPU
-Date: Tue, 12 Feb 2019 17:38:38 +0100
-Message-Id: <20190212163838.22644-1-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.20.1
+ id 1gtfSG-0007LO-U2; Tue, 12 Feb 2019 21:19:03 +0000
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com
+ [209.85.222.177])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 245582075C;
+ Tue, 12 Feb 2019 21:19:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1550006340;
+ bh=b8USUSrg3lJKX89ykkFcbjrdlAPDyKVL3G6hd2eIKTM=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=QdssbfCLQx+1NjM8RrOrm7erZtinwVjJSa4a+r6GZrAp0tadbkmNAFQKP8lDSnx2t
+ /fk514a292jF6WGM0psVno9umMFG/65mLK8EARg2npiOQmvQdMy1Q8UhhgODYecGFV
+ vxO9Ieagwq/6/nV2T08oKRAQ1CVyeaZ5HjX38sIw=
+Received: by mail-qk1-f177.google.com with SMTP id w204so110405qka.2;
+ Tue, 12 Feb 2019 13:19:00 -0800 (PST)
+X-Gm-Message-State: AHQUAuapfLCbCr7tOV8lV8bhS7tXmb0z1/Zp6TA8XWB46f4YuxDOPFo4
+ C3IwYvG+pKW8uAVSAw9mKc2R3kZx4nk3hkJSTw==
+X-Google-Smtp-Source: AHgI3IbGBC5HehArOZY6ed9XOuq2/9Lb4TpJX6nU6mD811cwtyzYbz48P+dF9MwrYsEa7CmR2h8pY4pkQsvgQAsxg2c=
+X-Received: by 2002:a37:5686:: with SMTP id k128mr3941140qkb.29.1550006339312; 
+ Tue, 12 Feb 2019 13:18:59 -0800 (PST)
 MIME-Version: 1.0
+References: <1548693481-1162-1-git-send-email-lollivier@baylibre.com>
+ <1548693481-1162-3-git-send-email-lollivier@baylibre.com>
+ <20190130155016.GA26536@bogus> <20190211092251.GV4686@localhost>
+In-Reply-To: <20190211092251.GV4686@localhost>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 12 Feb 2019 15:18:46 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJPhuDDsEMvpVizewTuehOZTc84d+8Hq7o8C+O4UrBjYw@mail.gmail.com>
+Message-ID: <CAL_JsqJPhuDDsEMvpVizewTuehOZTc84d+8Hq7o8C+O4UrBjYw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/4] dt-bindings: gnss: add mediatek binding
+To: Johan Hovold <johan@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190212_083846_188589_1D7D6433 
-X-CRM114-Status: GOOD (  12.09  )
+X-CRM114-CacheID: sfid-20190212_131901_276152_6A068F02 
+X-CRM114-Status: GOOD (  23.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -94,143 +82,100 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, Loys Ollivier <lollivier@baylibre.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
+ linux-amlogic@lists.infradead.org,
+ "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the bindings for the Bifrost family of ARM Mali GPUs.
+On Mon, Feb 11, 2019 at 3:23 AM Johan Hovold <johan@kernel.org> wrote:
+>
+> On Wed, Jan 30, 2019 at 09:50:16AM -0600, Rob Herring wrote:
+> > On Mon, Jan 28, 2019 at 05:37:59PM +0100, Loys Ollivier wrote:
+> > > Add binding for Mediatek-based GNSS receivers.
+> > >
+> > > Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
+> > > ---
+> > >
+> > > v3:
+> > > Removed the I2C and SPI interfaces references.
+> > > Removed the "mediatek,mt3339" compatible line.
+> > > Added the optional propertied (reset, fix)
+> > > Added the pin names for the optional properties.
+> > >
+> > > v2:
+> > > Renamed bindings from Globaltop/gtop to Mediatek/mtk.
+> > > Moved current-speed as an optional propertie.
+> > > Removed the status line in the example.
+> > > Added "mediatek,mt3339" compatible.
+> > >
+> > >  .../devicetree/bindings/gnss/mediatek.txt          | 37 ++++++++++++++++++++++
+> > >  1 file changed, 37 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/gnss/mediatek.txt
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/gnss/mediatek.txt b/Documentation/devicetree/bindings/gnss/mediatek.txt
+> > > new file mode 100644
+> > > index 000000000000..00650d81c5c8
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/gnss/mediatek.txt
+> > > @@ -0,0 +1,37 @@
+> > > +Mediatek-based GNSS Receiver DT binding
+> > > +
+> > > +Mediatek chipsets are used in GNSS-receiver modules produced by several
+> > > +vendors and can use an UART interface.
+>
+> s/an/a/
+>
+> > > +
+> > > +Please see Documentation/devicetree/bindings/gnss/gnss.txt for generic
+> > > +properties.
+> > > +
+> > > +Required properties:
+> > > +
+> > > +- compatible       : Must be
+> > > +
+> > > +                   "globaltop,pa6h"
+> > > +
+> > > +- vcc-supply       : Main voltage regulator (pin name: VCC)
+> > > +
+> > > +Optional properties:
+> > > +
+> > > +- gtop,reset-gpios : GPIO used to reset the device
+> > > +                     (pin name: RESET, NRESET)
+> >
+> > reset-gpios is the standard name.
+> >
+> > > +- gtop,fix-gpios   : GPIO used to determine device position fix state
+> > > +                     (pin name: FIX, 3D_FIX)
+>
+> I'm thinking we might need a standard name for fix-gpios as well. This
+> isn't a feature that is globaltop (or mediatek) specific, and other
+> manufacturers provide similar functionality through pins named UI_FIX,
+> or even LCKIND (lock indicator).
+>
+> The pin is typically used to drive an indicator LED AFAIU, but the
+> characteristics of the signal varies from device to device (fw to fw),
+> for example, pulse when no lock and low otherwise, or pulse when a 2d or
+> 3d-fix is acquired, etc.
+>
+> I'm not sure how useful the pulsing would be for software, but someone
+> might find a use for it in some form.
+>
+> Rob, is this something we want to keep in the binding, and if so, how
+> about using a generic name such as "gnss-fix-gpios"?
 
-The Bifrost GPU architecture is similar to the Midgard family,
-but with a different Shader Core & Execution Engine structures.
+Sure. As long as details like being a pulse and when the pulse occurs
+are implied by compatible string. So we don't get an endless addition
+of properties to describe those.
 
-Bindings are based on the Midgard family bindings, but the inner
-architectural changes makes it a separate family needing separate
-bindings.
-
-The Bifrost GPUs are present in a number of recent SoCs, like the
-Amlogic G12A Family, and many other vendors.
-The Amlogic vendor specific compatible is added to handle the
-specific IP integration differences and dependencies.
-
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
-Changes since v1:
-- adding missing G31 and G52
-- fixed example
-
- .../bindings/gpu/arm,mali-bifrost.txt         | 96 +++++++++++++++++++
- 1 file changed, 96 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-bifrost.txt
-
-diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.txt b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.txt
-new file mode 100644
-index 000000000000..04a1d63ee578
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.txt
-@@ -0,0 +1,96 @@
-+ARM Mali Bifrost GPU
-+====================
-+
-+Required properties:
-+
-+- compatible :
-+  * Must contain one of the following:
-+    + "arm,mali-g31"
-+    + "arm,mali-g51"
-+    + "arm,mali-g52"
-+    + "arm,mali-g71"
-+    + "arm,mali-g72"
-+    + "arm,mali-g76"
-+  * which must be preceded by one of the following vendor specifics:
-+    + "amlogic,meson-g12a-mali"
-+
-+- reg : Physical base address of the device and length of the register area.
-+
-+- interrupts : Contains the three IRQ lines required by Mali Bifrost devices.
-+
-+- interrupt-names : Contains the names of IRQ resources in the order they were
-+  provided in the interrupts property. Must contain: "job", "mmu", "gpu".
-+
-+
-+Optional properties:
-+
-+- clocks : Phandle to clock for the Mali Bifrost device.
-+
-+- mali-supply : Phandle to regulator for the Mali device. Refer to
-+  Documentation/devicetree/bindings/regulator/regulator.txt for details.
-+
-+- operating-points-v2 : Refer to Documentation/devicetree/bindings/opp/opp.txt
-+  for details.
-+
-+- resets : Phandle of the GPU reset line.
-+
-+Vendor-specific bindings
-+------------------------
-+
-+The Mali GPU is integrated very differently from one SoC to
-+another. In order to accomodate those differences, you have the option
-+to specify one more vendor-specific compatible, among:
-+
-+- "amlogic,meson-g12a-mali"
-+  Required properties:
-+  - resets : Should contain phandles of :
-+    + GPU reset line
-+    + GPU APB glue reset line
-+
-+Example for a Mali-G31:
-+
-+gpu@ffa30000 {
-+	compatible = "amlogic,meson-g12a-mali", "arm,mali-g31";
-+	reg = <0xffe40000 0x10000>;
-+	interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>,
-+		     <GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH>,
-+		     <GIC_SPI 162 IRQ_TYPE_LEVEL_HIGH>;
-+	interrupt-names = "job", "mmu", "gpu";
-+	clocks = <&clk CLKID_MALI>;
-+	mali-supply = <&vdd_gpu>;
-+	operating-points-v2 = <&gpu_opp_table>;
-+	resets = <&reset RESET_DVALIN_CAPB3>, <&reset RESET_DVALIN>;
-+};
-+
-+gpu_opp_table: opp_table0 {
-+	compatible = "operating-points-v2";
-+
-+	opp@533000000 {
-+		opp-hz = /bits/ 64 <533000000>;
-+		opp-microvolt = <1250000>;
-+	};
-+	opp@450000000 {
-+		opp-hz = /bits/ 64 <450000000>;
-+		opp-microvolt = <1150000>;
-+	};
-+	opp@400000000 {
-+		opp-hz = /bits/ 64 <400000000>;
-+		opp-microvolt = <1125000>;
-+	};
-+	opp@350000000 {
-+		opp-hz = /bits/ 64 <350000000>;
-+		opp-microvolt = <1075000>;
-+	};
-+	opp@266000000 {
-+		opp-hz = /bits/ 64 <266000000>;
-+		opp-microvolt = <1025000>;
-+	};
-+	opp@160000000 {
-+		opp-hz = /bits/ 64 <160000000>;
-+		opp-microvolt = <925000>;
-+	};
-+	opp@100000000 {
-+		opp-hz = /bits/ 64 <100000000>;
-+		opp-microvolt = <912500>;
-+	};
-+};
--- 
-2.20.1
-
+Rob
 
 _______________________________________________
 linux-amlogic mailing list
