@@ -3,20 +3,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-8.8 required=3.0 tests=DKIM_INVALID,DKIM_SIGNED,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8B758C282CE
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Feb 2019 02:38:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 995EAC282CA
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Feb 2019 02:40:38 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5AD2B206B6
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Feb 2019 02:38:48 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6709A222C2
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Feb 2019 02:40:38 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="r2arWTIE";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="MYXMyZXJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5AD2B206B6
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VDVj9FsV";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="BQINJi8r"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6709A222C2
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,45 +25,45 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=eGY5DNpUIyXRsIJ430Z9UjEtAiF9w+UAKKnBsSMz3C8=; b=r2arWTIEDJYCYq
-	iQSx7olqj48t7jVWh4wflzURtXBye7xZKtGDoTdnBtxEUPcgBHK2bqwg4LxJ/iiZDAlu9wp7zj05r
-	3F9mAFWKHAXEC97Ji4vN/s5xkgtcKQgRUPTEDtoEmhA95QC4iJod9dYOKa85qUEtpPEMWB4lP6QZI
-	+3eE0HrhGkBLrJjPi8rPYkIUtVWF0wCEQYe6pYenMlVmkDXhXjpPT5kKaz+2AKPOxrB61y2V46z4j
-	iRKNm5YZ6foGC1aFLMV32Qh51wAD7VKpt3Qn013KFmOYVqTnZ5DLJIKNi0zKKiov30sEGsKwCZgHg
-	QQPd/tFp813+uXiTru3g==;
+	List-Owner; bh=vq0P1uAI+VCdJwHXx9xVhNySEyOdqzW7Tn91zHLuLqk=; b=VDVj9FsVIN/ULb
+	Sq1NVRVbPRph+5ja8GTtjut3VnaLuKAIDZlJBsm2I1VOGvo5vYENWIobeY1Eb+Gv0a9y8lLHUp0IX
+	rPiPuhkPkmV+5gKjYn5HBtxAIsj3PottbZnpqZ957Wq5TlaJpw9MVjJ8UIRz5auFy5drLzf8jxXaF
+	kjAHN6aPq0nSABuykZ+QpixVZw2GV6k6SVbn0gR+TMDTLv0y3qkzdxLGlqlFK+ihUw0jOiuO6l+rN
+	hSP2SqzlPjZCWw95BSkYgMdhfEnOSlNUcHYEIXvtAAij0KQjU94Jsn0dHPYC+i0IaBt4smUOwew1g
+	GN/zba5rM1zz3ironPmA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gtkRf-0002cL-3d; Wed, 13 Feb 2019 02:38:43 +0000
+	id 1gtkTR-00047H-9s; Wed, 13 Feb 2019 02:40:33 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gtkRb-0002c0-Iy
- for linux-amlogic@lists.infradead.org; Wed, 13 Feb 2019 02:38:41 +0000
+ id 1gtkTO-00046x-HQ
+ for linux-amlogic@lists.infradead.org; Wed, 13 Feb 2019 02:40:32 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 60744222C7;
- Wed, 13 Feb 2019 02:38:38 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 6F902222C2;
+ Wed, 13 Feb 2019 02:40:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1550025519;
- bh=QWysNWTr6IRbzkiUuI+dLByNhfTvNgLMdVvF4P/w5dU=;
+ s=default; t=1550025630;
+ bh=i0Gho9LR7kLGRs0OK5eAqk15IXsGCyyoqPzUUEUFq3c=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=MYXMyZXJFdhkp4xPlv9iByIuZtKoXpRjVjD+Mik4scYdau7b3WxTB54/WIEqEgFQt
- IwuEGpzGMFKyVXLAtynP99tRYxMCFcYBAaZfI+rY3yKMJSsfGGkMc/QrWPjU06ayxU
- mvQpj7VDDMMj1vodVJXF+bdC6ieofKe9MEyElKb8=
+ b=BQINJi8rO5vVqx9YAOwd9pKRCaKpS8yKNE37U9KmTUfRsdQE242bWGay3M46gcStq
+ TBUuoeKqVYOcW5I2cPbXETOZ9Dc9F1L5u8gUO9GCfphUq/hi6s0f/47j89FCuHz7ZZ
+ hzaRlslN5mc+3XRbhBw071yz6n7Fhpk/Bo4NGcAg=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 58/83] drm/meson: add missing of_node_put
-Date: Tue, 12 Feb 2019 21:36:36 -0500
-Message-Id: <20190213023701.20286-58-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 27/34] drm/meson: add missing of_node_put
+Date: Tue, 12 Feb 2019 21:39:45 -0500
+Message-Id: <20190213023952.21311-27-sashal@kernel.org>
 X-Mailer: git-send-email 2.19.1
-In-Reply-To: <20190213023701.20286-1-sashal@kernel.org>
-References: <20190213023701.20286-1-sashal@kernel.org>
+In-Reply-To: <20190213023952.21311-1-sashal@kernel.org>
+References: <20190213023952.21311-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190212_183839_644524_560A7509 
+X-CRM114-CacheID: sfid-20190212_184030_601861_ADF7CC87 
 X-CRM114-Status: GOOD (  11.25  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -124,10 +124,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 7 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-index bf5f294f172f..611ac340fb28 100644
+index 4ad8223c60ea..5deb44ac6791 100644
 --- a/drivers/gpu/drm/meson/meson_drv.c
 +++ b/drivers/gpu/drm/meson/meson_drv.c
-@@ -368,8 +368,10 @@ static int meson_probe_remote(struct platform_device *pdev,
+@@ -345,8 +345,10 @@ static int meson_probe_remote(struct platform_device *pdev,
  		remote_node = of_graph_get_remote_port_parent(ep);
  		if (!remote_node ||
  		    remote_node == parent || /* Ignore parent endpoint */
@@ -139,7 +139,7 @@ index bf5f294f172f..611ac340fb28 100644
  
  		count += meson_probe_remote(pdev, match, remote, remote_node);
  
-@@ -388,10 +390,13 @@ static int meson_drv_probe(struct platform_device *pdev)
+@@ -365,10 +367,13 @@ static int meson_drv_probe(struct platform_device *pdev)
  
  	for_each_endpoint_of_node(np, ep) {
  		remote = of_graph_get_remote_port_parent(ep);
