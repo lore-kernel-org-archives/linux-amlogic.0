@@ -2,82 +2,89 @@ Return-Path: <SRS0=/lP5=QU=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_MUTT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6D1B4C282C2
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Feb 2019 09:34:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 399ACC4151A
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Feb 2019 09:59:12 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3C9BC21901
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Feb 2019 09:34:44 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 05DB2222BA
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Feb 2019 09:59:12 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mholMuQk"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3C9BC21901
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fFDufny5";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Cizw0xtO"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 05DB2222BA
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7lDvcx427nb2uPrgTCgWFP7EE59d9QZNWSj1v5TkCkg=; b=mholMuQkwjHNLT
-	xJbPNvzpY8kkihoxFqfQPkMhkqM1MSaSvjZxuZO4xsEqTp1XsZoqT4EY+zYJiXStuk7T+VRfmInjr
-	W6BCALsvoE4SHNUH7WZlgbLJOR6PjuDLopiz4Rene6iDs8GPsRe6sxVfsIx9XcfqGW1xVjjCk1TBm
-	cHnE3l1bcVRITeN1x5ebwyd59D6laYu7Um7i/dQhiiJpKDrdIuN+ueb7n5pep3Erkn5MN7D0DoK6F
-	kTxxvVz5rgNJOC0yhCMxXNlKeYI46LF7dU9q1mDdHThRfKB9kCNpyiOHunFlkBryhIJbh8EX0JsVR
-	aV0SeAPv/p96q5HX85YA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=gavRxxdnSlXFlCLJPEUYOmCyRSJ4xv1AxmpAg9ZpzDY=; b=fFDufny5w7XMhi
+	kIiI6cDmm49BqVMGVbqxxlTPist2XmoG4Hpn8l9AmCugUhpR8uE1Ad2vQA0GICk5/bU/E13XafUU2
+	rOt7wNL33p5l2g0kjTo9LzNIVTw9Fl66SfWVqaVO8+ncaszIrtWAgm3pDdxz51fot6S74+ZrECo6t
+	vL6uIP3RVIOyw52T64pvr3zam/OkxdgoVRdEEqeX3T9eidneEOSCAbaXnV/B3NUoqI+plW8HQNPKx
+	1ZDpzdlv9LJWpzLjqWrmsXTsPmBJhqZbwb3ZTcQ4bUANQ6kFk5pf0Xs0W9lPca5xh/010naIl/bm0
+	n2Ypt8haSoUP15bMhnYQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gtqwA-0000E5-N0; Wed, 13 Feb 2019 09:34:38 +0000
-Received: from mail-lj1-f194.google.com ([209.85.208.194])
+	id 1gtrJo-0002jq-V4; Wed, 13 Feb 2019 09:59:04 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gtqw7-0000DU-ND; Wed, 13 Feb 2019 09:34:37 +0000
-Received: by mail-lj1-f194.google.com with SMTP id z20so379257ljj.10;
- Wed, 13 Feb 2019 01:34:34 -0800 (PST)
+ id 1gtrJl-0002ir-8J
+ for linux-amlogic@lists.infradead.org; Wed, 13 Feb 2019 09:59:03 +0000
+Received: by mail-wr1-x441.google.com with SMTP id q18so1723311wrx.9
+ for <linux-amlogic@lists.infradead.org>; Wed, 13 Feb 2019 01:59:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=cTVgMV4QN/O1VM1NLUgFFlyBDlQnQrXLeyqpgio8zrY=;
+ b=Cizw0xtOihKs5jdEPG671F9h5Q28JsSdgKfgLpEe1KZkcMhya3OViJAHAhztxklVes
+ YcD+j0uGl0Abe7ASFnYhyPWB97FZrP0W8WbhO7HFc2A5rB6XtF/txUQSTn59Q4dgeGpg
+ AEcFCzhQEsGEBRAnxn7KcAdsI1GJmzp0+eu4NBzq3itNeLmGLAVQWmRSjQxm0uLAiV0+
+ 8hLsFiatl3HnaY0wpAYKnkjcePUn2AgeLueOVI3McHAjjmnL5im0EJLrcCxBdSey85dn
+ tJ+ypfJrQISv35VeDgfzQJjvAB5cwkJ2N59ZZ6WWUDeSusMt0AH57Xqnn0jR0kQO7maz
+ OtVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=zahirVm0TD8tFdJrSdrC51Xnvqieohwgze4d7k+/G7Q=;
- b=ozlcx+S5StilHR+/naPN8PLCLIro70v+ZvMBbqZxODpbJifG0aem+JYoPegX+4eZ8h
- 3k2S6lEuiNbFKueQfqbicsWd0VZQe+oj7fYerJk+Sahb3DEt+iiSXKShR0LgiTIwWIAi
- Be8hZ4CdMZGk8wGJNnPY0Ln+1JGUFVtEpn6XowaAavwKL8VI2Dnv/7cAcZolOnBR/j16
- +bIVZWzXJKglGfeoKc14FYSaUBpKA81SbCuubuMLxeS2vz9cD2ck1bay7Z6WtVPBIIl6
- rtLFXWrdIIHij/kF73HAWYMn9WA0CXJcnCG2yq9FFXWjKXE8LGZ7nzTxgb08KE/ZQwqs
- e23Q==
-X-Gm-Message-State: AHQUAuYjFbygcTWgBhf9ivpMJxTZ4qsM3CbMFKWDnXyXVGVLCf4xXmq8
- l6rTCP9vls+PClTAQyj5SoBJHQD+
-X-Google-Smtp-Source: AHgI3IaRJCwj3e+LCgQoHC4dx8FrwaR9d+qs+kXoyIoYIa5MBf99ovZP7nNxWUm2hA3UFhtHXXjbrQ==
-X-Received: by 2002:a2e:8446:: with SMTP id u6-v6mr5076658ljh.74.1550050472709; 
- Wed, 13 Feb 2019 01:34:32 -0800 (PST)
-Received: from xi.terra (c-74bee655.07-184-6d6c6d4.bbcust.telenor.se.
- [85.230.190.116])
- by smtp.gmail.com with ESMTPSA id q3sm3643252lfj.50.2019.02.13.01.34.31
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 13 Feb 2019 01:34:31 -0800 (PST)
-Received: from johan by xi.terra with local (Exim 4.91)
- (envelope-from <johan@kernel.org>)
- id 1gtqvx-0007j6-8w; Wed, 13 Feb 2019 10:34:25 +0100
-Date: Wed, 13 Feb 2019 10:34:25 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Loys Ollivier <lollivier@baylibre.com>
-Subject: Re: [PATCH v3 2/4] dt-bindings: gnss: add mediatek binding
-Message-ID: <20190213093425.GH28278@localhost>
-References: <1548693481-1162-1-git-send-email-lollivier@baylibre.com>
- <1548693481-1162-3-git-send-email-lollivier@baylibre.com>
- <20190130155016.GA26536@bogus> <20190211092251.GV4686@localhost>
- <86o97iv2px.fsf@baylibre.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=cTVgMV4QN/O1VM1NLUgFFlyBDlQnQrXLeyqpgio8zrY=;
+ b=IRBrNax1lYJ5kAzGwSoS+K5aKYyNI9S+qrDF9BHU6qrTX83S1GHEfgH/PCMsnbFznK
+ AcY+sLp3XaoNb623nxhaGVe3Y33RduVd+6Bco6sxwZUgEKGWyKSd5bhGVuiFBgbfgZkc
+ w1yLzQ35vT6kyytUkxtr5Sd6dxluOmS/JsU0Rx0vIjGPGT7g1PgMNnfhbBxP4t8gyjEg
+ Exm2ybFwkfePDMlf5Y05gkKlW2Z8MwDMHrYDP0PfKt22DjzdfY7D2sAoDmmGDPpIFLKC
+ CBtB/c8PVPOlNXq91yTov0d0GSNFdj2jbc6Dsf5Qqd158UbgJZ6COgB2XrPa4Bsjp5DI
+ qpgQ==
+X-Gm-Message-State: AHQUAuZ/uPr/nKgeYS+F2PC5bBGPKmGGuaKXPtrSULYG9zBg4/FQqjJ7
+ LOtIqIngFKZguzdos0X5Ri6eBQ==
+X-Google-Smtp-Source: AHgI3IaLLNDjLhSH2mNv/pSNiss75mv4YTJlPuylODIHgSKJqE9uCLBuBgdrl6w9J20IByguEfVPYg==
+X-Received: by 2002:adf:a4c9:: with SMTP id h9mr1888592wrb.254.1550051939768; 
+ Wed, 13 Feb 2019 01:58:59 -0800 (PST)
+Received: from boomer.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.googlemail.com with ESMTPSA id k23sm2839467wmj.32.2019.02.13.01.58.58
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Wed, 13 Feb 2019 01:58:59 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>
+Subject: [PATCH] dt-bindings: clock: axg-audio: unexpose controller inputs
+Date: Wed, 13 Feb 2019 10:58:35 +0100
+Message-Id: <20190213095835.17448-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <86o97iv2px.fsf@baylibre.com>
-User-Agent: Mutt/1.11.3 (2019-02-01)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190213_013435_749603_F05023F0 
-X-CRM114-Status: GOOD (  20.74  )
+X-CRM114-CacheID: sfid-20190213_015901_345899_FCF66D9C 
+X-CRM114-Status: UNSURE (   8.93  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -89,64 +96,97 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Johan Hovold <johan@kernel.org>,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: Maxime Jourdan <mjourdan@baylibre.com>, devicetree@vger.kernel.org,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Feb 11, 2019 at 03:06:50PM +0100, Loys Ollivier wrote:
-> 
-> On Mon 11 Feb 2019 at 09:22, Johan Hovold <johan@kernel.org> wrote:
-> 
-> > On Wed, Jan 30, 2019 at 09:50:16AM -0600, Rob Herring wrote:
-> >> On Mon, Jan 28, 2019 at 05:37:59PM +0100, Loys Ollivier wrote:
-> >> > Add binding for Mediatek-based GNSS receivers.
-> >> > 
-> >> > Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
+Remove the bindings ID of the clock input of the controller. These
+clocks are purely internal to the controller, exposing them was a
+mistake. Actually, these should not even be in the provider and have
+IDs to begin with.
 
-> >> reset-gpios is the standard name.
-> >> 
-> >> > +- gtop,fix-gpios	: GPIO used to determine device position fix state
-> >> > +			  (pin name: FIX, 3D_FIX)
-> >
-> > I'm thinking we might need a standard name for fix-gpios as well. This
-> > isn't a feature that is globaltop (or mediatek) specific, and other
-> > manufacturers provide similar functionality through pins named UI_FIX,
-> > or even LCKIND (lock indicator).
-> >
-> > The pin is typically used to drive an indicator LED AFAIU, but the
-> > characteristics of the signal varies from device to device (fw to fw),
-> > for example, pulse when no lock and low otherwise, or pulse when a 2d or
-> > 3d-fix is acquired, etc.
-> >
-> 
-> Yes most GNSS recevivers provide a similar feature even if behavior of
-> the line differs.
-> 
-> > I'm not sure how useful the pulsing would be for software, but someone
-> > might find a use for it in some form.
-> >
-> 
-> Well it is useful to know when you start acquiring "valid" positionning
-> data. I'm using this as a trigger to start recording position.
+Unexpose these IDs before:
+ * someone starts using them (even if there no valid reason to do so)
+ * the actual clocks are removed. The fact that they exist is just the
+   result of an ugly hack. This will be resolved in CCF when we can
+   reference DT directly in parent table.
 
-Sure, but a non-pulsing signal might have been easier to deal with if it
-was meant to be used by software.
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/clk/meson/axg-audio.h              | 20 ++++++++++++++++++++
+ include/dt-bindings/clock/axg-audio-clkc.h | 20 --------------------
+ 2 files changed, 20 insertions(+), 20 deletions(-)
 
-> > Rob, is this something we want to keep in the binding, and if so, how
-> > about using a generic name such as "gnss-fix-gpios"?
-> 
-> Name "gnss-fix-gpios" sounds good to me.
+diff --git a/drivers/clk/meson/axg-audio.h b/drivers/clk/meson/axg-audio.h
+index 7191b39c9d65..644f0b0fddf2 100644
+--- a/drivers/clk/meson/axg-audio.h
++++ b/drivers/clk/meson/axg-audio.h
+@@ -60,6 +60,26 @@
+ #define AUD_CLKID_MST5			6
+ #define AUD_CLKID_MST6			7
+ #define AUD_CLKID_MST7			8
++#define AUD_CLKID_SLV_SCLK0		9
++#define AUD_CLKID_SLV_SCLK1		10
++#define AUD_CLKID_SLV_SCLK2		11
++#define AUD_CLKID_SLV_SCLK3		12
++#define AUD_CLKID_SLV_SCLK4		13
++#define AUD_CLKID_SLV_SCLK5		14
++#define AUD_CLKID_SLV_SCLK6		15
++#define AUD_CLKID_SLV_SCLK7		16
++#define AUD_CLKID_SLV_SCLK8		17
++#define AUD_CLKID_SLV_SCLK9		18
++#define AUD_CLKID_SLV_LRCLK0		19
++#define AUD_CLKID_SLV_LRCLK1		20
++#define AUD_CLKID_SLV_LRCLK2		21
++#define AUD_CLKID_SLV_LRCLK3		22
++#define AUD_CLKID_SLV_LRCLK4		23
++#define AUD_CLKID_SLV_LRCLK5		24
++#define AUD_CLKID_SLV_LRCLK6		25
++#define AUD_CLKID_SLV_LRCLK7		26
++#define AUD_CLKID_SLV_LRCLK8		27
++#define AUD_CLKID_SLV_LRCLK9		28
+ #define AUD_CLKID_MST_A_MCLK_SEL	59
+ #define AUD_CLKID_MST_B_MCLK_SEL	60
+ #define AUD_CLKID_MST_C_MCLK_SEL	61
+diff --git a/include/dt-bindings/clock/axg-audio-clkc.h b/include/dt-bindings/clock/axg-audio-clkc.h
+index fd9c362099d9..eafb0de8466b 100644
+--- a/include/dt-bindings/clock/axg-audio-clkc.h
++++ b/include/dt-bindings/clock/axg-audio-clkc.h
+@@ -7,26 +7,6 @@
+ #ifndef __AXG_AUDIO_CLKC_BINDINGS_H
+ #define __AXG_AUDIO_CLKC_BINDINGS_H
+ 
+-#define AUD_CLKID_SLV_SCLK0		9
+-#define AUD_CLKID_SLV_SCLK1		10
+-#define AUD_CLKID_SLV_SCLK2		11
+-#define AUD_CLKID_SLV_SCLK3		12
+-#define AUD_CLKID_SLV_SCLK4		13
+-#define AUD_CLKID_SLV_SCLK5		14
+-#define AUD_CLKID_SLV_SCLK6		15
+-#define AUD_CLKID_SLV_SCLK7		16
+-#define AUD_CLKID_SLV_SCLK8		17
+-#define AUD_CLKID_SLV_SCLK9		18
+-#define AUD_CLKID_SLV_LRCLK0		19
+-#define AUD_CLKID_SLV_LRCLK1		20
+-#define AUD_CLKID_SLV_LRCLK2		21
+-#define AUD_CLKID_SLV_LRCLK3		22
+-#define AUD_CLKID_SLV_LRCLK4		23
+-#define AUD_CLKID_SLV_LRCLK5		24
+-#define AUD_CLKID_SLV_LRCLK6		25
+-#define AUD_CLKID_SLV_LRCLK7		26
+-#define AUD_CLKID_SLV_LRCLK8		27
+-#define AUD_CLKID_SLV_LRCLK9		28
+ #define AUD_CLKID_DDR_ARB		29
+ #define AUD_CLKID_PDM			30
+ #define AUD_CLKID_TDMIN_A		31
+-- 
+2.20.1
 
-Let's go with that then.
-
-Johan
 
 _______________________________________________
 linux-amlogic mailing list
