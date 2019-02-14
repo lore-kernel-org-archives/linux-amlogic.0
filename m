@@ -2,105 +2,83 @@ Return-Path: <SRS0=JMSZ=QV=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=3.0 tests=DKIM_INVALID,DKIM_SIGNED,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-2.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED,USER_AGENT_MUTT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 76D31C43381
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Feb 2019 07:23:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DEE3BC43381
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Feb 2019 09:32:31 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 46B90222A1
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Feb 2019 07:23:00 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A5A1C20818
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Feb 2019 09:32:31 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZBRrWBHV"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 46B90222A1
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=gmx.de
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="M4OcDA3R"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A5A1C20818
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=p/a4k0o3aDDM6VzfHIYWwxmqGDYfXnx33b+8Gi6G/68=; b=ZBRrWBHVILm7Jm
-	U4uY1BY01F4UK80gzOLsfemqkgv/g54TegHSTPTVsk416mt0SWz7vn29ylwL1OB2P5qC3kRmb/68j
-	0L/qfKRSLH0HnQMwBYCF6UhQgBGLR5RCwIuh4fGWvC9JHL6zHgMgqWQjxq/3j503rWXSaXajHp05T
-	8cyplA5jWLkXgZ7QfGhxASDnehKZP2IK13oOLSHK9fqB3EWI8VfO/y+siOHKSy4zkQACErcJjgskg
-	IEQ5p272ZYMdidFqSV6NIkc05j3tUb7n29H8kMCSyuk/7tI9MKaeDPdt2qWH8+GE848fTROLvxJFh
-	dRmOnkmv6zrHpzksWwLA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=4+mtKn0Fby5eP4wq8g7uOb/85Q5BOsOxlvbNfvffv1I=; b=M4OcDA3Ru6GqSu
+	0aLFYpfJ/8+cSU+z6FqDmfLeSha/sVmDNjylrtVNPPpD8b5tZ/cD8xslLUaUJeHPjiq5GN51WwTUv
+	8Ajs+g7PkEEZ7g52eOeF0mFAp4uJTEQzSO3yN2HF8BegmKLOSaanjjKR150u6dwmNArQms/iszyps
+	7e5PatVRH+aQKBskjVhSilB4SKdcCzc6Jowv+1nNcrU6+SNRjhFh1DpSAhoeYl+6hVtS3GC/st4Zx
+	VSa5wvNA4T6VrM4sfKKpAGgGvo7UK6h8MxKT+XRxWE03woZMgaefal3/KIRqOtu1ZAvyYsuVw1EwM
+	YJFKnO/PqKUh/0PBRKpg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1guBMC-00071v-77; Thu, 14 Feb 2019 07:22:52 +0000
-Received: from mout.gmx.net ([212.227.15.19])
+	id 1guD3S-0001Nl-8P; Thu, 14 Feb 2019 09:11:38 +0000
+Received: from mail-lj1-f195.google.com ([209.85.208.195])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1guBM9-00071V-04
- for linux-amlogic@lists.infradead.org; Thu, 14 Feb 2019 07:22:50 +0000
-Received: from [10.10.11.100] ([95.88.178.171]) by mail.gmx.com (mrgmx002
- [212.227.17.190]) with ESMTPSA (Nemesis) id 0Lw285-1h8Qx42owv-017nGm; Thu, 14
- Feb 2019 08:21:31 +0100
-Subject: Re: stmmac / meson8b-dwmac
-To: Jose Abreu <jose.abreu@synopsys.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <a38e643c-ed9f-c306-cc95-84f70ebc1f10@gmx.de>
- <CAFBinCDebPOsmrhSXecx48nGWHh7g_OGPbr1Y0M+n_v9Ht91ew@mail.gmail.com>
- <e05b7448-cd95-cdeb-c88d-3a324d5f1ddc@gmx.de>
- <CAFBinCAkXN42piiYsc_Qmuqv0w4dbK86gq10AbZyrB-zKuh9hg@mail.gmail.com>
- <20190206103645.GA2482@ingrassia.epigenesys.com>
- <3001f244-8904-1e89-9595-62a65a7b32ae@gmx.de>
- <CAFBinCB1WUMOmaF6Wmr5HTutrgLOru5CRSnOpUUMMuVzHSa3Gg@mail.gmail.com>
- <330a523a-c1d6-4a99-3287-459096af0330@synopsys.com>
-From: Simon Huelck <simonmail@gmx.de>
-Openpgp: preference=signencrypt
-Autocrypt: addr=simonmail@gmx.de; prefer-encrypt=mutual; keydata=
- mQGiBD/bCNARBACE3URTBXZ/AA03NwRNtz03ewQn3uhvYSTjfqgplBtb3dfC4a79BXDRIWVX
- xPGH9Ewios1c8gMu3/RI2l3JzXoISfw5b0L/5igyPKV+sGuUA2FD27kYtPaaF/TqEWIv+Yxp
- 9DCjCX5IQSYyvCfcxcyEkY8eVWxnaAlV3zKRR8wn0wCglWIOtAugBcg1YXmoLpFZE8Ca0fkD
- /jG+n4U9DPfCgkbgjQ/dv2W2a0ZDHccA9N8AW/FTXGyXXO0e7ql9/kORJnp7jD7/Z9HCKpeS
- HajgxuX9Vhfx6bH1dAMfsg88+K8pOO9oulNX1+YffQyZWOfdbmnZDUzBt9HKR9Wgh8WoIyw9
- TVluclzn6hYz+z9jbqHWMOsiCu8zA/0apHbW8vaIDT4+nNUxNdqU1TKa9kW47vNjwYYL0jZW
- TXNjDIRpqJVSugYVc/U847GoVoxyvtzre4TAbBV8h0BAOeMdxI5En67RGWzeNaMDJV1bwapj
- qdfj3e/X8rnGIfwz47rwztLNKoAIUlKrATwroiI7UNT+84G7H5qalu+Eu7QqU2ltb24gSHVl
- bGNrIDxzaW1vbi5odWVsY2tAZ29vZ2xlbWFpbC5jb20+iGIEExECACIFAlH7wL4CGyMGCwkI
- BwMCBhUIAgkKCwQWAgMBAh4BAheAAAoJEJNSVvfBt05KlBQAn1JDO7e4H3N0WFJkZnxvObhk
- 2kiAAJwPdDd6T1TuGo4iDIENRhAX4AH2KrkBDQQ/2wjSEAQAj6JnDDQzIIYzPGsrHRvaq8vw
- n8VrZCbPRvkngGvtQIss5pH/MLeu9jLepDGO9WHByFSg4QJh8cINYwTLtX8Bu0naA6ZI46hn
- GyfxdRlxSU9dRqHpU3G0tymL1w3AER6aVSfdXQTmFgf61anKunbIIptkqzZurkjnxkwCE/RM
- RscABA0D/jhglpj8siSIAxs8XLVfKJrjzbYM9/wS0NfdSXBeQJiYtKrY0WMNsqjY50wDnLMg
- anORN/odT6mCwKI6xChzxEv/ta4+teZl92aitziSuqmtl+jm23DpOcUC7UBz2W1+TvnrhPR+
- MKu8pPKAgsE8AI5uwCcNJx7V3bczYkIGaXybiEYEGBECAAYFAj/bCNIACgkQk1JW98G3Tko6
- 3wCfZBpZAUhUz/Rcp2rfg/YSKl4YLlEAoJN7e322OvHc2GQ9n1+tKLi6Og4c
-Message-ID: <9c5a09cf-faff-adb8-9be8-cf5c35d3fbeb@gmx.de>
-Date: Thu, 14 Feb 2019 08:21:26 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.5.0
+ id 1guD3O-0001MN-Cx; Thu, 14 Feb 2019 09:11:37 +0000
+Received: by mail-lj1-f195.google.com with SMTP id f24-v6so4585081ljk.0;
+ Thu, 14 Feb 2019 01:11:30 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=qlyVzDfEA60OMhAyNzY62j15XTWQJaeweNTh+9Jieis=;
+ b=FVCSWx0Z4Haz+SsWyR1qA8eEQf96qJvl0lxkImlWHrehnlTHzia/5Y/SKM/PRYvuzc
+ zR9J4fa4SN8uJd5knYQCi4UiDQS8kb0bORQOIDn1hl9ZRij2kXzX2Sg0VbFQmtvhUbxp
+ u+jcFJVwiG3uPP2BUar1WmGvFsD4t1QWDl/RFvzEHKfWOfLxJyS/VSspeZOGZaBoS/eu
+ 8iB/GTF3+eDzqN9h838EHdEOm5NkK9Xwq8B5+hX40xUG/4OIvEsILCe+xMON8rEgLlyn
+ BKcWl4y6weHRTfaxrojzC5ANXchwqh/EHIbh1+TjOw8PJx7SNRBaXMaKyoKgRDgIbzDZ
+ Ldyw==
+X-Gm-Message-State: AHQUAuZD9qg+jj4EpJj77QL8bvehJR2YqyCUU0klLPxpdqN2DOwxHOGP
+ 8MvwlsGJ28aid8YFsI1nezw=
+X-Google-Smtp-Source: AHgI3Ia8DWAGct6WEUKkC+jWEuKtY9LMdSV6z8iJhbdm8yHF8nLHZ6XVyGrDF8EL5vEnUc408+gbtw==
+X-Received: by 2002:a2e:6a18:: with SMTP id f24mr1724017ljc.97.1550135489021; 
+ Thu, 14 Feb 2019 01:11:29 -0800 (PST)
+Received: from xi.terra (c-74bee655.07-184-6d6c6d4.bbcust.telenor.se.
+ [85.230.190.116])
+ by smtp.gmail.com with ESMTPSA id j12sm350468lfg.47.2019.02.14.01.11.27
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 14 Feb 2019 01:11:27 -0800 (PST)
+Received: from johan by xi.terra with local (Exim 4.91)
+ (envelope-from <johan@kernel.org>)
+ id 1guD3B-0007qD-5L; Thu, 14 Feb 2019 10:11:21 +0100
+Date: Thu, 14 Feb 2019 10:11:21 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Loys Ollivier <lollivier@baylibre.com>
+Subject: Re: [PATCH v2 2/4] dt-bindings: gnss: add mediatek binding
+Message-ID: <20190214091121.GI28278@localhost>
+References: <1547744074-28308-1-git-send-email-lollivier@baylibre.com>
+ <1547744074-28308-3-git-send-email-lollivier@baylibre.com>
+ <20190125090755.GB3691@localhost> <867eeo7pjm.fsf@baylibre.com>
+ <20190211083349.GU4686@localhost> <86mun2v27r.fsf@baylibre.com>
+ <CALZWD59e356Of+R4H2ZNHJyQcPCQNNdS+1DTc8qNDYp9ZnUpXA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <330a523a-c1d6-4a99-3287-459096af0330@synopsys.com>
-X-Provags-ID: V03:K1:tnM8O20RdlFtXiPgKX2sCkWqqXJUgs/wQ9x5SWPCrovHz2Ahb1N
- yJ5pe8tB2glcuEbI1uY+RQcrA1Qfme9FzDB1Gj7yb7dXdzi5uvZFgUbDk1O9PNzvxzI/b1j
- 5+at/0y+o0ezw3XAePuzr3TSmZSpQs+IMvx9GORVc543bXH8ENI8eQHKeEPaZn0vvt4UQwF
- 2SBFDRPUI1KCZebAe0IpQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:UZOs8fZH5f4=:7CxHdNGoNtuV0F7rUz7iBz
- 6qICFZBrsfRkqDH2CL8TS6hGK4CQ28A6BADSoSa8GAgQXUc3CB+NwjyAESPng9nzaz7w16SBq
- JotaOSGfYZ9T8sT+UtPgl1GImbrUg/KSjCXE/OpnL9fW44sTJgrnm6qzzAfOT5G/kYkbtwtfb
- jgofubrtrhAzwdnDSrAtTB86YvWH05FT91EOw7svI4GYFR4ZB2qYlh6SF6PMSX9bKCcrZ0m6j
- Y+i3z/wLKkVpLyZsa9YBbykm1kLcP04avE/g5V0SuKflJyy8P4Tgl2qEzhnqTzpLPtwQpzIhH
- kabT2rDivNabby4mzGoOO2VN9h/ZEB13s7Nkr03wwTxo9HVytXSf+wXhBIgPp6sTv7a/0qe5s
- IuShxPpOEGKKRkUr4+yEYO+cD2iCffWQfbxqmza9d7M6SqfpSyscoig/KHIZfxNP5nsZ500CN
- 6Byxx2NxaIt2hvLbZhfIvVFkgouk1Yo6KPG6VyaLC7U9ZP2k3R7r1USjhDHDu3M7GNXiBQJiF
- 7tNXmlAHyZOeyoROrcphHASCLJeoo8/ZR0hp3wE2j2X8Y0C7jQVPLarZHQByiOuCAwlwlkQ3o
- eLf8EWQIaGNvrK+TMqftwHPuaxEp1PT5gsGpzOPKW30wKRrbcU4GDQYb2QOyOoJiBReypKAHp
- 5ZjU91WNI/+szWhW3SMXakuW4s5Y/fBKRkiRVngGl5Xe/aTZTwtspJPbRx9SxtglKJ3xWHdD0
- NUbfWJSsiyIsH6yeTjIZbPVJMul9LbsNtdxSpdfFlsa2DOjq6PYVcYdFZjiesRxK+Lr3Nb1l1
- JjISrsxEJVM9w+k5lU2b7he4LwA3zVRcsCuH/Zi1vl53yamBt2HgLGmaWuNDpRV5ZFYgxbsKK
- JP0/psT+lY0nvZ2OWK2BGyGV1zmaqs2fYOH+Bey5JzE/WD6w9hVYS9TRMOJ6A+u0ORBbL5mAr
- mmmGiejOXgA==
+Content-Disposition: inline
+In-Reply-To: <CALZWD59e356Of+R4H2ZNHJyQcPCQNNdS+1DTc8qNDYp9ZnUpXA@mail.gmail.com>
+User-Agent: Mutt/1.11.3 (2019-02-01)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190213_232249_341573_EE1C44A1 
-X-CRM114-Status: UNSURE (   8.45  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190214_011134_442159_63C3FD82 
+X-CRM114-Status: GOOD (  12.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -112,60 +90,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, netdev@vger.kernel.org,
- alexandre.torgue@st.com, Emiliano Ingrassia <ingrassia@epigenesys.com>,
- Gpeppe.cavallaro@st.com
+Cc: Mark Rutland <mark.rutland@arm.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, Johan Hovold <johan@kernel.org>,
+ linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+ "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+On Wed, Feb 13, 2019 at 04:24:00PM +0100, Loys Ollivier wrote:
+> On Mon 11 Feb 2019 at 14:17, Loys Ollivier <lollivier@baylibre.com> wrote:
+> > On Mon 11 Feb 2019 at 08:33, Johan Hovold <johan@kernel.org> wrote:
 
-i used iperf2 on my odroid c2 , since this can do duplex tests ! iperf2 -c 10.10.11.1
--i1 -d
+> >> Right, but please do look around for other receivers using this chipset
+> >> so that we can make the binding generic enough to cover those as well
+> >> (e.g. by choosing representative resource names).
+> >>
+> > OK will have a look.
+> 
+> The only mt3339-based receivers I have found are:
+> - [0] Globaltop
+> - [1] Locosys / Pololu
+> They both only provide the UART interface and do not list the I2C/SPI
+> interfaces.
+> 
+> [0] https://cdn-shop.adafruit.com/datasheets/GlobalTop-FGPMMOPA6H-Datasheet-V0A.pdf
+> [1] https://www.pololu.com/file/0J641/LS20030~3_datasheet_v1.3.pdf
 
+I found tree more:
 
-Do you really need the exact numbers ?
+ - Globaltop PA6C
 
-NON-duplex:
-4.14.29 reached 930 MBits without the -d ( duplex option ), 5.0rc5 only
-reaches 600MBits there
+   - https://cdn-shop.adafruit.com/datasheets/GlobalTop-FGPMMOPA6C-Datasheet-V0A-Preliminary.pdf
 
-DUPLEX:
-With the -d option things get worse on 4.14.29 , 600MBits in both
-directions. on 5.0rc5 this is the 500 to 600 in one direction, the other
-only 150MBits.
+ - Linx RM series
+   - https://linxtechnologies.com/wp/wp-content/uploads/rxm-gps-rm.pdf
 
+ - ublox IT530
+   - https://www.u-blox.com/sites/default/files/products/documents/IT530_DataSheet_%28FTX-HW-12008%29.pdf
 
-iperf3 is not duplex capable, i didnt test the reverse option, but
-duplex tests show that one direction drops in performance when the other
-is busy.
+All with uart-interface only and similar pins names, although the ublox
+device do have some additional features we can worry about later.
 
+As all but the ublox device use VBACKUP for the backup supply, do you
+mind if I change the binding to use "vbackup-supply" instead of
+"v-bckp-supply" (which is a ublox-ism) when applying?
 
-Do you really need the exact output ? I need to reflash my box then
-..... if needed i would do so.
-
-regards,
-Simon
-
-
-Am 11.02.2019 um 14:44 schrieb Jose Abreu:
-> Hello,
->
-> On 2/9/2019 1:09 AM, Martin Blumenstingl wrote:
->> (it's interesting that the sending direction has 445 retries)
-> I saw this before and I think it was related with COE. Can you
-> please disable all offloading and try again?
->
-> Anyway, maybe Simon should bissect ? I think since 4.14 there are
-> not that many commits in stmmac / meson8b-dwmac that can cause
-> this behavior.
->
-> Thanks,
-> Jose Miguel Abreu
-
-
+Thanks,
+Johan
 
 _______________________________________________
 linux-amlogic mailing list
