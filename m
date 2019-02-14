@@ -2,20 +2,20 @@ Return-Path: <SRS0=JMSZ=QV=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED,USER_AGENT_MUTT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_MUTT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DEE3BC43381
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Feb 2019 09:32:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A54C5C43381
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Feb 2019 10:12:31 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A5A1C20818
-	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Feb 2019 09:32:31 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7777E222D4
+	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Feb 2019 10:12:31 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="M4OcDA3R"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A5A1C20818
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Gt3i8shh"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7777E222D4
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,61 +24,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4+mtKn0Fby5eP4wq8g7uOb/85Q5BOsOxlvbNfvffv1I=; b=M4OcDA3Ru6GqSu
-	0aLFYpfJ/8+cSU+z6FqDmfLeSha/sVmDNjylrtVNPPpD8b5tZ/cD8xslLUaUJeHPjiq5GN51WwTUv
-	8Ajs+g7PkEEZ7g52eOeF0mFAp4uJTEQzSO3yN2HF8BegmKLOSaanjjKR150u6dwmNArQms/iszyps
-	7e5PatVRH+aQKBskjVhSilB4SKdcCzc6Jowv+1nNcrU6+SNRjhFh1DpSAhoeYl+6hVtS3GC/st4Zx
-	VSa5wvNA4T6VrM4sfKKpAGgGvo7UK6h8MxKT+XRxWE03woZMgaefal3/KIRqOtu1ZAvyYsuVw1EwM
-	YJFKnO/PqKUh/0PBRKpg==;
+	List-Owner; bh=iy42M4ni1vNxqInu0GMCBjPhnwcIEzpzytCztR32dlA=; b=Gt3i8shhBJGVLw
+	CXFUGMm6wJG9Tslfai2AGfNAnnzj10zavYAXwcy9EC0rAojZqKU6He2UXUMY1tXX7lN/3q1DWFIr4
+	Z2ujG/sVGapL54BFBpo0yyw88n2LeZpAPDiBeJmhXyyqBeCWmYgnBTQ0b9qZyMOjjASGc+fnss4Cs
+	dUDA+X7VrzVOv3LobejZWUwy/sNz3BpwOruPWgGYexqUs2CKQ7C/5I9PxDMmcr7I1fQmXOpsQfmvp
+	KPfW9P4Ps9N8JfCkwwKSdJyDLcvIG+9NXKDhJ6RqNRBgDktoGDkiZdhvPcC/QntI2FVRRYKFRk/PF
+	/kj6ERjFy4So7lPTZvVA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1guD3S-0001Nl-8P; Thu, 14 Feb 2019 09:11:38 +0000
+	id 1guE0H-0006bc-Mb; Thu, 14 Feb 2019 10:12:25 +0000
 Received: from mail-lj1-f195.google.com ([209.85.208.195])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1guD3O-0001MN-Cx; Thu, 14 Feb 2019 09:11:37 +0000
-Received: by mail-lj1-f195.google.com with SMTP id f24-v6so4585081ljk.0;
- Thu, 14 Feb 2019 01:11:30 -0800 (PST)
+ id 1guE0E-0006ZB-CL; Thu, 14 Feb 2019 10:12:23 +0000
+Received: by mail-lj1-f195.google.com with SMTP id r10-v6so4717615ljj.4;
+ Thu, 14 Feb 2019 02:12:21 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to:user-agent;
- bh=qlyVzDfEA60OMhAyNzY62j15XTWQJaeweNTh+9Jieis=;
- b=FVCSWx0Z4Haz+SsWyR1qA8eEQf96qJvl0lxkImlWHrehnlTHzia/5Y/SKM/PRYvuzc
- zR9J4fa4SN8uJd5knYQCi4UiDQS8kb0bORQOIDn1hl9ZRij2kXzX2Sg0VbFQmtvhUbxp
- u+jcFJVwiG3uPP2BUar1WmGvFsD4t1QWDl/RFvzEHKfWOfLxJyS/VSspeZOGZaBoS/eu
- 8iB/GTF3+eDzqN9h838EHdEOm5NkK9Xwq8B5+hX40xUG/4OIvEsILCe+xMON8rEgLlyn
- BKcWl4y6weHRTfaxrojzC5ANXchwqh/EHIbh1+TjOw8PJx7SNRBaXMaKyoKgRDgIbzDZ
- Ldyw==
-X-Gm-Message-State: AHQUAuZD9qg+jj4EpJj77QL8bvehJR2YqyCUU0klLPxpdqN2DOwxHOGP
- 8MvwlsGJ28aid8YFsI1nezw=
-X-Google-Smtp-Source: AHgI3Ia8DWAGct6WEUKkC+jWEuKtY9LMdSV6z8iJhbdm8yHF8nLHZ6XVyGrDF8EL5vEnUc408+gbtw==
-X-Received: by 2002:a2e:6a18:: with SMTP id f24mr1724017ljc.97.1550135489021; 
- Thu, 14 Feb 2019 01:11:29 -0800 (PST)
+ bh=3qxerFGMWahyMCWOq0ia4/lTLwF5vmBx2M/yvwTR9Wc=;
+ b=t9+Gb5wXcFGU3x5X9bGFiDt9Fbuz1dawAfIyHIhXS1MbUW1PvN19E3Pu81DwmptWyG
+ iUf+s7N5e+7lS2J1mmRAn1jGSfywReQmCF9twYyD8xbA3AQEjEWgv0CN4DxqPhy0PH1v
+ /T6yhQvFARBIZhejyxAxIHooU6RxURY4shZDn1cg+U+m5qPdZreCc058UJLnI280Hq0i
+ /zIV5WE0pC6sXnUCu9zwIq8CIXcok4mC855d7GQSjGgVsnzzd7QDpg5mb7GfgIkF78Vd
+ 6756ZtsjFh99UXynqlWYvcmrp0J/S+trr7nC8dljLvGNq2CkS/Aho4c/D9Jx/f8SBIx8
+ NRIQ==
+X-Gm-Message-State: AHQUAuan/Y8kXeH6by5d5EZ3YYXrsMoMAz0JY4KSBqBeeYWZECvzEOZD
+ MGTtHYFHgRXCEATiPZFKzqI=
+X-Google-Smtp-Source: AHgI3IYMjxeC+55ZGGeACmD0LbPG9pfvF4TuCOWHxIs4cmGHsYI2wF62bBVZRN6uQumAO8+1FXUkow==
+X-Received: by 2002:a2e:8719:: with SMTP id
+ m25-v6mr1947042lji.121.1550139140032; 
+ Thu, 14 Feb 2019 02:12:20 -0800 (PST)
 Received: from xi.terra (c-74bee655.07-184-6d6c6d4.bbcust.telenor.se.
  [85.230.190.116])
- by smtp.gmail.com with ESMTPSA id j12sm350468lfg.47.2019.02.14.01.11.27
+ by smtp.gmail.com with ESMTPSA id p14sm382839lfk.16.2019.02.14.02.12.18
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 14 Feb 2019 01:11:27 -0800 (PST)
+ Thu, 14 Feb 2019 02:12:19 -0800 (PST)
 Received: from johan by xi.terra with local (Exim 4.91)
  (envelope-from <johan@kernel.org>)
- id 1guD3B-0007qD-5L; Thu, 14 Feb 2019 10:11:21 +0100
-Date: Thu, 14 Feb 2019 10:11:21 +0100
+ id 1guE04-0002MM-OH; Thu, 14 Feb 2019 11:12:12 +0100
+Date: Thu, 14 Feb 2019 11:12:12 +0100
 From: Johan Hovold <johan@kernel.org>
-To: Loys Ollivier <lollivier@baylibre.com>
-Subject: Re: [PATCH v2 2/4] dt-bindings: gnss: add mediatek binding
-Message-ID: <20190214091121.GI28278@localhost>
-References: <1547744074-28308-1-git-send-email-lollivier@baylibre.com>
- <1547744074-28308-3-git-send-email-lollivier@baylibre.com>
- <20190125090755.GB3691@localhost> <867eeo7pjm.fsf@baylibre.com>
- <20190211083349.GU4686@localhost> <86mun2v27r.fsf@baylibre.com>
- <CALZWD59e356Of+R4H2ZNHJyQcPCQNNdS+1DTc8qNDYp9ZnUpXA@mail.gmail.com>
+To: Corentin Labbe <clabbe.montjoie@gmail.com>
+Subject: Re: [PATCH v4 4/4] gnss: add driver for mediatek receivers
+Message-ID: <20190214101212.GJ28278@localhost>
+References: <1550070569-18588-1-git-send-email-lollivier@baylibre.com>
+ <1550070569-18588-5-git-send-email-lollivier@baylibre.com>
+ <20190214100019.GA4197@Red>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <CALZWD59e356Of+R4H2ZNHJyQcPCQNNdS+1DTc8qNDYp9ZnUpXA@mail.gmail.com>
+In-Reply-To: <20190214100019.GA4197@Red>
 User-Agent: Mutt/1.11.3 (2019-02-01)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190214_011134_442159_63C3FD82 
-X-CRM114-Status: GOOD (  12.23  )
+X-CRM114-CacheID: sfid-20190214_021222_417266_7E2F70E8 
+X-CRM114-Status: GOOD (  17.70  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -90,57 +89,62 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
+Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Johan Hovold <johan@kernel.org>,
- linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>
+ Kevin Hilman <khilman@baylibre.com>, Loys Ollivier <lollivier@baylibre.com>,
+ Johan Hovold <johan@kernel.org>, linux-kernel@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, linux-mediatek@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Feb 13, 2019 at 04:24:00PM +0100, Loys Ollivier wrote:
-> On Mon 11 Feb 2019 at 14:17, Loys Ollivier <lollivier@baylibre.com> wrote:
-> > On Mon 11 Feb 2019 at 08:33, Johan Hovold <johan@kernel.org> wrote:
+On Thu, Feb 14, 2019 at 11:00:19AM +0100, Corentin Labbe wrote:
+> On Wed, Feb 13, 2019 at 04:09:29PM +0100, Loys Ollivier wrote:
+> > Add driver for serial-connected Mediatek-based GNSS receivers.
+> > 
+> > These devices typically boot transmitting vendor specific NMEA output
+> > sequences. The serial port bit rate is read from the device tree
+> > "current-speed".
+> > 
+> > Note that the driver uses the generic GNSS serial implementation and
+> > therefore essentially only manages power abstracted into three power
+> > states: ACTIVE, STANDBY, and OFF.
+> > 
+> > For mediatek receivers with a main supply and no enable-gpios, this simply
+> > means that the main supply is disabled in STANDBY and OFF (the optional
+> > backup supply is kept enabled while the driver is bound).
+> > 
+> > Note that the timepulse-support is left unimplemented.
+> > 
+> > Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
 
-> >> Right, but please do look around for other receivers using this chipset
-> >> so that we can make the binding generic enough to cover those as well
-> >> (e.g. by choosing representative resource names).
-> >>
-> > OK will have a look.
+> > +static int mtk_set_active(struct gnss_serial *gserial)
+> > +{
+> > +	struct mtk_data *data = gnss_serial_get_drvdata(gserial);
+> > +	int ret;
+> > +
+> > +	ret = regulator_enable(data->vcc);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	return 0;
+> > +}
 > 
-> The only mt3339-based receivers I have found are:
-> - [0] Globaltop
-> - [1] Locosys / Pololu
-> They both only provide the UART interface and do not list the I2C/SPI
-> interfaces.
+> Hello
 > 
-> [0] https://cdn-shop.adafruit.com/datasheets/GlobalTop-FGPMMOPA6H-Datasheet-V0A.pdf
-> [1] https://www.pololu.com/file/0J641/LS20030~3_datasheet_v1.3.pdf
+> This could be simplified to return regulator_enable(data->vcc);
 
-I found tree more:
+Indeed, but I prefer this style which clearly separates the error path
+from the success path while making the success return value explicit.
 
- - Globaltop PA6C
+> Furthermore, after this simplification, the function seems useless.
 
-   - https://cdn-shop.adafruit.com/datasheets/GlobalTop-FGPMMOPA6C-Datasheet-V0A-Preliminary.pdf
-
- - Linx RM series
-   - https://linxtechnologies.com/wp/wp-content/uploads/rxm-gps-rm.pdf
-
- - ublox IT530
-   - https://www.u-blox.com/sites/default/files/products/documents/IT530_DataSheet_%28FTX-HW-12008%29.pdf
-
-All with uart-interface only and similar pins names, although the ublox
-device do have some additional features we can worry about later.
-
-As all but the ublox device use VBACKUP for the backup supply, do you
-mind if I change the binding to use "vbackup-supply" instead of
-"v-bckp-supply" (which is a ublox-ism) when applying?
+Why do you think so? You still need to retrieve the regulator from the
+driver data. Sure, this could be folded into mtk_set_power(), but that
+would be less ideal if there are more resources that need to be managed
+(e.g. an external lna supply).
 
 Thanks,
 Johan
