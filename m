@@ -2,91 +2,70 @@ Return-Path: <SRS0=sb2I=QW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1D8B4C43381
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Feb 2019 12:25:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6EE79C43381
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Feb 2019 15:05:10 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E07B621929
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Feb 2019 12:25:41 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3C5E6207E0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Feb 2019 15:05:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tjlnA5DQ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="nRrFNkH4"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E07B621929
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AALKUrEv"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3C5E6207E0
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arndb.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
-	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=85w967u4BE+/ZUyFi+G0/CqxwAT7hyYPISNJsEEjpkE=; b=tjlnA5DQz4SvqU7xv8mJ09tNVv
-	aBSQoNJGsMKjhuAxWGXBjHmloo4CZOAqRCh4nATaRH8eN+Q5mBAann/J3UDCrQioGThmsllaV4BKx
-	KcA4n0/yMO9ZeYEND0mzRIUm87/CVxspXMLUwCN+7NZ+rCaRnyHf+rgy8UHEKkR5ljC//dzcfnZMi
-	5m+yrv/R94bCp9Ux0qQRchXO7XtNWPQZw/dF6cWOxauJPeJ+Dj3gDKoAOcKQxSeitlY5W48/fvXi2
-	FjNTYHJx0bomwg22XjrwBvNKophi5cEB9zb/pJvPRhvyoraUn5PTC+mgI7JfRCFBEFoCGiXY4zwQc
-	sS/klXpw==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=+Qxh3kleMrC+k/HU2SdG1XX53X+wVFVG0pI1kuunM78=; b=AALKUrEv9JaGst
+	CSNutogJdKfIZFWcfEXelknIcpkPmTwZfr+lC9rCop02N3wdu19S5KHKGRS+NZ+rHiSAB6ub959CD
+	k9SDbxW7BhuLTd/NQcPAyupaFYVLCplifNU+NblKZVgUfH6VM/cakkUPM2aq8jt2S9TGYj5csj64C
+	NsROdwQbuqSSmC5CuCxbjMA0+En2k32cUgqrX1v0dDJsgkLrEeSy1I9XxmR9kcGeGlpluT5m9IJnh
+	ItUDJFx4G4TTBqTLo6p1n0L2+DzdTJVFUhtX/R0Ni305aOHPUSSBBAyR1T7ym4Q+FkiZBujhPdDM7
+	QcBVuawPdY1SbVnRjVCQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gucYi-0004XF-5E; Fri, 15 Feb 2019 12:25:36 +0000
-Received: from mail-ed1-x541.google.com ([2a00:1450:4864:20::541])
+	id 1guf31-0005PT-G4; Fri, 15 Feb 2019 15:05:03 +0000
+Received: from mail-qt1-f169.google.com ([209.85.160.169])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gucYY-0004NJ-Dv
- for linux-amlogic@lists.infradead.org; Fri, 15 Feb 2019 12:25:29 +0000
-Received: by mail-ed1-x541.google.com with SMTP id d9so7770798edh.12
- for <linux-amlogic@lists.infradead.org>; Fri, 15 Feb 2019 04:25:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version;
- bh=kaYhpM3K1lORUrG4TIL1K2D+s9nWHtiHPzXDKda8A0E=;
- b=nRrFNkH4Rf5YL6oIfpcUZxZDrnILQ/wVBi0OglfDxNwG3jevICe+YCnXBUKUIlWcLd
- C3A1rh9wOGdBpMs10ko4HdFZtAbREng0aKZp/WG/fW9BP2hsSNLOsVdpIqhyawKYAW+T
- UqSXXeU+TH+02NhJnZ6YY7WiP5G0uU9rJTO3iAKregSBEHy1F5aI7knhYPU28dR1Xbzc
- zMZTme+eZH1NwlJ/TkiBSRPyTbaEwahPugkN9FBEdSZmFFTt9Kxp/fz/kW61tNBlsTyV
- 2UFidFtkZzXvFO/ia6scjaivvj6GpkZeJRtLlXBp4PH/9dZiZFGtp0yrFUzsjp6DtVnJ
- tezQ==
+ id 1guf2w-0005EY-Lq; Fri, 15 Feb 2019 15:05:01 +0000
+Received: by mail-qt1-f169.google.com with SMTP id a48so11177436qtb.4;
+ Fri, 15 Feb 2019 07:04:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version;
- bh=kaYhpM3K1lORUrG4TIL1K2D+s9nWHtiHPzXDKda8A0E=;
- b=i45eMW+WLWmY6y+ba4cSJJmg3bv1LYb4gYIal0BV6qL3AVcRxkXus/dynnf8dq0Xxv
- EIiUou/m+NsT4FwTUHRtuwP2U9RRfnEy0xdZrDZfOFKFdPXcOwG5JZ7l6sWXw7cXdIfX
- Ukvu3m0LTzblJ455DxuQyVhnN/1YNYymFEpJYgVb/l9bPK5t35PxojjBsZ1tQumgucFE
- Py0ms7AG5yiLtp5VTWYWXsnfxYvAsWk5OW2G/8jyj6EgcZUYDv+PaGYD3OiFTvk1UOx9
- jINKCwbe0FTUWOKgbbxqW2FNGjvbQHPIriC8epUTVt1fdEwQcUOg5C9i6+x7Fam7mb4N
- PPpg==
-X-Gm-Message-State: AHQUAuaU69RPp7cQNCsDnywLBIlysLuHhvkQhW++ljP0spVrCcDNGMOg
- w8daQ6xU6D5AOzJY3LSGDVH9/Q==
-X-Google-Smtp-Source: AHgI3Ia/AePt867GBuhHiFAwymq6ydcEdV1qGEvztO6A8kE+RS2ElAgaOZuQ6A1eaTnIiBYuvDB0pg==
-X-Received: by 2002:a17:906:32c7:: with SMTP id
- k7mr6496809ejk.180.1550233524020; 
- Fri, 15 Feb 2019 04:25:24 -0800 (PST)
-Received: from localhost ([2620:10d:c092:180::1:2b])
- by smtp.gmail.com with ESMTPSA id c25sm512455ejx.59.2019.02.15.04.25.22
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 15 Feb 2019 04:25:23 -0800 (PST)
-References: <1550070569-18588-1-git-send-email-lollivier@baylibre.com>
- <1550070569-18588-5-git-send-email-lollivier@baylibre.com>
- <20190214100019.GA4197@Red> <20190214101212.GJ28278@localhost>
-User-agent: mu4e 1.0; emacs 25.3.2
-From: Loys Ollivier <lollivier@baylibre.com>
-To: Johan Hovold <johan@kernel.org>
-Subject: Re: [PATCH v4 4/4] gnss: add driver for mediatek receivers
-In-reply-to: <20190214101212.GJ28278@localhost>
-Date: Fri, 15 Feb 2019 13:25:20 +0100
-Message-ID: <86d0ntfdcf.fsf@baylibre.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=jFmO8AVTZTYyTknNr5F2lZBR3E8qi8TLFXdxFtx+VZY=;
+ b=jkUAP5xztHA6nnfZfgnF4maQ0L/pTdrizacNx/rC73W5x2CuXti56cYbTDOhFqh/cI
+ 9fMvPr/vnrH2GZz62H4piLa28yd0I9DatZ2yFAtC2TWEtGBQLzLuyo217G+xaZHmOPag
+ KoGgB5bO8Cc4ZYSa85fjVeNyHdNUu440oCk9766RqbadgYHWW3JS4WCuFeiZt0LZUod0
+ JSpiwvb8FxKGxXnIf/N8dJEE5uRgsXcDua90oP93URHQWg8kjCwn0oqZz1t9+f+31rLb
+ ySSAvJdEOtz5imsZkkImpjJt0yhasQoyudz9G7Xy5nJFNCvTNSuynj2ghTJc5wyRPlPN
+ LQMg==
+X-Gm-Message-State: AHQUAuaE8rEtQ1lTIViH0qK5uALGsc/uNcreusRSkNLJumOrucugK3ev
+ csP+Ljfa1zSqLuEyHQjLhkig71EuD0hCCInYIbdmtQ==
+X-Google-Smtp-Source: AHgI3Ib/1Lqu38/w++0Xlw1kGKfQ8HccrQGZgf2iStPUtL3rDbTXp3JTRKmncUAKR/plvG4LXcVLsx0ZtiQnDG3Q7Ik=
+X-Received: by 2002:ac8:4141:: with SMTP id e1mr7590636qtm.96.1550243097751;
+ Fri, 15 Feb 2019 07:04:57 -0800 (PST)
 MIME-Version: 1.0
+References: <7h8symdp1h.fsf@baylibre.com>
+In-Reply-To: <7h8symdp1h.fsf@baylibre.com>
+From: Arnd Bergmann <arnd@arndb.de>
+Date: Fri, 15 Feb 2019 16:04:41 +0100
+Message-ID: <CAK8P3a1mLpvvgVZSPhy+zoZYgwDJbBZ29LB-BYAsEaQMZm+K4w@mail.gmail.com>
+Subject: Re: [GIT PULL] arm64: dts: Amlogic updates for v5.1
+To: Kevin Hilman <khilman@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190215_042526_466391_A15D09CA 
-X-CRM114-Status: GOOD (  18.03  )
+X-CRM114-CacheID: sfid-20190215_070458_707622_411E0B11 
+X-CRM114-Status: UNSURE (   5.71  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -98,82 +77,25 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Loys Ollivier <lollivier@baylibre.com>,
- linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- Corentin Labbe <clabbe.montjoie@gmail.com>, linux-amlogic@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: "open list:ARM/Amlogic Meson SoC support"
+ <linux-amlogic@lists.infradead.org>, arm-soc <arm@kernel.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On Mon, Feb 11, 2019 at 9:54 PM Kevin Hilman <khilman@baylibre.com> wrote:
+> arm64: dts: Amlogic updates for v5.1
+> - new board: G12a-based x96 max
+> - G12a: add peripheral clock controller and clock measure support
+> - s400: fix SD/eMMC max rate issues
+> - s400: audio: add sp/dif in support
+> - GX: support simplefb
 
-On Thu 14 Feb 2019 at 10:12, Johan Hovold <johan@kernel.org> wrote:
+Pulled into arm/dt, thanks!
 
-> On Thu, Feb 14, 2019 at 11:00:19AM +0100, Corentin Labbe wrote:
->> On Wed, Feb 13, 2019 at 04:09:29PM +0100, Loys Ollivier wrote:
->> > Add driver for serial-connected Mediatek-based GNSS receivers.
->> > 
->> > These devices typically boot transmitting vendor specific NMEA output
->> > sequences. The serial port bit rate is read from the device tree
->> > "current-speed".
->> > 
->> > Note that the driver uses the generic GNSS serial implementation and
->> > therefore essentially only manages power abstracted into three power
->> > states: ACTIVE, STANDBY, and OFF.
->> > 
->> > For mediatek receivers with a main supply and no enable-gpios, this simply
->> > means that the main supply is disabled in STANDBY and OFF (the optional
->> > backup supply is kept enabled while the driver is bound).
->> > 
->> > Note that the timepulse-support is left unimplemented.
->> > 
->> > Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
->
->> > +static int mtk_set_active(struct gnss_serial *gserial)
->> > +{
->> > +	struct mtk_data *data = gnss_serial_get_drvdata(gserial);
->> > +	int ret;
->> > +
->> > +	ret = regulator_enable(data->vcc);
->> > +	if (ret)
->> > +		return ret;
->> > +
->> > +	return 0;
->> > +}
->> 
->> Hello
->> 
->> This could be simplified to return regulator_enable(data->vcc);
->
-> Indeed, but I prefer this style which clearly separates the error path
-> from the success path while making the success return value explicit.
->
-
-It respects the coding style/standard and I prefer the original version.
-It's also easier to debug if you want to add extra code on error.
-
->> Furthermore, after this simplification, the function seems useless.
->
-> Why do you think so? You still need to retrieve the regulator from the
-> driver data. Sure, this could be folded into mtk_set_power(), but that
-> would be less ideal if there are more resources that need to be managed
-> (e.g. an external lna supply).
-
-I would be in favor to keep mtk_set_active. It clearly shows when the
-regulator is enabled.
-It also seems logic to have an enable/standby function in the driver.
-Even if those are trivial (for now).
-
->
-> Thanks,
-> Johan
-
-
--- 
--L
+      Arnd
 
 _______________________________________________
 linux-amlogic mailing list
