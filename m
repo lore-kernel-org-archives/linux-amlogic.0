@@ -4,19 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-11.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 70AC1C43381
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Feb 2019 16:21:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 31432C43381
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Feb 2019 16:43:35 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4143721924
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Feb 2019 16:21:04 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id F374E2192B
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Feb 2019 16:43:34 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tEFJzX+e"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4143721924
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oXf8Cq4D"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F374E2192B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arndb.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,47 +25,48 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vf/n6LVmnDTfd/fRwgjeBrKpYhhpxGER5x4FCKQXGy0=; b=tEFJzX+eJE3aK5
-	dEbvCwSQK1ZhpraoBeATIwqNvpo13bNJZZUG99KSQmR67hSQjNhOg0XmPi6XRbxFTTa5Kacj0xZbU
-	FlIyXrtlifxYscdg++w0Dlig5mliVWAfuQ9q/z6McGp4fVAJZcQTBI8EcRyTRXSH8/c5dqe5o8MPt
-	tgUfg71uVf7CZOXd09T5vD7jt8kY57iLuc5F7LiGLrTF/umuajA9hZYlrpyjswEU430PjiphC4Y1H
-	4q6Q9qi8Q59QATVWu0twTIrI1UncDqX0yCOiwE8Mz/IK3aOYgBgKjr4iMuoCmqVRe+M+P3vIzzSy3
-	bvVbmGvJWuNUrfvAnrTA==;
+	List-Owner; bh=yAtdRx9FwPAWnz+A9XVYkalzz8VvaTpXje01Dhta6Eo=; b=oXf8Cq4DxVsnL6
+	IetE5opjzW0FSDJwmhJvY2GU9ni7cv9IL/qSNsOz+Fj7tPaoqxDKhzvzOgPQt1DjKMZYeyYWu6kP2
+	qP8UDWk9pCxb/q7OXnBRalnxNnSZVFoQ7Z12iieqbkfFovUnNh6y8TK4+EDM85VON7MzCMXMoWAsY
+	c0UdRp1nwVgagAaqTANSo0PNZ5At7YTSd9i3IurZ5xP4sSMbijnEjy6lSSg3gOcTdDLdMdHe0NScP
+	KditJS0WCbjrRJ91eFoyzOF1d1OJrGNF2Je3ck0TGrQDmhmrzXE34nwbftmGgRKplw1/PQ6RPP9Pk
+	+/s7ckM0uXqMcnMYKWvw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gugEV-0006ag-51; Fri, 15 Feb 2019 16:20:59 +0000
-Received: from mail-qk1-f195.google.com ([209.85.222.195])
+	id 1gugaG-0001no-TX; Fri, 15 Feb 2019 16:43:28 +0000
+Received: from mail-qt1-f193.google.com ([209.85.160.193])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gugES-0006aB-GW; Fri, 15 Feb 2019 16:20:57 +0000
-Received: by mail-qk1-f195.google.com with SMTP id y195so5979594qka.12;
- Fri, 15 Feb 2019 08:20:56 -0800 (PST)
+ id 1gugaD-0001nU-Tp; Fri, 15 Feb 2019 16:43:27 +0000
+Received: by mail-qt1-f193.google.com with SMTP id 2so11569675qtb.5;
+ Fri, 15 Feb 2019 08:43:24 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=C8Fmj5JMp2kvp0k0Xe218CKYt7IQEWNjkjd0X2lTZj0=;
- b=Oe9bAiqhssHi9m0aKrn0Y2isPTrx2x6UYGoXeYsM5utl0rJq52+tzQNm/hLX1YIgIs
- Rjz/NWrrsTksP7DqPamy35tFODZJmX+UaShdMOsdeEc4mwjW1fw2/ITNmnnQrsPT07rz
- K+KHC3yaAFlILUuUGCIs/KuyO8vfb8GS/zPAw8ieLC9jeUfXQAiS59QQirP0Q7ZLW97M
- mHFunAIszIipS8KuigKiAGhz9mP3mzWIINnE2R+3zCeuW2p8/tYIur82Xor4//xvoNAU
- 3xLfvLHo88TMGutFwnyIjZsFlRA+R0k7LN76vqowFaypNBYV1/tQKusLJQSHPCA7YyJw
- 94pQ==
-X-Gm-Message-State: AHQUAuYQki1XoepeNxhkFwl91x7Ya6ZD5RKD9k08iddJXsig91SXkVnM
- +iJ3+TInZBgOxXVKxS0rTRA0QxIV4haVuy7QRWk=
-X-Google-Smtp-Source: AHgI3Iael1kp6BpZ+ncp5jNjxOV303l7sPq7hZRMacevJoF3NcSanNfXhOjKL6YQJ4A43Yn4zvzIqCWcAj/mVXFyiF4=
-X-Received: by 2002:a37:7cf:: with SMTP id 198mr7631765qkh.173.1550247655698; 
- Fri, 15 Feb 2019 08:20:55 -0800 (PST)
+ bh=RBqJ5IWUmwRJV/cvG5CH69c948r05XGEsJxT1osW13I=;
+ b=tdogEs1yUvotrNRKCjYx9LJksG3iC2SGZjMXIsYzMWT7CuDs1VPWYF9RAPCe9cUrB4
+ K0CoY9VHOta+gTlixlYj3/HGP5AMkYVMOaBwLiNe0AU/WHeOCzC7Q1GU7zpCNk2Hs3n2
+ l1jT6iE5ByoPFsjJkM+iEJyxMSXU92KCmmictpmWSk+0VLYblIRlV6k6CPAnPx+Ctytc
+ KfGYCcTiQoUu9lEoqlI7far5ycQ5r6uIhKo6KXmhGIbbN2XiQGO41e2g5OXzvkTpLqRo
+ kOiiLLqcxVFrNQgzZdwLoHvSWNs85/k7h24IvasJ/tGF+vXuIy4jmJvwC4VjNrTeNOnO
+ VeEw==
+X-Gm-Message-State: AHQUAuZyNLye9xl0oyOAYGUot6nochUF/liAp4geVrLr1vWe1LBbFSUM
+ dblNtP+060x0T6sJTZIcb7dMoqk0aZSS9JoM2MQ=
+X-Google-Smtp-Source: AHgI3IYc2CMiWrAhVQrzmOrpxjcJftsP9f60xTpYJ9oC8fiLQtFKj9mnuQYonPDRj0yX/NDuIHrvYOfSHeGW/jmcjfY=
+X-Received: by 2002:ac8:1d12:: with SMTP id d18mr8148123qtl.343.1550249003569; 
+ Fri, 15 Feb 2019 08:43:23 -0800 (PST)
 MIME-Version: 1.0
-References: <7hlg2mdpo1.fsf@baylibre.com>
-In-Reply-To: <7hlg2mdpo1.fsf@baylibre.com>
+References: <7hftsudp9j.fsf@baylibre.com>
+In-Reply-To: <7hftsudp9j.fsf@baylibre.com>
 From: Arnd Bergmann <arnd@arndb.de>
-Date: Fri, 15 Feb 2019 17:20:39 +0100
-Message-ID: <CAK8P3a3YYNcbP5ff40QU4CQYu+N0kC9tEqKFAQij6_ZM4P-KVw@mail.gmail.com>
-Subject: Re: [GIT PULL] Amlogic: driver updates for v5.1
+Date: Fri, 15 Feb 2019 17:43:07 +0100
+Message-ID: <CAK8P3a3szjhUZKX9BGHa0jNFWbYt=N2DXPwBF3cOs-rP4PO7wQ@mail.gmail.com>
+Subject: Re: [GIT PULL] Amlogic SoC Kconfig updates for v5.1
 To: Kevin Hilman <khilman@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190215_082056_545313_17FA12F8 
-X-CRM114-Status: GOOD (  10.41  )
+X-CRM114-CacheID: sfid-20190215_084325_958954_9944C35C 
+X-CRM114-Status: UNSURE (   9.01  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -85,7 +86,7 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Feb 11, 2019 at 9:40 PM Kevin Hilman <khilman@baylibre.com> wrote:
+On Mon, Feb 11, 2019 at 9:49 PM Kevin Hilman <khilman@baylibre.com> wrote:
 >
 > The following changes since commit bfeffd155283772bbe78c6a05dec7c0128ee500c:
 >
@@ -93,20 +94,20 @@ On Mon, Feb 11, 2019 at 9:40 PM Kevin Hilman <khilman@baylibre.com> wrote:
 >
 > are available in the Git repository at:
 >
->   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-drivers
+>   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-soc
 >
-> for you to fetch changes up to 19e0bde7bf6a18a910e5d633ef606d6ff298c2cb:
+> for you to fetch changes up to b3077ffcfa24b05c05af3b990d97a392ef88b22e:
 >
->   soc: amlogic: clk-measure: add axg and g12a support (2019-02-07 16:50:36 -0800)
+>   arm64: meson: enable g12a clock controller (2019-02-08 09:30:25 -0800)
 >
 > ----------------------------------------------------------------
-> Amlogic: driver updates for v5.1
-> - clock measure: add support for G12a SoC family
-> - misc. fixes
+> Amlogic SoC Kconfig updates for v5.1:
+> - arm64: meson: enable g12a clock controller
+> - drop unneeded COMMON_CLK_AMLOGIC
 
-Pulled into arm/drivers, thanks!
+Pulled into arm/soc, thanks!
 
-     Arnd
+    Arnd
 
 _______________________________________________
 linux-amlogic mailing list
