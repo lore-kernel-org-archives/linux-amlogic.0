@@ -2,79 +2,70 @@ Return-Path: <SRS0=sb2I=QW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
-	USER_AGENT_MUTT autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-11.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 085A4C43381
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Feb 2019 16:05:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 70AC1C43381
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Feb 2019 16:21:04 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CC5DE21927
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Feb 2019 16:05:21 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4143721924
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Feb 2019 16:21:04 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DCGDeOHF"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CC5DE21927
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tEFJzX+e"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4143721924
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arndb.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kfSwWEqCNm4JLBnzn7INuhRJjFHe1qkoe4QjJJI0PzA=; b=DCGDeOHFBKQbRQ
-	QBzb9Tc1rPointLFjYwUbo2YsST3F3V3fWEIdg02FT/0UwQgppXDR5b/tV6/lE7Vjsx55JmujTf1E
-	RHwya/GKCggD7BoIX1z7CGBteBu58Z0q22a0m5HeCXbzjEt0R5T98JG927r6uxODvMIb1F3vz4TXo
-	wBPzt0Ju+qCjxfPXS4mSGcKBeqJ1kiraeUmVIRLqfGVonNQ8jBPO4KvB3ZQuwSCDa8pogMqZMHMKZ
-	Kdrt9+5C47SUd36dpUbg9V1voBICNNKaRUq9z3jmx7Vz9AVttGic75wHjB6cEyl9hSYHUJ6whmiQE
-	+HclKqswLeuIBCDuC3oA==;
+	List-Owner; bh=vf/n6LVmnDTfd/fRwgjeBrKpYhhpxGER5x4FCKQXGy0=; b=tEFJzX+eJE3aK5
+	dEbvCwSQK1ZhpraoBeATIwqNvpo13bNJZZUG99KSQmR67hSQjNhOg0XmPi6XRbxFTTa5Kacj0xZbU
+	FlIyXrtlifxYscdg++w0Dlig5mliVWAfuQ9q/z6McGp4fVAJZcQTBI8EcRyTRXSH8/c5dqe5o8MPt
+	tgUfg71uVf7CZOXd09T5vD7jt8kY57iLuc5F7LiGLrTF/umuajA9hZYlrpyjswEU430PjiphC4Y1H
+	4q6Q9qi8Q59QATVWu0twTIrI1UncDqX0yCOiwE8Mz/IK3aOYgBgKjr4iMuoCmqVRe+M+P3vIzzSy3
+	bvVbmGvJWuNUrfvAnrTA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gufzI-0007DB-I0; Fri, 15 Feb 2019 16:05:16 +0000
-Received: from mail-lf1-f68.google.com ([209.85.167.68])
+	id 1gugEV-0006ag-51; Fri, 15 Feb 2019 16:20:59 +0000
+Received: from mail-qk1-f195.google.com ([209.85.222.195])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gufz9-00068l-WD; Fri, 15 Feb 2019 16:05:13 +0000
-Received: by mail-lf1-f68.google.com with SMTP id h10so7337917lfc.12;
- Fri, 15 Feb 2019 08:05:07 -0800 (PST)
+ id 1gugES-0006aB-GW; Fri, 15 Feb 2019 16:20:57 +0000
+Received: by mail-qk1-f195.google.com with SMTP id y195so5979594qka.12;
+ Fri, 15 Feb 2019 08:20:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=pvVSU+OeBtnbLINS2fqQeebEh/Lf+PMY28nuMnUdYR0=;
- b=E4JWJTs0BcPGQvR2bQ3CCSpfNhvjJ9kuDF/tN2ZVSzkUzNYQmtZFPf24jg8uL1Z4dc
- NlV8oTUKMKheitPOXbmFTFLoQ3DfCguYnCGl82bNc9gBjQjLTZnDto6EYO5eRPNKPCWi
- PVxMLWMBFxcxKX9Z32dFFeU8afMNseMOW4xjg2+BKLzz6LL+RG++2WlIg2mNMM4zr6nF
- EJwoCaShPJE+B4AuIansx3uTw3J+9CGow7vom1xz1J5/HyHA03vCJq6RgmjMLB8LK/Ge
- Tx3O54a1a5pMVA0t0sxmTR/6XUuzXyQNfqhiYz8tHyA75IEaF6Jo4X9HK0gB3erTgqMh
- 99ZA==
-X-Gm-Message-State: AHQUAuYLBnBLjxBXJXOGLyZtEtBL0fgaI2a7J7dN8g60ljqfg9fLuF5S
- /9VGkphRLe7xKr1d6Bs4UT0=
-X-Google-Smtp-Source: AHgI3IZRcnlB46Fnw+lqoINS7IG2dpHY6TaBaBqVmAUpJPIafA96D5LXIxG+4kwQCsRiLn251kDSgQ==
-X-Received: by 2002:a19:5611:: with SMTP id k17mr5705165lfb.168.1550246705884; 
- Fri, 15 Feb 2019 08:05:05 -0800 (PST)
-Received: from xi.terra ([85.230.190.116])
- by smtp.gmail.com with ESMTPSA id f10-v6sm1298296ljc.31.2019.02.15.08.05.04
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 15 Feb 2019 08:05:04 -0800 (PST)
-Received: from johan by xi.terra with local (Exim 4.91)
- (envelope-from <johan@kernel.org>)
- id 1gufyz-0000qc-Eh; Fri, 15 Feb 2019 17:04:57 +0100
-Date: Fri, 15 Feb 2019 17:04:57 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Loys Ollivier <lollivier@baylibre.com>
-Subject: Re: [PATCH v4 2/4] dt-bindings: gnss: add mediatek binding
-Message-ID: <20190215160457.GO28278@localhost>
-References: <1550070569-18588-1-git-send-email-lollivier@baylibre.com>
- <1550070569-18588-3-git-send-email-lollivier@baylibre.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=C8Fmj5JMp2kvp0k0Xe218CKYt7IQEWNjkjd0X2lTZj0=;
+ b=Oe9bAiqhssHi9m0aKrn0Y2isPTrx2x6UYGoXeYsM5utl0rJq52+tzQNm/hLX1YIgIs
+ Rjz/NWrrsTksP7DqPamy35tFODZJmX+UaShdMOsdeEc4mwjW1fw2/ITNmnnQrsPT07rz
+ K+KHC3yaAFlILUuUGCIs/KuyO8vfb8GS/zPAw8ieLC9jeUfXQAiS59QQirP0Q7ZLW97M
+ mHFunAIszIipS8KuigKiAGhz9mP3mzWIINnE2R+3zCeuW2p8/tYIur82Xor4//xvoNAU
+ 3xLfvLHo88TMGutFwnyIjZsFlRA+R0k7LN76vqowFaypNBYV1/tQKusLJQSHPCA7YyJw
+ 94pQ==
+X-Gm-Message-State: AHQUAuYQki1XoepeNxhkFwl91x7Ya6ZD5RKD9k08iddJXsig91SXkVnM
+ +iJ3+TInZBgOxXVKxS0rTRA0QxIV4haVuy7QRWk=
+X-Google-Smtp-Source: AHgI3Iael1kp6BpZ+ncp5jNjxOV303l7sPq7hZRMacevJoF3NcSanNfXhOjKL6YQJ4A43Yn4zvzIqCWcAj/mVXFyiF4=
+X-Received: by 2002:a37:7cf:: with SMTP id 198mr7631765qkh.173.1550247655698; 
+ Fri, 15 Feb 2019 08:20:55 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1550070569-18588-3-git-send-email-lollivier@baylibre.com>
-User-Agent: Mutt/1.11.3 (2019-02-01)
+References: <7hlg2mdpo1.fsf@baylibre.com>
+In-Reply-To: <7hlg2mdpo1.fsf@baylibre.com>
+From: Arnd Bergmann <arnd@arndb.de>
+Date: Fri, 15 Feb 2019 17:20:39 +0100
+Message-ID: <CAK8P3a3YYNcbP5ff40QU4CQYu+N0kC9tEqKFAQij6_ZM4P-KVw@mail.gmail.com>
+Subject: Re: [GIT PULL] Amlogic: driver updates for v5.1
+To: Kevin Hilman <khilman@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190215_080508_364017_1555920E 
-X-CRM114-Status: GOOD (  16.53  )
+X-CRM114-CacheID: sfid-20190215_082056_545313_17FA12F8 
+X-CRM114-Status: GOOD (  10.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -86,85 +77,36 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Johan Hovold <johan@kernel.org>,
- linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+Cc: "open list:ARM/Amlogic Meson SoC support"
+ <linux-amlogic@lists.infradead.org>, arm-soc <arm@kernel.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Feb 13, 2019 at 04:09:27PM +0100, Loys Ollivier wrote:
-> Add binding for Mediatek-based GNSS receivers.
-> 
-> Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
-> ---
-> v4:
-> Use standard names for reset-gpios and gnss-fix-gpios
-> s/an/a UART
-> 
-> v3:
-> Removed the I2C and SPI interfaces references.
-> Removed the "mediatek,mt3339" compatible line.
-> Added the optional propertied (reset, fix)
-> Added the pin names for the optional properties.
-> 
-> v2:
-> Renamed bindings from Globaltop/gtop to Mediatek/mtk.
-> Moved current-speed as an optional propertie.
-> Removed the status line in the example.
-> Added "mediatek,mt3339" compatible.
-> 
->  .../devicetree/bindings/gnss/mediatek.txt          | 37 ++++++++++++++++++++++
->  1 file changed, 37 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gnss/mediatek.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/gnss/mediatek.txt b/Documentation/devicetree/bindings/gnss/mediatek.txt
-> new file mode 100644
-> index 000000000000..12283d429baa
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gnss/mediatek.txt
-> @@ -0,0 +1,37 @@
-> +Mediatek-based GNSS Receiver DT binding
-> +
-> +Mediatek chipsets are used in GNSS-receiver modules produced by several
-> +vendors and can use a UART interface.
-> +
-> +Please see Documentation/devicetree/bindings/gnss/gnss.txt for generic
-> +properties.
-> +
-> +Required properties:
-> +
-> +- compatible	: Must be
-> +
-> +			"globaltop,pa6h"
-> +
-> +- vcc-supply	: Main voltage regulator (pin name: VCC)
-> +
-> +Optional properties:
-> +
-> +- current-speed		: Default UART baud rate
-> +- gnss-fix-gpios	: GPIO used to determine device position fix state
-> +			  (pin name: FIX, 3D_FIX)
-> +- reset-gpios		: GPIO used to reset the device
-> +  		  	  (pin name: RESET, NRESET)
-> +- timepulse-gpios	: Time pulse GPIO (pin name: PPS1, 1PPS)
-> +- v-bckp-supply		: Backup voltage regulator
-> +  			  (pin name: VBAT, VBACKUP)
+On Mon, Feb 11, 2019 at 9:40 PM Kevin Hilman <khilman@baylibre.com> wrote:
+>
+> The following changes since commit bfeffd155283772bbe78c6a05dec7c0128ee500c:
+>
+>   Linux 5.0-rc1 (2019-01-06 17:08:20 -0800)
+>
+> are available in the Git repository at:
+>
+>   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-drivers
+>
+> for you to fetch changes up to 19e0bde7bf6a18a910e5d633ef606d6ff298c2cb:
+>
+>   soc: amlogic: clk-measure: add axg and g12a support (2019-02-07 16:50:36 -0800)
+>
+> ----------------------------------------------------------------
+> Amlogic: driver updates for v5.1
+> - clock measure: add support for G12a SoC family
+> - misc. fixes
 
-As we discussed, I changed this to "vbackup-supply" (here and in the
-driver) before applying.
+Pulled into arm/drivers, thanks!
 
-Note that git reported some whitespace errors above too (spaces before
-tabs) that I fixed up. Not sure why checkpatch doesn't complain.
-
-All now applied.
-
-Thanks,
-Johan
+     Arnd
 
 _______________________________________________
 linux-amlogic mailing list
