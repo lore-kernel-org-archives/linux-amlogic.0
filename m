@@ -2,21 +2,21 @@ Return-Path: <SRS0=sb2I=QW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 86316C43381
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Feb 2019 12:11:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1D8B4C43381
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Feb 2019 12:25:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4CF4F21900
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Feb 2019 12:11:01 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E07B621929
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Feb 2019 12:25:41 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="A9Auj2Nb";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="c49xcXTp"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4CF4F21900
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tjlnA5DQ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="nRrFNkH4"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E07B621929
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,69 +26,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=uGtOlF4oIKnuWnfpvrTPqgc9Uo126qEdeFI9/rbUYjo=; b=A9Auj2NbHlUWOi6VNiU6a6x5d9
-	dZpDAs8JqeJqrykT5t5K9ykG3lUA2DsMJ6m7lM6ol6DCVtvizM8vrNXuO9i7fHPcf1n1IauPz7A7C
-	pJ7X0MtKwUmhoSpiihbGcSvG9v905Un5pYugTeH42fGVh2Nu4+g/nLzHYhbWhOhMg8Ih5fHBvbmiK
-	HKaIz77bF9S1vPZu99rf9oB2V5tr5gecxRoWkJ/N0/64q4JwE8/ZJHNBGoYx9fuFRFHED9+SgyKGX
-	zkmk7IxOeuUNErTRjC05maDYMy8O7hi1MG9U9qrJ5diBmhP6TNga8zlMF3ECCNzRHjY+1kvgDh7+C
-	CRWSHx8Q==;
+	bh=85w967u4BE+/ZUyFi+G0/CqxwAT7hyYPISNJsEEjpkE=; b=tjlnA5DQz4SvqU7xv8mJ09tNVv
+	aBSQoNJGsMKjhuAxWGXBjHmloo4CZOAqRCh4nATaRH8eN+Q5mBAann/J3UDCrQioGThmsllaV4BKx
+	KcA4n0/yMO9ZeYEND0mzRIUm87/CVxspXMLUwCN+7NZ+rCaRnyHf+rgy8UHEKkR5ljC//dzcfnZMi
+	5m+yrv/R94bCp9Ux0qQRchXO7XtNWPQZw/dF6cWOxauJPeJ+Dj3gDKoAOcKQxSeitlY5W48/fvXi2
+	FjNTYHJx0bomwg22XjrwBvNKophi5cEB9zb/pJvPRhvyoraUn5PTC+mgI7JfRCFBEFoCGiXY4zwQc
+	sS/klXpw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gucKS-0008Ds-L3; Fri, 15 Feb 2019 12:10:52 +0000
-Received: from mail-ed1-x542.google.com ([2a00:1450:4864:20::542])
+	id 1gucYi-0004XF-5E; Fri, 15 Feb 2019 12:25:36 +0000
+Received: from mail-ed1-x541.google.com ([2a00:1450:4864:20::541])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gucKI-00084M-0C
- for linux-amlogic@lists.infradead.org; Fri, 15 Feb 2019 12:10:46 +0000
-Received: by mail-ed1-x542.google.com with SMTP id h58so7756554edb.5
- for <linux-amlogic@lists.infradead.org>; Fri, 15 Feb 2019 04:10:40 -0800 (PST)
+ id 1gucYY-0004NJ-Dv
+ for linux-amlogic@lists.infradead.org; Fri, 15 Feb 2019 12:25:29 +0000
+Received: by mail-ed1-x541.google.com with SMTP id d9so7770798edh.12
+ for <linux-amlogic@lists.infradead.org>; Fri, 15 Feb 2019 04:25:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=references:user-agent:from:to:cc:subject:in-reply-to:date
  :message-id:mime-version;
- bh=tL2ffv1V8sAnBnW7dhYpnxhuR62iC/h7erMqMK8Fj9M=;
- b=c49xcXTpD+KdV/RUUUxEg/dnd9h3qPOI2A/tvJfHSyeLe4U/kh6fsNmYJI8ES2jH9t
- 8IFMa3i3IckxYpMu1dZxuqmykwvoEN9DID0bGGrgYxUcaMiYnmjjEtlveOWiHHximSnr
- Avzw5JVguxjq0XcKsxDwKIP0WLpZEQA5liPqJFJZ/Ki3g5InymHuxJKRXvNsudF+2Vkx
- 40NYxNDCwrwbw92mAeMaAfr1qUYPeYIGjW5K7Wpqor5+lGLfyGcIAuP8BtIeZCbsbooN
- 7BYcTMxFvPmGsj/CwhmISu7WXvbTmgHbBhWtdR8M3ROHmu/+NUptPpZ+rVIKq9tg92YS
- 1pIg==
+ bh=kaYhpM3K1lORUrG4TIL1K2D+s9nWHtiHPzXDKda8A0E=;
+ b=nRrFNkH4Rf5YL6oIfpcUZxZDrnILQ/wVBi0OglfDxNwG3jevICe+YCnXBUKUIlWcLd
+ C3A1rh9wOGdBpMs10ko4HdFZtAbREng0aKZp/WG/fW9BP2hsSNLOsVdpIqhyawKYAW+T
+ UqSXXeU+TH+02NhJnZ6YY7WiP5G0uU9rJTO3iAKregSBEHy1F5aI7knhYPU28dR1Xbzc
+ zMZTme+eZH1NwlJ/TkiBSRPyTbaEwahPugkN9FBEdSZmFFTt9Kxp/fz/kW61tNBlsTyV
+ 2UFidFtkZzXvFO/ia6scjaivvj6GpkZeJRtLlXBp4PH/9dZiZFGtp0yrFUzsjp6DtVnJ
+ tezQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:references:user-agent:from:to:cc:subject
  :in-reply-to:date:message-id:mime-version;
- bh=tL2ffv1V8sAnBnW7dhYpnxhuR62iC/h7erMqMK8Fj9M=;
- b=o/Nf39NRyouSePUXfdmiHlXLecO7X6LrXoJi6W5/oYQ+b4EK50Lg69n7u90GyoL87q
- tA3nXhQhC0ouI9X9ThsOK6sJikyg7dKHqvxtWiPBJ8VIyBFIwvPuE7kb84GbaRosYbyN
- lLaWlb5gAEz2S2l9N+wTu8LLsRQ7QWUKMckWMpEiIhbHbcpfKZydW80tYCaCWKlXFVVw
- TZCjXYfQLVcW0e+nvkgboMmD2keG3VDNy93E4ahnbXkKr7HSOxK9hRKpVpJBJVKLiDWa
- +Brr3+PnuFEZcBQL8YSSOPzO9Mf8+QITqMcD79Lk5LuYl0CHVWrKk6iFcvzd4DfM+lyh
- zdJA==
-X-Gm-Message-State: AHQUAua0IQGQlVjyvNVWvcCrkanBUfPtPkBB0nzu0McmFYp3/XlSCXlt
- myr8sOcJ9iYP0Ee+h6BeP/znIw==
-X-Google-Smtp-Source: AHgI3Ibo+UUOXahAe+emIXgt+1BXKHGn8Isgb0YeuLfpyClDYzSD8m3L/UVIj3oskProlq5otWKfww==
-X-Received: by 2002:a50:da0e:: with SMTP id z14mr7127378edj.244.1550232639501; 
- Fri, 15 Feb 2019 04:10:39 -0800 (PST)
+ bh=kaYhpM3K1lORUrG4TIL1K2D+s9nWHtiHPzXDKda8A0E=;
+ b=i45eMW+WLWmY6y+ba4cSJJmg3bv1LYb4gYIal0BV6qL3AVcRxkXus/dynnf8dq0Xxv
+ EIiUou/m+NsT4FwTUHRtuwP2U9RRfnEy0xdZrDZfOFKFdPXcOwG5JZ7l6sWXw7cXdIfX
+ Ukvu3m0LTzblJ455DxuQyVhnN/1YNYymFEpJYgVb/l9bPK5t35PxojjBsZ1tQumgucFE
+ Py0ms7AG5yiLtp5VTWYWXsnfxYvAsWk5OW2G/8jyj6EgcZUYDv+PaGYD3OiFTvk1UOx9
+ jINKCwbe0FTUWOKgbbxqW2FNGjvbQHPIriC8epUTVt1fdEwQcUOg5C9i6+x7Fam7mb4N
+ PPpg==
+X-Gm-Message-State: AHQUAuaU69RPp7cQNCsDnywLBIlysLuHhvkQhW++ljP0spVrCcDNGMOg
+ w8daQ6xU6D5AOzJY3LSGDVH9/Q==
+X-Google-Smtp-Source: AHgI3Ia/AePt867GBuhHiFAwymq6ydcEdV1qGEvztO6A8kE+RS2ElAgaOZuQ6A1eaTnIiBYuvDB0pg==
+X-Received: by 2002:a17:906:32c7:: with SMTP id
+ k7mr6496809ejk.180.1550233524020; 
+ Fri, 15 Feb 2019 04:25:24 -0800 (PST)
 Received: from localhost ([2620:10d:c092:180::1:2b])
- by smtp.gmail.com with ESMTPSA id d31sm1475619edd.84.2019.02.15.04.10.37
+ by smtp.gmail.com with ESMTPSA id c25sm512455ejx.59.2019.02.15.04.25.22
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 15 Feb 2019 04:10:38 -0800 (PST)
-References: <1547744074-28308-1-git-send-email-lollivier@baylibre.com>
- <1547744074-28308-3-git-send-email-lollivier@baylibre.com>
- <20190125090755.GB3691@localhost> <867eeo7pjm.fsf@baylibre.com>
- <20190211083349.GU4686@localhost> <86mun2v27r.fsf@baylibre.com>
- <CALZWD59e356Of+R4H2ZNHJyQcPCQNNdS+1DTc8qNDYp9ZnUpXA@mail.gmail.com>
- <20190214091121.GI28278@localhost>
+ Fri, 15 Feb 2019 04:25:23 -0800 (PST)
+References: <1550070569-18588-1-git-send-email-lollivier@baylibre.com>
+ <1550070569-18588-5-git-send-email-lollivier@baylibre.com>
+ <20190214100019.GA4197@Red> <20190214101212.GJ28278@localhost>
 User-agent: mu4e 1.0; emacs 25.3.2
 From: Loys Ollivier <lollivier@baylibre.com>
 To: Johan Hovold <johan@kernel.org>
-Subject: Re: [PATCH v2 2/4] dt-bindings: gnss: add mediatek binding
-In-reply-to: <20190214091121.GI28278@localhost>
-Date: Fri, 15 Feb 2019 13:10:35 +0100
-Message-ID: <86ef89fe10.fsf@baylibre.com>
+Subject: Re: [PATCH v4 4/4] gnss: add driver for mediatek receivers
+In-reply-to: <20190214101212.GJ28278@localhost>
+Date: Fri, 15 Feb 2019 13:25:20 +0100
+Message-ID: <86d0ntfdcf.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190215_041042_066875_04E198AF 
-X-CRM114-Status: GOOD (  14.19  )
+X-CRM114-CacheID: sfid-20190215_042526_466391_A15D09CA 
+X-CRM114-Status: GOOD (  18.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -100,74 +98,74 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
+Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Kevin Hilman <khilman@baylibre.com>, Loys Ollivier <lollivier@baylibre.com>,
  linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>
+ Corentin Labbe <clabbe.montjoie@gmail.com>, linux-amlogic@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Thu 14 Feb 2019 at 09:11, Johan Hovold <johan@kernel.org> wrote:
+On Thu 14 Feb 2019 at 10:12, Johan Hovold <johan@kernel.org> wrote:
 
-> On Wed, Feb 13, 2019 at 04:24:00PM +0100, Loys Ollivier wrote:
->> On Mon 11 Feb 2019 at 14:17, Loys Ollivier <lollivier@baylibre.com> wrote:
->> > On Mon 11 Feb 2019 at 08:33, Johan Hovold <johan@kernel.org> wrote:
+> On Thu, Feb 14, 2019 at 11:00:19AM +0100, Corentin Labbe wrote:
+>> On Wed, Feb 13, 2019 at 04:09:29PM +0100, Loys Ollivier wrote:
+>> > Add driver for serial-connected Mediatek-based GNSS receivers.
+>> > 
+>> > These devices typically boot transmitting vendor specific NMEA output
+>> > sequences. The serial port bit rate is read from the device tree
+>> > "current-speed".
+>> > 
+>> > Note that the driver uses the generic GNSS serial implementation and
+>> > therefore essentially only manages power abstracted into three power
+>> > states: ACTIVE, STANDBY, and OFF.
+>> > 
+>> > For mediatek receivers with a main supply and no enable-gpios, this simply
+>> > means that the main supply is disabled in STANDBY and OFF (the optional
+>> > backup supply is kept enabled while the driver is bound).
+>> > 
+>> > Note that the timepulse-support is left unimplemented.
+>> > 
+>> > Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
 >
->> >> Right, but please do look around for other receivers using this chipset
->> >> so that we can make the binding generic enough to cover those as well
->> >> (e.g. by choosing representative resource names).
->> >>
->> > OK will have a look.
+>> > +static int mtk_set_active(struct gnss_serial *gserial)
+>> > +{
+>> > +	struct mtk_data *data = gnss_serial_get_drvdata(gserial);
+>> > +	int ret;
+>> > +
+>> > +	ret = regulator_enable(data->vcc);
+>> > +	if (ret)
+>> > +		return ret;
+>> > +
+>> > +	return 0;
+>> > +}
 >> 
->> The only mt3339-based receivers I have found are:
->> - [0] Globaltop
->> - [1] Locosys / Pololu
->> They both only provide the UART interface and do not list the I2C/SPI
->> interfaces.
+>> Hello
 >> 
->> [0] https://cdn-shop.adafruit.com/datasheets/GlobalTop-FGPMMOPA6H-Datasheet-V0A.pdf
->> [1] https://www.pololu.com/file/0J641/LS20030~3_datasheet_v1.3.pdf
+>> This could be simplified to return regulator_enable(data->vcc);
 >
-> I found tree more:
+> Indeed, but I prefer this style which clearly separates the error path
+> from the success path while making the success return value explicit.
 >
-Ah nice.
 
->  - Globaltop PA6C
->
->    - https://cdn-shop.adafruit.com/datasheets/GlobalTop-FGPMMOPA6C-Datasheet-V0A-Preliminary.pdf
->
->  - Linx RM series
->    - https://linxtechnologies.com/wp/wp-content/uploads/rxm-gps-rm.pdf
+It respects the coding style/standard and I prefer the original version.
+It's also easier to debug if you want to add extra code on error.
 
-This is a different chip: MT3337; Apparently this chip only provides an
-UART interface: https://labs.mediatek.com/en/chipset/MT3337
-However it looks interesting. I'll look for a sample to test it in the
-future :)
+>> Furthermore, after this simplification, the function seems useless.
 >
->  - ublox IT530
->    - https://www.u-blox.com/sites/default/files/products/documents/IT530_DataSheet_%28FTX-HW-12008%29.pdf
->
-> All with uart-interface only and similar pins names, although the ublox
-> device do have some additional features we can worry about later.
->
-> As all but the ublox device use VBACKUP for the backup supply, do you
-> mind if I change the binding to use "vbackup-supply" instead of
-> "v-bckp-supply" (which is a ublox-ism) when applying?
+> Why do you think so? You still need to retrieve the regulator from the
+> driver data. Sure, this could be folded into mtk_set_power(), but that
+> would be less ideal if there are more resources that need to be managed
+> (e.g. an external lna supply).
 
-I don't mind. You can go ahead and change the binding.
-For reference, the v4 patch serie:
-https://lkml.kernel.org/r/1550070569-18588-1-git-send-email-lollivier@baylibre.com
-
-Thanks,
-Loys
+I would be in favor to keep mtk_set_active. It clearly shows when the
+regulator is enabled.
+It also seems logic to have an enable/standby function in the driver.
+Even if those are trivial (for now).
 
 >
 > Thanks,
