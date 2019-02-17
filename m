@@ -1,67 +1,83 @@
-Return-Path: <SRS0=BRF8=QX=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=Ba+r=QY=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5D35DC43381
-	for <linux-amlogic@archiver.kernel.org>; Sat, 16 Feb 2019 00:15:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E7413C43381
+	for <linux-amlogic@archiver.kernel.org>; Sun, 17 Feb 2019 14:05:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2B1F62192D
-	for <linux-amlogic@archiver.kernel.org>; Sat, 16 Feb 2019 00:15:17 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B82B22190C
+	for <linux-amlogic@archiver.kernel.org>; Sun, 17 Feb 2019 14:05:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jbjIZ0iL";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="ds6zTJaI"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2B1F62192D
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dYB4nDas";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="bXWSjfbl"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B82B22190C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:From:References:Message-ID:Subject
-	:In-Reply-To:To:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=p+/92RSvjxDzcQIfnfQRoF78QFIk4AxPq4VdiVu0n78=; b=jbjIZ0iL9p9O6H
-	j6USMzN/G8CS99EGciYgt+Hz3iwqRb5kNk/4SR5hD7Klht8gwq8gxWLcLy0IAdytvWRVrbloKgQeT
-	ZD9pjlBeEGLOvoEaumqyJk7vjd4egYMOrWxPJ3vD8Vdwx0Im8tpaHUwKW6eGAoBry8rDH+UTVwkYu
-	vk91Uky8UvsinvKPpj7EnSnWk8EAyjXRJoBOrrmP2aLRBKgMwoHaXFb3nGQKldjwF0arr1vtWWDzt
-	x7otxugIMFf1Wf40GFA4NZxzD/BUGNtybtVR6Hz2b4mu4UfzcXq1CRs2EMCaSj2NOEP3LZgmH3TIB
-	QyvBXM2LMp3hWz4X2o6w==;
+	List-Owner; bh=SqH5qsPehkJmQ9FslznMCAQmzTNd+crOGJcvTydHwlU=; b=dYB4nDasqbAhZx
+	xuNHGrIMb3rpNe1YGpOSfG/d+clm9yDjnzKq8EohVWUG3Klw0tWKtOEK/cJygnpdqMNfw1TXsN3Ae
+	sMxQF+NELv8wfpB2mT25un2iZAh4jgAyuIXadrFJ5px7S6h4rXzcHs10SG2xGI8mJK9spXNMkHnGy
+	nZTNDNM8VxumQ3YRDklJ5Evm+XpSV1DWmQsAezJFzovsDtx133aNOv7nl+KxyV2yyaLkAPXPSOAGG
+	IgAoG/HJaCqIKK11brS4e9t8OV3qOUBtilSQyAPe/1xkMyHnx4DiuKhN1ML7l0znEqyLM7Pj20VyD
+	SQB1YpgkXO6BQNig1ggg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gundQ-0006i3-KC; Sat, 16 Feb 2019 00:15:12 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1gvN4L-0000pp-8v; Sun, 17 Feb 2019 14:05:21 +0000
+Received: from mail-ot1-x343.google.com ([2607:f8b0:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gundN-0006c4-2M
- for linux-amlogic@lists.infradead.org; Sat, 16 Feb 2019 00:15:10 +0000
-Received: from localhost (unknown [104.132.0.74])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 95CEE2192D;
- Sat, 16 Feb 2019 00:15:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1550276108;
- bh=+oODPZAYHVsPfIQyFWnNzL73TjSmut9tV/U0m4Y9KCQ=;
- h=To:In-Reply-To:Subject:References:Cc:From:Date:From;
- b=ds6zTJaIlybOL9jN4IXWMhH6yOBr9R7FiK7p/x/bGGi1rGbOt9xGPdK53V0/BStZx
- f8J6rAV2Oz7prVpW5FIeu95vUOYY3v/9M1LsVRm0CHboNuYyd/PXgKGg8QWzzX4Sr2
- DTedHUa5rUYJL0x3vehiOMtKjncDTobrL5JDJNzo=
+ id 1gvN4B-0000hW-Sc; Sun, 17 Feb 2019 14:05:13 +0000
+Received: by mail-ot1-x343.google.com with SMTP id m1so24124867otf.5;
+ Sun, 17 Feb 2019 06:05:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=/Irbxz5UeO3Yco6GVrPGA5A1f/mmKGpA1Ukp1VIsq7c=;
+ b=bXWSjfblnC0bH/NMx3wzPy3xqq29XwZEq8aaVLoNpObtfJSBxCrqpc3343hDI/joa9
+ RBY8PITjpi7zhvKeYx1OlYXd9J6GJyfy86WP3LlBMYJtNq8gDvB2eCv4MrlX/k/kQpHv
+ b4ZHSYaAtdJ/r3bOL1EqbhctmXuOsOIBc7MBeJOL/QuCX9xNjahq0mS+0QYEDxTA6XVQ
+ qtrnjsny4uvmFlBndjNdyLFsxmJ5u1n4Lcyi3R4xMRoQ6fLGzdk99KUzpRw5BoWVDF3G
+ +FpS5oy+1L9VL80SswDUZ/K0uglriOo6FgzMaoktWAxR3oSpSrwUf3SbVz16TWuOdZou
+ swvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=/Irbxz5UeO3Yco6GVrPGA5A1f/mmKGpA1Ukp1VIsq7c=;
+ b=kjdvCKePO2ppyQq00I5z0E74P4z0kMtQQaan7UtH2vzhXgdtFkW6/g0Tyv45+JsMj4
+ rOf8vLXnH37+3CWxbBc3zmarxb0x41rUZxmG9CqOVpfRHxeVf7YDjoDVUtAMCgg8SD30
+ DmLEYNp9HyBKBQjOJuI38H+M0eihtN+nX6aMT6eE+WytsovRM6JOFdYRUZNByJSzR2CL
+ qJbpZqwIVw1C5bDTGodvl+2ChNiz4uWW7kA5FF0CviastQvVN1kcZUsvVQjHQ6kfhNxd
+ q3Ud6GTa3H1DzSnSinFsWd28tk2UwRI9ldD5wJ4JtN+J34YncJt0Cz1A56j0KLPBUcQq
+ s2Sw==
+X-Gm-Message-State: AHQUAuZYTag2Z0al/X0n0OuYhIj6pRpdMIom2u4ODFCQeLCY1bm6idAt
+ 90x8D9mTSYo1N3Rv94DVKZtB3LPCRBhfMnDTgKY=
+X-Google-Smtp-Source: AHgI3IbgJ9E+SKHb/sALqp8UtIHoNkh42ujd1vUsb3m6bL7VCxv/BPUSmyZWwr0Ea4Sy9dOUG6UCfC3zPxIlCjD/lU0=
+X-Received: by 2002:a9d:491e:: with SMTP id e30mr12165392otf.131.1550412308763; 
+ Sun, 17 Feb 2019 06:05:08 -0800 (PST)
 MIME-Version: 1.0
-To: Neil Armstrong <narmstrong@baylibre.com>, mturquette@baylibre.com
-In-Reply-To: <e115449e-085c-8f82-b345-f610b5e735db@baylibre.com>
-User-Agent: alot/0.8
-Subject: Re: [GIT PULL] clk: meson: updates for v5.1 round2
-Message-ID: <155027610778.115909.3881497720700465134@swboyd.mtv.corp.google.com>
-References: <e115449e-085c-8f82-b345-f610b5e735db@baylibre.com>
-From: Stephen Boyd <sboyd@kernel.org>
-Date: Fri, 15 Feb 2019 16:15:07 -0800
+References: <20190209002641.9105-1-martin.blumenstingl@googlemail.com>
+ <7h4l94k655.fsf@baylibre.com>
+In-Reply-To: <7h4l94k655.fsf@baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sun, 17 Feb 2019 15:04:57 +0100
+Message-ID: <CAFBinCAyWECka-kNxeM58prN8ArBW4ASwJL31umEJr7p4nAGYQ@mail.gmail.com>
+Subject: Re: [PATCH 0/2] ARM: dts: add the clock measurer on Meson8/Meson8b
+To: Kevin Hilman <khilman@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190215_161509_129959_7B023698 
-X-CRM114-Status: UNSURE (   4.28  )
+X-CRM114-CacheID: sfid-20190217_060511_918619_2981DFB2 
+X-CRM114-Status: UNSURE (   9.32  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -74,23 +90,33 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- linux-clk@vger.kernel.org
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Neil Armstrong (2019-02-13 01:11:37)
-> Dear clock maintainers,
-> 
-> Below is a request to pull updates for Amlogic clocks for 5.1, round 2.
-> 
-> It adds the G12A Always-On clock controller and a simple typo fix
-> for a clock name on Meson8.
-> 
+Hi Kevin,
 
-Thanks. Pulled into clk-next.
+On Sat, Feb 16, 2019 at 12:02 AM Kevin Hilman <khilman@baylibre.com> wrote:
+>
+> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+>
+> > The 32-bit Amlogic Meson SoCs also have a "clock measurer", just like
+> > the newer 64-bit ones.
+> >
+> > Add the node of the clock measurer to meson8.dtsi and meson8b.dtsi
+> > so we can see the measured clock frequencies in:
+> > /sys/kernel/debug/meson-clk-msr/
+>
+> Queued up, probably for v5.2, unless I get one more late PR in
+> (unlikely.)
+that's fine for me - thank you!
+
+
+Regards
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
