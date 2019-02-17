@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A5F37C43381
-	for <linux-amlogic@archiver.kernel.org>; Sun, 17 Feb 2019 14:14:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9ABA8C43381
+	for <linux-amlogic@archiver.kernel.org>; Sun, 17 Feb 2019 14:27:14 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6B242218F0
-	for <linux-amlogic@archiver.kernel.org>; Sun, 17 Feb 2019 14:14:01 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6B76A217F5
+	for <linux-amlogic@archiver.kernel.org>; Sun, 17 Feb 2019 14:27:14 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="IMgtEaTN";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="bck800rB"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6B242218F0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="j0VX5Ujr";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="iE1g53XD"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6B76A217F5
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,61 +26,69 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ui7mTcLIq4kQx/5Pm7OPKdCRrPcrbVmHeOO5nq2PpjI=; b=IMgtEaTNbNJ1CV
-	XeEcoyW/bxZ4XeBlHLor47FmmTlgt7PPrA6V7SjtBgGufwaXw2GI/e+ShVnzJK7mCT8ladB6XuxHS
-	fIIJ2H0nSF/3zWHXhHA4VN3eK+lEsbvawTqS12exfXED6cHaQShnDJMeHBSiTMiGbfo92wNGlHMgV
-	1yyjbw5q+CzDDkigKCUJa0Axcfi97ee4GMvuMzHi/c1ZNRQUO2/8T230RT/w+WkJ2h31ca8aY+j4L
-	+Jz97IjITluQMIzhjSdrniUiMMvhCRHVlcopUtG6fDOyExKtv60lDUAAZUbfwoC1y/DGSDIinf8fg
-	mNiOZZvrhicb1my+y+wQ==;
+	List-Owner; bh=ixrBpaPdHZyYcRVPH/8gyzZVpWO7S4sA5Z3OAU/xNK4=; b=j0VX5UjrWspzBT
+	MRyCX9fipRaf4S3T2j0BEHng8FYvB8Pj08G+2lkxT7oq8HKSutb1PzjqvUv8Qgrw1S0LmxSncF+I2
+	GZURajYvHCEKSGjpqcaKplhGKu3/2z+mSHghweWxaSm0Q6NLVoW90GSjXQhZSyv0W0U/XRIDBHfCJ
+	pCj74L6TKUWF1bsSc/Fosn8AExClyeXeSBEN0E18gkvBTmiuDkCsWIpnXuEUGmieKramHowVtDwLu
+	8+9BOEyhYExFBOTTN9dtMRixG+biZZXAkFVt5reEeH18/h2wW4PYz3SWfmRTq6vQfiVNeZKIt8W/V
+	/G/KWAfkEFSbclGfEMig==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gvNCe-0002fe-6q; Sun, 17 Feb 2019 14:13:56 +0000
-Received: from mail-ot1-x334.google.com ([2607:f8b0:4864:20::334])
+	id 1gvNPR-0006hC-0w; Sun, 17 Feb 2019 14:27:09 +0000
+Received: from mail-ot1-x32e.google.com ([2607:f8b0:4864:20::32e])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gvNCa-0002fN-Oe
- for linux-amlogic@lists.infradead.org; Sun, 17 Feb 2019 14:13:54 +0000
-Received: by mail-ot1-x334.google.com with SMTP id 98so24200744oty.1
- for <linux-amlogic@lists.infradead.org>; Sun, 17 Feb 2019 06:13:52 -0800 (PST)
+ id 1gvNPI-0006Zh-2p; Sun, 17 Feb 2019 14:27:01 +0000
+Received: by mail-ot1-x32e.google.com with SMTP id 32so24076052ota.12;
+ Sun, 17 Feb 2019 06:26:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=y9yIPsejKt7M+rKnN+CViUhK/7Ifq8U8t1V7vv1P9Vw=;
- b=bck800rB/QqTtouBeTZHIIj4006IBZ+r9xR8w3k7HpBq7ned++VcsV2G2UMUDeIFRX
- f8ftq33oUc+hJU+J/gHuliNPQBzH7iLgGRfAVlsT8WLzZiUBTlBBqhAxL2LP0cdIpJaW
- Lz6Pd6QNTYWujM53KZp/++5hYIDAKn3PxdvPo/x0zePud290EgtXynhNRCJ2hLdJBMJy
- wuCsaa9Vr16SBIdMslYWqkQjhUrk/RrSBWZxVIhnwo/Krxot+tLC96Y2OZ9QIOaGGBzw
- 1v2thrpeA+IGxEaWvV38Vhn8DsUbqGEf2dq6t6C7NrrjXVFAOzBoObAVuKWUIJtyMEf1
- 8k1g==
+ :cc; bh=yE0xzs/BLftvltq6QC5JJitLB59LDN+Qew2H1ea1uq4=;
+ b=iE1g53XDNBv/dAGxeVlnV+y+G5bRiYifHVAhI5hlv6fvkC9EgMe6SXoAJiqGV4uGd6
+ XTFjQ6oEocN6Z05Hc1e84z2hanugpW48qIpVdBkdYeg6hPyTJJcXCZtVFp2j50Y7tSFu
+ hcIU4WQUanvHGBPWslJTHpJPYBkUsEwY3PgiozozaN5LrFm7oLVtF7JmUl4tbBLW3z48
+ 8wK6Ro1YD37d9KQKS/YOZuJ45EX7mpDGBdJ+Sj6I5aa/aiYRhl9fSe4Y4XEXro22ukiE
+ paC/zuS8WS7JUj8N7yU7WrW8XOs1DzPffyiVRmUbf0EU3MdEsqddDJBQTcV6uvEd/gw1
+ rFqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=y9yIPsejKt7M+rKnN+CViUhK/7Ifq8U8t1V7vv1P9Vw=;
- b=S6MtPVV538t5DY1Q0PzeyBZzxcQZg/nnRjEJ/jXjG8ylbCcmBB6q2kNPEmaxVvN8LL
- lgpkVe4KZg/cDCU/GEn67mAjRo+Lf6PUUY6ait+NjNYCkgsEOwpAV9LMcqJF1JU+8bGQ
- y34yz2FlqwlM4XuCG7j7iebqPIOp7BtVtKXbxn4IESsbQpqjOzXQJLfEimNhir+6a4+m
- BxbP1uxG4oF21GjjFKmKIQE/faIxVwDT23I3ESR2HWb01OScCIA6cIgMe1Ir9DLybRuu
- Bf3dCOqfdGQETtTWBSs0XA68A5JsyHxgNBbJG31kwPV0llYz+7+Iui9TonQV5voAzoEz
- blkQ==
-X-Gm-Message-State: AHQUAuYgs63I5E6D6VDJHSf0yGTMpVFw58nZFGgtJyfWdpOoNu4uAHfW
- keD+Q+x2lA5LvwixEIcg1OSk0ni9qDMK1TNYAW0=
-X-Google-Smtp-Source: AHgI3IY7l5Jza97LkoKtkkxK+MmDHKCN6J3zKKY9IO3G6Lc+dBtqJJYfbPTN55++y9Iye3n22Biam2hhao6lZ9pBXJU=
-X-Received: by 2002:aca:aacb:: with SMTP id
- t194mr12084559oie.129.1550412831639; 
- Sun, 17 Feb 2019 06:13:51 -0800 (PST)
+ bh=yE0xzs/BLftvltq6QC5JJitLB59LDN+Qew2H1ea1uq4=;
+ b=Eaih1H0JjF2dpMvFBWuezBuKcEgzp7iUVS/8JHBmVe4GDo/lQEn2RsPsDjkg/MhU4e
+ sBhDRbxeeKxQnyo2bLc6dhvalbhWJf7wXUpQzHO+5YopyvH5Y7zp4qNty2boAzzDs+PR
+ NcrjCiZp13ZikFctICuWr9NITFm9+ByGDKQ9pVuz9GVKHArgZi9oZCY/MYp+wsRQcwFw
+ RUisfxuW40Hhu6xPq/JyEZzjeFKAK5USWRLuo28iclQn/9t6F245zuxMTjz/14KWMuO/
+ 1QnVQgZ2KC7f4KPGXOjQfHcTFWpYWd/YPLFSxhyd41kBo3hFXV9T04IBiPznUeFKby8T
+ K3Ug==
+X-Gm-Message-State: AHQUAuYQidNGbxkPjDIqT3pid4TqXs7zT53uLbr4a59aFZlfSEPrwKOg
+ 8hCUuPB3Ok7upjEInblSjOY2IvPrhmZSIY4CiwI=
+X-Google-Smtp-Source: AHgI3IZ3b0lBps/6NpgWAFY9KYFMdqM2KgkpQCU6RhlUnWzGkMXiKfgmNCObnoYqpSF3gLeO92/IcBX2m+bbLKw/8N4=
+X-Received: by 2002:aca:3586:: with SMTP id c128mr12065134oia.47.1550413617329; 
+ Sun, 17 Feb 2019 06:26:57 -0800 (PST)
 MIME-Version: 1.0
-References: <CAPo5REH3dQww=+Jv4U5dh1m8JpsGN+J0Bs500hLhrq-dJyM60A@mail.gmail.com>
- <CAFBinCCnfVjKaB5pPcBphvuZgwa1QSD0DSHe0DHPT=dH-wBisg@mail.gmail.com>
- <CAPo5REFbUZ6fTZUAPJPqCnBK2Yt7BcCUfFm0GAhZWROf5Oe8yA@mail.gmail.com>
-In-Reply-To: <CAPo5REFbUZ6fTZUAPJPqCnBK2Yt7BcCUfFm0GAhZWROf5Oe8yA@mail.gmail.com>
+References: <20190123151209.2080-1-linux.amoon@gmail.com>
+ <20190123151209.2080-3-linux.amoon@gmail.com>
+ <CAFBinCAdf0rtt-7tON_LRNH_cpvGJXX3LX8g-i4xsC3wahZSVA@mail.gmail.com>
+ <CANAwSgQ4=Vn6RM4Kpd20UWkQNW81=mfg-qB0G73dsRem3qwjcA@mail.gmail.com>
+ <CAFBinCB=3kmuFb_xXzhW+m8dTasVrCHQp2wti+=5UjrAHk5TTg@mail.gmail.com>
+ <CANAwSgQnMkXECkCVjFKwNKB+2JoiPtVPQbateppmtgfPYCutZg@mail.gmail.com>
+ <CAFBinCCFoBkbf-HvEoMk7mTYTBV27nJ9TF1X-DrLuHR9qDVDSA@mail.gmail.com>
+ <CANAwSgRtBWzKiFLUV6twxv+TnvjLdHXv=U8+ppQ7=9uBBLEH+Q@mail.gmail.com>
+ <CAFBinCD_Pddu+pBEKwMS6467J5nxKF4T5-LxVo06nFvyUSLpew@mail.gmail.com>
+ <CANAwSgSQRwF+_VR1jJFg=Q9wSdanEH0GmnFaeegt=hRMXiHX3Q@mail.gmail.com>
+ <CAFBinCBwDg21t+HT6w7CcUgH_aDuwh-UgoPs7GuZo9rABvPDig@mail.gmail.com>
+ <CANAwSgRKgWCyNoDUxrK4asjZ_6z77Rew2nGCg1Yq9m3pi0Amrw@mail.gmail.com>
+In-Reply-To: <CANAwSgRKgWCyNoDUxrK4asjZ_6z77Rew2nGCg1Yq9m3pi0Amrw@mail.gmail.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 17 Feb 2019 15:13:40 +0100
-Message-ID: <CAFBinCC5YORZB2X7ypHZHaxqjkkwAcOxmpWG05KEq_Q6Y0Lc3A@mail.gmail.com>
-Subject: Re: Odroidc1 DVFS
-To: Piero <ottuzzi@gmail.com>
+Date: Sun, 17 Feb 2019 15:26:46 +0100
+Message-ID: <CAFBinCALfZ4HbBdyXjMqFX-HyJtTyOU_FgW18+jK4cW4Svfenw@mail.gmail.com>
+Subject: Re: [RFCv1 2/3] ARM: dts: meson8b: odroidc1: fix USB power supplies
+ for phy
+To: Anand Moon <linux.amoon@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190217_061352_828129_B3242676 
-X-CRM114-Status: UNSURE (   9.74  )
+X-CRM114-CacheID: sfid-20190217_062700_149401_2D8D0F83 
+X-CRM114-Status: UNSURE (   9.72  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -93,37 +101,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org
+Cc: devicetree <devicetree@vger.kernel.org>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Kishon Vijay Abraham I <kishon@ti.com>, Rob Herring <robh+dt@kernel.org>,
+ Emiliano Ingrassia <ingrassia@epigenesys.com>,
+ linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Piero,
+Hi Anand,
 
-On Tue, Feb 12, 2019 at 11:27 AM Piero <ottuzzi@gmail.com> wrote:
->
-> Hi Martin,
->
->    I recompiled integ branch with CONFIG_PWM_MESON=y and now DVFS is
-> working as expected.
-great - thank you for the feedback! :)
+On Mon, Feb 11, 2019 at 4:09 PM Anand Moon <linux.amoon@gmail.com> wrote:
+[...]
+> Can we have other people who can test both the approach for
+> *vbus-supply* vs *phy-supply* setting.
+> Then we can conclude on the correct approach.
+this is a good idea. do we focus on the 4x USB host ports for this
+test or also on the OTG port?
 
-> I did some tests using sbc-bench:
->
-> * Original Odroid Ubuntu 16.04 with 3.10 kernel (1824MHz): http://ix.io/1zdB
-> * Armbian 5.75 with 5.0.0-rc5 kernel (1536MHz DVFS): http://ix.io/1APH
->
-> Original 3.10 kernel has a big big margin on tinymembench (about twice
-> as fast as 5.0.0-rc5 with DVFS); 3.10 is 50% faster in OpenSSL and
-> both kernels are tie on 7-zip (a bit faster 5.0.0-rc5). Do you have
-> any idea on how to explain the difference in tinymembench? I do not
-> think 300MHz overclocking is enough to explain the difference.
-Did you compare kernel 3.10 with 5.0.0-rc on other hardware as well?
-I have no idea why it there's such a huge difference between these two
-kernel versions (in some of your tests). The only thing that came to
-my mind is all the hardening for the "spectre" vulnerabilities, but I
-can't tell if for example tinymembench really suffers from that.
+my test-setup so far was:
+- Odroid-C1+ board revision 0.4 20150615
+- the board is powered using the micro USB port
+- connect an USB thumb drive to one of the USB host ports
+
+test-cases:
+- an "unpatched" (in terms of USB power regulators) kernel
+- using Anand's phy-supply = <&usb_vbus>; inside the usb1_phy node
+- using vbus-supply = <&usb_vbus>; inside the usb1 node
+
+in all thee scenarios the LED of my thumb drive did not light up and
+there was nothing in the kernel log. also lsusb -vv didn't show
+anything.
+
+Anand, do you have any other test-case in mind that we need to check?
+
+I CC'ed Emiliano because he initially added USB support to
+meson8b-odroidc1.dts (that was before I got my own Odroid-C1+).
+He can probably help us test on his board(s) as well.
+
+> Honestly I am using power supply from dc jack rather than power via usb otg.
+I don't have a plug which matches the little DC jack so I'm powering
+my board using the micro USB connector.
 
 
 Regards
