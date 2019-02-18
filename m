@@ -2,22 +2,21 @@ Return-Path: <SRS0=i5j0=QZ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C60EDC10F01
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Feb 2019 10:38:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 43DC4C43381
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Feb 2019 12:34:10 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 93CBD2173C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Feb 2019 10:38:22 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 156F521773
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Feb 2019 12:34:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="O2PYa3w+";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="fFWK9ayh"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 93CBD2173C
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Q65DA4rP"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 156F521773
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=gmx.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
@@ -25,122 +24,85 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gmf/KSThUQ61lbdUiPNt5OiQonCYWZuAjIhV+bFzDOU=; b=O2PYa3w+EinJcu
-	Z3VUw6zxDpbZGfRxGZAD2XtfKFlmBH3SNaS3sDfoUaMy0fdBuxxOH4ORKn7G2bAnzwurZ60a6eUc7
-	nWpIM6PeS0j5WigbCxyCklSuv9YEiFdJPYZ0GtYC84VH7vG5P5Hs326C4L21zK4E4qC/8LOGWb1X8
-	r8iC/FVikw0UvJAbaRvmSG9STuxuffnfT3dN2LpZykslvvStC3W0o94v1f3LmxhhJxcyzNsDI8hyp
-	gUvuOyEgwsWYzqxgoSv0CrBIV1vSPVxjACiGk/5QHNaZvvEta1zU/YSLfDp/Z/EKUlTPitK+4jK0a
-	97N9ld/zn0+vECjt3e8A==;
+	List-Owner; bh=MMBwmFZ5pQjYhdAI/++mKjWTxaymLzhQC/3zPzer4y8=; b=Q65DA4rP254ht2
+	ojLg2GKSrIcE9gpqYF9smrcm88gL5UEuDB4IQnR052VTKw2Zla/0eR7Bj+nm+cbW3ZMdZOc5TmTeL
+	c5KkUvz76NMXa5Zh3JarLWH/Z80U9ChoL5A5GR8HVL917ekhk/wlovtZgi7f+xNRyBCmkDk9ITrvl
+	zmC06y+erpW0C3bGUrhTrBvbZsMT27rUEgXErFlIXDc4BQevEWORyCxlfkC7vPPMcjAWvcE58Z3/h
+	M3N2X0/S9h3pBVgY/UMALnYWuPAL9R5kuWLnHS4mQg1sgcnRTGBdyEFspm9V0qPISyMaxkHETzH+b
+	WRPKwTS+azAKOqTu8/ww==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gvgJT-0001PZ-US; Mon, 18 Feb 2019 10:38:15 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1gvi7Y-0001Pw-AI; Mon, 18 Feb 2019 12:34:04 +0000
+Received: from mout.gmx.net ([212.227.17.21])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gvgJR-0001Or-3X
- for linux-amlogic@lists.infradead.org; Mon, 18 Feb 2019 10:38:14 +0000
-Received: by mail-wm1-x344.google.com with SMTP id t15so8421124wmi.5
- for <linux-amlogic@lists.infradead.org>; Mon, 18 Feb 2019 02:38:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=t5h1LW7JsQTmqeHQOJ0qUsEEL5WHZRH1eHkkuJFsVAQ=;
- b=fFWK9ayh5rjbtrLa/1HuVBiLnq8O/nNVlx8AweukIoft/tF3wmTTeWeM+AD7MKuqsJ
- epKQvWjzdyZCFKPQrB+xafKxCpXZ1vYKmWfKX8yKWSjuvLAghuRbStLbp95Tb0fx70M/
- d4x3k16y9CXjjQpwGBIDZSL5/dPpe4nJzTtyiFc8qJMpPGsussf5vo1rT05h6jgeI0At
- CNrl27ZJThq5mXuXzMwbNI/eo8hvBAkauxpDSB/hVy6LG/w+qhD55ALr8urPcqJMSfpn
- U1zYYlDrB13EAYmMbf6ve/QCrgJYi/ZaxZ8vA5mAFkwP7YdqNqov4nTC+wkD9FaNY2cB
- 0xWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=t5h1LW7JsQTmqeHQOJ0qUsEEL5WHZRH1eHkkuJFsVAQ=;
- b=c6Qbuq8ZEpORjuPsHjo3jOHXsBZlYO48Bwbb1iDt9eIlT3gvXi7JL/w7z9q7cW/CwP
- 4/dI+L8OFk076qnOQ55vncbfNtGUDDfU52NzavfKitTFdPbwwkj0QJ8X0X1R1NlFbR2A
- 7gW1VCxNawwpjp12tfeAuUC3UEw06HPCDndMG8WSdi2e5gmis4rnhV2Tcj7yE50wwj+r
- 026M0TRy/4xb8IM5ObRdUyHR6zrdfhiO1ukpfYbwABotqpY3KgpgGmxV9fKN31EAup4T
- vWad4qt8tV2wTAR8UT0DmKpTx4cLlOaU0Bu6RQTcrJl6rrypWLcq3drhYPrlWMchUEwl
- ggNg==
-X-Gm-Message-State: AHQUAuYJH3tpU0d/fUB4dUhU2bGJNRZdkMPQ0LWiLYoY6sfGXDNBRoWG
- 3gMVwA48CKMYbULPJTfQ9LaGOg==
-X-Google-Smtp-Source: AHgI3IaZNkh5GY1OW8V50XVfmZgBwBuGC2yG2XV36LEe+xJxoN4Nb9PCZ3lIzsw8DpdyYjNsCYRiPA==
-X-Received: by 2002:a1c:eb18:: with SMTP id j24mr14630194wmh.119.1550486289122; 
- Mon, 18 Feb 2019 02:38:09 -0800 (PST)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id j124sm13989744wmb.48.2019.02.18.02.38.08
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 18 Feb 2019 02:38:08 -0800 (PST)
-Subject: Re: [PATCH 5/8] phy: amlogic: add Amlogic G12A USB2 PHY Driver
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20190212151413.24632-1-narmstrong@baylibre.com>
- <20190212151413.24632-6-narmstrong@baylibre.com>
- <CAFBinCCAi_NYTvGPK+MNoqn3YhOHrSLrH4ybFYJvBSNkSCZ8BQ@mail.gmail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
+ id 1gvi7U-0001PS-R4
+ for linux-amlogic@lists.infradead.org; Mon, 18 Feb 2019 12:34:02 +0000
+Received: from [10.10.11.100] ([95.88.178.171]) by mail.gmx.com (mrgmx102
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 0Lpxdr-1ha0YD1IM3-00fl6Y; Mon, 18
+ Feb 2019 13:33:50 +0100
+Subject: Re: stmmac / meson8b-dwmac
+To: Jose Abreu <jose.abreu@synopsys.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <a38e643c-ed9f-c306-cc95-84f70ebc1f10@gmx.de>
+ <CAFBinCDebPOsmrhSXecx48nGWHh7g_OGPbr1Y0M+n_v9Ht91ew@mail.gmail.com>
+ <e05b7448-cd95-cdeb-c88d-3a324d5f1ddc@gmx.de>
+ <CAFBinCAkXN42piiYsc_Qmuqv0w4dbK86gq10AbZyrB-zKuh9hg@mail.gmail.com>
+ <20190206103645.GA2482@ingrassia.epigenesys.com>
+ <3001f244-8904-1e89-9595-62a65a7b32ae@gmx.de>
+ <CAFBinCB1WUMOmaF6Wmr5HTutrgLOru5CRSnOpUUMMuVzHSa3Gg@mail.gmail.com>
+ <330a523a-c1d6-4a99-3287-459096af0330@synopsys.com>
+ <CAFBinCAJwk5Go4ZEt2cqVKyfeeOxsa-+3pfLpzQo=XNr5u4Shw@mail.gmail.com>
+ <2abbf79a-cdff-b6a7-42de-79ea2c6ab367@synopsys.com>
+ <c80c1e5b-fed9-25ce-eb1b-258ac0135ce7@synopsys.com>
+From: Simon Huelck <simonmail@gmx.de>
 Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <98974429-3b7d-7462-e912-7ee83981831d@baylibre.com>
-Date: Mon, 18 Feb 2019 11:38:08 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.4.0
+Autocrypt: addr=simonmail@gmx.de; prefer-encrypt=mutual; keydata=
+ mQGiBD/bCNARBACE3URTBXZ/AA03NwRNtz03ewQn3uhvYSTjfqgplBtb3dfC4a79BXDRIWVX
+ xPGH9Ewios1c8gMu3/RI2l3JzXoISfw5b0L/5igyPKV+sGuUA2FD27kYtPaaF/TqEWIv+Yxp
+ 9DCjCX5IQSYyvCfcxcyEkY8eVWxnaAlV3zKRR8wn0wCglWIOtAugBcg1YXmoLpFZE8Ca0fkD
+ /jG+n4U9DPfCgkbgjQ/dv2W2a0ZDHccA9N8AW/FTXGyXXO0e7ql9/kORJnp7jD7/Z9HCKpeS
+ HajgxuX9Vhfx6bH1dAMfsg88+K8pOO9oulNX1+YffQyZWOfdbmnZDUzBt9HKR9Wgh8WoIyw9
+ TVluclzn6hYz+z9jbqHWMOsiCu8zA/0apHbW8vaIDT4+nNUxNdqU1TKa9kW47vNjwYYL0jZW
+ TXNjDIRpqJVSugYVc/U847GoVoxyvtzre4TAbBV8h0BAOeMdxI5En67RGWzeNaMDJV1bwapj
+ qdfj3e/X8rnGIfwz47rwztLNKoAIUlKrATwroiI7UNT+84G7H5qalu+Eu7QqU2ltb24gSHVl
+ bGNrIDxzaW1vbi5odWVsY2tAZ29vZ2xlbWFpbC5jb20+iGIEExECACIFAlH7wL4CGyMGCwkI
+ BwMCBhUIAgkKCwQWAgMBAh4BAheAAAoJEJNSVvfBt05KlBQAn1JDO7e4H3N0WFJkZnxvObhk
+ 2kiAAJwPdDd6T1TuGo4iDIENRhAX4AH2KrkBDQQ/2wjSEAQAj6JnDDQzIIYzPGsrHRvaq8vw
+ n8VrZCbPRvkngGvtQIss5pH/MLeu9jLepDGO9WHByFSg4QJh8cINYwTLtX8Bu0naA6ZI46hn
+ GyfxdRlxSU9dRqHpU3G0tymL1w3AER6aVSfdXQTmFgf61anKunbIIptkqzZurkjnxkwCE/RM
+ RscABA0D/jhglpj8siSIAxs8XLVfKJrjzbYM9/wS0NfdSXBeQJiYtKrY0WMNsqjY50wDnLMg
+ anORN/odT6mCwKI6xChzxEv/ta4+teZl92aitziSuqmtl+jm23DpOcUC7UBz2W1+TvnrhPR+
+ MKu8pPKAgsE8AI5uwCcNJx7V3bczYkIGaXybiEYEGBECAAYFAj/bCNIACgkQk1JW98G3Tko6
+ 3wCfZBpZAUhUz/Rcp2rfg/YSKl4YLlEAoJN7e322OvHc2GQ9n1+tKLi6Og4c
+Message-ID: <7afdaa0d-d0ef-b223-1f6e-2b52bfa44784@gmx.de>
+Date: Mon, 18 Feb 2019 13:33:42 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.5.0
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCCAi_NYTvGPK+MNoqn3YhOHrSLrH4ybFYJvBSNkSCZ8BQ@mail.gmail.com>
-Content-Language: en-US
+In-Reply-To: <c80c1e5b-fed9-25ce-eb1b-258ac0135ce7@synopsys.com>
+X-Provags-ID: V03:K1:8c+HqiBoJBrIQeQX/19t3YjhO6yQX5DAB5GdRe4J7W130EI23tv
+ mOLj5bOgwAEcxTVHiRICFHU69M/rV8de/VmUUSCihgDBIx0iUxBomu6xxv7HKQzxOYuKe6h
+ Mw63qJwmBbnTAZ9SKzGm7n5xlsjzqOCqm409hnQf9EFo4a7zI5G/hmPu0FE05sEx52Brq/1
+ MBKTHbpkd6Oy0RL6jLwoA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:ufo7HcGBFig=:FTmEGsA3gc4cBvO6g14IvN
+ O2slUDqNgN28IXeFA7o7bM5DvtHtbafdRn+1xBtnCZM0mPvTsNU2gEkkXoAyvZ2iYKC5bAzvE
+ MLAiCwgpTdAbMN/yPwBMKLIZ70OXKENpTyg1e4S5D0f3l6v2OahEx/IYOa2gtQNt9ZMQb+Rpm
+ Gm/UmzGG+CqVabVdSN7ItN+eE9+liDkSQ95LsYBdFUQJpmec9+AT2L+bNCV24LOaKJJbZtNw+
+ bWYQgE5GB003aXBs/o+/i7mS2Hw1Nc7saInEmgROGB5k1YuPYHnln+Z0IxkntCExFF6+lF5YU
+ 9j0g9Ul3sOIV3BdGqljikJTa4i3T15K+27FIWRD8nLgCrGtndZkh8NllwoOYzlpmxsJ1JOhSS
+ pr2eK5L+LrECW/1+H/ek0kW3F64QJGseyj5Dc0KOFOaY+d1jQ9fPvUIKpGG2bNY4mu/SdpjQ+
+ VjcDWVslC5sLuOlbAIcWqwAx6QB/HU28Rtc256T3fol75h6D13NFI3bx/+MzPsM3tssdlzhil
+ JbFuJ7IUY4vqsPcU4NHKypxTZPQtIbQffn2fOeZJ37SFKqW+ebctnwRm24QxZo+1SscB+w/Dj
+ f2W3qHNHn9lHNbrClJkW4NeOZBeDsZbQKXBq/Ln8Srtypv799qUwtATL8nlkvVZcb01JvnBXR
+ Eu7h3NbeUeOkV4e18lj/e+OKkvMei14X51KN9ozqopeYrgczggXxJh+85LDe1iUqtenqhNYHP
+ TEystsiqUYUvsjSD+dE5FKoOaV+UB+PNFD6sEfJ+A4ID8gIHxuL+Fcf8QYu2z2YsCiUHpHGqL
+ dRYhPsKOSDcnmkSxsqB837LtS6FWeqxpbEHlQT/WghGWaXDAK1p9zN4pyG90WykQ7R5C0Vvah
+ wpq+X5rhgj3Jg3r8oFSGvEOexogA4SKXHjqQOCrPlpQDKVK56lP+uqyAFUmRwdvxG9e5vZsL/
+ Ww79x10ALHw==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190218_023813_158920_FF4636FF 
-X-CRM114-Status: GOOD (  28.34  )
+X-CRM114-CacheID: sfid-20190218_043401_175846_3C6B50D3 
+X-CRM114-Status: UNSURE (   5.54  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -152,328 +114,31 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: balbi@kernel.org, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, kishon@ti.com, hminas@synopsys.com,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-amlogic@lists.infradead.org, netdev@vger.kernel.org,
+ alexandre.torgue@st.com, Emiliano Ingrassia <ingrassia@epigenesys.com>,
+ Gpeppe.cavallaro@st.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
-
-On 17/02/2019 23:24, Martin Blumenstingl wrote:
-> Hi Neil,
-> 
-> On Tue, Feb 12, 2019 at 4:15 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
->>
->> This adds support for the USB2 PHY found in the Amlogic G12A SoC Family.
->>
->> It supports Host and/or Peripheral mode, depending on it's position.
->> The first PHY is only used as Host, but the second supports Dual modes
->> defined by the USB Control Glue HW in front of the USB Controllers.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  drivers/phy/amlogic/Kconfig               |  12 ++
->>  drivers/phy/amlogic/Makefile              |   1 +
->>  drivers/phy/amlogic/phy-meson-g12a-usb2.c | 191 ++++++++++++++++++++++
->>  3 files changed, 204 insertions(+)
->>  create mode 100644 drivers/phy/amlogic/phy-meson-g12a-usb2.c
->>
->> diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
->> index 23fe1cda2f70..78d6e194dce9 100644
->> --- a/drivers/phy/amlogic/Kconfig
->> +++ b/drivers/phy/amlogic/Kconfig
->> @@ -36,3 +36,15 @@ config PHY_MESON_GXL_USB3
->>           Enable this to support the Meson USB3 PHY and OTG detection
->>           IP block found in Meson GXL and GXM SoCs.
->>           If unsure, say N.
->> +
->> +config PHY_MESON_G12A_USB2
->> +       tristate "Meson G12A USB2 PHY drivers"
-> aw, there's a typo in the GXL driver names (from which this new
-> Kconfig entry may have been copied): it should be "driver" instead of
-> "drivers"
-
-Will fix...
-
-> 
->> +       default ARCH_MESON
->> +       depends on OF && (ARCH_MESON || COMPILE_TEST)
->> +       depends on USB_SUPPORT
-> I don't think you need USB_SUPPORT (neither does PHY_MESON_GXL_USB2,
-> but it seems that I accidentally left it in from an early development
-> iteration), see below
-
-Indeed, thanks for pointing this
-
-> 
->> +       select GENERIC_PHY
->> +       select REGMAP_MMIO
->> +       help
->> +         Enable this to support the Meson USB2 PHYs found in Meson
->> +         G12A SoCs.
->> +         If unsure, say N.
->> diff --git a/drivers/phy/amlogic/Makefile b/drivers/phy/amlogic/Makefile
->> index 4fd8848c194d..7d4d10f5a6b3 100644
->> --- a/drivers/phy/amlogic/Makefile
->> +++ b/drivers/phy/amlogic/Makefile
->> @@ -1,3 +1,4 @@
->>  obj-$(CONFIG_PHY_MESON8B_USB2)         += phy-meson8b-usb2.o
->>  obj-$(CONFIG_PHY_MESON_GXL_USB2)       += phy-meson-gxl-usb2.o
->> +obj-$(CONFIG_PHY_MESON_G12A_USB2)      += phy-meson-g12a-usb2.o
->>  obj-$(CONFIG_PHY_MESON_GXL_USB3)       += phy-meson-gxl-usb3.o
->> diff --git a/drivers/phy/amlogic/phy-meson-g12a-usb2.c b/drivers/phy/amlogic/phy-meson-g12a-usb2.c
->> new file mode 100644
->> index 000000000000..3b6271a8be02
->> --- /dev/null
->> +++ b/drivers/phy/amlogic/phy-meson-g12a-usb2.c
->> @@ -0,0 +1,191 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Meson G12A USB2 PHY driver
->> + *
->> + * Copyright (C) 2017 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> + * Copyright (C) 2017 Amlogic, Inc. All rights reserved
->> + * Copyright (C) 2019 BayLibre, SAS
->> + * Author: Neil Armstrong <narmstrong@baylibre.com>
->> + */
->> +
->> +#include <linux/clk.h>
->> +#include <linux/delay.h>
->> +#include <linux/io.h>
->> +#include <linux/module.h>
->> +#include <linux/of_device.h>
->> +#include <linux/regmap.h>
->> +#include <linux/mfd/syscon.h>
-> I don't see any syscon usage in the driver so you can drop this
-
-Forgot to remove it
-
-> 
->> +#include <linux/reset.h>
->> +#include <linux/phy/phy.h>
->> +#include <linux/usb/otg.h>
-> do you need this? if you drop "depends on USB_SUPPORT" from Kconfig
-> then you want to get rid of this as well
-
-Indeed, no need to this
-
-> 
->> +#include <linux/platform_device.h>
->> +
->> +#define PHY_CTRL_R0                                            0x0
->> +#define PHY_CTRL_R1                                            0x4
->> +#define PHY_CTRL_R2                                            0x8
->> +#define PHY_CTRL_R3                                            0xc
->> +#define PHY_CTRL_R4                                            0x10
->> +#define PHY_CTRL_R5                                            0x14
->> +#define PHY_CTRL_R6                                            0x18
->> +#define PHY_CTRL_R7                                            0x1c
->> +#define PHY_CTRL_R8                                            0x20
->> +#define PHY_CTRL_R9                                            0x24
->> +#define PHY_CTRL_R10                                           0x28
->> +#define PHY_CTRL_R11                                           0x2c
->> +#define PHY_CTRL_R12                                           0x30
->> +#define PHY_CTRL_R13                                           0x34
->> +#define PHY_CTRL_R14                                           0x38
->> +#define PHY_CTRL_R15                                           0x3c
->> +#define PHY_CTRL_R16                                           0x40
->> +#define PHY_CTRL_R17                                           0x44
->> +#define PHY_CTRL_R18                                           0x48
->> +#define PHY_CTRL_R19                                           0x4c
->> +#define PHY_CTRL_R20                                           0x50
->> +#define PHY_CTRL_R21                                           0x54
->> +#define PHY_CTRL_R22                                           0x58
->> +#define PHY_CTRL_R23                                           0x5c
->> +
->> +#define RESET_COMPLETE_TIME                                    1000
->> +#define PLL_RESET_COMPLETE_TIME                                        100
->> +
->> +struct phy_meson_g12a_usb2_priv {
->> +       struct device           *dev;
->> +       struct regmap           *regmap;
->> +       struct clk              *clk;
->> +       struct reset_control    *reset;
->> +};
->> +
->> +static const struct regmap_config phy_meson_g12a_usb2_regmap_conf = {
->> +       .reg_bits = 8,
->> +       .val_bits = 32,
->> +       .reg_stride = 4,
->> +       .max_register = PHY_CTRL_R23,
->> +};
->> +
->> +static int phy_meson_g12a_usb2_init(struct phy *phy)
->> +{
->> +       struct phy_meson_g12a_usb2_priv *priv = phy_get_drvdata(phy);
->> +       int ret;
->> +
->> +       ret = reset_control_reset(priv->reset);
->> +       if (ret)
->> +               return ret;
->> +
->> +       udelay(RESET_COMPLETE_TIME);
->> +
->> +       /* usb2_otg_aca_en == 0 */
->> +       regmap_update_bits(priv->regmap, PHY_CTRL_R21, BIT(2), 0);
-> do you have the name of the other register bits as well? having
-> #defines would make the code easier to read
-
-It's on my TODO list...
-
-> 
->> +
->> +       /* PLL Setup : 24MHz * 20 / 1 = 480MHz */
->> +       regmap_write(priv->regmap, PHY_CTRL_R16, 0x39400414);
->> +       regmap_write(priv->regmap, PHY_CTRL_R17, 0x927e0000);
->> +       regmap_write(priv->regmap, PHY_CTRL_R18, 0xac5f49e5);
->> +
->> +       udelay(PLL_RESET_COMPLETE_TIME);
->> +
->> +       /* UnReset PLL */
->> +       regmap_write(priv->regmap, PHY_CTRL_R16, 0x19400414);
->> +
->> +       /* PHY Tuning */
->> +       regmap_write(priv->regmap, PHY_CTRL_R20, 0xfe18);
->> +       regmap_write(priv->regmap, PHY_CTRL_R4, 0x8000fff);
->> +
->> +       /* Tuning Disconnect Threshold */
->> +       regmap_write(priv->regmap, PHY_CTRL_R3, 0x34);
->> +
->> +       /* Analog Settings */
->> +       regmap_write(priv->regmap, PHY_CTRL_R14, 0);
->> +       regmap_write(priv->regmap, PHY_CTRL_R13, 0x78000);
->> +
->> +       return 0;
->> +}
->> +
->> +static int phy_meson_g12a_usb2_exit(struct phy *phy)
->> +{
->> +       struct phy_meson_g12a_usb2_priv *priv = phy_get_drvdata(phy);
->> +
->> +       return reset_control_reset(priv->reset);
-> do you have information on whether we should reset_control_assert here
-> instead of reset_control_reset?
-
-No, I don't have it, I haven't fully validated the remove/suspend path yet,
-but this should at least put the PHY in an unconfigured mode.
-
-> 
->> +}
->> +
->> +/* set_mode is not needed, mode setting is handled via the UTMI bus */
->> +static const struct phy_ops phy_meson_g12a_usb2_ops = {
->> +       .init           = phy_meson_g12a_usb2_init,
->> +       .exit           = phy_meson_g12a_usb2_exit,
->> +       .owner          = THIS_MODULE,
->> +};
->> +
->> +static int phy_meson_g12a_usb2_probe(struct platform_device *pdev)
->> +{
->> +       struct device *dev = &pdev->dev;
->> +       struct phy_provider *phy_provider;
->> +       struct resource *res;
->> +       struct phy_meson_g12a_usb2_priv *priv;
->> +       struct phy *phy;
->> +       void __iomem *base;
->> +       int ret;
->> +
->> +       priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
->> +       if (!priv)
->> +               return -ENOMEM;
->> +
->> +       priv->dev = dev;
->> +       platform_set_drvdata(pdev, priv);
->> +
->> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->> +       base = devm_ioremap_resource(dev, res);
->> +       if (IS_ERR(base))
->> +               return PTR_ERR(base);
->> +
->> +       priv->regmap = devm_regmap_init_mmio(dev, base,
->> +                                            &phy_meson_g12a_usb2_regmap_conf);
->> +       if (IS_ERR(priv->regmap))
->> +               return PTR_ERR(priv->regmap);
->> +
->> +       priv->clk = devm_clk_get(dev, "xtal");
->> +       if (IS_ERR(priv->clk))
->> +               return PTR_ERR(priv->clk);
->> +
->> +       priv->reset = devm_reset_control_get(dev, "phy");
->> +       if (IS_ERR(priv->reset))
->> +               return PTR_ERR(priv->reset);
->> +
->> +       ret = reset_control_deassert(priv->reset);
-> should we move this to phy_meson_g12a_usb2_init (which currently uses
-> reset_control_reset)?
-> then we could also use reset_control_assert in phy_meson_g12a_usb2_exit
-
-Maybe it would be better, indeed.
-
-> 
->> +       if (ret)
->> +               return ret;
->> +
->> +       phy = devm_phy_create(dev, NULL, &phy_meson_g12a_usb2_ops);
->> +       if (IS_ERR(phy)) {
->> +               ret = PTR_ERR(phy);
->> +               if (ret != -EPROBE_DEFER)
->> +                       dev_err(dev, "failed to create PHY\n");
-> phy-core only returns EPROBE_DEFER in case the phy-supply is not ready yet.
-> we won't need a phy-supply (at least as far as I know, if we do then
-> please document this in the dt-bindings patch). for USB VBUS dwc2
-> support the "vbus-supply" property which we should use instead.
-> I leave it up to you to decide whether the check makes sense
-
-It's always better to handle these return cases, better to leave it.
-
-> 
->> +               return ret;
->> +       }
->> +
->> +       phy_set_bus_width(phy, 8);
->> +       phy_set_drvdata(phy, priv);
->> +
->> +       phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
->> +
->> +       return PTR_ERR_OR_ZERO(phy_provider);
->> +}
->> +
->> +static const struct of_device_id phy_meson_g12a_usb2_of_match[] = {
->> +       { .compatible = "amlogic,g12a-usb2-phy", },
->> +       { },
->> +};
->> +MODULE_DEVICE_TABLE(of, phy_meson_g12a_usb2_of_match);
->> +
->> +static struct platform_driver phy_meson_g12a_usb2_driver = {
->> +       .probe  = phy_meson_g12a_usb2_probe,
->> +       .driver = {
->> +               .name           = "phy-meson-g12a-usb2",
->> +               .of_match_table = phy_meson_g12a_usb2_of_match,
->> +       },
->> +};
->> +module_platform_driver(phy_meson_g12a_usb2_driver);
->> +
->> +MODULE_AUTHOR("Martin Blumenstingl <martin.blumenstingl@googlemail.com>");
-> I haven't contributed any of the relevant code to this driver (I
-> assume you took one of our existing Amlogic PHY drivers as skeleton?).
-> it's up to you whether you want to keep me in here
-
-Yep it's for the skeleton ! No harm to keep you in !
-
-> 
-> 
-> Regards
-> Martin
-> 
-
-Thanks,
-Neil
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGksCgoKaSByZWNvZ25pemUgdGhlIGZvbGxvd2luIG9uIG15IGV0aGVybmV0IHN0YXRzOgoKwqDC
+oMKgwqAgdGhyZXNob2xkOiAxCsKgwqDCoMKgIHR4X3BrdF9uOiAxNDU3MzI1CsKgwqDCoMKgIHJ4
+X3BrdF9uOiA1MDIyNDA1CsKgwqDCoMKgIG5vcm1hbF9pcnFfbjogNjcxNzM4CsKgwqDCoMKgIHJ4
+X25vcm1hbF9pcnFfbjogNjA2NTczCsKgwqDCoMKgIG5hcGlfcG9sbDogNzg0NDM5CsKgwqDCoMKg
+IHR4X25vcm1hbF9pcnFfbjogNjEwNjEKwqDCoMKgwqAgdHhfY2xlYW46IDc4NDQzOQrCoMKgwqDC
+oCB0eF9zZXRfaWNfYml0OiA1ODI5MwrCoMKgwqDCoCBpcnFfcmVjZWl2ZV9wbXRfaXJxX246IDAK
+wqDCoMKgwqAgbW1jX3R4X2lycV9uOiAwCsKgwqDCoMKgIG1tY19yeF9pcnFfbjogMArCoMKgwqDC
+oCBtbWNfcnhfY3N1bV9vZmZsb2FkX2lycV9uOiAwCi0+IMKgIMKgwqAgaXJxX3R4X3BhdGhfaW5f
+bHBpX21vZGVfbjogMzgyMDM3Ci0+wqAgwqDCoMKgIGlycV90eF9wYXRoX2V4aXRfbHBpX21vZGVf
+bjogMzgyMDIxCgoKSXMgdGhpcyBub3JtYWwgPwoKCnJlZ2FyZHMsClNpbW9uCgoKCkFtIDE4LjAy
+LjIwMTkgdW0gMDk6NDUgc2NocmllYiBKb3NlIEFicmV1Ogo+IE9uIDIvMTgvMjAxOSA4OjQyIEFN
+LCBKb3NlIEFicmV1IHdyb3RlOgo+PiBPbiAyLzE3LzIwMTkgMjo0OCBQTSwgTWFydGluIEJsdW1l
+bnN0aW5nbCB3cm90ZToKPj4+IEpvc2UsIGlzIG15IGNvbW1hbmQgZm9yIGRpc2FibGluZyBvZmZs
+b2FkaW5nIGNvcnJlY3Q/Cj4+IFllcywgSSB0aGluayBzby4gV2hhdCBhYm91dCBOSUMgc3RhdGlz
+dGljcyBhbmQgbG9ncyA/ICgiZXRodG9vbAo+PiAtUyBldGgwIiwgImRtZXNnIHwgZ3JlcCAtaSBz
+dG1tYWMiKQo+IEFuZCwgImlmY29uZmlnIGV0aDAiIGFmdGVyIHJ1bm5pbmcgdGhlIHRlc3QuCj4K
+Pj4gVGhhbmtzLAo+PiBKb3NlIE1pZ3VlbCBBYnJldQo+PgoKCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0Cmxp
+bnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
