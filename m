@@ -2,100 +2,91 @@ Return-Path: <SRS0=i5j0=QZ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7B603C43381
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Feb 2019 13:02:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6D7F9C43381
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Feb 2019 14:09:01 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4B0CC217F5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Feb 2019 13:02:53 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3A6B821901
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Feb 2019 14:09:01 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="T4+s+duG";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b="CDdhCesS"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4B0CC217F5
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=synopsys.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="SMyk4nCT";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="DNzyc+qY"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3A6B821901
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:References:To:From:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nonpm8Lz8rJM+b87EqpAv6xJp0Fu0BnvK+93TKFhXJA=; b=T4+s+duGd0i7lo
-	m0kyr/MCh1j6rEltANnARI/QdxALSdTtPoZc5UGLcUZ6J8TMaxmPID5hNTl3IoUDUOQy+7Y1ZCKCT
-	H1oYLUK/9Wu82NAa4BNopf34BTBgSJs/eRZPa0afEV8FSAKkCXdle/cSwXORbCf8Au2eZvkqDyY66
-	EY8lNAjUPhJ0qtJdtW+LWsnsGB7ptwFNnkafhtqwuhPXO0jlqVGeRxIq8cBNiT7vfMNBUob6lixYP
-	IGGxb5Nmyv31uae75uqX+rUpFtcA8gQkKHUB2QAN5QZ6H2DC4suDomD+oXmeb5nmMIbOFtNI0T8UL
-	CmWQ0vLytI+mwZq7Oyvg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
+	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=ppnPq+Sq0vGMCbG/OD+jfyK2+YdhG2eWzrdj/5+cllw=; b=SMyk4nCTWeh13B23czt9gji8uD
+	CArD8/A116HcBWLstpSzpmPgrWaZtn6A7zlmiyw7Uj4PoUKqJj2PxVGs0MPZTieOEZfRdfjybDQrE
+	vtpPf4wnTo41XTfuJDvL9ylEtGOYqW41TN3IWRUXPNTzHRDK4JZ9htAouMUSekTPYaKc/2QBtEU9Z
+	yP//95ACfNhxMezH99jG0LFXa5TKqK//490WfAmT8n7C2FS71tSRvGyWKMXFOaYnvLraFfKh/sXil
+	Nn2kRoLZ9H70SVRlA03pabjp+sMnh+yGN3sgYXNlv3I3j10bSIJGZPFWUIgWzeRjSje+W/JlXGGGB
+	9x5Tja2A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gviZL-0004oW-BW; Mon, 18 Feb 2019 13:02:47 +0000
-Received: from smtprelay.synopsys.com ([198.182.47.9])
+	id 1gvjbK-0001Vd-LC; Mon, 18 Feb 2019 14:08:54 +0000
+Received: from mail-ed1-x541.google.com ([2a00:1450:4864:20::541])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gviZI-0004nQ-2V
- for linux-amlogic@lists.infradead.org; Mon, 18 Feb 2019 13:02:46 +0000
-Received: from mailhost.synopsys.com (badc-mailhost2.synopsys.com
- [10.192.0.18])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by smtprelay.synopsys.com (Postfix) with ESMTPS id EECF824E25A6;
- Mon, 18 Feb 2019 05:02:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
- t=1550494963; bh=wqY0VdXLP9z2F4XH0PtoC1jhQ4jTqVTDr8U57RYQzmI=;
- h=Subject:From:To:CC:References:Date:In-Reply-To:From;
- b=CDdhCesS01hyQ6mvE8gzfKKEL0GG+8dHw6WdeNdvQxmG/dYhIDNYqwN/OJIxD2VDn
- F65BkI62USm2a9gdBXablt+Ae/c/GPRqI+8kslOt2TenhxnBvArKlARCUMcVDf6PJt
- 95FKZ/0mtMxUxUrHSLBOgG4Onn6xYdKngsyHCudCcQgyH8rmQs5lf8kthU/J9OYTET
- D2hxfbYXniFdWUXX6y6TFTViLlG5zkX3FpWbjbblpV4e5d+SL6KZaCM3bdekpw8rdX
- kHRnQM07jLbIFJ5JHMcxOZkVDD7VgLXrxgRFnYuWEuXSV3vXQUIpPKXx84Evwy9lXj
- 73yF8gBqg3oFA==
-Received: from US01WEHTC3.internal.synopsys.com
- (us01wehtc3.internal.synopsys.com [10.15.84.232])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
- (No client certificate requested)
- by mailhost.synopsys.com (Postfix) with ESMTPS id 700CEA005A;
- Mon, 18 Feb 2019 13:02:42 +0000 (UTC)
-Received: from DE02WEHTCB.internal.synopsys.com (10.225.19.94) by
- US01WEHTC3.internal.synopsys.com (10.15.84.232) with Microsoft SMTP Server
- (TLS) id 14.3.408.0; Mon, 18 Feb 2019 05:02:42 -0800
-Received: from DE02WEHTCA.internal.synopsys.com (10.225.19.92) by
- DE02WEHTCB.internal.synopsys.com (10.225.19.94) with Microsoft SMTP Server
- (TLS) id 14.3.408.0; Mon, 18 Feb 2019 14:02:40 +0100
-Received: from [10.107.19.176] (10.107.19.176) by
- DE02WEHTCA.internal.synopsys.com (10.225.19.80) with Microsoft SMTP Server
- (TLS) id 14.3.408.0; Mon, 18 Feb 2019 14:02:40 +0100
-Subject: Re: stmmac / meson8b-dwmac
-From: Jose Abreu <jose.abreu@synopsys.com>
-To: Simon Huelck <simonmail@gmx.de>, Jose Abreu <jose.abreu@synopsys.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <a38e643c-ed9f-c306-cc95-84f70ebc1f10@gmx.de>
- <CAFBinCDebPOsmrhSXecx48nGWHh7g_OGPbr1Y0M+n_v9Ht91ew@mail.gmail.com>
- <e05b7448-cd95-cdeb-c88d-3a324d5f1ddc@gmx.de>
- <CAFBinCAkXN42piiYsc_Qmuqv0w4dbK86gq10AbZyrB-zKuh9hg@mail.gmail.com>
- <20190206103645.GA2482@ingrassia.epigenesys.com>
- <3001f244-8904-1e89-9595-62a65a7b32ae@gmx.de>
- <CAFBinCB1WUMOmaF6Wmr5HTutrgLOru5CRSnOpUUMMuVzHSa3Gg@mail.gmail.com>
- <330a523a-c1d6-4a99-3287-459096af0330@synopsys.com>
- <CAFBinCAJwk5Go4ZEt2cqVKyfeeOxsa-+3pfLpzQo=XNr5u4Shw@mail.gmail.com>
- <2abbf79a-cdff-b6a7-42de-79ea2c6ab367@synopsys.com>
- <c80c1e5b-fed9-25ce-eb1b-258ac0135ce7@synopsys.com>
- <7afdaa0d-d0ef-b223-1f6e-2b52bfa44784@gmx.de>
- <6f25da2b-7f28-b888-3240-7178ac75c90c@synopsys.com>
-Message-ID: <84fb981c-75ab-ef9e-edd6-cd0c52d9dc36@synopsys.com>
-Date: Mon, 18 Feb 2019 13:02:38 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.5.0
+ id 1gvjb9-0001Jx-Fv
+ for linux-amlogic@lists.infradead.org; Mon, 18 Feb 2019 14:08:46 +0000
+Received: by mail-ed1-x541.google.com with SMTP id d9so13885801edh.12
+ for <linux-amlogic@lists.infradead.org>; Mon, 18 Feb 2019 06:08:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=references:user-agent:from:to:cc:subject:in-reply-to:date
+ :message-id:mime-version;
+ bh=gFO8LwK33ywbW9SIa15Cb2gHG5oozM6OBAvVIPZVXeQ=;
+ b=DNzyc+qYAb0NALeJg8RzVLqy5pj2aOWYWpkgh1UJ75D0mESwiTMtROi3ixJjqTPXgs
+ VeRsa5L7avUdKK1tal1QfU61H8ifm6m51boKWdKoYDnEWmNsloICO2Vpm86J0eiGCUeY
+ n9Mi2RwB6INJ/TVB8wv+hhPNizbA/eIruGJErj4amKoHGCpc3U97kMAlix7KAtYnzBwB
+ gsC1NP5118CAiIHviDvpcjV0a2F4XvP1bkctr+D9jejS9NZjliNxCAqgBiNDZXsVtxIh
+ W4CRh6NlpS4djp47IcObWOS/rfu28g2TO3oBZHS3PzN1yah0rakfKdtOSaN5qSeshENr
+ O6Fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:date:message-id:mime-version;
+ bh=gFO8LwK33ywbW9SIa15Cb2gHG5oozM6OBAvVIPZVXeQ=;
+ b=MotsnwTP52PmEgTzs6CV6ya5CcNKeIEyVfnB2aWrCH5hwn/xADQ8b2sqkPmi/MWXb1
+ 0gNYUMSMoEM5RCtEn6Ljj93A7eQU6ij8dXxHm5T8uXRdK2VJ/9sZQuti1JUs5fLS2CP6
+ njEJWWjxNL2PaCM2MBvFKsP80kxjRYirNqUTa/YzIMatmwqHZI7qSYeesBnFNl3HHi1W
+ zBbiKvQu0J0bi9UeT82Ng8FvIreRLLWIElxQi9voheUmEPFomp/UDZ9fHdPJ2A/7i+J6
+ 6pLxDB1CzeOZqOVkAAwqeGFRKh17FY09gCRZyISScqqrWBVN0oqKsbsi7e1dcgapf91v
+ mtJw==
+X-Gm-Message-State: AHQUAubk/4MS6Dqf+BOdwj9NsbdnlBM+ENp5z15JfzALyNiLFl8Jrtno
+ M1k9JuC54E9Y/YKsJ86kP5q6gA==
+X-Google-Smtp-Source: AHgI3IZ7ok34FpI0tRYpAXVimkuavzpjqGgMrAfeBtgkLwiOqtsdEYxrS6H+LQDmdFWUDrZAitMD6A==
+X-Received: by 2002:a50:9927:: with SMTP id k36mr19279800edb.31.1550498921640; 
+ Mon, 18 Feb 2019 06:08:41 -0800 (PST)
+Received: from localhost ([2620:10d:c092:180::1:3053])
+ by smtp.gmail.com with ESMTPSA id k4sm3094441ejj.32.2019.02.18.06.08.40
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 18 Feb 2019 06:08:40 -0800 (PST)
+References: <1550070569-18588-1-git-send-email-lollivier@baylibre.com>
+ <1550070569-18588-3-git-send-email-lollivier@baylibre.com>
+ <20190215160457.GO28278@localhost>
+User-agent: mu4e 1.0; emacs 25.3.2
+From: Loys Ollivier <lollivier@baylibre.com>
+To: Johan Hovold <johan@kernel.org>
+Subject: Re: [PATCH v4 2/4] dt-bindings: gnss: add mediatek binding
+In-reply-to: <20190215160457.GO28278@localhost>
+Date: Mon, 18 Feb 2019 15:08:38 +0100
+Message-ID: <86k1hxur2x.fsf@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <6f25da2b-7f28-b888-3240-7178ac75c90c@synopsys.com>
-Content-Language: en-US
-X-Originating-IP: [10.107.19.176]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190218_050244_121826_A3AC364A 
-X-CRM114-Status: GOOD (  11.12  )
+X-CRM114-CacheID: sfid-20190218_060843_584379_04789454 
+X-CRM114-Status: GOOD (  13.61  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -107,30 +98,104 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, netdev@vger.kernel.org,
- alexandre.torgue@st.com, Emiliano Ingrassia <ingrassia@epigenesys.com>,
- Gpeppe.cavallaro@st.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, Loys Ollivier <lollivier@baylibre.com>,
+ linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMi8xOC8yMDE5IDEyOjQxIFBNLCBKb3NlIEFicmV1IHdyb3RlOgo+IE9uIDIvMTgvMjAxOSAx
-MjozMyBQTSwgU2ltb24gSHVlbGNrIHdyb3RlOgo+PiBIaSwKPj4KPj4KPj4gaSByZWNvZ25pemUg
-dGhlIGZvbGxvd2luIG9uIG15IGV0aGVybmV0IHN0YXRzOgo+Pgo+PiDCoMKgwqDCoCB0aHJlc2hv
-bGQ6IDEKPj4gwqDCoMKgwqAgdHhfcGt0X246IDE0NTczMjUKPj4gwqDCoMKgwqAgcnhfcGt0X246
-IDUwMjI0MDUKPj4gwqDCoMKgwqAgbm9ybWFsX2lycV9uOiA2NzE3MzgKPj4gwqDCoMKgwqAgcnhf
-bm9ybWFsX2lycV9uOiA2MDY1NzMKPj4gwqDCoMKgwqAgbmFwaV9wb2xsOiA3ODQ0MzkKPj4gwqDC
-oMKgwqAgdHhfbm9ybWFsX2lycV9uOiA2MTA2MQo+PiDCoMKgwqDCoCB0eF9jbGVhbjogNzg0NDM5
-Cj4+IMKgwqDCoMKgIHR4X3NldF9pY19iaXQ6IDU4MjkzCj4+IMKgwqDCoMKgIGlycV9yZWNlaXZl
-X3BtdF9pcnFfbjogMAo+PiDCoMKgwqDCoCBtbWNfdHhfaXJxX246IDAKPj4gwqDCoMKgwqAgbW1j
-X3J4X2lycV9uOiAwCj4+IMKgwqDCoMKgIG1tY19yeF9jc3VtX29mZmxvYWRfaXJxX246IDAKPj4g
-LT4gwqAgwqDCoCBpcnFfdHhfcGF0aF9pbl9scGlfbW9kZV9uOiAzODIwMzcKPj4gLT7CoCDCoMKg
-wqAgaXJxX3R4X3BhdGhfZXhpdF9scGlfbW9kZV9uOiAzODIwMjEKPj4KPj4KPj4gSXMgdGhpcyBu
-b3JtYWwgPwo+IAo+IERpZCB5b3UgdHJ5IGRpc2FibGluZyBFRUUgPyAoImV0aHRvb2wgLS1zZXQt
-ZWVlIGV0aDAgZWVlIG9mZiIpCgpCVFcsIGRvIG5vdCB0cnkgdG8gcmUtZW5hYmxlIGl0LiBUaGVy
-ZSBpcyBhIHJhY2UgaW4gdGhlIGVuYWJsZQpmdW5jdGlvbi4gSSB3aWxsIHNlbmQgYSBmaXggQVNB
-UC4KCj4gCj4gVGhhbmtzLAo+IEpvc2UgTWlndWVsIEFicmV1Cj4gCgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlz
-dApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVh
-ZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+
+On Fri 15 Feb 2019 at 16:04, Johan Hovold <johan@kernel.org> wrote:
+
+> On Wed, Feb 13, 2019 at 04:09:27PM +0100, Loys Ollivier wrote:
+>> Add binding for Mediatek-based GNSS receivers.
+>> 
+>> Signed-off-by: Loys Ollivier <lollivier@baylibre.com>
+>> ---
+>> v4:
+>> Use standard names for reset-gpios and gnss-fix-gpios
+>> s/an/a UART
+>> 
+>> v3:
+>> Removed the I2C and SPI interfaces references.
+>> Removed the "mediatek,mt3339" compatible line.
+>> Added the optional propertied (reset, fix)
+>> Added the pin names for the optional properties.
+>> 
+>> v2:
+>> Renamed bindings from Globaltop/gtop to Mediatek/mtk.
+>> Moved current-speed as an optional propertie.
+>> Removed the status line in the example.
+>> Added "mediatek,mt3339" compatible.
+>> 
+>>  .../devicetree/bindings/gnss/mediatek.txt          | 37 ++++++++++++++++++++++
+>>  1 file changed, 37 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/gnss/mediatek.txt
+>> 
+>> diff --git a/Documentation/devicetree/bindings/gnss/mediatek.txt b/Documentation/devicetree/bindings/gnss/mediatek.txt
+>> new file mode 100644
+>> index 000000000000..12283d429baa
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/gnss/mediatek.txt
+>> @@ -0,0 +1,37 @@
+>> +Mediatek-based GNSS Receiver DT binding
+>> +
+>> +Mediatek chipsets are used in GNSS-receiver modules produced by several
+>> +vendors and can use a UART interface.
+>> +
+>> +Please see Documentation/devicetree/bindings/gnss/gnss.txt for generic
+>> +properties.
+>> +
+>> +Required properties:
+>> +
+>> +- compatible	: Must be
+>> +
+>> +			"globaltop,pa6h"
+>> +
+>> +- vcc-supply	: Main voltage regulator (pin name: VCC)
+>> +
+>> +Optional properties:
+>> +
+>> +- current-speed		: Default UART baud rate
+>> +- gnss-fix-gpios	: GPIO used to determine device position fix state
+>> +			  (pin name: FIX, 3D_FIX)
+>> +- reset-gpios		: GPIO used to reset the device
+>> +  		  	  (pin name: RESET, NRESET)
+>> +- timepulse-gpios	: Time pulse GPIO (pin name: PPS1, 1PPS)
+>> +- v-bckp-supply		: Backup voltage regulator
+>> +  			  (pin name: VBAT, VBACKUP)
+>
+> As we discussed, I changed this to "vbackup-supply" (here and in the
+> driver) before applying.
+>
+> Note that git reported some whitespace errors above too (spaces before
+> tabs) that I fixed up. Not sure why checkpatch doesn't complain.
+>
+Oops, thanks for fixing it. I ran checkpatch again and it did not
+complain. Apprently it's not checking for spaces before tabs in "txt"
+files.
+I'll add a step in my flow to apply the patches I create before sending
+them to the list so that won't happen again ;)
+
+> All now applied.
+>
+Yay ! Thanks !
+Loys
+
+
+> Thanks,
+> Johan
+
+
+-- 
+-L
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
