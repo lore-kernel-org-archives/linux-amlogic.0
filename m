@@ -2,48 +2,83 @@ Return-Path: <SRS0=rvs0=Q4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.8 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2CF86C43381
-	for <linux-amlogic@archiver.kernel.org>; Thu, 21 Feb 2019 17:28:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8F391C43381
+	for <linux-amlogic@archiver.kernel.org>; Thu, 21 Feb 2019 17:47:03 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EEFB42080D
-	for <linux-amlogic@archiver.kernel.org>; Thu, 21 Feb 2019 17:28:18 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6133520818
+	for <linux-amlogic@archiver.kernel.org>; Thu, 21 Feb 2019 17:47:03 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="l5+5GG2b"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EEFB42080D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=gmx.de
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VlllHyti";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="DImBAfQf"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6133520818
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xDrNS8Bi4DnDEPtIGtH24gFbMKi0U0xgnztUox7h9Os=; b=l5+5GG2btCmLQW
-	S6beBRGIVk2CYBuOcq89mrLcMO+sS/5qp+1z1IEYfNdOgnN1MOBVEzqrIuGzZQDcI+NGC9ffh733b
-	NEasvZMHClIPRN0OFIEReHg61ZQNGeBHZX4mXAvwa1TimYk5v1dCZVc7VPUq2UfOMfTHQJ/HeHFy/
-	A27GfnWt951mIe54bPSf6iitlAUcUqJwm4pfmESqoYn9zKymdm+HsoxM8UbH8Y8Yh5YykO3ICOyBX
-	ITzJeB60oymafANOWN02zKf5Ssh88P4L3xtWuAXMosTU9G9YKQb6Odo4fA1iTkWXLtedRda5JVqQx
-	gn0zbsJedb6I8ECpK+Gg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=6QETDiBtNlNiDGqb/TO+7c77Nbr8demUmSOv5J/GFM8=; b=VlllHytiLUtfzU
+	HXvhNaM8kyPEUWTA8TkAcobdTk7bBHCLg8Z9fa4VpTWaHatt1f//TzZtSil3RM4+qmi0u1lmaZBh7
+	DTdLacPcri8Hf2wuDz3qYqN/8XlSnmhq2Vj349ODYYyjhUTbqwMjmrvVM3LrgDsSnKPn+1LNln4R9
+	g+6tsEKBR9utUww4/m866394oVrXxx9sZdkQnc9ahFZK7q/z06Ri5FlYQcjn9PlN7CtYfmjrJ9xis
+	gCJV71lAaNSj47yDQySOJIsMAz5WAWOEWdkv6SFoXxBLIwWoPvBvoEyz9EGmPyGv77XRsRIQn4ft+
+	XIJu6Q59ODn/GXm3V8hQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gws8q-00031L-0g; Thu, 21 Feb 2019 17:28:12 +0000
-Received: from mout.gmx.net ([212.227.15.18])
+	id 1gwsR0-0000y3-4O; Thu, 21 Feb 2019 17:46:58 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gws8n-00030m-54
- for linux-amlogic@lists.infradead.org; Thu, 21 Feb 2019 17:28:11 +0000
-Received: from [10.10.11.100] ([95.88.214.118]) by mail.gmx.com (mrgmx001
- [212.227.17.190]) with ESMTPSA (Nemesis) id 0LcBBl-1hMKvr44JR-00jW75; Thu, 21
- Feb 2019 18:27:51 +0100
+ id 1gwsQw-0000xV-6n
+ for linux-amlogic@lists.infradead.org; Thu, 21 Feb 2019 17:46:56 +0000
+Received: by mail-wr1-x441.google.com with SMTP id o17so31598997wrw.3
+ for <linux-amlogic@lists.infradead.org>; Thu, 21 Feb 2019 09:46:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:cc:date:in-reply-to:references
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=F6kO94A9IplzmxVbouLWYTyqm+5HmQJxHJGylQ2S1II=;
+ b=DImBAfQfPuyRrDzoY+7cycvzytgZL+fvKaFR2Fm4gsJ6JsZSjxIVAR6cRZ82J3cjcN
+ Rj6AjKjatuAGU6PERHhKI772jWX7Lb3AYd1sUe9AYPphbWkSem4Bph6jf4QI6yYHgvE7
+ m96mxCtSOoNiURsGAtzZZy1sgpyOcDzAQtbUWX4+4/0UHcXKY/XNQ3AeZ/nIciKREK7M
+ 2nXVWcGTbeqbWo5KOzxGd7inZBbmZ6sztWZZGncIP0XRn8/Jh4UMPAIvN5NY+4riPrLG
+ tfAZfu2YC6lE24qcBJLK4U6MovfhLKXw0BNYfxZqV6BUrN+cUrUQ2dhle9Cd9a5pfG/0
+ rSog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=F6kO94A9IplzmxVbouLWYTyqm+5HmQJxHJGylQ2S1II=;
+ b=E3psqbbqLORf/8b6vtMXQ/p+rHno6+ymrk+dePXBm5ZQdN8uK1OOshPfhoeMcuqbVH
+ FTR7VuttlrhlVblpj4PniLjrCKYPXNhQcs4FWtbmP/s4VFIffVMmBekD1mNWG9crUY22
+ ktRbfPB3oebJ7Rbfy/nyakmF+PXdDq97ae/kMq9LD3FP7jZCUsqDADfMGGaBzC7PsPhd
+ 1Fw9pW1soZLzEg+hQDhnFDJmObRYHfSIsWA1Ww2IO2Zr6Ut4oaAvDF0XItJNFHm3E3GY
+ 5yFF1Cvic4/BuIyYswg+QUOMXCZSXg2LSpvxvMxNx3QXbO64wFHDM1VJYov6d8KCCuje
+ nJTw==
+X-Gm-Message-State: AHQUAuYo29vdcFLjh3gz9Ns3GCNCZksdKaj1rxk8svLZ/SJa19e3DiFo
+ VTWpQxqEGQYSGdvHKCcjncV5Rw==
+X-Google-Smtp-Source: AHgI3IYIGdh3BMoAdBQc9yIIBqxGfEpuiJ90YRvsMcgkZq9oNtb8MHdKWODVesMCyVYe4AR47RtzgA==
+X-Received: by 2002:a5d:49cf:: with SMTP id t15mr27589924wrs.94.1550771212544; 
+ Thu, 21 Feb 2019 09:46:52 -0800 (PST)
+Received: from boomer.lan (cag06-3-82-243-161-21.fbx.proxad.net.
+ [82.243.161.21])
+ by smtp.gmail.com with ESMTPSA id t18sm13749086wmt.8.2019.02.21.09.46.51
+ (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+ Thu, 21 Feb 2019 09:46:51 -0800 (PST)
+Message-ID: <d7de65c614ee788152300f6d3799fd537b438496.camel@baylibre.com>
 Subject: Re: stmmac / meson8b-dwmac
-To: Jerome Brunet <jbrunet@baylibre.com>, Jose Abreu <jose.abreu@synopsys.com>,
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Simon Huelck <simonmail@gmx.de>, Jose Abreu <jose.abreu@synopsys.com>, 
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Thu, 21 Feb 2019 18:46:50 +0100
+In-Reply-To: <9074d29b-4cc9-87b6-009f-48280a4692c0@gmx.de>
 References: <a38e643c-ed9f-c306-cc95-84f70ebc1f10@gmx.de>
  <CAFBinCAJwk5Go4ZEt2cqVKyfeeOxsa-+3pfLpzQo=XNr5u4Shw@mail.gmail.com>
  <2abbf79a-cdff-b6a7-42de-79ea2c6ab367@synopsys.com>
@@ -63,54 +98,12 @@ References: <a38e643c-ed9f-c306-cc95-84f70ebc1f10@gmx.de>
  <fa35fb4a-b9d5-9bbb-437d-47e8819d0f27@synopsys.com>
  <244d7c74-e0ca-a9c7-f4b0-3de7bec4024b@gmx.de>
  <1426d8ed40be0927c135aff25dcf989a11326932.camel@baylibre.com>
-From: Simon Huelck <simonmail@gmx.de>
-Openpgp: preference=signencrypt
-Autocrypt: addr=simonmail@gmx.de; prefer-encrypt=mutual; keydata=
- mQGiBD/bCNARBACE3URTBXZ/AA03NwRNtz03ewQn3uhvYSTjfqgplBtb3dfC4a79BXDRIWVX
- xPGH9Ewios1c8gMu3/RI2l3JzXoISfw5b0L/5igyPKV+sGuUA2FD27kYtPaaF/TqEWIv+Yxp
- 9DCjCX5IQSYyvCfcxcyEkY8eVWxnaAlV3zKRR8wn0wCglWIOtAugBcg1YXmoLpFZE8Ca0fkD
- /jG+n4U9DPfCgkbgjQ/dv2W2a0ZDHccA9N8AW/FTXGyXXO0e7ql9/kORJnp7jD7/Z9HCKpeS
- HajgxuX9Vhfx6bH1dAMfsg88+K8pOO9oulNX1+YffQyZWOfdbmnZDUzBt9HKR9Wgh8WoIyw9
- TVluclzn6hYz+z9jbqHWMOsiCu8zA/0apHbW8vaIDT4+nNUxNdqU1TKa9kW47vNjwYYL0jZW
- TXNjDIRpqJVSugYVc/U847GoVoxyvtzre4TAbBV8h0BAOeMdxI5En67RGWzeNaMDJV1bwapj
- qdfj3e/X8rnGIfwz47rwztLNKoAIUlKrATwroiI7UNT+84G7H5qalu+Eu7QqU2ltb24gSHVl
- bGNrIDxzaW1vbi5odWVsY2tAZ29vZ2xlbWFpbC5jb20+iGIEExECACIFAlH7wL4CGyMGCwkI
- BwMCBhUIAgkKCwQWAgMBAh4BAheAAAoJEJNSVvfBt05KlBQAn1JDO7e4H3N0WFJkZnxvObhk
- 2kiAAJwPdDd6T1TuGo4iDIENRhAX4AH2KrkBDQQ/2wjSEAQAj6JnDDQzIIYzPGsrHRvaq8vw
- n8VrZCbPRvkngGvtQIss5pH/MLeu9jLepDGO9WHByFSg4QJh8cINYwTLtX8Bu0naA6ZI46hn
- GyfxdRlxSU9dRqHpU3G0tymL1w3AER6aVSfdXQTmFgf61anKunbIIptkqzZurkjnxkwCE/RM
- RscABA0D/jhglpj8siSIAxs8XLVfKJrjzbYM9/wS0NfdSXBeQJiYtKrY0WMNsqjY50wDnLMg
- anORN/odT6mCwKI6xChzxEv/ta4+teZl92aitziSuqmtl+jm23DpOcUC7UBz2W1+TvnrhPR+
- MKu8pPKAgsE8AI5uwCcNJx7V3bczYkIGaXybiEYEGBECAAYFAj/bCNIACgkQk1JW98G3Tko6
- 3wCfZBpZAUhUz/Rcp2rfg/YSKl4YLlEAoJN7e322OvHc2GQ9n1+tKLi6Og4c
-Message-ID: <9074d29b-4cc9-87b6-009f-48280a4692c0@gmx.de>
-Date: Thu, 21 Feb 2019 18:27:41 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.5.1
+ <9074d29b-4cc9-87b6-009f-48280a4692c0@gmx.de>
+User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
 MIME-Version: 1.0
-In-Reply-To: <1426d8ed40be0927c135aff25dcf989a11326932.camel@baylibre.com>
-X-Provags-ID: V03:K1:mCVRh3fDA0b75GN2cvjkdx5kfh7H5QJpoE6KWbEccV0sINBKuaD
- 3anGnjp1dOywrgv38qfYnXidEKb/hi8HDefzh9HW9yo8v3OmZNsTdGQz9kyc61FzrsreWQJ
- tfsbUdzvLw+WHoCCH8102KLqfJs3tFkxvtZlS2LbD8Rf+YZfrx0vxmqUnHFqYvl7zAjkhMe
- gLCOdSnkN7EXWftiTLxUg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:oVupIRVhiZ4=:zOmGly5/lVljSoqrgIo9ry
- hcXhrWHAue5P9ZPzQM6SLAOcoSH38o0Zx3rUpBePMnAO87agtF8XEbLIOv00pD5VJnMfS8J8X
- yfNgNP4JnaeDwZhv5NQr96E+oV+/3V8atkBJyBNjD1Ipt5BjWOV7PMQow+3Mg0L+5a3HeoMOi
- XDDqDFX4/auQEXItEWTdSSIVQ09H1dn2U0DkT78zKZtvF4vaGNLh3937o5jDYSxHB04mmEzsL
- 7MAtcixVf5CN6bj9bLy6+UbDFe2+H1s9rnC8+j+dNArCxCoRkXubhC3NLI+cpgTleHvP9A2em
- ws4EPXzgWdxGIWNZq5mgBbTAxe52gLM062fnUjiczEKf43G6mjcgYOperwAXINVCYdeViDgTy
- dkN6Iyq+FiVN670bNnTGkeU7f7urqVEIWAB/zL3IqAWYsBXfvXW6ppMr/OsGE8F2F0W3WwdYA
- USHkMVi/QzbUQxm7/sypXN58YiAlpCMw9CKc2XTgahzrhVmY1LGLNwlqCOTPe429XSaySJ6rW
- pf6iIydvEhA3X+PGFwbVK6gO7UFcDkXhs088DH+QS+BFB10TJRv2Uk081DLLYq/kCeaIdzJlz
- Q1Y2zXxlI6WoF81fyVouZHwng84b8BYeO9vBExFV9hEchTTS1hzN11Cy2WZplG97nggNjSbxq
- datJfnXR5UEJxsW3UA5BVFc9T7YBN48RuBTrjIbstCsUGVtVOAh92ErMRtVmu98bdcepmeA+1
- 4KHMwgLN7bys7JDhy1fM/07QcprTsBcfY4Ao9Vdt/4YNqes3tQ06SkEYSJ7khH5iaBgaWjphV
- LsMG2RVR4rgyQqTWlHSbvdXxF4BkFB68s75Te9CL8SWjssm21Hf2chyBGBcFK+d3ycoxSzyIJ
- s6DcZVKpsnmAV1HSoFJyi5v/Ts6aM9o+KhfoFi+pUFpLQpcPAmzc9QvLSDFavD0bPVrB/T7n2
- L90FjjFzSLw==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190221_092809_493906_AC3F9730 
-X-CRM114-Status: GOOD (  11.10  )
+X-CRM114-CacheID: sfid-20190221_094654_305763_E174B8D8 
+X-CRM114-Status: GOOD (  10.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -122,76 +115,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, Gpeppe.cavallaro@st.com,
+Cc: linux-amlogic@lists.infradead.org, netdev@vger.kernel.org,
  alexandre.torgue@st.com, Emiliano Ingrassia <ingrassia@epigenesys.com>,
- netdev@vger.kernel.org
+ Gpeppe.cavallaro@st.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Am 21.02.2019 um 15:21 schrieb Jerome Brunet:
-> On Tue, 2019-02-19 at 20:41 +0100, Simon Huelck wrote:
->> Am 19.02.2019 um 09:47 schrieb Jose Abreu:
->>> Hi Simon,
->>>
->>> On 2/18/2019 6:05 PM, Simon Huelck wrote:
->>>> disabling EEE doesnt help ( did it via the entry in the .dtb / .dts ),
->>>> the results are the same. I can confirm the LPI counters are zero or one
->>>> only after the test.....
->>> It's interesting to see that you have a lot of RX packets but few
->>> RX interrupts. This can either be due to mis-configuration of
->>> interrupt flags or RX Watchdog.
->>>
->>> 1. For interrupt flags you should be using LEVEL triggered IRQ.
->>> 2. For RX Watchdog you can try disabling it by adding the
->>> following in your platform wrapper driver (which will be
->>> "dwmac-meson8b.c", at probe):
->>> 	"plat_data->force_sf_dma_mode = 1;" and
->>> 	"plat_data->riwt_off = 1;"
->>>
->>> Thanks,
->>> Jose Miguel Abreu
->> Hi,
->>
->>
->> are you aware that odroid c2 dts is using level irq ?
-> The odroid-c2 (meson-gxl) is using level triggered irq, indeed.
-> For a reason that still eludes me, The odroid-c1 (meson8b) isn't.
->
-> This is confusing since both boards have been mentionned in this thread.
->
->> at which numbers do you estimage that RX irqs are low in numbers ?
->>
->>
->> regards,
->>
->> Simon
->>
->>
->> _______________________________________________
->> linux-amlogic mailing list
->> linux-amlogic@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-amlogic
->
-Hi,
+On Thu, 2019-02-21 at 18:27 +0100, Simon Huelck wrote:
+> Hi,
+> 
+> 
+> 
+> this was changed recently, with a patch for the EEE stuff , see here:
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?h=v5.0-rc7&id=e35e26b26e955c53e61c154ba26b9bb15da6b858
 
+Hu, I was not aware this finally went through. Good !
+As explained in the patch and by Jose, the GMAC should be using IRQ_LEVEL.
 
+The realtek PHY has EEE enabled by default. Having this enabled generates a
+lot of (Low Power) Interrupts.
 
-this was changed recently, with a patch for the EEE stuff , see here:
+Previously, when the GMAC used IRQ_EDGE. Because it is wrong, we would
+eventually miss an IRQ and the interface would just die. Unfortunately, it was
+not that easy find out.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?h=v5.0-rc7&id=e35e26b26e955c53e61c154ba26b9bb15da6b858
+2 years ago, we just noticed that disabling EEE would make the failure go
+away. Forcing this EEE feature off through DT was merely a work around.
 
+Now that the real cause of the problem is known, there is no reason to keep
+this hack around.
 
+Whether EEE adds a performance penality and why, is another topic.
+As Jose pointed out, you can disable EEE at runtime, using ethtool.
 
-before that the IRQ stuff was differently. I tried to revert this patch
-via git locally, but had no success ( i guess git tried to revert this
-patch on the server :-P)
-
-
-regards,
-
-Simon
+Jerome
 
 
 _______________________________________________
