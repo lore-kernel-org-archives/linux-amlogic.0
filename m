@@ -2,115 +2,83 @@ Return-Path: <SRS0=HZJY=Q7=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.8 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 289C9C43381
-	for <linux-amlogic@archiver.kernel.org>; Sun, 24 Feb 2019 15:05:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C5DDAC00319
+	for <linux-amlogic@archiver.kernel.org>; Sun, 24 Feb 2019 19:41:02 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E743C20652
-	for <linux-amlogic@archiver.kernel.org>; Sun, 24 Feb 2019 15:05:18 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 954AA20652
+	for <linux-amlogic@archiver.kernel.org>; Sun, 24 Feb 2019 19:41:02 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NwYZAagc"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E743C20652
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=gmx.de
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UUQWR4Vk";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="q85QtieL"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 954AA20652
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:References:To:From:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oYGk1u7II6qc5oZ1T9arxPkmDRtaMV7eWKPVHDPpqs4=; b=NwYZAagcw9snwa
-	uwnqBUDQ2n+Ezk4IXlJH8YzXoxTbm9LgOOclY+AkBMS+3QiWOIpH6eT8rIgaWsDPYFq+oyFuJSq5o
-	25D9PiGt2yJvET8VF2cKc66PDVr6DlYvi8FWlSrixdV2D1G6WLmY2nLGvLxP5FDyswQ7YCR/s07uo
-	UYNWjph8d6xM4KiiE3b7XwEmhjx1Yk0GdavFIqBB6ooNs2tXLVPqkMFdsEABDKkIJ2pyTDFaQPRar
-	p4iE4C3Sp3OqNL0Wz8D/oPFDRwxNT1IKW88MsIgIQOhXugODxwRbQMbBa8FJmQ74fyQBis9YV++z4
-	rdzrKekjAOha4eaZlhKw==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=VprVzIZXtWkCW67Icc3JlRYKW4FhKzFXurYaNMiQRrI=; b=UUQWR4Vkm5qStj
+	I3/sP43EZAH38YCb7Q/VUtkkNqqY613XtrdvFU/s7957TN5WwTN1RJHe+BY+FAgblEblGed5zOuJg
+	SZcFRBODQtwg/n9pd3ZaizeMhCdM6PbsuzGP7kVGXsjADqQNGPaFSC+Dv4teIVydXqKVZzLsXbdR3
+	MUS0L6+b7nc7bWJYAMrzSVQCtYJos5TQPNqlPLgRA3JwJDu4MZhKGWu3A2HS2clKUOn/veCfB0tvg
+	pAcDrk/VPQpj58juNUXIlEw4FldzNFVEGonBjoGtT2NpVYKjY46EzvTpDtYwgzQoxCTDD1VLeutgm
+	Q2fPAoGsQzUxv0wZ3qbw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1gxvIx-0008JB-SU; Sun, 24 Feb 2019 15:02:59 +0000
-Received: from mout.gmx.net ([212.227.15.18])
+	id 1gxzdt-0006MD-1T; Sun, 24 Feb 2019 19:40:53 +0000
+Received: from mail-oi1-x244.google.com ([2607:f8b0:4864:20::244])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1gxvIu-0008IM-5I
- for linux-amlogic@lists.infradead.org; Sun, 24 Feb 2019 15:02:58 +0000
-Received: from [10.10.11.100] ([95.88.214.118]) by mail.gmx.com (mrgmx003
- [212.227.17.190]) with ESMTPSA (Nemesis) id 0MaqqY-1gi3953L8U-00KRfh; Sun, 24
- Feb 2019 16:02:45 +0100
-Subject: Re: stmmac / meson8b-dwmac
-From: Simon Huelck <simonmail@gmx.de>
-To: Jerome Brunet <jbrunet@baylibre.com>, Jose Abreu <jose.abreu@synopsys.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <a38e643c-ed9f-c306-cc95-84f70ebc1f10@gmx.de>
- <7afdaa0d-d0ef-b223-1f6e-2b52bfa44784@gmx.de>
- <6f25da2b-7f28-b888-3240-7178ac75c90c@synopsys.com>
- <84fb981c-75ab-ef9e-edd6-cd0c52d9dc36@synopsys.com>
- <cd344fa3-758f-3824-ddd3-568ce837c4f7@gmx.de>
- <8bae9cd6-5c44-30e3-bfe5-8d6f853f170e@synopsys.com>
- <065407cd-c13b-e74c-7798-508650c12caf@gmx.de>
- <227be4e9-b0cc-a011-2558-71a17567246f@synopsys.com>
- <45e73e8c-a0fb-6f8f-8dc6-3aa2103fdda3@gmx.de>
- <e1d75e7f-1747-d0ce-0ee7-4fa688b90d13@synopsys.com>
- <4493b245-de93-46cd-327b-8091a3babc3a@gmx.de>
- <adafe6d7-e619-45e9-7ecb-76f003b0c7d9@synopsys.com>
- <cd0b3dec-af3f-af69-50b7-6ca6f7256900@gmx.de>
- <fa35fb4a-b9d5-9bbb-437d-47e8819d0f27@synopsys.com>
- <244d7c74-e0ca-a9c7-f4b0-3de7bec4024b@gmx.de>
- <1426d8ed40be0927c135aff25dcf989a11326932.camel@baylibre.com>
- <9074d29b-4cc9-87b6-009f-48280a4692c0@gmx.de>
- <d7de65c614ee788152300f6d3799fd537b438496.camel@baylibre.com>
- <8ec64936-c8fa-1f0e-68bf-2ad1d6e8f5d9@gmx.de>
-Openpgp: preference=signencrypt
-Autocrypt: addr=simonmail@gmx.de; prefer-encrypt=mutual; keydata=
- mQGiBD/bCNARBACE3URTBXZ/AA03NwRNtz03ewQn3uhvYSTjfqgplBtb3dfC4a79BXDRIWVX
- xPGH9Ewios1c8gMu3/RI2l3JzXoISfw5b0L/5igyPKV+sGuUA2FD27kYtPaaF/TqEWIv+Yxp
- 9DCjCX5IQSYyvCfcxcyEkY8eVWxnaAlV3zKRR8wn0wCglWIOtAugBcg1YXmoLpFZE8Ca0fkD
- /jG+n4U9DPfCgkbgjQ/dv2W2a0ZDHccA9N8AW/FTXGyXXO0e7ql9/kORJnp7jD7/Z9HCKpeS
- HajgxuX9Vhfx6bH1dAMfsg88+K8pOO9oulNX1+YffQyZWOfdbmnZDUzBt9HKR9Wgh8WoIyw9
- TVluclzn6hYz+z9jbqHWMOsiCu8zA/0apHbW8vaIDT4+nNUxNdqU1TKa9kW47vNjwYYL0jZW
- TXNjDIRpqJVSugYVc/U847GoVoxyvtzre4TAbBV8h0BAOeMdxI5En67RGWzeNaMDJV1bwapj
- qdfj3e/X8rnGIfwz47rwztLNKoAIUlKrATwroiI7UNT+84G7H5qalu+Eu7QqU2ltb24gSHVl
- bGNrIDxzaW1vbi5odWVsY2tAZ29vZ2xlbWFpbC5jb20+iGIEExECACIFAlH7wL4CGyMGCwkI
- BwMCBhUIAgkKCwQWAgMBAh4BAheAAAoJEJNSVvfBt05KlBQAn1JDO7e4H3N0WFJkZnxvObhk
- 2kiAAJwPdDd6T1TuGo4iDIENRhAX4AH2KrkBDQQ/2wjSEAQAj6JnDDQzIIYzPGsrHRvaq8vw
- n8VrZCbPRvkngGvtQIss5pH/MLeu9jLepDGO9WHByFSg4QJh8cINYwTLtX8Bu0naA6ZI46hn
- GyfxdRlxSU9dRqHpU3G0tymL1w3AER6aVSfdXQTmFgf61anKunbIIptkqzZurkjnxkwCE/RM
- RscABA0D/jhglpj8siSIAxs8XLVfKJrjzbYM9/wS0NfdSXBeQJiYtKrY0WMNsqjY50wDnLMg
- anORN/odT6mCwKI6xChzxEv/ta4+teZl92aitziSuqmtl+jm23DpOcUC7UBz2W1+TvnrhPR+
- MKu8pPKAgsE8AI5uwCcNJx7V3bczYkIGaXybiEYEGBECAAYFAj/bCNIACgkQk1JW98G3Tko6
- 3wCfZBpZAUhUz/Rcp2rfg/YSKl4YLlEAoJN7e322OvHc2GQ9n1+tKLi6Og4c
-Message-ID: <8382d8d8-c015-be59-c712-00eec5b40c70@gmx.de>
-Date: Sun, 24 Feb 2019 16:02:35 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.5.1
+ id 1gxzdq-0006Lc-4Y; Sun, 24 Feb 2019 19:40:51 +0000
+Received: by mail-oi1-x244.google.com with SMTP id b4so5635096oif.6;
+ Sun, 24 Feb 2019 11:40:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=2lLS7Eq3OMW3HLFIEHd7HCsdWAS76ih1fieUstK9xb0=;
+ b=q85QtieLdl8MuHe6sabxOP+87uHLP0EfDOrGpEUjcuN4iNEf8qZt12KH6oL3tijIuw
+ hg8qFbXyjS0XlyPJMa4vSCYS/KN1jYgHi5/MUAhsmRT5GORkftgEIs2SjwpLmouK6vk8
+ NUtQmnrUGWhzgeK8mjijT7sWhSx8pLq7XqfgZ6O7/RNvbLh9ao29Gzu1+08H6uhhn0hF
+ Com8KzoEv00uW4iKIyJYqrHX2mUNlPRvMioi7EPko7bRM2OebyYrh3R2uHJGQTlw6JPF
+ OsF5/lB7qkFPDv8aBFAPBN8FASiIPk9wIjuSXjBHcfTSuBrsRF44nQ34bzqdzrf8WhG+
+ Gohw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=2lLS7Eq3OMW3HLFIEHd7HCsdWAS76ih1fieUstK9xb0=;
+ b=CayAIExIZJVccIdaE4p15o28L0zuS098ub3WkY3FlN122g9kkc2xEwIfSHsZQbJB+Y
+ UTY30fpP5BMzsxumgDWePHiA7eu9y8hXirP4REjGilVcQxejikgbWKEaH4rZRUrR5A3G
+ Cr4LmzYIW7/vtBjjwIi2ZzZC1IqGvIusP2qYvPsimQbjCBYvsd7foMaFWZuxmiNAMzvQ
+ 6wHjkS4v71X+01G82xGpVT8tt/CpqNTQwAiL2anCF/ntBnXuXNpXwV4vc2UyCQPibwSH
+ UPXEJcCvxBgywNmlgGMAkLYniYNl0zuWcxhu+GntSZtux5e8HEVY/pfK8ZQas5HqqNu4
+ IUMg==
+X-Gm-Message-State: AHQUAuZqoqCG/QJ00y6BVb8oD+2eAE1jFafyFcdijDwAHdq7ru7WKLew
+ wK0hot0b5JH0pdXKd9hRmyukxD5N15tqGztZSX4=
+X-Google-Smtp-Source: AHgI3IYsoPfO0Zfqmpdy/kVkQl70w8ybav3C9zxzpYyTna3eo9dZmNjtAScxwNiCtFVQktyARcUm1dikJkE7x+bBPlM=
+X-Received: by 2002:aca:bc0b:: with SMTP id m11mr8694088oif.41.1551037248237; 
+ Sun, 24 Feb 2019 11:40:48 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <8ec64936-c8fa-1f0e-68bf-2ad1d6e8f5d9@gmx.de>
-X-Provags-ID: V03:K1:R7Uq8UIUFjm6QcutC5lkP3FWVXVQ7p8hvmzzj7Wb9/enQWbaXKk
- yrbjpzXEEQ9em3UETVKc9/FnpeZ788X3Prn3pB5S88I/M32ZtATiMYuRWdbMv/iLFkUWWxC
- kFLKbL7cWxvfsIdTZoThRmNUPI7P36SAsnh/Nxuh7fUZv3ZvaMdyNXo5aSAdjfB0B6YONpI
- YNRFaNG0W+UwfGvCjzIkw==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:ShtVoplXb3g=:XAHRsDUB12uGfURmr5dai3
- T3uPtu2ZsuSoIR+MDh2t7UxW/fzIrlmnWKuRaYVVnycDfMyajsu1pGtQhY2N2Uxa2oOVYuzrs
- /RqnP2Nq6lZbveaDLLDWGBPRvu7P80l/IuqxqSeO8hxpIs/TLMr2AOHgFMvaM8QaXpBpoKKFq
- PFoXdKTOUa6V8IORmyfcgAxom9MEp55US7zxKhdeDZBOuQuQCgNoowCXN03jxhedozba/jUiP
- 1CYmElT8EXWEyYoNGmUXnwoI+OnVPIXlnCa+WNRqgtuCLs0Z5ILxnXWG300BjByK1RZGwBcDn
- mgvnRb8GJiY5bS/RFK44Kh7VrQRdK6meNJ/YzC89tYY9p4Sk3QClPzW104s42cOQXaFBLcKSg
- 0EtFf6y7PFCNaQBHkv47G5mlFJnC5q4eb8+jSHVawuFFB6rX3Z8QEt0Rd5gDOVfuOtuIPX514
- 3rak9fwTDgzd+cZklYtRjmZi8tVKZTptUStuQKincXp5SsohFEaNbz3i+r9bFC77EMO3MqRMX
- MciSmIcKjx6d0ax16+gSHvM7StSdXBYIJ6cJ3kiRmj8aNQp5T7noMbUv6F+ZoultIZLn4eGOx
- WD7Gtp4DVrasTkaWfn7QiLzKpTogGxPhMeExq/dEhdai56HZdrJuuB5jNSw+ZFaQjbfi/w7TS
- 6OUEGe2dkV/avliL7ReoVAjE48JEbuGRc2Ufl5sSdh01tSzcfo4jVV21F8pBFSaAZnNPf0w3B
- 1To2X1FppENHPTZ7i2WyCX1A9otk30VlAiCB8P7ZUgbXCKkusbKmS/XxBeio3r9I9KSFjcqpW
- W2cbrqO4vC78vi/c7PDDX1kEq01sYIML71hXAIjhZmiWHDXrJD16dYxlVr+U0u96clHjozfIG
- 0PE7D+8pz+R/IpRrjo57/vck/RsUKSiyRrtxNOJggf398uYLSfMTyZunjtjmBoCOVb5Z6vubp
- iWzH6XGMHXw==
+References: <20190212151413.24632-1-narmstrong@baylibre.com>
+ <20190212151413.24632-7-narmstrong@baylibre.com>
+In-Reply-To: <20190212151413.24632-7-narmstrong@baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sun, 24 Feb 2019 20:40:37 +0100
+Message-ID: <CAFBinCA7yRpxG8WMvE0BBXdmcYCBV0EPb6nLQBevxZ0iy7-ZtA@mail.gmail.com>
+Subject: Re: [PATCH 6/8] phy: amlogic: Add Amlogic G12A USB3 + PCIE Combo PHY
+ Driver
+To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190224_070256_502864_A51841AA 
-X-CRM114-Status: GOOD (  13.87  )
+X-CRM114-CacheID: sfid-20190224_114050_205525_AEA8C490 
+X-CRM114-Status: GOOD (  25.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -122,98 +90,187 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, netdev@vger.kernel.org,
- alexandre.torgue@st.com, Emiliano Ingrassia <ingrassia@epigenesys.com>,
- Gpeppe.cavallaro@st.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: balbi@kernel.org, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kishon@ti.com, hminas@synopsys.com,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-QW0gMjQuMDIuMjAxOSB1bSAxNjowMCBzY2hyaWViIFNpbW9uIEh1ZWxjazoKPiBBbSAyMS4wMi4y
-MDE5IHVtIDE4OjQ2IHNjaHJpZWIgSmVyb21lIEJydW5ldDoKPj4gT24gVGh1LCAyMDE5LTAyLTIx
-IGF0IDE4OjI3ICswMTAwLCBTaW1vbiBIdWVsY2sgd3JvdGU6Cj4+PiBIaSwKPj4+Cj4+Pgo+Pj4K
-Pj4+IHRoaXMgd2FzIGNoYW5nZWQgcmVjZW50bHksIHdpdGggYSBwYXRjaCBmb3IgdGhlIEVFRSBz
-dHVmZiAsIHNlZSBoZXJlOgo+Pj4KPj4+IGh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3NjbS9s
-aW51eC9rZXJuZWwvZ2l0L3RvcnZhbGRzL2xpbnV4LmdpdC9jb21taXQvP2g9djUuMC1yYzcmaWQ9
-ZTM1ZTI2YjI2ZTk1NWM1M2U2MWMxNTRiYTI2YjliYjE1ZGE2Yjg1OAo+PiBIdSwgSSB3YXMgbm90
-IGF3YXJlIHRoaXMgZmluYWxseSB3ZW50IHRocm91Z2guIEdvb2QgIQo+PiBBcyBleHBsYWluZWQg
-aW4gdGhlIHBhdGNoIGFuZCBieSBKb3NlLCB0aGUgR01BQyBzaG91bGQgYmUgdXNpbmcgSVJRX0xF
-VkVMLgo+Pgo+PiBUaGUgcmVhbHRlayBQSFkgaGFzIEVFRSBlbmFibGVkIGJ5IGRlZmF1bHQuIEhh
-dmluZyB0aGlzIGVuYWJsZWQgZ2VuZXJhdGVzIGEKPj4gbG90IG9mIChMb3cgUG93ZXIpIEludGVy
-cnVwdHMuCj4+Cj4+IFByZXZpb3VzbHksIHdoZW4gdGhlIEdNQUMgdXNlZCBJUlFfRURHRS4gQmVj
-YXVzZSBpdCBpcyB3cm9uZywgd2Ugd291bGQKPj4gZXZlbnR1YWxseSBtaXNzIGFuIElSUSBhbmQg
-dGhlIGludGVyZmFjZSB3b3VsZCBqdXN0IGRpZS4gVW5mb3J0dW5hdGVseSwgaXQgd2FzCj4+IG5v
-dCB0aGF0IGVhc3kgZmluZCBvdXQuCj4+Cj4+IDIgeWVhcnMgYWdvLCB3ZSBqdXN0IG5vdGljZWQg
-dGhhdCBkaXNhYmxpbmcgRUVFIHdvdWxkIG1ha2UgdGhlIGZhaWx1cmUgZ28KPj4gYXdheS4gRm9y
-Y2luZyB0aGlzIEVFRSBmZWF0dXJlIG9mZiB0aHJvdWdoIERUIHdhcyBtZXJlbHkgYSB3b3JrIGFy
-b3VuZC4KPj4KPj4gTm93IHRoYXQgdGhlIHJlYWwgY2F1c2Ugb2YgdGhlIHByb2JsZW0gaXMga25v
-d24sIHRoZXJlIGlzIG5vIHJlYXNvbiB0byBrZWVwCj4+IHRoaXMgaGFjayBhcm91bmQuCj4+Cj4+
-IFdoZXRoZXIgRUVFIGFkZHMgYSBwZXJmb3JtYW5jZSBwZW5hbGl0eSBhbmQgd2h5LCBpcyBhbm90
-aGVyIHRvcGljLgo+PiBBcyBKb3NlIHBvaW50ZWQgb3V0LCB5b3UgY2FuIGRpc2FibGUgRUVFIGF0
-IHJ1bnRpbWUsIHVzaW5nIGV0aHRvb2wuCj4+Cj4+IEplcm9tZQo+Pgo+IEhpLAo+Cj4KPiBpIHRl
-c3RlZCB0aGUgbGF0ZXN0IHBhdGNoZXMgb2YgKipuZXh0LTIwMTkwMjIyLCB0aGVyZSB3ZXJlIHNv
-bWUgc3RtbWFjCj4gaW1wcm92ZW1lbnRzLioqCj4KPiAqKgo+ICoqCj4KPiAqKkZvciB0aGUgdG9w
-aWMgaSBnb3QgLCB0aGUgcGVyZm9ybWFuY2Ugc3RheWVkIGlkZW50aWNhbC4qKgo+Cj4gKipDOlxV
-c2Vyc1xTaW1vblxEb3dubG9hZHNcaXBlcmYzLjZfNjRiaXRcaXBlcmYzLjZfNjRiaXQ+aXBlcmYz
-LmV4ZSAtYwo+IDEwLjEwLjExLjEgLWkxCj4gd2FybmluZzogSWdub3Jpbmcgbm9uc2Vuc2UgVENQ
-IE1TUyAwCj4gQ29ubmVjdGluZyB0byBob3N0IDEwLjEwLjExLjEsIHBvcnQgNTIwMQo+IFvCoCA1
-XSBsb2NhbCAxMC4xMC4xMS4xMDAgcG9ydCA1MDgzMCBjb25uZWN0ZWQgdG8gMTAuMTAuMTEuMSBw
-b3J0IDUyMDEKPiBbIElEXSBJbnRlcnZhbMKgwqDCoMKgwqDCoMKgwqDCoMKgIFRyYW5zZmVywqDC
-oMKgwqAgQml0cmF0ZQo+IFvCoCA1XcKgwqAgMC4wMC0xLjAwwqDCoCBzZWPCoCA3OC45IE1CeXRl
-c8KgwqAgNjYxIE1iaXRzL3NlYwo+IFvCoCA1XcKgwqAgMS4wMC0yLjAwwqDCoCBzZWPCoCA3OS4x
-IE1CeXRlc8KgwqAgNjY0IE1iaXRzL3NlYwo+IFvCoCA1XcKgwqAgMi4wMC0zLjAwwqDCoCBzZWPC
-oCA3OS40IE1CeXRlc8KgwqAgNjY2IE1iaXRzL3NlYwo+IFvCoCA1XcKgwqAgMy4wMC00LjAwwqDC
-oCBzZWPCoCAzNC40IE1CeXRlc8KgwqAgMjg4IE1iaXRzL3NlYwo+IFvCoCA1XcKgwqAgNC4wMC01
-LjAwwqDCoCBzZWPCoCAxNi4xIE1CeXRlc8KgwqAgMTM1IE1iaXRzL3NlYwo+IFvCoCA1XcKgwqAg
-NS4wMC02LjAwwqDCoCBzZWPCoCAxNS44IE1CeXRlc8KgwqAgMTMyIE1iaXRzL3NlYwo+IFvCoCA1
-XcKgwqAgNi4wMC03LjAwwqDCoCBzZWPCoCAxNC4yIE1CeXRlc8KgwqAgMTIwIE1iaXRzL3NlYwo+
-IFvCoCA1XcKgwqAgNy4wMC04LjAwwqDCoCBzZWPCoCAxNS42IE1CeXRlc8KgwqAgMTMxIE1iaXRz
-L3NlYwo+IFvCoCA1XcKgwqAgOC4wMC05LjAwwqDCoCBzZWPCoCAxNC45IE1CeXRlc8KgwqAgMTI1
-IE1iaXRzL3NlYwo+IFvCoCA1XcKgwqAgOS4wMC0xMC4wMMKgIHNlY8KgIDE1LjAgTUJ5dGVzwqDC
-oCAxMjYgTWJpdHMvc2VjCj4gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAt
-IC0gLSAtIC0gLQo+IFsgSURdIEludGVydmFswqDCoMKgwqDCoMKgwqDCoMKgwqAgVHJhbnNmZXLC
-oMKgwqDCoCBCaXRyYXRlCj4gW8KgIDVdwqDCoCAwLjAwLTEwLjAwwqAgc2VjwqDCoCAzNjMgTUJ5
-dGVzwqDCoCAzMDUgTWJpdHMvc2VjwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBz
-ZW5kZXIKPiBbwqAgNV3CoMKgIDAuMDAtMTAuMDTCoCBzZWPCoMKgIDM2MyBNQnl0ZXPCoMKgIDMw
-MyBNYml0cy9zZWPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgCj4gcmVjZWl2ZXIK
-Pgo+ICoqCj4KPiAqKml0cyBjbGVhcmx5IHZpc2libGUgd2hlbiBpIGFjdGl2YXRlZCB0aGUgb3Ro
-ZXIgc3RyZWFtIGZvciBnZXR0aW5nCj4gZHVwbGV4IGxvYWQgLi4uIFRoZSBoaWdoZXN0IHJhdGUg
-YWxzbyBzdGF5cyBhbG90IHVuZGVyIHRoZSBwb3NzaWJsZQo+IDkzME1CaXRzIHRoYXQgaSBoYXZl
-IHNlZW4gZWFybGllciB3aXRoIDQuMTQuCj4gKioKPgo+ICoqCj4gKioKPgo+ICoqdGhlIHBhcmFs
-bGVsIHN0cmVhbSByZWFjaGVkIGFyb3VuZCA0NTBNYml0cyAsIHdoaWNoIGFsbW9zdCBzdW1zIHVw
-IHRvCj4gNjYwTWJpdHMuIFRoaXMgaXMgd2hhdCBpIG1lYW50IHdoZW4gaSBzYWlkIHRoYXQgZHVw
-bGV4IG1pZ2h0IGJlIGJyb2tlbi4KPiAqKgo+Cj4gKioKPiAqKgo+Cj4gKipDb25uZWN0aW5nIHRv
-IGhvc3QgMTAuMTAuMTEuMTAwLCBwb3J0IDUyMDEKPiBbwqAgNV0gbG9jYWwgMTAuMTAuMTEuMSBw
-b3J0IDM4NjU4IGNvbm5lY3RlZCB0byAxMC4xMC4xMS4xMDAgcG9ydCA1MjAxCj4gWyBJRF0gSW50
-ZXJ2YWzCoMKgwqDCoMKgwqDCoMKgwqDCoCBUcmFuc2ZlcsKgwqDCoMKgIEJpdHJhdGXCoMKgwqDC
-oMKgwqDCoMKgIFJldHLCoCBDd25kCj4gW8KgIDVdwqDCoCAwLjAwLTEuMDDCoMKgIHNlY8KgIDYy
-LjkgTUJ5dGVzwqDCoCA1MjggTWJpdHMvc2VjwqDCoMKgIDDCoMKgIDY1LjYgS0J5dGVzCj4gW8Kg
-IDVdwqDCoCAxLjAwLTIuMDDCoMKgIHNlY8KgIDU2LjkgTUJ5dGVzwqDCoCA0NzcgTWJpdHMvc2Vj
-wqDCoMKgIDDCoMKgIDY1LjYgS0J5dGVzCj4gW8KgIDVdwqDCoCAyLjAwLTMuMDDCoMKgIHNlY8Kg
-IDU1LjkgTUJ5dGVzwqDCoCA0NjkgTWJpdHMvc2VjwqDCoMKgIDDCoMKgIDY1LjYgS0J5dGVzCj4g
-W8KgIDVdwqDCoCAzLjAwLTQuMDDCoMKgIHNlY8KgIDUzLjAgTUJ5dGVzwqDCoCA0NDUgTWJpdHMv
-c2VjwqDCoMKgIDDCoMKgIDY1LjYgS0J5dGVzCj4gW8KgIDVdwqDCoCA0LjAwLTUuMDDCoMKgIHNl
-Y8KgIDU0LjMgTUJ5dGVzwqDCoCA0NTUgTWJpdHMvc2VjwqDCoMKgIDDCoMKgIDY1LjYgS0J5dGVz
-Cj4gW8KgIDVdwqDCoCA1LjAwLTYuMDDCoMKgIHNlY8KgIDU0LjggTUJ5dGVzwqDCoCA0NjAgTWJp
-dHMvc2VjwqDCoMKgIDDCoMKgIDY1LjYgS0J5dGVzCj4gW8KgIDVdwqDCoCA2LjAwLTcuMDDCoMKg
-IHNlY8KgIDQ1LjMgTUJ5dGVzwqDCoCAzODAgTWJpdHMvc2VjwqDCoMKgIDDCoMKgIDY1LjYgS0J5
-dGVzCj4gW8KgIDVdwqDCoCA3LjAwLTguMDDCoMKgIHNlY8KgIDUxLjIgTUJ5dGVzwqDCoCA0Mjkg
-TWJpdHMvc2VjwqDCoMKgIDDCoMKgIDY1LjYgS0J5dGVzCj4gW8KgIDVdwqDCoCA4LjAwLTkuMDDC
-oMKgIHNlY8KgIDU2LjEgTUJ5dGVzwqDCoCA0NzAgTWJpdHMvc2VjwqDCoMKgIDDCoMKgIDY1LjYg
-S0J5dGVzCj4gW8KgIDVdwqDCoCA5LjAwLTEwLjAwwqAgc2VjwqAgNTUuMyBNQnl0ZXPCoMKgIDQ2
-NCBNYml0cy9zZWPCoMKgwqAgMMKgwqAgNjUuNiBLQnl0ZXMKPiAtIC0gLSAtIC0gLSAtIC0gLSAt
-IC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtCj4gWyBJRF0gSW50ZXJ2YWzCoMKgwqDCoMKg
-wqDCoMKgwqDCoCBUcmFuc2ZlcsKgwqDCoMKgIEJpdHJhdGXCoMKgwqDCoMKgwqDCoMKgIFJldHIK
-PiBbwqAgNV3CoMKgIDAuMDAtMTAuMDDCoCBzZWPCoMKgIDU0NiBNQnl0ZXPCoMKgIDQ1OCBNYml0
-cy9zZWPCoMKgwqAgMMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzZW5kZXIKPiBbwqAgNV3CoMKg
-IDAuMDAtMTAuMDDCoCBzZWPCoMKgIDU0NSBNQnl0ZXPCoMKgIDQ1NyBNYml0cy9zZWPCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgCj4gcmVjZWl2ZXIqKgo+Cj4gKioKPiAqKgo+Cj4g
-KipyZWdhcmRzLCoqCj4KPiAqKlNpbW9uCj4gKioKPgo+ICoqCj4gKioKPgpIaSwKCgphbmQgYW5v
-dGhlciB0aGluZyB0aGF0IGkgcmVjb2duaXplZCAsIFRYIGZyb20gbXkgb2Ryb2lkIHN0YXlzIGFy
-b3VuZCA0NTAKTWJpdHMgKCBpcyBub3QgYWZmZWN0ZWQgYnkgUlgpLiBidXQgUlggc3VmZmVycyBh
-bG90IGZyb20gdGhlIFRYIHN0dWZmICgKdGhlIG1heCBzdW0gb2YgUlgvVFggc2VlbXMgdG8gYmUg
-dGhlIG1hZ2ljYWwgNjUwTUJpdHMpCgoKcmVnYXJkcywKClNpbW9uCgoKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxp
-c3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRl
-YWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+Hi Neil,
+
+On Tue, Feb 12, 2019 at 4:16 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> This adds support for the shared USB3 + PCIE PHY found in the
+> Amlogic G12A SoC Family.
+>
+> It supports USB3 Host mode or PCIE 2.0 mode, depending on the layout of
+> the board.
+>
+> Selection is done by the #phy-cells, making the mode static and exclusive.
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  drivers/phy/amlogic/Kconfig                   |  12 +
+>  drivers/phy/amlogic/Makefile                  |   1 +
+>  .../phy/amlogic/phy-meson-g12a-usb3-pcie.c    | 414 ++++++++++++++++++
+>  3 files changed, 427 insertions(+)
+>  create mode 100644 drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
+>
+> diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
+> index 78d6e194dce9..7ccb9a756aba 100644
+> --- a/drivers/phy/amlogic/Kconfig
+> +++ b/drivers/phy/amlogic/Kconfig
+> @@ -48,3 +48,15 @@ config PHY_MESON_G12A_USB2
+>           Enable this to support the Meson USB2 PHYs found in Meson
+>           G12A SoCs.
+>           If unsure, say N.
+> +
+> +config PHY_MESON_G12A_USB3_PCIE
+> +       tristate "Meson G12A USB3+PCIE Combo PHY drivers"
+nit-pick: s/drivers/driver/
+
+> +       default ARCH_MESON
+> +       depends on OF && (ARCH_MESON || COMPILE_TEST)
+> +       depends on USB_SUPPORT
+> +       select GENERIC_PHY
+> +       select REGMAP_MMIO
+> +       help
+> +         Enable this to support the Meson USB3 + PCIE Combi PHY found
+> +         in Meson G12A SoCs.
+> +         If unsure, say N.
+> diff --git a/drivers/phy/amlogic/Makefile b/drivers/phy/amlogic/Makefile
+> index 7d4d10f5a6b3..fdd008e1b19b 100644
+> --- a/drivers/phy/amlogic/Makefile
+> +++ b/drivers/phy/amlogic/Makefile
+> @@ -2,3 +2,4 @@ obj-$(CONFIG_PHY_MESON8B_USB2)          += phy-meson8b-usb2.o
+>  obj-$(CONFIG_PHY_MESON_GXL_USB2)       += phy-meson-gxl-usb2.o
+>  obj-$(CONFIG_PHY_MESON_G12A_USB2)      += phy-meson-g12a-usb2.o
+>  obj-$(CONFIG_PHY_MESON_GXL_USB3)       += phy-meson-gxl-usb3.o
+> +obj-$(CONFIG_PHY_MESON_G12A_USB3_PCIE) += phy-meson-g12a-usb3-pcie.o
+> diff --git a/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c b/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
+> new file mode 100644
+> index 000000000000..59eae98928e9
+> --- /dev/null
+> +++ b/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
+> @@ -0,0 +1,414 @@
+[...]
+> +static int phy_g12a_usb3_init(struct phy *phy)
+> +{
+> +       struct phy_g12a_usb3_pcie_priv *priv = phy_get_drvdata(phy);
+> +       int data, ret;
+> +
+> +       /* Switch PHY to USB3 */
+> +       regmap_update_bits(priv->regmap, PHY_R0,
+> +                          PHY_R0_PCIE_USB3_SWITCH,
+> +                          PHY_R0_PCIE_USB3_SWITCH);
+> +
+> +       /*
+> +        * WORKAROUND: There is SSPHY suspend bug due to
+> +        * which USB enumerates
+> +        * in HS mode instead of SS mode. Workaround it by asserting
+> +        * LANE0.TX_ALT_BLOCK.EN_ALT_BUS to enable TX to use alt bus
+> +        * mode
+> +        */
+> +       ret = regmap_update_bits(priv->regmap_cr, 0x102d, BIT(7), BIT(7));
+does the datasheet have names for these registers / bits? it if does
+then it would be great if you could introduce #defines for them
+
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret = regmap_update_bits(priv->regmap_cr, 0x1010, 0xff0, 20);
+> +       if (ret)
+> +               return ret;
+> +
+> +       /*
+> +        * Fix RX Equalization setting as follows
+> +        * LANE0.RX_OVRD_IN_HI. RX_EQ_EN set to 0
+> +        * LANE0.RX_OVRD_IN_HI.RX_EQ_EN_OVRD set to 1
+> +        * LANE0.RX_OVRD_IN_HI.RX_EQ set to 3
+> +        * LANE0.RX_OVRD_IN_HI.RX_EQ_OVRD set to 1
+> +        */
+> +       ret = regmap_read(priv->regmap_cr, 0x1006, &data);
+> +       if (ret)
+> +               return ret;
+> +
+> +       data &= ~BIT(6);
+> +       data |= BIT(7);
+> +       data &= ~(0x7 << 8);
+> +       data |= (0x3 << 8);
+> +       data |= (1 << 11);
+> +       ret = regmap_write(priv->regmap_cr, 0x1006, data);
+> +       if (ret)
+> +               return ret;
+> +
+> +       /*
+> +        * Set EQ and TX launch amplitudes as follows
+> +        * LANE0.TX_OVRD_DRV_LO.PREEMPH set to 22
+> +        * LANE0.TX_OVRD_DRV_LO.AMPLITUDE set to 127
+> +        * LANE0.TX_OVRD_DRV_LO.EN set to 1.
+> +        */
+> +       ret = regmap_read(priv->regmap_cr, 0x1002, &data);
+> +       if (ret)
+> +               return ret;
+> +
+> +       data &= ~0x3f80;
+> +       data |= (0x16 << 7);
+> +       data &= ~0x7f;
+> +       data |= (0x7f | BIT(14));
+> +       ret = regmap_write(priv->regmap_cr, 0x1002, data);
+> +       if (ret)
+> +               return ret;
+> +
+> +       /*
+> +        * MPLL_LOOP_CTL.PROP_CNTRL = 8
+> +        */
+why a multi-line comment here? "Switch PHY to USB3" above uses a
+single-line comment
+
+> +       ret = regmap_update_bits(priv->regmap_cr, 0x30, 0xf << 4, 8 << 4);
+> +       if (ret)
+> +               return ret;
+> +
+> +       regmap_update_bits(priv->regmap, PHY_R2,
+> +                       PHY_R2_PHY_TX_VBOOST_LVL,
+> +                       FIELD_PREP(PHY_R2_PHY_TX_VBOOST_LVL, 0x4));
+> +
+> +       regmap_update_bits(priv->regmap, PHY_R1,
+> +                       PHY_R1_PHY_LOS_BIAS | PHY_R1_PHY_LOS_LEVEL,
+> +                       FIELD_PREP(PHY_R1_PHY_LOS_BIAS, 4) |
+> +                       FIELD_PREP(PHY_R1_PHY_LOS_LEVEL, 9));
+> +
+> +       return 0;
+> +}
+> +
+> +static int phy_g12a_usb3_pcie_init(struct phy *phy)
+> +{
+> +       struct phy_g12a_usb3_pcie_priv *priv = phy_get_drvdata(phy);
+> +       int ret;
+> +
+> +       ret = reset_control_reset(priv->reset);
+> +       if (ret)
+> +               return ret;
+> +
+> +       if (priv->mode == PHY_TYPE_USB3)
+> +               return phy_g12a_usb3_init(phy);
+> +
+> +       /* Power UP PCIE */
+> +       regmap_update_bits(priv->regmap, PHY_R0,
+> +                          PHY_R0_PCIE_POWER_STATE,
+> +                          FIELD_PREP(PHY_R0_PCIE_POWER_STATE, 0x1c));
+do we also need this for USB mode?
+also do we need to change the PHY_R2 register values
+(PHY_R2_PHY_TX_VBOOST_LVL for example) for PCIe, for example if the
+bootloader initialized the PHY in USB3 mode while the board actually
+exposes a PCIe port?
+
+
+Regards
+Martin
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
