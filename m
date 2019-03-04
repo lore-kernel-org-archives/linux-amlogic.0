@@ -6,16 +6,16 @@ X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
 	SIGNED_OFF_BY,SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0D368C43381
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Mar 2019 02:27:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AE578C43381
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Mar 2019 02:29:03 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D1CEC20835
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Mar 2019 02:27:34 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7A73620835
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Mar 2019 02:29:03 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NF37gfNd"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D1CEC20835
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="JXVFXL2/"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7A73620835
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,42 +24,42 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=TqAyilVWP7N1hBHzyuhSRv1WF1v6AF6pRQWopWmyHlE=; b=NF37gfNdVG2/xb14t8IONCNTX
-	R1qXw7TA7wC/GAVUPWycshy9McTdmwAed40R1sV+LTsbooZ8l1oHZ0RIZPTWEjz0dyl5IFdvrE8D7
-	9nlMH3g1LLaJPwYXzWxKiSWedYcOJ3iK4r6dAnRsyz/q4vVOh2QCnDln2SBTdEXbRuhIgFHhBC7s9
-	CSqS0iqcGFESR5QzjcpXbhhUV1lBvrBSGcXhPvx/U88ysySe7GjV0aBzV29nT5gmg99qGFnZlUW5l
-	25s0/nhbGVeCt3/SWuwKJaUj1JsZx/rYEqBszHsYFzb4kwda+0J9Sr0AWA1hcgjhSq+54+sX7xzly
-	4WsMzqP5g==;
+	 bh=sqbjHvDXnC7wW9nMXVbiPDojvc+LNfJBa9AriSye45E=; b=JXVFXL2/bpq125dN16cZzu3Vd
+	G8hm0/46gk/giQBCkqfEavMtw+mapWrUB4Xns0iH3bnAu9lXdwLQwJLH9668vPQcISLIGum92vb30
+	X22NyjfT9m8/6WSgsp1zrKomxMpiRL2Q7ZZs1QrjtyudFP7ISDgOVwhC1sPUZA8LnoCVDejrmb7No
+	VGjK+K2viGM5/Am7kKoUf5DQI8TRT3qguxpbj4ySLCCk/LC/sr4pr3lek4KEx33pHyjI3advbHiaS
+	m4EXF3pePnA+Ell9uwgwfEuBWTgpnkshhLZ+UjMQ/UocEX+T+gAr0Vt27LdqIpVSy2f9UH2IfOKD9
+	MK2MgeDFA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h0dK7-0002OQ-Ot; Mon, 04 Mar 2019 02:27:23 +0000
+	id 1h0dLd-0002l4-KJ; Mon, 04 Mar 2019 02:28:57 +0000
 Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h0dJv-0002GJ-KZ; Mon, 04 Mar 2019 02:27:13 +0000
+ id 1h0dLV-0002ad-0B; Mon, 04 Mar 2019 02:28:50 +0000
 Received: from [10.28.18.125] (10.28.18.125) by mail-sz.amlogic.com
  (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Mon, 4 Mar
- 2019 10:28:11 +0800
-Subject: Re: [PATCH 1/2] mtd: rawnand: meson: add missing ENOMEM check in
- meson_nfc_read_buf()
+ 2019 10:29:54 +0800
+Subject: Re: [PATCH 2/2] mtd: rawnand: meson: fix a potential memory leak in
+ meson_nfc_read_buf
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  <linux-amlogic@lists.infradead.org>, <linux-mtd@lists.infradead.org>
 References: <20190301173820.30776-1-martin.blumenstingl@googlemail.com>
- <20190301173820.30776-2-martin.blumenstingl@googlemail.com>
+ <20190301173820.30776-3-martin.blumenstingl@googlemail.com>
 From: Liang Yang <liang.yang@amlogic.com>
-Message-ID: <4835b7c3-e360-fb73-7ddb-b86fa3c59f8c@amlogic.com>
-Date: Mon, 4 Mar 2019 10:28:11 +0800
+Message-ID: <c152e9a7-55ce-424c-8468-a4e861792582@amlogic.com>
+Date: Mon, 4 Mar 2019 10:29:54 +0800
 User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:60.0) Gecko/20100101
  Thunderbird/60.5.1
 MIME-Version: 1.0
-In-Reply-To: <20190301173820.30776-2-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20190301173820.30776-3-martin.blumenstingl@googlemail.com>
 Content-Language: en-US
 X-Originating-IP: [10.28.18.125]
 X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
  (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190303_182711_675318_3C5C0623 
-X-CRM114-Status: GOOD (  12.69  )
+X-CRM114-CacheID: sfid-20190303_182849_041831_4DC3D955 
+X-CRM114-Status: GOOD (  13.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -80,35 +80,46 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hello Martin,
 
+Thank you very much.
+
 On 2019/3/2 1:38, Martin Blumenstingl wrote:
-> kzalloc() can return NULL if memory could not be allocated. Check the
-> return value of the kzalloc() call in meson_nfc_read_buf() to make it
-> consistent with other memory allocations within the meson_nand driver.
+> meson_nfc_dma_buffer_setup() is called with the "info" buffer which is
+> allocated a few lines before using kzalloc(). If
+> meson_nfc_dma_buffer_setup() fails we need to free the allocated "info"
+> buffer instead of only freeing it upon success.
 > 
 > Fixes: 8fae856c53500a ("mtd: rawnand: meson: add support for Amlogic NAND flash controller")
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->   drivers/mtd/nand/raw/meson_nand.c | 3 +++
->   1 file changed, 3 insertions(+)
+>   drivers/mtd/nand/raw/meson_nand.c | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
 > 
 > diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-> index 3e8aa71407b5..a1d8506b61c7 100644
+> index a1d8506b61c7..38db4fd61459 100644
 > --- a/drivers/mtd/nand/raw/meson_nand.c
 > +++ b/drivers/mtd/nand/raw/meson_nand.c
-> @@ -528,6 +528,9 @@ static int meson_nfc_read_buf(struct nand_chip *nand, u8 *buf, int len)
->   	u8 *info;
->   
->   	info = kzalloc(PER_INFO_BYTE, GFP_KERNEL);
-> +	if (!info)
-> +		return -ENOMEM;
-> +
-
-Thank you very much. it is really good to me.
-Acked-by: Liang Yang <liang.yang@amlogic.com>
-
+> @@ -534,7 +534,7 @@ static int meson_nfc_read_buf(struct nand_chip *nand, u8 *buf, int len)
 >   	ret = meson_nfc_dma_buffer_setup(nand, buf, len, info,
 >   					 PER_INFO_BYTE, DMA_FROM_DEVICE);
 >   	if (ret)
+> -		return ret;
+> +		goto out;
+>   Looks good to me.
+Acked-by: Liang Yang <liang.yang@amlogic.com>
+
+>   	cmd = NFC_CMD_N2M | (len & GENMASK(5, 0));
+>   	writel(cmd, nfc->reg_base + NFC_REG_CMD);
+> @@ -542,6 +542,8 @@ static int meson_nfc_read_buf(struct nand_chip *nand, u8 *buf, int len)
+>   	meson_nfc_drain_cmd(nfc);
+>   	meson_nfc_wait_cmd_finish(nfc, 1000);
+>   	meson_nfc_dma_buffer_release(nand, len, PER_INFO_BYTE, DMA_FROM_DEVICE);
+> +
+> +out:
+Looks good to me.
+Acked-by: Liang Yang <liang.yang@amlogic.com>
+>   	kfree(info);
+>   
+>   	return ret;
 > 
 
 _______________________________________________
