@@ -4,59 +4,144 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4461DC43381
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Mar 2019 04:56:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A4F6DC43381
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Mar 2019 09:34:13 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 138D620815
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Mar 2019 04:56:38 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5CAB720823
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Mar 2019 09:34:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="u64XySra"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 138D620815
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="D+uyzmUe";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="FNYUqEFS"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5CAB720823
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=1mMf1b3VfKFCN5rO4qmaGmNtHExDu/Sy7jCPVgSi4PQ=; b=u64XySraMtsnFefGr7910xbpa
-	ZudY9QWil+yvFUkAYx9XFJeVnhUsX6e+Fn9ayzBtdZhpy7lF0npoSjaCcZF74pVSwkFWETVm3t856
-	YtJEmHU/Hi3vrGYOJPxX6YagLWSzOKfUaPvLFxaWmzCq8zX2mBchbf9UiL4AAEGprs3/LWh0EaWyC
-	+6ckRy21ESm30PWXCTmbMDbrlV3xwGeN+0YVHWF+dYFR0VGPAr2FIMc7xloBLJ8PJX1bs3XtEd2m4
-	FO2jtXRoPs3V5vyJhavJL28FOQd6yxREYrphtJ8bB3n8d2X5mXWNhUsCp2UCMGHhD/Gzy8FdFvrHE
-	JQ1lFywNQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=oCqmjdAGLAVl+Y+LINXVGUS81NvELaHqD9j91L8CvUg=; b=D+uyzmUefuIngh
+	EEWrNpvrMWGqO0gB7nRwPEqZi1siqymkGKa5z51Ldv8Gt0ieqxfdUSpeSsDcQobGDVT8xMX8xfl5p
+	C5vKvePHpbEahfCzBBczKPoLmujVK6tmg2bMY3YlsjiqQhQniFZiq8EMlCvxBaekgxNTyQJZpq/87
+	hV9HyGUf8eikuBy2dD1hn72q9N6/RNuj7Y/fh091plVrUc7vHbqsCu1bAvGRlMYi8HP8qsb5vm2Kz
+	KPfX1u+bfS0Whog4hiEwjDB5y6GAB+O28zzPeFvaEp8s6KApzbxH/dJV1SDYoN2A2YnT45GzLy5F8
+	eqqYYP8mCizXQjfonFnA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h0feP-0007Wj-S1; Mon, 04 Mar 2019 04:56:29 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1h0jz2-0007KL-LR; Mon, 04 Mar 2019 09:34:04 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h0feG-0007M8-Vm; Mon, 04 Mar 2019 04:56:22 +0000
-Received: from [10.28.18.125] (10.28.18.125) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Mon, 4 Mar
- 2019 12:56:42 +0800
-Subject: Re: [RFC PATCH nand-next 0/2] meson-nand: support for older SoCs
+ id 1h0jyz-0007JL-9H
+ for linux-amlogic@lists.infradead.org; Mon, 04 Mar 2019 09:34:03 +0000
+Received: by mail-wr1-x444.google.com with SMTP id w17so4689735wrn.12
+ for <linux-amlogic@lists.infradead.org>; Mon, 04 Mar 2019 01:33:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=IW/8YsNJV2jsAkJliYBu42s7jgtHk3nBWT8Ex5IVnbQ=;
+ b=FNYUqEFSgiLV79smnxx2LL29UmM7A2XHzLxuoAFEJzWRq6VVOlFFa2Db42NjiciP/j
+ rLUvOi2CqjhvMmPpK1MGB16piD/O4LyR1wTpvzYKDHvMBbndXOqH7xZW9Rlvu0YEHyK/
+ qF/ppSSOdOgZ1cR77D6fDEy6Lbzwx9CUqTbp1mhnUZBTjN3o2u5O/PHSf3bUkwPfwHzB
+ uOrJEqzE2/NTzqB4dNoQHo19PY8rL2rO78bbDXqyxRU48qq0BK/z6lBh7lOVYsKoxKA4
+ uOkowtohEAj1fdibI+lMH+1KHpEJDJm/NpF//r91vipjIYtNjKb8PBug20r0hEObkJ4B
+ avFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=IW/8YsNJV2jsAkJliYBu42s7jgtHk3nBWT8Ex5IVnbQ=;
+ b=JXELJk8ALHGciZ3yRvdzc90TTe5UlXLQ/BJT+TmtRb2HzsYj2mojuWm0RI9fvVntI2
+ ntjpSQ+kFLsIOyX/OPK2eZ3SiXMzE2ft1FZhqQlkVz4V/pCghojbZ7rS/1IQMeIYpHku
+ NN7UPjrYxQ7O7551K6ZZqMCYAGGCMhojWSysHyZZDz0l3Oju4yOwzvjwUZug8i4UvAJU
+ 5z+1mH1mzb3YILUkAQJiaVwymnYkA7QEXzyRdKBfE3+yTVryLB5pcmTMpMz7q41W20Fl
+ wafPdYDAOLa7CL29AZBBm3N9uP0Io10kQIXr5Hh95BztkofuGlYL1MgSABGw5ZfEHHUc
+ +1RQ==
+X-Gm-Message-State: APjAAAUR4aPmOQ9fjFKywKJAdV+K0kpa85RO3xRLzW7jW05NoinuzXAQ
+ dzTjuERPN0hcntarTkLr7RxDKQ==
+X-Google-Smtp-Source: APXvYqwO/FJNIjx5ByFaIIH+0ARbfxNe+re5z2LmJGb0J1DrXdIyImpK21a6wZ7VxaPjQ7HXlXR5ig==
+X-Received: by 2002:a5d:4605:: with SMTP id t5mr11728402wrq.311.1551692037968; 
+ Mon, 04 Mar 2019 01:33:57 -0800 (PST)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id e193sm12832325wmg.18.2019.03.04.01.33.56
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 04 Mar 2019 01:33:57 -0800 (PST)
+Subject: Re: [PATCH 8/8] usb: dwc3: Add Amlogic G12A DWC3 glue
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20190301182922.8309-1-martin.blumenstingl@googlemail.com>
-From: Liang Yang <liang.yang@amlogic.com>
-Message-ID: <98776767-c4d7-1207-6d42-97105f289bec@amlogic.com>
-Date: Mon, 4 Mar 2019 12:56:41 +0800
-User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:60.0) Gecko/20100101
- Thunderbird/60.5.1
+References: <20190212151413.24632-1-narmstrong@baylibre.com>
+ <20190212151413.24632-9-narmstrong@baylibre.com>
+ <CAFBinCBoahGTbnii0Dhfj75YC8u2HjodAqFWwtD=K3xOZ-wGPw@mail.gmail.com>
+ <CAFBinCDjFJS58+6yqxrsyHvhycsg2sC4tTtRj8O=GkcPJpR5Tg@mail.gmail.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <2a6e3d5d-fb32-455c-ae86-16bc6ba024dd@baylibre.com>
+Date: Mon, 4 Mar 2019 10:33:56 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.4.0
 MIME-Version: 1.0
-In-Reply-To: <20190301182922.8309-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <CAFBinCDjFJS58+6yqxrsyHvhycsg2sC4tTtRj8O=GkcPJpR5Tg@mail.gmail.com>
 Content-Language: en-US
-X-Originating-IP: [10.28.18.125]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190303_205621_025888_D64A5AAA 
-X-CRM114-Status: GOOD (  26.25  )
+X-CRM114-CacheID: sfid-20190304_013401_456763_AB8D9ECA 
+X-CRM114-Status: GOOD (  11.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -68,151 +153,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mark.rutland@arm.com, devicetree@vger.kernel.org, jianxin.pan@amlogic.com,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org,
- linux-mtd@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+Cc: balbi@kernel.org, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kishon@ti.com, hminas@synopsys.com,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Martin,
+Hi,
 
-On 2019/3/2 2:29, Martin Blumenstingl wrote:
-> Hi Liang,
+On 02/03/2019 11:29, Martin Blumenstingl wrote:
+> Hi Neil,
 > 
-> I am trying to add support for older SoCs to the meson-nand driver.
-> Back when the driver was in development I used an early revision (of
-> your driver) and did some modifications to make it work on older SoCs.
-> 
-> Now that the driver is upstream I wanted to give it another try and
-> make a real patch out of it. Unfortunately it's not working anymore.
-> 
-> As far as I know the NFC IP block revision on GXL is similar (or even
-> the same?) as on all older SoCs. As far as I can tell only the clock
-> setup is different on the older SoCs (which have a dedicated NAND
-> clock):
-> - we don't need the "amlogic,mmc-syscon" property on the older SoCs
->    because we don't need to setup any muxing (common clock framework
->    will do everything for us)
-> - "rx" and "tx" clocks don't exist
-> - I could not find any other differences between Meson8, Meson8b,
->    Meson8m2, GXBB and GXL
-> 
-That is right. the serials NFC is almost the same except:
-1) The clock control and source that M8-serials are not share with EMMC.
-2) The base register address
-3) DMA encryption option which we don't care on NFC driver.
+>>> +static int dwc3_meson_g12a_debugfs_init(struct dwc3_meson_g12a *priv)
+>>> +{
+>>> +       priv->root = debugfs_create_dir("dwc3-meson-g12a", NULL);
+>>> +       if (IS_ERR(priv->root))
+>>> +               return PTR_ERR(priv->root);
+>>> +
+>>> +       debugfs_create_file("mode_force", 0600, priv->root, priv,
+>>> +                           &dwc3_meson_g12a_mode_force_fops);
+>>> +
+>>> +       debugfs_create_file("otg_id", 0400, priv->root, priv,
+>>> +                           &dwc3_meson_g12a_otg_id_fops);
+>>> +
+>>> +       return 0;
+>>> +}
+> I just stumbled across the "USB role switch framework", see [0]
+> it seems to provide a userspace API as well and two in-kernel drivers
+> are using this framework already
+> (drivers/usb/gadget/udc/renesas_usb3.c,
+> drivers/usb/roles/intel-xhci-usb-role-switch.c)
 
-> In this series I'm sending two patches which add support for the older
-> SoCs.
-> 
-> Unfortunately these patches are currently not working for me (hence the
-> "RFC" prefix). I get a (strange) crash which is triggered by the
-> kzalloc() in meson_nfc_read_buf() - see below for more details.
-> 
-> Can you please help me on this one? I'd like to know whether:
-> - the meson-nand driver works for you on GXL or AXG on linux-next?
->    (I was running these patches on top of next-20190301 on my M8S
->    board which uses a 32-bit Meson8m2 SoC. I don't have any board using
->    a GXL SoC which also has NAND)
-Yes, it works on AXG platform using a MXIC slc nand flash(MX30LF4G); but 
-i an not sure it runs the same flow with yours. because i see the print 
-"Counld not find a valid ONFI parameter page, ...." in yours. i will try 
-to reproduce it on AXG(i don't have a M8 platform now).
+Just added support for it, works perfectly :-)
 
-> - you see any issue with my patches? (maybe I missed more differences
->    between GXL and the older SoCs)
-> 
-i think it is ok now.
-> 
-> kernel log extract:
-> [...]
-> Could not find a valid ONFI parameter page, trying bit-wise majority to recover it
-> ONFI parameter recovery failed, aborting
-> Unable to handle kernel paging request at virtual address 80110000
-> pgd = (ptrval)
-> [80110000] *pgd=00000000
-> Internal error: Oops: 5 [#1] PREEMPT SMP ARM
-> Modules linked in:
-> CPU: 2 PID: 1 Comm: swapper/0 Not tainted 5.0.0-rc8-next-20190301-00053-g50ac6f7757e2 #4145
-> Hardware name: Amlogic Meson platform
-> PC is at kmem_cache_alloc_trace+0xc8/0x268
-> LR is at kmem_cache_alloc_trace+0x2c/0x268
-> pc : [<c046479c>]    lr : [<c0464700>]    psr: 60000013
-> sp : c02adc58  ip : e9e7a440  fp : 00004ee2
-> r10: 80110000  r9 : ffffe000  r8 : c110918c
-> r7 : 00000008  r6 : c08967c0  r5 : 00000dc0  r4 : c0201e40
-> r3 : c109dd30  r2 : 00000000  r1 : 00004ee2  r0 : 00000000
-> Flags: nZCv  IRQs on  FIQs on  Mode SVC_32  ISA ARM  Segment none
-> Control: 10c5387d  Table: 0020404a  DAC: 00000051
-> Process swapper/0 (pid: 1, stack limit = 0x(ptrval))
-> Stack: (0xc02adc58 to 0xc02ae000)
-> dc40:                                                       e9d84048 00000003
-> dc60: e9e7a440 c02add18 00000028 e9e68680 c02adcf0 00000003 e9d84048 00000002
-> dc80: e9e7a440 c08967c0 c1108cb4 c02adcdc 10624dd3 c02adce4 10624dd3 00000005
-> dca0: e9e7a440 c0f5c310 00000028 c0f09998 00000005 e9d84048 00000005 c02add57
-> dcc0: c1108c88 e9e7a440 c02adcf0 e9d84428 e9d843b0 c0882258 000000ff 40000000
-> dce0: c02adce8 00000000 c02adcf0 00000003 00000000 00000090 00000000 00000000
-> dd00: 00000000 00000001 00000001 c02adcdf 00000000 00000190 00000002 00000005
-> dd20: c02add57 00000001 00000000 a10a1ef7 00000000 c1108c88 c1180250 e9d843c0
-> dd40: 00000001 000000de 00000000 c088d114 c0f08db4 00d843c0 00000000 a10a1ef7
-> dd60: 00000015 e9d84048 c1108c88 c088d470 e9d84048 c08888b4 00000000 60000013
-> dd80: c0eebc9c 000000ad c0da01ac 00000000 e9e7a48c c0cc6d50 c12122cc a10a1ef7
-> dda0: e9e7a440 e9e7a440 e9d84040 c0eebc9c e987f410 eafd6748 e9d84048 c1108c88
-> ddc0: e9e7a48c c0895c70 00000000 e9871f00 e9e7a440 c04eef60 00000000 eafd64bc
-> dde0: e9e7a534 00000000 00000000 00000000 00000001 a10a1ef7 00000000 e987f410
-> de00: 00000000 c1180728 00000000 00000000 c1180728 00000000 c1071854 c07fd388
-> de20: c120da38 e987f410 c120da3c 00000000 00000000 c07fb410 e987f410 c1180728
-> de40: c1180728 c07fb910 00000000 c1071834 c10004a8 c07fb65c c10004a8 c0a917b4
-> de60: c0da1914 e987f410 00000000 c1180728 c07fb910 00000000 c1071834 c10004a8
-> de80: c1071854 c07fb908 00000000 c1180728 e987f410 c07fb968 e98b8eb4 c1108c88
-> dea0: c1180728 c07f97d4 c1175260 c029a958 e98b8eb4 a10a1ef7 c029a96c c1180728
-> dec0: e9e1fa80 c1175260 00000000 c07fa844 c0f09c64 c1108c88 ffffe000 c1180728
-> dee0: c1108c88 ffffe000 c103b788 c07fc494 c11c2ca0 c1108c88 ffffe000 c0302f1c
-> df00: ebfffd96 c0346f90 c0fab8a0 c0f2ad00 00000000 00000006 00000006 c0e9e26c
-> df20: 00000000 c1108c88 c0eb11b0 c0e9e2e0 c11d1300 ebfffd84 ebfffd89 a10a1ef7
-> df40: c1071838 c11c2ca0 c10914b8 a10a1ef7 c11c2ca0 c1091804 00000007 c11d1300
-> df60: c11d1300 c1001180 00000006 00000006 00000000 c10004a8 0000013d 00000000
-> df80: c02c0504 00000000 c0cbf6e8 00000000 00000000 00000000 00000000 00000000
-> dfa0: 00000000 c0cbf6f0 00000000 c03010e8 00000000 00000000 00000000 00000000
-> dfc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-> dfe0: 00000000 00000000 00000000 00000000 00000013 00000000 00000000 00000000
-> [<c046479c>] (kmem_cache_alloc_trace) from [<c08967c0>] (meson_nfc_exec_op+0x2c4/0x3e8)
-> [<c08967c0>] (meson_nfc_exec_op) from [<c0882258>] (nand_readid_op+0x128/0x1c4)
-> [<c0882258>] (nand_readid_op) from [<c088d114>] (hynix_nand_has_valid_jedecid+0x34/0x78)
-> [<c088d114>] (hynix_nand_has_valid_jedecid) from [<c088d470>] (hynix_nand_decode_id+0x64/0x3fc)
-> [<c088d470>] (hynix_nand_decode_id) from [<c08888b4>] (nand_scan_with_ids+0xa04/0x171c)
-> [<c08888b4>] (nand_scan_with_ids) from [<c0895c70>] (meson_nfc_probe+0x460/0x690)
-> [<c0895c70>] (meson_nfc_probe) from [<c07fd388>] (platform_drv_probe+0x48/0x98)
-> [<c07fd388>] (platform_drv_probe) from [<c07fb410>] (really_probe+0x1e0/0x2cc)
-> [<c07fb410>] (really_probe) from [<c07fb65c>] (driver_probe_device+0x60/0x16c)
-> [<c07fb65c>] (driver_probe_device) from [<c07fb908>] (device_driver_attach+0x58/0x60)
-> [<c07fb908>] (device_driver_attach) from [<c07fb968>] (__driver_attach+0x58/0xcc)
-> [<c07fb968>] (__driver_attach) from [<c07f97d4>] (bus_for_each_dev+0x74/0xb4)
-> [<c07f97d4>] (bus_for_each_dev) from [<c07fa844>] (bus_add_driver+0x1b8/0x1d8)
-> [<c07fa844>] (bus_add_driver) from [<c07fc494>] (driver_register+0x74/0x108)
-> [<c07fc494>] (driver_register) from [<c0302f1c>] (do_one_initcall+0x54/0x284)
-> [<c0302f1c>] (do_one_initcall) from [<c1001180>] (kernel_init_freeable+0x2d4/0x36c)
-> [<c1001180>] (kernel_init_freeable) from [<c0cbf6f0>] (kernel_init+0x8/0x110)
-> [<c0cbf6f0>] (kernel_init) from [<c03010e8>] (ret_from_fork+0x14/0x2c)
-> Exception stack(0xc02adfb0 to 0xc02adff8)
-> dfa0:                                     00000000 00000000 00000000 00000000
-> dfc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-> dfe0: 00000000 00000000 00000000 00000000 00000013 00000000
-> Code: e5943000 e5942014 e3130007 1a000038 (e79ae002)
-> ---[ end trace 28d391ed14b0f021 ]---
+Neil
+
 > 
 > 
-> Martin Blumenstingl (2):
->    dt-bindings: nand: meson: add support for more SoCs
->    mtd: rawnand: meson: support for older SoCs up to Meson8
+> [0] https://elixir.bootlin.com/linux/v5.0-rc8/source/drivers/usb/roles/class.c#L246
 > 
->   .../bindings/mtd/amlogic,meson-nand.txt       | 14 ++++--
->   drivers/mtd/nand/raw/meson_nand.c             | 46 +++++++++++++------
->   2 files changed, 42 insertions(+), 18 deletions(-)
-> 
+
 
 _______________________________________________
 linux-amlogic mailing list
