@@ -2,85 +2,90 @@ Return-Path: <SRS0=/5FS=RH=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.9 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	FROM_EXCESS_BASE64,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URI_HEX autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 09CE4C43381
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Mar 2019 13:58:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2DCD2C43381
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Mar 2019 15:34:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C9BF3206B8
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Mar 2019 13:58:26 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9B9FE20657
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Mar 2019 15:34:16 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UApku423";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Mv89EQe8"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C9BF3206B8
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="S0/4cBrA";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="lzWT85go"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9B9FE20657
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=YPgRqsfDfDix2Z3ehN7e0YZNIMWF7o2YMbTE4Mdu+OU=; b=UApku423eCifpkXIOlz7+a/P7a
-	CvxL/JH8fu2qrr7ezW0BIyNc+aateF+bP/ihvzlSeEN0DckQPU2i+glrKSRB61bjtkBkpzouzuJC5
-	UK5BHYmO1wJ44B/vOR8A+DroeV1K4dnpCYQdF7fQSwJg/ilhPIkoJfuK+mvw5qTH8LXvmb521lIk6
-	9uiK1rXIqoIqno3RXDdRKdncSovJxaL7mWfzMMUdjsgI0Z/fv72eyaFAOi7ZNOEYwiXYirDzBO+cj
-	6NuON/l50LkthyQca95s8kUbHRdt01wP8hJHoWUYgCO9HqipszSh1U8Ah9ZJWqcPnEoPbIA8j7dVy
-	ZxSVLFew==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:To:From:Subject:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=4qukKOuCSYh0uO+KkEH0ZSdSk42GUILUh96TBdS6hhU=; b=S0/4cBrAj/4B/C
+	G/MK7dsMXNzy825BEhl6JK6dB5WYT9gD4XbxjGlLQ7FraselHLzpRNhOT4BWvBbpJj+Zq9HgqkAPo
+	NNktyivIznGA3NHI4aTMl18ZjlVsQcYLgFdaJo06dRfag+n37NWjnPj95hDwNVexvFCLK1RE619yp
+	spfxMNTxs8gIyT9J9+HihDQlfydiGTK1MPbIVPvzOuaiuDd4kjurdkbrSVE8Xwq9/MyD7bmT8AZMi
+	V2dW7EerQ9d9FihUEhsIReL479Ty9JLW9/h7qyNHws59BSw+2poqkBNO8xmvqPMSwkJusPGKVEGs7
+	xXhAvSzsdm+zoPhdRlWA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h0o6n-0001Bj-R3; Mon, 04 Mar 2019 13:58:21 +0000
-Received: from mail-qt1-x841.google.com ([2607:f8b0:4864:20::841])
+	id 1h0pbU-0006t7-EB; Mon, 04 Mar 2019 15:34:08 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h0nvC-0004mc-TK
- for linux-amlogic@lists.infradead.org; Mon, 04 Mar 2019 13:46:24 +0000
-Received: by mail-qt1-x841.google.com with SMTP id p48so5160635qtk.2
- for <linux-amlogic@lists.infradead.org>; Mon, 04 Mar 2019 05:46:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
- bh=2iOVz78u7bAE+bdM9xG/dxsb+bWfbNl28yYobs8MYDk=;
- b=Mv89EQe81fKfCzdGTO7nzCcuTxR4QsyHN+mpscd7K2y0GoOoTN1KXiN01mvM2/vHhC
- AdvUUI/goIT0zCsDT+YxoO/FFKb3t2G/pOENeiXXmpehJj1PuM9O/owbNhqeU1gTWn/n
- LT1U1n0x+PkYXT/ATkYu5anThzKS6upc3NHQw3+NRFmyKtRaoKX8UE3sipSZ0Qqa+YiX
- 4MYbTKysvbOsHbiMAXHwRqqYxctvDe8Oskux9uAm3Bd1oaouGfFs8OOc1zPzGNGC7Wi+
- 6oegd3SOWE40TA/1HQDxhPx7qtIi+JjGutHp+TK8yJkqrY6luByBiRENWghc23LWxLkO
- FImQ==
+ id 1h0pbR-0006rn-0e
+ for linux-amlogic@lists.infradead.org; Mon, 04 Mar 2019 15:34:07 +0000
+Received: by mail-wm1-x344.google.com with SMTP id y15so5137720wma.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 04 Mar 2019 07:34:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+ :mime-version:content-transfer-encoding;
+ bh=eHLzMaflcKxdwe4CZZPc5ROFcg5MlA3WQCKWNyRakfQ=;
+ b=lzWT85gok/qFRphJdn4kZKiISgv11BK/WdnvcaKW4q8HnyNGN3tQsfzfiJw1eAxiRG
+ W62xcILES/+U9Wunzh2Cw5f5PSa2364c07DY9/n32SDhnwidEf1G9YjCrCYWe6gPV/qn
+ m0/yeBD8U/E4PufVhbHChfB2K9f26m1oSKwFGqwnMkEUNQ7mRWa17IH91QliVZQUfvVJ
+ seeiw0YFX5+y9ceD1lUYopBrPOFbu8++W2dITCNYuPUSdlw1xs0tKZs9TfdFP8Wu5kqD
+ eJR29JaecsooC+jM8GERc1mB+IqOhYE7XPBWOu1YI8j0EAoueGht8LNJ/j5jnvs3kSzK
+ OHRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to;
- bh=2iOVz78u7bAE+bdM9xG/dxsb+bWfbNl28yYobs8MYDk=;
- b=AF4FTolpAeT5TENOUOM3qWHwtzdbcIKDdTZnWLlQ6YoIY0m4gTHIb4S+SdVy6ynye6
- KxuQJ6r1d4qnwuLxR/46YqajXDQd7J+TLm3TCd+ExfvGDHL1P4L0bsGSZTRvAlGXTUIq
- mYuktZq7BqPtOg8+TA2rh7ib2RoxrdWmF7aMTVPsTwfV5NtU6e8NkS7FWvgO5ThtML7+
- CjvwNXLcS1EERxAxRGxmWcRXYnOP1w7LlNfwo+I5fHwYnc1c7JQG6SklotKzSI8kvEZK
- uXNMYcbr6fERvBNb44y4YvS5pMUsA96G1RHlZgTOUfBAczCxaA14qp75nQx1ze5Q3NXM
- BGvQ==
-X-Gm-Message-State: APjAAAWDu1jBl36w4DV3fCLjru44bx+bhdvz1HnyMVP8HkC+vazIZlcH
- El9yEvO/JYzJkbVfbBPI4ydWa2vnZ/Q0vUaxTmVP5NRm
-X-Google-Smtp-Source: APXvYqx3rKngNeP5QH6SmN/8gwZu+8x+NuPbI7dorE1r6HIg40RK6J8v7XAlhw82PGprLrqr40b/QdaoBaPtW1Jaqhk=
-X-Received: by 2002:aed:2a56:: with SMTP id k22mr14621044qtf.85.1551707181668; 
- Mon, 04 Mar 2019 05:46:21 -0800 (PST)
-MIME-Version: 1.0
+ h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=eHLzMaflcKxdwe4CZZPc5ROFcg5MlA3WQCKWNyRakfQ=;
+ b=CLvkh6i+a0rppWU/NdHZHJbu9y2OEjQHQJhvg/UOrMxTQPD0zVujwo0iYnE+3JyVca
+ hzVmPJUEJ7RLdX+uJ8kIMA1a8NneqySO1GSUHzWuVcqbbsr90y9Tfsi8yUvDG3/YgMEJ
+ IPWcS2pyrTtYAxQ9riOucG7EUClAAQ6LGSIYdOlLNOeZutU3i3FDaJ97BWsoiv/GthU+
+ ZnDZzOpYWyxgHezjD8PBVI3JdDX4NGlX3xLw7Eu13BpWqEKFIsqWe3o+mPuAG30V4Iz1
+ HF0EDscuJ+dHWSMkxCZmg1+jLh6dYBFj4BDoRQ/IiQP8xDvuPJVI8jLwmmn6RYe10Vjw
+ koEw==
+X-Gm-Message-State: AHQUAuanOCkZXgD3LU0oNol2tAVorjQUmqP3nFzgBtZjoLhHE7WwCXv6
+ sh3R7spm1M2dwtt62xkYVxw3iLOmfQs=
+X-Google-Smtp-Source: AHgI3IZwhdmcJHw2huv4Jz4yFzrGXVo7nlCVlsznb64Zp9gHzqxMzuvBoj4IWreyOOeSOvFj1QTLVg==
+X-Received: by 2002:a1c:7d56:: with SMTP id y83mr10961348wmc.94.1551713642928; 
+ Mon, 04 Mar 2019 07:34:02 -0800 (PST)
+Received: from boomer.baylibre.com
+ (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id 65sm12328751wrb.62.2019.03.04.07.34.01
+ (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+ Mon, 04 Mar 2019 07:34:02 -0800 (PST)
+Message-ID: <d1e057447b1c9ca832db3161242e35963bb15ba0.camel@baylibre.com>
+Subject: Re: Possible regression in driver meson-gx-mmc in kernel 5.0.0
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: =?ISO-8859-1?Q?Andr=E9?= Balsa <andrebalsa@gmail.com>, 
+ linux-amlogic@lists.infradead.org
+Date: Mon, 04 Mar 2019 16:34:01 +0100
+In-Reply-To: <CAJDSL=W7X3am=iCOvafyzLuL8hzZriDWh4Zs2zfgBZDdDJtx7w@mail.gmail.com>
 References: <CAJDSL=VG2YbAwuL_1SOVfWfD4gWquNG353p8LkCP+jiFpiN=9A@mail.gmail.com>
-In-Reply-To: <CAJDSL=VG2YbAwuL_1SOVfWfD4gWquNG353p8LkCP+jiFpiN=9A@mail.gmail.com>
-From: =?UTF-8?B?QW5kcsOpIEJhbHNh?= <andrebalsa@gmail.com>
-Date: Mon, 4 Mar 2019 14:46:10 +0100
-Message-ID: <CAJDSL=W7X3am=iCOvafyzLuL8hzZriDWh4Zs2zfgBZDdDJtx7w@mail.gmail.com>
-Subject: Possible regression in driver meson-gx-mmc in kernel 5.0.0
-To: linux-amlogic@lists.infradead.org
-X-Bad-Reply: References and In-Reply-To but no 'Re:' in Subject.
+ <CAJDSL=W7X3am=iCOvafyzLuL8hzZriDWh4Zs2zfgBZDdDJtx7w@mail.gmail.com>
+User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190304_054622_973054_3F83C6C6 
-X-CRM114-Status: UNSURE (   6.79  )
-X-CRM114-Notice: Please train this message.
-X-Mailman-Approved-At: Mon, 04 Mar 2019 05:58:20 -0800
+X-CRM114-CacheID: sfid-20190304_073405_103509_9DF7048C 
+X-CRM114-Status: GOOD (  13.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -92,91 +97,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello, my first post to the list, nice to meet everybody.
-
-I cannot boot kernel 5.0.0 on my S905 TV box (using
-meson-gxbb-p201.dtb) from an SD card, see the errors below (captured
-from serial output).
-
-If I revert only meson-gx-mmc.c to the version in kernel 4.20.13,
-kernel 5.0.0 boots without any problems.
-
-It seems the problems occur because of patches introduced by Jerome
-Brunet in December, see
-https://lkml.org/lkml/2018/12/6/745
-
-My guess is the removal of the spinlock allows for race conditions
-that cause the mmc driver to fail when writing to an SD card.
-
-I am available to test the driver further with any proposed solution.
-
-Regards,
-Andrew
-
-...
-[    5.004812] EXT4-fs (mmcblk1p2): re-mounted. Opts:
-commit=600,errors=remount-ro
-[    5.146421] systemd-journald[1490]: Received request to flush
-runtime journal from P
-ID 1
-[    5.384651] meson-gx-mmc d0070000.mmc: Linked as a consumer to regulator.2
-[    5.384691] meson-gx-mmc d0070000.mmc: Linked as a consumer to regulator.1
-[    5.384774] meson-gx-mmc d0070000.mmc: Dropping the link to regulator.1
-[    5.384810] meson-gx-mmc d0070000.mmc: Dropping the link to regulator.2
-[    5.400751] meson-gx-mmc d0070000.mmc: Linked as a consumer to regulator.2
-[    5.400792] meson-gx-mmc d0070000.mmc: Linked as a consumer to regulator.1
-[    5.400838] meson-gx-mmc d0070000.mmc: allocated mmc-pwrseq
-[    5.423057] Registered IR keymap rc-empty
-[    5.423126] rc rc0: meson-ir as
-/devices/platform/soc/c8100000.bus/c8100580.ir/rc/rc
-0
-[    5.423365] input: meson-ir as
-/devices/platform/soc/c8100000.bus/c8100580.ir/rc/rc0
-/input0
-[    5.423654] rc rc0: lirc_dev: driver meson-ir registered at minor =
-0, raw IR receiv
-er, no transmitter
-[    5.424036] meson-ir c8100580.ir: receiver initialized
-[    5.451279] mmc2: new high speed SDIO card at address 0001
-[    6.123900] Generic PHY stmmac-0:00: attached PHY driver [Generic
-PHY] (mii_bus:phy_
-addr=stmmac-0:00, irq=POLL)
-[    6.133968] meson8b-dwmac c9410000.ethernet eth0: No Safety
-Features support found
-[    6.133983] meson8b-dwmac c9410000.ethernet eth0: PTP not supported by HW
-[    7.718995] print_req_error: I/O error, dev mmcblk1, sector
-27401016 flags 801
-[    7.719007] EXT4-fs warning (device mmcblk1p2): ext4_end_bio:323:
-I/O error 10 writi
-ng to inode 805638 (offset 0 size 0 starting block 3425128)
-[    7.719012] Buffer I/O error on device mmcblk1p2, logical block 3293031
-[    8.162241] meson8b-dwmac c9410000.ethernet eth0: Link is Up -
-100Mbps/Full - flow c
-ontrol rx/tx
-[    8.177336] print_req_error: I/O error, dev mmcblk1, sector
-28635136 flags 801
-[    8.177350] EXT4-fs warning (device mmcblk1p2): ext4_end_bio:323:
-I/O error 10 writi
-ng to inode 805606 (offset 0 size 4096 starting block 3579393)
-[    8.177358] Buffer I/O error on device mmcblk1p2, logical block 3447296
-[    8.178186] print_req_error: I/O error, dev mmcblk1, sector
-28570600 flags 801
-[    8.178194] EXT4-fs warning (device mmcblk1p2): ext4_end_bio:323:
-I/O error 10 writi
-ng to inode 805589 (offset 0 size 0 starting block 3571326)
-[    8.178198] Buffer I/O error on device mmcblk1p2, logical block 3439229
-[    8.422031] print_req_error: I/O error, dev mmcblk1, sector
-13734800 flags 4801
-[    8.422045] Buffer I/O error on dev mmcblk1p2, logical block
-1584754, lost sync page
-...
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gTW9uLCAyMDE5LTAzLTA0IGF0IDE0OjQ2ICswMTAwLCBBbmRyw6kgQmFsc2Egd3JvdGU6Cj4g
+SGVsbG8sIG15IGZpcnN0IHBvc3QgdG8gdGhlIGxpc3QsIG5pY2UgdG8gbWVldCBldmVyeWJvZHku
+Cj4gCj4gSSBjYW5ub3QgYm9vdCBrZXJuZWwgNS4wLjAgb24gbXkgUzkwNSBUViBib3ggKHVzaW5n
+Cj4gbWVzb24tZ3hiYi1wMjAxLmR0YikgZnJvbSBhbiBTRCBjYXJkLCBzZWUgdGhlIGVycm9ycyBi
+ZWxvdyAoY2FwdHVyZWQKPiBmcm9tIHNlcmlhbCBvdXRwdXQpLgoKQXMgSSBhbHJlYWR5IHBvaW50
+ZWQgb3V0IHRvIHNvbWVib2R5IGVsc2UsIGl0IGlzIGRpZmZpY3VsdCB0byBnaXZlIGFueSBmb3Jt
+IG9mCnN1cHBvcnQgZm9yIGJvYXJkcyB3ZSBrbm93IG5vdGhpbmcgYWJvdXQsIGVzcGVjaWFsbHkg
+dGhlIG9uZSB0aGF0IGFyZQonY29udmVuaWVudGx5JyB1c2luZyB0aGUgRFQgb2YgdGhlIHJlZiBk
+ZXNpZ24KCj4gCj4gSWYgSSByZXZlcnQgb25seSBtZXNvbi1neC1tbWMuYyB0byB0aGUgdmVyc2lv
+biBpbiBrZXJuZWwgNC4yMC4xMywKPiBrZXJuZWwgNS4wLjAgYm9vdHMgd2l0aG91dCBhbnkgcHJv
+YmxlbXMuCgpZb3UgcmV2ZXJ0ZWQgbW9yZSB0aGFuIG9uZSBwYXRjaCBoZXJlLgoKPiAKPiBJdCBz
+ZWVtcyB0aGUgcHJvYmxlbXMgb2NjdXIgYmVjYXVzZSBvZiBwYXRjaGVzIGludHJvZHVjZWQgYnkg
+SmVyb21lCj4gQnJ1bmV0IGluIERlY2VtYmVyLCBzZWUKPiBodHRwczovL2xrbWwub3JnL2xrbWwv
+MjAxOC8xMi82Lzc0NQo+IAo+IE15IGd1ZXNzIGlzIHRoZSByZW1vdmFsIG9mIHRoZSBzcGlubG9j
+ayBhbGxvd3MgZm9yIHJhY2UgY29uZGl0aW9ucwo+IHRoYXQgY2F1c2UgdGhlIG1tYyBkcml2ZXIg
+dG8gZmFpbCB3aGVuIHdyaXRpbmcgdG8gYW4gU0QgY2FyZC4KCjEpIEFzIHBvaW50ZWQgb3V0IGlu
+IHRoZSByZWxhdGVkIGNvbW1pdCBtZXNzYWdlIHRoaXMgc3BpbmxvY2sgd2FzIHVzZWxlc3MuCkFu
+eW9uZSBsb29raW5nIGF0IHRoZSBjb2RlIHNob3VsZCBiZSBhYmxlIHRvIHNlZSB0aGF0LiBXaGF0
+IHlvdSBhcmUgc2VlaW5nIGlzCnRoZSByZXN1bHQgb2YgQ1JDIGVycm9ycy4KCjIpIFRoZSBsYXN0
+IDIgcGF0Y2hlcyBvZiByZWxhdGVkIHNlcmllcyBoYWQgYmVlbiBzZW50IGFzIFJGVCwgYnV0IG5v
+Ym9ieQpyZXBsaWVkLiAKClRoZXNlIDIgY2hhbmdlcyBoZWxwZWQgc2V2ZXJhbCBkZXNpZ25zIHdv
+cmsgYW5kIEkgY291bGQgbm90IHNlZSBhbnkgcmVncmVzc2lvbgpvbiB0aGUgZGVzaWducyBJIGhh
+ZCBhdCB0aGUgdGltZSwgaW5jbHVkaW5nIHRoZSBwMjAwCgpOb3cgd2UgZ290IHNldmVyYWwgcmVw
+b3J0cyBvZiByZWdyZXNzaW9uLiAKCkl0IGlzIHZlcnkgZGlmZmljdWx0IHRvIGZpbmQgc2V0dGlu
+Z3MgdGhhdCB3aWxsIHdvcmsgZm9yIHRoZSBhbGwgdGhlIGRlc2lnbnMuClRoZSBkb2N1bWVudGF0
+aW9uIGlzIG5vdCB2ZXJib3NlIHJlZ2FyZGluZyB0aGlzLiBZb3UgY2FuJ3QgZXZlbiB0YWtlIHRo
+ZQp2ZW5kb3Iga2VybmVsIGFzIHJlZmVyZW5jZSwgdGhlIGNvZGUgaXMgZXh0cmVtZWx5ICdmYW5j
+eScgYW5kIHBoYXNlIHNldHRpbmdzCmFyZSBwZXJwZXR1YWxseSBjeWNsaW5nIHdpdGhpbiB0aGUg
+aXJxIGhhbmRsZXIsIHdoaWNoIGlzIHVuYWNjZXB0YWJsZS4KCldlIGFyZSBhY3RpdmVseSB3b3Jr
+aW5nIHRvIHNvbHZlIHRoaXMgYW5kIGhvcGVmdWxseSB3ZSB3aWxsIGJlIGFibGUgdG8gc2hhcmUK
+c29tZXRoaW5nIHNvb24KCj4gCj4gSSBhbSBhdmFpbGFibGUgdG8gdGVzdCB0aGUgZHJpdmVyIGZ1
+cnRoZXIgd2l0aCBhbnkgcHJvcG9zZWQgc29sdXRpb24uCj4gCj4gUmVnYXJkcywKPiBBbmRyZXcK
+CgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgt
+YW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0
+dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
