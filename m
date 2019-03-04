@@ -2,22 +2,23 @@ Return-Path: <SRS0=/5FS=RH=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.6 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	FROM_EXCESS_BASE64,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 666DEC43381
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Mar 2019 15:42:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D668DC43381
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Mar 2019 16:56:18 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2F316206B8
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Mar 2019 15:42:10 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9E9BC20643
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Mar 2019 16:56:18 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RbR+DCRz";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="R39Ide2n"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2F316206B8
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dZgcZLDB";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U/TbaPIP"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9E9BC20643
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
@@ -25,57 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=atmRIj5809TZcvIlVeQHfQ3DA/ERDZNID7azYIxAGQQ=; b=RbR+DCRzX2tNS4
-	LfRjqwPVayXl0KKEUF705VJphUDTvpRG8hAonF3gKtBrTqYHQpENOk5VHXMC/8viSQvF8bAjltFi/
-	OplR+dcN+4aMdP59FfFHbUCNW2gxZZQbsXNrZWq0Dfel+eMXMIbEtcW/etnO64o0i2yJvBfSjip4s
-	cBytD72sGWQp6WcSfHvzkG29VuXWGpo0fQgVxxqLnkzMAqL6P57cL0s5U8zhZTyRR6AfReHNHfqLi
-	ZVNRl11pTBisZaxxrUTXkQKSoWqZ1sKoVJZcO/NGCDETzuqsC5sO8PHPHEXMp0jv1UfFafGCQykSh
-	nJZc21DLP0yaZvqSgAsw==;
+	List-Owner; bh=R2YlOF2x4oKBqdQ8ZuFsMEXz5H7438/OKaks1l4Vghg=; b=dZgcZLDBIqbQRa
+	XkZE2l/auDyVYwpRH2d3QVTaQtOBOUt9gxSxs65O/GVcwQeTuhSQ5Yt7fAZNL3AE/IThsgvEsJqm2
+	6UXdUagBsOg30b9wRHIOXpRqSPp1vXxEOI0z1jOvojJO6U+RxVZg6escLcOoAQJpGd7JR5Jo4BiYe
+	Dccu2k9gN7caHmK4Wse1LzI5NBYJGAu/tZIeqaNsjaTQDkUjC2EhBLvbu8VVY0dEp5ZM9capFhwh8
+	70SHGkDLA+5mGwMdHE0PcI+oe6FWV0VLdiCVDeUEnUXjBW/VVENZyEUdkiL9/zGxrvFmmR1VW9F2Z
+	toG54KacohQgowWyMJPg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h0pjA-0002dN-NB; Mon, 04 Mar 2019 15:42:04 +0000
-Received: from mail-ua1-x943.google.com ([2607:f8b0:4864:20::943])
+	id 1h0qst-0007AH-JS; Mon, 04 Mar 2019 16:56:11 +0000
+Received: from mail-qt1-x842.google.com ([2607:f8b0:4864:20::842])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h0pj6-0002cv-Sa
- for linux-amlogic@lists.infradead.org; Mon, 04 Mar 2019 15:42:02 +0000
-Received: by mail-ua1-x943.google.com with SMTP id c5so4766970uaq.7
- for <linux-amlogic@lists.infradead.org>; Mon, 04 Mar 2019 07:41:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ id 1h0qsp-00079o-Ti
+ for linux-amlogic@lists.infradead.org; Mon, 04 Mar 2019 16:56:09 +0000
+Received: by mail-qt1-x842.google.com with SMTP id d18so5840961qtg.12
+ for <linux-amlogic@lists.infradead.org>; Mon, 04 Mar 2019 08:56:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=tbcfmXa7Izd55cdP3yRkxpwbLtDz3PVr3SM8og/KPlk=;
- b=R39Ide2nbfKRxfwXeWjnYxEMzoZPX6y83IBhisb3aa/vNSVtCltIftuEVrXjKp8alg
- we3hj1W7z8ar0TUBgpoc87Xi2TKx2OTJN1z6EGEt+XfyB+MFPMwj3KKgaIa476ZsaL40
- X3cOdtXctOb37roKmf8Tscl/MQDYdw5go8B+Dg6pT4r0io61vB1H5/8FzcPfxxhCvjFF
- 2SwLFilDHbw4OB5i2rEgoZVtMhOeMy9S4A8qg3nQsfS7R3f1B3H5ThxUscYw0gXSIpMV
- ubI1Ol3KmNQp/VHokj4OI5AV8dd52wGCOxSHt2/TSyQ3hHr4YLcnrBd0t5Of+BB21ETS
- hJiw==
+ :cc:content-transfer-encoding;
+ bh=p48fNnskcCikA+mU9ndEmdayWB5qOnsXSOtG9TxzN/c=;
+ b=U/TbaPIPXhczUDAcPS8nGIsvVjPbJhY66r1kAWT693bF0hq91uJzLifmvGfkdjQ2cs
+ b9KZ+7eVO2NKPNN3H40K+MBGTxmLeOVvnJNvRA3ykvkMPUdaa6S1igbMDbFMItEFup4U
+ XsnppekCcVCI45+aq/gcYbdexpwfbd7kgxbEt+L8LrXs7q7EFdXk9wotPmqTno7fRJO5
+ lDx2mgSMDV0oYU4iG5GzHLmcIS1Utxg/XXBlR409zERKsKfrXhBbnj4ue2a5zrdBV3g4
+ cVOSxIpi10AH4YyBNpiA+2jOKsfuqEH41XDSnEBjVkfUVpFF9NIch3fZbnExjONNShuX
+ /+Mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=tbcfmXa7Izd55cdP3yRkxpwbLtDz3PVr3SM8og/KPlk=;
- b=KwwHJBSeiHNC8Ta3642HndSmJ66cJx6VP+jd6t0pIf6wBZX4SwBFV9lYR//WPesUYW
- 8Qz81VlTFDFGYvTJHfltcdcKA6Bu3o86+ZP9+lcTvWCK1g9YVNzPo4SDztTqpOlgOz6O
- KF1iGuMRvAZIMHGEdlQRjBJGf8VZb2OEeVWNTCgNQW9wrUMzNsRrFwiTvdp1hVDU/lV+
- x5gdm3jdWEgMoPBrqM1w/zsAmDcM6MZeUCTo2hjdmSshWigCiupVMLOshUQUnelhR8Rh
- JE4+XZ32LaEsUXXoHuDprV+YiR3P2vupacnz8VK7/8Upbuewt8DEhf5Dl+V8gX8b32ID
- KKew==
-X-Gm-Message-State: APjAAAVzOKbNgQrsXwrxPhxuayfNKNhhUFNtax1aw+PDwPsSwAXd5P6B
- puxaWl1lbaNTQbT9BeNs4WxMqpp/nj4SxuNTH/GlbtcRDEk=
-X-Google-Smtp-Source: APXvYqylDNXGCxFlzKV9oRdUQSXuDsLpWDCxwiIlHUYGnnm0C446cIbyPcdnIXuHNe8TtjUfuRLCJSnYK+Ga4irb51U=
-X-Received: by 2002:ab0:6016:: with SMTP id j22mr9564856ual.119.1551714118828; 
- Mon, 04 Mar 2019 07:41:58 -0800 (PST)
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=p48fNnskcCikA+mU9ndEmdayWB5qOnsXSOtG9TxzN/c=;
+ b=c16cSlZRYAPZ/dhUbAlNNIUOxYlfBeQf6Z6I8gLQFGzSpELOobQkzVW2FZIQGkoefI
+ 71z3WGB/o6lJiOcm3oEmGMmu1B/agvq/rTL/ctqU86Z/3qGA8tFiouyamfzOq/LuAB5d
+ 119kY/9J7biLZ26VxKAMv8xl6MCpE7GPW9yrz1Toa9DebhnEYUV1IvGD+D0LhM1DCScV
+ yV1t68VXppWN7XfPwLz414Hj58K7s7vgXhAmAPwP1w7p4IR5oUu6aG4naSJ9y3GsbLeU
+ aYydyM+1QiBol/5Ntt0RETTTEK3eyeP47yZvIeuGFRWzNNGXySUzsfFP5NlA++8HiUDH
+ V4dw==
+X-Gm-Message-State: APjAAAUghjJ6gBTEslEtS/60CfbzG3ShVbCLJA7jZ6zBSZ5xDnPauqZX
+ Et+COSkZtvIDpL8a5oE/T8rOLAPJSLBsLZh2WkRo5ZNw
+X-Google-Smtp-Source: APXvYqzyjXLqMU98BWtIpINYdzgcvE8KDG56OHwresx/Tatl/09a1hqK9lx3jwT4jg3hwQ2JRAs9WzKzezC5S3FYZwM=
+X-Received: by 2002:ac8:3122:: with SMTP id g31mr15733773qtb.273.1551718566521; 
+ Mon, 04 Mar 2019 08:56:06 -0800 (PST)
 MIME-Version: 1.0
-References: <CAFBinCD6gWS0RiJc=secdFDBM329PKxSiGejo1wSQ6Pwe6ynJw@mail.gmail.com>
-In-Reply-To: <CAFBinCD6gWS0RiJc=secdFDBM329PKxSiGejo1wSQ6Pwe6ynJw@mail.gmail.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 4 Mar 2019 16:41:22 +0100
-Message-ID: <CAPDyKFp0U1E3rbWfuxmtokpF015a+fmorQoLAYCR7euJBB9u2g@mail.gmail.com>
-Subject: Re: Power Domains on Amlogic SoCs
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <CAJDSL=VG2YbAwuL_1SOVfWfD4gWquNG353p8LkCP+jiFpiN=9A@mail.gmail.com>
+ <CAJDSL=W7X3am=iCOvafyzLuL8hzZriDWh4Zs2zfgBZDdDJtx7w@mail.gmail.com>
+ <d1e057447b1c9ca832db3161242e35963bb15ba0.camel@baylibre.com>
+In-Reply-To: <d1e057447b1c9ca832db3161242e35963bb15ba0.camel@baylibre.com>
+From: =?UTF-8?B?QW5kcsOpIEJhbHNh?= <andrebalsa@gmail.com>
+Date: Mon, 4 Mar 2019 17:55:54 +0100
+Message-ID: <CAJDSL=X09A5KCT5BLSpMwBRUW_7rb2skJiS99qzTWr+cYcLhtA@mail.gmail.com>
+Subject: Re: Possible regression in driver meson-gx-mmc in kernel 5.0.0
+To: Jerome Brunet <jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190304_074200_935413_5C3D5E72 
-X-CRM114-Status: GOOD (  27.83  )
+X-CRM114-CacheID: sfid-20190304_085608_064363_6753B2A7 
+X-CRM114-Status: GOOD (  18.86  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -87,145 +91,52 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mjourdan@baylibre.com, Linux PM <linux-pm@vger.kernel.org>,
- Kevin Hilman <khilman@kernel.org>, "Rafael J. Wysocki" <rjw@rjwysocki.net>,
- Neil Armstrong <narmstrong@baylibre.com>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-amlogic@lists.infradead.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 1 Mar 2019 at 23:30, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> Hello,
->
-> I would like to start a discussion how to structure the power domain
-> drivers for the Amlogic SoCs.
-> My main motivation is getting video output and video decoders working
-> on the 32-bit SoCs.
->
-> The Amlogic SoCs we various registers for "power domains", the ones I
-> know (in no specific order):
-> 1. HHI_MEM_PD_REG0 (contains: HDMI memory PD, Ethernet memory PD,
-> audio DSP memory PD - at least on the 32-bit SoCs)
-> 2. HHI_VPU_MEM_PD_REG{0,1,2} (contains: various VPU related power domains)
-> 3. AO_RTI_GEN_PWR_SLEEP0, AO_RTI_GEN_PWR_ISO0 (contains: HDMI PD, HDMI
-> isolation, video codec PDs, video code isolation, ...)
-> 4. AO_RTI_PWR_A9_CNTL0/AO_RTI_PWR_SYS_CPU_PD0,
-> P_AO_RTI_PWR_A9_CNTL1/AO_RTI_PWR_SYS_CPU_PD1 (contains: CPU core
-> related power bits)
-
-It would be nice to know a bit more about if/how the hierarchical PM
-domain topology looks like. Do you have this information?
-
->
-> currently we have three drivers, which handle *some* of these power
-> domain registers:
-> drivers/soc/amlogic/meson-gx-pwrc-vpu.c:
-> - partially manages HHI_MEM_PD_REG0
-> - fully manages HHI_VPU_MEM_PD_REG{0,1,2}
-> - partially manages AO_RTI_GEN_PWR_SLEEP0
->
-> arch/arm/mach-meson/platsmp.c:
-> - manages AO_RTI_PWR_A9_CNTL0 and P_AO_RTI_PWR_A9_CNTL1
-> - only for the 32-bit SoCs, these registers (or their replacements)
-> are controlled by the firmware on the 64-bit SoCs
-
-So, the AO_RTI_PWR_A9_CNTL* is used to power off/on the CPU, entirely.
-If I understand correct, the AO_RTI_PWR_SYS_CPU_PD* is used to put a
-CPU in a deeper idlestate, like CPU retention, right?
-
-If I am correct, you need a cpuidle driver to deal with this, of course.
-
-For 64-bit SoCs, the custom FW/code is replaced by the PSCI FW?
-
->
-> drivers/media/platform/meson/vdec/* (not upstream yet due to firmware
-> blob licensing questions, latest patchset: [1]):
-> - also partially manages AO_RTI_GEN_PWR_SLEEP0, AO_RTI_GEN_PWR_ISO0
-> (the former is also partially managed by meson-gx-pwrc-vpu)
->
-> To use the meson-gx-pwrc-vpu driver on the 32-bit SoCs I would have to
-> create an "AO regmap/syscon" and pass it to that driver. However, the
-> register layout of the "AO bus" on these older SoCs is different to
-> what we have on the 64-bit SoCs. So having a big "AO regmap/syscon" is
-> not easy (I also believe that it even if we could achieve it then it
-> wouldn't be a good representation of the hardware).
-> The video decoder driver currently requires the same "AO regmap/syscon".
->
-> I would like to focus on the AO_RTI_GEN_PWR_SLEEP0,
-> AO_RTI_GEN_PWR_ISO0 registers for now. This will make it easier to
-> support VPU and the video decoder drivers on the 32-bit SoCs.
-> My idea is to create a separate power domain provider which manages
-> these registers. Each power domain is exposed with it's own ID (just
-> like we have the CLKIDs in the clock driver) and can then be passed to
-> the various consumer drivers.
-> The genpd improvements in v4.19 and v4.20 make this possible as each
-> power domain can now be managed at runtime (not just at driver probe
-> time), see: [0]
->
-> With a separate power domain provider the meson-gx-pwrc-vpu and video
-> decoder drivers would not access the AO registers anymore. Instead we
-> would pass all relevant power domains from the "AO power domain
-> provider" to their respective consumers.
-
-Overall, this seems like a reasonable way forward.
-
-I guess the important point is that we model the topology of the HW
-correctly in DT (no short cuts), as otherwise we may encounter issues
-in the end I think.
-
->
-> Examples (incomplete) from the VPU power domain / video decoder perspective:
-> &vpu_power_domain {
->   power-domains = <&ao_pwrc AO_VPU_HDMI_PD>, <&ao_pwrc AO_VPU_HDMI_ISO_PD>;
->   power-domain-names = "vpu_hdmi", "vpu_hdmi_iso";
-> };
->
-> &video_decoder {
->   power-domains = <&ao_pwrc AO_PWR_VDEC_1_PD>, <&ao_pwrc
-> AO_ISO_VDEC_1_PD>, <&ao_pwrc AO_PWR_VDEC_HVEC_PD>, <&ao_pwrc
-> AO_ISO_VDEC_HVEC_PD>;
->   power-domain-names = "vdec_1", "vdec_1_iso", "vdec_hvec", "vdec_hvec_iso";
-> };
->
-> My main concern is "backwards compatibility". We need to take care of
-> the VPU power domain driver and the video decoder driver. The latter
-> is not mainlined yet, so I'm not sure we need to be backwards
-> compatible here.
-
-Yeah, that could be a bit troublesome, at least short term.
-
-I think I have mentioned it before, in some thread - perhaps we should
-add an OF helper function, which tells the caller the number of
-power-domains that is described in the device node. That could help to
-make the code more flexible in drivers/buses that deal with the PM
-domain attach/detach, thus also potentially simplify to support
-backwards compatibility, if/when that makes sense.
-
->
-> Please let me know if you have any concerns, ideas, suggestions, ...
-> I can build an "RFC" series for this topic if this makes the discussion easier.
-
-It's always easier to look at code, unless there is a whiteboard available. :-)
-
-If you keep me cced, I do my best to review it!
-
->
->
-> Regards
-> Martin
->
->
-> [0] https://linuxplumbersconf.org/event/2/contributions/130/attachments/138/170/Genpd-Improvements.pdf
-> [1] https://patchwork.kernel.org/patch/10669873/
-
-Kind regards
-Uffe
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgSmVyb21lLApUaGFua3MgZm9yIHRoZSBhbnN3ZXIuCgo+IFlvdSByZXZlcnRlZCBtb3JlIHRo
+YW4gb25lIHBhdGNoIGhlcmUuIgoKWWVzLCBJIGRpZG4ndCBrbm93IHdoaWNoIHBhdGNoIGV4YWN0
+bHkgd2FzIGNhdXNpbmcgdGhlIHByb2JsZW0uCklmIHlvdSB3YW50IG1lIHRvIHRlc3QgdGhlIGRy
+aXZlciB3aXRoIHRoZSBzcGlubG9jayByZW1vdmFsIHBhdGNoKGVzKQphcHBsaWVkIGJ1dCB3aXRo
+b3V0IHRoZSBkZWxheSAvIHBoYXNlIHNldHRpbmcgcGF0Y2goZXMpLCBqdXN0IHNheS4KClJlZ2Fy
+ZHMsCkFuZHJldwoKT24gTW9uLCBNYXIgNCwgMjAxOSBhdCA0OjM0IFBNIEplcm9tZSBCcnVuZXQg
+PGpicnVuZXRAYmF5bGlicmUuY29tPiB3cm90ZToKPgo+IE9uIE1vbiwgMjAxOS0wMy0wNCBhdCAx
+NDo0NiArMDEwMCwgQW5kcsOpIEJhbHNhIHdyb3RlOgo+ID4gSGVsbG8sIG15IGZpcnN0IHBvc3Qg
+dG8gdGhlIGxpc3QsIG5pY2UgdG8gbWVldCBldmVyeWJvZHkuCj4gPgo+ID4gSSBjYW5ub3QgYm9v
+dCBrZXJuZWwgNS4wLjAgb24gbXkgUzkwNSBUViBib3ggKHVzaW5nCj4gPiBtZXNvbi1neGJiLXAy
+MDEuZHRiKSBmcm9tIGFuIFNEIGNhcmQsIHNlZSB0aGUgZXJyb3JzIGJlbG93IChjYXB0dXJlZAo+
+ID4gZnJvbSBzZXJpYWwgb3V0cHV0KS4KPgo+IEFzIEkgYWxyZWFkeSBwb2ludGVkIG91dCB0byBz
+b21lYm9keSBlbHNlLCBpdCBpcyBkaWZmaWN1bHQgdG8gZ2l2ZSBhbnkgZm9ybSBvZgo+IHN1cHBv
+cnQgZm9yIGJvYXJkcyB3ZSBrbm93IG5vdGhpbmcgYWJvdXQsIGVzcGVjaWFsbHkgdGhlIG9uZSB0
+aGF0IGFyZQo+ICdjb252ZW5pZW50bHknIHVzaW5nIHRoZSBEVCBvZiB0aGUgcmVmIGRlc2lnbgo+
+Cj4gPgo+ID4gSWYgSSByZXZlcnQgb25seSBtZXNvbi1neC1tbWMuYyB0byB0aGUgdmVyc2lvbiBp
+biBrZXJuZWwgNC4yMC4xMywKPiA+IGtlcm5lbCA1LjAuMCBib290cyB3aXRob3V0IGFueSBwcm9i
+bGVtcy4KPgo+IFlvdSByZXZlcnRlZCBtb3JlIHRoYW4gb25lIHBhdGNoIGhlcmUuCj4KPiA+Cj4g
+PiBJdCBzZWVtcyB0aGUgcHJvYmxlbXMgb2NjdXIgYmVjYXVzZSBvZiBwYXRjaGVzIGludHJvZHVj
+ZWQgYnkgSmVyb21lCj4gPiBCcnVuZXQgaW4gRGVjZW1iZXIsIHNlZQo+ID4gaHR0cHM6Ly9sa21s
+Lm9yZy9sa21sLzIwMTgvMTIvNi83NDUKPiA+Cj4gPiBNeSBndWVzcyBpcyB0aGUgcmVtb3ZhbCBv
+ZiB0aGUgc3BpbmxvY2sgYWxsb3dzIGZvciByYWNlIGNvbmRpdGlvbnMKPiA+IHRoYXQgY2F1c2Ug
+dGhlIG1tYyBkcml2ZXIgdG8gZmFpbCB3aGVuIHdyaXRpbmcgdG8gYW4gU0QgY2FyZC4KPgo+IDEp
+IEFzIHBvaW50ZWQgb3V0IGluIHRoZSByZWxhdGVkIGNvbW1pdCBtZXNzYWdlIHRoaXMgc3Bpbmxv
+Y2sgd2FzIHVzZWxlc3MuCj4gQW55b25lIGxvb2tpbmcgYXQgdGhlIGNvZGUgc2hvdWxkIGJlIGFi
+bGUgdG8gc2VlIHRoYXQuIFdoYXQgeW91IGFyZSBzZWVpbmcgaXMKPiB0aGUgcmVzdWx0IG9mIENS
+QyBlcnJvcnMuCj4KPiAyKSBUaGUgbGFzdCAyIHBhdGNoZXMgb2YgcmVsYXRlZCBzZXJpZXMgaGFk
+IGJlZW4gc2VudCBhcyBSRlQsIGJ1dCBub2JvYnkKPiByZXBsaWVkLgo+Cj4gVGhlc2UgMiBjaGFu
+Z2VzIGhlbHBlZCBzZXZlcmFsIGRlc2lnbnMgd29yayBhbmQgSSBjb3VsZCBub3Qgc2VlIGFueSBy
+ZWdyZXNzaW9uCj4gb24gdGhlIGRlc2lnbnMgSSBoYWQgYXQgdGhlIHRpbWUsIGluY2x1ZGluZyB0
+aGUgcDIwMAo+Cj4gTm93IHdlIGdvdCBzZXZlcmFsIHJlcG9ydHMgb2YgcmVncmVzc2lvbi4KPgo+
+IEl0IGlzIHZlcnkgZGlmZmljdWx0IHRvIGZpbmQgc2V0dGluZ3MgdGhhdCB3aWxsIHdvcmsgZm9y
+IHRoZSBhbGwgdGhlIGRlc2lnbnMuCj4gVGhlIGRvY3VtZW50YXRpb24gaXMgbm90IHZlcmJvc2Ug
+cmVnYXJkaW5nIHRoaXMuIFlvdSBjYW4ndCBldmVuIHRha2UgdGhlCj4gdmVuZG9yIGtlcm5lbCBh
+cyByZWZlcmVuY2UsIHRoZSBjb2RlIGlzIGV4dHJlbWVseSAnZmFuY3knIGFuZCBwaGFzZSBzZXR0
+aW5ncwo+IGFyZSBwZXJwZXR1YWxseSBjeWNsaW5nIHdpdGhpbiB0aGUgaXJxIGhhbmRsZXIsIHdo
+aWNoIGlzIHVuYWNjZXB0YWJsZS4KPgo+IFdlIGFyZSBhY3RpdmVseSB3b3JraW5nIHRvIHNvbHZl
+IHRoaXMgYW5kIGhvcGVmdWxseSB3ZSB3aWxsIGJlIGFibGUgdG8gc2hhcmUKPiBzb21ldGhpbmcg
+c29vbgo+Cj4gPgo+ID4gSSBhbSBhdmFpbGFibGUgdG8gdGVzdCB0aGUgZHJpdmVyIGZ1cnRoZXIg
+d2l0aCBhbnkgcHJvcG9zZWQgc29sdXRpb24uCj4gPgo+ID4gUmVnYXJkcywKPiA+IEFuZHJldwo+
+Cj4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4
+LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpo
+dHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
