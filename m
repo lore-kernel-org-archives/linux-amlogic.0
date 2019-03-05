@@ -2,22 +2,22 @@ Return-Path: <SRS0=O/xb=RI=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-0.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 95917C43381
-	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Mar 2019 22:03:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7711BC43381
+	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Mar 2019 22:13:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 64C98204EC
-	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Mar 2019 22:03:07 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E2D2320643
+	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Mar 2019 22:13:20 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Uq0LhOQt";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="rPvcM/T3"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 64C98204EC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="O2nCSYFk";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="EKfDVCMX"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E2D2320643
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,58 +26,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GiSgoVVEeM2zhT0lsReS9WghlTkUQin8Tc7tGXGoIgM=; b=Uq0LhOQtmdys9W
-	yx6z53BnfY7izbIfeTS0FFzFUqZQ+1CmYFFpUKRXQeXtsvutRFZS/HKFCI7WJliM/CWBno/Ul9KzB
-	AlmtTNKdKiqP4BISgVd8MiqjVa3dVSAGIsq815UEyVgCjb3csR7Y7Q1CmvRaPrDCVTywLuBo2Uz8B
-	JDnggrFJrGlSRYCkp7kwIitoAf/GEGPAN1dMXIx2P+8VmhhCic6IhqxQ0MF1coY0WVS+G2fnhwNTl
-	Ka3/zAOJkOwrIQBsHOI0ThNRtD0G3pd1Ny/JnreqqayKcHqWEDa8Cq1u+TBbIKxjXAfTdUewFdU8M
-	WVYOdafsqMt2dc5HNdiA==;
+	List-Owner; bh=wbJZ8c6xxnpIP17Eah2YRkqEpqndsY5hcIUCj2DluzE=; b=O2nCSYFktDNSlR
+	3BCAYsQF5Vkr2HQDzL7M0G3agfww/y2CcmObs/gK2RHa+8nRUYZDfcfxJDN1ay0rUjdlnSsACUqLm
+	mNx3FUKbrm9fk/cUcVOsiHlt+lwKzUM4e2s7ocqsLXUYp8oViLNZ+I8iTUE4ZSGmSydpSHmOWOhtw
+	I/+LSPQHmtpW/eC99E7iWNho3NLeTFzKloKqbRuHytnOgX6qkdgPupOwwJTlOxjIIW9DVez6x3RNT
+	tV8jod5oUuFJur1xvWOc960IcGF4BF3Cwq+nTVyHJr2Fozh9NYtBsricK4i533tzJbtbOEkW+XFNf
+	kmaJ0S6LPSqPEvdMhjyw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h1I9M-0007kZ-TY; Tue, 05 Mar 2019 22:03:00 +0000
-Received: from mail-ot1-x342.google.com ([2607:f8b0:4864:20::342])
+	id 1h1IJG-0002ht-MG; Tue, 05 Mar 2019 22:13:14 +0000
+Received: from mail-oi1-x241.google.com ([2607:f8b0:4864:20::241])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h1I9J-0007jm-Nx; Tue, 05 Mar 2019 22:02:59 +0000
-Received: by mail-ot1-x342.google.com with SMTP id t7so8841233otk.8;
- Tue, 05 Mar 2019 14:02:57 -0800 (PST)
+ id 1h1IJ7-0002Zs-Fa; Tue, 05 Mar 2019 22:13:07 +0000
+Received: by mail-oi1-x241.google.com with SMTP id u128so8182613oie.2;
+ Tue, 05 Mar 2019 14:13:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=XDuXQsCaigZVdUoEjQk7N6E//pnQjrXnjYStu66ogns=;
- b=rPvcM/T3MNVyM2nZIM2Su4JZ+sON5tpVo5shJRkNvDFmQ5kca1l5f7YJ1wJMdrB5ku
- C7Ml96D5i6pUIoVPtTcwYspfWgbHNQv3cWtqhFCYrsngzr1laDw+VWdqoRNqzaIGhr6+
- /iP8OwfvJc5tO5nIwz1P8sdUKBLJA6RqzPX0aktTmyT8gOWwyFdkZ26e5emlv406wr2b
- RpQY6hsvx6DkD/kavXGjkL2mb/tqlsX5PE4p9Z0f+c6kRtianHrz4A/+pTxD7NMwXock
- XtEhntWQ8r3vf4Met1w8657hSN4rzsCH3Z9aNq7fuHXwCv9K29JbDXjFHwV2pCD1lJQZ
- KzSA==
+ :cc; bh=WYJMlp5Vut5df0LwvjRW5FdzMglfOFR6RfxA4GeSLr8=;
+ b=EKfDVCMXX1msbJMLIyY8hpA1mcUrfM9FK61JvpEImEwroyZum23uexEqYJzsa4gc+e
+ hPmyyFRh5IG3/+fQ4HFE7/gDUfc6yUbhqiPy2SIE/hPO52QmPn9lqXMycbG1DBCUvpyI
+ ufHMC+8JY3ZJgdvHyYqtQGL6JIEzLHrMGtzXWfVORooZ5mFuJw0PjVXvDpN1kDwS7QKN
+ 0ZO4LLE7JBKLXpe917duXI//jF54XYU4Z1O39LLA7kL61Qjj4sslelmREwZCvViV+TRB
+ JR7DVRTELoZGj6LVGOrpm2wuD9pdCOU1WH0DJwmEEx53W8q+yksgOT9lAUZwtkR0X+TI
+ Ar2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=XDuXQsCaigZVdUoEjQk7N6E//pnQjrXnjYStu66ogns=;
- b=ZAXMMzljwwgFyLX8+JzvHBMiefHV7KE2JKv8m8rF8x0nnO72dHGcoJweJ+2t5NB8Ty
- 5FU9itf195zLWTRnH99YAZ0ZDp9wrtxFx5ErFFgGG21IVB1ID7TF0pAODM6hj0v/RK06
- U8FejNEv1tgzYgxALJINa+Mh3BOPjTu0iuE+sxQ/ggx4Vrt5q5LS4E5WQjE9pPERLhTa
- SL/kChovKu45tTlmQoAH8FNxcwKYcmUbv7/iC64PqIEenE4QP1F/qTljQIi/24yGNLdM
- dx5g9dqTxsgDEyZOPkfQVzbMmGSwia9qpKyn/Dv6hJjYWniYHamYJ9firHwYNweCB3oI
- gZHw==
-X-Gm-Message-State: APjAAAXUHZX25FcTvQcBg/0I+g+8VO6kIdRPEsnKmcoPqi3D4PwCkPfc
- Bgj6JuVV/EqY7LA5qTKp7ZFktOBsoX1690BLDLQ=
-X-Google-Smtp-Source: APXvYqwSuvIrjMyWTYmxCDvwYh2qNIiDpIEXGC3ZZ7AoUWyWRH/eOEmxllLqutGxbyiAbe6e0IiILAfsZUSmkJ6M6QA=
-X-Received: by 2002:a9d:5906:: with SMTP id t6mr2390395oth.308.1551823376548; 
- Tue, 05 Mar 2019 14:02:56 -0800 (PST)
+ bh=WYJMlp5Vut5df0LwvjRW5FdzMglfOFR6RfxA4GeSLr8=;
+ b=AxswCiILZX4d09tm/w1H82rx7TYawdHuVWVA+H2QiydnnJ47cii5WdnzfBE6g7DKVo
+ uqZsjPdbdXtf8jxuJqHb+RP0eznUgLaAtYU4w4+7bn75zwCfvgeEePRbkVDszjKnR0hx
+ jHoQSXrarrHd9OVvfaxmvLQtXX3Yu4kD295LQSAl702yKJsL3YoiJmD7yg0zurdCSUhb
+ FvoPY7Wt8KBGo25jN7MzWWYE0XcIa4pCcrItqtWs9s3Tfhpp3HUG0VoPhzhAoIPwgIh9
+ EnoM5DUqr7cr2iYen8ENupMbkFzn0PufGq8jf0CGomSWzfKDSeAwPShiTARSCSWzp32U
+ /1uQ==
+X-Gm-Message-State: APjAAAWkBCQMWIaBdWj0Xn0OMOlTlTBLjHvwJ6zN++5vCrRUcc8kfRom
+ kraPAxHth4f6/sXCuyfYYLD3utWPmVZlRyyiht4=
+X-Google-Smtp-Source: APXvYqylHzWAsDKPWuTZSoY9gnoPcVZkPUYqAe4nNyKcSRdS+QdPRss2u5afSvvh1AM7Ifn49XQdRG8YusvFuCcZdYQ=
+X-Received: by 2002:aca:aacb:: with SMTP id t194mr461318oie.129.1551823982304; 
+ Tue, 05 Mar 2019 14:13:02 -0800 (PST)
 MIME-Version: 1.0
-References: <20190304104916.3937-1-narmstrong@baylibre.com>
-In-Reply-To: <20190304104916.3937-1-narmstrong@baylibre.com>
+References: <20190301182922.8309-1-martin.blumenstingl@googlemail.com>
+ <98776767-c4d7-1207-6d42-97105f289bec@amlogic.com>
+In-Reply-To: <98776767-c4d7-1207-6d42-97105f289bec@amlogic.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 5 Mar 2019 23:02:45 +0100
-Message-ID: <CAFBinCAkMSeMuXj++cWBYP4WFwAMEwm-EFHtLA5X85oe6kekTw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: reset: meson-g12a: Add missing USB2 PHY
- resets
-To: Neil Armstrong <narmstrong@baylibre.com>
+Date: Tue, 5 Mar 2019 23:12:51 +0100
+Message-ID: <CAFBinCC7P40sqrDGTuM8M=jVOFTgZLDUK6rGdNpigFoepyCASw@mail.gmail.com>
+Subject: Re: [RFC PATCH nand-next 0/2] meson-nand: support for older SoCs
+To: Liang Yang <liang.yang@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190305_140257_871491_E56AB9A8 
-X-CRM114-Status: GOOD (  13.33  )
+X-CRM114-CacheID: sfid-20190305_141305_571672_1C440BC8 
+X-CRM114-Status: GOOD (  25.65  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -89,52 +89,76 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
- linux-amlogic@lists.infradead.org
+Cc: mark.rutland@arm.com, devicetree@vger.kernel.org, jianxin.pan@amlogic.com,
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+ linux-mtd@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Mar 4, 2019 at 11:49 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> The G12A Documentation lacked these 2 reset lines, but they are present and
-> used for each USB 2 PHYs.
->
-> Add them to the dt-bindings for the upcoming USB support.
->
-> Fixes: dbfc54534dfc ("dt-bindings: reset: meson: add g12a bindings")
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Hi Liang,
 
-> ---
->  include/dt-bindings/reset/amlogic,meson-g12a-reset.h | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+On Mon, Mar 4, 2019 at 5:55 AM Liang Yang <liang.yang@amlogic.com> wrote:
 >
-> diff --git a/include/dt-bindings/reset/amlogic,meson-g12a-reset.h b/include/dt-bindings/reset/amlogic,meson-g12a-reset.h
-> index 8063e8314eef..6d487c5eba2c 100644
-> --- a/include/dt-bindings/reset/amlogic,meson-g12a-reset.h
-> +++ b/include/dt-bindings/reset/amlogic,meson-g12a-reset.h
-> @@ -51,7 +51,10 @@
->  #define RESET_SD_EMMC_A                        44
->  #define RESET_SD_EMMC_B                        45
->  #define RESET_SD_EMMC_C                        46
-> -/*                                     47-60 */
-> +/*                                     47      */
-> +#define RESET_USB_PHY20                        48
-> +#define RESET_USB_PHY21                        49
-because it's always hard to look up, here's the reference to that
-information Amlogic's buildroot kernel
-(buildroot_openlinux_kernel_4.9_fbdev_20180706):
-kernel/aml-4.9/drivers/amlogic/usb/phy/phy-aml-new-usb2-v2.c uses:
-writel((val | (0x3 << 16)), (void __iomem *) ((unsigned
-long)phy->reset_regs + (0x21 * 4 - 0x8)));
+> Hello Martin,
+>
+> On 2019/3/2 2:29, Martin Blumenstingl wrote:
+> > Hi Liang,
+> >
+> > I am trying to add support for older SoCs to the meson-nand driver.
+> > Back when the driver was in development I used an early revision (of
+> > your driver) and did some modifications to make it work on older SoCs.
+> >
+> > Now that the driver is upstream I wanted to give it another try and
+> > make a real patch out of it. Unfortunately it's not working anymore.
+> >
+> > As far as I know the NFC IP block revision on GXL is similar (or even
+> > the same?) as on all older SoCs. As far as I can tell only the clock
+> > setup is different on the older SoCs (which have a dedicated NAND
+> > clock):
+> > - we don't need the "amlogic,mmc-syscon" property on the older SoCs
+> >    because we don't need to setup any muxing (common clock framework
+> >    will do everything for us)
+> > - "rx" and "tx" clocks don't exist
+> > - I could not find any other differences between Meson8, Meson8b,
+> >    Meson8m2, GXBB and GXL
+> >
+> That is right. the serials NFC is almost the same except:
+> 1) The clock control and source that M8-serials are not share with EMMC.
+> 2) The base register address
+> 3) DMA encryption option which we don't care on NFC driver.
+great, thank you for confirming this!
 
-this translates to:
-- (0x21 * 4 - 0x8) = RESET1 register / reset line ID 32 and above
-(reset line 0 is at "0x20 * 4 - 0x08")
-- bits 16 and 17 = add 32 to that gives us reset IDs 48 and 49
+> > In this series I'm sending two patches which add support for the older
+> > SoCs.
+> >
+> > Unfortunately these patches are currently not working for me (hence the
+> > "RFC" prefix). I get a (strange) crash which is triggered by the
+> > kzalloc() in meson_nfc_read_buf() - see below for more details.
+> >
+> > Can you please help me on this one? I'd like to know whether:
+> > - the meson-nand driver works for you on GXL or AXG on linux-next?
+> >    (I was running these patches on top of next-20190301 on my M8S
+> >    board which uses a 32-bit Meson8m2 SoC. I don't have any board using
+> >    a GXL SoC which also has NAND)
+> Yes, it works on AXG platform using a MXIC slc nand flash(MX30LF4G); but
+> i an not sure it runs the same flow with yours. because i see the print
+> "Counld not find a valid ONFI parameter page, ...." in yours. i will try
+> to reproduce it on AXG(i don't have a M8 platform now).
+I'm looking forward to hear about the test results on your AXG boards
+for reference: my board has a SK Hynix H27UCG8T2B (ID bytes: 0xad 0xde
+0x94 0xeb 0x74 0x44, 20nm MLC)
+I have another board (where I haven't tested the NFC driver yet) with
+a SK Hynix H27UCG8T2E (ID bytes: 0xad 0xde 0x14 0xa7 0x42 0x4a, 1Ynm
+MLC). if it helps with your analysis I can test on that board as well
+
+> > - you see any issue with my patches? (maybe I missed more differences
+> >    between GXL and the older SoCs)
+> >
+> i think it is ok now.
+many thanks for checking my patches!
 
 
 Regards
