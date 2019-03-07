@@ -2,21 +2,21 @@ Return-Path: <SRS0=Nbbq=RK=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C187EC43381
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Mar 2019 12:25:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 256C4C4360F
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Mar 2019 12:33:20 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 901BA20643
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Mar 2019 12:25:02 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E991A20643
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Mar 2019 12:33:19 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dL5OvH6q";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="XzcJiphy"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 901BA20643
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NNYHcvss";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="UHjoqITw"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E991A20643
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,60 +25,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EOJtL0yKf7y6RkfRCtQ2yAEwaW0f2LvctTKrnxPHU6U=; b=dL5OvH6qbKGQrW
-	H76pnwOid83tNQWeKLGv80n/G+CdmxMUAcmc+kTqShCCq9cudo44dRw9BJlsg3eMJUUUUu4tyKdpk
-	ZYnPOayPMwKPxK0PzXolOHrz5/LojFWn/Lxdd6qmrYht+gcA9M9AgFtiDlnU4KfG6qXOdkXag0laS
-	askZfarft1gWhCH/BYC0iikTUqxl+1kQgY8vcIYscSi7Fb1ad20lw9mbRt4MmGLdJ6cFQiSY8+Q+A
-	J/9enoLWQtoVHZSM8gFMbVfmTC/3rMC/x5JVRWIyGQV5jK5zQXj8ImdRAF7n/Ms1oz+c3heyOL1vu
-	UO1KI3eCWn0OoMj6YcuQ==;
+	List-Owner; bh=zkLMvmr2GDFHyBSpDyRS8/gADzg8MZ9URz32ncSxYes=; b=NNYHcvsswq+Ccr
+	VIBL7AZwFv3pgKVxxWBFYCZ8FjmbhlB1CE1dtXt0XgAK9Zk6qzTX10aFGmNnGKlaQEbDj0MZjB1e8
+	fJegaTEg5MnhhStD1VG7+D5xtCMojsPu11MngMTBe2tc0X913Nh2JrAxAKcVd+Erzi+xlNiaKuiwq
+	2Jjt9BThMaX012Bgs14dyYiVybxsPtsscpAVE9sht+xQTvS27M8tcGlPgDpsNctrX2t6r5hg/Ev5v
+	lD8Bgj+oxpwcSfaWWlo+14l3oIlCoUid14JMDHcjaQYXByuMOwYzjIrQOcKg2JUrAAwqtZrLdiN1y
+	852wXYeE6+AiPYvxlj2A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h1s52-0005MR-FJ; Thu, 07 Mar 2019 12:24:56 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1h1sD2-0000Uj-Tp; Thu, 07 Mar 2019 12:33:12 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h1s4u-00059Y-JC
- for linux-amlogic@lists.infradead.org; Thu, 07 Mar 2019 12:24:49 +0000
-Received: by mail-wr1-x442.google.com with SMTP id f14so17192819wrg.1
- for <linux-amlogic@lists.infradead.org>; Thu, 07 Mar 2019 04:24:48 -0800 (PST)
+ id 1h1sCz-0000Tz-Px
+ for linux-amlogic@lists.infradead.org; Thu, 07 Mar 2019 12:33:11 +0000
+Received: by mail-wm1-x344.google.com with SMTP id q187so9164567wme.5
+ for <linux-amlogic@lists.infradead.org>; Thu, 07 Mar 2019 04:33:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=7veNOkOBMOHYQYQ5qAUsZ4TefU0NoJhPVm2uWK3bSR4=;
- b=XzcJiphy7psG5kJgztpHslGpkdlYbpOo8KRCUwf/kYatg4Z2YslmiRM9ngiwzI9wvD
- v/PIPfh64c8rB9UETONdln7Pp/TCD8kTqv5Z3c0FX8sLXsb/59JLDsvmNxg85KtqoDLU
- jgBxyyL7eJ8hJb2nYSt4EiUqPgYyLw0CmeCvdH2fTibjVFy4M5eoLS2XNBZOC3+gU6OE
- hySBVHxUlVSPYChK550EZyhPfqmnNBdsRliarzEzXhvoYiNAdPY8a2l9comLWeqbWvm7
- izXSZucjYzDHvEjOcGbpdjIM1TeKktphyDgVcMiICtFn91XraPI0xAg8+4KPgyalah+r
- 6NnA==
+ bh=/q50ecZZR61sGX7s3g//9jg5N10pWQr6sU81Kq0BRwU=;
+ b=UHjoqITwQ+q7SXZUv8ZgpFxAn90/twuSJgnSe4Y0BcAV5oPQ1XRRpO3P26Ny3MJBOU
+ DHQVVUmVdvKNa/bppRD9IHnXb4VrJi9td0pLvWBM2DahWajJFnjMHucI3aSeVCVieOd6
+ WbP9ERoizCHLTvHVDmkouKPXX0M5+/ZSoufMxHR5BDZ6VUaLoItEqqn22pGDDAtMTFym
+ a+wlZu4ZhTxXKfTA7nskNJOKhgkPrn8jhRy9tTmgqs6bzcSImIV+PJ6KFYiqmLUjc3C0
+ iKniBla5M/AkLpz4otxWFyaQR1HhM0eFI4kfeZotVosxCrZl9ofFjJXjvPL190FvIoLa
+ 3cVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=7veNOkOBMOHYQYQ5qAUsZ4TefU0NoJhPVm2uWK3bSR4=;
- b=G60RCEMG0MfefKOdv4lsrbEOvq8wZ2hMUcitShJxiqUPVpAnWeT03xqeg4eCKcJy2R
- 7/pzN4C5tcDDa08ycGIInA4IrNklZpxjZCN4V5pHUOdN6pOiRn9di/l3MRhBuJJpS/CN
- Wwzy0tLrx5Q7w4/zkHZvpGKkrTQPc7pE8rmSGTDOaePVs0RBRFTaBPdHfUlkEb5xqQHW
- q7dQj5a8zrZSKpBR+tvkB/E45ziUrgqoXMteyr+xhubLBdK8bDUhpMQsw4xJUVaNIUgF
- zcmcEPr6a1ruQFbh9ggmNlBjqnd19jOlQtg2T0TmLlk6OHEEOqJM/PZ07Vh7dM61LeBy
- Js/w==
-X-Gm-Message-State: APjAAAVvc3oOUYpttInKIt6Mbm1OqhaERnQIocGPxXXOPJshd0+JqPtr
- 0Qke5F9MidSjbDGOF+C3+31sBUuVzOYgKA==
-X-Google-Smtp-Source: APXvYqzjOy7w+ZiZjoHAzcGbo1pddOqkBpS00tx/1rJWE4gPJXOk81wFw84moR3zLLv6reoBVCRFPw==
-X-Received: by 2002:adf:fd07:: with SMTP id e7mr7259095wrr.175.1551961486784; 
- Thu, 07 Mar 2019 04:24:46 -0800 (PST)
+ bh=/q50ecZZR61sGX7s3g//9jg5N10pWQr6sU81Kq0BRwU=;
+ b=hhwgNbQ2KSF5YbwKofONOKP/50Of0SZ0FjJWuooY8lerLMy6Z0FInF7hA6qU/bGB5T
+ fSTS+ReSlPZTGXA6h39+uwbC51Cp5/J5OhMb/Ndg/3EwwPVg0qTn51o6YCmnU00NGbiq
+ pphbnaGm5V4LA2eS8HoXhxZxZonHYdpv96goUGfVP25kq37bT2pXeDPgvWVPnh7YZrg1
+ 5CT1zV/rRUMRxd7zprzQrucR4/VMRUkOD7Fm5OaGP+SEcG7hTwSU30W2o53BRispxBHN
+ KvWzYc8VkIshzN7nxVHO4jwAaVZ3fjGlbOX16EsCnvyq2vOp6libBtrpjwBEipW4N8hz
+ BFVQ==
+X-Gm-Message-State: APjAAAXqM5M6FW91h/qOL/yrOHTLtYBQv9VxqXjvYlp7d0DNQ70VJXAQ
+ zF+OVDa3ePsAV5TD6qGPntx9um6TC5jgtA==
+X-Google-Smtp-Source: APXvYqypDbk7wxdZ9VKUVGtZupodZqew/nXUwDJ9e9GC6JtWQbp/mb2EA3xhMJNjHgsru8GdqazrbQ==
+X-Received: by 2002:a1c:4406:: with SMTP id r6mr5519572wma.114.1551961988200; 
+ Thu, 07 Mar 2019 04:33:08 -0800 (PST)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id x6sm8314829wmg.0.2019.03.07.04.24.45
+ by smtp.gmail.com with ESMTPSA id a1sm6638423wrq.96.2019.03.07.04.33.07
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 07 Mar 2019 04:24:46 -0800 (PST)
-Subject: Re: [PATCH v2 2/2] clk: meson: g12a: add cpu clocks
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20190304131129.7762-1-narmstrong@baylibre.com>
- <20190304131129.7762-3-narmstrong@baylibre.com>
- <CAFBinCAax7=dbLxTNtSrJJthuFb02+7YMyGwpie28F1bnr0qRw@mail.gmail.com>
+ Thu, 07 Mar 2019 04:33:07 -0800 (PST)
+Subject: Re: [PATCH v2 0/2] irqchip/meson-gpio: Add support for Meson-G12A SoC
+To: Xingyu Chen <xingyu.chen@amlogic.com>, Marc Zyngier
+ <marc.zyngier@arm.com>, Jason Cooper <jason@lakedaemon.net>,
+ Thomas Gleixner <tglx@linutronix.de>, Kevin Hilman <khilman@baylibre.com>
+References: <20181205064611.29076-1-xingyu.chen@amlogic.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -131,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <1e0f2d89-7fc1-a2d1-6691-60ff9e1098e8@baylibre.com>
-Date: Thu, 7 Mar 2019 13:24:45 +0100
+Message-ID: <47112db1-76b5-6834-a054-2ed260b94f4d@baylibre.com>
+Date: Thu, 7 Mar 2019 13:33:06 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.4.0
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCAax7=dbLxTNtSrJJthuFb02+7YMyGwpie28F1bnr0qRw@mail.gmail.com>
+In-Reply-To: <20181205064611.29076-1-xingyu.chen@amlogic.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190307_042448_653138_BDE02A06 
-X-CRM114-Status: GOOD (  20.22  )
+X-CRM114-CacheID: sfid-20190307_043309_853916_FDABFCB1 
+X-CRM114-Status: GOOD (  14.27  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -152,56 +152,41 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- jbrunet@baylibre.com
+Cc: Rob Herring <robh@kernel.org>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ linux-kernel@vger.kernel.org, Carlo Caione <carlo@caione.org>,
+ linux-amlogic@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>,
+ linux-arm-kernel@lists.infradead.org, Heiner Kallweit <hkallweit1@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
+Hi Xingyu,
 
-On 05/03/2019 22:10, Martin Blumenstingl wrote:
-> On Mon, Mar 4, 2019 at 2:12 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
->>
->> Add the Amlogic G12A Family CPU Clock tree in read/only for now.
->>
->> The CPU clock can either use the SYS_PLL for > 1GHz frequencies or
->> use a couple of div+mux from 1GHz/667MHz/24MHz source with 2 non-glitch
->> muxes.
->>
->> Proper DVFS support will come in a second time.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> 
-> in my previous review I criticized that the post-dividers are not
-> mentioned in the description.
-> it's not part of v2 but after having a closer look again I think it's
-> not a big issue:
-> these CPU post-dividers are all marked as read-only and have a comment
-> that "ROM monitor code" manages them.
+On 05/12/2018 07:46, Xingyu Chen wrote:
+> This series try to add GPIO interrupt controller support for Meson-G12A SoCs.
+> Although the total number of pins is the same as the Meson-AXG SoC, the gpio
+> banks and irq numbers are different. To avoid confusion on use, i think the
+> new compatible string is needed.
 
-Sorry indeed I forgot to say a word about this, but you pointed the right
-thing, they are only here to be complete, not to be used (for now).
+Could you resent this serie rebased on v5.1-rc1 when tagged ?
 
+Thanks,
 Neil
 
 > 
-> disclaimer for my "reviewed-by":
-> - I don't have access to the datasheet so I can't verify if the clock
-> tree from this patch is correct
-> - the latest buildroot code with G12A support
-> (buildroot_openlinux_kernel_4.9_fbdev_20180706) doesn't have proper
-> names for all clocks
-> - this review is based on my experience with Meson8* (where Linux also
-> manages the CPU clock, unlike on the GX SoCs where it's managed in
-> firmware)
+> Changes since v1: [1]
+> - share the device data with Meson-AXG
 > 
+> [1]: https://lore.kernel.org/lkml/20181203061324.36248-1-xingyu.chen@amlogic.com
 > 
-> Regards
-> Martin
+> Xingyu Chen (2):
+>   dt-bindings: interrupt-controller: New binding for Meson-G12A SoC
+>   irqchip/meson-gpio: Add support for Meson-G12A SoC
+> 
+>  .../bindings/interrupt-controller/amlogic,meson-gpio-intc.txt    | 1 +
+>  drivers/irqchip/irq-meson-gpio.c                                 | 1 +
+>  2 files changed, 2 insertions(+)
 > 
 
 
