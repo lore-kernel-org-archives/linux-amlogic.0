@@ -6,141 +6,55 @@ X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 256C4C4360F
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Mar 2019 12:33:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ADA93C43381
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Mar 2019 13:10:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E991A20643
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Mar 2019 12:33:19 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7A7532081B
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Mar 2019 13:10:42 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NNYHcvss";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="UHjoqITw"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E991A20643
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ijQ7FESs"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7A7532081B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=bootlin.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zkLMvmr2GDFHyBSpDyRS8/gADzg8MZ9URz32ncSxYes=; b=NNYHcvsswq+Ccr
-	VIBL7AZwFv3pgKVxxWBFYCZ8FjmbhlB1CE1dtXt0XgAK9Zk6qzTX10aFGmNnGKlaQEbDj0MZjB1e8
-	fJegaTEg5MnhhStD1VG7+D5xtCMojsPu11MngMTBe2tc0X913Nh2JrAxAKcVd+Erzi+xlNiaKuiwq
-	2Jjt9BThMaX012Bgs14dyYiVybxsPtsscpAVE9sht+xQTvS27M8tcGlPgDpsNctrX2t6r5hg/Ev5v
-	lD8Bgj+oxpwcSfaWWlo+14l3oIlCoUid14JMDHcjaQYXByuMOwYzjIrQOcKg2JUrAAwqtZrLdiN1y
-	852wXYeE6+AiPYvxlj2A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=pEN7CgO0gfympmgfGeNqvbSllLeSh6HvO87rAJ2mR/g=; b=ijQ7FESsZQzRyy
+	eT1CY2NMXE3PYiaQ3BznQhpg8PuhNVSNmiQWovAeDGwxeTP0remc2wNO9hs54w69uZ06gyu+0pvJ6
+	rsEkwUgHSfLl3edmeD77lSDOVj5q/PahjzmqRRRIPZdBbOXPxwEL2KkVaWtvcjh9GxcGSZ6Lp24R7
+	D0S/zGCQvE5HR8kx2EswFvco/FMbEi1yZaIfe3l6EcoIvA0bWN088sHQsnEg8sj4ShbTJ8Xr23BCQ
+	jP3H3kXtZ1J1KpjOlavtqePxgP7ujCWXmW9Egf6HsPcg0fifGIBP522Y6DhCI3YVyu6WzTYIILD62
+	D/t8n1Tfzbm4tZh2JrMQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h1sD2-0000Uj-Tp; Thu, 07 Mar 2019 12:33:12 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1h1snE-0007ec-E9; Thu, 07 Mar 2019 13:10:36 +0000
+Received: from relay11.mail.gandi.net ([217.70.178.231])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h1sCz-0000Tz-Px
- for linux-amlogic@lists.infradead.org; Thu, 07 Mar 2019 12:33:11 +0000
-Received: by mail-wm1-x344.google.com with SMTP id q187so9164567wme.5
- for <linux-amlogic@lists.infradead.org>; Thu, 07 Mar 2019 04:33:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=/q50ecZZR61sGX7s3g//9jg5N10pWQr6sU81Kq0BRwU=;
- b=UHjoqITwQ+q7SXZUv8ZgpFxAn90/twuSJgnSe4Y0BcAV5oPQ1XRRpO3P26Ny3MJBOU
- DHQVVUmVdvKNa/bppRD9IHnXb4VrJi9td0pLvWBM2DahWajJFnjMHucI3aSeVCVieOd6
- WbP9ERoizCHLTvHVDmkouKPXX0M5+/ZSoufMxHR5BDZ6VUaLoItEqqn22pGDDAtMTFym
- a+wlZu4ZhTxXKfTA7nskNJOKhgkPrn8jhRy9tTmgqs6bzcSImIV+PJ6KFYiqmLUjc3C0
- iKniBla5M/AkLpz4otxWFyaQR1HhM0eFI4kfeZotVosxCrZl9ofFjJXjvPL190FvIoLa
- 3cVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=/q50ecZZR61sGX7s3g//9jg5N10pWQr6sU81Kq0BRwU=;
- b=hhwgNbQ2KSF5YbwKofONOKP/50Of0SZ0FjJWuooY8lerLMy6Z0FInF7hA6qU/bGB5T
- fSTS+ReSlPZTGXA6h39+uwbC51Cp5/J5OhMb/Ndg/3EwwPVg0qTn51o6YCmnU00NGbiq
- pphbnaGm5V4LA2eS8HoXhxZxZonHYdpv96goUGfVP25kq37bT2pXeDPgvWVPnh7YZrg1
- 5CT1zV/rRUMRxd7zprzQrucR4/VMRUkOD7Fm5OaGP+SEcG7hTwSU30W2o53BRispxBHN
- KvWzYc8VkIshzN7nxVHO4jwAaVZ3fjGlbOX16EsCnvyq2vOp6libBtrpjwBEipW4N8hz
- BFVQ==
-X-Gm-Message-State: APjAAAXqM5M6FW91h/qOL/yrOHTLtYBQv9VxqXjvYlp7d0DNQ70VJXAQ
- zF+OVDa3ePsAV5TD6qGPntx9um6TC5jgtA==
-X-Google-Smtp-Source: APXvYqypDbk7wxdZ9VKUVGtZupodZqew/nXUwDJ9e9GC6JtWQbp/mb2EA3xhMJNjHgsru8GdqazrbQ==
-X-Received: by 2002:a1c:4406:: with SMTP id r6mr5519572wma.114.1551961988200; 
- Thu, 07 Mar 2019 04:33:08 -0800 (PST)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id a1sm6638423wrq.96.2019.03.07.04.33.07
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 07 Mar 2019 04:33:07 -0800 (PST)
-Subject: Re: [PATCH v2 0/2] irqchip/meson-gpio: Add support for Meson-G12A SoC
-To: Xingyu Chen <xingyu.chen@amlogic.com>, Marc Zyngier
- <marc.zyngier@arm.com>, Jason Cooper <jason@lakedaemon.net>,
- Thomas Gleixner <tglx@linutronix.de>, Kevin Hilman <khilman@baylibre.com>
-References: <20181205064611.29076-1-xingyu.chen@amlogic.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <47112db1-76b5-6834-a054-2ed260b94f4d@baylibre.com>
-Date: Thu, 7 Mar 2019 13:33:06 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.4.0
+ id 1h1snA-0007da-Mm; Thu, 07 Mar 2019 13:10:34 +0000
+Received: from xps13 (aaubervilliers-681-1-31-179.w90-88.abo.wanadoo.fr
+ [90.88.150.179]) (Authenticated sender: miquel.raynal@bootlin.com)
+ by relay11.mail.gandi.net (Postfix) with ESMTPSA id 9E43C100012;
+ Thu,  7 Mar 2019 13:10:17 +0000 (UTC)
+Date: Thu, 7 Mar 2019 14:09:59 +0100
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [RFC PATCH nand-next 0/2] meson-nand: support for older SoCs
+Message-ID: <20190307140959.10092d45@xps13>
+In-Reply-To: <CAFBinCC7P40sqrDGTuM8M=jVOFTgZLDUK6rGdNpigFoepyCASw@mail.gmail.com>
+References: <20190301182922.8309-1-martin.blumenstingl@googlemail.com>
+ <98776767-c4d7-1207-6d42-97105f289bec@amlogic.com>
+ <CAFBinCC7P40sqrDGTuM8M=jVOFTgZLDUK6rGdNpigFoepyCASw@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20181205064611.29076-1-xingyu.chen@amlogic.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190307_043309_853916_FDABFCB1 
-X-CRM114-Status: GOOD (  14.27  )
+X-CRM114-CacheID: sfid-20190307_051033_047255_8CF55BE2 
+X-CRM114-Status: GOOD (  28.86  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -152,45 +66,69 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Jianxin Pan <jianxin.pan@amlogic.com>,
- linux-kernel@vger.kernel.org, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>,
- linux-arm-kernel@lists.infradead.org, Heiner Kallweit <hkallweit1@gmail.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: mark.rutland@arm.com, devicetree@vger.kernel.org, jianxin.pan@amlogic.com,
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+ Liang Yang <liang.yang@amlogic.com>, linux-mtd@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Xingyu,
-
-On 05/12/2018 07:46, Xingyu Chen wrote:
-> This series try to add GPIO interrupt controller support for Meson-G12A SoCs.
-> Although the total number of pins is the same as the Meson-AXG SoC, the gpio
-> banks and irq numbers are different. To avoid confusion on use, i think the
-> new compatible string is needed.
-
-Could you resent this serie rebased on v5.1-rc1 when tagged ?
-
-Thanks,
-Neil
-
-> 
-> Changes since v1: [1]
-> - share the device data with Meson-AXG
-> 
-> [1]: https://lore.kernel.org/lkml/20181203061324.36248-1-xingyu.chen@amlogic.com
-> 
-> Xingyu Chen (2):
->   dt-bindings: interrupt-controller: New binding for Meson-G12A SoC
->   irqchip/meson-gpio: Add support for Meson-G12A SoC
-> 
->  .../bindings/interrupt-controller/amlogic,meson-gpio-intc.txt    | 1 +
->  drivers/irqchip/irq-meson-gpio.c                                 | 1 +
->  2 files changed, 2 insertions(+)
-> 
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGVsbG8sCgpNYXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1h
+aWwuY29tPiB3cm90ZSBvbiBUdWUsCjUgTWFyIDIwMTkgMjM6MTI6NTEgKzAxMDA6Cgo+IEhpIExp
+YW5nLAo+IAo+IE9uIE1vbiwgTWFyIDQsIDIwMTkgYXQgNTo1NSBBTSBMaWFuZyBZYW5nIDxsaWFu
+Zy55YW5nQGFtbG9naWMuY29tPiB3cm90ZToKPiA+Cj4gPiBIZWxsbyBNYXJ0aW4sCj4gPgo+ID4g
+T24gMjAxOS8zLzIgMjoyOSwgTWFydGluIEJsdW1lbnN0aW5nbCB3cm90ZTogIAo+ID4gPiBIaSBM
+aWFuZywKPiA+ID4KPiA+ID4gSSBhbSB0cnlpbmcgdG8gYWRkIHN1cHBvcnQgZm9yIG9sZGVyIFNv
+Q3MgdG8gdGhlIG1lc29uLW5hbmQgZHJpdmVyLgo+ID4gPiBCYWNrIHdoZW4gdGhlIGRyaXZlciB3
+YXMgaW4gZGV2ZWxvcG1lbnQgSSB1c2VkIGFuIGVhcmx5IHJldmlzaW9uIChvZgo+ID4gPiB5b3Vy
+IGRyaXZlcikgYW5kIGRpZCBzb21lIG1vZGlmaWNhdGlvbnMgdG8gbWFrZSBpdCB3b3JrIG9uIG9s
+ZGVyIFNvQ3MuCj4gPiA+Cj4gPiA+IE5vdyB0aGF0IHRoZSBkcml2ZXIgaXMgdXBzdHJlYW0gSSB3
+YW50ZWQgdG8gZ2l2ZSBpdCBhbm90aGVyIHRyeSBhbmQKPiA+ID4gbWFrZSBhIHJlYWwgcGF0Y2gg
+b3V0IG9mIGl0LiBVbmZvcnR1bmF0ZWx5IGl0J3Mgbm90IHdvcmtpbmcgYW55bW9yZS4KPiA+ID4K
+PiA+ID4gQXMgZmFyIGFzIEkga25vdyB0aGUgTkZDIElQIGJsb2NrIHJldmlzaW9uIG9uIEdYTCBp
+cyBzaW1pbGFyIChvciBldmVuCj4gPiA+IHRoZSBzYW1lPykgYXMgb24gYWxsIG9sZGVyIFNvQ3Mu
+IEFzIGZhciBhcyBJIGNhbiB0ZWxsIG9ubHkgdGhlIGNsb2NrCj4gPiA+IHNldHVwIGlzIGRpZmZl
+cmVudCBvbiB0aGUgb2xkZXIgU29DcyAod2hpY2ggaGF2ZSBhIGRlZGljYXRlZCBOQU5ECj4gPiA+
+IGNsb2NrKToKPiA+ID4gLSB3ZSBkb24ndCBuZWVkIHRoZSAiYW1sb2dpYyxtbWMtc3lzY29uIiBw
+cm9wZXJ0eSBvbiB0aGUgb2xkZXIgU29Dcwo+ID4gPiAgICBiZWNhdXNlIHdlIGRvbid0IG5lZWQg
+dG8gc2V0dXAgYW55IG11eGluZyAoY29tbW9uIGNsb2NrIGZyYW1ld29yawo+ID4gPiAgICB3aWxs
+IGRvIGV2ZXJ5dGhpbmcgZm9yIHVzKQo+ID4gPiAtICJyeCIgYW5kICJ0eCIgY2xvY2tzIGRvbid0
+IGV4aXN0Cj4gPiA+IC0gSSBjb3VsZCBub3QgZmluZCBhbnkgb3RoZXIgZGlmZmVyZW5jZXMgYmV0
+d2VlbiBNZXNvbjgsIE1lc29uOGIsCj4gPiA+ICAgIE1lc29uOG0yLCBHWEJCIGFuZCBHWEwKPiA+
+ID4gIAo+ID4gVGhhdCBpcyByaWdodC4gdGhlIHNlcmlhbHMgTkZDIGlzIGFsbW9zdCB0aGUgc2Ft
+ZSBleGNlcHQ6Cj4gPiAxKSBUaGUgY2xvY2sgY29udHJvbCBhbmQgc291cmNlIHRoYXQgTTgtc2Vy
+aWFscyBhcmUgbm90IHNoYXJlIHdpdGggRU1NQy4KPiA+IDIpIFRoZSBiYXNlIHJlZ2lzdGVyIGFk
+ZHJlc3MKPiA+IDMpIERNQSBlbmNyeXB0aW9uIG9wdGlvbiB3aGljaCB3ZSBkb24ndCBjYXJlIG9u
+IE5GQyBkcml2ZXIuICAKPiBncmVhdCwgdGhhbmsgeW91IGZvciBjb25maXJtaW5nIHRoaXMhCj4g
+Cj4gPiA+IEluIHRoaXMgc2VyaWVzIEknbSBzZW5kaW5nIHR3byBwYXRjaGVzIHdoaWNoIGFkZCBz
+dXBwb3J0IGZvciB0aGUgb2xkZXIKPiA+ID4gU29Dcy4KPiA+ID4KPiA+ID4gVW5mb3J0dW5hdGVs
+eSB0aGVzZSBwYXRjaGVzIGFyZSBjdXJyZW50bHkgbm90IHdvcmtpbmcgZm9yIG1lIChoZW5jZSB0
+aGUKPiA+ID4gIlJGQyIgcHJlZml4KS4gSSBnZXQgYSAoc3RyYW5nZSkgY3Jhc2ggd2hpY2ggaXMg
+dHJpZ2dlcmVkIGJ5IHRoZQo+ID4gPiBremFsbG9jKCkgaW4gbWVzb25fbmZjX3JlYWRfYnVmKCkg
+LSBzZWUgYmVsb3cgZm9yIG1vcmUgZGV0YWlscy4KPiA+ID4KPiA+ID4gQ2FuIHlvdSBwbGVhc2Ug
+aGVscCBtZSBvbiB0aGlzIG9uZT8gSSdkIGxpa2UgdG8ga25vdyB3aGV0aGVyOgo+ID4gPiAtIHRo
+ZSBtZXNvbi1uYW5kIGRyaXZlciB3b3JrcyBmb3IgeW91IG9uIEdYTCBvciBBWEcgb24gbGludXgt
+bmV4dD8KPiA+ID4gICAgKEkgd2FzIHJ1bm5pbmcgdGhlc2UgcGF0Y2hlcyBvbiB0b3Agb2YgbmV4
+dC0yMDE5MDMwMSBvbiBteSBNOFMKPiA+ID4gICAgYm9hcmQgd2hpY2ggdXNlcyBhIDMyLWJpdCBN
+ZXNvbjhtMiBTb0MuIEkgZG9uJ3QgaGF2ZSBhbnkgYm9hcmQgdXNpbmcKPiA+ID4gICAgYSBHWEwg
+U29DIHdoaWNoIGFsc28gaGFzIE5BTkQpICAKPiA+IFllcywgaXQgd29ya3Mgb24gQVhHIHBsYXRm
+b3JtIHVzaW5nIGEgTVhJQyBzbGMgbmFuZCBmbGFzaChNWDMwTEY0Ryk7IGJ1dAo+ID4gaSBhbiBu
+b3Qgc3VyZSBpdCBydW5zIHRoZSBzYW1lIGZsb3cgd2l0aCB5b3Vycy4gYmVjYXVzZSBpIHNlZSB0
+aGUgcHJpbnQKPiA+ICJDb3VubGQgbm90IGZpbmQgYSB2YWxpZCBPTkZJIHBhcmFtZXRlciBwYWdl
+LCAuLi4uIiBpbiB5b3Vycy4gaSB3aWxsIHRyeQo+ID4gdG8gcmVwcm9kdWNlIGl0IG9uIEFYRyhp
+IGRvbid0IGhhdmUgYSBNOCBwbGF0Zm9ybSBub3cpLiAgCj4gSSdtIGxvb2tpbmcgZm9yd2FyZCB0
+byBoZWFyIGFib3V0IHRoZSB0ZXN0IHJlc3VsdHMgb24geW91ciBBWEcgYm9hcmRzCj4gZm9yIHJl
+ZmVyZW5jZTogbXkgYm9hcmQgaGFzIGEgU0sgSHluaXggSDI3VUNHOFQyQiAoSUQgYnl0ZXM6IDB4
+YWQgMHhkZQo+IDB4OTQgMHhlYiAweDc0IDB4NDQsIDIwbm0gTUxDKQo+IEkgaGF2ZSBhbm90aGVy
+IGJvYXJkICh3aGVyZSBJIGhhdmVuJ3QgdGVzdGVkIHRoZSBORkMgZHJpdmVyIHlldCkgd2l0aAo+
+IGEgU0sgSHluaXggSDI3VUNHOFQyRSAoSUQgYnl0ZXM6IDB4YWQgMHhkZSAweDE0IDB4YTcgMHg0
+MiAweDRhLCAxWW5tCj4gTUxDKS4gaWYgaXQgaGVscHMgd2l0aCB5b3VyIGFuYWx5c2lzIEkgY2Fu
+IHRlc3Qgb24gdGhhdCBib2FyZCBhcyB3ZWxsCgpMaWFuZywgeW91IGp1c3QgaGF2ZSB0byBmYWtl
+IHRoZSBvdXRwdXQgb2YgdGhlIE9ORkkgcGFnZSBkZXRlY3Rpb24gYW5kCnlvdSB3aWxsIHByb2Jh
+Ymx5IHJ1biBpbnRvIHRoaXMgZXJyb3Igd2hpY2ggd2lsbCB0aGVuIGJlIGVhc3kgdG8KcmVwcm9k
+dWNlLgoKClRoYW5rcywKTWlxdcOobAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0Bs
+aXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlz
+dGluZm8vbGludXgtYW1sb2dpYwo=
