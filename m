@@ -4,68 +4,144 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,UNPARSEABLE_RELAY autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 726F7C43381
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Mar 2019 02:03:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7500FC43381
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Mar 2019 08:35:22 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 41D8920661
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Mar 2019 02:03:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 44D6320652
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Mar 2019 08:35:22 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EdzT/+Vn"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 41D8920661
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=mediatek.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cQeCAuhn";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ydtdaNM3"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 44D6320652
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OOl3F2ufGSGjopL7jw23gZfTrtbqIBhrgzOerfPptII=; b=EdzT/+VnJ18E5e
-	8r/x454dPvUz4NkgHNC046CXBvoMa4XV558IvbtxuVNnO1FRulUGsTZ6oep9M944YqdQBEqX+eNLF
-	ljZzGytkmC0/eIlQvW4rnO9DPYspd9zahunVs+uMCMKbPabZSk2neYx70miepUgxQE467k7awqEwm
-	yKj+OIEFQy0k4+X4t06GegwpsalCy39J3Z+FNje/BVXjWh5XSc6oCqUC1wA1Dnt7RPS4FGb4jMF6E
-	ri354V8FKEl/+43eEGd4L9iH0aLoY8hG5LV4k+uuSTAPdRPRIV9GNYBZ5o5G5wAIcIbu5EqhOT0WM
-	p6aTM3f4DtDWLrCOxp1A==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=48JeQe/rdYulP68kx5anuPV2mYOtic6T1Ur9DL/5qq0=; b=cQeCAuhnEr2C5f
+	UQOS6t1gn3N9o6ZBR8DPJB4RQi9eGGiYAjrmTeLOaXvL1sKlM0yAB9K4UG/HC5qLXVaIS3WStmkyS
+	IWPPBCjaLAn0tm4WWQwzUcKPysqbrhGSYVrko4UI7v7Zew04es2H5NEwODUpDe3vbdCsypC6q9SKi
+	FlMUheYOZwT9cFniR8Jp9ZjEQvkA3oXDcMvN4CuRC3sHGejTx2I7+NLE5FMKY/xnciLyf37JTI/Ix
+	mTFsF+qfHkxQWaItWgXbZdGLuc3myor+86sao/QfNA+skxXDbf7cWqRmir8q+Ho65RASW9jUaE7qF
+	3AatcXTXUc0kavTU6KTA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h1iNV-0003Gs-6d; Thu, 07 Mar 2019 02:03:21 +0000
-Received: from mailgw01.mediatek.com ([216.200.240.184])
+	id 1h1oUl-0007tc-NA; Thu, 07 Mar 2019 08:35:15 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h1iNS-0003FJ-Fi; Thu, 07 Mar 2019 02:03:20 +0000
-X-UUID: 9bca1713bedd4eaa95273f2f29c7d813-20190306
-X-UUID: 9bca1713bedd4eaa95273f2f29c7d813-20190306
-Received: from mtkcas66.mediatek.inc [(172.29.193.44)] by mailgw01.mediatek.com
- (envelope-from <chunfeng.yun@mediatek.com>)
- (musrelay.mediatek.com ESMTP with TLS)
- with ESMTP id 564006373; Wed, 06 Mar 2019 18:03:01 -0800
-Received: from MTKMBS31N2.mediatek.inc (172.27.4.87) by
- MTKMBS62N1.mediatek.inc (172.29.193.41) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 6 Mar 2019 18:02:59 -0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N2.mediatek.inc
- (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1395.4;
- Thu, 7 Mar 2019 10:02:57 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 7 Mar 2019 10:02:56 +0800
-Message-ID: <1551924176.2210.104.camel@mhfsdcap03>
-Subject: Re: [PATCH v2 8/8] usb: dwc3: Add Amlogic G12A DWC3 glue
-From: Chunfeng Yun <chunfeng.yun@mediatek.com>
-To: Neil Armstrong <narmstrong@baylibre.com>
-Date: Thu, 7 Mar 2019 10:02:56 +0800
-In-Reply-To: <20190304103846.2060-9-narmstrong@baylibre.com>
+ id 1h1oUh-0007qS-Oa
+ for linux-amlogic@lists.infradead.org; Thu, 07 Mar 2019 08:35:13 +0000
+Received: by mail-wm1-x341.google.com with SMTP id e74so8363632wmg.3
+ for <linux-amlogic@lists.infradead.org>; Thu, 07 Mar 2019 00:35:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=4XqHCoi5JggUdG0hVxEIbh3ilXAPVgBeyrSdkB4j67U=;
+ b=ydtdaNM3iz+UhJpkvzfPtBrJ2GFVZNvqqALm9nxzR+c5qv6kTfRNMItoVtIv/PD4rc
+ ITlQqDPbv1chhRx8byLvyoR7vn618elSD48PhLbUyLOUBTCbqXI7pHDf7dS0OVYnxBnF
+ 29PuQPTpxNjeuxzqr2d8AAtZfGJWznUg74+ArPLXcbWe4ta1GV+YAddd/7mWJ/34T5g9
+ BiMtd2yoSxeJF/Wu8hJvOuTf9lNP4Uh2poBOeCMCSx4ffI/W8fb+D+w2BKJmEbkCPnfS
+ zH5PfU2ajdpjZbfTg7hN4opfxWetrbzPdzBRP5pmfi/nSG2yQ/SgsH9yOJaGCZnCvzRy
+ 0UQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=4XqHCoi5JggUdG0hVxEIbh3ilXAPVgBeyrSdkB4j67U=;
+ b=Es5Xx5Bok++9HCTiH5mr/0HYc/0C427IwSxjCcsmKadse57TguOqdoIQ//NBvZyTIw
+ k3R7F8tB0v1RdFvc751NUk9tIoiQh/ttCAvsw6cBsW2YaBN7ZaYBk8FVzfKI/Zg9OiHc
+ v7tl86qxTg1z9yDFz82505J94BtgkYyoWEsxnLJpovG68yIDvBMesbLvQqDTFmSrGiNn
+ JqiZs6SVwIHcx/u4XQOmEqyOWlt0J6orCYHBiHEhXI5TDxWOzrHUxtBOw4d0WGWW+vG+
+ QHvy+FR9bLwHnshD1BPXNvVqOiFQQ+ob7XQjUUvtHP7hF2pV5P7cNkTRlw3zTGrfti+9
+ 8gXw==
+X-Gm-Message-State: APjAAAV1Avxv6aEM3OghwpFMGnKD/aD5sKgUZz7Sdc9rJq2SOl4cWTq4
+ OLzRArerLgKB/MvamJyBfN4Pvg==
+X-Google-Smtp-Source: APXvYqxrZlo3DDnWMWKvpwb6WXhyZUdg9uyElMCs1S8dd3vg/wU06S3oZIyrNpZqCrNlMGIb5hovuw==
+X-Received: by 2002:a1c:2097:: with SMTP id g145mr4736230wmg.81.1551947709312; 
+ Thu, 07 Mar 2019 00:35:09 -0800 (PST)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id i74sm6337187wmg.48.2019.03.07.00.35.08
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 07 Mar 2019 00:35:08 -0800 (PST)
+Subject: Re: [PATCH v2 2/8] dt-bindings: phy: Add Amlogic G12A USB3+PCIE Combo
+ PHY Bindings
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 References: <20190304103846.2060-1-narmstrong@baylibre.com>
- <20190304103846.2060-9-narmstrong@baylibre.com>
-X-Mailer: Evolution 3.2.3-0ubuntu6 
+ <20190304103846.2060-3-narmstrong@baylibre.com>
+ <CAFBinCCp+bME0fnWRJx0L1E5aazUh1Hw-svsP7+D_QU4dP08nw@mail.gmail.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <77d8681b-d270-5928-ff67-b58b4813f100@baylibre.com>
+Date: Thu, 7 Mar 2019 09:35:08 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.4.0
 MIME-Version: 1.0
-X-MTK: N
+In-Reply-To: <CAFBinCCp+bME0fnWRJx0L1E5aazUh1Hw-svsP7+D_QU4dP08nw@mail.gmail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190306_180318_532267_98587D24 
-X-CRM114-Status: GOOD (  23.27  )
+X-CRM114-CacheID: sfid-20190307_003511_854855_E81780F5 
+X-CRM114-Status: GOOD (  18.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -77,341 +153,65 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: balbi@kernel.org, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, kishon@ti.com, hminas@synopsys.com,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org, balbi@kernel.org, gregkh@linuxfoundation.org,
+ linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, kishon@ti.com,
+ hminas@synopsys.com, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-On Mon, 2019-03-04 at 11:38 +0100, Neil Armstrong wrote:
-> Adds support for Amlogic G12A USB Control Glue HW.
+On 05/03/2019 22:42, Martin Blumenstingl wrote:
+> Hi Neil,
 > 
-> The Amlogic G12A SoC Family embeds 2 USB Controllers :
-> - a DWC3 IP configured as Host for USB2 and USB3
-> - a DWC2 IP configured as Peripheral USB2 Only
-> 
-> A glue connects these both controllers to 2 USB2 PHYs, and optionnally
-> to an USB3+PCIE Combo PHY shared with the PCIE controller.
-> 
-> The Glue configures the UTMI 8bit interfaces for the USB2 PHYs, including
-> routing of the OTG PHY between the DWC3 and DWC2 controllers, and
-> setups the on-chip OTG mode selection for this PHY.
-> 
-> This drivers supports the on-probe setup of the OTG mode, and manually
-> via a debugfs interface. The IRQ mode change detect is yet to be added
-> in a future patchset, mainly due to lack of hardware to validate on.
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  drivers/usb/dwc3/Kconfig           |  10 +
->  drivers/usb/dwc3/Makefile          |   1 +
->  drivers/usb/dwc3/dwc3-meson-g12a.c | 601 +++++++++++++++++++++++++++++
->  3 files changed, 612 insertions(+)
->  create mode 100644 drivers/usb/dwc3/dwc3-meson-g12a.c
-> 
-> diff --git a/drivers/usb/dwc3/Kconfig b/drivers/usb/dwc3/Kconfig
-> index 1a0404fda596..21ce7368d325 100644
-> --- a/drivers/usb/dwc3/Kconfig
-> +++ b/drivers/usb/dwc3/Kconfig
-> @@ -93,6 +93,16 @@ config USB_DWC3_KEYSTONE
->  	  Support of USB2/3 functionality in TI Keystone2 platforms.
->  	  Say 'Y' or 'M' here if you have one such device
->  
-> +config USB_DWC3_MESON_G12A
-> +       tristate "Amlogic Meson G12A Platforms"
-> +       depends on OF && COMMON_CLK
-> +       depends on ARCH_MESON || COMPILE_TEST
-> +       default USB_DWC3
-> +       select USB_ROLE_SWITCH
-> +       help
-> +         Support USB2/3 functionality in Amlogic G12A platforms.
-> +	 Say 'Y' or 'M' if you have one such device.
-> +
->  config USB_DWC3_OF_SIMPLE
->         tristate "Generic OF Simple Glue Layer"
->         depends on OF && COMMON_CLK
-> diff --git a/drivers/usb/dwc3/Makefile b/drivers/usb/dwc3/Makefile
-> index 6e3ef6144e5d..ae86da0dc5bd 100644
-> --- a/drivers/usb/dwc3/Makefile
-> +++ b/drivers/usb/dwc3/Makefile
-> @@ -47,6 +47,7 @@ obj-$(CONFIG_USB_DWC3_EXYNOS)		+= dwc3-exynos.o
->  obj-$(CONFIG_USB_DWC3_PCI)		+= dwc3-pci.o
->  obj-$(CONFIG_USB_DWC3_HAPS)		+= dwc3-haps.o
->  obj-$(CONFIG_USB_DWC3_KEYSTONE)		+= dwc3-keystone.o
-> +obj-$(CONFIG_USB_DWC3_MESON_G12A)	+= dwc3-meson-g12a.o
->  obj-$(CONFIG_USB_DWC3_OF_SIMPLE)	+= dwc3-of-simple.o
->  obj-$(CONFIG_USB_DWC3_ST)		+= dwc3-st.o
->  obj-$(CONFIG_USB_DWC3_QCOM)		+= dwc3-qcom.o
-> diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
-> new file mode 100644
-> index 000000000000..75942614a034
-> --- /dev/null
-> +++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
-> @@ -0,0 +1,601 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * USB Glue for Amlogic G12A SoCs
-> + *
-> + * Copyright (c) 2019 BayLibre, SAS
-> + * Author: Neil Armstrong <narmstrong@baylibre.com>
-> + */
-> +
-> +/*
-> + * The USB is organized with a glue around the DWC3 Controller IP as :
-> + * - Control registers for each USB2 Ports
-> + * - Control registers for the USB PHY layer
-> + * - SuperSpeed PHY can be enabled only if port is used
-> + *
-> + * TOFIX:
-> + * - Add dynamic OTG switching with ID change interrupt
-> + */
-> +
-[...]
-> +
-> +static int dwc3_meson_g12a_probe(struct platform_device *pdev)
-> +{
-> +	struct dwc3_meson_g12a	*priv;
-> +	struct device		*dev = &pdev->dev;
-> +	struct device_node	*np = dev->of_node;
-> +	void __iomem *base;
-> +	struct resource *res;
-> +	enum phy_mode otg_id;
-> +	int ret, i;
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	base = devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	priv->regmap = devm_regmap_init_mmio(dev, base,
-> +					     &phy_meson_g12a_usb3_regmap_conf);
-> +	if (IS_ERR(priv->regmap))
-> +		return PTR_ERR(priv->regmap);
-> +
-> +	priv->vbus = devm_regulator_get_optional(dev, "vbus");
-> +	if (IS_ERR(priv->vbus)) {
-> +		if (PTR_ERR(priv->vbus) == -EPROBE_DEFER)
-> +			return PTR_ERR(priv->vbus);
-> +		priv->vbus = NULL;
-> +	}
-> +
-> +	priv->clk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(priv->clk))
-> +		return PTR_ERR(priv->clk);
-> +
-> +	ret = clk_prepare_enable(priv->clk);
-> +	if (ret)
-> +		return ret;
-> +
-> +	platform_set_drvdata(pdev, priv);
-> +	priv->dev = dev;
-> +
-> +	priv->reset = devm_reset_control_get(dev, NULL);
-> +	if (IS_ERR(priv->reset)) {
-> +		ret = PTR_ERR(priv->reset);
-> +		dev_err(dev, "failed to get device reset, err=%d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = reset_control_reset(priv->reset);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = dwc3_meson_g12a_get_phys(priv);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regulator_enable(priv->vbus);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Get dr_mode */
-> +	priv->otg_mode = usb_get_dr_mode(dev);
-> +
-> +	dwc3_meson_g12a_usb_init(priv);
-> +
-> +	/* Set PHY Power */
-> +	for (i = 0 ; i < PHY_COUNT ; ++i) {
-> +		ret = phy_power_on(priv->phys[i]);
-> +		if (ret)
-> +			goto err_phys_put;
-> +	}
-> +
-> +	/* Init PHYs */
-> +	for (i = 0 ; i < PHY_COUNT ; ++i) {
-> +		ret = phy_init(priv->phys[i]);
-> +		if (ret)
-> +			goto err_phys_power;
-> +	}
-usually phy_init() first
+> On Mon, Mar 4, 2019 at 11:38 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>
+>> Add the Amlogic G12A Family USB3 + PCIE Combo PHY Bindings.
+>>
+>> This PHY can provide exclusively USB3 or PCIE support on shared I/Os.
+>>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> ---
+>>  .../bindings/phy/meson-g12a-usb3-pcie-phy.txt | 22 +++++++++++++++++++
+>>  1 file changed, 22 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/phy/meson-g12a-usb3-pcie-phy.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/meson-g12a-usb3-pcie-phy.txt b/Documentation/devicetree/bindings/phy/meson-g12a-usb3-pcie-phy.txt
+>> new file mode 100644
+>> index 000000000000..7cfc17e2df31
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/phy/meson-g12a-usb3-pcie-phy.txt
+>> @@ -0,0 +1,22 @@
+>> +* Amlogic G12A USB3 + PCIE Combo PHY binding
+>> +
+>> +Required properties:
+>> +- compatible:  Should be "amlogic,meson-g12a-usb3-pcie-phy"
+>> +- #phys-cells: must be 1. The cell number is used to select the phy mode
+>> +  as defined in <dt-bindings/phy/phy.h> between PHY_TYPE_USB3 and PHY_TYPE_PCIE
+>> +- reg:         The base address and length of the registers
+>> +- clocks:      a phandle to the 100MHz reference clock of this PHY
+>> +- clock-names: must be "ref_clk"
+>> +- resets:      phandle to the reset lines for the PHY control
+>> +- reset-names: must be "phy"
+> one question on the resets:
+> - in v1 you had three reset lines: RESET_PCIE_CTRL_A, RESET_PCIE_PHY,
+> RESET_PCIE_APB
+> - in v2 you only have the "phy" reset line.
+> is this because the other two are connected to the PCIe controller
+> (Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt) instead
+> of the PHY?
 
-> +
-> +	ret = of_platform_populate(np, NULL, NULL, dev);
-> +	if (ret) {
-> +		clk_disable_unprepare(priv->clk);
-> +		clk_put(priv->clk);
-> +
-> +		goto err_phys_exit;
-> +	}
-> +
-> +	/* Setup OTG mode corresponding to the ID pin */
-> +	if (priv->otg_mode == USB_DR_MODE_OTG) {
-> +		/* TOFIX Handle ID mode toggling via IRQ */
-> +		otg_id = dwc3_meson_g12a_get_id(priv);
-> +		if (otg_id != priv->otg_phy_mode) {
-> +			if (dwc3_meson_g12a_otg_mode_set(priv, otg_id))
-> +				dev_warn(dev, "Failed to switch OTG mode\n");
-> +		}
-> +	}
-> +
-> +	/* Setup role switcher */
-> +	priv->switch_desc.usb2_port = dwc3_meson_g12_find_child(dev,
-> +								"snps,dwc3");
-> +	priv->switch_desc.udc = dwc3_meson_g12_find_child(dev, "snps,dwc2");
-> +	priv->switch_desc.allow_userspace_control = true;
-> +	priv->switch_desc.set = dwc3_meson_g12a_role_set;
-> +	priv->switch_desc.get = dwc3_meson_g12a_role_get;
-to me, use a local variable for switch_desc
+Indeed, it was wrong, only the RESET_PCIE_PHY is needed for the PHY
 
-> +
-> +	priv->role_switch = usb_role_switch_register(dev, &priv->switch_desc);
-> +	if (IS_ERR(priv->role_switch))
-> +		dev_warn(dev, "Unable to register Role Switch\n");
-> +
-> +	pm_runtime_set_active(dev);
-> +	pm_runtime_enable(dev);
-> +	pm_runtime_get_sync(dev);
-> +
-> +	return 0;
-> +
-> +err_phys_exit:
-> +	for (i = 0 ; i < PHY_COUNT ; ++i)
-> +		phy_exit(priv->phys[i]);
-> +
-> +err_phys_power:
-> +	for (i = 0 ; i < PHY_COUNT ; ++i)
-> +		phy_power_off(priv->phys[i]);
-> +
-> +err_phys_put:
-> +	for (i = 0 ; i < PHY_COUNT ; ++i)
-> +		phy_put(priv->phys[i]);
-> +
-The phys are got by devm_phy_optional_get(), no need call phy_put()
-> +	return ret;
-> +}
-> +
-> +static int dwc3_meson_g12a_remove(struct platform_device *pdev)
-> +{
-> +	struct dwc3_meson_g12a *priv = platform_get_drvdata(pdev);
-> +	struct device *dev = &pdev->dev;
-> +	int i;
-> +
-> +	usb_role_switch_unregister(priv->role_switch);
-> +
-> +	of_platform_depopulate(dev);
-> +
-> +	for (i = 0 ; i < PHY_COUNT ; ++i) {
-> +		phy_power_off(priv->phys[i]);
-> +		phy_exit(priv->phys[i]);
-> +		phy_put(priv->phys[i]);
-ditto
-> +	}
-> +
-> +	clk_disable_unprepare(priv->clk);
-> +	clk_put(priv->clk);
-> +
-> +	pm_runtime_disable(dev);
-> +	pm_runtime_put_noidle(dev);
-> +	pm_runtime_set_suspended(dev);
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused dwc3_meson_g12a_runtime_suspend(struct device *dev)
-> +{
-> +	struct dwc3_meson_g12a	*priv = dev_get_drvdata(dev);
-> +
-> +	clk_disable(priv->clk);
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused dwc3_meson_g12a_runtime_resume(struct device *dev)
-> +{
-> +	struct dwc3_meson_g12a	*priv = dev_get_drvdata(dev);
-> +
-> +	return clk_enable(priv->clk);
-> +}
-> +
-> +static int __maybe_unused dwc3_meson_g12a_suspend(struct device *dev)
-> +{
-> +	struct dwc3_meson_g12a *priv = dev_get_drvdata(dev);
-> +	int i;
-> +
-> +	for (i = 0 ; i < PHY_COUNT ; ++i)
-> +		if (priv->phys[i])
-> +			phy_exit(priv->phys[i]);
-> +
-> +	reset_control_assert(priv->reset);
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused dwc3_meson_g12a_resume(struct device *dev)
-> +{
-> +	struct dwc3_meson_g12a *priv = dev_get_drvdata(dev);
-> +	int i, ret;
-> +
-> +	reset_control_deassert(priv->reset);
-> +
-> +	dwc3_meson_g12a_usb_init(priv);
-> +
-> +	/* Init PHYs */
-> +	for (i = 0 ; i < PHY_COUNT ; ++i) {
-> +		if (priv->phys[i]) {
-> +			ret = phy_init(priv->phys[i]);
-> +			if (ret)
-> +				return ret;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct dev_pm_ops dwc3_meson_g12a_dev_pm_ops = {
-> +	SET_SYSTEM_SLEEP_PM_OPS(dwc3_meson_g12a_suspend, dwc3_meson_g12a_resume)
-> +	SET_RUNTIME_PM_OPS(dwc3_meson_g12a_runtime_suspend,
-> +			dwc3_meson_g12a_runtime_resume, NULL)
-> +};
-> +
-> +static const struct of_device_id dwc3_meson_g12a_match[] = {
-> +	{ .compatible = "amlogic,meson-g12a-usb-ctrl" },
-> +	{ /* Sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, dwc3_meson_g12a_match);
-> +
-> +static struct platform_driver dwc3_meson_g12a_driver = {
-> +	.probe		= dwc3_meson_g12a_probe,
-> +	.remove		= dwc3_meson_g12a_remove,
-> +	.driver		= {
-> +		.name	= "dwc3-meson-g12a",
-> +		.of_match_table = dwc3_meson_g12a_match,
-> +		.pm	= &dwc3_meson_g12a_dev_pm_ops,
-> +	},
-> +};
-> +
-> +module_platform_driver(dwc3_meson_g12a_driver);
-> +MODULE_LICENSE("GPL v2");
-> +MODULE_DESCRIPTION("Amlogic Meson G12A USB Glue Layer");
-> +MODULE_AUTHOR("Neil Armstrong <narmstrong@baylibre.com>");
+Neil
 
+> 
+> 
+> Regards
+> Martin
+> 
 
 
 _______________________________________________
