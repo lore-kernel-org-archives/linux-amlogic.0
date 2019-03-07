@@ -2,21 +2,21 @@ Return-Path: <SRS0=Nbbq=RK=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AD40EC43381
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Mar 2019 08:36:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EBF23C43381
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Mar 2019 08:41:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7B32120840
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Mar 2019 08:36:39 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BA0C220652
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Mar 2019 08:41:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="X6/5HRbn";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="wkOYUHAk"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7B32120840
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hjHksc8D";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="UyjAnbyQ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BA0C220652
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,61 +25,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=R3Y0ajE7StwoOanD/PdAVfC8ur9pCuLTSnaTbRxcwwY=; b=X6/5HRbnlQZl9J
-	VpqScQZX8T3DQncsNmnKKOg98go+3JZTjLyaTgkcGDeuBsX2k61t5UwZE0vQnbt0pH//+jq2g5N1n
-	IXHc5UAowSrCYzMClYBVvQG5GgrtEcrKGKy89ss7FHlK6rb4HJuS9YW/Ii5nW7uzjUExGqk99lyis
-	mfKHF5g+rn87Pxd+bXpm5ykjWaHAsdeKVNRSi2GF6bZ1aiWms4BIrO9/7xXHmEItl/oroswunXj4m
-	khblnhJrgjP8/6V2yrMNYyHmZ0e9Qw2ir0AcOy0ImtvESYh7xVsKthCcOKvizL5SOlLOO7+NW5B7r
-	x5+WFZxiv380T2ooAciw==;
+	List-Owner; bh=TMzzKOtV/TkPRfsyNfX5g74GXcbOIHFJXraIGeu1OeM=; b=hjHksc8DOm/8QX
+	RH+1FHyqqHECtEtwSGoKkUbjzIk0BFoY9gTexMcFFj47Tw/hof6lb9Ru90CLft87vT9NslO7jtsqx
+	C4wHuhEHCCT1/yWj+LND8U35PWIGgWWCyop/tPbZApozftjpGdcTEOKa8HZD9upFxXWoyxzPkmNg5
+	kOOiztc7XogZLNvU2ih9LE2IGx8+QwPnCVsthhGeHodWo8zwy84qTAz7+VQobSSrPhid1/xmnxH0E
+	gUkSkah0axrOkKYQog72hbXDPbcWSds+LwToOYLW2NnbNHTmRiVFMKN3kl8GUygkWizUsNDrEHgaI
+	4UIXdwYUw3RzMEOOZq+A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h1oW2-0008GZ-Kt; Thu, 07 Mar 2019 08:36:34 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1h1oah-0002qG-So; Thu, 07 Mar 2019 08:41:23 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h1oVx-0008FI-UD
- for linux-amlogic@lists.infradead.org; Thu, 07 Mar 2019 08:36:33 +0000
-Received: by mail-wr1-x444.google.com with SMTP id w6so16360535wrs.4
- for <linux-amlogic@lists.infradead.org>; Thu, 07 Mar 2019 00:36:29 -0800 (PST)
+ id 1h1oaY-0002gu-PK
+ for linux-amlogic@lists.infradead.org; Thu, 07 Mar 2019 08:41:16 +0000
+Received: by mail-wm1-x344.google.com with SMTP id o10so6188094wmc.1
+ for <linux-amlogic@lists.infradead.org>; Thu, 07 Mar 2019 00:41:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=z3Ji1GCmHY2z0c9fHAuNCsiL41DSMdKf5/WykyTE3HE=;
- b=wkOYUHAky5gLl7efprLlqMeFQ06LUYEZa8PXS6u1o2WWlBTorgPmbk0lkQyQi4qoyW
- CnJPfShl6sLoSLRS076rMcb3fRAA370V42QyLtfGIUrPV2esYF1+9aCKO3GreRmxcRku
- 5Ufe+bbl3WFtgTrwOt66uAclBY1Pwuwij/cW6lxu4vqhPkf0e5rFJJ8V4RJ4y83XRFZL
- bVsvkq+SW4gxwOIy4QpdHWM4mhE0WxpDRFQsWDOKZ/RghONGDHeOoPVkmZWasONjwPv7
- YmmRNtCzskNTBhlA/iiYkuECu33Hhb1QZtlOPXnOwBOyN3Lfy3DuNbvJ1CR9p8H4ILnJ
- RNOg==
+ bh=yvOswUT6zD4BkIIRqIDT6GtYo/jjGWk60/6hE68mdDw=;
+ b=UyjAnbyQVzYDkCuebXj6w2xltcRnVTA0j3WxDgGrU9A9gXrCzacra62s0wbXNNjLYZ
+ XktSZzoCQCE+Rb9mDmv+ACgX/Ho4XIBsF4bf5Kv1yKZvA0OJ+ns1WcSBQG0ScEyVmi8Y
+ rkMGey6CK3jPABLM2SY+09sLpGwk/Rv3z+8SjJPbkDz3oDq3yoEcN+NRUEO/RSMTxaxL
+ Qb/8/iwLu6fJF0lg2wPlixr3ua9ZEeAfScZtC8UZjYegMnea/muDqv9Ed8pSbg7jtXF2
+ fDNyUI9fm6uMD0lPTMzJLj6nmkmOoGof9a+Z7lpHyp1UcGX0aKDvusoA4x/oLyLkQ6Hy
+ jugw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=z3Ji1GCmHY2z0c9fHAuNCsiL41DSMdKf5/WykyTE3HE=;
- b=ZEmwfF+bD14QD5Efm3c3bZQiSJrKdtCw3TVP8Y3Z8sj1J0Eyp6Srz5jVXJatCINH7z
- wWOmjnG5WzSC/0qiLG6brfkMQSta3xTW7+slYWgEa72v3fh7iHNJD9eqr8yxGZ3N0qaN
- bOx7Ek2v5uJmsmrI35Y/pR50UgiWD7uHzXkraRMmDz32Ljv0IwvW4nGKVarUfF5gsNCZ
- s6+LUHlcGbcxtPoIh/bJ2eGv+HV856NO4Po29yGTo+vwI832MbkQZTpceYIyqulUiMk3
- lZq2j77zN+0+BJoVPptFWG9ogRzzvrI2nSV3LxV/psLJzvZRT63fCe40uNlnAS0cmzp6
- rGIw==
-X-Gm-Message-State: APjAAAXcSSaDViTjUGskaz2tDroEJKWA6SKs9LbkmszIiRLB3lDCBUjl
- X9v0f+OAZwVwuXLOta83FeQ8/Q==
-X-Google-Smtp-Source: APXvYqw6rYK2BGt/nKVRRcqc8nZ3JL4G5BdVYpRhjzH6YS8IRm5qVmil+b6tp/qTO/DMqZor+o1IGQ==
-X-Received: by 2002:adf:fa10:: with SMTP id m16mr1417251wrr.188.1551947788109; 
- Thu, 07 Mar 2019 00:36:28 -0800 (PST)
+ bh=yvOswUT6zD4BkIIRqIDT6GtYo/jjGWk60/6hE68mdDw=;
+ b=Mk+yydkdwGbCaH9FTue7J1DHRn8lNAwx8HtMdnWFZDiJHSeFqj82wgzFLHcCT5POy0
+ 57X0tGh3Gln23w4ZmqiP3NKa+HA8wNzJg5YJ6qrQoYuKuNPAEwclYvFsyS7T2HXXCOAM
+ qlWN5fcR/j7s1NPRwjQqzqa1f3m9Ad5wi57CVDDGPQmEP55x96v/M+K3vbhhEgHktWKE
+ +2y9P7FHqRj0MZCyVWDvpEhu6vNikaAp+EK0r+i6Lw+ADibXvn1/hBJnbHd3pQ3tjwvg
+ vl1j30MMctPVeusryCezEA+osQTrnkN4YYbxr4qQRxxNNo4hUXbiVnczNh7TCYEBJGBB
+ RGKg==
+X-Gm-Message-State: APjAAAVm6kcQhACR7emOg612G9oQXMZsrofl1fR5grz5nkmlhKTbgAlk
+ KR9EbMECKcifNIfrjKiVC3xyKQ==
+X-Google-Smtp-Source: APXvYqyEGZ1uQ8H347vo+jPmN1nYk5jXfpxnyJDQZ6RSJIcvvVFBCv9FpuTKCQIqHrb9qAvGMsQ/wA==
+X-Received: by 2002:a1c:7903:: with SMTP id l3mr5226704wme.22.1551948073202;
+ Thu, 07 Mar 2019 00:41:13 -0800 (PST)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id g15sm5828079wmg.16.2019.03.07.00.36.27
+ by smtp.gmail.com with ESMTPSA id y140sm12810668wmd.18.2019.03.07.00.41.12
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 07 Mar 2019 00:36:27 -0800 (PST)
-Subject: Re: [PATCH v2 4/8] dt-bindings: usb: dwc3: Add Amlogic G12A DWC3 Glue
- Bindings
+ Thu, 07 Mar 2019 00:41:12 -0800 (PST)
+Subject: Re: [PATCH v2 5/8] phy: amlogic: add Amlogic G12A USB2 PHY Driver
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 References: <20190304103846.2060-1-narmstrong@baylibre.com>
- <20190304103846.2060-5-narmstrong@baylibre.com>
- <CAFBinCDthrw1zM8ryLOV4FDVvZecG8q8hGnNJVy8HOjTQRpFzg@mail.gmail.com>
+ <20190304103846.2060-6-narmstrong@baylibre.com>
+ <CAFBinCAacdsjwtg_RK=e=Lnep7oLF+eTBmkb1FB4nFR129z1jA@mail.gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -132,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <6d68648d-d1a6-1352-b787-ee04a49f4eaa@baylibre.com>
-Date: Thu, 7 Mar 2019 09:36:27 +0100
+Message-ID: <bd9d1b4b-4dd7-864e-b197-c5993d3dd24f@baylibre.com>
+Date: Thu, 7 Mar 2019 09:41:12 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.4.0
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCDthrw1zM8ryLOV4FDVvZecG8q8hGnNJVy8HOjTQRpFzg@mail.gmail.com>
+In-Reply-To: <CAFBinCAacdsjwtg_RK=e=Lnep7oLF+eTBmkb1FB4nFR129z1jA@mail.gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190307_003632_132539_F3C971F2 
-X-CRM114-Status: GOOD (  14.79  )
+X-CRM114-CacheID: sfid-20190307_004114_829591_07F28EF3 
+X-CRM114-Status: GOOD (  20.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -153,56 +152,63 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, balbi@kernel.org, gregkh@linuxfoundation.org,
- linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, kishon@ti.com,
- hminas@synopsys.com, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+Cc: balbi@kernel.org, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kishon@ti.com, hminas@synopsys.com,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 06/03/2019 22:27, Martin Blumenstingl wrote:
+On 06/03/2019 22:00, Martin Blumenstingl wrote:
 > Hi Neil,
 > 
 > On Mon, Mar 4, 2019 at 11:40 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->>
->> Adds the bindings for the Amlogic G12A USB Glue HW.
->>
->> The Amlogic G12A SoC Family embeds 2 USB Controllers :
->> - a DWC3 IP configured as Host for USB2 and USB3
->> - a DWC2 IP configured as Peripheral USB2 Only
->>
->> A glue connects these both controllers to 2 USB2 PHYs,
->> and optionnally to an USB3+PCIE Combo PHY shared with the PCIE controller.
->>
->> The Glue configures the UTMI 8bit interfaces for the USB2 PHYs, including
->> routing of the OTG PHY between the DWC3 and DWC2 controllers, and
->> setups the on-chip OTG mode selection for this PHY.
->>
->> The PHYs phandles are passed  to the Glue node since the Glue controls the
->> interface with the PHY, not the DWC3 controller.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> [...]
+>> +#include <linux/clk.h>
+>> +#include <linux/delay.h>
+>> +#include <linux/io.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of_device.h>
+>> +#include <linux/regmap.h>
+>> +#include <linux/mfd/syscon.h>
+> there's a "regmap" include right above. this driver doesn't use syscon
+> so this include can be dropped
+
+Forgot this one...
+
 > 
 > [...]
->> +                       dwc3: usb@ff500000 {
->> +                               compatible = "snps,dwc3";
->> +                               reg = <0x0 0xff500000 0x0 0x100000>;
->> +                               interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
->> +                               dr_mode = "host";
->> +                               snps,dis_u2_susphy_quirk;
->> +                               snps,quirk-frame-length-adjustment;
->> +                       };
-> in v1 of the patch I asked whether we should pass the PHYs which are
-> connected to the dwc3 controller here as well (instead of only passing
-> them to the USBCTRL node).
-> we can still do this later on, the important part is: USBCTRL
-> interfaces with the PHYs -> that is already part of the binding.
+>> +static int phy_meson_g12a_usb2_exit(struct phy *phy)
+>> +{
+>> +       struct phy_meson_g12a_usb2_priv *priv = phy_get_drvdata(phy);
+>> +
+>> +       return reset_control_reset(priv->reset);
+> do you know whether we should reset_control_assert here instead of
+> reset_control_reset?
+> the probe function below already uses reset_control_deassert, so the
+> current implementation is inconsistent. in v1 you replied with "Maybe
+> it would be better, indeed." - if there's a reason why
+> reset_control_assert doesn't work here then I would like to have a
+> comment stating why
 
-Indeed, it's not part of this binding doc, and we can do it if needed.
-But since the OTG setup is not handled by DWC3, there is no real use.
+It's not clear yet, I implemented it safe here since in my tests, when
+I left the USB2 PHYs resetted, it was kept resetted on a soft system reset
+and the ROM was not able to setup the PHY correctly.
+
+So maybe it's wrong for power management, it's safer to simply to keep the
+PHYs unresetted when unused.
+
+> 
+> Apart from these two this is looking good!
+> Human readable BIT/GENMASK #defines for the register bits would be
+> nice, but I'm not sure if you have the details to add these.
+
+I have the registers set in the doc, but it's much longer than copying
+the registers structs from the vendor kernel, so I postponed it.
+
+I'll try adding these, but for now it's low priority unless the PHY maintainer
+asks for them.
 
 Neil
 
