@@ -2,21 +2,21 @@ Return-Path: <SRS0=Nbbq=RK=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EBF23C43381
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Mar 2019 08:41:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C3448C43381
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Mar 2019 08:44:52 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BA0C220652
-	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Mar 2019 08:41:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9235C20835
+	for <linux-amlogic@archiver.kernel.org>; Thu,  7 Mar 2019 08:44:52 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hjHksc8D";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="UyjAnbyQ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BA0C220652
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jIqBxadO";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="dt24YF4w"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9235C20835
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,60 +25,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TMzzKOtV/TkPRfsyNfX5g74GXcbOIHFJXraIGeu1OeM=; b=hjHksc8DOm/8QX
-	RH+1FHyqqHECtEtwSGoKkUbjzIk0BFoY9gTexMcFFj47Tw/hof6lb9Ru90CLft87vT9NslO7jtsqx
-	C4wHuhEHCCT1/yWj+LND8U35PWIGgWWCyop/tPbZApozftjpGdcTEOKa8HZD9upFxXWoyxzPkmNg5
-	kOOiztc7XogZLNvU2ih9LE2IGx8+QwPnCVsthhGeHodWo8zwy84qTAz7+VQobSSrPhid1/xmnxH0E
-	gUkSkah0axrOkKYQog72hbXDPbcWSds+LwToOYLW2NnbNHTmRiVFMKN3kl8GUygkWizUsNDrEHgaI
-	4UIXdwYUw3RzMEOOZq+A==;
+	List-Owner; bh=CGav8QzdC1GfrVWpUwpog7F9hjcUVXs6mPyGUi2KgZM=; b=jIqBxadORpx5BR
+	feeOFQwy0ALfyqjcOIatBfkB/mkwsGrVMmgsLup0ROR47Sy2ZJn7CNNCAUcjaWlkN9E4fwOR2p3NY
+	1NVFPL2rLRtuuQN3P62UixUXwngOAtyjtqZIWEKHdt6xnX7SU1cvw9qX6Fw3FgdDVYwmVevenxClg
+	XVy9SWcVnWtjcnIN1N/ksJiNcfFqT/Rv4yX0c8VbfNs9ruqLDy2IpiplNxczntgTqTetXea8aAoNL
+	cSWYq20RgU9VIXIecoSyeZRodFpZ6a9sQ26/ZgjTPguEP9FGKsK2neYj4q77RCJHSK+fU6/G1L6tu
+	TOvwYOXWmeJ1xIHMxUQQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h1oah-0002qG-So; Thu, 07 Mar 2019 08:41:23 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1h1ody-0005eM-2I; Thu, 07 Mar 2019 08:44:46 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h1oaY-0002gu-PK
- for linux-amlogic@lists.infradead.org; Thu, 07 Mar 2019 08:41:16 +0000
-Received: by mail-wm1-x344.google.com with SMTP id o10so6188094wmc.1
- for <linux-amlogic@lists.infradead.org>; Thu, 07 Mar 2019 00:41:14 -0800 (PST)
+ id 1h1odw-0005dg-6P
+ for linux-amlogic@lists.infradead.org; Thu, 07 Mar 2019 08:44:45 +0000
+Received: by mail-wm1-x342.google.com with SMTP id x10so8317255wmg.2
+ for <linux-amlogic@lists.infradead.org>; Thu, 07 Mar 2019 00:44:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=yvOswUT6zD4BkIIRqIDT6GtYo/jjGWk60/6hE68mdDw=;
- b=UyjAnbyQVzYDkCuebXj6w2xltcRnVTA0j3WxDgGrU9A9gXrCzacra62s0wbXNNjLYZ
- XktSZzoCQCE+Rb9mDmv+ACgX/Ho4XIBsF4bf5Kv1yKZvA0OJ+ns1WcSBQG0ScEyVmi8Y
- rkMGey6CK3jPABLM2SY+09sLpGwk/Rv3z+8SjJPbkDz3oDq3yoEcN+NRUEO/RSMTxaxL
- Qb/8/iwLu6fJF0lg2wPlixr3ua9ZEeAfScZtC8UZjYegMnea/muDqv9Ed8pSbg7jtXF2
- fDNyUI9fm6uMD0lPTMzJLj6nmkmOoGof9a+Z7lpHyp1UcGX0aKDvusoA4x/oLyLkQ6Hy
- jugw==
+ bh=B7f9yC2nBilh9QazUpPkdvFmlmnBG2olseACgV5S6uM=;
+ b=dt24YF4wSzfRuL19Z9DbyQsBphJD3FCepYs2gZMh9jBiVEaKUyVzL4xGtMiwkFFbV2
+ pkGmNKd4ObgeV81Tol62I8ZZNQiudCkUxEpJxrAGYR1NkUS0Gs425KPOQX8y3kmu5K81
+ VXRs+EngxqjqprpqkXFlaWa3QhR7aGQNsttUg8cHrhFa4vLCDLUVOMzZYgxfzYDMSmQg
+ szywE1m8EZf4X45JtAchBydI21ezcOZT0qwKVSexKloiuYneUN23U0JCxkbPcAlpsKiK
+ K081WtjCXf+lABcMpiKsO+iXwxJlVCGaa5O73rVbQmWcKzU9aduO6WNI8kMehWt8LrWg
+ +9QA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=yvOswUT6zD4BkIIRqIDT6GtYo/jjGWk60/6hE68mdDw=;
- b=Mk+yydkdwGbCaH9FTue7J1DHRn8lNAwx8HtMdnWFZDiJHSeFqj82wgzFLHcCT5POy0
- 57X0tGh3Gln23w4ZmqiP3NKa+HA8wNzJg5YJ6qrQoYuKuNPAEwclYvFsyS7T2HXXCOAM
- qlWN5fcR/j7s1NPRwjQqzqa1f3m9Ad5wi57CVDDGPQmEP55x96v/M+K3vbhhEgHktWKE
- +2y9P7FHqRj0MZCyVWDvpEhu6vNikaAp+EK0r+i6Lw+ADibXvn1/hBJnbHd3pQ3tjwvg
- vl1j30MMctPVeusryCezEA+osQTrnkN4YYbxr4qQRxxNNo4hUXbiVnczNh7TCYEBJGBB
- RGKg==
-X-Gm-Message-State: APjAAAVm6kcQhACR7emOg612G9oQXMZsrofl1fR5grz5nkmlhKTbgAlk
- KR9EbMECKcifNIfrjKiVC3xyKQ==
-X-Google-Smtp-Source: APXvYqyEGZ1uQ8H347vo+jPmN1nYk5jXfpxnyJDQZ6RSJIcvvVFBCv9FpuTKCQIqHrb9qAvGMsQ/wA==
-X-Received: by 2002:a1c:7903:: with SMTP id l3mr5226704wme.22.1551948073202;
- Thu, 07 Mar 2019 00:41:13 -0800 (PST)
+ bh=B7f9yC2nBilh9QazUpPkdvFmlmnBG2olseACgV5S6uM=;
+ b=AvUB5TOq6aify8DC1qW2d/VsP0AdT31REx7bfapeFCkYCTiz1r4O7RZvJdzbd4MWFn
+ zDHg5SSJ5TFc+55SKTqdfk2E6d/E/MR4unxBRG8gzgXa5QYolbTrbyuPBTpiLE3f7/AO
+ Q8FU+KQs8neHXB3UOP5yVs4DslWNH8hS3NHWbQdF/Y1LQVFpQL60cW4uN1qp4cW2uUX6
+ JCCO3lx148LXLig9zkVXiVTfaUqboJ1PPf9wKjy9emJHEuO+s0SuNpPDAtPNTZTxwMSW
+ xuDtlbE36Rr39e164u8FLMd7nkXdLj2+uhvzDzE5DObgfRB9yuPOCi7UmxSpPwWm8xay
+ 2d4Q==
+X-Gm-Message-State: APjAAAXLxhGfsRLCftAUxmnV7p8BWgUkKzHk0d8FN11ytmQvKX3Vo1G0
+ 8Kn2vGtq91gFgcIf0iUANMKilg==
+X-Google-Smtp-Source: APXvYqxzlYFDPqM2mlOLrgZauhmHRAXCZXIGTkiSNhD7z7qBQBk2yboSqfnm11ISkX2sQoBh6QIt0Q==
+X-Received: by 2002:a7b:cc18:: with SMTP id f24mr5256231wmh.42.1551948281979; 
+ Thu, 07 Mar 2019 00:44:41 -0800 (PST)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id y140sm12810668wmd.18.2019.03.07.00.41.12
+ by smtp.gmail.com with ESMTPSA id 65sm6617313wrb.62.2019.03.07.00.44.41
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 07 Mar 2019 00:41:12 -0800 (PST)
-Subject: Re: [PATCH v2 5/8] phy: amlogic: add Amlogic G12A USB2 PHY Driver
+ Thu, 07 Mar 2019 00:44:41 -0800 (PST)
+Subject: Re: [PATCH v2 6/8] phy: amlogic: Add Amlogic G12A USB3 + PCIE Combo
+ PHY Driver
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 References: <20190304103846.2060-1-narmstrong@baylibre.com>
- <20190304103846.2060-6-narmstrong@baylibre.com>
- <CAFBinCAacdsjwtg_RK=e=Lnep7oLF+eTBmkb1FB4nFR129z1jA@mail.gmail.com>
+ <20190304103846.2060-7-narmstrong@baylibre.com>
+ <CAFBinCBnDPcHpOQ1vW1gL6FxgLSxMv-f-qMm_TTCvXfDaFr3zA@mail.gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -131,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <bd9d1b4b-4dd7-864e-b197-c5993d3dd24f@baylibre.com>
-Date: Thu, 7 Mar 2019 09:41:12 +0100
+Message-ID: <6e8b1935-ba91-d06e-be63-cb2632a19654@baylibre.com>
+Date: Thu, 7 Mar 2019 09:44:40 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.4.0
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCAacdsjwtg_RK=e=Lnep7oLF+eTBmkb1FB4nFR129z1jA@mail.gmail.com>
+In-Reply-To: <CAFBinCBnDPcHpOQ1vW1gL6FxgLSxMv-f-qMm_TTCvXfDaFr3zA@mail.gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190307_004114_829591_07F28EF3 
-X-CRM114-Status: GOOD (  20.71  )
+X-CRM114-CacheID: sfid-20190307_004444_249351_4095FA91 
+X-CRM114-Status: GOOD (  15.68  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -160,55 +161,57 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 06/03/2019 22:00, Martin Blumenstingl wrote:
+On 06/03/2019 22:04, Martin Blumenstingl wrote:
 > Hi Neil,
 > 
 > On Mon, Mar 4, 2019 at 11:40 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
 > [...]
->> +#include <linux/clk.h>
->> +#include <linux/delay.h>
->> +#include <linux/io.h>
->> +#include <linux/module.h>
->> +#include <linux/of_device.h>
->> +#include <linux/regmap.h>
->> +#include <linux/mfd/syscon.h>
-> there's a "regmap" include right above. this driver doesn't use syscon
-> so this include can be dropped
+>> +static int phy_g12a_usb3_init(struct phy *phy)
+>> +{
+>> +       struct phy_g12a_usb3_pcie_priv *priv = phy_get_drvdata(phy);
+>> +       int data, ret;
+>> +
+>> +       /* Switch PHY to USB3 */
+>> +       regmap_update_bits(priv->regmap, PHY_R0,
+>> +                          PHY_R0_PCIE_USB3_SWITCH,
+>> +                          PHY_R0_PCIE_USB3_SWITCH);
+> does this automatically clear PHY_R0_PCIE_POWER_STATE (in case the
+> bootloader incorrectly set that)?
 
-Forgot this one...
+Don't forget it's a static configuration, on the board, only USB3 XOR PCIE
+will be available, if the bootloader sets this and the kernel uses USB3,
+or the reverse, one of them is wrong.
 
 > 
 > [...]
->> +static int phy_meson_g12a_usb2_exit(struct phy *phy)
+>> +static int phy_g12a_usb3_pcie_init(struct phy *phy)
 >> +{
->> +       struct phy_meson_g12a_usb2_priv *priv = phy_get_drvdata(phy);
+>> +       struct phy_g12a_usb3_pcie_priv *priv = phy_get_drvdata(phy);
+>> +       int ret;
 >> +
->> +       return reset_control_reset(priv->reset);
-> do you know whether we should reset_control_assert here instead of
-> reset_control_reset?
-> the probe function below already uses reset_control_deassert, so the
-> current implementation is inconsistent. in v1 you replied with "Maybe
-> it would be better, indeed." - if there's a reason why
-> reset_control_assert doesn't work here then I would like to have a
-> comment stating why
+>> +       ret = reset_control_reset(priv->reset);
+>> +       if (ret)
+>> +               return ret;
+>> +
+>> +       if (priv->mode == PHY_TYPE_USB3)
+>> +               return phy_g12a_usb3_init(phy);
+>> +
+>> +       /* Power UP PCIE */
+>> +       regmap_update_bits(priv->regmap, PHY_R0,
+>> +                          PHY_R0_PCIE_POWER_STATE,
+>> +                          FIELD_PREP(PHY_R0_PCIE_POWER_STATE, 0x1c));
+> similar to my question above: does this automatically clear
+> PHY_R0_PCIE_USB3_SWITCH (in case the bootloader incorrectly set that)?
 
-It's not clear yet, I implemented it safe here since in my tests, when
-I left the USB2 PHYs resetted, it was kept resetted on a soft system reset
-and the ROM was not able to setup the PHY correctly.
+Same answer, but I'll investigate to have more details on this register.
 
-So maybe it's wrong for power management, it's safer to simply to keep the
-PHYs unresetted when unused.
+It's more an implementation issue, we can change it when PCIe is enabled
+on this platform.
 
 > 
-> Apart from these two this is looking good!
-> Human readable BIT/GENMASK #defines for the register bits would be
-> nice, but I'm not sure if you have the details to add these.
+> Apart from these two questions this looks good to me!
 
-I have the registers set in the doc, but it's much longer than copying
-the registers structs from the vendor kernel, so I postponed it.
-
-I'll try adding these, but for now it's low priority unless the PHY maintainer
-asks for them.
+Thanks for the review !
 
 Neil
 
