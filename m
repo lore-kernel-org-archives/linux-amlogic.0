@@ -2,22 +2,21 @@ Return-Path: <SRS0=n5rD=RO=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C521EC43381
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Mar 2019 08:53:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D468DC43381
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Mar 2019 09:13:49 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 964DC2075C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Mar 2019 08:53:32 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A3BC92086A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Mar 2019 09:13:49 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EsnS1MSa";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="l6zOdSS2"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 964DC2075C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HYgDqudu";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="mRNrRAxZ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A3BC92086A
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,63 +25,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=tFUUvdtoglZ7j1O/0OyeAOZgIEFD7vIxcUXe8g+zPNU=; b=EsnS1MSaNwkA7I
-	Q3MT0Bb456Rtn+NvDnvAgkMZsLn2sF+RQ+FwEni98yotaM04kcJueYVdP4TOAC2UDG3oTjUUj8OD0
-	yOL1+mqTz64M1kWvKtwghVfWzAyN3yiksYyTNCn/jv/BOeyMXHUyg0eZdVrixaGy/9JQMlHOYu2wp
-	W0FeuZi3w3HUGccRQeXlY1qkKwZizb0H9N5ge1vZQyC/vgfag9ek7eaK6bN4uv89EjVZGrEd4q1QK
-	sClDIEDodNJ1odAKFN/OpCWrnc7aHgw03ksjDLuXWLh7yhlrP/yC4NOWwG4V7vlzMVvs225CV07bZ
-	Mg78vRZrolH/lti9IglA==;
+	List-Owner; bh=Bi9xqLPzAk/wP5DDUitdMQSpZpCJE+qI+ApvnL1aS80=; b=HYgDqudu6UP0eg
+	ODATjI0tiGTkzFJAsQTlY9DbVMTgNIU9Vi+Rnc+t7l+HSXmzS8eSzUX9QU05QlPn5PkZZKDFLI6jv
+	tAl0qdBOBjpummjN8o4RO+cDFNZ9JDax6AUUZ1fdWtu+zS1Dik05dsw8Zrhef23TrvhHLU0dQYo3S
+	B3lc42O1L/XMc7Uy54kQQB5POupqwys2WHXh0+9UUjTm4Yb/HePjkWUdgM9gEA5YGf8aZeqYHegYy
+	tZtvKfhMBFE57wzojBt/gWKft8AIOdc4+9VGO325WY3IHVotqn6YvU+Qas0XBF1SErw1sNbP+yUZa
+	lh+5iIzRz77BWKiiZvFw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h3GgN-0002HX-Ue; Mon, 11 Mar 2019 08:53:15 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1h3H0B-0001nK-W8; Mon, 11 Mar 2019 09:13:43 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h3GgK-0002H3-LW
- for linux-amlogic@lists.infradead.org; Mon, 11 Mar 2019 08:53:15 +0000
-Received: by mail-wr1-x444.google.com with SMTP id o7so4058171wrp.12
- for <linux-amlogic@lists.infradead.org>; Mon, 11 Mar 2019 01:53:11 -0700 (PDT)
+ id 1h3H09-0001m9-3i
+ for linux-amlogic@lists.infradead.org; Mon, 11 Mar 2019 09:13:42 +0000
+Received: by mail-wr1-x441.google.com with SMTP id p8so2544678wrq.6
+ for <linux-amlogic@lists.infradead.org>; Mon, 11 Mar 2019 02:13:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=KuK8hTEg2ZzXXFRR+sjPdWJhVvv0TG69oYXcIEBxte4=;
- b=l6zOdSS22HT9K/lTh3CYiiP6sylm2avEK48YeXxFw6G9AIHMJM7YRLqrkd8bwwyqC4
- s0PECGbpE739q78kXeEbQNz14HDGITMx8W5jrpxFxdbP96D734j6z8qS9lYXto7x3yVR
- uTrZ+aLIWeAcqFFDm3zak7HJOl7Re6ZAOSqgaYNijKVXJINNfD5wegfAuntHBR6Lvt8W
- 2K1NR4LCphWp6WPc4Ur93k5pk6Dx+05785osmxY+ltEQ0YLB4kM8ZK8xdAUgcRlqR6CK
- ZnEPZffGGIr5dm05As9e5iB6asWwD3W1FOCe/5GotXyFKBbUHNyWs/SjA46AUQoBiJqk
- JE+Q==
+ bh=NuerTc2fpI9z6/DTCz1boyUaac/YxoBZPWr0MXu5tiE=;
+ b=mRNrRAxZtnEtWT4ZcZz+IFLJ/2TLZDzfaTMcDxNIUQT2XBsMAPf7O2c0DJApQ2mRNn
+ KLHs2TgwCXvp4NxgKq4naql+8ksXKcHy/0wxDBHFbcl3i2EFeqHpfdF4bRXZGCzxl0my
+ h8oFjMHZeBT0UdRhOXUvUoQ50JbJWHbUO8pZqrRNAUqDknaxmdp92qZo/uyr3AHJUqmm
+ PGeaHmtbLb/ihv/8I2B1DdKHu4k5HCfNGSzbrXs266PMblfip3yWOpza7MY9lHc7obuq
+ omw+5k1UFpY0L6U8dzdZxEqYfs17dW9i6dFzDAWh5B5Q4qsdCGPd1GhoFiCP+aoVJW5z
+ LcvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=KuK8hTEg2ZzXXFRR+sjPdWJhVvv0TG69oYXcIEBxte4=;
- b=SGm71kF9fE1sLdoE2EdvZ2fYDBmHbuV0Kh20R2hC9s90rYZOr/9Uv+3nRkRPY1RbCS
- fyQs36jTNLQKCQ3WDw3d58mN9O9cJcsjuKYOiPtjSCstNrwIIZY+bsvje1H4/Lq4iue+
- Evtj1rurZcoeEwaoGXieGdx2hBmClB0b5yECSCV6sgENLtB1XaM29Sfc2WQoa3r5MK2T
- ofqjSZZFenPHrRINeF3E45GMsYpYAIq2AULsWcqm43rfF1g6pQeb7L9wqL+SxP2IsqQx
- GSCvoD4vG0sg8zr4rPfw3H05fOoo4BSzLqQPLDYHRgCZtrSDSfdMPXfztjB0dvHf3I7v
- eHYQ==
-X-Gm-Message-State: APjAAAWYTXrve/p+V8AlbnibTp6yWR4mMOdSIiIwRQ+H75hiGIsjRRVL
- /TMCSxBHVTr9nWnkycPr5Zd1+A==
-X-Google-Smtp-Source: APXvYqzChF6GfmfIaHYhr8zFrbajT6QSN5nQYtSPO6ZaB9bqr473mZ+tyL0ltonUcWP8GeqrVXN29A==
-X-Received: by 2002:adf:f343:: with SMTP id e3mr18265295wrp.205.1552294389904; 
- Mon, 11 Mar 2019 01:53:09 -0700 (PDT)
+ bh=NuerTc2fpI9z6/DTCz1boyUaac/YxoBZPWr0MXu5tiE=;
+ b=P1t3+7M/Ue6xyiW+H+RSMmAu3kHhdKVahlyKNH22XoyBbxH9YREZBiMTI5vwtYMqbv
+ fLdd5Lw45OsZuQploytmevmVoXbQidE98ErF6ktohiWOlQDfDQsGVgwetn/6opxAaFx/
+ IZPYKKArSRAUQgFr74P7h0ASLJBY3qfYOS9iTfcPlMworeLcSGEErsusKatKT4JIJnF4
+ 8skQoOMsBgTkq6dbBKaEXRUmiAzc53oyH4EAYsJwXCrVrKM3vMV4YUQZn+QYFfdRVACB
+ XQu+aKsBmtMGDdympQL9Jz8aTb8zF96f5i+MmrNNpoJLC4usM1UcZKRMGiYCDI7lS939
+ ODvQ==
+X-Gm-Message-State: APjAAAVKl7z/EU6SW1nIof4ojseOFQlkbNLoPaur6NPq/PuAqazIhWZz
+ jM73A4GIwjaH5WLEl6ZwYyhtsQ==
+X-Google-Smtp-Source: APXvYqyW+yXnQsmRogXtruRVrxggBDLVdiEqRt6Ku8SIpyvGs76WFoNrj+Dlh8NaD7wJE+CWJZVz2g==
+X-Received: by 2002:adf:e90b:: with SMTP id f11mr19763234wrm.36.1552295618697; 
+ Mon, 11 Mar 2019 02:13:38 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id i12sm402443wrs.66.2019.03.11.01.53.08
+ by smtp.gmail.com with ESMTPSA id l18sm7074606wrv.20.2019.03.11.02.13.37
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 11 Mar 2019 01:53:09 -0700 (PDT)
-Subject: Re: [PATCH v2 1/8] drm/bridge: dw-hdmi: Add SCDC and TMDS Scrambling
- support
-To: Rob Herring <robh@kernel.org>
-References: <1549022873-40549-1-git-send-email-narmstrong@baylibre.com>
- <1549022873-40549-2-git-send-email-narmstrong@baylibre.com>
- <CAL_JsqLa1QNYTo+Yj-5fC4k8C1bd+V8qi5LiHgLA_qZY+Gy5cg@mail.gmail.com>
- <36800d4e-0bb7-378c-e512-5ae02406865b@baylibre.com>
- <CAL_Jsq+-q3+PtU6zS-dLSy3Gx+xOzquLyuW3n3ey6iRT3tw9KA@mail.gmail.com>
+ Mon, 11 Mar 2019 02:13:38 -0700 (PDT)
+Subject: Re: [PATCH 4/9] arm64: dts: meson: g12a: add uart_ao_a pinctrl
+To: khilman@baylibre.com
+References: <20190307151342.7381-1-narmstrong@baylibre.com>
+ <20190307151342.7381-5-narmstrong@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -135,16 +130,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <6e0f70a4-8e12-7000-bc5d-de5093d173c5@baylibre.com>
-Date: Mon, 11 Mar 2019 09:53:08 +0100
+Message-ID: <244fba9a-31ab-a75c-3de2-a66638a9d36d@baylibre.com>
+Date: Mon, 11 Mar 2019 10:13:37 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.5.1
 MIME-Version: 1.0
-In-Reply-To: <CAL_Jsq+-q3+PtU6zS-dLSy3Gx+xOzquLyuW3n3ey6iRT3tw9KA@mail.gmail.com>
+In-Reply-To: <20190307151342.7381-5-narmstrong@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190311_015312_748382_05C65045 
-X-CRM114-Status: GOOD (  17.72  )
+X-CRM114-CacheID: sfid-20190311_021341_159677_26784108 
+X-CRM114-Status: GOOD (  16.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -156,84 +151,70 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: "heiko@sntech.de" <heiko@sntech.de>,
- Maxime Ripard <maxime.ripard@bootlin.com>, Sandy Huang <hjc@rock-chips.com>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Andrzej Hajda <a.hajda@samsung.com>, Nickey Yang <nickey.yang@rock-chips.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, linux-amlogic@lists.infradead.org,
- Huicong Xu <xhc@rock-chips.com>
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 08/03/2019 15:54, Rob Herring wrote:
-> On Fri, Mar 8, 2019 at 2:05 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->>
->> Hi Rob,
->>
->> On 08/03/2019 00:13, Rob Herring wrote:
->>> On Fri, Feb 1, 2019 at 6:08 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->>>>
->>>> Add support for SCDC Setup for TMDS Clock > 3.4GHz and enable TMDS
->>>> Scrambling when supported or mandatory.
->>>>
->>>> This patch also adds an helper to setup the control bit to support
->>>> the high TMDS Bit Period/TMDS Clock-Period Ratio as required with
->>>> TMDS Clock > 3.4GHz for HDMI2.0 3840x2160@60/50 modes.
->>>>
->>>> These changes were based on work done by Huicong Xu <xhc@rock-chips.com>
->>>> and Nickey Yang <nickey.yang@rock-chips.com> to support HDMI2.0 modes
->>>> on the Rockchip 4.4 BSP kernel at [1]
->>>>
->>>> [1] https://github.com/rockchip-linux/kernel/tree/release-4.4
->>>>
->>>> Cc: Nickey Yang <nickey.yang@rock-chips.com>
->>>> Cc: Huicong Xu <xhc@rock-chips.com>
->>>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->>>> Tested-by: Heiko Stuebner <heiko@sntech.de>
->>>> Reviewed-by: Andrzej Hajda <a.hajda@samsung.com>
->>>> ---
->>>>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 85 ++++++++++++++++++++++++++++++-
->>>>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.h |  1 +
->>>>  include/drm/bridge/dw_hdmi.h              |  1 +
->>>>  3 files changed, 85 insertions(+), 2 deletions(-)
->>>
->>> This commit in drm-misc-next is breaking booting on the Rock960. I
->>> have FB and fbcon enabled. The boot hangs after this message:
->>>
->>> [    3.012334] [drm:rockchip_drm_fbdev_create] FB [1920x1080]-24
->>> kvaddr=(____ptrval____) offset=0 size=8294400
->>
->> Could you give more details on the tree used ? did you bisect to find this commit ?
+On 07/03/2019 16:13, Neil Armstrong wrote:
+> From: Jerome Brunet <jbrunet@baylibre.com>
 > 
-> As I said above, drm-misc-next (from drm-misc tree) is the branch. I
-> bisected between it and v5.0. Reverting it fixes booting.
+> Add the always on UART pinctrl setting to the g12a soc DT and
+> use it for the u200 reference design
+> 
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  .../arm64/boot/dts/amlogic/meson-g12a-u200.dts |  2 ++
+>  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi    | 18 ++++++++++++++++++
+>  2 files changed, 20 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+> index c44dbdddf2cf..f2afd0bf3e28 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+> @@ -25,5 +25,7 @@
+>  
+>  &uart_AO {
+>  	status = "okay";
+> +	pinctrl-0 = <&uart_ao_a_pins>;
+> +	pinctrl-names = "default";
+>  };
+>  
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> index c141cc7f6b09..f8f055c49f9a 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> @@ -177,6 +177,24 @@
+>  						#gpio-cells = <2>;
+>  						gpio-ranges = <&ao_pinctrl 0 0 15>;
+>  					};
+> +
+> +					uart_ao_a_pins: uart_a_ao {
+> +						mux {
+> +							groups = "uart_ao_a_tx",
+> +								 "uart_ao_a_rx";
+> +							function = "uart_ao_a";
+> +							bias-disable;
+> +						};
+> +					};
+> +
+> +					uart_ao_a_cts_rts_pins: uart_ao_a_cts_rts {
+> +						mux {
+> +							groups = "uart_ao_a_cts",
+> +								 "uart_ao_a_rts";
+> +							function = "uart_ao_a";
+> +							bias-disable;
+> +						};
+> +					};
+>  				};
+>  			};
+>  
+> 
 
-Thanks, could you give more details on the environment ? Did you test over the latest linux-next ?
-
-Can you share the EDID of your monitor ?
-
-Can you check this patch :
-
-----><----------------------------------------------------------------------------------------
-diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-index a63e5f0dae56..f33c2ac158c1 100644
---- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-+++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-@@ -1268,8 +1268,6 @@ static int hdmi_phy_configure(struct dw_hdmi *hdmi)
-
-        dw_hdmi_phy_power_off(hdmi);
-
--       dw_hdmi_set_high_tmds_clock_ratio(hdmi);
--
-        /* Leave low power consumption mode by asserting SVSRET. */
-        if (phy->has_svsret)
-                dw_hdmi_phy_enable_svsret(hdmi, 1);
-
-
+Will move this out of this patchset to the boards patchset
 
 _______________________________________________
 linux-amlogic mailing list
