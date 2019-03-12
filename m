@@ -2,86 +2,144 @@ Return-Path: <SRS0=/Yv9=RP=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 52672C43381
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Mar 2019 08:34:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0C6B7C4360F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Mar 2019 08:59:35 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 21F35214AF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Mar 2019 08:34:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CE3EF214D8
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Mar 2019 08:59:34 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tF5b6TwL";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h3I4+3iP"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 21F35214AF
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cNEm5XmN";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="UNaaNssR"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CE3EF214D8
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=KwWMYJECLr4dE+K2ZTozRHCPsXKFr/qatRMqKXTlEvc=; b=tF5b6TwLQG5cPp
-	HAkLOhMRTpVAbSMN81VU7zuRHHDfxqoKDLaXEW4kJ0SFOAqkttt7AZJvygRrGpDnmAs6AyTnStFU5
-	Urr4HFCS7A1+GAd8FuWzbZVMCbF8dAjYAqFQb9XzkU+t7TYPzYGVYcPVWRyPGBp9FvO7AudOSCY8U
-	+wCtZ6m7bju/Tyo0zGeGECJMgxi690LypOYqqVjDLhUWavK6yZuoFR2abtwu2FhS2HjdVtMqbxT8/
-	65tOlUHvIZXBXcfZZ3zSBghu8LXvlSW2ubFMQQ3KzXE3tT7lel3dljM1//yDKe1C9O7hdP52mLc++
-	Fru2hdzVvZcnEhVE0EuA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=mVSsBPO2u+5NvTw0pTBKxIifv9NhPZTr5YhGTeUhTzw=; b=cNEm5XmNr27W8T
+	LpqiNj0QbJ8rtwdb4e5PrTKfMdEy0RorJMp/HVdPkt7fuyAd8Zs3gwVCm4mZSMhcuzVhx8EAIXvyW
+	ehl4Rmz/sjUUT7tHmvLkjZLKhom9na2uEvZuNT/J+T1aJNPrqQRXn8b/Om+ruz6o0GpZ+4KghZbFO
+	Hd1oSrmCctdkI6KCFXxNHE7FOGXv+JHSsOHKfChiA4W7iIwK0kPzxGLtpj+pXgMJy6193qV5hg+oD
+	KCjSGcK2h2fhaUrZYCFBvBV/yxSZSKHkOo4p+FryycVTMBOsT9h9euogRye7eWCNPc+xHc57PC6rr
+	6FvBP963SMH3rBMJGCWg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h3crO-0003vD-EE; Tue, 12 Mar 2019 08:34:06 +0000
-Received: from mail-pg1-x542.google.com ([2607:f8b0:4864:20::542])
+	id 1h3dFx-0005vY-3y; Tue, 12 Mar 2019 08:59:29 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h3crL-0003uJ-EV
- for linux-amlogic@lists.infradead.org; Tue, 12 Mar 2019 08:34:04 +0000
-Received: by mail-pg1-x542.google.com with SMTP id v12so1289026pgq.1
- for <linux-amlogic@lists.infradead.org>; Tue, 12 Mar 2019 01:34:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=YaS6aHe0kRTPL5Iqbsoq/7uixJilo8Mg28xKFsRpmY0=;
- b=h3I4+3iP0oUEuI++w5E6dcBVUOPlYPWOt0W2F5/k+Is/p/g2MPcAL858+xgOxv1mZN
- 5EZ+FGjafrQ9VX36lbM5WP+qMMb6UMHHm2EbiYcAhIBz4j+jj7KwxVpcXSXXpcxtPqS1
- dOukY1YaD3czqtwNcXZmX+3+g0iZO6E3uvsB/A6JG5vPbXF+1YlHoq7oFfBNfVgfTtqy
- /kpVfkHVvNAmIMdTUdZM5kUURIGs3qJVgFz+zpVxmhuYxIzsFLwI2EyRQXeBRrU34GRg
- MaAToQX5zcKFR4UTRCTfMyJrIoG+31he5uNQ3Bj87Hrxi9bl7FPQHxBo/XbsHv1nm3lb
- xAvA==
+ id 1h3dFr-0005uq-I9
+ for linux-amlogic@lists.infradead.org; Tue, 12 Mar 2019 08:59:27 +0000
+Received: by mail-wm1-x342.google.com with SMTP id o10so1597108wmc.1
+ for <linux-amlogic@lists.infradead.org>; Tue, 12 Mar 2019 01:59:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=6bgr61PphMixnr3AhXO8AbHOrIMyq+Q6xeKT7Qg3H7c=;
+ b=UNaaNssRIUXldlMh9cGnWmHRl9kv7gVHkTjAdUTbT7iuhhugNq2c4BemILWHhW6KpA
+ Ii9eNiW8wlQaGKPUL5zW7GYRkZM2C2rw0BpowefUI4XVAOYjdYTZbwSyPNg4LTo806iN
+ eCBn1iAizoXDwUNxpW7VuuCdnYSsAHTMJAzh4t/i7FyV809VPcB9m5PgAs7pR8fq95ZX
+ olcNh0i1IHoucpveS2q0a1eamujaalcp/5i19bj9uQt3V5sknaVSd6N9ampgYwqNYdnf
+ seWkAeBMIlW53/HbTzYJG7Z5MV61wnvzN+pNAh/7EjzHuaqHFNSeYfp5VddRM/3Zqjpn
+ g7VA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=YaS6aHe0kRTPL5Iqbsoq/7uixJilo8Mg28xKFsRpmY0=;
- b=bCwfeEW8uH3PG0sF3L/kaS4CnFDsAJQvtY41IE/CKLLaHhQLBdSujVZzQPxiDvs9PW
- bSyA8FqDb2CDk5l9YRag9O7KAbaW1lN66803E50cfXsNNFj4H87RL//AwKD7I/q2LMRK
- amj6MAKoRU+hnDxCUh6voZQPD9YKbBaQXxclFac8HmBvHR6y2wKw3S98eQHzUqSF+92X
- jW+mCAb8ASaUuc21hd1n5CrO/8MbfLRZUrHbSgrUTNwUjZjeFQrQUWDFzF9NpWRQ49h5
- rTC7QtklgYg4A8oRQvBkWrPN+pSuGLnEEe6BH+FuHuCYUrVXboI6IoP626jYMrW6CR0U
- sBHA==
-X-Gm-Message-State: APjAAAW540MrVCb6dRkeHXszelS1XY8+QIbNSNUBH3dLLZ3TOZ9bknqv
- qw6Ygjj4cEGnWJBPRnflvEM=
-X-Google-Smtp-Source: APXvYqyZhZFrYKrnAY5RjwZZj7tRDVck34+l46DWwBI7q5YeV2e0Rgp+wv/t49m58PL5O0JGP7QKmg==
-X-Received: by 2002:a65:63c1:: with SMTP id n1mr33652298pgv.339.1552379642272; 
- Tue, 12 Mar 2019 01:34:02 -0700 (PDT)
-Received: from GuoGuo-OMEN.lan ([107.151.139.128])
- by smtp.gmail.com with ESMTPSA id v22sm15605576pfa.49.2019.03.12.01.33.59
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Tue, 12 Mar 2019 01:34:01 -0700 (PDT)
-From: Chuanhong Guo <gch981213@gmail.com>
-To: devicetree@vger.kernel.org
-Subject: [PATCH] arm64: dts: meson-gxl-s905d-phicomm-n1: add status LED
-Date: Tue, 12 Mar 2019 16:33:26 +0800
-Message-Id: <20190312083326.18029-1-gch981213@gmail.com>
-X-Mailer: git-send-email 2.20.1
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=6bgr61PphMixnr3AhXO8AbHOrIMyq+Q6xeKT7Qg3H7c=;
+ b=ogoSL6HLPJ5ScEUT95zYReGwoKWwtt2ASMKf2WstzWPc2bhi799dopBnQDNX4vtg0A
+ QiMOiMhTHaNZs6nfZ0fzGoSKgahlVjAU0Zlkpu6bhMkrz2xI3cEVneFJl6nIO38KH8KL
+ Ek1vL+1Ad0YahKMVWdy/gGOF9xTWZo/inUmCB8N/5TD8zxn8Nb49uaybE0NbqsWOBwO5
+ XeMUsUvb5HxtSQkQyxQjUCSOTxzyWikmuZhey9BNMrYflmmVls+8NqOj+mqJ0wxXPVCM
+ dL5BoT8Zq1+xuvPv+Xp90JvJPgCozBMQ0Oy2tP6bDco5DuDgUvfe0kc8YhQxQKbyg1Yf
+ MPBA==
+X-Gm-Message-State: APjAAAVInHqPptL7vYPHtBlXNTHuc0mdYWwZbW+41PavnyyGSClZps0M
+ Ies3J3lKxSBeGT5EPoIMSzJfbFGyElrlJQ==
+X-Google-Smtp-Source: APXvYqyj6gMnO9kkmK8yl69UVwhWeIqk7NRzmLq27usqaGa34Y90gT4GnDo++GS/PoCtoPREHPgosQ==
+X-Received: by 2002:a1c:7c08:: with SMTP id x8mr1630947wmc.8.1552381161079;
+ Tue, 12 Mar 2019 01:59:21 -0700 (PDT)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id d2sm9050575wrq.94.2019.03.12.01.59.20
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 12 Mar 2019 01:59:20 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: meson-gxl-s905d-phicomm-n1: add status LED
+To: Chuanhong Guo <gch981213@gmail.com>, devicetree@vger.kernel.org
+References: <20190312083326.18029-1-gch981213@gmail.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <5c580f1b-1038-2c34-7047-e504eb4ac323@baylibre.com>
+Date: Tue, 12 Mar 2019 09:59:20 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.5.1
 MIME-Version: 1.0
+In-Reply-To: <20190312083326.18029-1-gch981213@gmail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190312_013403_511172_CC3C9F9D 
-X-CRM114-Status: GOOD (  10.76  )
+X-CRM114-CacheID: sfid-20190312_015925_380239_1EBD7871 
+X-CRM114-Status: GOOD (  17.73  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -94,45 +152,53 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Mark Rutland <mark.rutland@arm.com>, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- linux-amlogic@lists.infradead.org, Chuanhong Guo <gch981213@gmail.com>
+ Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-There is a white LED on the front panel behind the logo and the
-manufacturer uses that LED to indicate network and USB drive status.
+Hi Chuanhong,
 
-Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
----
- .../boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts    | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+On 12/03/2019 09:33, Chuanhong Guo wrote:
+> There is a white LED on the front panel behind the logo and the
+> manufacturer uses that LED to indicate network and USB drive status.
+> 
+> Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
+> ---
+>  .../boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts    | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts
+> index 9a8a8a7e4b53..b5667f1fb2c8 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts
+> @@ -14,6 +14,16 @@
+>  	cvbs-connector {
+>  		status = "disabled";
+>  	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		status {
+> +			label = "n1:white:status";
+> +			gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
+> +			default-state = "on";
+> +		};
+> +	};
+>  };
+>  
+>  &cvbs_vdac_port {
+> 
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts
-index 9a8a8a7e4b53..b5667f1fb2c8 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts
-@@ -14,6 +14,16 @@
- 	cvbs-connector {
- 		status = "disabled";
- 	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		status {
-+			label = "n1:white:status";
-+			gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+		};
-+	};
- };
- 
- &cvbs_vdac_port {
--- 
-2.20.1
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
+BTW, do you know if it's possible to have a sample of the Phicomm N1
+in order to be added in kernelci ?
+
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
