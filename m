@@ -2,144 +2,81 @@ Return-Path: <SRS0=/Yv9=RP=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0C6B7C4360F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Mar 2019 08:59:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8E4B4C43381
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Mar 2019 09:20:46 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CE3EF214D8
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Mar 2019 08:59:34 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5DF66214AF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Mar 2019 09:20:46 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cNEm5XmN";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="UNaaNssR"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CE3EF214D8
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="scjG1HA/";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="PwW25F1q"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5DF66214AF
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mVSsBPO2u+5NvTw0pTBKxIifv9NhPZTr5YhGTeUhTzw=; b=cNEm5XmNr27W8T
-	LpqiNj0QbJ8rtwdb4e5PrTKfMdEy0RorJMp/HVdPkt7fuyAd8Zs3gwVCm4mZSMhcuzVhx8EAIXvyW
-	ehl4Rmz/sjUUT7tHmvLkjZLKhom9na2uEvZuNT/J+T1aJNPrqQRXn8b/Om+ruz6o0GpZ+4KghZbFO
-	Hd1oSrmCctdkI6KCFXxNHE7FOGXv+JHSsOHKfChiA4W7iIwK0kPzxGLtpj+pXgMJy6193qV5hg+oD
-	KCjSGcK2h2fhaUrZYCFBvBV/yxSZSKHkOo4p+FryycVTMBOsT9h9euogRye7eWCNPc+xHc57PC6rr
-	6FvBP963SMH3rBMJGCWg==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=z1WTC+wRE+jAc39ocJMOYS9fCvg3lymWGyA36s3Xztc=; b=scjG1HA/bz3U28vP+Mj9hVTsC
+	2dMXbCVL6d/hObvY6EoH6tVI8O4kn/kjo1P7uAz47F6jLxh8M2xZxcP6ZnU50VllmCrfKpigWk9A5
+	N/y2tHW5boTV7X1egGjHkELt9GfRWh9u1VwqBu+5bFODAHPmsCBdwBPbZ48rjKtDHwzTQ2vKr51QG
+	QI0TwxQGrNMWwRraonH0f+o1XIvMubkHYVkxICftj+RUCp10r1OVbFW9R/+p8j9WrX+IJ8+Wgiq1x
+	/5qTm4M4F72dkV6YHVOwssiBYpHtBe9A02cbeiRkZggqKDNBBh+2etGxAz0NYAyo/rNg7kvYNHt+U
+	JGqEQIuWA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h3dFx-0005vY-3y; Tue, 12 Mar 2019 08:59:29 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1h3daS-00084z-5c; Tue, 12 Mar 2019 09:20:40 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h3dFr-0005uq-I9
- for linux-amlogic@lists.infradead.org; Tue, 12 Mar 2019 08:59:27 +0000
-Received: by mail-wm1-x342.google.com with SMTP id o10so1597108wmc.1
- for <linux-amlogic@lists.infradead.org>; Tue, 12 Mar 2019 01:59:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=6bgr61PphMixnr3AhXO8AbHOrIMyq+Q6xeKT7Qg3H7c=;
- b=UNaaNssRIUXldlMh9cGnWmHRl9kv7gVHkTjAdUTbT7iuhhugNq2c4BemILWHhW6KpA
- Ii9eNiW8wlQaGKPUL5zW7GYRkZM2C2rw0BpowefUI4XVAOYjdYTZbwSyPNg4LTo806iN
- eCBn1iAizoXDwUNxpW7VuuCdnYSsAHTMJAzh4t/i7FyV809VPcB9m5PgAs7pR8fq95ZX
- olcNh0i1IHoucpveS2q0a1eamujaalcp/5i19bj9uQt3V5sknaVSd6N9ampgYwqNYdnf
- seWkAeBMIlW53/HbTzYJG7Z5MV61wnvzN+pNAh/7EjzHuaqHFNSeYfp5VddRM/3Zqjpn
- g7VA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=6bgr61PphMixnr3AhXO8AbHOrIMyq+Q6xeKT7Qg3H7c=;
- b=ogoSL6HLPJ5ScEUT95zYReGwoKWwtt2ASMKf2WstzWPc2bhi799dopBnQDNX4vtg0A
- QiMOiMhTHaNZs6nfZ0fzGoSKgahlVjAU0Zlkpu6bhMkrz2xI3cEVneFJl6nIO38KH8KL
- Ek1vL+1Ad0YahKMVWdy/gGOF9xTWZo/inUmCB8N/5TD8zxn8Nb49uaybE0NbqsWOBwO5
- XeMUsUvb5HxtSQkQyxQjUCSOTxzyWikmuZhey9BNMrYflmmVls+8NqOj+mqJ0wxXPVCM
- dL5BoT8Zq1+xuvPv+Xp90JvJPgCozBMQ0Oy2tP6bDco5DuDgUvfe0kc8YhQxQKbyg1Yf
- MPBA==
-X-Gm-Message-State: APjAAAVInHqPptL7vYPHtBlXNTHuc0mdYWwZbW+41PavnyyGSClZps0M
- Ies3J3lKxSBeGT5EPoIMSzJfbFGyElrlJQ==
-X-Google-Smtp-Source: APXvYqyj6gMnO9kkmK8yl69UVwhWeIqk7NRzmLq27usqaGa34Y90gT4GnDo++GS/PoCtoPREHPgosQ==
-X-Received: by 2002:a1c:7c08:: with SMTP id x8mr1630947wmc.8.1552381161079;
- Tue, 12 Mar 2019 01:59:21 -0700 (PDT)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id d2sm9050575wrq.94.2019.03.12.01.59.20
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 12 Mar 2019 01:59:20 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: meson-gxl-s905d-phicomm-n1: add status LED
-To: Chuanhong Guo <gch981213@gmail.com>, devicetree@vger.kernel.org
-References: <20190312083326.18029-1-gch981213@gmail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <5c580f1b-1038-2c34-7047-e504eb4ac323@baylibre.com>
-Date: Tue, 12 Mar 2019 09:59:20 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.5.1
+ id 1h3daK-0007kg-Oz; Tue, 12 Mar 2019 09:20:32 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
+ In-Reply-To:MIME-Version:Date:Message-ID:From:References:CC:To:Subject:Sender
+ :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=q0If+X99mh18hX96yGnQaC8NJfpjg6zcI2nJNRXI5ks=; b=PwW25F1qUOEDnjN+yHrYEdGdaD
+ l0xsS/iQUZV5op03JuiZWm+NGmRTS782+JV5bN2DhtC4Kq2M9Cpxr1EudybWqGKj6x8ilxO8jYFM2
+ 5C51llJVZFNGgCPqOEUBBtPc9vORDfbVsUFwehytP1ChLZH2QMMJbAN37Wk+4OIXmCfDELwjhm9y5
+ 5qIT34DhJC7r4EYZWGQqfaS3ghgvvUJwC0nNMX01ac+Y0fD/XiEotd1y/epNDn8CMrXD83hd060iA
+ Ve6phjuFLqwBG7j6VopBl2uQSw3iEOBStLrqkB+UuSGRASXQDFmq+9MDbJHMlIpLoptIGxT2biS6V
+ /E0Fg7ZA==;
+Received: from mail-sz.amlogic.com ([211.162.65.117])
+ by casper.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1h3dLg-0007BO-Nd; Tue, 12 Mar 2019 09:05:27 +0000
+Received: from [10.28.18.125] (10.28.18.125) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Tue, 12 Mar
+ 2019 17:06:18 +0800
+Subject: Re: [RFC PATCH nand-next 0/2] meson-nand: support for older SoCs
+To: Miquel Raynal <miquel.raynal@bootlin.com>, Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>
+References: <20190301182922.8309-1-martin.blumenstingl@googlemail.com>
+ <98776767-c4d7-1207-6d42-97105f289bec@amlogic.com>
+ <CAFBinCC7P40sqrDGTuM8M=jVOFTgZLDUK6rGdNpigFoepyCASw@mail.gmail.com>
+ <20190307140959.10092d45@xps13>
+From: Liang Yang <liang.yang@amlogic.com>
+Message-ID: <ccb95e75-e62f-c510-cabd-853481f77fc8@amlogic.com>
+Date: Tue, 12 Mar 2019 17:06:17 +0800
+User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:60.0) Gecko/20100101
+ Thunderbird/60.5.3
 MIME-Version: 1.0
-In-Reply-To: <20190312083326.18029-1-gch981213@gmail.com>
+In-Reply-To: <20190307140959.10092d45@xps13>
 Content-Language: en-US
+X-Originating-IP: [10.28.18.125]
+X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
+ (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190312_015925_380239_1EBD7871 
-X-CRM114-Status: GOOD (  17.73  )
+X-CRM114-CacheID: sfid-20190312_090524_859580_03F7F118 
+X-CRM114-Status: GOOD (  25.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -151,54 +88,112 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Kevin Hilman <khilman@baylibre.com>,
- Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: mark.rutland@arm.com, devicetree@vger.kernel.org, jianxin.pan@amlogic.com,
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+ linux-mtd@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Chuanhong,
+Hi Martin and Miquel,
 
-On 12/03/2019 09:33, Chuanhong Guo wrote:
-> There is a white LED on the front panel behind the logo and the
-> manufacturer uses that LED to indicate network and USB drive status.
+On 2019/3/7 21:09, Miquel Raynal wrote:
+> Hello,
 > 
-> Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
-> ---
->  .../boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts    | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+> Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote on Tue,
+> 5 Mar 2019 23:12:51 +0100:
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts
-> index 9a8a8a7e4b53..b5667f1fb2c8 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-phicomm-n1.dts
-> @@ -14,6 +14,16 @@
->  	cvbs-connector {
->  		status = "disabled";
->  	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		status {
-> +			label = "n1:white:status";
-> +			gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
-> +			default-state = "on";
-> +		};
-> +	};
->  };
->  
->  &cvbs_vdac_port {
+>> Hi Liang,
+>>
+>> On Mon, Mar 4, 2019 at 5:55 AM Liang Yang <liang.yang@amlogic.com> wrote:
+>>>
+>>> Hello Martin,
+>>>
+>>> On 2019/3/2 2:29, Martin Blumenstingl wrote:
+>>>> Hi Liang,
+>>>>
+>>>> I am trying to add support for older SoCs to the meson-nand driver.
+>>>> Back when the driver was in development I used an early revision (of
+>>>> your driver) and did some modifications to make it work on older SoCs.
+>>>>
+>>>> Now that the driver is upstream I wanted to give it another try and
+>>>> make a real patch out of it. Unfortunately it's not working anymore.
+>>>>
+>>>> As far as I know the NFC IP block revision on GXL is similar (or even
+>>>> the same?) as on all older SoCs. As far as I can tell only the clock
+>>>> setup is different on the older SoCs (which have a dedicated NAND
+>>>> clock):
+>>>> - we don't need the "amlogic,mmc-syscon" property on the older SoCs
+>>>>     because we don't need to setup any muxing (common clock framework
+>>>>     will do everything for us)
+>>>> - "rx" and "tx" clocks don't exist
+>>>> - I could not find any other differences between Meson8, Meson8b,
+>>>>     Meson8m2, GXBB and GXL
+>>>>   
+>>> That is right. the serials NFC is almost the same except:
+>>> 1) The clock control and source that M8-serials are not share with EMMC.
+>>> 2) The base register address
+>>> 3) DMA encryption option which we don't care on NFC driver.
+>> great, thank you for confirming this!
+>>
+>>>> In this series I'm sending two patches which add support for the older
+>>>> SoCs.
+>>>>
+>>>> Unfortunately these patches are currently not working for me (hence the
+>>>> "RFC" prefix). I get a (strange) crash which is triggered by the
+>>>> kzalloc() in meson_nfc_read_buf() - see below for more details.
+>>>>
+>>>> Can you please help me on this one? I'd like to know whether:
+>>>> - the meson-nand driver works for you on GXL or AXG on linux-next?
+>>>>     (I was running these patches on top of next-20190301 on my M8S
+>>>>     board which uses a 32-bit Meson8m2 SoC. I don't have any board using
+>>>>     a GXL SoC which also has NAND)
+>>> Yes, it works on AXG platform using a MXIC slc nand flash(MX30LF4G); but
+>>> i an not sure it runs the same flow with yours. because i see the print
+>>> "Counld not find a valid ONFI parameter page, ...." in yours. i will try
+>>> to reproduce it on AXG(i don't have a M8 platform now).
+>> I'm looking forward to hear about the test results on your AXG boards
+>> for reference: my board has a SK Hynix H27UCG8T2B (ID bytes: 0xad 0xde
+>> 0x94 0xeb 0x74 0x44, 20nm MLC)
+>> I have another board (where I haven't tested the NFC driver yet) with
+>> a SK Hynix H27UCG8T2E (ID bytes: 0xad 0xde 0x14 0xa7 0x42 0x4a, 1Ynm
+>> MLC). if it helps with your analysis I can test on that board as well
 > 
+> Liang, you just have to fake the output of the ONFI page detection and
+> you will probably run into this error which will then be easy to
+> reproduce.
+> 
+i don't reproduce it by using a SK Hynix nand flash H27UCG8T2E on gxl 
+platform. it runs well.
+[......]
+[    0.977127] loop: module loaded
+[    0.998625] Could not find a valid ONFI parameter page, trying 
+bit-wise majority to recover it
+[    1.001619] ONFI parameter recovery failed, aborting
+[    1.006684] Could not find valid JEDEC parameter page; aborting
+[    1.012391] nand: device found, Manufacturer ID: 0xad, Chip ID: 0xde
+[    1.018660] nand: Hynix NAND 8GiB 3,3V 8-bit
+[    1.022885] nand: 8192 MiB, MLC, erase size: 4096 KiB, page size: 
+16384, OOB size: 1664
+[    1.047033] Bad block table not found for chip 0
+[    1.054950] Bad block table not found for chip 0
+[    1.054970] Scanning device for bad blocks
+[    1.522664] random: fast init done
+[    4.893731] Bad eraseblock 1985 at 0x0001f07fc000
+[    5.020637] Bad block table written to 0x0001ffc00000, version 0x01
+[    5.028258] Bad block table written to 0x0001ff800000, version 0x01
+[    5.029905] 5 fixed-partitions partitions found on MTD device 
+d0074800.nfc
+[    5.035714] Creating 5 MTD partitions on "d0074800.nfc":
+[......]
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Martin, Now i am not sure whether NFC driver leads to kernel panic when
+calling kmem_cache_alloc_trace.
 
-BTW, do you know if it's possible to have a sample of the Phicomm N1
-in order to be added in kernelci ?
-
-Neil
+> .
+> 
 
 _______________________________________________
 linux-amlogic mailing list
