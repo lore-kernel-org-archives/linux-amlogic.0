@@ -4,104 +4,143 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B09E0C43381
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Mar 2019 11:20:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BB3D8C43381
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Mar 2019 12:49:28 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5600C2171F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Mar 2019 11:20:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 899AA2177E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Mar 2019 12:49:28 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="K+r/k1xR";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="g49nX4X2";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="eB/Ww7os"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5600C2171F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gJDFKz7v";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="KO7fTNy7"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 899AA2177E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FEbRWBPeBKSzxMFBOta7XODVjrCbz1H+MdHoK/sbXSg=; b=K+r/k1xR7YTbS4
-	SC0KJBZV6Sb5JkGeNm6bGM5RPCg1x5QZjDXPsAdBvcd5e/aFlQScnj97fwu2ssSO2AWeMczwzIcmH
-	uJMTn1/vejiU1yVecp5NtNVxrig85WBB+kBF5DENFSGzW7iGiT1su80aKn3mCoyHUzYXJv2lP91YD
-	XQnSkIYHFEODMDugNPpHVg7VY1xKV1ualzz5+PeMbgy4fWKNGBanOqrhPAJE1jiQXIGOA4lvIAVBP
-	ZGsR1QKvNqZUf3Z9+5A25018r6j2BdRgslTGYIqrFSbfvx9fa+rgYgPaqrAXp1ZMCKqHjLwvSSIL0
-	MoLyKmDGyvTGjuo9irkw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=NrR9Xt8btVZmEHsVw6UklQ1M27Vg3Kp2QFK8iKjCf8M=; b=gJDFKz7vj6k7eT
+	gWLbPPMOKW56AAcfIogm/xt5gJUxgPqy9hrtbENRms+ZTV7oIKdhRuGmTgahxwUkhPJJ/PQNUIOm/
+	oJ+JpE+z5FRAQsxnVFwIjGCq+UhsHvKRg34iexNENBTtOcREvGGFlgkX9PncZbp2aFhdRxwyD5ity
+	/NsCKg3DchWvccJyVqT4pBSy3MItnrm6iYLZWqckz36/pwVL5sFNC8eDXFlwcY6zfkPYXcE9w0whS
+	S2x1jQv2SlEZazcJzVHVGMGbwjX3f8w4hDAZEiQRjqJJ3WyCf9yCZOVgKS1wbyU8fUyAnxj5/u2F/
+	SgHkYXbmUvPYfjGvtjyQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h41vn-0002j2-LL; Wed, 13 Mar 2019 11:20:19 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1h43Jx-0002wm-9V; Wed, 13 Mar 2019 12:49:21 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h41vh-0001K4-LC
- for linux-amlogic@bombadil.infradead.org; Wed, 13 Mar 2019 11:20:13 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=Content-Type:MIME-Version:Message-ID:
- Date:References:In-Reply-To:Subject:Cc:To:From:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=s1zAivap7ECwynYe4xnVyvyJ8rC0V8FIe7PE8u9zfRQ=; b=g49nX4X22cjUsDDIDL+i0uWS4
- ShJR7VBOam0PQSTZ+rc+4TaJaA8saLYhl5fp1GjpFXNyOa9bNE4bbviDeLAQqv3kVTkA8T9zdpq/N
- k+D6aYkfAV8Z41mhGnjaiuPW1OwIXiTIwWlJDCBPHRRWS02Jq4FA8aOftbkh5DbTppS2PR+Fie5eW
- mBejF3Mpg3EcpJGcEWI+7KEJNwGlk9dTisSyCt8h4+Ov2f6sKeuAQHIH7DrqFMF6P5dEqh3gyLBQH
- TE/6P8lFE/+YjmaG1nxqiyGMwZ0KlkQ6r/jL8ySPnU4kxk8kSdopjPFuSAh8BzZDuG/52uGqRfPxP
- JKgr+3EJg==;
-Received: from mail-pf1-x441.google.com ([2607:f8b0:4864:20::441])
- by casper.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h41fI-000100-J8
- for linux-amlogic@lists.infradead.org; Wed, 13 Mar 2019 11:03:18 +0000
-Received: by mail-pf1-x441.google.com with SMTP id n22so1129968pfa.3
- for <linux-amlogic@lists.infradead.org>; Wed, 13 Mar 2019 04:03:16 -0700 (PDT)
+ id 1h43Jt-0002w1-Qj
+ for linux-amlogic@lists.infradead.org; Wed, 13 Mar 2019 12:49:20 +0000
+Received: by mail-wm1-x341.google.com with SMTP id 4so1869073wmf.5
+ for <linux-amlogic@lists.infradead.org>; Wed, 13 Mar 2019 05:49:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=s1zAivap7ECwynYe4xnVyvyJ8rC0V8FIe7PE8u9zfRQ=;
- b=eB/Ww7os4vu6TCDty5HZIcM8A5fEpeK8Sg857UyvOmz+ZrRNseLtbo2x68efFdLvvH
- 2Adu4yDCZXj8vFZtVdL9X3FjHcw9/p1mEjOzj+yyh20cpC5AZZIucn3cITVDpn8os2Oq
- Ld4uWb5a5BCBgielP5mXu0oQ6VoeT6CToO941JkRRMtw3Knqz3CLchfEAd0TYCNo6t4C
- 2l/mkUAgG54L8fZw29svQqK8moR0lRmV1GIfxk7OhOs1TsWY27n4KDiJM2f7PQaV80KA
- 1DE0nfBrYCfubh5GbrSo/X24lHdOovbhGnxn4BOZ2eyqBIePj3PJ0PgahWVFfa40y0Xq
- eDwA==
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=t6IMw4ZPwQxl/UqPm+jJcaPZsF3daWrRRpI9rsigW/U=;
+ b=KO7fTNy7eSEjW4xBrvPvpjXxX0qGUFS0GBk1faWQ27ZuLgG+mEJgkdDv/eXpzFmj7a
+ DxWec4SM0OzpjOMamsEilnYE91ZnFvOfjPYwddiMcSM5gBWzvuRPhX6FPqBrWsyDU688
+ tAaXiMpnN6yuIno/+2NYPYZXvoNtNqxVSBEJ5ikVxHNsMr0Fc+MlCg9WGGcRKECwEqMU
+ Fzu6QwVYO3vkom6mPu058LWDRY0qZAPItvayq48JMLvsU3u265bksToQ7/ckloauLn2c
+ 8GzhGlatZJRlkhGMeUoYm+pWKsBrwrOrXN4xGOFeSaLevvNkyQdmzQpx+oo7MNHi7qUq
+ 3dkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=s1zAivap7ECwynYe4xnVyvyJ8rC0V8FIe7PE8u9zfRQ=;
- b=JqWOA3zKg5tfiEVFVHfsU1OfsGm+SfjQ2oAHaA8/zx/HwH08oYAJvVpGSlmi+f8yvq
- Jq7M8SYmOUynJnjraoXBbCDYU27RmWGWM8lOhkoIdsRbqQivsMiFVkJpAwDKgnuSV22t
- C70vfTeXyjBoSWKLV3wg79FJKaBI3wmNF4deSKiAA9zT7ZSZvzvOQbfWQrbpasyUxc0P
- lIe+/PktFX8PPQLKxO0U5EHZF6GFm451LCVt5yn2XRDRHg6HVTWd72Hz4c4BlwJCtWJn
- fwDgbosAg/lzY7MiZKC9m76LmsJRqd/Ohq5yuQJXUkqh+nAXMP8CUOtQYMnLlSSKCWPi
- 0fxA==
-X-Gm-Message-State: APjAAAXLARyeAhCnINuBsG0d6VWaAwAdlc4UJGMS3vRJ99wU6X/l+HBp
- 21P0/CvYTLCIvxm/htxih1Io2TYz0sJ66w==
-X-Google-Smtp-Source: APXvYqwcYN+hh84jUZuAHGI1ZxzE4OR034TULZaPm2fef+FgtZiXl3TM7o/j3jKlW8Y/kpPLjIfXmw==
-X-Received: by 2002:a63:fc49:: with SMTP id r9mr36671226pgk.447.1552424566702; 
- Tue, 12 Mar 2019 14:02:46 -0700 (PDT)
-Received: from localhost ([2601:602:9200:a1a5:1daf:3f96:9f7f:33ba])
- by smtp.googlemail.com with ESMTPSA id
- q62sm22235827pfi.183.2019.03.12.14.02.45
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Tue, 12 Mar 2019 14:02:46 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH 6/9] arm64: dts: meson: g12a: Add UART A,
- B & C nodes and pins
-In-Reply-To: <20190307151342.7381-7-narmstrong@baylibre.com>
-References: <20190307151342.7381-1-narmstrong@baylibre.com>
- <20190307151342.7381-7-narmstrong@baylibre.com>
-Date: Tue, 12 Mar 2019 14:02:45 -0700
-Message-ID: <7hbm2fu7pm.fsf@baylibre.com>
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=t6IMw4ZPwQxl/UqPm+jJcaPZsF3daWrRRpI9rsigW/U=;
+ b=BDUMEj10zTaa3lx6LD3GATaxO64N2W4wz4ugRBvETs4exB9wB1UF3y50kP/r48EfPz
+ oa7Vp3t5mRy0IfuNbAJwI96SpEeAMYcsVYGZyLpbFYcU8+PSJAnZrP0aw+ejDVvQk1NN
+ E6Hzp+Vv4rDd57R4apYjXLC44Q73Zb+z8bOktXDIir2lm4aO/voiQzaB7KDomOKv68mD
+ 8GfkixppX+nGdchCc4ov0tfEaPugwmskC0OSg/it08gu/gnxUKwwTb23EYKyizC4QhXg
+ v8Us6fvGJ715RRS8/GN3F7ZriH+mT7nQ9/f5sw+hAm3j12JGUTkRH5jUuKePNKOeRny1
+ FpOw==
+X-Gm-Message-State: APjAAAWlaZu9CIt3+0tB1gdHhdnVjpcIsGy5/3ZeYBlQJXSWfbzqMn/c
+ r0mndJhXK7lblrt+PUgN1s3XgA==
+X-Google-Smtp-Source: APXvYqxlj9dasYALe4rtiF/JKjMKvdZA5BJr1+95bz7EHtQCdKwTGHB9soLymwfQKcUQvDPnNvElWg==
+X-Received: by 2002:a1c:9ed5:: with SMTP id h204mr1015135wme.35.1552481355798; 
+ Wed, 13 Mar 2019 05:49:15 -0700 (PDT)
+Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr.
+ [176.150.251.154])
+ by smtp.gmail.com with ESMTPSA id h126sm2040405wmf.2.2019.03.13.05.49.14
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 13 Mar 2019 05:49:14 -0700 (PDT)
+Subject: Re: [PATCH 1/2] dt-bindings: display: amlogic, meson-vpu: exclusively
+ use amlogic,canvas
+To: Maxime Jourdan <mjourdan@baylibre.com>
+References: <20190311105144.7276-1-mjourdan@baylibre.com>
+ <20190311105144.7276-2-mjourdan@baylibre.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <93a2c4ac-701a-7e72-3911-03d9fc141d80@baylibre.com>
+Date: Wed, 13 Mar 2019 13:49:13 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.5.1
 MIME-Version: 1.0
+In-Reply-To: <20190311105144.7276-2-mjourdan@baylibre.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190313_110316_721728_F3CAAF05 
-X-CRM114-Status: GOOD (  13.79  )
+X-CRM114-CacheID: sfid-20190313_054917_919199_BC07E21D 
+X-CRM114-Status: GOOD (  21.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -113,130 +152,69 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
+Cc: devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
-
-> This patch adds the 2 UART nodes in the EE power domain with the corresponding
-> pinctrl nodes.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-
-Similar to PATCH 4/9, are you wanting to move this to the board series?
-
-Kevin
-
+On 11/03/2019 11:51, Maxime Jourdan wrote:
+> When the DRM driver for the meson platform was created, the bindings
+> required that the DMC register region was provided.
+> 
+> Through those DMC registers, the display driver could configure an IP
+> called "canvas", a video lookup table used by the display IP.
+> 
+> It was later discovered that "canvas" is actually an IP shared by other
+> components than display: video decoder, 2D engine.. and that it wasn't
+> possible to keep the canvas code in DRM.
+> 
+> Over the past few months, incremental efforts have been deployed to
+> create a standalone meson-canvas driver [1], and the DRM driver was
+> patched to optionally use it if present [2].
+> 
+> This is the final step of those efforts where we simply remove any
+> control over DMC that the meson DRM driver has.
+> 
+> Please note that this breaks compatibility with older DTs that only
+> provide the DMC register range but not the amlogic,canvas node.
+> 
+> [1] https://patchwork.kernel.org/cover/10573771/
+> [2] https://patchwork.freedesktop.org/series/52076/
+> 
+> Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 82 +++++++++++++++++++++
->  1 file changed, 82 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-> index 2a700bb45d04..50e2cd36e08b 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-> @@ -113,6 +113,61 @@
->  						#gpio-cells = <2>;
->  						gpio-ranges = <&periphs_pinctrl 0 0 86>;
->  					};
-> +
-> +					uart_a_pins: uart_a {
-> +						mux {
-> +							groups = "uart_a_tx",
-> +								 "uart_a_rx";
-> +							function = "uart_a";
-> +							bias-disable;
-> +						};
-> +					};
-> +
-> +					uart_a_cts_rts_pins: uart_a_cts_rts {
-> +						mux {
-> +							groups = "uart_a_cts",
-> +								 "uart_a_rts";
-> +							function = "uart_a";
-> +							bias-disable;
-> +						};
-> +					};
-> +
-> +					uart_ao_a_c_pins: uart_ao_a_c {
-> +						mux {
-> +							groups = "uart_ao_a_rx_c",
-> +								 "uart_ao_a_tx_c";
-> +							function = "uart_ao_a_c";
-> +							bias-disable;
-> +						};
-> +					};
-> +
-> +					uart_b_pins: uart_b {
-> +						mux {
-> +							groups = "uart_b_tx",
-> +								 "uart_b_rx";
-> +							function = "uart_b";
-> +							bias-disable;
-> +						};
-> +					};
-> +
-> +					uart_c_pins: uart_c {
-> +						mux {
-> +							groups = "uart_c_tx",
-> +								 "uart_c_rx";
-> +							function = "uart_c";
-> +							bias-disable;
-> +						};
-> +					};
-> +
-> +					uart_c_cts_rts_pins: uart_c_cts_rts {
-> +						mux {
-> +							groups = "uart_c_cts",
-> +								 "uart_c_rts";
-> +							function = "uart_c";
-> +							bias-disable;
-> +						};
-> +					};
-> +				};
->  			};
+>  .../devicetree/bindings/display/amlogic,meson-vpu.txt        | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
+> index c65fd7a7467c..419444e2b4d3 100644
+> --- a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
+> +++ b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
+> @@ -60,15 +60,14 @@ Required properties:
+>  - reg: base address and size of he following memory-mapped regions :
+>  	- vpu
+>  	- hhi
+> -	- dmc
+>  - reg-names: should contain the names of the previous memory regions
+>  - interrupts: should contain the VENC Vsync interrupt number
+> +- amlogic,canvas: phandle to canvas provider node as described in the file
+> +	../soc/amlogic/amlogic,canvas.txt
 >  
->  			hiu: bus@3c000 {
-> @@ -256,6 +311,33 @@
->  				compatible = "amlogic,meson-g12a-clk-measure";
->  				reg = <0x0 0x18000 0x0 0x10>;
->  			};
-> +
-> +			uart_C: serial@22000 {
-> +				compatible = "amlogic,meson-gx-uart";
-> +				reg = <0x0 0x22000 0x0 0x18>;
-> +				interrupts = <GIC_SPI 93 IRQ_TYPE_EDGE_RISING>;
-> +				clocks = <&xtal>, <&clkc CLKID_UART1>, <&xtal>;
-> +				clock-names = "xtal", "pclk", "baud";
-> +				status = "disabled";
-> +			};
-> +
-> +			uart_B: serial@23000 {
-> +				compatible = "amlogic,meson-gx-uart";
-> +				reg = <0x0 0x23000 0x0 0x18>;
-> +				interrupts = <GIC_SPI 75 IRQ_TYPE_EDGE_RISING>;
-> +				clocks = <&xtal>, <&clkc CLKID_UART1>, <&xtal>;
-> +				clock-names = "xtal", "pclk", "baud";
-> +				status = "disabled";
-> +			};
-> +
-> +			uart_A: serial@24000 {
-> +				compatible = "amlogic,meson-gx-uart";
-> +				reg = <0x0 0x24000 0x0 0x18>;
-> +				interrupts = <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>;
-> +				clocks = <&xtal>, <&clkc CLKID_UART0>, <&xtal>;
-> +				clock-names = "xtal", "pclk", "baud";
-> +				status = "disabled";
-> +			};
->  		};
->  	};
+>  Optional properties:
+>  - power-domains: Optional phandle to associated power domain as described in
+>  	the file ../power/power_domain.txt
+> -- amlogic,canvas: phandle to canvas provider node as described in the file
+> -	../soc/amlogic/amlogic,canvas.txt
 >  
-> -- 
-> 2.20.1
+>  Required nodes:
+>  
+> 
+
+
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
