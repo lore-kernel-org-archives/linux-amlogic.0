@@ -4,19 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BB3D8C43381
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Mar 2019 12:49:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 402C9C43381
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Mar 2019 12:49:53 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 899AA2177E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Mar 2019 12:49:28 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0FA7B2177E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Mar 2019 12:49:52 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gJDFKz7v";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="KO7fTNy7"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 899AA2177E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qt0nPHEg";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="BuzDxzg+"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0FA7B2177E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,60 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NrR9Xt8btVZmEHsVw6UklQ1M27Vg3Kp2QFK8iKjCf8M=; b=gJDFKz7vj6k7eT
-	gWLbPPMOKW56AAcfIogm/xt5gJUxgPqy9hrtbENRms+ZTV7oIKdhRuGmTgahxwUkhPJJ/PQNUIOm/
-	oJ+JpE+z5FRAQsxnVFwIjGCq+UhsHvKRg34iexNENBTtOcREvGGFlgkX9PncZbp2aFhdRxwyD5ity
-	/NsCKg3DchWvccJyVqT4pBSy3MItnrm6iYLZWqckz36/pwVL5sFNC8eDXFlwcY6zfkPYXcE9w0whS
-	S2x1jQv2SlEZazcJzVHVGMGbwjX3f8w4hDAZEiQRjqJJ3WyCf9yCZOVgKS1wbyU8fUyAnxj5/u2F/
-	SgHkYXbmUvPYfjGvtjyQ==;
+	List-Owner; bh=uEOjcCYc3TQVxeRoJtT/SY8i34XualtTL3w8WCHA6qQ=; b=qt0nPHEgfqRStQ
+	1f8JlJZYBLY+gu87+wO1GhpXj5PpRcwD3oJq7DWFQfvT/1X069TQmMyKfDZlfoftkQFgg4TUsddrk
+	5rNrzUtlNY38tmsvHn957MLlsM0Ly3op0tWgBO0Fk8dSiptbHfJcvm+xF6Lpj7SrAGXY26LxiK8Ne
+	5aS8dHkU53fM5dmdlEFAsuRbKOKfrPseSm/Y3+zg+MgCRXzx8YNGX7kIqhlbNIqkTpS13t139fSgk
+	jIMjg7MliAXp+blroTyVh0fp3laa+j/aqACuUq7+VfYnPKjkTjbyeQbiYlpcrFgnRw8Ujj5mB0Lmc
+	iuRz4qFPrgNSoeUn9U0Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h43Jx-0002wm-9V; Wed, 13 Mar 2019 12:49:21 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1h43KP-0003MJ-6C; Wed, 13 Mar 2019 12:49:49 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h43Jt-0002w1-Qj
- for linux-amlogic@lists.infradead.org; Wed, 13 Mar 2019 12:49:20 +0000
-Received: by mail-wm1-x341.google.com with SMTP id 4so1869073wmf.5
- for <linux-amlogic@lists.infradead.org>; Wed, 13 Mar 2019 05:49:17 -0700 (PDT)
+ id 1h43KK-0003Kr-L7
+ for linux-amlogic@lists.infradead.org; Wed, 13 Mar 2019 12:49:47 +0000
+Received: by mail-wm1-x342.google.com with SMTP id a188so1721045wmf.3
+ for <linux-amlogic@lists.infradead.org>; Wed, 13 Mar 2019 05:49:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=t6IMw4ZPwQxl/UqPm+jJcaPZsF3daWrRRpI9rsigW/U=;
- b=KO7fTNy7eSEjW4xBrvPvpjXxX0qGUFS0GBk1faWQ27ZuLgG+mEJgkdDv/eXpzFmj7a
- DxWec4SM0OzpjOMamsEilnYE91ZnFvOfjPYwddiMcSM5gBWzvuRPhX6FPqBrWsyDU688
- tAaXiMpnN6yuIno/+2NYPYZXvoNtNqxVSBEJ5ikVxHNsMr0Fc+MlCg9WGGcRKECwEqMU
- Fzu6QwVYO3vkom6mPu058LWDRY0qZAPItvayq48JMLvsU3u265bksToQ7/ckloauLn2c
- 8GzhGlatZJRlkhGMeUoYm+pWKsBrwrOrXN4xGOFeSaLevvNkyQdmzQpx+oo7MNHi7qUq
- 3dkQ==
+ bh=jkoYwunv3e2QpBe86AjRH/TzGATaTjYM/hdyzxm0460=;
+ b=BuzDxzg+BODYzFIXEq2sfb4ne+mJ20IUGFYzq2Eo1BTbojkdyVuXIi/2reqyyrEdgq
+ KUoEFiUx3SbGt9O35A9HwH6rD7cv6WHX5c/D6NrLfzdufTOWfW6a0pZC0j6Z5i8a5Tzx
+ cldxIH4Tmp4mTuU3hPnOKoBPdSAssZFMuY0xBHycyI0hNsazznfat3WPQIEb9z4EbMUc
+ hTeMiTDP5xEDdTxp/kanwrnKwJGQK0fP134jlCeYEOutxvy8zeKBRzkGQDJ+fHDhxr6q
+ 8DO1QhjbDKPaNiezORbQ44NoOtzLzs5jaBBFPxdZO0KTTG7GuXlNSd/CoAXXg6kptJsK
+ CzRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=t6IMw4ZPwQxl/UqPm+jJcaPZsF3daWrRRpI9rsigW/U=;
- b=BDUMEj10zTaa3lx6LD3GATaxO64N2W4wz4ugRBvETs4exB9wB1UF3y50kP/r48EfPz
- oa7Vp3t5mRy0IfuNbAJwI96SpEeAMYcsVYGZyLpbFYcU8+PSJAnZrP0aw+ejDVvQk1NN
- E6Hzp+Vv4rDd57R4apYjXLC44Q73Zb+z8bOktXDIir2lm4aO/voiQzaB7KDomOKv68mD
- 8GfkixppX+nGdchCc4ov0tfEaPugwmskC0OSg/it08gu/gnxUKwwTb23EYKyizC4QhXg
- v8Us6fvGJ715RRS8/GN3F7ZriH+mT7nQ9/f5sw+hAm3j12JGUTkRH5jUuKePNKOeRny1
- FpOw==
-X-Gm-Message-State: APjAAAWlaZu9CIt3+0tB1gdHhdnVjpcIsGy5/3ZeYBlQJXSWfbzqMn/c
- r0mndJhXK7lblrt+PUgN1s3XgA==
-X-Google-Smtp-Source: APXvYqxlj9dasYALe4rtiF/JKjMKvdZA5BJr1+95bz7EHtQCdKwTGHB9soLymwfQKcUQvDPnNvElWg==
-X-Received: by 2002:a1c:9ed5:: with SMTP id h204mr1015135wme.35.1552481355798; 
- Wed, 13 Mar 2019 05:49:15 -0700 (PDT)
+ bh=jkoYwunv3e2QpBe86AjRH/TzGATaTjYM/hdyzxm0460=;
+ b=TZJUVoxXCId+h8f2O/SeCiBQlm9YEePz3VtebVVXq84+f5Zk4+k88Or48HKuaK+2MY
+ BnQc7OuyNjBBETws+D8IUZgZ2e+NM9B/eMiuP0OABd0anZNHKt8qhk68usaTyImdC1qs
+ MmLCgDJ8ZBhpEAZNmPIH/yrsyH0h66+oLTQFjsqDpoF+EzRsPMdA4P5nOXbsF9OC7OXZ
+ ZE696KInnn7hq/rvjBXt3AK8sqf+YlQIDqgvF/ngfiOaQWZtGUeSdMVXjEkzV8CLk/zi
+ 90uO4ZB8vEwt09n2sC92wG2i3FyH9whmiCW8p2FI2f0cjSYKBihmi0cc0ins1e7kZTds
+ rtkQ==
+X-Gm-Message-State: APjAAAWoa9MCZWGPK3V4Kuaa2P/XDqh5wFF7U0TAOHBIUXgv42Pi1AT6
+ BugTAWy5jbMj2VhIfkVp1316ow==
+X-Google-Smtp-Source: APXvYqxfydFCz7y2SbfIBN9eEJbmSe+C4BgI9WwMUYhRxahWgYN49Gy1Z+jcnowL/yjj8HChBRbh/w==
+X-Received: by 2002:a1c:f011:: with SMTP id a17mr2088266wmb.89.1552481382958; 
+ Wed, 13 Mar 2019 05:49:42 -0700 (PDT)
 Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr.
  [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id h126sm2040405wmf.2.2019.03.13.05.49.14
+ by smtp.gmail.com with ESMTPSA id o14sm12763419wrp.34.2019.03.13.05.49.41
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 13 Mar 2019 05:49:14 -0700 (PDT)
-Subject: Re: [PATCH 1/2] dt-bindings: display: amlogic, meson-vpu: exclusively
- use amlogic,canvas
+ Wed, 13 Mar 2019 05:49:42 -0700 (PDT)
+Subject: Re: [PATCH 2/2] drm/meson: exclusively use the canvas provider module
 To: Maxime Jourdan <mjourdan@baylibre.com>
 References: <20190311105144.7276-1-mjourdan@baylibre.com>
- <20190311105144.7276-2-mjourdan@baylibre.com>
+ <20190311105144.7276-3-mjourdan@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -131,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <93a2c4ac-701a-7e72-3911-03d9fc141d80@baylibre.com>
-Date: Wed, 13 Mar 2019 13:49:13 +0100
+Message-ID: <b589f93c-e898-d8ee-d04e-8f3f6a1bdc52@baylibre.com>
+Date: Wed, 13 Mar 2019 13:49:40 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.5.1
 MIME-Version: 1.0
-In-Reply-To: <20190311105144.7276-2-mjourdan@baylibre.com>
+In-Reply-To: <20190311105144.7276-3-mjourdan@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190313_054917_919199_BC07E21D 
-X-CRM114-Status: GOOD (  21.94  )
+X-CRM114-CacheID: sfid-20190313_054944_857710_A021E05B 
+X-CRM114-Status: GOOD (  21.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -161,60 +161,450 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 11/03/2019 11:51, Maxime Jourdan wrote:
-> When the DRM driver for the meson platform was created, the bindings
-> required that the DMC register region was provided.
-> 
-> Through those DMC registers, the display driver could configure an IP
-> called "canvas", a video lookup table used by the display IP.
-> 
-> It was later discovered that "canvas" is actually an IP shared by other
-> components than display: video decoder, 2D engine.. and that it wasn't
-> possible to keep the canvas code in DRM.
-> 
-> Over the past few months, incremental efforts have been deployed to
-> create a standalone meson-canvas driver [1], and the DRM driver was
-> patched to optionally use it if present [2].
-> 
-> This is the final step of those efforts where we simply remove any
-> control over DMC that the meson DRM driver has.
-> 
-> Please note that this breaks compatibility with older DTs that only
-> provide the DMC register range but not the amlogic,canvas node.
-> 
-> [1] https://patchwork.kernel.org/cover/10573771/
-> [2] https://patchwork.freedesktop.org/series/52076/
+> Now that the DMC register range is no longer in the bindings, remove any
+> mention towards it and exclusively use the meson-canvas module.
 > 
 > Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
 > ---
->  .../devicetree/bindings/display/amlogic,meson-vpu.txt        | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
+>  drivers/gpu/drm/meson/Makefile        |  2 +-
+>  drivers/gpu/drm/meson/meson_canvas.c  | 73 -----------------------
+>  drivers/gpu/drm/meson/meson_canvas.h  | 51 ----------------
+>  drivers/gpu/drm/meson/meson_crtc.c    | 84 ++++++++-------------------
+>  drivers/gpu/drm/meson/meson_drv.c     | 68 ++++++++--------------
+>  drivers/gpu/drm/meson/meson_drv.h     |  1 -
+>  drivers/gpu/drm/meson/meson_overlay.c |  8 ---
+>  drivers/gpu/drm/meson/meson_plane.c   |  6 +-
+>  drivers/gpu/drm/meson/meson_viu.c     |  1 -
+>  9 files changed, 51 insertions(+), 243 deletions(-)
+>  delete mode 100644 drivers/gpu/drm/meson/meson_canvas.c
+>  delete mode 100644 drivers/gpu/drm/meson/meson_canvas.h
 > 
-> diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
-> index c65fd7a7467c..419444e2b4d3 100644
-> --- a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
-> +++ b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
-> @@ -60,15 +60,14 @@ Required properties:
->  - reg: base address and size of he following memory-mapped regions :
->  	- vpu
->  	- hhi
-> -	- dmc
->  - reg-names: should contain the names of the previous memory regions
->  - interrupts: should contain the VENC Vsync interrupt number
-> +- amlogic,canvas: phandle to canvas provider node as described in the file
-> +	../soc/amlogic/amlogic,canvas.txt
+> diff --git a/drivers/gpu/drm/meson/Makefile b/drivers/gpu/drm/meson/Makefile
+> index 7709f2fbb9f7..d4ea82fc493b 100644
+> --- a/drivers/gpu/drm/meson/Makefile
+> +++ b/drivers/gpu/drm/meson/Makefile
+> @@ -1,5 +1,5 @@
+>  meson-drm-y := meson_drv.o meson_plane.o meson_crtc.o meson_venc_cvbs.o
+> -meson-drm-y += meson_viu.o meson_vpp.o meson_venc.o meson_vclk.o meson_canvas.o meson_overlay.o
+> +meson-drm-y += meson_viu.o meson_vpp.o meson_venc.o meson_vclk.o meson_overlay.o
 >  
->  Optional properties:
->  - power-domains: Optional phandle to associated power domain as described in
->  	the file ../power/power_domain.txt
-> -- amlogic,canvas: phandle to canvas provider node as described in the file
-> -	../soc/amlogic/amlogic,canvas.txt
+>  obj-$(CONFIG_DRM_MESON) += meson-drm.o
+>  obj-$(CONFIG_DRM_MESON_DW_HDMI) += meson_dw_hdmi.o
+> diff --git a/drivers/gpu/drm/meson/meson_canvas.c b/drivers/gpu/drm/meson/meson_canvas.c
+> deleted file mode 100644
+> index 5de11aa7c775..000000000000
+> --- a/drivers/gpu/drm/meson/meson_canvas.c
+> +++ /dev/null
+> @@ -1,73 +0,0 @@
+> -/*
+> - * Copyright (C) 2016 BayLibre, SAS
+> - * Author: Neil Armstrong <narmstrong@baylibre.com>
+> - * Copyright (C) 2015 Amlogic, Inc. All rights reserved.
+> - * Copyright (C) 2014 Endless Mobile
+> - *
+> - * This program is free software; you can redistribute it and/or
+> - * modify it under the terms of the GNU General Public License as
+> - * published by the Free Software Foundation; either version 2 of the
+> - * License, or (at your option) any later version.
+> - *
+> - * This program is distributed in the hope that it will be useful, but
+> - * WITHOUT ANY WARRANTY; without even the implied warranty of
+> - * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+> - * General Public License for more details.
+> - *
+> - * You should have received a copy of the GNU General Public License
+> - * along with this program; if not, see <http://www.gnu.org/licenses/>.
+> - */
+> -
+> -#include <linux/kernel.h>
+> -#include <linux/module.h>
+> -#include "meson_drv.h"
+> -#include "meson_canvas.h"
+> -#include "meson_registers.h"
+> -
+> -/**
+> - * DOC: Canvas
+> - *
+> - * CANVAS is a memory zone where physical memory frames information
+> - * are stored for the VIU to scanout.
+> - */
+> -
+> -/* DMC Registers */
+> -#define DMC_CAV_LUT_DATAL	0x48 /* 0x12 offset in data sheet */
+> -#define CANVAS_WIDTH_LBIT	29
+> -#define CANVAS_WIDTH_LWID       3
+> -#define DMC_CAV_LUT_DATAH	0x4c /* 0x13 offset in data sheet */
+> -#define CANVAS_WIDTH_HBIT       0
+> -#define CANVAS_HEIGHT_BIT       9
+> -#define CANVAS_BLKMODE_BIT      24
+> -#define CANVAS_ENDIAN_BIT	26
+> -#define DMC_CAV_LUT_ADDR	0x50 /* 0x14 offset in data sheet */
+> -#define CANVAS_LUT_WR_EN        (0x2 << 8)
+> -#define CANVAS_LUT_RD_EN        (0x1 << 8)
+> -
+> -void meson_canvas_setup(struct meson_drm *priv,
+> -			uint32_t canvas_index, uint32_t addr,
+> -			uint32_t stride, uint32_t height,
+> -			unsigned int wrap,
+> -			unsigned int blkmode,
+> -			unsigned int endian)
+> -{
+> -	unsigned int val;
+> -
+> -	regmap_write(priv->dmc, DMC_CAV_LUT_DATAL,
+> -		(((addr + 7) >> 3)) |
+> -		(((stride + 7) >> 3) << CANVAS_WIDTH_LBIT));
+> -
+> -	regmap_write(priv->dmc, DMC_CAV_LUT_DATAH,
+> -		((((stride + 7) >> 3) >> CANVAS_WIDTH_LWID) <<
+> -						CANVAS_WIDTH_HBIT) |
+> -		(height << CANVAS_HEIGHT_BIT) |
+> -		(wrap << 22) |
+> -		(blkmode << CANVAS_BLKMODE_BIT) |
+> -		(endian << CANVAS_ENDIAN_BIT));
+> -
+> -	regmap_write(priv->dmc, DMC_CAV_LUT_ADDR,
+> -			CANVAS_LUT_WR_EN | canvas_index);
+> -
+> -	/* Force a read-back to make sure everything is flushed. */
+> -	regmap_read(priv->dmc, DMC_CAV_LUT_DATAH, &val);
+> -}
+> diff --git a/drivers/gpu/drm/meson/meson_canvas.h b/drivers/gpu/drm/meson/meson_canvas.h
+> deleted file mode 100644
+> index 85dbf26e2826..000000000000
+> --- a/drivers/gpu/drm/meson/meson_canvas.h
+> +++ /dev/null
+> @@ -1,51 +0,0 @@
+> -/*
+> - * Copyright (C) 2016 BayLibre, SAS
+> - * Author: Neil Armstrong <narmstrong@baylibre.com>
+> - * Copyright (C) 2014 Endless Mobile
+> - *
+> - * This program is free software; you can redistribute it and/or
+> - * modify it under the terms of the GNU General Public License as
+> - * published by the Free Software Foundation; either version 2 of the
+> - * License, or (at your option) any later version.
+> - *
+> - * This program is distributed in the hope that it will be useful, but
+> - * WITHOUT ANY WARRANTY; without even the implied warranty of
+> - * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+> - * General Public License for more details.
+> - *
+> - * You should have received a copy of the GNU General Public License
+> - * along with this program; if not, see <http://www.gnu.org/licenses/>.
+> - */
+> -
+> -/* Canvas LUT Memory */
+> -
+> -#ifndef __MESON_CANVAS_H
+> -#define __MESON_CANVAS_H
+> -
+> -#define MESON_CANVAS_ID_OSD1	0x4e
+> -#define MESON_CANVAS_ID_VD1_0	0x60
+> -#define MESON_CANVAS_ID_VD1_1	0x61
+> -#define MESON_CANVAS_ID_VD1_2	0x62
+> -
+> -/* Canvas configuration. */
+> -#define MESON_CANVAS_WRAP_NONE	0x00
+> -#define	MESON_CANVAS_WRAP_X	0x01
+> -#define	MESON_CANVAS_WRAP_Y	0x02
+> -
+> -#define	MESON_CANVAS_BLKMODE_LINEAR	0x00
+> -#define	MESON_CANVAS_BLKMODE_32x32	0x01
+> -#define	MESON_CANVAS_BLKMODE_64x64	0x02
+> -
+> -#define MESON_CANVAS_ENDIAN_SWAP16	0x1
+> -#define MESON_CANVAS_ENDIAN_SWAP32	0x3
+> -#define MESON_CANVAS_ENDIAN_SWAP64	0x7
+> -#define MESON_CANVAS_ENDIAN_SWAP128	0xf
+> -
+> -void meson_canvas_setup(struct meson_drm *priv,
+> -			uint32_t canvas_index, uint32_t addr,
+> -			uint32_t stride, uint32_t height,
+> -			unsigned int wrap,
+> -			unsigned int blkmode,
+> -			unsigned int endian);
+> -
+> -#endif /* __MESON_CANVAS_H */
+> diff --git a/drivers/gpu/drm/meson/meson_crtc.c b/drivers/gpu/drm/meson/meson_crtc.c
+> index 4f5c67f70c4d..37c70641bcdf 100644
+> --- a/drivers/gpu/drm/meson/meson_crtc.c
+> +++ b/drivers/gpu/drm/meson/meson_crtc.c
+> @@ -37,7 +37,6 @@
+>  #include "meson_venc.h"
+>  #include "meson_vpp.h"
+>  #include "meson_viu.h"
+> -#include "meson_canvas.h"
+>  #include "meson_registers.h"
 >  
->  Required nodes:
+>  /* CRTC definition */
+> @@ -214,13 +213,7 @@ void meson_crtc_irq(struct meson_drm *priv)
+>  		writel_relaxed(priv->viu.osd_sc_v_ctrl0,
+>  				priv->io_base + _REG(VPP_OSD_VSC_CTRL0));
 >  
+> -		if (priv->canvas)
+> -			meson_canvas_config(priv->canvas, priv->canvas_id_osd1,
+> -				priv->viu.osd1_addr, priv->viu.osd1_stride,
+> -				priv->viu.osd1_height, MESON_CANVAS_WRAP_NONE,
+> -				MESON_CANVAS_BLKMODE_LINEAR, 0);
+> -		else
+> -			meson_canvas_setup(priv, MESON_CANVAS_ID_OSD1,
+> +		meson_canvas_config(priv->canvas, priv->canvas_id_osd1,
+>  				priv->viu.osd1_addr, priv->viu.osd1_stride,
+>  				priv->viu.osd1_height, MESON_CANVAS_WRAP_NONE,
+>  				MESON_CANVAS_BLKMODE_LINEAR, 0);
+> @@ -237,61 +230,34 @@ void meson_crtc_irq(struct meson_drm *priv)
+>  
+>  		switch (priv->viu.vd1_planes) {
+>  		case 3:
+> -			if (priv->canvas)
+> -				meson_canvas_config(priv->canvas,
+> -						    priv->canvas_id_vd1_2,
+> -						    priv->viu.vd1_addr2,
+> -						    priv->viu.vd1_stride2,
+> -						    priv->viu.vd1_height2,
+> -						    MESON_CANVAS_WRAP_NONE,
+> -						    MESON_CANVAS_BLKMODE_LINEAR,
+> -						    MESON_CANVAS_ENDIAN_SWAP64);
+> -			else
+> -				meson_canvas_setup(priv, MESON_CANVAS_ID_VD1_2,
+> -						   priv->viu.vd1_addr2,
+> -						   priv->viu.vd1_stride2,
+> -						   priv->viu.vd1_height2,
+> -						   MESON_CANVAS_WRAP_NONE,
+> -						   MESON_CANVAS_BLKMODE_LINEAR,
+> -						   MESON_CANVAS_ENDIAN_SWAP64);
+> +			meson_canvas_config(priv->canvas,
+> +					    priv->canvas_id_vd1_2,
+> +					    priv->viu.vd1_addr2,
+> +					    priv->viu.vd1_stride2,
+> +					    priv->viu.vd1_height2,
+> +					    MESON_CANVAS_WRAP_NONE,
+> +					    MESON_CANVAS_BLKMODE_LINEAR,
+> +					    MESON_CANVAS_ENDIAN_SWAP64);
+>  		/* fallthrough */
+>  		case 2:
+> -			if (priv->canvas)
+> -				meson_canvas_config(priv->canvas,
+> -						    priv->canvas_id_vd1_1,
+> -						    priv->viu.vd1_addr1,
+> -						    priv->viu.vd1_stride1,
+> -						    priv->viu.vd1_height1,
+> -						    MESON_CANVAS_WRAP_NONE,
+> -						    MESON_CANVAS_BLKMODE_LINEAR,
+> -						    MESON_CANVAS_ENDIAN_SWAP64);
+> -			else
+> -				meson_canvas_setup(priv, MESON_CANVAS_ID_VD1_1,
+> -						   priv->viu.vd1_addr2,
+> -						   priv->viu.vd1_stride2,
+> -						   priv->viu.vd1_height2,
+> -						   MESON_CANVAS_WRAP_NONE,
+> -						   MESON_CANVAS_BLKMODE_LINEAR,
+> -						   MESON_CANVAS_ENDIAN_SWAP64);
+> +			meson_canvas_config(priv->canvas,
+> +					    priv->canvas_id_vd1_1,
+> +					    priv->viu.vd1_addr1,
+> +					    priv->viu.vd1_stride1,
+> +					    priv->viu.vd1_height1,
+> +					    MESON_CANVAS_WRAP_NONE,
+> +					    MESON_CANVAS_BLKMODE_LINEAR,
+> +					    MESON_CANVAS_ENDIAN_SWAP64);
+>  		/* fallthrough */
+>  		case 1:
+> -			if (priv->canvas)
+> -				meson_canvas_config(priv->canvas,
+> -						    priv->canvas_id_vd1_0,
+> -						    priv->viu.vd1_addr0,
+> -						    priv->viu.vd1_stride0,
+> -						    priv->viu.vd1_height0,
+> -						    MESON_CANVAS_WRAP_NONE,
+> -						    MESON_CANVAS_BLKMODE_LINEAR,
+> -						    MESON_CANVAS_ENDIAN_SWAP64);
+> -			else
+> -				meson_canvas_setup(priv, MESON_CANVAS_ID_VD1_0,
+> -						   priv->viu.vd1_addr2,
+> -						   priv->viu.vd1_stride2,
+> -						   priv->viu.vd1_height2,
+> -						   MESON_CANVAS_WRAP_NONE,
+> -						   MESON_CANVAS_BLKMODE_LINEAR,
+> -						   MESON_CANVAS_ENDIAN_SWAP64);
+> +			meson_canvas_config(priv->canvas,
+> +					    priv->canvas_id_vd1_0,
+> +					    priv->viu.vd1_addr0,
+> +					    priv->viu.vd1_stride0,
+> +					    priv->viu.vd1_height0,
+> +					    MESON_CANVAS_WRAP_NONE,
+> +					    MESON_CANVAS_BLKMODE_LINEAR,
+> +					    MESON_CANVAS_ENDIAN_SWAP64);
+>  		};
+>  
+>  		writel_relaxed(priv->viu.vd1_if0_gen_reg,
+> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+> index 12ff47b13668..7913983f2981 100644
+> --- a/drivers/gpu/drm/meson/meson_drv.c
+> +++ b/drivers/gpu/drm/meson/meson_drv.c
+> @@ -48,7 +48,6 @@
+>  #include "meson_vpp.h"
+>  #include "meson_viu.h"
+>  #include "meson_venc.h"
+> -#include "meson_canvas.h"
+>  #include "meson_registers.h"
+>  
+>  #define DRIVER_NAME "meson"
+> @@ -214,50 +213,31 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+>  	}
+>  
+>  	priv->canvas = meson_canvas_get(dev);
+> -	if (!IS_ERR(priv->canvas)) {
+> -		ret = meson_canvas_alloc(priv->canvas, &priv->canvas_id_osd1);
+> -		if (ret)
+> -			goto free_drm;
+> -		ret = meson_canvas_alloc(priv->canvas, &priv->canvas_id_vd1_0);
+> -		if (ret) {
+> -			meson_canvas_free(priv->canvas, priv->canvas_id_osd1);
+> -			goto free_drm;
+> -		}
+> -		ret = meson_canvas_alloc(priv->canvas, &priv->canvas_id_vd1_1);
+> -		if (ret) {
+> -			meson_canvas_free(priv->canvas, priv->canvas_id_osd1);
+> -			meson_canvas_free(priv->canvas, priv->canvas_id_vd1_0);
+> -			goto free_drm;
+> -		}
+> -		ret = meson_canvas_alloc(priv->canvas, &priv->canvas_id_vd1_2);
+> -		if (ret) {
+> -			meson_canvas_free(priv->canvas, priv->canvas_id_osd1);
+> -			meson_canvas_free(priv->canvas, priv->canvas_id_vd1_0);
+> -			meson_canvas_free(priv->canvas, priv->canvas_id_vd1_1);
+> -			goto free_drm;
+> -		}
+> -	} else {
+> -		priv->canvas = NULL;
+> -
+> -		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "dmc");
+> -		if (!res) {
+> -			ret = -EINVAL;
+> -			goto free_drm;
+> -		}
+> -		/* Simply ioremap since it may be a shared register zone */
+> -		regs = devm_ioremap(dev, res->start, resource_size(res));
+> -		if (!regs) {
+> -			ret = -EADDRNOTAVAIL;
+> -			goto free_drm;
+> -		}
+> +	if (IS_ERR(priv->canvas)) {
+> +		ret = PTR_ERR(priv->canvas);
+> +		goto free_drm;
+> +	}
+>  
+> -		priv->dmc = devm_regmap_init_mmio(dev, regs,
+> -						  &meson_regmap_config);
+> -		if (IS_ERR(priv->dmc)) {
+> -			dev_err(&pdev->dev, "Couldn't create the DMC regmap\n");
+> -			ret = PTR_ERR(priv->dmc);
+> -			goto free_drm;
+> -		}
+> +	ret = meson_canvas_alloc(priv->canvas, &priv->canvas_id_osd1);
+> +	if (ret)
+> +		goto free_drm;
+> +	ret = meson_canvas_alloc(priv->canvas, &priv->canvas_id_vd1_0);
+> +	if (ret) {
+> +		meson_canvas_free(priv->canvas, priv->canvas_id_osd1);
+> +		goto free_drm;
+> +	}
+> +	ret = meson_canvas_alloc(priv->canvas, &priv->canvas_id_vd1_1);
+> +	if (ret) {
+> +		meson_canvas_free(priv->canvas, priv->canvas_id_osd1);
+> +		meson_canvas_free(priv->canvas, priv->canvas_id_vd1_0);
+> +		goto free_drm;
+> +	}
+> +	ret = meson_canvas_alloc(priv->canvas, &priv->canvas_id_vd1_2);
+> +	if (ret) {
+> +		meson_canvas_free(priv->canvas, priv->canvas_id_osd1);
+> +		meson_canvas_free(priv->canvas, priv->canvas_id_vd1_0);
+> +		meson_canvas_free(priv->canvas, priv->canvas_id_vd1_1);
+> +		goto free_drm;
+>  	}
+>  
+>  	priv->vsync_irq = platform_get_irq(pdev, 0);
+> diff --git a/drivers/gpu/drm/meson/meson_drv.h b/drivers/gpu/drm/meson/meson_drv.h
+> index 4dccf4cd042a..214a7cb18ce2 100644
+> --- a/drivers/gpu/drm/meson/meson_drv.h
+> +++ b/drivers/gpu/drm/meson/meson_drv.h
+> @@ -29,7 +29,6 @@ struct meson_drm {
+>  	struct device *dev;
+>  	void __iomem *io_base;
+>  	struct regmap *hhi;
+> -	struct regmap *dmc;
+>  	int vsync_irq;
+>  
+>  	struct meson_canvas *canvas;
+> diff --git a/drivers/gpu/drm/meson/meson_overlay.c b/drivers/gpu/drm/meson/meson_overlay.c
+> index 691a9fd16b36..b54a22e483b9 100644
+> --- a/drivers/gpu/drm/meson/meson_overlay.c
+> +++ b/drivers/gpu/drm/meson/meson_overlay.c
+> @@ -22,7 +22,6 @@
+>  #include "meson_overlay.h"
+>  #include "meson_vpp.h"
+>  #include "meson_viu.h"
+> -#include "meson_canvas.h"
+>  #include "meson_registers.h"
+>  
+>  /* VD1_IF0_GEN_REG */
+> @@ -350,13 +349,6 @@ static void meson_overlay_atomic_update(struct drm_plane *plane,
+>  
+>  	DRM_DEBUG_DRIVER("\n");
+>  
+> -	/* Fallback is canvas provider is not available */
+> -	if (!priv->canvas) {
+> -		priv->canvas_id_vd1_0 = MESON_CANVAS_ID_VD1_0;
+> -		priv->canvas_id_vd1_1 = MESON_CANVAS_ID_VD1_1;
+> -		priv->canvas_id_vd1_2 = MESON_CANVAS_ID_VD1_2;
+> -	}
+> -
+>  	interlace_mode = state->crtc->mode.flags & DRM_MODE_FLAG_INTERLACE;
+>  
+>  	spin_lock_irqsave(&priv->drm->event_lock, flags);
+> diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
+> index 6119a0224278..b7786218cb10 100644
+> --- a/drivers/gpu/drm/meson/meson_plane.c
+> +++ b/drivers/gpu/drm/meson/meson_plane.c
+> @@ -38,7 +38,6 @@
+>  #include "meson_plane.h"
+>  #include "meson_vpp.h"
+>  #include "meson_viu.h"
+> -#include "meson_canvas.h"
+>  #include "meson_registers.h"
+>  
+>  /* OSD_SCI_WH_M1 */
+> @@ -148,10 +147,7 @@ static void meson_plane_atomic_update(struct drm_plane *plane,
+>  				   (0xFF << OSD_GLOBAL_ALPHA_SHIFT) |
+>  				   OSD_BLK0_ENABLE;
+>  
+> -	if (priv->canvas)
+> -		canvas_id_osd1 = priv->canvas_id_osd1;
+> -	else
+> -		canvas_id_osd1 = MESON_CANVAS_ID_OSD1;
+> +	canvas_id_osd1 = priv->canvas_id_osd1;
+>  
+>  	/* Set up BLK0 to point to the right canvas */
+>  	priv->viu.osd1_blk0_cfg[0] = ((canvas_id_osd1 << OSD_CANVAS_SEL) |
+> diff --git a/drivers/gpu/drm/meson/meson_viu.c b/drivers/gpu/drm/meson/meson_viu.c
+> index e46e05f50bad..ac0f3687e09a 100644
+> --- a/drivers/gpu/drm/meson/meson_viu.c
+> +++ b/drivers/gpu/drm/meson/meson_viu.c
+> @@ -25,7 +25,6 @@
+>  #include "meson_viu.h"
+>  #include "meson_vpp.h"
+>  #include "meson_venc.h"
+> -#include "meson_canvas.h"
+>  #include "meson_registers.h"
+>  
+>  /**
 > 
 
+Finally !
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
