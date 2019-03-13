@@ -2,67 +2,70 @@ Return-Path: <SRS0=5XDc=RQ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 49B9EC43381
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Mar 2019 17:11:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9E1A5C4360F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Mar 2019 19:11:08 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1686A2077B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Mar 2019 17:11:22 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6F2042173C
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Mar 2019 19:11:08 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FZmxADRE"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1686A2077B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=wanadoo.fr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RAqkqsHQ";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="i5v8dJjd"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6F2042173C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=L9dvtYk7XqWMV3iAGmum2NcXicxYONVjbaihYNvAyn8=; b=FZmxADRE30YsJz
-	aUiQgGBdQWIl8aOK0ky8O61lCeGmtdmgxPBotHPNAMG4P9p6aElM1Q1jM8zrTyE89SqCw2Vo7G7qc
-	/vgbHJd9IwcT7kPKBcIcG8DHr0N5ccT9VvCxa6vbFLln/WDv+/Zhgsiiacu1LRulQgATfDPamex3L
-	kpC6gSkTW7l+HgAFxMmtbSivqZ8u1kK2NCXEl9PcxitpVErvbt7vZWsSyKS7tAAGtRmQNq4Dgv3YV
-	xEtww4xcr45NLLxZiMC8B+C+U3ZIRGgykK0/Q6W90al8yyLqEUw7zJudgckz6YigTC/VbTV9bvai8
-	GM9quRQBYK9Wwn4EZEPQ==;
+	List-Owner; bh=CYU0RExFIRzy6YSWl9RIjz0kfLxu8HaIWAX6NiNHJkk=; b=RAqkqsHQPHce1o
+	szwfvgk5jHIw/0FNM/12xmZgtEGt7ayERGc6JVJv/nyha9MnA/n0pKR2YXdlHPAzBjh2MuEjzB95A
+	w03mSzpDpsot1zVpGD0yLEvF7d58+eEuFj82oYQ0KiOSYa2/W+Ag2Qaa6y1I5RxQ4xfQ22D+rbxbc
+	yFgHAQsMxxkjLzwlci66PQsU7LeHxmIrH9RX3F3t8lzkjl1FFAxW4bhGC47pMzAHdcYCQ8Z4otpzB
+	Pl01+WIwxgsHCA/NL9dHjRCvuC6ffAobgcXOJbpS3Yxxj09C0s+SsCOBdeJXF051HK8ghXI3JouU7
+	6E+3im4yY87XPqgb06gA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h47PP-0003be-2c; Wed, 13 Mar 2019 17:11:15 +0000
-Received: from smtp07.smtpout.orange.fr ([80.12.242.129]
- helo=smtp.smtpout.orange.fr)
+	id 1h49HK-0004qz-3i; Wed, 13 Mar 2019 19:11:02 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h47PK-0003ag-7g
- for linux-amlogic@lists.infradead.org; Wed, 13 Mar 2019 17:11:13 +0000
-Received: from mail-qt1-f177.google.com ([209.85.160.177]) by mwinf5d14 with ME
- id nVB01z00D3pwec103VB05L; Wed, 13 Mar 2019 18:11:04 +0100
-X-ME-Helo: mail-qt1-f177.google.com
-X-ME-Auth: bWF4aS5qb3VyZGFuQHdhbmFkb28uZnI=
-X-ME-Date: Wed, 13 Mar 2019 18:11:04 +0100
-X-ME-IP: 209.85.160.177
-Received: by mail-qt1-f177.google.com with SMTP id v20so2754494qtv.12
- for <linux-amlogic@lists.infradead.org>; Wed, 13 Mar 2019 10:11:00 -0700 (PDT)
-X-Gm-Message-State: APjAAAUZ6mVzUT8ranYhHEjnfoSKt/MODpNOSO5mIvxlbAQCwi1fNxIT
- 9X3u+TM+PIqguQYUOv3pA87Oxx8AQNBZ/EbK5uU=
-X-Google-Smtp-Source: APXvYqztmXuZHChr/bVM2hW/rjbjLqhcArq/3TJqh6aGvDBb5GnK7fQSSilnkdl6pJ5zoYXnYrZO1DyALq/wvuTuAK4=
-X-Received: by 2002:ac8:7206:: with SMTP id a6mr18372796qtp.55.1552497060001; 
- Wed, 13 Mar 2019 10:11:00 -0700 (PDT)
+ id 1h49HH-0004qe-SX
+ for linux-amlogic@lists.infradead.org; Wed, 13 Mar 2019 19:11:01 +0000
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
+ [73.47.72.35])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 9ACF221855;
+ Wed, 13 Mar 2019 19:10:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1552504258;
+ bh=oy3dvynanRjImHK2flmvaHnoYG6sbJAJOPDGEKGTCBg=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=i5v8dJjdLevXNmBgS+EklZJDlKRPGjojiEmkC8k5YFslr0CDDkYqZ7yNGC6sA51pR
+ FtcDPJlslENW4QhZxLo4X5AmjenRRocmZjOTZPMsBHPQG2/N9wylzw7CCHVbil7+eW
+ qhdcxL6eAdNBWuOtlFbDxXQlNBn5imEMHDspw+xc=
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.20 17/60] pinctrl: meson: meson8b: fix the sdxc_a
+ data 1..3 pins
+Date: Wed, 13 Mar 2019 15:09:38 -0400
+Message-Id: <20190313191021.158171-17-sashal@kernel.org>
+X-Mailer: git-send-email 2.19.1
+In-Reply-To: <20190313191021.158171-1-sashal@kernel.org>
+References: <20190313191021.158171-1-sashal@kernel.org>
 MIME-Version: 1.0
-References: <CAFBinCD6gWS0RiJc=secdFDBM329PKxSiGejo1wSQ6Pwe6ynJw@mail.gmail.com>
-In-Reply-To: <CAFBinCD6gWS0RiJc=secdFDBM329PKxSiGejo1wSQ6Pwe6ynJw@mail.gmail.com>
-From: Maxime Jourdan <maxi.jourdan@wanadoo.fr>
-Date: Wed, 13 Mar 2019 18:10:49 +0100
-X-Gmail-Original-Message-ID: <CAHStOZ5u6G2FpWdvt5gApf+V0ijLMpJzdTPw6=GBKLMwy9=0dA@mail.gmail.com>
-Message-ID: <CAHStOZ5u6G2FpWdvt5gApf+V0ijLMpJzdTPw6=GBKLMwy9=0dA@mail.gmail.com>
-Subject: Re: Power Domains on Amlogic SoCs
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190313_101111_214413_F7827A3F 
-X-CRM114-Status: GOOD (  25.50  )
+X-CRM114-CacheID: sfid-20190313_121059_938025_960E02CB 
+X-CRM114-Status: GOOD (  11.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -74,120 +77,47 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mjourdan@baylibre.com, ulf.hansson@linaro.org, khilman@kernel.org,
- linux-pm@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
- rjw@rjwysocki.net, linux-amlogic <linux-amlogic@lists.infradead.org>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Sasha Levin <sashal@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-On Fri, Mar 1, 2019 at 11:30 PM Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> Hello,
->
-> I would like to start a discussion how to structure the power domain
-> drivers for the Amlogic SoCs.
-> My main motivation is getting video output and video decoders working
-> on the 32-bit SoCs.
->
-> The Amlogic SoCs we various registers for "power domains", the ones I
-> know (in no specific order):
-> 1. HHI_MEM_PD_REG0 (contains: HDMI memory PD, Ethernet memory PD,
-> audio DSP memory PD - at least on the 32-bit SoCs)
-> 2. HHI_VPU_MEM_PD_REG{0,1,2} (contains: various VPU related power domains)
-> 3. AO_RTI_GEN_PWR_SLEEP0, AO_RTI_GEN_PWR_ISO0 (contains: HDMI PD, HDMI
-> isolation, video codec PDs, video code isolation, ...)
-> 4. AO_RTI_PWR_A9_CNTL0/AO_RTI_PWR_SYS_CPU_PD0,
-> P_AO_RTI_PWR_A9_CNTL1/AO_RTI_PWR_SYS_CPU_PD1 (contains: CPU core
-> related power bits)
->
-> currently we have three drivers, which handle *some* of these power
-> domain registers:
-> drivers/soc/amlogic/meson-gx-pwrc-vpu.c:
-> - partially manages HHI_MEM_PD_REG0
-> - fully manages HHI_VPU_MEM_PD_REG{0,1,2}
-> - partially manages AO_RTI_GEN_PWR_SLEEP0
->
-> arch/arm/mach-meson/platsmp.c:
-> - manages AO_RTI_PWR_A9_CNTL0 and P_AO_RTI_PWR_A9_CNTL1
-> - only for the 32-bit SoCs, these registers (or their replacements)
-> are controlled by the firmware on the 64-bit SoCs
->
-> drivers/media/platform/meson/vdec/* (not upstream yet due to firmware
-> blob licensing questions, latest patchset: [1]):
-> - also partially manages AO_RTI_GEN_PWR_SLEEP0, AO_RTI_GEN_PWR_ISO0
-> (the former is also partially managed by meson-gx-pwrc-vpu)
->
-> To use the meson-gx-pwrc-vpu driver on the 32-bit SoCs I would have to
-> create an "AO regmap/syscon" and pass it to that driver. However, the
-> register layout of the "AO bus" on these older SoCs is different to
-> what we have on the 64-bit SoCs. So having a big "AO regmap/syscon" is
-> not easy (I also believe that it even if we could achieve it then it
-> wouldn't be a good representation of the hardware).
-> The video decoder driver currently requires the same "AO regmap/syscon".
->
-> I would like to focus on the AO_RTI_GEN_PWR_SLEEP0,
-> AO_RTI_GEN_PWR_ISO0 registers for now. This will make it easier to
-> support VPU and the video decoder drivers on the 32-bit SoCs.
-> My idea is to create a separate power domain provider which manages
-> these registers. Each power domain is exposed with it's own ID (just
-> like we have the CLKIDs in the clock driver) and can then be passed to
-> the various consumer drivers.
-> The genpd improvements in v4.19 and v4.20 make this possible as each
-> power domain can now be managed at runtime (not just at driver probe
-> time), see: [0]
->
-> With a separate power domain provider the meson-gx-pwrc-vpu and video
-> decoder drivers would not access the AO registers anymore. Instead we
-> would pass all relevant power domains from the "AO power domain
-> provider" to their respective consumers.
->
-> Examples (incomplete) from the VPU power domain / video decoder perspective:
-> &vpu_power_domain {
->   power-domains = <&ao_pwrc AO_VPU_HDMI_PD>, <&ao_pwrc AO_VPU_HDMI_ISO_PD>;
->   power-domain-names = "vpu_hdmi", "vpu_hdmi_iso";
-> };
->
-> &video_decoder {
->   power-domains = <&ao_pwrc AO_PWR_VDEC_1_PD>, <&ao_pwrc
-> AO_ISO_VDEC_1_PD>, <&ao_pwrc AO_PWR_VDEC_HVEC_PD>, <&ao_pwrc
-> AO_ISO_VDEC_HVEC_PD>;
->   power-domain-names = "vdec_1", "vdec_1_iso", "vdec_hvec", "vdec_hvec_iso";
-> };
->
-> My main concern is "backwards compatibility". We need to take care of
-> the VPU power domain driver and the video decoder driver. The latter
-> is not mainlined yet, so I'm not sure we need to be backwards
-> compatible here.
->
+[ Upstream commit c17abcfa93bf0be5e48bb011607d237ac2bfc839 ]
 
-I'll gladly update the VDEC patch series to use power domains rather
-than the AO syscon if you manage to get a power driver upstream!
+Fix the mismatch between the "sdxc_d13_1_a" pin group definition from
+meson8b_cbus_groups and the entry in sdxc_a_groups ("sdxc_d0_13_1_a").
+This makes it possible to use "sdxc_d13_1_a" in device-tree files to
+route the MMC data 1..3 pins to GPIOX_1..3.
 
-When it comes to backwards compatibility, supporting both the power
-bindings + AO syscon would be messy, but not the end of the world.
+Fixes: 0fefcb6876d0d6 ("pinctrl: Add support for Meson8b")
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/pinctrl/meson/pinctrl-meson8b.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Maxime
+diff --git a/drivers/pinctrl/meson/pinctrl-meson8b.c b/drivers/pinctrl/meson/pinctrl-meson8b.c
+index 91cffc051055..ead4beb5f55f 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson8b.c
++++ b/drivers/pinctrl/meson/pinctrl-meson8b.c
+@@ -665,7 +665,7 @@ static const char * const sd_a_groups[] = {
+ 
+ static const char * const sdxc_a_groups[] = {
+ 	"sdxc_d0_0_a", "sdxc_d13_0_a", "sdxc_d47_a", "sdxc_clk_a",
+-	"sdxc_cmd_a", "sdxc_d0_1_a", "sdxc_d0_13_1_a"
++	"sdxc_cmd_a", "sdxc_d0_1_a", "sdxc_d13_1_a"
+ };
+ 
+ static const char * const pcm_a_groups[] = {
+-- 
+2.19.1
 
-> Please let me know if you have any concerns, ideas, suggestions, ...
-> I can build an "RFC" series for this topic if this makes the discussion easier.
->
->
-> Regards
-> Martin
->
->
-> [0] https://linuxplumbersconf.org/event/2/contributions/130/attachments/138/170/Genpd-Improvements.pdf
-> [1] https://patchwork.kernel.org/patch/10669873/
->
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
 _______________________________________________
 linux-amlogic mailing list
