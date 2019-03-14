@@ -2,90 +2,86 @@ Return-Path: <SRS0=SZaW=RR=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 135BDC10F0B
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 109B2C10F06
 	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Mar 2019 16:37:49 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D4BC6217F5
+	by mail.kernel.org (Postfix) with ESMTPS id D3EDA20811
 	for <linux-amlogic@archiver.kernel.org>; Thu, 14 Mar 2019 16:37:48 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CcubGAQI";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="BAnt22Re"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D4BC6217F5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NP5ujWe/";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="2C1BnO+e"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D3EDA20811
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cMoXHpOnnQxR5yiHTbsKMRpQciaXsBmylk7zcwClWPI=; b=CcubGAQII7pgJH
-	Af5mNiD+Osfth/fFakQKfB7NN7zms8ctzNiixvnswE5QZasMqLb9HHWpQHqFIe2VyPSZIqYogOKgA
-	XuKkS6KIqPNzcxzRMAOdMOK3QwLmmn4D1PmpbYbylGDoeN2ZSTp83nzsoudsSZ5FoTl6i9mw/04n5
-	iI0L3J9Vm55X0k/HlwXy/eo8Zxdo6+4awZOCCPU2suaxyvSs9d9+0AwqGvb6h44N8S15vKzgjsFXw
-	BAC3R/tnjF4swSLZd63bHInx5y74Qd5NNxRFQW3IhU4jU+sWLyq5m9Mf83P/Ve/Gs/gUxgjK+vmaI
-	yKdzwRwdfGUJjUSuHLoA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=LduoVhwszDU8cDTTPhBbfCQHA3rsDqJjV3wM3iDC7mo=; b=NP5ujWe/y/O+og
+	wk5SSJr5acbSmffXqD2SBbjQfwkug9UA8I4hpi1Y93YpVCSpLtpLalJ6MGlIzAajfn6q+1ubJIiFN
+	gy9jvDXnGxF0BVhKXmyQRJN5BhF9Jr2Sn+yB1NB9jB/9oG6an28Whi7mL2lSc2u03bPqrbqPd05M8
+	Pso+pb7XW8ddkYrOClPMQmwHu0VYrtBWdHYyxMWIa+E6p/gC9mMKxGdtu1oTVPOPeHZPdv1KqXzNF
+	zYeJOvDfgDaw5qZcV2cEl86Ek/zLMVqthIQQpedDtRjIrpwxVQerJeI/lgfGmiAhnzLKcKJKcSi4J
+	ejNoHlC0jt7KxYESJSLg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h4TMS-0002WQ-NZ; Thu, 14 Mar 2019 16:37:40 +0000
+	id 1h4TMT-0002Wy-D8; Thu, 14 Mar 2019 16:37:41 +0000
 Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h4TMP-0002VX-9r
- for linux-amlogic@lists.infradead.org; Thu, 14 Mar 2019 16:37:38 +0000
-Received: by mail-wm1-x343.google.com with SMTP id f3so3777965wmj.4
- for <linux-amlogic@lists.infradead.org>; Thu, 14 Mar 2019 09:37:36 -0700 (PDT)
+ id 1h4TMP-0002VU-9q
+ for linux-amlogic@lists.infradead.org; Thu, 14 Mar 2019 16:37:39 +0000
+Received: by mail-wm1-x343.google.com with SMTP id 4so3691735wmf.5
+ for <linux-amlogic@lists.infradead.org>; Thu, 14 Mar 2019 09:37:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=hyyOz1m96O4p/E0V0P2WXHuhjOVs41Ijnx22pgX7mwI=;
- b=BAnt22RecllUp0V+7xCOYepXPwGttiyuNcJNvDKMMkzz0QqM9GS+pfP2K+/htHQDY+
- RQixqU28hjnQsM3Y/0SH3MGRqcmFlvT+PExX1T40zyhfliqB09ZDuXKAzovTAr3TD4m5
- LJ6vje5losjhjqV/ljE0oJylp1X+7wOynqU/RXwJ9bltp/zMywHpW2VRT/LrZ8XHV89f
- eWSQ4rAokoXGtamaV7oq9ktYo3/Ys/nm3VwhFsXm7ffbmvxujYKYcjYhkyWajcJvSmbi
- 61rbR9G/HKDVLWNGE36lLsHTIZKanJ2I9F/+GfXUg75vRRT76rx9vGcoUNYJFpzElY18
- ZffA==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=dwBoD1sDij0jsG9awwD4X8EaqLlNFJrsNhL/sg7fZs4=;
+ b=2C1BnO+e4y1GwCrS1NfwUUMq1/Fa5o3j6RsYEUcswvhmhrYWDk8A2bYUkhUpaBAoiW
+ zAdsrQlZVeoaZE3V2Qd0J9iuOBNut/uIf7s5DaLkqL1aNdv+Jx+YrzA8ht00YaxpteHY
+ 0TU+FRBcDi9wSoeb6jlazARzfdfNWd+S3uufrj80hGTVCcpyZnAqCUGlOCuaye/qqicY
+ UCJ7b0m2JQBFNyTYHww9e8peZWWzr/GfMc9yCCjVMbj49pFX+vFxLjbY1+N/JeHTKTus
+ oAl1FA+vppJy8FJb0YKubDPmDM0Z7yqBLdJe2R1c85Yo80EtpAaoSrpznnvmv6tkoHfq
+ O5Qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=hyyOz1m96O4p/E0V0P2WXHuhjOVs41Ijnx22pgX7mwI=;
- b=elnSwMh1/wMZ1ygntITGoYjBjAnVeMZhBVtjcPKF+KSDdWK802JkCr+jV51Xnwdd4H
- 5skL6uSnU29ZDcZKrU/syx6g0qE+4MoE3KoWfEzCf01qSIXMplMZkmjoGD3DiYj4zE5Z
- jAH76e+IGbUwQB2k3RFJqrOGtZADYrrIG9nN4+IHtjzxxyPYCWJx4zV6jtChk3pPX4JI
- RMpoEBlye9Rk0ynRF4ENkXcKaqg751EQtbfeArZOW4f1KeWRrtElvV6220HzpXkhMas7
- opsKVAeh264l54Dl94FBBo9LryzJery7K9pT4a0JUavFEA21ihMlLaW8j9QdW4or0Cyu
- JrCw==
-X-Gm-Message-State: APjAAAUj/kGQ1qwDqgKjDed6fcv9ghPSDHAUX2Nc4Lp9Q3PMydwx220I
- mNylXO038s8UTqyzE/ET+xdumg==
-X-Google-Smtp-Source: APXvYqxijEWMM/0WKUooC5/J8OF4N4uoAkkdb0igMiuO3TJiuY1FHQnIndwsKGAeaUD40SJCv7bPvQ==
-X-Received: by 2002:a1c:2283:: with SMTP id i125mr3173986wmi.24.1552581455474; 
- Thu, 14 Mar 2019 09:37:35 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=dwBoD1sDij0jsG9awwD4X8EaqLlNFJrsNhL/sg7fZs4=;
+ b=KJ6mJ79jBUdzHsc/NqPr0antQe/t61+dIugCcPyYzkuNdeb2HPx0L1juADHAWDnoEu
+ yqDQrdndhH96caSneFOb+biTP8JmkEOoyWwBcWjat9GbrkQjwvBQvaNx72aOvkeHvPlk
+ BTdkpbEM92RRXBtj9FNmk4TPJHRsRqrxi7QAbo/G8cK96TAdvnOPxYueF5tr20PIQ0CF
+ my+qzp8VW1F/PpzPVa6yUlFk9pwwvZXa+kkKNkAyjzoGbdwWOOLJHi2l2+pdfiO1zrIz
+ cI9kusCjU2MVKcd/axkHMHFQAajBsPPSw7SPdVdoPFnsHS9t/Yvrferige7MVSjRWbzG
+ Tjzg==
+X-Gm-Message-State: APjAAAX6waGDcJvVEk87XjTtOz+caUalWGIkgcjaJwYo/8PvFqTOwap0
+ AXaSBgOZcCIkJVvpdsvG/71rlQ==
+X-Google-Smtp-Source: APXvYqyHqgo2GfsBipQLYm3mmLaMOA3ytFrbvaK2Mufl3Ofrsvc6OJLYXa8DVtqK5L2BZUrdV7m+ZQ==
+X-Received: by 2002:a1c:c90e:: with SMTP id f14mr3065130wmb.23.1552581453702; 
+ Thu, 14 Mar 2019 09:37:33 -0700 (PDT)
 Received: from boomer.local ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
- by smtp.googlemail.com with ESMTPSA id u17sm45003315wrg.71.2019.03.14.09.37.33
+ by smtp.googlemail.com with ESMTPSA id u17sm45003315wrg.71.2019.03.14.09.37.32
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Thu, 14 Mar 2019 09:37:34 -0700 (PDT)
+ Thu, 14 Mar 2019 09:37:32 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Linus Walleij <linus.walleij@linaro.org>,
  Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH 1/2] dt-bindings: pinctrl: meson: Add drive-strength property
-Date: Thu, 14 Mar 2019 17:37:24 +0100
-Message-Id: <20190314163725.7918-2-jbrunet@baylibre.com>
+Subject: [PATCH 0/2] pinctrl: meson: add g12a drive strength support
+Date: Thu, 14 Mar 2019 17:37:23 +0100
+Message-Id: <20190314163725.7918-1-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190314163725.7918-1-jbrunet@baylibre.com>
-References: <20190314163725.7918-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190314_093737_388719_69C69EF2 
-X-CRM114-Status: UNSURE (   7.98  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190314_093737_389390_C51AA7C3 
+X-CRM114-Status: GOOD (  13.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -105,30 +101,49 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Guillaume La Roque <glaroque@baylibre.com>
+The purpose of this patchset is to add drive-strength support in meson pinconf
+driver. This is a new feature that was added on the g12a. It is critical for us
+to support this since many functions are failing with default pad drive-strength.
 
-Add optional drive-strength property
+Now the slightly annoying part :(
+The value achievable by the SoC are 0.5mA, 2.5mA, 3mA and 4mA and the DT property
+'drive-strength' is expressed in mA.
 
-Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt | 3 +++
- 1 file changed, 3 insertions(+)
+1) Rounding down the value, we could be requesting a 0mA drive strength.
+   That would look weird.
+2) Rounding up, we can't distinguish between 2.5mA and 3mA
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
-index a47dd990a8d3..4e3d5a27c91c 100644
---- a/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
-+++ b/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
-@@ -51,6 +51,9 @@ Configuration nodes support the generic properties "bias-disable",
- "bias-pull-up" and "bias-pull-down", described in file
- pinctrl-bindings.txt
- 
-+Optional properties :
-+ - drive-strength: Drive strength for the specified pins in uA.
-+
- === Example ===
- 
- 	pinctrl: pinctrl@c1109880 {
+To solve this issue in this in this v1, we chose to document that, on Amlogic,
+drive-strength is expressed in uA instead of mA.
+It works well and there is no impact on the other platforms but I'm not sure this
+is really OK with the DT rules ?
+
+Linus, if this is not OK with you, here are 2 other options we are
+considering. We would be very interested to get your opinion on the matter:
+
+1) instead the generic 'drive-strength' property, we could add an amlogic
+specific property, 'amlogic,drive-strength'. It would be expressed in uA
+and parsed in amlogic specific code.
+I think this option is kind of overkill. Expressing drive strength in uA is
+not really amlogic specific so it does not make much sense, but it would
+work ...
+
+2) Add another generic property "drive-strength-uA". The change to do so
+would be minimal and could be benefit to other platforms later on.
+
+Cheers
+Jerome
+
+Guillaume La Roque (2):
+  dt-bindings: pinctrl: meson: Add drive-strength property
+  pinctrl: meson: add support of drive-strength
+
+ .../bindings/pinctrl/meson,pinctrl.txt        |   3 +
+ drivers/pinctrl/meson/pinctrl-meson-g12a.c    |  36 ++--
+ drivers/pinctrl/meson/pinctrl-meson.c         | 166 +++++++++++++-----
+ drivers/pinctrl/meson/pinctrl-meson.h         |  20 ++-
+ 4 files changed, 165 insertions(+), 60 deletions(-)
+
 -- 
 2.20.1
 
