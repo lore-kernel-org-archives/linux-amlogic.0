@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-6.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
 	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6B959C43381
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Mar 2019 21:25:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7B4A9C43381
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Mar 2019 21:32:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2CD53218AC
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Mar 2019 21:25:04 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4580E218A1
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Mar 2019 21:32:11 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ASyNYOIj";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="sk1vB9wH"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2CD53218AC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jYp34O4M";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="XTsdu9Rv"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4580E218A1
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QT9VaF5/DfjC6In9oiatJ16SC44rvOqc2Z4qOWVT5Sk=; b=ASyNYOIjLapsL/
-	mxJP07u8hRxxC0DvaSjn6HxxcRy5RpOysxKdJGLNA0nFfiJOlW0ai+j5JKURzMe6v4MVWvEoEugAV
-	3411M2UOE04JMjLO5m2W+1gjHmoDxTricbVKueUabvTgNmkkJuVkGIV1WsubitLiEhDDHJS8WeOhK
-	l1ZagXMncprJxKXDQE4Eob1OR2GKbJiPgGOsnSPrwTBMwXcckmrDEe4+D86TNi+5oJ+witq+fBs+y
-	0DISfr0376TqWQuHm9Iq4NHOUEVin1jRxnsP50VOGWJJSJanjSa+CV6PmprVruEUd5+GigH4va1PU
-	/upYSP76JWDm8pLI43Kw==;
+	List-Owner; bh=B26eP3pCyQbVdTkPNjHNa202re1e4ITYG/aWS/Xw04E=; b=jYp34O4MfJvAh/
+	l3UUcoqiZfJS/Qk/JJBn6d510oGJkd85LDbCnaJBPPrqe1AziwPnj+95FRoCPpa2vsGHsdsE+9Jz2
+	9nG60L4GnZBJeFbeYW0KmTRDxTQWV48mt4NNevsOiB6u5fN99qKbbW2/NUCQYX/5lDbGptHciAVtG
+	kyNrLHrCXN7Xvh3vcj9UaDl9dBh6TSATS7Jxsw0z3f9eSekFWjVs3YCcj6y46Gfulvwj2gW72t0p2
+	m7+pGo6P7sdh0aplGQOgn4s+zF6lJ2Y0idD4NxGZzrtvqFtTAl0YRaAOosggDocf+rShqCOP6VryU
+	teBkK1lb3bpODh53mshw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h4uK2-0007w9-37; Fri, 15 Mar 2019 21:24:58 +0000
-Received: from mail-oi1-x242.google.com ([2607:f8b0:4864:20::242])
+	id 1h4uQv-00039r-ML; Fri, 15 Mar 2019 21:32:05 +0000
+Received: from mail-oi1-x241.google.com ([2607:f8b0:4864:20::241])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h4uJz-0007vf-E0; Fri, 15 Mar 2019 21:24:56 +0000
-Received: by mail-oi1-x242.google.com with SMTP id a15so8522330oid.5;
- Fri, 15 Mar 2019 14:24:54 -0700 (PDT)
+ id 1h4uQr-00039O-Sr; Fri, 15 Mar 2019 21:32:03 +0000
+Received: by mail-oi1-x241.google.com with SMTP id v84so2161621oif.4;
+ Fri, 15 Mar 2019 14:32:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=+hW0z2dd1SHc5BKAuV0zrVmjtjnG3YL5VMfmXJlZUpc=;
- b=sk1vB9wHXD2wI//jjdDtEMLS0YilpbyGqfZkBdHDpPTDkSkG5BcNBdeysHIKDx7C/E
- nbyz/M7jt5xImNZ3YXHGXL6DALiVhaDrn39unzJQrc9OsIH31TS10PgbtjiUPMVIeYes
- KmdFYBnV7jeqeGn958jCa5C+7cOzx4L5intlt4cp5iGBIgVQpGDP9Do2Ze80SpVU81vF
- znO5yFYOzzarVraTzlfdjHGKTpjVFUIQNNdEmp16hDG3zj2UZPiuH+X8L4avoZiggpvp
- T1zULdRvt6U4qOkncEfdbny/Ihe17fud3C0Xtv6sJ0xOBYZ03otDrnQerVSvfTzDucoL
- P/5g==
+ :cc; bh=vgIyXXh0AbPxY3aqPaHCt/0y+Ix/xUe/YJtc3n1dDQs=;
+ b=XTsdu9RvM2RAhiwntyzJcgc44qeM1gIaAHFAkuneiln53cE0T5u/BCaxlDoDoVza2x
+ FyUwhM++1HORaxYPgLePdpnJI8ZYH1tIHzBNI/y1LJBFT8rQKbvqJKJGb7YqbBxOdQgH
+ dhBx/3D5Tq4Mn3Im+473oPLHsWxuiJ6ia++y3RpTp0YfpELry0qq29d3PvzLWJ9zGb/s
+ 8HYy8TsIC3/ENzF7TO7ImxEMFSD3IKN5fd2KydNT9XrTUfycNOCGXV2o5m18vKvIkqry
+ jUPZJXZjsENjRHMGAYUCLkpdybSu1hFwgBp75oB0lVcIBM3dhBs2Y/e7H6EzHX4F0bLo
+ EZSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=+hW0z2dd1SHc5BKAuV0zrVmjtjnG3YL5VMfmXJlZUpc=;
- b=taPuWRmI48MZ6e1QzMTVD9rsXuYrIuCY5Q6LrV5zGOwjof/GEal6v7MR6nbGCbo+TW
- QWRC1Kg9JtmGj0wtq6XwiVDSaE4O/c9sMwrPxwVZ2h/BGDSkIJfFWyk3rg8hrTP3j33L
- c0PUBaUL6i5+gPkhjE6SItkUsF9rQfsrraeMaAVyWdSsUq+ds4ih3wL+TV9VZhIn6ni7
- DpvWEVMQcENG3vM5HFCy3l5rRj5O4HqevXNR/o4uWjVlfSKeaGvL1k45nhmUZ2k+6XAd
- 1NS0wlbiMbi8dolabndY//3TBL0+XmOs6DaWTdSH76DR+Ao5efSiw1tDHQhYH2SS8if8
- BoVw==
-X-Gm-Message-State: APjAAAVgnF/COWwxAt7cm2w0qZPDD5jWVb8cYVb4HpC/aHbPG+QCvngv
- bAh+lPdT21clDiLTg8To3zXct1/6RyGEw9HDohs=
-X-Google-Smtp-Source: APXvYqyTSgAtWjpuD6HYTr726bLg4oaK0jMZ6W/z0kpuIXXQUWcHXBsdSm65lvHI1oaMA4/tWR/+MnTKyXY/vE4qe74=
-X-Received: by 2002:aca:6209:: with SMTP id w9mr2934595oib.47.1552685093538;
- Fri, 15 Mar 2019 14:24:53 -0700 (PDT)
+ bh=vgIyXXh0AbPxY3aqPaHCt/0y+Ix/xUe/YJtc3n1dDQs=;
+ b=mXjF1h7j5jq4zE6yatOGaSHf4hwlRiB8ghEpyKLKP5oF4YBryEYi6ewlkzNs91vpsk
+ W8IoBfpZRch0PmCvvRWjg1HgC7bVJgCHF+GF93Lt+y7uTBlKpRGsS/es1syz8AwsYeel
+ Y++fHQ99wdUDwB8T7e+ilj5bDkNqOD2ovYhscEdPKHzCPTNwwi99nDKLCIRnIfy6rNAT
+ aLNs6XQjv/xrnA0NWbdF9hInbrQ61n67iEYFkRNbajEWSZtMrWr7DSSwbXV1OWqEGAPO
+ PdR+vYNvkcfpumSz4SzKknZCWSqM6QJDjJmDDpr4wchB3RmHm0Jx5kto9pMYoq5WSVyu
+ 4TMA==
+X-Gm-Message-State: APjAAAVCezrDFubHZ/nFrv8ulRCnshgP+Y65f8jOZi8Rkqc+U3ozpqlw
+ GurxYdLKexMM4dCIxPXClkyDFrh9Z9q08h2hTXI=
+X-Google-Smtp-Source: APXvYqyszEfJBHzwK5qe8qdz20ry7K2TkwgSFK5kthzvHiXd8RYAQKAjxJAUf+63RHKgwze5mJfojjuwCZreXBOBhTs=
+X-Received: by 2002:aca:4808:: with SMTP id v8mr2936092oia.129.1552685520745; 
+ Fri, 15 Mar 2019 14:32:00 -0700 (PDT)
 MIME-Version: 1.0
 References: <20190307151342.7381-1-narmstrong@baylibre.com>
- <20190307151342.7381-7-narmstrong@baylibre.com>
-In-Reply-To: <20190307151342.7381-7-narmstrong@baylibre.com>
+ <20190307151342.7381-6-narmstrong@baylibre.com>
+In-Reply-To: <20190307151342.7381-6-narmstrong@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Fri, 15 Mar 2019 22:24:42 +0100
-Message-ID: <CAFBinCAa+ZjxJi491_dG+kvLFPLFoLXHFZToGP8W1ECeeqOYVQ@mail.gmail.com>
-Subject: Re: [PATCH 6/9] arm64: dts: meson: g12a: Add UART A,
- B & C nodes and pins
-To: Neil Armstrong <narmstrong@baylibre.com>
+Date: Fri, 15 Mar 2019 22:31:49 +0100
+Message-ID: <CAFBinCBt290Qabw98SpiON3xG0ihMEDNzwDDTrBo6QYbA5QjMQ@mail.gmail.com>
+Subject: Re: [PATCH 5/9] arm64: dts: meson: g12a: add reset controller
+To: Neil Armstrong <narmstrong@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190315_142455_497911_592A3B71 
-X-CRM114-Status: GOOD (  17.00  )
+X-CRM114-CacheID: sfid-20190315_143201_957275_EBA41340 
+X-CRM114-Status: GOOD (  15.80  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,91 +97,62 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil,
+Hi Neil and Jerome,
 
-On Thu, Mar 7, 2019 at 4:15 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+On Thu, Mar 7, 2019 at 4:14 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
-> This patch adds the 2 UART nodes in the EE power domain with the corresponding
-> pinctrl nodes.
-there are 3 UART controllers in the EE power domain
-
+> From: Jerome Brunet <jbrunet@baylibre.com>
+>
+> Add the reset controller device of g12a SoC family
+>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 82 +++++++++++++++++++++
->  1 file changed, 82 insertions(+)
+>  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
 >
 > diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-> index 2a700bb45d04..50e2cd36e08b 100644
+> index f8f055c49f9a..2a700bb45d04 100644
 > --- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
 > +++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-> @@ -113,6 +113,61 @@
->                                                 #gpio-cells = <2>;
->                                                 gpio-ranges = <&periphs_pinctrl 0 0 86>;
->                                         };
-> +
-> +                                       uart_a_pins: uart_a {
-(this applies to all new nodes)
-we started using dashes for the node names for new pin definitions on
-the GX SoCs.
-I don't remember where it was discussed exactly but I think this was
-requested from Rob
-
-since G12A is a new SoC we should do it "right" from the beginning
-
-[...]
-> +                                       uart_ao_a_c_pins: uart_ao_a_c {
-> +                                               mux {
-> +                                                       groups = "uart_ao_a_rx_c",
-> +                                                                "uart_ao_a_tx_c";
-> +                                                       function = "uart_ao_a_c";
-> +                                                       bias-disable;
-> +                                               };
-> +                                       };
-I'm fine with this part if you mention it in the subject and/or the description
-uart_ao_a_c routes two pins from bank C (from the EE domain) to the
-uart_AO controller (from the AO domain)
-
-> +                                       uart_b_pins: uart_b {
-> +                                               mux {
-> +                                                       groups = "uart_b_tx",
-> +                                                                "uart_b_rx";
-> +                                                       function = "uart_b";
-> +                                                       bias-disable;
-> +                                               };
-> +                                       };
-> +
-> +                                       uart_c_pins: uart_c {
-> +                                               mux {
-> +                                                       groups = "uart_c_tx",
-> +                                                                "uart_c_rx";
-> +                                                       function = "uart_c";
-> +                                                       bias-disable;
-> +                                               };
-> +                                       };
-> +
-> +                                       uart_c_cts_rts_pins: uart_c_cts_rts {
-> +                                               mux {
-> +                                                       groups = "uart_c_cts",
-> +                                                                "uart_c_rts";
-> +                                                       function = "uart_c";
-> +                                                       bias-disable;
-> +                                               };
-> +                                       };
-> +                               };
->                         };
+> @@ -245,6 +245,13 @@
+>                         #size-cells = <2>;
+>                         ranges = <0x0 0x0 0x0 0xffd00000 0x0 0x100000>;
 >
->                         hiu: bus@3c000 {
-> @@ -256,6 +311,33 @@
->                                 compatible = "amlogic,meson-g12a-clk-measure";
->                                 reg = <0x0 0x18000 0x0 0x10>;
->                         };
-> +
-> +                       uart_C: serial@22000 {
-> +                               compatible = "amlogic,meson-gx-uart";
-> +                               reg = <0x0 0x22000 0x0 0x18>;
-> +                               interrupts = <GIC_SPI 93 IRQ_TYPE_EDGE_RISING>;
-> +                               clocks = <&xtal>, <&clkc CLKID_UART1>, <&xtal>;
-does uart_C really use CLKID_UART1? on GX uart_C uses CLKID_UART2
+> +                       reset: reset-controller@1004 {
+> +                               compatible = "amlogic,meson-g12a-reset",
+> +                                            "amlogic,meson-axg-reset";
+> +                               reg = <0x0 0x1004 0x0 0x9c>;
+> +                               #reset-cells = <1>;
+> +                       };
+I tried to compare this with what is publicly available in
+buildroot_openlinux_kernel_4.9_fbdev_20180706 - unfortunately this is
+harder than I thought:
+the buildroot kernel doesn't define the reset controller in mesong12a.dtsi
+
+so I tried to follow the code in the HDMITX driver instead:
+kernel/aml-4.9/drivers/amlogic/media/vout/hdmitx/hdmi_tx_20/hw/hw_txlx.c
+uses P_RESET0_REGISTER and P_RESET2_REGISTER
+these are defined in
+kernel/aml-4.9/drivers/amlogic/media/vout/hdmitx/hdmi_tx_20/hw/txlx_reg.h
+using:
+> #define RESET_CBUS_REG_IDX 5
+> #define BASE_REG_OFFSET 24
+> #define RESET_CBUS_REG_ADDR(reg) \
+>    ((RESET_CBUS_REG_IDX << BASE_REG_OFFSET) + (reg << 2))
+>
+> #define RESET0_REGISTER 0x01
+> #define P_RESET0_REGISTER RESET_CBUS_REG_ADDR(RESET0_REGISTER)
+
+when I do the maths:
+(5 << 24) + (0x01 << 2) = 0x5000004
+
+The GX SoCs have the reset controller at cbus + 0x4404
+however, the offset may have changed in G12A because the SAR ADC
+offset also changed (just one example).
+
+Do you have any hint how to verify the CBUS offset (0x1004) of the
+reset controller?
 
 
 Regards
