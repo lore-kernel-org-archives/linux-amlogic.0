@@ -2,86 +2,91 @@ Return-Path: <SRS0=BQut=RS=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5179DC43381
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Mar 2019 13:57:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3C0F1C43381
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Mar 2019 13:57:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1FD94218AC
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Mar 2019 13:57:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 070E5218AC
+	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Mar 2019 13:57:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QupEP3WZ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Dt+aF7pK"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1FD94218AC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FKApUNKI";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="SfKmsVVC"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 070E5218AC
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=dWCwIDqGxMXrtXKDYtGc4aFGiGRsTV6nueMKllv7/p8=; b=QupEP3WZhaS9cX
-	RDzAqPWQ/iQ6Ru/1CJo4aFURy7QSHRxKxHaySo9tPWE1K5+QKkFSJXw8/HitY34ujdHgliWgzRr4q
-	8lUUk4GbbIc/7BsN3CSNk9oj8TTHbGFydCABOWPInemExe825t/oN8qqnZdIpNm9tmLShirChct7D
-	n8SmY25s0lYEZmF6J7rgHaMOxLEdCCGTOHJJeNZz2mv/VfCm0QTmzuliVyuZo3eHchHSxKGONimAX
-	ZPxeRmWt9VCRBiS4Suc7r2k9nGafhLL3krptDQTTKjfMNPwqI/kBFnGDL5GpThd+U2IxLKDg84Bz5
-	ZidrHv6x52fgFC9IER0A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ZY9J8cQ+mgpi54HsWRVMYt2+wKxZnLWBoycuLBeTouQ=; b=FKApUNKIyOURmb
+	1jHAZg1rSXXZTMvMMiPrzpckVFBL0hex/dHmcOdYq8XzWSomP2aUCAV2b961y08wcgYga2aDlX8pv
+	oXDDvlOyuiQm3Y1e+EoSAb8ht/FKhE/TnPLOGdosJgu0fUolbD753+U6b3Qv9gxezHLObotU6oyz1
+	C9Zs74+j7YSa5Nqsb26C0MOFg4tMWDhktq2ilfT5EllbieS1SPPOyloaib/cYKiR6AwpdWM46ppSt
+	u7jUyXCh2dQ0W09OKJhjjuG2rZsa6rKsFI78hdyV/PSJRZJhkzopMZdSfY77A9n8Qsvx7HkFdlWGK
+	Us5+8Z/+yWIGFKWNAiSw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h4nKg-0007BL-36; Fri, 15 Mar 2019 13:57:10 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1h4nKt-0007Wg-NB; Fri, 15 Mar 2019 13:57:23 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h4nKW-0006qt-97
- for linux-amlogic@lists.infradead.org; Fri, 15 Mar 2019 13:57:02 +0000
-Received: by mail-wr1-x442.google.com with SMTP id p8so9700172wrq.6
- for <linux-amlogic@lists.infradead.org>; Fri, 15 Mar 2019 06:57:00 -0700 (PDT)
+ id 1h4nKX-0006rK-VK
+ for linux-amlogic@lists.infradead.org; Fri, 15 Mar 2019 13:57:03 +0000
+Received: by mail-wm1-x341.google.com with SMTP id n19so6614725wmi.1
+ for <linux-amlogic@lists.infradead.org>; Fri, 15 Mar 2019 06:57:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=eXn3G/Dv/jMf0Zy1oiULOES6u/xLdhm6zlhAgPsnjl4=;
- b=Dt+aF7pKkaI2ErQpqL022yb4QLPaktxnpZqKzJp+huBIVCJQdb/IAoOrjE2uVfspbA
- SY8qEc5hYbgXMF/OfdhUDjztTgpvmqNwLDx2jx2KoCqtqYRmaRqxaLuszYectqennN+J
- fAq9xA4wwdFDZYpMh+HXpbjNjhp/2f/Tg3wLyU/lXrbP94f25PX6HFHFUtPN2ZmmLlCu
- F16V+5gM9RIUl6fdefzwgRfej2u4Ynu0rn7jfkO/0GWYjydU4o73FBKbs7V0bG2teCcI
- Fb9UqYJ+msVJkrc44pbpOjQ75jwhYIgLbIbo1THM0lABVpSEngNBeITPWgdqr3XjX5G0
- 6HLw==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=DZcsemXvfglAUC0jGESedl+RTzmszV5G64pnxTWiH4g=;
+ b=SfKmsVVC+drcRsqXUXJ6gvPIfn1f0k9kq04SPXA216aWmztGBUrCjafC40QyYDQpNb
+ a26++I1pS+z5aAE6dkcL9WhceFW6xEYvu5w7Wl8KbhOIqGo5K0q9eKFgm6yzWK/uKqxD
+ 4P5LjRKEEBbIWhBcqdnSxsvbnJQy2ANUpDbNNBez6K5LvN/8fMMTXcKn1ojzGQpWmN3W
+ mGW5eF0CPP9U+/wOYjSOd2We8PtL6tEk3QJIpLsHvh5RLfEeSdm4qCENFrynm41sK8tJ
+ ze/NUB1P5/y8vZbcacgq0Scwb9XxpUw1yVZaYzEm0wqZ00DOfjZJOibVEnrGuXL5ViX7
+ /Rqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=eXn3G/Dv/jMf0Zy1oiULOES6u/xLdhm6zlhAgPsnjl4=;
- b=IBNOV1Y5arE7scgBDXFrEcZ284nb9HS5U+OIWX/Mrl61nQ21swbRC/HfAg8X8EjUsL
- WwZPRJyHUIniwElN3D8STDlCFaQAmRbntWfSeRB3RnwFmqSIuWUSikxiDlyFj5sYFvQr
- PAu5/aaBs8Q6KV+/8L056OCoH/rlYXM3H6g49SWBhxidgqyk1IBsivXZHK4eYJQb+yEl
- y5RUjhlWFfI6VnBK3K8usnVePhOe1vSB8TaqcySoeRv4unuPVyphx/CoqCjW9WB6zSBs
- nlXqvQax8l8230C/hzfGRV5tgliaZ5Ovg0rlApXIa1vdUsWGChFzSmjuZjx7d7oCImAZ
- h9pw==
-X-Gm-Message-State: APjAAAVrygAjBgzi4egiepZ417dysUoNmbN+KKczAX6F06moZK9lwgNO
- LplJ2CwLOdRl5nNeQts3WIRqrQ==
-X-Google-Smtp-Source: APXvYqwZ40ySoOedl3XMletCrmpyZ4NeWqtqXb4cL0ltD+zaaaZ9dJz9ZkiUegy+1UbPTPzhkNAA8Q==
-X-Received: by 2002:adf:e3ca:: with SMTP id k10mr2475797wrm.277.1552658218670; 
- Fri, 15 Mar 2019 06:56:58 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=DZcsemXvfglAUC0jGESedl+RTzmszV5G64pnxTWiH4g=;
+ b=hl+EiqsMwu7MkTJsSBvvULS2ZnXN7TN2sLmII/WrLHjInE3qw2NnM+SwNq4F+wcw/I
+ UzALOBj1A2fMVCKfE8skWtyGXnR7yi5gHjmnnNDezx82EwQeoxPYk++rR4sESGZVu8ja
+ Gs6jqXGifbswDNtU2JTJC/D3aIezzeIKJqTR0HTlGp7IXFQlKbViqRHCCX5tm8HlGk+F
+ btl4UqD3R81XkJTF+YicCA7Zw4zUQuyGz6qRdpCT3MlvxKOOnaPTcWC0yjlDORibDey5
+ Q8NaXQSJldOF97StuWVuVq8lV0TcL8iyYpSg9O3bARP0hFe29GqYO/LOVIhpxIOT49tq
+ m8HA==
+X-Gm-Message-State: APjAAAXqAltucjmSIyuKNI9eTop9vvN3y4aKE7sHaNA8H1cynL3SoR5j
+ AGJxEZPXLyvBTyxBiS9KEgLcuw==
+X-Google-Smtp-Source: APXvYqzLHSWXamSAChoX0YiQ6Kh+aI9iXLHASSTbYijTh2oD7ThGAS7omC/Urgn2DNOCC/Wkh3cGWA==
+X-Received: by 2002:a7b:cf27:: with SMTP id m7mr2232123wmg.80.1552658220083;
+ Fri, 15 Mar 2019 06:57:00 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id a14sm2131900wrx.96.2019.03.15.06.56.57
+ by smtp.gmail.com with ESMTPSA id a14sm2131900wrx.96.2019.03.15.06.56.58
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
  Fri, 15 Mar 2019 06:56:58 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
-To: khilman@baylibre.com
-Subject: [PATCH v2 0/2] arm64: meson-gxm: Add support for the Mali T820 GPU
-Date: Fri, 15 Mar 2019 14:56:53 +0100
-Message-Id: <20190315135655.28359-1-narmstrong@baylibre.com>
+To: devicetree@vger.kernel.org,
+	khilman@baylibre.com,
+	icenowy@aosc.io
+Subject: [PATCH v2 1/2] dt-bindings: gpu: mali-midgard: Add resets property
+Date: Fri, 15 Mar 2019 14:56:54 +0100
+Message-Id: <20190315135655.28359-2-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190315135655.28359-1-narmstrong@baylibre.com>
+References: <20190315135655.28359-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190315_065700_321534_24BFCC91 
-X-CRM114-Status: UNSURE (   7.39  )
+X-CRM114-CacheID: sfid-20190315_065702_004508_557340CF 
+X-CRM114-Status: UNSURE (   8.73  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -102,24 +107,39 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patchset adds :
-- Optional reset properties in the midgard bindings
-- Mali T820 Node in Amlogic Meson GXM DTSI
+The Amlogic ARM Mali Midgard requires reset controls to power on and
+software reset the GPU, adds these as optional in the bindings.
 
-Changes since v1:
-- Updated midgard DT wording following the recently submitted 
-  bifrost bindings
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ .../devicetree/bindings/gpu/arm,mali-midgard.txt   | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-Christian Hewitt (1):
-  arm64: dts: meson-gxm: Add Mali-T820 node
-
-Neil Armstrong (1):
-  dt-bindings: gpu: mali-midgard: Add resets property
-
- .../bindings/gpu/arm,mali-midgard.txt         | 14 ++++++++++
- arch/arm64/boot/dts/amlogic/meson-gxm.dtsi    | 27 +++++++++++++++++++
- 2 files changed, 41 insertions(+)
-
+diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt
+index 18a2cde2e5f3..1b1a74129141 100644
+--- a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt
++++ b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt
+@@ -37,6 +37,20 @@ Optional properties:
+ - operating-points-v2 : Refer to Documentation/devicetree/bindings/opp/opp.txt
+   for details.
+ 
++- resets : Phandle of the GPU reset line.
++
++Vendor-specific bindings
++------------------------
++
++The Mali GPU is integrated very differently from one SoC to
++another. In order to accomodate those differences, you have the option
++to specify one more vendor-specific compatible, among:
++
++- "amlogic,meson-gxm-mali"
++  Required properties:
++  - resets : Should contain phandles of :
++    + GPU reset line
++    + GPU APB glue reset line
+ 
+ Example for a Mali-T760:
+ 
 -- 
 2.20.1
 
