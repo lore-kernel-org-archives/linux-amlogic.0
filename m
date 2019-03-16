@@ -1,63 +1,69 @@
-Return-Path: <SRS0=BQut=RS=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=+19+=RT=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_MUTT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E8584C43381
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Mar 2019 22:34:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 48B3CC43381
+	for <linux-amlogic@archiver.kernel.org>; Sat, 16 Mar 2019 02:55:12 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A7AAB21019
-	for <linux-amlogic@archiver.kernel.org>; Fri, 15 Mar 2019 22:34:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E427A218D4
+	for <linux-amlogic@archiver.kernel.org>; Sat, 16 Mar 2019 02:55:11 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MmIwU9He"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A7AAB21019
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=davemloft.net
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="c9C/pIH9";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="4UloEVf6"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E427A218D4
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=lunn.ch
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Mime-Version:References:In-Reply-To:
-	From:Subject:To:Message-Id:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9bTnB/6zfK0T2WywZdhFaqNRSw2iqCsYkqxgUQxfamk=; b=MmIwU9HeIj2sqC
-	h6Nwe5Slrk2BLwgs5QY47/cjkFxYuVUMC9rdRNBY6JaXqAhG4Rc8mh+mFL+sA0SdtrdhPOm0Jhccf
-	uxohQeeUFLx4/qrskQfTe1CUAeRwCogOM5zYLAxeG8jQ+3TNWhltv7muCqYMmSRkcGJn359J90oGM
-	kqHeux929pTDp5V50eM2vg0CRxxDjjh0BBX3ZzV/+9MAat0hfw+AMorRCHvdxi0bogotL+6MRxDeo
-	hR2FO2/6RFmdetpeY8aj8w0kaU9KTlQvlQkG1rMpqNhEN8R0kr9dfi/44OUXiVEaXxHdlL9FoAzUB
-	aV0uW4lehrUFYVaY8KOg==;
+	List-Owner; bh=q1I3+g2/4nHcPVlfiHVIw5uKetvSiJeinfdDiIzP2tI=; b=c9C/pIH9SBmqIC
+	0m1cPHd3SAOsIu8K9FU/gDd54PgO7cfzFc5cS91pHOd0kVHRhVE379vHfmHIyTIwpsWhvIFMVc4Z1
+	8LE/3BQKuzPDoomDV20wVXSbwnr/ztUSYlLLp0spZDpcT5Dw2R1e9sxsPeDiVbm09S1MOIjnuk/hY
+	T3X5YhgIq6RUKN3QV/JO1mWhYvC5CKssuhVqeUmSBOnRDGa1AkFBx7AoMvL4QM/1lXDhEMDuR78Nw
+	lGf1Ow+tPE7iTAzgQrw9+lNG58J9EH582ToUrG8oBflhGmCHAaoGraqi8O5UXEvccK6ATutadEyZ6
+	mBKyLpsXgbd+qJSmzP3Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h4vPW-00011d-Qe; Fri, 15 Mar 2019 22:34:42 +0000
-Received: from shards.monkeyblade.net ([2620:137:e000::1:9])
+	id 1h4zTR-0005iX-D0; Sat, 16 Mar 2019 02:55:01 +0000
+Received: from vps0.lunn.ch ([185.16.172.187])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h4vPT-000118-VN
- for linux-amlogic@lists.infradead.org; Fri, 15 Mar 2019 22:34:40 +0000
-Received: from localhost (unknown [IPv6:2601:601:9f80:35cd::3d5])
- (using TLSv1 with cipher AES256-SHA (256/256 bits))
- (Client did not present a certificate)
- (Authenticated sender: davem-davemloft)
- by shards.monkeyblade.net (Postfix) with ESMTPSA id 07CD91405239D;
- Fri, 15 Mar 2019 15:34:32 -0700 (PDT)
-Date: Fri, 15 Mar 2019 15:34:32 -0700 (PDT)
-Message-Id: <20190315.153432.819379020783488812.davem@davemloft.net>
-To: jbrunet@baylibre.com
-Subject: Re: [PATCH net] net: phy: meson-gxl: fix interrupt support
-From: David Miller <davem@davemloft.net>
-In-Reply-To: <20190314134945.17300-1-jbrunet@baylibre.com>
-References: <20190314134945.17300-1-jbrunet@baylibre.com>
-X-Mailer: Mew version 6.8 on Emacs 26.1
-Mime-Version: 1.0
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12
- (shards.monkeyblade.net [149.20.54.216]);
- Fri, 15 Mar 2019 15:34:33 -0700 (PDT)
+ id 1h4zTN-0005i8-Sc
+ for linux-amlogic@lists.infradead.org; Sat, 16 Mar 2019 02:54:59 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+ s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+ Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=37sAF8C8/qCmXTPggKiGRUEhfZFTnwCYGURkoeMlCe4=; b=4UloEVf6VscxOhlUmJz8Wf7LSg
+ YhJP8e2JSq/aa8nMXYGXrrEkMLgfMYtm3stMAQlBZM7GpGOoOZPHs7ZzKCtLfRlhMmtzXr2eEVsJC
+ BHp69H59STxZfLp1l2HJVTs1S4kTayxiHrFMERnpv2NrqZkIbJpL6uapt6KjTcGbB9bQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+ (envelope-from <andrew@lunn.ch>)
+ id 1h4zTE-0001Pb-IO; Sat, 16 Mar 2019 03:54:48 +0100
+Date: Sat, 16 Mar 2019 03:54:48 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Subject: Re: [PATCH net-next 2/3] net: phy: add amlogic g12a mdio mux support
+Message-ID: <20190316025448.GD29548@lunn.ch>
+References: <20190314140135.19184-1-jbrunet@baylibre.com>
+ <20190314140135.19184-3-jbrunet@baylibre.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20190314140135.19184-3-jbrunet@baylibre.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190315_153440_015304_A766A246 
-X-CRM114-Status: UNSURE (   5.99  )
+X-CRM114-CacheID: sfid-20190315_195458_076962_EC7B3446 
+X-CRM114-Status: UNSURE (   7.11  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -70,27 +76,29 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: andrew@lunn.ch, f.fainelli@gmail.com, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, khilman@baylibre.com,
- linux-amlogic@lists.infradead.org, hkallweit1@gmail.com
+Cc: devicetree@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ "David S. Miller" <davem@davemloft.net>,
+ Heiner Kallweit <hkallweit1@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Thu, 14 Mar 2019 14:49:45 +0100
+On Thu, Mar 14, 2019 at 03:01:34PM +0100, Jerome Brunet wrote:
+>> +static int _g12a_enable_internal_mdio(struct g12a_mdio_mux *priv)
+>
 
-> If an interrupt is already pending when the interrupt is enabled on the
-> GXL phy, no IRQ will ever be triggered.
-> 
-> The fix is simply to make sure pending IRQs are cleared before setting
-> up the irq mask.
-> 
-> Fixes: cf127ff20af1 ("net: phy: meson-gxl: add interrupt support")
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+You would generally use the _ prefix when you have a locked and an
+unlocked version. I don't see anything like this here. So please drop
+the _ .
 
-Looks good, applied and queued up for -stable.
+Nice to see the generic clock framework being used. I just wonder if
+this is the correct place to have this clock code. Can it be made part
+of the SoC clock code?
+
+    Andrew
 
 _______________________________________________
 linux-amlogic mailing list
