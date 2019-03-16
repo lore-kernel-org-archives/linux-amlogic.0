@@ -5,19 +5,19 @@ X-Spam-Level:
 X-Spam-Status: No, score=-5.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 80447C43381
-	for <linux-amlogic@archiver.kernel.org>; Sat, 16 Mar 2019 22:09:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 16019C43381
+	for <linux-amlogic@archiver.kernel.org>; Sat, 16 Mar 2019 22:15:13 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4F2EA218AC
-	for <linux-amlogic@archiver.kernel.org>; Sat, 16 Mar 2019 22:09:25 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D7D0C218D0
+	for <linux-amlogic@archiver.kernel.org>; Sat, 16 Mar 2019 22:15:12 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rUM5MLXt";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="vgO9/x05"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4F2EA218AC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pefHIe2F";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="qfSupxWO"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D7D0C218D0
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,61 +26,62 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=I/GtRB7nsQD7q6Me6FPhvcBhqjQZI1iuQe8kKi6U7fU=; b=rUM5MLXtenMIXY
-	B1DC8bVF3qTA6NaEBUPcywV7xkJK1piUHfSpyKqwfkZeowFVS72x8VWRVtYJiacRXL90c62QA9DVr
-	I+96CMo27NSdIRvSUWQBNOfHYq2rj+E/Ht8G8Q2spLQGQRxm4sngbAff2a4pKWEpA6U8JNHBv3MJO
-	f7OqSOPJKLeJBcF0sRKszHXKcSzKy8Cp6jJ0eIgFwD19m7YqdLrkpoO1NXmncvxqHnGwrAkCpkNL7
-	PoYOppEcVTJmNiGNAdcnF2Ji0ddasx7BB9mxBdmkac8IGtu1j5Cp4K/zH9icBNmU9BAT3bXCcov0M
-	R4brFdDoV6akbjcUE+0g==;
+	List-Owner; bh=1EKNZ7HnAlTCcO0skM+HzaQ7Z2t5teSG59miUZkwRPs=; b=pefHIe2FGprhHP
+	vIhznHNQRvPX2KFoAv8XKy/PtxQAyvXEa+BKNDJRc2xXz8l0Hh7cN6ad61rS6M4Uyb9AaS1ygRM/U
+	R9zauIniLqAPragss1rkzWBIlftKh8mzj5MkefWbZOOY7pNn6aUzg1cjvgNj8PURwmi4BX6Ioo2NE
+	bGWEiogEdqYSZBK77bcFwdl+gIkXTPYvah/6f9JS+82+pgf1jey/+l9SjU62Gb33cLnkYVk99JN5a
+	daKx1PIkeqDdt+gkkTqt1ShLXtE0a3v6pXDz0rHtrhKf9ZTCs/7A3zhOZyhhi19Hq36OlGOjC6xru
+	pVb2TORM2FrhIMR/UpiQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h5HUW-0002KB-7z; Sat, 16 Mar 2019 22:09:20 +0000
-Received: from mail-ot1-x343.google.com ([2607:f8b0:4864:20::343])
+	id 1h5Ha7-0004z4-At; Sat, 16 Mar 2019 22:15:07 +0000
+Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h5HUU-0002Jp-1q; Sat, 16 Mar 2019 22:09:19 +0000
-Received: by mail-ot1-x343.google.com with SMTP id g1so11381538otj.11;
- Sat, 16 Mar 2019 15:09:17 -0700 (PDT)
+ id 1h5Ha4-0004BJ-DZ; Sat, 16 Mar 2019 22:15:05 +0000
+Received: by mail-ot1-x344.google.com with SMTP id g1so11387149otj.11;
+ Sat, 16 Mar 2019 15:15:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=o528ymosn+dxRi3OgITbR69+jmWqSJKfAI21OdIVJnc=;
- b=vgO9/x05lFRtnPHRyy2BZdw3GS3NxUCQbEwaiUrytHncfrVc8epJnPIGigvt1Exlze
- axGuALHYzcJOVy4pSAHxmNHjVqrb9QL7nGZP6MOBQIvoE4Zi4xeusv3kU+3shU404ohe
- CWGlIIRJVxGAT+39o99EAc59Vjd+bsRIwpjPjND6+KMXktjJvqSOUVye2wo/lSgdxFJC
- cjiRBxcAjezRAu5SuUQ/i3E0hWs3837EUVif32JRcqBayFZG0SdLYDQQlDV+6fvLrHF4
- rlEPypyzez3oxzPwYzITihAQwaqn7jb4pL4N+se4JMmUuKdQP1PjeD6qie1/89/KEINU
- ch7g==
+ :cc; bh=q1HQC+1IFkebVQL6B4ux1aetRkmn37CSNxrXUwZ6hs4=;
+ b=qfSupxWOpePXZgmDGqlMKQpnQ6BCNYs5EaFL12fkrEF8xgrNdBIPlpG8EMsnQ0fjyL
+ tk2jU+mcggy3DsJcxRiB3+GTEnsr2SnjYtS7WYF3oC49Dcma1V+Uta1fLbBEh9GzFkzq
+ gcQoO8v3kAde3b5sNRZUyaQJ1tx84xhYzU5lLZICg+fi1O4owFxPu1JwoYmZee/Ufp29
+ EgNKRbwCyhjiEYmSuj4BuIMZdrbd0GzMhw69LFe4Dh5nkppKO31JBl8SrxIgiqfJzmzh
+ hgNnn3WFoMKlDQkIJCP5hsoASUuOUdcr6H22teVb0PLUL0juJxaS0eEV6XfA3fZP2d5C
+ yLCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=o528ymosn+dxRi3OgITbR69+jmWqSJKfAI21OdIVJnc=;
- b=BOc0FtIAuM2gb4r8sodc8eWQpyr+S/HTO7r9/jSmN/MV9B+C1IWDrKABmoYjgrJa/c
- P07ZJzm24FRjPxplhVCYLpa/DBFkN7V9Cw7IpckLh6QWEzHJltICo5kQGxu3iWThAr7e
- 75t3SoGQ+ouF1R1HXbgRYilKxBQz5rW60byCb5Ek4uWA4k4y5Wzls/76VBrusY5bteWB
- BsVmbD1+aXeiOtfD924Nn/QwV8Vgj2HqLRD8QaZ4OM3bulWMfMZqjEqQhtyMb5uaj7+u
- ctPeCN5ZzDDIJtLSkVYALCdtmAE6UB7wQjQ0TtEUG+Fpxy0KmRGlfEyCdSBKIlwT5fXQ
- qNPA==
-X-Gm-Message-State: APjAAAUVMuFF0dhRB1XZLwAMm36QzZu6LiU2m+pyh423cpkBH77Q/rmV
- YXv8mcwjoMxSruCcAbmr/jf5G5FhGZElwBP0Wqk=
-X-Google-Smtp-Source: APXvYqwDbX5sYzypTMpAr4TZJ/pQpHChrM/OyDQGrO1BvCX/JH/ZqEou70Ws8PrexNCKPegl91cgqJDZLpEmJmVWS2Y=
-X-Received: by 2002:a9d:5906:: with SMTP id t6mr6455841oth.308.1552774156883; 
- Sat, 16 Mar 2019 15:09:16 -0700 (PDT)
+ bh=q1HQC+1IFkebVQL6B4ux1aetRkmn37CSNxrXUwZ6hs4=;
+ b=Ej+7TZ2bF61pmpilQ504WMiaK6Dn6NL1Guavn9dTF+J7fY1V/i1aqKmM9PRi83SfCr
+ xSy7gZghIq3//kak48s8orQIDJQJZqT2hq7xTb8+Ztqc3UeCU+N6yUKNjT94gllOZgY7
+ cm/aXIAvXXMRbL7l4GJtbh59rsRaaDZOUumW4axoLp/dFFTfKDnZHHpdXmFrtRDu9rzS
+ 4cf9CdtTy23/If1X50ImrKHDn4l6gh/2xeYIacL5vqsxj0PZOyVIef7EHROhivHbTq0A
+ q9e5jFz1FMXweKcBnMbzDxku6XqIaQndK5hI/uBq2jb3GbiLrhkkpZYyAVcSs/U4ivOD
+ u0LQ==
+X-Gm-Message-State: APjAAAVrB70U3pEJGDfXtmEA//dDXNJ//6DLTAsZLVPSrYFMt5U6hWYQ
+ obilXRneuFEVgiLA2chvcez0gNmtkIzqvIlry3A=
+X-Google-Smtp-Source: APXvYqwSI9SAC06hhXk5T+2abmVcsC94KUvyeKel9KPB30erL3BOiYVQncrvjS/00NnJkOpPK9c8ufRKphaMo7squik=
+X-Received: by 2002:a9d:7d09:: with SMTP id v9mr6498564otn.131.1552774502289; 
+ Sat, 16 Mar 2019 15:15:02 -0700 (PDT)
 MIME-Version: 1.0
 References: <20190307151342.7381-1-narmstrong@baylibre.com>
- <20190307151342.7381-6-narmstrong@baylibre.com>
- <CAFBinCBt290Qabw98SpiON3xG0ihMEDNzwDDTrBo6QYbA5QjMQ@mail.gmail.com>
- <5C8D08DE.7070203@baylibre.com>
-In-Reply-To: <5C8D08DE.7070203@baylibre.com>
+ <20190307151342.7381-7-narmstrong@baylibre.com>
+ <CAFBinCAa+ZjxJi491_dG+kvLFPLFoLXHFZToGP8W1ECeeqOYVQ@mail.gmail.com>
+ <5C8D099D.5020206@baylibre.com>
+In-Reply-To: <5C8D099D.5020206@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 16 Mar 2019 23:09:06 +0100
-Message-ID: <CAFBinCAZt75BxJD6P=HRF4tqvJd_QmrpqKQu_GbKzv6cLhnLew@mail.gmail.com>
-Subject: Re: [PATCH 5/9] arm64: dts: meson: g12a: add reset controller
-To: Neil Armstrong <narmstrong@baylibre.com>
+Date: Sat, 16 Mar 2019 23:14:51 +0100
+Message-ID: <CAFBinCBHiLjrwXA4jXSg3qnGa925r--Nj_RH7xUFqyTkYzhKGA@mail.gmail.com>
+Subject: Re: [PATCH 6/9] arm64: dts: meson: g12a: Add UART A,
+ B & C nodes and pins
+To: Neil Armstrong <narmstrong@baylibre.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190316_150918_102842_B02EF096 
-X-CRM114-Status: UNSURE (   7.81  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190316_151504_487373_522B2098 
+X-CRM114-Status: GOOD (  10.80  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -92,9 +93,8 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: khilman@baylibre.com, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: khilman@baylibre.com, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
@@ -102,17 +102,41 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi Neil,
 
-On Sat, Mar 16, 2019 at 3:32 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+On Sat, Mar 16, 2019 at 3:35 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 [...]
-> > Do you have any hint how to verify the CBUS offset (0x1004) of the
-> > reset controller?
+> >> +                                       uart_ao_a_c_pins: uart_ao_a_c {
+> >> +                                               mux {
+> >> +                                                       groups = "uart_ao_a_rx_c",
+> >> +                                                                "uart_ao_a_tx_c";
+> >> +                                                       function = "uart_ao_a_c";
+> >> +                                                       bias-disable;
+> >> +                                               };
+> >> +                                       };
+> > I'm fine with this part if you mention it in the subject and/or the description
+> > uart_ao_a_c routes two pins from bank C (from the EE domain) to the
+> > uart_AO controller (from the AO domain)
 >
-> You can find base the address found in the G12A DT for the usb2 phy :
-> https://github.com/hardkernel/linux/blob/odroidn2-4.9.y/arch/arm64/boot/dts/amlogic/mesong12a.dtsi#L379
-perfect, thank you!
+> Not sure DT is the right place for that, I think I'll remove this until
+> we have it actually used somewhere.
+I'm fine with that as well
 
-feel free to add my:
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+[...]
+> >> +
+> >> +                       uart_C: serial@22000 {
+> >> +                               compatible = "amlogic,meson-gx-uart";
+> >> +                               reg = <0x0 0x22000 0x0 0x18>;
+> >> +                               interrupts = <GIC_SPI 93 IRQ_TYPE_EDGE_RISING>;
+> >> +                               clocks = <&xtal>, <&clkc CLKID_UART1>, <&xtal>;
+> > does uart_C really use CLKID_UART1? on GX uart_C uses CLKID_UART2
+>
+> It seems so :
+> https://github.com/hardkernel/linux/blob/odroidn2-4.9.y/arch/arm64/boot/dts/amlogic/mesong12a.dtsi#L1020
+it's weird but we can always fix it up later if needed. so let's keep
+it for now to stay consistent with the vendor kernel until we know
+better
+
+Jianxin, can you please check with the hardware team whether the
+uart_C gate clock (pclk) is CLKID_UART1 or CLKID_UART2 on G12A?
 
 
 Regards
