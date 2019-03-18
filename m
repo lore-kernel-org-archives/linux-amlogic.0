@@ -2,65 +2,88 @@ Return-Path: <SRS0=lgrq=RV=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6D54FC43381
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 20:22:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 52B10C10F00
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 20:47:40 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3C95A213F2
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 20:22:37 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 21D79213F2
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 20:47:40 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NumztkoD";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="JCBAjZn5"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3C95A213F2
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VCsG2Lye";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="CIPOqkzt"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 21D79213F2
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:To:Subject:From:
-	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0jI8DjJBL/+pz6CTnFzDJAuJVkXS7RmW4l5yCOE8byU=; b=NumztkoDsgQXPm
-	CSJYgL9tu/itcOBKqE3kxTMSsp2Ow1Z2gcV7ScYLvuzKS58nXVOxFGenwm44agFSmjuCH66N5HlxA
-	X12UrFNcdNmxjVeeHe1XJCYjUfhKGByoo7EjvOTruchX2JwND/C9iikUXyViH4cwv433VN+n+a/Wv
-	o6LXpx4roB3xJh58oK/WdLVl2TY4z18XRx8yrgYDAdPaxI/W8Dq3uiw+8xvvoVj6hSzdZE2kpsczd
-	6PXIdvCIJQoovdAePZUvczAN9XvNeojugOQwx/bkXBMU+ZYUn45K0l4dgiS8SgtuochPGS0iWOjf6
-	cxsIwU0X71YhPcc0Ancg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=qItjItnFhqRHa7S6yBV0WxygMkt4TKxDVTPcf90Er6U=; b=VCsG2LyebHUhLy
+	RubX7zo+u1718v862lSInf2Y3FqJHPSbPj6iJSIVzcxDjGce9isS8f+sthqNJVDe+4BNrZwgWZp+T
+	8Km4ZKK0/AlNU3CeCIcMVw/cFnwrfxPeLi14K/MO2c0iILbU+tWbzbiCqM7uOGRWMTHAmPKt2vILV
+	hBEm/TvTidZmoZOofJe/b8iMs4mNjjIpB6iOh7CeVRaj9tKPFHuO+rxcLBbbJJ6jFDb16elNofL/R
+	o7wRHjJO5WIyFvRqqW9pA/ORmCCO9+YB/0nkhzD9FgCnDMiL4JKiMvqcgtpFP0RjKPZQFadpa+Avd
+	wwOTwhE3pX6UoXm9A9Pg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h5ymG-00083r-6Y; Mon, 18 Mar 2019 20:22:32 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1h5zAS-00005w-DP; Mon, 18 Mar 2019 20:47:32 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h5ymD-00083M-7J; Mon, 18 Mar 2019 20:22:30 +0000
-Received: from localhost (unknown [104.132.0.74])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 0005320850;
- Mon, 18 Mar 2019 20:22:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1552940548;
- bh=rYkYvizLYaF4Tp6HqpglWg5ijSOqjSQJk/SUsx+zXyg=;
- h=In-Reply-To:References:From:Subject:Cc:To:Date:From;
- b=JCBAjZn5rt1D8h37i+FvS/gXXfEumBOOXUPjK0pFghbu/Y+2Yw+SbgZm2vbdF0Y+z
- qkXlgKZwoXx6ahLpwZwjdA9J6t8zI1ZG9OS6bwMcMY5yiCP6CZGwqgwYhGzM3bWYhJ
- cKIGY32k0Y3sBA9aye5DRiDdwG6pnSqrrABJ4a+Q=
+ id 1h5zAP-0008WQ-F1; Mon, 18 Mar 2019 20:47:30 +0000
+Received: by mail-wr1-x441.google.com with SMTP id j9so4470763wrn.6;
+ Mon, 18 Mar 2019 13:47:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=xdEjMClilgNv8/8kONKzwjjh/piLUyVN8GRovW1S520=;
+ b=CIPOqkztsjF0JLMSRllS4l2mccMHIMLYaAz7gdg/mdMwXpDdJ9ReuODAQHuzQbXkjS
+ kQq2iHPbq5BSznOZVbjyQ+z6mRjXvzHQ9JloW7GX3fiVdpqN7KoQeoQNHnSuyYCS0kvO
+ KpOdDlwlTNC2aFQA8oPEQmVqPVnWmHKo47Tuy+xvi/6pbREcveueGEM1MaO+9d+pc4Gt
+ 3OJe8is04jvXlDPnOiFXzxS5xjHuEpHcGjW3KQUAl/M8z1cnYsCqZNSR9hF2wsZwvLE3
+ Fpl8gHEos6FkjxTaWpFePDx1c95iIXpeZHfL34edKcE6qY+u5w7Iq/6dbnpelnXWB4IG
+ vwXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=xdEjMClilgNv8/8kONKzwjjh/piLUyVN8GRovW1S520=;
+ b=fZMcdSBdiT6qwNgxOXREbi6gpXbCBreP9qJiMswLES2b20lAPxrqze14Oz0WGPCXpT
+ C7PGfdjCdeT9eMwVDkPORSVaWoiFZmwz1pZosA+6OthfftUxb+nQvBqarVn5xGZMLROe
+ FHtH9tiiYdsMffjFHzfrWwFohtQxxMoDUfnw+U5edFiUSKvaAYA86atVpfT+MWGugjcT
+ 0Ugmkku1o6pu+t+4dT7AfWEHVLs24UQ8GupeUxabUdV+GwvzMzEZ0zEqzNMb5QCXsRpn
+ 4obLCl/YAZmcGtWpSmtTcvJx5NFVSq0NA7qstvg9LSUsdO87hYqT9GgaV5OkmpmdD6Qh
+ Hdlg==
+X-Gm-Message-State: APjAAAVIBX6jNiJu43biCgqxUyKZfK7p+hZBN9/4wpOvEYfrK/GDGYx+
+ OEFgoObe9zyt8VsC9a9PQXMpY33u
+X-Google-Smtp-Source: APXvYqyAj6VPfPkkwt0HGRwCHv7yvs/hbUKdXalZBFEtOcrjvQmJ0Y4YnXiV7Nga5VPbpKF8Z8Z5sg==
+X-Received: by 2002:adf:82c9:: with SMTP id 67mr5757540wrc.261.1552942047561; 
+ Mon, 18 Mar 2019 13:47:27 -0700 (PDT)
+Received: from blackbox.darklights.net
+ (p200300DCD7399900918378ACFECF051C.dip0.t-ipconnect.de.
+ [2003:dc:d739:9900:9183:78ac:fecf:51c])
+ by smtp.googlemail.com with ESMTPSA id y12sm224849wma.44.2019.03.18.13.47.26
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 18 Mar 2019 13:47:26 -0700 (PDT)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: linux-amlogic@lists.infradead.org, linux-mtd@lists.infradead.org,
+ bbrezillon@kernel.org, miquel.raynal@bootlin.com
+Subject: [PATCH v2 0/2] meson-nand: two small memory related fixes
+Date: Mon, 18 Mar 2019 21:47:20 +0100
+Message-Id: <20190318204722.9901-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <20190313135503.3198-1-narmstrong@baylibre.com>
-References: <20190313135503.3198-1-narmstrong@baylibre.com>
-From: Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH] clk: meson-g12a: fix VPU clock parents
-To: Neil Armstrong <narmstrong@baylibre.com>, jbrunet@baylibre.com
-Message-ID: <155294054725.20095.14218989036413639726@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.8
-Date: Mon, 18 Mar 2019 13:22:27 -0700
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190318_132229_280774_CBADE25A 
-X-CRM114-Status: UNSURE (   5.50  )
+X-CRM114-CacheID: sfid-20190318_134729_507232_6E38A261 
+X-CRM114-Status: UNSURE (   9.34  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -73,22 +96,38 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Neil Armstrong <narmstrong@baylibre.com>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, richard@nod.at,
+ liang.yang@amlogic.com, linux-kernel@vger.kernel.org, jianxin.pan@amlogic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Neil Armstrong (2019-03-13 06:55:03)
-> First two VPU clock parents are wrong, fix it here.
-> 
-> Fixes: 085a4ea93d54 ("clk: meson: g12a: add peripheral clock controller")
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+While trying to add support for older Meson SoCs to the meson-nand
+driver I was experiencing a crash in meson_nfc_read_buf(). While trying
+to find out why that happened I inspected the code in that function and
+found that there's:
+- a missing check on the return value of a kzalloc() call
+- a potential memory leak in it
 
-Are you going to send this as a PR later? Or I can pick this directly to
-clk-fixes now?
+Both fixes have nothing to do with my original crash (for which I'll
+open a separate thread).
+
+
+Changes since v1:
+- collected Liang's Acked-by's (thank you!)
+- rebased on top of v5.1-rc1
+
+
+Martin Blumenstingl (2):
+  mtd: rawnand: meson: add missing ENOMEM check in meson_nfc_read_buf()
+  mtd: rawnand: meson: fix a potential memory leak in meson_nfc_read_buf
+
+ drivers/mtd/nand/raw/meson_nand.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+-- 
+2.21.0
 
 
 _______________________________________________
