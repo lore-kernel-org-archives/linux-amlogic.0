@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 88C4CC43381
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 20:06:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9A6BAC43381
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 20:07:26 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 56C1B213F2
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 20:06:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 639EE20872
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 20:07:26 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="U+JFvy5j";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="lNRN7zqp"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 56C1B213F2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iekGXwij";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="JrDwC/Oy"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 639EE20872
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,58 +26,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jZ8QflB1QvxGAGstms4lBcBftnpVa+poFQp8UPiX2bU=; b=U+JFvy5jfA3B1H
-	+zcUYaTjQ/lTl6g9uWiJUfOwHPd2UpSTMxC1PUQDdchqJNc2s53POCBOL4XAeFfyHo0ZXbMQ/cy3S
-	eAn+aoudxARguqFhyETf9/cg90kYDL5WGHHmn0ekIsI3WVeWEOlIMr46NM8afZjIZ9wOibYU7RN3f
-	CtCyC8+MUy8N8Q1kQW6iPUaEb4Qjfs3X03mUokhQe6qfbBjC2dHzcYE8CFKhULgJuW9u53Jb3Lj1x
-	GFYztH0GFgY3MGokk8H+JnMs0j64s/ip4Oe/AcWj2RxlnaRq8DNNDsfQllJjJ+uVO9cguckntzMmW
-	QsWwTb3uHchI5nmmTtHw==;
+	List-Owner; bh=2HWdhJd2QZHygmgsz8FLcdz3oNo4EN9YQJfp47VblZ0=; b=iekGXwijgChjo2
+	HA/ODsM/OlDofIpS4IMPgXLlYQZW/gkS1uQ165dXxwJ4UjUfBYOo7frriCx+GDN38T6+MH8MQdIQu
+	8SysPOSNOTyJ/blh/45OENaoccyBAGNYu9C1g56qKWFW0X/wFGJmlcEm0Rxo3Fd5nTs8J1hPok68s
+	gz7w2ZJMMBEvbBgFZlkZQUqKHw1C3aoD8Iw56GzphNs/uCTxFdgFptPLGSVxqMry4opJI0UJ1a2M5
+	HZlKwnbOCKwX7v+Zx8+4H5T+SQf3AAllXiITfEZcfVZ94RNR1xVA6Ep5t8+hSL2z9ymjTKhmZhQnt
+	8YGFL65DPsDjGP83F46g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h5yWe-0001Q2-Pk; Mon, 18 Mar 2019 20:06:24 +0000
-Received: from mail-oi1-x243.google.com ([2607:f8b0:4864:20::243])
+	id 1h5yXa-0001kd-Ad; Mon, 18 Mar 2019 20:07:22 +0000
+Received: from mail-ot1-x343.google.com ([2607:f8b0:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h5yWd-0001Pg-3c; Mon, 18 Mar 2019 20:06:23 +0000
-Received: by mail-oi1-x243.google.com with SMTP id b4so14127734oif.6;
- Mon, 18 Mar 2019 13:06:22 -0700 (PDT)
+ id 1h5yXY-0001kF-0n; Mon, 18 Mar 2019 20:07:21 +0000
+Received: by mail-ot1-x343.google.com with SMTP id c16so4213912otn.4;
+ Mon, 18 Mar 2019 13:07:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=t4pDkE66N9sGNKASHxnAqppvdriwVXM0y6liBW4Fl+g=;
- b=lNRN7zqpEJ8dA5/HKwAmAbooQdHo3yI2q0UHdjzO1S0KU2vfJHhHROTU87zXAF9bV6
- hDAeeDi9oqizsUrR/9kHy/rc7DBPJrs+A6NkihmcpUhcHoZ+t2qJB98Hhz0+lJRa51w9
- 8amF8TOrQy4iNlTU6IFPR0PW7y8SPPi4fGijMIO02tSt44hV6b2RgUFZlOP/gIRbhXbh
- DBz/dKf/e/65EYMJ3QcHNNaTeb1E2MYThpaQBdsMblubS6L88Xo7i90q43RfiuHf0DhI
- hGWelWTaJaOlE4b5zMEP4oYITZUHsohqRPI1cswqre4NUcL4uXUEghvMvDvqzwJxm/Ky
- kEXA==
+ :cc; bh=ygUaR7GiYrQw12EOQDMxY7EWNNS00Ue7tqp1hNhMuCA=;
+ b=JrDwC/OyTzjt1oikQlIpcbuBZqSW+C9CV1Dm3ASNk1fhv1T6mGPpmukmAfy7O8/o/x
+ RzeTxutE7vMA5uOHPPoqgnwh1lVJ6GQwqgbP9Y5BE9pRiAzYg5lAngaf2UzQ0NSejm/C
+ jRH3pdtLFKL1Fsaq4Mr3eJ/bm/yVzMbJ9Tr4jTv+SUPZMPEfLQQjI+ASWORQvJRyqlrq
+ YtlM18Ah5la8nEmWYqFC4Ag0YmZDSlaGY6PEZlusAbt+ush+04E3IG5BAf7SFiGIoVzY
+ E08rEwc2ORe5MLrLm1iALMGV22qhtHggJIVcECo5WvlnzDC9Gi9ZHURI7pjDV+qXPKYt
+ I6KA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=t4pDkE66N9sGNKASHxnAqppvdriwVXM0y6liBW4Fl+g=;
- b=beiueXliWMA11rA/E+cu4/Wssht4HvAxmUwT7dD9g8tNlXmI70TZzmHgdlrB/xVmlN
- FMCudBNHQCrUzMK2I31QjjRKrzo1kyCw2Xxqa12jYWy6Ph7Xs3+t0XEJskR4v+wQJkeS
- qJDBKG48elRuUVasN8EeeVKFXE2mFNevxOFDqxZNGDjRIwodzWxkjr2r1EDzvl9QpAoF
- BOtdlg53Cr3biNVOzWBQ3nTSdLoz6X14f+yvZyULRnqAiSSLbHQm7/bNTMhY+b14YY+Y
- GVlOhNcxikRt4gdYbqunwO23DEt413KvdtWhXVle4DfNOmA+a9oNJlNibC1KHZnTHNLr
- AdjQ==
-X-Gm-Message-State: APjAAAVxp/8N5VyIcAvFfPCGvnAnPqA/X7H+pd0VBCsJ6+USrFWoOkSR
- rSyACzthyFH/FmfCHTKk2/aOqdXx/rDKCyWApfM=
-X-Google-Smtp-Source: APXvYqxr6Ufg5Lzv3ks/Djyr+Vp6g1/TOH0X3DdnsVANCN9W9gLpf0+qzDm1JC400HNvczEqZKvX9CoSAXdvIm8HiIQ=
-X-Received: by 2002:aca:a9ce:: with SMTP id s197mr428994oie.129.1552939581538; 
- Mon, 18 Mar 2019 13:06:21 -0700 (PDT)
+ bh=ygUaR7GiYrQw12EOQDMxY7EWNNS00Ue7tqp1hNhMuCA=;
+ b=l22ye3x7sc5Z7Mt97/Fucd3byNtqubjS3Ym9wlIWs5r4tZRC82II5MwOIPwdgjpCMQ
+ Pmbnf+qJIFumJYSuLzRGwf6ezduuWSnnhZosgHA5T/42w6wgLbrpz4FZSq7FGBGqdXh1
+ cFJLcENOzbfzwAlvx+0xUR6d3tS74Kk33tNafivFaw1JuqMd8flRLMGFDkhBHf2+tI7i
+ qTirlik8kA2t8SRUUmal8Ed4IX8XqShGMPTZw2SvCrw32mjt8BWLcChWydkC7ZyFvV32
+ +GYoaueKeeeayEiCtj8N4BqBZbPCDYqevVJuHROo/7TaG3ioZ2BsQhRxoTcHTLQiKuQt
+ wtWQ==
+X-Gm-Message-State: APjAAAVFZBDQuTayqgLJmUkFmo7ILHIpcIPBeTvGkUWRujf06CwuXcu4
+ ae0GQZv6CDlERDo+HmkA79qaq5jnPpdIugvPFZ8=
+X-Google-Smtp-Source: APXvYqyikuKV8prgrvcnBwE28bAN24G4srbVqNtWicPnEsu99gsfPhP+/y0kY4F8CO22zm3KsHt3vjK5DT/T4briXEE=
+X-Received: by 2002:a9d:5906:: with SMTP id t6mr12035998oth.308.1552939639256; 
+ Mon, 18 Mar 2019 13:07:19 -0700 (PDT)
 MIME-Version: 1.0
 References: <20190318100458.5619-1-narmstrong@baylibre.com>
- <20190318100458.5619-6-narmstrong@baylibre.com>
-In-Reply-To: <20190318100458.5619-6-narmstrong@baylibre.com>
+ <20190318100458.5619-5-narmstrong@baylibre.com>
+In-Reply-To: <20190318100458.5619-5-narmstrong@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 18 Mar 2019 21:06:10 +0100
-Message-ID: <CAFBinCDueGJymC+SgPe7B2D_EavWFxjq8FHfhWr9RTPwxqsSmQ@mail.gmail.com>
-Subject: Re: [PATCH v2 05/11] arm64: dts: meson-g12a-sei510: add regulators
+Date: Mon, 18 Mar 2019 21:07:08 +0100
+Message-ID: <CAFBinCAT848_qGPuERj+nAc3B+2y4kN5gbF3k4JYYWEu5maDDg@mail.gmail.com>
+Subject: Re: [PATCH v2 04/11] arm64: dts: meson-g12a-u200: add regulators
 To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190318_130623_145888_702FDA4D 
-X-CRM114-Status: UNSURE (   7.84  )
+X-CRM114-CacheID: sfid-20190318_130720_063942_D5F17D39 
+X-CRM114-Status: UNSURE (   8.03  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -102,10 +102,11 @@ On Mon, Mar 18, 2019 at 11:06 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
 > From: Jerome Brunet <jbrunet@baylibre.com>
 >
+> Add system regulators for the S905D U200 reference design.
+>
 > Add some regulators. Still missing
 > * VDD_EE (0.8V - PWM controlled)
-> * VDD_CPU(PWM controlled)
-> * VDDQ1_5
+> * VDD_CPU (PWM controlled)
 >
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
