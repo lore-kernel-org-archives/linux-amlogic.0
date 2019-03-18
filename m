@@ -2,83 +2,66 @@ Return-Path: <SRS0=lgrq=RV=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0F0EFC43381
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 20:18:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6D54FC43381
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 20:22:37 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D049620828
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 20:18:01 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3C95A213F2
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 20:22:37 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FlTJGTxb";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="GB+HQzVs"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D049620828
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NumztkoD";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="JCBAjZn5"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3C95A213F2
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:To:Subject:From:
+	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=s8JslKrUVnFlaeGsmMPPW3C/TUtbxE0KmJpEw70x8gw=; b=FlTJGTxbZ3iepo
-	WK1987teuVMlxn0HTY3d+bflwMULfYF10Xce2nIOaZf0emE7/gZ2yJKJE4dYV+L8hf5OwZfHVdB8x
-	a2CUQY2bvkAK+V6u3rPVyTt1QorOCpYp3oI5le6tUa63xs2rGhh/ZWns9mnPNmv3tqX3UbjXu/EBu
-	BRmhuBXEKo0zT1utHEuRRR2sFk9q7r218beiuh66CYlHM6h5qoH1+wmM0B5+9lvv1k7or9GkyuuAP
-	pQNsThAGVobTleEBacXY6ouQrK091JzYphX13/d8pSwZ7Vh4Oyq8BVkqpgdFVAyh9KzbTEg63tD6H
-	1O/gZIVqRMg8cjaRSVNw==;
+	List-Owner; bh=0jI8DjJBL/+pz6CTnFzDJAuJVkXS7RmW4l5yCOE8byU=; b=NumztkoDsgQXPm
+	CSJYgL9tu/itcOBKqE3kxTMSsp2Ow1Z2gcV7ScYLvuzKS58nXVOxFGenwm44agFSmjuCH66N5HlxA
+	X12UrFNcdNmxjVeeHe1XJCYjUfhKGByoo7EjvOTruchX2JwND/C9iikUXyViH4cwv433VN+n+a/Wv
+	o6LXpx4roB3xJh58oK/WdLVl2TY4z18XRx8yrgYDAdPaxI/W8Dq3uiw+8xvvoVj6hSzdZE2kpsczd
+	6PXIdvCIJQoovdAePZUvczAN9XvNeojugOQwx/bkXBMU+ZYUn45K0l4dgiS8SgtuochPGS0iWOjf6
+	cxsIwU0X71YhPcc0Ancg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h5yhm-000606-Ok; Mon, 18 Mar 2019 20:17:54 +0000
-Received: from mail-oi1-x242.google.com ([2607:f8b0:4864:20::242])
+	id 1h5ymG-00083r-6Y; Mon, 18 Mar 2019 20:22:32 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h5yhj-0005ze-5A; Mon, 18 Mar 2019 20:17:51 +0000
-Received: by mail-oi1-x242.google.com with SMTP id i21so10788428oib.11;
- Mon, 18 Mar 2019 13:17:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=kviz/ZAppsOp97wiwa/3qIYHbJwscWwNP5RnfHRpeDo=;
- b=GB+HQzVsQOcWCvFIEFBse7gdQqKCla07o2s0SjRyREYw1B6tK6JGIzP0iHN/x+hC01
- /8GBoaImw+xXSwQrAU1yogcGoNxVvX9iryi5QiC9PfpV8BglnX3zpJEJry+poPSCxIan
- xRHIqBgwCdVQndsO9PbkY890c0cj6LzaUphqcD+0HrirUuHlK2UJyUCdC+CDE0Zz5fXl
- jhKXi2xkmOnSyPusQgf9AkvyuLfDS+Ue8ocDnar0cx7h5wjjLdzSrnrTC32W0j91qIvR
- 3fav52QCeZLTrlFQRoAkq2NKjZtwVZjelF7+XQg1ZoQuh35TXUa5fR7kExwf+t9ACf2/
- OTKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=kviz/ZAppsOp97wiwa/3qIYHbJwscWwNP5RnfHRpeDo=;
- b=BUpYs26hR+j7hQ3zGzeMigjJqUYqhaUguifXP9NVdlqrrDqS6B/vXTvAZr7hY75WYT
- jaqNLfnr+55ukEF2ZzMatHkzfVAwwHsd7IrQUs9Wjxa6xLkJbCEsbgHjjvGfULKK48ZQ
- VfyLYblKno6aPJHO/4E7/3e2pNJkOuBmKvjC/mAHF9ipmoxohaqj6twUzUXutk5yJ7eW
- XVbV2sog7uTZPScNUNJpQ1v7CBDgKqstkaGl42vFG/4LwezmFG08ui//jXnCGQtiVSN8
- /pBKnpBoZoY6Ufvj47YnBVKKYwKPxUMix0A/lkazUsw4SnmhTvHbH4K7054p8YgaEhEc
- l0hQ==
-X-Gm-Message-State: APjAAAU/o0vY7+l2q4gFsgRJfNOXzvHmrHIp0MCw3MyvQ/xQTf4YFa6U
- HG3GNM8kNvTCVHG5J4Fy/Yfbicmzj9OlD3V/Tvk=
-X-Google-Smtp-Source: APXvYqwSISyeOH9Uc2VL1oxQaZFMCjd/XksthHTsvNaRR2/rhIYFljgtzS21QekWn9ai9rIdNFhhM5uY12aU9ARtbtI=
-X-Received: by 2002:aca:6209:: with SMTP id w9mr460277oib.47.1552940269900;
- Mon, 18 Mar 2019 13:17:49 -0700 (PDT)
+ id 1h5ymD-00083M-7J; Mon, 18 Mar 2019 20:22:30 +0000
+Received: from localhost (unknown [104.132.0.74])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 0005320850;
+ Mon, 18 Mar 2019 20:22:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1552940548;
+ bh=rYkYvizLYaF4Tp6HqpglWg5ijSOqjSQJk/SUsx+zXyg=;
+ h=In-Reply-To:References:From:Subject:Cc:To:Date:From;
+ b=JCBAjZn5rt1D8h37i+FvS/gXXfEumBOOXUPjK0pFghbu/Y+2Yw+SbgZm2vbdF0Y+z
+ qkXlgKZwoXx6ahLpwZwjdA9J6t8zI1ZG9OS6bwMcMY5yiCP6CZGwqgwYhGzM3bWYhJ
+ cKIGY32k0Y3sBA9aye5DRiDdwG6pnSqrrABJ4a+Q=
 MIME-Version: 1.0
-References: <20190318100458.5619-1-narmstrong@baylibre.com>
- <20190318100458.5619-9-narmstrong@baylibre.com>
-In-Reply-To: <20190318100458.5619-9-narmstrong@baylibre.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 18 Mar 2019 21:17:39 +0100
-Message-ID: <CAFBinCCWMpyaJ1WjxGkxAr-ROc6MjWVyzt+LUrcAhjTY99dVKw@mail.gmail.com>
-Subject: Re: [PATCH v2 08/11] arm64: dts: meson-g12a-sei510: Add ADC Key and
- BT support
-To: Neil Armstrong <narmstrong@baylibre.com>
+In-Reply-To: <20190313135503.3198-1-narmstrong@baylibre.com>
+References: <20190313135503.3198-1-narmstrong@baylibre.com>
+From: Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH] clk: meson-g12a: fix VPU clock parents
+To: Neil Armstrong <narmstrong@baylibre.com>, jbrunet@baylibre.com
+Message-ID: <155294054725.20095.14218989036413639726@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.8
+Date: Mon, 18 Mar 2019 13:22:27 -0700
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190318_131751_199692_730607AD 
-X-CRM114-Status: GOOD (  14.19  )
+X-CRM114-CacheID: sfid-20190318_132229_280774_CBADE25A 
+X-CRM114-Status: UNSURE (   5.50  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -90,53 +73,23 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: khilman@baylibre.com, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Mar 18, 2019 at 11:06 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> Add support for the :
-> - ADC Touch key
-> - Bluetooth Module on UART A
->
+Quoting Neil Armstrong (2019-03-13 06:55:03)
+> First two VPU clock parents are wrong, fix it here.
+> 
+> Fixes: 085a4ea93d54 ("clk: meson: g12a: add peripheral clock controller")
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-I have no details about this board but the changes look sane, so
-(apart from one nit-pick below):
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-> ---
->  .../boot/dts/amlogic/meson-g12a-sei510.dts    | 30 +++++++++++++++++++
->  1 file changed, 30 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-> index 43d57e20294a..ebdad5a192f1 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-> @@ -7,6 +7,7 @@
->
->  #include "meson-g12a.dtsi"
->  #include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
->  #include <dt-bindings/gpio/meson-g12a-gpio.h>
->
->  / {
-> @@ -17,6 +18,19 @@
->                 serial0 = &uart_AO;
->         };
->
-> +       adc_keys {
-in meson-gxm-khadas-vim2.dts we use "adc-keys". Other Allwinner and
-Rockchip board also use "adc-keys" instead of "adc_keys".
-I prefer if we go with "adc-keys" (we can clean up the two occurrences
-of "adc_keys" in arch/arm64/boot/dts/amlogic later)
+Are you going to send this as a PR later? Or I can pick this directly to
+clk-fixes now?
 
-
-Regards
-Martin
 
 _______________________________________________
 linux-amlogic mailing list
