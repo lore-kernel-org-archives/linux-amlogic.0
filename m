@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0C74FC43381
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 10:06:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1DEF8C4360F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 10:06:43 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C7A0320693
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 10:06:21 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E3CBA20693
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 10:06:42 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="sK2Cno81";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="TsN+9sj+"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C7A0320693
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pZwbA+2Y";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Q6IPGYW5"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E3CBA20693
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,65 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZFo5u4DzjQbv69fVtS/P5VRTovHyF3PHuzw1KZA3UsM=; b=sK2Cno81DzYiFl
-	V4mtugf4wxXmWzit0w1pcECNPBaAHtwK1lHuzeXxAT8TVGJt0E18z00hWSevV3GceBHSdXmw/kuSK
-	3i14qhdEPDtqgry4D3NP0HlaEQSukddXXImKRtlW9AZSVlH3HQ4P17wLgd7qLsJt3WkNjXDok8OHd
-	3Bt8Pvo0QbutKd6C4zKTHqikpHpjJjnBmTgmk2BSUQo2pkTuwbOt4isZISastKc+uBhQ+FZmof+ZK
-	o6cTv2m4HOZtOGQfOchXWo8w+pp8pv/0Ppjf00BkB7vb+OUrjfS26exK44RmFI8mjJXcUwjKG3zZb
-	AWRYbz1obQz5oqUxqeRQ==;
+	List-Owner; bh=asvVIyea6T40c6tWFVJxVMC6Qz/Moz+KeS2+uUtGQb0=; b=pZwbA+2Yy/HoqM
+	rK8xFFH6nPHSAcHeHnRwhKKxOb27AE1eqfEIxgw0veYyYmuPYeUNEnFkycZNhXQREldVCcGGIELDQ
+	Oi0XAgfl2YZ9wRU7w7Bh+/VRSAX1wZlIbEK/IWqvOKRyuYS865n2Yth85xcc6yD4IUdgnpU4a9GQ6
+	/jknOlGov7P85H2w2lPs9tlonXhnYlQV76ztWVVLHAD0o5VXn3ixDMMjB2iHxM+V9HSpMTuBx57OW
+	9wXMeazcfDVc3k86lnP26sz/ZYL6iizsGNfTQD60oj3ICzKjz243GwYMHD01DkQURi0xz/qeVM7Ld
+	orA381bR/ie+kkhlOnnA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h5p9s-00028M-1b; Mon, 18 Mar 2019 10:06:16 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1h5pA5-0002Oi-Er; Mon, 18 Mar 2019 10:06:29 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h5p8k-0008RZ-Of
- for linux-amlogic@lists.infradead.org; Mon, 18 Mar 2019 10:05:10 +0000
-Received: by mail-wm1-x343.google.com with SMTP id z11so3801216wmi.0
+ id 1h5p8k-0008KB-9B
+ for linux-amlogic@lists.infradead.org; Mon, 18 Mar 2019 10:05:11 +0000
+Received: by mail-wm1-x344.google.com with SMTP id 81so4784746wme.0
  for <linux-amlogic@lists.infradead.org>; Mon, 18 Mar 2019 03:05:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=CrU7oOZF/XD8UT4BF226LZ7D8K1QM3Y0TXhUURbvrB0=;
- b=TsN+9sj+Hz+Sa6E4DPKcieTcPZJrb2JZbT2uLEeOV/z9stXQgJB33zafHM7LXV7zG8
- oXrWCACLEQTI9pJk+PuceITOTywgor9UfADMbgkz1sKS3CbR9POjfTmmmKrAskc5WLUM
- tDQG146IqhUg5AqdyyqU2jWrK4bXVyYA0unqv510MckRExi8M3khA826CpmEpj48ksCs
- t9sAtScQluR0BSCZ+flK+FWF8L0rB1mWR9h2HwaBVtq3rvMaGQVKsgQxtvMMgjOr+DQz
- /0cNK7eK2p/lOFZNJQpG+y4sWnXOG45nEDYj9BBWv22ddiQyZqpb/bPQOvWg/a2W2Yvn
- p+UA==
+ bh=ka0M5kZ6v8ySNByodqf/V1Upid5BsB19/rCuYJ69Io0=;
+ b=Q6IPGYW5JnzybV9eCeTUZGpZ1t+QYBOReq0nmki/vqAM6f2toL/vrjpXSqtdC6EdSF
+ V6fjdzkqiS2uvJrNUUQ0+07LUcjVsxVryt2prNRQOCFNI487A+sUZNIobOq2WGvbnYvM
+ WGrLRHx/AyYg6H6sbX34SDMQ9WuZvHLvOuPYgBaj8dBj0X0lkNcSuNAC1HTkGRZQGYc8
+ 51zwHFpnmae1ea6bpf6ZMRy1Oqj52erjsGJSxbxKO31+qO59w8B1h7d/+NByJu2/LdS7
+ nG20pLv2QUQR3TW8Bb9eSNg4cr6/oErqroHmxvqP4I0K4Y0jiPgravFcQGekEt5/A5Is
+ 4I8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=CrU7oOZF/XD8UT4BF226LZ7D8K1QM3Y0TXhUURbvrB0=;
- b=uhJlxAk9X2DqGprtXFLDRgMVn4aFOcAqZP/IF4jExNhjLr7PbpVVpMLcn21wf+urTC
- X8ymyawWcwhLA6eiBLj1W70sXBUXdL8vH6o1m56EO5NwwldQsvicfClJP589CipTSro5
- 1lio+Nj05BRd+sG59ViXhFfLMiH+qQU1hWWLNhEnTv3TDlxp6Xqt8cfYwiQEgf7yGOM1
- ZGPNtkL3aDDqjHMJ5bEZeNZFVzJOIo179J0BTgGY/XSNY8jO9+oU/R6wHTnoOMXwrf2h
- Rv2+Ae/RDRAZhyjA2ZsSB4lELigyQW8d+3v5CjahFrSDR204wPZyGSNZ08/Moe5sIu7H
- QgZw==
-X-Gm-Message-State: APjAAAUf7lT1lX+M8tBB8ksfEg199soxBl3Vr7dmb+X0Y4CMsnIt++Wd
- Nt+eu6Lmy6zrwJTcoOdCsl0QMg==
-X-Google-Smtp-Source: APXvYqxwhCV+9YHPpEYO2QBp5e/pxcjvrA3D3nHEn0mXz9CPZi2TS3xuPDpz+DqLLY9lxx+6p548RQ==
-X-Received: by 2002:a1c:480a:: with SMTP id v10mr9876623wma.57.1552903505087; 
- Mon, 18 Mar 2019 03:05:05 -0700 (PDT)
+ bh=ka0M5kZ6v8ySNByodqf/V1Upid5BsB19/rCuYJ69Io0=;
+ b=m8yZ4iHWNp/apX59KB4aonpd+0/c9lFnFov+aqmH6QtwMMmWFUYBaZsQtdEBn3SEPk
+ 8wEXyD4ZpzsNiu1Ffe7XNONp/YJfYncXVlvYg/ZQfrF33MaL19GPpSWZ9uYMBQE2AqGF
+ VUga1/eVPmW/DNZV6ZQdUsC8n++B+NZ2PIeABQ/7q/PS3l5/+e1lI+KyYMf+A0uWsJGr
+ cdD5s7zBLh/KjdfWaf4LGqd0U63Xl5sYdlcwR0de2CEGoZvXUwwR8evHoC1eeAtPrEn3
+ XhQVj8BNQH2KD8PFEvxYB3tT7nv1aKVO+fpLd/DHQFMMALFB3cQ/UARND4bGCmj4/lOk
+ l57Q==
+X-Gm-Message-State: APjAAAXe9CADPszR6arFK+rzmLIN9QnQrek04ZNEpkj1HvRjPGSi4XX/
+ ig+jsaD+7K8/nwNpH7AGdYlJzQ==
+X-Google-Smtp-Source: APXvYqzauSS7+U5mbKeWJsPQvpH05dphmAXYiE8cM/k4iZwv2zyyZWyaecnUIJJttDGlsL1iTuLYEw==
+X-Received: by 2002:a1c:d189:: with SMTP id i131mr3139666wmg.151.1552903504114; 
+ Mon, 18 Mar 2019 03:05:04 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id i11sm5216800wrp.40.2019.03.18.03.05.04
+ by smtp.gmail.com with ESMTPSA id i11sm5216800wrp.40.2019.03.18.03.05.03
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Mon, 18 Mar 2019 03:05:04 -0700 (PDT)
+ Mon, 18 Mar 2019 03:05:03 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: khilman@baylibre.com
-Subject: [PATCH v2 05/11] arm64: dts: meson-g12a-sei510: add regulators
-Date: Mon, 18 Mar 2019 11:04:52 +0100
-Message-Id: <20190318100458.5619-6-narmstrong@baylibre.com>
+Subject: [PATCH v2 04/11] arm64: dts: meson-g12a-u200: add regulators
+Date: Mon, 18 Mar 2019 11:04:51 +0100
+Message-Id: <20190318100458.5619-5-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190318100458.5619-1-narmstrong@baylibre.com>
 References: <20190318100458.5619-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190318_030507_103378_63F79511 
-X-CRM114-Status: UNSURE (   9.00  )
+X-CRM114-CacheID: sfid-20190318_030506_651903_7312A247 
+X-CRM114-Status: UNSURE (   9.35  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -107,21 +107,22 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Jerome Brunet <jbrunet@baylibre.com>
 
+Add system regulators for the S905D U200 reference design.
+
 Add some regulators. Still missing
 * VDD_EE (0.8V - PWM controlled)
-* VDD_CPU(PWM controlled)
-* VDDQ1_5
+* VDD_CPU (PWM controlled)
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- .../boot/dts/amlogic/meson-g12a-sei510.dts    | 57 +++++++++++++++++++
- 1 file changed, 57 insertions(+)
+ .../boot/dts/amlogic/meson-g12a-u200.dts      | 79 +++++++++++++++++++
+ 1 file changed, 79 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-index 63c515fe4996..43d57e20294a 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+index f2afd0bf3e28..c69328d16333 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
 @@ -6,6 +6,8 @@
  /dts-v1/;
  
@@ -130,74 +131,85 @@ index 63c515fe4996..43d57e20294a 100644
 +#include <dt-bindings/gpio/meson-g12a-gpio.h>
  
  / {
- 	compatible = "seirobotics,sei510", "amlogic,g12a";
-@@ -15,10 +17,36 @@
- 		serial0 = &uart_AO;
+ 	compatible = "amlogic,u200", "amlogic,g12a";
+@@ -21,6 +23,83 @@
+ 		device_type = "memory";
+ 		reg = <0x0 0x0 0x0 0x40000000>;
  	};
- 
-+	ao_5v: regulator-ao_5v {
++
++	flash_1v8: regulator-flash_1v8 {
 +		compatible = "regulator-fixed";
-+		regulator-name = "AO_5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&dc_in>;
++		regulator-name = "FLASH_1V8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&vcc_3v3>;
 +		regulator-always-on;
 +	};
 +
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	dc_in: regulator-dc_in {
++	main_12v: regulator-main_12v {
 +		compatible = "regulator-fixed";
-+		regulator-name = "DC_IN";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
++		regulator-name = "12V";
++		regulator-min-microvolt = <12000000>;
++		regulator-max-microvolt = <12000000>;
 +		regulator-always-on;
 +	};
 +
-+	emmc_1v8: regulator-emmc_1v8 {
++	vcc_1v8: regulator-vcc_1v8 {
 +		compatible = "regulator-fixed";
-+		regulator-name = "EMMC_1V8";
++		regulator-name = "VCC_1V8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&vcc_3v3>;
++		regulator-always-on;
++	};
++
++	vcc_3v3: regulator-vcc_3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&vddao_3v3>;
++		regulator-always-on;
++		/* FIXME: actually controlled by VDDCPU_B_EN */
++	};
++
++	vcc_5v: regulator-vcc_5v {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC_5V";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&main_12v>;
++
++		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
++		enable-active-high;
++	};
++
++	usb_pwr_en: regulator-usb_pwr_en {
++		compatible = "regulator-fixed";
++		regulator-name = "USB_PWR_EN";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&vcc_5v>;
++
++		gpio = <&gpio GPIOH_6 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
++	vddao_1v8: regulator-vddao_1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDAO_1V8";
 +		regulator-min-microvolt = <1800000>;
 +		regulator-max-microvolt = <1800000>;
 +		vin-supply = <&vddao_3v3>;
 +		regulator-always-on;
 +	};
-+
- 	memory@0 {
- 		device_type = "memory";
- 		reg = <0x0 0x0 0x0 0x40000000>;
-@@ -31,6 +59,35 @@
- 			no-map;
- 		};
- 	};
 +
 +	vddao_3v3: regulator-vddao_3v3 {
 +		compatible = "regulator-fixed";
 +		regulator-name = "VDDAO_3V3";
 +		regulator-min-microvolt = <3300000>;
 +		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&dc_in>;
-+		regulator-always-on;
-+	};
-+
-+	vddao_3v3_t: regultor-vddao_3v3_t {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_3V3_T";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vddao_3v3>;
-+		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
-+		enable-active-high;
-+	};
-+
-+	vddio_ao1v8: regulator-vddio_ao1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_AO1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vddao_3v3>;
++		vin-supply = <&main_12v>;
 +		regulator-always-on;
 +	};
 +
