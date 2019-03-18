@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BED25C43381
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 20:13:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2236EC43381
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 20:14:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8972F20828
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 20:13:59 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E72AE20828
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 20:14:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hi0XlFzY";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="mAKFJFqi"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8972F20828
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="vD/1VhVp";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="sRlEqDEn"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E72AE20828
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,58 +26,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=E/q80UskR327JbnnDL8NbPumy0IPsDZtcssZO++y6es=; b=hi0XlFzYDYiN8O
-	B7h33rh6OtoPKeFNEZcS6aU67KpN9F/kcDQ3gfnfRGXPgfVigtaPh1VOe0NrNzGIIaL4yw/UBBDSO
-	BKa6A67xT3/xaYcTuclcbJR0+3R5G26s9J4c4PBWmhNLpCg/d1cxV8lxjk9vOflLBBQ61jUIKS2V4
-	fEu6b5RPxHRryRBtgLFJcww4OuwQtifRdM+7Z48E70fc7BZYyUnGCBH2m6rKsiyP46lR8xNwLZAYW
-	+gZ9UN/Yd9tz8iwf+PY196w6wp/AcBkg4AwEs0GFHFVPTstnBiUIFWWlVaffXHTYdE2P5vB3TL3TW
-	gJunWNORxngVG4uL2QCw==;
+	List-Owner; bh=ufUhE4BrrxQ19mZA+yRQc2xzHWLSZh86ePkCYbSt+p0=; b=vD/1VhVppYd/PE
+	Bc7RXkaJ8uTb3RfHchO10+fv+kjX+5gSa+mSStLDzzqEPnLulytka5+d2nY6UtjHnfUfJouKB32ts
+	Wcw9+lCMVh42sQLGFENqiSdMt4rrOj34kurDVuuKNHunqELkE+kf+1SeuNppkhzXn0wG7RjrkZNIA
+	lXajFoZweQli+moiNwZCFWyzD9Xh0kss14PKAKl7MU8R+0gm7SV5BWmRvIg4zz0QC4+VLcRwZ0sdM
+	Lh3scmcY41GzowRQ5osZcVbpGdfeWh64JCwvdfc5Pg/KaE88cZ52eRbwbvQPPYzaQ7QGFncfkN/4C
+	3WCw2bUZpVSbXJxZScAg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h5ydv-0003vu-GM; Mon, 18 Mar 2019 20:13:55 +0000
-Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
+	id 1h5ye6-0004Ay-B3; Mon, 18 Mar 2019 20:14:06 +0000
+Received: from mail-ot1-x343.google.com ([2607:f8b0:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h5yds-0003vO-HR; Mon, 18 Mar 2019 20:13:53 +0000
-Received: by mail-ot1-x344.google.com with SMTP id h7so7672389otm.2;
- Mon, 18 Mar 2019 13:13:52 -0700 (PDT)
+ id 1h5ye1-000444-PY; Mon, 18 Mar 2019 20:14:04 +0000
+Received: by mail-ot1-x343.google.com with SMTP id x8so15612822otg.7;
+ Mon, 18 Mar 2019 13:14:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=ley2nh3GFrfpOpGk4n030KPLgXgEmt/2h5lDf9s9dEA=;
- b=mAKFJFqiDQc+2hXNhQknOvDGq/lAvfTgO/Cv1Rcjlkeu0J4FjsyYMe8yHw8gA8NhTu
- 5eqjN7en5Fbh7jAv0DM7ACjhxH3W+/VrJToVd9Vckyykk3SlvrpJbuomNKTnaXJjIY6e
- Z9r8nOwJ7xLWg90QT85pHCMBUXXs2jYMm727cfN+KV5YmMcK9l/v09GMO/z1Wg03B6Ve
- 0E+vC+25J9IsXZmDu5izvIbfaUrU9+tf4dmBEBosVN32wdXzUmUQ0zZzk9nn0MWz45n2
- 9IisliRQp8IOdwjcmdoBG9oGTPUHxj5tW9GIkGV5JCAEZ4c/+LIJR8DZ0FNenTDVGE5V
- wc9A==
+ :cc; bh=sCaVs6o3RVpxDMzAy4B4Wg4rQyGWz3EtKJvXXlUnELM=;
+ b=sRlEqDEnddOSXulQi2zIzuiXXowkkmjCs73LvIheiz7tLe5bOygwhS1y8OwRWLWn/3
+ aV9MD6h/MI5dElzC5AVyhEyPmOLIPkrxF2jIoJwJBzxhGGiBh1WcTSCh0VLnSyplRDJU
+ vXxhbOIov6z9SsJOnJBF1o7J2XaoUV+t8XoisNOOmHfwCa0ildR3AOzdbNRYgqX3lI00
+ AEUxQrMy5X11Ag0akcYsWSmpkQ/d5bnCzxsQpZ2W+KhMLCM8E9vlrXnzKclOwENHUrVC
+ Ecn5kbajwGuK7H1b8SUkfQGvz90roEUUI/LndVzcPS1jaUgAPRq4P6gqYKHgHMonroKs
+ Zkfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=ley2nh3GFrfpOpGk4n030KPLgXgEmt/2h5lDf9s9dEA=;
- b=FmxiJRaosBBh3Ep6qEVNYzxZom4Ws3NyxqoAEUZLsC7zQ/+eHHgDB9A8xjnf/KlpIB
- xhsdHwV47k3U/wCFDiAUyuooSlR6TifaN0t4heX30di5VHGmCi9TjzYkPUiNLx+8UGdr
- TiypDjTp6SgpQzrUzc5UdJLrrLNvo02oB8ex/egj3KIZwIfvYwTPLJF05+WsbpSJBBrj
- i+jqLkpofqVW3ph4qC9kVqM21/mIFvFa0kOc0/1pr7XBBV2ICOE6ZZjO38BuRnhOWxLw
- nBg/AHj6U3c+9kIW86VXWl+KINPHgwfFi/jVqGGbY+JkgyGjx95tP3rE1du1hp4O7+5O
- S/Uw==
-X-Gm-Message-State: APjAAAVTvpFfam2ilTbyTpjPWBnv0t1m82gdm3KOSFWyWO4yF6RDUZ2i
- SlQjbzK5xBuY1l65DN5I/dSUD+F54TnhEulj1hqxpmO6
-X-Google-Smtp-Source: APXvYqyIJ/fJ5Ryl95uXVYFDfnRiMR7/LOMVdYNZaZZYH6o5h3HY63Tkwz9uvRiWvUKtKlVKSQB0Iw3FmweksseRz+Q=
-X-Received: by 2002:a9d:7441:: with SMTP id p1mr12227529otk.148.1552940031770; 
- Mon, 18 Mar 2019 13:13:51 -0700 (PDT)
+ bh=sCaVs6o3RVpxDMzAy4B4Wg4rQyGWz3EtKJvXXlUnELM=;
+ b=prpK8rbY0RD2D3BL4JIetuHqT8S0TbzJl3wgjM2xOiSdtUVnXmGD9E/MoaiOyAwzc7
+ ms1PErJ0YlVDLfrkPcfEcsPkJmideZ+UWoUdky/mMefGkka1OkKji5ESUPxa63cKAlRd
+ Z9nR67SD3S//LC12pnILLlLjWrJTCReeeKljX0EQQ0RY9x2ryHkUV8HIF0/tm8Bm4DPp
+ bP/U0MMXZKlqJ4tWbt52DXF1C3jg7u2geFTcca6jIjdkdDthuyFuY9DIVtWMeTezcQzq
+ i9GZtQKFw8s9wnEtaWcbtqU9DZzn/Rb5EJAXSXInXFb5qk1GuF81LUehjL8712g4bd5K
+ gLWQ==
+X-Gm-Message-State: APjAAAXbJ3Z4IkKFKchJnPexUTqEtxpLdtDr+OeLUznrOr/W+LuERsfy
+ fGqQpZkO5InW9rgw7gsLmYz4H3Gm6a6/iNQF1Yg=
+X-Google-Smtp-Source: APXvYqxwLPzvdW6+al7blZTxDDmQzklARpXfix4SUwy6Ucxd/tq4ChtYDInpoe+XNcj0qOBXbYEzLvsFW4l6L8QgdUQ=
+X-Received: by 2002:a9d:6306:: with SMTP id q6mr11332286otk.86.1552940040997; 
+ Mon, 18 Mar 2019 13:14:00 -0700 (PDT)
 MIME-Version: 1.0
 References: <20190318100458.5619-1-narmstrong@baylibre.com>
- <20190318100458.5619-12-narmstrong@baylibre.com>
-In-Reply-To: <20190318100458.5619-12-narmstrong@baylibre.com>
+ <20190318100458.5619-10-narmstrong@baylibre.com>
+In-Reply-To: <20190318100458.5619-10-narmstrong@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 18 Mar 2019 21:13:40 +0100
-Message-ID: <CAFBinCC_+KWZW0p-HGRzjsYZGHN_FkU9DicR6Z4+J3KfzPKbUw@mail.gmail.com>
-Subject: Re: [PATCH v2 11/11] arm64: dts: meson-g12a-x96-max: Enable USB
+Date: Mon, 18 Mar 2019 21:13:50 +0100
+Message-ID: <CAFBinCBWSoPoJ6F1fWdzE9Ogr+udamPYCYb=JUhuUb1hXf_yOA@mail.gmail.com>
+Subject: Re: [PATCH v2 09/11] arm64: dts: meson-g12a-sei510: Enable USB
 To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190318_131352_573249_F0763F9F 
-X-CRM114-Status: UNSURE (   7.06  )
+X-CRM114-CacheID: sfid-20190318_131402_334679_B2CDA0DD 
+X-CRM114-Status: UNSURE (   7.28  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -99,7 +99,7 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 On Mon, Mar 18, 2019 at 11:07 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
-> Enable the USB2 and USB3 Host ports on the X96 Max Set-Top-Box.
+> Enable the USB2 and USB3 Host ports on the SEI520 Set-Top-Box.
 >
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
