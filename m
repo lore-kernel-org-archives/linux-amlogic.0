@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4C794C43381
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 10:00:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5AB17C43381
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 10:00:36 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0C9A92070D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 10:00:25 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2A95D2070D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Mar 2019 10:00:36 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GszQIDo8";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="LehSVoC1"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0C9A92070D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nfMj/4ZP";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="uqGZrz2R"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2A95D2070D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+xViNa0CIE8pMbbhaG9e9JEuFNAtS8JiZxRa5mILiVo=; b=GszQIDo8iZXOP8
-	i+RTciauKev7LV/+409nmK2eQPyc5345VeVLZmk0GFvebGDSZJKJjcn1J604XRZ4lLILwc4vMD6l4
-	cahaFgXFZEq/YS4hQYkji19Dd56EI2+8ZmyOjrGOmC+KIHoTtiAYoLHmBn2aESF0z2PHPHustQ4h5
-	zGrDtMqD3DOMh00/gSyHViKjotKEqULQwdeotmZc3l9tTcvPtlVsnG4LbfK0iuzmP5j5SafeeflaC
-	jM0BAtqdtw484LoE0TkIR1LwkcRHi6T+qVmFDtyXOKyS7XHqjiIMhdwuFJ9yWEv4843OTrNEmZQ+X
-	IPgJtQyrps/F8O0nQCFw==;
+	List-Owner; bh=4NeeQLYSt+n94GjHQoFm4+c/xcq4N4ia3e+8zNAcWzc=; b=nfMj/4ZPsta0gN
+	RhPG3zsw9apukLbH1WHErBq9LcsfSAm2idZ5keEBM6GYUfFyX0VHv1qbpgM48Ilr8pT8BZVYiVRt1
+	RhzC8zHhrtL1xhw/gqeTA8ELb4XfRbkSYCIFoEfMyBJ7q6nqF7c+g523vK8Obkl5sHPy2wUnEHFnD
+	UvP19bC1LI0CbTMkMSbarENJuktfQQKpUe8B6ev1Crzxy5XWDAV2zZoC0qIjJr/h9X8HnbbDyc45V
+	bBTzAuH6E6kEQ8BMhzJBE7N3shARJIWU0xyBQk1ywbrUAKZ8hUAmw1gUygrlausRoCCBYex/vLt5C
+	oegXR7Hgeu1TloSPCbiw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h5p46-0006Dx-Cy; Mon, 18 Mar 2019 10:00:18 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1h5p4J-0006Tx-9M; Mon, 18 Mar 2019 10:00:31 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h5p2p-0003Yn-RE
- for linux-amlogic@lists.infradead.org; Mon, 18 Mar 2019 09:59:08 +0000
-Received: by mail-wm1-x343.google.com with SMTP id e74so12262470wmg.3
- for <linux-amlogic@lists.infradead.org>; Mon, 18 Mar 2019 02:58:59 -0700 (PDT)
+ id 1h5p2r-0003ak-Oi
+ for linux-amlogic@lists.infradead.org; Mon, 18 Mar 2019 09:59:16 +0000
+Received: by mail-wr1-x444.google.com with SMTP id w1so10323427wrp.2
+ for <linux-amlogic@lists.infradead.org>; Mon, 18 Mar 2019 02:59:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=d2hCudhASw8wxsHkqG+RXtSVr+MYVBar9SgnbE9VlWc=;
- b=LehSVoC1cbIXe0Guk+p7qfvtOhPZ5JYvkaolJ8F14KBrq4civ5pHQJWtVI/+cDPuVg
- PeXrjR1K74DmMhI8NN2i8zDzsL/f4BwUUWHNzqwmna9KmLCZQuNaUX7rdNurDAcFZDcg
- A2RfWJW4EohlZEwvoT5Z+D4kGYp8YPm5F3Iy+YpAJWY47LATi+3QZ/uP7H9/FhYSG+7e
- yAOy7Xa9i4DykBYGKFwOYVGQexZrvJnK5Oy08njjg9gzDxlqMTg6JGVIMQ2NTgS4UzKV
- B9byFcNkIBKoFPJEwVP/DDodSQFe/khSt+4CIsDzCyWb+hTFr8CGdc3ehje06FM7PTqo
- y2gg==
+ bh=9EioP8T7LI4Uy8dBmKG3aC7DgMQWG+51HGznOMhw3V4=;
+ b=uqGZrz2R/fewUc9eUMs4QTydVILxyq5+7yIo5wzVdwaLCPO0kCCcqSBFWQX52mYb9I
+ EUc5YykPPxSQUc5nvP7JPsBhJ3VkJYWZ3XMv7a6WhoTUiiLZaeYcCrv/QK8CgQ6XD4oH
+ YSEK7tFBw4d7HZMMVmvve1HwaPlaHYK1qR+fLqIEtgiHLqNBgPTaqlEDBHx1R9XCKGgX
+ fBlOnrJ0wHPGfzFVnQe7qDWnI52R1tBlZL8gqhkzV2ImNBK/e1pTXvEmnbmydoo6UJj2
+ lkQ7zBwWdKvH9Awm9XAE0CgILaE8nhjzgUpiM6hKNAeSpylM/kzcnAhp+uBre+tbNijo
+ /t/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=d2hCudhASw8wxsHkqG+RXtSVr+MYVBar9SgnbE9VlWc=;
- b=R8o4LaI6519x15ma3I4j6CUA0VQ66swdcg9ol2z4Eaq3YS0fhUrBk0RhbGl6zgoP1g
- 1UOaFqAZ9s6B1exDw6/ASRfGUdBKYYYcctWHGf3cwidLmEFq2uwcFPH+PCYTSutmafaD
- vAiHFaXQILZ50yHPHPjCJZClMd8eZCLxXnde8L1IiAjnyFoMXyWXTDVeRTK87ANhSOLl
- j7wP3j+TFPillLjYTwMTGWOAinRB69Vt0f7Gp9z6IUdg5BTPlrfKhMiNHoVjSIUs6Qqo
- XJqkddFTcYAkll1xgP9NIonAdKnKdlBk6G1f8lcqxth5KbCI3VoJ00M8JwN6FLFrHYS+
- OuYA==
-X-Gm-Message-State: APjAAAXx9Sz2lTewvLJ98UCUZVXra2qyxatkiXFm3SqR6bMtkWUcY45G
- nm4nHQLeM7Z8t8NahxzOvQZ6jJEM44L0gw==
-X-Google-Smtp-Source: APXvYqx6g/IvMnCBJz+Nq2uI6KU+gcFL9xBk3shoRMPKYs5GBkh+tXyLowXIKixDOavBuKxE8HSakw==
-X-Received: by 2002:a7b:cc18:: with SMTP id f24mr11128724wmh.42.1552903138367; 
- Mon, 18 Mar 2019 02:58:58 -0700 (PDT)
+ bh=9EioP8T7LI4Uy8dBmKG3aC7DgMQWG+51HGznOMhw3V4=;
+ b=IZUVVEFuXSEtCqClJls33Ztf4qS1agxu9P7Mskq4wRA3Fjws/YQe7bvFHMnIxiDd4A
+ D62at7CaT1ksIUHjG71ELQtAvvN/8fiR8mk4nKlfvfUM821T+FDJHgFhOEhkEeFrVc1A
+ QtP4r020tAAJ1/EZ7uvPNAlHSKhKJ3Oc7Air2NjYZqkWMUq/YeovAXx+tbS4Jb6W/pM7
+ oSvRtF00YkrFnT9mCxH216NcUbHQUmkNn4z507ej//dffIiCKJ9JDv20AX28A/Leto4k
+ l/AgLBfpp9W0uFg5ZdNvtmT35yuohlQyBr/KUr7j4AwHioN1KAuHrV7XFycHoxcaspSr
+ FOGA==
+X-Gm-Message-State: APjAAAVxVheU336OcSmXUChlY06FbV4OyHbu2mUeKMbMBNQ/UmBpUfCi
+ SGgqogw1ZUogHyKXRMiNp08oJQ==
+X-Google-Smtp-Source: APXvYqw2j8aVz8JHkcIL7kul6LNskzjeo7tEIM8Qx9ypPmyjqNydMuFGNQcfAkqQs9VeB4K9VUvk2A==
+X-Received: by 2002:adf:d4c6:: with SMTP id w6mr11236056wrk.65.1552903139357; 
+ Mon, 18 Mar 2019 02:58:59 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id g8sm5459034wro.77.2019.03.18.02.58.57
+ by smtp.gmail.com with ESMTPSA id g8sm5459034wro.77.2019.03.18.02.58.58
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Mon, 18 Mar 2019 02:58:57 -0700 (PDT)
+ Mon, 18 Mar 2019 02:58:58 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: khilman@baylibre.com
-Subject: [PATCH v2 4/8] arm64: dts: meson: g12a: add reset controller
-Date: Mon, 18 Mar 2019 10:58:47 +0100
-Message-Id: <20190318095851.4062-5-narmstrong@baylibre.com>
+Subject: [PATCH v2 5/8] arm64: dts: meson: g12a: Add UART A,
+ B & C nodes and pins
+Date: Mon, 18 Mar 2019 10:58:48 +0100
+Message-Id: <20190318095851.4062-6-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190318095851.4062-1-narmstrong@baylibre.com>
 References: <20190318095851.4062-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190318_025900_270777_5D889B04 
-X-CRM114-Status: UNSURE (   8.25  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190318_025902_123436_AECA22E7 
+X-CRM114-Status: GOOD (  10.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,44 +97,111 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Jerome Brunet <jbrunet@baylibre.com>
+This patch adds the 3 UART nodes in the EE power domain with the corresponding
+pinctrl nodes.
 
-Add the reset controller device of g12a SoC family
-
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 72 +++++++++++++++++++++
+ 1 file changed, 72 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-index 7023c1c0f23c..cefd6e27c7a7 100644
+index cefd6e27c7a7..992751024366 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-@@ -247,6 +247,13 @@
- 			#size-cells = <2>;
- 			ranges = <0x0 0x0 0x0 0xffd00000 0x0 0x100000>;
- 
-+			reset: reset-controller@1004 {
-+				compatible = "amlogic,meson-g12a-reset",
-+					     "amlogic,meson-axg-reset";
-+				reg = <0x0 0x1004 0x0 0x9c>;
-+				#reset-cells = <1>;
-+			};
+@@ -114,6 +114,51 @@
+ 						#gpio-cells = <2>;
+ 						gpio-ranges = <&periphs_pinctrl 0 0 86>;
+ 					};
 +
- 			clk_msr: clock-measure@18000 {
++					uart_a_pins: uart-a {
++						mux {
++							groups = "uart_a_tx",
++								 "uart_a_rx";
++							function = "uart_a";
++							bias-disable;
++						};
++					};
++
++					uart_a_cts_rts_pins: uart-a-cts-rts {
++						mux {
++							groups = "uart_a_cts",
++								 "uart_a_rts";
++							function = "uart_a";
++							bias-disable;
++						};
++					};
++
++					uart_b_pins: uart-b {
++						mux {
++							groups = "uart_b_tx",
++								 "uart_b_rx";
++							function = "uart_b";
++							bias-disable;
++						};
++					};
++
++					uart_c_pins: uart-c {
++						mux {
++							groups = "uart_c_tx",
++								 "uart_c_rx";
++							function = "uart_c";
++							bias-disable;
++						};
++					};
++
++					uart_c_cts_rts_pins: uart-c-cts-rts {
++						mux {
++							groups = "uart_c_cts",
++								 "uart_c_rts";
++							function = "uart_c";
++							bias-disable;
++						};
++					};
+ 				};
+ 			};
+ 
+@@ -258,6 +303,33 @@
  				compatible = "amlogic,meson-g12a-clk-measure";
  				reg = <0x0 0x18000 0x0 0x10>;
+ 			};
++
++			uart_C: serial@22000 {
++				compatible = "amlogic,meson-gx-uart";
++				reg = <0x0 0x22000 0x0 0x18>;
++				interrupts = <GIC_SPI 93 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&xtal>, <&clkc CLKID_UART2>, <&xtal>;
++				clock-names = "xtal", "pclk", "baud";
++				status = "disabled";
++			};
++
++			uart_B: serial@23000 {
++				compatible = "amlogic,meson-gx-uart";
++				reg = <0x0 0x23000 0x0 0x18>;
++				interrupts = <GIC_SPI 75 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&xtal>, <&clkc CLKID_UART1>, <&xtal>;
++				clock-names = "xtal", "pclk", "baud";
++				status = "disabled";
++			};
++
++			uart_A: serial@24000 {
++				compatible = "amlogic,meson-gx-uart";
++				reg = <0x0 0x24000 0x0 0x18>;
++				interrupts = <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&xtal>, <&clkc CLKID_UART0>, <&xtal>;
++				clock-names = "xtal", "pclk", "baud";
++				status = "disabled";
++			};
+ 		};
+ 	};
+ 
 -- 
 2.20.1
 
