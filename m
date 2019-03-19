@@ -4,88 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B3F96C43381
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 10:12:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5F82FC43381
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 10:26:12 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8413220828
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 10:12:16 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2681720828
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 10:26:12 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FN057TBs";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="QHv/C1Zh"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8413220828
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="uX9I28Mh";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="iuHjRqUi"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2681720828
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8lGZCozQ0ufijKviiZ2uoQiHmoYGLHP68Ja98pEMeRw=; b=FN057TBs2XwuGR
-	Nh0oE27YrgVkAF1OSv8x/dqd/+cePaiFCaa/W1PoGiYEBQDCEPSrtn5yX/1D5J4Tri+3Gkm40ZL73
-	qUrKtB+NACAB6QMPqfGmJ7fRw1RQlSHRxooYwyTtlBA3L+LpZ161h1LMiRDmh6BWmgs6yPGhcrfxk
-	QtxDSqbjylpI4HIuLnoUYueiWPrvfme0NBEi4/3f7F6KfCk92Dv6JZ47EWqwkNYz2lO6ByuXlK8M5
-	ySbqKz4G3Y70jv53gF1Hd0UAq/o3HD+o10AqatWDXmr4wOp9ifAo/81On/4D9ZyP8iHGXdZG5QL75
-	FMSbWLfdOaq2wsLfS1YQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=beyVP1a1FvPF+vGZZKzfjv4eIky8e64XsMr2yUxE/rA=; b=uX9I28Mhcy/6dC
+	DrLTfrrIZf/hXV/NhKGKPUgc+KQ+F8hO81+uO+FzoPByscGmj0uS+mrR4qjp2x9zzOxqM2d9NtQzg
+	pt63l1lQ6nS2pZkYQgNzDEp3fIuoHWX+u5Z8kg/9DkitpKbFaj6yuYvcQnqwpzY+9UXL4oh7WqTlT
+	eb6Gw7paSp6PuAm0Uaxk7aczeGBu13DocgzMlYyjOymQqS2ARnXmjuD2xuEP6WRozURKxvV6Q8gg9
+	VAYoeNOXmCWFaEi9KtcONQ6Kdx0de4ortE8TJOqfRR+Aii4c+uaUvcA1Das/Q25rvjpGEvKoHIaMK
+	hxQ2bhcDQ8niOCXw+VPA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h6Bj8-0008Fd-Op; Tue, 19 Mar 2019 10:12:10 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1h6BwY-0006zi-SC; Tue, 19 Mar 2019 10:26:02 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h6Bir-0007vS-CW
- for linux-amlogic@lists.infradead.org; Tue, 19 Mar 2019 10:11:58 +0000
-Received: by mail-wm1-x344.google.com with SMTP id z6so4120970wmi.0
- for <linux-amlogic@lists.infradead.org>; Tue, 19 Mar 2019 03:11:53 -0700 (PDT)
+ id 1h6BwO-0006jt-Ic
+ for linux-amlogic@lists.infradead.org; Tue, 19 Mar 2019 10:25:54 +0000
+Received: by mail-wm1-x342.google.com with SMTP id 4so15970545wmf.5
+ for <linux-amlogic@lists.infradead.org>; Tue, 19 Mar 2019 03:25:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=My8ASarnpw2B62d9qiE1akdMtnJMYlnHeiI3/dBbjIo=;
- b=QHv/C1ZhzO0Qd7Xf5ev2t286jsI9+TByfKUHUcFOrC+T39Cz0+FWhfY2+hZcUBeUsL
- yG0R/BU+87PNQJkE3LrhMV1B9/pez4t0LH6Luf+v0biuMWtbPrJhQzziJznf9AndFLOU
- XXGolcV2kmCZcG4xCm2kg3OJINnK6V5dhr8jYIidQFSdpD/6sbGQu8MR0gbw6okmNjG0
- FEnzaAaJ10vxORd2OPRvCuyn7sm5ORsUvLku57W8Y9vAxxCEaJRy5aYbZlXHYSe680LA
- tv//cjKlJESNK7GRqI4yH8KXlJfCY1bszMK8lTcuaAH3GH2/RrmWdOnBw5k8Q5nbHjdl
- LEDA==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=TS6Bp01RXQyr4esHMRNtGtX76C+MJvKbjF1w90UiXHM=;
+ b=iuHjRqUi4txOrBxs9g8C8PUywbvPNoE8UQ47omFdSQ3W7vudOSbzMcPRmsVByL4RjJ
+ iYsw8pvBFU7OIw3QH9RWUUhm0ZakQtNPH3+9Ig8Di+ZKuDOY4S0Mq6fzV2Ch+ZmTBXDC
+ EiiP2kvg1K1ecqh/0EPFp9lUh8xK21rLdIPmtVJ1kQc5X+qjYHoYkq07AUlZIulrW6ir
+ 8EgL+AIMg50gc249O1Tj3nRe7wIM+olm2zIuyzbxiMcyGP3E+F/XqmXD1IuqMkVzI/8B
+ DSKGc6qmzp0VKX5gyNOg793JESy0jftS0gcI91HmldBhkrHTnNt56CH4Y332aUvVZT/d
+ PaCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=My8ASarnpw2B62d9qiE1akdMtnJMYlnHeiI3/dBbjIo=;
- b=G9SXAM1Z886OXiKv2yS7y31/7gW+DuRUr3HGi/p2BJ0Q5dNmwurQ6eVcyukO4KdssM
- DKXwBXDgKVfp0lpwE3uI34y+80gnCepoS+kEwqp89DzmUUk3ASHbTUxjzpTsQmdepKDO
- YQYPk/FPW+13qE9v8iUJgakusH88SJ3MtWJ+nIAWgh3OWAcUS5TGOEgBCK/hW9bE2qvh
- CL9lin0NhCPZovCbkCxzpwSMgM/QNe91gfd+NWcAO1cr4A6oox2WOSxD82uidhszSNNg
- hMyLd+fRUC891ZgiHUfXKJQfXzNrAya2Hq7Qo7LmB0a9bqnFM9JRpnSrXeLEIRgq3LEy
- SLYg==
-X-Gm-Message-State: APjAAAVefjQmAyefivJj5Z/d+AohCRbzB/zGicn7Xk7qmDuK96sMw3vC
- VBKMIzBLRHXz556PR08mTg5OfQ==
-X-Google-Smtp-Source: APXvYqx2hGwUdqmMih+I2PLfVexMx5FpNZim3pJM0gM9QmW3oQG5DtDIQqQ/zbIiuxZDqmmUY/O4TQ==
-X-Received: by 2002:a7b:c34e:: with SMTP id l14mr3024778wmj.68.1552990312067; 
- Tue, 19 Mar 2019 03:11:52 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=TS6Bp01RXQyr4esHMRNtGtX76C+MJvKbjF1w90UiXHM=;
+ b=oXKNFbyYY7kDFKNqpv5DAxbSF6w3j+wKhuLYJLMRi0xtHNh7tnyXvfHGrPUUkDZQLj
+ R0TPXgviO3IP50xeeg5Uzcwf+M/k9OCR3s0b2ftm+XP9v4LCABQW4IqCvii359mSzsmh
+ d/7CrRuDqyTdQJLqkO0zI0gHDPYbZrQGsIT1D26BF27TUGejSHMhpNV/Rk+e8kuqQ3OJ
+ wq9Ah3ZV9oOTK59WjRwGL28MBkkv4aP8PLyKSXlCTDfTqM7fblTlAgW2k4WmSzEh6G06
+ Y/pij769mclujYsLoacXAqDQRpkV97Pns0I3qM2VhpoDY9+LIqF5XRQ36pDQaesFg7eh
+ ytqw==
+X-Gm-Message-State: APjAAAVJUyhCDPI+Vg7Qes01B/ekr57A3xDuWvpalmlDxvFUexU65vbP
+ Vi46qdB03o/kU9T6iLTuBmF4Tg==
+X-Google-Smtp-Source: APXvYqz1Ou7IK8JpmlA48b08hJAT3bnakQ3M/055FDx2qPgjUDECsFAioyPfjYnc/wXOIdqVllaIUw==
+X-Received: by 2002:a1c:1a53:: with SMTP id a80mr2928569wma.15.1552991151213; 
+ Tue, 19 Mar 2019 03:25:51 -0700 (PDT)
 Received: from mjourdan-pc.numericable.fr (abo-99-183-68.mtp.modulonet.fr.
  [85.68.183.99])
- by smtp.gmail.com with ESMTPSA id h10sm3911245wmf.2.2019.03.19.03.11.51
+ by smtp.gmail.com with ESMTPSA id v6sm2640680wme.24.2019.03.19.03.25.50
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 19 Mar 2019 03:11:51 -0700 (PDT)
+ Tue, 19 Mar 2019 03:25:50 -0700 (PDT)
 From: Maxime Jourdan <mjourdan@baylibre.com>
 To: Neil Armstrong <narmstrong@baylibre.com>,
  Jerome Brunet <jbrunet@baylibre.com>
-Subject: [PATCH v2 2/2] clk: meson-g12a: add video decoder clocks
-Date: Tue, 19 Mar 2019 11:11:38 +0100
-Message-Id: <20190319101138.27520-3-mjourdan@baylibre.com>
+Subject: [PATCH] clk: meson-gxbb: round the vdec dividers to closest
+Date: Tue, 19 Mar 2019 11:25:37 +0100
+Message-Id: <20190319102537.2043-1-mjourdan@baylibre.com>
 X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190319101138.27520-1-mjourdan@baylibre.com>
-References: <20190319101138.27520-1-mjourdan@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190319_031154_691309_B62C1F9C 
-X-CRM114-Status: GOOD (  11.54  )
+X-CRM114-CacheID: sfid-20190319_032552_619160_582E2AD5 
+X-CRM114-Status: UNSURE (   9.46  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -105,229 +104,38 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the necessary clock parts for:
+We want the video decoder clocks to always round to closest. While the
+muxes are already using CLK_MUX_ROUND_CLOSEST, the corresponding
+CLK_DIVIDER_ROUND_CLOSEST was forgotten for the dividers.
 
- - VDEC_1: used to feed VDEC_1
- - VDEC_HEVC: the "back" part of the VDEC_HEVC block
- - VDEC_HEVCF: the "front" part of the VDEC_HEVC block
+Fix this by adding the flag to the two vdec dividers.
 
-In previous SoC generations (GXL, GXBB), there was only one VDEC_HEVC
-clock, which got split in two parts for G12A.
-
+Fixes: a565242eb9fc ("clk: meson: gxbb: add the video decoder clocks")
 Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
 ---
- drivers/clk/meson/g12a.c | 163 +++++++++++++++++++++++++++++++++++++++
- drivers/clk/meson/g12a.h |   8 +-
- 2 files changed, 170 insertions(+), 1 deletion(-)
+ drivers/clk/meson/gxbb.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
-index 3a3134976534..6c762a8b32b9 100644
---- a/drivers/clk/meson/g12a.c
-+++ b/drivers/clk/meson/g12a.c
-@@ -1495,6 +1495,151 @@ static struct clk_regmap g12a_vpu = {
+diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+index 04df2e208ed6..29ffb4fde714 100644
+--- a/drivers/clk/meson/gxbb.c
++++ b/drivers/clk/meson/gxbb.c
+@@ -2216,6 +2216,7 @@ static struct clk_regmap gxbb_vdec_1_div = {
+ 		.offset = HHI_VDEC_CLK_CNTL,
+ 		.shift = 0,
+ 		.width = 7,
++		.flags = CLK_DIVIDER_ROUND_CLOSEST,
  	},
- };
- 
-+/* VDEC clocks */
-+
-+static const char * const g12a_vdec_parent_names[] = {
-+	"fclk_div2p5", "fclk_div3", "fclk_div4", "fclk_div5", "fclk_div7",
-+	"hifi_pll", "gp0_pll",
-+};
-+
-+static struct clk_regmap g12a_vdec_1_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = HHI_VDEC_CLK_CNTL,
-+		.mask = 0x7,
-+		.shift = 9,
-+		.flags = CLK_MUX_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "vdec_1_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_names = g12a_vdec_parent_names,
-+		.num_parents = ARRAY_SIZE(g12a_vdec_parent_names),
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_vdec_1_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = HHI_VDEC_CLK_CNTL,
-+		.shift = 0,
-+		.width = 7,
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "vdec_1_div",
+@@ -2261,6 +2262,7 @@ static struct clk_regmap gxbb_vdec_hevc_div = {
+ 		.offset = HHI_VDEC2_CLK_CNTL,
+ 		.shift = 16,
+ 		.width = 7,
 +		.flags = CLK_DIVIDER_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "vdec_1_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_names = (const char *[]){ "vdec_1_sel" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_vdec_1 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_VDEC_CLK_CNTL,
-+		.bit_idx = 8,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "vdec_1",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "vdec_1_div" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_vdec_hevcf_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = HHI_VDEC2_CLK_CNTL,
-+		.mask = 0x7,
-+		.shift = 9,
-+		.flags = CLK_MUX_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "vdec_hevcf_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_names = g12a_vdec_parent_names,
-+		.num_parents = ARRAY_SIZE(g12a_vdec_parent_names),
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_vdec_hevcf_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = HHI_VDEC2_CLK_CNTL,
-+		.shift = 0,
-+		.width = 7,
-+		.flags = CLK_DIVIDER_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "vdec_hevcf_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_names = (const char *[]){ "vdec_hevcf_sel" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_vdec_hevcf = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_VDEC2_CLK_CNTL,
-+		.bit_idx = 8,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "vdec_hevcf",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "vdec_hevcf_div" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_vdec_hevc_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = HHI_VDEC2_CLK_CNTL,
-+		.mask = 0x7,
-+		.shift = 25,
-+		.flags = CLK_MUX_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "vdec_hevc_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_names = g12a_vdec_parent_names,
-+		.num_parents = ARRAY_SIZE(g12a_vdec_parent_names),
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_vdec_hevc_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = HHI_VDEC2_CLK_CNTL,
-+		.shift = 16,
-+		.width = 7,
-+		.flags = CLK_DIVIDER_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "vdec_hevc_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_names = (const char *[]){ "vdec_hevc_sel" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap g12a_vdec_hevc = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_VDEC2_CLK_CNTL,
-+		.bit_idx = 24,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "vdec_hevc",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "vdec_hevc_div" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
- /* VAPB Clock */
- 
- static const char * const g12a_vapb_parent_names[] = {
-@@ -2615,6 +2760,15 @@ static struct clk_hw_onecell_data g12a_hw_onecell_data = {
- 		[CLKID_PCIE_PLL_DCO_DIV2]	= &g12a_pcie_pll_dco_div2.hw,
- 		[CLKID_PCIE_PLL_OD]		= &g12a_pcie_pll_od.hw,
- 		[CLKID_PCIE_PLL]		= &g12a_pcie_pll.hw,
-+		[CLKID_VDEC_1_SEL]		= &g12a_vdec_1_sel.hw,
-+		[CLKID_VDEC_1_DIV]		= &g12a_vdec_1_div.hw,
-+		[CLKID_VDEC_1]			= &g12a_vdec_1.hw,
-+		[CLKID_VDEC_HEVC_SEL]		= &g12a_vdec_hevc_sel.hw,
-+		[CLKID_VDEC_HEVC_DIV]		= &g12a_vdec_hevc_div.hw,
-+		[CLKID_VDEC_HEVC]		= &g12a_vdec_hevc.hw,
-+		[CLKID_VDEC_HEVCF_SEL]		= &g12a_vdec_hevcf_sel.hw,
-+		[CLKID_VDEC_HEVCF_DIV]		= &g12a_vdec_hevcf_div.hw,
-+		[CLKID_VDEC_HEVCF]		= &g12a_vdec_hevcf.hw,
- 		[NR_CLKS]			= NULL,
  	},
- 	.num = NR_CLKS,
-@@ -2803,6 +2957,15 @@ static struct clk_regmap *const g12a_clk_regmaps[] = {
- 	&g12a_cpu_clk_trace,
- 	&g12a_pcie_pll_od,
- 	&g12a_pcie_pll_dco,
-+	&g12a_vdec_1_sel,
-+	&g12a_vdec_1_div,
-+	&g12a_vdec_1,
-+	&g12a_vdec_hevc_sel,
-+	&g12a_vdec_hevc_div,
-+	&g12a_vdec_hevc,
-+	&g12a_vdec_hevcf_sel,
-+	&g12a_vdec_hevcf_div,
-+	&g12a_vdec_hevcf,
- };
- 
- static const struct meson_eeclkc_data g12a_clkc_data = {
-diff --git a/drivers/clk/meson/g12a.h b/drivers/clk/meson/g12a.h
-index 1393a09730a6..39c41af70804 100644
---- a/drivers/clk/meson/g12a.h
-+++ b/drivers/clk/meson/g12a.h
-@@ -189,8 +189,14 @@
- #define CLKID_PCIE_PLL_DCO			198
- #define CLKID_PCIE_PLL_DCO_DIV2			199
- #define CLKID_PCIE_PLL_OD			200
-+#define CLKID_VDEC_1_SEL			202
-+#define CLKID_VDEC_1_DIV			203
-+#define CLKID_VDEC_HEVC_SEL			205
-+#define CLKID_VDEC_HEVC_DIV			206
-+#define CLKID_VDEC_HEVCF_SEL			208
-+#define CLKID_VDEC_HEVCF_DIV			209
- 
--#define NR_CLKS					202
-+#define NR_CLKS					211
- 
- /* include the CLKIDs that have been made part of the DT binding */
- #include <dt-bindings/clock/g12a-clkc.h>
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "vdec_hevc_div",
 -- 
 2.21.0
 
