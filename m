@@ -2,146 +2,88 @@ Return-Path: <SRS0=/WbR=RW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7793CC43381
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 09:59:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F269C43381
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 10:01:54 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4052A20857
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 09:59:04 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id F0B1620857
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 10:01:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="WDmQCsas";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="H/Dv2loz"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4052A20857
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kBQX5Ho6";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ou3ERKZX"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F0B1620857
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ChAEK6d3xovWa4W0M4HipHSsjmUcpAm8STx3JkrMtbA=; b=WDmQCsas1eZPuS
-	6OYorFcxpqHAfYdG+my9dIs1/wHPICd2kQ6adsUftnr7Eg7aF9T01IygEs1UOdvNYW3KOB664J1zI
-	FGfbkYOZPnmnBiqI2MpNfq8mYxodO5ShOo+OQgDbA0Yfav5yRbcLS4o6/IvAqJ8YfeKEgDRVlLlNT
-	9kGsdXOoGP2tnUcuUAM5MQWoNBYt9oEkCcsvtHh+0HkTL1zq9KP5/WLMNVDP6EX3GZ1jY8p7D6gKR
-	O2QXzT4G8quwyIXNK8Drl8KnHgRRgYVE3bhsa6nSuZvZ5Gg/rEIQ3APWb1t0KW9nYu1iOnhzzACsw
-	+c0JfcH4rnwcutJeiY3Q==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=yInqzuLS40f49jG6muXeUaoGEdZh+cQd0O3sdQFPKdc=; b=kBQX5Ho60DJVve
+	f6CK6k7qbdb9IEAI+eOkkkzfhEaYgztvIotJMAnJN89fwHrDrgIWt6sWLjQQ8J427Ytph7AYSAVKN
+	d+9ZLjTCkQHS1XrnJKyQRlnCQfM/l1Z3wpnNYUsm7yMqDhedRx0jXmNOUSQWu19tKQ2U5bFAfSjt0
+	Mxo7bSU54fBRwQBOSrxUikEMMOiuVWlyngLcg1QyMz5Z7k3p/tpn473CIY38PVVEjAyreZ1m6/jYq
+	zSLkSWf3Iu4oEXKhMCV0nHyi/9mfDUmd+6bP7pXPADC2N5+XVp6VtIxjMgKEyefhLADrVEDu34iT8
+	ikdzjE7zE26VINDIvnnw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h6BWL-0000ez-VY; Tue, 19 Mar 2019 09:58:57 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1h6BZ6-0002UA-BW; Tue, 19 Mar 2019 10:01:48 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h6BWC-0000VX-R9
- for linux-amlogic@lists.infradead.org; Tue, 19 Mar 2019 09:58:50 +0000
-Received: by mail-wm1-x342.google.com with SMTP id u10so13277068wmj.5
- for <linux-amlogic@lists.infradead.org>; Tue, 19 Mar 2019 02:58:47 -0700 (PDT)
+ id 1h6BYw-0002Ke-OO
+ for linux-amlogic@lists.infradead.org; Tue, 19 Mar 2019 10:01:40 +0000
+Received: by mail-wr1-x441.google.com with SMTP id j9so6127064wrn.6
+ for <linux-amlogic@lists.infradead.org>; Tue, 19 Mar 2019 03:01:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=O9kxU5BknRLXX2jAA8c+9ZcaS/iyjSYoBXNOkyw4XGc=;
- b=H/Dv2lozMENWG/7yxomMN+AYzm0seizeaLq3niCWJpgH6SjgchY5oJZOV1UlHcoqM9
- HIaBvmkq5E1eDUstvMWI9NJ3rG4UtsJhBLBpwupnEyvR9wKnwLYJ0t7BpJikqHvAsGOR
- k9G0PhsDfWQwGE6PYJozcTpqwvNUyjoSlvbPD5ToaHuqvSJ4sq/nxmxc79ayN3keWb3Q
- LBpRs2b5r29UjDkVXsrWFr9e2JJHg5MV0HB5DHwnMaw1VcEh9JRjZhvbg8moLprcokON
- 5O2+FORbSmTBBmxRlQ7y9J3WVRZq2PeM+8oDJPZBRvla5OYU5FQmeM3boDWHUe8R68aH
- AtuA==
+ h=message-id:subject:from:to:cc:date:in-reply-to:references
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=opIwr+LSOxebZuop6rJKZi2dDlWJbe9q7JQeFwl12vc=;
+ b=ou3ERKZXc13ZIO3uMV1dAKJiph09MzUn2Iz/+74xW8AKAEf54On4+B6xfd9cW9crA+
+ IPW4FRIpBusWJ+Uevhn4HeKecEAeV6h1zl4nqFIxhFaM94ZxPxczDTSe5JPa/CwwlvGV
+ Ne50AC1aUhavUvQNmm2NtwdVMzjmPc+PPbL2T4YHYbBCIaQHGyhiX4P2Sh2X4RPsemPi
+ CH8R2HEQdvBZ0/PaoamK+ii6s07BWMlXHzwIGgSg6zQYNkQHkKm2r213Xz4atLQaYr9N
+ D7ua91avN0vkyNyCp5VKteCrh8wf77UNwC5XcZxRbtV5P6ljrpssJkTO6L+NY2rscYBd
+ Zb+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=O9kxU5BknRLXX2jAA8c+9ZcaS/iyjSYoBXNOkyw4XGc=;
- b=crF3Ps3b+6ihz1ZCMhV0N2mIfAHL5EfEAaldqHRR+ShDGXcx9pgjxw4wSq5X/QYIdO
- 3aWBT80D++kV8KJbrNaC4HFsGJRK4CaKpeZP0EbJuxnC0YNRp5q+d0Lpi0WrJ9UWOhMW
- 9xiRVD6o8iDsUCLLhBotD8tm7Ju0Qu9oB25pVlP3wCIA9vE7lELdnh57WeezlDlzWp8y
- CXkgk9CFf3nYHWhnksr5jcYkTFQZjtCjgNwfNpY/VQA545C65NSuDYfhGRwac+kwwshy
- DcrMWrSBftw7eKpFs2dcYvAFnNuHD/sXtsqg+/VsfTTTBETQwt1Uj6id/sIMYDOlUuN6
- Bobg==
-X-Gm-Message-State: APjAAAXb0wAG+lSg6UKAeUqGRUS/wESBw0pXg+0+NXrbUGXoICMqCCAg
- N9b59TdypDR00CunHxfkudhurrvfvWXEOg==
-X-Google-Smtp-Source: APXvYqy/Cbo3EbAMsfmcaNk5K0xgtgf667HR8kiUQfVtOBhX1TemMHNLd14eY+K8wCwLJiHcyGsgXA==
-X-Received: by 2002:a1c:7ec2:: with SMTP id z185mr2932300wmc.69.1552989526498; 
- Tue, 19 Mar 2019 02:58:46 -0700 (PDT)
-Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr.
- [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id c202sm3154034wme.38.2019.03.19.02.58.45
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 19 Mar 2019 02:58:45 -0700 (PDT)
-Subject: Re: [PATCH 3/3] clk: meson-g12a: add PCIE PLL clocks
-To: Jerome Brunet <jbrunet@baylibre.com>
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=opIwr+LSOxebZuop6rJKZi2dDlWJbe9q7JQeFwl12vc=;
+ b=FghgEyNgodgcvpEIbzetkSqdWywWBAVlNim4wGReN4dXGIYPqTjr1qXEYsFyJQhUEp
+ 4bUg8Fs9E1cgndLn8AsY6wqVOVrFkR/QhZEIuNcmVj+8Oi4Mf/19QDxYJCLu9b0WUQLD
+ oMSuGjhMlK58TlutS37JgTnSFYDbsiNtPsnOEsLy5Usnw3iFJNG/gEDwOKcuCrbh/C6r
+ iVp22YmTk+nSaI97o0XspuVCnOYKWcepvI6H1t1oso3Ax0euOwxHGm6kG8dMsZSzOQCy
+ vovKNyshLSw60NoEHC1v1/t+l0AitBx2OTvT7XianKReqkg5RnScW/jD7l5iRT6g1rXo
+ y1YA==
+X-Gm-Message-State: APjAAAULlKk3jM4cFtGlBxNUC+/jKOfj3QCEQGUhOCjz+v64VxJn1qdy
+ 8++r31EGhAG/GmWBeoLYywd76ZLoz8g=
+X-Google-Smtp-Source: APXvYqwe2UkmD1q/qMxlum03VsVtWDwnc35WofKXjVdJhq+R7iQJgEUzK9bUOvpnnUG36+XwmOCxew==
+X-Received: by 2002:adf:fe83:: with SMTP id l3mr15321368wrr.229.1552989697023; 
+ Tue, 19 Mar 2019 03:01:37 -0700 (PDT)
+Received: from boomer.baylibre.com ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
+ by smtp.gmail.com with ESMTPSA id
+ b3sm17596163wrx.57.2019.03.19.03.01.35
+ (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+ Tue, 19 Mar 2019 03:01:36 -0700 (PDT)
+Message-ID: <2f8d217befcc4fdec36e5a31947cccfe74ccd49f.camel@baylibre.com>
+Subject: Re: [PATCH 0/3] clk: meson: add support for PCIE PLL
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Date: Tue, 19 Mar 2019 11:01:34 +0100
+In-Reply-To: <20190307141455.23879-1-narmstrong@baylibre.com>
 References: <20190307141455.23879-1-narmstrong@baylibre.com>
- <20190307141455.23879-4-narmstrong@baylibre.com>
- <f160590677d4eb03c31c7cb81fbca20d8916c460.camel@baylibre.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <9e2a4785-2bd5-c0a2-a5d7-73326b8b417f@baylibre.com>
-Date: Tue, 19 Mar 2019 10:58:44 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.5.1
+User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
 MIME-Version: 1.0
-In-Reply-To: <f160590677d4eb03c31c7cb81fbca20d8916c460.camel@baylibre.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190319_025848_881765_619C2011 
-X-CRM114-Status: GOOD (  19.97  )
+X-CRM114-CacheID: sfid-20190319_030139_238005_96B60312 
+X-CRM114-Status: GOOD (  12.88  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -160,202 +102,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 19/03/2019 10:55, Jerome Brunet wrote:
-> On Thu, 2019-03-07 at 15:14 +0100, Neil Armstrong wrote:
->> Add the PCIe reference clock feeding the USB3 + PCIE combo PHY.
->>
->> This PLL needs a very precise register sequence to permit to be locked,
->> thus using the specific clk-pll pcie ops.
->>
->> The PLL is then followed by :
->> - a fixed /2 divider
->> - a 5-bit 1-based divider
->> - a final /2 divider
->>
->> This reference clock is fixed to 100MHz, thus only a single PLL setup
->> is added.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  drivers/clk/meson/g12a.c | 118 +++++++++++++++++++++++++++++++++++++++
->>  drivers/clk/meson/g12a.h |   5 +-
->>  2 files changed, 122 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
->> index 80a7172df2a6..d382c21a29e5 100644
->> --- a/drivers/clk/meson/g12a.c
->> +++ b/drivers/clk/meson/g12a.c
->> @@ -614,6 +614,118 @@ static struct clk_regmap g12a_hifi_pll = {
->>  	},
->>  };
->>  
->> +/*
->> + * The Meson G12A PCIE PLL is fined tuned to deliver a very precise
->> + * 100MHz reference clock for the PCIe Analog PHY, and thus requires
->> + * a strict register sequence to enable the PLL.
->> + */
->> +static const struct reg_sequence g12a_pcie_pll_init_regs[] = {
->> +	{ .reg = HHI_PCIE_PLL_CNTL0,	.def = 0x20090496 },
->> +	{ .reg = HHI_PCIE_PLL_CNTL0,	.def = 0x30090496 },
->> +	{ .reg = HHI_PCIE_PLL_CNTL1,	.def = 0x00000000 },
->> +	{ .reg = HHI_PCIE_PLL_CNTL2,	.def = 0x00001100 },
->> +	{ .reg = HHI_PCIE_PLL_CNTL3,	.def = 0x10058e00 },
->> +	{ .reg = HHI_PCIE_PLL_CNTL4,	.def = 0x000100c0 },
->> +	{ .reg = HHI_PCIE_PLL_CNTL5,	.def = 0x68000048 },
->> +	{ .reg = HHI_PCIE_PLL_CNTL5,	.def = 0x68000068, .delay_us = 20 },
->> +	{ .reg = HHI_PCIE_PLL_CNTL4,	.def = 0x008100c0, .delay_us = 10 },
->> +	{ .reg = HHI_PCIE_PLL_CNTL0,	.def = 0x34090496 },
->> +	{ .reg = HHI_PCIE_PLL_CNTL0,	.def = 0x14090496, .delay_us = 10 },
->> +	{ .reg = HHI_PCIE_PLL_CNTL2,	.def = 0x00001000 },
->> +};
->> +
->> +/* Keep a single entry table for recalc/round_rate() ops */
->> +static const struct pll_params_table g12a_pcie_pll_table[] = {
->> +	PLL_PARAMS(150, 1),
->> +	{0, 0},
->> +};
->> +
->> +static struct clk_regmap g12a_pcie_pll_dco = {
->> +	.data = &(struct meson_clk_pll_data){
->> +		.en = {
->> +			.reg_off = HHI_PCIE_PLL_CNTL0,
->> +			.shift   = 28,
->> +			.width   = 1,
->> +		},
->> +		.m = {
->> +			.reg_off = HHI_PCIE_PLL_CNTL0,
->> +			.shift   = 0,
->> +			.width   = 8,
->> +		},
->> +		.n = {
->> +			.reg_off = HHI_PCIE_PLL_CNTL0,
->> +			.shift   = 10,
->> +			.width   = 5,
->> +		},
->> +		.frac = {
->> +			.reg_off = HHI_PCIE_PLL_CNTL1,
->> +			.shift   = 0,
->> +			.width   = 12,
->> +		},
->> +		.l = {
->> +			.reg_off = HHI_PCIE_PLL_CNTL0,
->> +			.shift   = 31,
->> +			.width   = 1,
->> +		},
->> +		.rst = {
->> +			.reg_off = HHI_PCIE_PLL_CNTL0,
->> +			.shift   = 29,
->> +			.width   = 1,
->> +		},
->> +		.table = g12a_pcie_pll_table,
->> +		.init_regs = g12a_pcie_pll_init_regs,
->> +		.init_count = ARRAY_SIZE(g12a_pcie_pll_init_regs),
->> +	},
->> +	.hw.init = &(struct clk_init_data){
->> +		.name = "pcie_pll_dco",
->> +		.ops = &meson_clk_pcie_pll_ops,
->> +		.parent_names = (const char *[]){ IN_PREFIX "xtal" },
->> +		.num_parents = 1,
->> +	},
->> +};
->> +
->> +static struct clk_fixed_factor g12a_pcie_pll_dco_div2 = {
->> +	.mult = 1,
->> +	.div = 2,
->> +	.hw.init = &(struct clk_init_data){
->> +		.name = "pcie_pll_dco_div2",
->> +		.ops = &clk_fixed_factor_ops,
->> +		.parent_names = (const char *[]){ "pcie_pll_dco" },
->> +		.num_parents = 1,
->> +		.flags = CLK_SET_RATE_PARENT,
->> +	},
->> +};
->> +
->> +static struct clk_regmap g12a_pcie_pll_od = {
->> +	.data = &(struct clk_regmap_div_data){
->> +		.offset = HHI_PCIE_PLL_CNTL0,
->> +		.shift = 16,
->> +		.width = 5,
->> +		.flags = CLK_DIVIDER_ROUND_CLOSEST |
->> +			 CLK_DIVIDER_ONE_BASED |
->> +			 CLK_DIVIDER_ALLOW_ZERO,
+On Thu, 2019-03-07 at 15:14 +0100, Neil Armstrong wrote:
+> The Amlogic G12A SoCs embeds a dedicated PLL to feed the USB3+PCIE
+> Combo PHY. This PLL needs a very specific and strict register sequence
+> in order to correcly enable it and deliver the 100MHz reference clock
+> to the Analog PHY.
 > 
-> That's unusual !
-> Ods have always been power of two divider so far. I suppose you have noticed
-> and checked this as well ?
->
+> After lot of trials and errors, and since this PLL will ever feed 100MHz
+> with a static configuration, it is simpler to setup a dedicated ops
+> structure with a custom _enable() op applying the init register sequence.
+> 
+> The rate calculation ops are kept in order to keep the nominal read
+> ops as-in, but set_rate is removed.
+> 
+> With this setup, the PLL can be enabled and disable safely and always have
+> the recommended PLL setup to feed the USB3+PCIE Combo PHY.
+> 
+> Neil Armstrong (3):
+>   clk: meson-pll: add reduced specific clk_ops for G12A PCIe PLL
+>   dt-bindings: clk: g12a-clkc: add PCIE PLL clock ID
+>   clk: meson-g12a: add PCIE PLL clocks
+> 
+>  drivers/clk/meson/clk-pll.c           |  26 ++++++
+>  drivers/clk/meson/clk-pll.h           |   1 +
+>  drivers/clk/meson/g12a.c              | 118 ++++++++++++++++++++++++++
+>  drivers/clk/meson/g12a.h              |   5 +-
+>  include/dt-bindings/clock/g12a-clkc.h |   1 +
+>  5 files changed, 150 insertions(+), 1 deletion(-)
 
-Yes, I've checked and validated it. Without CLK_DIVIDER_ONE_BASED,
-the divider is off by 1. And CLK_DIVIDER_ALLOW_ZERO since at reset,
-0 is the default register value.
+Well this PLL is indeed a nasty one ;)
 
-> That being said, the doc seems to imply that the global post divider will
-> divide by 36, which seems difficult to reach with powers of two.
-> 
->> +	},
->> +	.hw.init = &(struct clk_init_data){
->> +		.name = "pcie_pll_od",
->> +		.ops = &clk_regmap_divider_ops,
->> +		.parent_names = (const char *[]){ "pcie_pll_dco_div2" },
->> +		.num_parents = 1,
->> +		.flags = CLK_SET_RATE_PARENT,
->> +	},
->> +};
->> +
->> +static struct clk_fixed_factor g12a_pcie_pll = {
->> +	.mult = 1,
->> +	.div = 2,
->> +	.hw.init = &(struct clk_init_data){
->> +		.name = "pcie_pll_pll",
->> +		.ops = &clk_fixed_factor_ops,
->> +		.parent_names = (const char *[]){ "pcie_pll_od" },
->> +		.num_parents = 1,
->> +		.flags = CLK_SET_RATE_PARENT,
->> +	},
->> +};
->> +
->>  static struct clk_regmap g12a_hdmi_pll_dco = {
->>  	.data = &(struct meson_clk_pll_data){
->>  		.en = {
->> @@ -2499,6 +2611,10 @@ static struct clk_hw_onecell_data g12a_hw_onecell_data = {
->>  		[CLKID_CPU_CLK_AXI]		= &g12a_cpu_clk_axi.hw,
->>  		[CLKID_CPU_CLK_TRACE_DIV]	= &g12a_cpu_clk_trace_div.hw,
->>  		[CLKID_CPU_CLK_TRACE]		= &g12a_cpu_clk_trace.hw,
->> +		[CLKID_PCIE_PLL_DCO]		= &g12a_pcie_pll_dco.hw,
->> +		[CLKID_PCIE_PLL_DCO_DIV2]	= &g12a_pcie_pll_dco_div2.hw,
->> +		[CLKID_PCIE_PLL_OD]		= &g12a_pcie_pll_od.hw,
->> +		[CLKID_PCIE_PLL]		= &g12a_pcie_pll.hw,
->>  		[NR_CLKS]			= NULL,
->>  	},
->>  	.num = NR_CLKS,
->> @@ -2685,6 +2801,8 @@ static struct clk_regmap *const g12a_clk_regmaps[] = {
->>  	&g12a_cpu_clk_axi,
->>  	&g12a_cpu_clk_trace_div,
->>  	&g12a_cpu_clk_trace,
->> +	&g12a_pcie_pll_od,
->> +	&g12a_pcie_pll_dco,
->>  };
->>  
->>  static const struct meson_eeclkc_data g12a_clkc_data = {
->> diff --git a/drivers/clk/meson/g12a.h b/drivers/clk/meson/g12a.h
->> index 70aa469ca1cf..1393a09730a6 100644
->> --- a/drivers/clk/meson/g12a.h
->> +++ b/drivers/clk/meson/g12a.h
->> @@ -186,8 +186,11 @@
->>  #define CLKID_CPU_CLK_AXI			195
->>  #define CLKID_CPU_CLK_TRACE_DIV			196
->>  #define CLKID_CPU_CLK_TRACE			197
->> +#define CLKID_PCIE_PLL_DCO			198
->> +#define CLKID_PCIE_PLL_DCO_DIV2			199
->> +#define CLKID_PCIE_PLL_OD			200
->>  
->> -#define NR_CLKS					198
->> +#define NR_CLKS					202
->>  
->>  /* include the CLKIDs that have been made part of the DT binding */
->>  #include <dt-bindings/clock/g12a-clkc.h>
-> 
-> 
+Acked-by: Jerome Brunet <jbrunet@baylibre.com>
 
 
 _______________________________________________
