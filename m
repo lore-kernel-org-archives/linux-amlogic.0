@@ -2,22 +2,22 @@ Return-Path: <SRS0=/WbR=RW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-4.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS,UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 44482C43381
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 08:29:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C368CC43381
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 08:33:39 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1423F2075C
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 08:29:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 935BE20828
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 08:33:39 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nJRkQfBt";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="bu0tP29A"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1423F2075C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="S2wUvBfl";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="0nD8RV/E"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 935BE20828
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=t9pNjUCi+l+kSu8McvIbtnex9qAachK3sZehPx3tIPs=; b=nJRkQfBtmG7T2W
-	3XfM9ZiZ7pt8IGsZDxFB8itWGb+5AJUteXLT3KpzuQ023BvaEI7kf5F8S8uUiE1ZhtenRIsjxOrib
-	7jJ2vIHXMioIr02BhL1JwGfSAAWMcTOV/jeWqz51aZ/84Li58YpBlkRNt6E+uf/DH0SXRH9oSWrXj
-	5Ah8QnoFlVf0qUDJbfzFZ4uUzncRjh17Btxsk1jKcr+krF+pX6CbPVusa2Hpt/srduPqLnQYcUDJA
-	5l7tFJxjfamHfWK96dZYTq1ScSMbSELqHj1G6yY4Ac8X2UJVssgbIFfe+LdPse759HWJxC4wJGUx7
-	M1PxAT/a043nrrNifKQA==;
+	List-Owner; bh=nqKVo03gDAhw0IQQkEoFMfKQDFDKhl8ihAnBMseBEB8=; b=S2wUvBfldDnyrQ
+	5jJVN+HelvCZwbYIzu833OqvAnafIvYvr6WbHE8L9LgyV84sVy1QzotxunjppyCVMnyNQjgOgcUAp
+	HXMzAJfVkGjnREGu+E242cBN3qE6mEFofXpiEf7wn+FGzU078mCcZYKRToIlMGv4+6VWl3VKDUcwo
+	z/a10KbMNPXpbBx30NWFRndOuqjAmdDr9X5JZHEUb0RisWPCslgyeZ29gFRGaT/OaQOHl7xwHcYHh
+	AnZWPSH+NuPozhgjH7I9a+VK4GVSTlDo/1DINE/SXFUzlohchOmQfn1bwqIHmLQQj9goRVkX973uO
+	8+lcZnl+qMQCsk+/35/A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h6A7Q-0004B5-Sn; Tue, 19 Mar 2019 08:29:08 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1h6ABg-0000Fg-J2; Tue, 19 Mar 2019 08:33:32 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h6A7O-0004A5-Cs
- for linux-amlogic@lists.infradead.org; Tue, 19 Mar 2019 08:29:07 +0000
-Received: by mail-wm1-x344.google.com with SMTP id h18so7033657wml.1
- for <linux-amlogic@lists.infradead.org>; Tue, 19 Mar 2019 01:29:06 -0700 (PDT)
+ id 1h6AAJ-000704-1p
+ for linux-amlogic@lists.infradead.org; Tue, 19 Mar 2019 08:32:19 +0000
+Received: by mail-wr1-x442.google.com with SMTP id n9so15881441wrr.9
+ for <linux-amlogic@lists.infradead.org>; Tue, 19 Mar 2019 01:32:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=ctJZHSds0hf4vzWO8bdqiZY60BC3vzw8UB+A+5HMctw=;
- b=bu0tP29AS/2YT1h8+qCXzsmm0O9gio1tAJPzgFsZst3ebeckplW2KLTrNsV0bBebB0
- m/UPCDB1Q0ZpXNpKoDrYGHs+FpWk3CY2PN+8OFGKNB6wFezNDIoQdIfacKfkJxGwWZnh
- ydyR7z7HUvDVVRlyJQ9tQEohLMlPPjZAz9gcM9z+VzfbNvCyvMU86hCWAnKc+z2b9LHu
- 0YGXzYst/xye5DgJ+pWUffb05/ExPXykmyiIn6Bl75TiaGc89zqzftsglKWycopuvu9g
- 6Y5t8FjLSIHRWK0C9PIu0XKSC8XGzdR1XAwjyx2tThI+FNYytO7NoY+9KgYMxxdZJvuZ
- YiMQ==
+ bh=JgkDMe1G59I98GZPigKTXVOcv8CO66mFUbjWMq+iK+4=;
+ b=0nD8RV/EUC36ekgxrN8dauwdo1wHgRAHzIH+T3XcVDefDyLoUTrw7MC4XjcDkdTILe
+ u1OP+gP+PP2+uo37QsG123Nb1cYoZLJkzir6+KUuAe/r2QHgS4GFSU1MyVq1XP+6lnCp
+ ydZxOc1Eq/HVlMfMuNCXc2iLY4CrCw2QlxjyAt/VlQ8VyVZZ5TDgTY59I/XZXGRGMn/9
+ wZsuxBja99Ml8/rPkDKgPbXeKzzPBvItTO2K+6J716QhxdytiSkstyMHfp2GACsevp05
+ mUnk3+d4jua+Bwgql/i6buu/eMngyO9Q9Jd3cDAxmQTZ0ZKQgD+EhrnQyRjW1f7jCKOT
+ ozcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=ctJZHSds0hf4vzWO8bdqiZY60BC3vzw8UB+A+5HMctw=;
- b=hGxg4naI4+szG8Ph1gisi/dMINmrwhLqEK3V89lTNUst+Q3uqcwNFISVEMqoZMxlJd
- 2CpSr0507VHf3BxrtiPWNNrdVEShyTLC3nZ6q9XIiYd1zCdVMSf5tmwv1FIx6/Wb1dFn
- ajYMLFS1qfkyaoHaX+XBeFmxdlNGE03vjmNnbS7p7ZbRcqy1p7LSVeky05VYB8SENkWW
- zt0rqdGEtViZSiWFTONbw+fAFhNk52CtJhTK7J+kSeDR2nEknWsRglpGvBl/6q/6KWbl
- /bYPYoVGjOc0+91EmpdGNy2QkBGSLMNpaGvPlRgnwMaSwp65pW3pHWBsejzeUREMeb61
- OBtg==
-X-Gm-Message-State: APjAAAUCI6qDOLsJpHmahZ2KWCeB/ImyZaL64gE4N63Otp/tUcGFuDNM
- omqk7aZurxu3QIwXfzlNIC7fNQ==
-X-Google-Smtp-Source: APXvYqxEnweyymg82jk1eHa+OC+OD8j+/BNpUmOYH6SFr8CKLp1PmqywCvgKfC4Qg3cMBQGzHIE+KQ==
-X-Received: by 2002:a1c:7008:: with SMTP id l8mr2364498wmc.63.1552984144606;
- Tue, 19 Mar 2019 01:29:04 -0700 (PDT)
+ bh=JgkDMe1G59I98GZPigKTXVOcv8CO66mFUbjWMq+iK+4=;
+ b=ANLnZsJhRW9mkFbuP3J9serrBPosVD3nZPwCTrZTlncPrVHlE4UVJVi8K+T/eSvp7g
+ S7Unslw0qK7ox+I0eirFm4CwN2NBgmrDgLq6+N4x3k/D+7uzRNPmP27jpwgSTtbXD4EQ
+ 7OalBN/v/1/BncLD5HzgjhEGkSVpfobo6GLUK4bTrPzojvGr759ATPI40qH4wl9STAkF
+ 1KFM2Xxpvuw9QqnGzC3zpa5WbQuuPGeF/wwfH1Euv1MfQpicu4Xcy+Zw8jV1m34w/FG3
+ SGvh2OYrLKfvHzDqYwSHzLO9y+xEKKF8E/Ah7f0aRQbLmcyKPUUoFyABKEteLqrts9MP
+ 8O5w==
+X-Gm-Message-State: APjAAAWYbvhGy8ubPkGbGJ1oUqmysrVjNjcwzQ2XfoTVWGj+yQJopWpM
+ +MbeKFz9Vxb899LGNsSawMzCyw==
+X-Google-Smtp-Source: APXvYqydnqNErHw9EEFkS56KJZqRwIManCLKw2eZSd4wdDj6fBUHCEXFJ8u7cf9Jm0ngNdOs4azk7w==
+X-Received: by 2002:adf:eb89:: with SMTP id t9mr15306600wrn.21.1552984325572; 
+ Tue, 19 Mar 2019 01:32:05 -0700 (PDT)
 Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr.
  [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id b134sm3865654wmd.26.2019.03.19.01.29.03
+ by smtp.gmail.com with ESMTPSA id g81sm1504972wmf.7.2019.03.19.01.32.04
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 19 Mar 2019 01:29:04 -0700 (PDT)
-Subject: Re: [PATCH v2 06/11] arm64: dts: meson-g12a-x96-max: add regulators
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20190318100458.5619-1-narmstrong@baylibre.com>
- <20190318100458.5619-7-narmstrong@baylibre.com>
- <CAFBinCCSKh145--5EAPQyJjbuefRgWm57G+05so28-WiZjqNYg@mail.gmail.com>
+ Tue, 19 Mar 2019 01:32:04 -0700 (PDT)
+Subject: Re: [PATCH] clk: meson: g12a: fix VPU clock muxes mask
+To: Maxime Jourdan <mjourdan@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>
+References: <20190319082611.6215-1-mjourdan@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -132,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <c13bc57b-82ea-8f48-75a7-417941b08a11@baylibre.com>
-Date: Tue, 19 Mar 2019 09:29:03 +0100
+Message-ID: <3d3b5eff-0b66-ba90-bf56-11c5df0af6ed@baylibre.com>
+Date: Tue, 19 Mar 2019 09:32:04 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.5.1
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCCSKh145--5EAPQyJjbuefRgWm57G+05so28-WiZjqNYg@mail.gmail.com>
+In-Reply-To: <20190319082611.6215-1-mjourdan@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190319_012906_434206_B760F606 
-X-CRM114-Status: GOOD (  18.15  )
+X-CRM114-CacheID: sfid-20190319_013207_339692_72B84F0D 
+X-CRM114-Status: GOOD (  15.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -153,76 +152,52 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: khilman@baylibre.com, Guillaume La Roque <glaroque@baylibre.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, Jian Hu <jian.hu@amlogic.com>,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 18/03/2019 21:13, Martin Blumenstingl wrote:
-> Hi Neil,
+On 19/03/2019 09:26, Maxime Jourdan wrote:
+> There are 8 parents, use 0x7
 > 
-> On Mon, Mar 18, 2019 at 11:06 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->>
->> From: Guillaume La Roque <glaroque@baylibre.com>
->>
->> Add system regulators for the X96 Max Set-Top-Box.
->>
->> Still missing
->> * VDD_EE (0.8V - PWM controlled)
->> * VDD_CPU (PWM controlled)
->>
->> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  .../boot/dts/amlogic/meson-g12a-x96-max.dts   | 67 +++++++++++++++++++
->>  1 file changed, 67 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
->> index 0edbd00b358f..5c37930b09e2 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
->> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-> [...]
->> +       vcc_5v: regulator-vcc_5v {
->> +               compatible = "regulator-fixed";
->> +               regulator-name = "VCC_5V";
->> +               regulator-min-microvolt = <5000000>;
->> +               regulator-max-microvolt = <5000000>;
->> +               vin-supply = <&dc_in>;
->> +
->> +               gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
->> +               enable-active-high;
-> is there any way to test whether this GPIO is the right one?
-> I couldn't find a reference to a GPIOH_8 regulator in
-> buildroot_openlinux_kernel_4.9_fbdev_20180706
+> Fixes: 085a4ea93d54 ("clk: meson: g12a: add peripheral clock controller")
+> Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
+> ---
+>  drivers/clk/meson/g12a.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+> index cfb91df884cb..e52b0b53f398 100644
+> --- a/drivers/clk/meson/g12a.c
+> +++ b/drivers/clk/meson/g12a.c
+> @@ -1391,7 +1391,7 @@ static const char * const g12a_vpu_parent_names[] = {
+>  static struct clk_regmap g12a_vpu_0_sel = {
+>  	.data = &(struct clk_regmap_mux_data){
+>  		.offset = HHI_VPU_CLK_CNTL,
+> -		.mask = 0x3,
+> +		.mask = 0x7,
+>  		.shift = 9,
+>  	},
+>  	.hw.init = &(struct clk_init_data){
+> @@ -1435,7 +1435,7 @@ static struct clk_regmap g12a_vpu_0 = {
+>  static struct clk_regmap g12a_vpu_1_sel = {
+>  	.data = &(struct clk_regmap_mux_data){
+>  		.offset = HHI_VPU_CLK_CNTL,
+> -		.mask = 0x3,
+> +		.mask = 0x7,
+>  		.shift = 25,
+>  	},
+>  	.hw.init = &(struct clk_init_data){
+> 
 
-The x96 is based on the U212 reference design, and the GPIOH_8 controls the 5V_EN signal,
-but you are right, it's the wrong polarity here, it should be enable-active-low instead.
-(FYI The SEI510 does not use this at all, 5V is always enabled)
+Good catch !
 
-The schematics describes :
-VCC5V_EN (GPIOH_8-Hiz OD): 5V_EN
-L: Enable
-Hiz: Disable
-
-FYI, the GPIOH_8 is Open-Drain only, this means this pin cannot pull to TTL 1, only to TTL 0
-or set as input. We need to add a way to describe this in the pinctrl driver somehow....
-
-I will send a fix on v3
-
-I didn't notice because I power the board using a Type-A to Type-A connector,
-and the 5V from the USB port bypasses this regulator...
+I'll apply on fixes/drivers
 
 Neil
-
-> 
-> 
-> Regards
-> Martin
-> 
-
 
 _______________________________________________
 linux-amlogic mailing list
