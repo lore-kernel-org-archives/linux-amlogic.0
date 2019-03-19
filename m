@@ -3,20 +3,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.0
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2661FC43381
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 20:23:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9AFF7C43381
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 20:24:10 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EA1EC213F2
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 20:23:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6B6592082F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 20:24:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nR/8VHUZ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="iCW/eZ1T"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EA1EC213F2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Lte62FL6";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="YQKMODLN"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6B6592082F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,58 +25,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WXh8oRgWD7z+KDG6RrsXR+soODCUdtTl0hzAIi6yy84=; b=nR/8VHUZEowiGd
-	d4Ot57qnkRflH20ZiGQFwgZxCkET7nMfLoh0rm5aOW2cUip3FxyDlLwjmc8qmvA8q9+Soyfsxuqc6
-	UFTOZu7FvROI6VrFJrVr40POSQikhaLm2p+9bzlANt6vSfduwaBqznkIHqi8Rm89w7XALlehFZcXu
-	LB7bngzluFL9NTA++/0vtGsrS898H8x8yZ6cKUwOgJQFTPtTepc0NxxbsVFQdLSFKUo0NO9TwtRWs
-	AnblSZaB4h0IeZ0R5CHNYYIm0fjh8/DfQeXpeu8QNvSggKgrk/2RDWfpOAwSvA+Tpb10EQLE1YmQd
-	dKyWQhCshbv+GDnVdRxg==;
+	List-Owner; bh=PSoC0uLb9t66MW4BZqDp9Y7DSgGNOwJa4bQz1KDzck4=; b=Lte62FL6+tr4XY
+	MoTF4mzNTAflyN5aXlZg/s8Cs+XHcYrhSvyLTTvIP5+WBN5TG/lWcjGnDdOH/ZYpjSeWme2R63YDP
+	pPFyQ9tvjLHff9hytMABq4on2S5kgIu3zmmpAJqMqWEO8uH4bGWoxYiPvEBXAPG/N9rkVkk67reS5
+	+VYv7ob/irXUoLS6Qac/lpoKdcY//iM2Hp6vMjSXfcMnMvo9H5mWecyd6UgYYcM5djsdkrf6XUqgF
+	f9XuS09Q43eYnM/od+CSvy/3Jk66PW6GCAqpk0vmRguaaz3XxDIp/FVDdB/Q6chRsxrxiZv72WOwL
+	M1g4zPdwq8EAPBcGysYQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h6LGc-0000kG-LN; Tue, 19 Mar 2019 20:23:22 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1h6LHJ-00016L-GG; Tue, 19 Mar 2019 20:24:05 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h6LGT-0000al-5G
- for linux-amlogic@lists.infradead.org; Tue, 19 Mar 2019 20:23:15 +0000
-Received: by mail-wm1-x344.google.com with SMTP id f8so3206679wmh.0
- for <linux-amlogic@lists.infradead.org>; Tue, 19 Mar 2019 13:23:12 -0700 (PDT)
+ id 1h6LHA-0000wg-9b
+ for linux-amlogic@lists.infradead.org; Tue, 19 Mar 2019 20:23:57 +0000
+Received: by mail-wm1-x342.google.com with SMTP id a184so4289190wma.2
+ for <linux-amlogic@lists.infradead.org>; Tue, 19 Mar 2019 13:23:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=88tPsrPMPqYB1In/fB+lVmebSE2nvbar1boY4w5+Hlc=;
- b=iCW/eZ1TXoz+fs6IB2WRL76stZeBllse/i6gcshGW8qof0/MQkQc6V7f/TOq8q7f1N
- HUp8H5hpglp/B9foo+cp6S2bL4B8I2s7kg3uON5+Ybf1WEE+4QbHzHYWtfdQCV96a3GK
- 15zimJoDWhbB0sKN2e/Ws0pbBqEYTSBqvaybQAk4wG7nrHiFnrxi+xIboI+DPHffPKb2
- 23SVnn6F81Bnw81FWzk9o0k7KC7yTrjFycfbPJEzi+Z001SzVozUi9Q8Cb62dXGC80rn
- plBZUMfm35FGzcAx6RNKeTw/BjN3PEz2uGlEGmCUQbF3j0YynYOIy4mVA1IlyIDCUzim
- aA7Q==
+ bh=ko57RkHWPQkVm3K0JFUtK8DPri+oySpxmdfi+52IKgo=;
+ b=YQKMODLNqMN6FtVyX1X/eMBCrG8dI/zrETNzs1EJ7xo7hN4nWve9O5DYfwwcCwgOXN
+ o96EjF/NNb0kBkAVsgaImCF2nb2hxP5HbGEeEbY7r+xtH6xGcgCgKQeMd/os7hf6frpx
+ g6u231yoQ7rQM+IhsqU+5cx1tmWGNBSZDPUj9dkGCl21TnWuT6WrHh91WKYrMJVTIvG0
+ FBOhLo0m7HS76XGlgWvCNbuGKXLFP0niyvBaJs7BNjmBhiKcyUMFIyhxnU5oBudQGxd8
+ hCkvNTyJw0DGNuMOLkpK2AL5l66Xyr4zDFyiYrurMVm4g4z340RlqotpUF6Xr04AWJHE
+ lGWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=88tPsrPMPqYB1In/fB+lVmebSE2nvbar1boY4w5+Hlc=;
- b=Ciz5RFaufNknibOhNh4ohLpFeKnGuDc2CJ+6xMT0IVFr/gm8J5vPNX6bsllhlYJJVu
- AmxDYTZ9iMYnwqddJLm/oM7Kea5ETjRpLW19TVKmuqkRFE3HiYn5qvW/9DHhazHxSmTA
- 1EhNkfDPXrrUfDza+8ftNTeY3bloRe+mDmqtzQzTAgCI3MGUHMi9CmfvQ6iW/Q0L+/XZ
- Zk+5e8Ri5iy1ycfy5HhIok+sUBShcmcBwkxYRL8EWxXwraaFMD0F5ooAHv/5BI+ITast
- oz8TwHmEgdpbC7pjzUE6WuwVM48yGvyUrZo121YYfYwDmX8AAj3MR34JQ+eSk4JGgN/o
- kErA==
-X-Gm-Message-State: APjAAAWn8lm8hFlJ7xmdXXkiEe5MNFX6AQpn0ngvq6sSqddKrypsV1WZ
- ADFS/KBNKkOaa5Ru95e3Iz8dGg==
-X-Google-Smtp-Source: APXvYqyDODcxE4r1LgrUTFdsXWtJSDhNiOpe68EnE6DM+moXTyuPj8WolhJH3lwHDZNqNHuaybmERQ==
-X-Received: by 2002:a1c:4105:: with SMTP id o5mr3864934wma.35.1553026991274;
- Tue, 19 Mar 2019 13:23:11 -0700 (PDT)
+ bh=ko57RkHWPQkVm3K0JFUtK8DPri+oySpxmdfi+52IKgo=;
+ b=MCVQmPeGYMsXceMjDr/MJNr+QQAKAxlujKW8N3bINZqPMN18qwsJxwsniRDqsYCeRo
+ Xn9DbQHOHKCbaWaTlhhGjffbbHr0PUUbHPw9YDHxqfJsdEV9eaJBtgRrCfH1VFyaAf6k
+ VWKGy1dnH91ShN4U3Dtdj2f0tl6SBh/DQx/T9/3oFn0KS26lhNGCZcNf4nbHCZs0Z7K5
+ IYCtmaJcrZ6FAgaPf5bpifMQw8RJIEt8B3wR5pzgBLfVNmPI1d/4QujsmjRxBrHQqAXs
+ W3PvNhLtSkmqk+P7ZD2uSYCOaca3oVcXrM2z5EuWMlVCmy1iBY2SSB3UFk4fDWoiwgJh
+ NTuQ==
+X-Gm-Message-State: APjAAAU4H1fjmp5XLpt4MjjmV2q2s/SEFfd1K/W7MyeQTPA3HGCKhoFk
+ jYw5dy7zkddkGXYHvgf79P8Okg==
+X-Google-Smtp-Source: APXvYqzpWjzk3k5cXK3ebbe+B8tX5f+7NHtSlTIxlZ+yPx3/H0J8npMwtEixWgDxP2kPWmaVqw6Ftg==
+X-Received: by 2002:a1c:40d6:: with SMTP id n205mr5106851wma.146.1553027034571; 
+ Tue, 19 Mar 2019 13:23:54 -0700 (PDT)
 Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id v6sm63803wme.24.2019.03.19.13.23.10
+ by smtp.gmail.com with ESMTPSA id
+ o20sm43329wmh.21.2019.03.19.13.23.53
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 19 Mar 2019 13:23:10 -0700 (PDT)
-Subject: Re: [PATCH v2 0/2] clk: meson: g12a: Add CPU Clock support
+ Tue, 19 Mar 2019 13:23:53 -0700 (PDT)
+Subject: Re: [PATCH 0/3] clk: meson: add support for PCIE PLL
 To: Jerome Brunet <jbrunet@baylibre.com>
-References: <20190304131129.7762-1-narmstrong@baylibre.com>
- <e9e5644385fb0ac45faceec5ba005dc20ab65989.camel@baylibre.com>
+References: <20190307141455.23879-1-narmstrong@baylibre.com>
+ <2f8d217befcc4fdec36e5a31947cccfe74ccd49f.camel@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -129,16 +130,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <cd33907c-9b58-3e62-c490-35c184746367@baylibre.com>
-Date: Tue, 19 Mar 2019 21:23:09 +0100
+Message-ID: <18c924b3-2b06-802d-712a-23f973285128@baylibre.com>
+Date: Tue, 19 Mar 2019 21:23:53 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.5.1
 MIME-Version: 1.0
-In-Reply-To: <e9e5644385fb0ac45faceec5ba005dc20ab65989.camel@baylibre.com>
+In-Reply-To: <2f8d217befcc4fdec36e5a31947cccfe74ccd49f.camel@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190319_132313_199045_B85CE695 
-X-CRM114-Status: GOOD (  17.63  )
+X-CRM114-CacheID: sfid-20190319_132356_332635_3B64E352 
+X-CRM114-Status: GOOD (  14.70  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -157,45 +158,41 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 19/03/2019 10:39, Jerome Brunet wrote:
-> On Mon, 2019-03-04 at 14:11 +0100, Neil Armstrong wrote:
->> This patchset adds support for the clock tree feeding the 4xCortex A53
->> cpu cluster.
+On 19/03/2019 11:01, Jerome Brunet wrote:
+> On Thu, 2019-03-07 at 15:14 +0100, Neil Armstrong wrote:
+>> The Amlogic G12A SoCs embeds a dedicated PLL to feed the USB3+PCIE
+>> Combo PHY. This PLL needs a very specific and strict register sequence
+>> in order to correcly enable it and deliver the 100MHz reference clock
+>> to the Analog PHY.
 >>
->> This patchet does not handle clock changing, this will be added in a
->> secondary patchset.
+>> After lot of trials and errors, and since this PLL will ever feed 100MHz
+>> with a static configuration, it is simpler to setup a dedicated ops
+>> structure with a custom _enable() op applying the init register sequence.
 >>
->> The CPU clock can either use the SYS_PLL for > 1GHz frequencies or
->> use a couple of div+mux from 1GHz/667MHz/24MHz source with 2 non-glitch
->> muxes.
+>> The rate calculation ops are kept in order to keep the nominal read
+>> ops as-in, but set_rate is removed.
 >>
->> The CPU clock must be switched to a safe clock while changing the clocks
->> before the non-glitch muxes. Proper support will be added later.
+>> With this setup, the PLL can be enabled and disable safely and always have
+>> the recommended PLL setup to feed the USB3+PCIE Combo PHY.
 >>
->> In this patchset, clocks are set read-only.
+>> Neil Armstrong (3):
+>>   clk: meson-pll: add reduced specific clk_ops for G12A PCIe PLL
+>>   dt-bindings: clk: g12a-clkc: add PCIE PLL clock ID
+>>   clk: meson-g12a: add PCIE PLL clocks
 >>
->> Changes since v1:
->> - moved to clk_regmap_gate_ro_ops for R/O gates
->> - added comments with datasheet field names
->> - moved pribate bindings changes to driver patch
->> - removed invalid PCIE IDs
->>
->> Neil Armstrong (2):
->>   clk: meson-g12a: add cpu clock bindings
->>   clk: meson: g12a: add cpu clocks
->>
->>  drivers/clk/meson/g12a.c              | 350 ++++++++++++++++++++++++++
->>  drivers/clk/meson/g12a.h              |  22 +-
+>>  drivers/clk/meson/clk-pll.c           |  26 ++++++
+>>  drivers/clk/meson/clk-pll.h           |   1 +
+>>  drivers/clk/meson/g12a.c              | 118 ++++++++++++++++++++++++++
+>>  drivers/clk/meson/g12a.h              |   5 +-
 >>  include/dt-bindings/clock/g12a-clkc.h |   1 +
->>  3 files changed, 372 insertions(+), 1 deletion(-)
->>
+>>  5 files changed, 150 insertions(+), 1 deletion(-)
 > 
-> With the small naming comment on patch 2
+> Well this PLL is indeed a nasty one ;)
 > 
 > Acked-by: Jerome Brunet <jbrunet@baylibre.com>
 > 
 
-I fixed the naming while applying on next/headers for patch 1, next/drivers for patch 2
+Applied patch 2 on next/headers, patches 1 & 3 on next/drivers
 
 Neil
 
