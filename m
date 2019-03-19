@@ -2,22 +2,21 @@ Return-Path: <SRS0=/WbR=RW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 69FFEC43381
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 16:32:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4B378C43381
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 16:33:44 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3AA742064A
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 16:32:59 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1A7842064A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 16:33:44 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="L91xSVYG";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Fp/YWQUT"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3AA742064A
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="g+0gDSvC";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="OOLxPuO2"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1A7842064A
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +25,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7KPsk67s7P5t1/ryN5Z6TjUJEsioLXVVU12uAPD2zjA=; b=L91xSVYGHHcul3
-	WGOA7E177ZM7ey7g4dFOVNQPZt62r/fA44CmDfTeTtW/MB5okqNnGeD4SqAdI69DVrWdiGlYR1otl
-	Fo+CTA8U5bC7MS0LuFU16IlFOPiy+qSrIF6uzecpkNzeL0uhG57sdwhK6lW5WtuTqWZFHR3GMfT6w
-	U6wCrZCGUwtcOyJ3Fm/BsXAlMm8of5KGthhaqE5Mvb7PEmChzH63LDPqHw7mhZwNXqFkQHtIgxOcV
-	AgaDG40X9sHqoj6Z//AczqFvS0zr9WTxpZunBE5d2ok12ClK6LRfk2UnPQQNCsTy+siISITPy/Bjl
-	KdzV3OxroF4M4CBRwkhg==;
+	List-Owner; bh=QuNxPHZK5t19ZYt9XNS6c6mKlzpT7NfnUrd+YK7hSmc=; b=g+0gDSvC73eDJe
+	09jVs6tI95yPu0WCk4WzfUrDri8Zf2U3L67Y7OA2nz/bfiJrER9hn97ovDiLTTUk9olNnEM5xxCPR
+	mC2lHlNS90CPmsnvyohbbPK8LaX+czeMJcXxpbpT3XKRrYtmdaqN0e/20qpEB9gs0zcqD+ZFmp+F5
+	92zjl07lWxADzxBCV6OIyT1uYJi9RcJD2SnvU9boYrFC9DLlZQ5UDvr9I4HkxqN/gjHPdBDa/LH5X
+	emmJz3rUvsrG543DAMkQ0iCySYOb/68NMSGJuA2bZA3keGg9wFrS0h541bzujryE7/OSLkk79E14D
+	9BU4L7GgzmcXpGhoCO8A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h6HfY-0000pH-Sc; Tue, 19 Mar 2019 16:32:52 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1h6HgJ-0001J7-Sm; Tue, 19 Mar 2019 16:33:39 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h6HfW-0000ob-9a
- for linux-amlogic@lists.infradead.org; Tue, 19 Mar 2019 16:32:51 +0000
-Received: by mail-wm1-x341.google.com with SMTP id f3so17714553wmj.4
- for <linux-amlogic@lists.infradead.org>; Tue, 19 Mar 2019 09:32:49 -0700 (PDT)
+ id 1h6HgA-00019e-WA
+ for linux-amlogic@lists.infradead.org; Tue, 19 Mar 2019 16:33:32 +0000
+Received: by mail-wm1-x343.google.com with SMTP id 4so17498259wmf.5
+ for <linux-amlogic@lists.infradead.org>; Tue, 19 Mar 2019 09:33:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=LwcgbP/FhQcnTh6imxVlErky6Q46KkyWkYCztYza87M=;
- b=Fp/YWQUT4PIqnflF6CHYGcYNsbNLvBWaleu9MtSaHZPGBaKDtwJptLRbyZ/KRbLX8m
- tyc8xnfECgC91Sb3qsZE7xJ/WxyO6jRd5qNgqx4yiFV06qfQUC5+6zfcPA/GbtXwkFXd
- fQZMDz9dGyYyDwmLkX3K7OwTh3fHpv/Dd8T0nJg1mj090XQrof3+UA0Iud8bbAGOXdJ9
- 0vkK4NoWHCYtsqpTUmFKT6s4K6VqJ6iKjfRNOE2U9C2UHWNOUGKR0LYlZqsXCHLXiPhd
- vyxnFocsmspAMtUf08byDSlhrgUNUazvHoLWljb76NpBEtWRA/raivCbJvIIAnCHNSW7
- wFrA==
+ bh=PUdHg/ISDrEbb+A75UJh8MypGV9Y5nmA6hJrbLJRLVE=;
+ b=OOLxPuO2NAndU/ZrAEk6AG/nF5fpUtvfIrigi/rCt7Ck3MLb7YMDgMAZlQ7elK+Btq
+ bvb1Qh3IPTekGmLitpgtr3cWBn1/T2Nw6jwzWusQ0XUpwxLL5I9CQlyFr5NCDVIymFBK
+ W4pgEW/0y/EWJzZ5+8gqoiQBx9F6+ZUvy+TwSKlSUsw8wEFtNyGpqfl8XiyK/GBW/DTF
+ 9yMC/f7G1ZpSzSOSbXK5A8UV4JH0JA6V/iwMelwfhcbhahNgYK8nNdlI0mYqCto4JVXk
+ ZzlIYGcZZ8jzYxfqUmSdud9h8BDTfg8QQPtY2d1Bq9ZpxYJJ0q9rV/D7PXfGRNnuoXKK
+ SOTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=LwcgbP/FhQcnTh6imxVlErky6Q46KkyWkYCztYza87M=;
- b=K0OfUOl0+bTl3ANysc2nG5EJoEGgkOTwpTv5oCc/q3mCgvaZ4eqoP8MtncfxiOvWUW
- La+qEW9hHNPUIfmBZxTKqeqtIR6yfLyk4Ii6NWnHAF0Pv2CWFTt8zbr78/ByEVmUrrMn
- Af7T6/tAjfe2/UpNUXDyf+TOctdQMHybj2GBahMXlUpCS9R7t6B7EoOpzdq8PoubNeJE
- YSKh+xE++w42AV6gGYeSNwKD7GZJox24qrHN1D74pnBDuS3QXyLIqEL8lrUbJ/pd4B0x
- W2hlquH+gffLBs8S2JvBseAgWBP/7adAzq5LvFBHhJc10UjVPwkd+Asdmns+NN1CC7lL
- Gi+w==
-X-Gm-Message-State: APjAAAWLohnh75Plchg0ZvP1hqLDF8gjbEQ6/RbJY7jRaCtz0X3S5M46
- YTpeRtvUBBEfhU0h8HgKc6mlZA==
-X-Google-Smtp-Source: APXvYqzVZsWnqQQ754VIydHEBs1DZpKvxnSy+ZM+Of1V906piVviz7pekPfD0KA1s7KeljDirD/q4g==
-X-Received: by 2002:a7b:c382:: with SMTP id s2mr4309463wmj.56.1553013168315;
- Tue, 19 Mar 2019 09:32:48 -0700 (PDT)
+ bh=PUdHg/ISDrEbb+A75UJh8MypGV9Y5nmA6hJrbLJRLVE=;
+ b=eO0LpKL5eMAOiQX/z3XVaBWMgggHie+HeCW0MIuGITJsbb6C9QRrhPJUNiNfw4qN/6
+ jHrNnShJaS4k4hpK90EFSSz5TOfqPPOdLGOTjJUR6PgS1KqZBZQqniaNPAM/X0WhFfqX
+ BOEQ/lkgp29APXT2+D4xZucUuKvwdRhgJu6uT2X9q2s1uuWYlW0GO13QcsGA9uF01giJ
+ KjzTALxLa52ADliDaAu/9WqiaXT4T+cJGiETsubITVP+HRnrY7cwLvnuSlSa8AF0UYwK
+ U+4NOiFr+IZ3kM8dRDzwdLyhDZeARD4byvf+YQASmNUAciKUQXs6zsFdtHDlXeQXCAnE
+ o6Jg==
+X-Gm-Message-State: APjAAAWR3fkcx0voB5+Tdq8LSX2RhOyN348pWEItc8vSJJ//YIP4a7UY
+ DD8p3d0J6VfQnCOPa2pXFsM1zQ==
+X-Google-Smtp-Source: APXvYqzMPVpQH9xnQA1K8aIjbDjcptfeuBmsku3ToQ31AK5pEm4nGSWjwkj0mhS11uU/8GYaw7CmyQ==
+X-Received: by 2002:a1c:808c:: with SMTP id b134mr749232wmd.16.1553013209210; 
+ Tue, 19 Mar 2019 09:33:29 -0700 (PDT)
 Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
  by smtp.gmail.com with ESMTPSA id
- b9sm5788736wmc.9.2019.03.19.09.32.46
+ a9sm9043939wrt.29.2019.03.19.09.33.28
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 19 Mar 2019 09:32:47 -0700 (PDT)
-Subject: Re: [PATCH] clk: meson-gxbb: round the vdec dividers to closest
-To: Maxime Jourdan <mjourdan@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>
-References: <20190319102537.2043-1-mjourdan@baylibre.com>
+ Tue, 19 Mar 2019 09:33:28 -0700 (PDT)
+Subject: Re: [PATCH] clk: meson-g12a: fix VPU clock parents
+To: Jerome Brunet <jbrunet@baylibre.com>
+References: <20190313135503.3198-1-narmstrong@baylibre.com>
+ <3bebbae829d0a0e1e3ad26572e91ed141dbe5f20.camel@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -131,16 +130,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <5738d62f-4076-2b29-2539-f13592dc318b@baylibre.com>
-Date: Tue, 19 Mar 2019 17:32:46 +0100
+Message-ID: <b8a194d6-dc07-e39f-35a5-2c1c4d2b3161@baylibre.com>
+Date: Tue, 19 Mar 2019 17:33:28 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.5.1
 MIME-Version: 1.0
-In-Reply-To: <20190319102537.2043-1-mjourdan@baylibre.com>
+In-Reply-To: <3bebbae829d0a0e1e3ad26572e91ed141dbe5f20.camel@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190319_093250_333211_11FC76A7 
-X-CRM114-Status: GOOD (  16.65  )
+X-CRM114-CacheID: sfid-20190319_093331_088777_368B70F2 
+X-CRM114-Status: GOOD (  13.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -159,42 +158,18 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 19/03/2019 11:25, Maxime Jourdan wrote:
-> We want the video decoder clocks to always round to closest. While the
-> muxes are already using CLK_MUX_ROUND_CLOSEST, the corresponding
-> CLK_DIVIDER_ROUND_CLOSEST was forgotten for the dividers.
+On 19/03/2019 10:11, Jerome Brunet wrote:
+> On Wed, 2019-03-13 at 14:55 +0100, Neil Armstrong wrote:
+>> First two VPU clock parents are wrong, fix it here.
+>>
+>> Fixes: 085a4ea93d54 ("clk: meson: g12a: add peripheral clock controller")
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>  drivers/clk/meson/g12a.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Fix this by adding the flag to the two vdec dividers.
+> Acked-by: Jerome Brunet <jbrunet@baylibre.com>
 > 
-> Fixes: a565242eb9fc ("clk: meson: gxbb: add the video decoder clocks")
-> Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
-> ---
->  drivers/clk/meson/gxbb.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-> index 04df2e208ed6..29ffb4fde714 100644
-> --- a/drivers/clk/meson/gxbb.c
-> +++ b/drivers/clk/meson/gxbb.c
-> @@ -2216,6 +2216,7 @@ static struct clk_regmap gxbb_vdec_1_div = {
->  		.offset = HHI_VDEC_CLK_CNTL,
->  		.shift = 0,
->  		.width = 7,
-> +		.flags = CLK_DIVIDER_ROUND_CLOSEST,
->  	},
->  	.hw.init = &(struct clk_init_data){
->  		.name = "vdec_1_div",
-> @@ -2261,6 +2262,7 @@ static struct clk_regmap gxbb_vdec_hevc_div = {
->  		.offset = HHI_VDEC2_CLK_CNTL,
->  		.shift = 16,
->  		.width = 7,
-> +		.flags = CLK_DIVIDER_ROUND_CLOSEST,
->  	},
->  	.hw.init = &(struct clk_init_data){
->  		.name = "vdec_hevc_div",
-> 
-
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 
 Will apply to fixes/drivers for 5.1
 
