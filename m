@@ -2,147 +2,85 @@ Return-Path: <SRS0=/WbR=RW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EECECC43381
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 20:30:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E052CC10F03
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 21:22:35 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BC33A2082F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 20:30:28 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A37D22085A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 21:22:35 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NFTfvU/S";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="SjAxkf7c"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BC33A2082F
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tcKdEEuN";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="mB5mkRew"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A37D22085A
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=islB+fVdNXCwCpdAmPs27RFlAzvHe+gw68w/lS+IKmk=; b=NFTfvU/SQ5Q/Q/
-	iXEyqUksMyHlYjX8OkPjdy1GNAH+uQOH5KY5m6PYQ0zeDck//kmzQbyNpLbAjXWaC44XnPaTY+i6O
-	zmE18i6vMreCVjWhHZk4McbUGGl2TtsGjie9Jec0o6TJtrA0R8NFJueyA/ENXlConOeeuGmoUDUbm
-	t1n4mnAcfSklIno6D4rpxOsj8vPkPn8E5zjavyn1VGCKcaY0EgGvajA0p6uKjCcvYAxMk3RlyB/w5
-	CFcwuHUQrxxUZ3aQZPl7VIo/fOr+B6E++NGjA+26B+fOqjLDdCgFP3myCxBVnAs1hIaol19PhQVrE
-	K/2GimEZALILMuvUYMyw==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=3ifY3VPHNvqOlu2m3nTt3slbYqzcQ2HMEhE42NHoL1Y=; b=tcKdEEuN/l1Wve
+	HgysAQYYy/7mm9HyoCcqQMh1boWCADZdoRhtbzzxwP8yOWAgcY2PWR1G2spnVHf9v2RD6YzZr6iFH
+	d5cb6SZfR72MI95wzpxZLrGJXz0au7juAx9387OIs2IXtEHbXYeCwXNuwLZsMYazbpLXNfVXtwwYf
+	JWmWGNzIUTR8lvUOGzB8bLRmGkUMpbMxOOSJOY3a9LxNoiTmWmYTGf8EzVb2TkNOybPBO5JPt9PZ2
+	OLkXlX6axjZVrA654TXC9HOmQBqjyYnb9IszKoLMgAkLyz6cGp8eQi7ytHuPGGXiO5xYQMFF7UdzM
+	g4XqidiH1ymE2mpyRcBA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h6LNP-0004sX-TQ; Tue, 19 Mar 2019 20:30:23 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1h6MBo-0006Ze-Jz; Tue, 19 Mar 2019 21:22:28 +0000
+Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h6LNN-0004rr-8D
- for linux-amlogic@lists.infradead.org; Tue, 19 Mar 2019 20:30:22 +0000
-Received: by mail-wm1-x342.google.com with SMTP id v14so9334180wmf.2
- for <linux-amlogic@lists.infradead.org>; Tue, 19 Mar 2019 13:30:21 -0700 (PDT)
+ id 1h6MBl-0006ZG-Ph; Tue, 19 Mar 2019 21:22:27 +0000
+Received: by mail-ot1-x344.google.com with SMTP id i12so149956otp.12;
+ Tue, 19 Mar 2019 14:22:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=bSLQ8FK4Z1ngI7JlYt25VxWOyR3pz1WKo9ZRMM3iPO4=;
- b=SjAxkf7ch9JAWR3fdQuROTs9aIl4ZU0v/uFi4Ht3Mt9hEURDrx+0eqabju7E23p0vP
- eRno6WQoSy6njvlDOGVUuM6gcrkcwlK+gn2jB5nLJofhRVnm+Tb6ovTTUaXAuYTYdrrl
- bajEvqBauj3Bmo2VdtuWC16PkLoLEK7J3JxNqlMq7x99t8ghvZ9QGNJqGTxAHo+4gZN4
- S7aQ5ibh68zBUf++hRg0Pq6iDOyB+iNhCEpySyXw+XMQXUtX/HcfY4lI6x0RO1ILzNz+
- kuHN/yxgZDy6/wsJp2D2H/llKIvM2oZEgxHfC6mBkFbeq6KNXffw6fFg/JkNCZxLFDYY
- 0qgg==
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=MNwiVpfGk3bQ+Y9AQVFuLEbxJUByoleMAgYrrdgJDFI=;
+ b=mB5mkRewGL+QRfO4aAS+ve+CCjVFvHGLZMC0ybgF3XAPaQ3lt0dLdqT2+vSc/AwcFV
+ ko6jd+dlRmwkov6aUaAVkcMX9yY/bmng3kDoxG3xdlN3HrWixn8VklMt9eDAq0SVXHd5
+ dxrL9CIcwR3AYZ5fv30MvsaT9EF04BFZBKELmFaXpfyq/yiK1KabvgAa1Rrm6oGDupCo
+ TQqziq4zv5vDyBOca70WLAq04/Y8esZXQVONY26yfknYbGSB5XkyiQTqAx60/7ZSDOlU
+ o/hADS1EiqPTfH0sdn6RIu4Djc7EhHTmvA9O2Ev0LCQHg2LK0Yibpid0PMY/9KBCh9X9
+ p38g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=bSLQ8FK4Z1ngI7JlYt25VxWOyR3pz1WKo9ZRMM3iPO4=;
- b=FLki0K8pgpECelOzQt7HwzI6NLLQG/qGcrykbMQkCfsq497kLq+t361s349YdWnay+
- ZF8QKGKLvD4V00VLpQLRmcgD2ufuhKcBf5B8fvi+TkykyynZhi8CvQ3XkSnVWWmP+7j9
- ik/OPGaKGeGfLI7pVLkcMG6b63P8NHiB6aaqHOwZDYbI1UT9zLJwqt6Eq5in9ns25js8
- Kk81/pTpUkvHl/weoqVQnGPof14zZFZRPbPz3J9dGWTqZhHO4IuQyMrvcCyBok3wiH37
- qMvuBa0j9n4mssXtb7mgQi5C5lkhEn97zZMTCHlAoPOe9fI8eQnBEqXJH4g2xb24zWVw
- nVZw==
-X-Gm-Message-State: APjAAAU2hAV41MTidFHxcOn8Re0GAeKhjIKWkXSPpw3VeMJZ2ZT5CN11
- TZ3J0Qy6O+yOVYjroY7B9in/gg==
-X-Google-Smtp-Source: APXvYqw2lyJLq4DbMOD857Wq8c+XlMfaYDGUKjb8YX5rz2XG1CemxXU1tLcorCP6wF2g07RxtItHwQ==
-X-Received: by 2002:a1c:a8d3:: with SMTP id r202mr5422527wme.106.1553027419681; 
- Tue, 19 Mar 2019 13:30:19 -0700 (PDT)
-Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id
- z1sm12502125wrw.28.2019.03.19.13.30.18
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 19 Mar 2019 13:30:18 -0700 (PDT)
-Subject: Re: [PATCH v2 06/11] arm64: dts: meson-g12a-x96-max: add regulators
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20190318100458.5619-1-narmstrong@baylibre.com>
- <20190318100458.5619-7-narmstrong@baylibre.com>
- <CAFBinCCSKh145--5EAPQyJjbuefRgWm57G+05so28-WiZjqNYg@mail.gmail.com>
- <c13bc57b-82ea-8f48-75a7-417941b08a11@baylibre.com>
- <CAFBinCDj=5VpoJGKVGw5bG50EaBHgKz=WLtSwNVVWXtzfoiQ9A@mail.gmail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <56b69e23-6844-eb89-7198-fd2ecf307391@baylibre.com>
-Date: Tue, 19 Mar 2019 21:30:18 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.5.1
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=MNwiVpfGk3bQ+Y9AQVFuLEbxJUByoleMAgYrrdgJDFI=;
+ b=sf7IJnGOlPtbSXreK31FXC90x7Y+7hTBHUxEsHqQ7tthSVpjfYdmkfmEqYiRVmH9Hb
+ QneAmiJUcUFn8YrmG4R9QEcnqijHiw52/WeBwMd959S4ve6eV1IoSHQ9pgPKHjcS1y9v
+ 3fNUBWsONu7tjsawyWNBhquwHOs+HrSH4Qu3BxpbOm6esCke5OjQKIxu6pS7TkZ9iJ3i
+ 0riRNzVX/XxDUgzFUo/djVDGltQutMipPc8xp24k4C0K/4uYfJA8y7PAzKY72yBPob4h
+ AkF5pHiIzfLi3Yxn3HUG4Ufp+gDcRJ58rF6ICp4dlF3QTXWgrP+HHXdZ+ZXD46hT8pi2
+ g8Pg==
+X-Gm-Message-State: APjAAAXEE995+CJ0MUCEOD9bgp6JuANHDjUdTOfPIPzCkOn45SZjfEaP
+ ckrixZ8GUjvD3Eet9D30WGnF0kvxLoNkEO1mpRaoNPXE
+X-Google-Smtp-Source: APXvYqwsRe+chiRp9/ji/QVAmBj039OoAMZwpbFziC3gzhPQTzCB4itVVKO28A5WCryAH9GyeMP1kbChpc64OUyNJrA=
+X-Received: by 2002:a9d:5614:: with SMTP id e20mr3125794oti.348.1553030544566; 
+ Tue, 19 Mar 2019 14:22:24 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCDj=5VpoJGKVGw5bG50EaBHgKz=WLtSwNVVWXtzfoiQ9A@mail.gmail.com>
-Content-Language: en-US
+References: <20190318095851.4062-1-narmstrong@baylibre.com>
+ <20190318095851.4062-2-narmstrong@baylibre.com>
+ <CAFBinCDfOEvmQcE7TgYvXmM1f=pywYbjhbAZWs4AYNXs8y6y7Q@mail.gmail.com>
+ <7f391daf-db70-101a-18c7-04abf9c5a164@baylibre.com>
+In-Reply-To: <7f391daf-db70-101a-18c7-04abf9c5a164@baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 19 Mar 2019 22:22:13 +0100
+Message-ID: <CAFBinCBduFG5uK9ghDW98fe4t17UeZj1b3STHByVY15C-3hB2A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/8] arm64: dts: meson: g12a: Add AO Clock + Reset
+ Controller support
+To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190319_133021_325150_1D4D0D22 
-X-CRM114-Status: GOOD (  21.64  )
+X-CRM114-CacheID: sfid-20190319_142225_856794_D45E89BD 
+X-CRM114-Status: GOOD (  19.88  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -154,7 +92,7 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: khilman@baylibre.com, Guillaume La Roque <glaroque@baylibre.com>,
+Cc: khilman@baylibre.com, Jerome Brunet <jbrunet@baylibre.com>,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
@@ -162,88 +100,88 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 19/03/2019 21:13, Martin Blumenstingl wrote:
-> Hi Neil,
-> 
-> On Tue, Mar 19, 2019 at 9:29 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->>
->> On 18/03/2019 21:13, Martin Blumenstingl wrote:
->>> Hi Neil,
->>>
->>> On Mon, Mar 18, 2019 at 11:06 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->>>>
->>>> From: Guillaume La Roque <glaroque@baylibre.com>
->>>>
->>>> Add system regulators for the X96 Max Set-Top-Box.
->>>>
->>>> Still missing
->>>> * VDD_EE (0.8V - PWM controlled)
->>>> * VDD_CPU (PWM controlled)
->>>>
->>>> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
->>>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->>>> ---
->>>>  .../boot/dts/amlogic/meson-g12a-x96-max.dts   | 67 +++++++++++++++++++
->>>>  1 file changed, 67 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
->>>> index 0edbd00b358f..5c37930b09e2 100644
->>>> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
->>>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
->>> [...]
->>>> +       vcc_5v: regulator-vcc_5v {
->>>> +               compatible = "regulator-fixed";
->>>> +               regulator-name = "VCC_5V";
->>>> +               regulator-min-microvolt = <5000000>;
->>>> +               regulator-max-microvolt = <5000000>;
->>>> +               vin-supply = <&dc_in>;
->>>> +
->>>> +               gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
->>>> +               enable-active-high;
->>> is there any way to test whether this GPIO is the right one?
->>> I couldn't find a reference to a GPIOH_8 regulator in
->>> buildroot_openlinux_kernel_4.9_fbdev_20180706
->>
->> The x96 is based on the U212 reference design, and the GPIOH_8 controls the 5V_EN signal,
->> but you are right, it's the wrong polarity here, it should be enable-active-low instead.
->> (FYI The SEI510 does not use this at all, 5V is always enabled)
->>
->> The schematics describes :
->> VCC5V_EN (GPIOH_8-Hiz OD): 5V_EN
->> L: Enable
->> Hiz: Disable
-> thank you for this explanation!
-> 
->> FYI, the GPIOH_8 is Open-Drain only, this means this pin cannot pull to TTL 1, only to TTL 0
->> or set as input. We need to add a way to describe this in the pinctrl driver somehow....
-> as far as I understand the pinctrl driver changes would result in an
-> error when the GPIO is used with "active high" (making incompatible
-> drivers or .dts easier to see). is this correct?
+Hi Neil,
 
-I don't have a clear view of that, since it's really GPIO related.
-I don't know if we can really disable non-opendrain support for a
-specific gpio.
+On Tue, Mar 19, 2019 at 9:47 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> On 18/03/2019 21:02, Martin Blumenstingl wrote:
+> > Hi Neil,
+> >
+> > On Mon, Mar 18, 2019 at 10:59 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+> >>
+> >> Add nodes and properties for the AO Clocks and Resets.
+> >>
+> >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> >> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> >> ---
+> >>  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 18 ++++++++++++++++++
+> >>  1 file changed, 18 insertions(+)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> >> index 31ddf9444b3e..5c0983edf837 100644
+> >> --- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> >> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> >> @@ -4,6 +4,7 @@
+> >>   */
+> >>
+> >>  #include <dt-bindings/gpio/gpio.h>
+> >> +#include <dt-bindings/clock/g12a-clkc.h>
+> >>  #include <dt-bindings/interrupt-controller/irq.h>
+> >>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> >>
+> >> @@ -122,6 +123,23 @@
+> >>                         #size-cells = <2>;
+> >>                         ranges = <0x0 0x0 0x0 0xff800000 0x0 0x100000>;
+> >>
+> >> +                       rti: sys-ctrl@0 {
+> >> +                               compatible = "amlogic,meson-gx-ao-sysctrl",
+> >> +                                            "simple-mfd", "syscon";
+> >> +                               reg = <0x0 0x0 0x0 0x100>;
+> >> +                               #address-cells = <2>;
+> >> +                               #size-cells = <2>;
+> >> +                               ranges = <0x0 0x0 0x0 0x0 0x0 0x100>;
+> > sorry for noticing this only very late: I missed the #address-cells,
+> > #size-cells and ranges property in my last review
+> > do you have any change queued which requires this?
+> > my understanding is that the drivers for all RTI children should use
+> > the register offsets relative to the RTI start address. In that case
+> > the child nodes neither have a unit-address nor a reg property, making
+> > the last three properties unnecessary.
+>
+> We need the address-cells/size-cells and `ranges;` to satisfy the need
+> for the gpio subnode of the pinctrl node.
+>
+> For GX, we didn't add the pinctrl in the sysctrl_AO subnode, but we should
+> overwise we have overlapping.
+ah, I see - thank you for the explanation.
 
-We will need to investigate ! Anyway, using GPIO_OPEN_DRAIN in DT
-is the correct way to handle these GPIO lines.
+setting #address-cells and #size-cells will probably yield dtc
+warnings for the children without unit-address / reg property.
+also the pinctrl driver and the syscon driver would still ioremap
+overlapping memory regions (syscon: the full 0x100 range, the pinctrl
+driver various 4 and 8 byte registers) because both are ioremap'ing
+their register space.
+but indeed, the overlapping dt nodes are solved with this approach.
 
-Neil
+Rob acked a binding for the Lantiq XWAY SoC's with a simple-mfd /
+syscon as parent and children with a reg property. The parent node
+defines a reg and ranges property, but neither #size-cells nor
+#address-cells. the binding is documented here: [0]
+The requirements seem similar to our pinctrl needs. We could end up
+with only a single syscon and no overlapping ioremap for the pinctrl
+driver and we may not even have to change the binding.
 
-> 
->> I will send a fix on v3
->>
->> I didn't notice because I power the board using a Type-A to Type-A connector,
->> and the 5V from the USB port bypasses this regulator...
-> this is good to know.
-> I'm also powering some of my boards using a Type-A to Type-A
-> connector. I'll need to remember this and this whether boards are
-> still booting with the DC plug
-> 
-> 
-> Regards
-> Martin
-> 
+with this mail I want to start a discussion about the bindings of the
+AO pin controller (similar to how we re-considered the binding of the
+AO clock controller in the past). at the same time I'm not saying that
+we immediately have to change it.
 
+
+Regards
+Martin
+
+
+[0] https://www.kernel.org/doc/Documentation/devicetree/bindings/mips/lantiq/rcu.txt
 
 _______________________________________________
 linux-amlogic mailing list
