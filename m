@@ -2,87 +2,147 @@ Return-Path: <SRS0=/WbR=RW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_INVALID,DKIM_SIGNED,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5A93AC43381
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 20:28:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EECECC43381
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 20:30:28 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 27A422146E
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 20:28:22 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BC33A2082F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 20:30:28 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GfiCY5kw";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="tbN+RIjM"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 27A422146E
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NFTfvU/S";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="SjAxkf7c"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BC33A2082F
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:To:
-	Subject:Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=wOfUnWKjh1+NvxD/zwu1rAvTfpOUIrfG6gwJ2AAI0qI=; b=GfiCY5kwSFs+x+UZjHm2bL6p+
-	afZz6Kkyga9Ak1ODRZzeYKm/lK/x57aXohfvk8fNldsYbTewycBGiwwlwSZ4F5H51MXBhqg8SNlH3
-	Y+yzXSindm4zQshsxTCcSO0y/C1UjF86gMJhndTH9g6RsVe6XShFk7RqYH3lZGJoNiXYzIFqVPvn0
-	j+W7KlofAbcjYRklzuoUNUe99YmlO7G28e8cYQFvIs0pAKWt44U6yxBwG4pF1YYJxKhWGA/t0cGlj
-	mzYmm52qSWLRxIrRZalD1i9GJLzG4M79N3IlGVQ2lJcbDwP0j3P0UipWtiy5b3ngM/2McoPOFWMih
-	hwNdLqTtw==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=islB+fVdNXCwCpdAmPs27RFlAzvHe+gw68w/lS+IKmk=; b=NFTfvU/SQ5Q/Q/
+	iXEyqUksMyHlYjX8OkPjdy1GNAH+uQOH5KY5m6PYQ0zeDck//kmzQbyNpLbAjXWaC44XnPaTY+i6O
+	zmE18i6vMreCVjWhHZk4McbUGGl2TtsGjie9Jec0o6TJtrA0R8NFJueyA/ENXlConOeeuGmoUDUbm
+	t1n4mnAcfSklIno6D4rpxOsj8vPkPn8E5zjavyn1VGCKcaY0EgGvajA0p6uKjCcvYAxMk3RlyB/w5
+	CFcwuHUQrxxUZ3aQZPl7VIo/fOr+B6E++NGjA+26B+fOqjLDdCgFP3myCxBVnAs1hIaol19PhQVrE
+	K/2GimEZALILMuvUYMyw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h6LLL-0003CE-JE; Tue, 19 Mar 2019 20:28:15 +0000
-Received: from mail-oi1-x244.google.com ([2607:f8b0:4864:20::244])
+	id 1h6LNP-0004sX-TQ; Tue, 19 Mar 2019 20:30:23 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h6LLD-00034c-0x; Tue, 19 Mar 2019 20:28:08 +0000
-Received: by mail-oi1-x244.google.com with SMTP id j132so5509oib.2;
- Tue, 19 Mar 2019 13:28:06 -0700 (PDT)
+ id 1h6LNN-0004rr-8D
+ for linux-amlogic@lists.infradead.org; Tue, 19 Mar 2019 20:30:22 +0000
+Received: by mail-wm1-x342.google.com with SMTP id v14so9334180wmf.2
+ for <linux-amlogic@lists.infradead.org>; Tue, 19 Mar 2019 13:30:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=SjqSbwN3WCbrXUkCAiwGKUCDVIotOmf3+czbqgtuT1E=;
- b=tbN+RIjMSwyIWasK+Tr4VV/cr5+inkDDpl4GqznTG9ZzQQzNE9c1kKyxHXUWk7jMSh
- kW3Hksq14qfjB1WbNQlvo5LvSFyxo41jZZdE0sDCAc37hIsA2fWQdex8C+KBlJDVDI5J
- 9+sQitfKhhOo+/jhwsxF31ddh0l2tpgJ7R1njCLIe0+THx4ppC8E0ym0nLOkI9l31qko
- wHCaimpES1wLvRjzk9fLdBhusEFpAQ6Cp9BtHinjKH1BaY38DeRcBKjQAsDByv1kRInW
- Ge4WjNWfKlvO9lMP/ptPnh/FTSlKzl2CShfShmsPYpsb/NHOVb6bNxiPk/D/f3r2QX7D
- kCFQ==
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=bSLQ8FK4Z1ngI7JlYt25VxWOyR3pz1WKo9ZRMM3iPO4=;
+ b=SjAxkf7ch9JAWR3fdQuROTs9aIl4ZU0v/uFi4Ht3Mt9hEURDrx+0eqabju7E23p0vP
+ eRno6WQoSy6njvlDOGVUuM6gcrkcwlK+gn2jB5nLJofhRVnm+Tb6ovTTUaXAuYTYdrrl
+ bajEvqBauj3Bmo2VdtuWC16PkLoLEK7J3JxNqlMq7x99t8ghvZ9QGNJqGTxAHo+4gZN4
+ S7aQ5ibh68zBUf++hRg0Pq6iDOyB+iNhCEpySyXw+XMQXUtX/HcfY4lI6x0RO1ILzNz+
+ kuHN/yxgZDy6/wsJp2D2H/llKIvM2oZEgxHfC6mBkFbeq6KNXffw6fFg/JkNCZxLFDYY
+ 0qgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=SjqSbwN3WCbrXUkCAiwGKUCDVIotOmf3+czbqgtuT1E=;
- b=LAYMaZL7/y1EPvAFBHFQthzEXwSGh6ohvNLz42D39dO3EHgZNIukRZ10MEN1v7HDLC
- B+KWN35eNnRs5Xb1Y5LiexTWwKIA3BzmduUTPhgAKs7iajMr5suXss44ft6yOg4klptr
- PMHha8+3994Xc+2dFAM0Cm+M3py2wAOKHkEzEhXf4QgB+9s7h4bZJ/hXPRYzpq8vKMiV
- T08FzgvpB411dNEDpK2l+MBq7kpr+vQK8htMkpjVzloWJIGnRhMGITLxfzUgh/keB2+i
- Vdn7pxfb6YsrtsKA4Cm2yhY4zaxXUvyMgkByTiiIpWXU+B8spzk3uBbTBwibYUpsRlTo
- jwPw==
-X-Gm-Message-State: APjAAAWHzR0aaEhT8vDja9hM5LTVGDL+vEg85FeRbMUUnYYErL+8nTHK
- UDOfHL8zCqkal6+PCGrrFGErEVKWxkR/vgtBaEQ=
-X-Google-Smtp-Source: APXvYqxzZKOEQbaYE2ZhCsWJJr0F70V+8dKoZ8zrhtNrLFCwKjIqR5ZvqW5k9UtXZBSFKzar7xsPQBM3xJIcbIfRPvw=
-X-Received: by 2002:aca:6209:: with SMTP id w9mr2813097oib.47.1553027285832;
- Tue, 19 Mar 2019 13:28:05 -0700 (PDT)
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=bSLQ8FK4Z1ngI7JlYt25VxWOyR3pz1WKo9ZRMM3iPO4=;
+ b=FLki0K8pgpECelOzQt7HwzI6NLLQG/qGcrykbMQkCfsq497kLq+t361s349YdWnay+
+ ZF8QKGKLvD4V00VLpQLRmcgD2ufuhKcBf5B8fvi+TkykyynZhi8CvQ3XkSnVWWmP+7j9
+ ik/OPGaKGeGfLI7pVLkcMG6b63P8NHiB6aaqHOwZDYbI1UT9zLJwqt6Eq5in9ns25js8
+ Kk81/pTpUkvHl/weoqVQnGPof14zZFZRPbPz3J9dGWTqZhHO4IuQyMrvcCyBok3wiH37
+ qMvuBa0j9n4mssXtb7mgQi5C5lkhEn97zZMTCHlAoPOe9fI8eQnBEqXJH4g2xb24zWVw
+ nVZw==
+X-Gm-Message-State: APjAAAU2hAV41MTidFHxcOn8Re0GAeKhjIKWkXSPpw3VeMJZ2ZT5CN11
+ TZ3J0Qy6O+yOVYjroY7B9in/gg==
+X-Google-Smtp-Source: APXvYqw2lyJLq4DbMOD857Wq8c+XlMfaYDGUKjb8YX5rz2XG1CemxXU1tLcorCP6wF2g07RxtItHwQ==
+X-Received: by 2002:a1c:a8d3:: with SMTP id r202mr5422527wme.106.1553027419681; 
+ Tue, 19 Mar 2019 13:30:19 -0700 (PDT)
+Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
+ by smtp.gmail.com with ESMTPSA id
+ z1sm12502125wrw.28.2019.03.19.13.30.18
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 19 Mar 2019 13:30:18 -0700 (PDT)
+Subject: Re: [PATCH v2 06/11] arm64: dts: meson-g12a-x96-max: add regulators
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20190318100458.5619-1-narmstrong@baylibre.com>
+ <20190318100458.5619-7-narmstrong@baylibre.com>
+ <CAFBinCCSKh145--5EAPQyJjbuefRgWm57G+05so28-WiZjqNYg@mail.gmail.com>
+ <c13bc57b-82ea-8f48-75a7-417941b08a11@baylibre.com>
+ <CAFBinCDj=5VpoJGKVGw5bG50EaBHgKz=WLtSwNVVWXtzfoiQ9A@mail.gmail.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <56b69e23-6844-eb89-7198-fd2ecf307391@baylibre.com>
+Date: Tue, 19 Mar 2019 21:30:18 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.5.1
 MIME-Version: 1.0
-References: <20190301182922.8309-1-martin.blumenstingl@googlemail.com>
- <98776767-c4d7-1207-6d42-97105f289bec@amlogic.com>
- <CAFBinCC7P40sqrDGTuM8M=jVOFTgZLDUK6rGdNpigFoepyCASw@mail.gmail.com>
- <20190307140959.10092d45@xps13>
- <ccb95e75-e62f-c510-cabd-853481f77fc8@amlogic.com>
- <CAFBinCBd=dOZjv4KEDY9ODOONDO=WtaBqAMRi_a+gH3_iZEAHQ@mail.gmail.com>
-In-Reply-To: <CAFBinCBd=dOZjv4KEDY9ODOONDO=WtaBqAMRi_a+gH3_iZEAHQ@mail.gmail.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 19 Mar 2019 21:27:54 +0100
-Message-ID: <CAFBinCA7LLK6K3ZqauJy2N-z5-kTfuTztmoSQ=Bk4A5Xagxddw@mail.gmail.com>
-Subject: Re: [RFC PATCH nand-next 0/2] meson-nand: support for older SoCs
-To: Liang Yang <liang.yang@amlogic.com>
-Content-Type: multipart/mixed; boundary="000000000000b308a20584785793"
+In-Reply-To: <CAFBinCDj=5VpoJGKVGw5bG50EaBHgKz=WLtSwNVVWXtzfoiQ9A@mail.gmail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190319_132807_076547_EE026918 
-X-CRM114-Status: GOOD (  17.02  )
+X-CRM114-CacheID: sfid-20190319_133021_325150_1D4D0D22 
+X-CRM114-Status: GOOD (  21.64  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -94,190 +154,98 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mark.rutland@arm.com, devicetree@vger.kernel.org, jianxin.pan@amlogic.com,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org,
- linux-mtd@lists.infradead.org, Miquel Raynal <miquel.raynal@bootlin.com>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: khilman@baylibre.com, Guillaume La Roque <glaroque@baylibre.com>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
---000000000000b308a20584785793
-Content-Type: text/plain; charset="UTF-8"
+On 19/03/2019 21:13, Martin Blumenstingl wrote:
+> Hi Neil,
+> 
+> On Tue, Mar 19, 2019 at 9:29 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>
+>> On 18/03/2019 21:13, Martin Blumenstingl wrote:
+>>> Hi Neil,
+>>>
+>>> On Mon, Mar 18, 2019 at 11:06 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>>>
+>>>> From: Guillaume La Roque <glaroque@baylibre.com>
+>>>>
+>>>> Add system regulators for the X96 Max Set-Top-Box.
+>>>>
+>>>> Still missing
+>>>> * VDD_EE (0.8V - PWM controlled)
+>>>> * VDD_CPU (PWM controlled)
+>>>>
+>>>> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+>>>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>>>> ---
+>>>>  .../boot/dts/amlogic/meson-g12a-x96-max.dts   | 67 +++++++++++++++++++
+>>>>  1 file changed, 67 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
+>>>> index 0edbd00b358f..5c37930b09e2 100644
+>>>> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
+>>>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
+>>> [...]
+>>>> +       vcc_5v: regulator-vcc_5v {
+>>>> +               compatible = "regulator-fixed";
+>>>> +               regulator-name = "VCC_5V";
+>>>> +               regulator-min-microvolt = <5000000>;
+>>>> +               regulator-max-microvolt = <5000000>;
+>>>> +               vin-supply = <&dc_in>;
+>>>> +
+>>>> +               gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
+>>>> +               enable-active-high;
+>>> is there any way to test whether this GPIO is the right one?
+>>> I couldn't find a reference to a GPIOH_8 regulator in
+>>> buildroot_openlinux_kernel_4.9_fbdev_20180706
+>>
+>> The x96 is based on the U212 reference design, and the GPIOH_8 controls the 5V_EN signal,
+>> but you are right, it's the wrong polarity here, it should be enable-active-low instead.
+>> (FYI The SEI510 does not use this at all, 5V is always enabled)
+>>
+>> The schematics describes :
+>> VCC5V_EN (GPIOH_8-Hiz OD): 5V_EN
+>> L: Enable
+>> Hiz: Disable
+> thank you for this explanation!
+> 
+>> FYI, the GPIOH_8 is Open-Drain only, this means this pin cannot pull to TTL 1, only to TTL 0
+>> or set as input. We need to add a way to describe this in the pinctrl driver somehow....
+> as far as I understand the pinctrl driver changes would result in an
+> error when the GPIO is used with "active high" (making incompatible
+> drivers or .dts easier to see). is this correct?
 
-Hello Liang,
+I don't have a clear view of that, since it's really GPIO related.
+I don't know if we can really disable non-opendrain support for a
+specific gpio.
 
-On Sat, Mar 16, 2019 at 11:55 AM Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
-[...]
-> > Martin, Now i am not sure whether NFC driver leads to kernel panic when
-> > calling kmem_cache_alloc_trace.
-> thank you for confirming that it works for you on GXL
->
-> I'm not sure that this is a NFC driver problem.
-> after enabling CONFIG_SLAB_FREELIST_HARDENED in my kernel config the
-> crash moves. it's now crashing in slub.c's kfree() at
-> BUG_ON(!PageCompound(page));
-I added some debug prints in meson_nfc_read_buf() to get some details
-about the info buffer before the crash,
-format is: meson_nfc_read_buf <virtual address> <physical address>
+We will need to investigate ! Anyway, using GPIO_OPEN_DRAIN in DT
+is the correct way to handle these GPIO lines.
 
-during my first test three different addresses are used:
-- meson_nfc_read_buf e9e6c640 0x29e6c640 (works fine)
-- meson_nfc_read_buf e9e6c680 0x29e6c680 (works fine)
-- meson_nfc_read_buf ee39a34b 0x2e39a34b (crashes during kfree)
+Neil
 
-so I tried playing around with the allocation size (see the attached
-patch) and changed it to:
-  kzalloc(PER_INFO_BYTE + 64, GFP_KERNEL)
-this results in the following addresses being used:
-- meson_nfc_read_buf e9ea4280 0x29ea4280 (works fine)
-- meson_nfc_read_buf e9ea4300 0x29ea4300 (works fine)
-(there is no crash anymore)
+> 
+>> I will send a fix on v3
+>>
+>> I didn't notice because I power the board using a Type-A to Type-A connector,
+>> and the 5V from the USB port bypasses this regulator...
+> this is good to know.
+> I'm also powering some of my boards using a Type-A to Type-A
+> connector. I'll need to remember this and this whether boards are
+> still booting with the DC plug
+> 
+> 
+> Regards
+> Martin
+> 
 
-Liang, are there any special requirements on the "info address" like
-the alignment?
-also do you know why the PER_INFO_BYTE buffer is allocated dynamically
-in meson_nfc_read_buf() instead of allocating it at initialization?
-I'm not saying that it should be changed! I'm curious because there's
-per-meson_nfc_nand_chip info and data buffers which are allocated at
-initialization time.
-
-
-meson_nfc_read_buf debug log with PER_INFO_BYTE allocation:
-[    2.032914] meson_nfc_read_buf e9e6c640 0x29e6c640
-[    2.033005] meson_nfc_dma_buffer_setup 0x29e6c640
-[    2.037717] meson_nfc_read_buf: about to kfree info
-[    2.042535] meson_nfc_read_buf: kfree'd info
-[    2.046794] meson_nfc_read_buf e9e6c640 0x29e6c640
-[    2.051552] meson_nfc_dma_buffer_setup 0x29e6c640
-[    2.056261] meson_nfc_read_buf: about to kfree info
-[    2.061086] meson_nfc_read_buf: kfree'd info
-[    2.065356] meson_nfc_read_buf e9e6c680 0x29e6c680
-[    2.070102] meson_nfc_dma_buffer_setup 0x29e6c680
-[    2.074810] meson_nfc_read_buf: about to kfree info
-[    2.079635] meson_nfc_read_buf: kfree'd info
-[    2.083978] meson_nfc_read_buf e9e6c640 0x29e6c640
-[    2.088684] meson_nfc_dma_buffer_setup 0x29e6c640
-[    2.093334] meson_nfc_read_buf: about to kfree info
-[    2.098199] meson_nfc_read_buf: kfree'd info
-[    2.102446] meson_nfc_read_buf e9e6c640 0x29e6c640
-[    2.107208] meson_nfc_dma_buffer_setup 0x29e6c640
-[    2.111883] meson_nfc_read_buf: about to kfree info
-[    2.116765] meson_nfc_read_buf: kfree'd info
-[    2.120996] meson_nfc_read_buf e9e6c640 0x29e6c640
-[    2.125762] meson_nfc_dma_buffer_setup 0x29e6c640
-[    2.130433] meson_nfc_read_buf: about to kfree info
-[    2.135294] meson_nfc_read_buf: kfree'd info
-[    2.139545] Could not find a valid ONFI parameter page, trying
-bit-wise majority to recover it
-[    2.148173] ONFI parameter recovery failed, aborting
-[    2.153058] meson_nfc_read_buf e9e6c680 0x29e6c680
-[    2.157831] meson_nfc_dma_buffer_setup 0x29e6c680
-[    2.162527] meson_nfc_read_buf: about to kfree info
-[    2.167369] meson_nfc_read_buf: kfree'd info
-[    2.171611] meson_nfc_read_buf ee39a34b 0x2e39a34b
-[    2.176383] meson_nfc_dma_buffer_setup 0x2e39a34b
-[    2.181076] meson_nfc_read_buf: about to kfree info
-[    2.185932] ------------[ cut here ]------------
-[    2.190503] kernel BUG at mm/slub.c:3950!
-[    2.194491] Internal error: Oops - BUG: 0 [#1] PREEMPT SMP ARM
-...
-
-meson_nfc_read_buf debug log with PER_INFO_BYTE+64 allocation:
-[    2.033019] meson_nfc_read_buf e9ea4280 0x29ea4280
-[    2.033112] meson_nfc_dma_buffer_setup 0x29ea4280
-[    2.037847] meson_nfc_read_buf: about to kfree info
-[    2.042642] meson_nfc_read_buf: kfree'd info
-[    2.046909] meson_nfc_read_buf e9ea4280 0x29ea4280
-[    2.051659] meson_nfc_dma_buffer_setup 0x29ea4280
-[    2.056374] meson_nfc_read_buf: about to kfree info
-[    2.061192] meson_nfc_read_buf: kfree'd info
-[    2.065461] meson_nfc_read_buf e9ea4280 0x29ea4280
-[    2.070208] meson_nfc_dma_buffer_setup 0x29ea4280
-[    2.074922] meson_nfc_read_buf: about to kfree info
-[    2.079742] meson_nfc_read_buf: kfree'd info
-[    2.084087] meson_nfc_read_buf e9ea4280 0x29ea4280
-[    2.088789] meson_nfc_dma_buffer_setup 0x29ea4280
-[    2.093440] meson_nfc_read_buf: about to kfree info
-[    2.098303] meson_nfc_read_buf: kfree'd info
-[    2.102553] meson_nfc_read_buf e9ea4280 0x29ea4280
-[    2.107316] meson_nfc_dma_buffer_setup 0x29ea4280
-[    2.111990] meson_nfc_read_buf: about to kfree info
-[    2.116870] meson_nfc_read_buf: kfree'd info
-[    2.121103] meson_nfc_read_buf e9ea4280 0x29ea4280
-[    2.125868] meson_nfc_dma_buffer_setup 0x29ea4280
-[    2.130540] meson_nfc_read_buf: about to kfree info
-[    2.135400] meson_nfc_read_buf: kfree'd info
-[    2.139652] Could not find a valid ONFI parameter page, trying
-bit-wise majority to recover it
-[    2.148276] ONFI parameter recovery failed, aborting
-[    2.153165] meson_nfc_read_buf e9ea4280 0x29ea4280
-[    2.157938] meson_nfc_dma_buffer_setup 0x29ea4280
-[    2.162634] meson_nfc_read_buf: about to kfree info
-[    2.167475] meson_nfc_read_buf: kfree'd info
-[    2.171717] meson_nfc_read_buf e9ea4280 0x29ea4280
-[    2.176489] meson_nfc_dma_buffer_setup 0x29ea4280
-[    2.181183] meson_nfc_read_buf: about to kfree info
-[    2.186025] meson_nfc_read_buf: kfree'd info
-[    2.190265] nand: device found, Manufacturer ID: 0xad, Chip ID: 0xde
-[    2.196598] nand: Hynix NAND 8GiB 3,3V 8-bit
-[    2.200840] nand: 8192 MiB, MLC, erase size: 4096 KiB, page size:
-16384, OOB size: 1280
-[    2.208829] meson_nfc_read_buf e9ea4300 0x29ea4300
-[    2.213581] meson_nfc_dma_buffer_setup 0x29ea4300
-[    2.218291] meson_nfc_read_buf: about to kfree info
-[    2.223115] meson_nfc_read_buf: kfree'd info
-[    2.227374] ------------[ cut here ]------------
-[    2.231968] WARNING: CPU: 1 PID: 1 at
-drivers/mtd/nand/raw/nand_base.c:5503 nand_scan_with_ids+0x1718/0x171c
-[    2.241760] No oob scheme defined for oobsize 1280
-...
-(the "No oob scheme defined for oobsize 1280" message is expected)
-
-
-Regards
-Martin
-
---000000000000b308a20584785793
-Content-Type: text/x-patch; charset="US-ASCII"; name="meson-nfc-debug-prints.patch"
-Content-Disposition: attachment; filename="meson-nfc-debug-prints.patch"
-Content-Transfer-Encoding: base64
-Content-ID: <f_jtg81v7a0>
-X-Attachment-Id: f_jtg81v7a0
-
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvbXRkL25hbmQvcmF3L21lc29uX25hbmQuYyBiL2RyaXZlcnMv
-bXRkL25hbmQvcmF3L21lc29uX25hbmQuYwppbmRleCBiNDlhNDVmMjU1ZjguLmNkYzQyNmNkMGE0
-MyAxMDA2NDQKLS0tIGEvZHJpdmVycy9tdGQvbmFuZC9yYXcvbWVzb25fbmFuZC5jCisrKyBiL2Ry
-aXZlcnMvbXRkL25hbmQvcmF3L21lc29uX25hbmQuYwpAQCAtNDkzLDYgKzQ5Myw3IEBAIHN0YXRp
-YyBpbnQgbWVzb25fbmZjX2RtYV9idWZmZXJfc2V0dXAoc3RydWN0IG5hbmRfY2hpcCAqbmFuZCwg
-dTggKmRhdGFidWYsCiAKIAlpZiAoaW5mb2J1ZikgewogCQluZmMtPmlhZGRyID0gZG1hX21hcF9z
-aW5nbGUobmZjLT5kZXYsIGluZm9idWYsIGluZm9sZW4sIGRpcik7CisJCXByaW50aygiJXMgMHgl
-MDh4XG4iLCBfX2Z1bmNfXywgbmZjLT5pYWRkcik7CiAJCXJldCA9IGRtYV9tYXBwaW5nX2Vycm9y
-KG5mYy0+ZGV2LCBuZmMtPmlhZGRyKTsKIAkJaWYgKHJldCkgewogCQkJZGV2X2VycihuZmMtPmRl
-diwgIkRNQSBtYXBwaW5nIGVycm9yXG4iKTsKQEAgLTUyOCwxMCArNTI5LDEwIEBAIHN0YXRpYyBp
-bnQgbWVzb25fbmZjX3JlYWRfYnVmKHN0cnVjdCBuYW5kX2NoaXAgKm5hbmQsIHU4ICpidWYsIGlu
-dCBsZW4pCiAJdTMyIGNtZDsKIAl1OCAqaW5mbzsKIAotCWluZm8gPSBremFsbG9jKFBFUl9JTkZP
-X0JZVEUsIEdGUF9LRVJORUwpOworCWluZm8gPSBremFsbG9jKFBFUl9JTkZPX0JZVEUgKyA2NCwg
-R0ZQX0tFUk5FTCk7CiAJaWYgKCFpbmZvKQogCQlyZXR1cm4gLUVOT01FTTsKLQorcHJpbnRrKCIl
-cyAlcHggMHglMDh4XG4iLCBfX2Z1bmNfXywgaW5mbywgdmlydF90b19waHlzKGluZm8pKTsKIAly
-ZXQgPSBtZXNvbl9uZmNfZG1hX2J1ZmZlcl9zZXR1cChuYW5kLCBidWYsIGxlbiwgaW5mbywKIAkJ
-CQkJIFBFUl9JTkZPX0JZVEUsIERNQV9GUk9NX0RFVklDRSk7CiAJaWYgKHJldCkKQEAgLTU0NSw3
-ICs1NDYsOSBAQCBzdGF0aWMgaW50IG1lc29uX25mY19yZWFkX2J1ZihzdHJ1Y3QgbmFuZF9jaGlw
-ICpuYW5kLCB1OCAqYnVmLCBpbnQgbGVuKQogCW1lc29uX25mY19kbWFfYnVmZmVyX3JlbGVhc2Uo
-bmFuZCwgbGVuLCBQRVJfSU5GT19CWVRFLCBETUFfRlJPTV9ERVZJQ0UpOwogCiBvdXQ6Citwcmlu
-dGsoIiVzOiBhYm91dCB0byBrZnJlZSBpbmZvXG4iLCBfX2Z1bmNfXyk7CiAJa2ZyZWUoaW5mbyk7
-CitwcmludGsoIiVzOiBrZnJlZSdkIGluZm9cbiIsIF9fZnVuY19fKTsKIAogCXJldHVybiByZXQ7
-CiB9Cg==
---000000000000b308a20584785793
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---000000000000b308a20584785793--
-
