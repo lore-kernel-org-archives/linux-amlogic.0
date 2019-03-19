@@ -2,91 +2,145 @@ Return-Path: <SRS0=/WbR=RW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 36647C43381
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 16:17:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 69FFEC43381
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 16:32:59 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0902B20854
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 16:17:27 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3AA742064A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 16:32:59 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="APeRxFse";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="nRJZhfnm"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0902B20854
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="L91xSVYG";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Fp/YWQUT"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3AA742064A
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=P5psHPTnZTOGrjh3UIGgimf4WJKtkFrp1c88UYNOcTc=; b=APeRxFse/iPBqr
-	tEv5sCqQNMhAImDs7uWR+TZsl3HcuVkvRZhNmlcPi1zRD/dtXZFvDeshQkWTP2m4hZt+FmSmQpD03
-	tPGHjDDBecipDKHRkj0GRkkCRf2P3z9lLcKCkzo5OnKIZdCyIFHtavgAFvUogYcX4BIRvpFpxmFbf
-	7Hsl2JBnmKH3ir1B0oryubFMqHy2uW1btq2GxpwtvVo8y5Yq8c1ZR+An/GHM4QLn/Y1PRS4noAvFc
-	U7Ed509S9ha9BeH0RSece7/KL8t8/XKaXmz7rX0XpOn1vRNG/e86o6zbTWv6ryHOQhua595ZwtbnN
-	y0nJfR49AhcLN7Jj6A2g==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=7KPsk67s7P5t1/ryN5Z6TjUJEsioLXVVU12uAPD2zjA=; b=L91xSVYGHHcul3
+	WGOA7E177ZM7ey7g4dFOVNQPZt62r/fA44CmDfTeTtW/MB5okqNnGeD4SqAdI69DVrWdiGlYR1otl
+	Fo+CTA8U5bC7MS0LuFU16IlFOPiy+qSrIF6uzecpkNzeL0uhG57sdwhK6lW5WtuTqWZFHR3GMfT6w
+	U6wCrZCGUwtcOyJ3Fm/BsXAlMm8of5KGthhaqE5Mvb7PEmChzH63LDPqHw7mhZwNXqFkQHtIgxOcV
+	AgaDG40X9sHqoj6Z//AczqFvS0zr9WTxpZunBE5d2ok12ClK6LRfk2UnPQQNCsTy+siISITPy/Bjl
+	KdzV3OxroF4M4CBRwkhg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h6HQX-0002LM-MA; Tue, 19 Mar 2019 16:17:21 +0000
-Received: from mail-pg1-x542.google.com ([2607:f8b0:4864:20::542])
+	id 1h6HfY-0000pH-Sc; Tue, 19 Mar 2019 16:32:52 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h6HQJ-00025H-L0
- for linux-amlogic@lists.infradead.org; Tue, 19 Mar 2019 16:17:10 +0000
-Received: by mail-pg1-x542.google.com with SMTP id y3so4961013pgk.12
- for <linux-amlogic@lists.infradead.org>; Tue, 19 Mar 2019 09:17:07 -0700 (PDT)
+ id 1h6HfW-0000ob-9a
+ for linux-amlogic@lists.infradead.org; Tue, 19 Mar 2019 16:32:51 +0000
+Received: by mail-wm1-x341.google.com with SMTP id f3so17714553wmj.4
+ for <linux-amlogic@lists.infradead.org>; Tue, 19 Mar 2019 09:32:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=r6fCR0Ba++QOuxz6R+4A4oS+Zt54avu6KSLhTyIAJSc=;
- b=nRJZhfnmhnyP7yqNTqtX3dofQ4Nk5Qo+78ekVgNnrD9jiAwtEz7IMyldhperXeOLpz
- 4undoaMb7UkqX6bIns/qvuN+JwTIB5ez0XYuOFXInz1an8AaZtdztOsaMqJeuD9aGCE1
- NVFN89pcvnjGLDhHNWsgVIOr1h6X30Hs0l0Sn1Qsg1oFmgX4R+/RR1q2dGJezoJOn79j
- ekxaNlly32/WoWzq5hoykBT9l9IAKOMzUCmEcL6+LyBhc10yRgEwqxlTVrArQZiAjXjt
- KeGsASAEgoXp0a1cfeNnMLCmzjd/jq2IcqfuvWObJZAplvoBmK9KZzG87kghFNXJmLo/
- Ovyw==
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=LwcgbP/FhQcnTh6imxVlErky6Q46KkyWkYCztYza87M=;
+ b=Fp/YWQUT4PIqnflF6CHYGcYNsbNLvBWaleu9MtSaHZPGBaKDtwJptLRbyZ/KRbLX8m
+ tyc8xnfECgC91Sb3qsZE7xJ/WxyO6jRd5qNgqx4yiFV06qfQUC5+6zfcPA/GbtXwkFXd
+ fQZMDz9dGyYyDwmLkX3K7OwTh3fHpv/Dd8T0nJg1mj090XQrof3+UA0Iud8bbAGOXdJ9
+ 0vkK4NoWHCYtsqpTUmFKT6s4K6VqJ6iKjfRNOE2U9C2UHWNOUGKR0LYlZqsXCHLXiPhd
+ vyxnFocsmspAMtUf08byDSlhrgUNUazvHoLWljb76NpBEtWRA/raivCbJvIIAnCHNSW7
+ wFrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=r6fCR0Ba++QOuxz6R+4A4oS+Zt54avu6KSLhTyIAJSc=;
- b=hhlOQS50vAGE1kLaWO8zzAMVsnaneXfw8tNMam9YDvTGMoNv89zeqFerZ8bMJDIaql
- vhLZ8ccp+DsrvBJu69npHZ5isWpmpR7r+Nz31nKNbvrC2FzQewrzfWLk/kqLlqNK5k8l
- +TS9odMZlKS+bYRT1qYl/78DgirVYx+YWoBOik/o0q8eqqPAWj30D8hY+Wi7XTFS4M7N
- awZR4L4wBxeFQAclECY1pEMf5apD4PF57W9AZDwuc1lhOsreQRXVPT3Dl7mKGUvTMUM2
- RgkrFU7st74qZHlBGYEyDpGSxPwUIgdX3qB3SE9loyPbvT8O+I9nny6lh/VDT4NOkCAn
- OrHQ==
-X-Gm-Message-State: APjAAAWZeitPmgHjYnXGmxUMFHQKqNnZUZPJ6bnsslJQ1h//DPR++ZaG
- yXxaXU/iaIR7c/LXvBG2Sb5yWw==
-X-Google-Smtp-Source: APXvYqyTh4Rz3ZIjKty65iBaLCRjboFLLl+hqSEPoWui2KPGhH4GS2c3aIqkV3tGPbTvLDzMR2P+wQ==
-X-Received: by 2002:a65:6154:: with SMTP id o20mr2557086pgv.205.1553012227183; 
- Tue, 19 Mar 2019 09:17:07 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152]) by smtp.googlemail.com with ESMTPSA id
- i72sm29114760pfj.147.2019.03.19.09.17.06
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Tue, 19 Mar 2019 09:17:06 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, linux-mtd@lists.infradead.org,
- bbrezillon@kernel.org, miquel.raynal@bootlin.com
-Subject: Re: [PATCH v2 2/2] mtd: rawnand: meson: fix a potential memory leak
- in meson_nfc_read_buf
-In-Reply-To: <20190318204722.9901-3-martin.blumenstingl@googlemail.com>
-References: <20190318204722.9901-1-martin.blumenstingl@googlemail.com>
- <20190318204722.9901-3-martin.blumenstingl@googlemail.com>
-Date: Tue, 19 Mar 2019 09:17:05 -0700
-Message-ID: <7hva0eg7pa.fsf@baylibre.com>
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=LwcgbP/FhQcnTh6imxVlErky6Q46KkyWkYCztYza87M=;
+ b=K0OfUOl0+bTl3ANysc2nG5EJoEGgkOTwpTv5oCc/q3mCgvaZ4eqoP8MtncfxiOvWUW
+ La+qEW9hHNPUIfmBZxTKqeqtIR6yfLyk4Ii6NWnHAF0Pv2CWFTt8zbr78/ByEVmUrrMn
+ Af7T6/tAjfe2/UpNUXDyf+TOctdQMHybj2GBahMXlUpCS9R7t6B7EoOpzdq8PoubNeJE
+ YSKh+xE++w42AV6gGYeSNwKD7GZJox24qrHN1D74pnBDuS3QXyLIqEL8lrUbJ/pd4B0x
+ W2hlquH+gffLBs8S2JvBseAgWBP/7adAzq5LvFBHhJc10UjVPwkd+Asdmns+NN1CC7lL
+ Gi+w==
+X-Gm-Message-State: APjAAAWLohnh75Plchg0ZvP1hqLDF8gjbEQ6/RbJY7jRaCtz0X3S5M46
+ YTpeRtvUBBEfhU0h8HgKc6mlZA==
+X-Google-Smtp-Source: APXvYqzVZsWnqQQ754VIydHEBs1DZpKvxnSy+ZM+Of1V906piVviz7pekPfD0KA1s7KeljDirD/q4g==
+X-Received: by 2002:a7b:c382:: with SMTP id s2mr4309463wmj.56.1553013168315;
+ Tue, 19 Mar 2019 09:32:48 -0700 (PDT)
+Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
+ by smtp.gmail.com with ESMTPSA id
+ b9sm5788736wmc.9.2019.03.19.09.32.46
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 19 Mar 2019 09:32:47 -0700 (PDT)
+Subject: Re: [PATCH] clk: meson-gxbb: round the vdec dividers to closest
+To: Maxime Jourdan <mjourdan@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>
+References: <20190319102537.2043-1-mjourdan@baylibre.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <5738d62f-4076-2b29-2539-f13592dc318b@baylibre.com>
+Date: Tue, 19 Mar 2019 17:32:46 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.5.1
 MIME-Version: 1.0
+In-Reply-To: <20190319102537.2043-1-mjourdan@baylibre.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190319_091707_692630_FA9080D5 
-X-CRM114-Status: UNSURE (   6.72  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190319_093250_333211_11FC76A7 
+X-CRM114-Status: GOOD (  16.65  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -98,25 +152,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, richard@nod.at,
- liang.yang@amlogic.com, linux-kernel@vger.kernel.org, jianxin.pan@amlogic.com
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+On 19/03/2019 11:25, Maxime Jourdan wrote:
+> We want the video decoder clocks to always round to closest. While the
+> muxes are already using CLK_MUX_ROUND_CLOSEST, the corresponding
+> CLK_DIVIDER_ROUND_CLOSEST was forgotten for the dividers.
+> 
+> Fix this by adding the flag to the two vdec dividers.
+> 
+> Fixes: a565242eb9fc ("clk: meson: gxbb: add the video decoder clocks")
+> Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
+> ---
+>  drivers/clk/meson/gxbb.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
+> index 04df2e208ed6..29ffb4fde714 100644
+> --- a/drivers/clk/meson/gxbb.c
+> +++ b/drivers/clk/meson/gxbb.c
+> @@ -2216,6 +2216,7 @@ static struct clk_regmap gxbb_vdec_1_div = {
+>  		.offset = HHI_VDEC_CLK_CNTL,
+>  		.shift = 0,
+>  		.width = 7,
+> +		.flags = CLK_DIVIDER_ROUND_CLOSEST,
+>  	},
+>  	.hw.init = &(struct clk_init_data){
+>  		.name = "vdec_1_div",
+> @@ -2261,6 +2262,7 @@ static struct clk_regmap gxbb_vdec_hevc_div = {
+>  		.offset = HHI_VDEC2_CLK_CNTL,
+>  		.shift = 16,
+>  		.width = 7,
+> +		.flags = CLK_DIVIDER_ROUND_CLOSEST,
+>  	},
+>  	.hw.init = &(struct clk_init_data){
+>  		.name = "vdec_hevc_div",
+> 
 
-> meson_nfc_dma_buffer_setup() is called with the "info" buffer which is
-> allocated a few lines before using kzalloc(). If
-> meson_nfc_dma_buffer_setup() fails we need to free the allocated "info"
-> buffer instead of only freeing it upon success.
->
-> Fixes: 8fae856c53500a ("mtd: rawnand: meson: add support for Amlogic NAND flash controller")
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Acked-by: Liang Yang <liang.yang@amlogic.com>
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+Will apply to fixes/drivers for 5.1
 
 _______________________________________________
 linux-amlogic mailing list
