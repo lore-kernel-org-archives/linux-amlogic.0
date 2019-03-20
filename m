@@ -2,72 +2,67 @@ Return-Path: <SRS0=2I4g=RX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C834DC43381
-	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Mar 2019 01:43:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8895BC43381
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Mar 2019 03:33:09 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 857872175B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Mar 2019 01:43:58 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4DB5420830
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Mar 2019 03:33:09 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YpEQeW9q"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 857872175B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=mediatek.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VCWY2oke"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4DB5420830
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=simkAJWr5gfO7zDsLY1JXIZhffNteTWSRPDbHdBzfGA=; b=YpEQeW9qQTSQ+k
-	gnLQX3fjS30IMJqXUHd9CoDbNyEDRLqvMBpUADHuocAbLv8yUgHFVch8tkTkKMZFrxE8Vso1q7v3u
-	FPEeoteWIJQRdbP9xpDY5dV04AZu881l4TwAr39kju2jpcm+xlUCikZpoFrmSTibP9F/5kurWyqeF
-	gzaVIm2xg6PjgIbveUtoxzFyye0CShgxLNTffTrnyYoA6/DBlial61RZ+c4pjnKba4a1neSLwKlTP
-	I+NVBj2Tz5tLxv133ZEvya7Wy/CcMhDf/3f+hwJzyor0oBrQcdulOHEhHT2axCD6KS6//bmrkgBVR
-	jgHeBXmgmJDjtWIkTnnQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=AGwYjxJWDybdTMu5lZy8tV1lEA6hmBdY2FCqBvVEawc=; b=VCWY2okeRWsUvbxM/TtUqhvR+
+	xuHKqDqemUYp8LzQcDdIOWYz5oicpDBwdg99ireFGe9jJeVx6TqGCwRmEKfmNo6rK//PXGO5OFvr3
+	b5yS2xgP5sFVO2CJu1xPnzJkGfGxcNDV1mpGbMs/6kTLBEen/iIQys7RarA66buFoEnLYOWHOKR08
+	1JsJrlTQCvf6A+Vwmejt62P8Nmhdlexa2lDH1zeoQfN3q9HppFlLnQGK+Ko69tZ+4k9fKr6j7yfyW
+	+2wkLAjlTV4DGOLSBpTs+1DSNXNCDqkKklZUhYcVO32m03Ia68XWDzH79DV2dnqBWAPSodyALjrJX
+	cWWXZjpMg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h6QGi-0001Yj-Lb; Wed, 20 Mar 2019 01:43:48 +0000
-Received: from mailgw02.mediatek.com ([216.200.240.185])
+	id 1h6RyP-0000gE-HR; Wed, 20 Mar 2019 03:33:01 +0000
+Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h6QGf-0001YN-Tj; Wed, 20 Mar 2019 01:43:47 +0000
-X-UUID: 6f2246e6009a41d9a8cf3eabf3d852e9-20190319
-X-UUID: 6f2246e6009a41d9a8cf3eabf3d852e9-20190319
-Received: from mtkcas68.mediatek.inc [(172.29.94.19)] by mailgw02.mediatek.com
- (envelope-from <chunfeng.yun@mediatek.com>)
- (musrelay.mediatek.com ESMTP with TLS)
- with ESMTP id 1962132193; Tue, 19 Mar 2019 17:43:06 -0800
-Received: from MTKMBS31N1.mediatek.inc (172.27.4.69) by
- MTKMBS62DR.mediatek.inc (172.29.94.18) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 19 Mar 2019 18:43:04 -0700
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1395.4;
- Wed, 20 Mar 2019 09:43:02 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 20 Mar 2019 09:43:01 +0800
-Message-ID: <1553046181.10179.160.camel@mhfsdcap03>
-Subject: Re: [PATCH v3 8/8] usb: dwc3: Add Amlogic G12A DWC3 glue
-From: Chunfeng Yun <chunfeng.yun@mediatek.com>
-To: Neil Armstrong <narmstrong@baylibre.com>
-Date: Wed, 20 Mar 2019 09:43:01 +0800
-In-Reply-To: <703e82ad-5e1e-a03d-796c-dc1ddde7d2dc@baylibre.com>
-References: <20190318101153.7531-1-narmstrong@baylibre.com>
- <20190318101153.7531-9-narmstrong@baylibre.com>
- <1552960676.10179.142.camel@mhfsdcap03>
- <703e82ad-5e1e-a03d-796c-dc1ddde7d2dc@baylibre.com>
-X-Mailer: Evolution 3.2.3-0ubuntu6 
+ id 1h6RyG-0000Xp-8j; Wed, 20 Mar 2019 03:32:54 +0000
+Received: from [10.28.18.125] (10.28.18.125) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Wed, 20 Mar
+ 2019 11:33:53 +0800
+Subject: Re: [RFC PATCH nand-next 0/2] meson-nand: support for older SoCs
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20190301182922.8309-1-martin.blumenstingl@googlemail.com>
+ <98776767-c4d7-1207-6d42-97105f289bec@amlogic.com>
+ <CAFBinCC7P40sqrDGTuM8M=jVOFTgZLDUK6rGdNpigFoepyCASw@mail.gmail.com>
+ <20190307140959.10092d45@xps13>
+ <ccb95e75-e62f-c510-cabd-853481f77fc8@amlogic.com>
+ <CAFBinCBd=dOZjv4KEDY9ODOONDO=WtaBqAMRi_a+gH3_iZEAHQ@mail.gmail.com>
+ <CAFBinCA7LLK6K3ZqauJy2N-z5-kTfuTztmoSQ=Bk4A5Xagxddw@mail.gmail.com>
+From: Liang Yang <liang.yang@amlogic.com>
+Message-ID: <8134890a-457d-7803-01a4-1832f925f65f@amlogic.com>
+Date: Wed, 20 Mar 2019 11:33:52 +0800
+User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:60.0) Gecko/20100101
+ Thunderbird/60.5.3
 MIME-Version: 1.0
-X-MTK: N
+In-Reply-To: <CAFBinCA7LLK6K3ZqauJy2N-z5-kTfuTztmoSQ=Bk4A5Xagxddw@mail.gmail.com>
+Content-Language: en-US
+X-Originating-IP: [10.28.18.125]
+X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
+ (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190319_184346_108480_6C18C5B3 
-X-CRM114-Status: GOOD (  26.49  )
+X-CRM114-CacheID: sfid-20190319_203252_312521_57368AA7 
+X-CRM114-Status: GOOD (  19.89  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -79,282 +74,166 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: balbi@kernel.org, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, kishon@ti.com, hminas@synopsys.com,
+Cc: mark.rutland@arm.com, devicetree@vger.kernel.org, jianxin.pan@amlogic.com,
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+ linux-mtd@lists.infradead.org, Miquel Raynal <miquel.raynal@bootlin.com>,
  linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-On Tue, 2019-03-19 at 09:15 +0100, Neil Armstrong wrote:
-> Hi,
-> 
-> On 19/03/2019 02:57, Chunfeng Yun wrote:
-> > Hi Neil,
-> > On Mon, 2019-03-18 at 11:11 +0100, Neil Armstrong wrote:
-> >> Adds support for Amlogic G12A USB Control Glue HW.
-> >>
-> >> The Amlogic G12A SoC Family embeds 2 USB Controllers :
-> >> - a DWC3 IP configured as Host for USB2 and USB3
-> >> - a DWC2 IP configured as Peripheral USB2 Only
-> >>
-> >> A glue connects these both controllers to 2 USB2 PHYs, and optionnally
-> >> to an USB3+PCIE Combo PHY shared with the PCIE controller.
-> >>
-> >> The Glue configures the UTMI 8bit interfaces for the USB2 PHYs, including
-> >> routing of the OTG PHY between the DWC3 and DWC2 controllers, and
-> >> setups the on-chip OTG mode selection for this PHY.
-> >>
-> >> This drivers supports the on-probe setup of the OTG mode, and manually
-> >> via a debugfs interface. The IRQ mode change detect is yet to be added
-> >> in a future patchset, mainly due to lack of hardware to validate on.
-> >>
-> >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> >> ---
-> >>  drivers/usb/dwc3/Kconfig           |  10 +
-> >>  drivers/usb/dwc3/Makefile          |   1 +
-> >>  drivers/usb/dwc3/dwc3-meson-g12a.c | 602 +++++++++++++++++++++++++++++
-> >>  3 files changed, 613 insertions(+)
-> >>  create mode 100644 drivers/usb/dwc3/dwc3-meson-g12a.c
-> >>
-> >> diff --git a/drivers/usb/dwc3/Kconfig b/drivers/usb/dwc3/Kconfig
-> >> index 2b1494460d0c..d2ea9670563c 100644
-> >> --- a/drivers/usb/dwc3/Kconfig
-> >> +++ b/drivers/usb/dwc3/Kconfig
-> >> @@ -95,6 +95,16 @@ config USB_DWC3_KEYSTONE
-> >>  	  Support of USB2/3 functionality in TI Keystone2 and AM654 platforms.
-> >>  	  Say 'Y' or 'M' here if you have one such device
-> >>  
-> >> +config USB_DWC3_MESON_G12A
-> >> +       tristate "Amlogic Meson G12A Platforms"
-> >> +       depends on OF && COMMON_CLK
-> >> +       depends on ARCH_MESON || COMPILE_TEST
-> >> +       default USB_DWC3
-> >> +       select USB_ROLE_SWITCH
-> >> +       help
-> >> +         Support USB2/3 functionality in Amlogic G12A platforms.
-> >> +	 Say 'Y' or 'M' if you have one such device.
-> >> +
-> >>  config USB_DWC3_OF_SIMPLE
-> >>         tristate "Generic OF Simple Glue Layer"
-> >>         depends on OF && COMMON_CLK
-> >> diff --git a/drivers/usb/dwc3/Makefile b/drivers/usb/dwc3/Makefile
-> >> index 6e3ef6144e5d..ae86da0dc5bd 100644
-> >> --- a/drivers/usb/dwc3/Makefile
-> >> +++ b/drivers/usb/dwc3/Makefile
-> >> @@ -47,6 +47,7 @@ obj-$(CONFIG_USB_DWC3_EXYNOS)		+= dwc3-exynos.o
-> >>  obj-$(CONFIG_USB_DWC3_PCI)		+= dwc3-pci.o
-> >>  obj-$(CONFIG_USB_DWC3_HAPS)		+= dwc3-haps.o
-> >>  obj-$(CONFIG_USB_DWC3_KEYSTONE)		+= dwc3-keystone.o
-> >> +obj-$(CONFIG_USB_DWC3_MESON_G12A)	+= dwc3-meson-g12a.o
-> >>  obj-$(CONFIG_USB_DWC3_OF_SIMPLE)	+= dwc3-of-simple.o
-> >>  obj-$(CONFIG_USB_DWC3_ST)		+= dwc3-st.o
-> >>  obj-$(CONFIG_USB_DWC3_QCOM)		+= dwc3-qcom.o
-> >> diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
-> >> new file mode 100644
-> >> index 000000000000..9f4554e8e6e7
-> >> --- /dev/null
-> >> +++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
-> >> @@ -0,0 +1,602 @@
-> >> +// SPDX-License-Identifier: GPL-2.0
-> >> +/*
-> >> + * USB Glue for Amlogic G12A SoCs
-> >> + *
-> >> + * Copyright (c) 2019 BayLibre, SAS
-> >> + * Author: Neil Armstrong <narmstrong@baylibre.com>
-> >> + */
-> >> +
-> >> +/*
-> >> + * The USB is organized with a glue around the DWC3 Controller IP as :
-> >> + * - Control registers for each USB2 Ports
-> >> + * - Control registers for the USB PHY layer
-> >> + * - SuperSpeed PHY can be enabled only if port is used
-> >> + *
-> >> + * TOFIX:
-> >> + * - Add dynamic OTG switching with ID change interrupt
-> >> + */
-> >> +
-> 
-> [..]
-> 
-> >> +
-> >> +	ret = of_platform_populate(np, NULL, NULL, dev);
-> >> +	if (ret) {
-> >> +		clk_disable_unprepare(priv->clk);
-> >> +		clk_put(priv->clk);
-> > No need clk_put()
-> 
-> Exact
-> 
-> >> +
-> >> +		goto err_phys_exit;
-> >> +	}
-> >> +
-> >> +	/* Setup OTG mode corresponding to the ID pin */
-> >> +	if (priv->otg_mode == USB_DR_MODE_OTG) {
-> >> +		/* TOFIX Handle ID mode toggling via IRQ */
-> >> +		otg_id = dwc3_meson_g12a_get_id(priv);
-> >> +		if (otg_id != priv->otg_phy_mode) {
-> >> +			if (dwc3_meson_g12a_otg_mode_set(priv, otg_id))
-> >> +				dev_warn(dev, "Failed to switch OTG mode\n");
-> >> +		}
-> >> +	}
-> >> +
-> >> +	/* Setup role switcher */
-> >> +	priv->switch_desc.usb2_port = dwc3_meson_g12_find_child(dev,
-> >> +								"snps,dwc3");
-> >> +	priv->switch_desc.udc = dwc3_meson_g12_find_child(dev, "snps,dwc2");
-> >> +	priv->switch_desc.allow_userspace_control = true;
-> >> +	priv->switch_desc.set = dwc3_meson_g12a_role_set;
-> >> +	priv->switch_desc.get = dwc3_meson_g12a_role_get;
-> >> +
-> >> +	priv->role_switch = usb_role_switch_register(dev, &priv->switch_desc);
-> >> +	if (IS_ERR(priv->role_switch))
-> >> +		dev_warn(dev, "Unable to register Role Switch\n");
-> >> +
-> >> +	pm_runtime_set_active(dev);
-> >> +	pm_runtime_enable(dev);
-> >> +	pm_runtime_get_sync(dev);
-> >> +
-> >> +	return 0;
-> >> +
-> >> +err_phys_exit:
-> >> +	for (i = 0 ; i < PHY_COUNT ; ++i)
-> >> +		phy_exit(priv->phys[i]);
-> >> +
-> >> +err_phys_power:
-> >> +	for (i = 0 ; i < PHY_COUNT ; ++i)
-> >> +		phy_power_off(priv->phys[i]);
-> >> +
-> >> +err_phys_put:
-> >> +	for (i = 0 ; i < PHY_COUNT ; ++i)
-> >> +		phy_put(priv->phys[i]);
-> > you get phy by devm_phy_optional_get(), no need call phy_put(), 
-> 
-> Indeed, also forgot these
-> 
-> >> +
-> >> +	return ret;
-> >> +}
-> >> +
-> >> +static int dwc3_meson_g12a_remove(struct platform_device *pdev)
-> >> +{
-> >> +	struct dwc3_meson_g12a *priv = platform_get_drvdata(pdev);
-> >> +	struct device *dev = &pdev->dev;
-> >> +	int i;
-> >> +
-> >> +	usb_role_switch_unregister(priv->role_switch);
-> >> +
-> >> +	of_platform_depopulate(dev);
-> >> +
-> >> +	for (i = 0 ; i < PHY_COUNT ; ++i) {
-> >> +		phy_power_off(priv->phys[i]);
-> >> +		phy_exit(priv->phys[i]);
-> >> +		phy_put(priv->phys[i]);
-> > here, and remove others if have.
-> 
-> This is the last one I hope
-> 
-> >> +	}
-> >> +
-> >> +	pm_runtime_disable(dev);
-> >> +	pm_runtime_put_noidle(dev);
-> >> +	pm_runtime_set_suspended(dev);
-> >> +
-> >> +	return 0;
-> >> +}
-> >> +
-> >> +static int __maybe_unused dwc3_meson_g12a_runtime_suspend(struct device *dev)
-> >> +{
-> >> +	struct dwc3_meson_g12a	*priv = dev_get_drvdata(dev);
-> >> +
-> >> +	clk_disable(priv->clk);
-> >> +
-> >> +	return 0;
-> >> +}
-> >> +
-> >> +static int __maybe_unused dwc3_meson_g12a_runtime_resume(struct device *dev)
-> >> +{
-> >> +	struct dwc3_meson_g12a	*priv = dev_get_drvdata(dev);
-> >> +
-> >> +	return clk_enable(priv->clk);
-> >> +}
-> >> +
-> >> +static int __maybe_unused dwc3_meson_g12a_suspend(struct device *dev)
-> >> +{
-> >> +	struct dwc3_meson_g12a *priv = dev_get_drvdata(dev);
-> >> +	int i;
-> >> +
-> >> +	for (i = 0 ; i < PHY_COUNT ; ++i)
-> >> +		phy_exit(priv->phys[i]);
-> >> +
-> >> +	reset_control_assert(priv->reset);
-> >> +
-> >> +	return 0;
-> >> +}
-> >> +
-> >> +static int __maybe_unused dwc3_meson_g12a_resume(struct device *dev)
-> >> +{
-> >> +	struct dwc3_meson_g12a *priv = dev_get_drvdata(dev);
-> >> +	int i, ret;
-> >> +
-> >> +	reset_control_deassert(priv->reset);
-> >> +
-> >> +	dwc3_meson_g12a_usb_init(priv);
-> >> +
-> >> +	/* Init PHYs */
-> >> +	for (i = 0 ; i < PHY_COUNT ; ++i) {
-> >> +		ret = phy_init(priv->phys[i]);
-> >> +		if (ret)
-> >> +			return ret;
-> >> +	}
-> > Do you need power on phys?
-> 
-> Regulators can be tied to the PHYs, should I disable power on suspend aswell ?
-I find that the phy driver you used doesn't provide .power_on/off, so
-the current flow won't cause something wrong, but if the phy driver
-provides .power_on/off, it will do.
+Hi Martin,
 
+Thanks for your time.
+On 2019/3/20 4:27, Martin Blumenstingl wrote:
+> Hello Liang,
 > 
-> >> +
-> >> +	return 0;
-> >> +}
-> >> +
-> >> +static const struct dev_pm_ops dwc3_meson_g12a_dev_pm_ops = {
-> >> +	SET_SYSTEM_SLEEP_PM_OPS(dwc3_meson_g12a_suspend, dwc3_meson_g12a_resume)
-> >> +	SET_RUNTIME_PM_OPS(dwc3_meson_g12a_runtime_suspend,
-> >> +			dwc3_meson_g12a_runtime_resume, NULL)
-> >> +};
-> >> +
-> >> +static const struct of_device_id dwc3_meson_g12a_match[] = {
-> >> +	{ .compatible = "amlogic,meson-g12a-usb-ctrl" },
-> >> +	{ /* Sentinel */ }
-> >> +};
-> >> +MODULE_DEVICE_TABLE(of, dwc3_meson_g12a_match);
-> >> +
-> >> +static struct platform_driver dwc3_meson_g12a_driver = {
-> >> +	.probe		= dwc3_meson_g12a_probe,
-> >> +	.remove		= dwc3_meson_g12a_remove,
-> >> +	.driver		= {
-> >> +		.name	= "dwc3-meson-g12a",
-> >> +		.of_match_table = dwc3_meson_g12a_match,
-> >> +		.pm	= &dwc3_meson_g12a_dev_pm_ops,
-> >> +	},
-> >> +};
-> >> +
-> >> +module_platform_driver(dwc3_meson_g12a_driver);
-> >> +MODULE_LICENSE("GPL v2");
-> >> +MODULE_DESCRIPTION("Amlogic Meson G12A USB Glue Layer");
-> >> +MODULE_AUTHOR("Neil Armstrong <narmstrong@baylibre.com>");
-> > 
-> > 
+> On Sat, Mar 16, 2019 at 11:55 AM Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+> [...]
+>>> Martin, Now i am not sure whether NFC driver leads to kernel panic when
+>>> calling kmem_cache_alloc_trace.
+>> thank you for confirming that it works for you on GXL
+>>
+>> I'm not sure that this is a NFC driver problem.
+>> after enabling CONFIG_SLAB_FREELIST_HARDENED in my kernel config the
+>> crash moves. it's now crashing in slub.c's kfree() at
+>> BUG_ON(!PageCompound(page));
+> I added some debug prints in meson_nfc_read_buf() to get some details
+> about the info buffer before the crash,
+> format is: meson_nfc_read_buf <virtual address> <physical address>
 > 
-> Thanks,
-> Neil
+> during my first test three different addresses are used:
+> - meson_nfc_read_buf e9e6c640 0x29e6c640 (works fine)
+> - meson_nfc_read_buf e9e6c680 0x29e6c680 (works fine)
+> - meson_nfc_read_buf ee39a34b 0x2e39a34b (crashes during kfree)
+> 
+> so I tried playing around with the allocation size (see the attached
+> patch) and changed it to:
+>    kzalloc(PER_INFO_BYTE + 64, GFP_KERNEL)
+> this results in the following addresses being used:
+> - meson_nfc_read_buf e9ea4280 0x29ea4280 (works fine)
+> - meson_nfc_read_buf e9ea4300 0x29ea4300 (works fine)
+> (there is no crash anymore)
+> 
+> Liang, are there any special requirements on the "info address" like
+> the alignment?
+It must be 4 bytes alignment. i have met it previously when debugging 
+NFC driver on AXG platform, but it is not specified on spec. Now i am 
+confused that how to get the no aligned address "xe39a34b" when using 
+kmalloc; i think it should return the aligned address. doesn't it?
 
-
+> also do you know why the PER_INFO_BYTE buffer is allocated dynamically
+> in meson_nfc_read_buf() instead of allocating it at initialization?
+> I'm not saying that it should be changed! I'm curious because there's
+> per-meson_nfc_nand_chip info and data buffers which are allocated at
+> initialization time.
+> NAND scan or initialization is divided into three stages: 
+nand_scan_ident->nand_attach->nand_scan_tail. info and data buffer which 
+depend on the result of nand_scan_ident are allocated on nand_attach; so 
+nand_scan_ident can not use the info buffer on meson_nfc_nand_chip.
+Allocating a fixed size info buffer before nand_scan_ident and attach it 
+on the struct meson_nfc; Or considering not use dma for reading data 
+less than 8 bytes. Both can reduce kmalloc and kfree calling. Thanks.
+> 
+> meson_nfc_read_buf debug log with PER_INFO_BYTE allocation:
+> [    2.032914] meson_nfc_read_buf e9e6c640 0x29e6c640
+> [    2.033005] meson_nfc_dma_buffer_setup 0x29e6c640
+> [    2.037717] meson_nfc_read_buf: about to kfree info
+> [    2.042535] meson_nfc_read_buf: kfree'd info
+> [    2.046794] meson_nfc_read_buf e9e6c640 0x29e6c640
+> [    2.051552] meson_nfc_dma_buffer_setup 0x29e6c640
+> [    2.056261] meson_nfc_read_buf: about to kfree info
+> [    2.061086] meson_nfc_read_buf: kfree'd info
+> [    2.065356] meson_nfc_read_buf e9e6c680 0x29e6c680
+> [    2.070102] meson_nfc_dma_buffer_setup 0x29e6c680
+> [    2.074810] meson_nfc_read_buf: about to kfree info
+> [    2.079635] meson_nfc_read_buf: kfree'd info
+> [    2.083978] meson_nfc_read_buf e9e6c640 0x29e6c640
+> [    2.088684] meson_nfc_dma_buffer_setup 0x29e6c640
+> [    2.093334] meson_nfc_read_buf: about to kfree info
+> [    2.098199] meson_nfc_read_buf: kfree'd info
+> [    2.102446] meson_nfc_read_buf e9e6c640 0x29e6c640
+> [    2.107208] meson_nfc_dma_buffer_setup 0x29e6c640
+> [    2.111883] meson_nfc_read_buf: about to kfree info
+> [    2.116765] meson_nfc_read_buf: kfree'd info
+> [    2.120996] meson_nfc_read_buf e9e6c640 0x29e6c640
+> [    2.125762] meson_nfc_dma_buffer_setup 0x29e6c640
+> [    2.130433] meson_nfc_read_buf: about to kfree info
+> [    2.135294] meson_nfc_read_buf: kfree'd info
+> [    2.139545] Could not find a valid ONFI parameter page, trying
+> bit-wise majority to recover it
+> [    2.148173] ONFI parameter recovery failed, aborting
+> [    2.153058] meson_nfc_read_buf e9e6c680 0x29e6c680
+> [    2.157831] meson_nfc_dma_buffer_setup 0x29e6c680
+> [    2.162527] meson_nfc_read_buf: about to kfree info
+> [    2.167369] meson_nfc_read_buf: kfree'd info
+> [    2.171611] meson_nfc_read_buf ee39a34b 0x2e39a34b
+> [    2.176383] meson_nfc_dma_buffer_setup 0x2e39a34b
+> [    2.181076] meson_nfc_read_buf: about to kfree info
+> [    2.185932] ------------[ cut here ]------------
+> [    2.190503] kernel BUG at mm/slub.c:3950!
+> [    2.194491] Internal error: Oops - BUG: 0 [#1] PREEMPT SMP ARM
+> ...
+> 
+> meson_nfc_read_buf debug log with PER_INFO_BYTE+64 allocation:
+> [    2.033019] meson_nfc_read_buf e9ea4280 0x29ea4280
+> [    2.033112] meson_nfc_dma_buffer_setup 0x29ea4280
+> [    2.037847] meson_nfc_read_buf: about to kfree info
+> [    2.042642] meson_nfc_read_buf: kfree'd info
+> [    2.046909] meson_nfc_read_buf e9ea4280 0x29ea4280
+> [    2.051659] meson_nfc_dma_buffer_setup 0x29ea4280
+> [    2.056374] meson_nfc_read_buf: about to kfree info
+> [    2.061192] meson_nfc_read_buf: kfree'd info
+> [    2.065461] meson_nfc_read_buf e9ea4280 0x29ea4280
+> [    2.070208] meson_nfc_dma_buffer_setup 0x29ea4280
+> [    2.074922] meson_nfc_read_buf: about to kfree info
+> [    2.079742] meson_nfc_read_buf: kfree'd info
+> [    2.084087] meson_nfc_read_buf e9ea4280 0x29ea4280
+> [    2.088789] meson_nfc_dma_buffer_setup 0x29ea4280
+> [    2.093440] meson_nfc_read_buf: about to kfree info
+> [    2.098303] meson_nfc_read_buf: kfree'd info
+> [    2.102553] meson_nfc_read_buf e9ea4280 0x29ea4280
+> [    2.107316] meson_nfc_dma_buffer_setup 0x29ea4280
+> [    2.111990] meson_nfc_read_buf: about to kfree info
+> [    2.116870] meson_nfc_read_buf: kfree'd info
+> [    2.121103] meson_nfc_read_buf e9ea4280 0x29ea4280
+> [    2.125868] meson_nfc_dma_buffer_setup 0x29ea4280
+> [    2.130540] meson_nfc_read_buf: about to kfree info
+> [    2.135400] meson_nfc_read_buf: kfree'd info
+> [    2.139652] Could not find a valid ONFI parameter page, trying
+> bit-wise majority to recover it
+> [    2.148276] ONFI parameter recovery failed, aborting
+> [    2.153165] meson_nfc_read_buf e9ea4280 0x29ea4280
+> [    2.157938] meson_nfc_dma_buffer_setup 0x29ea4280
+> [    2.162634] meson_nfc_read_buf: about to kfree info
+> [    2.167475] meson_nfc_read_buf: kfree'd info
+> [    2.171717] meson_nfc_read_buf e9ea4280 0x29ea4280
+> [    2.176489] meson_nfc_dma_buffer_setup 0x29ea4280
+> [    2.181183] meson_nfc_read_buf: about to kfree info
+> [    2.186025] meson_nfc_read_buf: kfree'd info
+> [    2.190265] nand: device found, Manufacturer ID: 0xad, Chip ID: 0xde
+> [    2.196598] nand: Hynix NAND 8GiB 3,3V 8-bit
+> [    2.200840] nand: 8192 MiB, MLC, erase size: 4096 KiB, page size:
+> 16384, OOB size: 1280
+> [    2.208829] meson_nfc_read_buf e9ea4300 0x29ea4300
+> [    2.213581] meson_nfc_dma_buffer_setup 0x29ea4300
+> [    2.218291] meson_nfc_read_buf: about to kfree info
+> [    2.223115] meson_nfc_read_buf: kfree'd info
+> [    2.227374] ------------[ cut here ]------------
+> [    2.231968] WARNING: CPU: 1 PID: 1 at
+> drivers/mtd/nand/raw/nand_base.c:5503 nand_scan_with_ids+0x1718/0x171c
+> [    2.241760] No oob scheme defined for oobsize 1280
+> ...
+> (the "No oob scheme defined for oobsize 1280" message is expected)
+> 
+miss mtd_set_ooblayout(mtd, &meson_ooblayout_ops) on function 
+meson_nand_attach_chip.
+> 
+> Regards
+> Martin
+> 
 
 _______________________________________________
 linux-amlogic mailing list
