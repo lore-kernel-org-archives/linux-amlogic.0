@@ -2,83 +2,100 @@ Return-Path: <SRS0=2I4g=RX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 38EFBC43381
-	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Mar 2019 08:42:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4EED6C43381
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Mar 2019 08:51:26 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0914B21841
-	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Mar 2019 08:42:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1D5ED2175B
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Mar 2019 08:51:26 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bTCz5aXF";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="dm51qNeH"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0914B21841
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bY6SPA5v";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="J16Qc3Fr";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="WA0k8sfd"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1D5ED2175B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:References:To:From:Subject:Reply-To:Content-ID:Content-Description
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GUKw+jswpW3/mZs+74NBup81DKEvnuwmnnJffXbmVw0=; b=bTCz5aXFuQDn2+
-	Gh8gAEXuVLUSsL8glYLCPQQ9XwuVkYTuSmZr8HVxgJOzGPOXPvrHsvkYqRxasd4JdDiOZmLIlrGEh
-	5JF1T/nFyESJ5NbAqmKxHH7vgbtvAO4ku+6aAu8tkX3NgdlM05MUMh4fnakfmxGbMd6LfNWcb8SrP
-	Me12MbVhdsemKVJf3ypJk9DqWovB6/2BjNe4JO3UsEnmsRa2ohA4cIY22B8xjS3jbAq9whMqPGQgQ
-	p+lSCVWEqaLL/SVvQ8T/LFAFrSQuPHh+wOtAkw9VNNXSFIfhBPn1GnXVTGCTOuM6b6xIKSDbqf3N+
-	KrcpgoIELISrspG3ewDw==;
+	List-Owner; bh=S9zW+k9Si2whjROoHfxhx4cAvfSOBBf9AdvNYZHcRss=; b=bY6SPA5vDYGGU/
+	vkqWSP2xAv3RZHYCY0c2EwuFmUBR/10I3ZTeznHFoMQFbiWFT2byJ8cmO201CV0KtTcTrCKJg9E0U
+	yviuFp9gU29rdjiqTkW+pEpGvnBWPQnZNP7baX5tVUuHDOapyAjBU6JffaR86+d6BJVnBddgSa30w
+	LHkWTeBCM8y7VtBOjU+KDFdgtw9HReZlikH9ZZhXF2t4635qDC/XykM2QU06yaMnoBXkRRE7m7h0B
+	tc6R+fyKSpLyFKDeJ4AYe1vT/dlmJQiA+ep1i6FnyT5Bqh2n/HWLhlEAw4HT1D4PKE0KrayZ1G10n
+	hK2EHxJl2rfZp3q0aG7g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h6Wo4-0001xw-BM; Wed, 20 Mar 2019 08:42:40 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1h6WwS-0005aS-Qw; Wed, 20 Mar 2019 08:51:20 +0000
+Received: from merlin.infradead.org ([2001:8b0:10b:1231::1])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h6Wnu-0001ow-3m
- for linux-amlogic@lists.infradead.org; Wed, 20 Mar 2019 08:42:32 +0000
-Received: by mail-wr1-x443.google.com with SMTP id w2so1692919wrt.11
- for <linux-amlogic@lists.infradead.org>; Wed, 20 Mar 2019 01:42:29 -0700 (PDT)
+ id 1h6WwR-0005PU-0I
+ for linux-amlogic@bombadil.infradead.org; Wed, 20 Mar 2019 08:51:19 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:Content-Type:
+ In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+ :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=OGXGcvskv4iCf+DQMwdniJ9CF3Cv0SYqxOdkT3KVa+w=; b=J16Qc3FrTsKCenQb5Ssdjj/k4u
+ /T7UznYXMFl6C1v+snfXt0b95m7KDVSRF5mAx9K/0Bz7vAVFLGvNo3/y6uxE6AELXEYIkYG80ndGC
+ UbWUgpqZHIVWEEF/US5px9DFQqh9PeR+IvEnd0WwWOFO4WVdQfz0rOuciGkN95v9CXesOSxLLmtLG
+ AD5jaFvhjsl97YOUaicOmtvVoQykglJ1rJ1EKyGl3/A6UUMqctCtpj9E+gGsb37f4eHB6fTkAVLHL
+ W+o9b2NnetLjCg8RkdLm4sxpwjvfIjNshX3gohcUMz+AoueFdRswEOoO270hn5pdIyQgN8LWcyPzx
+ iZTv2p6w==;
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+ by merlin.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1h6Wvs-0001dt-44
+ for linux-amlogic@lists.infradead.org; Wed, 20 Mar 2019 08:50:45 +0000
+Received: by mail-wm1-x341.google.com with SMTP id z11so11139141wmi.0
+ for <linux-amlogic@lists.infradead.org>; Wed, 20 Mar 2019 01:50:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:from:to:cc:references:openpgp:autocrypt:organization
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=Khces7qT2m8HFFKRp8AJWyypjzmE3/8KdzReFIHFBrw=;
- b=dm51qNeHXz9GimepCbpGtgX7C4ilR/qEjsT1gslXVi0b+E3GHExP/ctijqoD/wZrlb
- LEebjajzbfuBtUq+9XcGAKVM9lLTF4y+K7xw5pFSUhQd4RF3KrZThY3I4c6eJtUmneWg
- p1PlnoaMEI+2aCBoksI1wC5kq2/xtzDK435xGoeQaZ9v4TlSB3WsKvyf1U9rbQQ3AxQv
- xaScPKxQ7x26GO3qdcV6K81NDqRABJUYdC64FBkT/xcH71bFd9By341fkqxX36cJ8aqR
- s2A9+UGyH42/2u+vb6ucwLXHLnvs8AtW7XLN7k4k464tfQrSB/5tAt0xqre7KyC2reEG
- /MSA==
+ bh=OGXGcvskv4iCf+DQMwdniJ9CF3Cv0SYqxOdkT3KVa+w=;
+ b=WA0k8sfdCPCCgdaECQhrTL4VIxD5StlA7xxHwHEzX7kM/F6Z1UF0sUCfASwdX1Ge0J
+ cWsA03a/x6qvODKIBwD44V/xm7lzHInUUU4GMpEuWObgquhln3NCE+2FTPgdoe/SO6XC
+ MbCkYUh/iJBkrsbp/B+RVfk3lsm7k1skYRjD2iiPq1GBtXnvnlSCVqXA3DLl+OSeqKmS
+ 1fuEmFjbzOxL7Toou2zqJxbXsTUwQQ+lVj/gDF102U9bo03n07WzPbEx6LmRq8Eq/P6H
+ RScVTypeUr22Huema2t/Bsvi4eCdG231JJMzhUdsaEjmMBPuChK+mYdGg0H70Xc1NDXw
+ DH2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:from:to:cc:references:openpgp:autocrypt
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=Khces7qT2m8HFFKRp8AJWyypjzmE3/8KdzReFIHFBrw=;
- b=WWVaDgdnb/S2K5A6XirCRZWZXHHs5kQ0QvC4aOEAp/X018UxrXfyxoJYqQjHW1ekLQ
- cG9CMT9OvblmEURA153PbQpuefaeVPerillR5AfT/AqMcQw4bJLk0/wLHgNmZ4lNSYMm
- V/MGs0oPy++OV0Eo3RuGpc46iYBc4+IolNSrseqoCKUxUsrys4Exe5Y7VD+9tFf1JNiS
- E5Wzd0ybDLeyo5QSUfbIaZzy5/HdEVbmqspG2648c0KQtckJwbUB+T5IUwiQctngK/ww
- LvwTfTP4t9TEU0JvKAIrAvTxnMBW/JoW9/zYu0NnLinZCx2XashM5W1BD4aB5Wa+dRvY
- Co1A==
-X-Gm-Message-State: APjAAAWR4p8QXV8DEnn4TkVTOhi+wbhr5KIRnLrYJ7p1FmnOmwVDK8ZO
- o+0YWuQYYXQcxvmdQS5nIrfT+Q==
-X-Google-Smtp-Source: APXvYqwG97zRJsbaHLR0TvpQl+MzQJp14Irn0t2t2kj3gIKpfgEXOwxafiRrrGrdOuRzZWsb6MZ/VQ==
-X-Received: by 2002:a5d:428c:: with SMTP id k12mr12556246wrq.279.1553071348102; 
- Wed, 20 Mar 2019 01:42:28 -0700 (PDT)
+ bh=OGXGcvskv4iCf+DQMwdniJ9CF3Cv0SYqxOdkT3KVa+w=;
+ b=C6C4MrVC0elt/TpNOkcYnvy+vxNOzH60OWJ++0UZV2Ezk2A58/NLfRR2gllVuqZIu3
+ 4/75EqvLIjiKLJ3s7XPfv50/gqCzpEnFdWaA3C7RXMR2TIWZHvFx8mgRIKYDwc9pCQn+
+ xZYSw0sWy0yOzs02SnbiwoDj9HLlXCIUnxUXHI4HBrQTcp2qCYOhEVnfhxzsq0+dPChE
+ 2ktGYoxqmONn07zMqasXAb8rouA2KYRlfCIfGPOOtLRT148S0Emh7hqaIvx3j690pvQe
+ 6GnZKhIAkyMLbqERmKpFVQUJC+/QvoCEIg21baafL6JvsC9vjzKR+F061iDq1IsKqokT
+ cTAw==
+X-Gm-Message-State: APjAAAXZdcSd0C0Flq4hpyS8Age7MR7Iz0fLUFYUBKlg4Hqg19fPb6Om
+ QYi0UKSPsR7XKFWH9KEhqPmHJw==
+X-Google-Smtp-Source: APXvYqx/j0beIVS2vwDu50rOrnf8gkb7XYqITZeZIfk0qeRZvwzUQiB8KpoyngBXodMOq3m6MLHsXA==
+X-Received: by 2002:a1c:cb82:: with SMTP id b124mr6907166wmg.11.1553071773429; 
+ Wed, 20 Mar 2019 01:49:33 -0700 (PDT)
 Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
  by smtp.gmail.com with ESMTPSA id
- n19sm1272157wmk.35.2019.03.20.01.42.26
+ a9sm1672536wrt.29.2019.03.20.01.49.32
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 20 Mar 2019 01:42:26 -0700 (PDT)
-Subject: Re: [PATCH 0/2] drm/meson: only allow using meson-canvas
+ Wed, 20 Mar 2019 01:49:32 -0700 (PDT)
+Subject: Re: [PATCH] dt-bindings: clock: axg-audio: unexpose controller inputs
+To: Jerome Brunet <jbrunet@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>
+References: <20190213095835.17448-1-jbrunet@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
-To: Maxime Jourdan <mjourdan@baylibre.com>
-References: <20190311105144.7276-1-mjourdan@baylibre.com>
- <375bb9db-50bb-000a-077b-6f090ae73039@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -130,16 +147,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <7c9b4a05-bfc6-39d9-f8cf-6698a7b2e3e7@baylibre.com>
-Date: Wed, 20 Mar 2019 09:42:25 +0100
+Message-ID: <703bf558-a0f7-e64b-bf0b-bb619c16d4c3@baylibre.com>
+Date: Wed, 20 Mar 2019 09:49:31 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.5.1
 MIME-Version: 1.0
-In-Reply-To: <375bb9db-50bb-000a-077b-6f090ae73039@baylibre.com>
+In-Reply-To: <20190213095835.17448-1-jbrunet@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190320_014230_157435_4755084B 
-X-CRM114-Status: GOOD (  14.61  )
+X-CRM114-CacheID: sfid-20190320_045044_249744_0EF26282 
+X-CRM114-Status: GOOD (  15.73  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -151,56 +168,99 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: Maxime Jourdan <mjourdan@baylibre.com>, devicetree@vger.kernel.org,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 13/03/2019 13:50, Neil Armstrong wrote:
-> On 11/03/2019 11:51, Maxime Jourdan wrote:
->> This patch series aims at removing access to the DMC register range from
->> the meson DRM driver, and is the final step at fully migrating it to using
->> the meson canvas provider module.
->>
->> Please see the commit notes of patch 1/2
->> "dt-bindings: display: amlogic, meson-vpu: exclusively use amlogic,canvas"
->> for more information.
->>
->> This series also incorporates a probing fix proposed by Neil Armstrong [1]
->> although rewritten because of heavy code changes in the corresponding
->> location.
->>
->> [1] https://lkml.org/lkml/2019/2/4/152
->>
->> Maxime Jourdan (2):
->>   dt-bindings: display: amlogic, meson-vpu: exclusively use
->>     amlogic,canvas
->>   drm/meson: exclusively use the canvas provider module
->>
->>  .../bindings/display/amlogic,meson-vpu.txt    |  5 +-
->>  drivers/gpu/drm/meson/Makefile                |  2 +-
->>  drivers/gpu/drm/meson/meson_canvas.c          | 73 ----------------
->>  drivers/gpu/drm/meson/meson_canvas.h          | 51 -----------
->>  drivers/gpu/drm/meson/meson_crtc.c            | 84 ++++++-------------
->>  drivers/gpu/drm/meson/meson_drv.c             | 68 ++++++---------
->>  drivers/gpu/drm/meson/meson_drv.h             |  1 -
->>  drivers/gpu/drm/meson/meson_overlay.c         |  8 --
->>  drivers/gpu/drm/meson/meson_plane.c           |  6 +-
->>  drivers/gpu/drm/meson/meson_viu.c             |  1 -
->>  10 files changed, 53 insertions(+), 246 deletions(-)
->>  delete mode 100644 drivers/gpu/drm/meson/meson_canvas.c
->>  delete mode 100644 drivers/gpu/drm/meson/meson_canvas.h
->>
+On 13/02/2019 10:58, Jerome Brunet wrote:
+> Remove the bindings ID of the clock input of the controller. These
+> clocks are purely internal to the controller, exposing them was a
+> mistake. Actually, these should not even be in the provider and have
+> IDs to begin with.
 > 
-> Will apply on drm-misc-next for 5.2 when ready !
+> Unexpose these IDs before:
+>  * someone starts using them (even if there no valid reason to do so)
+>  * the actual clocks are removed. The fact that they exist is just the
+>    result of an ugly hack. This will be resolved in CCF when we can
+>    reference DT directly in parent table.
 > 
-> Neil
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  drivers/clk/meson/axg-audio.h              | 20 ++++++++++++++++++++
+>  include/dt-bindings/clock/axg-audio-clkc.h | 20 --------------------
+>  2 files changed, 20 insertions(+), 20 deletions(-)
+> 
+> diff --git a/drivers/clk/meson/axg-audio.h b/drivers/clk/meson/axg-audio.h
+> index 7191b39c9d65..644f0b0fddf2 100644
+> --- a/drivers/clk/meson/axg-audio.h
+> +++ b/drivers/clk/meson/axg-audio.h
+> @@ -60,6 +60,26 @@
+>  #define AUD_CLKID_MST5			6
+>  #define AUD_CLKID_MST6			7
+>  #define AUD_CLKID_MST7			8
+> +#define AUD_CLKID_SLV_SCLK0		9
+> +#define AUD_CLKID_SLV_SCLK1		10
+> +#define AUD_CLKID_SLV_SCLK2		11
+> +#define AUD_CLKID_SLV_SCLK3		12
+> +#define AUD_CLKID_SLV_SCLK4		13
+> +#define AUD_CLKID_SLV_SCLK5		14
+> +#define AUD_CLKID_SLV_SCLK6		15
+> +#define AUD_CLKID_SLV_SCLK7		16
+> +#define AUD_CLKID_SLV_SCLK8		17
+> +#define AUD_CLKID_SLV_SCLK9		18
+> +#define AUD_CLKID_SLV_LRCLK0		19
+> +#define AUD_CLKID_SLV_LRCLK1		20
+> +#define AUD_CLKID_SLV_LRCLK2		21
+> +#define AUD_CLKID_SLV_LRCLK3		22
+> +#define AUD_CLKID_SLV_LRCLK4		23
+> +#define AUD_CLKID_SLV_LRCLK5		24
+> +#define AUD_CLKID_SLV_LRCLK6		25
+> +#define AUD_CLKID_SLV_LRCLK7		26
+> +#define AUD_CLKID_SLV_LRCLK8		27
+> +#define AUD_CLKID_SLV_LRCLK9		28
+>  #define AUD_CLKID_MST_A_MCLK_SEL	59
+>  #define AUD_CLKID_MST_B_MCLK_SEL	60
+>  #define AUD_CLKID_MST_C_MCLK_SEL	61
+> diff --git a/include/dt-bindings/clock/axg-audio-clkc.h b/include/dt-bindings/clock/axg-audio-clkc.h
+> index fd9c362099d9..eafb0de8466b 100644
+> --- a/include/dt-bindings/clock/axg-audio-clkc.h
+> +++ b/include/dt-bindings/clock/axg-audio-clkc.h
+> @@ -7,26 +7,6 @@
+>  #ifndef __AXG_AUDIO_CLKC_BINDINGS_H
+>  #define __AXG_AUDIO_CLKC_BINDINGS_H
+>  
+> -#define AUD_CLKID_SLV_SCLK0		9
+> -#define AUD_CLKID_SLV_SCLK1		10
+> -#define AUD_CLKID_SLV_SCLK2		11
+> -#define AUD_CLKID_SLV_SCLK3		12
+> -#define AUD_CLKID_SLV_SCLK4		13
+> -#define AUD_CLKID_SLV_SCLK5		14
+> -#define AUD_CLKID_SLV_SCLK6		15
+> -#define AUD_CLKID_SLV_SCLK7		16
+> -#define AUD_CLKID_SLV_SCLK8		17
+> -#define AUD_CLKID_SLV_SCLK9		18
+> -#define AUD_CLKID_SLV_LRCLK0		19
+> -#define AUD_CLKID_SLV_LRCLK1		20
+> -#define AUD_CLKID_SLV_LRCLK2		21
+> -#define AUD_CLKID_SLV_LRCLK3		22
+> -#define AUD_CLKID_SLV_LRCLK4		23
+> -#define AUD_CLKID_SLV_LRCLK5		24
+> -#define AUD_CLKID_SLV_LRCLK6		25
+> -#define AUD_CLKID_SLV_LRCLK7		26
+> -#define AUD_CLKID_SLV_LRCLK8		27
+> -#define AUD_CLKID_SLV_LRCLK9		28
+>  #define AUD_CLKID_DDR_ARB		29
+>  #define AUD_CLKID_PDM			30
+>  #define AUD_CLKID_TDMIN_A		31
 > 
 
-Applied.
+
+Applied to next/drivers
 
 _______________________________________________
 linux-amlogic mailing list
