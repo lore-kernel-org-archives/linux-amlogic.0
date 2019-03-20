@@ -2,67 +2,87 @@ Return-Path: <SRS0=2I4g=RX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8895BC43381
-	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Mar 2019 03:33:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 86CD5C4360F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Mar 2019 08:11:27 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4DB5420830
-	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Mar 2019 03:33:09 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 56E532146E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Mar 2019 08:11:27 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VCWY2oke"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4DB5420830
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="l+ctoD0h";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="OqNlY2d8"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 56E532146E
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=AGwYjxJWDybdTMu5lZy8tV1lEA6hmBdY2FCqBvVEawc=; b=VCWY2okeRWsUvbxM/TtUqhvR+
-	xuHKqDqemUYp8LzQcDdIOWYz5oicpDBwdg99ireFGe9jJeVx6TqGCwRmEKfmNo6rK//PXGO5OFvr3
-	b5yS2xgP5sFVO2CJu1xPnzJkGfGxcNDV1mpGbMs/6kTLBEen/iIQys7RarA66buFoEnLYOWHOKR08
-	1JsJrlTQCvf6A+Vwmejt62P8Nmhdlexa2lDH1zeoQfN3q9HppFlLnQGK+Ko69tZ+4k9fKr6j7yfyW
-	+2wkLAjlTV4DGOLSBpTs+1DSNXNCDqkKklZUhYcVO32m03Ia68XWDzH79DV2dnqBWAPSodyALjrJX
-	cWWXZjpMg==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=GSBG7xzKHDNnlMQHqLwwcOVL4ZwRn+VCyLMTGm3G0HA=; b=l+ctoD0h0/NS/Y
+	5y60bCMAvSXPEnijZ5+SzFlfp5BvV6c8xi6x+a7H3CoZOxvjjvLGOdbAZ5qYJTxBpUhNSuihG8Q5h
+	3J3XkDHZRoEDHkkm6g3OznjbNxudKtc2K/t3/3Ix88+kwArQjXH4KSfVoGxj56ZDhWe795VHzp9hR
+	zhzGpfonw0cUBqi3KD9A7JDju4Vi+u/dy8w3sOu64nEhq0hgtPb+LprUT70h+usyCrv25Tg9HY0Ri
+	CrNP885oaE9zz1dQThuA3tuNUWCxR9P0CWS6piIp2sik+dFobXrqFhaxCDzZSwHlZnZgcVx6GOPlU
+	qRQaozRd6jt+ShJNwrIQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h6RyP-0000gE-HR; Wed, 20 Mar 2019 03:33:01 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1h6WJi-0004Z8-Uo; Wed, 20 Mar 2019 08:11:18 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h6RyG-0000Xp-8j; Wed, 20 Mar 2019 03:32:54 +0000
-Received: from [10.28.18.125] (10.28.18.125) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Wed, 20 Mar
- 2019 11:33:53 +0800
-Subject: Re: [RFC PATCH nand-next 0/2] meson-nand: support for older SoCs
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20190301182922.8309-1-martin.blumenstingl@googlemail.com>
- <98776767-c4d7-1207-6d42-97105f289bec@amlogic.com>
- <CAFBinCC7P40sqrDGTuM8M=jVOFTgZLDUK6rGdNpigFoepyCASw@mail.gmail.com>
- <20190307140959.10092d45@xps13>
- <ccb95e75-e62f-c510-cabd-853481f77fc8@amlogic.com>
- <CAFBinCBd=dOZjv4KEDY9ODOONDO=WtaBqAMRi_a+gH3_iZEAHQ@mail.gmail.com>
- <CAFBinCA7LLK6K3ZqauJy2N-z5-kTfuTztmoSQ=Bk4A5Xagxddw@mail.gmail.com>
-From: Liang Yang <liang.yang@amlogic.com>
-Message-ID: <8134890a-457d-7803-01a4-1832f925f65f@amlogic.com>
-Date: Wed, 20 Mar 2019 11:33:52 +0800
-User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:60.0) Gecko/20100101
- Thunderbird/60.5.3
+ id 1h6WJf-0004YO-Ii
+ for linux-amlogic@lists.infradead.org; Wed, 20 Mar 2019 08:11:16 +0000
+Received: by mail-wm1-x343.google.com with SMTP id h18so10638477wml.1
+ for <linux-amlogic@lists.infradead.org>; Wed, 20 Mar 2019 01:11:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=eFtdP05d2Yd7J7Kr65hCVTF0i81Ds1QiBjoleRYSdg4=;
+ b=OqNlY2d8zJN+yt4ujTovEzqj1DCk9qg2euOx/Lyzn+sh05433TflHUP6VmiPx+csOE
+ aWrhIEzdYnMqQeADMxEvbPvo97EsJSQSWkulxhsK45lDWTgOtDf03FLQ5kTL+LwFLuA+
+ P1BHwnyK4Kc/8PqivblcrR9HQ5ivXCqggJTd/inIj9hDemRhx0lUjaar/g45i5GSA0vV
+ 2iwsaJSgNpRqS6cj/aGaSNvZWq0x7DYkAbw2zikY5W7wwJhlCr/nv8H3iyp/gBzjOchS
+ 7BuSjEiwjLqAKr9gZKGsl0i74iIzOwutoBqsNdrDbOquL+QEYO1wkzH8Ww8SUCkNkVJh
+ xa0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=eFtdP05d2Yd7J7Kr65hCVTF0i81Ds1QiBjoleRYSdg4=;
+ b=hzz/oNHI/kpQjQk2v81nCxeVwNXs95IAScT+t40vobwP+IgP8AAJr2Y7APsnAWfNYq
+ a8c2Z2nID/1RQU9vsad33TOKaYL9b4ZeoOfsB35MOIQ65FZMIsGUNARFyRpvw2jgou7l
+ FDqkHllnfRdOVX0qSUXYUiycfhkbkm6yg7AQWAXKiS7xqlsqkzK4DidlsRxz2R69+Dd1
+ HXpnReieltN5cTQgJG6oVV35t0sPvgIDGW40RpW1RQtTIrzITXGwG8+Vr0Z6m2Ju/1zb
+ npYJIJhkb4z5No7XuIaYlsgKPoI2mU3PtsW6vvId/wXnwJ16iOyK5GU2RkJe0yVgqvX5
+ IYtw==
+X-Gm-Message-State: APjAAAXrwbvjK6qFr9TT9Z3GrHeQEn+mHCDR1oicDYgWxw7i/Kf/DrjG
+ Q0IYOdGhLkc/RqxT/J8Zn+nZYA==
+X-Google-Smtp-Source: APXvYqwtuUEVnsZxXKA7EBFNRqaDkSSEbJFykQuv8l1AVpJLIqATxrOaPDhf5tfS1n6BAtUIMwowGw==
+X-Received: by 2002:a1c:7e51:: with SMTP id z78mr7111964wmc.82.1553069473794; 
+ Wed, 20 Mar 2019 01:11:13 -0700 (PDT)
+Received: from localhost.localdomain (176-150-251-154.abo.bbox.fr.
+ [176.150.251.154])
+ by smtp.gmail.com with ESMTPSA id 12sm3640670wme.25.2019.03.20.01.11.12
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+ Wed, 20 Mar 2019 01:11:13 -0700 (PDT)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: daniel@ffwll.ch
+Subject: [PATCH] drm/meson: fix TMDS clock filtering for DMT monitors
+Date: Wed, 20 Mar 2019 09:11:10 +0100
+Message-Id: <20190320081110.1718-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCA7LLK6K3ZqauJy2N-z5-kTfuTztmoSQ=Bk4A5Xagxddw@mail.gmail.com>
-Content-Language: en-US
-X-Originating-IP: [10.28.18.125]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190319_203252_312521_57368AA7 
-X-CRM114-Status: GOOD (  19.89  )
+X-CRM114-CacheID: sfid-20190320_011115_661114_7B134720 
+X-CRM114-Status: GOOD (  10.82  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -74,166 +94,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mark.rutland@arm.com, devicetree@vger.kernel.org, jianxin.pan@amlogic.com,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org,
- linux-mtd@lists.infradead.org, Miquel Raynal <miquel.raynal@bootlin.com>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: Maxime Jourdan <mjourdan@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
+DMT monitors does not necessarely report a maximum TMDS clock
+in a VSDB EDID extension.
 
-Thanks for your time.
-On 2019/3/20 4:27, Martin Blumenstingl wrote:
-> Hello Liang,
-> 
-> On Sat, Mar 16, 2019 at 11:55 AM Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
-> [...]
->>> Martin, Now i am not sure whether NFC driver leads to kernel panic when
->>> calling kmem_cache_alloc_trace.
->> thank you for confirming that it works for you on GXL
->>
->> I'm not sure that this is a NFC driver problem.
->> after enabling CONFIG_SLAB_FREELIST_HARDENED in my kernel config the
->> crash moves. it's now crashing in slub.c's kfree() at
->> BUG_ON(!PageCompound(page));
-> I added some debug prints in meson_nfc_read_buf() to get some details
-> about the info buffer before the crash,
-> format is: meson_nfc_read_buf <virtual address> <physical address>
-> 
-> during my first test three different addresses are used:
-> - meson_nfc_read_buf e9e6c640 0x29e6c640 (works fine)
-> - meson_nfc_read_buf e9e6c680 0x29e6c680 (works fine)
-> - meson_nfc_read_buf ee39a34b 0x2e39a34b (crashes during kfree)
-> 
-> so I tried playing around with the allocation size (see the attached
-> patch) and changed it to:
->    kzalloc(PER_INFO_BYTE + 64, GFP_KERNEL)
-> this results in the following addresses being used:
-> - meson_nfc_read_buf e9ea4280 0x29ea4280 (works fine)
-> - meson_nfc_read_buf e9ea4300 0x29ea4300 (works fine)
-> (there is no crash anymore)
-> 
-> Liang, are there any special requirements on the "info address" like
-> the alignment?
-It must be 4 bytes alignment. i have met it previously when debugging 
-NFC driver on AXG platform, but it is not specified on spec. Now i am 
-confused that how to get the no aligned address "xe39a34b" when using 
-kmalloc; i think it should return the aligned address. doesn't it?
+In this case, all modes are wrongly rejected, including
+the DRM fallback EDID.
 
-> also do you know why the PER_INFO_BYTE buffer is allocated dynamically
-> in meson_nfc_read_buf() instead of allocating it at initialization?
-> I'm not saying that it should be changed! I'm curious because there's
-> per-meson_nfc_nand_chip info and data buffers which are allocated at
-> initialization time.
-> NAND scan or initialization is divided into three stages: 
-nand_scan_ident->nand_attach->nand_scan_tail. info and data buffer which 
-depend on the result of nand_scan_ident are allocated on nand_attach; so 
-nand_scan_ident can not use the info buffer on meson_nfc_nand_chip.
-Allocating a fixed size info buffer before nand_scan_ident and attach it 
-on the struct meson_nfc; Or considering not use dma for reading data 
-less than 8 bytes. Both can reduce kmalloc and kfree calling. Thanks.
-> 
-> meson_nfc_read_buf debug log with PER_INFO_BYTE allocation:
-> [    2.032914] meson_nfc_read_buf e9e6c640 0x29e6c640
-> [    2.033005] meson_nfc_dma_buffer_setup 0x29e6c640
-> [    2.037717] meson_nfc_read_buf: about to kfree info
-> [    2.042535] meson_nfc_read_buf: kfree'd info
-> [    2.046794] meson_nfc_read_buf e9e6c640 0x29e6c640
-> [    2.051552] meson_nfc_dma_buffer_setup 0x29e6c640
-> [    2.056261] meson_nfc_read_buf: about to kfree info
-> [    2.061086] meson_nfc_read_buf: kfree'd info
-> [    2.065356] meson_nfc_read_buf e9e6c680 0x29e6c680
-> [    2.070102] meson_nfc_dma_buffer_setup 0x29e6c680
-> [    2.074810] meson_nfc_read_buf: about to kfree info
-> [    2.079635] meson_nfc_read_buf: kfree'd info
-> [    2.083978] meson_nfc_read_buf e9e6c640 0x29e6c640
-> [    2.088684] meson_nfc_dma_buffer_setup 0x29e6c640
-> [    2.093334] meson_nfc_read_buf: about to kfree info
-> [    2.098199] meson_nfc_read_buf: kfree'd info
-> [    2.102446] meson_nfc_read_buf e9e6c640 0x29e6c640
-> [    2.107208] meson_nfc_dma_buffer_setup 0x29e6c640
-> [    2.111883] meson_nfc_read_buf: about to kfree info
-> [    2.116765] meson_nfc_read_buf: kfree'd info
-> [    2.120996] meson_nfc_read_buf e9e6c640 0x29e6c640
-> [    2.125762] meson_nfc_dma_buffer_setup 0x29e6c640
-> [    2.130433] meson_nfc_read_buf: about to kfree info
-> [    2.135294] meson_nfc_read_buf: kfree'd info
-> [    2.139545] Could not find a valid ONFI parameter page, trying
-> bit-wise majority to recover it
-> [    2.148173] ONFI parameter recovery failed, aborting
-> [    2.153058] meson_nfc_read_buf e9e6c680 0x29e6c680
-> [    2.157831] meson_nfc_dma_buffer_setup 0x29e6c680
-> [    2.162527] meson_nfc_read_buf: about to kfree info
-> [    2.167369] meson_nfc_read_buf: kfree'd info
-> [    2.171611] meson_nfc_read_buf ee39a34b 0x2e39a34b
-> [    2.176383] meson_nfc_dma_buffer_setup 0x2e39a34b
-> [    2.181076] meson_nfc_read_buf: about to kfree info
-> [    2.185932] ------------[ cut here ]------------
-> [    2.190503] kernel BUG at mm/slub.c:3950!
-> [    2.194491] Internal error: Oops - BUG: 0 [#1] PREEMPT SMP ARM
-> ...
-> 
-> meson_nfc_read_buf debug log with PER_INFO_BYTE+64 allocation:
-> [    2.033019] meson_nfc_read_buf e9ea4280 0x29ea4280
-> [    2.033112] meson_nfc_dma_buffer_setup 0x29ea4280
-> [    2.037847] meson_nfc_read_buf: about to kfree info
-> [    2.042642] meson_nfc_read_buf: kfree'd info
-> [    2.046909] meson_nfc_read_buf e9ea4280 0x29ea4280
-> [    2.051659] meson_nfc_dma_buffer_setup 0x29ea4280
-> [    2.056374] meson_nfc_read_buf: about to kfree info
-> [    2.061192] meson_nfc_read_buf: kfree'd info
-> [    2.065461] meson_nfc_read_buf e9ea4280 0x29ea4280
-> [    2.070208] meson_nfc_dma_buffer_setup 0x29ea4280
-> [    2.074922] meson_nfc_read_buf: about to kfree info
-> [    2.079742] meson_nfc_read_buf: kfree'd info
-> [    2.084087] meson_nfc_read_buf e9ea4280 0x29ea4280
-> [    2.088789] meson_nfc_dma_buffer_setup 0x29ea4280
-> [    2.093440] meson_nfc_read_buf: about to kfree info
-> [    2.098303] meson_nfc_read_buf: kfree'd info
-> [    2.102553] meson_nfc_read_buf e9ea4280 0x29ea4280
-> [    2.107316] meson_nfc_dma_buffer_setup 0x29ea4280
-> [    2.111990] meson_nfc_read_buf: about to kfree info
-> [    2.116870] meson_nfc_read_buf: kfree'd info
-> [    2.121103] meson_nfc_read_buf e9ea4280 0x29ea4280
-> [    2.125868] meson_nfc_dma_buffer_setup 0x29ea4280
-> [    2.130540] meson_nfc_read_buf: about to kfree info
-> [    2.135400] meson_nfc_read_buf: kfree'd info
-> [    2.139652] Could not find a valid ONFI parameter page, trying
-> bit-wise majority to recover it
-> [    2.148276] ONFI parameter recovery failed, aborting
-> [    2.153165] meson_nfc_read_buf e9ea4280 0x29ea4280
-> [    2.157938] meson_nfc_dma_buffer_setup 0x29ea4280
-> [    2.162634] meson_nfc_read_buf: about to kfree info
-> [    2.167475] meson_nfc_read_buf: kfree'd info
-> [    2.171717] meson_nfc_read_buf e9ea4280 0x29ea4280
-> [    2.176489] meson_nfc_dma_buffer_setup 0x29ea4280
-> [    2.181183] meson_nfc_read_buf: about to kfree info
-> [    2.186025] meson_nfc_read_buf: kfree'd info
-> [    2.190265] nand: device found, Manufacturer ID: 0xad, Chip ID: 0xde
-> [    2.196598] nand: Hynix NAND 8GiB 3,3V 8-bit
-> [    2.200840] nand: 8192 MiB, MLC, erase size: 4096 KiB, page size:
-> 16384, OOB size: 1280
-> [    2.208829] meson_nfc_read_buf e9ea4300 0x29ea4300
-> [    2.213581] meson_nfc_dma_buffer_setup 0x29ea4300
-> [    2.218291] meson_nfc_read_buf: about to kfree info
-> [    2.223115] meson_nfc_read_buf: kfree'd info
-> [    2.227374] ------------[ cut here ]------------
-> [    2.231968] WARNING: CPU: 1 PID: 1 at
-> drivers/mtd/nand/raw/nand_base.c:5503 nand_scan_with_ids+0x1718/0x171c
-> [    2.241760] No oob scheme defined for oobsize 1280
-> ...
-> (the "No oob scheme defined for oobsize 1280" message is expected)
-> 
-miss mtd_set_ooblayout(mtd, &meson_ooblayout_ops) on function 
-meson_nand_attach_chip.
-> 
-> Regards
-> Martin
-> 
+This patch only rejects modes whith clock > max_tmds_clock if
+the max_tmds_clock is specified. This will only reject
+4:2:0 HDMI2.0 modes, who reports a clock > max_tmds_clock.
+
+Reported-by: Maxime Jourdan <mjourdan@baylibre.com>
+Fixes: d7d8fb7046b6 ("drm/meson: add HDMI div40 TMDS mode")
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/gpu/drm/meson/meson_dw_hdmi.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+index e28814f4ea6c..563953ec6ad0 100644
+--- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
++++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+@@ -569,7 +569,8 @@ dw_hdmi_mode_valid(struct drm_connector *connector,
+ 	DRM_DEBUG_DRIVER("Modeline " DRM_MODE_FMT "\n", DRM_MODE_ARG(mode));
+ 
+ 	/* If sink max TMDS clock, we reject the mode */
+-	if (mode->clock > connector->display_info.max_tmds_clock)
++	if (connector->display_info.max_tmds_clock &&
++	    mode->clock > connector->display_info.max_tmds_clock)
+ 		return MODE_BAD;
+ 
+ 	/* Check against non-VIC supported modes */
+-- 
+2.21.0
+
 
 _______________________________________________
 linux-amlogic mailing list
