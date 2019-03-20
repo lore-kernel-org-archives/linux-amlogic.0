@@ -1,91 +1,73 @@
-Return-Path: <SRS0=/WbR=RW=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=2I4g=RX=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DCEF5C43381
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 22:00:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C834DC43381
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Mar 2019 01:43:58 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A66AA2085A
-	for <linux-amlogic@archiver.kernel.org>; Tue, 19 Mar 2019 22:00:55 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 857872175B
+	for <linux-amlogic@archiver.kernel.org>; Wed, 20 Mar 2019 01:43:58 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Q0EdVc/3";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="IDJLNf7y"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A66AA2085A
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YpEQeW9q"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 857872175B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=mediatek.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cfGsK8p8V7Qu6yGpeZIb42HJJ0CBnBT9DjJY+b2dk8M=; b=Q0EdVc/3bmsJK2
-	xVnBuU0O8d7x7nZUVbjMYJWS66DPiJXcmpJgzKW40/Dt60SjgC2pa7Wa+kPpFPhzve5gAmXekhHCe
-	6WxpPSnY8VUrKdyvRcESvK/K7tz60zjc2lYjZ5EgbqbL+pxGoBbZ/9gas0bwb7CsPHxplCt0u1eNk
-	t+FGq6AVtMcRtTgkvKOVhgE9I8OqYhV/oWP8iWxGaSo4LXMYci7oDfeSP07bq9Jpp1lWd+LLOzs2T
-	IO/ADhD2D/itLYt8IW7DUUkqow7KjH3WmlNPhZUWCipnAntsO2WEc4JihzqMydEfuRzTd1rqn0FAB
-	fwqO5MPARLgNwdQvKqKQ==;
+	List-Owner; bh=simkAJWr5gfO7zDsLY1JXIZhffNteTWSRPDbHdBzfGA=; b=YpEQeW9qQTSQ+k
+	gnLQX3fjS30IMJqXUHd9CoDbNyEDRLqvMBpUADHuocAbLv8yUgHFVch8tkTkKMZFrxE8Vso1q7v3u
+	FPEeoteWIJQRdbP9xpDY5dV04AZu881l4TwAr39kju2jpcm+xlUCikZpoFrmSTibP9F/5kurWyqeF
+	gzaVIm2xg6PjgIbveUtoxzFyye0CShgxLNTffTrnyYoA6/DBlial61RZ+c4pjnKba4a1neSLwKlTP
+	I+NVBj2Tz5tLxv133ZEvya7Wy/CcMhDf/3f+hwJzyor0oBrQcdulOHEhHT2axCD6KS6//bmrkgBVR
+	jgHeBXmgmJDjtWIkTnnQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h6Mmw-0005OF-9E; Tue, 19 Mar 2019 22:00:50 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1h6QGi-0001Yj-Lb; Wed, 20 Mar 2019 01:43:48 +0000
+Received: from mailgw02.mediatek.com ([216.200.240.185])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h6MmS-0004ly-RD; Tue, 19 Mar 2019 22:00:25 +0000
-Received: by mail-wm1-x344.google.com with SMTP id a188so18001714wmf.3;
- Tue, 19 Mar 2019 15:00:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=w2XSCB6pbSoqCmk4AB1xIf/wFsjrxIhmtQekLeAUKQc=;
- b=IDJLNf7yznk8cQ3EKrwA3kC4rNOJVZBqpLFy5kwI5qOKzhx6uOuFNesVj0kayMOqOp
- Plz93HqxYFgp1HKmZPNcYq7qpklQ8Zo9/rRBSmkTPfWS08ZdWcZw3ENBr23Di8YT2O3P
- em3XlM+T5i1Xn2y+b493yqknLltC4LNSI2BV+G1G2gBljEp1EHk8alsxJxl7sck93P51
- xkHmnFjQ0C0bU524MaGmT3yT8Ov1d74wVqs4K8U3rwmdLlxFUuFLxA6YN+GLQIfhis5g
- ubEeh0orxCU3BSqYuwFwF9Lv5emvofP2UTVey5QAFanfN00XfYu6cw3vptOO6q43U5AU
- naow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=w2XSCB6pbSoqCmk4AB1xIf/wFsjrxIhmtQekLeAUKQc=;
- b=YyNz6m3JzliVHp1XB0UlfwPa9Xei8JgsGuHdXOhYxARv+MnZA91F7zNhxYCIy6n+nC
- unBl9Trk6TcaagcFecPIzIVi2QlBrGLWQaeNQ+WaUvhhB8w3y/Qcj2tDvZYWMS3sqpUi
- uO0n52zH2phfnTIMZaoeqtL3rB9lwa4KWtAetqG2DFvtvKsho8cPIJnCkv4c8SCllL34
- vz2XgD8aECLz7YJNuBVXTpIPOvunKO9Fpyeph35dm8zbDrYyqkKpRoSGhMtPkywfWSBD
- 2JRjBnZOQNWDCEz4wGjwiH5oo3wNVtaQLcdLwlTcS01SNsdhprSHuFLU/ot/R13XcRzq
- lMjg==
-X-Gm-Message-State: APjAAAWo8H8+Y2bv1tyukuSzDpnP4i7n127TmzNR6u1feMDWwzlM+L9k
- XJkOs8GZp0VL7IiTXkG08CGOp4wK
-X-Google-Smtp-Source: APXvYqxOo5gv0+NQjUBZIf71kaGq0EtpUIGemhebsJklSR+dQXXrTnkve7P5b3rg1v2k+LjlXsVVbw==
-X-Received: by 2002:a7b:c382:: with SMTP id s2mr5298026wmj.56.1553032819373;
- Tue, 19 Mar 2019 15:00:19 -0700 (PDT)
-Received: from blackbox.darklights.net
- (p200300DCD739990039EE738515149D3E.dip0.t-ipconnect.de.
- [2003:dc:d739:9900:39ee:7385:1514:9d3e])
- by smtp.googlemail.com with ESMTPSA id t2sm188762wra.9.2019.03.19.15.00.18
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 19 Mar 2019 15:00:18 -0700 (PDT)
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: narmstrong@baylibre.com, jbrunet@baylibre.com,
- linux-amlogic@lists.infradead.org, mjourdan@baylibre.com
-Subject: [PATCH 2/2] clk: meson: meson8b: add the video decoder clock trees
-Date: Tue, 19 Mar 2019 23:00:12 +0100
-Message-Id: <20190319220012.31065-3-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190319220012.31065-1-martin.blumenstingl@googlemail.com>
-References: <20190319220012.31065-1-martin.blumenstingl@googlemail.com>
+ id 1h6QGf-0001YN-Tj; Wed, 20 Mar 2019 01:43:47 +0000
+X-UUID: 6f2246e6009a41d9a8cf3eabf3d852e9-20190319
+X-UUID: 6f2246e6009a41d9a8cf3eabf3d852e9-20190319
+Received: from mtkcas68.mediatek.inc [(172.29.94.19)] by mailgw02.mediatek.com
+ (envelope-from <chunfeng.yun@mediatek.com>)
+ (musrelay.mediatek.com ESMTP with TLS)
+ with ESMTP id 1962132193; Tue, 19 Mar 2019 17:43:06 -0800
+Received: from MTKMBS31N1.mediatek.inc (172.27.4.69) by
+ MTKMBS62DR.mediatek.inc (172.29.94.18) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 19 Mar 2019 18:43:04 -0700
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N1.mediatek.inc
+ (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1395.4;
+ Wed, 20 Mar 2019 09:43:02 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 20 Mar 2019 09:43:01 +0800
+Message-ID: <1553046181.10179.160.camel@mhfsdcap03>
+Subject: Re: [PATCH v3 8/8] usb: dwc3: Add Amlogic G12A DWC3 glue
+From: Chunfeng Yun <chunfeng.yun@mediatek.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Date: Wed, 20 Mar 2019 09:43:01 +0800
+In-Reply-To: <703e82ad-5e1e-a03d-796c-dc1ddde7d2dc@baylibre.com>
+References: <20190318101153.7531-1-narmstrong@baylibre.com>
+ <20190318101153.7531-9-narmstrong@baylibre.com>
+ <1552960676.10179.142.camel@mhfsdcap03>
+ <703e82ad-5e1e-a03d-796c-dc1ddde7d2dc@baylibre.com>
+X-Mailer: Evolution 3.2.3-0ubuntu6 
 MIME-Version: 1.0
+X-MTK: N
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190319_150021_120420_F0FD975A 
-X-CRM114-Status: GOOD (  15.21  )
+X-CRM114-CacheID: sfid-20190319_184346_108480_6C18C5B3 
+X-CRM114-Status: GOOD (  26.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,431 +79,281 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc: balbi@kernel.org, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kishon@ti.com, hminas@synopsys.com,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This adds the four video decoder clock trees.
+Hi,
+On Tue, 2019-03-19 at 09:15 +0100, Neil Armstrong wrote:
+> Hi,
+> 
+> On 19/03/2019 02:57, Chunfeng Yun wrote:
+> > Hi Neil,
+> > On Mon, 2019-03-18 at 11:11 +0100, Neil Armstrong wrote:
+> >> Adds support for Amlogic G12A USB Control Glue HW.
+> >>
+> >> The Amlogic G12A SoC Family embeds 2 USB Controllers :
+> >> - a DWC3 IP configured as Host for USB2 and USB3
+> >> - a DWC2 IP configured as Peripheral USB2 Only
+> >>
+> >> A glue connects these both controllers to 2 USB2 PHYs, and optionnally
+> >> to an USB3+PCIE Combo PHY shared with the PCIE controller.
+> >>
+> >> The Glue configures the UTMI 8bit interfaces for the USB2 PHYs, including
+> >> routing of the OTG PHY between the DWC3 and DWC2 controllers, and
+> >> setups the on-chip OTG mode selection for this PHY.
+> >>
+> >> This drivers supports the on-probe setup of the OTG mode, and manually
+> >> via a debugfs interface. The IRQ mode change detect is yet to be added
+> >> in a future patchset, mainly due to lack of hardware to validate on.
+> >>
+> >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> >> ---
+> >>  drivers/usb/dwc3/Kconfig           |  10 +
+> >>  drivers/usb/dwc3/Makefile          |   1 +
+> >>  drivers/usb/dwc3/dwc3-meson-g12a.c | 602 +++++++++++++++++++++++++++++
+> >>  3 files changed, 613 insertions(+)
+> >>  create mode 100644 drivers/usb/dwc3/dwc3-meson-g12a.c
+> >>
+> >> diff --git a/drivers/usb/dwc3/Kconfig b/drivers/usb/dwc3/Kconfig
+> >> index 2b1494460d0c..d2ea9670563c 100644
+> >> --- a/drivers/usb/dwc3/Kconfig
+> >> +++ b/drivers/usb/dwc3/Kconfig
+> >> @@ -95,6 +95,16 @@ config USB_DWC3_KEYSTONE
+> >>  	  Support of USB2/3 functionality in TI Keystone2 and AM654 platforms.
+> >>  	  Say 'Y' or 'M' here if you have one such device
+> >>  
+> >> +config USB_DWC3_MESON_G12A
+> >> +       tristate "Amlogic Meson G12A Platforms"
+> >> +       depends on OF && COMMON_CLK
+> >> +       depends on ARCH_MESON || COMPILE_TEST
+> >> +       default USB_DWC3
+> >> +       select USB_ROLE_SWITCH
+> >> +       help
+> >> +         Support USB2/3 functionality in Amlogic G12A platforms.
+> >> +	 Say 'Y' or 'M' if you have one such device.
+> >> +
+> >>  config USB_DWC3_OF_SIMPLE
+> >>         tristate "Generic OF Simple Glue Layer"
+> >>         depends on OF && COMMON_CLK
+> >> diff --git a/drivers/usb/dwc3/Makefile b/drivers/usb/dwc3/Makefile
+> >> index 6e3ef6144e5d..ae86da0dc5bd 100644
+> >> --- a/drivers/usb/dwc3/Makefile
+> >> +++ b/drivers/usb/dwc3/Makefile
+> >> @@ -47,6 +47,7 @@ obj-$(CONFIG_USB_DWC3_EXYNOS)		+= dwc3-exynos.o
+> >>  obj-$(CONFIG_USB_DWC3_PCI)		+= dwc3-pci.o
+> >>  obj-$(CONFIG_USB_DWC3_HAPS)		+= dwc3-haps.o
+> >>  obj-$(CONFIG_USB_DWC3_KEYSTONE)		+= dwc3-keystone.o
+> >> +obj-$(CONFIG_USB_DWC3_MESON_G12A)	+= dwc3-meson-g12a.o
+> >>  obj-$(CONFIG_USB_DWC3_OF_SIMPLE)	+= dwc3-of-simple.o
+> >>  obj-$(CONFIG_USB_DWC3_ST)		+= dwc3-st.o
+> >>  obj-$(CONFIG_USB_DWC3_QCOM)		+= dwc3-qcom.o
+> >> diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
+> >> new file mode 100644
+> >> index 000000000000..9f4554e8e6e7
+> >> --- /dev/null
+> >> +++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
+> >> @@ -0,0 +1,602 @@
+> >> +// SPDX-License-Identifier: GPL-2.0
+> >> +/*
+> >> + * USB Glue for Amlogic G12A SoCs
+> >> + *
+> >> + * Copyright (c) 2019 BayLibre, SAS
+> >> + * Author: Neil Armstrong <narmstrong@baylibre.com>
+> >> + */
+> >> +
+> >> +/*
+> >> + * The USB is organized with a glue around the DWC3 Controller IP as :
+> >> + * - Control registers for each USB2 Ports
+> >> + * - Control registers for the USB PHY layer
+> >> + * - SuperSpeed PHY can be enabled only if port is used
+> >> + *
+> >> + * TOFIX:
+> >> + * - Add dynamic OTG switching with ID change interrupt
+> >> + */
+> >> +
+> 
+> [..]
+> 
+> >> +
+> >> +	ret = of_platform_populate(np, NULL, NULL, dev);
+> >> +	if (ret) {
+> >> +		clk_disable_unprepare(priv->clk);
+> >> +		clk_put(priv->clk);
+> > No need clk_put()
+> 
+> Exact
+> 
+> >> +
+> >> +		goto err_phys_exit;
+> >> +	}
+> >> +
+> >> +	/* Setup OTG mode corresponding to the ID pin */
+> >> +	if (priv->otg_mode == USB_DR_MODE_OTG) {
+> >> +		/* TOFIX Handle ID mode toggling via IRQ */
+> >> +		otg_id = dwc3_meson_g12a_get_id(priv);
+> >> +		if (otg_id != priv->otg_phy_mode) {
+> >> +			if (dwc3_meson_g12a_otg_mode_set(priv, otg_id))
+> >> +				dev_warn(dev, "Failed to switch OTG mode\n");
+> >> +		}
+> >> +	}
+> >> +
+> >> +	/* Setup role switcher */
+> >> +	priv->switch_desc.usb2_port = dwc3_meson_g12_find_child(dev,
+> >> +								"snps,dwc3");
+> >> +	priv->switch_desc.udc = dwc3_meson_g12_find_child(dev, "snps,dwc2");
+> >> +	priv->switch_desc.allow_userspace_control = true;
+> >> +	priv->switch_desc.set = dwc3_meson_g12a_role_set;
+> >> +	priv->switch_desc.get = dwc3_meson_g12a_role_get;
+> >> +
+> >> +	priv->role_switch = usb_role_switch_register(dev, &priv->switch_desc);
+> >> +	if (IS_ERR(priv->role_switch))
+> >> +		dev_warn(dev, "Unable to register Role Switch\n");
+> >> +
+> >> +	pm_runtime_set_active(dev);
+> >> +	pm_runtime_enable(dev);
+> >> +	pm_runtime_get_sync(dev);
+> >> +
+> >> +	return 0;
+> >> +
+> >> +err_phys_exit:
+> >> +	for (i = 0 ; i < PHY_COUNT ; ++i)
+> >> +		phy_exit(priv->phys[i]);
+> >> +
+> >> +err_phys_power:
+> >> +	for (i = 0 ; i < PHY_COUNT ; ++i)
+> >> +		phy_power_off(priv->phys[i]);
+> >> +
+> >> +err_phys_put:
+> >> +	for (i = 0 ; i < PHY_COUNT ; ++i)
+> >> +		phy_put(priv->phys[i]);
+> > you get phy by devm_phy_optional_get(), no need call phy_put(), 
+> 
+> Indeed, also forgot these
+> 
+> >> +
+> >> +	return ret;
+> >> +}
+> >> +
+> >> +static int dwc3_meson_g12a_remove(struct platform_device *pdev)
+> >> +{
+> >> +	struct dwc3_meson_g12a *priv = platform_get_drvdata(pdev);
+> >> +	struct device *dev = &pdev->dev;
+> >> +	int i;
+> >> +
+> >> +	usb_role_switch_unregister(priv->role_switch);
+> >> +
+> >> +	of_platform_depopulate(dev);
+> >> +
+> >> +	for (i = 0 ; i < PHY_COUNT ; ++i) {
+> >> +		phy_power_off(priv->phys[i]);
+> >> +		phy_exit(priv->phys[i]);
+> >> +		phy_put(priv->phys[i]);
+> > here, and remove others if have.
+> 
+> This is the last one I hope
+> 
+> >> +	}
+> >> +
+> >> +	pm_runtime_disable(dev);
+> >> +	pm_runtime_put_noidle(dev);
+> >> +	pm_runtime_set_suspended(dev);
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static int __maybe_unused dwc3_meson_g12a_runtime_suspend(struct device *dev)
+> >> +{
+> >> +	struct dwc3_meson_g12a	*priv = dev_get_drvdata(dev);
+> >> +
+> >> +	clk_disable(priv->clk);
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static int __maybe_unused dwc3_meson_g12a_runtime_resume(struct device *dev)
+> >> +{
+> >> +	struct dwc3_meson_g12a	*priv = dev_get_drvdata(dev);
+> >> +
+> >> +	return clk_enable(priv->clk);
+> >> +}
+> >> +
+> >> +static int __maybe_unused dwc3_meson_g12a_suspend(struct device *dev)
+> >> +{
+> >> +	struct dwc3_meson_g12a *priv = dev_get_drvdata(dev);
+> >> +	int i;
+> >> +
+> >> +	for (i = 0 ; i < PHY_COUNT ; ++i)
+> >> +		phy_exit(priv->phys[i]);
+> >> +
+> >> +	reset_control_assert(priv->reset);
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static int __maybe_unused dwc3_meson_g12a_resume(struct device *dev)
+> >> +{
+> >> +	struct dwc3_meson_g12a *priv = dev_get_drvdata(dev);
+> >> +	int i, ret;
+> >> +
+> >> +	reset_control_deassert(priv->reset);
+> >> +
+> >> +	dwc3_meson_g12a_usb_init(priv);
+> >> +
+> >> +	/* Init PHYs */
+> >> +	for (i = 0 ; i < PHY_COUNT ; ++i) {
+> >> +		ret = phy_init(priv->phys[i]);
+> >> +		if (ret)
+> >> +			return ret;
+> >> +	}
+> > Do you need power on phys?
+> 
+> Regulators can be tied to the PHYs, should I disable power on suspend aswell ?
+I find that the phy driver you used doesn't provide .power_on/off, so
+the current flow won't cause something wrong, but if the phy driver
+provides .power_on/off, it will do.
 
-VDEC_1 is split into two paths on Meson8b and Meson8m2:
-- input mux called "vdec_1_sel"
-- two dividers ("vdec_1_1_div" and "vdec_1_2_div") and gates ("vdec_1_1"
-  and "vdec_1_2")
-- and an output mux (probably glitch-free) called "vdec_1"
-On Meson8 the VDEC_1 tree is simpler because there's only one path:
-- input mux called "vdec_1_sel"
-- divider ("vdec_1_1_div") and gate ("vdec_1_1")
-- (the gate is used as output directly, there's no mux)
+> 
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static const struct dev_pm_ops dwc3_meson_g12a_dev_pm_ops = {
+> >> +	SET_SYSTEM_SLEEP_PM_OPS(dwc3_meson_g12a_suspend, dwc3_meson_g12a_resume)
+> >> +	SET_RUNTIME_PM_OPS(dwc3_meson_g12a_runtime_suspend,
+> >> +			dwc3_meson_g12a_runtime_resume, NULL)
+> >> +};
+> >> +
+> >> +static const struct of_device_id dwc3_meson_g12a_match[] = {
+> >> +	{ .compatible = "amlogic,meson-g12a-usb-ctrl" },
+> >> +	{ /* Sentinel */ }
+> >> +};
+> >> +MODULE_DEVICE_TABLE(of, dwc3_meson_g12a_match);
+> >> +
+> >> +static struct platform_driver dwc3_meson_g12a_driver = {
+> >> +	.probe		= dwc3_meson_g12a_probe,
+> >> +	.remove		= dwc3_meson_g12a_remove,
+> >> +	.driver		= {
+> >> +		.name	= "dwc3-meson-g12a",
+> >> +		.of_match_table = dwc3_meson_g12a_match,
+> >> +		.pm	= &dwc3_meson_g12a_dev_pm_ops,
+> >> +	},
+> >> +};
+> >> +
+> >> +module_platform_driver(dwc3_meson_g12a_driver);
+> >> +MODULE_LICENSE("GPL v2");
+> >> +MODULE_DESCRIPTION("Amlogic Meson G12A USB Glue Layer");
+> >> +MODULE_AUTHOR("Neil Armstrong <narmstrong@baylibre.com>");
+> > 
+> > 
+> 
+> Thanks,
+> Neil
 
-The VDEC_HCODEC and VDEC_2 clocks are simple composite clocks each
-consisting of an input mux, divider and a gate.
-
-The VDEC_HEVC clock seems to have two paths similar to the VDEC_1 clock.
-However, the register offsets of the second clock path is not known.
-Amlogic's 3.10 kernel (which is used as reference) sets
-HHI_VDEC2_CLK_CNTL[31] to 1 before changing the VDEC_HEVC clock and back
-to 0 afterwards. For now, leave a TODO comment and only add the first
-path.
-
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/clk/meson/meson8b.c | 312 ++++++++++++++++++++++++++++++++++++
- drivers/clk/meson/meson8b.h |  17 +-
- 2 files changed, 328 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index 8e091c2d10e6..37cf0f01bb5d 100644
---- a/drivers/clk/meson/meson8b.c
-+++ b/drivers/clk/meson/meson8b.c
-@@ -1902,6 +1902,257 @@ static struct clk_regmap meson8b_vpu = {
- 	},
- };
- 
-+static const char * const meson8b_vdec_parent_names[] = {
-+	"fclk_div4", "fclk_div3", "fclk_div5", "fclk_div7", "mpll2", "mpll1"
-+};
-+
-+static struct clk_regmap meson8b_vdec_1_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = HHI_VDEC_CLK_CNTL,
-+		.mask = 0x3,
-+		.shift = 9,
-+		.flags = CLK_MUX_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "vdec_1_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_names = meson8b_vdec_parent_names,
-+		.num_parents = ARRAY_SIZE(meson8b_vdec_parent_names),
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap meson8b_vdec_1_1_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = HHI_VDEC_CLK_CNTL,
-+		.shift = 0,
-+		.width = 7,
-+		.flags = CLK_DIVIDER_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "vdec_1_1_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_names = (const char *[]){ "vdec_1_sel" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap meson8b_vdec_1_1 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_VDEC_CLK_CNTL,
-+		.bit_idx = 8,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "vdec_1_1",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "vdec_1_1_div" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap meson8b_vdec_1_2_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = HHI_VDEC3_CLK_CNTL,
-+		.shift = 0,
-+		.width = 7,
-+		.flags = CLK_DIVIDER_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "vdec_1_2_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_names = (const char *[]){ "vdec_1_sel" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap meson8b_vdec_1_2 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_VDEC3_CLK_CNTL,
-+		.bit_idx = 8,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "vdec_1_2",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "vdec_1_2_div" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap meson8b_vdec_1 = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = HHI_VDEC3_CLK_CNTL,
-+		.mask = 0x1,
-+		.shift = 15,
-+		.flags = CLK_MUX_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "vdec_1",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_names = (const char *[]){ "vdec_1_1", "vdec_1_2" },
-+		.num_parents = 2,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap meson8b_vdec_hcodec_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = HHI_VDEC_CLK_CNTL,
-+		.mask = 0x3,
-+		.shift = 25,
-+		.flags = CLK_MUX_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "vdec_hcodec_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_names = meson8b_vdec_parent_names,
-+		.num_parents = ARRAY_SIZE(meson8b_vdec_parent_names),
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap meson8b_vdec_hcodec_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = HHI_VDEC_CLK_CNTL,
-+		.shift = 16,
-+		.width = 7,
-+		.flags = CLK_DIVIDER_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "vdec_hcodec_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_names = (const char *[]){ "vdec_hcodec_sel" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap meson8b_vdec_hcodec = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_VDEC_CLK_CNTL,
-+		.bit_idx = 24,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "vdec_hcodec",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "vdec_hcodec_div" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap meson8b_vdec_2_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = HHI_VDEC2_CLK_CNTL,
-+		.mask = 0x3,
-+		.shift = 9,
-+		.flags = CLK_MUX_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "vdec_2_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_names = meson8b_vdec_parent_names,
-+		.num_parents = ARRAY_SIZE(meson8b_vdec_parent_names),
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap meson8b_vdec_2_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = HHI_VDEC2_CLK_CNTL,
-+		.shift = 0,
-+		.width = 7,
-+		.flags = CLK_DIVIDER_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "vdec_2_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_names = (const char *[]){ "vdec_2_sel" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap meson8b_vdec_2 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_VDEC2_CLK_CNTL,
-+		.bit_idx = 8,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "vdec_2",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "vdec_2_div" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap meson8b_vdec_hevc_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = HHI_VDEC2_CLK_CNTL,
-+		.mask = 0x3,
-+		.shift = 25,
-+		.flags = CLK_MUX_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "vdec_hevc_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_names = meson8b_vdec_parent_names,
-+		.num_parents = ARRAY_SIZE(meson8b_vdec_parent_names),
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap meson8b_vdec_hevc_div = {
-+	.data = &(struct clk_regmap_div_data){
-+		.offset = HHI_VDEC2_CLK_CNTL,
-+		.shift = 16,
-+		.width = 7,
-+		.flags = CLK_DIVIDER_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "vdec_hevc_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_names = (const char *[]){ "vdec_hevc_sel" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap meson8b_vdec_hevc_en = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_VDEC2_CLK_CNTL,
-+		.bit_idx = 24,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "vdec_hevc_en",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "vdec_hevc_div" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap meson8b_vdec_hevc = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = HHI_VDEC2_CLK_CNTL,
-+		.mask = 0x1,
-+		.shift = 31,
-+		.flags = CLK_MUX_ROUND_CLOSEST,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "vdec_hevc",
-+		.ops = &clk_regmap_mux_ops,
-+		/* TODO: The second parent is currently unknown */
-+		.parent_names = (const char *[]){ "vdec_hevc_en" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
- /* Everything Else (EE) domain gates */
- 
- static MESON_GATE(meson8b_ddr, HHI_GCLK_MPEG0, 0);
-@@ -2168,6 +2419,19 @@ static struct clk_hw_onecell_data meson8_hw_onecell_data = {
- 		[CLKID_VPU_0_SEL]	    = &meson8b_vpu_0_sel.hw,
- 		[CLKID_VPU_0_DIV]	    = &meson8b_vpu_0_div.hw,
- 		[CLKID_VPU]		    = &meson8b_vpu_0.hw,
-+		[CLKID_VDEC_1_SEL]	    = &meson8b_vdec_1_sel.hw,
-+		[CLKID_VDEC_1_1_DIV]	    = &meson8b_vdec_1_1_div.hw,
-+		[CLKID_VDEC_1]	   	    = &meson8b_vdec_1_1.hw,
-+		[CLKID_VDEC_HCODEC_SEL]	    = &meson8b_vdec_hcodec_sel.hw,
-+		[CLKID_VDEC_HCODEC_DIV]	    = &meson8b_vdec_hcodec_div.hw,
-+		[CLKID_VDEC_HCODEC]	    = &meson8b_vdec_hcodec.hw,
-+		[CLKID_VDEC_2_SEL]	    = &meson8b_vdec_2_sel.hw,
-+		[CLKID_VDEC_2_DIV]	    = &meson8b_vdec_2_div.hw,
-+		[CLKID_VDEC_2]	    	    = &meson8b_vdec_2.hw,
-+		[CLKID_VDEC_HEVC_SEL]	    = &meson8b_vdec_hevc_sel.hw,
-+		[CLKID_VDEC_HEVC_DIV]	    = &meson8b_vdec_hevc_div.hw,
-+		[CLKID_VDEC_HEVC_EN]	    = &meson8b_vdec_hevc_en.hw,
-+		[CLKID_VDEC_HEVC]	    = &meson8b_vdec_hevc.hw,
- 		[CLK_NR_CLKS]		    = NULL,
- 	},
- 	.num = CLK_NR_CLKS,
-@@ -2361,6 +2625,22 @@ static struct clk_hw_onecell_data meson8b_hw_onecell_data = {
- 		[CLKID_VPU_1_DIV]	    = &meson8b_vpu_1_div.hw,
- 		[CLKID_VPU_1]		    = &meson8b_vpu_1.hw,
- 		[CLKID_VPU]		    = &meson8b_vpu.hw,
-+		[CLKID_VDEC_1_SEL]	    = &meson8b_vdec_1_sel.hw,
-+		[CLKID_VDEC_1_1_DIV]	    = &meson8b_vdec_1_1_div.hw,
-+		[CLKID_VDEC_1_1]	    = &meson8b_vdec_1_1.hw,
-+		[CLKID_VDEC_1_2_DIV]	    = &meson8b_vdec_1_2_div.hw,
-+		[CLKID_VDEC_1_2]	    = &meson8b_vdec_1_2.hw,
-+		[CLKID_VDEC_1]	    	    = &meson8b_vdec_1.hw,
-+		[CLKID_VDEC_HCODEC_SEL]	    = &meson8b_vdec_hcodec_sel.hw,
-+		[CLKID_VDEC_HCODEC_DIV]	    = &meson8b_vdec_hcodec_div.hw,
-+		[CLKID_VDEC_HCODEC]	    = &meson8b_vdec_hcodec.hw,
-+		[CLKID_VDEC_2_SEL]	    = &meson8b_vdec_2_sel.hw,
-+		[CLKID_VDEC_2_DIV]	    = &meson8b_vdec_2_div.hw,
-+		[CLKID_VDEC_2]	    	    = &meson8b_vdec_2.hw,
-+		[CLKID_VDEC_HEVC_SEL]	    = &meson8b_vdec_hevc_sel.hw,
-+		[CLKID_VDEC_HEVC_DIV]	    = &meson8b_vdec_hevc_div.hw,
-+		[CLKID_VDEC_HEVC_EN]	    = &meson8b_vdec_hevc_en.hw,
-+		[CLKID_VDEC_HEVC]	    = &meson8b_vdec_hevc.hw,
- 		[CLK_NR_CLKS]		    = NULL,
- 	},
- 	.num = CLK_NR_CLKS,
-@@ -2556,6 +2836,22 @@ static struct clk_hw_onecell_data meson8m2_hw_onecell_data = {
- 		[CLKID_VPU_1_DIV]	    = &meson8b_vpu_1_div.hw,
- 		[CLKID_VPU_1]		    = &meson8b_vpu_1.hw,
- 		[CLKID_VPU]		    = &meson8b_vpu.hw,
-+		[CLKID_VDEC_1_SEL]	    = &meson8b_vdec_1_sel.hw,
-+		[CLKID_VDEC_1_1_DIV]	    = &meson8b_vdec_1_1_div.hw,
-+		[CLKID_VDEC_1_1]	    = &meson8b_vdec_1_1.hw,
-+		[CLKID_VDEC_1_2_DIV]	    = &meson8b_vdec_1_2_div.hw,
-+		[CLKID_VDEC_1_2]	    = &meson8b_vdec_1_2.hw,
-+		[CLKID_VDEC_1]	    	    = &meson8b_vdec_1.hw,
-+		[CLKID_VDEC_HCODEC_SEL]	    = &meson8b_vdec_hcodec_sel.hw,
-+		[CLKID_VDEC_HCODEC_DIV]	    = &meson8b_vdec_hcodec_div.hw,
-+		[CLKID_VDEC_HCODEC]	    = &meson8b_vdec_hcodec.hw,
-+		[CLKID_VDEC_2_SEL]	    = &meson8b_vdec_2_sel.hw,
-+		[CLKID_VDEC_2_DIV]	    = &meson8b_vdec_2_div.hw,
-+		[CLKID_VDEC_2]	    	    = &meson8b_vdec_2.hw,
-+		[CLKID_VDEC_HEVC_SEL]	    = &meson8b_vdec_hevc_sel.hw,
-+		[CLKID_VDEC_HEVC_DIV]	    = &meson8b_vdec_hevc_div.hw,
-+		[CLKID_VDEC_HEVC_EN]	    = &meson8b_vdec_hevc_en.hw,
-+		[CLKID_VDEC_HEVC]	    = &meson8b_vdec_hevc.hw,
- 		[CLK_NR_CLKS]		    = NULL,
- 	},
- 	.num = CLK_NR_CLKS,
-@@ -2729,6 +3025,22 @@ static struct clk_regmap *const meson8b_clk_regmaps[] = {
- 	&meson8b_vpu_1_div,
- 	&meson8b_vpu_1,
- 	&meson8b_vpu,
-+	&meson8b_vdec_1_sel,
-+	&meson8b_vdec_1_1_div,
-+	&meson8b_vdec_1_1,
-+	&meson8b_vdec_1_2_div,
-+	&meson8b_vdec_1_2,
-+	&meson8b_vdec_1,
-+	&meson8b_vdec_hcodec_sel,
-+	&meson8b_vdec_hcodec_div,
-+	&meson8b_vdec_hcodec,
-+	&meson8b_vdec_2_sel,
-+	&meson8b_vdec_2_div,
-+	&meson8b_vdec_2,
-+	&meson8b_vdec_hevc_sel,
-+	&meson8b_vdec_hevc_div,
-+	&meson8b_vdec_hevc_en,
-+	&meson8b_vdec_hevc,
- };
- 
- static const struct meson8b_clk_reset_line {
-diff --git a/drivers/clk/meson/meson8b.h b/drivers/clk/meson/meson8b.h
-index e775f91ccce9..ed37196187e6 100644
---- a/drivers/clk/meson/meson8b.h
-+++ b/drivers/clk/meson/meson8b.h
-@@ -37,6 +37,9 @@
- #define HHI_MALI_CLK_CNTL		0x1b0 /* 0x6c offset in data sheet */
- #define HHI_VPU_CLK_CNTL		0x1bc /* 0x6f offset in data sheet */
- #define HHI_HDMI_CLK_CNTL		0x1cc /* 0x73 offset in data sheet */
-+#define HHI_VDEC_CLK_CNTL		0x1e0 /* 0x78 offset in data sheet */
-+#define HHI_VDEC2_CLK_CNTL		0x1e4 /* 0x79 offset in data sheet */
-+#define HHI_VDEC3_CLK_CNTL		0x1e8 /* 0x7a offset in data sheet */
- #define HHI_NAND_CLK_CNTL		0x25c /* 0x97 offset in data sheet */
- #define HHI_MPLL_CNTL			0x280 /* 0xa0 offset in data sheet */
- #define HHI_SYS_PLL_CNTL		0x300 /* 0xc0 offset in data sheet */
-@@ -156,8 +159,20 @@
- #define CLKID_VPU_1_SEL		186
- #define CLKID_VPU_1_DIV		187
- #define CLKID_VPU_1		189
-+#define CLKID_VDEC_1_SEL	191
-+#define CLKID_VDEC_1_1_DIV	192
-+#define CLKID_VDEC_1_1		193
-+#define CLKID_VDEC_1_2_DIV	194
-+#define CLKID_VDEC_1_2		195
-+#define CLKID_VDEC_HCODEC_SEL	197
-+#define CLKID_VDEC_HCODEC_DIV	198
-+#define CLKID_VDEC_2_SEL	200
-+#define CLKID_VDEC_2_DIV	201
-+#define CLKID_VDEC_HEVC_SEL	203
-+#define CLKID_VDEC_HEVC_DIV	204
-+#define CLKID_VDEC_HEVC_EN	205
- 
--#define CLK_NR_CLKS		191
-+#define CLK_NR_CLKS		207
- 
- /*
-  * include the CLKID and RESETID that have
--- 
-2.21.0
 
 
 _______________________________________________
