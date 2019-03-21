@@ -2,69 +2,57 @@ Return-Path: <SRS0=unGP=RY=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6109BC43381
-	for <linux-amlogic@archiver.kernel.org>; Thu, 21 Mar 2019 12:09:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 64B47C43381
+	for <linux-amlogic@archiver.kernel.org>; Thu, 21 Mar 2019 12:15:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2E46F218A5
-	for <linux-amlogic@archiver.kernel.org>; Thu, 21 Mar 2019 12:09:57 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2E760218D8
+	for <linux-amlogic@archiver.kernel.org>; Thu, 21 Mar 2019 12:15:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bQBuo0FY"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2E46F218A5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UsYu7l6E"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2E760218D8
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=t//J1Xyy52Xn6Y9bXM4JmZkv/h1+AQ/09Qv9TosCy+s=; b=bQBuo0FYQV3AMeA/jH9giUFef
-	Vdcc96ls5wjCz+0Xi0iUGKmhfMdwfTXCxmIyxcPB1YK1qHgh0vENjd59paJTdy0fr287SF0PmgST6
-	RgyvoqfvMJPgysegKDfjCe3WCZFsmsInSMstZ9eTaWogEWy6SGQM94OSLEA+IL1/AbQAnjY9Le8xu
-	ALYAWq7NWs+qCuLhjHy0HxuTcq6jZjVrSQltN4nrDq7pXpRREv8YdsBToQFtAorjW50sbsB9GFf+H
-	lXINI/tykonmjhWOpwR7BX0b/+xDqKvuDQhMzYIiMJsBtBuQaJ/fffDmgQEJ5S73kSRhK7BaGv8oH
-	DwCzRfYFw==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=Q1LotIYJusZ3Ecq3x8kufN7CfEpOOUEYjav4oUshvRk=; b=UsYu7l6EuVaiyR
+	OI1gf/ubHNoFYVLj8Qf+MVWl3S9x01sdwvPna7FjR71qXX8Zu9MHZVadVj4Sb2Pf4lgGNFbnSpNVq
+	mpcZxqN8QVqg9+F/ciYBTGsKAF12H7kTBw1iBRnXXVpXCU7j2ITn6MX+QEsLPueVE/TyJtZxHeVW6
+	JJtCdaG8ICWcbVGdY+3NvMLV3iqtAEFECDxyXB14rPgcKCVGwRI3roDym6QyAfpMPfKLxo/PaGfub
+	0VmIxfWjTYn2d2kv0tEyFg8/6K8+o3QTBQjsAySnH4UUrTvafQT7Gzbds+a7S/IcxNXWFOIqIHJBl
+	I6MChRCFOnHTVVapvs0g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h6wW7-0006Mx-RN; Thu, 21 Mar 2019 12:09:51 +0000
+	id 1h6wbH-0000WR-Hj; Thu, 21 Mar 2019 12:15:11 +0000
 Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h6wVz-0006GL-JQ; Thu, 21 Mar 2019 12:09:45 +0000
-Received: from [10.28.18.125] (10.28.18.125) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Thu, 21 Mar
- 2019 20:10:25 +0800
-Subject: Re: [RFC PATCH nand-next 0/2] meson-nand: support for older SoCs
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20190301182922.8309-1-martin.blumenstingl@googlemail.com>
- <98776767-c4d7-1207-6d42-97105f289bec@amlogic.com>
- <CAFBinCC7P40sqrDGTuM8M=jVOFTgZLDUK6rGdNpigFoepyCASw@mail.gmail.com>
- <20190307140959.10092d45@xps13>
- <ccb95e75-e62f-c510-cabd-853481f77fc8@amlogic.com>
- <CAFBinCBd=dOZjv4KEDY9ODOONDO=WtaBqAMRi_a+gH3_iZEAHQ@mail.gmail.com>
- <CAFBinCA7LLK6K3ZqauJy2N-z5-kTfuTztmoSQ=Bk4A5Xagxddw@mail.gmail.com>
- <8134890a-457d-7803-01a4-1832f925f65f@amlogic.com>
- <CAFBinCBfkr-yyR4Vbd1HVmXVCOKuK-Kw1HKz4SMt9G3eA49HQQ@mail.gmail.com>
+ id 1h6wb3-0008DB-Nv; Thu, 21 Mar 2019 12:14:59 +0000
+Received: from localhost.localdomain (10.28.8.21) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Thu, 21 Mar 2019
+ 20:16:06 +0800
 From: Liang Yang <liang.yang@amlogic.com>
-Message-ID: <2aebeb86-1cf6-26e9-b19b-03c2a55bff9c@amlogic.com>
-Date: Thu, 21 Mar 2019 20:10:25 +0800
-User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:60.0) Gecko/20100101
- Thunderbird/60.5.3
+To: Boris Brezillon <boris.brezillon@bootlin.com>,
+ <linux-mtd@lists.infradead.org>
+Subject: [PATCH 1/1] mtd: rawnand: meson: set oob layout ops
+Date: Thu, 21 Mar 2019 20:14:01 +0800
+Message-ID: <1553170441-23448-1-git-send-email-liang.yang@amlogic.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCBfkr-yyR4Vbd1HVmXVCOKuK-Kw1HKz4SMt9G3eA49HQQ@mail.gmail.com>
-Content-Language: en-US
-X-Originating-IP: [10.28.18.125]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
+X-Originating-IP: [10.28.8.21]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190321_050943_641293_FF026467 
-X-CRM114-Status: GOOD (  10.26  )
+X-CRM114-CacheID: sfid-20190321_051457_783392_27AEA927 
+X-CRM114-Status: UNSURE (   9.98  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -76,61 +64,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mark.rutland@arm.com, devicetree@vger.kernel.org, jianxin.pan@amlogic.com,
- linux-kernel@vger.kernel.org, robh+dt@kernel.org,
- linux-mtd@lists.infradead.org, Miquel Raynal <miquel.raynal@bootlin.com>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: Rob Herring <robh@kernel.org>, Hanjie Lin <hanjie.lin@amlogic.com>,
+ Victor Wan <victor.wan@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Richard Weinberger <richard@nod.at>, linux-kernel@vger.kernel.org,
+ Marek Vasut <marek.vasut@gmail.com>, devicetree@vger.kernel.org,
+ Liang Yang <liang.yang@amlogic.com>, Jian Hu <jian.hu@amlogic.com>,
+ Kevin Hilman <khilman@baylibre.com>, Miquel Raynal <miquel.raynal@bootlin.com>,
+ Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
+ Brian Norris <computersforpeace@gmail.com>,
+ David Woodhouse <dwmw2@infradead.org>, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
+Specify the oob layout operation to avoid no oob scheme defined for
+some nand flash.
 
-On 2019/3/21 4:48, Martin Blumenstingl wrote:
-> Hi Liang,
-> 
-> On Wed, Mar 20, 2019 at 4:32 AM Liang Yang <liang.yang@amlogic.com> wrote:
->>
->> Hi Martin,
->>
->> Thanks for your time.
->> On 2019/3/20 4:27, Martin Blumenstingl wrote:
->>> Hello Liang,
->>>
->>> On Sat, Mar 16, 2019 at 11:55 AM Martin Blumenstingl
->>> <martin.blumenstingl@googlemail.com> wrote:
->>> [...]
-> 
->> Allocating a fixed size info buffer before nand_scan_ident and attach it
->> on the struct meson_nfc; Or considering not use dma for reading data
->> less than 8 bytes. Both can reduce kmalloc and kfree calling. Thanks.
-> both suggestions sound reasonable.
-> however, I will search for the root cause of the unaligned address
-> first before changing the Meson NFC driver.
-That is good.  And i will implement one of both mentioned above soon.
-> 
-> [...]
->>> [    2.227374] ------------[ cut here ]------------
->>> [    2.231968] WARNING: CPU: 1 PID: 1 at
->>> drivers/mtd/nand/raw/nand_base.c:5503 nand_scan_with_ids+0x1718/0x171c
->>> [    2.241760] No oob scheme defined for oobsize 1280
->>> ...
->>> (the "No oob scheme defined for oobsize 1280" message is expected)
->>>
->> miss mtd_set_ooblayout(mtd, &meson_ooblayout_ops) on function
->> meson_nand_attach_chip.
-> thank you for the suggestion. I didn't have time to test this on my
-> board yet but I'll let you know about my results during the weekend.
-> Does the missing mtd_set_ooblayout() call also affect GXL or AXG boards?
-> 
-Yes. I deleted it unintentionally.
-> 
-> Regards
-> Martin
-> 
-> .
-> 
+Fixes: 8fae856c5350 ("mtd: rawnand: meson: add support for Amlogic NAND flash controller")
+Signed-off-by: Liang Yang <liang.yang@amlogic.com>
+---
+ drivers/mtd/nand/raw/meson_nand.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+index 3e8aa71..a2154a2 100644
+--- a/drivers/mtd/nand/raw/meson_nand.c
++++ b/drivers/mtd/nand/raw/meson_nand.c
+@@ -1183,6 +1183,8 @@ static int meson_nand_attach_chip(struct nand_chip *nand)
+ 		return -EINVAL;
+ 	}
+ 
++	mtd_set_ooblayout(mtd, &meson_ooblayout_ops);
++
+ 	ret = meson_nand_bch_mode(nand);
+ 	if (ret)
+ 		return -EINVAL;
+-- 
+1.9.1
+
 
 _______________________________________________
 linux-amlogic mailing list
