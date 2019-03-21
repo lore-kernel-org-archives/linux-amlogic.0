@@ -2,80 +2,49 @@ Return-Path: <SRS0=unGP=RY=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_MUTT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6F339C43381
-	for <linux-amlogic@archiver.kernel.org>; Thu, 21 Mar 2019 20:18:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 23FA8C43381
+	for <linux-amlogic@archiver.kernel.org>; Thu, 21 Mar 2019 21:44:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3D730218A1
-	for <linux-amlogic@archiver.kernel.org>; Thu, 21 Mar 2019 20:18:02 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E5DDC21916
+	for <linux-amlogic@archiver.kernel.org>; Thu, 21 Mar 2019 21:44:20 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nE2x645G";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="BOoXzi1T"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3D730218A1
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lXXSQpI7"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E5DDC21916
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=DkF0bINouFBP+70bvwHrEh6nEIqJwXP/Hqe6mraETZM=; b=nE2x645GIiG4jx
-	0/OdkdYpYbMyDFyHxCsyKR6hnzvn32voSn5bODjLFNEIyrFDZwRfTc/od88gCUS67hGzJKSOAzgx3
-	h5emoAIspD9FpOn8ZtczyHND9t3F8FJxDSr8ulAl8SypEmFZTCHyn2RkFg6MKHewjHqE18P2C3Y39
-	nQR2lYxWXzhbvQ72e3QR5sa8+ksZQiEg8glVAPGA0gsFf0piFfPPJjkjPRA+2eiVQFZMLYs/Av27R
-	Akv1WfV4iFrZcv/FsXX4+xiG7p2eVtowXDiCDMOLiRcrxfESgLjwhHR64SttRYhKtE1VADfzuM3GV
-	BmZnZddb4obInlfhl2oQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=5rQCOaGjHA60ZRsgaR3kcIdXjnEKPR0YmyqAgKh5rZo=; b=lXXSQpI7LN3amM
+	H9zrC1W9WrRaO24gVy1xYhVNZ4XGE5kA6TGE7Bob/uZpi/I10MO3XUfedwDBqVxM6BWPMJbQB9n5U
+	M9qlWI9u28weRSiWu/O+j113i8PRpVSj3WUHHMLl62bqbQ+5ZhzP7bgfGX8hxmFtpQdU81Hos5g0E
+	p8qw24EI7SGbuikG2tz+w/d2QZgqkjmWpfsACMgFNDbJ+qbjvtBJ/qkJcZEofv3cog5IwBrhTbbim
+	/VfUOCZvquse97Y2oAr3ls6T+NDPQUBkuUW3HeW2/v1anqO8jcd8rNZzh7XTsrJnnIHA1XvOq2ivV
+	2DQ84x2cXhTHAtnB52Gg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h748R-00081y-0s; Thu, 21 Mar 2019 20:17:55 +0000
-Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
- by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h748I-0007uV-Nu; Thu, 21 Mar 2019 20:17:48 +0000
-Received: by mail-ot1-x344.google.com with SMTP id x8so4739320otg.7;
- Thu, 21 Mar 2019 13:17:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to:cc;
- bh=/wxyUvtToomdZ+5Q9o+FQ/M8e4o6ylXXt1G7gXDkthY=;
- b=BOoXzi1TLXiHBJG+1HwL+ID2AnLv3oZT6PlJ1aORSU6oRHSSgjPMihc1eXyKPMdyD/
- AqFJYySnhXSr/0KJyrtQDtju9Fr248wnuBcTNenyPVOZ0PHV8QNzp2jvcn1CbBa6l+An
- GMsEqyRqcPt8vX6qgUAu9wZb5RYF6Ezu+PIvFDfPlByy+bkmb4Blb0cd9dqhuxowHTZn
- MTjTD4Bg8pQ9Q9xgazplzVmi36XlNjsp/avPctiTShRqAN8PfMdK3maZbLpXpzZCOXP9
- hrNEmNbrANp5WxgBJCzg9g832X4/sb7Ijvgq0pfVeoOJ2/arzBW23a2dvX/XrfcOvwke
- sHqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
- bh=/wxyUvtToomdZ+5Q9o+FQ/M8e4o6ylXXt1G7gXDkthY=;
- b=KvO/puQ+Ees2p2+iH3C73aNRGuVNZq+pAOZsKnX7rGZIKuZw2uSoeHAzSv56FJ3IQN
- ysd4RMVqKNPcS2nc7qDKt4cEeTnIVuMP3JzDv3HLagpbm5R0dN8VjgLyq+L039a9s99x
- IiFbCHh1qXrubEA9dlZX9jm7NXvO/EvnoW4/wLsr/O8ve1XKtXyq5UH48lpTzbvoQTPI
- f7jfH2Q4K89+dRcRntH0wavjPR2dOjjk6hV4uHht8t/ltWGYSbrCeB0iyOCSw3Gyj8QC
- PboUOOhkGjAPw6PkkroEDSoli97HBn5f477j6Y06EAQGS3lACaEIL8WfIccuTIMFydW3
- X73Q==
-X-Gm-Message-State: APjAAAWP7HzLm+uc9LRj/h2AA35w8abj2k5ll1ohSljUywhyhWmQrJum
- CdTgOzo3ckVcM09Rp+kcdk+1ztx7rWWSJDTCEhM=
-X-Google-Smtp-Source: APXvYqwUYsousOMTeeL8c+A2HnTXT2l2mWYx2JCiWrVy/yAmVWlPJppOWrh94pnxO/J9vbn6442DXbT8N9OeaM9xXRs=
-X-Received: by 2002:a9d:5614:: with SMTP id e20mr3932876oti.348.1553199465574; 
- Thu, 21 Mar 2019 13:17:45 -0700 (PDT)
+	id 1h75Tt-0002nC-KX; Thu, 21 Mar 2019 21:44:09 +0000
+Received: from willy by bombadil.infradead.org with local (Exim 4.90_1 #2 (Red
+ Hat Linux)) id 1h75Tm-0002fY-4W; Thu, 21 Mar 2019 21:44:02 +0000
+Date: Thu, 21 Mar 2019 14:44:01 -0700
+From: Matthew Wilcox <willy@infradead.org>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: 32-bit Amlogic (ARM) SoC: kernel BUG in kfree()
+Message-ID: <20190321214401.GC19508@bombadil.infradead.org>
+References: <CAFBinCBOX8HyY-UocsVQvsnTr4XWXyE9oU+f2xhO1=JU0i_9ow@mail.gmail.com>
 MIME-Version: 1.0
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Thu, 21 Mar 2019 21:17:34 +0100
-Message-ID: <CAFBinCBOX8HyY-UocsVQvsnTr4XWXyE9oU+f2xhO1=JU0i_9ow@mail.gmail.com>
-Subject: 32-bit Amlogic (ARM) SoC: kernel BUG in kfree()
-To: linux-mm@kvack.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190321_131746_806897_D3F53643 
-X-CRM114-Status: UNSURE (   8.43  )
-X-CRM114-Notice: Please train this message.
+Content-Disposition: inline
+In-Reply-To: <CAFBinCBOX8HyY-UocsVQvsnTr4XWXyE9oU+f2xhO1=JU0i_9ow@mail.gmail.com>
+User-Agent: Mutt/1.9.2 (2017-12-15)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -87,62 +56,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mhocko@suse.com, linux@armlinux.org.uk, willy@infradead.org,
- rppt@linux.ibm.com, liang.yang@amlogic.com, linux-mtd@lists.infradead.org,
- linux-amlogic@lists.infradead.org, akpm@linux-foundation.org
+Cc: mhocko@suse.com, linux@armlinux.org.uk, linux-kernel@vger.kernel.org,
+ rppt@linux.ibm.com, linux-mm@kvack.org, liang.yang@amlogic.com,
+ linux-mtd@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ akpm@linux-foundation.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello,
+On Thu, Mar 21, 2019 at 09:17:34PM +0100, Martin Blumenstingl wrote:
+> Hello,
+> 
+> I am experiencing the following crash:
+>   ------------[ cut here ]------------
+>   kernel BUG at mm/slub.c:3950!
 
-I am experiencing the following crash:
-  ------------[ cut here ]------------
-  kernel BUG at mm/slub.c:3950!
-  Internal error: Oops - BUG: 0 [#1] PREEMPT SMP ARM
-  Modules linked in:
-  CPU: 1 PID: 1 Comm: swapper/0 Not tainted
-5.1.0-rc1-00080-g37b8cb064293-dirty #4252
-  Hardware name: Amlogic Meson platform
-  PC is at kfree+0x250/0x274
-  LR is at meson_nfc_exec_op+0x3b0/0x408
-  ...
-my goal is to add support for the 32-bit Amlogic Meson SoCs (ARM
-Cortex-A5 / Cortex-A9 cores) in the meson-nand driver.
+        if (unlikely(!PageSlab(page))) {
+                BUG_ON(!PageCompound(page));
 
-I have traced this crash to the kfree() in meson_nfc_read_buf().
-my observation is as follows:
-- meson_nfc_read_buf() is called 7 times without any crash, the
-kzalloc() call returns 0xe9e6c600 (virtual address) / 0x29e6c600
-(physical address)
-- the eight time meson_nfc_read_buf() is called kzalloc() call returns
-0xee39a38b (virtual address) / 0x2e39a38b (physical address) and the
-final kfree() crashes
-- changing the size in the kzalloc() call from PER_INFO_BYTE (= 8) to
-PAGE_SIZE works around that crash
-- disabling the meson-nand driver makes my board boot just fine
-- Liang has tested the unmodified code on a 64-bit Amlogic SoC (ARM
-Cortex-A53 cores) and he doesn't see the crash there
+You called kfree() on the address of a page which wasn't allocated by slab.
 
-in case the selected SLAB allocator is relevant:
-  CONFIG_SLUB=y
+> I have traced this crash to the kfree() in meson_nfc_read_buf().
+> my observation is as follows:
+> - meson_nfc_read_buf() is called 7 times without any crash, the
+> kzalloc() call returns 0xe9e6c600 (virtual address) / 0x29e6c600
+> (physical address)
+> - the eight time meson_nfc_read_buf() is called kzalloc() call returns
+> 0xee39a38b (virtual address) / 0x2e39a38b (physical address) and the
+> final kfree() crashes
+> - changing the size in the kzalloc() call from PER_INFO_BYTE (= 8) to
+> PAGE_SIZE works around that crash
 
-the following printk statement is used to print the addresses returned
-by the kzalloc() call in meson_nfc_read_buf():
-  printk("%s 0x%px 0x%08x\n", __func__, info, virt_to_phys(info));
+I suspect you're doing something which corrupts memory.  Overrunning
+the end of your allocation or something similar.  Have you tried KASAN
+or even the various slab debugging (eg redzones)?
 
-my questions are:
-- why does kzalloc() return an unaligned address 0xee39a38b (virtual
-address) / 0x2e39a38b (physical address)?
-- how can further analyze this issue?
-- (I don't know where to start analyzing: in mm/, arch/arm/mm, the
-meson-nand driver seems to work fine on the 64-bit SoCs but that
-doesn't fully rule it out, ...)
-
-
-Regards
-Martin
 
 _______________________________________________
 linux-amlogic mailing list
