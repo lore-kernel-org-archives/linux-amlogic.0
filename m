@@ -7,77 +7,80 @@ X-Spam-Status: No, score=-0.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4ACB3C43381
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 18:04:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B8FD4C4360F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 18:32:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1A16B208E4
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 18:04:35 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8509C20830
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 18:32:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ayEBoIZg";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="o+eqW1QW"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1A16B208E4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rO/x+Hnv";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="p/psuEGd"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8509C20830
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=n2drl3ZDsQHnRNCpHGYIABoX4yRB9iTK2+OjG2G41TE=; b=ayEBoIZg0to/Uu
-	c8ZsMl4Lt/ANvFLKPfXUJX7GerC23yh/Ns+ZuDknmcxR0V8RiiFOln8Ef1eGrwwwqK0agfDs51vPl
-	tPth+zLHK3T71cW8K2nyElhL9HaBYlsPn58LKtZUzdp/LUbOVcTvnYZBWA5tUTABsazcDkmM/jFzH
-	+HZiMiziQqCDxMIqCKiUob+rshduiKsGKCw6QiL2lupwGE1P5lNeqeI2ORr0OpwJneE1BQMkeUFzH
-	pssdlXgJpGb41wH4dpb3kmxgc6U1+s5RF8OqM/OIVCpj+epHZxnWMQ5My/witxyMkwv4er80Oecub
-	PkQABwEibb2yNVGmnkag==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:To:
+	Subject:Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=A8GyilB+N0boQgArRU/aWGyqCIg54oEOdvEniriLwRk=; b=rO/x+HnvmjkWq3y8naboDCGA1
+	H4wVnlkhGrk/ExciPu+Rccc9as81eWUE4JprCt+5Ly4tduPDhOrxdzfXb+kphlSzQA0bpjUKRNMd9
+	3zukZg7ykE4j+jXY+bdRKL3u0JWGs3cejIu4aJHZFTFGKINc3GdeHt4VmWWvJpI/WuS3yyvhxlfNZ
+	egK51gsVTmFSnBDYdMocKAlk7vhJkG5iyuWeksOM1blRB8Il5BIaZjcwkmSs/5AOMBSEtoLvSafuz
+	MF+yTxuMCnwnGUttdeCYu4TyA6QC2V5SkaT2UpHH5VlJRQ73Rc0bJ05+fYuwIgegDp2Md/K/2h5Vw
+	U+UJOKOFQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h8TxQ-0000We-DX; Mon, 25 Mar 2019 18:04:24 +0000
-Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
+	id 1h8UOL-0006VA-KQ; Mon, 25 Mar 2019 18:32:13 +0000
+Received: from mail-oi1-x241.google.com ([2607:f8b0:4864:20::241])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h8TxL-0000VO-00; Mon, 25 Mar 2019 18:04:22 +0000
-Received: by mail-ot1-x344.google.com with SMTP id u15so8888153otq.10;
- Mon, 25 Mar 2019 11:04:17 -0700 (PDT)
+ id 1h8UNo-0005n4-Ry; Mon, 25 Mar 2019 18:32:05 +0000
+Received: by mail-oi1-x241.google.com with SMTP id v10so3459626oib.1;
+ Mon, 25 Mar 2019 11:31:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=GADRvM0xN4bllnd3qZhEh8xI+loEVurWzVmPK/bUGn4=;
- b=o+eqW1QWWrIKtllLpb/54oAYP5Z3yohEpohdPOmIlzfzeapD+tA+fWE8VGMVfq8tTw
- qR2EMrf8jUH/yg0BmaCsZFMoK2RvqaYP79NeC5B2nLHTICkVtzS6IHzEldtJKKQPa67P
- EqgsXQozYW2GAMPu4FL/h/nqTC8CIY/VB6oAVbzqr7xFoqNi3AN1SSE5ykn+ZpjclzUk
- ukvWQaBdKIrWMtqnZr024z4uQfkhEgXgAEsFbWrwXyYG6dkgiS1o3hldhaGEO8v4GeVQ
- LcYQQ31b1We0O4xW5z4fW+gwIeuY6OzURJUVGCH4VP9R/9GWxEyGSKJwBvx3Ssg/O7tj
- 9Sgg==
+ :cc; bh=De4EaLx9v93H4rVCB9OpKmCuXJ71zefVFfl8bToAja8=;
+ b=p/psuEGd+bbH84nCMhcR2daLTOwWMpTx48QQFy0ea9FgbMAPI8OV9l3cPelA0UnXTw
+ yNdukP3Njy2aa+tv22/A4TKJfJfS3wqJuVs0EI5WasO34XocggcaS/vpz4SV55Xh38/o
+ gWbu0WC6cb2vsKL8iXvgpr7O3J7RRcPfNuTHKV3qnsT9I413mAFzSA6GEoRzOwJECinC
+ 1tsKI5tHfEiruKn1ztiO/tU65nym5IS2Vt9v3NO/GdbJor5opMqtdjM+mM0uj6BWLL9r
+ 4vJwVIQJx13nSo3vkn8UNI4n5KcEZ+PhXibBCai21qWIn0djEfCrkuCFJLu4vYr8DDEG
+ Mw5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=GADRvM0xN4bllnd3qZhEh8xI+loEVurWzVmPK/bUGn4=;
- b=P/bRbEoonE+c5oVOADM11Qd6oO5zoKuGWodOm9Wd1Fs91TKsKS8UaczqFlE+xnMNCo
- 8gyu/2mq7WfhFvi+v+qPY44xDYik4VXuPVkz4XgOcs8knXqIg9v7ycfUkkkpk1OKA2zt
- 89GVlMj8m/HkYRhGRiy8jscLuT/RmMhET9rskzfsgZF6GnNTcoiE6TDriDReJJ8EfxCK
- YGD0maoxNCDOT27kofa5j/UxbDr/fQYHAaZTqrzSMdVH/2QeLIo2h5qCXuAyRNaMezsU
- 6b0ID4NiBpkXDBuOmclSU1ypLEy/5Favb4W53iFio3fmIgZ+MMM9up8asJo57SaPQC+w
- IN/g==
-X-Gm-Message-State: APjAAAWTe0Q5QaGRxHWjcX1I/woRempDubx/dYD+X2BU9YFFsJBCWf5v
- TVfcDgLTPAW1Uo01YL2bLgxk72Pky9+Dt807B0q1ylaU
-X-Google-Smtp-Source: APXvYqypZk6IN2goZkQQ3kCsStNCRpPQUw/Nmnmm1imDszeEB0ThMlAUdtaHCGkJ+7p3NxDX6bNG7VtPb2Y1kWCprNA=
-X-Received: by 2002:a9d:6306:: with SMTP id q6mr18256071otk.86.1553537056347; 
- Mon, 25 Mar 2019 11:04:16 -0700 (PDT)
+ bh=De4EaLx9v93H4rVCB9OpKmCuXJ71zefVFfl8bToAja8=;
+ b=iDC/Q/P90FHyi8Or8grs5LgaBVzVuM+m50UyP2vX2RaS6n/zhMJwkkXbOPNGgE1voc
+ fGkZ8ZZ0wz0SO3IsGtDcrYawp7eHr+AZh6BfQDvHMU/aNZJBjSpDUXfJ3RN9hieyXhsu
+ TR1Sd2zeO75S+FtO7yJqBLMhslY/qDx/S8TcLKiPuImHNH+2BcfT9ESkOTM2BGfcC2ij
+ sJowIi6iCoqWSm4S2CBNk131+VgCT2OlzIVXrE45EZrC75TLUfkN1wF98oOc9TpDXM4g
+ pm9WZmqqIuJ2cLGq3qi1nOt4Hpjx36/8tFwv58C7JknAkeJpW6+E+gBqmkVdVSo5d5cc
+ Zn4Q==
+X-Gm-Message-State: APjAAAXRVVMCf0Lrqw0jFj7kD2JjjGD+B16OScSO5KMrXjCpC6wGrZWI
+ NvohWnOCD+MqQmKbIGbcz/F8LwdJDiaLEYWCZ90=
+X-Google-Smtp-Source: APXvYqweyMJzn4BD11eQrMQCO8LR/J0VVuDuZzmXPjzzKYYY6SYp4FkhWRAhdA0GV/Xtwo99XpOYoKmoe13aHDuvk5o=
+X-Received: by 2002:aca:6209:: with SMTP id w9mr13107288oib.47.1553538697302; 
+ Mon, 25 Mar 2019 11:31:37 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190324220217.15813-1-martin.blumenstingl@googlemail.com>
- <47e944da1c3b0a11cf46fc5ad5678ba961b9f9d3.camel@baylibre.com>
-In-Reply-To: <47e944da1c3b0a11cf46fc5ad5678ba961b9f9d3.camel@baylibre.com>
+References: <CAFBinCBOX8HyY-UocsVQvsnTr4XWXyE9oU+f2xhO1=JU0i_9ow@mail.gmail.com>
+ <20190321214401.GC19508@bombadil.infradead.org>
+ <CAFBinCA6oK5UhDAt9kva5qRisxr2gxMF26AMK8vC4b1DN5RXrw@mail.gmail.com>
+ <5cad2529-8776-687e-58d0-4fb9e2ec59b1@amlogic.com>
+In-Reply-To: <5cad2529-8776-687e-58d0-4fb9e2ec59b1@amlogic.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 25 Mar 2019 19:04:05 +0100
-Message-ID: <CAFBinCCPW8wAoiN4hjj9tAYSqQqChpSB6+urAiXU95VYaZZKGg@mail.gmail.com>
-Subject: Re: [PATCH 0/1] pwm: meson: fix scheduling while atomic issue
-To: Jerome Brunet <jbrunet@baylibre.com>
+Date: Mon, 25 Mar 2019 19:31:26 +0100
+Message-ID: <CAFBinCA=0XSSVmzfTgb4eSiVFr=XRHqLOVFGyK0++XRty6VjnQ@mail.gmail.com>
+Subject: Re: 32-bit Amlogic (ARM) SoC: kernel BUG in kfree()
+To: Liang Yang <liang.yang@amlogic.com>
+Content-Type: multipart/mixed; boundary="0000000000003310550584ef6a0f"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190325_110419_064881_1A543977 
-X-CRM114-Status: GOOD (  24.36  )
+X-CRM114-CacheID: sfid-20190325_113141_561877_2948F602 
+X-CRM114-Status: GOOD (  27.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -89,101 +92,304 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-pwm@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
- linux-kernel@vger.kernel.org, thierry.reding@gmail.com,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: mhocko@suse.com, linux-kernel@vger.kernel.org, linux@armlinux.org.uk,
+ Matthew Wilcox <willy@infradead.org>, rppt@linux.ibm.com, linux-mm@kvack.org,
+ linux-mtd@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ akpm@linux-foundation.org, linux-arm-kernel@lists.infradead.org
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jerome,
+--0000000000003310550584ef6a0f
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Mar 25, 2019 at 10:35 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
+Hi Liang,
+
+On Mon, Mar 25, 2019 at 11:03 AM Liang Yang <liang.yang@amlogic.com> wrote:
 >
-> On Sun, 2019-03-24 at 23:02 +0100, Martin Blumenstingl wrote:
-> > Back in January a "BUG: scheduling while atomic" error showed up during
-> > boot on my Meson8b Odroid-C1 (which uses a PWM regulator as CPU supply).
-> > The call trace comes down to:
-> >   __mutex_lock
-> >   clk_prepare_lock
-> >   clk_core_get_rate
-> >   meson_pwm_apply
-> >   ..
-> >   dev_pm_opp_set_rate
-> >   ..
+> Hi Martin,
+>
+> On 2019/3/23 5:07, Martin Blumenstingl wrote:
+> > Hi Matthew,
 > >
-> > Jerome has also seen the same problem but from pwm-leds (instead of a
-> > pwm-regulator). He posted a patch which replaces the spinlock with a
-> > mutex. That works. I believe we can optimize this by reducing the time
-> > where the lock is held - that also allows to keep the spin-lock.
+> > On Thu, Mar 21, 2019 at 10:44 PM Matthew Wilcox <willy@infradead.org> wrote:
+> >>
+> >> On Thu, Mar 21, 2019 at 09:17:34PM +0100, Martin Blumenstingl wrote:
+> >>> Hello,
+> >>>
+> >>> I am experiencing the following crash:
+> >>>    ------------[ cut here ]------------
+> >>>    kernel BUG at mm/slub.c:3950!
+> >>
+> >>          if (unlikely(!PageSlab(page))) {
+> >>                  BUG_ON(!PageCompound(page));
+> >>
+> >> You called kfree() on the address of a page which wasn't allocated by slab.
+> >>
+> >>> I have traced this crash to the kfree() in meson_nfc_read_buf().
+> >>> my observation is as follows:
+> >>> - meson_nfc_read_buf() is called 7 times without any crash, the
+> >>> kzalloc() call returns 0xe9e6c600 (virtual address) / 0x29e6c600
+> >>> (physical address)
+> >>> - the eight time meson_nfc_read_buf() is called kzalloc() call returns
+> >>> 0xee39a38b (virtual address) / 0x2e39a38b (physical address) and the
+> >>> final kfree() crashes
+> >>> - changing the size in the kzalloc() call from PER_INFO_BYTE (= 8) to
+> >>> PAGE_SIZE works around that crash
+> >>
+> >> I suspect you're doing something which corrupts memory.  Overrunning
+> >> the end of your allocation or something similar.  Have you tried KASAN
+> >> or even the various slab debugging (eg redzones)?
+> > KASAN is not available on 32-bit ARM. there was some progress last
+> > year [0] but it didn't make it into mainline. I tried to make the
+> > patches apply again and got it to compile (and my kernel is still
+> > booting) but I have no idea if it's still working. for anyone
+> > interested, my patches are here: [1] (I consider this a HACK because I
+> > don't know anything about the code which is being touched in the
+> > patches, I only made it compile)
 > >
-> > Analyzing this issue helped me understand the pwm-meson driver better.
-> > My plan is to send some cleanups (with the goal of re-using more of the
-> > goodies from the PWM core in the pwm-meson driver) after this single fix
-> > is merged (they can be found here: [1]).
+> > SLAB debugging (redzones) were a great hint, thank you very much for
+> > that Matthew! I enabled:
+> >    CONFIG_SLUB_DEBUG=y
+> >    CONFIG_SLUB_DEBUG_ON=y
+> > and with that I now get "BUG kmalloc-64 (Not tainted): Redzone
+> > overwritten" (a larger kernel log extract is attached).
+> >
+> > I'm starting to wonder if the NAND controller (hardware) writes more
+> > than 8 bytes.
+> > some context: the "info" buffer allocated in meson_nfc_read_buf is
+> > then passed to the NAND controller IP (after using dma_map_single).
+> >
+> > Liang, how does the NAND controller know that it only has to send
+> > PER_INFO_BYTE (= 8) bytes when called from meson_nfc_read_buf? all
+> > other callers of meson_nfc_dma_buffer_setup (which passes the info
+> > buffer to the hardware) are using (nand->ecc.steps * PER_INFO_BYTE)
+> > bytes?
+> >
+> NFC_CMD_N2M and CMDRWGEN are different commands. CMDRWGEN needs to set
+> the ecc page size (1KB or 512B) and Pages(2, 4, 8, ...), so
+> PER_INFO_BYTE(= 8) bytes for each ecc page.
+> I have never used NFC_CMD_N2M to transfer data before, because it is
+> very low efficient. And I do a experiment with the attachment and find
+> on overwritten on my meson axg platform.
 >
-> Thanks for fixing this Martin.
-you're welcome!
+> Martin, I would appreciate it very much if you would try the attachment
+> on your meson m8b platform.
+thank you for your debug patch! on my board 2 * PER_INFO_BYTE is not enough.
+I took the idea from your patch and adapted it so I could print a
+buffer with 256 bytes (which seems to be "big enough" for my board).
+see the attached, modified patch
 
-> As for the future enhancement, I'd like to know what you have in mind.
-> As I have told you previously, I think the clock bindings of this driver are
-> not great.
->
-> The global name of the input clocks are hard coded in this driver and it
-> sucks. CCF is evolving to rely less on these global names.
-I fully agree with you on the clock setup, but I'm not sure if we have
-to break the dt-bindings for it.
+in the output I see that sometimes the first 32 bytes are not touched
+by the controller, but everything beyond 32 bytes is modified in the
+info buffer.
 
-the datasheet notes: "Each PWM is driven by a programmable divider
-driven by a 4:1 clock selector".
-In my own words this means that each PWM controller has up to 8 clock inputs:
-- up to 4 inputs for the first channel (PWM_A)
-- up to 4 inputs for the second channel (PWM_B)
+I also tried to increase the buffer size to 512, but that didn't make
+a difference (I never saw any info buffer modification beyond 256
+bytes).
 
-the current pwm-meson driver assumes that both the inputs for both
-channels are identical.
-the "clock trees" section of the public S912 datasheet (page 65)
-clearly documents the clock inputs per PWM channel, not per PWM
-controller.
-
-Thus I believe we should name our clock-names (the inputs to the PWM
-controller) "pwm-a-clkin0", "pwm-a-clkin1", "pwm-b-clkin0", ...
-That way we don't have a conflict with the existing bindings (which
-already reserve "clkin0" and "clkin1").
-
-> In addition, the 'clock' binding should be used to refer to the clock
-> 'consumed' by the device, not to define a setting (as done now). 'assigned-
-> clock' binding can be used for that.
-using the assigned-clock* properties requires self-referencing the PWM
-controller (which I'm not used to), for example:
-  &pwm_ab {
-      #clock-cells = <1>;
-      assigned-clocks = <&pwm_ab 0>, <&pwm_ab 1>; /* references itself */
-      assigned-clock-parents = <&xtal>, <&clkc CLKID_FCLK_DIV5>;
-  };
-
-if we want to auto-detect the parent clock (like you suggested below)
-we need to consider if we can detect whether a .dts-author assigned a
-specific parent.
-I know that it's easy to detect this when the clock is passed in the
-"clocks" property, but I'm not sure if it's easy to parse it from the
-assigned-clocks/assigned-clock-parents properties.
-
-[...]
-> Last, instead of specifying the parent to be used, I think we should come up
-> with some code to let the driver pick the most appropriate parent for the period/duty requested.
-that will make it easier for .dts authors.
-I would like to postpone this until we have solved the other topics though.
+also I just noticed that I didn't give you much details on my NAND chip yet.
+from Amlogic vendor u-boot on Meson8m2 (all my Meson8b boards have
+eMMC flash, but I believe the NAND controller on Meson8 to GXBB is
+identical):
+  m8m2_n200_v1#amlnf chipinfo
+  flash  info
+  name:B revision 20nm NAND 8GiB H27UCG8T2B, id:ad de 94 eb 74 44  0  0
+  pagesize:0x4000, blocksize:0x400000, oobsize:0x500, chipsize:0x2000,
+    option:0x8, T_REA:16, T_RHOH:15
+  hw controller info
+  chip_num:1, onfi_mode:0, page_shift:14, block_shift:22, option:0xc2
+  ecc_unit:1024, ecc_bytes:70, ecc_steps:16, ecc_max:40
+  bch_mode:5, user_mode:2, oobavail:32, oobtail:64384
 
 
 Regards
+
 Martin
 
+--0000000000003310550584ef6a0f
+Content-Type: text/plain; charset="US-ASCII"; name="debug-256-buffer-output.txt"
+Content-Disposition: attachment; filename="debug-256-buffer-output.txt"
+Content-Transfer-Encoding: base64
+Content-ID: <f_jtoomclb1>
+X-Attachment-Id: f_jtoomclb1
 
-[0] https://dl.khadas.com/Hardware/VIM2/Datasheet/S912_Datasheet_V0.220170314publicversion-Wesion.pdf
+Li4uClsgICAgMi43MTY4ODVdIDAwMDAwMDAwOiAwMDAwIDgwMDUgMjgwMCAyOTQ1IGZkZmQgZmRm
+ZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkClsgICAg
+Mi43MjA0NjRdIDAwMDAwMDIwOiBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZk
+ZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkClsgICAgMi43Mjk2ODld
+IDAwMDAwMDQwOiBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBm
+ZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkClsgICAgMi43Mzg4NDddIDAwMDAwMDYw
+OiBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQg
+ZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkClsgICAgMi43NDgwNjVdIDAwMDAwMDgwOiBmZGZkIGZk
+ZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZk
+IGZkZmQgZmRmZCBmZGZkClsgICAgMi43NTcyMjhdIDAwMDAwMGEwOiBmZGZkIGZkZmQgZmRmZCBm
+ZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRm
+ZCBmZGZkClsgICAgMi43NjY0MDRdIDAwMDAwMGMwOiBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQg
+ZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkClsg
+ICAgMi43NzU2MDJdIDAwMDAwMGUwOiBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZk
+IGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkClsgICAgMi43ODQ3
+ODBdIApbICAgIDIuNzg2MzA2XSAwMDAwMDAwMDogMDAwMCA4MDFiIDI4MDAgMjk0NSBmZGZkIGZk
+ZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZApbICAg
+IDIuNzk1NDU1XSAwMDAwMDAyMDogZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBm
+ZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZApbICAgIDIuODA0NjM4
+XSAwMDAwMDA0MDogZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQg
+ZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZApbICAgIDIuODEzODI4XSAwMDAwMDA2
+MDogZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZk
+IGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZApbICAgIDIuODIzMDE0XSAwMDAwMDA4MDogZmRmZCBm
+ZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRm
+ZCBmZGZkIGZkZmQgZmRmZApbICAgIDIuODMyMjAzXSAwMDAwMDBhMDogZmRmZCBmZGZkIGZkZmQg
+ZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZk
+ZmQgZmRmZApbICAgIDIuODQxMzkwXSAwMDAwMDBjMDogZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZk
+IGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZApb
+ICAgIDIuODUwNTgwXSAwMDAwMDBlMDogZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRm
+ZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZApbICAgIDIuODU5
+NzU5XSAKWyAgICAyLjg2MTMwM10gMDAwMDAwMDA6IDAwMDAgODAxMSAzZDAwIDI5NWUgZmRmZCBm
+ZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQKWyAg
+ICAyLjg3MDQzNV0gMDAwMDAwMjA6IGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQg
+ZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQKWyAgICAyLjg3OTYx
+OF0gMDAwMDAwNDA6IGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZk
+IGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQKWyAgICAyLjg4ODgxMl0gMDAwMDAw
+NjA6IGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRm
+ZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQKWyAgICAyLjg5Nzk5Nl0gMDAwMDAwODA6IGZkZmQg
+ZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZk
+ZmQgZmRmZCBmZGZkIGZkZmQKWyAgICAyLjkwNzE4NF0gMDAwMDAwYTA6IGZkZmQgZmRmZCBmZGZk
+IGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBm
+ZGZkIGZkZmQKWyAgICAyLjkxNjM2NF0gMDAwMDAwYzA6IGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRm
+ZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQK
+WyAgICAyLjkyNTU1OV0gMDAwMDAwZTA6IGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZk
+ZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQKWyAgICAyLjkz
+NDc0MV0gClsgICAgMi45MzYzNjddIDAwMDAwMDAwOiBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQg
+ZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkClsg
+ICAgMi45NDU0MTNdIDAwMDAwMDIwOiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZi
+IDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiClsgICAgMi45NTQ2
+MDBdIDAwMDAwMDQwOiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2
+YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiClsgICAgMi45NjM4MDNdIDAwMDAw
+MDYwOiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZi
+NmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiClsgICAgMi45NzI5NzhdIDAwMDAwMDgwOiA2YjZi
+IDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2
+YjZiIDZiNmIgNmI2YiA2YjZiClsgICAgMi45ODIxNjNdIDAwMDAwMGEwOiA2YjZiIDZiNmIgNmI2
+YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIg
+NmI2YiA2YjZiClsgICAgMi45OTEzNTJdIDAwMDAwMGMwOiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZi
+NmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZi
+ClsgICAgMy4wMDA1MzldIDAwMDAwMGUwOiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2
+YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiBhNTZiClsgICAgMy4w
+MDk3MjJdIApbICAgIDMuMDExMjMzXSAwMDAwMDAwMDogZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZk
+IGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZApb
+ICAgIDMuMDIwMzkwXSAwMDAwMDAyMDogNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2
+YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YgpbICAgIDMuMDI5
+NTgwXSAwMDAwMDA0MDogNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZi
+NmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YgpbICAgIDMuMDM4NzY2XSAwMDAw
+MDA2MDogNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2
+YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YgpbICAgIDMuMDQ3OTcxXSAwMDAwMDA4MDogNmI2
+YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIg
+NmI2YiA2YjZiIDZiNmIgNmI2YgpbICAgIDMuMDU3MTQ1XSAwMDAwMDBhMDogNmI2YiA2YjZiIDZi
+NmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZi
+IDZiNmIgNmI2YgpbICAgIDMuMDY2MzI1XSAwMDAwMDBjMDogNmI2YiA2YjZiIDZiNmIgNmI2YiA2
+YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2
+YgpbICAgIDMuMDc1NTIxXSAwMDAwMDBlMDogNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIg
+NmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgYTU2YgpbICAgIDMu
+MDg0NzAwXSAKWyAgICAzLjA4NjIxM10gMDAwMDAwMDA6IGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRm
+ZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQK
+WyAgICAzLjA5NTM3M10gMDAwMDAwMjA6IDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZi
+NmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIKWyAgICAzLjEw
+NDU1OF0gMDAwMDAwNDA6IDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2
+YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIKWyAgICAzLjExMzc0OF0gMDAw
+MDAwNjA6IDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIg
+NmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIKWyAgICAzLjEyMjkzNF0gMDAwMDAwODA6IDZi
+NmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZi
+IDZiNmIgNmI2YiA2YjZiIDZiNmIKWyAgICAzLjEzMjEyNF0gMDAwMDAwYTA6IDZiNmIgNmI2YiA2
+YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2
+YiA2YjZiIDZiNmIKWyAgICAzLjE0MTMxMV0gMDAwMDAwYzA6IDZiNmIgNmI2YiA2YjZiIDZiNmIg
+NmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZi
+NmIKWyAgICAzLjE1MDUwNV0gMDAwMDAwZTA6IDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZi
+IDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIDZiNmIgNmI2YiA2YjZiIGE1NmIKWyAgICAz
+LjE1OTY4MV0gClsgICAgMy4xNjExNzFdIENvdWxkIG5vdCBmaW5kIGEgdmFsaWQgT05GSSBwYXJh
+bWV0ZXIgcGFnZSwgdHJ5aW5nIGJpdC13aXNlIG1ham9yaXR5IHRvIHJlY292ZXIgaXQKWyAgICAz
+LjE2OTc4Nl0gT05GSSBwYXJhbWV0ZXIgcmVjb3ZlcnkgZmFpbGVkLCBhYm9ydGluZwpbICAgIDMu
+MTc0NzQwXSAwMDAwMDAwMDogMDAwMCA4MDEwIDNkMDAgMjk1ZSBmZGZkIGZkZmQgZmRmZCBmZGZk
+IGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZApbICAgIDMuMTgzODc3XSAw
+MDAwMDAyMDogZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRm
+ZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZApbICAgIDMuMTkzMDY0XSAwMDAwMDA0MDog
+ZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZk
+ZmQgZmRmZCBmZGZkIGZkZmQgZmRmZApbICAgIDMuMjAyMjQ5XSAwMDAwMDA2MDogZmRmZCBmZGZk
+IGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBm
+ZGZkIGZkZmQgZmRmZApbICAgIDMuMjExNDM5XSAwMDAwMDA4MDogZmRmZCBmZGZkIGZkZmQgZmRm
+ZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQg
+ZmRmZApbICAgIDMuMjIwNjI2XSAwMDAwMDBhMDogZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZk
+ZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZApbICAg
+IDMuMjI5ODE1XSAwMDAwMDBjMDogZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBm
+ZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZApbICAgIDMuMjM5MDAy
+XSAwMDAwMDBlMDogZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQg
+ZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZApbICAgIDMuMjQ4MTg0XSAKWyAgICAz
+LjI0OTc0M10gMDAwMDAwMDA6IDAwMDAgODAxMCAyMmMwIDI5NWUgZmRmZCBmZGZkIGZkZmQgZmRm
+ZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQKWyAgICAzLjI1ODg1N10g
+MDAwMDAwMjA6IGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZk
+ZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQKWyAgICAzLjI2ODA0NF0gMDAwMDAwNDA6
+IGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBm
+ZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQKWyAgICAzLjI3NzIzMV0gMDAwMDAwNjA6IGZkZmQgZmRm
+ZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQg
+ZmRmZCBmZGZkIGZkZmQKWyAgICAzLjI4NjQxMV0gMDAwMDAwODA6IGZkZmQgZmRmZCBmZGZkIGZk
+ZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZk
+IGZkZmQKWyAgICAzLjI5NTYwN10gMDAwMDAwYTA6IGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBm
+ZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQKWyAg
+ICAzLjMwNDc5NF0gMDAwMDAwYzA6IGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQg
+ZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQKWyAgICAzLjMxMzk4
+NF0gMDAwMDAwZTA6IGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZk
+IGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQKWyAgICAzLjMyMzE2M10gClsgICAg
+My4zMjQ2NTddIG5hbmQ6IGRldmljZSBmb3VuZCwgTWFudWZhY3R1cmVyIElEOiAweGFkLCBDaGlw
+IElEOiAweGRlClsgICAgMy4zMzA5NjhdIG5hbmQ6IEh5bml4IE5BTkQgOEdpQiAzLDNWIDgtYml0
+ClsgICAgMy4zMzUyMTBdIG5hbmQ6IDgxOTIgTWlCLCBNTEMsIGVyYXNlIHNpemU6IDQwOTYgS2lC
+LCBwYWdlIHNpemU6IDE2Mzg0LCBPT0Igc2l6ZTogMTI4MApbICAgIDMuMzQzMjc0XSAwMDAwMDAw
+MDogMDAwMCA4MDEwIDI0MDAgMjk1ZSBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZk
+IGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZApbICAgIDMuMzUyMzkwXSAwMDAwMDAyMDogZmRmZCBm
+ZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRm
+ZCBmZGZkIGZkZmQgZmRmZApbICAgIDMuMzYxNTcyXSAwMDAwMDA0MDogZmRmZCBmZGZkIGZkZmQg
+ZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZk
+ZmQgZmRmZApbICAgIDMuMzcwNzYyXSAwMDAwMDA2MDogZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZk
+IGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZApb
+ICAgIDMuMzc5OTYzXSAwMDAwMDA4MDogZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRm
+ZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZApbICAgIDMuMzg5
+MTQwXSAwMDAwMDBhMDogZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZk
+ZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZApbICAgIDMuMzk4MzI2XSAwMDAw
+MDBjMDogZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBm
+ZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZApbICAgIDMuNDA3NTE5XSAwMDAwMDBlMDogZmRm
+ZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQgZmRmZCBmZGZkIGZkZmQg
+ZmRmZCBmZGZkIGZkZmQgZmRmZApbICAgIDMuNDE2Njk1XSAKLi4uCg==
+--0000000000003310550584ef6a0f
+Content-Type: application/x-patch; name="nand_debug_martin.patch"
+Content-Disposition: attachment; filename="nand_debug_martin.patch"
+Content-Transfer-Encoding: base64
+Content-ID: <f_jtoomcks0>
+X-Attachment-Id: f_jtoomcks0
+
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvbXRkL25hbmQvcmF3L21lc29uX25hbmQuYyBiL2RyaXZlcnMv
+bXRkL25hbmQvcmF3L21lc29uX25hbmQuYwppbmRleCBjYjBiMDNlMzZhMzUuLjZkNzkyNzE1MDA4
+MSAxMDA2NDQKLS0tIGEvZHJpdmVycy9tdGQvbmFuZC9yYXcvbWVzb25fbmFuZC5jCisrKyBiL2Ry
+aXZlcnMvbXRkL25hbmQvcmF3L21lc29uX25hbmQuYwpAQCAtNTI3LDEyICs1MjcsMTQgQEAgc3Rh
+dGljIGludCBtZXNvbl9uZmNfcmVhZF9idWYoc3RydWN0IG5hbmRfY2hpcCAqbmFuZCwgdTggKmJ1
+ZiwgaW50IGxlbikKIAl1MzIgY21kOwogCXU4ICppbmZvOwogCi0JaW5mbyA9IGt6YWxsb2MoUEVS
+X0lORk9fQllURSwgR0ZQX0tFUk5FTCk7CisJaW5mbyA9IGt6YWxsb2MoMjU2LCBHRlBfS0VSTkVM
+KTsKIAlpZiAoIWluZm8pCiAJCXJldHVybiAtRU5PTUVNOwogCi0JcmV0ID0gbWVzb25fbmZjX2Rt
+YV9idWZmZXJfc2V0dXAobmFuZCwgYnVmLCBsZW4sIGluZm8sCi0JCQkJCSBQRVJfSU5GT19CWVRF
+LCBETUFfRlJPTV9ERVZJQ0UpOworCW1lbXNldChpbmZvLCAweEZELCAyNTYpOworCisJcmV0ID0g
+bWVzb25fbmZjX2RtYV9idWZmZXJfc2V0dXAobmFuZCwgYnVmLCBsZW4sIGluZm8sIFBFUl9JTkZP
+X0JZVEUsCisJCQkJCSBETUFfRlJPTV9ERVZJQ0UpOwogCWlmIChyZXQpCiAJCWdvdG8gb3V0Owog
+CkBAIC01NDQsNiArNTQ2LDkgQEAgc3RhdGljIGludCBtZXNvbl9uZmNfcmVhZF9idWYoc3RydWN0
+IG5hbmRfY2hpcCAqbmFuZCwgdTggKmJ1ZiwgaW50IGxlbikKIAltZXNvbl9uZmNfZG1hX2J1ZmZl
+cl9yZWxlYXNlKG5hbmQsIGxlbiwgUEVSX0lORk9fQllURSwgRE1BX0ZST01fREVWSUNFKTsKIAog
+b3V0OgorCXByaW50X2hleF9kdW1wKEtFUk5fRVJSLCAiIiwgRFVNUF9QUkVGSVhfT0ZGU0VULCAz
+MiwgMiwgaW5mbywgMjU2LCBmYWxzZSk7CisJcHJpbnRrKCJcbiIpOworCiAJa2ZyZWUoaW5mbyk7
+CiAKIAlyZXR1cm4gcmV0Owo=
+--0000000000003310550584ef6a0f
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--0000000000003310550584ef6a0f--
+
