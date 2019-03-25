@@ -4,19 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B9CC7C4360F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 14:18:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 512A1C10F11
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 14:18:53 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7D66A217D9
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 14:18:52 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0BBDE2084D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 14:18:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YkykYeyi";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="QQdDUz/h"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7D66A217D9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ba+CgabQ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="r5HIdwck"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0BBDE2084D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,66 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fXPCFpstugm4vocIP0Q/KkaeUj4xXDToKl8Tc9hV/vs=; b=YkykYeyib9GLJc
-	Aw3p76NYDiM470HUGQ7Jcaj4MsAl5rGt1Y5dD4vrbr1DV6MC0MTVupHFBMlVMN2qYJjOFfs0NeNpQ
-	fH8+O5eTu5kb6mTVAh8q4bh1Ca7VeQeLobzU/kY+fTBYQPOUjQ3ccjXsIMwAF4YIHPPCKNdq6o3gV
-	exr8PxgcR5hy3K0ob3ADmwSrqqjuqPGRVbLVsN9YL0bTzxF1/ijab70hngI+q+WQk5OKh5XYCO+wb
-	gMQ7o4zCjOddccPekOgGWEZCudQzIWsBr2CJKpCgor55T9mmmUExc14GK3vm03BwKAQlbT5aYM2wi
-	/xYOVHv5vYy+TZiq4/lQ==;
+	List-Owner; bh=d2q0dtU7QDL/VRKnn66bIF/EVDeFHbPNj8GAluNcxzQ=; b=ba+CgabQH/Eezz
+	Y0K75IFMZrUwWlPOxULXwdG7JwNRY1inx7j7TxYjp9Kv6UK+Kq3RQvoOrrSgUEAdM+CxjLZH4xMMZ
+	aybzwBYqxg4ez8nKWNgAgUJ1Wz+b4tLflvF19iXFGAXpFiMx/vkMTWobMSNfyujY3f0x6VdLyui0X
+	6e6EPWW7gll5SrXW48Jr1yl4M+YB9f512A2VKZMtmHGZPLbDI9Nl550BjfXewhgJIXXkkgJa9Qyt0
+	xJpvdSeVTRef11KqCYNMSAjlc5KP3Dn/sgNap9RGMXzGUsoszC5QiUp8XR/G2L0rzI/VEC93uAFiW
+	2b8KT/ECFbcP58TvRxIw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h8QR3-0007lY-LN; Mon, 25 Mar 2019 14:18:45 +0000
+	id 1h8QR6-0007nr-JY; Mon, 25 Mar 2019 14:18:48 +0000
 Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h8QQv-0007fd-AS
+ id 1h8QQv-0007gI-Qv
  for linux-amlogic@lists.infradead.org; Mon, 25 Mar 2019 14:18:42 +0000
-Received: by mail-wm1-x342.google.com with SMTP id v14so9295861wmf.2
- for <linux-amlogic@lists.infradead.org>; Mon, 25 Mar 2019 07:18:34 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id z11so9194149wmi.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 25 Mar 2019 07:18:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=UakGg7pFINmeFLlNMB831/77cfd9ndMBEIB1YBWHGhc=;
- b=QQdDUz/hynfYXaGL3Ko0DRhMpJQJwBuv9bgNshh7ja7IMkhdkDEpsc7gcoobUUMaf3
- 2Cm8Z7KCYfpz8lvYM8RvBeUU0AhjVhhqHaN6uI2UfaXGEfSoXfOLjxESmBu7HwiAcgro
- t24uuyGP9FMSCx7JkT8f3eY2eNQ7HAfsiqQSeEwKePBg3eHip1OPKeKuwUBvKJDvGdFM
- o3MarFPqIiD03de7r/9jm23tQspRcRbf+nGAfSkj+4zmC6xDhbapdUGwEPkvS4BvRH5z
- AIXuE3kj/wqIJmgryLie3nksdvXcJVCMp2ppwrFYRLSjfQJmO3g505s+CJrV+Vp7aFlB
- J5sw==
+ bh=9NjvvI6xxrMvbgreZkI/znNtsX+wD5ky2vWfW/YYRc4=;
+ b=r5HIdwckPHedjpTgqQ/mk55L3fBP8SbOrjd+A/cfm+BK4jT7uX3yUGFY+g713wzBuU
+ 62ZwbLnQ8knAxGrfa9hFMrQa8qQO/FP8Cdn4Tzkd6PG8eLQ7oZ/RTKb7Te+AOVxxKz6B
+ 0EcTNB30UgPqQQacQ1NLoed/ijDJUnlLxAQSoLvsQ0iqai/dSXwLom794jjSwX8PE24P
+ 6hod2cQQ+IVlNcPUlK4+o60ewaxUYtF5X2nilbv3Cvfi3tyc0YH/oA1mNfhF1P50slDa
+ 9RES3t39mTlVCnP7ZEGvbnKU44A6czHASOfpjRhT3xN8u/KwzcMjt5kr1aJ8BU3diItx
+ I6XA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=UakGg7pFINmeFLlNMB831/77cfd9ndMBEIB1YBWHGhc=;
- b=NdGjmYdcoO3zwU7ihYSqkOVn2hZTEMUi8wX745dm1C3jUec1os1KN9wxUdOiIJplsP
- EBEr00G9Uaq5rZ1THUJEV73r94UWWUJduNl6uGdnPwoO8D5EhcHy4+dbYz86NdzL638b
- OYt/bqGHBaqse6KY+kEsaIe/xpHyX6ePkx8025GOkjKBE8JB1bEWHDPkGwOxiagw53NW
- 0g+DJaM7sSmhKVX6FtMn2zAmh9bvkoeJLJ8Ao/njQB7jzxGvAiYFRqhzm/M5/+1qFdiC
- cEjNeF0CCDpsRxGtTsOmnM4cYtvR57nmS6FsAQmCo5g/uxOafNay0GwQwIyT7zBeOAEt
- abjg==
-X-Gm-Message-State: APjAAAVrigKfsjTRvS7H7+ncIVxCDfuR+F2IbCQC5eAhku6vh5gWoHEN
- Ax2Wf0ik9aIHCbCzavu9blj2Gw==
-X-Google-Smtp-Source: APXvYqzM4VcWDGeQXJKVYSJV2lhPRNdzzEFP02utOoGVpEFuCOSpGmR0y0I44/Qb9BOnnC5mfeAdwg==
-X-Received: by 2002:a05:600c:2055:: with SMTP id
- p21mr6456775wmg.118.1553523513566; 
- Mon, 25 Mar 2019 07:18:33 -0700 (PDT)
+ bh=9NjvvI6xxrMvbgreZkI/znNtsX+wD5ky2vWfW/YYRc4=;
+ b=L+CZhLdWr+0MldcH44oKJXg4RytuVqeZEuiLwDezUMQQTBhPsaQtikyUGhfLvVLmCp
+ FwsTRTCmiiyqJ8+dAPgnOZxXqEagHX1odZuk8WwcVwXV5j4QM9fSINJM22cOvNe5YZtC
+ 2pBkf+hKf+O5QjTgjtUprk0wNjUzGHv5wB9116dEr28dBawX/ZX0v4UWvj/iQn4vLAd5
+ SM2KBqZC4D2V+yKWJYXcjtduIcm2UwCTXdQu7mFHM0QhqKKCMy86pfR3zbBvpO8tATyD
+ 4hIEA9nwasCUhmVkGzaijQ3TdBCJ6fSmnwrIdlSie345EaRmFk9JNFwPg1K4NwZeZGHm
+ na6w==
+X-Gm-Message-State: APjAAAXxWWflcbJYunfXvnnbr6I9x+XE0FGRlBvn/JsT3BB+B1TENCDe
+ BmffNlj+ZJh3tqhdHOi+QfbrmhzQby94Qg==
+X-Google-Smtp-Source: APXvYqycLSLO6xaeAbRCJdfz7W+lVg6wVYIQTncbJK27nigm5eGkdADSWULi+QLlHfecFQ0lEwasdg==
+X-Received: by 2002:a1c:6a0d:: with SMTP id f13mr11386367wmc.76.1553523515408; 
+ Mon, 25 Mar 2019 07:18:35 -0700 (PDT)
 Received: from localhost.localdomain (176-150-251-154.abo.bbox.fr.
  [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id 132sm26976794wmd.30.2019.03.25.07.18.32
+ by smtp.gmail.com with ESMTPSA id 132sm26976794wmd.30.2019.03.25.07.18.33
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Mon, 25 Mar 2019 07:18:32 -0700 (PDT)
+ Mon, 25 Mar 2019 07:18:33 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: dri-devel@lists.freedesktop.org
-Subject: [PATCH 05/11] drm/meson: Add G12A support for OSD1 Plane
-Date: Mon, 25 Mar 2019 15:18:18 +0100
-Message-Id: <20190325141824.21259-6-narmstrong@baylibre.com>
+Subject: [PATCH 06/11] drm/meson: Add G12A Support for the Overlay video plane
+Date: Mon, 25 Mar 2019 15:18:19 +0100
+Message-Id: <20190325141824.21259-7-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190325141824.21259-1-narmstrong@baylibre.com>
 References: <20190325141824.21259-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190325_071837_357277_BDC924E1 
-X-CRM114-Status: GOOD (  12.86  )
+X-CRM114-CacheID: sfid-20190325_071837_867415_39CFEB00 
+X-CRM114-Status: GOOD (  12.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -103,50 +103,38 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Amlogic G12A SoC supports now up to 3 OSD planes (1 more than the
-previous SoCs) and a brand new OSD plane blender module.
+Amlogic G12A SoC supports the same set of Video Planes, but now
+are handled by the new OSD plane blender module.
 
-This patch uses the same OSD1 plane G12A, using the exact same scaler
-and OSD1 setup registers, except using the new blender register to
+This patch uses the same VD1 plane for G12A, using the exact same scaler
+and VD11 setup registers, except using the new blender register to
 disable the plane.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/gpu/drm/meson/meson_plane.c | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/meson/meson_overlay.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
-index b7786218cb10..bf8f1fab63aa 100644
---- a/drivers/gpu/drm/meson/meson_plane.c
-+++ b/drivers/gpu/drm/meson/meson_plane.c
-@@ -294,6 +294,13 @@ static void meson_plane_atomic_update(struct drm_plane *plane,
- 	priv->viu.osd1_blk0_cfg[3] = ((dest.x2 - 1) << 16) | dest.x1;
- 	priv->viu.osd1_blk0_cfg[4] = ((dest.y2 - 1) << 16) | dest.y1;
+diff --git a/drivers/gpu/drm/meson/meson_overlay.c b/drivers/gpu/drm/meson/meson_overlay.c
+index b54a22e483b9..bdbf925ff3e8 100644
+--- a/drivers/gpu/drm/meson/meson_overlay.c
++++ b/drivers/gpu/drm/meson/meson_overlay.c
+@@ -516,8 +516,14 @@ static void meson_overlay_atomic_disable(struct drm_plane *plane,
+ 	priv->viu.vd1_enabled = false;
  
-+	if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
-+		priv->viu.osd_blend_din0_scope_h = ((dest.x2 - 1) << 16) | dest.x1;
-+		priv->viu.osd_blend_din0_scope_v = ((dest.y2 - 1) << 16) | dest.y1;
-+		priv->viu.osb_blend0_size = dst_h << 16 | dst_w;
-+		priv->viu.osb_blend1_size = dst_h << 16 | dst_w;
-+	}
-+
- 	/* Update Canvas with buffer address */
- 	gem = drm_fb_cma_get_gem_obj(fb, 0);
- 
-@@ -320,8 +327,12 @@ static void meson_plane_atomic_disable(struct drm_plane *plane,
- 	struct meson_drm *priv = meson_plane->priv;
- 
- 	/* Disable OSD1 */
--	writel_bits_relaxed(VPP_OSD1_POSTBLEND, 0,
+ 	/* Disable VD1 */
+-	writel_bits_relaxed(VPP_VD1_POSTBLEND | VPP_VD1_PREBLEND, 0,
 -			    priv->io_base + _REG(VPP_MISC));
-+	if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu"))
-+		writel_bits_relaxed(BIT(0) | BIT(21), 0,
-+			priv->io_base + _REG(VIU_OSD1_CTRL_STAT));
-+	else
-+		writel_bits_relaxed(VPP_OSD1_POSTBLEND, 0,
++	if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
++		writel_relaxed(0, priv->io_base + _REG(VD1_BLEND_SRC_CTRL));
++		writel_relaxed(0, priv->io_base + _REG(VD2_BLEND_SRC_CTRL));
++		writel_relaxed(0, priv->io_base + _REG(VD1_IF0_GEN_REG + 0x17b0));
++		writel_relaxed(0, priv->io_base + _REG(VD2_IF0_GEN_REG + 0x17b0));
++	} else
++		writel_bits_relaxed(VPP_VD1_POSTBLEND | VPP_VD1_PREBLEND, 0,
 +				    priv->io_base + _REG(VPP_MISC));
  
- 	meson_plane->enabled = false;
+ }
  
 -- 
 2.21.0
