@@ -2,88 +2,86 @@ Return-Path: <SRS0=Y5gA=R4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 09765C43381
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 15:07:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E8E52C43381
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 17:08:30 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CEF2A2082C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 15:07:10 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B6E732087C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 17:08:30 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eRvqoJf0";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="cxptG/8m"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CEF2A2082C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="g3D3DT0o";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="pPlNc1xe"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B6E732087C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qD0DFJekoZvtdoVivA/J0tt+GZ013+5cntPHx5TKKBg=; b=eRvqoJf0Y8l0Wr
-	x0jlWHW9J42HNjg4TK4ESlmM0dpLB+bQE7d4kAoAiZym4kktqgcQg3TQoOCSqyVA/NQ0xgvizVFm9
-	dSE3kL9u1g7fGTUFsGF575gWs/FPzp3TL1c10ej+mTo+V7fooGj1n4vhhu/YudA1GNZjXbQ8pQQt3
-	7qKuJfP8qFu+E/895mSFwUJT99iNbUiYqvxBB5wHHWwjMWkm5VMd+hqKayosC9hC9/PBRWdhBkixw
-	3EXSPmBiNuIe1GSLApcp6GBzWivz5HxnYkYgxwAmSQWlAnpEZylfwewD1XkA+O5pBcsc94zp5CtaZ
-	OntmjoydepjfjPJEv4mQ==;
+	List-Owner; bh=CTD6NpVbFwc9+WfnZa0kfJPlDhPw05HLGgnzrordbM4=; b=g3D3DT0o2wHDmk
+	qZFUngnh9wa3KPkQCtnv7UmXI/Z3Xk6rohITRzC6MSjAV36ljshqFP87YIYJYXjrCyc+Z3xdrmH6X
+	PK5rdPwwPZZl7g/fRNE8WU49FDxlgS7EXPZSDb1yX2ltXgi9p4LTb377UdNzIYMlVw4O1hQVoB/Sj
+	/mn2EoX+mjET5JI02Db8ErpVCixqcOrkNcfKYcB2sKvxOLIGnUhpaR/+fCojDBiOnRGpAjtUz8NMH
+	+L/mjzr9ClfeKda4oJTsA06Gj1GC/w8oNhWv0kRlwxZI5SXO+kmG/mHuPj3FFTQAKrqv/psoartax
+	i+RaX+wWlkSMQ9f0e77w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h8RBh-0003Rv-Iw; Mon, 25 Mar 2019 15:06:57 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1h8T5D-0001Kn-IU; Mon, 25 Mar 2019 17:08:23 +0000
+Received: from mail-pf1-x442.google.com ([2607:f8b0:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h8R4b-0005sv-A6
- for linux-amlogic@lists.infradead.org; Mon, 25 Mar 2019 14:59:43 +0000
-Received: by mail-wr1-x444.google.com with SMTP id y7so6424442wrn.11
- for <linux-amlogic@lists.infradead.org>; Mon, 25 Mar 2019 07:59:29 -0700 (PDT)
+ id 1h8T4s-0000vF-7E
+ for linux-amlogic@lists.infradead.org; Mon, 25 Mar 2019 17:08:04 +0000
+Received: by mail-pf1-x442.google.com with SMTP id 10so6743933pfo.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 25 Mar 2019 10:08:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=ufyFUHV9MYGt1xCCC/qB6iPXh5pMY/z0nQhLBwQ98yE=;
- b=cxptG/8mWah8bEph4tDrzfs4MMIET6v3/pp4JpGq68S/DTcPil9NN6P8BdHT8OaZad
- BFVZU1j4r29YVd2PLL6sNrC9qAX/SjEwD4o20qUMKOt1wPvFK3em4Z14cm3s8ffl1gLw
- xbWd1qw9ygu4Zhp1T/S+9kEegwGKnQQtM1AzahakmYv55XVv2TmDfQomTWOWB498h7EV
- XcZaFvdzm+UNsNZIByg5lI5+gaGJJjJzW85txBd/VZqoOroOqdGsb4DfB3XueJI9C/dC
- 6jrC8BdaHFkGqWSTr8ZXdapj1QV7fGBWNQnReN4REIHEwKMFZSmI7dIB2JHu61B9IKNu
- EKfQ==
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=5zVksnavI6IiS5+wxbgLfc+KV5q55Q9A0+dGhNHgcBk=;
+ b=pPlNc1xeOFEmC9a8uUcLm6cMccMFayxZ0ZBLie9gfn7H9UaB0bOq/4sEHjSs6gcEJD
+ Q/pa/d2iUT8TtqTuddzAUBJM2GTwiJngb0vUhyVEP0IUw0QcIGW4LHTG4MLpJJ5zZvaV
+ td4XYxg+NHoSigZkN0J0cB8YNMEI2Of7LoAbZD/5FsHtNeT30ZFwF+TpsGY+HrZ26REC
+ tXFVxTzFncaI4XcwagTt7VdVLRU2vIVmt4u0nI4Z2PFDXDmsfl5u/5mEL+YbsrtjMaP7
+ Fm3tl9R0he4X6a9S978+vAByhCD+uZiy/I+0d2QhAkmTWNJM3Bieca5E6axUgCHbWfHi
+ atEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=ufyFUHV9MYGt1xCCC/qB6iPXh5pMY/z0nQhLBwQ98yE=;
- b=V9rKGwd5wGd5kqz6/83HoJVx3RsBXitqQb0S218KMkg+U8TjSBJDsN1nIhfuAoWFzP
- LldCbL4p3M4NPtrT+r4wCdXK6cXxV/2tFtUgxUM+6vufflEOImGWSSftAMOCEFosUy1B
- SXpuBVIXN9YAikORXqA6YAT1xodIg5uexS1f2xoSSgF0U10bBJ8sqvORObX83oGQBs14
- I9OBkFU/BZNb0N4gh68Gt0kj2lRGaGeEykzHujVY5p2OFt73omYsFenNMwvv5JtnKIhm
- 8KuL0Dbaw/cSGatHeXh+v5X0R8q7rtmnheqPy4zSsYHgJmW8UsO84Eb78Co3Ta5Zd2zM
- RGBQ==
-X-Gm-Message-State: APjAAAU+dg9eWPBZk+D3D/RUKBZNi1Xvh1/FMlagcylP3Y8XmzeM8zJ6
- uSeg9Fprs/1IfFEoNiil0KYzOQ==
-X-Google-Smtp-Source: APXvYqwQuNjHn/LKrhYAODYvi5Z6dbejaSh7FedfsWLyzHYS6Qri97GbLnYtEWnSqs8PVKGA2bswmw==
-X-Received: by 2002:adf:f309:: with SMTP id i9mr11048923wro.258.1553525959906; 
- Mon, 25 Mar 2019 07:59:19 -0700 (PDT)
-Received: from localhost.localdomain (176-150-251-154.abo.bbox.fr.
- [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id d11sm12836156wmb.19.2019.03.25.07.59.18
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Mon, 25 Mar 2019 07:59:19 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: khilman@baylibre.com
-Subject: [PATCH 2/5] arm64: dts: meson-g12a: Add AO-CEC-A nodes
-Date: Mon, 25 Mar 2019 15:59:11 +0100
-Message-Id: <20190325145914.32391-3-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190325145914.32391-1-narmstrong@baylibre.com>
-References: <20190325145914.32391-1-narmstrong@baylibre.com>
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=5zVksnavI6IiS5+wxbgLfc+KV5q55Q9A0+dGhNHgcBk=;
+ b=UkilJKRFXGZWIOPmFqxtyXYtBtpjSLzJu7CsWAV8P+u9xFoZzOBDoaot7TxDqZasqh
+ 9Xns791dgW8KDCNtdoyZGv5LmFp6mNJhsqi7eftJKHI9LmYib3Htqw81ejMsLhq4Jr6L
+ KU3EejzZrII+ujuW5uDfgMqL9EKyj1E3t52r/u4iKLCxdMdk+XtaDKoiGSlaowicMTMd
+ 4CxU/L8xsLZZe7ocGTM8ONtisjUcuacw3Cf9w6NnoaC2udXNd18/wEcFIMNME6FyObLl
+ CMn9VGPe8D41iwDjR+onRw9JUpCfxJLafJgeXs8XmRS1rzPSAywvu6lLbdz/Ld/ruSC1
+ mJhg==
+X-Gm-Message-State: APjAAAUkv6KyGkeHhVGzmxZYI1sGUPqmWuhobbr0fkm5yUpRMiywq/F5
+ //YDloIj5qMdGyIRF7Lqb1QAlg==
+X-Google-Smtp-Source: APXvYqyBfs+BriKLNLVmpE6yEO8PeRHNyRdO8nQznAeDFWr05Lk/VXyKa0Z0z7z+eNNUPqehgvwTwg==
+X-Received: by 2002:a65:4344:: with SMTP id k4mr23935918pgq.20.1553533680542; 
+ Mon, 25 Mar 2019 10:08:00 -0700 (PDT)
+Received: from localhost ([2601:602:9200:a1a5:314c:c810:897b:a1d4])
+ by smtp.googlemail.com with ESMTPSA id d75sm34008122pga.66.2019.03.25.10.07.59
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Mon, 25 Mar 2019 10:07:59 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH] soc: amlogic: meson-gx-pwrc-vpu: Add support for G12A
+In-Reply-To: <20190325145537.31697-1-narmstrong@baylibre.com>
+References: <20190325145537.31697-1-narmstrong@baylibre.com>
+Date: Mon, 25 Mar 2019 10:07:58 -0700
+Message-ID: <7hva06q3v5.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190325_075939_649913_BE4BE449 
-X-CRM114-Status: GOOD (  11.46  )
+X-CRM114-CacheID: sfid-20190325_100802_263200_EC7732A5 
+X-CRM114-Status: UNSURE (   9.16  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -102,60 +100,24 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Amlogic G12A embeds 2 CEC controllers :
-- AO-CEC-A the same controller as in GXBB, GXL & GXM SoCs
-- AO-CEC-B a new controller
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-Note, the two controller can work simultanously since 2 Pads can
-handle CEC, thus this SoC can handle 2 distinct CEC busses.
+> The Amlogic G12A SoC has a very similar VPU Power Controller setup
+> than the older GXBB, GXL & GXm SoCs.
+>
+> This patch adds the variant support for G12A.
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-This patch adds the nodes for the AO-CEC-A controller until AO-CEC-B
-is supported.
+This patch not only adds support for G12A, but changes the functionality
+for GX SoCs too, but that is not explained.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+Based on what I see below, I would expect two patches:
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-index b0ff649bca46..915e00833718 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-@@ -161,6 +161,14 @@
- 						gpio-ranges = <&periphs_pinctrl 0 0 86>;
- 					};
- 
-+					cec_ao_a_h_pins: cec_ao_a_h {
-+						mux {
-+							groups = "cec_ao_a_h";
-+							function = "cec_ao_a_h";
-+							bias-disable;
-+						};
-+					};
-+
- 					hdmitx_ddc_pins: hdmitx_ddc {
- 						mux {
- 							groups = "hdmitx_sda",
-@@ -397,6 +405,16 @@
- 				};
- 			};
- 
-+			cec_AO: cec@100 {
-+				compatible = "amlogic,meson-gx-ao-cec",
-+					     "amlogic,meson-g12a-ao-cec";
-+				reg = <0x0 0x00100 0x0 0x14>;
-+				interrupts = <GIC_SPI 199 IRQ_TYPE_EDGE_RISING>;
-+				clocks = <&clkc_AO CLKID_AO_CEC>;
-+				clock-names = "core";
-+				status = "disabled";
-+			};
-+
- 			sec_AO: ao-secure@140 {
- 				compatible = "amlogic,meson-gx-ao-secure", "syscon";
- 				reg = <0x0 0x140 0x0 0x140>;
--- 
-2.21.0
+1) improve/modify the GX functions (with descriptive changelog)
+2) add G12A support
 
+Kevin
 
 _______________________________________________
 linux-amlogic mailing list
