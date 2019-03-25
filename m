@@ -4,85 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EFA96C43381
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 14:55:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5E848C43381
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 14:59:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BFF7E2085A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 14:55:55 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2CD4D20879
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 14:59:42 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="T0EQmnuC";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Z/rZk5qJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BFF7E2085A
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tJCslQkJ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="iaDRYruC"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2CD4D20879
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=k7GQ24M07iNVN0aEBjpKJL2xaDFSVmUhJoK0J6sRcAk=; b=T0EQmnuCoIzJKB
-	Ubh9RAst0UD4chROZKrDWxoZRBvlIIwtTnw7hFO5WQlacVmACvc+iU14xUH4N14q2VEgWo5AZ/khN
-	5YcIYM+NS8j3VgD8yPAeTFAKDMAPOjt8HkXwdBaqzGEyZnl5hLuRui6LXejX5SDprNsdrwTxQLBo2
-	7fhHIFu+4T9u+IhdCdRxK96Mq1BLigt4Pd6ZCAyDflakNrvYwSHL2yuzaUJzwvszw/CMIcSSMcle8
-	tf7mtcYkj5RhHcCvUsMB0LdJybB0kKnog0n+fpM878DoT1OOVnAgUE9OCAAJ5xUmmnqUMZXkTPLSZ
-	em+t53aLCfdjhNeiyKag==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=VmzWVtK1dOydnk5Evs6ZFDN+tRZgfUzagZJxRXFClng=; b=tJCslQkJmmhpsv
+	FMmv/UYLLpjyS5HHg7jpU1ITe3vONGCXiVTBAGsgd1bo0d29NHhYMbTiMdSgCS0FoV9025OSB7gQ0
+	IHM/7REW6Ni0pAyXliwj9IG+hmE56vnzc58DTuCfGDjXI1YaqJ2EKwfzMjBGQb2Xn4YzBlYXkuAGz
+	a9hT4cypIhixExhOqMmDjmkQygBiliNON6uM22UbU8CJ94Gmiw2z0IGFRva7FORKTBuzWCbNy3rPh
+	eqSoxRTWd4+zWl9ma/KXMWfgbVnaSIfH8ZBg5g7m6ZbUIH6ZSN9SbWSuMo2plSXDj4/nWJqWLp54U
+	/UWbfget/e3E0lOAtThg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h8R0u-0005FA-H5; Mon, 25 Mar 2019 14:55:48 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1h8R4W-00062H-H8; Mon, 25 Mar 2019 14:59:32 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h8R0p-0005DG-0j
- for linux-amlogic@lists.infradead.org; Mon, 25 Mar 2019 14:55:46 +0000
-Received: by mail-wm1-x342.google.com with SMTP id z11so9340429wmi.0
- for <linux-amlogic@lists.infradead.org>; Mon, 25 Mar 2019 07:55:41 -0700 (PDT)
+ id 1h8R4K-0005ri-Gb
+ for linux-amlogic@lists.infradead.org; Mon, 25 Mar 2019 14:59:26 +0000
+Received: by mail-wm1-x343.google.com with SMTP id y197so9472133wmd.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 25 Mar 2019 07:59:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=rbt94YTH655ILjC6giLP1+x1iu+quWQun/TDgqjaOYo=;
- b=Z/rZk5qJHNd7+AG4/gHvr1zcV0YjBqpqoDHb+Oh22rDq3C+fOGpYR7lEvFT7v/yXpk
- BjYUe94EIDHln8oJBBwcIdpuelNmoruj7EbA9NFJM1iMyCst3m0qgDb1Pc6gbTq1scC0
- K6xwbqnudOVV82FLWndLmTtWb5omIfcALyNbmcvkQHRUqTqOxusTSDSyWI2SvvNKEY0U
- FAlcQfmwGuBHCarKOQLFD9/yNl4Gf946XDLFMsB0LbSlJNqzREL+ZK0KRACm9WRMBTDM
- JT/ETWaeb7NuIQRH+rmD6XrElgpZuJaVESvL01ZndEhYJGGHcHR9xiDO6cqviXZ/1whs
- RcVw==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=+rJnw6/sLHLZof/jwuQ07YQV1SUtaCLQpNMQKKSMv3Q=;
+ b=iaDRYruCuNTMOcQdfqL3S0Jz+ip20OJQX4W0O828+b5XA1e4x3NW4yzTDaarMh4v9E
+ 8py6NFinhYXYWD4DK1r6e+cZjeXmXfXF9bZACMEL//O5zD60g6yPUa3R7+xNoXBU1RTx
+ flhJvx1mIl4IHam5TnOHZEGZXe+rbFi4OEUBzG1g+96WKQZVDUNaUC1/KMY+BBqp3hRP
+ F9aB/H/tRNZmQxpOzhYOgzRlP5wgzj7tzg8kYLbHDZC0KdwZK6MtUBeR8SDQ3q67qbRm
+ PhMP3DydDsdilgmbdGvijILO62dBtPuvrlWRdMC2EW4Z32O0k+Yd1lUhg98qKwQpENjY
+ 2JqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=rbt94YTH655ILjC6giLP1+x1iu+quWQun/TDgqjaOYo=;
- b=dofJ/acAmz7DkOC6pHObWBOgYmf79HfCaaN0CwNY7tKf6pJ8XJ2bHAJTmm/ed07n0A
- 0I/2J4NNlDGCU/ykDe1EbUWIU+4IcoohpjqjKBGPIZorh4C6H0hr9J7sA/1gnunvE61s
- 6I8VIHum8f9ZB8kFThu/PehJShAkJTbQE3rRUwfJvgiiTp8Dk1f+gWKgqqmgjVBzu9nF
- t5m0XiLsszs9KZg6IboGKRmLBQttdiE1cup2cwJkHBBG2kAqJkHS48/6Bnhb0L5VXCIe
- FOOqZr0hTK93JU0KBanKvua6uktCHX1aiOSNvrFlJ9uUwpqxb2qgJuRtYUsO20EmpPcD
- MFUw==
-X-Gm-Message-State: APjAAAXhav9vorkOKbLaPHGH7U0jGJeuGtW4Ep9YmcUnUnignYmgbgyD
- l7GDXSehNcPF+MyUeXfNVHtyhQ==
-X-Google-Smtp-Source: APXvYqzFqAqhW4SmnTcoBoNm16TnvRa993kAu6Ph2iwYzjjhndn+8GQOnUxCedCdBSzoIcNW7rYfaA==
-X-Received: by 2002:a7b:c147:: with SMTP id z7mr5895680wmi.67.1553525739672;
- Mon, 25 Mar 2019 07:55:39 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=+rJnw6/sLHLZof/jwuQ07YQV1SUtaCLQpNMQKKSMv3Q=;
+ b=BPHVJV+93s0LTxAJQyFg9l7xQjrN8jw3A9SS1zgiLSUf2tjNXfFKJlTMm1ZXy5/eZm
+ U6no6LLWaNPEmxnpNsH+GO8/Du59y4JyIJhbfEWLm1/fdCYfiJfoOIptyS8pc8kH7Sl5
+ CvD0HZa2GD5mYlQpE4JJA3TXcUMeQ8COaca4tL8Si6Cgzn6NUGP7U6A4PKOybJ/Eesmc
+ fVA0ltUPn9HsrVnIz0Ui7ALwkc9ZbgOwIdthGbngxl6UZMOXUAf7sH5cd082cmG+A30l
+ mB5uSrQGs7/gsAC7xjUuC/ZltQjQTIalo7pfw1mp9smxpRhF2nCHbjEX2o+coARA9REn
+ oaYA==
+X-Gm-Message-State: APjAAAX/tCthhlBAintQRNU3qeW7jsg5QYbel0bTT3b5il4crIuYgP4M
+ yewn4Z5DnAGwSM8hVHT7Cj/SRQ==
+X-Google-Smtp-Source: APXvYqxuE4LLvTbBcNQoODorycPIwVUqrNlNMY4/nJ+V1JDWS8T+pSmvX9xsibLn4BjxVyez0BLGFg==
+X-Received: by 2002:a1c:495:: with SMTP id 143mr5598598wme.78.1553525958622;
+ Mon, 25 Mar 2019 07:59:18 -0700 (PDT)
 Received: from localhost.localdomain (176-150-251-154.abo.bbox.fr.
  [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id f9sm17731778wmb.36.2019.03.25.07.55.38
+ by smtp.gmail.com with ESMTPSA id d11sm12836156wmb.19.2019.03.25.07.59.17
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Mon, 25 Mar 2019 07:55:39 -0700 (PDT)
+ Mon, 25 Mar 2019 07:59:18 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: khilman@baylibre.com
-Subject: [PATCH] soc: amlogic: meson-gx-pwrc-vpu: Add support for G12A
-Date: Mon, 25 Mar 2019 15:55:37 +0100
-Message-Id: <20190325145537.31697-1-narmstrong@baylibre.com>
+Subject: [PATCH 1/5] arm64: dts: meson-g12a: Add VPU and HDMI related nodes
+Date: Mon, 25 Mar 2019 15:59:10 +0100
+Message-Id: <20190325145914.32391-2-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20190325145914.32391-1-narmstrong@baylibre.com>
+References: <20190325145914.32391-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190325_075543_062017_95631EB8 
-X-CRM114-Status: GOOD (  16.77  )
+X-CRM114-CacheID: sfid-20190325_075920_554311_8CFC21A3 
+X-CRM114-Status: GOOD (  12.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -101,261 +102,183 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Amlogic G12A SoC has a very similar VPU Power Controller setup
-than the older GXBB, GXL & GXm SoCs.
-
-This patch adds the variant support for G12A.
+Add VPU and HDMI display support.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/soc/amlogic/meson-gx-pwrc-vpu.c | 160 +++++++++++++++++++++---
- 1 file changed, 144 insertions(+), 16 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 131 ++++++++++++++++++++
+ 1 file changed, 131 insertions(+)
 
-diff --git a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-index 6289965c42e9..511b6856225d 100644
---- a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-+++ b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-@@ -11,6 +11,7 @@
- #include <linux/bitfield.h>
- #include <linux/regmap.h>
- #include <linux/mfd/syscon.h>
-+#include <linux/of_device.h>
- #include <linux/reset.h>
- #include <linux/clk.h>
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+index c762e2309b2b..b0ff649bca46 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+@@ -101,6 +101,37 @@
+ 			#size-cells = <2>;
+ 			ranges = <0x0 0x0 0x0 0xff600000 0x0 0x200000>;
  
-@@ -26,6 +27,7 @@
- #define HHI_MEM_PD_REG0			(0x40 << 2)
- #define HHI_VPU_MEM_PD_REG0		(0x41 << 2)
- #define HHI_VPU_MEM_PD_REG1		(0x42 << 2)
-+#define HHI_VPU_MEM_PD_REG2		(0x4d << 2)
++			hdmi_tx: hdmi-tx@0 {
++				compatible = "amlogic,meson-g12a-dw-hdmi";
++				reg = <0x0 0x0 0x0 0x10000>;
++				interrupts = <GIC_SPI 57 IRQ_TYPE_EDGE_RISING>;
++				resets = <&reset RESET_HDMITX_CAPB3>,
++					 <&reset RESET_HDMITX_PHY>,
++					 <&reset RESET_HDMITX>;
++				reset-names = "hdmitx_apb", "hdmitx", "hdmitx_phy";
++				clocks = <&clkc CLKID_HDMI>,
++					 <&clkc CLKID_HTX_PCLK>,
++					 <&clkc CLKID_VPU_INTR>;
++				clock-names = "isfr", "iahb", "venci";
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
++
++				/* VPU VENC Input */
++				hdmi_tx_venc_port: port@0 {
++					reg = <0>;
++
++					hdmi_tx_in: endpoint {
++						remote-endpoint = <&hdmi_tx_out>;
++					};
++				};
++
++				/* TMDS Output */
++				hdmi_tx_tmds_port: port@1 {
++					reg = <1>;
++				};
++			};
++
+ 			periphs: bus@34400 {
+ 				compatible = "simple-bus";
+ 				reg = <0x0 0x34400 0x0 0x400>;
+@@ -130,6 +161,23 @@
+ 						gpio-ranges = <&periphs_pinctrl 0 0 86>;
+ 					};
  
- struct meson_gx_pwrc_vpu {
- 	struct generic_pm_domain genpd;
-@@ -54,12 +56,55 @@ static int meson_gx_pwrc_vpu_power_off(struct generic_pm_domain *genpd)
- 	/* Power Down Memories */
- 	for (i = 0; i < 32; i += 2) {
- 		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG0,
--				   0x2 << i, 0x3 << i);
-+				   0x3 << i, 0x3 << i);
- 		udelay(5);
- 	}
- 	for (i = 0; i < 32; i += 2) {
- 		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG1,
--				   0x2 << i, 0x3 << i);
-+				   0x3 << i, 0x3 << i);
-+		udelay(5);
-+	}
-+	for (i = 8; i < 16; i++) {
-+		regmap_update_bits(pd->regmap_hhi, HHI_MEM_PD_REG0,
-+				   BIT(i), BIT(i));
-+		udelay(5);
-+	}
-+	udelay(20);
++					hdmitx_ddc_pins: hdmitx_ddc {
++						mux {
++							groups = "hdmitx_sda",
++								 "hdmitx_sck";
++							function = "hdmitx";
++							bias-disable;
++						};
++					};
 +
-+	regmap_update_bits(pd->regmap_ao, AO_RTI_GEN_PWR_SLEEP0,
-+			   GEN_PWR_VPU_HDMI, GEN_PWR_VPU_HDMI);
++					hdmitx_hpd_pins: hdmitx_hpd {
++						mux {
++							groups = "hdmitx_hpd_in";
++							function = "hdmitx";
++							bias-disable;
++						};
++					};
 +
-+	msleep(20);
-+
-+	clk_disable_unprepare(pd->vpu_clk);
-+	clk_disable_unprepare(pd->vapb_clk);
-+
-+	return 0;
-+}
-+
-+static int meson_g12a_pwrc_vpu_power_off(struct generic_pm_domain *genpd)
-+{
-+	struct meson_gx_pwrc_vpu *pd = genpd_to_pd(genpd);
-+	int i;
-+
-+	regmap_update_bits(pd->regmap_ao, AO_RTI_GEN_PWR_SLEEP0,
-+			   GEN_PWR_VPU_HDMI_ISO, GEN_PWR_VPU_HDMI_ISO);
-+	udelay(20);
-+
-+	/* Power Down Memories */
-+	for (i = 0; i < 32; i += 2) {
-+		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG0,
-+				   0x3 << i, 0x3 << i);
-+		udelay(5);
-+	}
-+	for (i = 0; i < 32; i += 2) {
-+		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG1,
-+				   0x3 << i, 0x3 << i);
-+		udelay(5);
-+	}
-+	for (i = 0; i < 32; i += 2) {
-+		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG2,
-+				   0x3 << i, 0x3 << i);
- 		udelay(5);
- 	}
- 	for (i = 8; i < 16; i++) {
-@@ -108,13 +153,67 @@ static int meson_gx_pwrc_vpu_power_on(struct generic_pm_domain *genpd)
- 	/* Power Up Memories */
- 	for (i = 0; i < 32; i += 2) {
- 		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG0,
--				   0x2 << i, 0);
-+				   0x3 << i, 0);
-+		udelay(5);
-+	}
-+
-+	for (i = 0; i < 32; i += 2) {
-+		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG1,
-+				   0x3 << i, 0);
-+		udelay(5);
-+	}
-+
-+	for (i = 8; i < 16; i++) {
-+		regmap_update_bits(pd->regmap_hhi, HHI_MEM_PD_REG0,
-+				   BIT(i), 0);
-+		udelay(5);
-+	}
-+	udelay(20);
-+
-+	ret = reset_control_assert(pd->rstc);
-+	if (ret)
-+		return ret;
-+
-+	regmap_update_bits(pd->regmap_ao, AO_RTI_GEN_PWR_SLEEP0,
-+			   GEN_PWR_VPU_HDMI_ISO, 0);
-+
-+	ret = reset_control_deassert(pd->rstc);
-+	if (ret)
-+		return ret;
-+
-+	ret = meson_gx_pwrc_vpu_setup_clk(pd);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int meson_g12a_pwrc_vpu_power_on(struct generic_pm_domain *genpd)
-+{
-+	struct meson_gx_pwrc_vpu *pd = genpd_to_pd(genpd);
-+	int ret;
-+	int i;
-+
-+	regmap_update_bits(pd->regmap_ao, AO_RTI_GEN_PWR_SLEEP0,
-+			   GEN_PWR_VPU_HDMI, 0);
-+	udelay(20);
-+
-+	/* Power Up Memories */
-+	for (i = 0; i < 32; i += 2) {
-+		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG0,
-+				   0x3 << i, 0);
- 		udelay(5);
- 	}
+ 					uart_a_pins: uart-a {
+ 						mux {
+ 							groups = "uart_a_tx",
+@@ -187,6 +235,19 @@
+ 				#phy-cells = <0>;
+ 			};
  
- 	for (i = 0; i < 32; i += 2) {
- 		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG1,
--				   0x2 << i, 0);
-+				   0x3 << i, 0);
-+		udelay(5);
-+	}
++			dmc: bus@38000 {
++				compatible = "simple-bus";
++				reg = <0x0 0x38000 0x0 0x400>;
++				#address-cells = <2>;
++				#size-cells = <2>;
++				ranges = <0x0 0x0 0x0 0x38000 0x0 0x400>;
 +
-+	for (i = 0; i < 32; i += 2) {
-+		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG2,
-+				   0x3 << i, 0);
- 		udelay(5);
- 	}
- 
-@@ -160,15 +259,37 @@ static struct meson_gx_pwrc_vpu vpu_hdmi_pd = {
- 	},
- };
- 
-+static struct meson_gx_pwrc_vpu vpu_hdmi_pd_g12a = {
-+	.genpd = {
-+		.name = "vpu_hdmi",
-+		.power_off = meson_g12a_pwrc_vpu_power_off,
-+		.power_on = meson_g12a_pwrc_vpu_power_on,
-+	},
-+};
++				canvas: video-lut@48 {
++					compatible = "amlogic,canvas";
++					reg = <0x0 0x48 0x0 0x14>;
++				};
++			};
 +
- static int meson_gx_pwrc_vpu_probe(struct platform_device *pdev)
- {
-+	const struct meson_gx_pwrc_vpu *vpu_pd_match;
- 	struct regmap *regmap_ao, *regmap_hhi;
-+	struct meson_gx_pwrc_vpu *vpu_pd;
- 	struct reset_control *rstc;
- 	struct clk *vpu_clk;
- 	struct clk *vapb_clk;
- 	bool powered_off;
- 	int ret;
+ 			usb2_phy1: phy@3a000 {
+ 				compatible = "amlogic,g12a-usb2-phy";
+ 				reg = <0x0 0x3a000 0x0 0x2000>;
+@@ -254,6 +315,50 @@
+ 					clock-names = "xtal", "mpeg-clk";
+ 				};
  
-+	vpu_pd_match = of_device_get_match_data(&pdev->dev);
-+	if (!vpu_pd_match) {
-+		dev_err(&pdev->dev, "failed to get match data\n");
-+		return -ENODEV;
-+	}
++				pwrc_vpu: power-controller-vpu {
++					compatible = "amlogic,meson-g12a-pwrc-vpu";
++					#power-domain-cells = <0>;
++					amlogic,hhi-sysctrl = <&hhi>;
++					resets = <&reset RESET_VIU>,
++						 <&reset RESET_VENC>,
++						 <&reset RESET_VCBUS>,
++						 <&reset RESET_BT656>,
++						 <&reset RESET_RDMA>,
++						 <&reset RESET_VENCI>,
++						 <&reset RESET_VENCP>,
++						 <&reset RESET_VDAC>,
++						 <&reset RESET_VDI6>,
++						 <&reset RESET_VENCL>,
++						 <&reset RESET_VID_LOCK>;
++					clocks = <&clkc CLKID_VPU>,
++						 <&clkc CLKID_VAPB>;
++					clock-names = "vpu", "vapb";
++					/*
++					 * VPU clocking is provided by two identical clock paths
++					 * VPU_0 and VPU_1 muxed to a single clock by a glitch
++					 * free mux to safely change frequency while running.
++					 * Same for VAPB but with a final gate after the glitch free mux.
++					 */
++					assigned-clocks = <&clkc CLKID_VPU_0_SEL>,
++							  <&clkc CLKID_VPU_0>,
++							  <&clkc CLKID_VPU>, /* Glitch free mux */
++							  <&clkc CLKID_VAPB_0_SEL>,
++							  <&clkc CLKID_VAPB_0>,
++							  <&clkc CLKID_VAPB_SEL>; /* Glitch free mux */
++					assigned-clock-parents = <&clkc CLKID_FCLK_DIV3>,
++								 <0>, /* Do Nothing */
++								 <&clkc CLKID_VPU_0>,
++								 <&clkc CLKID_FCLK_DIV4>,
++								 <0>, /* Do Nothing */
++								 <&clkc CLKID_VAPB_0>;
++					assigned-clock-rates = <0>, /* Do Nothing */
++							       <666666666>,
++							       <0>, /* Do Nothing */
++							       <0>, /* Do Nothing */
++							       <250000000>,
++							       <0>; /* Do Nothing */
++				};
 +
-+	vpu_pd = devm_kzalloc(&pdev->dev, sizeof(*vpu_pd), GFP_KERNEL);
-+	if (!vpu_pd)
-+		return -ENOMEM;
+ 				ao_pinctrl: pinctrl@14 {
+ 					compatible = "amlogic,meson-g12a-aobus-pinctrl";
+ 					#address-cells = <2>;
+@@ -333,6 +438,32 @@
+ 			};
+ 		};
+ 
++		vpu: vpu@ff900000 {
++			compatible = "amlogic,meson-g12a-vpu";
++			reg = <0x0 0xff900000 0x0 0x100000>,
++			      <0x0 0xff63c000 0x0 0x1000>;
++			reg-names = "vpu", "hhi";
++			interrupts = <GIC_SPI 3 IRQ_TYPE_EDGE_RISING>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			amlogic,canvas = <&canvas>;
++			power-domains = <&pwrc_vpu>;
 +
-+	memcpy(vpu_pd, vpu_pd_match, sizeof(*vpu_pd));
++			/* CVBS VDAC output port */
++			cvbs_vdac_port: port@0 {
++				reg = <0>;
++			};
 +
- 	regmap_ao = syscon_node_to_regmap(of_get_parent(pdev->dev.of_node));
- 	if (IS_ERR(regmap_ao)) {
- 		dev_err(&pdev->dev, "failed to get regmap\n");
-@@ -201,39 +322,46 @@ static int meson_gx_pwrc_vpu_probe(struct platform_device *pdev)
- 		return PTR_ERR(vapb_clk);
- 	}
- 
--	vpu_hdmi_pd.regmap_ao = regmap_ao;
--	vpu_hdmi_pd.regmap_hhi = regmap_hhi;
--	vpu_hdmi_pd.rstc = rstc;
--	vpu_hdmi_pd.vpu_clk = vpu_clk;
--	vpu_hdmi_pd.vapb_clk = vapb_clk;
-+	vpu_pd->regmap_ao = regmap_ao;
-+	vpu_pd->regmap_hhi = regmap_hhi;
-+	vpu_pd->rstc = rstc;
-+	vpu_pd->vpu_clk = vpu_clk;
-+	vpu_pd->vapb_clk = vapb_clk;
++			/* HDMI-TX output port */
++			hdmi_tx_port: port@1 {
++				reg = <1>;
 +
-+	platform_set_drvdata(pdev, vpu_pd);
- 
--	powered_off = meson_gx_pwrc_vpu_get_power(&vpu_hdmi_pd);
-+	powered_off = meson_gx_pwrc_vpu_get_power(vpu_pd);
- 
- 	/* If already powered, sync the clock states */
- 	if (!powered_off) {
--		ret = meson_gx_pwrc_vpu_setup_clk(&vpu_hdmi_pd);
-+		ret = meson_gx_pwrc_vpu_setup_clk(vpu_pd);
- 		if (ret)
- 			return ret;
- 	}
- 
--	pm_genpd_init(&vpu_hdmi_pd.genpd, &pm_domain_always_on_gov,
-+	pm_genpd_init(&vpu_pd->genpd, &pm_domain_always_on_gov,
- 		      powered_off);
- 
- 	return of_genpd_add_provider_simple(pdev->dev.of_node,
--					    &vpu_hdmi_pd.genpd);
-+					    &vpu_pd->genpd);
- }
- 
- static void meson_gx_pwrc_vpu_shutdown(struct platform_device *pdev)
- {
-+	struct meson_gx_pwrc_vpu *vpu_pd = platform_get_drvdata(pdev);
- 	bool powered_off;
- 
--	powered_off = meson_gx_pwrc_vpu_get_power(&vpu_hdmi_pd);
-+	powered_off = meson_gx_pwrc_vpu_get_power(vpu_pd);
- 	if (!powered_off)
--		meson_gx_pwrc_vpu_power_off(&vpu_hdmi_pd.genpd);
-+		vpu_pd->genpd.power_off(&vpu_pd->genpd);
- }
- 
- static const struct of_device_id meson_gx_pwrc_vpu_match_table[] = {
--	{ .compatible = "amlogic,meson-gx-pwrc-vpu" },
-+	{ .compatible = "amlogic,meson-gx-pwrc-vpu", .data = &vpu_hdmi_pd },
-+	{
-+	  .compatible = "amlogic,meson-g12a-pwrc-vpu",
-+	  .data = &vpu_hdmi_pd_g12a
-+	},
- 	{ /* sentinel */ }
- };
- 
++				hdmi_tx_out: endpoint {
++					remote-endpoint = <&hdmi_tx_in>;
++				};
++			};
++		};
++
+ 		gic: interrupt-controller@ffc01000 {
+ 			compatible = "arm,gic-400";
+ 			reg = <0x0 0xffc01000 0 0x1000>,
 -- 
 2.21.0
 
