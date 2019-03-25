@@ -2,22 +2,22 @@ Return-Path: <SRS0=Y5gA=R4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-0.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 79049C43381
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 17:42:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4ACB3C43381
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 18:04:35 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 45D472087E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 17:42:27 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1A16B208E4
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 18:04:35 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="syhqwufm";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="GBrE3X0q"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 45D472087E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ayEBoIZg";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="o+eqW1QW"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1A16B208E4
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +26,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=I9qITEy6mVJxuKKrpNDAdVQvP6oUcC2keR30j08TQwo=; b=syhqwufm5Vg6oL
-	0sfr1v02CDFOA1UfB3S9DfTrYn2H5EId8k7cdhaWlB7r+/ZeR4W52e9Ak3lcZRscxKOkObt4Gxy7F
-	9O/j2kA/459/n9sRXdilqSei+EJcvkzxwvM/iiAXdXQ5HxOvYLJ4Q5nTbiLM3j9H5oW+tk5JOHbEv
-	sA4oWx4dnjIiIEfdc0dvNev2qSnBGJbO87HHbXjbmKEOfS4hAQpWiD8g+q0/FMaGoAN55OMBjHSWj
-	iasE608IAGCA2Mb66UOyvy24xwhylLajFt34zQlpp7WvVGSalrZ+fI5Q9b2D+yYeksK0eBkP1eTFf
-	x1bLIbkZO7yNPQfqjFmg==;
+	List-Owner; bh=n2drl3ZDsQHnRNCpHGYIABoX4yRB9iTK2+OjG2G41TE=; b=ayEBoIZg0to/Uu
+	c8ZsMl4Lt/ANvFLKPfXUJX7GerC23yh/Ns+ZuDknmcxR0V8RiiFOln8Ef1eGrwwwqK0agfDs51vPl
+	tPth+zLHK3T71cW8K2nyElhL9HaBYlsPn58LKtZUzdp/LUbOVcTvnYZBWA5tUTABsazcDkmM/jFzH
+	+HZiMiziQqCDxMIqCKiUob+rshduiKsGKCw6QiL2lupwGE1P5lNeqeI2ORr0OpwJneE1BQMkeUFzH
+	pssdlXgJpGb41wH4dpb3kmxgc6U1+s5RF8OqM/OIVCpj+epHZxnWMQ5My/witxyMkwv4er80Oecub
+	PkQABwEibb2yNVGmnkag==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h8Tc1-0001G9-2d; Mon, 25 Mar 2019 17:42:17 +0000
-Received: from mail-ot1-x343.google.com ([2607:f8b0:4864:20::343])
+	id 1h8TxQ-0000We-DX; Mon, 25 Mar 2019 18:04:24 +0000
+Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h8Tbv-0001Er-M3; Mon, 25 Mar 2019 17:42:16 +0000
-Received: by mail-ot1-x343.google.com with SMTP id t8so3558199otp.7;
- Mon, 25 Mar 2019 10:42:09 -0700 (PDT)
+ id 1h8TxL-0000VO-00; Mon, 25 Mar 2019 18:04:22 +0000
+Received: by mail-ot1-x344.google.com with SMTP id u15so8888153otq.10;
+ Mon, 25 Mar 2019 11:04:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=T4v4Br8JtRDt3/20dLwNUshqCtQL4H826E6hKlCy+sw=;
- b=GBrE3X0qnR9Q4BMi2WKWpcc3f0s5F9MqaNLkgdxHT8ttAxcFXe3hEjApdrcGLnKEPF
- K7vKfWH8TLJA1lBauPVqLLANeHnxg617Y+frtjtzXJLdJtRnqP5vwwBDul+E0gs7GcPS
- MJN2vaMZ69AU40TmAhiuWH4gTlQgaz0nHVb+qISeieZcdXNMxfigmbn0+K3r1WpjILgX
- Gno158c1ctOrwdipXolRt4gC7TDfQgRiXfhNI4YD3OGnsxPwhq7CWI9yKbTV4Qa9B+wi
- j43L21fko26rEK1z5nGEMPWgNasNVDux5tPaxSkr4i/B+jkmiK/SleN4wfl5rfbP84++
- s60A==
+ :cc; bh=GADRvM0xN4bllnd3qZhEh8xI+loEVurWzVmPK/bUGn4=;
+ b=o+eqW1QWWrIKtllLpb/54oAYP5Z3yohEpohdPOmIlzfzeapD+tA+fWE8VGMVfq8tTw
+ qR2EMrf8jUH/yg0BmaCsZFMoK2RvqaYP79NeC5B2nLHTICkVtzS6IHzEldtJKKQPa67P
+ EqgsXQozYW2GAMPu4FL/h/nqTC8CIY/VB6oAVbzqr7xFoqNi3AN1SSE5ykn+ZpjclzUk
+ ukvWQaBdKIrWMtqnZr024z4uQfkhEgXgAEsFbWrwXyYG6dkgiS1o3hldhaGEO8v4GeVQ
+ LcYQQ31b1We0O4xW5z4fW+gwIeuY6OzURJUVGCH4VP9R/9GWxEyGSKJwBvx3Ssg/O7tj
+ 9Sgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=T4v4Br8JtRDt3/20dLwNUshqCtQL4H826E6hKlCy+sw=;
- b=TXRaBQ7gIVY8HfS3TuK5f1gCJ5OeOj95rEDa1ro7Mo9eSawaDLVd55KRjsH/5oFNOa
- pbOZGAq8NnK4t1l6+Z8HtHo9uqwTz64OeETijzlEaDBc1Ou6cvZwyEAaUgOae9uxDB1n
- HFxgcT/6+mIwarWbqGE7lIlUwZKATcypQ3tJT/eK1US88CcQT3wAtJEsL4YH0Pzey5Df
- EXFoMSAp6NkB2LRACdha5zN5VMdmEUSF4exHKLVdyW4KymcEZBwlDGAsMXumA/OQ3/+g
- By5NLZdgfSsQ9FTwSzehNg95fv8VR6CCmEzGG/wlTG2fHzeoS+znZhrdhvBdIMcGBZR7
- oKoA==
-X-Gm-Message-State: APjAAAU+7SwcpHJlwySJrKZSo5u+JtbOaKqB0+SwT0RujLErSXHAJhpM
- 7r+o+XgudIW/2A33tihNVs6n+3t5IYHVDOJojVs=
-X-Google-Smtp-Source: APXvYqzzX6Xquwr+T9Ha793K5BD+Kbl0C7vVYNgJC1T9qzdd57mmxwwiXNCkE6fCQD4HuEbnlctlLxJO9PAhQnHho08=
-X-Received: by 2002:a9d:5614:: with SMTP id e20mr18351425oti.348.1553535728147; 
- Mon, 25 Mar 2019 10:42:08 -0700 (PDT)
+ :message-id:subject:to:cc;
+ bh=GADRvM0xN4bllnd3qZhEh8xI+loEVurWzVmPK/bUGn4=;
+ b=P/bRbEoonE+c5oVOADM11Qd6oO5zoKuGWodOm9Wd1Fs91TKsKS8UaczqFlE+xnMNCo
+ 8gyu/2mq7WfhFvi+v+qPY44xDYik4VXuPVkz4XgOcs8knXqIg9v7ycfUkkkpk1OKA2zt
+ 89GVlMj8m/HkYRhGRiy8jscLuT/RmMhET9rskzfsgZF6GnNTcoiE6TDriDReJJ8EfxCK
+ YGD0maoxNCDOT27kofa5j/UxbDr/fQYHAaZTqrzSMdVH/2QeLIo2h5qCXuAyRNaMezsU
+ 6b0ID4NiBpkXDBuOmclSU1ypLEy/5Favb4W53iFio3fmIgZ+MMM9up8asJo57SaPQC+w
+ IN/g==
+X-Gm-Message-State: APjAAAWTe0Q5QaGRxHWjcX1I/woRempDubx/dYD+X2BU9YFFsJBCWf5v
+ TVfcDgLTPAW1Uo01YL2bLgxk72Pky9+Dt807B0q1ylaU
+X-Google-Smtp-Source: APXvYqypZk6IN2goZkQQ3kCsStNCRpPQUw/Nmnmm1imDszeEB0ThMlAUdtaHCGkJ+7p3NxDX6bNG7VtPb2Y1kWCprNA=
+X-Received: by 2002:a9d:6306:: with SMTP id q6mr18256071otk.86.1553537056347; 
+ Mon, 25 Mar 2019 11:04:16 -0700 (PDT)
 MIME-Version: 1.0
 References: <20190324220217.15813-1-martin.blumenstingl@googlemail.com>
- <20190325084153.l44pzfewcqlkoaoe@pengutronix.de>
-In-Reply-To: <20190325084153.l44pzfewcqlkoaoe@pengutronix.de>
+ <47e944da1c3b0a11cf46fc5ad5678ba961b9f9d3.camel@baylibre.com>
+In-Reply-To: <47e944da1c3b0a11cf46fc5ad5678ba961b9f9d3.camel@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 25 Mar 2019 18:41:57 +0100
-Message-ID: <CAFBinCAn-9oETMKMfSXoJOMBrQyrCFN7AyHG02bQaoxG1px3YA@mail.gmail.com>
+Date: Mon, 25 Mar 2019 19:04:05 +0100
+Message-ID: <CAFBinCCPW8wAoiN4hjj9tAYSqQqChpSB6+urAiXU95VYaZZKGg@mail.gmail.com>
 Subject: Re: [PATCH 0/1] pwm: meson: fix scheduling while atomic issue
-To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Jerome Brunet <jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190325_104211_774067_A0D139EA 
-X-CRM114-Status: GOOD (  27.92  )
+X-CRM114-CacheID: sfid-20190325_110419_064881_1A543977 
+X-CRM114-Status: GOOD (  24.36  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -92,95 +91,99 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: linux-pwm@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
  linux-kernel@vger.kernel.org, thierry.reding@gmail.com,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- jbrunet@baylibre.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGVsbG8gVXdlLAoKT24gTW9uLCBNYXIgMjUsIDIwMTkgYXQgOTo0MSBBTSBVd2UgS2xlaW5lLUvD
-tm5pZwo8dS5rbGVpbmUta29lbmlnQHBlbmd1dHJvbml4LmRlPiB3cm90ZToKPgo+IEhlbGxvIE1h
-cnRpbiwKPgo+IE9uIFN1biwgTWFyIDI0LCAyMDE5IGF0IDExOjAyOjE2UE0gKzAxMDAsIE1hcnRp
-biBCbHVtZW5zdGluZ2wgd3JvdGU6Cj4gPiBCYWNrIGluIEphbnVhcnkgYSAiQlVHOiBzY2hlZHVs
-aW5nIHdoaWxlIGF0b21pYyIgZXJyb3Igc2hvd2VkIHVwIGR1cmluZwo+ID4gYm9vdCBvbiBteSBN
-ZXNvbjhiIE9kcm9pZC1DMSAod2hpY2ggdXNlcyBhIFBXTSByZWd1bGF0b3IgYXMgQ1BVIHN1cHBs
-eSkuCj4gPiBUaGUgY2FsbCB0cmFjZSBjb21lcyBkb3duIHRvOgo+ID4gICBfX211dGV4X2xvY2sK
-PiA+ICAgY2xrX3ByZXBhcmVfbG9jawo+ID4gICBjbGtfY29yZV9nZXRfcmF0ZQo+ID4gICBtZXNv
-bl9wd21fYXBwbHkKPiA+ICAgLi4KPiA+ICAgZGV2X3BtX29wcF9zZXRfcmF0ZQo+ID4gICAuLgo+
-ID4KPiA+IEplcm9tZSBoYXMgYWxzbyBzZWVuIHRoZSBzYW1lIHByb2JsZW0gYnV0IGZyb20gcHdt
-LWxlZHMgKGluc3RlYWQgb2YgYQo+ID4gcHdtLXJlZ3VsYXRvcikuIEhlIHBvc3RlZCBhIHBhdGNo
-IHdoaWNoIHJlcGxhY2VzIHRoZSBzcGlubG9jayB3aXRoIGEKPiA+IG11dGV4LiBUaGF0IHdvcmtz
-LiBJIGJlbGlldmUgd2UgY2FuIG9wdGltaXplIHRoaXMgYnkgcmVkdWNpbmcgdGhlIHRpbWUKPiA+
-IHdoZXJlIHRoZSBsb2NrIGlzIGhlbGQgLSB0aGF0IGFsc28gYWxsb3dzIHRvIGtlZXAgdGhlIHNw
-aW4tbG9jay4KPiA+Cj4gPiBBbmFseXppbmcgdGhpcyBpc3N1ZSBoZWxwZWQgbWUgdW5kZXJzdGFu
-ZCB0aGUgcHdtLW1lc29uIGRyaXZlciBiZXR0ZXIuCj4gPiBNeSBwbGFuIGlzIHRvIHNlbmQgc29t
-ZSBjbGVhbnVwcyAod2l0aCB0aGUgZ29hbCBvZiByZS11c2luZyBtb3JlIG9mIHRoZQo+ID4gZ29v
-ZGllcyBmcm9tIHRoZSBQV00gY29yZSBpbiB0aGUgcHdtLW1lc29uIGRyaXZlcikgYWZ0ZXIgdGhp
-cyBzaW5nbGUgZml4Cj4gPiBpcyBtZXJnZWQgKHRoZXkgY2FuIGJlIGZvdW5kIGhlcmU6IFsxXSku
-Cj4KPiBJIGRpZG4ndCBsb29rIG92ZXIgdGhlc2UgaW4gZGV0YWlsLCBidXQgSSBzZWUgYW4gaXNz
-dWUgdGhhdCBhY2NvcmRpbmcKPiB0byB0aGUgc2hvcnRsb2dzIGlzbid0IGFkZHJlc3NlZDogSW4g
-dGhlIC5hcHBseSBjYWxsYmFjayB0aGVyZSBpcwo+IChzaW1wbGlmaWVkKToKPgo+ICAgICAgICAg
-aWYgKCFzdGF0ZS0+ZW5hYmxlZCkgewo+ICAgICAgICAgICAgICAgICBtZXNvbl9wd21fZGlzYWJs
-ZShtZXNvbiwgcHdtLT5od3B3bSk7Cj4gICAgICAgICAgICAgICAgIHJldHVybjsKPiAgICAgICAg
-IH0KPgo+IFRoaXMgcmVzdWx0cyBpbiB0aGUgd3Jvbmcgb3V0cHV0IGFmdGVyOgo+Cj4gICAgICAg
-ICBwd21fYXBwbHlfc3RhdGUocHdtLCB7IC5lbmFibGVkID0gdHJ1ZSwgLnBvbGFyaXR5ID0gUFdN
-X1BPTEFSSVRZX05PUk1BTCwgLi4ufSk7Cj4gICAgICAgICBwd21fYXBwbHlfc3RhdGUocHdtLCB7
-IC5lbmFibGVkID0gZmFsc2UsIC5wb2xhcml0eSA9IFBXTV9QT0xBUklUWV9JTlZFUlRFRCwgLi4u
-fSk7Cj4KPiBiZWNhdXNlIHRoZSBwb2xhcml0eSBpc24ndCBjaGVja2VkLgpsZXQgbWUgcmVwaHJh
-c2UgdGhpcyB0byBtYWtlIHN1cmUgSSB1bmRlcnN0YW5kIHRoaXMgY29ycmVjdGx5OgotIGFwcGx5
-aW5nIGEgUFdNIHN0YXRlIHdpdGggLmVuYWJsZWQgPSB0cnVlIGFuZCBQV01fUE9MQVJJVFlfTk9S
-TUFMCndpbGwgZW5hYmxlIHRoZSBQV00gb3V0cHV0Ci0gYXBwbHlpbmcgYSBQV00gc3RhdGUgd2l0
-aCAuZW5hYmxlZCA9IGZhbHNlIGFuZCBQV01fUE9MQVJJVFlfTk9STUFMCndpbGwgZGlzYWJsZSB0
-aGUgUFdNIG91dHB1dAotIGFwcGx5aW5nIGEgUFdNIHN0YXRlIHdpdGggLmVuYWJsZWQgPSB0cnVl
-IGFuZCBQV01fUE9MQVJJVFlfSU5WRVJURUQKd2lsbCBkaXNhYmxlIHRoZSBQV00gb3V0cHV0Ci0g
-YXBwbHlpbmcgYSBQV00gc3RhdGUgd2l0aCAuZW5hYmxlZCA9IGZhbHNlIGFuZCBQV01fUE9MQVJJ
-VFlfSU5WRVJURUQKd2lsbCBlbmFibGUgdGhlIFBXTSBvdXRwdXQKCmluIG90aGVyIHdvcmRzOiB0
-aGUgcG9sYXJpdHkgZG9lc24ndCBvbmx5IGFwcGx5IHRvIHBlcmlvZCBhbmQKZHV0eV9jeWNsZSBi
-dXQgYWxzbyB0byB0aGUgZW5hYmxlZCBzdGF0ZS4KCj4gSWYgeW91IHdhbnQgdG8gaW1wbGVtZW50
-IGZ1cnRoZXIgY2xlYW51cHMsIG15IHF1ZXN0aW9ucyBhbmQgcHJvcG9zaXRpb25zCj4gYXJlOgo+
-Cj4gIC0gSXMgdGhlcmUgYSBwdWJsaWNseSBhdmFpbGFibGUgbWFudWFsIGZvciB0aGlzIGhhcmR3
-YXJlPyBJZiB5ZXMsIHlvdQo+ICAgIGNhbiBhZGQgYSBsaW5rIHRvIGl0IGluIHRoZSBoZWFkZXIg
-b2YgdGhlIGRyaXZlci4KeWVzLCBpdCdzIGRvY3VtZW50ZWQgaW4gdGhlIHB1YmxpYyBTOTEyIGRh
-dGFzaGVldCBbMF0gcGFnZSA1NDIgYW5kIGZvbGxvd2luZwpJJ2xsIGFkZCBhIHBhdGNoIHdoaWNo
-IGFkZHMgdGhlIGxpbmsgdG8gdGhlIGRyaXZlcgoKPiAgLSBXaHkgZG8geW91IGhhbmRsZSByZXBh
-cmVudGluZyBvZiB0aGUgUFdNJ3MgY2xrIGluIC5yZXF1ZXN0PyBXb3VsZG4ndAo+ICAgIHRoaXMg
-YmUgbW9yZSBzdWl0YWJsZSBpbiAuYXBwbHk/Ckplcm9tZSdzIGFuc3dlciAobm90IGxvbmcgYWZ0
-ZXIgeW91cnMpIGJhc2ljYWxseSBjb3ZlcnMgdGhpczoKLSB0aGUgYXNzaWduZWQtY2xvY2stcGFy
-ZW50cyBwcm9wZXJ0eSBjb3VsZCBoYXZlIGJlZW4gdXNlZCBidXQgaXQgd2Fzbid0Ci0gdGhlIGRy
-aXZlciBjb3VsZCBhdXRvbWF0aWNhbGx5IHNldCB0aGUgY29ycmVjdCBwYXJlbnQsIGJ1dCB0aGlz
-Cmlzbid0IGltcGxlbWVudGVkCgooSSBhc3N1bWUgdGhpcyB3YXMgZG9uZSB0byBrZWVwIGl0IHNo
-b3J0IGFuZCBzaW1wbGUgdG8gZm9yIHRoZSBmaXJzdAp2ZXJzaW9uIG9mIHRoZSBkcml2ZXIpCgo+
-ICAtIERvZXMgc3RvcHBpbmcgdGhlIFBXTSAoaS5lLiBjbGVhcmluZyBNSVNDX3tBLEJ9X0VOIGlu
-IHRoZSBNSVNDX0FCCj4gICAgcmVnaXN0ZXIpIGZyZWV6ZSB0aGUgb3V0cHV0LCBvciBpcyB0aGUg
-Y3VycmVudGx5IHJ1bm5pbmcgcGVyaW9kCj4gICAgY29tcGxldGVkIGZpcnN0PyAoVGhlIGxhdHRl
-ciBpcyB0aGUgcmlnaHQgYmVoYXZpb3VyLikKSSBkb24ndCBrbm93LCBJIHdvdWxkIGhhdmUgdG8g
-bWVhc3VyZSB0aGlzIHdpdGggYSBsb2dpYyBhbmFseXplci4KY2FuIHlvdSBwbGVhc2UgZXhwbGFp
-biB3aHkgdGhpcyBpcyBpbXBvcnRhbnQ/Cgo+ICAtIFBsZWFzZSBwb2ludCBvdXQgaW4gdGhlIGhl
-YWRlciB0aGF0IGZvciBjaGFuZ2luZyBwZXJpb2QvZHV0eQo+ICAgIGN5Y2xlL3BvbGFyaXR5IHRo
-ZSBoYXJkd2FyZSBtdXN0IGJlIHN0b3BwZWQuIChJIHN1Z2dlc3QgdG8gYXBwbHkgdGhlCj4gICAg
-c3R5bGUgdXNlZCBpbiBodHRwczovL3d3dy5zcGluaWNzLm5ldC9saXN0cy9saW51eC1wd20vbXNn
-MDkyNjIuaHRtbAo+ICAgIGZvciBzb21lIGNvbnNpc3RlbmN5LikKSSdtIG5vdCBzdXJlIGFib3V0
-IHRoaXMuIEFtbG9naWMncyB2ZW5kb3Iga2VybmVsIHVzZXMgYSBtb2RpZmllZAp2ZXJzaW9uIG9m
-IHRoaXMgZHJpdmVyIFsxXSB3aGljaCBoYXMgYW4gZXhwbGljaXQgY29tbWVudCBub3QgdG8KZGlz
-YWJsZSB0aGUgUFdNIG91dHB1dCB3aGVuIGNoYW5naW5nIHRoZSBwZXJpb2QvZHV0eSBjeWNsZS4K
-dGhlIFBXTSBpcyBjb25maWd1cmVkIHdpdGggdHdvIHNlcGFyYXRlIHJlZ2lzdGVycyAoUFdNX01J
-U0NfUkVHX0FCCmNvbnRhaW5zIHRoZSBkaXZpZGVyIGFuZCBQV01fUFdNX0EgY29udGFpbnMgdGhl
-IGhpZ2gvbG93IGNvdW50KS4KdGhlcmUncyBhIHNob3J0IHRpbWVmcmFtZSB3aGVyZSB0aGUgUFdN
-IG91dHB1dCBzaWduYWwgaXMgbmVpdGhlciB0aGUKIm9sZCBzZXR0aW5nIiBub3IgdGhlICJuZXcg
-c2V0dGluZyIgKGJ1dCByYXRoZXIgYSBtaXggb2YgYm90aCkuIHdoYXQKZG8gb3RoZXIgUFdNIGRy
-aXZlcnMgZG8gaW4gdGhpcyBjYXNlIChpZiB0aGlzIGlzIGEgY29tbW9uIHRoaW5nKT8KCj4gQW5v
-dGhlciB0aGluZyBJIGp1c3Qgbm90ZWQ6IFRoZSAuZ2V0X3N0YXRlIGNhbGxiYWNrIG9ubHkgc2V0
-cyAuZW5hYmxlZAo+IGJ1dCBub3RoaW5nIG9mIHRoZSByZW1haW5pbmcgaW5mb3JtYXRpb24gaXMg
-cHJvdmlkZWQuCmFzIGZhciBhcyBJIGNhbiBzZWUgdGhlIFBXTSBjb3JlIHVzZXMgLmdldF9zdGF0
-ZSBvbmx5IGR1cmluZyByZWdpc3RyYXRpb246CnRoaXMgbWVhbnMgd2Ugc2hvdWxkIHJlYWQgKGFu
-ZCBjYWxjdWxhdGUpIC5kdXR5X2N5Y2xlIGFuZCAucGVyaW9kIGZyb20KdGhlIHJlZ2lzdGVyIHZh
-bHVlcy4gcG9sYXJpdHkgYWx3YXlzIGhhcyB0byBiZSAibm9ybWFsIiBzaW5jZSB0aGVyZSdzCm5v
-IGluZm9ybWF0aW9uIGFib3V0IGl0IGluIHRoZSByZWdpc3RlcnMuCgoKUmVnYXJkcwpNYXJ0aW4K
-CgpbMF0gaHR0cHM6Ly9kbC5raGFkYXMuY29tL0hhcmR3YXJlL1ZJTTIvRGF0YXNoZWV0L1M5MTJf
-RGF0YXNoZWV0X1YwLjIyMDE3MDMxNHB1YmxpY3ZlcnNpb24tV2VzaW9uLnBkZgpbMV0gaHR0cHM6
-Ly9naXRodWIuY29tL2hhcmRrZXJuZWwvbGludXgvYmxvYi85YTRhMWY0YjE0ZmU2NmQ3ZWJkNzMz
-MjNiMzlmYmYzYmRhOWUxMzU2L2RyaXZlcnMvYW1sb2dpYy9wd20vcHdtX21lc29uLmMjTDM4MQoK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1s
-b2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6
-Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+Hi Jerome,
+
+On Mon, Mar 25, 2019 at 10:35 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
+>
+> On Sun, 2019-03-24 at 23:02 +0100, Martin Blumenstingl wrote:
+> > Back in January a "BUG: scheduling while atomic" error showed up during
+> > boot on my Meson8b Odroid-C1 (which uses a PWM regulator as CPU supply).
+> > The call trace comes down to:
+> >   __mutex_lock
+> >   clk_prepare_lock
+> >   clk_core_get_rate
+> >   meson_pwm_apply
+> >   ..
+> >   dev_pm_opp_set_rate
+> >   ..
+> >
+> > Jerome has also seen the same problem but from pwm-leds (instead of a
+> > pwm-regulator). He posted a patch which replaces the spinlock with a
+> > mutex. That works. I believe we can optimize this by reducing the time
+> > where the lock is held - that also allows to keep the spin-lock.
+> >
+> > Analyzing this issue helped me understand the pwm-meson driver better.
+> > My plan is to send some cleanups (with the goal of re-using more of the
+> > goodies from the PWM core in the pwm-meson driver) after this single fix
+> > is merged (they can be found here: [1]).
+>
+> Thanks for fixing this Martin.
+you're welcome!
+
+> As for the future enhancement, I'd like to know what you have in mind.
+> As I have told you previously, I think the clock bindings of this driver are
+> not great.
+>
+> The global name of the input clocks are hard coded in this driver and it
+> sucks. CCF is evolving to rely less on these global names.
+I fully agree with you on the clock setup, but I'm not sure if we have
+to break the dt-bindings for it.
+
+the datasheet notes: "Each PWM is driven by a programmable divider
+driven by a 4:1 clock selector".
+In my own words this means that each PWM controller has up to 8 clock inputs:
+- up to 4 inputs for the first channel (PWM_A)
+- up to 4 inputs for the second channel (PWM_B)
+
+the current pwm-meson driver assumes that both the inputs for both
+channels are identical.
+the "clock trees" section of the public S912 datasheet (page 65)
+clearly documents the clock inputs per PWM channel, not per PWM
+controller.
+
+Thus I believe we should name our clock-names (the inputs to the PWM
+controller) "pwm-a-clkin0", "pwm-a-clkin1", "pwm-b-clkin0", ...
+That way we don't have a conflict with the existing bindings (which
+already reserve "clkin0" and "clkin1").
+
+> In addition, the 'clock' binding should be used to refer to the clock
+> 'consumed' by the device, not to define a setting (as done now). 'assigned-
+> clock' binding can be used for that.
+using the assigned-clock* properties requires self-referencing the PWM
+controller (which I'm not used to), for example:
+  &pwm_ab {
+      #clock-cells = <1>;
+      assigned-clocks = <&pwm_ab 0>, <&pwm_ab 1>; /* references itself */
+      assigned-clock-parents = <&xtal>, <&clkc CLKID_FCLK_DIV5>;
+  };
+
+if we want to auto-detect the parent clock (like you suggested below)
+we need to consider if we can detect whether a .dts-author assigned a
+specific parent.
+I know that it's easy to detect this when the clock is passed in the
+"clocks" property, but I'm not sure if it's easy to parse it from the
+assigned-clocks/assigned-clock-parents properties.
+
+[...]
+> Last, instead of specifying the parent to be used, I think we should come up
+> with some code to let the driver pick the most appropriate parent for the period/duty requested.
+that will make it easier for .dts authors.
+I would like to postpone this until we have solved the other topics though.
+
+
+Regards
+Martin
+
+
+[0] https://dl.khadas.com/Hardware/VIM2/Datasheet/S912_Datasheet_V0.220170314publicversion-Wesion.pdf
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
