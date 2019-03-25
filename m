@@ -2,87 +2,89 @@ Return-Path: <SRS0=Y5gA=R4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A08BDC43381
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 11:12:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 570D7C10F03
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 11:12:35 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7106020863
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 11:12:34 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 249E420863
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 11:12:35 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="OmHxg/MV";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ZXW58RQo"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7106020863
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Rn0aMptC";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ql/x+8w0"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 249E420863
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=6SnUTSuJJHDiryvMkZEydzm4lXYrl3zSFKdpp8fY9fg=; b=OmHxg/MVpxlDwa
-	TZVXZmmtv1H/S5IiEG/+L1csPucDG2m/SyZ55Ue0nKRewhDY4D0NJ8w97gx+aflSHmfYnH8FjJ7EG
-	OTQa0LochykEuiFK8Y1FSPemsswr9pvuGqn5iJ0XBZCx/9KXefaqallM2ebfehZSSYOdZNpZ4Bi/t
-	5NeYcMl2iXpGJ4C+X3jKgp9zANKXrRvKvFxAaKW9KkgJu6jBH7NrGZgizTFB7pHMGmwhPBN1vMAGQ
-	cck+ZQ+RCHjP08zaknO54iBuaDPllhwX2yuD9PLdI1v9X6T0silAQwFamb9ZrV2io0ECntS2zkwhU
-	t4J5yS/UCLUkRDsWNeaQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=x/uA8llBAishuLR7ttGeHlw2cscYkon28UbDjWHY8GM=; b=Rn0aMptCrLYywO
+	ayqpOCFwxx/iB3RztTD2PI5MgXHBBsctRpxXl2lhSSuxnPlcmMtqhy57uTGz6eLQxjZw7BfgZEb6k
+	PQgg0kw4FyVmdXvh14eOZYMj92nxnpSa+MuZuUc5ij5IdclraliNVHLu+cT+OrEmilg5CAHD6FHm7
+	5XI6AmPY3Cnps0qwPU8QEy1CT8YDfNMSreH6szY3yAb2O9UmMqROZpntekwLTL57QgCJIjDWvz+l6
+	b+YtVErgYqsn6lM5Zba4F1kLyUQZ2iHEH4fThxo7Kn3XVxyEmELFLyzhm/vGhN5JmnMa2CcGedqaY
+	00ZB1KTJOElrPO5Df5xg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h8NWd-0006yG-1a; Mon, 25 Mar 2019 11:12:19 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1h8NWj-00071B-98; Mon, 25 Mar 2019 11:12:25 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h8NWV-0006wS-2Z
- for linux-amlogic@lists.infradead.org; Mon, 25 Mar 2019 11:12:17 +0000
-Received: by mail-wm1-x342.google.com with SMTP id t124so8548614wma.4
- for <linux-amlogic@lists.infradead.org>; Mon, 25 Mar 2019 04:12:10 -0700 (PDT)
+ id 1h8NWb-0006wr-MO
+ for linux-amlogic@lists.infradead.org; Mon, 25 Mar 2019 11:12:23 +0000
+Received: by mail-wr1-x443.google.com with SMTP id q1so9636950wrp.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 25 Mar 2019 04:12:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=zq6vRTetM545SboMg3VjgwSgsS+YSQUJaE3MlRK8tIs=;
- b=ZXW58RQonAOpYLFTCrrCFYUt+m+W7pyrOmzvKP1t1j8CQ3BFbne7+d20B0eFhLrlu9
- Wjt+WJVIRmAkgmJxIqmUd8aU5WqI30LH425b6F3e6SoKZLUd+Qi7ASmeA3Daujs2sQ1T
- jzx4ASkf3xJlmrx2nk785v71K4ujbne7Gug4Pp1s8gJayjFB/XlHQXC2apqRUkYtNAam
- k0lr2BX5CDDWq7qaeM6v0COAc/1u1EMGORhSq/1Ytw9Ma7/OClT6Gs7lAvmIJkwX8mEZ
- V7HatMdxobGvN4XU6G2rd+Yh4guUBtIutyhX+7+gW1kZdYod2+YsYAeGVQ87XgVKbMZA
- W+1g==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=lAGWjMAs38DEOf/pdjEPeHnYiewe/7N+ZGB7ijz15Bo=;
+ b=ql/x+8w0gvnjiOmBFCOu+1IvlNLQrImu2eLZMJAVSkLr+jZwuMb9B181TuREU+XAE7
+ AxWFjEkwgWAtQz8ra2n8+XBQUjum6z8lqsIkhKPmHwi1T/6VtQWZs2Ou5gB/WiPlXqp7
+ WjqxS3r7Km2Rg0CeuCwrSSsRtMJt80f4kssIE4in9qlkvCWBH/FRXYlGIAorh1uOZbhD
+ jvNLGG3NEJv+asBYQrBn5AAvwc1ohR449SBgeSO3FuNCmubw0+2ajLv45dF9/0NqaHAu
+ 8orkzxE6+8FxHDbRqYLun476oiFoNcwtEJoP5VVRQ1duMwJSLqFiaRbNV6lka/ptUdjk
+ WJdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=zq6vRTetM545SboMg3VjgwSgsS+YSQUJaE3MlRK8tIs=;
- b=L52f+h3xTv9PC1ZvdgI7kKFuFMoqUY9+YVezBScoC2d7PqHgiFxTUtJS41VDLhHGCG
- h/0p8OpT6ImcTn4fb/R/8XEfSeV44NaW1kVsXd9FAJa1fyEk4lKXaK1AuO8Zopr7Cwr/
- dbGiqrsBicdEQo3vJgHgy5d/fIvHCbjXqFJbs6rgqjDuFelkUJ7oj7Us81y2GkZhMhCc
- 2wxKHB33DmgInLOyl6hr9Sah/F3usMfuQ10XMTWh6TUu6UZqjw1o6Kq+0/5xMXYO8vag
- eRO+d5OEdlvc8rhWIEtrzV723XrS0q7SSaJ0tWATeMgUgkfzd9btgWE+BDbft+aq261G
- xYHQ==
-X-Gm-Message-State: APjAAAXskkFumJJC51av0HI3fHavBGt2Fw08VfUrqHiLSHvo3AmM5C5L
- /+0fd5o00eM0sQIjI+XkDt0fTw==
-X-Google-Smtp-Source: APXvYqziK48dM7HzQKX85ubGKmdqo9qHPboyMRSgNdub+Iyl+dklAkVTb7jz8nfm8D1YbcH+pwraww==
-X-Received: by 2002:a1c:cc0a:: with SMTP id h10mr11048100wmb.22.1553512328021; 
- Mon, 25 Mar 2019 04:12:08 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=lAGWjMAs38DEOf/pdjEPeHnYiewe/7N+ZGB7ijz15Bo=;
+ b=Bv3guuhe/I+5lt+o7hfeefNyhHT71Z6lIo0aKiG0ncuaTeOVAW6MYmiU1TM4IqivmW
+ D3v8f9jfmKZNlV16g9Pc30tOMSeKtpjB/NfjElxjHBnz9xeVN6I9rXbShizyKYGYDJPr
+ mN+oGdKT/dareW3B9n7gbNDiPp83wrEF1npyh/LuYQRg1+iN42AH9VQDW6KMPP1Z3bUN
+ RVmvM6Ub8aCW+deFVEbrR+1yrTxA1Jzj6iCCDgdRBb7qiQI5fsF/CsaVKgHsIvT2kLgM
+ uX4m3ZsUZc9NKRKFNIbPQ+prPKM7UaYOXkh1AOaN+qG2fgV9bx5yNZf7Ku6cLPz1rD0a
+ V3Lw==
+X-Gm-Message-State: APjAAAUYgLevtdwzfbVjTdvkIhaMQVuGS/CehoDwQrGGuwCG3w1h1QkB
+ zcZdfSCvL/m9reHgPQEu22/gfQ==
+X-Google-Smtp-Source: APXvYqw/+i+ZkuaKLPTf9yiwTZxD3nYX18DOHDoDAnF8ffCGsjZFKs7JKpqeEN6Fg3pqiwin2yIPwQ==
+X-Received: by 2002:a5d:6682:: with SMTP id l2mr14687126wru.33.1553512333489; 
+ Mon, 25 Mar 2019 04:12:13 -0700 (PDT)
 Received: from boomer.local ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
  by smtp.googlemail.com with ESMTPSA id
- n188sm15134301wme.13.2019.03.25.04.12.06
+ n188sm15134301wme.13.2019.03.25.04.12.12
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 25 Mar 2019 04:12:07 -0700 (PDT)
+ Mon, 25 Mar 2019 04:12:12 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH 0/4] clk: meson: fixup g12a mpll
-Date: Mon, 25 Mar 2019 12:11:56 +0100
-Message-Id: <20190325111200.15940-1-jbrunet@baylibre.com>
+Subject: [PATCH 4/4] clk: meson: g12a: add controller register init
+Date: Mon, 25 Mar 2019 12:12:00 +0100
+Message-Id: <20190325111200.15940-5-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190325111200.15940-1-jbrunet@baylibre.com>
+References: <20190325111200.15940-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190325_041211_116694_FE277569 
-X-CRM114-Status: UNSURE (   8.85  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190325_041217_728054_2EABA378 
+X-CRM114-Status: GOOD (  10.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -101,40 +103,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-When the g12a support has been initially submitted, the MPLL appeared
-(overall) fine. At the time, the board I used was falshed with amlogic
-vendor u-boot. Since then, I moved to an early version on mainline
-u-boot.
+Add the MPLL common register initial setting
 
-While debugging audio support, I noticed that MPLL based clocks were way
-above target. It appeared the fractional part of the divider was not
-working.
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/clk/meson/g12a.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-To work properly, the MPLLs each needs an initial setting in addition to
-a common one. No one likes those register sequences but sometimes, like
-here for PLL clocks, there is no way around it.
-
-The series adds the possibility to set initial register sequence for the
-ee clock controller and the MPLL driver. It is then used to enable the
-fractional part of the g12a MPLL.
-
-With this series applied, the fractional part works again but we are still
-seeing a significant clock jitter (+/- 1,6% for 294912KHz). Discussion
-are ongoing to explain and, hopefully, solve this as well.
-
-Jerome Brunet (4):
-  clk: meson: mpll: add init callback and regs
-  clk: meson: g12a: add mpll register init sequences
-  clk: meson: eeclk: add init regs
-  clk: meson: g12a: add controller register init
-
- drivers/clk/meson/clk-mpll.c    | 33 +++++++++++++++++++++++----------
- drivers/clk/meson/clk-mpll.h    |  2 ++
- drivers/clk/meson/g12a.c        | 32 +++++++++++++++++++++++++++++++-
- drivers/clk/meson/meson-eeclk.c |  3 +++
- drivers/clk/meson/meson-eeclk.h |  2 ++
- 5 files changed, 61 insertions(+), 11 deletions(-)
-
+diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+index 6a01f8fd8114..493db74270ac 100644
+--- a/drivers/clk/meson/g12a.c
++++ b/drivers/clk/meson/g12a.c
+@@ -2361,10 +2361,16 @@ static struct clk_regmap *const g12a_clk_regmaps[] = {
+ 	&g12a_mpll_50m,
+ };
+ 
++static const struct reg_sequence g12a_init_regs[] = {
++	{ .reg = HHI_MPLL_CNTL0,	.def = 0x00000543 },
++};
++
+ static const struct meson_eeclkc_data g12a_clkc_data = {
+ 	.regmap_clks = g12a_clk_regmaps,
+ 	.regmap_clk_num = ARRAY_SIZE(g12a_clk_regmaps),
+-	.hw_onecell_data = &g12a_hw_onecell_data
++	.hw_onecell_data = &g12a_hw_onecell_data,
++	.init_regs = g12a_init_regs,
++	.init_count = ARRAY_SIZE(g12a_init_regs),
+ };
+ 
+ static const struct of_device_id clkc_match_table[] = {
 -- 
 2.20.1
 
