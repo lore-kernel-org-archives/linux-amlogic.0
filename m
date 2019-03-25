@@ -2,90 +2,83 @@ Return-Path: <SRS0=Y5gA=R4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1898CC43381
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 17:35:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 79049C43381
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 17:42:27 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BFC7C205C9
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 17:35:58 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 45D472087E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 17:42:27 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gjWJqiF1";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="PO1TD3bb"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BFC7C205C9
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="syhqwufm";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="GBrE3X0q"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 45D472087E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Dbl9DF5b9eRanQoRA2t7723tYcpitJEFJbUbO4L7pbo=; b=gjWJqiF1/v9OCx
-	FB1OfwpRX6OBewZLY5Tc0CkzaRcRB/dR61ubNo2BsTi34BzEyWiQfc1nbGdKUWmWivj9qog2PoYhI
-	w2yvhifmvRXYJ3GcpZDYE9mgcwSiJDvWADCoMnGQSMijHfy9zAQ2zgCZWks/Vb4mcYt6oGYLpYDJg
-	na3iuwHQaIcPwBkJD2kGw5Af2VFoW6QM2ad6srM1HZ79HnhJZbi77gFQ7kBZZ84BA/HZYW2+/Cve6
-	XnFlUkn39D+hKHTdT6tJUA81Yy2A90rSxBxPBKjozwvBA2/NtVlpXV+fzv2ZDFrh5rGTU+fIrXDPE
-	R+mon9RPS4i0qIC9gkFw==;
+	List-Owner; bh=I9qITEy6mVJxuKKrpNDAdVQvP6oUcC2keR30j08TQwo=; b=syhqwufm5Vg6oL
+	0sfr1v02CDFOA1UfB3S9DfTrYn2H5EId8k7cdhaWlB7r+/ZeR4W52e9Ak3lcZRscxKOkObt4Gxy7F
+	9O/j2kA/459/n9sRXdilqSei+EJcvkzxwvM/iiAXdXQ5HxOvYLJ4Q5nTbiLM3j9H5oW+tk5JOHbEv
+	sA4oWx4dnjIiIEfdc0dvNev2qSnBGJbO87HHbXjbmKEOfS4hAQpWiD8g+q0/FMaGoAN55OMBjHSWj
+	iasE608IAGCA2Mb66UOyvy24xwhylLajFt34zQlpp7WvVGSalrZ+fI5Q9b2D+yYeksK0eBkP1eTFf
+	x1bLIbkZO7yNPQfqjFmg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h8TVl-00079Z-SU; Mon, 25 Mar 2019 17:35:49 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1h8Tc1-0001G9-2d; Mon, 25 Mar 2019 17:42:17 +0000
+Received: from mail-ot1-x343.google.com ([2607:f8b0:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h8TVA-00068w-5w
- for linux-amlogic@lists.infradead.org; Mon, 25 Mar 2019 17:35:20 +0000
-Received: by mail-wm1-x344.google.com with SMTP id f3so9900032wmj.4
- for <linux-amlogic@lists.infradead.org>; Mon, 25 Mar 2019 10:35:09 -0700 (PDT)
+ id 1h8Tbv-0001Er-M3; Mon, 25 Mar 2019 17:42:16 +0000
+Received: by mail-ot1-x343.google.com with SMTP id t8so3558199otp.7;
+ Mon, 25 Mar 2019 10:42:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=aUEOOtTzdsd6XAN9pX+9wWzeqvycudwGanV071uDjsA=;
- b=PO1TD3bbuvANznGunvE5Iwh7816DToep2izPNe0n3j2PcYGwaF8V9JOXN3Wg3M0UsI
- +w9h0FuwezfwJbYhazGZv4f8zF5UGtkTaMu/hqaOAzDMTiRdEWdNgdV4SgNLPxZ/nRm6
- GPlBBU3Gq/6EGmiVqRstCkDhQ9Iuvi+4ZDvgFird7Bm60lD2cBSiji8sZLmPwU9IIMdf
- bA3avbCsfnnBCn+8ymAwcPBX7CeKIVRi1ntzLoQ75MRaoEMpYsmsH0d1+FqLQl/ZQGcP
- I1DUwiZcZJUY6vgwd4WGZPHS6yI682HEPlu73eNIGRr3lArnAQWJv67DEfZF4isc5Ejb
- m24w==
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=T4v4Br8JtRDt3/20dLwNUshqCtQL4H826E6hKlCy+sw=;
+ b=GBrE3X0qnR9Q4BMi2WKWpcc3f0s5F9MqaNLkgdxHT8ttAxcFXe3hEjApdrcGLnKEPF
+ K7vKfWH8TLJA1lBauPVqLLANeHnxg617Y+frtjtzXJLdJtRnqP5vwwBDul+E0gs7GcPS
+ MJN2vaMZ69AU40TmAhiuWH4gTlQgaz0nHVb+qISeieZcdXNMxfigmbn0+K3r1WpjILgX
+ Gno158c1ctOrwdipXolRt4gC7TDfQgRiXfhNI4YD3OGnsxPwhq7CWI9yKbTV4Qa9B+wi
+ j43L21fko26rEK1z5nGEMPWgNasNVDux5tPaxSkr4i/B+jkmiK/SleN4wfl5rfbP84++
+ s60A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=aUEOOtTzdsd6XAN9pX+9wWzeqvycudwGanV071uDjsA=;
- b=Fnx+JtkswjRqGU95e9XMCON1Ma2zt5szZHv8GivtqHV2kRL0bAuymxQBAixryQBB28
- b89LgkzjIrbl9lnmEzZVEbNi0mdTuyDeTXyOpIGPbuC260vrOOgoZKightkewhOaXw6y
- yJDA3pibE2RoIyCES4OC6suzn215WzKeM1jL/Lc54+yUcqL2CbBw0LbyhOsf5MDTJCqo
- TEYuGwZjf2XPCyCCgXyabHztQRB1LkwFmazbsxp3MyK0qU6+OOXQZ3oXb6ErkYksSKv0
- 18yXSGCyioJgT1NafkPgDX7YkOuG58sGTRFSW0MTcFg0FRhm47+WTselvSZxzrW7B3hI
- gQtw==
-X-Gm-Message-State: APjAAAXn5qfn+A6o/WcfQ5NUBCN462GuOt8eOcyzYFsUgOxJPDFWHAWx
- kFhe46MWmRpuisI4B7ZBMagWTw==
-X-Google-Smtp-Source: APXvYqyS0SUrZ9w8N2IWBO+K4T7hE6/lhzHFNyTOi1wZk+f0yM1wx7sFlWocwVOOqBYcvVi42NZB6Q==
-X-Received: by 2002:a1c:f204:: with SMTP id s4mr11579531wmc.51.1553535306559; 
- Mon, 25 Mar 2019 10:35:06 -0700 (PDT)
-Received: from localhost.localdomain (176-150-251-154.abo.bbox.fr.
- [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id o15sm16003227wrj.59.2019.03.25.10.35.05
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Mon, 25 Mar 2019 10:35:06 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: hverkuil@xs4all.nl,
-	mchehab@kernel.org
-Subject: [PATCH 2/3] media: platform: meson: Add Amlogic Meson G12A AO CEC
- Controller driver
-Date: Mon, 25 Mar 2019 18:35:00 +0100
-Message-Id: <20190325173501.22863-3-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190325173501.22863-1-narmstrong@baylibre.com>
-References: <20190325173501.22863-1-narmstrong@baylibre.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=T4v4Br8JtRDt3/20dLwNUshqCtQL4H826E6hKlCy+sw=;
+ b=TXRaBQ7gIVY8HfS3TuK5f1gCJ5OeOj95rEDa1ro7Mo9eSawaDLVd55KRjsH/5oFNOa
+ pbOZGAq8NnK4t1l6+Z8HtHo9uqwTz64OeETijzlEaDBc1Ou6cvZwyEAaUgOae9uxDB1n
+ HFxgcT/6+mIwarWbqGE7lIlUwZKATcypQ3tJT/eK1US88CcQT3wAtJEsL4YH0Pzey5Df
+ EXFoMSAp6NkB2LRACdha5zN5VMdmEUSF4exHKLVdyW4KymcEZBwlDGAsMXumA/OQ3/+g
+ By5NLZdgfSsQ9FTwSzehNg95fv8VR6CCmEzGG/wlTG2fHzeoS+znZhrdhvBdIMcGBZR7
+ oKoA==
+X-Gm-Message-State: APjAAAU+7SwcpHJlwySJrKZSo5u+JtbOaKqB0+SwT0RujLErSXHAJhpM
+ 7r+o+XgudIW/2A33tihNVs6n+3t5IYHVDOJojVs=
+X-Google-Smtp-Source: APXvYqzzX6Xquwr+T9Ha793K5BD+Kbl0C7vVYNgJC1T9qzdd57mmxwwiXNCkE6fCQD4HuEbnlctlLxJO9PAhQnHho08=
+X-Received: by 2002:a9d:5614:: with SMTP id e20mr18351425oti.348.1553535728147; 
+ Mon, 25 Mar 2019 10:42:08 -0700 (PDT)
 MIME-Version: 1.0
+References: <20190324220217.15813-1-martin.blumenstingl@googlemail.com>
+ <20190325084153.l44pzfewcqlkoaoe@pengutronix.de>
+In-Reply-To: <20190325084153.l44pzfewcqlkoaoe@pengutronix.de>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Mon, 25 Mar 2019 18:41:57 +0100
+Message-ID: <CAFBinCAn-9oETMKMfSXoJOMBrQyrCFN7AyHG02bQaoxG1px3YA@mail.gmail.com>
+Subject: Re: [PATCH 0/1] pwm: meson: fix scheduling while atomic issue
+To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190325_103512_370879_93005283 
-X-CRM114-Status: GOOD (  21.12  )
+X-CRM114-CacheID: sfid-20190325_104211_774067_A0D139EA 
+X-CRM114-Status: GOOD (  27.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,868 +90,97 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Neil Armstrong <narmstrong@baylibre.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-pwm@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ linux-kernel@vger.kernel.org, thierry.reding@gmail.com,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ jbrunet@baylibre.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Amlogic G12A SoC embeds a second CEC controller with a totally
-different design.
-
-The two controller can work in the same time since the CEC line can
-be set to two different pins on the two controllers.
-
-This second CEC controller is documented as "AO-CEC-B", thus the
-registers will be named "CECB_" to differenciate with the other
-AO-CEC driver.
-
-Unlike the other AO-CEC controller, this one takes the Oscillator
-clock as input and embeds a dual-divider to provide a precise
-32768Hz clock for communication. This is handled by registering
-a clock in the driver.
-
-Unlike the other AO-CEC controller, this controller supports setting
-up to 15 logical adresses and supports the signal_free_time settings
-in the transmit function.
-
-Unfortunately, this controller does not support "monitor" mode.
-
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/media/platform/Kconfig             |  13 +
- drivers/media/platform/meson/Makefile      |   1 +
- drivers/media/platform/meson/ao-cec-g12a.c | 783 +++++++++++++++++++++
- 3 files changed, 797 insertions(+)
- create mode 100644 drivers/media/platform/meson/ao-cec-g12a.c
-
-diff --git a/drivers/media/platform/Kconfig b/drivers/media/platform/Kconfig
-index 4acbed189644..92ea07ddc609 100644
---- a/drivers/media/platform/Kconfig
-+++ b/drivers/media/platform/Kconfig
-@@ -578,6 +578,19 @@ config VIDEO_MESON_AO_CEC
- 	  generic CEC framework interface.
- 	  CEC bus is present in the HDMI connector and enables communication
- 
-+config VIDEO_MESON_G12A_AO_CEC
-+	tristate "Amlogic Meson G12A AO CEC driver"
-+	depends on ARCH_MESON || COMPILE_TEST
-+	select CEC_CORE
-+	select CEC_NOTIFIER
-+	---help---
-+	  This is a driver for Amlogic Meson G12A SoCs AO CEC interface.
-+	  This driver if for the new AO-CEC module found in G12A SoCs,
-+	  usually named AO_CEC_B in documentation.
-+	  It uses the generic CEC framework interface.
-+	  CEC bus is present in the HDMI connector and enables communication
-+	  between compatible devices.
-+
- config CEC_GPIO
- 	tristate "Generic GPIO-based CEC driver"
- 	depends on PREEMPT || COMPILE_TEST
-diff --git a/drivers/media/platform/meson/Makefile b/drivers/media/platform/meson/Makefile
-index 597beb8f34d1..f611c23c3718 100644
---- a/drivers/media/platform/meson/Makefile
-+++ b/drivers/media/platform/meson/Makefile
-@@ -1 +1,2 @@
- obj-$(CONFIG_VIDEO_MESON_AO_CEC)	+= ao-cec.o
-+obj-$(CONFIG_VIDEO_MESON_G12A_AO_CEC)	+= ao-cec-g12a.o
-diff --git a/drivers/media/platform/meson/ao-cec-g12a.c b/drivers/media/platform/meson/ao-cec-g12a.c
-new file mode 100644
-index 000000000000..8977ae994164
---- /dev/null
-+++ b/drivers/media/platform/meson/ao-cec-g12a.c
-@@ -0,0 +1,783 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Driver for Amlogic Meson AO CEC G12A Controller
-+ *
-+ * Copyright (C) 2017 Amlogic, Inc. All rights reserved
-+ * Copyright (C) 2019 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/device.h>
-+#include <linux/io.h>
-+#include <linux/delay.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/types.h>
-+#include <linux/interrupt.h>
-+#include <linux/reset.h>
-+#include <linux/slab.h>
-+#include <linux/regmap.h>
-+#include <media/cec.h>
-+#include <media/cec-notifier.h>
-+#include <linux/clk-provider.h>
-+
-+/* CEC Registers */
-+
-+#define CECB_CLK_CNTL_REG0		0x00
-+
-+#define CECB_CLK_CNTL_N1		GENMASK(11, 0)
-+#define CECB_CLK_CNTL_N2		GENMASK(23, 12)
-+#define CECB_CLK_CNTL_DUAL_EN		BIT(28)
-+#define CECB_CLK_CNTL_OUTPUT_EN		BIT(30)
-+#define CECB_CLK_CNTL_INPUT_EN		BIT(31)
-+
-+#define CECB_CLK_CNTL_REG1		0x04
-+
-+#define CECB_CLK_CNTL_M1		GENMASK(11, 0)
-+#define CECB_CLK_CNTL_M2		GENMASK(23, 12)
-+#define CECB_CLK_CNTL_BYPASS_EN		BIT(24)
-+
-+/*
-+ * [14:12] Filter_del. For glitch-filtering CEC line, ignore signal
-+ *       change pulse width < filter_del * T(filter_tick) * 3.
-+ * [9:8] Filter_tick_sel: Select which periodical pulse for
-+ *       glitch-filtering CEC line signal.
-+ *  - 0=Use T(xtal)*3 = 125ns;
-+ *  - 1=Use once-per-1us pulse;
-+ *  - 2=Use once-per-10us pulse;
-+ *  - 3=Use once-per-100us pulse.
-+ * [3]   Sysclk_en. 0=Disable system clock; 1=Enable system clock.
-+ * [2:1] cntl_clk
-+ *  - 0 = Disable clk (Power-off mode)
-+ *  - 1 = Enable gated clock (Normal mode)
-+ *  - 2 = Enable free-run clk (Debug mode)
-+ * [0] SW_RESET 1=Apply reset; 0=No reset.
-+ */
-+#define CECB_GEN_CNTL_REG		0x08
-+
-+#define CECB_GEN_CNTL_RESET		BIT(0)
-+#define CECB_GEN_CNTL_CLK_DISABLE	0
-+#define CECB_GEN_CNTL_CLK_ENABLE	1
-+#define CECB_GEN_CNTL_CLK_ENABLE_DBG	2
-+#define CECB_GEN_CNTL_CLK_CTRL_MASK	GENMASK(2, 1)
-+#define CECB_GEN_CNTL_SYS_CLK_EN	BIT(3)
-+#define CECB_GEN_CNTL_FILTER_TICK_125NS	0
-+#define CECB_GEN_CNTL_FILTER_TICK_1US	1
-+#define CECB_GEN_CNTL_FILTER_TICK_10US	2
-+#define CECB_GEN_CNTL_FILTER_TICK_100US	3
-+#define CECB_GEN_CNTL_FILTER_TICK_SEL	GENMASK(9, 8)
-+#define CECB_GEN_CNTL_FILTER_DEL	GENMASK(14, 12)
-+
-+/*
-+ * [7:0] cec_reg_addr
-+ * [15:8] cec_reg_wrdata
-+ * [16] cec_reg_wr
-+ *  - 0 = Read
-+ *  - 1 = Write
-+ * [31:24] cec_reg_rddata
-+ */
-+#define CECB_RW_REG			0x0c
-+
-+#define CECB_RW_ADDR			GENMASK(7, 0)
-+#define CECB_RW_WR_DATA			GENMASK(15, 8)
-+#define CECB_RW_WRITE_EN		BIT(16)
-+#define CECB_RW_BUS_BUSY		BIT(23)
-+#define CECB_RW_RD_DATA			GENMASK(31, 24)
-+
-+/*
-+ * [0] DONE Interrupt
-+ * [1] End Of Message Interrupt
-+ * [2] Not Acknowlegde Interrupt
-+ * [3] Arbitration Loss Interrupt
-+ * [4] Initiator Error Interrupt
-+ * [5] Follower Error Interrupt
-+ * [6] Wake-Up Interrupt
-+ */
-+#define CECB_INTR_MASKN_REG		0x10
-+#define CECB_INTR_CLR_REG		0x14
-+#define CECB_INTR_STAT_REG		0x18
-+
-+#define CECB_INTR_DONE			BIT(0)
-+#define CECB_INTR_EOM			BIT(1)
-+#define CECB_INTR_NACK			BIT(2)
-+#define CECB_INTR_ARB_LOSS		BIT(3)
-+#define CECB_INTR_INITIATOR_ERR		BIT(4)
-+#define CECB_INTR_FOLLOWER_ERR		BIT(5)
-+#define CECB_INTR_WAKE_UP		BIT(6)
-+
-+/* CEC Commands */
-+
-+#define CECB_CTRL		0x00
-+
-+#define CECB_CTRL_SEND		BIT(0)
-+#define CECB_CTRL_TYPE		GENMASK(2, 1)
-+#define CECB_CTRL_TYPE_RETRY	0
-+#define CECB_CTRL_TYPE_NEW	1
-+#define CECB_CTRL_TYPE_NEXT	2
-+
-+#define CECB_CTRL2		0x01
-+#define CECB_INTR_MASK		0x02
-+#define CECB_LADD_LOW		0x05
-+#define CECB_LADD_HIGH		0x06
-+#define CECB_TX_CNT		0x07
-+#define CECB_RX_CNT		0x08
-+#define CECB_STAT0		0x09
-+#define CECB_TX_DATA00		0x10
-+#define CECB_TX_DATA01		0x11
-+#define CECB_TX_DATA02		0x12
-+#define CECB_TX_DATA03		0x13
-+#define CECB_TX_DATA04		0x14
-+#define CECB_TX_DATA05		0x15
-+#define CECB_TX_DATA06		0x16
-+#define CECB_TX_DATA07		0x17
-+#define CECB_TX_DATA08		0x18
-+#define CECB_TX_DATA09		0x19
-+#define CECB_TX_DATA10		0x1A
-+#define CECB_TX_DATA11		0x1B
-+#define CECB_TX_DATA12		0x1C
-+#define CECB_TX_DATA13		0x1D
-+#define CECB_TX_DATA14		0x1E
-+#define CECB_TX_DATA15		0x1F
-+#define CECB_RX_DATA00		0x20
-+#define CECB_RX_DATA01		0x21
-+#define CECB_RX_DATA02		0x22
-+#define CECB_RX_DATA03		0x23
-+#define CECB_RX_DATA04		0x24
-+#define CECB_RX_DATA05		0x25
-+#define CECB_RX_DATA06		0x26
-+#define CECB_RX_DATA07		0x27
-+#define CECB_RX_DATA08		0x28
-+#define CECB_RX_DATA09		0x29
-+#define CECB_RX_DATA10		0x2A
-+#define CECB_RX_DATA11		0x2B
-+#define CECB_RX_DATA12		0x2C
-+#define CECB_RX_DATA13		0x2D
-+#define CECB_RX_DATA14		0x2E
-+#define CECB_RX_DATA15		0x2F
-+#define CECB_LOCK_BUF		0x30
-+
-+#define CECB_LOCK_BUF_EN	BIT(0)
-+
-+#define CECB_WAKEUPCTRL		0x31
-+
-+struct meson_ao_cec_g12a_device {
-+	struct platform_device		*pdev;
-+	struct regmap			*regmap;
-+	struct regmap			*regmap_cec;
-+	spinlock_t			cec_reg_lock;
-+	struct cec_notifier		*notify;
-+	struct cec_adapter		*adap;
-+	struct cec_msg			rx_msg;
-+	struct clk			*oscin;
-+	struct clk			*core;
-+};
-+
-+static const struct regmap_config meson_ao_cec_g12a_regmap_conf = {
-+	.reg_bits = 8,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+	.max_register = CECB_INTR_STAT_REG,
-+};
-+
-+/*
-+ * The AO-CECB embeds a dual/divider to generate a more precise
-+ * 32,768KHz clock for CEC core clock.
-+ *                      ______   ______
-+ *                     |      | |      |
-+ *         ______      | Div1 |-| Cnt1 |       ______
-+ *        |      |    /|______| |______|\     |      |
-+ * Xtal-->| Gate |---|  ______   ______  X-X--| Gate |-->
-+ *        |______| |  \|      | |      |/  |  |______|
-+ *                 |   | Div2 |-| Cnt2 |   |
-+ *                 |   |______| |______|   |
-+ *                 |_______________________|
-+ *
-+ * The dividing can be switched to single or dual, with a counter
-+ * for each divider to set when the switching is done.
-+ * The entire dividing mechanism can be also bypassed.
-+ */
-+
-+struct meson_ao_cec_g12a_dualdiv_clk {
-+	struct clk_hw hw;
-+	struct regmap *regmap;
-+};
-+
-+#define hw_to_meson_ao_cec_g12a_dualdiv_clk(_hw)			\
-+	container_of(_hw, struct meson_ao_cec_g12a_dualdiv_clk, hw)	\
-+
-+static unsigned long
-+meson_ao_cec_g12a_dualdiv_clk_recalc_rate(struct clk_hw *hw,
-+					  unsigned long parent_rate)
-+{
-+	struct meson_ao_cec_g12a_dualdiv_clk *dualdiv_clk =
-+		hw_to_meson_ao_cec_g12a_dualdiv_clk(hw);
-+	unsigned long n1;
-+	u32 reg0, reg1;
-+
-+	regmap_read(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0, &reg0);
-+	regmap_read(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0, &reg1);
-+
-+	if (reg1 & CECB_CLK_CNTL_BYPASS_EN)
-+		return parent_rate;
-+
-+	if (reg0 & CECB_CLK_CNTL_DUAL_EN) {
-+		unsigned long n2, m1, m2, f1, f2, p1, p2;
-+
-+		n1 = FIELD_GET(CECB_CLK_CNTL_N1, reg0) + 1;
-+		n2 = FIELD_GET(CECB_CLK_CNTL_N2, reg0) + 1;
-+
-+		m1 = FIELD_GET(CECB_CLK_CNTL_M1, reg1) + 1;
-+		m2 = FIELD_GET(CECB_CLK_CNTL_M1, reg1) + 1;
-+
-+		f1 = DIV_ROUND_CLOSEST(parent_rate, n1);
-+		f2 = DIV_ROUND_CLOSEST(parent_rate, n2);
-+
-+		p1 = DIV_ROUND_CLOSEST(100000000 * m1, f1 * (m1 + m2));
-+		p2 = DIV_ROUND_CLOSEST(100000000 * m2, f2 * (m1 + m2));
-+
-+		return DIV_ROUND_UP(100000000, p1 + p2);
-+	}
-+
-+	n1 = FIELD_GET(CECB_CLK_CNTL_N1, reg0) + 1;
-+
-+	return DIV_ROUND_CLOSEST(parent_rate, n1);
-+}
-+
-+static int meson_ao_cec_g12a_dualdiv_clk_enable(struct clk_hw *hw)
-+{
-+	struct meson_ao_cec_g12a_dualdiv_clk *dualdiv_clk =
-+		hw_to_meson_ao_cec_g12a_dualdiv_clk(hw);
-+
-+
-+	/* Disable Input & Output */
-+	regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0,
-+			   CECB_CLK_CNTL_INPUT_EN | CECB_CLK_CNTL_OUTPUT_EN,
-+			   0);
-+
-+	/* Set N1 & N2 */
-+	regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0,
-+			   CECB_CLK_CNTL_N1,
-+			   FIELD_PREP(CECB_CLK_CNTL_N1, 733 - 1));
-+
-+	regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0,
-+			   CECB_CLK_CNTL_N2,
-+			   FIELD_PREP(CECB_CLK_CNTL_N2, 732 - 1));
-+
-+	/* Set M1 & M2 */
-+	regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG1,
-+			   CECB_CLK_CNTL_M1,
-+			   FIELD_PREP(CECB_CLK_CNTL_M1, 8 - 1));
-+
-+	regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG1,
-+			   CECB_CLK_CNTL_M2,
-+			   FIELD_PREP(CECB_CLK_CNTL_M2, 11 - 1));
-+
-+	/* Enable Dual divisor */
-+	regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0,
-+			   CECB_CLK_CNTL_DUAL_EN, CECB_CLK_CNTL_DUAL_EN);
-+
-+	/* Disable divisor bypass */
-+	regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG1,
-+			   CECB_CLK_CNTL_BYPASS_EN, 0);
-+
-+	/* Enable Input & Output */
-+	regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0,
-+			   CECB_CLK_CNTL_INPUT_EN | CECB_CLK_CNTL_OUTPUT_EN,
-+			   CECB_CLK_CNTL_INPUT_EN | CECB_CLK_CNTL_OUTPUT_EN);
-+
-+	return 0;
-+}
-+
-+static void meson_ao_cec_g12a_dualdiv_clk_disable(struct clk_hw *hw)
-+{
-+	struct meson_ao_cec_g12a_dualdiv_clk *dualdiv_clk =
-+		hw_to_meson_ao_cec_g12a_dualdiv_clk(hw);
-+
-+	regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0,
-+			   CECB_CLK_CNTL_INPUT_EN | CECB_CLK_CNTL_OUTPUT_EN,
-+			   0);
-+}
-+
-+static int meson_ao_cec_g12a_dualdiv_clk_is_enabled(struct clk_hw *hw)
-+{
-+	struct meson_ao_cec_g12a_dualdiv_clk *dualdiv_clk =
-+		hw_to_meson_ao_cec_g12a_dualdiv_clk(hw);
-+	int val;
-+
-+	regmap_read(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0, &val);
-+
-+	return !!(val & (CECB_CLK_CNTL_INPUT_EN | CECB_CLK_CNTL_OUTPUT_EN));
-+}
-+
-+static const struct clk_ops meson_ao_cec_g12a_dualdiv_clk_ops = {
-+	.recalc_rate	= meson_ao_cec_g12a_dualdiv_clk_recalc_rate,
-+	.is_enabled	= meson_ao_cec_g12a_dualdiv_clk_is_enabled,
-+	.enable		= meson_ao_cec_g12a_dualdiv_clk_enable,
-+	.disable	= meson_ao_cec_g12a_dualdiv_clk_disable,
-+};
-+
-+static int meson_ao_cec_g12a_setup_clk(struct meson_ao_cec_g12a_device *ao_cec)
-+{
-+	struct meson_ao_cec_g12a_dualdiv_clk *dualdiv_clk;
-+	struct device *dev = &ao_cec->pdev->dev;
-+	struct clk_init_data init;
-+	const char *parent_name;
-+	struct clk *clk;
-+	char *name;
-+
-+	dualdiv_clk = devm_kzalloc(dev, sizeof(*dualdiv_clk), GFP_KERNEL);
-+	if (!dualdiv_clk)
-+		return -ENOMEM;
-+
-+	name = kasprintf(GFP_KERNEL, "%s#dualdiv_clk", dev_name(dev));
-+	if (!name)
-+		return -ENOMEM;
-+
-+	parent_name = __clk_get_name(ao_cec->oscin);
-+
-+	init.name = name;
-+	init.ops = &meson_ao_cec_g12a_dualdiv_clk_ops;
-+	init.flags = 0;
-+	init.parent_names = &parent_name;
-+	init.num_parents = 1;
-+	dualdiv_clk->regmap = ao_cec->regmap;
-+	dualdiv_clk->hw.init = &init;
-+
-+	clk = devm_clk_register(dev, &dualdiv_clk->hw);
-+	kfree(name);
-+	if (IS_ERR(clk)) {
-+		dev_err(dev, "failed to register clock\n");
-+		return PTR_ERR(clk);
-+	}
-+
-+	ao_cec->core = clk;
-+
-+	return 0;
-+}
-+
-+static int meson_ao_cec_g12a_read(void *context, unsigned int addr,
-+				  unsigned int *data)
-+{
-+	struct meson_ao_cec_g12a_device *ao_cec = context;
-+	u32 reg = FIELD_PREP(CECB_RW_ADDR, addr);
-+	unsigned long flags;
-+	int ret = 0;
-+
-+	spin_lock_irqsave(&ao_cec->cec_reg_lock, flags);
-+
-+	ret = regmap_write(ao_cec->regmap, CECB_RW_REG, reg);
-+
-+	ret = regmap_read_poll_timeout(ao_cec->regmap, CECB_RW_REG, reg,
-+				       !(reg & CECB_RW_BUS_BUSY),
-+				       5, 1000);
-+	if (ret)
-+		goto read_out;
-+
-+	ret = regmap_read(ao_cec->regmap, CECB_RW_REG, &reg);
-+
-+	*data = FIELD_GET(CECB_RW_RD_DATA, reg);
-+
-+read_out:
-+	spin_unlock_irqrestore(&ao_cec->cec_reg_lock, flags);
-+
-+	return ret;
-+}
-+
-+static int meson_ao_cec_g12a_write(void *context, unsigned int addr,
-+				   unsigned int data)
-+{
-+	struct meson_ao_cec_g12a_device *ao_cec = context;
-+	unsigned long flags;
-+	u32 reg = FIELD_PREP(CECB_RW_ADDR, addr) |
-+		  FIELD_PREP(CECB_RW_WR_DATA, data) |
-+		  CECB_RW_WRITE_EN;
-+	int ret = 0;
-+
-+	spin_lock_irqsave(&ao_cec->cec_reg_lock, flags);
-+
-+	ret = regmap_write(ao_cec->regmap, CECB_RW_REG, reg);
-+
-+	spin_unlock_irqrestore(&ao_cec->cec_reg_lock, flags);
-+
-+	return ret;
-+}
-+
-+static const struct regmap_config meson_ao_cec_g12a_cec_regmap_conf = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.reg_read = meson_ao_cec_g12a_read,
-+	.reg_write = meson_ao_cec_g12a_write,
-+	.max_register = 0xffff,
-+	.fast_io = true,
-+};
-+
-+static inline void
-+meson_ao_cec_g12a_irq_setup(struct meson_ao_cec_g12a_device *ao_cec,
-+			    bool enable)
-+{
-+	u32 cfg = CECB_INTR_DONE | CECB_INTR_EOM | CECB_INTR_NACK |
-+		  CECB_INTR_ARB_LOSS | CECB_INTR_INITIATOR_ERR |
-+		  CECB_INTR_FOLLOWER_ERR;
-+
-+	regmap_write(ao_cec->regmap, CECB_INTR_MASKN_REG,
-+		     enable ? cfg : 0);
-+}
-+
-+static void meson_ao_cec_g12a_irq_rx(struct meson_ao_cec_g12a_device *ao_cec)
-+{
-+	int i, ret = 0;
-+	u32 val;
-+
-+	ret = regmap_read(ao_cec->regmap_cec, CECB_RX_CNT, &val);
-+
-+	ao_cec->rx_msg.len = val;
-+	if (ao_cec->rx_msg.len > CEC_MAX_MSG_SIZE)
-+		ao_cec->rx_msg.len = CEC_MAX_MSG_SIZE;
-+
-+	for (i = 0; i < ao_cec->rx_msg.len; i++) {
-+		ret |= regmap_read(ao_cec->regmap_cec,
-+				   CECB_RX_DATA00 + i, &val);
-+
-+		ao_cec->rx_msg.msg[i] = val & 0xff;
-+	}
-+
-+	ret |= regmap_write(ao_cec->regmap_cec, CECB_LOCK_BUF, 0);
-+	if (ret)
-+		return;
-+
-+	cec_received_msg(ao_cec->adap, &ao_cec->rx_msg);
-+}
-+
-+static irqreturn_t meson_ao_cec_g12a_irq(int irq, void *data)
-+{
-+	struct meson_ao_cec_g12a_device *ao_cec = data;
-+	u32 stat;
-+
-+	regmap_read(ao_cec->regmap, CECB_INTR_STAT_REG, &stat);
-+	if (stat)
-+		return IRQ_WAKE_THREAD;
-+
-+	return IRQ_NONE;
-+}
-+
-+static irqreturn_t meson_ao_cec_g12a_irq_thread(int irq, void *data)
-+{
-+	struct meson_ao_cec_g12a_device *ao_cec = data;
-+	u32 stat;
-+
-+	regmap_read(ao_cec->regmap, CECB_INTR_STAT_REG, &stat);
-+	regmap_write(ao_cec->regmap, CECB_INTR_CLR_REG, stat);
-+
-+	if (stat & CECB_INTR_DONE)
-+		cec_transmit_attempt_done(ao_cec->adap, CEC_TX_STATUS_OK);
-+
-+	if (stat & CECB_INTR_EOM)
-+		meson_ao_cec_g12a_irq_rx(ao_cec);
-+
-+	if (stat & CECB_INTR_NACK)
-+		cec_transmit_attempt_done(ao_cec->adap, CEC_TX_STATUS_NACK);
-+
-+	if (stat & CECB_INTR_ARB_LOSS) {
-+		regmap_write(ao_cec->regmap_cec, CECB_TX_CNT, 0);
-+		regmap_update_bits(ao_cec->regmap_cec, CECB_CTRL,
-+				   CECB_CTRL_SEND | CECB_CTRL_TYPE, 0);
-+		cec_transmit_attempt_done(ao_cec->adap, CEC_TX_STATUS_ARB_LOST);
-+	}
-+
-+	if (stat & CECB_INTR_INITIATOR_ERR)
-+		cec_transmit_attempt_done(ao_cec->adap, CEC_TX_STATUS_NACK);
-+
-+	if (stat & CECB_INTR_FOLLOWER_ERR) {
-+		regmap_write(ao_cec->regmap_cec, CECB_LOCK_BUF, 0);
-+		cec_transmit_attempt_done(ao_cec->adap, CEC_TX_STATUS_NACK);
-+	}
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int
-+meson_ao_cec_g12a_set_log_addr(struct cec_adapter *adap, u8 logical_addr)
-+{
-+	struct meson_ao_cec_g12a_device *ao_cec = adap->priv;
-+	int ret = 0;
-+
-+	if (logical_addr == CEC_LOG_ADDR_INVALID) {
-+		ret = regmap_write(ao_cec->regmap_cec, CECB_LADD_LOW, 0);
-+		ret = regmap_write(ao_cec->regmap_cec, CECB_LADD_HIGH, 0);
-+	} else if (logical_addr < 8) {
-+		ret = regmap_update_bits(ao_cec->regmap_cec, CECB_LADD_LOW,
-+					 BIT(logical_addr),
-+					 BIT(logical_addr));
-+	} else {
-+		ret = regmap_update_bits(ao_cec->regmap_cec, CECB_LADD_HIGH,
-+					 BIT(logical_addr - 8),
-+					 BIT(logical_addr - 8));
-+	}
-+
-+	/* Always set Broadcast/Unregistered 15 address */
-+	ret |= regmap_update_bits(ao_cec->regmap_cec, CECB_LADD_HIGH,
-+				  BIT(CEC_LOG_ADDR_UNREGISTERED - 8),
-+				  BIT(CEC_LOG_ADDR_UNREGISTERED - 8));
-+
-+	return ret;
-+}
-+
-+static int meson_ao_cec_g12a_transmit(struct cec_adapter *adap, u8 attempts,
-+				 u32 signal_free_time, struct cec_msg *msg)
-+{
-+	struct meson_ao_cec_g12a_device *ao_cec = adap->priv;
-+	unsigned int type;
-+	int ret = 0;
-+	u32 val;
-+	int i;
-+
-+	/* Check if RX is in progress */
-+	ret = regmap_read(ao_cec->regmap_cec, CECB_LOCK_BUF, &val);
-+	if (ret)
-+		return ret;
-+	if (val & CECB_LOCK_BUF_EN)
-+		return -EBUSY;
-+
-+	/* Check if TX Busy */
-+	ret = regmap_read(ao_cec->regmap_cec, CECB_CTRL, &val);
-+	if (ret)
-+		return ret;
-+	if (val & CECB_CTRL_SEND)
-+		return -EBUSY;
-+
-+	switch (signal_free_time) {
-+	case CEC_SIGNAL_FREE_TIME_RETRY:
-+		type = CECB_CTRL_TYPE_RETRY;
-+		break;
-+	case CEC_SIGNAL_FREE_TIME_NEXT_XFER:
-+		type = CECB_CTRL_TYPE_NEXT;
-+		break;
-+	case CEC_SIGNAL_FREE_TIME_NEW_INITIATOR:
-+	default:
-+		type = CECB_CTRL_TYPE_NEW;
-+		break;
-+	}
-+
-+	for (i = 0; i < msg->len; i++)
-+		ret |= regmap_write(ao_cec->regmap_cec, CECB_TX_DATA00 + i,
-+				    msg->msg[i]);
-+
-+	ret |= regmap_write(ao_cec->regmap_cec, CECB_TX_CNT, msg->len);
-+	ret = regmap_update_bits(ao_cec->regmap_cec, CECB_CTRL,
-+				 CECB_CTRL_SEND |
-+				 CECB_CTRL_TYPE,
-+				 CECB_CTRL_SEND |
-+				 FIELD_PREP(CECB_CTRL_TYPE, type));
-+
-+	return ret;
-+}
-+
-+static int meson_ao_cec_g12a_adap_enable(struct cec_adapter *adap, bool enable)
-+{
-+	struct meson_ao_cec_g12a_device *ao_cec = adap->priv;
-+
-+	meson_ao_cec_g12a_irq_setup(ao_cec, false);
-+
-+	regmap_update_bits(ao_cec->regmap, CECB_GEN_CNTL_REG,
-+			   CECB_GEN_CNTL_RESET, CECB_GEN_CNTL_RESET);
-+
-+	if (!enable)
-+		return 0;
-+
-+	/* Setup Filter */
-+	regmap_update_bits(ao_cec->regmap, CECB_GEN_CNTL_REG,
-+			   CECB_GEN_CNTL_FILTER_TICK_SEL |
-+			   CECB_GEN_CNTL_FILTER_DEL,
-+			   FIELD_PREP(CECB_GEN_CNTL_FILTER_TICK_SEL,
-+				      CECB_GEN_CNTL_FILTER_TICK_1US) |
-+			   FIELD_PREP(CECB_GEN_CNTL_FILTER_DEL, 7));
-+
-+	/* Enable System Clock */
-+	regmap_update_bits(ao_cec->regmap, CECB_GEN_CNTL_REG,
-+			   CECB_GEN_CNTL_SYS_CLK_EN,
-+			   CECB_GEN_CNTL_SYS_CLK_EN);
-+
-+	/* Enable gated clock (Normal mode). */
-+	regmap_update_bits(ao_cec->regmap, CECB_GEN_CNTL_REG,
-+			   CECB_GEN_CNTL_CLK_CTRL_MASK,
-+			    FIELD_PREP(CECB_GEN_CNTL_CLK_CTRL_MASK,
-+				       CECB_GEN_CNTL_CLK_ENABLE));
-+
-+	/* Release Reset */
-+	regmap_update_bits(ao_cec->regmap, CECB_GEN_CNTL_REG,
-+			   CECB_GEN_CNTL_RESET, 0);
-+
-+	meson_ao_cec_g12a_irq_setup(ao_cec, true);
-+
-+	return 0;
-+}
-+
-+static const struct cec_adap_ops meson_ao_cec_g12a_ops = {
-+	.adap_enable = meson_ao_cec_g12a_adap_enable,
-+	.adap_log_addr = meson_ao_cec_g12a_set_log_addr,
-+	.adap_transmit = meson_ao_cec_g12a_transmit,
-+};
-+
-+static int meson_ao_cec_g12a_probe(struct platform_device *pdev)
-+{
-+	struct meson_ao_cec_g12a_device *ao_cec;
-+	struct platform_device *hdmi_dev;
-+	struct device_node *np;
-+	struct resource *res;
-+	void __iomem *base;
-+	int ret, irq;
-+
-+	np = of_parse_phandle(pdev->dev.of_node, "hdmi-phandle", 0);
-+	if (!np) {
-+		dev_err(&pdev->dev, "Failed to find hdmi node\n");
-+		return -ENODEV;
-+	}
-+
-+	hdmi_dev = of_find_device_by_node(np);
-+	of_node_put(np);
-+	if (hdmi_dev == NULL)
-+		return -EPROBE_DEFER;
-+
-+	put_device(&hdmi_dev->dev);
-+	ao_cec = devm_kzalloc(&pdev->dev, sizeof(*ao_cec), GFP_KERNEL);
-+	if (!ao_cec)
-+		return -ENOMEM;
-+
-+	spin_lock_init(&ao_cec->cec_reg_lock);
-+	ao_cec->pdev = pdev;
-+
-+	ao_cec->notify = cec_notifier_get(&hdmi_dev->dev);
-+	if (!ao_cec->notify)
-+		return -ENOMEM;
-+
-+	ao_cec->adap = cec_allocate_adapter(&meson_ao_cec_g12a_ops, ao_cec,
-+					    "meson_g12a_ao_cec",
-+					    CEC_CAP_DEFAULTS,
-+					    CEC_MAX_LOG_ADDRS);
-+	if (IS_ERR(ao_cec->adap)) {
-+		ret = PTR_ERR(ao_cec->adap);
-+		goto out_probe_notify;
-+	}
-+
-+	ao_cec->adap->owner = THIS_MODULE;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	base = devm_ioremap_resource(&pdev->dev, res);
-+	if (IS_ERR(base)) {
-+		ret = PTR_ERR(base);
-+		goto out_probe_adapter;
-+	}
-+
-+	ao_cec->regmap = devm_regmap_init_mmio(&pdev->dev, base,
-+					       &meson_ao_cec_g12a_regmap_conf);
-+	if (IS_ERR(ao_cec->regmap)) {
-+		ret = PTR_ERR(ao_cec->regmap);
-+		goto out_probe_adapter;
-+	}
-+
-+	ao_cec->regmap_cec = devm_regmap_init(&pdev->dev, NULL, ao_cec,
-+					   &meson_ao_cec_g12a_cec_regmap_conf);
-+	if (IS_ERR(ao_cec->regmap_cec)) {
-+		ret = PTR_ERR(ao_cec->regmap_cec);
-+		goto out_probe_adapter;
-+	}
-+
-+	irq = platform_get_irq(pdev, 0);
-+	ret = devm_request_threaded_irq(&pdev->dev, irq,
-+					meson_ao_cec_g12a_irq,
-+					meson_ao_cec_g12a_irq_thread,
-+					0, NULL, ao_cec);
-+	if (ret) {
-+		dev_err(&pdev->dev, "irq request failed\n");
-+		goto out_probe_adapter;
-+	}
-+
-+	ao_cec->oscin = devm_clk_get(&pdev->dev, "oscin");
-+	if (IS_ERR(ao_cec->oscin)) {
-+		dev_err(&pdev->dev, "oscin clock request failed\n");
-+		ret = PTR_ERR(ao_cec->oscin);
-+		goto out_probe_adapter;
-+	}
-+
-+	ret = meson_ao_cec_g12a_setup_clk(ao_cec);
-+	if (ret)
-+		goto out_probe_clk;
-+
-+	ret = clk_prepare_enable(ao_cec->core);
-+	if (ret) {
-+		dev_err(&pdev->dev, "core clock enable failed\n");
-+		goto out_probe_clk;
-+	}
-+
-+	device_reset_optional(&pdev->dev);
-+
-+	platform_set_drvdata(pdev, ao_cec);
-+
-+	ret = cec_register_adapter(ao_cec->adap, &pdev->dev);
-+	if (ret < 0) {
-+		cec_notifier_put(ao_cec->notify);
-+		goto out_probe_core_clk;
-+	}
-+
-+	/* Setup Hardware */
-+	regmap_write(ao_cec->regmap, CECB_GEN_CNTL_REG, CECB_GEN_CNTL_RESET);
-+
-+	cec_register_cec_notifier(ao_cec->adap, ao_cec->notify);
-+
-+	return 0;
-+
-+out_probe_core_clk:
-+	clk_disable_unprepare(ao_cec->core);
-+
-+out_probe_clk:
-+	clk_disable_unprepare(ao_cec->oscin);
-+
-+out_probe_adapter:
-+	cec_delete_adapter(ao_cec->adap);
-+
-+out_probe_notify:
-+	cec_notifier_put(ao_cec->notify);
-+
-+	dev_err(&pdev->dev, "CEC controller registration failed\n");
-+
-+	return ret;
-+}
-+
-+static int meson_ao_cec_g12a_remove(struct platform_device *pdev)
-+{
-+	struct meson_ao_cec_g12a_device *ao_cec = platform_get_drvdata(pdev);
-+
-+	clk_disable_unprepare(ao_cec->oscin);
-+
-+	cec_unregister_adapter(ao_cec->adap);
-+
-+	cec_notifier_put(ao_cec->notify);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id meson_ao_cec_g12a_of_match[] = {
-+	{ .compatible = "amlogic,meson-g12a-ao-cec-b", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, meson_ao_cec_g12a_of_match);
-+
-+static struct platform_driver meson_ao_cec_g12a_driver = {
-+	.probe   = meson_ao_cec_g12a_probe,
-+	.remove  = meson_ao_cec_g12a_remove,
-+	.driver  = {
-+		.name = "meson-ao-cec-g12a",
-+		.of_match_table = of_match_ptr(meson_ao_cec_g12a_of_match),
-+	},
-+};
-+
-+module_platform_driver(meson_ao_cec_g12a_driver);
-+
-+MODULE_DESCRIPTION("Meson AO CEC G12A Controller driver");
-+MODULE_AUTHOR("Neil Armstrong <narmstrong@baylibre.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.21.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGVsbG8gVXdlLAoKT24gTW9uLCBNYXIgMjUsIDIwMTkgYXQgOTo0MSBBTSBVd2UgS2xlaW5lLUvD
+tm5pZwo8dS5rbGVpbmUta29lbmlnQHBlbmd1dHJvbml4LmRlPiB3cm90ZToKPgo+IEhlbGxvIE1h
+cnRpbiwKPgo+IE9uIFN1biwgTWFyIDI0LCAyMDE5IGF0IDExOjAyOjE2UE0gKzAxMDAsIE1hcnRp
+biBCbHVtZW5zdGluZ2wgd3JvdGU6Cj4gPiBCYWNrIGluIEphbnVhcnkgYSAiQlVHOiBzY2hlZHVs
+aW5nIHdoaWxlIGF0b21pYyIgZXJyb3Igc2hvd2VkIHVwIGR1cmluZwo+ID4gYm9vdCBvbiBteSBN
+ZXNvbjhiIE9kcm9pZC1DMSAod2hpY2ggdXNlcyBhIFBXTSByZWd1bGF0b3IgYXMgQ1BVIHN1cHBs
+eSkuCj4gPiBUaGUgY2FsbCB0cmFjZSBjb21lcyBkb3duIHRvOgo+ID4gICBfX211dGV4X2xvY2sK
+PiA+ICAgY2xrX3ByZXBhcmVfbG9jawo+ID4gICBjbGtfY29yZV9nZXRfcmF0ZQo+ID4gICBtZXNv
+bl9wd21fYXBwbHkKPiA+ICAgLi4KPiA+ICAgZGV2X3BtX29wcF9zZXRfcmF0ZQo+ID4gICAuLgo+
+ID4KPiA+IEplcm9tZSBoYXMgYWxzbyBzZWVuIHRoZSBzYW1lIHByb2JsZW0gYnV0IGZyb20gcHdt
+LWxlZHMgKGluc3RlYWQgb2YgYQo+ID4gcHdtLXJlZ3VsYXRvcikuIEhlIHBvc3RlZCBhIHBhdGNo
+IHdoaWNoIHJlcGxhY2VzIHRoZSBzcGlubG9jayB3aXRoIGEKPiA+IG11dGV4LiBUaGF0IHdvcmtz
+LiBJIGJlbGlldmUgd2UgY2FuIG9wdGltaXplIHRoaXMgYnkgcmVkdWNpbmcgdGhlIHRpbWUKPiA+
+IHdoZXJlIHRoZSBsb2NrIGlzIGhlbGQgLSB0aGF0IGFsc28gYWxsb3dzIHRvIGtlZXAgdGhlIHNw
+aW4tbG9jay4KPiA+Cj4gPiBBbmFseXppbmcgdGhpcyBpc3N1ZSBoZWxwZWQgbWUgdW5kZXJzdGFu
+ZCB0aGUgcHdtLW1lc29uIGRyaXZlciBiZXR0ZXIuCj4gPiBNeSBwbGFuIGlzIHRvIHNlbmQgc29t
+ZSBjbGVhbnVwcyAod2l0aCB0aGUgZ29hbCBvZiByZS11c2luZyBtb3JlIG9mIHRoZQo+ID4gZ29v
+ZGllcyBmcm9tIHRoZSBQV00gY29yZSBpbiB0aGUgcHdtLW1lc29uIGRyaXZlcikgYWZ0ZXIgdGhp
+cyBzaW5nbGUgZml4Cj4gPiBpcyBtZXJnZWQgKHRoZXkgY2FuIGJlIGZvdW5kIGhlcmU6IFsxXSku
+Cj4KPiBJIGRpZG4ndCBsb29rIG92ZXIgdGhlc2UgaW4gZGV0YWlsLCBidXQgSSBzZWUgYW4gaXNz
+dWUgdGhhdCBhY2NvcmRpbmcKPiB0byB0aGUgc2hvcnRsb2dzIGlzbid0IGFkZHJlc3NlZDogSW4g
+dGhlIC5hcHBseSBjYWxsYmFjayB0aGVyZSBpcwo+IChzaW1wbGlmaWVkKToKPgo+ICAgICAgICAg
+aWYgKCFzdGF0ZS0+ZW5hYmxlZCkgewo+ICAgICAgICAgICAgICAgICBtZXNvbl9wd21fZGlzYWJs
+ZShtZXNvbiwgcHdtLT5od3B3bSk7Cj4gICAgICAgICAgICAgICAgIHJldHVybjsKPiAgICAgICAg
+IH0KPgo+IFRoaXMgcmVzdWx0cyBpbiB0aGUgd3Jvbmcgb3V0cHV0IGFmdGVyOgo+Cj4gICAgICAg
+ICBwd21fYXBwbHlfc3RhdGUocHdtLCB7IC5lbmFibGVkID0gdHJ1ZSwgLnBvbGFyaXR5ID0gUFdN
+X1BPTEFSSVRZX05PUk1BTCwgLi4ufSk7Cj4gICAgICAgICBwd21fYXBwbHlfc3RhdGUocHdtLCB7
+IC5lbmFibGVkID0gZmFsc2UsIC5wb2xhcml0eSA9IFBXTV9QT0xBUklUWV9JTlZFUlRFRCwgLi4u
+fSk7Cj4KPiBiZWNhdXNlIHRoZSBwb2xhcml0eSBpc24ndCBjaGVja2VkLgpsZXQgbWUgcmVwaHJh
+c2UgdGhpcyB0byBtYWtlIHN1cmUgSSB1bmRlcnN0YW5kIHRoaXMgY29ycmVjdGx5OgotIGFwcGx5
+aW5nIGEgUFdNIHN0YXRlIHdpdGggLmVuYWJsZWQgPSB0cnVlIGFuZCBQV01fUE9MQVJJVFlfTk9S
+TUFMCndpbGwgZW5hYmxlIHRoZSBQV00gb3V0cHV0Ci0gYXBwbHlpbmcgYSBQV00gc3RhdGUgd2l0
+aCAuZW5hYmxlZCA9IGZhbHNlIGFuZCBQV01fUE9MQVJJVFlfTk9STUFMCndpbGwgZGlzYWJsZSB0
+aGUgUFdNIG91dHB1dAotIGFwcGx5aW5nIGEgUFdNIHN0YXRlIHdpdGggLmVuYWJsZWQgPSB0cnVl
+IGFuZCBQV01fUE9MQVJJVFlfSU5WRVJURUQKd2lsbCBkaXNhYmxlIHRoZSBQV00gb3V0cHV0Ci0g
+YXBwbHlpbmcgYSBQV00gc3RhdGUgd2l0aCAuZW5hYmxlZCA9IGZhbHNlIGFuZCBQV01fUE9MQVJJ
+VFlfSU5WRVJURUQKd2lsbCBlbmFibGUgdGhlIFBXTSBvdXRwdXQKCmluIG90aGVyIHdvcmRzOiB0
+aGUgcG9sYXJpdHkgZG9lc24ndCBvbmx5IGFwcGx5IHRvIHBlcmlvZCBhbmQKZHV0eV9jeWNsZSBi
+dXQgYWxzbyB0byB0aGUgZW5hYmxlZCBzdGF0ZS4KCj4gSWYgeW91IHdhbnQgdG8gaW1wbGVtZW50
+IGZ1cnRoZXIgY2xlYW51cHMsIG15IHF1ZXN0aW9ucyBhbmQgcHJvcG9zaXRpb25zCj4gYXJlOgo+
+Cj4gIC0gSXMgdGhlcmUgYSBwdWJsaWNseSBhdmFpbGFibGUgbWFudWFsIGZvciB0aGlzIGhhcmR3
+YXJlPyBJZiB5ZXMsIHlvdQo+ICAgIGNhbiBhZGQgYSBsaW5rIHRvIGl0IGluIHRoZSBoZWFkZXIg
+b2YgdGhlIGRyaXZlci4KeWVzLCBpdCdzIGRvY3VtZW50ZWQgaW4gdGhlIHB1YmxpYyBTOTEyIGRh
+dGFzaGVldCBbMF0gcGFnZSA1NDIgYW5kIGZvbGxvd2luZwpJJ2xsIGFkZCBhIHBhdGNoIHdoaWNo
+IGFkZHMgdGhlIGxpbmsgdG8gdGhlIGRyaXZlcgoKPiAgLSBXaHkgZG8geW91IGhhbmRsZSByZXBh
+cmVudGluZyBvZiB0aGUgUFdNJ3MgY2xrIGluIC5yZXF1ZXN0PyBXb3VsZG4ndAo+ICAgIHRoaXMg
+YmUgbW9yZSBzdWl0YWJsZSBpbiAuYXBwbHk/Ckplcm9tZSdzIGFuc3dlciAobm90IGxvbmcgYWZ0
+ZXIgeW91cnMpIGJhc2ljYWxseSBjb3ZlcnMgdGhpczoKLSB0aGUgYXNzaWduZWQtY2xvY2stcGFy
+ZW50cyBwcm9wZXJ0eSBjb3VsZCBoYXZlIGJlZW4gdXNlZCBidXQgaXQgd2Fzbid0Ci0gdGhlIGRy
+aXZlciBjb3VsZCBhdXRvbWF0aWNhbGx5IHNldCB0aGUgY29ycmVjdCBwYXJlbnQsIGJ1dCB0aGlz
+Cmlzbid0IGltcGxlbWVudGVkCgooSSBhc3N1bWUgdGhpcyB3YXMgZG9uZSB0byBrZWVwIGl0IHNo
+b3J0IGFuZCBzaW1wbGUgdG8gZm9yIHRoZSBmaXJzdAp2ZXJzaW9uIG9mIHRoZSBkcml2ZXIpCgo+
+ICAtIERvZXMgc3RvcHBpbmcgdGhlIFBXTSAoaS5lLiBjbGVhcmluZyBNSVNDX3tBLEJ9X0VOIGlu
+IHRoZSBNSVNDX0FCCj4gICAgcmVnaXN0ZXIpIGZyZWV6ZSB0aGUgb3V0cHV0LCBvciBpcyB0aGUg
+Y3VycmVudGx5IHJ1bm5pbmcgcGVyaW9kCj4gICAgY29tcGxldGVkIGZpcnN0PyAoVGhlIGxhdHRl
+ciBpcyB0aGUgcmlnaHQgYmVoYXZpb3VyLikKSSBkb24ndCBrbm93LCBJIHdvdWxkIGhhdmUgdG8g
+bWVhc3VyZSB0aGlzIHdpdGggYSBsb2dpYyBhbmFseXplci4KY2FuIHlvdSBwbGVhc2UgZXhwbGFp
+biB3aHkgdGhpcyBpcyBpbXBvcnRhbnQ/Cgo+ICAtIFBsZWFzZSBwb2ludCBvdXQgaW4gdGhlIGhl
+YWRlciB0aGF0IGZvciBjaGFuZ2luZyBwZXJpb2QvZHV0eQo+ICAgIGN5Y2xlL3BvbGFyaXR5IHRo
+ZSBoYXJkd2FyZSBtdXN0IGJlIHN0b3BwZWQuIChJIHN1Z2dlc3QgdG8gYXBwbHkgdGhlCj4gICAg
+c3R5bGUgdXNlZCBpbiBodHRwczovL3d3dy5zcGluaWNzLm5ldC9saXN0cy9saW51eC1wd20vbXNn
+MDkyNjIuaHRtbAo+ICAgIGZvciBzb21lIGNvbnNpc3RlbmN5LikKSSdtIG5vdCBzdXJlIGFib3V0
+IHRoaXMuIEFtbG9naWMncyB2ZW5kb3Iga2VybmVsIHVzZXMgYSBtb2RpZmllZAp2ZXJzaW9uIG9m
+IHRoaXMgZHJpdmVyIFsxXSB3aGljaCBoYXMgYW4gZXhwbGljaXQgY29tbWVudCBub3QgdG8KZGlz
+YWJsZSB0aGUgUFdNIG91dHB1dCB3aGVuIGNoYW5naW5nIHRoZSBwZXJpb2QvZHV0eSBjeWNsZS4K
+dGhlIFBXTSBpcyBjb25maWd1cmVkIHdpdGggdHdvIHNlcGFyYXRlIHJlZ2lzdGVycyAoUFdNX01J
+U0NfUkVHX0FCCmNvbnRhaW5zIHRoZSBkaXZpZGVyIGFuZCBQV01fUFdNX0EgY29udGFpbnMgdGhl
+IGhpZ2gvbG93IGNvdW50KS4KdGhlcmUncyBhIHNob3J0IHRpbWVmcmFtZSB3aGVyZSB0aGUgUFdN
+IG91dHB1dCBzaWduYWwgaXMgbmVpdGhlciB0aGUKIm9sZCBzZXR0aW5nIiBub3IgdGhlICJuZXcg
+c2V0dGluZyIgKGJ1dCByYXRoZXIgYSBtaXggb2YgYm90aCkuIHdoYXQKZG8gb3RoZXIgUFdNIGRy
+aXZlcnMgZG8gaW4gdGhpcyBjYXNlIChpZiB0aGlzIGlzIGEgY29tbW9uIHRoaW5nKT8KCj4gQW5v
+dGhlciB0aGluZyBJIGp1c3Qgbm90ZWQ6IFRoZSAuZ2V0X3N0YXRlIGNhbGxiYWNrIG9ubHkgc2V0
+cyAuZW5hYmxlZAo+IGJ1dCBub3RoaW5nIG9mIHRoZSByZW1haW5pbmcgaW5mb3JtYXRpb24gaXMg
+cHJvdmlkZWQuCmFzIGZhciBhcyBJIGNhbiBzZWUgdGhlIFBXTSBjb3JlIHVzZXMgLmdldF9zdGF0
+ZSBvbmx5IGR1cmluZyByZWdpc3RyYXRpb246CnRoaXMgbWVhbnMgd2Ugc2hvdWxkIHJlYWQgKGFu
+ZCBjYWxjdWxhdGUpIC5kdXR5X2N5Y2xlIGFuZCAucGVyaW9kIGZyb20KdGhlIHJlZ2lzdGVyIHZh
+bHVlcy4gcG9sYXJpdHkgYWx3YXlzIGhhcyB0byBiZSAibm9ybWFsIiBzaW5jZSB0aGVyZSdzCm5v
+IGluZm9ybWF0aW9uIGFib3V0IGl0IGluIHRoZSByZWdpc3RlcnMuCgoKUmVnYXJkcwpNYXJ0aW4K
+CgpbMF0gaHR0cHM6Ly9kbC5raGFkYXMuY29tL0hhcmR3YXJlL1ZJTTIvRGF0YXNoZWV0L1M5MTJf
+RGF0YXNoZWV0X1YwLjIyMDE3MDMxNHB1YmxpY3ZlcnNpb24tV2VzaW9uLnBkZgpbMV0gaHR0cHM6
+Ly9naXRodWIuY29tL2hhcmRrZXJuZWwvbGludXgvYmxvYi85YTRhMWY0YjE0ZmU2NmQ3ZWJkNzMz
+MjNiMzlmYmYzYmRhOWUxMzU2L2RyaXZlcnMvYW1sb2dpYy9wd20vcHdtX21lc29uLmMjTDM4MQoK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1s
+b2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6
+Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
