@@ -2,90 +2,87 @@ Return-Path: <SRS0=Y5gA=R4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D59F7C43381
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 09:35:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F2A12C43381
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 09:40:06 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A578820863
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 09:35:55 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B234420863
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 09:40:06 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bFlgHyFP";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="YAUBhxw0"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A578820863
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RLanMrbh";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="awdUeNEU"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B234420863
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rfWRrw9mfJDWU1Ae7i1mJK2c3OiYX3VGT5nvNGU1d0Q=; b=bFlgHyFPVo7UUB
-	jUvbH2tY9hOI4OUL60nvk1jiDaFmLOxPb66L0YoKxsajaRSUbGiwupXmd0D9Ic/vndlPgmlZXnBvV
-	Y3uPuH60Ft198Ef9a6BJ/nlu9ZRVx2A3UhFQaqoZvapdY/K/agc94+nvl6GimMlSjAM+uzp3S1o6n
-	7qZFUyGKaCRW4y4GKj9mvQCZb6GoEehcZ7C3xVPeyClL7T6g3FvoGHV/XzBWsiXDrLPgPJwd2n49M
-	4M/QtRDDhIrD0P4vmte8va8hsAj6WIZMEXidJJDTLdrKTwxu4NPEqoP3MIBmP/5NUW7dZJsKb5HJC
-	XfnmmwEUQUS7tm6ss4jQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=AZXH+b4f/8vyE3O7xR94a5MlQ+I5RIchwLZ422XuDKk=; b=RLanMrbhNIgJDF
+	LpkYc46I0G2DmAp+pXb1wLupqIfgO5vc8aOO4XifzfT4c1pq2GNLj5lvi3PDbceF4hqBh+jyEWS+e
+	QqrQo5cnCX8tdTFA/X0vpwM4V5d83YZbvx/iFKYnOv2axxwmwR/dlXjCiAKIwajKRil2qY1JcSLYS
+	c1DZHZ6+wlRH5n6qmjuXQFAGbVQMMWvWHe2EYTI/8XbF95mW2yXXPW4kD3NSfjpk3XwFAOyhWEQcv
+	wI2d5c4Ot1zIkdbPMxmdKN4AMmv7MwAT3SgDqNLx/OZB/9bg7V2bAbusCt/EJERZ82NVPR3ykJhKL
+	+VJDKv0eE9feexpWtgSw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h8M0u-00022d-I2; Mon, 25 Mar 2019 09:35:28 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1h8M5H-0002yB-Ko; Mon, 25 Mar 2019 09:39:59 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h8M0q-00020z-Q8
- for linux-amlogic@lists.infradead.org; Mon, 25 Mar 2019 09:35:27 +0000
-Received: by mail-wr1-x442.google.com with SMTP id t5so9199643wri.7
- for <linux-amlogic@lists.infradead.org>; Mon, 25 Mar 2019 02:35:17 -0700 (PDT)
+ id 1h8M56-0002nw-W5
+ for linux-amlogic@lists.infradead.org; Mon, 25 Mar 2019 09:39:51 +0000
+Received: by mail-wr1-x441.google.com with SMTP id g3so5759724wrx.9
+ for <linux-amlogic@lists.infradead.org>; Mon, 25 Mar 2019 02:39:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:cc:date:in-reply-to:references
- :user-agent:mime-version:content-transfer-encoding;
- bh=Rle8vsvUTQ0auhIf9QOOwZv4gCpStzfFAzM2K4rd5bI=;
- b=YAUBhxw07k758cPR309I54mxOBzO4+i34SGMAJRJF0dJ6SBAJIRbN3OuPKtbfURt7j
- 6vtJ3zINHrUu+3z7r1Q8Q9svGY5oTHOp348UJC7MP4FOnGyF+hKkPl/GliTKjL3rl5/K
- iJtsW9fHYUQh9SbuE65iW6QsB8aHgr40tai5IGUHjG77LyYsvizvwy+5kWr9dcUQJQUm
- f4qDbuxVvDsxkWsHu/BVx+u1Z3Niob3BAIA2qx2gnRMygGsCeFK0N1f58/4uxTJlcWcD
- /9kpEjeWrZgfTjWHYx5Ksq7ciMl3ge6CP5Hz05dSLnbEwr1YRTOUftm45VMFJignrcfb
- ndFg==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=ORCiJAmS97AoCQGrgPOozB0oRxyyWrYFL8cx5AfBk5A=;
+ b=awdUeNEU8cryfhz+GdmkPQ2Q1cT0croQcU1fcAKn/PAbwpr7kbhEtxWRgWjbEYd32K
+ MHEohU8OPpf0Gf9dTHJWwLgy4bXeTeVAo3np2khc6cdjBtHKYRwyXlfkBxnxNp8tFo9A
+ ZsLlU0debRHpmfbUx4A/i6rTnQhYCAfTteExnPO5R3YY6XdSDZ7oDvqIxpQpRRZwj6CX
+ m3vi+j6AIkxMDqKGvq4uCPma3BXL3S9L0jTnhzGPzO6qW0GTz4kt0WMHsVe4S3RxosCc
+ 7sDPppSIlxeq7hdeuGsTNyMmIBYLjUWMMU5rof2jn5UVE34hUKBe6AYRBMP69YEAmMfp
+ WZqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=Rle8vsvUTQ0auhIf9QOOwZv4gCpStzfFAzM2K4rd5bI=;
- b=g+GGarwDGCjHZPDU3hIkO3U971xTEmWEOhx4qPvGiMmVGdwLxS4hCxWvEUH6Fv8uom
- dmz7h5YvEIOWIctC1ZM1pv3OVxpPe1qQJAf4yFLMB6cv55ZSgqPm6IF1b4loVi84BDTE
- cnQ3ab19TDw241GrcBAB4EP3nWf0ONLFTVrtpvJolvprmqLzsdql/J6ZGJuDCsEH6MFE
- zpZlIhToaETUC+lhpqSAwB2VITnUE0JfV8YPCeXnZ9f/t/yc6VhHI1athplGqkn5TN8b
- 74PCcpqwpxxZStJh/knMpSVaUKsfYIeKRGmzmRPypSKy/LFz2hs0XhQrydHhFgxgauK6
- isDA==
-X-Gm-Message-State: APjAAAXhc97wiuNAHXnAIN2045rDmHGJULN/SksqkvWLqdUStKiu3FoY
- LqQK3sMS/TyXtL+qwidn9f8PlA==
-X-Google-Smtp-Source: APXvYqw07YGN7PdMNPwcdpQiIOjKaQolrQkpUtYAXCiqrVWvj9vrMc0Bo9HVgjF7iILK4VArYgeLoA==
-X-Received: by 2002:adf:f286:: with SMTP id k6mr6509521wro.137.1553506515639; 
- Mon, 25 Mar 2019 02:35:15 -0700 (PDT)
-Received: from boomer.baylibre.com ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
- by smtp.gmail.com with ESMTPSA id
- 3sm20408847wrk.68.2019.03.25.02.35.13
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Mon, 25 Mar 2019 02:35:14 -0700 (PDT)
-Message-ID: <47e944da1c3b0a11cf46fc5ad5678ba961b9f9d3.camel@baylibre.com>
-Subject: Re: [PATCH 0/1] pwm: meson: fix scheduling while atomic issue
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- thierry.reding@gmail.com, narmstrong@baylibre.com,
- linux-pwm@vger.kernel.org,  linux-amlogic@lists.infradead.org
-Date: Mon, 25 Mar 2019 10:35:12 +0100
-In-Reply-To: <20190324220217.15813-1-martin.blumenstingl@googlemail.com>
-References: <20190324220217.15813-1-martin.blumenstingl@googlemail.com>
-User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=ORCiJAmS97AoCQGrgPOozB0oRxyyWrYFL8cx5AfBk5A=;
+ b=TZPzST8ZbML8fJsvbmY+WVEBYCCyA3bTwnfdKY3rG1SRI7RuhcY9Wei0Hi7k6HlYwo
+ XxqRNkXg8uxAr9pX+V+4aqrrjKgxYjjnrGgK9BWyzzQkv1Bxotd8TsvT9KRzGlFiqrnT
+ WMOjRzbe628L78WJ+fvRKNjiAOCgTfhaAE4RjTnlWpLV2ALxIjJiPgNOIC9Ye3EcJm1c
+ VgFPK/rE5iHllPtRFLl3mu9hHhSyMvVWTXY7l8oIHdd6ubTa1nhRl3YA/Cs5FFGcHc+i
+ klREpiIFjiDmVpzTvPuPOKMQQWvGbZE4JBe3YrP8pAxNVMlFZ0DjgM1AMHMv3NDDQA57
+ OlaQ==
+X-Gm-Message-State: APjAAAXro9G5Ssg/MbgcX56czra9FZXv0YlOO0AQUVDrfO15Uj/iuxgz
+ GCTr1kLQtP+wA4VxzS5CvBNLnQ==
+X-Google-Smtp-Source: APXvYqyEt5xYr6I9IFgPKSmG+u4cuTfmaAo6fY9JVO2G2fg2EIALEDGPxfzQ+mrH4B46tFn3JLUfOg==
+X-Received: by 2002:a5d:6b0d:: with SMTP id v13mr16335308wrw.284.1553506785670; 
+ Mon, 25 Mar 2019 02:39:45 -0700 (PDT)
+Received: from bender.baylibre.local
+ (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id k14sm13044652wmj.26.2019.03.25.02.39.44
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+ Mon, 25 Mar 2019 02:39:45 -0700 (PDT)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: gregkh@linuxfoundation.org, hminas@synopsys.com, balbi@kernel.org,
+ kishon@ti.com
+Subject: [PATCH v5 0/8] arm64: meson: Add support for USB on Amlogic G12A
+Date: Mon, 25 Mar 2019 10:39:35 +0100
+Message-Id: <20190325093943.29138-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190325_023524_845845_97316BD8 
-X-CRM114-Status: GOOD (  18.09  )
+X-CRM114-CacheID: sfid-20190325_023949_045802_BC4E8072 
+X-CRM114-Status: GOOD (  13.68  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,72 +94,116 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, 2019-03-24 at 23:02 +0100, Martin Blumenstingl wrote:
-> Back in January a "BUG: scheduling while atomic" error showed up during
-> boot on my Meson8b Odroid-C1 (which uses a PWM regulator as CPU supply).
-> The call trace comes down to:
->   __mutex_lock
->   clk_prepare_lock
->   clk_core_get_rate
->   meson_pwm_apply
->   ..
->   dev_pm_opp_set_rate
->   ..
-> 
-> Jerome has also seen the same problem but from pwm-leds (instead of a
-> pwm-regulator). He posted a patch which replaces the spinlock with a
-> mutex. That works. I believe we can optimize this by reducing the time
-> where the lock is held - that also allows to keep the spin-lock.
-> 
-> Analyzing this issue helped me understand the pwm-meson driver better.
-> My plan is to send some cleanups (with the goal of re-using more of the
-> goodies from the PWM core in the pwm-meson driver) after this single fix
-> is merged (they can be found here: [1]).
+This patchset adds support for USB on Amlogic G12A SoCs.
 
-Thanks for fixing this Martin.
+This patchset is composed with :
+- bindings of the PHYs
+- bindings of the USB Control Glue
+- PHY Drivers
+- USB Control Glue driver
 
-As for the future enhancement, I'd like to know what you have in mind.
-As I have told you previously, I think the clock bindings of this driver are
-not great.
+Device Tree nodes will be added in a separate patchset.
 
-The global name of the input clocks are hard coded in this driver and it
-sucks. CCF is evolving to rely less on these global names.
+The Amlogic G12A USB Complex is composed of :
+- 2 USB Controllers :
+ * DWC3 for USB2 and USB3 Host functionality
+ * DWC2 for USB2 Peripheral functionality
+- 2 USB2 OTG PHYs, only a single one will be routed to either DWC2 to DWC3
+- 1 USB3 PHY shared with PCIE funcionnality
+- A Glue to control PHY routing, setup and OTG detection
 
-In addition, the 'clock' binding should be used to refer to the clock
-'consumed' by the device, not to define a setting (as done now). 'assigned-
-clock' binding can be used for that.
+The Glue configures the UTMI 8bit interfaces for the USB2 PHYs, including
+routing of the OTG PHY between the DWC3 and DWC2 controllers, and
+setups the on-chip OTG mode selection for this PHY.
 
-This would be a significant change in the binding meaning of this driver,
-which probably calls for a v2.
+This drivers supports the on-probe setup of the OTG mode, and manually
+via the USB Role interface. The IRQ mode change detect is yet to be added
+in a future patchset, mainly due to lack of hardware to validate on.
 
-Last, instead of specifying the parent to be used, I think we should come up
-with some code to let the driver pick the most appropriate parent for the period/duty requested.
+Changes since v4 at [3]:
+- remove remaining phy_put/clk_put() of patch 8
+- handled phy_power_off/on() in suspend/resume
+- Collected review tag on patch 8
 
-> 
-> Dependencies: none
-> 
-> Target version: please queue this for -fixes so it makes it's way into
-> v5.1-rc (so we can get it backported from there, because this issue has
-> existed since the pwm-meson driver was introduced).
-> 
-> 
-> [0] http://lists.infradead.org/pipermail/linux-amlogic/2019-January/009690.html
-> [1] https://github.com/xdarklight/linux/commits/meson-pwm-for-5.2-v0
-> 
-> 
-> Martin Blumenstingl (1):
->   pwm: meson: use the spin-lock only to protect register modifications
-> 
->  drivers/pwm/pwm-meson.c | 21 +++++++++++++--------
->  1 file changed, 13 insertions(+), 8 deletions(-)
-> 
+Changes since v3 at [2]:
+- Documented and replaced magic values in USB2 PHY driver
 
+Changes since v2 at [1]:
+- Collected review tags
+- Removed syscon.h in usb2 phy driver
+- Added comment on the USB3/PCIe switch
+- Renamed dwc3_meson_g12a_usb_init_mode in glue driver
+- Changed indentation in dwc3_meson_g12a_role_set
+- Switched to of_get_compatible_child in glue code
+- Added devm_add_action_or_reset() to disable clock in case of probe failure
+- Checks priv->vbus before enabling regulator
+- Switched phy_init/phy_power_on
+- Removed priv->phys[i] NULL checks in suspend code
+- Removed clk_disable_unprepare/clk_put in remove code
+
+Changes since v1 at [0]:
+ - USB2 PHY Bindings: collected tags and updated commit log
+ - USB3/PCIE PHY Bindings: collected tag and updated reset list
+ - DWC2 Compatible: collected tags
+ - DWC3 Glue Bindings:
+   - removed clock-names and reset-names for single entries
+   - removed ports graph for PHYs and replaced by phys list with phy-names
+   - added dr_mode and optional vbus-supply
+   - fixed example
+ - USB2 PHY Driver: removed USB_SUPPORT and otg.h include
+ - USB3/PCIE PHY Driver: removed USB_SUPPORT, fixed comment and unused reg variable
+ - USB Glue Driver:
+   - Moved debugfs I/F to USB_ROLE_SWITCH framework
+   - Integrated USB Glue Control Registers offset
+   - Removed of graph parsing to use devm_phy_optional_get()
+   - Fixed PHY mode handling and OTG switching
+   - Simplified PHY calls by removing the NULL test
+   - Added optional vbus regulator handling
+
+[1] https://lkml.kernel.org/r/20190212151413.24632-1-narmstrong@baylibre.com
+[2] https://lkml.kernel.org/r/20190304103846.2060-1-narmstrong@baylibre.com
+[3] https://lkml.kernel.org/r/20190318101153.7531-1-narmstrong@baylibre.com
+[4] https://lkml.kernel.org/r/20190318132655.30040-1-narmstrong@baylibre.com
+
+Neil Armstrong (8):
+  dt-bindings: phy: Add Amlogic G12A USB2 PHY Bindings
+  dt-bindings: phy: Add Amlogic G12A USB3+PCIE Combo PHY Bindings
+  dt-bindings: usb: dwc2: Add Amlogic G12A DWC2 Compatible
+  dt-bindings: usb: dwc3: Add Amlogic G12A DWC3 Glue Bindings
+  phy: amlogic: add Amlogic G12A USB2 PHY Driver
+  phy: amlogic: Add Amlogic G12A USB3 + PCIE Combo PHY Driver
+  usb: dwc2: Add Amlogic G12A DWC2 Params
+  usb: dwc3: Add Amlogic G12A DWC3 glue
+
+ .../bindings/phy/meson-g12a-usb2-phy.txt      |  22 +
+ .../bindings/phy/meson-g12a-usb3-pcie-phy.txt |  22 +
+ .../devicetree/bindings/usb/amlogic,dwc3.txt  |  88 +++
+ .../devicetree/bindings/usb/dwc2.txt          |   1 +
+ drivers/phy/amlogic/Kconfig                   |  22 +
+ drivers/phy/amlogic/Makefile                  |   2 +
+ drivers/phy/amlogic/phy-meson-g12a-usb2.c     | 341 ++++++++++
+ .../phy/amlogic/phy-meson-g12a-usb3-pcie.c    | 413 ++++++++++++
+ drivers/usb/dwc2/params.c                     |  12 +
+ drivers/usb/dwc3/Kconfig                      |  10 +
+ drivers/usb/dwc3/Makefile                     |   1 +
+ drivers/usb/dwc3/dwc3-meson-g12a.c            | 604 ++++++++++++++++++
+ 12 files changed, 1538 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/meson-g12a-usb2-phy.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/meson-g12a-usb3-pcie-phy.txt
+ create mode 100644 drivers/phy/amlogic/phy-meson-g12a-usb2.c
+ create mode 100644 drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
+ create mode 100644 drivers/usb/dwc3/dwc3-meson-g12a.c
+
+-- 
+2.21.0
 
 
 _______________________________________________
