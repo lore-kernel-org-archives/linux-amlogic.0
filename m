@@ -2,66 +2,87 @@ Return-Path: <SRS0=Y5gA=R4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 56264C43381
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 10:03:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D35A4C43381
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 10:03:59 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1B78F206DF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 10:03:26 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5CFE220693
+	for <linux-amlogic@archiver.kernel.org>; Mon, 25 Mar 2019 10:03:59 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="aOeoSWUV"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1B78F206DF
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RBweyMbp";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="eICupXCS"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5CFE220693
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=hkD1oy8AomXCQRd0vAk9glMNqHZLtFATv5fEJ3LCiFc=; b=aOeoSWUVum4015PrQTrXMz/aT
-	gtCfChnpj9gE7J0YYcrBjboD8weSm6uneYiWahs3u9N+POSq4x/0LqKdLg5JWjR8VIlqai3TMEPMh
-	H3v5S8eHZUvFht/q4oa/bMu7myIgDSNZHvJ/O3eFtbjO8jR/DDbflEZpb5yCrZZhlr5DqsfU9LXJC
-	YEePfRDOZlaeyMN7rKcdApiXYduk1yiCD+70+M4QYuTwE4R5gJLp0ID2sT9sqngAByq1+lmtID14+
-	bPgvPy+W0G+9t27QxZUf0PCEpixt2tMmXvAhhVO+ZjEYj9t+V4gAOyCb8QjQGlN+uMOJHKSbrwYKn
-	P4mex/Z8A==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=CXtqmwfWvJH5gHDa7dAe4kdxHXMUomgCq+mb6NEf0dc=; b=RBweyMbpIXeAH1
+	rLWi0+v5cCrbbrnfYcH+djbfqUToiIWY9ijJZIx0jmiY0Nan1l7reSp+dGY37x+CgOsKbypKlrWFN
+	amUAJHzFhfrZITFmHmllcSEOIzpd1RY44DE42JbPvZykv1+8GjCECURoRCACPTDUnGFpFO8sV4k7j
+	hls8PBsKgbxxcad38jULrr/j9dXurHPqB/tckxeFyiVR3C8Ba4FrOnvPARLD010A7LnudXb/Q4lP3
+	EOrYxk9p6Co2n8zvxm+0pgJN5XyfiKbh0Xk7Su1hsmB67HTcZTTdPDOHDLx1RbSY1QEE6kK2vYQHQ
+	pIG2hj+Xk+lQ26dLonog==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h8MRo-0007zh-Lm; Mon, 25 Mar 2019 10:03:16 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1h8MSP-0000KZ-EC; Mon, 25 Mar 2019 10:03:53 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h8MRh-0007tj-1V; Mon, 25 Mar 2019 10:03:11 +0000
-Received: from [10.28.18.125] (10.28.18.125) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Mon, 25 Mar
- 2019 18:04:17 +0800
-Subject: Re: 32-bit Amlogic (ARM) SoC: kernel BUG in kfree()
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Matthew Wilcox
- <willy@infradead.org>
-References: <CAFBinCBOX8HyY-UocsVQvsnTr4XWXyE9oU+f2xhO1=JU0i_9ow@mail.gmail.com>
- <20190321214401.GC19508@bombadil.infradead.org>
- <CAFBinCA6oK5UhDAt9kva5qRisxr2gxMF26AMK8vC4b1DN5RXrw@mail.gmail.com>
-From: Liang Yang <liang.yang@amlogic.com>
-Message-ID: <5cad2529-8776-687e-58d0-4fb9e2ec59b1@amlogic.com>
-Date: Mon, 25 Mar 2019 18:04:17 +0800
-User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:60.0) Gecko/20100101
- Thunderbird/60.5.3
+ id 1h8MSG-0000AL-1f
+ for linux-amlogic@lists.infradead.org; Mon, 25 Mar 2019 10:03:45 +0000
+Received: by mail-wr1-x443.google.com with SMTP id o1so9308905wrs.13
+ for <linux-amlogic@lists.infradead.org>; Mon, 25 Mar 2019 03:03:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=BEySt4vCv34IdyGWOMiVdKBVLMjCgxH48wqT3pqewH4=;
+ b=eICupXCSEYozREncd20DXAs/NYwW6m9XSCcupAu446YgCAMIltU37EdmAKBlILklyk
+ Zm0vv8c+dLvy+89g1hS1DXCjwRfrLTXsdDtWVZ7pqvzAfu9tYcN6jqbq6ckww7JWEcGT
+ oDK0ONzwa3pvFWJjT2l7eIc4buYnWWqk63aCp8qh3IBhzmMKM2kOyZ0IAJfZUlWgSyu0
+ FfLeAMEKILTKi4b8gSqCloyyFMw31yZV5G4uIkcz7UwsQl9OBgw7xbP+MQg0oFOFN9ky
+ BmrdRjAaLUCJM5ijRV5sA3gKNZe+EDW2hD03kcMsKTWg4G+mXIDmjxouLKrdPC4t5Xp0
+ nuIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=BEySt4vCv34IdyGWOMiVdKBVLMjCgxH48wqT3pqewH4=;
+ b=NVHr8KjjDLGrte7pmxqqwKA874BmZm3EKDTOQfATlpfw0SsL+LSj+tOEpPaV7qegPK
+ HiB0SCqOJH2QSgfF9wR3ve9jtOx2oPszHlVi37SlPM9tPVU7nHFWC1TFe4GbyszY89Fq
+ WLnYATv/lsDQluoQDaXsDSn/N73ALFrW80I5yeUYVdnCv+hPpMMKAX5RM5cTK6t6xMl3
+ XyBh2jr0qLpU9UAtjlhQeJB1ieDgNU+c4nrDzhZLpxbBxoqn1d4bYKhajn2YMYvTb6Yf
+ P4cX/ZUSm8dY8uvz3yyiGl2VFeZnovqzRIqqGoUj14XhLaQRpUByNfGLxaRTrwBta+I1
+ 6oCg==
+X-Gm-Message-State: APjAAAX/WduVo2jEuuvidYTGQZbTJcuBYMMQVIWtcrbSbfF0qDI8CNI3
+ TAqUgqcCVCsoKTZ2Qi4q/KbfFQ==
+X-Google-Smtp-Source: APXvYqxEwjlaBKKaKcRUvQR9inpAKfsnGGUQe+AippB05cgJ7HhVWMNcaAqvgT2N42V9PI+5r6/i0w==
+X-Received: by 2002:adf:b68d:: with SMTP id j13mr10633095wre.50.1553508222174; 
+ Mon, 25 Mar 2019 03:03:42 -0700 (PDT)
+Received: from bender.baylibre.local
+ (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id g12sm11581215wrw.40.2019.03.25.03.03.41
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+ Mon, 25 Mar 2019 03:03:41 -0700 (PDT)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: khilman@baylibre.com
+Subject: [PATCH v3 0/3] arm64: dts: g12a: Add peripherals
+Date: Mon, 25 Mar 2019 11:03:36 +0100
+Message-Id: <20190325100339.749-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCA6oK5UhDAt9kva5qRisxr2gxMF26AMK8vC4b1DN5RXrw@mail.gmail.com>
-Content-Type: multipart/mixed; boundary="------------65F66B8BEFB8B57F8555B6FE"
-Content-Language: en-US
-X-Originating-IP: [10.28.18.125]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190325_030309_083889_68994C50 
-X-CRM114-Status: GOOD (  21.17  )
+X-CRM114-CacheID: sfid-20190325_030344_119488_EB92EEAA 
+X-CRM114-Status: UNSURE (   7.75  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -73,131 +94,67 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mhocko@suse.com, linux@armlinux.org.uk, linux-kernel@vger.kernel.org,
- rppt@linux.ibm.com, linux-mm@kvack.org, linux-mtd@lists.infradead.org,
- linux-amlogic@lists.infradead.org, akpm@linux-foundation.org,
- linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
---------------65F66B8BEFB8B57F8555B6FE
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Add following peripherals :
+- SAR-ADC
+- USB
+- Mali GPU
 
-Hi Martin,
+Dependencies :
+- ADC
 
-On 2019/3/23 5:07, Martin Blumenstingl wrote:
-> Hi Matthew,
-> 
-> On Thu, Mar 21, 2019 at 10:44 PM Matthew Wilcox <willy@infradead.org> wrote:
->>
->> On Thu, Mar 21, 2019 at 09:17:34PM +0100, Martin Blumenstingl wrote:
->>> Hello,
->>>
->>> I am experiencing the following crash:
->>>    ------------[ cut here ]------------
->>>    kernel BUG at mm/slub.c:3950!
->>
->>          if (unlikely(!PageSlab(page))) {
->>                  BUG_ON(!PageCompound(page));
->>
->> You called kfree() on the address of a page which wasn't allocated by slab.
->>
->>> I have traced this crash to the kfree() in meson_nfc_read_buf().
->>> my observation is as follows:
->>> - meson_nfc_read_buf() is called 7 times without any crash, the
->>> kzalloc() call returns 0xe9e6c600 (virtual address) / 0x29e6c600
->>> (physical address)
->>> - the eight time meson_nfc_read_buf() is called kzalloc() call returns
->>> 0xee39a38b (virtual address) / 0x2e39a38b (physical address) and the
->>> final kfree() crashes
->>> - changing the size in the kzalloc() call from PER_INFO_BYTE (= 8) to
->>> PAGE_SIZE works around that crash
->>
->> I suspect you're doing something which corrupts memory.  Overrunning
->> the end of your allocation or something similar.  Have you tried KASAN
->> or even the various slab debugging (eg redzones)?
-> KASAN is not available on 32-bit ARM. there was some progress last
-> year [0] but it didn't make it into mainline. I tried to make the
-> patches apply again and got it to compile (and my kernel is still
-> booting) but I have no idea if it's still working. for anyone
-> interested, my patches are here: [1] (I consider this a HACK because I
-> don't know anything about the code which is being touched in the
-> patches, I only made it compile)
-> 
-> SLAB debugging (redzones) were a great hint, thank you very much for
-> that Matthew! I enabled:
->    CONFIG_SLUB_DEBUG=y
->    CONFIG_SLUB_DEBUG_ON=y
-> and with that I now get "BUG kmalloc-64 (Not tainted): Redzone
-> overwritten" (a larger kernel log extract is attached).
-> 
-> I'm starting to wonder if the NAND controller (hardware) writes more
-> than 8 bytes.
-> some context: the "info" buffer allocated in meson_nfc_read_buf is
-> then passed to the NAND controller IP (after using dma_map_single).
-> 
-> Liang, how does the NAND controller know that it only has to send
-> PER_INFO_BYTE (= 8) bytes when called from meson_nfc_read_buf? all
-> other callers of meson_nfc_dma_buffer_setup (which passes the info
-> buffer to the hardware) are using (nand->ecc.steps * PER_INFO_BYTE)
-> bytes?
-> 
-NFC_CMD_N2M and CMDRWGEN are different commands. CMDRWGEN needs to set 
-the ecc page size (1KB or 512B) and Pages(2, 4, 8, ...), so 
-PER_INFO_BYTE(= 8) bytes for each ecc page.
-I have never used NFC_CMD_N2M to transfer data before, because it is 
-very low efficient. And I do a experiment with the attachment and find 
-on overwritten on my meson axg platform.
+Depends on CLKID_AO_SAR_ADC_SEL, stable clk headers tags will be
+available after v5.1-rc4
 
-Martin, I would appreciate it very much if you would try the attachment 
-on your meson m8b platform.
+Bindings has been merged for 5.2-rc1
 
-> 
-> Regards
-> Martin
-> 
-> 
-> [0] https://lore.kernel.org/patchwork/cover/913212/
-> [1] https://github.com/xdarklight/linux/tree/arm-kasan-hack-v5.1-rc1
-> 
+- USB
 
---------------65F66B8BEFB8B57F8555B6FE
-Content-Type: text/plain; charset="UTF-8"; name="nand_debug.diff"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="nand_debug.diff"
+USB depends on the CLKID_PCIE_PLL, stable clk headers tags will be
+available after v5.1-rc4
 
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvbXRkL25hbmQvcmF3L21lc29uX25hbmQuYyBiL2RyaXZl
-cnMvbXRkL25hbmQvcmF3L21lc29uX25hbmQuYwpvbGQgbW9kZSAxMDA2NDQKbmV3IG1vZGUg
-MTAwNzU1CmluZGV4IGU4NThkNTguLjkwNWVmMzkKLS0tIGEvZHJpdmVycy9tdGQvbmFuZC9y
-YXcvbWVzb25fbmFuZC5jCisrKyBiL2RyaXZlcnMvbXRkL25hbmQvcmF3L21lc29uX25hbmQu
-YwpAQCAtNTI3LDExICs1MjcsMTIgQEAgc3RhdGljIHZvaWQgbWVzb25fbmZjX2RtYV9idWZm
-ZXJfcmVsZWFzZShzdHJ1Y3QgbmFuZF9jaGlwICpuYW5kLAogc3RhdGljIGludCBtZXNvbl9u
-ZmNfcmVhZF9idWYoc3RydWN0IG5hbmRfY2hpcCAqbmFuZCwgdTggKmJ1ZiwgaW50IGxlbikK
-IHsKIAlzdHJ1Y3QgbWVzb25fbmZjICpuZmMgPSBuYW5kX2dldF9jb250cm9sbGVyX2RhdGEo
-bmFuZCk7Ci0JaW50IHJldCA9IDA7CisJaW50IHJldCA9IDAsIGk7CiAJdTMyIGNtZDsKIAl1
-OCAqaW5mbzsKIAotCWluZm8gPSBremFsbG9jKFBFUl9JTkZPX0JZVEUsIEdGUF9LRVJORUwp
-OworCWluZm8gPSBremFsbG9jKDIgKiBQRVJfSU5GT19CWVRFLCBHRlBfS0VSTkVMKTsKKwlt
-ZW1zZXQoaW5mbywgMHhGRCwgMiAqIFBFUl9JTkZPX0JZVEUpOwogCXJldCA9IG1lc29uX25m
-Y19kbWFfYnVmZmVyX3NldHVwKG5hbmQsIGJ1ZiwgbGVuLCBpbmZvLAogCQkJCQkgUEVSX0lO
-Rk9fQllURSwgRE1BX0ZST01fREVWSUNFKTsKIAlpZiAocmV0KQpAQCAtNTQzLDYgKzU0NCwx
-MiBAQCBzdGF0aWMgaW50IG1lc29uX25mY19yZWFkX2J1ZihzdHJ1Y3QgbmFuZF9jaGlwICpu
-YW5kLCB1OCAqYnVmLCBpbnQgbGVuKQogCW1lc29uX25mY19kcmFpbl9jbWQobmZjKTsKIAlt
-ZXNvbl9uZmNfd2FpdF9jbWRfZmluaXNoKG5mYywgMTAwMCk7CiAJbWVzb25fbmZjX2RtYV9i
-dWZmZXJfcmVsZWFzZShuYW5kLCBsZW4sIFBFUl9JTkZPX0JZVEUsIERNQV9GUk9NX0RFVklD
-RSk7CisKKwlmb3IgKGkgPSAwOyBpIDwgMiAqIFBFUl9JTkZPX0JZVEU7IGkrKyl7CisJCXBy
-aW50aygiMHgleCAiLCBpbmZvW2ldKTsNCisJfQorCXByaW50aygiXG4iKTsKKwogCWtmcmVl
-KGluZm8pOwogCiAJcmV0dXJuIHJldDsK
---------------65F66B8BEFB8B57F8555B6FE
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+USB2 PHY depends on missing Reset bindings, have been applied to
+reset/fixes, waiting to be merge into master or immutable branch/tag
+
+Bindings has been Reviewed, waiting to be applied
+
+- Mali
+
+No Clk or Reset dependencies
+
+Mali GPU bindings are still in review.
+
+Changes since v2 :
+- dropped applied patches
+- collected review tags
+
+Changes since v1 :
+- dropped already applied "Add AO Secure node"
+- dropped meson-g12a-u200.dts uart_AO change
+- fixed includes overall to fix build for each patches
+- removed disabled status in dwc2 node
+- removed uart_ao_a_c pinctrl
+- fixed uart pinctrl node name
+
+Neil Armstrong (3):
+  arm64: dts: meson: g12a: Add SAR ADC node
+  arm64: dts: meson: g12a: Add G12A USB nodes
+  arm64: dts: meson: g12a: Add mali-g31 gpu node
+
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 117 ++++++++++++++++++++
+ 1 file changed, 117 insertions(+)
+
+-- 
+2.21.0
+
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---------------65F66B8BEFB8B57F8555B6FE--
-
