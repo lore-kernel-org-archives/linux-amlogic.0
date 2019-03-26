@@ -2,82 +2,91 @@ Return-Path: <SRS0=zyCZ=R5=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2B16AC43381
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Mar 2019 08:30:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 983B1C43381
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Mar 2019 08:37:35 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6F2242084B
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Mar 2019 08:30:54 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 659122084B
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Mar 2019 08:37:35 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NcYvb8Dj";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=google.com header.i=@google.com header.b="CB6mIR8Y"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6F2242084B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=reject dis=none) header.from=google.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iIePDrfg";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="jbtSZaEf"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 659122084B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Tww/71jTo5WVkILcbpbqq5HtGzkbYsu2QctnB8PkyLs=; b=NcYvb8DjbQyN40
-	1cjwwNH0Pzt3A9TMLSv3QKjySKBPpDjxj8Y1Cnq8indWn0IPp3Xpm2KGC8z9ZmR1ZZeWE6+H3U4hx
-	ln1aY/ctP3NKHFpjBJIj3g+5rDwZr4WF8NOnmFdyB/kiQSLgDoRKD0QPO2JGz3PPTWux1oNeTOZTM
-	H4SfVz91moyqh6dNVGO3EweaGEUinwVUZxxzTtrUrF0BOneRB0U8Zk0sBExLE97UqJIJwPh3w8EPZ
-	5PRBCmAfLkTalFFeWRS2FM6PlEmjcUDytSD4Y23lQf4Gueo5yLhb7zSrfoHLoe72S8KzeOG3XNjVB
-	4ZIyurDX4/+3zybL6jQA==;
+	List-Owner; bh=O0H7dKASV10McwX7zThx87PYgtXbfGB8Nsy2h1C2/6k=; b=iIePDrfgNXzkMA
+	cE6/j7ei3oFpmtM2RYQzBoj1mPQQnVk2zxUp55Hce87Kecgbz1WWoBjCdWVBpsL5FnUpPpWK3EOaJ
+	tXb2JUb/pdE5G3YD+wn8D2Ooz7MFPIuwJ34gIUOWtEmAYzP1YCT9WfoSRRR63tZRI3QvkDpqbfyqh
+	pPREFkdMBjEpc168BfcZ6/t1q+8F5HPvTq3xdlGi8Auix9hwCSs/IbEAiWBAfdA72xPeMSTNQIdjD
+	4/GcAcYE4sNrq6a9oIgVNMGvDLDuVvM4x/95Yd0FYXWN1mR9oi1Ch3rQkpkLfd5CyEgC/ixW3Q8OH
+	X85QSnoveLaRtnGW2ZIg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h8hTq-0007k8-9t; Tue, 26 Mar 2019 08:30:46 +0000
-Received: from mail-io1-xd41.google.com ([2607:f8b0:4864:20::d41])
+	id 1h8haF-0001Wf-Vx; Tue, 26 Mar 2019 08:37:23 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h8hTi-0007f4-4C
- for linux-amlogic@lists.infradead.org; Tue, 26 Mar 2019 08:30:39 +0000
-Received: by mail-io1-xd41.google.com with SMTP id f6so10024518iop.3
- for <linux-amlogic@lists.infradead.org>; Tue, 26 Mar 2019 01:30:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=u96/XQWaO743CQx0zQrII7tRo50afqDt59PdQotFCIA=;
- b=CB6mIR8YphRDYR2hBlUkNjK3fCHHG7rBfksisjzvUSwOf8gwtQIoG51aiGBThXiWU7
- R+wFGVbUNbfKBXHBYLPLk02QgktT0mlOwrsX9hSD1R4nNIgBU23eJKMQZV167cDK0BWK
- LKFKpY1F7j6EpRKYl4wV2SouwGPvPncbmFhTyh7iAxSK+cT+CG+euh8O2mQsiTFdeunT
- zoE2xXNn8Ev/Xo8DtlPHRgzx/xFNaYfROnJY56D1hGJWi9vrB1UN3eg+2Nfet+4o/p1L
- Yf+rFVwwbnKYnQ8XBGfFewlA9cU7e0XO2+YVSzITf6MlO5Y5L2hPYSSW0EPAyf8VJFKA
- 4c4A==
+ id 1h8haC-0001Vg-2h
+ for linux-amlogic@lists.infradead.org; Tue, 26 Mar 2019 08:37:22 +0000
+Received: by mail-wm1-x341.google.com with SMTP id f3so11657489wmj.4
+ for <linux-amlogic@lists.infradead.org>; Tue, 26 Mar 2019 01:37:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:cc:date:in-reply-to:references
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=mWH5TE9ngb/T4SFljDRth3c31ZtSkwBldxnRgk3wmtk=;
+ b=jbtSZaEfdEFa/HjT4oKknl08ZaL8XyuvijT0P3HwKBvbNRMvOiYTbE7I/jMCdYeGSd
+ zJ2HSVE4J3Pr0zsh05yXt+vx1HQwAvyw9LefX5HaooZa+HCQXzFJ7snWN6knKxWEcmzl
+ Gr692g5/UpfiDsdlOlEppVvr5JWwUvkgTTkq1oLOb9sz48to6evj60jSVphaK2x6eDeU
+ dngzk1yavdhuwfVbIPzaN3nV+vQJaq81GAra9siG8rbLjJzV819rQxpRtIqvpr6U+3GS
+ AqRGE8JLpFFjkzd034YgUwszNS2G9nWvZwXaYRsS/tJp7fYNxyPnDeAfEyrZ/D9dsecG
+ MIFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=u96/XQWaO743CQx0zQrII7tRo50afqDt59PdQotFCIA=;
- b=TCXYsTotzBx8Z9elxfS+75RSF8IFyiBYk24piEM9QbJTXp+1RsAj1mBzRvxseKxGOs
- NyXG7xjZexmnEWqyoCjRxymGYwfFAGe/0miwTvhtrmdqdCAMGj+rbW5ywNPSdd0wGk5z
- zR8JzDNc7WkZ3Ye36aJC9oqXIiJwpVAY3CDVmPsuSDOKIgTMiKs/2AxJx1EtX/I8DGjZ
- Av0OMTtLtgjYbj2SycMQymy4WJ5+jBe2BZ82X5gNWuDhdl0g/p8SJsA0d81TTEjronac
- 9S+oy6wo34vzH0GniHnSEske0nvlHzWc/D4+P76VCNzf7jSRTF8zHG8ZcWkPo8TCAQAh
- X/pA==
-X-Gm-Message-State: APjAAAWf0QAsVdXdr6PzaaWRF42Aqy+09UFIkjhagsevw5vq24UM8Xa/
- r7uD2JX0nXV2q5f0V1YwK/A2LhsWibOX0YhEi5431w==
-X-Google-Smtp-Source: APXvYqyakt+XhEnLW8Dz1cBNdjuL8IrEMJDOAgPgsXzO2R9f19orCOVA+KtCuSot+00YXPHZnHoOMWrDDvZlVQMydgw=
-X-Received: by 2002:a5d:9457:: with SMTP id x23mr3564593ior.271.1553589029810; 
- Tue, 26 Mar 2019 01:30:29 -0700 (PDT)
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=mWH5TE9ngb/T4SFljDRth3c31ZtSkwBldxnRgk3wmtk=;
+ b=bNi9dhBj47aXyipMloUudV4RroxxFb33po6r78EJPpTOzngrGR82pbq0h6MzsEBi9J
+ iDOaNV3N/rhYoNCfZoEtxutrnG5v1//4OUlUZ3OhjdYpTQWKMNLF06gb5PKRc2QamLxr
+ o7/5XMi8LZRetyvwDxk+5JzZm+mMfmNZnV/wYPN67dSl7IEqha+x4ltMeVNnm7HVyCVA
+ WpCOhkjHNHvy9KEliP5Fdw9+R9Or94zcZnrKCwRc1DOyqSMXvKo0URNk9r2uug5UW0WQ
+ GGXTMT+lbhxVoVobfU4yKTL28CsLhxE/8NACz2PR5d1rrtjW0RkPSLTNwOD67/EmDF9g
+ QRxg==
+X-Gm-Message-State: APjAAAWZcFyZUlUZzPfyqy0NbSduHIXlMavLaZ7y4IJWHWLNznjsGJ/I
+ noUGZscGic/EY5hQHXciA5hCbA==
+X-Google-Smtp-Source: APXvYqzZdwTqgaSZfVI3hGKnx5vPu3dG9j8Ca65UUlBfpMDU8YwB5wYJhHVl+n5c8C9EXj4euPY3DA==
+X-Received: by 2002:a1c:6587:: with SMTP id z129mr13661182wmb.84.1553589435679; 
+ Tue, 26 Mar 2019 01:37:15 -0700 (PDT)
+Received: from boomer.lan (cag06-3-82-243-161-21.fbx.proxad.net.
+ [82.243.161.21])
+ by smtp.gmail.com with ESMTPSA id b134sm37945007wmd.26.2019.03.26.01.37.14
+ (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+ Tue, 26 Mar 2019 01:37:14 -0700 (PDT)
+Message-ID: <88a731b0f1c2ce18d2cf7aff6e2ffc24a395a067.camel@baylibre.com>
+Subject: Re: [PATCH 0/1] pwm: meson: fix scheduling while atomic issue
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Kevin Hilman
+ <khilman@baylibre.com>
+Date: Tue, 26 Mar 2019 09:37:12 +0100
+In-Reply-To: <CAFBinCCPW8wAoiN4hjj9tAYSqQqChpSB6+urAiXU95VYaZZKGg@mail.gmail.com>
+References: <20190324220217.15813-1-martin.blumenstingl@googlemail.com>
+ <47e944da1c3b0a11cf46fc5ad5678ba961b9f9d3.camel@baylibre.com>
+ <CAFBinCCPW8wAoiN4hjj9tAYSqQqChpSB6+urAiXU95VYaZZKGg@mail.gmail.com>
+User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
 MIME-Version: 1.0
-References: <0000000000003749360584c395ba@google.com>
- <e3d9d95fd07502cccf8ef97ba7b2e2adb4eefbb3.camel@baylibre.com>
-In-Reply-To: <e3d9d95fd07502cccf8ef97ba7b2e2adb4eefbb3.camel@baylibre.com>
-From: Dmitry Vyukov <dvyukov@google.com>
-Date: Tue, 26 Mar 2019 09:30:18 +0100
-Message-ID: <CACT4Y+ZWY973sS7645uo8gNsU+wOddutZttXzYc9DjvqfPjqgA@mail.gmail.com>
-Subject: Re: WARNING: bad unlock balance detected! (3)
-To: Jerome Brunet <jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190326_013038_170026_3F92CF4D 
-X-CRM114-Status: GOOD (  11.88  )
+X-CRM114-CacheID: sfid-20190326_013720_117263_F7DA964C 
+X-CRM114-Status: GOOD (  28.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -89,57 +98,104 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
- Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>,
- Kevin Hilman <khilman@baylibre.com>,
- syzkaller-bugs <syzkaller-bugs@googlegroups.com>,
- LKML <linux-kernel@vger.kernel.org>, robh+dt@kernel.org,
- netdev <netdev@vger.kernel.org>,
- syzbot <syzbot+f3e3434787332dfc1c47@syzkaller.appspotmail.com>,
- Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>, linux-amlogic@lists.infradead.org,
- David Miller <davem@davemloft.net>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>
+Cc: linux-pwm@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ linux-kernel@vger.kernel.org, thierry.reding@gmail.com,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Mar 25, 2019 at 12:54 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
->
-> On Sat, 2019-03-23 at 07:14 -0700, syzbot wrote:
-> > syzbot has bisected this bug to:
-> >
-> > commit ec01fb69ac8034ad6e839b31f9df167a110f868b
-> > Author: Jerome Brunet <jbrunet@baylibre.com>
-> > Date:   Wed Jan 16 17:59:47 2019 +0000
-> >
-> >      arm64: dts: meson: s400: fix emmc maximum rate
-> >
-> > bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=10afb7cf200000
-> > start commit:   065b6c4c Merge tag 'devicetree-for-5.1' of git://git.kerne..
-> > git tree:       upstream
-> > final crash:    https://syzkaller.appspot.com/x/report.txt?x=12afb7cf200000
-> > console output: https://syzkaller.appspot.com/x/log.txt?x=14afb7cf200000
-> > kernel config:  https://syzkaller.appspot.com/x/.config?x=ea4067c9a08ae046
-> > dashboard link: https://syzkaller.appspot.com/bug?extid=f3e3434787332dfc1c47
-> > syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=12a10577200000
-> >
-> > Reported-by: syzbot+f3e3434787332dfc1c47@syzkaller.appspotmail.com
-> > Fixes: ec01fb69ac80 ("arm64: dts: meson: s400: fix emmc maximum rate")
-> >
-> > For information about bisection process see: https://goo.gl/tpsmEJ#bisection
->
-> Hi David,
->
-> I'm not sure I understand what the problem reported is but I don't think a DT
-> patch could be the cause of a locking issue on x86.
->
-> If I missed something, feel free to let me know.
+On Mon, 2019-03-25 at 19:04 +0100, Martin Blumenstingl wrote:
+> > Thanks for fixing this Martin.
+> you're welcome!
+> 
+> > As for the future enhancement, I'd like to know what you have in mind.
+> > As I have told you previously, I think the clock bindings of this driver are
+> > not great.
+> > 
+> > The global name of the input clocks are hard coded in this driver and it
+> > sucks. CCF is evolving to rely less on these global names.
+> I fully agree with you on the clock setup, but I'm not sure if we have
+> to break the dt-bindings for it.
+> 
+> the datasheet notes: "Each PWM is driven by a programmable divider
+> driven by a 4:1 clock selector".
+> In my own words this means that each PWM controller has up to 8 clock inputs:
+> - up to 4 inputs for the first channel (PWM_A)
+> - up to 4 inputs for the second channel (PWM_B)
 
-Hi Jerome,
+Not from the pwm device POV. there is one device (PWM_AB) with 4 (max) input
+clocks. Those are consumed by two internal muxes. There would be 8 if the
+input was different between path A and B.
 
-I think you are right. It seems that other unrelated kernel bugs have
-diverged bisection into the wrong direction.
+> 
+> the current pwm-meson driver assumes that both the inputs for both
+> channels are identical.
+> the "clock trees" section of the public S912 datasheet (page 65)
+> clearly documents the clock inputs per PWM channel, not per PWM
+> controller.
+> 
+> Thus I believe we should name our clock-names (the inputs to the PWM
+> controller) "pwm-a-clkin0", "pwm-a-clkin1", "pwm-b-clkin0", ...
+> That way we don't have a conflict with the existing bindings (which
+> already reserve "clkin0" and "clkin1").
+
+I think this is overkill an inaccurate. The experience of all the soc we have
+seen so far (meson8, gxbb, gxl, gxm, axg and g12) confirms the sources the are
+the same input clock for both path.
+
+The documentation just shows the clock src of each pwm. That just how the the
+table is presented. That does not change the fact the pwms are organized in
+modules (pairs) and the that the clock source are the same for each pwm of the
+module. IOW, there is only 4 lines of clocks getting to the IP, not 8. Feel
+free to ask amlogic if you want to make sure.
+
+The name clash is not really my point. The purpose of the clock binding would
+be different (from stating a setting to describing hw connection)
+
+> 
+> > In addition, the 'clock' binding should be used to refer to the clock
+> > 'consumed' by the device, not to define a setting (as done now). 'assigned-
+> > clock' binding can be used for that.
+> using the assigned-clock* properties requires self-referencing the PWM
+> controller (which I'm not used to), for example:
+>   &pwm_ab {
+>       #clock-cells = <1>;
+>       assigned-clocks = <&pwm_ab 0>, <&pwm_ab 1>; /* references itself */
+>       assigned-clock-parents = <&xtal>, <&clkc CLKID_FCLK_DIV5>;
+>   };
+> 
+> if we want to auto-detect the parent clock (like you suggested below)
+> we need to consider if we can detect whether a .dts-author assigned a
+> specific parent.
+
+I (personally) don't want to keep supporting the manual assignment of the
+parent. If the driver can guarantee than it will pick the most appropriate
+parent, there is no reason to have that.
+
+> I know that it's easy to detect this when the clock is passed in the
+> "clocks" property, but I'm not sure if it's easy to parse it from the
+> assigned-clocks/assigned-clock-parents properties.
+
+Assigned parent is the poor man solution and not necessarily easier to
+implement (the pwm device would have to export its own clocks) ... I have just
+mentioned it to make  the point that current method is not ideal
+
+> 
+> [...]
+> > Last, instead of specifying the parent to be used, I think we should come up
+> > with some code to let the driver pick the most appropriate parent for the period/duty requested.
+> that will make it easier for .dts authors.
+> I would like to postpone this until we have solved the other topics though.
+
+I much prefer this last solution. Since the algorithm and the bindings would
+change, I think it would be easier (in DT) to just make v2 driver with a new
+compatible, progressively transition dts to it and finally remove the old
+driver.
+
+
+
 
 _______________________________________________
 linux-amlogic mailing list
