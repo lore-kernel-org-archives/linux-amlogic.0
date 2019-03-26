@@ -2,90 +2,82 @@ Return-Path: <SRS0=zyCZ=R5=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1D2DFC43381
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Mar 2019 07:53:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2B16AC43381
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Mar 2019 08:30:56 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E017420828
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Mar 2019 07:53:46 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6F2242084B
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Mar 2019 08:30:54 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="SFxqlu7P";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="yMfP04Gb"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E017420828
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NcYvb8Dj";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=google.com header.i=@google.com header.b="CB6mIR8Y"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6F2242084B
+Authentication-Results: mail.kernel.org; dmarc=fail (p=reject dis=none) header.from=google.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=i1Vr/VzaBv4Qo9eD2nTBdB1FLoVQcA19BxCmOxVUnAE=; b=SFxqlu7PzWQvVw
-	ID04t3YVOI7LabD32mMsKe66tPUYsA4lRm51kwU9QmUVe815JPXpfOCXeelQceq8DhnlU1XbsiV4b
-	ubKj7F0Q0o7k+KQVQdgdGvQly4H+CFwZBmSg2K80OIiQf/mgwbw1TgrjG3BNbr9aY16NuGUyUsVTO
-	xSoBAmhaiiTf38dARWtNpQpQ61QkDz+B96I2ABfvmdDgouZ4GI58NgQtjNmaf+4kfh6fwwSdsUyE1
-	ocvmgBJmJtSAVd+Nxc5Fg8QUpHyO6YVmKu+3q/ToqmgPTHfBUUsGzpgbpaWxf9+C84ZKcsx1dv+yQ
-	cgIapi77XGbtmTZGuP6g==;
+	List-Owner; bh=Tww/71jTo5WVkILcbpbqq5HtGzkbYsu2QctnB8PkyLs=; b=NcYvb8DjbQyN40
+	1cjwwNH0Pzt3A9TMLSv3QKjySKBPpDjxj8Y1Cnq8indWn0IPp3Xpm2KGC8z9ZmR1ZZeWE6+H3U4hx
+	ln1aY/ctP3NKHFpjBJIj3g+5rDwZr4WF8NOnmFdyB/kiQSLgDoRKD0QPO2JGz3PPTWux1oNeTOZTM
+	H4SfVz91moyqh6dNVGO3EweaGEUinwVUZxxzTtrUrF0BOneRB0U8Zk0sBExLE97UqJIJwPh3w8EPZ
+	5PRBCmAfLkTalFFeWRS2FM6PlEmjcUDytSD4Y23lQf4Gueo5yLhb7zSrfoHLoe72S8KzeOG3XNjVB
+	4ZIyurDX4/+3zybL6jQA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h8gto-0003UI-JR; Tue, 26 Mar 2019 07:53:32 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1h8hTq-0007k8-9t; Tue, 26 Mar 2019 08:30:46 +0000
+Received: from mail-io1-xd41.google.com ([2607:f8b0:4864:20::d41])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h8gtf-0003Oj-Hu
- for linux-amlogic@lists.infradead.org; Tue, 26 Mar 2019 07:53:30 +0000
-Received: by mail-wm1-x343.google.com with SMTP id a184so11471805wma.2
- for <linux-amlogic@lists.infradead.org>; Tue, 26 Mar 2019 00:53:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:cc:date:in-reply-to:references
- :user-agent:mime-version:content-transfer-encoding;
- bh=+P/pDctBzgqNCJzJAj22Bp6Ulq3f13aqe+jh+b1hejk=;
- b=yMfP04GbVCy1OCXi8Zh/Js4WKcX3FrUxZsa3NAiI7gwT7049iS6cPNwX+FGCuvPp7g
- rxJCzPMmuJZXf7IRPUfdm3acMrIcEFZ5OUjOUcwVi8Wh/XsSevMXoLWew3UA/pPeXWYg
- 0ENNnYZJ+crDmYQunPgI2U6KbiB9o7r0KJGBKPUgp5m4VYO3GbrdlBIjgebVbWtx5BeW
- /2j0KqaiktKTH1sW4oET6+rA1OynfpaPPGnhZX5YPKZ/38lLlcS+Ssm9HEsGc2s/L0Of
- pyXsEPI+loD+cDcmq/8mNWBmFWDaDH1bJtJHNmQD864pzbeC+9ODIqTEWTlJQ3p1zJuv
- DS6g==
+ id 1h8hTi-0007f4-4C
+ for linux-amlogic@lists.infradead.org; Tue, 26 Mar 2019 08:30:39 +0000
+Received: by mail-io1-xd41.google.com with SMTP id f6so10024518iop.3
+ for <linux-amlogic@lists.infradead.org>; Tue, 26 Mar 2019 01:30:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=u96/XQWaO743CQx0zQrII7tRo50afqDt59PdQotFCIA=;
+ b=CB6mIR8YphRDYR2hBlUkNjK3fCHHG7rBfksisjzvUSwOf8gwtQIoG51aiGBThXiWU7
+ R+wFGVbUNbfKBXHBYLPLk02QgktT0mlOwrsX9hSD1R4nNIgBU23eJKMQZV167cDK0BWK
+ LKFKpY1F7j6EpRKYl4wV2SouwGPvPncbmFhTyh7iAxSK+cT+CG+euh8O2mQsiTFdeunT
+ zoE2xXNn8Ev/Xo8DtlPHRgzx/xFNaYfROnJY56D1hGJWi9vrB1UN3eg+2Nfet+4o/p1L
+ Yf+rFVwwbnKYnQ8XBGfFewlA9cU7e0XO2+YVSzITf6MlO5Y5L2hPYSSW0EPAyf8VJFKA
+ 4c4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=+P/pDctBzgqNCJzJAj22Bp6Ulq3f13aqe+jh+b1hejk=;
- b=Uo6MyFgV5JuiMa5RaofxM4WDco1ZazWSguRdqDSyNnszud7C7BAK3h09aSQSGITXVK
- RINtr4VJvGeG89YE9IUKyLFTlcWnfy1/xJdRIyN/dPqywjA4GQG6p8PeEgP8seP4Bvzx
- jteOCgXc0a6I+UWZw1Dr79tXV0PRY6QMILbcESsEEtGb9S9fkfBuitt6xKR9klQZjsnr
- ldpadKmVMEtQ7SCptrBQbUSzhlcfdU0aBnlMhpeAPrkfz2VYI+miK/AJuluAOTi7h3AG
- 7CunChpv9HORgayJgV4MRL/CQGHrO2uA4b7zwTRZs7Tz2OMyoqS8+UzUJ8l6AShesar2
- qa0g==
-X-Gm-Message-State: APjAAAUPXHb1XaMAiG6vgp0NH+mM8XrVl6EItgzbqUMluQRXZX50kPgh
- /H4sVAiScJYXUDsy7tYrERnKjA==
-X-Google-Smtp-Source: APXvYqyUOqJoh6ug291ipn/WEnZewgLcDELTWekaeWiEDLB0t9vPsF9eDBRiqM7vm7QU70dAASQyBQ==
-X-Received: by 2002:a1c:67c2:: with SMTP id b185mr14139004wmc.68.1553586798375; 
- Tue, 26 Mar 2019 00:53:18 -0700 (PDT)
-Received: from boomer.lan (cag06-3-82-243-161-21.fbx.proxad.net.
- [82.243.161.21])
- by smtp.gmail.com with ESMTPSA id j11sm22170116wrw.85.2019.03.26.00.53.16
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Tue, 26 Mar 2019 00:53:17 -0700 (PDT)
-Message-ID: <8b6f0bc6210834af2aff2de7dc95692dd87db539.camel@baylibre.com>
-Subject: Re: [PATCH 1/4] clk: meson: mpll: add init callback and regs
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Stephen Boyd <sboyd@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>
-Date: Tue, 26 Mar 2019 08:53:15 +0100
-In-Reply-To: <155353381842.20095.17915880223118004926@swboyd.mtv.corp.google.com>
-References: <20190325111200.15940-1-jbrunet@baylibre.com>
- <20190325111200.15940-2-jbrunet@baylibre.com>
- <155353381842.20095.17915880223118004926@swboyd.mtv.corp.google.com>
-User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=u96/XQWaO743CQx0zQrII7tRo50afqDt59PdQotFCIA=;
+ b=TCXYsTotzBx8Z9elxfS+75RSF8IFyiBYk24piEM9QbJTXp+1RsAj1mBzRvxseKxGOs
+ NyXG7xjZexmnEWqyoCjRxymGYwfFAGe/0miwTvhtrmdqdCAMGj+rbW5ywNPSdd0wGk5z
+ zR8JzDNc7WkZ3Ye36aJC9oqXIiJwpVAY3CDVmPsuSDOKIgTMiKs/2AxJx1EtX/I8DGjZ
+ Av0OMTtLtgjYbj2SycMQymy4WJ5+jBe2BZ82X5gNWuDhdl0g/p8SJsA0d81TTEjronac
+ 9S+oy6wo34vzH0GniHnSEske0nvlHzWc/D4+P76VCNzf7jSRTF8zHG8ZcWkPo8TCAQAh
+ X/pA==
+X-Gm-Message-State: APjAAAWf0QAsVdXdr6PzaaWRF42Aqy+09UFIkjhagsevw5vq24UM8Xa/
+ r7uD2JX0nXV2q5f0V1YwK/A2LhsWibOX0YhEi5431w==
+X-Google-Smtp-Source: APXvYqyakt+XhEnLW8Dz1cBNdjuL8IrEMJDOAgPgsXzO2R9f19orCOVA+KtCuSot+00YXPHZnHoOMWrDDvZlVQMydgw=
+X-Received: by 2002:a5d:9457:: with SMTP id x23mr3564593ior.271.1553589029810; 
+ Tue, 26 Mar 2019 01:30:29 -0700 (PDT)
 MIME-Version: 1.0
+References: <0000000000003749360584c395ba@google.com>
+ <e3d9d95fd07502cccf8ef97ba7b2e2adb4eefbb3.camel@baylibre.com>
+In-Reply-To: <e3d9d95fd07502cccf8ef97ba7b2e2adb4eefbb3.camel@baylibre.com>
+From: Dmitry Vyukov <dvyukov@google.com>
+Date: Tue, 26 Mar 2019 09:30:18 +0100
+Message-ID: <CACT4Y+ZWY973sS7645uo8gNsU+wOddutZttXzYc9DjvqfPjqgA@mail.gmail.com>
+Subject: Re: WARNING: bad unlock balance detected! (3)
+To: Jerome Brunet <jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190326_005323_745471_56B4D004 
-X-CRM114-Status: GOOD (  11.52  )
+X-CRM114-CacheID: sfid-20190326_013038_170026_3F92CF4D 
+X-CRM114-Status: GOOD (  11.88  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,66 +89,57 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org
+Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+ Hideaki YOSHIFUJI <yoshfuji@linux-ipv6.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ syzkaller-bugs <syzkaller-bugs@googlegroups.com>,
+ LKML <linux-kernel@vger.kernel.org>, robh+dt@kernel.org,
+ netdev <netdev@vger.kernel.org>,
+ syzbot <syzbot+f3e3434787332dfc1c47@syzkaller.appspotmail.com>,
+ Alexey Kuznetsov <kuznet@ms2.inr.ac.ru>, linux-amlogic@lists.infradead.org,
+ David Miller <davem@davemloft.net>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 2019-03-25 at 10:10 -0700, Stephen Boyd wrote:
-> Quoting Jerome Brunet (2019-03-25 04:11:57)
-> > @@ -138,6 +129,27 @@ static int mpll_set_rate(struct clk_hw *hw,
-> >         return 0;
-> >  }
-> >  
-> > +static void mpll_init(struct clk_hw *hw)
-> > +{
-> > +       struct clk_regmap *clk = to_clk_regmap(hw);
-> > +       struct meson_clk_mpll_data *mpll = meson_clk_mpll_data(clk);
-> > +
-> > +       if (mpll->init_count)
-> > +               regmap_multi_reg_write(clk->map, mpll->init_regs,
-> > +                                      mpll->init_count);
-> > +
-> > +       /* Enable the fractional part */
-> > +       meson_parm_write(clk->map, &mpll->sdm_en, 1);
-> > +
-> > +       /* Set additional fractional part enable if required */
-> > +       if (MESON_PARM_APPLICABLE(&mpll->ssen))
-> > +               meson_parm_write(clk->map, &mpll->ssen, 1);
-> > +
-> > +       /* Set the magic misc bit if required */
-> > +       if (MESON_PARM_APPLICABLE(&mpll->misc))
-> > +               meson_parm_write(clk->map, &mpll->misc, 1);
-> > +}
-> > +
-> >  const struct clk_ops meson_clk_mpll_ro_ops = {
-> >         .recalc_rate    = mpll_recalc_rate,
-> >         .round_rate     = mpll_round_rate,
-> > @@ -148,6 +160,7 @@ const struct clk_ops meson_clk_mpll_ops = {
-> >         .recalc_rate    = mpll_recalc_rate,
-> >         .round_rate     = mpll_round_rate,
-> >         .set_rate       = mpll_set_rate,
-> > +       .init           = mpll_init,
-> 
-> We actively discourage using init callbacks. Can you do this some other
-> way?
+On Mon, Mar 25, 2019 at 12:54 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
+>
+> On Sat, 2019-03-23 at 07:14 -0700, syzbot wrote:
+> > syzbot has bisected this bug to:
+> >
+> > commit ec01fb69ac8034ad6e839b31f9df167a110f868b
+> > Author: Jerome Brunet <jbrunet@baylibre.com>
+> > Date:   Wed Jan 16 17:59:47 2019 +0000
+> >
+> >      arm64: dts: meson: s400: fix emmc maximum rate
+> >
+> > bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=10afb7cf200000
+> > start commit:   065b6c4c Merge tag 'devicetree-for-5.1' of git://git.kerne..
+> > git tree:       upstream
+> > final crash:    https://syzkaller.appspot.com/x/report.txt?x=12afb7cf200000
+> > console output: https://syzkaller.appspot.com/x/log.txt?x=14afb7cf200000
+> > kernel config:  https://syzkaller.appspot.com/x/.config?x=ea4067c9a08ae046
+> > dashboard link: https://syzkaller.appspot.com/bug?extid=f3e3434787332dfc1c47
+> > syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=12a10577200000
+> >
+> > Reported-by: syzbot+f3e3434787332dfc1c47@syzkaller.appspotmail.com
+> > Fixes: ec01fb69ac80 ("arm64: dts: meson: s400: fix emmc maximum rate")
+> >
+> > For information about bisection process see: https://goo.gl/tpsmEJ#bisection
+>
+> Hi David,
+>
+> I'm not sure I understand what the problem reported is but I don't think a DT
+> patch could be the cause of a locking issue on x86.
+>
+> If I missed something, feel free to let me know.
 
-Yes I'm aware of that but init it the right place to do this.
-To be clear, this is not initializing the clock to some particular rate, the
-rate is preserved.
+Hi Jerome,
 
-It just applies the necessary settings that needs to be done only once to make
-sure the clock is in working order and that the rate calculated is actually
-accurate. 
-
-> 
-> >  };
-> >  EXPORT_SYMBOL_GPL(meson_clk_mpll_ops);
-> >  
-
-
+I think you are right. It seems that other unrelated kernel bugs have
+diverged bisection into the wrong direction.
 
 _______________________________________________
 linux-amlogic mailing list
