@@ -6,17 +6,17 @@ X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,
 	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C298DC43381
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Mar 2019 18:07:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 54E7AC43381
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Mar 2019 18:09:27 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 948DB217F5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Mar 2019 18:07:08 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 28B5521738
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Mar 2019 18:09:27 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VB/uFXm6";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="L7pa/XEx"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 948DB217F5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Qsj6PMtZ";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="d8b+G11y"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 28B5521738
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,47 +25,47 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=scylc4DEtP/hi5pm4VRzhwrBLvn88pj9uLDaushrhUA=; b=VB/uFXm67yqyAZ
-	75YLFV7AnzElC5/eu4oel1fhQChQ0swkjiJsxCxFrGADp7qCt2C8QSTiHIKMuPBZPinhagHFxLEnX
-	KQCNImI6CQklZuQeOBqXC03bwnv6q0bG5OoSZ3dYMc2ewhW99ETrkxEZWfTCt2BGN4EXlSnE8vJCl
-	w4BYOGMAZorU8zb7pEqWWpoB4s9Ps/dkyBSfkTeO+v6b/QbLHm+xqkdlss02ceTdfWt2JWSWJcVtN
-	KPYWThSwFCObyZmtr0l8Yh/E1abs23kByPZlDM5ScgA3nr3kdvz70pJqboAtrm/M90NzOwD7GUL3E
-	JaHRIf4ahF7JXU/XQWTg==;
+	List-Owner; bh=TaVcTnGV2HeB5DFNRh0eiffs2zds6Ou3f5wj6FQuZ/0=; b=Qsj6PMtZjyzbZN
+	L0Et90+DEYeBuvofnzkT6+YZK4qN/bSbPkrG58muCLj5lmt1Qc0/8oJwhGSNfoBboTp45Hb32F/W5
+	OqEXE3ok1LDNoaxB+6HYf79HhyGF8JLzDtauvD94h1wipFStH/kKGIFZcH7Y1ov09o4hXFNvZBt1k
+	mxzzVAwNtyaYEcb4kx4Xv3lU9reftGkCmq9QkF2cYPAR6u40xetZwXHIgPKd3fgRIkkYXk+miVE+C
+	X6GU+xyPiPgFRbrvHraC3UJSZbcHgXNZDYkOOfWT+JemUSazJlB4y1kiu+i9V9zgzv0JEcMfzbfIM
+	GpGWySE0ZHYpL7YyzHCw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h9Cwy-0006MW-5y; Wed, 27 Mar 2019 18:06:56 +0000
+	id 1h9CzK-00075Y-Bd; Wed, 27 Mar 2019 18:09:22 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h9Cwu-0006LV-JW
- for linux-amlogic@lists.infradead.org; Wed, 27 Mar 2019 18:06:54 +0000
+ id 1h9CzH-00074u-BS
+ for linux-amlogic@lists.infradead.org; Wed, 27 Mar 2019 18:09:20 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 47513217F9;
- Wed, 27 Mar 2019 18:06:51 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id ECF8B217D9;
+ Wed, 27 Mar 2019 18:09:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1553710012;
- bh=KOGOp3ldPjr4JtCcwcVP85HBy2aF0BSnCQGL2u0y3aA=;
+ s=default; t=1553710159;
+ bh=U5EPkZcf/N+CmLptqtDmvKPoya9zYkggJDEyzh93mPg=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=L7pa/XExevGRpbRdZHTzrzrMLBp0QSXOviaTxXEuQ5sXCh/cDL8q7+LRJIIGpIgQB
- PVm+BpMAu2iwoMWV3VY0ZQmTNaQ1QNtLSpbkuDnKvEGrmq7G1Wq/Wfd2lriKr9lChu
- 3ORJY9WvYGny/i/bTpgOdRkO647HzJBGFRWXPUkY=
+ b=d8b+G11yjtrPo2P7q03ZnuiDJykQoGJ2Jxl0QkHDm+X415dC59EZzH3e0qkEeJBEF
+ hrE/7zKgOz/YJbm0Jl+/bIKf5vpUOAitMOzVZsJ06iHLTuk5CHDm/DHWYWDel1zbgs
+ SdZR0FPciTAFVOa/g5RyAVDM8i+0Cgtgkhrud5Ag=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.0 155/262] ARM: dts: meson8b: fix the Ethernet data
- line signals in eth_rgmii_pins
-Date: Wed, 27 Mar 2019 14:00:10 -0400
-Message-Id: <20190327180158.10245-155-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.0 226/262] pinctrl: meson: fix G12A ao pull
+ registers base address
+Date: Wed, 27 Mar 2019 14:01:21 -0400
+Message-Id: <20190327180158.10245-226-sashal@kernel.org>
 X-Mailer: git-send-email 2.19.1
 In-Reply-To: <20190327180158.10245-1-sashal@kernel.org>
 References: <20190327180158.10245-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190327_110652_689045_3D94998A 
-X-CRM114-Status: GOOD (  13.59  )
+X-CRM114-CacheID: sfid-20190327_110919_427681_C137F509 
+X-CRM114-Status: GOOD (  13.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -77,77 +77,103 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
- =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@c0d3.blue>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
- Emiliano Ingrassia <ingrassia@epigenesys.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Sasha Levin <sashal@kernel.org>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ Linus Walleij <linus.walleij@linaro.org>, linux-gpio@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, Xingyu Chen <xingyu.chen@amlogic.com>,
+ Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-RnJvbTogTWFydGluIEJsdW1lbnN0aW5nbCA8bWFydGluLmJsdW1lbnN0aW5nbEBnb29nbGVtYWls
-LmNvbT4KClsgVXBzdHJlYW0gY29tbWl0IDI5ZjAwMjNkMDFmMDYzZmVhY2ZjNDA0ZjA0NDY5MDVh
-ZWU0ZjgyZWUgXQoKQWNjb3JkaW5nIHRvIHRoZSBPZHJvaWQtQzErIHNjaGVtYXRpY3MgdGhlIEV0
-aGVybmV0IFRYRDEgc2lnbmFsIGlzCnJvdXRlZCB0byBHUElPSF81IGFuZCB0aGUgVFhEMCBzaWdu
-YWwgaXMgcm91dGVkIHRvIEdQSU9IXzYuClRoZSBwdWJsaWMgUzgwNSBkYXRhc2hlZXQgc2hvd3Mg
-dGhhdCBUWEQwIGNhbiBiZSByb3V0ZWQgdG8gRElGXzJfUCBhbmQKVFhEMSBjYW4gYmUgcm91dGVk
-IHRvIERJRl8yX04gaW5zdGVhZC4KClRoZSBwaW4gZ3JvdXBzIGV0aF90eGQwXzAgKEdQSU9IXzYp
-IGFuZCBldGhfdHhkMF8xIChESUZfMl9QKSBhcmUgYm90aApjb25maWd1cmVkIGFzIEV0aGVybmV0
-IFRYRDAgYW5kIFRYRDEgZGF0YSBsaW5lcyBpbiBtZXNvbjhiLmR0c2kuIEF0IHRoZQpzYW1lIHRp
-bWUgZXRoX3R4ZDFfMCAoR1BJT0hfNSkgYW5kIGV0aF90eGQxXzEgKERJRl8yX04pIGFyZSBjb25m
-aWd1cmVkCmFzIFRYRDAgYW5kIFRYRDEgZGF0YSBsaW5lcyBhcyB3ZWxsLgpUaGlzIHJlc3VsdHMg
-aW4gYSBiYWQgRXRoZXJuZXQgcmVjZWl2ZSBwZXJmb3JtYW5jZS4gUHJlc3VtYWJseSB0aGlzIGlz
-CmR1ZSB0byB0aGUgZXRoX3R4ZDAgYW5kIGV0aF90eGQxIHNpZ25hbCBiZWluZyByb3V0ZWQgdG8g
-dGhlIHdyb25nIHBpbnMuCkFzIGEgcmVzdWx0IG9mIHRoYXQgZGF0YSBjYW4gb25seSBiZSB0cmFu
-c21pdHRlZCBvbiBldGhfdHhkMiBhbmQKZXRoX3R4ZDMuIEhvd2V2ZXIsIEkgaGF2ZSBubyBzY29w
-ZSB0byBmdWxseSBjb25maXJtIHRoaXMgYXNzdW1wdGlvbi4KClRoZSB2ZW5kb3IgdS1ib290IHNv
-dXJjZXMgZm9yIE9kcm9pZC1DMSB1c2UgdGhlIGZvbGxvd2luZyBFdGhlcm5ldApwaW5tdXggY29u
-ZmlndXJhdGlvbjoKICBTRVRfQ0JVU19SRUdfTUFTSyhQRVJJUEhTX1BJTl9NVVhfNiwgMHgzZjRm
-KTsKICBTRVRfQ0JVU19SRUdfTUFTSyhQRVJJUEhTX1BJTl9NVVhfNywgMHhmMDAwMDApOwpUaGlz
-IHRyYW5zbGF0ZXMgdG8gdGhlIGZvbGxvd2luZyBwaW4gZ3JvdXBzIGluIHRoZSBtYWlubGluZSBr
-ZXJuZWw6Ci0gcmVnaXN0ZXIgNiBiaXQgIDA6IGV0aF9yeGQxIChESUZfMF9QKQotIHJlZ2lzdGVy
-IDYgYml0ICAxOiBldGhfcnhkMCAoRElGXzBfTikKLSByZWdpc3RlciA2IGJpdCAgMjogZXRoX3J4
-X2R2IChESUZfMV9QKQotIHJlZ2lzdGVyIDYgYml0ICAzOiBldGhfcnhfY2xrIChESUZfMV9OKQot
-IHJlZ2lzdGVyIDYgYml0ICA2OiBldGhfdHhfZW4gKERJRl8zX1ApCi0gcmVnaXN0ZXIgNiBiaXQg
-IDg6IGV0aF9yZWZfY2xrIChESUZfM19OKQotIHJlZ2lzdGVyIDYgYml0ICA5OiBldGhfbWRjIChE
-SUZfNF9QKQotIHJlZ2lzdGVyIDYgYml0IDEwOiBldGhfbWRpb19lbiAoRElGXzRfTikKLSByZWdp
-c3RlciA2IGJpdCAxMTogZXRoX3R4X2NsayAoR1BJT0hfOSkKLSByZWdpc3RlciA2IGJpdCAxMjog
-ZXRoX3R4ZDIgKEdQSU9IXzgpCi0gcmVnaXN0ZXIgNiBiaXQgMTM6IGV0aF90eGQzIChHUElPSF83
-KQotIHJlZ2lzdGVyIDcgYml0IDIwOiBldGhfdHhkMF8wIChHUElPSF82KQotIHJlZ2lzdGVyIDcg
-Yml0IDIxOiBldGhfdHhkMV8wIChHUElPSF81KQotIHJlZ2lzdGVyIDcgYml0IDIyOiBldGhfcnhk
-MyAoRElGXzJfUCkKLSByZWdpc3RlciA3IGJpdCAyMzogZXRoX3J4ZDIgKERJRl8yX04pCgpEcm9w
-IHRoZSBldGhfdHhkMF8xIGFuZCBldGhfdHhkMV8xIGdyb3VwcyBmcm9tIGV0aF9yZ21paV9waW5z
-IHRvIGZpeCB0aGUKRXRoZXJuZXQgdHJhbnNtaXQgcGVyZm9ybWFuY2Ugb24gT2Ryb2lkLUMxLiBB
-bHNvIGFkZCB0aGUgZXRoX3J4ZDIgYW5kCmV0aF9yeGQzIGdyb3VwcyBzbyB3ZSBkb24ndCByZWx5
-IG9uIHRoZSBib290bG9hZGVyIHRvIHNldCB0aGVtIHVwLgoKaXBlcmYzIHN0YXRpc3RpY3MgYmVm
-b3JlIHRoaXMgY2hhbmdlOgotIHRyYW5zbWl0dGluZyBmcm9tIE9kcm9pZC1DMTogNzQxIE1iaXRz
-L3NlYyAoMCByZXRyaWVzKQotIHJlY2VpdmluZyBvbiBPZHJvaWQtQzE6IDE5OSBNYml0cy9zZWMg
-KDE3MTMgcmV0cmllcykKCmlwZXJmMyBzdGF0aXN0aWNzIGFmdGVyIHRoaXMgY2hhbmdlOgotIHRy
-YW5zbWl0dGluZyBmcm9tIE9kcm9pZC1DMTogNjY3IE1iaXRzL3NlYyAoMCByZXRyaWVzKQotIHJl
-Y2VpdmluZyBvbiBPZHJvaWQtQzE6IDc1MCBNYml0cy9zZWMgKDAgcmV0cmllcykKCkZpeGVzOiBi
-OTY0NDY1NDFkODM5MCAoIkFSTTogZHRzOiBtZXNvbjhiOiBleHRlbmQgZXRoZXJuZXQgY29udHJv
-bGxlciBkZXNjcmlwdGlvbiIpClNpZ25lZC1vZmYtYnk6IE1hcnRpbiBCbHVtZW5zdGluZ2wgPG1h
-cnRpbi5ibHVtZW5zdGluZ2xAZ29vZ2xlbWFpbC5jb20+CkNjOiBFbWlsaWFubyBJbmdyYXNzaWEg
-PGluZ3Jhc3NpYUBlcGlnZW5lc3lzLmNvbT4KQ2M6IExpbnVzIEzDvHNzaW5nIDxsaW51cy5sdWVz
-c2luZ0BjMGQzLmJsdWU+ClRlc3RlZC1ieTogRW1pbGlhbm8gSW5ncmFzc2lhIDxpbmdyYXNzaWFA
-ZXBpZ2VuZXN5cy5jb20+ClJldmlld2VkLWJ5OiBFbWlsaWFubyBJbmdyYXNzaWEgPGluZ3Jhc3Np
-YUBlcGlnZW5lc3lzLmNvbT4KU2lnbmVkLW9mZi1ieTogS2V2aW4gSGlsbWFuIDxraGlsbWFuQGJh
-eWxpYnJlLmNvbT4KU2lnbmVkLW9mZi1ieTogU2FzaGEgTGV2aW4gPHNhc2hhbEBrZXJuZWwub3Jn
-PgotLS0KIGFyY2gvYXJtL2Jvb3QvZHRzL21lc29uOGIuZHRzaSB8IDYgKysrLS0tCiAxIGZpbGUg
-Y2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2Fy
-Y2gvYXJtL2Jvb3QvZHRzL21lc29uOGIuZHRzaSBiL2FyY2gvYXJtL2Jvb3QvZHRzL21lc29uOGIu
-ZHRzaQppbmRleCAyMmQ3NzU0NjA3NjcuLmRjMTI1NzY5ZmU4NSAxMDA2NDQKLS0tIGEvYXJjaC9h
-cm0vYm9vdC9kdHMvbWVzb244Yi5kdHNpCisrKyBiL2FyY2gvYXJtL2Jvb3QvZHRzL21lc29uOGIu
-ZHRzaQpAQCAtMjcwLDkgKzI3MCw3IEBACiAJCQkJZ3JvdXBzID0gImV0aF90eF9jbGsiLAogCQkJ
-CQkgImV0aF90eF9lbiIsCiAJCQkJCSAiZXRoX3R4ZDFfMCIsCi0JCQkJCSAiZXRoX3R4ZDFfMSIs
-CiAJCQkJCSAiZXRoX3R4ZDBfMCIsCi0JCQkJCSAiZXRoX3R4ZDBfMSIsCiAJCQkJCSAiZXRoX3J4
-X2NsayIsCiAJCQkJCSAiZXRoX3J4X2R2IiwKIAkJCQkJICJldGhfcnhkMSIsCkBAIC0yODEsNyAr
-Mjc5LDkgQEAKIAkJCQkJICJldGhfbWRjIiwKIAkJCQkJICJldGhfcmVmX2NsayIsCiAJCQkJCSAi
-ZXRoX3R4ZDIiLAotCQkJCQkgImV0aF90eGQzIjsKKwkJCQkJICJldGhfdHhkMyIsCisJCQkJCSAi
-ZXRoX3J4ZDMiLAorCQkJCQkgImV0aF9yeGQyIjsKIAkJCQlmdW5jdGlvbiA9ICJldGhlcm5ldCI7
-CiAJCQkJYmlhcy1kaXNhYmxlOwogCQkJfTsKLS0gCjIuMTkuMQoKCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0
-CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFk
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+From: Xingyu Chen <xingyu.chen@amlogic.com>
+
+[ Upstream commit e66dd48e8b0dee104d16417d30361074b08baca8 ]
+
+Since Meson G12A SoC, Introduce new ao registers AO_RTI_PULL_UP_EN_REG
+and AO_GPIO_O.
+
+These bits of controlling output level are remapped to the new register
+AO_GPIO_O, and the AO_GPIO_O_EN_N support only controlling output enable.
+
+These bits of controlling pull enable are remapped to the new register
+AO_RTI_PULL_UP_EN_REG, and the AO_RTI_PULL_UP_REG support only controlling
+pull type(up/down).
+
+The new layout of ao gpio/pull registers is as follows:
+- AO_GPIO_O_EN_N        [offset: 0x9 << 2]
+- AO_GPIO_I             [offset: 0xa << 2]
+- AO_RTI_PULL_UP_REG    [offset: 0xb << 2]
+- AO_RTI_PULL_UP_EN_REG [offset: 0xc << 2]
+- AO_GPIO_O             [offset: 0xd << 2]
+
+From above, we can see ao GPIO registers region has been separated by the
+ao pull registers. In order to ensure the continuity of the region on
+software, the ao GPIO and ao pull registers use the same base address, but
+can be identified by the offset.
+
+Fixes: 29ae0952e85f ("pinctrl: meson-g12a: add pinctrl driver support")
+Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
+Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/pinctrl/meson/pinctrl-meson.c | 22 ++++++++++++----------
+ 1 file changed, 12 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
+index ea87d739f534..a4ae1ac5369e 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson.c
++++ b/drivers/pinctrl/meson/pinctrl-meson.c
+@@ -31,6 +31,9 @@
+  * In some cases the register ranges for pull enable and pull
+  * direction are the same and thus there are only 3 register ranges.
+  *
++ * Since Meson G12A SoC, the ao register ranges for gpio, pull enable
++ * and pull direction are the same, so there are only 2 register ranges.
++ *
+  * For the pull and GPIO configuration every bank uses a contiguous
+  * set of bits in the register sets described above; the same register
+  * can be shared by more banks with different offsets.
+@@ -488,23 +491,22 @@ static int meson_pinctrl_parse_dt(struct meson_pinctrl *pc,
+ 		return PTR_ERR(pc->reg_mux);
+ 	}
+ 
+-	pc->reg_pull = meson_map_resource(pc, gpio_np, "pull");
+-	if (IS_ERR(pc->reg_pull)) {
+-		dev_err(pc->dev, "pull registers not found\n");
+-		return PTR_ERR(pc->reg_pull);
++	pc->reg_gpio = meson_map_resource(pc, gpio_np, "gpio");
++	if (IS_ERR(pc->reg_gpio)) {
++		dev_err(pc->dev, "gpio registers not found\n");
++		return PTR_ERR(pc->reg_gpio);
+ 	}
+ 
++	pc->reg_pull = meson_map_resource(pc, gpio_np, "pull");
++	/* Use gpio region if pull one is not present */
++	if (IS_ERR(pc->reg_pull))
++		pc->reg_pull = pc->reg_gpio;
++
+ 	pc->reg_pullen = meson_map_resource(pc, gpio_np, "pull-enable");
+ 	/* Use pull region if pull-enable one is not present */
+ 	if (IS_ERR(pc->reg_pullen))
+ 		pc->reg_pullen = pc->reg_pull;
+ 
+-	pc->reg_gpio = meson_map_resource(pc, gpio_np, "gpio");
+-	if (IS_ERR(pc->reg_gpio)) {
+-		dev_err(pc->dev, "gpio registers not found\n");
+-		return PTR_ERR(pc->reg_gpio);
+-	}
+-
+ 	return 0;
+ }
+ 
+-- 
+2.19.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
