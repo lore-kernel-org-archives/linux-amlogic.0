@@ -2,67 +2,88 @@ Return-Path: <SRS0=DOpU=R6=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 459A0C4360F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Mar 2019 13:47:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C9038C4360F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Mar 2019 15:14:12 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 13FDA2075E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Mar 2019 13:47:44 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 94BF4206B8
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Mar 2019 15:14:12 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hrXnnhuR"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 13FDA2075E
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=xs4all.nl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="aSLh4bNy";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="i1jTiAj3"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 94BF4206B8
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3SkxeUMCPOzv9N6zL9WGW4Hj4fsurefL8QyehfRvtDA=; b=hrXnnhuRi3R+sk
-	QplrT6XM267Sw30PtmSBmKkAe6BHfUxvQudxEN0jz1kd3/haFSpPjAibjZWFicxA1gMDfpsrL+SVv
-	tPVlO7pTTn1mBS3CZHyegcprNuDIZKQOiqyB5+bgGdSvsctxpnQrJOlyomKBPnhfFRlcMISDjFUY2
-	DbIbOLUBPvBYg4B22TT0/oZw+AwwmDY4/athJ4tTplYRGYY4HLMYfI4oyUeBwB04PkMm/fThx2SI0
-	MffiwfKL67FRVsHDb+KInhirGi65a9REvpwM8rTKq9E3zgF4FpdmGOr5dCK13GSPPWqkqTo2FEAQR
-	bc5/BNq8/QpPqZIYj85A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=K+9+cZIDHIX5NhwhfUZZL65qkCgek6+Ct1pYEHGpuQA=; b=aSLh4bNy0cT9k2
+	RmJ7i4QREyMyihrUBV0DpqhJYxwIwyW6j4SQj1K7hwIVXn1l6+hbAcbgKBydSAU6QW3awCLGUYmCr
+	TVvNv5C1amDUgopV7tSVjjxwDTg3beg174kPgjA2pEBkI+LLKv8/kKkF+izR8rt7O+LKL6dxqsDjN
+	36twPr89Nmw4XSte8KmzpvwKmp2OeBvR6eRXGAw90ET1C27gND7fwnj4o6Eo1s3Y9/Mp7IbHw0kjM
+	ESW5u/51ovsQU/ZQpEGuPO9uLIxyBlFHkGYKyXX1ybjI47yWOKXwXV9zU1U8yJ8nlUVHbc42OlTrO
+	Q3k3sbj6f3RZQzisIYeQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h98tx-0008WU-Sf; Wed, 27 Mar 2019 13:47:33 +0000
-Received: from lb1-smtp-cloud8.xs4all.net ([194.109.24.21])
+	id 1h9AFc-0005pl-GM; Wed, 27 Mar 2019 15:14:00 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h98tu-0008Vr-4a; Wed, 27 Mar 2019 13:47:32 +0000
-Received: from [IPv6:2001:420:44c1:2579:f45d:db5a:3412:ff5f]
- ([IPv6:2001:420:44c1:2579:f45d:db5a:3412:ff5f])
- by smtp-cloud8.xs4all.net with ESMTPA
- id 98tnhBehAUjKf98tqhpC5C; Wed, 27 Mar 2019 14:47:26 +0100
-Subject: Re: [PATCH 2/3] media: platform: meson: Add Amlogic Meson G12A AO CEC
- Controller driver
-To: Neil Armstrong <narmstrong@baylibre.com>, mchehab@kernel.org
-References: <20190325173501.22863-1-narmstrong@baylibre.com>
- <20190325173501.22863-3-narmstrong@baylibre.com>
- <7a23915b-0696-d884-7f56-309579f67bdd@xs4all.nl>
- <fdd9b2b3-b698-2f95-3807-86ecbe9b1051@baylibre.com>
-From: Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <c8f22d07-6445-f297-c445-87af3f2461da@xs4all.nl>
-Date: Wed, 27 Mar 2019 14:47:23 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.5.1
+ id 1h9AFV-0005kB-0S
+ for linux-amlogic@lists.infradead.org; Wed, 27 Mar 2019 15:13:54 +0000
+Received: by mail-wr1-x442.google.com with SMTP id p10so19068583wrq.1
+ for <linux-amlogic@lists.infradead.org>; Wed, 27 Mar 2019 08:13:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=f3oew5ViwTuk1kp7BHOXkdHpa+6yyRMKho3UTYQdnYI=;
+ b=i1jTiAj3AoEO6myDfncnDV1jLZnvl64EVCtJl1etsyCMiWhgofoHdX4YJwiqNH0SoL
+ mloR1rI47Q9Q0awzpgdPQuQLyJPM2gOgpAQkdIkj7wUbZP79Ax6pqPVrvZZulSM0vT0U
+ Np7PmmvFdc8OKkqaWjthX+OaUOdtX+/ksKoKxUia3MnB/eO7LcN4k3FeihUvZBObfOm6
+ 0DIMUfOVHfcjSyL/aK05Nf2VijcoPNudsAS+6QyBqSpgUwd0H+GsC9pESCxENGiOth8r
+ YGU1LhqMKZLPYuX666T66wucJ+YZ4TZ5bu8T8PlYXpn2S993SwMHwrTv1BR0pSvgW3/G
+ d62w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=f3oew5ViwTuk1kp7BHOXkdHpa+6yyRMKho3UTYQdnYI=;
+ b=nmC2oPN0Orhdua1RITasyeCQZXQkomqCYeGCJPu+wIhpwm1aNW+miZgLEf7JdoRfYs
+ 1+PjIkCMTnyNp2QFU9qddm/QlGCdShAalMldNXzvFkgI42jMQPqkGj7lDrtqcGF0r3lD
+ e3gLWHZm1Vma9bgTL460ex2JFtMHXRPdySQH0UBccZPx9Rrq+Rgs7PllAYGPX00qvGjr
+ P3qjm3miYqdnSC5P1kp5mrqMQ2zdN9h6lul20gqvvt1yfu6tcR4NNzP6Mk3TdPcCzJlc
+ CcgviHrmkfBR6Oj/Wwlj/UQRnQC8EaFWeN5jPHfkWBRyRt2QXkRJZRIhRAQS1qbFnsg8
+ EvUA==
+X-Gm-Message-State: APjAAAWTtdN5Qx7poVgWnB4k0znduzzdcKXntN1IOatQd2v5cBIj5Xws
+ +mmSkvGBbrHcX7/qlG/zY0v3qg==
+X-Google-Smtp-Source: APXvYqwaRk8d6lxeTnXqorNA366NMkTZpHeSdyCOnqkam9kOh62Jl92t32Sxurm+tceugrwK3TWVRw==
+X-Received: by 2002:a5d:6209:: with SMTP id y9mr25533754wru.140.1553699630784; 
+ Wed, 27 Mar 2019 08:13:50 -0700 (PDT)
+Received: from bender.baylibre.local
+ (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id x84sm406285wmg.13.2019.03.27.08.13.49
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+ Wed, 27 Mar 2019 08:13:50 -0700 (PDT)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: jbrunet@baylibre.com
+Subject: [PATCH] clk: meson: vid-pll-div: remove warning and return 0 on
+ invalid config
+Date: Wed, 27 Mar 2019 16:13:48 +0100
+Message-Id: <20190327151348.27402-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <fdd9b2b3-b698-2f95-3807-86ecbe9b1051@baylibre.com>
-Content-Language: en-US
-X-CMAE-Envelope: MS4wfH91Spj1ikiM1SAQxXcwjfSRA2sP9G2lp8SC2jYjzQnbTKKLVDwgYJtKtkC+seEj7/TBbituyoMWbNqDczssOK6Mgay9weSv4lJ84wTpyWCtInFpmw9E
- hauKrpfdQqyjr++b/RSWgz7w2ktZqRH2+/+rQisz0T7ZeBLw/LfxuNEcbqEcma+BJya6bh1XZAkYhuQr7efXu1qdwgwkdQYkltQVw6HTuuL2oMEZjD428lLb
- qgaEYdTT7Q7P4ohCathyRNpoDz057+2W33oaASJ1ZNM4ZCmnc75zD6WezF40vmBChHBlBLa7ptSD5U8pU+2B4UIfSVZF+VKEPq/XHAlYkyy4zAa/8fV+IuzN
- MWyh1/VMjrqJ63EILhdsQqMqWGMf90vNar8p3NyWH7TMuwRXXjOtO49+3ikqlbxWQqpBY3V8GkzFuG6rc/BYEu7M3GpnQ9DT8raMuJh9eAIqlZjxaxDIJ7uy
- vwYjWuLWMCOKtvzsNeb3huvubXsU8GtEDGoNmA==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190327_064730_497129_44C5F6EC 
-X-CRM114-Status: GOOD (  26.22  )
+X-CRM114-CacheID: sfid-20190327_081353_185339_F2CECFAD 
+X-CRM114-Status: GOOD (  10.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -75,486 +96,48 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 3/27/19 2:19 PM, Neil Armstrong wrote:
-> Hi Hans,
-> 
-> On 27/03/2019 13:52, Hans Verkuil wrote:
->> On 3/25/19 6:35 PM, Neil Armstrong wrote:
->>> The Amlogic G12A SoC embeds a second CEC controller with a totally
->>> different design.
->>>
->>> The two controller can work in the same time since the CEC line can
->>> be set to two different pins on the two controllers.
->>>
->>> This second CEC controller is documented as "AO-CEC-B", thus the
->>> registers will be named "CECB_" to differenciate with the other
->>> AO-CEC driver.
->>>
->>> Unlike the other AO-CEC controller, this one takes the Oscillator
->>> clock as input and embeds a dual-divider to provide a precise
->>> 32768Hz clock for communication. This is handled by registering
->>> a clock in the driver.
->>>
->>> Unlike the other AO-CEC controller, this controller supports setting
->>> up to 15 logical adresses and supports the signal_free_time settings
->>> in the transmit function.
->>>
->>> Unfortunately, this controller does not support "monitor" mode.
->>>
->>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->>> ---
->>>  drivers/media/platform/Kconfig             |  13 +
->>>  drivers/media/platform/meson/Makefile      |   1 +
->>>  drivers/media/platform/meson/ao-cec-g12a.c | 783 +++++++++++++++++++++
->>>  3 files changed, 797 insertions(+)
->>>  create mode 100644 drivers/media/platform/meson/ao-cec-g12a.c
->>>
->>> diff --git a/drivers/media/platform/Kconfig b/drivers/media/platform/Kconfig
->>> index 4acbed189644..92ea07ddc609 100644
->>> --- a/drivers/media/platform/Kconfig
->>> +++ b/drivers/media/platform/Kconfig
->>> @@ -578,6 +578,19 @@ config VIDEO_MESON_AO_CEC
->>>  	  generic CEC framework interface.
->>>  	  CEC bus is present in the HDMI connector and enables communication
->>>  
->>> +config VIDEO_MESON_G12A_AO_CEC
->>> +	tristate "Amlogic Meson G12A AO CEC driver"
->>> +	depends on ARCH_MESON || COMPILE_TEST
->>> +	select CEC_CORE
->>> +	select CEC_NOTIFIER
->>> +	---help---
->>> +	  This is a driver for Amlogic Meson G12A SoCs AO CEC interface.
->>> +	  This driver if for the new AO-CEC module found in G12A SoCs,
->>> +	  usually named AO_CEC_B in documentation.
->>> +	  It uses the generic CEC framework interface.
->>> +	  CEC bus is present in the HDMI connector and enables communication
->>> +	  between compatible devices.
->>> +
->>>  config CEC_GPIO
->>>  	tristate "Generic GPIO-based CEC driver"
->>>  	depends on PREEMPT || COMPILE_TEST
->>> diff --git a/drivers/media/platform/meson/Makefile b/drivers/media/platform/meson/Makefile
->>> index 597beb8f34d1..f611c23c3718 100644
->>> --- a/drivers/media/platform/meson/Makefile
->>> +++ b/drivers/media/platform/meson/Makefile
->>> @@ -1 +1,2 @@
->>>  obj-$(CONFIG_VIDEO_MESON_AO_CEC)	+= ao-cec.o
->>> +obj-$(CONFIG_VIDEO_MESON_G12A_AO_CEC)	+= ao-cec-g12a.o
->>> diff --git a/drivers/media/platform/meson/ao-cec-g12a.c b/drivers/media/platform/meson/ao-cec-g12a.c
->>> new file mode 100644
->>> index 000000000000..8977ae994164
->>> --- /dev/null
->>> +++ b/drivers/media/platform/meson/ao-cec-g12a.c
->>> @@ -0,0 +1,783 @@
->>> +// SPDX-License-Identifier: GPL-2.0+
->>> +/*
->>> + * Driver for Amlogic Meson AO CEC G12A Controller
->>> + *
->>> + * Copyright (C) 2017 Amlogic, Inc. All rights reserved
->>> + * Copyright (C) 2019 BayLibre, SAS
->>> + * Author: Neil Armstrong <narmstrong@baylibre.com>
->>> + */
->>> +
-> 
-> [...]
-> 
->>> +
->>> +static irqreturn_t meson_ao_cec_g12a_irq_thread(int irq, void *data)
->>> +{
->>> +	struct meson_ao_cec_g12a_device *ao_cec = data;
->>> +	u32 stat;
->>> +
->>> +	regmap_read(ao_cec->regmap, CECB_INTR_STAT_REG, &stat);
->>> +	regmap_write(ao_cec->regmap, CECB_INTR_CLR_REG, stat);
->>> +
->>> +	if (stat & CECB_INTR_DONE)
->>> +		cec_transmit_attempt_done(ao_cec->adap, CEC_TX_STATUS_OK);
->>> +
->>> +	if (stat & CECB_INTR_EOM)
->>> +		meson_ao_cec_g12a_irq_rx(ao_cec);
->>> +
->>> +	if (stat & CECB_INTR_NACK)
->>> +		cec_transmit_attempt_done(ao_cec->adap, CEC_TX_STATUS_NACK);
->>> +
->>> +	if (stat & CECB_INTR_ARB_LOSS) {
->>> +		regmap_write(ao_cec->regmap_cec, CECB_TX_CNT, 0);
->>> +		regmap_update_bits(ao_cec->regmap_cec, CECB_CTRL,
->>> +				   CECB_CTRL_SEND | CECB_CTRL_TYPE, 0);
->>> +		cec_transmit_attempt_done(ao_cec->adap, CEC_TX_STATUS_ARB_LOST);
->>> +	}
->>> +
->>> +	if (stat & CECB_INTR_INITIATOR_ERR)
->>> +		cec_transmit_attempt_done(ao_cec->adap, CEC_TX_STATUS_NACK);
->>> +
->>> +	if (stat & CECB_INTR_FOLLOWER_ERR) {
->>> +		regmap_write(ao_cec->regmap_cec, CECB_LOCK_BUF, 0);
->>> +		cec_transmit_attempt_done(ao_cec->adap, CEC_TX_STATUS_NACK);
->>
->> Any idea what CECB_INTR_INITIATOR_ERR and CECB_INTR_FOLLOWER_ERR actually
->> mean? I.e. is returning NACK right here, or would TX_STATUS_ERROR be a
->> better choice? I invented that status precisely for cases where there is
->> an error, but we don't know what it means.
->>
->> Are you sure that CECB_INTR_FOLLOWER_ERR applies to a transmit and not a
->> receive? 'Follower' suggests that some error occurred while receiving
->> a message. If I am right, then just ignore it.
-> 
-> Vendor describes it as "Follower Error interrupt flag status", indeed it
-> would apply to a receive nack. I'll ignore it.
-> 
->>
->> Regarding CECB_INTR_INITIATOR_ERR: I suspect that this indicates a LOW
->> DRIVE error situation, in which case you'd return that transmit status.
-> 
-> Vendor describes it as "Initiator Error interrupt flag status", I suspect it
-> means a generic bus error, and it should certainly be a low drive situation.
-> 
-> Would CEC_TX_STATUS_ERROR be more appropriate since we don't know exactly ?
+The vid_pll_div is a programmable fractional divider, but vendor gives a
+limited of known configuration value and it's corresponding fraction.
 
-Yes, that would be better.
+Thus when at reset value (0) or unknown value, we cannot determine the
+result rate.
 
-Regards,
+The initial behaviour was to print a warning, but the warning triggers
+at each boot and when the clock tree is refreshed.
 
-	Hans
+This patch moves the print to debug and returns 0 instead of the
+parent rate.
 
-> 
->>
->>> +	}
->>> +
->>> +	return IRQ_HANDLED;
->>> +}
->>> +
->>> +static int
->>> +meson_ao_cec_g12a_set_log_addr(struct cec_adapter *adap, u8 logical_addr)
->>> +{
->>> +	struct meson_ao_cec_g12a_device *ao_cec = adap->priv;
->>> +	int ret = 0;
->>> +
->>> +	if (logical_addr == CEC_LOG_ADDR_INVALID) {
->>> +		ret = regmap_write(ao_cec->regmap_cec, CECB_LADD_LOW, 0);
->>> +		ret = regmap_write(ao_cec->regmap_cec, CECB_LADD_HIGH, 0);
->>
->> Just ignore the error codes and return 0 here.
->>
->> The CEC core will WARN if this function returns anything other than 0
->> when invalidating the logical addresses. It assumes this will always
->> succeed.
-> 
-> Ok
-> 
->>
->>> +	} else if (logical_addr < 8) {
->>> +		ret = regmap_update_bits(ao_cec->regmap_cec, CECB_LADD_LOW,
->>> +					 BIT(logical_addr),
->>> +					 BIT(logical_addr));
->>> +	} else {
->>> +		ret = regmap_update_bits(ao_cec->regmap_cec, CECB_LADD_HIGH,
->>> +					 BIT(logical_addr - 8),
->>> +					 BIT(logical_addr - 8));
->>> +	}
->>> +
->>> +	/* Always set Broadcast/Unregistered 15 address */
->>> +	ret |= regmap_update_bits(ao_cec->regmap_cec, CECB_LADD_HIGH,
->>
->> I'd just do:
->>
->> 	if (!ret)
->> 		ret = regmap_...
->>
->> Error codes are not a bitmask after all.
->>
->> I see that elsewhere as well.
->>
->> It's OK to use |=, but then when you return from the function you
->> would have to do something like:
->>
->> 	return ret ? -EIO : 0;
-> 
-> I'll do this when errors can only come from regmap, and check each
-> calls for other situations.
-> 
->>
->> Regards,
->>
->> 	Hans
-> 
-> Thanks,
-> Neil
-> 
->>
->>> +				  BIT(CEC_LOG_ADDR_UNREGISTERED - 8),
->>> +				  BIT(CEC_LOG_ADDR_UNREGISTERED - 8));
->>> +
->>> +	return ret;
->>> +}
->>> +
->>> +static int meson_ao_cec_g12a_transmit(struct cec_adapter *adap, u8 attempts,
->>> +				 u32 signal_free_time, struct cec_msg *msg)
->>> +{
->>> +	struct meson_ao_cec_g12a_device *ao_cec = adap->priv;
->>> +	unsigned int type;
->>> +	int ret = 0;
->>> +	u32 val;
->>> +	int i;
->>> +
->>> +	/* Check if RX is in progress */
->>> +	ret = regmap_read(ao_cec->regmap_cec, CECB_LOCK_BUF, &val);
->>> +	if (ret)
->>> +		return ret;
->>> +	if (val & CECB_LOCK_BUF_EN)
->>> +		return -EBUSY;
->>> +
->>> +	/* Check if TX Busy */
->>> +	ret = regmap_read(ao_cec->regmap_cec, CECB_CTRL, &val);
->>> +	if (ret)
->>> +		return ret;
->>> +	if (val & CECB_CTRL_SEND)
->>> +		return -EBUSY;
->>> +
->>> +	switch (signal_free_time) {
->>> +	case CEC_SIGNAL_FREE_TIME_RETRY:
->>> +		type = CECB_CTRL_TYPE_RETRY;
->>> +		break;
->>> +	case CEC_SIGNAL_FREE_TIME_NEXT_XFER:
->>> +		type = CECB_CTRL_TYPE_NEXT;
->>> +		break;
->>> +	case CEC_SIGNAL_FREE_TIME_NEW_INITIATOR:
->>> +	default:
->>> +		type = CECB_CTRL_TYPE_NEW;
->>> +		break;
->>> +	}
->>> +
->>> +	for (i = 0; i < msg->len; i++)
->>> +		ret |= regmap_write(ao_cec->regmap_cec, CECB_TX_DATA00 + i,
->>> +				    msg->msg[i]);
->>> +
->>> +	ret |= regmap_write(ao_cec->regmap_cec, CECB_TX_CNT, msg->len);
->>> +	ret = regmap_update_bits(ao_cec->regmap_cec, CECB_CTRL,
->>> +				 CECB_CTRL_SEND |
->>> +				 CECB_CTRL_TYPE,
->>> +				 CECB_CTRL_SEND |
->>> +				 FIELD_PREP(CECB_CTRL_TYPE, type));
->>> +
->>> +	return ret;
->>> +}
->>> +
->>> +static int meson_ao_cec_g12a_adap_enable(struct cec_adapter *adap, bool enable)
->>> +{
->>> +	struct meson_ao_cec_g12a_device *ao_cec = adap->priv;
->>> +
->>> +	meson_ao_cec_g12a_irq_setup(ao_cec, false);
->>> +
->>> +	regmap_update_bits(ao_cec->regmap, CECB_GEN_CNTL_REG,
->>> +			   CECB_GEN_CNTL_RESET, CECB_GEN_CNTL_RESET);
->>> +
->>> +	if (!enable)
->>> +		return 0;
->>> +
->>> +	/* Setup Filter */
->>> +	regmap_update_bits(ao_cec->regmap, CECB_GEN_CNTL_REG,
->>> +			   CECB_GEN_CNTL_FILTER_TICK_SEL |
->>> +			   CECB_GEN_CNTL_FILTER_DEL,
->>> +			   FIELD_PREP(CECB_GEN_CNTL_FILTER_TICK_SEL,
->>> +				      CECB_GEN_CNTL_FILTER_TICK_1US) |
->>> +			   FIELD_PREP(CECB_GEN_CNTL_FILTER_DEL, 7));
->>> +
->>> +	/* Enable System Clock */
->>> +	regmap_update_bits(ao_cec->regmap, CECB_GEN_CNTL_REG,
->>> +			   CECB_GEN_CNTL_SYS_CLK_EN,
->>> +			   CECB_GEN_CNTL_SYS_CLK_EN);
->>> +
->>> +	/* Enable gated clock (Normal mode). */
->>> +	regmap_update_bits(ao_cec->regmap, CECB_GEN_CNTL_REG,
->>> +			   CECB_GEN_CNTL_CLK_CTRL_MASK,
->>> +			    FIELD_PREP(CECB_GEN_CNTL_CLK_CTRL_MASK,
->>> +				       CECB_GEN_CNTL_CLK_ENABLE));
->>> +
->>> +	/* Release Reset */
->>> +	regmap_update_bits(ao_cec->regmap, CECB_GEN_CNTL_REG,
->>> +			   CECB_GEN_CNTL_RESET, 0);
->>> +
->>> +	meson_ao_cec_g12a_irq_setup(ao_cec, true);
->>> +
->>> +	return 0;
->>> +}
->>> +
->>> +static const struct cec_adap_ops meson_ao_cec_g12a_ops = {
->>> +	.adap_enable = meson_ao_cec_g12a_adap_enable,
->>> +	.adap_log_addr = meson_ao_cec_g12a_set_log_addr,
->>> +	.adap_transmit = meson_ao_cec_g12a_transmit,
->>> +};
->>> +
->>> +static int meson_ao_cec_g12a_probe(struct platform_device *pdev)
->>> +{
->>> +	struct meson_ao_cec_g12a_device *ao_cec;
->>> +	struct platform_device *hdmi_dev;
->>> +	struct device_node *np;
->>> +	struct resource *res;
->>> +	void __iomem *base;
->>> +	int ret, irq;
->>> +
->>> +	np = of_parse_phandle(pdev->dev.of_node, "hdmi-phandle", 0);
->>> +	if (!np) {
->>> +		dev_err(&pdev->dev, "Failed to find hdmi node\n");
->>> +		return -ENODEV;
->>> +	}
->>> +
->>> +	hdmi_dev = of_find_device_by_node(np);
->>> +	of_node_put(np);
->>> +	if (hdmi_dev == NULL)
->>> +		return -EPROBE_DEFER;
->>> +
->>> +	put_device(&hdmi_dev->dev);
->>> +	ao_cec = devm_kzalloc(&pdev->dev, sizeof(*ao_cec), GFP_KERNEL);
->>> +	if (!ao_cec)
->>> +		return -ENOMEM;
->>> +
->>> +	spin_lock_init(&ao_cec->cec_reg_lock);
->>> +	ao_cec->pdev = pdev;
->>> +
->>> +	ao_cec->notify = cec_notifier_get(&hdmi_dev->dev);
->>> +	if (!ao_cec->notify)
->>> +		return -ENOMEM;
->>> +
->>> +	ao_cec->adap = cec_allocate_adapter(&meson_ao_cec_g12a_ops, ao_cec,
->>> +					    "meson_g12a_ao_cec",
->>> +					    CEC_CAP_DEFAULTS,
->>> +					    CEC_MAX_LOG_ADDRS);
->>> +	if (IS_ERR(ao_cec->adap)) {
->>> +		ret = PTR_ERR(ao_cec->adap);
->>> +		goto out_probe_notify;
->>> +	}
->>> +
->>> +	ao_cec->adap->owner = THIS_MODULE;
->>> +
->>> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->>> +	base = devm_ioremap_resource(&pdev->dev, res);
->>> +	if (IS_ERR(base)) {
->>> +		ret = PTR_ERR(base);
->>> +		goto out_probe_adapter;
->>> +	}
->>> +
->>> +	ao_cec->regmap = devm_regmap_init_mmio(&pdev->dev, base,
->>> +					       &meson_ao_cec_g12a_regmap_conf);
->>> +	if (IS_ERR(ao_cec->regmap)) {
->>> +		ret = PTR_ERR(ao_cec->regmap);
->>> +		goto out_probe_adapter;
->>> +	}
->>> +
->>> +	ao_cec->regmap_cec = devm_regmap_init(&pdev->dev, NULL, ao_cec,
->>> +					   &meson_ao_cec_g12a_cec_regmap_conf);
->>> +	if (IS_ERR(ao_cec->regmap_cec)) {
->>> +		ret = PTR_ERR(ao_cec->regmap_cec);
->>> +		goto out_probe_adapter;
->>> +	}
->>> +
->>> +	irq = platform_get_irq(pdev, 0);
->>> +	ret = devm_request_threaded_irq(&pdev->dev, irq,
->>> +					meson_ao_cec_g12a_irq,
->>> +					meson_ao_cec_g12a_irq_thread,
->>> +					0, NULL, ao_cec);
->>> +	if (ret) {
->>> +		dev_err(&pdev->dev, "irq request failed\n");
->>> +		goto out_probe_adapter;
->>> +	}
->>> +
->>> +	ao_cec->oscin = devm_clk_get(&pdev->dev, "oscin");
->>> +	if (IS_ERR(ao_cec->oscin)) {
->>> +		dev_err(&pdev->dev, "oscin clock request failed\n");
->>> +		ret = PTR_ERR(ao_cec->oscin);
->>> +		goto out_probe_adapter;
->>> +	}
->>> +
->>> +	ret = meson_ao_cec_g12a_setup_clk(ao_cec);
->>> +	if (ret)
->>> +		goto out_probe_clk;
->>> +
->>> +	ret = clk_prepare_enable(ao_cec->core);
->>> +	if (ret) {
->>> +		dev_err(&pdev->dev, "core clock enable failed\n");
->>> +		goto out_probe_clk;
->>> +	}
->>> +
->>> +	device_reset_optional(&pdev->dev);
->>> +
->>> +	platform_set_drvdata(pdev, ao_cec);
->>> +
->>> +	ret = cec_register_adapter(ao_cec->adap, &pdev->dev);
->>> +	if (ret < 0) {
->>> +		cec_notifier_put(ao_cec->notify);
->>> +		goto out_probe_core_clk;
->>> +	}
->>> +
->>> +	/* Setup Hardware */
->>> +	regmap_write(ao_cec->regmap, CECB_GEN_CNTL_REG, CECB_GEN_CNTL_RESET);
->>> +
->>> +	cec_register_cec_notifier(ao_cec->adap, ao_cec->notify);
->>> +
->>> +	return 0;
->>> +
->>> +out_probe_core_clk:
->>> +	clk_disable_unprepare(ao_cec->core);
->>> +
->>> +out_probe_clk:
->>> +	clk_disable_unprepare(ao_cec->oscin);
->>> +
->>> +out_probe_adapter:
->>> +	cec_delete_adapter(ao_cec->adap);
->>> +
->>> +out_probe_notify:
->>> +	cec_notifier_put(ao_cec->notify);
->>> +
->>> +	dev_err(&pdev->dev, "CEC controller registration failed\n");
->>> +
->>> +	return ret;
->>> +}
->>> +
->>> +static int meson_ao_cec_g12a_remove(struct platform_device *pdev)
->>> +{
->>> +	struct meson_ao_cec_g12a_device *ao_cec = platform_get_drvdata(pdev);
->>> +
->>> +	clk_disable_unprepare(ao_cec->oscin);
->>> +
->>> +	cec_unregister_adapter(ao_cec->adap);
->>> +
->>> +	cec_notifier_put(ao_cec->notify);
->>> +
->>> +	return 0;
->>> +}
->>> +
->>> +static const struct of_device_id meson_ao_cec_g12a_of_match[] = {
->>> +	{ .compatible = "amlogic,meson-g12a-ao-cec-b", },
->>> +	{ /* sentinel */ }
->>> +};
->>> +MODULE_DEVICE_TABLE(of, meson_ao_cec_g12a_of_match);
->>> +
->>> +static struct platform_driver meson_ao_cec_g12a_driver = {
->>> +	.probe   = meson_ao_cec_g12a_probe,
->>> +	.remove  = meson_ao_cec_g12a_remove,
->>> +	.driver  = {
->>> +		.name = "meson-ao-cec-g12a",
->>> +		.of_match_table = of_match_ptr(meson_ao_cec_g12a_of_match),
->>> +	},
->>> +};
->>> +
->>> +module_platform_driver(meson_ao_cec_g12a_driver);
->>> +
->>> +MODULE_DESCRIPTION("Meson AO CEC G12A Controller driver");
->>> +MODULE_AUTHOR("Neil Armstrong <narmstrong@baylibre.com>");
->>> +MODULE_LICENSE("GPL");
->>>
->>
->> Regards,
->>
->> 	Hans
->>
-> 
+Fixes: 72dbb8c94d0d ("clk: meson: Add vid_pll divider driver")
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/clk/meson/vid-pll-div.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/clk/meson/vid-pll-div.c b/drivers/clk/meson/vid-pll-div.c
+index 08bcc01c0923..daff235bc763 100644
+--- a/drivers/clk/meson/vid-pll-div.c
++++ b/drivers/clk/meson/vid-pll-div.c
+@@ -82,8 +82,8 @@ static unsigned long meson_vid_pll_div_recalc_rate(struct clk_hw *hw,
+ 	div = _get_table_val(meson_parm_read(clk->map, &pll_div->val),
+ 			     meson_parm_read(clk->map, &pll_div->sel));
+ 	if (!div || !div->divider) {
+-		pr_info("%s: Invalid config value for vid_pll_div\n", __func__);
+-		return parent_rate;
++		pr_debug("%s: Invalid config value for vid_pll_div\n", __func__);
++		return 0;
+ 	}
+ 
+ 	return DIV_ROUND_UP_ULL(parent_rate * div->multiplier, div->divider);
+-- 
+2.21.0
 
 
 _______________________________________________
