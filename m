@@ -2,69 +2,77 @@ Return-Path: <SRS0=DOpU=R6=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+	USER_AGENT_MUTT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 678D9C4360F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Mar 2019 18:16:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8DB33C43381
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Mar 2019 20:40:24 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 39FAE2087C
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Mar 2019 18:16:43 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5DE402054F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Mar 2019 20:40:24 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ESCkc4XF";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ni9S8j+F"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 39FAE2087C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iijKIXy2"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5DE402054F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yT+b1Upc3iMAI7gw2VAB8JY4wVCfr+fhLMR7aj75854=; b=ESCkc4XFxw1HLE
-	ybZLOscXZCnz2CoSBgdQvB19vb32oj/wmbKuV3oCwoW5bmOy+qnbXrY30QdnecxKKvZiBM0HuDcpc
-	/YNBTvtLKaWVdkwdlxJnfCGdl++dfCife7WPKhOpquORn0712Fuy47Ju+5KzIW1HwKDDeaqvUrBjT
-	FkLAKwWBQgcwehSYAUnRC9jbrZ/xRma5bcRMw/5Ge0ykfvHzFxoEBWRwj5525yO4irIxE9FMS7MPj
-	Y/1FPyIi/oQ65zDfx+G76nYimgYn6MhtrvzJvzRJQoFwRpb6dnbu+OVYEIWEvkIsVlhouosk2ElTh
-	6D1QDJUiYI981+X2PRew==;
+	List-Owner; bh=AS+DHlH6Dd+z61EmJv+p15BVf7dzHKrKGoOd2riSvmc=; b=iijKIXy2dYmd4+
+	4hSLB7tM3XV3xcWKPJy/jyNibyrfYuAIXlm5kdvFV9FpzX4NVWCN4OkihwTxn62yllfhdOAcsR6iM
+	Dxi/Z1NVoWVJCOhRgV7z53CuntWoOAehSxiAXgUr6aoCUXKbkBWn7I44gGzPkXnLDwds42nK0w9dv
+	8ijaxr+TX7HVmJpf49eswG+0t8lNaxKV/J5cJLQaV+BaXWr9X3CBlWsDA7otIH8LNglr7e3okJlmD
+	wuCkvISMI7sjxoCDt/988zKh3goe0jAL6fu1xlIFonCxQfK11katdpqHx1WHN8Q36KYSudgm/0+fA
+	tX6NmoQ3rowB+Yta0nZg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h9D6M-00063l-TB; Wed, 27 Mar 2019 18:16:38 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1h9FLD-0007Tr-C7; Wed, 27 Mar 2019 20:40:07 +0000
+Received: from mail-oi1-f196.google.com ([209.85.167.196])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h9D5z-0005cj-Vr
- for linux-amlogic@lists.infradead.org; Wed, 27 Mar 2019 18:16:37 +0000
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
- [73.47.72.35])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id C9551217D9;
- Wed, 27 Mar 2019 18:16:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1553710575;
- bh=0qLHF3LgfFbvHLtMyDGO59z6r4GEQMr2fBPiTFD6aKE=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Ni9S8j+Fg9t9Fmf0PRonVjhinh6ylalaxgRtwPffRONK9+pB1VAsxkDEPF8KhMJB4
- g8z+1mfQ1WZ1vXByqzZ+62NWmICTZF3HIVrC3WjrWjG9ThuHOYywnsb+FAPSAnT0Fv
- dTsCWzwLPlYbqt8wYKJo1W1qZQCVhKB6RhJjXVFQ=
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 184/192] clk: meson: clean-up clock registration
-Date: Wed, 27 Mar 2019 14:10:16 -0400
-Message-Id: <20190327181025.13507-184-sashal@kernel.org>
-X-Mailer: git-send-email 2.19.1
-In-Reply-To: <20190327181025.13507-1-sashal@kernel.org>
-References: <20190327181025.13507-1-sashal@kernel.org>
+ id 1h9FL9-00070y-9d; Wed, 27 Mar 2019 20:40:05 +0000
+Received: by mail-oi1-f196.google.com with SMTP id v84so14032470oif.4;
+ Wed, 27 Mar 2019 13:40:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=4gs1k9h/r+rR22WgCUHcRbiFNQiFMIAqAW+9dotws5o=;
+ b=AjXySQ3c+vm7O9IOyaJFwfx2q50qpBxZQgMli1u0/bbwicLNAgOdpMGdEzbs4yhnIg
+ ohA5xtfDMaltwvLX89DgihrY8emZPmydUT3PRaaq9fZJuMRlflIlI7V8EjC4cw5o9Bya
+ ZXID9IpEeOLVRluwJVRn6ZQCBbsQkLOOVhqCk1QCnNnnzzK2Xcv3FxOT3icADYwrONTX
+ 8Jp7/XKKbRYryHKahipw1KH5kopo2NH70ryYz4BFMoMUkZbFd23TTba7eF1mKGC0TqS0
+ w5gSWSi3Oa4ox5xjKfDCnYBNPhvg3v4LqgdDFu61Bic3ZJdEzIEh3GWePHl7ROhjbckk
+ /DSg==
+X-Gm-Message-State: APjAAAURMMKACnj3TURZeFBqRxbQLmNYnp6RNGo/oSb/lIvXS7IFM1JP
+ W3O/y5xm/6AUsW5hx10ExwEE9Eg=
+X-Google-Smtp-Source: APXvYqwiLSwO8LZWbdcBRnH42bGTBkfd4DgaMpEeNCh1wnZaZdD3X72tHIoPAa+g7pIuHz+CxCG+Aw==
+X-Received: by 2002:aca:5757:: with SMTP id l84mr21554261oib.155.1553719201655; 
+ Wed, 27 Mar 2019 13:40:01 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net.
+ [24.155.109.49])
+ by smtp.gmail.com with ESMTPSA id a34sm2067893otc.46.2019.03.27.13.39.59
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Wed, 27 Mar 2019 13:39:59 -0700 (PDT)
+Date: Wed, 27 Mar 2019 15:39:59 -0500
+From: Rob Herring <robh@kernel.org>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH v3] dt-bindings: gpu: add bindings for the ARM Mali
+ Bifrost GPU
+Message-ID: <20190327203959.GA31523@bogus>
+References: <20190304105802.6010-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-X-Patchwork-Hint: Ignore
+Content-Disposition: inline
+In-Reply-To: <20190304105802.6010-1-narmstrong@baylibre.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190327_111616_521683_71E457BF 
-X-CRM114-Status: GOOD (  11.36  )
+X-CRM114-CacheID: sfid-20190327_134003_921996_6E04FA2B 
+X-CRM114-Status: GOOD (  22.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -76,67 +84,143 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, linux-amlogic@lists.infradead.org,
- Neil Armstrong <narmstrong@baylibre.com>, linux-clk@vger.kernel.org,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Jerome Brunet <jbrunet@baylibre.com>
+On Mon, Mar 04, 2019 at 11:58:02AM +0100, Neil Armstrong wrote:
+> Add the bindings for the Bifrost family of ARM Mali GPUs.
+> 
+> The Bifrost GPU architecture is similar to the Midgard family,
+> but with a different Shader Core & Execution Engine structures.
+> 
+> Bindings are based on the Midgard family bindings, but the inner
+> architectural changes makes it a separate family needing separate
+> bindings.
+> 
+> The Bifrost GPUs are present in a number of recent SoCs, like the
+> Amlogic G12A Family, and many other vendors.
+> The Amlogic vendor specific compatible is added to handle the
+> specific IP integration differences and dependencies.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  .../bindings/gpu/arm,mali-bifrost.txt         | 90 +++++++++++++++++++
+>  1 file changed, 90 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-bifrost.txt
+> 
+> Changes since v2:
+> - moved to a single compatible since HW is fully discoverable
+> 
+> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.txt b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.txt
+> new file mode 100644
+> index 000000000000..e068fccf4ce9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.txt
+> @@ -0,0 +1,90 @@
+> +ARM Mali Bifrost GPU
+> +====================
+> +
+> +Required properties:
+> +
+> +- compatible :
+> +  * Must contain one the following:
+> +    + "arm,mali-bifrost"
 
-[ Upstream commit 8d9981efbcab066d17af4d3c85c169200f6f78df ]
+Perhaps a note that the specific model/revision is discoverable.
 
-Order, ids and size  between the table of regmap clocks and the onecell
-data table could be different.
+> +  * which must be preceded by one of the following vendor specifics:
+> +    + "amlogic,meson-g12a-mali"
+> +
+> +- reg : Physical base address of the device and length of the register area.
+> +
+> +- interrupts : Contains the three IRQ lines required by Mali Bifrost devices.
+> +
+> +- interrupt-names : Contains the names of IRQ resources in the order they were
+> +  provided in the interrupts property. Must contain: "job", "mmu", "gpu".
 
-Set regmap pointer in all the regmap clocks before starting the
-registration using the onecell data, to make sure we don't
-get into an incoherent situation.
+Please make the order defined.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Link: https://lkml.kernel.org/r/20181221160239.26265-3-jbrunet@baylibre.com
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/clk/meson/meson-aoclk.c | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/clk/meson/meson-aoclk.c b/drivers/clk/meson/meson-aoclk.c
-index f965845917e3..258c8d259ea1 100644
---- a/drivers/clk/meson/meson-aoclk.c
-+++ b/drivers/clk/meson/meson-aoclk.c
-@@ -65,15 +65,20 @@ int meson_aoclkc_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
--	/*
--	 * Populate regmap and register all clks
--	 */
--	for (clkid = 0; clkid < data->num_clks; clkid++) {
-+	/* Populate regmap */
-+	for (clkid = 0; clkid < data->num_clks; clkid++)
- 		data->clks[clkid]->map = regmap;
- 
-+	/* Register all clks */
-+	for (clkid = 0; clkid < data->hw_data->num; clkid++) {
-+		if (!data->hw_data->hws[clkid])
-+			continue;
-+
- 		ret = devm_clk_hw_register(dev, data->hw_data->hws[clkid]);
--		if (ret)
-+		if (ret) {
-+			dev_err(dev, "Clock registration failed\n");
- 			return ret;
-+		}
- 	}
- 
- 	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
--- 
-2.19.1
-
+> +
+> +Optional properties:
+> +
+> +- clocks : Phandle to clock for the Mali Bifrost device.
+> +
+> +- mali-supply : Phandle to regulator for the Mali device. Refer to
+> +  Documentation/devicetree/bindings/regulator/regulator.txt for details.
+> +
+> +- operating-points-v2 : Refer to Documentation/devicetree/bindings/opp/opp.txt
+> +  for details.
+> +
+> +- resets : Phandle of the GPU reset line.
+> +
+> +Vendor-specific bindings
+> +------------------------
+> +
+> +The Mali GPU is integrated very differently from one SoC to
+> +another. In order to accomodate those differences, you have the option
+> +to specify one more vendor-specific compatible, among:
+> +
+> +- "amlogic,meson-g12a-mali"
+> +  Required properties:
+> +  - resets : Should contain phandles of :
+> +    + GPU reset line
+> +    + GPU APB glue reset line
+> +
+> +Example for a Mali-G31:
+> +
+> +gpu@ffa30000 {
+> +	compatible = "amlogic,meson-g12a-mali", "arm,mali-bifrost";
+> +	reg = <0xffe40000 0x10000>;
+> +	interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>,
+> +		     <GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH>,
+> +		     <GIC_SPI 162 IRQ_TYPE_LEVEL_HIGH>;
+> +	interrupt-names = "job", "mmu", "gpu";
+> +	clocks = <&clk CLKID_MALI>;
+> +	mali-supply = <&vdd_gpu>;
+> +	operating-points-v2 = <&gpu_opp_table>;
+> +	resets = <&reset RESET_DVALIN_CAPB3>, <&reset RESET_DVALIN>;
+> +};
+> +
+> +gpu_opp_table: opp_table0 {
+> +	compatible = "operating-points-v2";
+> +
+> +	opp@533000000 {
+> +		opp-hz = /bits/ 64 <533000000>;
+> +		opp-microvolt = <1250000>;
+> +	};
+> +	opp@450000000 {
+> +		opp-hz = /bits/ 64 <450000000>;
+> +		opp-microvolt = <1150000>;
+> +	};
+> +	opp@400000000 {
+> +		opp-hz = /bits/ 64 <400000000>;
+> +		opp-microvolt = <1125000>;
+> +	};
+> +	opp@350000000 {
+> +		opp-hz = /bits/ 64 <350000000>;
+> +		opp-microvolt = <1075000>;
+> +	};
+> +	opp@266000000 {
+> +		opp-hz = /bits/ 64 <266000000>;
+> +		opp-microvolt = <1025000>;
+> +	};
+> +	opp@160000000 {
+> +		opp-hz = /bits/ 64 <160000000>;
+> +		opp-microvolt = <925000>;
+> +	};
+> +	opp@100000000 {
+> +		opp-hz = /bits/ 64 <100000000>;
+> +		opp-microvolt = <912500>;
+> +	};
+> +};
+> -- 
+> 2.20.1
+> 
 
 _______________________________________________
 linux-amlogic mailing list
