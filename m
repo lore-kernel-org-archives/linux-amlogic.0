@@ -2,84 +2,82 @@ Return-Path: <SRS0=wRYZ=SA=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-11.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F0A8DC4360F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Mar 2019 08:40:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A6708C4360F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Mar 2019 09:14:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BDFE92082F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Mar 2019 08:40:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 760B32183F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Mar 2019 09:14:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rveUkKF0";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="xrAQ8kL4"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BDFE92082F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CwsOz8il";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="W1+A61LL"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 760B32183F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=UFbMqhVrrdIn4nODz5w5QFYHJUNNbdqA5TzfRsnSrPc=; b=rveUkKF06qgnoc
-	B9W2mH+TC5F3ig528XfGzSVaRq8yMnu9pfJoEh3Xx741TpfC2Y/Y0BGGCPliulLIRKGGW1G4of65M
-	KZqTm9K9p9ZY5IP/MJyVdb/0JNScRrNf8sY6I9KI2k66SJ1+mkph4Et8m83qDsqsp8J68QU8udSO2
-	6VRna8B6GUgkKwq16FDu4mIoCQcuKQpSCQx1jAyLmfpElN4Z79K6txIRmgmDVrzvvsr3udk1mG4/U
-	wLDR0uO5cntM+R90m2WRCbn00sVACXRE0GTceiXZooNou5bTAVqNUBeQqv7BkecfaIQ7no9awEl3n
-	SmyRLhv1WCHawTB9WEhA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:To:Subject
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=OliYN1TVhNOB8hk319TAElWBISlAzyV0hiuENRPYLdo=; b=CwsOz8ilKfG2k6
+	hTR9MxJWYCFdA/bm8t//vbGZD7vhfWU2sr+lo4tCZuRlQtGvMLLMyq12+Tbvp6RHauG5FDM4U7+UC
+	w0bZtTO78KDuU33QEmf91JPw6aU/RzAqFIbrBLcVzBVeUZYnI26T3fGUPpkxNa6+oixKcUkq2gp8X
+	Se4KZJrSY5x1CSKfE8MCuAPnh0nn+gyC0czuyoP/QB6268bRnabUWX2ekzg1TEnN0Xy+2WnstGHL+
+	X1PBpYsDzBJfpp9Duz3iscyotxqASdr+r2d+46kb+Ucg+66rfsffwQoXW9znmUeIOEO6RjTHJynE0
+	hxXeloK5NRNzc0+D1ZTw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h9n3p-0000lv-Mv; Fri, 29 Mar 2019 08:40:25 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1h9naY-0003AY-Tk; Fri, 29 Mar 2019 09:14:14 +0000
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h9n3m-0000jo-8N
- for linux-amlogic@lists.infradead.org; Fri, 29 Mar 2019 08:40:24 +0000
-Received: by mail-wr1-x442.google.com with SMTP id k11so1516515wro.5
- for <linux-amlogic@lists.infradead.org>; Fri, 29 Mar 2019 01:40:21 -0700 (PDT)
+ id 1h9naU-00036h-TJ
+ for linux-amlogic@lists.infradead.org; Fri, 29 Mar 2019 09:14:13 +0000
+Received: by mail-wr1-x433.google.com with SMTP id y7so1603368wrn.11
+ for <linux-amlogic@lists.infradead.org>; Fri, 29 Mar 2019 02:14:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=suRuMrEI46TPzEKSCaSx29a3adixJLg1G9ePOcSzWME=;
- b=xrAQ8kL4UgRPHFG4c2xvEirzwJ6As7z/Iwt+BnHECnrX6+IB+zqghzYMHTyEUCsAaM
- Ba1IhZdxZpzt73n55glUHYG2gxKl/NYoHTKaQda7x73G8A12jwHGav1YaruYESVmsN7u
- JwxuYv3nOffP/Z0WEYFzFhEUCokYrUopedz+97IfL3oDlJ0GjoatgM5FBXo8j+y2/mud
- c2C8e+ydEfvWnxGfqL/IVT3EUjZGhSd2GO2502KcB2JyD4Vdn+fhp2vxeDXqPonNuGQD
- BL74oiPKc/0x4eD2WbfxEYsnVaSQXqqvoCe7SVo0awooE6sZFhk0+1Zw3YUtmRiuC3e7
- JtRA==
+ h=from:subject:to:cc:openpgp:autocrypt:organization:message-id:date
+ :user-agent:mime-version:content-language:content-transfer-encoding;
+ bh=uLcGLqf/xFlmdMtE3GWdGSw1CqrGVpHOo/dtVDTLwCo=;
+ b=W1+A61LLmG+iIkBTPTkW6zvbtJsMU7Wq9kfDhCZ2K20SVBCIN16/Ig1sWQ8mtrqLe5
+ OZ/X8/6yiJpR5uOikYTKyQy3REuq5kvUTXcXvKg1aC+XpbdM1oHTxGTaUmp4ihmSmNtg
+ h11o3PR7BkQDP11a5F5bfKKw/OZ62XPiFMrbbzc9/R2Z8AqzirC1hnNW+vp/GfeGvVVN
+ ZdZwknU+EHevruaS3N2o0uP/BcruvDd2ad5Qh+enI9eiE+iCg3VkQE+pjqUh6WNiwGwg
+ xnaqfXE5mKEN5uZwVXnWhw8+BsAX5+1k2D7zhVpfDCibsvPKIDaEuTkpwatlKR2Uk8De
+ fokA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
+ h=x-gm-message-state:from:subject:to:cc:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version
  :content-language:content-transfer-encoding;
- bh=suRuMrEI46TPzEKSCaSx29a3adixJLg1G9ePOcSzWME=;
- b=XnKaiL7KAyc3jSEMPv6jU1TWmIOUHh7Akkaq4rpebTRL3DyuaQDCBQ8RXhdIzclvIe
- RCaImcam2UIr8wUgu9b8Fmbj3QOf4GkgQwyiSxTlGgkKENgSXx/g+/rc4KEYoF4nwhrh
- bEX5zz9C7ZKFV/98arHmfOyqRK1iqVza1qMjZY/guBu9HalC2q6cgoWh/xlu1sacXTCK
- N8iddsHJ1XS+iRQIjKR1tU6zzCuXdpYga98WTTWIheJ94jOyVKZCB4ETZv4q7VsGOl5V
- q+D+bqBHhihWiSANtsxkSq1zCinY2Cn0nIOsrwNErtVoUWKFgVVjgN2H+9hw8Z44Hqw+
- 9vwQ==
-X-Gm-Message-State: APjAAAXgJDIqxQVrXho2B/I10ZhKlKiUtM5fTPTgHLj6rrUOObeG/2BV
- 7hlTg6zSJBvt/3INnes8NIfd8A==
-X-Google-Smtp-Source: APXvYqzD2nEALM1xeZTQtUfkOB4AzwdSnWR3rvVqDBxLaL2NJQiYddmYTq9fmrcyLjxB/d28v+cV1g==
-X-Received: by 2002:adf:e50d:: with SMTP id j13mr30166225wrm.165.1553848820557; 
- Fri, 29 Mar 2019 01:40:20 -0700 (PDT)
+ bh=uLcGLqf/xFlmdMtE3GWdGSw1CqrGVpHOo/dtVDTLwCo=;
+ b=sVqbP78V6vCePJKMNT7UMta+ZHNWeBw2TQ/PXeC9pmwBY1jKg2kqR4SRr0N2gs9E1D
+ VH97nOOWMDqei3Y0lK+JxrKDf22WJnbIyO2wGTDRK5xRErpubbZ513mohNEgZ/309UaV
+ n4b52RjGHwd9XyY+C0vOCVvlYKeYMbqHvn1W8ZjLzLhX8azPPf2pK9Jvi0kNdehv9ER7
+ Wr0SRXBU3loBoePAaqjr7SBJDoTyyivPqyKj33G+GAfHImk19Jblukhhl2l/U+mcnkDP
+ uWCRMH4uhoeGlrEigLKhafc0jg/8A5BtJzQz7+vA5D5ED0gMXFmviv0LEepSh2lAOSDv
+ iOvA==
+X-Gm-Message-State: APjAAAW+9MiG8OauSY+pIvb3gAOTT5flKCFT3WlZPb8yKnRPe89der4a
+ Xu7Wx5IucKpa25ia/v2e1nU09Q==
+X-Google-Smtp-Source: APXvYqwOcW1d/4Nhtvrp3pT3AAKv5Dg3mwCZGBv4F8jF2LrdQVazHEyLVVxgx0JtpLUhhPlPjlmF+g==
+X-Received: by 2002:adf:dd49:: with SMTP id u9mr28622658wrm.316.1553850848978; 
+ Fri, 29 Mar 2019 02:14:08 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id w11sm3805593wre.15.2019.03.29.01.40.19
+ by smtp.gmail.com with ESMTPSA id b8sm1502406wrr.64.2019.03.29.02.14.07
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 29 Mar 2019 01:40:19 -0700 (PDT)
-Subject: Re: [PATCH] clk: meson: vid-pll-div: remove warning and return 0 on
- invalid config
-To: Jerome Brunet <jbrunet@baylibre.com>
-References: <20190327151348.27402-1-narmstrong@baylibre.com>
- <e8360360029a29296b98586f1d1a440996d89947.camel@baylibre.com>
+ Fri, 29 Mar 2019 02:14:08 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
+Subject: [GIT PULL] clk: meson: fixes for v5.1, second round
+To: Stephen Boyd <sboyd@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -131,16 +129,15 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <578c47b1-ea60-f9a7-8cb9-9554ceb9eff9@baylibre.com>
-Date: Fri, 29 Mar 2019 09:40:19 +0100
+Message-ID: <d47276b2-73fe-3046-84d1-84d7a08b248b@baylibre.com>
+Date: Fri, 29 Mar 2019 10:14:07 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.5.1
 MIME-Version: 1.0
-In-Reply-To: <e8360360029a29296b98586f1d1a440996d89947.camel@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190329_014022_297405_591625B0 
-X-CRM114-Status: GOOD (  14.12  )
+X-CRM114-CacheID: sfid-20190329_021410_976934_0FE78C61 
+X-CRM114-Status: GOOD (  10.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -152,41 +149,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ linux-clk <linux-clk@vger.kernel.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 29/03/2019 09:39, Jerome Brunet wrote:
-> On Wed, 2019-03-27 at 16:13 +0100, Neil Armstrong wrote:
->> The vid_pll_div is a programmable fractional divider, but vendor gives a
->> limited of known configuration value and it's corresponding fraction.
->>
->> Thus when at reset value (0) or unknown value, we cannot determine the
->> result rate.
->>
->> The initial behaviour was to print a warning, but the warning triggers
->> at each boot and when the clock tree is refreshed.
->>
->> This patch moves the print to debug and returns 0 instead of the
->> parent rate.
->>
->> Fixes: 72dbb8c94d0d ("clk: meson: Add vid_pll divider driver")
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  drivers/clk/meson/vid-pll-div.c | 4 ++--
->>  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
-> 
+Dear clock maintainers,
 
-Thanks,
+Below is a second request to pull amlogic clock fixes for v5.1
+These changes fixes meson8b booting where a wrong PLL frequency is selected
+when updated by cpufreq, and removes an annoying warning and invalid return on
+an unconfigured vid-pll-div recalc_rate.
 
-Applied to fixes/drivers
-
+Cheers
 Neil
+
+The following changes since commit 9e05e49c29fde3f5e0d82542cb89e26c0bc828d0:
+
+  clk: meson-g12a: fix VPU clock parents (2019-03-19 17:38:41 +0100)
+
+are available in the Git repository at:
+
+  git://github.com/BayLibre/clk-meson.git tags/meson-clk-fixes-for-5.1-v2
+
+for you to fetch changes up to 6620f45ff8519549a6877663f965c10002918dc2:
+
+  clk: meson: vid-pll-div: remove warning and return 0 on invalid config (2019-03-29 09:41:30 +0100)
+
+----------------------------------------------------------------
+Second round of fixes for meson clocks targeted for v5.1:
+- clk-pll: fix rate rounding fixing meson8b boot failure
+- vid-pll-div: fix recal_rate warning and return when invalid setting
+
+----------------------------------------------------------------
+Martin Blumenstingl (1):
+      clk: meson: pll: fix rounding and setting a rate that matches precisely
+
+Neil Armstrong (1):
+      clk: meson: vid-pll-div: remove warning and return 0 on invalid config
+
+ drivers/clk/meson/clk-pll.c     | 2 +-
+ drivers/clk/meson/vid-pll-div.c | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
 _______________________________________________
 linux-amlogic mailing list
