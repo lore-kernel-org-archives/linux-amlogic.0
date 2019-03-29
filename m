@@ -6,17 +6,17 @@ X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,MAILING_LIST_MULTI,SPF_PASS autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 58C29C43381
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Mar 2019 22:14:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DBBFEC43381
+	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Mar 2019 22:44:55 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 24D4D218A2
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Mar 2019 22:14:48 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A9E3D217F5
+	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Mar 2019 22:44:55 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GSX/629Y";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="HQuQ68VR"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 24D4D218A2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="BKmbx/VX";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="CYiLZffA"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A9E3D217F5
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,47 +25,45 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:To:Subject:From:
 	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BANeYm1jKZmKrr3JosqNW4or38LloCodH+6wNLkr41g=; b=GSX/629Y8CckbT
-	JO1hiGr5I53V6ExQadks2NRq4sKfnTx7gX8wiec+GWkZjM8zDz4FSnrybNnqUMlxMR+Zy6c70Z1TX
-	2iMmVqm8jTzV1JAmgVvzoGmSw3rW0DuKMiKH4OBQOODop2yosV65pFJiHn7uDz/rl4j1p3zZIBi3G
-	r2SI1rkWEQ/Wx3sM0rcrj44F1G6diF5R9k6e2P9mzMT8LGzAZxGZLzGejjg8DnVZekW6UemiuMHh0
-	76tvie/XoFR69MKqZeqpwrqrmSGWIhwfNTNazkWRbW5ywipiYQFeOFH645jWEx3C1toPvIcH4QJWg
-	x1/WFslOepun7o3UZYvw==;
+	List-Owner; bh=vfcgTWqX+rXvfy/dXLxy70Ihv5FEILSCLxsSxoYT/eE=; b=BKmbx/VX+9Tppx
+	O/otj9vxRJkA6BQhvxrIfk0WEjccIUwHCQwJ6UW0WTK8oTXlw+x/1P9aQ6ygAVROsXcoinT+ORqGR
+	jrbIj3YueVZNuF+JvXF3NMS3bwR6zx7/Q7Y7b6eaL4QFd9hbVigftiggErkIm9UOL6GZEMtQjLmvx
+	xXreYwmvlsLolw56FPa8Ns7aqt2RsG+VHhrs84PBqPDcMFpL5CDitqWe6ZuTxxfAcPSH/Y/xJZU/e
+	8lGJ7FK5BrnJu6Cspe6Lbxjsdtb8xE3WoBOqWGigUqJwuyzvWHnzI1LUXbN8o94lQNt6tyDIclWCa
+	D3EWXLky9TcZ9pdxdOSg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h9zlq-0006UX-0k; Fri, 29 Mar 2019 22:14:42 +0000
+	id 1hA0Ez-0006NX-FR; Fri, 29 Mar 2019 22:44:49 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h9zln-0006Tq-NI
- for linux-amlogic@lists.infradead.org; Fri, 29 Mar 2019 22:14:40 +0000
+ id 1hA0Ew-0006NG-P7
+ for linux-amlogic@lists.infradead.org; Fri, 29 Mar 2019 22:44:47 +0000
 Received: from localhost (unknown [104.132.0.74])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id CC5B5218A2;
- Fri, 29 Mar 2019 22:14:38 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 21F8E217F5;
+ Fri, 29 Mar 2019 22:44:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1553897678;
- bh=OTehbauQ08ahn/ZeqU6byAs8bHQqgTQZkfksTL07/k8=;
+ s=default; t=1553899486;
+ bh=BYv/zL2J7g4n3oAFeloCkQo1HtprwDhDhvxPLIAa02E=;
  h=In-Reply-To:References:From:Subject:Cc:To:Date:From;
- b=HQuQ68VReNeDXM9JzyFwxJ2G4qiblnGkk3Ay3WGAOBxGzwvYKdsDJOkxcvILJv/dT
- 1UfdPf7nmXFmBIyyndHqKZrYizTJKsIOKroL/hmlPEXzX/2VQmJ8+CPfqBb/cU0Nq+
- EH6yoU8NCbeXfi8XZa1lRFwgq2+6znBQr/gvolUk=
+ b=CYiLZffA80afx371M7mZxL8chGutlkobzIoBaRMj83ahbDdInMooQ5cZ3bSlbnpIc
+ Wgh8spvwmlohbmIp6H0hJ60hr9lKxaNWw9rIO9kVi2VAFjwrB2OnQLZwfPBd1GcDhn
+ 3xdATUtfN+H7x/Njus8qFHateNG9BGkwxxHENW+g=
 MIME-Version: 1.0
-In-Reply-To: <8b6f0bc6210834af2aff2de7dc95692dd87db539.camel@baylibre.com>
-References: <20190325111200.15940-1-jbrunet@baylibre.com>
- <20190325111200.15940-2-jbrunet@baylibre.com>
- <155353381842.20095.17915880223118004926@swboyd.mtv.corp.google.com>
- <8b6f0bc6210834af2aff2de7dc95692dd87db539.camel@baylibre.com>
+In-Reply-To: <d47276b2-73fe-3046-84d1-84d7a08b248b@baylibre.com>
+References: <d47276b2-73fe-3046-84d1-84d7a08b248b@baylibre.com>
 From: Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH 1/4] clk: meson: mpll: add init callback and regs
-To: Jerome Brunet <jbrunet@baylibre.com>,
+Subject: Re: [GIT PULL] clk: meson: fixes for v5.1, second round
+To: Michael Turquette <mturquette@baylibre.com>,
  Neil Armstrong <narmstrong@baylibre.com>
-Message-ID: <155389767798.20095.10570017301900287354@swboyd.mtv.corp.google.com>
+Message-ID: <155389948536.20095.9385568409537349896@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.8
-Date: Fri, 29 Mar 2019 15:14:37 -0700
+Date: Fri, 29 Mar 2019 15:44:45 -0700
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190329_151439_778145_6929B847 
-X-CRM114-Status: GOOD (  14.85  )
+X-CRM114-CacheID: sfid-20190329_154446_835651_789A96D5 
+X-CRM114-Status: UNSURE (   4.78  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -77,66 +75,23 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org
+Cc: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ linux-clk <linux-clk@vger.kernel.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Jerome Brunet (2019-03-26 00:53:15)
-> On Mon, 2019-03-25 at 10:10 -0700, Stephen Boyd wrote:
-> > Quoting Jerome Brunet (2019-03-25 04:11:57)
-> > > @@ -138,6 +129,27 @@ static int mpll_set_rate(struct clk_hw *hw,
-> > >         return 0;
-> > >  }
-> > >  
-> > > +static void mpll_init(struct clk_hw *hw)
-> > > +{
-> > > +       struct clk_regmap *clk = to_clk_regmap(hw);
-> > > +       struct meson_clk_mpll_data *mpll = meson_clk_mpll_data(clk);
-> > > +
-> > > +       if (mpll->init_count)
-> > > +               regmap_multi_reg_write(clk->map, mpll->init_regs,
-> > > +                                      mpll->init_count);
-> > > +
-> > > +       /* Enable the fractional part */
-> > > +       meson_parm_write(clk->map, &mpll->sdm_en, 1);
-> > > +
-> > > +       /* Set additional fractional part enable if required */
-> > > +       if (MESON_PARM_APPLICABLE(&mpll->ssen))
-> > > +               meson_parm_write(clk->map, &mpll->ssen, 1);
-> > > +
-> > > +       /* Set the magic misc bit if required */
-> > > +       if (MESON_PARM_APPLICABLE(&mpll->misc))
-> > > +               meson_parm_write(clk->map, &mpll->misc, 1);
-> > > +}
-> > > +
-> > >  const struct clk_ops meson_clk_mpll_ro_ops = {
-> > >         .recalc_rate    = mpll_recalc_rate,
-> > >         .round_rate     = mpll_round_rate,
-> > > @@ -148,6 +160,7 @@ const struct clk_ops meson_clk_mpll_ops = {
-> > >         .recalc_rate    = mpll_recalc_rate,
-> > >         .round_rate     = mpll_round_rate,
-> > >         .set_rate       = mpll_set_rate,
-> > > +       .init           = mpll_init,
-> > 
-> > We actively discourage using init callbacks. Can you do this some other
-> > way?
+Quoting Neil Armstrong (2019-03-29 02:14:07)
+> Dear clock maintainers,
 > 
-> Yes I'm aware of that but init it the right place to do this.
-> To be clear, this is not initializing the clock to some particular rate, the
-> rate is preserved.
-> 
-> It just applies the necessary settings that needs to be done only once to make
-> sure the clock is in working order and that the rate calculated is actually
-> accurate. 
+> Below is a second request to pull amlogic clock fixes for v5.1
+> These changes fixes meson8b booting where a wrong PLL frequency is selected
+> when updated by cpufreq, and removes an annoying warning and invalid return on
+> an unconfigured vid-pll-div recalc_rate.
 
-Ok, but can you do that in your driver's probe routine instead of
-attaching to the init callback? We want to get rid of "init" at some
-point so throwing the init sequence stuff into the driver probe around
-registration is a solution. Or we should think about not discouraging
-the init callback.
+Thanks. Pulled into clk-fixes.
 
 
 _______________________________________________
