@@ -2,83 +2,84 @@ Return-Path: <SRS0=wRYZ=SA=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D024FC10F05
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Mar 2019 08:39:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F0A8DC4360F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Mar 2019 08:40:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9E36A2082F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Mar 2019 08:39:59 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BDFE92082F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Mar 2019 08:40:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="E1sd+X2w";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="J6+lE5u4"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9E36A2082F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rveUkKF0";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="xrAQ8kL4"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BDFE92082F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:References:To:From:Subject:Reply-To:Content-ID:Content-Description
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PjBRBeGRYon3drBEIzWqyc/VnhXBeeBLGYRNrMIrZkQ=; b=E1sd+X2wFUfWDR
-	2fcOXydGCAYrdgIH6FCSDgtyHjsV/+n+n404K5T5l1t/NJ1nJ0QPr4xxE4VHTXCD7FRs3gA1AAGwJ
-	tkLHT6tOJb6zGNPBQGC4lCyCo0RDzYqHyKZKfe9E5zm6w7GuWgHyznknIg9/iSQ9XnCEHWep58jHD
-	xdXeuwAbqSVUHCWJYRvj+R2LOBaqMWWDVqvm5TogNGBee6gpoQNUjpfq5QV+OzX+6PgwjLCU4WNom
-	jNiSvv7MmPAUjrTiVsqtUnUrZLpu+76FRwwMAMRq74mfRdNaRWTlS6333UC2FxPQkV9+ezfNq/IF1
-	fkiomPM12dOARpW3YcGA==;
+	List-Owner; bh=UFbMqhVrrdIn4nODz5w5QFYHJUNNbdqA5TzfRsnSrPc=; b=rveUkKF06qgnoc
+	B9W2mH+TC5F3ig528XfGzSVaRq8yMnu9pfJoEh3Xx741TpfC2Y/Y0BGGCPliulLIRKGGW1G4of65M
+	KZqTm9K9p9ZY5IP/MJyVdb/0JNScRrNf8sY6I9KI2k66SJ1+mkph4Et8m83qDsqsp8J68QU8udSO2
+	6VRna8B6GUgkKwq16FDu4mIoCQcuKQpSCQx1jAyLmfpElN4Z79K6txIRmgmDVrzvvsr3udk1mG4/U
+	wLDR0uO5cntM+R90m2WRCbn00sVACXRE0GTceiXZooNou5bTAVqNUBeQqv7BkecfaIQ7no9awEl3n
+	SmyRLhv1WCHawTB9WEhA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h9n3L-0007ey-HI; Fri, 29 Mar 2019 08:39:55 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1h9n3p-0000lv-Mv; Fri, 29 Mar 2019 08:40:25 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h9n3G-0007WT-Kn
- for linux-amlogic@lists.infradead.org; Fri, 29 Mar 2019 08:39:54 +0000
-Received: by mail-wm1-x341.google.com with SMTP id q16so1580654wmj.3
- for <linux-amlogic@lists.infradead.org>; Fri, 29 Mar 2019 01:39:49 -0700 (PDT)
+ id 1h9n3m-0000jo-8N
+ for linux-amlogic@lists.infradead.org; Fri, 29 Mar 2019 08:40:24 +0000
+Received: by mail-wr1-x442.google.com with SMTP id k11so1516515wro.5
+ for <linux-amlogic@lists.infradead.org>; Fri, 29 Mar 2019 01:40:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:from:to:cc:references:openpgp:autocrypt:organization
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=JrX7JZpY9K2FVQ7gjYTRFqwQZY33/GEbsty4Pb4irxQ=;
- b=J6+lE5u4lfax8+ChNG6LpIqRT6TsNImNIC/xmheBM/WCjvFIRiNBVfe4kVaZTnXOke
- xVAqvheB51PHd4CpaTYkd2XI3j6KpeTXajeqIIYZQMeuTDTF0Cr3EQZKx1nCQF7US6dH
- v480h3+IFV98bmp3MVV3xnDbH681Hc7ksr7IthOZzj9oxRAC6oIqba0lQBZRIWanZKuk
- 8H6OlBPTkzeAC3guLUJsHHyRe4v4JxrWIFE+R4SUb3//dYk9i8Zk0SyWd5vRNj7uFTxq
- LtS6E8D0bkbDX2bd5nzF5bMdXWQvCs6WS5uRRjvvDYDANNuPQstuoG12rsRAkRlwBmQ7
- oj/A==
+ bh=suRuMrEI46TPzEKSCaSx29a3adixJLg1G9ePOcSzWME=;
+ b=xrAQ8kL4UgRPHFG4c2xvEirzwJ6As7z/Iwt+BnHECnrX6+IB+zqghzYMHTyEUCsAaM
+ Ba1IhZdxZpzt73n55glUHYG2gxKl/NYoHTKaQda7x73G8A12jwHGav1YaruYESVmsN7u
+ JwxuYv3nOffP/Z0WEYFzFhEUCokYrUopedz+97IfL3oDlJ0GjoatgM5FBXo8j+y2/mud
+ c2C8e+ydEfvWnxGfqL/IVT3EUjZGhSd2GO2502KcB2JyD4Vdn+fhp2vxeDXqPonNuGQD
+ BL74oiPKc/0x4eD2WbfxEYsnVaSQXqqvoCe7SVo0awooE6sZFhk0+1Zw3YUtmRiuC3e7
+ JtRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:from:to:cc:references:openpgp:autocrypt
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=JrX7JZpY9K2FVQ7gjYTRFqwQZY33/GEbsty4Pb4irxQ=;
- b=NP3jguY79/OPZX6+u/PSqSl5MpmKipNDkWH1mFeoyI4EgsHkAF6rHAMVWNp+4K1KkZ
- muBXw0ofv6nLtSLlj6cTDPlV36QF+lgwVzzmHLszmEBlbxAECY7iBS/R7g3yi3Yt0RAa
- eM6ewhq+BC1Uu/0F7DNBqcQKhEEua5CDO1zZihPV6Wo75g2+MX9KbyMFV4QMemumT1Md
- aNgO5gVEIXXeu+gli53P6fDw80eyoXEYe1XJ5cPVzHb/9wz4x+GQorWGjTeWyOe4ePdG
- MwSrhiuqDRx+YaQlX/6J7eAms/EfHB856qaXdEO6cPOiXYZzXe5nGgKcHy1dXCIspTrg
- afWQ==
-X-Gm-Message-State: APjAAAWkeKML8LaPuMQq+VFNu3PBPYFdnuwSflktWIjn3IHCcaqjvh9Y
- oEAk+kJWA1JiPJ/7+3h6jmwgrQ==
-X-Google-Smtp-Source: APXvYqzw6qa+92bI2vZlYxYtcOR5zhl9LeOBclcJYAvd23HKXJ3+u1iphzveIPRdmKnm/h9mC8ENHw==
-X-Received: by 2002:a1c:d0c7:: with SMTP id h190mr2832459wmg.17.1553848787925; 
- Fri, 29 Mar 2019 01:39:47 -0700 (PDT)
+ bh=suRuMrEI46TPzEKSCaSx29a3adixJLg1G9ePOcSzWME=;
+ b=XnKaiL7KAyc3jSEMPv6jU1TWmIOUHh7Akkaq4rpebTRL3DyuaQDCBQ8RXhdIzclvIe
+ RCaImcam2UIr8wUgu9b8Fmbj3QOf4GkgQwyiSxTlGgkKENgSXx/g+/rc4KEYoF4nwhrh
+ bEX5zz9C7ZKFV/98arHmfOyqRK1iqVza1qMjZY/guBu9HalC2q6cgoWh/xlu1sacXTCK
+ N8iddsHJ1XS+iRQIjKR1tU6zzCuXdpYga98WTTWIheJ94jOyVKZCB4ETZv4q7VsGOl5V
+ q+D+bqBHhihWiSANtsxkSq1zCinY2Cn0nIOsrwNErtVoUWKFgVVjgN2H+9hw8Z44Hqw+
+ 9vwQ==
+X-Gm-Message-State: APjAAAXgJDIqxQVrXho2B/I10ZhKlKiUtM5fTPTgHLj6rrUOObeG/2BV
+ 7hlTg6zSJBvt/3INnes8NIfd8A==
+X-Google-Smtp-Source: APXvYqzD2nEALM1xeZTQtUfkOB4AzwdSnWR3rvVqDBxLaL2NJQiYddmYTq9fmrcyLjxB/d28v+cV1g==
+X-Received: by 2002:adf:e50d:: with SMTP id j13mr30166225wrm.165.1553848820557; 
+ Fri, 29 Mar 2019 01:40:20 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id 3sm1688567wrk.68.2019.03.29.01.39.47
+ by smtp.gmail.com with ESMTPSA id w11sm3805593wre.15.2019.03.29.01.40.19
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 29 Mar 2019 01:39:47 -0700 (PDT)
-Subject: Re: [PATCH] clk: meson: g12a: fix gp0 and hifi ranges
-From: Neil Armstrong <narmstrong@baylibre.com>
+ Fri, 29 Mar 2019 01:40:19 -0700 (PDT)
+Subject: Re: [PATCH] clk: meson: vid-pll-div: remove warning and return 0 on
+ invalid config
 To: Jerome Brunet <jbrunet@baylibre.com>
-References: <20190325104230.11245-1-jbrunet@baylibre.com>
- <823ef5d3-3da8-2be0-5bef-ed9b601d287b@baylibre.com>
+References: <20190327151348.27402-1-narmstrong@baylibre.com>
+ <e8360360029a29296b98586f1d1a440996d89947.camel@baylibre.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -130,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <0a5fb4a3-7835-e15a-b5c3-586378cc2c6b@baylibre.com>
-Date: Fri, 29 Mar 2019 09:39:46 +0100
+Message-ID: <578c47b1-ea60-f9a7-8cb9-9554ceb9eff9@baylibre.com>
+Date: Fri, 29 Mar 2019 09:40:19 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.5.1
 MIME-Version: 1.0
-In-Reply-To: <823ef5d3-3da8-2be0-5bef-ed9b601d287b@baylibre.com>
+In-Reply-To: <e8360360029a29296b98586f1d1a440996d89947.camel@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190329_013951_181661_D8A20D7C 
-X-CRM114-Status: GOOD (  16.04  )
+X-CRM114-CacheID: sfid-20190329_014022_297405_591625B0 
+X-CRM114-Status: GOOD (  14.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -152,49 +153,38 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 25/03/2019 13:18, Neil Armstrong wrote:
-> On 25/03/2019 11:42, Jerome Brunet wrote:
->> While some SoC samples are able to lock with a PLL factor of 55, others
->> samples can't. ATM, a minimum of 60 appears to work on all the samples
->> I have tried, so lets use this value until we have a good reason to put
->> something else.
+On 29/03/2019 09:39, Jerome Brunet wrote:
+> On Wed, 2019-03-27 at 16:13 +0100, Neil Armstrong wrote:
+>> The vid_pll_div is a programmable fractional divider, but vendor gives a
+>> limited of known configuration value and it's corresponding fraction.
 >>
->> Fixes: 085a4ea93d54 ("clk: meson: g12a: add peripheral clock controller")
->> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+>> Thus when at reset value (0) or unknown value, we cannot determine the
+>> result rate.
+>>
+>> The initial behaviour was to print a warning, but the warning triggers
+>> at each boot and when the clock tree is refreshed.
+>>
+>> This patch moves the print to debug and returns 0 instead of the
+>> parent rate.
+>>
+>> Fixes: 72dbb8c94d0d ("clk: meson: Add vid_pll divider driver")
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 >> ---
->>  drivers/clk/meson/g12a.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
->> index 0e1ce8c03259..d3f53a9b97dc 100644
->> --- a/drivers/clk/meson/g12a.c
->> +++ b/drivers/clk/meson/g12a.c
->> @@ -151,7 +151,7 @@ static struct clk_regmap g12a_sys_pll = {
->>  };
->>  
->>  static const struct pll_mult_range g12a_gp0_pll_mult_range = {
->> -	.min = 55,
->> +	.min = 60,
->>  	.max = 255,
->>  };
->>  
->>
+>>  drivers/clk/meson/vid-pll-div.c | 4 ++--
+>>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-> 
-> And applied to fixes/drivers !
-> 
-> Neil
+> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
 > 
 
-Seems this will need more work,
-unapplied from fixes/drivers
+Thanks,
+
+Applied to fixes/drivers
 
 Neil
 
