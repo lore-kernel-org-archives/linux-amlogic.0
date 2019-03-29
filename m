@@ -2,68 +2,89 @@ Return-Path: <SRS0=wRYZ=SA=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 32A91C43381
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Mar 2019 07:45:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7328DC43381
+	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Mar 2019 08:39:59 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id ECD382173C
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Mar 2019 07:45:23 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4200A2082F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Mar 2019 08:39:59 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KMPX6PEN"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ECD382173C
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fOiV+l8c";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="FKXkKv4C"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4200A2082F
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=S/E6f2eSyYfwFPfO5+V6wpqWKqqqGCOtJGPrdC2J7ho=; b=KMPX6PENSl/KzpuSzWEdcaqlG
-	fkbNCKsfq6afX6Pnuw5w8vloGlxAK+6AywW2uBHYkhwRHpryhYvoPtU8PeUHDJtYXagAigpuaCWIi
-	raiRkSnlMj76SLMOWgHEhOgBrJGCsfKg9dQb6Ui0XkCkYZmCN60II2E6Ck/ScUU6dDe+MXBlxyz8e
-	qwGBbAExbJaYdhNSJvio8y/HwlCAcR/zw1FAoaEg+lZu2IwetoASUA0o3I1A8QovzbMjBlADof+j2
-	jT4VXtIg0av18VM/DBq/kssw15yOWDy2BKKHWyWODU03qa4gAgnq9j1HjjLsopSSqt8jsdPXOm7m5
-	zlnricIfQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=DOUKpoyQsspQUpUBOojDviq+bu1che51kpswjPTJX+Y=; b=fOiV+l8cDUt4RB
+	9i1KFt8z7iSQ5CJXysWcp6GRYx3r/xjkeJTmA52pXfvto8Z2opxDaofOJjeWN9BBe+i2dzhlLo3f3
+	j2AHniHrbDWEWWQ7qlm+uGdC1aww5JKCCcjewSBeiPLMBRoO1s4zeFbxbm80AzBLfyak0QDoLanie
+	s84PeTYQ0G6X2pPzL4eDmCgnBM4xAx2emDwXZ6MTBIHn72NgW0JZj2kwfe/w1JdmisLTVfw1fXE0M
+	Cq0w7Vf2pTahG4FH0bHqzuzO3u+Q87fKALnqSGvvDOBh1zCgnFF+SF6Qpd6scTeRdGOu5gFQt3G6D
+	vsW0ZNeBAx4FkDrzLNnw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1h9mCQ-00052v-Jy; Fri, 29 Mar 2019 07:45:14 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1h9n3G-0007Xw-9V; Fri, 29 Mar 2019 08:39:50 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1h9mC9-0003gw-MD; Fri, 29 Mar 2019 07:44:59 +0000
-Received: from [10.28.18.125] (10.28.18.125) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Fri, 29 Mar
- 2019 15:44:30 +0800
-Subject: Re: 32-bit Amlogic (ARM) SoC: kernel BUG in kfree()
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <CAFBinCBOX8HyY-UocsVQvsnTr4XWXyE9oU+f2xhO1=JU0i_9ow@mail.gmail.com>
- <20190321214401.GC19508@bombadil.infradead.org>
- <CAFBinCA6oK5UhDAt9kva5qRisxr2gxMF26AMK8vC4b1DN5RXrw@mail.gmail.com>
- <5cad2529-8776-687e-58d0-4fb9e2ec59b1@amlogic.com>
- <CAFBinCA=0XSSVmzfTgb4eSiVFr=XRHqLOVFGyK0++XRty6VjnQ@mail.gmail.com>
- <32799846-b8f0-758f-32eb-a9ce435e0b79@amlogic.com>
- <CAFBinCDHmuNZxuDf3pe2ij6m8aX2fho7L+B9ZMaMOo28tPZ62Q@mail.gmail.com>
-From: Liang Yang <liang.yang@amlogic.com>
-Message-ID: <79b81748-8508-414f-c08a-c99cb4ae4b2a@amlogic.com>
-Date: Fri, 29 Mar 2019 15:44:30 +0800
-User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:60.0) Gecko/20100101
- Thunderbird/60.6.0
+ id 1h9n36-0007Ns-4b
+ for linux-amlogic@lists.infradead.org; Fri, 29 Mar 2019 08:39:42 +0000
+Received: by mail-wm1-x343.google.com with SMTP id v14so1776009wmf.2
+ for <linux-amlogic@lists.infradead.org>; Fri, 29 Mar 2019 01:39:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:cc:date:in-reply-to:references
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=oV9s7B6fOCEuHBo7NqIclE7KCi1bwoXzo8XlZY4r4hU=;
+ b=FKXkKv4C4JhWKV6p6n9guP/PK1Y8XKgAooRp8BD9Lg5pLUJLrbgJVxioVBKg7lHhvQ
+ qw5Ib+w8nWtcSVzPix02g6TLa8CRrCBUik1HkN4JGeldmfGYm5KcmbtGwNLf0N5HvK2s
+ NDiOy6/cb8HGdLlGMIodsFAOg2PxiXBWKsVqjN0XRsJ+aSF+6Q0HGa7EFl5aN/iGxuXw
+ cEzg70Zm7UrGN3xAesDL1a+evvWwCnQmFuSmCp8aDmyHDoeLEirZrORJIH8XARHG+HXA
+ AiDUhwh6I6f9mLfQ0htpbAZOyagqQ1rGrzv2v3qPbcnoDDB+WdzH3WCWjY7rOM8mtqoH
+ NgdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=oV9s7B6fOCEuHBo7NqIclE7KCi1bwoXzo8XlZY4r4hU=;
+ b=bdA7Ih6+Px3J6iGvKd4rz2vyZNtAd4vFr+aMncbaucPgVehObe5E+WT63xyNhGUtN6
+ 7TIsKnUyHbyGzf/aFFn2wfGnvUMMz9/RAswpGUyfoJuppmJTovH0CLOrwCFOoWSEfiK3
+ ssA6l2Le1NOOtmjpWRybDXEBOD3RWDBhPKMEX5L6cI08K9iby3Dih3TXZMy5cAwncr3Z
+ jDNimq27q+suhuy/XH7Kf+1TzKUewE5sHD1FS6umiC3zRawZBiqukRN2Aj6Bun2WegNj
+ WlGVs5p2yB4ZOJtjYVd7OuxtLLfTrfggPm13StPO/HvK5t9AaqKP5E7czJm/tvS7B0x+
+ ndkw==
+X-Gm-Message-State: APjAAAWq+lcWPeqINAZwaHXgSLfN9p6s/stnK4d7rq0oaB56M8+0mUi6
+ K9vmg4aU8IzRer5icrPRe7ngcw==
+X-Google-Smtp-Source: APXvYqyotLkWO5lGRRr4pxM4xWl0007akwWtBATfp/8oZNh8Xqd7ZJcbgLMj6TnkzEM3lNF35v91uA==
+X-Received: by 2002:a1c:7008:: with SMTP id l8mr2632175wmc.63.1553848778160;
+ Fri, 29 Mar 2019 01:39:38 -0700 (PDT)
+Received: from boomer.baylibre.com ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
+ by smtp.gmail.com with ESMTPSA id
+ a17sm1422214wmg.40.2019.03.29.01.39.36
+ (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+ Fri, 29 Mar 2019 01:39:37 -0700 (PDT)
+Message-ID: <e8360360029a29296b98586f1d1a440996d89947.camel@baylibre.com>
+Subject: Re: [PATCH] clk: meson: vid-pll-div: remove warning and return 0 on
+ invalid config
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Date: Fri, 29 Mar 2019 09:39:35 +0100
+In-Reply-To: <20190327151348.27402-1-narmstrong@baylibre.com>
+References: <20190327151348.27402-1-narmstrong@baylibre.com>
+User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCDHmuNZxuDf3pe2ij6m8aX2fho7L+B9ZMaMOo28tPZ62Q@mail.gmail.com>
-Content-Language: en-US
-X-Originating-IP: [10.28.18.125]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190329_004457_971699_4EA81F29 
-X-CRM114-Status: UNSURE (   8.49  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190329_013940_228065_6F28E993 
+X-CRM114-Status: GOOD (  13.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -75,34 +96,34 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mhocko@suse.com, linux-kernel@vger.kernel.org, linux@armlinux.org.uk,
- Matthew Wilcox <willy@infradead.org>, rppt@linux.ibm.com, linux-mm@kvack.org,
- linux-mtd@lists.infradead.org, linux-amlogic@lists.infradead.org,
- akpm@linux-foundation.org, linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
-
-On 2019/3/29 2:03, Martin Blumenstingl wrote:
-> Hi Liang, 
-[......]
->> I don't think it is caused by a different NAND type, but i have followed
->> the some test on my GXL platform. we can see the result from the
->> attachment. By the way, i don't find any information about this on meson
->> NFC datasheet, so i will ask our VLSI.
->> Martin, May you reproduce it with the new patch on meson8b platform ? I
->> need a more clear and easier compared log like gxl.txt. Thanks.
-> your gxl.txt is great, finally I can also compare my own results with
-> something that works for you!
-> in my results (see attachment) the "DATA_IN  [256 B, force 8-bit]"
-> instructions result in a different info buffer output.
-> does this make any sense to you?
+On Wed, 2019-03-27 at 16:13 +0100, Neil Armstrong wrote:
+> The vid_pll_div is a programmable fractional divider, but vendor gives a
+> limited of known configuration value and it's corresponding fraction.
 > 
-I have asked our VLSI designer for explanation or simulation result by 
-an e-mail. Thanks.
+> Thus when at reset value (0) or unknown value, we cannot determine the
+> result rate.
+> 
+> The initial behaviour was to print a warning, but the warning triggers
+> at each boot and when the clock tree is refreshed.
+> 
+> This patch moves the print to debug and returns 0 instead of the
+> parent rate.
+> 
+> Fixes: 72dbb8c94d0d ("clk: meson: Add vid_pll divider driver")
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  drivers/clk/meson/vid-pll-div.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+
 
 _______________________________________________
 linux-amlogic mailing list
