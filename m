@@ -2,91 +2,71 @@ Return-Path: <SRS0=KZtH=SC=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	USER_AGENT_NEOMUTT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 660B0C10F06
-	for <linux-amlogic@archiver.kernel.org>; Sun, 31 Mar 2019 07:04:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7762CC43381
+	for <linux-amlogic@archiver.kernel.org>; Sun, 31 Mar 2019 18:47:49 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 304A721773
-	for <linux-amlogic@archiver.kernel.org>; Sun, 31 Mar 2019 07:04:36 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4A06C2085A
+	for <linux-amlogic@archiver.kernel.org>; Sun, 31 Mar 2019 18:47:49 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cNbF8EUX";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="Qye3NnoH"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 304A721773
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HQONUDrm"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4A06C2085A
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:To:In-Reply-To:
-	References:Subject:From:Date:Message-ID:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=4K/e8E2wigAQAdzoidRWWiUYaeRfPj2MXjwR8uuQpAY=; b=cNbF8EUXbeNFWY0gHXXnnA6sve
-	RiZNH/2f5+GOFOSe2rfwdTCAOLrphtFD5bTpJXRdA0sOmlgBQ1oUeQTBAy3/8d6FZzpeeqV1IGI/2
-	kVRmfHsSk7D/IJ3xgqNdBkZW691j03mvq9+q1XYipgROLnegrN+l6Q0ayYu9DjrR2opVkWDNTXX+L
-	dmTsrALtcOz6fShdoy5G7p+e5Imc3OM+uwkTvEdqpzi0Adk8AkZkhRdCkZ2HNxwmwQMjrHSRh9VKG
-	IjwALSLsmneuyzICmEpvm/SLGqNUkUVNRI4SI5TojMYSvUMYvRLvAOf1xOhdoVb0e43Jx3uPMe+Uw
-	aFaeWEZw==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=g2NVdvQTARUaCGQiXyorPmjhHwpm3372zS2yihNiUjU=; b=HQONUDrmrhvC7b
+	tSUwoZnW42U2v3LLMcyoK11R5pl8rsm/d/WyiXhXnCvFhq8N3vxrQdy9F99p8muz1f54LjsWIkwWy
+	Uly7YROVjCSqzqFOOD6aWArlST65NocHmASB+TlI8bkI1ic0jRQxmn9n3r74SYOLu0qyiRMRXKm6K
+	1/EUuC8yptJh1lxrPTJgd5uENUiebulyhbNlb1ErAvlZ/GkS6arQDLVxOxYUsddR1r3qZJ5bwSWFM
+	xQqv2FyZDrZSLJBkvOUwZzmT0ykGuyuJlA70qfLDv1RSOta4ugQ+AH2xArD3tTqxKLsug9veUl5ti
+	Iz8O5V8XUrZf9UF/3D0g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hAUW7-0001Zq-UZ; Sun, 31 Mar 2019 07:04:31 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1hAfUb-0004Dm-F7; Sun, 31 Mar 2019 18:47:41 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hAUW5-0001S9-NS; Sun, 31 Mar 2019 07:04:29 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=To:Cc:In-Reply-To:References:Subject:
- From:Date:Message-ID:Sender:Reply-To:MIME-Version:Content-Type:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=T7peQwL7cI9hAs2vgRhFPr2ZAQIqwe808x3ehowYToI=; b=Qye3NnoHpPuEqiTFxbZhSN9Fj
- 2itHQLMi61/bhCm2+fgkTDkjTb+uoirW/9gM3zCYNjwl8pb75yHRBNUdrMt6CIFykWS6NJxfauRxG
- 0bYnpHhtNtOXvj2WMqVbI/hE964amuQdjhh1VZmvHnRiECoe+yU+R3FJQEjq6SopyUOtQdU5R/uoK
- advzrmVtzOLIkQvu5hUw12PIj1CsdeRrCrjd/s77X2ShvivZLymmcriYhwo1vJonGxGYD/IzY8Y5R
- RgNzXt/fmgOIOLUNgoHyhwOilhHSx3TL8rv0XXGdLf9iV8YEdkk8s6gV5gA1AxniceiEU483qpb08
- xqzmsBEZA==;
-Received: from mail-pg1-f196.google.com ([209.85.215.196])
- by casper.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hAUAw-0004mM-Cx; Sun, 31 Mar 2019 06:42:40 +0000
-Received: by mail-pg1-f196.google.com with SMTP id p6so3151152pgh.9;
- Sat, 30 Mar 2019 23:42:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:subject:references
- :in-reply-to:cc:cc:to;
- bh=T7peQwL7cI9hAs2vgRhFPr2ZAQIqwe808x3ehowYToI=;
- b=szhilSiywZsN3iOTm864mHine2OoDdIZse6djhc0SGWPDOIs1asQELlx1K3eWYS6fp
- sfgnXMSK9BspxC0jClqHySWK1T1u57wDZzE4PNMuFSdIcn2lqjioQmzZDH+q82w+LRzm
- CHgmoCn40AcOIknmLG1DxEayjAcsQcfMhtKG5Of4w6Cc6l1JzdXA1aYx8M5/0em0Hl8P
- 0pI48NQH7xNX3YerWmFe3yEQpACjQjq+5DRY2HNB1d1upL/9ncX2+2c5h4WAsKUC+Q55
- KOn82rUEz9wiq/Zd+txx9/aGsqG5gEmREJJC7cENqiOgXvccoGPlCtZctnoBrFnRqmO+
- UsUg==
-X-Gm-Message-State: APjAAAWqtFbsIG1p+dh9wY4ZQb/jHvT7jbjUwVHTZU5QuC0Q0NVdzEQW
- 6kALIai+5e8DNFYZSbNjnQ==
-X-Google-Smtp-Source: APXvYqxOltetbpRY5z5/m/89W9y1w/T8j9TpBv0VcOrm0Pc1PGBq+QpTw8ig0rrTnJE7vQ1iblY0Eg==
-X-Received: by 2002:a62:5582:: with SMTP id j124mr3408180pfb.53.1554014555410; 
- Sat, 30 Mar 2019 23:42:35 -0700 (PDT)
-Received: from localhost ([210.160.217.68])
- by smtp.gmail.com with ESMTPSA id v188sm9052773pgb.7.2019.03.30.23.42.34
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Sat, 30 Mar 2019 23:42:34 -0700 (PDT)
-Message-ID: <5ca0615a.1c69fb81.26b1d.7b52@mx.google.com>
-Date: Sun, 31 Mar 2019 01:42:33 -0500
-From: Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH RFC 1/6] dt-bindings: clk: meson: add g12b periph clock
- controller bindings
-References: <20190327103308.25058-1-narmstrong@baylibre.com>
- <20190327103308.25058-2-narmstrong@baylibre.com>
-In-Reply-To: <20190327103308.25058-2-narmstrong@baylibre.com>
-To: Neil Armstrong <narmstrong@baylibre.com>
+ id 1hAfUX-000453-0Y
+ for linux-amlogic@lists.infradead.org; Sun, 31 Mar 2019 18:47:39 +0000
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+ by metis.ext.pengutronix.de with esmtps
+ (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.89)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1hAfUR-0007FK-3o; Sun, 31 Mar 2019 20:47:31 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1hAfUQ-0001eS-E9; Sun, 31 Mar 2019 20:47:30 +0200
+Date: Sun, 31 Mar 2019 20:47:30 +0200
+From: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH 0/1] pwm: meson: fix scheduling while atomic issue
+Message-ID: <20190331184730.y767dxhblffxj3om@pengutronix.de>
+References: <20190324220217.15813-1-martin.blumenstingl@googlemail.com>
+ <20190325084153.l44pzfewcqlkoaoe@pengutronix.de>
+ <CAFBinCAn-9oETMKMfSXoJOMBrQyrCFN7AyHG02bQaoxG1px3YA@mail.gmail.com>
+ <20190325200730.cx73jgxfexz6ybzq@pengutronix.de>
+ <CAFBinCCGWsb+1WHFe6uwrpUYgH4iix0WT8_v_Nj5BhGKRyjiLQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <CAFBinCCGWsb+1WHFe6uwrpUYgH4iix0WT8_v_Nj5BhGKRyjiLQ@mail.gmail.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
+ SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190331_074238_501202_BC37F8D3 
-X-CRM114-Status: GOOD (  11.31  )
+X-CRM114-CacheID: sfid-20190331_114737_271094_76CD073C 
+X-CRM114-Status: GOOD (  15.36  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -98,31 +78,81 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
- khilman@baylibre.com, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-pwm@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ linux-kernel@vger.kernel.org, thierry.reding@gmail.com, kernel@pengutronix.de,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ jbrunet@baylibre.com
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 27 Mar 2019 11:33:03 +0100, Neil Armstrong wrote:
-> This patch adds the specific Amlogic G12B clock driver compatible.
-> 
-> G12B clock driver is very close, the main differences are :
-> - the clock tree is duplicated for the both clusters, and the
->   SYS_PLL are swapped between the clusters
-> - G12A has additional clocks like for CSI an other components
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
+On Sat, Mar 30, 2019 at 08:29:35PM +0100, Martin Blumenstingl wrote:
+> Hello Uwe,
+> =
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> On Mon, Mar 25, 2019 at 9:07 PM Uwe Kleine-K=F6nig
+> <u.kleine-koenig@pengutronix.de> wrote:
+> [...]
+> > > >  - Does stopping the PWM (i.e. clearing MISC_{A,B}_EN in the MISC_AB
+> > > >    register) freeze the output, or is the currently running period
+> > > >    completed first? (The latter is the right behaviour.)
+> > > I don't know, I would have to measure this with a logic analyzer.
+> >
+> > In practise you can do this with a multimeter, too. Just do something
+> > like:
+> >
+> >         pwm_apply_state({ .enabled =3D true, .period =3D 5s, .duty_cycl=
+e =3D 5s, .polarity =3D PWM_POLARITY_NORMAL });
+> >         pwm_apply_state({ .enabled =3D false, .period =3D 5s, .duty_cyc=
+le =3D 5s, .polarity =3D PWM_POLARITY_NORMAL });
+> >
+> > (assuming the PWM supports periods that long). The expectation is that
+> > the last command takes nearly 5 s to complete and while it waits the
+> > output is high and on return it's low. If that isn't the case, there is
+> > a bug somewhere.
+> the longest supported period (using the 24MHz crystal as input, which
+> is the slowest input clock and thus gives the longest possible
+> duration) is 349514407ns (that's approx. 0.35 seconds). my multimeter
+> isn't fast enough to measure this so I'm using my logic analyzer with
+> puleseview instead: [0]
+> =
 
+> I added the following code to meson_pwm_request:
+>   struct pwm_state enable =3D {
+>         .enabled =3D true,
+>         .period =3D 349514407U,
+>         .duty_cycle =3D 349514407U,
+>         .polarity =3D PWM_POLARITY_NORMAL };
+>   struct pwm_state disable =3D {
+>         .enabled =3D false,
+>         .period =3D 349514407U,
+>         .duty_cycle =3D 349514407U,
+>         .polarity =3D PWM_POLARITY_NORMAL };
+>   pwm_apply_state(pwm, &enable);
+>   pwm_apply_state(pwm, &disable);
+> =
+
+> this returns immediately. my logic analyzer doesn't see signal change
+> (I'm sampling at 1MHz).
+> =
+
+> can you please confirm that my test code and measurement procedure is cor=
+rect?
+> if it is then my observation is that disabling the PWM does so
+> immediately, without waiting for the current period to complete
+
+Ack, with the above two pwm_apply_state the output must be high when the
+first pwm_apply_state returns. Then it must stay high for n *
+349514407 ns (for an natural n >=3D 1) and then go low.
+
+Best regards
+Uwe
+
+-- =
+
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
 
 _______________________________________________
 linux-amlogic mailing list
