@@ -2,143 +2,68 @@ Return-Path: <SRS0=bepq=SD=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A862C43381
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 08:48:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 60188C43381
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 09:15:32 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CEB79217F4
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 08:48:52 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2F1E1214C6
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 09:15:32 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rV/DKk5x";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="rRKlKRbW"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CEB79217F4
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ELse4Z8g"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2F1E1214C6
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=socionext.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=H2FKJ2a/JeWA9bluImV1gipI7yECtqioHGSwlJ9xIog=; b=rV/DKk5xt8Hj4E
-	xv9tWMrdaO8uzyAdw+7veLubq2MUFc5v1kiDgJg+yfaVO2iSzfohbar5pVJD/7IPdJbU7YIDTq82f
-	tpt5hr6wld9nla8Haej/okYuyxwQ/NA7dSOmJKwz635sZfUKhLVPCvXtnGR9U4wUFMk65wZWGZmSH
-	E0rKpvfF7luIPfBuFxVF6pTVLKSE/IEMiwuiVxcD6zO6bUUtgYRzbRJzx4v6Bg/9DykwpSM62b0jL
-	OLoTPTB1qBdC5aZ8AuFj1zB6sjeuVgwTCfpGJu5dSxdPM215rXVJXnX8It3WfMv190Wvlkp0PBTCg
-	mWMDdDilVTxGmKX40VwQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:References:
+	In-Reply-To:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ah3MDz3hvOmp/TsOf58MOVk16e+cHRxe+avirTeFT8M=; b=ELse4Z8gaejpL9
+	3XFX7m1c49fif+/NQ0VtMqlUr9fC403yHz+sOH4dFcZry8uxUzR5fCLSduTUV1YvFw0LxWgYJr3wv
+	Do/4VBjDhQPV0MFgAjgWbQ1bBq9VzdQVTKIf5rgrvAfOLA7Vtpo0dUg/XLm3WnjsL3KHXtt/RKvf/
+	ZqhlFdjq1gY6GDh8YrZcnF+WWrvF59pqBOxQT61o7rVePPlevH2nKaJTsxO9pctaKrgRUuCZDZgN7
+	E59SI6rmLI6bh3Cft2VidkQFUX2E4p4vLBdr6Mqx9rgCo6Bdse+sTO4IggMmMqC4cPH8njCSr7PMu
+	Nrym7UBEwsg3O7pbhIKQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hAsca-0007Jz-71; Mon, 01 Apr 2019 08:48:48 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
- by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hAscW-0007Ik-Q6
- for linux-amlogic@lists.infradead.org; Mon, 01 Apr 2019 08:48:46 +0000
-Received: by mail-wr1-x442.google.com with SMTP id g3so10822147wrx.9
- for <linux-amlogic@lists.infradead.org>; Mon, 01 Apr 2019 01:48:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=B2N8UX7mXp7F/QOodI27adOtfevZ45wwWnt2ek2Fc+8=;
- b=rRKlKRbWHbDUknmuG1x+rnZWKEUcTMO/vJtlkzeMDC2JcfpK7gmtHag/bhvSLIQB6b
- Qk4njugYAqRXGm5MhdKjEHbt63BmpIMObwEkoEG2dnzcAeu20rnPw4yf1XEZHSyDTPyR
- H6750NCTvv7kEDDy8ZWooSzW+tx8wlaovSD9qmD3eU8f8G3WVs04pQN0rptmoWjHUi+l
- OWfoUv0csw78+/4zIBAkGnnDkRUAfq8+Cmxb7QHINDflWdiZ1kWnHrHAElGuhyCiT6u2
- 4xrJ8x7KhPaBiKSWNZWMOH92Q4OspA1yvPhqfknAKyG7HazQ+0NQuwXTcEc1SIv2ofJc
- +wfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=B2N8UX7mXp7F/QOodI27adOtfevZ45wwWnt2ek2Fc+8=;
- b=jW+vQYgY6vSCmvoyUdo70dCOvuwYq/0vFd0hvrqCMjWzzlpwJ83w07n7oTCOLua0OJ
- 8R5qkUNp9M3hWzSGKuXCTSUp6+CqDcg4uSqkuoVrhIMgCz7U7gQLfIEYDaZ6em6UwJG9
- rY3NCL/784BlxQMGuleldDRvXQ84Qx0pkrjaemk0OoSvTEjxWDUln/zD9ZlmmRci1rmh
- GqXqrOhU+/6u2AmIhXR5W1BtlyF/7kEJFWt40T2iQmoO75yk26KgFuCIgIOfzcHgZ0p1
- qPYApqGMAjRx1C7/Z8WbgR4q3QTA39JP9/MQaQP74/n48MrKfEvOelkP280lfbhzhPDV
- uNSg==
-X-Gm-Message-State: APjAAAVoRJ4Bi0qQhmk4B0gqquZtLvk0iEvLUuBUMq19uTdGPvn42rRo
- LGZCVNLPhQvEVGZRmvpQhRJCbiO2swdg+w==
-X-Google-Smtp-Source: APXvYqyhEmZEUsf6fUnX1i3+oDhHEZu+aXc/SiOqON/ExQWX03tJCncmalPNSHSFZXrURBbv5EfjLQ==
-X-Received: by 2002:a5d:6987:: with SMTP id g7mr28112223wru.299.1554108523301; 
- Mon, 01 Apr 2019 01:48:43 -0700 (PDT)
-Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id
- 7sm37391184wrc.81.2019.04.01.01.48.42
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 01 Apr 2019 01:48:42 -0700 (PDT)
-Subject: Re: [PATCH v2 0/2] arm64: meson-gxm: Add support for the Mali T820 GPU
-To: khilman@baylibre.com
-References: <20190315135655.28359-1-narmstrong@baylibre.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <ed3ca736-0d2d-0a69-2e14-a9ed29f0cd13@baylibre.com>
-Date: Mon, 1 Apr 2019 10:48:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+	id 1hAt2N-0000o3-P4; Mon, 01 Apr 2019 09:15:27 +0000
+Received: from mx.socionext.com ([202.248.49.38])
+ by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1hAt2K-0000n6-Hz; Mon, 01 Apr 2019 09:15:26 +0000
+Received: from unknown (HELO iyokan-ex.css.socionext.com) ([172.31.9.54])
+ by mx.socionext.com with ESMTP; 01 Apr 2019 18:15:20 +0900
+Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
+ by iyokan-ex.css.socionext.com (Postfix) with ESMTP id A3EBE611D6;
+ Mon,  1 Apr 2019 18:15:20 +0900 (JST)
+Received: from 172.31.9.53 (172.31.9.53) by m-FILTER with ESMTP;
+ Mon, 1 Apr 2019 18:15:20 +0900
+Received: from yuzu.css.socionext.com (yuzu [172.31.8.45])
+ by iyokan.css.socionext.com (Postfix) with ESMTP id 5D5D740F06;
+ Mon,  1 Apr 2019 18:15:20 +0900 (JST)
+Received: from [127.0.0.1] (unknown [10.213.132.48])
+ by yuzu.css.socionext.com (Postfix) with ESMTP id 3406C120499;
+ Mon,  1 Apr 2019 18:15:20 +0900 (JST)
+Date: Mon, 01 Apr 2019 18:15:19 +0900
+From: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+To: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Subject: Re: [PATCH 3/4] phy: socionext: get optional clock by
+ devm_clk_get_optional()
+In-Reply-To: <f3370a0619d40c40676ed029cc04a3ed1c12b991.1553914418.git.chunfeng.yun@mediatek.com>
+References: <a8539bcf66065380069676fbea99a51254309803.1553914418.git.chunfeng.yun@mediatek.com>
+ <f3370a0619d40c40676ed029cc04a3ed1c12b991.1553914418.git.chunfeng.yun@mediatek.com>
+Message-Id: <20190401181519.2595.4A936039@socionext.com>
 MIME-Version: 1.0
-In-Reply-To: <20190315135655.28359-1-narmstrong@baylibre.com>
-Content-Language: en-US
+X-Mailer: Becky! ver. 2.70 [ja]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190401_014844_849219_DCA8BEE6 
-X-CRM114-Status: GOOD (  12.74  )
+X-CRM114-CacheID: sfid-20190401_021524_696903_A2928F45 
+X-CRM114-Status: GOOD (  17.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -150,37 +75,85 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Kishon Vijay Abraham I <kishon@ti.com>, linux-mediatek@lists.infradead.org,
+ Matthias Brugger <matthias.bgg@gmail.com>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 15/03/2019 14:56, Neil Armstrong wrote:
-> This patchset adds :
-> - Optional reset properties in the midgard bindings
-> - Mali T820 Node in Amlogic Meson GXM DTSI
-> 
-> Changes since v1:
-> - Updated midgard DT wording following the recently submitted 
->   bifrost bindings
-> 
-> Christian Hewitt (1):
->   arm64: dts: meson-gxm: Add Mali-T820 node
-> 
-> Neil Armstrong (1):
->   dt-bindings: gpu: mali-midgard: Add resets property
-> 
->  .../bindings/gpu/arm,mali-midgard.txt         | 14 ++++++++++
->  arch/arm64/boot/dts/amlogic/meson-gxm.dtsi    | 27 +++++++++++++++++++
->  2 files changed, 41 insertions(+)
-> 
+Hi,
 
-Kevin, can you take both in your tree now the bindings are reviewed ?
+This looks good to me.
+
+Reviewed-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 
 Thanks,
-Neil
+
+On Sat, 30 Mar 2019 17:11:37 +0800
+Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
+
+> Use devm_clk_get_optional() to get optional clock
+> 
+> Cc: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> ---
+>  drivers/phy/socionext/phy-uniphier-usb3hs.c | 10 +++-------
+>  drivers/phy/socionext/phy-uniphier-usb3ss.c | 10 +++-------
+>  2 files changed, 6 insertions(+), 14 deletions(-)
+> 
+> diff --git a/drivers/phy/socionext/phy-uniphier-usb3hs.c b/drivers/phy/socionext/phy-uniphier-usb3hs.c
+> index b1b048be6166..50f379fc4e06 100644
+> --- a/drivers/phy/socionext/phy-uniphier-usb3hs.c
+> +++ b/drivers/phy/socionext/phy-uniphier-usb3hs.c
+> @@ -335,13 +335,9 @@ static int uniphier_u3hsphy_probe(struct platform_device *pdev)
+>  	if (IS_ERR(priv->clk_parent))
+>  		return PTR_ERR(priv->clk_parent);
+>  
+> -	priv->clk_ext = devm_clk_get(dev, "phy-ext");
+> -	if (IS_ERR(priv->clk_ext)) {
+> -		if (PTR_ERR(priv->clk_ext) == -ENOENT)
+> -			priv->clk_ext = NULL;
+> -		else
+> -			return PTR_ERR(priv->clk_ext);
+> -	}
+> +	priv->clk_ext = devm_clk_get_optional(dev, "phy-ext");
+> +	if (IS_ERR(priv->clk_ext))
+> +		return PTR_ERR(priv->clk_ext);
+>  
+>  	priv->rst = devm_reset_control_get_shared(dev, "phy");
+>  	if (IS_ERR(priv->rst))
+> diff --git a/drivers/phy/socionext/phy-uniphier-usb3ss.c b/drivers/phy/socionext/phy-uniphier-usb3ss.c
+> index 4be95679c7d8..ec231e40ef2a 100644
+> --- a/drivers/phy/socionext/phy-uniphier-usb3ss.c
+> +++ b/drivers/phy/socionext/phy-uniphier-usb3ss.c
+> @@ -238,13 +238,9 @@ static int uniphier_u3ssphy_probe(struct platform_device *pdev)
+>  		if (IS_ERR(priv->clk))
+>  			return PTR_ERR(priv->clk);
+>  
+> -		priv->clk_ext = devm_clk_get(dev, "phy-ext");
+> -		if (IS_ERR(priv->clk_ext)) {
+> -			if (PTR_ERR(priv->clk_ext) == -ENOENT)
+> -				priv->clk_ext = NULL;
+> -			else
+> -				return PTR_ERR(priv->clk_ext);
+> -		}
+> +		priv->clk_ext = devm_clk_get_optional(dev, "phy-ext");
+> +		if (IS_ERR(priv->clk_ext))
+> +			return PTR_ERR(priv->clk_ext);
+>  
+>  		priv->rst = devm_reset_control_get_shared(dev, "phy");
+>  		if (IS_ERR(priv->rst))
+> -- 
+> 2.20.1
+
+---
+Best Regards,
+Kunihiko Hayashi
+
+
 
 _______________________________________________
 linux-amlogic mailing list
