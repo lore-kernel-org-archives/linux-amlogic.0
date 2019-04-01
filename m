@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-8.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A6F4EC43381
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 18:18:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 23A9CC43381
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 18:18:54 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 705732133D
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 18:18:41 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D3A842133D
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 18:18:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="h/9F49ha";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="ePKf8xtG"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 705732133D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GM1cSb6B";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="pbtTnCsW"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D3A842133D
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,66 +27,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=x6Qj7/gtX5aUdt80uuFitjvBg5rgh1ZtWiwCC3TXwaw=; b=h/9F49haGGjZ3Q
-	kEwzRJr4slgF8EGU/YntOgHMrj3S47joi/ol5CxqQrre3dssJcIvN1WS0B3JjToE3AINDocJ0S0vm
-	d2zIiylmEOdu+xqALLeITOsteB5gd3S+o+lk+7aBNxdZa4o8inkUZKJIlLsaQTezBFsru1PzbcMGE
-	U37vt5mdJzWbmoJrx/YraRlVi4sp0+sRQcz4S1KwwKvwT7wYWtdo8PQPnD+GXhkp7a/MZzimFU3V8
-	elYG63Kx+giNmUI2d8NZqVecl/0bcWsFOam1TaeAOlkHiWx6LwhBLBgdWCAnHxPFheR0Sldh40gWI
-	aAo+uFlDPYM9JFXUSqyQ==;
+	List-Owner; bh=hyW4ToPKyfGgbm8jnTqefhFqeZUtCftLjEqX9ebmRoY=; b=GM1cSb6BF3DOrL
+	JSj91Z1WoKMRhWJ+Ai1gYtiQrCRpt2T5su1PYIvcyz7B1U74DMK9werGaTE53noXbcdqY+adobWiz
+	/LWgjVuPTWQAGjv5kCQPiMJecuHNxidmt5DNanRwCdFqUq7Jvy1W4ZNmVysVpUrK16N8u0MRLDW03
+	6amzh5kdptpe3aQX9Mo57fEnqcPxgvtkuo/DAPFY21UvueZwY6K+kgbQdpOXOUGc/y6zS/gN7LNZZ
+	uukEYUVMbZ9Vl3dg0k4ShltBkqkahbH5UdCFDNufGtIaJLggC09OA1Id/FSSjZtNuCSY2bqnr4tk5
+	rAMM0TiSVilE1MJFIL9g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hB1W0-0006Yu-RF; Mon, 01 Apr 2019 18:18:36 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1hB1WC-0006wl-8D; Mon, 01 Apr 2019 18:18:48 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hB1Vq-0006NT-Gt; Mon, 01 Apr 2019 18:18:27 +0000
-Received: by mail-wr1-x443.google.com with SMTP id y7so13266092wrn.11;
- Mon, 01 Apr 2019 11:18:26 -0700 (PDT)
+ id 1hB1Vr-0006Nx-VM; Mon, 01 Apr 2019 18:18:29 +0000
+Received: by mail-wr1-x441.google.com with SMTP id q1so13311540wrp.0;
+ Mon, 01 Apr 2019 11:18:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=9ye1/MyKDhSO/ewzuKmbDnyUwPW1RDGDapSOkV4cGL0=;
- b=ePKf8xtGlM3Xw4gBPq6inPPXkjh+VtlbGbMXaQ+Rt6akR6bHQpjYcIcpHHQUMKgpiO
- ftMv3MYpzPta4C8/QU4lCE9u0aFmb88VfFSJRI3xNrOnOyFjmwBFYlBGHCdf6NF5uhHO
- 0ZhOtjVUFyHqkFP2qydw4IjkjlcWeUA7yBxX7NhsCryLncF2+EkEX0+EqQJRa6DgYC4h
- RljSZcgokxPGRUI3wu6t+KhSqfz/MlV2LNWLMa2rksEeTCG3UyH835eFf/o0U+lULHAQ
- e8xdATQiAtrKEtH5JWgW0vAvuU2iQzEVBXPHAg/SGVoG0Dy8QX5a8fveEtnkuhgk/xSI
- fsRQ==
+ bh=R3qyE9o38IDDNxrUGtndSazeFTGkJiWYDt06NFgE664=;
+ b=pbtTnCsWDQS+aT0oYhysB5TgrP5wDENRI6k/RVJRyFf1U5/o1aztpYHNElAbZ8g0s9
+ swcHcBB2+wrbL3UzGzwsjSxQEXTIIu5VRW/MZo6+2Y9HyycC0ObQvL1qkw1/ig+TMFNx
+ lz+qnd8JRP1ab38lILK1xi9tQzWJwFtIbnawR78ir3t6tNnE79S1xIQq84LntWrUFwwm
+ FwA175mB0Z+04Kt06Z1WRbsHR44RJFNVo6s3v5dbDa/VqyFdXaVFZAqZl+qhZ7zFRvXg
+ 9EjY8ARRjZbj8wrBRTn2eCuVnjlc59bHI1ATZ+dv6s5jNdgQVotCF+7HM9gPO4WrR+C+
+ XurQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=9ye1/MyKDhSO/ewzuKmbDnyUwPW1RDGDapSOkV4cGL0=;
- b=i3/0bR+pzZj2XEKAKyEvFQrwcs4esZXayYhyh7E5wJBqV6Syr+b9Fb6PuS+N2H5aLw
- YfnjWgd13WU/fpgZSnNpZf+0FWNL4fCYsNDVMzK1/0uqOOlINAIa5kQUPIm2E9iSUjma
- 8kP4hyns1oRTp5W50RUf0Kd/Rxa9XwcKsP3I25zZaNatK82UIrReNj5PlTMIDYWKwIif
- cNVbZOi2vx6Q+ei1L2Dn+U4+AfoPpLk7NCi9JKynz15Kwny0zE8h4ofqvcevGXaik+RN
- ckGyzPgab9DA3wL1cU5U0yy+D6HL3s0D55/DhS8brDNNs8SZIl6SWoAmS9bAuHOpJpNs
- hNiQ==
-X-Gm-Message-State: APjAAAWcwvQYBY8kbtWPfF5EiSy2HY+S/XZMqj//TarFHYfuAI1f+BEQ
- 6k6Apm/aFvDyomv5TEVTPzY=
-X-Google-Smtp-Source: APXvYqwQGTK6gmoLZn1yNvDpn8+7wW3OyahHbaWJL+s5vbSRarD51UwEVgNOFPyHgLHmZfrS8WXk9w==
-X-Received: by 2002:a5d:4d42:: with SMTP id a2mr44948400wru.130.1554142705035; 
- Mon, 01 Apr 2019 11:18:25 -0700 (PDT)
+ bh=R3qyE9o38IDDNxrUGtndSazeFTGkJiWYDt06NFgE664=;
+ b=FUB3ZFz2+CJZW0fIO+gXu85PXwE/OfVJO0S8hjQXWVA6JMoJBlo4tQPh1E654hdwtf
+ 4yTGny0swVH/rLOB+V7UkWLMZiautHTEED8lzwkOx/dFDAL0jf5liuzbKOFa16RcJVAV
+ Ziyor6C2gkhkE86DZJIVjPAQEHGzB1V7j5fvRws+TPyqRLQcZUdsagYfcYLSQLfSMzPV
+ OttZ4mEAK/Dqr6pxTxisGsZ2IxkICXfjKaWaKXU6aVTiEbsPzG6a0sJvAPra6zhUxPjt
+ ZJ6rfWn1CME8ZV0u/8/4I0HG2woW2McLLKPEHY7Xngxl83YXEttDReagrX0T7k1iOibm
+ AGkw==
+X-Gm-Message-State: APjAAAUy4IqHu/GienYHUvZE3kr8SnCQWRiEIoop5og8UdvUHk+eMBsF
+ 5/uYDMemk0ZLkjPfNat29cFIH3yY
+X-Google-Smtp-Source: APXvYqxtLgmKu8IHhS83CT8F1S3O85W6YkaL6iYFw1+MwLNKYEaYAHhO9W2z5afn1DgfwXFP4SOzYQ==
+X-Received: by 2002:a5d:488d:: with SMTP id g13mr28855114wrq.119.1554142706290; 
+ Mon, 01 Apr 2019 11:18:26 -0700 (PDT)
 Received: from blackbox.darklights.net
  (p200300DCD73A0800C9C8A7BE25478D36.dip0.t-ipconnect.de.
  [2003:dc:d73a:800:c9c8:a7be:2547:8d36])
- by smtp.googlemail.com with ESMTPSA id h10sm18131127wrs.27.2019.04.01.11.18.23
+ by smtp.googlemail.com with ESMTPSA id h10sm18131127wrs.27.2019.04.01.11.18.25
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 01 Apr 2019 11:18:24 -0700 (PDT)
+ Mon, 01 Apr 2019 11:18:25 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: thierry.reding@gmail.com, linux-pwm@vger.kernel.org,
  linux-amlogic@lists.infradead.org
-Subject: [PATCH 1/2] pwm: meson: consider 128 a valid pre-divider
-Date: Mon,  1 Apr 2019 20:18:16 +0200
-Message-Id: <20190401181817.11999-2-martin.blumenstingl@googlemail.com>
+Subject: [PATCH 2/2] pwm: meson: don't disable pwm when setting duty repeatedly
+Date: Mon,  1 Apr 2019 20:18:17 +0200
+Message-Id: <20190401181817.11999-3-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190401181817.11999-1-martin.blumenstingl@googlemail.com>
 References: <20190401181817.11999-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190401_111826_555536_23814DD1 
-X-CRM114-Status: GOOD (  13.25  )
+X-CRM114-CacheID: sfid-20190401_111828_005546_B73EB91D 
+X-CRM114-Status: GOOD (  10.82  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -108,41 +108,36 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The pre-divider allows configuring longer PWM periods compared to using
-the input clock directly. The pre-divider is 7 bit wide, meaning it's
-maximum value is 128 (the register value is off-by-one: 0x7f or 127).
+From: Bichao Zheng <bichao.zheng@amlogic.com>
 
-Change the loop to also allow for the maximum possible value to be
-considered valid.
+There is an abnormally low about 20ms,when setting duty repeatedly.
+Because setting the duty will disable pwm and then enable. Delete
+this operation now.
 
 Fixes: 211ed630753d2f ("pwm: Add support for Meson PWM Controller")
+Signed-off-by: Bichao Zheng <bichao.zheng@amlogic.com>
+[ Dropped code instead of hiding it behind a comment ]
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- drivers/pwm/pwm-meson.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/pwm/pwm-meson.c | 5 -----
+ 1 file changed, 5 deletions(-)
 
 diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index f6e738ad7bd9..4b708c1fcb1d 100644
+index 4b708c1fcb1d..e247ab632530 100644
 --- a/drivers/pwm/pwm-meson.c
 +++ b/drivers/pwm/pwm-meson.c
-@@ -188,7 +188,7 @@ static int meson_pwm_calc(struct meson_pwm *meson,
- 	do_div(fin_ps, fin_freq);
- 
- 	/* Calc pre_div with the period */
--	for (pre_div = 0; pre_div < MISC_CLK_DIV_MASK; pre_div++) {
-+	for (pre_div = 0; pre_div <= MISC_CLK_DIV_MASK; pre_div++) {
- 		cnt = DIV_ROUND_CLOSEST_ULL((u64)period * 1000,
- 					    fin_ps * (pre_div + 1));
- 		dev_dbg(meson->chip.dev, "fin_ps=%llu pre_div=%u cnt=%u\n",
-@@ -197,7 +197,7 @@ static int meson_pwm_calc(struct meson_pwm *meson,
- 			break;
- 	}
- 
--	if (pre_div == MISC_CLK_DIV_MASK) {
-+	if (pre_div > MISC_CLK_DIV_MASK) {
- 		dev_err(meson->chip.dev, "unable to get period pre_div\n");
- 		return -EINVAL;
- 	}
+@@ -325,11 +325,6 @@ static int meson_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+ 	if (state->period != channel->state.period ||
+ 	    state->duty_cycle != channel->state.duty_cycle ||
+ 	    state->polarity != channel->state.polarity) {
+-		if (channel->state.enabled) {
+-			meson_pwm_disable(meson, pwm->hwpwm);
+-			channel->state.enabled = false;
+-		}
+-
+ 		if (state->polarity != channel->state.polarity) {
+ 			if (state->polarity == PWM_POLARITY_NORMAL)
+ 				meson->inverter_mask |= BIT(pwm->hwpwm);
 -- 
 2.21.0
 
