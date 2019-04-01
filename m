@@ -2,22 +2,22 @@ Return-Path: <SRS0=bepq=SD=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-14.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=3.4.0
+	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E0156C43381
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 13:39:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F419BC10F05
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 13:52:19 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AE06E2082C
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 13:39:49 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C1F4920830
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 13:52:19 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LOBwC6/T";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Po33D9vx"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AE06E2082C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kDev2cSY";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Z5RmUJGt"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C1F4920830
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,65 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pEd8uWKohU1vrokLZZJjcTleedw67WPhvFrDwct7U0g=; b=LOBwC6/T3LW3l+
-	mFFFoHxoDYon67rV6TH2lmk2yosQkI8z4vHoM/rHhfkg1X3rTRSwhtd651dAkN3DM8Waa1VVuYf7M
-	ikcKDypotRMFNRTZep6puyqtCwwZ+BGPhNAIcx0+MRazfSLBrdr6ZV6rekf6/dhtbyk4tSjJ99k0Y
-	GZ39sA91KY4Be/8CKcdrXLqthsmHPGin2sfDxlaWN9WEku/vyApa69NCox4tBrOOY0kpRyzjyLKSx
-	M+iIkwJY1usaTX7C7Cc10NHjV4woP+G9XeEGT47lqSYVp4IPciS6bQc0Zn7whU4RvfnkXsi98+6Gu
-	hh1B5pq9Go2pmPH4B4aw==;
+	List-Owner; bh=cFxzyzDH+4NLp7ZQ6rvgt2uBtKCBcnpPA3nptx52K0U=; b=kDev2cSYxP2k84
+	HWtwylI3GEuFGMFA6YA8e2cxTwu1dlWgcLCXWCyJAF/HRo9RFK1t8H+dmkQG7tRHcCcwQoPRQ/0jZ
+	HbxvLQ9q8sYPwYKLFIa6owQDmLqJ2WoRcIVV+2iSQyuSVVxAOGf+GBnpQlhQIk8T36Lb+lON0U5mO
+	5Qv24P5tx6misTbEIF8vXhiSXkb4VvqbGpkQXbDlSGN3WSOLmz/tp9/JT9Mck8QNQAqFy09AOe3Vk
+	FlG1RsNP3/2HCut5/obpmGLpaDQkYDwa0UB/Wxm6QV5CIvUK2czHyiumgjIRGL6HK3bKlzRqfarMq
+	OqxdBpQt6RFBBQgprV/w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hAxA6-0004ye-Vu; Mon, 01 Apr 2019 13:39:43 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1hAxMF-0003rn-Hz; Mon, 01 Apr 2019 13:52:15 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hAx9S-0003yN-T4
- for linux-amlogic@lists.infradead.org; Mon, 01 Apr 2019 13:39:05 +0000
-Received: by mail-wr1-x441.google.com with SMTP id w10so12090441wrm.4
- for <linux-amlogic@lists.infradead.org>; Mon, 01 Apr 2019 06:39:02 -0700 (PDT)
+ id 1hAx9V-00043u-CN
+ for linux-amlogic@lists.infradead.org; Mon, 01 Apr 2019 13:39:08 +0000
+Received: by mail-wr1-x443.google.com with SMTP id w10so12090633wrm.4
+ for <linux-amlogic@lists.infradead.org>; Mon, 01 Apr 2019 06:39:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=W4Q5AbKbln/Fu2EQxLepyTtJKMD+qTIvZtoNE1VnyUg=;
- b=Po33D9vx6Hu6bDHxutnO535NGEcbzTijhog09s4FmNNp8B/ggr0OFm/szBbgu2eGGS
- A7k2zD3bS6uLzH2eNpC/iXM/S1UBMp+WPnrn6cHCJZ8pOtw6H1kdgPm9Fz14cuto98VB
- DTHzNo1BZd2MSZw/cv8/m3ZgrI/wcTy8UwkkGdBv26FDvhcA60Nbj6luDlXyPjH8XWmq
- ychX7Ly7ZzWHvr3+TCW+lOa9JMHWNfOKWlJ+g0PjFQEIo3ukW9VwAmD0u/yBiwo2twz6
- 8euI5ZVVVrDLc5U2FXp/KQRcx71jv51k9guoNH/yomhTot+z+kNDskEmvSuSE+BEsyOR
- Ysnw==
+ bh=Oc8x1HYekb0IdcZYL8hP6bRdzWN1baFooyKd73Kx4H8=;
+ b=Z5RmUJGtmb7qTx76udQVB8fsHHD3DYHIusPgFoeTYXqPp9yzR2TwtHrsV07H7r8YYx
+ 0kUnoeBDJJZz9YPTYjc4P+5KHkCKwrPYU1YP4hlBDITChHHnPCW8Dh6j1x8cpDvrwdzg
+ jpfdC/kFzzcQnyVVbSLHvXiKb9L2H00uWajZPFEdh6TeUesnWHoSLK3S4/W72P+hSSB9
+ aFvZsZTqV5W7eTgtL1OFJvqCdR0A+QeLObXMTIy2SNBjn/niubTnO1jctg/fpAylo0nu
+ LYXqM+jrci1hZR6vA2dthuXbS+wrEGlcB0fxUpMFT/5Upoc7hxK5Csgpam3t0gCy0HTZ
+ 8zmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=W4Q5AbKbln/Fu2EQxLepyTtJKMD+qTIvZtoNE1VnyUg=;
- b=IFcITkcAv7nHRNJk7S88q0xf77Gsh/ZC+AWDztZDAqLXvfRZqim0R6+nFSIT2pMowA
- BMC3LQQcaFjJNZYnsNd9DQBGbEtfD09p7ztZgqNgH4e+EpPbNEQZ8senBvFiAznVoBh/
- K6iHhBrIMyOlIna0YRNtdSOGc5dSuxCDz3ttrs1k9oqtEJmCyPcjGUURCbxGouulyVQ/
- 2O0j1A44NiDWHgi0LhoVNn7x8T2RgqRS+AJjIpYM8HglYqiufhJCTuD1UDmfpCoDfhIK
- 4ClP5vMuWrYBcfJUtuGUbGO8xxrZ79n0CTSV2KPNreOXBsPB/0X+XnG3mdtV0vbAW3c9
- OZbQ==
-X-Gm-Message-State: APjAAAVy1INskN7/DpYjxDLXIZ/CJiqcQajnogaFmr9l1ErgKVhRqN2a
- 4dav9qjyQdK/PCdDHquuUDBl4A==
-X-Google-Smtp-Source: APXvYqxTUchDyD2CapUrfQKpMKZeoRgwiyWB4JZQOimUIVfTCxhqoNIap1rkPJM+AA06ajth/EHnPw==
-X-Received: by 2002:a5d:638d:: with SMTP id p13mr40116890wru.202.1554125941395; 
- Mon, 01 Apr 2019 06:39:01 -0700 (PDT)
+ bh=Oc8x1HYekb0IdcZYL8hP6bRdzWN1baFooyKd73Kx4H8=;
+ b=LEAxuhciX37uiQsdWiWSsVX57DyvVgeX/pyeLVf++dEkKyuUUAdlWQzITGtzT378gK
+ kKTGFGjG3nOawrwHMIKoQh2+bFI206RROnEV9Og4S0vzTcKghfCOjYzG0YqDSfDtUVez
+ reVbisgf6pCYUX4CAc+4xArv+gb9DMDmquS4+6LPG4h1IWRUJeXiUxQiU/3/u3CWmxyL
+ GSc9iT2+4hIijhKNSvX5m7MPC/U7h12D4wAkZ4zXeHWG+ln5WVvqCQlS9ASXIvt5roUt
+ YJ7O8tOBoF9pCYCTApDrO0MzKoJLQq1eWEahvolEv9wsn9lnuXJlyWsPV/cU/9Rst4wU
+ VBGQ==
+X-Gm-Message-State: APjAAAVeNKJjjBTjg6vzims0mZilIlxIl3DgSeog/7f8cptsTNH9LIw0
+ bcvGvhjLkw0ZP+IKtn0zrsE2Tw==
+X-Google-Smtp-Source: APXvYqzUsqZsG1laQa0TLml/Rkq9W8sHJjpw0l4Nhdd4WKHmQSC94tg6gGk+/lY6cUNFHTeiQfbYwA==
+X-Received: by 2002:adf:e78e:: with SMTP id n14mr36113663wrm.14.1554125944137; 
+ Mon, 01 Apr 2019 06:39:04 -0700 (PDT)
 Received: from mjourdan-pc.numericable.fr (abo-99-183-68.mtp.modulonet.fr.
  [85.68.183.99])
- by smtp.gmail.com with ESMTPSA id v184sm25205996wma.6.2019.04.01.06.39.00
+ by smtp.gmail.com with ESMTPSA id v184sm25205996wma.6.2019.04.01.06.39.03
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 01 Apr 2019 06:39:00 -0700 (PDT)
+ Mon, 01 Apr 2019 06:39:03 -0700 (PDT)
 From: Maxime Jourdan <mjourdan@baylibre.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>
-Subject: [PATCH v5 2/4] media: videodev2: add V4L2_FMT_FLAG_FIXED_RESOLUTION
-Date: Mon,  1 Apr 2019 15:38:43 +0200
-Message-Id: <20190401133845.4171-3-mjourdan@baylibre.com>
+Subject: [PATCH v5 4/4] MAINTAINERS: Add meson video decoder
+Date: Mon,  1 Apr 2019 15:38:45 +0200
+Message-Id: <20190401133845.4171-5-mjourdan@baylibre.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190401133845.4171-1-mjourdan@baylibre.com>
 References: <20190401133845.4171-1-mjourdan@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190401_063902_938804_70B2FD0B 
-X-CRM114-Status: GOOD (  12.60  )
+X-CRM114-CacheID: sfid-20190401_063905_554071_1B17946C 
+X-CRM114-Status: UNSURE (   9.06  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -108,54 +109,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-When a v4l2 driver exposes V4L2_EVENT_SOURCE_CHANGE, some (usually
-OUTPUT) formats may not be able to trigger this event.
-
-For instance, MPEG2 on Amlogic hardware does not support resolution
-switching on the fly, and a decode session must operate at a set
-resolution defined before the decoding start.
-
-Add a enum_fmt format flag to tag those specific formats.
+Add an entry for the meson video decoder for amlogic SoCs.
 
 Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
 ---
- Documentation/media/uapi/v4l/vidioc-enum-fmt.rst | 6 ++++++
- include/uapi/linux/videodev2.h                   | 5 +++--
- 2 files changed, 9 insertions(+), 2 deletions(-)
+ MAINTAINERS | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/Documentation/media/uapi/v4l/vidioc-enum-fmt.rst b/Documentation/media/uapi/v4l/vidioc-enum-fmt.rst
-index 822d6730e7d2..b11448a1848b 100644
---- a/Documentation/media/uapi/v4l/vidioc-enum-fmt.rst
-+++ b/Documentation/media/uapi/v4l/vidioc-enum-fmt.rst
-@@ -127,6 +127,12 @@ one until ``EINVAL`` is returned.
-       - This format is not native to the device but emulated through
- 	software (usually libv4l2), where possible try to use a native
- 	format instead for better performance.
-+    * - ``V4L2_FMT_FLAG_FIXED_RESOLUTION``
-+      - 0x0004
-+      - Dynamic resolution switching is not supported for this format,
-+        even if the event ``V4L2_EVENT_SOURCE_CHANGE`` is supported by
-+        the device.
+diff --git a/MAINTAINERS b/MAINTAINERS
+index e17ebf70b548..088db7d5c4ea 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -10056,6 +10056,14 @@ S:	Maintained
+ F:	drivers/mtd/nand/raw/meson_*
+ F:	Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
+ 
++MESON VIDEO DECODER DRIVER FOR AMLOGIC SOCS
++M:	Maxime Jourdan <mjourdan@baylibre.com>
++L:	linux-media@lists.freedesktop.org
++L:	linux-amlogic@lists.infradead.org
++S:	Supported
++F:	drivers/media/platform/meson/vdec/
++T:	git git://linuxtv.org/media_tree.git
 +
- 
- 
- Return Value
-diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
-index 1db220da3bcc..9c8a2d2e7bc6 100644
---- a/include/uapi/linux/videodev2.h
-+++ b/include/uapi/linux/videodev2.h
-@@ -751,8 +751,9 @@ struct v4l2_fmtdesc {
- 	__u32		    reserved[4];
- };
- 
--#define V4L2_FMT_FLAG_COMPRESSED 0x0001
--#define V4L2_FMT_FLAG_EMULATED   0x0002
-+#define V4L2_FMT_FLAG_COMPRESSED	0x0001
-+#define V4L2_FMT_FLAG_EMULATED		0x0002
-+#define V4L2_FMT_FLAG_FIXED_RESOLUTION	0x0004
- 
- 	/* Frame Size and frame rate enumeration */
- /*
+ METHODE UDPU SUPPORT
+ M:	Vladimir Vid <vladimir.vid@sartura.hr>
+ S:	Maintained
 -- 
 2.21.0
 
