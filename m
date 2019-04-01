@@ -2,85 +2,81 @@ Return-Path: <SRS0=bepq=SD=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-11.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1DA64C43381
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 11:24:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5CC6BC43381
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 11:42:20 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DD5FD20870
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 11:24:54 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 28DE620880
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 11:42:20 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="obOFynrU";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="p3JsBQoz"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DD5FD20870
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="WbpU08Mv";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="MT9lire1"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 28DE620880
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cY9oYbwIruNTMa5zYEVFJ92tdeJjjTIy2vhRnrbSkKA=; b=obOFynrUQCoJIC
-	XFvyRB8pic6IsRLxMHwSMLdEy8vcK+KI741LMpm0Dy9xG5tU810pANLm9UV0yUJNuqGfcY3svobmT
-	7slcsG1OInTPStfGxM5DVK2sZwDpIi3mwWwW1lpa8BO2bgYnKRcbOPRT2hrVg8O81qNmNd/9Ef0Zu
-	50xQWiMPDUSJP9aZHfX7gxSWs+a4g2HKZXa+zaO0BCCZ1y3Z6d/NSiXKbTbnW4dHrxMM5hO7O8Nw+
-	UB7Jf5m6kxxqn7VttiIvQGHlHdZBH20FC37gVSFSXB9jtmpqU8ioXneXPTwb1J0QI5/r6IdsuNAy7
-	yf7CjOVcuu4Khc3rhAFg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:To:Subject
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=kWjXM27ILwiazJUzDaPoZC90y+c/A/mXBuCa26WDh8s=; b=WbpU08MvPJVxwx
+	SDpRxZpV2whz3I7BWC79af11KSIaD9lXpxfQoRc2c1gsuTh2345fLdG+wehJtJ3EnDL++3wb5TY8T
+	SAvsgP1eMyj1yyTJokcyALfGqVoJp1SMWvmbsKGDo22pCxkXw01UR9qvcU6i4qXchL7NTHn1sr8Bl
+	u5QjE+3YMBZmcxk14ZMkn468ttREECRjXt4PNU7fc567iLP/rYp2j7bHqYvK5mynUjlMyJWBMDjkX
+	tYXeFKQ5PLLwHz7rcXRovXIpTci7LxzOo5XIst39m+Re1sXMRS7ow424Fp/P9yJUW/ydfnldMsO0E
+	696SUI5mGGN4xwY4p7aA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hAv3Y-0002mO-9f; Mon, 01 Apr 2019 11:24:48 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1hAvKR-0002b5-C0; Mon, 01 Apr 2019 11:42:15 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hAv3U-0002lV-T1
- for linux-amlogic@lists.infradead.org; Mon, 01 Apr 2019 11:24:46 +0000
-Received: by mail-wm1-x341.google.com with SMTP id c1so8833015wml.4
- for <linux-amlogic@lists.infradead.org>; Mon, 01 Apr 2019 04:24:44 -0700 (PDT)
+ id 1hAvKO-0002am-7d
+ for linux-amlogic@lists.infradead.org; Mon, 01 Apr 2019 11:42:13 +0000
+Received: by mail-wm1-x336.google.com with SMTP id o25so10038283wmf.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 01 Apr 2019 04:42:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=7uZDlc8ekTjoH9lSm7nobR/YMHYuTky3sFn8cdmNWDk=;
- b=p3JsBQozSm3/ldJfTFy01a4THnKrObpphJ9GIGTltLyXtUBPOxfRHbOYf0TNvfZyRU
- WUlfmprkaZWE161zC7VwLoxBHrAVmHmOv0keAzsI1r9J/0h1wNNSNg+bWX9C0iLoyoLE
- u6bpG+3VyNfb06aVQYvTTRJtisgGAMkGmdhYk1goKwDAJ1Dz6cAF4TP4P24XG2Ii78wC
- bavg59zINGVdyISaWK3QlDb/vEsm0tCwpgzbHK8gptYPbuQlFxEVo2pFGFEiaGlbeJ9e
- qAdNA8IXlXR5Nyg3fVytHVWKtQbYaP3fKdC9vHlL8RXMiWF183/Wyr/6ZyOsL5cKfQ+0
- WYDg==
+ h=from:subject:to:cc:openpgp:autocrypt:organization:message-id:date
+ :user-agent:mime-version:content-language:content-transfer-encoding;
+ bh=S03zV7Lta1Z8ty3kqkDyLujewmb8PFtwjVhwG7a5SxI=;
+ b=MT9lire1XgvKh0JBk59+p9bdJe1fgGCsCJMjkAj4OtXaouuQ3GYClT8UqNF/2O9Thi
+ 8oB/Klb6s17kkFOtQvFYlGjEjwOTp7EbnP0UtuFM5kJVQGTMa/jUxt/J29jwfEjzAtQz
+ pK1Y8WUZjsKuUricgyma6Z0rct1dp27pQyoiHRYj0rQuOkijaC6eW461P8U6Zn+r37Qe
+ WaAGAoIR3p8VbQ8QZl2QJZwUeCsvJKy3l/0KRf36u7RmAKBIZm2ssypW0jmHLmLB+wli
+ Go9WLbsI5xzKq6eeRmt63l+42BAL1CuJUr4esCGhgqxjDtVBSGIWe+52SLQV3MUUc1KF
+ RNrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
+ h=x-gm-message-state:from:subject:to:cc:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version
  :content-language:content-transfer-encoding;
- bh=7uZDlc8ekTjoH9lSm7nobR/YMHYuTky3sFn8cdmNWDk=;
- b=HeThJYuYJTSUmKTu3bLpdR6QlNa85+lE5ZjJl4KEA0YvPM0S8brePyXjFC/w7jku3i
- k+Eo1Xod4oz4xdzqokyvyvtuXTGgprYOMhFb3WKgczkj0CVorhVoOpp04aYiUIm/wQ39
- PEw7GwNd9yPjk04LXtLJ2xiv9ddVs9p6rtuiKb4vK5X7NI6tZR71hNKDKXoGBIJFlFBH
- GTL6IxVq5rQnf+gUFjQWBvs9S2mM1KE+yU2aU9rI790rjJDCLgS7l/x5UxP/CODFhjGl
- 4lGc0S0xw9/3a5m5gNEA12SUb3YkKBtfnUtTSyZpG24OpTTooL5dgAjShAz+2zD7GbVf
- bp1A==
-X-Gm-Message-State: APjAAAX+gTnBjIQBUEJDO+AgQ8dS9FFKdtMllKNybnt+vW53vcDjgJ83
- bPVD/83bOhvsR2b4y1LULxJI8Q==
-X-Google-Smtp-Source: APXvYqy5MidlBwTaF5YrEzBhJz7ky782LgIbpLogi8j+57ClRA/Lv+dQroVbAe8umzyAlIkW/aFW/g==
-X-Received: by 2002:a1c:80cd:: with SMTP id b196mr12143373wmd.84.1554117882778; 
- Mon, 01 Apr 2019 04:24:42 -0700 (PDT)
+ bh=S03zV7Lta1Z8ty3kqkDyLujewmb8PFtwjVhwG7a5SxI=;
+ b=pptPgHC6ogJkTpU7PLVFCJdhnVR3tTORL9ixVpuZDfzVGN3va827cYlbNUXSkVvYSJ
+ 8SLHinAbZV1p7BITRgxoXgowkwk1TlHweQYxJ2suVeV9iurO1JawnrF1F/Mn87/79vW9
+ soW+8aP6of0f8QiDW48kUO9wnoTzDuGZHJzTQC0YglhPFWmzM6sdCqUaAFtfYe/Dlc/7
+ nSOehS4YAjMpOZvVMO8DLAqxcLtKJs3Y/uSFlk45FBv86cdpfYMEMIL/esWS1ueN6MkA
+ yvk8blokGCSuh3T5IHKX5u1Cy1jkTUCbV4K8MqfoadIuInaKb1lRJ3eQXtX7sDSpc8XP
+ JjlA==
+X-Gm-Message-State: APjAAAXIBJP8/h99Iu1FzxLhmdH1K+lF3IIEGWtYiKQkgIKEaER3SO8E
+ zeMqqxU9MfbxmJiVK3EOW3sSJTr2s/sn5aw4
+X-Google-Smtp-Source: APXvYqxInC2PN2hWbPlLRhT3e+bs54RJ96d9qK4DKLCWg/Z9n+8u9zu2D6Ajb/yacN8d4iMwXoe/NA==
+X-Received: by 2002:a1c:7208:: with SMTP id n8mr12935297wmc.46.1554118930039; 
+ Mon, 01 Apr 2019 04:42:10 -0700 (PDT)
 Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
  by smtp.gmail.com with ESMTPSA id
- a17sm10252894wmg.40.2019.04.01.04.24.41
+ s10sm10670604wmh.0.2019.04.01.04.42.09
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 01 Apr 2019 04:24:41 -0700 (PDT)
-Subject: Re: [PATCH v4] dt-bindings: gpu: add bindings for the ARM Mali
- Bifrost GPU
-To: Steven Price <steven.price@arm.com>, daniel@ffwll.ch, robh@kernel.org
-References: <20190401080949.14550-1-narmstrong@baylibre.com>
- <1640dd7b-3576-d9ce-0641-6b6a64a87275@arm.com>
+ Mon, 01 Apr 2019 04:42:09 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
+Subject: [GIT PULL] clk: meson: updates for v5.2
+To: sboyd@kernel.org, mturquette@baylibre.com
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -132,16 +128,15 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <d26f1ce9-c56c-5e51-37f5-0689aa198dc0@baylibre.com>
-Date: Mon, 1 Apr 2019 13:24:40 +0200
+Message-ID: <e659729f-31a4-76c1-84a0-3fd441aa23b2@baylibre.com>
+Date: Mon, 1 Apr 2019 13:42:08 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <1640dd7b-3576-d9ce-0641-6b6a64a87275@arm.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190401_042444_987577_2315378D 
-X-CRM114-Status: GOOD (  19.15  )
+X-CRM114-CacheID: sfid-20190401_044212_273849_52D798F3 
+X-CRM114-Status: GOOD (  13.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -153,162 +148,82 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-amlogic@lists.infradead.org
+Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ linux-clk@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 01/04/2019 12:00, Steven Price wrote:
-> On 01/04/2019 09:09, Neil Armstrong wrote:
->> Add the bindings for the Bifrost family of ARM Mali GPUs.
->>
->> The Bifrost GPU architecture is similar to the Midgard family,
->> but with a different Shader Core & Execution Engine structures.
->>
->> Bindings are based on the Midgard family bindings, but the inner
->> architectural changes makes it a separate family needing separate
->> bindings.
->>
->> The Bifrost GPUs are present in a number of recent SoCs, like the
->> Amlogic G12A Family, and many other vendors.
->> The Amlogic vendor specific compatible is added to handle the
->> specific IP integration differences and dependencies.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  .../bindings/gpu/arm,mali-bifrost.txt         | 92 +++++++++++++++++++
->>  1 file changed, 92 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-bifrost.txt
->>
->> Changes since v3:
->> - Added note about discoverable model/revision
->> - Enforced fixed defined irq order
->> - Fixed typo in accommodate
->>
->> Changes since v2:
->> - moved to a single compatible since HW is fully discoverable
->>
->> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.txt b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.txt
->> new file mode 100644
->> index 000000000000..711c9ead17a2
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.txt
->> @@ -0,0 +1,92 @@
->> +ARM Mali Bifrost GPU
->> +====================
->> +
->> +Required properties:
->> +
->> +- compatible :
->> +  * Since Mali Bifrost GPU model/revision if fully discoverable by reading
->                                              ^^
-> s/if/is/
+Dear clock maintainers,
 
-Thanks for pointing this.
+Below is a request to pull updates for Amlogic clocks.
 
-> 
->> +    some determined registers, must contain the following:
->> +    + "arm,mali-bifrost"
->> +  * which must be preceded by one of the following vendor specifics:
->> +    + "amlogic,meson-g12a-mali"
->> +
->> +- reg : Physical base address of the device and length of the register area.
->> +
->> +- interrupts : Contains the three IRQ lines required by Mali Bifrost devices,
->> +  in the following defined order.
->> +
->> +- interrupt-names : Contains the names of IRQ resources in this exact defined
->> +  order: "job", "mmu", "gpu".
-> 
-> Is there any point in having "interrupt-names" if we're fixing the
-> order? Although I guess it helps match the Midgard bindings.
-
-Exact.
-
+It covers essentially new VPU and Video clocks for Meson8b and new
+PCIE, CPU and Video Decoder clocks for G12a.
+The remaining meson8b "ABP" ID is finally removed, and 2 clocks IDs
+of the G12A AO clock controllers are re-exported.
+Thanks,
 Neil
 
-> 
-> Steve
-> 
->> +
->> +Optional properties:
->> +
->> +- clocks : Phandle to clock for the Mali Bifrost device.
->> +
->> +- mali-supply : Phandle to regulator for the Mali device. Refer to
->> +  Documentation/devicetree/bindings/regulator/regulator.txt for details.
->> +
->> +- operating-points-v2 : Refer to Documentation/devicetree/bindings/opp/opp.txt
->> +  for details.
->> +
->> +- resets : Phandle of the GPU reset line.
->> +
->> +Vendor-specific bindings
->> +------------------------
->> +
->> +The Mali GPU is integrated very differently from one SoC to
->> +another. In order to accommodate those differences, you have the option
->> +to specify one more vendor-specific compatible, among:
->> +
->> +- "amlogic,meson-g12a-mali"
->> +  Required properties:
->> +  - resets : Should contain phandles of :
->> +    + GPU reset line
->> +    + GPU APB glue reset line
->> +
->> +Example for a Mali-G31:
->> +
->> +gpu@ffa30000 {
->> +	compatible = "amlogic,meson-g12a-mali", "arm,mali-bifrost";
->> +	reg = <0xffe40000 0x10000>;
->> +	interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>,
->> +		     <GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH>,
->> +		     <GIC_SPI 162 IRQ_TYPE_LEVEL_HIGH>;
->> +	interrupt-names = "job", "mmu", "gpu";
->> +	clocks = <&clk CLKID_MALI>;
->> +	mali-supply = <&vdd_gpu>;
->> +	operating-points-v2 = <&gpu_opp_table>;
->> +	resets = <&reset RESET_DVALIN_CAPB3>, <&reset RESET_DVALIN>;
->> +};
->> +
->> +gpu_opp_table: opp_table0 {
->> +	compatible = "operating-points-v2";
->> +
->> +	opp@533000000 {
->> +		opp-hz = /bits/ 64 <533000000>;
->> +		opp-microvolt = <1250000>;
->> +	};
->> +	opp@450000000 {
->> +		opp-hz = /bits/ 64 <450000000>;
->> +		opp-microvolt = <1150000>;
->> +	};
->> +	opp@400000000 {
->> +		opp-hz = /bits/ 64 <400000000>;
->> +		opp-microvolt = <1125000>;
->> +	};
->> +	opp@350000000 {
->> +		opp-hz = /bits/ 64 <350000000>;
->> +		opp-microvolt = <1075000>;
->> +	};
->> +	opp@266000000 {
->> +		opp-hz = /bits/ 64 <266000000>;
->> +		opp-microvolt = <1025000>;
->> +	};
->> +	opp@160000000 {
->> +		opp-hz = /bits/ 64 <160000000>;
->> +		opp-microvolt = <925000>;
->> +	};
->> +	opp@100000000 {
->> +		opp-hz = /bits/ 64 <100000000>;
->> +		opp-microvolt = <912500>;
->> +	};
->> +};
->>
-> 
+The following changes since commit 9e98c678c2d6ae3a17cb2de55d17f69dddaa231b:
 
+  Linux 5.1-rc1 (2019-03-17 14:22:26 -0700)
+
+are available in the Git repository at:
+
+  git://github.com/BayLibre/clk-meson.git tags/meson-clk-5.2
+
+for you to fetch changes up to 90751f686e3f0415f1f931bf47ff14dd34316ea5:
+
+  clk: meson: meson8b: add the video decoder clock trees (2019-04-01 13:34:29 +0200)
+
+----------------------------------------------------------------
+- Adds VPU and Video Decoder clocks on Meson8b
+- Finally remove the wrong ABP Meson8b clock id
+- Adds Video Decoder, PCIe PLL & CPU Clocks on G12A
+- Re-expose SAR_ADC_SEL and CTS_OSCIN on G12A AO clock controller
+- Unexpose some AXG-Audio input clocks IDs
+
+----------------------------------------------------------------
+Jerome Brunet (1):
+      dt-bindings: clock: axg-audio: unexpose controller inputs
+
+Martin Blumenstingl (7):
+      dt-bindings: clock: meson8b: drop the "ABP" clock definition
+      dt-bindings: clock: meson8b: export the VPU clock
+      dt-bindings: clock: meson8b: export the video decoder clocks
+      clk: meson: meson8b: use a separate clock table for Meson8m2
+      clk: meson: meson8b: add support for the GP_PLL clock on Meson8m2
+      clk: meson: meson8b: add the VPU clock trees
+      clk: meson: meson8b: add the video decoder clock trees
+
+Maxime Jourdan (2):
+      dt-bindings: clk: g12a-clkc: add VDEC clock IDs
+      clk: meson-g12a: add video decoder clocks
+
+Neil Armstrong (7):
+      clk: meson-g12a: add cpu clock bindings
+      clk: g12a-aoclk: re-export CLKID_AO_SAR_ADC_SEL clock id
+      dt-bindings: clk: g12a-clkc: add PCIE PLL clock ID
+      dt-bindings: clock: g12a-aoclk: expose CLKID_AO_CTS_OSCIN
+      clk: meson: g12a: add cpu clocks
+      clk: meson-pll: add reduced specific clk_ops for G12A PCIe PLL
+      clk: meson-g12a: add PCIE PLL clocks
+
+ drivers/clk/meson/axg-audio.h              |  20 +
+ drivers/clk/meson/clk-pll.c                |  26 +
+ drivers/clk/meson/clk-pll.h                |   1 +
+ drivers/clk/meson/g12a-aoclk.h             |   2 -
+ drivers/clk/meson/g12a.c                   | 631 +++++++++++++++++++++++++
+ drivers/clk/meson/g12a.h                   |  31 +-
+ drivers/clk/meson/meson8b.c                | 734 ++++++++++++++++++++++++++++-
+ drivers/clk/meson/meson8b.h                |  27 +-
+ include/dt-bindings/clock/axg-audio-clkc.h |  20 -
+ include/dt-bindings/clock/g12a-aoclkc.h    |   2 +
+ include/dt-bindings/clock/g12a-clkc.h      |   5 +
+ include/dt-bindings/clock/meson8b-clkc.h   |   6 +-
+ 12 files changed, 1479 insertions(+), 26 deletions(-)
 
 _______________________________________________
 linux-amlogic mailing list
