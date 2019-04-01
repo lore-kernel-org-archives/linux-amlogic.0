@@ -2,21 +2,21 @@ Return-Path: <SRS0=bepq=SD=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 55308C10F05
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 08:35:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9C5D3C43381
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 08:37:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 25AC72086C
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 08:35:06 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6D9F52086C
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 08:37:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MGOQSPHc";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="2CKSfon5"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 25AC72086C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TaGnTWc9";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="bgrGLdsP"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6D9F52086C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,59 +25,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=L9EWLWPxVJ0SyPAqxsZh8EotlfrSPFyLaLXe1RZyeyU=; b=MGOQSPHc4qmoYR
-	l3pu4mqvw4g9H1dX8hDKx2j2v9sLFcfWGmhOVH9GA99m06sD6u2zHZ+GGFsI86EOXfVz9kN2VC17K
-	04Gw8dqhEqBan2AjJHI0U6De28At5IPjU8rcxya2DlCB1OSi4DjCI9SnbztXb9JxdNCZv/BBdnn5c
-	+JnJz2Fl4uOgodN6gvo4+jewWlRn/MmVJ0px+Dd881jY2qu8t3VvYeaB0E4yLhxuLgk0zi2OpB0ah
-	SSxTrSnf2T+SxGQ9e9amIYAYLfMcMwk5Nk+ldBEj3Zo/a2+NzfPipzZKhlfR2aKKrafNxJepF+BRx
-	dqtbGkyDcTe8BUOhNNow==;
+	List-Owner; bh=q2c6fDvQ+G7GnnRBRiJLxLjgT6opTeFP1Vjt+9NGAlA=; b=TaGnTWc9MmnTH7
+	XWaCBFr8JQY7LDpUAJrbNLwtjXZTgVmRAWjOX4upFQY3VNurkY8e6vzDwalyb+FlFnmIAzfzYXByg
+	rzTlm/38O5o4dmp7UFxCZwdQ/f5aM3mKFSLylcZvgQfO8f90ZyyFoYUakJR88g6mN3a/kdVd1OsyJ
+	I6zYuzl9JHViPykaBvc+5q4itFEGtQnimR1hl1ONtf0vs8vadEIQFwPPR82a1JtQbA6A5eezSwlUR
+	eIBkfwyW5oCYv+rlAzo5XjHrY4EpCGnkH8ElnwEx12Lzne9XWBF7IQhIj2r7v8yCAb73lsH9dPg3r
+	8L08X9yV4FkEBBogcbsQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hAsPE-0008B8-Et; Mon, 01 Apr 2019 08:35:00 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1hAsRQ-0001Bb-AN; Mon, 01 Apr 2019 08:37:16 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hAsOr-0007aa-Eh
- for linux-amlogic@lists.infradead.org; Mon, 01 Apr 2019 08:34:41 +0000
-Received: by mail-wr1-x444.google.com with SMTP id j9so10785494wrn.6
- for <linux-amlogic@lists.infradead.org>; Mon, 01 Apr 2019 01:34:37 -0700 (PDT)
+ id 1hAsRN-0001BE-80
+ for linux-amlogic@lists.infradead.org; Mon, 01 Apr 2019 08:37:14 +0000
+Received: by mail-wr1-x443.google.com with SMTP id p10so10814264wrq.1
+ for <linux-amlogic@lists.infradead.org>; Mon, 01 Apr 2019 01:37:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=0ha7KRKiYpFb40ODM4X/wlohVcBUuz4tyyTGkMt+8kA=;
- b=2CKSfon5eMRVktrc/e2PeJs8fYgaAlyNFl3UduiTW4Q9ZCSQgpE+xTwHodZIXNLwLA
- Zu1uHc+FyTAOmVCjSH8FMDCNc6ow/mcjHXPCza/vb8TnlRoSJh4QpjMxwmnugfNgEFPt
- MeHYZRnVWnFEsEarOz6BI2R9N/VT8wT9Z/2XCggmrSlgi0uEPiOCnbEU8VKJpTdREAVe
- HCtT6FyJE0Prmr6hqb+iHa1U0AsEfpB0UPzS+H9CAsiMoEjdWPw1tQBvIZu7xW0cr4sf
- YySd4nNgzzeDLezJpkG5kYYNOBQ/xP0YE/SreoSdZ54IbdsWyW6Ru87jAFLg6rc10TSR
- mGJg==
+ bh=WFCq4gNBUM+CP6IcclbvUBWab0MZryOHzOl6NgAnf6g=;
+ b=bgrGLdsPbaLSHFB3vfJ4AGswPEMZtVb84rz7Xz8KN/ZiqtLi1v1ylOg0pGDV8A1bhf
+ qv/Sk7uyoPbK07k6H0L9ZsjE7UD7VKbE/8y159JzJuFSdWe184OiU3XUZQMG1LI0HSR9
+ ZjDSc2jkkf2zlGkOJh7TSotB8AcXTA518SdEGHh2oK8cIBSU4J26NFci7pPpzt616kPb
+ 1aHNzAEqvE5SNAkYBY+4WcK53YyUa8idcYfYNUJzaeuNWDxOT4f0DjAOS9g+mVUWjsVp
+ 2OWEb6k0HtZBlS1Y4J1e26/odsifBbLIehdGClReExV8q0b/CIoqU7zJh6FeN0L+kzPR
+ I5CA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=0ha7KRKiYpFb40ODM4X/wlohVcBUuz4tyyTGkMt+8kA=;
- b=BIOMIGJ6y1Aols/X7Vpj0IHt21ZXt9iiOyINMi2Orwfwh1fZ7Y82V07JZTW77tWTHJ
- cGUpXvzx67Cdjc35yiK+vgijsyCPczIlaMXPiRP0DDakkp/hAhEb/K6WKKsKo60aUBPW
- DAwBS6a4iFi4ZC0n241YMMsEt5Qg0NjJgi1UzSgz+tHUONu8puozjWwUgoMTkxCXwWkz
- zFX/m0aiaHckKmiGkhO7fjLGmPmO2YznIbC1jGBZLLXcghfoAvm9vDzM8Csr859hx6KI
- JO3zzzzu/fHTh90H6cXiQI1PHRZL8qWdhXny/AyI83at2OfublsvNfB2kCe0eKl7GVSd
- 3mBg==
-X-Gm-Message-State: APjAAAUr7o0+XHpgKT2dESpNXhsModAfkiYNMSOVxIHx3LdLR2At0LOp
- 3VLpcuZvfpdsddNNvDZQcFpaGA==
-X-Google-Smtp-Source: APXvYqwa5wxIxm4G49/HlraddghKMeVCWSQSszHe8knduemM8ibF0V53DoBu+Q2L2mt3d3UXrAhnHw==
-X-Received: by 2002:adf:8bc5:: with SMTP id w5mr34989715wra.226.1554107676010; 
- Mon, 01 Apr 2019 01:34:36 -0700 (PDT)
+ bh=WFCq4gNBUM+CP6IcclbvUBWab0MZryOHzOl6NgAnf6g=;
+ b=A4Pm9pD3r6JDG+uDNKsXe5H4QdoJ4NjULzZYiByDiV0S4L4/3QFlnvusp/aoQ311BJ
+ rhsFPAne2kh6SnEKowKsahXo+XiGb18Wz0UYr7KkbLj6IdvtjMiFSUD5mcwsIHI75MIN
+ mapi7MG76nGSVj2g8nAXLfxcZrB9xQtD+I5Rl3x2+u6kHUykHhVcIRDC8UWGHng4Y8N5
+ hLkjQBkaLMTRhOCT/vz+ONjkY7VJAJuL7IZIlSYOEXrlMvrj3RYfp9qo/ubqadhkGBSC
+ KipjJY0IWSKgHF6RvtzEmR5k/VYYO2GG3OSg7wYCirlSsut+g1rQUkjHISwwi0MM0npe
+ r9BQ==
+X-Gm-Message-State: APjAAAWkFu4NMvGhslB7LPDmeAxEJNxzmsEmAoTQJVZ+soP0cWMm27VB
+ 7I8q9Xzk4z5meN+eWKd27VoyaZdh+16t/g==
+X-Google-Smtp-Source: APXvYqyDEL0F7MREuOHEZ/MmDVtQnHgXWLSeV4gTaT4Z7tR/8RIx+VQRM+tchoTXq4kTOhmf4D0IsA==
+X-Received: by 2002:adf:db05:: with SMTP id s5mr38403470wri.247.1554107831582; 
+ Mon, 01 Apr 2019 01:37:11 -0700 (PDT)
 Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
  by smtp.gmail.com with ESMTPSA id
- f11sm10447887wrm.30.2019.04.01.01.34.34
+ s189sm14308906wmf.45.2019.04.01.01.37.10
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 01 Apr 2019 01:34:35 -0700 (PDT)
-Subject: Re: [PATCH 0/1] clk: meson8b: remove CLKID with typo ("ABP" -> "APB")
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- jbrunet@baylibre.com, linux-amlogic@lists.infradead.org
-References: <20190319214123.27219-1-martin.blumenstingl@googlemail.com>
+ Mon, 01 Apr 2019 01:37:10 -0700 (PDT)
+Subject: Re: [PATCH] dt-bindings: clock: g12a-aoclk: expose CLKID_AO_CTS_OSCIN
+To: jbrunet@baylibre.com
+References: <20190321092010.14382-1-narmstrong@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -130,16 +129,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <9b7b7257-0c33-35bc-c383-5350d1640ca2@baylibre.com>
-Date: Mon, 1 Apr 2019 10:34:34 +0200
+Message-ID: <b6b984ff-6825-1e99-ff5c-9afc4258f0f7@baylibre.com>
+Date: Mon, 1 Apr 2019 10:37:09 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190319214123.27219-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20190321092010.14382-1-narmstrong@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190401_013437_816546_900678A5 
-X-CRM114-Status: GOOD (  12.89  )
+X-CRM114-CacheID: sfid-20190401_013713_293539_291FFA1A 
+X-CRM114-Status: GOOD (  16.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -151,29 +150,52 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mark.rutland@arm.com, devicetree@vger.kernel.org, robh+dt@kernel.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 19/03/2019 22:41, Martin Blumenstingl wrote:
-> This is a follow-up of my previous series from [0]:
->   clk: meson8b: fix typo "ABP" -> "APB"
+On 21/03/2019 10:20, Neil Armstrong wrote:
+> When submitted v2 of the G12A AO-CLK IDs, the CLKID_AO_CTS_OSCIN was moved
+> to the internal non-exported bindings, but this clock is necessary for
+> the second AO-CEC-B module since it embeds the 32768Hz dual-divider
+> clock generator unlike the AO-CEC-A module.
 > 
-> The previous series introduced a fixed CLKID. Nothing uses the CLKID
-> with the typo anymore so it's removed with this patch.
+> Export it back to the public bindings.
 > 
+> Fixes: be3d960b0aeb ("dt-bindings: clk: add G12A AO Clock and Reset Bindings")
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  drivers/clk/meson/g12a-aoclk.h          | 1 -
+>  include/dt-bindings/clock/g12a-aoclkc.h | 1 +
+>  2 files changed, 1 insertion(+), 1 deletion(-)
 > 
-> [0] https://patchwork.kernel.org/cover/10804943/
-> 
-> 
-> Martin Blumenstingl (1):
->   dt-bindings: clock: meson8b: drop the "ABP" clock definition
-> 
->  include/dt-bindings/clock/meson8b-clkc.h | 1 -
->  1 file changed, 1 deletion(-)
+> diff --git a/drivers/clk/meson/g12a-aoclk.h b/drivers/clk/meson/g12a-aoclk.h
+> index 666b4493822c..a67c8a7cd7c4 100644
+> --- a/drivers/clk/meson/g12a-aoclk.h
+> +++ b/drivers/clk/meson/g12a-aoclk.h
+> @@ -17,7 +17,6 @@
+>   * will remain defined here.
+>   */
+>  #define CLKID_AO_SAR_ADC_DIV	17
+> -#define CLKID_AO_CTS_OSCIN	19
+>  #define CLKID_AO_32K_PRE	20
+>  #define CLKID_AO_32K_DIV	21
+>  #define CLKID_AO_32K_SEL	22
+> diff --git a/include/dt-bindings/clock/g12a-aoclkc.h b/include/dt-bindings/clock/g12a-aoclkc.h
+> index 5ac66a2eee0f..e916e49ff288 100644
+> --- a/include/dt-bindings/clock/g12a-aoclkc.h
+> +++ b/include/dt-bindings/clock/g12a-aoclkc.h
+> @@ -28,6 +28,7 @@
+>  #define CLKID_AO_CLK81		15
+>  #define CLKID_AO_SAR_ADC_SEL	16
+>  #define CLKID_AO_SAR_ADC_CLK	18
+> +#define CLKID_AO_CTS_OSCIN	19
+>  #define CLKID_AO_32K		23
+>  #define CLKID_AO_CEC		27
+>  #define CLKID_AO_CTS_RTC_OSCIN	28
 > 
 
 Applied to next/headers for Linux 5.2-rc1
