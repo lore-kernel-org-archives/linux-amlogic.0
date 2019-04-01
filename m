@@ -2,146 +2,87 @@ Return-Path: <SRS0=bepq=SD=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-8.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A8C5BC43381
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 11:59:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 78DEDC10F05
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 13:39:12 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 72BFD2086C
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 11:59:33 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 47644206DD
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 13:39:12 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="h9nI5z2j";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Yn9yXFGD"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 72BFD2086C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Cs4+kzhq";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="2Rv+Q3CT"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 47644206DD
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NXWKIScWftFCnsCbkl3J/bsRdVQ4D7WwwpaSjH2I3Dg=; b=h9nI5z2jwRJUWn
-	KO+pZTyrUIYdb1AU0qR/PcLnnXhwoNDhdia16ObJilDlg7Rf0xqcT9Wp7beRc6qSLF9eUfVi8OCnc
-	68XBj1Y0Ucfw21yDupQLA1Z+Ju4J2FPQ0ldwrqJnq5IM71lQuJFVBqb+r52qUfXzdGJc8N0LkNjdT
-	leXzWwIyHxELLufQBeL2Y5YleqiqB6giJp9O3Oz99MLoYqzpspK2ShZFDtj1YxXWw7Bktpox6R3pw
-	IpyzsoKPVcOGGQHfCSimtLng+cB7HYFaLb+IsiH9qFpVvOOknvnGy56QFMOaRxK0PnrIzXeK5eKC2
-	n4KpR9K2pcq2+OTXXzlw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=DmuGc6MMouVjYVt977k4yCIR4FGkHuRFO08hIJtDq5I=; b=Cs4+kzhqjPbclF
+	3lp28VTsv7oFyDQDgeFv00mq869jpzpm5UoZ46bnNv+eznEmiPs0ZQYJAaHLwzUa1uO5q+TeUeKrO
+	ozp4DR3+lXk3lZceyfCSb6J1/vOITqGBT5iF4R5u0LrPsIVNoVWowT9n4kJRbdaK2rk5L2YEHV7Db
+	nAOY42a4Hs9PzJ/wYYaUA0FmlRNAxd3ZYqJ/UoYkiL8I9F0bKoDIbWd2N2wWDOXlVEcKSfa99mEnV
+	2HMxAP3/xTsLDc5BYZXB4LqC2eEWnvlaeKO7Xz6PnhkUfqIbUE3Fb3uQlyCEwATKTLUasr3LO2264
+	FAOFmJvjByL0cMc7w5Lg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hAvb5-0004SG-4m; Mon, 01 Apr 2019 11:59:27 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1hAx9V-000453-1u; Mon, 01 Apr 2019 13:39:05 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hAvau-0004Iq-AB
- for linux-amlogic@lists.infradead.org; Mon, 01 Apr 2019 11:59:19 +0000
-Received: by mail-wm1-x341.google.com with SMTP id w15so11070720wmc.3
- for <linux-amlogic@lists.infradead.org>; Mon, 01 Apr 2019 04:59:16 -0700 (PDT)
+ id 1hAx9Q-0003hq-IH
+ for linux-amlogic@lists.infradead.org; Mon, 01 Apr 2019 13:39:03 +0000
+Received: by mail-wr1-x443.google.com with SMTP id y13so12121324wrd.3
+ for <linux-amlogic@lists.infradead.org>; Mon, 01 Apr 2019 06:38:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=iBPeKqLlI3yKJZjqSGef0WeLUxdTAqsk0xNY7+yFQng=;
- b=Yn9yXFGDf8u6ZPFtBWe4HkxLMxqBhUsiIoScZ0ns77RFrx9rDWaqhT7KUb4zlOx/uc
- 5JJ1YAhxMkzeNOMOK+sTX9/rRcCf/fwMg1vA5oY2mxTv/XlfW5GzpHGPENOtGeVYpcSF
- 9RanuYqHYlXHPP8DdsR692jAcg2Tg+nWj1d84BK8BBLkqU3iSKfZssgAheebazrVWumS
- JJlOZje1MYXkW//Ce77C1CQshRgVyJpGgF35mAiZELCF21fwnLWi0ep41X/efW7pYR4U
- LYWGAkg4N0fAW4TndfdtQ9EZYTljtJWeW9LcS29ktnr61iR/RP8vUjtLH+c4ix8MfMyh
- TPxg==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=BCTHvOZsBvueuOicqszFQpte+OeSMDu4MKaTKizUSBg=;
+ b=2Rv+Q3CT36xOcvTXxRfi+5Cptac7SrD4P4b+wwIofVCydg6zeP7tcoXG6AE1lb8zJz
+ jOZvhVIAlgk/4NmL6xS9SKSZDY4i3X6vh2AXz0yzlwMaumpTEI8JzkAhEhqOwMivGC6m
+ 1a+reENnJvaOoqQDebLDRWMGQA3pDf40jjGNNzb0FBMqVGWrzA4IEnZORjSS3AUoTEAM
+ 4H2z2tf1NvKryV46GfYutaLnAhWaJTzaPNVIeCwasckVgQYxaUOFWSkFrQphE8NUK9xU
+ b94GhAcvLtSbavGTuQkbHyuT6mfgUomGbKhL5qIPeLXHPzJukBD9Q8RG/D6uTP4AmL58
+ Rouw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=iBPeKqLlI3yKJZjqSGef0WeLUxdTAqsk0xNY7+yFQng=;
- b=QO5tVc7e2M/uwAxYkISCzLV+9s7C1lfbIipdubiXYZQJjLkhsbYDh8S2WiSuhGqTBY
- heSSXxUHBP2OJlB29LXQ2g5S46F65ihpFS7/Kvz/LFTQAzlTRqFaE+Ocni7Umo8NBjPn
- Iu7uwQJb1t660kC8mdfkg0tMy5cOmBcTWwdlOy2v8G7j4bqurmaV4LfOB3UEj4osilZa
- xbLWY/HOY8dGu5OfbdZEknwoYFrIpNB0jikm5sI40Qv66btHlrHg+6EszbQq+3tlru/H
- AfelT5BaGhoYyoys0Nr6BWEhVe5gajigymiAqCVJAC+SujYcURAX+++gmbmcw9pmPbMc
- wXqg==
-X-Gm-Message-State: APjAAAXSgjaP3fx2ho7SD3O1R9R5M8Vw6RuZ99w1NviqN0hcplCmJAi2
- Al84AwsxoB2RMOu3FqS56q3WHUgOtlFafN9E
-X-Google-Smtp-Source: APXvYqx6phPmJzriuCucg9xMcp+pEGeFEf4Q4545AEcuUM7L6vxIoQL/nJOzP9PpAYGk8cobeJYCyw==
-X-Received: by 2002:a7b:cb04:: with SMTP id u4mr12365665wmj.0.1554119954476;
- Mon, 01 Apr 2019 04:59:14 -0700 (PDT)
-Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id
- y125sm16365241wmc.39.2019.04.01.04.59.13
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=BCTHvOZsBvueuOicqszFQpte+OeSMDu4MKaTKizUSBg=;
+ b=Mw8/6lYouehJbhG1zFtCYL+fZeilT7gAIgPTXxy5KDrggdytJntadjp1ci2IdS4D4j
+ BujIeCHGIh8jTjV+KElg8P9l+90Lbc+FjNemfMf7BOoLDI4KjibE7SG+aiB4uHR8vwCO
+ 2RsOWi2QUfEFm8EVTjkFbJr1Rh0+5+5mK17lWPik62OeuuTok2FuZyue26vg3hgjIM0X
+ HDABU4dVvwFcrkFYX0j0ANRaRxQ6chwwx5DgK9NwfDn1a/4b30Hse8jSyCpSQKiVGD6V
+ uXENfpROPfEqeucPHdRCd8OCVn/4/cs6Tuov/T9byO/8GDIY2haQpjF+s+B+Rsej4BHA
+ 956Q==
+X-Gm-Message-State: APjAAAXvOc7xnw9r+D8DSdBPf5wJSOua3Ys17KKjiPCMKKVQN5nkaKLJ
+ wGhu9ISGtyRUxOyYekdZYMjgOg==
+X-Google-Smtp-Source: APXvYqxHYFaac/fg0ZshVMlYId1t+snycq+LRzxEax7WpA8hTGCAYWdRCU4Oj/ZzwKj4eMIZ6O06dQ==
+X-Received: by 2002:adf:ebc8:: with SMTP id v8mr40980317wrn.172.1554125938424; 
+ Mon, 01 Apr 2019 06:38:58 -0700 (PDT)
+Received: from mjourdan-pc.numericable.fr (abo-99-183-68.mtp.modulonet.fr.
+ [85.68.183.99])
+ by smtp.gmail.com with ESMTPSA id v184sm25205996wma.6.2019.04.01.06.38.57
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 01 Apr 2019 04:59:13 -0700 (PDT)
-Subject: Re: [PATCH v2 2/3] media: platform: meson: Add Amlogic Meson G12A AO
- CEC Controller driver
-To: hverkuil@xs4all.nl, mchehab@kernel.org
-References: <20190401081959.16474-1-narmstrong@baylibre.com>
- <20190401081959.16474-3-narmstrong@baylibre.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <7593ea79-6810-b178-8c28-02c2427d73c5@baylibre.com>
-Date: Mon, 1 Apr 2019 13:59:13 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+ Mon, 01 Apr 2019 06:38:57 -0700 (PDT)
+From: Maxime Jourdan <mjourdan@baylibre.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>
+Subject: [PATCH v5 0/4] Add Amlogic video decoder driver
+Date: Mon,  1 Apr 2019 15:38:41 +0200
+Message-Id: <20190401133845.4171-1-mjourdan@baylibre.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <20190401081959.16474-3-narmstrong@baylibre.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190401_045916_587714_672C8758 
-X-CRM114-Status: GOOD (  25.76  )
+X-CRM114-CacheID: sfid-20190401_063900_609464_06AE91EF 
+X-CRM114-Status: GOOD (  20.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -153,877 +94,267 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
+Cc: Maxime Jourdan <mjourdan@baylibre.com>, devicetree@vger.kernel.org,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ Hans Verkuil <hans.verkuil@cisco.com>, linux-amlogic@lists.infradead.org,
+ linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 01/04/2019 10:19, Neil Armstrong wrote:
-> The Amlogic G12A SoC embeds a second CEC controller with a totally
-> different design.
-> 
-> The two controller can work in the same time since the CEC line can
-> be set to two different pins on the two controllers.
-> 
-> This second CEC controller is documented as "AO-CEC-B", thus the
-> registers will be named "CECB_" to differentiate with the other
-> AO-CEC driver.
-> 
-> Unlike the other AO-CEC controller, this one takes the Oscillator
-> clock as input and embeds a dual-divider to provide a precise
-> 32768Hz clock for communication. This is handled by registering
-> a clock in the driver.
-> 
-> Unlike the other AO-CEC controller, this controller supports setting
-> up to 15 logical addresses and supports the signal_free_time settings
-> in the transmit function.
-> 
-> Unfortunately, this controller does not support "monitor" mode.
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  drivers/media/platform/Kconfig             |  13 +
->  drivers/media/platform/meson/Makefile      |   1 +
->  drivers/media/platform/meson/ao-cec-g12a.c | 788 +++++++++++++++++++++
->  3 files changed, 802 insertions(+)
->  create mode 100644 drivers/media/platform/meson/ao-cec-g12a.c
-> 
-> diff --git a/drivers/media/platform/Kconfig b/drivers/media/platform/Kconfig
-> index 4acbed189644..92ea07ddc609 100644
-> --- a/drivers/media/platform/Kconfig
-> +++ b/drivers/media/platform/Kconfig
-> @@ -578,6 +578,19 @@ config VIDEO_MESON_AO_CEC
->  	  generic CEC framework interface.
->  	  CEC bus is present in the HDMI connector and enables communication
->  
-> +config VIDEO_MESON_G12A_AO_CEC
-> +	tristate "Amlogic Meson G12A AO CEC driver"
-> +	depends on ARCH_MESON || COMPILE_TEST
-> +	select CEC_CORE
-> +	select CEC_NOTIFIER
-> +	---help---
-> +	  This is a driver for Amlogic Meson G12A SoCs AO CEC interface.
-> +	  This driver if for the new AO-CEC module found in G12A SoCs,
-> +	  usually named AO_CEC_B in documentation.
-> +	  It uses the generic CEC framework interface.
-> +	  CEC bus is present in the HDMI connector and enables communication
-> +	  between compatible devices.
-> +
->  config CEC_GPIO
->  	tristate "Generic GPIO-based CEC driver"
->  	depends on PREEMPT || COMPILE_TEST
-> diff --git a/drivers/media/platform/meson/Makefile b/drivers/media/platform/meson/Makefile
-> index 597beb8f34d1..f611c23c3718 100644
-> --- a/drivers/media/platform/meson/Makefile
-> +++ b/drivers/media/platform/meson/Makefile
-> @@ -1 +1,2 @@
->  obj-$(CONFIG_VIDEO_MESON_AO_CEC)	+= ao-cec.o
-> +obj-$(CONFIG_VIDEO_MESON_G12A_AO_CEC)	+= ao-cec-g12a.o
-> diff --git a/drivers/media/platform/meson/ao-cec-g12a.c b/drivers/media/platform/meson/ao-cec-g12a.c
-> new file mode 100644
-> index 000000000000..db6886771e58
-> --- /dev/null
-> +++ b/drivers/media/platform/meson/ao-cec-g12a.c
-> @@ -0,0 +1,788 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Driver for Amlogic Meson AO CEC G12A Controller
-> + *
-> + * Copyright (C) 2017 Amlogic, Inc. All rights reserved
-> + * Copyright (C) 2019 BayLibre, SAS
-> + * Author: Neil Armstrong <narmstrong@baylibre.com>
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/device.h>
-> +#include <linux/io.h>
-> +#include <linux/delay.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/types.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/reset.h>
-> +#include <linux/slab.h>
-> +#include <linux/regmap.h>
-> +#include <media/cec.h>
-> +#include <media/cec-notifier.h>
-> +#include <linux/clk-provider.h>
-> +
-> +/* CEC Registers */
-> +
-> +#define CECB_CLK_CNTL_REG0		0x00
-> +
-> +#define CECB_CLK_CNTL_N1		GENMASK(11, 0)
-> +#define CECB_CLK_CNTL_N2		GENMASK(23, 12)
-> +#define CECB_CLK_CNTL_DUAL_EN		BIT(28)
-> +#define CECB_CLK_CNTL_OUTPUT_EN		BIT(30)
-> +#define CECB_CLK_CNTL_INPUT_EN		BIT(31)
-> +
-> +#define CECB_CLK_CNTL_REG1		0x04
-> +
-> +#define CECB_CLK_CNTL_M1		GENMASK(11, 0)
-> +#define CECB_CLK_CNTL_M2		GENMASK(23, 12)
-> +#define CECB_CLK_CNTL_BYPASS_EN		BIT(24)
-> +
-> +/*
-> + * [14:12] Filter_del. For glitch-filtering CEC line, ignore signal
-> + *       change pulse width < filter_del * T(filter_tick) * 3.
-> + * [9:8] Filter_tick_sel: Select which periodical pulse for
-> + *       glitch-filtering CEC line signal.
-> + *  - 0=Use T(xtal)*3 = 125ns;
-> + *  - 1=Use once-per-1us pulse;
-> + *  - 2=Use once-per-10us pulse;
-> + *  - 3=Use once-per-100us pulse.
-> + * [3]   Sysclk_en. 0=Disable system clock; 1=Enable system clock.
-> + * [2:1] cntl_clk
-> + *  - 0 = Disable clk (Power-off mode)
-> + *  - 1 = Enable gated clock (Normal mode)
-> + *  - 2 = Enable free-run clk (Debug mode)
-> + * [0] SW_RESET 1=Apply reset; 0=No reset.
-> + */
-> +#define CECB_GEN_CNTL_REG		0x08
-> +
-> +#define CECB_GEN_CNTL_RESET		BIT(0)
-> +#define CECB_GEN_CNTL_CLK_DISABLE	0
-> +#define CECB_GEN_CNTL_CLK_ENABLE	1
-> +#define CECB_GEN_CNTL_CLK_ENABLE_DBG	2
-> +#define CECB_GEN_CNTL_CLK_CTRL_MASK	GENMASK(2, 1)
-> +#define CECB_GEN_CNTL_SYS_CLK_EN	BIT(3)
-> +#define CECB_GEN_CNTL_FILTER_TICK_125NS	0
-> +#define CECB_GEN_CNTL_FILTER_TICK_1US	1
-> +#define CECB_GEN_CNTL_FILTER_TICK_10US	2
-> +#define CECB_GEN_CNTL_FILTER_TICK_100US	3
-> +#define CECB_GEN_CNTL_FILTER_TICK_SEL	GENMASK(9, 8)
-> +#define CECB_GEN_CNTL_FILTER_DEL	GENMASK(14, 12)
-> +
-> +/*
-> + * [7:0] cec_reg_addr
-> + * [15:8] cec_reg_wrdata
-> + * [16] cec_reg_wr
-> + *  - 0 = Read
-> + *  - 1 = Write
-> + * [31:24] cec_reg_rddata
-> + */
-> +#define CECB_RW_REG			0x0c
-> +
-> +#define CECB_RW_ADDR			GENMASK(7, 0)
-> +#define CECB_RW_WR_DATA			GENMASK(15, 8)
-> +#define CECB_RW_WRITE_EN		BIT(16)
-> +#define CECB_RW_BUS_BUSY		BIT(23)
-> +#define CECB_RW_RD_DATA			GENMASK(31, 24)
-> +
-> +/*
-> + * [0] DONE Interrupt
-> + * [1] End Of Message Interrupt
-> + * [2] Not Acknowlegde Interrupt
-> + * [3] Arbitration Loss Interrupt
-> + * [4] Initiator Error Interrupt
-> + * [5] Follower Error Interrupt
-> + * [6] Wake-Up Interrupt
-> + */
-> +#define CECB_INTR_MASKN_REG		0x10
-> +#define CECB_INTR_CLR_REG		0x14
-> +#define CECB_INTR_STAT_REG		0x18
-> +
-> +#define CECB_INTR_DONE			BIT(0)
-> +#define CECB_INTR_EOM			BIT(1)
-> +#define CECB_INTR_NACK			BIT(2)
-> +#define CECB_INTR_ARB_LOSS		BIT(3)
-> +#define CECB_INTR_INITIATOR_ERR		BIT(4)
-> +#define CECB_INTR_FOLLOWER_ERR		BIT(5)
-> +#define CECB_INTR_WAKE_UP		BIT(6)
-> +
-> +/* CEC Commands */
-> +
-> +#define CECB_CTRL		0x00
-> +
-> +#define CECB_CTRL_SEND		BIT(0)
-> +#define CECB_CTRL_TYPE		GENMASK(2, 1)
-> +#define CECB_CTRL_TYPE_RETRY	0
-> +#define CECB_CTRL_TYPE_NEW	1
-> +#define CECB_CTRL_TYPE_NEXT	2
-> +
-> +#define CECB_CTRL2		0x01
-> +#define CECB_INTR_MASK		0x02
-> +#define CECB_LADD_LOW		0x05
-> +#define CECB_LADD_HIGH		0x06
-> +#define CECB_TX_CNT		0x07
-> +#define CECB_RX_CNT		0x08
-> +#define CECB_STAT0		0x09
-> +#define CECB_TX_DATA00		0x10
-> +#define CECB_TX_DATA01		0x11
-> +#define CECB_TX_DATA02		0x12
-> +#define CECB_TX_DATA03		0x13
-> +#define CECB_TX_DATA04		0x14
-> +#define CECB_TX_DATA05		0x15
-> +#define CECB_TX_DATA06		0x16
-> +#define CECB_TX_DATA07		0x17
-> +#define CECB_TX_DATA08		0x18
-> +#define CECB_TX_DATA09		0x19
-> +#define CECB_TX_DATA10		0x1A
-> +#define CECB_TX_DATA11		0x1B
-> +#define CECB_TX_DATA12		0x1C
-> +#define CECB_TX_DATA13		0x1D
-> +#define CECB_TX_DATA14		0x1E
-> +#define CECB_TX_DATA15		0x1F
-> +#define CECB_RX_DATA00		0x20
-> +#define CECB_RX_DATA01		0x21
-> +#define CECB_RX_DATA02		0x22
-> +#define CECB_RX_DATA03		0x23
-> +#define CECB_RX_DATA04		0x24
-> +#define CECB_RX_DATA05		0x25
-> +#define CECB_RX_DATA06		0x26
-> +#define CECB_RX_DATA07		0x27
-> +#define CECB_RX_DATA08		0x28
-> +#define CECB_RX_DATA09		0x29
-> +#define CECB_RX_DATA10		0x2A
-> +#define CECB_RX_DATA11		0x2B
-> +#define CECB_RX_DATA12		0x2C
-> +#define CECB_RX_DATA13		0x2D
-> +#define CECB_RX_DATA14		0x2E
-> +#define CECB_RX_DATA15		0x2F
-> +#define CECB_LOCK_BUF		0x30
-> +
-> +#define CECB_LOCK_BUF_EN	BIT(0)
-> +
-> +#define CECB_WAKEUPCTRL		0x31
-> +
-> +struct meson_ao_cec_g12a_device {
-> +	struct platform_device		*pdev;
-> +	struct regmap			*regmap;
-> +	struct regmap			*regmap_cec;
-> +	spinlock_t			cec_reg_lock;
-> +	struct cec_notifier		*notify;
-> +	struct cec_adapter		*adap;
-> +	struct cec_msg			rx_msg;
-> +	struct clk			*oscin;
-> +	struct clk			*core;
-> +};
-> +
-> +static const struct regmap_config meson_ao_cec_g12a_regmap_conf = {
-> +	.reg_bits = 8,
-> +	.val_bits = 32,
-> +	.reg_stride = 4,
-> +	.max_register = CECB_INTR_STAT_REG,
-> +};
-> +
-> +/*
-> + * The AO-CECB embeds a dual/divider to generate a more precise
-> + * 32,768KHz clock for CEC core clock.
-> + *                      ______   ______
-> + *                     |      | |      |
-> + *         ______      | Div1 |-| Cnt1 |       ______
-> + *        |      |    /|______| |______|\     |      |
-> + * Xtal-->| Gate |---|  ______   ______  X-X--| Gate |-->
-> + *        |______| |  \|      | |      |/  |  |______|
-> + *                 |   | Div2 |-| Cnt2 |   |
-> + *                 |   |______| |______|   |
-> + *                 |_______________________|
-> + *
-> + * The dividing can be switched to single or dual, with a counter
-> + * for each divider to set when the switching is done.
-> + * The entire dividing mechanism can be also bypassed.
-> + */
-> +
-> +struct meson_ao_cec_g12a_dualdiv_clk {
-> +	struct clk_hw hw;
-> +	struct regmap *regmap;
-> +};
-> +
-> +#define hw_to_meson_ao_cec_g12a_dualdiv_clk(_hw)			\
-> +	container_of(_hw, struct meson_ao_cec_g12a_dualdiv_clk, hw)	\
-> +
-> +static unsigned long
-> +meson_ao_cec_g12a_dualdiv_clk_recalc_rate(struct clk_hw *hw,
-> +					  unsigned long parent_rate)
-> +{
-> +	struct meson_ao_cec_g12a_dualdiv_clk *dualdiv_clk =
-> +		hw_to_meson_ao_cec_g12a_dualdiv_clk(hw);
-> +	unsigned long n1;
-> +	u32 reg0, reg1;
-> +
-> +	regmap_read(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0, &reg0);
-> +	regmap_read(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0, &reg1);
-> +
-> +	if (reg1 & CECB_CLK_CNTL_BYPASS_EN)
-> +		return parent_rate;
-> +
-> +	if (reg0 & CECB_CLK_CNTL_DUAL_EN) {
-> +		unsigned long n2, m1, m2, f1, f2, p1, p2;
-> +
-> +		n1 = FIELD_GET(CECB_CLK_CNTL_N1, reg0) + 1;
-> +		n2 = FIELD_GET(CECB_CLK_CNTL_N2, reg0) + 1;
-> +
-> +		m1 = FIELD_GET(CECB_CLK_CNTL_M1, reg1) + 1;
-> +		m2 = FIELD_GET(CECB_CLK_CNTL_M1, reg1) + 1;
-> +
-> +		f1 = DIV_ROUND_CLOSEST(parent_rate, n1);
-> +		f2 = DIV_ROUND_CLOSEST(parent_rate, n2);
-> +
-> +		p1 = DIV_ROUND_CLOSEST(100000000 * m1, f1 * (m1 + m2));
-> +		p2 = DIV_ROUND_CLOSEST(100000000 * m2, f2 * (m1 + m2));
-> +
-> +		return DIV_ROUND_UP(100000000, p1 + p2);
-> +	}
-> +
-> +	n1 = FIELD_GET(CECB_CLK_CNTL_N1, reg0) + 1;
-> +
-> +	return DIV_ROUND_CLOSEST(parent_rate, n1);
-> +}
-> +
-> +static int meson_ao_cec_g12a_dualdiv_clk_enable(struct clk_hw *hw)
-> +{
-> +	struct meson_ao_cec_g12a_dualdiv_clk *dualdiv_clk =
-> +		hw_to_meson_ao_cec_g12a_dualdiv_clk(hw);
-> +
-> +
-> +	/* Disable Input & Output */
-> +	regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0,
-> +			   CECB_CLK_CNTL_INPUT_EN | CECB_CLK_CNTL_OUTPUT_EN,
-> +			   0);
-> +
-> +	/* Set N1 & N2 */
-> +	regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0,
-> +			   CECB_CLK_CNTL_N1,
-> +			   FIELD_PREP(CECB_CLK_CNTL_N1, 733 - 1));
-> +
-> +	regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0,
-> +			   CECB_CLK_CNTL_N2,
-> +			   FIELD_PREP(CECB_CLK_CNTL_N2, 732 - 1));
-> +
-> +	/* Set M1 & M2 */
-> +	regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG1,
-> +			   CECB_CLK_CNTL_M1,
-> +			   FIELD_PREP(CECB_CLK_CNTL_M1, 8 - 1));
-> +
-> +	regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG1,
-> +			   CECB_CLK_CNTL_M2,
-> +			   FIELD_PREP(CECB_CLK_CNTL_M2, 11 - 1));
-> +
-> +	/* Enable Dual divisor */
-> +	regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0,
-> +			   CECB_CLK_CNTL_DUAL_EN, CECB_CLK_CNTL_DUAL_EN);
-> +
-> +	/* Disable divisor bypass */
-> +	regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG1,
-> +			   CECB_CLK_CNTL_BYPASS_EN, 0);
-> +
-> +	/* Enable Input & Output */
-> +	regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0,
-> +			   CECB_CLK_CNTL_INPUT_EN | CECB_CLK_CNTL_OUTPUT_EN,
-> +			   CECB_CLK_CNTL_INPUT_EN | CECB_CLK_CNTL_OUTPUT_EN);
-> +
-> +	return 0;
-> +}
-> +
-> +static void meson_ao_cec_g12a_dualdiv_clk_disable(struct clk_hw *hw)
-> +{
-> +	struct meson_ao_cec_g12a_dualdiv_clk *dualdiv_clk =
-> +		hw_to_meson_ao_cec_g12a_dualdiv_clk(hw);
-> +
-> +	regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0,
-> +			   CECB_CLK_CNTL_INPUT_EN | CECB_CLK_CNTL_OUTPUT_EN,
-> +			   0);
-> +}
-> +
-> +static int meson_ao_cec_g12a_dualdiv_clk_is_enabled(struct clk_hw *hw)
-> +{
-> +	struct meson_ao_cec_g12a_dualdiv_clk *dualdiv_clk =
-> +		hw_to_meson_ao_cec_g12a_dualdiv_clk(hw);
-> +	int val;
-> +
-> +	regmap_read(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0, &val);
-> +
-> +	return !!(val & (CECB_CLK_CNTL_INPUT_EN | CECB_CLK_CNTL_OUTPUT_EN));
-> +}
-> +
-> +static const struct clk_ops meson_ao_cec_g12a_dualdiv_clk_ops = {
-> +	.recalc_rate	= meson_ao_cec_g12a_dualdiv_clk_recalc_rate,
-> +	.is_enabled	= meson_ao_cec_g12a_dualdiv_clk_is_enabled,
-> +	.enable		= meson_ao_cec_g12a_dualdiv_clk_enable,
-> +	.disable	= meson_ao_cec_g12a_dualdiv_clk_disable,
-> +};
-> +
-> +static int meson_ao_cec_g12a_setup_clk(struct meson_ao_cec_g12a_device *ao_cec)
-> +{
-> +	struct meson_ao_cec_g12a_dualdiv_clk *dualdiv_clk;
-> +	struct device *dev = &ao_cec->pdev->dev;
-> +	struct clk_init_data init;
-> +	const char *parent_name;
-> +	struct clk *clk;
-> +	char *name;
-> +
-> +	dualdiv_clk = devm_kzalloc(dev, sizeof(*dualdiv_clk), GFP_KERNEL);
-> +	if (!dualdiv_clk)
-> +		return -ENOMEM;
-> +
-> +	name = kasprintf(GFP_KERNEL, "%s#dualdiv_clk", dev_name(dev));
-> +	if (!name)
-> +		return -ENOMEM;
-> +
-> +	parent_name = __clk_get_name(ao_cec->oscin);
-> +
-> +	init.name = name;
-> +	init.ops = &meson_ao_cec_g12a_dualdiv_clk_ops;
-> +	init.flags = 0;
-> +	init.parent_names = &parent_name;
-> +	init.num_parents = 1;
-> +	dualdiv_clk->regmap = ao_cec->regmap;
-> +	dualdiv_clk->hw.init = &init;
-> +
-> +	clk = devm_clk_register(dev, &dualdiv_clk->hw);
-> +	kfree(name);
-> +	if (IS_ERR(clk)) {
-> +		dev_err(dev, "failed to register clock\n");
-> +		return PTR_ERR(clk);
-> +	}
-> +
-> +	ao_cec->core = clk;
-> +
-> +	return 0;
-> +}
-> +
-> +static int meson_ao_cec_g12a_read(void *context, unsigned int addr,
-> +				  unsigned int *data)
-> +{
-> +	struct meson_ao_cec_g12a_device *ao_cec = context;
-> +	u32 reg = FIELD_PREP(CECB_RW_ADDR, addr);
-> +	unsigned long flags;
-> +	int ret = 0;
-> +
-> +	spin_lock_irqsave(&ao_cec->cec_reg_lock, flags);
-> +
-> +	ret = regmap_write(ao_cec->regmap, CECB_RW_REG, reg);
-> +	if (ret)
-> +		goto read_out;
-> +
-> +	ret = regmap_read_poll_timeout(ao_cec->regmap, CECB_RW_REG, reg,
-> +				       !(reg & CECB_RW_BUS_BUSY),
-> +				       5, 1000);
-> +	if (ret)
-> +		goto read_out;
-> +
-> +	ret = regmap_read(ao_cec->regmap, CECB_RW_REG, &reg);
-> +
-> +	*data = FIELD_GET(CECB_RW_RD_DATA, reg);
-> +
-> +read_out:
-> +	spin_unlock_irqrestore(&ao_cec->cec_reg_lock, flags);
-> +
-> +	return ret;
-> +}
-> +
-> +static int meson_ao_cec_g12a_write(void *context, unsigned int addr,
-> +				   unsigned int data)
-> +{
-> +	struct meson_ao_cec_g12a_device *ao_cec = context;
-> +	unsigned long flags;
-> +	u32 reg = FIELD_PREP(CECB_RW_ADDR, addr) |
-> +		  FIELD_PREP(CECB_RW_WR_DATA, data) |
-> +		  CECB_RW_WRITE_EN;
-> +	int ret = 0;
-> +
-> +	spin_lock_irqsave(&ao_cec->cec_reg_lock, flags);
-> +
-> +	ret = regmap_write(ao_cec->regmap, CECB_RW_REG, reg);
-> +
-> +	spin_unlock_irqrestore(&ao_cec->cec_reg_lock, flags);
-> +
-> +	return ret;
-> +}
-> +
-> +static const struct regmap_config meson_ao_cec_g12a_cec_regmap_conf = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.reg_read = meson_ao_cec_g12a_read,
-> +	.reg_write = meson_ao_cec_g12a_write,
-> +	.max_register = 0xffff,
-> +	.fast_io = true,
-> +};
-> +
-> +static inline void
-> +meson_ao_cec_g12a_irq_setup(struct meson_ao_cec_g12a_device *ao_cec,
-> +			    bool enable)
-> +{
-> +	u32 cfg = CECB_INTR_DONE | CECB_INTR_EOM | CECB_INTR_NACK |
-> +		  CECB_INTR_ARB_LOSS | CECB_INTR_INITIATOR_ERR |
-> +		  CECB_INTR_FOLLOWER_ERR;
-> +
-> +	regmap_write(ao_cec->regmap, CECB_INTR_MASKN_REG,
-> +		     enable ? cfg : 0);
-> +}
-> +
-> +static void meson_ao_cec_g12a_irq_rx(struct meson_ao_cec_g12a_device *ao_cec)
-> +{
-> +	int i, ret = 0;
-> +	u32 val;
-> +
-> +	ret = regmap_read(ao_cec->regmap_cec, CECB_RX_CNT, &val);
-> +
-> +	ao_cec->rx_msg.len = val;
-> +	if (ao_cec->rx_msg.len > CEC_MAX_MSG_SIZE)
-> +		ao_cec->rx_msg.len = CEC_MAX_MSG_SIZE;
-> +
-> +	for (i = 0; i < ao_cec->rx_msg.len; i++) {
-> +		ret |= regmap_read(ao_cec->regmap_cec,
-> +				   CECB_RX_DATA00 + i, &val);
-> +
-> +		ao_cec->rx_msg.msg[i] = val & 0xff;
-> +	}
-> +
-> +	ret |= regmap_write(ao_cec->regmap_cec, CECB_LOCK_BUF, 0);
-> +	if (ret)
-> +		return;
-> +
-> +	cec_received_msg(ao_cec->adap, &ao_cec->rx_msg);
-> +}
-> +
-> +static irqreturn_t meson_ao_cec_g12a_irq(int irq, void *data)
-> +{
-> +	struct meson_ao_cec_g12a_device *ao_cec = data;
-> +	u32 stat;
-> +
-> +	regmap_read(ao_cec->regmap, CECB_INTR_STAT_REG, &stat);
-> +	if (stat)
-> +		return IRQ_WAKE_THREAD;
-> +
-> +	return IRQ_NONE;
-> +}
-> +
-> +static irqreturn_t meson_ao_cec_g12a_irq_thread(int irq, void *data)
-> +{
-> +	struct meson_ao_cec_g12a_device *ao_cec = data;
-> +	u32 stat;
-> +
-> +	regmap_read(ao_cec->regmap, CECB_INTR_STAT_REG, &stat);
-> +	regmap_write(ao_cec->regmap, CECB_INTR_CLR_REG, stat);
-> +
-> +	if (stat & CECB_INTR_DONE)
-> +		cec_transmit_attempt_done(ao_cec->adap, CEC_TX_STATUS_OK);
-> +
-> +	if (stat & CECB_INTR_EOM)
-> +		meson_ao_cec_g12a_irq_rx(ao_cec);
-> +
-> +	if (stat & CECB_INTR_NACK)
-> +		cec_transmit_attempt_done(ao_cec->adap, CEC_TX_STATUS_NACK);
-> +
-> +	if (stat & CECB_INTR_ARB_LOSS) {
-> +		regmap_write(ao_cec->regmap_cec, CECB_TX_CNT, 0);
-> +		regmap_update_bits(ao_cec->regmap_cec, CECB_CTRL,
-> +				   CECB_CTRL_SEND | CECB_CTRL_TYPE, 0);
-> +		cec_transmit_attempt_done(ao_cec->adap, CEC_TX_STATUS_ARB_LOST);
-> +	}
-> +
-> +	/* Initiator reports an error on the CEC bus */
-> +	if (stat & CECB_INTR_INITIATOR_ERR)
-> +		cec_transmit_attempt_done(ao_cec->adap, CEC_TX_STATUS_ERROR);
-> +
-> +	/* Follower reports a receive error, just reset RX buffer */
-> +	if (stat & CECB_INTR_FOLLOWER_ERR)
-> +		regmap_write(ao_cec->regmap_cec, CECB_LOCK_BUF, 0);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int
-> +meson_ao_cec_g12a_set_log_addr(struct cec_adapter *adap, u8 logical_addr)
-> +{
-> +	struct meson_ao_cec_g12a_device *ao_cec = adap->priv;
-> +	int ret = 0;
-> +
-> +	if (logical_addr == CEC_LOG_ADDR_INVALID) {
-> +		/* Assume this will allways succeed */
-> +		regmap_write(ao_cec->regmap_cec, CECB_LADD_LOW, 0);
-> +		regmap_write(ao_cec->regmap_cec, CECB_LADD_HIGH, 0);
-> +
-> +		return 0;
-> +	} else if (logical_addr < 8) {
-> +		ret = regmap_update_bits(ao_cec->regmap_cec, CECB_LADD_LOW,
-> +					 BIT(logical_addr),
-> +					 BIT(logical_addr));
-> +	} else {
-> +		ret = regmap_update_bits(ao_cec->regmap_cec, CECB_LADD_HIGH,
-> +					 BIT(logical_addr - 8),
-> +					 BIT(logical_addr - 8));
-> +	}
-> +
-> +	/* Always set Broadcast/Unregistered 15 address */
-> +	ret |= regmap_update_bits(ao_cec->regmap_cec, CECB_LADD_HIGH,
-> +				  BIT(CEC_LOG_ADDR_UNREGISTERED - 8),
-> +				  BIT(CEC_LOG_ADDR_UNREGISTERED - 8));
-> +
-> +	return ret ? -EIO : 0;
-> +}
-> +
-> +static int meson_ao_cec_g12a_transmit(struct cec_adapter *adap, u8 attempts,
-> +				 u32 signal_free_time, struct cec_msg *msg)
-> +{
-> +	struct meson_ao_cec_g12a_device *ao_cec = adap->priv;
-> +	unsigned int type;
-> +	int ret = 0;
-> +	u32 val;
-> +	int i;
-> +
-> +	/* Check if RX is in progress */
-> +	ret = regmap_read(ao_cec->regmap_cec, CECB_LOCK_BUF, &val);
-> +	if (ret)
-> +		return ret;
-> +	if (val & CECB_LOCK_BUF_EN)
-> +		return -EBUSY;
-> +
-> +	/* Check if TX Busy */
-> +	ret = regmap_read(ao_cec->regmap_cec, CECB_CTRL, &val);
-> +	if (ret)
-> +		return ret;
-> +	if (val & CECB_CTRL_SEND)
-> +		return -EBUSY;
-> +
-> +	switch (signal_free_time) {
-> +	case CEC_SIGNAL_FREE_TIME_RETRY:
-> +		type = CECB_CTRL_TYPE_RETRY;
-> +		break;
-> +	case CEC_SIGNAL_FREE_TIME_NEXT_XFER:
-> +		type = CECB_CTRL_TYPE_NEXT;
-> +		break;
-> +	case CEC_SIGNAL_FREE_TIME_NEW_INITIATOR:
-> +	default:
-> +		type = CECB_CTRL_TYPE_NEW;
-> +		break;
-> +	}
-> +
-> +	for (i = 0; i < msg->len; i++)
-> +		ret |= regmap_write(ao_cec->regmap_cec, CECB_TX_DATA00 + i,
-> +				    msg->msg[i]);
-> +
-> +	ret |= regmap_write(ao_cec->regmap_cec, CECB_TX_CNT, msg->len);
-> +	if (ret)
-> +		return -EIO;
-> +
-> +	ret = regmap_update_bits(ao_cec->regmap_cec, CECB_CTRL,
-> +				 CECB_CTRL_SEND |
-> +				 CECB_CTRL_TYPE,
-> +				 CECB_CTRL_SEND |
-> +				 FIELD_PREP(CECB_CTRL_TYPE, type));
-> +
-> +	return ret;
-> +}
-> +
-> +static int meson_ao_cec_g12a_adap_enable(struct cec_adapter *adap, bool enable)
-> +{
-> +	struct meson_ao_cec_g12a_device *ao_cec = adap->priv;
-> +
-> +	meson_ao_cec_g12a_irq_setup(ao_cec, false);
-> +
-> +	regmap_update_bits(ao_cec->regmap, CECB_GEN_CNTL_REG,
-> +			   CECB_GEN_CNTL_RESET, CECB_GEN_CNTL_RESET);
-> +
-> +	if (!enable)
-> +		return 0;
-> +
-> +	/* Setup Filter */
-> +	regmap_update_bits(ao_cec->regmap, CECB_GEN_CNTL_REG,
-> +			   CECB_GEN_CNTL_FILTER_TICK_SEL |
-> +			   CECB_GEN_CNTL_FILTER_DEL,
-> +			   FIELD_PREP(CECB_GEN_CNTL_FILTER_TICK_SEL,
-> +				      CECB_GEN_CNTL_FILTER_TICK_1US) |
-> +			   FIELD_PREP(CECB_GEN_CNTL_FILTER_DEL, 7));
-> +
-> +	/* Enable System Clock */
-> +	regmap_update_bits(ao_cec->regmap, CECB_GEN_CNTL_REG,
-> +			   CECB_GEN_CNTL_SYS_CLK_EN,
-> +			   CECB_GEN_CNTL_SYS_CLK_EN);
-> +
-> +	/* Enable gated clock (Normal mode). */
-> +	regmap_update_bits(ao_cec->regmap, CECB_GEN_CNTL_REG,
-> +			   CECB_GEN_CNTL_CLK_CTRL_MASK,
-> +			    FIELD_PREP(CECB_GEN_CNTL_CLK_CTRL_MASK,
-> +				       CECB_GEN_CNTL_CLK_ENABLE));
-> +
-> +	/* Release Reset */
-> +	regmap_update_bits(ao_cec->regmap, CECB_GEN_CNTL_REG,
-> +			   CECB_GEN_CNTL_RESET, 0);
-> +
-> +	meson_ao_cec_g12a_irq_setup(ao_cec, true);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct cec_adap_ops meson_ao_cec_g12a_ops = {
-> +	.adap_enable = meson_ao_cec_g12a_adap_enable,
-> +	.adap_log_addr = meson_ao_cec_g12a_set_log_addr,
-> +	.adap_transmit = meson_ao_cec_g12a_transmit,
-> +};
-> +
-> +static int meson_ao_cec_g12a_probe(struct platform_device *pdev)
-> +{
-> +	struct meson_ao_cec_g12a_device *ao_cec;
-> +	struct platform_device *hdmi_dev;
-> +	struct device_node *np;
-> +	struct resource *res;
-> +	void __iomem *base;
-> +	int ret, irq;
-> +
-> +	np = of_parse_phandle(pdev->dev.of_node, "hdmi-phandle", 0);
-> +	if (!np) {
-> +		dev_err(&pdev->dev, "Failed to find hdmi node\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	hdmi_dev = of_find_device_by_node(np);
-> +	of_node_put(np);
-> +	if (hdmi_dev == NULL)
-> +		return -EPROBE_DEFER;
-> +
-> +	put_device(&hdmi_dev->dev);
-> +	ao_cec = devm_kzalloc(&pdev->dev, sizeof(*ao_cec), GFP_KERNEL);
-> +	if (!ao_cec)
-> +		return -ENOMEM;
-> +
-> +	spin_lock_init(&ao_cec->cec_reg_lock);
-> +	ao_cec->pdev = pdev;
-> +
-> +	ao_cec->notify = cec_notifier_get(&hdmi_dev->dev);
-> +	if (!ao_cec->notify)
-> +		return -ENOMEM;
-> +
-> +	ao_cec->adap = cec_allocate_adapter(&meson_ao_cec_g12a_ops, ao_cec,
-> +					    "meson_g12a_ao_cec",
-> +					    CEC_CAP_DEFAULTS,
-> +					    CEC_MAX_LOG_ADDRS);
-> +	if (IS_ERR(ao_cec->adap)) {
-> +		ret = PTR_ERR(ao_cec->adap);
-> +		goto out_probe_notify;
-> +	}
-> +
-> +	ao_cec->adap->owner = THIS_MODULE;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	base = devm_ioremap_resource(&pdev->dev, res);
-> +	if (IS_ERR(base)) {
-> +		ret = PTR_ERR(base);
-> +		goto out_probe_adapter;
-> +	}
-> +
-> +	ao_cec->regmap = devm_regmap_init_mmio(&pdev->dev, base,
-> +					       &meson_ao_cec_g12a_regmap_conf);
-> +	if (IS_ERR(ao_cec->regmap)) {
-> +		ret = PTR_ERR(ao_cec->regmap);
-> +		goto out_probe_adapter;
-> +	}
-> +
-> +	ao_cec->regmap_cec = devm_regmap_init(&pdev->dev, NULL, ao_cec,
-> +					   &meson_ao_cec_g12a_cec_regmap_conf);
-> +	if (IS_ERR(ao_cec->regmap_cec)) {
-> +		ret = PTR_ERR(ao_cec->regmap_cec);
-> +		goto out_probe_adapter;
-> +	}
-> +
-> +	irq = platform_get_irq(pdev, 0);
-> +	ret = devm_request_threaded_irq(&pdev->dev, irq,
-> +					meson_ao_cec_g12a_irq,
-> +					meson_ao_cec_g12a_irq_thread,
-> +					0, NULL, ao_cec);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "irq request failed\n");
-> +		goto out_probe_adapter;
-> +	}
-> +
-> +	ao_cec->oscin = devm_clk_get(&pdev->dev, "oscin");
-> +	if (IS_ERR(ao_cec->oscin)) {
-> +		dev_err(&pdev->dev, "oscin clock request failed\n");
-> +		ret = PTR_ERR(ao_cec->oscin);
-> +		goto out_probe_adapter;
-> +	}
-> +
-> +	ret = meson_ao_cec_g12a_setup_clk(ao_cec);
-> +	if (ret)
-> +		goto out_probe_adapter;
-> +
-> +	ret = clk_prepare_enable(ao_cec->core);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "core clock enable failed\n");
-> +		goto out_probe_adapter;
-> +	}
-> +
-> +	device_reset_optional(&pdev->dev);
-> +
-> +	platform_set_drvdata(pdev, ao_cec);
-> +
-> +	ret = cec_register_adapter(ao_cec->adap, &pdev->dev);
-> +	if (ret < 0) {
-> +		cec_notifier_put(ao_cec->notify);
-> +		goto out_probe_core_clk;
-> +	}
-> +
-> +	/* Setup Hardware */
-> +	regmap_write(ao_cec->regmap, CECB_GEN_CNTL_REG, CECB_GEN_CNTL_RESET);
-> +
-> +	cec_register_cec_notifier(ao_cec->adap, ao_cec->notify);
-> +
-> +	return 0;
-> +
-> +out_probe_core_clk:
-> +	clk_disable_unprepare(ao_cec->core);
-> +
-> +out_probe_adapter:
-> +	cec_delete_adapter(ao_cec->adap);
-> +
-> +out_probe_notify:
-> +	cec_notifier_put(ao_cec->notify);
-> +
-> +	dev_err(&pdev->dev, "CEC controller registration failed\n");
-> +
-> +	return ret;
-> +}
-> +
-> +static int meson_ao_cec_g12a_remove(struct platform_device *pdev)
-> +{
-> +	struct meson_ao_cec_g12a_device *ao_cec = platform_get_drvdata(pdev);
-> +
-> +	clk_disable_unprepare(ao_cec->core);
-> +
-> +	cec_unregister_adapter(ao_cec->adap);
-> +
-> +	cec_notifier_put(ao_cec->notify);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id meson_ao_cec_g12a_of_match[] = {
-> +	{ .compatible = "amlogic,meson-g12a-ao-cec-b", },
+Hi everyone,
 
--------------------------------------------------/\
+[V5] It's been a while since the last patch series regarding the Amlogic
+video decoder. Unfortunately, the firmware licensing situation is still
+on hold as we await communication from Amlogic. As such, we do not have
+the firmwares in linux-firmware yet.
+I decided to push the V5 anyway, as changes were starting to pile up.
 
-Sorry this fix went to /dev/null, I'll resend when the bindings are
-reviewed.
+This patch series adds support for the Amlogic video decoder,
+as well as the corresponding dt bindings for GXBB/GXL/GXM chips.
 
-Neil
+It features decoding for the following formats:
+- MPEG 1
+- MPEG 2
 
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, meson_ao_cec_g12a_of_match);
-> +
-> +static struct platform_driver meson_ao_cec_g12a_driver = {
-> +	.probe   = meson_ao_cec_g12a_probe,
-> +	.remove  = meson_ao_cec_g12a_remove,
-> +	.driver  = {
-> +		.name = "meson-ao-cec-g12a",
-> +		.of_match_table = of_match_ptr(meson_ao_cec_g12a_of_match),
-> +	},
-> +};
-> +
-> +module_platform_driver(meson_ao_cec_g12a_driver);
-> +
-> +MODULE_DESCRIPTION("Meson AO CEC G12A Controller driver");
-> +MODULE_AUTHOR("Neil Armstrong <narmstrong@baylibre.com>");
-> +MODULE_LICENSE("GPL");
-> 
+The following formats will be added in future patches:
+- MJPEG
+- MPEG 4 (incl. Xvid, H.263)
+- H.264
+- HEVC (incl. 10-bit)
+- VP9 (incl. 10-bit)
+
+The code was made in such a way to allow easy inclusion of those formats
+in the future.
+
+The decoder is single instance.
+
+Files:
+ - vdec.c handles the V4L2 M2M logic
+ - esparser.c manages the hardware bitstream parser
+ - vdec_helpers.c provides helpers to DONE the dst buffers as well as
+ various common code used by the codecs
+ - vdec_1.c manages the VDEC_1 block of the vdec IP
+ - vdec_ctrls.c handles the V4L2 controls exposed by the driver
+ - codec_mpeg12.c enables decoding for MPEG 1/2.
+ - vdec_platform.c links codec units with vdec units
+ (e.g vdec_1 with codec_mpeg12) and lists all the available
+ src/dst formats and requirements (max width/height, etc.),
+ per compatible chip.
+
+Firmwares are necessary to run the vdec. They can currently be found at:
+https://github.com/Elyotna/meson-firmware
+There is an ongoing effort to bring those firmwares to linux-firmware
+but they're not in yet, currently blocked by licensing issues.
+
+It was tested primarily with ffmpeg's v4l2-m2m implementation. For instance:
+$ ffmpeg -c:v mpeg2_v4l2m2m -i sample_mpeg2.mkv -f rawvideo out.nv12
+
+The v4l2-compliance results are available below the patch diff.
+
+Changes since v4 [3]:
+ - Updated for 5.1: 
+  - cropcap -> g_pixelaspect
+  - dma_zalloc_coherent -> dma_alloc_coherent
+ - enum_framesizes: changed from STEPWISE to CONTINUOUS, as suggested by Hans
+ - Reintroduced support for CREATE_BUFS. It was a driver bug where I wasn't
+ accounting for the amount of buffers created this way (only buffers created
+ via REQBUFS were).
+ - Added the patch introducing V4L2_FMT_FLAG_FIXED_RESOLUTION to the V4L2
+ framework, needed as MPEG2 on Amlogic hardware only supports a fixed
+ resolution during a decode session.
+ - Added support for events and V4L2_EVENT_SOURCE_CHANGE, as it is now checked
+ by v4l2-compliance for stateful decoders. I was planning on introducing this
+ for codecs that actually use it (H264, HEVC..), but it doesn't hurt to have
+ this in the initial commit.
+ - Added support for controls, mainly V4L2_CID_MIN_BUFFERS_FOR_CAPTURE
+
+Changes since v3 [2]:
+ - strlcpy -> strscpy
+ - queue_setup: account for existing buffers when clamping *num_buffers
+ - removed support for CREATE_BUFS. This caused issues with gstreamer and allowed
+ userspace to alloc more buffers than the decoder can handle in its fixed list.
+ So for now we just disable it and only allow allocating via REQBUFS.
+ - rebased & tested with 4.20-rc1
+
+Changes since v2 [1]:
+ - Override capture queue's min_buffers_needed in queue_setup
+ The HW needs the full buffer list to be available when doing start_streaming
+ - Fix the draining sequence
+ The blob that we write to the ESPARSER to trigger drain is codec-dependent.
+ The one that was sent in v1 is specific to H.264 and isn't guaranteed to
+ trigger drain for MPEG2. For the latter, a simple MPEG2 EOS code
+ should be sent to the ESPARSER instead.
+ - Slight enhancements to the way we do vififo offset<=>timestamp matching
+
+Changes since v1 [0]:
+ - use named interrupts in the bindings
+ - rewrite description in the bindings doc
+ - don't include the dts changes in the patch series
+ - fill the vb2 queues locks
+ - fill the video_device lock
+ - use helpers for wait_prepare and wait_finish vb2_ops
+ - remove unnecessary usleep in between esparser writes.
+ Extensive testing of every codec on GXBB/GXL didn't reveal
+ any fails without it, so just remove it.
+ - compile v4l2_compliance inside the git repo
+ - Check for plane number/plane size to pass the latest v4l2-compliance test
+ - Moved the single instance check (returning -EBUSY) to start/stop streaming
+ The check was previously in queue_setup but there was no great location to
+ clear it except for .close().
+ - Slight rework of the way CAPTURE frames are timestamped for better accuracy
+ - Implement PAR reporting via VIDIOC_CROPCAP
+
+[3] https://patchwork.kernel.org/cover/10669875/
+[2] https://lore.kernel.org/patchwork/cover/993093/
+[1] https://patchwork.kernel.org/cover/10595803/
+[0] https://patchwork.kernel.org/cover/10583391/
+
+Maxime Jourdan (4):
+  dt-bindings: media: add Amlogic Video Decoder Bindings
+  media: videodev2: add V4L2_FMT_FLAG_FIXED_RESOLUTION
+  media: meson: add v4l2 m2m video decoder driver
+  MAINTAINERS: Add meson video decoder
+
+ .../bindings/media/amlogic,vdec.txt           |   71 ++
+ .../media/uapi/v4l/vidioc-enum-fmt.rst        |    6 +
+ MAINTAINERS                                   |    8 +
+ drivers/media/platform/Kconfig                |   10 +
+ drivers/media/platform/meson/Makefile         |    1 +
+ drivers/media/platform/meson/vdec/Makefile    |    8 +
+ .../media/platform/meson/vdec/codec_mpeg12.c  |  209 ++++
+ .../media/platform/meson/vdec/codec_mpeg12.h  |   14 +
+ drivers/media/platform/meson/vdec/dos_regs.h  |   98 ++
+ drivers/media/platform/meson/vdec/esparser.c  |  323 +++++
+ drivers/media/platform/meson/vdec/esparser.h  |   32 +
+ drivers/media/platform/meson/vdec/vdec.c      | 1071 +++++++++++++++++
+ drivers/media/platform/meson/vdec/vdec.h      |  265 ++++
+ drivers/media/platform/meson/vdec/vdec_1.c    |  229 ++++
+ drivers/media/platform/meson/vdec/vdec_1.h    |   14 +
+ .../media/platform/meson/vdec/vdec_ctrls.c    |   51 +
+ .../media/platform/meson/vdec/vdec_ctrls.h    |   14 +
+ .../media/platform/meson/vdec/vdec_helpers.c  |  441 +++++++
+ .../media/platform/meson/vdec/vdec_helpers.h  |   80 ++
+ .../media/platform/meson/vdec/vdec_platform.c |  107 ++
+ .../media/platform/meson/vdec/vdec_platform.h |   30 +
+ include/uapi/linux/videodev2.h                |    5 +-
+ 22 files changed, 3085 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/amlogic,vdec.txt
+ create mode 100644 drivers/media/platform/meson/vdec/Makefile
+ create mode 100644 drivers/media/platform/meson/vdec/codec_mpeg12.c
+ create mode 100644 drivers/media/platform/meson/vdec/codec_mpeg12.h
+ create mode 100644 drivers/media/platform/meson/vdec/dos_regs.h
+ create mode 100644 drivers/media/platform/meson/vdec/esparser.c
+ create mode 100644 drivers/media/platform/meson/vdec/esparser.h
+ create mode 100644 drivers/media/platform/meson/vdec/vdec.c
+ create mode 100644 drivers/media/platform/meson/vdec/vdec.h
+ create mode 100644 drivers/media/platform/meson/vdec/vdec_1.c
+ create mode 100644 drivers/media/platform/meson/vdec/vdec_1.h
+ create mode 100644 drivers/media/platform/meson/vdec/vdec_ctrls.c
+ create mode 100644 drivers/media/platform/meson/vdec/vdec_ctrls.h
+ create mode 100644 drivers/media/platform/meson/vdec/vdec_helpers.c
+ create mode 100644 drivers/media/platform/meson/vdec/vdec_helpers.h
+ create mode 100644 drivers/media/platform/meson/vdec/vdec_platform.c
+ create mode 100644 drivers/media/platform/meson/vdec/vdec_platform.h
+
+
+root@libretech-cc:~# v4l2-compliance -d /dev/video0 
+v4l2-compliance SHA: 40fd5611c5176137c80616f6ee93b36f0d88f2d5, 64 bits
+
+Compliance test for meson-vdec device /dev/video0:
+
+Driver Info:
+        Driver name      : meson-vdec
+        Card type        : Amlogic Video Decoder
+        Bus info         : platform:meson-vdec
+        Driver version   : 5.1.0
+        Capabilities     : 0x84204000
+                Video Memory-to-Memory Multiplanar
+                Streaming
+                Extended Pix Format
+                Device Capabilities
+        Device Caps      : 0x04204000
+                Video Memory-to-Memory Multiplanar
+                Streaming
+                Extended Pix Format
+        Detected Stateful Decoder
+
+Required ioctls:
+        test VIDIOC_QUERYCAP: OK
+
+Allow for multiple opens:
+        test second /dev/video0 open: OK
+        test VIDIOC_QUERYCAP: OK
+        test VIDIOC_G/S_PRIORITY: OK
+        test for unlimited opens: OK
+
+Debug ioctls:
+        test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+        test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+        test VIDIOC_QUERYCTRL: OK
+        test VIDIOC_G/S_CTRL: OK
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 2 Private Controls: 0
+
+Format ioctls:
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK
+        test VIDIOC_TRY_FMT: OK
+        test VIDIOC_S_FMT: OK
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK (Not Supported)
+        test Composing: OK (Not Supported)
+        test Scaling: OK
+
+Codec ioctls:
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK
+
+Buffer ioctls:
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+        test VIDIOC_EXPBUF: OK
+        test Requests: OK (Not Supported)
+
+Total for meson-vdec device /dev/video0: 44, Succeeded: 44, Failed: 0, Warnings: 0
+
+
+-- 
+2.21.0
 
 
 _______________________________________________
