@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 95DFAC43381
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 07:48:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8D185C43381
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 07:53:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 633E820700
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 07:48:33 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5A24A20857
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 07:53:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QIFuLl6b";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Nh+AbC+0"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 633E820700
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DaslvrKf";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ODdVQL4r"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5A24A20857
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,65 +26,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
 	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ODvlYct6ZAtvSC+iCggWBSMnC19YBXYfwb5Q80uZnB0=; b=QIFuLl6bpyxl9h
-	ox9cNjAj6+ZqauvwPo7nbwpdAUnRkGumKqHi/VFLz9jl2MWkNTW8Hnaot+e18km/ZgNGzCCa6Zs6D
-	Fb8mwR2BXKFuqyBxm8S+7JmP7P9Wndgd8pSzcbRUunmUHXzYhXQYpCRnb2rlNIXGPpApp+vFaU9Sq
-	WuwkQzVqCec6iX/xUAiOZmAdtLOV1/K2M2/0wfT8O4bu0prNSKTmKAOY3uW2lGJaNLvF5NU8vBTFF
-	IPO6OIGGeO0e2SXo7Mai4El9tFb+cBUOTePkkD+che4y8g+GLl7PACiagiDjG9cuXmUdkAwkYj2xI
-	SGYQlzoSXzMpQtMSJ0Ew==;
+	List-Owner; bh=iq0xTpyxnBvoCsb8mXwQSqJZnRokqQcsd4Y8kq+Aj7w=; b=DaslvrKfM+eeXN
+	eQ87oOY+aSSI3jdRRIQcFY+CtkAGfcdZIrVOgmGpAHiqesJGi8gCiH6p2ejlbRgCMNojN6f3JoNWl
+	4S4eUwsodcHkqC4bqrSSlYuR/JEv3/8rREtYr1j+3NQU8W/n7iHrnMvH3lNBidccBvZQyk9G0RNm1
+	FiUUWB7V2xKdoAsGz+TF9q1X46PcbwLwYqXIoN4xqDwi5O4KrayOrZUj4LvajJEiTtaczZA33STI2
+	+lJD0dmMudv40C8g87u25RRigQ3eE82P8gghh/6boZcjKYYGg5GfNZcnDIi8zZf5AZmul8EUFP15J
+	ghfKmA8BMlqr5aNvhnPw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hArgC-0006AN-9d; Mon, 01 Apr 2019 07:48:28 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1hArko-0000Ho-2V; Mon, 01 Apr 2019 07:53:14 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hArfq-0005oD-5p
- for linux-amlogic@lists.infradead.org; Mon, 01 Apr 2019 07:48:26 +0000
-Received: by mail-wr1-x444.google.com with SMTP id r4so10574869wrq.8
- for <linux-amlogic@lists.infradead.org>; Mon, 01 Apr 2019 00:48:05 -0700 (PDT)
+ id 1hArkd-00008Y-PF
+ for linux-amlogic@lists.infradead.org; Mon, 01 Apr 2019 07:53:05 +0000
+Received: by mail-wr1-x442.google.com with SMTP id h4so10579800wre.7
+ for <linux-amlogic@lists.infradead.org>; Mon, 01 Apr 2019 00:53:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=UV+n+dpIqqcipkajAaapuo73V0wxH6nDMwdCzNSuWU8=;
- b=Nh+AbC+0lMeu1HOMqzSHiJ5uwc4j3Ow+sXY68KlDAy8QL4XS/6Vs65sjz1V6WaKw52
- LRWPG9O2t4AVgyjDjZac0RgsWxOAWt2E6Qx0MUFEngPYS8qZwU4WcxOw5S3bUZIBZJDL
- BbccTbPc2S12JXGgjWwtcnZi4BwvU18AZ/SOUVwEtOyRNHuFaRuNzJv3m26bUozqTLUa
- yyTiGnZAd+AVtO1zXy9rhBPFj1KnipEfqPOAMyLSJmjeRJzCTyJVaJPrJZCiySTV7jOR
- xM5efuxric2GKDrXxOV+7L/PK1VqpR2g2dvKWx/BHJyVgpGUcSUBENR7u9BSEE/xbRsz
- hTcw==
+ bh=n0cjVrPkAczN0OVZtKpXlRyeOATGIyf7FvuDhqdvYrw=;
+ b=ODdVQL4rV04dS66tCynCWu6fjjowyc67Xc8yJFhxXOdy+bgfk2p46ncV5qXpGC06x1
+ Dv07enfzyZ92UNQtYlPJrprpNSbr1q1iQsAqfeU9NIn/0zgtpTzQKe33z3wWAi2XcPp6
+ qWrfMGBF5Cx5WdrRDBZUWz9/4LWkxqOtWSTOU9YwlBXFgNGv60b6qYw68huxxZ/C7NGz
+ OgUrY5aqukBZDgbP2n33uYE61P9Ej0AAsAfPoU9dHPrFaNEUXrifZwmm46nKuAPf1zOs
+ o/HFtDWl4qddpIaRaBO5rtJa0RczsucxuRVWjZhPlwJOkeTqqkMoeweLt6cHrih4Ijw1
+ Zmxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=UV+n+dpIqqcipkajAaapuo73V0wxH6nDMwdCzNSuWU8=;
- b=oIVcPyOM1GbYP2zJajVYw8JqrkruROl/n0+XPU3yJcv79qmAHtprEQonU/ueXMxD34
- JUK/qIGZTEimZTgt42IyN6s5hqcLaAVtgytcOPhVUKOGnaBxNznE+Ni3/zSimFiDYDRk
- JNSpcU4JjYQj6YGoDAIAdOlPRhPGpkibkLHMuZX2ohC0nf1/4NQu1VQFVAlXpOZdt3EW
- H2GSbPjuhoL+2HrAwvOfq2cVj6IPCKNhq1P0LrrF937gyVjFwSxScII8T7s/kIJQwLmi
- ysUsXDOX6xHpDjczFtuX3yuWH+9ed/I7rjW8uLaa2/QwcLePPfOqKYaAPLEce+CovOIH
- npZA==
-X-Gm-Message-State: APjAAAUk/tIcuRTmSj46Nfk34Uue+AG8QWQTDB1iO94hRdaxvp7rDpwh
- R1D6UtQzyaldZJS0xQdbO+x0bQ==
-X-Google-Smtp-Source: APXvYqwVSZe24VlFPyfzvR+UEBF2sWx6RuqCeJwmVnzD9ckpRuC0AWI0KiigQPbIXX7bv+HtJ96kZA==
-X-Received: by 2002:a5d:448b:: with SMTP id j11mr41494198wrq.218.1554104884439; 
- Mon, 01 Apr 2019 00:48:04 -0700 (PDT)
+ bh=n0cjVrPkAczN0OVZtKpXlRyeOATGIyf7FvuDhqdvYrw=;
+ b=dBOEHXavOR0nCi3O6cQ79GAJEujl1TMDEYxXSiv/SFaISLamk5g6GSgzuG+TBL3D73
+ X+JaQP+7eucInwlg7yEm2WyrS8WLVeZPNFC/v00/P+xhDFGhOAK+hNsXSrINhJNeU+Wk
+ D7GOVODbFrBiTTXU4rK2dzMnLykIYR/4PDmojoacMkiZIpBnoTQumWwJFJzZPpgvFTxP
+ UbiT4Y8qvghrI8OrDmxMUEOyGJBvud0nQOy/isIJKncz/2YibZCR+YtbdQk5AYB02sQG
+ qYhBAtqRTrGQfOvkuPPEYZg0jQ9rFz0yW70FdKnO29q9Rmh43OBJGHSYX7EKCtHNXSPA
+ NGWQ==
+X-Gm-Message-State: APjAAAUxMvS8EmQVZRBYMiwK7nPVuWRBEihmonJkRkeTrukQklBCEIQZ
+ Ou84vwCJI2xj7J6Rse+4qDtt3g==
+X-Google-Smtp-Source: APXvYqyMqAdPDh1rOCx/fzzfybqwj9i3vghVh1NLf83qWvikBAzHaGemtnoGMhG/430TQRpvThY8hQ==
+X-Received: by 2002:adf:edca:: with SMTP id v10mr37926519wro.157.1554105181994; 
+ Mon, 01 Apr 2019 00:53:01 -0700 (PDT)
 Received: from localhost.localdomain (176-150-251-154.abo.bbox.fr.
  [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id o17sm9448537wrw.73.2019.04.01.00.48.03
+ by smtp.gmail.com with ESMTPSA id f11sm10264511wrm.30.2019.04.01.00.53.00
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Mon, 01 Apr 2019 00:48:03 -0700 (PDT)
+ Mon, 01 Apr 2019 00:53:01 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: khilman@baylibre.com
-Subject: [PATCH] soc: amlogic: meson-gx-pwrc-vpu: Fix power on/off register
- bitmask
-Date: Mon,  1 Apr 2019 09:48:01 +0200
-Message-Id: <20190401074801.10414-1-narmstrong@baylibre.com>
+Subject: [PATCH v2] soc: amlogic: meson-gx-pwrc-vpu: Add support for G12A
+Date: Mon,  1 Apr 2019 09:52:58 +0200
+Message-Id: <20190401075258.11595-1-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190401_004806_996814_EA76F377 
-X-CRM114-Status: UNSURE (   9.86  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190401_005304_148246_DAEE69E7 
+X-CRM114-Status: GOOD (  18.74  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -103,50 +101,251 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The register bitmask to power on/off the VPU memories was incorectly set
-to 0x2 instead of 0x3. While still working, let's use the recommended
-vendor value instead.
+The Amlogic G12A SoC has a very similar VPU Power Controller setup
+than the older GXBB, GXL & GXm SoCs.
 
-Fixes: 75fcb5ca4b46 ("soc: amlogic: add Meson GX VPU Domains driver")
+This patch adds the variant support for G12A.
+
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/soc/amlogic/meson-gx-pwrc-vpu.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Changes since v1:
+- Move the GX mask fix to a separate patch
+
+Dependencies:
+- Depends on [1], but is reviewed, linux-amlogic maintainer can pick it in the same time as this patch
+
+[1] https://patchwork.kernel.org/patch/10851177/
+
+ drivers/soc/amlogic/meson-gx-pwrc-vpu.c | 152 ++++++++++++++++++++++--
+ 1 file changed, 140 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-index 6289965c42e9..05421d029dff 100644
+index 05421d029dff..511b6856225d 100644
 --- a/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
 +++ b/drivers/soc/amlogic/meson-gx-pwrc-vpu.c
-@@ -54,12 +54,12 @@ static int meson_gx_pwrc_vpu_power_off(struct generic_pm_domain *genpd)
- 	/* Power Down Memories */
- 	for (i = 0; i < 32; i += 2) {
- 		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG0,
--				   0x2 << i, 0x3 << i);
+@@ -11,6 +11,7 @@
+ #include <linux/bitfield.h>
+ #include <linux/regmap.h>
+ #include <linux/mfd/syscon.h>
++#include <linux/of_device.h>
+ #include <linux/reset.h>
+ #include <linux/clk.h>
+ 
+@@ -26,6 +27,7 @@
+ #define HHI_MEM_PD_REG0			(0x40 << 2)
+ #define HHI_VPU_MEM_PD_REG0		(0x41 << 2)
+ #define HHI_VPU_MEM_PD_REG1		(0x42 << 2)
++#define HHI_VPU_MEM_PD_REG2		(0x4d << 2)
+ 
+ struct meson_gx_pwrc_vpu {
+ 	struct generic_pm_domain genpd;
+@@ -80,6 +82,49 @@ static int meson_gx_pwrc_vpu_power_off(struct generic_pm_domain *genpd)
+ 	return 0;
+ }
+ 
++static int meson_g12a_pwrc_vpu_power_off(struct generic_pm_domain *genpd)
++{
++	struct meson_gx_pwrc_vpu *pd = genpd_to_pd(genpd);
++	int i;
++
++	regmap_update_bits(pd->regmap_ao, AO_RTI_GEN_PWR_SLEEP0,
++			   GEN_PWR_VPU_HDMI_ISO, GEN_PWR_VPU_HDMI_ISO);
++	udelay(20);
++
++	/* Power Down Memories */
++	for (i = 0; i < 32; i += 2) {
++		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG0,
 +				   0x3 << i, 0x3 << i);
- 		udelay(5);
- 	}
- 	for (i = 0; i < 32; i += 2) {
- 		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG1,
--				   0x2 << i, 0x3 << i);
++		udelay(5);
++	}
++	for (i = 0; i < 32; i += 2) {
++		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG1,
 +				   0x3 << i, 0x3 << i);
- 		udelay(5);
- 	}
- 	for (i = 8; i < 16; i++) {
-@@ -108,13 +108,13 @@ static int meson_gx_pwrc_vpu_power_on(struct generic_pm_domain *genpd)
- 	/* Power Up Memories */
- 	for (i = 0; i < 32; i += 2) {
- 		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG0,
--				   0x2 << i, 0);
++		udelay(5);
++	}
++	for (i = 0; i < 32; i += 2) {
++		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG2,
++				   0x3 << i, 0x3 << i);
++		udelay(5);
++	}
++	for (i = 8; i < 16; i++) {
++		regmap_update_bits(pd->regmap_hhi, HHI_MEM_PD_REG0,
++				   BIT(i), BIT(i));
++		udelay(5);
++	}
++	udelay(20);
++
++	regmap_update_bits(pd->regmap_ao, AO_RTI_GEN_PWR_SLEEP0,
++			   GEN_PWR_VPU_HDMI, GEN_PWR_VPU_HDMI);
++
++	msleep(20);
++
++	clk_disable_unprepare(pd->vpu_clk);
++	clk_disable_unprepare(pd->vapb_clk);
++
++	return 0;
++}
++
+ static int meson_gx_pwrc_vpu_setup_clk(struct meson_gx_pwrc_vpu *pd)
+ {
+ 	int ret;
+@@ -143,6 +188,60 @@ static int meson_gx_pwrc_vpu_power_on(struct generic_pm_domain *genpd)
+ 	return 0;
+ }
+ 
++static int meson_g12a_pwrc_vpu_power_on(struct generic_pm_domain *genpd)
++{
++	struct meson_gx_pwrc_vpu *pd = genpd_to_pd(genpd);
++	int ret;
++	int i;
++
++	regmap_update_bits(pd->regmap_ao, AO_RTI_GEN_PWR_SLEEP0,
++			   GEN_PWR_VPU_HDMI, 0);
++	udelay(20);
++
++	/* Power Up Memories */
++	for (i = 0; i < 32; i += 2) {
++		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG0,
 +				   0x3 << i, 0);
- 		udelay(5);
++		udelay(5);
++	}
++
++	for (i = 0; i < 32; i += 2) {
++		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG1,
++				   0x3 << i, 0);
++		udelay(5);
++	}
++
++	for (i = 0; i < 32; i += 2) {
++		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG2,
++				   0x3 << i, 0);
++		udelay(5);
++	}
++
++	for (i = 8; i < 16; i++) {
++		regmap_update_bits(pd->regmap_hhi, HHI_MEM_PD_REG0,
++				   BIT(i), 0);
++		udelay(5);
++	}
++	udelay(20);
++
++	ret = reset_control_assert(pd->rstc);
++	if (ret)
++		return ret;
++
++	regmap_update_bits(pd->regmap_ao, AO_RTI_GEN_PWR_SLEEP0,
++			   GEN_PWR_VPU_HDMI_ISO, 0);
++
++	ret = reset_control_deassert(pd->rstc);
++	if (ret)
++		return ret;
++
++	ret = meson_gx_pwrc_vpu_setup_clk(pd);
++	if (ret)
++		return ret;
++
++	return 0;
++}
++
+ static bool meson_gx_pwrc_vpu_get_power(struct meson_gx_pwrc_vpu *pd)
+ {
+ 	u32 reg;
+@@ -160,15 +259,37 @@ static struct meson_gx_pwrc_vpu vpu_hdmi_pd = {
+ 	},
+ };
+ 
++static struct meson_gx_pwrc_vpu vpu_hdmi_pd_g12a = {
++	.genpd = {
++		.name = "vpu_hdmi",
++		.power_off = meson_g12a_pwrc_vpu_power_off,
++		.power_on = meson_g12a_pwrc_vpu_power_on,
++	},
++};
++
+ static int meson_gx_pwrc_vpu_probe(struct platform_device *pdev)
+ {
++	const struct meson_gx_pwrc_vpu *vpu_pd_match;
+ 	struct regmap *regmap_ao, *regmap_hhi;
++	struct meson_gx_pwrc_vpu *vpu_pd;
+ 	struct reset_control *rstc;
+ 	struct clk *vpu_clk;
+ 	struct clk *vapb_clk;
+ 	bool powered_off;
+ 	int ret;
+ 
++	vpu_pd_match = of_device_get_match_data(&pdev->dev);
++	if (!vpu_pd_match) {
++		dev_err(&pdev->dev, "failed to get match data\n");
++		return -ENODEV;
++	}
++
++	vpu_pd = devm_kzalloc(&pdev->dev, sizeof(*vpu_pd), GFP_KERNEL);
++	if (!vpu_pd)
++		return -ENOMEM;
++
++	memcpy(vpu_pd, vpu_pd_match, sizeof(*vpu_pd));
++
+ 	regmap_ao = syscon_node_to_regmap(of_get_parent(pdev->dev.of_node));
+ 	if (IS_ERR(regmap_ao)) {
+ 		dev_err(&pdev->dev, "failed to get regmap\n");
+@@ -201,39 +322,46 @@ static int meson_gx_pwrc_vpu_probe(struct platform_device *pdev)
+ 		return PTR_ERR(vapb_clk);
  	}
  
- 	for (i = 0; i < 32; i += 2) {
- 		regmap_update_bits(pd->regmap_hhi, HHI_VPU_MEM_PD_REG1,
--				   0x2 << i, 0);
-+				   0x3 << i, 0);
- 		udelay(5);
+-	vpu_hdmi_pd.regmap_ao = regmap_ao;
+-	vpu_hdmi_pd.regmap_hhi = regmap_hhi;
+-	vpu_hdmi_pd.rstc = rstc;
+-	vpu_hdmi_pd.vpu_clk = vpu_clk;
+-	vpu_hdmi_pd.vapb_clk = vapb_clk;
++	vpu_pd->regmap_ao = regmap_ao;
++	vpu_pd->regmap_hhi = regmap_hhi;
++	vpu_pd->rstc = rstc;
++	vpu_pd->vpu_clk = vpu_clk;
++	vpu_pd->vapb_clk = vapb_clk;
++
++	platform_set_drvdata(pdev, vpu_pd);
+ 
+-	powered_off = meson_gx_pwrc_vpu_get_power(&vpu_hdmi_pd);
++	powered_off = meson_gx_pwrc_vpu_get_power(vpu_pd);
+ 
+ 	/* If already powered, sync the clock states */
+ 	if (!powered_off) {
+-		ret = meson_gx_pwrc_vpu_setup_clk(&vpu_hdmi_pd);
++		ret = meson_gx_pwrc_vpu_setup_clk(vpu_pd);
+ 		if (ret)
+ 			return ret;
  	}
+ 
+-	pm_genpd_init(&vpu_hdmi_pd.genpd, &pm_domain_always_on_gov,
++	pm_genpd_init(&vpu_pd->genpd, &pm_domain_always_on_gov,
+ 		      powered_off);
+ 
+ 	return of_genpd_add_provider_simple(pdev->dev.of_node,
+-					    &vpu_hdmi_pd.genpd);
++					    &vpu_pd->genpd);
+ }
+ 
+ static void meson_gx_pwrc_vpu_shutdown(struct platform_device *pdev)
+ {
++	struct meson_gx_pwrc_vpu *vpu_pd = platform_get_drvdata(pdev);
+ 	bool powered_off;
+ 
+-	powered_off = meson_gx_pwrc_vpu_get_power(&vpu_hdmi_pd);
++	powered_off = meson_gx_pwrc_vpu_get_power(vpu_pd);
+ 	if (!powered_off)
+-		meson_gx_pwrc_vpu_power_off(&vpu_hdmi_pd.genpd);
++		vpu_pd->genpd.power_off(&vpu_pd->genpd);
+ }
+ 
+ static const struct of_device_id meson_gx_pwrc_vpu_match_table[] = {
+-	{ .compatible = "amlogic,meson-gx-pwrc-vpu" },
++	{ .compatible = "amlogic,meson-gx-pwrc-vpu", .data = &vpu_hdmi_pd },
++	{
++	  .compatible = "amlogic,meson-g12a-pwrc-vpu",
++	  .data = &vpu_hdmi_pd_g12a
++	},
+ 	{ /* sentinel */ }
+ };
  
 -- 
 2.21.0
