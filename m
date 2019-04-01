@@ -7,63 +7,58 @@ X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 60188C43381
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 09:15:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 732A2C43381
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 10:01:13 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2F1E1214C6
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 09:15:32 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 421502086C
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 10:01:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ELse4Z8g"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2F1E1214C6
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=socionext.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hC/ZEcZ8"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 421502086C
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arm.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:References:
-	In-Reply-To:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ah3MDz3hvOmp/TsOf58MOVk16e+cHRxe+avirTeFT8M=; b=ELse4Z8gaejpL9
-	3XFX7m1c49fif+/NQ0VtMqlUr9fC403yHz+sOH4dFcZry8uxUzR5fCLSduTUV1YvFw0LxWgYJr3wv
-	Do/4VBjDhQPV0MFgAjgWbQ1bBq9VzdQVTKIf5rgrvAfOLA7Vtpo0dUg/XLm3WnjsL3KHXtt/RKvf/
-	ZqhlFdjq1gY6GDh8YrZcnF+WWrvF59pqBOxQT61o7rVePPlevH2nKaJTsxO9pctaKrgRUuCZDZgN7
-	E59SI6rmLI6bh3Cft2VidkQFUX2E4p4vLBdr6Mqx9rgCo6Bdse+sTO4IggMmMqC4cPH8njCSr7PMu
-	Nrym7UBEwsg3O7pbhIKQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=GQVCoPUKqeZtyu5MH9EWTFAq9Cf4zBUkkhffVojpaNs=; b=hC/ZEcZ84LKA5I
+	sgVLxlTyUrGoTlPPTAAfPdRscYh4bUPS1wLn9oyTRtV2/RZ7VmwqR7ok/NO1u2m/fJFTFvd6oWxh0
+	aCUYiUDKJquIXU+tOz9+KYlVYT6wyscv5O5EBM8MbERM3pq8DjfOTWXbken7es7UPJ6exQbezIFvi
+	3Xu9WMIxCNbwXkMRznGmyzl51I5Jjkgf+/dQjESGyUDZZyHN9gQ+Vz84egs8sPxMQZxO0JLrbS+qK
+	fOIJErm9OBfITpjbXRye9ucNClWPuw+gbbIS4ULmMw5vq5xtyNK1jgYo1rj/juwI5kCY44dA9xyzR
+	qhpsnFOFcYF6UrVOkFIA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hAt2N-0000o3-P4; Mon, 01 Apr 2019 09:15:27 +0000
-Received: from mx.socionext.com ([202.248.49.38])
+	id 1hAtkX-0006TF-Mt; Mon, 01 Apr 2019 10:01:05 +0000
+Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]
+ helo=foss.arm.com)
  by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hAt2K-0000n6-Hz; Mon, 01 Apr 2019 09:15:26 +0000
-Received: from unknown (HELO iyokan-ex.css.socionext.com) ([172.31.9.54])
- by mx.socionext.com with ESMTP; 01 Apr 2019 18:15:20 +0900
-Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
- by iyokan-ex.css.socionext.com (Postfix) with ESMTP id A3EBE611D6;
- Mon,  1 Apr 2019 18:15:20 +0900 (JST)
-Received: from 172.31.9.53 (172.31.9.53) by m-FILTER with ESMTP;
- Mon, 1 Apr 2019 18:15:20 +0900
-Received: from yuzu.css.socionext.com (yuzu [172.31.8.45])
- by iyokan.css.socionext.com (Postfix) with ESMTP id 5D5D740F06;
- Mon,  1 Apr 2019 18:15:20 +0900 (JST)
-Received: from [127.0.0.1] (unknown [10.213.132.48])
- by yuzu.css.socionext.com (Postfix) with ESMTP id 3406C120499;
- Mon,  1 Apr 2019 18:15:20 +0900 (JST)
-Date: Mon, 01 Apr 2019 18:15:19 +0900
-From: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-To: Chunfeng Yun <chunfeng.yun@mediatek.com>
-Subject: Re: [PATCH 3/4] phy: socionext: get optional clock by
- devm_clk_get_optional()
-In-Reply-To: <f3370a0619d40c40676ed029cc04a3ed1c12b991.1553914418.git.chunfeng.yun@mediatek.com>
-References: <a8539bcf66065380069676fbea99a51254309803.1553914418.git.chunfeng.yun@mediatek.com>
- <f3370a0619d40c40676ed029cc04a3ed1c12b991.1553914418.git.chunfeng.yun@mediatek.com>
-Message-Id: <20190401181519.2595.4A936039@socionext.com>
+ id 1hAtkV-0006ST-HU; Mon, 01 Apr 2019 10:01:04 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D54F1A78;
+ Mon,  1 Apr 2019 03:01:00 -0700 (PDT)
+Received: from [10.1.196.69] (e112269-lin.cambridge.arm.com [10.1.196.69])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 49BA23F690;
+ Mon,  1 Apr 2019 03:00:59 -0700 (PDT)
+Subject: Re: [PATCH v4] dt-bindings: gpu: add bindings for the ARM Mali
+ Bifrost GPU
+To: Neil Armstrong <narmstrong@baylibre.com>, daniel@ffwll.ch, robh@kernel.org
+References: <20190401080949.14550-1-narmstrong@baylibre.com>
+From: Steven Price <steven.price@arm.com>
+Message-ID: <1640dd7b-3576-d9ce-0641-6b6a64a87275@arm.com>
+Date: Mon, 1 Apr 2019 11:00:57 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.5.1
 MIME-Version: 1.0
-X-Mailer: Becky! ver. 2.70 [ja]
+In-Reply-To: <20190401080949.14550-1-narmstrong@baylibre.com>
+Content-Language: en-GB
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190401_021524_696903_A2928F45 
-X-CRM114-Status: GOOD (  17.99  )
+X-CRM114-CacheID: sfid-20190401_030103_590213_10F64209 
+X-CRM114-Status: GOOD (  26.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -75,84 +70,151 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- Kishon Vijay Abraham I <kishon@ti.com>, linux-mediatek@lists.infradead.org,
- Matthias Brugger <matthias.bgg@gmail.com>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-This looks good to me.
-
-Reviewed-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-
-Thanks,
-
-On Sat, 30 Mar 2019 17:11:37 +0800
-Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
-
-> Use devm_clk_get_optional() to get optional clock
+On 01/04/2019 09:09, Neil Armstrong wrote:
+> Add the bindings for the Bifrost family of ARM Mali GPUs.
 > 
-> Cc: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> The Bifrost GPU architecture is similar to the Midgard family,
+> but with a different Shader Core & Execution Engine structures.
+> 
+> Bindings are based on the Midgard family bindings, but the inner
+> architectural changes makes it a separate family needing separate
+> bindings.
+> 
+> The Bifrost GPUs are present in a number of recent SoCs, like the
+> Amlogic G12A Family, and many other vendors.
+> The Amlogic vendor specific compatible is added to handle the
+> specific IP integration differences and dependencies.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->  drivers/phy/socionext/phy-uniphier-usb3hs.c | 10 +++-------
->  drivers/phy/socionext/phy-uniphier-usb3ss.c | 10 +++-------
->  2 files changed, 6 insertions(+), 14 deletions(-)
+>  .../bindings/gpu/arm,mali-bifrost.txt         | 92 +++++++++++++++++++
+>  1 file changed, 92 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-bifrost.txt
 > 
-> diff --git a/drivers/phy/socionext/phy-uniphier-usb3hs.c b/drivers/phy/socionext/phy-uniphier-usb3hs.c
-> index b1b048be6166..50f379fc4e06 100644
-> --- a/drivers/phy/socionext/phy-uniphier-usb3hs.c
-> +++ b/drivers/phy/socionext/phy-uniphier-usb3hs.c
-> @@ -335,13 +335,9 @@ static int uniphier_u3hsphy_probe(struct platform_device *pdev)
->  	if (IS_ERR(priv->clk_parent))
->  		return PTR_ERR(priv->clk_parent);
->  
-> -	priv->clk_ext = devm_clk_get(dev, "phy-ext");
-> -	if (IS_ERR(priv->clk_ext)) {
-> -		if (PTR_ERR(priv->clk_ext) == -ENOENT)
-> -			priv->clk_ext = NULL;
-> -		else
-> -			return PTR_ERR(priv->clk_ext);
-> -	}
-> +	priv->clk_ext = devm_clk_get_optional(dev, "phy-ext");
-> +	if (IS_ERR(priv->clk_ext))
-> +		return PTR_ERR(priv->clk_ext);
->  
->  	priv->rst = devm_reset_control_get_shared(dev, "phy");
->  	if (IS_ERR(priv->rst))
-> diff --git a/drivers/phy/socionext/phy-uniphier-usb3ss.c b/drivers/phy/socionext/phy-uniphier-usb3ss.c
-> index 4be95679c7d8..ec231e40ef2a 100644
-> --- a/drivers/phy/socionext/phy-uniphier-usb3ss.c
-> +++ b/drivers/phy/socionext/phy-uniphier-usb3ss.c
-> @@ -238,13 +238,9 @@ static int uniphier_u3ssphy_probe(struct platform_device *pdev)
->  		if (IS_ERR(priv->clk))
->  			return PTR_ERR(priv->clk);
->  
-> -		priv->clk_ext = devm_clk_get(dev, "phy-ext");
-> -		if (IS_ERR(priv->clk_ext)) {
-> -			if (PTR_ERR(priv->clk_ext) == -ENOENT)
-> -				priv->clk_ext = NULL;
-> -			else
-> -				return PTR_ERR(priv->clk_ext);
-> -		}
-> +		priv->clk_ext = devm_clk_get_optional(dev, "phy-ext");
-> +		if (IS_ERR(priv->clk_ext))
-> +			return PTR_ERR(priv->clk_ext);
->  
->  		priv->rst = devm_reset_control_get_shared(dev, "phy");
->  		if (IS_ERR(priv->rst))
-> -- 
-> 2.20.1
+> Changes since v3:
+> - Added note about discoverable model/revision
+> - Enforced fixed defined irq order
+> - Fixed typo in accommodate
+> 
+> Changes since v2:
+> - moved to a single compatible since HW is fully discoverable
+> 
+> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.txt b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.txt
+> new file mode 100644
+> index 000000000000..711c9ead17a2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.txt
+> @@ -0,0 +1,92 @@
+> +ARM Mali Bifrost GPU
+> +====================
+> +
+> +Required properties:
+> +
+> +- compatible :
+> +  * Since Mali Bifrost GPU model/revision if fully discoverable by reading
+                                             ^^
+s/if/is/
 
----
-Best Regards,
-Kunihiko Hayashi
+> +    some determined registers, must contain the following:
+> +    + "arm,mali-bifrost"
+> +  * which must be preceded by one of the following vendor specifics:
+> +    + "amlogic,meson-g12a-mali"
+> +
+> +- reg : Physical base address of the device and length of the register area.
+> +
+> +- interrupts : Contains the three IRQ lines required by Mali Bifrost devices,
+> +  in the following defined order.
+> +
+> +- interrupt-names : Contains the names of IRQ resources in this exact defined
+> +  order: "job", "mmu", "gpu".
 
+Is there any point in having "interrupt-names" if we're fixing the
+order? Although I guess it helps match the Midgard bindings.
+
+Steve
+
+> +
+> +Optional properties:
+> +
+> +- clocks : Phandle to clock for the Mali Bifrost device.
+> +
+> +- mali-supply : Phandle to regulator for the Mali device. Refer to
+> +  Documentation/devicetree/bindings/regulator/regulator.txt for details.
+> +
+> +- operating-points-v2 : Refer to Documentation/devicetree/bindings/opp/opp.txt
+> +  for details.
+> +
+> +- resets : Phandle of the GPU reset line.
+> +
+> +Vendor-specific bindings
+> +------------------------
+> +
+> +The Mali GPU is integrated very differently from one SoC to
+> +another. In order to accommodate those differences, you have the option
+> +to specify one more vendor-specific compatible, among:
+> +
+> +- "amlogic,meson-g12a-mali"
+> +  Required properties:
+> +  - resets : Should contain phandles of :
+> +    + GPU reset line
+> +    + GPU APB glue reset line
+> +
+> +Example for a Mali-G31:
+> +
+> +gpu@ffa30000 {
+> +	compatible = "amlogic,meson-g12a-mali", "arm,mali-bifrost";
+> +	reg = <0xffe40000 0x10000>;
+> +	interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>,
+> +		     <GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH>,
+> +		     <GIC_SPI 162 IRQ_TYPE_LEVEL_HIGH>;
+> +	interrupt-names = "job", "mmu", "gpu";
+> +	clocks = <&clk CLKID_MALI>;
+> +	mali-supply = <&vdd_gpu>;
+> +	operating-points-v2 = <&gpu_opp_table>;
+> +	resets = <&reset RESET_DVALIN_CAPB3>, <&reset RESET_DVALIN>;
+> +};
+> +
+> +gpu_opp_table: opp_table0 {
+> +	compatible = "operating-points-v2";
+> +
+> +	opp@533000000 {
+> +		opp-hz = /bits/ 64 <533000000>;
+> +		opp-microvolt = <1250000>;
+> +	};
+> +	opp@450000000 {
+> +		opp-hz = /bits/ 64 <450000000>;
+> +		opp-microvolt = <1150000>;
+> +	};
+> +	opp@400000000 {
+> +		opp-hz = /bits/ 64 <400000000>;
+> +		opp-microvolt = <1125000>;
+> +	};
+> +	opp@350000000 {
+> +		opp-hz = /bits/ 64 <350000000>;
+> +		opp-microvolt = <1075000>;
+> +	};
+> +	opp@266000000 {
+> +		opp-hz = /bits/ 64 <266000000>;
+> +		opp-microvolt = <1025000>;
+> +	};
+> +	opp@160000000 {
+> +		opp-hz = /bits/ 64 <160000000>;
+> +		opp-microvolt = <925000>;
+> +	};
+> +	opp@100000000 {
+> +		opp-hz = /bits/ 64 <100000000>;
+> +		opp-microvolt = <912500>;
+> +	};
+> +};
+> 
 
 
 _______________________________________________
