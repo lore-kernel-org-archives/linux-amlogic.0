@@ -3,20 +3,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AEA97C43381
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 08:43:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A862C43381
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 08:48:53 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7F5E020828
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 08:43:41 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CEB79217F4
+	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 08:48:52 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="p+3Sint4";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="yS4eoGfg"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7F5E020828
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rV/DKk5x";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="rRKlKRbW"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CEB79217F4
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,60 +25,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/ID6MIMC+vCm1q3FfmjPdgwW9MiSgaXDqhi0BlCb9zU=; b=p+3Sint4o5hK4w
-	0d45VvVBwC33VaMVRY4t5lb5jrWpRu8rVrLkSShGqzF+L1eRMJrdp1xvr1scYA9grZiPIU+3HTNwh
-	zf0Q0JyoirpMA4l9zVM+ulv7xW9tbw8cjjW4AqKJsNVCDh+S+PWYb5zxcFhhxUiB9yc7ZUXRMP2qm
-	NBy59dcHx41+FQkyYJupd6iJN6ZciuqQ/TChCnlb0h5ARTeLHtTSz7FWNkxOrAxD0XcnQPrWEie4o
-	8r4kB+By0zclL84UzdszDGsMofbfv/OX5P9u9uAiOdu4MHTmzWxLdvqlQN09lWAV95Gw/CEwakhH2
-	4v/IQYuLI3839KGPIV6A==;
+	List-Owner; bh=H2FKJ2a/JeWA9bluImV1gipI7yECtqioHGSwlJ9xIog=; b=rV/DKk5xt8Hj4E
+	xv9tWMrdaO8uzyAdw+7veLubq2MUFc5v1kiDgJg+yfaVO2iSzfohbar5pVJD/7IPdJbU7YIDTq82f
+	tpt5hr6wld9nla8Haej/okYuyxwQ/NA7dSOmJKwz635sZfUKhLVPCvXtnGR9U4wUFMk65wZWGZmSH
+	E0rKpvfF7luIPfBuFxVF6pTVLKSE/IEMiwuiVxcD6zO6bUUtgYRzbRJzx4v6Bg/9DykwpSM62b0jL
+	OLoTPTB1qBdC5aZ8AuFj1zB6sjeuVgwTCfpGJu5dSxdPM215rXVJXnX8It3WfMv190Wvlkp0PBTCg
+	mWMDdDilVTxGmKX40VwQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hAsXY-00053X-R9; Mon, 01 Apr 2019 08:43:36 +0000
+	id 1hAsca-0007Jz-71; Mon, 01 Apr 2019 08:48:48 +0000
 Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hAsXV-00050y-Q5
- for linux-amlogic@lists.infradead.org; Mon, 01 Apr 2019 08:43:35 +0000
-Received: by mail-wr1-x442.google.com with SMTP id s15so10792181wra.12
- for <linux-amlogic@lists.infradead.org>; Mon, 01 Apr 2019 01:43:33 -0700 (PDT)
+ id 1hAscW-0007Ik-Q6
+ for linux-amlogic@lists.infradead.org; Mon, 01 Apr 2019 08:48:46 +0000
+Received: by mail-wr1-x442.google.com with SMTP id g3so10822147wrx.9
+ for <linux-amlogic@lists.infradead.org>; Mon, 01 Apr 2019 01:48:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=4Ov2Fn5wiibVp2xk112N3W0Y1U1VySRz81JKmlBPpbM=;
- b=yS4eoGfgKNsKRKM6TRva5LR4BnXhtzDch+dkfkClshNU/RwtVz8KwsP6Bm3wVJcNQc
- oshxx21HeHyDZSPF2ZNHj3tsjffeJkDIW+MrXN2tkBcpUo+Z7C7fEEJIrYianx+XMSjz
- voIBSw+EiNICIYRUL+ozbvHvtlgm3jZ6IJIF+nss2hg17lp3asbc3x4oLiynQXgOUTgz
- BXasFsbmtN2IpPEOB5naFRBWJa/yopXHyStdgL6lK94PB6BeRK3Uu2g0TkNKTUphVl3x
- SsbYpxIbw+aMGlbRDwncPlPrrajvPQnBjOL7/IEGXTYJRz5SDRZzBqFfULR/yWAuZ1On
- 23dg==
+ bh=B2N8UX7mXp7F/QOodI27adOtfevZ45wwWnt2ek2Fc+8=;
+ b=rRKlKRbWHbDUknmuG1x+rnZWKEUcTMO/vJtlkzeMDC2JcfpK7gmtHag/bhvSLIQB6b
+ Qk4njugYAqRXGm5MhdKjEHbt63BmpIMObwEkoEG2dnzcAeu20rnPw4yf1XEZHSyDTPyR
+ H6750NCTvv7kEDDy8ZWooSzW+tx8wlaovSD9qmD3eU8f8G3WVs04pQN0rptmoWjHUi+l
+ OWfoUv0csw78+/4zIBAkGnnDkRUAfq8+Cmxb7QHINDflWdiZ1kWnHrHAElGuhyCiT6u2
+ 4xrJ8x7KhPaBiKSWNZWMOH92Q4OspA1yvPhqfknAKyG7HazQ+0NQuwXTcEc1SIv2ofJc
+ +wfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=4Ov2Fn5wiibVp2xk112N3W0Y1U1VySRz81JKmlBPpbM=;
- b=OlLj99HLyvsgvDXck/dUIzautw3IKcPF6+Ta06q6nDVC1Ob5diIOQuOtJfMPB8JGPk
- zihSxKTxeeaZtFpVAP6qbGrDiElWcxordvGS3OWuwi4FOs8xF/GZi3xWNyPI0p62UrF/
- L73X9TQ+jbqD8WJVUbkfMwQFtoLTF+ylYABd97DKZ0CnMqrjPuRCMyuKE5lcP1lyKth8
- ubaXpDVDNjETCb/BdD4BAA2eBkZWBMi2f9NqBrA7v7QUGTZ3uOFHRZv+0YS3WIf3dRxp
- NO8PydcHBCwCEZClHsaHq/mU/NGoHXCh6cF0Y7HfEOaQexQPwuBx8fKGsfafGo+PzCIt
- dJwQ==
-X-Gm-Message-State: APjAAAUIjf/zGkhhMtUEs4wXlFXBiXxuCdOEkVU6oRWXYYwxrcgLRdeQ
- xsfHljHXwhhO1RHcCrbXSXcrQw==
-X-Google-Smtp-Source: APXvYqw+VHPJ2FEPV3KT3fUXI/UOIkzHh8H7+pdJGs/OF4rPA2Muk9BOOoHeDJDSNU0HRwHqBFbyqg==
-X-Received: by 2002:adf:f48f:: with SMTP id l15mr39148579wro.248.1554108212406; 
- Mon, 01 Apr 2019 01:43:32 -0700 (PDT)
+ bh=B2N8UX7mXp7F/QOodI27adOtfevZ45wwWnt2ek2Fc+8=;
+ b=jW+vQYgY6vSCmvoyUdo70dCOvuwYq/0vFd0hvrqCMjWzzlpwJ83w07n7oTCOLua0OJ
+ 8R5qkUNp9M3hWzSGKuXCTSUp6+CqDcg4uSqkuoVrhIMgCz7U7gQLfIEYDaZ6em6UwJG9
+ rY3NCL/784BlxQMGuleldDRvXQ84Qx0pkrjaemk0OoSvTEjxWDUln/zD9ZlmmRci1rmh
+ GqXqrOhU+/6u2AmIhXR5W1BtlyF/7kEJFWt40T2iQmoO75yk26KgFuCIgIOfzcHgZ0p1
+ qPYApqGMAjRx1C7/Z8WbgR4q3QTA39JP9/MQaQP74/n48MrKfEvOelkP280lfbhzhPDV
+ uNSg==
+X-Gm-Message-State: APjAAAVoRJ4Bi0qQhmk4B0gqquZtLvk0iEvLUuBUMq19uTdGPvn42rRo
+ LGZCVNLPhQvEVGZRmvpQhRJCbiO2swdg+w==
+X-Google-Smtp-Source: APXvYqyhEmZEUsf6fUnX1i3+oDhHEZu+aXc/SiOqON/ExQWX03tJCncmalPNSHSFZXrURBbv5EfjLQ==
+X-Received: by 2002:a5d:6987:: with SMTP id g7mr28112223wru.299.1554108523301; 
+ Mon, 01 Apr 2019 01:48:43 -0700 (PDT)
 Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
  by smtp.gmail.com with ESMTPSA id
- a126sm9553845wmh.4.2019.04.01.01.43.31
+ 7sm37391184wrc.81.2019.04.01.01.48.42
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 01 Apr 2019 01:43:31 -0700 (PDT)
-Subject: Re: [PATCH v2 0/2] clk: meson8b: add the video decoder clocks
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- jbrunet@baylibre.com, linux-amlogic@lists.infradead.org,
- mjourdan@baylibre.com
-References: <20190324151423.19063-1-martin.blumenstingl@googlemail.com>
+ Mon, 01 Apr 2019 01:48:42 -0700 (PDT)
+Subject: Re: [PATCH v2 0/2] arm64: meson-gxm: Add support for the Mali T820 GPU
+To: khilman@baylibre.com
+References: <20190315135655.28359-1-narmstrong@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -131,16 +129,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <f50b6527-67c5-7720-f19d-77b662f9c369@baylibre.com>
-Date: Mon, 1 Apr 2019 10:43:31 +0200
+Message-ID: <ed3ca736-0d2d-0a69-2e14-a9ed29f0cd13@baylibre.com>
+Date: Mon, 1 Apr 2019 10:48:41 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190324151423.19063-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20190315135655.28359-1-narmstrong@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190401_014333_957032_08AE5841 
-X-CRM114-Status: GOOD (  17.87  )
+X-CRM114-CacheID: sfid-20190401_014844_849219_DCA8BEE6 
+X-CRM114-Status: GOOD (  12.74  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -152,53 +150,37 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 24/03/2019 16:14, Martin Blumenstingl wrote:
-> This adds the video decoder clocks for Meson8, Meson8b and Meson8m2.
+On 15/03/2019 14:56, Neil Armstrong wrote:
+> This patchset adds :
+> - Optional reset properties in the midgard bindings
+> - Mali T820 Node in Amlogic Meson GXM DTSI
 > 
-> The clock tree on Meson8 differs from the one one Meson8b and Meson8m2.
-> Details can be found in patch #2.
+> Changes since v1:
+> - Updated midgard DT wording following the recently submitted 
+>   bifrost bindings
 > 
-> There are some checkpatch warnings in patch #2:
->   WARNING: please, no space before tabs
-> I decided to still send the patch because we have the same inconsistency
-> with all other clk_hw_onecell_data table entries. Please let me know if
-> I should come up with a follow-up patch to clean them all up.
+> Christian Hewitt (1):
+>   arm64: dts: meson-gxm: Add Mali-T820 node
 > 
-> Testing:
-> I have not tested this with Maxime's video decoder driver yet.
-> However, I manually enabled and set various frequencies for the HCODEC
-> clock and verified that clkmsr reports the correct rate.
+> Neil Armstrong (1):
+>   dt-bindings: gpu: mali-midgard: Add resets property
 > 
-> Dependencies:
-> This is meant to be applied on top of my other series from [0]:
->   clk: meson8b: add the VPU clock tree
-> 
-> Changes since v1 at [1]:
-> - collected Neil's and Maxime's Reviewed-by (thank you!)
-> 
-> 
-> [0] https://patchwork.kernel.org/cover/10860401/
-> [1] https://patchwork.kernel.org/cover/10860513/
-> 
-> 
-> Martin Blumenstingl (2):
->   dt-bindings: clock: meson8b: export the video decoder clocks
->   clk: meson: meson8b: add the video decoder clock trees
-> 
->  drivers/clk/meson/meson8b.c              | 312 +++++++++++++++++++++++
->  drivers/clk/meson/meson8b.h              |  17 +-
->  include/dt-bindings/clock/meson8b-clkc.h |   4 +
->  3 files changed, 332 insertions(+), 1 deletion(-)
+>  .../bindings/gpu/arm,mali-midgard.txt         | 14 ++++++++++
+>  arch/arm64/boot/dts/amlogic/meson-gxm.dtsi    | 27 +++++++++++++++++++
+>  2 files changed, 41 insertions(+)
 > 
 
-Applied [1] to next/headers and [2] to next/drivers for Linux 5.2-rc1
+Kevin, can you take both in your tree now the bindings are reviewed ?
+
+Thanks,
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
