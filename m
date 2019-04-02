@@ -1,70 +1,89 @@
-Return-Path: <SRS0=bepq=SD=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=VV3g=SE=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_NEOMUTT autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A96CFC43381
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 18:38:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2396EC43381
+	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Apr 2019 04:43:02 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 720F320896
-	for <linux-amlogic@archiver.kernel.org>; Mon,  1 Apr 2019 18:38:59 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E714020663
+	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Apr 2019 04:43:01 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PQJcwYuj"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 720F320896
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NzzLJkc/";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ixlTkYu5"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E714020663
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OdeLaFV0stbbhsZyhuSk1al4xXiF33qM+iroJ+73WBs=; b=PQJcwYujGYIf75
-	kNqJGXfOI7swyfZMVqD1o5BXwwvPOC62d16qXa+VZo7PRdIp/J4zgVLQI4pHobBvrkqqCp7stKzcj
-	NSzdlfYCZJNEg5TJiwmdwwUkxZsxJt/Layia/HSTUNxxMvQStCaNgUvKl96hB5j+IJIsJP1d+SOV9
-	ouMI2aKoz4p/4OSOXzyOpNMYUVAV46E6apsb7/gtDy6jOvw94LWVwzpxsEwUfuOZFTb4kQRBFOuzt
-	LRgx84OyxmmnI9Yb4SUYuJN1EbjtzyhmP+al2VS3kXk/DfEVzgWi5A7gIhMoJA1QtPfLzmrA4e/nG
-	IAvIIj0y3cBiNi4ITe7A==;
+	List-Owner; bh=iHE30aXiTxFh8UqIMXQzPzPmeZr6ycez0fZBBRbeojs=; b=NzzLJkc/RByuP0
+	VWAWRBgRKBG0EFC5VBmCWCAfZd/aE2XZQ9t3z82I2QZ3UfUOI/qPjRps+KV8y7YGa4GcPP/UUkzc8
+	AbG7k0R/SOzqNVMH7/S3JJOq1/DfJtFfGVrmsnQajdPUin1vPyrt9go+0j9d1LnmAF5ADuV6zUsru
+	RwOkXBgGVw+gGiTCTqsLAUm3dCSQTBkAoThwC/vvIxKmq8FG6zbtCwU724GjqlCfmFkibljeqrH5w
+	cgbQoMoaxSqeZVzkjusBMEIOPf6/NP5KV9zHBu8wG0pc7QptFAuEpdM0PVd2QEScB7WY+pknmdVSK
+	iML8LAXpw19ofWBFhXLQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hB1pd-0006Ds-Uv; Mon, 01 Apr 2019 18:38:53 +0000
-Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
+	id 1hBBG8-00072a-UG; Tue, 02 Apr 2019 04:42:52 +0000
+Received: from mail-pf1-x443.google.com ([2607:f8b0:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hB1pa-0006DF-P0
- for linux-amlogic@lists.infradead.org; Mon, 01 Apr 2019 18:38:52 +0000
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
- by metis.ext.pengutronix.de with esmtps
- (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.89)
- (envelope-from <ukl@pengutronix.de>)
- id 1hB1pY-00030r-69; Mon, 01 Apr 2019 20:38:48 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
- (envelope-from <ukl@pengutronix.de>)
- id 1hB1pX-0007sB-Gf; Mon, 01 Apr 2019 20:38:47 +0200
-Date: Mon, 1 Apr 2019 20:38:47 +0200
-From: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH 1/2] pwm: meson: consider 128 a valid pre-divider
-Message-ID: <20190401183847.7xhlgff63cvlzz2h@pengutronix.de>
-References: <20190401181817.11999-1-martin.blumenstingl@googlemail.com>
- <20190401181817.11999-2-martin.blumenstingl@googlemail.com>
+ id 1hBBFz-0006ua-WB
+ for linux-amlogic@lists.infradead.org; Tue, 02 Apr 2019 04:42:46 +0000
+Received: by mail-pf1-x443.google.com with SMTP id 188so5693608pfd.8
+ for <linux-amlogic@lists.infradead.org>; Mon, 01 Apr 2019 21:42:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=vNybugLJ1syLLEj5KhGmwpf3GcnIHGr8LT9ikdK8UC0=;
+ b=ixlTkYu54L05CWEPJNPWVwpVfX7wS1IYidw9SqN5NQccYgrrO4r98yG1D14bN5q4cX
+ z+t6da4DXEG/V2wR/kSTdz4va6MuvJ+vd5E1DJN8VQqY8iDxIOwUhZir5kwCB91Xzbch
+ KgyMQz2+w6FXNS32pCoefOgh81g1ZpBtmMBpXkqJOEPxbURAsFnROGuAXLdjbvxpsPpY
+ rLQjPnjL40UZ22c7QgAha37L4dB6DY5CtL4hSmleQgmI0Gj+SG49GZDb6xteh8HzFd39
+ V1/RrYN1555u72yFOtEALYfeHsjfAnq5a/Do7gtFWulQbPlQw9cqXutVYRQwYqOACu4y
+ h/kQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=vNybugLJ1syLLEj5KhGmwpf3GcnIHGr8LT9ikdK8UC0=;
+ b=QBzYZK/PYx1bRRJ+3O9MZCzgr5nBF+IVKn6+vHnxXvgbNn+xFy5SO4/+MshMiD/JPv
+ qSoSO0LlaJDYlrfReXV25/zz0vTZOq05w45Xm1l25mIcaw7lA5+13qjDGIdq31m2tMsC
+ Dl75OpGDwRCsNy3C1Q4yU8JqkalkGRxaI4mcovaMY1QBOWLe7XKE/RJoPWBckjqj9sYK
+ HObLTZKa3Jd0bcr2KtrSDTkkVFeMKXvP8yJ+0ONb34U9mFLGbUZdO+RDaCKGPkF2mict
+ 5iABEB/V/4FZZMqkYnJRzAhl5AQUqB2dKF4pCpgJvwknTZc/9i99JcfKEB/+5hRRPBbC
+ EcHQ==
+X-Gm-Message-State: APjAAAUZlMJV3qg1CQSKyahKE17bNwGIv9ttUX72olqbW//fcm3ojFvp
+ NCzMqhY4Khow8DWxyt13MsVFgg==
+X-Google-Smtp-Source: APXvYqxVGbCb4xTICQnSMT55PM/u1hnp31xgbW5A6zIe070KJMy64ELVGGQ5yJOeYz+xw0rDsRH/QA==
+X-Received: by 2002:aa7:8019:: with SMTP id j25mr67250575pfi.77.1554180161589; 
+ Mon, 01 Apr 2019 21:42:41 -0700 (PDT)
+Received: from localhost (c-67-161-37-193.hsd1.ca.comcast.net. [67.161.37.193])
+ by smtp.googlemail.com with ESMTPSA id
+ u62sm21665696pfa.124.2019.04.01.21.42.40
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Mon, 01 Apr 2019 21:42:40 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH v2 0/2] arm64: meson-gxm: Add support for the Mali T820 GPU
+In-Reply-To: <ed3ca736-0d2d-0a69-2e14-a9ed29f0cd13@baylibre.com>
+References: <20190315135655.28359-1-narmstrong@baylibre.com>
+ <ed3ca736-0d2d-0a69-2e14-a9ed29f0cd13@baylibre.com>
+Date: Mon, 01 Apr 2019 21:42:40 -0700
+Message-ID: <7hbm1puif3.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20190401181817.11999-2-martin.blumenstingl@googlemail.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190401_113850_977982_856C0F6F 
-X-CRM114-Status: GOOD (  11.27  )
+X-CRM114-CacheID: sfid-20190401_214244_252010_4211603F 
+X-CRM114-Status: UNSURE (   8.96  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -76,52 +95,47 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-pwm@vger.kernel.org, narmstrong@baylibre.com,
- bichao.zheng@amlogic.com, linux-kernel@vger.kernel.org,
- thierry.reding@gmail.com, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Martin,
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-On Mon, Apr 01, 2019 at 08:18:16PM +0200, Martin Blumenstingl wrote:
-> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-> index f6e738ad7bd9..4b708c1fcb1d 100644
-> --- a/drivers/pwm/pwm-meson.c
-> +++ b/drivers/pwm/pwm-meson.c
-> @@ -188,7 +188,7 @@ static int meson_pwm_calc(struct meson_pwm *meson,
->  	do_div(fin_ps, fin_freq);
->  =
+> On 15/03/2019 14:56, Neil Armstrong wrote:
+>> This patchset adds :
+>> - Optional reset properties in the midgard bindings
+>> - Mali T820 Node in Amlogic Meson GXM DTSI
+>> 
+>> Changes since v1:
+>> - Updated midgard DT wording following the recently submitted 
+>>   bifrost bindings
+>> 
+>> Christian Hewitt (1):
+>>   arm64: dts: meson-gxm: Add Mali-T820 node
+>> 
+>> Neil Armstrong (1):
+>>   dt-bindings: gpu: mali-midgard: Add resets property
+>> 
+>>  .../bindings/gpu/arm,mali-midgard.txt         | 14 ++++++++++
+>>  arch/arm64/boot/dts/amlogic/meson-gxm.dtsi    | 27 +++++++++++++++++++
+>>  2 files changed, 41 insertions(+)
+>> 
+>
+> Kevin, can you take both in your tree now the bindings are reviewed ?
 
->  	/* Calc pre_div with the period */
-> -	for (pre_div =3D 0; pre_div < MISC_CLK_DIV_MASK; pre_div++) {
-> +	for (pre_div =3D 0; pre_div <=3D MISC_CLK_DIV_MASK; pre_div++) {
->  		cnt =3D DIV_ROUND_CLOSEST_ULL((u64)period * 1000,
->  					    fin_ps * (pre_div + 1));
->  		dev_dbg(meson->chip.dev, "fin_ps=3D%llu pre_div=3D%u cnt=3D%u\n",
+Yes.
 
-You could even calculate pre_div without the loop.
+Queud for v5.2 (branch: v5.2/dt64)
 
-Something like:
+Thanks,
 
-	u64 pre_div =3D (u64)period * rate;
-	do_div_round_up(pre_div, NSEC_PER_SEC * 0xffff);
-	pre_div--;
+Kevin
 
-(I didn't check rounding and maybe its off by one and ...) This would
-also get rid of the strange 1000 that is currently used in the
-calculation without a real benefit (unless I missed something).
 
-Best regards
-Uwe
 
--- =
-
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
 
 _______________________________________________
 linux-amlogic mailing list
