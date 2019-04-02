@@ -2,84 +2,71 @@ Return-Path: <SRS0=VV3g=SE=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_NEOMUTT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DE611C10F0B
-	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Apr 2019 19:23:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ECFCEC10F00
+	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Apr 2019 19:56:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A6F332082C
-	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Apr 2019 19:23:20 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BF69F2075E
+	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Apr 2019 19:56:15 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PABjOUAT";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="DiiJgO6s"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A6F332082C
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QQKvxxOu"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BF69F2075E
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wS/BFCOnZj44lqkr8L5ysdhEOX0VR/luS74+iQ/4OmI=; b=PABjOUATc/+RBt
-	CTJtwPqJoGVNWh22H8ARCcYL/QLeJCc6TqkVC8QTVK55gm+u+jnU5D4OdQZmgZStwCXvhuLf7Wci2
-	Ohsg6bSXo31fwP6av+EQzNJ1q00Eus0FLokcfFKyeBRmzBfWpyVIiAyyu7LieJww3w1vV33ZrAV6x
-	tOOcQZqH9QAwQOSg5CfVaiH3VPnZChIbaXt8oYsxoUO7L7j7xf3VrjQZKYm/9XpViyH5+TeRos7W6
-	agAayWw8jN9mz+wTg7fFCfC8cs4os8z4RTEcRWW7sLkKgQsDqsrzccBj4GrMJoDmjU3k4J0L1TL3F
-	ZzqZ4enT7n+Gi72QFlcg==;
+	List-Owner; bh=FPSbgR0BaUsQDon/EIsLY+AUevAS0/6qA+PyG6Sn6RE=; b=QQKvxxOuFlnAyx
+	D6Y4sRGTC3aWv/zs0diDAk8CwIastp2tHe5Fw5gbBT7ZLILelFHw3IEzjhT1Y1fdiY4Jr8VKyb7tx
+	Ybhi7hDIsRLJc7kBewgyx7FChY+6Mj1/5aZjkc+adwhvBuihROuwn6zIWYn+cVwXKNz+nxUGREd2E
+	hdKxNAeqYHxW83e6BqkL3I0aa5fmm5gn9PIlYEGHYkuXumU1uhDMdJOE+8930eoq9TyyH8VXqvJSg
+	lQfpGwp6e721k1dH+r6xBx/ZhFqCnwyRol948NpdDphrnhsZMjzTQVrSS+hYjsvjAiHXmioCorRvL
+	I8qbSgb57Ap3jjkDSq3Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hBP02-0005C4-N0; Tue, 02 Apr 2019 19:23:10 +0000
-Received: from mail-ot1-x343.google.com ([2607:f8b0:4864:20::343])
+	id 1hBPVy-0001Jy-Cz; Tue, 02 Apr 2019 19:56:10 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hBP00-0005Bh-2x; Tue, 02 Apr 2019 19:23:09 +0000
-Received: by mail-ot1-x343.google.com with SMTP id u15so13066397otq.10;
- Tue, 02 Apr 2019 12:23:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=n5qyPlBMNh5sZ/jbDN+VjVIz9+XoNdXWKJOvxQgpQY0=;
- b=DiiJgO6sFgcCKr3BbrFwgApQg7ROfOp1I6jB2BStf81axSgeOdc6snwCpQbo19QlUS
- zmU2m08pszfpPTZgsoMcsSAXqpS9hTyI/VK5G4tp+LcG3EfIHUWsI2OU6kbPx7Z8dWCY
- 9tNgNSqlJU59tqZSqFr3uJhm05gYTeTelF4Lc0wdOk8odJd7muZmOXb+/UGRBXY1z5lK
- q6yS9S9I0RLnhJcQetvitsPqhX3XIv34ZR9qMtVc+pKCona/fo2eeD5nLhDoztwReUYs
- 9+O0ElX2praaveIDQgjg2fzKbEuMGfTuyfn4AJWED+o9u7+erQWmxPSOXDybOWrgkB03
- w+Aw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=n5qyPlBMNh5sZ/jbDN+VjVIz9+XoNdXWKJOvxQgpQY0=;
- b=cJHUS2QY4XaKCI/oXQ0mueK4u6dzXl62mX9MkvzMT8Zt1DNZUpT1T9upbmw0XFiBfe
- SG7gQn7rQ55kJuCkB6rLfle77p0WOjQ2ichLEWY+9VZoWMIR91XjbN0uA2mxKdIY0QS1
- olgHxNTarEDufPCTTtuRhwrCqOjBGz84NxLt9/GnWR6n6f60892CX7n9PsvNV0SPKOp/
- WT0Hud7H4gCw3ye2nS0GpW5M9kioJOr2onKBp1SPMlyEc0bxReIT0r7NHw23Xe7Yq69Q
- n2cAJRUl3pnb3kH0/ykIrc+qhf967uJLAG/6/yWCGekd7JDDKo7g7T0nSEylrqzlxZQU
- 8/Jg==
-X-Gm-Message-State: APjAAAU8urzv0suzPl4ddH0tjm0qteDxWtNzJv52jkhxIGD4RB2oNwdr
- q2DrN9RR4mm4wzYa0TmIJz+F1XaTmSGKjjgDsT+pLA==
-X-Google-Smtp-Source: APXvYqxHChjMSVeSCaMIfXO0Edx/fjzUjYllYZaWM0ZGmeLEEos+8a08qfu2Mt0g/xNbOPUPd2PiynuALA6sY6OfqaA=
-X-Received: by 2002:a9d:6e88:: with SMTP id a8mr34372516otr.117.1554232986753; 
- Tue, 02 Apr 2019 12:23:06 -0700 (PDT)
-MIME-Version: 1.0
+ id 1hBPVo-00019J-Ii
+ for linux-amlogic@lists.infradead.org; Tue, 02 Apr 2019 19:56:02 +0000
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+ by metis.ext.pengutronix.de with esmtps
+ (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.89)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1hBPVj-0001u8-BA; Tue, 02 Apr 2019 21:55:55 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1hBPVi-0000q0-Cx; Tue, 02 Apr 2019 21:55:54 +0200
+Date: Tue, 2 Apr 2019 21:55:54 +0200
+From: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH 1/2] pwm: meson: consider 128 a valid pre-divider
+Message-ID: <20190402195554.5efbtjr6bswoigzt@pengutronix.de>
 References: <20190401181817.11999-1-martin.blumenstingl@googlemail.com>
  <20190401181817.11999-2-martin.blumenstingl@googlemail.com>
  <20190401183847.7xhlgff63cvlzz2h@pengutronix.de>
-In-Reply-To: <20190401183847.7xhlgff63cvlzz2h@pengutronix.de>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 2 Apr 2019 21:22:55 +0200
-Message-ID: <CAFBinCDac9189=+UVLPLqdmJsJvudys_L0GE=Zf0FRkOWsruuw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] pwm: meson: consider 128 a valid pre-divider
-To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+ <CAFBinCDac9189=+UVLPLqdmJsJvudys_L0GE=Zf0FRkOWsruuw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <CAFBinCDac9189=+UVLPLqdmJsJvudys_L0GE=Zf0FRkOWsruuw@mail.gmail.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
+ SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190402_122308_186409_AA728681 
-X-CRM114-Status: GOOD (  14.60  )
+X-CRM114-CacheID: sfid-20190402_125600_777401_0EF139C5 
+X-CRM114-Status: GOOD (  18.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -95,43 +82,72 @@ Cc: linux-pwm@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
  bichao.zheng@amlogic.com, linux-kernel@vger.kernel.org,
  thierry.reding@gmail.com, linux-amlogic@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGVsbG8gVXdlLAoKT24gTW9uLCBBcHIgMSwgMjAxOSBhdCA4OjM4IFBNIFV3ZSBLbGVpbmUtS8O2
-bmlnCjx1LmtsZWluZS1rb2VuaWdAcGVuZ3V0cm9uaXguZGU+IHdyb3RlOgo+Cj4gSGVsbG8gTWFy
-dGluLAo+Cj4gT24gTW9uLCBBcHIgMDEsIDIwMTkgYXQgMDg6MTg6MTZQTSArMDIwMCwgTWFydGlu
-IEJsdW1lbnN0aW5nbCB3cm90ZToKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3B3bS9wd20tbWVz
-b24uYyBiL2RyaXZlcnMvcHdtL3B3bS1tZXNvbi5jCj4gPiBpbmRleCBmNmU3MzhhZDdiZDkuLjRi
-NzA4YzFmY2IxZCAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvcHdtL3B3bS1tZXNvbi5jCj4gPiAr
-KysgYi9kcml2ZXJzL3B3bS9wd20tbWVzb24uYwo+ID4gQEAgLTE4OCw3ICsxODgsNyBAQCBzdGF0
-aWMgaW50IG1lc29uX3B3bV9jYWxjKHN0cnVjdCBtZXNvbl9wd20gKm1lc29uLAo+ID4gICAgICAg
-ZG9fZGl2KGZpbl9wcywgZmluX2ZyZXEpOwo+ID4KPiA+ICAgICAgIC8qIENhbGMgcHJlX2RpdiB3
-aXRoIHRoZSBwZXJpb2QgKi8KPiA+IC0gICAgIGZvciAocHJlX2RpdiA9IDA7IHByZV9kaXYgPCBN
-SVNDX0NMS19ESVZfTUFTSzsgcHJlX2RpdisrKSB7Cj4gPiArICAgICBmb3IgKHByZV9kaXYgPSAw
-OyBwcmVfZGl2IDw9IE1JU0NfQ0xLX0RJVl9NQVNLOyBwcmVfZGl2KyspIHsKPiA+ICAgICAgICAg
-ICAgICAgY250ID0gRElWX1JPVU5EX0NMT1NFU1RfVUxMKCh1NjQpcGVyaW9kICogMTAwMCwKPiA+
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGZpbl9wcyAqIChwcmVf
-ZGl2ICsgMSkpOwo+ID4gICAgICAgICAgICAgICBkZXZfZGJnKG1lc29uLT5jaGlwLmRldiwgImZp
-bl9wcz0lbGx1IHByZV9kaXY9JXUgY250PSV1XG4iLAo+Cj4gWW91IGNvdWxkIGV2ZW4gY2FsY3Vs
-YXRlIHByZV9kaXYgd2l0aG91dCB0aGUgbG9vcC4KPgo+IFNvbWV0aGluZyBsaWtlOgo+Cj4gICAg
-ICAgICB1NjQgcHJlX2RpdiA9ICh1NjQpcGVyaW9kICogcmF0ZTsKPiAgICAgICAgIGRvX2Rpdl9y
-b3VuZF91cChwcmVfZGl2LCBOU0VDX1BFUl9TRUMgKiAweGZmZmYpOwo+ICAgICAgICAgcHJlX2Rp
-di0tOwo+Cj4gKEkgZGlkbid0IGNoZWNrIHJvdW5kaW5nIGFuZCBtYXliZSBpdHMgb2ZmIGJ5IG9u
-ZSBhbmQgLi4uKSBUaGlzIHdvdWxkCj4gYWxzbyBnZXQgcmlkIG9mIHRoZSBzdHJhbmdlIDEwMDAg
-dGhhdCBpcyBjdXJyZW50bHkgdXNlZCBpbiB0aGUKPiBjYWxjdWxhdGlvbiB3aXRob3V0IGEgcmVh
-bCBiZW5lZml0ICh1bmxlc3MgSSBtaXNzZWQgc29tZXRoaW5nKS4KcGVyc29uYWxseSBJIHByZWZl
-ciB1c2luZyB0aGlzIHNpbXBsZSBwYXRjaCBhcHBsaWVkIGZpcnN0IGFzIGl0IGlzCmVhc3kgdG8g
-cmV2aWV3IGFuZCAoZHVlIHRvIHRoZSBGaXhlcyB0YWcpIG1heSBnZXQgYmFja3BvcnRlZCB0byBz
-dGFibGUKa2VybmVscy4KSSdtIG5vdCBzYXlpbmcgSSBkb24ndCBsaWtlIHlvdXIgc3VnZ2VzdGlv
-biwgSSBwcm9wb3NlIHRvIHBvc3Rwb25lCmltcGxlbWVudGluZyB0aGlzIGNsZWFudXAuIEkgbmVl
-ZCB0byBoYXZlIGEgY2xvc2VyIGxvb2sgYXQgdGhlCmNhbGN1bGF0aW9uIGJlY2F1c2UgdGhyZWUg
-dmFsdWVzIGFyZSBkZXJpdmVkIGZyb20gdGhlIGlucHV0IGNsb2NrIHJhdGUKKHByZV9kaXYsIGNu
-dCwgZHV0eV9jbnQpIGFuZCBJIGRvbid0IHdhbnQgdG8gbWVzcyB1cCB0aGUgY2FzZXMgdGhhdAph
-cmUgYWxyZWFkeSB3b3JraW5nIGFzIG9mIHRvZGF5LgoKUGxlYXNlIGxldCBtZSBrbm93IHdoYXQg
-eW91IHRoaW5rLgoKClJlZ2FyZHMKTWFydGluCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxv
-Z2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+On Tue, Apr 02, 2019 at 09:22:55PM +0200, Martin Blumenstingl wrote:
+> Hello Uwe,
+> =
+
+> On Mon, Apr 1, 2019 at 8:38 PM Uwe Kleine-K=F6nig
+> <u.kleine-koenig@pengutronix.de> wrote:
+> >
+> > Hello Martin,
+> >
+> > On Mon, Apr 01, 2019 at 08:18:16PM +0200, Martin Blumenstingl wrote:
+> > > diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+> > > index f6e738ad7bd9..4b708c1fcb1d 100644
+> > > --- a/drivers/pwm/pwm-meson.c
+> > > +++ b/drivers/pwm/pwm-meson.c
+> > > @@ -188,7 +188,7 @@ static int meson_pwm_calc(struct meson_pwm *meson,
+> > >       do_div(fin_ps, fin_freq);
+> > >
+> > >       /* Calc pre_div with the period */
+> > > -     for (pre_div =3D 0; pre_div < MISC_CLK_DIV_MASK; pre_div++) {
+> > > +     for (pre_div =3D 0; pre_div <=3D MISC_CLK_DIV_MASK; pre_div++) {
+> > >               cnt =3D DIV_ROUND_CLOSEST_ULL((u64)period * 1000,
+> > >                                           fin_ps * (pre_div + 1));
+> > >               dev_dbg(meson->chip.dev, "fin_ps=3D%llu pre_div=3D%u cn=
+t=3D%u\n",
+> >
+> > You could even calculate pre_div without the loop.
+> >
+> > Something like:
+> >
+> >         u64 pre_div =3D (u64)period * rate;
+> >         do_div_round_up(pre_div, NSEC_PER_SEC * 0xffff);
+> >         pre_div--;
+> >
+> > (I didn't check rounding and maybe its off by one and ...) This would
+> > also get rid of the strange 1000 that is currently used in the
+> > calculation without a real benefit (unless I missed something).
+> personally I prefer using this simple patch applied first as it is
+> easy to review and (due to the Fixes tag) may get backported to stable
+> kernels.
+> I'm not saying I don't like your suggestion, I propose to postpone
+> implementing this cleanup. I need to have a closer look at the
+> calculation because three values are derived from the input clock rate
+> (pre_div, cnt, duty_cnt) and I don't want to mess up the cases that
+> are already working as of today.
+> =
+
+> Please let me know what you think.
+
+That's also ok for me. In this case take my
+
+Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+
+Best regards
+Uwe
+
+-- =
+
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
