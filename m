@@ -2,89 +2,87 @@ Return-Path: <SRS0=arCo=SG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 26669C4360F
-	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Apr 2019 11:17:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1C14EC10F0F
+	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Apr 2019 11:17:59 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E3AC920855
-	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Apr 2019 11:17:57 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DE0B82147C
+	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Apr 2019 11:17:58 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="uvM0bPHF";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="IlCQxrhQ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E3AC920855
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XIYKjfZJ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="04eKJU8k"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DE0B82147C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=AwYOgk79GqlHORsXwuGFYs0NJFY1xcV1MMuTPq4WYz4=; b=uvM0bPHFF+RfTU
-	dgoQKaLyQlBODHMExVDUAqGUxkGphc+q082LQdD+KU8GOU5ziLYa6B55M5Zv7/yb5eiHPTrPLL4Ag
-	HAspM0h2JS4QfvpzyuPOJebtf7eSz/O64Um2CNFT6UWT/h7krG7qSZ9bAR0bM+DKUmUjkSo9extVc
-	0+C44pFqRNMgbtpcmE6xqRazEyq0Enq2GFQJhDtV6iWsTdtVa1OvMHB9yy1HOqDUNvti8OWFw7e0T
-	1yJZZyWDPT/AEdiFrNDCdcrqKJkj31cUV5/daVMVr+LhUKycCz5+Ugp8f/WALlQOmxtGxuy4M6n0u
-	mLgevplZSeMqEtFabUDQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=Lt8ccHsu5I2CB4rTMBexEbPv/V2GW8g3gBveYXKLA3U=; b=XIYKjfZJacMYzy
+	uLNP9HeaYjlp3RhnHBUquMkm8/fX0SHPqwzhioZYGruFVaqtKc6gprbqmG5jeZqxB5m98pBPWyNjp
+	HI9DU7GKsTnqrn7TiOw6G17oHW6zjPjti9ZtQ11F52xsAyfBCrj4dPTZAjAp0c90y/IWgSo8zv52V
+	SPmaj9FfxXykehEooCjRfZzGXnuOFCAAsLMckGdlxvXUNeYTaD06heGh4XOFFvpSxpgTrifwJs/bN
+	YbVtAdSSfr3HaF4lPc1h2v1LWL7OjabDS/hhr9AlKmkL25fy3FdXakrwZafVJtT6LvOUgB4E1XVg/
+	+e1sz8CmnG993m4Wzt3Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hC0NS-00043B-IF; Thu, 04 Apr 2019 11:17:50 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1hC0NR-00042d-VF; Thu, 04 Apr 2019 11:17:49 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hC0NP-00041Q-MO
- for linux-amlogic@lists.infradead.org; Thu, 04 Apr 2019 11:17:49 +0000
-Received: by mail-wr1-x444.google.com with SMTP id t17so3206505wrw.13
- for <linux-amlogic@lists.infradead.org>; Thu, 04 Apr 2019 04:17:47 -0700 (PDT)
+ id 1hC0NO-00041M-G5
+ for linux-amlogic@lists.infradead.org; Thu, 04 Apr 2019 11:17:48 +0000
+Received: by mail-wm1-x343.google.com with SMTP id 4so2571229wmf.1
+ for <linux-amlogic@lists.infradead.org>; Thu, 04 Apr 2019 04:17:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=THvGG4Utk/yOwuQrm+R95dAZZj74janifYZa4/M9XJQ=;
- b=IlCQxrhQiFzp0pFJ/mN+j38HrpoPXfY9hI+kbZNIqGDS2UyzPLqUWKXh5o7IkWcFrH
- M/oHchaABXJb/6sak+Bes+NL1fXHsI8dDFNnkg6sjI/jU2zAPqYMY83d1/CsFeGql1V8
- lvEr9Pq8gvjhtcoJ8rtBMs5ANcsGrOfK59jmEDUPIS9QNtoqaJAMLN+bu44DVISE3qfp
- fKspSnM4K/JN9cbRlfP9S+hD3ARAgNA7aiHgcSRcy8zlA8KpOm6pxVximGe5kAdjL5NG
- ZOULw+rKsRbcJXtq2t6jdczacGpAZEHCYMhUf3kZnzCw59UeL+xZ9OWaZNDZdPzPW6e5
- dy0Q==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Odl+BlHOl89gYqbuLHE+EoC/KYuALb6tw6QfepUIT6M=;
+ b=04eKJU8kbtEi4rb3BzhbkVfaLESgNx4lIrBGCYD5MKfK6D6p05j831uZ/o+oK+j9Cu
+ tLFBXfttZnVixncynWvQoKYHs7OfWMLGB42AfBrSJzQv6aHWNU8YPkGHh2C5SPMh48w4
+ RBHvdnhISSY1RmYDmjpXljZc7FrVIgqbCzU+lBDV74HKN6cuWQ9lteSh6+8sEZEc7WOl
+ tn+UOUy11egdtiORRIkuS9HMI1V3GU+qudeok3JDJoX5uOpw0RDDcoFvKHaJQLdfIYRP
+ fQw4qdRg7KQ7QIuJ/iwIe3FXs9F4kRb3tHf4qT/sva5gOXDKrPBDnOlUmY4AiUARCNT9
+ Jszg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=THvGG4Utk/yOwuQrm+R95dAZZj74janifYZa4/M9XJQ=;
- b=shhWS+KoQy0Wpb+lNl4sI954S7Sp2B57zjBO6ufUOLMOp143AzQtR6/vfm9StfB189
- Jrf7IDcyIljUMYt48vFGu9PeYBpHgOwjZn+r2t+14OS8u/ozNFhZfR2N4PkYSI5FhT9b
- DToj4DiZPNpsEfl4Am36LCLZimZoys4IFs2SMzQf63iYCxXgoLsrDE5/2B993bvqOecq
- ae/9r9e+dWi7bZ3gqqU3FTsiWUrUfYzEflWB3lQHzHX+k7un4N0S48dBPeiSGDuunzNl
- UamcZ7IZ2OD3lmM34acT5OghSc1OxFIr4LfcK6hyv/BQkC5uadqoMqUpJNN/57aYb7W8
- v1pg==
-X-Gm-Message-State: APjAAAWS+Z7KrxlbFhSDX+zXiLep1FJSS6ecm2KFBUqMRZqy09PS7P0K
- WhitHMVh6b1135HRwL7O1howtg==
-X-Google-Smtp-Source: APXvYqyZVrHLXXlnXSB+vYPXcp7Q9YJaa352Ul3dd0qE/uG0Kg30TmP1XfxKVrCszoObVeuWJwwOKw==
-X-Received: by 2002:adf:e602:: with SMTP id p2mr3474242wrm.105.1554376666071; 
- Thu, 04 Apr 2019 04:17:46 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Odl+BlHOl89gYqbuLHE+EoC/KYuALb6tw6QfepUIT6M=;
+ b=LcXSRZFjn0h4nKKHDT6y5q2QiHWC8T1oEv/My2UFJ4MB0UB/aUkTM9qGqN7q+tX62i
+ NQdIGTPgZr3obMm7kRM6RMLowF3q9PIpa6dQ9sNDfKLlAw0sPAOSaH3bm8qD5OPgNbSM
+ gKqAfhtCOSpw9NweSA+I4lLog3rgqQU/2hPaiYib3AJ1U/ZjV3GBJYGdonntV7OP6TO5
+ UO4Wd7uLT59NXVwcWVA8drDt4/r5cOokaEegzWB3xdVLufA7ySGYnH53uDThpHCQ3Z8W
+ vraCGsJ/3h9/9D4q4GTNex1aaWGEeyBeBrMQ10LqxExQ2MYb5hc3SIF4Do01/5gdQb8X
+ a8XQ==
+X-Gm-Message-State: APjAAAWk2EJPzKbnNS2BEieLxe3N8AxtkpCb5yNPdmyAW6Br0m8r//XD
+ wcGEHcJiJ0hQO7yhgsEEgrypwQ==
+X-Google-Smtp-Source: APXvYqzhk/y2OvfsCjD7gSTW96CXJ2TGczTmODHjJSN87fBXF9s9EitMGeTGHopwjsoXlilycuyFAA==
+X-Received: by 2002:a1c:2dd2:: with SMTP id t201mr3905707wmt.10.1554376664375; 
+ Thu, 04 Apr 2019 04:17:44 -0700 (PDT)
 Received: from boomer.local ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
- by smtp.googlemail.com with ESMTPSA id z23sm9024771wma.0.2019.04.04.04.17.44
+ by smtp.googlemail.com with ESMTPSA id z23sm9024771wma.0.2019.04.04.04.17.42
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Thu, 04 Apr 2019 04:17:45 -0700 (PDT)
+ Thu, 04 Apr 2019 04:17:43 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Mark Brown <broonie@kernel.org>,
 	Liam Girdwood <lgirdwood@gmail.com>
-Subject: [PATCH 1/6] ASoC: meson: add g12a compatibles
-Date: Thu,  4 Apr 2019 13:17:28 +0200
-Message-Id: <20190404111733.28705-2-jbrunet@baylibre.com>
+Subject: [PATCH 0/6] ASoC: meson: add g12a SoC family support
+Date: Thu,  4 Apr 2019 13:17:27 +0200
+Message-Id: <20190404111733.28705-1-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190404111733.28705-1-jbrunet@baylibre.com>
-References: <20190404111733.28705-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190404_041747_728367_86E41A5B 
-X-CRM114-Status: GOOD (  10.33  )
+X-CRM114-CacheID: sfid-20190404_041746_575817_87A4D650 
+X-CRM114-Status: UNSURE (   9.17  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -105,91 +103,39 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add new compatible strings for the g12a devices.
-Audio wise, the g12a is fairly to close to the axg, yet some differences
-need to be handled.
+The Amlogic g12a SoC family audio subsystem derives from the one found
+in the axg SoC family.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt  | 4 +++-
- Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt   | 3 ++-
- .../devicetree/bindings/sound/amlogic,axg-spdifin.txt         | 3 ++-
- .../devicetree/bindings/sound/amlogic,axg-spdifout.txt        | 3 ++-
- .../devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt  | 4 +++-
- 5 files changed, 12 insertions(+), 5 deletions(-)
+To add support for the g12a in the existing elements, this patchset deals
+with following differences compared to the axg family:
+ * fifos must set an initial start address within the buffer.
+   The fifo pointer shall be reset to this address on startup.
+ * frddrs may now play on up to 3 output interfaces simultaneously.
+ * tdmout formatters need a different signal skew offset.
 
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
-index 3dfc2515e5c6..4330fc9dca6d 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
-@@ -2,7 +2,9 @@
- 
- Required properties:
- - compatible: 'amlogic,axg-toddr' or
--	      'amlogic,axg-frddr'
-+	      'amlogic,axg-toddr' or
-+	      'amlogic,g12a-frddr' or
-+	      'amlogic,g12a-toddr'
- - reg: physical base address of the controller and length of memory
-        mapped region.
- - interrupts: interrupt specifier for the fifo.
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
-index 5672d0bc5b16..73f473a9365f 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
-@@ -1,7 +1,8 @@
- * Amlogic Audio PDM input
- 
- Required properties:
--- compatible: 'amlogic,axg-pdm'
-+- compatible: 'amlogic,axg-pdm' or
-+	      'amlogic,g12a-pdm'
- - reg: physical base address of the controller and length of memory
-        mapped region.
- - clocks: list of clock phandle, one for each entry clock-names.
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt
-index 2e6cb7d9b202..0b82504fa419 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt
-@@ -1,7 +1,8 @@
- * Amlogic Audio SPDIF Input
- 
- Required properties:
--- compatible: 'amlogic,axg-spdifin'
-+- compatible: 'amlogic,axg-spdifin' or
-+	      'amlogic,g12a-spdifin'
- - interrupts: interrupt specifier for the spdif input.
- - clocks: list of clock phandle, one for each entry clock-names.
- - clock-names: should contain the following:
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
-index 521c38ad89e7..826152730508 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
-@@ -1,7 +1,8 @@
- * Amlogic Audio SPDIF Output
- 
- Required properties:
--- compatible: 'amlogic,axg-spdifout'
-+- compatible: 'amlogic,axg-spdifout' or
-+	      'amlogic,g12a-spdifout'
- - clocks: list of clock phandle, one for each entry clock-names.
- - clock-names: should contain the following:
-   * "pclk" : peripheral clock.
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
-index 1c1b7490554e..3b94a715a0b9 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
-@@ -2,7 +2,9 @@
- 
- Required properties:
- - compatible: 'amlogic,axg-tdmin' or
--	      'amlogic,axg-tdmout'
-+	      'amlogic,axg-tdmout' or
-+	      'amlogic,g12a-tdmin' or
-+	      'amlogic,g12a-tdmout'
- - reg: physical base address of the controller and length of memory
-        mapped region.
- - clocks: list of clock phandle, one for each entry clock-names.
+Jerome Brunet (6):
+  ASoC: meson: add g12a compatibles
+  ASoC: meson: axg-fifo: add g12a support
+  ASoC: meson: axg-toddr: add g12a support
+  ASoC: meson: axg-frddr: add g12a support
+  ASoC: meson: axg-tdm-formatter: rework quirks settings
+  ASoC: meson: axg-tdmout: add g12a support
+
+ .../bindings/sound/amlogic,axg-fifo.txt       |   4 +-
+ .../bindings/sound/amlogic,axg-pdm.txt        |   3 +-
+ .../bindings/sound/amlogic,axg-spdifin.txt    |   3 +-
+ .../bindings/sound/amlogic,axg-spdifout.txt   |   3 +-
+ .../sound/amlogic,axg-tdm-formatters.txt      |   4 +-
+ sound/soc/meson/axg-fifo.c                    |  34 ++++-
+ sound/soc/meson/axg-fifo.h                    |   2 +
+ sound/soc/meson/axg-frddr.c                   | 143 +++++++++++++++++-
+ sound/soc/meson/axg-tdm-formatter.c           |   6 +-
+ sound/soc/meson/axg-tdm-formatter.h           |  11 +-
+ sound/soc/meson/axg-tdmin.c                   |  16 +-
+ sound/soc/meson/axg-tdmout.c                  |  29 +++-
+ sound/soc/meson/axg-toddr.c                   |  53 +++++++
+ 13 files changed, 286 insertions(+), 25 deletions(-)
+
 -- 
 2.20.1
 
