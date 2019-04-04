@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D456CC10F0F
-	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Apr 2019 13:12:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CEB57C4360F
+	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Apr 2019 13:12:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A4AEC2075E
-	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Apr 2019 13:12:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9D76C2075E
+	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Apr 2019 13:12:15 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Uf2rLcdh";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ePnizs3Y"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A4AEC2075E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fFZbSiZb";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="NQgQuCht"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9D76C2075E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,67 +26,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CgBQ5+2h+3HsG+/vqIGqfxWI2n/TtDXtVOFTp/k/5Vc=; b=Uf2rLcdhJGfjr9
-	MEkKsLR4IU1/kRagI8Wq1v7dTRLv2Bb1i6jF5Bmq+qXZHcOg9w83SjxMDGnImVlZuI+Ql3XJ1ZRkv
-	INx3ddWO4mlX/U1hGVZvcNFGafJsVVmFZ/KD7+mK+W/8o4Sv1g59a+dK46pKFgidmcEKC9pItnGFp
-	q9Tc6WEruCZSb62lc1rfA9F6x5GM3gYZJVFEmzXpeLFBMPBzOPDA6am/F3RRLVYacXaN0f5SbeUU4
-	Zv08Y6FUE0P0n+oOWUNw88euOs3R2QBpIIRyZtpc2P0A1ieGGqC6TlP67gyvo7NXdqAGdnC9HdKBQ
-	j9EI8aJN1zNjaYTLndnw==;
+	List-Owner; bh=QKvu8eopNbVSNc3XE8rz0cljutlMKu+MgE+mnq23CBc=; b=fFZbSiZbAYSY4M
+	0aUndVXrziP/cqli83ta6L/O6x//xWq0aPjWenruYGfMgnv5GH3BwR6FfVjzN1bwruNc09wgJ5KJZ
+	/2g8Wjq2feOJ49vCfYfHBSdJpFB0vzXKgyQnAZ5XndRDyaNtzU3MnD6h2k55HmfLMw3fyV/dq0tH6
+	ap9PCrkZ0GGOJHymckxANevxo09CbAky3y12Gusl9G7dvDOVIWu7Xo4uFP336xNJjqwWe/rxZR5Wq
+	miPoVa8ZZstiJgNvC9In79ZFGwD9ZdGhikO14RRap1cQRvWn7TgiulUAUpP8IyMc7yzYjNrdwJexL
+	AuYf9Lmev9HPUBULhbEw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hC2A4-0001Wd-8W; Thu, 04 Apr 2019 13:12:08 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1hC2A5-0001Y4-9E; Thu, 04 Apr 2019 13:12:09 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hC29y-0001Q3-B9
- for linux-amlogic@lists.infradead.org; Thu, 04 Apr 2019 13:12:06 +0000
-Received: by mail-wm1-x343.google.com with SMTP id n25so3340312wmk.4
- for <linux-amlogic@lists.infradead.org>; Thu, 04 Apr 2019 06:12:02 -0700 (PDT)
+ id 1hC2A0-0001R0-4G
+ for linux-amlogic@lists.infradead.org; Thu, 04 Apr 2019 13:12:07 +0000
+Received: by mail-wr1-x442.google.com with SMTP id g3so3717665wrx.9
+ for <linux-amlogic@lists.infradead.org>; Thu, 04 Apr 2019 06:12:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=GfMgILKFC+nvM8EVCQlsEbNCDhCmyCn75eSr2Ib1MkE=;
- b=ePnizs3Y9TotUxUTBYHmb38IKLAbcdCuy5Ku9JH9Vs2C4pZ7aTSMyc/XlCX68VHB0W
- 9CB4XB07HW+1wNZt2NdMqlJTXCcrBRatb0LEde//5WssCsaScNupIkF4rwIPTn7HZGcp
- QEoChnmTLDxkXBrmuxR0OVwwyoXEuRnb1/u+5WLeKPPN0GxUU/zXWE32wGiU5dFZOZsN
- UJ29i3NaALjkBXAoOJYFCW/qgQnHJdBjTkvkJAKiPdRzoNEVUFr7bO0CGBGjy3duubwB
- fnTubdMCVmJdVFPtPLak0YY3wUVjb3lc4WcmAIaAZE66+M6I78DvwFZ43h0jehIBe3Yp
- mqHg==
+ bh=C2Np36jjJb1WgC3/59cWHoAfdL0+gseCwYoNIkBU+7U=;
+ b=NQgQuChtIdoSiqdDUI/JiMdfrin2nesP+nHhGvk7kbC8hVW7tOFo7cOHjEqyYBu10j
+ Va0SyZVG9PAwkJCupFCpS2uqNbIkfkCl7XnE9VF8jiwnwH4Q+iAyanKMbDjKLy76Czgm
+ tpOvsR49SukQ45ZGP9bqs9qCzynO2LUR3o23VOoX37jFlnHDTh6bxn8cbAK2ufyvKKFx
+ x75UloYi0jXPXonR6xZjZHhyRCLisJGzReG2UqZMayZeqEITcr0Zy72yuTu0DYqCHPAT
+ +gu1fDKbnRPy3GUV1Z1Lb1UI2vk8Eqmrlesu0vA2Q4Mx8KFsuN68o9WkmO0LPbwPyyeN
+ 7e2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=GfMgILKFC+nvM8EVCQlsEbNCDhCmyCn75eSr2Ib1MkE=;
- b=lgppzuJfymSB/PDdk3Y/VSKCNidkY3Z6eYmiDmMYZoIexTZQIHYB9wnm8iJrUII3pZ
- zEBmSNeQxrhHApD0EUU1627O0zEq/vDgFnr5aDm6RBFl7Q0npwk3JcaZNFE4SlxrrCth
- aNq1APY7wo2GLFfoxQkY239+u3CjgguhRTb5rY0OH0XiKDwFDA6EzZZiChwqW4+JdMME
- ePOfaOzKgd2lcRqheRlSt9XzLx4m7ad8mNna4x0UyTzPVvGlZalh+icxsMnjI8kx4yFB
- TxFlZIt2Mzsvs0C/BG4IOZJi4RtUnLLZ2sieuFhMegCSP7dPrgTs0WMQkyChENIXufs2
- i4qA==
-X-Gm-Message-State: APjAAAVrEPwYyk2LnaR8JZMEvigiEoOZ6bAwuDC7BuBq7lt4sfPOLFy2
- 1AQ87WLUojTyWIfOS6Wdio2hnA==
-X-Google-Smtp-Source: APXvYqzWUGWTijCugjUQ6JeuGdUuvcljqalR3BCrpa2HPUfFvsnY1U/EjQr1DMFZ2/6+6q0fBCVHww==
-X-Received: by 2002:a1c:b782:: with SMTP id h124mr4140567wmf.5.1554383519528; 
- Thu, 04 Apr 2019 06:11:59 -0700 (PDT)
+ bh=C2Np36jjJb1WgC3/59cWHoAfdL0+gseCwYoNIkBU+7U=;
+ b=uGfFPCzxpW3qR3yFH3OC3iCrEB/oyevQvRG/voYcyjGZKNhrSwN3Q9ztcOwhABnFhw
+ JIqcCpYtJYf3yyiLeBREdTUzwEMoVG7xE4CRwB0uOmAPBZ130s4qd8GquFDpy/NtScv1
+ Eqfw5oTFW1gQi0dRrevXpUab39/qEauPYsjhK1si2qyP57ReRMtpu0GKZaQa0MAJ2Top
+ wrVpsunb4r+DTcLUU5Dpi6SNk2q5HtprsKfgUal7wE4lLdwZFK9ENknX++IXBacvQsO3
+ MxVqJSyEwJwdATtXe21g+g0v0k+1cn6kkmJSSLuX6TNn0lW9wpc6eEDMhQMAGKyfsL6x
+ 2u1w==
+X-Gm-Message-State: APjAAAVO6sxP6KjrF5eCsKujGqsU57x7Ub0q4esJm9ovMsuCAoUPc26e
+ jEzIMrBhsEnu94M4B1xs1B8kWQ==
+X-Google-Smtp-Source: APXvYqxQl1GGh5tExSlAH4AvtpSgyqpazagc72wWxAq/TU+yuZKlzg1TvaIJXTelAyeL+Hgp7MV4Ew==
+X-Received: by 2002:a5d:6181:: with SMTP id j1mr4239923wru.11.1554383522488;
+ Thu, 04 Apr 2019 06:12:02 -0700 (PDT)
 Received: from boomer.local ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
- by smtp.googlemail.com with ESMTPSA id y133sm21984923wmd.2.2019.04.04.06.11.57
+ by smtp.googlemail.com with ESMTPSA id y133sm21984923wmd.2.2019.04.04.06.12.01
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Thu, 04 Apr 2019 06:11:58 -0700 (PDT)
+ Thu, 04 Apr 2019 06:12:01 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
  Heiner Kallweit <hkallweit1@gmail.com>,
  "David S. Miller" <davem@davemloft.net>,
  Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH net-next v3 2/4] net: phy: add amlogic g12a mdio mux support
-Date: Thu,  4 Apr 2019 15:11:45 +0200
-Message-Id: <20190404131147.31156-3-jbrunet@baylibre.com>
+Subject: [PATCH net-next v3 4/4] net: phy: meson-gxl: clean-up gxl variant
+ driver
+Date: Thu,  4 Apr 2019 15:11:47 +0200
+Message-Id: <20190404131147.31156-5-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190404131147.31156-1-jbrunet@baylibre.com>
 References: <20190404131147.31156-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190404_061202_442438_A5027DDC 
-X-CRM114-Status: GOOD (  21.67  )
+X-CRM114-CacheID: sfid-20190404_061204_474249_B8C40D06 
+X-CRM114-Status: GOOD (  12.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -98,446 +99,57 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+Cc: netdev@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
  Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add support for the mdio mux and internal phy glue of the g12a SoC family
+The purpose of this change is to align the gxl and g12a driver
+declaration.
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com> # clk parts
+Like on the g12a variant, remove genphy_aneg_done() from the driver
+declaration as the net phy framework will default to it anyway.
+
+Also, the gxl phy id should be an exact match as well, so let's change
+this and use the macro provided.
+
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/net/phy/Kconfig               |  11 +
- drivers/net/phy/Makefile              |   1 +
- drivers/net/phy/mdio-mux-meson-g12a.c | 380 ++++++++++++++++++++++++++
- 3 files changed, 392 insertions(+)
- create mode 100644 drivers/net/phy/mdio-mux-meson-g12a.c
+ drivers/net/phy/meson-gxl.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/net/phy/Kconfig b/drivers/net/phy/Kconfig
-index 520657945b82..1b04004e1f37 100644
---- a/drivers/net/phy/Kconfig
-+++ b/drivers/net/phy/Kconfig
-@@ -76,6 +76,17 @@ config MDIO_BUS_MUX_GPIO
- 	  several child MDIO busses to a parent bus.  Child bus
- 	  selection is under the control of GPIO lines.
+diff --git a/drivers/net/phy/meson-gxl.c b/drivers/net/phy/meson-gxl.c
+index 2033c93a46ca..6d4a8c508ec0 100644
+--- a/drivers/net/phy/meson-gxl.c
++++ b/drivers/net/phy/meson-gxl.c
+@@ -224,14 +224,12 @@ static int meson_gxl_config_intr(struct phy_device *phydev)
  
-+config MDIO_BUS_MUX_MESON_G12A
-+	tristate "Amlogic G12a based MDIO bus multiplexer"
-+	depends on ARCH_MESON || COMPILE_TEST
-+	depends on OF_MDIO && HAS_IOMEM && COMMON_CLK
-+	select MDIO_BUS_MUX
-+	default m if ARCH_MESON
-+	help
-+	  This module provides a driver for the MDIO multiplexer/glue of
-+	  the amlogic g12a SoC. The multiplexers connects either the external
-+	  or the internal MDIO bus to the parent bus.
-+
- config MDIO_BUS_MUX_MMIOREG
- 	tristate "MMIO device-controlled MDIO bus multiplexers"
- 	depends on OF_MDIO && HAS_IOMEM
-diff --git a/drivers/net/phy/Makefile b/drivers/net/phy/Makefile
-index ece5dae67174..27d7f9f3b0de 100644
---- a/drivers/net/phy/Makefile
-+++ b/drivers/net/phy/Makefile
-@@ -28,6 +28,7 @@ obj-$(CONFIG_MDIO_BITBANG)	+= mdio-bitbang.o
- obj-$(CONFIG_MDIO_BUS_MUX)	+= mdio-mux.o
- obj-$(CONFIG_MDIO_BUS_MUX_BCM_IPROC)	+= mdio-mux-bcm-iproc.o
- obj-$(CONFIG_MDIO_BUS_MUX_GPIO)	+= mdio-mux-gpio.o
-+obj-$(CONFIG_MDIO_BUS_MUX_MESON_G12A)	+= mdio-mux-meson-g12a.o
- obj-$(CONFIG_MDIO_BUS_MUX_MMIOREG) += mdio-mux-mmioreg.o
- obj-$(CONFIG_MDIO_BUS_MUX_MULTIPLEXER) += mdio-mux-multiplexer.o
- obj-$(CONFIG_MDIO_CAVIUM)	+= mdio-cavium.o
-diff --git a/drivers/net/phy/mdio-mux-meson-g12a.c b/drivers/net/phy/mdio-mux-meson-g12a.c
-new file mode 100644
-index 000000000000..6fa29ea8e2a3
---- /dev/null
-+++ b/drivers/net/phy/mdio-mux-meson-g12a.c
-@@ -0,0 +1,380 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/* Copyright (c) 2019 Baylibre, SAS.
-+ * Author: Jerome Brunet <jbrunet@baylibre.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/clk-provider.h>
-+#include <linux/device.h>
-+#include <linux/io.h>
-+#include <linux/iopoll.h>
-+#include <linux/mdio-mux.h>
-+#include <linux/module.h>
-+#include <linux/phy.h>
-+#include <linux/platform_device.h>
-+
-+#define ETH_PLL_STS		0x40
-+#define ETH_PLL_CTL0		0x44
-+#define  PLL_CTL0_LOCK_DIG	BIT(30)
-+#define  PLL_CTL0_RST		BIT(29)
-+#define  PLL_CTL0_EN		BIT(28)
-+#define  PLL_CTL0_SEL		BIT(23)
-+#define  PLL_CTL0_N		GENMASK(14, 10)
-+#define  PLL_CTL0_M		GENMASK(8, 0)
-+#define  PLL_LOCK_TIMEOUT	1000000
-+#define  PLL_MUX_NUM_PARENT	2
-+#define ETH_PLL_CTL1		0x48
-+#define ETH_PLL_CTL2		0x4c
-+#define ETH_PLL_CTL3		0x50
-+#define ETH_PLL_CTL4		0x54
-+#define ETH_PLL_CTL5		0x58
-+#define ETH_PLL_CTL6		0x5c
-+#define ETH_PLL_CTL7		0x60
-+
-+#define ETH_PHY_CNTL0		0x80
-+#define   EPHY_G12A_ID		0x33000180
-+#define ETH_PHY_CNTL1		0x84
-+#define  PHY_CNTL1_ST_MODE	GENMASK(2, 0)
-+#define  PHY_CNTL1_ST_PHYADD	GENMASK(7, 3)
-+#define   EPHY_DFLT_ADD		8
-+#define  PHY_CNTL1_MII_MODE	GENMASK(15, 14)
-+#define   EPHY_MODE_RMII	0x1
-+#define  PHY_CNTL1_CLK_EN	BIT(16)
-+#define  PHY_CNTL1_CLKFREQ	BIT(17)
-+#define  PHY_CNTL1_PHY_ENB	BIT(18)
-+#define ETH_PHY_CNTL2		0x88
-+#define  PHY_CNTL2_USE_INTERNAL	BIT(5)
-+#define  PHY_CNTL2_SMI_SRC_MAC	BIT(6)
-+#define  PHY_CNTL2_RX_CLK_EPHY	BIT(9)
-+
-+#define MESON_G12A_MDIO_EXTERNAL_ID 0
-+#define MESON_G12A_MDIO_INTERNAL_ID 1
-+
-+struct g12a_mdio_mux {
-+	bool pll_is_enabled;
-+	void __iomem *regs;
-+	void *mux_handle;
-+	struct clk *pclk;
-+	struct clk *pll;
-+};
-+
-+struct g12a_ephy_pll {
-+	void __iomem *base;
-+	struct clk_hw hw;
-+};
-+
-+#define g12a_ephy_pll_to_dev(_hw)			\
-+	container_of(_hw, struct g12a_ephy_pll, hw)
-+
-+static unsigned long g12a_ephy_pll_recalc_rate(struct clk_hw *hw,
-+					       unsigned long parent_rate)
-+{
-+	struct g12a_ephy_pll *pll = g12a_ephy_pll_to_dev(hw);
-+	u32 val, m, n;
-+
-+	val = readl(pll->base + ETH_PLL_CTL0);
-+	m = FIELD_GET(PLL_CTL0_M, val);
-+	n = FIELD_GET(PLL_CTL0_N, val);
-+
-+	return parent_rate * m / n;
-+}
-+
-+static int g12a_ephy_pll_enable(struct clk_hw *hw)
-+{
-+	struct g12a_ephy_pll *pll = g12a_ephy_pll_to_dev(hw);
-+	u32 val = readl(pll->base + ETH_PLL_CTL0);
-+
-+	/* Apply both enable an reset */
-+	val |= PLL_CTL0_RST | PLL_CTL0_EN;
-+	writel(val, pll->base + ETH_PLL_CTL0);
-+
-+	/* Clear the reset to let PLL lock */
-+	val &= ~PLL_CTL0_RST;
-+	writel(val, pll->base + ETH_PLL_CTL0);
-+
-+	/* Poll on the digital lock instead of the usual analog lock
-+	 * This is done because bit 31 is unreliable on some SoC. Bit
-+	 * 31 may indicate that the PLL is not lock eventhough the clock
-+	 * is actually running
-+	 */
-+	return readl_poll_timeout(pll->base + ETH_PLL_CTL0, val,
-+				  val & PLL_CTL0_LOCK_DIG, 0, PLL_LOCK_TIMEOUT);
-+}
-+
-+static void g12a_ephy_pll_disable(struct clk_hw *hw)
-+{
-+	struct g12a_ephy_pll *pll = g12a_ephy_pll_to_dev(hw);
-+	u32 val;
-+
-+	val = readl(pll->base + ETH_PLL_CTL0);
-+	val &= ~PLL_CTL0_EN;
-+	val |= PLL_CTL0_RST;
-+	writel(val, pll->base + ETH_PLL_CTL0);
-+}
-+
-+static int g12a_ephy_pll_is_enabled(struct clk_hw *hw)
-+{
-+	struct g12a_ephy_pll *pll = g12a_ephy_pll_to_dev(hw);
-+	unsigned int val;
-+
-+	val = readl(pll->base + ETH_PLL_CTL0);
-+
-+	return (val & PLL_CTL0_LOCK_DIG) ? 1 : 0;
-+}
-+
-+static void g12a_ephy_pll_init(struct clk_hw *hw)
-+{
-+	struct g12a_ephy_pll *pll = g12a_ephy_pll_to_dev(hw);
-+
-+	/* Apply PLL HW settings */
-+	writel(0x29c0040a, pll->base + ETH_PLL_CTL0);
-+	writel(0x927e0000, pll->base + ETH_PLL_CTL1);
-+	writel(0xac5f49e5, pll->base + ETH_PLL_CTL2);
-+	writel(0x00000000, pll->base + ETH_PLL_CTL3);
-+	writel(0x00000000, pll->base + ETH_PLL_CTL4);
-+	writel(0x20200000, pll->base + ETH_PLL_CTL5);
-+	writel(0x0000c002, pll->base + ETH_PLL_CTL6);
-+	writel(0x00000023, pll->base + ETH_PLL_CTL7);
-+}
-+
-+static const struct clk_ops g12a_ephy_pll_ops = {
-+	.recalc_rate	= g12a_ephy_pll_recalc_rate,
-+	.is_enabled	= g12a_ephy_pll_is_enabled,
-+	.enable		= g12a_ephy_pll_enable,
-+	.disable	= g12a_ephy_pll_disable,
-+	.init		= g12a_ephy_pll_init,
-+};
-+
-+static int g12a_enable_internal_mdio(struct g12a_mdio_mux *priv)
-+{
-+	int ret;
-+
-+	/* Enable the phy clock */
-+	if (!priv->pll_is_enabled) {
-+		ret = clk_prepare_enable(priv->pll);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	priv->pll_is_enabled = true;
-+
-+	/* Initialize ephy control */
-+	writel(EPHY_G12A_ID, priv->regs + ETH_PHY_CNTL0);
-+	writel(FIELD_PREP(PHY_CNTL1_ST_MODE, 3) |
-+	       FIELD_PREP(PHY_CNTL1_ST_PHYADD, EPHY_DFLT_ADD) |
-+	       FIELD_PREP(PHY_CNTL1_MII_MODE, EPHY_MODE_RMII) |
-+	       PHY_CNTL1_CLK_EN |
-+	       PHY_CNTL1_CLKFREQ |
-+	       PHY_CNTL1_PHY_ENB,
-+	       priv->regs + ETH_PHY_CNTL1);
-+	writel(PHY_CNTL2_USE_INTERNAL |
-+	       PHY_CNTL2_SMI_SRC_MAC |
-+	       PHY_CNTL2_RX_CLK_EPHY,
-+	       priv->regs + ETH_PHY_CNTL2);
-+
-+	return 0;
-+}
-+
-+static int g12a_enable_external_mdio(struct g12a_mdio_mux *priv)
-+{
-+	/* Reset the mdio bus mux */
-+	writel_relaxed(0x0, priv->regs + ETH_PHY_CNTL2);
-+
-+	/* Disable the phy clock if enabled */
-+	if (priv->pll_is_enabled) {
-+		clk_disable_unprepare(priv->pll);
-+		priv->pll_is_enabled = false;
-+	}
-+
-+	return 0;
-+}
-+
-+static int g12a_mdio_switch_fn(int current_child, int desired_child,
-+			       void *data)
-+{
-+	struct g12a_mdio_mux *priv = dev_get_drvdata(data);
-+
-+	if (current_child == desired_child)
-+		return 0;
-+
-+	switch (desired_child) {
-+	case MESON_G12A_MDIO_EXTERNAL_ID:
-+		return g12a_enable_external_mdio(priv);
-+	case MESON_G12A_MDIO_INTERNAL_ID:
-+		return g12a_enable_internal_mdio(priv);
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct of_device_id g12a_mdio_mux_match[] = {
-+	{ .compatible = "amlogic,g12a-mdio-mux", },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, g12a_mdio_mux_match);
-+
-+static int g12a_ephy_glue_clk_register(struct device *dev)
-+{
-+	struct g12a_mdio_mux *priv = dev_get_drvdata(dev);
-+	const char *parent_names[PLL_MUX_NUM_PARENT];
-+	struct clk_init_data init;
-+	struct g12a_ephy_pll *pll;
-+	struct clk_mux *mux;
-+	struct clk *clk;
-+	char *name;
-+	int i;
-+
-+	/* get the mux parents */
-+	for (i = 0; i < PLL_MUX_NUM_PARENT; i++) {
-+		char in_name[8];
-+
-+		snprintf(in_name, sizeof(in_name), "clkin%d", i);
-+		clk = devm_clk_get(dev, in_name);
-+		if (IS_ERR(clk)) {
-+			if (PTR_ERR(clk) != -EPROBE_DEFER)
-+				dev_err(dev, "Missing clock %s\n", in_name);
-+			return PTR_ERR(clk);
-+		}
-+
-+		parent_names[i] = __clk_get_name(clk);
-+	}
-+
-+	/* create the input mux */
-+	mux = devm_kzalloc(dev, sizeof(*mux), GFP_KERNEL);
-+	if (!mux)
-+		return -ENOMEM;
-+
-+	name = kasprintf(GFP_KERNEL, "%s#mux", dev_name(dev));
-+	if (!name)
-+		return -ENOMEM;
-+
-+	init.name = name;
-+	init.ops = &clk_mux_ro_ops;
-+	init.flags = 0;
-+	init.parent_names = parent_names;
-+	init.num_parents = PLL_MUX_NUM_PARENT;
-+
-+	mux->reg = priv->regs + ETH_PLL_CTL0;
-+	mux->shift = __ffs(PLL_CTL0_SEL);
-+	mux->mask = PLL_CTL0_SEL >> mux->shift;
-+	mux->hw.init = &init;
-+
-+	clk = devm_clk_register(dev, &mux->hw);
-+	kfree(name);
-+	if (IS_ERR(clk)) {
-+		dev_err(dev, "failed to register input mux\n");
-+		return PTR_ERR(clk);
-+	}
-+
-+	/* create the pll */
-+	pll = devm_kzalloc(dev, sizeof(*pll), GFP_KERNEL);
-+	if (!pll)
-+		return -ENOMEM;
-+
-+	name = kasprintf(GFP_KERNEL, "%s#pll", dev_name(dev));
-+	if (!name)
-+		return -ENOMEM;
-+
-+	init.name = name;
-+	init.ops = &g12a_ephy_pll_ops;
-+	init.flags = 0;
-+	parent_names[0] = __clk_get_name(clk);
-+	init.parent_names = parent_names;
-+	init.num_parents = 1;
-+
-+	pll->base = priv->regs;
-+	pll->hw.init = &init;
-+
-+	clk = devm_clk_register(dev, &pll->hw);
-+	kfree(name);
-+	if (IS_ERR(clk)) {
-+		dev_err(dev, "failed to register input mux\n");
-+		return PTR_ERR(clk);
-+	}
-+
-+	priv->pll = clk;
-+
-+	return 0;
-+}
-+
-+static int g12a_mdio_mux_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct g12a_mdio_mux *priv;
-+	struct resource *res;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, priv);
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	priv->regs = devm_ioremap_resource(dev, res);
-+	if (IS_ERR(priv->regs))
-+		return PTR_ERR(priv->regs);
-+
-+	priv->pclk = devm_clk_get(dev, "pclk");
-+	if (IS_ERR(priv->pclk)) {
-+		ret = PTR_ERR(priv->pclk);
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(dev, "failed to get peripheral clock\n");
-+		return ret;
-+	}
-+
-+	/* Make sure the device registers are clocked */
-+	ret = clk_prepare_enable(priv->pclk);
-+	if (ret) {
-+		dev_err(dev, "failed to enable peripheral clock");
-+		return ret;
-+	}
-+
-+	/* Register PLL in CCF */
-+	ret = g12a_ephy_glue_clk_register(dev);
-+	if (ret)
-+		goto err;
-+
-+	ret = mdio_mux_init(dev, dev->of_node, g12a_mdio_switch_fn,
-+			    &priv->mux_handle, dev, NULL);
-+	if (ret) {
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(dev, "mdio multiplexer init failed: %d", ret);
-+		goto err;
-+	}
-+
-+	return 0;
-+
-+err:
-+	clk_disable_unprepare(priv->pclk);
-+	return ret;
-+}
-+
-+static int g12a_mdio_mux_remove(struct platform_device *pdev)
-+{
-+	struct g12a_mdio_mux *priv = platform_get_drvdata(pdev);
-+
-+	mdio_mux_uninit(priv->mux_handle);
-+
-+	if (priv->pll_is_enabled)
-+		clk_disable_unprepare(priv->pll);
-+
-+	clk_disable_unprepare(priv->pclk);
-+
-+	return 0;
-+}
-+
-+static struct platform_driver g12a_mdio_mux_driver = {
-+	.probe		= g12a_mdio_mux_probe,
-+	.remove		= g12a_mdio_mux_remove,
-+	.driver		= {
-+		.name	= "g12a-mdio_mux",
-+		.of_match_table = g12a_mdio_mux_match,
-+	},
-+};
-+module_platform_driver(g12a_mdio_mux_driver);
-+
-+MODULE_DESCRIPTION("Amlogic G12a MDIO multiplexer driver");
-+MODULE_AUTHOR("Jerome Brunet <jbrunet@baylibre.com>");
-+MODULE_LICENSE("GPL v2");
+ static struct phy_driver meson_gxl_phy[] = {
+ 	{
+-		.phy_id		= 0x01814400,
+-		.phy_id_mask	= 0xfffffff0,
++		PHY_ID_MATCH_EXACT(0x01814400),
+ 		.name		= "Meson GXL Internal PHY",
+ 		.features	= PHY_BASIC_FEATURES,
+ 		.flags		= PHY_IS_INTERNAL,
+ 		.soft_reset     = genphy_soft_reset,
+ 		.config_init	= meson_gxl_config_init,
+-		.aneg_done      = genphy_aneg_done,
+ 		.read_status	= meson_gxl_read_status,
+ 		.ack_interrupt	= meson_gxl_ack_interrupt,
+ 		.config_intr	= meson_gxl_config_intr,
+@@ -251,7 +249,7 @@ static struct phy_driver meson_gxl_phy[] = {
+ };
+ 
+ static struct mdio_device_id __maybe_unused meson_gxl_tbl[] = {
+-	{ 0x01814400, 0xfffffff0 },
++	{ PHY_ID_MATCH_VENDOR(0x01814400) },
+ 	{ PHY_ID_MATCH_VENDOR(0x01803301) },
+ 	{ }
+ };
 -- 
 2.20.1
 
