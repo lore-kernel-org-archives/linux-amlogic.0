@@ -2,147 +2,92 @@ Return-Path: <SRS0=88k6=SH=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_MUTT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A7ABFC4360F
-	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Apr 2019 12:14:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DABCEC4360F
+	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Apr 2019 12:57:46 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7950D21871
-	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Apr 2019 12:14:46 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id AADCB218AC
+	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Apr 2019 12:57:46 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EAoUhtDu";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="JcaK6oOk"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7950D21871
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="REBhFiom";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=poorly.run header.i=@poorly.run header.b="DJvQ6R6o"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AADCB218AC
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=poorly.run
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cME0qdZZAIBLKD+L3QB+FnzNN4ynw7bhaUJUu1UpG1U=; b=EAoUhtDu/MWym1
-	YA5g98rVCfRfraWQ+9p2wm4SiCLNB2pEG2e0pI3dRpwhaBa0oauyTzVeIzooL+FSceWDrjYXQzdUZ
-	dTGiIav5ooPPk7n6/ZWrvSfyXvxHtAX1qG4d39KgEvCodZPM0pfzn/+Zf2cmcV0UgkLHDoVestoPi
-	R6Fos1lAJA9MVZe3b9wPWeFYrgXhC2ClKUdfCNGB1fn2f66OtqDIqqPMoS8oN+0BVyIt69qrw9Sqy
-	tMDti5ko+HEJ+4ufo9iqGfVFpF9s/hnSy4pHOX68agoH47toXgXYX2OyPceD7uqbd0WAp2I9WN9Iv
-	mWoaLJfG7guo3Ow72KuQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=sGElkawZd2MAeXdmxKR2pXWCQe7OjEJMpEnSPpQiUPU=; b=REBhFiomhAq8cZ
+	pZLeMUFLifWW+OPK2l+wE3HVaZPHalb3C5OPrVMG1aAyViuaNb87BtGsstohMQv3F7d8JtFCtOJc0
+	x+YrhVNqLWvlwePXomh71fkl3onDfSAv7hoX0J7TIf8wEjX8hEzRg971cVl8uDZMVnMdHmlFV3N9R
+	ROeFpOFzlh5WCvCmUlwSuNh0mGGNAw3VfCMaWd9HQ3Rz9AB++LxVKUkShHS6AoMEeJ15lWZ+bW8FV
+	VuqemKRt6cPzoL8rlnSKK9PQM/cEXe9cofFhGTfHI+dzA4RcQdpfW/M2cAIECoCgoEG/7MbQyrbaF
+	R8rC7Rn8z6pybsRkb9/g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hCNk1-0000RA-8C; Fri, 05 Apr 2019 12:14:41 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1hCOPY-0006Lu-D1; Fri, 05 Apr 2019 12:57:36 +0000
+Received: from mail-qt1-x843.google.com ([2607:f8b0:4864:20::843])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hCNjy-0000QM-Vn
- for linux-amlogic@lists.infradead.org; Fri, 05 Apr 2019 12:14:40 +0000
-Received: by mail-wr1-x442.google.com with SMTP id w1so7753179wrp.2
- for <linux-amlogic@lists.infradead.org>; Fri, 05 Apr 2019 05:14:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=WjgvIkBVx1b/PMt5pfM7Hc0K2Rm84eyz0tuNN6NNdFs=;
- b=JcaK6oOkMOdFLAbgD5RY8Gp1hxSouMw73CsgBBxazbY7FPPbo+YnPgS/r5j+FDqhtd
- WK4eUxgROIALER/mzX80flpVPIftt+ZGUyfa10bFI2oTzuduB91rgUXbTLdkQA3BS9yh
- dn4JZASM7xYRyj4gJg1/l1k1K2BEDEHBVDHqNuDPccTce1faAS48G4Uc0kuGFoMiNi55
- +3xvnEYNyfYVdBEdtWixLatKsa+ExodjYH1Mjrp0B3l66bQs0y4XmdO6KeCz0j4Ajz8W
- V1hhQwALbe7n2tww6s5TPVMNjqfOKirDIIEXnU0xpff2fM/KEmzMFNce40cs7Hmlgnb+
- hFYg==
+ id 1hCOPO-0006AA-I6
+ for linux-amlogic@lists.infradead.org; Fri, 05 Apr 2019 12:57:28 +0000
+Received: by mail-qt1-x843.google.com with SMTP id z16so7215414qtn.4
+ for <linux-amlogic@lists.infradead.org>; Fri, 05 Apr 2019 05:57:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=ewPOYsoLdshTz0QFbHBekjbAvAUxAVDFfTNkCeNZ35E=;
+ b=DJvQ6R6o7Kw7oyxChXdtwbj1S4jH+15wxMUIKr3qiwvtMv7eowNWk7awAH3ByEnw3j
+ ezi653XIxO8/Pf94L17poMYis2IuobgOySIRaSwKjnhQf/5teSx7hCFFQiHEDcE+miKH
+ lbRDlm3I+ncirNPCt8yp48jyqI9ZQ7kRHG8OvLhLFI9hiwZLw867rPTbPIO2HMDIYWCD
+ qruhozNo2V0ZsuAjBfOpWDGSX9sVvXQrGXOvKB2lTApj3UMbvKpSNvO2uyU9/nImEnqe
+ bMzV7kHR4QSGSV9UMyM9rs7IHrmqKxPc6yqzfs7Yv40w6jfO0CZmsEX5EbUeXE8dKXyh
+ Df8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=WjgvIkBVx1b/PMt5pfM7Hc0K2Rm84eyz0tuNN6NNdFs=;
- b=IKFsNxAuXPhGgqMKcQBZg23Sbb/4ZhhgjWvCPgyBgXBcHS2oM3sAq2vzuwF0raFEBE
- irydX4jimuHDCUw4uwoQLPn7mMSRGzmXAwJLn73zUzAWrmn3YMwQUBrJFC2HwRiHwAq3
- dK1mGzXk5JQzmoUE3QTGTpXFDv9MqT6tvBZcDWiG+dH3fbiHuGnZ7gynbjgl+6VR9gzW
- EekXf9mKASdMuL+HeO2RrBxrXjYt7M4SdwbBUs13AoWzPAt4rkIS7yTE2OY9tzWEHu5t
- lKW5hB15m0soI7ilCzGaurqteF4r0PdHC+9PagNdisqLDeY5KCGgVnfBAUtcx8IqKXCF
- 9UIA==
-X-Gm-Message-State: APjAAAVSxB9KPG/pQZzskL8/zRevTYgYTOiHWpneh2yqoUe39NDSfEYX
- m42luEV7KPgEzAmKxLBk8fQS9g==
-X-Google-Smtp-Source: APXvYqzhBC1avdgQyc2Fg44RNzjqfy99e/9yS1tFlu6W/v5m4s/gf+lNYpAu0LYjNMw6hFUkFGNuzQ==
-X-Received: by 2002:adf:f101:: with SMTP id r1mr8406700wro.251.1554466476912; 
- Fri, 05 Apr 2019 05:14:36 -0700 (PDT)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id t15sm2558191wmt.2.2019.04.05.05.14.35
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 05 Apr 2019 05:14:36 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=ewPOYsoLdshTz0QFbHBekjbAvAUxAVDFfTNkCeNZ35E=;
+ b=n2YSVLnp4xWdhgAiNrv6qrABwvCaYas8TnC4f8rkW7RG+Bb4UYfx1W47NwWURq3j/o
+ pgYyHjPC1HMWIpLueq8dI8ZIQcejF+pDVHibeZPd0MsNq+GFZ1oCwrMGxVBgnlk/rseA
+ rDpWhSxiDvNDv/bpvTlacz49ACB9z7s2SjVed8plHzc0yUbCtGN9zpW/Z+ERAlN+hhWQ
+ xLWBKsF0bmpVKUZUejEj+seLgped1/+rrQSv2vxPzvoKcvDyQWEXxoZ0A5wqNv9O37Rb
+ /bQMUemzdz5lPXWWjOAwQx3j7bZWZRXkY+fbXh5X1GQvLMruooTOuKGeFDlJ76vvHzGW
+ BanQ==
+X-Gm-Message-State: APjAAAU/64VB668skpSH+iZfeFibumNm/3TP+gKX1JNjW0jcTKI9tlvR
+ B0ou3Hlp9gMnH3qu4MBZHIQvug==
+X-Google-Smtp-Source: APXvYqyvrPBZL6zGiH8gNAISAQzWcD2nioJWG6K8Ba4+uCaao35YAFOF2X0cx/Dn1VOE3NE8kAYxnw==
+X-Received: by 2002:a0c:89a3:: with SMTP id 32mr9939868qvr.116.1554469044648; 
+ Fri, 05 Apr 2019 05:57:24 -0700 (PDT)
+Received: from localhost ([2620:0:1013:11:89c6:2139:5435:371d])
+ by smtp.gmail.com with ESMTPSA id 11sm15697549qtu.5.2019.04.05.05.57.23
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Fri, 05 Apr 2019 05:57:23 -0700 (PDT)
+Date: Fri, 5 Apr 2019 08:57:23 -0400
+From: Sean Paul <sean@poorly.run>
+To: Neil Armstrong <narmstrong@baylibre.com>
 Subject: Re: [PATCH] Documentation/gpu/meson: Remove link to meson_canvas.c
-To: Sean Paul <sean@poorly.run>
+Message-ID: <20190405125723.GD17077@art_vandelay>
 References: <20190403205652.183496-1-sean@poorly.run>
  <2afc7c09-a6e4-5191-d7e3-7a3a75451aab@baylibre.com>
  <de19dd7b-40dd-408b-a024-53036dedf7c3@baylibre.com>
  <20190404143125.GB17077@art_vandelay>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <0897093a-246b-211b-bddf-6d87877b429c@baylibre.com>
-Date: Fri, 5 Apr 2019 14:14:35 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+ <0897093a-246b-211b-bddf-6d87877b429c@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20190404143125.GB17077@art_vandelay>
-Content-Language: en-US
+Content-Disposition: inline
+In-Reply-To: <0897093a-246b-211b-bddf-6d87877b429c@baylibre.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190405_051439_024318_E46E3173 
-X-CRM114-Status: GOOD (  14.40  )
+X-CRM114-CacheID: sfid-20190405_055726_650898_0C137599 
+X-CRM114-Status: GOOD (  16.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -161,73 +106,82 @@ Cc: Maxime Jourdan <mjourdan@baylibre.com>, Jonathan Corbet <corbet@lwn.net>,
  linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
  Maxime Ripard <maxime.ripard@bootlin.com>, Sean Paul <seanpaul@chromium.org>,
  Daniel Vetter <daniel@ffwll.ch>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+ Sean Paul <sean@poorly.run>, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 04/04/2019 16:31, Sean Paul wrote:
-> On Thu, Apr 04, 2019 at 10:28:29AM +0200, Neil Armstrong wrote:
->> On 04/04/2019 08:56, Neil Armstrong wrote:
->>> On 03/04/2019 22:56, Sean Paul wrote:
->>>> From: Sean Paul <seanpaul@chromium.org>
->>>>
->>>> The file was removed in the below patch and is causing this error:
->>>> WARNING: kernel-doc '../scripts/kernel-doc -rst -enable-lineno -function Canvas ../drivers/gpu/drm/meson/meson_canvas.c' failed with return code
->>>>
->>>> Fixes: 2bf6b5b0e374 ("drm/meson: exclusively use the canvas provider module")
->>>> Cc: Maxime Jourdan <mjourdan@baylibre.com>
->>>> Cc: Neil Armstrong <narmstrong@baylibre.com>
->>>> Cc: Kevin Hilman <khilman@baylibre.com>
->>>> Cc: dri-devel@lists.freedesktop.org
->>>> Cc: linux-amlogic@lists.infradead.org
->>>> Cc: linux-arm-kernel@lists.infradead.org
->>>> Signed-off-by: Sean Paul <seanpaul@chromium.org>
->>>> ---
->>>>  Documentation/gpu/meson.rst | 6 ------
->>>>  1 file changed, 6 deletions(-)
->>>>
->>>> diff --git a/Documentation/gpu/meson.rst b/Documentation/gpu/meson.rst
->>>> index 479f6f51a13b..b9e2f9aa3bd8 100644
->>>> --- a/Documentation/gpu/meson.rst
->>>> +++ b/Documentation/gpu/meson.rst
->>>> @@ -42,12 +42,6 @@ Video Encoder
->>>>  .. kernel-doc:: drivers/gpu/drm/meson/meson_venc.c
->>>>     :doc: Video Encoder
->>>>  
->>>> -Video Canvas Management
->>>> -=======================
->>>> -
->>>> -.. kernel-doc:: drivers/gpu/drm/meson/meson_canvas.c
->>>> -   :doc: Canvas
->>>> -
->>>>  Video Clocks
->>>>  ============
->>>>  
->>>>
->>>
->>> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
->>>
->>
->> Applied to drm-misc-fixes
+On Fri, Apr 05, 2019 at 02:14:35PM +0200, Neil Armstrong wrote:
+> On 04/04/2019 16:31, Sean Paul wrote:
+> > On Thu, Apr 04, 2019 at 10:28:29AM +0200, Neil Armstrong wrote:
+> >> On 04/04/2019 08:56, Neil Armstrong wrote:
+> >>> On 03/04/2019 22:56, Sean Paul wrote:
+> >>>> From: Sean Paul <seanpaul@chromium.org>
+> >>>>
+> >>>> The file was removed in the below patch and is causing this error:
+> >>>> WARNING: kernel-doc '../scripts/kernel-doc -rst -enable-lineno -function Canvas ../drivers/gpu/drm/meson/meson_canvas.c' failed with return code
+> >>>>
+> >>>> Fixes: 2bf6b5b0e374 ("drm/meson: exclusively use the canvas provider module")
+> >>>> Cc: Maxime Jourdan <mjourdan@baylibre.com>
+> >>>> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> >>>> Cc: Kevin Hilman <khilman@baylibre.com>
+> >>>> Cc: dri-devel@lists.freedesktop.org
+> >>>> Cc: linux-amlogic@lists.infradead.org
+> >>>> Cc: linux-arm-kernel@lists.infradead.org
+> >>>> Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> >>>> ---
+> >>>>  Documentation/gpu/meson.rst | 6 ------
+> >>>>  1 file changed, 6 deletions(-)
+> >>>>
+> >>>> diff --git a/Documentation/gpu/meson.rst b/Documentation/gpu/meson.rst
+> >>>> index 479f6f51a13b..b9e2f9aa3bd8 100644
+> >>>> --- a/Documentation/gpu/meson.rst
+> >>>> +++ b/Documentation/gpu/meson.rst
+> >>>> @@ -42,12 +42,6 @@ Video Encoder
+> >>>>  .. kernel-doc:: drivers/gpu/drm/meson/meson_venc.c
+> >>>>     :doc: Video Encoder
+> >>>>  
+> >>>> -Video Canvas Management
+> >>>> -=======================
+> >>>> -
+> >>>> -.. kernel-doc:: drivers/gpu/drm/meson/meson_canvas.c
+> >>>> -   :doc: Canvas
+> >>>> -
+> >>>>  Video Clocks
+> >>>>  ============
+> >>>>  
+> >>>>
+> >>>
+> >>> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+> >>>
+> >>
+> >> Applied to drm-misc-fixes
+> > 
+> > Hmm, the commit referenced in the Fixes line hasn't landed in -fixes yet, it's
+> > in -next. So the fix has landed before the bug :(
 > 
-> Hmm, the commit referenced in the Fixes line hasn't landed in -fixes yet, it's
-> in -next. So the fix has landed before the bug :(
+> Seems I'll still need to apply it to -next !
 
-Seems I'll still need to apply it to -next !
+I've just applied it, thanks for staying on top of this.
 
-Neil
+Sean
 
 > 
-> I'll ping mripard on irc and see what he wants to do about this.
+> Neil
 > 
-> Sean
-> 
->>
->> Neil
+> > 
+> > I'll ping mripard on irc and see what he wants to do about this.
+> > 
+> > Sean
+> > 
+> >>
+> >> Neil
+> > 
 > 
 
+-- 
+Sean Paul, Software Engineer, Google / Chromium OS
 
 _______________________________________________
 linux-amlogic mailing list
