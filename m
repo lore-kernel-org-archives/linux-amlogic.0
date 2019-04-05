@@ -4,79 +4,145 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 59160C4360F
-	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Apr 2019 11:43:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A7ABFC4360F
+	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Apr 2019 12:14:46 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 24C122186A
-	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Apr 2019 11:43:51 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7950D21871
+	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Apr 2019 12:14:46 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Y1e5vfe4";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="VEtENkkC"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 24C122186A
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EAoUhtDu";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="JcaK6oOk"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7950D21871
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mRVrKUbGVd2d6+db0kStOvgCGIb6+iH0S1h6Vxx4cPI=; b=Y1e5vfe4CKHerT
-	z34vZMieeXzB8ZgEhJaSsuzZUmBcQ+a2n34ryqeq7pBDhlYFDnLDwdSmNi/1qSCWF0qV0xHn7yCXN
-	7RRhktcbg+tmrPvGDsCKBrGtoq4Giv9GIYW9a5+gBnQYEQK7MNUmXiipgOSYp1Y4m+wlte458av0G
-	WnNXQYDm4HIojcBAMIJHmjNg6ubR9koD+YxBNPcXA6u7k94GQ22eEkZOxeo+/GU5xvPBvfQi2HjEN
-	f2zFQStzl9EehoAmNqWhGpy4qAwS+hx7FL7FVcjKNR65JN7nAHVjwCWJuqDUa17nNipSHYULlAK+K
-	DX8yrYejAF05pyc8VGqQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=cME0qdZZAIBLKD+L3QB+FnzNN4ynw7bhaUJUu1UpG1U=; b=EAoUhtDu/MWym1
+	YA5g98rVCfRfraWQ+9p2wm4SiCLNB2pEG2e0pI3dRpwhaBa0oauyTzVeIzooL+FSceWDrjYXQzdUZ
+	dTGiIav5ooPPk7n6/ZWrvSfyXvxHtAX1qG4d39KgEvCodZPM0pfzn/+Zf2cmcV0UgkLHDoVestoPi
+	R6Fos1lAJA9MVZe3b9wPWeFYrgXhC2ClKUdfCNGB1fn2f66OtqDIqqPMoS8oN+0BVyIt69qrw9Sqy
+	tMDti5ko+HEJ+4ufo9iqGfVFpF9s/hnSy4pHOX68agoH47toXgXYX2OyPceD7uqbd0WAp2I9WN9Iv
+	mWoaLJfG7guo3Ow72KuQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hCNG3-00016i-RS; Fri, 05 Apr 2019 11:43:43 +0000
+	id 1hCNk1-0000RA-8C; Fri, 05 Apr 2019 12:14:41 +0000
 Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hCNFu-0000y8-SE
- for linux-amlogic@lists.infradead.org; Fri, 05 Apr 2019 11:43:36 +0000
-Received: by mail-wr1-x442.google.com with SMTP id k11so7622202wro.5
- for <linux-amlogic@lists.infradead.org>; Fri, 05 Apr 2019 04:43:34 -0700 (PDT)
+ id 1hCNjy-0000QM-Vn
+ for linux-amlogic@lists.infradead.org; Fri, 05 Apr 2019 12:14:40 +0000
+Received: by mail-wr1-x442.google.com with SMTP id w1so7753179wrp.2
+ for <linux-amlogic@lists.infradead.org>; Fri, 05 Apr 2019 05:14:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=gpfxNDWzN/lDwOzvYsaszMMS2bWA067N9o6KMdno+Sg=;
- b=VEtENkkChRlawaWLGL0UktdTMqQvT6OIdAqkP1vVlh5CM+ixrKMGoJIJd3Tai3Vzn2
- ijrv5I/k+JzIyztt3GpNXlhq+XRFdfDNqrF3MnzZn+f1aZhMvRTZDVKQ3HQ9zuCs734W
- 4rFzXzw7jM6qc0obHbli+/rDVbeym7gpZNCxiAIboEXeV/gjvkppGczGiLX7prNr5JlD
- mGKlhn2vzzf00B9kKfvzHivnT5yRNMkmbcfdTDPhOkjaF759XUaUArY7A32yXwcQb5Hr
- jub2Qx5YKDUxga4/UfHhMmeV7JRTx/sEm6vGGVP2IfqjHCyKAk0QywbaGT5yd9TNZQgO
- b60w==
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=WjgvIkBVx1b/PMt5pfM7Hc0K2Rm84eyz0tuNN6NNdFs=;
+ b=JcaK6oOkMOdFLAbgD5RY8Gp1hxSouMw73CsgBBxazbY7FPPbo+YnPgS/r5j+FDqhtd
+ WK4eUxgROIALER/mzX80flpVPIftt+ZGUyfa10bFI2oTzuduB91rgUXbTLdkQA3BS9yh
+ dn4JZASM7xYRyj4gJg1/l1k1K2BEDEHBVDHqNuDPccTce1faAS48G4Uc0kuGFoMiNi55
+ +3xvnEYNyfYVdBEdtWixLatKsa+ExodjYH1Mjrp0B3l66bQs0y4XmdO6KeCz0j4Ajz8W
+ V1hhQwALbe7n2tww6s5TPVMNjqfOKirDIIEXnU0xpff2fM/KEmzMFNce40cs7Hmlgnb+
+ hFYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=gpfxNDWzN/lDwOzvYsaszMMS2bWA067N9o6KMdno+Sg=;
- b=dFMN5eLMdnQGqrL6k63G+URQvExdRHHjAkAN8Eauz0+x1P7yoILi2V2POeSoQYSKfe
- XA8mUw+GuFcbO+jaRZgnvnGfns4pxtgipw8fhE7BSC5cINlCdGrsXUOfBKul3yf/TWJZ
- ZS6LpqNpMmr3p7BK0rvkVVz+FtlDWjuIrRsvpDGpbBqrmtg7G5dXFMDkWM6w21Ff0XTv
- lV5bmLPhZD6gkpp8I9A+e+IJ1CPM1pjFOVYS2OraeS9l22mQGOfJXhq92ugAPD1PCmFM
- htq6Y2JNCG6q0QR/VVuOQ8h8xL0pczXjSMILlz1rBLlrKepagG6orp6hIgjk5M4oqSZo
- lC2A==
-X-Gm-Message-State: APjAAAW0trGcc/41Pa0S6GL4xtdVmtJufHgalJUDb1Z9IJ8KQ2Ab9ryD
- d+oRWu8bcI79hFl++7v+OLhoYMd9pbtkCmV6mxUm7Q==
-X-Google-Smtp-Source: APXvYqxNhn/S888Oagmx6upP9dvFkew+zCKkT/hl+Jj/FWTLJNOGsjms5kXSveGWQFKaTn6E/NMw4uXDVNDmyzFNjrM=
-X-Received: by 2002:adf:e9c1:: with SMTP id l1mr8021048wrn.270.1554464612316; 
- Fri, 05 Apr 2019 04:43:32 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190403205652.183496-1-sean@poorly.run>
-In-Reply-To: <20190403205652.183496-1-sean@poorly.run>
-From: Maxime Jourdan <mjourdan@baylibre.com>
-Date: Fri, 5 Apr 2019 13:43:21 +0200
-Message-ID: <CAMO6nax7zzzgAzh=F+JTSb6+KxZrOGZAX-t2G8JbyRBubDk6fw@mail.gmail.com>
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=WjgvIkBVx1b/PMt5pfM7Hc0K2Rm84eyz0tuNN6NNdFs=;
+ b=IKFsNxAuXPhGgqMKcQBZg23Sbb/4ZhhgjWvCPgyBgXBcHS2oM3sAq2vzuwF0raFEBE
+ irydX4jimuHDCUw4uwoQLPn7mMSRGzmXAwJLn73zUzAWrmn3YMwQUBrJFC2HwRiHwAq3
+ dK1mGzXk5JQzmoUE3QTGTpXFDv9MqT6tvBZcDWiG+dH3fbiHuGnZ7gynbjgl+6VR9gzW
+ EekXf9mKASdMuL+HeO2RrBxrXjYt7M4SdwbBUs13AoWzPAt4rkIS7yTE2OY9tzWEHu5t
+ lKW5hB15m0soI7ilCzGaurqteF4r0PdHC+9PagNdisqLDeY5KCGgVnfBAUtcx8IqKXCF
+ 9UIA==
+X-Gm-Message-State: APjAAAVSxB9KPG/pQZzskL8/zRevTYgYTOiHWpneh2yqoUe39NDSfEYX
+ m42luEV7KPgEzAmKxLBk8fQS9g==
+X-Google-Smtp-Source: APXvYqzhBC1avdgQyc2Fg44RNzjqfy99e/9yS1tFlu6W/v5m4s/gf+lNYpAu0LYjNMw6hFUkFGNuzQ==
+X-Received: by 2002:adf:f101:: with SMTP id r1mr8406700wro.251.1554466476912; 
+ Fri, 05 Apr 2019 05:14:36 -0700 (PDT)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id t15sm2558191wmt.2.2019.04.05.05.14.35
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 05 Apr 2019 05:14:36 -0700 (PDT)
 Subject: Re: [PATCH] Documentation/gpu/meson: Remove link to meson_canvas.c
 To: Sean Paul <sean@poorly.run>
+References: <20190403205652.183496-1-sean@poorly.run>
+ <2afc7c09-a6e4-5191-d7e3-7a3a75451aab@baylibre.com>
+ <de19dd7b-40dd-408b-a024-53036dedf7c3@baylibre.com>
+ <20190404143125.GB17077@art_vandelay>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <0897093a-246b-211b-bddf-6d87877b429c@baylibre.com>
+Date: Fri, 5 Apr 2019 14:14:35 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <20190404143125.GB17077@art_vandelay>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190405_044334_908841_A8791A17 
-X-CRM114-Status: GOOD (  13.72  )
+X-CRM114-CacheID: sfid-20190405_051439_024318_E46E3173 
+X-CRM114-Status: GOOD (  14.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -88,9 +154,9 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-doc@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+Cc: Maxime Jourdan <mjourdan@baylibre.com>, Jonathan Corbet <corbet@lwn.net>,
  David Airlie <airlied@linux.ie>, Kevin Hilman <khilman@baylibre.com>,
- Jonathan Corbet <corbet@lwn.net>,
+ linux-doc@vger.kernel.org,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
  Maxime Ripard <maxime.ripard@bootlin.com>, Sean Paul <seanpaul@chromium.org>,
@@ -101,50 +167,67 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Sean,
-On Wed, Apr 3, 2019 at 10:56 PM Sean Paul <sean@poorly.run> wrote:
->
-> From: Sean Paul <seanpaul@chromium.org>
->
-> The file was removed in the below patch and is causing this error:
-> WARNING: kernel-doc '../scripts/kernel-doc -rst -enable-lineno -function Canvas ../drivers/gpu/drm/meson/meson_canvas.c' failed with return code
->
-> Fixes: 2bf6b5b0e374 ("drm/meson: exclusively use the canvas provider module")
-> Cc: Maxime Jourdan <mjourdan@baylibre.com>
-> Cc: Neil Armstrong <narmstrong@baylibre.com>
-> Cc: Kevin Hilman <khilman@baylibre.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-amlogic@lists.infradead.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Signed-off-by: Sean Paul <seanpaul@chromium.org>
-> ---
->  Documentation/gpu/meson.rst | 6 ------
->  1 file changed, 6 deletions(-)
->
-> diff --git a/Documentation/gpu/meson.rst b/Documentation/gpu/meson.rst
-> index 479f6f51a13b..b9e2f9aa3bd8 100644
-> --- a/Documentation/gpu/meson.rst
-> +++ b/Documentation/gpu/meson.rst
-> @@ -42,12 +42,6 @@ Video Encoder
->  .. kernel-doc:: drivers/gpu/drm/meson/meson_venc.c
->     :doc: Video Encoder
->
-> -Video Canvas Management
-> -=======================
-> -
-> -.. kernel-doc:: drivers/gpu/drm/meson/meson_canvas.c
-> -   :doc: Canvas
-> -
->  Video Clocks
->  ============
->
-> --
-> Sean Paul, Software Engineer, Google / Chromium OS
->
+On 04/04/2019 16:31, Sean Paul wrote:
+> On Thu, Apr 04, 2019 at 10:28:29AM +0200, Neil Armstrong wrote:
+>> On 04/04/2019 08:56, Neil Armstrong wrote:
+>>> On 03/04/2019 22:56, Sean Paul wrote:
+>>>> From: Sean Paul <seanpaul@chromium.org>
+>>>>
+>>>> The file was removed in the below patch and is causing this error:
+>>>> WARNING: kernel-doc '../scripts/kernel-doc -rst -enable-lineno -function Canvas ../drivers/gpu/drm/meson/meson_canvas.c' failed with return code
+>>>>
+>>>> Fixes: 2bf6b5b0e374 ("drm/meson: exclusively use the canvas provider module")
+>>>> Cc: Maxime Jourdan <mjourdan@baylibre.com>
+>>>> Cc: Neil Armstrong <narmstrong@baylibre.com>
+>>>> Cc: Kevin Hilman <khilman@baylibre.com>
+>>>> Cc: dri-devel@lists.freedesktop.org
+>>>> Cc: linux-amlogic@lists.infradead.org
+>>>> Cc: linux-arm-kernel@lists.infradead.org
+>>>> Signed-off-by: Sean Paul <seanpaul@chromium.org>
+>>>> ---
+>>>>  Documentation/gpu/meson.rst | 6 ------
+>>>>  1 file changed, 6 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/gpu/meson.rst b/Documentation/gpu/meson.rst
+>>>> index 479f6f51a13b..b9e2f9aa3bd8 100644
+>>>> --- a/Documentation/gpu/meson.rst
+>>>> +++ b/Documentation/gpu/meson.rst
+>>>> @@ -42,12 +42,6 @@ Video Encoder
+>>>>  .. kernel-doc:: drivers/gpu/drm/meson/meson_venc.c
+>>>>     :doc: Video Encoder
+>>>>  
+>>>> -Video Canvas Management
+>>>> -=======================
+>>>> -
+>>>> -.. kernel-doc:: drivers/gpu/drm/meson/meson_canvas.c
+>>>> -   :doc: Canvas
+>>>> -
+>>>>  Video Clocks
+>>>>  ============
+>>>>  
+>>>>
+>>>
+>>> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+>>>
+>>
+>> Applied to drm-misc-fixes
+> 
+> Hmm, the commit referenced in the Fixes line hasn't landed in -fixes yet, it's
+> in -next. So the fix has landed before the bug :(
 
-Thanks for the patch, I missed that completely!
+Seems I'll still need to apply it to -next !
 
-Maxime
+Neil
+
+> 
+> I'll ping mripard on irc and see what he wants to do about this.
+> 
+> Sean
+> 
+>>
+>> Neil
+> 
+
 
 _______________________________________________
 linux-amlogic mailing list
