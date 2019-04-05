@@ -1,133 +1,72 @@
-Return-Path: <SRS0=arCo=SG=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=88k6=SH=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.7 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5E229C4360F
-	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Apr 2019 20:06:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 66BD8C4360F
+	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Apr 2019 02:43:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 31FD220882
-	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Apr 2019 20:06:17 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 36D602171F
+	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Apr 2019 02:43:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YmblDM+m";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=web.de header.i=@web.de header.b="pKl+vpN8"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 31FD220882
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=web.de
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZX3xpxs7";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="ApCyJIUT"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 36D602171F
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:To:From:Subject:References:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8q34EMKB6aybYFkgCNUtF/T8ieJHmC6r+4z0o31pquE=; b=YmblDM+mTC0u90
-	28vzy1HJEbcw4BVqlattfMKT+XPfnhdu54WeRVt7lwn5smynadgCwokfvnVZPJ0NXVRr8IhIOcbcp
-	AYeS5TDEgCynZNPU28mTkJ8ntCi9Bp5q9y6ryQsF58jp6N+Gkk7Y2WtfmPQJt07pvdknzVGqPhqdG
-	XzwcsXhkWxpNTI0crUpRHjm09W1fQJ+YrUo0B8PJIf+oranrJmEBEO4nzo32b1SlYncRD03wrn888
-	I1BUX88jBVpL2kn2lGoVkrNxftDEL1pGoOA4dVUWYgFtvczJPUrw0kQfFwojuOW18g2XD43Eu59wa
-	KZISpQAwAv3klrEZGmiw==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:
+	In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	References:List-Owner; bh=kSdcxPcSAexVfBTegJ0gJ5cdg+CLlx6zDkJjzuYB9II=; b=ZX3
+	xpxs7hRU5NLGv4QBOs1NS/fW0oxy5EIDtbRoTH+sHG3WvIRSt3eloyF6PAa5tB9dPZo8DzrNjIXHY
+	oOBmZhH3YvGekD4O76zgustjRCxnI5NNYc3DGZCN5hMgVBNWY4fSWhgFIn2R4dhpjg09hgv0duXlr
+	6HC4Qnbp+GJxQF3VFM0cFKnO7DaZXbRxG4IEvwPguiMGh8zU6yNcLFORRbdhsdjVlzUqQWxPan3IC
+	LY2r7EzhIiUCiSQFnoVJ/Kq90qhImuuk17M7rFK8+TrQfbxwgLkvEdohs8UWiEu8YQ5O2vPGgrYlb
+	WZTqK7GMqf21/q6aJGcGf+SlAs7u0mw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hC8cj-0006Lq-Hn; Thu, 04 Apr 2019 20:06:09 +0000
-Received: from mout.web.de ([212.227.17.11])
+	id 1hCEp7-0006Y2-Fa; Fri, 05 Apr 2019 02:43:21 +0000
+Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hC8cf-0006LW-DP; Thu, 04 Apr 2019 20:06:08 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de;
- s=dbaedf251592; t=1554408344;
- bh=oRy/nabPVynDMUMyd2AOqb9/dhxdVYfV3yi65jY1LB4=;
- h=X-UI-Sender-Class:Cc:References:Subject:From:To:Date:In-Reply-To;
- b=pKl+vpN8BZ7sQx0j5RKkPM6GGDSmENAnL6FH6/y4ZtwBcCoiW5ECW5mzQd/D3THDf
- 6qjLQo6drNTnCCtgVm8wNLMltnoupsbzKK2afbcGTSeqrEjrYYdXEwo/E9Fa7KQp8T
- 2RpejHUYscbpDO2VL6Lo/po2RC/oamcbDJ/tvN+A=
-X-UI-Sender-Class: c548c8c5-30a9-4db5-a2e7-cb6cb037b8f9
-Received: from [192.168.1.2] ([93.135.54.132]) by smtp.web.de (mrweb101
- [213.165.67.124]) with ESMTPSA (Nemesis) id 0LzsKN-1gpudn2WlX-0150m6; Thu, 04
- Apr 2019 22:05:44 +0200
-References: <1554307455-40361-3-git-send-email-wen.yang99@zte.com.cn>
-Subject: Re: [PATCH 2/7] drm/meson: fix possible object reference leak
-From: Markus Elfring <Markus.Elfring@web.de>
-Openpgp: preference=signencrypt
-Autocrypt: addr=Markus.Elfring@web.de; prefer-encrypt=mutual; keydata=
- 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 FEE=
-To: Wen Yang <wen.yang99@zte.com.cn>, dri-devel@lists.freedesktop.org,
- kernel-janitors@vger.kernel.org
-Message-ID: <07090eca-640f-830c-7e55-22a486cd0002@web.de>
-Date: Thu, 4 Apr 2019 22:05:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <1554307455-40361-3-git-send-email-wen.yang99@zte.com.cn>
-Content-Language: en-GB
-X-Provags-ID: V03:K1:RbrGKhLw60YXT5+o3Ap6cZx1nShLs5Fip/Pu/fBOiRQ9n389Ywf
- PmZHKydAisjHnL9UANt/aIuxhDym5IrmJS605FJOkroiq1HbmYjno12GFW/LJF4VTytz00l
- y4+BqBNvJWKys2n4nzZlqbnQI/Cd6J7m9Y/85r2bFODNso0D/42bYMHFv4s/J62WNb3pxNe
- eaE6WX9USDqpKgaLP/Nmg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:4eiiu8QVDpg=:1jnWdUEME0yCWBu3Iz7O/R
- X5YdEwaCYZO/hn0nGbu7gVfk7b1harO+LoOIs03J/Leo3O2nniA/GgCorufmbYCU24T0+6mBE
- D4XH1IcIGOCG8R0cFkTtC58OvyBz4B0qIei8cR1xxLF2Rw0F8BFlQg8JANJy+isq7/8dTJwSy
- yHFLZBLuPjW+pDUcE7jN6ENPsPgXMT5CiN6GbCI9FsjbHFNLP1k5GP44bvbetlVpzX4C6FO/E
- 9c31J8hwJkaUgjMvfS5KHMvBxcwe4PV6pDRnMIQjx/McQImf+Atiyaeg+q6/XOzznLxC9Da0/
- YFoIt3KeMzt8c1ZBLDuIs+WU2pvazAUf+3e0ACwKHIdI2lj1BwV2/8eNyBYnnxeQhejda4oIL
- 46vM699SnZltdWvRIuEG0Z4WDqi1Ul/B64oaFKMkuFdEb2FOqNf9BcjoBv4kaQAkEfz1fbvGJ
- Y4jwTITwBGoD2iLHMYt+fjF8ROoCTdQVsa+sG1rV0aFcy2j2Lz469t67Z1ua5NCPi7EXaqCaS
- DLh6B7Q4lPpHC73QdQwWtLdHYfaIRRgGFwgiv4N3rKZ9H/TswIqOsgseVMQPWspUUgFVwBNry
- oN4gJqw3CP+dFcYqtlqwCyQEZsSL29J6qYUCD3Ka2ykp52py73azlSfPMobTmc9imjvPOw23q
- 1DKeFE6YjIZDLalMfDHKhtct2UP/xua8LOOZXAkEnArkAzep5QkXDkDkganToYtC28Qs3pw01
- MfkzPVG7UAYlOeKCYGJgbIFOeGGlXH1PASsv2LIPsI/Lt6QQFmnD2aJV56OcG9ZDHLDVbxTOl
- swyy6wW3FYTAMhte5b9nHeIfyGF7vmOJjICflenF3JE2oqzde4/ipAg8I6B7eRevktlbFsl6+
- FdJ2Zu6rwzyU5wMY/D8o66DOIOFM9cQYU79q89CiB/cO3wNwX4/56xfOH1/fKIGn+6CzsdFsC
- 5+8XOnUbzPg==
+ id 1hCEp3-0006X1-JF
+ for linux-amlogic@lists.infradead.org; Fri, 05 Apr 2019 02:43:19 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
+ Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+ List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
+ List-Archive; bh=3Adxfw4V9KYe6gzscEgCxBTHFk+e9nP7+1yN6ci5ptw=; b=ApCyJIUTxj8O
+ 4Qkbo0t0OuwspQTuDYNIuW1VqqkS1TBSpbHBFUct6Gwf2DLz6dn+vnu2tKLFI99pnnZBquEpK7qtR
+ sFPYQXKUkR/DUCGZwuOVYTgNxrZCntaCTYgb+LR947VDV8Oeo/aldKrLv7ZPS9P2ceXnwKyA2WYsA
+ FNHZ8=;
+Received: from [147.50.13.10] (helo=finisterre.ee.mobilebroadband)
+ by heliosphere.sirena.org.uk with esmtpsa
+ (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.89)
+ (envelope-from <broonie@sirena.org.uk>)
+ id 1hCEou-0005E7-Jx; Fri, 05 Apr 2019 02:43:08 +0000
+Received: by finisterre.ee.mobilebroadband (Postfix, from userid 1000)
+ id 05F38441D3B; Fri,  5 Apr 2019 09:43:06 +0700 (+07)
+From: Mark Brown <broonie@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Subject: Applied "ASoC: meson: axg-tdmout: add g12a support" to the asoc tree
+In-Reply-To: <20190404111733.28705-7-jbrunet@baylibre.com>
+X-Patchwork-Hint: ignore
+Message-Id: <20190405024306.05F38441D3B@finisterre.ee.mobilebroadband>
+Date: Fri,  5 Apr 2019 09:43:05 +0700 (+07)
+X-Bad-Reply: In-Reply-To but no 'Re:' in Subject.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190404_130605_793111_49E7470A 
-X-CRM114-Status: UNSURE (   9.50  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190404_194317_783385_722E780F 
+X-CRM114-Status: GOOD (  10.72  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -139,43 +78,88 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Yi Wang <wang.yi59@zte.com.cn>, Neil Armstrong <narmstrong@baylibre.com>,
- David Airlie <airlied@linux.ie>, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: Maxime Jourdan <mjourdan@baylibre.com>, devicetree@vger.kernel.org,
+ alsa-devel@alsa-project.org, Kevin Hilman <khilman@baylibre.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org,
+ Mark Brown <broonie@kernel.org>, linux-amlogic@lists.infradead.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-> @@ -720,13 +720,10 @@ static bool meson_hdmi_connector_is_available(struct device *dev)
->
->  	/* If the endpoint node exists, consider it enabled */
->  	remote = of_graph_get_remote_port(ep);
-> -	if (remote) {
-> -		of_node_put(ep);
-> -		return true;
-> -	}
-> -
->  	of_node_put(ep);
->  	of_node_put(remote);
+The patch
 
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/gpu/drm/meson/meson_dw_hdmi.c?id=61de49cb596710b918f7a80839f0b6de2017bc32#n712
+   ASoC: meson: axg-tdmout: add g12a support
 
-Can the order of these put calls matter (because of processor caches)?
+has been applied to the asoc tree at
 
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git 
 
-> +	if (remote)
-> +		return true;
->
->  	return false;
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
 
-Would the use of a ternary operator be more succinct here?
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-+	return remote ? true : false;
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-Regards,
-Markus
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+From aa191a37b801be6c5abebe77e67dcec7c5c0faee Mon Sep 17 00:00:00 2001
+From: Jerome Brunet <jbrunet@baylibre.com>
+Date: Thu, 4 Apr 2019 13:17:33 +0200
+Subject: [PATCH] ASoC: meson: axg-tdmout: add g12a support
+
+The axg tdmout driver just need a different skew offset to operate
+correctly on the g12a SoC family.
+
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ sound/soc/meson/axg-tdmout.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/sound/soc/meson/axg-tdmout.c b/sound/soc/meson/axg-tdmout.c
+index 3984818e2a7c..527bfc4487e0 100644
+--- a/sound/soc/meson/axg-tdmout.c
++++ b/sound/soc/meson/axg-tdmout.c
+@@ -243,10 +243,23 @@ static const struct axg_tdm_formatter_driver axg_tdmout_drv = {
+ 	},
+ };
+ 
++static const struct axg_tdm_formatter_driver g12a_tdmout_drv = {
++	.component_drv	= &axg_tdmout_component_drv,
++	.regmap_cfg	= &axg_tdmout_regmap_cfg,
++	.ops		= &axg_tdmout_ops,
++	.quirks		= &(const struct axg_tdm_formatter_hw) {
++		.invert_sclk = true,
++		.skew_offset = 2,
++	},
++};
++
+ static const struct of_device_id axg_tdmout_of_match[] = {
+ 	{
+ 		.compatible = "amlogic,axg-tdmout",
+ 		.data = &axg_tdmout_drv,
++	}, {
++		.compatible = "amlogic,g12a-tdmout",
++		.data = &g12a_tdmout_drv,
+ 	}, {}
+ };
+ MODULE_DEVICE_TABLE(of, axg_tdmout_of_match);
+-- 
+2.20.1
+
 
 _______________________________________________
 linux-amlogic mailing list
