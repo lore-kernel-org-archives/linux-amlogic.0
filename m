@@ -4,20 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E9F42C4360F
-	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Apr 2019 02:43:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 57287C10F0E
+	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Apr 2019 02:43:36 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BAEB82171F
-	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Apr 2019 02:43:30 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 24EA92171F
+	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Apr 2019 02:43:36 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Z9gtPdG9";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="rDjpxvV2"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BAEB82171F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mTzGOW9n";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="o6+/x9/u"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 24EA92171F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,47 +25,47 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:
 	In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	References:List-Owner; bh=vOmPov3fTMSzrrndTl/BS+3ryR9+VdTqSTbNADjCP+k=; b=Z9g
-	tPdG91GRQUzqn/skWiiExvIWfBOi+jH6tJR8XpMXYrJ4QL/3B98NTtdEdlLgXJqXpwVT3hfnJLjwv
-	Q91CuLGVlGSGgni+G1v4AWvkbYTv0arjcIv6014cyAVw1dRBm81E440DrRXs+9J1EmM6msDfyG6/H
-	7Gs4JE53dkFWGh2ausGuXFKoqlMIdKUW4aAKu4Mob9PEpv4rQmsLj9epUe3I31TI+UWB2hiYiaFBy
-	tEbE1W883iYygGnVOseqEqG8Oq4AG3N6BjJQoEhsm7MzHgKGUni+8vPrKXTv/9tKcxAPo2YguiwLV
-	JVhm4DXQCmlunx0NyjZQOr+LzF5Loig==;
+	References:List-Owner; bh=EyqnDfZC9yPOj8JKCywBQZs1gMOaSv3je6qPMdewP3E=; b=mTz
+	GOW9n+HQb/QA/pxxkBAcsE6aIBjl3EQxjNkUzWj9mv+eIJU4jRQ64VbPWBxhhVlz5OrpVXBtH+Rr5
+	mpw/wBbAUP+O5SZoKCrrRkI+scyibCbgvrD1k8zBbSagPEdVrnLqusUzUsBWhpvKYgTKFh821wnOt
+	4kNHEMJ+R37HgWmYiWc2eaAXouF3exs3YZxTekzDI2p/1RtzHarQUU7LnUggLSVuUKw7xVm/LlvWe
+	kZsSivAIMbwjZacCd6xnwrR51RmGgzagpyg32/i3Zcfx0yymJsbpekg/yMot2QffCFNvuXN8RE/Iu
+	bQ6x5Sx5kiUTjvlUXa1Eg0ucJ8TOcqw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hCEpC-0006i8-Rt; Fri, 05 Apr 2019 02:43:26 +0000
+	id 1hCEpE-0006lH-M4; Fri, 05 Apr 2019 02:43:28 +0000
 Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hCEp7-0006Xv-TX
- for linux-amlogic@lists.infradead.org; Fri, 05 Apr 2019 02:43:25 +0000
+ id 1hCEpB-0006fb-BD
+ for linux-amlogic@lists.infradead.org; Fri, 05 Apr 2019 02:43:27 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
  Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
  Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
  List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
- List-Archive; bh=iyswIuIXLt3/9SO6gpWFMWb/+gQjPoJq3Mser0iVGWo=; b=rDjpxvV24yve
- YXNE2nt3nVR1rJJZ0OdBD0pI5hhgcYdIfMPeUz5bltpyJYiUlxd11DEtyb38/cg/T3VWFdBrjogpM
- 9eRuiIn0krX052Y8R+9CDzpk6WS6UvCZ0EeAk7hn9V7D8XCAQp6xqaaLK201VG3D1WHY3pUrN57j/
- wL/Zs=;
+ List-Archive; bh=lBopEilTxgctRW26nCeRGTnnGK0+xm9eI+n+7Fyp29I=; b=o6+/x9/upJSv
+ tz/cykctgMh5eVb0lbUBucJA72fB9HgrKskJB4KvcIgKnj2vy+63DFXyfWc7ktvSZEYpPuXZ3KoCw
+ E9SO8Cnqqm1NUirWJI42N5vHRUD/QTUEoRpl6M/PUhNsGJBwGRcplPNyfDAaSa8OMhj3liqo1Dwdx
+ PqDqs=;
 Received: from [147.50.13.10] (helo=finisterre.ee.mobilebroadband)
  by heliosphere.sirena.org.uk with esmtpsa
  (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.89)
  (envelope-from <broonie@sirena.org.uk>)
- id 1hCEp4-0005Eb-GJ; Fri, 05 Apr 2019 02:43:18 +0000
+ id 1hCEp7-0005Eo-L8; Fri, 05 Apr 2019 02:43:21 +0000
 Received: by finisterre.ee.mobilebroadband (Postfix, from userid 1000)
- id 7F18E441D3C; Fri,  5 Apr 2019 09:43:15 +0700 (+07)
+ id C6730441D3B; Fri,  5 Apr 2019 09:43:18 +0700 (+07)
 From: Mark Brown <broonie@kernel.org>
 To: Jerome Brunet <jbrunet@baylibre.com>
-Subject: Applied "ASoC: meson: axg-toddr: add g12a support" to the asoc tree
-In-Reply-To: <20190404111733.28705-4-jbrunet@baylibre.com>
+Subject: Applied "ASoC: meson: axg-fifo: add g12a support" to the asoc tree
+In-Reply-To: <20190404111733.28705-3-jbrunet@baylibre.com>
 X-Patchwork-Hint: ignore
-Message-Id: <20190405024315.7F18E441D3C@finisterre.ee.mobilebroadband>
-Date: Fri,  5 Apr 2019 09:43:15 +0700 (+07)
+Message-Id: <20190405024318.C6730441D3B@finisterre.ee.mobilebroadband>
+Date: Fri,  5 Apr 2019 09:43:18 +0700 (+07)
 X-Bad-Reply: In-Reply-To but no 'Re:' in Subject.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190404_194322_300377_C6D01AAF 
-X-CRM114-Status: GOOD (  12.57  )
+X-CRM114-CacheID: sfid-20190404_194325_535906_459BD8C4 
+X-CRM114-Status: GOOD (  16.09  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -90,7 +89,7 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 The patch
 
-   ASoC: meson: axg-toddr: add g12a support
+   ASoC: meson: axg-fifo: add g12a support
 
 has been applied to the asoc tree at
 
@@ -115,103 +114,118 @@ to this mail.
 Thanks,
 Mark
 
-From a3c23a8ad4dc07100d916d75ca30c982288b868d Mon Sep 17 00:00:00 2001
+From 7c02509a8a9981fb2c16b75904423e7ab2f9f43a Mon Sep 17 00:00:00 2001
 From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Thu, 4 Apr 2019 13:17:30 +0200
-Subject: [PATCH] ASoC: meson: axg-toddr: add g12a support
+Date: Thu, 4 Apr 2019 13:17:29 +0200
+Subject: [PATCH] ASoC: meson: axg-fifo: add g12a support
 
-Since the g12a SoC fifo can set the fifo initial start address, we must
-make sure to actually reset the write pointer to this address when
-starting a capture.
+The g12a fifos gained the ability to set the initial address of the
+pointer within the buffer, instead of defaulting to the buffer start
+address.
+
+It is not very useful to us (yet) but we need to put a copy the buffer
+start address in the related register for the fifo to work properly on the
+g12a SoC family
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- sound/soc/meson/axg-toddr.c | 53 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 53 insertions(+)
+ sound/soc/meson/axg-fifo.c | 34 +++++++++++++++++++++++++++++++---
+ sound/soc/meson/axg-fifo.h |  2 ++
+ 2 files changed, 33 insertions(+), 3 deletions(-)
 
-diff --git a/sound/soc/meson/axg-toddr.c b/sound/soc/meson/axg-toddr.c
-index 0e9ca3882ae5..4f63e434fad4 100644
---- a/sound/soc/meson/axg-toddr.c
-+++ b/sound/soc/meson/axg-toddr.c
-@@ -24,6 +24,7 @@
- #define CTRL0_TODDR_MSB_POS(x)		((x) << 8)
- #define CTRL0_TODDR_LSB_POS_MASK	GENMASK(7, 3)
- #define CTRL0_TODDR_LSB_POS(x)		((x) << 3)
-+#define CTRL1_TODDR_FORCE_FINISH	BIT(25)
+diff --git a/sound/soc/meson/axg-fifo.c b/sound/soc/meson/axg-fifo.c
+index 75e5e480fda2..01c1c7db2510 100644
+--- a/sound/soc/meson/axg-fifo.c
++++ b/sound/soc/meson/axg-fifo.c
+@@ -19,7 +19,7 @@
+  * This file implements the platform operations common to the playback and
+  * capture frontend DAI. The logic behind this two types of fifo is very
+  * similar but some difference exist.
+- * These differences the respective DAI drivers
++ * These differences are handled in the respective DAI drivers
+  */
  
- #define TODDR_MSB_POS	31
- 
-@@ -33,6 +34,22 @@ static int axg_toddr_pcm_new(struct snd_soc_pcm_runtime *rtd,
- 	return axg_fifo_pcm_new(rtd, SNDRV_PCM_STREAM_CAPTURE);
+ static struct snd_pcm_hardware axg_fifo_hw = {
+@@ -133,6 +133,23 @@ static int axg_fifo_pcm_hw_params(struct snd_pcm_substream *ss,
+ 	return 0;
  }
  
-+static int g12a_toddr_dai_prepare(struct snd_pcm_substream *substream,
-+				  struct snd_soc_dai *dai)
++static int g12a_fifo_pcm_hw_params(struct snd_pcm_substream *ss,
++				   struct snd_pcm_hw_params *params)
 +{
-+	struct axg_fifo *fifo = snd_soc_dai_get_drvdata(dai);
++	struct axg_fifo *fifo = axg_fifo_data(ss);
++	struct snd_pcm_runtime *runtime = ss->runtime;
++	int ret;
 +
-+	/* Reset the write pointer to the FIFO_INIT_ADDR */
-+	regmap_update_bits(fifo->map, FIFO_CTRL1,
-+			   CTRL1_TODDR_FORCE_FINISH, 0);
-+	regmap_update_bits(fifo->map, FIFO_CTRL1,
-+			   CTRL1_TODDR_FORCE_FINISH, CTRL1_TODDR_FORCE_FINISH);
-+	regmap_update_bits(fifo->map, FIFO_CTRL1,
-+			   CTRL1_TODDR_FORCE_FINISH, 0);
++	ret = axg_fifo_pcm_hw_params(ss, params);
++	if (ret)
++		return ret;
++
++	/* Set the initial memory address of the DMA */
++	regmap_write(fifo->map, FIFO_INIT_ADDR, runtime->dma_addr);
 +
 +	return 0;
 +}
 +
- static int axg_toddr_dai_hw_params(struct snd_pcm_substream *substream,
- 				   struct snd_pcm_hw_params *params,
- 				   struct snd_soc_dai *dai)
-@@ -172,10 +189,46 @@ static const struct axg_fifo_match_data axg_toddr_match_data = {
- 	.dai_drv	= &axg_toddr_dai_drv
+ static int axg_fifo_pcm_hw_free(struct snd_pcm_substream *ss)
+ {
+ 	struct axg_fifo *fifo = axg_fifo_data(ss);
+@@ -262,6 +279,17 @@ const struct snd_pcm_ops axg_fifo_pcm_ops = {
+ };
+ EXPORT_SYMBOL_GPL(axg_fifo_pcm_ops);
+ 
++const struct snd_pcm_ops g12a_fifo_pcm_ops = {
++	.open =		axg_fifo_pcm_open,
++	.close =        axg_fifo_pcm_close,
++	.ioctl =	snd_pcm_lib_ioctl,
++	.hw_params =	g12a_fifo_pcm_hw_params,
++	.hw_free =      axg_fifo_pcm_hw_free,
++	.pointer =	axg_fifo_pcm_pointer,
++	.trigger =	axg_fifo_pcm_trigger,
++};
++EXPORT_SYMBOL_GPL(g12a_fifo_pcm_ops);
++
+ int axg_fifo_pcm_new(struct snd_soc_pcm_runtime *rtd, unsigned int type)
+ {
+ 	struct snd_card *card = rtd->card->snd_card;
+@@ -278,7 +306,7 @@ static const struct regmap_config axg_fifo_regmap_cfg = {
+ 	.reg_bits	= 32,
+ 	.val_bits	= 32,
+ 	.reg_stride	= 4,
+-	.max_register	= FIFO_STATUS2,
++	.max_register	= FIFO_INIT_ADDR,
  };
  
-+static const struct snd_soc_dai_ops g12a_toddr_ops = {
-+	.prepare	= g12a_toddr_dai_prepare,
-+	.hw_params	= axg_toddr_dai_hw_params,
-+	.startup	= axg_toddr_dai_startup,
-+	.shutdown	= axg_toddr_dai_shutdown,
-+};
-+
-+static struct snd_soc_dai_driver g12a_toddr_dai_drv = {
-+	.name = "TODDR",
-+	.capture = {
-+		.stream_name	= "Capture",
-+		.channels_min	= 1,
-+		.channels_max	= AXG_FIFO_CH_MAX,
-+		.rates		= AXG_FIFO_RATES,
-+		.formats	= AXG_FIFO_FORMATS,
-+	},
-+	.ops		= &g12a_toddr_ops,
-+	.pcm_new	= axg_toddr_pcm_new,
-+};
-+
-+static const struct snd_soc_component_driver g12a_toddr_component_drv = {
-+	.dapm_widgets		= axg_toddr_dapm_widgets,
-+	.num_dapm_widgets	= ARRAY_SIZE(axg_toddr_dapm_widgets),
-+	.dapm_routes		= axg_toddr_dapm_routes,
-+	.num_dapm_routes	= ARRAY_SIZE(axg_toddr_dapm_routes),
-+	.ops			= &g12a_fifo_pcm_ops
-+};
-+
-+static const struct axg_fifo_match_data g12a_toddr_match_data = {
-+	.component_drv	= &g12a_toddr_component_drv,
-+	.dai_drv	= &g12a_toddr_dai_drv
-+};
-+
- static const struct of_device_id axg_toddr_of_match[] = {
- 	{
- 		.compatible = "amlogic,axg-toddr",
- 		.data = &axg_toddr_match_data,
-+	}, {
-+		.compatible = "amlogic,g12a-toddr",
-+		.data = &g12a_toddr_match_data,
- 	}, {}
+ int axg_fifo_probe(struct platform_device *pdev)
+@@ -339,6 +367,6 @@ int axg_fifo_probe(struct platform_device *pdev)
+ }
+ EXPORT_SYMBOL_GPL(axg_fifo_probe);
+ 
+-MODULE_DESCRIPTION("Amlogic AXG fifo driver");
++MODULE_DESCRIPTION("Amlogic AXG/G12A fifo driver");
+ MODULE_AUTHOR("Jerome Brunet <jbrunet@baylibre.com>");
+ MODULE_LICENSE("GPL v2");
+diff --git a/sound/soc/meson/axg-fifo.h b/sound/soc/meson/axg-fifo.h
+index d9f516cfbeda..5caf81241dfe 100644
+--- a/sound/soc/meson/axg-fifo.h
++++ b/sound/soc/meson/axg-fifo.h
+@@ -60,6 +60,7 @@ struct snd_soc_pcm_runtime;
+ #define FIFO_STATUS1			0x14
+ #define  STATUS1_INT_STS(x)		((x) << 0)
+ #define FIFO_STATUS2			0x18
++#define FIFO_INIT_ADDR			0x24
+ 
+ struct axg_fifo {
+ 	struct regmap *map;
+@@ -74,6 +75,7 @@ struct axg_fifo_match_data {
  };
- MODULE_DEVICE_TABLE(of, axg_toddr_of_match);
+ 
+ extern const struct snd_pcm_ops axg_fifo_pcm_ops;
++extern const struct snd_pcm_ops g12a_fifo_pcm_ops;
+ 
+ int axg_fifo_pcm_new(struct snd_soc_pcm_runtime *rtd, unsigned int type);
+ int axg_fifo_probe(struct platform_device *pdev);
 -- 
 2.20.1
 
