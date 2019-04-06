@@ -1,74 +1,96 @@
-Return-Path: <SRS0=88k6=SH=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=b9va=SI=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_PASS autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3E0E3C282CE
-	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Apr 2019 20:43:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C32C6C10F06
+	for <linux-amlogic@archiver.kernel.org>; Sat,  6 Apr 2019 03:43:12 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 04134206BA
-	for <linux-amlogic@archiver.kernel.org>; Fri,  5 Apr 2019 20:43:46 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 91A6821738
+	for <linux-amlogic@archiver.kernel.org>; Sat,  6 Apr 2019 03:43:12 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YDecLWx9";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="wJ04X2qG"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 04134206BA
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ai9tMtq4";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernelci-org.20150623.gappssmtp.com header.i=@kernelci-org.20150623.gappssmtp.com header.b="TEgfoxzZ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 91A6821738
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=kernelci.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:To:Subject:From:
-	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=KGBbP6lBtpDEDvoWs4iHdwy8uz0kNrycegxgm0hi0v0=; b=YDecLWx9CpMyPf
-	3uY/bRUZNpQfxzU8OXwa9PfSYvWfiH06892XQe7ewhvi0z+afVc5u786HE99QyvnB8E/SEMxwNoM+
-	4qa0vP8+jMxXptV0Tw7RD4Df+6pBzleFuMEcX2hMCDwlGgkonJMf214VvGdPYspAf6zTTPY6G+U/B
-	ytxawXI6cwyTGCdeyJV0zLUjV7dIy+y3A1nG9lcBMg4I3OSWFhp2Emfcx0nAjcihMzRbl8Ha7AB3G
-	dPObHUPyJoKIM0s+qxSr283hB4+3RlWD9KNgZO4Cq/A9G8fK0sveCcLmMp6xE3c/DwtLjI+RUA+AI
-	zs7Wuq3Hn0xyrHZefdKw==;
+	List-Archive:List-Unsubscribe:List-Id:From:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=xO9v51rFYtsA4qrzTXMF/QWvqO3IhmIy6c4s1hjqUHU=; b=ai9tMtq4cYlcgi
+	AEnNqNxgkXfmXAYR6fx624/2LzoJctSdiqrWlfd1wXx3E31zg1PUsHzbGIP5Xyh0OnGR0TWApwmK7
+	4oMTDyaUl5dSfy7q7nv69HmY8sSnHa08zT01/OOO0VcH0XKzkRjjAsyMxNfiOPoWEHIejc7BAULDh
+	zyjZhIKLH1kzuNY5EuLqU18N7lk5S/Lp+uUHOae1CtZx2SFbdAsydat7XYt2LyzbSt3D/XxJNP1Me
+	XerI6tRRg7D8MAXvv4Rcmo2mfKWJPgujzEVUxFOmWfIF8/QAXw4UDEmW2o7WHU/YL3x/8rp6OyEiw
+	oI3P6UBmyLM2liINzeAQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hCVgY-0007BM-St; Fri, 05 Apr 2019 20:43:38 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1hCcER-0005sQ-2W; Sat, 06 Apr 2019 03:43:03 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hCVgV-0007AF-0X
- for linux-amlogic@lists.infradead.org; Fri, 05 Apr 2019 20:43:36 +0000
-Received: from localhost (unknown [104.132.0.74])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 1922C206BA;
- Fri,  5 Apr 2019 20:43:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1554497014;
- bh=EQcquGL/H8j873Qtr/IVEBdcoXwlt+4bAMRlTfGo12s=;
- h=In-Reply-To:References:From:Subject:Cc:To:Date:From;
- b=wJ04X2qGwrxWuRA5ZaXcwkyxpSqJzNPOQSWve20yqQjwfyNo9+LJ/CZA25Ua+mBAM
- shl/v/8tCBD1zGHkJs/9tbu390a5iKAo+OcDVrHuvi372nF42VdGMc65jwwvIzhC4Q
- CeuJGQqlyhxmtTGXsyEG+hrUDGuQv6afz730JTYg=
+ id 1hCcEN-0005rZ-IL
+ for linux-amlogic@lists.infradead.org; Sat, 06 Apr 2019 03:43:01 +0000
+Received: by mail-wr1-x442.google.com with SMTP id y7so10061163wrn.11
+ for <linux-amlogic@lists.infradead.org>; Fri, 05 Apr 2019 20:42:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=kernelci-org.20150623.gappssmtp.com; s=20150623;
+ h=message-id:date:mime-version:content-transfer-encoding:subject:to
+ :from:cc; bh=ys2IsLJ1PvhlZKBx420jkP3TGrV2rTELbRBFIog6p54=;
+ b=TEgfoxzZ1+NJEbPF601bOhR3XSbnA3qNoEG42OAMIWcLeApd7FJlNusbnw/S+nVb/y
+ WK8d4zmAZRo3onYt6+SpMPADqv0Umn/hu/IV+n+6s1Bvql+EWwXwRP/gEB3Gsvk7fARP
+ KRVrk2kf49queWBuPdMnrbpBz5eCAhxTqSFkOCyFyNmdhwPcsZn3droWGpvP31REfON+
+ szkQVi43ltaU8SGUHwoZWkiWzvjm2qhi44R7Vdz84GDuiYNZQHU7V+bpCVy88tqfVx+J
+ Jcxp2zsIWAKYPDFJAj8RR9pTuyjaZfJKCwn/HVBfiakj5cNFUKTsu9KeDAgnmTwcD7Aj
+ 6cHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:date:mime-version
+ :content-transfer-encoding:subject:to:from:cc;
+ bh=ys2IsLJ1PvhlZKBx420jkP3TGrV2rTELbRBFIog6p54=;
+ b=mjrdHUQQD44dcGi26s8UVjyhp7YRWOqHIdl/Ig3LTp5pVeaF80fVxxSGfq0GlGdHIE
+ rHeiTYH981+HjTgrb5HY4DuvjNYxmYuoPqP9NnA4w9X2Xy9T96Tlr6xCxnP/xNxsVZos
+ gVqvBQourFwCtTFZmMT5/rofXru/SO2zZbLb0NnHKAsof0xy7f4jBMCRjd69tA/z/nml
+ 6LWNmhADVa5R+M0i4Q7cGc53NjKe/napa4OJnclpqpUAz3t2IQU7bx68IBCLDlUwJ9I+
+ SL/7eIJtwpS7iyfea+3F78TDpR2mXP18O2ojo8Npvy3I/CgqS6gK0nT+Fu8WJBvZejTJ
+ OV2A==
+X-Gm-Message-State: APjAAAXmieyXPSTAFcExxCB0I+MHoUNCM8hpZzAFEyA7CsPMjdd60Sj2
+ IQPcYcUJpxLczJpcH6Q4IAbKvQ==
+X-Google-Smtp-Source: APXvYqwMEFIY7Sy/YXMXfRtb1EKad76xq1Qu/T9Dd0BklGz1SMP+t7KlNc4KS9/FefQzbIxJCXGgxQ==
+X-Received: by 2002:a5d:6682:: with SMTP id l2mr11066388wru.33.1554522176822; 
+ Fri, 05 Apr 2019 20:42:56 -0700 (PDT)
+Received: from [148.251.42.114] ([2a01:4f8:201:9271::2])
+ by smtp.gmail.com with ESMTPSA id z74sm11703671wmc.2.2019.04.05.20.42.55
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 05 Apr 2019 20:42:56 -0700 (PDT)
+Message-ID: <5ca82040.1c69fb81.ab86d.b4f9@mx.google.com>
+Date: Fri, 05 Apr 2019 20:42:56 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAEG3pNCrANkLBeEA_wVU7n4U57X3sd-1EzhUZ_PHBryqPHoAaQ@mail.gmail.com>
-References: <20190325111200.15940-1-jbrunet@baylibre.com>
- <20190325111200.15940-2-jbrunet@baylibre.com>
- <155353381842.20095.17915880223118004926@swboyd.mtv.corp.google.com>
- <8b6f0bc6210834af2aff2de7dc95692dd87db539.camel@baylibre.com>
- <155389767798.20095.10570017301900287354@swboyd.mtv.corp.google.com>
- <6ef984dabf626760ae606567facdc5245fbba984.camel@baylibre.com>
- <CAEG3pNCrANkLBeEA_wVU7n4U57X3sd-1EzhUZ_PHBryqPHoAaQ@mail.gmail.com>
-From: Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH 1/4] clk: meson: mpll: add init callback and regs
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>
-Message-ID: <155449701325.20095.2265240732374772927@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.8
-Date: Fri, 05 Apr 2019 13:43:33 -0700
+X-Kernelci-Kernel: v4.19.34
+X-Kernelci-Report-Type: bisect
+X-Kernelci-Tree: stable
+X-Kernelci-Lab-Name: lab-baylibre
+X-Kernelci-Branch: linux-4.19.y
+Subject: stable/linux-4.19.y boot bisection: v4.19.34 on
+ meson-gxl-s905x-libretech-cc
+To: tomeu.vizoso@collabora.com, Sasha Levin <sashal@kernel.org>,
+ guillaume.tucker@collabora.com, mgalka@collabora.com,
+ Neil Armstrong <narmstrong@baylibre.com>, broonie@kernel.org,
+ matthew.hart@linaro.org, khilman@baylibre.com, enric.balletbo@collabora.com,
+ Jerome Brunet <jbrunet@baylibre.com>
+From: "kernelci.org bot" <bot@kernelci.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190405_134335_088188_3DCB835A 
-X-CRM114-Status: GOOD (  22.56  )
+X-CRM114-CacheID: sfid-20190405_204259_844062_7D1B3969 
+X-CRM114-Status: UNSURE (   9.98  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -80,70 +102,129 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- "Stephen Boyd <sboyd@codeaurora.org>, Emilio Lopez <emilio@elopez.com.ar>,
- Hans de Goede <hdegoede@redhat.com>, linux-clk <linux-clk@vger.kernel.org>,
- linux-arm-kernel" <linux-clk@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Neil Armstrong <narmstrong@baylibre.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Michael Turquette (2019-04-05 08:43:40)
-> Hi Jerome,
-> 
-> On Fri, Mar 29, 2019 at 3:58 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
-> >
-> > On Fri, 2019-03-29 at 15:14 -0700, Stephen Boyd wrote:
-> > > > > We actively discourage using init callbacks. Can you do this some other
-> > > > > way?
-> > > >
-> > > > Yes I'm aware of that but init it the right place to do this.
-> > > > To be clear, this is not initializing the clock to some particular rate, the
-> > > > rate is preserved.
-> > > >
-> > > > It just applies the necessary settings that needs to be done only once to make
-> > > > sure the clock is in working order and that the rate calculated is actually
-> > > > accurate.
-> > >
-> > > Ok, but can you do that in your driver's probe routine instead of
-> > > attaching to the init callback? We want to get rid of "init" at some
-> > > point so throwing the init sequence stuff into the driver probe around
-> > > registration is a solution. Or we should think about not discouraging
-> > > the init callback
-> >
-> > Is is callback really a problem after all ?
-> 
-> It is a problem, insofar as Stephen and I want to remove .init some day.
-> 
-> > I think we should actively prevent using it to set a particular rate.
-> >
-> > Here, the goal is put the clock in working order. The bootloader does not
-> > always do that for us.
-> 
-> The above two sentences make it sound like this sequence belongs in .prepare().
-> 
-> I know that you're concerned with setting rate, but I guess it is safe
-> to assume that you'll always complete .prepare() before you begin to
-> execute .set_rate(), no? This also avoids the ugliness of putting it
-> in the .probe(), which I agree doesn't feel like an accurate thing to
-> do for a clock's own programming sequence.
-> 
-> .probe() is an OK place to put policy (turn these clocks on or set
-> them to this rate, for a known-good configuration).
-> 
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* This automated bisection report was sent to you on the basis  *
+* that you may be involved with the breaking commit it has      *
+* found.  No manual investigation has been done to verify it,   *
+* and the root cause of the problem may be somewhere else.      *
+* Hope this helps!                                              *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-Following along with this reasoning, maybe we need a 'prepare_once'
-callback that does this the first time the clk is prepared or set_rate
-is called on it. The problem I have with the init callback is that the
-semantics of when it's called and what has happened before it's called
-isn't clearly defined. I'm afraid to remove it and also afraid to move
-around where it's called from. I've been itching to get it out of under
-all the locks we're holding at registration time, but I don't know if
-that's feasible, for example.
+stable/linux-4.19.y boot bisection: v4.19.34 on meson-gxl-s905x-libretech-cc
 
+Summary:
+  Start:      4d552acf3370 Linux 4.19.34
+  Details:    https://kernelci.org/boot/id/5ca7d18659b51406b8fe6019
+  Plain log:  https://storage.kernelci.org//stable/linux-4.19.y/v4.19.34/arm64/defconfig/gcc-7/lab-baylibre/boot-meson-gxl-s905x-libretech-cc.txt
+  HTML log:   https://storage.kernelci.org//stable/linux-4.19.y/v4.19.34/arm64/defconfig/gcc-7/lab-baylibre/boot-meson-gxl-s905x-libretech-cc.html
+  Result:     c8e4f8406842 clk: meson: clean-up clock registration
+
+Checks:
+  revert:     PASS
+  verify:     PASS
+
+Parameters:
+  Tree:       stable
+  URL:        https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
+  Branch:     linux-4.19.y
+  Target:     meson-gxl-s905x-libretech-cc
+  CPU arch:   arm64
+  Lab:        lab-baylibre
+  Compiler:   gcc-7
+  Config:     defconfig
+  Test suite: boot
+
+Breaking commit found:
+
+-------------------------------------------------------------------------------
+commit c8e4f8406842332fb55cd792016e5dac266f6354
+Author: Jerome Brunet <jbrunet@baylibre.com>
+Date:   Fri Dec 21 17:02:36 2018 +0100
+
+    clk: meson: clean-up clock registration
+    
+    [ Upstream commit 8d9981efbcab066d17af4d3c85c169200f6f78df ]
+    
+    Order, ids and size  between the table of regmap clocks and the onecell
+    data table could be different.
+    
+    Set regmap pointer in all the regmap clocks before starting the
+    registration using the onecell data, to make sure we don't
+    get into an incoherent situation.
+    
+    Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+    Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+    Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+    Link: https://lkml.kernel.org/r/20181221160239.26265-3-jbrunet@baylibre.com
+    Signed-off-by: Sasha Levin <sashal@kernel.org>
+
+diff --git a/drivers/clk/meson/meson-aoclk.c b/drivers/clk/meson/meson-aoclk.c
+index f965845917e3..258c8d259ea1 100644
+--- a/drivers/clk/meson/meson-aoclk.c
++++ b/drivers/clk/meson/meson-aoclk.c
+@@ -65,15 +65,20 @@ int meson_aoclkc_probe(struct platform_device *pdev)
+ 		return ret;
+ 	}
+ 
+-	/*
+-	 * Populate regmap and register all clks
+-	 */
+-	for (clkid = 0; clkid < data->num_clks; clkid++) {
++	/* Populate regmap */
++	for (clkid = 0; clkid < data->num_clks; clkid++)
+ 		data->clks[clkid]->map = regmap;
+ 
++	/* Register all clks */
++	for (clkid = 0; clkid < data->hw_data->num; clkid++) {
++		if (!data->hw_data->hws[clkid])
++			continue;
++
+ 		ret = devm_clk_hw_register(dev, data->hw_data->hws[clkid]);
+-		if (ret)
++		if (ret) {
++			dev_err(dev, "Clock registration failed\n");
+ 			return ret;
++		}
+ 	}
+ 
+ 	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+-------------------------------------------------------------------------------
+
+
+Git bisection log:
+
+-------------------------------------------------------------------------------
+git bisect start
+# good: [4b3a3ab00fa7a951eb1d7568c71855e75fd5af85] Linux 4.19.33
+git bisect good 4b3a3ab00fa7a951eb1d7568c71855e75fd5af85
+# bad: [4d552acf337038028f7e2f63a927afb7adf65fc1] Linux 4.19.34
+git bisect bad 4d552acf337038028f7e2f63a927afb7adf65fc1
+# good: [b13eb5245f9f730e79ab17593c4e3c8a62fee3b4] HID: intel-ish-hid: avoid binding wrong ishtp_cl_device
+git bisect good b13eb5245f9f730e79ab17593c4e3c8a62fee3b4
+# good: [30d503bae9673ff6b0c67c6fa61b95db66319088] ARM: avoid Cortex-A9 livelock on tight dmb loops
+git bisect good 30d503bae9673ff6b0c67c6fa61b95db66319088
+# good: [c55f4a6e798dad7383f4e4f99d351d6016e943a2] dmaengine: qcom_hidma: assign channel cookie correctly
+git bisect good c55f4a6e798dad7383f4e4f99d351d6016e943a2
+# good: [52cd9e0e43c7bda1621a2ce66765a4a369967caf] wlcore: Fix memory leak in case wl12xx_fetch_firmware failure
+git bisect good 52cd9e0e43c7bda1621a2ce66765a4a369967caf
+# bad: [986a2bb54a31179b0c99b94743723d49388ad900] Input: soc_button_array - fix mapping of the 5th GPIO in a PNP0C40 device
+git bisect bad 986a2bb54a31179b0c99b94743723d49388ad900
+# bad: [c8e4f8406842332fb55cd792016e5dac266f6354] clk: meson: clean-up clock registration
+git bisect bad c8e4f8406842332fb55cd792016e5dac266f6354
+# good: [6251c1db04f2ac1ef799763da0f2fa1821dde403] drm/fb-helper: fix leaks in error path of drm_fb_helper_fbdev_setup
+git bisect good 6251c1db04f2ac1ef799763da0f2fa1821dde403
+# first bad commit: [c8e4f8406842332fb55cd792016e5dac266f6354] clk: meson: clean-up clock registration
+-------------------------------------------------------------------------------
 
 _______________________________________________
 linux-amlogic mailing list
