@@ -2,94 +2,75 @@ Return-Path: <SRS0=b9va=SI=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_PASS autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C32C6C10F06
-	for <linux-amlogic@archiver.kernel.org>; Sat,  6 Apr 2019 03:43:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 225E6C282DA
+	for <linux-amlogic@archiver.kernel.org>; Sat,  6 Apr 2019 06:06:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 91A6821738
-	for <linux-amlogic@archiver.kernel.org>; Sat,  6 Apr 2019 03:43:12 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E6E8421855
+	for <linux-amlogic@archiver.kernel.org>; Sat,  6 Apr 2019 06:06:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ai9tMtq4";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernelci-org.20150623.gappssmtp.com header.i=@kernelci-org.20150623.gappssmtp.com header.b="TEgfoxzZ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 91A6821738
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=kernelci.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LrFPemNB"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E6E8421855
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:From:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=xO9v51rFYtsA4qrzTXMF/QWvqO3IhmIy6c4s1hjqUHU=; b=ai9tMtq4cYlcgi
-	AEnNqNxgkXfmXAYR6fx624/2LzoJctSdiqrWlfd1wXx3E31zg1PUsHzbGIP5Xyh0OnGR0TWApwmK7
-	4oMTDyaUl5dSfy7q7nv69HmY8sSnHa08zT01/OOO0VcH0XKzkRjjAsyMxNfiOPoWEHIejc7BAULDh
-	zyjZhIKLH1kzuNY5EuLqU18N7lk5S/Lp+uUHOae1CtZx2SFbdAsydat7XYt2LyzbSt3D/XxJNP1Me
-	XerI6tRRg7D8MAXvv4Rcmo2mfKWJPgujzEVUxFOmWfIF8/QAXw4UDEmW2o7WHU/YL3x/8rp6OyEiw
-	oI3P6UBmyLM2liINzeAQ==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:To:In-Reply-To:
+	References:Subject:From:Date:Message-ID:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=4EVHeaK+jwPAOFIxu75yb4fKJJLZfdJFJMchMvBzfHE=; b=LrFPemNBXy2bB30A83LB8HUqGd
+	jRnfdIUckLUemeV7r8N1CAA+JmGzluZsaCzrtbTol9hKeYhogqqKlyazk26XOWQGbgEq6Ui9Rr2CU
+	FHmn0ZAGZD2DR54LhAbSuguH6cyj7aKdu9+OthpTfZftPEx79LIeA7PzRThytEKJOQ7YbDHtznzaV
+	xUvE6/6aDTp4fKfiPxOKUcHN/IMEJ+SadFzTuGrwRDRKKbTj0o/kpToVBrKINiEczAa0trcGVP3yr
+	8NRwnxMEs5Z925m1t2ybao+6x4qDeh/mVJbq1rcuBFJmmhO5cL21ajYKAdYEfjzdwKV0alfR6Jl//
+	jbpK3N0w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hCcER-0005sQ-2W; Sat, 06 Apr 2019 03:43:03 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1hCeSo-0007rU-Be; Sat, 06 Apr 2019 06:06:02 +0000
+Received: from mail-pg1-f196.google.com ([209.85.215.196])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hCcEN-0005rZ-IL
- for linux-amlogic@lists.infradead.org; Sat, 06 Apr 2019 03:43:01 +0000
-Received: by mail-wr1-x442.google.com with SMTP id y7so10061163wrn.11
- for <linux-amlogic@lists.infradead.org>; Fri, 05 Apr 2019 20:42:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=kernelci-org.20150623.gappssmtp.com; s=20150623;
- h=message-id:date:mime-version:content-transfer-encoding:subject:to
- :from:cc; bh=ys2IsLJ1PvhlZKBx420jkP3TGrV2rTELbRBFIog6p54=;
- b=TEgfoxzZ1+NJEbPF601bOhR3XSbnA3qNoEG42OAMIWcLeApd7FJlNusbnw/S+nVb/y
- WK8d4zmAZRo3onYt6+SpMPADqv0Umn/hu/IV+n+6s1Bvql+EWwXwRP/gEB3Gsvk7fARP
- KRVrk2kf49queWBuPdMnrbpBz5eCAhxTqSFkOCyFyNmdhwPcsZn3droWGpvP31REfON+
- szkQVi43ltaU8SGUHwoZWkiWzvjm2qhi44R7Vdz84GDuiYNZQHU7V+bpCVy88tqfVx+J
- Jcxp2zsIWAKYPDFJAj8RR9pTuyjaZfJKCwn/HVBfiakj5cNFUKTsu9KeDAgnmTwcD7Aj
- 6cHA==
+ id 1hCeSh-0007kR-9z
+ for linux-amlogic@lists.infradead.org; Sat, 06 Apr 2019 06:05:56 +0000
+Received: by mail-pg1-f196.google.com with SMTP id q1so4179189pgv.13
+ for <linux-amlogic@lists.infradead.org>; Fri, 05 Apr 2019 23:05:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:mime-version
- :content-transfer-encoding:subject:to:from:cc;
- bh=ys2IsLJ1PvhlZKBx420jkP3TGrV2rTELbRBFIog6p54=;
- b=mjrdHUQQD44dcGi26s8UVjyhp7YRWOqHIdl/Ig3LTp5pVeaF80fVxxSGfq0GlGdHIE
- rHeiTYH981+HjTgrb5HY4DuvjNYxmYuoPqP9NnA4w9X2Xy9T96Tlr6xCxnP/xNxsVZos
- gVqvBQourFwCtTFZmMT5/rofXru/SO2zZbLb0NnHKAsof0xy7f4jBMCRjd69tA/z/nml
- 6LWNmhADVa5R+M0i4Q7cGc53NjKe/napa4OJnclpqpUAz3t2IQU7bx68IBCLDlUwJ9I+
- SL/7eIJtwpS7iyfea+3F78TDpR2mXP18O2ojo8Npvy3I/CgqS6gK0nT+Fu8WJBvZejTJ
- OV2A==
-X-Gm-Message-State: APjAAAXmieyXPSTAFcExxCB0I+MHoUNCM8hpZzAFEyA7CsPMjdd60Sj2
- IQPcYcUJpxLczJpcH6Q4IAbKvQ==
-X-Google-Smtp-Source: APXvYqwMEFIY7Sy/YXMXfRtb1EKad76xq1Qu/T9Dd0BklGz1SMP+t7KlNc4KS9/FefQzbIxJCXGgxQ==
-X-Received: by 2002:a5d:6682:: with SMTP id l2mr11066388wru.33.1554522176822; 
- Fri, 05 Apr 2019 20:42:56 -0700 (PDT)
-Received: from [148.251.42.114] ([2a01:4f8:201:9271::2])
- by smtp.gmail.com with ESMTPSA id z74sm11703671wmc.2.2019.04.05.20.42.55
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 05 Apr 2019 20:42:56 -0700 (PDT)
-Message-ID: <5ca82040.1c69fb81.ab86d.b4f9@mx.google.com>
-Date: Fri, 05 Apr 2019 20:42:56 -0700 (PDT)
-MIME-Version: 1.0
-X-Kernelci-Kernel: v4.19.34
-X-Kernelci-Report-Type: bisect
-X-Kernelci-Tree: stable
-X-Kernelci-Lab-Name: lab-baylibre
-X-Kernelci-Branch: linux-4.19.y
-Subject: stable/linux-4.19.y boot bisection: v4.19.34 on
- meson-gxl-s905x-libretech-cc
-To: tomeu.vizoso@collabora.com, Sasha Levin <sashal@kernel.org>,
- guillaume.tucker@collabora.com, mgalka@collabora.com,
- Neil Armstrong <narmstrong@baylibre.com>, broonie@kernel.org,
- matthew.hart@linaro.org, khilman@baylibre.com, enric.balletbo@collabora.com,
- Jerome Brunet <jbrunet@baylibre.com>
-From: "kernelci.org bot" <bot@kernelci.org>
+ h=x-gm-message-state:message-id:date:from:subject:references
+ :in-reply-to:cc:cc:to;
+ bh=Y2LNPDDgAWFMTxjrphq8l1ZkmN7zBDhbLgoLv2GUpQI=;
+ b=RIJJasVOcVQft7bOhv1U5nAHCFIO97P3e6vP4/4bakd/OzZcIGd0lldcIHjs8gJuza
+ 8veWMfX6UXWvhaKkYJejPKQR6n1UT4dj/18DalZj2RdO8Ba8OzqagrBzVgf19uNvoBBf
+ 4Zit/2Nm+vjdmuKTcf/YUCZvaDBXZWKUjPwD5l6RiIHbjyqHxAN5DXgADe/F89wJC1An
+ 3ZTsqqow9F0V6CkIXxJeA0UjISRUyBJB2Y368JS7ILn0SY4HtsQxIcBY+7Ack1cOZpEL
+ FBpvBQXIKS8MsgHnr/IQBYu/v0tSxJRe5DKFzq8KKlPlfx9Ei24zOlD9idZ0Cegv7PUw
+ LnJw==
+X-Gm-Message-State: APjAAAXrQ2Y38zFlKINacrbbdHkFPFNTe5U7+b7FN34jyaBTj6Ne5/T8
+ L0MKkJjHkeZowkuEr/zfL/IonWheHg==
+X-Google-Smtp-Source: APXvYqzxH1SLJcGx7X0hbQGNI/T13FsW1H6PxA4ICO1KCBgoxCNQBOen/bGkVuwDPeTOEjmbWr9oVA==
+X-Received: by 2002:aa7:8719:: with SMTP id b25mr17011728pfo.90.1554530754485; 
+ Fri, 05 Apr 2019 23:05:54 -0700 (PDT)
+Received: from localhost ([210.160.217.71])
+ by smtp.gmail.com with ESMTPSA id v82sm56318833pfa.170.2019.04.05.23.05.53
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Fri, 05 Apr 2019 23:05:53 -0700 (PDT)
+Message-ID: <5ca841c1.1c69fb81.44d14.3a88@mx.google.com>
+Date: Sat, 06 Apr 2019 01:05:51 -0500
+From: Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH 1/4] dt-bindings: clk: axg-audio: add g12a support
+References: <20190329160649.31603-1-jbrunet@baylibre.com>
+ <20190329160649.31603-2-jbrunet@baylibre.com>
+In-Reply-To: <20190329160649.31603-2-jbrunet@baylibre.com>
+To: Jerome Brunet <jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190405_204259_844062_7D1B3969 
-X-CRM114-Status: UNSURE (   9.98  )
+X-CRM114-CacheID: sfid-20190405_230555_340057_4B0BEB86 
+X-CRM114-Status: UNSURE (   6.79  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -102,129 +83,29 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: Maxime Jourdan <mjourdan@baylibre.com>, devicetree@vger.kernel.org,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* This automated bisection report was sent to you on the basis  *
-* that you may be involved with the breaking commit it has      *
-* found.  No manual investigation has been done to verify it,   *
-* and the root cause of the problem may be somewhere else.      *
-* Hope this helps!                                              *
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+On Fri, 29 Mar 2019 17:06:46 +0100, Jerome Brunet wrote:
+> Add a new compatible string and additional clock ids for audio clock
+> controller of the g12a SoC family.
+> 
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  .../bindings/clock/amlogic,axg-audio-clkc.txt          |  3 ++-
+>  include/dt-bindings/clock/axg-audio-clkc.h             | 10 ++++++++++
+>  2 files changed, 12 insertions(+), 1 deletion(-)
+> 
 
-stable/linux-4.19.y boot bisection: v4.19.34 on meson-gxl-s905x-libretech-cc
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-Summary:
-  Start:      4d552acf3370 Linux 4.19.34
-  Details:    https://kernelci.org/boot/id/5ca7d18659b51406b8fe6019
-  Plain log:  https://storage.kernelci.org//stable/linux-4.19.y/v4.19.34/arm64/defconfig/gcc-7/lab-baylibre/boot-meson-gxl-s905x-libretech-cc.txt
-  HTML log:   https://storage.kernelci.org//stable/linux-4.19.y/v4.19.34/arm64/defconfig/gcc-7/lab-baylibre/boot-meson-gxl-s905x-libretech-cc.html
-  Result:     c8e4f8406842 clk: meson: clean-up clock registration
-
-Checks:
-  revert:     PASS
-  verify:     PASS
-
-Parameters:
-  Tree:       stable
-  URL:        https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
-  Branch:     linux-4.19.y
-  Target:     meson-gxl-s905x-libretech-cc
-  CPU arch:   arm64
-  Lab:        lab-baylibre
-  Compiler:   gcc-7
-  Config:     defconfig
-  Test suite: boot
-
-Breaking commit found:
-
--------------------------------------------------------------------------------
-commit c8e4f8406842332fb55cd792016e5dac266f6354
-Author: Jerome Brunet <jbrunet@baylibre.com>
-Date:   Fri Dec 21 17:02:36 2018 +0100
-
-    clk: meson: clean-up clock registration
-    
-    [ Upstream commit 8d9981efbcab066d17af4d3c85c169200f6f78df ]
-    
-    Order, ids and size  between the table of regmap clocks and the onecell
-    data table could be different.
-    
-    Set regmap pointer in all the regmap clocks before starting the
-    registration using the onecell data, to make sure we don't
-    get into an incoherent situation.
-    
-    Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-    Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-    Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-    Link: https://lkml.kernel.org/r/20181221160239.26265-3-jbrunet@baylibre.com
-    Signed-off-by: Sasha Levin <sashal@kernel.org>
-
-diff --git a/drivers/clk/meson/meson-aoclk.c b/drivers/clk/meson/meson-aoclk.c
-index f965845917e3..258c8d259ea1 100644
---- a/drivers/clk/meson/meson-aoclk.c
-+++ b/drivers/clk/meson/meson-aoclk.c
-@@ -65,15 +65,20 @@ int meson_aoclkc_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
--	/*
--	 * Populate regmap and register all clks
--	 */
--	for (clkid = 0; clkid < data->num_clks; clkid++) {
-+	/* Populate regmap */
-+	for (clkid = 0; clkid < data->num_clks; clkid++)
- 		data->clks[clkid]->map = regmap;
- 
-+	/* Register all clks */
-+	for (clkid = 0; clkid < data->hw_data->num; clkid++) {
-+		if (!data->hw_data->hws[clkid])
-+			continue;
-+
- 		ret = devm_clk_hw_register(dev, data->hw_data->hws[clkid]);
--		if (ret)
-+		if (ret) {
-+			dev_err(dev, "Clock registration failed\n");
- 			return ret;
-+		}
- 	}
- 
- 	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
--------------------------------------------------------------------------------
-
-
-Git bisection log:
-
--------------------------------------------------------------------------------
-git bisect start
-# good: [4b3a3ab00fa7a951eb1d7568c71855e75fd5af85] Linux 4.19.33
-git bisect good 4b3a3ab00fa7a951eb1d7568c71855e75fd5af85
-# bad: [4d552acf337038028f7e2f63a927afb7adf65fc1] Linux 4.19.34
-git bisect bad 4d552acf337038028f7e2f63a927afb7adf65fc1
-# good: [b13eb5245f9f730e79ab17593c4e3c8a62fee3b4] HID: intel-ish-hid: avoid binding wrong ishtp_cl_device
-git bisect good b13eb5245f9f730e79ab17593c4e3c8a62fee3b4
-# good: [30d503bae9673ff6b0c67c6fa61b95db66319088] ARM: avoid Cortex-A9 livelock on tight dmb loops
-git bisect good 30d503bae9673ff6b0c67c6fa61b95db66319088
-# good: [c55f4a6e798dad7383f4e4f99d351d6016e943a2] dmaengine: qcom_hidma: assign channel cookie correctly
-git bisect good c55f4a6e798dad7383f4e4f99d351d6016e943a2
-# good: [52cd9e0e43c7bda1621a2ce66765a4a369967caf] wlcore: Fix memory leak in case wl12xx_fetch_firmware failure
-git bisect good 52cd9e0e43c7bda1621a2ce66765a4a369967caf
-# bad: [986a2bb54a31179b0c99b94743723d49388ad900] Input: soc_button_array - fix mapping of the 5th GPIO in a PNP0C40 device
-git bisect bad 986a2bb54a31179b0c99b94743723d49388ad900
-# bad: [c8e4f8406842332fb55cd792016e5dac266f6354] clk: meson: clean-up clock registration
-git bisect bad c8e4f8406842332fb55cd792016e5dac266f6354
-# good: [6251c1db04f2ac1ef799763da0f2fa1821dde403] drm/fb-helper: fix leaks in error path of drm_fb_helper_fbdev_setup
-git bisect good 6251c1db04f2ac1ef799763da0f2fa1821dde403
-# first bad commit: [c8e4f8406842332fb55cd792016e5dac266f6354] clk: meson: clean-up clock registration
--------------------------------------------------------------------------------
 
 _______________________________________________
 linux-amlogic mailing list
