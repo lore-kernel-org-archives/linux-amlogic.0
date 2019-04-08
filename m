@@ -2,89 +2,66 @@ Return-Path: <SRS0=BDF+=SK=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_NEOMUTT autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 017F4C10F0E
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Apr 2019 02:38:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 651B3C282DD
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Apr 2019 02:58:05 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C3F7420883
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Apr 2019 02:38:41 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 347D320880
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Apr 2019 02:58:05 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UflJASn6";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SPn2RGmu"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C3F7420883
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Kji3lumQ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 347D320880
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=zte.com.cn
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DO4xq+TjSLkriBRfg4uZD9zvvNGFaji5rj6ofUFJb3g=; b=UflJASn6u9Bg+b
-	/h7v/SVNxZRSu/TwBQwcc+j8SHfn7vZM92XKyUv3G5uQ45zYynASiRlVwKo40pzXu0lN3anxrf7Vv
-	H1Y76wtpvYHemmmEPUhl8mETPaJEpdeO93YUFd+BxcPzFMoDTHnea4mMUeXAsKGgDmOHUwbayxtXP
-	aI6D8OoCsNbcHIfQ+PZ42WrteG6KVF5m9go8fPxiJO660s3ACfIAK3l9wN6jg1TlWbM/vHMHL+YI8
-	cqjesjURJWzz09Kj0EyhZYKUkGNY8Sdvw7B9YClDAi0UGLCHMVPo1ShYkV0iLG9jNgJriqZxtHS2b
-	/PAYWjdH5RT2w5H0xrOw==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=lRsgICUb673WoFS37QhLnwf36gpEL59R65eD0/2moOo=; b=Kji
+	3lumQOTv4tbtMfCQJggzkq65tvj1jWyoPpfAMQn/4ByHKQ6adKQEpoxlRwvUPNx71atppE7ORpiZZ
+	kNSBxL4OxZaaDwnMqspQKO8I7HltuyweGbcRUeHg0EG5m9EkxF9x3EmowxoLSpon7zzReL4m00mIM
+	+FlBJzbQIbB82ZpY97WbihfhX/vi50QPNEdwMohSV0cQHflFHZvHC3pBRWVJiCNkVdOm5yXR3QL8y
+	yKxOVxSHzLfQG81R8G6bolTdGWYY7SWqCunvqM0uYT4PtJxen68fWSLJw9GTRvVuZqiywGa8jACYA
+	V3i6wUMBomxAk5Xz3361YqvrWHqQfJQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hDKB6-0004tG-3a; Mon, 08 Apr 2019 02:38:32 +0000
-Received: from mail-pl1-x641.google.com ([2607:f8b0:4864:20::641])
+	id 1hDKTv-00020f-Bj; Mon, 08 Apr 2019 02:57:59 +0000
+Received: from mxhk.zte.com.cn ([63.217.80.70])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hDKAx-0004lG-Cs; Mon, 08 Apr 2019 02:38:25 +0000
-Received: by mail-pl1-x641.google.com with SMTP id t16so6423421plo.0;
- Sun, 07 Apr 2019 19:38:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=QOaiSBgUtrP0Nzu2mhtUPDrwnQAuQijJq3uBYzp7jUg=;
- b=SPn2RGmucLcowteNtPbB6ju3RXN/MQx71KdkgACuJk3jR7eMPgkfm01zbQOCD+5MFU
- 2UlVd0rbQjpcW/ei1121Zo7igrmYNLRq60x2wGChsb4msnL5EFqLnh9/ONNjLGMi3g9S
- hKyJ2psOA9yfFo2VDXcj08IJk6tffgh02ymDeGgxGRGIp2BS1LhcIwqQ31lwIjggP8l1
- +yxfr3Kk3WwzEmZppK/K2ykCkN4wwlZ7kIXEHdTilSJL98KxPDw7nslXm21jZ3zvJL9q
- LFBK9pXr+oZfAh+nuPXTRbrYIPyUKabGzxjdvuvquKPQThcAeQ6caXJjFlAqoQuAyD15
- BT+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=QOaiSBgUtrP0Nzu2mhtUPDrwnQAuQijJq3uBYzp7jUg=;
- b=k0f34jFZ1XWiO5cfCHWtf5H5KTb8eYGAMO+kfIbWUkwVxh9pcCEa3FuS4YrtWABk3L
- X1ohRt9cv46UuWRjtZLjPdH8KcERfW9NU571xNAEpU6vtyeUg9S155161zQQSVwUFp4j
- HVbj8tpJ9AuayMvrpm4gdbbz+bK9me3xEbZGT/C+TLplXtfdLPgJDHocAPzin2wkqZaW
- E74S0UvKs6Jdab/ACfHQhPb50PIwnAe6yDcymNCHGWunIjHruwJ45aqQUeXvhhxqGOQK
- CR5rHxkYXSSaWlOJCpYmooD6HzjU/K5U3n9BCLTeBXzyec0KT2u01QvsS0wck6ijmJdX
- k3JA==
-X-Gm-Message-State: APjAAAXfE6sdgeUmhNW2wKsEzypzDeqPq24nYQfn/CNIxO44LXArhwag
- 6XdL0BeF+WM/cP02kC9hQKo=
-X-Google-Smtp-Source: APXvYqyzgX1FtBsH1D512UipzE0fo3E21n34ZkbMvGPySLSYBL8njdqr0gmQEEeexM0VTLpdZ5uHNg==
-X-Received: by 2002:a17:902:2e83:: with SMTP id
- r3mr27515390plb.153.1554691101990; 
- Sun, 07 Apr 2019 19:38:21 -0700 (PDT)
-Received: from localhost (c-73-222-71-142.hsd1.ca.comcast.net. [73.222.71.142])
- by smtp.gmail.com with ESMTPSA id f63sm42265732pfc.180.2019.04.07.19.38.20
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Sun, 07 Apr 2019 19:38:21 -0700 (PDT)
-Date: Sun, 7 Apr 2019 19:38:18 -0700
-From: Richard Cochran <richardcochran@gmail.com>
-To: Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [PATCH net-next] net: phy: switch drivers to use dynamic feature
- detection
-Message-ID: <20190408023818.lmwxtjcqju7p7i7f@localhost>
-References: <0cc96fab-e102-c0d1-ade0-90e3e06dc9f1@gmail.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <0cc96fab-e102-c0d1-ade0-90e3e06dc9f1@gmail.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
+ id 1hDKTr-00020C-Py; Mon, 08 Apr 2019 02:57:57 +0000
+Received: from mse01.zte.com.cn (unknown [10.30.3.20])
+ by Forcepoint Email with ESMTPS id 4BFD6C7E27385016FDDC;
+ Mon,  8 Apr 2019 10:57:46 +0800 (CST)
+Received: from notes_smtp.zte.com.cn ([10.30.1.239])
+ by mse01.zte.com.cn with ESMTP id x382vbvX094446;
+ Mon, 8 Apr 2019 10:57:37 +0800 (GMT-8)
+ (envelope-from wen.yang99@zte.com.cn)
+Received: from fox-host8.localdomain ([10.74.120.8])
+ by szsmtp06.zte.com.cn (Lotus Domino Release 8.5.3FP6)
+ with ESMTP id 2019040810573655-7792468 ;
+ Mon, 8 Apr 2019 10:57:36 +0800 
+From: Wen Yang <wen.yang99@zte.com.cn>
+To: linux-kernel@vger.kernel.org
+Subject: [PATCH v2] drm/meson: fix possible object reference leak
+Date: Mon, 8 Apr 2019 10:58:31 +0800
+Message-Id: <1554692313-28882-1-git-send-email-wen.yang99@zte.com.cn>
+X-Mailer: git-send-email 1.8.3.1
+X-MIMETrack: Itemize by SMTP Server on SZSMTP06/server/zte_ltd(Release
+ 8.5.3FP6|November 21, 2013) at 2019-04-08 10:57:36,
+ Serialize by Router on notes_smtp/zte_ltd(Release 9.0.1FP7|August  17, 2016) at
+ 2019-04-08 10:57:37, Serialize complete at 2019-04-08 10:57:37
+X-MAIL: mse01.zte.com.cn x382vbvX094446
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190407_193823_464809_DAF9744B 
-X-CRM114-Status: GOOD (  10.63  )
+X-CRM114-CacheID: sfid-20190407_195755_998153_9D7F0F21 
+X-CRM114-Status: GOOD (  11.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,35 +73,64 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
- Heiko Stuebner <heiko@sntech.de>, Scott Branden <sbranden@broadcom.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-rockchip@lists.infradead.org,
- netdev@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
- Ray Jui <rjui@broadcom.com>, linux-amlogic@lists.infradead.org,
- David Miller <davem@davemloft.net>, linux-arm-kernel@lists.infradead.org
+Cc: wang.yi59@zte.com.cn, Neil Armstrong <narmstrong@baylibre.com>,
+ David Airlie <airlied@linux.ie>, Kevin Hilman <khilman@baylibre.com>,
+ dri-devel@lists.freedesktop.org, Markus Elfring <Markus.Elfring@web.de>,
+ Daniel Vetter <daniel@ffwll.ch>, linux-amlogic@lists.infradead.org,
+ Wen Yang <wen.yang99@zte.com.cn>, linux-arm-kernel@lists.infradead.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, Apr 07, 2019 at 11:57:13AM +0200, Heiner Kallweit wrote:
-> Recently genphy_read_abilities() has been added that dynamically detects
-> clause 22 PHY abilities. I *think* this detection should work with all
+The call to of_graph_get_remote_port returns a node pointer with refcount
+incremented thus it must be explicitly decremented after the last
+usage.
 
-Famous last words!
+Detected by coccinelle with the following warnings:
+drivers/gpu/drm/meson/meson_dw_hdmi.c:725:2-8: ERROR: missing of_node_put; acquired a node pointer with refcount incremented on line 722, but without a corresponding object release within this function.
 
-> supported PHY's, at least for the ones with basic features sets, i.e.
-> PHY_BASIC_FEATURES and PHY_GBIT_FEATURES. So let's remove setting these
-> features explicitly and rely on phylib feature detection.
-> 
-> I don't have access to most of these PHY's, therefore I'd appreciate
-> regression testing.
+Signed-off-by: Wen Yang <wen.yang99@zte.com.cn>
+Cc: Neil Armstrong <narmstrong@baylibre.com>
+Cc: David Airlie <airlied@linux.ie>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-amlogic@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Cc: Markus Elfring <Markus.Elfring@web.de>
+---
+v2->v1: convert a if statement into a ternary statement.
 
-How about testing first, then merging?  I suggest breaking this out
-into individual patches that can be Tested-by.
+ drivers/gpu/drm/meson/meson_dw_hdmi.c | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
 
-Thanks,
-Richard
+diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+index 563953e..826b98b 100644
+--- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
++++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+@@ -720,15 +720,10 @@ static bool meson_hdmi_connector_is_available(struct device *dev)
+ 
+ 	/* If the endpoint node exists, consider it enabled */
+ 	remote = of_graph_get_remote_port(ep);
+-	if (remote) {
+-		of_node_put(ep);
+-		return true;
+-	}
+-
+ 	of_node_put(ep);
+ 	of_node_put(remote);
+ 
+-	return false;
++	return remote ? true : false;
+ }
+ 
+ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
+-- 
+2.9.5
+
 
 _______________________________________________
 linux-amlogic mailing list
