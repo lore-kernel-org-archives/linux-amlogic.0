@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DE111C282DD
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Apr 2019 09:32:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7D426C282CE
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Apr 2019 09:32:54 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A3FBB20880
-	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Apr 2019 09:32:30 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 451E120880
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Apr 2019 09:32:54 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="B7vRWexP";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="JRc9RRhX"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A3FBB20880
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="W2T/gMua";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="gF06Ia9G"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 451E120880
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=R8/6HDbcFMs9XINpSxx5hoIg2sk/C2fyLoCJWIOvEyY=; b=B7vRWexP+Yfqtr
-	XJx/Bjbd+So54AmQ4jMKqqQ+rRrnStcLOtXNv3nKLxDh+2deeO2O1ITsWpp0En9bWfbJM32uVKl1U
-	9ZFY2kDeNrmAjFxuFsMRT0DAALKlPUk9uo9Blzx1CGuV9NzcUQat0LkFNpIktUTMV5DGNXAIG7tdq
-	7OYg3eHoh1L4wgpGEfwL7ngHetNdA82SGD8xU7NrHXGiRL90oCZRbUuN4usBe9tME22xwahSRt/Eq
-	MuqWJ1LUzvkH5TtwIREE4IVMI98hKx+fWWsN8UEXcyi0vS4TXNuVZmqiZfNzBc4xvC+vtDRKNBv3L
-	s85NpfEu30FAIN9yAbNQ==;
+	List-Owner; bh=NGUBj4PiCCR5qKVxtIF99mVPGdtD3joQ05yGKe1rFv4=; b=W2T/gMua48JDAk
+	fJryhNi26SKbpnXNBp7uiUAuAp923U6Dne0hBb9LWJLzD4m38xE887trAD3wnu890w2bQFw3cZnet
+	WKhxaaJnXe9EGQaYYAMm+W43ZN6yGVFzFkoDv7oZ+TLhmDsm/NWyG3GmUorN8roeDZPmldo0REtIf
+	BFvcF/LPi4pUT7JAYZxfz0y7pgYL1NP3ec/0Xp1+nlC4Fgv27+7kwu93CEvUvtmwcgqU+TKEHPkNL
+	OfIG5my+FRi7pKiq8j/CmlQ8chOYbWn/mScopVU6Kr0MKTmcTs7c3/zqpcTpEjV0O3K6NGgoNVuFo
+	Ya46ANeKyyePdQgvpt9w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hDQdd-0000Fr-Ql; Mon, 08 Apr 2019 09:32:25 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1hDQe1-0000mP-Hn; Mon, 08 Apr 2019 09:32:49 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hDQcy-0007oD-W4
+ id 1hDQcx-0007o5-HG
  for linux-amlogic@lists.infradead.org; Mon, 08 Apr 2019 09:31:50 +0000
-Received: by mail-wm1-x342.google.com with SMTP id 4so13488419wmf.1
- for <linux-amlogic@lists.infradead.org>; Mon, 08 Apr 2019 02:31:44 -0700 (PDT)
+Received: by mail-wm1-x344.google.com with SMTP id z24so13992387wmi.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 08 Apr 2019 02:31:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=C90Y7HygE0mkNukG/zDtJRz6NFRvz69KyUip09FFMs0=;
- b=JRc9RRhXAFeK6/yMJOEoo+ScnEDx9ifHzUyRxv7dljS2OoA1xHrAqOPWoAGty9tKhg
- bch9NbCy7zjwWdfZLjXLx7QGzGXkJs2yGI+3qezzVFCNcH//DdzRZ16nIwZYQl/U9Ia5
- te1IHjdP3Sq1WqYVTQFBWJ0LvMHyT319tx4XAcb5ON/rmcdOQiMFPno+5fcadbnX2bz6
- BBHVoBr+EVHsmojhrgTktOVXGk85A4RRS7xLOPfVDDMX3SQX5xtHn66vwYOfH3tDMowC
- ochqLgtlYecoWpI2QbHWYsBYvHUxnt4hcgBa0R6lZkfvJHuWK1VuefNRlR3Rq3G3U3Z5
- 7tMg==
+ bh=87mASUM9ygudYeEf9hAinsvtXlIr8NTEMYy6/2B799Q=;
+ b=gF06Ia9GhqXcCc8ydP5kQwY4S68JuX8eNFLO1ZL1FkAs30UbnCNuQNqjBDt3ZiK2wO
+ JvFVUGATFXWhkz9nBNqihVh/kRzklKk6HzqcT1nCndcj3osHgxPhJStkPrhs/YQJD4Gp
+ /gfoDKUwHNiWsLefdneAsj05ZUovYwqwz56uVUNP0DKRCUgOYErOq2daeWhcIzq/or2S
+ MCem0OFzAG4UP5EeUsvTn4mT3JBId6sYkyesrdXP8m6N8KNqY0FWGQAAZO2vf1xNYpfs
+ yTfK4kuY7O6dWdanoLN8CYSEvYEW4cXcYAJbywyR4WPv3YpICwZj2jHvoE8A9IXD7BP/
+ xH4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=C90Y7HygE0mkNukG/zDtJRz6NFRvz69KyUip09FFMs0=;
- b=rC6uwS4VZmCBQVe90BHlClJxoDe8pBRJu4dwjkEjJOrwwMDSKQc6m97+OAt1myovdN
- oesW5u6QNhGY76C4xG2pGhi0XcHtFsEutp8h4XBRHucZVTvFkNx+lCPxvFi6pZJbW8mA
- kUBfe4velxC3FhXRyZEwa/s1FmeV6Dk3LH61yWwunzTAK0/pmPk4lK75+gwEatGGOja3
- VWYsdH3gpsxl7Q8vPLZjWasf/XR59PRAGyMSzxTx2qJY7eARNWCNXiaKIPozFoe4+TnF
- vk2DXMdH4TZcMxqapGuZrmxS9ZHiJsvm4L/JohwYl3BMYQI8psvs/pfqHuiX5mb7cAcj
- mVDA==
-X-Gm-Message-State: APjAAAU0lcZ6bbAYTyXWIoav/CQ0AvGPAJqUDz3eSoxIzhPhS0jDT86c
- WqQBjcgGlUGQCoQ8rpehnA3T8g==
-X-Google-Smtp-Source: APXvYqzGJm0dfH6FBRfvfvtnlLB9Y1VEibjdkqVJe52rHJ1ryuwPncpH1hHkmVUKV7XvyZS5S5fpXw==
-X-Received: by 2002:a1c:4187:: with SMTP id o129mr16514545wma.57.1554715903558; 
- Mon, 08 Apr 2019 02:31:43 -0700 (PDT)
+ bh=87mASUM9ygudYeEf9hAinsvtXlIr8NTEMYy6/2B799Q=;
+ b=pWhSCkBuMfrefaR7v7qqS2rzi2gq2FORqUPqAQ5tN9hJAHWnUII1VXihMU+52HFzpD
+ zmCPZZ3KpDx/bmaVRG0LweHghyifnGiat7mnJdLUCHA5vlFqsQy3cMndG6/AUVFX1l7A
+ EjZdRyafFPVExRWy5VTK8/RHRxgn2WJ7GcGeK6DbF4SBl0PZ//QAp/rA00YrQp4Vo4s3
+ RDes2T0Rrww2jovdqRQ+IK7N9lgm51i7TWusEXprYz3oFLZXMl5NDgB7J9+tHZhS9WyW
+ mBOtQz9QIC0YAITu0TmmsLCGTS96fQbhLjU4QlE4XrL6YX9nnUvI23XYEqGBg32dAEI9
+ UDLg==
+X-Gm-Message-State: APjAAAXVi7pbaeSsqESt7GCaYQWWBMUAgVmtXU1Nv4spdAHnQxENPruW
+ Y721id8BneeaiHcI0Ntp2wAKRw==
+X-Google-Smtp-Source: APXvYqwoTSPxMuBUBF1VfymLN3vYxhA5xZ7jzQXV6UaUiGdrEw45E9DWI6L18fL2b4PcO6U+F/Q6VA==
+X-Received: by 2002:a1c:81cc:: with SMTP id c195mr17510418wmd.61.1554715901986; 
+ Mon, 08 Apr 2019 02:31:41 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id c10sm36777427wru.83.2019.04.08.02.31.42
+ by smtp.gmail.com with ESMTPSA id c10sm36777427wru.83.2019.04.08.02.31.41
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Mon, 08 Apr 2019 02:31:43 -0700 (PDT)
+ Mon, 08 Apr 2019 02:31:41 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: khilman@baylibre.com
-Subject: [PATCH v2 3/5] arm64: dts: meson-g12a-x96-max: Add support for Video
- Display
-Date: Mon,  8 Apr 2019 11:31:37 +0200
-Message-Id: <20190408093139.27161-4-narmstrong@baylibre.com>
+Subject: [PATCH v2 1/5] arm64: dts: meson-g12a: Add VPU and HDMI related nodes
+Date: Mon,  8 Apr 2019 11:31:35 +0200
+Message-Id: <20190408093139.27161-2-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190408093139.27161-1-narmstrong@baylibre.com>
 References: <20190408093139.27161-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190408_023146_390563_303B550B 
-X-CRM114-Status: GOOD (  11.60  )
+X-CRM114-CacheID: sfid-20190408_023146_385507_600BB969 
+X-CRM114-Status: GOOD (  12.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -104,88 +103,183 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patch adds the HDMI, CVBS and CEC attributes and nodes to support
-full display on the X96 Max STB.
-
-AO-CEC-B is used by default and AO-CEC-A is disabled.
+Add VPU and HDMI display support.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- .../boot/dts/amlogic/meson-g12a-x96-max.dts   | 54 +++++++++++++++++++
- 1 file changed, 54 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 131 ++++++++++++++++++++
+ 1 file changed, 131 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-index b5b88262c06a..b3d913f28f12 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-@@ -24,6 +24,27 @@
- 		reg = <0x0 0x0 0x0 0x40000000>;
- 	};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+index 858ddd68665c..a696612f8f44 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+@@ -109,6 +109,37 @@
+ 			#size-cells = <2>;
+ 			ranges = <0x0 0x0 0x0 0xff600000 0x0 0x200000>;
  
-+	cvbs-connector {
-+		compatible = "composite-video-connector";
++			hdmi_tx: hdmi-tx@0 {
++				compatible = "amlogic,meson-g12a-dw-hdmi";
++				reg = <0x0 0x0 0x0 0x10000>;
++				interrupts = <GIC_SPI 57 IRQ_TYPE_EDGE_RISING>;
++				resets = <&reset RESET_HDMITX_CAPB3>,
++					 <&reset RESET_HDMITX_PHY>,
++					 <&reset RESET_HDMITX>;
++				reset-names = "hdmitx_apb", "hdmitx", "hdmitx_phy";
++				clocks = <&clkc CLKID_HDMI>,
++					 <&clkc CLKID_HTX_PCLK>,
++					 <&clkc CLKID_VPU_INTR>;
++				clock-names = "isfr", "iahb", "venci";
++				#address-cells = <1>;
++				#size-cells = <0>;
++				status = "disabled";
 +
-+		port {
-+			cvbs_connector_in: endpoint {
-+				remote-endpoint = <&cvbs_vdac_out>;
++				/* VPU VENC Input */
++				hdmi_tx_venc_port: port@0 {
++					reg = <0>;
++
++					hdmi_tx_in: endpoint {
++						remote-endpoint = <&hdmi_tx_out>;
++					};
++				};
++
++				/* TMDS Output */
++				hdmi_tx_tmds_port: port@1 {
++					reg = <1>;
++				};
++			};
++
+ 			periphs: bus@34400 {
+ 				compatible = "simple-bus";
+ 				reg = <0x0 0x34400 0x0 0x400>;
+@@ -138,6 +169,23 @@
+ 						gpio-ranges = <&periphs_pinctrl 0 0 86>;
+ 					};
+ 
++					hdmitx_ddc_pins: hdmitx_ddc {
++						mux {
++							groups = "hdmitx_sda",
++								 "hdmitx_sck";
++							function = "hdmitx";
++							bias-disable;
++						};
++					};
++
++					hdmitx_hpd_pins: hdmitx_hpd {
++						mux {
++							groups = "hdmitx_hpd_in";
++							function = "hdmitx";
++							bias-disable;
++						};
++					};
++
+ 					uart_a_pins: uart-a {
+ 						mux {
+ 							groups = "uart_a_tx",
+@@ -195,6 +243,19 @@
+ 				#phy-cells = <0>;
+ 			};
+ 
++			dmc: bus@38000 {
++				compatible = "simple-bus";
++				reg = <0x0 0x38000 0x0 0x400>;
++				#address-cells = <2>;
++				#size-cells = <2>;
++				ranges = <0x0 0x0 0x0 0x38000 0x0 0x400>;
++
++				canvas: video-lut@48 {
++					compatible = "amlogic,canvas";
++					reg = <0x0 0x48 0x0 0x14>;
++				};
++			};
++
+ 			usb2_phy1: phy@3a000 {
+ 				compatible = "amlogic,g12a-usb2-phy";
+ 				reg = <0x0 0x3a000 0x0 0x2000>;
+@@ -262,6 +323,50 @@
+ 					clock-names = "xtal", "mpeg-clk";
+ 				};
+ 
++				pwrc_vpu: power-controller-vpu {
++					compatible = "amlogic,meson-g12a-pwrc-vpu";
++					#power-domain-cells = <0>;
++					amlogic,hhi-sysctrl = <&hhi>;
++					resets = <&reset RESET_VIU>,
++						 <&reset RESET_VENC>,
++						 <&reset RESET_VCBUS>,
++						 <&reset RESET_BT656>,
++						 <&reset RESET_RDMA>,
++						 <&reset RESET_VENCI>,
++						 <&reset RESET_VENCP>,
++						 <&reset RESET_VDAC>,
++						 <&reset RESET_VDI6>,
++						 <&reset RESET_VENCL>,
++						 <&reset RESET_VID_LOCK>;
++					clocks = <&clkc CLKID_VPU>,
++						 <&clkc CLKID_VAPB>;
++					clock-names = "vpu", "vapb";
++					/*
++					 * VPU clocking is provided by two identical clock paths
++					 * VPU_0 and VPU_1 muxed to a single clock by a glitch
++					 * free mux to safely change frequency while running.
++					 * Same for VAPB but with a final gate after the glitch free mux.
++					 */
++					assigned-clocks = <&clkc CLKID_VPU_0_SEL>,
++							  <&clkc CLKID_VPU_0>,
++							  <&clkc CLKID_VPU>, /* Glitch free mux */
++							  <&clkc CLKID_VAPB_0_SEL>,
++							  <&clkc CLKID_VAPB_0>,
++							  <&clkc CLKID_VAPB_SEL>; /* Glitch free mux */
++					assigned-clock-parents = <&clkc CLKID_FCLK_DIV3>,
++								 <0>, /* Do Nothing */
++								 <&clkc CLKID_VPU_0>,
++								 <&clkc CLKID_FCLK_DIV4>,
++								 <0>, /* Do Nothing */
++								 <&clkc CLKID_VAPB_0>;
++					assigned-clock-rates = <0>, /* Do Nothing */
++							       <666666666>,
++							       <0>, /* Do Nothing */
++							       <0>, /* Do Nothing */
++							       <250000000>,
++							       <0>; /* Do Nothing */
++				};
++
+ 				ao_pinctrl: pinctrl@14 {
+ 					compatible = "amlogic,meson-g12a-aobus-pinctrl";
+ 					#address-cells = <2>;
+@@ -341,6 +446,32 @@
+ 			};
+ 		};
+ 
++		vpu: vpu@ff900000 {
++			compatible = "amlogic,meson-g12a-vpu";
++			reg = <0x0 0xff900000 0x0 0x100000>,
++			      <0x0 0xff63c000 0x0 0x1000>;
++			reg-names = "vpu", "hhi";
++			interrupts = <GIC_SPI 3 IRQ_TYPE_EDGE_RISING>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			amlogic,canvas = <&canvas>;
++			power-domains = <&pwrc_vpu>;
++
++			/* CVBS VDAC output port */
++			cvbs_vdac_port: port@0 {
++				reg = <0>;
++			};
++
++			/* HDMI-TX output port */
++			hdmi_tx_port: port@1 {
++				reg = <1>;
++
++				hdmi_tx_out: endpoint {
++					remote-endpoint = <&hdmi_tx_in>;
++				};
 +			};
 +		};
-+	};
 +
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
-+
- 	flash_1v8: regulator-flash_1v8 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "FLASH_1V8";
-@@ -90,6 +111,39 @@
- 	};
- };
- 
-+&cec_AO {
-+	pinctrl-0 = <&cec_ao_a_h_pins>;
-+	pinctrl-names = "default";
-+	status = "disabled";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&cecb_AO {
-+	pinctrl-0 = <&cec_ao_b_h_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&cvbs_vdac_port {
-+	cvbs_vdac_out: endpoint {
-+		remote-endpoint = <&cvbs_connector_in>;
-+	};
-+};
-+
-+&hdmi_tx {
-+	status = "okay";
-+	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
-+	pinctrl-names = "default";
-+	hdmi-supply = <&vcc_5v>;
-+};
-+
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
- &uart_A {
- 	status = "okay";
- 	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
+ 		gic: interrupt-controller@ffc01000 {
+ 			compatible = "arm,gic-400";
+ 			reg = <0x0 0xffc01000 0 0x1000>,
 -- 
 2.21.0
 
