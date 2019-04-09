@@ -4,80 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F1619C282DA
-	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 08:52:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CA7E2C10F0E
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 09:13:35 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C14BE2070D
-	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 08:52:03 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 995CB20833
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 09:13:35 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lixHuC1I";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="TD9qT7dG"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C14BE2070D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Xt2Jqv84";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="XnbdhHe6"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 995CB20833
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	Message-ID:From:To:References:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MtownK2e/V46Sax+qbEJ/DMPvwWr0nNtyB4q8j1pv8E=; b=lixHuC1IGFnBDv
-	E505Mv8pBT37EuRTB6TDutD/GMepQYqrR7V6OdKOHJcBJsb20nckkAZ3z34/HWOMwjfaY+d9TchaH
-	BxY7v4ZpO9LE3yl7yyGViBtEJTyLV6ezeafWeTnqsnBGIeH6W/ZrBTKOOesHSH82PgEA8xiOM9dyU
-	Mj9a6djlAlobvCk7fr6Bb9ATl7fCdsSIuL7YKpaZekbWUjBnUDzFoMVBcc3+ZGOSWid3BK5fPBMKB
-	9rGrHSS3XxbVxqjw/EOdrwFn5HyxDRO5vtpapMdyQWxuW2W+cwiEUKdJlGoVwfYkGoLT2Z992PoM/
-	7v1k3RABkJtjQLZTzlAw==;
+	List-Owner; bh=1hAofFkB7Wp3NVhuC53lx/Jdy5CjBYVuHJr3RjFWzjM=; b=Xt2Jqv84dOfAXr
+	rrPa9DnQ00vrQljb6b6ykA2FtOrO1ue7VfDhODEc0DiWzzs+sXO7lU3+AtMNJlyikrqypX5bGDpyh
+	PSCDMhrwpk97CzrP3ugq1yRZFpPNwDT9Q/jN0cAjx4ZzygDEdIhDCrnVNrCdhVX9ARZAn2lASMiqH
+	XxPMV0BNu5xSr8IIaz2zH8GSL++ZZ3ZcogGa1du8ewdHVv8htWxKyzfs4jzuBaqq4omQ3JXSj+3bC
+	PlXhivYLT7qzMK3hjm6iqg0xS9XjcHEKhhpVofdxY5q84RbIrKm+1jnnqKwrIvSYi0sWic5cmlan1
+	9WHcIzQSmwo9Yrg1qOkQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hDmU1-00025A-Cq; Tue, 09 Apr 2019 08:51:57 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1hDmos-0001uS-JD; Tue, 09 Apr 2019 09:13:30 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hDmTy-00024b-Bw
- for linux-amlogic@lists.infradead.org; Tue, 09 Apr 2019 08:51:56 +0000
-Received: by mail-wm1-x342.google.com with SMTP id q16so2463230wmj.3
- for <linux-amlogic@lists.infradead.org>; Tue, 09 Apr 2019 01:51:54 -0700 (PDT)
+ id 1hDmop-0001to-4T
+ for linux-amlogic@lists.infradead.org; Tue, 09 Apr 2019 09:13:28 +0000
+Received: by mail-wm1-x344.google.com with SMTP id 4so2557096wmf.1
+ for <linux-amlogic@lists.infradead.org>; Tue, 09 Apr 2019 02:13:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ h=subject:cc:references:to:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=VcLnaE+mYzxaCcjZmBEJENIQDKK9CTlE/jMRNbJo6p8=;
- b=TD9qT7dG5nEY2W/OIZuD26dSRbT4HtoY2dlm7+y2sivb9Gcf5l6gcsB9/GashAWgmh
- Az/eqrfm7dDeOIIpX0mFR0CYcCUvWeGFvtFwTibkgkGmN0PBTYIUV16h0wEtgC4Z65Db
- ctF0UJ/qbZSfnRf2ViELad+5J+dTIy2TxJfOdUXATpcauUExIsQZ9gIIPCm+gaY2/jcQ
- mUvTS7miz7YzlXWljpwZqWWuoOe/PcoMMjf1XFzXr6VelypZ9IOH4DhhAWsJGTXa4okg
- exXZj6vSCVQY1+wIvzgeyam6n+EFvGb3WzJFslCAKD9y0GWst5HVUjtVSdbYG9EgCc/V
- 4VuA==
+ bh=n5FOwAfH+wpSqWCH/eMbB7hKqy2058re43H5VOKF+Us=;
+ b=XnbdhHe6w437jBAicczEv3rh0K97M1ANaKV16BQReZDLj1dj0gWBoCCn9/2ymDkBpA
+ rZrpvAEpEElSw0lUO5PDqGCGSwYCFtyHaHj7GmlwKyp6iu0iAdRu6lEwWm09//RCZ/yi
+ 2s9B/3dQNfcJABjLEzfNj5JwK9t1RHZskWvf28YggqzZltZ12Jb0kFt2vJQKZ5zKxKmX
+ 83n6+81NC5eQ/rRRplz1JkYras2SwmDp39CLNjJCHhVBgp/lqV6xw2LraGiBETPLr16r
+ f96z8DAwBcPpbUuhJPAgkE/vxloUtMO6ukdz9vz2UjNCYjaWJu3yyYfyRTbhU5q5RnGI
+ ZNDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ h=x-gm-message-state:subject:cc:references:to:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=VcLnaE+mYzxaCcjZmBEJENIQDKK9CTlE/jMRNbJo6p8=;
- b=PoPPPkpAhKC2K+IG4k28AIRdsxO9nlSVsT95UVE8cJNlWbnB6fIPonkjw5ipZhVD3n
- Ouc498y2LGbEOoW3amzJF7DlAb6TcVDLlKsQpKlI8beSslXcalWMd/UUNBKUuCYm0VYA
- rdHi84qlVUXAxhs/T5oeSv20QIN0PnekN1IKPz8Q2XV8pzSbHGPfobL3Cz95YE87frH4
- Zm2GldQrnhnzqDFb+JAHq2hjv0T6cwqUyEv53ZQOvhCrIdhf0BFiRbopeuow8NqbrrYf
- CSSnIXAcKta0hWepsiiYGkKBz0CsTvGznM6kxn+OC0AtKIicGSnTGyz+QY3mG3CKdxqY
- MeYw==
-X-Gm-Message-State: APjAAAUBZrL1jyrhsy7YpkRdlZW6YnN3sJfPMXYTeoF7XJBXeSRxgeT0
- qSGbEMF/EYf6HLyxyqySDXSLh63+NKDg+w==
-X-Google-Smtp-Source: APXvYqzAMayyaLgUiQW0z+SDjD062FGCAVxgjC1XgnecaRbF4qdfGV7sEJGkl2o5jpzfCbveNde7Sw==
-X-Received: by 2002:a1c:9cd1:: with SMTP id f200mr21120140wme.91.1554799912612; 
- Tue, 09 Apr 2019 01:51:52 -0700 (PDT)
+ bh=n5FOwAfH+wpSqWCH/eMbB7hKqy2058re43H5VOKF+Us=;
+ b=tNR9uCa15UEvLRZGk9Wp/lHlsnrhtlUz69iPbEWN6evXHYsr9URIb2UAOzsObRl3qG
+ uZW1Lqona5R4owkKSagI7FE7XBwmz2ZphkRARjdufBDvp1NNw/UcaLJuXQg6yOW2vVpW
+ Jll8+w6UEmf5slZgr8RQdEifnNOoRLITIgEF1llaoU9z0oWLl135kmqFXZ5Zk8A/yBKt
+ DUQ5Sq9N8kJxB6BMsYIvCkFTeOZSKiiE5gfofNLH6/H1RrKIaPismfMzSwBiNtoLEj+N
+ 6tfGeOu+OTOW3Dyr4vwG9RIi7QlTqKdVnf4VVjC/5M5rq15+KDiwHjEfFnWoeYfzxCJe
+ l+Tg==
+X-Gm-Message-State: APjAAAVGw/fYsV37DPO5EloCEdShB/Vl9UIIPSNk32vSvx4g7FTXiYJq
+ avLHQW8CpMK3ADcFiufIhXhStQ==
+X-Google-Smtp-Source: APXvYqyE7xlU0ELHUNA9tlL/UemgZ6fJyLia5x7Iwttf6wRnvuufqFRzSEJcsVJFLgkOFUBYuYXNOw==
+X-Received: by 2002:a1c:e188:: with SMTP id y130mr20131233wmg.83.1554801205480; 
+ Tue, 09 Apr 2019 02:13:25 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id v16sm58612200wro.48.2019.04.09.01.51.51
+ by smtp.gmail.com with ESMTPSA id k9sm43847042wru.55.2019.04.09.02.13.24
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 09 Apr 2019 01:51:51 -0700 (PDT)
-Subject: Re: [PATCH 00/11] drm/meson: Add G12A Support
-To: Jerome Brunet <jbrunet@baylibre.com>, dri-devel@lists.freedesktop.org
-References: <20190325141824.21259-1-narmstrong@baylibre.com>
- <84e8a61db1be6e83e7dcd9630fde17cfc59eb8a3.camel@baylibre.com>
+ Tue, 09 Apr 2019 02:13:24 -0700 (PDT)
+Subject: Re: [PATCH 0/3] dt-bindings: meson: Add G12A display bindings
+References: <20190313141030.5958-1-narmstrong@baylibre.com>
+To: Kevin Hilman <khilman@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -130,16 +129,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <83b873f0-f816-9997-4e62-82d4dfce4f04@baylibre.com>
-Date: Tue, 9 Apr 2019 10:51:51 +0200
+Message-ID: <5c7c873c-0535-0342-26b5-6cb29df9859b@baylibre.com>
+Date: Tue, 9 Apr 2019 11:13:24 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <84e8a61db1be6e83e7dcd9630fde17cfc59eb8a3.camel@baylibre.com>
+In-Reply-To: <20190313141030.5958-1-narmstrong@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190409_015154_406495_C35BF516 
-X-CRM114-Status: GOOD (  21.09  )
+X-CRM114-CacheID: sfid-20190409_021327_179066_440C2459 
+X-CRM114-Status: GOOD (  14.60  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -151,91 +150,45 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
-On 09/04/2019 10:42, Jerome Brunet wrote:
-> On Mon, 2019-03-25 at 15:18 +0100, Neil Armstrong wrote:
->> The Amlogic G12A SoC offers very close Video Display
->> functionnalities with it's older GXBB, GXL & GXM predecessors.
->>
->> The main differences are :
->> - G12A Support now 3 "real" OSD planes with a new Blender module
->> - Instead of having a single Scaler for OSD1, G12A has two scaler
->>   that can be applied to 2 out of the 3 OSD planes or on the outputs
->>   of the blender module.
->> - The HDMI PHY now support RX-SENSE, Dynamic HDR and it's registers are
->>   now memory mapped instead of using an internal bus.
->> - The VPU now support a DSI interface to connect a display, using
->>   the Synopsys DSI controller and a custom PHY
->>
->> The complex Blender routing, HDMI RX-SENSE, Dynamic HDR and DSI support
->> are not handled in this patchset.
->>
->> This patchset implements on-par support with the currently support
->> GXBB, GXL and GXM SoCs. There is no support delta with this patchset.
->>
->> patch 10 & 11 implements the bindings found at [1].
->>
->> [1] https://lkml.kernel.org/r/20190313141030.5958-1-narmstrong@baylibre.com
->>
->> Neil Armstrong (11):
->>   drm/meson: Switch PLL to 5.94GHz base for 297Mhz pixel clock
->>   drm/meson: Add registers for G12A SoC
->>   drm/meson: Add G12A Support for VPP setup
->>   drm/meson: Add G12A Support for VIU setup
->>   drm/meson: Add G12A support for OSD1 Plane
->>   drm/meson: Add G12A Support for the Overlay video plane
->>   drm/meson: Add G12A support for plane handling in CRTC driver
->>   drm/meson: Add G12A support for CVBS Encoer
->>   drm/meson: Add G12A Video Clock setup
->>   drm/meson: Add G12A compatible
->>   drm/meson: Add G12A support for the DW-HDMI Glue
->>
->>  drivers/gpu/drm/meson/meson_crtc.c      | 269 +++++++++++++++++++-----
->>  drivers/gpu/drm/meson/meson_drv.c       |   1 +
->>  drivers/gpu/drm/meson/meson_drv.h       |   4 +
->>  drivers/gpu/drm/meson/meson_dw_hdmi.c   | 163 +++++++++++---
->>  drivers/gpu/drm/meson/meson_dw_hdmi.h   |  32 ++-
->>  drivers/gpu/drm/meson/meson_overlay.c   |  10 +-
->>  drivers/gpu/drm/meson/meson_plane.c     |  15 +-
->>  drivers/gpu/drm/meson/meson_registers.h | 247 ++++++++++++++++++++++
->>  drivers/gpu/drm/meson/meson_vclk.c      | 123 +++++++++--
->>  drivers/gpu/drm/meson/meson_venc.c      |  11 +-
->>  drivers/gpu/drm/meson/meson_venc_cvbs.c |  25 ++-
->>  drivers/gpu/drm/meson/meson_viu.c       |  72 ++++++-
->>  drivers/gpu/drm/meson/meson_vpp.c       |  51 +++--
->>  13 files changed, 880 insertions(+), 143 deletions(-)
->>
+On 13/03/2019 15:10, Neil Armstrong wrote:
+> This patchset adds the G12A specific bindings for the Display VPU
+> and VPU Power Control.
 > 
-> on the u200 and sei510
-> Tested-by: Jerome Brunet <jbrunet@baylibre.com>
+> The Amlogic Meson G12A Display module is based on the Meson GXM SoC
+> with an updated Plane Blender, thus VPU architecture and interconnect
+> is the same.
 > 
-> I can't pretend to have a deep understanding of this subsystem, but as far as
-> I can tell, there is nothing crazy in there. With the comments around the use
-> of constants and defines fixed, you can add
+> Implementation then DT nodes will come in a further patchsets.
 > 
-> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+> Neil Armstrong (3):
+>   dt-bindings: display: amlogic,meson-vpu: Add G12A compatible and ports
+>   dt-bindings: display: amlogic,meson-dw-hdmi: Add G12A compatible and
+>     ports
+>   dt-bindings: power: amlogic,meson-gx-pwrc: Add G12A compatible
 > 
-> As a possible future enhancement, it would be nice if you could trim the use
-> of *_is_compatible() functions. I think it would make the code easier to
-> follow and review.
+>  .../devicetree/bindings/display/amlogic,meson-dw-hdmi.txt     | 4 ++++
+>  .../devicetree/bindings/display/amlogic,meson-vpu.txt         | 4 ++++
+>  .../devicetree/bindings/power/amlogic,meson-gx-pwrc.txt       | 4 +++-
+>  3 files changed, 11 insertions(+), 1 deletion(-)
 > 
 
-Thanks for the overall review,
+Kevin,
 
-I will do a complete fixup of the constants and defines in a follow-up patchset,
-since the already-merged code also needs a good cleanup.
+I applied Patches 1 & 2 to drm-misc-next, can you take Patch 3 along :
+- https://patchwork.kernel.org/patch/10879285/
+- https://patchwork.kernel.org/patch/10879293/
 
-I'll do a more complete refactoring to get rid of the _is_compatible() stuff
-in a second time, it needs much more work to handle correctly the 4 SoC families.
-
+Thanks !
 Neil
+
 
 _______________________________________________
 linux-amlogic mailing list
