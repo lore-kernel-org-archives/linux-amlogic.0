@@ -2,89 +2,144 @@ Return-Path: <SRS0=8EGG=SL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1BDF1C10F0E
-	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 08:47:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F1619C282DA
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 08:52:03 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D9D7F206C0
-	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 08:47:11 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C14BE2070D
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 08:52:03 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KF22cFzm";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="StBAZEG9"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D9D7F206C0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lixHuC1I";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="TD9qT7dG"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C14BE2070D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gybXj9v7545u34Tf602JT6TW4G4d7nncgRhtpdIg2YE=; b=KF22cFzm1VxRsx
-	FbE+rRHzuoAyrK9HEQz8ZLV3DS7HJ3lQB/66Nvj36pB/mZXrXEzvQTxLoE0h26YrYDitmbzFS29HT
-	Wwa7sdXmh5hiPfn4l2zWSD3aV0RZRVSixlG9lQnasrErbRL9z5VygYww1jyOlRz2bSp6INaJyxhTn
-	HyrAiKs3KBR7DYO9uhZESWX3Eb0NYbzrRlE8ydokFBvOBNRV5SjUWH7cfE4F7QbdZxIc05i5LFo2n
-	Xgu0oRJRrCN2QDcYeovtC1AdJ6fGHHsjUZXX1pXVA0+u/dfK2usF3ZnMCWyABkfzR5T0Nsfx3KFHq
-	AGsdC1FuTz1e07h+AWvg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=MtownK2e/V46Sax+qbEJ/DMPvwWr0nNtyB4q8j1pv8E=; b=lixHuC1IGFnBDv
+	E505Mv8pBT37EuRTB6TDutD/GMepQYqrR7V6OdKOHJcBJsb20nckkAZ3z34/HWOMwjfaY+d9TchaH
+	BxY7v4ZpO9LE3yl7yyGViBtEJTyLV6ezeafWeTnqsnBGIeH6W/ZrBTKOOesHSH82PgEA8xiOM9dyU
+	Mj9a6djlAlobvCk7fr6Bb9ATl7fCdsSIuL7YKpaZekbWUjBnUDzFoMVBcc3+ZGOSWid3BK5fPBMKB
+	9rGrHSS3XxbVxqjw/EOdrwFn5HyxDRO5vtpapMdyQWxuW2W+cwiEUKdJlGoVwfYkGoLT2Z992PoM/
+	7v1k3RABkJtjQLZTzlAw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hDmPI-0000bn-8c; Tue, 09 Apr 2019 08:47:04 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1hDmU1-00025A-Cq; Tue, 09 Apr 2019 08:51:57 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hDmPE-0000a3-SA
- for linux-amlogic@lists.infradead.org; Tue, 09 Apr 2019 08:47:02 +0000
-Received: by mail-wr1-x443.google.com with SMTP id g3so19706578wrx.9
- for <linux-amlogic@lists.infradead.org>; Tue, 09 Apr 2019 01:47:00 -0700 (PDT)
+ id 1hDmTy-00024b-Bw
+ for linux-amlogic@lists.infradead.org; Tue, 09 Apr 2019 08:51:56 +0000
+Received: by mail-wm1-x342.google.com with SMTP id q16so2463230wmj.3
+ for <linux-amlogic@lists.infradead.org>; Tue, 09 Apr 2019 01:51:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:cc:date:in-reply-to:references
- :user-agent:mime-version:content-transfer-encoding;
- bh=/C1h77F+yf1YiKdSW4u8EW/LpvGFHUW1WPfpKGD1tkM=;
- b=StBAZEG9KvE4tlONkvY4Cr4Lt2OGh8SSzjdwdmuDk3rHfewWhKZfO2yYGeljosg9gN
- FeXsU6WJ+vBaYOTBZs2W5SEkYoO102dCpnojolbRvuaTnw3HIc65Nn2hoCFnURDD0i1t
- IMcuMqPVNrtV9dZaR0IenYvIHg4JkB35pTdeqmQOqnsoX6QjY8cMqeUhZbRNgh+4ox/1
- LoiaDUUl41sqkjA7LftV5YSYkiKAucO0JFBTj1Bum7cFkfQLNoYFtIlZjsQ24L5awcp3
- CbSWL8K2Y4tarBSGYm5JMPqQ6qnp/eD5YzpPRXwDYrV1C1CeTUi0p0INyU05E/hICm5N
- iXPA==
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=VcLnaE+mYzxaCcjZmBEJENIQDKK9CTlE/jMRNbJo6p8=;
+ b=TD9qT7dG5nEY2W/OIZuD26dSRbT4HtoY2dlm7+y2sivb9Gcf5l6gcsB9/GashAWgmh
+ Az/eqrfm7dDeOIIpX0mFR0CYcCUvWeGFvtFwTibkgkGmN0PBTYIUV16h0wEtgC4Z65Db
+ ctF0UJ/qbZSfnRf2ViELad+5J+dTIy2TxJfOdUXATpcauUExIsQZ9gIIPCm+gaY2/jcQ
+ mUvTS7miz7YzlXWljpwZqWWuoOe/PcoMMjf1XFzXr6VelypZ9IOH4DhhAWsJGTXa4okg
+ exXZj6vSCVQY1+wIvzgeyam6n+EFvGb3WzJFslCAKD9y0GWst5HVUjtVSdbYG9EgCc/V
+ 4VuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=/C1h77F+yf1YiKdSW4u8EW/LpvGFHUW1WPfpKGD1tkM=;
- b=njEiKNWHsN3oWaQT5uIyNOoWdaY73RJoZcHKnIuOyadOYgmc0X8p+vXNI5YZeUVrno
- 5y293PHE2LC6QWBEeEEzoQkXf1kmXGr18z2OYNG4DNY07ot3HUSrJKbp3F579+Ro42Tb
- eB/M8sjCWWDlGLyf07ewDvjdTju4nbBHk2mbZhf2LdzV9gqGOCsaklE4hGK7A/BEAZ8u
- CJ2hJlOmN4au3EDLF0dXQc3LpZ/G6IMeQ5BQMa7ZTHqzpRr/y39n1mVM6GYSIyteERWf
- Flpqu4J4BmJfA9gFhnU5ByWuH12TUnTOJ0GG6uGfVKThHBeNIgSxGkWwG4bTct734vXn
- YXZw==
-X-Gm-Message-State: APjAAAUUH+GD28r6SLBslmuD278u1Bcfu4EUFWZDjDs1rUObgPW+f2H7
- tggD2+XopJacXCBQjdEg33aRfQ==
-X-Google-Smtp-Source: APXvYqwTFsB8n1r3f1MIV/NWgKBs20aHezy+QE0d/aWTc+c8DNpwKvzIcjDLJe8Gdqq4PldCgKbX/Q==
-X-Received: by 2002:a5d:6889:: with SMTP id h9mr21560381wru.12.1554799619178; 
- Tue, 09 Apr 2019 01:46:59 -0700 (PDT)
-Received: from boomer.baylibre.com ([2a01:e34:eeb6:4690:106b:bae3:31ed:7561])
- by smtp.gmail.com with ESMTPSA id
- d7sm14356019wmf.31.2019.04.09.01.46.57
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Tue, 09 Apr 2019 01:46:58 -0700 (PDT)
-Message-ID: <2e2f63d7281c67c32fff993f1b557d80f53d23ad.camel@baylibre.com>
-Subject: Re: [PATCH 09/11] drm/meson: Add G12A Video Clock setup
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <narmstrong@baylibre.com>, dri-devel@lists.freedesktop.org
-Date: Tue, 09 Apr 2019 10:46:56 +0200
-In-Reply-To: <20190325141824.21259-10-narmstrong@baylibre.com>
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=VcLnaE+mYzxaCcjZmBEJENIQDKK9CTlE/jMRNbJo6p8=;
+ b=PoPPPkpAhKC2K+IG4k28AIRdsxO9nlSVsT95UVE8cJNlWbnB6fIPonkjw5ipZhVD3n
+ Ouc498y2LGbEOoW3amzJF7DlAb6TcVDLlKsQpKlI8beSslXcalWMd/UUNBKUuCYm0VYA
+ rdHi84qlVUXAxhs/T5oeSv20QIN0PnekN1IKPz8Q2XV8pzSbHGPfobL3Cz95YE87frH4
+ Zm2GldQrnhnzqDFb+JAHq2hjv0T6cwqUyEv53ZQOvhCrIdhf0BFiRbopeuow8NqbrrYf
+ CSSnIXAcKta0hWepsiiYGkKBz0CsTvGznM6kxn+OC0AtKIicGSnTGyz+QY3mG3CKdxqY
+ MeYw==
+X-Gm-Message-State: APjAAAUBZrL1jyrhsy7YpkRdlZW6YnN3sJfPMXYTeoF7XJBXeSRxgeT0
+ qSGbEMF/EYf6HLyxyqySDXSLh63+NKDg+w==
+X-Google-Smtp-Source: APXvYqzAMayyaLgUiQW0z+SDjD062FGCAVxgjC1XgnecaRbF4qdfGV7sEJGkl2o5jpzfCbveNde7Sw==
+X-Received: by 2002:a1c:9cd1:: with SMTP id f200mr21120140wme.91.1554799912612; 
+ Tue, 09 Apr 2019 01:51:52 -0700 (PDT)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id v16sm58612200wro.48.2019.04.09.01.51.51
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 09 Apr 2019 01:51:51 -0700 (PDT)
+Subject: Re: [PATCH 00/11] drm/meson: Add G12A Support
+To: Jerome Brunet <jbrunet@baylibre.com>, dri-devel@lists.freedesktop.org
 References: <20190325141824.21259-1-narmstrong@baylibre.com>
- <20190325141824.21259-10-narmstrong@baylibre.com>
-User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+ <84e8a61db1be6e83e7dcd9630fde17cfc59eb8a3.camel@baylibre.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <83b873f0-f816-9997-4e62-82d4dfce4f04@baylibre.com>
+Date: Tue, 9 Apr 2019 10:51:51 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
+In-Reply-To: <84e8a61db1be6e83e7dcd9630fde17cfc59eb8a3.camel@baylibre.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190409_014700_965739_55362E09 
-X-CRM114-Status: GOOD (  19.48  )
+X-CRM114-CacheID: sfid-20190409_015154_406495_C35BF516 
+X-CRM114-Status: GOOD (  21.09  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -102,248 +157,85 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 2019-03-25 at 15:18 +0100, Neil Armstrong wrote:
-> While switching to the Common Clock Framework is still Work In Progress,
-> this patch adds the corresponding G12A HDMI PLL setup to be on-par
-> with the other SoCs support.
+Hi,
+
+On 09/04/2019 10:42, Jerome Brunet wrote:
+> On Mon, 2019-03-25 at 15:18 +0100, Neil Armstrong wrote:
+>> The Amlogic G12A SoC offers very close Video Display
+>> functionnalities with it's older GXBB, GXL & GXM predecessors.
+>>
+>> The main differences are :
+>> - G12A Support now 3 "real" OSD planes with a new Blender module
+>> - Instead of having a single Scaler for OSD1, G12A has two scaler
+>>   that can be applied to 2 out of the 3 OSD planes or on the outputs
+>>   of the blender module.
+>> - The HDMI PHY now support RX-SENSE, Dynamic HDR and it's registers are
+>>   now memory mapped instead of using an internal bus.
+>> - The VPU now support a DSI interface to connect a display, using
+>>   the Synopsys DSI controller and a custom PHY
+>>
+>> The complex Blender routing, HDMI RX-SENSE, Dynamic HDR and DSI support
+>> are not handled in this patchset.
+>>
+>> This patchset implements on-par support with the currently support
+>> GXBB, GXL and GXM SoCs. There is no support delta with this patchset.
+>>
+>> patch 10 & 11 implements the bindings found at [1].
+>>
+>> [1] https://lkml.kernel.org/r/20190313141030.5958-1-narmstrong@baylibre.com
+>>
+>> Neil Armstrong (11):
+>>   drm/meson: Switch PLL to 5.94GHz base for 297Mhz pixel clock
+>>   drm/meson: Add registers for G12A SoC
+>>   drm/meson: Add G12A Support for VPP setup
+>>   drm/meson: Add G12A Support for VIU setup
+>>   drm/meson: Add G12A support for OSD1 Plane
+>>   drm/meson: Add G12A Support for the Overlay video plane
+>>   drm/meson: Add G12A support for plane handling in CRTC driver
+>>   drm/meson: Add G12A support for CVBS Encoer
+>>   drm/meson: Add G12A Video Clock setup
+>>   drm/meson: Add G12A compatible
+>>   drm/meson: Add G12A support for the DW-HDMI Glue
+>>
+>>  drivers/gpu/drm/meson/meson_crtc.c      | 269 +++++++++++++++++++-----
+>>  drivers/gpu/drm/meson/meson_drv.c       |   1 +
+>>  drivers/gpu/drm/meson/meson_drv.h       |   4 +
+>>  drivers/gpu/drm/meson/meson_dw_hdmi.c   | 163 +++++++++++---
+>>  drivers/gpu/drm/meson/meson_dw_hdmi.h   |  32 ++-
+>>  drivers/gpu/drm/meson/meson_overlay.c   |  10 +-
+>>  drivers/gpu/drm/meson/meson_plane.c     |  15 +-
+>>  drivers/gpu/drm/meson/meson_registers.h | 247 ++++++++++++++++++++++
+>>  drivers/gpu/drm/meson/meson_vclk.c      | 123 +++++++++--
+>>  drivers/gpu/drm/meson/meson_venc.c      |  11 +-
+>>  drivers/gpu/drm/meson/meson_venc_cvbs.c |  25 ++-
+>>  drivers/gpu/drm/meson/meson_viu.c       |  72 ++++++-
+>>  drivers/gpu/drm/meson/meson_vpp.c       |  51 +++--
+>>  13 files changed, 880 insertions(+), 143 deletions(-)
+>>
 > 
-> The G12A has only a single tweak about the high frequency setup,
-> where the HDMI PLL needs a specific setup to handle correctly the
-> 5.94GHz DCO frequency.
+> on the u200 and sei510
+> Tested-by: Jerome Brunet <jbrunet@baylibre.com>
 > 
-> Apart that, it handle correctly all the other HDMI frequencies
-> and can achieve even better DMT clock frequency precision with
-> the larger fractional dividier width.
+> I can't pretend to have a deep understanding of this subsystem, but as far as
+> I can tell, there is nothing crazy in there. With the comments around the use
+> of constants and defines fixed, you can add
 > 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  drivers/gpu/drm/meson/meson_vclk.c | 119 ++++++++++++++++++++++++++---
->  1 file changed, 108 insertions(+), 11 deletions(-)
+> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
 > 
-> diff --git a/drivers/gpu/drm/meson/meson_vclk.c b/drivers/gpu/drm/meson/meson_vclk.c
-> index c15a5a5df633..b39034745444 100644
-> --- a/drivers/gpu/drm/meson/meson_vclk.c
-> +++ b/drivers/gpu/drm/meson/meson_vclk.c
-> @@ -113,9 +113,12 @@
->  #define HHI_HDMI_PLL_CNTL4	0x32C /* 0xcb offset in data sheet */
->  #define HHI_HDMI_PLL_CNTL5	0x330 /* 0xcc offset in data sheet */
->  #define HHI_HDMI_PLL_CNTL6	0x334 /* 0xcd offset in data sheet */
-> +#define HHI_HDMI_PLL_CNTL7	0x338 /* 0xce offset in data sheet */
->  
->  #define HDMI_PLL_RESET		BIT(28)
-> +#define HDMI_PLL_RESET_G12A	BIT(29)
->  #define HDMI_PLL_LOCK		BIT(31)
-> +#define HDMI_PLL_LOCK_G12A	(3 << 30)
+> As a possible future enhancement, it would be nice if you could trim the use
+> of *_is_compatible() functions. I think it would make the code easier to
+> follow and review.
+> 
 
-GENMASK(31, 30) ?
+Thanks for the overall review,
 
->  
->  #define FREQ_1000_1001(_freq)	DIV_ROUND_CLOSEST(_freq * 1000, 1001)
->  
-> @@ -257,6 +260,10 @@ static void meson_venci_cvbs_clock_config(struct meson_drm *priv)
->  		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x71486980);
->  		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x00000e55);
->  		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x4800023d);
-> +
-> +		/* Poll for lock bit */
-> +		regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL, val,
-> +					 (val & HDMI_PLL_LOCK), 10, 0);
->  	} else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
->  		   meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu")) {
->  		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x4000027b);
-> @@ -271,11 +278,26 @@ static void meson_venci_cvbs_clock_config(struct meson_drm *priv)
->  					HDMI_PLL_RESET, HDMI_PLL_RESET);
->  		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
->  					HDMI_PLL_RESET, 0);
-> -	}
->  
-> -	/* Poll for lock bit */
-> -	regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL, val,
-> -				 (val & HDMI_PLL_LOCK), 10, 0);
-> +		/* Poll for lock bit */
-> +		regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL, val,
-> +					 (val & HDMI_PLL_LOCK), 10, 0);
-> +	} else if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
-> +		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x1a0504f7);
-> +		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x00010000);
-> +		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x00000000);
-> +		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x6a28dc00);
-> +		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x65771290);
-> +		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x39272000);
-> +		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL7, 0x56540000);
-> +		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x3a0504f7);
-> +		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x1a0504f7);
-> +
-> +		/* Poll for lock bit */
-> +		regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL, val,
-> +			((val & HDMI_PLL_LOCK_G12A) == HDMI_PLL_LOCK_G12A),
-> +			10, 0);
-> +	}
->  
->  	/* Disable VCLK2 */
->  	regmap_update_bits(priv->hhi, HHI_VIID_CLK_CNTL, VCLK2_EN, 0);
-> @@ -288,8 +310,13 @@ static void meson_venci_cvbs_clock_config(struct meson_drm *priv)
->  				VCLK2_DIV_MASK, (55 - 1));
->  
->  	/* select vid_pll for vclk2 */
-> -	regmap_update_bits(priv->hhi, HHI_VIID_CLK_CNTL,
-> -				VCLK2_SEL_MASK, (4 << VCLK2_SEL_SHIFT));
-> +	if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu"))
-> +		regmap_update_bits(priv->hhi, HHI_VIID_CLK_CNTL,
-> +					VCLK2_SEL_MASK, (0 << VCLK2_SEL_SHIFT));
-> +	else
-> +		regmap_update_bits(priv->hhi, HHI_VIID_CLK_CNTL,
-> +					VCLK2_SEL_MASK, (4 << VCLK2_SEL_SHIFT));
-> +
->  	/* enable vclk2 gate */
->  	regmap_update_bits(priv->hhi, HHI_VIID_CLK_CNTL, VCLK2_EN, VCLK2_EN);
->  
-> @@ -476,32 +503,80 @@ void meson_hdmi_pll_set_params(struct meson_drm *priv, unsigned int m,
->  		/* Poll for lock bit */
->  		regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL, val,
->  				(val & HDMI_PLL_LOCK), 10, 0);
-> +	} else if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
-> +		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x0b3a0400 | m);
-> +
-> +		/* Enable and reset */
-> +		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
-> +				   0x3 << 28, 0x3 << 28);
+I will do a complete fixup of the constants and defines in a follow-up patchset,
+since the already-merged code also needs a good cleanup.
 
-Could you use define of the enable and reset bit instead  of 0x3 << 28 ?
+I'll do a more complete refactoring to get rid of the _is_compatible() stuff
+in a second time, it needs much more work to handle correctly the 4 SoC families.
 
-> +
-> +		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, frac);
-> +		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x00000000);
-> +
-> +		/* G12A HDMI PLL Needs specific parameters for 5.4GHz */
-> +		if (m >= 0xf7) {
-> +			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0xea68dc00);
-> +			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x65771290);
-> +			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x39272000);
-> +			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL7, 0x55540000);
-> +		} else {
-> +			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0x0a691c00);
-> +			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x33771290);
-> +			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x39270000);
-> +			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL7, 0x50540000);
-> +		}
-> +
-> +		do {
-> +			/* Reset PLL */
-> +			regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
-> +					HDMI_PLL_RESET_G12A, HDMI_PLL_RESET_G12A);
-> +
-> +			/* UN-Reset PLL */
-> +			regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
-> +					HDMI_PLL_RESET_G12A, 0);
-> +
-> +			/* Poll for lock bits */
-> +			if (!regmap_read_poll_timeout(priv->hhi,
-> +						      HHI_HDMI_PLL_CNTL, val,
-> +						      ((val & HDMI_PLL_LOCK_G12A)
-> +						        == HDMI_PLL_LOCK_G12A),
-> +						      10, 100))
-> +				break;
-> +		} while(1);
->  	}
->  
->  	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu"))
->  		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL2,
->  				3 << 16, pll_od_to_reg(od1) << 16);
->  	else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
-> -			meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
-> +		 meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
->  		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL3,
->  				3 << 21, pll_od_to_reg(od1) << 21);
-> +	else if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu"))
-> +		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
-> +				3 << 16, pll_od_to_reg(od1) << 16);
->  
->  	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu"))
->  		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL2,
->  				3 << 22, pll_od_to_reg(od2) << 22);
->  	else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
-> -			meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
-> +		 meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
->  		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL3,
->  				3 << 23, pll_od_to_reg(od2) << 23);
-> +	else if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu"))
-> +		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
-> +				3 << 18, pll_od_to_reg(od2) << 18);
->  
->  	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu"))
->  		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL2,
->  				3 << 18, pll_od_to_reg(od3) << 18);
->  	else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
-> -			meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
-> +		 meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
->  		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL3,
->  				3 << 19, pll_od_to_reg(od3) << 19);
-> -
-> +	else if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu"))
-> +		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
-> +				3 << 20, pll_od_to_reg(od3) << 20);
-
-Could you remove the constants above and define the shift and mask of the ODs
-?
-
->  }
->  
->  #define XTAL_FREQ 24000
-> @@ -518,6 +593,7 @@ static unsigned int meson_hdmi_pll_get_m(struct meson_drm *priv,
->  
->  #define HDMI_FRAC_MAX_GXBB	4096
->  #define HDMI_FRAC_MAX_GXL	1024
-> +#define HDMI_FRAC_MAX_G12A	131072
->  
->  static unsigned int meson_hdmi_pll_get_frac(struct meson_drm *priv,
->  					    unsigned int m,
-> @@ -534,6 +610,9 @@ static unsigned int meson_hdmi_pll_get_frac(struct meson_drm *priv,
->  		parent_freq *= 2;
->  	}
->  
-> +	if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu"))
-> +		frac_max = HDMI_FRAC_MAX_G12A;
-> +
->  	/* We can have a perfect match !*/
->  	if (pll_freq / m == parent_freq &&
->  	    pll_freq % m == 0)
-> @@ -559,7 +638,8 @@ static bool meson_hdmi_pll_validate_params(struct meson_drm *priv,
->  		if (frac >= HDMI_FRAC_MAX_GXBB)
->  			return false;
->  	} else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
-> -		   meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu")) {
-> +		   meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu") ||
-> +		   meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
->  		/* Empiric supported min/max dividers */
->  		if (m < 106 || m > 247)
->  			return false;
-> @@ -713,6 +793,23 @@ static void meson_vclk_set(struct meson_drm *priv, unsigned int pll_base_freq,
->  			break;
->  		}
->  
-> +		meson_hdmi_pll_set_params(priv, m, frac, od1, od2, od3);
-> +	} else if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
-> +		switch (pll_base_freq) {
-> +		case 2970000:
-> +			m = 0x7b;
-> +			frac = vic_alternate_clock ? 0x140b4 : 0x18000;
-> +			break;
-> +		case 4320000:
-> +			m = vic_alternate_clock ? 0xb3 : 0xb4;
-> +			frac = vic_alternate_clock ? 0x1a3ee : 0;
-> +			break;
-> +		case 5940000:
-> +			m = 0xf7;
-> +			frac = vic_alternate_clock ? 0x8148 : 0x10000;
-> +			break;
-> +		}
-> +
->  		meson_hdmi_pll_set_params(priv, m, frac, od1, od2, od3);
->  	}
->  
-
-
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
