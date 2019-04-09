@@ -2,23 +2,22 @@ Return-Path: <SRS0=8EGG=SL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_PASS autolearn=unavailable autolearn_force=no
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0F961C10F0E
-	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 07:56:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 62C43C10F0E
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 08:20:51 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8BA9620857
-	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 07:56:04 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3093720880
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 08:20:51 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gyYEdjBV";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="sNLMAtqJ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="pUSFrNwz"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8BA9620857
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="N0dH+GCo";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="eOCnJapW"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3093720880
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,76 +26,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ot+nVvpBpoeagbrXCKfqm48mdisOgEGpgpXcW3DVBA4=; b=gyYEdjBVFDg0Ey
-	g2OxquKLKca5bUpTXnVI2kcgq8ZGS9vcZAIVqeIdqTFGawCWNQ0UE0GMnbJ2e+bTLJDg8R73b66cJ
-	vjnO7L05sdwQKQBDRs283M7oAQM+VJ9+kAOYnIac9jBz+z7SZg6pL+r90Gg89Iil8mMGrazhwgwyl
-	0QELiVO5J275RQxYwvLEJc3wGpJq+i2n7NOU8NYgLOGLqHgUnixwGg++i0CQImFt+IBul6lSPhEKH
-	VC93Es03aMxb0LDXynGc6Ay0MxZ5QJTwA4vcfaLEW6YPN6FmDUEYtrdG4zAE1q7HBtNBV/BTndwkD
-	jUcN1mfol1FdMBAx0iaQ==;
+	List-Owner; bh=qkdda5daPU97qdRTYP68F7iCFKr5FAoK+xKl2PXrUaY=; b=N0dH+GCo90z8sP
+	pqNF1K3zvt0ymF5e0RdPMvaLVOrT8Ksw+gZj9QIg388ShU1JMy2nymM0ASiohXgxuVoajqqVgsvvt
+	6OhKtfO1xm2o5p5+rCLr+B3/8xskP7db31WUexUv33yirUy5O9KJ5QZ99HzF/0lfyzF7MhHwwjxof
+	gw+Z7GEMNByLx69Uc/h2h1T7XcNUIz7/sqZJqRzU5F5iKF8E/IgwRqeOoiOp41jFZvYUDgCG1p3OQ
+	cPVdIl1qDrh4sxLkgblv2hVIJaNb9EFrCjN5Xm3q21hicPwHVdK/BMJOpULHh7GRSZn4TTIG/E6eb
+	Mhb16Mw50dznRDvW0eGA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hDlbp-0001IN-QE; Tue, 09 Apr 2019 07:55:57 +0000
-Received: from merlin.infradead.org ([2001:8b0:10b:1231::1])
- by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hDlbk-0001AT-84
- for linux-amlogic@bombadil.infradead.org; Tue, 09 Apr 2019 07:55:52 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=s+tXDWipNKrAnsAwIIdsNlNNdHmKtLV/l7aa1f7zsu0=; b=sNLMAtqJBMx/RtHGV+I4bTX/YW
- OLIEm8cEiQeMrtWE0bIM/Ay9/OrXC0twOXTlJtuoXSeRrBnxhh4n5u3kjYiXgSz7gXRFx+aVZs63H
- 7NheCo+n1NlOX1TP1TX3wSQVj15uPMr+GEtt1WRcVUPjJ2AsUYmh+pRWk3YO0bb1F2uor+igpIFSV
- Bl7L9AhhIdMZA6zqb5CGPDsJIfxk5K9thwXDfvRq3fB/jXkAlxpiGKN+JwtnZFHTJl9jRtrYRPqy7
- cUCiGR5axmfWn8dR1qpWqWkyg5raOykD4SKc3f0ko6jy6KJfMnE3SbJSjO5YucQoSPfB6CfLHSiQY
- vLxc2Q7Q==;
+	id 1hDlzq-0004oq-Af; Tue, 09 Apr 2019 08:20:46 +0000
 Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
- by merlin.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hDl8p-0005PA-NY
- for linux-amlogic@lists.infradead.org; Tue, 09 Apr 2019 07:26:01 +0000
-Received: by mail-wm1-x344.google.com with SMTP id 4so2148889wmf.1
- for <linux-amlogic@lists.infradead.org>; Tue, 09 Apr 2019 00:25:59 -0700 (PDT)
+ by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1hDlzm-0004ns-VN
+ for linux-amlogic@lists.infradead.org; Tue, 09 Apr 2019 08:20:44 +0000
+Received: by mail-wm1-x344.google.com with SMTP id n25so2199909wmk.4
+ for <linux-amlogic@lists.infradead.org>; Tue, 09 Apr 2019 01:20:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=s+tXDWipNKrAnsAwIIdsNlNNdHmKtLV/l7aa1f7zsu0=;
- b=pUSFrNwzClzRKI34n/HPkfRZ0QVpb9sVyglUfVWofb2P9fmHKvBC1yGRPlCG+48VI3
- nCAyAQFxgL16iMKvxvTjqssxz6MM79ifBpv4OnW7tYz9by/dj1a6XGKgCZaXCYkY3jde
- babNXfnetMFTl5Oxb4nyCg3Wpg8kg241f3VjMS5qARjDMLwdefxzTbXTWSYhSAJXxcGl
- dVb+1f+eAmlYGxQG+zvgX1f5Qs1Yp6blJHA/u+QC1t9rEJWo7YoDurpa2CB3ge8p6P/2
- +yRgc1c+C2bl7AIi6XKjAzR2rPBLZoW6k67KHuhANxddgW6TzzdHhVDTMDzK0sS85dWT
- wYhw==
+ bh=pfR4P9LrDyHZsIRepbvE2l2wqtRd7f4lG6Bo64BoQ5Y=;
+ b=eOCnJapW8AyhnYNbT5fOzk+10ZoQ7HfKYH/mXH1CnFteToOmult6bf0d5jwY1k52nH
+ CTfEJKwL6HumGiq1bEL1GCMEe0djZdmiPIQ16+yAMYr4I/ZNzfgaDAflRmADAC/XdFIe
+ SQaXLsyPTfQ/oqouhQKu0MJMercvNnEQ7QC4JZUrzLP/domuT24sDRrQsqrpbKjxm+5G
+ p7PMmQPLTFVXwicv/2NchgvOjyfJ47CkbK4oAJo+Tbrh2YrGA7e0ggnQNcTT+0vmr7XZ
+ yVt/X4a0YAikKEiviZTLP2W0xiaLu92aZLwSgSaTsHGFoJ/rQv9HcRvP2Luzo+0OPvMN
+ yHNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=s+tXDWipNKrAnsAwIIdsNlNNdHmKtLV/l7aa1f7zsu0=;
- b=C/bqOcoX5a62rxLbY50yqI7pll1AaGGDwd8WlQUehBo+2owPzn1uqz6ZcP5MeI3NvI
- MHa3gej1z4sjMmENExudUyAxx224kOHgH6VK+lhobtS7khdj46Drq/CopBHlMm7r6096
- wj4yFylg+Fsjdf+mb8vwJL6o+R7q4DJccl1KfYOx6q0RA23VipangnMPUbui/UTL2DpC
- 6iHnEZ1M9lmsvslhaJB9440Dyp1oVhU/NGXuqN414OoPRyRb9HEQ5BTZ66cRm8pEF/53
- E2AhoTMPJ9yI87+E12U9z+9T5YyATlmJ6BAqut8EjBMWUOAj3D741J1EDp3qhxISaJU5
- U9Tg==
-X-Gm-Message-State: APjAAAVxKv1lMH0/mCh6e9iSaogtLh0/PUeLgpt6nOtVGhAAuuN4mH0b
- BTSgHsb/dWilqc+hCNdHfxx8Hg==
-X-Google-Smtp-Source: APXvYqwtXyHL6LvUFF6PWoi2sdw6VysuS/QpLYY4ya9JN7pPFFWJwtwitaxbJAZXVJ7wHzHXO5DQwA==
-X-Received: by 2002:a7b:c301:: with SMTP id k1mr21238306wmj.37.1554794757478; 
- Tue, 09 Apr 2019 00:25:57 -0700 (PDT)
+ bh=pfR4P9LrDyHZsIRepbvE2l2wqtRd7f4lG6Bo64BoQ5Y=;
+ b=dCafibxxV4/OgNMHGhut0/zX+o0d/V7BQ467btQ3W+IcfirYgAZ1Uni2g/zNCV6aTO
+ V9AtQIpT3mgUu85plKr1VyNhhL5ObWg5MgPG1BV2oyuU7YURIWaMGN5UV3GYFWriF+jz
+ Lsgy3VO1/LapiSxp1QrsWiWBGWY6dvKbLGV0A0L0Fz2GsFnt8f+LqYM3RK/xlK+bO3Ba
+ LN5V069Hsq4QOknXFuaP0faw0ZQNkDUxHkmfv8mifyNeRAW00aePBX0Atm5mj2Y3E24e
+ WthiogfWm9hkTXbcLv2/3ZcAi1MCEWJYJd4I0UlLRZuzvTvLgz3XnnlUmNea0CJBPB7e
+ ETuA==
+X-Gm-Message-State: APjAAAW/hTYsiJ1Fvid6kJP9Cfsoq/hkrpAgXvfh9Mb8VVRqGAO3iqYU
+ 9hr3FLiYWrp9/j/ecWfkcyis+A==
+X-Google-Smtp-Source: APXvYqzarK43oSf3PWYfZzP15Z8qkkfRB7FrQmeCYlIQKQ9hlqnnn5+hvRjnnHx/TCUyJNjI/+66Aw==
+X-Received: by 2002:a7b:c7d0:: with SMTP id z16mr12547793wmk.136.1554798040554; 
+ Tue, 09 Apr 2019 01:20:40 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id j22sm99026552wrd.91.2019.04.09.00.25.56
+ by smtp.gmail.com with ESMTPSA id o4sm24994090wmo.20.2019.04.09.01.20.39
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 09 Apr 2019 00:25:56 -0700 (PDT)
-Subject: Re: [PATCH v3 2/3] media: platform: meson: Add Amlogic Meson G12A AO
- CEC Controller driver
-To: kbuild test robot <lkp@intel.com>
-References: <20190408092358.25894-3-narmstrong@baylibre.com>
- <201904090252.BPKOeIGV%lkp@intel.com>
+ Tue, 09 Apr 2019 01:20:39 -0700 (PDT)
+Subject: Re: [PATCH v4] dt-bindings: gpu: add bindings for the ARM Mali
+ Bifrost GPU
+To: Rob Herring <robh@kernel.org>
+References: <20190401080949.14550-1-narmstrong@baylibre.com>
+ <1640dd7b-3576-d9ce-0641-6b6a64a87275@arm.com>
+ <d26f1ce9-c56c-5e51-37f5-0689aa198dc0@baylibre.com>
+ <5CA9CE1A.6060109@baylibre.com>
+ <CAL_JsqJj4pae6AuK=HGU5GuZogFKyAbU_y7Ls_CyTcV6qXH_rg@mail.gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -149,16 +135,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <efc79646-6eeb-1957-5ec1-f0f7531d4cf9@baylibre.com>
-Date: Tue, 9 Apr 2019 09:25:56 +0200
+Message-ID: <86843e8b-1dda-f7f3-c2ad-02b7b47743dc@baylibre.com>
+Date: Tue, 9 Apr 2019 10:20:39 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <201904090252.BPKOeIGV%lkp@intel.com>
+In-Reply-To: <CAL_JsqJj4pae6AuK=HGU5GuZogFKyAbU_y7Ls_CyTcV6qXH_rg@mail.gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190409_032600_000647_152B7CDE 
-X-CRM114-Status: GOOD (  29.55  )
+X-CRM114-CacheID: sfid-20190409_012043_014783_002F47CE 
+X-CRM114-Status: GOOD (  15.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -170,314 +156,59 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, hverkuil@xs4all.nl, kbuild-all@01.org,
- linux-amlogic@lists.infradead.org, mchehab@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: devicetree@vger.kernel.org,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Steven Price <steven.price@arm.com>, Daniel Vetter <daniel@ffwll.ch>,
+ linux-amlogic@lists.infradead.org,
+ "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 08/04/2019 20:08, kbuild test robot wrote:
-> Hi Neil,
-> 
-> I love your patch! Yet something to improve:
-> 
-> [auto build test ERROR on linuxtv-media/master]
-> [also build test ERROR on v5.1-rc4 next-20190408]
-> [if your patch is applied to the wrong git tree, please drop us a note to help improve the system]
-> 
-> url:    https://github.com/0day-ci/linux/commits/Neil-Armstrong/media-dt-bindings-media-meson-ao-cec-Add-G12A-AO-CEC-B-Compatible/20190408-233912
-> base:   git://linuxtv.org/media_tree.git master
-> config: ia64-allmodconfig (attached as .config)
-> compiler: ia64-linux-gcc (GCC) 8.1.0
-> reproduce:
->         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
->         chmod +x ~/bin/make.cross
->         # save the attached .config to linux build tree
->         GCC_VERSION=8.1.0 make.cross ARCH=ia64 
-> 
-> All error/warnings (new ones prefixed by >>):
-> 
->>> drivers/media/platform/meson/ao-cec-g12a.c:206:16: error: field 'hw' has incomplete type
->      struct clk_hw hw;
-
-Seems I'll need to add CONFIG_COMMON_CLK
-
-Neil
-
->                    ^~
->    In file included from include/linux/build_bug.h:5,
->                     from include/linux/bitfield.h:18,
->                     from drivers/media/platform/meson/ao-cec-g12a.c:10:
->    drivers/media/platform/meson/ao-cec-g12a.c: In function 'meson_ao_cec_g12a_dualdiv_clk_recalc_rate':
->    include/linux/kernel.h:979:32: error: dereferencing pointer to incomplete type 'struct clk_hw'
->      BUILD_BUG_ON_MSG(!__same_type(*(ptr), ((type *)0)->member) && \
->                                    ^~~~~~
->    include/linux/compiler.h:324:9: note: in definition of macro '__compiletime_assert'
->       if (!(condition))     \
->             ^~~~~~~~~
->    include/linux/compiler.h:344:2: note: in expansion of macro '_compiletime_assert'
->      _compiletime_assert(condition, msg, __compiletime_assert_, __LINE__)
->      ^~~~~~~~~~~~~~~~~~~
->    include/linux/build_bug.h:39:37: note: in expansion of macro 'compiletime_assert'
->     #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
->                                         ^~~~~~~~~~~~~~~~~~
->    include/linux/kernel.h:979:2: note: in expansion of macro 'BUILD_BUG_ON_MSG'
->      BUILD_BUG_ON_MSG(!__same_type(*(ptr), ((type *)0)->member) && \
->      ^~~~~~~~~~~~~~~~
->    include/linux/kernel.h:979:20: note: in expansion of macro '__same_type'
->      BUILD_BUG_ON_MSG(!__same_type(*(ptr), ((type *)0)->member) && \
->                        ^~~~~~~~~~~
->    drivers/media/platform/meson/ao-cec-g12a.c:211:2: note: in expansion of macro 'container_of'
->      container_of(_hw, struct meson_ao_cec_g12a_dualdiv_clk, hw) \
->      ^~~~~~~~~~~~
->    drivers/media/platform/meson/ao-cec-g12a.c:218:3: note: in expansion of macro 'hw_to_meson_ao_cec_g12a_dualdiv_clk'
->       hw_to_meson_ao_cec_g12a_dualdiv_clk(hw);
->       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->    drivers/media/platform/meson/ao-cec-g12a.c: At top level:
->>> drivers/media/platform/meson/ao-cec-g12a.c:317:21: error: variable 'meson_ao_cec_g12a_dualdiv_clk_ops' has initializer but incomplete type
->     static const struct clk_ops meson_ao_cec_g12a_dualdiv_clk_ops = {
->                         ^~~~~~~
->>> drivers/media/platform/meson/ao-cec-g12a.c:318:3: error: 'const struct clk_ops' has no member named 'recalc_rate'
->      .recalc_rate = meson_ao_cec_g12a_dualdiv_clk_recalc_rate,
->       ^~~~~~~~~~~
->>> drivers/media/platform/meson/ao-cec-g12a.c:318:17: warning: excess elements in struct initializer
->      .recalc_rate = meson_ao_cec_g12a_dualdiv_clk_recalc_rate,
->                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->    drivers/media/platform/meson/ao-cec-g12a.c:318:17: note: (near initialization for 'meson_ao_cec_g12a_dualdiv_clk_ops')
->>> drivers/media/platform/meson/ao-cec-g12a.c:319:3: error: 'const struct clk_ops' has no member named 'is_enabled'
->      .is_enabled = meson_ao_cec_g12a_dualdiv_clk_is_enabled,
->       ^~~~~~~~~~
->    drivers/media/platform/meson/ao-cec-g12a.c:319:16: warning: excess elements in struct initializer
->      .is_enabled = meson_ao_cec_g12a_dualdiv_clk_is_enabled,
->                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->    drivers/media/platform/meson/ao-cec-g12a.c:319:16: note: (near initialization for 'meson_ao_cec_g12a_dualdiv_clk_ops')
->>> drivers/media/platform/meson/ao-cec-g12a.c:320:3: error: 'const struct clk_ops' has no member named 'enable'
->      .enable  = meson_ao_cec_g12a_dualdiv_clk_enable,
->       ^~~~~~
->    drivers/media/platform/meson/ao-cec-g12a.c:320:13: warning: excess elements in struct initializer
->      .enable  = meson_ao_cec_g12a_dualdiv_clk_enable,
->                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->    drivers/media/platform/meson/ao-cec-g12a.c:320:13: note: (near initialization for 'meson_ao_cec_g12a_dualdiv_clk_ops')
->>> drivers/media/platform/meson/ao-cec-g12a.c:321:3: error: 'const struct clk_ops' has no member named 'disable'
->      .disable = meson_ao_cec_g12a_dualdiv_clk_disable,
->       ^~~~~~~
->    drivers/media/platform/meson/ao-cec-g12a.c:321:13: warning: excess elements in struct initializer
->      .disable = meson_ao_cec_g12a_dualdiv_clk_disable,
->                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->    drivers/media/platform/meson/ao-cec-g12a.c:321:13: note: (near initialization for 'meson_ao_cec_g12a_dualdiv_clk_ops')
->    drivers/media/platform/meson/ao-cec-g12a.c: In function 'meson_ao_cec_g12a_setup_clk':
->>> drivers/media/platform/meson/ao-cec-g12a.c:328:23: error: storage size of 'init' isn't known
->      struct clk_init_data init;
->                           ^~~~
->>> drivers/media/platform/meson/ao-cec-g12a.c:341:16: error: implicit declaration of function '__clk_get_name'; did you mean 'clk_get_rate'? [-Werror=implicit-function-declaration]
->      parent_name = __clk_get_name(ao_cec->oscin);
->                    ^~~~~~~~~~~~~~
->                    clk_get_rate
->>> drivers/media/platform/meson/ao-cec-g12a.c:341:14: warning: assignment to 'const char *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
->      parent_name = __clk_get_name(ao_cec->oscin);
->                  ^
->>> drivers/media/platform/meson/ao-cec-g12a.c:351:8: error: implicit declaration of function 'devm_clk_register'; did you mean 'device_register'? [-Werror=implicit-function-declaration]
->      clk = devm_clk_register(dev, &dualdiv_clk->hw);
->            ^~~~~~~~~~~~~~~~~
->            device_register
->    drivers/media/platform/meson/ao-cec-g12a.c:328:23: warning: unused variable 'init' [-Wunused-variable]
->      struct clk_init_data init;
->                           ^~~~
->    drivers/media/platform/meson/ao-cec-g12a.c: At top level:
->>> drivers/media/platform/meson/ao-cec-g12a.c:317:29: error: storage size of 'meson_ao_cec_g12a_dualdiv_clk_ops' isn't known
->     static const struct clk_ops meson_ao_cec_g12a_dualdiv_clk_ops = {
->                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->    cc1: some warnings being treated as errors
-> 
-> vim +/hw +206 drivers/media/platform/meson/ao-cec-g12a.c
-> 
->    186	
->    187	/*
->    188	 * The AO-CECB embeds a dual/divider to generate a more precise
->    189	 * 32,768KHz clock for CEC core clock.
->    190	 *                      ______   ______
->    191	 *                     |      | |      |
->    192	 *         ______      | Div1 |-| Cnt1 |       ______
->    193	 *        |      |    /|______| |______|\     |      |
->    194	 * Xtal-->| Gate |---|  ______   ______  X-X--| Gate |-->
->    195	 *        |______| |  \|      | |      |/  |  |______|
->    196	 *                 |   | Div2 |-| Cnt2 |   |
->    197	 *                 |   |______| |______|   |
->    198	 *                 |_______________________|
->    199	 *
->    200	 * The dividing can be switched to single or dual, with a counter
->    201	 * for each divider to set when the switching is done.
->    202	 * The entire dividing mechanism can be also bypassed.
->    203	 */
->    204	
->    205	struct meson_ao_cec_g12a_dualdiv_clk {
->  > 206		struct clk_hw hw;
->    207		struct regmap *regmap;
->    208	};
->    209	
->    210	#define hw_to_meson_ao_cec_g12a_dualdiv_clk(_hw)			\
->  > 211		container_of(_hw, struct meson_ao_cec_g12a_dualdiv_clk, hw)	\
->    212	
->    213	static unsigned long
->    214	meson_ao_cec_g12a_dualdiv_clk_recalc_rate(struct clk_hw *hw,
->    215						  unsigned long parent_rate)
->    216	{
->    217		struct meson_ao_cec_g12a_dualdiv_clk *dualdiv_clk =
->  > 218			hw_to_meson_ao_cec_g12a_dualdiv_clk(hw);
->    219		unsigned long n1;
->    220		u32 reg0, reg1;
->    221	
->    222		regmap_read(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0, &reg0);
->    223		regmap_read(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0, &reg1);
->    224	
->    225		if (reg1 & CECB_CLK_CNTL_BYPASS_EN)
->    226			return parent_rate;
->    227	
->    228		if (reg0 & CECB_CLK_CNTL_DUAL_EN) {
->    229			unsigned long n2, m1, m2, f1, f2, p1, p2;
->    230	
->    231			n1 = FIELD_GET(CECB_CLK_CNTL_N1, reg0) + 1;
->    232			n2 = FIELD_GET(CECB_CLK_CNTL_N2, reg0) + 1;
->    233	
->    234			m1 = FIELD_GET(CECB_CLK_CNTL_M1, reg1) + 1;
->    235			m2 = FIELD_GET(CECB_CLK_CNTL_M1, reg1) + 1;
->    236	
->    237			f1 = DIV_ROUND_CLOSEST(parent_rate, n1);
->    238			f2 = DIV_ROUND_CLOSEST(parent_rate, n2);
->    239	
->    240			p1 = DIV_ROUND_CLOSEST(100000000 * m1, f1 * (m1 + m2));
->    241			p2 = DIV_ROUND_CLOSEST(100000000 * m2, f2 * (m1 + m2));
->    242	
->    243			return DIV_ROUND_UP(100000000, p1 + p2);
->    244		}
->    245	
->    246		n1 = FIELD_GET(CECB_CLK_CNTL_N1, reg0) + 1;
->    247	
->    248		return DIV_ROUND_CLOSEST(parent_rate, n1);
->    249	}
->    250	
->    251	static int meson_ao_cec_g12a_dualdiv_clk_enable(struct clk_hw *hw)
->    252	{
->    253		struct meson_ao_cec_g12a_dualdiv_clk *dualdiv_clk =
->    254			hw_to_meson_ao_cec_g12a_dualdiv_clk(hw);
->    255	
->    256	
->    257		/* Disable Input & Output */
->    258		regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0,
->    259				   CECB_CLK_CNTL_INPUT_EN | CECB_CLK_CNTL_OUTPUT_EN,
->    260				   0);
->    261	
->    262		/* Set N1 & N2 */
->    263		regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0,
->    264				   CECB_CLK_CNTL_N1,
->    265				   FIELD_PREP(CECB_CLK_CNTL_N1, 733 - 1));
->    266	
->    267		regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0,
->    268				   CECB_CLK_CNTL_N2,
->    269				   FIELD_PREP(CECB_CLK_CNTL_N2, 732 - 1));
->    270	
->    271		/* Set M1 & M2 */
->    272		regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG1,
->    273				   CECB_CLK_CNTL_M1,
->    274				   FIELD_PREP(CECB_CLK_CNTL_M1, 8 - 1));
->    275	
->    276		regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG1,
->    277				   CECB_CLK_CNTL_M2,
->    278				   FIELD_PREP(CECB_CLK_CNTL_M2, 11 - 1));
->    279	
->    280		/* Enable Dual divisor */
->    281		regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0,
->    282				   CECB_CLK_CNTL_DUAL_EN, CECB_CLK_CNTL_DUAL_EN);
->    283	
->    284		/* Disable divisor bypass */
->    285		regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG1,
->    286				   CECB_CLK_CNTL_BYPASS_EN, 0);
->    287	
->    288		/* Enable Input & Output */
->    289		regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0,
->    290				   CECB_CLK_CNTL_INPUT_EN | CECB_CLK_CNTL_OUTPUT_EN,
->    291				   CECB_CLK_CNTL_INPUT_EN | CECB_CLK_CNTL_OUTPUT_EN);
->    292	
->    293		return 0;
->    294	}
->    295	
->    296	static void meson_ao_cec_g12a_dualdiv_clk_disable(struct clk_hw *hw)
->    297	{
->    298		struct meson_ao_cec_g12a_dualdiv_clk *dualdiv_clk =
->    299			hw_to_meson_ao_cec_g12a_dualdiv_clk(hw);
->    300	
->    301		regmap_update_bits(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0,
->    302				   CECB_CLK_CNTL_INPUT_EN | CECB_CLK_CNTL_OUTPUT_EN,
->    303				   0);
->    304	}
->    305	
->    306	static int meson_ao_cec_g12a_dualdiv_clk_is_enabled(struct clk_hw *hw)
->    307	{
->    308		struct meson_ao_cec_g12a_dualdiv_clk *dualdiv_clk =
->    309			hw_to_meson_ao_cec_g12a_dualdiv_clk(hw);
->    310		int val;
->    311	
->    312		regmap_read(dualdiv_clk->regmap, CECB_CLK_CNTL_REG0, &val);
->    313	
->    314		return !!(val & (CECB_CLK_CNTL_INPUT_EN | CECB_CLK_CNTL_OUTPUT_EN));
->    315	}
->    316	
->  > 317	static const struct clk_ops meson_ao_cec_g12a_dualdiv_clk_ops = {
->  > 318		.recalc_rate	= meson_ao_cec_g12a_dualdiv_clk_recalc_rate,
->  > 319		.is_enabled	= meson_ao_cec_g12a_dualdiv_clk_is_enabled,
->  > 320		.enable		= meson_ao_cec_g12a_dualdiv_clk_enable,
->  > 321		.disable	= meson_ao_cec_g12a_dualdiv_clk_disable,
->    322	};
->    323	
->    324	static int meson_ao_cec_g12a_setup_clk(struct meson_ao_cec_g12a_device *ao_cec)
->    325	{
->    326		struct meson_ao_cec_g12a_dualdiv_clk *dualdiv_clk;
->    327		struct device *dev = &ao_cec->pdev->dev;
->  > 328		struct clk_init_data init;
->    329		const char *parent_name;
->    330		struct clk *clk;
->    331		char *name;
->    332	
->    333		dualdiv_clk = devm_kzalloc(dev, sizeof(*dualdiv_clk), GFP_KERNEL);
->    334		if (!dualdiv_clk)
->    335			return -ENOMEM;
->    336	
->    337		name = kasprintf(GFP_KERNEL, "%s#dualdiv_clk", dev_name(dev));
->    338		if (!name)
->    339			return -ENOMEM;
->    340	
->  > 341		parent_name = __clk_get_name(ao_cec->oscin);
->    342	
->    343		init.name = name;
->    344		init.ops = &meson_ao_cec_g12a_dualdiv_clk_ops;
->    345		init.flags = 0;
->    346		init.parent_names = &parent_name;
->    347		init.num_parents = 1;
->    348		dualdiv_clk->regmap = ao_cec->regmap;
->    349		dualdiv_clk->hw.init = &init;
->    350	
->  > 351		clk = devm_clk_register(dev, &dualdiv_clk->hw);
->    352		kfree(name);
->    353		if (IS_ERR(clk)) {
->    354			dev_err(dev, "failed to register clock\n");
->    355			return PTR_ERR(clk);
->    356		}
->    357	
->    358		ao_cec->core = clk;
->    359	
->    360		return 0;
->    361	}
->    362	
-> 
-> ---
-> 0-DAY kernel test infrastructure                Open Source Technology Center
-> https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
-> 
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMDgvMDQvMjAxOSAyMTowNywgUm9iIEhlcnJpbmcgd3JvdGU6Cj4gT24gU3VuLCBBcHIgNywg
+MjAxOSBhdCA1OjE3IEFNIE5laWwgQXJtc3Ryb25nIDxuYXJtc3Ryb25nQGJheWxpYnJlLmNvbT4g
+d3JvdGU6Cj4+Cj4+IEhpIFJvYiwKPj4KPj4gTGUgMDEvMDQvMjAxOSAxMzoyNCwgTmVpbCBBcm1z
+dHJvbmcgYSDDqWNyaXQgOgo+Pj4gT24gMDEvMDQvMjAxOSAxMjowMCwgU3RldmVuIFByaWNlIHdy
+b3RlOgo+Pj4+IE9uIDAxLzA0LzIwMTkgMDk6MDksIE5laWwgQXJtc3Ryb25nIHdyb3RlOgo+Pj4+
+PiBBZGQgdGhlIGJpbmRpbmdzIGZvciB0aGUgQmlmcm9zdCBmYW1pbHkgb2YgQVJNIE1hbGkgR1BV
+cy4KPj4+Pj4KPj4+Pj4gVGhlIEJpZnJvc3QgR1BVIGFyY2hpdGVjdHVyZSBpcyBzaW1pbGFyIHRv
+IHRoZSBNaWRnYXJkIGZhbWlseSwKPj4+Pj4gYnV0IHdpdGggYSBkaWZmZXJlbnQgU2hhZGVyIENv
+cmUgJiBFeGVjdXRpb24gRW5naW5lIHN0cnVjdHVyZXMuCj4+Pj4+Cj4+Pj4+IEJpbmRpbmdzIGFy
+ZSBiYXNlZCBvbiB0aGUgTWlkZ2FyZCBmYW1pbHkgYmluZGluZ3MsIGJ1dCB0aGUgaW5uZXIKPj4+
+Pj4gYXJjaGl0ZWN0dXJhbCBjaGFuZ2VzIG1ha2VzIGl0IGEgc2VwYXJhdGUgZmFtaWx5IG5lZWRp
+bmcgc2VwYXJhdGUKPj4+Pj4gYmluZGluZ3MuCj4+Pj4+Cj4+Pj4+IFRoZSBCaWZyb3N0IEdQVXMg
+YXJlIHByZXNlbnQgaW4gYSBudW1iZXIgb2YgcmVjZW50IFNvQ3MsIGxpa2UgdGhlCj4+Pj4+IEFt
+bG9naWMgRzEyQSBGYW1pbHksIGFuZCBtYW55IG90aGVyIHZlbmRvcnMuCj4+Pj4+IFRoZSBBbWxv
+Z2ljIHZlbmRvciBzcGVjaWZpYyBjb21wYXRpYmxlIGlzIGFkZGVkIHRvIGhhbmRsZSB0aGUKPj4+
+Pj4gc3BlY2lmaWMgSVAgaW50ZWdyYXRpb24gZGlmZmVyZW5jZXMgYW5kIGRlcGVuZGVuY2llcy4K
+Pj4+Pj4KPj4+Pj4gU2lnbmVkLW9mZi1ieTogTmVpbCBBcm1zdHJvbmcgPG5hcm1zdHJvbmdAYmF5
+bGlicmUuY29tPgo+Pj4+PiAtLS0KPj4+Pj4gIC4uLi9iaW5kaW5ncy9ncHUvYXJtLG1hbGktYmlm
+cm9zdC50eHQgICAgICAgICB8IDkyICsrKysrKysrKysrKysrKysrKysKPj4+Pj4gIDEgZmlsZSBj
+aGFuZ2VkLCA5MiBpbnNlcnRpb25zKCspCj4+Pj4+ICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2dwdS9hcm0sbWFsaS1iaWZyb3N0LnR4dAo+Pj4+
+Pgo+Pj4+PiBDaGFuZ2VzIHNpbmNlIHYzOgo+Pj4+PiAtIEFkZGVkIG5vdGUgYWJvdXQgZGlzY292
+ZXJhYmxlIG1vZGVsL3JldmlzaW9uCj4+Pj4+IC0gRW5mb3JjZWQgZml4ZWQgZGVmaW5lZCBpcnEg
+b3JkZXIKPj4+Pj4gLSBGaXhlZCB0eXBvIGluIGFjY29tbW9kYXRlCj4+Pj4+Cj4+Pj4+IENoYW5n
+ZXMgc2luY2UgdjI6Cj4+Pj4+IC0gbW92ZWQgdG8gYSBzaW5nbGUgY29tcGF0aWJsZSBzaW5jZSBI
+VyBpcyBmdWxseSBkaXNjb3ZlcmFibGUKPj4+Pj4KPj4+Pj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50
+YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9ncHUvYXJtLG1hbGktYmlmcm9zdC50eHQgYi9Eb2N1
+bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZ3B1L2FybSxtYWxpLWJpZnJvc3QudHh0Cj4+
+Pj4+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4+Pj4+IGluZGV4IDAwMDAwMDAwMDAwMC4uNzExYzll
+YWQxN2EyCj4+Pj4+IC0tLSAvZGV2L251bGwKPj4+Pj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL2dwdS9hcm0sbWFsaS1iaWZyb3N0LnR4dAo+Pj4+PiBAQCAtMCwwICsx
+LDkyIEBACj4+Pj4+ICtBUk0gTWFsaSBCaWZyb3N0IEdQVQo+Pj4+PiArPT09PT09PT09PT09PT09
+PT09PT0KPj4+Pj4gKwo+Pj4+PiArUmVxdWlyZWQgcHJvcGVydGllczoKPj4+Pj4gKwo+Pj4+PiAr
+LSBjb21wYXRpYmxlIDoKPj4+Pj4gKyAgKiBTaW5jZSBNYWxpIEJpZnJvc3QgR1BVIG1vZGVsL3Jl
+dmlzaW9uIGlmIGZ1bGx5IGRpc2NvdmVyYWJsZSBieSByZWFkaW5nCj4+Pj4gICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXl4KPj4+PiBzL2lmL2lzLwo+Pgo+PiBT
+aG91bGQgSSBzdGlsbCBzZW5kIGEgdjUgdG8gZml4aW5nIHRoaXMgdHlwbyA/IEkgY2FuIGZpeCBp
+dCB3aGlsZSBhcHBseWluZyBpdC4KPiAKPiBObyBuZWVkIHRvIHJlc2VuZC4gSSBwbGFubmVkIHRv
+IGFwcGx5IGl0LCBidXQgaWYgeW91IGFyZSBnb2luZyB0bzoKPiAKPiBSZXZpZXdlZC1ieTogUm9i
+IEhlcnJpbmcgPHJvYmhAa2VybmVsLm9yZz4KPiAKClRoYW5rcywKCkZpeGVkIGFuZCBhcHBsaWVk
+IG9uIGRybS1taXNjLW5leHQKCk5laWwKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNA
+bGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2xpbnV4LWFtbG9naWMK
