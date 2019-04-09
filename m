@@ -2,22 +2,21 @@ Return-Path: <SRS0=8EGG=SL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6C005C282CE
-	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 09:18:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CD3ADC10F0E
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 09:19:02 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3AFEB2133D
-	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 09:18:42 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9B81820645
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 09:19:02 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MeDGDkDh";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="l8bE+rUI"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3AFEB2133D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GRwuK+i2";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="LBbphLwQ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9B81820645
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +25,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/UZlyZigQrCZCj+JT5SVdoXFbnptmDuI7vXH5pPbFfk=; b=MeDGDkDhzEATYc
-	44MjipxF55FXYeq9TmTlkGQ/QrJKDFKLr+4+T+H+uZrZUHu0jL3fmd+U2+vLzg0jrRv+kxpmHBuKY
-	c8bY1wyi4qd5L60jgB08ibPHKiGJD+xrKR8LQfxayCsK+SAF2aX0F6fc/vgnqHTgVF7lYUR8OSPQY
-	orUHwfgidY9l6zpiRXxk93YA4fgKNz3t8tnvAq9Ab+KzYmusM4AR5Vo/aPoHU55Dtxx92lPHlTTRi
-	0zGRW+goap/MrBDwa2x9R1mHg5ODAWLuorcFSBmeuynxUSBxI/AW5VMetnk+bcGua0bmpExGp6PDM
-	A/oUl5W+rmtb2lxbBsVA==;
+	List-Owner; bh=7GB5QZ7phBs2H5DStUNE52iRbhvVYQoE3dh/U/Qq2eU=; b=GRwuK+i2cwp3bU
+	ZPVhRp06ByQQyUq+pbMoO09S+0R3BU7d2odsSRVkdUIdKjw0ogt84lQnx4/8uxqn+moFzAop9lwGy
+	0xVGdRgqzi5FtitPjFCwP2ibtshul2h3vBJXHtrf4Y/9gRDH6JdkfEehJbungQXOMGlV0HFcD4xme
+	jiF1pf7q0nw3FZ6N0RyLgwwi2F1dOD5NvoRr8OkkyBRD+DvxhZZZVXfvFT/3Z4BRh7qx4RRyjMOy2
+	6C9Jl4Uq1BsG7NWBLp/fyq4JCU1J4gpB/9GhcQsbW+13iH1fgx587/Tv8gSlI9pYuO5l9JIZniWsL
+	POPB55Ow8DEwac/J1VoQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hDmtp-0003wI-3f; Tue, 09 Apr 2019 09:18:37 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1hDmuA-00041p-TU; Tue, 09 Apr 2019 09:18:58 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hDmtm-0003vv-Gn
- for linux-amlogic@lists.infradead.org; Tue, 09 Apr 2019 09:18:36 +0000
-Received: by mail-wm1-x344.google.com with SMTP id r186so1905383wmf.1
- for <linux-amlogic@lists.infradead.org>; Tue, 09 Apr 2019 02:18:34 -0700 (PDT)
+ id 1hDmu8-00040w-QU
+ for linux-amlogic@lists.infradead.org; Tue, 09 Apr 2019 09:18:58 +0000
+Received: by mail-wr1-x441.google.com with SMTP id q1so19915009wrp.0
+ for <linux-amlogic@lists.infradead.org>; Tue, 09 Apr 2019 02:18:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=ZnXexWYwI+T1QGQA8EYhFqtYMBOyyZDEmuQ12ZmRDng=;
- b=l8bE+rUIGwVfB1oZ5hssX+linwBOU2hhIIn9GSgX/UuJ6GU1gRkpCcRnX2JJ6H4p0y
- fDA+hxtY3P7sg2/GSTLv9zTh4mhlDKFvWMVUXyz74MZT35PEimLp9t/8xPrZX6bt3Bnt
- s6DGWDF+qO+i61TRhQfDFVmkm9TBCJVu5owc+WiDQ8lxc+ke+t1BK8qL7dDVUd/ODBbT
- MSBLwoNEJp6AFJ31UuZsmP1uqWXyiluZ2gq5HSEcoX4u1BkZONUIc1PFxJA3fsatwtif
- /WpsGmBpUMRjljCgxwuj5xYl19iw4W2rMPExVV7Olhp0YRaOl3bEArbxtP5WSAeCCqKt
- h2gw==
+ bh=W8LJHY97wFCVGaxeQKd3c2pEEk8HFbTO0N8vFRRZNEU=;
+ b=LBbphLwQiBojPRA/h9LWzV72whV0nV5thUYRsPEYlSt/jEoYlwzjBupuB6F/y69pYH
+ KrX/zSiDEGjecz2NKRFGCORgQtrDpxsJBesVoZAwWGUdKvU4RwZFfuWtrArQc2VRyc7k
+ pOy28nKPYQw2YCFufUJEZ3TELrBiHTGxJFYI/3TZH/fTJVALLsrcnRn1rebbZusSH6fg
+ klJcbBpvMVqd8DQgbr6MCxDjChZEhdALOzwz0NYweVArzae1vFILIHusQ2ETxtQPGTzJ
+ 3sumjNV8XPjNMH5x/yHNDB+E/m4yWxBLL66MCkrMUWzAEN1PSKG4GmS9PPm2ItwZd101
+ LSJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=ZnXexWYwI+T1QGQA8EYhFqtYMBOyyZDEmuQ12ZmRDng=;
- b=TCTj9BKY8fB2K2LXFV5gIaTV/TXgdosDl+NMjHaQdKpi/dIXd/LfddY58kNKAwUUgI
- Lx9qKXVSs8JK2yFLV95bKQrbZGSj4c7ck5DgXogbz3e0wPUXWVeUKVD/JNABn3zjNWn5
- XnJaslPjyxvXW2hzy3i5Bq/JvaogYddPV8pYp/e+n3YSFlxLCnR/ebc3zNKn8BVAg/x7
- 6EiyrKRTykjNNPXm2STAkswKDj+qnmS33AoEEPutM+CJXkmM7e2Rq8vYlbeOHbvcBMnt
- HiSRwpD2OZtPpYhsJDPzKZdecCrie9h5EGXf+V8AXbIYrhUh8ShmpibOMmKHDPoNazmw
- b6yA==
-X-Gm-Message-State: APjAAAU+ZA1hj532a2VGWDZs7uyoW1PiIXm/a52m6ww0OA5+TmrDMcjQ
- xhpJezqFIof/6juY5iMn0lhFDgUgYEZpJw==
-X-Google-Smtp-Source: APXvYqyohQEHRDqWso0kiuJ9XeF1yOY39vuAmdKHqc9f/lGBq9dUGJWlDErk5yc2JUHg7zFZFOEexQ==
-X-Received: by 2002:a1c:7512:: with SMTP id o18mr21658579wmc.68.1554801512762; 
- Tue, 09 Apr 2019 02:18:32 -0700 (PDT)
+ bh=W8LJHY97wFCVGaxeQKd3c2pEEk8HFbTO0N8vFRRZNEU=;
+ b=aE0pprDcEG8vvAGD1VSOuvETeCfGRYpRVbqqn9zW4Z3/G+ThO6DxtbLyu7oCtj1slg
+ VrTJQJ07oRFNYF1SAU0qvoPKns1rnzSxOwm539eKjSfPaRpPWi3NJGR2mUFD3afZb+4w
+ Oz3IZQwygfZutTC81FhsJVgBjA2jNUkg0OyoolZODUxsUso/r54+luCEUHrVR7HqWSyA
+ eTFjA/foWOBVqsHyuQ4WUKcWRzpJX5vppuZ41n//vO1zIOD5TzHN/3W1s5Dsxlj5b8vm
+ kb3oR2a0aNBwPONobPHogQABVyv37lXILbnSgbF0fvOa4x5a5zIXrKfkfRwSF4ti7P+T
+ kqFw==
+X-Gm-Message-State: APjAAAX95HAOqCSGadfauL7IgNbJYKrFQ4qseR6kK0VVUx4fp83lI5Ed
+ lOUoj7CIieiR9vWiuMaGZP6rxg==
+X-Google-Smtp-Source: APXvYqwUy215P511+Pqdp44h3eY+II0EegdRNWeKlmEn1Fe7pqhcez9WA4QOtJ8hZ+wCvGq9y80WcQ==
+X-Received: by 2002:adf:ff91:: with SMTP id j17mr23353344wrr.114.1554801535032; 
+ Tue, 09 Apr 2019 02:18:55 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id b204sm22623214wmh.29.2019.04.09.02.18.31
+ by smtp.gmail.com with ESMTPSA id u17sm28937807wmu.36.2019.04.09.02.18.54
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 09 Apr 2019 02:18:31 -0700 (PDT)
+ Tue, 09 Apr 2019 02:18:54 -0700 (PDT)
 Subject: Re: [PATCH 08/11] drm/meson: Add G12A support for CVBS Encoer
 To: Jerome Brunet <jbrunet@baylibre.com>, dri-devel@lists.freedesktop.org
 References: <20190325141824.21259-1-narmstrong@baylibre.com>
  <20190325141824.21259-9-narmstrong@baylibre.com>
  <e5199bf4ff4a125414a8843ab4be0eb641ac5d91.camel@baylibre.com>
+ <7dd2bfa45b97aedd64218f9489d1b1f3e477e134.camel@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -132,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <9e59949d-c6c5-d5f6-c63c-f83c6032b272@baylibre.com>
-Date: Tue, 9 Apr 2019 11:18:31 +0200
+Message-ID: <7f422865-0ed5-88e0-c7db-2b7726f4d9a8@baylibre.com>
+Date: Tue, 9 Apr 2019 11:18:54 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <e5199bf4ff4a125414a8843ab4be0eb641ac5d91.camel@baylibre.com>
+In-Reply-To: <7dd2bfa45b97aedd64218f9489d1b1f3e477e134.camel@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190409_021834_572155_3777A840 
-X-CRM114-Status: GOOD (  18.87  )
+X-CRM114-CacheID: sfid-20190409_021856_856914_F6587376 
+X-CRM114-Status: GOOD (  12.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -159,118 +159,22 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 09/04/2019 10:43, Jerome Brunet wrote:
-> On Mon, 2019-03-25 at 15:18 +0100, Neil Armstrong wrote:
->> The Meson G12A SoCs uses the exact same CVBS encoder except a simple
->> CVBS DAC register offset and settings delta.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  drivers/gpu/drm/meson/meson_venc.c      | 11 +++++++++--
->>  drivers/gpu/drm/meson/meson_venc_cvbs.c | 25 ++++++++++++++++++-------
->>  2 files changed, 27 insertions(+), 9 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
->> index 66d73a932d19..6faca7313339 100644
->> --- a/drivers/gpu/drm/meson/meson_venc.c
->> +++ b/drivers/gpu/drm/meson/meson_venc.c
->> @@ -73,7 +73,9 @@
->>  /* HHI Registers */
->>  #define HHI_GCLK_MPEG2		0x148 /* 0x52 offset in data sheet */
->>  #define HHI_VDAC_CNTL0		0x2F4 /* 0xbd offset in data sheet */
->> +#define HHI_VDAC_CNTL0_G12A	0x2EC /* 0xbd offset in data sheet */
->>  #define HHI_VDAC_CNTL1		0x2F8 /* 0xbe offset in data sheet */
->> +#define HHI_VDAC_CNTL1_G12A	0x2F0 /* 0xbe offset in data sheet */
->>  #define HHI_HDMI_PHY_CNTL0	0x3a0 /* 0xe8 offset in data sheet */
->>  
->>  struct meson_cvbs_enci_mode meson_cvbs_enci_pal = {
->> @@ -1675,8 +1677,13 @@ void meson_venc_disable_vsync(struct meson_drm *priv)
->>  void meson_venc_init(struct meson_drm *priv)
->>  {
->>  	/* Disable CVBS VDAC */
->> -	regmap_write(priv->hhi, HHI_VDAC_CNTL0, 0);
->> -	regmap_write(priv->hhi, HHI_VDAC_CNTL1, 8);
->> +	if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
->> +		regmap_write(priv->hhi, HHI_VDAC_CNTL0_G12A, 0);
->> +		regmap_write(priv->hhi, HHI_VDAC_CNTL1_G12A, 8);
->> +	} else {
->> +		regmap_write(priv->hhi, HHI_VDAC_CNTL0, 0);
->> +		regmap_write(priv->hhi, HHI_VDAC_CNTL1, 8);
->> +	}
->>  
->>  	/* Power Down Dacs */
->>  	writel_relaxed(0xff, priv->io_base + _REG(VENC_VDAC_SETTING));
->> diff --git a/drivers/gpu/drm/meson/meson_venc_cvbs.c b/drivers/gpu/drm/meson/meson_venc_cvbs.c
->> index d622d817b6df..2c5341c881c4 100644
->> --- a/drivers/gpu/drm/meson/meson_venc_cvbs.c
->> +++ b/drivers/gpu/drm/meson/meson_venc_cvbs.c
->> @@ -37,7 +37,9 @@
->>  
->>  /* HHI VDAC Registers */
->>  #define HHI_VDAC_CNTL0		0x2F4 /* 0xbd offset in data sheet */
->> +#define HHI_VDAC_CNTL0_G12A	0x2EC /* 0xbd offset in data sheet */
->>  #define HHI_VDAC_CNTL1		0x2F8 /* 0xbe offset in data sheet */
->> +#define HHI_VDAC_CNTL1_G12A	0x2F0 /* 0xbe offset in data sheet */
->>  
->>  struct meson_venc_cvbs {
->>  	struct drm_encoder	encoder;
->> @@ -166,8 +168,13 @@ static void meson_venc_cvbs_encoder_disable(struct drm_encoder *encoder)
->>  	struct meson_drm *priv = meson_venc_cvbs->priv;
->>  
->>  	/* Disable CVBS VDAC */
->> -	regmap_write(priv->hhi, HHI_VDAC_CNTL0, 0);
->> -	regmap_write(priv->hhi, HHI_VDAC_CNTL1, 8);
->> +	if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
->> +		regmap_write(priv->hhi, HHI_VDAC_CNTL0_G12A, 0);
->> +		regmap_write(priv->hhi, HHI_VDAC_CNTL1_G12A, 0);
->> +	} else {
->> +		regmap_write(priv->hhi, HHI_VDAC_CNTL0, 0);
->> +		regmap_write(priv->hhi, HHI_VDAC_CNTL1, 8);
+On 09/04/2019 10:44, Jerome Brunet wrote:
+> On Tue, 2019-04-09 at 10:43 +0200, Jerome Brunet wrote:
+>> On Mon, 2019-03-25 at 15:18 +0100, Neil Armstrong wrote:
+>>> The Meson G12A SoCs uses the exact same CVBS encoder except a simple
+>>> CVBS DAC register offset and settings delta.
+>>>
+>>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>>> ---
+>>>   drivers/gpu/drm/meson/meson_venc.c      | 11 +++++++++--
+>>>   drivers/gpu/drm/meson/meson_venc_cvbs.c | 25 ++++++++++++++++++-------
+>>>   2 files changed, 27 insertions(+), 9 deletions(-)
 > 
-> I imagine 8 stands for BIT(3) ? Could you add a define to explain (quickly)
-> what it is ?
+> ... and there is a typo in the patch title. s/Encoer/Encoder
+> 
 
-Ack
-
-> 
->> +	}
->>  }
->>  
->>  static void meson_venc_cvbs_encoder_enable(struct drm_encoder *encoder)
->> @@ -179,13 +186,17 @@ static void meson_venc_cvbs_encoder_enable(struct drm_encoder *encoder)
->>  	/* VDAC0 source is not from ATV */
->>  	writel_bits_relaxed(BIT(5), 0, priv->io_base + _REG(VENC_VDAC_DACSEL0));
->>  
->> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu"))
->> +	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu")) {
->>  		regmap_write(priv->hhi, HHI_VDAC_CNTL0, 1);
->> -	else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
->> -		 meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
->> +		regmap_write(priv->hhi, HHI_VDAC_CNTL1, 0);
->> +	} else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
->> +		 meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu")) {
->>  		regmap_write(priv->hhi, HHI_VDAC_CNTL0, 0xf0001);
->> -
->> -	regmap_write(priv->hhi, HHI_VDAC_CNTL1, 0);
->> +		regmap_write(priv->hhi, HHI_VDAC_CNTL1, 0);
->> +	} else if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
->> +		regmap_write(priv->hhi, HHI_VDAC_CNTL0_G12A, 0x906001);
->> +		regmap_write(priv->hhi, HHI_VDAC_CNTL1_G12A, 0);
->> +	}
-> 
-> Maybe the values above are just magics taken from the vendor kernel, but if
-> you can, it would be nice to break them down to help us understand what is
-> controlled in these CTNL registers.
-
-It's pretty magic values, but I'll do my best.
-
-> 
->>  }
->>  
->>  static void meson_venc_cvbs_encoder_mode_set(struct drm_encoder *encoder,
-> 
-> 
-Will fix in a follow-up patch,
+Thanks for pointing this, I'll fix while applying.
 
 Neil
 
