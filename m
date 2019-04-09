@@ -2,22 +2,22 @@ Return-Path: <SRS0=8EGG=SL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URG_BIZ,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 08E58C282DA
-	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 09:19:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 51DAEC282CE
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 09:19:54 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CD02820818
-	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 09:19:51 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1C7A320818
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 09:19:54 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bu/XuHH6";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="YbagA9DT"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CD02820818
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="L/mogPFm";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="d497IHIb"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1C7A320818
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,61 +26,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GX2SoPxrehuyks7cjKeMKintjf2u/mG2XoAQFUyBlBo=; b=bu/XuHH6M2TcdL
-	hjW55/7cKWJXqvkQOazrogWW97pRzDL59d46ovM8QP4Bg+hUvotCTt+TrhaD40U5WOobFhMNQdPPr
-	0sfFX2CNJCa8v11HjRCCB7lOveL4u4rYagi2oJklmYOUDsdlsfx5JZIdxFro6E0xhO4V1Pr5pJqjp
-	5fO/IAQ9hekugukelgov1BK/e/3JWzAQBzbs1MoMoSLiyqDVI3BWDDtPBMoVa8JmDoK5dzlqg5xwU
-	7R+XrWDEbExaYmwnwDzClvI7g5vNOhdz5lQEUsisc2Z3Tgn8Inn/g1KPmy4jpn2uDpnZC5MGbbQEW
-	RVgw0TABrKKHsG9I7EQQ==;
+	List-Owner; bh=CSM28Fbvomli/Jv2T/CxJjLfFw8twsGYPOnlewRaciE=; b=L/mogPFmCgbVNQ
+	kDCltRKsNsw9UzXWQRD3nkSgOHvHLjNPCOWRURXlfYoHklGPH92ETwF4fKo++/6eCDgfyMfBLQ9ku
+	rbTl+y/zmD2hy4bhvx80Wk3De7uKX+ZENDvAB7W/7hfKQ7e629BOcACINO6sQtLzsWhjqDMyrkjCu
+	MG0tPe3yCxuC+0lIlu/UC1T2EUPFquUR3et0VIJbvjJ5N4jS3J/jHf+/EDgPF74vT+hrqt4errObI
+	rVLpR0lxP8/NHNH6vU5pY/cque3q6H5h/5CLH//oku+G1dSWlv3F8WE7wgdWOOdvJ6/emZrLqL+qn
+	hSf7UsE7LWO4X7hf73bg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hDmuv-0004O9-Ey; Tue, 09 Apr 2019 09:19:45 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1hDmuy-0004Qc-Kn; Tue, 09 Apr 2019 09:19:48 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hDmur-0004LD-Su
- for linux-amlogic@lists.infradead.org; Tue, 09 Apr 2019 09:19:43 +0000
-Received: by mail-wm1-x342.google.com with SMTP id n25so2424271wmk.4
- for <linux-amlogic@lists.infradead.org>; Tue, 09 Apr 2019 02:19:41 -0700 (PDT)
+ id 1hDmuv-0004N7-7E
+ for linux-amlogic@lists.infradead.org; Tue, 09 Apr 2019 09:19:46 +0000
+Received: by mail-wm1-x341.google.com with SMTP id 4so2583655wmf.1
+ for <linux-amlogic@lists.infradead.org>; Tue, 09 Apr 2019 02:19:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=3ag5sJqvcIjMNSZ8QaIbLgH94ITgQ+bgMzYDI9QKCQk=;
- b=YbagA9DTeerKxA3qUaAH2RdiuC9/vAXuMTvk2n+80R98GSfRAiaPmN5gmK+CsOBHc9
- +tAzHQkeEGRpXjY0zvPf81uYfI3uYpGk4Msc3SUsTMLiLcZgBNaVH+Xso+/F63TlU+uX
- Njm4sayFYFwhJLS/eagCkC7yM7wvOST//SO03P0FI8KtxOUPGM4o7LgTa5xzXJiUWCOo
- LK0qW+YgFZeCDnjXXkJUytTxow4ObiXph5WTd+0lLvx7VvA2ltYY9wrnakdySsr96C6/
- O+5RfQKWZtDybhrvFXvyFsA0bxnVfTBsrEv3PNLwMjXbJBwq0Zz0Orj4/0pH5gBYFOpg
- 4Qpg==
+ bh=m659JZs0mGH9+Bv5yM+zwfuDGU65BlJr/l01xn366LY=;
+ b=d497IHIbitUbNi6Q3vjgOcO8S8SVhjrRT+T2DGqa3EOACmZYUU3As886+fG9RpxThW
+ jblzfp67eR4QefYs8htKQW1pVdYB0mQfDaWXHcl8sHQj/Kg7FuIvrKLdFJZN7Swt4Hbk
+ fIeXMAZj1OLRd8xju7SMw1AAUqMCMC+6V2hrcwNM6GPYbhxXTQl5YNUN/nCn+RwSHZij
+ UdkNUBxe8DEsHnxgM3snfCHpdWDGutd902lFhZOhgXrLw7RsM4mZ13s5vA/PA0xkehIv
+ TVhaZD/r6kumpzJScJltisHOwEUOjnt8j5j7LZfVEhyLWSLItSNwiRbSrMIsQAEvj+Ld
+ e9Qg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=3ag5sJqvcIjMNSZ8QaIbLgH94ITgQ+bgMzYDI9QKCQk=;
- b=pbXiOoBSzUIPHEdCzWVpR0VguFWVgJ9pKmSYFFW5zFwB01t797xQpNlxtIZtAjasbF
- HI75SORGEjgfJwRniEev18rCfC+OPXEJXG8P9uvEKVpqk8FpVdMlFdlF5QlSTaGXK2cp
- yz5yh2WkE9mFK3D0SQ6yl9s4d5vson1wZlTgL29tHfw3punxOWmkiOVddzquW8LgJ3t8
- X4FF1HYLE3hvXBs+WVZxgHBiMxFJjoj7pFBfLWmv5anZr+qz/5MCTIMyzilqEJw0KjsE
- sKxlPo2LynJbI/DnGH/C+7ehUETQxkSzFhSCt4lTTx4AKRsB/hJh64HruSMZNqMcQAWG
- zZ4A==
-X-Gm-Message-State: APjAAAW4cQWf7bDWzNWOD3YR9Ajo+5wF7vBjwQ51ky82OeocvI8T/iGo
- 0FO7yg/02MxnaUuLwZgRVUaLzw==
-X-Google-Smtp-Source: APXvYqyt3e/B4gxJKgkgUYv9AbgS8HgC8CoYwB4sqCQw+PvdbKaj/ML72pB7TDDqj5sPix2HZ6ldJg==
-X-Received: by 2002:a05:600c:211a:: with SMTP id
- u26mr21931829wml.74.1554801580329; 
- Tue, 09 Apr 2019 02:19:40 -0700 (PDT)
+ bh=m659JZs0mGH9+Bv5yM+zwfuDGU65BlJr/l01xn366LY=;
+ b=nGk4VidfVnqHkH8ZzVZ2wlwrHFbGDyy3WzEzm8aQZeTfbesq4lbjeE7vPbRq9++DvX
+ OkII51GgvEzLVWdDMkuyij/4tuR+SWC1olRZGRKLWL2EL5jzaRI4VPSqIXbieIxpyUMG
+ MvtQ7aA3x1CLzNdZk3+d5IhiToqixwSxkpuTxb3DTYMpnZuQWjmLXRHqCLCOSnmClrya
+ CnvirbJxImNNDtvi1Gvpg4pI+KY+AAK2iow4U8kZ6C8xolqgmmh48uaTcPvmKDV0lJPz
+ TX2gw2t+zvrG3LUJ8iVZbqgcQIA9IMjyGZuLDRhghAHe+lteSMtesTXn1maxvVnzCplg
+ papw==
+X-Gm-Message-State: APjAAAXMkytbrI86iAK7QNjTsw4y9bhJAcJ4D11WJt2Uk35ovf5m+Iqx
+ eAbLdvi1QodAF4unyrTF6NJNlA==
+X-Google-Smtp-Source: APXvYqxszyy0DDlmtR4xzDiT2PcG0WMMVy05y29r2y3zRIKnKxckSlqDrH9kgGAV/EkXAjMUxPAJKA==
+X-Received: by 2002:a1c:808c:: with SMTP id b134mr20542877wmd.16.1554801583386; 
+ Tue, 09 Apr 2019 02:19:43 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id b134sm28601720wmd.26.2019.04.09.02.19.39
+ by smtp.gmail.com with ESMTPSA id o1sm15872371wmh.47.2019.04.09.02.19.41
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 09 Apr 2019 02:19:39 -0700 (PDT)
-Subject: Re: [PATCH 04/11] drm/meson: Add G12A Support for VIU setup
+ Tue, 09 Apr 2019 02:19:42 -0700 (PDT)
+Subject: Re: [PATCH 06/11] drm/meson: Add G12A Support for the Overlay video
+ plane
 To: Jerome Brunet <jbrunet@baylibre.com>, dri-devel@lists.freedesktop.org
 References: <20190325141824.21259-1-narmstrong@baylibre.com>
- <20190325141824.21259-5-narmstrong@baylibre.com>
- <8d1c3c13e2ad05aac1f28327ddaa0169ab204b50.camel@baylibre.com>
+ <20190325141824.21259-7-narmstrong@baylibre.com>
+ <824430c056a151003d82755a00a06263be1d877e.camel@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -133,16 +133,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <22905ebe-0edb-6cb4-98a2-99cfd6df2b1c@baylibre.com>
-Date: Tue, 9 Apr 2019 11:19:39 +0200
+Message-ID: <0bc3c766-8a62-3a81-45d6-573f29410026@baylibre.com>
+Date: Tue, 9 Apr 2019 11:19:41 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <8d1c3c13e2ad05aac1f28327ddaa0169ab204b50.camel@baylibre.com>
+In-Reply-To: <824430c056a151003d82755a00a06263be1d877e.camel@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190409_021942_027759_F35215B1 
-X-CRM114-Status: GOOD (  18.50  )
+X-CRM114-CacheID: sfid-20190409_021945_259121_EC067081 
+X-CRM114-Status: GOOD (  16.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -162,137 +162,49 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 On 09/04/2019 10:42, Jerome Brunet wrote:
 > On Mon, 2019-03-25 at 15:18 +0100, Neil Armstrong wrote:
->> Amlogic G12A SoC needs a different VIU setup code,
->> handle it.
+>> Amlogic G12A SoC supports the same set of Video Planes, but now
+>> are handled by the new OSD plane blender module.
+>>
+>> This patch uses the same VD1 plane for G12A, using the exact same scaler
+>> and VD11 setup registers, except using the new blender register to
+>> disable the plane.
 >>
 >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 >> ---
->>  drivers/gpu/drm/meson/meson_viu.c | 72 ++++++++++++++++++++++++++++---
->>  1 file changed, 67 insertions(+), 5 deletions(-)
+>>  drivers/gpu/drm/meson/meson_overlay.c | 10 ++++++++--
+>>  1 file changed, 8 insertions(+), 2 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/meson/meson_viu.c b/drivers/gpu/drm/meson/meson_viu.c
->> index ac0f3687e09a..0169c98b01c9 100644
->> --- a/drivers/gpu/drm/meson/meson_viu.c
->> +++ b/drivers/gpu/drm/meson/meson_viu.c
->> @@ -90,6 +90,34 @@ static int eotf_bypass_coeff[EOTF_COEFF_SIZE] = {
->>  	EOTF_COEFF_RIGHTSHIFT /* right shift */
->>  };
+>> diff --git a/drivers/gpu/drm/meson/meson_overlay.c b/drivers/gpu/drm/meson/meson_overlay.c
+>> index b54a22e483b9..bdbf925ff3e8 100644
+>> --- a/drivers/gpu/drm/meson/meson_overlay.c
+>> +++ b/drivers/gpu/drm/meson/meson_overlay.c
+>> @@ -516,8 +516,14 @@ static void meson_overlay_atomic_disable(struct drm_plane *plane,
+>>  	priv->viu.vd1_enabled = false;
 >>  
->> +void meson_viu_set_g12a_osd1_matrix(struct meson_drm *priv, int *m,
->> +				   bool csc_on)
->> +{
->> +	/* VPP WRAP OSD1 matrix */
->> +	writel(((m[0] & 0xfff) << 16) | (m[1] & 0xfff),
->> +		priv->io_base + _REG(VPP_WRAP_OSD1_MATRIX_PRE_OFFSET0_1));
->> +	writel(m[2] & 0xfff,
->> +		priv->io_base + _REG(VPP_WRAP_OSD1_MATRIX_PRE_OFFSET2));
->> +	writel(((m[3] & 0x1fff) << 16) | (m[4] & 0x1fff),
->> +		priv->io_base + _REG(VPP_WRAP_OSD1_MATRIX_COEF00_01));
->> +	writel(((m[5] & 0x1fff) << 16) | (m[6] & 0x1fff),
->> +		priv->io_base + _REG(VPP_WRAP_OSD1_MATRIX_COEF02_10));
->> +	writel(((m[7] & 0x1fff) << 16) | (m[8] & 0x1fff),
->> +		priv->io_base + _REG(VPP_WRAP_OSD1_MATRIX_COEF11_12));
->> +	writel(((m[9] & 0x1fff) << 16) | (m[10] & 0x1fff),
->> +		priv->io_base + _REG(VPP_WRAP_OSD1_MATRIX_COEF20_21));
->> +	writel((m[11] & 0x1fff) << 16,
->> +		priv->io_base +	_REG(VPP_WRAP_OSD1_MATRIX_COEF22));
->> +
->> +	writel(((m[18] & 0xfff) << 16) | (m[19] & 0xfff),
->> +		priv->io_base + _REG(VPP_WRAP_OSD1_MATRIX_OFFSET0_1));
-> 
-> Can you define some of the masks and shifts above ? possibly the same define
-> for all the registers I suppose ... maybe using FIELD_PREP ?
-
-Ack
-
-> 
->> +	writel(m[20] & 0xfff,
->> +		priv->io_base + _REG(VPP_WRAP_OSD1_MATRIX_OFFSET2));
->> +
->> +	writel_bits_relaxed(BIT(0), csc_on ? BIT(0) : 0,
->> +		priv->io_base + _REG(VPP_WRAP_OSD1_MATRIX_EN_CTRL));
->> +}
->> +
->>  void meson_viu_set_osd_matrix(struct meson_drm *priv,
->>  			      enum viu_matrix_sel_e m_select,
->>  			      int *m, bool csc_on)
->> @@ -336,14 +364,24 @@ void meson_viu_init(struct meson_drm *priv)
->>  	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
->>  	    meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
->>  		meson_viu_load_matrix(priv);
->> +	else if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu"))
->> +		meson_viu_set_g12a_osd1_matrix(priv, RGB709_to_YUV709l_coeff,
->> +					       true);
->>  
->>  	/* Initialize OSD1 fifo control register */
->>  	reg = BIT(0) |	/* Urgent DDR request priority */
->> -	      (4 << 5) | /* hold_fifo_lines */
->> -	      (3 << 10) | /* burst length 64 */
->> -	      (32 << 12) | /* fifo_depth_val: 32*8=256 */
->> -	      (2 << 22) | /* 4 words in 1 burst */
->> -	      (2 << 24);
->> +	      (4 << 5); /* hold_fifo_lines */
->> +	if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu"))
->> +		reg |= (1 << 10) | /* burst length 32 */
->> +		       (32 << 12) | /* fifo_depth_val: 32*8=256 */
->> +		       (2 << 22) | /* 4 words in 1 burst */
->> +		       (2 << 24) |
->> +		       (1 << 31);
->> +	else
->> +		reg |= (3 << 10) | /* burst length 64 */
->> +		       (32 << 12) | /* fifo_depth_val: 32*8=256 */
->> +		       (2 << 22) | /* 4 words in 1 burst */
->> +		       (2 << 24);
-> 
-> Could you use the BIT() macro and add some defines ?
-
-Ack
-
-> 
->>  	writel_relaxed(reg, priv->io_base + _REG(VIU_OSD1_FIFO_CTRL_STAT));
->>  	writel_relaxed(reg, priv->io_base + _REG(VIU_OSD2_FIFO_CTRL_STAT));
->>  
->> @@ -369,6 +407,30 @@ void meson_viu_init(struct meson_drm *priv)
->>  	writel_relaxed(0x00FF00C0,
->>  			priv->io_base + _REG(VD2_IF0_LUMA_FIFO_SIZE));
->>  
+>>  	/* Disable VD1 */
+>> -	writel_bits_relaxed(VPP_VD1_POSTBLEND | VPP_VD1_PREBLEND, 0,
+>> -			    priv->io_base + _REG(VPP_MISC));
 >> +	if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
->> +		writel_relaxed(4 << 29 |
->> +				1 << 27 |
->> +				1 << 26 | /* blend_din0 input to blend0 */
->> +				1 << 25 | /* blend1_dout to blend2 */
->> +				1 << 24 | /* blend1_din3 input to blend1 */
->> +				1 << 20 |
->> +				0 << 16 |
->> +				1,
->> +				priv->io_base + _REG(VIU_OSD_BLEND_CTRL));
->> +		writel_relaxed(3 << 8 |
->> +				1 << 20,
->> +				priv->io_base + _REG(OSD1_BLEND_SRC_CTRL));
->> +		writel_relaxed(1 << 20,
->> +				priv->io_base + _REG(OSD2_BLEND_SRC_CTRL));
 >> +		writel_relaxed(0, priv->io_base + _REG(VD1_BLEND_SRC_CTRL));
 >> +		writel_relaxed(0, priv->io_base + _REG(VD2_BLEND_SRC_CTRL));
->> +		writel_relaxed(0,
->> +				priv->io_base + _REG(VIU_OSD_BLEND_DUMMY_DATA0));
->> +		writel_relaxed(0,
->> +				priv->io_base + _REG(VIU_OSD_BLEND_DUMMY_ALPHA));
->> +		writel_bits_relaxed(0x3 << 2, 0x3 << 2,
->> +				priv->io_base + _REG(DOLBY_PATH_CTRL));
+>> +		writel_relaxed(0, priv->io_base + _REG(VD1_IF0_GEN_REG + 0x17b0));
+>> +		writel_relaxed(0, priv->io_base + _REG(VD2_IF0_GEN_REG + 0x17b0));
 > 
-> Same for this hunk
+> Is it possible to add a comment explaining this 0x17b0 value ?
 
-Ack
+It's the same register shift as in crtc, will add a define.
 
 > 
->> +	}
+>> +	} else
+>> +		writel_bits_relaxed(VPP_VD1_POSTBLEND | VPP_VD1_PREBLEND, 0,
+>> +				    priv->io_base + _REG(VPP_MISC));
 >>  
->>  	priv->viu.osd1_enabled = false;
->>  	priv->viu.osd1_commit = false;
+>>  }
+>>  
 > 
 > 
 
-Will fix in a follow-up patch, including GXBB/GXL/GXM.
+Will fix in a follow-up patch,
 
 Neil
 
