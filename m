@@ -4,20 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 51DAEC282CE
-	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 09:19:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3159EC282CE
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 09:29:56 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1C7A320818
-	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 09:19:54 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id F300120833
+	for <linux-amlogic@archiver.kernel.org>; Tue,  9 Apr 2019 09:29:55 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="L/mogPFm";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="d497IHIb"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1C7A320818
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="O5eDm00Y";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ZCY6TRVV"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F300120833
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,61 +25,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CSM28Fbvomli/Jv2T/CxJjLfFw8twsGYPOnlewRaciE=; b=L/mogPFmCgbVNQ
-	kDCltRKsNsw9UzXWQRD3nkSgOHvHLjNPCOWRURXlfYoHklGPH92ETwF4fKo++/6eCDgfyMfBLQ9ku
-	rbTl+y/zmD2hy4bhvx80Wk3De7uKX+ZENDvAB7W/7hfKQ7e629BOcACINO6sQtLzsWhjqDMyrkjCu
-	MG0tPe3yCxuC+0lIlu/UC1T2EUPFquUR3et0VIJbvjJ5N4jS3J/jHf+/EDgPF74vT+hrqt4errObI
-	rVLpR0lxP8/NHNH6vU5pY/cque3q6H5h/5CLH//oku+G1dSWlv3F8WE7wgdWOOdvJ6/emZrLqL+qn
-	hSf7UsE7LWO4X7hf73bg==;
+	List-Owner; bh=0Txn8hEnml2vUmxesaekDu37WTzS1rlA2B2JUl8lw0I=; b=O5eDm00YApaCqT
+	g9vkt8LGv8owLFIqOFA5i1M29BPl6lD6WwYzOMZMhzz8uvSd48saTCDz3Vwq1xpSoraJDhyDCIsqC
+	Vv3OZCs8p80/vSt8iOHlkIEk4FVTUMRDeHn2JZw6Fl6resxMwP+nqwfZXgVCCzWqnRwCQbgkVWh+9
+	1ms2CX9ClM1BeZCEufTpRaTMQIuHyy3IoHzIY5fLFNLnC9lD3xsprKUyZMo7XmltJ2AiU57seHgPU
+	wMmg4tIR0H9nyvfwyJuiEd1ZLS0cITW2ierm+klyVaYIVo/oT4/ih/80SjaGWAU8OiN315zbTVjA5
+	P8mYuG7a4hYG+fVdQcxQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hDmuy-0004Qc-Kn; Tue, 09 Apr 2019 09:19:48 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1hDn4g-00081K-9F; Tue, 09 Apr 2019 09:29:50 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hDmuv-0004N7-7E
- for linux-amlogic@lists.infradead.org; Tue, 09 Apr 2019 09:19:46 +0000
-Received: by mail-wm1-x341.google.com with SMTP id 4so2583655wmf.1
- for <linux-amlogic@lists.infradead.org>; Tue, 09 Apr 2019 02:19:44 -0700 (PDT)
+ id 1hDn4c-00080X-NF
+ for linux-amlogic@lists.infradead.org; Tue, 09 Apr 2019 09:29:48 +0000
+Received: by mail-wr1-x443.google.com with SMTP id w1so19965914wrp.2
+ for <linux-amlogic@lists.infradead.org>; Tue, 09 Apr 2019 02:29:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=m659JZs0mGH9+Bv5yM+zwfuDGU65BlJr/l01xn366LY=;
- b=d497IHIbitUbNi6Q3vjgOcO8S8SVhjrRT+T2DGqa3EOACmZYUU3As886+fG9RpxThW
- jblzfp67eR4QefYs8htKQW1pVdYB0mQfDaWXHcl8sHQj/Kg7FuIvrKLdFJZN7Swt4Hbk
- fIeXMAZj1OLRd8xju7SMw1AAUqMCMC+6V2hrcwNM6GPYbhxXTQl5YNUN/nCn+RwSHZij
- UdkNUBxe8DEsHnxgM3snfCHpdWDGutd902lFhZOhgXrLw7RsM4mZ13s5vA/PA0xkehIv
- TVhaZD/r6kumpzJScJltisHOwEUOjnt8j5j7LZfVEhyLWSLItSNwiRbSrMIsQAEvj+Ld
- e9Qg==
+ bh=dRJoK6WxAQ4AN7sy10Kd6x1SNaxMqIj/DPs3V2fUy1w=;
+ b=ZCY6TRVVz78xBDAKmRYQFtVezjh7fCQw2HLgRsG5WNaN7FN9gcD05a6ESD6AzEstf7
+ +pZtwM3aFov8T5eP/36ZhpylLJoo79kOu6soWfoOGw9dyPsY8pTBrKvO/FF6hBSqiihI
+ gY/zKIbs5Mz3Gbk2KecJz9LuvdRJXu8YRNBt7f++fWDLQmDqdu+Jwf9zvAGnAmidPDa+
+ XpkVp8Ny2BYoBMynltWLwzR/Gz+wJBaqwkvFXd2oqnWYpiPO0lWbVSwIwlsbKsFG8jPt
+ t8EjLqQgCIxbPkDUC33DQzSBSkMMXkY70XyC/GixsLw5PLxxFijkVdEce6wiXcOEnOj4
+ d58w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=m659JZs0mGH9+Bv5yM+zwfuDGU65BlJr/l01xn366LY=;
- b=nGk4VidfVnqHkH8ZzVZ2wlwrHFbGDyy3WzEzm8aQZeTfbesq4lbjeE7vPbRq9++DvX
- OkII51GgvEzLVWdDMkuyij/4tuR+SWC1olRZGRKLWL2EL5jzaRI4VPSqIXbieIxpyUMG
- MvtQ7aA3x1CLzNdZk3+d5IhiToqixwSxkpuTxb3DTYMpnZuQWjmLXRHqCLCOSnmClrya
- CnvirbJxImNNDtvi1Gvpg4pI+KY+AAK2iow4U8kZ6C8xolqgmmh48uaTcPvmKDV0lJPz
- TX2gw2t+zvrG3LUJ8iVZbqgcQIA9IMjyGZuLDRhghAHe+lteSMtesTXn1maxvVnzCplg
- papw==
-X-Gm-Message-State: APjAAAXMkytbrI86iAK7QNjTsw4y9bhJAcJ4D11WJt2Uk35ovf5m+Iqx
- eAbLdvi1QodAF4unyrTF6NJNlA==
-X-Google-Smtp-Source: APXvYqxszyy0DDlmtR4xzDiT2PcG0WMMVy05y29r2y3zRIKnKxckSlqDrH9kgGAV/EkXAjMUxPAJKA==
-X-Received: by 2002:a1c:808c:: with SMTP id b134mr20542877wmd.16.1554801583386; 
- Tue, 09 Apr 2019 02:19:43 -0700 (PDT)
+ bh=dRJoK6WxAQ4AN7sy10Kd6x1SNaxMqIj/DPs3V2fUy1w=;
+ b=H/E5S8JVvkxuer2RuZYuBYJBE35MgEC7Y5ZO6wXSBiPInJjMBWM5t4HGio2P4JEZ6P
+ Zz9WDfqIwbstsy8lzB4vsgyMN9OOH+PCq+65YXD7WRHWAL7KJlfXTBWJQBoH85p7s7DV
+ bosjgJrJWYlXPVQtMdy32eY+/9xA9R8nBNSR57GZ0VeIeMt0/JwQwB8nG1JLRiItUjhJ
+ E2WmmhfJJCM/Ss5X6QoJBrWe1NH2oVW99plstXEGql/WweVELSv9U7q3IOiFgcAaadpD
+ tbuSW5WFas0drIYvzs6DlgDlgMSizrHgl80B0IZdPvVSrUaaG0WOW0bO47oqHf6ZY+4m
+ 9ZFg==
+X-Gm-Message-State: APjAAAXp6QXHoEfDPoqPbI48rKU12j/LrHh2zi6ksazKWjV2U8VB7/iu
+ A6AMFWmdllN/Q2MLSxLaQrd6Ow==
+X-Google-Smtp-Source: APXvYqzPR+d/etMZ2smSIsiuiS0qYqEHbxZTn9zdQQp9Fwanv+IwrCMkxKxT9Ymbjv7BhcJfvBwk0Q==
+X-Received: by 2002:adf:8bc5:: with SMTP id w5mr20832873wra.226.1554802185102; 
+ Tue, 09 Apr 2019 02:29:45 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id o1sm15872371wmh.47.2019.04.09.02.19.41
+ by smtp.gmail.com with ESMTPSA id z11sm12090987wmf.12.2019.04.09.02.29.44
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 09 Apr 2019 02:19:42 -0700 (PDT)
-Subject: Re: [PATCH 06/11] drm/meson: Add G12A Support for the Overlay video
- plane
-To: Jerome Brunet <jbrunet@baylibre.com>, dri-devel@lists.freedesktop.org
-References: <20190325141824.21259-1-narmstrong@baylibre.com>
- <20190325141824.21259-7-narmstrong@baylibre.com>
- <824430c056a151003d82755a00a06263be1d877e.camel@baylibre.com>
+ Tue, 09 Apr 2019 02:29:44 -0700 (PDT)
+Subject: Re: [PATCH RFC 2/5] drm/bridge: add encoder support to specify bridge
+ input format
+To: a.hajda@samsung.com, Laurent.pinchart@ideasonboard.com
+References: <20190329104240.29585-1-narmstrong@baylibre.com>
+ <20190329104240.29585-3-narmstrong@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -133,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <0bc3c766-8a62-3a81-45d6-573f29410026@baylibre.com>
-Date: Tue, 9 Apr 2019 11:19:41 +0200
+Message-ID: <0d04a59d-0254-10a0-f832-3dfbf3b2cfcb@baylibre.com>
+Date: Tue, 9 Apr 2019 11:29:43 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <824430c056a151003d82755a00a06263be1d877e.camel@baylibre.com>
+In-Reply-To: <20190329104240.29585-3-narmstrong@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190409_021945_259121_EC067081 
-X-CRM114-Status: GOOD (  16.47  )
+X-CRM114-CacheID: sfid-20190409_022946_792399_FC777D7C 
+X-CRM114-Status: GOOD (  25.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -154,59 +152,127 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc: jernej.skrabec@siol.net, heiko@sntech.de, maxime.ripard@bootlin.com,
+ hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 09/04/2019 10:42, Jerome Brunet wrote:
-> On Mon, 2019-03-25 at 15:18 +0100, Neil Armstrong wrote:
->> Amlogic G12A SoC supports the same set of Video Planes, but now
->> are handled by the new OSD plane blender module.
->>
->> This patch uses the same VD1 plane for G12A, using the exact same scaler
->> and VD11 setup registers, except using the new blender register to
->> disable the plane.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  drivers/gpu/drm/meson/meson_overlay.c | 10 ++++++++--
->>  1 file changed, 8 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/meson/meson_overlay.c b/drivers/gpu/drm/meson/meson_overlay.c
->> index b54a22e483b9..bdbf925ff3e8 100644
->> --- a/drivers/gpu/drm/meson/meson_overlay.c
->> +++ b/drivers/gpu/drm/meson/meson_overlay.c
->> @@ -516,8 +516,14 @@ static void meson_overlay_atomic_disable(struct drm_plane *plane,
->>  	priv->viu.vd1_enabled = false;
->>  
->>  	/* Disable VD1 */
->> -	writel_bits_relaxed(VPP_VD1_POSTBLEND | VPP_VD1_PREBLEND, 0,
->> -			    priv->io_base + _REG(VPP_MISC));
->> +	if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
->> +		writel_relaxed(0, priv->io_base + _REG(VD1_BLEND_SRC_CTRL));
->> +		writel_relaxed(0, priv->io_base + _REG(VD2_BLEND_SRC_CTRL));
->> +		writel_relaxed(0, priv->io_base + _REG(VD1_IF0_GEN_REG + 0x17b0));
->> +		writel_relaxed(0, priv->io_base + _REG(VD2_IF0_GEN_REG + 0x17b0));
-> 
-> Is it possible to add a comment explaining this 0x17b0 value ?
+Hi Laurent,
 
-It's the same register shift as in crtc, will add a define.
+On 29/03/2019 11:42, Neil Armstrong wrote:
+> This patch adds a new format_set() callback to the bridge ops permitting
+> the encoder to specify the new input format and encoding.
 
-> 
->> +	} else
->> +		writel_bits_relaxed(VPP_VD1_POSTBLEND | VPP_VD1_PREBLEND, 0,
->> +				    priv->io_base + _REG(VPP_MISC));
->>  
->>  }
->>  
-> 
-> 
-
-Will fix in a follow-up patch,
+Is this something better ? This doesn't violate the layering anymore,
+do you have any thoughts about this new API ?
 
 Neil
+
+> 
+> This allows supporting the very specific HDMI2.0 YUV420 output mode
+> when the bridge cannot convert from RGB or YUV444 to YUV420.
+> 
+> In this case, the encode must downsample before the bridge and must
+> specify the bridge the new input bus format differs.
+> 
+> This will also help supporting the YUV420 mode where the bridge cannot
+> downsample, and also support 10bit, 12bit and 16bit output modes
+> when the bridge cannot convert between different bit depths.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  drivers/gpu/drm/drm_bridge.c | 35 +++++++++++++++++++++++++++++++++++
+>  include/drm/drm_bridge.h     | 19 +++++++++++++++++++
+>  2 files changed, 54 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
+> index 138b2711d389..b2ce2d3d070e 100644
+> --- a/drivers/gpu/drm/drm_bridge.c
+> +++ b/drivers/gpu/drm/drm_bridge.c
+> @@ -307,6 +307,41 @@ void drm_bridge_mode_set(struct drm_bridge *bridge,
+>  }
+>  EXPORT_SYMBOL(drm_bridge_mode_set);
+>  
+> +/**
+> + * drm_bridge_format_set - setup with proposed input format and encoding for
+> + *			   all bridges in the encoder chain
+> + * @bridge: bridge control structure
+> + * @input_bus_format: proposed input bus format for the bridge
+> + * @input_encoding: proposed input encoding for this bridge
+> + *
+> + * Calls &drm_bridge_funcs.format_set op for all the bridges in the
+> + * encoder chain, starting from the first bridge to the last.
+> + *
+> + * Note: the bridge passed should be the one closest to the encoder
+> + *
+> + * RETURNS:
+> + * true on success, false if one of the bridge cannot handle the format
+> + */
+> +bool drm_bridge_format_set(struct drm_bridge *bridge,
+> +			   const u32 input_bus_format,
+> +			   const u32 input_encoding)
+> +{
+> +	bool ret = true;
+> +
+> +	if (!bridge)
+> +		return true;
+> +
+> +	if (bridge->funcs->format_set)
+> +		ret = bridge->funcs->format_set(bridge, input_bus_format,
+> +						input_encoding);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return drm_bridge_format_set(bridge->next, input_bus_format,
+> +				     input_encoding);
+> +}
+> +EXPORT_SYMBOL(drm_bridge_format_set);
+> +
+>  /**
+>   * drm_bridge_pre_enable - prepares for enabling all
+>   *			   bridges in the encoder chain
+> diff --git a/include/drm/drm_bridge.h b/include/drm/drm_bridge.h
+> index 9da8c93f7976..223253b15763 100644
+> --- a/include/drm/drm_bridge.h
+> +++ b/include/drm/drm_bridge.h
+> @@ -198,6 +198,22 @@ struct drm_bridge_funcs {
+>  	void (*mode_set)(struct drm_bridge *bridge,
+>  			 const struct drm_display_mode *mode,
+>  			 const struct drm_display_mode *adjusted_mode);
+> +
+> +	/**
+> +	 * @format_set:
+> +	 *
+> +	 * This callback should configure the bridge for the given input bus
+> +	 * format and encoding. It is called after the @format_set callback
+> +	 * for the preceding element in the display pipeline has been called
+> +	 * already. If the bridge is the first element then this would be
+> +	 * &drm_encoder_helper_funcs.format_set. The display pipe (i.e.
+> +	 * clocks and timing signals) is off when this function is called.
+> +	 *
+> +	 * @returns: true in success, false is a bridge refuses the format
+> +	 */
+> +	bool (*format_set)(struct drm_bridge *bridge,
+> +			   const u32 input_bus_format,
+> +			   const u32 input_encoding);
+>  	/**
+>  	 * @pre_enable:
+>  	 *
+> @@ -312,6 +328,9 @@ void drm_bridge_post_disable(struct drm_bridge *bridge);
+>  void drm_bridge_mode_set(struct drm_bridge *bridge,
+>  			 const struct drm_display_mode *mode,
+>  			 const struct drm_display_mode *adjusted_mode);
+> +bool drm_bridge_format_set(struct drm_bridge *bridge,
+> +			   const u32 input_bus_format,
+> +			   const u32 input_encoding);
+>  void drm_bridge_pre_enable(struct drm_bridge *bridge);
+>  void drm_bridge_enable(struct drm_bridge *bridge);
+>  
+> 
+
 
 _______________________________________________
 linux-amlogic mailing list
