@@ -4,66 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS,UNPARSEABLE_RELAY,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3E6C1C282CE
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Apr 2019 06:13:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 08570C10F11
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Apr 2019 06:13:55 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0ECC220850
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Apr 2019 06:13:43 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CB41820850
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Apr 2019 06:13:54 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tK+2h372"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0ECC220850
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pHswljNa"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CB41820850
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=mediatek.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=s0vnysejY7VD20zOPbI0GyuYmRS2ylPDnBNCZ/0CnQk=; b=tK+2h372t9jfXc
-	cAV0VjuETaV2NaAFr89rb44C5kOcZKTiiBqMkQsoKdYJTsly/6/SRJS1v5DG89Zoug8jTQSvrCj0w
-	ba28hQN1Osu5eUOMizwboCSprfHiI1fnjAgqv2ChUri5GPOO0N36RqhN+o1g1T4sch2G4eRnyp8Xt
-	wEXTCsGwNQDzWsvt2R0ggGVm+51CnfugHNcRiZXGJaHw5Ax9H0Bk+G6eZ4gElpDwAx6dvhFmWcad5
-	P6S22uOLS21CrOw7FBOd7OdulGM6MclYxgKTPqmKhfLv2vl6gBFbHdWQix/QAGoDdr85DI40m6BlN
-	PqCS9onu624vGFVTHCTw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=J9+5GBBYj5Xb/GJfcvNrbTFOkPjyH8jZs4BQG/OB4NU=; b=pHswljNamZOfP0
+	X8jG7A5qPmE3mExXkkP8Uhnbs3fFthZjrwMY2VcnHkgmpvYNd66Xu0/cqMjak91ZdSBDcpMCQ0m7C
+	rfU03TKZGRnClTTCtNGN5qI35wFYo65gWG7W9Qmt8fNlISnnBbfz2AOUmLwnpUWMj1NmFyG+/m2hQ
+	jLVSNX0QUlydcoJmtJdzGwKSls2eumgzN7u6JwuJMEhYr+iMEk8CqJtLsf+B3pIw2iV98wH+0XJRZ
+	P8DLvmst85+ZB2+19cCYAQL0BdZO/H5icmgbry0TGDDXRR5QCJQXDv1YyzbSOoPhqALLO/YvUME2F
+	4g8wsVo1MpvHqHM3fF2w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hE6UJ-00009X-Ca; Wed, 10 Apr 2019 06:13:35 +0000
+	id 1hE6UX-0000XU-CV; Wed, 10 Apr 2019 06:13:49 +0000
 Received: from mailgw01.mediatek.com ([216.200.240.184])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hE6U7-0008N4-F5; Wed, 10 Apr 2019 06:13:25 +0000
-X-UUID: d37b50e646024a4bba68dc39ec2399c2-20190409
-X-UUID: d37b50e646024a4bba68dc39ec2399c2-20190409
-Received: from mtkcas66.mediatek.inc [(172.29.193.44)] by mailgw01.mediatek.com
+ id 1hE6U8-0008N5-Ah; Wed, 10 Apr 2019 06:13:25 +0000
+X-UUID: b196645706044e0bb0293fe018474dc3-20190409
+X-UUID: b196645706044e0bb0293fe018474dc3-20190409
+Received: from mtkcas67.mediatek.inc [(172.29.193.45)] by mailgw01.mediatek.com
  (envelope-from <chunfeng.yun@mediatek.com>)
  (musrelay.mediatek.com ESMTP with TLS)
- with ESMTP id 1273169556; Tue, 09 Apr 2019 22:13:13 -0800
+ with ESMTP id 1426235234; Tue, 09 Apr 2019 22:13:17 -0800
 Received: from MTKMBS31N1.mediatek.inc (172.27.4.69) by
- MTKMBS62N1.mediatek.inc (172.29.193.41) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 9 Apr 2019 23:13:12 -0700
+ MTKMBS62DR.mediatek.inc (172.29.94.18) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 9 Apr 2019 23:13:15 -0700
 Received: from mtkcas08.mediatek.inc (172.21.101.126) by
  MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 10 Apr 2019 14:13:09 +0800
+ 15.0.1395.4; Wed, 10 Apr 2019 14:13:12 +0800
 Received: from localhost.localdomain (10.17.3.153) by mtkcas08.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 10 Apr 2019 14:13:08 +0800
+ Transport; Wed, 10 Apr 2019 14:13:10 +0800
 From: Chunfeng Yun <chunfeng.yun@mediatek.com>
 To: Kishon Vijay Abraham I <kishon@ti.com>
-Subject: [v2 PATCH 1/4] phy: phy-mtk-tphy: get optional clock by
+Subject: [v2 PATCH 3/4] phy: socionext: get optional clock by
  devm_clk_get_optional()
-Date: Wed, 10 Apr 2019 14:13:03 +0800
-Message-ID: <a8539bcf66065380069676fbea99a51254309803.1554874961.git.chunfeng.yun@mediatek.com>
+Date: Wed, 10 Apr 2019 14:13:05 +0800
+Message-ID: <f3d8f2f8d2c7bbcb88e813a647c798aa5d42543a.1554874961.git.chunfeng.yun@mediatek.com>
 X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <a8539bcf66065380069676fbea99a51254309803.1554874961.git.chunfeng.yun@mediatek.com>
+References: <a8539bcf66065380069676fbea99a51254309803.1554874961.git.chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
 X-MTK: N
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190409_231323_507356_97DFD774 
-X-CRM114-Status: GOOD (  10.13  )
+X-CRM114-CacheID: sfid-20190409_231324_370585_645DFECE 
+X-CRM114-Status: UNSURE (   9.47  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -94,34 +97,58 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Use devm_clk_get_optional() to get optional clock
 
+Cc: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Reviewed-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 ---
-v2: no changes
+v2: add Reviewed-by Kunihiko Hayashi
 ---
- drivers/phy/mediatek/phy-mtk-tphy.c | 10 +++-------
- 1 file changed, 3 insertions(+), 7 deletions(-)
+ drivers/phy/socionext/phy-uniphier-usb3hs.c | 10 +++-------
+ drivers/phy/socionext/phy-uniphier-usb3ss.c | 10 +++-------
+ 2 files changed, 6 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/phy/mediatek/phy-mtk-tphy.c b/drivers/phy/mediatek/phy-mtk-tphy.c
-index 5b6a470ca145..cb2ed3b25068 100644
---- a/drivers/phy/mediatek/phy-mtk-tphy.c
-+++ b/drivers/phy/mediatek/phy-mtk-tphy.c
-@@ -1103,13 +1103,9 @@ static int mtk_tphy_probe(struct platform_device *pdev)
- 	}
+diff --git a/drivers/phy/socionext/phy-uniphier-usb3hs.c b/drivers/phy/socionext/phy-uniphier-usb3hs.c
+index b1b048be6166..50f379fc4e06 100644
+--- a/drivers/phy/socionext/phy-uniphier-usb3hs.c
++++ b/drivers/phy/socionext/phy-uniphier-usb3hs.c
+@@ -335,13 +335,9 @@ static int uniphier_u3hsphy_probe(struct platform_device *pdev)
+ 	if (IS_ERR(priv->clk_parent))
+ 		return PTR_ERR(priv->clk_parent);
  
- 	/* it's deprecated, make it optional for backward compatibility */
--	tphy->u3phya_ref = devm_clk_get(dev, "u3phya_ref");
--	if (IS_ERR(tphy->u3phya_ref)) {
--		if (PTR_ERR(tphy->u3phya_ref) == -EPROBE_DEFER)
--			return -EPROBE_DEFER;
--
--		tphy->u3phya_ref = NULL;
+-	priv->clk_ext = devm_clk_get(dev, "phy-ext");
+-	if (IS_ERR(priv->clk_ext)) {
+-		if (PTR_ERR(priv->clk_ext) == -ENOENT)
+-			priv->clk_ext = NULL;
+-		else
+-			return PTR_ERR(priv->clk_ext);
 -	}
-+	tphy->u3phya_ref = devm_clk_get_optional(dev, "u3phya_ref");
-+	if (IS_ERR(tphy->u3phya_ref))
-+		return PTR_ERR(tphy->u3phya_ref);
++	priv->clk_ext = devm_clk_get_optional(dev, "phy-ext");
++	if (IS_ERR(priv->clk_ext))
++		return PTR_ERR(priv->clk_ext);
  
- 	tphy->src_ref_clk = U3P_REF_CLK;
- 	tphy->src_coef = U3P_SLEW_RATE_COEF;
+ 	priv->rst = devm_reset_control_get_shared(dev, "phy");
+ 	if (IS_ERR(priv->rst))
+diff --git a/drivers/phy/socionext/phy-uniphier-usb3ss.c b/drivers/phy/socionext/phy-uniphier-usb3ss.c
+index 4be95679c7d8..ec231e40ef2a 100644
+--- a/drivers/phy/socionext/phy-uniphier-usb3ss.c
++++ b/drivers/phy/socionext/phy-uniphier-usb3ss.c
+@@ -238,13 +238,9 @@ static int uniphier_u3ssphy_probe(struct platform_device *pdev)
+ 		if (IS_ERR(priv->clk))
+ 			return PTR_ERR(priv->clk);
+ 
+-		priv->clk_ext = devm_clk_get(dev, "phy-ext");
+-		if (IS_ERR(priv->clk_ext)) {
+-			if (PTR_ERR(priv->clk_ext) == -ENOENT)
+-				priv->clk_ext = NULL;
+-			else
+-				return PTR_ERR(priv->clk_ext);
+-		}
++		priv->clk_ext = devm_clk_get_optional(dev, "phy-ext");
++		if (IS_ERR(priv->clk_ext))
++			return PTR_ERR(priv->clk_ext);
+ 
+ 		priv->rst = devm_reset_control_get_shared(dev, "phy");
+ 		if (IS_ERR(priv->rst))
 -- 
 2.21.0
 
