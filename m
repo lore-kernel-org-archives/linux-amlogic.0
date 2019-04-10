@@ -2,46 +2,71 @@ Return-Path: <SRS0=xGFd=SM=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A1E70C10F14
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Apr 2019 11:08:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EAA3CC10F11
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Apr 2019 17:55:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 73A9C2196F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Apr 2019 11:08:41 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C2BC12063F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Apr 2019 17:55:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="aNJ9tgal"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 73A9C2196F
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cgQs7tMu";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="g46iFH89"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C2BC12063F
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=rzri1SGkheWRD1pXyFsLSkuSKAnbctWaywNii+QxFig=; b=aNJ9tgalpmrRfE4F16sLufrQc
-	Dl5SpXF6LsltBcWybwwxNM3XyxTBaJ8x0Vj1VVxTeDxL8oxEt2qxNAoTOeZ6cppHgwNlTChNj+9gW
-	cIXcnZoZcBl+up2Qbk+L7U9FKy6OT9pRs5fWCDPr2P8yE2aBTe0iwJEN1S3HenFeSvV6iTLKi24Fa
-	sbSnaeLYock6z+ursFGddYVgHou+J8hYeNunAs2sm1ZAW568GqSFXOjwqwB6R54BHke+i1MJ07SYp
-	meuUTRtc+/0A6ga8H/Sda2dqe1E5lf2YTAKWq6YeKKnLCsNFfyefL7LauVorOdNxbK3t/RNZKnVE7
-	GuI6Fbb2Q==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=7B+ZsL5wQ3m4mQdcZC+C0Uabm84sDAB3kIaRjzm4mfE=; b=cgQs7tMukC/0LA
+	6V4CZjAUJxv7CoQcVJlBnv3J7cdyqipwG5xe5OlSxhMtTh9lXHK23rV+zNjmbldIZxYuvjfwGJIvJ
+	7B5dilTrOZ6bHu1OIyO/oTYJOYZR96bsOiz+asrdgnddKb7pjkT3ftl2Uqg6bCqPA/eGa7CuucSgn
+	pzRBU7FVA19AENx+6H7hFMr9TuNzw2wN8McQZzI4EdZTHCXQlgR//anyQ/j6Hc3+8S95OUXCHbvtO
+	IWxy4esbsaxK4CLgYC1QBPDqgGIRFiZE+CRZETl4v7+2mW05NTc/ZqR11PFsD2t+I1BWXQGwMKwVu
+	1cezi1geWkBUwvWN2J+w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hEB5l-0004tB-NK; Wed, 10 Apr 2019 11:08:33 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1hEHRS-0004Bg-JG; Wed, 10 Apr 2019 17:55:22 +0000
+Received: from mail-ot1-x341.google.com ([2607:f8b0:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hEB5e-0004mX-6G; Wed, 10 Apr 2019 11:08:27 +0000
-Received: from [10.28.18.125] (10.28.18.125) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Wed, 10 Apr
- 2019 19:08:17 +0800
-Subject: Re: 32-bit Amlogic (ARM) SoC: kernel BUG in kfree()
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+ id 1hEHRI-000425-B7; Wed, 10 Apr 2019 17:55:14 +0000
+Received: by mail-ot1-x341.google.com with SMTP id m10so2767992otp.2;
+ Wed, 10 Apr 2019 10:55:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=za2E/pLJgKbwiV1dsXtjcDsjWlrh7jaWMTWufoDKu5o=;
+ b=g46iFH89Et3jdAxwN3daHsdlaI1+zHIcOv5/gHFIApHJYqE8yvgRmyHw0Xm9H9cHCg
+ IbwNLoYGu7QZ4nov9UfQpYh0y3WNWrStUed2N8aEI+IfeQqjVQKRMuMPbD6nUYfKDe3l
+ hHVmaeD7BTnuqlv5g4BM7uFKJGPu9DQxFhsqVExKE2tN2OqMZv/GmMpPer7lq7oV7lLM
+ nwAa07MYGs45q9tdLFFzNTJQtSy9jlmVb5G3smCrW7uPw+YMSiqI87FIc9B9Lus+KptW
+ N0al/hgirxv4udjxdPowSfRRu0zMzs0t3MGfWPPnRdKgE9/PNVfW3MNBiBi3OQS1bH6Y
+ 7CmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=za2E/pLJgKbwiV1dsXtjcDsjWlrh7jaWMTWufoDKu5o=;
+ b=JKtLHhJEAOSRrl/gpHa92mYUjm/ZTwZmjsdhH+NLCux7fsbkiVlRy3XmzJT86bGkax
+ 6XMBvQ8MXIFm6dr7DohiCOkqu67XVvsCH41IbWfO5z0xADHuOtpwlRtka9eGBaVcwnRV
+ TGVfRpyXM4aJ4iuaTAWujc5mO7k+tNben5dIB2U5fPwGnemUmIQgCLP5Lraj319gFn+R
+ mFFc+stzpfwhFUwgkZT/PMtwCXXAKqBE7PxoEVOdXLYRNvBm7V56p+bkQl8cXEzx0w1e
+ 2ZSyFXs21q6vnI1hyII46ONhGDi5Clq7QOt07/JHw7w8joWlf7+tu3VsOe+2YdynbLRV
+ aJrw==
+X-Gm-Message-State: APjAAAXwoRJ0+6mrXoCQBjeSdO0mCy/Pq+sHOYxWHua3c0t2u2/ADwxz
+ 5ibl7Vb7SX4TsCx8Iz23lNf5hufp8tzN1kCMMgo=
+X-Google-Smtp-Source: APXvYqxJCvj+hExhPZ1nr7IT/D4Y0kcPlZk34EZsNBEpynW+ggppXtmmAwRzG91Zbd7EtMxeZ2qI4kfNxCokVL3UhpI=
+X-Received: by 2002:a9d:6e88:: with SMTP id a8mr2804549otr.117.1554918910311; 
+ Wed, 10 Apr 2019 10:55:10 -0700 (PDT)
+MIME-Version: 1.0
 References: <CAFBinCBOX8HyY-UocsVQvsnTr4XWXyE9oU+f2xhO1=JU0i_9ow@mail.gmail.com>
  <20190321214401.GC19508@bombadil.infradead.org>
  <CAFBinCA6oK5UhDAt9kva5qRisxr2gxMF26AMK8vC4b1DN5RXrw@mail.gmail.com>
@@ -51,20 +76,16 @@ References: <CAFBinCBOX8HyY-UocsVQvsnTr4XWXyE9oU+f2xhO1=JU0i_9ow@mail.gmail.com>
  <CAFBinCDHmuNZxuDf3pe2ij6m8aX2fho7L+B9ZMaMOo28tPZ62Q@mail.gmail.com>
  <79b81748-8508-414f-c08a-c99cb4ae4b2a@amlogic.com>
  <CAFBinCCSkVGp_iWKf=o=7UGuDUWxyLPGdrqGy_P-HPuEJiU1zQ@mail.gmail.com>
-From: Liang Yang <liang.yang@amlogic.com>
-Message-ID: <8cb108ff-7a72-6db4-660d-33880fcee08a@amlogic.com>
-Date: Wed, 10 Apr 2019 19:08:17 +0800
-User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <CAFBinCCSkVGp_iWKf=o=7UGuDUWxyLPGdrqGy_P-HPuEJiU1zQ@mail.gmail.com>
-Content-Language: en-US
-X-Originating-IP: [10.28.18.125]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
+ <8cb108ff-7a72-6db4-660d-33880fcee08a@amlogic.com>
+In-Reply-To: <8cb108ff-7a72-6db4-660d-33880fcee08a@amlogic.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Wed, 10 Apr 2019 19:54:59 +0200
+Message-ID: <CAFBinCD4cRGbC=cFYEGVAHOtBSvrgNbCSfDWe3To0KCE5+ceVw@mail.gmail.com>
+Subject: Re: 32-bit Amlogic (ARM) SoC: kernel BUG in kfree()
+To: Liang Yang <liang.yang@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190410_040826_227895_04E2B698 
-X-CRM114-Status: GOOD (  10.69  )
+X-CRM114-CacheID: sfid-20190410_105512_647344_A5E32A1A 
+X-CRM114-Status: GOOD (  19.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -80,49 +101,72 @@ Cc: mhocko@suse.com, linux-kernel@vger.kernel.org, linux@armlinux.org.uk,
  Matthew Wilcox <willy@infradead.org>, rppt@linux.ibm.com, linux-mm@kvack.org,
  linux-mtd@lists.infradead.org, linux-amlogic@lists.infradead.org,
  akpm@linux-foundation.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
+Hi Liang,
 
-On 2019/4/5 12:30, Martin Blumenstingl wrote:
-> Hi Liang,
-> 
-> On Fri, Mar 29, 2019 at 8:44 AM Liang Yang <liang.yang@amlogic.com> wrote:
->>
->> Hi Martin,
->>
->> On 2019/3/29 2:03, Martin Blumenstingl wrote:
->>> Hi Liang,
->> [......]
->>>> I don't think it is caused by a different NAND type, but i have followed
->>>> the some test on my GXL platform. we can see the result from the
->>>> attachment. By the way, i don't find any information about this on meson
->>>> NFC datasheet, so i will ask our VLSI.
->>>> Martin, May you reproduce it with the new patch on meson8b platform ? I
->>>> need a more clear and easier compared log like gxl.txt. Thanks.
->>> your gxl.txt is great, finally I can also compare my own results with
->>> something that works for you!
->>> in my results (see attachment) the "DATA_IN  [256 B, force 8-bit]"
->>> instructions result in a different info buffer output.
->>> does this make any sense to you?
->>>
->> I have asked our VLSI designer for explanation or simulation result by
->> an e-mail. Thanks.
-> do you have any update on this?
-> Sorry. I haven't got reply from VLSI designer yet. We tried to improve 
-priority yesterday, but i still can't estimate the time. There is no 
-document or change list showing the difference between m8/b and gxl/axg 
-serial chips. Now it seems that we can't use command NFC_CMD_N2M on nand 
-initialization for m8/b chips and use *read byte from NFC fifo register* 
-instead.
-> 
-> Martin
-> 
-> .
-> 
+On Wed, Apr 10, 2019 at 1:08 PM Liang Yang <liang.yang@amlogic.com> wrote:
+>
+> Hi Martin,
+>
+> On 2019/4/5 12:30, Martin Blumenstingl wrote:
+> > Hi Liang,
+> >
+> > On Fri, Mar 29, 2019 at 8:44 AM Liang Yang <liang.yang@amlogic.com> wrote:
+> >>
+> >> Hi Martin,
+> >>
+> >> On 2019/3/29 2:03, Martin Blumenstingl wrote:
+> >>> Hi Liang,
+> >> [......]
+> >>>> I don't think it is caused by a different NAND type, but i have followed
+> >>>> the some test on my GXL platform. we can see the result from the
+> >>>> attachment. By the way, i don't find any information about this on meson
+> >>>> NFC datasheet, so i will ask our VLSI.
+> >>>> Martin, May you reproduce it with the new patch on meson8b platform ? I
+> >>>> need a more clear and easier compared log like gxl.txt. Thanks.
+> >>> your gxl.txt is great, finally I can also compare my own results with
+> >>> something that works for you!
+> >>> in my results (see attachment) the "DATA_IN  [256 B, force 8-bit]"
+> >>> instructions result in a different info buffer output.
+> >>> does this make any sense to you?
+> >>>
+> >> I have asked our VLSI designer for explanation or simulation result by
+> >> an e-mail. Thanks.
+> > do you have any update on this?
+> Sorry. I haven't got reply from VLSI designer yet. We tried to improve
+> priority yesterday, but i still can't estimate the time. There is no
+> document or change list showing the difference between m8/b and gxl/axg
+> serial chips. Now it seems that we can't use command NFC_CMD_N2M on nand
+> initialization for m8/b chips and use *read byte from NFC fifo register*
+> instead.
+thank you for the status update!
+
+I am trying to understand your suggestion not to use NFC_CMD_N2M:
+the documentation (public S922X datasheet from Hardkernel: [0]) states
+that P_NAND_BUF (NFC_REG_BUF in the meson_nand driver) can hold up to
+four bytes of data. is this the "read byte from NFC FIFO register" you
+mentioned?
+
+Before I spend time changing the code to use the FIFO register I would
+like to wait for an answer from your VLSI designer.
+Setting the "correct" info buffer length for NFC_CMD_N2M on the 32-bit
+SoCs seems like an easier solution compared to switching to the FIFO
+register. Keeping NFC_CMD_N2M on the 32-bit SoCs also allows us to
+have only one code-path for 32 and 64 bit SoCs, meaning we don't have
+to maintain two separate code-paths for basically the same
+functionality (assuming that NFC_CMD_N2M is not completely broken on
+the 32-bit SoCs, we just don't know how to use it yet).
+
+
+Regards
+Martin
+
+
+[0] https://dn.odroid.com/S922X/ODROID-N2/Datasheet/S922X_Public_Datasheet_V0.2.pdf
 
 _______________________________________________
 linux-amlogic mailing list
