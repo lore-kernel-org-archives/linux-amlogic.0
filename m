@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AFBCCC10F13
-	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Apr 2019 08:46:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7981FC10F13
+	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Apr 2019 08:46:13 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7DC712083E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Apr 2019 08:46:09 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4ADB62083E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Apr 2019 08:46:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CdRwjJpc";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="brU6yRC2"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7DC712083E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ai1mlB8e";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="hcXgs/Us"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4ADB62083E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,68 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Post:List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OMT3lL3sSBl6zLmC5OgjMmIUCoDdvIL+1B5szdNnT1I=; b=CdRwjJpco7uJ6A
-	gGTq6wugjAcVpbpC/bTiL/mLiBE3PPZVVmtngSBHI6vLAcE88+MPjejyVDOJChvcdWPvBZ5m7IkLY
-	+gcdts1Eb20RhcxfibT4ikcErwn0jMy+ViAcFLlzR2GsWK5l4EqSyJ0FsdEt4JAZeRAVhqSHxsKvi
-	UnC30pePBjaSiecJaBj8PdC6MsQ45mcjClSFZ7eM1IvKzYhw2TKWDvxu5mJyWab65WpMpDfwF669L
-	MUyWs7qjKBtNmkMOGZmw374uMVcjji/xr85+P/0SeM9eXh9iTbCd49ZTewadz844KxXecjP/z6USr
-	EIWcw1LfLrGindF6SsVQ==;
+	List-Owner; bh=R25vMPqucVdxApar760/8t2IFEoTi30Zq1S916TIn+U=; b=ai1mlB8ep66vOB
+	FRQNjfllHWWFxpO2O7mLCDOgiO3qMsgMoIXkC7wjbyr1ZJpnms8QsqpklfW1RqSj6zK4sg+l9aAA1
+	dcH6ZDooATCHqr/KrUkNssmV6xB7ORMdRAhCBkl9i4mEKuAtOxFIkNJ7koSgSuKhiFcDn3TshBv0h
+	85enUNtfrFweK2GUxQacVzl4fhJr3HKOA5nwags6I1pzXXdJGMWT1q0I/wuH79B1Ehd0uh3dxv/4P
+	Uf6c7ksVT41kie9Jmg+ByEqd0YeV2iHkxUxZRNVHVOKz1NInPlFhblm/sB3vidLoBkxywuPJgBeX5
+	Z0asdTqOSA8nuvisMflQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hEVLQ-00033K-RR; Thu, 11 Apr 2019 08:46:04 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1hEVLS-00035w-E9; Thu, 11 Apr 2019 08:46:06 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hEVL4-0002al-Ou
+ id 1hEVL5-0002bB-3J
  for linux-amlogic@lists.infradead.org; Thu, 11 Apr 2019 08:45:44 +0000
-Received: by mail-wm1-x341.google.com with SMTP id y197so5594694wmd.0
- for <linux-amlogic@lists.infradead.org>; Thu, 11 Apr 2019 01:45:42 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id j9so6192384wrn.6
+ for <linux-amlogic@lists.infradead.org>; Thu, 11 Apr 2019 01:45:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:subject:date:message-id:in-reply-to:references;
- bh=72YojJ2ZI4Hnj5UZWtMVH1bJJscttQzZHVGA77jha6k=;
- b=brU6yRC2/R67qR7FwEPXgWq7TMtY3G392GEJp4iDaBRyvhCusWFHyAaS6pYicJMf60
- FJV8zzS64jtbceJfeADF5+UAO8jacrkTYcZ7pp6+JGcHd5z/neIKvlLN+wRfC7qUHsIh
- YOEUxQTUj6SDJ+t9OGUxNCOID2PE43j+B4dvYouzart1YuyCaOp/MMPwSJLE6bpX8aZD
- NDbVvy3g5fHNVl1xV+TuRZOS7beZEef5kJmo5F1wFntu8AfiJt3eVeDYMr48o3LoqYXn
- +VdlfQayRS8iyKStauO6bGg45cnZefIdE1snnnrxUcwm9SgI1JygDlhOmNyxVecixHZx
- HqKw==
+ bh=uZ7qqews2O7XucznXFEO2bWGmRBz91rjfUznQYaR+AU=;
+ b=hcXgs/Us2i1LqiCpownxWKZxx3I0JEedLl7VZ0y48hDAtgCzhSb/I09gP2H4m0nw+2
+ NkpeFsk6niKChc3wbjXiDxYbI3w7HWN5i29s+9bKj7sn/U92jLTk6//qc/bm2J7TNmF9
+ mL5/HIgHEf8+p/rGagIfcVnuJmHOu2UfS2ryG490lGsCXjEzTqvouiIKdhdfmt8YGbiB
+ iz5H9O+HJ85SpBaqRE5iLArDPmjVycGOY5jw0YNvwGjF43lp5LlY2CWozbKlX7tzU+LG
+ 7vLeBoNpBS8I39/RZJQ1oGJJ+nGf+N4g7jBtAI5ZMwYgcicuJuogiejVD/LURDOIk0Fd
+ F7/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
  :references;
- bh=72YojJ2ZI4Hnj5UZWtMVH1bJJscttQzZHVGA77jha6k=;
- b=h6+g7Kchpih8gTTwrhj2UCc+P2ublLa6NwOi2iPibD5pLQSfwXYtSFIYT2W9DgstiM
- HlJIp30aAHnx8H0iEV0i8SOeBZ/CjE3aMCaL/9EiFg+1kmPgMstJ8BXM+rkA6QrNH97u
- m2Gm+ijFGKHpGA2Y/HYM2YGc2KcEAOD4v1l0VQq8vpkkn2ddmvs6eekWAvGh0Cr1r53b
- yM/Isskb1XNTeNm2Xv4dOrKBQClNiUVMod9acHvWOjXTGUd57h4cyLIdcf/VeNJ9d0Hq
- Im/4FYoAHOiF+742WcuFxytmmgmp9MaOwng/gWSKzYnE1Jb9x/rmAM4VaE4nbunDFsk5
- /zxA==
-X-Gm-Message-State: APjAAAWOZMTqPSLzTSiQrOFYKGdq8/nRWYxpb7k/ogrkaMYoZLuojOHU
- z3MCNktEedXjo993OEVZ0kaYOA==
-X-Google-Smtp-Source: APXvYqzD6/VS9PfVDNO6HphW5M4EV309P4F8/HO4da7MQt2vi/o/ZoTzBqwZPAJIq2PCDip1y0tfhA==
-X-Received: by 2002:a1c:b782:: with SMTP id h124mr5858487wmf.5.1554972340768; 
- Thu, 11 Apr 2019 01:45:40 -0700 (PDT)
+ bh=uZ7qqews2O7XucznXFEO2bWGmRBz91rjfUznQYaR+AU=;
+ b=MbPZjN79C1gqJoCpVDsm9bqXBPtNPVm1IMturnL9NlBTylXBmPxrb0ky8pT1EpKP7t
+ dvz93/U9yZk1xNy7SgEnatBqlHhzUFSMi6Di062BG/GzufHBk71O62wG6uc5xpw94psH
+ 9OQTasw6uATfluKr8xVYpNUe3Cm2rqt5+BP0/arc76+w4oTLiZE3ZjS8M1cjdEsGvcbz
+ Ws7GNmw20QBkv2dKOFyEdWpGQPB+tN0qAERMH5XzQeb7fEMRoSbhMBQjH1DDnZv2vhrV
+ GlOmxFy3Z5/K5KUy/VUwOql8YA8Rla8AvlTTmAOb+SttvPsiYLZ+YAPybFYRFN+QN4ZL
+ rTrw==
+X-Gm-Message-State: APjAAAVtptR0uo2YmWuLOLyxlU07DnQ7nwfPTRpFq/rfi5BTdHiruSNb
+ BHhXMgZJng9jGeJ6N7M1+pxjXw==
+X-Google-Smtp-Source: APXvYqwyTjtvyg5KjtWDh44Yy0fg/y31wD+PxhUHgzWO+R7B19HFHB0yjhjcu9qJ+ovfQ+AEjhN8+g==
+X-Received: by 2002:a5d:660c:: with SMTP id n12mr30498225wru.160.1554972341885; 
+ Thu, 11 Apr 2019 01:45:41 -0700 (PDT)
 Received: from glaroque-ThinkPad-T480.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id 7sm128602876wrc.81.2019.04.11.01.45.39
+ by smtp.gmail.com with ESMTPSA id 7sm128602876wrc.81.2019.04.11.01.45.40
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 11 Apr 2019 01:45:40 -0700 (PDT)
+ Thu, 11 Apr 2019 01:45:41 -0700 (PDT)
 From: Guillaume La Roque <glaroque@baylibre.com>
 To: jbrunet@baylibre.com, narmstrong@baylibre.com, khilman@baylibre.com,
  linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: clk: g12a-clkc: add Temperature Sensor clock
- ID
-Date: Thu, 11 Apr 2019 10:45:36 +0200
-Message-Id: <20190411084537.30299-2-glaroque@baylibre.com>
+Subject: [PATCH 2/2] clk: meson-g12a: Add Temperature Sensor clock
+Date: Thu, 11 Apr 2019 10:45:37 +0200
+Message-Id: <20190411084537.30299-3-glaroque@baylibre.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190411084537.30299-1-glaroque@baylibre.com>
 References: <20190411084537.30299-1-glaroque@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190411_014542_807514_F62C1D57 
-X-CRM114-Status: UNSURE (   8.27  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190411_014543_137515_75C6C2C4 
+X-CRM114-Status: GOOD (  10.27  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -105,24 +103,85 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add clock id used by temperature sensor for G12A Socs
+Add TS clock used by two temperature sensor
 
 Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
 ---
- include/dt-bindings/clock/g12a-clkc.h | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/clk/meson/g12a.c | 31 +++++++++++++++++++++++++++++++
+ drivers/clk/meson/g12a.h |  3 ++-
+ 2 files changed, 33 insertions(+), 1 deletion(-)
 
-diff --git a/include/dt-bindings/clock/g12a-clkc.h b/include/dt-bindings/clock/g12a-clkc.h
-index 30303728fe09..85cfcab10507 100644
---- a/include/dt-bindings/clock/g12a-clkc.h
-+++ b/include/dt-bindings/clock/g12a-clkc.h
-@@ -133,5 +133,6 @@
- #define CLKID_MPLL_5OM				177
- #define CLKID_CPU_CLK				187
- #define CLKID_PCIE_PLL				201
-+#define CLKID_TS				203
+diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+index 3a3134976534..e6d2af6ee8ea 100644
+--- a/drivers/clk/meson/g12a.c
++++ b/drivers/clk/meson/g12a.c
+@@ -2335,6 +2335,33 @@ static struct clk_regmap g12a_mali = {
+ 	},
+ };
  
- #endif /* __G12A_CLKC_H */
++static struct clk_regmap g12a_ts_div = {
++	.data = &(struct clk_regmap_div_data){
++		.offset = HHI_TS_CLK_CNTL,
++		.shift = 0,
++		.width = 7,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "ts_div",
++		.ops = &clk_regmap_divider_ro_ops,
++		.parent_names = (const char *[]){ "xtal" },
++		.num_parents = 1,
++	},
++};
++
++static struct clk_regmap g12a_ts = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = HHI_TS_CLK_CNTL,
++		.bit_idx = 8,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "ts",
++		.ops = &clk_regmap_gate_ops,
++		.parent_names = (const char *[]){ "ts_div" },
++		.num_parents = 1,
++	},
++};
++
+ /* Everything Else (EE) domain gates */
+ static MESON_GATE(g12a_ddr,			HHI_GCLK_MPEG0,	0);
+ static MESON_GATE(g12a_dos,			HHI_GCLK_MPEG0,	1);
+@@ -2615,6 +2642,8 @@ static struct clk_hw_onecell_data g12a_hw_onecell_data = {
+ 		[CLKID_PCIE_PLL_DCO_DIV2]	= &g12a_pcie_pll_dco_div2.hw,
+ 		[CLKID_PCIE_PLL_OD]		= &g12a_pcie_pll_od.hw,
+ 		[CLKID_PCIE_PLL]		= &g12a_pcie_pll.hw,
++		[CLKID_TS_DIV]			= &g12a_ts_div.hw,
++		[CLKID_TS]			= &g12a_ts.hw,
+ 		[NR_CLKS]			= NULL,
+ 	},
+ 	.num = NR_CLKS,
+@@ -2803,6 +2832,8 @@ static struct clk_regmap *const g12a_clk_regmaps[] = {
+ 	&g12a_cpu_clk_trace,
+ 	&g12a_pcie_pll_od,
+ 	&g12a_pcie_pll_dco,
++	&g12a_ts_div,
++	&g12a_ts,
+ };
+ 
+ static const struct meson_eeclkc_data g12a_clkc_data = {
+diff --git a/drivers/clk/meson/g12a.h b/drivers/clk/meson/g12a.h
+index 1393a09730a6..5633c72e432d 100644
+--- a/drivers/clk/meson/g12a.h
++++ b/drivers/clk/meson/g12a.h
+@@ -189,8 +189,9 @@
+ #define CLKID_PCIE_PLL_DCO			198
+ #define CLKID_PCIE_PLL_DCO_DIV2			199
+ #define CLKID_PCIE_PLL_OD			200
++#define CLKID_TS_DIV				202
+ 
+-#define NR_CLKS					202
++#define NR_CLKS					204
+ 
+ /* include the CLKIDs that have been made part of the DT binding */
+ #include <dt-bindings/clock/g12a-clkc.h>
 -- 
 2.17.1
 
