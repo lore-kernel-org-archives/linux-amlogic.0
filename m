@@ -2,87 +2,91 @@ Return-Path: <SRS0=I14R=SN=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	UNWANTED_LANGUAGE_BODY,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 90766C282CE
-	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Apr 2019 08:45:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AFBCCC10F13
+	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Apr 2019 08:46:09 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5D36221841
-	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Apr 2019 08:45:51 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7DC712083E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 11 Apr 2019 08:46:09 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XUfp9AEP";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="eodPEEfg"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5D36221841
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CdRwjJpc";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="brU6yRC2"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7DC712083E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:To:
-	From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=GrzSXxFCRHYa8fzoXG4ooabLpRBigJltYnRdsbrbp4M=; b=XUfp9AEPY6i4X5
-	A05eLNzrGLVU2mJRwkBcPFNlvE2qllEXkvTEeRmiFlpNPYK9HNaVCrQP958RtcqgAqjARisozAzUZ
-	GlTkNOVL+0fSu5DJUmJfGjf9jhmqB4MWD2nk5+tIm0QFrz0WpKMx734PxbPqCrngr6V/mAkOD5Xmy
-	i5Su6VZIIaNVBhwP5mjRm4hGkYSz3Hfdtghti+zpyhj9tyLwQs29/FUcgRyxhHGYTQu4a3qSQA8u4
-	lY4p0BVkblACsuaZCINnjXhyrcDMY0Zj7mE09dKKxthb+uGbPdwkAjYVwZUsRfzzoqAajlM7QvsBK
-	5OjILb0kuuOwewwh7CEA==;
+	List-Post:List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Cc:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=OMT3lL3sSBl6zLmC5OgjMmIUCoDdvIL+1B5szdNnT1I=; b=CdRwjJpco7uJ6A
+	gGTq6wugjAcVpbpC/bTiL/mLiBE3PPZVVmtngSBHI6vLAcE88+MPjejyVDOJChvcdWPvBZ5m7IkLY
+	+gcdts1Eb20RhcxfibT4ikcErwn0jMy+ViAcFLlzR2GsWK5l4EqSyJ0FsdEt4JAZeRAVhqSHxsKvi
+	UnC30pePBjaSiecJaBj8PdC6MsQ45mcjClSFZ7eM1IvKzYhw2TKWDvxu5mJyWab65WpMpDfwF669L
+	MUyWs7qjKBtNmkMOGZmw374uMVcjji/xr85+P/0SeM9eXh9iTbCd49ZTewadz844KxXecjP/z6USr
+	EIWcw1LfLrGindF6SsVQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hEVL6-0002cO-Rl; Thu, 11 Apr 2019 08:45:44 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1hEVLQ-00033K-RR; Thu, 11 Apr 2019 08:46:04 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hEVL3-0002ai-FJ
- for linux-amlogic@lists.infradead.org; Thu, 11 Apr 2019 08:45:43 +0000
-Received: by mail-wr1-x442.google.com with SMTP id q1so6236765wrp.0
- for <linux-amlogic@lists.infradead.org>; Thu, 11 Apr 2019 01:45:40 -0700 (PDT)
+ id 1hEVL4-0002al-Ou
+ for linux-amlogic@lists.infradead.org; Thu, 11 Apr 2019 08:45:44 +0000
+Received: by mail-wm1-x341.google.com with SMTP id y197so5594694wmd.0
+ for <linux-amlogic@lists.infradead.org>; Thu, 11 Apr 2019 01:45:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:subject:date:message-id;
- bh=+8KV1rYOptyfogTlAgW1rSp2oGnqn2LH/HebVU6g4OY=;
- b=eodPEEfgGiM5Yns5TWxodKnukbFnK+yjnMpL327eI1HCD6REyONMTrmgUGTYoyb5vB
- L0o1khBew4M940ti80SA93Qp3gjMceiQno/8zSOHozcsMX+EbJaqlo7fteOniity29xa
- aelm3q7WE+MgyPW6SKodaONlC450SG3ntWyZV1RYIu3RCidWuFClHHCCf//pLu184aCW
- Ej5Vz31ZbVg6C/AmiLherWXuihf0AmF1DDF67znsMZaVUJK4Ji+oQP0SLk1IOWBZKkeO
- y8y2AzZp8ONvOVAlRgDA9xQcJWsmbQmocgwHWCEamka+oYDOzCKhDv4z542m0/uX+mHs
- P++w==
+ h=from:to:subject:date:message-id:in-reply-to:references;
+ bh=72YojJ2ZI4Hnj5UZWtMVH1bJJscttQzZHVGA77jha6k=;
+ b=brU6yRC2/R67qR7FwEPXgWq7TMtY3G392GEJp4iDaBRyvhCusWFHyAaS6pYicJMf60
+ FJV8zzS64jtbceJfeADF5+UAO8jacrkTYcZ7pp6+JGcHd5z/neIKvlLN+wRfC7qUHsIh
+ YOEUxQTUj6SDJ+t9OGUxNCOID2PE43j+B4dvYouzart1YuyCaOp/MMPwSJLE6bpX8aZD
+ NDbVvy3g5fHNVl1xV+TuRZOS7beZEef5kJmo5F1wFntu8AfiJt3eVeDYMr48o3LoqYXn
+ +VdlfQayRS8iyKStauO6bGg45cnZefIdE1snnnrxUcwm9SgI1JygDlhOmNyxVecixHZx
+ HqKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:subject:date:message-id;
- bh=+8KV1rYOptyfogTlAgW1rSp2oGnqn2LH/HebVU6g4OY=;
- b=BFQiv9EN4AfepKBVc0YD/1QKEeKZaLkZ2mRLiG21OobQLKO26XXeeFxdNQ0qsbW3xD
- KeYJxDCJE4/MmdC2KAXEekq7jJWisOLcLmep80JE+hRvhAXE9/ZSIXqRV9MATI2R8BRi
- 1uiKXG+hl5RDSNwCPLc8EpGM3YGofGUcdFMfevyWjbCRKqDyb/rOMJ6EBhAKBcv1uFJ3
- zuPtksxb8d0IdGkJstY+eRDqIP5Dh/9oQ3r+U89tXT0OK01Q46KV9gfTbClm/cZVy4VL
- fKz1iK/HJ3X7yJma29V+MxyZwEZZnENQ+51V6tQI6911kmUMEEDk0FnNpHO1xIxwZf66
- ex4w==
-X-Gm-Message-State: APjAAAVtl6QEhi7tqxo5dTLIIAy+dPfG8iUl0jclRpiQReDODE6NICVH
- oEw/fv2riupqZP7aWsmNgQzjSw==
-X-Google-Smtp-Source: APXvYqwFPnGbM15P/fHGakMx0heW6tW0fam1knMzXhOVTLTlgzFAac4PWrVhbHJAFpKUdEcCGpImaA==
-X-Received: by 2002:adf:e288:: with SMTP id v8mr24708101wri.7.1554972339567;
- Thu, 11 Apr 2019 01:45:39 -0700 (PDT)
+ h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+ :references;
+ bh=72YojJ2ZI4Hnj5UZWtMVH1bJJscttQzZHVGA77jha6k=;
+ b=h6+g7Kchpih8gTTwrhj2UCc+P2ublLa6NwOi2iPibD5pLQSfwXYtSFIYT2W9DgstiM
+ HlJIp30aAHnx8H0iEV0i8SOeBZ/CjE3aMCaL/9EiFg+1kmPgMstJ8BXM+rkA6QrNH97u
+ m2Gm+ijFGKHpGA2Y/HYM2YGc2KcEAOD4v1l0VQq8vpkkn2ddmvs6eekWAvGh0Cr1r53b
+ yM/Isskb1XNTeNm2Xv4dOrKBQClNiUVMod9acHvWOjXTGUd57h4cyLIdcf/VeNJ9d0Hq
+ Im/4FYoAHOiF+742WcuFxytmmgmp9MaOwng/gWSKzYnE1Jb9x/rmAM4VaE4nbunDFsk5
+ /zxA==
+X-Gm-Message-State: APjAAAWOZMTqPSLzTSiQrOFYKGdq8/nRWYxpb7k/ogrkaMYoZLuojOHU
+ z3MCNktEedXjo993OEVZ0kaYOA==
+X-Google-Smtp-Source: APXvYqzD6/VS9PfVDNO6HphW5M4EV309P4F8/HO4da7MQt2vi/o/ZoTzBqwZPAJIq2PCDip1y0tfhA==
+X-Received: by 2002:a1c:b782:: with SMTP id h124mr5858487wmf.5.1554972340768; 
+ Thu, 11 Apr 2019 01:45:40 -0700 (PDT)
 Received: from glaroque-ThinkPad-T480.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id 7sm128602876wrc.81.2019.04.11.01.45.38
+ by smtp.gmail.com with ESMTPSA id 7sm128602876wrc.81.2019.04.11.01.45.39
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 11 Apr 2019 01:45:38 -0700 (PDT)
+ Thu, 11 Apr 2019 01:45:40 -0700 (PDT)
 From: Guillaume La Roque <glaroque@baylibre.com>
 To: jbrunet@baylibre.com, narmstrong@baylibre.com, khilman@baylibre.com,
  linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org
-Subject: [PATCH 0/2] Add support of Temperature sensor Clock for G12 SoC
-Date: Thu, 11 Apr 2019 10:45:35 +0200
-Message-Id: <20190411084537.30299-1-glaroque@baylibre.com>
+Subject: [PATCH 1/2] dt-bindings: clk: g12a-clkc: add Temperature Sensor clock
+ ID
+Date: Thu, 11 Apr 2019 10:45:36 +0200
+Message-Id: <20190411084537.30299-2-glaroque@baylibre.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20190411084537.30299-1-glaroque@baylibre.com>
+References: <20190411084537.30299-1-glaroque@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190411_014541_562010_A508D005 
-X-CRM114-Status: UNSURE (   7.79  )
+X-CRM114-CacheID: sfid-20190411_014542_807514_F62C1D57 
+X-CRM114-Status: UNSURE (   8.27  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -101,20 +105,24 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patch series add support of Clock for temperature sensor
-on Amlogic G12a SoC.
+Add clock id used by temperature sensor for G12A Socs
 
-Guillaume
+Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+---
+ include/dt-bindings/clock/g12a-clkc.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-Guillaume La Roque (2):
-  dt-bindings: clk: g12a-clkc: add Temperature Sensor clock ID
-  clk: meson-g12a: Add Temperature Sensor clock
-
- drivers/clk/meson/g12a.c              | 31 +++++++++++++++++++++++++++
- drivers/clk/meson/g12a.h              |  3 ++-
- include/dt-bindings/clock/g12a-clkc.h |  1 +
- 3 files changed, 34 insertions(+), 1 deletion(-)
-
+diff --git a/include/dt-bindings/clock/g12a-clkc.h b/include/dt-bindings/clock/g12a-clkc.h
+index 30303728fe09..85cfcab10507 100644
+--- a/include/dt-bindings/clock/g12a-clkc.h
++++ b/include/dt-bindings/clock/g12a-clkc.h
+@@ -133,5 +133,6 @@
+ #define CLKID_MPLL_5OM				177
+ #define CLKID_CPU_CLK				187
+ #define CLKID_PCIE_PLL				201
++#define CLKID_TS				203
+ 
+ #endif /* __G12A_CLKC_H */
 -- 
 2.17.1
 
