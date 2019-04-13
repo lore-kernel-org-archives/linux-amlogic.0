@@ -2,89 +2,90 @@ Return-Path: <SRS0=Clcc=SP=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-8.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D884DC10F14
-	for <linux-amlogic@archiver.kernel.org>; Sat, 13 Apr 2019 16:36:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0E79AC282DA
+	for <linux-amlogic@archiver.kernel.org>; Sat, 13 Apr 2019 16:36:56 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A71BF21721
-	for <linux-amlogic@archiver.kernel.org>; Sat, 13 Apr 2019 16:36:48 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D0A4321721
+	for <linux-amlogic@archiver.kernel.org>; Sat, 13 Apr 2019 16:36:55 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="elZLtUQH";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="EqmMlP68"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A71BF21721
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LHrfBnol";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="dnjEcHLA"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D0A4321721
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=f8G3k0YN99jESapWhMilWEQHs94EcUR+k5U/hN/g4nU=; b=elZLtUQHlQJkdr
-	yvF2AoT3OKv2wTq/2BpRqGkPZy6cdZyPz2KoKI0JyTOBjk/qMk7QqkqmsRXTmJ9m9O2ZF0ppq16M7
-	KaSjqS0qtQ9jjXlbJiVOZ1SwNYdXpYjT3lRnNkknEX0WFUXBMDTn4t8DnNeXgYWnSQjrKSOalyrN1
-	z4OqjeHr1vPGu8gveDVWcHF/MRfWbMMMgIMCsxKC7DyHi7pmIyTXj+QUzSeSZUSlo3SKAfICHJ5JU
-	6DOcYND/T3J3b+CgpkGXn1FB6c1g/4BaoQYWlVldKWpOM/RH2i98IJecX5PfCdiii1xHKTySw5qAA
-	uwDAjnBEV2Kf/qb0tXfw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=m7Njr6JbHZnSf3AIdKczYxo7M+G3o2P5v6CwZhIxBjY=; b=LHrfBnol6pfSop
+	TMi6MrFCgfUT7Zedju2l08TPru13ZtWtf/ev3wAAoq2Bj76FurPwf4kb8h5cKG5c4tlX6m4F2Tc7D
+	WMlSMNKe/BqbjxBbfwt+eY+anWmSljiQviXopXpQHqrrmPO1aNhp2Ivoy1+vlT+RStXLtV/l95q2M
+	7YRZgC46aJnpu2Peepyp6drDWmCEcZ0d0u8JSlk0eBFc5Jh3kgB8LRxvCqOTNA0UN7lDq44JsimqD
+	9K6l0IGmKkE/IWRX9Nu1oJez/xZw2J31t4Zc+doBR+E6ZTAVZjvBU9d/wsRhMffv9FGMHxZsARfHh
+	ig0cxtjF2k9rindcfjzg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hFLdw-0001B6-QP; Sat, 13 Apr 2019 16:36:40 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1hFLe6-0001PK-T3; Sat, 13 Apr 2019 16:36:50 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hFLdu-0001AC-5w; Sat, 13 Apr 2019 16:36:39 +0000
-Received: by mail-wr1-x443.google.com with SMTP id s15so15895472wra.12;
- Sat, 13 Apr 2019 09:36:37 -0700 (PDT)
+ id 1hFLdv-0001AE-6c; Sat, 13 Apr 2019 16:36:40 +0000
+Received: by mail-wr1-x444.google.com with SMTP id w10so15955664wrm.4;
+ Sat, 13 Apr 2019 09:36:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=eUlrZNmzEIhs7/anF1YSLhB9mWOmJ5DjO2LhLTU+ow8=;
- b=EqmMlP682lgyqRc3Nd3Gtx0Y58CU2naPNN0Y2efrH4jKu6osJ4o+gYv+0DQlXHXERG
- X3jijZ9lTNSYM5V4YqyHTvXPHRIzep0rlQJwFFN7hRadYhOBwMr5crHydTC7p+AucD5v
- tBnvAtn0GuYrrVUL8vhlwZwPY3vk3o6mUrQs20ayQJ2EP7AWmJh5JBfBmbgdwWYEZhvR
- 0FXyKPzgbTHxDwxn19DcRyRIOMS84QgKtG73OJaqwdgjogdp2s0iBoEZMdNQxT0Z301x
- uIqa68wp5UjTk+aIW79uUP1VsNdBg1ZYggi/76EWcvP8ji5tYX/UAqfFySRIdBZWEahN
- JM7Q==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=8LOVyhXJLZoTsXDBrD5GMoCBgvmfqnSxKbuKGLv7HJk=;
+ b=dnjEcHLAoRyk+cvtQyouH/4TVcKGJ8E71XHOjrXLYiHWei1GzaUXi+eo1Hy/TNux+x
+ szPCYHD5Da5Apk+LHOq+P1t1b2P7eS/7wqrjZwXPya3/CwZCBO9rs4JniuVfuWdYzhPn
+ tzgh79b1WZ5Hw7vyWJg3clwnIPvHbo8noekifIwRmP78sRiF9Qo06rUgjhmjGVGby9Me
+ I7CgyPoFseQPI3+6hhnYzVV71rOUp1xzv2amJrp7N8HygNaxj1Xk3XmE+YzTmJ8cMw6N
+ vPYgNo+EuIBNMA922ybWE4aFEZIwu9tvv3/BhAyAlqBDoNf92n5naH2jLfvhgSDKIlSG
+ vLCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=eUlrZNmzEIhs7/anF1YSLhB9mWOmJ5DjO2LhLTU+ow8=;
- b=bn8adQ4Kbm+YbWxesas8EtZTwvXz4LByI1ikmnlJFJp+HILLaO/lfBtShka1y/G2ht
- Dod1K+kESCc+HySn6oIY/l1rJRkcWc26NngS67OxGhwVhWJCQ4M115d6Ikc9ACqfZn2A
- h0JANCshsw7+FNk4zSAZrn76wrbp/+4v3qe76n22660bAAy3IAKUPF9wNXgoao3X75uR
- r41OYwR9COT6G0pyjJHPnDmqolbXBZ48NrBTUHYNCD4/WsEZgS3lbVV+WwEuzWMHd1Cq
- boT1swqW+uTDm8w/AESBlJ8yPoQCyR1mH1x9recvKai1LBvEkxmyzs/5JyAAID/RDOz5
- itYw==
-X-Gm-Message-State: APjAAAWsE5KJO3DM665kyw7LZtHDIyhS6sGaQG7fi59EaCk4s+plXnRf
- O2dx379puZa5Fwlq91AKVOHGOiDg
-X-Google-Smtp-Source: APXvYqxMBvHoLeBzMx8VHk8xicAgEWnIX21exRLPUtQqjMRcCSFtPqruqVsddJO8tLHx6fe7/fuEUA==
-X-Received: by 2002:adf:f286:: with SMTP id k6mr37373261wro.137.1555173395877; 
- Sat, 13 Apr 2019 09:36:35 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=8LOVyhXJLZoTsXDBrD5GMoCBgvmfqnSxKbuKGLv7HJk=;
+ b=MV7U+RM+/34EvZ3B1/b05fBrMhrE0J1VUZcIMRqs4FPomCKoxMwiokmHx/fwIaBv4c
+ Ug0xCvae2ScybKel/ICZFmXpPUsD5XrrHJszf/fy8sHJja4apqKOxmI0K1PrL4mkZoGw
+ 9epk/cS2LDiXIrtbz7ZYFp73dYdIZALvfR1lgftg29mQqeGQGZdFyX/IygRR6Urv8jcf
+ sr3AUpwaawZTcF2OateANwN3PRehcgG66of7rTv/h2O1QVEqmMMpGDXQgTKCXh7/qHN0
+ xaAd5Qr5N1H1VHOJCWbf+mm8kgcNEgNT1PMtuHVuH+Z/RcWRkuatLQkmlugndG+RMszd
+ pPEA==
+X-Gm-Message-State: APjAAAXvcj8gGetO6cxoKaqaTPX+M/U3Ic86KRaCXsKu/VIMW9GtRALz
+ HPPBs0ANIYr2c9KGX9JNH52/+6NN
+X-Google-Smtp-Source: APXvYqxVB9hGCkjzanqpxnDdsmMzAp/LEGX/vRQZqbEOxT2DQoMCx84xCb0MHfJBPu09b5PULten3g==
+X-Received: by 2002:a5d:4a43:: with SMTP id v3mr19357168wrs.126.1555173397082; 
+ Sat, 13 Apr 2019 09:36:37 -0700 (PDT)
 Received: from blackbox.darklights.net
  (p200300F133C8AD00714E418F6C82D049.dip0.t-ipconnect.de.
  [2003:f1:33c8:ad00:714e:418f:6c82:d049])
- by smtp.googlemail.com with ESMTPSA id j3sm106200069wre.51.2019.04.13.09.36.34
+ by smtp.googlemail.com with ESMTPSA id j3sm106200069wre.51.2019.04.13.09.36.35
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sat, 13 Apr 2019 09:36:35 -0700 (PDT)
+ Sat, 13 Apr 2019 09:36:36 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org,
 	khilman@baylibre.com
-Subject: [PATCH 0/3] Meson8b: add support for the RTC on EC-100 and Odroid-C1
-Date: Sat, 13 Apr 2019 18:34:20 +0200
-Message-Id: <20190413163423.15149-1-martin.blumenstingl@googlemail.com>
+Subject: [PATCH 1/3] ARM: dts: meson: add support for the RTC
+Date: Sat, 13 Apr 2019 18:34:21 +0200
+Message-Id: <20190413163423.15149-2-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20190413163423.15149-1-martin.blumenstingl@googlemail.com>
+References: <20190413163423.15149-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190413_093638_256970_7A855DF6 
-X-CRM114-Status: UNSURE (   9.15  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190413_093639_240625_959FD995 
+X-CRM114-Status: GOOD (  11.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -104,40 +105,70 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This adds support for the RTC on the Meson8b EC-100 and Odroid-C1
-boards. Example kernel log snippet while booting my EC-100:
-  [    5.713750] meson-rtc c8100740.rtc: setting system clock to 2019-04-13T16:21:48 UTC (1555172508)
+The 32-bit Meson SoCs have an RTC block in the AO (always on) area. The
+RTC requires an external 32.768 kHz oscillator to work properly. Whether
+or not this crystal exists depends on the board, so it has to be added
+for each board.dts (instead of adding it somewhere in a generic .dtsi).
 
-I am only 99% sure about the naming of the clock in patch 2 and 3.
-The public S805 datasheet from Hardkernel shows (on page 24 for example)
-that clk81 can use "XTAL/32khz" as clock input. That "XTAL/32khz" clock
-is described as a mux between 24MHz (our main XTAL) and 32kHz ("that
-other XTAL").
-I believe that this other 32kHz XTAL is NOT the RTC32K crystal because:
-- schematics of the EC-100 and Odroid-C1 clearly show that the SoC input
-  for the RTC32K clock is labeled RTC32K_XI / RTC32K_XO
-- GPIOAO_6 has a CLK_32KIN function (shows in EC-100 and Odroid-C1
-  schematics as well as the public S805 datasheet)
-- Always On domain PWR_CNTL0[11:10] (public S805 datasheet page 19)
-  describes it as "Alternate 32khz input clock select from GPIO pad"
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ arch/arm/boot/dts/meson.dtsi   | 9 +++++++++
+ arch/arm/boot/dts/meson8.dtsi  | 5 +++++
+ arch/arm/boot/dts/meson8b.dtsi | 5 +++++
+ 3 files changed, 19 insertions(+)
 
-Thus I believe that the naming of the RTC32K clock is correct, but I
-wanted to point out that I'm only 99% (instead of 100%) sure.
-Jianxin, please let me know if you disagree with my findings.
-
-
-Martin Blumenstingl (3):
-  ARM: dts: meson: add support for the RTC
-  ARM: dts: meson8b: ec100: enable the RTC
-  ARM: dts: meson8b: odroid-c1: prepare support for the RTC
-
- arch/arm/boot/dts/meson.dtsi           |  9 +++++++++
- arch/arm/boot/dts/meson8.dtsi          |  5 +++++
- arch/arm/boot/dts/meson8b-ec100.dts    | 14 ++++++++++++++
- arch/arm/boot/dts/meson8b-odroidc1.dts | 14 ++++++++++++++
- arch/arm/boot/dts/meson8b.dtsi         |  5 +++++
- 5 files changed, 47 insertions(+)
-
+diff --git a/arch/arm/boot/dts/meson.dtsi b/arch/arm/boot/dts/meson.dtsi
+index 6f54a8897574..8841783aceec 100644
+--- a/arch/arm/boot/dts/meson.dtsi
++++ b/arch/arm/boot/dts/meson.dtsi
+@@ -252,6 +252,15 @@
+ 				#size-cells = <0>;
+ 				status = "disabled";
+ 			};
++
++			rtc: rtc@740 {
++				compatible = "amlogic,meson6-rtc";
++				reg = <0x740 0x14>;
++				interrupts = <GIC_SPI 72 IRQ_TYPE_EDGE_RISING>;
++				#address-cells = <1>;
++				#size-cells = <1>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		usb0: usb@c9040000 {
+diff --git a/arch/arm/boot/dts/meson8.dtsi b/arch/arm/boot/dts/meson8.dtsi
+index d2ec4af82cc5..7ef442462ea4 100644
+--- a/arch/arm/boot/dts/meson8.dtsi
++++ b/arch/arm/boot/dts/meson8.dtsi
+@@ -541,6 +541,11 @@
+ 	compatible = "amlogic,meson8-pwm", "amlogic,meson8b-pwm";
+ };
+ 
++&rtc {
++	compatible = "amlogic,meson8-rtc";
++	resets = <&reset RESET_RTC>;
++};
++
+ &saradc {
+ 	compatible = "amlogic,meson8-saradc", "amlogic,meson-saradc";
+ 	clocks = <&clkc CLKID_XTAL>,
+diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+index df42e48f1cc1..800cd65fc50a 100644
+--- a/arch/arm/boot/dts/meson8b.dtsi
++++ b/arch/arm/boot/dts/meson8b.dtsi
+@@ -510,6 +510,11 @@
+ 	compatible = "amlogic,meson8b-pwm";
+ };
+ 
++&rtc {
++	compatible = "amlogic,meson8b-rtc";
++	resets = <&reset RESET_RTC>;
++};
++
+ &saradc {
+ 	compatible = "amlogic,meson8b-saradc", "amlogic,meson-saradc";
+ 	clocks = <&clkc CLKID_XTAL>,
 -- 
 2.21.0
 
