@@ -2,22 +2,22 @@ Return-Path: <SRS0=Clcc=SP=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C98BBC10F11
-	for <linux-amlogic@archiver.kernel.org>; Sat, 13 Apr 2019 11:33:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3C1CDC282CE
+	for <linux-amlogic@archiver.kernel.org>; Sat, 13 Apr 2019 11:37:40 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 975AC20869
-	for <linux-amlogic@archiver.kernel.org>; Sat, 13 Apr 2019 11:33:42 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 08D3620869
+	for <linux-amlogic@archiver.kernel.org>; Sat, 13 Apr 2019 11:37:40 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dIesJeGy";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Wxm2Vrqa"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 975AC20869
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KazQYau0";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Fz1+CEGn"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 08D3620869
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TcgmGdliXQaU1nfbHgNQUaAC32+SnR9RWogVR8JhkF8=; b=dIesJeGy+3Hzut
-	ngR3ttcNmixR+H8mlmMN7pa9zlYTDL8qKGb51h8w+JEGlfodc59jkDDxWXYsuxmIaOwfVSjjAxPpL
-	bba4TWUd8df8eBZO3uGC2wi9dcKUZ+Qyj2D1ROFvVozYGBfv2CkiTvnmlr7Eip4O+G7zVJDO/F+Lf
-	d9ekpfo8sAqK9tn9bqpHZhD4Hpwk76P4h/45fKU6JG7G9GHFCxJzukrckNeulny1UvC4I34VX+dA4
-	6GoEx4tJHLnN4rq4TSdDG5qndBNsSHpqC7BQ4216naYN7L1vE2XOGmdHitw9JMx7KnV3QvIOwyu3T
-	AIc+pMwoFT5+/MTOc+Rg==;
+	List-Owner; bh=g8jRDT+z29IlHJWVHch5e7uqTHqeHkNtwZMGQKzZ6s0=; b=KazQYau0yRsqy1
+	FPFODbdUFLKV9silMsgXSbymnsPsKFq5BOsbCEwPW2QdrXbsy7BSBZ2wo9pp/TIORvXva/nOLHijx
+	p9dfBOElYVvR1tdCKxU4CP458E10EY6DOuxODeCatqwM2OL1lChiYWbMxTbeaViG89Dwkf71+Gbpx
+	J61Ib9dmUc8/ihSGYwSSt/5OqlZDBaLIt4nCeOpK9r3GlItz2Uztd8N6lOHp87N6r45bqgLNZATBG
+	JDBsFROv7LTewvuFjpJoZRsH/QRa/g+uKhztxdr4q2pfO/dA5E3JwKnLXYob1RWwSXoERwZy7T42u
+	7CL88ZLBFpGyz1Swl0zQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hFGuZ-0007Hp-RG; Sat, 13 Apr 2019 11:33:31 +0000
-Received: from mail-ot1-x341.google.com ([2607:f8b0:4864:20::341])
+	id 1hFGyU-0000mi-GB; Sat, 13 Apr 2019 11:37:34 +0000
+Received: from mail-ot1-x342.google.com ([2607:f8b0:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hFGuW-0007H4-AQ; Sat, 13 Apr 2019 11:33:29 +0000
-Received: by mail-ot1-x341.google.com with SMTP id e80so10653320ote.5;
- Sat, 13 Apr 2019 04:33:26 -0700 (PDT)
+ id 1hFGyR-0000mH-7f; Sat, 13 Apr 2019 11:37:32 +0000
+Received: by mail-ot1-x342.google.com with SMTP id c16so10665289otn.4;
+ Sat, 13 Apr 2019 04:37:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=fNWzVu94jtQ2U8ecDCU7aYXiQ4YbXT+d1pdYft4GMaU=;
- b=Wxm2Vrqa9RDezfjYu2xSEpPLuHl7g9vkTihGAQ1PNm3CA/QWErU8Dll8Z7giuMgR9Y
- wDjBUDN4fytU+Q7NL7GDPqVLAX6MPVKvSJGYYK6Ql0nji+AA7ArEcRp6gL9QO5FWi+OK
- ZfKhQG1OYyEFxf385Q97bGIUAS/wcSY7oz3Bz0TfM3R6BJhnSws5Ru+JkCajxcm8UcQ3
- gEE4b5KZEWnp4LmQLzeDz4saagJ28VCzJCVFigisDmI5awDDVYOb6QHXnttwd34Au61F
- kq+UZ6mwiq82IzsaSr3//H5JCOUW77ikRMBxXYHkEi1RYpFVHSRM54wiJmOokW/GefkQ
- FE7w==
+ :cc; bh=cPr5fJiz4nXGuDrFwW8vntfct74jRoGWcNEctADPJjc=;
+ b=Fz1+CEGnRVkcD4QngclFGONsO1Wixzn9nYeHtcDbKPw2nyfUQVOO4b9PsZaHKclgdy
+ ZQ19b/6A1HohZ/2Xi8ch0rlAV9VYB3c3SJA/ApdjxA2Az/V4/5swtRzTG6h/ICD1RCNU
+ Yn2whrjmth8wNfgyGUaRs/N02gHf0UDeDQ3Na63+Q7Zdm4DvCAA4zg0KQJLGT8V/TwZE
+ 8y9OCv8r1qNA9LLNrLfqlpYMRID00z9it126zQmFN983nPb4TY0MMIYfdY+mp/8RnU6D
+ Lsr2UNxdUiPN4j+rOr69rfEsIvWoJTRJKPmvi9uJCXxa+ogKt0MD4fbb+vu/LDQcupVO
+ ICsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=fNWzVu94jtQ2U8ecDCU7aYXiQ4YbXT+d1pdYft4GMaU=;
- b=NMC6G/dKz5msjDuZEWvbjVp71u6mhrm14h+I0DZo2Ii8tqO+SEYTp1uPjRA7z8asmU
- 0GaAw+cBC1y2vNjpu5flkCPhSkYiJIA2XJZ4CQAfOONjI5NloSNJYKZlGVC9GRjFfULZ
- B+GES91u4Mm9wFjqBiIIyjVwlgI8taNqKOiWoXplOWOREIjmnyDyO5HatM2/9ec3ukHY
- rk3vh64gy9vOne6Oj0+hpkQLwZojt1/C5ydoROqefcmOMJLNgZiXRh0G4afgPTvlh9C+
- f0kffiLUK1Z0mA4dtqZ1b8CcBACZ1KO58dbcmbx5BJqn477teVPFlCSHdUtB3fxIukbk
- hctA==
-X-Gm-Message-State: APjAAAWaCNiuAsj0jase7SN+60c4aoKsdDGdJ4vFsAFOBrLhjtLTq7+O
- g6qOBjR5JeVt5DJTAxGz0XzmBN0UMzeWVC0V62g=
-X-Google-Smtp-Source: APXvYqycLqfZRrXmYKfVN47QKA7CnpnFkz3yV1BEkokWLGGmAH33/yc+n+pVKvSJPrfooBkH4HIguFa8fasqoYl7mh4=
-X-Received: by 2002:a9d:7856:: with SMTP id c22mr18040111otm.261.1555155205236; 
- Sat, 13 Apr 2019 04:33:25 -0700 (PDT)
+ bh=cPr5fJiz4nXGuDrFwW8vntfct74jRoGWcNEctADPJjc=;
+ b=rojNAZPqfPjPgOYCAYshJ56K9lOwGCEAn5oJktzj4iAwcbdo3XgPeLxayQ9AQEom51
+ Ef92zj9QicPQave/RBsFVopuVGZy0pq0aBG7JzaAViTQUO4OPo3SuqZeuZr1f9hp6vZh
+ koX+xIGfVLz8Fbjhoodo6UbX1dkcEnSVmJSzsAESpedjRt0VqW15t/cEO4P+IPjHH/eF
+ FMFRHMug8LLUCGiOXokQSZze0xJgU80cWZt+pmxwbf24hrEoUKNXhCyPRATlraBruXLG
+ fgsIay3P4prn9yNyf7elDeDCMCw1t3Q3IcVaARi5VjnYIGAmV3U695T/BGPakk7KKnqB
+ D8Cg==
+X-Gm-Message-State: APjAAAXjv9gOtNHp3R31CWLYGXT7XlDL9hrI4X+GStU3tdL/UX8oPZqy
+ c41kshpms6AtmDmwnSPifqNqU84+kbm6wQJvVaw=
+X-Google-Smtp-Source: APXvYqxzGCfIyrIAv+u7k39uAGKbvbJJ4MpMp4GSs+6yxhCpJZVFMuXbhKBUhNys6IzPlNuSIUUdYS7bk7oPI+CyD/A=
+X-Received: by 2002:a9d:6e88:: with SMTP id a8mr4225415otr.117.1555155450171; 
+ Sat, 13 Apr 2019 04:37:30 -0700 (PDT)
 MIME-Version: 1.0
 References: <20190412092337.6941-1-narmstrong@baylibre.com>
- <20190412092337.6941-3-narmstrong@baylibre.com>
-In-Reply-To: <20190412092337.6941-3-narmstrong@baylibre.com>
+ <20190412092337.6941-4-narmstrong@baylibre.com>
+In-Reply-To: <20190412092337.6941-4-narmstrong@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 13 Apr 2019 13:33:14 +0200
-Message-ID: <CAFBinCA3iFSW4K8FJN913CcsxM4YFc2Of9Ldpn7230Ss427mMA@mail.gmail.com>
-Subject: Re: [PATCH 2/3] pwm: meson: Add clock source configuration for Meson
- G12A
+Date: Sat, 13 Apr 2019 13:37:19 +0200
+Message-ID: <CAFBinCDRFCo6GiTQ+zArqeuZCYK6BdfMVtRDUAhjG+oLEZyA8w@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: meson-g12a: Add PWM nodes
 To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190413_043328_388867_A84AA117 
-X-CRM114-Status: GOOD (  16.91  )
+X-CRM114-CacheID: sfid-20190413_043731_282433_45437F7E 
+X-CRM114-Status: UNSURE (   8.12  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -98,81 +98,18 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil,
-
 On Fri, Apr 12, 2019 at 11:24 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
-> For PWM controller in the Meson G12A SoC, the EE domain and AO domain
-> have different clock sources. This patch tries to describe them in the
-> DT compatible data.
+> This adds the EE and AO PWM nodes and the possible pinctrl settings.
 >
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  drivers/pwm/pwm-meson.c | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
->
-> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-> index 2b03938039b6..46287cc8a0eb 100644
-> --- a/drivers/pwm/pwm-meson.c
-> +++ b/drivers/pwm/pwm-meson.c
-> @@ -434,6 +434,15 @@ static const struct meson_pwm_data pwm_axg_ao_data = {
->         .num_parents = ARRAY_SIZE(pwm_axg_ao_parent_names),
->  };
->
-> +static const char * const pwm_g12a_ee_parent_names[] = {
-> +       "xtal", "hdmi_pll", "fclk_div4", "fclk_div3"
-> +};
-> +
-> +static const struct meson_pwm_data pwm_g12a_ee_data = {
-> +       .parent_names = pwm_g12a_ee_parent_names,
-> +       .num_parents = ARRAY_SIZE(pwm_g12a_ee_parent_names),
-> +};
-> +
->  static const struct of_device_id meson_pwm_matches[] = {
->         {
->                 .compatible = "amlogic,meson8b-pwm",
-> @@ -455,6 +464,14 @@ static const struct of_device_id meson_pwm_matches[] = {
->                 .compatible = "amlogic,meson-axg-ao-pwm",
->                 .data = &pwm_axg_ao_data
->         },
-> +       {
-> +               .compatible = "amlogic,meson-g12a-ee-pwm",
-> +               .data = &pwm_g12a_ee_data
-> +       },
-the PWM part is fine for me
+I reviewed the controller definitions and picked three pinctrl nodes -
+all of them are fine:
+Reviewed-by: Martin Blumenstingl<martin.blumenstingl@googlemail.com>
 
-> +       {
-> +               .compatible = "amlogic,meson-g12a-ao-pwm",
-> +               .data = &pwm_axg_ao_data
-> +       },
->         {},
-but I'm not sure about "amlogic,meson-g12a-ao-pwm":
-the public S922X datasheet from Hardkernel [0] section 6.6.1.2 "AO
-Clock Tree" (page 107) mentions two different clock sources for the AO
-PWMs:
-- AO PWM A and B has parents xtal, aoclk81, fclk_div4 and fclk_div5
-(pwm_axg_ao_data has the first two parents swapped)
-- AO PWM C and D only have xtal and aoclk81 as parents
-
-regarding the clock parents:
-I'm not sure whether pwm_axg_ao_data is wrong, G12A is different from
-G12B or the G12B datasheet is "correct". can you please list what you
-have tested so far and confirm that the parents you are using are
-"correct"
-
-regarding the compatible string "amlogic,meson-g12a-ao-pwm":
-if there are two different AO PWM modules, should we name it
-differently, for example by splitting this compatible string into:
-- "amlogic,meson-g12a-ao-pwm-ab" (with parents: xtal, aoclk81,
-fclk_div4 and fclk_div5)
-- "amlogic,meson-g12a-ao-pwm-cd" (with parents: xtal and aoclk81)
-
-
-Regards
-Martin
-
-
-[0] https://dn.odroid.com/S922X/ODROID-N2/Datasheet/S922X_Public_Datasheet_V0.2.pdf
+that said, I had two questions regarding the AO PWM controllers in
+PATCH 2/3 of this series which should be considered before applying
+this patch
 
 _______________________________________________
 linux-amlogic mailing list
