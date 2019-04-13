@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
 	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CFD59C10F11
-	for <linux-amlogic@archiver.kernel.org>; Sat, 13 Apr 2019 12:02:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D0D5DC10F11
+	for <linux-amlogic@archiver.kernel.org>; Sat, 13 Apr 2019 12:03:05 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 972362171F
-	for <linux-amlogic@archiver.kernel.org>; Sat, 13 Apr 2019 12:02:36 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9DB5E2171F
+	for <linux-amlogic@archiver.kernel.org>; Sat, 13 Apr 2019 12:03:05 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Zp/1M9yf";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="j718zd9i"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 972362171F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ldPWUNNe";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="ELSXzfTz"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9DB5E2171F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,58 +26,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Dfe+ccmNiY+j3WUqagmQoLqKxmO9BgU9/SiJkQZDFp8=; b=Zp/1M9yficntnb
-	pswQjsl3sCE3QeSBPb9si+osagBE2P8Za70pB4F7HP57IngUhF97mlOIhdTWNVkZdGun9XJXQU2aF
-	oaaYQa9T0nVEekY+sT9iBlaJ0TewDZ7rDs76764tvt8vZ5bk9sWOS+Gp/1sPZNhuSCvsbbLKXfMJ6
-	2qO+WReHXt/zj7IUvkzcqDqpCOcisonNvULp7M1k4rRfUO/DhUc7+3mtgxyXSLs+RsTE4McwaWnBe
-	FQ6aoDHa2B/ouyqYI65HsNwxUf+gS+qauDa6vkVrocYiwU0kfJ0+LE538vBMq9sJ/jtzRzy/gx/Tw
-	zNKaQButCEp09yiRQIcQ==;
+	List-Owner; bh=7WwiQSuu3vhoOl44wqXo5c7OeEApTfl5i2XtOLuTNmg=; b=ldPWUNNe0Nsxrj
+	SuvgIPiMo3T91AkUqjfxq9KIaLtkx5JFrf3Is88FRgyGq57YWG1GVerBoq6pW8G4AV6DQj9h/2vW8
+	zmXJoBf9mhl3u7ZzssOZZ0ohRC8nODZvH+taJH6zDQhj0s6nI7BVr1eYGEK9joalcNgYGfCzMkSqO
+	C9MymkN/IoWv3BZPjyW08LdEV+96NeMFCnxsFpOGoOm8NODFBhcPtSu8e9SvfkoMQuRA80aYZ7uo+
+	ktcGYOWmfb4hFeMl3pR+0GA3w0fFQ5y/EVMwnDK7RYX7AbXjT3hhqWFojTv/JtBHVWR+/AJP3atl3
+	c9/8IQ2T5RlEaGk1Lcrg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hFHMc-0000Vv-NB; Sat, 13 Apr 2019 12:02:30 +0000
-Received: from mail-oi1-x244.google.com ([2607:f8b0:4864:20::244])
+	id 1hFHN7-0000n8-5B; Sat, 13 Apr 2019 12:03:01 +0000
+Received: from mail-ot1-x343.google.com ([2607:f8b0:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hFHMZ-0000VK-3B; Sat, 13 Apr 2019 12:02:28 +0000
-Received: by mail-oi1-x244.google.com with SMTP id 3so10157511oir.7;
- Sat, 13 Apr 2019 05:02:26 -0700 (PDT)
+ id 1hFHN4-0000mj-E0; Sat, 13 Apr 2019 12:02:59 +0000
+Received: by mail-ot1-x343.google.com with SMTP id j10so10710207otq.0;
+ Sat, 13 Apr 2019 05:02:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=lYW1l5O3FluBf8+XNARKHUH9qJumpHRGxiYJg+cTA6M=;
- b=j718zd9ijociYSwQhRpEiQC/8sCqLoJhrI/XIRABPfmVE90t2uL8UlrXRdw/TRie9t
- QlrBfrouQ0Y6RhoDC8XkYRyTPz/LQFYt0TANlUQp11NcAoULMdSmMBBCarw3IU2ggnBI
- AsKHgUMYNkyECx5T+L7h8mCllopo42N6V8OgN+had7EaaHOwrJkk9FUMTTvuFRLps+9Q
- YjLbFRPhjInUO69rfKeYKCbv0CwtSeacI2ePkcgSQpTNjnjDAFAX1DA7OkKdshdMhL7L
- EKQHGxbBEh8xSwsGk3FBV9UFLCSWDlhvg4gqJC1dt76Make8kzP+bW6I15jxctTaIOkp
- cewA==
+ :cc; bh=tlEZGPTlnZZP+TvIWHbuXPtYetCJzqo7TQchFqePyHY=;
+ b=ELSXzfTzoZtMaOBJpC5LYogij7n92yZHgTZh5BQ2szD4EXWNez/WxAiRVEFApHdZwS
+ J4LzOyS/BWinnBNSdlH01q8Bcw/Yxlm+TrUuzN5QuCybrZtliKQt1MJROHFVqSNYKeJ6
+ cNst8OFbOP1b7MDFE02V78KIzU1zcgvG10nPbE8GCGgbDv9VBJLbcDOwfFkAXGp7gag4
+ bWhqGi+BqcUIGQgdpQ4gu2YdTFPKiGsK7/fMljmZQA6bO73SyNKjUOQmutxJjhs/pGI4
+ +8+Cmdv4ofvZb/zqrwv7pU+TCYF7WN1ehjHKVxGV1/u+ufckrxswbb16NUcZBwaJPwCL
+ 2rCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=lYW1l5O3FluBf8+XNARKHUH9qJumpHRGxiYJg+cTA6M=;
- b=ikFBa8svKfIl0czkdysTTu2IozheokoX/XTxL6KNWGgCJJzzBg6Hpzr1GHuGfkcQZp
- mNBvVIDJlx4ANk+j7RsLK2J1hDVRZDW+Fag7YBaGVJ6GkF2BToFeBEROxdSTB12gkatQ
- 6LgsaXChZ2V+/1aDQvLejLJCPkTd7o/NSFMtMoY2CZ5SwdECLb4H1wqISb3rirnNTp4C
- 0ypxDKoeRex2/UU9b6c+2OlRjksKV/jPJLwJwXUO77uNpa9OyEJiI6P8B6seWCP/DOrW
- l+zDhWw+Ppqg8qakPUknKNFAJIyTMhORkVf3T/sIckxwnhpdL3jHMihY7PyOriey3Tdd
- PS3A==
-X-Gm-Message-State: APjAAAU7ch/CEiwTB1q1Y42geZ28BLldrfGkxsCjFmZ9kNJU11NGJu7n
- Pg2xhGEvVVDmlryKS0PDjEs+o35prMeb4FC+yZ8pebzI
-X-Google-Smtp-Source: APXvYqzsKWcXSlWINfu/7neHTQkWozJwcAACSs3EG8yenqYsU7UgecbMArvvjB6K9A2LGvI0JPIguXUmwEVkVjUf+aY=
-X-Received: by 2002:aca:b68a:: with SMTP id g132mr13342536oif.47.1555156945654; 
- Sat, 13 Apr 2019 05:02:25 -0700 (PDT)
+ bh=tlEZGPTlnZZP+TvIWHbuXPtYetCJzqo7TQchFqePyHY=;
+ b=BUo2EB3eoX1BxIZ5Xgz1hmde8hT/Fp544+OCZnxUKP0mUfJR1Lp5SOEnSrpcTae9o9
+ dx1+sDZY0hSO2vEphkMlTYtGBcCxsFfzAzweaKLOeiQLgv1LM4fCfe68Q9vGIgt0IAh6
+ ugYgwhmh+6+byBidASSgYdulpLShejfV/iqpyjUwQ1pXaF/TcOQsv6ofIx/TO99QQXzH
+ M7gy0vUEuQLhdI+XedUOpCcz4iUcV94BTwpbqel5r9uZANdqqD8/Jse7dSzn8o7pdgsr
+ Fj9Br/IMo0m6EI343b2OPs4cJ2QNnNJN/ncmYinTu2d8M1wUkLDzMJYQsyrhhSxkiPvu
+ Xmdw==
+X-Gm-Message-State: APjAAAUiUUhOOf5hFiyb8VqMv9o4qDx7ofNXQCjQA2QIeXERD4eWGSAH
+ jXfSNQ4OxuBTJxU6Aeg1xV11JRMnwjEZZfgvHfk3Sx2w
+X-Google-Smtp-Source: APXvYqwXnp6BZLhLO1NTKKwb/qMP0AD3mnlOPjJrnhWiMUUU+p51m67YaGsdfmFaOUB6so3SI7PZ9ilYBC32YYg6uWc=
+X-Received: by 2002:a9d:6e88:: with SMTP id a8mr4282525otr.117.1555156976586; 
+ Sat, 13 Apr 2019 05:02:56 -0700 (PDT)
 MIME-Version: 1.0
 References: <20190412100518.24470-1-narmstrong@baylibre.com>
- <20190412100518.24470-2-narmstrong@baylibre.com>
-In-Reply-To: <20190412100518.24470-2-narmstrong@baylibre.com>
+ <20190412100518.24470-3-narmstrong@baylibre.com>
+In-Reply-To: <20190412100518.24470-3-narmstrong@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 13 Apr 2019 14:02:14 +0200
-Message-ID: <CAFBinCDoxuM18+rRm0BR5usHYpBACXt+HzC6o3TFU-fqi3kkQQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3] arm64: dts: meson-g12a: Add IR nodes
+Date: Sat, 13 Apr 2019 14:02:45 +0200
+Message-ID: <CAFBinCB_V_JR=+6d40XMYAEP9UPopeB=SGZWzDb-B_G_JXRfDA@mail.gmail.com>
+Subject: Re: [PATCH 2/3] arm64: dts: meson-g12a-x96-max: enable IR decoder
 To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190413_050227_218287_3C1374D7 
-X-CRM114-Status: UNSURE (   8.49  )
+X-CRM114-CacheID: sfid-20190413_050258_465224_6EC5AB16 
+X-CRM114-Status: UNSURE (   6.74  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -98,30 +98,11 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil,
-
 On Fri, Apr 12, 2019 at 12:05 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
-> Amlogic G12A SoCs uses the exact same IR decoder as previous
-> families, add the IR node and the pintctrl setting.
-as far as I can tell there are either two IR decoders or one updated
-IR decoder in G12A and G12B.
-I'm using mesong12a.dtsi from
-buildroot_openlinux_kernel_4.9_fbdev_20180706 as reference:
-  remote:rc@0xff808040 {
-      compatible = "amlogic, aml_remote";
-      reg = <0x0 0xff808040 0x00 0x44>, /*Multi-format IR controller*/
-                <0x0 0xff808000 0x00 0x20>; /*Legacy IR controller*/
-      ...
-
-the registers which you are mapping are for the "Legacy IR
-controller", so our existing meson-ir driver will probably work (I
-haven't tested it myself yet).
-
-can you please be explicit about this in the patch description?
-
+> Add support for the IR decoder input on the X96 Max board.
+>
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-apart from the description you can add my:
 Reviewed-by: Martin Blumenstingl<martin.blumenstingl@googlemail.com>
 
 _______________________________________________
