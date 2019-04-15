@@ -4,19 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7BEA4C10F0E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Apr 2019 06:04:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E6B3FC10F0E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Apr 2019 06:05:02 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4BBB120874
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Apr 2019 06:04:33 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B5A1720825
+	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Apr 2019 06:05:02 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ut3lhRuH"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4BBB120874
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZFx2qy+C"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B5A1720825
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,43 +25,43 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
 	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=OqzLO9tVDFQkC8415kmVLCtL4F7ARzLysEmWBhtZ+pU=; b=ut3lhRuHPa65CAD1kB47J/jeq
-	fKOpSlCYmOqBq96JRJiKzcT7sEyfr/gfLD8buhT4kHK6+/q6UfTeYoOfGMbTMF+TYkbVnoLZpVrlC
-	ige8vN1SJxe8KlykRK2dcwpBiybDIiMMcG1o3kzMK0RVSdP3c6PX/xYOBR3ULW0jyzLd5Ps79TRXX
-	cMFOJokWG/6NRfVPYlyzdWp5sF0dhh6BGJdnMXbMNgoTCpJI58M/wn7Vz/THil7ovbqe08N6JETyW
-	kkTTC0xEVcKCOR9vjQ8/+LM9xo5TKUr0hfsNe3uDQKKzNnqb/dvaC6E0a8izvwwkB3K8ioH6BlurX
-	giwceyyIw==;
+	 bh=zLbMx+oeH9P0C6LNaTmkhZ7kM1UYYeVZkDgQgIuzR/k=; b=ZFx2qy+C8n1ciaPRZfu3qZQVY
+	mipEpkD+lW/hgJ/GDKlx6Pyk1mUgCClRbpNYhwOcNBsu15P1bahVPpM1gIO540RzMWzKFNc4/DMMd
+	Zaa9bUV/7OARkZzz5qBM3IYMY8pRcjqLf1wRVZa1spsiiFKJt4vZ8t3VF6O3wSwu85snkG6yvIlvC
+	vPly1RnEgPlZgirwALYYPeo+Qv7704QLQs8RDeKTOVxgjQMP5tWVSwxuVTXTTXZdlWKUoVjjGZAHa
+	FXvVf+QYOq4wDUTPGBGBqmRrGk9IRQPEEbr8mtMrdraE+cP5Y6V/O5TLVg9+EjXhyUVSobd6P7HOT
+	b6uD0FYYQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hFujD-0007BM-7d; Mon, 15 Apr 2019 06:04:27 +0000
+	id 1hFujh-0007kr-Ol; Mon, 15 Apr 2019 06:04:57 +0000
 Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hFuim-0006as-Md; Mon, 15 Apr 2019 06:04:07 +0000
+ id 1hFujH-0007H5-DV; Mon, 15 Apr 2019 06:04:37 +0000
 Received: from [10.28.18.125] (10.28.18.125) by mail-sz.amlogic.com
  (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Mon, 15 Apr
- 2019 14:03:59 +0800
-Subject: Re: [PATCH 3/4] mtd: rawnand: meson: use a void pointer for
- meson_nfc_dma_buffer_setup
+ 2019 14:04:30 +0800
+Subject: Re: [PATCH 4/4] mtd: rawnand: meson: only initialize the RB
+ completion once
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  <linux-amlogic@lists.infradead.org>, <linux-mtd@lists.infradead.org>,
  <richard@nod.at>, <miquel.raynal@bootlin.com>
 References: <20190411220056.19109-1-martin.blumenstingl@googlemail.com>
- <20190411220056.19109-4-martin.blumenstingl@googlemail.com>
+ <20190411220056.19109-5-martin.blumenstingl@googlemail.com>
 From: Liang Yang <liang.yang@amlogic.com>
-Message-ID: <6ed284c1-ed34-9483-51a4-a79dfd0bd42c@amlogic.com>
-Date: Mon, 15 Apr 2019 14:03:57 +0800
+Message-ID: <bd1900db-7ca1-a6e5-39f9-db54e0b570dd@amlogic.com>
+Date: Mon, 15 Apr 2019 14:04:28 +0800
 User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190411220056.19109-4-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20190411220056.19109-5-martin.blumenstingl@googlemail.com>
 Content-Language: en-US
 X-Originating-IP: [10.28.18.125]
 X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
  (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190414_230400_754993_197C9695 
-X-CRM114-Status: GOOD (  13.50  )
+X-CRM114-CacheID: sfid-20190414_230431_625830_351CE949 
+X-CRM114-Status: GOOD (  13.36  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -84,68 +84,46 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 
 On 2019/4/12 6:00, Martin Blumenstingl wrote:
-> This simplifies the code because it gets rid of the casts to an
-> u8-pointer when passing "info_buf" from struct meson_nfc_nand_chip.
-> Also it gets rid of the cast of the u8 databuf pointer to a void
-> pointer.
-> The logic inside meson_nfc_dma_buffer_setup() doesn't care about the
-> pointer types themselves because it only passes them to dma_map_single
-> which accepts a void pointer.
+> Documentation/scheduler/completion.txt states:
+>    Calling init_completion() on the same completion object twice is
+>    most likely a bug as it re-initializes the queue to an empty queue and
+>    enqueued tasks could get "lost" - use reinit_completion() in that case,
+>    but be aware of other races.
 > 
-> No functional changes.
+> Initialize nfc->completion in meson_nfc_probe using init_completion and
+> change the call in meson_nfc_queue_rb to reinit_completion so the logic
+> matches what the documentation suggests.
 > 
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->   drivers/mtd/nand/raw/meson_nand.c | 10 +++++-----
->   1 file changed, 5 insertions(+), 5 deletions(-)
+>   drivers/mtd/nand/raw/meson_nand.c | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
 > 
 > diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-> index 9a6023638101..57cc4bd3f665 100644
+> index 57cc4bd3f665..ea57ddcec41e 100644
 > --- a/drivers/mtd/nand/raw/meson_nand.c
 > +++ b/drivers/mtd/nand/raw/meson_nand.c
-> @@ -470,15 +470,15 @@ static int meson_nfc_ecc_correct(struct nand_chip *nand, u32 *bitflips,
->   	return ret;
->   }
+> @@ -400,7 +400,7 @@ static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms)
+>   	cfg |= NFC_RB_IRQ_EN;
+>   	writel(cfg, nfc->reg_base + NFC_REG_CFG);
 >   
-> -static int meson_nfc_dma_buffer_setup(struct nand_chip *nand, u8 *databuf,
-> -				      int datalen, u8 *infobuf, int infolen,
-> +static int meson_nfc_dma_buffer_setup(struct nand_chip *nand, void *databuf,
-> +				      int datalen, void *infobuf, int infolen,
->   				      enum dma_data_direction dir)
+> -	init_completion(&nfc->completion);
+> +	reinit_completion(&nfc->completion);
 Tested-by:Liang Yang <liang.yang@amlogic.com>
 Acked-by: Liang Yang <liang.yang@amlogic.com>
->   {
->   	struct meson_nfc *nfc = nand_get_controller_data(nand);
->   	u32 cmd;
->   	int ret = 0;
 >   
-> -	nfc->daddr = dma_map_single(nfc->dev, (void *)databuf, datalen, dir);
-> +	nfc->daddr = dma_map_single(nfc->dev, databuf, datalen, dir);
->   	ret = dma_mapping_error(nfc->dev, nfc->daddr);
->   	if (ret) {
->   		dev_err(nfc->dev, "DMA mapping error\n");
-> @@ -645,7 +645,7 @@ static int meson_nfc_write_page_sub(struct nand_chip *nand,
->   		return ret;
+>   	/* use the max erase time as the maximum clock for waiting R/B */
+>   	cmd = NFC_CMD_RB | NFC_CMD_RB_INT
+> @@ -1380,6 +1380,7 @@ static int meson_nfc_probe(struct platform_device *pdev)
 >   
->   	ret = meson_nfc_dma_buffer_setup(nand, meson_chip->data_buf,
-> -					 data_len, (u8 *)meson_chip->info_buf,
-> +					 data_len, meson_chip->info_buf,
->   					 info_len, DMA_TO_DEVICE);
+>   	nand_controller_init(&nfc->controller);
+>   	INIT_LIST_HEAD(&nfc->chips);
+> +	init_completion(&nfc->completion);
 Tested-by:Liang Yang <liang.yang@amlogic.com>
 Acked-by: Liang Yang <liang.yang@amlogic.com>
->   	if (ret)
->   		return ret;
-> @@ -729,7 +729,7 @@ static int meson_nfc_read_page_sub(struct nand_chip *nand,
->   		return ret;
 >   
->   	ret = meson_nfc_dma_buffer_setup(nand, meson_chip->data_buf,
-> -					 data_len, (u8 *)meson_chip->info_buf,
-> +					 data_len, meson_chip->info_buf,
-Tested-by:Liang Yang <liang.yang@amlogic.com>
-Acked-by: Liang Yang <liang.yang@amlogic.com>
->   					 info_len, DMA_FROM_DEVICE);
->   	if (ret)
->   		return ret;
+>   	nfc->dev = dev;
+>   
 > 
 
 _______________________________________________
