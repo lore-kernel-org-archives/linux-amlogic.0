@@ -2,146 +2,89 @@ Return-Path: <SRS0=RDff=ST=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EE707C282DA
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Apr 2019 18:27:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8F2A2C282DC
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Apr 2019 20:44:23 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BF69C2064B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Apr 2019 18:27:11 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 56CF12183E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Apr 2019 20:44:23 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="b/yMCk/a";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="reCo4zyC"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BF69C2064B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="trO70yAD";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="0CMRmUqU"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 56CF12183E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RKlE4V1s+l8v8QwoL/8BXLJ8fcM2uKNdB01vmwQeajs=; b=b/yMCk/a3Trwmc
-	LVATDxL2PTp2ZNC5YqLWNj9LJimtPrhRIlkbDMLLEXNaDm3xlE10ML0B4fqnSx4S7RMEmexQSpMAS
-	lWjKCVnVhGCPhIOhUuQXMLI2xkkmoFegjddT2kOPopnOJb8V8N6Xm7RYsWCsGkZbTIx10gJZPGDmZ
-	9EKiW9bhvatPCpJiGgD/DWwagH9oFvn8sJJMoQi33IHUEdXXRrvz3A3RlRoIC8u/R2E9VtIYw7V4u
-	+gl4mgxvyeeJ/gE0G60/xQYHM03yqBEwx8LwlMUkNMQyE1qM3uN9vv0y9AALvaGmBLRq2s3njT5dG
-	k5zKdfIlTWSx3G0f6kzQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=2gVVRo2nRYK4mY+B37mM/NgDPREAVBSmh9ibi/v4igg=; b=trO70yADtAg+hX
+	9bx/LtEbveGt/BXJM0/uUL8wNUqYFnNeFXsCqYgQN2N6+F+4dhkE4c12CpLuaKHMz4EYNfIaLdCMn
+	5LlQiXPnz5Ut/ugxmPeGWBYjeu3y9LI9p1pWRhgCNtoDhwAFJThLP3R6lhhS2P1xdbS38blyPRgJO
+	E9+KC0R2PBCdif4X9XxyNwyz0VPNEMjQa+CYRLHp5iRKj3S/frZzJJ3C4aAFA+XUoTL1ACveqY634
+	XnZ7FVy+n098MQ0s1+IABAP+jhk0WUyHG970oa+yYUQu6KiaBElh+SIptkZ5fMafr6Hyf+3BSRXv+
+	sBV8Wc8gWmCCnctgfQDQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hGpH2-0003LJ-Ad; Wed, 17 Apr 2019 18:27:08 +0000
+	id 1hGrPj-0002HE-AD; Wed, 17 Apr 2019 20:44:15 +0000
 Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hGpGz-0003Kt-NS
- for linux-amlogic@lists.infradead.org; Wed, 17 Apr 2019 18:27:07 +0000
-Received: by mail-wr1-x444.google.com with SMTP id q1so33259347wrp.0
- for <linux-amlogic@lists.infradead.org>; Wed, 17 Apr 2019 11:27:05 -0700 (PDT)
+ id 1hGrPd-0002FC-JK
+ for linux-amlogic@lists.infradead.org; Wed, 17 Apr 2019 20:44:11 +0000
+Received: by mail-wr1-x444.google.com with SMTP id w18so58512wrv.11
+ for <linux-amlogic@lists.infradead.org>; Wed, 17 Apr 2019 13:44:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=8FKuD9MncH/k9Xn+3dyvv1bLpU0a0ED0JLHIGSkfh9o=;
- b=reCo4zyCLvnWQJk3nARlPpYbm0MTjAMXDXdBojF/Y0CEvl6b1s9QYaNYm7rayYoRfa
- qeJWg1MJLCj3XPRnsZnJ20pYKnfBRJyNSekV2txxUnP1bHkIX0Y4klNw2mvVursl6jW6
- 1IB7tQTsmCqcG4boNnHopYVHVLBpAvkwMH4qzeK8GbrNK2W6QawDKQUbzcnM9Ymtvftj
- VeAsbwKMY8aJXoxgevAtVc3A9O7wNSikQI7yOnG5qZ/Cy/fArkyVY0wS+szu7du7CmrC
- 5scq5Iq7rM6aUdZCRI0/BWvFgHrA0RNSe0WupCHGGa2hvtXj21k4DYn8oBhBMGOz9dCk
- dIyA==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=85XK5dFLbNA8+J3uTS62n225ZxyTN5YNEbzJYjOQJYI=;
+ b=0CMRmUqUZL8eSuaFv8AWE1G/Dp+AJmyE7FjzasQPPO9lvMFXPShi0mRIG1wXHdypkM
+ 2PHmFlVq9WLs4XzMlfrDM85jmBZN/ZcbQHpa0mVMeB288npUX7nVLUgOep3v84uu66r7
+ l8gVwuFIrhHSszYeWTKEYpmJL7UiFALMeLRCJSsoNt3JCG7amlTJ2V5qlyfaOkh4KtZP
+ hA2F48yKHTxOCLrQ1g6TJpMXV9QyYPSnHc82vsby+KO+MY8gNv3PjWAgwKNtRF9s+l3A
+ udy9ymOe1se5x2gt5aG5gTK4D4oFUIlZ12a8im8LC/o7Jw2J/mKa2AVsgmnJlFyWicx6
+ VP1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=8FKuD9MncH/k9Xn+3dyvv1bLpU0a0ED0JLHIGSkfh9o=;
- b=QpZ3bAje3At0DKm7cZ/7WTY2VItT/d6x9dn6gY0gIiQxQjfm83NdE2LkHs00M0dYll
- OpeAiD2QAgIEXO3Smp+AsMYeNlVHlQ7TVAGDkULmKJpY5UJj9eEUsGB21Dbgi6a1/cFT
- ssH5oWRTm6aCl/HjxN9s6d2uuP+YjTzw8C8YjLOSLUW5fPb8qV7T73TOBMrqw4jnQNrb
- e3sIXlkoFd0vguYGikCnWvwjpZ75mcfShFslX5eV2uofGjeUU/BykIw2D/7YziBiyqLr
- fI/4uGWQ6dpeTi9dmakMwvBoiQb7OC1mM6jGO59X+Nq4cE+Q/YJ0SUUoIZPbhOipBOC9
- Lxgw==
-X-Gm-Message-State: APjAAAVF2NxPrMsuaSLYDIqbadlLBAkkGbHCC+jvIy4frtsxY3Q2mbov
- kds2rCVQqRbHFEyacx/jbpzU33g2KMcEFO72
-X-Google-Smtp-Source: APXvYqxo2MobICrtY0Th4M8Swpke+kEwifrMq8wsBnMy/Fo5o1F30B/r8kjjygQvpbZsWJVpf0hTwg==
-X-Received: by 2002:a5d:664c:: with SMTP id f12mr926238wrw.302.1555525623979; 
- Wed, 17 Apr 2019 11:27:03 -0700 (PDT)
-Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr.
- [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id y133sm5264427wmd.2.2019.04.17.11.27.03
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 17 Apr 2019 11:27:03 -0700 (PDT)
-Subject: Re: [PATCH] drm/meson: add size and alignment requirements for dumb
- buffers
-To: Sky Zhou <Sky.Zhou@amlogic.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-References: <20190408090137.2402-1-narmstrong@baylibre.com>
- <cd3674423da344e0a98ca58737efc1f5@amlogic.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <2a9f0dcc-9136-ffbd-520e-6e323ac80dc0@baylibre.com>
-Date: Wed, 17 Apr 2019 20:27:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=85XK5dFLbNA8+J3uTS62n225ZxyTN5YNEbzJYjOQJYI=;
+ b=ZW6CiwzpAAIvMeLdtsEKcPyCuIkLDrjqmgqoVN0VUlFa6lTauVdjSHHMAqsxna0izY
+ 3PMcCSXKwceYPJFSN1Xt0aJ6RAOtNyqXag4keOafCVXuE8ZLftPOoIYAQT80v7T5os1+
+ sRdEVV/rY2ZeEaQp9NW5hU+in/N/ED/kWXWyTD6OxDsJaHyRIRfqY9C4a7YfJ2ZZMBSt
+ WfQNkbK1mlz6Mjj3lx9lFMYoXH5xUhFy0meJEVAjhU1og/rdrKxmO+VlFRNFvNV9XVLE
+ Nqm3lxNfz98lL6CI7ygsUljvM7IbW3J4aYccGEYPuF2mBgxv5TqUa/FnHj7T9syguXNt
+ /0lQ==
+X-Gm-Message-State: APjAAAX9dZgY4j+sxPt762FknDIuX2ufT0u+DoMcGD50MtJEgae+wFbe
+ YX2Z73fgHH6l7UISyQqEoYjEIQ==
+X-Google-Smtp-Source: APXvYqxcJ09qdX7h+qjEtcqrrRChogD9+j4GpR2dyrrqyeNgu1adXMaIhDaHeetTkTmJHa9deYTH8w==
+X-Received: by 2002:adf:f102:: with SMTP id r2mr42879784wro.136.1555533847319; 
+ Wed, 17 Apr 2019 13:44:07 -0700 (PDT)
+Received: from boomer.lan (cag06-3-82-243-161-21.fbx.proxad.net.
+ [82.243.161.21])
+ by smtp.googlemail.com with ESMTPSA id c20sm98716866wre.28.2019.04.17.13.44.06
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Wed, 17 Apr 2019 13:44:06 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>, Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCH 1/7] mmc: meson-gx: remove open coded read with timeout
+Date: Wed, 17 Apr 2019 22:43:49 +0200
+Message-Id: <20190417204355.469-2-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190417204355.469-1-jbrunet@baylibre.com>
+References: <20190417204355.469-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <cd3674423da344e0a98ca58737efc1f5@amlogic.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190417_112705_760520_465C1D98 
-X-CRM114-Status: GOOD (  13.89  )
+X-CRM114-CacheID: sfid-20190417_134409_681718_4DD8E377 
+X-CRM114-Status: GOOD (  13.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -153,66 +96,68 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Cc: linux-amlogic@lists.infradead.org, linux-mmc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 16/04/2019 12:20, Sky Zhou wrote:
-> 
-> On 2019/4/8 17:01, Neil Armstrong wrote:
->> The Amlogic SoCs Canvas buffers stride must be aligned on 64bytes
->> and overall size should be aligned on PAGE width.
->>
->> Adds a custom dumb_create op to adds these requirements.
->>
->> Fixes: bbbe775ec5b5 ("drm: Add support for Amlogic Meson Graphic Controller")
->> Suggested-by: Sky Zhou <sky.zhou@amlogic.com>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>   drivers/gpu/drm/meson/meson_drv.c | 14 +++++++++++++-
->>   1 file changed, 13 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
->> index faf1b1b0357c..72b01e6be0d9 100644
->> --- a/drivers/gpu/drm/meson/meson_drv.c
->> +++ b/drivers/gpu/drm/meson/meson_drv.c
->> @@ -90,6 +90,18 @@ static irqreturn_t meson_irq(int irq, void *arg)
->>   	return IRQ_HANDLED;
->>   }
->>   
->> +static int meson_dumb_create(struct drm_file *file, struct drm_device *dev,
->> +			     struct drm_mode_create_dumb *args)
->> +{
->> +	/*
->> +	 * We need 64bytes aligned stride, and PAGE aligned size
->> +	 */
->> +	args->pitch = ALIGN(DIV_ROUND_UP(args->width * args->bpp, 8), SZ_64);
->> +	args->size = PAGE_ALIGN(args->pitch * args->height);
->> +
->> +	return drm_gem_cma_dumb_create_internal(file, dev, args);
->> +}
->> +
->>   DEFINE_DRM_GEM_CMA_FOPS(fops);
->>   
->>   static struct drm_driver meson_driver = {
->> @@ -112,7 +124,7 @@ static struct drm_driver meson_driver = {
->>   	.gem_prime_mmap		= drm_gem_cma_prime_mmap,
->>   
->>   	/* GEM Ops */
->> -	.dumb_create		= drm_gem_cma_dumb_create,
->> +	.dumb_create		= meson_dumb_create,
->>   	.gem_free_object_unlocked = drm_gem_cma_free_object,
->>   	.gem_vm_ops		= &drm_gem_cma_vm_ops,
->>   
->>
-> 
-> Reviewed-by: Sky Zhou <sky.zhou@amlogic.com>
-> 
+There is already a function available to poll a register until a
+condition is met. Let's use it instead of open coding it.
 
-Applied to drm-misc-next, thanks !
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/mmc/host/meson-gx-mmc.c | 18 ++++--------------
+ 1 file changed, 4 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index 2eba507790e4..2deeacc051b1 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -23,6 +23,7 @@
+ #include <linux/init.h>
+ #include <linux/delay.h>
+ #include <linux/device.h>
++#include <linux/iopoll.h>
+ #include <linux/of_device.h>
+ #include <linux/platform_device.h>
+ #include <linux/ioport.h>
+@@ -1100,7 +1101,6 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+ 
+ static int meson_mmc_wait_desc_stop(struct meson_host *host)
+ {
+-	int loop;
+ 	u32 status;
+ 
+ 	/*
+@@ -1110,20 +1110,10 @@ static int meson_mmc_wait_desc_stop(struct meson_host *host)
+ 	 * If we don't confirm the descriptor is stopped, it might raise new
+ 	 * IRQs after we have called mmc_request_done() which is bad.
+ 	 */
+-	for (loop = 50; loop; loop--) {
+-		status = readl(host->regs + SD_EMMC_STATUS);
+-		if (status & (STATUS_BUSY | STATUS_DESC_BUSY))
+-			udelay(100);
+-		else
+-			break;
+-	}
+ 
+-	if (status & (STATUS_BUSY | STATUS_DESC_BUSY)) {
+-		dev_err(host->dev, "Timed out waiting for host to stop\n");
+-		return -ETIMEDOUT;
+-	}
+-
+-	return 0;
++	return readl_poll_timeout(host->regs + SD_EMMC_STATUS, status,
++				  !(status & (STATUS_BUSY | STATUS_DESC_BUSY)),
++				  100, 5000);
+ }
+ 
+ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
+-- 
+2.20.1
+
 
 _______________________________________________
 linux-amlogic mailing list
