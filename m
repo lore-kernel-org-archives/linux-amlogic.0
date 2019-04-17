@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CA8FCC282DA
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Apr 2019 20:44:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1A8A0C282DA
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Apr 2019 20:44:32 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9611B2183E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Apr 2019 20:44:28 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DB26F217FA
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Apr 2019 20:44:31 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KshuuSJe";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="bLeAeSCD"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9611B2183E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nvW7fdvK";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="y0S2Wcqy"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DB26F217FA
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8phG6ya/ULKnYaQ6QrZTDFsdpDA3QnMOijsM9MFXEqo=; b=KshuuSJeifXNGT
-	BK3CrjvzYSaPViW+AlC/tIrNfTasZqyRjeXT/Q8iTepmJ+KXUMnAuQZM9MhQOicSE5le9KGevfbzQ
-	QIk1yiOpY4FbVQ0q+r1yGh1O/b4itJ0XsrfVV6dS86fr6BkaXEMk3OmE7qHamBdZa4Y4jbdG0TV1u
-	hy1mwFtg28cp5Uh8LHjvyGng1pqukeGlSSkp52CG3l/qbnAkTpEAK82fgKuIaQsyK0uaKpg8EWxsy
-	DxqfNEV88wIxNF+TeLEMqqKy0DECnbqq6lqTq2WGRBCQQUOakYTXs5N/iptQKF+JimcL7dAVx+qKR
-	ltFa1+M20btVz9BdNHYw==;
+	List-Owner; bh=7AY6Dpsak3ZRpTPQ2D1YANARwP9KM6W+fKcODyyDXEs=; b=nvW7fdvK6aa5D4
+	tUUe47Ml+wgyIdu/hfyBH6Nctw8sMJCCa2835VBk9+loighgacJoWhDNsKL2vu3YS7RseG84TrQOa
+	D4sbCueLUFpRdgcHMESZ73H/1LTpRRzZ5fQHw43aHKE0Q6/3eo59Pp0Nob2Ncr5l2IOTSZahvifMT
+	Gd0IaGqH+oJrMSY70Kh7eNHvORu5jgJiK0sib4EoSxcDCOBZt5DOiExPkeYlmoAe4LqdsGIJThNol
+	7kPa26QYYRW6F8MCYPnF8+z/239Sd3aiTkq9An7z8XB8RMhQCAacRdOGfGgViU1mHBw5XreZcNzqW
+	W45jui/4ow9iVQ+ZnQKg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hGrPs-0002UO-3W; Wed, 17 Apr 2019 20:44:24 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1hGrPt-0002Vd-1i; Wed, 17 Apr 2019 20:44:25 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hGrPj-0002HB-Pl
- for linux-amlogic@lists.infradead.org; Wed, 17 Apr 2019 20:44:19 +0000
-Received: by mail-wr1-x441.google.com with SMTP id g3so70943wrx.9
- for <linux-amlogic@lists.infradead.org>; Wed, 17 Apr 2019 13:44:13 -0700 (PDT)
+ id 1hGrPj-0002HT-7d
+ for linux-amlogic@lists.infradead.org; Wed, 17 Apr 2019 20:44:21 +0000
+Received: by mail-wr1-x443.google.com with SMTP id j9so90024wrn.6
+ for <linux-amlogic@lists.infradead.org>; Wed, 17 Apr 2019 13:44:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=kvQGbdki4sfylBEdmd2o1C+/gcCUzEF0u1B6+PlWzsU=;
- b=bLeAeSCDxjpzrqXrv63QkEP25CJLiFdCj0ISKvgqRrZ9LVlY9tFQsZT4R/yaVUFpTG
- XdX+JevCLjw0pz7aKTQNt/ICoNO41sh7qOD7w7WA4h9eXCiofyfBTVmYI5mLAQW4Q8K7
- hyIj+/2rvzv93aTsA3DCorfA7DB84hjwNDPchMl6oSWSdFZ7i6iXmwBMzsz9Om/qG1hE
- YznUjxVW14Gjz96SEja5nvVXIrivlMjcGKiFFbxdikHEV9kHMQRm0x2SZuui+uaefRY3
- KbyWI+oc1t4hjwbgj06WJvxhvOutgbStm1qHePI/KWLeKA+j5fZF/KhzGbK4ziTv+szd
- Ly/Q==
+ bh=EAQxiWZ93FwRlC3TmFGVRPcQ40yDWUvz23h+5A9HHpc=;
+ b=y0S2WcqyTzZkY7kXhAK+oMaLMUwBJXRQtWejrfIKZW0oJlKd+dwX/J48FdnfddDjdn
+ MyM0z/pD2NRI9tdJR0nq6BXFXMqgNY4q9uH8ulzE4owg63dYjOLYufc6woA1Uf/VDKUU
+ e448JgYbpI54jHfPhzOmm8Iytny6oNfKRC78xNUisuiSOcLLn8rLi3YSoFK2TeajWzQp
+ xgnRbJ9Vq/k8wG2UwyCE1BFL+vtrbz3WbLKqDPK7kddAO4BcxTVA11ioDFg+7VGYCFqA
+ n2jErWnQZ2EZh+Ljrny7+JC79UkPDtWdKl/tyOajK7Q2RZ1OCr7LxrQF+sJvLN0tn1KX
+ fp8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=kvQGbdki4sfylBEdmd2o1C+/gcCUzEF0u1B6+PlWzsU=;
- b=KEujkmcZvvBCC9DgTduU2IwgluMwLptGziYuL+HNEbKZi+uvwUKVkumx9LsnIPwBau
- mFUl8DbJOcsIxlyZDwuETbXnlfyU4fGUThja1yKWe7ov1CSRdNp9Z7s6Ny2E60Di30jy
- 9zOtqcIqMsySw9zJNmI3MwTy74uICC+Z4zQLvgyw8URQdoXd9RjHsTUJXYm+MZyL9cap
- 179qpTBF+J9mtoyyjXAnl+ccHxuUiKtF3Z8eNEzwC+Wwrf44oUi5WL8uQXS0W62FL7bX
- RzeK9EKzbe8T+FzhAsKbhic4oxmat7JrMRrpQaXfAvdN9JUTAvTxMxitMlMpl6D00DHf
- r18Q==
-X-Gm-Message-State: APjAAAWcGLjrACPX6r1GOEiHRNWJhv7elmgn8XoiigoU9X99KWtXREpA
- mthtNjZrsQYTTsRSnxqSWVKgyw==
-X-Google-Smtp-Source: APXvYqyprh0ZW5E545GdWfcqPk/iGY2Yw8mg5p/NcxaMUorxGhXmA4Ss4jPG5NUlwzXiyn4CaYbhrA==
-X-Received: by 2002:a5d:6682:: with SMTP id l2mr7849875wru.33.1555533852505;
- Wed, 17 Apr 2019 13:44:12 -0700 (PDT)
+ bh=EAQxiWZ93FwRlC3TmFGVRPcQ40yDWUvz23h+5A9HHpc=;
+ b=UtctQOQKJGV9Z7o3NJawcqoXPOwIwAZQTdxkre9bxtkE4jgAtFp6z7SFrUQAw01j2J
+ rsQkFNuA1ylxxd6RVZVX7epSA9s5dAAbBe16ZLUNIunXmTPOQz3Zf2KDni5dtHvSUHFF
+ eUqWku5FdM2Qn29B1djMxnHkpAyTQ5QYw1oGhtEOFTbhoRyWaQjx/z/n6aLDwEXzdhEz
+ NyX3CnrrUcwuYIpu/7jEY82iog1m7m08mugkFg1ofMqVobaUCjbOC16dO2ZDxsBxMmpy
+ bxBnVvYG4q3/HoqGK6LfsHyC1B1oBSfQ18mcsy8KhK2URC9w+D5TETijeKvgKGdzzBRk
+ uXCQ==
+X-Gm-Message-State: APjAAAVZJ0QaWxap1nkYODbm1mnlWbG1p1xFh6eMTwMZd9JZzX54sddn
+ QtciPAUo7P0yeXVyq1PHg0Ysro3hKGk=
+X-Google-Smtp-Source: APXvYqzR6EM/Kz+WDkbCvYayggf31QHCg8Bultqbze2U3nDzpL9xmyTEag3yNe8nVHQwUOS2IFLvNQ==
+X-Received: by 2002:a5d:53c1:: with SMTP id a1mr37119464wrw.174.1555533853852; 
+ Wed, 17 Apr 2019 13:44:13 -0700 (PDT)
 Received: from boomer.lan (cag06-3-82-243-161-21.fbx.proxad.net.
  [82.243.161.21])
- by smtp.googlemail.com with ESMTPSA id c20sm98716866wre.28.2019.04.17.13.44.11
+ by smtp.googlemail.com with ESMTPSA id c20sm98716866wre.28.2019.04.17.13.44.12
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Wed, 17 Apr 2019 13:44:11 -0700 (PDT)
+ Wed, 17 Apr 2019 13:44:13 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Ulf Hansson <ulf.hansson@linaro.org>, Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH 5/7] mmc: meson-gx: avoid clock glitch when switching to DDR
- modes
-Date: Wed, 17 Apr 2019 22:43:53 +0200
-Message-Id: <20190417204355.469-6-jbrunet@baylibre.com>
+Subject: [PATCH 6/7] mmc: meson-gx: remove Rx phase tuning
+Date: Wed, 17 Apr 2019 22:43:54 +0200
+Message-Id: <20190417204355.469-7-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190417204355.469-1-jbrunet@baylibre.com>
 References: <20190417204355.469-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190417_134415_994164_9412022C 
-X-CRM114-Status: GOOD (  16.85  )
+X-CRM114-CacheID: sfid-20190417_134415_467389_C58AB96C 
+X-CRM114-Status: GOOD (  21.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -104,161 +103,404 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Activating DDR in the Amlogic mmc controller, among other things, will
-divide the output clock by 2. So by activating it with clock on, we are
-creating a glitch on the output.
+This remove all the code related to phase settings. Using the Rx phase
+for tuning has not been reliable. We had several issues over the past
+months, on both v2 and v3 mmc chips After discussing the issue matter
+with Amlogic, They suggested to set a phase shift of 180 between Core and
+Tx and use signal resampling for the tuning.
 
-Instead, let's deal with DDR when the clock output is off, when setting
-the clock.
+Since we won't be playing with the phase anymore, let's remove all the
+clock code related to it and set the appropriate value on init.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/mmc/host/meson-gx-mmc.c | 72 +++++++++++++++++++--------------
- 1 file changed, 42 insertions(+), 30 deletions(-)
+ drivers/mmc/host/meson-gx-mmc.c | 290 ++------------------------------
+ 1 file changed, 13 insertions(+), 277 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 118f09da8dfb..f77b9327a590 100644
+index f77b9327a590..50b03c167435 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -169,6 +169,7 @@ struct meson_host {
- 	struct clk *rx_clk;
- 	struct clk *tx_clk;
- 	unsigned long req_rate;
-+	bool ddr;
+@@ -49,6 +49,8 @@
+ #define   CLK_CORE_PHASE_MASK GENMASK(9, 8)
+ #define   CLK_TX_PHASE_MASK GENMASK(11, 10)
+ #define   CLK_RX_PHASE_MASK GENMASK(13, 12)
++#define   CLK_PHASE_0 0
++#define   CLK_PHASE_180 2
+ #define   CLK_V2_TX_DELAY_MASK GENMASK(19, 16)
+ #define   CLK_V2_RX_DELAY_MASK GENMASK(23, 20)
+ #define   CLK_V2_ALWAYS_ON BIT(24)
+@@ -57,10 +59,6 @@
+ #define   CLK_V3_RX_DELAY_MASK GENMASK(27, 22)
+ #define   CLK_V3_ALWAYS_ON BIT(28)
  
- 	struct pinctrl *pinctrl;
- 	struct pinctrl_state *pins_default;
-@@ -384,16 +385,6 @@ static void meson_mmc_post_req(struct mmc_host *mmc, struct mmc_request *mrq,
- 			     mmc_get_dma_dir(data));
- }
- 
--static bool meson_mmc_timing_is_ddr(struct mmc_ios *ios)
--{
--	if (ios->timing == MMC_TIMING_MMC_DDR52 ||
--	    ios->timing == MMC_TIMING_UHS_DDR50 ||
--	    ios->timing == MMC_TIMING_MMC_HS400)
--		return true;
+-#define   CLK_DELAY_STEP_PS 200
+-#define   CLK_PHASE_STEP 30
+-#define   CLK_PHASE_POINT_NUM (360 / CLK_PHASE_STEP)
 -
--	return false;
+ #define   CLK_TX_DELAY_MASK(h)		(h->data->tx_delay_mask)
+ #define   CLK_RX_DELAY_MASK(h)		(h->data->rx_delay_mask)
+ #define   CLK_ALWAYS_ON(h)		(h->data->always_on)
+@@ -165,9 +163,8 @@ struct meson_host {
+ 
+ 	void __iomem *regs;
+ 	struct clk *core_clk;
++	struct clk *mux_clk;
+ 	struct clk *mmc_clk;
+-	struct clk *rx_clk;
+-	struct clk *tx_clk;
+ 	unsigned long req_rate;
+ 	bool ddr;
+ 
+@@ -209,90 +206,6 @@ struct meson_host {
+ #define CMD_RESP_MASK GENMASK(31, 1)
+ #define CMD_RESP_SRAM BIT(0)
+ 
+-struct meson_mmc_phase {
+-	struct clk_hw hw;
+-	void __iomem *reg;
+-	unsigned long phase_mask;
+-	unsigned long delay_mask;
+-	unsigned int delay_step_ps;
+-};
+-
+-#define to_meson_mmc_phase(_hw) container_of(_hw, struct meson_mmc_phase, hw)
+-
+-static int meson_mmc_clk_get_phase(struct clk_hw *hw)
+-{
+-	struct meson_mmc_phase *mmc = to_meson_mmc_phase(hw);
+-	unsigned int phase_num = 1 <<  hweight_long(mmc->phase_mask);
+-	unsigned long period_ps, p, d;
+-		int degrees;
+-	u32 val;
+-
+-	val = readl(mmc->reg);
+-	p = (val & mmc->phase_mask) >> __ffs(mmc->phase_mask);
+-	degrees = p * 360 / phase_num;
+-
+-	if (mmc->delay_mask) {
+-		period_ps = DIV_ROUND_UP((unsigned long)NSEC_PER_SEC * 1000,
+-					 clk_get_rate(hw->clk));
+-		d = (val & mmc->delay_mask) >> __ffs(mmc->delay_mask);
+-		degrees += d * mmc->delay_step_ps * 360 / period_ps;
+-		degrees %= 360;
+-	}
+-
+-	return degrees;
 -}
 -
- /*
-  * Gating the clock on this controller is tricky.  It seems the mmc clock
-  * is also used by the controller.  It may crash during some operation if the
-@@ -430,36 +421,41 @@ static void meson_mmc_clk_ungate(struct meson_host *host)
- 	writel(cfg, host->regs + SD_EMMC_CFG);
- }
- 
--static int meson_mmc_clk_set(struct meson_host *host, struct mmc_ios *ios)
-+static int meson_mmc_clk_set(struct meson_host *host, unsigned long rate,
-+			     bool ddr)
- {
- 	struct mmc_host *mmc = host->mmc;
--	unsigned long rate = ios->clock;
- 	int ret;
- 	u32 cfg;
- 
--	/* DDR modes require higher module clock */
--	if (meson_mmc_timing_is_ddr(ios))
--		rate <<= 1;
+-static void meson_mmc_apply_phase_delay(struct meson_mmc_phase *mmc,
+-					unsigned int phase,
+-					unsigned int delay)
+-{
+-	u32 val;
 -
- 	/* Same request - bail-out */
--	if (host->req_rate == rate)
-+	if (host->ddr == ddr && host->req_rate == rate)
- 		return 0;
- 
- 	/* stop clock */
- 	meson_mmc_clk_gate(host);
- 	host->req_rate = 0;
-+	mmc->actual_clock = 0;
- 
--	if (!rate) {
--		mmc->actual_clock = 0;
--		/* return with clock being stopped */
-+	/* return with clock being stopped */
-+	if (!rate)
- 		return 0;
+-	val = readl(mmc->reg);
+-	val &= ~mmc->phase_mask;
+-	val |= phase << __ffs(mmc->phase_mask);
+-
+-	if (mmc->delay_mask) {
+-		val &= ~mmc->delay_mask;
+-		val |= delay << __ffs(mmc->delay_mask);
 -	}
- 
- 	/* Stop the clock during rate change to avoid glitches */
- 	cfg = readl(host->regs + SD_EMMC_CFG);
- 	cfg |= CFG_STOP_CLOCK;
- 	writel(cfg, host->regs + SD_EMMC_CFG);
- 
-+	if (ddr) {
-+		/* DDR modes require higher module clock */
-+		rate <<= 1;
-+		cfg |= CFG_DDR;
-+	} else {
-+		cfg &= ~CFG_DDR;
-+	}
-+	writel(cfg, host->regs + SD_EMMC_CFG);
-+	host->ddr = ddr;
-+
- 	ret = clk_set_rate(host->mmc_clk, rate);
- 	if (ret) {
- 		dev_err(host->dev, "Unable to set cfg_div_clk to %lu. ret=%d\n",
-@@ -471,12 +467,14 @@ static int meson_mmc_clk_set(struct meson_host *host, struct mmc_ios *ios)
- 	mmc->actual_clock = clk_get_rate(host->mmc_clk);
- 
- 	/* We should report the real output frequency of the controller */
--	if (meson_mmc_timing_is_ddr(ios))
-+	if (ddr) {
-+		host->req_rate >>= 1;
- 		mmc->actual_clock >>= 1;
-+	}
- 
- 	dev_dbg(host->dev, "clk rate: %u Hz\n", mmc->actual_clock);
--	if (ios->clock != mmc->actual_clock)
--		dev_dbg(host->dev, "requested rate was %u\n", ios->clock);
-+	if (rate != mmc->actual_clock)
-+		dev_dbg(host->dev, "requested rate was %lu\n", rate);
- 
- 	/* (re)start clock */
- 	meson_mmc_clk_ungate(host);
-@@ -750,6 +748,25 @@ static int meson_mmc_execute_tuning(struct mmc_host *mmc, u32 opcode)
- 	return meson_mmc_clk_phase_tuning(mmc, opcode, host->rx_clk);
- }
- 
-+static int meson_mmc_prepare_ios_clock(struct meson_host *host,
-+				       struct mmc_ios *ios)
-+{
-+	bool ddr;
-+
-+	switch (ios->timing) {
-+	case MMC_TIMING_MMC_DDR52:
-+	case MMC_TIMING_UHS_DDR50:
-+		ddr = true;
-+		break;
-+
-+	default:
-+		ddr = false;
-+		break;
-+	}
-+
-+	return meson_mmc_clk_set(host, ios->clock, ddr);
-+}
-+
- static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
- {
- 	struct meson_host *host = mmc_priv(mmc);
-@@ -819,15 +836,10 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
- 	val &= ~CFG_BUS_WIDTH_MASK;
- 	val |= FIELD_PREP(CFG_BUS_WIDTH_MASK, bus_width);
- 
--	val &= ~CFG_DDR;
--	if (meson_mmc_timing_is_ddr(ios))
--		val |= CFG_DDR;
 -
--	err = meson_mmc_clk_set(host, ios);
-+	err = meson_mmc_prepare_ios_clock(host, ios);
- 	if (err)
- 		dev_err(host->dev, "Failed to set clock: %d\n,", err);
+-	writel(val, mmc->reg);
+-}
+-
+-static int meson_mmc_clk_set_phase(struct clk_hw *hw, int degrees)
+-{
+-	struct meson_mmc_phase *mmc = to_meson_mmc_phase(hw);
+-	unsigned int phase_num = 1 <<  hweight_long(mmc->phase_mask);
+-	unsigned long period_ps, d = 0, r;
+-	uint64_t p;
+-
+-	p = degrees % 360;
+-
+-	if (!mmc->delay_mask) {
+-		p = DIV_ROUND_CLOSEST_ULL(p, 360 / phase_num);
+-	} else {
+-		period_ps = DIV_ROUND_UP((unsigned long)NSEC_PER_SEC * 1000,
+-					 clk_get_rate(hw->clk));
+-
+-		/* First compute the phase index (p), the remainder (r) is the
+-		 * part we'll try to acheive using the delays (d).
+-		 */
+-		r = do_div(p, 360 / phase_num);
+-		d = DIV_ROUND_CLOSEST(r * period_ps,
+-				      360 * mmc->delay_step_ps);
+-		d = min(d, mmc->delay_mask >> __ffs(mmc->delay_mask));
+-	}
+-
+-	meson_mmc_apply_phase_delay(mmc, p, d);
+-	return 0;
+-}
+-
+-static const struct clk_ops meson_mmc_clk_phase_ops = {
+-	.get_phase = meson_mmc_clk_get_phase,
+-	.set_phase = meson_mmc_clk_set_phase,
+-};
+-
+ static unsigned int meson_mmc_get_timeout_msecs(struct mmc_data *data)
+ {
+ 	unsigned int timeout = data->timeout_ns / NSEC_PER_MSEC;
+@@ -492,8 +405,6 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 	struct clk_init_data init;
+ 	struct clk_mux *mux;
+ 	struct clk_divider *div;
+-	struct meson_mmc_phase *core, *tx, *rx;
+-	struct clk *clk;
+ 	char clk_name[32];
+ 	int i, ret = 0;
+ 	const char *mux_parent_names[MUX_CLK_NUM_PARENTS];
+@@ -501,9 +412,11 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 	u32 clk_reg;
  
--	writel(val, host->regs + SD_EMMC_CFG);
- 	dev_dbg(host->dev, "SD_EMMC_CFG:  0x%08x\n", val);
+ 	/* init SD_EMMC_CLOCK to sane defaults w/min clock rate */
+-	clk_reg = 0;
+-	clk_reg |= CLK_ALWAYS_ON(host);
++	clk_reg = CLK_ALWAYS_ON(host);
+ 	clk_reg |= CLK_DIV_MASK;
++	clk_reg |= FIELD_PREP(CLK_CORE_PHASE_MASK, CLK_PHASE_180);
++	clk_reg |= FIELD_PREP(CLK_TX_PHASE_MASK, CLK_PHASE_0);
++	clk_reg |= FIELD_PREP(CLK_RX_PHASE_MASK, CLK_PHASE_0);
+ 	writel(clk_reg, host->regs + SD_EMMC_CLOCK);
+ 
+ 	/* get the mux parents */
+@@ -539,9 +452,9 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 	mux->mask = CLK_SRC_MASK >> mux->shift;
+ 	mux->hw.init = &init;
+ 
+-	clk = devm_clk_register(host->dev, &mux->hw);
+-	if (WARN_ON(IS_ERR(clk)))
+-		return PTR_ERR(clk);
++	host->mux_clk = devm_clk_register(host->dev, &mux->hw);
++	if (WARN_ON(IS_ERR(host->mux_clk)))
++		return PTR_ERR(host->mux_clk);
+ 
+ 	/* create the divider */
+ 	div = devm_kzalloc(host->dev, sizeof(*div), GFP_KERNEL);
+@@ -552,7 +465,7 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 	init.name = clk_name;
+ 	init.ops = &clk_divider_ops;
+ 	init.flags = CLK_SET_RATE_PARENT;
+-	clk_parent[0] = __clk_get_name(clk);
++	clk_parent[0] = __clk_get_name(host->mux_clk);
+ 	init.parent_names = clk_parent;
+ 	init.num_parents = 1;
+ 
+@@ -562,192 +475,19 @@ static int meson_mmc_clk_init(struct meson_host *host)
+ 	div->hw.init = &init;
+ 	div->flags = CLK_DIVIDER_ONE_BASED;
+ 
+-	clk = devm_clk_register(host->dev, &div->hw);
+-	if (WARN_ON(IS_ERR(clk)))
+-		return PTR_ERR(clk);
+-
+-	/* create the mmc core clock */
+-	core = devm_kzalloc(host->dev, sizeof(*core), GFP_KERNEL);
+-	if (!core)
+-		return -ENOMEM;
+-
+-	snprintf(clk_name, sizeof(clk_name), "%s#core", dev_name(host->dev));
+-	init.name = clk_name;
+-	init.ops = &meson_mmc_clk_phase_ops;
+-	init.flags = CLK_SET_RATE_PARENT;
+-	clk_parent[0] = __clk_get_name(clk);
+-	init.parent_names = clk_parent;
+-	init.num_parents = 1;
+-
+-	core->reg = host->regs + SD_EMMC_CLOCK;
+-	core->phase_mask = CLK_CORE_PHASE_MASK;
+-	core->hw.init = &init;
+-
+-	host->mmc_clk = devm_clk_register(host->dev, &core->hw);
+-	if (WARN_ON(PTR_ERR_OR_ZERO(host->mmc_clk)))
++	host->mmc_clk = devm_clk_register(host->dev, &div->hw);
++	if (WARN_ON(IS_ERR(host->mmc_clk)))
+ 		return PTR_ERR(host->mmc_clk);
+ 
+-	/* create the mmc tx clock */
+-	tx = devm_kzalloc(host->dev, sizeof(*tx), GFP_KERNEL);
+-	if (!tx)
+-		return -ENOMEM;
+-
+-	snprintf(clk_name, sizeof(clk_name), "%s#tx", dev_name(host->dev));
+-	init.name = clk_name;
+-	init.ops = &meson_mmc_clk_phase_ops;
+-	init.flags = 0;
+-	clk_parent[0] = __clk_get_name(host->mmc_clk);
+-	init.parent_names = clk_parent;
+-	init.num_parents = 1;
+-
+-	tx->reg = host->regs + SD_EMMC_CLOCK;
+-	tx->phase_mask = CLK_TX_PHASE_MASK;
+-	tx->delay_mask = CLK_TX_DELAY_MASK(host);
+-	tx->delay_step_ps = CLK_DELAY_STEP_PS;
+-	tx->hw.init = &init;
+-
+-	host->tx_clk = devm_clk_register(host->dev, &tx->hw);
+-	if (WARN_ON(PTR_ERR_OR_ZERO(host->tx_clk)))
+-		return PTR_ERR(host->tx_clk);
+-
+-	/* create the mmc rx clock */
+-	rx = devm_kzalloc(host->dev, sizeof(*rx), GFP_KERNEL);
+-	if (!rx)
+-		return -ENOMEM;
+-
+-	snprintf(clk_name, sizeof(clk_name), "%s#rx", dev_name(host->dev));
+-	init.name = clk_name;
+-	init.ops = &meson_mmc_clk_phase_ops;
+-	init.flags = 0;
+-	clk_parent[0] = __clk_get_name(host->mmc_clk);
+-	init.parent_names = clk_parent;
+-	init.num_parents = 1;
+-
+-	rx->reg = host->regs + SD_EMMC_CLOCK;
+-	rx->phase_mask = CLK_RX_PHASE_MASK;
+-	rx->delay_mask = CLK_RX_DELAY_MASK(host);
+-	rx->delay_step_ps = CLK_DELAY_STEP_PS;
+-	rx->hw.init = &init;
+-
+-	host->rx_clk = devm_clk_register(host->dev, &rx->hw);
+-	if (WARN_ON(PTR_ERR_OR_ZERO(host->rx_clk)))
+-		return PTR_ERR(host->rx_clk);
+-
+ 	/* init SD_EMMC_CLOCK to sane defaults w/min clock rate */
+ 	host->mmc->f_min = clk_round_rate(host->mmc_clk, 400000);
+ 	ret = clk_set_rate(host->mmc_clk, host->mmc->f_min);
+ 	if (ret)
+ 		return ret;
+ 
+-	clk_set_phase(host->mmc_clk, 180);
+-	clk_set_phase(host->tx_clk, 0);
+-	clk_set_phase(host->rx_clk, 0);
+-
+ 	return clk_prepare_enable(host->mmc_clk);
  }
  
+-static void meson_mmc_shift_map(unsigned long *map, unsigned long shift)
+-{
+-	DECLARE_BITMAP(left, CLK_PHASE_POINT_NUM);
+-	DECLARE_BITMAP(right, CLK_PHASE_POINT_NUM);
+-
+-	/*
+-	 * shift the bitmap right and reintroduce the dropped bits on the left
+-	 * of the bitmap
+-	 */
+-	bitmap_shift_right(right, map, shift, CLK_PHASE_POINT_NUM);
+-	bitmap_shift_left(left, map, CLK_PHASE_POINT_NUM - shift,
+-			  CLK_PHASE_POINT_NUM);
+-	bitmap_or(map, left, right, CLK_PHASE_POINT_NUM);
+-}
+-
+-static void meson_mmc_find_next_region(unsigned long *map,
+-				       unsigned long *start,
+-				       unsigned long *stop)
+-{
+-	*start = find_next_bit(map, CLK_PHASE_POINT_NUM, *start);
+-	*stop = find_next_zero_bit(map, CLK_PHASE_POINT_NUM, *start);
+-}
+-
+-static int meson_mmc_find_tuning_point(unsigned long *test)
+-{
+-	unsigned long shift, stop, offset = 0, start = 0, size = 0;
+-
+-	/* Get the all good/all bad situation out the way */
+-	if (bitmap_full(test, CLK_PHASE_POINT_NUM))
+-		return 0; /* All points are good so point 0 will do */
+-	else if (bitmap_empty(test, CLK_PHASE_POINT_NUM))
+-		return -EIO; /* No successful tuning point */
+-
+-	/*
+-	 * Now we know there is a least one region find. Make sure it does
+-	 * not wrap by the shifting the bitmap if necessary
+-	 */
+-	shift = find_first_zero_bit(test, CLK_PHASE_POINT_NUM);
+-	if (shift != 0)
+-		meson_mmc_shift_map(test, shift);
+-
+-	while (start < CLK_PHASE_POINT_NUM) {
+-		meson_mmc_find_next_region(test, &start, &stop);
+-
+-		if ((stop - start) > size) {
+-			offset = start;
+-			size = stop - start;
+-		}
+-
+-		start = stop;
+-	}
+-
+-	/* Get the center point of the region */
+-	offset += (size / 2);
+-
+-	/* Shift the result back */
+-	offset = (offset + shift) % CLK_PHASE_POINT_NUM;
+-
+-	return offset;
+-}
+-
+-static int meson_mmc_clk_phase_tuning(struct mmc_host *mmc, u32 opcode,
+-				      struct clk *clk)
+-{
+-	int point, ret;
+-	DECLARE_BITMAP(test, CLK_PHASE_POINT_NUM);
+-
+-	dev_dbg(mmc_dev(mmc), "%s phase/delay tunning...\n",
+-		__clk_get_name(clk));
+-	bitmap_zero(test, CLK_PHASE_POINT_NUM);
+-
+-	/* Explore tuning points */
+-	for (point = 0; point < CLK_PHASE_POINT_NUM; point++) {
+-		clk_set_phase(clk, point * CLK_PHASE_STEP);
+-		ret = mmc_send_tuning(mmc, opcode, NULL);
+-		if (!ret)
+-			set_bit(point, test);
+-	}
+-
+-	/* Find the optimal tuning point and apply it */
+-	point = meson_mmc_find_tuning_point(test);
+-	if (point < 0)
+-		return point; /* tuning failed */
+-
+-	clk_set_phase(clk, point * CLK_PHASE_STEP);
+-	dev_dbg(mmc_dev(mmc), "success with phase: %d\n",
+-		clk_get_phase(clk));
+-	return 0;
+-}
+-
+-static int meson_mmc_execute_tuning(struct mmc_host *mmc, u32 opcode)
+-{
+-	struct meson_host *host = mmc_priv(mmc);
+-	int adj = 0;
+-
+-	/* enable signal resampling w/o delay */
+-	adj = ADJUST_ADJ_EN;
+-	writel(adj, host->regs + host->data->adjust);
+-
+-	return meson_mmc_clk_phase_tuning(mmc, opcode, host->rx_clk);
+-}
+-
+ static int meson_mmc_prepare_ios_clock(struct meson_host *host,
+ 				       struct mmc_ios *ios)
+ {
+@@ -796,9 +536,6 @@ static void meson_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
+ 		/* disable signal resampling */
+ 		writel(0, host->regs + host->data->adjust);
+ 
+-		/* Reset rx phase */
+-		clk_set_phase(host->rx_clk, 0);
+-
+ 		break;
+ 
+ 	case MMC_POWER_ON:
+@@ -1225,7 +962,6 @@ static const struct mmc_host_ops meson_mmc_ops = {
+ 	.get_cd         = meson_mmc_get_cd,
+ 	.pre_req	= meson_mmc_pre_req,
+ 	.post_req	= meson_mmc_post_req,
+-	.execute_tuning = meson_mmc_execute_tuning,
+ 	.card_busy	= meson_mmc_card_busy,
+ 	.start_signal_voltage_switch = meson_mmc_voltage_switch,
+ };
 -- 
 2.20.1
 
