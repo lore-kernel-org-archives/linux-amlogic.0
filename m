@@ -2,58 +2,85 @@ Return-Path: <SRS0=/MY2=SU=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-11.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 20AF2C10F0E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Apr 2019 16:23:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 45CB8C10F0E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Apr 2019 19:44:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E1406206B6
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Apr 2019 16:23:24 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 179432054F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Apr 2019 19:44:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Y9rhXuJn"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E1406206B6
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=bootlin.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="JvDTprXZ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="PDjG2y4A"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 179432054F
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4wAluOxr+Tgd94j+poh6ME4FoT6OiohXVjsoZ6Q2VeY=; b=Y9rhXuJnTqyaRG
-	pqaUz2lJXKuvlx0i0QQZyQcBzw521A0N7G4nHS7bCcS0EgwUTdo1+0Eizgh1db7JwCi33UYMBqAsn
-	w+rDxLnXhENR1dj/XmBtdttj08Kmh7h8xf/zbWiCXEH5B7vT6+UlvIRI4H+fGkKLUp7aVr9eyXSjQ
-	wWBqqmYAuoqJXgfEV3zbDJDKdrLPlYuZXO6CQM3Ll92gjoAiveV4l9EdpXcGLWlGe4Djtd9QYwbx/
-	Q19XcseWYYY1Qvtgw8cl+nAeSOlsm597QOMrI88A1iIH56NQEcUMClbIy0qUx5ki3FT+x5fRR6xUl
-	NC48cuuxZ9SEGV1KFCgA==;
+	List-Owner; bh=9HlwuOIDzmuRBgFk2MRRyFRZkOJW9vbGtlPnZMnnAXk=; b=JvDTprXZGKlEGo
+	tTCfqYkwnhQzNEGHzd16KQC087u1/mSSdzE0AogaKvLFqKMcCyQBn5RBuLmacX8ujWF8U73gEXpl6
+	PA7UoaryB068rESvB73sftK5sVasdKSrxWc20wq4CXJJWAGUvA8/G9r9IdrRsiZCl9lYKr6t1j/rI
+	keg5QVJhWmXaoBqlSud/5x8OYOdn4SCP72ptHbplmNi3qAlvM/8T8iBetXLvE1LIQ/oEuOEPNkTR4
+	UwrdIBKd075WzOMOUnP70JN94apJ0pe1RS4yoJCx0v2lt+0Sq9x5O/c6xBzZrivwuqha73O5at4dP
+	+A7Q68/wdvUy9AYO3G/Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hH9oi-0001jB-4Y; Thu, 18 Apr 2019 16:23:16 +0000
-Received: from relay5-d.mail.gandi.net ([217.70.183.197])
+	id 1hHCxI-0005vX-Re; Thu, 18 Apr 2019 19:44:20 +0000
+Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hH9oY-0001T8-6y; Thu, 18 Apr 2019 16:23:13 +0000
-X-Originating-IP: 91.224.148.103
-Received: from xps13 (unknown [91.224.148.103])
- (Authenticated sender: miquel.raynal@bootlin.com)
- by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 823B51C0007;
- Thu, 18 Apr 2019 16:23:00 +0000 (UTC)
-Date: Thu, 18 Apr 2019 18:22:59 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH 0/4] meson-nand: small code improvements
-Message-ID: <20190418182259.479bbeb3@xps13>
-In-Reply-To: <20190411220056.19109-1-martin.blumenstingl@googlemail.com>
-References: <20190411220056.19109-1-martin.blumenstingl@googlemail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+ id 1hHCxF-0005uj-DH; Thu, 18 Apr 2019 19:44:19 +0000
+Received: by mail-ot1-x344.google.com with SMTP id d24so2658834otl.11;
+ Thu, 18 Apr 2019 12:44:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Bx5KZfdXjm8ofYlrpIW9ivlLzCel7RPnKzTt4neA1m4=;
+ b=PDjG2y4A+ODJSC0q5bF1f9z9TQsnJEK6Z/nQLQt6t6m+YV8A+/CJ5zo+I9dRy7vnTK
+ AqE2sG9BqaK/BTOKWz/xe3nFKoForFr8PjoeE2FbzLdBSRfk2/e4N5dKybQfA6JnEPB/
+ AZe0PZX3LzhwWkAR/sfZO16S6VWzJeyVNVYPNU4a+g2byBvhyoJsul3efRIdpnoSOJAL
+ 8hYOGDhaGN/PRqpNUr+Hh0m2SYSu3TnUKRHCnDKXHcBzTllEoufAV5/stkq0bx8SkrSH
+ 0PK3Lsxdp2SV/M1qIjVTsGYi/pxWmMcn3dpIJ9NTotVkZKiNIACd1DbS66zS1ie3Agk+
+ x6fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Bx5KZfdXjm8ofYlrpIW9ivlLzCel7RPnKzTt4neA1m4=;
+ b=jTbMpBdtuaSLuNPuvbRcwCxYzX5ntebZ9tgP6TJ9UcTMtmdY6knvLXhmz3v114pGyC
+ OiU9ktb5+2K3FPOapNm6pycKsnd7iwmGZNH5UEvNgY+qeuZz+UdTWCUgv7S6Av6NSgWL
+ N119jukyQmYx1Ku832ILGTxenhsGJY8BXyuZX1mF4igPBuVNSkorqYjnfhGZab6ymPYF
+ iTWkMXSmx+48wAo1UNAJc3VV38pUxGYbGZkNEcAc5QC+00bmK9JjTN9vyI1/S7OCYSUP
+ z/LVjXPVpLwE6Qtt2/meO8prJfP+bQmqDad1edzTzWRxa1lGCGrC0QEYvklCJRJlyp9z
+ g6Ug==
+X-Gm-Message-State: APjAAAUcgeMu5LORr+C5Ad7skMpqeaINZEgIUWl2Fz/RqQ3E8KEmJ0/Z
+ oR6D+Oxc/yNprd1mMMJSDBXx+RZqIrnu4rC049Y=
+X-Google-Smtp-Source: APXvYqyijd+OHnD93J6murDFe1J7q1CB4zrpQTFpLXHp4Y+tOsizvLu6b1hoZweO/hrVZVErO+7FYTomNtc/0Yz5UU4=
+X-Received: by 2002:a9d:5e90:: with SMTP id f16mr56649724otl.86.1555616655912; 
+ Thu, 18 Apr 2019 12:44:15 -0700 (PDT)
 MIME-Version: 1.0
+References: <20190411220056.19109-1-martin.blumenstingl@googlemail.com>
+ <20190411220056.19109-5-martin.blumenstingl@googlemail.com>
+ <bd1900db-7ca1-a6e5-39f9-db54e0b570dd@amlogic.com>
+In-Reply-To: <bd1900db-7ca1-a6e5-39f9-db54e0b570dd@amlogic.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Thu, 18 Apr 2019 21:44:05 +0200
+Message-ID: <CAFBinCB9Z_H4wX3_g2hVL-XnS6Oq-KtPHa4Z1ws79FGp5jCapQ@mail.gmail.com>
+Subject: Re: [PATCH 4/4] mtd: rawnand: meson: only initialize the RB
+ completion once
+To: Liang Yang <liang.yang@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190418_092306_855624_38503F8A 
-X-CRM114-Status: GOOD (  14.41  )
+X-CRM114-CacheID: sfid-20190418_124417_476285_38F66F09 
+X-CRM114-Status: GOOD (  17.68  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -66,42 +93,76 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: jianxin.pan@amlogic.com, bbrezillon@kernel.org, richard@nod.at,
- linux-kernel@vger.kernel.org, marek.vasut@gmail.com, liang.yang@amlogic.com,
- linux-mtd@lists.infradead.org, linux-amlogic@lists.infradead.org,
- computersforpeace@gmail.com, dwmw2@infradead.org,
- linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ linux-kernel@vger.kernel.org, marek.vasut@gmail.com,
+ linux-mtd@lists.infradead.org, miquel.raynal@bootlin.com,
+ linux-amlogic@lists.infradead.org, computersforpeace@gmail.com,
+ dwmw2@infradead.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgTWFydGluLAoKTWFydGluIEJsdW1lbnN0aW5nbCA8bWFydGluLmJsdW1lbnN0aW5nbEBnb29n
-bGVtYWlsLmNvbT4gd3JvdGUgb24gRnJpLAoxMiBBcHIgMjAxOSAwMDowMDo1MiArMDIwMDoKCj4g
-VGhpcyBzZXJpZXMgY29tZXMgd2l0aCBmb3VyIHNtYWxsIGltcHJvdmVtZW50cyBmb3IgdGhlIG1l
-c29uLW5hbmQKPiBkcml2ZXI6Cj4gKiB0aGUgZmlyc3QgcGF0Y2hlcyBhcmUgcmVwbGFjaW5nIG9w
-ZW4tY29kZWQgbG9naWMgd2l0aCBleGlzdGluZwo+ICAgdXRpbGl0aWVzIC8gaGVscGVycwo+ICog
-dGhlIHRoaXJkIHBhdGNoIGRyb3BzIHNvbWUgdW5uZWNlc3NhcnkgY2FzdGluZyBhZnRlciBjaGFu
-Z2luZwo+ICAgdGhlIHR5cGUgb2YgdGhlIGluZm8gYnVmZmVyIHBhcmFtZXRlciBmcm9tICJ1OCAq
-IiB0byAidm9pZCAqIgo+ICogdGhlIGZvdXJ0aCBwYXRjaCBhZGp1c3RzIHRoZSB1c2FnZSBvZiBp
-bml0X2NvbXBsZXRpb24gd2l0aCB3aGF0IHRoZQo+ICAgZG9jdW1lbnRhdGlvbiBzdWdnZXN0cwo+
-IAo+IEkgaGF2ZSB0ZXN0ZWQgdGhlc2UgcGF0Y2hlcyBhcyBiZXN0IGFzIEkgY291bGQgb24gbXkg
-TWVzb244bTIgYm9hcmQKPiB1c2luZyBleHBlcmltZW50YWwgcGF0Y2hlcyBvbiB0b3Agb2YgdGhp
-cyBzZXJpZXMgd2hpY2ggYWRkIHN1cHBvcnQgZm9yCj4gdGhpcyBvbGRlciBTb0MgdG8gdGhlIG1l
-c29uLW5hbmQgZHJpdmVyLgo+IAo+IExpYW5nLCBjYW4geW91IHBsZWFzZSB0ZXN0IHRoaXMgc2Vy
-aWVzIG9uIEdYTCBhbmQvb3IgQVhHIHNvIEkgZG9uJ3QKPiBicmVhayB0aGUgTkZDIGRyaXZlciBv
-biB0aGVzZSBuZXdlciBTb0NzPyBBbGwgb2YgbXkgR1hML0dYTSBib2FyZHMKPiBoYXZlIGVNTUMg
-aW5zdGVhZCBvZiByYXcgTkFORCwgc28gSSBjYW5ub3QgdGVzdCBpdCBvbiB0aGVzZSBuZXdlciBT
-b0NzCj4gbXlzZWxmLgo+IAo+IFRoaXMgc2VyaWVzIGlzIG1lYW50IHRvIGJlIGFwcGxpZWQgdG8g
-dGhlIG5hbmQvbmV4dCB0cmVlLgo+IAo+IAo+IE1hcnRpbiBCbHVtZW5zdGluZ2wgKDQpOgo+ICAg
-bXRkOiByYXduYW5kOiBtZXNvbjogdXNlIHN0cnVjdF9zaXplIG1hY3JvCj4gICBtdGQ6IHJhd25h
-bmQ6IG1lc29uOiB1c2Ugb2ZfcHJvcGVydHlfY291bnRfZWxlbXNfb2Zfc2l6ZSBoZWxwZXIKPiAg
-IG10ZDogcmF3bmFuZDogbWVzb246IHVzZSBhIHZvaWQgcG9pbnRlciBmb3IgbWVzb25fbmZjX2Rt
-YV9idWZmZXJfc2V0dXAKPiAgIG10ZDogcmF3bmFuZDogbWVzb246IG9ubHkgaW5pdGlhbGl6ZSB0
-aGUgUkIgY29tcGxldGlvbiBvbmNlCj4gCj4gIGRyaXZlcnMvbXRkL25hbmQvcmF3L21lc29uX25h
-bmQuYyB8IDIxICsrKysrKysrKy0tLS0tLS0tLS0tLQo+ICAxIGZpbGUgY2hhbmdlZCwgOSBpbnNl
-cnRpb25zKCspLCAxMiBkZWxldGlvbnMoLSkKPiAKClNlcmllcyBhcHBsaWVkIHRvIApodHRwczov
-L2dpdC5rZXJuZWwub3JnL3B1Yi9zY20vbGludXgva2VybmVsL2dpdC9tdGQvbGludXguZ2l0IApi
-cmFuY2ggbmFuZC9uZXh0LgoKVGhhbmtzLApNaXF1w6hsCgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51
-eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+Hi Liang,
+
+On Mon, Apr 15, 2019 at 8:04 AM Liang Yang <liang.yang@amlogic.com> wrote:
+>
+>
+> On 2019/4/12 6:00, Martin Blumenstingl wrote:
+> > Documentation/scheduler/completion.txt states:
+> >    Calling init_completion() on the same completion object twice is
+> >    most likely a bug as it re-initializes the queue to an empty queue and
+> >    enqueued tasks could get "lost" - use reinit_completion() in that case,
+> >    but be aware of other races.
+> >
+> > Initialize nfc->completion in meson_nfc_probe using init_completion and
+> > change the call in meson_nfc_queue_rb to reinit_completion so the logic
+> > matches what the documentation suggests.
+> >
+> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > ---
+> >   drivers/mtd/nand/raw/meson_nand.c | 3 ++-
+> >   1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+> > index 57cc4bd3f665..ea57ddcec41e 100644
+> > --- a/drivers/mtd/nand/raw/meson_nand.c
+> > +++ b/drivers/mtd/nand/raw/meson_nand.c
+> > @@ -400,7 +400,7 @@ static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms)
+> >       cfg |= NFC_RB_IRQ_EN;
+> >       writel(cfg, nfc->reg_base + NFC_REG_CFG);
+> >
+> > -     init_completion(&nfc->completion);
+> > +     reinit_completion(&nfc->completion);
+> Tested-by:Liang Yang <liang.yang@amlogic.com>
+> Acked-by: Liang Yang <liang.yang@amlogic.com>
+thank you for reviewing and testing my patches!
+
+[...]
+> Tested-by:Liang Yang <liang.yang@amlogic.com>
+> Acked-by: Liang Yang <liang.yang@amlogic.com>
+please consider the following note for future code-reviews:
+most maintainers take the patch from patchwork and apply it to their git tree.
+however, patchwork is not smart enough to detect when the same
+Tested-by/Acked-by is sent multiple times.
+this results in the same Tested-by/Acked-by being listed multiple
+times in the final commit: [0]
+
+what I do instead is to reply with one set of Tested-by/Acked-by
+(below the author's Signed-off-by) which is then valid for the whole
+patch.
+There's no problem to have Tested-by and Acked-by at the same time,
+the issue only shows up if you send Acked-by (or any other tag) for
+the same patch multiple times.
+
+
+Have a great day!
+Regards,
+Martin
+
+
+[0] https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git/commit/?h=nand/next&id=39e01956e2f70ff9f0e97db1a69c9847aa1d5d8b
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
