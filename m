@@ -2,86 +2,68 @@ Return-Path: <SRS0=/MY2=SU=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SPF_PASS autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4544EC10F0E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Apr 2019 20:54:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A6069C10F0E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Apr 2019 20:55:20 +0000 (UTC)
 Received: from bombadil.infradead.org (unknown [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0D03E214DA
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Apr 2019 20:54:13 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 728002054F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Apr 2019 20:55:20 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="je94yFhF";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="N5FPiGcD"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0D03E214DA
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="n0BFzn5Y";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="EBi18Tn9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 728002054F
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Date:Message-ID:To:Subject:From:
+	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=A/qhuWrJTvTPqvdgsvweUTzBduMqpCqTlUv+OV0/YtY=; b=je94yFhFqOxWuu
-	JFKRVtNGCFN/CgqKrt8Y1Ct4ako7XxQ1pfBsugzidlJHIGQXm9wGWA6zqHV3tfwoedjNrL+3fBD15
-	yvGIccwFYBc0AEh9DJ4vH57WZ797s9DcD6jmKX++TZkbNbDZtq0DX+AZ+Jqh22+rihNiY9rKBFkNc
-	wW8vTvCfFdG4sp0n8IV6gylV2XuS038EPoG5ZcI+Q8bdkeHY2lVidIVeT/pY2QUDuH9+ZMvVl8SKk
-	FTVSu7jq3HXpqPrEnIriJ+fpEEp35+aDQSauacStSVM1P58E6rYegBukOEER6LpQwHmJQAOG+A/1T
-	4NtSVnUp4GvG5jwUrUzw==;
+	List-Owner; bh=gZkW1EmFd39MApUmQVJQXCyQnYYM9rr3AUDL2mECMpU=; b=n0BFzn5Yv8EAd3
+	hQ+BnZqbyv9xjR1vtjYAm6wqOIJXLDbsU95oRMmebyI33Sz6bZtjw7HK3lKsw+mGeAvr+Uu5jRUCn
+	J/Ug78xd8amJFvvpOULaHr6BrGLSA4O3iyPZhr97se3yFpsm3dKWrwhUiSrEAXE4+ePpGurXnsU4S
+	J2485pczxJMgKqFmwGAdqYs4HSsFWJ22IHKD50P3uETuH9JBw0RWorFdn5ObuJBi04k5I+kTaZ1KU
+	VE9D1KUsRaj6peXCbCir/gBu23K5J21M75FZrTPxdSyQOjDyTxsINYSS5BdIXIsoXeWn47jFmBcXc
+	x3wPgl9erfwWmXEd6sJw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hHE2q-00079I-Iq; Thu, 18 Apr 2019 20:54:08 +0000
-Received: from mail-oi1-x241.google.com ([2607:f8b0:4864:20::241])
+	id 1hHDhp-0000vy-RL; Thu, 18 Apr 2019 20:32:25 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hHE2n-00078M-DA
- for linux-amlogic@lists.infradead.org; Thu, 18 Apr 2019 20:54:06 +0000
-Received: by mail-oi1-x241.google.com with SMTP id j132so2682925oib.2
- for <linux-amlogic@lists.infradead.org>; Thu, 18 Apr 2019 13:54:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=R5oCZP96kysA4+CsYMa2NY+MrmDfUa/rZvfN/Hagbfo=;
- b=N5FPiGcDBEonviaNIvKsKqkTigq0VeXh8fjdqzHgHXYWf3do5a3dopc0kTk58fpvkU
- X1pvrIB6V3w3P6lRHr6MsOv4s5rPInmXl8GTXx/ma0uE6adLgKSzq26WpiBYpZCPNF1e
- Y4ZTw4S11lA6uO2hP3UFjsxUw4a/8WkdHoArJxVwSJwNGsgYy5dam+nOl+FPxGJq8gZo
- Wg0hIHqr2bRoN0WAT+cdXJeTCmc9cteAoW0rHuPHYsF6MFs0RsQLU4/GZUOW1wyK+unt
- ImGFBnM2fWyFXD5idvMujwzqp2nEMbXhSxdbHs0hqcCJ1BnvUkopSmN563RK9xlsS8ar
- 1+TQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=R5oCZP96kysA4+CsYMa2NY+MrmDfUa/rZvfN/Hagbfo=;
- b=AzKdos17YdyBjdoSSQfkjmjN9gW1ma+cOYqHIJgky+IGOvvO7guENd2HiVkrFphuVn
- JYGjxz1KbPL3PbPzxWkC16jMb+9VI8ABY7+aOlggT2u1f2KbIJ1wzUKLUbprtwH6bFn4
- Jj2QQFsIBno/DF9utyxkicSYK2azrWWTleTR5qDXZL6KVMUSeHvtHvO4wLbcJT8hPTEP
- 4vW3jyMuOjssnsuXErcrMuu3x7kShlnAYR2gjnpIcSb73xAxtLGbiLsfGpMdd66B6kEW
- +02FA/asbJ4VwApgT1gm9/kgK3NI7k17kcMHnr49XigxmHejoSkXt9h8lYH35sefgPzz
- 2MDw==
-X-Gm-Message-State: APjAAAXd/GEUjxP2cyXPu41mgANVWj7g/Fiw3E6DFHq/JvZXttDNFNuf
- ZUm0VECeEb078k3BkLeohgVlN6bjoEQHJyIhCOk=
-X-Google-Smtp-Source: APXvYqzZi065lzAyGg2kjLFhqeyVvmKBOY1v0x0QdLN6L7njzHzkaT+W3GtjBPv8bHYI4mXR7fPAxubHuPiU1s0DV20=
-X-Received: by 2002:aca:ecd1:: with SMTP id k200mr3288928oih.15.1555620844042; 
- Thu, 18 Apr 2019 13:54:04 -0700 (PDT)
+ id 1hHDhn-0000ve-8Q
+ for linux-amlogic@lists.infradead.org; Thu, 18 Apr 2019 20:32:24 +0000
+Received: from localhost (unknown [104.132.0.74])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 869C1214C6;
+ Thu, 18 Apr 2019 20:32:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1555619542;
+ bh=6AsPH5iyvIGfXDXCsgAUrXVj3RcDiK3cmlRoICT7AdI=;
+ h=In-Reply-To:References:Cc:From:Subject:To:Date:From;
+ b=EBi18Tn9XMAQ/Pfg270jZfslw/M0fcepdQDF/jCzHqmM1K9oTBbGtzLLWIVaJwhcX
+ R0u8i5DVf11yD8BPdYxotKKBzwS1JUD72wf40cdPg1O2ZFDjQut6W5HYj97uwVneMT
+ 8twdl0wjLua1BF4XrX+iClu5PW8KJxDplUkhj1W4=
 MIME-Version: 1.0
-References: <20190417204355.469-1-jbrunet@baylibre.com>
- <20190417204355.469-6-jbrunet@baylibre.com>
- <CAFBinCCAbMpWYY6-W+909Q=jLpweC2F6ED6CVf6zVGrRiA1hxg@mail.gmail.com>
- <8316d7875bf0479e91cc11ce5fbf3b2e21f92a2c.camel@baylibre.com>
-In-Reply-To: <8316d7875bf0479e91cc11ce5fbf3b2e21f92a2c.camel@baylibre.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Thu, 18 Apr 2019 22:53:53 +0200
-Message-ID: <CAFBinCBQPSsqwDSd6nQMLqOuApiESwHXn4wQbOp49WLpXfBk=Q@mail.gmail.com>
-Subject: Re: [PATCH 5/7] mmc: meson-gx: avoid clock glitch when switching to
- DDR modes
-To: Jerome Brunet <jbrunet@baylibre.com>
+In-Reply-To: <3d961b5ea14a7aae4088282955f926e19b7bc9d9.camel@baylibre.com>
+References: <3d961b5ea14a7aae4088282955f926e19b7bc9d9.camel@baylibre.com>
+From: Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [GIT PULL] clk: meson: 2nd update for v5.2
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>
+Message-ID: <155561954176.15276.5102897303800246681@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.8
+Date: Thu, 18 Apr 2019 13:32:21 -0700
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190418_135405_495239_77B9B159 
-X-CRM114-Status: GOOD (  16.73  )
+X-CRM114-CacheID: sfid-20190418_133223_315806_C6896908 
+X-CRM114-Status: UNSURE (   5.94  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -93,62 +75,24 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kevin Hilman <khilman@baylibre.com>, Ulf Hansson <ulf.hansson@linaro.org>,
- linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org
+Cc: Kevin Hilman <khilman@baylibre.com>, linux-clk <linux-clk@vger.kernel.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jerome,
+Quoting Jerome Brunet (2019-04-18 02:46:36)
+> Dear clock maintainers,
+> 
+> Below is a request to pull another round of update for amlogic clocks.
+> 
+> The main purpose of this pull request is to add the g12a SoC family
+> support in the axg audio clock controller driver. It applies on top of
+> our previous PR.
+> 
 
-On Thu, Apr 18, 2019 at 10:46 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
->
-> On Thu, 2019-04-18 at 22:16 +0200, Martin Blumenstingl wrote:
-> > Hi Jerome,
-> >
-> > On Wed, Apr 17, 2019 at 10:44 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
-> > > Activating DDR in the Amlogic mmc controller, among other things, will
-> > > divide the output clock by 2. So by activating it with clock on, we are
-> > > creating a glitch on the output.
-> > >
-> > > Instead, let's deal with DDR when the clock output is off, when setting
-> > > the clock.
-> > >
-> > > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> > it seems that this patch breaks SD card on my Khadas VIM and Khadas VIM2.
->
-> The error I see in your logs is with eMMC and hs200, not SD card.
-sorry, I should have been more clear that there are two errors:
-eMMC, this is what I have been seeing for a while on my Khadas VIM2
-(it's probably not related to this patch):
-  mmc1: mmc_select_hs200 failed, error -84
-  mmc1: error -84 whilst initialising MMC card
-
-however, then there's this other error:
-  print_req_error: I/O error, dev mmcblk0, sector 0 flags 0
-  Buffer I/O error on dev mmcblk0, logical block 0, async page read
-as result of this the partition table cannot be read and my kernel
-cannot find the rootfs.
-
-> Either way, There is something I don't really get. eMMC should not go through
-> any DDR mode to reach HS200 (which is an SDR mode), neither should SD to reach
-> HS.
->
-> All this does is flipping the DDR bit (when necessary) when clock if off for
-> the mmc device, avoiding a glitch on clk line.
->
-> This patch should not make any difference for SDR only setup, Maybe I missed
-> something, but I don't see how it could make anything different for SDR only.
->
-> I (repeatedly) tested both vim1 and vim2, without seeing this issue, so I can't
-> debug this. I'll need more detail to progress, something does not make sense here.
-please let me know from which part of the driver do you want debug logs
-
-
-Regards
-Martin
+Thanks. Pulled into clk-next.
 
 _______________________________________________
 linux-amlogic mailing list
