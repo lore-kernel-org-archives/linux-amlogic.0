@@ -2,83 +2,92 @@ Return-Path: <SRS0=/MY2=SU=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 027C0C10F0E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Apr 2019 20:22:13 +0000 (UTC)
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 90C7BC10F0E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Apr 2019 20:46:21 +0000 (UTC)
+X-Greylist: delayed 830 seconds by postgrey-1.34 at mail.kernel.org; Thu, 18 Apr 2019 20:46:21 UTC
+Authentication-Results: mail.kernel.org;
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="J9O40neP";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="IVo+aFRO"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5D422214DA
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
+Received: from bombadil.infradead.org (unknown [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C7AB520869
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Apr 2019 20:22:12 +0000 (UTC)
-Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jHfXBsYh";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Fsk23du8"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C7AB520869
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
+	by mail.kernel.org (Postfix) with ESMTPS id 5D422214DA
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Apr 2019 20:46:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/ZDI0c1DFX8Tl5Bc/Sj9IujN7ne4F8eTj0QMPoyE6io=; b=jHfXBsYhK45ApU
-	5W6L5dme+VtXgMtiPOhMG5fqq9LWrRyjzf3jxU0hSNtQhb/fZvPwTtThUTzgm4s3Dd5+bEQnzuwMl
-	vqCGwdIgfPa1RZadgPRmG3n3JOSi9U9EblOtkrew4Up1VkQACoElbcfbKqtiR5CiIYICE93hROmKM
-	XzyzDqil0BtpPNAaneqzOTqGw7Nv35druTSN3XZdF0kMGX/i/e/szkGyuP4vMXK7GFkcLmWBgvwcy
-	41PUO32jA1neVuT8+Av0fkxrc4AS2aWBUVrbaYGQxwlZjssueNQVzsLptN/naKrGsn4AP8/mEhac5
-	wXdJtotbxeArvAKyYDlQ==;
+	List-Owner; bh=oXduvr+hr/DOYRmwSuR9c5H34UsoBwu6AkrwQZOjzlg=; b=J9O40nePruGbxh
+	E6paXTmqGndGiZdamf179nacNWvQVgPClRWjmEX3EXRmoLM2bJTEGM/ulX2k2zlX+8UuOWaQCUOZJ
+	mnrzFXVfLhqsguLaCIp45l0NE12Z1g4ATQzljmQAz/8aCvtXlsmwi8xSi6EviV428viOF2b5oYVc3
+	uxo/xkiv30mqmBiGFFwPL7F5ZPm2DAkGAKEhEUQbVeRfNo82prRxUNjA8Faa80I/Gr5TBuIZs/zbj
+	t/GcD9iGbKY87yHtHxkhSRzmpY25nOf5ePwH02JexToQkpbkfqima4wXz4cRMrxeMA/tNHCTfPlj4
+	sm2DJ0tYm4rxfitTvpqA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hHDXq-0005Ta-MY; Thu, 18 Apr 2019 20:22:06 +0000
-Received: from mail-ot1-x343.google.com ([2607:f8b0:4864:20::343])
+	id 1hHDvC-0005X5-Ac; Thu, 18 Apr 2019 20:46:14 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hHDXn-0005QJ-PY; Thu, 18 Apr 2019 20:22:05 +0000
-Received: by mail-ot1-x343.google.com with SMTP id s24so2740379otk.13;
- Thu, 18 Apr 2019 13:22:00 -0700 (PDT)
+ id 1hHDv9-0005Vw-2D
+ for linux-amlogic@lists.infradead.org; Thu, 18 Apr 2019 20:46:12 +0000
+Received: by mail-wr1-x444.google.com with SMTP id w18so4506203wrv.11
+ for <linux-amlogic@lists.infradead.org>; Thu, 18 Apr 2019 13:46:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=8NyXCn2hweEBBeqsdkxBSMnUdzojOgVlmIn8B5GHpV8=;
- b=Fsk23du8LGXuKxKuzpzfs/RhzEjsl1exJ3f5UvMYYdCy7axHPpswfW9BpYhyw6qkyO
- APgaDq9pxy4PYdGujlG/y5SWczAXvQkmHK+e9sHPJy5ieXrxI9BS+L6+dFGlAytqH+wj
- ngwhr7eRBq3cV+jMCQyOX3MbXXFryEoNSCMVwZUM7Ra5J0G9Ll96OGzte4VxaYtmvTdp
- cZ2VbG064yPCVimAsbWlCNtq/irn+9sLyzCKfHrpcFvzHenGLMOm3EvdswjRarY9aGJw
- vaDDVmi2dxBMkgiazuZjA1BvSN+3ygLScoA6IDdUWMxk7UHcpFzaGZ1WDysApcSH5rrP
- 4iIg==
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:cc:date:in-reply-to:references
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=wficahtGGlEvfoZUHHveXjxRdIRK8DDrer2LkRlm6jU=;
+ b=IVo+aFROZrxIuP0WLvA34sdd6tNipnqxs3zx06XiCOpH0m0LbJUIEyZSzwXYSa3IMf
+ qa3P3kafPr232RfPWjYg4SMfFVoXAR3bkcSjyao58DruuxwCAwXMPI4N7b+NYfgH0Ca6
+ DfCRkMtxzmRJ4Byo4NlFi7YhEucESYNLQKIIu09xkubJDIUz1BGyX2VEZClw73oa3SXD
+ SM3Y1TIfOagsHyPzHrPrw8Wf6p5Opn+Xy1cL8JuHIzVd+4pgvesO1+orLeTPtr89VS78
+ Lu67/Mw6az0BkHDwt6NHvPVqH7L+Q6D3LgXmMZR3LowoU9afb1axY6omlel9PUztTwMk
+ 010w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=8NyXCn2hweEBBeqsdkxBSMnUdzojOgVlmIn8B5GHpV8=;
- b=HhYc/s5Rgo2cCTwrHn+hVP/RiSsz3i3wVeIo1UdH4OITTTxsR7vcw0/rwxoJymiGjU
- fDPGJ1ixWJjWi9mI23Rl9+joc1H9rXRTwpZxypDGabkDnHYi9611ruxZtSQMg76Mo6ma
- yJN/Qbrq8JxsR4qgg+EjCcT/k0SpYVtwvURIlgGFbtPjrB8U4VVdFUQMwvTKZN9yrD63
- 0bZGnVAOcuSt/l5Qzz4Xc7MT/ovIBUvxFf0Wc+GV7vTkyNvu6n++A1Me6iwPJTmFSs95
- RsuVaeTg8giJLBBIqkUDKIP6U6L6lpOUw8tzvYmkjgtvpwgEHwmCy74CNXBc1rwcIJvy
- rt8A==
-X-Gm-Message-State: APjAAAW2VRy/DmREXKeCWoozWAsbluORThVZ1wZvKPxywnPa08adY7Mb
- 8ni6SaPbGQgzCUZ7pji9MDQrrQi0RUlXb833nvI=
-X-Google-Smtp-Source: APXvYqyKXUWtb+XugPJCvDxfsYTlD809nWanYE5hfHIaOLrgXOwoyWMBhv5sIJoqF4p4B8LE0GtKKtKDefYgl3VqXlg=
-X-Received: by 2002:a9d:5e90:: with SMTP id f16mr56754297otl.86.1555618919925; 
- Thu, 18 Apr 2019 13:21:59 -0700 (PDT)
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=wficahtGGlEvfoZUHHveXjxRdIRK8DDrer2LkRlm6jU=;
+ b=K1TUJdbEbvZ9OjMbkBJJlrsIwvVDVHxzZGH4WzMHBwNTYw/Tychzmmx7OmfCdPUE+B
+ +q8fba+DasCGYaakuAfTQTUAbmDxEipZYdazd10MLqXhKsVlTqjUje6S63cG0sWOOqCf
+ MAoIc474jkXmL78aBkAnheuufNB+gkkupTfQJT7T08lHYgvjX97Aa21brVNqFhOBAFA8
+ bHgT3JrUOD+haqhhd6aYiiAQo0lRUhZzq2MOVxycV9eD+AGDN1iKpT+mDKHWxYQi/CNg
+ XfJnBSlTuJ0+TulVO/8wVonge+ceeP5lPK91VKT0bmMxh42dlWAZYB1yhdjMbPnj9TmQ
+ aGoA==
+X-Gm-Message-State: APjAAAU1qj2TWTTIMyEQj3HYARBYse+yDT7nrieOd11Fh+LF4gJeOxb/
+ WGpUakz6SNVfrj/0V2sXurn9Sg==
+X-Google-Smtp-Source: APXvYqyolIXXdwhRp4JJIvpOF5SlWArEQ2SZdjo8yhlqX7BQTkGpmPbd/dbtOXvPFzsim6faWixC+w==
+X-Received: by 2002:adf:fc47:: with SMTP id e7mr141013wrs.100.1555620368407;
+ Thu, 18 Apr 2019 13:46:08 -0700 (PDT)
+Received: from boomer.baylibre.com (cag06-3-82-243-161-21.fbx.proxad.net.
+ [82.243.161.21])
+ by smtp.gmail.com with ESMTPSA id l19sm4744601wrf.35.2019.04.18.13.46.06
+ (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+ Thu, 18 Apr 2019 13:46:07 -0700 (PDT)
+Message-ID: <8316d7875bf0479e91cc11ce5fbf3b2e21f92a2c.camel@baylibre.com>
+Subject: Re: [PATCH 5/7] mmc: meson-gx: avoid clock glitch when switching to
+ DDR modes
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Thu, 18 Apr 2019 22:46:05 +0200
+In-Reply-To: <CAFBinCCAbMpWYY6-W+909Q=jLpweC2F6ED6CVf6zVGrRiA1hxg@mail.gmail.com>
+References: <20190417204355.469-1-jbrunet@baylibre.com>
+ <20190417204355.469-6-jbrunet@baylibre.com>
+ <CAFBinCCAbMpWYY6-W+909Q=jLpweC2F6ED6CVf6zVGrRiA1hxg@mail.gmail.com>
+User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
 MIME-Version: 1.0
-References: <20190418122714.30805-1-jbrunet@baylibre.com>
- <20190418122714.30805-2-jbrunet@baylibre.com>
-In-Reply-To: <20190418122714.30805-2-jbrunet@baylibre.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Thu, 18 Apr 2019 22:21:49 +0200
-Message-ID: <CAFBinCBU4hPYTXUBJwiN+mJeqrC_a8aw6kNnUBYaAkBbrC+Uiw@mail.gmail.com>
-Subject: Re: [PATCH 1/6] arm64: dts: meson: libretech-cc: set eMMC as removable
-To: Jerome Brunet <jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190418_132203_829502_C934BFEC 
-X-CRM114-Status: UNSURE (   7.51  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190418_134611_131189_FE92698E 
+X-CRM114-Status: GOOD (  13.64  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -90,23 +99,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org, patchwork-bot+notify@kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: Kevin Hilman <khilman@baylibre.com>, Ulf Hansson <ulf.hansson@linaro.org>,
+ linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Apr 18, 2019 at 2:27 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
->
-> The eMMC on this board is add-on module which is not mandatory. Removing
-> 'non-removable' property should prevent some errors when booting a board
-> w/o an eMMC module present.
->
-> Fixes: 72fb2c852188 ("ARM64: dts: meson-gxl-s905x-libretech-cc: fixup board definition")
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Reviewed-by: Martin Blumenstingl<martin.blumenstingl@googlemail.com>
+On Thu, 2019-04-18 at 22:16 +0200, Martin Blumenstingl wrote:
+> Hi Jerome,
+> 
+> On Wed, Apr 17, 2019 at 10:44 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
+> > Activating DDR in the Amlogic mmc controller, among other things, will
+> > divide the output clock by 2. So by activating it with clock on, we are
+> > creating a glitch on the output.
+> > 
+> > Instead, let's deal with DDR when the clock output is off, when setting
+> > the clock.
+> > 
+> > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> it seems that this patch breaks SD card on my Khadas VIM and Khadas VIM2.
+
+The error I see in your logs is with eMMC and hs200, not SD card.
+
+Either way, There is something I don't really get. eMMC should not go through
+any DDR mode to reach HS200 (which is an SDR mode), neither should SD to reach
+HS.
+
+All this does is flipping the DDR bit (when necessary) when clock if off for
+the mmc device, avoiding a glitch on clk line. 
+
+This patch should not make any difference for SDR only setup, Maybe I missed
+something, but I don't see how it could make anything different for SDR only.
+
+I (repeatedly) tested both vim1 and vim2, without seeing this issue, so I can't
+debug this. I'll need more detail to progress, something does not make sense here.
+
+> I used git bisect within this series to find that issue.
+> applying your .dts patches on top doesn't fix it
+> 
+> two boot logs attached:
+> * kvim-broken.txt has patches 1-5 (= including this patch) applied
+> * kvim-working.txt has only patches 1-4 (= excluding this patch) applied
+> 
+> 
+> Regards
+> Martin
+
+
 
 _______________________________________________
 linux-amlogic mailing list
