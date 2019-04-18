@@ -2,22 +2,22 @@ Return-Path: <SRS0=/MY2=SU=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-6.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C77FEC10F0E
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Apr 2019 19:50:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 85F47C10F0E
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Apr 2019 19:53:06 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9813420643
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Apr 2019 19:50:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5718220643
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Apr 2019 19:53:06 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tdMrkeON";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="rGggi2b0"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9813420643
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qHwCC+lR";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="RToypm0L"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5718220643
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,58 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7RWYjtrIH0rgzZHHb4qS1FrQ2AwYRwGAnHxmQGCFSf0=; b=tdMrkeONkBA+mM
-	/MSJe2kUuixWWPFex7o7K8ln5T3IUflqW/t3hqCEOhaxO60h5OakixEsMC/Md4OphwE1wjG/5FXq6
-	0W4K+6pEEqiYTOm5BmPkRJNTjDfndwI5GK+c2SZk/dlzPK1Y5YlJP4AHHVui4aC+gXK0/SuNZWROv
-	MNTxZbjItBjBzKDp2a74+Yn2XX1uZ9JTzMYpdv072DlPDrZ0rwEwj6o3MiU9Ze8jm5ztIU6N89s6L
-	rZr4T8EobPEyU59sIn2pjq5GDZ859fm7MCtKgzzibQQZErvkZnbonbkNcALepk2ShUbBNOmZkWgoQ
-	zxjMR2uL55N4uO8aJ0hQ==;
+	List-Owner; bh=riY84MFeuzIv5sblqrziOyVqPpdgJYztwfCT7iak16o=; b=qHwCC+lRy09G8g
+	JBomfz1dEYnMnfQLrMrsJ8AO1P80VTe5NUyR3lSyeXOc3/NWzgo+B8frE0y61uchm4NQ4vISnLrpV
+	Xr/ah85zXIgoZ3WUSHKE5aQQp+6bMEjWkN3zggpFm4UBt3BMWM3o2jZSQ7+w37feYpmxd6+zUM5TI
+	pYFUii+mHY0nFtPyiaBG2WGJyZivZQHhPMp6YLQNRPhcy/bt59qVKfTxwkrUlJKUwgD2fzLiaSE33
+	NhOC7q+lmrCpaElFiNj8oTNjZfVKnzUZkwx5e45c5Gd8RJVngSldOKYTiXw0rCLHaFDT2Y7GRvDfR
+	HnQQHveuQeu8xkW2AKxg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hHD3P-0000po-RZ; Thu, 18 Apr 2019 19:50:39 +0000
-Received: from mail-oi1-x243.google.com ([2607:f8b0:4864:20::243])
+	id 1hHD5h-0001Fl-Ld; Thu, 18 Apr 2019 19:53:01 +0000
+Received: from mail-oi1-x244.google.com ([2607:f8b0:4864:20::244])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hHD3N-0000pQ-5j; Thu, 18 Apr 2019 19:50:38 +0000
-Received: by mail-oi1-x243.google.com with SMTP id y84so2509425oia.12;
- Thu, 18 Apr 2019 12:50:36 -0700 (PDT)
+ id 1hHD5f-0001FC-0q
+ for linux-amlogic@lists.infradead.org; Thu, 18 Apr 2019 19:53:00 +0000
+Received: by mail-oi1-x244.google.com with SMTP id t81so2522711oig.10
+ for <linux-amlogic@lists.infradead.org>; Thu, 18 Apr 2019 12:52:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=RRvT1PEVseMZAP2ynkS/SS5qFXKObpz+RcLF5TwvBXk=;
- b=rGggi2b0m/5WpygkewyHZhqZ4YCrnifo4SxyC67gS7vCldse0rBXEw94uSd1GhrKQ7
- DLJ5DhGEZxg9bK6XF3rM9I2+fydi+9m6PM5m38JgF3wg9KUlnqS0fRUPgkcG2MCcQ+pE
- Lla3gh3OMUDOEvvgL+8uBI5RBxKEnyTboGvstoU4myq94OyeGkyI2frTmri+bboM9wTd
- MrAdvlDSo3PtyPU74/S+7AN0sGHKQxeGHdu0e7fmlrR8uRi3WklIPMewSQw9gBQFXiLF
- u2Ik+/CCPE94yHTbX3T2cPMzz4b7OyIOBGtjdAIxErbT7v4pPCVuPT7a59GggwD76INX
- Boaw==
+ :cc; bh=MHnwyGfhVr9Zztuv2ApDOuCX8Y7zltAfnvrToemqRvQ=;
+ b=RToypm0LzA7aEPsdwcyZWsDpf7kcuyHilgD6PotVZegNUDJInGcPC/fDzBAYaIiy0x
+ AftRuV639VZM/qmxzzm5wsCFHk5FAdzTUOqozhwTOxqkp6rYjzj+UTukmFd8/fD/33Yk
+ jfpY1ja1LMNGV8HDnvlsTvc2KzGV3b+aJUl6lKcuBdKEnoge/hDSHtlTDsNnCgH9bc6m
+ p1r23wKO/Rt1yKM5j44oTmmoOwcHg04+U4D7aMakK1D/VFpDV36vZpndGFhf1h9Ig2di
+ 4Y7R7+tmD7AQRVTtloegb8VhOpym7Fc8pw4VxWTprJg1ngV4BKa/oUscmzvJtYDDa8KY
+ bkbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=RRvT1PEVseMZAP2ynkS/SS5qFXKObpz+RcLF5TwvBXk=;
- b=JsU2FpaXz2t0uqitGy5OeoskQ6pKNleLz8XLYBnfYkC8osl4GSt8OPRC61CyJea17I
- 0JL57q1OYh9TGPjh71mbqit5pnB5ndGiTv9gFWcM40hrVU55O9XKFN/YgGxeFlLnSwAD
- 8O9I14zhBP1dG4wTn2WJ561RHr833QryIF6tKM97hE6U9tcKIOmhyycziADDZVWE6sND
- fFi1P0f9Ax6o2JeFh9b8dId92lAQbMzB7Pwxwi1XhlVO8e99GLzw+hQzwMoXuWqlj9kW
- A/w4n4zxbR9h8QfOPNLTPr7Ekj1I2ed5c0v7dWs7AlOVSNvHTIitJUI7l9xyNaSMuyF4
- 3UJg==
-X-Gm-Message-State: APjAAAWDDsczHXwUeCTVT7QE7+qRJxCZrXlBR7mtNrCEa8pZtyoWD22s
- cAemkE5tld6l1TFfXf4TyeT0p9PQ9rvSz+7dDQQ=
-X-Google-Smtp-Source: APXvYqxJGLZyK9SBJ5gTvhX4LITdBpL+VDqbCCkvMoR7TiLp2bOwDBC3yJnUSiSepeDpi6ZM3ELU54+1/aBp6t95PdI=
-X-Received: by 2002:aca:ecd1:: with SMTP id k200mr3126007oih.15.1555617036093; 
- Thu, 18 Apr 2019 12:50:36 -0700 (PDT)
+ bh=MHnwyGfhVr9Zztuv2ApDOuCX8Y7zltAfnvrToemqRvQ=;
+ b=ALUcp3y09cHii3tHgXr5gDVyxaiqfP2WMHv/w7dyAovG8L8QlEh9cBm8nVpdKaOL2+
+ LfCVHfCp6A5hNk0L6W4/uHU7pEVkJeMZjFe92ByzsNaecT+lzdjRRtAunnObYtW646g5
+ hdPY4sR+UEQmR/9w/28wygSXFTeFvcSyy5DAu0W7hxugrT9Cujuz3qrcpGpP15fWK5kI
+ Dvb0hhHH62bfbLY15oAi16KZLGaCPJSDN5tVm833CvRGtIchRYJWVmLrhqq8u1YT5lNC
+ SqXEKNIMge861IETuqXqrArBVYVCK2rs0ydZ9djmTppy9nPvnrwLFiSk4HBFX8C30Bfa
+ UXEw==
+X-Gm-Message-State: APjAAAWtivQLSul8pOsEu88qX2MhBjFebkGsST4grGbRN2Sun2PzavaQ
+ mps9i9jRnmnF1Wa16Q1OP/m2J4LVdWZTXvm5CtQ=
+X-Google-Smtp-Source: APXvYqzhRGDYdQYcsQ0iJMDM/aYQoo017EmckJ6XW6iArqLhjBj6Bpkndhtr7fXXiXm4jsqSoVJyGr+edJFUU08wgF4=
+X-Received: by 2002:aca:ecd1:: with SMTP id k200mr3131053oih.15.1555617177999; 
+ Thu, 18 Apr 2019 12:52:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190413171532.25967-1-martin.blumenstingl@googlemail.com>
- <CAHStOZ5Pe9LvDk4cKAVB4SS5wgFcK-bweFTqU_mnEhOAyZKHuA@mail.gmail.com>
-In-Reply-To: <CAHStOZ5Pe9LvDk4cKAVB4SS5wgFcK-bweFTqU_mnEhOAyZKHuA@mail.gmail.com>
+References: <20190417204355.469-1-jbrunet@baylibre.com>
+ <20190417204355.469-4-jbrunet@baylibre.com>
+In-Reply-To: <20190417204355.469-4-jbrunet@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Thu, 18 Apr 2019 21:50:25 +0200
-Message-ID: <CAFBinCD4OnBbU0YR5P5cAhut==XXUxdHSxHQkBVm28DHZWkbAw@mail.gmail.com>
-Subject: Re: [PATCH 0/3] 32-bit Meson: add the canvas module
-To: Maxime Jourdan <maxi.jourdan@wanadoo.fr>
+Date: Thu, 18 Apr 2019 21:52:47 +0200
+Message-ID: <CAFBinCCLr2-zBhAUcYsyqF1f0hvH03zoXd9SmSjMU5aA3K7Ytw@mail.gmail.com>
+Subject: Re: [PATCH 3/7] mmc: meson-gx: irq is not shared
+To: Jerome Brunet <jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190418_125037_243732_5F62BBFE 
-X-CRM114-Status: GOOD (  25.60  )
+X-CRM114-CacheID: sfid-20190418_125259_059876_094E741F 
+X-CRM114-Status: GOOD (  14.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -89,75 +90,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mjourdan@baylibre.com, linux-amlogic <linux-amlogic@lists.infradead.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- linux-arm-kernel@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>
+Cc: Kevin Hilman <khilman@baylibre.com>, Ulf Hansson <ulf.hansson@linaro.org>,
+ linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Maxime,
+Hi Jerome,
 
-On Sat, Apr 13, 2019 at 8:54 PM Maxime Jourdan <maxi.jourdan@wanadoo.fr> wrote:
+On Wed, Apr 17, 2019 at 10:44 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
 >
-> Hi Martin,
-> On Sat, Apr 13, 2019 at 7:15 PM Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
-> >
-> > This adds the canvas module on Meson8, Meson8b and Meson8m2. The canvas
-> > IP is used by the video decoder hardware as well as the VPU (video
-> > output) hardware.
-> >
-> > Neither the VPU nor the video decoder driver support the 32-bit SoCs
-> > yet. However, we can still add the canvas module to have it available
-> > once these drivers gain support for the older SoCs.
-> >
-> > I have tested this on my Meson8m2 board by hacking the VPU driver to
-> > not re-initialize the VPU (and to use the configuration set by u-boot).
-> > With that hack I could get some image out of the CVBS connector. No
-> > changes to the canvas driver were required.
-> >
-> > Due to lack of hardware I could not test Meson8, but I'm following (as
-> > always) what the Amlogic 3.10 vendor kernel uses.
-> > Meson8b is also not tested because u-boot of my EC-100 doesn't have
-> > video output enabled (so I couldn't use the same hack I used on my
-> > Meson8m2 board).
-> >
-> > This series meant to be applied on top of "Meson8b: add support for the
-> > RTC on EC-100 and Odroid-C1" from [0]
-> >
-> >
+> There is no reason for another device to request the MMC irq. It should
+> only be used the MMC device.
 >
-> The series looks good to me, however I wonder if we should maybe add a
-> new compatible ?
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  drivers/mmc/host/meson-gx-mmc.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> The canvas IP before the GX* generation does not handle what Amlogic
-> calls "endianness", the field that allows doing some byte-switching to
-> get proper NV12/NV21. So the following defines are unusable:
+> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> index 8b690ecde4c5..3df50b53f834 100644
+> --- a/drivers/mmc/host/meson-gx-mmc.c
+> +++ b/drivers/mmc/host/meson-gx-mmc.c
+> @@ -1328,7 +1328,7 @@ static int meson_mmc_probe(struct platform_device *pdev)
+>                host->regs + SD_EMMC_IRQ_EN);
 >
-> #define MESON_CANVAS_ENDIAN_SWAP16 0x1
-> #define MESON_CANVAS_ENDIAN_SWAP32 0x3
-> #define MESON_CANVAS_ENDIAN_SWAP64 0x7
-> #define MESON_CANVAS_ENDIAN_SWAP128 0xf
-I didn't know about this - thank you for pointing this out.
+>         ret = request_threaded_irq(host->irq, meson_mmc_irq,
+> -                                  meson_mmc_irq_thread, IRQF_SHARED,
+> +                                  meson_mmc_irq_thread, IRQF_ONESHOT,
+>                                    dev_name(&pdev->dev), host);
+the commit message reads as if the intention is to remove the IRQF_SHARED flag.
+however, the commit message doesn't mention IRQF_ONESHOT (which was
+not set before).
 
-your suggestions to add new compatible strings is a good idea for that case.
-Amlogic uses different defines for Meson8 and Meson8m2 in their vendor
-kernel and they keep Meson8b different.
-I will add three new compatibles, one for each SoC (Meson8, Meson8b,
-Meson8m2) just to be on the safe side if we discover differences in
-the canvas IP on these SoCs.
-
-what do you think?
-
-> It wouldn't change much functionally, but we could have e.g a warning
-> if a m8 canvas user tries to set endianness even though it does
-> nothing.
-this is a good idea, that will make it easier to spot why something
-doesn't work.
-we can also return -EINVAL, like you already do for the case where the
-canvas ID is already used.
+if you used IRQF_ONESHOT on purpose then please mention it in the
+patch description.
 
 
 Martin
