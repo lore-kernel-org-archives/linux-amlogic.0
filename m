@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-9.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A56BEC282DD
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Apr 2019 12:27:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0FE00C282E0
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Apr 2019 12:27:47 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 761862083D
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Apr 2019 12:27:45 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D50EE2083D
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Apr 2019 12:27:46 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="L3cIJyN6";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="lsSTVAhb"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 761862083D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oGZIhtjI";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="h0cyWpdf"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D50EE2083D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ns3Lr+tvv4Bo8E4JJ7MmqLZ0rttqeQnJbPvFf+qLcSc=; b=L3cIJyN6y0R7Tn
-	VrV6ULEM7vvM/SjxgN0TZNduwhwJIvUj90hqGSW5Y+LnZ0BDqy1kEZCv8/WWJfbCIcapr3GAsJxJi
-	rcOeLDgpNnFtzIyXhpuQqSk0wsfrpxKDm7BvLyOTxVyOyFtFuaorfVX3UjfsWYkKNJwTAVVjdHMJ4
-	6ZcvMNmu/MwGyzs956nhp7VEcrCnUkdTxThJYzQOnAVXqHLA/WS3jotLTYBcpOudnIxtdllMRk7T4
-	28Nt+JHeWjxl0ZAhRClJD7I3V/YSee48wdCFJbxBDofaS0gSoq6M0y+9PZnLBpOwXA1Tb2TNH0L5m
-	p8OyNFjak0FXtnZDQa7g==;
+	List-Owner; bh=04EmdGHRBFE7K4BIiD+pyYqmCKOSUp8TZd6j3sh7etw=; b=oGZIhtjIwys8BY
+	34mxg0HoUrmDn/oEnQ9+tDYI5RpItjp1tzxYbi8qeDSQmbqEzcySKerbm+a6N2i2yOzePJasHEs/Z
+	bWlBZ5+cSmxmYXglYyen0Q2Z6wFI4FIKH5DbbGxIXJt0Jxz3KoFGrD+MxHtK7HNWVNi80zeidEv5F
+	WqdYMZotycMApDi7wO/ZFNrukS6E2WHOKV9mrNF6Hxi/byp03kb1qs8Kpr2/WPgZTngK3A6ZrKB9q
+	oqk9pVy9TwK1UL6A7N1ayyO5h15XNJapmcFJE4p2LOO/qrtrtdELhwyziNRcBDMy52s4MV2nifDBp
+	XdfgDABT6XgwYVliTh1w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hH68h-0000cB-3s; Thu, 18 Apr 2019 12:27:39 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1hH68i-0000fX-UD; Thu, 18 Apr 2019 12:27:40 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hH68V-0000Og-4x
+ id 1hH68W-0000PG-7U
  for linux-amlogic@lists.infradead.org; Thu, 18 Apr 2019 12:27:30 +0000
-Received: by mail-wr1-x443.google.com with SMTP id s15so2714698wra.12
- for <linux-amlogic@lists.infradead.org>; Thu, 18 Apr 2019 05:27:26 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id y197so2709415wmd.0
+ for <linux-amlogic@lists.infradead.org>; Thu, 18 Apr 2019 05:27:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=9GXR/XbcC+MuPwrv6yn5gN1sB6ocW5hyXF8NUjGi26E=;
- b=lsSTVAhb+qlYZx6/VJZVKeluppYr+EBnKnGJ3q+BLnQRCCtudLXHVoKFhBfbV4ya+M
- JcZNjtXkyeA5QgzkwlBoBr6NXwqnHIu2BFFvoA0mQfJv1y/9asKzk4bZXUizQJcB5xTb
- 0l6rDJpgrrGbzTge5SddZq+W0/7hstXWk9qVGWK87oa0Bf0YqkVJF2DUArmGLRM7kWty
- G/yg8Tu9gVGhXRrFHEo8+g5HAW/ruFyn99oC4D0QCS2I952CREt9ZeyI26GuGs63yPpG
- XyCeTTApAcxGJpkiXOuWOPijDlZo18ZrqL5fIkZ7O7cdPkxZQxWoiSbIPm03apaXDLe7
- BYxA==
+ bh=yaNaoCP8pznZw7TWRPuJzQR6dBbJDMZ7bf+8pYaycCk=;
+ b=h0cyWpdfjXxV8o+0QGI1FlzKHsaxQknwUXk/WWbneAyFQps4Pba5SIW3NSGPWWsnFL
+ 43t62Hrj7vX2kkjEvMPdQzQzVuK8vaXFquY10j9xlxnSvwUFe5GcjSIgNQIaN8V2H3Or
+ PBUBDrFB4LhLjJFzpimxMICN05ySGkVd8on/MU9DF2dgvCmGaRS+gBn/iU2E1li/g9pU
+ q517mhg0TJ4KNmzZBiOtK7hnomX4EqtkPN14ddYyShTOdtzpocBQkcZDfRoavw3WaSQk
+ AQJ8rdHfZAV9GXpqkdxvceT1obOmnnSJujhYpPDYKb/3QxY8SF6Vb+PhYu86FrCTqnrO
+ asCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=9GXR/XbcC+MuPwrv6yn5gN1sB6ocW5hyXF8NUjGi26E=;
- b=dcg/xe6Tm/ldMFd6ttHU/41P5/KTxWTZW/IimJbkYlGb2fyQ8rK10L6WKbCyrTm6Ye
- yaOILGKC1kBubV0t3Q9X9hZcTevGqLN40tJ5Q8Y9jEd+GPgymBG5b8rsa3sSEywjP9dJ
- B277Fz82WKZvTPPDd/HcNXekeusf4Fz/2fJc+BFNK6tMvYrHDpD7h9XPinApCr0xxKnt
- sApSfZot4kZH57Y1/9l5ys+rJcf1q9D3lyYI+56vz92Do8eWWn7xSYZfqzjVD9H/ztnG
- 46tCetDSuRvii2WF0vp07QwOCq5aontXzeB1Wee2VOcU20EEKdwEjEs2D4JhFB+Uzose
- PHlw==
-X-Gm-Message-State: APjAAAVssuLfSepBIpwXZuH3fUrqjYKybcULiW0gpUNSkupGTY7HFq4q
- qJ42aSTAZiB9rTZ792G/mfnECQ==
-X-Google-Smtp-Source: APXvYqw3FHqzmykIz55fADriP7f/Vj9TMin3ermX/n1eHPrq40L7JksYv3X7ZwQu+Szw3rc2cNlXJg==
-X-Received: by 2002:a5d:6687:: with SMTP id l7mr484340wru.307.1555590445504;
- Thu, 18 Apr 2019 05:27:25 -0700 (PDT)
+ bh=yaNaoCP8pznZw7TWRPuJzQR6dBbJDMZ7bf+8pYaycCk=;
+ b=ps8/d7A/CJPuv+wqCTGTSsaDrbNd2lXQrpgjqL9HuHsdaiB4IGycil3AFIxCRkJY23
+ Jp2y8WCI1cH+t3w9wJaPcRhKGlifZJwFeOx3tJv+38mew7lza2OhlGnR7DAXqAqfqHGK
+ sZZGZAhE0ay1Xa4/ikFmPnSQNpniARC/BQZ8xhKI5kG973Lt5ZJhP+7Jl+85+VeVriaB
+ X6gjXlqWRgj71uI2GlMHjKZyRGF9aKyWjue6YfTPqu02n1Ka5Py9PVSzlOlmaHZXm6eO
+ wFfjnkjg58VdYCdagFurl4MCsyi6wfXLLDLWN+ASFibmxssrU9UwHGzh0Hh0wjsSIZZa
+ mzAw==
+X-Gm-Message-State: APjAAAVoqbwOuutk0Mo4xm+3k+i2dtxIPjnkOUE/jVbUHIb0qTpmeswa
+ ffbUuwkF0c6OnSfk1Agn4hVpgQ==
+X-Google-Smtp-Source: APXvYqzXo52LNbrT7WhG1D3rHAqhwljMhATMhsgkdlDTHXLjnfTqq8nO4kPHYeDdHP5ItwfliWQUvQ==
+X-Received: by 2002:a1c:7e0e:: with SMTP id z14mr2817731wmc.95.1555590446600; 
+ Thu, 18 Apr 2019 05:27:26 -0700 (PDT)
 Received: from boomer.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id z14sm1510110wro.81.2019.04.18.05.27.24
+ by smtp.googlemail.com with ESMTPSA id z14sm1510110wro.81.2019.04.18.05.27.25
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Thu, 18 Apr 2019 05:27:24 -0700 (PDT)
+ Thu, 18 Apr 2019 05:27:25 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH 1/6] arm64: dts: meson: libretech-cc: set eMMC as removable
-Date: Thu, 18 Apr 2019 14:27:09 +0200
-Message-Id: <20190418122714.30805-2-jbrunet@baylibre.com>
+Subject: [PATCH 2/6] arm64: dts: meson: libretech-cc: switch eMMC to 1.8v
+Date: Thu, 18 Apr 2019 14:27:10 +0200
+Message-Id: <20190418122714.30805-3-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190418122714.30805-1-jbrunet@baylibre.com>
 References: <20190418122714.30805-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190418_052727_188657_8C585432 
-X-CRM114-Status: UNSURE (   9.08  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190418_052728_490337_EC3F349D 
+X-CRM114-Status: GOOD (  10.80  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -105,25 +104,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The eMMC on this board is add-on module which is not mandatory. Removing
-'non-removable' property should prevent some errors when booting a board
-w/o an eMMC module present.
+While some 3.3v eMMC 4.0 are available from libretech, Only the 1.8v 5.0
+modules are recommended and supported for the aml-s905x-cc.
 
-Fixes: 72fb2c852188 ("ARM64: dts: meson-gxl-s905x-libretech-cc: fixup board definition")
+the 1.8v is provided by LDOs on the eMMC card, from vcc 3.3v
+
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 1 -
- 1 file changed, 1 deletion(-)
+ .../boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-index 255cede7b447..d4d5e3e5439d 100644
+index d4d5e3e5439d..b0f22cdb586c 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
 +++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-@@ -255,7 +255,6 @@
+@@ -115,11 +115,13 @@
+ 		regulator-max-microvolt = <1800000>;
+ 	};
+ 
++	/* This is provided by LDOs on the eMMC daugther card */
+ 	vddio_boot: regulator-vddio_boot {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "VDDIO_BOOT";
+-		regulator-min-microvolt = <3300000>;
+-		regulator-max-microvolt = <3300000>;
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&vcc_3v3>;
+ 	};
+ };
+ 
+@@ -253,8 +255,9 @@
+ 
+ 	bus-width = <8>;
  	cap-mmc-highspeed;
- 	mmc-ddr-3_3v;
- 	max-frequency = <50000000>;
--	non-removable;
+-	mmc-ddr-3_3v;
+-	max-frequency = <50000000>;
++	mmc-ddr-1_8v;
++	mmc-hs200-1_8v;
++	max-frequency = <200000000>;
  	disable-wp;
  
  	mmc-pwrseq = <&emmc_pwrseq>;
