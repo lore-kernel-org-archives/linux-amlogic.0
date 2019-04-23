@@ -1,71 +1,146 @@
-Return-Path: <SRS0=f0Vj=SY=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=V5Bc=SZ=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.8 required=3.0 tests=DKIM_INVALID,DKIM_SIGNED,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 85A1CC282E1
-	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Apr 2019 19:48:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 56122C10F14
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Apr 2019 08:31:37 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 545182190B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Apr 2019 19:48:41 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2146520645
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Apr 2019 08:31:37 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="I2z3ajLR";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="OExUsnCC"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 545182190B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZpSErdHB";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="1TMcQRY3"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2146520645
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=G1sbeIEN8s5CPVYpdbJyW8JJfeFN9Su2UpSwcDUIceg=; b=I2z3ajLRSZYDm4
-	sKxlhYVkvD3BxN2vFZZGOyDci/0f/NXxNN+GXOCZqS4oHpzDqsXVUWDO+/pqvyc5X8/oopx8UxG5w
-	EcPQO2IFRE4O/hNSUahr/zJJLBj0yXQOJ/A6S86f6s7Xk2KobHT4EPyd/+b/GpZVjPfnRZGG/HOgp
-	65Ud71w+YoKyY7ZekjV/vNCRdT85rWvAj33RHinA9Wga5JczZKoY5iaFH2oniDUzRcRjOpKDoFLml
-	7EQ/QbBMNlLew8IZ16wj1T1FNIsfSAxgfcVrAsfrOlY+ITSD7LTaR6dbZonX9pTD3QgXSIKuxj0gh
-	BUBmzh67i4FAU+WgaBTg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=y/H7VIt5cTEQLb4q4gT+PkIlpMbWJVoKJevhpxxvlKw=; b=ZpSErdHBEc8pUk
+	6GCqCg90b4t+DGE17tjneGUCbrEhcSQUoHrdO+cFyF9WRdyPQt+yK0Gn+0GMNTVuu2YnSKXctLlIZ
+	Sy9WDf6nUyn8/BpyJzZwQAw7cZXWHUB3uBGAMQ+B9d4ZjddJDzYJWfQ+nOSOJOo2qCzEGuhjqr+Wy
+	V1FdnrrSvwu72nf3uvBUUmHjhHmWddQaqCJoc+7qoRA1DhhXUs+bQtuy/M0lzbnbDKDuvHgPNcbgX
+	rO/kIKtw2T3GNo9XC0rLnXnr2mB3tdXufwpECRtKHogtzqITWwL83L4ajsxzNj/aaBQDcAit+F5/u
+	YYjN9po3v6vu0OH9Kz6w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hIevc-0004c1-FP; Mon, 22 Apr 2019 19:48:36 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1hIqps-0007Rf-Ph; Tue, 23 Apr 2019 08:31:28 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hIevW-0004TV-GR
- for linux-amlogic@lists.infradead.org; Mon, 22 Apr 2019 19:48:34 +0000
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
- [73.47.72.35])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 5974221907;
- Mon, 22 Apr 2019 19:48:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1555962510;
- bh=AHATJrRfFd3WtExnSB8+3RdqrrSggX2Bz6a1LFnPAhs=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=OExUsnCCS548w9OnaMYHqxFtEOQmVScdFhu/e+lJueFeYfrrpkBSI0nlXYhImlPHu
- GOKkkSfIIrg61c73rMyyq8ErRsWci7d61v1ZahyAdG2M7ZkdVUvkyD5jU/N19/794t
- 7ABlWWcNHguyRaLKg7erLAOzOM+Adb66Ikz2CD7g=
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.14 31/43] drm/meson: Uninstall IRQ handler
-Date: Mon, 22 Apr 2019 15:47:15 -0400
-Message-Id: <20190422194727.12495-31-sashal@kernel.org>
-X-Mailer: git-send-email 2.19.1
-In-Reply-To: <20190422194727.12495-1-sashal@kernel.org>
-References: <20190422194727.12495-1-sashal@kernel.org>
+ id 1hIqp1-0006MX-Fl
+ for linux-amlogic@lists.infradead.org; Tue, 23 Apr 2019 08:30:56 +0000
+Received: by mail-wr1-x441.google.com with SMTP id a3so9391577wrx.0
+ for <linux-amlogic@lists.infradead.org>; Tue, 23 Apr 2019 01:30:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=6wIlvBRN5sOQ3zZfUa1BV3ntScy4GJirAGYGV9vrVCw=;
+ b=1TMcQRY3le2zE6HiN3dknEY5z8B4vrYEpU4MuXCJquwxVRrqfNvN++2lv9IkcOgODn
+ hxwvuXlrp6tTETgPQK16xKVq5Hb59ccsKta54Ys/YMFSGb7MzlKSra0QmONwl/bh6re/
+ lMtg2et0hOCuAr04gFhtLpLW+3Lj8JlafSq0a72xuvQXP/nnOyK4sJNB+zenlECw8epr
+ GaPpGenwDZWXOshe7lSdB47O/KsZ11ZQkWUCWZyPhDU5pj39/41NOwU3kHzFFBRSP9JF
+ c/4+APvHVLhQ+SJmB6uu3b9eRS6PL5b0/s19iL8Z0TnZO+5upMIAXI8D9mBcSI+RNv3u
+ Q9tQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=6wIlvBRN5sOQ3zZfUa1BV3ntScy4GJirAGYGV9vrVCw=;
+ b=s5X8jB4xSbNVpFRpNlscOyJVTn0TV+w2dEB0ehGcGwjxnjcui6Ic0EqbV9fQsIX5xE
+ erodTt0uBKM+5lNqEYX1eYvIXxmhR6dag2n3kbGxdb7/vDElWsPqr3BnFMtVzbdKT/yu
+ bybX7OU2cogXqnCS7VIbO1TguTojp5jSREyQTlXrUoNW6y4elajR1mT3ctuzel2U3TrL
+ Vg6SF0mLJf2v9cTSdE4z8f/l5FXp3cAO49IsvIpjoZaqMyTlecyVgGcndlbur8z9WZZn
+ Gf4cr7up52+STqiBYZwxRLY41RwPCl0Tnl4mb4YLY3LMyKMW7cM1xtlnTEsaVPpSghMB
+ UYkw==
+X-Gm-Message-State: APjAAAXl7xeEMrWuuQyWXx62jjMWH7aE/GHQoLYGali9P88yWgWCrQmr
+ 7JtR5J4bmW9AdNlSwOeBMZNvKw==
+X-Google-Smtp-Source: APXvYqz2VtI18ae0KkE//WvS2cAvcS7xXskVZqM0hNEU3mRsC96T9C2jAi+JGbCECQNwwtkatleUgQ==
+X-Received: by 2002:adf:cd83:: with SMTP id q3mr15114440wrj.228.1556008232877; 
+ Tue, 23 Apr 2019 01:30:32 -0700 (PDT)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id z17sm16174357wmc.7.2019.04.23.01.30.31
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 23 Apr 2019 01:30:32 -0700 (PDT)
+Subject: Re: [PATCH 1/3] arm64: dts: meson-g12a: Add IR nodes
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20190412100518.24470-1-narmstrong@baylibre.com>
+ <20190412100518.24470-2-narmstrong@baylibre.com>
+ <CAFBinCDoxuM18+rRm0BR5usHYpBACXt+HzC6o3TFU-fqi3kkQQ@mail.gmail.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <48194bd4-1928-3941-aef9-8f7d1fb9a9d1@baylibre.com>
+Date: Tue, 23 Apr 2019 10:30:31 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
+In-Reply-To: <CAFBinCDoxuM18+rRm0BR5usHYpBACXt+HzC6o3TFU-fqi3kkQQ@mail.gmail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190422_124830_990715_4EE5A456 
-X-CRM114-Status: GOOD (  12.33  )
+X-CRM114-CacheID: sfid-20190423_013036_156541_4CB667D3 
+X-CRM114-Status: GOOD (  15.59  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -77,67 +152,53 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Jean-Philippe Brucker <jean-philippe.brucker@arm.com>,
- Sasha Levin <sashal@kernel.org>, linux-amlogic@lists.infradead.org,
- dri-devel@lists.freedesktop.org, Neil Armstrong <narmstrong@baylibre.com>
+Cc: baylibre-upstreaming@groups.io, khilman@baylibre.com,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
+Hi Martin,
 
-[ Upstream commit 2d8f92897ad816f5dda54b2ed2fd9f2d7cb1abde ]
+On 13/04/2019 14:02, Martin Blumenstingl wrote:
+> Hi Neil,
+> 
+> On Fri, Apr 12, 2019 at 12:05 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>
+>> Amlogic G12A SoCs uses the exact same IR decoder as previous
+>> families, add the IR node and the pintctrl setting.
+> as far as I can tell there are either two IR decoders or one updated
+> IR decoder in G12A and G12B.
+> I'm using mesong12a.dtsi from
+> buildroot_openlinux_kernel_4.9_fbdev_20180706 as reference:
+>   remote:rc@0xff808040 {
+>       compatible = "amlogic, aml_remote";
+>       reg = <0x0 0xff808040 0x00 0x44>, /*Multi-format IR controller*/
+>                 <0x0 0xff808000 0x00 0x20>; /*Legacy IR controller*/
+>       ...
+> 
+> the registers which you are mapping are for the "Legacy IR
+> controller", so our existing meson-ir driver will probably work (I
+> haven't tested it myself yet).
 
-meson_drv_unbind() doesn't unregister the IRQ handler, which can lead to
-use-after-free if the IRQ fires after unbind:
+We use only the "legacy IR decoder" since GXBB, we never had a driver for
+the "Multi-format IR controller".
 
-[   64.656876] Unable to handle kernel paging request at virtual address ffff000011706dbc
-...
-[   64.662001] pc : meson_irq+0x18/0x30 [meson_drm]
+> 
+> can you please be explicit about this in the patch description?
 
-I'm assuming that a similar problem could happen on the error path of
-bind(), so uninstall the IRQ handler there as well.
+Sure
 
-Fixes: bbbe775ec5b5 ("drm: Add support for Amlogic Meson Graphic Controller")
-Signed-off-by: Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20190322152657.13752-2-jean-philippe.brucker@arm.com
-Signed-off-by: Sasha Levin (Microsoft) <sashal@kernel.org>
----
- drivers/gpu/drm/meson/meson_drv.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> apart from the description you can add my:
+> Reviewed-by: Martin Blumenstingl<martin.blumenstingl@googlemail.com>
+> 
 
-diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-index 1a1b0b9cf1fa..0608243c3387 100644
---- a/drivers/gpu/drm/meson/meson_drv.c
-+++ b/drivers/gpu/drm/meson/meson_drv.c
-@@ -277,10 +277,12 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
- 
- 	ret = drm_dev_register(drm, 0);
- 	if (ret)
--		goto free_drm;
-+		goto uninstall_irq;
- 
- 	return 0;
- 
-+uninstall_irq:
-+	drm_irq_uninstall(drm);
- free_drm:
- 	drm_dev_unref(drm);
- 
-@@ -298,6 +300,7 @@ static void meson_drv_unbind(struct device *dev)
- 	struct drm_device *drm = priv->drm;
- 
- 	drm_dev_unregister(drm);
-+	drm_irq_uninstall(drm);
- 	drm_kms_helper_poll_fini(drm);
- 	drm_fbdev_cma_fini(priv->fbdev);
- 	drm_mode_config_cleanup(drm);
--- 
-2.19.1
-
+Thanks,
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
