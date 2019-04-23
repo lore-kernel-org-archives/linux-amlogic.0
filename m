@@ -2,89 +2,89 @@ Return-Path: <SRS0=V5Bc=SZ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D2044C10F14
-	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Apr 2019 09:02:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 17567C282DD
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Apr 2019 09:02:57 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A17D420674
+	by mail.kernel.org (Postfix) with ESMTPS id D638521738
 	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Apr 2019 09:02:56 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="V/fPA/gj";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="xbMqCO6z"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A17D420674
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iblLkkBh";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="w2KEZVK+"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D638521738
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YM6DMOCAgbzRX1f2Cnd6sPoiz6OsfIuJjGVlRY0hxSM=; b=V/fPA/gjMz6dfi
-	+LOVthGgC1YbT41gIanPa+XXUISYRf0iEvVBq5FUyyAkag5vLB441/QLG3Vk9YJMR8dkC1cBpg/8G
-	bIdUuiZhTTv979evf+k2FXLD36qxSHfjYpf3KxoM55td4Qwg+qsdOH3qsR8Ksvw7G+k3InntepQZ7
-	045YPa02DSkA7M8gAyV95vnwH2h7VNRxcbo85/EQFOjLbodujsfXAMZwpeeVsJV0caekd/DQuTevD
-	8e4VEe+jDS+qOxro6MjwJLK9FM15wGhww3Ub8UcOiYzbEG9BsjfjiTN5A5c5UTESqcXtoLHN5jaWb
-	JoPrXthdiH3zYXX9QzWw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=4ldcJwAmk1TtsZ4czjVnHuPvO8tOQnXp73x6cpj2/5o=; b=iblLkkBhYpLuUg
+	03+OQWz5+EmlbmrTm3TUBvv/Y+aTFn5JKM2LLjBVYfQOeidp6Fam3Vf31AJ2u1vbwNFki6sIvGLBS
+	8L8/nburyCg30xJNnYyA7MvhkIiBEOJ+9hZ0d0r1pK10NIWSIlWV49qUQcHoUHUiqoEKesRTbuEJy
+	n+pLrwqWwbWdwM8YL+UkeqvhRk6WQ7MYiHIXlQg4kul4lzJTeD3ulqrFhYVIyQ2Ya7HAHzi+v/7KY
+	NpIV4CAPXCXkeXrm3+Psn8b1SsBZ3rvi22KP6G7l0wH0zDYk7rLb0r0YNCWoYN9WgE9GjVIJY0mUx
+	6OukCtX/xpkBLjIXVqUw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hIrKE-0005e0-OI; Tue, 23 Apr 2019 09:02:50 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1hIrKF-0005ej-Ld; Tue, 23 Apr 2019 09:02:51 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hIrKB-0005bo-CA
+ id 1hIrKA-0005bn-Tj
  for linux-amlogic@lists.infradead.org; Tue, 23 Apr 2019 09:02:48 +0000
-Received: by mail-wr1-x441.google.com with SMTP id t17so7424018wrr.4
- for <linux-amlogic@lists.infradead.org>; Tue, 23 Apr 2019 02:02:47 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id j13so2036482wmh.2
+ for <linux-amlogic@lists.infradead.org>; Tue, 23 Apr 2019 02:02:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=VS6sWtIBcpW++wv0mYIjcVLqIR7LghrNYUg8/Ta7WWE=;
- b=xbMqCO6zj/632iEPHiWSPhZGMBKBsDiZrQeirlU04yPkWiApOm24k7zLVyG5N1k4ZS
- fRf30jGYSKoSdVluBAAxFRnrxdV1uMkUIBU9ZIlhwO2NPoKtjJOBE3/L2tp34JpdjWTu
- uCQaT5k/IM10+QaOAd/NEVTX+lTW9dI8CMNXUPv6AecORRQres0ZqV6wz7G4tdiU8N8X
- M+FxI87l3FQXlJdI8UvEkd3dSwBOCoPsKBLbbqZmobuUT8Qqn2SHZEjYsV9HXy49HzGq
- 1i4rmkfEokMShkmMUvIf4jkscOg9xyIImE3i+kurOVotZf3Qwu5sPLb907IzKSLd5JDt
- RBMQ==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=wyL5ADK3nwxHUDhFNjCi37nI3TDxQUy8c72Bnz6n+18=;
+ b=w2KEZVK+BwdjPFCdgjID66L2FGqc2zRlZxbbfLTRwYH84oFyER2j8p1qEdsnV/7gNY
+ Wz9HkOorsiTL7+3/rlUBp0rXnNzeU93Y6gDIkKeXIoPjAB6wqwiY1AemP0u+myYSRAu7
+ YDRbQdykDawAHuJ9i5pvkN5l9Yv5Ul2nQFDLfn7j6FuQhrNgykwHKpWAw4dOxnGhUhxR
+ 33z3DGvp52l3QG1UABb/mk+auSj5kqGqsXwZ5yLtT6+WEFmZVAi3EnAPHDR0EVgiB1pW
+ GpZNwS1ryg8x/EHFkzdxGidIfCWoW02Y2b+dRSSVpGz63auqJq0geYcqDOLT049czoKz
+ /YKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=VS6sWtIBcpW++wv0mYIjcVLqIR7LghrNYUg8/Ta7WWE=;
- b=ETLW3kCWHd3gwsq26YlXXg0NxTrwC5KsxpQt3Q2/S+X67pty3MAg2HYuy/lyYz6Grr
- eab0PtAp1He6I2xa2Q0yysN0rfLIHhd9vWOAjlrtfrmeSE0KxxKbTEo6UH/EaqNZW7zb
- 6kkDPYIANClrmNXqoekxVbdZ0FWh0jx6VRYPufNlRZa8zC9L337NM0Swtw8cRhgZ4Umm
- bcf83GBb5fs5WHnKVPKmVy+uu2H+0bX6Juw8Xdhzkn2Hh5OVDgaA90cpEI5Uw4Uo5f/U
- lPkApiXwa4Oki4nAivmR6eQGVw5Bl1VtlBRvbiPXEDJKDh2xxFz+eIWWOerTx9M2X9AW
- /Q7w==
-X-Gm-Message-State: APjAAAXsdjNE6BkCEBjkP9S8yjJhk3jmhGfZ1XPpUwiVC6s9B/mOlEBP
- nS73biCKMC789VU7hafdz8WKcw==
-X-Google-Smtp-Source: APXvYqx291aocUxzzWbLRxtrvn///4nfCCUgX6RRRyBi0FRPwZ0/0Vn+i4JlIb15XtkLkI2qr76qUw==
-X-Received: by 2002:a5d:6604:: with SMTP id n4mr13301965wru.42.1556010165874; 
- Tue, 23 Apr 2019 02:02:45 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=wyL5ADK3nwxHUDhFNjCi37nI3TDxQUy8c72Bnz6n+18=;
+ b=aFCnbZ2L7CFgDso34e4+3/2+sKvmDRkD9rNXDxQjhuyAzT3AUKOSHpb5lFkmADJFn1
+ Vzfxpm9GJVPuoQKjsCILugHILR+J4sbnfVOuStPp4lFfei5snTZPCyDD1SN7ejM6Vk0O
+ V9N8qQGuZaUECKro1igTr2C7zZWp5Xw1mPwSzxB4k/i+9xUr11Bfbie8AXjVXecXF9QZ
+ JcW8xl41t3tWKNZ6A9zhfu42xu90c8CdZOiT40cLPSFycU7tZJh/BOirCK9Djtiyf9YA
+ PhNVtSecKd/0pfraK+HQUrcGpyliFvTEmenVdHMWz8LdPR7KQpgHbkYVbXpwzW6diED4
+ O3DA==
+X-Gm-Message-State: APjAAAVPB5QlBL++FJk3pf1ZJ6xUMcFh6GDo5hYN/76zBlSdS26qeP2/
+ NGHiOhmIHLJ2Q7guQa9Bqthczw==
+X-Google-Smtp-Source: APXvYqzOWXJEFc087s1D7PMjjtkb1ZCYkDnO529wjOgLfT+0GLZElRaqiz0ubFu7jY3QZRZV7MlqwQ==
+X-Received: by 2002:a05:600c:211a:: with SMTP id
+ u26mr1535558wml.74.1556010164784; 
+ Tue, 23 Apr 2019 02:02:44 -0700 (PDT)
 Received: from boomer.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id z23sm12361894wma.0.2019.04.23.02.02.44
+ by smtp.googlemail.com with ESMTPSA id z23sm12361894wma.0.2019.04.23.02.02.43
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Tue, 23 Apr 2019 02:02:45 -0700 (PDT)
+ Tue, 23 Apr 2019 02:02:43 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Ulf Hansson <ulf.hansson@linaro.org>, Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH v2 1/7] mmc: meson-gx: remove open coded read with timeout
-Date: Tue, 23 Apr 2019 11:02:29 +0200
-Message-Id: <20190423090235.17244-2-jbrunet@baylibre.com>
+Subject: [PATCH v2 0/7] mmc: meson-gx: clean up and tuning update
+Date: Tue, 23 Apr 2019 11:02:28 +0200
+Message-Id: <20190423090235.17244-1-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190423090235.17244-1-jbrunet@baylibre.com>
-References: <20190423090235.17244-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190423_020247_410542_5F6E6203 
-X-CRM114-Status: GOOD (  12.82  )
+X-CRM114-CacheID: sfid-20190423_020246_961486_3C3C5A6F 
+X-CRM114-Status: UNSURE (   9.99  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,67 +96,70 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, linux-mmc@vger.kernel.org,
+Cc: linux-amlogic@lists.infradead.org, linux-mmc@vger.kernel.org,
  linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-There is already a function available to poll a register until a
-condition is met. Let's use it instead of open coding it.
+The purpose of this series is too improve reliability of the amlogic mmc
+driver on new (g12a) and old ones (axg, gxl, gxbb, etc...)
 
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/mmc/host/meson-gx-mmc.c | 18 ++++--------------
- 1 file changed, 4 insertions(+), 14 deletions(-)
+* The 3 first patches are just harmless clean ups.
+* Patch 4 makes sure HS400 can't be enabled, we still have not been able
+  to crack this modes.
+* Patch 5 removes some clock glitches when switching to DDR modes
+* Patch 6 and 7 changes the tuning method from Rx phase to signal
+  resampling. It could have been done in a single patch but the unified
+  diff was extremely ugly. The change has been split in two patches to
+  ease review.
 
-diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index 2eba507790e4..2deeacc051b1 100644
---- a/drivers/mmc/host/meson-gx-mmc.c
-+++ b/drivers/mmc/host/meson-gx-mmc.c
-@@ -23,6 +23,7 @@
- #include <linux/init.h>
- #include <linux/delay.h>
- #include <linux/device.h>
-+#include <linux/iopoll.h>
- #include <linux/of_device.h>
- #include <linux/platform_device.h>
- #include <linux/ioport.h>
-@@ -1100,7 +1101,6 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
- 
- static int meson_mmc_wait_desc_stop(struct meson_host *host)
- {
--	int loop;
- 	u32 status;
- 
- 	/*
-@@ -1110,20 +1110,10 @@ static int meson_mmc_wait_desc_stop(struct meson_host *host)
- 	 * If we don't confirm the descriptor is stopped, it might raise new
- 	 * IRQs after we have called mmc_request_done() which is bad.
- 	 */
--	for (loop = 50; loop; loop--) {
--		status = readl(host->regs + SD_EMMC_STATUS);
--		if (status & (STATUS_BUSY | STATUS_DESC_BUSY))
--			udelay(100);
--		else
--			break;
--	}
- 
--	if (status & (STATUS_BUSY | STATUS_DESC_BUSY)) {
--		dev_err(host->dev, "Timed out waiting for host to stop\n");
--		return -ETIMEDOUT;
--	}
--
--	return 0;
-+	return readl_poll_timeout(host->regs + SD_EMMC_STATUS, status,
-+				  !(status & (STATUS_BUSY | STATUS_DESC_BUSY)),
-+				  100, 5000);
- }
- 
- static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
+The last tuning update that went through was meant to improve the axg
+support. Since then, it was reported to break some other boards, like the
+s912 vim2.
+
+Also with the current tuning method, it was impossible to find phase
+settings which would work on all the SoCs, including the new ones.
+
+After redoing all the tests from scratch, it appeared that Rx phase made
+(strangely) almost no difference, especially on g12a and axg. However, it
+showed that it is important to have a phase shift between the Core and Tx
+clock, 180 works best.
+
+I discussed the test results with Amlogic. They suggested to use 180/0 or
+0/180 for the Core and Tx phase. For tuning, they suggested to use
+signal resampling.
+
+So far, so good ... here the platform and modes tested:
+
+NanoPi-K2 (S905): SD UHS SDR50/DDR50, SDIO HS
+Odroid-C2 (S905): SD UHS SDR50/DDR50, eMMC DDR52/HS200 (16GB module)
+Khadas Vim (S905X): SD HS, SDIO HS, eMMC HS200
+Libretech CC (S905X): SD HS, eMMC HS200
+Khadas Vim2 (S912): SD HS, SDIO HS, eMMC HS200
+S400 (A113D): SDIO UHS SDR104, eMMC DDR52/HS200
+U200 (S905D2): SD HS, eMMC DDR52/HS200
+SEI510 (S905X2): SD HS, eMMC DDR52/HS200
+
+Changes since v1 [0]:
+* Add missing writel in patch 5 (error when switching width)
+* Change patch 3 commit description
+
+[0]: https://lkml.kernel.org/r/20190417204355.469-1-jbrunet@baylibre.com
+
+Jerome Brunet (7):
+  mmc: meson-gx: remove open coded read with timeout
+  mmc: meson-gx: ack only raised irq
+  mmc: meson-gx: correct irq flag
+  mmc: meson-gx: disable HS400
+  mmc: meson-gx: avoid clock glitch when switching to DDR modes
+  mmc: meson-gx: remove Rx phase tuning
+  mmc: meson-gx: add signal resampling tuning
+
+ drivers/mmc/host/meson-gx-mmc.c | 419 +++++++++-----------------------
+ 1 file changed, 114 insertions(+), 305 deletions(-)
+
 -- 
 2.20.1
 
