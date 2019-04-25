@@ -1,73 +1,66 @@
-Return-Path: <SRS0=dZbC=S2=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=hRfe=S3=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 773C9C10F11
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Apr 2019 14:39:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DBCABC43219
+	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Apr 2019 18:14:59 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 44B47218FD
-	for <linux-amlogic@archiver.kernel.org>; Wed, 24 Apr 2019 14:39:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6228B20685
+	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Apr 2019 18:15:00 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AxqfRhg2";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="cLLENjS7"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 44B47218FD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gdkdfaM4";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rw12ewFy"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6228B20685
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jT8tQdJKKWOOf4y2Y/J8MMWlJGk/28PoiL66GIqag1s=; b=AxqfRhg2Kke4FD
-	StnxYb63V3zHukfmfWhrJYX3Vnm9udAgCRoRUZBawEx4DMQaTycsd2hVRWyfgau/fkvnOngqMxuDe
-	Oej9CJ31db843mb1AL/pFh75ndGbpWQP2xQJoGCTnyz2bvswhLziaSV84WEZ75ES+yAywzsGsjBOv
-	QotDXf/8EZPc9af3onf6jpPhvE60Mjcq88vjN+9+2cO1iLyb8l2ZZC8YI77OoK2yjPN0/Hv6JkQhs
-	roijt3wJ9ikmtGlsphCx7zUT4F8j8dYAU2WAP6lWlWCJJgts6DZbpnMNJ1/BNNPRwnV9AT/dm38x4
-	cmxV3idHGqKP11Dvz7BQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=g6dq6Vgfu/1WLxC0IeySRc2/jEjclc6RA3b1U06VlKs=; b=gdkdfaM4deUaTu
+	5O17GPA07FOQ2hLwvonkjxfi/GXqzCzrUQGAbrQDBwJ+Fr7FqCm+PhQcC+WGvykRPRLXomhJtWYWC
+	zxohsw22UwEvaklvtMcx/ySM6Pl1tRTJEyXYch546PZqwWThtbZm/IBWRnkE/E7ZidmifCQrgn9oO
+	ySNDHspBrfJRJ3yD5qKC39biZsszF2UZ8MfoTd9PyndYvXSDnwTF8ws2LrlZxRmCxzsG7Nis6maSG
+	KNG4OlDWib+JyYnGk9/9ihXbWhgWL1sgp/POAyuIuze00iGZ/e/i0/xcZmHE0XEG6w6cdhcssNavF
+	yxxIn/XehEYUtd48bsHw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hJJ3j-0002pX-MZ; Wed, 24 Apr 2019 14:39:39 +0000
+	id 1hJitW-000714-TO; Thu, 25 Apr 2019 18:14:50 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hJJ3h-0002o4-5I
- for linux-amlogic@lists.infradead.org; Wed, 24 Apr 2019 14:39:38 +0000
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
- [73.47.72.35])
+ id 1hJitU-00070e-Bi
+ for linux-amlogic@lists.infradead.org; Thu, 25 Apr 2019 18:14:50 +0000
+Received: from mail.kernel.org (unknown [104.132.0.74])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 7ED3221906;
- Wed, 24 Apr 2019 14:39:35 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 4A8CF20685;
+ Thu, 25 Apr 2019 18:14:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1556116776;
- bh=o/h4DnBEnzZdaXHh6eMHzhB4cM1u9243Qa9rFUcS2ks=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=cLLENjS7i6lUsmYMJMdCXqodToQ1XxeOzzzb+A0ttD9NPlGYCy2wAhcuOLWZbw1Dm
- wG8KddBNVfmH0cFepDrljPqYXJEV415IPjrwtlyDxnhvCCwPimyBwoltnV86HMavlR
- YRSTlyhYTwVovA87VPO4aJIkpeSlTt4qPPROCnoA=
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 11/52] reset: meson-audio-arb: Fix missing .owner
- setting of reset_controller_dev
-Date: Wed, 24 Apr 2019 10:38:29 -0400
-Message-Id: <20190424143911.28890-11-sashal@kernel.org>
-X-Mailer: git-send-email 2.19.1
-In-Reply-To: <20190424143911.28890-1-sashal@kernel.org>
-References: <20190424143911.28890-1-sashal@kernel.org>
+ s=default; t=1556216088;
+ bh=0fZVwiGHaKunTp9CMxv8NomGl+zVMchSN8Bj28FxxUk=;
+ h=From:To:Cc:Subject:Date:From;
+ b=Rw12ewFyQ3rmDqC3h6Y8cmy3Nno4MZaMg4x6MEczDng9/UG5vtifUzDUwScRvjMxy
+ H3y/rwydXB1z+ntiwaeqy+0jik/v1nfgse3LXVjIcN9E8T2m9nwOww7nNbjNcqb0fk
+ 4HjGVVUuJauaYbDwZ4VGC/dKEqmkMwGRNV0Zoxkc=
+From: Stephen Boyd <sboyd@kernel.org>
+To: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>
+Subject: [PATCH] clk: Remove CLK_IS_BASIC clk flag
+Date: Thu, 25 Apr 2019 11:14:47 -0700
+Message-Id: <20190425181447.60726-1-sboyd@kernel.org>
+X-Mailer: git-send-email 2.21.0.593.g511ec345e18-goog
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190424_073937_215544_B971D318 
-X-CRM114-Status: UNSURE (   8.78  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190425_111448_439541_EC1ACE7B 
+X-CRM114-Status: GOOD (  14.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -79,41 +72,242 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, linux-amlogic@lists.infradead.org,
- Axel Lin <axel.lin@ingics.com>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-pwm@vger.kernel.org, James Hogan <jhogan@kernel.org>,
+ linux-kernel@vger.kernel.org, Ralf Baechle <ralf@linux-mips.org>,
+ linux-mips@vger.kernel.org, Tero Kristo <t-kristo@ti.com>,
+ Paul Burton <paul.burton@mips.com>, Thierry Reding <thierry.reding@gmail.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Axel Lin <axel.lin@ingics.com>
+This flag was historically used to indicate that a clk is a "basic" type
+of clk like a mux, divider, gate, etc. This never turned out to be very
+useful though because it was hard to cleanly split "basic" clks from
+other clks in a system. This one flag was a way for type introspection
+and it just didn't scale. If anything, it was used by the TI clk driver
+to indicate that a clk_hw wasn't contained in the SoC specific clk
+structure. We can get rid of this define now that TI is finding those
+clks a different way.
 
-[ Upstream commit 13e8a05b922457761ddef39cfff6231bd4ed9eef ]
-
-Set .owner to prevent module unloading while being used.
-
-Signed-off-by: Axel Lin <axel.lin@ingics.com>
-Fixes: d903779b58be ("reset: meson: add meson audio arb driver")
-Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Cc: Tero Kristo <t-kristo@ti.com>
+Cc: Ralf Baechle <ralf@linux-mips.org>
+Cc: Paul Burton <paul.burton@mips.com>
+Cc: James Hogan <jhogan@kernel.org>
+Cc: <linux-mips@vger.kernel.org>
+Cc: Thierry Reding <thierry.reding@gmail.com>
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: <linux-pwm@vger.kernel.org>
+Cc: <linux-amlogic@lists.infradead.org>
+Signed-off-by: Stephen Boyd <sboyd@kernel.org>
 ---
- drivers/reset/reset-meson-audio-arb.c | 1 +
- 1 file changed, 1 insertion(+)
+ arch/mips/alchemy/common/clock.c     | 2 +-
+ drivers/clk/clk-composite.c          | 2 +-
+ drivers/clk/clk-divider.c            | 2 +-
+ drivers/clk/clk-fixed-factor.c       | 2 +-
+ drivers/clk/clk-fixed-rate.c         | 2 +-
+ drivers/clk/clk-fractional-divider.c | 2 +-
+ drivers/clk/clk-gate.c               | 2 +-
+ drivers/clk/clk-gpio.c               | 2 +-
+ drivers/clk/clk-mux.c                | 2 +-
+ drivers/clk/clk-pwm.c                | 2 +-
+ drivers/clk/clk.c                    | 1 -
+ drivers/clk/mmp/clk-gate.c           | 2 +-
+ drivers/pwm/pwm-meson.c              | 2 +-
+ include/linux/clk-provider.h         | 2 +-
+ 14 files changed, 13 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/reset/reset-meson-audio-arb.c b/drivers/reset/reset-meson-audio-arb.c
-index 91751617b37a..c53a2185a039 100644
---- a/drivers/reset/reset-meson-audio-arb.c
-+++ b/drivers/reset/reset-meson-audio-arb.c
-@@ -130,6 +130,7 @@ static int meson_audio_arb_probe(struct platform_device *pdev)
- 	arb->rstc.nr_resets = ARRAY_SIZE(axg_audio_arb_reset_bits);
- 	arb->rstc.ops = &meson_audio_arb_rstc_ops;
- 	arb->rstc.of_node = dev->of_node;
-+	arb->rstc.owner = THIS_MODULE;
+diff --git a/arch/mips/alchemy/common/clock.c b/arch/mips/alchemy/common/clock.c
+index d129475fd40d..a95a894aceaf 100644
+--- a/arch/mips/alchemy/common/clock.c
++++ b/arch/mips/alchemy/common/clock.c
+@@ -160,7 +160,7 @@ static struct clk __init *alchemy_clk_setup_cpu(const char *parent_name,
+ 	id.name = ALCHEMY_CPU_CLK;
+ 	id.parent_names = &parent_name;
+ 	id.num_parents = 1;
+-	id.flags = CLK_IS_BASIC;
++	id.flags = 0;
+ 	id.ops = &alchemy_clkops_cpu;
+ 	h->init = &id;
  
- 	/*
- 	 * Enable general :
+diff --git a/drivers/clk/clk-composite.c b/drivers/clk/clk-composite.c
+index 46604214bba0..b06038b8f658 100644
+--- a/drivers/clk/clk-composite.c
++++ b/drivers/clk/clk-composite.c
+@@ -218,7 +218,7 @@ struct clk_hw *clk_hw_register_composite(struct device *dev, const char *name,
+ 		return ERR_PTR(-ENOMEM);
+ 
+ 	init.name = name;
+-	init.flags = flags | CLK_IS_BASIC;
++	init.flags = flags;
+ 	init.parent_names = parent_names;
+ 	init.num_parents = num_parents;
+ 	hw = &composite->hw;
+diff --git a/drivers/clk/clk-divider.c b/drivers/clk/clk-divider.c
+index e5a17265cfaf..568e10a33ea4 100644
+--- a/drivers/clk/clk-divider.c
++++ b/drivers/clk/clk-divider.c
+@@ -475,7 +475,7 @@ static struct clk_hw *_register_divider(struct device *dev, const char *name,
+ 		init.ops = &clk_divider_ro_ops;
+ 	else
+ 		init.ops = &clk_divider_ops;
+-	init.flags = flags | CLK_IS_BASIC;
++	init.flags = flags;
+ 	init.parent_names = (parent_name ? &parent_name: NULL);
+ 	init.num_parents = (parent_name ? 1 : 0);
+ 
+diff --git a/drivers/clk/clk-fixed-factor.c b/drivers/clk/clk-fixed-factor.c
+index 241b3f8c61a9..8aac2d1b6fea 100644
+--- a/drivers/clk/clk-fixed-factor.c
++++ b/drivers/clk/clk-fixed-factor.c
+@@ -84,7 +84,7 @@ struct clk_hw *clk_hw_register_fixed_factor(struct device *dev,
+ 
+ 	init.name = name;
+ 	init.ops = &clk_fixed_factor_ops;
+-	init.flags = flags | CLK_IS_BASIC;
++	init.flags = flags;
+ 	init.parent_names = &parent_name;
+ 	init.num_parents = 1;
+ 
+diff --git a/drivers/clk/clk-fixed-rate.c b/drivers/clk/clk-fixed-rate.c
+index 00ef4f5e53fe..a7e4aef7a376 100644
+--- a/drivers/clk/clk-fixed-rate.c
++++ b/drivers/clk/clk-fixed-rate.c
+@@ -68,7 +68,7 @@ struct clk_hw *clk_hw_register_fixed_rate_with_accuracy(struct device *dev,
+ 
+ 	init.name = name;
+ 	init.ops = &clk_fixed_rate_ops;
+-	init.flags = flags | CLK_IS_BASIC;
++	init.flags = flags;
+ 	init.parent_names = (parent_name ? &parent_name: NULL);
+ 	init.num_parents = (parent_name ? 1 : 0);
+ 
+diff --git a/drivers/clk/clk-fractional-divider.c b/drivers/clk/clk-fractional-divider.c
+index fdfe2e423d15..aa45dd257fe3 100644
+--- a/drivers/clk/clk-fractional-divider.c
++++ b/drivers/clk/clk-fractional-divider.c
+@@ -151,7 +151,7 @@ struct clk_hw *clk_hw_register_fractional_divider(struct device *dev,
+ 
+ 	init.name = name;
+ 	init.ops = &clk_fractional_divider_ops;
+-	init.flags = flags | CLK_IS_BASIC;
++	init.flags = flags;
+ 	init.parent_names = parent_name ? &parent_name : NULL;
+ 	init.num_parents = parent_name ? 1 : 0;
+ 
+diff --git a/drivers/clk/clk-gate.c b/drivers/clk/clk-gate.c
+index f05823cd9b21..f58a58d5d80a 100644
+--- a/drivers/clk/clk-gate.c
++++ b/drivers/clk/clk-gate.c
+@@ -142,7 +142,7 @@ struct clk_hw *clk_hw_register_gate(struct device *dev, const char *name,
+ 
+ 	init.name = name;
+ 	init.ops = &clk_gate_ops;
+-	init.flags = flags | CLK_IS_BASIC;
++	init.flags = flags;
+ 	init.parent_names = parent_name ? &parent_name : NULL;
+ 	init.num_parents = parent_name ? 1 : 0;
+ 
+diff --git a/drivers/clk/clk-gpio.c b/drivers/clk/clk-gpio.c
+index c2f07f0d077c..9d930edd6516 100644
+--- a/drivers/clk/clk-gpio.c
++++ b/drivers/clk/clk-gpio.c
+@@ -137,7 +137,7 @@ static struct clk_hw *clk_register_gpio(struct device *dev, const char *name,
+ 
+ 	init.name = name;
+ 	init.ops = clk_gpio_ops;
+-	init.flags = flags | CLK_IS_BASIC;
++	init.flags = flags;
+ 	init.parent_names = parent_names;
+ 	init.num_parents = num_parents;
+ 
+diff --git a/drivers/clk/clk-mux.c b/drivers/clk/clk-mux.c
+index 2ad2df2e8909..7d60d690b7f2 100644
+--- a/drivers/clk/clk-mux.c
++++ b/drivers/clk/clk-mux.c
+@@ -159,7 +159,7 @@ struct clk_hw *clk_hw_register_mux_table(struct device *dev, const char *name,
+ 		init.ops = &clk_mux_ro_ops;
+ 	else
+ 		init.ops = &clk_mux_ops;
+-	init.flags = flags | CLK_IS_BASIC;
++	init.flags = flags;
+ 	init.parent_names = parent_names;
+ 	init.num_parents = num_parents;
+ 
+diff --git a/drivers/clk/clk-pwm.c b/drivers/clk/clk-pwm.c
+index 8cb9d117fdbf..02b472a1f9b0 100644
+--- a/drivers/clk/clk-pwm.c
++++ b/drivers/clk/clk-pwm.c
+@@ -101,7 +101,7 @@ static int clk_pwm_probe(struct platform_device *pdev)
+ 
+ 	init.name = clk_name;
+ 	init.ops = &clk_pwm_ops;
+-	init.flags = CLK_IS_BASIC;
++	init.flags = 0;
+ 	init.num_parents = 0;
+ 
+ 	clk_pwm->pwm = pwm;
+diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+index 96053a96fe2f..7279573eefd5 100644
+--- a/drivers/clk/clk.c
++++ b/drivers/clk/clk.c
+@@ -2850,7 +2850,6 @@ static const struct {
+ 	ENTRY(CLK_SET_PARENT_GATE),
+ 	ENTRY(CLK_SET_RATE_PARENT),
+ 	ENTRY(CLK_IGNORE_UNUSED),
+-	ENTRY(CLK_IS_BASIC),
+ 	ENTRY(CLK_GET_RATE_NOCACHE),
+ 	ENTRY(CLK_SET_RATE_NO_REPARENT),
+ 	ENTRY(CLK_GET_ACCURACY_NOCACHE),
+diff --git a/drivers/clk/mmp/clk-gate.c b/drivers/clk/mmp/clk-gate.c
+index 7355595c42e2..1755916ddef2 100644
+--- a/drivers/clk/mmp/clk-gate.c
++++ b/drivers/clk/mmp/clk-gate.c
+@@ -108,7 +108,7 @@ struct clk *mmp_clk_register_gate(struct device *dev, const char *name,
+ 
+ 	init.name = name;
+ 	init.ops = &mmp_clk_gate_ops;
+-	init.flags = flags | CLK_IS_BASIC;
++	init.flags = flags;
+ 	init.parent_names = (parent_name ? &parent_name : NULL);
+ 	init.num_parents = (parent_name ? 1 : 0);
+ 
+diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+index c1ed641b3e26..4ae5d774443e 100644
+--- a/drivers/pwm/pwm-meson.c
++++ b/drivers/pwm/pwm-meson.c
+@@ -470,7 +470,7 @@ static int meson_pwm_init_channels(struct meson_pwm *meson,
+ 
+ 		init.name = name;
+ 		init.ops = &clk_mux_ops;
+-		init.flags = CLK_IS_BASIC;
++		init.flags = 0;
+ 		init.parent_names = meson->data->parent_names;
+ 		init.num_parents = meson->data->num_parents;
+ 
+diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
+index b7cf80a71293..9245a377295b 100644
+--- a/include/linux/clk-provider.h
++++ b/include/linux/clk-provider.h
+@@ -24,7 +24,7 @@
+ #define CLK_SET_RATE_PARENT	BIT(2) /* propagate rate change up one level */
+ #define CLK_IGNORE_UNUSED	BIT(3) /* do not gate even if unused */
+ 				/* unused */
+-#define CLK_IS_BASIC		BIT(5) /* Basic clk, can't do a to_clk_foo() */
++				/* unused */
+ #define CLK_GET_RATE_NOCACHE	BIT(6) /* do not use the cached clk rate */
+ #define CLK_SET_RATE_NO_REPARENT BIT(7) /* don't re-parent on rate change */
+ #define CLK_GET_ACCURACY_NOCACHE BIT(8) /* do not use the cached clk accuracy */
+
+base-commit: 9e98c678c2d6ae3a17cb2de55d17f69dddaa231b
+prerequisite-patch-id: 6196ca807a15f9f4a67d5e6b8668b4f13442ac15
+prerequisite-patch-id: 9532946d1be40c2b20af0591ac4636a4cf3b14dd
+prerequisite-patch-id: 4e4a9591f5a4ac0d5a72e694da8fdae8c8dda352
+prerequisite-patch-id: bcd75306e64ff866989a978127f6b16f7575d0d3
 -- 
-2.19.1
+Sent by a computer through tubes
 
 
 _______________________________________________
