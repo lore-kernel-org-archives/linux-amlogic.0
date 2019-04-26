@@ -1,66 +1,88 @@
-Return-Path: <SRS0=hRfe=S3=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=lPQy=S4=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.3 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_MUTT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DBCABC43219
-	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Apr 2019 18:14:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 62A10C43219
+	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Apr 2019 15:25:14 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6228B20685
-	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Apr 2019 18:15:00 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 331AD2077B
+	for <linux-amlogic@archiver.kernel.org>; Fri, 26 Apr 2019 15:25:14 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gdkdfaM4";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rw12ewFy"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6228B20685
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PrQkmPTw";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="he5FOjor"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 331AD2077B
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=g6dq6Vgfu/1WLxC0IeySRc2/jEjclc6RA3b1U06VlKs=; b=gdkdfaM4deUaTu
-	5O17GPA07FOQ2hLwvonkjxfi/GXqzCzrUQGAbrQDBwJ+Fr7FqCm+PhQcC+WGvykRPRLXomhJtWYWC
-	zxohsw22UwEvaklvtMcx/ySM6Pl1tRTJEyXYch546PZqwWThtbZm/IBWRnkE/E7ZidmifCQrgn9oO
-	ySNDHspBrfJRJ3yD5qKC39biZsszF2UZ8MfoTd9PyndYvXSDnwTF8ws2LrlZxRmCxzsG7Nis6maSG
-	KNG4OlDWib+JyYnGk9/9ihXbWhgWL1sgp/POAyuIuze00iGZ/e/i0/xcZmHE0XEG6w6cdhcssNavF
-	yxxIn/XehEYUtd48bsHw==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=MHFojbLGA8MoX9x5JiiZTw3Kbk7GZDu9NhpWGmnqwdc=; b=PrQkmPTwRmzaSpNUf+382UtI2
+	8ffjrgWpVzvikX5OpKfnE4uaZiHdLQdQBKx/Eb4JrQpUsSXjXPuWJiPWLUHwkt9XMVSBgCZ/vy6dh
+	+G1FUEaU6ixf0bIZen/1BkxYAmbjiPIVs89mtvKdN4Vceqy8CPbPzM9f8ZUK02U03F+/5OwHVF5PA
+	CaahVccZot5UV2n13URsRrVWlpP4K6Nk5nO/pfefXERbkXEF6CrthzETKj2YNeDPWk410Exmj2je1
+	JsbPDCSeJ68rgZJITymY8FcAU/aD5RY1eNvxfax7e4RsFa+Sv3EsZJH0a9IbzD/laHsf0REXRkcol
+	eAMy/m3tw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hJitW-000714-TO; Thu, 25 Apr 2019 18:14:50 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1hK2in-0000JM-H8; Fri, 26 Apr 2019 15:25:05 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hJitU-00070e-Bi
- for linux-amlogic@lists.infradead.org; Thu, 25 Apr 2019 18:14:50 +0000
-Received: from mail.kernel.org (unknown [104.132.0.74])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 4A8CF20685;
- Thu, 25 Apr 2019 18:14:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1556216088;
- bh=0fZVwiGHaKunTp9CMxv8NomGl+zVMchSN8Bj28FxxUk=;
- h=From:To:Cc:Subject:Date:From;
- b=Rw12ewFyQ3rmDqC3h6Y8cmy3Nno4MZaMg4x6MEczDng9/UG5vtifUzDUwScRvjMxy
- H3y/rwydXB1z+ntiwaeqy+0jik/v1nfgse3LXVjIcN9E8T2m9nwOww7nNbjNcqb0fk
- 4HjGVVUuJauaYbDwZ4VGC/dKEqmkMwGRNV0Zoxkc=
-From: Stephen Boyd <sboyd@kernel.org>
-To: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>
-Subject: [PATCH] clk: Remove CLK_IS_BASIC clk flag
-Date: Thu, 25 Apr 2019 11:14:47 -0700
-Message-Id: <20190425181447.60726-1-sboyd@kernel.org>
-X-Mailer: git-send-email 2.21.0.593.g511ec345e18-goog
+ id 1hK2ik-0008E8-QP
+ for linux-amlogic@lists.infradead.org; Fri, 26 Apr 2019 15:25:04 +0000
+Received: by mail-wr1-x442.google.com with SMTP id a9so4984907wrp.6
+ for <linux-amlogic@lists.infradead.org>; Fri, 26 Apr 2019 08:25:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=LHk6Q7YVWro0HUIwZ6DubgfOSDCLAqHqjxmCbViazvQ=;
+ b=he5FOjorgS1idJxlhNzp+WG+1REcrUiXaSQ9CeLaTJ3wlwoxpVMxuMgeL3T1FP2gr7
+ 9zXZ7/0IQPgw0lhZ4nGPoE/thVE/yKQOEu+peeYWmSARgLPkXXSjE5ijcAKwf92i+7mq
+ XGllPVkC7xru/Vrdxa/PAJkPeQ2fyVjI7+TcFikCFhuBdJKwl7xw8eTd2k/5E+F8IQGw
+ E4bNcOH5zm25WHOP6uSPcbVgn/EIiK/8An0CjXPXPUmTxcmb5OhtxgRoxyfxalAdP3pv
+ pm7CWsZrRM2sAqhCkH71YiTA719qLDHCGC/XD4PHuvRkEALV54CdhyA5vk2EwRLp2vSN
+ zoQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=LHk6Q7YVWro0HUIwZ6DubgfOSDCLAqHqjxmCbViazvQ=;
+ b=Sdjles8irBg+I3D3VCor7Hm7BCHhHXDH80rLmw8qfX/qt+BmqjBgt/1CaEU/wo2HDG
+ cBxLHizHSFtqKS8W+5Uj16xNc+BN+7kKmhP54/50IXMPXCuGWvx6z4Yf/0Wslm3iJZts
+ /1YifYlEvMK1DGjNv4tSXZmiJzttjjJSN8NqGmC15/FD7RKBop+9uGO3pH3i8uwqNWvE
+ TZhESbuJG77Fh2uDjMIe9xNuxETmaGhGCjJPBgvFB30WYepuzgdMthvw1SaVwH4aJdJJ
+ cbatF3YOBaPTdZm8RcbVlkKXle/DNGtLtmOvD3dJGock/87hMntwlzdeQkRd2JauuMzU
+ 7mfw==
+X-Gm-Message-State: APjAAAWLjbQU9QB6aOOGuhMv7vJVUE5Vrg5yoG/7CGbXQexXkpclHxyV
+ mGL0vzhAb1BZd0IQs5oO7D8=
+X-Google-Smtp-Source: APXvYqyp1DKWPlVfJP5wbH9fMkpIdFUeSNKQnoZvKHNQauSTPUCke5IKj6zopVxQPeAgg8DknDRFrA==
+X-Received: by 2002:adf:e711:: with SMTP id c17mr15670199wrm.57.1556292300623; 
+ Fri, 26 Apr 2019 08:25:00 -0700 (PDT)
+Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
+ by smtp.gmail.com with ESMTPSA id h9sm18683735wmb.5.2019.04.26.08.24.59
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Fri, 26 Apr 2019 08:24:59 -0700 (PDT)
+Date: Fri, 26 Apr 2019 17:24:58 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH] clk: Remove CLK_IS_BASIC clk flag
+Message-ID: <20190426152458.GC19559@ulmo>
+References: <20190425181447.60726-1-sboyd@kernel.org>
 MIME-Version: 1.0
+In-Reply-To: <20190425181447.60726-1-sboyd@kernel.org>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190425_111448_439541_EC1ACE7B 
-X-CRM114-Status: GOOD (  14.12  )
+X-CRM114-CacheID: sfid-20190426_082502_873905_BD8E510F 
+X-CRM114-Status: GOOD (  13.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -73,244 +95,99 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: linux-pwm@vger.kernel.org, James Hogan <jhogan@kernel.org>,
- linux-kernel@vger.kernel.org, Ralf Baechle <ralf@linux-mips.org>,
- linux-mips@vger.kernel.org, Tero Kristo <t-kristo@ti.com>,
- Paul Burton <paul.burton@mips.com>, Thierry Reding <thierry.reding@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
+ Ralf Baechle <ralf@linux-mips.org>, linux-mips@vger.kernel.org,
+ Tero Kristo <t-kristo@ti.com>, Paul Burton <paul.burton@mips.com>,
  Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
  linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============2150582996089671033=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This flag was historically used to indicate that a clk is a "basic" type
-of clk like a mux, divider, gate, etc. This never turned out to be very
-useful though because it was hard to cleanly split "basic" clks from
-other clks in a system. This one flag was a way for type introspection
-and it just didn't scale. If anything, it was used by the TI clk driver
-to indicate that a clk_hw wasn't contained in the SoC specific clk
-structure. We can get rid of this define now that TI is finding those
-clks a different way.
 
-Cc: Tero Kristo <t-kristo@ti.com>
-Cc: Ralf Baechle <ralf@linux-mips.org>
-Cc: Paul Burton <paul.burton@mips.com>
-Cc: James Hogan <jhogan@kernel.org>
-Cc: <linux-mips@vger.kernel.org>
-Cc: Thierry Reding <thierry.reding@gmail.com>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: <linux-pwm@vger.kernel.org>
-Cc: <linux-amlogic@lists.infradead.org>
-Signed-off-by: Stephen Boyd <sboyd@kernel.org>
----
- arch/mips/alchemy/common/clock.c     | 2 +-
- drivers/clk/clk-composite.c          | 2 +-
- drivers/clk/clk-divider.c            | 2 +-
- drivers/clk/clk-fixed-factor.c       | 2 +-
- drivers/clk/clk-fixed-rate.c         | 2 +-
- drivers/clk/clk-fractional-divider.c | 2 +-
- drivers/clk/clk-gate.c               | 2 +-
- drivers/clk/clk-gpio.c               | 2 +-
- drivers/clk/clk-mux.c                | 2 +-
- drivers/clk/clk-pwm.c                | 2 +-
- drivers/clk/clk.c                    | 1 -
- drivers/clk/mmp/clk-gate.c           | 2 +-
- drivers/pwm/pwm-meson.c              | 2 +-
- include/linux/clk-provider.h         | 2 +-
- 14 files changed, 13 insertions(+), 14 deletions(-)
+--===============2150582996089671033==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="XMCwj5IQnwKtuyBG"
+Content-Disposition: inline
 
-diff --git a/arch/mips/alchemy/common/clock.c b/arch/mips/alchemy/common/clock.c
-index d129475fd40d..a95a894aceaf 100644
---- a/arch/mips/alchemy/common/clock.c
-+++ b/arch/mips/alchemy/common/clock.c
-@@ -160,7 +160,7 @@ static struct clk __init *alchemy_clk_setup_cpu(const char *parent_name,
- 	id.name = ALCHEMY_CPU_CLK;
- 	id.parent_names = &parent_name;
- 	id.num_parents = 1;
--	id.flags = CLK_IS_BASIC;
-+	id.flags = 0;
- 	id.ops = &alchemy_clkops_cpu;
- 	h->init = &id;
- 
-diff --git a/drivers/clk/clk-composite.c b/drivers/clk/clk-composite.c
-index 46604214bba0..b06038b8f658 100644
---- a/drivers/clk/clk-composite.c
-+++ b/drivers/clk/clk-composite.c
-@@ -218,7 +218,7 @@ struct clk_hw *clk_hw_register_composite(struct device *dev, const char *name,
- 		return ERR_PTR(-ENOMEM);
- 
- 	init.name = name;
--	init.flags = flags | CLK_IS_BASIC;
-+	init.flags = flags;
- 	init.parent_names = parent_names;
- 	init.num_parents = num_parents;
- 	hw = &composite->hw;
-diff --git a/drivers/clk/clk-divider.c b/drivers/clk/clk-divider.c
-index e5a17265cfaf..568e10a33ea4 100644
---- a/drivers/clk/clk-divider.c
-+++ b/drivers/clk/clk-divider.c
-@@ -475,7 +475,7 @@ static struct clk_hw *_register_divider(struct device *dev, const char *name,
- 		init.ops = &clk_divider_ro_ops;
- 	else
- 		init.ops = &clk_divider_ops;
--	init.flags = flags | CLK_IS_BASIC;
-+	init.flags = flags;
- 	init.parent_names = (parent_name ? &parent_name: NULL);
- 	init.num_parents = (parent_name ? 1 : 0);
- 
-diff --git a/drivers/clk/clk-fixed-factor.c b/drivers/clk/clk-fixed-factor.c
-index 241b3f8c61a9..8aac2d1b6fea 100644
---- a/drivers/clk/clk-fixed-factor.c
-+++ b/drivers/clk/clk-fixed-factor.c
-@@ -84,7 +84,7 @@ struct clk_hw *clk_hw_register_fixed_factor(struct device *dev,
- 
- 	init.name = name;
- 	init.ops = &clk_fixed_factor_ops;
--	init.flags = flags | CLK_IS_BASIC;
-+	init.flags = flags;
- 	init.parent_names = &parent_name;
- 	init.num_parents = 1;
- 
-diff --git a/drivers/clk/clk-fixed-rate.c b/drivers/clk/clk-fixed-rate.c
-index 00ef4f5e53fe..a7e4aef7a376 100644
---- a/drivers/clk/clk-fixed-rate.c
-+++ b/drivers/clk/clk-fixed-rate.c
-@@ -68,7 +68,7 @@ struct clk_hw *clk_hw_register_fixed_rate_with_accuracy(struct device *dev,
- 
- 	init.name = name;
- 	init.ops = &clk_fixed_rate_ops;
--	init.flags = flags | CLK_IS_BASIC;
-+	init.flags = flags;
- 	init.parent_names = (parent_name ? &parent_name: NULL);
- 	init.num_parents = (parent_name ? 1 : 0);
- 
-diff --git a/drivers/clk/clk-fractional-divider.c b/drivers/clk/clk-fractional-divider.c
-index fdfe2e423d15..aa45dd257fe3 100644
---- a/drivers/clk/clk-fractional-divider.c
-+++ b/drivers/clk/clk-fractional-divider.c
-@@ -151,7 +151,7 @@ struct clk_hw *clk_hw_register_fractional_divider(struct device *dev,
- 
- 	init.name = name;
- 	init.ops = &clk_fractional_divider_ops;
--	init.flags = flags | CLK_IS_BASIC;
-+	init.flags = flags;
- 	init.parent_names = parent_name ? &parent_name : NULL;
- 	init.num_parents = parent_name ? 1 : 0;
- 
-diff --git a/drivers/clk/clk-gate.c b/drivers/clk/clk-gate.c
-index f05823cd9b21..f58a58d5d80a 100644
---- a/drivers/clk/clk-gate.c
-+++ b/drivers/clk/clk-gate.c
-@@ -142,7 +142,7 @@ struct clk_hw *clk_hw_register_gate(struct device *dev, const char *name,
- 
- 	init.name = name;
- 	init.ops = &clk_gate_ops;
--	init.flags = flags | CLK_IS_BASIC;
-+	init.flags = flags;
- 	init.parent_names = parent_name ? &parent_name : NULL;
- 	init.num_parents = parent_name ? 1 : 0;
- 
-diff --git a/drivers/clk/clk-gpio.c b/drivers/clk/clk-gpio.c
-index c2f07f0d077c..9d930edd6516 100644
---- a/drivers/clk/clk-gpio.c
-+++ b/drivers/clk/clk-gpio.c
-@@ -137,7 +137,7 @@ static struct clk_hw *clk_register_gpio(struct device *dev, const char *name,
- 
- 	init.name = name;
- 	init.ops = clk_gpio_ops;
--	init.flags = flags | CLK_IS_BASIC;
-+	init.flags = flags;
- 	init.parent_names = parent_names;
- 	init.num_parents = num_parents;
- 
-diff --git a/drivers/clk/clk-mux.c b/drivers/clk/clk-mux.c
-index 2ad2df2e8909..7d60d690b7f2 100644
---- a/drivers/clk/clk-mux.c
-+++ b/drivers/clk/clk-mux.c
-@@ -159,7 +159,7 @@ struct clk_hw *clk_hw_register_mux_table(struct device *dev, const char *name,
- 		init.ops = &clk_mux_ro_ops;
- 	else
- 		init.ops = &clk_mux_ops;
--	init.flags = flags | CLK_IS_BASIC;
-+	init.flags = flags;
- 	init.parent_names = parent_names;
- 	init.num_parents = num_parents;
- 
-diff --git a/drivers/clk/clk-pwm.c b/drivers/clk/clk-pwm.c
-index 8cb9d117fdbf..02b472a1f9b0 100644
---- a/drivers/clk/clk-pwm.c
-+++ b/drivers/clk/clk-pwm.c
-@@ -101,7 +101,7 @@ static int clk_pwm_probe(struct platform_device *pdev)
- 
- 	init.name = clk_name;
- 	init.ops = &clk_pwm_ops;
--	init.flags = CLK_IS_BASIC;
-+	init.flags = 0;
- 	init.num_parents = 0;
- 
- 	clk_pwm->pwm = pwm;
-diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index 96053a96fe2f..7279573eefd5 100644
---- a/drivers/clk/clk.c
-+++ b/drivers/clk/clk.c
-@@ -2850,7 +2850,6 @@ static const struct {
- 	ENTRY(CLK_SET_PARENT_GATE),
- 	ENTRY(CLK_SET_RATE_PARENT),
- 	ENTRY(CLK_IGNORE_UNUSED),
--	ENTRY(CLK_IS_BASIC),
- 	ENTRY(CLK_GET_RATE_NOCACHE),
- 	ENTRY(CLK_SET_RATE_NO_REPARENT),
- 	ENTRY(CLK_GET_ACCURACY_NOCACHE),
-diff --git a/drivers/clk/mmp/clk-gate.c b/drivers/clk/mmp/clk-gate.c
-index 7355595c42e2..1755916ddef2 100644
---- a/drivers/clk/mmp/clk-gate.c
-+++ b/drivers/clk/mmp/clk-gate.c
-@@ -108,7 +108,7 @@ struct clk *mmp_clk_register_gate(struct device *dev, const char *name,
- 
- 	init.name = name;
- 	init.ops = &mmp_clk_gate_ops;
--	init.flags = flags | CLK_IS_BASIC;
-+	init.flags = flags;
- 	init.parent_names = (parent_name ? &parent_name : NULL);
- 	init.num_parents = (parent_name ? 1 : 0);
- 
-diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index c1ed641b3e26..4ae5d774443e 100644
---- a/drivers/pwm/pwm-meson.c
-+++ b/drivers/pwm/pwm-meson.c
-@@ -470,7 +470,7 @@ static int meson_pwm_init_channels(struct meson_pwm *meson,
- 
- 		init.name = name;
- 		init.ops = &clk_mux_ops;
--		init.flags = CLK_IS_BASIC;
-+		init.flags = 0;
- 		init.parent_names = meson->data->parent_names;
- 		init.num_parents = meson->data->num_parents;
- 
-diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
-index b7cf80a71293..9245a377295b 100644
---- a/include/linux/clk-provider.h
-+++ b/include/linux/clk-provider.h
-@@ -24,7 +24,7 @@
- #define CLK_SET_RATE_PARENT	BIT(2) /* propagate rate change up one level */
- #define CLK_IGNORE_UNUSED	BIT(3) /* do not gate even if unused */
- 				/* unused */
--#define CLK_IS_BASIC		BIT(5) /* Basic clk, can't do a to_clk_foo() */
-+				/* unused */
- #define CLK_GET_RATE_NOCACHE	BIT(6) /* do not use the cached clk rate */
- #define CLK_SET_RATE_NO_REPARENT BIT(7) /* don't re-parent on rate change */
- #define CLK_GET_ACCURACY_NOCACHE BIT(8) /* do not use the cached clk accuracy */
 
-base-commit: 9e98c678c2d6ae3a17cb2de55d17f69dddaa231b
-prerequisite-patch-id: 6196ca807a15f9f4a67d5e6b8668b4f13442ac15
-prerequisite-patch-id: 9532946d1be40c2b20af0591ac4636a4cf3b14dd
-prerequisite-patch-id: 4e4a9591f5a4ac0d5a72e694da8fdae8c8dda352
-prerequisite-patch-id: bcd75306e64ff866989a978127f6b16f7575d0d3
--- 
-Sent by a computer through tubes
+--XMCwj5IQnwKtuyBG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Apr 25, 2019 at 11:14:47AM -0700, Stephen Boyd wrote:
+> This flag was historically used to indicate that a clk is a "basic" type
+> of clk like a mux, divider, gate, etc. This never turned out to be very
+> useful though because it was hard to cleanly split "basic" clks from
+> other clks in a system. This one flag was a way for type introspection
+> and it just didn't scale. If anything, it was used by the TI clk driver
+> to indicate that a clk_hw wasn't contained in the SoC specific clk
+> structure. We can get rid of this define now that TI is finding those
+> clks a different way.
+>=20
+> Cc: Tero Kristo <t-kristo@ti.com>
+> Cc: Ralf Baechle <ralf@linux-mips.org>
+> Cc: Paul Burton <paul.burton@mips.com>
+> Cc: James Hogan <jhogan@kernel.org>
+> Cc: <linux-mips@vger.kernel.org>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Kevin Hilman <khilman@baylibre.com>
+> Cc: <linux-pwm@vger.kernel.org>
+> Cc: <linux-amlogic@lists.infradead.org>
+> Signed-off-by: Stephen Boyd <sboyd@kernel.org>
+> ---
+>  arch/mips/alchemy/common/clock.c     | 2 +-
+>  drivers/clk/clk-composite.c          | 2 +-
+>  drivers/clk/clk-divider.c            | 2 +-
+>  drivers/clk/clk-fixed-factor.c       | 2 +-
+>  drivers/clk/clk-fixed-rate.c         | 2 +-
+>  drivers/clk/clk-fractional-divider.c | 2 +-
+>  drivers/clk/clk-gate.c               | 2 +-
+>  drivers/clk/clk-gpio.c               | 2 +-
+>  drivers/clk/clk-mux.c                | 2 +-
+>  drivers/clk/clk-pwm.c                | 2 +-
+>  drivers/clk/clk.c                    | 1 -
+>  drivers/clk/mmp/clk-gate.c           | 2 +-
+>  drivers/pwm/pwm-meson.c              | 2 +-
+>  include/linux/clk-provider.h         | 2 +-
+>  14 files changed, 13 insertions(+), 14 deletions(-)
+
+Acked-by: Thierry Reding <treding@nvidia.com>
+
+--XMCwj5IQnwKtuyBG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlzDIsoACgkQ3SOs138+
+s6EeYw/+ODtlfFBeX5N8+RMkQjbVCHXWEOdXzaRchdA6FG2OsXcE4sKemUaRndwq
+39u//Gfd7+FzbRx1KozJynxMh4X4SZgkz8amg9E5KBMjxviapvni7zPs0iM4DCxU
+QaD9lX+z7SHTjAmGO2Uc9WwOzGn7hKiawSaaWt3feFeycPQ19yz/oK9OT/gMtVh9
+23fYY03Ct7m9jp7q9xfM6/03IO6QzA3ygvStbpHw06rQWVVO94z4RCziJKXEqwRE
+zgqW+2tRCeBH6lx2wi6PHbPYpVvKCV/tGMFwjhDcfKgkWaCq/A3iGyJprnALkJV9
+alCoVZ9RaxddQaxGo+nYI7Tf65j+jKsEZNDFO/rLL7uAsojJdI5SntyKJjZNJU/P
+oELMbraTQV/YJD+CfuzDzCnX+hQ6HxD49TcP2G3hPPYFwfJPNXjTMxztThFghdcU
+zUxEewHp36MCmxrCbB62AlySj013FdvXQPRWsbCK8WoPdAlS9RrDc7Fkq4rIcKvq
+7qAdfSYKyRQDAAp62gjDQJLkGlolGAKGR6vxJTcm7PaH7hfSY87rQLTxbqaZvB4/
+Be/PnMpG+OvwbGpMX6syEMcHVRoJwbJ3YP97GlPfFyQe8lj8gOumdN072Pe1LjsM
+7wC7CgOqybPOzXwmDIXOTQkoVhJAYuxdmfxK3u31WbVhbQKBX34=
+=IL2D
+-----END PGP SIGNATURE-----
+
+--XMCwj5IQnwKtuyBG--
+
+
+--===============2150582996089671033==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============2150582996089671033==--
+
