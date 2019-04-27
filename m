@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6E640C4321B
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:54:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EB0C0C43218
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:54:26 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3EC3C212F5
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:54:25 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BC28E208C2
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:54:26 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="I5LUu7+8"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3EC3C212F5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QIGkRRLu"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BC28E208C2
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=metux.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,51 +26,50 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=14IAOMQE99cIVCPi62fEhihSOGS91f077z0V4roK6V8=; b=I5LUu7+8TdwjX1c/5Abk38rtPk
-	WJXi48QrAaTZMsfXeXC88yjjQDZKjXx/AWYvIWUGc+ArNb5VfOXxEEedw7HqKEHPIjOBP9td6CUaB
-	wcvVBeiM82XCC+lfPGJEjpmbn8plN0FsWhWic24Lly0RAwrv2YhugFizfZOfHOfn2XoCnAvGA8FTD
-	bifR8Acxav/BHzrOTQWpsw8gmGJx9si1u/kZtXdelASl0VLTXF1i2d+b2yBcVbmRpfumsZ28dghWB
-	mybqi0C3TibZLGG4dcJAkS3B/+a0YfS0JBe8EXEe+Cjfr+ZtSBc6fZRC1fE1cTL6y8GlvGrttsMfC
-	ihaRz1+A==;
+	bh=nG8dLpHQoze21xVaiOl93FvRlgXzApWuEAeGed1U7Gw=; b=QIGkRRLu7bmbBzHTu+R1ngeIg5
+	QmcKhJYEPmAs05jFDUggbf3Os7mahm0hr+M8V3mZcnr9SKKTTckpZ1c8CB26osoOJXB5gDnVnzeo9
+	2Rjvsny7bZgWS207vSGHow+Dxf4THv/Bihy4STi/1IFhkWMCzhzgyIP0kGke99VNmaAy6z2C49ikC
+	JdO70kLP6c95ShH7pLqvPfZS5BXsaSQHb3I/8ZRbQb65IrvQOj5FfEg8tHTMNkFV3/ae2plaGBJcd
+	QpgqpZ4Ij+ZPNOVsYRcutuvHNOltsj3FMxqTGDPeGZrWrZ0xBhGmjy71bq0//doYrev0IVWb5ywCt
+	13alRvzA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hKMqR-0002Wq-Ao; Sat, 27 Apr 2019 12:54:19 +0000
-Received: from mout.kundenserver.de ([212.227.126.187])
+	id 1hKMqT-0002ZZ-19; Sat, 27 Apr 2019 12:54:21 +0000
+Received: from mout.kundenserver.de ([212.227.126.134])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hKMpY-00018V-6t
- for linux-amlogic@lists.infradead.org; Sat, 27 Apr 2019 12:53:32 +0000
+ id 1hKMpY-00018v-H9
+ for linux-amlogic@lists.infradead.org; Sat, 27 Apr 2019 12:53:33 +0000
 Received: from orion.localdomain ([77.2.90.210]) by mrelayeu.kundenserver.de
  (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1N0G5n-1gXkoO0kCt-00xITk; Sat, 27 Apr 2019 14:53:07 +0200
+ 1M4bA6-1hJp7z0BBm-001m7B; Sat, 27 Apr 2019 14:53:09 +0200
 From: "Enrico Weigelt, metux IT consult" <info@metux.net>
 To: linux-kernel@vger.kernel.org
-Subject: [PATCH 39/41] drivers: tty: serial: pmac_zilog: fill mapsize and use
+Subject: [PATCH 41/41] drivers: tty: serial: lpc32xx_hs: fill mapsize and use
  it
-Date: Sat, 27 Apr 2019 14:52:20 +0200
-Message-Id: <1556369542-13247-40-git-send-email-info@metux.net>
+Date: Sat, 27 Apr 2019 14:52:22 +0200
+Message-Id: <1556369542-13247-42-git-send-email-info@metux.net>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1556369542-13247-1-git-send-email-info@metux.net>
 References: <1556369542-13247-1-git-send-email-info@metux.net>
-X-Provags-ID: V03:K1:cAQG+0D3UvfMqv8b+CkNtVcswZtDqF2lX087MK9isXMtCtEuT0Z
- +LMvw9S8Tc3gAW5AwMqdBeMVX80UXPgUiQX3GDAwydtKI18PtYqNh2qK8dQfa4yBEZlrd1g
- VFeIauCytrNe9vDPPGAAhgPqYDFdooytbUCh1T2kC3df+mNQEgvvapvejEhIxI7xt++ViLv
- FxMypxg9TvTXo+483DuLg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:JbWJYl/z86Y=:AfUHXZyI0rYrTcXrDfF6qI
- MsyI9ktNaqoSao04HUcu062H3AOny0fTjnjWXA4c4onYTcO/5YLu10OCXHb+J1m+g7hObnhRG
- vs217EAPsMyd2cL9U16idxvqv6uEZhwiWKRc8xjoS1VopitogudmOcw65b78tGcQw7gYyWfwu
- fX5DzFve0pRc0ZABVzrzmtBNgMB0ZAYvx/bGUxlsMZcQfXAswkv0MLKUtjDdssmXFHfPJc8a1
- jUZ9gAcBppZWcNAh0pYeOZiFih2Ay5KEwtpMNRKs/FQhNJs9GQug75OpzNt1A0zP5pP/fCeeZ
- EgxiCJvmRtBEE5+YbW7mPe/vZE8JPX/OMJLy0H2dX/BU8ns9ksGXUfJKrjBojS2H+N0TvNxD8
- j4VOfUEuWnxcdYiVNPpSvgW2QW/kMAQTxaL/476BeIPYaCDPnor4iJXPadns1/FI4tOxuoXT7
- 1HHoO9vDgLa2wum+e1Q5XzmgoL8LgaFiycERH7Vzj99V/AhXSPH8ekdU97upV/7AWYCP5A0s6
- EBsMyIXgcS+mr5u5R/ywj1LKJhEOsu0eqGvDRvmXhKb99V7HgQv/m6JORXrB1LhNM9ntkwS74
- rNqOAeaPVhYsUACPCG9hY4slXpfQwnv4hYc7X5zml1WIGtXaI4pg8Z/bkyyZ8UVzy/EeQvxEP
- Mw2bqg3M8i7FRPOJ2mkqIDALRn2r7NYhG2CoCrKsNJA/wIZktd7vR8qgXT/4FPtJu76uzg6QN
- phzqLuS3ZluJDPbcJL8gpTdmNCKe6Z/Zi0wWgw==
+X-Provags-ID: V03:K1:NfvV5UR6Ok9kQv6ROMSW720NbVRt8zJA2j6SiVCta9zO0Jw5F68
+ oDYmpeAiqIZsk1sS86lqn4+pdFZWevIEnEZ69zvk7cMJbxGvaG9S0AMXx6E3vAMZVzd7pPE
+ dnjPcyK+WGDDc90Ms7ezLEUDc+ruGvc0EkFIZ+8daJJAv3bsvnnSUMXjXwFBnPEgLp6qoWu
+ RKq97jOfEVGzQSAvfA3Lw==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:kstkQConv8Y=:FRqaAKBl04WQWWJ/xhmytR
+ ow68932EyMejNE2ydtWTf0Nk48WsWDBX+U00qXQiCeX9RLfuAjZhJilURAne8iEvlgV02R+n0
+ A2GYXlH6RAocA+3/XNEogage/GN6dO4HAMa6C/jwf7JzbK5UWacs4I86YK6BjId9I8QaBDRgB
+ kf36Yrz9heQ6rpkUEPNwg7vs0J835p/+DW0ua1TLJJlSFnCt+nM1Z7WstcwbivmVU+gVR/Qqx
+ LJN2HlNYlbXhHrWMmA6exILj0ML6d2lYydBx/ivglWsiafz+dSezxWkhz08L8VIqiIK6dShE3
+ srcNtj9cCMeeXy/WuKz1SoACQyyWLzFX5vJ7HF9AD7gMD8mGgq8+HhaWZ4LUAaR/dSriR/R3e
+ B3lrMjPoO3yEqTwjmVNFPEHpLcxgHp3k0K3Z94bAYryqu/D8Q3Kol+4OglHPh7K6XXE7/78xA
+ oUHoCvvSmoukL8/pOHIkrZr9VoXnBeU4ZV3EjcqSp85aW5Q6jRGfhhvHsog/vo9c0GQByGKDm
+ IhDlqb2OO2SeLSFm9kDdRiPNxLsJCsxNdbJujreUgg5JbBJjQnJ034mhihaiaT1Aiki1mOiMB
+ OI/mo7wAX4gLt7UHYKkjXmMizG1VASLtLoiFffgH9E2VkMfVV4CHN+LQBdpOkpoUf5rl7srXx
+ Kiaqeii/5ydXPnHLqiI2CQtzy/PupKJZ0jWzWsaeQ4xVmH8rQepFc6frR/i5b/8B5xfPqj2Q5
+ /wVryOKfpTVqR4EsCEJA4sFCJJjcxbeUyiEL7g==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190427_055325_263714_BE9F61CA 
-X-CRM114-Status: UNSURE (   9.99  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190427_055325_321801_C50D5968 
+X-CRM114-Status: GOOD (  10.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -106,40 +105,49 @@ iounmap+release combinations.
 
 Signed-off-by: Enrico Weigelt <info@metux.net>
 ---
- drivers/tty/serial/pmac_zilog.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ drivers/tty/serial/lpc32xx_hs.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/tty/serial/pmac_zilog.c b/drivers/tty/serial/pmac_zilog.c
-index bcb5bf7..1fef014 100644
---- a/drivers/tty/serial/pmac_zilog.c
-+++ b/drivers/tty/serial/pmac_zilog.c
-@@ -88,6 +88,8 @@
- #define PMACZILOG_NAME		"ttyPZ"
- #endif
+diff --git a/drivers/tty/serial/lpc32xx_hs.c b/drivers/tty/serial/lpc32xx_hs.c
+index f4e27d0..d1f09aa 100644
+--- a/drivers/tty/serial/lpc32xx_hs.c
++++ b/drivers/tty/serial/lpc32xx_hs.c
+@@ -579,7 +579,7 @@ static void serial_lpc32xx_release_port(struct uart_port *port)
+ 			port->membase = NULL;
+ 		}
  
-+#define PMZ_MAPSIZE		0x1000
-+
- #define pmz_debug(fmt, arg...)	pr_debug("ttyPZ%d: " fmt, uap->port.line, ## arg)
- #define pmz_error(fmt, arg...)	pr_err("ttyPZ%d: " fmt, uap->port.line, ## arg)
- #define pmz_info(fmt, arg...)	pr_info("ttyPZ%d: " fmt, uap->port.line, ## arg)
-@@ -1411,7 +1413,8 @@ static int __init pmz_init_port(struct uart_pmac_port *uap)
- 	if (of_address_to_resource(np, 0, &r_ports))
- 		return -ENODEV;
- 	uap->port.mapbase = r_ports.start;
--	uap->port.membase = ioremap(uap->port.mapbase, 0x1000);
-+	uap->port.mapsize = PMZ_MAPSIZE;
-+	uap->port.membase = ioremap(uap->port.mapbase, uap->port.mapsize);
+-		release_mem_region(port->mapbase, SZ_4K);
++		release_mem_region(port->mapbase, port->mapsize);
+ 	}
+ }
  
- 	uap->control_reg = uap->port.membase;
- 	uap->data_reg = uap->control_reg + 0x10;
-@@ -1709,6 +1712,7 @@ static int __init pmz_init_port(struct uart_pmac_port *uap)
- 		return -ENODEV;
+@@ -590,12 +590,15 @@ static int serial_lpc32xx_request_port(struct uart_port *port)
+ 	if ((port->iotype == UPIO_MEM32) && (port->mapbase)) {
+ 		ret = 0;
  
- 	uap->port.mapbase  = r_ports->start;
-+	uap->port.mapsize  = PMZ_MAPSIZE;
- 	uap->port.membase  = (unsigned char __iomem *) r_ports->start;
- 	uap->port.iotype   = UPIO_MEM;
- 	uap->port.irq      = irq;
+-		if (!request_mem_region(port->mapbase, SZ_4K, MODNAME))
++		if (!request_mem_region(port->mapbase,
++					port->mapsize, MODNAME))
+ 			ret = -EBUSY;
+ 		else if (port->flags & UPF_IOREMAP) {
+-			port->membase = ioremap(port->mapbase, SZ_4K);
++			port->membase = ioremap(port->mapbase,
++						port->mapsize);
+ 			if (!port->membase) {
+-				release_mem_region(port->mapbase, SZ_4K);
++				release_mem_region(port->mapbase,
++						   port->mapsize);
+ 				ret = -ENOMEM;
+ 			}
+ 		}
+@@ -684,6 +687,7 @@ static int serial_hs_lpc32xx_probe(struct platform_device *pdev)
+ 		return -ENXIO;
+ 	}
+ 	p->port.mapbase = res->start;
++	p->port.mapsize = SZ_4K;
+ 	p->port.membase = NULL;
+ 
+ 	ret = platform_get_irq(pdev, 0);
 -- 
 1.9.1
 
