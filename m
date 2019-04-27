@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 210D6C4321B
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:54:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0895FC4321A
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:54:07 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E78B72087C
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:54:03 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CEC202087C
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:54:06 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="k9AmP4lU"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E78B72087C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="s4+lG+eM"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CEC202087C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=metux.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,49 +26,50 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=i2xogtxCdVH75NHLqv/rz1y/3NCL7dF+72Tt5ANGa8s=; b=k9AmP4lU37ch+VTmIbZLdjQUoL
-	E0nEaUcYxO54uX9ygMsY3YmR6hmz9WrLtg1u3anIPGcqm7gudIsJeWq/ay0dxJfz1SSyQ/KPFOm3w
-	LvKxCgsiuTnKeanXYUQgK0IqcdYQi/2dWAAdycSnK18OQip5z83mkkIKqLOKqNbSHHb2wgFVuptYV
-	4vScN579bFAa+vcHhsNBOdeVw+TuMnQJN4j/2wSwp3Nz68rAHwiFwFItJs/c4iS1J+Os3xGbS40Pv
-	11SoizqIBf5LErxhF0mFFHzd1C7ePdaovyQtumQyx2e1XWGekjMKhUYtSbo5mvag6brIQY4ufPXM6
-	9KkUMOyQ==;
+	bh=uqDElhZEE1PJXCpNS8MTYlWdUXyS0ZCMyugVU/QXJ+c=; b=s4+lG+eMhP9Gbx3tTdC/xfdSdD
+	AYJgQmXZ3eb6p5/mCdD1cBeRZi05mm7g5BEq4Zg0OnLfBsQKf2vZtQZnBM8XlX6C5cC89h4M8zLNK
+	WbjywI+b6BdTORocl4f/gdph0F6ug2/hnFdSXJRXDpqM3PuGhPewG7AHZ1k8t67zgeMyjMY9ir2yr
+	lX1aiz5eskKg5hR+NOeWCJAQErvbFNG4GnMXYrqazWS9tq2c7Bs3K6OlVKxnpkCd8N4op5mRazAbR
+	ZIKU75jqNAtjSUfWd5lrILReC+omlwk2HvWB3hi/DJDECUaZF69/MKY4ZgCY7jk4xuqK4ptizNkL8
+	twWeJOLQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hKMq7-0001x3-BM; Sat, 27 Apr 2019 12:53:59 +0000
-Received: from mout.kundenserver.de ([212.227.126.187])
+	id 1hKMq8-0001z3-Lu; Sat, 27 Apr 2019 12:54:00 +0000
+Received: from mout.kundenserver.de ([212.227.126.131])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hKMpO-0000sW-G0
- for linux-amlogic@lists.infradead.org; Sat, 27 Apr 2019 12:53:21 +0000
+ id 1hKMpO-0000s4-8F
+ for linux-amlogic@lists.infradead.org; Sat, 27 Apr 2019 12:53:22 +0000
 Received: from orion.localdomain ([77.2.90.210]) by mrelayeu.kundenserver.de
  (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1N49Yn-1gckUf0Xp3-0101lS; Sat, 27 Apr 2019 14:52:36 +0200
+ 1MVNF1-1hBGYO2EDP-00SLNE; Sat, 27 Apr 2019 14:52:59 +0200
 From: "Enrico Weigelt, metux IT consult" <info@metux.net>
 To: linux-kernel@vger.kernel.org
-Subject: [PATCH 03/41] drivers: tty: serial: dz: fix missing parentheses
-Date: Sat, 27 Apr 2019 14:51:44 +0200
-Message-Id: <1556369542-13247-4-git-send-email-info@metux.net>
+Subject: [PATCH 30/41] drivers: tty: serial: ioc4_serial: use dev_warn()
+ instead of printk()
+Date: Sat, 27 Apr 2019 14:52:11 +0200
+Message-Id: <1556369542-13247-31-git-send-email-info@metux.net>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1556369542-13247-1-git-send-email-info@metux.net>
 References: <1556369542-13247-1-git-send-email-info@metux.net>
-X-Provags-ID: V03:K1:DCKi2YoTk5F832OQUdu63uCQyxtOturAok1rJyvr3Cj1aB4PytR
- 39oykOLn/6maTSaugkdLtAO+JW6mtXKXNyEKmjf/LfUX+UrtldHzEn6VJRT6Ai5Wmv6fPJu
- zDbdAsnAWjMsVY/Lfxtu7H3H0VD9b6vzG1KkGY93toXvi1amjf/kUGN1jMaJH9MM+TdtJWy
- 6Qq+l2SfPMMVa3xrX3Dhg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:hCaJcuTMeuA=:EB4ux1IA7Tt2VnO5QHlgjW
- pkbxMpPw2nta4CmIKC1kcgXZ8R3PVqr7ziHZCtHeUGvHHk9Qk9raYRBGZaF5IqaPVm6CNMnxr
- 9vty1/D38JGFJJSTwt3NFvurWC70JuBjH/BKAB8yESh6+wLopafjQqQPN8l2KX8SGQjfwv2xO
- TyzFvmsYNx3rtFuVJ/pJ1vV56+pzzVMgAzd7E0EpyYgb7DGVVlUR2LG1dxWjJ2Hof/It2Rmfz
- p9izFHquGUwtbxHeqxGGWvM4ijYINTbcCUZVJjV5oJC9/JYWT730WUlA9JIbF2xjIF7PBRVXX
- kASrSTWn7c2M2sc3c6bB50GRDqBH6dH94gztdOwsPoZ4cj+JQkPM6uX86/TUJ8e4WJY2B5iGU
- HP7+HVB4tQVuFWqAHT2uGAz6varlOIJ5yKrTIJx6feesH62tAViO17zmGulcYNIxOP3eNPMOD
- Hmet1YF6m/ZGilYNo9SR/pjTIMz1EyH8o7eL4CQcuBZ9FwhDFRYTxTY15EVLqHyCvQkPg27Rb
- 8uO0aVYpOJ/qo2qK8zbTnZCXXNRXdpe5e3F/ivKBz+b1Oa+zghaMw2mbTc4DrgKSeZzP1LTNm
- teKvpXO2ByNWbSgSgXOBtzriQtZsC2TVemyVqTtaDrQpo+R6tvq8EoDpEQZIo8UeRCmxfnM7Q
- CuTeQ7zz0fUVVIk54pr5H16riYLFpjz7OQg7RqO6kuwjj9BxIwYM6AphowGhGxOWdsrYDcB8I
- YsZWUl7WRUQ4eG9segmrTeI0ta1XPj9nf9dvOw==
+X-Provags-ID: V03:K1:feZjQEPGewpWSo2bykBkAQkXP9Lb/ZtVsJ70Hc9aX4own7v09FA
+ e65s7fBpQb+RWeo/XsvBCLQDRKkUOdSWYbg6QCmXdWbNheYrxgq5Ys1L3nrokeJAVzT8JZ+
+ 6QZ7hrXczsjiQ2m1ogHA/r87Uy8zuLwqRpXTsIxH63Kg2ZR+GURXbvN2XWzuqCWUQaBZhlg
+ o8S6PJbm8wTsqW6D1wobQ==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:8TG/EySvt9A=:VKahn7CYd/R5vatknv4CIz
+ CuHG0PZc2i5j9rVD60N2maMJL4Ee3r65/zW8DaiDk+zAPuKZD49EeMp7iaffcOumkyFaqiM8t
+ +luCUaXSLZIf7RHuNFPwRYcBWNJ43cJi7sjf0EHHDGmub/EKExgGhgCrjEfa0v+n+448YXMgE
+ lGF3w6/V6Mgt1QZ5pNXeWF0kTQsNJjAb7Y4RqIw7ZbAc+O3V+I9zXf7nSK2JbDaCL8Him2L7f
+ l8QQc+xgVlpNQR0jiD9vdU52hQtY39fI4sqfbvjUsfJnu4SqVjwhNe4jH1PXOZTv5gTw84KBZ
+ NkibSYlQFV3awhW8T9jAFhE9jtPnkYU0Vs7Ac1Oe4MMGZFJvBTZRRyNkitSl8XQbZ1WJfAlbB
+ QS1OAIo9avolslFua/Nuq/y/iOLsNuT9C2ZFuqk4vJzoHfqjcS7qf3z/aagtWWj2Cq7D07Jvt
+ HRLmuFLEuheS+vbBf2jp8nw1xQnRmOgDpcdn5L0cxoJx5Y57gx7DwS6uPN2nKaFxix4vbFLNZ
+ AfH6XBWoj2lDLI2NKOg+owgscan6/eCmalRceowjyuyrdih0blP0ytyJ94NiELQlWc6HPoOGw
+ OFryiG/2U3f/JVqdBhE2/2V0LKzJG1PwuuFYf5G3HVrAhwcwAJIDkFusy40yS4hP/fLgStVPA
+ +nzeqpksFBXQvdpgCQwJ1DcGyWuv+kODQ2uT2nLMPRKYF2bVBXURnsDyBNucI4/XBJ4wnPMl7
+ 6d+ueE0QRBCjWMFi9IaYeMV9hXPhSTm8QIcgHQ==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190427_055315_226634_ADBF550B 
-X-CRM114-Status: UNSURE (   9.55  )
+X-CRM114-CacheID: sfid-20190427_055315_253183_ED4E1B45 
+X-CRM114-Status: UNSURE (   9.90  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -95,30 +96,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Fix checkpatch warning:
-
-  ERROR: Macros with complex values should be enclosed in parentheses
-  #912: FILE: dz.c:912:
-  +#define SERIAL_DZ_CONSOLE	&dz_console
+Using dev_warn() instead of printk() for more consistent output.
+(prints device name, etc).
 
 Signed-off-by: Enrico Weigelt <info@metux.net>
 ---
- drivers/tty/serial/dz.c | 2 +-
+ drivers/tty/serial/ioc4_serial.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/tty/serial/dz.c b/drivers/tty/serial/dz.c
-index fd4f0cc..b3e9313 100644
---- a/drivers/tty/serial/dz.c
-+++ b/drivers/tty/serial/dz.c
-@@ -909,7 +909,7 @@ static int __init dz_serial_console_init(void)
- 
- console_initcall(dz_serial_console_init);
- 
--#define SERIAL_DZ_CONSOLE	&dz_console
-+#define SERIAL_DZ_CONSOLE	(&dz_console)
- #else
- #define SERIAL_DZ_CONSOLE	NULL
- #endif /* CONFIG_SERIAL_DZ_CONSOLE */
+diff --git a/drivers/tty/serial/ioc4_serial.c b/drivers/tty/serial/ioc4_serial.c
+index db5b979..21c1b8f 100644
+--- a/drivers/tty/serial/ioc4_serial.c
++++ b/drivers/tty/serial/ioc4_serial.c
+@@ -2752,7 +2752,7 @@ static int ioc4_serial_remove_one(struct ioc4_driver_data *idd)
+ 		the_port->dev = &pdev->dev;
+ 		spin_lock_init(&the_port->lock);
+ 		if (uart_add_one_port(u_driver, the_port) < 0) {
+-			printk(KERN_WARNING
++			dev_warn(&pdev->dev,
+ 		           "%s: unable to add port %d bus %d\n",
+ 			       __func__, the_port->line, pdev->bus->number);
+ 		} else {
 -- 
 1.9.1
 
