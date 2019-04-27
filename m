@@ -4,19 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A0E59C4321A
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:54:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9286CC4321B
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:54:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 754A0212F5
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:54:16 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 60470208C2
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:54:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tFNZfpwE"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 754A0212F5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="etl5807V"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 60470208C2
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=metux.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,49 +26,50 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=/U+bW6USvE2knImrgJ8bbrV6d/u+e2mhO0xEBUx0yIM=; b=tFNZfpwExCzlFlw3yYjFulj0zU
-	S0VsAgCdZhaOaxMVobjpKfeoQamaHBSJrQgiOpuX2eWYP6cwXpPjr12FYQlGpVHkuJP3OqNRQSwAM
-	vR87Zea4YiwZJwBzk/elUC+T6FywnsuUgcXQ9VJqu2oZCWewXjv39oqKt8SnO5U3o5RDEbzv/9HrY
-	r3ndPsyBiqhc9I89YfkceLOxXWTpnxNDaNW2Ebc4MFSEweaGaugkPXZUQF9eZ5rEWN8lVkNgjHXgD
-	E6scq8Bl/rYY/JJgZevSNKucu974l+F6rTS1/nWdxE3sCASOtktTYksaVvdmKQb8p+ZB+gb43Te/K
-	PNMRW+Uw==;
+	bh=h5sMSzD7QWlXnFSSejMefJ25PLJXcnw30nxfyih0n68=; b=etl5807VxJ6DtDVpKUXFP/M9Te
+	ZbtamtKDl/8hLWDBESfK1kI74aSzyowe9Ui4dL445vkGVoVsl37mcStDc6HEOr4qK4v0wKMUuoaQe
+	aG2aG22tgaXcHlMh9kiOQjtjGgZKR3WlqXxvgxj8xuZxurNSO/aKQWiQg5jAK5OYAJzSN2lSU7G+X
+	KyVFyZkGdR2355CS82Wi75MBIQ3rJ0IH3y5FE6c29BZnnvwurcHJirwTY+aL3+VeYqEA91gYWl0EC
+	Wf1QDo1D3q7COWxBNWaRy3jcZ63Hdn++ZHdHof60bT5gatHAZ/hLoYkR6Rg/eaZvgFw7dPUkPrUWN
+	pom7OPSw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hKMqH-0002C1-6x; Sat, 27 Apr 2019 12:54:09 +0000
-Received: from mout.kundenserver.de ([212.227.126.134])
+	id 1hKMqJ-0002FG-8N; Sat, 27 Apr 2019 12:54:11 +0000
+Received: from mout.kundenserver.de ([212.227.126.130])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hKMpM-0000os-6M
- for linux-amlogic@lists.infradead.org; Sat, 27 Apr 2019 12:53:28 +0000
+ id 1hKMpP-0000th-50
+ for linux-amlogic@lists.infradead.org; Sat, 27 Apr 2019 12:53:30 +0000
 Received: from orion.localdomain ([77.2.90.210]) by mrelayeu.kundenserver.de
  (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1M8yso-1hOCqc49nq-0069pN; Sat, 27 Apr 2019 14:52:57 +0200
+ 1MjSHa-1gwtte1jnW-00kyoz; Sat, 27 Apr 2019 14:53:00 +0200
 From: "Enrico Weigelt, metux IT consult" <info@metux.net>
 To: linux-kernel@vger.kernel.org
-Subject: [PATCH 27/41] drivers: tty: serial: sunzilog: fix formatting issues
-Date: Sat, 27 Apr 2019 14:52:08 +0200
-Message-Id: <1556369542-13247-28-git-send-email-info@metux.net>
+Subject: [PATCH 31/41] drivers: tty: serial: ioc4_serial: use pr_*() instead
+ of printk()
+Date: Sat, 27 Apr 2019 14:52:12 +0200
+Message-Id: <1556369542-13247-32-git-send-email-info@metux.net>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1556369542-13247-1-git-send-email-info@metux.net>
 References: <1556369542-13247-1-git-send-email-info@metux.net>
-X-Provags-ID: V03:K1:Z847pBHLI6QbxAGimBdq6+JmZrHYKMuxRAjW98flGjUtS5oHGJC
- 2yP7klqt22fYcBJ7wz2PjoaV7D64B1mPwQH9AQj7l5Pif1Pndm+YkU0UNordwQ5Wy1IxDut
- dU/69hgbv0mSPvXN1+wW7rRWDrd2Q3LYi4dUSMc59RL3wnqb6nh5ZX42JvsXC4WFJoJr6tj
- A9xdCttEcAPucvS++lRjw==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:AU9H7y3rHqc=:KV7DAkxA+ztT5D1OW4d8ju
- SdeTngBm2uWP6+kqMqbBcqXig3w/3u0VlHf1UsWWSX20R/I93CTK303/klEiv4WI9z3b2xsbw
- nm4IexqUdtfveufFrBJ05pEHjjsfoQYTMEF45k8sCo7BcZ5+eazPGsoh1PkbV1WKl0BdBcm0w
- T0N+kDAeU1qkLyHLh/icSLkHMwOtm4mEmYZYo5/yKixGFxRqh3sGKyfH1LdkYfR54sgTXGfN9
- 4HXQ9bLSy91Xw3oXIxdahYorq9s14O+z1s5rBTVsWSDkAByqdmaISzfBiKepXgn3fDdEb2B22
- 9pkHcH38P0Eem5tHNcegF5g3cQXeUaMyzn6RpKx2XGNe6ssb+GFuQIoySpFVFIODal7/6xRXd
- VZt1mZQHlPQFJXBvLTs3i8GGLY/mDuXl+m5TD2XWuRAFQ7+zgQCAl9noGd54/wcqud3h7jHHS
- 7pw6srZpGkEp+3TCn2UtbsXdlsAXzFMTERLRI7ERXxbUoNprGTjfSdZ/kbqKl275QmMrtbKvk
- KvaDabB/78EcoSsFS9vpVkpPVNZ5QXfB60wNdEg2c+YyuIKu07sJwLwWDk3MdUuzAzuY5LEVW
- sMYVWV5wFwBGOCMSG1hKkmRCUn0iUgdzuC0+ymUJR6LT+iWdoyV+jJR3xQU0XSSrn9PkZND5T
- Ebq+WWV+DsOfJmpFREW8ZVxEiXU0Upm+cJ1VA3K985Z4JR/Gn4uC5oKfSwJ3cFJ1rAhUd122O
- KRk1jYCvn65Ie0aTVkoto85wFK3YAVwtOQc+/A==
+X-Provags-ID: V03:K1:fiKBrYJqLJy9d6Z3BYp1ydil3/7VOj7rwUo4ZkXQRtmPh18IG2D
+ OSbQN4CxA9/sM8JT9588bdr/VNU9235zcyRb70HnigE6BmAAFSj+at5yTLSkL/h4Pmip7ee
+ GDAfhOzwTUeSUoaLO0jY18ZOJjQOVygnipnz3otEZDoB5G63QWz8jDWSsi1258nEuR+8HaK
+ 5OPNKU1HCgJU5ji/0qhrw==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:ho4uLvEzDoE=:zuKxJ5kTAAFPPaKmx6pzYV
+ K5UtxYJ5yRYkuve0VdS4JDA4HjVEJWpIfGTgXo0BkyHxJmKDQJlA2Y75xF3pqYxiaHmD53gxv
+ +jLcqiVHeFHSOBbV2ilAiNIQGKY/+gt9oT4D4kg7HOXQTahdLD9KLRBUFBVWjLCTJ0+8eZSTX
+ l+w4bzuctVJs7nnL2yaRun0EgP8/HKp04PYP10rmNvn1DBSDTOGaumxfjtmjtLn4txxqX1Kaf
+ WTbEhxsXzXX+8XrmPY1IDyt11MsJ5Q0LCFqo7BoWcL9YwQ5eWVwGcd+J+RWs5zYRb6n6qXvNI
+ /N0lz5esI0zqgvxkeIw1b7MDbsLOS8srq38jYphUWp4EWMK+TupywYTUIUueEaVs4JmS/u+kD
+ dMHQ0qMSTBIgNRurIxxH2tvLzzgEwybnbFmZ61CXK+lIrBh+eRpvJUb5l6mNYvhm4Fs6jBVzX
+ EXCdNtUU7umfv1tHcjOWeC/GVxfqdLN48x8xYzCsrxTTxUENjz2CrDctArGO1uFHzfzUAJW/Z
+ CptJ+Tuggq9bv4655NFW3zrX67/l8uDUMTEV25Iqkl3aAyMH8VGFWkPYcR+6pIaS60kXU6pKr
+ SL9GQutdI+0iLKzP241WvXCsmxmHZP39WVlm+4f50/JnQtkMS0Ha1BGXez0t+wIK1LBxvL57i
+ 0dr8Z2DLtnc6WgkcZb+q1mJT7gjHIsxH9QJrp7iJzTrZmJwSVNuvJJW4X/ikDE/XFsJXpOHZz
+ 5wiv98GsWC0PqC/r1MyOsrtLqhJiAietiC+CwQ==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190427_055313_044746_C6F2414B 
-X-CRM114-Status: GOOD (  16.54  )
+X-CRM114-CacheID: sfid-20190427_055316_022046_ED3F4960 
+X-CRM114-Status: GOOD (  11.78  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -94,473 +95,215 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Fix checkpatch warnings:
+This fixes a bunch of checkpatch warnings:
 
-    WARNING: Use #include <linux/io.h> instead of <asm/io.h>
-    #38: FILE: drivers/tty/serial/sunzilog.c:38:
-    +#include <asm/io.h>
+    WARNING: Prefer [subsystem eg: netdev]_err([subsystem]dev, ... then dev_err(dev, ... then pr_err(...  to printk(KERN_ERR ...
+    #930: FILE: drivers/tty/serial/ioc4_serial.c:930:
+    +		printk(KERN_ERR
 
-    WARNING: line over 80 characters
-    #109: FILE: drivers/tty/serial/sunzilog.c:109:
-    +#define ZILOG_CHANNEL_FROM_PORT(PORT)	((struct zilog_channel __iomem *)((PORT)->membase))
+    WARNING: Prefer [subsystem eg: netdev]_err([subsystem]dev, ... then dev_err(dev, ... then pr_err(...  to printk(KERN_ERR ...
+    #945: FILE: drivers/tty/serial/ioc4_serial.c:945:
+    +			printk(KERN_ERR
 
-    WARNING: line over 80 characters
-    #116: FILE: drivers/tty/serial/sunzilog.c:116:
-    +#define ZS_WANTS_MODEM_STATUS(UP)	((UP)->flags & SUNZILOG_FLAG_MODEM_STATUS)
+    WARNING: printk() should include KERN_<LEVEL> facility level
+    #1028: FILE: drivers/tty/serial/ioc4_serial.c:1028:
+    +		printk ("%s : %d : mem 0x%p sio_ir 0x%x sio_ies 0x%x "
 
-    WARNING: line over 80 characters
-    #179: FILE: drivers/tty/serial/sunzilog.c:179:
-    +static int __load_zsregs(struct zilog_channel __iomem *channel, unsigned char *regs)
-
-    WARNING: Missing a blank line after declarations
-    #188: FILE: drivers/tty/serial/sunzilog.c:188:
-    +		unsigned char stat = read_zsreg(channel, R1);
-    +		if (stat & ALL_SNT)
-
-    ERROR: trailing whitespace
-    #231: FILE: drivers/tty/serial/sunzilog.c:231:
-    +^I$
-
-    WARNING: braces {} are not necessary for any arm of this statement
-    #276: FILE: drivers/tty/serial/sunzilog.c:276:
-    +		if (ZS_TX_ACTIVE(up)) {
-    [...]
-    +		} else {
-    [...]
-
-    ERROR: else should follow close brace '}'
-    #378: FILE: drivers/tty/serial/sunzilog.c:378:
-    +			}
-    +			else if (r1 & PAR_ERR)
-
-    ERROR: code indent should use tabs where possible
-    #397: FILE: drivers/tty/serial/sunzilog.c:397:
-    +^I^I    ^Itty_insert_flip_char(port, ch, flag);$
-
-    WARNING: please, no space before tabs
-    #397: FILE: drivers/tty/serial/sunzilog.c:397:
-    +^I^I    ^Itty_insert_flip_char(port, ch, flag);$
-
-    WARNING: line over 80 characters
-    #440: FILE: drivers/tty/serial/sunzilog.c:440:
-    +		/* The Zilog just gives us an interrupt when DCD/CTS/etc. change.
-
-    WARNING: line over 80 characters
-    #441: FILE: drivers/tty/serial/sunzilog.c:441:
-    +		 * But it does not tell us which bit has changed, we have to keep
-
-    WARNING: Missing a blank line after declarations
-    #464: FILE: drivers/tty/serial/sunzilog.c:464:
-    +		unsigned char status = readb(&channel->control);
-    +		ZSDELAY();
-
-    WARNING: line over 80 characters
-    #468: FILE: drivers/tty/serial/sunzilog.c:468:
-    +		 * It can occur because of how we do serial console writes.  It would
-
-    WARNING: line over 80 characters
-    #469: FILE: drivers/tty/serial/sunzilog.c:469:
-    +		 * be nice to transmit console writes just like we normally would for
-
-    WARNING: line over 80 characters
-    #470: FILE: drivers/tty/serial/sunzilog.c:470:
-    +		 * a TTY line. (ie. buffered and TX interrupt driven).  That is not
-
-    WARNING: line over 80 characters
-    #471: FILE: drivers/tty/serial/sunzilog.c:471:
-    +		 * easy because console writes cannot sleep.  One solution might be
-
-    WARNING: line over 80 characters
-    #593: FILE: drivers/tty/serial/sunzilog.c:593:
-    +static __inline__ unsigned char sunzilog_read_channel_status(struct uart_port *port)
-
-    WARNING: plain inline is preferred over __inline__
-    #593: FILE: drivers/tty/serial/sunzilog.c:593:
-    +static __inline__ unsigned char sunzilog_read_channel_status(struct uart_port *port)
-
-    ERROR: trailing whitespace
-    #664: FILE: drivers/tty/serial/sunzilog.c:664:
-    +^I/* NOTE: Not subject to 'transmitter active' rule.  */ $
-
-    ERROR: trailing whitespace
-    #752: FILE: drivers/tty/serial/sunzilog.c:752:
-    +^I^I/* NOTE: Not subject to 'transmitter active' rule.  */ $
-
-    ERROR: trailing whitespace
-    #779: FILE: drivers/tty/serial/sunzilog.c:779:
-    +^I^I/* NOTE: Not subject to 'transmitter active' rule.  */ $
-
-    WARNING: line over 80 characters
-    #999: FILE: drivers/tty/serial/sunzilog.c:999:
-    +static int sunzilog_verify_port(struct uart_port *port, struct serial_struct *ser)
-
-    WARNING: Missing a blank line after declarations
-    #1142: FILE: drivers/tty/serial/sunzilog.c:1142:
-    +		unsigned char val = readb(&channel->control);
-    +		if (val & Tx_BUF_EMP) {
+    WARNING: space prohibited between function name and open parenthesis '('
+    #1028: FILE: drivers/tty/serial/ioc4_serial.c:1028:
+    +		printk ("%s : %d : mem 0x%p sio_ir 0x%x sio_ies 0x%x "
 
     WARNING: Prefer [subsystem eg: netdev]_info([subsystem]dev, ... then dev_info(dev, ... then pr_info(...  to printk(KERN_INFO ...
-    #1230: FILE: drivers/tty/serial/sunzilog.c:1230:
-    +	printk(KERN_INFO "Console: ttyS%d (SunZilog zs%d)\n",
+    #1064: FILE: drivers/tty/serial/ioc4_serial.c:1064:
+    +	printk(KERN_INFO "IOC4 firmware revision %d\n", ioc4_revid);
 
-    WARNING: braces {} are not necessary for single statement blocks
-    #1383: FILE: drivers/tty/serial/sunzilog.c:1383:
-    +		if (__load_zsregs(channel, up->curregs)) {
-    +			up->flags |= SUNZILOG_FLAG_ESCC;
-    +		}
+    WARNING: Prefer [subsystem eg: netdev]_warn([subsystem]dev, ... then dev_warn(dev, ... then pr_warn(...  to printk(KERN_WARNING ...
+    #1066: FILE: drivers/tty/serial/ioc4_serial.c:1066:
+    +		printk(KERN_WARNING
 
-    WARNING: quoted string split across lines
-    #1493: FILE: drivers/tty/serial/sunzilog.c:1493:
-    +		dev_info(&op->dev, "Keyboard at MMIO 0x%llx (irq = %d) "
-    +		       "is a %s\n",
+    WARNING: Prefer [subsystem eg: netdev]_warn([subsystem]dev, ... then dev_warn(dev, ... then pr_warn(...  to printk(KERN_WARNING ...
+    #1080: FILE: drivers/tty/serial/ioc4_serial.c:1080:
+    +			printk(KERN_WARNING
 
-    WARNING: quoted string split across lines
-    #1497: FILE: drivers/tty/serial/sunzilog.c:1497:
-    +		dev_info(&op->dev, "Mouse at MMIO 0x%llx (irq = %d) "
-    +		       "is a %s\n",
+    WARNING: Prefer [subsystem eg: netdev]_warn([subsystem]dev, ... then dev_warn(dev, ... then pr_warn(...  to printk(KERN_WARNING ...
+    #1870: FILE: drivers/tty/serial/ioc4_serial.c:1870:
+    +			printk(KERN_WARNING "IOC4 serial: "
 
-    WARNING: Missing a blank line after declarations
-    #1581: FILE: drivers/tty/serial/sunzilog.c:1581:
-    +		struct uart_sunzilog_port *up = sunzilog_irq_chain;
-    +		err = request_irq(zilog_irq, sunzilog_interrupt, IRQF_SHARED,
+    WARNING: Prefer [subsystem eg: netdev]_warn([subsystem]dev, ... then dev_warn(dev, ... then pr_warn(...  to printk(KERN_WARNING ...
+    #2170: FILE: drivers/tty/serial/ioc4_serial.c:2170:
++			printk(KERN_WARNING "IOC4 serial: "
 
-    WARNING: line over 80 characters
-    #1590: FILE: drivers/tty/serial/sunzilog.c:1590:
-    +			/* printk (KERN_INFO "Enable IRQ for ZILOG Hardware %p\n", up); */
+    WARNING: Prefer [subsystem eg: netdev]_warn([subsystem]dev, ... then dev_warn(dev, ... then pr_warn(...  to printk(KERN_WARNING ...
+    #2796: FILE: drivers/tty/serial/ioc4_serial.c:2796:
+    +		printk(KERN_WARNING
 
-    WARNING: line over 80 characters
-    #1627: FILE: drivers/tty/serial/sunzilog.c:1627:
-    +			/* printk (KERN_INFO "Disable IRQ for ZILOG Hardware %p\n", up); */
+    WARNING: Prefer [subsystem eg: netdev]_warn([subsystem]dev, ... then dev_warn(dev, ... then pr_warn(...  to printk(KERN_WARNING ...
+    #2804: FILE: drivers/tty/serial/ioc4_serial.c:2804:
+    +		printk(KERN_WARNING
 
-    ERROR: trailing statements should be on next line
-    #1248: FILE: drivers/tty/serial/sunzilog.c:1248:
-    +	case B150: baud = 150; break;
+    WARNING: Prefer [subsystem eg: netdev]_warn([subsystem]dev, ... then dev_warn(dev, ... then pr_warn(...  to printk(KERN_WARNING ...
+    #2818: FILE: drivers/tty/serial/ioc4_serial.c:2818:
+    +		printk(KERN_WARNING "ioc4_attach_one"
 
-    ERROR: trailing statements should be on next line
-    #1249: FILE: drivers/tty/serial/sunzilog.c:1249:
-    +	case B300: baud = 300; break;
+    WARNING: Prefer [subsystem eg: netdev]_warn([subsystem]dev, ... then dev_warn(dev, ... then pr_warn(...  to printk(KERN_WARNING ...
+    #2828: FILE: drivers/tty/serial/ioc4_serial.c:2828:
+    +		printk(KERN_WARNING
 
-    ERROR: trailing statements should be on next line
-    #1250: FILE: drivers/tty/serial/sunzilog.c:1250:
-    +	case B600: baud = 600; break;
+    WARNING: Prefer [subsystem eg: netdev]_warn([subsystem]dev, ... then dev_warn(dev, ... then pr_warn(...  to printk(KERN_WARNING ...
+    #2861: FILE: drivers/tty/serial/ioc4_serial.c:2861:
+    +		printk(KERN_WARNING
 
-    ERROR: trailing statements should be on next line
-    #1251: FILE: drivers/tty/serial/sunzilog.c:1251:
-    +	case B1200: baud = 1200; break;
+    WARNING: Prefer [subsystem eg: netdev]_warn([subsystem]dev, ... then dev_warn(dev, ... then pr_warn(...  to printk(KERN_WARNING ...
+    #2917: FILE: drivers/tty/serial/ioc4_serial.c:2917:
+    +		printk(KERN_WARNING
 
-    ERROR: trailing statements should be on next line
-    #1252: FILE: drivers/tty/serial/sunzilog.c:1252:
-    +	case B2400: baud = 2400; break;
-
-    ERROR: trailing statements should be on next line
-    #1253: FILE: drivers/tty/serial/sunzilog.c:1253:
-    +	case B4800: baud = 4800; break;
-
-    ERROR: trailing statements should be on next line
-    #1254: FILE: drivers/tty/serial/sunzilog.c:1254:
-    +	default: case B9600: baud = 9600; break;
-
-    ERROR: trailing statements should be on next line
-    #1255: FILE: drivers/tty/serial/sunzilog.c:1255:
-    +	case B19200: baud = 19200; break;
-
-    ERROR: trailing statements should be on next line
-    #1256: FILE: drivers/tty/serial/sunzilog.c:1256:
-    +	case B38400: baud = 38400; break;
+    WARNING: Prefer [subsystem eg: netdev]_warn([subsystem]dev, ... then dev_warn(dev, ... then pr_warn(...  to printk(KERN_WARNING ...
+    #2923: FILE: drivers/tty/serial/ioc4_serial.c:2923:
+    +		printk(KERN_WARNING
 
 Signed-off-by: Enrico Weigelt <info@metux.net>
 ---
- drivers/tty/serial/sunzilog.c | 118 +++++++++++++++++++++++++++---------------
- 1 file changed, 76 insertions(+), 42 deletions(-)
+ drivers/tty/serial/ioc4_serial.c | 39 +++++++++++++++------------------------
+ 1 file changed, 15 insertions(+), 24 deletions(-)
 
-diff --git a/drivers/tty/serial/sunzilog.c b/drivers/tty/serial/sunzilog.c
-index 6285bba..17b0520 100644
---- a/drivers/tty/serial/sunzilog.c
-+++ b/drivers/tty/serial/sunzilog.c
-@@ -106,14 +106,17 @@ struct uart_sunzilog_port {
+diff --git a/drivers/tty/serial/ioc4_serial.c b/drivers/tty/serial/ioc4_serial.c
+index 21c1b8f..4ab67f1 100644
+--- a/drivers/tty/serial/ioc4_serial.c
++++ b/drivers/tty/serial/ioc4_serial.c
+@@ -927,8 +927,7 @@ static void handle_dma_error_intr(void *arg, uint32_t other_ir)
+ 	writel(hooks->intr_dma_error, &port->ip_mem->other_ir.raw);
  
- static void sunzilog_putchar(struct uart_port *port, int ch);
+ 	if (readl(&port->ip_mem->pci_err_addr_l.raw) & IOC4_PCI_ERR_ADDR_VLD) {
+-		printk(KERN_ERR
+-			"PCI error address is 0x%llx, "
++		pr_err("PCI error address is 0x%llx, "
+ 				"master is serial port %c %s\n",
+ 		     (((uint64_t)readl(&port->ip_mem->pci_err_addr_h)
+ 							 << 32)
+@@ -942,8 +941,7 @@ static void handle_dma_error_intr(void *arg, uint32_t other_ir)
  
--#define ZILOG_CHANNEL_FROM_PORT(PORT)	((struct zilog_channel __iomem *)((PORT)->membase))
--#define UART_ZILOG(PORT)		((struct uart_sunzilog_port *)(PORT))
-+#define ZILOG_CHANNEL_FROM_PORT(PORT)	\
-+	((struct zilog_channel __iomem *)((PORT)->membase))
-+#define UART_ZILOG(PORT)		\
-+	((struct uart_sunzilog_port *)(PORT))
- 
- #define ZS_IS_KEYB(UP)	((UP)->flags & SUNZILOG_FLAG_CONS_KEYB)
- #define ZS_IS_MOUSE(UP)	((UP)->flags & SUNZILOG_FLAG_CONS_MOUSE)
- #define ZS_IS_CONS(UP)	((UP)->flags & SUNZILOG_FLAG_IS_CONS)
- #define ZS_IS_KGDB(UP)	((UP)->flags & SUNZILOG_FLAG_IS_KGDB)
--#define ZS_WANTS_MODEM_STATUS(UP)	((UP)->flags & SUNZILOG_FLAG_MODEM_STATUS)
-+#define ZS_WANTS_MODEM_STATUS(UP)	\
-+	((UP)->flags & SUNZILOG_FLAG_MODEM_STATUS)
- #define ZS_IS_CHANNEL_A(UP)	((UP)->flags & SUNZILOG_FLAG_IS_CHANNEL_A)
- #define ZS_REGS_HELD(UP)	((UP)->flags & SUNZILOG_FLAG_REGS_HELD)
- #define ZS_TX_STOPPED(UP)	((UP)->flags & SUNZILOG_FLAG_TX_STOPPED)
-@@ -176,7 +179,8 @@ static void sunzilog_clear_fifo(struct zilog_channel __iomem *channel)
- /* This function must only be called when the TX is not busy.  The UART
-  * port lock must be held and local interrupts disabled.
-  */
--static int __load_zsregs(struct zilog_channel __iomem *channel, unsigned char *regs)
-+static int __load_zsregs(struct zilog_channel __iomem *channel,
-+			 unsigned char *regs)
- {
- 	int i;
- 	int escc;
-@@ -185,6 +189,7 @@ static int __load_zsregs(struct zilog_channel __iomem *channel, unsigned char *r
- 	/* Let pending transmits finish.  */
- 	for (i = 0; i < 1000; i++) {
- 		unsigned char stat = read_zsreg(channel, R1);
-+
- 		if (stat & ALL_SNT)
- 			break;
- 		udelay(100);
-@@ -228,7 +233,7 @@ static int __load_zsregs(struct zilog_channel __iomem *channel, unsigned char *r
- 	/* Lower and upper byte of baud rate generator divisor.  */
- 	write_zsreg(channel, R12, regs[R12]);
- 	write_zsreg(channel, R13, regs[R13]);
--	
-+
- 	/* Now rewrite R14, with BRENAB (if set).  */
- 	write_zsreg(channel, R14, regs[R14]);
- 
-@@ -273,11 +278,10 @@ static void sunzilog_maybe_update_regs(struct uart_sunzilog_port *up,
- 				       struct zilog_channel __iomem *channel)
- {
- 	if (!ZS_REGS_HELD(up)) {
--		if (ZS_TX_ACTIVE(up)) {
-+		if (ZS_TX_ACTIVE(up))
- 			up->flags |= SUNZILOG_FLAG_REGS_HELD;
--		} else {
-+		else
- 			__load_zsregs(channel, up->curregs);
--		}
- 	}
- }
- 
-@@ -374,8 +378,7 @@ static void sunzilog_kbdms_receive_chars(struct uart_sunzilog_port *up,
- 				up->port.icount.brk++;
- 				if (uart_handle_break(&up->port))
- 					continue;
--			}
--			else if (r1 & PAR_ERR)
-+			} else if (r1 & PAR_ERR)
- 				up->port.icount.parity++;
- 			else if (r1 & CRC_ERR)
- 				up->port.icount.frame++;
-@@ -394,7 +397,7 @@ static void sunzilog_kbdms_receive_chars(struct uart_sunzilog_port *up,
- 
- 		if (up->port.ignore_status_mask == 0xff ||
- 		    (r1 & up->port.ignore_status_mask) == 0) {
--		    	tty_insert_flip_char(port, ch, flag);
-+			tty_insert_flip_char(port, ch, flag);
+ 		if (readl(&port->ip_mem->pci_err_addr_l.raw)
+ 						& IOC4_PCI_ERR_ADDR_MUL_ERR) {
+-			printk(KERN_ERR
+-				"Multiple errors occurred\n");
++			pr_err("Multiple errors occurred\n");
  		}
- 		if (r1 & Rx_OVR)
- 			tty_insert_flip_char(port, 0, TTY_OVERRUN);
-@@ -437,9 +440,9 @@ static void sunzilog_status_handle(struct uart_sunzilog_port *up,
- 		if (status & SYNC)
- 			up->port.icount.dsr++;
- 
--		/* The Zilog just gives us an interrupt when DCD/CTS/etc. change.
--		 * But it does not tell us which bit has changed, we have to keep
--		 * track of this ourselves.
-+		/* The Zilog just gives us an interrupt when DCD/CTS/etc.
-+		 * change.But it does not tell us which bit has changed,
-+		 * we have to keep track of this ourselves.
- 		 */
- 		if ((status ^ up->prev_status) ^ DCD)
- 			uart_handle_dcd_change(&up->port,
-@@ -461,15 +464,17 @@ static void sunzilog_transmit_chars(struct uart_sunzilog_port *up,
- 
- 	if (ZS_IS_CONS(up)) {
- 		unsigned char status = readb(&channel->control);
-+
- 		ZSDELAY();
- 
- 		/* TX still busy?  Just wait for the next TX done interrupt.
- 		 *
--		 * It can occur because of how we do serial console writes.  It would
--		 * be nice to transmit console writes just like we normally would for
--		 * a TTY line. (ie. buffered and TX interrupt driven).  That is not
--		 * easy because console writes cannot sleep.  One solution might be
--		 * to poll on enough port->xmit space becoming free.  -DaveM
-+		 * It can occur because of how we do serial console writes.
-+		 * It would be nice to transmit console writes just like we
-+		 * normally would for a TTY line. (ie. buffered and TX
-+		 * interrupt driven).  That is not easy because console
-+		 * writes cannot sleep.  One solution might be to poll on
-+		 * enough port->xmit space becoming free.  -DaveM
- 		 */
- 		if (!(status & Tx_BUF_EMP))
- 			return;
-@@ -590,7 +595,8 @@ static irqreturn_t sunzilog_interrupt(int irq, void *dev_id)
- /* A convenient way to quickly get R0 status.  The caller must _not_ hold the
-  * port lock, it is acquired here.
-  */
--static __inline__ unsigned char sunzilog_read_channel_status(struct uart_port *port)
-+static inline unsigned char
-+sunzilog_read_channel_status(struct uart_port *port)
- {
- 	struct zilog_channel __iomem *channel;
- 	unsigned char status;
-@@ -661,13 +667,13 @@ static void sunzilog_set_mctrl(struct uart_port *port, unsigned int mctrl)
- 	else
- 		clear_bits |= DTR;
- 
--	/* NOTE: Not subject to 'transmitter active' rule.  */ 
-+	/* NOTE: Not subject to 'transmitter active' rule. */
- 	up->curregs[R5] |= set_bits;
- 	up->curregs[R5] &= ~clear_bits;
- 	write_zsreg(channel, R5, up->curregs[R5]);
- }
- 
--/* The port lock is held and interrupts are disabled.  */
-+/* The port lock is held and interrupts are disabled. */
- static void sunzilog_stop_tx(struct uart_port *port)
- {
- 	struct uart_sunzilog_port *up =
-@@ -749,7 +755,7 @@ static void sunzilog_enable_ms(struct uart_port *port)
- 	if (new_reg != up->curregs[R15]) {
- 		up->curregs[R15] = new_reg;
- 
--		/* NOTE: Not subject to 'transmitter active' rule.  */ 
-+		/* NOTE: Not subject to 'transmitter active' rule. */
- 		write_zsreg(channel, R15, up->curregs[R15] & ~WR7pEN);
  	}
- }
-@@ -776,7 +782,7 @@ static void sunzilog_break_ctl(struct uart_port *port, int break_state)
- 	if (new_reg != up->curregs[R5]) {
- 		up->curregs[R5] = new_reg;
+ 	spin_unlock_irqrestore(&port->ip_lock, flags);
+@@ -1025,7 +1023,7 @@ static irqreturn_t ioc4_intr(int irq, void *arg)
+ 		unsigned long flag;
  
--		/* NOTE: Not subject to 'transmitter active' rule.  */ 
-+		/* NOTE: Not subject to 'transmitter active' rule. */
- 		write_zsreg(channel, R5, up->curregs[R5]);
- 	}
+ 		spin_lock_irqsave(&soft->is_ir_lock, flag);
+-		printk ("%s : %d : mem 0x%p sio_ir 0x%x sio_ies 0x%x "
++		pr_debug("%s : %d : mem 0x%p sio_ir 0x%x sio_ies 0x%x "
+ 				"other_ir 0x%x other_ies 0x%x mask 0x%x\n",
+ 		     __func__, __LINE__,
+ 		     (void *)mem, readl(&mem->sio_ir.raw),
+@@ -1061,9 +1059,9 @@ static inline int ioc4_attach_local(struct ioc4_driver_data *idd)
+ 	/* IOC4 firmware must be at least rev 62 */
+ 	pci_read_config_word(pdev, PCI_COMMAND_SPECIAL, &ioc4_revid);
  
-@@ -996,7 +1002,8 @@ static void sunzilog_config_port(struct uart_port *port, int flags)
- }
- 
- /* We do not support letting the user mess with the divisor, IRQ, etc. */
--static int sunzilog_verify_port(struct uart_port *port, struct serial_struct *ser)
-+static int sunzilog_verify_port(struct uart_port *port,
-+				struct serial_struct *ser)
- {
- 	return -EINVAL;
- }
-@@ -1139,6 +1146,7 @@ static void sunzilog_putchar(struct uart_port *port, int ch)
- 	 */
- 	do {
- 		unsigned char val = readb(&channel->control);
-+
- 		if (val & Tx_BUF_EMP) {
- 			ZSDELAY();
- 			break;
-@@ -1237,15 +1245,34 @@ static int __init sunzilog_console_setup(struct console *con, char *options)
- 	 * this hackish cflag thing is OK.
- 	 */
- 	switch (con->cflag & CBAUD) {
--	case B150: baud = 150; break;
--	case B300: baud = 300; break;
--	case B600: baud = 600; break;
--	case B1200: baud = 1200; break;
--	case B2400: baud = 2400; break;
--	case B4800: baud = 4800; break;
--	default: case B9600: baud = 9600; break;
--	case B19200: baud = 19200; break;
--	case B38400: baud = 38400; break;
-+	case B150:
-+		baud = 150;
-+		break;
-+	case B300:
-+		baud = 300;
-+		break;
-+	case B600:
-+		baud = 600;
-+		break;
-+	case B1200:
-+		baud = 1200;
-+		break;
-+	case B2400:
-+		baud = 2400;
-+		break;
-+	case B4800:
-+		baud = 4800;
-+		break;
-+	default:
-+	case B9600:
-+		baud = 9600;
-+		break;
-+	case B19200:
-+		baud = 19200;
-+		break;
-+	case B38400:
-+		baud = 38400;
-+		break;
- 	}
- 
- 	brg = BPS_TO_BRG(baud, ZS_CLOCK / ZS_CLOCK_DIVISOR);
-@@ -1380,9 +1407,9 @@ static void sunzilog_init_hw(struct uart_sunzilog_port *up)
- 		up->curregs[R14] = BRSRC | BRENAB;
- 		up->curregs[R15] = FIFOEN; /* Use FIFO if on ESCC */
- 		up->curregs[R7p] = TxFIFO_LVL | RxFIFO_LVL;
--		if (__load_zsregs(channel, up->curregs)) {
-+		if (__load_zsregs(channel, up->curregs))
- 			up->flags |= SUNZILOG_FLAG_ESCC;
--		}
-+
- 		/* Only enable interrupts if an ISR handler available */
- 		if (up->flags & SUNZILOG_FLAG_ISR_HANDLER)
- 			up->curregs[R9] |= MIE;
-@@ -1489,12 +1516,12 @@ static int zs_probe(struct platform_device *op)
+-	printk(KERN_INFO "IOC4 firmware revision %d\n", ioc4_revid);
++	pr_info("IOC4 firmware revision %d\n", ioc4_revid);
+ 	if (ioc4_revid < ioc4_revid_min) {
+-		printk(KERN_WARNING
++		pr_warn(
+ 		    "IOC4 serial not supported on firmware rev %d, "
+ 				"please upgrade to rev %d or higher\n",
+ 				ioc4_revid, ioc4_revid_min);
+@@ -1077,8 +1075,7 @@ static inline int ioc4_attach_local(struct ioc4_driver_data *idd)
+ 							port_number++) {
+ 		port = kzalloc(sizeof(struct ioc4_port), GFP_KERNEL);
+ 		if (!port) {
+-			printk(KERN_WARNING
+-				"IOC4 serial memory not available for port\n");
++			pr_warn("IOC4 serial memory not available for port\n");
+ 			goto free;
  		}
- 		uart_inst++;
+ 		spin_lock_init(&port->ip_lock);
+@@ -1867,7 +1864,7 @@ static void handle_intr(void *arg, uint32_t sio_ir)
+ 		uint32_t shadow;
+ 
+ 		if ( loop_counter-- <= 0 ) {
+-			printk(KERN_WARNING "IOC4 serial: "
++			pr_warn("IOC4 serial: "
+ 					"possible hang condition/"
+ 					"port stuck on interrupt.\n");
+ 			break;
+@@ -2167,7 +2164,7 @@ static inline int do_read(struct uart_port *the_port, unsigned char *buf,
+ 		entry = (struct ring_entry *)((caddr_t)inring + cons_ptr);
+ 
+ 		if ( loop_counter-- <= 0 ) {
+-			printk(KERN_WARNING "IOC4 serial: "
++			pr_warn("IOC4 serial: "
+ 					"possible hang condition/"
+ 					"port stuck on read.\n");
+ 			break;
+@@ -2793,16 +2790,14 @@ static int ioc4_serial_remove_one(struct ioc4_driver_data *idd)
+ 
+ 	if (!request_mem_region(tmp_addr1, sizeof(struct ioc4_serial),
+ 					"sioc4_uart")) {
+-		printk(KERN_WARNING
+-			"ioc4 (%p): unable to get request region for "
++		pr_warn("ioc4 (%p): unable to get request region for "
+ 				"uart space\n", (void *)idd->idd_pdev);
+ 		ret = -ENODEV;
+ 		goto out1;
+ 	}
+ 	serial = ioremap(tmp_addr1, sizeof(struct ioc4_serial));
+ 	if (!serial) {
+-		printk(KERN_WARNING
+-			 "ioc4 (%p) : unable to remap ioc4 serial register\n",
++		pr_warn("ioc4 (%p) : unable to remap ioc4 serial register\n",
+ 				(void *)idd->idd_pdev);
+ 		ret = -ENODEV;
+ 		goto out2;
+@@ -2815,7 +2810,7 @@ static int ioc4_serial_remove_one(struct ioc4_driver_data *idd)
+ 	control = kzalloc(sizeof(struct ioc4_control), GFP_KERNEL);
+ 
+ 	if (!control) {
+-		printk(KERN_WARNING "ioc4_attach_one"
++		pr_warn("ioc4_attach_one"
+ 		       ": unable to get memory for the IOC4\n");
+ 		ret = -ENOMEM;
+ 		goto out2;
+@@ -2825,8 +2820,7 @@ static int ioc4_serial_remove_one(struct ioc4_driver_data *idd)
+ 	/* Allocate the soft structure */
+ 	soft = kzalloc(sizeof(struct ioc4_soft), GFP_KERNEL);
+ 	if (!soft) {
+-		printk(KERN_WARNING
+-		       "ioc4 (%p): unable to get memory for the soft struct\n",
++		pr_warn("ioc4 (%p): unable to get memory for the soft struct\n",
+ 		       (void *)idd->idd_pdev);
+ 		ret = -ENOMEM;
+ 		goto out3;
+@@ -2858,8 +2852,7 @@ static int ioc4_serial_remove_one(struct ioc4_driver_data *idd)
+ 				"sgi-ioc4serial", soft)) {
+ 		control->ic_irq = idd->idd_pdev->irq;
  	} else {
--		dev_info(&op->dev, "Keyboard at MMIO 0x%llx (irq = %d) "
--		       "is a %s\n",
-+		dev_info(&op->dev,
-+		       "Keyboard at MMIO 0x%llx (irq = %d) is a %s\n",
- 		       (unsigned long long) up[0].port.mapbase,
- 		       op->archdata.irqs[0], sunzilog_type(&up[0].port));
--		dev_info(&op->dev, "Mouse at MMIO 0x%llx (irq = %d) "
--		       "is a %s\n",
-+		dev_info(&op->dev,
-+		       "Mouse at MMIO 0x%llx (irq = %d) is a %s\n",
- 		       (unsigned long long) up[1].port.mapbase,
- 		       op->archdata.irqs[0], sunzilog_type(&up[1].port));
- 		kbm_inst++;
-@@ -1578,6 +1605,7 @@ static int __init sunzilog_init(void)
+-		printk(KERN_WARNING
+-		    "%s : request_irq fails for IRQ 0x%x\n ",
++		pr_warn("%s : request_irq fails for IRQ 0x%x\n ",
+ 			__func__, idd->idd_pdev->irq);
+ 	}
+ 	ret = ioc4_attach_local(idd);
+@@ -2914,14 +2907,12 @@ static int __init ioc4_serial_init(void)
  
- 	if (zilog_irq) {
- 		struct uart_sunzilog_port *up = sunzilog_irq_chain;
-+
- 		err = request_irq(zilog_irq, sunzilog_interrupt, IRQF_SHARED,
- 				  "zs", sunzilog_irq_chain);
- 		if (err)
-@@ -1587,7 +1615,10 @@ static int __init sunzilog_init(void)
- 		while (up) {
- 			struct zilog_channel __iomem *channel;
- 
--			/* printk (KERN_INFO "Enable IRQ for ZILOG Hardware %p\n", up); */
-+			/* printk(KERN_INFO
-+			 *        "Enable IRQ for ZILOG Hardware %p\n",
-+			 *        up);
-+			 */
- 			channel          = ZILOG_CHANNEL_FROM_PORT(&up->port);
- 			up->flags       |= SUNZILOG_FLAG_ISR_HANDLER;
- 			up->curregs[R9] |= MIE;
-@@ -1624,7 +1655,10 @@ static void __exit sunzilog_exit(void)
- 		while (up) {
- 			struct zilog_channel __iomem *channel;
- 
--			/* printk (KERN_INFO "Disable IRQ for ZILOG Hardware %p\n", up); */
-+			/* printk(KERN_INFO
-+			 *        "Disable IRQ for ZILOG Hardware %p\n",
-+			 *        up);
-+			 */
- 			channel          = ZILOG_CHANNEL_FROM_PORT(&up->port);
- 			up->flags       &= ~SUNZILOG_FLAG_ISR_HANDLER;
- 			up->curregs[R9] &= ~MIE;
+ 	/* register with serial core */
+ 	if ((ret = uart_register_driver(&ioc4_uart_rs232)) < 0) {
+-		printk(KERN_WARNING
+-			"%s: Couldn't register rs232 IOC4 serial driver\n",
++		pr_warn("%s: Couldn't register rs232 IOC4 serial driver\n",
+ 			__func__);
+ 		goto out;
+ 	}
+ 	if ((ret = uart_register_driver(&ioc4_uart_rs422)) < 0) {
+-		printk(KERN_WARNING
+-			"%s: Couldn't register rs422 IOC4 serial driver\n",
++		pr_warn("%s: Couldn't register rs422 IOC4 serial driver\n",
+ 			__func__);
+ 		goto out_uart_rs232;
+ 	}
 -- 
 1.9.1
 
