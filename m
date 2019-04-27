@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B8F34C43219
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:53:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2A016C43219
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:53:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8876E208C2
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:53:27 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id F423D208C2
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:53:28 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="B5lx9NQ+"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8876E208C2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="BIxKVNRl"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F423D208C2
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=metux.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,49 +26,51 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=gl+Hp+V/BlYrKYMfIPCkkXQPD1Lil1YTgrrKxIIHpcQ=; b=B5lx9NQ+D/he7e+zlPEh7/uL0e
-	mJrtGEgtw8D3Oe59n3hqy5PBhEvn7pXz2Sg0vxJ1iXd0C7dXhpykf1WssLmJjumATeN9XVtFLkoxE
-	gA29BIB6/ZrJiAjPzivezA88Y/9leJu5MUYtJSA3ZdohpqA8hVi77vSQviQHtOCX9sf1Keju5nxYu
-	mlLXCCR1hUpKO42ygzwk0VHUsuo0Mm/4aPijpGkv3TjUT08uYa3k+vHILgSxEGO08vvdms2RkgTSS
-	QCw8z+IgEx1x4SnhtOM8odyUesAAQlyLuGkF20F382rFR48fH6hrDLMXGRAA+PqwqCRFL1axmVsB1
-	5gazDX7A==;
+	bh=i88Vjd4OyBjAp8LrqoIDODXNxyzQquMfHhdOnClSd0M=; b=BIxKVNRlYen2n8evIrmBVz7Ymx
+	WpNqPns97AB61HHJmnM/GRsSwVddW/9NJ8LPQlnYf9hzlghvxNVUxL4uDcA6xa0LiJVhzy+2rzFQ4
+	Jv94NQvwje5CL+DRE5OiJu1dfe2sYsGthcJaRclATbBCP0cqbaNNnQqW5egcl6gHZD1qJDtJ/OANb
+	w9g7/xud4oyW0mobEtBjaDNtT6zxah1rsQn9z2ZnR4FhTKvxQ1ecod/XZh148OerpwrZrekB7LSC5
+	KC7UypHDPvaWYWDB7VbI6l8JtrRnPbVuNyvi5lOmVA+QJiTvTZZNy9E4V5sKKHnjBZUtX6oqGCDqy
+	vM7NuW/A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hKMpV-00015j-D6; Sat, 27 Apr 2019 12:53:21 +0000
+	id 1hKMpX-00018B-8O; Sat, 27 Apr 2019 12:53:23 +0000
 Received: from mout.kundenserver.de ([212.227.126.187])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hKMpC-0000cp-Je
- for linux-amlogic@lists.infradead.org; Sat, 27 Apr 2019 12:53:07 +0000
+ id 1hKMpD-0000eT-QJ
+ for linux-amlogic@lists.infradead.org; Sat, 27 Apr 2019 12:53:08 +0000
 Received: from orion.localdomain ([77.2.90.210]) by mrelayeu.kundenserver.de
  (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1MPXpS-1h7dOA2vUw-00MaDR; Sat, 27 Apr 2019 14:52:44 +0200
+ 1MHoZS-1hX2X90am6-00EvFl; Sat, 27 Apr 2019 14:52:49 +0200
 From: "Enrico Weigelt, metux IT consult" <info@metux.net>
 To: linux-kernel@vger.kernel.org
-Subject: [PATCH 13/41] drivers: tty: serial: uartlite: fill mapsize and use it
-Date: Sat, 27 Apr 2019 14:51:54 +0200
-Message-Id: <1556369542-13247-14-git-send-email-info@metux.net>
+Subject: [PATCH 18/41] drivers: tty: serial: apbuart: use dev_info() instead
+ of printk()
+Date: Sat, 27 Apr 2019 14:51:59 +0200
+Message-Id: <1556369542-13247-19-git-send-email-info@metux.net>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1556369542-13247-1-git-send-email-info@metux.net>
 References: <1556369542-13247-1-git-send-email-info@metux.net>
-X-Provags-ID: V03:K1:HsinThJYSBbvZXPfm+0O6kKUO+qcziVpNnYsjWaEzEiMEg9DSuK
- dNf0rb/MCsWgo6VR685d/dBzsntfhucM9zdpec9KJhVPsvgZXFU+FHm2NA8+p9uNUoUt2t/
- 97+mu3GZ0mzF7ACNEs/tQdl8KcWi9bu5JVWLna6RzeYMAWm9wnFG9XjorOOkAQTF4hi7dJB
- W8BggkCEpEPmgsUJa1QKA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:M2CupHkdprI=:t4eNWY5bS1vu92cW6qDWEU
- ADcR+6Kg7dcevcZPeO14Esbr4UB1TouOkNfW01O86yvYnijA1sc/wnjYLbAFIt0rwXMyPKNGU
- O/PioqNftTLrLR+ttFEWixd+2dV3vE30I4Ge56dkTfvUCXNuMnkxzEAZskQfusFSpau0qMp3m
- 4B3eZ7QEbqsajYkwU+gX1wSdVckm7ohYMvPl92gqYlvK0WbrvXhR6X59BXzlQ+TeldpXpLkpt
- qxNlzP/6DsfSHkrfCntzbFaD4FkxHXnhDUDngfu6J8I1XCkKuDwY7JEfPQIoyLB7Ao7TKq3gj
- WIlU9tIg7jI/cufHOP/EkSmv0xP8qavjGQazjMDDC57vd+Jovtnwcp3n24xxplR6xxuT5tAwY
- Wp9TEeiF0rZwe1z9tF6QztbHm2UaaNo2wv6I1A+IN6pVUFBFul9CnwmxQG81GmFjrhxWSgUtJ
- IMMdF66BcOi48fIhcMfXtDWMpWDXC+uWdiPjeWhQk1RUYc6PrVeGQOYfhDHJelX7nkF9fOJvN
- yjiW401cuK4NbC6nHAjZULv7zT8Ckza4ID+/BlH0wUfNAkj6i28hgOSsg58c6b5fMCXjyhkJL
- 5R5FYtY9cs3sxNW2/qp+GIWH0qY3L7sI0LyA/aC3gm70d0HNqsoPZD49KGFdJ75JCDJrwlJ+l
- +MfViqK0FaiihFHJPKgf95dVxASBqvUqvWXYZbU0XDUpXNVGBfQQpp5jxT6/y8t/byI8M1vTQ
- ll/ztjVh1UtTy87vhydhWCwlP4maAW5p4lwI3g==
+X-Provags-ID: V03:K1:OVKGRVf0aXMWmtc1PHtqfEjiYENJhZU3hpSHmEA0npVSmInw18W
+ peVVZAyjlFJAio3YAZ7zsEC8Fe2VQ89wyDlbJaIzUmZGMMp3iII6gzrN822v79B5j0vvLsh
+ 71zzSbmGgmkHHfJu8peOu878gwp/4AQZkem15Rl7F+pbbfe+1IRXXc3iTGk/vbwXXy8feJ1
+ A4wTh5WhUYxm3/nJIj4hw==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:kJPYxrqUW4Q=:IX4zfaBz7w6xvHD6+zvUEx
+ 9lgTvdeuV59hcukEVZymu+p6tcoSHdR0K1YyNeMpb8uyuppx99cFXsn6a/2c3QwCqdTtaOI7b
+ NM555G1mdTA4tx9beSLOpohIzVc1IAh0aF9aqOMLarv10YlFJVBypKsS7eozOr8YjLPwNCA7y
+ xLNnSL9nvqoyuR6pmZ9cvRyyyP6/eYw4Fc/aHOZVjluv6XaHH1kDZqcwruoEvA55uYtvnSHac
+ 9MjLs8ftcbsYmjTSWf1ukKC9wrnPzPU62l5wd6argIoQ2M9shIoE9+TB45W0N7bfJyq0mDbaX
+ TJHKhxyRPW+/7p9yUNV10hZ7DQE+aMsD5fm2A2ANmTrYm1EOuOJrwHBgNOvOC8EJ4+jTkk6/W
+ BwDYOySXQ80cH6wqZIg+DXq1/w/mFQHSkmwtbd0oqKoJWF1i+ZJF+Ic9yETZqxb/VKtT1JjId
+ aY7KauvC1h+u+2i6Ia65kuNV1gsqfMmGLLZjy0AiXOjEvc13FOU1AbsdYNOJA5WSEPHUqWLHT
+ SoAIo9fOAKbG2KsIwCu7Zo2mryl45CvXBMMMbNQ9jt5fV9nD8v7BkFwLkMucoFwqTowZs8u5T
+ g8EDSIiimu5RjbwcGKHM6HD5X5/g/5FrZKGvHbfpY29hrmOad8MLWYtKwnASbuVRUr6XWpvrq
+ WJJr4n5/Cu72gbTk0oEBe4AhzNbI9tMroHYK2nYqhfZrYtIznaI/92IoE9ZcqFvyCxwmiSEKp
+ 6Y0UpIDYj+h2G2Yvy0Vj7nMLmkVAnbhBJyzm0A==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190427_055302_940246_58005543 
-X-CRM114-Status: GOOD (  11.40  )
+X-CRM114-CacheID: sfid-20190427_055304_252405_37BA5929 
+X-CRM114-Status: UNSURE (   9.65  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -94,59 +96,27 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Fill the struct uart_port->mapsize field and use it, insteaf of
-hardcoded values in many places. This makes the code layout a bit
-more consistent and easily allows using generic helpers for the
-io memory handling.
-
-Candidates for such helpers could be eg. the request+ioremap and
-iounmap+release combinations.
+Using dev_err() instead of printk() for more consistent output.
+(prints device name, etc).
 
 Signed-off-by: Enrico Weigelt <info@metux.net>
 ---
- drivers/tty/serial/uartlite.c | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+ drivers/tty/serial/apbuart.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/tty/serial/uartlite.c b/drivers/tty/serial/uartlite.c
-index 44d65bd..c322ab6 100644
---- a/drivers/tty/serial/uartlite.c
-+++ b/drivers/tty/serial/uartlite.c
-@@ -342,7 +342,7 @@ static const char *ulite_type(struct uart_port *port)
+diff --git a/drivers/tty/serial/apbuart.c b/drivers/tty/serial/apbuart.c
+index d2b86f7..89e19b6 100644
+--- a/drivers/tty/serial/apbuart.c
++++ b/drivers/tty/serial/apbuart.c
+@@ -568,7 +568,7 @@ static int apbuart_probe(struct platform_device *op)
  
- static void ulite_release_port(struct uart_port *port)
- {
--	release_mem_region(port->mapbase, ULITE_REGION);
-+	release_mem_region(port->mapbase, port->mapsize);
- 	iounmap(port->membase);
- 	port->membase = NULL;
+ 	apbuart_flush_fifo((struct uart_port *) port);
+ 
+-	printk(KERN_INFO "grlib-apbuart at 0x%llx, irq %d\n",
++	dev_info(&pdev->pdev, "grlib-apbuart at 0x%llx, irq %d\n",
+ 	       (unsigned long long) port->mapbase, port->irq);
+ 	return 0;
  }
-@@ -356,15 +356,15 @@ static int ulite_request_port(struct uart_port *port)
- 		"ulite console: port=%p; port->mapbase=%llx\n",
- 		 port, (unsigned long long) port->mapbase);
- 
--	if (!request_mem_region(port->mapbase, ULITE_REGION, "uartlite")) {
-+	if (!request_mem_region(port->mapbase, port->mapsize, "uartlite")) {
- 		dev_err(port->dev, "Memory region busy\n");
- 		return -EBUSY;
- 	}
- 
--	port->membase = ioremap(port->mapbase, ULITE_REGION);
-+	port->membase = ioremap(port->mapbase, port->mapsize);
- 	if (!port->membase) {
- 		dev_err(port->dev, "Unable to map registers\n");
--		release_mem_region(port->mapbase, ULITE_REGION);
-+		release_mem_region(port->mapbase, port->mapsize);
- 		return -EBUSY;
- 	}
- 
-@@ -649,6 +649,7 @@ static int ulite_assign(struct device *dev, int id, u32 base, int irq,
- 	port->iotype = UPIO_MEM;
- 	port->iobase = 1; /* mark port in use */
- 	port->mapbase = base;
-+	port->mapsize = ULITE_REGION;
- 	port->membase = NULL;
- 	port->ops = &ulite_ops;
- 	port->irq = irq;
 -- 
 1.9.1
 
