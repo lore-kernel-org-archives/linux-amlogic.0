@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6CD1CC4321A
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:53:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C76BFC43218
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:53:19 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 37D95208C2
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:53:17 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8F790208C2
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:53:19 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="B2IKAJvl"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 37D95208C2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Q/w8JBY9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8F790208C2
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=metux.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,50 +26,50 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=/YTauQTU9xehj8TN/BfINjVBeSl4s+OiBh9zaIBcMK4=; b=B2IKAJvl9+53bBbhzKSk0yG8Hi
-	BavoUlYDgDB1sGiQYGc5CRFd35dY4QONm6ByGmsSwyXDVmWs8ldTuNMSu9QxKZsibEvcG3nb7qie1
-	EGIDHCyosH5QV9g4N1CGbnwFmQauiLJX7XxLpTbua7huzv8qOm1GHttdMADmkZIw9l87hw6ZGLW6T
-	EUBE7NLC3M6Ljh7+jgyIV+DAeBsfTopbGYJfjlBLl/xMJZRB4+vDar1e0+/TGLKM5oKfOdkcDuYbh
-	ryoyQehscq9YbpeAMxd65HhUhldsoyY2hJG8CuNVbC/yQ8TBhDGPqcPKbEP1K569CLxgmYm/HXHg6
-	t/Kz3b7Q==;
+	bh=6PCC4U+lz4idQ+AXXLoaauQ2P6DVN5j1wWlWTfvtjnE=; b=Q/w8JBY9u+swwmUEuLjOJZqYPP
+	k1e1jJ1bneNy/AU70SuAn4U80kVoGScSVrK6FVbcdoj5Z1/AxEb17DEKKgmfq6ou1mFN7fqgJM68S
+	m1yTGYkopCWS80vzOfDuBjfGBU7J0bF/z88/bbOV1/QF+EkSb9ViuqS0K9A1QrTt4LE8pGqm2ve37
+	fnuynlL3kYaqyR8x1rcs4G2xColSQY4U2h041MnQSHMpLjDLPSJIVlItGpCc5NyFRPlJ82ftMVDFu
+	Lsj8MHCuBXanCmU5VlVVW/EcIRB8LuHnTb20Hn5O6I3n6QItsf4le3speNHr//HHnWX2G+ac4TBCx
+	r+yYjo5Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hKMpK-0000nO-7N; Sat, 27 Apr 2019 12:53:10 +0000
-Received: from mout.kundenserver.de ([212.227.126.130])
+	id 1hKMpM-0000qC-1z; Sat, 27 Apr 2019 12:53:12 +0000
+Received: from mout.kundenserver.de ([212.227.126.135])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hKMpC-0000cd-4P
- for linux-amlogic@lists.infradead.org; Sat, 27 Apr 2019 12:53:04 +0000
+ id 1hKMpC-0000ch-Cw
+ for linux-amlogic@lists.infradead.org; Sat, 27 Apr 2019 12:53:05 +0000
 Received: from orion.localdomain ([77.2.90.210]) by mrelayeu.kundenserver.de
  (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1Mzz6s-1gXTgh3Td8-00x1Ur; Sat, 27 Apr 2019 14:52:37 +0200
+ 1MNss4-1h9I592Io4-00OFB5; Sat, 27 Apr 2019 14:52:39 +0200
 From: "Enrico Weigelt, metux IT consult" <info@metux.net>
 To: linux-kernel@vger.kernel.org
-Subject: [PATCH 05/41] drivers: tty: serial: dz: use pr_info() instead of
- incomplete printk()
-Date: Sat, 27 Apr 2019 14:51:46 +0200
-Message-Id: <1556369542-13247-6-git-send-email-info@metux.net>
+Subject: [PATCH 07/41] drivers: tty: serial: sb1250-duart: include
+ <linux/io.h> instead of <asm/io.h>
+Date: Sat, 27 Apr 2019 14:51:48 +0200
+Message-Id: <1556369542-13247-8-git-send-email-info@metux.net>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1556369542-13247-1-git-send-email-info@metux.net>
 References: <1556369542-13247-1-git-send-email-info@metux.net>
-X-Provags-ID: V03:K1:0divRPlMaEn/Gqkn0bF/qffr0mtJMzUIhhcgUCpKp3L8QfEx3BT
- Sct6DXQKPsKml0HbjLEbqZ0BVdAAcNgJ6gXOI6JC8K/1+PAe8EFl5Aq1lbdbexf9MvYSvJI
- wDh21F+qIQxeFuU3Myc3hkjl/lhNuC86c6zCO8DZIQRpkFEogbQN+oxEVR+QjYaXv/F2Er3
- D3Hg7fjgdOldNL+SYlAwQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:+RM97HlEygc=:XCYgbldeM4fHTujSYLo9ci
- ZNeOghoSWPCt1C8c6NBMLSfGNddK58lmCDc3rlfBH3ynfXNXoutb/zjRBWM8D3BIY49a4i4UE
- w61HuHHGGrE/nW055rXaTuGx9TatMuVoyD47DJXczfb3oO2GbP0EmAQmzpC+6kDBZdseEXdDC
- Q/7Dzh91Dv5viwhjSOg8QB3blGvc6npMCA3+LRAVdg7cmGKN+31NplbmdslmfdvUCt7Zt8txu
- wu1qVJ20ms6soMtiV40LnA1aD9QGbuHc7kSx8ChK0JcxawU9TBzFvD7nHcdQCkga/Pam6wIlh
- SozaRebsNHrmz6K0Nxx5GSTQPTFKcxIbQTjsZTv+UXWB6g6MdVA8xNYDMcxFB3I9a/OOa1+q6
- SDNeRbSCUbiTqPPGCr4Wlwd5pr0t1wGkI38yOimXepPKVf4067XO8agDegepX6eMqr1dnbVEl
- 7E6hKunNpdkhyB0sNKvUPq+uvwV2l/VdX95oOhRD4521oJmMRY3DJ+fuI9JwMF0+0d43RkioS
- NAq5fkYK+cja/PvgpcgRoKs9fOqvE/DvkG7oyD8aLe7kzR0MXQDK6+nm2GtMVAfo9rLlZIslt
- eYSqlXLx6iAbP5p7IGgKyS6G3mEq0IT3MizlVzwRrPBrTI6P7aSZVck/9N5HOec9ocrRvZ2zy
- eP3CmOH7ndIUhAxgSzvJujudRMq1laldwLQ9qL1Fz34ZpgICHygnXc7BQ2s/IBPS3Nvdokjth
- xKIhRxBJYIbWNhrxBOQ1AQzGdb2SfJPFzpfkeQ==
+X-Provags-ID: V03:K1:rdRXb5foI78ZUKXg0PVAe5Z5nzYlAxuzsWdK2nGI/ZCG+/6jRlM
+ hI3kp/kBUUgLKHfqLAS7fc8k7GQ2ADy4ZKXhqdqZiryVc7Z/Z2r9L5PNnJpvCGJ5Wm3QKlp
+ qfPO4bQ3xuErAjl1GwNDMV08O2NC44IuFF/UesW2Ttt/YM+Ee5ZbuxprWyPUKJV4WjcRcmA
+ KbeNYOb/RogJgZxW+H2Qg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:uIkJBFuyWwE=:my0C5wt5HQzdkDWW3sqLjW
+ G57X9rEDzrdejwTIohdfyXbnVkKKkUjsq7O2WO6aaWwA/K7asaaqwwpANJiqlYwmtNzUe3m2F
+ dIy98aX9m8AzimgrUpqTFcjmsVSy5jVNnA897BjXITdiOKUbqhDiJ8SEfxopoVvXA0ci4pE/u
+ sCpkkmo4B6+eALwD3PacR4l75/GBQIcgR/X9YlludU/jwMa2Liob4BAm+iUTx6dTWwQyokWeE
+ 5ueRRrNwERDVxlERN61XurD0oaRK6EZk3C+alaLfFflaumVLpveKjf8NF9QNOKUCoI5MVXyiX
+ HXunQn4iVV9oEPQo+yLEIGF4UfEE0Rsd1GkU6LkB/+Odbn2uQLNNWiC8KWt07Y56oarXOxrDk
+ lA4uTn5RNuonkl8BJC6IAyi1AfCnyQmAgAOJlNSl4m+3PYHPhOrGjM7sgGTlh19tXj+5/CybH
+ AVSJ2WFmYCNhq6mW/70XSDtRxr/UK1p1rzHbSTsjFAmr4I8RVMaqj3ZxfFotbghjdQK1581Pv
+ 69TkpSYev0ozeW+8xQuT5XGyqbrpcxKEzP7NDPBjAjIAKmwxFXVsCjrsmCQi802n4t/j7rgtj
+ p2/1WTI2ZaKz4ftVg0fU4hcU0pFIksjotyumR0cs9ECKOFII7ztSji+wY2fpiuHhZ8jQiu3Va
+ 80px75vPXYZJQn8SviB8k53dJGNllXCrNlg32KHH9lod8kduYDxsK8NA4RIZxyaO3IOTafLNX
+ tjDPR9hNlZyMzNBlAyzerGiY2oMGtk33LyAGRQ==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190427_055302_494052_E7723536 
-X-CRM114-Status: UNSURE (   9.59  )
+X-CRM114-CacheID: sfid-20190427_055302_792177_8BB42CB4 
+X-CRM114-Status: UNSURE (   9.10  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -96,30 +96,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Fix the checkpatch warning:
+Fix checkpatch warning:
 
-    WARNING: printk() should include KERN_<LEVEL> facility level
-    #934: FILE: dz.c:934:
-    +	printk("%s%s\n", dz_name, dz_version);
+    WARNING: Use #include <linux/io.h> instead of <asm/io.h>
+    #41: FILE: drivers/tty/serial/sb1250-duart.c:41:
+    +#include <asm/io.h>
 
 Signed-off-by: Enrico Weigelt <info@metux.net>
 ---
- drivers/tty/serial/dz.c | 2 +-
+ drivers/tty/serial/sb1250-duart.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/tty/serial/dz.c b/drivers/tty/serial/dz.c
-index 559d076..e2670c4 100644
---- a/drivers/tty/serial/dz.c
-+++ b/drivers/tty/serial/dz.c
-@@ -931,7 +931,7 @@ static int __init dz_init(void)
- 	if (IOASIC)
- 		return -ENXIO;
+diff --git a/drivers/tty/serial/sb1250-duart.c b/drivers/tty/serial/sb1250-duart.c
+index 655961c..b4342c8 100644
+--- a/drivers/tty/serial/sb1250-duart.c
++++ b/drivers/tty/serial/sb1250-duart.c
+@@ -38,7 +38,7 @@
+ #include <linux/types.h>
  
--	printk("%s%s\n", dz_name, dz_version);
-+	pr_info("%s%s\n", dz_name, dz_version);
+ #include <linux/refcount.h>
+-#include <asm/io.h>
++#include <linux/io.h>
+ #include <asm/war.h>
  
- 	dz_init_ports();
- 
+ #include <asm/sibyte/sb1250.h>
 -- 
 1.9.1
 
