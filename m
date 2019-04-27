@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 310F7C4321A
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:53:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6CD1CC4321A
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:53:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EBD3D2087C
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:53:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 37D95208C2
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:53:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mi/Wol/U"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EBD3D2087C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="B2IKAJvl"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 37D95208C2
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=metux.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,49 +26,50 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=2FYG5HuX7lrY4L16fv5scbiPc5lY/g1Dr7pt3vaAv7I=; b=mi/Wol/USGcSufD3qEJLG8qtBp
-	DpKEHsLw54T+EF6XS80EZaq5Pn7lZVfVRGq9zApyfpIOKUFIEifXZqgIMdBGMuxRyjD9ik9Mc5kex
-	l2PpbtAUrDld6bbJDX5TY59XfFmqo2L5fD42QPQvfbM1eluZB/bQmhWul6c4+zKAOfr8T7xAQmN4Q
-	1D3Pj7VbpTokCvhk5Phg3aDPbdsw1k7uxDx3ogtjPkPpMll44z5pF8/FfY2c5t2JWqNzt6aA8bzro
-	v9gU5pXsA7s6s4nE8lI58YH+H2IctXvpGsRMtMrGN6tZTwvAIAzqbLcs9obn6wL4UjAlYNOVux/Sc
-	QonY7RNA==;
+	bh=/YTauQTU9xehj8TN/BfINjVBeSl4s+OiBh9zaIBcMK4=; b=B2IKAJvl9+53bBbhzKSk0yG8Hi
+	BavoUlYDgDB1sGiQYGc5CRFd35dY4QONm6ByGmsSwyXDVmWs8ldTuNMSu9QxKZsibEvcG3nb7qie1
+	EGIDHCyosH5QV9g4N1CGbnwFmQauiLJX7XxLpTbua7huzv8qOm1GHttdMADmkZIw9l87hw6ZGLW6T
+	EUBE7NLC3M6Ljh7+jgyIV+DAeBsfTopbGYJfjlBLl/xMJZRB4+vDar1e0+/TGLKM5oKfOdkcDuYbh
+	ryoyQehscq9YbpeAMxd65HhUhldsoyY2hJG8CuNVbC/yQ8TBhDGPqcPKbEP1K569CLxgmYm/HXHg6
+	t/Kz3b7Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hKMpE-0000gT-Iu; Sat, 27 Apr 2019 12:53:04 +0000
+	id 1hKMpK-0000nO-7N; Sat, 27 Apr 2019 12:53:10 +0000
 Received: from mout.kundenserver.de ([212.227.126.130])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hKMpB-0000ce-VJ
- for linux-amlogic@lists.infradead.org; Sat, 27 Apr 2019 12:53:03 +0000
+ id 1hKMpC-0000cd-4P
+ for linux-amlogic@lists.infradead.org; Sat, 27 Apr 2019 12:53:04 +0000
 Received: from orion.localdomain ([77.2.90.210]) by mrelayeu.kundenserver.de
  (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1M26iv-1hMqrC03Wz-002bb0; Sat, 27 Apr 2019 14:52:43 +0200
+ 1Mzz6s-1gXTgh3Td8-00x1Ur; Sat, 27 Apr 2019 14:52:37 +0200
 From: "Enrico Weigelt, metux IT consult" <info@metux.net>
 To: linux-kernel@vger.kernel.org
-Subject: [PATCH 11/41] drivers: tty: serial: sb1250-duart: fix formatting error
-Date: Sat, 27 Apr 2019 14:51:52 +0200
-Message-Id: <1556369542-13247-12-git-send-email-info@metux.net>
+Subject: [PATCH 05/41] drivers: tty: serial: dz: use pr_info() instead of
+ incomplete printk()
+Date: Sat, 27 Apr 2019 14:51:46 +0200
+Message-Id: <1556369542-13247-6-git-send-email-info@metux.net>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1556369542-13247-1-git-send-email-info@metux.net>
 References: <1556369542-13247-1-git-send-email-info@metux.net>
-X-Provags-ID: V03:K1:+TzVLpdAa88s4dLeOAxWyCsRhuc7KaUZKNLF0uRArPgYGfXSgiH
- Cc2vSSp3JHtH5Dh6TLARezDiIKDVv/NGSmiD/ku3dsWnfWOrtj1Cfj89ntRTXnSvx6PBKgU
- dt1TF7JLIo4mMJjyQ165GdSVmp05k1wOQx9x8rk+vVa9HNdzhgzqFQ2ZALqM5/sIDIRqkKv
- zpE63Uj8QixDSf+H4FfiQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:7g9mhemK6rI=:1LPea258+vT4cAu97il+UN
- TYKyF9QgPM9xIe6eeQ+jqNe+ggTMLP2Rvkb4j9U9H13Sg9CbVn9iCrF0YTfPvJy7st+0uGM2f
- /PnRFLO51z8114t2VgJaesPsgRavI/NG+JNJ7cfluxQbMaKGaxT6e/dwtJS7cjr1YYOomqA9G
- muP/UMza5Daoz+E60ichje3jvTqidA4lMSrQ9I6Hysh36D1wrMiCAB8NPPvc4nrvaddLXw6wB
- HgP1Z28SnAs7F4M7EpvU2+lQ0OTn37drJgeY/1adD+7p8We3CNEdSVlX/aiCHuYBdhtA0tQwk
- twP7c4eBkXAVXYagsNKW0MBlXlR0YW7fkDWkpusCcqgmZEquGN++8kKA5YtYIXEcg1RQIv5ze
- 3sYNpA8wkk3GGqvshvtdRF4i/V07DDAKHjaZS4rViY5umoot7vu2gWZ7lETfiboO5z0AnKiNW
- ArDLwY9233EwB1kTHm54Jg7uCj6lRpmvrGsTo5d38MvHFBdNvTBRnyt2zIMulQmJtFb8kkKio
- L5hyUjTr2yPVMh8mBfg+gFuzlyXZDST0R3Rsxc16FX1n2PRzy15BgDF5VnY6vbekE+syIAUnQ
- CpezAGe8b0r4rC4XtzPF0T9lR/Pa1UWdKJH90iIIxuaLrBDvbaT57qKKbgRo+xkQtguPp6B41
- KnkPQ1UxL/FbNXzdFiuI/RSGrM7xIsl18lv3lduPbUzSCDcj7qPBT1cj99Wx+ndaKrPl0OaXi
- dDx2xwj2GagsyKcjT96JpuA4aPHWH0zLebvvLA==
+X-Provags-ID: V03:K1:0divRPlMaEn/Gqkn0bF/qffr0mtJMzUIhhcgUCpKp3L8QfEx3BT
+ Sct6DXQKPsKml0HbjLEbqZ0BVdAAcNgJ6gXOI6JC8K/1+PAe8EFl5Aq1lbdbexf9MvYSvJI
+ wDh21F+qIQxeFuU3Myc3hkjl/lhNuC86c6zCO8DZIQRpkFEogbQN+oxEVR+QjYaXv/F2Er3
+ D3Hg7fjgdOldNL+SYlAwQ==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:+RM97HlEygc=:XCYgbldeM4fHTujSYLo9ci
+ ZNeOghoSWPCt1C8c6NBMLSfGNddK58lmCDc3rlfBH3ynfXNXoutb/zjRBWM8D3BIY49a4i4UE
+ w61HuHHGGrE/nW055rXaTuGx9TatMuVoyD47DJXczfb3oO2GbP0EmAQmzpC+6kDBZdseEXdDC
+ Q/7Dzh91Dv5viwhjSOg8QB3blGvc6npMCA3+LRAVdg7cmGKN+31NplbmdslmfdvUCt7Zt8txu
+ wu1qVJ20ms6soMtiV40LnA1aD9QGbuHc7kSx8ChK0JcxawU9TBzFvD7nHcdQCkga/Pam6wIlh
+ SozaRebsNHrmz6K0Nxx5GSTQPTFKcxIbQTjsZTv+UXWB6g6MdVA8xNYDMcxFB3I9a/OOa1+q6
+ SDNeRbSCUbiTqPPGCr4Wlwd5pr0t1wGkI38yOimXepPKVf4067XO8agDegepX6eMqr1dnbVEl
+ 7E6hKunNpdkhyB0sNKvUPq+uvwV2l/VdX95oOhRD4521oJmMRY3DJ+fuI9JwMF0+0d43RkioS
+ NAq5fkYK+cja/PvgpcgRoKs9fOqvE/DvkG7oyD8aLe7kzR0MXQDK6+nm2GtMVAfo9rLlZIslt
+ eYSqlXLx6iAbP5p7IGgKyS6G3mEq0IT3MizlVzwRrPBrTI6P7aSZVck/9N5HOec9ocrRvZ2zy
+ eP3CmOH7ndIUhAxgSzvJujudRMq1laldwLQ9qL1Fz34ZpgICHygnXc7BQ2s/IBPS3Nvdokjth
+ xKIhRxBJYIbWNhrxBOQ1AQzGdb2SfJPFzpfkeQ==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190427_055302_313235_C4F8DD0D 
-X-CRM114-Status: UNSURE (   9.57  )
+X-CRM114-CacheID: sfid-20190427_055302_494052_E7723536 
+X-CRM114-Status: UNSURE (   9.59  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -95,32 +96,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-checkpatch complains:
+Fix the checkpatch warning:
 
-    ERROR: space required before the open parenthesis '('
-    #659: FILE: drivers/tty/serial/sb1250-duart.c:659:
-    +	if(refcount_dec_and_test(&duart->map_guard))
-
-Just add this missing space to make checkpatch happy.
+    WARNING: printk() should include KERN_<LEVEL> facility level
+    #934: FILE: dz.c:934:
+    +	printk("%s%s\n", dz_name, dz_version);
 
 Signed-off-by: Enrico Weigelt <info@metux.net>
 ---
- drivers/tty/serial/sb1250-duart.c | 2 +-
+ drivers/tty/serial/dz.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/tty/serial/sb1250-duart.c b/drivers/tty/serial/sb1250-duart.c
-index ec74f09..0023ed0 100644
---- a/drivers/tty/serial/sb1250-duart.c
-+++ b/drivers/tty/serial/sb1250-duart.c
-@@ -656,7 +656,7 @@ static void sbd_release_port(struct uart_port *uport)
- 	iounmap(uport->membase);
- 	uport->membase = NULL;
+diff --git a/drivers/tty/serial/dz.c b/drivers/tty/serial/dz.c
+index 559d076..e2670c4 100644
+--- a/drivers/tty/serial/dz.c
++++ b/drivers/tty/serial/dz.c
+@@ -931,7 +931,7 @@ static int __init dz_init(void)
+ 	if (IOASIC)
+ 		return -ENXIO;
  
--	if(refcount_dec_and_test(&duart->map_guard))
-+	if (refcount_dec_and_test(&duart->map_guard))
- 		release_mem_region(duart->mapctrl, DUART_CHANREG_SPACING);
- 	release_mem_region(uport->mapbase, uport->mapsize);
- }
+-	printk("%s%s\n", dz_name, dz_version);
++	pr_info("%s%s\n", dz_name, dz_version);
+ 
+ 	dz_init_ports();
+ 
 -- 
 1.9.1
 
