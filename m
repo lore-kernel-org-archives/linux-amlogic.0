@@ -3,70 +3,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 99153C43219
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 01:41:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 310F7C4321A
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:53:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6BABC2146E
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 01:41:19 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id EBD3D2087C
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Apr 2019 12:53:14 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="em08vE0F";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="TzVkHgVZ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6BABC2146E
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mi/Wol/U"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EBD3D2087C
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=metux.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pgKIAMR/+bEf1Z8CSL9HjhBK75mc5Vmm/Z/m1/faFO4=; b=em08vE0Fd0YB9u
-	qNAMPVMVqmGpyoZWDkwfFUUgCmJ1/D8I963MSUeJf+D5MQlPH/zhjj8TKj+FHX7OMjdV5scxmziT9
-	XAf8WGb3IsOmYTUrittoc3On2IyhsAYeRoJkgUl8od+HO33cw0Qp2UK0Eto16WI3f0C7D6s/8SnA8
-	F4WUhTirEvYv0z++W4sc570PsyvIaAe48SN8j/OzjLDKX/G1JHu2iNr7PdETfpWRX8JSDvXyw12wJ
-	8+2k9VDu8mueEjXFYlT1DGz3DhwHMqQs2Vqi4kQLOk8ZXr76lcwSUmwQsNdLwADigtk4ZCxCxVoEQ
-	r9qC736wSa4p4GRgIHjw==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:References:
+	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=2FYG5HuX7lrY4L16fv5scbiPc5lY/g1Dr7pt3vaAv7I=; b=mi/Wol/USGcSufD3qEJLG8qtBp
+	DpKEHsLw54T+EF6XS80EZaq5Pn7lZVfVRGq9zApyfpIOKUFIEifXZqgIMdBGMuxRyjD9ik9Mc5kex
+	l2PpbtAUrDld6bbJDX5TY59XfFmqo2L5fD42QPQvfbM1eluZB/bQmhWul6c4+zKAOfr8T7xAQmN4Q
+	1D3Pj7VbpTokCvhk5Phg3aDPbdsw1k7uxDx3ogtjPkPpMll44z5pF8/FfY2c5t2JWqNzt6aA8bzro
+	v9gU5pXsA7s6s4nE8lI58YH+H2IctXvpGsRMtMrGN6tZTwvAIAzqbLcs9obn6wL4UjAlYNOVux/Sc
+	QonY7RNA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hKCL4-0000df-Sm; Sat, 27 Apr 2019 01:41:14 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1hKMpE-0000gT-Iu; Sat, 27 Apr 2019 12:53:04 +0000
+Received: from mout.kundenserver.de ([212.227.126.130])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hKCL2-0000d7-BP
- for linux-amlogic@lists.infradead.org; Sat, 27 Apr 2019 01:41:13 +0000
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
- [73.47.72.35])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 3DC4420873;
- Sat, 27 Apr 2019 01:41:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1556329272;
- bh=IiKAiFW+hYK5C10wwntKSzHbQfUCwg+iYamz3Y4IRnI=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=TzVkHgVZzwa0+chjW/6sCBCCwfseB2T1+0Cz81tMEBRQTRn7RybpNPVE1pORkK8eQ
- 0U7/IyeRacLw7XXfxn6EONo1aeatyC8YiDYXJM7lUeUr5XNiVODMy37fxq9F7sfM23
- SoYZbX2sPm74/aUIb1/3TWZZVd19UodqswIYsMVU=
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 13/53] clk: meson-gxbb: round the vdec dividers
- to closest
-Date: Fri, 26 Apr 2019 21:40:10 -0400
-Message-Id: <20190427014051.7522-13-sashal@kernel.org>
-X-Mailer: git-send-email 2.19.1
-In-Reply-To: <20190427014051.7522-1-sashal@kernel.org>
-References: <20190427014051.7522-1-sashal@kernel.org>
-MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
+ id 1hKMpB-0000ce-VJ
+ for linux-amlogic@lists.infradead.org; Sat, 27 Apr 2019 12:53:03 +0000
+Received: from orion.localdomain ([77.2.90.210]) by mrelayeu.kundenserver.de
+ (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1M26iv-1hMqrC03Wz-002bb0; Sat, 27 Apr 2019 14:52:43 +0200
+From: "Enrico Weigelt, metux IT consult" <info@metux.net>
+To: linux-kernel@vger.kernel.org
+Subject: [PATCH 11/41] drivers: tty: serial: sb1250-duart: fix formatting error
+Date: Sat, 27 Apr 2019 14:51:52 +0200
+Message-Id: <1556369542-13247-12-git-send-email-info@metux.net>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1556369542-13247-1-git-send-email-info@metux.net>
+References: <1556369542-13247-1-git-send-email-info@metux.net>
+X-Provags-ID: V03:K1:+TzVLpdAa88s4dLeOAxWyCsRhuc7KaUZKNLF0uRArPgYGfXSgiH
+ Cc2vSSp3JHtH5Dh6TLARezDiIKDVv/NGSmiD/ku3dsWnfWOrtj1Cfj89ntRTXnSvx6PBKgU
+ dt1TF7JLIo4mMJjyQ165GdSVmp05k1wOQx9x8rk+vVa9HNdzhgzqFQ2ZALqM5/sIDIRqkKv
+ zpE63Uj8QixDSf+H4FfiQ==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:7g9mhemK6rI=:1LPea258+vT4cAu97il+UN
+ TYKyF9QgPM9xIe6eeQ+jqNe+ggTMLP2Rvkb4j9U9H13Sg9CbVn9iCrF0YTfPvJy7st+0uGM2f
+ /PnRFLO51z8114t2VgJaesPsgRavI/NG+JNJ7cfluxQbMaKGaxT6e/dwtJS7cjr1YYOomqA9G
+ muP/UMza5Daoz+E60ichje3jvTqidA4lMSrQ9I6Hysh36D1wrMiCAB8NPPvc4nrvaddLXw6wB
+ HgP1Z28SnAs7F4M7EpvU2+lQ0OTn37drJgeY/1adD+7p8We3CNEdSVlX/aiCHuYBdhtA0tQwk
+ twP7c4eBkXAVXYagsNKW0MBlXlR0YW7fkDWkpusCcqgmZEquGN++8kKA5YtYIXEcg1RQIv5ze
+ 3sYNpA8wkk3GGqvshvtdRF4i/V07DDAKHjaZS4rViY5umoot7vu2gWZ7lETfiboO5z0AnKiNW
+ ArDLwY9233EwB1kTHm54Jg7uCj6lRpmvrGsTo5d38MvHFBdNvTBRnyt2zIMulQmJtFb8kkKio
+ L5hyUjTr2yPVMh8mBfg+gFuzlyXZDST0R3Rsxc16FX1n2PRzy15BgDF5VnY6vbekE+syIAUnQ
+ CpezAGe8b0r4rC4XtzPF0T9lR/Pa1UWdKJH90iIIxuaLrBDvbaT57qKKbgRo+xkQtguPp6B41
+ KnkPQ1UxL/FbNXzdFiuI/RSGrM7xIsl18lv3lduPbUzSCDcj7qPBT1cj99Wx+ndaKrPl0OaXi
+ dDx2xwj2GagsyKcjT96JpuA4aPHWH0zLebvvLA==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190426_184112_403258_FE832E79 
-X-CRM114-Status: UNSURE (   9.62  )
+X-CRM114-CacheID: sfid-20190427_055302_313235_C4F8DD0D 
+X-CRM114-Status: UNSURE (   9.57  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -79,56 +81,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Maxime Jourdan <mjourdan@baylibre.com>, Sasha Levin <sashal@kernel.org>,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- Neil Armstrong <narmstrong@baylibre.com>
+Cc: lorenzo.pieralisi@arm.com, linux-ia64@vger.kernel.org,
+ linux-serial@vger.kernel.org, andrew@aj.id.au, gregkh@linuxfoundation.org,
+ sudeep.holla@arm.com, liviu.dudau@arm.com, linux-mips@vger.kernel.org,
+ vz@mleia.com, linux@prisktech.co.nz, sparclinux@vger.kernel.org,
+ khilman@baylibre.com, macro@linux-mips.org, slemieux.tyco@gmail.com,
+ matthias.bgg@gmail.com, jacmet@sunsite.dk, linux-amlogic@lists.infradead.org,
+ andriy.shevchenko@linux.intel.com, linuxppc-dev@lists.ozlabs.org,
+ davem@davemloft.net
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Maxime Jourdan <mjourdan@baylibre.com>
+checkpatch complains:
 
-[ Upstream commit 9b70c697e87286ade406e6a02091757307dd4b7c ]
+    ERROR: space required before the open parenthesis '('
+    #659: FILE: drivers/tty/serial/sb1250-duart.c:659:
+    +	if(refcount_dec_and_test(&duart->map_guard))
 
-We want the video decoder clocks to always round to closest. While the
-muxes are already using CLK_MUX_ROUND_CLOSEST, the corresponding
-CLK_DIVIDER_ROUND_CLOSEST was forgotten for the dividers.
+Just add this missing space to make checkpatch happy.
 
-Fix this by adding the flag to the two vdec dividers.
-
-Fixes: a565242eb9fc ("clk: meson: gxbb: add the video decoder clocks")
-Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Link: https://lkml.kernel.org/r/20190319102537.2043-1-mjourdan@baylibre.com
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Enrico Weigelt <info@metux.net>
 ---
- drivers/clk/meson/gxbb.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/tty/serial/sb1250-duart.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/clk/meson/gxbb.c b/drivers/clk/meson/gxbb.c
-index 6628ffa31383..4d4f6d842c31 100644
---- a/drivers/clk/meson/gxbb.c
-+++ b/drivers/clk/meson/gxbb.c
-@@ -1571,6 +1571,7 @@ static struct clk_regmap gxbb_vdec_1_div = {
- 		.offset = HHI_VDEC_CLK_CNTL,
- 		.shift = 0,
- 		.width = 7,
-+		.flags = CLK_DIVIDER_ROUND_CLOSEST,
- 	},
- 	.hw.init = &(struct clk_init_data){
- 		.name = "vdec_1_div",
-@@ -1616,6 +1617,7 @@ static struct clk_regmap gxbb_vdec_hevc_div = {
- 		.offset = HHI_VDEC2_CLK_CNTL,
- 		.shift = 16,
- 		.width = 7,
-+		.flags = CLK_DIVIDER_ROUND_CLOSEST,
- 	},
- 	.hw.init = &(struct clk_init_data){
- 		.name = "vdec_hevc_div",
+diff --git a/drivers/tty/serial/sb1250-duart.c b/drivers/tty/serial/sb1250-duart.c
+index ec74f09..0023ed0 100644
+--- a/drivers/tty/serial/sb1250-duart.c
++++ b/drivers/tty/serial/sb1250-duart.c
+@@ -656,7 +656,7 @@ static void sbd_release_port(struct uart_port *uport)
+ 	iounmap(uport->membase);
+ 	uport->membase = NULL;
+ 
+-	if(refcount_dec_and_test(&duart->map_guard))
++	if (refcount_dec_and_test(&duart->map_guard))
+ 		release_mem_region(duart->mapctrl, DUART_CHANREG_SPACING);
+ 	release_mem_region(uport->mapbase, uport->mapsize);
+ }
 -- 
-2.19.1
+1.9.1
 
 
 _______________________________________________
