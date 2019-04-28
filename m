@@ -2,21 +2,23 @@ Return-Path: <SRS0=4pfR=S6=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIM_INVALID,DKIM_SIGNED,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_MUTT autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-13.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS,USER_AGENT_NEOMUTT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CF953C43219
-	for <linux-amlogic@archiver.kernel.org>; Sun, 28 Apr 2019 15:39:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 65D89C43218
+	for <linux-amlogic@archiver.kernel.org>; Sun, 28 Apr 2019 20:19:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A10F92067C
-	for <linux-amlogic@archiver.kernel.org>; Sun, 28 Apr 2019 15:39:28 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2D85C2064A
+	for <linux-amlogic@archiver.kernel.org>; Sun, 28 Apr 2019 20:19:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="t13R/4I5"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A10F92067C
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.intel.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="R8mbXDuP";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lixom-net.20150623.gappssmtp.com header.i=@lixom-net.20150623.gappssmtp.com header.b="dkRX1ss9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2D85C2064A
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=lixom.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
@@ -24,47 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kUjOdPXI+y+teqAmdAe23aZwF6riGSFbcjnMkRy92eU=; b=t13R/4I5ZB2xQj
-	hKIazZn0op8mkwR4LmYIxDQ51X6DH1uUjGcJyRg/90EGheYOeCHQ5vlrE4SP8iKMjs2OLXKwHpAbY
-	jsMwxEMgbqNV7Wlj9npeoUOgR8EeoeGx10rvDXl9qIgUhHEg/djk3/g8wa3/jDvcF3weWmBzzzS7R
-	wLVFiUZt8PfI364eWgG9ir/WXEFRtNrIfZp/Y+jtTj+nGS4dGQVAR0/vCLyrHXA6cWDbTPpCtZrBY
-	6NYPrLEtXMMwu0RBNdz1sy+stNSV4h20DxfXlcY76oXcQOEJMxn46619iMzcgRWICKg0q2v5BOTY9
-	K9ySRwNiIRYxB5JsHKwg==;
+	List-Owner; bh=lkxRHvW/36rgDWu+KmEFv2LCMfUxag7kGWba9E2Co10=; b=R8mbXDuPIxUEhF
+	wnRqypQreIHvPAPuz0/+nGA9VDBaHs8Xo6G6mziCZ6Im53lHnTMepn6uYlH6cZt3GsLrPNZuxNC5T
+	mtRNTugcl0KQTDNt8Zig9XoI0VTpqc/jmZGEL8Tc61EYDwuznbWw0qSN4XHj9LSweMzKmD/XQ1Dma
+	le5IZZqHM1HujlRmOrMgUTcHAtYaf0pU8NXUxqCRM0wD8lIvH4TdeeE1Fud4B9W5frczyh9MuKL1q
+	oumrvw7BHMscSbhTg8wCEy2TpsdRkjQ8JvHJ907gWab+ulbJKWjV//CpF1HeqD5JT7qDrFrGJp9hd
+	kV7GhNLPd/0e2B3vjN2w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hKlti-0001cW-91; Sun, 28 Apr 2019 15:39:22 +0000
-Received: from mga11.intel.com ([192.55.52.93])
+	id 1hKqGX-0007Iy-HO; Sun, 28 Apr 2019 20:19:13 +0000
+Received: from mail-lj1-x241.google.com ([2a00:1450:4864:20::241])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hKlte-0001bR-PS
- for linux-amlogic@lists.infradead.org; Sun, 28 Apr 2019 15:39:20 +0000
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2019 08:39:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.60,406,1549958400"; d="scan'208";a="138181186"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.72.86])
- by orsmga008.jf.intel.com with ESMTP; 28 Apr 2019 08:39:07 -0700
-Received: from andy by smile with local (Exim 4.92)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1hKltR-0005hz-Nc; Sun, 28 Apr 2019 18:39:05 +0300
-Date: Sun, 28 Apr 2019 18:39:05 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: "Enrico Weigelt, metux IT consult" <info@metux.net>
-Subject: Re: [PATCH 40/41] drivers: tty: serial: helper for setting mmio range
-Message-ID: <20190428153905.GR9224@smile.fi.intel.com>
-References: <1556369542-13247-1-git-send-email-info@metux.net>
- <1556369542-13247-41-git-send-email-info@metux.net>
+ id 1hKqGN-0006yJ-Oy
+ for linux-amlogic@lists.infradead.org; Sun, 28 Apr 2019 20:19:05 +0000
+Received: by mail-lj1-x241.google.com with SMTP id c6so955539lji.11
+ for <linux-amlogic@lists.infradead.org>; Sun, 28 Apr 2019 13:19:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lixom-net.20150623.gappssmtp.com; s=20150623;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=PGQx5W7txB7cc0knmkEOkhKm/Erj1iJrPPBYvuDKRxw=;
+ b=dkRX1ss9Au6POPP+EFGNjBjpl4Tzh3sm2nVZ9WY7J/PkqO10hzU1pneG5YFbQa1HmO
+ qitWxDtFqY5G517DOBu6u9ZY2iOfu8lyIf2OFcCjVFqGJtJPA3mKVBWvxKqBv5ICCXfV
+ FglLisjyBNhNKYMbmpmNQSfN3/mQpVgBIMuFhO0+PVnA5MxBiEzrxeIeg3Vjj4Ip4Fd6
+ ZM6tSToWZxqfAn1Q+hCCznvhO4bIkGJpEHA8DmCwMX2uu4zwoTP32830Ci9YKeSG7bz7
+ Yb9WVJKFKLsUpXmp3hMURVqWOxfyf0LH+w/Vyx38Q5R/9RD7mZTLh7Te20YK7JeAnUWe
+ uGQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=PGQx5W7txB7cc0knmkEOkhKm/Erj1iJrPPBYvuDKRxw=;
+ b=ggkXQYblEoZzHic4dfT+Bb3ouRWBYRiGqaKNVHlDYCgDXxXDXst7PDXQFL0ZRWF4oK
+ VF7pDeBzRXyt1Iv7FDTRS/v00XmFQKWXHpnfFI8FNXObrY44nb+jeq0crDAMeJ+cvD1U
+ LPpPw+IUSUSmvPK3czdJ7JBOn/ybQ5D92t+6HTQjXoUDfOH8OiT+yYTxVlUZ8I3vK8Kc
+ q+44camxIn/q4kDv66NdjrwfqhXRfuDD+O7D2WMCGKLWZgeBVRcw0nWiSOxYTFHAIPJc
+ koKvPu0cIvH4p58EjEbiwQwzMEmVR4jyZYYIKeAk6EV0yb64Ot7OhKuopM4OEHnK2Zko
+ tvaA==
+X-Gm-Message-State: APjAAAWR0CoI166RJexv3GhUTRZCD04sG68+C5odL63sK9a3Dbt3DtU4
+ 8o4gnYRupeSJdFlcSZqUF5HGGg==
+X-Google-Smtp-Source: APXvYqz9Iux1GFPpodFIkollaOLOCH70mxRNK2E5RuH+Vs22DwSBwOdOg6aClCya8H18O94x8jRBUA==
+X-Received: by 2002:a2e:92ce:: with SMTP id k14mr7972525ljh.83.1556482741830; 
+ Sun, 28 Apr 2019 13:19:01 -0700 (PDT)
+Received: from localhost (h85-30-9-151.cust.a3fiber.se. [85.30.9.151])
+ by smtp.gmail.com with ESMTPSA id x6sm6971055lfe.67.2019.04.28.13.19.00
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Sun, 28 Apr 2019 13:19:00 -0700 (PDT)
+Date: Sun, 28 Apr 2019 12:08:04 -0700
+From: Olof Johansson <olof@lixom.net>
+To: Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [GIT PULL] soc: Amlogic updates for v5.2
+Message-ID: <20190428190804.qxfrphfki755yqsj@localhost>
+References: <7ha7hdwexl.fsf@baylibre.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <1556369542-13247-41-git-send-email-info@metux.net>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <7ha7hdwexl.fsf@baylibre.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190428_083918_842378_7029289F 
-X-CRM114-Status: GOOD (  19.82  )
+X-CRM114-CacheID: sfid-20190428_131903_809295_3D923ECF 
+X-CRM114-Status: UNSURE (   9.92  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -76,169 +97,34 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: lorenzo.pieralisi@arm.com, linux-ia64@vger.kernel.org,
- linux-serial@vger.kernel.org, andrew@aj.id.au, gregkh@linuxfoundation.org,
- sudeep.holla@arm.com, liviu.dudau@arm.com, linux-kernel@vger.kernel.org,
- vz@mleia.com, linux@prisktech.co.nz, sparclinux@vger.kernel.org,
- khilman@baylibre.com, macro@linux-mips.org, slemieux.tyco@gmail.com,
- matthias.bgg@gmail.com, jacmet@sunsite.dk, linux-amlogic@lists.infradead.org,
- linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, davem@davemloft.net
+Cc: linux-amlogic@lists.infradead.org, arm@kernel.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, Apr 27, 2019 at 02:52:21PM +0200, Enrico Weigelt, metux IT consult wrote:
-> Introduce a little helpers for settings the mmio range from an
-> struct resource or start/len parameters with less code.
-> (also setting iotype to UPIO_MEM)
+On Fri, Mar 29, 2019 at 02:25:58PM -0700, Kevin Hilman wrote:
+> The following changes since commit 9e98c678c2d6ae3a17cb2de55d17f69dddaa231b:
 > 
-> Also converting drivers to use these new helpers as well as
-> fetching mapsize field instead of using hardcoded values.
-> (the runtime overhead of that should be negligible)
+>   Linux 5.1-rc1 (2019-03-17 14:22:26 -0700)
 > 
-> The idea is moving to a consistent scheme, so later common
-> calls like request+ioremap combination can be done by generic
-> helpers.
+> are available in the Git repository at:
+> 
+>   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-drivers
+> 
+> for you to fetch changes up to fdda0a6adc33536ad468f07db27325423703c5bc:
+> 
+>   meson-gx-socinfo: add missing of_node_put after of_device_is_available (2019-03-18 09:07:32 -0700)
+> 
+> ----------------------------------------------------------------
+> soc: Amlogic updates for v5.2
+> - socinfo: support new SoCs / packages
 
-> --- a/drivers/tty/serial/8250/8250_exar.c
-> +++ b/drivers/tty/serial/8250/8250_exar.c
-> @@ -134,8 +134,10 @@ static int default_setup(struct exar8250 *priv, struct pci_dev *pcidev,
->  	const struct exar8250_board *board = priv->board;
->  	unsigned int bar = 0;
->  
-> -	port->port.iotype = UPIO_MEM;
-> -	port->port.mapbase = pci_resource_start(pcidev, bar) + offset;
-> +	uart_memres_set_start_len(&port->port,
-> +				  pci_resource_start(pcidev, bar) + offset,
-> +				  pci_resource_len(pcidev, bar));
-> +
-
-I don't see how it's better.
-Moreover, the size argument seems wrong here.
-
-> +		uart_memres_set_start_len(
-> +			&port,
-> +			FRODO_BASE + FRODO_APCI_OFFSET(1), 0);
-
-Please, avoid such splitting, first parameter is quite fit above line.
-
->  		port.uartclk = HPDCA_BAUD_BASE * 16;
-> -		port.mapbase = (pa + UART_OFFSET);
-> +
-> +		uart_memres_set_start_len(&port, (pa + UART_OFFSET));
->  		port.membase = (char *)(port.mapbase + DIO_VIRADDRBASE);
->  		port.regshift = 1;
->  		port.irq = DIO_IPL(pa + DIO_VIRADDRBASE);
-
-Here...
-
->  	uart.port.flags = UPF_SKIP_TEST | UPF_SHARE_IRQ | UPF_BOOT_AUTOCONF;
->  	uart.port.irq = d->ipl;
->  	uart.port.uartclk = HPDCA_BAUD_BASE * 16;
-> -	uart.port.mapbase = (d->resource.start + UART_OFFSET);
-> +	uart_memres_set_start_len(&uart.port,
-> +				  (d->resource.start + UART_OFFSET),
-> +				  resource_size(&d->resource));
->  	uart.port.membase = (char *)(uart.port.mapbase + DIO_VIRADDRBASE);
->  	uart.port.regshift = 1;
->  	uart.port.dev = &d->dev;
-
-...and here, and maybe in other places you split the assignments to the members
-in two part. Better to call your function before or after these blocks of
-assignments.
-
-> -			uport->mapsize	= ZS_CHAN_IO_SIZE;
-> -			uport->mapbase	= dec_kn_slot_base +
-> -					  zs_parms.scc[chip] +
-> -					  (side ^ ZS_CHAN_B) * ZS_CHAN_IO_SIZE;
-> +
-> +			uart_memres_set_start_len(dec_kn_slot_base +
-> +						    zs_parms.scc[chip] +
-> +						    (side ^ ZS_CHAN_B) *
-> +							ZS_CHAN_IO_SIZE,
-> +						  ZS_CHAN_IO_SIZE);
-
-This looks hard to read. Think of temporary variables and better formatting
-style.
-
->  /*
-> + * set physical io range from struct resource
-> + * if resource is NULL, clear the fields
-> + * also set the iotype to UPIO_MEM
-
-Something wrong with punctuation and style. Please, use proper casing and
-sentences split.
-
-> + */
-
-Shouldn't be kernel-doc formatted?
-
-> +static inline void uart_memres_set_res(struct uart_port *port,
-
-Perhaps better name can be found.
-Especially taking into account that it handles IO / MMIO here.
-
-> +				       struct resource *res)
-> +{
-> +	if (!res) {
-
-It should return an error in such case.
-
-> +		port->mapsize = 0;
-> +		port->mapbase = 0;
-> +		port->iobase = 0;
-> +		return;
-> +	}
-> +
-> +	if (resource_type(res) == IORESOURCE_IO) {
-> +		port->iotype = UPIO_PORT;
-> +		port->iobase = resource->start;
-> +		return;
-> +	}
-> +
-> +	uart->mapbase = res->start;
-> +	uart->mapsize = resource_size(res);
-
-> +	uart->iotype  = UPIO_MEM;
-
-Only one type? Why type is even set here?
-
-> +}
-> +
-> +/*
-> + * set physical io range by start address and length
-> + * if resource is NULL, clear the fields
-> + * also set the iotype to UPIO_MEM
-
-Should be fixed as told above.
-
-> + */
-
-> +static inline void uart_memres_set_start_len(struct uart_driver *uart,
-> +					     resource_size_t start,
-> +					     resource_size_t len)
-
-The comment doesn't tell why this is needed when we have one for struct
-resource.
-
-> +{
-> +	uart->mapbase = start;
-> +	uart->mapsize = len;
-
-> +	uart->iotype  = UPIO_MEM;
-
-Only one type?
-
-> +}
-> +
-> +/*
-
--- 
-With Best Regards,
-Andy Shevchenko
+Merged, thanks!
 
 
+-Olof
 
 _______________________________________________
 linux-amlogic mailing list
