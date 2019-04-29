@@ -2,78 +2,89 @@ Return-Path: <SRS0=ef8O=S7=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CE929C04AA6
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 10:13:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AB3FFC43219
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 10:23:48 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9DDBA20656
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 10:13:11 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7ACF72087B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 10:23:48 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TrVrThjJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9DDBA20656
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=metux.net
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kg2Oj7v9";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="sNu4hws/"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7ACF72087B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FPnnnPc2hmKbQTd/oxtUe9nIMVpGGSknHCu/mW9jNYY=; b=TrVrThjJSTyCBC
-	KdOOu3wVmBFGZEp7jNZ+XRDgELbVoe3cD787wUoc13K7ulF17bEHqjCRGEK4ZxDbIuFyWcmqJ0Tt/
-	JtorVtNvniJkVi/o4BjSKy0alCbnhqhrFpsqZfYSjml35h5Aph7AOm4f+rB/53rhE1utyiVoaNvav
-	bC5Ds4J/y3D2KlQFhZSR4IgEqFFAveMoxX8DWCrbi7i5lCnNzbG/n95KecVKVQZMjDAP18kABN02L
-	ifNSGaG3Qk0Z3nzE07X0BcYG2ePb3bj94uYct51WwBO6CLf9JoIXePewsGgmrtoR+BNNXIM8E4R0A
-	6rcNBELYWa3Noi4UFrJA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=P57kC1shQG3WVOo+hDBZ8RJMJdhmXzCfIziT8QNZeAM=; b=kg2Oj7v9dRwead
+	I0bIcLG41h+efaPUadRmsdEN1kFK96SzB81DL9ziOfV6m5KFvUHkAmNIKgT/0KjX0Adr43jWCb/IB
+	OO3ggwxZ2rr36s7xGyiTKqGNyd++PHuR6o/4QZurRzdZTARWZcSN23c5vhzw2whFx0IJNWrv9dVOR
+	Umt9lTJTQCWZrLA8i5OZsb/1/pd3PFRJHxl/v6neLu2ClNvrQsoGjm7iItySHRrWuRJBnAKIKoWMS
+	ffO/9p8/nrNPeon6grZ+vjWt5QIaHyFYJr89TRXwHl88JHIfSpu2gIC/hPY+zGXoY33Cekg3V7xpV
+	FiwmTU0tvnAQ6mGLLtyQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hL3HV-0007wY-Od; Mon, 29 Apr 2019 10:13:05 +0000
-Received: from mout.kundenserver.de ([217.72.192.74])
+	id 1hL3Rn-0003EY-Gx; Mon, 29 Apr 2019 10:23:43 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hL3HS-0007wD-7v
- for linux-amlogic@lists.infradead.org; Mon, 29 Apr 2019 10:13:04 +0000
-Received: from [192.168.1.110] ([77.9.18.117]) by mrelayeu.kundenserver.de
- (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1Mn2eH-1gtAeU2env-00k71v; Mon, 29 Apr 2019 12:12:41 +0200
-Subject: Re: [PATCH 40/41] drivers: tty: serial: helper for setting mmio range
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- "Enrico Weigelt, metux IT consult" <info@metux.net>
-References: <1556369542-13247-1-git-send-email-info@metux.net>
- <1556369542-13247-41-git-send-email-info@metux.net>
- <20190428153905.GR9224@smile.fi.intel.com>
-From: "Enrico Weigelt, metux IT consult" <lkml@metux.net>
-Organization: metux IT consult
-Message-ID: <c75f4ca9-367c-25d5-2597-75f2dccf6e1c@metux.net>
-Date: Mon, 29 Apr 2019 12:12:35 +0200
-User-Agent: Mozilla/5.0 (X11; Linux i686 on x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.2.1
+ id 1hL3Rk-0003EB-ML
+ for linux-amlogic@lists.infradead.org; Mon, 29 Apr 2019 10:23:42 +0000
+Received: by mail-wm1-x342.google.com with SMTP id b10so645071wmj.4
+ for <linux-amlogic@lists.infradead.org>; Mon, 29 Apr 2019 03:23:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=9U654s0y3/OTSiMoK1+3nXkaUK985F53Lm18Cxpkwjw=;
+ b=sNu4hws/TaY8GaFc8dyvmg+FW5/ryQH20TEta7WDZ6DNboRsaDEJ1G5g+3QodO80lz
+ yWV2/U6H+LDyxFWVETn1tW+Yy/z5WDXiuFOmveVhzrLUwJJGcmABzlsUaDfMCXY6mhTn
+ BJALXTC/JxKGC3cGGMd1rRALKsv1IUYXlqaFZ73NOVXK+AXa6w2tfgnkzQVirczoMYbJ
+ l0tAobCAA5vMUdM9a9UFg9BW4e31Ychs932Icrlkj0pg/0xjUs66axoWRZP/1xTBUf75
+ VCTq01XreUR2RV5J4OZxSdTg0HT1aU2Y6JpcsQdX3m1wOqAdeSDGfvjR/LhTYBxgiA8P
+ W8MA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=9U654s0y3/OTSiMoK1+3nXkaUK985F53Lm18Cxpkwjw=;
+ b=tUEBjQgdlswWZNlZX/hieW/wXkJxFKl8BaTxx1h9C2FwYvos6h/EYZojLjRN+K7eex
+ oaqeR6GDK3d56cMJnnVN3uqyjLr89E6dJyft2kPGxSoZ0q6MpS+xlWNIy44qYH8HUWDA
+ 9Ja6ac9req8l6zI2GKZU4S8tvp700pYSQvx62iEmXHFVhEw+rM5lesXEzCHGTRXE2mGW
+ PVpsz/2IL0qK1gt6TIpjH7Y/uAfpmXhmISkMhvQZjtm36SYHC5gudrdawAxEYcUaDRwr
+ pnIrFX+uQwrdAhXVWwipGWqDM7BIVS2FSSg19+MYXoRMZR8oklNd6jw/tKCBiV9K4pz0
+ iNTQ==
+X-Gm-Message-State: APjAAAUagoNMRpQ8X41/34UuE7crn8BRJXFKSUVVjjn1Kff2eGJjg3Q0
+ TptskvQ72mJYkqu6pvA4ZO5nnLolRZg=
+X-Google-Smtp-Source: APXvYqzuIr088WqVnUik2HpohJ2FvVRToR12zoB533mbajPOk1tDXuO2RvmDLe+JxMnff/DpTnJyIg==
+X-Received: by 2002:a1c:e916:: with SMTP id q22mr16865079wmc.148.1556533418772; 
+ Mon, 29 Apr 2019 03:23:38 -0700 (PDT)
+Received: from boomer.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.googlemail.com with ESMTPSA id m25sm1598874wmi.45.2019.04.29.03.23.37
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Mon, 29 Apr 2019 03:23:38 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCH] drm/meson: imply dw-hdmi i2s audio for meson hdmi
+Date: Mon, 29 Apr 2019 12:23:25 +0200
+Message-Id: <20190429102325.29022-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20190428153905.GR9224@smile.fi.intel.com>
-Content-Language: en-US
-X-Provags-ID: V03:K1:5FkmJafy5b5rMQmFz5MFYjwZmJr3yDLuFQxt3St57wxX5e7mxBe
- D8gfJTEZt0nLiRI3QkVGXsb9wFfsMmR3uoGvaxXgyLlbyWLfln2s3zeyyG6o65B1y5WhMcw
- +UezzJKbteNZnyt/6ruUBSu+3RNIYCG4i6IsdWYkD19xg7ktkmAgoTChutrNqAWKbIy18AH
- 9oGUMGzHGkqb2alaK+C2g==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:7tP6LgaKJ7I=:f1If2vaJgwBnL/GMoXSVIX
- MPluTwHXqchm7WJg0qmVVZG7JtWCbTp0wuD3Y5kmBa5wFnvp1/XLA14GcDxgC6ecixJrilyO1
- ajh0Xr0Xqi41cOjfAGDjmbED/G6IxY+lBKINgsciqrC4fkrb8/EKY2LBqfF38e5uUwB0JyD/o
- PPHDPuYNCAvxwe2px9yLabR7lCcaI3j8oSMZT8aIgRvOq4yuEud+V3yfnbUjDAhy7AAZXSTNz
- PFxpQK8JC/VjmUfuyj02oJOCfW1OccsGB45/LwL304A8lPd/BtjqwFq1UH05e45x/ZNj0wMRi
- QIyUo6L0cymajBznFNs8i7smcqapNbCttDsScmvqLDhF8QMo0DAndENY4ny04KI/pftgsLSEO
- bgvp+wj5zHD6ObQm/cJ7RNYrPHZ7NK4dTBk83YaL83sqNIN5sUTYVMRTDljX3GSQr7kBSy9pJ
- WL56aZQL6H4rNLgRgew/lYTQ4W7//8UIpidCWD7ofRaC7VrGWNwpTs8l2ebScq8Wsl6QLCaO2
- O0pZ9fPElJ+wdwey6GXGouyoHxdMFxL3u9IYSgRxWq9+3w52h1wHrCmAC/taWiTDBc2semljj
- OwQJV9hG90HAtzDQe8o0df0wESJjF1ztyJVNgHjVWhSmNiZ9TSEND/7hZM/Lt4ScGqIzcMSjv
- 2Og6Lk8EzYxVNyzrHKir1tCMBx1j/0QbRyNnxNQo07uH1cbysow9CPLPJ3dAYImDxDcAUjMRB
- 5Lc3dsS4j36EMoHTPVR+6f104n+ntvt5nPCp5xG5dNp8mXtAHkchqYFy+IU=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190429_031302_586808_A376A103 
-X-CRM114-Status: GOOD (  22.90  )
+X-CRM114-CacheID: sfid-20190429_032340_731845_3AFD2932 
+X-CRM114-Status: UNSURE (   9.56  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -85,147 +96,35 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: lorenzo.pieralisi@arm.com, linux-ia64@vger.kernel.org,
- linux-serial@vger.kernel.org, andrew@aj.id.au, gregkh@linuxfoundation.org,
- sudeep.holla@arm.com, liviu.dudau@arm.com, linux-kernel@vger.kernel.org,
- vz@mleia.com, linux@prisktech.co.nz, sparclinux@vger.kernel.org,
- khilman@baylibre.com, macro@linux-mips.org, slemieux.tyco@gmail.com,
- matthias.bgg@gmail.com, jacmet@sunsite.dk, linux-amlogic@lists.infradead.org,
- linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, davem@davemloft.net
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 28.04.19 17:39, Andy Shevchenko wrote:
+Imply the i2s part of the Synopsys HDMI driver for Amlogic SoCs.
+This will enable the i2s part by default when meson hdmi driver
+is enable but let platforms not supported by the audio subsystem
+disable it if necessary.
 
-Hi,
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/gpu/drm/meson/Kconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
-seems I've forgot to add "RFC:" in the subject - I'm not entirely happy
-w/ that patch myself, just want to hear your oppinions.
-
->> -	port->port.iotype = UPIO_MEM;>> -	port->port.mapbase = pci_resource_start(pcidev, bar) + offset;>> +
-uart_memres_set_start_len(&port->port,>> +				
-pci_resource_start(pcidev, bar) + offset,>> +				
-pci_resource_len(pcidev, bar));>> +> > I don't see how it's better.>
-Moreover, the size argument seems wrong here.
-hmm, I'm actually not sure yet, what the correct size really would be,
-where the value actually comes from. Just assumed that it would be the
-whole area that the BAR tells. But now I recognized that I'd need to
-substract 'offset' here.
-
-Rethinking it further, we'd probably could deduce the UPIO_* from the
-struct resource, too.
-
->> +		uart_memres_set_start_len(>> +			&port,>> +			FRODO_BASE + FRODO_APCI_OFFSET(1), 0);> > Please,
-avoid such splitting, first parameter is quite fit above line.
-
-Ok. My intention was having both parameters starting at the same line,
-but then the second line would get too long again. > ...and here, and
-maybe in other places you split the assignments to the members> in two
-part. Better to call your function before or after these blocks of>
-assignments.
-the reason what I've just replaced the exactly the assignments, trying
-not to touch too much ;-)
-I'll have a closer look on what can be moved w/o side effects.
-
->> -			uport->mapsize	= ZS_CHAN_IO_SIZE;
->> -			uport->mapbase	= dec_kn_slot_base +
->> -					  zs_parms.scc[chip] +
->> -					  (side ^ ZS_CHAN_B) * ZS_CHAN_IO_SIZE;
->> +
->> +			uart_memres_set_start_len(dec_kn_slot_base +
->> +						    zs_parms.scc[chip] +
->> +						    (side ^ ZS_CHAN_B) *
->> +							ZS_CHAN_IO_SIZE,
->> +						  ZS_CHAN_IO_SIZE);
-> 
-> This looks hard to read. Think of temporary variables and better formatting
-> style.
-
-Ok.
-
-> 
->>  /*
->> + * set physical io range from struct resource
->> + * if resource is NULL, clear the fields
->> + * also set the iotype to UPIO_MEM
-> 
-> Something wrong with punctuation and style. Please, use proper casing and
-> sentences split.
-
-Ok. fixed it.
-
-
->> +static inline void uart_memres_set_res(struct uart_port *port,
-> 
-> Perhaps better name can be found.
-> Especially taking into account that it handles IO / MMIO here.
-
-hmm, lacking creativity here ;-)
-any suggestions ?
-
-> 
->> +				       struct resource *res)
->> +{
->> +	if (!res) {
-> 
-> It should return an error in such case.
-
-It's not an error, but desired behaviour: NULL resource
-clears the value.
-
->> +		port->mapsize = 0;
->> +		port->mapbase = 0;
->> +		port->iobase = 0;
->> +		return;
->> +	}
->> +
->> +	if (resource_type(res) == IORESOURCE_IO) {
->> +		port->iotype = UPIO_PORT;
->> +		port->iobase = resource->start;
->> +		return;
->> +	}
->> +
->> +	uart->mapbase = res->start;
->> +	uart->mapsize = resource_size(res);
-> 
->> +	uart->iotype  = UPIO_MEM;
-> 
-> Only one type? Why type is even set here?
-
-It's the default case. The special cases (eg. UPIO_MEM32) need to be
-set explicitly, after that call.
-
-Not really nice, but haven't found a better solution yet. I don't like
-the idea of passing an UPIO_* parameter to the function, most callers
-should not care, if they don't really need to.
-
-
->> + */
-> 
->> +static inline void uart_memres_set_start_len(struct uart_driver *uart,
->> +					     resource_size_t start,
->> +					     resource_size_t len)
-> 
-> The comment doesn't tell why this is needed when we have one for struct
-> resource.
-
-Renamed it to uart_memres_set_mmio_range().
-
-This helper is meant for drivers that don't work w/ struct resource,
-or explicitly set their own len.
-
-
-
-Thanks for your review.
-
---mtx
-
+diff --git a/drivers/gpu/drm/meson/Kconfig b/drivers/gpu/drm/meson/Kconfig
+index c28b69f48555..a480e4a80bea 100644
+--- a/drivers/gpu/drm/meson/Kconfig
++++ b/drivers/gpu/drm/meson/Kconfig
+@@ -14,3 +14,4 @@ config DRM_MESON_DW_HDMI
+ 	depends on DRM_MESON
+ 	default y if DRM_MESON
+ 	select DRM_DW_HDMI
++	imply DRM_DW_HDMI_I2S_AUDIO
 -- 
-Enrico Weigelt, metux IT consult
-Free software and Linux embedded engineering
-info@metux.net -- +49-151-27565287
+2.20.1
+
 
 _______________________________________________
 linux-amlogic mailing list
