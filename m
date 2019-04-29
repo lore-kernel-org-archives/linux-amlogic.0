@@ -6,86 +6,74 @@ X-Spam-Status: No, score=-1.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 036FEC43219
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 08:29:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 33BCEC43219
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 09:43:54 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C6A922087B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 08:29:28 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 016AF206BF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 09:43:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XKUvfkZ7";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="R/Wms0Jo"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C6A922087B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eYR5Pak/"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 016AF206BF
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=metux.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8wAp2+5YNk+fgL32Ac6dHAA/MpfiTqhlZnqGdvQ59+A=; b=XKUvfkZ7TH0cYW
-	3hQ0NULnMZbpsDyiKrT8V8C5gFX8Cn3sWcdKRUDFj71MHKQ1nVRu7nYEyVa17b8G4ri1P6fIJlKDP
-	nEfw4vUp6WL21qExBsZ7og93NnNsEa+rU02VNyp091NudR4d4nYWITitumZfaOKrkw2kVGFUPV64b
-	k8Yqqz3iy9FlLLHafh+opWCCs6h/aaQwV7L5CZ0VSoGq3e4FD7RhEGb+HOv+RLv2vTmXBlsddGvyl
-	9r0wrJpfAfDSO59wE1m4jejAG4JVScp8r87SPVjr5SHr/W8FRy6iYecBYkEToom00/vvKrkiJUhMx
-	IqDdrk4285QPBpNDMoDw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=MdBKXOeiOT7yd2HaK8kyeiHhtUjoh4Dt+CNyoMByS8g=; b=eYR5Pak/HAHdqm
+	E/dNu/h63Hi7WybF4p2wwrTfw3f/rgeq98HeXcG6HaIM1qY94KAT5/X71ToED7a60t184MnLfGYy0
+	3NNZ9Ue1cLASrVIL7ReW8PxlmJvX3prKGFrQpx/g+jWWbvAx7b3A9nau8AJ9QImDY1sL6wGyD0pPq
+	BuZvZSxQMueqmkOnmoh/cwS541v0Ppjpmfr4piaIbfeioU/FPYcPNOhAMnbfM+2VOCjjuQ6Jd762b
+	ZYkakS5RmIPw3OVJesW7IYqy99diaUlUSRL5/oKvPmgwJE+AvwbdLVEuyJ6xAF02oU0YfmqFkSWtT
+	cVPkMjN81SO+4ii2YiZQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hL1fA-0006Nt-AI; Mon, 29 Apr 2019 08:29:24 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1hL2p9-0003KV-Qx; Mon, 29 Apr 2019 09:43:47 +0000
+Received: from mout.kundenserver.de ([217.72.192.75])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hL1f7-0006N7-GF
- for linux-amlogic@lists.infradead.org; Mon, 29 Apr 2019 08:29:23 +0000
-Received: by mail-wm1-x344.google.com with SMTP id w15so14409841wmc.3
- for <linux-amlogic@lists.infradead.org>; Mon, 29 Apr 2019 01:29:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:cc:date:in-reply-to:references
- :user-agent:mime-version:content-transfer-encoding;
- bh=jw6rquaiXD+oPh3858jmCUg9XPcrdzfEXx4OPrYN3Q8=;
- b=R/Wms0JoD8IoeFcmOJnm9UB09mChGCsPo8NNrKbZfdRBNrC9ik0zxgm6JauyvfUIfK
- rPOOPn+rqs4G7NZuBGQPHTJHqzvMp57hnp8bfXPoSbUtiMPjGoT3pzrrJNgDk0xDovmX
- aLpdNclAhgssdblq1jqppfSjHxV5VDeYH61spcJu5gZSlyDMmt77c4qM3bONO6UTRidl
- vaFy1O/BvjolxQpfAZridh1pcQNeeX+P9UXmUx2sAu2x2rpyCjlKZOvEPU2ZcsaWDDH6
- 9x+zalMxtbqIQvBrBHZg8ztLqj5jAQp8oueRXSfgLBWvKxLFVDoxtpsV+jpJzKKSwavI
- cJ0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=jw6rquaiXD+oPh3858jmCUg9XPcrdzfEXx4OPrYN3Q8=;
- b=JdVNWbjqM6JsASyj7bNbDMRmlQhO9GT3Ny6wivHYA+Q3s5Yir0afbg0EoeS/nTxMFP
- b0+HB8fKOTSr9Z5VSUOg0+/rqbS7NSTe8Y6kdjcc8twVhsl1CcaqLFxMQ6rekAnMHi2P
- dCz2ED7EZdFuM8XT0E3ffzKm4KBP7akxDLDV3clYynrcU4SltXFcbZZvnWRERPkrRmcw
- 55eV9Q95XApY36t14G9oiOL9kgvEqA6vjQBJXl7J4Tj1y2I5PbvG/xoffm1YvQraCTni
- y8NGqlfTFathk0FMsI2fdwkbt4PisiGeOzhS4Mx0b5o/gxxwuu0K9vmkOO3t+97xx9tP
- Schw==
-X-Gm-Message-State: APjAAAVnC8Fxuszd6c3bLEe6hiRjWve5XNQ7ODdmcs5lvpYrAC4x3AhG
- UWuK/HEFGdJhTtlv8J6SBjXy/A==
-X-Google-Smtp-Source: APXvYqya6tb4Yh9pwT2EePu4q5DD2g0/f2f6f30qBcWSB/2NSo2+Uj8ScWvRry4bETRvL+CCwUqYTQ==
-X-Received: by 2002:a1c:f311:: with SMTP id q17mr16665108wmq.144.1556526559500; 
- Mon, 29 Apr 2019 01:29:19 -0700 (PDT)
-Received: from boomer.baylibre.com
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id 10sm30904939wmd.23.2019.04.29.01.29.18
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Mon, 29 Apr 2019 01:29:18 -0700 (PDT)
-Message-ID: <17c5978419c8778eb1f2c2a6e2aee66e864ac53d.camel@baylibre.com>
-Subject: Re: [PATCH v2 4/7] mmc: meson-gx: disable HS400
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 29 Apr 2019 10:29:17 +0200
-In-Reply-To: <CAFBinCCf8fkBPR5aoPMensjhYKpan_UzG+HCEB5yNaYs+mB8OA@mail.gmail.com>
-References: <20190423090235.17244-1-jbrunet@baylibre.com>
- <20190423090235.17244-5-jbrunet@baylibre.com>
- <CAFBinCCf8fkBPR5aoPMensjhYKpan_UzG+HCEB5yNaYs+mB8OA@mail.gmail.com>
-User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+ id 1hL2p7-0003K4-KC
+ for linux-amlogic@lists.infradead.org; Mon, 29 Apr 2019 09:43:47 +0000
+Received: from [192.168.1.110] ([77.9.18.117]) by mrelayeu.kundenserver.de
+ (mreue108 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1N2m3G-1gdyq42eM8-0133kZ; Mon, 29 Apr 2019 11:43:20 +0200
+Subject: Re: [PATCH 40/41] drivers: tty: serial: helper for setting mmio range
+To: Esben Haabendal <esben@haabendal.dk>,
+ "Enrico Weigelt, metux IT consult" <info@metux.net>
+References: <1556369542-13247-1-git-send-email-info@metux.net>
+ <1556369542-13247-41-git-send-email-info@metux.net>
+ <87ef5lz423.fsf@haabendal.dk>
+From: "Enrico Weigelt, metux IT consult" <lkml@metux.net>
+Organization: metux IT consult
+Message-ID: <d0b966eb-46b7-d145-92ed-3c62c495f41b@metux.net>
+Date: Mon, 29 Apr 2019 11:43:13 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686 on x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.2.1
 MIME-Version: 1.0
+In-Reply-To: <87ef5lz423.fsf@haabendal.dk>
+Content-Language: en-US
+X-Provags-ID: V03:K1:68dkhGSAKsaCjO526gNf2WSoTW6jL84pVEW36g5e32fJf4hZfEa
+ B5yR5eOo/trCHlzEMiqf88gr4lugIpFcu4i7DTW0T8FoWZiDwOwvxkhUV//Oq9txPyP1qxO
+ p0s8teHbOF2xnbWjYTCy/e6+F0vybuPcYhQPvcgRagIqrGRZ5ZI4QdP/10WEUP7zI9Ka+YU
+ NVd7BerOC+zYOaIOiK9cQ==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:NvmcDnTkNeI=:ba8d+q8YRab3rFKFqBt24t
+ Zg9Zpq/zp8ESR/s4VsMdM2nnOKEofNFRgQuqib0Eoa+F6Di5aptfGcy2fbPQ8PlEnZZ9eFk2I
+ W8lkLs1brmFQ4pMtwo1NaxLwJO+yyvyfB7yhUe3mP3ipOkVy3TvxwOqCpUxbn7cvLhhjdXYOV
+ RACHse6YI1rEPLKisTi4jbY/Z2xia1z7JZNNtXMm7NyYuxlDHoAmeM51Uq1Sm9jqHrh3VjIFE
+ zH5gWFbcmJhRKcS506T4D0qDLdiTRWb5HWe08PMYOLEyCWt6KkONz7ZlQEuLletC4+ebSyFne
+ +YblDaPDYWW6s7TMZS94IzEKoglkP06ZU7juKMArxn0JPRB97yN78PMrSGLDm4zCHngdgwukX
+ 8QhoUFb/g5oGgRP7xEm3XeyGV0XvRu9ft3THf7jFb/oF+7zCYEmaFMR7HLRHU94BxlelmoOUT
+ hf0mEVyRlee3ckCEnDTzSPPktrpdeTwqaoCQIhlRInQVIwdhHJ8XZKfDN1mzvZ2IlFCWEBcMH
+ +/+AxD4dkbOiJWktWAReEU2MAQiJAuIPnt8UjKkg2V6v0lHpO3+n8CFCI9Jvijm6LfpHzTHUN
+ Z7KbPljaibH9464lnBZleel3EqRWzc88wYjkyJ4C3GZdlzFeP8imAVrJmxNQRR3yOT8ND3ssO
+ MC6KOR0+WrmqVYkvJIvXzV6xd3FMar2vZbSJ2ckBe+smk2GbBP44mQDVVrZ5aKzyo4QDZBzHk
+ BkVF8qEdunqnt+mSaL40iQ9yOh8uAqzpNBWyyGax+adypiNnzhrhF9jigoE=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190429_012921_536037_3BD52009 
-X-CRM114-Status: GOOD (  17.06  )
+X-CRM114-CacheID: sfid-20190429_024345_972893_613EE605 
+X-CRM114-Status: GOOD (  10.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,56 +85,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kevin Hilman <khilman@baylibre.com>, Ulf Hansson <ulf.hansson@linaro.org>,
- linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org
+Cc: linux-ia64@vger.kernel.org, lorenzo.pieralisi@arm.com,
+ linux-mips@vger.kernel.org, linux-serial@vger.kernel.org, andrew@aj.id.au,
+ gregkh@linuxfoundation.org, sudeep.holla@arm.com, liviu.dudau@arm.com,
+ linux-kernel@vger.kernel.org, vz@mleia.com, linux@prisktech.co.nz,
+ sparclinux@vger.kernel.org, khilman@baylibre.com, macro@linux-mips.org,
+ slemieux.tyco@gmail.com, matthias.bgg@gmail.com, jacmet@sunsite.dk,
+ linux-amlogic@lists.infradead.org, andriy.shevchenko@linux.intel.com,
+ linuxppc-dev@lists.ozlabs.org, davem@davemloft.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, 2019-04-27 at 22:02 +0200, Martin Blumenstingl wrote:
-> Hi Jerome,
-> 
-> On Tue, Apr 23, 2019 at 11:03 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
-> > At the moment, all our attempts to enable HS400 on Amlogic chipsets have
-> > been unsuccessful or unreliable. Until we can figure out how to enable this
-> > mode safely and reliably, let's force it off.
-> last year I have seen issues with HS400 on my Khadas VIM2: [0]
-> have you tested all other patches from this series and HS400 is still
-> not working for you?
+On 29.04.19 09:03, Esben Haabendal wrote:
 
-Because HS400 was never really stable to begin with.
-It was a mistake to enable it on the VIM2
+> Why not simply replace iobase, mapbase and mapsize with a struct
+> resource value instead?
 
-> 
-> I'm curious because this patch is early in the series and all the
-> tuning fixes and improvements are after this patch.
+That was actually my original goal, when I started this. But the
+situation is a bit more tricky. Many drivers (especially the old ones)
+initialize these fields in different ways. And there're many places
+accessing these fields.
 
-There are several reasons why this new tuning won't solve the HS400 problem:
-- Signal resampling tuning granularity gets worse when rate rises. The resampling 
-is done using the input frequency. We can basically resample up to the value of 
-internal divider.
+Drivers for old devices should be handled w/ great care. I don't have
+access to all that hardware, so I can't test it. Therefore, I'm trying
+to move in small steps. One step ahead another.
 
-In HS200 - Fin is 1GHz, Fout is 200MHz (1/5) so the resample range is [0, 4]
-In HS400 - Fin should be fdiv5 (400MHZ) and in such case, no resampling is
-           possible (internal div = 1)
-           Even if we keep 1GHz, then out is 333MHz max giving a range of [0, 2]
-           that's not enough to tune
+One of my next steps would be factoring out more common operations
+(eg. mapping, etc) into helpers, up to a point, where someday no driver
+is accessing these fields directly anymore.
 
-Going further, tuning the Rx path does not make much sense in HS400 since we
-should be using the data strobe signal to account for the round trip delay of
-the clock and correctly sample Rx. AFAICT, If there is a tuning to be done for
-HS400, it is most likely linked to the data strobe.
-
-> 
-> 
-> Martin
-> 
-> 
-> [0] http://lists.infradead.org/pipermail/linux-amlogic/2018-January/006251.html
+Then we could easily move everything into struct resource. On that
+road, we'd also need to find a way for handling the specialities of
+the various UPIO_* modes via struct resource.
 
 
+--mtx
+
+-- 
+Enrico Weigelt, metux IT consult
+Free software and Linux embedded engineering
+info@metux.net -- +49-151-27565287
 
 _______________________________________________
 linux-amlogic mailing list
