@@ -6,84 +6,77 @@ X-Spam-Status: No, score=-1.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 233BEC43219
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 16:19:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 79DA4C43219
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 16:21:14 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E8F0D20673
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 16:18:59 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 49F3A2087B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 16:21:14 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lIadq1um";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=c-s.fr header.i=@c-s.fr header.b="BjQx+kaE"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E8F0D20673
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=c-s.fr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="J/ga+sa8"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 49F3A2087B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=metux.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=hfhjBm+gfrqBCOck4YGg6cvsKZic6L06nb5WQ3Tpd0o=; b=lIadq1umrLHsAPEKW/8AMYFnn
-	ADfc7TAaquEKwmdU7pvBPy7bEKgQcFLVxjiPjtbhQ1cvQvHP6p2dCelwJ7d+qebbqqZZoIciPtGLp
-	xLrHYeSiXo+gaNeGyGNqq0qJaSrFfaoFuEIKK93x5YVocFVtSOifiZw9dwSn86pSRGD0dfZaqSKKs
-	BtK6aEldoC4a8vlNZpecd8QOmKEazBi3oB5IS4PFt6LpvVr3YGGUiYnam5/TqrCIBJlxXJbqdets2
-	NH1+4B0Dt/gf5ORSGtQBjNcY5fJhdL9KP2mOswDzChhGRtv33yQjrS1Lira558HMXq0/STX5K9HfF
-	QF4pT9YyQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=LLTAvq5QS2rcA0dZDcQIoZgwIbEv/oRp8bVbKBnC1Nc=; b=J/ga+sa8bFdEZt
+	TVIuTeTp89DTcNfZyOz5cHknyRHpHkgGsvfLvSu/KAsLb2FpNxzPs6++IGXY6v+eNwn7e3bDN/L1N
+	nG/puqS1jGT72xIU7AojHCYQ2FSB2tP3cLP84t01y7ODKreKE+3/T1dsk8O4zqKB2tFIO7nUc/pFI
+	MbSjNZaY7bIPuUGRU24a8dWmELBAur5rU7dHo4BFNiM9eGZw7EmJw5SP65YG/gSjz3BY/hJxc5dGC
+	1xTkrPequOywf9d9h8uo5eU1swDZ8SOjjp9PR3SR7UC4sXrT0F8oLLXMd2A/qOAJoMTydT6zyx6P6
+	bcRxECjKSMnZ+GsA08lA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hL8zV-0000v2-8J; Mon, 29 Apr 2019 16:18:53 +0000
-Received: from pegase1.c-s.fr ([93.17.236.30])
+	id 1hL91f-0002Of-Du; Mon, 29 Apr 2019 16:21:07 +0000
+Received: from mout.kundenserver.de ([212.227.17.13])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hL8zP-0000me-T4
- for linux-amlogic@lists.infradead.org; Mon, 29 Apr 2019 16:18:51 +0000
-Received: from localhost (mailhub1-int [192.168.12.234])
- by localhost (Postfix) with ESMTP id 44t8wN2pCvz9vDbs;
- Mon, 29 Apr 2019 18:18:28 +0200 (CEST)
-Authentication-Results: localhost; dkim=pass
- reason="1024-bit key; insecure key"
- header.d=c-s.fr header.i=@c-s.fr header.b=BjQx+kaE; dkim-adsp=pass;
- dkim-atps=neutral
-X-Virus-Scanned: Debian amavisd-new at c-s.fr
-Received: from pegase1.c-s.fr ([192.168.12.234])
- by localhost (pegase1.c-s.fr [192.168.12.234]) (amavisd-new, port 10024)
- with ESMTP id aXsRFK1QTZr9; Mon, 29 Apr 2019 18:18:28 +0200 (CEST)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
- by pegase1.c-s.fr (Postfix) with ESMTP id 44t8wN1Rbrz9vDbr;
- Mon, 29 Apr 2019 18:18:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=c-s.fr; s=mail;
- t=1556554708; bh=FmG0gTYs5oq5h81q7jEyc4Wov/smm6KptMn1bWZZ6UY=;
- h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
- b=BjQx+kaEHgEJb9T/61rt3diCsJNYkiNHUhfzgr+mvjN4Pnywq5MbgYBcqpdIQz91l
- MOoWYXEzdn4IgWuIaWT6IQgLGYQmiTbu4vZxYLhMqB1ljWxO3BTYx68HtfYfrLa2pJ
- DnY47LpRSIwR+sTZMzdaApWHw4o+sdP3BfWcan1g=
-Received: from localhost (localhost [127.0.0.1])
- by messagerie.si.c-s.fr (Postfix) with ESMTP id 671608B8B4;
- Mon, 29 Apr 2019 18:18:33 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
- by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
- with ESMTP id J9zNcQs8Cgt1; Mon, 29 Apr 2019 18:18:33 +0200 (CEST)
-Received: from po16846vm.idsi0.si.c-s.fr (po15451.idsi0.si.c-s.fr
- [172.25.231.6])
- by messagerie.si.c-s.fr (Postfix) with ESMTP id 094208B8B3;
- Mon, 29 Apr 2019 18:18:33 +0200 (CEST)
-Subject: Re: serial drivers polishing
-To: "Enrico Weigelt, metux IT consult" <info@metux.net>,
+ id 1hL91c-0002O8-Dg
+ for linux-amlogic@lists.infradead.org; Mon, 29 Apr 2019 16:21:06 +0000
+Received: from [192.168.1.110] ([77.9.18.117]) by mrelayeu.kundenserver.de
+ (mreue108 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1Mwwm5-1gaMFo1KN1-00yOxX; Mon, 29 Apr 2019 18:20:39 +0200
+Subject: Re: [PATCH 22/41] drivers: tty: serial: cpm_uart: fix logging calls
+To: Christophe Leroy <christophe.leroy@c-s.fr>,
+ "Enrico Weigelt, metux IT consult" <info@metux.net>,
  linux-kernel@vger.kernel.org
 References: <1556369542-13247-1-git-send-email-info@metux.net>
-From: Christophe Leroy <christophe.leroy@c-s.fr>
-Message-ID: <7471c418-4058-db7b-b2ed-af9a67fff201@c-s.fr>
-Date: Mon, 29 Apr 2019 16:16:34 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.7.0
+ <1556369542-13247-23-git-send-email-info@metux.net>
+ <a00ba23b-e73e-c964-a6d0-347cb605b8c8@c-s.fr>
+From: "Enrico Weigelt, metux IT consult" <lkml@metux.net>
+Organization: metux IT consult
+Message-ID: <fc01df37-3e7e-0c71-745d-63fbd83c1079@metux.net>
+Date: Mon, 29 Apr 2019 18:20:31 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686 on x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.2.1
 MIME-Version: 1.0
-In-Reply-To: <1556369542-13247-1-git-send-email-info@metux.net>
+In-Reply-To: <a00ba23b-e73e-c964-a6d0-347cb605b8c8@c-s.fr>
 Content-Language: en-US
+X-Provags-ID: V03:K1:tyjLH/89kE1DHJTcj7yQUi5/jAAZ5RWHEAZ1BEYsF/kWEbRkhEH
+ ZeaoyF1df0iBCTPcuY9nMjeSr96B+reEDpUpVACuMx58hYfg0Ovl49rQYub23PLjPK+yUID
+ slNmJJYsTtoV+aOWQj1HRbA5ynpZ744EoI0A3tjgNZt1lZntfjDIcPBJU9Pfhs6+X+GK7WP
+ t2o2PeOOqkzRGtr61EECg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:VjVnj6n6CTk=:oLoFfSXyDvVj4bcXT6Ih/4
+ kL0M02IkYcM23hQBqWuWitHhRHbYjCdwo7yZCm+3pBB5no8X/Ztr8zkGyrVRrPMSlNYX0gK3B
+ zLkvJlnWomR5UquIKZ13gZBV4/wjOl1kSv+4LiRfmqDVFOKnXIw+UAnjDoRPwbvqi2dxuhVHa
+ IXOpQP00pNeser50seIPI/ovlbFbXJMBOVj1rt+0+0uSk0wstKhVVSaWsva/3NcMpYr44iwKN
+ pL8XlLZaS2QOBl/ynF7SoVxFIvZnEMQhJorItjLuphNxXCvtzj8rhqLrrkkajgQ/0pjUy4Tiq
+ 3WJvabYmjDHm85gs3l1RGTIP/leL/aifhMaOXM4Qx1sHVTJJxlMw1it7I31wrFqe0C0T5Tnk3
+ +5c0iqDZF6VBw0XsN+FMTdvwwN5so9je+rNUHID3sD5Yvm8xjw93Uo6bviA4/IiHvX0mEdSAj
+ xKxitSG92ozPUuigbzb+oogChLmFoFbXi6s3ER6JiRSVDa9POQO26X1cecixkOz2/SyaNrtd5
+ wi3bBiZX/zwK/cEVJZg0BMo3ilxjtajTeiY2OsNJmCcBp61mptn8TueHekBXTEmqhyvIWEcks
+ Pwcb//riDg9W1mzMTxm5SPvVgmRR3xYRVRFYmTDZ46n62kPQaVUbket7jbv2AqHlWLKiCqkR4
+ n4RNCb4xflN9afHD65/ruEWM68k3MVK9H9CPTVyg90priPsyjBaWTOwBYdw4mnSSnWx3W9pFV
+ HxWHJkWswPIQsZuk5ib+4UBHe5duPTXhYEDd7bKV8coJopag7yNzn+KUAT2H9z/JPgKcId2QY
+ fg2wigxSa7xJUSvPOamObTx2eMiO5lok3NOq7YtNTSlPbcGNlc13ID61c5JH/6t6NJ6lPjs
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190429_091848_547337_0D1807DE 
-X-CRM114-Status: GOOD (  11.46  )
+X-CRM114-CacheID: sfid-20190429_092104_769165_89399102 
+X-CRM114-Status: UNSURE (   9.67  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -103,52 +96,32 @@ Cc: lorenzo.pieralisi@arm.com, linux-ia64@vger.kernel.org, macro@linux-mips.org,
  jacmet@sunsite.dk, linux-amlogic@lists.infradead.org,
  andriy.shevchenko@linux.intel.com, linuxppc-dev@lists.ozlabs.org,
  davem@davemloft.net
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksCgpPbiAwNC8yNy8yMDE5IDEyOjUxIFBNLCBFbnJpY28gV2VpZ2VsdCwgbWV0dXggSVQgY29u
-c3VsdCB3cm90ZToKPiBIZWxsbyBmb2xrcywKPiAKPiAKPiBoZXJlJ3MgYW5vdGhlciBhdHRlbXB0
-IG9mIHBvbGlzaGluZyB0aGUgc2VyaWFsIGRyaXZlcnM6Cj4gCj4gKiBsb3RzIG9mIG1pbm9yIGNs
-ZWFudXBzIHRvIG1ha2UgY2hlY2twYXRjaCBoYXBwaWVyCj4gICAgKGVnLiBmb3JtYXR0aW5nLCBp
-bmNsdWRlcywgaW50dHlwZXMsIC4uLikKPiAKPiAqIHVzZSBhcHByb3ByaWF0ZSBsb2dnaW5nIGhl
-bHBlcnMgaW5zdGVhZCBvZiBwcmludGsoKQo+IAo+ICogY29uc2VxdWVudCB1c2Ugb2YgbWFwc2l6
-ZS9tYXBiYXNlIGZpZWxkczoKPiAgICB0aGUgYmFzaWMgaWRlYSBpcywgYWxsIGRyaXZlcnMgc2hv
-dWxkIGZpbGwgbWFwYmFzZS9tYXBiYXNlIGZpZWxkcyBhdAo+ICAgIGluaXQgdGltZSBhbmQgbGF0
-ZXIgb25seSB1c2UgdGhvc2UgZmllbGRzLCBpbnN0ZWFkIG9mIGhhcmRjb2RlZCB2YWx1ZXMKPiAg
-ICAobGF0ZXIgb24sIHdlIGNhbiBhZGQgZ2VuZXJpYyBoZWxwZXJzIGZvciB0aGUgbWFwL3VubWFw
-IHN0dWZmLCBldGMpCj4gCj4gKiB1bnR3aXN0aW5nIHNlcmlhbDgyNTBfcG9ydF9zaXplKCkgYXQg
-YWxsOgo+ICAgIG1vdmUgdGhlIGlvbWVtIHNpemUgcHJvYmluZyB0byBpbml0aWFsaXphdGlvbiB0
-aW1lLCBtb3ZlIG91dCBzb21lCj4gICAgcGxhdGZvcm0gc3BlY2lmaWMgbWFnaWMgdG8gY29ycmVz
-cG9uZGluZyBwbGF0Zm9ybSBjb2RlLCBldGMuCj4gCj4gCj4gVW5mb3J0dW5hdGVseSwgSSBkb24n
-dCBoYXZlIHRoZSBhY3R1YWwgaGFyZHdhcmUgdG8gcmVhbGx5IHRlc3QgYWxsCj4gdGhlIGNvZGUs
-IHNvIHBsZWFzZSBsZXQgbWUga25vdyBpZiB0aGVyZSdzIHNvbWV0aGluZyBicm9rZW4gaW4gaGVy
-ZS4KPiAKPiAKPiBoYXZlIGZ1biwKPiAKPiAtLW10eAo+IAoKCkdvdCB0aGUgZm9sbG93aW5nIGJ1
-aWxkICBlcnJvciB3aGlsZSBjb21waWxpbmcgZm9yIG15IHBvd2VycGMgYm9hcmQgd2l0aCAKeW91
-ciBmdWxsIHNlcmllcyBhcHBsaWVkLiBObyB0aW1lIHRvIGludmVzdGlnYXRlIHRob3VnaC4KCiAg
-IENDICAgICAgYXJjaC9wb3dlcnBjL2tlcm5lbC9zZXR1cC1jb21tb24ubwpJbiBmaWxlIGluY2x1
-ZGVkIGZyb20gLi9pbmNsdWRlL2xpbnV4L3NlcmlhbF84MjUwLmg6MTQ6MCwKICAgICAgICAgICAg
-ICAgICAgZnJvbSBhcmNoL3Bvd2VycGMva2VybmVsL3NldHVwLWNvbW1vbi5jOjMzOgouL2luY2x1
-ZGUvbGludXgvc2VyaWFsX2NvcmUuaDogSW4gZnVuY3Rpb24g4oCYdWFydF9tZW1yZXNfc2V0X3Jl
-c+KAmToKLi9pbmNsdWRlL2xpbnV4L3NlcmlhbF9jb3JlLmg6NDQ2OjE4OiBlcnJvcjog4oCYcmVz
-b3VyY2XigJkgdW5kZWNsYXJlZCAKKGZpcnN0IHVzZSBpbiB0aGlzIGZ1bmN0aW9uKQogICAgcG9y
-dC0+aW9iYXNlID0gcmVzb3VyY2UtPnN0YXJ0OwogICAgICAgICAgICAgICAgICAgXgouL2luY2x1
-ZGUvbGludXgvc2VyaWFsX2NvcmUuaDo0NDY6MTg6IG5vdGU6IGVhY2ggdW5kZWNsYXJlZCBpZGVu
-dGlmaWVyIAppcyByZXBvcnRlZCBvbmx5IG9uY2UgZm9yIGVhY2ggZnVuY3Rpb24gaXQgYXBwZWFy
-cyBpbgouL2luY2x1ZGUvbGludXgvc2VyaWFsX2NvcmUuaDo0NTA6MjogZXJyb3I6IOKAmHVhcnTi
-gJkgdW5kZWNsYXJlZCAoZmlyc3QgdXNlIAppbiB0aGlzIGZ1bmN0aW9uKQogICB1YXJ0LT5tYXBi
-YXNlID0gcmVzLT5zdGFydDsKICAgXgouL2luY2x1ZGUvbGludXgvc2VyaWFsX2NvcmUuaDogSW4g
-ZnVuY3Rpb24g4oCYdWFydF9tZW1yZXNfc2V0X3N0YXJ0X2xlbuKAmToKLi9pbmNsdWRlL2xpbnV4
-L3NlcmlhbF9jb3JlLmg6NDY0OjY6IGVycm9yOiDigJhzdHJ1Y3QgdWFydF9kcml2ZXLigJkgaGFz
-IG5vIAptZW1iZXIgbmFtZWQg4oCYbWFwYmFzZeKAmQogICB1YXJ0LT5tYXBiYXNlID0gc3RhcnQ7
-CiAgICAgICBeCi4vaW5jbHVkZS9saW51eC9zZXJpYWxfY29yZS5oOjQ2NTo2OiBlcnJvcjog4oCY
-c3RydWN0IHVhcnRfZHJpdmVy4oCZIGhhcyBubyAKbWVtYmVyIG5hbWVkIOKAmG1hcHNpemXigJkK
-ICAgdWFydC0+bWFwc2l6ZSA9IGxlbjsKICAgICAgIF4KLi9pbmNsdWRlL2xpbnV4L3NlcmlhbF9j
-b3JlLmg6NDY2OjY6IGVycm9yOiDigJhzdHJ1Y3QgdWFydF9kcml2ZXLigJkgaGFzIG5vIAptZW1i
-ZXIgbmFtZWQg4oCYaW90eXBl4oCZCiAgIHVhcnQtPmlvdHlwZSAgPSBVUElPX01FTTsKICAgICAg
-IF4KbWFrZVszXTogKioqIFthcmNoL3Bvd2VycGMva2VybmVsL3NldHVwLWNvbW1vbi5vXSBFcnJv
-ciAxCgoKQ2hyaXN0b3BoZQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5p
-bmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8v
-bGludXgtYW1sb2dpYwo=
+On 29.04.19 17:59, Christophe Leroy wrote:
+
+> If we want to do something useful, wouldn't it make more sense to
+> introduce the use of dev_err() in order to identify the faulting device
+> in the message ?
+
+Well, I could get the struct device* pointer via pinfo.port->dev,
+but I wasn't entirely sure that it's always defined before these
+functions could be called.
+
+Shall I change it to dev_*() ?
+
+
+--mtx
+
+-- 
+Enrico Weigelt, metux IT consult
+Free software and Linux embedded engineering
+info@metux.net -- +49-151-27565287
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
