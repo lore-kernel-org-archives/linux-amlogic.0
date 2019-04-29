@@ -2,80 +2,79 @@ Return-Path: <SRS0=ef8O=S7=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E7C81C43219
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 10:45:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 32370C004C9
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 12:37:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B822C20675
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 10:45:37 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 008882075E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 12:37:41 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NMFUs1+p";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Mhp77Kkd"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B822C20675
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="IKL30Irr"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 008882075E
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=metux.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/wiKyrQc5f0rS54JpAwzEJnm2JYLr0ZKvAPPzmocRpY=; b=NMFUs1+pLiJnRI
-	y5glwfz6guwXccxKUv+eBCHpRARdc8XejeOJSEIIDA1qBK/eVRIz85+BadbI715pbtLWroDhAousR
-	UvXBzwz8w7IKnJB/rBf8t7aZaeUcgkja4/IHN9HE5P3dA0cCMXjDNGSMvstv/ZGSxBU39t8kFOJim
-	wMyIHDfpJkIqY5xdFtjOqjB+jgUvr9hnvPTVTz7qGwzJWbcmyHxgbnyw0XnyBJUD3kprmJDnnXY+v
-	975Cv7kx7WHOBOIO8YFjX2X+NwxK2KkzGGRGW7jgN3yFeeqHImcvprV4hC6LeAYhzT44GJbbFfNtc
-	pCLYd2x6S4PXgTlTEgLA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ZnHsfy2zAHQWvKmCWQayVPoCKfqRgEUvGPqKvS/U1C0=; b=IKL30IrrfQemXl
+	SQvhfPmfVOrDYJr1yWRyfAC410M+OaSxgyO32YmN8M/Ubhatv5JVYGJZCqpqWJAHrKSu5+J+xjQ9B
+	KPn7ftcqeavjBLz/EyDPjVFAO5U2rzjFEeaDq2vNQN9ZhZlAVx0SgoHKCcdxjH/sxr1XsFOQcL2O9
+	BURHUHDNVZ7mcnIHAkbS7qR5Z1x9sCrZ3Xm4aJyBY70/v3N7sOq9lONmRJvmYxBW25FENoHazV51D
+	YNwFbRUG12hnmgQWOqKpG3ZEDuo+OmWZoXiwE2RgZAN9KRvgJXMwLcevnkbJPiJudfNqwN5Ob1+Sm
+	HICrx+pCgPeBv36iAcUg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hL3ms-0002Au-Fj; Mon, 29 Apr 2019 10:45:30 +0000
-Received: from mail-vs1-xe42.google.com ([2607:f8b0:4864:20::e42])
+	id 1hL5XL-0008Ko-F5; Mon, 29 Apr 2019 12:37:35 +0000
+Received: from mout.kundenserver.de ([217.72.192.74])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hL3mp-00029r-L8
- for linux-amlogic@lists.infradead.org; Mon, 29 Apr 2019 10:45:29 +0000
-Received: by mail-vs1-xe42.google.com with SMTP id s11so5620505vsn.0
- for <linux-amlogic@lists.infradead.org>; Mon, 29 Apr 2019 03:45:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=cgVlRYPA/0SBPZWyIjkN6a7OUZzNHaXrRQ1q615/um0=;
- b=Mhp77Kkd9WXwbyYBlpZ5woBgCawBvXnq3BcHzCh/mbxh976VhrkbHXT1zZ0DqZjR8G
- +62/2mxBPdI6vysF0COJVvURMWpx+TQLOiqLE8pDI5K/Ldr4AB3Lw033885ETlR7D7xI
- h5daKHzIUuAe8Ia3LlOBgnRP05OCprHr+YT9WT+k1P/BTr6lZ9fjd1Q9aFqVflZkN9Rn
- AzFAe6LPofWPoZcIDR+eCJBDMK4an8Jl1U9QsERQ3yN9iLcTF8KmOZPRlzgwUUvdA7Il
- gYPHJ+eQrDo0ikjdtwKw5wxI9L3oQZNY2AcS2y0msWjepeWoUzAKGLat0gaQwEhwqm7o
- 8WDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=cgVlRYPA/0SBPZWyIjkN6a7OUZzNHaXrRQ1q615/um0=;
- b=j3674JLfLL7XE2OPdY5sdKi6YvBAW7ka3RhuKMdDUiEjq8J1VnUE2fHMybErX3xKJP
- onG8u3e1oJJ6q7grrhcpMMb38LYkMzE2fWlROFYaAArODKgxddSIK2N+Gv+kFSphqxQp
- imBmrKtMzoZNiL3lYp79IGqnWVKzALhdCQUNnGlE07lYekg75DGFL5sy1kiNXu6xZ8sd
- tZjN0g/MbcU3QD1xiD5b7xIhl0uoYpU2XXV7IOUmWn0sontutZNjndiYIC4kUVriwEgx
- VjFpQ1I+mW4zuiCe911QGURBXtrRVy3+aCmaK4zJk/kHmdu8Qcdnz2MAUHXcYmTz6dng
- ZVtg==
-X-Gm-Message-State: APjAAAWvt1p7QqG03CDqkTHiPSWozqJzWrIE002NaiiGgqTFFDGihLUc
- Op26yWuG7L3zX2+afonSfAfbp4WxW6DdG7+1U0wtXw==
-X-Google-Smtp-Source: APXvYqyU0OjC9NmsUWrMLFXjs26w43E4wA6JZIIpG9iKeB+UHm1keJ61GIHX0h6+eU2kagK3uSzVH66MxY2gtilg2VI=
-X-Received: by 2002:a67:8155:: with SMTP id c82mr2560442vsd.200.1556534726326; 
- Mon, 29 Apr 2019 03:45:26 -0700 (PDT)
+ id 1hL5XH-0008Il-O0
+ for linux-amlogic@lists.infradead.org; Mon, 29 Apr 2019 12:37:33 +0000
+Received: from [192.168.1.110] ([77.9.18.117]) by mrelayeu.kundenserver.de
+ (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1MPoPd-1h7YiS0myB-00MpYJ; Mon, 29 Apr 2019 14:37:11 +0200
+Subject: Re: [PATCH 01/41] drivers: tty: serial: dz: use dev_err() instead of
+ printk()
+To: Greg KH <gregkh@linuxfoundation.org>,
+ "Enrico Weigelt, metux IT consult" <info@metux.net>
+References: <1556369542-13247-1-git-send-email-info@metux.net>
+ <1556369542-13247-2-git-send-email-info@metux.net>
+ <20190427133117.GC11368@kroah.com>
+From: "Enrico Weigelt, metux IT consult" <lkml@metux.net>
+Organization: metux IT consult
+Message-ID: <bae3f23b-8823-f089-c40e-024ba225555f@metux.net>
+Date: Mon, 29 Apr 2019 14:37:04 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686 on x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.2.1
 MIME-Version: 1.0
-References: <20190423090235.17244-1-jbrunet@baylibre.com>
-In-Reply-To: <20190423090235.17244-1-jbrunet@baylibre.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 29 Apr 2019 12:44:50 +0200
-Message-ID: <CAPDyKFoQyPKERckAdU+kkw3go=161PWc+5GAkz7y=xWMGbq+SQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/7] mmc: meson-gx: clean up and tuning update
-To: Jerome Brunet <jbrunet@baylibre.com>
+In-Reply-To: <20190427133117.GC11368@kroah.com>
+Content-Language: en-US
+X-Provags-ID: V03:K1:KHUlUYtstuOEVXKZKNHyCnLCt6mq7L7HHLmuMvln4md2is42m2D
+ Gvo9vOwjIRj6LOt0W8pXYE9v/qI7Zt147k18Yao4ebuIrvwMIQUsLt/uhZdnIkf6TXIF/2S
+ i841E/m6um4E5qYu5wWiUl7XOuDGZarAmJeOQLoXfq89S/4wJw/bTUhC+J+wfkeAy6LT8O0
+ 2Q4XNEfbMs6baSq1jfeqg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:qsR2mgXWc80=:kOaVYs2+zc60ka2vcrJS1G
+ 6jjjD2rzIyURBuqEL6QGX/rLYjQoEewtndqbo2z/Zeq3LWRQK7VVV/g3jzsqHfHK0pRbR3iWW
+ lHzYu+Ocphgh3aYHOj1tT4XVJikTmy1DGrmwSaYPiqxxRYGEOHHKgsd8MwiJvcyFqrJmY4bZf
+ CmMGOlXqmGS4/mcQcfpGcPWy/tHy81F4dTNC+fHe1ORcaaPnQILx0hNuDe34B22WYlKx/NSnB
+ G26mudb1+zA7rCK11WN5pz1xNscoklrB4MG7l23BtLE3kTqFh2AD2CWhWMF650iI91vzCekSl
+ 81iaSY9aOKIG/IWZlr4bOF2ADTZFekb5jsCGBI9fJ0XxDOOZmKOfU4m5yoYV3qUZjIkjqdwjR
+ BNGBKyeNceGPrXYEpckfa+hDYD5k/aFeWiymyqiRbWXtiTGL1l91toEPNqF8usmeATFJZo30c
+ 2tPDHQVcb5UtItD0TEupC6+LC8CUPRmifWN4DmMjmQs+rYTCL7XWL72+ruXo4kMgAfKDXW0IG
+ d6AUbAR06eze8qNuIXBOydRC/nRDTIv9BLJwnixcfqonqBiXSLRQ9XEhmZMC+gCQEmQPvRuGo
+ v/L1GiKVpib2P2r06lK31PMfqW4f59ibIiaMTwNj/cpXrKc1s7+ephQ78zpKUW19SiZDmrDpJ
+ CD2b/FyvoP+mFBB5xvOL+xjqTCggBjuFXC+oC8/QD0xSSAX2fub+agHpSpCGZT2CmyXSPquCS
+ nDXXmSecoORpQFCPaPHR5Z12wTg4UfBlSqiv6ZT6mrUg8zSf+/GRQVmfBVM=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190429_034527_694993_AFDE54D9 
-X-CRM114-Status: GOOD (  17.39  )
+X-CRM114-CacheID: sfid-20190429_053732_090877_2CD2438B 
+X-CRM114-Status: GOOD (  10.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -87,85 +86,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kevin Hilman <khilman@baylibre.com>,
- "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
+Cc: linux-ia64@vger.kernel.org, lorenzo.pieralisi@arm.com,
+ linux-mips@vger.kernel.org, linux-serial@vger.kernel.org, andrew@aj.id.au,
+ khilman@baylibre.com, sudeep.holla@arm.com, liviu.dudau@arm.com,
+ linux-kernel@vger.kernel.org, vz@mleia.com, linux@prisktech.co.nz,
+ sparclinux@vger.kernel.org, macro@linux-mips.org, slemieux.tyco@gmail.com,
+ matthias.bgg@gmail.com, jacmet@sunsite.dk, linux-amlogic@lists.infradead.org,
+ andriy.shevchenko@linux.intel.com, linuxppc-dev@lists.ozlabs.org,
+ davem@davemloft.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 23 Apr 2019 at 11:02, Jerome Brunet <jbrunet@baylibre.com> wrote:
->
-> The purpose of this series is too improve reliability of the amlogic mmc
-> driver on new (g12a) and old ones (axg, gxl, gxbb, etc...)
->
-> * The 3 first patches are just harmless clean ups.
+On 27.04.19 15:31, Greg KH wrote:
+> On Sat, Apr 27, 2019 at 02:51:42PM +0200, Enrico Weigelt, metux IT consult wrote:
+>> Using dev_err() instead of printk() for more consistent output.
+>> (prints device name, etc).
+>>
+>> Signed-off-by: Enrico Weigelt <info@metux.net>
+>> ---
+>>  drivers/tty/serial/dz.c | 8 ++++----
+> 
+> Do you have this hardware to test any of these changes with?
 
-Applied these first three, postponing the the rest until Martin are
-happy with all of them. Thanks!
-
-Kind regards
-Uffe
+Unfortunately not :(
 
 
-> * Patch 4 makes sure HS400 can't be enabled, we still have not been able
->   to crack this modes.
-> * Patch 5 removes some clock glitches when switching to DDR modes
-> * Patch 6 and 7 changes the tuning method from Rx phase to signal
->   resampling. It could have been done in a single patch but the unified
->   diff was extremely ugly. The change has been split in two patches to
->   ease review.
->
-> The last tuning update that went through was meant to improve the axg
-> support. Since then, it was reported to break some other boards, like the
-> s912 vim2.
->
-> Also with the current tuning method, it was impossible to find phase
-> settings which would work on all the SoCs, including the new ones.
->
-> After redoing all the tests from scratch, it appeared that Rx phase made
-> (strangely) almost no difference, especially on g12a and axg. However, it
-> showed that it is important to have a phase shift between the Core and Tx
-> clock, 180 works best.
->
-> I discussed the test results with Amlogic. They suggested to use 180/0 or
-> 0/180 for the Core and Tx phase. For tuning, they suggested to use
-> signal resampling.
->
-> So far, so good ... here the platform and modes tested:
->
-> NanoPi-K2 (S905): SD UHS SDR50/DDR50, SDIO HS
-> Odroid-C2 (S905): SD UHS SDR50/DDR50, eMMC DDR52/HS200 (16GB module)
-> Khadas Vim (S905X): SD HS, SDIO HS, eMMC HS200
-> Libretech CC (S905X): SD HS, eMMC HS200
-> Khadas Vim2 (S912): SD HS, SDIO HS, eMMC HS200
-> S400 (A113D): SDIO UHS SDR104, eMMC DDR52/HS200
-> U200 (S905D2): SD HS, eMMC DDR52/HS200
-> SEI510 (S905X2): SD HS, eMMC DDR52/HS200
->
-> Changes since v1 [0]:
-> * Add missing writel in patch 5 (error when switching width)
-> * Change patch 3 commit description
->
-> [0]: https://lkml.kernel.org/r/20190417204355.469-1-jbrunet@baylibre.com
->
-> Jerome Brunet (7):
->   mmc: meson-gx: remove open coded read with timeout
->   mmc: meson-gx: ack only raised irq
->   mmc: meson-gx: correct irq flag
->   mmc: meson-gx: disable HS400
->   mmc: meson-gx: avoid clock glitch when switching to DDR modes
->   mmc: meson-gx: remove Rx phase tuning
->   mmc: meson-gx: add signal resampling tuning
->
->  drivers/mmc/host/meson-gx-mmc.c | 419 +++++++++-----------------------
->  1 file changed, 114 insertions(+), 305 deletions(-)
->
-> --
-> 2.20.1
->
+--mtx
+
+
+-- 
+Enrico Weigelt, metux IT consult
+Free software and Linux embedded engineering
+info@metux.net -- +49-151-27565287
 
 _______________________________________________
 linux-amlogic mailing list
