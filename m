@@ -4,18 +4,18 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.0
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 33BCEC43219
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 09:43:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CE929C04AA6
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 10:13:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 016AF206BF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 09:43:53 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9DDBA20656
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 10:13:11 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eYR5Pak/"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 016AF206BF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TrVrThjJ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9DDBA20656
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=metux.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,56 +24,56 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MdBKXOeiOT7yd2HaK8kyeiHhtUjoh4Dt+CNyoMByS8g=; b=eYR5Pak/HAHdqm
-	E/dNu/h63Hi7WybF4p2wwrTfw3f/rgeq98HeXcG6HaIM1qY94KAT5/X71ToED7a60t184MnLfGYy0
-	3NNZ9Ue1cLASrVIL7ReW8PxlmJvX3prKGFrQpx/g+jWWbvAx7b3A9nau8AJ9QImDY1sL6wGyD0pPq
-	BuZvZSxQMueqmkOnmoh/cwS541v0Ppjpmfr4piaIbfeioU/FPYcPNOhAMnbfM+2VOCjjuQ6Jd762b
-	ZYkakS5RmIPw3OVJesW7IYqy99diaUlUSRL5/oKvPmgwJE+AvwbdLVEuyJ6xAF02oU0YfmqFkSWtT
-	cVPkMjN81SO+4ii2YiZQ==;
+	List-Owner; bh=FPnnnPc2hmKbQTd/oxtUe9nIMVpGGSknHCu/mW9jNYY=; b=TrVrThjJSTyCBC
+	KdOOu3wVmBFGZEp7jNZ+XRDgELbVoe3cD787wUoc13K7ulF17bEHqjCRGEK4ZxDbIuFyWcmqJ0Tt/
+	JtorVtNvniJkVi/o4BjSKy0alCbnhqhrFpsqZfYSjml35h5Aph7AOm4f+rB/53rhE1utyiVoaNvav
+	bC5Ds4J/y3D2KlQFhZSR4IgEqFFAveMoxX8DWCrbi7i5lCnNzbG/n95KecVKVQZMjDAP18kABN02L
+	ifNSGaG3Qk0Z3nzE07X0BcYG2ePb3bj94uYct51WwBO6CLf9JoIXePewsGgmrtoR+BNNXIM8E4R0A
+	6rcNBELYWa3Noi4UFrJA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hL2p9-0003KV-Qx; Mon, 29 Apr 2019 09:43:47 +0000
-Received: from mout.kundenserver.de ([217.72.192.75])
+	id 1hL3HV-0007wY-Od; Mon, 29 Apr 2019 10:13:05 +0000
+Received: from mout.kundenserver.de ([217.72.192.74])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hL2p7-0003K4-KC
- for linux-amlogic@lists.infradead.org; Mon, 29 Apr 2019 09:43:47 +0000
+ id 1hL3HS-0007wD-7v
+ for linux-amlogic@lists.infradead.org; Mon, 29 Apr 2019 10:13:04 +0000
 Received: from [192.168.1.110] ([77.9.18.117]) by mrelayeu.kundenserver.de
- (mreue108 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1N2m3G-1gdyq42eM8-0133kZ; Mon, 29 Apr 2019 11:43:20 +0200
+ (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1Mn2eH-1gtAeU2env-00k71v; Mon, 29 Apr 2019 12:12:41 +0200
 Subject: Re: [PATCH 40/41] drivers: tty: serial: helper for setting mmio range
-To: Esben Haabendal <esben@haabendal.dk>,
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  "Enrico Weigelt, metux IT consult" <info@metux.net>
 References: <1556369542-13247-1-git-send-email-info@metux.net>
  <1556369542-13247-41-git-send-email-info@metux.net>
- <87ef5lz423.fsf@haabendal.dk>
+ <20190428153905.GR9224@smile.fi.intel.com>
 From: "Enrico Weigelt, metux IT consult" <lkml@metux.net>
 Organization: metux IT consult
-Message-ID: <d0b966eb-46b7-d145-92ed-3c62c495f41b@metux.net>
-Date: Mon, 29 Apr 2019 11:43:13 +0200
+Message-ID: <c75f4ca9-367c-25d5-2597-75f2dccf6e1c@metux.net>
+Date: Mon, 29 Apr 2019 12:12:35 +0200
 User-Agent: Mozilla/5.0 (X11; Linux i686 on x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.2.1
 MIME-Version: 1.0
-In-Reply-To: <87ef5lz423.fsf@haabendal.dk>
+In-Reply-To: <20190428153905.GR9224@smile.fi.intel.com>
 Content-Language: en-US
-X-Provags-ID: V03:K1:68dkhGSAKsaCjO526gNf2WSoTW6jL84pVEW36g5e32fJf4hZfEa
- B5yR5eOo/trCHlzEMiqf88gr4lugIpFcu4i7DTW0T8FoWZiDwOwvxkhUV//Oq9txPyP1qxO
- p0s8teHbOF2xnbWjYTCy/e6+F0vybuPcYhQPvcgRagIqrGRZ5ZI4QdP/10WEUP7zI9Ka+YU
- NVd7BerOC+zYOaIOiK9cQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:NvmcDnTkNeI=:ba8d+q8YRab3rFKFqBt24t
- Zg9Zpq/zp8ESR/s4VsMdM2nnOKEofNFRgQuqib0Eoa+F6Di5aptfGcy2fbPQ8PlEnZZ9eFk2I
- W8lkLs1brmFQ4pMtwo1NaxLwJO+yyvyfB7yhUe3mP3ipOkVy3TvxwOqCpUxbn7cvLhhjdXYOV
- RACHse6YI1rEPLKisTi4jbY/Z2xia1z7JZNNtXMm7NyYuxlDHoAmeM51Uq1Sm9jqHrh3VjIFE
- zH5gWFbcmJhRKcS506T4D0qDLdiTRWb5HWe08PMYOLEyCWt6KkONz7ZlQEuLletC4+ebSyFne
- +YblDaPDYWW6s7TMZS94IzEKoglkP06ZU7juKMArxn0JPRB97yN78PMrSGLDm4zCHngdgwukX
- 8QhoUFb/g5oGgRP7xEm3XeyGV0XvRu9ft3THf7jFb/oF+7zCYEmaFMR7HLRHU94BxlelmoOUT
- hf0mEVyRlee3ckCEnDTzSPPktrpdeTwqaoCQIhlRInQVIwdhHJ8XZKfDN1mzvZ2IlFCWEBcMH
- +/+AxD4dkbOiJWktWAReEU2MAQiJAuIPnt8UjKkg2V6v0lHpO3+n8CFCI9Jvijm6LfpHzTHUN
- Z7KbPljaibH9464lnBZleel3EqRWzc88wYjkyJ4C3GZdlzFeP8imAVrJmxNQRR3yOT8ND3ssO
- MC6KOR0+WrmqVYkvJIvXzV6xd3FMar2vZbSJ2ckBe+smk2GbBP44mQDVVrZ5aKzyo4QDZBzHk
- BkVF8qEdunqnt+mSaL40iQ9yOh8uAqzpNBWyyGax+adypiNnzhrhF9jigoE=
+X-Provags-ID: V03:K1:5FkmJafy5b5rMQmFz5MFYjwZmJr3yDLuFQxt3St57wxX5e7mxBe
+ D8gfJTEZt0nLiRI3QkVGXsb9wFfsMmR3uoGvaxXgyLlbyWLfln2s3zeyyG6o65B1y5WhMcw
+ +UezzJKbteNZnyt/6ruUBSu+3RNIYCG4i6IsdWYkD19xg7ktkmAgoTChutrNqAWKbIy18AH
+ 9oGUMGzHGkqb2alaK+C2g==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:7tP6LgaKJ7I=:f1If2vaJgwBnL/GMoXSVIX
+ MPluTwHXqchm7WJg0qmVVZG7JtWCbTp0wuD3Y5kmBa5wFnvp1/XLA14GcDxgC6ecixJrilyO1
+ ajh0Xr0Xqi41cOjfAGDjmbED/G6IxY+lBKINgsciqrC4fkrb8/EKY2LBqfF38e5uUwB0JyD/o
+ PPHDPuYNCAvxwe2px9yLabR7lCcaI3j8oSMZT8aIgRvOq4yuEud+V3yfnbUjDAhy7AAZXSTNz
+ PFxpQK8JC/VjmUfuyj02oJOCfW1OccsGB45/LwL304A8lPd/BtjqwFq1UH05e45x/ZNj0wMRi
+ QIyUo6L0cymajBznFNs8i7smcqapNbCttDsScmvqLDhF8QMo0DAndENY4ny04KI/pftgsLSEO
+ bgvp+wj5zHD6ObQm/cJ7RNYrPHZ7NK4dTBk83YaL83sqNIN5sUTYVMRTDljX3GSQr7kBSy9pJ
+ WL56aZQL6H4rNLgRgew/lYTQ4W7//8UIpidCWD7ofRaC7VrGWNwpTs8l2ebScq8Wsl6QLCaO2
+ O0pZ9fPElJ+wdwey6GXGouyoHxdMFxL3u9IYSgRxWq9+3w52h1wHrCmAC/taWiTDBc2semljj
+ OwQJV9hG90HAtzDQe8o0df0wESJjF1ztyJVNgHjVWhSmNiZ9TSEND/7hZM/Lt4ScGqIzcMSjv
+ 2Og6Lk8EzYxVNyzrHKir1tCMBx1j/0QbRyNnxNQo07uH1cbysow9CPLPJ3dAYImDxDcAUjMRB
+ 5Lc3dsS4j36EMoHTPVR+6f104n+ntvt5nPCp5xG5dNp8mXtAHkchqYFy+IU=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190429_024345_972893_613EE605 
-X-CRM114-Status: GOOD (  10.01  )
+X-CRM114-CacheID: sfid-20190429_031302_586808_A376A103 
+X-CRM114-Status: GOOD (  22.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -85,41 +85,140 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-ia64@vger.kernel.org, lorenzo.pieralisi@arm.com,
- linux-mips@vger.kernel.org, linux-serial@vger.kernel.org, andrew@aj.id.au,
- gregkh@linuxfoundation.org, sudeep.holla@arm.com, liviu.dudau@arm.com,
- linux-kernel@vger.kernel.org, vz@mleia.com, linux@prisktech.co.nz,
- sparclinux@vger.kernel.org, khilman@baylibre.com, macro@linux-mips.org,
- slemieux.tyco@gmail.com, matthias.bgg@gmail.com, jacmet@sunsite.dk,
- linux-amlogic@lists.infradead.org, andriy.shevchenko@linux.intel.com,
- linuxppc-dev@lists.ozlabs.org, davem@davemloft.net
+Cc: lorenzo.pieralisi@arm.com, linux-ia64@vger.kernel.org,
+ linux-serial@vger.kernel.org, andrew@aj.id.au, gregkh@linuxfoundation.org,
+ sudeep.holla@arm.com, liviu.dudau@arm.com, linux-kernel@vger.kernel.org,
+ vz@mleia.com, linux@prisktech.co.nz, sparclinux@vger.kernel.org,
+ khilman@baylibre.com, macro@linux-mips.org, slemieux.tyco@gmail.com,
+ matthias.bgg@gmail.com, jacmet@sunsite.dk, linux-amlogic@lists.infradead.org,
+ linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, davem@davemloft.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 29.04.19 09:03, Esben Haabendal wrote:
+On 28.04.19 17:39, Andy Shevchenko wrote:
 
-> Why not simply replace iobase, mapbase and mapsize with a struct
-> resource value instead?
+Hi,
 
-That was actually my original goal, when I started this. But the
-situation is a bit more tricky. Many drivers (especially the old ones)
-initialize these fields in different ways. And there're many places
-accessing these fields.
+seems I've forgot to add "RFC:" in the subject - I'm not entirely happy
+w/ that patch myself, just want to hear your oppinions.
 
-Drivers for old devices should be handled w/ great care. I don't have
-access to all that hardware, so I can't test it. Therefore, I'm trying
-to move in small steps. One step ahead another.
+>> -	port->port.iotype = UPIO_MEM;>> -	port->port.mapbase = pci_resource_start(pcidev, bar) + offset;>> +
+uart_memres_set_start_len(&port->port,>> +				
+pci_resource_start(pcidev, bar) + offset,>> +				
+pci_resource_len(pcidev, bar));>> +> > I don't see how it's better.>
+Moreover, the size argument seems wrong here.
+hmm, I'm actually not sure yet, what the correct size really would be,
+where the value actually comes from. Just assumed that it would be the
+whole area that the BAR tells. But now I recognized that I'd need to
+substract 'offset' here.
 
-One of my next steps would be factoring out more common operations
-(eg. mapping, etc) into helpers, up to a point, where someday no driver
-is accessing these fields directly anymore.
+Rethinking it further, we'd probably could deduce the UPIO_* from the
+struct resource, too.
 
-Then we could easily move everything into struct resource. On that
-road, we'd also need to find a way for handling the specialities of
-the various UPIO_* modes via struct resource.
+>> +		uart_memres_set_start_len(>> +			&port,>> +			FRODO_BASE + FRODO_APCI_OFFSET(1), 0);> > Please,
+avoid such splitting, first parameter is quite fit above line.
 
+Ok. My intention was having both parameters starting at the same line,
+but then the second line would get too long again. > ...and here, and
+maybe in other places you split the assignments to the members> in two
+part. Better to call your function before or after these blocks of>
+assignments.
+the reason what I've just replaced the exactly the assignments, trying
+not to touch too much ;-)
+I'll have a closer look on what can be moved w/o side effects.
+
+>> -			uport->mapsize	= ZS_CHAN_IO_SIZE;
+>> -			uport->mapbase	= dec_kn_slot_base +
+>> -					  zs_parms.scc[chip] +
+>> -					  (side ^ ZS_CHAN_B) * ZS_CHAN_IO_SIZE;
+>> +
+>> +			uart_memres_set_start_len(dec_kn_slot_base +
+>> +						    zs_parms.scc[chip] +
+>> +						    (side ^ ZS_CHAN_B) *
+>> +							ZS_CHAN_IO_SIZE,
+>> +						  ZS_CHAN_IO_SIZE);
+> 
+> This looks hard to read. Think of temporary variables and better formatting
+> style.
+
+Ok.
+
+> 
+>>  /*
+>> + * set physical io range from struct resource
+>> + * if resource is NULL, clear the fields
+>> + * also set the iotype to UPIO_MEM
+> 
+> Something wrong with punctuation and style. Please, use proper casing and
+> sentences split.
+
+Ok. fixed it.
+
+
+>> +static inline void uart_memres_set_res(struct uart_port *port,
+> 
+> Perhaps better name can be found.
+> Especially taking into account that it handles IO / MMIO here.
+
+hmm, lacking creativity here ;-)
+any suggestions ?
+
+> 
+>> +				       struct resource *res)
+>> +{
+>> +	if (!res) {
+> 
+> It should return an error in such case.
+
+It's not an error, but desired behaviour: NULL resource
+clears the value.
+
+>> +		port->mapsize = 0;
+>> +		port->mapbase = 0;
+>> +		port->iobase = 0;
+>> +		return;
+>> +	}
+>> +
+>> +	if (resource_type(res) == IORESOURCE_IO) {
+>> +		port->iotype = UPIO_PORT;
+>> +		port->iobase = resource->start;
+>> +		return;
+>> +	}
+>> +
+>> +	uart->mapbase = res->start;
+>> +	uart->mapsize = resource_size(res);
+> 
+>> +	uart->iotype  = UPIO_MEM;
+> 
+> Only one type? Why type is even set here?
+
+It's the default case. The special cases (eg. UPIO_MEM32) need to be
+set explicitly, after that call.
+
+Not really nice, but haven't found a better solution yet. I don't like
+the idea of passing an UPIO_* parameter to the function, most callers
+should not care, if they don't really need to.
+
+
+>> + */
+> 
+>> +static inline void uart_memres_set_start_len(struct uart_driver *uart,
+>> +					     resource_size_t start,
+>> +					     resource_size_t len)
+> 
+> The comment doesn't tell why this is needed when we have one for struct
+> resource.
+
+Renamed it to uart_memres_set_mmio_range().
+
+This helper is meant for drivers that don't work w/ struct resource,
+or explicitly set their own len.
+
+
+
+Thanks for your review.
 
 --mtx
 
