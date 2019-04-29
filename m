@@ -2,79 +2,94 @@ Return-Path: <SRS0=ef8O=S7=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F31B5C43219
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 14:55:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CE0C7C004C9
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 15:20:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C3A17205F4
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 14:55:51 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9B3EE214AF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 15:20:15 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UoFbqbzt"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C3A17205F4
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=metux.net
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eSdg5B2s";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BBvSV/Sr"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9B3EE214AF
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=korsgaard.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5ka8HGWVNz6UQfOnuSRHCDpJPIGFFRqitMaHDqgwOek=; b=UoFbqbzt7yG2N8
-	1F6ucJFYosupZWlKj0v5CVPNpHgv3qQCaieJzWNbpgvf7SB4wV9T+dEGy0v9kNob1/it1FfEQjMWt
-	EaRSNjfkltKk7i1rT10yRnU64ktITc+brnEc4baywRnw4Mi4MaYUiNmiCXsGlJWBZh1Ud3uNPWrEa
-	dG+u/eaKbbPsC7HnPL1k0HykNh25SGJiNP85dG4bGbXN27iBUR+71zJ1t8CyeEsetJCj6WQZqugF9
-	AIl/Hs9CFZEcUDMblAJ7UFt+24PPSve++Bk3dECP84jq+2P/JCwoVPlNjxCAxjHQuF0IeTvAcmzzJ
-	dR0kdd+g3462FUTxye4w==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
+	Date:References:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=yuG5kVIdBP2g8wZt0i/ktemPZYqw1N8UgyTDtHlzgn8=; b=eSdg5B2sbMh0mL
+	D0H9ZOJOrt46bEUSXtri8Y45mjWdA8KTF/t5iGsFE02z/fc6cAUTdLH5SG784LUrX515nzvmext7q
+	RQFJEiqF9OY2dEAPQ19P4fT1cJ2/IfLzljcC9cSz/+iSeCAA8cPMBHtQM/Wg/Q0PgzuPnp6x4oFRC
+	wyVDvQLrP5wXY2/X99x2LuI4s3jGCaYrZPGBxqtUnanLJCL80GfK0YAcb089ZGHQNclvkwBxkApDS
+	jrQSTz/C0Ko4Lq1yV1n7h87OY/xUiYGDLfMB8u3BTGE1fFMgX2g2uDQIE+NXE6TFY0DlnhL14eAHK
+	NNqtcKPEvBuTwkDyNO9w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hL7h4-0003RS-E6; Mon, 29 Apr 2019 14:55:46 +0000
-Received: from mout.kundenserver.de ([217.72.192.75])
+	id 1hL84e-0004MR-VN; Mon, 29 Apr 2019 15:20:08 +0000
+Received: from mail-ed1-x544.google.com ([2a00:1450:4864:20::544])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hL7h1-0003R3-HT
- for linux-amlogic@lists.infradead.org; Mon, 29 Apr 2019 14:55:45 +0000
-Received: from [192.168.1.110] ([77.9.18.117]) by mrelayeu.kundenserver.de
- (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1MzhSh-1gYdpR49Nx-00vcL0; Mon, 29 Apr 2019 16:55:13 +0200
-Subject: Re: [PATCH 36/41] drivers: tty: serial: 8250: store mmio resource
- size in port struct
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- "Enrico Weigelt, metux IT consult" <info@metux.net>
+ id 1hL84b-00035L-23
+ for linux-amlogic@lists.infradead.org; Mon, 29 Apr 2019 15:20:07 +0000
+Received: by mail-ed1-x544.google.com with SMTP id a8so7423229edx.3
+ for <linux-amlogic@lists.infradead.org>; Mon, 29 Apr 2019 08:20:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=sender:from:to:cc:subject:references:date:in-reply-to:message-id
+ :user-agent:mime-version;
+ bh=dPnq76BudBLUCskM0DaeuuctlwoGzT39qQr2q1xJdTg=;
+ b=BBvSV/SrDNJ31+/UOkSM5bpG5QGX9iuVEAlHSpvrDOGj+4PW80QrSA2NQvvNYxzojp
+ Zd++WkJIJdsJI48+0P5HrqTBvNXDC1r245KbMoADl3uY5vH+mVrnUi6+8qjpF2ydE+tq
+ TwF1hj4480FhhbTHgn4M/QznEs6p0sHaHA9yrWx15VQqD4rerfkEYjhIuk1lUIvL8NJx
+ M8wE73xeYfkcTLVAM5oCB5RVNjauTgvl4PjUAhsoMUZ5oTPhnvZ5wvz6bSMifDGNwT/e
+ KSK9tYNcpfIF8GPBuVeJpf2B9oLlA2ItKshISp7tatkcaGkzhTIiD3dveMl7nJ6B+iIV
+ zmmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:sender:from:to:cc:subject:references:date
+ :in-reply-to:message-id:user-agent:mime-version;
+ bh=dPnq76BudBLUCskM0DaeuuctlwoGzT39qQr2q1xJdTg=;
+ b=QK8zdCDUfE0v1HbCdQrB6C6VmFgdFrR5slztLfrWGYNylIrC3SfSj8sspSw4RsCvb4
+ BoJHOzQYXCk/tAww1VKSzLeIrj+r6E/8QgL1T/9iSRrswKLuWTEmI2gd/5ezWEd5NUF4
+ Hr9+lzpqI+KlroyMyQuNORdZboIVv6/s4LrwwNxesYYTfSx0aNYtWvFTs6kV/ctSZUdx
+ SHIRK4jJK00jX1dX8m+/HL40AVK2pttoqfA/y+0XRRpd5+Gk8cvfZlvr6gCSCEgaN3Vp
+ x/0Msqb9lDBPmZ9N7mEqnPU6y+2W9r+uSvq2TSP7RbeCJpXTCKSMetpwjhokTHhSYKQu
+ D1pg==
+X-Gm-Message-State: APjAAAUvQFlHnFYmslKEWFxpd5ZevlDsPCsRqru7mhkuRBD/mL2b/0Co
+ k9AVemFDYXaM2VY0tUp0pAM=
+X-Google-Smtp-Source: APXvYqwQbi0omP7jYdcby2odHruq4pxaQ7sP2Qij52VODZOog6lth6WIRzjEKd0jUTWzRbOuB+nVlQ==
+X-Received: by 2002:a17:906:2482:: with SMTP id
+ e2mr12684688ejb.289.1556551199464; 
+ Mon, 29 Apr 2019 08:19:59 -0700 (PDT)
+Received: from dell.be.48ers.dk (d51A5BC31.access.telenet.be. [81.165.188.49])
+ by smtp.gmail.com with ESMTPSA id
+ p18sm5851269ejm.4.2019.04.29.08.19.58
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Mon, 29 Apr 2019 08:19:58 -0700 (PDT)
+Received: from peko by dell.be.48ers.dk with local (Exim 4.89)
+ (envelope-from <peter@korsgaard.com>)
+ id 1hL84T-0000dV-Kj; Mon, 29 Apr 2019 17:19:57 +0200
+From: Peter Korsgaard <peter@korsgaard.com>
+To: "Enrico Weigelt\, metux IT consult" <info@metux.net>
+Subject: Re: [PATCH 13/41] drivers: tty: serial: uartlite: fill mapsize and
+ use it
 References: <1556369542-13247-1-git-send-email-info@metux.net>
- <1556369542-13247-37-git-send-email-info@metux.net>
- <20190428151848.GO9224@smile.fi.intel.com>
-From: "Enrico Weigelt, metux IT consult" <lkml@metux.net>
-Organization: metux IT consult
-Message-ID: <4bab941a-c2f2-7f1c-9bc2-86c63f171c25@metux.net>
-Date: Mon, 29 Apr 2019 16:55:05 +0200
-User-Agent: Mozilla/5.0 (X11; Linux i686 on x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.2.1
+ <1556369542-13247-14-git-send-email-info@metux.net>
+Date: Mon, 29 Apr 2019 17:19:57 +0200
+In-Reply-To: <1556369542-13247-14-git-send-email-info@metux.net> (Enrico
+ Weigelt's message of "Sat, 27 Apr 2019 14:51:54 +0200")
+Message-ID: <87muk8rg82.fsf@dell.be.48ers.dk>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
 MIME-Version: 1.0
-In-Reply-To: <20190428151848.GO9224@smile.fi.intel.com>
-Content-Language: en-US
-X-Provags-ID: V03:K1:3sNaGIwVieBtMMPDbaHtnQ9WqDYUZdXDzXdtSPxuDKdaXl1IhJx
- gExeQeuUVBW9F8lPEU32YFMe/ujn/jKm3Qo/yQgDM0nzyQYP+uCPSUDJN/wl74WlUhOFl0H
- b9FygV4JGeGXjaq1ueGEJHfa2utbBtfqmEwr5N/Cg0mgACNio7NSt3lhmpR00vRsMaYfrz8
- XlPVJlU6S0ovAYl+qK9DA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:4eAEJ0wqyW0=:R8Lq31LWiuM3bZqp1AQZRZ
- jyqOXktZyU/EhjOWGDvRMWW3paokS57Sx0yc4uwnO6dW+U4GGDyD5OGfx43RER6pilTojd0Cc
- 1UvhRZhNvHyNSboccxXg4jxVr61SiKbaiipZqc+naHd1ejutU8kiPSah1j2BPJMskurk632/Y
- nukzV2GRHNrvPqdoyfrS6s+qBz9aDlcAx9P6cdOpirdL0w0XVqfr+tiPUixOrykaqEPKMVtKL
- 4OGgSljM9ZDmNeIvVFhlvLWLVFKmPMfuyzdRN0JRAjZGHQP8bk3aTcH8A8onXk/l0QJqHKhDX
- ZQ4bypEgU32hQ4fqOqnWyQmKcfVmdEkraWqwANE/QrsjnJU89kjPxH4M9ZfgkJf1GE7bGdCt1
- XhrQ8ybROPrVDOJCthK1AGoo0AmLPY6uR2O1MZa5KaS3QjuUVPykBRE01dQJR2GvK2jlSiPXW
- zZ6hxOJP8CI1RzsHOkTMtdomXf7Gm8m2tF4WFR6XxuWUgOBnt3ZZIIlrPwEeD6KS08lQpQRZD
- 3qMm83rz1mRcgd9SJaG5GP6l1TZznT12n5BWoD4OS3VG6a46jzylv2wemvehNTDk4TTOjt62R
- OncMDUxVV4h+DnfwTXj+a6L5MPoAszfUepWtuwGjKsEhwBb+0x+CAUGIFYQFSjobFQD0BxRfx
- r0b01pqkzW9vQJ/lMSLIZWsbJ91UXnzPMnujJVFsM8G2B6NAhnk2yAV+0RvlzpNVO1H9zAvDC
- XLBBWgy4vh7jwZz35FbEeJ2gzJ9/pMyOzs3Y5+E5mRhxkcAYeGmPmyAuSLg=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190429_075543_884941_3DAAC906 
-X-CRM114-Status: GOOD (  18.20  )
+X-CRM114-CacheID: sfid-20190429_082005_192237_0775C306 
+X-CRM114-Status: GOOD (  10.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -86,83 +101,38 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: lorenzo.pieralisi@arm.com, linux-ia64@vger.kernel.org,
- linux-serial@vger.kernel.org, andrew@aj.id.au, gregkh@linuxfoundation.org,
- sudeep.holla@arm.com, liviu.dudau@arm.com, linux-kernel@vger.kernel.org,
- vz@mleia.com, linux@prisktech.co.nz, sparclinux@vger.kernel.org,
- khilman@baylibre.com, macro@linux-mips.org, slemieux.tyco@gmail.com,
- matthias.bgg@gmail.com, jacmet@sunsite.dk, linux-amlogic@lists.infradead.org,
- linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, davem@davemloft.net
+Cc: lorenzo.pieralisi@arm.com, linux-ia64@vger.kernel.org, macro@linux-mips.org,
+ andrew@aj.id.au, gregkh@linuxfoundation.org, slemieux.tyco@gmail.com,
+ liviu.dudau@arm.com, linux-kernel@vger.kernel.org,
+ andriy.shevchenko@linux.intel.com, linux-mips@vger.kernel.org,
+ linux@prisktech.co.nz, matthias.bgg@gmail.com, khilman@baylibre.com,
+ linux-serial@vger.kernel.org, sudeep.holla@arm.com, sparclinux@vger.kernel.org,
+ jacmet@sunsite.dk, linux-amlogic@lists.infradead.org, vz@mleia.com,
+ linuxppc-dev@lists.ozlabs.org, davem@davemloft.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 28.04.19 17:18, Andy Shevchenko wrote:
-> On Sat, Apr 27, 2019 at 02:52:17PM +0200, Enrico Weigelt, metux IT consult wrote:
->> The io resource size is currently recomputed when it's needed but this
->> actually needs to be done once (or drivers could specify fixed values)
-> 
-> io -> IO
+>>>>> "Enrico" == Enrico Weigelt, metux IT consult <info@metux.net> writes:
 
-fixed.
+ > Fill the struct uart_port->mapsize field and use it, insteaf of
 
->> Simplify that by doing this computation only once and storing the result
->> into the mapsize field. serial8250_register_8250_port() is now called
->> only once on driver init, the previous call sites now just fetch the
->> value from the mapsize field.
-> 
-> Do I understand correctly that this has no side effects?
+s/insteaf/instead/
 
-I don't know of any. (except someting changes things like regshift after
-the initialization phase ... :o)
+ > hardcoded values in many places. This makes the code layout a bit
+ > more consistent and easily allows using generic helpers for the
+ > io memory handling.
 
->> @@ -979,6 +979,9 @@ int serial8250_register_8250_port(struct uart_8250_port *up)
->>  	if (up->port.uartclk == 0)
->>  		return -EINVAL;
->>  
->> +	/* compute the mapsize in case the driver didn't specify one */
->> +	up->mapsize = serial8250_port_size(up);
-> 
-> I don't know all quirks in 8250 drivers by heart, though can you guarantee that
-> at this point the device reports correct IO resource size? (If I'm not mistaken
-> some broken hardware needs some magic to be done before card can be properly
-> handled)
+ > Candidates for such helpers could be eg. the request+ioremap and
+ > iounmap+release combinations.
 
-Actually, I don't see anything talking to the hardware at all here.
-It's all derived from values that are set up before
-serial8250_register_8250_port() is called.
+ > Signed-off-by: Enrico Weigelt <info@metux.net>
 
->> -	unsigned int size = serial8250_port_size(up);
->>  	struct uart_port *port = &up->port;
-> 
->> -	int ret = 0;
-> 
-> This and Co is a separate change that can be done in its own patch.
-
-I don't really understand :(
-Do you mean the splitting off the retval part from the rest ?
-
->> +			port->membase = ioremap_nocache(port->mapbase,
->> +							port->mapsize);
-> 
-> You may increase readability by introducing temporary variables
-> 
-> 	... mapbase = port->mapbase;
-> 	... mapsize = port->mapsize;
-> 	...
-> 	port->membase = ioremap_nocache(mapbase, mapsize);
-> 	...
-
-Is that really necessary ? Maybe it's just my personal taste, but I
-don't feel the more more verbose one is really easier to read.
-
---mtx
+Acked-by: Peter Korsgaard <peter@korsgaard.com>
 
 -- 
-Enrico Weigelt, metux IT consult
-Free software and Linux embedded engineering
-info@metux.net -- +49-151-27565287
+Bye, Peter Korsgaard
 
 _______________________________________________
 linux-amlogic mailing list
