@@ -2,21 +2,21 @@ Return-Path: <SRS0=ef8O=S7=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 30197C43219
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 15:21:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F4F8C04AA6
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 15:22:08 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 015E82063F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 15:21:03 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6C7652063F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 15:22:08 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="D4+BwWDt";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NMtm7loE"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 015E82063F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="comsG6vu";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ppT6h3G9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6C7652063F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=korsgaard.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,71 +25,70 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=iw9Qku0Juw0eIynFVccOScbXZepic3tm2q9uao8GnSU=; b=D4+BwWDt5k4HtE
-	McHOcBwCWBVMz7j7Vm0AV6yKWkGuVh4pIjJbsHy51fxjaXEFuIrjjsNLNXFDiZy7pQG075XiRzaqn
-	KI2nn5Qp6WWEDJX4A3AYeNVd/H9wnIUWhT9lR/ZZgBGWQAKYG5+gwUVf7Kcc8CpnO6eB91I53Hg46
-	7E5StYnuNWmssHbLyvEJUSaWOGhLJLfOviQLobsKE9/ql5WzWAuHHgxero+q6w0lq2MjCu6Z7fu1u
-	eeQOlWZfvBqMJ1MAxiYkKc1LUiH0clfl8cELiQF3AJ/kYUECI0S3pkYSVMS/5iNpO/yC3e/fLcVIU
-	hdnCs0CkSF+EXuPmY2vA==;
+	List-Owner; bh=RyFWya+d+RzRfKw/O0AYfGceQ49YmxTB3WQddMuMj0g=; b=comsG6vuMYGv1N
+	p2mx2TCfYIO2WsWXxOwpTGz2s5fGIHHz+ZbGr3CK8ds55ARndAIfo/Qe8qNKm6XYqUh1vdu552WCf
+	HH9MNYncGCllqxpuHXXbEGI5rSzs3mHJVbhhQms1KFsaqfjvY0fT4p/4s6xOfI/1/9CHohgD1/j39
+	1shUggseQxgSzQNrYB8+s6WyTx8schOi/zA0QHeJfdNpGt+gATCIDUjpqFEP8KCF1E17x3igc1PBw
+	LcvGil0QoiOBDor+nT3QBSUf1Gvf5HzMDqPDGBDgTek9+Rej9egFKj0pesyxkgb9Xutpn/u+nnrcy
+	yzI44LXBSrxVtwea3rEw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hL85T-0004T6-4f; Mon, 29 Apr 2019 15:20:59 +0000
-Received: from mail-ed1-x543.google.com ([2a00:1450:4864:20::543])
+	id 1hL86V-0004Yp-Pv; Mon, 29 Apr 2019 15:22:03 +0000
+Received: from mail-ed1-x541.google.com ([2a00:1450:4864:20::541])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hL85R-0004Sh-0D
- for linux-amlogic@lists.infradead.org; Mon, 29 Apr 2019 15:20:58 +0000
-Received: by mail-ed1-x543.google.com with SMTP id l25so9466350eda.9
- for <linux-amlogic@lists.infradead.org>; Mon, 29 Apr 2019 08:20:56 -0700 (PDT)
+ id 1hL86T-0004YS-3w
+ for linux-amlogic@lists.infradead.org; Mon, 29 Apr 2019 15:22:02 +0000
+Received: by mail-ed1-x541.google.com with SMTP id j20so9472967edq.10
+ for <linux-amlogic@lists.infradead.org>; Mon, 29 Apr 2019 08:22:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=sender:from:to:cc:subject:references:date:in-reply-to:message-id
  :user-agent:mime-version;
- bh=mcdMJtYTzbrFusKEz05dVZkKSln24Oc8rmFJOLHlFyc=;
- b=NMtm7loEpc1LtkiaskUlbbeKkI7Yur5IYVgFyYL/NUTYqRo00L+1M56sDV1wd61Eic
- 074Hciwdzeq59lUY+emKFAFZuwf6s0YdW71qd918YF2wGclyc0PYWeqExnpOiAhdtCU+
- CugXqkaoE30DMKVWaPIwatHrP4MHEtOIK+xDDsmltZh5gMFXbPuH28VGT0LKdDVx7Kci
- NM9fmLAlxt3fKfmamYW2yxGr9RbaioIm25eCrQYGbaQLBSlnmiE5E79RZy2SAIQzJ09y
- /8xviY57bx916zBUV5eOMAwXesFB85WVdwsbKrEe802pzwew/ZbsAd943pi/DNCJaLOo
- Cx8Q==
+ bh=ZZLpdCaY45ZaWdwl3+E5Jd3Cq8zuL6naI6wCwSuVKCg=;
+ b=ppT6h3G9NuDkcYADi9LW7X3uSGDINXrGpBwPcqsBRDIwXcck7cMScr22OMFoQ4Q7dW
+ 8uh86qWSdCnDSh32a04j0feRNOwLlME9xwUQVKfgPlstvStLeefqu2rH6ctjy4IBUOxV
+ 0P0njK4P60TKRpkJScyHOWfv1632H2NqB/u65mqvsAgn8LRYGDLgrAGBd7Cg0dA4XFPY
+ n/8jtVt529dPhZATwWpD1GFMOYJDyzMVBjkgHGjF4ebsEjG315Nc+bx3U2dCTC6VylmX
+ CPnB7mvnD2IcDGboMWFxmbnYxHKPLBWhHPOFppg2uPmIHZWARZSoVFjkzBRZXy+KJFjB
+ hzzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:sender:from:to:cc:subject:references:date
  :in-reply-to:message-id:user-agent:mime-version;
- bh=mcdMJtYTzbrFusKEz05dVZkKSln24Oc8rmFJOLHlFyc=;
- b=sFMpog6X6iHSZA0EA477lKiyvwx+Ci3nak24rrxnS8nEJSRDSQ5Mhn921ygbK8Avcs
- UFby1ox0VdkFyNKt8lLEXH/LVvFiD24SgP4f6KUMT+67SfShKcRJ2YFHngsDU1FUEphR
- ndLv4aDG/RQdvBmOMiSQSNYytDwlGdZSna8t+AoFbus+FW9akdrAdZ6VuDRfNdPtiLUb
- Bim4ljW/G6fW8eZH++lfG9SYW3uxDgDvMRiPy5Ze+I4xCxjbKu90ehUDt4n2qZ+XMVat
- QEOhTXNb2ClLRIA89xch3nO0syZgdSP+9lTyh41cHtjq/riTtzTxWzWpcYjUGHhigh1x
- b9LA==
-X-Gm-Message-State: APjAAAUt8cxN+tqi7OuqIYtXPpHcRkoeSjSaKqaHE+u0LHrEWeR9Uf87
- 4UbgWvVofgJ4EynM+T7gE3A=
-X-Google-Smtp-Source: APXvYqweysPzcxqvyw2tG1BMJOB/LdC5EufVXTrbhZSqeXGXptVb/Oa4KlfV9hkDZfTJPecfQ5Owcg==
-X-Received: by 2002:a17:906:e119:: with SMTP id
- gj25mr7661484ejb.7.1556551255068; 
- Mon, 29 Apr 2019 08:20:55 -0700 (PDT)
+ bh=ZZLpdCaY45ZaWdwl3+E5Jd3Cq8zuL6naI6wCwSuVKCg=;
+ b=i4YmWBaxrqvPrrPdzVGC230LH6SOikVEmeU8+Srx2kRDA+k4kNE9gkS0ARTPVZhnNv
+ 92Ah2DaotrLYNE40Aftf4u+S4ZMbu1xTkRsuzDflGrKEbWgo4NyQmXoMtCvdWVS6UFul
+ Qg1bRuA+83NeK68S7RF2btnIAr7vc5unJ6T2UpsTdtjTvgKdB+XJsSHhpljXAs5xwiW7
+ ou9TGlc50fL+erG1uaB3e757S8t5EpbL0wb2gGpJp+fRRIn2gRp2BOp789XepBXM/NMI
+ y2QtTcosmw6R0XbHckplVOrRmRISzEYjmXk15xhY9qpH4+j8GSXKVh+oqJyEbcPA2Qdo
+ 0y9A==
+X-Gm-Message-State: APjAAAUJ/pwmm/trzdo/GUtZCVZhGgPvIHaT0uwa4OnmM7Jn3OoCE0Vn
+ R68pLok6HkeDdTKVdirx0QI=
+X-Google-Smtp-Source: APXvYqxamfPfJ9uZ6AGqPNu4zJZ93wicN/YjM8vFds68tQNGSe4lFFbL+0I10So0tU7LuEyBIVAoBA==
+X-Received: by 2002:a50:b35a:: with SMTP id r26mr38872334edd.239.1556551319341; 
+ Mon, 29 Apr 2019 08:21:59 -0700 (PDT)
 Received: from dell.be.48ers.dk (d51A5BC31.access.telenet.be. [81.165.188.49])
  by smtp.gmail.com with ESMTPSA id
- o9sm5761786edh.95.2019.04.29.08.20.54
+ c8sm2079732ejs.41.2019.04.29.08.21.58
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 29 Apr 2019 08:20:54 -0700 (PDT)
+ Mon, 29 Apr 2019 08:21:58 -0700 (PDT)
 Received: from peko by dell.be.48ers.dk with local (Exim 4.89)
  (envelope-from <peter@korsgaard.com>)
- id 1hL85N-0000ep-Qh; Mon, 29 Apr 2019 17:20:53 +0200
+ id 1hL86P-0000gI-Kz; Mon, 29 Apr 2019 17:21:57 +0200
 From: Peter Korsgaard <peter@korsgaard.com>
 To: "Enrico Weigelt\, metux IT consult" <info@metux.net>
-Subject: Re: [PATCH 14/41] drivers: tty: serial: uartlite: remove unnecessary
- braces
+Subject: Re: [PATCH 15/41] drivers: tty: serial: uartlite: fix use fix bare
+ 'unsigned'
 References: <1556369542-13247-1-git-send-email-info@metux.net>
- <1556369542-13247-15-git-send-email-info@metux.net>
-Date: Mon, 29 Apr 2019 17:20:53 +0200
-In-Reply-To: <1556369542-13247-15-git-send-email-info@metux.net> (Enrico
- Weigelt's message of "Sat, 27 Apr 2019 14:51:55 +0200")
-Message-ID: <87imuwrg6i.fsf@dell.be.48ers.dk>
+ <1556369542-13247-16-git-send-email-info@metux.net>
+Date: Mon, 29 Apr 2019 17:21:57 +0200
+In-Reply-To: <1556369542-13247-16-git-send-email-info@metux.net> (Enrico
+ Weigelt's message of "Sat, 27 Apr 2019 14:51:56 +0200")
+Message-ID: <87ef5krg4q.fsf@dell.be.48ers.dk>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190429_082057_041846_8530A9B3 
-X-CRM114-Status: UNSURE (   8.95  )
+X-CRM114-CacheID: sfid-20190429_082201_201655_4A4159E6 
+X-CRM114-Status: UNSURE (   7.98  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -117,15 +116,16 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 >>>>> "Enrico" == Enrico Weigelt, metux IT consult <info@metux.net> writes:
 
- > checkpatch complains:
- >     WARNING: braces {} are not necessary for any arm of this statement
- >     #489: FILE: drivers/tty/serial/uartlite.c:489:
- >     +	if (oops_in_progress) {
- >     [...]
- >     +	} else
- >     [...]
+ > Fix checkpatch warnings:
+ >     WARNING: Prefer 'unsigned int' to bare use of 'unsigned'
+ >     #562: FILE: drivers/tty/serial/uartlite.c:562:
+ >     +	unsigned retries = 1000000;
 
- > Signed-off-by: Enrico Weigelt <info@metux.net>
+ >     WARNING: Prefer 'unsigned int' to bare use of 'unsigned'
+ >     #574: FILE: drivers/tty/serial/uartlite.c:574:
+ >     +				 const char *s, unsigned n)
+
+s/fix use fix/fix use of/ in Subject. Other than that:
 
 Acked-by: Peter Korsgaard <peter@korsgaard.com>
 
