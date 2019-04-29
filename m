@@ -2,21 +2,21 @@ Return-Path: <SRS0=ef8O=S7=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F4F8C04AA6
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 15:22:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 34B3CC43219
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 15:25:04 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6C7652063F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 15:22:08 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0419520656
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 15:25:04 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="comsG6vu";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ppT6h3G9"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6C7652063F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rpT7RgLM";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EU8p/LiA"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0419520656
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=korsgaard.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,71 +25,70 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RyFWya+d+RzRfKw/O0AYfGceQ49YmxTB3WQddMuMj0g=; b=comsG6vuMYGv1N
-	p2mx2TCfYIO2WsWXxOwpTGz2s5fGIHHz+ZbGr3CK8ds55ARndAIfo/Qe8qNKm6XYqUh1vdu552WCf
-	HH9MNYncGCllqxpuHXXbEGI5rSzs3mHJVbhhQms1KFsaqfjvY0fT4p/4s6xOfI/1/9CHohgD1/j39
-	1shUggseQxgSzQNrYB8+s6WyTx8schOi/zA0QHeJfdNpGt+gATCIDUjpqFEP8KCF1E17x3igc1PBw
-	LcvGil0QoiOBDor+nT3QBSUf1Gvf5HzMDqPDGBDgTek9+Rej9egFKj0pesyxkgb9Xutpn/u+nnrcy
-	yzI44LXBSrxVtwea3rEw==;
+	List-Owner; bh=jqS0H9kNktHlM1Bf0+0oU3rLLOI9oEPyMn5JXl8m+C8=; b=rpT7RgLMjZUS5h
+	sadHjmeWdGTY5SYe4vEEs6Ls+6KG8DjzApGmHA8q76b5NX2cdaEJlxfNWnNCKlqxnFLIq+N2cUVs7
+	zPgnSWQKeBHS2aaq3IbBPCR5G6idgO4gcdHqkVcEwtMckaAaaLTj1UqwcM4twA0YezRZwN67tbJsH
+	oTRHjuI5F/cZ6owEzhfOO8owNqWAbhU8NpmY1xZc3+hjx6kRttpmKABWjTljRHLW3SiMOTX+m5Zyt
+	j3ESkiBSPnaH8TUFUMfZOetdr15yLiEf6bt7mGbPVVVzg9GZYrH61+5sr/SpCQ077oEfmWXNCht3d
+	wS6eBLB7J4ZcMzCdQ+ng==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hL86V-0004Yp-Pv; Mon, 29 Apr 2019 15:22:03 +0000
-Received: from mail-ed1-x541.google.com ([2a00:1450:4864:20::541])
+	id 1hL89K-0005FV-R7; Mon, 29 Apr 2019 15:24:58 +0000
+Received: from mail-ed1-x542.google.com ([2a00:1450:4864:20::542])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hL86T-0004YS-3w
- for linux-amlogic@lists.infradead.org; Mon, 29 Apr 2019 15:22:02 +0000
-Received: by mail-ed1-x541.google.com with SMTP id j20so9472967edq.10
- for <linux-amlogic@lists.infradead.org>; Mon, 29 Apr 2019 08:22:00 -0700 (PDT)
+ id 1hL89I-0005F5-Mk
+ for linux-amlogic@lists.infradead.org; Mon, 29 Apr 2019 15:24:58 +0000
+Received: by mail-ed1-x542.google.com with SMTP id k45so9502343edb.6
+ for <linux-amlogic@lists.infradead.org>; Mon, 29 Apr 2019 08:24:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=sender:from:to:cc:subject:references:date:in-reply-to:message-id
  :user-agent:mime-version;
- bh=ZZLpdCaY45ZaWdwl3+E5Jd3Cq8zuL6naI6wCwSuVKCg=;
- b=ppT6h3G9NuDkcYADi9LW7X3uSGDINXrGpBwPcqsBRDIwXcck7cMScr22OMFoQ4Q7dW
- 8uh86qWSdCnDSh32a04j0feRNOwLlME9xwUQVKfgPlstvStLeefqu2rH6ctjy4IBUOxV
- 0P0njK4P60TKRpkJScyHOWfv1632H2NqB/u65mqvsAgn8LRYGDLgrAGBd7Cg0dA4XFPY
- n/8jtVt529dPhZATwWpD1GFMOYJDyzMVBjkgHGjF4ebsEjG315Nc+bx3U2dCTC6VylmX
- CPnB7mvnD2IcDGboMWFxmbnYxHKPLBWhHPOFppg2uPmIHZWARZSoVFjkzBRZXy+KJFjB
- hzzA==
+ bh=zdkl15yDtUMDjcT3PhPiGxH6HbIfk+17gDQY6gRt9VY=;
+ b=EU8p/LiAuWZTaBXKNZWaKq1vNaSJvDcy39qwV/Z0FHFTDHncV1Zr4ndrOk4JGQHpjX
+ 8+2Fp9pb74ZpblErpBwk2AHVSA0XH1TFcISRE2xKvyJ09GkPlceqdU0EpvbPyjROw/Rp
+ 2mjTY5DKkCICp5o8xAzP61nli8P0TVf4bfqEgZD8rzztWgastc4fusx/sOq1jUdvqMSm
+ u/4ZemsXZ+LiOOOHhyR/mI0lVFDHDfej+AK9qa3aWH0ZWw6BwM+Q0zzdWbfYGenHUgTj
+ mKQnWyDk7GiejXknp18q+wabn/scWwGXt9KqD4tzqHeVAqnAHml0d/6MfFfKMOSTgfl6
+ uvdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:sender:from:to:cc:subject:references:date
  :in-reply-to:message-id:user-agent:mime-version;
- bh=ZZLpdCaY45ZaWdwl3+E5Jd3Cq8zuL6naI6wCwSuVKCg=;
- b=i4YmWBaxrqvPrrPdzVGC230LH6SOikVEmeU8+Srx2kRDA+k4kNE9gkS0ARTPVZhnNv
- 92Ah2DaotrLYNE40Aftf4u+S4ZMbu1xTkRsuzDflGrKEbWgo4NyQmXoMtCvdWVS6UFul
- Qg1bRuA+83NeK68S7RF2btnIAr7vc5unJ6T2UpsTdtjTvgKdB+XJsSHhpljXAs5xwiW7
- ou9TGlc50fL+erG1uaB3e757S8t5EpbL0wb2gGpJp+fRRIn2gRp2BOp789XepBXM/NMI
- y2QtTcosmw6R0XbHckplVOrRmRISzEYjmXk15xhY9qpH4+j8GSXKVh+oqJyEbcPA2Qdo
- 0y9A==
-X-Gm-Message-State: APjAAAUJ/pwmm/trzdo/GUtZCVZhGgPvIHaT0uwa4OnmM7Jn3OoCE0Vn
- R68pLok6HkeDdTKVdirx0QI=
-X-Google-Smtp-Source: APXvYqxamfPfJ9uZ6AGqPNu4zJZ93wicN/YjM8vFds68tQNGSe4lFFbL+0I10So0tU7LuEyBIVAoBA==
-X-Received: by 2002:a50:b35a:: with SMTP id r26mr38872334edd.239.1556551319341; 
- Mon, 29 Apr 2019 08:21:59 -0700 (PDT)
+ bh=zdkl15yDtUMDjcT3PhPiGxH6HbIfk+17gDQY6gRt9VY=;
+ b=In1YzooAVrgqLbJfnZCI2ZFgIFOJ5179lG4DMpHSSqsKGRvhWSbWCSsFcXtVp97INr
+ Ys6DGo49fvVMsM9/h5uPISjfEm1b+Vakx8euUR2lfeEmUrt3VOEgjRIJ3dHzZNjrXSqL
+ 4NEi4D9UNKJJi2lNCosmEncoCl5ypjZPvuMo3kTO6OpVAO+dHV7HtALUw3OCZcetpYts
+ OrY+KPcQW9Vlk1S1c7M8204x1/evQWCY0oFNdsFfiM3gWWgB4qJU3uH0sErD4f8dgwJm
+ w1Q3BDPXpmr/yys0SRYXdeg07s/kfqTzBAn6T8H4a+uNx9nzfBe8nW09ufd56gqNRuqR
+ oyGA==
+X-Gm-Message-State: APjAAAV07ERVh5FqQnc/o3S5bJoa6l54gcmSqZ/wi8xPG3VqtxZ3xGbG
+ IrVVGPwHopPdlvQ+aNF+JM4=
+X-Google-Smtp-Source: APXvYqzd7kklmwd/rJ9mZmXiJZJarahK9hi98VCMk8C4K5NtullM8PfDIBfWq8pF0LtSyR4PuNZQ7Q==
+X-Received: by 2002:a17:906:1f53:: with SMTP id
+ d19mr10119945ejk.12.1556551494836; 
+ Mon, 29 Apr 2019 08:24:54 -0700 (PDT)
 Received: from dell.be.48ers.dk (d51A5BC31.access.telenet.be. [81.165.188.49])
  by smtp.gmail.com with ESMTPSA id
- c8sm2079732ejs.41.2019.04.29.08.21.58
+ y12sm5901269ejo.85.2019.04.29.08.24.53
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 29 Apr 2019 08:21:58 -0700 (PDT)
+ Mon, 29 Apr 2019 08:24:53 -0700 (PDT)
 Received: from peko by dell.be.48ers.dk with local (Exim 4.89)
  (envelope-from <peter@korsgaard.com>)
- id 1hL86P-0000gI-Kz; Mon, 29 Apr 2019 17:21:57 +0200
+ id 1hL89F-0000nB-4t; Mon, 29 Apr 2019 17:24:53 +0200
 From: Peter Korsgaard <peter@korsgaard.com>
 To: "Enrico Weigelt\, metux IT consult" <info@metux.net>
-Subject: Re: [PATCH 15/41] drivers: tty: serial: uartlite: fix use fix bare
- 'unsigned'
+Subject: Re: [PATCH 16/41] drivers: tty: serial: uartlite: fix overlong lines
 References: <1556369542-13247-1-git-send-email-info@metux.net>
- <1556369542-13247-16-git-send-email-info@metux.net>
-Date: Mon, 29 Apr 2019 17:21:57 +0200
-In-Reply-To: <1556369542-13247-16-git-send-email-info@metux.net> (Enrico
- Weigelt's message of "Sat, 27 Apr 2019 14:51:56 +0200")
-Message-ID: <87ef5krg4q.fsf@dell.be.48ers.dk>
+ <1556369542-13247-17-git-send-email-info@metux.net>
+Date: Mon, 29 Apr 2019 17:24:53 +0200
+In-Reply-To: <1556369542-13247-17-git-send-email-info@metux.net> (Enrico
+ Weigelt's message of "Sat, 27 Apr 2019 14:51:57 +0200")
+Message-ID: <87a7g8rfzu.fsf@dell.be.48ers.dk>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190429_082201_201655_4A4159E6 
-X-CRM114-Status: UNSURE (   7.98  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190429_082456_740527_20182168 
+X-CRM114-Status: GOOD (  14.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -117,17 +116,54 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 >>>>> "Enrico" == Enrico Weigelt, metux IT consult <info@metux.net> writes:
 
  > Fix checkpatch warnings:
- >     WARNING: Prefer 'unsigned int' to bare use of 'unsigned'
- >     #562: FILE: drivers/tty/serial/uartlite.c:562:
- >     +	unsigned retries = 1000000;
+ >     WARNING: line over 80 characters
+ >     #283: FILE: drivers/tty/serial/uartlite.c:283:
+ >     +	ret = request_irq(port->irq, ulite_isr, IRQF_SHARED | IRQF_TRIGGER_RISING,
 
- >     WARNING: Prefer 'unsigned int' to bare use of 'unsigned'
- >     #574: FILE: drivers/tty/serial/uartlite.c:574:
- >     +				 const char *s, unsigned n)
+ >     WARNING: Missing a blank line after declarations
+ >     #577: FILE: drivers/tty/serial/uartlite.c:577:
+ >     +	struct earlycon_device *device = console->data;
+ >     +	uart_console_write(&device->port, s, n, early_uartlite_putc);
 
-s/fix use fix/fix use of/ in Subject. Other than that:
+ >     WARNING: line over 80 characters
+ >     #590: FILE: drivers/tty/serial/uartlite.c:590:
+ >     +OF_EARLYCON_DECLARE(uartlite_b, "xlnx,opb-uartlite-1.00.b", early_uartlite_setup);
 
-Acked-by: Peter Korsgaard <peter@korsgaard.com>
+ >     WARNING: line over 80 characters
+ >     #591: FILE: drivers/tty/serial/uartlite.c:591:
+ >     +OF_EARLYCON_DECLARE(uartlite_a, "xlnx,xps-uartlite-1.00.a", early_uartlite_setup);
+
+Given that these are just a few characters more than 80 I don't really
+think these changes improve readability.
+
+
+ > Signed-off-by: Enrico Weigelt <info@metux.net>
+ > ---
+ >  drivers/tty/serial/uartlite.c | 10 +++++++---
+ >  1 file changed, 7 insertions(+), 3 deletions(-)
+
+ > diff --git a/drivers/tty/serial/uartlite.c b/drivers/tty/serial/uartlite.c
+ > index 6f79353..0140cec 100644
+ > --- a/drivers/tty/serial/uartlite.c
+ > +++ b/drivers/tty/serial/uartlite.c
+ > @@ -280,7 +280,8 @@ static int ulite_startup(struct uart_port *port)
+ >  		return ret;
+ >  	}
+ 
+ > -	ret = request_irq(port->irq, ulite_isr, IRQF_SHARED | IRQF_TRIGGER_RISING,
+ > +	ret = request_irq(port->irq, ulite_isr,
+ > +			  IRQF_SHARED | IRQF_TRIGGER_RISING,
+ >  			  "uartlite", port);
+ >  	if (ret)
+ >  		return ret;
+ > @@ -574,6 +575,7 @@ static void early_uartlite_write(struct console *console,
+ >  				 const char *s, unsigned int n)
+ >  {
+ >  	struct earlycon_device *device = console->data;
+ > +
+ >  	uart_console_write(&device->port, s, n, early_uartlite_putc);
+
+Unrelated change?
 
 -- 
 Bye, Peter Korsgaard
