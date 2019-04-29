@@ -6,17 +6,17 @@ X-Spam-Status: No, score=-4.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
 	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CE0C7C004C9
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 15:20:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 30197C43219
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 15:21:03 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9B3EE214AF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 15:20:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 015E82063F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Apr 2019 15:21:03 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eSdg5B2s";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BBvSV/Sr"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9B3EE214AF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="D4+BwWDt";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NMtm7loE"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 015E82063F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=korsgaard.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,71 +25,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:In-Reply-To:
 	Date:References:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yuG5kVIdBP2g8wZt0i/ktemPZYqw1N8UgyTDtHlzgn8=; b=eSdg5B2sbMh0mL
-	D0H9ZOJOrt46bEUSXtri8Y45mjWdA8KTF/t5iGsFE02z/fc6cAUTdLH5SG784LUrX515nzvmext7q
-	RQFJEiqF9OY2dEAPQ19P4fT1cJ2/IfLzljcC9cSz/+iSeCAA8cPMBHtQM/Wg/Q0PgzuPnp6x4oFRC
-	wyVDvQLrP5wXY2/X99x2LuI4s3jGCaYrZPGBxqtUnanLJCL80GfK0YAcb089ZGHQNclvkwBxkApDS
-	jrQSTz/C0Ko4Lq1yV1n7h87OY/xUiYGDLfMB8u3BTGE1fFMgX2g2uDQIE+NXE6TFY0DlnhL14eAHK
-	NNqtcKPEvBuTwkDyNO9w==;
+	List-Owner; bh=iw9Qku0Juw0eIynFVccOScbXZepic3tm2q9uao8GnSU=; b=D4+BwWDt5k4HtE
+	McHOcBwCWBVMz7j7Vm0AV6yKWkGuVh4pIjJbsHy51fxjaXEFuIrjjsNLNXFDiZy7pQG075XiRzaqn
+	KI2nn5Qp6WWEDJX4A3AYeNVd/H9wnIUWhT9lR/ZZgBGWQAKYG5+gwUVf7Kcc8CpnO6eB91I53Hg46
+	7E5StYnuNWmssHbLyvEJUSaWOGhLJLfOviQLobsKE9/ql5WzWAuHHgxero+q6w0lq2MjCu6Z7fu1u
+	eeQOlWZfvBqMJ1MAxiYkKc1LUiH0clfl8cELiQF3AJ/kYUECI0S3pkYSVMS/5iNpO/yC3e/fLcVIU
+	hdnCs0CkSF+EXuPmY2vA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hL84e-0004MR-VN; Mon, 29 Apr 2019 15:20:08 +0000
-Received: from mail-ed1-x544.google.com ([2a00:1450:4864:20::544])
+	id 1hL85T-0004T6-4f; Mon, 29 Apr 2019 15:20:59 +0000
+Received: from mail-ed1-x543.google.com ([2a00:1450:4864:20::543])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hL84b-00035L-23
- for linux-amlogic@lists.infradead.org; Mon, 29 Apr 2019 15:20:07 +0000
-Received: by mail-ed1-x544.google.com with SMTP id a8so7423229edx.3
- for <linux-amlogic@lists.infradead.org>; Mon, 29 Apr 2019 08:20:00 -0700 (PDT)
+ id 1hL85R-0004Sh-0D
+ for linux-amlogic@lists.infradead.org; Mon, 29 Apr 2019 15:20:58 +0000
+Received: by mail-ed1-x543.google.com with SMTP id l25so9466350eda.9
+ for <linux-amlogic@lists.infradead.org>; Mon, 29 Apr 2019 08:20:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=sender:from:to:cc:subject:references:date:in-reply-to:message-id
  :user-agent:mime-version;
- bh=dPnq76BudBLUCskM0DaeuuctlwoGzT39qQr2q1xJdTg=;
- b=BBvSV/SrDNJ31+/UOkSM5bpG5QGX9iuVEAlHSpvrDOGj+4PW80QrSA2NQvvNYxzojp
- Zd++WkJIJdsJI48+0P5HrqTBvNXDC1r245KbMoADl3uY5vH+mVrnUi6+8qjpF2ydE+tq
- TwF1hj4480FhhbTHgn4M/QznEs6p0sHaHA9yrWx15VQqD4rerfkEYjhIuk1lUIvL8NJx
- M8wE73xeYfkcTLVAM5oCB5RVNjauTgvl4PjUAhsoMUZ5oTPhnvZ5wvz6bSMifDGNwT/e
- KSK9tYNcpfIF8GPBuVeJpf2B9oLlA2ItKshISp7tatkcaGkzhTIiD3dveMl7nJ6B+iIV
- zmmg==
+ bh=mcdMJtYTzbrFusKEz05dVZkKSln24Oc8rmFJOLHlFyc=;
+ b=NMtm7loEpc1LtkiaskUlbbeKkI7Yur5IYVgFyYL/NUTYqRo00L+1M56sDV1wd61Eic
+ 074Hciwdzeq59lUY+emKFAFZuwf6s0YdW71qd918YF2wGclyc0PYWeqExnpOiAhdtCU+
+ CugXqkaoE30DMKVWaPIwatHrP4MHEtOIK+xDDsmltZh5gMFXbPuH28VGT0LKdDVx7Kci
+ NM9fmLAlxt3fKfmamYW2yxGr9RbaioIm25eCrQYGbaQLBSlnmiE5E79RZy2SAIQzJ09y
+ /8xviY57bx916zBUV5eOMAwXesFB85WVdwsbKrEe802pzwew/ZbsAd943pi/DNCJaLOo
+ Cx8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:sender:from:to:cc:subject:references:date
  :in-reply-to:message-id:user-agent:mime-version;
- bh=dPnq76BudBLUCskM0DaeuuctlwoGzT39qQr2q1xJdTg=;
- b=QK8zdCDUfE0v1HbCdQrB6C6VmFgdFrR5slztLfrWGYNylIrC3SfSj8sspSw4RsCvb4
- BoJHOzQYXCk/tAww1VKSzLeIrj+r6E/8QgL1T/9iSRrswKLuWTEmI2gd/5ezWEd5NUF4
- Hr9+lzpqI+KlroyMyQuNORdZboIVv6/s4LrwwNxesYYTfSx0aNYtWvFTs6kV/ctSZUdx
- SHIRK4jJK00jX1dX8m+/HL40AVK2pttoqfA/y+0XRRpd5+Gk8cvfZlvr6gCSCEgaN3Vp
- x/0Msqb9lDBPmZ9N7mEqnPU6y+2W9r+uSvq2TSP7RbeCJpXTCKSMetpwjhokTHhSYKQu
- D1pg==
-X-Gm-Message-State: APjAAAUvQFlHnFYmslKEWFxpd5ZevlDsPCsRqru7mhkuRBD/mL2b/0Co
- k9AVemFDYXaM2VY0tUp0pAM=
-X-Google-Smtp-Source: APXvYqwQbi0omP7jYdcby2odHruq4pxaQ7sP2Qij52VODZOog6lth6WIRzjEKd0jUTWzRbOuB+nVlQ==
-X-Received: by 2002:a17:906:2482:: with SMTP id
- e2mr12684688ejb.289.1556551199464; 
- Mon, 29 Apr 2019 08:19:59 -0700 (PDT)
+ bh=mcdMJtYTzbrFusKEz05dVZkKSln24Oc8rmFJOLHlFyc=;
+ b=sFMpog6X6iHSZA0EA477lKiyvwx+Ci3nak24rrxnS8nEJSRDSQ5Mhn921ygbK8Avcs
+ UFby1ox0VdkFyNKt8lLEXH/LVvFiD24SgP4f6KUMT+67SfShKcRJ2YFHngsDU1FUEphR
+ ndLv4aDG/RQdvBmOMiSQSNYytDwlGdZSna8t+AoFbus+FW9akdrAdZ6VuDRfNdPtiLUb
+ Bim4ljW/G6fW8eZH++lfG9SYW3uxDgDvMRiPy5Ze+I4xCxjbKu90ehUDt4n2qZ+XMVat
+ QEOhTXNb2ClLRIA89xch3nO0syZgdSP+9lTyh41cHtjq/riTtzTxWzWpcYjUGHhigh1x
+ b9LA==
+X-Gm-Message-State: APjAAAUt8cxN+tqi7OuqIYtXPpHcRkoeSjSaKqaHE+u0LHrEWeR9Uf87
+ 4UbgWvVofgJ4EynM+T7gE3A=
+X-Google-Smtp-Source: APXvYqweysPzcxqvyw2tG1BMJOB/LdC5EufVXTrbhZSqeXGXptVb/Oa4KlfV9hkDZfTJPecfQ5Owcg==
+X-Received: by 2002:a17:906:e119:: with SMTP id
+ gj25mr7661484ejb.7.1556551255068; 
+ Mon, 29 Apr 2019 08:20:55 -0700 (PDT)
 Received: from dell.be.48ers.dk (d51A5BC31.access.telenet.be. [81.165.188.49])
  by smtp.gmail.com with ESMTPSA id
- p18sm5851269ejm.4.2019.04.29.08.19.58
+ o9sm5761786edh.95.2019.04.29.08.20.54
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 29 Apr 2019 08:19:58 -0700 (PDT)
+ Mon, 29 Apr 2019 08:20:54 -0700 (PDT)
 Received: from peko by dell.be.48ers.dk with local (Exim 4.89)
  (envelope-from <peter@korsgaard.com>)
- id 1hL84T-0000dV-Kj; Mon, 29 Apr 2019 17:19:57 +0200
+ id 1hL85N-0000ep-Qh; Mon, 29 Apr 2019 17:20:53 +0200
 From: Peter Korsgaard <peter@korsgaard.com>
 To: "Enrico Weigelt\, metux IT consult" <info@metux.net>
-Subject: Re: [PATCH 13/41] drivers: tty: serial: uartlite: fill mapsize and
- use it
+Subject: Re: [PATCH 14/41] drivers: tty: serial: uartlite: remove unnecessary
+ braces
 References: <1556369542-13247-1-git-send-email-info@metux.net>
- <1556369542-13247-14-git-send-email-info@metux.net>
-Date: Mon, 29 Apr 2019 17:19:57 +0200
-In-Reply-To: <1556369542-13247-14-git-send-email-info@metux.net> (Enrico
- Weigelt's message of "Sat, 27 Apr 2019 14:51:54 +0200")
-Message-ID: <87muk8rg82.fsf@dell.be.48ers.dk>
+ <1556369542-13247-15-git-send-email-info@metux.net>
+Date: Mon, 29 Apr 2019 17:20:53 +0200
+In-Reply-To: <1556369542-13247-15-git-send-email-info@metux.net> (Enrico
+ Weigelt's message of "Sat, 27 Apr 2019 14:51:55 +0200")
+Message-ID: <87imuwrg6i.fsf@dell.be.48ers.dk>
 User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190429_082005_192237_0775C306 
-X-CRM114-Status: GOOD (  10.12  )
+X-CRM114-CacheID: sfid-20190429_082057_041846_8530A9B3 
+X-CRM114-Status: UNSURE (   8.95  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -116,16 +117,13 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 >>>>> "Enrico" == Enrico Weigelt, metux IT consult <info@metux.net> writes:
 
- > Fill the struct uart_port->mapsize field and use it, insteaf of
-
-s/insteaf/instead/
-
- > hardcoded values in many places. This makes the code layout a bit
- > more consistent and easily allows using generic helpers for the
- > io memory handling.
-
- > Candidates for such helpers could be eg. the request+ioremap and
- > iounmap+release combinations.
+ > checkpatch complains:
+ >     WARNING: braces {} are not necessary for any arm of this statement
+ >     #489: FILE: drivers/tty/serial/uartlite.c:489:
+ >     +	if (oops_in_progress) {
+ >     [...]
+ >     +	} else
+ >     [...]
 
  > Signed-off-by: Enrico Weigelt <info@metux.net>
 
