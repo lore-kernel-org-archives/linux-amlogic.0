@@ -2,61 +2,78 @@ Return-Path: <SRS0=yipG=TB=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_PASS,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-5.6 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,USER_AGENT_MUTT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C1AA3C04AA6
-	for <linux-amlogic@archiver.kernel.org>; Wed,  1 May 2019 02:29:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DD242C43219
+	for <linux-amlogic@archiver.kernel.org>; Wed,  1 May 2019 20:01:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 900122087B
-	for <linux-amlogic@archiver.kernel.org>; Wed,  1 May 2019 02:29:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id AC29920651
+	for <linux-amlogic@archiver.kernel.org>; Wed,  1 May 2019 20:01:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rLQlxkwG"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 900122087B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=linux-mips.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Az/BWWOu"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AC29920651
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:Message-ID:
-	In-Reply-To:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LNTmZ8n0cC5qFIEn5DHR+NeHeGpleC+vZjJAOz39piY=; b=rLQlxkwGIrWk+9
-	DthXzmywEqil4nbs4hHGeBYqJhk34xSd4bjP+wrbTcyVoVMGAZpoS4kU1WrqC+8aHG1xJd8UhyKQ8
-	l1O/2q/3F1mee5bZaqm6YTnFPeCB5zMbwrCGLEX6UJ3zlr+IWx4F84LUcKxzGLUseGIBtgkJNzzPG
-	URQ8ewUoI3kwAIEtlX6QS3mWt5dN472usSbyZQfIecF316VFGcLBlx4AACuirvWr8ZupaRB1SpMYO
-	bEcstcIcskDG/a2y5rOnZmVeKjOPxTakTP2x6V3dUHA/t44Jonu46/rhCuPlM35uTWDpMUjq0rUFg
-	Q6QsPYWEuW2a0qFgVmdA==;
+	List-Owner; bh=/ensuqb1e5/CRX2IsVSmMzMYbnF2ey63KMvofmUPep4=; b=Az/BWWOusjQgEt
+	LZN1O0YKdIKq92kjohFEdlfsWpfnMb0McR0Ka2wfWclA1Xovto9lnalwSvro6T9Ak8ZfEwkk3rKvC
+	E2z18VSm79rXuMXpwCDY10scyigcJWbL6B+k6sK0qXroLel9CayK8w6Ts2uToIYRs90X2ggl44wB1
+	t3OGqZ2T/uDCbxFGjbe73sN347lrGpqIPHNYtyL83IUQsbxiqggCb+cMPL6J4HD7G5mj+xT7aEOi5
+	fvmv0uUAbjx2AvEdxTRmDZ5qOgt+IanFEM+1RzoersUhDPYyvUNSIGpn31D7jBXYNM9cVns3WS1t8
+	5RQ3XJMXBInqFOJqUidQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hLf0A-0001lE-As; Wed, 01 May 2019 02:29:42 +0000
-Received: from eddie.linux-mips.org ([148.251.95.138] helo=cvs.linux-mips.org)
- by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hLf08-0001kw-3B
- for linux-amlogic@lists.infradead.org; Wed, 01 May 2019 02:29:41 +0000
-Received: (from localhost user: 'macro', uid#1010) by eddie.linux-mips.org
- with ESMTP id S23990394AbfEAC3gOuPKs (ORCPT
- <rfc822;linux-amlogic@lists.infradead.org>);
- Wed, 1 May 2019 04:29:36 +0200
-Date: Wed, 1 May 2019 03:29:36 +0100 (BST)
-From: "Maciej W. Rozycki" <macro@linux-mips.org>
-To: "Enrico Weigelt, metux IT consult" <info@metux.net>
-Subject: Re: [PATCH 06/41] drivers: tty: serial: sb1250-duart: use dev_err()
- instead of printk()
-In-Reply-To: <1556369542-13247-7-git-send-email-info@metux.net>
-Message-ID: <alpine.LFD.2.21.1905010257020.30973@eddie.linux-mips.org>
-References: <1556369542-13247-1-git-send-email-info@metux.net>
- <1556369542-13247-7-git-send-email-info@metux.net>
-User-Agent: Alpine 2.21 (LFD 202 2017-01-01)
+	id 1hLvPk-0000x6-I3; Wed, 01 May 2019 20:01:12 +0000
+Received: from mail-ot1-f68.google.com ([209.85.210.68])
+ by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1hLvPi-0000wG-5k; Wed, 01 May 2019 20:01:11 +0000
+Received: by mail-ot1-f68.google.com with SMTP id g24so80192otq.2;
+ Wed, 01 May 2019 13:01:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=HxbNQi9DeZ2IJLgdIUVTw8HAwd2FcPK6Vz/jlq7BRoc=;
+ b=ku3GkRIjbmUNjSg1owf9ZOqxFDWaPqHubDpxO1f89VuCkIboJwM87C8JQcluCuTeUs
+ W9qIjd7u4BU7TfAxJRC0JuugDmAnTI4QDC8rA/JL9uQQpEV8InC0GSl4DaWifepE94uz
+ j/IEJ62PUpCKax8riANWRnB8CFU8/3KMLmOIkI4TAWcqPXi0s0JoU7xzoPk3EfeDQuFv
+ OZIqLVqSpSzoW9z4tJRcxa0WpeKwrml5UCfcnO79cPjf6t8SbG1+pxw+QzJqNE5emV2x
+ yRtLZDZ7qy91UfFcdDio4mNLyNzVq6iDAYv5kubhELLS9WxUQ769uKYimptjV2dEk2n7
+ uXaw==
+X-Gm-Message-State: APjAAAXjQ5veusUdky3vQaZZsmYdnjTGPISDzXW5CzqKCideeFVlLmqc
+ Y5OOoZm58c8pbXUgM2MggA==
+X-Google-Smtp-Source: APXvYqzcF2UnIXneOHc3vVzJEv6m01JtjNnKY2BTBLXgguBiPwEBqQ+LDGuHzLgGqqLZG3bvV/MztA==
+X-Received: by 2002:a9d:2066:: with SMTP id n93mr14060248ota.193.1556740866212; 
+ Wed, 01 May 2019 13:01:06 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net.
+ [24.155.109.49])
+ by smtp.gmail.com with ESMTPSA id r4sm16901646oia.2.2019.05.01.13.01.04
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Wed, 01 May 2019 13:01:04 -0700 (PDT)
+Date: Wed, 1 May 2019 15:01:04 -0500
+From: Rob Herring <robh@kernel.org>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: pwm: Update bindings for the Meson
+ G12A Family
+Message-ID: <20190501200104.GA29281@bogus>
+References: <20190423133646.5705-1-narmstrong@baylibre.com>
+ <20190423133646.5705-2-narmstrong@baylibre.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20190423133646.5705-2-narmstrong@baylibre.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190430_192940_137485_92AFC105 
-X-CRM114-Status: UNSURE (   8.97  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190501_130110_216284_17AA2EC5 
+X-CRM114-Status: GOOD (  10.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -68,57 +85,27 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-ia64@vger.kernel.org, lorenzo.pieralisi@arm.com,
- linux-mips@vger.kernel.org, andrew@aj.id.au,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, sudeep.holla@arm.com,
- liviu.dudau@arm.com, linux-kernel@vger.kernel.org, vz@mleia.com,
- linux@prisktech.co.nz, sparclinux@vger.kernel.org, khilman@baylibre.com,
- linux-serial@vger.kernel.org, slemieux.tyco@gmail.com, matthias.bgg@gmail.com,
- jacmet@sunsite.dk, linux-amlogic@lists.infradead.org,
- andriy.shevchenko@linux.intel.com, linuxppc-dev@lists.ozlabs.org,
- "David S. Miller" <davem@davemloft.net>
+Cc: devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+ baylibre-upstreaming@groups.io, Neil Armstrong <narmstrong@baylibre.com>,
+ linux-kernel@vger.kernel.org, thierry.reding@gmail.com,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sat, 27 Apr 2019, Enrico Weigelt, metux IT consult wrote:
+On Tue, 23 Apr 2019 15:36:44 +0200, Neil Armstrong wrote:
+> Update the doc to explicitly support Meson G12A Family.
+> The 2 first (A & B) AO PWM uses different clock source than the last 2
+> (C & D) AO PWM modules, thus we need to differentiate them.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/pwm/pwm-meson.txt | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
 
-> diff --git a/drivers/tty/serial/sb1250-duart.c b/drivers/tty/serial/sb1250-duart.c
-> index 329aced..655961c 100644
-> --- a/drivers/tty/serial/sb1250-duart.c
-> +++ b/drivers/tty/serial/sb1250-duart.c
-> @@ -663,7 +663,6 @@ static void sbd_release_port(struct uart_port *uport)
->  
->  static int sbd_map_port(struct uart_port *uport)
->  {
-> -	const char *err = KERN_ERR "sbd: Cannot map MMIO\n";
->  	struct sbd_port *sport = to_sport(uport);
->  	struct sbd_duart *duart = sport->duart;
->  
-> @@ -671,7 +670,7 @@ static int sbd_map_port(struct uart_port *uport)
->  		uport->membase = ioremap_nocache(uport->mapbase,
->  						 DUART_CHANREG_SPACING);
->  	if (!uport->membase) {
-> -		printk(err);
-> +		dev_err(uport->dev, "Cannot map MMIO (base)\n");
->  		return -ENOMEM;
->  	}
->  
-> @@ -679,7 +678,7 @@ static int sbd_map_port(struct uart_port *uport)
->  		sport->memctrl = ioremap_nocache(duart->mapctrl,
->  						 DUART_CHANREG_SPACING);
->  	if (!sport->memctrl) {
-> -		printk(err);
-> +		dev_err(uport->dev, "Cannot map MMIO (ctrl)\n");
->  		iounmap(uport->membase);
->  		uport->membase = NULL;
->  		return -ENOMEM;
-
- Hmm, what's the point to have separate messages, which consume extra 
-memory, for a hardly if at all possible error condition?
-
-  Maciej
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
