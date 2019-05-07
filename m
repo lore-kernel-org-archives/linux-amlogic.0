@@ -1,89 +1,85 @@
-Return-Path: <SRS0=LXOD=TG=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=hY+l=TH=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+X-Spam-Status: No, score=-2.9 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,T_DKIMWL_WL_HIGH,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+	URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F2776C04A6B
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 May 2019 23:44:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9732CC004C9
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 May 2019 11:57:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C2A5E20835
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 May 2019 23:44:19 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 64EA5206BF
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 May 2019 11:57:42 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LBhfXpFc";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="z/yx1XwW"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C2A5E20835
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mLuU0/ke";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="x8IfvxSV"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 64EA5206BF
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=J7R6YTGoFr9eLDlRMwq5ecn0t7tyyeejzj4I5i37bT0=; b=LBhfXpFck9XNTP
-	H+eJY98lzKjMgPiaC5LkUd9zJwscxUdNNFeey/bTAkPsGDogLChHUmYDXIbC79ZHo7Vqb/VXKuzPw
-	ERLUi/QjUxtIge/RiURjlm6NjrJHkAj8x/qfiF0hOrK5y77KmgfC8ZZlgHsRE6hMiZJsGyImrcv+6
-	wxrKHp/Bs9aa07NRMrMvglVug73J4zy1VdtWzfgXyplkKsfYDQItDzGgx6OG3w6oyg2UD86ABOH0z
-	IQ9qG1U6a/rY8k8hsh7TqZ+kmKpM/PidtorzNDoqGhRAfgwzoqTjrFXTbMKDBhG7gLtWTaIHElGRC
-	+nNUcPI8J63Y4CjomhwA==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=4atHMYWCsGk0tr91j6nkiJagcD1J0GPmNNGJkcI6rQI=; b=mLu
+	U0/keQLKmZxUVgolBaOIV5qJQXWmSRxsjgVLfqk5rGa3sHfqLvPKe8dHoIjxUKs1hqv2I8K81OI9F
+	oF8yFLDuS0bHyt4MAPkV5QSQvrZ38rkA4Kd35JtXLqZhZmRK3rO1XQHx/2AAbedN4V7G02A0V2kHm
+	MPcIu+CTz7D8F2nrKHXMJKD1dBBy3zKIuX3+SNeF3irKqYIOyNGnxjg1nwXIQaU/u19wW30CuGTxI
+	+Qw6IyU1633PgVCBWOot/kCGZQdDrCL2EcQZcWO2ogka3NPWLxBWwUWpYeMqcYRadGoMap+o0xUcW
+	SYB5OeBDdAyxGmeeBsua6YknJKj2Mug==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hNnHH-0003SD-M4; Mon, 06 May 2019 23:44:11 +0000
-Received: from mail-pl1-x644.google.com ([2607:f8b0:4864:20::644])
+	id 1hNyiz-0002fg-GF; Tue, 07 May 2019 11:57:33 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hNnHA-0003MT-0O
- for linux-amlogic@lists.infradead.org; Mon, 06 May 2019 23:44:06 +0000
-Received: by mail-pl1-x644.google.com with SMTP id cb4so3229121plb.3
- for <linux-amlogic@lists.infradead.org>; Mon, 06 May 2019 16:44:00 -0700 (PDT)
+ id 1hNyiv-0002dm-Q6
+ for linux-amlogic@lists.infradead.org; Tue, 07 May 2019 11:57:32 +0000
+Received: by mail-wm1-x342.google.com with SMTP id o189so9168757wmb.1
+ for <linux-amlogic@lists.infradead.org>; Tue, 07 May 2019 04:57:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=lf5H4shj95cMGbwI5GeOOvJ41LL247SrQDRLfwxX94k=;
- b=z/yx1XwWFksdPj8nGuPJRGqifxeYvbRRuHNzzITSEsyMPKaCPf2neKw46ja9IqbVhJ
- NQ3XmgAp3P68euubnKEOgGd7P0LokFRIf79dma2U5NJ5NXHNmQifsX1i2yzZ9RE8HHPY
- H0vBzUTa7wtX+Pa3aph0WMfsN8QkQbeBU05s1BcH99yT5R5T1c1P928FwFuiELh8FPHl
- cvYNBVtrjH6mGMVqJm1qC1sA9EYw6E9S7BHlH2jmrdaxUaRCVOKpeNHdzeaxCsg5K9y7
- URVA88/ttt7i2Ejb+nQaO/It5FtZDTinOzHtoRJ6lmpahs5QAQ44h2jxC0WuU2Kn1nbY
- kbmA==
+ h=from:to:cc:subject:date:message-id;
+ bh=OPHdfYWKRwJAQs5uJB7kF0RzPQn+beeGrm95NylS/7s=;
+ b=x8IfvxSV8xEyOX6DuO+iRYAmA4ddSLYPKfR6dboTkoILy/QRKBArxlBAqvMLlcmJL1
+ /5D8PHaON0JpgYnLnNZnWq9uxuReXFmxTfcDj+3heSe1vSpK7rUgSOtcnqBuDb40cG8W
+ DONlXDGPv3EnkrEbbGS0r8GTGdxvqbI5Rs5XAAjZoOIa8sj36Xmvbvpd8hGuEXmkVlXA
+ kKUSswjcq87zaGBGK5mK3W9Cz9wP0qjY1Nc7vL857HnFB5qcKLNbMeNDbSo3uv05fbno
+ KB5O8EZSr1mMGwCqRxSoVtld61l4K+vCXFWZyiYf8EauwQ4Qq5xWoxE1LSw2ed6XxKGE
+ UPVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=lf5H4shj95cMGbwI5GeOOvJ41LL247SrQDRLfwxX94k=;
- b=Mbv5OnMqvhkJotKQ3uIn2sukOaB0oyjjRv6qPYCah023HKlu2djyMFbnkhZi2dIHju
- dGZqVYJQSOuQJ3WaE6y/z3xQ6RbxnOs/3aQjqMvyNwKTtI8QjnrGG+aDAlgAI4utG8Ao
- TWFJkhHYY4SV4j+fP5bCNr2PfFeBZjMRfaIC+7N8jOV20O8QwSTo+EJOva7BCHA9EHfs
- vrRzyp8mUwoVcrVtl1+EqSakaRofJUmoT/dRmxj+4+W5trByq8rsHzx4h3hhwP0sb4bc
- z07ev3Q2bMxXnoABOnGZ1ubpGufPSsYwvgN2zoU2XFPyDEs1CZrfi/mKMz3+Tl1815m6
- wA9w==
-X-Gm-Message-State: APjAAAUefoAzhA7fAXMma8YI4nXLR24eqwo7WV8nIpaYjak9Z+zREBsx
- /6Sc4+PMaLvhNQVlR9nbUBJAbr+r6UxQvQ==
-X-Google-Smtp-Source: APXvYqyzqVtSCvpVcNGboItbSbGRFBLEFuZnBKsL/llWeGZMPyX01mLCmCdAamq9cDUznsqt/wEbKQ==
-X-Received: by 2002:a17:902:e512:: with SMTP id
- ck18mr35142629plb.251.1557186239423; 
- Mon, 06 May 2019 16:43:59 -0700 (PDT)
-Received: from localhost ([2601:602:9200:a1a5:a864:57af:5348:a6ea])
- by smtp.googlemail.com with ESMTPSA id 132sm15433855pfw.87.2019.05.06.16.43.58
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 06 May 2019 16:43:58 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 0/2] ARM: dts: meson: two GPU fixes
-In-Reply-To: <20190420093258.2012-1-martin.blumenstingl@googlemail.com>
-References: <20190420093258.2012-1-martin.blumenstingl@googlemail.com>
-Date: Mon, 06 May 2019 16:43:57 -0700
-Message-ID: <7h7eb3kv2a.fsf@baylibre.com>
-MIME-Version: 1.0
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=OPHdfYWKRwJAQs5uJB7kF0RzPQn+beeGrm95NylS/7s=;
+ b=OVFAw3skDiteuEgrw2wsXrzfWvIpiy7sbguIQyGy3DPPXZGdgjW+oEehUPRDG5YJ5D
+ 0BGLlp2X8fXIHgwImcHuBaNq2DydRE0ni8FJoRM2NoI1qgE15DJPYF3M3p4d4rj9gBD3
+ QzJTLw0dLErbKDoITTolAd5LpsEdXBlxiE+9kIAPTcSAcEtXqdYnVrCC1KmF2aQuxU8C
+ EraS3i2B4/2z7Q8Ax4yKdjUPFV12fFhRrslSuSC1zOY/zVnrhpCR42A1/WU5g4Z/Wjkc
+ /hDHyJl9WUmlRBm/ws6LsjeEu2WSAwAUYshsMkU4ic1dz4E+rR9KCsg0o4nLvaJYmASH
+ rC4w==
+X-Gm-Message-State: APjAAAWr2PFo+tQS47J2X3scWB9Tq79Utz85bL7TwLTi6Ieuj2c74EyI
+ vQmP+TbEM6Mk4w9KGI2Gqw7oag==
+X-Google-Smtp-Source: APXvYqxq1oFwTc8aEPHZEL8JAQfGOWvAnNWHmRNXvEeDBiKqtaWlXMyzKk+kWPFbz7vEnwL3O1Lq0w==
+X-Received: by 2002:a1c:1903:: with SMTP id 3mr20479100wmz.103.1557230248087; 
+ Tue, 07 May 2019 04:57:28 -0700 (PDT)
+Received: from glaroque-ThinkPad-T480.local
+ (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id s11sm7120274wrb.71.2019.05.07.04.57.26
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 07 May 2019 04:57:27 -0700 (PDT)
+From: Guillaume La Roque <glaroque@baylibre.com>
+To: linus.walleij@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
+ khilman@baylibre.com
+Subject: [PATCH v3 0/6]  Add drive-strength in Meson pinctrl driver
+Date: Tue,  7 May 2019 13:57:20 +0200
+Message-Id: <20190507115726.23714-1-glaroque@baylibre.com>
+X-Mailer: git-send-email 2.17.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190506_164404_097595_3B04DB12 
-X-CRM114-Status: UNSURE (   9.88  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190507_045729_985963_4CA77F3A 
+X-CRM114-Status: GOOD (  10.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -95,38 +91,58 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: linux-gpio@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+The purpose of this patchset is to add drive-strength support in meson pinconf
+driver. This is a new feature that was added on the g12a. It is critical for us
+to support this since many functions are failing with default pad drive-strength.
 
-> While switching over to the main mesa git repository I was testing
-> kmscube again. On my Meson8m2 board I noticed that two interrupts were
-> correctly set up. This didn't cause any errors so far because on my
-> setup the lima driver is using the "pp_bcast" interrupt instead of
-> ppX and ppmmuX.
->
-> While fixing the interrupt lines I also noticed that I accidentally
-> left the switch-delay property in there. That was needed at some
-> point to run the out-of-tree lima kernel driver. It's not required
-> anymore and it's not documented so drop it.
->
-> Target release: v5.2 (if possible because this is where the lima kernel
-> driver will land). No need to send it for v5.1-rcX because there lima
-> driver won't be part of v5.1.
+The value achievable by the SoC are 0.5mA, 2.5mA, 3mA and 4mA and the DT property
+'drive-strength' is expressed in mA.
+So this patch add another generic property "drive-strength-uA". The change to do so
+would be minimal and could be benefit to other platforms later on.
 
-Queued as fixes for v5.2.  I'll submit when v5.2-rc1 comes out.
+Cheers
+Guillaume
 
-For now, they're in my tree (branch: v5.2/fixes) and included in my
-for-next branch for some broader testing.
+Changes since v2:
+- update driver-strength-uA property to be compliant with DT documentation
+- rework patch series for better understanding
+- rework set_bias function
 
-Thanks,
+Changes since v1:
+- fix missing break
+- implement new pinctrl generic property "drive-strength-uA"
 
-Kevin
+[1] https://lkml.kernel.org/r/20190314163725.7918-1-jbrunet@baylibre.com
+
+
+Guillaume La Roque (6):
+  dt-bindings: pinctrl: add a 'drive-strength-microamp' property
+  pinctrl: generic: add new 'drive-strength-microamp' property support
+  dt-bindings: pinctrl: meson: Add drive-strength-microamp property
+  pinctrl: meson: Rework enable/disable bias part
+  pinctrl: meson: add support of drive-strength-microamp
+  pinctrl: meson: g12a: add DS bank value
+
+ .../bindings/pinctrl/meson,pinctrl.txt        |   4 +
+ .../bindings/pinctrl/pinctrl-bindings.txt     |   3 +
+ drivers/pinctrl/meson/pinctrl-meson-g12a.c    |  36 ++--
+ drivers/pinctrl/meson/pinctrl-meson.c         | 177 +++++++++++++++---
+ drivers/pinctrl/meson/pinctrl-meson.h         |  18 +-
+ drivers/pinctrl/pinconf-generic.c             |   2 +
+ include/linux/pinctrl/pinconf-generic.h       |   3 +
+ 7 files changed, 195 insertions(+), 48 deletions(-)
+
+-- 
+2.17.1
+
 
 _______________________________________________
 linux-amlogic mailing list
