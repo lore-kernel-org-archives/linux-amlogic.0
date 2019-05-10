@@ -2,89 +2,90 @@ Return-Path: <SRS0=BjI6=TK=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.9 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B1168C04A6B
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 May 2019 08:52:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A0729C04A6B
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 May 2019 15:53:44 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 82CB0216C4
-	for <linux-amlogic@archiver.kernel.org>; Fri, 10 May 2019 08:52:24 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 721F420881
+	for <linux-amlogic@archiver.kernel.org>; Fri, 10 May 2019 15:53:44 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="imct1J6m";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="HC9GwhY1"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 82CB0216C4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="sfanWxvH";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="AgQ7ISjc"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 721F420881
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4736CYot3K3EcSqdlLBH+gMkFbGn/gKU/iqyYZdJcvY=; b=imct1J6ma9K2Ks
-	7zaGxJYAirDNQpq77W/fjeKL33epXInpub1ndZX8KaVcRm7mHDA62twDBu9fGwaXM+k99simcPPdu
-	vDYBvKrLTQixuKF+K2HW6bZQttNmUoAhBOpntWjsZKoyE34vngaFBaz5Oc9Dh8FwNsFoSVhRc4QRP
-	vIxG1R74cBS7qHs7DNYcteBfUmQP0F92txlaqwzXlWW9W3zW3WYDKf2lTFm47zbQ1azR1sjmRCTu7
-	vOmtbJhHpb/gbZrZHg5mKKKe44cfwqeq/areZ6B/IrA9nLyEyazGpOGf6iT5hBnCHPQXdF+XmUB74
-	pvJmRyJHYdn9CQ+CaVtQ==;
+	List-Owner; bh=GAYq0sd6XvjwflYkXH5ixZeOaauXqvmsmRJnJ67gCKU=; b=sfanWxvHGDTiJF
+	cTATUdtt1jSEjMTyNHQZOsQdX353BSujG07bJlYEJ++/vm5CjAGO522BMBTYh2bhTvn1NckC1jnji
+	ud7TKnQrdVqP4nX777UzEKLVIYlE/Ob73Q+kuFhfLNBr2P47qgWdae1uD7uewHJHrkspFGOy7thuU
+	d06tAwWwYaCxubqlSkyhONbVu7O7uVm1/dEq1AXqu+ZdqEXMJXvZMwm03okU/IKj8W0pPzRJXMLh2
+	FxFJsLWVebSZNcsoyhhRW8qm+F3DBIh5q1dNwWSfAA2CzmgCMMe1/NtcPqEIYnwBb+OMm/YrrTP3Z
+	+guKIkOp8KcTnX8zoBAQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hP1GN-0006na-6V; Fri, 10 May 2019 08:52:19 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1hP7q6-0008WS-Dg; Fri, 10 May 2019 15:53:38 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hP1GF-0006mq-AB
- for linux-amlogic@lists.infradead.org; Fri, 10 May 2019 08:52:17 +0000
-Received: by mail-wm1-x341.google.com with SMTP id h11so6484447wmb.5
- for <linux-amlogic@lists.infradead.org>; Fri, 10 May 2019 01:52:10 -0700 (PDT)
+ id 1hP7q3-0008U4-5x
+ for linux-amlogic@lists.infradead.org; Fri, 10 May 2019 15:53:36 +0000
+Received: by mail-wr1-x442.google.com with SMTP id v11so8493445wru.5
+ for <linux-amlogic@lists.infradead.org>; Fri, 10 May 2019 08:53:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:cc:date:in-reply-to:references
- :user-agent:mime-version:content-transfer-encoding;
- bh=aaM8432jFaEmhAAs5kJRzcW3PtFv9V/mPFGHY/gVINc=;
- b=HC9GwhY1KxcCvquoeRmAWTsEHBkGlMjC2GOSg6QgSOb4NqeO9tQazouSymWwoGOCjA
- 9JWrMkzWVeVEGra7oAVM1kJhEEZM/PhqiogQbhTl6twBJtLpQ0/MPg56TCYYAt+Nvv1o
- mCJg3YB/RHexlJfjgBa+KFzqJ5FvXDDHsnnWtvdJONcsi/MDywBvcfou5mimKwOEo1iZ
- aCqw/BkOF0tmUEWP1PK3VYzCYHdrfLvr1cLVaGotwWbUkfqHza9nLRXR4qX182qhGhEq
- TKz1aA9ZIVvYWW+B6qEF292a80KFSQDyuElD+0kAVBqsrRz195OMy7ClsyOwrwFgKNTG
- 4aNQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=o/ZrOKrVBiCPmSKNzKkVtl6ee0CJpkJsgmldCOTIdwo=;
+ b=AgQ7ISjcLMgxyeSNtilo9vaG226u/TyFK085WpRbybJu93anjOumklGMP++48zV6wz
+ 4FI/78ShZkC5z26GPsWzhch6CjlZKcZfQ8CAVRGjK624SyJlhPWjmSMRcb6iJ4WLxOKu
+ sgwrR2WWtmnm42nw6iDsAbSB3PFyMYUIXfqnZsaikAf3DaQTRLbBhcYc7WeT+gtscOrD
+ rnd/+rDltSJyCM9Hh9KP268I/GVppUxmHa8DBcbnsYVnLyqH10XtAbQyQW55qsSUtuce
+ EbIFE+YDbuqUzGL5volDIAl91chm5apGQon07CKClUk97CMKR4RQodmM/29hhhTcPzkK
+ +Szg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=aaM8432jFaEmhAAs5kJRzcW3PtFv9V/mPFGHY/gVINc=;
- b=euovaTSmbAjK40Ggxdv8b26J5Yxwu/JPybWPjxXbPLqKQa5WQC4/U8fznrjU/k+6jP
- /gN1hZs+AXpfj0V5sc9/j4fNdMBZDscGL2lssKq5N3gVQK+JgyeFU1tOXl2QFaVabbwS
- OwACZL1Wg0w0hyynJ4BpnP6siin5Bv1uMjmOJUqrAe6tE9yOl4Zwg1OqPvTJTuj8Fi16
- buPsmve0AgdPTfbj+hZVzxujk7lGaQ5Yi2U5yyl9JjTTe82SCl8SUe7iykkZZYYeFROm
- XnGHtH96ozD/A/0+DhcABXYj7ia/lup2mY/eXih6RLS/1cCH+Jp16NLJeVO6OFMl5p2E
- fPVA==
-X-Gm-Message-State: APjAAAUA5GbSQidyPcfZ0RoUuiGwjBF1IH8SxCMw8o14Y9xZ9gyBQNOM
- y9aLtutLIaTDmFSp9KKNrK+VXw==
-X-Google-Smtp-Source: APXvYqykj1mHG44y8+cSJrOUjhNqzrgeo1uIXi5+tTVxFFhizSUvTXk2PbGt+OXdLaVSil5RdqYKuA==
-X-Received: by 2002:a1c:80d7:: with SMTP id b206mr5910297wmd.48.1557478328921; 
- Fri, 10 May 2019 01:52:08 -0700 (PDT)
-Received: from boomer.baylibre.com
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id d4sm12281121wrf.7.2019.05.10.01.52.07
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Fri, 10 May 2019 01:52:08 -0700 (PDT)
-Message-ID: <331673da2c1cad1c72d61b45e0c614961445ec90.camel@baylibre.com>
-Subject: Re: [PATCH v5 0/6] Add drive-strength in Meson pinctrl driver
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=o/ZrOKrVBiCPmSKNzKkVtl6ee0CJpkJsgmldCOTIdwo=;
+ b=L5O3p05ZIxdmn3mCKkJj5RQySWm0pAIogD1ReR2MuuTeTG5+GD+H5EfdBsbQ7nVFS6
+ POs6+HxfpepH2fCrvdk5cG4XFqaqtVn7LD1Bfyhb2rfZqzifkeC/KG6uuWi5niD/GbXb
+ RnxLFGrfkCy/u0Naeo6SExEAECtTxebcBqmSUyGslNWT+5eq+lJ5O0g0UfCgJjOCDRt1
+ mL2R7iaOAOjfUSPr6ZKVhS2Cw+XBBFDRYOAK+/V/5sVxcNJ4VWw8zQjwo0vrnEvzxLBw
+ o4UDCglToje0I0S5rwv248XJ4C9whFtFlIoy8JsUTCdjO8bkg10eDMy8+EmDuQEH4C45
+ AYtg==
+X-Gm-Message-State: APjAAAWh9ZLs6/+zFJ50gOHlVbZ/lO4axdjftaa6HivtyzrCdwWqAty0
+ 4WPIhOdapa3fHMbG0eu2eYX0xA==
+X-Google-Smtp-Source: APXvYqwrXeX4zkdcF+luK5aZ8i5L32YJZSkhlWj5pwMryd3fLogSEAt2LHeSq6RuguZbssX+EVNPHw==
+X-Received: by 2002:a5d:668f:: with SMTP id l15mr7959140wru.125.1557503612459; 
+ Fri, 10 May 2019 08:53:32 -0700 (PDT)
+Received: from boomer.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.googlemail.com with ESMTPSA id u14sm5333860wrn.30.2019.05.10.08.53.31
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Fri, 10 May 2019 08:53:31 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Guillaume La Roque <glaroque@baylibre.com>, linus.walleij@linaro.org, 
- khilman@baylibre.com
-Date: Fri, 10 May 2019 10:52:07 +0200
-In-Reply-To: <20190510082324.21181-1-glaroque@baylibre.com>
-References: <20190510082324.21181-1-glaroque@baylibre.com>
-User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+To: Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCH 2/2] arm64: dts: meson: u200: consistently order nodes
+Date: Fri, 10 May 2019 17:53:27 +0200
+Message-Id: <20190510155327.5759-3-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190510155327.5759-1-jbrunet@baylibre.com>
+References: <20190510155327.5759-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190510_015211_352203_262C257C 
-X-CRM114-Status: GOOD (  18.27  )
+X-CRM114-CacheID: sfid-20190510_085335_218994_13E31F82 
+X-CRM114-Status: UNSURE (   9.98  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,75 +97,114 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-gpio@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 2019-05-10 at 10:23 +0200, Guillaume La Roque wrote:
-> The purpose of this patchset is to add drive-strength support in meson pinconf
-> driver. This is a new feature that was added on the g12a. It is critical for us
-> to support this since many functions are failing with default pad drive-strength.
-> 
-> The value achievable by the SoC are 0.5mA, 2.5mA, 3mA and 4mA and the DT property
-> 'drive-strength' is expressed in mA.
-> So this patch add another generic property "drive-strength-microamp". The change to do so
-> would be minimal and could be benefit to other platforms later on.
-> 
-> Cheers
-> Guillaume
+Like order boards, order nodes by address then node names then aliases.
 
-Guillaume,
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ .../boot/dts/amlogic/meson-g12a-u200.dts      | 50 ++++++++++---------
+ 1 file changed, 26 insertions(+), 24 deletions(-)
 
-Several tags, such as Acked-by, Reviewed-by or Tested-by have been given on this
-series.
-
-Please remember to collect and add them to the commit description when posting newer
-revision of a series
-
-If you didn't already, please have a look at Documentation/process/submitting-patches.rst
-
-Thanks
-
-> 
-> Changes since v4:
-> - fix dt-binding documentation
-> - rename drive-strength-uA to drive-strength-microamp in coverletter
-> 
-> Changes since v3:
-> - remove dev_err in meson_get_drive_strength
-> - cleanup code
-> 
-> Changes since v2:
-> - rename driver-strength-uA property to drive-strength-microamp
-> - rework patch series for better understanding
-> - rework set_bias function
-> 
-> Changes since v1:
-> - fix missing break
-> - implement new pinctrl generic property "drive-strength-uA"
-> 
-> [1] https://lkml.kernel.org/r/20190314163725.7918-1-jbrunet@baylibre.com
-> 
-> Guillaume La Roque (6):
->   dt-bindings: pinctrl: add a 'drive-strength-microamp' property
->   pinctrl: generic: add new 'drive-strength-microamp' property support
->   dt-bindings: pinctrl: meson: Add drive-strength-microamp property
->   pinctrl: meson: Rework enable/disable bias part
->   pinctrl: meson: add support of drive-strength-microamp
->   pinctrl: meson: g12a: add DS bank value
-> 
->  .../bindings/pinctrl/meson,pinctrl.txt        |   4 +
->  .../bindings/pinctrl/pinctrl-bindings.txt     |   3 +
->  drivers/pinctrl/meson/pinctrl-meson-g12a.c    |  36 ++--
->  drivers/pinctrl/meson/pinctrl-meson.c         | 180 ++++++++++++++----
->  drivers/pinctrl/meson/pinctrl-meson.h         |  18 +-
->  drivers/pinctrl/pinconf-generic.c             |   2 +
->  include/linux/pinctrl/pinconf-generic.h       |   3 +
->  7 files changed, 193 insertions(+), 53 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+index e91201809abf..7cc3e2d6a4f1 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+@@ -16,13 +16,10 @@
+ 	aliases {
+ 		serial0 = &uart_AO;
+ 	};
++
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+-	memory@0 {
+-		device_type = "memory";
+-		reg = <0x0 0x0 0x0 0x40000000>;
+-	};
+ 
+ 	cvbs-connector {
+ 		compatible = "composite-video-connector";
+@@ -34,15 +31,6 @@
+ 		};
+ 	};
+ 
+-	flash_1v8: regulator-flash_1v8 {
+-		compatible = "regulator-fixed";
+-		regulator-name = "FLASH_1V8";
+-		regulator-min-microvolt = <1800000>;
+-		regulator-max-microvolt = <1800000>;
+-		vin-supply = <&vcc_3v3>;
+-		regulator-always-on;
+-	};
+-
+ 	hdmi-connector {
+ 		compatible = "hdmi-connector";
+ 		type = "a";
+@@ -54,6 +42,20 @@
+ 		};
+ 	};
+ 
++	memory@0 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x40000000>;
++	};
++
++	flash_1v8: regulator-flash_1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "FLASH_1V8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		vin-supply = <&vcc_3v3>;
++		regulator-always-on;
++	};
++
+ 	main_12v: regulator-main_12v {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "12V";
+@@ -62,6 +64,17 @@
+ 		regulator-always-on;
+ 	};
+ 
++	usb_pwr_en: regulator-usb_pwr_en {
++		compatible = "regulator-fixed";
++		regulator-name = "USB_PWR_EN";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&vcc_5v>;
++
++		gpio = <&gpio GPIOH_6 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
+ 	vcc_1v8: regulator-vcc_1v8 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "VCC_1V8";
+@@ -92,17 +105,6 @@
+ 		enable-active-high;
+ 	};
+ 
+-	usb_pwr_en: regulator-usb_pwr_en {
+-		compatible = "regulator-fixed";
+-		regulator-name = "USB_PWR_EN";
+-		regulator-min-microvolt = <5000000>;
+-		regulator-max-microvolt = <5000000>;
+-		vin-supply = <&vcc_5v>;
+-
+-		gpio = <&gpio GPIOH_6 GPIO_ACTIVE_HIGH>;
+-		enable-active-high;
+-	};
+-
+ 	vddao_1v8: regulator-vddao_1v8 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "VDDAO_1V8";
+-- 
+2.20.1
 
 
 _______________________________________________
