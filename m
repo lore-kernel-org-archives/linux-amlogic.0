@@ -2,22 +2,22 @@ Return-Path: <SRS0=6y+j=TL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-6.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2CF91C04AB1
-	for <linux-amlogic@archiver.kernel.org>; Sat, 11 May 2019 16:46:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 16C38C04AB1
+	for <linux-amlogic@archiver.kernel.org>; Sat, 11 May 2019 17:00:09 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F11C42173B
-	for <linux-amlogic@archiver.kernel.org>; Sat, 11 May 2019 16:46:38 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DA4522183F
+	for <linux-amlogic@archiver.kernel.org>; Sat, 11 May 2019 17:00:08 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="sF9vxvdR";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="V28RfDIE"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F11C42173B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="X8oW+v7g";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="DgHUPAmJ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DA4522183F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,61 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4OwgoYNp0uH21vkiujiVzeUkQrFUVDO7RggCpM56PKw=; b=sF9vxvdR2ulYES
-	XCGWxutnO+6K/xQIl2/ckjPEHh9w167WujmXcEer01fawTSu0SSD+v3PqIU35VCm4MUkl6/1zimXF
-	3vliBseiWkB0orw1di/jaxL02jVQrNBzouTUvahFsCxplJLzce4nQJ+EsU/DkPI57NRcqHnyx3I6T
-	3GGU+Fp952hmzagLBUhmhQvhLGHx4EIN94tD85K0/w2uGk3B3MiNExpzBZvW9ja4v1QKHTvu16hNY
-	ybbF01PwLAI5f4d4YmrAIsRQb8BqcVQBO2wfojy+MIaoVroxgCc8rDd0i7N0/yI3yAUYU2hGQkoEO
-	ig1kzIGzj+Ng1wfiEhsQ==;
+	List-Owner; bh=eHFrtCuDLc9yiQK9V+r9ufunMOkjK3MO6EBHuN6FrWU=; b=X8oW+v7guGl8q4
+	sw7QRGho3+4rzIkIFoInQrWRJphn6AmHKcOZDqCitzSakHPsHbtypqFxeX4lqVc6oXnhIUBkm0XWU
+	5nJ3MHmBBaFkJnzXuziJf21Uf6HiqN62SOVL37Rp6EXWCE/64bbnGA+wyU1YTm2u/sMjimfWvb5bQ
+	uzrY5iIBQhSN9k3xc4lKDC5kqbDGFUUU+MHbZAtfRx/LqT9caDdEPbXE1BZA01IRtQTgssJGtBLJ4
+	1nE4lAta2sSNdiKb3SpO3JMHl6A6sXgCUfOu8htUZXFJoB2GiRzK/qQxXbu72cov1NTdpNyD2YonP
+	NXyimNr3BZAnxUY2ZgpQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hPV8r-0007x0-Qj; Sat, 11 May 2019 16:46:33 +0000
-Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
+	id 1hPVLu-0002Ny-4Y; Sat, 11 May 2019 17:00:02 +0000
+Received: from mail-oi1-x244.google.com ([2607:f8b0:4864:20::244])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hPV8o-0007we-Nz
- for linux-amlogic@lists.infradead.org; Sat, 11 May 2019 16:46:32 +0000
-Received: by mail-ot1-x344.google.com with SMTP id a10so5968321otl.12
- for <linux-amlogic@lists.infradead.org>; Sat, 11 May 2019 09:46:30 -0700 (PDT)
+ id 1hPVLr-0002Jp-As
+ for linux-amlogic@lists.infradead.org; Sat, 11 May 2019 17:00:00 +0000
+Received: by mail-oi1-x244.google.com with SMTP id t187so3336510oie.10
+ for <linux-amlogic@lists.infradead.org>; Sat, 11 May 2019 09:59:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=96bKsMAm9Vo8ijmk3T9jhbPo2k1zIbt2qUcMzxdEzIE=;
- b=V28RfDIEVi47GSrUnvFhAP+TUnCVNQKKG0eV1YR70qCefysFU7zSTGFzmQ2OfqTUzx
- HXHmC7eNp5UFgHdBNh5MFqKSgvvJeKhBQVVHzOIZ/MR/WOggJw2FeC0Hfrra+589QTXN
- sI6Hmgvsvgbnf4J9+q+4sAgKGlSPsDS2f0sJebunqBItN2d6Y+cXCg7FiPtaG1l3L42C
- G1+Uvzm8lWICt/I4EL+qip/FCZ5jyi+fMmd0yuLa2QeyYwVMPP+4mC6jabY6oQ9JUkmC
- z9sbR6vZUezOJSe+7CGfInn6oCBfbjytow1lVKHcy0LpLzrmCybL4rLYJbD9uEQSB3zO
- o8hg==
+ :cc; bh=SjNwRGGXu5Be11Dj6PNdZiF9AujZ6/yOzswhRut3k3E=;
+ b=DgHUPAmJmGQ+dEpurEqKvNioA3YxLnpoA37tONehwHuP65leqdysmLbUDtIVuDPnV+
+ /rKEtvsIggCPV9P340NPO7WVHDmAYR9ebJKs8p0z3XA/Vvg94hzbCGyTtLq6dKEH0pan
+ TehO7d3/jnEBgJtOjuzBYXC9ael97lD7vbSxEPcl+Q4lmoSwWGbllPFmRQdBz/oOz2L/
+ 8hUdNDDEwZIzI7y3psCMRKXTudT/SMAU3Bh+QkY8XBV1DNRm0zeFfGjZoHzsHp16CyZq
+ 2BFoqXmx8athQtcyMnV7eflqhuJLey63r3xa9yeShJ1Goud4W0K8FEbqsUzBYzwpiQXD
+ 5GRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=96bKsMAm9Vo8ijmk3T9jhbPo2k1zIbt2qUcMzxdEzIE=;
- b=W/I8UNgetXXaTOAVFVZoHZHCy5AfnfyV3vvm1cbEanR2HIQP6LcTtzTZoDB8wHzy+T
- 5EsXrO29ABZTmUWI2f8HeVd3BONnwgISJyTMSwgjSoKisZITn+cmfN4ftSVWqMkHO4fc
- CPmjy9tsU/Hh20dj5d8qATMRiEO2Yb83Zia4co9dv2jZ3GOX/QMxXyfU3of7spm7HK/D
- PK8NYIexmaSENbDzy54RKZf+1c5eqVu+PJTK6axzPRBO1qsM+qCzRUASwnc04ETn9mio
- oe/i1Xa/pqH6sOowxiH0T9jLF9I13BswDdeBVYqEfnb8jUUOk70pcNSKKhgkXdGnxUjn
- asNw==
-X-Gm-Message-State: APjAAAV3r33TB3VG1iemiBZfhjsfnsZZUAT06GzChIvPTkJ//Kfm2bOp
- XV1nrctbxSAsp3uJ+5+XMkRuhNQiKMrl2LSABtU=
-X-Google-Smtp-Source: APXvYqwZ2Yawymrjhy2bfBFHnKAAPtDfzpc4uZrwzTwdpTA3nLQCVTT0MYmYZR49feLIgKD6cddI93e+R+MPKYHPHvc=
-X-Received: by 2002:a9d:6759:: with SMTP id w25mr10813499otm.348.1557593189896; 
- Sat, 11 May 2019 09:46:29 -0700 (PDT)
+ bh=SjNwRGGXu5Be11Dj6PNdZiF9AujZ6/yOzswhRut3k3E=;
+ b=lHRT4U8TWj9bc8SGCq2B/EYy8eYUd+1YY7l++8BpoyHfeFJF1Nnkhc5uVzUOrToY78
+ LXfWAg4OtWbaJk+5r+lPS2nJ8RrwQ4obGNpNviXuWLXTmiyi0fPtS0d5UDjK/9OYx005
+ Mq5Un6iZG8n/AL5oTlnNSFAzoJ+pWtQjD7drgf4k6a8LiUmbvHf12nw8duqa7kXuwOJl
+ Zm0zqijs//yM6iVCw3qkrQ5LDotlLv7mBPh+hFsxUR05FZHqGyFVVa56cu4rPF3NruTP
+ BhHWH05Y0XjrXA+41+4IqT9t4zBD08SFr6xOXgsz8PM/ZyVVSc/kyZpRzZ4ZunSnYQKB
+ BqJw==
+X-Gm-Message-State: APjAAAUta5vFMDA0yEIhboaY6Q5XDMEosXycvX/0V/w8sIDnd5Wl7FZj
+ 9e3D7fU5CKhv8+gt7zxBi1V26SMbzCAUszh43TsJulvzomC6ZA==
+X-Google-Smtp-Source: APXvYqzkb2QhTyKOWMd6vfKBBm2PRJcPYttvl8GjcF3VU3IR8IZjzLtUHA8an8Ofwc8+A0v3fHlp3ise5fiwKThwlLA=
+X-Received: by 2002:aca:b68a:: with SMTP id g132mr8777744oif.47.1557593998010; 
+ Sat, 11 May 2019 09:59:58 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190510082324.21181-1-glaroque@baylibre.com>
- <20190510082324.21181-6-glaroque@baylibre.com>
-In-Reply-To: <20190510082324.21181-6-glaroque@baylibre.com>
+References: <20190510164940.13496-1-jbrunet@baylibre.com>
+ <20190510164940.13496-4-jbrunet@baylibre.com>
+In-Reply-To: <20190510164940.13496-4-jbrunet@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 11 May 2019 18:46:19 +0200
-Message-ID: <CAFBinCAYNvBtNwZdKJVUpObogjaiAx0W0Y-cnOL7RtARhYOW_g@mail.gmail.com>
-Subject: Re: [PATCH v5 5/6] pinctrl: meson: add support of
- drive-strength-microamp
-To: Guillaume La Roque <glaroque@baylibre.com>
+Date: Sat, 11 May 2019 18:59:47 +0200
+Message-ID: <CAFBinCAe3jd598MPLUGFEoBAOaeXovSz7_8Kn7ZMmSFvRLFSXg@mail.gmail.com>
+Subject: Re: [PATCH 3/5] arm64: dts: meson: g12a: add mdio multiplexer
+To: Jerome Brunet <jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190511_094630_800345_2E424D66 
-X-CRM114-Status: UNSURE (   9.84  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190511_095959_399881_59BF141A 
+X-CRM114-Status: GOOD (  16.28  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -92,69 +90,77 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, khilman@baylibre.com, linus.walleij@linaro.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-amlogic@lists.infradead.org, jbrunet@baylibre.com
+Cc: Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Guillaume,
+Hi Jerome,
 
-On Fri, May 10, 2019 at 10:23 AM Guillaume La Roque
-<glaroque@baylibre.com> wrote:
+On Fri, May 10, 2019 at 6:49 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
 >
-> drive-strength-microamp is a new feature needed for G12A SoC.
-> the default DS setting after boot is usually 500uA and it is not enough for
-> many functions. We need to be able to set the drive strength to reliably
-> enable things like MMC, I2C, etc ...
+> Add the g12a mdio multiplexer which allows to connect to either
+> an external phy through the SoC pins or the internal 10/100 phy
 >
-> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
-Reviewed-by: Martin Blumenstingl<martin.blumenstingl@googlemail.com>
-
-the warning messages when printing pinconf-pins (in debugfs) are gone
-on my Meson8m2 board so:
-Tested-by: Martin Blumenstingl<martin.blumenstingl@googlemail.com>
-
-[...]
-> +static int meson_pinconf_set_drive_strength(struct meson_pinctrl *pc,
-> +                                           unsigned int pin,
-> +                                           u16 drive_strength_ua)
-> +{
-> +       struct meson_bank *bank;
-> +       unsigned int reg, bit, ds_val;
-> +       int ret;
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 32 +++++++++++++++++++++
+>  1 file changed, 32 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> index fe0f73730525..6e9587aafb5d 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> @@ -460,6 +460,38 @@
+>                                 assigned-clock-rates = <100000000>;
+>                                 #phy-cells = <1>;
+>                         };
 > +
-> +       if (!pc->reg_ds) {
-> +               dev_err(pc->dev, "drive-strength not supported\n");
-> +               return -ENOTSUPP;
-> +       }
+> +                       eth_phy: mdio-multiplexer@4c000 {
+> +                               compatible = "amlogic,g12a-mdio-mux";
+> +                               reg = <0x0 0x4c000 0x0 0xa4>;
+> +                               clocks = <&clkc CLKID_ETH_PHY>,
+> +                                        <&xtal>,
+> +                                        <&clkc CLKID_MPLL_5OM>;
+I haven't noticed that before but there's a typo in the MPLL_5OM clock
+definition:
+the O (capital o) should be a 0 (zero).
+can you fix this typo in an additional clock patch for v5.2 - then we
+don't have to do it in v5.3 where this .dtsi might already use it
+
+> +                               clock-names = "pclk", "clkin0", "clkin1";
+> +                               mdio-parent-bus = <&mdio0>;
+> +                               #address-cells = <1>;
+> +                               #size-cells = <0>;
 > +
-> +       ret = meson_get_bank(pc, pin, &bank);
-> +       if (ret)
-> +               return ret;
+> +                               ext_mdio: mdio@0 {
+> +                                       reg = <0>;
+> +                                       #address-cells = <1>;
+> +                                       #size-cells = <0>;
+> +                               };
 > +
-> +       meson_calc_reg_and_bit(bank, pin, REG_DS, &reg, &bit);
-> +       bit = bit << 1;
-I was confused by this shifting (not sure why I haven't noticed this
-in earlier revisions). however, it all made sense after I did the
-maths for two examples:
+> +                               int_mdio: mdio@1 {
+> +                                       reg = <1>;
+> +                                       #address-cells = <1>;
+> +                                       #size-cells = <0>;
+> +
+> +                                       internal_ephy: ethernet_phy@8 {
+> +                                               compatible = "ethernet-phy-id0180.3301",
+> +                                                            "ethernet-phy-ieee802.3-c22";
+please drop the compatible string and replace it with a comment (if
+you feel that it's needed).
+quote from Documentation/devicetree/bindings/net/phy.txt:
+> If the PHY reports an incorrect ID (or none at all) then the
+> "compatible" list may contain an entry with the correct PHY ID in the
+> form: "ethernet-phy-idAAAA.BBBB"
 
-BOOT_0 uses drive-strength register 0x0 bits [1:0] so the result
-should be "bit = 0"
-meson_calc_reg_and_bit returns bit = 0
-0 << 1 = 0, so this seems right
-
-BOOT_15 uses drive-strength register 0x0 bits [31:30] so the result
-should be "bit = 30"
-meson_calc_reg_and_bit returns bit = 15
-15 << 1 = 30
-
-so all seems fine, even though it wasn't obvious to me at first sight
-that it's all good
+I am going to send a patch for other Amlogic boards to remove any
+ethernet-phy-id comaptible string
 
 
+Regards
 Martin
 
 _______________________________________________
