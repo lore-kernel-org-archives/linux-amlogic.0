@@ -2,22 +2,22 @@ Return-Path: <SRS0=vTSx=TM=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.2 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS,UNWANTED_LANGUAGE_BODY,USER_AGENT_GIT autolearn=unavailable
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4957EC04A6B
-	for <linux-amlogic@archiver.kernel.org>; Sun, 12 May 2019 20:58:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EC0DCC04A6B
+	for <linux-amlogic@archiver.kernel.org>; Sun, 12 May 2019 21:13:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1A2E920C01
-	for <linux-amlogic@archiver.kernel.org>; Sun, 12 May 2019 20:58:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BEC8620989
+	for <linux-amlogic@archiver.kernel.org>; Sun, 12 May 2019 21:13:15 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PthHlva1";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="hPLqw9Nr"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1A2E920C01
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ffC/Tv6F";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="xrX4j64+"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BEC8620989
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,63 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
 	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=1eAYLPGonP1n1m6w4IZaXtbiClZhsPtP1WJHbgFgeTc=; b=PthHlva1Z4bI3R
-	i/UN5HgONodMPnbIhpBu4F8AL+omWOxWWNtTrnwiAWCFQ/Z8MTDg2J3OAhrytSRCyWaBJa59sHPO8
-	bTgVZHCQxpLH59tlQm2CkDtiJz3WzpBsNbxGPJfcR3OomEM6ip3l/teKwzIHC2eSRFcAlLtbNjDYe
-	o4JE9N2I8oxSr1avWSy3g+bnjrjjgD0f2u4PpJ4kdu9StMw0vh1GuaHwpeE1vo9tItsC+Ik3ia71O
-	fnzhYl3kSDamQuqcTR4cNKWPtGjyEKRwX9MvpX3RHwjjykFzmIItvk5hcuxKBqBsOLNrEig6QHoNA
-	HhuEt8+9YrXjh4iZqxtA==;
+	List-Owner; bh=95bPzW5hXXWhtFNls1sgpizsBPZGIKMBGwj1jQGmdG0=; b=ffC/Tv6F6+6jGl
+	DPICO8aoR0CGV5qJyELsm9xF0YJPSBX53IHde5XY/Sz4MD4xA6GbrmreFRc2fn63CrVNkPgSLPyYe
+	wg0JBEmZCHLKYJvK8c3TdcE5gN3Fh4LjmtoqS0a/0wwue1qT48iUEVygFMAhdaT/nM50465CgPhAe
+	Gv6xT0tnWSpGluK9w6/vZr5VPo81x9RNkk/7OjsSj9VhvlSgQ0NCK11Ma3KP/1sL15ghUAhCWi0QQ
+	uEl5yE7fBSrXRKBod4Uz11MX//vjZW+A2XwAJk4CyNr7pww4Jvaw6Wf3F2DcVmLj5zGd30ZO8PJDR
+	iDCiaP8kXOvy35LBB/ug==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hPvXr-0008AR-QQ; Sun, 12 May 2019 20:58:07 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1hPvmQ-0004MF-Gf; Sun, 12 May 2019 21:13:10 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hPvXo-00089D-PO
- for linux-amlogic@lists.infradead.org; Sun, 12 May 2019 20:58:07 +0000
-Received: by mail-wr1-x444.google.com with SMTP id e15so602736wrs.4
- for <linux-amlogic@lists.infradead.org>; Sun, 12 May 2019 13:57:59 -0700 (PDT)
+ id 1hPvmN-0004Lr-9H
+ for linux-amlogic@lists.infradead.org; Sun, 12 May 2019 21:13:08 +0000
+Received: by mail-wr1-x442.google.com with SMTP id e15so623453wrs.4
+ for <linux-amlogic@lists.infradead.org>; Sun, 12 May 2019 14:13:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=Sm9UEwQ3mt6/GT1ya/gcLVA0odO8xivuaaUGOOt4No4=;
- b=hPLqw9NroyF97KvvhKpIe0wPnef3gIPB4pjDSJW9Jzke60ROE+9tnEZ8Z+AOiwE47K
- TJEoGTYE4jfwwz4sE8mkYttcVJyaT4XHE1IL4g+689KKKC3SZyNqcq+hMYpnvwJDo3Ly
- /GAkrLx9wjGbbbbGrSOyc6Kqld4m2KRu4d/eE4haXvTR2s8uUtzTqwusuY2JMNImsIb1
- 7w2hheTMNGldIiGpKYG3uJjEWWca9SrmgxrpQGJAorSmd7HGDQxrO9oEpVjzvf5O6knc
- z2fSkgBwQHyrB+yh6lXbsYvPpM84xjHEXHBENz30aooPFuy554whRfhtUCR/GxlqMc+G
- h3eg==
+ bh=/MF03Yk8qHs4qIsb2AOZr0tzgKoY7lMlH2WlfSDwuOY=;
+ b=xrX4j64+HMUtsk4h0npiVMTngyq5aDotfuTPiLl3pkn4irKm66Tib/0yHHrTgZgITz
+ 6kHKZN2IPzjRNZEipner79yUCaRKmqnmIPIt4mMaO1WCjOjlb4LRLjFIeupDmm910TsW
+ 5luX379Yau3bRAZ18bQZ3Y3XhG6LZrq1MP8UH2TRBz1hBPGluEd5v343HsHc3xJi+7HY
+ OYdEtFF7pebGsEzZDsTl89mkx2Lbs4fwiBqez4uIHtQsxK6bvUzaww5LK9e+JGUH6Y0H
+ O+2tXanD20mVNk1BlS6yiiuC21tD/K6Tc3jbGHK2RO/A7P/490SRYG3OGJjGbVG1mq+O
+ Ll4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=Sm9UEwQ3mt6/GT1ya/gcLVA0odO8xivuaaUGOOt4No4=;
- b=H8SCm0ZF4SVXtgjlyZwsPMdaPcsp5z9Isn2poTU6GNcoaPxjPewpjlFZjxGobzVppE
- BkvpqVSfbtRkssef7aYYvGxUXyV3QrI/VIPAOTGeUY2WJSSt1MBGSMWBnSkG3kMETu/h
- 2SS5i3vcFbmxzyFEp5T6tdfHAYhyNVVGi/nWlCenKEd7egeBu7Fx2mpEF5RFf0LVLLa5
- bfkJs9iHpUQI3R5iwLks46xiSpEosMMo4COQadoQN1JerNCDQZbeAMQ/D0CVA9e+7iOu
- +R6nri74+br8SSuvrnRhWGyfkj6G02NUyCilb2rpsnphgmMxME8DlcORFL1TiQBX8QKa
- hgZg==
-X-Gm-Message-State: APjAAAWL0pHqe2f7I7xXvTLc22amLZ08N0KiHPkVS5MdlAYchXcKEzVl
- itEjF3o9Nu1EpNBmnuOIVEBFEw==
-X-Google-Smtp-Source: APXvYqw8T4YnO6cWYWIIJcnC34eAvY38shlhSF9rcgw5hN8w/eUPE6JNCP2+VaqoLH0QgxrHKgRNUw==
-X-Received: by 2002:a5d:5701:: with SMTP id a1mr15615178wrv.52.1557694678203; 
- Sun, 12 May 2019 13:57:58 -0700 (PDT)
+ bh=/MF03Yk8qHs4qIsb2AOZr0tzgKoY7lMlH2WlfSDwuOY=;
+ b=X6heHPMpg4xunVhUTwuW+aCqxV8WQ6p3ROKJ1A/QBDZmzk+UVH0eVhfORTUuVECl9M
+ EtcHeh4tVJwzgwkMsEuDxxlnh+tjAd82vfVvyKG44eTvkt3Ig7G6go5J7YdIkxrdbKuy
+ P6tORS5qdCrSSM7kQOQiAda1+JLu6ty+Oy9NcHrXXEmlJ96zRr4aqBFjVK/mrDjALqKR
+ guV4jEP8Vou8xOJ2Pg87ommPn115GXbXshX9hLIdeyDljHADRW274IUEHW/iwuTBab54
+ qnIrPanS2JGRQBvSzdTx9M9XlY4sNTFP+l89nVco0PDgQLQAyCEP/MYKI4a13mu1fKJr
+ sz5A==
+X-Gm-Message-State: APjAAAUoqe5xsSNASkw/Pgas4aorMiur6PP9y7fIBzItB//pZ2/AU1Hj
+ sn2r7U1GOvb6BrILyZ0KZLXKSg==
+X-Google-Smtp-Source: APXvYqzDPd24huacRw8Qk3w1mk0rGWk2Xq0y5p5KauUXLdG7pc6JEEPiBt3rS+2AlR7Ph19ZbxRFzg==
+X-Received: by 2002:adf:b6a5:: with SMTP id j37mr12136969wre.4.1557695583710; 
+ Sun, 12 May 2019 14:13:03 -0700 (PDT)
 Received: from boomer.baylibre.com (uluru.liltaz.com. [163.172.81.188])
- by smtp.googlemail.com with ESMTPSA id o81sm21483068wmb.2.2019.05.12.13.57.55
+ by smtp.googlemail.com with ESMTPSA id j46sm30499951wre.54.2019.05.12.14.13.00
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Sun, 12 May 2019 13:57:57 -0700 (PDT)
+ Sun, 12 May 2019 14:13:02 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH] clk: meson: fix MPLL 50M binding id typo
-Date: Sun, 12 May 2019 22:57:43 +0200
-Message-Id: <20190512205743.24131-1-jbrunet@baylibre.com>
+To: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCH net] net: meson: fixup g12a glue ephy id
+Date: Sun, 12 May 2019 23:12:37 +0200
+Message-Id: <20190512211237.24571-1-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190512_135804_827233_66C9472B 
-X-CRM114-Status: UNSURE (   9.94  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190512_141307_329631_229C3327 
+X-CRM114-Status: GOOD (  10.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -94,69 +96,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+Cc: netdev@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Qi Duan <qi.duan@amlogic.com>,
  Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-MPLL_5OM (the capital letter o) should indeed be MPLL_50M (the number)
-Fix this before it gets used.
+The phy id chosen by Amlogic is incorrectly set in the mdio mux and
+does not match the phy driver.
 
-Reported-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Fixes: 25db146aa726 ("dt-bindings: clk: meson: add g12a periph clock controller bindings")
+It was not detected before because DT forces the use the correct driver
+for the internal PHY.
+
+Fixes: 7090425104db ("net: phy: add amlogic g12a mdio mux support")
+Reported-by: Qi Duan <qi.duan@amlogic.com>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/g12a.c              | 4 ++--
- drivers/clk/meson/g12a.h              | 2 +-
- include/dt-bindings/clock/g12a-clkc.h | 2 +-
- 3 files changed, 4 insertions(+), 4 deletions(-)
+ drivers/net/phy/mdio-mux-meson-g12a.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
-index 739f64fdf1e3..206fafd299ea 100644
---- a/drivers/clk/meson/g12a.c
-+++ b/drivers/clk/meson/g12a.c
-@@ -2734,8 +2734,8 @@ static struct clk_hw_onecell_data g12a_hw_onecell_data = {
- 		[CLKID_MALI_1_DIV]		= &g12a_mali_1_div.hw,
- 		[CLKID_MALI_1]			= &g12a_mali_1.hw,
- 		[CLKID_MALI]			= &g12a_mali.hw,
--		[CLKID_MPLL_5OM_DIV]		= &g12a_mpll_50m_div.hw,
--		[CLKID_MPLL_5OM]		= &g12a_mpll_50m.hw,
-+		[CLKID_MPLL_50M_DIV]		= &g12a_mpll_50m_div.hw,
-+		[CLKID_MPLL_50M]		= &g12a_mpll_50m.hw,
- 		[CLKID_SYS_PLL_DIV16_EN]	= &g12a_sys_pll_div16_en.hw,
- 		[CLKID_SYS_PLL_DIV16]		= &g12a_sys_pll_div16.hw,
- 		[CLKID_CPU_CLK_DYN0_SEL]	= &g12a_cpu_clk_premux0.hw,
-diff --git a/drivers/clk/meson/g12a.h b/drivers/clk/meson/g12a.h
-index 39c41af70804..bcc05cd9882f 100644
---- a/drivers/clk/meson/g12a.h
-+++ b/drivers/clk/meson/g12a.h
-@@ -166,7 +166,7 @@
- #define CLKID_HDMI_DIV				167
- #define CLKID_MALI_0_DIV			170
- #define CLKID_MALI_1_DIV			173
--#define CLKID_MPLL_5OM_DIV			176
-+#define CLKID_MPLL_50M_DIV			176
- #define CLKID_SYS_PLL_DIV16_EN			178
- #define CLKID_SYS_PLL_DIV16			179
- #define CLKID_CPU_CLK_DYN0_SEL			180
-diff --git a/include/dt-bindings/clock/g12a-clkc.h b/include/dt-bindings/clock/g12a-clkc.h
-index 82c9e0c020b2..e10470ed7c4f 100644
---- a/include/dt-bindings/clock/g12a-clkc.h
-+++ b/include/dt-bindings/clock/g12a-clkc.h
-@@ -130,7 +130,7 @@
- #define CLKID_MALI_1_SEL			172
- #define CLKID_MALI_1				174
- #define CLKID_MALI				175
--#define CLKID_MPLL_5OM				177
-+#define CLKID_MPLL_50M				177
- #define CLKID_CPU_CLK				187
- #define CLKID_PCIE_PLL				201
- #define CLKID_VDEC_1				204
+diff --git a/drivers/net/phy/mdio-mux-meson-g12a.c b/drivers/net/phy/mdio-mux-meson-g12a.c
+index 6fa29ea8e2a3..6644762ff2ab 100644
+--- a/drivers/net/phy/mdio-mux-meson-g12a.c
++++ b/drivers/net/phy/mdio-mux-meson-g12a.c
+@@ -33,7 +33,7 @@
+ #define ETH_PLL_CTL7		0x60
+ 
+ #define ETH_PHY_CNTL0		0x80
+-#define   EPHY_G12A_ID		0x33000180
++#define   EPHY_G12A_ID		0x33010180
+ #define ETH_PHY_CNTL1		0x84
+ #define  PHY_CNTL1_ST_MODE	GENMASK(2, 0)
+ #define  PHY_CNTL1_ST_PHYADD	GENMASK(7, 3)
 -- 
 2.20.1
 
