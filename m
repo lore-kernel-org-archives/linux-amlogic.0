@@ -2,87 +2,64 @@ Return-Path: <SRS0=LN9z=TN=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 717A0C04AA7
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 May 2019 17:47:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 89141C04AA7
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 May 2019 20:55:05 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 455D320879
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 May 2019 17:47:58 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5BDCD206A3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 May 2019 20:55:05 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Ge81/9a9";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="aG5v8TAA"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 455D320879
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dUBlNOCz";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="Q7yeX8wR"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5BDCD206A3
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=protonmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Cc:Reply-To:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:
+	In-Reply-To:Message-ID:Subject:From:To:Date:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NOsbmI+mycd6ZY9+z4TzdYNyGQikn+0LiVFGbR66ILQ=; b=Ge81/9a9ikqL3m
-	atKoUq8IpW1R8BJAYp6L6kFPt+s3gJfjZou0Mzm40nSQOqToA8qZBOx6XRfcqldp5gDjfywpIFK07
-	qk00Fm6o5SiFhrmxxOwF+IDenIG5v79/dKqVz5HnAgc1J6fkJwiY4KM9N6Fg1s7V4gwYsyvQW/OmS
-	WbEIPJ/nl7DTeE57Fe/k4EGsqtYBlp3/WgcVC9TZwLK/uQK3+SPE08yDI1vaujRElGRc8F+Gbt8fm
-	PB32//EF4M1YYqAo8i2zfPUaY1cJ0kdp1NrwzHXlwn7JBlWTHWQJlyahhXYK1PCYtLI4PutXBfTHi
-	y8+gYdfKV9mk6foIYZRg==;
+	List-Owner; bh=krejh+v8uTvNVDCETO/Al7JSxcPvgCxCbVje6OKaTmo=; b=dUBlNOCzuS6NzF
+	P9wtppRvt59DB+0kgI4sLgkKl+zjSQonnxEf8ASuL9yA2gycWfoO6ESYldyRNOEdPf+X5TFRUyT1H
+	cU5kxBMrpYtnxr4oYl7leYw0Iz5hPDJnnHn2Tdy+vxUOr2bqX6rxH2EZEMPcLn7ESXQGunOCsQxBo
+	2xehO/aVP6TspRxFFlJhTg4Pk173EW+Sg9lLbapdLvC0EvL427yQETM7JKSlJciLy8ozIbsRMJ6Sz
+	2GSZuxhgBI0h/d4DGnc0FZ49xVfO7cFvTsGCj75jtrteD44B7WVRaLTIqtfy35Nh7KgkO4As4i7i4
+	cPpQAXJzsowUCrdCcYvw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hQF3H-000696-SI; Mon, 13 May 2019 17:47:51 +0000
-Received: from mail-pl1-x643.google.com ([2607:f8b0:4864:20::643])
+	id 1hQHyG-0002ex-05; Mon, 13 May 2019 20:54:52 +0000
+Received: from mail4.protonmail.ch ([185.70.40.27])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hQF3E-00067a-Po
- for linux-amlogic@lists.infradead.org; Mon, 13 May 2019 17:47:50 +0000
-Received: by mail-pl1-x643.google.com with SMTP id d3so6824210plj.11
- for <linux-amlogic@lists.infradead.org>; Mon, 13 May 2019 10:47:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=7ftcbU8JnQmvm8sGh32+gWVqyGisGkp05zvI/Os1BUA=;
- b=aG5v8TAA+1qIp67dGGOJ7ud6fKmC9NYGNER2ymFATsKxSw7VEJIAcZr2RhZ15fOE+B
- xM9aXfO+Ft7I1MfUm4KhUZu+IaQTsAEf0ZUgfzyXoJqmDOKfJe66+f8zw4AuubJ+or27
- ufNo6pYKwNT8Q2CQZo2VhJrv8HJ0BChKp1IwSD51GT5N3nyfqhziSRmyrdLi7fiCHqsO
- j3XOAMVG4Yp4wboAfnQSKvQq9UFhKNB3o2DaThW4zr3zp8xLy/YYiycKAQjGpm/IhWaZ
- ofn9Dn3m2QyeTutPItizv/1Me+LzhsVv7veUC9Qx4hrZZ1nCfKt/wt9RPLbvy6vlzNwK
- N55Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=7ftcbU8JnQmvm8sGh32+gWVqyGisGkp05zvI/Os1BUA=;
- b=Un5oqLnTED/bB/N5Tx/+n2iYAcXgkd9JeyjBi9CDUiQvbpPmjWzS3ETxb5YekbjjK/
- DTMM0jPcSa5rFACCuKw9a/bPr3xovSGLT1IzUJVyMTB6yQXcO1nqMvcZ/zC/hz3aXmYf
- asRTDqzMZxhxRuV6Q0XpGUxh59KksPcYXxRtnWgrQH4wW7012GgWpxSJGAdYqVLtON9H
- qsp1WF/iNICabrZklm0ZSezqhW41gHfpSvin5BsqORvqJEeW2OlzwwTwwtKExzeOBPIv
- /wSZhMR7yiYZbQHW+nLwGJ+rxnbrEcA6en2t0ie6w/mV+Pfpz564pdlg4wnjEeBcWj+R
- X96Q==
-X-Gm-Message-State: APjAAAVHPw5gwITWytKG4tZ3GR/9dHmeAGR/pmZNEXDedmdDAjIvjkDT
- fZ1/mpRhxWidQU1bUqmJcKJZcw==
-X-Google-Smtp-Source: APXvYqykzOc6H2gQfaH2tmKL5VMylfiYXvxqcBKK0+ieVzRpKiH1CsSkvAVqvM2zkJDtRZ1QN5T4tw==
-X-Received: by 2002:a17:902:e708:: with SMTP id
- co8mr32206427plb.141.1557769667349; 
- Mon, 13 May 2019 10:47:47 -0700 (PDT)
-Received: from localhost ([2601:602:9200:a1a5:fd66:a9bc:7c2c:636a])
- by smtp.googlemail.com with ESMTPSA id w12sm14856903pgp.51.2019.05.13.10.47.46
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 13 May 2019 10:47:46 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Neil Armstrong <narmstrong@baylibre.com>, ulf.hansson@linaro.org
-Subject: Re: [PATCH 2/3] mmc: meson-gx: add ddr-access-quirk
-In-Reply-To: <20190513091548.16674-3-narmstrong@baylibre.com>
-References: <20190513091548.16674-1-narmstrong@baylibre.com>
- <20190513091548.16674-3-narmstrong@baylibre.com>
-Date: Mon, 13 May 2019 10:47:45 -0700
-Message-ID: <7hd0kmckla.fsf@baylibre.com>
+ id 1hQHyB-0002cQ-DX
+ for linux-amlogic@lists.infradead.org; Mon, 13 May 2019 20:54:49 +0000
+Date: Mon, 13 May 2019 20:54:37 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+ s=default; t=1557780883;
+ bh=RSd78YB79lA3Ya3juukbN6IBJTvG5gz0FM/G7SozeCs=;
+ h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:
+ Feedback-ID:From;
+ b=Q7yeX8wR4AV/qc1bNOsdUi0GAbLQsQw08PsJfoYfnHJ26loUUMhrRVCcNEORkISPd
+ tjE2KxM9pLcpAqshBHb++ejXqgqWV72nVCAwRn9rWgWqsJjx3jEfR42eTD30dla5+r
+ pBlN5U7KXKjsYOfaA9RTeA8BqkzN/fDzfSLqND7U=
+To: Jerome Brunet <jbrunet@baylibre.com>
+From: Bob <pigiron@protonmail.com>
+Subject: Re: arm64: dts: meson: Boot failure with using eMMC
+Message-ID: <yo6yKUmAfWHBzU_1DJkPYbANkgXUc6VTgaVZQiusvrUEy2gHdGHGLVzduFlQdUgOgSpCUbn3u7bQXlIeCY8Hc0g7puYkfnEVZxgaq6Nlyf8=@protonmail.com>
+In-Reply-To: <dc6ee617fb0902ae05289b2bc794c8362fd08eae.camel@baylibre.com>
+References: <7yaiVYWS-VlbP5H6BTXnSiNE_w6ZJQRMX8DjxBa7gDLaZ4PoWFPg_CZkd9EU0-UVVuGvpxrlTJR1_6i64BP7eSb3XZdCV9vv3NFhHsmifA8=@protonmail.com>
+ <dc6ee617fb0902ae05289b2bc794c8362fd08eae.camel@baylibre.com>
+Feedback-ID: C9LuG3VnvxsVE-NK__4mgtHQkVUBjoNZAKT1UPY69jR3O3SjppQt3FTXk4t40ZQ2rrvuZCw-kRM7a0ytDe7Whg==:Ext:ProtonMail
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190513_104748_834613_3A314D79 
-X-CRM114-Status: GOOD (  11.40  )
+X-CRM114-CacheID: sfid-20190513_135447_844828_06CC18A8 
+X-CRM114-Status: GOOD (  20.56  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -94,37 +71,84 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, baylibre-upstreaming@groups.io,
- linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: Bob <pigiron@protonmail.com>
+Cc: "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
-
-> On the Amlogic G12A SoC family, (only) the SDIO controller fails to access
-> the data from DDR, leading to a broken controller.
->
-> But each MMC controller has 1,5KiB of SRAM after the registers, that can
-> be used as bounce buffer to avoid direct DDR access from the integrated
-> DMAs (this SRAM may be used by the boot ROM when DDR is not yet initialized).
->
-> The quirk is to disable the chained descriptor for this controller, and
-> use this SRAM memory zone as buffer for the bounce buffer fallback mode.
->
-> The performance hit hasn't been evaluated, but the fix has been tested
-> using a WiFi AP6398S SDIO module, and the iperf3 Bandwidth measurement gave
-> 55.2 Mbits/sec over a 63 Hours long test, with the SDIO ios set as High-Speed
-> at 50MHz clock. It gave 170 Mbits/sec as SDR104 and 200MHz clock.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+CgoKCgrigJDigJDigJDigJDigJDigJDigJAgT3JpZ2luYWwgTWVzc2FnZSDigJDigJDigJDigJDi
+gJDigJDigJAKT24gTW9uZGF5LCBNYXkgMTMsIDIwMTkgNDo1MyBBTSwgSmVyb21lIEJydW5ldCA8
+amJydW5ldEBiYXlsaWJyZS5jb20+IHdyb3RlOgoKPiBPbiBTYXQsIDIwMTktMDUtMTEgYXQgMjA6
+NDkgKzAwMDAsIEJvYiB3cm90ZToKPgo+ID4gRXZlbiB0aG91Z2ggSSBjb21lIHdpdGggYSBwcm9i
+bGVtLCBJIGZpcnN0IHdhbnQgdG8gdGhhbmsgeW91IGZvbGtzIGZvciBhbGwKPiA+IHRoYXQgeW91
+IGRvLiBJdCdzIG11Y2ggYXBwcmVjaWF0ZWQuCj4gPiBTbyBvbiB0byB0aGUgcHJvYmxlbS4gSSd2
+ZSBnb3QgYW4gT2Ryb2lkIEMyIChtZXNvbi1neGJiKSB3aXRoIGFuIGVNTUMgY2hpcAo+ID4gdGhh
+dCBBbWVyaWRyb2lkIGNsYWltcyB0byBiZSBhbiAiZU1NQyBWZXJzaW9uIDQuNSAtIEhTMjAwIGlu
+dGVyZmFjZSB3aXRoCj4gPiA4Yml0IEREUiBtb2RlIGZyb20gU2Ftc3VuZyIuCj4KPiBDb3VsZCB5
+b3Ugc2hhcmUgdGhlIGNvbXBsZXRlIHBhcnQgbnVtYmVyIHRoYXQgaXMgd3JpdHRlbiBvbiB0aGUg
+c2Ftc3VuZyBNTUMKPiBtb2R1bGUgPwo+ClRoaXMgaXMgdGhlIGVNTUMgY2hpcCBJIHB1cmNoYXNl
+ZCwgYW5kIGl0IGRlc2NyaWJlcyB0aGUgY2hpcCBsaWtlIEkgc2FpZCBhYm92ZToKCmh0dHBzOi8v
+YW1lcmlkcm9pZC5jb20vY29sbGVjdGlvbnMvc3RvcmFnZS1lbW1jLWFuZC1taWNyb3NkL3Byb2R1
+Y3RzLwplbW1jLW1vZHVsZS1jMi1saW51eC1yZWQtYm94CgpZZXQsIHdoZW4gSSBwZWVsZWQgb2Zm
+IHRoZSByZWQgc3RpY2tlciwgdGhpcyBpcyB3aGF0IHdhcyBzY3JpYmVkIG9uIHRoZSBjaGlwOgoK
+ICAgU2FuRGlzawogICBOQkRHNCAtIDMyRwogICA3NDI0RFBISjgwSEsKCkdvb2dsZSB0ZWxscyBt
+ZSB0aGF0J3MgU2FuRGlzayBwYXJ0IG51bWJlciBTRElOQkRHNC0zMkcuICpJZiogdGhhdCdzIGNv
+cnJlY3QsCnRoZW4gdGhlIGludGVyZmFjZSBpcyBhY3R1YWxseSAiZU1NQyA1LjEgSFM0MDAiLiBT
+byBwZXJoYXBzIHRoYXQgY2hhbmdlcwp0aGluZ3M/Pz8gQnV0IG15IGdvb2dsZS1mdSBzaG91bGQg
+cHJvYmFibHkgYmUgdmVyaWZpZWQuCgo+ID4gSSBydW4gdGhlIEFyY2ggTGludXggIm1haW5saW5l
+IiBrZXJuZWwgYW5kIGl0IGhhZCBiZWVuIHdvcmtpbmcgd2VsbC4gQnV0IHdoZW4KPiA+IEkgdXBn
+cmFkZWQgdGhlIGtlcm5lbCBmcm9tIDQuMjAgdG8gNS4wIGl0IGZhaWxlZCB0byBib290IHdoZW4g
+VUJvb3QgY291bGRuJ3QKPiA+IG1vdW50IHRoZSByb290IGZpbGVzeXN0ZW0sIHNvIGl0IGRyb3Bw
+ZWQgaW50byBpdCdzIHNoZWxsLiBVc2luZyBhbiBVU0Igc2VyaWFsCj4gPiBkb25nbGUsIEkgbm90
+aWNlZCB0aGF0IG5vbmUgb2YgdGhlIHVzdWFsIC9kZXYvbW1jYmxrKiBmaWxlcyB3ZXJlIGNyZWF0
+ZWQuCj4gPiBJIHNhdmVkIHRoZSBmYWlsaW5nIGJvb3Qgb3V0cHV0IGZyb20gdGhlIFVTQiBkb25n
+bGUsIGRvd25ncmFkZWQgYmFjayB0byB0aGUKPiA+IDQuMjAga2VybmVsLCBhbmQgbm93IGl0IGJv
+b3RlZCBzdWNjZXNzZnVsbHkuIFdoZW4gSSBjb21wYXJlZCB0aGUgZ29vZC9iYWQKPiA+IGRvbmds
+ZSBvdXRwdXRzIGl0IHNlZW1zIHRoYXQgdGhlIGZpcnN0IGVycm9yIG1lc3NhZ2VzIHdlcmU6Cj4g
+PiBbMi43OTAxNDFdIG1lc29uLWd4LW1tYyBkMDA3NDAwMC5tbWM6IG5vIHN1cHBvcnQgZm9yIGNh
+cmQncyB2b2x0cwo+ID4gKHNuaXApCj4gPiBbMi43OTk3MzBdIG1tYzA6IGVycm9yIC0yMiB3aGls
+c3QgaW5pdGlhbGlzaW5nIE1NQyBjYXJkCj4gPiBJIHRoZW4gZGlkIGEgYnVuY2ggb2YgImdpdCBi
+aXNlY3QiIGNvbXBpbGVzIG9uIExpbnVzJyAidmFuaWxsYSIga2VybmVsIGZyb20gaGlzCj4gPiBn
+aXQgdHJlZSBhbmQgdWx0aW1hdGVseSBpdCBwb2ludGVkIHRvIGNvbW1pdDoKPiA+IGFybTY0OiBk
+dHM6IG1lc29uOiBkaXNhYmxlIHBhZCBiaWFzIGZvciBtbWMgcGlubXV4ZXMKPiA+IDk2YTEzNjkx
+YzFkZGZhZmMzMDFkMWVlNDUxZDkxZmMyY2NhNDhkMjcKPiA+IFN1cmUgZW5vdWdoLCB3aGVuIEkg
+bm93IHJldmVydCB0aGF0IGNvbW1pdCBpbiAvYm9vdC9kdGJzL2FtbG9naWMvbWVzb24tZ3hiYi0K
+PiA+IG9kcm9pZGMyLmR0YiBvbiB0aGUgbGF0ZXN0IHNoaXBwaW5nIDUuMSBrZXJuZWwsIGl0IGJv
+b3RzIHN1Y2Nlc3NmdWxseS4gVGhhdAo+ID4gc2FtZSA1LjEga2VybmVsIGZhaWxzIHRvIGJvb3Qg
+d2l0aCB0aGUgc2FtZSBlcnJvciBtZXNzYWdlcyB3aGVuIHRoYXQgY29tbWl0Cj4gPiBpcyBlbmdh
+Z2VkLgo+Cj4gV291bGQgeW91IG1pbmQgdHJ5aW5nIHRoaXMgYnJhbmNoIGZyb20ga2V2aW46Cj4K
+PiBodHRwczovL2dpdC5rZXJuZWwub3JnL3B1Yi9zY20vbGludXgva2VybmVsL2dpdC9raGlsbWFu
+L2xpbnV4LWFtbG9naWMuZ2l0L2xvZy8/aD1pbnRlZwo+Cj4gVGhpcyBwYXJ0aWN1bGFyIGNvbW1p
+dCBtaWdodCBiZSB1c2VmdWwgY29uc2lkZXJpbmcgeW91ciBiaXNlY3QgcmVzdWx0czoKPgo+IGh0
+dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3NjbS9saW51eC9rZXJuZWwvZ2l0L2toaWxtYW4vbGlu
+dXgtYW1sb2dpYy5naXQvY29tbWl0Lz9oPWludGVnJmlkPTFjMTAwMjNmNGQxYjc1ZWQxNjRmNjBi
+YjBlZTZiYzIzOTY1NTQwOGMKPgo+ID4gbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKPiA+IGxp
+bnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwo+ID4gaHR0cDovL2xpc3RzLmluZnJhZGVh
+ZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCgpGb3IgY29tcGxldGVuZXNzLCBo
+ZXJlJ3Mgd2hhdCBJIGRpZDoKClBlcmZvcm1lZCBhICJnaXQgY2xvbmUiIG9mIEtldmluJ3MgdHJl
+ZSBhbmQgdGhlbiByYW4gIm1ha2UgbG9jYWxtb2Rjb25maWciIHRvCmtlZXAgdGhlIGNvbXBpbGUg
+dGltZSBkb3duIChJIGhhZCBkb25lIHRoZSBzYW1lIG9uIGFsbCBvZiB0aG9zZSBvdGhlciBiaXNl
+Y3QKY29tcGlsZXMpLiBJIGFuc3dlcmVkICJOIiBmb3IgIm5vIiBvbiBhbGwgb2YgaXQncyBjb25m
+aWcgcXVlc3Rpb25zLCBzaW5jZSBJCmFzc3VtZWQgdGhvc2Ugd291bGQgc3VwcG9ydCBuZXcgY29k
+ZSBjb21waWxlIG9wdGlvbnMgdGhhdCB3b3VsZG4ndCBiZSBuZWVkZWQKZm9yIG15IHN5c3RlbSBo
+YXJkd2FyZS4gQW5kIHRoZW4gSSBjb21waWxlZC9pbnN0YWxsZWQgdGhlIG5ldyBrZXJuZWwgYW5k
+IGJvb3RlZC4KClVCb290IHN0aWxsIGNvdWxkbid0IGZpbmQgdGhlIHJvb3QgZmlsZXN5c3RlbSBh
+bmQgZHJvcHBlZCBpbnRvIGl0J3Mgc2hlbGwuIFlldCwKdGhpcyB0aW1lIEkgZG9uJ3Qgc2VlIGFu
+eSBvdGhlciBlcnJvcnMuIEhlcmUncyB0aGUgb3V0cHV0IGZyb20gdGhlIFVTQiBzZXJpYWwKZG9u
+Z2xlOgoKICAgaHR0cDovL2RwYXN0ZS5jb20vMjVBM0g3OAoKTk9URTogSSBzYXcgdGhvc2UgIl9y
+ZWd1bGF0b3JfcHV0IiBXQVJOX09OKCkgZXJyb3JzIG9uICpzb21lKiBvZiB0aG9zZSBwcmV2aW91
+cwpiaXNlY3QgY29tcGlsZXMgd2hlcmUgdGhlIGtlcm5lbCBzdGlsbCBib290ZWQgdXAgY29ycmVj
+dGx5IChpLmUuIEdvdCB0byBhIGxvZ2luCnByb21wdCkuCgpBcyBhbiBleHBlcmltZW50LCBJIHJl
+cGxhY2VkIChyZXZlcnRlZCBhbmQgbm93IHdvcmtpbmcpICIvYm9vdC9kdGJzL2FtbG9naWMvCm1l
+c29uLWd4YmItb2Ryb2lkYzIuZHRiIiBmaWxlIG9uIHRoZSA1LjEga2VybmVsIEknbSBjdXJyZW50
+bHkgdXNpbmcsIHdpdGggdGhlCm9uZSBmcm9tIEtldmluJ3MgY29tcGlsZS4KClRoYXQgYm9vdCBm
+YWlsZWQgdG8gZmluZCB0aGUgcm9vdCBmaWxlc3lzdGVtIGFnYWluIChhbmQgZHJvcHBlZCBpbnRv
+IHRoZSBVQm9vdApzaGVsbCksIGJ1dCBkaXNwbGF5ZWQgdGhlIHNhbWUgMiBlcnJvciBtZXNzYWdl
+cyBkZXNjcmliZWQgeWVzdGVyZGF5LgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNA
+bGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2xpbnV4LWFtbG9naWMK
