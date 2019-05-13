@@ -3,144 +3,110 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.0
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 21EC9C04AB3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 May 2019 07:41:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8103DC04AB1
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 May 2019 09:08:20 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E483020B7C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 13 May 2019 07:41:33 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 54D3420989
+	for <linux-amlogic@archiver.kernel.org>; Mon, 13 May 2019 09:08:20 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MVJepliZ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="1dX+Bf6L"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E483020B7C
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="J0z3HDlV";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b="W5DV7SrY"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 54D3420989
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=synopsys.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dcYeGL+3qvKlmcKtbwE6bDvydn/AQZWOSrHAX2G1JJk=; b=MVJepliZ/ylsid
-	ck4swQ5qswkFFlukVvBxD90S6RkAxIx6jY3XVF3pBdHlJ6zA3OynAsOf34Jn92ATLNmmq/4G5kGZt
-	gUwULaPxkF3XcCOHB0FiOLGkcWbUS1BlO91nXYj7Js3aFbza2LmgSzScPM+y4bAtxP4QKPKZfrqNF
-	IJClMTSkpQvBXMPP5MUuPDipiGIAqMH6jSrxY7UD2JFHv7Hygdh3AkhoWXcga510uwi4/ily8L++S
-	IFfu8e1sH1acGFp/Um+6W9vbz+P+cKhRZLC/E2VxxAGg3DOvYyXa2TE2DFXbkuXbt/4LkG/arp2ad
-	R18lPNur273Dsa1GhpPQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:References:
+	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=woAz5utsA9iy0/CMgFwnwp4FdsFHD9YJKezIlz3Th1U=; b=J0z3HDlVrg0Dub
+	GX0s71V9MvPkAf98M7XLbkJxoQEXmhZzikEcXPPkmK2Ktsjm0Qr7QZopzzrBghwqb6rM2PfM/AsFi
+	lA09mb+q/0iaInZk1pLAaCImKi6XfKpi1kInbkFv9M9+ynB18ktqZ2AVEmv0MwUsTBzIpTTMVtdfx
+	N3YFqTGdrHzyCsqrRN4SWMBwDll4I0Krj5P+HWKHofU0e7IAf86vJfUuFFzh2kz1ZeWHAoFe+nhKY
+	fDMrnhAHOOx/Qpag9/e6+Nq3VjzA0FOX8vt1JTxjz8ev+5q0Onr893kqGF5ueXPKnog1Ux6BsuKET
+	yWQoVwajPx02aHFtR5rg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hQ5aQ-00078V-LT; Mon, 13 May 2019 07:41:26 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1hQ6wQ-0000zv-SA; Mon, 13 May 2019 09:08:14 +0000
+Received: from dc2-smtprelay2.synopsys.com ([198.182.61.142]
+ helo=smtprelay-out1.synopsys.com)
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hQ5aM-00077b-FV
- for linux-amlogic@lists.infradead.org; Mon, 13 May 2019 07:41:24 +0000
-Received: by mail-wm1-x343.google.com with SMTP id n25so12503679wmk.4
- for <linux-amlogic@lists.infradead.org>; Mon, 13 May 2019 00:41:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=Qq+1zh48R9s3mIG2nc4a9h2Ms0c209pq+ZRzkVc8kK8=;
- b=1dX+Bf6L5wNHNGMGjbtRi9eaDL4tvDeVB/qXZQ6v+I7ceG0euUVh20CaUnjU18GCVy
- ZVWXq0p3HvjsFh5GyYfIUmD9bAd8bHJcTmolJ/u+yP3YEWVAio8MOMV4iRaLpPhbi1N6
- p5cKBQNEvkyNW0Vrp9EGHRbStwdwVMVupXNzFQu4IbhiIzAvdzpEu3wDe+Kk0JwL93mh
- 6gjYx0mf6Namxv29gQxCcsBK4yMFwE0ShDnseWqLEYknAxVoI0Lf4qplswKZHNczIgsl
- 32DM+7aguJaE1JHbbghA3vIOo1VO35xOcXF+323QMabDs6N+KmsH0xNpn2AzB8GO1u/f
- BCdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=Qq+1zh48R9s3mIG2nc4a9h2Ms0c209pq+ZRzkVc8kK8=;
- b=ZFMFz15JoxzA1gOTrBBLc6JUDzZwvVDZabMoVTRX+NS6RL1yLhZkXONGKQrbeoriPL
- s5aPEvJOxdFuYIv5g0ICjSQeB2Zk8oefSMRgKqd6o9iv3drDz4tiE+22auS59g0ljdtP
- q7DPuGaZy4px+d2Vy8HpLyve3uxnA78c13Qpc4tT8A+8HqnSUy4UUxhuDCMedm2v8U3Z
- o29aVGhN/ZO25eyFHA8jvl6XL0GziIUjxQYFjSltQTRlgtKntbnTzawrj9AhUL8XzNE1
- B7kAXU4bIBeT1YyJWcqbITqPS6NB2dcHry5YI+K2p2owh9IdtRHFp6L3LALqQQnTkCyw
- vxQQ==
-X-Gm-Message-State: APjAAAUcVzdERGjVopg/TA3m3Ok1C7cC8P1F8U7dyw3sWJVzcrV4H348
- zWaIkHwSRZd5NQnn/Qavmu/Z7A==
-X-Google-Smtp-Source: APXvYqyif7mggPvT3UWR5Jw1XARgj3c5UAo4Lh+qHTvZNfQxobFzHaOPvYb5QiPKCzLgXllUgqnXrQ==
-X-Received: by 2002:a1c:7e8d:: with SMTP id z135mr4050946wmc.72.1557733279824; 
- Mon, 13 May 2019 00:41:19 -0700 (PDT)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id y7sm38220302wrg.45.2019.05.13.00.41.18
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 13 May 2019 00:41:18 -0700 (PDT)
-Subject: Re: [PATCH 1/2] arm64: dts: meson: sei510: consistently order nodes
-To: Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
-References: <20190510155327.5759-1-jbrunet@baylibre.com>
- <20190510155327.5759-2-jbrunet@baylibre.com> <7h4l62dlyh.fsf@baylibre.com>
- <3bad9dc8c53e50c4aea1212bf949215660259412.camel@baylibre.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <b81b46f1-5e8f-26e8-399f-3baca8336e50@baylibre.com>
-Date: Mon, 13 May 2019 09:41:18 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <3bad9dc8c53e50c4aea1212bf949215660259412.camel@baylibre.com>
+ id 1hQ6wN-0000zG-Mn
+ for linux-amlogic@lists.infradead.org; Mon, 13 May 2019 09:08:12 +0000
+Received: from mailhost.synopsys.com (dc2-mailhost2.synopsys.com
+ [10.12.135.162])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+ (No client certificate requested)
+ by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 79581C010E;
+ Mon, 13 May 2019 09:07:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+ t=1557738480; bh=gcTvcdOuIINVJKU6JW1SH1m0kFLmNwXaodiC6f8wND8=;
+ h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+ b=W5DV7SrYvh52vMg7I21upmaOiMTjXcGvjQ2IgjMM1EQcHCZJ3OUV7SiB9vJHKQTM7
+ 5kk2yIwZSroB+Ums53ADIVMZKNEPvJSRngudhwGND2JahL5TkhzW2MW3cEEPO6JSOA
+ s3h6uxqT9wzgL4DxNUp43gU1fUAsLwTZjxGWilRvNultOFbx9tqiUJG3svyi1Q3ydT
+ l8PPzw9dCRqos1jmS5QCYdUzsfj/Wi7miPLHAR27pk08BIuP8nKzNM3jCIKZRtbmki
+ QzvfX35tskHY3rLhRVFO0HkqkS1Bencj3V7c5CHkwoPHveulDNMifcBpzRldLfbnXy
+ 2RCS+BS4X4Xzw==
+Received: from US01WXQAHTC1.internal.synopsys.com
+ (us01wxqahtc1.internal.synopsys.com [10.12.238.230])
+ (using TLSv1.2 with cipher AES128-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mailhost.synopsys.com (Postfix) with ESMTPS id 0DE2EA0095;
+ Mon, 13 May 2019 09:08:04 +0000 (UTC)
+Received: from DE02WEHTCB.internal.synopsys.com (10.225.19.94) by
+ US01WXQAHTC1.internal.synopsys.com (10.12.238.230) with Microsoft SMTP Server
+ (TLS) id 14.3.408.0; Mon, 13 May 2019 02:08:04 -0700
+Received: from DE02WEMBXB.internal.synopsys.com ([fe80::95ce:118a:8321:a099])
+ by DE02WEHTCB.internal.synopsys.com ([::1]) with mapi id
+ 14.03.0415.000; Mon, 13 May 2019 11:07:56 +0200
+From: Jose Abreu <Jose.Abreu@synopsys.com>
+To: Simon Huelck <simonmail@gmx.de>, Jose Abreu <Jose.Abreu@synopsys.com>,
+ Sebastian Gottschall <s.gottschall@newmedia-net.de>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: RE: stmmac / meson8b-dwmac
+Thread-Topic: stmmac / meson8b-dwmac
+Thread-Index: AQHUrqr/JQcHkqt1hEeAbkJJzJnwDKXPv22AgALiL4CAAidpgIAB8QYAgAP3ywCACX/eAIABK+6AgAAAwYCAAD/gAIAAAkYAgAAFzwCAACj3gIAAAKCAgAAGIgCAAAldgIAAA9KAgAAAxoCAAAIjAIAABCuAgAAQsQCAAPZwAIAAtp+AgALLNACAADQdgIAABVkAgASIe4CAAE72AIAADmsAgAQZCACAAIQtAIACgusAgG/hBQCAAuUU8A==
+Date: Mon, 13 May 2019 09:07:55 +0000
+Message-ID: <78EB27739596EE489E55E81C33FEC33A0B91BAAE@DE02WEMBXB.internal.synopsys.com>
+References: <a38e643c-ed9f-c306-cc95-84f70ebc1f10@gmx.de>
+ <065407cd-c13b-e74c-7798-508650c12caf@gmx.de>
+ <227be4e9-b0cc-a011-2558-71a17567246f@synopsys.com>
+ <45e73e8c-a0fb-6f8f-8dc6-3aa2103fdda3@gmx.de>
+ <e1d75e7f-1747-d0ce-0ee7-4fa688b90d13@synopsys.com>
+ <4493b245-de93-46cd-327b-8091a3babc3a@gmx.de>
+ <adafe6d7-e619-45e9-7ecb-76f003b0c7d9@synopsys.com>
+ <cd0b3dec-af3f-af69-50b7-6ca6f7256900@gmx.de>
+ <fa35fb4a-b9d5-9bbb-437d-47e8819d0f27@synopsys.com>
+ <244d7c74-e0ca-a9c7-f4b0-3de7bec4024b@gmx.de>
+ <1426d8ed40be0927c135aff25dcf989a11326932.camel@baylibre.com>
+ <9074d29b-4cc9-87b6-009f-48280a4692c0@gmx.de>
+ <d7de65c614ee788152300f6d3799fd537b438496.camel@baylibre.com>
+ <8ec64936-c8fa-1f0e-68bf-2ad1d6e8f5d9@gmx.de>
+ <f08f2659-dde0-41ec-9233-6b4d5f375ffe@newmedia-net.de>
+ <3a040370-e7e5-990e-81dc-8e9bb0ab7761@gmx.de>
+ <c21c30e9-e53e-02a5-c367-25898c4614e9@synopsys.com>
+ <12d1d6de-2905-46a8-6481-d6f20c8e9d85@gmx.de>
+ <2c4d9726-6c2a-cd95-0493-323f5f09e14a@synopsys.com>
+ <2d7a5c80-3134-ebc0-3c44-9ca9900eade8@gmx.de>
+In-Reply-To: <2d7a5c80-3134-ebc0-3c44-9ca9900eade8@gmx.de>
+Accept-Language: en-US
 Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.107.19.176]
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190513_004122_661479_FD4F3C96 
-X-CRM114-Status: GOOD (  15.88  )
+X-CRM114-CacheID: sfid-20190513_020811_753679_14123681 
+X-CRM114-Status: UNSURE (   5.66  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -152,44 +118,31 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
+Cc: "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "alexandre.torgue@st.com" <alexandre.torgue@st.com>,
+ Emiliano Ingrassia <ingrassia@epigenesys.com>,
+ "Gpeppe.cavallaro@st.com" <Gpeppe.cavallaro@st.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 11/05/2019 17:52, Jerome Brunet wrote:
-> On Fri, 2019-05-10 at 14:43 -0700, Kevin Hilman wrote:
->> minor nit: I kind of like "aliases" and "chosen" at the top since they
->> are kind of special nodes, but honestly, I can't think of a really good
->> reason other than personal preference, so keeping things sorted as
->> you've done here is probably better.
->>
-> 
-> You thought the same, then thought maybe memory was important too. But going
-> down that path, you end up sorting by feeling. It is going to be difficult
-> to all agree on which nodes are special.
-> 
-> In the end, we just want/need something that is easy to respect and verify.
+From: Simon Huelck <simonmail@gmx.de>
+Date: Sat, May 11, 2019 at 15:53:34
 
-I think it would be better to have the same layout for aliases and memory over
-all the amlogic DTS, it's common over all socs to have these nodes on top.
+> ethtool -S gave me some counts for mmc_rx_fifo_overflow, which i didnt
+> recognize before.
 
-Neil
+Flow Control can prevent this to happen. Please check if your DT FIFO 
+bindings are >= 4096.
 
-> 
->> Kevin
-> 
-> 
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-> 
+> Do we have new ideas / new direction to dig for ?
 
+GIT Bisect is the best direction to follow.
 
+Thanks,
+Jose Miguel Abreu
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
