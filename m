@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 81CE5C04AB4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2019 14:27:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 32B6FC04AB6
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2019 14:27:18 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 53F2821473
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2019 14:27:16 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 05A5721473
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2019 14:27:18 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fPz6JPAE";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Q61k1/l5"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 53F2821473
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qqzeGCEv";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="PIwE79co"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 05A5721473
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GFp7pO8LBAgVcgCaIP0Uys5S2tO3SMEKQG8YX6feoBc=; b=fPz6JPAEap2iu+
-	UyEkOQkGBp/Hf39c3vXmmVX+M3mLzSNz+W4MrVQuZsFYb+oiU3kEVKcWHzj4f4b3HQUKBNAwwbJG0
-	Sq0fEmbpHZRBlWFVjyVvMEf+BdR3T/xvz8/qhFIdUu/XwS10ZLTlXouhtcgQqS6Vt/7fq+oDVyrI1
-	J8U+YzJ7YtrFbYZPjB8Z6L2WQhunumkel2UqbLGuZ8ABUKaDCqnIYMKvnmhZYFoE8jW9umgFHCDmV
-	CD1TBsm9K6zmdvU7onqIPFEhigu61xZRLgwOLcS6XbpH6jzV7rRtNoG9fuNsVwHpMLpI7MkBQJnwo
-	vhixCbVIzGzY3yoq7eSQ==;
+	List-Owner; bh=JfiECY9oppoR4K6D8F/XwwyH7TcatpUQJEYCOT7MWSQ=; b=qqzeGCEvPbDKRJ
+	BTPA2DvlP7idleU2A/6T7t72eQJn5bi/bm+FcNv5JOZabRML05hUj54R2OFlxYc0XR1dh5nh03gE1
+	u77UwH3lTSTvB0lmsO20Z8xuD/t158IsRb7LwlQTvwUupVRU7ddDHP8TpzwkfdAoEvGSBg6rMGoAy
+	gsSB8AjR00hZCGHzqOVWZJFSYKLp0BnSmXY3I/6/xAsqBgtGktwbzhC4NfASww7ZyfpB5zcKxdJJC
+	vZRnsQe4pFAQQz/AJjmJyoC6b2JNcTzq2zU5zieaTeVREDLojYnwzJnNQEqEfCC4t4FC78RTOnSax
+	GqxRmvgsjZPtXHrPm1Wg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hQYOc-0005Op-9T; Tue, 14 May 2019 14:27:10 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1hQYOd-0005QV-CC; Tue, 14 May 2019 14:27:11 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hQYOU-0005C1-Af
- for linux-amlogic@lists.infradead.org; Tue, 14 May 2019 14:27:05 +0000
-Received: by mail-wm1-x344.google.com with SMTP id x64so3099433wmb.5
- for <linux-amlogic@lists.infradead.org>; Tue, 14 May 2019 07:27:01 -0700 (PDT)
+ id 1hQYOV-0005Ds-B9
+ for linux-amlogic@lists.infradead.org; Tue, 14 May 2019 14:27:06 +0000
+Received: by mail-wr1-x444.google.com with SMTP id e15so7068087wrs.4
+ for <linux-amlogic@lists.infradead.org>; Tue, 14 May 2019 07:27:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=NB4wFjsFSmLfPCJtbXxNDuKBTIpaZx/di4/nDYzLvsw=;
- b=Q61k1/l5razWWfxeUvhVAYiLE0WM9LBaIr63QF4XvYHXPSVIF616RTdrRmvtVwKxcT
- 9yFVjGu4dAiDGoO49zauwVTOrXyZRD3AKdcudlUfhRbnifMDlF37YQoi1uTRsMgwI16U
- fcef79cqgUrwPNE66QQyTlS/5TB6tOmglEyC+bAPk/qZw81gs7DBjNxvp941DXIvMPn8
- 1jQpAI+nFwBsJHRjvDFww5bO5saxgiGlH3BTl0G5dtAcc4WMRXdW/HRL571wPFGOGZOE
- xCIwbmI/vvno9QLys6EpgePvUtAL7mzFXG22A0oDnyURC0qtziTAcAdwu4s6PXQgiTLS
- 9kJQ==
+ bh=4UiaVyfOL73xkXYf2uJjieahrgB1t1Do944eA1pOwmA=;
+ b=PIwE79cod1lccflCI19QyYhFpzoS2dui0oJV9kti+3tHtL5N+nJhczAQfM1xVqcnFK
+ tM97KfWK28/CO9CdADKqNMfk5Qek+bgl8UB4JI4Jl20/wwHiTrxNnBBpkxejCA06kX4A
+ QbIlwqquaa5t156HH+Sa/3jDOPHdCQa+XxebBmj6cejCZ/NS4v6wHVdxKBV4//h4UHhw
+ WwybeNuoAnex38cjreKRy57iFjBehXeNbH6BsVVqAYwkxd+PXJuEsy8sfAJLZCq/09/2
+ WOJGIqdVMn1YepcIM0sfUcaL2Y6dPKcH/EoeMT76jIvkfaGkJSNCpKRfNzCS7OA46//V
+ ul1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=NB4wFjsFSmLfPCJtbXxNDuKBTIpaZx/di4/nDYzLvsw=;
- b=t41vVupEwdDMlxF5YB6hmdbTQEtoivWXa6Lg/Ws1YkPfj5EdZrTOL+pl78QRvbFAwU
- p4QBgp46TAGY7Ne/PQ6OjKUTPK2WfQa7xQy89WJs4Hy1daj0RXSnNHP1G9bt9dl3GsMR
- 5UECJTzJ+o1R+cWzx8skkFUt/T4k8nUWNvOJdvGsrx8YpSbNp21y/2TyVR/b5KvZm0R1
- cSmk3qSuWV1QarjHq8BSdQVF7ZPetl0jxyblX2INgCBmwLOyGfs/P2s5ZnZHa7YsTO+y
- S4gM4GFIwTP5oReqqF5ja4pL9waXyBVG9f2Sc372gcn9Ng9FtFJVwwTajMSQfVX4ZyTb
- JQAQ==
-X-Gm-Message-State: APjAAAV0hFwS/V50r7iSPp9Ta0FeHn/XU8cQu4Bz+h8zUvGf8CjKLODn
- KUiYd+SeaujTrLbfU/FHGTep6g==
-X-Google-Smtp-Source: APXvYqyU/3/fAV3BzkuHwXh/rWhZl4YtsLU5i/fvV85xMyst/sryZBpu7rtso6l4dHngK5PtK7KAVg==
-X-Received: by 2002:a1c:be0b:: with SMTP id o11mr15873789wmf.63.1557844019631; 
- Tue, 14 May 2019 07:26:59 -0700 (PDT)
+ bh=4UiaVyfOL73xkXYf2uJjieahrgB1t1Do944eA1pOwmA=;
+ b=HXa285oYSeE63vlPW2FP7mdRmZc3KR70sehi6prUD+hSH1/CmvfX95oI7eZuRl9TKE
+ PN4TUnm7mTqkNt0F8dnwca/Em5K4hw28x4kDxm0XoqlzHiV9hATBBckqfg9hf41x+a5m
+ OmsIYPWU/SDe6spD4jbNMmee1oZ3T7FTrtrdAD5OSmaGPhpQsEQAqjUI9jD+CKafNzFt
+ CRPYOnOVGywprwymOrkq5+sE/QKSMnMPP/X8jOTILrIs3Bu/YhUoF9IkJKRKx2N1FxBC
+ cO7xiNMR7dcDWG783OI92CeKkDJNmZk0KjnD01+mwvvEjWI19oV1wQ2BGPB3Kv9+2D7f
+ yJQQ==
+X-Gm-Message-State: APjAAAUxuxweGQ8gRwln+7wdsGvbXEXcz71F6AWEL2sHuIU6EljOLl/y
+ NHduLlXdMIeTrjmb0pjdvUHmTg==
+X-Google-Smtp-Source: APXvYqw5fO7c8RNHMpxo+PX9iqfcPie/9aLysADsb/eHUy3PI2oKG/eECkpIwCqdyTsmZfreK7En4Q==
+X-Received: by 2002:a5d:53c3:: with SMTP id a3mr2557545wrw.60.1557844021823;
+ Tue, 14 May 2019 07:27:01 -0700 (PDT)
 Received: from boomer.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id h15sm12343642wru.52.2019.05.14.07.26.58
+ by smtp.googlemail.com with ESMTPSA id h15sm12343642wru.52.2019.05.14.07.27.00
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Tue, 14 May 2019 07:26:58 -0700 (PDT)
+ Tue, 14 May 2019 07:27:01 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH v2 4/8] arm64: dts: meson: g12a: add tdm
-Date: Tue, 14 May 2019 16:26:45 +0200
-Message-Id: <20190514142649.1127-5-jbrunet@baylibre.com>
+Subject: [PATCH v2 6/8] arm64: dts: meson: g12a: add pdm
+Date: Tue, 14 May 2019 16:26:47 +0200
+Message-Id: <20190514142649.1127-7-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190514142649.1127-1-jbrunet@baylibre.com>
 References: <20190514142649.1127-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190514_072702_792435_B35043C2 
-X-CRM114-Status: UNSURE (   9.32  )
+X-CRM114-CacheID: sfid-20190514_072703_652121_45DC9228 
+X-CRM114-Status: UNSURE (   9.44  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -105,711 +105,209 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the devices and pinctrl definitions for the tdm interfaces of
-the g12a SoC family.
+Add the pdm device node and the pinctrl definition for this capture
+interface g12a SoC family
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 658 ++++++++++++++++++++
- 1 file changed, 658 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 177 ++++++++++++++++++++
+ 1 file changed, 177 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-index 935a84b9f836..40a82ddda79f 100644
+index f25a7c7ed995..8dbdcbea5945 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-@@ -20,6 +20,39 @@
- 	#address-cells = <2>;
- 	#size-cells = <2>;
- 
-+	tdmif_a: audio-controller-0 {
-+		compatible = "amlogic,axg-tdm-iface";
-+		#sound-dai-cells = <0>;
-+		sound-name-prefix = "TDM_A";
-+		clocks = <&clkc_audio AUD_CLKID_MST_A_MCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_A_SCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_A_LRCLK>;
-+		clock-names = "mclk", "sclk", "lrclk";
-+		status = "disabled";
-+	};
-+
-+	tdmif_b: audio-controller-1 {
-+		compatible = "amlogic,axg-tdm-iface";
-+		#sound-dai-cells = <0>;
-+		sound-name-prefix = "TDM_B";
-+		clocks = <&clkc_audio AUD_CLKID_MST_B_MCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_B_SCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_B_LRCLK>;
-+		clock-names = "mclk", "sclk", "lrclk";
-+		status = "disabled";
-+	};
-+
-+	tdmif_c: audio-controller-2 {
-+		compatible = "amlogic,axg-tdm-iface";
-+		#sound-dai-cells = <0>;
-+		sound-name-prefix = "TDM_C";
-+		clocks = <&clkc_audio AUD_CLKID_MST_C_MCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_C_SCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_C_LRCLK>;
-+		clock-names = "mclk", "sclk", "lrclk";
-+		status = "disabled";
-+	};
-+
- 	cpus {
- 		#address-cells = <0x2>;
- 		#size-cells = <0x0>;
-@@ -428,6 +461,42 @@
+@@ -497,6 +497,170 @@
  						};
  					};
  
-+					mclk0_a_pins: mclk0-a {
++					pdm_din0_a_pins: pdm-din0-a {
 +						mux {
-+							groups = "mclk0_a";
-+							function = "mclk0";
++							groups = "pdm_din0_a";
++							function = "pdm";
 +							bias-disable;
-+							drive-strength-microamp = <3000>;
 +						};
 +					};
 +
-+					mclk1_a_pins: mclk1-a {
++					pdm_din0_c_pins: pdm-din0-c {
 +						mux {
-+							groups = "mclk1_a";
-+							function = "mclk1";
++							groups = "pdm_din0_c";
++							function = "pdm";
 +							bias-disable;
-+							drive-strength-microamp = <3000>;
 +						};
 +					};
 +
-+					mclk1_x_pins: mclk1-x {
++					pdm_din0_x_pins: pdm-din0-x {
 +						mux {
-+							groups = "mclk1_x";
-+							function = "mclk1";
++							groups = "pdm_din0_x";
++							function = "pdm";
 +							bias-disable;
-+							drive-strength-microamp = <3000>;
 +						};
 +					};
 +
-+					mclk1_z_pins: mclk1-z {
++					pdm_din0_z_pins: pdm-din0-z {
 +						mux {
-+							groups = "mclk1_z";
-+							function = "mclk1";
++							groups = "pdm_din0_z";
++							function = "pdm";
 +							bias-disable;
-+							drive-strength-microamp = <3000>;
++						};
++					};
++
++					pdm_din1_a_pins: pdm-din1-a {
++						mux {
++							groups = "pdm_din1_a";
++							function = "pdm";
++							bias-disable;
++						};
++					};
++
++					pdm_din1_c_pins: pdm-din1-c {
++						mux {
++							groups = "pdm_din1_c";
++							function = "pdm";
++							bias-disable;
++						};
++					};
++
++					pdm_din1_x_pins: pdm-din1-x {
++						mux {
++							groups = "pdm_din1_x";
++							function = "pdm";
++							bias-disable;
++						};
++					};
++
++					pdm_din1_z_pins: pdm-din1-z {
++						mux {
++							groups = "pdm_din1_z";
++							function = "pdm";
++							bias-disable;
++						};
++					};
++
++					pdm_din2_a_pins: pdm-din2-a {
++						mux {
++							groups = "pdm_din2_a";
++							function = "pdm";
++							bias-disable;
++						};
++					};
++
++					pdm_din2_c_pins: pdm-din2-c {
++						mux {
++							groups = "pdm_din2_c";
++							function = "pdm";
++							bias-disable;
++						};
++					};
++
++					pdm_din2_x_pins: pdm-din2-x {
++						mux {
++							groups = "pdm_din2_x";
++							function = "pdm";
++							bias-disable;
++						};
++					};
++
++					pdm_din2_z_pins: pdm-din2-z {
++						mux {
++							groups = "pdm_din2_z";
++							function = "pdm";
++							bias-disable;
++						};
++					};
++
++					pdm_din3_a_pins: pdm-din3-a {
++						mux {
++							groups = "pdm_din3_a";
++							function = "pdm";
++							bias-disable;
++						};
++					};
++
++					pdm_din3_c_pins: pdm-din3-c {
++						mux {
++							groups = "pdm_din3_c";
++							function = "pdm";
++							bias-disable;
++						};
++					};
++
++					pdm_din3_x_pins: pdm-din3-x {
++						mux {
++							groups = "pdm_din3_x";
++							function = "pdm";
++							bias-disable;
++						};
++					};
++
++					pdm_din3_z_pins: pdm-din3-z {
++						mux {
++							groups = "pdm_din3_z";
++							function = "pdm";
++							bias-disable;
++						};
++					};
++
++					pdm_dclk_a_pins: pdm-dclk-a {
++						mux {
++							groups = "pdm_dclk_a";
++							function = "pdm";
++							bias-disable;
++							drive-strength-microamp = <500>;
++						};
++					};
++
++					pdm_dclk_c_pins: pdm-dclk-c {
++						mux {
++							groups = "pdm_dclk_c";
++							function = "pdm";
++							bias-disable;
++							drive-strength-microamp = <500>;
++						};
++					};
++
++					pdm_dclk_x_pins: pdm-dclk-x {
++						mux {
++							groups = "pdm_dclk_x";
++							function = "pdm";
++							bias-disable;
++							drive-strength-microamp = <500>;
++						};
++					};
++
++					pdm_dclk_z_pins: pdm-dclk-z {
++						mux {
++							groups = "pdm_dclk_z";
++							function = "pdm";
++							bias-disable;
++							drive-strength-microamp = <500>;
 +						};
 +					};
 +
  					pwm_a_pins: pwm-a {
  						mux {
  							groups = "pwm_a";
-@@ -574,6 +643,399 @@
- 						};
- 					};
- 
-+					tdm_a_din0_pins: tdm-a-din0 {
-+						mux {
-+							groups = "tdm_a_din0";
-+							function = "tdm_a";
-+							bias-disable;
-+						};
-+					};
-+
-+
-+					tdm_a_din1_pins: tdm-a-din1 {
-+						mux {
-+							groups = "tdm_a_din1";
-+							function = "tdm_a";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_a_dout0_pins: tdm-a-dout0 {
-+						mux {
-+							groups = "tdm_a_dout0";
-+							function = "tdm_a";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_a_dout1_pins: tdm-a-dout1 {
-+						mux {
-+							groups = "tdm_a_dout1";
-+							function = "tdm_a";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_a_fs_pins: tdm-a-fs {
-+						mux {
-+							groups = "tdm_a_fs";
-+							function = "tdm_a";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_a_sclk_pins: tdm-a-sclk {
-+						mux {
-+							groups = "tdm_a_sclk";
-+							function = "tdm_a";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_a_slv_fs_pins: tdm-a-slv-fs {
-+						mux {
-+							groups = "tdm_a_slv_fs";
-+							function = "tdm_a";
-+							bias-disable;
-+						};
-+					};
-+
-+
-+					tdm_a_slv_sclk_pins: tdm-a-slv-sclk {
-+						mux {
-+							groups = "tdm_a_slv_sclk";
-+							function = "tdm_a";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_b_din0_pins: tdm-b-din0 {
-+						mux {
-+							groups = "tdm_b_din0";
-+							function = "tdm_b";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_b_din1_pins: tdm-b-din1 {
-+						mux {
-+							groups = "tdm_b_din1";
-+							function = "tdm_b";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_b_din2_pins: tdm-b-din2 {
-+						mux {
-+							groups = "tdm_b_din2";
-+							function = "tdm_b";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_b_din3_a_pins: tdm-b-din3-a {
-+						mux {
-+							groups = "tdm_b_din3_a";
-+							function = "tdm_b";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_b_din3_h_pins: tdm-b-din3-h {
-+						mux {
-+							groups = "tdm_b_din3_h";
-+							function = "tdm_b";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_b_dout0_pins: tdm-b-dout0 {
-+						mux {
-+							groups = "tdm_b_dout0";
-+							function = "tdm_b";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_b_dout1_pins: tdm-b-dout1 {
-+						mux {
-+							groups = "tdm_b_dout1";
-+							function = "tdm_b";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_b_dout2_pins: tdm-b-dout2 {
-+						mux {
-+							groups = "tdm_b_dout2";
-+							function = "tdm_b";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_b_dout3_a_pins: tdm-b-dout3-a {
-+						mux {
-+							groups = "tdm_b_dout3_a";
-+							function = "tdm_b";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_b_dout3_h_pins: tdm-b-dout3-h {
-+						mux {
-+							groups = "tdm_b_dout3_h";
-+							function = "tdm_b";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_b_fs_pins: tdm-b-fs {
-+						mux {
-+							groups = "tdm_b_fs";
-+							function = "tdm_b";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_b_sclk_pins: tdm-b-sclk {
-+						mux {
-+							groups = "tdm_b_sclk";
-+							function = "tdm_b";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_b_slv_fs_pins: tdm-b-slv-fs {
-+						mux {
-+							groups = "tdm_b_slv_fs";
-+							function = "tdm_b";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_b_slv_sclk_pins: tdm-b-slv-sclk {
-+						mux {
-+							groups = "tdm_b_slv_sclk";
-+							function = "tdm_b";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_c_din0_a_pins: tdm-c-din0-a {
-+						mux {
-+							groups = "tdm_c_din0_a";
-+							function = "tdm_c";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_c_din0_z_pins: tdm-c-din0-z {
-+						mux {
-+							groups = "tdm_c_din0_z";
-+							function = "tdm_c";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_c_din1_a_pins: tdm-c-din1-a {
-+						mux {
-+							groups = "tdm_c_din1_a";
-+							function = "tdm_c";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_c_din1_z_pins: tdm-c-din1-z {
-+						mux {
-+							groups = "tdm_c_din1_z";
-+							function = "tdm_c";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_c_din2_a_pins: tdm-c-din2-a {
-+						mux {
-+							groups = "tdm_c_din2_a";
-+							function = "tdm_c";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_c_din2_z_pins: tdm-c-din2-z {
-+						mux {
-+							groups = "tdm_c_din2_z";
-+							function = "tdm_c";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_c_din3_a_pins: tdm-c-din3-a {
-+						mux {
-+							groups = "tdm_c_din3_a";
-+							function = "tdm_c";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_c_din3_z_pins: tdm-c-din3-z {
-+						mux {
-+							groups = "tdm_c_din3_z";
-+							function = "tdm_c";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_c_dout0_a_pins: tdm-c-dout0-a {
-+						mux {
-+							groups = "tdm_c_dout0_a";
-+							function = "tdm_c";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_c_dout0_z_pins: tdm-c-dout0-z {
-+						mux {
-+							groups = "tdm_c_dout0_z";
-+							function = "tdm_c";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_c_dout1_a_pins: tdm-c-dout1-a {
-+						mux {
-+							groups = "tdm_c_dout1_a";
-+							function = "tdm_c";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_c_dout1_z_pins: tdm-c-dout1-z {
-+						mux {
-+							groups = "tdm_c_dout1_z";
-+							function = "tdm_c";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_c_dout2_a_pins: tdm-c-dout2-a {
-+						mux {
-+							groups = "tdm_c_dout2_a";
-+							function = "tdm_c";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_c_dout2_z_pins: tdm-c-dout2-z {
-+						mux {
-+							groups = "tdm_c_dout2_z";
-+							function = "tdm_c";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_c_dout3_a_pins: tdm-c-dout3-a {
-+						mux {
-+							groups = "tdm_c_dout3_a";
-+							function = "tdm_c";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_c_dout3_z_pins: tdm-c-dout3-z {
-+						mux {
-+							groups = "tdm_c_dout3_z";
-+							function = "tdm_c";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_c_fs_a_pins: tdm-c-fs-a {
-+						mux {
-+							groups = "tdm_c_fs_a";
-+							function = "tdm_c";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_c_fs_z_pins: tdm-c-fs-z {
-+						mux {
-+							groups = "tdm_c_fs_z";
-+							function = "tdm_c";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_c_sclk_a_pins: tdm-c-sclk-a {
-+						mux {
-+							groups = "tdm_c_sclk_a";
-+							function = "tdm_c";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_c_sclk_z_pins: tdm-c-sclk-z {
-+						mux {
-+							groups = "tdm_c_sclk_z";
-+							function = "tdm_c";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_c_slv_fs_a_pins: tdm-c-slv-fs-a {
-+						mux {
-+							groups = "tdm_c_slv_fs_a";
-+							function = "tdm_c";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_c_slv_fs_z_pins: tdm-c-slv-fs-z {
-+						mux {
-+							groups = "tdm_c_slv_fs_z";
-+							function = "tdm_c";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_c_slv_sclk_a_pins: tdm-c-slv-sclk-a {
-+						mux {
-+							groups = "tdm_c_slv_sclk_a";
-+							function = "tdm_c";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_c_slv_sclk_z_pins: tdm-c-slv-sclk-z {
-+						mux {
-+							groups = "tdm_c_slv_sclk_z";
-+							function = "tdm_c";
-+							bias-disable;
-+						};
-+					};
-+
- 					uart_a_pins: uart-a {
- 						mux {
- 							groups = "uart_a_tx",
-@@ -789,6 +1251,108 @@
- 					#reset-cells = <1>;
- 					clocks = <&clkc_audio AUD_CLKID_DDR_ARB>;
+@@ -1164,6 +1328,19 @@
  				};
-+
-+				tdmin_a: audio-controller@300 {
-+					compatible = "amlogic,g12a-tdmin",
-+						     "amlogic,axg-tdmin";
-+					reg = <0x0 0x300 0x0 0x40>;
-+					sound-name-prefix = "TDMIN_A";
-+					clocks = <&clkc_audio AUD_CLKID_TDMIN_A>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_A_SCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_A_SCLK_SEL>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_A_LRCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_A_LRCLK>;
-+					clock-names = "pclk", "sclk", "sclk_sel",
-+						      "lrclk", "lrclk_sel";
-+					status = "disabled";
-+				};
-+
-+				tdmin_b: audio-controller@340 {
-+					compatible = "amlogic,g12a-tdmin",
-+						     "amlogic,axg-tdmin";
-+					reg = <0x0 0x340 0x0 0x40>;
-+					sound-name-prefix = "TDMIN_B";
-+					clocks = <&clkc_audio AUD_CLKID_TDMIN_B>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_B_SCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_B_SCLK_SEL>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_B_LRCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_B_LRCLK>;
-+					clock-names = "pclk", "sclk", "sclk_sel",
-+						      "lrclk", "lrclk_sel";
-+					status = "disabled";
-+				};
-+
-+				tdmin_c: audio-controller@380 {
-+					compatible = "amlogic,g12a-tdmin",
-+						     "amlogic,axg-tdmin";
-+					reg = <0x0 0x380 0x0 0x40>;
-+					sound-name-prefix = "TDMIN_C";
-+					clocks = <&clkc_audio AUD_CLKID_TDMIN_C>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_C_SCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_C_SCLK_SEL>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_C_LRCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_C_LRCLK>;
-+					clock-names = "pclk", "sclk", "sclk_sel",
-+						      "lrclk", "lrclk_sel";
-+					status = "disabled";
-+				};
-+
-+				tdmin_lb: audio-controller@3c0 {
-+					compatible = "amlogic,g12a-tdmin",
-+						     "amlogic,axg-tdmin";
-+					reg = <0x0 0x3c0 0x0 0x40>;
-+					sound-name-prefix = "TDMIN_LB";
-+					clocks = <&clkc_audio AUD_CLKID_TDMIN_LB>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_LB_SCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_LB_SCLK_SEL>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_LB_LRCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMIN_LB_LRCLK>;
-+					clock-names = "pclk", "sclk", "sclk_sel",
-+						      "lrclk", "lrclk_sel";
-+					status = "disabled";
-+				};
-+
-+				tdmout_a: audio-controller@500 {
-+					compatible = "amlogic,g12a-tdmout";
-+					reg = <0x0 0x500 0x0 0x40>;
-+					sound-name-prefix = "TDMOUT_A";
-+					clocks = <&clkc_audio AUD_CLKID_TDMOUT_A>,
-+						 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK_SEL>,
-+						 <&clkc_audio AUD_CLKID_TDMOUT_A_LRCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMOUT_A_LRCLK>;
-+					clock-names = "pclk", "sclk", "sclk_sel",
-+						      "lrclk", "lrclk_sel";
-+					status = "disabled";
-+				};
-+
-+				tdmout_b: audio-controller@540 {
-+					compatible = "amlogic,g12a-tdmout";
-+					reg = <0x0 0x540 0x0 0x40>;
-+					sound-name-prefix = "TDMOUT_B";
-+					clocks = <&clkc_audio AUD_CLKID_TDMOUT_B>,
-+						 <&clkc_audio AUD_CLKID_TDMOUT_B_SCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMOUT_B_SCLK_SEL>,
-+						 <&clkc_audio AUD_CLKID_TDMOUT_B_LRCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMOUT_B_LRCLK>;
-+					clock-names = "pclk", "sclk", "sclk_sel",
-+						      "lrclk", "lrclk_sel";
-+					status = "disabled";
-+				};
-+
-+				tdmout_c: audio-controller@580 {
-+					compatible = "amlogic,g12a-tdmout";
-+					reg = <0x0 0x580 0x0 0x40>;
-+					sound-name-prefix = "TDMOUT_C";
-+					clocks = <&clkc_audio AUD_CLKID_TDMOUT_C>,
-+						 <&clkc_audio AUD_CLKID_TDMOUT_C_SCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMOUT_C_SCLK_SEL>,
-+						 <&clkc_audio AUD_CLKID_TDMOUT_C_LRCLK>,
-+						 <&clkc_audio AUD_CLKID_TDMOUT_C_LRCLK>;
-+					clock-names = "pclk", "sclk", "sclk_sel",
-+						      "lrclk", "lrclk_sel";
-+					status = "disabled";
-+				};
  			};
  
- 			usb3_pcie_phy: phy@46000 {
-@@ -925,6 +1489,100 @@
- 						};
- 					};
- 
-+					mclk0_ao_pins: mclk0-ao {
-+						mux {
-+							groups = "mclk0_ao";
-+							function = "mclk0_ao";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
++			pdm: audio-controller@40000 {
++				compatible = "amlogic,g12a-pdm",
++					     "amlogic,axg-pdm";
++				reg = <0x0 0x40000 0x0 0x34>;
++				#sound-dai-cells = <0>;
++				sound-name-prefix = "PDM";
++				clocks = <&clkc_audio AUD_CLKID_PDM>,
++					 <&clkc_audio AUD_CLKID_PDM_DCLK>,
++					 <&clkc_audio AUD_CLKID_PDM_SYSCLK>;
++				clock-names = "pclk", "dclk", "sysclk";
++				status = "disabled";
++			};
 +
-+					tdm_ao_b_din0_pins: tdm-ao-b-din0 {
-+						mux {
-+							groups = "tdm_ao_b_din0";
-+							function = "tdm_ao_b";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_ao_b_din1_pins: tdm-ao-b-din1 {
-+						mux {
-+							groups = "tdm_ao_b_din1";
-+							function = "tdm_ao_b";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_ao_b_din2_pins: tdm-ao-b-din2 {
-+						mux {
-+							groups = "tdm_ao_b_din2";
-+							function = "tdm_ao_b";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_ao_b_dout0_pins: tdm-ao-b-dout0 {
-+						mux {
-+							groups = "tdm_ao_b_dout0";
-+							function = "tdm_ao_b";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_ao_b_dout1_pins: tdm-ao-b-dout1 {
-+						mux {
-+							groups = "tdm_ao_b_dout1";
-+							function = "tdm_ao_b";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_ao_b_dout2_pins: tdm-ao-b-dout2 {
-+						mux {
-+							groups = "tdm_ao_b_dout2";
-+							function = "tdm_ao_b";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_ao_b_fs_pins: tdm-ao-b-fs {
-+						mux {
-+							groups = "tdm_ao_b_fs";
-+							function = "tdm_ao_b";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_ao_b_sclk_pins: tdm-ao-b-sclk {
-+						mux {
-+							groups = "tdm_ao_b_sclk";
-+							function = "tdm_ao_b";
-+							bias-disable;
-+							drive-strength-microamp = <3000>;
-+						};
-+					};
-+
-+					tdm_ao_b_slv_fs_pins: tdm-ao-b-slv-fs {
-+						mux {
-+							groups = "tdm_ao_b_slv_fs";
-+							function = "tdm_ao_b";
-+							bias-disable;
-+						};
-+					};
-+
-+					tdm_ao_b_slv_sclk_pins: tdm-ao-b-slv-sclk {
-+						mux {
-+							groups = "tdm_ao_b_slv_sclk";
-+							function = "tdm_ao_b";
-+							bias-disable;
-+						};
-+					};
-+
- 					uart_ao_a_pins: uart-a-ao {
- 						mux {
- 							groups = "uart_ao_a_tx",
+ 			audio: bus@42000 {
+ 				compatible = "simple-bus";
+ 				reg = <0x0 0x42000 0x0 0x2000>;
 -- 
 2.20.1
 
