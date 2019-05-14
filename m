@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
 	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 16FF3C04AB4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2019 18:24:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C397FC04AB4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2019 18:25:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E052D20881
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2019 18:24:51 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 98EC72166E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2019 18:25:11 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PhNMMP9P";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="CYe+ksV2"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E052D20881
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jgSzkoEf";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="lJr0Zzq/"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 98EC72166E
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=k9CmBOMknk/ienb8tjpGy0VtNEC2NXyequBVE5hnDBE=; b=PhNMMP9PJ6m3Q/
-	qvTbzBciZIIPMN64Ut72BMBZ6HoGEAWtDZ9/YXT+ten2H1fjtqUjPnDNZB3NXFFENDcRp9Lwhzf2Y
-	WPCDBns4PNpAceLjU0yaWsb4sMOFDtr1IsoSCHLVS4mePAREr47cFVdArw34dLp2f6iVXGkfEHvBr
-	z4BL+58+gW8Gi3+Pb5Dmpuukp839KZA1CVsGbzs8ePi6r6EmFwuKqjJE3pYRF4jL1ZlVE1QH50Wuc
-	nwgnSlmDCP/SoimX+8R95kwS46Rg4Bx/QhGY1pS3bFRnC17mNJQpRXsBZEIW4IbblOZMdqmQEbRqE
-	HeFC8xstXMg4yXeHh18g==;
+	List-Owner; bh=RhqDGa1ct/1ow6xF/+5CTsEpXkzuXlCCf/UYP5DBbiU=; b=jgSzkoEfI10IK2
+	LcsY9bhJuOU9CXmMLO4aLLpMISLRCeZTXUOX+8jjfKggYKDNVN/DijUiWiPdNwa1Un/Nb/zQFIVg2
+	MpX3hMLwozEWHAYr9JbcphkE+YmkE6KKol5LjaWDUxkquaJCXAjwsW7J2xoBWQeeks0dKf5HcmS2f
+	ZbcohjgaWpi2KSl3oxq5B70mdRUX4espzRspSlkZ5cTWt/kBf65CvMidq9Uh6Bgk4oK42B3AiU7nw
+	Uzg10TMQBEIRrgvF3EyDHgVATyhxd09nLNB1x1e0l9EDso2bO6KR4tEEpy5m6b6KCj72qMKk0UHN5
+	AAkwGd1j0Lm3vG0lC/4A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hQc6Y-0002Ds-8t; Tue, 14 May 2019 18:24:46 +0000
-Received: from mail-ot1-x343.google.com ([2607:f8b0:4864:20::343])
+	id 1hQc6u-0003KY-0Z; Tue, 14 May 2019 18:25:08 +0000
+Received: from mail-oi1-x242.google.com ([2607:f8b0:4864:20::242])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hQc6V-0002D9-8e
- for linux-amlogic@lists.infradead.org; Tue, 14 May 2019 18:24:44 +0000
-Received: by mail-ot1-x343.google.com with SMTP id r7so11695561otn.6
- for <linux-amlogic@lists.infradead.org>; Tue, 14 May 2019 11:24:40 -0700 (PDT)
+ id 1hQc6r-0002nz-3z
+ for linux-amlogic@lists.infradead.org; Tue, 14 May 2019 18:25:06 +0000
+Received: by mail-oi1-x242.google.com with SMTP id w144so7371016oie.12
+ for <linux-amlogic@lists.infradead.org>; Tue, 14 May 2019 11:25:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=K6J8S1G1oUeNsO21G9dTvWZ7yrw8d+Sc+qmFLWzLEdI=;
- b=CYe+ksV2i4t0hrZM9i6qO8u4EWzJCoKreEJL7J8csh5q6BamJBq+VMmseJIOXVnafx
- awnucyvIDNJSIYz8kjI8AX1lZ3DXxj9ZF+qIGbm9gbeJrbQelanLhOeBH/4trStfvllg
- NdePzcLUgIx2HT85cSyRdi4r66Tw+xHUwYJzIX3mDZnvNg8KK/M10q9FmpvleijpZU37
- mm0ddsIRWqe3ueyJp15ZjulQfHhhI0U+nFJ+3exYfWjny7OMTy0gP+xqDQUj1YQXw7zD
- kcCz6A+xwXB+Z3wQehi9s19GvV4cPQIcyiSKEAt81DiOCh9fAg0El8h3mg/rEVYyXKr+
- bqVw==
+ :cc; bh=kw3IOsl4tz1Kex8D0hbfYf2WNfpKc0o/lXZ+cVw7qjc=;
+ b=lJr0Zzq/wwnxu0m2KeQgieErswd5Yc517neOCGeh1PtLvrXwf/bAxE4Lb1MJS5E2iU
+ Q1JQhCcj6az7Bn1+cEetwZ3KUCQYjPa1r5R9lWU+KscBgqT4bNBBfR/jO3OWnG8Xf2Rb
+ mclBcWeZF2rY7uG8NkF6YY3WksmciEdWC1KnQOc03AvywuyPRgkWsk/0FbAyuGETryaS
+ fxp7e3UNkBLueJWWkKWj5oiAks30wFhQexvpgGbPeUHHnSoPUFliBwVVMYFhai5DBTCi
+ g4Cjo6ccfLQkmSMk7pkq3Btuq7ZH9zROPV/CRPoIQnJdoUaloOZc8z6PHvZA0xVnT/m5
+ qoFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=K6J8S1G1oUeNsO21G9dTvWZ7yrw8d+Sc+qmFLWzLEdI=;
- b=ugLR+iWdlQ/lf2EJLFbOGXaJ9lYMw0Hozh0XXJyp7jB+07gXDqYPkepEFoTSeQDsPy
- J3LNwhRkw4X612a7l9p0kJjz4AZTGbQ9cyyinGB885idYnHPk1g/KrM4jocu4SR5vso0
- ATpTFDYhhwCwnFmoCjgP31qVuyT+iS/VlwdU+LFQP9VajaTk27IkewmolReRlg8Qrjcg
- uISeY34Sf7Hj5gJqVH5oYOJ4twSpZeqoDs/Y8Bz3VeeNxjtDCOuaAJs4Dm1RHTUzixvW
- mfXl6wwBmY/MACHhnt7S0y2CcRXAKlqmL2OnsLbUMmMYMA9XDj/Hh5NwT2L2MZdzFj9t
- MlNA==
-X-Gm-Message-State: APjAAAWRsl6+M9aCpCsW/u3RKpW3VL2TE1bfNb0KN1WKwtjb5j7Wx3FI
- ABeHWHwwgaqxrtWfREXgHDHuwimTDc04Cs/E41I=
-X-Google-Smtp-Source: APXvYqzmxaC0RQ97CjQ+lyytbY9vc2WIYQ1LcGILX0ZudiL4HpDZrSs1tUWgtk+2LYMebilQ5zrWQdpQFiHpciVbaCQ=
-X-Received: by 2002:a9d:4586:: with SMTP id x6mr18052074ote.38.1557858279484; 
- Tue, 14 May 2019 11:24:39 -0700 (PDT)
+ bh=kw3IOsl4tz1Kex8D0hbfYf2WNfpKc0o/lXZ+cVw7qjc=;
+ b=Uo+lVyW/wMimQh7F8jHIsXyp5q5Wl/e0rygrJs4q0D4JFBO0H7o4wdvHZZX83EDdi7
+ /P6L95XYlU8cIyx6Z91F/T/Tgm36cmiFlJmghXJ4HTc9Qa0Qz40lpipYOj9angF+U2Yj
+ w5lZyn+XzCmrd5rYA1dIZvsz7Vn4aR0zb09pxS5PMon6b4/XNRx4m7HiMpC18tngLarb
+ ZKz9k4uvJwQWHtB3vu4UjcbmGZJdGJQFDSfC3IE8MybOQL2DvClCPdalRNSjfJ7lq2/r
+ ZndapQE2LMYj1nOMYReIxTYRDkiB7LwMFReCGSH2aNI8kK3jVFAYlCbcwLtDk9rAfis6
+ q7sw==
+X-Gm-Message-State: APjAAAXhIdKj3oLMMjfK7eNiwHTLXRCiefs1Ik97b671sYDMyw904lk1
+ Ao4lydcc8Wnb8A5KVe6rn0LBeIAECLK+DE2r7U8=
+X-Google-Smtp-Source: APXvYqyJrHbY/exB6YGUUMsPrCvn/3mcKsx1q0CU06ZeAfCGMaEVzFez/hJkMHPJ0+gpcEtC6YgIIDJWKB6/cggmMh0=
+X-Received: by 2002:aca:b68a:: with SMTP id g132mr3828880oif.47.1557858304300; 
+ Tue, 14 May 2019 11:25:04 -0700 (PDT)
 MIME-Version: 1.0
 References: <20190514091611.15278-1-jbrunet@baylibre.com>
- <20190514091611.15278-4-jbrunet@baylibre.com>
-In-Reply-To: <20190514091611.15278-4-jbrunet@baylibre.com>
+ <20190514091611.15278-3-jbrunet@baylibre.com>
+In-Reply-To: <20190514091611.15278-3-jbrunet@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 14 May 2019 20:24:28 +0200
-Message-ID: <CAFBinCD8BLQ-5pLs2-gbX87kxkWgTibtM2TZWKu88uRg2euzkA@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: meson: sei510: add sd and emmc
+Date: Tue, 14 May 2019 20:24:53 +0200
+Message-ID: <CAFBinCDdyctRu04PrnsrvLMbe+Ty7xo1jxaRzomjwq9VVu215w@mail.gmail.com>
+Subject: Re: [PATCH 2/3] arm64: dts: meson: u200: add sd and emmc
 To: Jerome Brunet <jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190514_112443_306248_75460D62 
-X-CRM114-Status: UNSURE (   7.82  )
+X-CRM114-CacheID: sfid-20190514_112505_194192_577698CC 
+X-CRM114-Status: UNSURE (   7.67  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -100,7 +100,7 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 On Tue, May 14, 2019 at 11:16 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
 >
-> Enable eMMC and SDCard on the g12a sei510 board
+> Enable eMMC and SDCard on the g12a u200 board
 >
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 I compared the GPIOs with the Odroid-N2 schematics because I'm
