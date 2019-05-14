@@ -2,21 +2,22 @@ Return-Path: <SRS0=drR+=TO=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
-	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 50929C04AB4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2019 10:22:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2AE5EC04AB4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2019 10:22:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1F6DB20881
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2019 10:22:10 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id EAA2620881
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2019 10:22:41 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YTpB/lia";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="BQbtuLZS"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1F6DB20881
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Y0tEoxub";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="JVPDo6Ux"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EAA2620881
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,58 +26,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gyD8E28CxkoRqXZHHa0OjWWU24dERTly+S/n6/k1QGQ=; b=YTpB/liapjvRt1
-	dN1kpUWjaW5XJZSKHMNwDYH4fbqY975sPM9hWcDXnvcabpfE/1ZPd2ayzzduoBmRc+ADhAoO0ixwX
-	ocqkVmL/nQL6GlHFR43+aodqEeTDeDb2VU3SfuePndupTlLKjU5sHqle8Da5K3YM//N1dhSOA93LT
-	jvIgDthqFQDTQmbATf+PvhlHLVWdQ9vYG/o8CJCjjEQ+AXo41p6oftbSnJ6/5PGCuSliZzKUz014U
-	Ho4Pkqjxmpc0x4c3rT0/KOdz4GsJkV9cWYUKWdnCNtAR1hJnpIhq9XGVY4LmJih6lqMCkjbLoxrF2
-	CfSgRyIe1P9kNVv25gGQ==;
+	List-Owner; bh=FJh4U/fIn4olCvSeejVwnU1Sug1gnouoytT2JfaI9Wo=; b=Y0tEoxub63V4nq
+	+wn6WzQAPynNQP6M/FPLIFwK50FaQPQuf/5lVHk1qhbI/BgBZe+CP6/ov3c6X9HbgiKiP9sL8BYy5
+	Xty+qk4MRJ7jxwjNpNnk63d64ABoa0uPfyevoWUwoUzqDF0AUMuMczO32UNOC5qqc0YcH6Oan4DVF
+	CyTqyO2KWPlrT0ZcCEOxLskX6PDtrbYfwTFfr2cu0vKn2w1Bcug+FIXXrPaRk3N6cUpriCp5JSxcg
+	8uhJ2bTbWU7nURGT0pTvoq+x9x8oS27WbxBhjWn9r2iGBLugafJ0ap39i4kvn42opOc+VrDUA7RQk
+	wO6+3PeW1W+IUTKt54yg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hQUZR-00074l-9C; Tue, 14 May 2019 10:22:05 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1hQUZy-0007Ip-B6; Tue, 14 May 2019 10:22:38 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hQUZO-00074J-EE
- for linux-amlogic@lists.infradead.org; Tue, 14 May 2019 10:22:04 +0000
-Received: by mail-wr1-x443.google.com with SMTP id h4so18564346wre.7
- for <linux-amlogic@lists.infradead.org>; Tue, 14 May 2019 03:22:01 -0700 (PDT)
+ id 1hQUZv-0007HM-PM
+ for linux-amlogic@lists.infradead.org; Tue, 14 May 2019 10:22:37 +0000
+Received: by mail-wr1-x441.google.com with SMTP id w8so16118174wrl.6
+ for <linux-amlogic@lists.infradead.org>; Tue, 14 May 2019 03:22:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=E6SlSPXz/NIdq9DgRiId1vBM8lspvJEaKL5VgfIHa0Y=;
- b=BQbtuLZS91vwp6fpyAbem8rN7fPncMazQmV/y0AcOR6uDjcfZFossqVs7rn5a+TKu3
- 5yBMTUmUSxgs/YuSfGrnjy36ntEB3WpESKMu39UtinXIeMoQScq5I4JkyTXbIgYYuChs
- 3Capo4uASxWtFSIX7EWLxAXdNj8bM6emdSc2dOrTADqhJbjmHNok1aN8SvsuPUsUhfWN
- jfx/Pz5yRrLOUdpL57l3vjkA8BABi4Dq4HKtmTihMisl9onvtaCIk4oTFs/Xb+DVZjYn
- GhoYM3ivV/nveCgDgXk8QdmvfT1Nxt7zQkgphlXOajQXdroRN7rilDAyO/pIIzQTXB8E
- ZeNw==
+ bh=JS4sBt7IXohvdJKn0F8lWpqp1oCwlBU70LHzqo2dwZ0=;
+ b=JVPDo6UxJfPRIhlrANZYpLrkSBhH61/2DdCBE/SMC37X7qKsJH9OdVryg+kKEYCte7
+ uIzgzsw/qjJDhDWMUgHChbxhlpK1l9qEzl9nD39W/Bo8DVRoifvpIBaU++Lzu/D32fGI
+ 5Q2u2Zq1gY/yd8sLE/T+UrG4dbqUPZlygKfpoOhDkkQ7iIuygvwABBK2Dc5xyCuK5n/7
+ Lzk/3Y2bqXRQ8tLKMOzBfnEixgQtTLtlLCB78N8cGSIVgCCFFQIzRTJYExyn9XwmsflV
+ DNKaSwUVVYZqu7AWJLQ3v0zsP8Lfbj+NXGdWq9wHzw9+ab/tvuYP1K/fAEkqmIDqKp6u
+ 1eEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=E6SlSPXz/NIdq9DgRiId1vBM8lspvJEaKL5VgfIHa0Y=;
- b=FRXDHiPAqMQBr2VGUaS0sc2wQJH+PdJXHkE6usfaS/de4xeEbZ6vcL26GnlGn9zPot
- F+ilcxqFuJrzNqliXR9+OzH84ba2Yd0qaUEZd3N2AlWR5dClkEELoBiShbeoOa4RdSaF
- ETAD5i97qLTABCheS1MPd53ss3yiaNHChvhfJzo4xNQ4Xwo0ha74Z72/Jf25udPLujWf
- LhAdg1azi9RsXwFuPVIy3C0T/XqmOkXv/uQgU0POmqazXG5MWPM6pbLNQtt3fz25TKbP
- GOyND3j5bXsrr+Dl4aXEsWCBAa/hdHOcGsLenZN64V/c4Sfu2sMkW6b/M4C6YlMAjIAB
- zTCw==
-X-Gm-Message-State: APjAAAVIaANdtHOny1zD/Z73FuBurBQikAInPib6LaY18YI/Rc+qi7ci
- a3k2iAY0UAJvpS6tX5aA78zJkg==
-X-Google-Smtp-Source: APXvYqzAasMzhc3tS6ZAmslEDUvPmj4+tY32Vg3bcaJ+POdvq9tQsNUetRBRXqTLiOfUj/KhR8lHTg==
-X-Received: by 2002:adf:cf03:: with SMTP id o3mr13827712wrj.5.1557829320200;
- Tue, 14 May 2019 03:22:00 -0700 (PDT)
+ bh=JS4sBt7IXohvdJKn0F8lWpqp1oCwlBU70LHzqo2dwZ0=;
+ b=uKJjWUCziHYzht31B+pyiZexyS7WNJ6fS++xEKm+K3+W46w8o0PyAXL+cqtC78hXWM
+ +kg/VqJ8Nzpa3pQ7QmxYjA2JX1RwPw1keflv6jEPCbo/mqdZR6+Yp3zPDFU9OZEInMLj
+ 5oiE/VxQCoHAjpH/JRrYs3yFGk1uYjIaQkgPQby8mWqYV8ipPAGjXgh3ECGcSHm+CCGO
+ CKAfvYj+TLNXGJ4u1v+1hZCMTY5pOV3XcQdINQw7EX7oKfRY8KDv3KPL6ia92p1g20fc
+ nVZ/TSdVVFeiVeqcd7O1IyH4iLFlqd4wkF0cq/l5aTNfjdYF3c47Eg4XL2z21RNwY0sh
+ Go9g==
+X-Gm-Message-State: APjAAAVgM5MwiyHtnSLywcs/tfEckej9n+6Vz6IdMJdawpDBn9vbFjFz
+ yODaKTo2yZbUKyrtSoQCB1NyXA==
+X-Google-Smtp-Source: APXvYqzWB783F3hQbnGDoZ91DEryw2E2bUBhtz9f3DNSzF9hVkBmhVyupxSUko8VTLt1GLUrNiPRhw==
+X-Received: by 2002:adf:e390:: with SMTP id e16mr18215602wrm.321.1557829353940; 
+ Tue, 14 May 2019 03:22:33 -0700 (PDT)
 Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
  by smtp.gmail.com with ESMTPSA id
- l14sm14999889wrt.57.2019.05.14.03.21.59
+ q26sm1895385wmq.25.2019.05.14.03.22.32
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 14 May 2019 03:21:59 -0700 (PDT)
-Subject: Re: [PATCH 0/3] arm64: dts: meson: g12a: add mmc B and C
+ Tue, 14 May 2019 03:22:33 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: meson: g12a: set uart_ao clocks
 To: Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
-References: <20190514091611.15278-1-jbrunet@baylibre.com>
+References: <20190514094537.8765-1-jbrunet@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -129,16 +130,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <52aeb2a0-fe82-2039-d332-476db7d237db@baylibre.com>
-Date: Tue, 14 May 2019 12:21:58 +0200
+Message-ID: <8e6fb5af-e158-d2a3-5c28-8360a03711db@baylibre.com>
+Date: Tue, 14 May 2019 12:22:32 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190514091611.15278-1-jbrunet@baylibre.com>
+In-Reply-To: <20190514094537.8765-1-jbrunet@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190514_032202_476894_79231B6F 
-X-CRM114-Status: GOOD (  14.76  )
+X-CRM114-CacheID: sfid-20190514_032235_826608_C5BFE276 
+X-CRM114-Status: GOOD (  15.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -157,29 +158,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 14/05/2019 11:16, Jerome Brunet wrote:
-> This patchset adds the MMC controller B and C to the g12a SoC as well
-> as the u200 and sei510 boards.
+On 14/05/2019 11:45, Jerome Brunet wrote:
+> Now that the AO clock controller is available, make the uarts of the
+> always-on domain claim the appropriate peripheral clock.
 > 
-> MMC controller A has been left out on purpose. This controller is
-> special on this SoC family and will be added later on.
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> Notice the use of the pinconf DT property 'drive-strength-microamp'.
-> Support for this property is not yet merged in meson pinctrl driver but
-> the DT part as been acked by the DT maintainer [0] so it should be safe
-> to use.
-> 
-> [0]: https://lkml.kernel.org/r/20190513152451.GA25690@bogus
-> 
-> Jerome Brunet (3):
->   arm64: dts: meson: g12a: add mmc nodes
->   arm64: dts: meson: u200: add sd and emmc
->   arm64: dts: meson: sei510: add sd and emmc
-> 
->  .../boot/dts/amlogic/meson-g12a-sei510.dts    |  42 ++++++
->  .../boot/dts/amlogic/meson-g12a-u200.dts      |  42 ++++++
->  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi   | 124 ++++++++++++++++++
->  3 files changed, 208 insertions(+)
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> index b2f08fc96568..ca01064a771a 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+> @@ -708,7 +708,7 @@
+>  					     "amlogic,meson-ao-uart";
+>  				reg = <0x0 0x3000 0x0 0x18>;
+>  				interrupts = <GIC_SPI 193 IRQ_TYPE_EDGE_RISING>;
+> -				clocks = <&xtal>, <&xtal>, <&xtal>;
+> +				clocks = <&xtal>, <&clkc_AO CLKID_AO_UART>, <&xtal>;
+>  				clock-names = "xtal", "pclk", "baud";
+>  				status = "disabled";
+>  			};
+> @@ -718,7 +718,7 @@
+>  					     "amlogic,meson-ao-uart";
+>  				reg = <0x0 0x4000 0x0 0x18>;
+>  				interrupts = <GIC_SPI 197 IRQ_TYPE_EDGE_RISING>;
+> -				clocks = <&xtal>, <&xtal>, <&xtal>;
+> +				clocks = <&xtal>, <&clkc_AO CLKID_AO_UART2>, <&xtal>;
+>  				clock-names = "xtal", "pclk", "baud";
+>  				status = "disabled";
+>  			};
 > 
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
