@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_PASS,
 	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 392A7C04AB4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2019 18:29:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C957FC04AB4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2019 18:47:22 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0C59A2166E
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2019 18:29:57 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9F7FD206BF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2019 18:47:22 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="e7zgiol0";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="V093A41P"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0C59A2166E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AFeupbxL";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="FSuDnTxa"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9F7FD206BF
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MgrLmFm2pnsay2mXXhvw5LqsIX/Kz2U5QiqiQ7CreQc=; b=e7zgiol0+6C9ac
-	QwPgBHKkpp7JLp8wD2ib/5e5v4RaaBguMU9UXUPa0NQyQnFkLJ/0QfTpkUorPhXiaM49K9yUkDnNO
-	cv5xoSK+5Z/m8EEHhQw16bZG4dXO/rgfdqjV61j2faQv5bU92PJ0HEMdg7FZBVtxCL5D7IRaefHjA
-	cN7ZwHWZKzS4v3NYRfqIYm53/0j85h3wz1FCE6RYh79ewZITCg1fZOwsuWPUhlnOotXXskPQ38ewK
-	T1UIctoCW1SGMJk87PJO7ubHAE6Qu8YkBv/U8E7RRJbttmgrfWucUugR19xtijn0kg0pDQgQMMFbW
-	gpUOqo0MStEdligGwPVw==;
+	List-Owner; bh=p3CubvBwBWJsLF5EMLmpYB1fJ8AWGALXegvWlpDV5VI=; b=AFeupbxLArZ4u6
+	PHy/0SS3SLuMo6KQID/e97kqPC1YOZXI9h9W8iJSAVPrSKcJgy4dF/dqNE1Vy2JdI+tROYSxMuJ1C
+	SNJGVoE94wP7XSTwT0iPFiTlvRML/PeNK5mjwz3Wj2+sSzxa6EAs0neTW2os0igelvc9EyNCT1g7y
+	PGJ1BtbZLOTJgTdH8y8Ffv5zEEhZUC5qGpx4dibLAq4IjlLPcPhoNVIsVGvxrP2IW3AggPqgkPafe
+	DqlU7VAuNaQhOOTSt9iSnUSi+/Oj9WtyHZ+EC9SUVa2pLYDBxtGC3twWKV6rb59/+5baIS/uCN9Pg
+	ZG2vkG2PPcQYr73fisZg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hQcBV-0003nC-F2; Tue, 14 May 2019 18:29:53 +0000
-Received: from mail-oi1-x244.google.com ([2607:f8b0:4864:20::244])
+	id 1hQcSL-0002SO-4M; Tue, 14 May 2019 18:47:17 +0000
+Received: from mail-oi1-x241.google.com ([2607:f8b0:4864:20::241])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hQcBS-0003mj-35
- for linux-amlogic@lists.infradead.org; Tue, 14 May 2019 18:29:51 +0000
-Received: by mail-oi1-x244.google.com with SMTP id m204so12925646oib.0
- for <linux-amlogic@lists.infradead.org>; Tue, 14 May 2019 11:29:49 -0700 (PDT)
+ id 1hQcSC-0002Kk-PH; Tue, 14 May 2019 18:47:10 +0000
+Received: by mail-oi1-x241.google.com with SMTP id v10so12959176oib.1;
+ Tue, 14 May 2019 11:47:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=YzHwYmKzjuKvCOCh10t0J9NpuXRpPAJJUwj2kybwkcQ=;
- b=V093A41P+K5tEG4t03XJ3d+7PTyuCoW2oNm1Nh1S21pQjOK3wC6slvaecR/0t2O7gu
- pqYBDniVFRkeX5y41cZui9umzX3h8bAE59uVgNAFZ12zlTQxGDyU2lsUam5c550ol6pN
- kDE6X/4M/ZErMoonr5I/Q5DVmG9ymKHVyzR1dAdImxbcrXz4hvBUXvhXGeV8Td1/szRP
- xPvWEi0B9eHH+gDThvqRrLbzj7agpYLG8pTP2m5fqM3CEXf/zz+cxWa8okMWhOxKuVRc
- a+jDelL2YDDS9m2FZt2kGBP2xbNJm4VD4dEXGy3hvWPHPrl2nTsLJNxPJ8wKO4AoMddY
- KyOw==
+ :cc; bh=b3wKV2yvyhNXBHezd2g3VNLzJd77vsTJn5OuHUZElkE=;
+ b=FSuDnTxaDbNRibS/cl1V/LWshcY/nC5P8Wwb7sEKTQIA9N2sXN/aZ6qS/B9N6ZZYli
+ iSBFSvSmeeYzin0eC/VMw0QMTnlgL6WK1P6ZSSX7g7RIkiQlQ+zVRYyuU+L6c1KQtOUm
+ H1eZ1Jhgv6syoz7DG5/dU3a6wKSu4JpdNY90IRtdlh8byKBHrEgvzB8s0C2DAGu7u3g7
+ ecabg5KjKS48Qa6iSf+sF7zgW7KHddpTQClz7GvcquLTMtxqN2S6BOGnxIxUWSmrdZru
+ E/VAnuEYZ3NTqFnB3QqeLNELRDkAwZjEk4qOK/laDM+wxE5Day3oWcT4Y4fqgcKRX2gl
+ 3A4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=YzHwYmKzjuKvCOCh10t0J9NpuXRpPAJJUwj2kybwkcQ=;
- b=jy8sPY2hofyey9V7HId+Wn3IN8DKnf3ETlv51oCGM7EJtbpKf3sCUAHga58c68s+DM
- FwzI/bt160M4wGFIaCL42wYm9Df2cewXdEx0NDIHGNf749S974AHxejEvzvCu3sr7Pbc
- 5wp5JlaAytWhrkNGN6CP/KU0HahRsrXwOSjXSsrIWpdd4pQyba0CTiBPrmpi0ceydjhP
- Txqy9mQqOFcRKpIU/bE7dsTkHPgX1a4OFBENzaZlB+TulPl6w9GUw8JilbTaVJOwvy1O
- eQC4SXkUyunZ9MOJENYMXpBhtpW+ugQEiZBBmcJbPGq2cr2Kwhed92eZRexZf29kYI70
- MdiQ==
-X-Gm-Message-State: APjAAAXyLQDjM1joZbS1EMOIL8xeaUcmz/2FF69xey45OR6eCMV6jVL2
- SoUXUT3yYnLB6Orblox6tp7+8z5hR2tLgadjzXg=
-X-Google-Smtp-Source: APXvYqxcWe1Slj1XnihHFg5ydnIfXNbBimRjDB0bETv6zV5QhUSm2aIUfIunQTLyioy582hC+nI5IHzzlfR8e/5WRCk=
-X-Received: by 2002:aca:ed0a:: with SMTP id l10mr4134001oih.39.1557858589257; 
- Tue, 14 May 2019 11:29:49 -0700 (PDT)
+ bh=b3wKV2yvyhNXBHezd2g3VNLzJd77vsTJn5OuHUZElkE=;
+ b=aD9KVgsoOzkLxTEwNuAsEr1c+5jd8+luPa8Fxjrvwj6bc/jWRp40pV8MzzwVbFiGn5
+ AAk4v5WWnZg1yyTm4HaSJubk0CaDyDzdDLcT1CZKpkC+UaIxxzacIumlVyFNzMVnzk2E
+ x/HL8H+EPooWDyM2Z8JiAwcAjUQwx/B5BbyLpT+qTb6sFI7R/P7RQ+8O8u7MgImc9rGT
+ rbhdpa+djwPy+gOzhDoKBKxJPsVLAxmptAo4ZeJL15u1/aP/Y0Fx0nVYdYfuQPH6O+iS
+ iyE3RSAwsWoxl3B7D13bkyXVsd0Gt5H5PGP/Cb4Vox2qlh+TRbj4wWYHuCT/iT2Vvdt5
+ 9w6A==
+X-Gm-Message-State: APjAAAUqBRUkcGOw1odKkdkVTsAx12QkNG7wiVXcGNArRaw+CdDe6x6V
+ wPXeT/nkq4Ufih20QfLJ6p1gWn2NOj+Y4xCLoAlgHPJjkY0=
+X-Google-Smtp-Source: APXvYqyAsqSOHm/4PjG8rmz2z+47hObMZtkODxPLmkZxrCSNCrhSrYuN8g3dNQ1msbyt5tew1NttZ3FWwieMhIJnR2U=
+X-Received: by 2002:aca:ab04:: with SMTP id u4mr3815658oie.15.1557859627031;
+ Tue, 14 May 2019 11:47:07 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190514094537.8765-1-jbrunet@baylibre.com>
-In-Reply-To: <20190514094537.8765-1-jbrunet@baylibre.com>
+References: <20190514135612.30822-1-mjourdan@baylibre.com>
+ <20190514135612.30822-2-mjourdan@baylibre.com>
+In-Reply-To: <20190514135612.30822-2-mjourdan@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 14 May 2019 20:29:38 +0200
-Message-ID: <CAFBinCB=p4O53vPpvQBYP_PLxa9oc0_qGBLwYz-jzg+WNoGR7A@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: meson: g12a: set uart_ao clocks
-To: Jerome Brunet <jbrunet@baylibre.com>
+Date: Tue, 14 May 2019 20:46:56 +0200
+Message-ID: <CAFBinCBm=zJb9Ap3XL03X4LUAPcPQ2u=gJsBhBdHSUXYD5BMpw@mail.gmail.com>
+Subject: Re: [PATCH v6 1/4] dt-bindings: media: add Amlogic Video Decoder
+ Bindings
+To: Maxime Jourdan <mjourdan@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190514_112950_666471_9479B755 
-X-CRM114-Status: UNSURE (   7.10  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190514_114708_843266_F082739D 
+X-CRM114-Status: GOOD (  14.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -90,20 +90,57 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ Hans Verkuil <hans.verkuil@cisco.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ linux-amlogic@lists.infradead.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Rob Herring <robh@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-media <linux-media@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, May 14, 2019 at 11:45 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
+Hi Maxime,
+
+On Tue, May 14, 2019 at 3:56 PM Maxime Jourdan <mjourdan@baylibre.com> wrote:
 >
-> Now that the AO clock controller is available, make the uarts of the
-> always-on domain claim the appropriate peripheral clock.
->
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> Add documentation for the meson vdec dts node.
+thank you for working on this!
+
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+[...]
+> +Required properties:
+> +- compatible: value should be different for each SoC family as :
+> +       - GXBB (S905) : "amlogic,gxbb-vdec"
+> +       - GXL (S905X, S905D) : "amlogic,gxl-vdec"
+> +       - GXM (S912) : "amlogic,gxm-vdec"
+> +- reg: base address and size of he following memory-mapped regions :
+> +       - dos
+> +       - esparser
+> +- reg-names: should contain the names of the previous memory regions
+> +- interrupts: should contain the following IRQs:
+> +       - vdec
+> +       - esparser
+> +- interrupt-names: should contain the names of the previous interrupts
+Maxime already mentioned in the RFC version that there may be more
+interrupts in the future. I'm fine with adding the missing ones on
+demand
+
+> +- amlogic,ao-sysctrl: should point to the AOBUS sysctrl node
+my goal is to remove this property at some point and replace it with
+references to the power-domains.
+however, we don't have a power-domain driver for this yet (it's
+somewhere on my TODO-list - it involves splitting the current
+meson-gx-pwrc-vpu into two separate drivers, so we need to do it
+carefully so we don't break HDMI support)
+
+
+Regards
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
