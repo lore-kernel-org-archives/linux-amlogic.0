@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E6F56C04AB4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2019 09:16:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4D261C04AB6
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2019 09:16:26 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B9DC420675
-	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2019 09:16:24 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 22C9B20675
+	for <linux-amlogic@archiver.kernel.org>; Tue, 14 May 2019 09:16:26 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fmPLOh+l";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="mwqwPElR"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B9DC420675
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AbDXtV/U";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="xc26U9Tj"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 22C9B20675
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,68 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=d74dZA6jPqRogJJp1TdQCN8MlaG/ghr/U5UcOw9S3jY=; b=fmPLOh+lf/98NM
-	7CgbsZIpy1onEycjLpZGhX2bc2Ne7nyPZgex31B/yCHfmfEToafYvYyLTKpnWvfjBWphFzB+xQrnm
-	67R03t9ahFivjckbFFIZmsy7YMzklJzA42CzcCK6toFB6IhRci5yT3fwrPM1XLg3TKyGXpZce++9W
-	rVJY4TPsdDIhdr9ykDxnpbw2GPow+G7wFo0Wnwg/RBeyYFZSCAVMcBQaXEZ09oFc1sNdGx5h1xqCJ
-	4oNvc+SMjJFbwI6FgtKJhSf2zucD0kcFAq9kMrGbJ639fRUcGId1mv8VlQbEVynfy+FFKK88qEFYm
-	7QqWfFpU+R19dXV9Bj5Q==;
+	List-Owner; bh=XZ8B4tW317NZuTR1jHEvpF2EBySl4bOLwzqxczOY6k8=; b=AbDXtV/UclMtf7
+	3k8g0Ts3QMEg1kuHsFM9xLdXPd1S996CBCcZbWmXqPWpC+Dz0LMbhKBwXQmlZpGTQz+onfe5L8roT
+	e1/1g/zkSA7u5hBENwZTZ6qQkK1mHQiEq1B9Uo8Amo1iSS1IX8cZ/lUqEu3VygdK03n17nCMEr7Gk
+	LgdnMg0NdYj8UdIUjPulN5yjEJQoTq/czBWKXpeCcOemBVl7VNGdvfHgR0qf6QJoEdrs054gCR9DE
+	AjMn1gXYw8HdnpsIUn7lB42bUI+8fiScq2kN4mn8wb5hSP3Nqq/y6PLEOzQ/SiUD0j7Im6dcyspW6
+	vY/OY9waNnsb2MmxbzpA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hQTXo-0006zQ-6p; Tue, 14 May 2019 09:16:20 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1hQTXp-000717-Ms; Tue, 14 May 2019 09:16:21 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hQTXl-0006xd-3s
- for linux-amlogic@lists.infradead.org; Tue, 14 May 2019 09:16:18 +0000
-Received: by mail-wr1-x441.google.com with SMTP id e15so5908649wrs.4
- for <linux-amlogic@lists.infradead.org>; Tue, 14 May 2019 02:16:16 -0700 (PDT)
+ id 1hQTXl-0006xq-Q8
+ for linux-amlogic@lists.infradead.org; Tue, 14 May 2019 09:16:19 +0000
+Received: by mail-wm1-x344.google.com with SMTP id j187so1862126wma.1
+ for <linux-amlogic@lists.infradead.org>; Tue, 14 May 2019 02:16:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=PQxKZYI/w8DMXMSBGmGRGcJhp1dgIyZNVNnv6yd34UI=;
- b=mwqwPElROfHEc3Bz9sh7TzW90jpe117C1IEvXl20A2ih7GihRMBg/5AtdkYB58EpKX
- WMdoYrQRVrTh7p5bJmFQJsnoQLMecuqWBPRaHBYzJDj367jbJ8wX1KntMczNOHNw1mM2
- vDNO79ghUwWSc6uCwkxo1Xgbu/BRkJawUBbwBRy8aRlVrB5pXdV0t0VDiFUcvLOhDHJO
- /TKvPJiLeIz+z4QOGD1ryi+u0kbZTN1CWnrAMl0iMysN4R/P0Mlpsrk3eOcE2Rm2dNCD
- 9X+6me/HJs6Q+g4PpxKQ28as9tcEkqqkjPC4140f53dvkg5jWNgXU+BRRlqu/J+mXZGS
- YMqg==
+ bh=JBB80kSucULdDTNJYI8igseB69Y8j2lI/J0kpwbCBx0=;
+ b=xc26U9TjeXoczIN1/bNqF4ptrZV+tHSHp/rkfz3AO0zPAh1SCwFrkmrm7aGk7SnG7B
+ 7iAH6MWu3gW2vsM1AjElpXvZdW+mN6dOwLdvX/04LxZrZ+v8NDDSHRE6NGbc/9dEgbUa
+ RHA4YJeX+uVhj8XhpiD1jYoClkJ90D3WUwqn5ihjcUaBN+ZwDII5ivOsr/gI69NJi+dn
+ BstGRfIXuMwnOuKuSgHY+aDtkUjRjyC54qoAwYpswpZlPkZosX8x1gPZ3OsM8PTOStTo
+ IZhfto2a3OebGynN38qUnXV5NpekhN1+8Yb/gf0ugmPlBzWdJKpC2fdwCGXAcAnrZDdp
+ 8C3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=PQxKZYI/w8DMXMSBGmGRGcJhp1dgIyZNVNnv6yd34UI=;
- b=Z4GBQhC3V8cKTcWtGPL2TZp/8EF0dBYLKpQ2IzJ65BdHuvbJy2CjKaQBcP4USEVN2+
- Dnmhlv6LLFuxAlc6HbgHLPpKBsPnBaoGDAkCvdWXxQLyqL6ymp9W8jZS629yokWn7uxF
- SUnuPIc194arStoIglkANsVxw/oFrSQGrAs9wGxt718qcwYxqkmf0X6LHYAUMYfQauW7
- AqJRZDxx0gfDtwPmFHWrLWK+aE67DF+cX33l/B94tnlz6dDUNKAljzRBbNcMa+zO+Um0
- /y0/6S0ov/Axzx+6/vzeeFtvck58dnoOhxUQnwcObBX21iDfIccXjWUN8iEaLWItl/MO
- QrXA==
-X-Gm-Message-State: APjAAAWWudBEPq9owRkbpt0dJs2zAnuD5qySTgR0LcUAuKhDBF6mr4da
- 0oJRl9C7NBEgwcPYDDToNAtgIIDeAl0=
-X-Google-Smtp-Source: APXvYqwQvWBm2vnZF+njyEJ2UyL/mdGZxyMvdaLonnBOMXS9Fe73FCQduk5t12exPRvhXF8DLy+t6Q==
-X-Received: by 2002:a05:6000:10c4:: with SMTP id
- b4mr8179544wrx.145.1557825375605; 
- Tue, 14 May 2019 02:16:15 -0700 (PDT)
+ bh=JBB80kSucULdDTNJYI8igseB69Y8j2lI/J0kpwbCBx0=;
+ b=kRogJ20zW0T/zrFTGhOPDe0oj1FOWfijPqSgkx1Uczm+gd8uIfxnx3DQgbDtqN4baw
+ VpUXHTGsvjBWyJvJ5eI/wIuEcqDgMp8I7NU3LvUCPJRf1JEk+tZwZUa4QbajJfk/8X8C
+ CtfiM4vEXNMOiyGNJbDgUI+ODQBpvc73wHYMHbvquX4kaA5tx5z4RoZixLcaFA09gZDv
+ F9xmpzkfZDx5h+vh8zPLkQc0XQKhcNmpp7nno3EYbh66dm8op/pIZRaPRgpoauWmYi8u
+ nwJ2Mz9Opkdfk3muCZL6TwoN6E4HiVlWKOFoeuoqrfdh5t5r65X+skuZ1hPo+JhYXruv
+ 3M6Q==
+X-Gm-Message-State: APjAAAWTUFAgQnPKfFZGBxd+fezDs+DQ7l/ktaQwthpQsnQowU8NXCcC
+ qv6vYPjMbZ/eJS+3H/7soRtiBA==
+X-Google-Smtp-Source: APXvYqyT6ZXLbPx0I5XItLqQauM2l+Hgn/0MBaqV7V/d67845C9AKKxuWBgrvAKPlt8+JpfN6RL14Q==
+X-Received: by 2002:a1c:4145:: with SMTP id o66mr19288496wma.68.1557825376492; 
+ Tue, 14 May 2019 02:16:16 -0700 (PDT)
 Received: from boomer.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id y40sm17737158wrd.96.2019.05.14.02.16.14
+ by smtp.googlemail.com with ESMTPSA id y40sm17737158wrd.96.2019.05.14.02.16.15
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
  Tue, 14 May 2019 02:16:15 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH 1/3] arm64: dts: meson: g12a: add mmc nodes
-Date: Tue, 14 May 2019 11:16:09 +0200
-Message-Id: <20190514091611.15278-2-jbrunet@baylibre.com>
+Subject: [PATCH 2/3] arm64: dts: meson: u200: add sd and emmc
+Date: Tue, 14 May 2019 11:16:10 +0200
+Message-Id: <20190514091611.15278-3-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190514091611.15278-1-jbrunet@baylibre.com>
 References: <20190514091611.15278-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190514_021617_158287_C3BEE3A0 
-X-CRM114-Status: UNSURE (   9.26  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190514_021617_845069_FFEA25FB 
+X-CRM114-Status: GOOD (  10.43  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -106,163 +104,73 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add port B (sdcard) and port C (eMMC) pinctrl and controllers nodes to
-the g12a DT.
+Enable eMMC and SDCard on the g12a u200 board
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 124 ++++++++++++++++++++
- 1 file changed, 124 insertions(+)
+ .../boot/dts/amlogic/meson-g12a-u200.dts      | 42 +++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-index 2f4f4dd54cba..b2f08fc96568 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-@@ -185,6 +185,48 @@
- 						};
- 					};
- 
-+					emmc_pins: emmc {
-+						mux-0 {
-+							groups = "emmc_nand_d0",
-+								 "emmc_nand_d1",
-+								 "emmc_nand_d2",
-+								 "emmc_nand_d3",
-+								 "emmc_nand_d4",
-+								 "emmc_nand_d5",
-+								 "emmc_nand_d6",
-+								 "emmc_nand_d7",
-+								 "emmc_cmd";
-+							function = "emmc";
-+							bias-pull-up;
-+							drive-strength-microamp = <4000>;
-+						};
-+
-+						mux-1 {
-+							groups = "emmc_clk";
-+							function = "emmc";
-+							bias-disable;
-+							drive-strength-microamp = <4000>;
-+						};
-+					};
-+
-+					emmc_ds_pins: emmc-ds {
-+						mux {
-+							groups = "emmc_nand_ds";
-+							function = "emmc";
-+							bias-pull-down;
-+							drive-strength-microamp = <4000>;
-+						};
-+					};
-+
-+					emmc_clk_gate_pins: emmc_clk_gate {
-+						mux {
-+							groups = "BOOT_8";
-+							function = "gpio_periphs";
-+							bias-pull-down;
-+							drive-strength-microamp = <4000>;
-+						};
-+					};
-+
- 					hdmitx_ddc_pins: hdmitx_ddc {
- 						mux {
- 							groups = "hdmitx_sda",
-@@ -290,6 +332,64 @@
- 						};
- 					};
- 
-+					sdcard_c_pins: sdcard_c {
-+						mux-0 {
-+							groups = "sdcard_d0_c",
-+								 "sdcard_d1_c",
-+								 "sdcard_d2_c",
-+								 "sdcard_d3_c",
-+								 "sdcard_cmd_c";
-+							function = "sdcard";
-+							bias-pull-up;
-+							drive-strength-microamp = <4000>;
-+						};
-+
-+						mux-1 {
-+							groups = "sdcard_clk_c";
-+							function = "sdcard";
-+							bias-disable;
-+							drive-strength-microamp = <4000>;
-+						};
-+					};
-+
-+					sdcard_clk_gate_c_pins: sdcard_clk_gate_c {
-+						mux {
-+							groups = "GPIOC_4";
-+							function = "gpio_periphs";
-+							bias-pull-down;
-+							drive-strength-microamp = <4000>;
-+						};
-+					};
-+
-+					sdcard_z_pins: sdcard_z {
-+						mux-0 {
-+							groups = "sdcard_d0_z",
-+								 "sdcard_d1_z",
-+								 "sdcard_d2_z",
-+								 "sdcard_d3_z",
-+								 "sdcard_cmd_z";
-+							function = "sdcard";
-+							bias-pull-up;
-+							drive-strength-microamp = <4000>;
-+						};
-+
-+						mux-1 {
-+							groups = "sdcard_clk_z";
-+							function = "sdcard";
-+							bias-disable;
-+							drive-strength-microamp = <4000>;
-+						};
-+					};
-+
-+					sdcard_clk_gate_z_pins: sdcard_clk_gate_z {
-+						mux {
-+							groups = "GPIOZ_6";
-+							function = "gpio_periphs";
-+							bias-pull-down;
-+							drive-strength-microamp = <4000>;
-+						};
-+					};
-+
- 					uart_a_pins: uart-a {
- 						mux {
- 							groups = "uart_a_tx",
-@@ -759,6 +859,30 @@
- 			};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+index 7cc3e2d6a4f1..972926121beb 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+@@ -31,6 +31,11 @@
  		};
+ 	};
  
-+		sd_emmc_b: sd@ffe05000 {
-+			compatible = "amlogic,meson-axg-mmc";
-+			reg = <0x0 0xffe05000 0x0 0x800>;
-+			interrupts = <GIC_SPI 190 IRQ_TYPE_EDGE_RISING>;
-+			status = "disabled";
-+			clocks = <&clkc CLKID_SD_EMMC_B>,
-+				 <&clkc CLKID_SD_EMMC_B_CLK0>,
-+				 <&clkc CLKID_FCLK_DIV2>;
-+			clock-names = "core", "clkin0", "clkin1";
-+			resets = <&reset RESET_SD_EMMC_B>;
-+		};
++	emmc_pwrseq: emmc-pwrseq {
++		compatible = "mmc-pwrseq-emmc";
++		reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
++	};
 +
-+		sd_emmc_c: mmc@ffe07000 {
-+			compatible = "amlogic,meson-axg-mmc";
-+			reg = <0x0 0xffe07000 0x0 0x800>;
-+			interrupts = <GIC_SPI 191 IRQ_TYPE_EDGE_RISING>;
-+			status = "disabled";
-+			clocks = <&clkc CLKID_SD_EMMC_C>,
-+				 <&clkc CLKID_SD_EMMC_C_CLK0>,
-+				 <&clkc CLKID_FCLK_DIV2>;
-+			clock-names = "core", "clkin0", "clkin1";
-+			resets = <&reset RESET_SD_EMMC_C>;
-+		};
+ 	hdmi-connector {
+ 		compatible = "hdmi-connector";
+ 		type = "a";
+@@ -164,6 +169,43 @@
+ 	pinctrl-names = "default";
+ };
+ 
++/* SD card */
++&sd_emmc_b {
++	status = "okay";
++	pinctrl-0 = <&sdcard_c_pins>;
++	pinctrl-1 = <&sdcard_clk_gate_c_pins>;
++	pinctrl-names = "default", "clk-gate";
 +
- 		usb: usb@ffe09000 {
- 			status = "disabled";
- 			compatible = "amlogic,meson-g12a-usb-ctrl";
++	bus-width = <4>;
++	cap-sd-highspeed;
++	max-frequency = <50000000>;
++	disable-wp;
++
++	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
++	vmmc-supply = <&vddao_3v3>;
++	vqmmc-supply = <&vddao_3v3>;
++};
++
++/* eMMC */
++&sd_emmc_c {
++	status = "okay";
++	pinctrl-0 = <&emmc_pins>, <&emmc_ds_pins>;
++	pinctrl-1 = <&emmc_clk_gate_pins>;
++	pinctrl-names = "default", "clk-gate";
++
++	bus-width = <8>;
++	cap-mmc-highspeed;
++	mmc-ddr-1_8v;
++	mmc-hs200-1_8v;
++	max-frequency = <200000000>;
++	non-removable;
++	disable-wp;
++
++	mmc-pwrseq = <&emmc_pwrseq>;
++	vmmc-supply = <&vcc_3v3>;
++	vqmmc-supply = <&flash_1v8>;
++};
++
+ &uart_AO {
+ 	status = "okay";
+ 	pinctrl-0 = <&uart_ao_a_pins>;
 -- 
 2.20.1
 
