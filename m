@@ -2,22 +2,21 @@ Return-Path: <SRS0=rBUq=TP=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS,
+	URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 81B0CC04E53
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 May 2019 12:44:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C57F0C04E53
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 May 2019 12:45:57 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 50AC82084E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 May 2019 12:44:13 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9654720862
+	for <linux-amlogic@archiver.kernel.org>; Wed, 15 May 2019 12:45:57 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="OUJveGME";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="g8W9uJoJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 50AC82084E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="X3P+QYMi";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Qu+v9GI3"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9654720862
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,62 +25,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PYqCY9t7En60dsj9WwpJ27jC0TqWP9cM8GQcuw8CeRk=; b=OUJveGMEGLidFO
-	H+zZ08hJz6l59weakZRLiwx0BwtBAwkfPovAnVinpH3zudXRR3ZU/vqq+0e7eEzits2bYB7Qg+9NM
-	GHa6ug5TfwhX2pFhgi/WXRvfLoevTLG/lCRXae05Kva+YW6VCu+zStnWAj9Fdh5rKTKw//2UHM2Ve
-	KwyS8zH2z1OrcxrIeukFSs3C5t3R/JDTCoPLiDlycLfcJgIv4LUlkZwIIO51JflafqgMxos8dWk+U
-	sfI0GVUI3bMBQst4UcLLJJ3iApEQhOwKROA+WLyx/mPg5JweB0o2Sj/+bhy4lCZZGadKXcus9Xq5L
-	gAeS0b6gJNoFan0Uew0g==;
+	List-Owner; bh=6w+Bt3lP7uDUsHKd1DKSB/Ew7J5Et71jHB3N/SJkVuQ=; b=X3P+QYMiQa0YkH
+	GgZ9QNnLk806v25vwS5DYn4KC/9GMsKHz65yJqFI3j/imSllxGstLf4L09o2Yu/jSw5hhKIYO9L2I
+	MLrcaJ9iu0iLmg3jx2PQzVvL03aE8MHRmG3YjZ8yPmWuMsPJ/CXzgSKy1EsCMmgMzFV1O1HIN8KY7
+	TOJaWAVnz26Qw9sZRCRZyqILAytJ7kIIBkTFdqMNlmozeYQMm7cSHzTse2pPDRESzZEl/y1cwXPYW
+	ePV1GYxtg9mB5Bc6+il8etdbkfbyGuk7KGqwhWb9vAUX+59i6rPtzNKgy2VGFhYqutwh5hWkr5y+g
+	bBChhlxWIOijknSpm2vg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hQtGS-0006am-Qx; Wed, 15 May 2019 12:44:08 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1hQtI5-00087u-Th; Wed, 15 May 2019 12:45:49 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hQtGJ-0006S3-N4
- for linux-amlogic@lists.infradead.org; Wed, 15 May 2019 12:44:02 +0000
-Received: by mail-wm1-x343.google.com with SMTP id o189so2528178wmb.1
- for <linux-amlogic@lists.infradead.org>; Wed, 15 May 2019 05:43:59 -0700 (PDT)
+ id 1hQtHx-0007zI-JP
+ for linux-amlogic@lists.infradead.org; Wed, 15 May 2019 12:45:43 +0000
+Received: by mail-wm1-x344.google.com with SMTP id y3so2530603wmm.2
+ for <linux-amlogic@lists.infradead.org>; Wed, 15 May 2019 05:45:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=OfM7ijotsCqaMVBFakfOlB9DZSSL0wb+cjLTAAbAZ5w=;
- b=g8W9uJoJH56yLVkzqL123jcq8h4ias/Ft3h68FPaN+g6J2+JChGlyD7GgC6XN6gnMO
- 6IGX0AR8UsKEpITv9nf58KFxwBdPwq5vmFZrSHMg4aLpw+j1g8zvEdqdaa/s/cK8C45S
- PGJjWmlSO8BBjcBu0bbgtFWkqv7sIa7WI/ikiCaNlu0+q3jfCwpDhxbufbnx63OyJaqH
- 0uH9HGk7JVRK/LNUeWP0xC3B2d0cABSGbwS9cFoHbK8ZG/w/Voyxst8vSclyrdmCjUZI
- Pb7/jXpHVqhz+Cz93Cu3Xj10Hl/LNLH6NWyOIX3CQ3EEDoR3vFOeoVKGI7rwvNvNvuP5
- JRDA==
+ bh=ReSQaVih+Q9te16ORE5lE2qmgrC17kx402jUecsg9QI=;
+ b=Qu+v9GI3JomCUkUat/f+tbwsZfSCBImRIVeETnIlVsIDO+593U3BB8zCqsr1lsOLBZ
+ pIbFzADe/l6EEja1nJWn9U+pzajDtEPXtW+HvOtind6uYk/AT240jWnredyzEJKBV/iq
+ hT9BsDDUKbZ5kmXav1f1FtSmvjXeyIAn2aXOyuvWrc1yq3vknvgbJg+0OzftWeoWpPNz
+ eKWxvoEVwc4IQsw8+Y7mOZJqXGRHnGb5Og0KbasuvXoGQQbC3VNcAbhs25zZeexdEbnO
+ KBrGiyPqK7n/W3m5VgMYDmKGit9oCssfDdPn8gIxmPweDgW+23yyj+S2Gegy7UQdC8Z6
+ NcKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=OfM7ijotsCqaMVBFakfOlB9DZSSL0wb+cjLTAAbAZ5w=;
- b=otEE2uzSeiEUwPZW3fiv2JJE6u/bh48JjTFqUGullwqYvj11c46rqgNGT4vZ895Njr
- 4cfFSrJaCfIvfrhHbajGHLQ2cptOT7NiEjBOdlrBeCOzX/Kyq1kZ0AXqWImyU3k/Vi/v
- 7pHtp8GolV+vN9bisDkNr37tkiPFfVd1sEijedrcvLz6IRtMDLvqooBsATk0Zh9Gqde0
- x0apYqGn7xJQSKyA5+/RSsSK5mSut2szaUhM5Agc6KFwfeJQa2AN7kOxHSHB4uG3wHf6
- Eee75vD7MKRyD8vLiHHcn0Ac97pL2+PyX7VPK12ycOS0p5rLzj717xQm5G+H3fVc5ZRl
- U1Fg==
-X-Gm-Message-State: APjAAAXS7WyzQO+jLU4wGea1eF9YDt0JiuHucgzPV87Xtwx3zh9hfIRp
- ZCV42NS56+zGqRkwzLWuo7qxYw==
-X-Google-Smtp-Source: APXvYqxD9DLNNA/khUrSelD+Cne01trgO+5EaVkXO7n4DkDrB4sqxzDzEQdFqZEBxcy2gXn+O0rAJA==
-X-Received: by 2002:a05:600c:217:: with SMTP id
- 23mr9075359wmi.115.1557924238264; 
- Wed, 15 May 2019 05:43:58 -0700 (PDT)
+ bh=ReSQaVih+Q9te16ORE5lE2qmgrC17kx402jUecsg9QI=;
+ b=Kc8+TYFaHuECXqMaAg/sy5BHoGH/WNr44om4HlelQlZ9/OqQbBAA5hfpdstLZA65IX
+ DLFmud5fZOvgmgBdMrjEcWzAH35BNjSxm8AN2pRlZSJ7kHtelFlgRJ6Pn8MNOPN8qYZC
+ 5mbVsI0f4Hb+GcOwYYBKzC1QewaSFgtJyDcVnxdV6wML7b5D28PQX/8z7AmaEFX4Oc6c
+ MgvZVAxrE2OR2o4+JVTdcm7lXP4OhohxgmdspaoBEqORiuwPEP71BM/H4Tlnja4+Fkrg
+ jwPhgrJ4VUKz6UUv7SAPEdNDbgDKzHiAqs+5qk49SOX7p83lw/Mevw1r4c1GFfePx8Q1
+ U3ug==
+X-Gm-Message-State: APjAAAUpTFgmNtcko9uASjYRZVjnJWOHa3gTobnTlDA6mxh0j8MimPmG
+ Ijro2Pn1pmZrdM6EuGBRbGgUKg==
+X-Google-Smtp-Source: APXvYqySTzxGi5v5lFBjybibNA6ulVdJ65NAOlu9pPb5TtagsyoN0sW6BOGkU/4I4B2mGi6UyK8NCA==
+X-Received: by 2002:a1c:eb18:: with SMTP id j24mr24313664wmh.32.1557924339535; 
+ Wed, 15 May 2019 05:45:39 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id r14sm2075025wrm.21.2019.05.15.05.43.57
+ by smtp.gmail.com with ESMTPSA id 24sm2285234wmo.3.2019.05.15.05.45.38
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 15 May 2019 05:43:57 -0700 (PDT)
-Subject: Re: [PATCH 1/3] dt-bindings: mmc: meson-gx: add ddr-access-quirk
- property
-To: Ulf Hansson <ulf.hansson@linaro.org>
+ Wed, 15 May 2019 05:45:38 -0700 (PDT)
+Subject: Re: [PATCH 2/3] mmc: meson-gx: add ddr-access-quirk
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 References: <20190513091548.16674-1-narmstrong@baylibre.com>
- <20190513091548.16674-2-narmstrong@baylibre.com>
- <CAPDyKFr9HVLNpqncs6YhGvqPdXCk6mtVSPVcWDvmnrKiNB+ACQ@mail.gmail.com>
+ <20190513091548.16674-3-narmstrong@baylibre.com>
+ <CAFBinCAMoNDnxoQA9XHKy0Xo9MduxD1CvQXOeLZQ3zZ4ViWm7A@mail.gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -134,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <9a5d0be0-00de-2ced-de20-000c0b12b3c8@baylibre.com>
-Date: Wed, 15 May 2019 14:43:56 +0200
+Message-ID: <a54f7a4a-c280-6181-969f-4979dadb36b2@baylibre.com>
+Date: Wed, 15 May 2019 14:45:38 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <CAPDyKFr9HVLNpqncs6YhGvqPdXCk6mtVSPVcWDvmnrKiNB+ACQ@mail.gmail.com>
+In-Reply-To: <CAFBinCAMoNDnxoQA9XHKy0Xo9MduxD1CvQXOeLZQ3zZ4ViWm7A@mail.gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190515_054359_759593_02EBC0C7 
-X-CRM114-Status: GOOD (  17.88  )
+X-CRM114-CacheID: sfid-20190515_054541_638877_9E9ED8A1 
+X-CRM114-Status: GOOD (  17.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -155,64 +152,72 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: DTML <devicetree@vger.kernel.org>, baylibre-upstreaming@groups.io,
- Kevin Hilman <khilman@baylibre.com>,
- "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>
+Cc: ulf.hansson@linaro.org, baylibre-upstreaming@groups.io,
+ khilman@baylibre.com, linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 15/05/2019 13:37, Ulf Hansson wrote:
-> On Mon, 13 May 2019 at 11:16, Neil Armstrong <narmstrong@baylibre.com> wrote:
->>
->> On the Amlogic G12A SoC family, (only) the SDIO controller has a bug which
->> makes any DDR access from the MMC controller fail.
->>
->> Add the amlogic,ddr-access-quirk property so signal this particular
->> controller has this bug and needs a quirk to work properly.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt | 4 ++++
->>  1 file changed, 4 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
->> index 13e70409e8ac..f8914dab06c6 100644
->> --- a/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
->> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-gx.txt
->> @@ -22,6 +22,10 @@ Required properties:
->>    clock rate requested by the MMC core.
->>  - resets     : phandle of the internal reset line
->>
->> +Optional properties:
->> +- amlogic,ddr-access-quirk: set when HW cannot access the DDR memory, like on
->> +  the G12A SDIO controller.
+On 14/05/2019 19:58, Martin Blumenstingl wrote:
+> Hi Neil,
 > 
-> As stated on the other patch, may I suggest to use DRAM instead of DDR.
+> On Mon, May 13, 2019 at 11:16 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+> [...]
+>> @@ -1158,15 +1183,27 @@ static int meson_mmc_probe(struct platform_device *pdev)
+>>          */
+>>         mmc->caps2 &= ~MMC_CAP2_HS400;
+>>
+>> -       /* data bounce buffer */
+>> -       host->bounce_buf_size = mmc->max_req_size;
+>> -       host->bounce_buf =
+>> -               dma_alloc_coherent(host->dev, host->bounce_buf_size,
+>> -                                  &host->bounce_dma_addr, GFP_KERNEL);
+>> -       if (host->bounce_buf == NULL) {
+>> -               dev_err(host->dev, "Unable to map allocate DMA bounce buffer.\n");
+>> -               ret = -ENOMEM;
+>> -               goto err_free_irq;
+>> +       if (host->ddr_access_quirk) {
+>> +               /*
+>> +                * The MMC Controller embeds 1,5KiB of internal SRAM
+>> +                * that can be used to be used as bounce buffer.
+>> +                * In the case of the G12A SDIO controller, use these
+>> +                * instead of the DDR memory
+>> +                */
+>> +               host->bounce_buf_size = SD_EMMC_SRAM_DATA_BUF_LEN;
+>> +               host->bounce_buf = host->regs + SD_EMMC_SRAM_DATA_BUF_OFF;
+>> +               host->bounce_dma_addr = res->start + SD_EMMC_SRAM_DATA_BUF_OFF;
+> I'm curious: why do you need to set bounce_dma_addr in this case?
 
-Indeed, may be more accurate.
-
-> 
-> Moreover, please mention that this is about the internal DMA support
-> of the controller.
-
-Ok
+We still need the physical bounce buffer address since we write in the registers,
+and we need the logical address to memcpy() in the buffer.
 
 > 
->> +
->>  Example:
+>> +       } else {
+>> +               /* data bounce buffer */
+>> +               host->bounce_buf_size = mmc->max_req_size;
+>> +               host->bounce_buf =
+>> +                       dma_alloc_coherent(host->dev, host->bounce_buf_size,
+>> +                                          &host->bounce_dma_addr, GFP_KERNEL);
+>> +               if (host->bounce_buf == NULL) {
+>> +                       dev_err(host->dev, "Unable to map allocate DMA bounce buffer.\n");
+>> +                       ret = -ENOMEM;
+>> +                       goto err_free_irq;
+>> +               }
+>>         }
 >>
->>         sd_emmc_a: mmc@70000 {
->> --
->> 2.21.0
->>
+>>         host->descs = dma_alloc_coherent(host->dev, SD_EMMC_DESC_BUF_LEN,
+> if host->descs cannot be allocated then you need to conditionally skip
+> dma_free_coherent for the bounce buffer in the goto err_bounce_buf
+> case a few lines below (just like you did in meson_mmc_remove)
+
+It can be allocated, it's only useless. I can skip it but I don't want
+to break any logic in the driver.
+
 > 
-> Kind regards
-> Uffe
+> 
+> Martin
 > 
 
 
