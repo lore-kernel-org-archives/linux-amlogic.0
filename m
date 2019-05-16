@@ -2,71 +2,80 @@ Return-Path: <SRS0=Bf+g=TQ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F58BC04AAF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 May 2019 11:14:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DB488C04AAF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 May 2019 12:52:26 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 006DE206BF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 16 May 2019 11:14:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id ACBB620833
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 May 2019 12:52:26 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NIOPFLgM";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="tqspBZSr"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 006DE206BF
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="G1N9rOTS";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iC9xJc/L"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ACBB620833
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:
-	In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	References:List-Owner; bh=9HtzuofYfqFm+I6N4gQeb6QAtAMl9P1vWu473wiX0sE=; b=NIO
-	PFLgMR8ibt9eFC5zX+4wz5Htb0kmLqoq6YzYc7xRmdvg0xEzRXnUxs0HHIBvUgqBomBeol+UBvao6
-	2gr88riMt6M68WciXkw/CWzIREsydkMno6BiHJGpRYBLT2JUrN40TbMVNwyt8JUsT0ErjZ/H7rx8U
-	6z/sdBMtTxN6CXd1lcGvVG+Kr3au86jaUMKvhm8ePO+4hciVQkKfqr0qybQBPdAJw5v3X0kbyx6Cy
-	URAswUYwVhRNISMksElaayrwLYeBfCn+mEhaWnckO8y/0s8enMOGAGcFYitll+sfutYIAtb08d/80
-	OZ5QNABeH40zvKkAa2Z7VkbYuCHcr/g==;
+	List-Owner; bh=G3RS1qxM98yAUxtMNOlzUATJKXMJjxmKKZS8GMZ7efc=; b=G1N9rOTSzT6h4v
+	pVDp5PjN+IBVJrp/4aus/Kl8qB2GXQ8OOphxpbqjz1g7Wdkc7HDLTbiNwb+W6r4xaGsVryLmNm19W
+	IC2ed0uKuGTI5qsluSF+DOh/nv2Ppe31O2jE7vdiC/sZg+GK66vOKSXYDtN6bpL5GT9q/VI5UIKm/
+	omkhQqP24QMvDOme4c7Wc1/l8574ZZITKBCEDZlB7SdUWJ76DZh0vqcrendHafGsVvHrmlOSZto70
+	BnIUeKr/fsSSv7eDmpE/CPTkzlsekHni3XQ4JQdcShitGjn15ZLy57r/i92BMDqdErErU00R3hICX
+	AhFE0/WtU0IhVMMtOWkw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hREKw-0006tD-0M; Thu, 16 May 2019 11:14:10 +0000
-Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
+	id 1hRFrv-0003X5-Sy; Thu, 16 May 2019 12:52:19 +0000
+Received: from mail-lj1-x241.google.com ([2a00:1450:4864:20::241])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hREKn-0006jr-LL
- for linux-amlogic@lists.infradead.org; Thu, 16 May 2019 11:14:05 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
- Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
- List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
- List-Archive; bh=a0v3h7TxCgvU5IOdB1ct22VkYcGy9wV9ixaGkYTU11o=; b=tqspBZSrz4l1
- ruYObK4gM5wgd2akPCC58wulYpucrNUTZ0oCtUmnwj2NkZUEmg8egFly+i8t9Fa8nY5id7Mg0nofh
- DY7ixMbDO4f3EWoUiXCOucujrtyPxot09hc+zkDMJ1FAuWtP+4EoiljGYEZN76qXw9R9YOqfeLLwi
- BpoKw=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net
- ([82.37.168.47] helo=debutante.sirena.org.uk)
- by heliosphere.sirena.org.uk with esmtpa (Exim 4.89)
- (envelope-from <broonie@sirena.org.uk>)
- id 1hREKj-00066g-Av; Thu, 16 May 2019 11:13:57 +0000
-Received: by debutante.sirena.org.uk (Postfix, from userid 1000)
- id C8FFF1126D45; Thu, 16 May 2019 12:13:53 +0100 (BST)
-From: Mark Brown <broonie@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Subject: Applied "ASoC: meson: add g12a tohdmitx control" to the asoc tree
-In-Reply-To: <20190515131858.32130-6-jbrunet@baylibre.com>
-X-Patchwork-Hint: ignore
-Message-Id: <20190516111353.C8FFF1126D45@debutante.sirena.org.uk>
-Date: Thu, 16 May 2019 12:13:53 +0100 (BST)
-X-Bad-Reply: In-Reply-To but no 'Re:' in Subject.
+ id 1hRFrt-0003WZ-2w
+ for linux-amlogic@lists.infradead.org; Thu, 16 May 2019 12:52:18 +0000
+Received: by mail-lj1-x241.google.com with SMTP id h19so3003807ljj.4
+ for <linux-amlogic@lists.infradead.org>; Thu, 16 May 2019 05:52:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=M8dIMMLTGG86thIxs/mRUU5bsghAX7RRvWXWnrAvMAs=;
+ b=iC9xJc/LqP5wzVxXoivXXOnuzTrrgFiN2GtZrWRT5bsmasTGCrg1mUFbsRM8/yJ8lE
+ Chia4VkQR8GHzZ1wp3SftBAPhcf0/0id8JlaHJajgdxXO4Fo/NfHfxfwZJhaYduFdKPz
+ oX39O8pOX2C1YCZdt6Z1yL8eTySL64PduJAGls98JcKwJ8XtPpYNUuaPXVGg3C+bqQ0v
+ G+dFQh2qz/jUZKW5/q6RWlhrG4KOpDKiBtPFLz8HkLYufM8kTyzHmC0u8Gzu6hbq2W2n
+ RnAB8XpXl17EpT/Wkex+RjpHiNP90Y5JpsNjFtK5hVwJ2oSDKVetXxS0UvIQ5qd2tovw
+ qhiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=M8dIMMLTGG86thIxs/mRUU5bsghAX7RRvWXWnrAvMAs=;
+ b=GyV/0a1oneZB1xNSgQOuAaDjj2l9+Vx7XoytVWpvt0yIp9SQA9JwZpmxa/osE9gUxe
+ yq2Sywp6fCcmmZYsPTZ82wzCip2biMauEYoRTi7ycJpyFfRsihbWWFhQf28TTYeX407B
+ zrSOZU+xzT+tAF9HTkTxMT2BqrSIfTJ9qws93HlEFd9gFPQ/q67/zixI1Ha9LOOMgnyu
+ VMCrv8a8sXlSaAe2/DqQIgt+Fpf3akhjxD6xi8GnP4IvJ07hNXZX9oZEXGrl3hb/ZaIw
+ xmLAxxed1DA39W7NJSDCkaGnDhfd+t46DM/gF7JuwZTbRF1lVK6wlDX+EJ6rhXKoq8dU
+ uVPQ==
+X-Gm-Message-State: APjAAAVFY2bmGJvTz+7QqKM6ajk+b6D/atUm+gKriwM9ODrpaeZY203o
+ /Zf4g+TdVeNGWLFO5n9XxZLhF3AE/GuKiPqEHFRO4g==
+X-Google-Smtp-Source: APXvYqyKQvo32z2nDVQNlGDeWm4ClSjw2DAn7P89XY+RzmdqMHft5SDvxQb/j4IO5PU3+gOiYdzXt4I8x6QxAuXOZMU=
+X-Received: by 2002:a2e:731a:: with SMTP id o26mr21431284ljc.105.1558011134949; 
+ Thu, 16 May 2019 05:52:14 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190514082652.20686-1-glaroque@baylibre.com>
+In-Reply-To: <20190514082652.20686-1-glaroque@baylibre.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 16 May 2019 14:52:03 +0200
+Message-ID: <CACRpkdZ+p-J5Em3rzZcUwpA-a+CVOY91CgLqoRm_QVZP6E4Osw@mail.gmail.com>
+Subject: Re: [PATCH v6 0/6] Add drive-strength in Meson pinctrl driver
+To: Guillaume La Roque <glaroque@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190516_041401_986716_702AF747 
-X-CRM114-Status: GOOD (  18.79  )
+X-CRM114-CacheID: sfid-20190516_055217_134152_BB48C419 
+X-CRM114-Status: GOOD (  11.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -78,526 +87,41 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org,
- Mark Brown <broonie@kernel.org>, linux-amlogic@lists.infradead.org
-MIME-Version: 1.0
+Cc: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The patch
+On Tue, May 14, 2019 at 10:26 AM Guillaume La Roque
+<glaroque@baylibre.com> wrote:
 
-   ASoC: meson: add g12a tohdmitx control
+> The purpose of this patchset is to add drive-strength support in meson pinconf
+> driver. This is a new feature that was added on the g12a. It is critical for us
+> to support this since many functions are failing with default pad drive-strength.
+>
+> The value achievable by the SoC are 0.5mA, 2.5mA, 3mA and 4mA and the DT property
+> 'drive-strength' is expressed in mA.
+> So this patch add another generic property "drive-strength-microamp". The change to do so
+> would be minimal and could be benefit to other platforms later on.
+>
+> Cheers
+> Guillaume
+>
+> Changes since v5:
+> - restore Tested-by/Reviewed-by/Ack-by tags
 
-has been applied to the asoc tree at
+All 6 patches applied for v5.3.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.3
+They will appear in the tree once v5.2-rc1 is out.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
-From c8609f3870f7078fc7922eb816ed4908a9bd44f3 Mon Sep 17 00:00:00 2001
-From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Wed, 15 May 2019 15:18:58 +0200
-Subject: [PATCH] ASoC: meson: add g12a tohdmitx control
-
-Add support for the hdmitx control glue of the Amlogic g12a SoC family.
-This glue links the 3 TDM and 2 SPDIF output interfaces of the SoC to
-the related inputs of the Synopsys HDMI controller found in these SoCs.
-
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Tested-by: Neil Armstrong <narmstrong@baylibre.com>
-Tested-by: Kevin Hilman <khilman@baylibre.com>
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- sound/soc/meson/Kconfig         |   8 +
- sound/soc/meson/Makefile        |   2 +
- sound/soc/meson/g12a-tohdmitx.c | 413 ++++++++++++++++++++++++++++++++
- 3 files changed, 423 insertions(+)
- create mode 100644 sound/soc/meson/g12a-tohdmitx.c
-
-diff --git a/sound/soc/meson/Kconfig b/sound/soc/meson/Kconfig
-index 8779fe23671d..4e5b4d4f3531 100644
---- a/sound/soc/meson/Kconfig
-+++ b/sound/soc/meson/Kconfig
-@@ -56,6 +56,7 @@ config SND_MESON_AXG_SOUND_CARD
- 	imply SND_MESON_AXG_SPDIFOUT
- 	imply SND_MESON_AXG_SPDIFIN
- 	imply SND_MESON_AXG_PDM
-+	imply SND_MESON_G12A_TOHDMITX if DRM_MESON_DW_HDMI
- 	help
- 	  Select Y or M to add support for the AXG SoC sound card
- 
-@@ -82,4 +83,11 @@ config SND_MESON_AXG_PDM
- 	help
- 	  Select Y or M to add support for PDM input embedded
- 	  in the Amlogic AXG SoC family
-+
-+config SND_MESON_G12A_TOHDMITX
-+	tristate "Amlogic G12A To HDMI TX Control Support"
-+	imply SND_SOC_HDMI_CODEC
-+	help
-+	  Select Y or M to add support for HDMI audio on the g12a SoC
-+	  family
- endmenu
-diff --git a/sound/soc/meson/Makefile b/sound/soc/meson/Makefile
-index b45dfb9e2f88..1a8b1470ed84 100644
---- a/sound/soc/meson/Makefile
-+++ b/sound/soc/meson/Makefile
-@@ -11,6 +11,7 @@ snd-soc-meson-axg-sound-card-objs := axg-card.o
- snd-soc-meson-axg-spdifin-objs := axg-spdifin.o
- snd-soc-meson-axg-spdifout-objs := axg-spdifout.o
- snd-soc-meson-axg-pdm-objs := axg-pdm.o
-+snd-soc-meson-g12a-tohdmitx-objs := g12a-tohdmitx.o
- 
- obj-$(CONFIG_SND_MESON_AXG_FIFO) += snd-soc-meson-axg-fifo.o
- obj-$(CONFIG_SND_MESON_AXG_FRDDR) += snd-soc-meson-axg-frddr.o
-@@ -23,3 +24,4 @@ obj-$(CONFIG_SND_MESON_AXG_SOUND_CARD) += snd-soc-meson-axg-sound-card.o
- obj-$(CONFIG_SND_MESON_AXG_SPDIFIN) += snd-soc-meson-axg-spdifin.o
- obj-$(CONFIG_SND_MESON_AXG_SPDIFOUT) += snd-soc-meson-axg-spdifout.o
- obj-$(CONFIG_SND_MESON_AXG_PDM) += snd-soc-meson-axg-pdm.o
-+obj-$(CONFIG_SND_MESON_G12A_TOHDMITX) += snd-soc-meson-g12a-tohdmitx.o
-diff --git a/sound/soc/meson/g12a-tohdmitx.c b/sound/soc/meson/g12a-tohdmitx.c
-new file mode 100644
-index 000000000000..707ccb192e4c
---- /dev/null
-+++ b/sound/soc/meson/g12a-tohdmitx.c
-@@ -0,0 +1,413 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// Copyright (c) 2019 BayLibre, SAS.
-+// Author: Jerome Brunet <jbrunet@baylibre.com>
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/module.h>
-+#include <sound/pcm_params.h>
-+#include <linux/regmap.h>
-+#include <sound/soc.h>
-+#include <sound/soc-dai.h>
-+
-+#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-+
-+#define G12A_TOHDMITX_DRV_NAME "g12a-tohdmitx"
-+
-+#define TOHDMITX_CTRL0			0x0
-+#define  CTRL0_ENABLE_SHIFT		31
-+#define  CTRL0_I2S_DAT_SEL		GENMASK(13, 12)
-+#define  CTRL0_I2S_LRCLK_SEL		GENMASK(9, 8)
-+#define  CTRL0_I2S_BLK_CAP_INV		BIT(7)
-+#define  CTRL0_I2S_BCLK_O_INV		BIT(6)
-+#define  CTRL0_I2S_BCLK_SEL		GENMASK(5, 4)
-+#define  CTRL0_SPDIF_CLK_CAP_INV	BIT(3)
-+#define  CTRL0_SPDIF_CLK_O_INV		BIT(2)
-+#define  CTRL0_SPDIF_SEL		BIT(1)
-+#define  CTRL0_SPDIF_CLK_SEL		BIT(0)
-+
-+struct g12a_tohdmitx_input {
-+	struct snd_pcm_hw_params params;
-+	unsigned int fmt;
-+};
-+
-+static struct snd_soc_dapm_widget *
-+g12a_tohdmitx_get_input(struct snd_soc_dapm_widget *w)
-+{
-+	struct snd_soc_dapm_path *p = NULL;
-+	struct snd_soc_dapm_widget *in;
-+
-+	snd_soc_dapm_widget_for_each_source_path(w, p) {
-+		if (!p->connect)
-+			continue;
-+
-+		/* Check that we still are in the same component */
-+		if (snd_soc_dapm_to_component(w->dapm) !=
-+		    snd_soc_dapm_to_component(p->source->dapm))
-+			continue;
-+
-+		if (p->source->id == snd_soc_dapm_dai_in)
-+			return p->source;
-+
-+		in = g12a_tohdmitx_get_input(p->source);
-+		if (in)
-+			return in;
-+	}
-+
-+	return NULL;
-+}
-+
-+static struct g12a_tohdmitx_input *
-+g12a_tohdmitx_get_input_data(struct snd_soc_dapm_widget *w)
-+{
-+	struct snd_soc_dapm_widget *in =
-+		g12a_tohdmitx_get_input(w);
-+	struct snd_soc_dai *dai;
-+
-+	if (WARN_ON(!in))
-+		return NULL;
-+
-+	dai = in->priv;
-+
-+	return dai->playback_dma_data;
-+}
-+
-+static const char * const g12a_tohdmitx_i2s_mux_texts[] = {
-+	"I2S A", "I2S B", "I2S C",
-+};
-+
-+static SOC_ENUM_SINGLE_EXT_DECL(g12a_tohdmitx_i2s_mux_enum,
-+				g12a_tohdmitx_i2s_mux_texts);
-+
-+static int g12a_tohdmitx_get_input_val(struct snd_soc_component *component,
-+				       unsigned int mask)
-+{
-+	unsigned int val;
-+
-+	snd_soc_component_read(component, TOHDMITX_CTRL0, &val);
-+	return (val & mask) >> __ffs(mask);
-+}
-+
-+static int g12a_tohdmitx_i2s_mux_get_enum(struct snd_kcontrol *kcontrol,
-+					  struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_component *component =
-+		snd_soc_dapm_kcontrol_component(kcontrol);
-+
-+	ucontrol->value.enumerated.item[0] =
-+		g12a_tohdmitx_get_input_val(component, CTRL0_I2S_DAT_SEL);
-+
-+	return 0;
-+}
-+
-+static int g12a_tohdmitx_i2s_mux_put_enum(struct snd_kcontrol *kcontrol,
-+					  struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_component *component =
-+		snd_soc_dapm_kcontrol_component(kcontrol);
-+	struct snd_soc_dapm_context *dapm =
-+		snd_soc_dapm_kcontrol_dapm(kcontrol);
-+	struct soc_enum *e = (struct soc_enum *)kcontrol->private_value;
-+	unsigned int mux = ucontrol->value.enumerated.item[0];
-+	unsigned int val = g12a_tohdmitx_get_input_val(component,
-+						       CTRL0_I2S_DAT_SEL);
-+
-+	/* Force disconnect of the mux while updating */
-+	if (val != mux)
-+		snd_soc_dapm_mux_update_power(dapm, kcontrol, 0, NULL, NULL);
-+
-+	snd_soc_component_update_bits(component, TOHDMITX_CTRL0,
-+				      CTRL0_I2S_DAT_SEL |
-+				      CTRL0_I2S_LRCLK_SEL |
-+				      CTRL0_I2S_BCLK_SEL,
-+				      FIELD_PREP(CTRL0_I2S_DAT_SEL, mux) |
-+				      FIELD_PREP(CTRL0_I2S_LRCLK_SEL, mux) |
-+				      FIELD_PREP(CTRL0_I2S_BCLK_SEL, mux));
-+
-+	snd_soc_dapm_mux_update_power(dapm, kcontrol, mux, e, NULL);
-+
-+	return 0;
-+}
-+
-+static const struct snd_kcontrol_new g12a_tohdmitx_i2s_mux =
-+	SOC_DAPM_ENUM_EXT("I2S Source", g12a_tohdmitx_i2s_mux_enum,
-+			  g12a_tohdmitx_i2s_mux_get_enum,
-+			  g12a_tohdmitx_i2s_mux_put_enum);
-+
-+static const char * const g12a_tohdmitx_spdif_mux_texts[] = {
-+	"SPDIF A", "SPDIF B",
-+};
-+
-+static SOC_ENUM_SINGLE_EXT_DECL(g12a_tohdmitx_spdif_mux_enum,
-+				g12a_tohdmitx_spdif_mux_texts);
-+
-+static int g12a_tohdmitx_spdif_mux_get_enum(struct snd_kcontrol *kcontrol,
-+					    struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_component *component =
-+		snd_soc_dapm_kcontrol_component(kcontrol);
-+
-+	ucontrol->value.enumerated.item[0] =
-+		g12a_tohdmitx_get_input_val(component, CTRL0_SPDIF_SEL);
-+
-+	return 0;
-+}
-+
-+static int g12a_tohdmitx_spdif_mux_put_enum(struct snd_kcontrol *kcontrol,
-+					    struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_component *component =
-+		snd_soc_dapm_kcontrol_component(kcontrol);
-+	struct snd_soc_dapm_context *dapm =
-+		snd_soc_dapm_kcontrol_dapm(kcontrol);
-+	struct soc_enum *e = (struct soc_enum *)kcontrol->private_value;
-+	unsigned int mux = ucontrol->value.enumerated.item[0];
-+	unsigned int val = g12a_tohdmitx_get_input_val(component,
-+						       CTRL0_SPDIF_SEL);
-+
-+	/* Force disconnect of the mux while updating */
-+	if (val != mux)
-+		snd_soc_dapm_mux_update_power(dapm, kcontrol, 0, NULL, NULL);
-+
-+	snd_soc_component_update_bits(component, TOHDMITX_CTRL0,
-+				      CTRL0_SPDIF_SEL |
-+				      CTRL0_SPDIF_CLK_SEL,
-+				      FIELD_PREP(CTRL0_SPDIF_SEL, mux) |
-+				      FIELD_PREP(CTRL0_SPDIF_CLK_SEL, mux));
-+
-+	snd_soc_dapm_mux_update_power(dapm, kcontrol, mux, e, NULL);
-+
-+	return 0;
-+}
-+
-+static const struct snd_kcontrol_new g12a_tohdmitx_spdif_mux =
-+	SOC_DAPM_ENUM_EXT("SPDIF Source", g12a_tohdmitx_spdif_mux_enum,
-+			  g12a_tohdmitx_spdif_mux_get_enum,
-+			  g12a_tohdmitx_spdif_mux_put_enum);
-+
-+static const struct snd_kcontrol_new g12a_tohdmitx_out_enable =
-+	SOC_DAPM_SINGLE_AUTODISABLE("Switch", TOHDMITX_CTRL0,
-+				    CTRL0_ENABLE_SHIFT, 1, 0);
-+
-+static const struct snd_soc_dapm_widget g12a_tohdmitx_widgets[] = {
-+	SND_SOC_DAPM_MUX("I2S SRC", SND_SOC_NOPM, 0, 0,
-+			 &g12a_tohdmitx_i2s_mux),
-+	SND_SOC_DAPM_SWITCH("I2S OUT EN", SND_SOC_NOPM, 0, 0,
-+			    &g12a_tohdmitx_out_enable),
-+	SND_SOC_DAPM_MUX("SPDIF SRC", SND_SOC_NOPM, 0, 0,
-+			 &g12a_tohdmitx_spdif_mux),
-+	SND_SOC_DAPM_SWITCH("SPDIF OUT EN", SND_SOC_NOPM, 0, 0,
-+			    &g12a_tohdmitx_out_enable),
-+};
-+
-+static int g12a_tohdmitx_input_probe(struct snd_soc_dai *dai)
-+{
-+	struct g12a_tohdmitx_input *data;
-+
-+	data = kzalloc(sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	dai->playback_dma_data = data;
-+	return 0;
-+}
-+
-+static int g12a_tohdmitx_input_remove(struct snd_soc_dai *dai)
-+{
-+	kfree(dai->playback_dma_data);
-+	return 0;
-+}
-+
-+static int g12a_tohdmitx_input_hw_params(struct snd_pcm_substream *substream,
-+					 struct snd_pcm_hw_params *params,
-+					 struct snd_soc_dai *dai)
-+{
-+	struct g12a_tohdmitx_input *data = dai->playback_dma_data;
-+
-+	/* Save the stream params for the downstream link */
-+	memcpy(&data->params, params, sizeof(*params));
-+
-+	return 0;
-+}
-+
-+static int g12a_tohdmitx_output_hw_params(struct snd_pcm_substream *substream,
-+					  struct snd_pcm_hw_params *params,
-+					  struct snd_soc_dai *dai)
-+{
-+	struct g12a_tohdmitx_input *in_data =
-+		g12a_tohdmitx_get_input_data(dai->capture_widget);
-+
-+	if (!in_data)
-+		return -ENODEV;
-+
-+	memcpy(params, &in_data->params, sizeof(*params));
-+
-+	return 0;
-+}
-+
-+static int g12a_tohdmitx_input_set_fmt(struct snd_soc_dai *dai,
-+				       unsigned int fmt)
-+{
-+	struct g12a_tohdmitx_input *data = dai->playback_dma_data;
-+
-+	/* Save the source stream format for the downstream link */
-+	data->fmt = fmt;
-+	return 0;
-+}
-+
-+static int g12a_tohdmitx_output_startup(struct snd_pcm_substream *substream,
-+					struct snd_soc_dai *dai)
-+{
-+	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct g12a_tohdmitx_input *in_data =
-+		g12a_tohdmitx_get_input_data(dai->capture_widget);
-+
-+	if (!in_data)
-+		return -ENODEV;
-+
-+	if (!in_data->fmt)
-+		return 0;
-+
-+	return snd_soc_runtime_set_dai_fmt(rtd, in_data->fmt);
-+}
-+
-+static const struct snd_soc_dai_ops g12a_tohdmitx_input_ops = {
-+	.hw_params	= g12a_tohdmitx_input_hw_params,
-+	.set_fmt	= g12a_tohdmitx_input_set_fmt,
-+};
-+
-+static const struct snd_soc_dai_ops g12a_tohdmitx_output_ops = {
-+	.hw_params	= g12a_tohdmitx_output_hw_params,
-+	.startup	= g12a_tohdmitx_output_startup,
-+};
-+
-+#define TOHDMITX_SPDIF_FORMATS					\
-+	(SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S20_3LE |	\
-+	 SNDRV_PCM_FMTBIT_S24_3LE | SNDRV_PCM_FMTBIT_S24_LE)
-+
-+#define TOHDMITX_I2S_FORMATS					\
-+	(SNDRV_PCM_FMTBIT_S16_LE | SNDRV_PCM_FMTBIT_S20_3LE |	\
-+	 SNDRV_PCM_FMTBIT_S24_3LE | SNDRV_PCM_FMTBIT_S24_LE |	\
-+	 SNDRV_PCM_FMTBIT_S32_LE)
-+
-+#define TOHDMITX_STREAM(xname, xsuffix, xfmt, xchmax)		\
-+{								\
-+	.stream_name	= xname " " xsuffix,			\
-+	.channels_min	= 1,					\
-+	.channels_max	= (xchmax),				\
-+	.rate_min       = 8000,					\
-+	.rate_max	= 192000,				\
-+	.formats	= (xfmt),				\
-+}
-+
-+#define TOHDMITX_IN(xname, xid, xfmt, xchmax) {				\
-+	.name = xname,							\
-+	.id = (xid),							\
-+	.playback = TOHDMITX_STREAM(xname, "Playback", xfmt, xchmax),	\
-+	.ops = &g12a_tohdmitx_input_ops,				\
-+	.probe = g12a_tohdmitx_input_probe,				\
-+	.remove = g12a_tohdmitx_input_remove,				\
-+}
-+
-+#define TOHDMITX_OUT(xname, xid, xfmt, xchmax) {			\
-+	.name = xname,							\
-+	.id = (xid),							\
-+	.capture = TOHDMITX_STREAM(xname, "Capture", xfmt, xchmax),	\
-+	.ops = &g12a_tohdmitx_output_ops,				\
-+}
-+
-+static struct snd_soc_dai_driver g12a_tohdmitx_dai_drv[] = {
-+	TOHDMITX_IN("I2S IN A", TOHDMITX_I2S_IN_A,
-+		    TOHDMITX_I2S_FORMATS, 8),
-+	TOHDMITX_IN("I2S IN B", TOHDMITX_I2S_IN_B,
-+		    TOHDMITX_I2S_FORMATS, 8),
-+	TOHDMITX_IN("I2S IN C", TOHDMITX_I2S_IN_C,
-+		    TOHDMITX_I2S_FORMATS, 8),
-+	TOHDMITX_OUT("I2S OUT", TOHDMITX_I2S_OUT,
-+		     TOHDMITX_I2S_FORMATS, 8),
-+	TOHDMITX_IN("SPDIF IN A", TOHDMITX_SPDIF_IN_A,
-+		    TOHDMITX_SPDIF_FORMATS, 2),
-+	TOHDMITX_IN("SPDIF IN B", TOHDMITX_SPDIF_IN_B,
-+		    TOHDMITX_SPDIF_FORMATS, 2),
-+	TOHDMITX_OUT("SPDIF OUT", TOHDMITX_SPDIF_OUT,
-+		     TOHDMITX_SPDIF_FORMATS, 2),
-+};
-+
-+static int g12a_tohdmi_component_probe(struct snd_soc_component *c)
-+{
-+	/* Initialize the static clock parameters */
-+	return snd_soc_component_write(c, TOHDMITX_CTRL0,
-+		     CTRL0_I2S_BLK_CAP_INV | CTRL0_SPDIF_CLK_CAP_INV);
-+}
-+
-+static const struct snd_soc_dapm_route g12a_tohdmitx_routes[] = {
-+	{ "I2S SRC", "I2S A", "I2S IN A Playback" },
-+	{ "I2S SRC", "I2S B", "I2S IN B Playback" },
-+	{ "I2S SRC", "I2S C", "I2S IN C Playback" },
-+	{ "I2S OUT EN", "Switch", "I2S SRC" },
-+	{ "I2S OUT Capture", NULL, "I2S OUT EN" },
-+	{ "SPDIF SRC", "SPDIF A", "SPDIF IN A Playback" },
-+	{ "SPDIF SRC", "SPDIF B", "SPDIF IN B Playback" },
-+	{ "SPDIF OUT EN", "Switch", "SPDIF SRC" },
-+	{ "SPDIF OUT Capture", NULL, "SPDIF OUT EN" },
-+};
-+
-+static const struct snd_soc_component_driver g12a_tohdmitx_component_drv = {
-+	.probe			= g12a_tohdmi_component_probe,
-+	.dapm_widgets		= g12a_tohdmitx_widgets,
-+	.num_dapm_widgets	= ARRAY_SIZE(g12a_tohdmitx_widgets),
-+	.dapm_routes		= g12a_tohdmitx_routes,
-+	.num_dapm_routes	= ARRAY_SIZE(g12a_tohdmitx_routes),
-+	.endianness		= 1,
-+	.non_legacy_dai_naming	= 1,
-+};
-+
-+static const struct regmap_config g12a_tohdmitx_regmap_cfg = {
-+	.reg_bits	= 32,
-+	.val_bits	= 32,
-+	.reg_stride	= 4,
-+};
-+
-+static const struct of_device_id g12a_tohdmitx_of_match[] = {
-+	{ .compatible = "amlogic,g12a-tohdmitx", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, g12a_tohdmitx_of_match);
-+
-+static int g12a_tohdmitx_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct resource *res;
-+	void __iomem *regs;
-+	struct regmap *map;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	regs = devm_ioremap_resource(dev, res);
-+	if (IS_ERR(regs))
-+		return PTR_ERR(regs);
-+
-+	map = devm_regmap_init_mmio(dev, regs, &g12a_tohdmitx_regmap_cfg);
-+	if (IS_ERR(map)) {
-+		dev_err(dev, "failed to init regmap: %ld\n",
-+			PTR_ERR(map));
-+		return PTR_ERR(map);
-+	}
-+
-+	return devm_snd_soc_register_component(dev,
-+			&g12a_tohdmitx_component_drv, g12a_tohdmitx_dai_drv,
-+			ARRAY_SIZE(g12a_tohdmitx_dai_drv));
-+}
-+
-+static struct platform_driver g12a_tohdmitx_pdrv = {
-+	.driver = {
-+		.name = G12A_TOHDMITX_DRV_NAME,
-+		.of_match_table = g12a_tohdmitx_of_match,
-+	},
-+	.probe = g12a_tohdmitx_probe,
-+};
-+module_platform_driver(g12a_tohdmitx_pdrv);
-+
-+MODULE_AUTHOR("Jerome Brunet <jbrunet@baylibre.com>");
-+MODULE_DESCRIPTION("Amlogic G12a To HDMI Tx Control Codec Driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.20.1
-
+Yours,
+Linus Walleij
 
 _______________________________________________
 linux-amlogic mailing list
