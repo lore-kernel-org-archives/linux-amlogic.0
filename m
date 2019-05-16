@@ -1,85 +1,90 @@
-Return-Path: <SRS0=rBUq=TP=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=Bf+g=TQ=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 20E1FC04E53
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 May 2019 21:18:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 239EDC04AB4
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 May 2019 07:14:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E4E6420815
-	for <linux-amlogic@archiver.kernel.org>; Wed, 15 May 2019 21:18:43 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id EB7BA20848
+	for <linux-amlogic@archiver.kernel.org>; Thu, 16 May 2019 07:14:20 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Cx7eYo7M";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="lxiRTmNO"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E4E6420815
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="egmpsTFG";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="hIzpxAqG"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EB7BA20848
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1nyLinza+DmCyifeK3SFfXVmyPiriVbHBoZU/6HPJlg=; b=Cx7eYo7Mi5Nl5w
-	Rr7AIXdGD2xKNCFHYD9n3qRx4KaKBCnm42NCznIOBasOJEsIIW2xaksAcI0f/F3mM/aNsJXIubfZo
-	Jf1ZqulX5F+9oGwfyRiKreah3iWmXNuVVKEp0JgjV4xTXIQumzUOEsY0RtHykudO4C0bDUShlJmMH
-	O+axKYVE/EBY8JmZleX3JyVKswvo+X29Z9T+TfIHfpVs7mef8F2TSMR0yd56SyzCmdlzNm4XfehsC
-	R7n6HsfFEYNflUycYJ1p5LDUI6nuRH6bNfxZRt+EJhb0yYFINlwJxFZSSaN2iHHEwf2/+s4vWOprW
-	3KzF2wNu+u9f5gqxUlQw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ksBd1RhlGFirZWclJHhBjdTDrmjjHTDFc84jhDE6z30=; b=egmpsTFGSxFZFm
+	31SU45jHlCeYAkfN/zQB+B6XVOSGhsTrpc3J8SKpIFxAI8g7Nvepbq/navu01wJHwRN2voZlwl7PB
+	bwIG63sdDSBZ0DDLgggwP1dAVKjmHHH4W9Dvwes0RX5TxVEQhFgCpltKfmwZhXonDzmnNavCEb2hF
+	IwOGIShkh+qiC+tOH8RVAyWDqOgOZbyOYYvjxIHO61u7amE7mTOU4Wr/OzPS/IgVyfE50STsXrAZU
+	TjnTKnVLCpmaQDb6/m1Fub28B4Oi8UBM0x1UPeTm9Dt2Z1dQmIOeACPjNYGO6j3OvfdIBH/3qiEWB
+	3TjMktEEKG3Ml6Dsrjtw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hR1IK-0001Im-01; Wed, 15 May 2019 21:18:36 +0000
-Received: from mail-ot1-x342.google.com ([2607:f8b0:4864:20::342])
+	id 1hRAag-0001I6-57; Thu, 16 May 2019 07:14:10 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hR1IH-0001IQ-VK; Wed, 15 May 2019 21:18:35 +0000
-Received: by mail-ot1-x342.google.com with SMTP id u11so1423047otq.7;
- Wed, 15 May 2019 14:18:31 -0700 (PDT)
+ id 1hRAab-0001HJ-VF
+ for linux-amlogic@lists.infradead.org; Thu, 16 May 2019 07:14:08 +0000
+Received: by mail-wr1-x442.google.com with SMTP id h4so2056881wre.7
+ for <linux-amlogic@lists.infradead.org>; Thu, 16 May 2019 00:14:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=KECxhG00vBm0IlDH9n6KSnmJxztUTqeZiXx2Brec6f4=;
- b=lxiRTmNOWVZoT2dnKAkBE35aDOk0GpZXsTGuC/FrYuP4RFUSpzz6R4+NBThg8+7Caq
- FlqWM2pP9jcBvRD6saFfOMWkCHzRc1E18PMXTwKslca5pVeoIHTG/yn90g+1xn5lTV0t
- cTbe2XWURr41z9tc0od/mJbjPb7jnWdwYSVP9P71J4dF4GeSFzh0f5hEoscDHNtaNPxo
- bLI2In6ZENqM9Tlp9NfLSQ5eKXxinuapLsYOkFuGqd3wCCTQw1xZEvupjlx+7VL2DPXc
- iSEpXXk48IgJIxWDu66zafTBGCh4hisAMnd0cYOKcniZvGduISlfqnJyCewQt9gLYUfn
- PuMQ==
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=VfCCJLVSfHmoPDAPoxVwjeh8RznaZsaWhre6aDFNPIM=;
+ b=hIzpxAqGm2mhKRJYGO+YsjXJtG3/Y3HV1euq2BEEfoOJk4PDOeGY/qCyeApBn8Ueq0
+ V7kJVjFDtawFjNmvTzpxqx1rbpRxVdsqbNJ4cC3WcC6pzlKnLht0aS1u8/PMjDvJnCeK
+ nfzR9L6tlulhvTKK9hFXNqtrubFaHwYa0BhMwPzRgdUFY8HASnBcI9uy1IZLcZJ5NAHp
+ o5lqypEEXV96kU4+iefo6p+9eXh5YLnFPiZRwzx5/06TL77E9tJozgTquElaAF6VA3/S
+ RA9kg3I6agdjesBqj4Is+osqQ9hLHrzxTcs6N5hsuGH3dixd4Mf4NVgIEip32AHIpJ74
+ rVGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=KECxhG00vBm0IlDH9n6KSnmJxztUTqeZiXx2Brec6f4=;
- b=iAbpSwyMKbpp8/BPfEbodI1Y56jaxHLdUSNRlZlXyKmLIGW2IfzRZQhVlSDgI9G9K2
- ddbTVjeDVyGcIdSBLQPykjxDEpjcCQbNoGRQ2WnAfLg/y+aw43+m9DncXBBz8f2wWnAB
- 6ELOXmr6hD34veQfjYomkXUqUw8b65H6xNn6DatfZQaF2P/wAfNrrRewpwcnqZlamAwu
- b17TJY+znnXIylXA3/4A+EGZ7XeGt9ovyQ6DCMB6ujp5q+3QBnIDKfcdCOcHkur5RUSd
- EwXN3OJXEBWQ57sEyT/s5iGMKnzp1injV883bfsd4+TbmWWmTx1jFvvSNAcOYq+aTyBu
- Wjfw==
-X-Gm-Message-State: APjAAAUhMb6CEN9V4UMochH4i/yPUuEbhHXOz21vcdPdTF/iwzWVEKjs
- 5mqGm7ly+P8vOYHS35q7URaGFbMIbVye3j0k/lM=
-X-Google-Smtp-Source: APXvYqyQOB61kbFWuMCaUd5x0vsZQMGyFvBi3SwJNnEy3rL9O+2ei3JvJEQX5nvmjaXp7fQunZiagCxcjb0d9Zgfb1Y=
-X-Received: by 2002:a9d:5618:: with SMTP id e24mr3459779oti.38.1557955108329; 
- Wed, 15 May 2019 14:18:28 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=VfCCJLVSfHmoPDAPoxVwjeh8RznaZsaWhre6aDFNPIM=;
+ b=MaDPON16/6NcHhEPj9vcZfF1m6f9z1ywxpP0qjuvmTNH0ZCBJcKmQ51TiYTWgCmzuE
+ aRenIecblAINK6B72lpACpbI+TuvvnlBHoGcmryn55geq6JhNLV1Zn0uowH7jrY7mgov
+ rRDtCqRfEF3gJhyu46Eiz6fuB996cvnNaAFxgbfxZ6TXRLKDDii0e+f+VhgmMIEjbSN9
+ nC4Q0fnOBu90n7QFxM/8SthiCv/D+kbepr2hnSJAdILcDTrxxm1pINZHkdr0bZpDL4LA
+ sR9Hhj5WTy+4oj7sME/2xf+ASz/FT5Hf/zLxrqu3UINrmr+xCbUqI/D2WnCn/iy7wVXB
+ vRTQ==
+X-Gm-Message-State: APjAAAVr44/BzfFA8JooYNDKLbLS2IyLbXsaxpWtklSos4N8iKzErnoC
+ RQ4AjWYytKPyv85fvCkVmlMAkA==
+X-Google-Smtp-Source: APXvYqy6tYfmy3A5aGFSOaSVHlYWAwVjpgeh4xahSE6WzNjqgCYsJB/OQVjBgZAzXUNEhgfdt/0vEQ==
+X-Received: by 2002:a5d:49d0:: with SMTP id t16mr19217158wrs.324.1557990842582; 
+ Thu, 16 May 2019 00:14:02 -0700 (PDT)
+Received: from boomer.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.googlemail.com with ESMTPSA id x187sm5454331wmb.33.2019.05.16.00.14.01
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Thu, 16 May 2019 00:14:02 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCH] arm64: dts: meson: sei510: add bluetooth supplies
+Date: Thu, 16 May 2019 09:13:55 +0200
+Message-Id: <20190516071355.26938-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20190513091548.16674-1-narmstrong@baylibre.com>
- <20190513091548.16674-3-narmstrong@baylibre.com>
- <CAFBinCAMoNDnxoQA9XHKy0Xo9MduxD1CvQXOeLZQ3zZ4ViWm7A@mail.gmail.com>
- <a54f7a4a-c280-6181-969f-4979dadb36b2@baylibre.com>
-In-Reply-To: <a54f7a4a-c280-6181-969f-4979dadb36b2@baylibre.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Wed, 15 May 2019 23:18:17 +0200
-Message-ID: <CAFBinCCtNQmKKL8yw07DKOfPK=eusgCuYeBmwgiHm0SSVmuFPQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] mmc: meson-gx: add ddr-access-quirk
-To: Neil Armstrong <narmstrong@baylibre.com>
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190515_141834_036234_C824581A 
-X-CRM114-Status: GOOD (  20.12  )
+X-CRM114-CacheID: sfid-20190516_001406_066541_A2C0A0B4 
+X-CRM114-Status: UNSURE (   8.31  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -91,84 +96,36 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: ulf.hansson@linaro.org, baylibre-upstreaming@groups.io,
- khilman@baylibre.com, linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil,
+Add bluetooth vbat and vddio power supplies
 
-On Wed, May 15, 2019 at 2:45 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> On 14/05/2019 19:58, Martin Blumenstingl wrote:
-> > Hi Neil,
-> >
-> > On Mon, May 13, 2019 at 11:16 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
-> > [...]
-> >> @@ -1158,15 +1183,27 @@ static int meson_mmc_probe(struct platform_device *pdev)
-> >>          */
-> >>         mmc->caps2 &= ~MMC_CAP2_HS400;
-> >>
-> >> -       /* data bounce buffer */
-> >> -       host->bounce_buf_size = mmc->max_req_size;
-> >> -       host->bounce_buf =
-> >> -               dma_alloc_coherent(host->dev, host->bounce_buf_size,
-> >> -                                  &host->bounce_dma_addr, GFP_KERNEL);
-> >> -       if (host->bounce_buf == NULL) {
-> >> -               dev_err(host->dev, "Unable to map allocate DMA bounce buffer.\n");
-> >> -               ret = -ENOMEM;
-> >> -               goto err_free_irq;
-> >> +       if (host->ddr_access_quirk) {
-> >> +               /*
-> >> +                * The MMC Controller embeds 1,5KiB of internal SRAM
-> >> +                * that can be used to be used as bounce buffer.
-> >> +                * In the case of the G12A SDIO controller, use these
-> >> +                * instead of the DDR memory
-> >> +                */
-> >> +               host->bounce_buf_size = SD_EMMC_SRAM_DATA_BUF_LEN;
-> >> +               host->bounce_buf = host->regs + SD_EMMC_SRAM_DATA_BUF_OFF;
-> >> +               host->bounce_dma_addr = res->start + SD_EMMC_SRAM_DATA_BUF_OFF;
-> > I'm curious: why do you need to set bounce_dma_addr in this case?
->
-> We still need the physical bounce buffer address since we write in the registers,
-so writing bounce_dma_addr to SD_EMMC_CMD_DAT is needed to make it work?
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> and we need the logical address to memcpy() in the buffer.
-as far as I understand that is what we use the "bounce_buf" member
-for, but I don't see why we need "bounce_dma_addr"
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+index 61fb30047d7f..dbfbd50359e5 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+@@ -170,6 +170,8 @@
+ 	bluetooth {
+ 		compatible = "brcm,bcm43438-bt";
+ 		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
++		vbat-supply = <&vddao_3v3>;
++		vddio-supply = <&vddio_ao1v8>;
+ 	};
+ };
+ 
+-- 
+2.20.1
 
-> >
-> >> +       } else {
-> >> +               /* data bounce buffer */
-> >> +               host->bounce_buf_size = mmc->max_req_size;
-> >> +               host->bounce_buf =
-> >> +                       dma_alloc_coherent(host->dev, host->bounce_buf_size,
-> >> +                                          &host->bounce_dma_addr, GFP_KERNEL);
-> >> +               if (host->bounce_buf == NULL) {
-> >> +                       dev_err(host->dev, "Unable to map allocate DMA bounce buffer.\n");
-> >> +                       ret = -ENOMEM;
-> >> +                       goto err_free_irq;
-> >> +               }
-> >>         }
-> >>
-> >>         host->descs = dma_alloc_coherent(host->dev, SD_EMMC_DESC_BUF_LEN,
-> > if host->descs cannot be allocated then you need to conditionally skip
-> > dma_free_coherent for the bounce buffer in the goto err_bounce_buf
-> > case a few lines below (just like you did in meson_mmc_remove)
->
-> It can be allocated, it's only useless. I can skip it but I don't want
-> to break any logic in the driver.
-I wasn't clear in my last email, I meant this error case:
-  err_bounce_buf:
-    dma_free_coherent(host->dev, host->bounce_buf_size, ...
-when host->ddr_access_quirk is true then you skip the
-dma_alloc_coherent call for bounce_buf
-
-
-Martin
 
 _______________________________________________
 linux-amlogic mailing list
