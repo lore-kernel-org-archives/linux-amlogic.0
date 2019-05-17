@@ -2,95 +2,75 @@ Return-Path: <SRS0=JomC=TR=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C4706C04AB4
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 May 2019 12:57:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A8736C04AB4
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 May 2019 15:27:47 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 960862087B
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 May 2019 12:57:35 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7C47521744
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 May 2019 15:27:47 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kuA770PL";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernelci-org.20150623.gappssmtp.com header.i=@kernelci-org.20150623.gappssmtp.com header.b="wE/Ymg2v"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 960862087B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=kernelci.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kiMEszuD"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7C47521744
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:From:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=TtzMSIg4/KRa93gGHf7nfOzk/fmhzIB7Pu6PNLJljG0=; b=kuA770PLeCVpxl
-	TCfYiICTuZziJDqaSVP276CXA7GbRXCbKXAFY3JTJaNd+cZc1WkxwK3a+oZctOFdj3HUT3+/qGm7n
-	Xg6MxUE3B6Fa/XORpepG7zBjAdpRUQnV6OjwcAOnBV5XL/Jl7Dd3Pc7o1V6/p7tifV+nxqkpsfLG8
-	f0RTBsNgAOj/wvNfL9s4o3jlD0tFIPOK//yapCPL9N0ROn7lyVDG+nK0ChDkppcUr0Ouf5mwBlXhn
-	uAMt6mRDYH83kAAfHXmtIE8NEYeMAECnLa+UtOCYEZO2eL3eDWgPTr0SU5MPQw+L7XHKLLq7TwLc9
-	rCys0ctqeBICLdFVNQYw==;
+	List-Owner; bh=gqyHH0bblJkipZFolncTyrKcQWTxWvvJUP7RHjPMgj0=; b=kiMEszuDKTqjJJ
+	jX0vZPZ+OVWdRxZEB2vlsI6RucFkE3lltAi3O3vgAfQacoa7p/52YiPahnKMKS2dEt2WfkUxWOVrN
+	5WSZN/Lf6YcK6iUwsQ3Kn1LcTqnTHLNhtbSA6zv7ljJdVBC8DW7O8xLDS4YR2nKi6zJVl4ZxPsEIw
+	Jr2WhdZ6F2jY+3d6HIt6BEXCID0PGBwyGq1m7lISAhXs/duo/Z36kWoeEum8DGNHxS3YaCNkpI2/5
+	htyJVIuQ34f+WU4uAh51dcNrKDzZrFH8JxSd4SRa3QEev3ZvnAtr7HMQnUaG8ZjCGq1fzOly+5jdi
+	XmKZ9xebySJXT5RM/KPQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hRcQO-0002dz-Uy; Fri, 17 May 2019 12:57:24 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1hRelo-0003zN-PW; Fri, 17 May 2019 15:27:40 +0000
+Received: from mail-ot1-f67.google.com ([209.85.210.67])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hRcQG-0002Wz-Eq
- for linux-amlogic@lists.infradead.org; Fri, 17 May 2019 12:57:18 +0000
-Received: by mail-wm1-x342.google.com with SMTP id x64so6850099wmb.5
- for <linux-amlogic@lists.infradead.org>; Fri, 17 May 2019 05:57:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=kernelci-org.20150623.gappssmtp.com; s=20150623;
- h=message-id:date:mime-version:content-transfer-encoding:subject:to
- :from:cc; bh=HKfyiyGfXU9AJ72KPmZHXimSLWU7pditklJYTaZHlIE=;
- b=wE/Ymg2vvkRy+sIyqYSV3Lf6nhRTVMrZ6Rna0Zu51RGb1YO+zMVEjRRM1pneicE/ge
- qyHB4B4ssqCu6dNQZ5oFRXaDZ2+hzFilwmPa+x6dBEJo+GQ9Orel7u68hUYpOEzaqhzK
- 6cuJqoWZ+iKjBoazBPbXT08bquET5gkuazuqJaA49vPoSNosIuWr/mfdogUZHpqs8c+s
- 5mukGPmMUuEOtOLqxczGkED/i7sQy8GnaYJSezJbQmZkP7yrYUQ2HlgSI3hah9ar9iEF
- zKnTmcK3kDoslovRx7KYilLCRQ0nU/6n5BBpuBM/hibtnGt5OryzQc5iQqByFrln46z5
- cSnA==
+ id 1hReld-0003qR-50; Fri, 17 May 2019 15:27:33 +0000
+Received: by mail-ot1-f67.google.com with SMTP id r7so7088937otn.6;
+ Fri, 17 May 2019 08:27:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:mime-version
- :content-transfer-encoding:subject:to:from:cc;
- bh=HKfyiyGfXU9AJ72KPmZHXimSLWU7pditklJYTaZHlIE=;
- b=NLOCd9DVCgpzyeNLdtbTJhN0WW8YEhWFwUa6p4UEKI8Gn+4H/ytuo20kChNE6pDqyK
- rcmSfEuSDiiDb93PpiBUE3SUN7dmzQzrtaUPqs/EuRz1LW44f8CfMN8Dka598OOydlpf
- OFRzP6eobTw0pKO7l1cdf4k3ueC15mw4iE4Gg8lF2noRgh/Pk3+rcrZXAk4qtbi3yYSt
- OKCZr39MHvaktzwD8G6Ml3qJRK+klLl5wOg4zPUbNOwm70lyORYw8p25EjxepO3Zwvke
- //eyZFPuKWr0iAN6jz7e8kBwqc9LVyPDbSvOmnTTvBzYtZCzlgodZMw+UeiR3UiA7orf
- 1HqA==
-X-Gm-Message-State: APjAAAWmmrPrdzgDb2Hn49NH5UnANNSIPN6tbRlUNc0bNONRvuqG/SLL
- qXFQru8l9ai+6SVYPa6ykH8e8isdN/Gr4Q==
-X-Google-Smtp-Source: APXvYqzDaav67ZbIWvC82E0RKgZY08Z323wi9RZ26Bg8AW+Sb3QFy+h84OI8KkljMqbqPaa3x4qJmw==
-X-Received: by 2002:a1c:c8:: with SMTP id 191mr2046884wma.6.1558097834493;
- Fri, 17 May 2019 05:57:14 -0700 (PDT)
-Received: from [148.251.42.114] ([2a01:4f8:201:9271::2])
- by smtp.gmail.com with ESMTPSA id o6sm14824232wrh.55.2019.05.17.05.57.13
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 17 May 2019 05:57:13 -0700 (PDT)
-Message-ID: <5cdeafa9.1c69fb81.10168.6580@mx.google.com>
-Date: Fri, 17 May 2019 05:57:13 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=ZXjo2WzK/l3uzu16XWx7AJkZlf1BIoz+FJUDL45vLwg=;
+ b=ZRWBhFIaXh1B2OeA0b1/DD4aDEbisOOSwxVyppPxV32rjN/T82IME/93vCWAK0JgRz
+ wz0o7xRWKvGmmmr4t/jOGQcHxEScXpmgezXcyp0k2f8o9RM/oLY5KIxDqrzkq93jdDgs
+ siBEAp956rbHstlhjGuyDire86XYb/mhndwEdqa6XUGrxYoNiganxGgjxMwNgtn+0//1
+ bxF5KCM+KNuDE8vuIJ/bm0FM0Rth247wntEE3vMOjbjcuUvsiog4hwn9LDonW4D12PvE
+ ICs99mgGJbZZWLESWuWf58M48xWrO22iSE5JbepoPe/ryXlY6jBM9Foh4AT3rrbETi6n
+ HKRQ==
+X-Gm-Message-State: APjAAAW8vCkQaSoNhNh1UgCAkrlaGYpaOnnrj3kgcb8JjcjsUNLS8KdV
+ KA+2mECE4wciQWDYoglTug==
+X-Google-Smtp-Source: APXvYqzMjh1uN1x7bYZO0lOLW1zGnpUtEQcPyOFHVuAQp9QvmrFCWuPkkhC8UMdrSn6icT5FC87sEw==
+X-Received: by 2002:a9d:6856:: with SMTP id c22mr11882936oto.24.1558106845465; 
+ Fri, 17 May 2019 08:27:25 -0700 (PDT)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net.
+ [24.155.109.49])
+ by smtp.googlemail.com with ESMTPSA id i13sm2186859otl.27.2019.05.17.08.27.24
+ (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+ Fri, 17 May 2019 08:27:24 -0700 (PDT)
+From: Rob Herring <robh@kernel.org>
+To: Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCH v3 1/2] dt-bindings: arm: amlogic: Move 'amlogic,
+ meson-gx-ao-secure' binding to its own file
+Date: Fri, 17 May 2019 10:27:22 -0500
+Message-Id: <20190517152723.28518-1-robh@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-Kernelci-Report-Type: bisect
-X-Kernelci-Tree: mainline
-X-Kernelci-Lab-Name: lab-baylibre
-X-Kernelci-Branch: master
-X-Kernelci-Kernel: v5.1-12115-g01be377c6221
-Subject: mainline/master boot bisection: v5.1-12115-g01be377c6221 on
- meson-g12a-x96-max
-To: tomeu.vizoso@collabora.com, guillaume.tucker@collabora.com,
- mgalka@collabora.com, Kevin Hilman <khilman@baylibre.com>,
- Neil Armstrong <narmstrong@baylibre.com>, broonie@kernel.org,
- matthew.hart@linaro.org, khilman@baylibre.com, enric.balletbo@collabora.com,
- Jerome Brunet <jbrunet@baylibre.com>
-From: "kernelci.org bot" <bot@kernelci.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190517_055716_507644_94B61636 
-X-CRM114-Status: UNSURE (   7.92  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190517_082731_761164_2087FFB3 
+X-CRM114-Status: GOOD (  11.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -103,151 +83,106 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+ Neil Armstrong <narmstrong@baylibre.com>, linux-kernel@vger.kernel.org,
+ Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* This automated bisection report was sent to you on the basis  *
-* that you may be involved with the breaking commit it has      *
-* found.  No manual investigation has been done to verify it,   *
-* and the root cause of the problem may be somewhere else.      *
-* Hope this helps!                                              *
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+It is best practice to have 1 binding per file, so board level bindings
+should be separate for various misc SoC bindings.
 
-mainline/master boot bisection: v5.1-12115-g01be377c6221 on meson-g12a-x96-max
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: Carlo Caione <carlo@caione.org>
+Cc: Kevin Hilman <khilman@baylibre.com>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+It seems this one fell thru the cracks and didn't get applied.
 
-Summary:
-  Start:      01be377c6221 Merge tag 'media/v5.2-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
-  Details:    https://kernelci.org/boot/id/5cde30f059b514110f7a3636
-  Plain log:  https://storage.kernelci.org//mainline/master/v5.1-12115-g01be377c6221/arm64/defconfig+CONFIG_RANDOMIZE_BASE=y/gcc-8/lab-baylibre/boot-meson-g12a-x96-max.txt
-  HTML log:   https://storage.kernelci.org//mainline/master/v5.1-12115-g01be377c6221/arm64/defconfig+CONFIG_RANDOMIZE_BASE=y/gcc-8/lab-baylibre/boot-meson-g12a-x96-max.html
-  Result:     11a7bea17c9e arm64: dts: meson: g12a: add pinctrl support controllers
+ .../devicetree/bindings/arm/amlogic.txt       | 29 -------------------
+ .../amlogic/amlogic,meson-gx-ao-secure.txt    | 28 ++++++++++++++++++
+ 2 files changed, 28 insertions(+), 29 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt
 
-Checks:
-  revert:     PASS
-  verify:     PASS
-
-Parameters:
-  Tree:       mainline
-  URL:        git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
-  Branch:     master
-  Target:     meson-g12a-x96-max
-  CPU arch:   arm64
-  Lab:        lab-baylibre
-  Compiler:   gcc-8
-  Config:     defconfig+CONFIG_RANDOMIZE_BASE=y
-  Test suite: boot
-
-Breaking commit found:
-
--------------------------------------------------------------------------------
-commit 11a7bea17c9e0a36daab934d83e15a760f402147
-Author: Jerome Brunet <jbrunet@baylibre.com>
-Date:   Mon Mar 18 10:58:45 2019 +0100
-
-    arm64: dts: meson: g12a: add pinctrl support controllers
-    
-    Add the peripheral and always-on pinctrl controllers to the g12a soc.
-    
-    Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-    Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-    Signed-off-by: Kevin Hilman <khilman@baylibre.com>
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-index abfa167751af..5e07e4ca3f4b 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-@@ -104,6 +104,29 @@
- 				#address-cells = <2>;
- 				#size-cells = <2>;
- 				ranges = <0x0 0x0 0x0 0x34400 0x0 0x400>;
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
+index 061f7b98a07f..5f650248b18e 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.txt
++++ b/Documentation/devicetree/bindings/arm/amlogic.txt
+@@ -111,32 +111,3 @@ Board compatible values (alphabetically, grouped by SoC):
+   - "amlogic,u200" (Meson g12a s905d2)
+   - "amediatech,x96-max" (Meson g12a s905x2)
+   - "seirobotics,sei510" (Meson g12a s905x2)
+-
+-Amlogic Meson Firmware registers Interface
+-------------------------------------------
+-
+-The Meson SoCs have a register bank with status and data shared with the
+-secure firmware.
+-
+-Required properties:
+- - compatible: For Meson GX SoCs, must be "amlogic,meson-gx-ao-secure", "syscon"
+-
+-Properties should indentify components of this register interface :
+-
+-Meson GX SoC Information
+-------------------------
+-A firmware register encodes the SoC type, package and revision information on
+-the Meson GX SoCs.
+-If present, the following property should be added :
+-
+-Optional properties:
+-  - amlogic,has-chip-id: If present, the interface gives the current SoC version.
+-
+-Example
+--------
+-
+-ao-secure@140 {
+-	compatible = "amlogic,meson-gx-ao-secure", "syscon";
+-	reg = <0x0 0x140 0x0 0x140>;
+-	amlogic,has-chip-id;
+-};
+diff --git a/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt b/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt
+new file mode 100644
+index 000000000000..c67d9f48fb91
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt
+@@ -0,0 +1,28 @@
++Amlogic Meson Firmware registers Interface
++------------------------------------------
 +
-+				periphs_pinctrl: pinctrl@40 {
-+					compatible = "amlogic,meson-g12a-periphs-pinctrl";
-+					#address-cells = <2>;
-+					#size-cells = <2>;
-+					ranges;
++The Meson SoCs have a register bank with status and data shared with the
++secure firmware.
 +
-+					gpio: bank@40 {
-+						reg = <0x0 0x40  0x0 0x4c>,
-+						      <0x0 0xe8  0x0 0x18>,
-+						      <0x0 0x120 0x0 0x18>,
-+						      <0x0 0x2c0 0x0 0x40>,
-+						      <0x0 0x340 0x0 0x1c>;
-+						reg-names = "gpio",
-+							    "pull",
-+							    "pull-enable",
-+							    "mux",
-+							    "ds";
-+						gpio-controller;
-+						#gpio-cells = <2>;
-+						gpio-ranges = <&periphs_pinctrl 0 0 86>;
-+					};
-+				};
- 			};
- 
- 			hiu: bus@3c000 {
-@@ -150,6 +173,25 @@
- 					clocks = <&xtal>, <&clkc CLKID_CLK81>;
- 					clock-names = "xtal", "mpeg-clk";
- 				};
++Required properties:
++ - compatible: For Meson GX SoCs, must be "amlogic,meson-gx-ao-secure", "syscon"
 +
-+				ao_pinctrl: pinctrl@14 {
-+					compatible = "amlogic,meson-g12a-aobus-pinctrl";
-+					#address-cells = <2>;
-+					#size-cells = <2>;
-+					ranges;
++Properties should indentify components of this register interface :
 +
-+					gpio_ao: bank@14 {
-+						reg = <0x0 0x14 0x0 0x8>,
-+						      <0x0 0x1c 0x0 0x8>,
-+						      <0x0 0x24 0x0 0x14>;
-+						reg-names = "mux",
-+							    "ds",
-+							    "gpio";
-+						gpio-controller;
-+						#gpio-cells = <2>;
-+						gpio-ranges = <&ao_pinctrl 0 0 15>;
-+					};
-+				};
- 			};
- 
- 			sec_AO: ao-secure@140 {
--------------------------------------------------------------------------------
++Meson GX SoC Information
++------------------------
++A firmware register encodes the SoC type, package and revision information on
++the Meson GX SoCs.
++If present, the following property should be added :
++
++Optional properties:
++  - amlogic,has-chip-id: If present, the interface gives the current SoC version.
++
++Example
++-------
++
++ao-secure@140 {
++	compatible = "amlogic,meson-gx-ao-secure", "syscon";
++	reg = <0x0 0x140 0x0 0x140>;
++	amlogic,has-chip-id;
++};
+-- 
+2.20.1
 
-
-Git bisection log:
-
--------------------------------------------------------------------------------
-git bisect start
-# good: [a455eda33faafcaac1effb31d682765b14ef868c] Merge branch 'linus' of git://git.kernel.org/pub/scm/linux/kernel/git/evalenti/linux-soc-thermal
-git bisect good a455eda33faafcaac1effb31d682765b14ef868c
-# bad: [01be377c62210a8d8fef35be906f9349591bb7cd] Merge tag 'media/v5.2-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
-git bisect bad 01be377c62210a8d8fef35be906f9349591bb7cd
-# bad: [b45da609a02460c6a34c395f03f891f1fb2a021a] Merge tag 'imx-bindings-5.2' of git://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux into arm/dt
-git bisect bad b45da609a02460c6a34c395f03f891f1fb2a021a
-# bad: [a41332dd5e2ac56b0b6eb0959d8828bfe0d6a4ad] Merge tag 'socfpga_dts_updates_for_v5.2' of git://git.kernel.org/pub/scm/linux/kernel/git/dinguyen/linux into arm/dt
-git bisect bad a41332dd5e2ac56b0b6eb0959d8828bfe0d6a4ad
-# bad: [bbf7499dc033831ae91125a88a062910cdc62cf2] Merge tag 'aspeed-5.2-devicetree' of git://git.kernel.org/pub/scm/linux/kernel/git/joel/aspeed into arm/dt
-git bisect bad bbf7499dc033831ae91125a88a062910cdc62cf2
-# bad: [f6f9683c5aedff214433fa130e67a79f08a47fdb] Merge tag 'v5.2-rockchip-dts32-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip into arm/dt
-git bisect bad f6f9683c5aedff214433fa130e67a79f08a47fdb
-# bad: [e2cffeb398f4830b004774444809ee256b9bc653] arm64: dts: meson-g12a: Add CMA reserved memory
-git bisect bad e2cffeb398f4830b004774444809ee256b9bc653
-# bad: [11a7bea17c9e0a36daab934d83e15a760f402147] arm64: dts: meson: g12a: add pinctrl support controllers
-git bisect bad 11a7bea17c9e0a36daab934d83e15a760f402147
-# good: [7e09092aee006b21d830b99f8498b5640b8711f6] arm64: dts: meson-gxl-s905d-phicomm-n1: add status LED
-git bisect good 7e09092aee006b21d830b99f8498b5640b8711f6
-# good: [965c827ac37e71f76d3ac55c75ac08909f2a4eed] arm64: dts: meson: g12a: add efuse
-git bisect good 965c827ac37e71f76d3ac55c75ac08909f2a4eed
-# good: [b019f4a4199f865b054262ff78f606ca70f7b981] arm64: dts: meson: g12a: Add AO Clock + Reset Controller support
-git bisect good b019f4a4199f865b054262ff78f606ca70f7b981
-# first bad commit: [11a7bea17c9e0a36daab934d83e15a760f402147] arm64: dts: meson: g12a: add pinctrl support controllers
--------------------------------------------------------------------------------
 
 _______________________________________________
 linux-amlogic mailing list
