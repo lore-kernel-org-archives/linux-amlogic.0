@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DB330C04AB4
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 May 2019 03:52:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C4706C04AB4
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 May 2019 12:57:35 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AD1F72083E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 May 2019 03:52:13 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 960862087B
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 May 2019 12:57:35 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZY3UOB6g";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernelci-org.20150623.gappssmtp.com header.i=@kernelci-org.20150623.gappssmtp.com header.b="w1FyLLhp"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AD1F72083E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kuA770PL";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernelci-org.20150623.gappssmtp.com header.i=@kernelci-org.20150623.gappssmtp.com header.b="wE/Ymg2v"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 960862087B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=kernelci.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:From:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=gCSDpZSoj8WguoHwCeoj/Lxe8/amnDt9LKWpgMyqQyg=; b=ZY3UOB6g/M2lci
-	ahZp5fkkWLlG53inmmXbEak1cp6y7svgyxJimmrjf0L1rwSG8N/EQQiH0ORAWa0wN7DvEvk/aM+ed
-	brWepLl6Vn9HBa+OSGP8lfG/8OjBzRexGgbKhtKfNLjQd+YW7xaV7Rw/yDnc+wV20c50IUbKjhRPO
-	zbPfoLwxPkLCbUFeBqinejb4OrHPKvAr6k6fnu8EEGgUDSG6EVeZikYlfxKqxWj8qqRu6Brnhp1yI
-	vaHE6TZ5VX72UzHNpv6qrZl0nlcBvsuCMIf9f6A/R9JCvXmiBf5gDXh1kKwOTcDdHrmGog6wTwWCJ
-	g0mkHnATypHBzpDiG4ng==;
+	List-Owner; bh=TtzMSIg4/KRa93gGHf7nfOzk/fmhzIB7Pu6PNLJljG0=; b=kuA770PLeCVpxl
+	TCfYiICTuZziJDqaSVP276CXA7GbRXCbKXAFY3JTJaNd+cZc1WkxwK3a+oZctOFdj3HUT3+/qGm7n
+	Xg6MxUE3B6Fa/XORpepG7zBjAdpRUQnV6OjwcAOnBV5XL/Jl7Dd3Pc7o1V6/p7tifV+nxqkpsfLG8
+	f0RTBsNgAOj/wvNfL9s4o3jlD0tFIPOK//yapCPL9N0ROn7lyVDG+nK0ChDkppcUr0Ouf5mwBlXhn
+	uAMt6mRDYH83kAAfHXmtIE8NEYeMAECnLa+UtOCYEZO2eL3eDWgPTr0SU5MPQw+L7XHKLLq7TwLc9
+	rCys0ctqeBICLdFVNQYw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hRTug-0000bz-4C; Fri, 17 May 2019 03:52:06 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1hRcQO-0002dz-Uy; Fri, 17 May 2019 12:57:24 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hRTuX-0000V4-Dm
- for linux-amlogic@lists.infradead.org; Fri, 17 May 2019 03:51:59 +0000
-Received: by mail-wr1-x441.google.com with SMTP id g12so5213562wro.8
- for <linux-amlogic@lists.infradead.org>; Thu, 16 May 2019 20:51:53 -0700 (PDT)
+ id 1hRcQG-0002Wz-Eq
+ for linux-amlogic@lists.infradead.org; Fri, 17 May 2019 12:57:18 +0000
+Received: by mail-wm1-x342.google.com with SMTP id x64so6850099wmb.5
+ for <linux-amlogic@lists.infradead.org>; Fri, 17 May 2019 05:57:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=kernelci-org.20150623.gappssmtp.com; s=20150623;
  h=message-id:date:mime-version:content-transfer-encoding:subject:to
- :from:cc; bh=DdVR87Z6W71pfOZ9P0FpXBOiYmKNFBCn+LbvQzi7wlQ=;
- b=w1FyLLhpMw881IOcASEaUGIdwSeVjjeUpmN6yCOffrsAUamFbjBQP0AfGgBcVoqBFc
- ZfA0dJG1nP3k3iNR8TfTaRpKT81Ga/DjhFHOqTUtz6NxarbpgRBOlyngCOVwH+LueCvx
- bFqN7ytdmAzSxQtlMtMbVapKAvHm96lq+Q9s6b0cXQMp92dJIhvIpNGqC7ZOhL0U3ybn
- i3gn292MF7jkhlq+ghIuR5gXeMX6OrUtO3/FH3Ti9CdwvqAqkSCel8Td8gnYwDhdJt0e
- X8BxN9zrwVqCIEfsC9xg8kon/FwYJFizq3n+8zENJj78X35eL4+E1Cl79AN+e8xWryst
- an4Q==
+ :from:cc; bh=HKfyiyGfXU9AJ72KPmZHXimSLWU7pditklJYTaZHlIE=;
+ b=wE/Ymg2vvkRy+sIyqYSV3Lf6nhRTVMrZ6Rna0Zu51RGb1YO+zMVEjRRM1pneicE/ge
+ qyHB4B4ssqCu6dNQZ5oFRXaDZ2+hzFilwmPa+x6dBEJo+GQ9Orel7u68hUYpOEzaqhzK
+ 6cuJqoWZ+iKjBoazBPbXT08bquET5gkuazuqJaA49vPoSNosIuWr/mfdogUZHpqs8c+s
+ 5mukGPmMUuEOtOLqxczGkED/i7sQy8GnaYJSezJbQmZkP7yrYUQ2HlgSI3hah9ar9iEF
+ zKnTmcK3kDoslovRx7KYilLCRQ0nU/6n5BBpuBM/hibtnGt5OryzQc5iQqByFrln46z5
+ cSnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:mime-version
  :content-transfer-encoding:subject:to:from:cc;
- bh=DdVR87Z6W71pfOZ9P0FpXBOiYmKNFBCn+LbvQzi7wlQ=;
- b=GqzcUja7SV+LhtG0kwEM054yYdq0HWGzKl4uPScA4xFtdBC3Mpny2rz0s8CNN7GtmL
- 6QYB6Qr0O2oOCo+G1CjQgKzvn5WNj4IvBdtOUKfv/FTUPUbBCe7x03sGs7kGR6Olr9dS
- YGfVVTRBgSngqQKnUgXL4tLB1RFGGZikapHahj/Ajp4oVuZrgAcsEi+4m4DMaY5RDrn2
- /RqByZiQpPMVOXFT+YD8XicbrrvAzjeRrk9su/y9ndwzj8qqF0Q5qw80nLOgmV4mAacj
- LDy2hmMz3K26jFOnWBWBWfYxbLubZNHdbOwfj8FL5ihkYvUJeeoJsbojj0EyJ6mYZr45
- 1dtg==
-X-Gm-Message-State: APjAAAWh9Y/2GKLHSI3fVwyy2ppqxySyqiZarqMEELjMCsXrZpAGBBNW
- hPJejceKyAOmCXoDvImRcfDOVw==
-X-Google-Smtp-Source: APXvYqzyfhaTEuEHD7b4qavb2NnY+aWioXWHYEipSR9Qye9wu3iFt5gT+TIKeBtfEgyF6JOBfMlrEw==
-X-Received: by 2002:a5d:62c2:: with SMTP id o2mr13569428wrv.254.1558065112562; 
- Thu, 16 May 2019 20:51:52 -0700 (PDT)
+ bh=HKfyiyGfXU9AJ72KPmZHXimSLWU7pditklJYTaZHlIE=;
+ b=NLOCd9DVCgpzyeNLdtbTJhN0WW8YEhWFwUa6p4UEKI8Gn+4H/ytuo20kChNE6pDqyK
+ rcmSfEuSDiiDb93PpiBUE3SUN7dmzQzrtaUPqs/EuRz1LW44f8CfMN8Dka598OOydlpf
+ OFRzP6eobTw0pKO7l1cdf4k3ueC15mw4iE4Gg8lF2noRgh/Pk3+rcrZXAk4qtbi3yYSt
+ OKCZr39MHvaktzwD8G6Ml3qJRK+klLl5wOg4zPUbNOwm70lyORYw8p25EjxepO3Zwvke
+ //eyZFPuKWr0iAN6jz7e8kBwqc9LVyPDbSvOmnTTvBzYtZCzlgodZMw+UeiR3UiA7orf
+ 1HqA==
+X-Gm-Message-State: APjAAAWmmrPrdzgDb2Hn49NH5UnANNSIPN6tbRlUNc0bNONRvuqG/SLL
+ qXFQru8l9ai+6SVYPa6ykH8e8isdN/Gr4Q==
+X-Google-Smtp-Source: APXvYqzDaav67ZbIWvC82E0RKgZY08Z323wi9RZ26Bg8AW+Sb3QFy+h84OI8KkljMqbqPaa3x4qJmw==
+X-Received: by 2002:a1c:c8:: with SMTP id 191mr2046884wma.6.1558097834493;
+ Fri, 17 May 2019 05:57:14 -0700 (PDT)
 Received: from [148.251.42.114] ([2a01:4f8:201:9271::2])
- by smtp.gmail.com with ESMTPSA id v1sm7371785wrd.47.2019.05.16.20.51.51
+ by smtp.gmail.com with ESMTPSA id o6sm14824232wrh.55.2019.05.17.05.57.13
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 16 May 2019 20:51:52 -0700 (PDT)
-Message-ID: <5cde2fd8.1c69fb81.8f42e.b6dc@mx.google.com>
-Date: Thu, 16 May 2019 20:51:52 -0700 (PDT)
+ Fri, 17 May 2019 05:57:13 -0700 (PDT)
+Message-ID: <5cdeafa9.1c69fb81.10168.6580@mx.google.com>
+Date: Fri, 17 May 2019 05:57:13 -0700 (PDT)
 MIME-Version: 1.0
 X-Kernelci-Report-Type: bisect
 X-Kernelci-Tree: mainline
 X-Kernelci-Lab-Name: lab-baylibre
 X-Kernelci-Branch: master
-X-Kernelci-Kernel: v5.1-12065-g8c05f3b965da
-Subject: mainline/master boot bisection: v5.1-12065-g8c05f3b965da on
+X-Kernelci-Kernel: v5.1-12115-g01be377c6221
+Subject: mainline/master boot bisection: v5.1-12115-g01be377c6221 on
  meson-g12a-x96-max
 To: tomeu.vizoso@collabora.com, guillaume.tucker@collabora.com,
  mgalka@collabora.com, Kevin Hilman <khilman@baylibre.com>,
@@ -88,8 +88,8 @@ To: tomeu.vizoso@collabora.com, guillaume.tucker@collabora.com,
  Jerome Brunet <jbrunet@baylibre.com>
 From: "kernelci.org bot" <bot@kernelci.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190516_205157_522528_0BAFE062 
-X-CRM114-Status: UNSURE (   7.62  )
+X-CRM114-CacheID: sfid-20190517_055716_507644_94B61636 
+X-CRM114-Status: UNSURE (   7.92  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -118,13 +118,13 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 * Hope this helps!                                              *
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-mainline/master boot bisection: v5.1-12065-g8c05f3b965da on meson-g12a-x96-max
+mainline/master boot bisection: v5.1-12115-g01be377c6221 on meson-g12a-x96-max
 
 Summary:
-  Start:      8c05f3b965da Merge tag 'for-linus' of git://git.armlinux.org.uk/~rmk/linux-arm
-  Details:    https://kernelci.org/boot/id/5cddbf2e59b51487157a362b
-  Plain log:  https://storage.kernelci.org//mainline/master/v5.1-12065-g8c05f3b965da/arm64/defconfig/gcc-8/lab-baylibre/boot-meson-g12a-x96-max.txt
-  HTML log:   https://storage.kernelci.org//mainline/master/v5.1-12065-g8c05f3b965da/arm64/defconfig/gcc-8/lab-baylibre/boot-meson-g12a-x96-max.html
+  Start:      01be377c6221 Merge tag 'media/v5.2-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+  Details:    https://kernelci.org/boot/id/5cde30f059b514110f7a3636
+  Plain log:  https://storage.kernelci.org//mainline/master/v5.1-12115-g01be377c6221/arm64/defconfig+CONFIG_RANDOMIZE_BASE=y/gcc-8/lab-baylibre/boot-meson-g12a-x96-max.txt
+  HTML log:   https://storage.kernelci.org//mainline/master/v5.1-12115-g01be377c6221/arm64/defconfig+CONFIG_RANDOMIZE_BASE=y/gcc-8/lab-baylibre/boot-meson-g12a-x96-max.html
   Result:     11a7bea17c9e arm64: dts: meson: g12a: add pinctrl support controllers
 
 Checks:
@@ -139,7 +139,7 @@ Parameters:
   CPU arch:   arm64
   Lab:        lab-baylibre
   Compiler:   gcc-8
-  Config:     defconfig
+  Config:     defconfig+CONFIG_RANDOMIZE_BASE=y
   Test suite: boot
 
 Breaking commit found:
@@ -226,8 +226,8 @@ Git bisection log:
 git bisect start
 # good: [a455eda33faafcaac1effb31d682765b14ef868c] Merge branch 'linus' of git://git.kernel.org/pub/scm/linux/kernel/git/evalenti/linux-soc-thermal
 git bisect good a455eda33faafcaac1effb31d682765b14ef868c
-# bad: [8c05f3b965da14e7790711026b32cc10a4c06213] Merge tag 'for-linus' of git://git.armlinux.org.uk/~rmk/linux-arm
-git bisect bad 8c05f3b965da14e7790711026b32cc10a4c06213
+# bad: [01be377c62210a8d8fef35be906f9349591bb7cd] Merge tag 'media/v5.2-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+git bisect bad 01be377c62210a8d8fef35be906f9349591bb7cd
 # bad: [b45da609a02460c6a34c395f03f891f1fb2a021a] Merge tag 'imx-bindings-5.2' of git://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux into arm/dt
 git bisect bad b45da609a02460c6a34c395f03f891f1fb2a021a
 # bad: [a41332dd5e2ac56b0b6eb0959d8828bfe0d6a4ad] Merge tag 'socfpga_dts_updates_for_v5.2' of git://git.kernel.org/pub/scm/linux/kernel/git/dinguyen/linux into arm/dt
