@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2BC71C04AB4
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 May 2019 15:34:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8E429C04AB4
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 May 2019 15:36:50 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 00BD42087E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 May 2019 15:34:54 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 606DF2166E
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 May 2019 15:36:50 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hYryRwly";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Ey6SXwSK"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 00BD42087E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="JPx4Zu+R";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Hk8UfTHs"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 606DF2166E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QvhinIeprCWzgHAd2iN9pNW5ioDVs1/84BzfPUY38pM=; b=hYryRwlyIofpLk
-	pAng6p8sE1m8BlbsYW1VlQCuFSDjlv+kdJ6S9NWrxWTypsEv0/l9EMe4FaW6BeX6D77EoYFodIlo5
-	AXkxIt/pNROyessB4Gue7MbjmPnPgDtuJbOx3UgXTe/c0UlbzjR5mqxtBxSLdumxLYSF3Dw45OCWT
-	BrDVqZTb5F82RlX7s5Zr/hkNGVg6bGtmL9o9sjxpCaqxs/jHivc2kY/wMgG+5LTX1CQBYe7YbdpvK
-	VbEBij6JwbcpXEx7DgceXUJyM6CqwIRXuCKnwk+0ftzaFUuSjd9ylKC5Z4IGDXE1JnhGLh/bsH72f
-	2PrUT86bn7VARACntg9w==;
+	List-Owner; bh=Pl7Ujfy1+ASFCg1bMVHfsp8ns976z9MkIKWRbv55Pys=; b=JPx4Zu+RMFsZhL
+	MrqcKgRLpeNEMl7PBAzQVeHUJh6g1bOqqRsC8x17BVc3f40HvvFGjFabpsiJ0beAf4fOx+vt9V6jd
+	/ie1fC8thdSz9c48OK90Ou9zqAlVNPG4wHiUDfnhNNVCuV8p/6x1q9ntQCGJOpRKt6I3pp0TRIzxd
+	z6UlBJpATFZ7ypkUKnK8HqqsLdbjzzruylf4Cps0lO4/MHaDbFCKFUQdBVvnX9A5DiUR2xKachRM9
+	NyXxGuGWRcZk7wXpZ/u1Y7QpHg9aW5qAsSza/xFPZbLYcHU9j4auTVWGnaXUaM1LefLLchdhC93F0
+	AKOdbwgey8mvowuXYdwQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hResj-0006dy-TO; Fri, 17 May 2019 15:34:49 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1hReua-00014M-Bo; Fri, 17 May 2019 15:36:44 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hResb-0006Wk-2A
- for linux-amlogic@lists.infradead.org; Fri, 17 May 2019 15:34:42 +0000
-Received: by mail-wm1-x343.google.com with SMTP id y3so7371519wmm.2
- for <linux-amlogic@lists.infradead.org>; Fri, 17 May 2019 08:34:40 -0700 (PDT)
+ id 1hReuQ-0000rf-Pl
+ for linux-amlogic@lists.infradead.org; Fri, 17 May 2019 15:36:39 +0000
+Received: by mail-wr1-x443.google.com with SMTP id l2so7597366wrb.9
+ for <linux-amlogic@lists.infradead.org>; Fri, 17 May 2019 08:36:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=Eyb9VvjldcYbGu5V93Z1hB2Y7yI33Y2UQQ/a9228VJQ=;
- b=Ey6SXwSKyzdnIYXGQK8nCgzSFFCluky9LEQdJvbqUKl0TehBKADqUy2R63V37fIvxu
- uK0i6+/98AgX2Rj3ENBAqUgGc75tUXDVYcoi7JDxtIQDBDbmOKXfz7vflciQWJgPT2Tu
- vDumeTs35FtPi5NB3PoZkz1iGMAPlY8B7SagwUMIjqqV4P1z7DfIJx5fFXkiOdU5Jjyj
- 7dSLTVj8kmfWH0dvQML2FYU3nr7LxKHRulyYRoGCBs7DxuDN6s+77ztCbNx18at5rYjJ
- PujbRXKaDaJQcFohnLu59K9tCIG+NU7vLOV7vyf4JWUjsb1KaoLEBnthDxrFN3F2WIoU
- r1iQ==
+ bh=6E5ON01H2nf881unjrijyCilTVQej1skhDclPJcb53Q=;
+ b=Hk8UfTHsI889Ko1dvTJ1I4YpudWz6TeCmqBswYotDbYKfGH8tMzo+QJZKjzjuYfd7O
+ 3IiIIuR7t7fD1Ic+OrTMqg2smsaIKmNEJkjvA9wn+TpUTY4O9YJAk30p6BJDjBtDY7G4
+ Z8Dl+yjxr43b/MtMUb4Q/M3lpEgVxqINLunSFiT2MmjNIiqjwMmakiWMOEweI2GeuRKF
+ kCCGYI6xCEZJs+rkdvo3AEVmKDnD3TPT+jYe0Euyh+LNDf5JT8yJWZhDS9esYE2r1yeU
+ RMZdo8U3i/2BXOw8htAcc5OeneW8bVAkXAhiSHPuFDKRhq9HtS4GE++vTVdEFEY3r9vv
+ 865g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=Eyb9VvjldcYbGu5V93Z1hB2Y7yI33Y2UQQ/a9228VJQ=;
- b=UWw+Bf8KBqUn/Wb9h9FYrXh+ICzwdbzMyW+wqmzCS86OHyMB0Myz88YdpaMqM1rJ3l
- Ay9WDjxhNKMrzWn7Q80t0cxNek4HxNwlvfrTR0jD/NBeUtnopaTf0o7mDl6QuY4FyxZ3
- zJA2czDmEdcLVuXoaJ35ZsuZD0UK1m9ghd3JfD9OBVC8bonz2r6OEIS7jDUo7LVncsNG
- GHU2PGbiRwlHmA3+aMS2C+xxl1wxzzGA51C0EJIP7tAbbvdi0UphYv4vq4+dNlGa1Bnd
- gEC5Zh2tw8cb4du6u6VGzXw646vrnjIe8TOc+U6Vj5GO86S6EtkvtIGG5vi1Zh89v0fj
- d7Tg==
-X-Gm-Message-State: APjAAAXQMBj2VaX9wRjV0h02cguR5Gz7NUrpoGGEEokILUwQ4Q07yPAO
- jbY5+p4x5rSzAQE8g3gsHpTmXQ==
-X-Google-Smtp-Source: APXvYqweQvfm2sOEZzL67rca9p6e61wtGwpzU0Tm53Bqx7QYzifHArhTxgno3qCI9Hk4ok4keAU3Ug==
-X-Received: by 2002:a1c:f916:: with SMTP id x22mr7226101wmh.81.1558107279129; 
- Fri, 17 May 2019 08:34:39 -0700 (PDT)
+ bh=6E5ON01H2nf881unjrijyCilTVQej1skhDclPJcb53Q=;
+ b=RwvtKw6I+n0geRLGrqBG7YHSSEFauKuFDdi4k2ByPDOhdPqFi5zvFMy6wZ1I1nkrW9
+ brj0DtgqQ6r0PXEClj0vONeoETcKdKMqwhrPXEWACQg/dCr9ToSPIeck/MELCZMvIDPf
+ 77GDd7fOhm/UjMSrYmElEy2aw9JizSLDjQOv5wJ1tVHbe2KVVo0Ac0Uac5kdAApGPU/I
+ 6ihfXc80L19n0La+oZmMrynpfBMiQkTiU245yPA9+BEII6aLSVR1ebm6v3WKfgOVcrCI
+ uhHh158pjmqN4iPxYjY/XHzz4Kne6e7EImciToUhw8wLeeiJ2XTbTSBljP3GXR3oK7BG
+ 5sGg==
+X-Gm-Message-State: APjAAAV0tz+ogjyIYMzwp9PQrgxue/PleR+XqUOj3VkltawT/1X8bhKo
+ TEeo7Ap3ldrP3Z0zyEBtOwUSYg==
+X-Google-Smtp-Source: APXvYqxBbkv2X60sU/xz/QIyD6hX0VnCGJ2MW7KmVgIuFYjkdTvMq10s9ilH8/Y2d7vo2KEIs0E5LQ==
+X-Received: by 2002:a5d:554f:: with SMTP id g15mr7125793wrw.318.1558107392777; 
+ Fri, 17 May 2019 08:36:32 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id 8sm5805791wmf.18.2019.05.17.08.34.38
+ by smtp.gmail.com with ESMTPSA id y40sm14914929wrd.96.2019.05.17.08.36.31
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 17 May 2019 08:34:38 -0700 (PDT)
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: amlogic: Move
- 'amlogic,meson-gx-ao-secure' binding to its own file
+ Fri, 17 May 2019 08:36:32 -0700 (PDT)
+Subject: Re: [PATCH v3 2/2] dt-bindings: arm: Convert Amlogic board/soc
+ bindings to json-schema
 To: Rob Herring <robh@kernel.org>, Kevin Hilman <khilman@baylibre.com>
 References: <20190517152723.28518-1-robh@kernel.org>
+ <20190517152723.28518-2-robh@kernel.org>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -131,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <009f9311-4f26-0d80-a8da-062debe85291@baylibre.com>
-Date: Fri, 17 May 2019 17:34:38 +0200
+Message-ID: <77fcc70c-74ef-2421-c925-eb4fb9b7554d@baylibre.com>
+Date: Fri, 17 May 2019 17:36:30 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190517152723.28518-1-robh@kernel.org>
+In-Reply-To: <20190517152723.28518-2-robh@kernel.org>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190517_083441_155745_1719A7F7 
-X-CRM114-Status: GOOD (  17.73  )
+X-CRM114-CacheID: sfid-20190517_083634_908897_D3759A12 
+X-CRM114-Status: GOOD (  19.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -161,98 +162,300 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 17/05/2019 17:27, Rob Herring wrote:
-> It is best practice to have 1 binding per file, so board level bindings
-> should be separate for various misc SoC bindings.
+> Convert Amlogic SoC bindings to DT schema format using json-schema.
 > 
-> Cc: Mark Rutland <mark.rutland@arm.com>
 > Cc: Carlo Caione <carlo@caione.org>
 > Cc: Kevin Hilman <khilman@baylibre.com>
+> Cc: Mark Rutland <mark.rutland@arm.com>
 > Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-amlogic@lists.infradead.org
 > Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
-> It seems this one fell thru the cracks and didn't get applied.
+> v3:
+> - Add board descriptions
+> - Rebase onto Linus' master
 > 
->  .../devicetree/bindings/arm/amlogic.txt       | 29 -------------------
->  .../amlogic/amlogic,meson-gx-ao-secure.txt    | 28 ++++++++++++++++++
->  2 files changed, 28 insertions(+), 29 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt
+>  .../devicetree/bindings/arm/amlogic.txt       | 113 --------------
+>  .../devicetree/bindings/arm/amlogic.yaml      | 140 ++++++++++++++++++
+>  2 files changed, 140 insertions(+), 113 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/amlogic.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/amlogic.yaml
 > 
 > diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
-> index 061f7b98a07f..5f650248b18e 100644
+> deleted file mode 100644
+> index 5f650248b18e..000000000000
 > --- a/Documentation/devicetree/bindings/arm/amlogic.txt
-> +++ b/Documentation/devicetree/bindings/arm/amlogic.txt
-> @@ -111,32 +111,3 @@ Board compatible values (alphabetically, grouped by SoC):
->    - "amlogic,u200" (Meson g12a s905d2)
->    - "amediatech,x96-max" (Meson g12a s905x2)
->    - "seirobotics,sei510" (Meson g12a s905x2)
+> +++ /dev/null
+> @@ -1,113 +0,0 @@
+> -Amlogic MesonX device tree bindings
+> --------------------------------------------
 > -
-> -Amlogic Meson Firmware registers Interface
-> -------------------------------------------
+> -Work in progress statement:
 > -
-> -The Meson SoCs have a register bank with status and data shared with the
-> -secure firmware.
+> -Device tree files and bindings applying to Amlogic SoCs and boards are
+> -considered "unstable". Any Amlogic device tree binding may change at
+> -any time. Be sure to use a device tree binary and a kernel image
+> -generated from the same source tree.
 > -
-> -Required properties:
-> - - compatible: For Meson GX SoCs, must be "amlogic,meson-gx-ao-secure", "syscon"
+> -Please refer to Documentation/devicetree/bindings/ABI.txt for a definition of a
+> -stable binding/ABI.
 > -
-> -Properties should indentify components of this register interface :
+> ----------------------------------------------------------------
 > -
-> -Meson GX SoC Information
-> -------------------------
-> -A firmware register encodes the SoC type, package and revision information on
-> -the Meson GX SoCs.
-> -If present, the following property should be added :
+> -Boards with the Amlogic Meson6 SoC shall have the following properties:
+> -  Required root node property:
+> -    compatible: "amlogic,meson6"
 > -
-> -Optional properties:
-> -  - amlogic,has-chip-id: If present, the interface gives the current SoC version.
+> -Boards with the Amlogic Meson8 SoC shall have the following properties:
+> -  Required root node property:
+> -    compatible: "amlogic,meson8";
 > -
-> -Example
-> --------
+> -Boards with the Amlogic Meson8b SoC shall have the following properties:
+> -  Required root node property:
+> -    compatible: "amlogic,meson8b";
 > -
-> -ao-secure@140 {
-> -	compatible = "amlogic,meson-gx-ao-secure", "syscon";
-> -	reg = <0x0 0x140 0x0 0x140>;
-> -	amlogic,has-chip-id;
-> -};
-> diff --git a/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt b/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt
+> -Boards with the Amlogic Meson8m2 SoC shall have the following properties:
+> -  Required root node property:
+> -    compatible: "amlogic,meson8m2";
+> -
+> -Boards with the Amlogic Meson GXBaby SoC shall have the following properties:
+> -  Required root node property:
+> -    compatible: "amlogic,meson-gxbb";
+> -
+> -Boards with the Amlogic Meson GXL S905X SoC shall have the following properties:
+> -  Required root node property:
+> -    compatible: "amlogic,s905x", "amlogic,meson-gxl";
+> -
+> -Boards with the Amlogic Meson GXL S905D SoC shall have the following properties:
+> -  Required root node property:
+> -    compatible: "amlogic,s905d", "amlogic,meson-gxl";
+> -
+> -Boards with the Amlogic Meson GXL S805X SoC shall have the following properties:
+> -  Required root node property:
+> -    compatible: "amlogic,s805x", "amlogic,meson-gxl";
+> -
+> -Boards with the Amlogic Meson GXL S905W SoC shall have the following properties:
+> -  Required root node property:
+> -    compatible: "amlogic,s905w", "amlogic,meson-gxl";
+> -
+> -Boards with the Amlogic Meson GXM S912 SoC shall have the following properties:
+> -  Required root node property:
+> -    compatible: "amlogic,s912", "amlogic,meson-gxm";
+> -
+> -Boards with the Amlogic Meson AXG A113D SoC shall have the following properties:
+> -  Required root node property:
+> -    compatible: "amlogic,a113d", "amlogic,meson-axg";
+> -
+> -Boards with the Amlogic Meson G12A S905D2 SoC shall have the following properties:
+> -  Required root node property:
+> -    compatible: "amlogic,g12a";
+> -
+> -Board compatible values (alphabetically, grouped by SoC):
+> -
+> -  - "geniatech,atv1200" (Meson6)
+> -
+> -  - "minix,neo-x8" (Meson8)
+> -
+> -  - "endless,ec100" (Meson8b)
+> -  - "hardkernel,odroid-c1" (Meson8b)
+> -  - "tronfy,mxq" (Meson8b)
+> -
+> -  - "tronsmart,mxiii-plus" (Meson8m2)
+> -
+> -  - "amlogic,p200" (Meson gxbb)
+> -  - "amlogic,p201" (Meson gxbb)
+> -  - "friendlyarm,nanopi-k2" (Meson gxbb)
+> -  - "hardkernel,odroid-c2" (Meson gxbb)
+> -  - "nexbox,a95x" (Meson gxbb or Meson gxl s905x)
+> -  - "tronsmart,vega-s95-pro", "tronsmart,vega-s95" (Meson gxbb)
+> -  - "tronsmart,vega-s95-meta", "tronsmart,vega-s95" (Meson gxbb)
+> -  - "tronsmart,vega-s95-telos", "tronsmart,vega-s95" (Meson gxbb)
+> -  - "wetek,hub" (Meson gxbb)
+> -  - "wetek,play2" (Meson gxbb)
+> -
+> -  - "amlogic,p212" (Meson gxl s905x)
+> -  - "hwacom,amazetv" (Meson gxl s905x)
+> -  - "khadas,vim" (Meson gxl s905x)
+> -  - "libretech,cc" (Meson gxl s905x)
+> -
+> -  - "amlogic,p230" (Meson gxl s905d)
+> -  - "amlogic,p231" (Meson gxl s905d)
+> -  - "phicomm,n1" (Meson gxl s905d)
+> -
+> -  - "amlogic,p241" (Meson gxl s805x)
+> -  - "libretech,aml-s805x-ac" (Meson gxl s805x)
+> -
+> -  - "amlogic,p281" (Meson gxl s905w)
+> -  - "oranth,tx3-mini" (Meson gxl s905w)
+> -
+> -  - "amlogic,q200" (Meson gxm s912)
+> -  - "amlogic,q201" (Meson gxm s912)
+> -  - "khadas,vim2" (Meson gxm s912)
+> -  - "kingnovel,r-box-pro" (Meson gxm S912)
+> -  - "nexbox,a1" (Meson gxm s912)
+> -  - "tronsmart,vega-s96" (Meson gxm s912)
+> -
+> -  - "amlogic,s400" (Meson axg a113d)
+> -
+> -  - "amlogic,u200" (Meson g12a s905d2)
+> -  - "amediatech,x96-max" (Meson g12a s905x2)
+> -  - "seirobotics,sei510" (Meson g12a s905x2)
+> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
 > new file mode 100644
-> index 000000000000..c67d9f48fb91
+> index 000000000000..6d5bb493db03
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt
-> @@ -0,0 +1,28 @@
-> +Amlogic Meson Firmware registers Interface
-> +------------------------------------------
+> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> @@ -0,0 +1,140 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/amlogic.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +The Meson SoCs have a register bank with status and data shared with the
-> +secure firmware.
+> +title: Amlogic MesonX device tree bindings
 > +
-> +Required properties:
-> + - compatible: For Meson GX SoCs, must be "amlogic,meson-gx-ao-secure", "syscon"
-> +
-> +Properties should indentify components of this register interface :
-> +
-> +Meson GX SoC Information
-> +------------------------
-> +A firmware register encodes the SoC type, package and revision information on
-> +the Meson GX SoCs.
-> +If present, the following property should be added :
-> +
-> +Optional properties:
-> +  - amlogic,has-chip-id: If present, the interface gives the current SoC version.
-> +
-> +Example
-> +-------
-> +
-> +ao-secure@140 {
-> +	compatible = "amlogic,meson-gx-ao-secure", "syscon";
-> +	reg = <0x0 0x140 0x0 0x140>;
-> +	amlogic,has-chip-id;
-> +};
+> +maintainers:
+> +  - Neil Armstrong <narmstrong@baylibre.com>
+> +  - Carlo Caione <carlo@caione.org>
+> +  - Kevin Hilman <khilman@baylibre.com>
 
+Please drop Carlo and me.
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+> +
+> +description: |+
+> +  Work in progress statement:
+> +
+> +  Device tree files and bindings applying to Amlogic SoCs and boards are
+> +  considered "unstable". Any Amlogic device tree binding may change at
+> +  any time. Be sure to use a device tree binary and a kernel image
+> +  generated from the same source tree.
+> +
+> +  Please refer to Documentation/devicetree/bindings/ABI.txt for a definition of a
+> +  stable binding/ABI.
+> +
+> +properties:
+> +  $nodename:
+> +    const: '/'
+> +  compatible:
+> +    oneOf:
+> +      - description: Boards with the Amlogic Meson6 SoC
+> +        items:
+> +          - enum:
+> +              - geniatech,atv1200
+> +          - const: amlogic,meson6
+> +
+> +      - description: Boards with the Amlogic Meson8 SoC
+> +        items:
+> +          - enum:
+> +              - minix,neo-x8
+> +          - const: amlogic,meson8
+> +
+> +      - description: Boards with the Amlogic Meson8m2 SoC
+> +        items:
+> +          - enum:
+> +              - tronsmart,mxiii-plus
+> +          - const: amlogic,meson8m2
+> +
+> +      - description: Boards with the Amlogic Meson8b SoC
+> +        items:
+> +          - enum:
+> +              - endless,ec100
+> +              - hardkernel,odroid-c1
+> +              - tronfy,mxq
+> +          - const: amlogic,meson8b
+> +
+> +      - description: Boards with the Amlogic Meson GXBaby SoC
+> +        items:
+> +          - enum:
+> +              - amlogic,p200
+> +              - amlogic,p201
+> +              - friendlyarm,nanopi-k2
+> +              - hardkernel,odroid-c2
+> +              - nexbox,a95x
+> +              - wetek,hub
+> +              - wetek,play2
+> +          - const: amlogic,meson-gxbb
+> +
+> +      - description: Tronsmart Vega S95 devices
+> +        items:
+> +          - enum:
+> +              - tronsmart,vega-s95-pro
+> +              - tronsmart,vega-s95-meta
+> +              - tronsmart,vega-s95-telos
+> +          - const: tronsmart,vega-s95
+> +          - const: amlogic,meson-gxbb
+> +
+> +      - description: Boards with the Amlogic Meson GXL S805X SoC
+> +        items:
+> +          - enum:
+> +              - amlogic,p241
+> +              - libretech,aml-s805x-ac
+> +          - const: amlogic,s805x
+> +          - const: amlogic,meson-gxl
+> +
+> +      - description: Boards with the Amlogic Meson GXL S905W SoC
+> +        items:
+> +          - enum:
+> +              - amlogic,p281
+> +              - oranth,tx3-mini
+> +          - const: amlogic,s905w
+> +          - const: amlogic,meson-gxl
+> +
+> +      - description: Boards with the Amlogic Meson GXL S905X SoC
+> +        items:
+> +          - enum:
+> +              - amediatech,x96-max
+> +              - amlogic,p212
+> +              - hwacom,amazetv
+> +              - khadas,vim
+> +              - libretech,cc
+> +              - nexbox,a95x
+> +              - seirobotics,sei510
+> +          - const: amlogic,s905x
+> +          - const: amlogic,meson-gxl
+> +
+> +      - description: Boards with the Amlogic Meson GXL S905D SoC
+> +        items:
+> +          - enum:
+> +              - amlogic,p230
+> +              - amlogic,p231
+> +              - phicomm,n1
+> +          - const: amlogic,s905d
+> +          - const: amlogic,meson-gxl
+> +
+> +      - description: Boards with the Amlogic Meson GXM S912 SoC
+> +        items:
+> +          - enum:
+> +              - amlogic,q200
+> +              - amlogic,q201
+> +              - khadas,vim2
+> +              - kingnovel,r-box-pro
+> +              - nexbox,a1
+> +              - tronsmart,vega-s96
+> +          - const: amlogic,s912
+> +          - const: amlogic,meson-gxm
+> +
+> +      - description: Boards with the Amlogic Meson AXG A113D SoC
+> +        items:
+> +          - enum:
+> +              - amlogic,s400
+> +          - const: amlogic,a113d
+> +          - const: amlogic,meson-axg
+> +
+> +      - description: Boards with the Amlogic Meson G12A S905D2 SoC
+> +        items:
+> +          - enum:
+> +              - amlogic,u200
+> +          - const: amlogic,g12a
+> +
+> +...
+> 
+
+Otherwise looks fine.
+
+With carlo and me removed from the maintainers :
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
