@@ -2,146 +2,95 @@ Return-Path: <SRS0=JomC=TR=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_HELO_NONE autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8E429C04AB4
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 May 2019 15:36:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 69E28C04AB4
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 May 2019 20:20:01 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 606DF2166E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 May 2019 15:36:50 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 117222082E
+	for <linux-amlogic@archiver.kernel.org>; Fri, 17 May 2019 20:20:01 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="JPx4Zu+R";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Hk8UfTHs"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 606DF2166E
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="maZ3bGey";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernelci-org.20150623.gappssmtp.com header.i=@kernelci-org.20150623.gappssmtp.com header.b="rtMZPuBQ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 117222082E
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=kernelci.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Pl7Ujfy1+ASFCg1bMVHfsp8ns976z9MkIKWRbv55Pys=; b=JPx4Zu+RMFsZhL
-	MrqcKgRLpeNEMl7PBAzQVeHUJh6g1bOqqRsC8x17BVc3f40HvvFGjFabpsiJ0beAf4fOx+vt9V6jd
-	/ie1fC8thdSz9c48OK90Ou9zqAlVNPG4wHiUDfnhNNVCuV8p/6x1q9ntQCGJOpRKt6I3pp0TRIzxd
-	z6UlBJpATFZ7ypkUKnK8HqqsLdbjzzruylf4Cps0lO4/MHaDbFCKFUQdBVvnX9A5DiUR2xKachRM9
-	NyXxGuGWRcZk7wXpZ/u1Y7QpHg9aW5qAsSza/xFPZbLYcHU9j4auTVWGnaXUaM1LefLLchdhC93F0
-	AKOdbwgey8mvowuXYdwQ==;
+	List-Archive:List-Unsubscribe:List-Id:From:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=numzqlhdCmshO2/rKqnfA4isb2txA2fgo6CaWgnBCGA=; b=maZ3bGeyEaGFkG
+	YQHkzAJatY1FK+FQdTBpKP3Sv+Nif+hyPO74bVggsXUvHBp1XCBkllXingdlSIqlvuM4zOWpNUhg7
+	UiCkL0ZhI3sZBptr6IxT0241WOhhL5EgS0zkmoXK/S3LgEJ5whr/2h/1s9ssj76cpQRGwatexq6pS
+	D5jS4T2wNROcT3HZzgs/CiTC5cmvmEa100+1seP0ES+Dt1dPP6Ky8MdBi/xMdOn+Cf08al083yyEa
+	fdkPar94F0wWIpIpfgq7Un+lznTrrRDp/nBplj/9YvQhJd2OMQ0rVyfTeWFUcVcZOaaL83euNEGDc
+	1tn74ccikrSAWtEC+WYw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hReua-00014M-Bo; Fri, 17 May 2019 15:36:44 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1hRjKY-0006jS-TT; Fri, 17 May 2019 20:19:50 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hReuQ-0000rf-Pl
- for linux-amlogic@lists.infradead.org; Fri, 17 May 2019 15:36:39 +0000
-Received: by mail-wr1-x443.google.com with SMTP id l2so7597366wrb.9
- for <linux-amlogic@lists.infradead.org>; Fri, 17 May 2019 08:36:34 -0700 (PDT)
+ id 1hRjKU-0006hy-Te
+ for linux-amlogic@lists.infradead.org; Fri, 17 May 2019 20:19:48 +0000
+Received: by mail-wr1-x442.google.com with SMTP id r4so8342446wro.10
+ for <linux-amlogic@lists.infradead.org>; Fri, 17 May 2019 13:19:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=6E5ON01H2nf881unjrijyCilTVQej1skhDclPJcb53Q=;
- b=Hk8UfTHsI889Ko1dvTJ1I4YpudWz6TeCmqBswYotDbYKfGH8tMzo+QJZKjzjuYfd7O
- 3IiIIuR7t7fD1Ic+OrTMqg2smsaIKmNEJkjvA9wn+TpUTY4O9YJAk30p6BJDjBtDY7G4
- Z8Dl+yjxr43b/MtMUb4Q/M3lpEgVxqINLunSFiT2MmjNIiqjwMmakiWMOEweI2GeuRKF
- kCCGYI6xCEZJs+rkdvo3AEVmKDnD3TPT+jYe0Euyh+LNDf5JT8yJWZhDS9esYE2r1yeU
- RMZdo8U3i/2BXOw8htAcc5OeneW8bVAkXAhiSHPuFDKRhq9HtS4GE++vTVdEFEY3r9vv
- 865g==
+ d=kernelci-org.20150623.gappssmtp.com; s=20150623;
+ h=message-id:date:mime-version:content-transfer-encoding:subject:to
+ :from:cc; bh=djr/WXBRd+de1RQsSnwTqjcAKvd/O5mg6l1k6CM1beM=;
+ b=rtMZPuBQvMBed2NCiJd0SHx9iaYiKFrVe/wUeUm5M4lQwUXyGNcUhnPpyRHOCz74Vv
+ F9FODgdaQXiqY2POtpk7X0/HUaRTDhL1FI+cxZVel9IWrW9F38ccLZbUMYpQgkEedGRA
+ hbj44T5trbEmUh2+hoFWj8RF+yDbogVNg+mS58vL6joWcho3MtRCdUKxVDI+lIyC2HjC
+ iPKWz6Gvju7MRlbbwqPA0weRAa2Wu90lLhxjaSjYFumPAgJX2H3M0I+whJJ7M//h/lD3
+ Hv8GvVjbOOcLN0eIHbAsdbA+ssvFqRcPNzgm9vnRGYQV9pv0Pf0F117O4buo2+PXocGs
+ BNrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=6E5ON01H2nf881unjrijyCilTVQej1skhDclPJcb53Q=;
- b=RwvtKw6I+n0geRLGrqBG7YHSSEFauKuFDdi4k2ByPDOhdPqFi5zvFMy6wZ1I1nkrW9
- brj0DtgqQ6r0PXEClj0vONeoETcKdKMqwhrPXEWACQg/dCr9ToSPIeck/MELCZMvIDPf
- 77GDd7fOhm/UjMSrYmElEy2aw9JizSLDjQOv5wJ1tVHbe2KVVo0Ac0Uac5kdAApGPU/I
- 6ihfXc80L19n0La+oZmMrynpfBMiQkTiU245yPA9+BEII6aLSVR1ebm6v3WKfgOVcrCI
- uhHh158pjmqN4iPxYjY/XHzz4Kne6e7EImciToUhw8wLeeiJ2XTbTSBljP3GXR3oK7BG
- 5sGg==
-X-Gm-Message-State: APjAAAV0tz+ogjyIYMzwp9PQrgxue/PleR+XqUOj3VkltawT/1X8bhKo
- TEeo7Ap3ldrP3Z0zyEBtOwUSYg==
-X-Google-Smtp-Source: APXvYqxBbkv2X60sU/xz/QIyD6hX0VnCGJ2MW7KmVgIuFYjkdTvMq10s9ilH8/Y2d7vo2KEIs0E5LQ==
-X-Received: by 2002:a5d:554f:: with SMTP id g15mr7125793wrw.318.1558107392777; 
- Fri, 17 May 2019 08:36:32 -0700 (PDT)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id y40sm14914929wrd.96.2019.05.17.08.36.31
+ h=x-gm-message-state:message-id:date:mime-version
+ :content-transfer-encoding:subject:to:from:cc;
+ bh=djr/WXBRd+de1RQsSnwTqjcAKvd/O5mg6l1k6CM1beM=;
+ b=U517S0Nc9MPgUqsM7YH2mBrWOQPPnLSwGJPR6lM7dsL+ElyCKv9k2pIgrjzUXdgrd5
+ 9vYODuhj0UgK52xaVWWkseWr4RK4t8bXY6IVCgoXlLcOZxuXanJyUJfIv7y/6nAeBuDV
+ XbS++c2v9x7GmkWUH2j7UVV7BSAYz0PrA8YQZOG+WKYgY5DxYBaR9w4+QlYhSoHyTFaI
+ QZgMRM8NgmaG8CUoGgZit/6zX69CNfxDJMPbMvKKLpZ6QsFwjD6wksl9UZcYwHWNBNl6
+ VH1qWGDxyERLA9DoAuWOUjkJh471qg3y9reQe2/E8IVYiMNXaqAbyW3kLCxolauxJSby
+ Tqig==
+X-Gm-Message-State: APjAAAVKRSMys8wuu/MYot2hqOPuVl8DStRzhzfroByL6LUefuoLlQG0
+ XX/sgQlulLBMwvQWxHovm/HeVg==
+X-Google-Smtp-Source: APXvYqwuptJZlrKbAVpQaVn0SYxkQTsT/owQkYH0t1z2X5Bs1vc49kuHcuTHERoyvP5DmbggcdIz3A==
+X-Received: by 2002:adf:f6c8:: with SMTP id y8mr24018465wrp.175.1558124382869; 
+ Fri, 17 May 2019 13:19:42 -0700 (PDT)
+Received: from [148.251.42.114] ([2a01:4f8:201:9271::2])
+ by smtp.gmail.com with ESMTPSA id u15sm1402035wru.16.2019.05.17.13.19.41
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 17 May 2019 08:36:32 -0700 (PDT)
-Subject: Re: [PATCH v3 2/2] dt-bindings: arm: Convert Amlogic board/soc
- bindings to json-schema
-To: Rob Herring <robh@kernel.org>, Kevin Hilman <khilman@baylibre.com>
-References: <20190517152723.28518-1-robh@kernel.org>
- <20190517152723.28518-2-robh@kernel.org>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <77fcc70c-74ef-2421-c925-eb4fb9b7554d@baylibre.com>
-Date: Fri, 17 May 2019 17:36:30 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+ Fri, 17 May 2019 13:19:42 -0700 (PDT)
+Message-ID: <5cdf175e.1c69fb81.9d43b.8249@mx.google.com>
+Date: Fri, 17 May 2019 13:19:42 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190517152723.28518-2-robh@kernel.org>
-Content-Language: en-US
+X-Kernelci-Report-Type: bisect
+X-Kernelci-Tree: mainline
+X-Kernelci-Lab-Name: lab-baylibre
+X-Kernelci-Branch: master
+X-Kernelci-Kernel: v5.1-12172-g2c45e7fbc962
+Subject: mainline/master boot bisection: v5.1-12172-g2c45e7fbc962 on
+ meson-g12a-x96-max
+To: tomeu.vizoso@collabora.com, guillaume.tucker@collabora.com,
+ mgalka@collabora.com, Kevin Hilman <khilman@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, broonie@kernel.org,
+ matthew.hart@linaro.org, khilman@baylibre.com, enric.balletbo@collabora.com,
+ Jerome Brunet <jbrunet@baylibre.com>
+From: "kernelci.org bot" <bot@kernelci.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190517_083634_908897_D3759A12 
-X-CRM114-Status: GOOD (  19.10  )
+X-CRM114-CacheID: sfid-20190517_131947_007633_B0465532 
+X-CRM114-Status: UNSURE (   7.25  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -154,308 +103,151 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Carlo Caione <carlo@caione.org>,
+ linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
  linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 17/05/2019 17:27, Rob Herring wrote:
-> Convert Amlogic SoC bindings to DT schema format using json-schema.
-> 
-> Cc: Carlo Caione <carlo@caione.org>
-> Cc: Kevin Hilman <khilman@baylibre.com>
-> Cc: Mark Rutland <mark.rutland@arm.com>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> v3:
-> - Add board descriptions
-> - Rebase onto Linus' master
-> 
->  .../devicetree/bindings/arm/amlogic.txt       | 113 --------------
->  .../devicetree/bindings/arm/amlogic.yaml      | 140 ++++++++++++++++++
->  2 files changed, 140 insertions(+), 113 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/amlogic.txt
->  create mode 100644 Documentation/devicetree/bindings/arm/amlogic.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/amlogic.txt b/Documentation/devicetree/bindings/arm/amlogic.txt
-> deleted file mode 100644
-> index 5f650248b18e..000000000000
-> --- a/Documentation/devicetree/bindings/arm/amlogic.txt
-> +++ /dev/null
-> @@ -1,113 +0,0 @@
-> -Amlogic MesonX device tree bindings
-> --------------------------------------------
-> -
-> -Work in progress statement:
-> -
-> -Device tree files and bindings applying to Amlogic SoCs and boards are
-> -considered "unstable". Any Amlogic device tree binding may change at
-> -any time. Be sure to use a device tree binary and a kernel image
-> -generated from the same source tree.
-> -
-> -Please refer to Documentation/devicetree/bindings/ABI.txt for a definition of a
-> -stable binding/ABI.
-> -
-> ----------------------------------------------------------------
-> -
-> -Boards with the Amlogic Meson6 SoC shall have the following properties:
-> -  Required root node property:
-> -    compatible: "amlogic,meson6"
-> -
-> -Boards with the Amlogic Meson8 SoC shall have the following properties:
-> -  Required root node property:
-> -    compatible: "amlogic,meson8";
-> -
-> -Boards with the Amlogic Meson8b SoC shall have the following properties:
-> -  Required root node property:
-> -    compatible: "amlogic,meson8b";
-> -
-> -Boards with the Amlogic Meson8m2 SoC shall have the following properties:
-> -  Required root node property:
-> -    compatible: "amlogic,meson8m2";
-> -
-> -Boards with the Amlogic Meson GXBaby SoC shall have the following properties:
-> -  Required root node property:
-> -    compatible: "amlogic,meson-gxbb";
-> -
-> -Boards with the Amlogic Meson GXL S905X SoC shall have the following properties:
-> -  Required root node property:
-> -    compatible: "amlogic,s905x", "amlogic,meson-gxl";
-> -
-> -Boards with the Amlogic Meson GXL S905D SoC shall have the following properties:
-> -  Required root node property:
-> -    compatible: "amlogic,s905d", "amlogic,meson-gxl";
-> -
-> -Boards with the Amlogic Meson GXL S805X SoC shall have the following properties:
-> -  Required root node property:
-> -    compatible: "amlogic,s805x", "amlogic,meson-gxl";
-> -
-> -Boards with the Amlogic Meson GXL S905W SoC shall have the following properties:
-> -  Required root node property:
-> -    compatible: "amlogic,s905w", "amlogic,meson-gxl";
-> -
-> -Boards with the Amlogic Meson GXM S912 SoC shall have the following properties:
-> -  Required root node property:
-> -    compatible: "amlogic,s912", "amlogic,meson-gxm";
-> -
-> -Boards with the Amlogic Meson AXG A113D SoC shall have the following properties:
-> -  Required root node property:
-> -    compatible: "amlogic,a113d", "amlogic,meson-axg";
-> -
-> -Boards with the Amlogic Meson G12A S905D2 SoC shall have the following properties:
-> -  Required root node property:
-> -    compatible: "amlogic,g12a";
-> -
-> -Board compatible values (alphabetically, grouped by SoC):
-> -
-> -  - "geniatech,atv1200" (Meson6)
-> -
-> -  - "minix,neo-x8" (Meson8)
-> -
-> -  - "endless,ec100" (Meson8b)
-> -  - "hardkernel,odroid-c1" (Meson8b)
-> -  - "tronfy,mxq" (Meson8b)
-> -
-> -  - "tronsmart,mxiii-plus" (Meson8m2)
-> -
-> -  - "amlogic,p200" (Meson gxbb)
-> -  - "amlogic,p201" (Meson gxbb)
-> -  - "friendlyarm,nanopi-k2" (Meson gxbb)
-> -  - "hardkernel,odroid-c2" (Meson gxbb)
-> -  - "nexbox,a95x" (Meson gxbb or Meson gxl s905x)
-> -  - "tronsmart,vega-s95-pro", "tronsmart,vega-s95" (Meson gxbb)
-> -  - "tronsmart,vega-s95-meta", "tronsmart,vega-s95" (Meson gxbb)
-> -  - "tronsmart,vega-s95-telos", "tronsmart,vega-s95" (Meson gxbb)
-> -  - "wetek,hub" (Meson gxbb)
-> -  - "wetek,play2" (Meson gxbb)
-> -
-> -  - "amlogic,p212" (Meson gxl s905x)
-> -  - "hwacom,amazetv" (Meson gxl s905x)
-> -  - "khadas,vim" (Meson gxl s905x)
-> -  - "libretech,cc" (Meson gxl s905x)
-> -
-> -  - "amlogic,p230" (Meson gxl s905d)
-> -  - "amlogic,p231" (Meson gxl s905d)
-> -  - "phicomm,n1" (Meson gxl s905d)
-> -
-> -  - "amlogic,p241" (Meson gxl s805x)
-> -  - "libretech,aml-s805x-ac" (Meson gxl s805x)
-> -
-> -  - "amlogic,p281" (Meson gxl s905w)
-> -  - "oranth,tx3-mini" (Meson gxl s905w)
-> -
-> -  - "amlogic,q200" (Meson gxm s912)
-> -  - "amlogic,q201" (Meson gxm s912)
-> -  - "khadas,vim2" (Meson gxm s912)
-> -  - "kingnovel,r-box-pro" (Meson gxm S912)
-> -  - "nexbox,a1" (Meson gxm s912)
-> -  - "tronsmart,vega-s96" (Meson gxm s912)
-> -
-> -  - "amlogic,s400" (Meson axg a113d)
-> -
-> -  - "amlogic,u200" (Meson g12a s905d2)
-> -  - "amediatech,x96-max" (Meson g12a s905x2)
-> -  - "seirobotics,sei510" (Meson g12a s905x2)
-> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-> new file mode 100644
-> index 000000000000..6d5bb493db03
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-> @@ -0,0 +1,140 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/amlogic.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic MesonX device tree bindings
-> +
-> +maintainers:
-> +  - Neil Armstrong <narmstrong@baylibre.com>
-> +  - Carlo Caione <carlo@caione.org>
-> +  - Kevin Hilman <khilman@baylibre.com>
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* This automated bisection report was sent to you on the basis  *
+* that you may be involved with the breaking commit it has      *
+* found.  No manual investigation has been done to verify it,   *
+* and the root cause of the problem may be somewhere else.      *
+* Hope this helps!                                              *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-Please drop Carlo and me.
+mainline/master boot bisection: v5.1-12172-g2c45e7fbc962 on meson-g12a-x96-max
 
-> +
-> +description: |+
-> +  Work in progress statement:
-> +
-> +  Device tree files and bindings applying to Amlogic SoCs and boards are
-> +  considered "unstable". Any Amlogic device tree binding may change at
-> +  any time. Be sure to use a device tree binary and a kernel image
-> +  generated from the same source tree.
-> +
-> +  Please refer to Documentation/devicetree/bindings/ABI.txt for a definition of a
-> +  stable binding/ABI.
-> +
-> +properties:
-> +  $nodename:
-> +    const: '/'
-> +  compatible:
-> +    oneOf:
-> +      - description: Boards with the Amlogic Meson6 SoC
-> +        items:
-> +          - enum:
-> +              - geniatech,atv1200
-> +          - const: amlogic,meson6
-> +
-> +      - description: Boards with the Amlogic Meson8 SoC
-> +        items:
-> +          - enum:
-> +              - minix,neo-x8
-> +          - const: amlogic,meson8
-> +
-> +      - description: Boards with the Amlogic Meson8m2 SoC
-> +        items:
-> +          - enum:
-> +              - tronsmart,mxiii-plus
-> +          - const: amlogic,meson8m2
-> +
-> +      - description: Boards with the Amlogic Meson8b SoC
-> +        items:
-> +          - enum:
-> +              - endless,ec100
-> +              - hardkernel,odroid-c1
-> +              - tronfy,mxq
-> +          - const: amlogic,meson8b
-> +
-> +      - description: Boards with the Amlogic Meson GXBaby SoC
-> +        items:
-> +          - enum:
-> +              - amlogic,p200
-> +              - amlogic,p201
-> +              - friendlyarm,nanopi-k2
-> +              - hardkernel,odroid-c2
-> +              - nexbox,a95x
-> +              - wetek,hub
-> +              - wetek,play2
-> +          - const: amlogic,meson-gxbb
-> +
-> +      - description: Tronsmart Vega S95 devices
-> +        items:
-> +          - enum:
-> +              - tronsmart,vega-s95-pro
-> +              - tronsmart,vega-s95-meta
-> +              - tronsmart,vega-s95-telos
-> +          - const: tronsmart,vega-s95
-> +          - const: amlogic,meson-gxbb
-> +
-> +      - description: Boards with the Amlogic Meson GXL S805X SoC
-> +        items:
-> +          - enum:
-> +              - amlogic,p241
-> +              - libretech,aml-s805x-ac
-> +          - const: amlogic,s805x
-> +          - const: amlogic,meson-gxl
-> +
-> +      - description: Boards with the Amlogic Meson GXL S905W SoC
-> +        items:
-> +          - enum:
-> +              - amlogic,p281
-> +              - oranth,tx3-mini
-> +          - const: amlogic,s905w
-> +          - const: amlogic,meson-gxl
-> +
-> +      - description: Boards with the Amlogic Meson GXL S905X SoC
-> +        items:
-> +          - enum:
-> +              - amediatech,x96-max
-> +              - amlogic,p212
-> +              - hwacom,amazetv
-> +              - khadas,vim
-> +              - libretech,cc
-> +              - nexbox,a95x
-> +              - seirobotics,sei510
-> +          - const: amlogic,s905x
-> +          - const: amlogic,meson-gxl
-> +
-> +      - description: Boards with the Amlogic Meson GXL S905D SoC
-> +        items:
-> +          - enum:
-> +              - amlogic,p230
-> +              - amlogic,p231
-> +              - phicomm,n1
-> +          - const: amlogic,s905d
-> +          - const: amlogic,meson-gxl
-> +
-> +      - description: Boards with the Amlogic Meson GXM S912 SoC
-> +        items:
-> +          - enum:
-> +              - amlogic,q200
-> +              - amlogic,q201
-> +              - khadas,vim2
-> +              - kingnovel,r-box-pro
-> +              - nexbox,a1
-> +              - tronsmart,vega-s96
-> +          - const: amlogic,s912
-> +          - const: amlogic,meson-gxm
-> +
-> +      - description: Boards with the Amlogic Meson AXG A113D SoC
-> +        items:
-> +          - enum:
-> +              - amlogic,s400
-> +          - const: amlogic,a113d
-> +          - const: amlogic,meson-axg
-> +
-> +      - description: Boards with the Amlogic Meson G12A S905D2 SoC
-> +        items:
-> +          - enum:
-> +              - amlogic,u200
-> +          - const: amlogic,g12a
-> +
-> +...
-> 
+Summary:
+  Start:      2c45e7fbc962 Merge branch 'next' of git://git.kernel.org/pub/scm/linux/kernel/git/rzhang/linux
+  Details:    https://kernelci.org/boot/id/5cde4f3459b5143cfb7a3628
+  Plain log:  https://storage.kernelci.org//mainline/master/v5.1-12172-g2c45e7fbc962/arm64/defconfig+CONFIG_RANDOMIZE_BASE=y/gcc-8/lab-baylibre/boot-meson-g12a-x96-max.txt
+  HTML log:   https://storage.kernelci.org//mainline/master/v5.1-12172-g2c45e7fbc962/arm64/defconfig+CONFIG_RANDOMIZE_BASE=y/gcc-8/lab-baylibre/boot-meson-g12a-x96-max.html
+  Result:     11a7bea17c9e arm64: dts: meson: g12a: add pinctrl support controllers
 
-Otherwise looks fine.
+Checks:
+  revert:     PASS
+  verify:     PASS
 
-With carlo and me removed from the maintainers :
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Parameters:
+  Tree:       mainline
+  URL:        git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+  Branch:     master
+  Target:     meson-g12a-x96-max
+  CPU arch:   arm64
+  Lab:        lab-baylibre
+  Compiler:   gcc-8
+  Config:     defconfig+CONFIG_RANDOMIZE_BASE=y
+  Test suite: boot
 
-Neil
+Breaking commit found:
+
+-------------------------------------------------------------------------------
+commit 11a7bea17c9e0a36daab934d83e15a760f402147
+Author: Jerome Brunet <jbrunet@baylibre.com>
+Date:   Mon Mar 18 10:58:45 2019 +0100
+
+    arm64: dts: meson: g12a: add pinctrl support controllers
+    
+    Add the peripheral and always-on pinctrl controllers to the g12a soc.
+    
+    Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+    Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+    Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+index abfa167751af..5e07e4ca3f4b 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+@@ -104,6 +104,29 @@
+ 				#address-cells = <2>;
+ 				#size-cells = <2>;
+ 				ranges = <0x0 0x0 0x0 0x34400 0x0 0x400>;
++
++				periphs_pinctrl: pinctrl@40 {
++					compatible = "amlogic,meson-g12a-periphs-pinctrl";
++					#address-cells = <2>;
++					#size-cells = <2>;
++					ranges;
++
++					gpio: bank@40 {
++						reg = <0x0 0x40  0x0 0x4c>,
++						      <0x0 0xe8  0x0 0x18>,
++						      <0x0 0x120 0x0 0x18>,
++						      <0x0 0x2c0 0x0 0x40>,
++						      <0x0 0x340 0x0 0x1c>;
++						reg-names = "gpio",
++							    "pull",
++							    "pull-enable",
++							    "mux",
++							    "ds";
++						gpio-controller;
++						#gpio-cells = <2>;
++						gpio-ranges = <&periphs_pinctrl 0 0 86>;
++					};
++				};
+ 			};
+ 
+ 			hiu: bus@3c000 {
+@@ -150,6 +173,25 @@
+ 					clocks = <&xtal>, <&clkc CLKID_CLK81>;
+ 					clock-names = "xtal", "mpeg-clk";
+ 				};
++
++				ao_pinctrl: pinctrl@14 {
++					compatible = "amlogic,meson-g12a-aobus-pinctrl";
++					#address-cells = <2>;
++					#size-cells = <2>;
++					ranges;
++
++					gpio_ao: bank@14 {
++						reg = <0x0 0x14 0x0 0x8>,
++						      <0x0 0x1c 0x0 0x8>,
++						      <0x0 0x24 0x0 0x14>;
++						reg-names = "mux",
++							    "ds",
++							    "gpio";
++						gpio-controller;
++						#gpio-cells = <2>;
++						gpio-ranges = <&ao_pinctrl 0 0 15>;
++					};
++				};
+ 			};
+ 
+ 			sec_AO: ao-secure@140 {
+-------------------------------------------------------------------------------
+
+
+Git bisection log:
+
+-------------------------------------------------------------------------------
+git bisect start
+# good: [a455eda33faafcaac1effb31d682765b14ef868c] Merge branch 'linus' of git://git.kernel.org/pub/scm/linux/kernel/git/evalenti/linux-soc-thermal
+git bisect good a455eda33faafcaac1effb31d682765b14ef868c
+# bad: [2c45e7fbc962be1b03f2c2af817a76f5ba810af2] Merge branch 'next' of git://git.kernel.org/pub/scm/linux/kernel/git/rzhang/linux
+git bisect bad 2c45e7fbc962be1b03f2c2af817a76f5ba810af2
+# bad: [be058ba65d9e43f40d31d9b16b99627f0a20de1b] Merge tag 'imx-dt-5.2' of git://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux into arm/dt
+git bisect bad be058ba65d9e43f40d31d9b16b99627f0a20de1b
+# bad: [7996313656b83ba516a1546d51f08f1a0fab4e06] Merge tag 'omap-for-v5.2/dt-am3-signed' of git://git.kernel.org/pub/scm/linux/kernel/git/tmlind/linux-omap into arm/dt
+git bisect bad 7996313656b83ba516a1546d51f08f1a0fab4e06
+# bad: [2140eaf2f46faf2627ec030d7cabf2dda2cb546b] Merge tag 'stm32-dt-for-v5.2-1' of git://git.kernel.org/pub/scm/linux/kernel/git/atorgue/stm32 into arm/dt
+git bisect bad 2140eaf2f46faf2627ec030d7cabf2dda2cb546b
+# bad: [1a88083b9349b8310b25d9a9a96802ee4447e6b9] Merge tag 'v5.2-rockchip-dts64-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip into arm/dt
+git bisect bad 1a88083b9349b8310b25d9a9a96802ee4447e6b9
+# bad: [1c93235a6d92deaab38bbb1cfc764b0757331ebb] Merge tag 'amlogic-dt' of https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic into arm/dt
+git bisect bad 1c93235a6d92deaab38bbb1cfc764b0757331ebb
+# bad: [ff4f8b6cab5885ebc2c6b21fd058db8544e2eebb] arm64: dts: meson: g12a: Add UART A, B & C nodes and pins
+git bisect bad ff4f8b6cab5885ebc2c6b21fd058db8544e2eebb
+# good: [965c827ac37e71f76d3ac55c75ac08909f2a4eed] arm64: dts: meson: g12a: add efuse
+git bisect good 965c827ac37e71f76d3ac55c75ac08909f2a4eed
+# bad: [11a7bea17c9e0a36daab934d83e15a760f402147] arm64: dts: meson: g12a: add pinctrl support controllers
+git bisect bad 11a7bea17c9e0a36daab934d83e15a760f402147
+# good: [b019f4a4199f865b054262ff78f606ca70f7b981] arm64: dts: meson: g12a: Add AO Clock + Reset Controller support
+git bisect good b019f4a4199f865b054262ff78f606ca70f7b981
+# first bad commit: [11a7bea17c9e0a36daab934d83e15a760f402147] arm64: dts: meson: g12a: add pinctrl support controllers
+-------------------------------------------------------------------------------
 
 _______________________________________________
 linux-amlogic mailing list
