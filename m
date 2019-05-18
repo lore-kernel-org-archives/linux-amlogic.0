@@ -1,23 +1,23 @@
-Return-Path: <SRS0=JomC=TR=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=s/lC=TS=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_HELO_NONE autolearn=ham
-	autolearn_force=no version=3.4.0
+	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 69E28C04AB4
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 May 2019 20:20:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1F621C072A4
+	for <linux-amlogic@archiver.kernel.org>; Sat, 18 May 2019 05:19:05 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 117222082E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 17 May 2019 20:20:01 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E611520833
+	for <linux-amlogic@archiver.kernel.org>; Sat, 18 May 2019 05:19:04 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="maZ3bGey";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernelci-org.20150623.gappssmtp.com header.i=@kernelci-org.20150623.gappssmtp.com header.b="rtMZPuBQ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 117222082E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EQW5KbTW";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernelci-org.20150623.gappssmtp.com header.i=@kernelci-org.20150623.gappssmtp.com header.b="F1zfWMdR"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E611520833
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=kernelci.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:From:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=numzqlhdCmshO2/rKqnfA4isb2txA2fgo6CaWgnBCGA=; b=maZ3bGeyEaGFkG
-	YQHkzAJatY1FK+FQdTBpKP3Sv+Nif+hyPO74bVggsXUvHBp1XCBkllXingdlSIqlvuM4zOWpNUhg7
-	UiCkL0ZhI3sZBptr6IxT0241WOhhL5EgS0zkmoXK/S3LgEJ5whr/2h/1s9ssj76cpQRGwatexq6pS
-	D5jS4T2wNROcT3HZzgs/CiTC5cmvmEa100+1seP0ES+Dt1dPP6Ky8MdBi/xMdOn+Cf08al083yyEa
-	fdkPar94F0wWIpIpfgq7Un+lznTrrRDp/nBplj/9YvQhJd2OMQ0rVyfTeWFUcVcZOaaL83euNEGDc
-	1tn74ccikrSAWtEC+WYw==;
+	List-Owner; bh=vgoVeS5WGUQTeNJ4zfjASFEndyojk2AgvUtRCmqxE7E=; b=EQW5KbTWWOuvz/
+	O6gC9lzFFNALF9RBL1WqzF3yFHL2nguIAkJF2nHYsRf6XHQtT9hjEdzZNST3pKHJOtZvhBwIcr6lf
+	LR7PlXxgg9PUccpSBxH1reMOMTd38XI6IgBt1JYlGXKoCyeAYRPE760UlNJ85UGgFNgro9kklCUOe
+	TyBZhhstNgohG49FbE1dCOy9Pivg8aZdppp48HipK+ptByB50Pl/eVHOYkCnrPVbgAc1u64rk1LcG
+	CgoLCK6SWBgoELyJfnOdRcxZlTSYJh0oG6LG5O1iGPerShJUU8Fsy6Vd2sf26SaqnfnY4+xFmiF6+
+	ZAPB5cKlC0h94KD85a+Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hRjKY-0006jS-TT; Fri, 17 May 2019 20:19:50 +0000
+	id 1hRrkF-0002GX-UK; Sat, 18 May 2019 05:18:55 +0000
 Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hRjKU-0006hy-Te
- for linux-amlogic@lists.infradead.org; Fri, 17 May 2019 20:19:48 +0000
-Received: by mail-wr1-x442.google.com with SMTP id r4so8342446wro.10
- for <linux-amlogic@lists.infradead.org>; Fri, 17 May 2019 13:19:44 -0700 (PDT)
+ id 1hRrk7-0002Aa-SP
+ for linux-amlogic@lists.infradead.org; Sat, 18 May 2019 05:18:49 +0000
+Received: by mail-wr1-x442.google.com with SMTP id r4so9048457wro.10
+ for <linux-amlogic@lists.infradead.org>; Fri, 17 May 2019 22:18:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=kernelci-org.20150623.gappssmtp.com; s=20150623;
  h=message-id:date:mime-version:content-transfer-encoding:subject:to
- :from:cc; bh=djr/WXBRd+de1RQsSnwTqjcAKvd/O5mg6l1k6CM1beM=;
- b=rtMZPuBQvMBed2NCiJd0SHx9iaYiKFrVe/wUeUm5M4lQwUXyGNcUhnPpyRHOCz74Vv
- F9FODgdaQXiqY2POtpk7X0/HUaRTDhL1FI+cxZVel9IWrW9F38ccLZbUMYpQgkEedGRA
- hbj44T5trbEmUh2+hoFWj8RF+yDbogVNg+mS58vL6joWcho3MtRCdUKxVDI+lIyC2HjC
- iPKWz6Gvju7MRlbbwqPA0weRAa2Wu90lLhxjaSjYFumPAgJX2H3M0I+whJJ7M//h/lD3
- Hv8GvVjbOOcLN0eIHbAsdbA+ssvFqRcPNzgm9vnRGYQV9pv0Pf0F117O4buo2+PXocGs
- BNrg==
+ :from:cc; bh=FdTczlBBVa9u+WV7Y3o/VG0d13GnIMDeCYtn2Nanml4=;
+ b=F1zfWMdRgS6aonOqLALhrSo+SyB4+e0YJqXqynv/i3/qPBQf/XXDnhPbqBKxYRQZiz
+ S8ujokRw+sZ8gpEG0r/sqzCtbRLMEWbnAOWCRP/YvIVR8rdMH22YtSsZB8HGQFmDrbGd
+ MjKCAMONJPBnABOtf9XTXbB8QyJCzD30yc9wGBT2syOFI9Mx/wVMlR/kl72NNslvQkc0
+ z7onZq/tS9DFecIgbdFccvdkDKg7l1PIdSXBqMCmCG2+rsAvFL+aRCsJhrjAZYjG9zth
+ JrCM8prGC6/8wXVYk1+UHv2GKpnyZpJtx8vJdZ1t8xKyJKWKz0goQ2ksTil2qJsXAKAM
+ AU1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:message-id:date:mime-version
  :content-transfer-encoding:subject:to:from:cc;
- bh=djr/WXBRd+de1RQsSnwTqjcAKvd/O5mg6l1k6CM1beM=;
- b=U517S0Nc9MPgUqsM7YH2mBrWOQPPnLSwGJPR6lM7dsL+ElyCKv9k2pIgrjzUXdgrd5
- 9vYODuhj0UgK52xaVWWkseWr4RK4t8bXY6IVCgoXlLcOZxuXanJyUJfIv7y/6nAeBuDV
- XbS++c2v9x7GmkWUH2j7UVV7BSAYz0PrA8YQZOG+WKYgY5DxYBaR9w4+QlYhSoHyTFaI
- QZgMRM8NgmaG8CUoGgZit/6zX69CNfxDJMPbMvKKLpZ6QsFwjD6wksl9UZcYwHWNBNl6
- VH1qWGDxyERLA9DoAuWOUjkJh471qg3y9reQe2/E8IVYiMNXaqAbyW3kLCxolauxJSby
- Tqig==
-X-Gm-Message-State: APjAAAVKRSMys8wuu/MYot2hqOPuVl8DStRzhzfroByL6LUefuoLlQG0
- XX/sgQlulLBMwvQWxHovm/HeVg==
-X-Google-Smtp-Source: APXvYqwuptJZlrKbAVpQaVn0SYxkQTsT/owQkYH0t1z2X5Bs1vc49kuHcuTHERoyvP5DmbggcdIz3A==
-X-Received: by 2002:adf:f6c8:: with SMTP id y8mr24018465wrp.175.1558124382869; 
- Fri, 17 May 2019 13:19:42 -0700 (PDT)
+ bh=FdTczlBBVa9u+WV7Y3o/VG0d13GnIMDeCYtn2Nanml4=;
+ b=VyebKvi1k83Cq3nPj1QRbcEfLfBXQGGS7UVOwVfk0b6VBbTFyWF+Tci/UFzZ79Jgnu
+ MTDmS2U+UUxwfOSRF4m0RFGSZKVQAah9pdHhQo1x3Pg9kIoIHmZAGrlFajcbI/lh8vFt
+ tGyOB9/0IdrjK1mezPDo4ruIcPX3PTaQoi3xU1x8zUWylwOXn6A5d99CBEmivbV5HMIm
+ xJErEr/NsKl79s3gNFDa4Xi1ausREiCmhal6rR8j/ri0MFsSkka40DvYrGNBgNScNrGT
+ yVySMH5gHVB8qZW35kO4orGOBpjJjFzlHXXXqWpt2VjvkRyaJSh9vATSYcTEZN5Op3jP
+ 5euA==
+X-Gm-Message-State: APjAAAVFMUb6idS2edXWt/vTYj8PLDlX4MWjNIag2UpC4/ZhFtB/Jywo
+ /oiW9lvc7DisxeJzsYTEkQ6Wwg==
+X-Google-Smtp-Source: APXvYqyKs/VAHBOML+lvp5PP0kJwVtEuyjECXDM+qa9/C+RbEsVzF763x/DTJy2CzXp5JXcWVGKPwQ==
+X-Received: by 2002:a5d:4e50:: with SMTP id r16mr11753300wrt.197.1558156725277; 
+ Fri, 17 May 2019 22:18:45 -0700 (PDT)
 Received: from [148.251.42.114] ([2a01:4f8:201:9271::2])
- by smtp.gmail.com with ESMTPSA id u15sm1402035wru.16.2019.05.17.13.19.41
+ by smtp.gmail.com with ESMTPSA id r3sm9672144wrn.5.2019.05.17.22.18.44
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 17 May 2019 13:19:42 -0700 (PDT)
-Message-ID: <5cdf175e.1c69fb81.9d43b.8249@mx.google.com>
-Date: Fri, 17 May 2019 13:19:42 -0700 (PDT)
+ Fri, 17 May 2019 22:18:44 -0700 (PDT)
+Message-ID: <5cdf95b4.1c69fb81.808ef.7543@mx.google.com>
+Date: Fri, 17 May 2019 22:18:44 -0700 (PDT)
 MIME-Version: 1.0
 X-Kernelci-Report-Type: bisect
 X-Kernelci-Tree: mainline
 X-Kernelci-Lab-Name: lab-baylibre
 X-Kernelci-Branch: master
-X-Kernelci-Kernel: v5.1-12172-g2c45e7fbc962
-Subject: mainline/master boot bisection: v5.1-12172-g2c45e7fbc962 on
+X-Kernelci-Kernel: v5.1-12505-g0ef0fd351550
+Subject: mainline/master boot bisection: v5.1-12505-g0ef0fd351550 on
  meson-g12a-x96-max
 To: tomeu.vizoso@collabora.com, guillaume.tucker@collabora.com,
  mgalka@collabora.com, Kevin Hilman <khilman@baylibre.com>,
@@ -88,8 +88,8 @@ To: tomeu.vizoso@collabora.com, guillaume.tucker@collabora.com,
  Jerome Brunet <jbrunet@baylibre.com>
 From: "kernelci.org bot" <bot@kernelci.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190517_131947_007633_B0465532 
-X-CRM114-Status: UNSURE (   7.25  )
+X-CRM114-CacheID: sfid-20190517_221847_980030_7399D13F 
+X-CRM114-Status: UNSURE (   7.35  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -118,13 +118,13 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 * Hope this helps!                                              *
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-mainline/master boot bisection: v5.1-12172-g2c45e7fbc962 on meson-g12a-x96-max
+mainline/master boot bisection: v5.1-12505-g0ef0fd351550 on meson-g12a-x96-max
 
 Summary:
-  Start:      2c45e7fbc962 Merge branch 'next' of git://git.kernel.org/pub/scm/linux/kernel/git/rzhang/linux
-  Details:    https://kernelci.org/boot/id/5cde4f3459b5143cfb7a3628
-  Plain log:  https://storage.kernelci.org//mainline/master/v5.1-12172-g2c45e7fbc962/arm64/defconfig+CONFIG_RANDOMIZE_BASE=y/gcc-8/lab-baylibre/boot-meson-g12a-x96-max.txt
-  HTML log:   https://storage.kernelci.org//mainline/master/v5.1-12172-g2c45e7fbc962/arm64/defconfig+CONFIG_RANDOMIZE_BASE=y/gcc-8/lab-baylibre/boot-meson-g12a-x96-max.html
+  Start:      0ef0fd351550 Merge tag 'for-linus' of git://git.kernel.org/pub/scm/virt/kvm/kvm
+  Details:    https://kernelci.org/boot/id/5cdf275859b514bb847a3628
+  Plain log:  https://storage.kernelci.org//mainline/master/v5.1-12505-g0ef0fd351550/arm64/defconfig+CONFIG_RANDOMIZE_BASE=y/gcc-8/lab-baylibre/boot-meson-g12a-x96-max.txt
+  HTML log:   https://storage.kernelci.org//mainline/master/v5.1-12505-g0ef0fd351550/arm64/defconfig+CONFIG_RANDOMIZE_BASE=y/gcc-8/lab-baylibre/boot-meson-g12a-x96-max.html
   Result:     11a7bea17c9e arm64: dts: meson: g12a: add pinctrl support controllers
 
 Checks:
@@ -226,24 +226,26 @@ Git bisection log:
 git bisect start
 # good: [a455eda33faafcaac1effb31d682765b14ef868c] Merge branch 'linus' of git://git.kernel.org/pub/scm/linux/kernel/git/evalenti/linux-soc-thermal
 git bisect good a455eda33faafcaac1effb31d682765b14ef868c
-# bad: [2c45e7fbc962be1b03f2c2af817a76f5ba810af2] Merge branch 'next' of git://git.kernel.org/pub/scm/linux/kernel/git/rzhang/linux
-git bisect bad 2c45e7fbc962be1b03f2c2af817a76f5ba810af2
-# bad: [be058ba65d9e43f40d31d9b16b99627f0a20de1b] Merge tag 'imx-dt-5.2' of git://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux into arm/dt
-git bisect bad be058ba65d9e43f40d31d9b16b99627f0a20de1b
-# bad: [7996313656b83ba516a1546d51f08f1a0fab4e06] Merge tag 'omap-for-v5.2/dt-am3-signed' of git://git.kernel.org/pub/scm/linux/kernel/git/tmlind/linux-omap into arm/dt
-git bisect bad 7996313656b83ba516a1546d51f08f1a0fab4e06
-# bad: [2140eaf2f46faf2627ec030d7cabf2dda2cb546b] Merge tag 'stm32-dt-for-v5.2-1' of git://git.kernel.org/pub/scm/linux/kernel/git/atorgue/stm32 into arm/dt
-git bisect bad 2140eaf2f46faf2627ec030d7cabf2dda2cb546b
-# bad: [1a88083b9349b8310b25d9a9a96802ee4447e6b9] Merge tag 'v5.2-rockchip-dts64-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip into arm/dt
-git bisect bad 1a88083b9349b8310b25d9a9a96802ee4447e6b9
-# bad: [1c93235a6d92deaab38bbb1cfc764b0757331ebb] Merge tag 'amlogic-dt' of https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic into arm/dt
-git bisect bad 1c93235a6d92deaab38bbb1cfc764b0757331ebb
-# bad: [ff4f8b6cab5885ebc2c6b21fd058db8544e2eebb] arm64: dts: meson: g12a: Add UART A, B & C nodes and pins
-git bisect bad ff4f8b6cab5885ebc2c6b21fd058db8544e2eebb
-# good: [965c827ac37e71f76d3ac55c75ac08909f2a4eed] arm64: dts: meson: g12a: add efuse
-git bisect good 965c827ac37e71f76d3ac55c75ac08909f2a4eed
+# bad: [0ef0fd351550130129bbdb77362488befd7b69d2] Merge tag 'for-linus' of git://git.kernel.org/pub/scm/virt/kvm/kvm
+git bisect bad 0ef0fd351550130129bbdb77362488befd7b69d2
+# bad: [89f4f128ea535acaabf7d5bddc30ddda0fb7a70a] Merge tag 'imx-dt64-5.2' of git://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux into arm/dt
+git bisect bad 89f4f128ea535acaabf7d5bddc30ddda0fb7a70a
+# bad: [f5d6e8c077915c84d8b544bc02e3df2f0910c193] Merge tag 'sunxi-dt-for-5.2' of https://git.kernel.org/pub/scm/linux/kernel/git/sunxi/linux into arm/dt
+git bisect bad f5d6e8c077915c84d8b544bc02e3df2f0910c193
+# bad: [6d918e09331e63593b7827ea1a718f0da03b7fb0] Merge tag 'omap-for-v5.2/dt-signed' of git://git.kernel.org/pub/scm/linux/kernel/git/tmlind/linux-omap into arm/dt
+git bisect bad 6d918e09331e63593b7827ea1a718f0da03b7fb0
+# bad: [2fe743c27f064d637df7f989333c153f8d4b0e65] Merge tag 'renesas-arm64-dt-for-v5.2' of https://git.kernel.org/pub/scm/linux/kernel/git/horms/renesas into arm/dt
+git bisect bad 2fe743c27f064d637df7f989333c153f8d4b0e65
+# bad: [f6f9683c5aedff214433fa130e67a79f08a47fdb] Merge tag 'v5.2-rockchip-dts32-1' of git://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip into arm/dt
+git bisect bad f6f9683c5aedff214433fa130e67a79f08a47fdb
+# bad: [e2cffeb398f4830b004774444809ee256b9bc653] arm64: dts: meson-g12a: Add CMA reserved memory
+git bisect bad e2cffeb398f4830b004774444809ee256b9bc653
 # bad: [11a7bea17c9e0a36daab934d83e15a760f402147] arm64: dts: meson: g12a: add pinctrl support controllers
 git bisect bad 11a7bea17c9e0a36daab934d83e15a760f402147
+# good: [7e09092aee006b21d830b99f8498b5640b8711f6] arm64: dts: meson-gxl-s905d-phicomm-n1: add status LED
+git bisect good 7e09092aee006b21d830b99f8498b5640b8711f6
+# good: [965c827ac37e71f76d3ac55c75ac08909f2a4eed] arm64: dts: meson: g12a: add efuse
+git bisect good 965c827ac37e71f76d3ac55c75ac08909f2a4eed
 # good: [b019f4a4199f865b054262ff78f606ca70f7b981] arm64: dts: meson: g12a: Add AO Clock + Reset Controller support
 git bisect good b019f4a4199f865b054262ff78f606ca70f7b981
 # first bad commit: [11a7bea17c9e0a36daab934d83e15a760f402147] arm64: dts: meson: g12a: add pinctrl support controllers
