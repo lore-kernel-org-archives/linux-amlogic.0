@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A1D8AC04AAF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 May 2019 14:42:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 20FF6C04AAC
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 May 2019 14:42:20 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 773C5216B7
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 May 2019 14:42:04 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E7EBD216B7
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 May 2019 14:42:19 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="aaie68km";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="EeFetSQa"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 773C5216B7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="COVlwUFf";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="E1AMWXuy"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E7EBD216B7
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,65 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=B57E3SUXWMPXcaG3aEJGp7TyfiP43aVXFcXrYyVDJqk=; b=aaie68kmfv6NZS
-	nEf6GVh/0q7ZK+P7JEpJbmyiuu6Lj/G41skzmHoN1It7ojZHbUX6jua28974SmxyPCaMDCIeodIAe
-	xeRldTHceMKMKglcjSq2uJ1qDQNEhLznL6KhZ4qoPIIdiRASMf326cXSwG8lMhsbsyfDawxwlJMiy
-	kHNFyXagttzfAKZpsxL5RxJZg6kvkzsl63H+7csDs/GepfH/UW9PamSJhNdJCHJm1XN3PNJGsLcXf
-	/ODtt9hS3PoDTHoS+TigYUWZ4Bs05tprpQOw8qE5KVRYO6A8D5SlAPtP3q4bPsZ9p0JXel4XqJ2i/
-	r4LgYamoiH0sC54uUYXA==;
+	List-Owner; bh=BrDC0Bs5iXe73YfP6AW96mq9bsshx/N1nhrPKeZqGxY=; b=COVlwUFfH1aq0R
+	Tq5JFMBYubyzSNlC9vXs8xNGJvA63M/CduKiw9hxIzFKyXuVvGSH6RoMbQ7+7l5N4s0cmjFenvMXH
+	fql6um4N9FoFsxVOOMMtLsUsQLCoU85Qs5Vry0pjzvQA/a9/SMHZ+qUKoHbAfXKJl/BFi53GBXvOm
+	u/MRScFQxLTXxc1tMvgGgbT55uVEXXNfinTnMH8Tg6JSv4YMamxQIM/jT0Zjd7ujrdji5mTy/bRx9
+	oFwDx1tlofdiQXfxGIlng60U0wpCehnsYNxBCTKcH6UXQKgI1+/rOY8a0Z4eu0m1C92WysJgGeHG8
+	t+Nq6vn97emudmlhpSmQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hSjUF-0003Xd-Ll; Mon, 20 May 2019 14:41:59 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1hSjUU-0003qg-Mh; Mon, 20 May 2019 14:42:14 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hSjTf-0002oZ-K1
- for linux-amlogic@lists.infradead.org; Mon, 20 May 2019 14:41:28 +0000
-Received: by mail-wr1-x441.google.com with SMTP id w8so14930777wrl.6
+ id 1hSjTg-0002p9-2e
+ for linux-amlogic@lists.infradead.org; Mon, 20 May 2019 14:41:30 +0000
+Received: by mail-wr1-x442.google.com with SMTP id w8so14930818wrl.6
  for <linux-amlogic@lists.infradead.org>; Mon, 20 May 2019 07:41:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=30PJ+hCzDjQrVZsjGcZ/FXod6I84WDUG4kPyRzhauWE=;
- b=EeFetSQar48eOERqadrJy/r1TMYWe3tvZZ9D73uAfTEe7xVlG9kEpGi8cKF+fZimcE
- vm0msi4QvsnBhRfGIWhN5NNnIwMhd93/3iJtEhj5AL3iIQrATygF4+gQuTFsMqLYlFLN
- K8lCV0yr+e+dSMqXTPM60wWxKOFL0s5xNJRlB/AXELJESu2AnSF2NWxHl/PjfcHkluhC
- BRI320Yx0G12ddsNFsbrCxYlX3WgQFy9wj/vrNsVbEp4AfInuuV5cspNpMkKwhQHM4DR
- PcO6080P3WqMfMpZxg0SuTR/h8UMnUQRpCWASqneD6F01V0xT4DLrhqhv9+ip0oEoCqT
- OwLA==
+ bh=1us822oM0AhXAzcfAqzMQ3a5bieM7q3ASmOGadOuJBc=;
+ b=E1AMWXuy38k5enWVyxUIT/ZFjHFZOcLT7CtTfUN1RC08MO3lMPdlB9MZH6gbDpwXD5
+ sIKnvw6Pt9WOWPtKKFY5ZZBINljbEiv3mIAs3Zhvs18xzREQM10TX32ptwEB12C4QqgY
+ wQ4lwYft+xHb2ElPch/aLITUutJEdMrtuT37fdrqAKdcI2c5c79ymYkeg45++A6eV93b
+ JHs+yVdektui4T0pIf5OS1mtK+6pKlECHlMbVhcw/HI8lRo17pkA79XTzmrAuaPNECpq
+ O4TXt98WUPh9rzKjCQ5u6chtmr6HTFHcyANC1+0he2BUvbUwG18Rs6RReBGUMJ+J+z7o
+ LJOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=30PJ+hCzDjQrVZsjGcZ/FXod6I84WDUG4kPyRzhauWE=;
- b=mEf2MUXXhMO+uDnj9scyGJGbEq2s9MXT4JKjrQ+NHxy//XuPAt4KwFiQRJp8HlBKwR
- NGLAky3oGxabveOw8jl6jd4+H8GUxNBD7SgduEEur+R1cCNgLuf+xEtfSu05oKV6sppU
- Ljz4qmBDqaM9Ra8LZwTN2EWaX9XaKkshvoBcrTZgjx1WocHObZ5wKqlh9zGNKriw8H2A
- QGegLvsAwyyWWIcyRdaW/gMWO6SpMpyv5vtxiedgWtR9g+0xRpmIm1wQUXi610ov6pp/
- +W23eCGjZ/qv/fetn8KH7TaZPZjEgFgyVDcJgFn96JLAWPf3+pCbhAJCDReO68R26vWz
- c4aw==
-X-Gm-Message-State: APjAAAW+f5pW2RF4KYSHcfXQxo5p0wKbFYe5C8aRAlMY4pmpkwUZ+Akh
- vcP5rCi34VwSqT/QKTtsIMEwBA==
-X-Google-Smtp-Source: APXvYqwy0QdFmLf4P0q3Gllfwk9oesu78IlGZ97TtHhp2ZY2oBw/SZe5fTVEuzIPvAu1zn35uG6lRA==
-X-Received: by 2002:adf:c60e:: with SMTP id n14mr14278140wrg.255.1558363281892; 
- Mon, 20 May 2019 07:41:21 -0700 (PDT)
+ bh=1us822oM0AhXAzcfAqzMQ3a5bieM7q3ASmOGadOuJBc=;
+ b=t5eyPA4GNLxvB5fngQi3JuUqohRpS2YpKkxQtiT38eFKNTKpM4ktSqMSB8eC165dBL
+ KeGkN8hs3IE1sTfXfvWbk1tZTJGlV+quqWmHupTgtN3lVVibyEIyX0AW73YUBUgG2rO1
+ MCv0HRJODqTiUCs75zl3b7DT8vczoYmpKCZV8c7HU4izLTozyJB98F5hlRxaC6Edd51T
+ vouG5oTmVnQOl97u7GehL73DfxAJANv6NMR63rKKdcfNEwwntYUby8wbtGYYANwc+a9I
+ hWxXjAQUBXVGhFh7YCEiks7cHsECH/iVR+znHYYsrDGe/PyXxi5uZqxIWlYltdLCHRpW
+ Hy+A==
+X-Gm-Message-State: APjAAAUfCLRJCn9uNxxoFNY7cjX0mdpcCkvbF5y8Rnwk+S2kTRB+GibF
+ bYh08pDqUafCiLfCiF7CxC6QEy+nbEVJlA==
+X-Google-Smtp-Source: APXvYqzBMSwJalhz2Y3RNdF8Ya61WL0sUiZ27ozMXzLdu3QUKt9tpH6yOyRHK1BjUf1IUkGmcdgesw==
+X-Received: by 2002:a5d:5283:: with SMTP id c3mr7135680wrv.268.1558363282687; 
+ Mon, 20 May 2019 07:41:22 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
  by smtp.gmail.com with ESMTPSA id w3sm6743679wrv.25.2019.05.20.07.41.21
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Mon, 20 May 2019 07:41:21 -0700 (PDT)
+ Mon, 20 May 2019 07:41:22 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: linus.walleij@linaro.org
-Subject: [PATCH 2/5] dt-bindings: gpio: meson-gxbb-gpio: update with SPDX
+Subject: [PATCH 3/5] dt-bindings: gpio: meson-gxl-gpio: update with SPDX
  Licence identifier
-Date: Mon, 20 May 2019 16:41:05 +0200
-Message-Id: <20190520144108.3787-3-narmstrong@baylibre.com>
+Date: Mon, 20 May 2019 16:41:06 +0200
+Message-Id: <20190520144108.3787-4-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190520144108.3787-1-narmstrong@baylibre.com>
 References: <20190520144108.3787-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190520_074123_748394_1B972189 
+X-CRM114-CacheID: sfid-20190520_074124_274394_F1434A23 
 X-CRM114-Status: GOOD (  10.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -107,17 +107,17 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- include/dt-bindings/gpio/meson-gxbb-gpio.h | 8 +-------
+ include/dt-bindings/gpio/meson-gxl-gpio.h | 8 +-------
  1 file changed, 1 insertion(+), 7 deletions(-)
 
-diff --git a/include/dt-bindings/gpio/meson-gxbb-gpio.h b/include/dt-bindings/gpio/meson-gxbb-gpio.h
-index 43a68a1110f0..c93274d7e108 100644
---- a/include/dt-bindings/gpio/meson-gxbb-gpio.h
-+++ b/include/dt-bindings/gpio/meson-gxbb-gpio.h
+diff --git a/include/dt-bindings/gpio/meson-gxl-gpio.h b/include/dt-bindings/gpio/meson-gxl-gpio.h
+index 01f2a2abd35e..62417358f55b 100644
+--- a/include/dt-bindings/gpio/meson-gxl-gpio.h
++++ b/include/dt-bindings/gpio/meson-gxl-gpio.h
 @@ -1,15 +1,9 @@
 +/* SPDX-License-Identifier: GPL-2.0 */
  /*
-  * GPIO definitions for Amlogic Meson GXBB SoCs
+  * GPIO definitions for Amlogic Meson GXL SoCs
   *
   * Copyright (C) 2016 Endless Mobile, Inc.
   * Author: Carlo Caione <carlo@endlessm.com>
@@ -130,7 +130,7 @@ index 43a68a1110f0..c93274d7e108 100644
 - * along with this program. If not, see <http://www.gnu.org/licenses/>.
   */
  
- #ifndef _DT_BINDINGS_MESON_GXBB_GPIO_H
+ #ifndef _DT_BINDINGS_MESON_GXL_GPIO_H
 -- 
 2.21.0
 
