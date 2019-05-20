@@ -5,19 +5,19 @@ X-Spam-Level:
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C344CC04AAC
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 May 2019 14:04:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CD786C04AAC
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 May 2019 14:05:16 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 79BB1216B7
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 May 2019 14:04:38 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A2AFD216B7
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 May 2019 14:05:16 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="N6ahifmv";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="KW11kZMR"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 79BB1216B7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iEqjvLY2";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="t73dgU0G"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A2AFD216B7
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,63 +26,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
 	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=KXHlb6lL6FYWb2EpIkJqEUiMhBWSCetn4k+y5bw9gWg=; b=N6ahifmv2Xm8ys
-	6b2GnYJWcLSPtedNMnyv6KMZnVBFNKuIFqUN2piGO96G+V3/fFnlL//5qLoUwSQMKmbKIOo/Jn9gc
-	prDXrEjWgo2v8tfeLeg2IrXqvwD4fE6O2iTHzGK1AGELpe4aMMn0ZCUOcgG3pKk67LWU/KdjueR68
-	VSmaafLdPrfJqytrj8n0G4RVthky7ZrvoAiE4C0ejzZMdGPjOOGnVBPIBpyw2pvJGBQFIEfXDNSKw
-	NfUipjKeN8QB81C0GaSJx040RjPernx/lB65esk5J6J+fl/wnjdP/oNtljPeHWuUGNJMAVgQQJtRu
-	pmt/8nhYUeggA0VK/WHQ==;
+	List-Owner; bh=izsJBg1hfsd6Krf3hF74mwkjHNkiiwFSeClCKUdc/zI=; b=iEqjvLY2UDcFEG
+	Ops6qsTb2CA8oeM13VW5WGMmdLO3qmZpa6IyUHgCacMI302N/WGuVRe4OoUT6fWnRfnfv+TVOKiDm
+	1X5ZgwvECyUf/E6kV/kVgmuRCetKEQDt2sMYfep0ph9TEkl63Njs+Ai7EFJevGfpFxQ30eOfVq89r
+	me5qxm2+xF6jP/1Cg44MvdOPQDLV5gCMJTXbTNH1RIbnAIKQRounZ89AtBUB6X2m4pLWNMQ5Al2SE
+	qqk+q7X/HUSYw/UwmnoY4k29BDzyhSBAkWZhyK5DHlVU6IhIlQcE8ZcdzGQHxegjUq/w/19ty0IFE
+	pLbPUS1xElgCDS31qOQg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hSiu1-0003B3-Sq; Mon, 20 May 2019 14:04:33 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1hSiuc-00044j-G0; Mon, 20 May 2019 14:05:10 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hSitt-00033g-81
- for linux-amlogic@lists.infradead.org; Mon, 20 May 2019 14:04:26 +0000
-Received: by mail-wm1-x344.google.com with SMTP id t5so11831510wmh.3
- for <linux-amlogic@lists.infradead.org>; Mon, 20 May 2019 07:04:24 -0700 (PDT)
+ id 1hSiuO-0003LR-P1
+ for linux-amlogic@lists.infradead.org; Mon, 20 May 2019 14:04:59 +0000
+Received: by mail-wm1-x343.google.com with SMTP id x64so13431713wmb.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 20 May 2019 07:04:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=wZpcedj0usuNnQQe4hSwoGa27U3KI1NBMOLWj/UNRC0=;
- b=KW11kZMRVXs4raFGQTEwJgJ0jnGGEBCREFbR1yhqhZobC8ZIER22VyXV2kmejPd8cu
- P4Mi7yK+EkWwcaUch7S62P1OdrjOz5cxZMxywZBlIVq/fZyKHWrX/6ytzeIC429eEFVb
- QfPa5n1hcfVyvTvxuy47siQ6HD+Hj96d0myIwOEThjRO7j58/CKzLddK4EY/0X1gOMBp
- HD8SjLLNXc+pukPSTwp0vrUx3IAfwh2lJGt2p47Ic0CG1TvG8eAOogRkzugWhpkfYqwo
- KgO2RKJtbYWmysT4ooHtBwoAYP1XxXmKs0g/5w1hf4Sg6s+Fl0Hd+10BXodeidFWVFIR
- Pspw==
+ bh=txk5DrZL33dHOyu6S/hwbHrXibD4nPtpq1m/2A+Wxoo=;
+ b=t73dgU0Gc247WTF7B1Vk9vORzWG22PieCyt/1IhbX0ojd/0VrZw4VEQEr7Rfcjh6/l
+ ZD0G2DsREEckY4mBG0ythw/g61R1AK4iLUKci+a0R2JU8eaaEf4bGNyDtqYbtfmrRnop
+ pBbxVtrzMZeoIHuBPDOqAu4qp0dBncZztbNkwLQnxhu3S59r4/V7nehwMmMJJ/JNgd1K
+ 8UfjICYJRWEr+I0zKj2VuNujr9ioMZSMSqudF5Of41Wp/Cd42cdFDib4qAoCc2xZbbSy
+ 6psPlnUKIMz0Pimomwu/DK/tMqUHFvQUKy8xKGwl3sEaSl/bKoldGbQPJ4xAwM0RCW9j
+ KSwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=wZpcedj0usuNnQQe4hSwoGa27U3KI1NBMOLWj/UNRC0=;
- b=pJoXk6sYnR+0t3PdTh9PwUSC3a0MSiyaDVBLkNSprfkPVyZG7ZxJXSPlJ2DY3o/JCm
- LdShcubDO9HcREkwXldIJYr3ibqGdECIbG8HriCZ6ke2lQMVy0JKTMcm0mU7x/AYzy0M
- mRTX43UWkUmckDUi7bj3eDLSadOsCXHlhZj3oeJYTxCQ/ZdDieXBAlGA/t9lSrhNRMtQ
- gEhbJc7JjDFXaqRKEeFp/Ur/e4BDZ3LdGaWzZLOvor7kRat0wqzlEdygpYAALnrrUeNr
- PwQlq7No5Gy1dQO5K8nKd14Qr/3HWPYWZe2w8jJ5ZwOqUCztC6/ZdpTKgPxaquB5QU2N
- e+Ng==
-X-Gm-Message-State: APjAAAUENETVTE/JbCWWaVWsxz/76DoD2ZjlYe3aiTF4gJFYF39N7CjX
- W1QMOzcRvSDriPshEdPdEmEf/Q==
-X-Google-Smtp-Source: APXvYqxKM4u75H/WX5/D4Xu3uAIucU2k0DuLBgRqDfQN8DywNO7NTSwNq3BbTLlSpamGImB/4UMr4Q==
-X-Received: by 2002:a1c:e708:: with SMTP id e8mr30285399wmh.11.1558361063451; 
- Mon, 20 May 2019 07:04:23 -0700 (PDT)
+ bh=txk5DrZL33dHOyu6S/hwbHrXibD4nPtpq1m/2A+Wxoo=;
+ b=L3AAoXEiSIOXVhoMK60ppkRl57LwLqWHI8U8t9YNOjCzh551Mv03/FgGapBW6BE/EB
+ eWmAj9im3pZmNbV/gPZJLGCDvWEuFiyAZscao1fInyxfm8AK8wG8dvHEHoUmnWrQjlvc
+ b3zOqWagbSZJ7cVuTW44j0kDjkMaeg24Vb4knU4mNymPsYgYmy/lcqcZ5tYB9UBV/80e
+ bQDHP7O2nWKG4u8tFFkE1VY0jUd7rvuoT8WAGZIRgsbDqmyiqwiSVxPCYZWnI633Mco9
+ 5LT3opgOkQAKB2KZCQ+ZAN95Wj5vD/YWR3rLlRkziwUAElRCf6XLsB4MK6s4qtOxg4UW
+ Gsnw==
+X-Gm-Message-State: APjAAAVfCehKmsk+qhoLwRCSy7XQ4vxFoVndgPaKl26Ej+nt98l2Ntmz
+ G9RnPPlQoul2vpY6tctODPU90g==
+X-Google-Smtp-Source: APXvYqwT6uVZjGxR/n5pqIYoJJgpdt5n9FK1oWxNGhWKEAx/4tWR4B+kGZw3mByDDBsWKa9cNp/B1g==
+X-Received: by 2002:a7b:c844:: with SMTP id c4mr12089515wml.108.1558361095088; 
+ Mon, 20 May 2019 07:04:55 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id q11sm1207286wmc.15.2019.05.20.07.04.22
+ by smtp.gmail.com with ESMTPSA id w18sm13731201wru.15.2019.05.20.07.04.54
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Mon, 20 May 2019 07:04:22 -0700 (PDT)
+ Mon, 20 May 2019 07:04:54 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
-To: thierry.reding@gmail.com
-Subject: [PATCH] pwm: pwm-meson: update with SPDX Licence identifier
-Date: Mon, 20 May 2019 16:04:21 +0200
-Message-Id: <20190520140421.30074-1-narmstrong@baylibre.com>
+To: broonie@kernel.org
+Subject: [PATCH] spi: spi-meson-spifc: update with SPDX Licence identifier
+Date: Mon, 20 May 2019 16:04:52 +0200
+Message-Id: <20190520140452.30167-1-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190520_070425_294305_85BC16DE 
-X-CRM114-Status: GOOD (  15.98  )
+X-CRM114-CacheID: sfid-20190520_070456_823025_0DF267DC 
+X-CRM114-Status: UNSURE (   9.86  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -94,9 +95,9 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-pwm@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+Cc: linux-amlogic@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
+ linux-spi@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
@@ -104,70 +105,26 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/pwm/pwm-meson.c | 52 +----------------------------------------
- 1 file changed, 1 insertion(+), 51 deletions(-)
+ drivers/spi/spi-meson-spifc.c | 8 +-------
+ 1 file changed, 1 insertion(+), 7 deletions(-)
 
-diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index fb5a369b1a8d..5fef7e925282 100644
---- a/drivers/pwm/pwm-meson.c
-+++ b/drivers/pwm/pwm-meson.c
-@@ -1,58 +1,8 @@
-+// SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
+diff --git a/drivers/spi/spi-meson-spifc.c b/drivers/spi/spi-meson-spifc.c
+index 616566e793c6..20413def4cfb 100644
+--- a/drivers/spi/spi-meson-spifc.c
++++ b/drivers/spi/spi-meson-spifc.c
+@@ -1,14 +1,8 @@
++// SPDX-License-Identifier: GPL-2.0+
  /*
-- * This file is provided under a dual BSD/GPLv2 license.  When using or
-- * redistributing this file, you may do so under either license.
+  * Driver for Amlogic Meson SPI flash controller (SPIFC)
+  *
+  * Copyright (C) 2014 Beniamino Galvani <b.galvani@gmail.com>
 - *
-- * GPL LICENSE SUMMARY
-- *
-  * Copyright (c) 2016 BayLibre, SAS.
-  * Author: Neil Armstrong <narmstrong@baylibre.com>
-  * Copyright (C) 2014 Amlogic, Inc.
-- *
-- * This program is free software; you can redistribute it and/or modify
-- * it under the terms of version 2 of the GNU General Public License as
-- * published by the Free Software Foundation.
-- *
-- * This program is distributed in the hope that it will be useful, but
-- * WITHOUT ANY WARRANTY; without even the implied warranty of
-- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-- * General Public License for more details.
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License
+- * version 2 as published by the Free Software Foundation.
 - *
 - * You should have received a copy of the GNU General Public License
-- * along with this program; if not, see <http://www.gnu.org/licenses/>.
-- * The full GNU General Public License is included in this distribution
-- * in the file called COPYING.
-- *
-- * BSD LICENSE
-- *
-- * Copyright (c) 2016 BayLibre, SAS.
-- * Author: Neil Armstrong <narmstrong@baylibre.com>
-- * Copyright (C) 2014 Amlogic, Inc.
-- *
-- * Redistribution and use in source and binary forms, with or without
-- * modification, are permitted provided that the following conditions
-- * are met:
-- *
-- *   * Redistributions of source code must retain the above copyright
-- *     notice, this list of conditions and the following disclaimer.
-- *   * Redistributions in binary form must reproduce the above copyright
-- *     notice, this list of conditions and the following disclaimer in
-- *     the documentation and/or other materials provided with the
-- *     distribution.
-- *   * Neither the name of Intel Corporation nor the names of its
-- *     contributors may be used to endorse or promote products derived
-- *     from this software without specific prior written permission.
-- *
-- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+- * along with this program. If not, see <http://www.gnu.org/licenses/>.
   */
  
  #include <linux/clk.h>
