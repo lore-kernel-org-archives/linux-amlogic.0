@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8F819C04AAC
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 May 2019 13:38:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D7400C04AAC
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 May 2019 13:38:18 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6455320856
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 May 2019 13:38:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id AB8B720856
+	for <linux-amlogic@archiver.kernel.org>; Mon, 20 May 2019 13:38:18 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Ze5bQxwa";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="OlLRjGyR"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6455320856
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dpEuuqhs";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="j4uX6SCu"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AB8B720856
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,67 +26,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NLrcZIas96Rwxd7ic2sqgjr9goE0OwQSELRRcFc7U+M=; b=Ze5bQxwakz1oux
-	rdjsTOEt3VurAPtBvu8OLZVN8IZv5Lgc1j74wYzDyhTg6xPkJzynpcfNbCBX1WyoMZatN6Tr/dw2d
-	gGHQdUwhWEOuU0J+owtlskIkQS2+nAJL2IKUn86BAJPA5jZ2w/8X7yPKcnmCgB7LXAbFrRiM5j8/W
-	5ycu/eJip4YNT2H73HqRMGS/+TRm2MRFrZG8UsRdGw8at2uVVcBpzN/BbBZhHg2IgyRczg8w486Wj
-	eENQigXvSBrfW/TR59EH/1GXbjFYusG5TsmQuEfEeKLXBZbbGfRhH7R7DH99p+q16Q3Hj+gi4sow+
-	hUmTzcQdNxW+wHyEKvdw==;
+	List-Owner; bh=0iuXAVK4LcW1E+LycBEthDNlZHWNbzbfZ1T372tYh7g=; b=dpEuuqhsIOYNbb
+	projA2Ifw5lo5ZiIMUVRst41hqajv2snDU3DQhJOX8/mzSS51XkHcirPwrh+wmSswyG9gVgVTVq5d
+	yFWwhvVqKZNwJpRQVXIq2YhH3H7TrqTAgWsOkX6e0bz1SD+GVUB/Iu/gXwXBBNctA+vDYYhca2nNs
+	SxNXHR/4HQIAO8BZzWRUsrMzQCChx1aUDLaqXjcYit8idqad9W1+HW+6TWIyFRdh4ofdU8AazERYI
+	YXvAq34fFpSip5NNB6cu36HFeD6V33Yi5LMarEsU46n4mtcupXOk503/Iz1dxUeBP8E2fcnR9DGbl
+	tmdM6RGAiARvqV1B04EA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hSiUT-000528-Mp; Mon, 20 May 2019 13:38:09 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1hSiUW-00054o-GT; Mon, 20 May 2019 13:38:12 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hSiUK-0004vz-Nb
- for linux-amlogic@lists.infradead.org; Mon, 20 May 2019 13:38:02 +0000
-Received: by mail-wr1-x442.google.com with SMTP id r7so14610284wrr.13
- for <linux-amlogic@lists.infradead.org>; Mon, 20 May 2019 06:38:00 -0700 (PDT)
+ id 1hSiUL-0004wC-Dr
+ for linux-amlogic@lists.infradead.org; Mon, 20 May 2019 13:38:03 +0000
+Received: by mail-wr1-x443.google.com with SMTP id w8so14669640wrl.6
+ for <linux-amlogic@lists.infradead.org>; Mon, 20 May 2019 06:38:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=RpTG3YqbycVwvduhkvFP3UiUhyHPdqI1e6sTfcjn1Gc=;
- b=OlLRjGyRcvQIUG7tTn6GR1dQLGDeBIwQKVejCwIx8Fyt8+C+RokYrA071pNFZSodGB
- 29QqZi0fyspsOlPLX1n7dF+li//GwdYGtWaD1MVaw/HFPiflRJL2FDUVeiJx2W3B3GXK
- bvyFi9zoFyf+vHXwXVM8goC/UGdY8q8QTyJqe5d+vnaTn3z29p+XfvzPGlY9+sdefT6t
- NuJRkvDsp3a+ogTRzHArof9TCbGODUfomXkQGbOZGZz4Q8g4ZUwzrKw6/x2Ws1QSM5yJ
- ZQTgQCzpTL/sYmQlKKQBAvK1sLqxCxkg7gMr0uQ/sFSJRcVYJh3tXeZnZg1FIPVKE0YF
- v/Qw==
+ bh=WK3u8/ndCxq4jioi0PwfFEPZB+6Qz5E/d+j0WFTc0jY=;
+ b=j4uX6SCuV87+MjAHfij8Yg59JJHav72YCDp5eiEkuT+Nu01QY4pI8MU6LRjJyFRjYl
+ jCbkfPBb1oyu0D6ZoGWOiFGmqpk+EA67BqCO8TvPr4i17/FgiA7CV4uUdVRv8QavufmO
+ Tpquff/U2q2P2ptXoCrSSLSc7DgFJ8sbBmzRZpleZhB2sSBFlr49KNvN17ln99+nB0D4
+ KO8d+jcrBxyni4Kfd7CdHZD3QBknYuC36kfOJ3xKT3SeM99e802mY3xVAfW1wXgK9eJe
+ 3I4xAsYSoO3I3235eXfnkGXfpjh3PHBzdjXOYBtPXTQFmBiQWJIuZYu08f7957Uzf03x
+ S7Xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=RpTG3YqbycVwvduhkvFP3UiUhyHPdqI1e6sTfcjn1Gc=;
- b=ehj2nM/vUEZHkvP26k1uUi3/PE9G41n6a0tTG0VLmu4iQN8wvvowEI7s3ryoWd7erR
- egPVRvS/heMD+wE9xxkUiC5Vv/5RDGfAtU/9xhmfzPRzqIGzVH9/3hgSiWIdol6ukjEm
- dKhWvsLzxwDjCNGeZjuF+qWFldOHElX/J2D0Q/8BfbDz4+o+rxSNo8/YCj1+QAxWuHZw
- wiMNH0rkpK3UNz4/6Cqfa9MBKDUGNtCJ9t/PWCLyRJBXSGOpYpC70Zv5qN3mryY1xNW1
- hF2LIclwXJDpZQ+ru/ZXhorcqC3JSWMCAZnshb1UpnVFgAf4P5jZOLXIoQpARsR/Dfar
- dAoA==
-X-Gm-Message-State: APjAAAWsP3UhiejKNaYqC+c0ezb+PDLMFWDgTkOqbiWveotOQwtl75Go
- AKxB8r4hZsb0e88jP4fXGldmxg==
-X-Google-Smtp-Source: APXvYqxonM/GOKU79P5eVOsqtwE35oRw5SktT2gEcdfcQ90Tlqo32JmglhRL7ss2QzUAHCMRfW8wlg==
-X-Received: by 2002:adf:e408:: with SMTP id g8mr13689365wrm.143.1558359478875; 
- Mon, 20 May 2019 06:37:58 -0700 (PDT)
+ bh=WK3u8/ndCxq4jioi0PwfFEPZB+6Qz5E/d+j0WFTc0jY=;
+ b=YkROWmapngj7F0N4lHtBBtmsGEJKrKS8R3EML4vUpj5UedvGYGMYcHHQ94fsU9wCiM
+ E6GiJwJr1X8ROkYNM5chssx3jlqyQIEB5nTEAYCwVZUGxwyz5sw/FKIAX2EqsLhIYRxN
+ f+ghVYpoCURH1MXCgV7CdY+JdDd24W0FjA414OYMJ5mSnPGI/2YnLgoFVms7R4UXSd8r
+ kwQOhvz6qf4ujum8xKEoMytvVfgyozBJI6HN0i8/wvwhzwcpQDnhVMFQrQDwduoOH+qJ
+ C/DM1zjbc37tpQtVxBnOAxvsLDpk0LegZxdwRYHnED0NeHNTHcxdvsZGhFfFDts8qP/F
+ hqsw==
+X-Gm-Message-State: APjAAAV6EYxH+c4vFbAXfRvvLhF4ZqHAkRALkcWWiLQw5qQbeswdvmmb
+ W1QZpf05DQ0ICzxEtKYyXy+FzQ==
+X-Google-Smtp-Source: APXvYqzUMHoSq9Wq79xRMpZ8XfEvh+NyiLctBUedlrZTgq0sEpkBGkE46QMIlYX5qWgsh1wLwlhF4A==
+X-Received: by 2002:adf:f041:: with SMTP id t1mr39880363wro.74.1558359479889; 
+ Mon, 20 May 2019 06:37:59 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id t19sm12167059wmi.42.2019.05.20.06.37.57
+ by smtp.gmail.com with ESMTPSA id t19sm12167059wmi.42.2019.05.20.06.37.58
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Mon, 20 May 2019 06:37:58 -0700 (PDT)
+ Mon, 20 May 2019 06:37:59 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: a.hajda@samsung.com,
 	Laurent.pinchart@ideasonboard.com
-Subject: [PATCH 2/5] drm/bridge: add encoder support to specify bridge input
- format
-Date: Mon, 20 May 2019 15:37:50 +0200
-Message-Id: <20190520133753.23871-3-narmstrong@baylibre.com>
+Subject: [PATCH 3/5] drm/bridge: dw-hdmi: Add support for dynamic output
+ format setup
+Date: Mon, 20 May 2019 15:37:51 +0200
+Message-Id: <20190520133753.23871-4-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190520133753.23871-1-narmstrong@baylibre.com>
 References: <20190520133753.23871-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190520_063800_921444_C6F95F86 
-X-CRM114-Status: GOOD (  13.94  )
+X-CRM114-CacheID: sfid-20190520_063801_649256_618E510D 
+X-CRM114-Status: GOOD (  17.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -108,108 +108,205 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patch adds a new format_set() callback to the bridge ops permitting
-the encoder to specify the new input format and encoding.
+In order to support the HDMI2.0 YUV420, YUV422 and the 10bit, 12bit and
+16bits outpu use cases, add support for the recently introduced bridge
+callback format_set().
 
-This allows supporting the very specific HDMI2.0 YUV420 output mode
-when the bridge cannot convert from RGB or YUV444 to YUV420.
+This callback will setup the new input format and encoding from encoder,
+then these information will be used instead of the default ones
+in the dw_hdmi_setup() function.
 
-In this case, the encode must downsample before the bridge and must
-specify the bridge the new input bus format differs.
-
-This will also help supporting the YUV420 mode where the bridge cannot
-downsample, and also support 10bit, 12bit and 16bit output modes
-when the bridge cannot convert between different bit depths.
+To determine the output bus format, has been added :
+- support for the connector display_info bus_formats, where a fixed
+  output bus format can be enforced by the encoder
+- support for synami output bus format depending on the input format,
+  especially the YUV420 input bus format, enforcing YUV420 as output
+  with the correct bit depth
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/gpu/drm/drm_bridge.c | 35 +++++++++++++++++++++++++++++++++++
- include/drm/drm_bridge.h     | 19 +++++++++++++++++++
- 2 files changed, 54 insertions(+)
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 121 ++++++++++++++++++++--
+ 1 file changed, 112 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
-index 138b2711d389..33be74a977f7 100644
---- a/drivers/gpu/drm/drm_bridge.c
-+++ b/drivers/gpu/drm/drm_bridge.c
-@@ -307,6 +307,41 @@ void drm_bridge_mode_set(struct drm_bridge *bridge,
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+index b50c49caf7ae..284ce59be8f8 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+@@ -103,6 +103,8 @@ struct hdmi_vmode {
+ };
+ 
+ struct hdmi_data_info {
++	unsigned int bridge_in_bus_format;
++	unsigned int bridge_in_encoding;
+ 	unsigned int enc_in_bus_format;
+ 	unsigned int enc_out_bus_format;
+ 	unsigned int enc_in_encoding;
+@@ -1838,8 +1840,51 @@ static void hdmi_disable_overflow_interrupts(struct dw_hdmi *hdmi)
+ 		    HDMI_IH_MUTE_FC_STAT2);
  }
- EXPORT_SYMBOL(drm_bridge_mode_set);
  
-+/**
-+ * drm_bridge_format_set - setup with proposed input format and encoding for
-+ *			   all bridges in the encoder chain
-+ * @bridge: bridge control structure
-+ * @input_bus_format: proposed input bus format for the bridge
-+ * @input_encoding: proposed input encoding for this bridge
-+ *
-+ * Calls &drm_bridge_funcs.format_set op for all the bridges in the
-+ * encoder chain, starting from the first bridge to the last.
-+ *
-+ * Note: the bridge passed should be the one closest to the encoder
-+ *
-+ * RETURNS:
-+ * true on success, false if one of the bridge cannot handle the format
++/*
++ * The DW-HDMI CSC can only interpolate and decimate from 4:2:2 to 4:4:4/RGB
++ * and from 4:4:4/RGB to 4:2:2.
++ * Default to RGB output except if 4:2:0 as input, which CSC cannot convert.
 + */
-+bool drm_bridge_format_set(struct drm_bridge *bridge,
-+			   const u32 input_bus_format,
-+			   const u32 input_encoding)
++static unsigned long dw_hdmi_determine_output_bus_format(struct dw_hdmi *hdmi)
 +{
-+	bool ret = true;
++	unsigned int depth = hdmi_bus_fmt_color_depth(
++					hdmi->hdmi_data.enc_in_bus_format);
++	bool is_420 = hdmi_bus_fmt_is_yuv420(hdmi->hdmi_data.enc_in_bus_format);
++	unsigned long fmt = MEDIA_BUS_FMT_RGB888_1X24;
 +
-+	if (!bridge)
-+		return true;
++	switch (depth) {
++	case 8:
++		if (is_420)
++			fmt = MEDIA_BUS_FMT_UYYVYY8_0_5X24;
++		else
++			fmt = MEDIA_BUS_FMT_RGB888_1X24;
++		break;
++	case 10:
++		if (is_420)
++			fmt = MEDIA_BUS_FMT_UYYVYY10_0_5X30;
++		else
++			fmt = MEDIA_BUS_FMT_RGB101010_1X30;
++		break;
++	case 12:
++		if (is_420)
++			fmt = MEDIA_BUS_FMT_UYYVYY12_0_5X36;
++		else
++			fmt = MEDIA_BUS_FMT_RGB121212_1X36;
++		break;
++	case 16:
++		if (is_420)
++			fmt = MEDIA_BUS_FMT_UYYVYY16_0_5X48;
++		else
++			fmt = MEDIA_BUS_FMT_RGB161616_1X48;
++		break;
++	}
 +
-+	if (bridge->funcs->format_set)
-+		ret = bridge->funcs->format_set(bridge, input_bus_format,
-+						input_encoding);
-+	if (!ret)
-+		return ret;
-+
-+	return drm_bridge_format_set(bridge->next, input_bus_format,
-+				     input_encoding);
++	return fmt;
 +}
-+EXPORT_SYMBOL(drm_bridge_format_set);
 +
- /**
-  * drm_bridge_pre_enable - prepares for enabling all
-  *			   bridges in the encoder chain
-diff --git a/include/drm/drm_bridge.h b/include/drm/drm_bridge.h
-index d4428913a4e1..7a79e61b7825 100644
---- a/include/drm/drm_bridge.h
-+++ b/include/drm/drm_bridge.h
-@@ -198,6 +198,22 @@ struct drm_bridge_funcs {
- 	void (*mode_set)(struct drm_bridge *bridge,
- 			 const struct drm_display_mode *mode,
- 			 const struct drm_display_mode *adjusted_mode);
-+
-+	/**
-+	 * @format_set:
-+	 *
-+	 * This callback should configure the bridge for the given input bus
-+	 * format and encoding. It is called after the @format_set callback
-+	 * for the preceding element in the display pipeline has been called
-+	 * already. If the bridge is the first element then this would be
-+	 * &drm_encoder_helper_funcs.format_set. The display pipe (i.e.
-+	 * clocks and timing signals) is off when this function is called.
-+	 *
-+	 * @returns: true in success, false is a bridge refuses the format
-+	 */
-+	bool (*format_set)(struct drm_bridge *bridge,
-+			   const u32 input_bus_format,
-+			   const u32 input_encoding);
- 	/**
- 	 * @pre_enable:
- 	 *
-@@ -311,6 +327,9 @@ void drm_bridge_post_disable(struct drm_bridge *bridge);
- void drm_bridge_mode_set(struct drm_bridge *bridge,
- 			 const struct drm_display_mode *mode,
- 			 const struct drm_display_mode *adjusted_mode);
-+bool drm_bridge_format_set(struct drm_bridge *bridge,
-+			   const u32 input_bus_format,
-+			   const u32 input_encoding);
- void drm_bridge_pre_enable(struct drm_bridge *bridge);
- void drm_bridge_enable(struct drm_bridge *bridge);
+ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
+ {
++	struct drm_display_info *display = &hdmi->connector.display_info;
+ 	int ret;
  
+ 	hdmi_disable_overflow_interrupts(hdmi);
+@@ -1853,9 +1898,9 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
+ 	}
+ 
+ 	if ((hdmi->vic == 6) || (hdmi->vic == 7) ||
+-	    (hdmi->vic == 21) || (hdmi->vic == 22) ||
+-	    (hdmi->vic == 2) || (hdmi->vic == 3) ||
+-	    (hdmi->vic == 17) || (hdmi->vic == 18))
++		 (hdmi->vic == 21) || (hdmi->vic == 22) ||
++		 (hdmi->vic == 2) || (hdmi->vic == 3) ||
++		 (hdmi->vic == 17) || (hdmi->vic == 18))
+ 		hdmi->hdmi_data.enc_out_encoding = V4L2_YCBCR_ENC_601;
+ 	else
+ 		hdmi->hdmi_data.enc_out_encoding = V4L2_YCBCR_ENC_709;
+@@ -1863,22 +1908,29 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
+ 	hdmi->hdmi_data.video_mode.mpixelrepetitionoutput = 0;
+ 	hdmi->hdmi_data.video_mode.mpixelrepetitioninput = 0;
+ 
+-	/* TOFIX: Get input format from plat data or fallback to RGB888 */
+-	if (hdmi->plat_data->input_bus_format)
++	if (hdmi->hdmi_data.bridge_in_bus_format)
++		hdmi->hdmi_data.enc_in_bus_format =
++			hdmi->hdmi_data.bridge_in_bus_format;
++	else if (hdmi->plat_data->input_bus_format)
+ 		hdmi->hdmi_data.enc_in_bus_format =
+ 			hdmi->plat_data->input_bus_format;
+ 	else
+ 		hdmi->hdmi_data.enc_in_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
+ 
+-	/* TOFIX: Get input encoding from plat data or fallback to none */
+-	if (hdmi->plat_data->input_bus_encoding)
++	if (hdmi->hdmi_data.bridge_in_encoding)
++		hdmi->hdmi_data.enc_in_encoding =
++			hdmi->hdmi_data.bridge_in_encoding;
++	else if (hdmi->plat_data->input_bus_encoding)
+ 		hdmi->hdmi_data.enc_in_encoding =
+ 			hdmi->plat_data->input_bus_encoding;
+ 	else
+ 		hdmi->hdmi_data.enc_in_encoding = V4L2_YCBCR_ENC_DEFAULT;
+ 
+-	/* TOFIX: Default to RGB888 output format */
+-	hdmi->hdmi_data.enc_out_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
++	if (display->num_bus_formats)
++		hdmi->hdmi_data.enc_out_bus_format = display->bus_formats[0];
++	else
++		hdmi->hdmi_data.enc_out_bus_format =
++				dw_hdmi_determine_output_bus_format(hdmi);
+ 
+ 	hdmi->hdmi_data.pix_repet_factor = 0;
+ 	hdmi->hdmi_data.hdcp_enable = 0;
+@@ -2150,6 +2202,56 @@ dw_hdmi_bridge_mode_valid(struct drm_bridge *bridge,
+ 	return mode_status;
+ }
+ 
++static bool dw_hdmi_drm_bridge_format_set(struct drm_bridge *bridge,
++					 const u32 input_bus_format,
++					 const u32 input_encoding)
++{
++	struct dw_hdmi *hdmi = bridge->driver_private;
++
++	/* Filter supported input bus formats */
++	switch (input_bus_format) {
++	case MEDIA_BUS_FMT_RGB888_1X24:
++	case MEDIA_BUS_FMT_RGB101010_1X30:
++	case MEDIA_BUS_FMT_RGB121212_1X36:
++	case MEDIA_BUS_FMT_RGB161616_1X48:
++	case MEDIA_BUS_FMT_YUV8_1X24:
++	case MEDIA_BUS_FMT_YUV10_1X30:
++	case MEDIA_BUS_FMT_YUV12_1X36:
++	case MEDIA_BUS_FMT_YUV16_1X48:
++	case MEDIA_BUS_FMT_UYVY8_1X16:
++	case MEDIA_BUS_FMT_UYVY10_1X20:
++	case MEDIA_BUS_FMT_UYVY12_1X24:
++	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
++	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
++	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
++	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
++		break;
++	default:
++		dev_dbg(hdmi->dev, "Unsupported Input bus format %x\n",
++			input_bus_format);
++		return false;
++	}
++
++	/* Filter supported input bus encoding */
++	switch (input_encoding) {
++	case V4L2_YCBCR_ENC_DEFAULT:
++	case V4L2_YCBCR_ENC_601:
++	case V4L2_YCBCR_ENC_709:
++	case V4L2_YCBCR_ENC_XV601:
++	case V4L2_YCBCR_ENC_XV709:
++		break;
++	default:
++		dev_dbg(hdmi->dev, "Unsupported Input encoding %x\n",
++			input_bus_format);
++		return false;
++	}
++
++	hdmi->hdmi_data.bridge_in_bus_format = input_bus_format;
++	hdmi->hdmi_data.bridge_in_encoding = input_encoding;
++
++	return true;
++}
++
+ static void dw_hdmi_bridge_mode_set(struct drm_bridge *bridge,
+ 				    const struct drm_display_mode *orig_mode,
+ 				    const struct drm_display_mode *mode)
+@@ -2192,6 +2294,7 @@ static const struct drm_bridge_funcs dw_hdmi_bridge_funcs = {
+ 	.disable = dw_hdmi_bridge_disable,
+ 	.mode_set = dw_hdmi_bridge_mode_set,
+ 	.mode_valid = dw_hdmi_bridge_mode_valid,
++	.format_set = dw_hdmi_drm_bridge_format_set,
+ };
+ 
+ static irqreturn_t dw_hdmi_i2c_irq(struct dw_hdmi *hdmi)
 -- 
 2.21.0
 
