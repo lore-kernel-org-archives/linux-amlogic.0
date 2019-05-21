@@ -1,93 +1,93 @@
-Return-Path: <SRS0=EW34=TU=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=vjLk=TV=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIM_INVALID,DKIM_SIGNED,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A8F37C04AAC
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 May 2019 21:51:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DCFD5C04AAF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 May 2019 07:45:54 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7F1E52173C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 20 May 2019 21:51:23 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id AF72921019
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 May 2019 07:45:54 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PFs1/Me5";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="10gtItmO"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7F1E52173C
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="OAgbVvMP";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ztqxpie7"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AF72921019
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8gdA0Hqjp5L8iQJr+3bu/ZpUzA84G3nRt6DfbZyKm3A=; b=PFs1/Me5Y9DCd+
-	n7FPwh+wxyfOMjXBFExwolDmPsk2+dFK3VonHy3tLq5742/fbPP76cL82NiVKg1W+6PSbRDjWanDp
-	mQ0DAOX5Go7iUdW6a+DCUVgmnZykjpr5iXi3pOQVs3bb3kQA5TJgoPtBlt5zrOYsPOrBOk+u/cO59
-	FjCbf1LxmIhRdSDjwqoBuS7vOPZXRB0SGqmHrlj6VdRw7vBTSO7XIVePRKolX/O2VGQAEJfUdvDHx
-	bbX82+SapZaS/A29rA1LiWZUIgDLd020UBogO6epVWQI65X0po3NijPCrbkPb+jCuCXBfM3hnSYrp
-	PFw0x9JWp6J/w9vzRaxg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=3fqlX3jHYuHb3EinKo6jTEVeNI+7qQ14p53cVmgpp98=; b=OAgbVvMPjJ/zly
+	FcUna1yhbDT0/A1wHL8ccaC2DjPyaIVWMJvLvDa7id/QFcGAsr/EachtojzHcCDOSW92EKeaxZcud
+	ROSWTN5TKEW5/S9q1TqQB8uwKLFZhyx6pbL7s3iBgRuZwJOKORnFPOFg4bXbWQZAQM96JtF1jhL21
+	nJ1anASxOJigdqDE68l2C5ijNN2Ls1WZsICA0zxdg+bWhStPf8wV3ayNJJq4pN+egbuWSX1DubRhS
+	7VCv+TYR9swrYk3u5QkCS0DrQEud0cmlh+wN9sbSwa6PytHoU6sjqGLLShWzzWDz/CcS1m+4x6AsC
+	9Fihb/H1+rdpLpQYv2LQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hSqBh-0006Ft-NQ; Mon, 20 May 2019 21:51:17 +0000
+	id 1hSzSy-000664-Fh; Tue, 21 May 2019 07:45:44 +0000
 Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hSqBd-0006F1-Th
- for linux-amlogic@lists.infradead.org; Mon, 20 May 2019 21:51:15 +0000
-Received: by mail-wm1-x343.google.com with SMTP id f204so842077wme.0
- for <linux-amlogic@lists.infradead.org>; Mon, 20 May 2019 14:51:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:cc:date:in-reply-to:references
- :user-agent:mime-version:content-transfer-encoding;
- bh=suG0F0UoWiaM1rg1kA32ZVwY8eEO38Fk254vRSf8mBg=;
- b=10gtItmO4VM4P1eUEBvLxn2dalHadbbCVYyxG+5wqFl6o7xBJEF1GodNxN7/DKFY+e
- EgSUO11pCntSYZVWb3SQeoXYQfyJYrQ1ApRPWeHpSHnshIL663Dwz4id0LJHhH4fLb7k
- FFivLYNEc/QQOHW6HlMix2bSCey96AxYoTFsNUC/ZFzc+Mw0fJfx7ZJmQzxuXdL7MMwK
- 0czeVM9YR/LbUd7STCqRasjeuvSDkZvWN36/rr0vrwuZnCmqhRUASStu9xJkdj+T4BMX
- 2ciigQmSWhiWZBB9OxTMZwmH/+bAnEpuG7ws2502Y4aXxO9pv/AbbHyr35zAIgfS9OWd
- Il9A==
+ id 1hSzSh-0005rw-Pa
+ for linux-amlogic@lists.infradead.org; Tue, 21 May 2019 07:45:34 +0000
+Received: by mail-wm1-x343.google.com with SMTP id f204so1823487wme.0
+ for <linux-amlogic@lists.infradead.org>; Tue, 21 May 2019 00:45:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=7W2uW0GKbANg0YRRJwfDi3S83JuyE8bC4TgR386g+ig=;
+ b=Ztqxpie7c7XA0ZxhayhLFU5YfLTiyHUepsEAmGYq+FUlQAfXb3LwgAtRxGq3DBMLDp
+ sAAXnOa9PYGcZ2g3jo2609OGB/QROfchy98+Lz36qwm1cKApYb3XTOi+Fp9cR8bVxbXX
+ QV+o57b8E7XeETrpYw4/yQsK5KmNqLoEwQFrC4dJdS3WKZ6c1N5mTanXGuLa48ZI4/Ju
+ kuXzRua9Q0TL1j1xdYisI51IrpaRbwBKzlhgJLH1nVvULMnfAGM+/MOoxzlW5IpXIvk7
+ nD1ATrlT7CCZu3wOLugC1MEkaGYXRLATx+0g0WSbNuhvwOd2J1mwx5rEy2A8ApafFmxY
+ 7ImQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=suG0F0UoWiaM1rg1kA32ZVwY8eEO38Fk254vRSf8mBg=;
- b=fD2b50UNlmU4EqHIhErXsqYa90nKA11fA0wIaiSEG6/qPdC68muOfrPhMW63QcDQeV
- u5IlCeBC2c/XPqY+kiV5dwwVPSFoqkh4v3THbDNKCvBQhkzXJR0xPXG+2W7V59bCShaa
- sO/bvlTfj31wQJrWbnttLO9e/miwua4faE7hPFph95UkjsbY9f8kiicftgclHcvFE4ax
- BJGIfy7+VJ7+QzA+T+pbDq/N9xYyRInuL8axVr9Arc8ZGui5WV6UeKJYeE93H5kKWc15
- Slb1jFOHnQ6wpTCBiMZgodsDgm4Qh5R7o5zM8eJY5aVDc+qWa34ApxNNyfU7fvvWOcXB
- 5N9w==
-X-Gm-Message-State: APjAAAUk86HB76HTv+oMEVSsrjNN8AKlJZH2YTnJAUv992J+C42rw7sl
- 4ehQZ7ChN22Q1DqEPIVnFQqtOw==
-X-Google-Smtp-Source: APXvYqzyO1M/CnCLWf6cAnnORJuCPlXz906OZjZZljzCcjQtkTxx24tsTI99NINeG4zlq2iYc88zJQ==
-X-Received: by 2002:a1c:f009:: with SMTP id a9mr832063wmb.110.1558389071947;
- Mon, 20 May 2019 14:51:11 -0700 (PDT)
-Received: from boomer.baylibre.com (cag06-3-82-243-161-21.fbx.proxad.net.
- [82.243.161.21])
- by smtp.gmail.com with ESMTPSA id m13sm18131299wrs.87.2019.05.20.14.51.10
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Mon, 20 May 2019 14:51:11 -0700 (PDT)
-Message-ID: <97cde329c44eade402deb517211a15fd70103f01.camel@baylibre.com>
-Subject: Re: [PATCH v2 3/5] arm64: dts: meson: g12a: add mdio multiplexer
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Andrew Lunn <andrew@lunn.ch>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>
-Date: Mon, 20 May 2019 23:51:09 +0200
-In-Reply-To: <20190520190533.GF22024@lunn.ch>
-References: <20190520131401.11804-1-jbrunet@baylibre.com>
- <20190520131401.11804-4-jbrunet@baylibre.com>
- <CAFBinCA_XE86eqCMpEFc3xMZDH8J7wVQPRj7bFZyqDxQx-w-qw@mail.gmail.com>
- <20190520190533.GF22024@lunn.ch>
-User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=7W2uW0GKbANg0YRRJwfDi3S83JuyE8bC4TgR386g+ig=;
+ b=MBGCGI32Z8zN2RibslMUWLT0ALt6b9q/E0+gfjEHshM2V9ckwxVALb6GH9FvOQPtAh
+ fQWTlmHRs5rCD4pcNgStcJEULOgwU7Qal+F8FqEWTZwoIFYbOtfGRib9BDv7gke9VHfY
+ yK52bIWlrF0sSQRm7R+okqo36rBzHYAL/12/fMRsvXMA7keP7RIcCpfbmXjWub5sXHnN
+ yf5FmjreoHHR6rfJuwKTVLzjeHpFyCDlfEhjFgkVwnJC1I4/lapTwVRwWkwViTaCHtls
+ aeIeW13L3wz4bdjVsns1TEVcWtqDOEXRmTLWKfnMjHD50B6PbNZ3B4ngG1OjI+HgBi37
+ SsBA==
+X-Gm-Message-State: APjAAAUUyaF+bKuqjWP5tGoafGkRkVKxTLh0jMwbMZoqZ5KzXnVPycft
+ bhcMYiKPWZmXZwaQGwvui7Mg6Q==
+X-Google-Smtp-Source: APXvYqyxfn6nygtboQpBoFArmbb8LvGA5vlw84HB75QJRhHbSdB1cLdCnbsbPzvasZc5W/5o+FBHzg==
+X-Received: by 2002:a1c:9e8e:: with SMTP id h136mr2140540wme.29.1558424725333; 
+ Tue, 21 May 2019 00:45:25 -0700 (PDT)
+Received: from [10.1.203.87] (nat-wifi.sssup.it. [193.205.81.22])
+ by smtp.googlemail.com with ESMTPSA id u7sm6381826wmg.25.2019.05.21.00.45.24
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 21 May 2019 00:45:24 -0700 (PDT)
+Subject: Re: [PATCH] clocksource: timer-meson6: update with SPDX Licence
+ identifier
+To: Neil Armstrong <narmstrong@baylibre.com>, tglx@linutronix.de
+References: <20190520140007.29042-1-narmstrong@baylibre.com>
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <4262cc03-51eb-67fd-b899-61a2ed03dffa@linaro.org>
+Date: Tue, 21 May 2019 09:45:24 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
+In-Reply-To: <20190520140007.29042-1-narmstrong@baylibre.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190520_145113_962114_3EFDBC57 
-X-CRM114-Status: GOOD (  19.53  )
+X-CRM114-CacheID: sfid-20190521_004528_038610_A2D282CD 
+X-CRM114-Status: UNSURE (   8.99  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -99,71 +99,20 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, f.fainelli@gmail.com,
- Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, hkallweit1@gmail.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 2019-05-20 at 21:05 +0200, Andrew Lunn wrote:
-> > > +                               int_mdio: mdio@1 {
-> > > +                                       reg = <1>;
-> > > +                                       #address-cells = <1>;
-> > > +                                       #size-cells = <0>;
-> > > +
-> > > +                                       internal_ephy: ethernet_phy@8 {
-> > > +                                               compatible = "ethernet-phy-id0180.3301",
-> > > +                                                            "ethernet-phy-ieee802.3-c22";
-> > Based on your comment on v1 of this patch [0] the Ethernet PHY ID is
-> > defined by this "mdio-multiplexer" (write arbitrary value to a
-> > register then that's the PHY ID which will show up on the bus)
-> > I'm fine with explicitly listing the ID which the PHY driver binds to
-> > because I don't know a better way.
-
-... 
-
-> 
-> Does reading the ID registers give the correct ID, once you have poked
-> registers in the mdio-multiplexer? If so, you don't need this
-> compatible string.
-
-Hi Andrew,
-
-In 5.1 the mdio-mux set a wrong simply because I got it wrong. I pushed a
-fix for that, and maybe it has already hit mainline.
-
-As I pointed to Martin on v1, this situation just shows that this setting is
-weaker than the usual phy setup.
-
-I do understand why we don't want to put the PHY id in DT. If the PHY fitted on
-the board changes, we want to pick it up. This particular phy is embedded in
-SoC, we know it won't change for this SoC, whatever the mdio-mux sets.
-
-So yes it should (soon) work as usual, setting this id is not strictly
-necessary but it nicely reflect that this particular phy is integrated in
-the SoC and we know which driver to use. 
-
-So, if this is ok with you, I'd prefer to keep this particular id around.
-
-> 
-> If the read is giving the wrong ID, then yes, you do want this. But
-> then please add a comment in the DT blob. This is very unusual, so
-> should have some explanation why it is needed.
-
-Sure, can add a comment. I suggest to do it in follow-up. At least it keeps
-things aligned between the gxl, which has been like this for quite a while now,
-and g12a.
-
-
-> 
-> Thanks
-> 	Andrew
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMjAvMDUvMjAxOSAxNjowMCwgTmVpbCBBcm1zdHJvbmcgd3JvdGU6Cj4gU2lnbmVkLW9mZi1i
+eTogTmVpbCBBcm1zdHJvbmcgPG5hcm1zdHJvbmdAYmF5bGlicmUuY29tPgo+IC0tLQoKQXBwbGll
+ZCwgdGhhbmtzLgoKICAtLSBEYW5pZWwKCgotLSAKIDxodHRwOi8vd3d3LmxpbmFyby5vcmcvPiBM
+aW5hcm8ub3JnIOKUgiBPcGVuIHNvdXJjZSBzb2Z0d2FyZSBmb3IgQVJNIFNvQ3MKCkZvbGxvdyBM
+aW5hcm86ICA8aHR0cDovL3d3dy5mYWNlYm9vay5jb20vcGFnZXMvTGluYXJvPiBGYWNlYm9vayB8
+CjxodHRwOi8vdHdpdHRlci5jb20vIyEvbGluYXJvb3JnPiBUd2l0dGVyIHwKPGh0dHA6Ly93d3cu
+bGluYXJvLm9yZy9saW5hcm8tYmxvZy8+IEJsb2cKCgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1h
+bWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
