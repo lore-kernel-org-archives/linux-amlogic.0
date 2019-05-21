@@ -2,89 +2,143 @@ Return-Path: <SRS0=vjLk=TV=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 10380C04AAF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 May 2019 15:20:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BAD7FC04AAF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 May 2019 15:21:34 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D5FD32173E
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 May 2019 15:20:37 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8E1CE2173E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 May 2019 15:21:34 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="C7G5REQE";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="q7pBc2fZ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D5FD32173E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jI4s0M33";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="YdirzbDF"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8E1CE2173E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cQkc0Oxw5kkfM9FVApx6o27TdA+mcWz8VQ8dvQ/Kk0A=; b=C7G5REQEGRDfEk
-	9BsFVYKzrKqi0j6cDbu5u4oMEwa82w/OJE5R1DzN+eGobKw3LFbGy1J0LW8h4Yl7g/8txoArbxVE0
-	LcWNgCvqAAKdNpHaJRjSqjmkr6TcdPa3ghb90Tl4dwvcS08EehqzS+jtoCIZbP/eViRjXYkgLKnX+
-	0UIupsF6MpB5a5kqhHNSU+yb14HeNSJ3AFGQrlRF/SdM6ALFv0+cHxtGYhPtbkYSiLQg5/+aOjyoD
-	Gkv1D57WezR5Qh3mxBp1UBB/+AZLrugByoP/7vNHq2YGNRjEjrYkVHjqZI0G4GIFo5ISHcWdVj1pt
-	ZrJiYpDPa5slq/47Dktg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:To:References:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=crRIayFZKjFUtkKRA9WS0kF/TxoSvscNvSc7sRYAU5A=; b=jI4s0M33NYzXAk
+	RTTcIQGNPZwPJfFLXbfK+DNMZIvyUKBNe1wgOCJRrSYxETQAuaMB7Svn1e3iSNwg9Uk6ImAk0QbwO
+	MltBfJaRjvQQE+BkMOsgEa27RO/F2E8tQbZUEqBKBu2rrTeTCEhYktB2JBy1QW/b8urwjEqBYxYY7
+	2+a8pXr9p2sxv9SIyfc9R6aOLmOOTEAeyg23Syy7lNtUhVbHScqIgh86P7+meZk0QywZQL9cy3cd0
+	UTbV9KZgO8p+z1bzk5jf5v2LNkerv3PMJyOF0RVgsPGV/nA0xIw5jtTY4H/UjBdPtCn6i61x0Sako
+	D7Eu39WLtDre5HbMjiRg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hT6Z4-0007Fp-5e; Tue, 21 May 2019 15:20:30 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1hT6a0-00081K-7k; Tue, 21 May 2019 15:21:28 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hT6YZ-0005Rm-Ch
- for linux-amlogic@lists.infradead.org; Tue, 21 May 2019 15:20:05 +0000
-Received: by mail-wr1-x441.google.com with SMTP id m3so6127699wrv.2
- for <linux-amlogic@lists.infradead.org>; Tue, 21 May 2019 08:19:59 -0700 (PDT)
+ id 1hT6Zt-0007uK-IH
+ for linux-amlogic@lists.infradead.org; Tue, 21 May 2019 15:21:22 +0000
+Received: by mail-wm1-x344.google.com with SMTP id c77so3419294wmd.1
+ for <linux-amlogic@lists.infradead.org>; Tue, 21 May 2019 08:21:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=wlENQi5GzydZIvw71fQFWYo0j7VTDet/N8dSCmvPST0=;
- b=q7pBc2fZu9mRgbnNSdRSh9dLDuq848zgLHO+aSFrNQudzN8l3I37NCWZI5Q0Z9rq+6
- NgEmkUGw+o8uT3F0ynvX2WMDxFq1otip2M7GffzsCE0XzjFVPze90QrH+fIzA49094GS
- 9v9pWYlz2h9DVRrrbfOB9wVEfjHp7flwM/SJnMMRp8LiAr5Wvmk88pTI/iT7vVoAWV4c
- C+227N9cci7V4dIDfa4kWZYSVqWOu+wJyP67wv1C3ZFruMKbG3KAiJsrOTdVcHw/xbuM
- v9wfsU1smDXF8eNzHohN6km7ao6wRrnL7UyanCeo3RtN0Q5YazFMAgGQPs3XWcLdFg3r
- NprA==
+ h=subject:cc:references:to:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=psODiRPIry9TFvhYlBsrcuLdv/RwGulasFFSBQnu2NU=;
+ b=YdirzbDFRunUSp4QZI1bN/5FfGpbvG3c66qOjjhY53wh4yrRFy4zeOl96jxeSNTrIU
+ Lf69ZF+uV3o2Vvx3UlCnWok3Evnppx9SRzB7sxZYYHgzrX6S6wdFtR4ggR4kaJchvZDb
+ cAh0LG+kDmKCkEYEC5g3uG+7nUaKg8h27jiInGxmX/ow4Lbyjpg9VPNlN6ln0rqHPJQY
+ 9bqw+NFxeUj48KtVPxmHhh1pz5mYDqONC8YhVg1C8AO8GNtO7cateG0lPZkJUCDBJ6MK
+ xgWtF5MJscDnb1PA2hX3H4NWQgjFRtvAIXm7EQvDFLlES/q+0ZHvJMV5T4gJlms8v87b
+ /sLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=wlENQi5GzydZIvw71fQFWYo0j7VTDet/N8dSCmvPST0=;
- b=mrvfcNdobnkm3NKOdmKfsbpmkz2JfUcZ4f/o7JyQZbWgykmtIJeD/aRkc2isGfham4
- ydpk0DYkwccVcpbBKDFwbV/2blODesKsn/AYF3EmbfVnKTYpN0ULvUjGNpYbjZKU1a66
- mUn4wKMTkizbfUOx48q6O1r9EWErpRLmFkjKPsmuDrGQyFAqJyciKSBydPJM2Gq0NRoF
- 0i8jj6ckLviP0A4Y1rllIZrFjJMQDdI5YGR4j2R5eNHcWXadIN+GM0JeprqhTJW4NLLK
- oMhsLpVl3uqo1+B4gMosPrxEZXDr2wR52Qk5D6MAlfgeRChfWlJnz88fI76kFxwD01pT
- 0tMQ==
-X-Gm-Message-State: APjAAAXrrJVBkMIkLDa2jncriQMNkkUE7ZzFOQL4C8DLomFSRSmYZLYD
- lpFtMy9+n9uIGypXj3V4o+ugag==
-X-Google-Smtp-Source: APXvYqy9TvhQWlhqLSn/qFXa2+2Jtr9pXOxp/ZxW7CiJZ/5GWhho6gCXwVP69FPzs9kbDglzF4Q8mQ==
-X-Received: by 2002:adf:eb89:: with SMTP id t9mr48354992wrn.109.1558451997746; 
- Tue, 21 May 2019 08:19:57 -0700 (PDT)
-Received: from bender.baylibre.local
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id p17sm3945677wrq.95.2019.05.21.08.19.56
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Tue, 21 May 2019 08:19:56 -0700 (PDT)
+ h=x-gm-message-state:subject:cc:references:to:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=psODiRPIry9TFvhYlBsrcuLdv/RwGulasFFSBQnu2NU=;
+ b=m9aTUdgV5A8NUB3Ug1IUJkrKjFqttsUOgDdl4qEhAZMcop1KwGBGP0US1QIfSU6Xmm
+ 8yRwta1bXKY174fPTykWUtPT3SHJGlkP1Axue56AZGsXYBCgMomN/E2mH7b0sBO76BU1
+ 2+dmpG7N8Tsdmj8rCHEjOC7NfDsfdVBaF+cEEk62d5M74+oyOB5kKb7M2nof58uQLWv4
+ 1l37jCIZNDLCneR6lqQ1BY44b66dw3zjqNKu8RHwpw4Wh/QUEP08VAEDLA+l3MABhjLQ
+ oAtsxe7WrCKM32q7EB90+i8vYcUNDpvRpoU3rTfqh4avO86kakGX7BJR1ysv5ZVOXFwl
+ Hw0w==
+X-Gm-Message-State: APjAAAXDD9aoWfWr6jHnm6vfmWx6M5+bbtXJhm7SC1WtXLqqVCt8jeqw
+ WPkKshnjNCWZp4HPGqqMl9vp+Q==
+X-Google-Smtp-Source: APXvYqyDwmjzU/LyCH+BqYUmXknqeq+bhBz+HMmXMkNpV3WhUj+twpNnOMI+GxfqsBeFKTq8zgQ4IQ==
+X-Received: by 2002:a1c:dc46:: with SMTP id t67mr4025021wmg.140.1558452079765; 
+ Tue, 21 May 2019 08:21:19 -0700 (PDT)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id y132sm5417493wmd.35.2019.05.21.08.21.19
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 21 May 2019 08:21:19 -0700 (PDT)
+Subject: Re: [PATCH 0/3] clk: meson: add support for Amlogic G12A
+References: <20190521150130.31684-1-narmstrong@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
-To: khilman@baylibre.com
-Subject: [PATCH v3 3/3] arm64: dts: meson: Add minimal support for Odroid-N2
-Date: Tue, 21 May 2019 17:19:52 +0200
-Message-Id: <20190521151952.2779-4-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190521151952.2779-1-narmstrong@baylibre.com>
-References: <20190521151952.2779-1-narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <2fd7816a-de5e-c42f-a825-9552d8e79d34@baylibre.com>
+Date: Tue, 21 May 2019 17:21:18 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
+In-Reply-To: <20190521150130.31684-1-narmstrong@baylibre.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190521_081959_607501_7CAC3C0E 
-X-CRM114-Status: GOOD (  18.96  )
+X-CRM114-CacheID: sfid-20190521_082121_609672_4DB853B6 
+X-CRM114-Status: GOOD (  16.85  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,441 +151,50 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patch adds basic support for :
-- Amlogic G12B, which is very similar to G12A
-- The HardKernel Odroid-N2 based on the S922X SoC
+On 21/05/2019 17:01, Neil Armstrong wrote:
+> The Amlogic G12B SoC is very similar with the G12A SoC, sharing
+> most of the features and architecture.
+> G12B clock tree is very close, the main differences are :
+> - SYS_PLL is used for the second cluster (otherwise used fir the first on G12a)
+> - SYS_PLL1 is used for the first cluster (instead of SYS_PLL on G12a)
+> - A duplicate CPU tree is added for the second cluster
+> - G12A has additional clocks like for CSI an other components, not handled yet
+> 
+> Dependencies :
+> - Patch 1, 3 : None
+> - Patch 2 : Depends on Guillaume's Temperature sensor Clock patches at [1]
+> 
+> This patchset is a spinoff of the v2 Odroid-N2 megapatchset at [2]
+> 
+> Changes since original pathset :
+> - Added missing sys1_pll div16, cpub div16 and cpub atb/axi/ahb/trace clocks
+> - Rewrote "This patch .." in commit messages
+> 
+> [1] https://lkml.kernel.org/r/20190412100221.26740-1-glaroque@baylibre.com
+> [2] https://lkml.kernel.org/r/20190423091503.10847-1-narmstrong@baylibre.com
+> 
+> Neil Armstrong (3):
+>   dt-bindings: clk: meson: add g12b periph clock controller bindings
+>   clk: meson: g12a: Add support for G12B CPUB clocks
+>   clk: meson: g12a: mark fclk_div3 as critical
+> 
+>  .../bindings/clock/amlogic,gxbb-clkc.txt      |   1 +
+>  drivers/clk/meson/g12a.c                      | 659 ++++++++++++++++++
+>  drivers/clk/meson/g12a.h                      |  33 +-
+>  3 files changed, 692 insertions(+), 1 deletion(-)
+> 
 
-The Amlogic G12B SoC is very similar with the G12A SoC, sharing
-most of the features and architecture, but with these differences :
-- The first CPU cluster only has 2xCortex-A53 instead of 4
-- G12B has a second cluster of 4xCortex-A73
-- Both cluster can achieve 2GHz instead of 1,8GHz for G12A
-- CPU Clock architecture is difference, thus needing a different
-  compatible to handle this slight difference
-- Supports a MIPI CSI input
-- Embeds a Mali-G52 instead of a Mali-G31, but integration is the same
-
-Actual support is done in the same way as for the GXM support, including
-the G12A dtsi and redefining the CPU clusters.
-Unlike GXM, the first cluster is different, thus needing to remove
-the last 2 cpu nodes of the first cluster.
-
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
-Martin,
-
-I added MMC, SDCard and Network support, so I removed your Reviewed-by.
+And I forgot Martins reviews...
+It should still apply to patch 1, patch 2 has changed with new clocks.
 
 Neil
-
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../boot/dts/amlogic/meson-g12b-odroid-n2.dts | 286 ++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-g12b.dtsi   |  82 +++++
- 3 files changed, 369 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index e129c03ced14..07b861fe5fa5 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -3,6 +3,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nanopi-k2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nexbox-a95x.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-odroidc2.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-new file mode 100644
-index 000000000000..904a47b8a4e7
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-@@ -0,0 +1,286 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-g12b.dtsi"
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/gpio/meson-g12a-gpio.h>
-+
-+/ {
-+	compatible = "hardkernel,odroid-n2", "amlogic,g12b";
-+	model = "Hardkernel ODROID-N2";
-+
-+	aliases {
-+		serial0 = &uart_AO;
-+		ethernet0 = &ethmac;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x40000000>;
-+	};
-+
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		blue {
-+			label = "n2:blue";
-+			gpios = <&gpio_ao GPIOAO_11 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	tflash_vdd: regulator-tflash_vdd {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "TFLASH_VDD";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&gpio_ao GPIOAO_8 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	tf_io: gpio-regulator-tf_io {
-+		compatible = "regulator-gpio";
-+
-+		regulator-name = "TF_IO";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
-+		gpios-states = <0>;
-+
-+		states = <3300000 0
-+			  1800000 1>;
-+	};
-+
-+	flash_1v8: regulator-flash_1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "FLASH_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	main_12v: regulator-main_12v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "12V";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		regulator-always-on;
-+	};
-+
-+	vcc_5v: regulator-vcc_5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	vcc_1v8: regulator-vcc_1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	vcc_3v3: regulator-vcc_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+		/* FIXME: actually controlled by VDDCPU_B_EN */
-+	};
-+
-+	hub_5v: regulator-hub_5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "HUB_5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc_5v>;
-+
-+		gpio = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	usb_pwr_en: regulator-usb_pwr_en {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB_PWR_EN";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&hub_5v>;
-+
-+		gpio = <&gpio GPIOH_6 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	vddao_1v8: regulator-vddao_1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	vddao_3v3: regulator-vddao_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&main_12v>;
-+		regulator-always-on;
-+	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&cec_AO {
-+	pinctrl-0 = <&cec_ao_a_h_pins>;
-+	pinctrl-names = "default";
-+	status = "disabled";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&cecb_AO {
-+	pinctrl-0 = <&cec_ao_b_h_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&ext_mdio {
-+	external_phy: ethernet-phy@0 {
-+		/* Realtek RTL8211F (0x001cc916) */	
-+		reg = <0>;
-+		max-speed = <1000>;
-+		eee-broken-1000t;
-+	};
-+};
-+
-+&ethmac {
-+	pinctrl-0 = <&eth_pins>, <&eth_rgmii_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	phy-mode = "rgmii";
-+	phy-handle = <&external_phy>;
-+	amlogic,tx-delay-ns = <2>;
-+};
-+
-+&gpio {
-+	/*
-+	 * WARNING: The USB Hub on the Odroid-N2 needs a reset signal
-+	 * to be turned high in order to be detected by the USB Controller
-+	 * This signal should be handled by a USB specific power sequence
-+	 * in order to reset the Hub when USB bus is powered down.
-+	 */
-+	usb-hub {
-+		gpio-hog;
-+		gpios = <GPIOH_4 GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		line-name = "usb-hub-reset";
-+	};
-+};
-+
-+&hdmi_tx {
-+	status = "okay";
-+	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
-+	pinctrl-names = "default";
-+	hdmi-supply = <&vcc_5v>;
-+};
-+
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
-+&ir {
-+	status = "okay";
-+	pinctrl-0 = <&remote_input_ao_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+/* SD card */
-+&sd_emmc_b {
-+	status = "okay";
-+	pinctrl-0 = <&sdcard_c_pins>;
-+	pinctrl-1 = <&sdcard_clk_gate_c_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <50000000>;
-+	disable-wp;
-+
-+	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&tflash_vdd>;
-+	vqmmc-supply = <&tf_io>;
-+
-+};
-+
-+/* eMMC */
-+&sd_emmc_c {
-+	status = "okay";
-+	pinctrl-0 = <&emmc_pins>, <&emmc_ds_pins>;
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	max-frequency = <200000000>;
-+	disable-wp;
-+
-+	mmc-pwrseq = <&emmc_pwrseq>;
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&flash_1v8>;
-+};
-+
-+&uart_AO {
-+	status = "okay";
-+	pinctrl-0 = <&uart_ao_a_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&usb {
-+	status = "okay";
-+};
-+
-+&usb2_phy0 {
-+	phy-supply = <&usb_pwr_en>;
-+};
-+
-+&usb2_phy1 {
-+	phy-supply = <&vcc_5v>;
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-new file mode 100644
-index 000000000000..0359539ba884
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-@@ -0,0 +1,82 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ */
-+
-+#include "meson-g12a.dtsi"
-+
-+/ {
-+	compatible = "amlogic,g12b";
-+
-+	cpus {
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu = <&cpu0>;
-+				};
-+
-+				core1 {
-+					cpu = <&cpu1>;
-+				};
-+			};
-+
-+			cluster1 {
-+				core0 {
-+					cpu = <&cpu100>;
-+				};
-+
-+				core1 {
-+					cpu = <&cpu101>;
-+				};
-+
-+				core2 {
-+					cpu = <&cpu102>;
-+				};
-+
-+				core3 {
-+					cpu = <&cpu103>;
-+				};
-+			};
-+		};
-+
-+		/delete-node/ cpu@2;
-+		/delete-node/ cpu@3;
-+
-+		cpu100: cpu@100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a73", "arm,armv8";
-+			reg = <0x0 0x100>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+
-+		cpu101: cpu@101 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a73", "arm,armv8";
-+			reg = <0x0 0x101>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+
-+		cpu102: cpu@102 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a73", "arm,armv8";
-+			reg = <0x0 0x102>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+
-+		cpu103: cpu@103 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a73", "arm,armv8";
-+			reg = <0x0 0x103>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+	};
-+};
-+
-+&clkc {
-+	compatible = "amlogic,g12b-clkc";
-+};
--- 
-2.21.0
-
 
 _______________________________________________
 linux-amlogic mailing list
