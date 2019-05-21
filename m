@@ -6,86 +6,59 @@ X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
 	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DCA85C04E87
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 May 2019 15:36:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 02095C072AD
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 May 2019 16:11:18 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id ACCFA2173C
-	for <linux-amlogic@archiver.kernel.org>; Tue, 21 May 2019 15:36:03 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CA5CE2184E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 21 May 2019 16:11:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="G56sBj3r";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="YdvDQmpl"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ACCFA2173C
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oP7pUb/T"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CA5CE2184E
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arm.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wUV9BNcfqvd13p9xi6z5OXRk41Ffi/O8RzzXNZoeL7w=; b=G56sBj3rX8zBcU
-	x88h7IfsUbAXD53XA1KhmeSlp7MpzDfSRvCzcfRMyzLe/pLM+terY0GibLt/Rrg2lyhP2WryuxBkI
-	ct2CKZTTbaDZ2wopdajWkRRzhdVRF4wvVMRPqCfe46Xa6xzdgU+gWfaYQ6kqBD78PuTK2C44Amyrq
-	6HPxZM8xDS7bamGLUvtsiB3sYv16uxrbottRrx4QGHfACzDnqDaQSBFpYFlIq5+TfjKm3nD7acMG5
-	z8tDvNr0YK4sY6OHUkJmAoMUz50sw4z1TK0l5lOeoKqIZkJaud3Jg80g7+zxE20Sy41y1LRia23az
-	EGY/Y9V1Di62OPXynNeQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=StA9ynvuZ5j//l1lLTlLIl6jAGsHNZsD/oV3SP8mj4s=; b=oP7pUb/T4JLnLac9BSGGfrxQl
+	o4UAz1/DDqRv3aY9xNX16SBXdjKztGM7uF/xh0bkoVgGE6+Jb4KDlJDyOU2bf17IYWzmH66VnYyXw
+	u7aeWB1vEY6V4LRClsZHZeTlACt0pGI4AowxRa+tOfAGfO9wpxJcUPpCYVLer8fl/Zgk7qUC55XBP
+	P5xrwXKJfh7Gg0/zEKXt5vTfNWldtpiWMHB4cPHle5anm0heihSYjz24sKnzFJV4aroB8o+ZywfW5
+	p2r/zBmjcm6ezCQvB9bj8tRHWidSKRnT+WhY5OstSVnXqtMcR3YCmMNaLIN66OLngy0JMIB2NkVPu
+	WTZgx8AzQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hT6o2-0004eR-G0; Tue, 21 May 2019 15:35:58 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
- by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hT6ny-0004dH-HP
- for linux-amlogic@lists.infradead.org; Tue, 21 May 2019 15:35:56 +0000
-Received: by mail-wm1-x341.google.com with SMTP id 15so3359841wmg.5
- for <linux-amlogic@lists.infradead.org>; Tue, 21 May 2019 08:35:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:cc:date:in-reply-to:references
- :user-agent:mime-version:content-transfer-encoding;
- bh=0uik/HMoz37j2coMurAJJ2JSRGBbGbninuq4WxTSmzk=;
- b=YdvDQmplGwYrrQtRoix7kegU3RDr7LFfBOaAAJJgLK6wQHPTL+PyvT39LNUpvGAhR5
- kTEpm6EeyVOszu7t8m/gELtsglkW+M6UzfzSmcfqRR775Wd3JpXLQAPI7Yf0cADqiv2o
- TKqlONz5O2H8NbaWINI0tNJRQXveZ2/W01MJCgH/y4NOr9YIuOJAxS8qCX8CQzeL/VT1
- oI6Ve4yEqWBoCr1caKUjM6BnlY5B9W5gEaNH49lCIC2RBG+Nz/Gd1jQhuNTJ1/dCDPnX
- wlkz1sXfIGUqeUO3dHFrMmygoQh9yYXkHC9WMAtgGBln1LJs0i+QmXGuPsbxGX+zAQd1
- Y0hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=0uik/HMoz37j2coMurAJJ2JSRGBbGbninuq4WxTSmzk=;
- b=ojfhFpfO8DDTPVtwaJ7T3n8WVE+h5fa/+3Q3or3tIk9ATEFj1dvtGhgojae61M4ey6
- mCUPrnPJ38vrk3oVHLAsFwpooqgCEEeiEuEFqw3Q2gVcskqhfpEGMILjsBQR6CPLZWad
- wiXv5Ia+c71svbUPz6WOYfcbMLSb8RmwgoPBRbjYRNxOd+FuEzb1pbG0pwxzieLim+w1
- bPotKkPwdx5fAqdcL9+sxecvUevtxlWp7B4EFo9AoBOUbbGEiPK1NBzHQu+H5t56e9N0
- mrnJQemoUtwL0fN4BNMsEs7RrSz5LXKkmOjdMsgTiKlX2HSaohhCnX56z6XZT0+ZFgu3
- rDfw==
-X-Gm-Message-State: APjAAAW/3V+u++HSyCsGbLdKFg4qROVdy1PxHlqskWmZUSmVr1IVtuBA
- 0uNusv62vZaOj5MJKDUhkoElFA==
-X-Google-Smtp-Source: APXvYqzp5XGeS8omRNy+ysC8swVAt9RDTiOAhNzBwblewdgtd2l9gOiPJ9lYetBBdt1eIvDzUWgk7A==
-X-Received: by 2002:a1c:4843:: with SMTP id v64mr4040780wma.73.1558452952229; 
- Tue, 21 May 2019 08:35:52 -0700 (PDT)
-Received: from boomer.baylibre.com
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id j123sm280848wmb.32.2019.05.21.08.35.51
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Tue, 21 May 2019 08:35:51 -0700 (PDT)
-Message-ID: <e6b7c6f8073bedcf6cc9d4810518c95b651c401b.camel@baylibre.com>
-Subject: Re: [PATCH 0/3] clk: meson: add support for Amlogic G12A
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <narmstrong@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>
-Date: Tue, 21 May 2019 17:35:50 +0200
-In-Reply-To: <2fd7816a-de5e-c42f-a825-9552d8e79d34@baylibre.com>
-References: <20190521150130.31684-1-narmstrong@baylibre.com>
- <2fd7816a-de5e-c42f-a825-9552d8e79d34@baylibre.com>
-User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+	id 1hT7M7-0006Lu-0P; Tue, 21 May 2019 16:11:11 +0000
+Received: from usa-sjc-mx-foss1.foss.arm.com ([217.140.101.70]
+ helo=foss.arm.com)
+ by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1hT7M4-0006LI-IE; Tue, 21 May 2019 16:11:09 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2F8F9374;
+ Tue, 21 May 2019 09:11:08 -0700 (PDT)
+Received: from [10.1.196.75] (e110467-lin.cambridge.arm.com [10.1.196.75])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4174D3F718;
+ Tue, 21 May 2019 09:11:07 -0700 (PDT)
+Subject: Re: [PATCH v3 3/3] arm64: dts: meson: Add minimal support for
+ Odroid-N2
+To: Neil Armstrong <narmstrong@baylibre.com>, khilman@baylibre.com
+References: <20190521151952.2779-1-narmstrong@baylibre.com>
+ <20190521151952.2779-4-narmstrong@baylibre.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Message-ID: <4eb6aa5c-14e2-944e-9f15-692063ef072b@arm.com>
+Date: Tue, 21 May 2019 17:11:05 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
+In-Reply-To: <20190521151952.2779-4-narmstrong@baylibre.com>
+Content-Language: en-GB
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190521_083554_819443_FE7B2D3B 
-X-CRM114-Status: GOOD (  16.48  )
+X-CRM114-CacheID: sfid-20190521_091108_609260_288A0922 
+X-CRM114-Status: GOOD (  14.46  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,56 +70,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, 2019-05-21 at 17:21 +0200, Neil Armstrong wrote:
-> On 21/05/2019 17:01, Neil Armstrong wrote:
-> > The Amlogic G12B SoC is very similar with the G12A SoC, sharing
-> > most of the features and architecture.
-> > G12B clock tree is very close, the main differences are :
-> > - SYS_PLL is used for the second cluster (otherwise used fir the first on G12a)
-> > - SYS_PLL1 is used for the first cluster (instead of SYS_PLL on G12a)
-> > - A duplicate CPU tree is added for the second cluster
-> > - G12A has additional clocks like for CSI an other components, not handled yet
-> > 
-> > Dependencies :
-> > - Patch 1, 3 : None
-> > - Patch 2 : Depends on Guillaume's Temperature sensor Clock patches at [1]
-> > 
-> > This patchset is a spinoff of the v2 Odroid-N2 megapatchset at [2]
-> > 
-> > Changes since original pathset :
-> > - Added missing sys1_pll div16, cpub div16 and cpub atb/axi/ahb/trace clocks
-> > - Rewrote "This patch .." in commit messages
-> > 
-> > [1] https://lkml.kernel.org/r/20190412100221.26740-1-glaroque@baylibre.com
-> > [2] https://lkml.kernel.org/r/20190423091503.10847-1-narmstrong@baylibre.com
-> > 
-> > Neil Armstrong (3):
-> >   dt-bindings: clk: meson: add g12b periph clock controller bindings
-> >   clk: meson: g12a: Add support for G12B CPUB clocks
-> >   clk: meson: g12a: mark fclk_div3 as critical
-> > 
-> >  .../bindings/clock/amlogic,gxbb-clkc.txt      |   1 +
-> >  drivers/clk/meson/g12a.c                      | 659 ++++++++++++++++++
-> >  drivers/clk/meson/g12a.h                      |  33 +-
-> >  3 files changed, 692 insertions(+), 1 deletion(-)
-> > 
+On 21/05/2019 16:19, Neil Armstrong wrote:
+[...]
+> +		cpu100: cpu@100 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a73", "arm,armv8";
+
+Nit: we've recently tried to eradicate "arm,armv8" as a fallback 
+compatible for real CPUs (although I see there are still a couple of 
+instances that have slipped through).
+
+Robin.
+
+> +			reg = <0x0 0x100>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2>;
+> +		};
+> +
+> +		cpu101: cpu@101 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a73", "arm,armv8";
+> +			reg = <0x0 0x101>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2>;
+> +		};
+> +
+> +		cpu102: cpu@102 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a73", "arm,armv8";
+> +			reg = <0x0 0x102>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2>;
+> +		};
+> +
+> +		cpu103: cpu@103 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a73", "arm,armv8";
+> +			reg = <0x0 0x103>;
+> +			enable-method = "psci";
+> +			next-level-cache = <&l2>;
+> +		};
+> +	};
+> +};
+> +
+> +&clkc {
+> +	compatible = "amlogic,g12b-clkc";
+> +};
 > 
-> And I forgot Martins reviews...
-> It should still apply to patch 1, patch 2 has changed with new clocks.
-
-You probably want to change the series title as well, s/G12A/G12B maybe ?
-
-> 
-> Neil
-
-
 
 _______________________________________________
 linux-amlogic mailing list
