@@ -6,17 +6,17 @@ X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
 	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B330C072A4
-	for <linux-amlogic@archiver.kernel.org>; Wed, 22 May 2019 08:00:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 88243C072A4
+	for <linux-amlogic@archiver.kernel.org>; Wed, 22 May 2019 08:19:40 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2A26D217F9
-	for <linux-amlogic@archiver.kernel.org>; Wed, 22 May 2019 08:00:11 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5DB8720856
+	for <linux-amlogic@archiver.kernel.org>; Wed, 22 May 2019 08:19:40 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lnCwEP6y";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="VShWdf9Z"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2A26D217F9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kf/Zqavq";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="UXoszbvJ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5DB8720856
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,61 +25,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=f6DxkrnWJPVShLkGmbsqi/A6R6fzHFoH+btox6Bhb9o=; b=lnCwEP6yRiX5QV
-	lIJ50HtJa9XR6SyJHH5KS1lcgvTOMwyc6jbGQeggtHLu2x3ooTAZwAwtqzUw+f2M1+xuaTkdpMy0h
-	P/hsypwMLJnmyuMmm918I+P50AS8RDIIpRRlYxPnL9+kHJJCNL7OegxUX59J2tfffRijxtCD0Ncwm
-	Ku42OHhsXolVQTF++pcUICTQvVXA9U/N5NfY42k9c92rnAEebRnCqOs2Fws048QYvWqHXKiSgY1QK
-	TXQJz4EIbAOafLAr+VE2OQuf+x+ysV8ZzYQ05c57Kv24g1Lh/OID4nkJQORDJkqDqk897SgFigTc5
-	zUII1W6i9I6ZbQa0RjDA==;
+	List-Owner; bh=kRvkTheV5siMKRc2FEIeF1lD20K05NDzbgB+SvH05KQ=; b=kf/ZqavqHJco4d
+	tPrdZQ6cXIQyZdTe4eSPioHVMCGdosiuMFO1ZJQxlE+dQkPOjA3KnQKUQPZvCsS7gtPZ6vIP6Mk/1
+	iUVdIcHTpvEJHHxKQBHBd17eaXPpsgtny+TPWJQxTvfjb8hF14d9orjxs/qoulNmpgiIpyKgt0fhq
+	SlJqWVuOjA87bsjz7A55TweDjq2yklPvyzA4pfbd4bVipkSz8P8W5jjcibp1YUGc+QzhTXAzlrXCx
+	7qJCQOBpk2UJkIrTz1BAXzbMu/XSVQeQ3hr/e9SgQGUMX5CIkZea0vfoW6GCmCmLHtGHtQMY8TIp/
+	l0RzLXO5Uv7cX1Pz1hGw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hTMAP-0003vo-Et; Wed, 22 May 2019 08:00:05 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1hTMTE-0002px-Gn; Wed, 22 May 2019 08:19:32 +0000
+Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hTMAD-0003bV-Ty
- for linux-amlogic@lists.infradead.org; Wed, 22 May 2019 07:59:55 +0000
-Received: by mail-wm1-x344.google.com with SMTP id q15so1116744wmj.0
- for <linux-amlogic@lists.infradead.org>; Wed, 22 May 2019 00:59:53 -0700 (PDT)
+ id 1hTMT6-0002i4-2C
+ for linux-amlogic@lists.infradead.org; Wed, 22 May 2019 08:19:26 +0000
+Received: by mail-wr1-x436.google.com with SMTP id f10so1184258wre.7
+ for <linux-amlogic@lists.infradead.org>; Wed, 22 May 2019 01:19:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=rnCmivct/X7z1PEcQXjQh9eG+GSPf+RXK0R9xnoR9QM=;
- b=VShWdf9Z0ncY7mljbs2OFnnJO99iafT2bd3R4Hfe6XqujdqayhqbSQ44D48eKbU2q7
- e/JmpEPbY3Tc3knfaYPofqdRYRqjaqjrn4Yl87lIu1Z8h8dL76radqC9US/buUt3jfG5
- D9RC0jK+HZ3wqpHBBsLbPUZdAAXzKvdEH5Qqrf6GWL0YYkor7QaZ7ibahKeu5vLBf95i
- IrsTxJ4YmduZBN3XniHslAfqNoydpOra5wIcL+tLV5MYxF6lcBrjsNuyJKBVECf9ww4v
- 8kYxsqKLvFt9ntVQ5xXJ/Rhj3xP4de58QNuTgIk4rTlhmRrA4OBg5BlzDWz3nN/E/H/E
- ANMA==
+ bh=rUpKlEA8tIPKK8DZFrMHr5Vjc8RluFtQBZi76sNv0Nw=;
+ b=UXoszbvJM03D2fO8JaH10+Y2L1hYJRwOOpnoH1N5Zi66NdpPRff2wG1w6iCox+3s+/
+ IHe8Nj3QpK/ykyafi4FxPJw0jBc/Bg2WGHg3/2HYKHM5BGwjDTThynsITGnOjNfDKgcx
+ foyYTga5Gnbq7bpry9cAOQM6xKRWEbMliuTFCiBZD/H81KRPPyV3HI3IyNoGzKNrSINW
+ dLhH+pPyBYR3r3hhy2jHkxy1HhSQnjH8Ex0FgYAfmYl/HECfK0atOc2m1ult4PrZEQPt
+ TW6DS62Q9wNgJSvQqJ8WgCUP2z4d2tq5S4zGfWprBbjfAI2rbVPGeLnXXuPbAANohttM
+ vYEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=rnCmivct/X7z1PEcQXjQh9eG+GSPf+RXK0R9xnoR9QM=;
- b=ZHVsbJ2WZzfiP5izpIA7v+eNOMQqJyNvq/vlMpeAM2RvXc69MBqCAjLWy3d6kPv2xg
- SWLEJ+gedAW4HHrry79+pyhUag4u6Np2E5swuHYmWfKphqP+6CuC9T/aGeX9UgLZToeu
- ZcVxKk1HvAilFolG7a4Mc3OEV15c9VVGNzPjWtg5d7T87Iq84SBrI5PEFtjFXp/lhIP1
- 1cwsaDitEfmOV8Ci7Re6OLFjRp7kQ3uVXCwodKDNOWxr/QfX0DbY9Vuo0SUL4gcpsVIA
- 0w881TLIGPl2HBeLX9itiiuC26UxHfS/hKhGF/ELL/IJroV3Cs0mM844eMPE/rCKyMB6
- h0Cg==
-X-Gm-Message-State: APjAAAUsBVeBn+swTIxa6SZQeK9EXVoNVr7Um3lxGSfQJlHtpZ7vXah0
- Fki5Yw2K0/om8DsRXX8ABaV48Q==
-X-Google-Smtp-Source: APXvYqwk5SRYCyyOX5+xF7kfeQxYyY4oufGN3ZUYOTeICTlJeAwW6WzNFcpJzStlPU40+ttBcl55eg==
-X-Received: by 2002:a1c:cf4f:: with SMTP id f76mr6648267wmg.18.1558511992322; 
- Wed, 22 May 2019 00:59:52 -0700 (PDT)
-Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id
- h17sm7619311wrq.79.2019.05.22.00.59.51
+ bh=rUpKlEA8tIPKK8DZFrMHr5Vjc8RluFtQBZi76sNv0Nw=;
+ b=ioc+V1qqEKvRixGoje7Z5qYVLtoXZa4/vVcze75RgZ2Hf7xk0xCEclKfCcFa2E2ch4
+ mLLsSy4SdyGx8Pt4B9BPuRwo663VXPnm1VjyA+vmVS8W/LfNvTpNd8wq6g9NBZaLjXKX
+ 0Euj8xpYFTH24mXcguVFicmS8ioTqh5n00oUDeI/SweLUw6ufLXSHFSjr2+ol/Sh75JJ
+ 4Ex+kYSRCWAt7beDRStA2N0V0jjyucxSUJg9DnxJJZtvkxeFtjMODzsFuhq0UnVF6tzu
+ 1odXoFBllnZKuqy2zg6QLp9chMRZ3OmpoUgyqeR8/MhjfkvZ4zpyxYGB3virjdoP8yYS
+ 9oZQ==
+X-Gm-Message-State: APjAAAVH5N/XUKH6XKLvXmC5cx0zTh11+VRph42Ph9B/3vUJVGc//H0R
+ nogNsM60SP9I/ONsam6yXTI6Iw==
+X-Google-Smtp-Source: APXvYqzZ6kcXy3QXJ6HHUvi4u9okO0GxA5BtrwhIImIvuySrgAeQodOTKF1Zc0E9Uk6blNHWCB/nGA==
+X-Received: by 2002:adf:dccf:: with SMTP id x15mr7656464wrm.139.1558513161988; 
+ Wed, 22 May 2019 01:19:21 -0700 (PDT)
+Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr.
+ [176.150.251.154])
+ by smtp.gmail.com with ESMTPSA id n2sm1933129wro.13.2019.05.22.01.19.20
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 22 May 2019 00:59:51 -0700 (PDT)
+ Wed, 22 May 2019 01:19:21 -0700 (PDT)
 Subject: Re: [PATCH v3 3/3] arm64: dts: meson: Add minimal support for
  Odroid-N2
-To: Robin Murphy <robin.murphy@arm.com>, khilman@baylibre.com
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 References: <20190521151952.2779-1-narmstrong@baylibre.com>
  <20190521151952.2779-4-narmstrong@baylibre.com>
- <4eb6aa5c-14e2-944e-9f15-692063ef072b@arm.com>
+ <CAFBinCDzvroNfzhZHhDdvc+VR1eQNg5JMJ7F9=++hdWKcEXSOw@mail.gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -132,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <5c95de8f-b611-8286-db5f-bbb3ae97c24f@baylibre.com>
-Date: Wed, 22 May 2019 09:59:50 +0200
+Message-ID: <f7020818-5824-f998-6ebd-303014abd34d@baylibre.com>
+Date: Wed, 22 May 2019 10:19:20 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <4eb6aa5c-14e2-944e-9f15-692063ef072b@arm.com>
+In-Reply-To: <CAFBinCDzvroNfzhZHhDdvc+VR1eQNg5JMJ7F9=++hdWKcEXSOw@mail.gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190522_005953_970648_51632D4B 
-X-CRM114-Status: GOOD (  11.02  )
+X-CRM114-CacheID: sfid-20190522_011924_129063_C0C5D19F 
+X-CRM114-Status: GOOD (  21.60  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -153,44 +153,103 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: khilman@baylibre.com, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMjEvMDUvMjAxOSAxODoxMSwgUm9iaW4gTXVycGh5IHdyb3RlOgo+IE9uIDIxLzA1LzIwMTkg
-MTY6MTksIE5laWwgQXJtc3Ryb25nIHdyb3RlOgo+IFsuLi5dCj4+ICvCoMKgwqDCoMKgwqDCoCBj
-cHUxMDA6IGNwdUAxMDAgewo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBkZXZpY2VfdHlwZSA9
-ICJjcHUiOwo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb21wYXRpYmxlID0gImFybSxjb3J0
-ZXgtYTczIiwgImFybSxhcm12OCI7Cj4gCj4gTml0OiB3ZSd2ZSByZWNlbnRseSB0cmllZCB0byBl
-cmFkaWNhdGUgImFybSxhcm12OCIgYXMgYSBmYWxsYmFjayBjb21wYXRpYmxlIGZvciByZWFsIENQ
-VXMgKGFsdGhvdWdoIEkgc2VlIHRoZXJlIGFyZSBzdGlsbCBhIGNvdXBsZSBvZiBpbnN0YW5jZXMg
-dGhhdCBoYXZlIHNsaXBwZWQgdGhyb3VnaCkuCgpUaGFua3MgZm9yIHBvaW50aW5nIHRoaXMsIEkn
-bGwgcmVtb3ZlIGl0LgoKTmVpbAoKPiAKPiBSb2Jpbi4KPiAKPj4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgcmVnID0gPDB4MCAweDEwMD47Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVuYWJs
-ZS1tZXRob2QgPSAicHNjaSI7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIG5leHQtbGV2ZWwt
-Y2FjaGUgPSA8JmwyPjsKPj4gK8KgwqDCoMKgwqDCoMKgIH07Cj4+ICsKPj4gK8KgwqDCoMKgwqDC
-oMKgIGNwdTEwMTogY3B1QDEwMSB7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRldmljZV90
-eXBlID0gImNwdSI7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvbXBhdGlibGUgPSAiYXJt
-LGNvcnRleC1hNzMiLCAiYXJtLGFybXY4IjsKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmVn
-ID0gPDB4MCAweDEwMT47Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVuYWJsZS1tZXRob2Qg
-PSAicHNjaSI7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIG5leHQtbGV2ZWwtY2FjaGUgPSA8
-JmwyPjsKPj4gK8KgwqDCoMKgwqDCoMKgIH07Cj4+ICsKPj4gK8KgwqDCoMKgwqDCoMKgIGNwdTEw
-MjogY3B1QDEwMiB7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRldmljZV90eXBlID0gImNw
-dSI7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvbXBhdGlibGUgPSAiYXJtLGNvcnRleC1h
-NzMiLCAiYXJtLGFybXY4IjsKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmVnID0gPDB4MCAw
-eDEwMj47Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVuYWJsZS1tZXRob2QgPSAicHNjaSI7
-Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIG5leHQtbGV2ZWwtY2FjaGUgPSA8JmwyPjsKPj4g
-K8KgwqDCoMKgwqDCoMKgIH07Cj4+ICsKPj4gK8KgwqDCoMKgwqDCoMKgIGNwdTEwMzogY3B1QDEw
-MyB7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRldmljZV90eXBlID0gImNwdSI7Cj4+ICvC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIGNvbXBhdGlibGUgPSAiYXJtLGNvcnRleC1hNzMiLCAiYXJt
-LGFybXY4IjsKPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmVnID0gPDB4MCAweDEwMz47Cj4+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVuYWJsZS1tZXRob2QgPSAicHNjaSI7Cj4+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIG5leHQtbGV2ZWwtY2FjaGUgPSA8JmwyPjsKPj4gK8KgwqDCoMKg
-wqDCoMKgIH07Cj4+ICvCoMKgwqAgfTsKPj4gK307Cj4+ICsKPj4gKyZjbGtjIHsKPj4gK8KgwqDC
-oCBjb21wYXRpYmxlID0gImFtbG9naWMsZzEyYi1jbGtjIjsKPj4gK307Cj4+CgoKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWls
-aW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5p
-bmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+On 21/05/2019 20:01, Martin Blumenstingl wrote:
+> Hi Neil,
+> 
+> On Tue, May 21, 2019 at 5:20 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+> [...]
+>> +       hub_5v: regulator-hub_5v {
+>> +               compatible = "regulator-fixed";
+>> +               regulator-name = "HUB_5V";
+>> +               regulator-min-microvolt = <5000000>;
+>> +               regulator-max-microvolt = <5000000>;
+>> +               vin-supply = <&vcc_5v>;
+>> +
+>> +               gpio = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
+> I missed this in the review of v1:
+> according to the schematics GPIOH_5 is routed to GL3523 (soldered down
+> USB hub) CHIP_EN signal.
+> The datasheet [0] mentions that this will "Disable whole chip and keep
+> hub in lowest power state (standby mode)"
+
+In the v1, we didn't have the schematics, so it was all a wild guess.
+
+> 
+> do you know if this is a similar case as GPIOH_4 (USB hub reset line,
+> we configure this using a gpio-hog)?
+
+
+We have 3 signals for USB :
+- GPIOH_5: goes to CHIP_EN to CHIPENABLE to the Hub
+- GPIOH_4: goes to RST_N to RESETJ to the Hub
+- GPIOH_6: goes to PWREN for the OTG connector PWREN
+
+As you said, the datasheet mentions : "
+Disable whole chip and keep hub in lowest power state (standby mode
+"
+
+I modeled it as a regulator since when enabled it actually enables the
+power on the USB3 ports using the post-Hub VBUSCTRL signal.
+
+Since I can't model these post-hub power enable signals, I can only
+model the hub CHIPENABLE as a regulator to handle power.
+I can't model the hub as a device subnode inside the dwc3 since
+when CHIPENABLE is low, it won't appear...
+
+We could model it as a Hog, but we won't be able to power down
+the usb3 ports.
+
+> 
+> [...]
+>> +&ext_mdio {
+>> +       external_phy: ethernet-phy@0 {
+>> +               /* Realtek RTL8211F (0x001cc916) */
+>> +               reg = <0>;
+>> +               max-speed = <1000>;
+>> +               eee-broken-1000t;
+> are we in the same situation that we have on the X96 Max where network
+> dies without eee-broken-1000t?
+
+I assume, let me run more tests to be sure.
+
+> 
+> [...]
+>> +&usb2_phy0 {
+>> +       phy-supply = <&usb_pwr_en>;
+> is usb_pwr_en really the phy-supply or is it the vbus-supply of the
+> USB top control block (&usb node)?
+You're right, now we have the schematics, it's not the phy supply.
+
+I'll move it to vbus-supply since it's connected to the pwrenable
+of the otg port.
+
+> 
+> if these three questions are answered then you can add my:
+> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+I'll ask you to review the next version before !!!
+
+Thanks.
+Neil
+
+> 
+> 
+> Regards
+> Martin
+> 
+> 
+> [0] https://datasheet.lcsc.com/szlcsc/GL3523-OV3S1_C157363.pdf
+> 
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
