@@ -2,22 +2,23 @@ Return-Path: <SRS0=eh9O=TW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 88243C072A4
-	for <linux-amlogic@archiver.kernel.org>; Wed, 22 May 2019 08:19:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 77CE9C282CE
+	for <linux-amlogic@archiver.kernel.org>; Wed, 22 May 2019 12:50:02 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5DB8720856
-	for <linux-amlogic@archiver.kernel.org>; Wed, 22 May 2019 08:19:40 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 45F8E21479
+	for <linux-amlogic@archiver.kernel.org>; Wed, 22 May 2019 12:50:02 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kf/Zqavq";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="UXoszbvJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5DB8720856
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HUIq9nkn";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=gmx.net header.i=@gmx.net header.b="jMlxg8/E"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 45F8E21479
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=gmx.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
@@ -25,123 +26,103 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kRvkTheV5siMKRc2FEIeF1lD20K05NDzbgB+SvH05KQ=; b=kf/ZqavqHJco4d
-	tPrdZQ6cXIQyZdTe4eSPioHVMCGdosiuMFO1ZJQxlE+dQkPOjA3KnQKUQPZvCsS7gtPZ6vIP6Mk/1
-	iUVdIcHTpvEJHHxKQBHBd17eaXPpsgtny+TPWJQxTvfjb8hF14d9orjxs/qoulNmpgiIpyKgt0fhq
-	SlJqWVuOjA87bsjz7A55TweDjq2yklPvyzA4pfbd4bVipkSz8P8W5jjcibp1YUGc+QzhTXAzlrXCx
-	7qJCQOBpk2UJkIrTz1BAXzbMu/XSVQeQ3hr/e9SgQGUMX5CIkZea0vfoW6GCmCmLHtGHtQMY8TIp/
-	l0RzLXO5Uv7cX1Pz1hGw==;
+	List-Owner; bh=fvmQZJAMy9BXOLQfD+bgaWDCFR0tL8oD29eLFBkINCQ=; b=HUIq9nknqCEXGc
+	0u/X8dN18bFpJcxFhamoCOxcWpuD7J0E6TxsHap/m+UsMCKUtN68qNTcMLB2+6Pc9enqNP21nG9rX
+	22obJOGtQMezTAp098DlBJQ5TWKR/uu0xGDrm+GrIVD9/T8GIzdYR6UeTlK2pfsb9GDsRcQNSXe3t
+	/VsWEqAE6YANoag4NuKRUxlYycwNcRM0shEd3k8cTFZeLcC7le/huRTuceBdemiwklsjBsV78oQyz
+	2UiJmyYLUGqwWOjd+Uwi468W0mPMpU3kRwp9JZ5SFDh2z4IoDKATBAO1ek5oNyRS4zOkBZqDoWHNd
+	2x6g4A7VwOWjIcXtxlHg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hTMTE-0002px-Gn; Wed, 22 May 2019 08:19:32 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1hTQgq-0001Sd-Sd; Wed, 22 May 2019 12:49:52 +0000
+Received: from mout.gmx.net ([212.227.15.18])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hTMT6-0002i4-2C
- for linux-amlogic@lists.infradead.org; Wed, 22 May 2019 08:19:26 +0000
-Received: by mail-wr1-x436.google.com with SMTP id f10so1184258wre.7
- for <linux-amlogic@lists.infradead.org>; Wed, 22 May 2019 01:19:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=rUpKlEA8tIPKK8DZFrMHr5Vjc8RluFtQBZi76sNv0Nw=;
- b=UXoszbvJM03D2fO8JaH10+Y2L1hYJRwOOpnoH1N5Zi66NdpPRff2wG1w6iCox+3s+/
- IHe8Nj3QpK/ykyafi4FxPJw0jBc/Bg2WGHg3/2HYKHM5BGwjDTThynsITGnOjNfDKgcx
- foyYTga5Gnbq7bpry9cAOQM6xKRWEbMliuTFCiBZD/H81KRPPyV3HI3IyNoGzKNrSINW
- dLhH+pPyBYR3r3hhy2jHkxy1HhSQnjH8Ex0FgYAfmYl/HECfK0atOc2m1ult4PrZEQPt
- TW6DS62Q9wNgJSvQqJ8WgCUP2z4d2tq5S4zGfWprBbjfAI2rbVPGeLnXXuPbAANohttM
- vYEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=rUpKlEA8tIPKK8DZFrMHr5Vjc8RluFtQBZi76sNv0Nw=;
- b=ioc+V1qqEKvRixGoje7Z5qYVLtoXZa4/vVcze75RgZ2Hf7xk0xCEclKfCcFa2E2ch4
- mLLsSy4SdyGx8Pt4B9BPuRwo663VXPnm1VjyA+vmVS8W/LfNvTpNd8wq6g9NBZaLjXKX
- 0Euj8xpYFTH24mXcguVFicmS8ioTqh5n00oUDeI/SweLUw6ufLXSHFSjr2+ol/Sh75JJ
- 4Ex+kYSRCWAt7beDRStA2N0V0jjyucxSUJg9DnxJJZtvkxeFtjMODzsFuhq0UnVF6tzu
- 1odXoFBllnZKuqy2zg6QLp9chMRZ3OmpoUgyqeR8/MhjfkvZ4zpyxYGB3virjdoP8yYS
- 9oZQ==
-X-Gm-Message-State: APjAAAVH5N/XUKH6XKLvXmC5cx0zTh11+VRph42Ph9B/3vUJVGc//H0R
- nogNsM60SP9I/ONsam6yXTI6Iw==
-X-Google-Smtp-Source: APXvYqzZ6kcXy3QXJ6HHUvi4u9okO0GxA5BtrwhIImIvuySrgAeQodOTKF1Zc0E9Uk6blNHWCB/nGA==
-X-Received: by 2002:adf:dccf:: with SMTP id x15mr7656464wrm.139.1558513161988; 
- Wed, 22 May 2019 01:19:21 -0700 (PDT)
-Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr.
- [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id n2sm1933129wro.13.2019.05.22.01.19.20
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 22 May 2019 01:19:21 -0700 (PDT)
-Subject: Re: [PATCH v3 3/3] arm64: dts: meson: Add minimal support for
- Odroid-N2
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20190521151952.2779-1-narmstrong@baylibre.com>
- <20190521151952.2779-4-narmstrong@baylibre.com>
- <CAFBinCDzvroNfzhZHhDdvc+VR1eQNg5JMJ7F9=++hdWKcEXSOw@mail.gmail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
+ id 1hTQgo-0001SH-5h
+ for linux-amlogic@lists.infradead.org; Wed, 22 May 2019 12:49:51 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1558529376;
+ bh=Q97bXc/PPktmqP9qjjGjOSaN7RwZuTwBfD1GaTGlWT8=;
+ h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
+ b=jMlxg8/EHFenJktXveeQ7h682zslXJJpcwLmk0IJTiS6bn+3vznj+AzYJ07DP6xZC
+ iuLUc85WS8skPMBZZiEgpy8yR9Nu6jW6+dzOmNIFdj0eywFZ6bxkLgkePikYA8X4Vc
+ uWXqGU6/9qevTsK/hLjsNCKtchk3Cy7SlwmV0ER4=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [10.10.11.100] ([95.88.214.118]) by mail.gmx.com (mrgmx001
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 0MF5FT-1hRZ8m49Pf-00GHMz; Wed, 22
+ May 2019 14:49:36 +0200
+Subject: Re: stmmac / meson8b-dwmac
+To: Jose Abreu <Jose.Abreu@synopsys.com>,
+ Sebastian Gottschall <s.gottschall@newmedia-net.de>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <a38e643c-ed9f-c306-cc95-84f70ebc1f10@gmx.de>
+ <45e73e8c-a0fb-6f8f-8dc6-3aa2103fdda3@gmx.de>
+ <e1d75e7f-1747-d0ce-0ee7-4fa688b90d13@synopsys.com>
+ <4493b245-de93-46cd-327b-8091a3babc3a@gmx.de>
+ <adafe6d7-e619-45e9-7ecb-76f003b0c7d9@synopsys.com>
+ <cd0b3dec-af3f-af69-50b7-6ca6f7256900@gmx.de>
+ <fa35fb4a-b9d5-9bbb-437d-47e8819d0f27@synopsys.com>
+ <244d7c74-e0ca-a9c7-f4b0-3de7bec4024b@gmx.de>
+ <1426d8ed40be0927c135aff25dcf989a11326932.camel@baylibre.com>
+ <9074d29b-4cc9-87b6-009f-48280a4692c0@gmx.de>
+ <d7de65c614ee788152300f6d3799fd537b438496.camel@baylibre.com>
+ <8ec64936-c8fa-1f0e-68bf-2ad1d6e8f5d9@gmx.de>
+ <f08f2659-dde0-41ec-9233-6b4d5f375ffe@newmedia-net.de>
+ <3a040370-e7e5-990e-81dc-8e9bb0ab7761@gmx.de>
+ <c21c30e9-e53e-02a5-c367-25898c4614e9@synopsys.com>
+ <12d1d6de-2905-46a8-6481-d6f20c8e9d85@gmx.de>
+ <2c4d9726-6c2a-cd95-0493-323f5f09e14a@synopsys.com>
+ <2d7a5c80-3134-ebc0-3c44-9ca9900eade8@gmx.de>
+ <78EB27739596EE489E55E81C33FEC33A0B91BAAE@DE02WEMBXB.internal.synopsys.com>
+From: Simon Huelck <simonmail@gmx.de>
 Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <f7020818-5824-f998-6ebd-303014abd34d@baylibre.com>
-Date: Wed, 22 May 2019 10:19:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+Autocrypt: addr=simonmail@gmx.de; prefer-encrypt=mutual; keydata=
+ mQGiBD/bCNARBACE3URTBXZ/AA03NwRNtz03ewQn3uhvYSTjfqgplBtb3dfC4a79BXDRIWVX
+ xPGH9Ewios1c8gMu3/RI2l3JzXoISfw5b0L/5igyPKV+sGuUA2FD27kYtPaaF/TqEWIv+Yxp
+ 9DCjCX5IQSYyvCfcxcyEkY8eVWxnaAlV3zKRR8wn0wCglWIOtAugBcg1YXmoLpFZE8Ca0fkD
+ /jG+n4U9DPfCgkbgjQ/dv2W2a0ZDHccA9N8AW/FTXGyXXO0e7ql9/kORJnp7jD7/Z9HCKpeS
+ HajgxuX9Vhfx6bH1dAMfsg88+K8pOO9oulNX1+YffQyZWOfdbmnZDUzBt9HKR9Wgh8WoIyw9
+ TVluclzn6hYz+z9jbqHWMOsiCu8zA/0apHbW8vaIDT4+nNUxNdqU1TKa9kW47vNjwYYL0jZW
+ TXNjDIRpqJVSugYVc/U847GoVoxyvtzre4TAbBV8h0BAOeMdxI5En67RGWzeNaMDJV1bwapj
+ qdfj3e/X8rnGIfwz47rwztLNKoAIUlKrATwroiI7UNT+84G7H5qalu+Eu7QqU2ltb24gSHVl
+ bGNrIDxzaW1vbi5odWVsY2tAZ29vZ2xlbWFpbC5jb20+iGIEExECACIFAlH7wL4CGyMGCwkI
+ BwMCBhUIAgkKCwQWAgMBAh4BAheAAAoJEJNSVvfBt05KlBQAn1JDO7e4H3N0WFJkZnxvObhk
+ 2kiAAJwPdDd6T1TuGo4iDIENRhAX4AH2KrkBDQQ/2wjSEAQAj6JnDDQzIIYzPGsrHRvaq8vw
+ n8VrZCbPRvkngGvtQIss5pH/MLeu9jLepDGO9WHByFSg4QJh8cINYwTLtX8Bu0naA6ZI46hn
+ GyfxdRlxSU9dRqHpU3G0tymL1w3AER6aVSfdXQTmFgf61anKunbIIptkqzZurkjnxkwCE/RM
+ RscABA0D/jhglpj8siSIAxs8XLVfKJrjzbYM9/wS0NfdSXBeQJiYtKrY0WMNsqjY50wDnLMg
+ anORN/odT6mCwKI6xChzxEv/ta4+teZl92aitziSuqmtl+jm23DpOcUC7UBz2W1+TvnrhPR+
+ MKu8pPKAgsE8AI5uwCcNJx7V3bczYkIGaXybiEYEGBECAAYFAj/bCNIACgkQk1JW98G3Tko6
+ 3wCfZBpZAUhUz/Rcp2rfg/YSKl4YLlEAoJN7e322OvHc2GQ9n1+tKLi6Og4c
+Message-ID: <4f204468-67f4-6d88-ea02-c48f869d8ae3@gmx.de>
+Date: Wed, 22 May 2019 14:48:42 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCDzvroNfzhZHhDdvc+VR1eQNg5JMJ7F9=++hdWKcEXSOw@mail.gmail.com>
-Content-Language: en-US
+In-Reply-To: <78EB27739596EE489E55E81C33FEC33A0B91BAAE@DE02WEMBXB.internal.synopsys.com>
+X-Provags-ID: V03:K1:ShOus8Fo/Ar2hBlTIZy9YCIsXOftcGWHyXjUmtHlhlXVE0DBcFx
+ ANpfUj7K0TdRfoyDKUYtnfEzzUSKgOcEXcPfXcL0XVQxs2qSDnUYUclVj4Dkie9zH5enO+B
+ Bde3hWcKbpaOVbJxiWXrOpvVY2NobKj3od6iCuetnSKqIqNJePwuNcW4K575eygohoPF4G2
+ RC4sew3XIxVoc3953e6/g==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:HjuxOAuueoU=:vBu8B3L3BhhBaJwR09OZeR
+ iZPGfWDYTxU/J9DMmvjLoQ3lAak+rZfa346rt9Xk4EQ5l8BO64fXZtRhxvXhaGDxSmPQU8FCr
+ XcUdAYI94DzCTU0IlSsE3imYdZsnHR25wSBTOKcJZtTUNqgLCgtZ2pXKJ0K8WjvZbB8mmVhBO
+ jiC0hxZE32SZvmwA9PokMvArPAao9YcJ5oTklrhuW8PgM0fQGV1p9kTlHbN2ngN60qMIvqgxi
+ iYp3VnJ7IK1fx7uljagEYFpxzdiPc9ngZe4MM3RewTfjQQwwurNg0OA8DUrAFg4bLWp+x9Fvc
+ QfbIqvcabw/L9R3kQfCY6idt89TB/lcuDPfeQTjGzCdOb0q/pPcvLxJfUOkiBXrjGPVycunEU
+ KRXa7kvHcN7TaWUB8Wdn/JEPFmj5VuFCxG0mtoiL1BG4x9+K9EecGgjp1I+VgXIMNk9JE/Jjh
+ BRNEntS4OrMifM1irdh6RjtaBcU2h3B2/ZE4CyS6Zz0XzvztmYGG3qsRkw+gopKBfLcyPrEjb
+ 6pC1O/OyvkhmAHrhJlWlKnjCqi348qrOkkyUd/ZOeLc5R8gTMnFHGIGTeuxutqn1lVYLoFWHV
+ fWk9fYCb1yNRMFD1uyYp58oGcCwgyPDf5829pTHEB5UYFpsREj9pfUWC3ITzg/tn03Q6mWur7
+ 2r0ivJNCpZujnW70MdQNVfUPEiwazcWQTKZjW6bZvVgv1QID7W9ObztcXpyZb3Uw0ujbuxglZ
+ Dpnc5hwNsLJBiDly8VwCO7XuSdV1TmSsIwrOA0SbhY+FT/aFnIn4ziHEhzGTzHc31QWplic/6
+ zAe1qcsoWmbSdFp3MBsUSmS1YKUJYg4PeffujgIK0V8JKc/G6eFyrZrEZqvnFib8xlezAXfHI
+ aM+ptL7kNgbf2IGHgdflCzhOZ1EMHADIYWnZr/5EnHMvUZCiLIJ/09FKVrSwgdt+B46bKrJd8
+ CISMv/hemJ3/qcAPSH5TG7GuzhatHtSxJxW4IB8UUBGWOa7o9rTzX
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190522_011924_129063_C0C5D19F 
-X-CRM114-Status: GOOD (  21.60  )
+X-CRM114-CacheID: sfid-20190522_054950_556023_1AF560D9 
+X-CRM114-Status: UNSURE (   5.54  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -153,100 +134,41 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: khilman@baylibre.com, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+Cc: "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "alexandre.torgue@st.com" <alexandre.torgue@st.com>,
+ Emiliano Ingrassia <ingrassia@epigenesys.com>,
+ "Gpeppe.cavallaro@st.com" <Gpeppe.cavallaro@st.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 21/05/2019 20:01, Martin Blumenstingl wrote:
-> Hi Neil,
-> 
-> On Tue, May 21, 2019 at 5:20 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
-> [...]
->> +       hub_5v: regulator-hub_5v {
->> +               compatible = "regulator-fixed";
->> +               regulator-name = "HUB_5V";
->> +               regulator-min-microvolt = <5000000>;
->> +               regulator-max-microvolt = <5000000>;
->> +               vin-supply = <&vcc_5v>;
->> +
->> +               gpio = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
-> I missed this in the review of v1:
-> according to the schematics GPIOH_5 is routed to GL3523 (soldered down
-> USB hub) CHIP_EN signal.
-> The datasheet [0] mentions that this will "Disable whole chip and keep
-> hub in lowest power state (standby mode)"
+Hi,
 
-In the v1, we didn't have the schematics, so it was all a wild guess.
+what exactly do you mean with this DT binding ? i cant find this for
+meson gxbb somewhere in the DTS ?
 
-> 
-> do you know if this is a similar case as GPIOH_4 (USB hub reset line,
-> we configure this using a gpio-hog)?
+regards,
+
+Simon
 
 
-We have 3 signals for USB :
-- GPIOH_5: goes to CHIP_EN to CHIPENABLE to the Hub
-- GPIOH_4: goes to RST_N to RESETJ to the Hub
-- GPIOH_6: goes to PWREN for the OTG connector PWREN
+Am 13.05.2019 um 11:07 schrieb Jose Abreu:
+> From: Simon Huelck <simonmail@gmx.de>
+> Date: Sat, May 11, 2019 at 15:53:34
+>
+>> ethtool -S gave me some counts for mmc_rx_fifo_overflow, which i didnt
+>> recognize before.
+> Flow Control can prevent this to happen. Please check if your DT FIFO
+> bindings are >= 4096.
+>
+>> Do we have new ideas / new direction to dig for ?
+> GIT Bisect is the best direction to follow.
+>
+> Thanks,
+> Jose Miguel Abreu
 
-As you said, the datasheet mentions : "
-Disable whole chip and keep hub in lowest power state (standby mode
-"
-
-I modeled it as a regulator since when enabled it actually enables the
-power on the USB3 ports using the post-Hub VBUSCTRL signal.
-
-Since I can't model these post-hub power enable signals, I can only
-model the hub CHIPENABLE as a regulator to handle power.
-I can't model the hub as a device subnode inside the dwc3 since
-when CHIPENABLE is low, it won't appear...
-
-We could model it as a Hog, but we won't be able to power down
-the usb3 ports.
-
-> 
-> [...]
->> +&ext_mdio {
->> +       external_phy: ethernet-phy@0 {
->> +               /* Realtek RTL8211F (0x001cc916) */
->> +               reg = <0>;
->> +               max-speed = <1000>;
->> +               eee-broken-1000t;
-> are we in the same situation that we have on the X96 Max where network
-> dies without eee-broken-1000t?
-
-I assume, let me run more tests to be sure.
-
-> 
-> [...]
->> +&usb2_phy0 {
->> +       phy-supply = <&usb_pwr_en>;
-> is usb_pwr_en really the phy-supply or is it the vbus-supply of the
-> USB top control block (&usb node)?
-You're right, now we have the schematics, it's not the phy supply.
-
-I'll move it to vbus-supply since it's connected to the pwrenable
-of the otg port.
-
-> 
-> if these three questions are answered then you can add my:
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-
-I'll ask you to review the next version before !!!
-
-Thanks.
-Neil
-
-> 
-> 
-> Regards
-> Martin
-> 
-> 
-> [0] https://datasheet.lcsc.com/szlcsc/GL3523-OV3S1_C157363.pdf
-> 
 
 
 _______________________________________________
