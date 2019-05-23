@@ -2,88 +2,88 @@ Return-Path: <SRS0=Wall=TX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 890B1C282CE
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 May 2019 01:21:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 99769C282DD
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 May 2019 15:00:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3EBE32173C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 23 May 2019 01:21:42 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6BB2920881
+	for <linux-amlogic@archiver.kernel.org>; Thu, 23 May 2019 15:00:15 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nPglJHBF";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="PUOdCk/U"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3EBE32173C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZKlb2uh8";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="REOaV5Ss"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6BB2920881
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+mzJz6NBr+ZBoXs/2jRzK9s51QGCD/YELkcqnhUX40s=; b=nPglJHBF2SnCXV
-	jS7JOzGPbn7IE6sFTb4NMIIWgxlrai2R//l+Ro+NtW2JbMxm+oJwFtHApwkekB9zX6vvNy0S3gzUp
-	rw1TrH6pHUJ+LAFEJ5e5rpUIJoApGNGN/SeIU5zSKrhkCZ7OBF6Jidcl7ZfOiGztZWHdHjSqe2Out
-	cPJoN2glN1twHqBP7n5HR2hCmDnTCujaUhR/nOxgvEVtwtFff0FZ9kQyqJVanuqSNIPKzS1neEFGG
-	vYDTJo8E5G2DcQM4TQnQjgtwXmtpQAZMQRDr/QgcnX/eOwwTFnow0AnA2S7PsI+b46W9l31huBxJs
-	ssWa4lTvPJT0+2gM4Zpg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=trccILYteBMhb3+KzAw2/lplLvXG28fZcwjCFgi+4nE=; b=ZKlb2uh8gwFIdS
+	On/nY5fpGk3kgCSH85DXX2SfRJmvglk1P8NqcI9RS0rLSqQNenWs6g8x1iWFTfdA6ns9jSDecPTGV
+	cC62lddNCbooYoWCJgDc0PAQGhsM5Kkfpbo3b3S9yHgT4JCg+qOr8CQs1IaCAsuxUCStsmjA3lM9o
+	JsRNU7bE59LXbj0VaoN9ufThX13jSG1jF6snOFmtJsTp5KJWFQnPVhtxknwFCfSacOvH3V5HoOZ3w
+	ymTaQ74p+b0emhFAQF/nChWfD2vLFo/11MVAqTgMwkB9KVy/j7yXIMvTLhTVo5OI98e72rf9C9NHP
+	W3OijkDEZZ3NKB8Hmgzw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hTcQI-0000Bh-GE; Thu, 23 May 2019 01:21:34 +0000
-Received: from mail-pf1-x442.google.com ([2607:f8b0:4864:20::442])
+	id 1hTpCN-00004s-HD; Thu, 23 May 2019 15:00:03 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hTcQA-00005I-4V
- for linux-amlogic@lists.infradead.org; Thu, 23 May 2019 01:21:28 +0000
-Received: by mail-pf1-x442.google.com with SMTP id b76so2270052pfb.5
- for <linux-amlogic@lists.infradead.org>; Wed, 22 May 2019 18:21:25 -0700 (PDT)
+ id 1hTpCJ-0008Ky-6d
+ for linux-amlogic@lists.infradead.org; Thu, 23 May 2019 15:00:01 +0000
+Received: by mail-wr1-x442.google.com with SMTP id d18so6650274wrs.5
+ for <linux-amlogic@lists.infradead.org>; Thu, 23 May 2019 07:59:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=aZA+MNZ2gy6tyuVfxVa4+g2Ok6wQVnYjHxlUytPK634=;
- b=PUOdCk/UEJMFygnW4qCafnKIOUDF9MkSj5dza7t9Rj1736a5ouarchneF9tOUqj8/z
- SwjwewLHDFiwc3/ab4+IUd6mSSbU3wGjHT55wHa0aIKC1NBiPkwHIDEbMwsD2hEcB4Ln
- QF8G7EF8TV+3fes/dMKH9cXzQXwp1u7XFF2Z+TinznOq3GXu9qtm1Bny5T7RiZw8XzNE
- Cxh4wMPEVxaRVCYDbo6IjJEEZzAhqXOME50oAR82x8GVyzLbA7wTLFKB//3urtelO0qw
- BdP2z8abMTXZd7YPnMcb5AUSc4Ao/ie6Fl/4q52kn16qfHT0MciIDBn+BG+YVnjcAlf+
- bBRQ==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=CssnNRfqQDe95aEHLIDwNrxoMm4Qr1zdDx/8yvm4qr8=;
+ b=REOaV5SsGZnknVjXNHI1+w/KigvMYFqry/bQQI5clubnG+/RkWUFG/ltDAyrO4zkDH
+ c77lz+ZH9APatZ8RBKfqZIrQu6VUfGLvuNAfXebV7VcJq0pdvlNCsyc1vYPkRZn5Z45u
+ 2RLB+M9VXCmNsKrfoShvy6RVSnqq5FoHPvGXyFNWVwSPoutqYs4IInrK2K5u60CYCeyx
+ /OOz32VPGeF+hV8c9HwrzIXhievnXkU76cLyiI5nnx49ZFl3HkF9Qdx/uqVIY6MKNnFa
+ p6yzQku7tHyyS/MUqo1UMfav8fcHGO1INv8DrGX9vjXdZRQkAqTzCcRFRfOP+0Q7ScDv
+ 1CiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=aZA+MNZ2gy6tyuVfxVa4+g2Ok6wQVnYjHxlUytPK634=;
- b=Wa313K08GY+PyQ/EJGFY/W30kgf20t85MYkwiHWyBOz1BeETNbMW1wFqbhA3BoGAhU
- L6IykCDRVv6OqwVFxIbYlT+VXgp230qXEar4mi1P/ziFvjExQtca0mGvImZBM/ZemPvt
- IyBvzDmbMbHFmO0+hKbWe2HiD4UXA/D89wGjpcNmNb4fud2i0dBvAq6kh1u4GJ8pinIQ
- 7LPArd6AQYa4huO61GRk7e1EzGbYQht/+gsYRXGsq6zcC8129Xf7vmRWyGPS+cuBOUnH
- M3iolA92+AIr1D+mj43XuZwEolSAMrsvBwx6SscN6shrPrAjeKRNdhF39/F5OZefvPj+
- Prmg==
-X-Gm-Message-State: APjAAAVmXTJ/nAf6mxfQnqA4xd9wGkSTNK++C9g7+jXcpUnmH38PKABm
- udz2PWtU70e7JZOknF79hF/DKw==
-X-Google-Smtp-Source: APXvYqwZPRmT7k3u0C+6WYbp7uBd/JRJE1geAcqL1D/11qfWc7DMiFMpRi9UzoUrwq9R8sy64EUUhA==
-X-Received: by 2002:a05:6a00:43:: with SMTP id
- i3mr21282572pfk.113.1558574484468; 
- Wed, 22 May 2019 18:21:24 -0700 (PDT)
-Received: from localhost ([2601:602:9200:a1a5:ed4f:2717:3604:bb3f])
- by smtp.googlemail.com with ESMTPSA id u1sm40517035pfh.85.2019.05.22.18.21.23
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=CssnNRfqQDe95aEHLIDwNrxoMm4Qr1zdDx/8yvm4qr8=;
+ b=TeuillZj0BDBT7Es1dwejuGXxy1WTSQjMzier0bqaQaoPROrSnx8oIOPR6oAej0TMQ
+ DyPblzBwv9fzWErFF078Fjd2IC2r6NJQLeVWWquwSPDVJeVWaje/CXfzO8aQLelNqkQq
+ pIIMlsDUUfbczv1lU3x/d9kVJOVri+dVmQs991qHPHbFdiLN4A6yWfsprBUN+SK5dY3J
+ LTyM+xb5UgMHNCvkHm0205p70T9X9xxdWNz6aVBGJJ4GQLrE0h4c3JL8rMgKRSCaFSgl
+ iDTfmMx5NRtRSnwuLxY0Kg3DRzE3ikx6tXvKWdBMAgyXy/6vD2oVoTXDLQw4dnjTxz0w
+ ukdA==
+X-Gm-Message-State: APjAAAXs3UuUcNmetFEPpltxT8QsO0UhBYWm7B0hCZulwop1v/UJhsJ8
+ IDu9dU5ASvDAoQmw8sobArVhSQ==
+X-Google-Smtp-Source: APXvYqx/uuRO0IHEqvTfUgTvkFrAj21iMWd3FOVHEIJ7N9kr8gaNKLRjtE6H+YJHuIRDbZsfcx4ktQ==
+X-Received: by 2002:a5d:65d1:: with SMTP id e17mr1327464wrw.65.1558623597101; 
+ Thu, 23 May 2019 07:59:57 -0700 (PDT)
+Received: from boomer.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.googlemail.com with ESMTPSA id o11sm14429930wrp.23.2019.05.23.07.59.56
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Wed, 22 May 2019 18:21:23 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, mjourdan@baylibre.com, robh+dt@kernel.org,
- mark.rutland@arm.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/5] 32-bit Meson: add the canvas module
-In-Reply-To: <20190520194353.24445-1-martin.blumenstingl@googlemail.com>
-References: <20190520194353.24445-1-martin.blumenstingl@googlemail.com>
-Date: Wed, 22 May 2019 18:21:23 -0700
-Message-ID: <7h1s0q55kc.fsf@baylibre.com>
+ Thu, 23 May 2019 07:59:56 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>, Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCH] mmc: meson-gx: fix irq ack
+Date: Thu, 23 May 2019 16:59:50 +0200
+Message-Id: <20190523145950.7030-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190522_182126_314617_78B1ABEB 
-X-CRM114-Status: GOOD (  13.51  )
+X-CRM114-CacheID: sfid-20190523_075959_378582_BBC883D5 
+X-CRM114-Status: GOOD (  12.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -95,52 +95,59 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>,
+ linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+While cleaning the ISR of the meson-gx and acking only raised irqs,
+the ack of the irq was moved at the very last stage of the function.
 
-> This adds the canvas module on Meson8, Meson8b and Meson8m2. The canvas
-> IP is used by the video decoder hardware as well as the VPU (video
-> output) hardware.
->
-> Neither the VPU nor the video decoder driver support the 32-bit SoCs
-> yet. However, we can still add the canvas module to have it available
-> once these drivers gain support for the older SoCs.
->
-> I have tested this on my Meson8m2 board by hacking the VPU driver to
-> not re-initialize the VPU (and to use the configuration set by u-boot).
-> With that hack I could get some image out of the CVBS connector. No
-> changes to the canvas driver were required.
->
-> Due to lack of hardware I could not test Meson8, but I'm following (as
-> always) what the Amlogic 3.10 vendor kernel uses.
-> Meson8b is also not tested because u-boot of my EC-100 doesn't have
-> video output enabled (so I couldn't use the same hack I used on my
-> Meson8m2 board).
+This was stable during the initial tests but it triggered issues with
+hs200, under specific loads (like booting android). Acking the irqs
+after calling the mmc_request_done() causes the problem.
 
-Queued for v5.3...
+Moving the ack back to the original place solves the issue. Since the
+irq is edge triggered, it does not hurt to ack irq even earlier, so
+let's do it early in the ISR.
 
-> Martin Blumenstingl (5):
->   dt-bindings: soc: amlogic: canvas: document support for Meson8/8b/8m2
->   soc: amlogic: canvas: add support for Meson8, Meson8b and Meson8m2
+Fixes: 9c5fdb07a28d ("mmc: meson-gx: ack only raised irq")
+Tested-by: Neil Armstrong <narmstrong@baylibre.com>
+Tested-by: Kevin Hilman <khilman@baylibre.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/mmc/host/meson-gx-mmc.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-these two in v5.3/drivers
-
->   ARM: dts: meson8: add the canvas module
->   ARM: dts: meson8m2: update the offset of the canvas module
->   ARM: dts: meson8b: add the canvas module
-
-and these 3 in v5.3/dt.
-
-Thanks,
-
-Kevin
-
+diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+index 6ef465304052..cb3f6811d69a 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -873,6 +873,9 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+ 	if (WARN_ON(!host) || WARN_ON(!host->cmd))
+ 		return IRQ_NONE;
+ 
++	/* ack all raised interrupts */
++	writel(status, host->regs + SD_EMMC_STATUS);
++
+ 	cmd = host->cmd;
+ 	data = cmd->data;
+ 	cmd->error = 0;
+@@ -919,9 +922,6 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+ 	if (ret == IRQ_HANDLED)
+ 		meson_mmc_request_done(host->mmc, cmd->mrq);
+ 
+-	/* ack all raised interrupts */
+-	writel(status, host->regs + SD_EMMC_STATUS);
+-
+ 	return ret;
+ }
+ 
+-- 
+2.20.1
 
 
 _______________________________________________
