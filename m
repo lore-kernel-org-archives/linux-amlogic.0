@@ -2,83 +2,89 @@ Return-Path: <SRS0=5BKV=TY=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-2.8 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8F536C072B5
-	for <linux-amlogic@archiver.kernel.org>; Fri, 24 May 2019 17:50:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C2EBAC072B5
+	for <linux-amlogic@archiver.kernel.org>; Fri, 24 May 2019 18:19:56 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 611EF20879
-	for <linux-amlogic@archiver.kernel.org>; Fri, 24 May 2019 17:50:26 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8ABFB21773
+	for <linux-amlogic@archiver.kernel.org>; Fri, 24 May 2019 18:19:56 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AHVXDcIM";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="kgfxpZcc"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 611EF20879
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="G/D97ai4";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="fLbTFdXK"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8ABFB21773
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mkt9Ue2TSot3ZElhz8S2pHMYZp8mCdnAitZ96MhevNw=; b=AHVXDcIMzukq49
-	FynGnSBdnoNJkoZUWQ+qW9NZ1+CJvrS9edOutp5pe6EP9hXYAKxlMpl4APcpwxqj9dQjOEChEfp66
-	EcO4HWmVRAT4ThJw9twZ4h65kupTee3crZxhVVMc7007PcOXAgStcIEoCTmHEDpvqOv09R9blRH4V
-	7nbmdtZcn5OwQwCss+osH3EMpewHiZEQvfFbeNDNK7V070q/WgtyBy5DuGYURf/0WULgngqkvLkur
-	en2lxfchnItr7XCbrCWczQ9fBewHCH6kbMX4P5irhIk8PbUdbjyBcOCJZqDOFYooM3GB4+kuJvzQV
-	ClM6aTLlNik0NDbGtHlA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=1uOrLbM3WLRJxYqyXOSdjYOekIktaFV4n1Ryfl6J9d0=; b=G/D97ai4wpRvY5
+	vqTQTvUZlQ309RrVlotkTiojpR0X2HuGLmYfh7U1RsN1UfyhZMJnPpm3WAwMH7mnBahjK2Vvz+sIS
+	4zgPgg9sbh7SYL/Nt2jDS9FwBsUoWY6QBcj4+d6VN6YyLt0Bg8DIfXCQwprwHic9pvspoA31zuR6K
+	qF+bq5XcbQQdsMEHoGhBOUv1CR5p5y1UcH752VNMo4kAXvMYlX8fMJIBzyAj+wNmyAoPnhv8hOlOI
+	musIGOrUrsXYOZvRhQZtK37EyLACg0FvmFkifPuoO/LDs+f3l3NNH2hzX+YDnweeb8JJ8oHXXOObL
+	BuJNb3mc09ZXLZxRS/PQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hUEKh-0002Y3-FJ; Fri, 24 May 2019 17:50:19 +0000
-Received: from mail-ot1-x341.google.com ([2607:f8b0:4864:20::341])
+	id 1hUEnH-0003lk-NU; Fri, 24 May 2019 18:19:51 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hUEKd-0002XD-9A
- for linux-amlogic@lists.infradead.org; Fri, 24 May 2019 17:50:18 +0000
-Received: by mail-ot1-x341.google.com with SMTP id s19so9455538otq.5
- for <linux-amlogic@lists.infradead.org>; Fri, 24 May 2019 10:50:13 -0700 (PDT)
+ id 1hUEnE-0003l0-Oe; Fri, 24 May 2019 18:19:50 +0000
+Received: by mail-wm1-x342.google.com with SMTP id x64so10280424wmb.5;
+ Fri, 24 May 2019 11:19:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=UZnc7DcjNL05PZUl35qBgTMmg9YgsiJ/H98z8gpQ+WU=;
- b=kgfxpZccazO/20c27YqZ/hF+AHYaWjTIKj+4hlpYOmSpYGdq5DSO03BZdAfXSk87zd
- Xxrb5F0o1lmubo/ft/4hp97LJqex8aPiv8lqDux6558iohZD4moHYTlkQq+kXdfvcD5Q
- sT2rTkW1eqxEm+dFXn+mfXoU5IVCbKeyvvWzujoJc2lvoTJRauZI9JPTjH4Kw0xNV79v
- Jcrjj0gLjoOscv2meGBmgwpSR35Dp7jATobUo0Kj1w1WI6DorXaO18b9yQTOnmBU0AEr
- SzgkVFIXR6fax727+rlfnuTMuUTl02Ht6jvKum9cxTpt0SJb/vBLXie+hZluXmAlJB89
- CPDQ==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=+8J7+u+08zw/YayuZerzF4YvJ/C2JcgVQ3UZvTM8GdY=;
+ b=fLbTFdXK/qHCokY3RRGYYjK9b5BKrl51TIo5xcbU/V1w71Dwmb7nnguqE/LlutxG0X
+ jFWSeN4YebgtkduKqxhKCmUhJN71XPTkHNuphOwT+PhHlXGKEqoPjqr4vDenJW+pRhSr
+ SwbGlSXdsq4MLZIC4tkbWx2U4Q56kzhih8EzIwaxMyzEubYKrtXsuvryQ5CqrEzKHEKW
+ NYkdXaA+BQ/6nSc9CrC1OlIMNM5+CkferqlCSyzGNDD0MKPmGAqThxGX6gjZZy15Z7up
+ Riq/QbxT1I2YIcTXhIKxqNKGD9wFJ+hN1Fq3s9VHiTRIJ95MEy/gHTjuhJzAFJyI2S6s
+ oooA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=UZnc7DcjNL05PZUl35qBgTMmg9YgsiJ/H98z8gpQ+WU=;
- b=jaRsi07WypyfSs9aEigmcRRgMuI40Bn7+yb35oZy7zUE5LWb0vlPof4u23Uu889Dhi
- mUPDSXgoIyFQXPCUXi2H7scAipxrZUi0sUKtYN2zi/4CZFCfQDGZ07+2naUJ/BMtCNZv
- EtgC0w8htDNT2rA3Ti6ME41zfMnKLJznH17jJMft4kMZhdkeFrhn7tbjUDNauLZBYS4K
- dsjVuLPnFKnYncgSIlox2JzS303eTwGobERH+tXSzWLavXPfhTilkYje+UG6RLkfLkDE
- zAZ+FRVhX1txJgsxnLrnUakauw71QT40l4fasdc/id/yhlGUeQI6dCtde+3wPRhRJE4x
- tL3w==
-X-Gm-Message-State: APjAAAUGaLErsQYlAIA2UBkNeV9+QKK1aUyIBuLnBm1WXcX/ad2Gk/t+
- oO12naRDSr4LLyKSbAqEakP56ULyZuUeXeBtJcw=
-X-Google-Smtp-Source: APXvYqy1KkZNIxwuQhPqiSRp1aCJoK85ECorsxpw0StRGFYqPUIJ2pkj+G09V+/85cJ6Wtcv6GjLQ4Bz2FginEM62Ok=
-X-Received: by 2002:a9d:744d:: with SMTP id p13mr41645269otk.96.1558720212750; 
- Fri, 24 May 2019 10:50:12 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190524130817.18920-1-jbrunet@baylibre.com>
-In-Reply-To: <20190524130817.18920-1-jbrunet@baylibre.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=+8J7+u+08zw/YayuZerzF4YvJ/C2JcgVQ3UZvTM8GdY=;
+ b=r7Hr2hph1LC7HMDF+QjgdlGWoX3pivpGlyHRAxs7x55dfP5zpprZKS5Vz104ny4oyM
+ 5yl/ycCZGu132glm0UIEUkPGEAFTudpE5OlMA0AzHtuUrKzjzfJwYWYD9GKoF5XMfk+9
+ l4HrRErbZ8NtE5fqZzBIpWWZ8g8Jm0HBK64Gre90m3LqkVvke8n7lJAFzJwhNKNrx3dr
+ s1cwzNptX3BnC521tTygHCF6cV0BsGSbFix4g6mIUzfTOQGALjzjGnt3KGKlm5wKNZIB
+ ECKWeURVAiyj6clCIe8Nxf/7bknXdVNchhAH6i9F7s3g+ruNbtIPmfA8KWY6naLTYV+v
+ nIDw==
+X-Gm-Message-State: APjAAAU+QEkE3ajjSu3+bAWkwljNTjnhvcSiHZxgT+L8HhcTtStscH88
+ XtNV9zzjoSZnUGiA349AQ/RHk5pg
+X-Google-Smtp-Source: APXvYqxqHSt7C6QxdYYFU1OJ2baCwFXbx4oAQnj+bTCBMrHIlPHQxmVND5il/ViRVFU8xUfrGuis/Q==
+X-Received: by 2002:a7b:c40e:: with SMTP id k14mr895213wmi.114.1558721986483; 
+ Fri, 24 May 2019 11:19:46 -0700 (PDT)
+Received: from blackbox.darklights.net
+ (p200300F133EE7100D0AA8776F4474B72.dip0.t-ipconnect.de.
+ [2003:f1:33ee:7100:d0aa:8776:f447:4b72])
+ by smtp.googlemail.com with ESMTPSA id i15sm3181831wre.30.2019.05.24.11.19.45
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 24 May 2019 11:19:45 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Fri, 24 May 2019 19:50:01 +0200
-Message-ID: <CAFBinCCKA-15sFwyXpoxmqw5b4=6j1t-fdrHM7CoAojqN+ZGzQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: meson: add dwmac-3.70a to ethmac compatible
- list
-To: Jerome Brunet <jbrunet@baylibre.com>
+To: linux-amlogic@lists.infradead.org,
+	khilman@baylibre.com
+Subject: [PATCH 0/1] ARM: meson8b-mxq: better support for the TRONFY MXQ
+Date: Fri, 24 May 2019 20:19:35 +0200
+Message-Id: <20190524181936.29470-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.21.0
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190524_105015_342284_29AA4FF2 
-X-CRM114-Status: GOOD (  11.32  )
+X-CRM114-CacheID: sfid-20190524_111948_851004_72DDC29C 
+X-CRM114-Status: UNSURE (   8.26  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -90,45 +96,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ hexdump0815@googlemail.com, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jerome,
+A while ago a user asked on #linux-amlogic about the state of the
+TRONFY MXQ in mainline. I did some research (mainly downloading an
+Android firmware image for that device and looking at the .dtb) and
+updated the mainline .dts accordingly.
 
-On Fri, May 24, 2019 at 3:08 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
->
-> After discussing with Amlogic, the Synopsys GMAC version used by
-> the gx and axg family is the 3.70a. Set this is in DT
->
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+I kept this patch in my tree but didn't hear back from anyone with one
+of these boards (who could actually test my patch). That was until
+today where I got the following message on IRC:
+  any plans to submit your latest own version of the meson8b mxq dtb
+  to mainline? it works really well for me and the one in mainline is
+  too simple to be usedful ...
 
-> ---
->
->  Hi,
->
->  The same should be true for the meson8 families but I did not test
->  it which is why only the patch only address the 64bits SoC families
-on one of my Meson8m2 boards:
-User ID: 0x11, Synopsys ID: 0x37
--> that matches GXBB/GXL/GXM
-
-Odroid-C1 on Kernel CI reports:
-User ID: 0x10, Synopsys ID: 0x37
--> however, the public S805 datasheet mentions that it's a
-"10/100/1000 MAC 3.70a" (page 120)
-
-I don't know about Meson6 or Meson8 (as I don't have boards with these SoCs)
-
-I'll put this on my to do list (adding the "snps,dwmac-3.70a"
-compatible on Meson8b and Meson8m2)
+Thus I believe that this patch is finally ready for being included
+upstream!
 
 
-Martin
+Martin Blumenstingl (1):
+  ARM: dts: meson8b: mxq: improve support for the TRONFY MXQ S805
+
+ arch/arm/boot/dts/meson8b-mxq.dts | 139 ++++++++++++++++++++++++++++++
+ 1 file changed, 139 insertions(+)
+
+-- 
+2.21.0
+
 
 _______________________________________________
 linux-amlogic mailing list
