@@ -2,22 +2,22 @@ Return-Path: <SRS0=xEjq=T3=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH,UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+	SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B9721C07542
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 12:26:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9EA68C072B1
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 12:27:10 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8D8EA20859
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 12:26:44 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 75D5520673
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 12:27:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Jni4iCsb";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="QOZCqxfY"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8D8EA20859
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hKJLqc3n";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="f71JNsaD"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 75D5520673
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,62 +26,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZG9RwPos0PnN81xbA/NY4I5DU1Uc16vq8WEgDwXPwIU=; b=Jni4iCsb+Fsb+a
-	T3TYvcDv8EYIHAO/E3NOlGPI30tm87J/giSKNgTlcgErFUdSh7LMmo2U9u3EigH9M4rR7lof718vb
-	ltI/Fy3+xsaGvDp6/LWp5/Znp3Nwje63ohrooF1HV50FQbq1dgLDMBwle+cTvH2LvlYtrQ7PR09eP
-	PqavqMUEfkBNGgTZhX1qyh1t3JK7oCAnzkt6uobHp0X66Y8A4ih3aLLPNvUP6U5pDD6KVHaL48SIW
-	KH2tpoDrZwfgShi8Ysbs4uZ0QRDMBDShdWvUPKrVTGuFcM/F8ZTR8ZvRTYz/39CfGYrehcLB/2qLG
-	XpKbs/gIja9fAgbDH6rA==;
+	List-Owner; bh=L65U9n+JtRf/OW6vlbUaRQEGxzLrOebaPx0eBQDt6IY=; b=hKJLqc3noGIlpp
+	s8WI4R0unq96sOXEwgaCoSL1jaWuon0HiWa9NB6wtaD51jmawA8vGnJmiIQlQwnSpQOeFpVg3FwFC
+	ps/h9o/WnWtAdh2v7ibRB+TYri//BoYtesH5cGmlEKCvq9RjX2BTe1ePfEgYQXuhB3TFiRCnqs7hF
+	h6Nldh/pyelB0+fW3cS7OMk5M2igSKwb8zLhRRjlKXyojFK6+WU/ayFbbA/Eoln+NlvUAwFeCWCYQ
+	hcNSyBY6o638RkWhSXEfYqgX+VM55gtqrIEpw0AC4hcgRUyrqZIlG3GVuZzl9J1dJr0ug5PsqdHdY
+	FLp8gLPFyhJvLMESJGsw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hVEi7-0004n8-Dt; Mon, 27 May 2019 12:26:39 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1hVEiX-0005Nw-7W; Mon, 27 May 2019 12:27:05 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hVEi4-0004mR-Af
- for linux-amlogic@lists.infradead.org; Mon, 27 May 2019 12:26:37 +0000
-Received: by mail-wr1-x441.google.com with SMTP id d18so16757476wrs.5
- for <linux-amlogic@lists.infradead.org>; Mon, 27 May 2019 05:26:36 -0700 (PDT)
+ id 1hVEiJ-00054Y-I8
+ for linux-amlogic@lists.infradead.org; Mon, 27 May 2019 12:26:55 +0000
+Received: by mail-wm1-x344.google.com with SMTP id w9so9551594wmi.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 27 May 2019 05:26:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=2tDDWhgNEB5bJTcFJlhnu/dr6egOdayi9M5VpMFvy6M=;
- b=QOZCqxfYWeXse04swKa5CMF1HpU+bX4q268wgOlEOKyZGGcdeh2NT0a84W8zuUx0On
- N1gV8dCTLfMC9nktbT2tyGnm52pEypBbv+evB88o7TjGTQ98l0gDFE/aUQSk/f/YPr8x
- T2lq7XSIE+f46P3joL7t0sdmi9QlotBTw+yw4ZuFT5FVRBfuA3LKOKCEZNFPv5Bkwwe0
- JpIxrW9wUfFRetHqpiFPW3wZIwmgM9LBYBdB/vaIpPbOAidvkobxTEj/W0eEmGCBeuUR
- wn7rNLcnaxlgGHQqSbODvwAuz2Zg3BXm6Ljmqh0qn2PWQyR+1h1GOc4DHUg3haCbl0dG
- cvAw==
+ bh=IVzLJGX+MsmE++PjIznjRjrAkMHMmJHi4jtucTUiuuc=;
+ b=f71JNsaDsE2CrHCXE59CaLNQDmC3DOXsCmgc2KFa2aXT/7SLbuXAS/VYyGWn2Za6zI
+ NR62HtrFl8BR5iw2BrYb7GFNuw4YOjMMas9Ncz5AhXtXl60EU5KJNF2362gvM8Vm2Ytl
+ LtBBxVyYDGqXUVoHIucDsPN4tVuL1UFVXpqT6Xw3+6ctqv46MDN+7/Gya0x9xly+wrJP
+ YAUvYA8zBw+KOeNiyQERgiT/rB7dvmkhZvYKZ+AgZELOjiHZcwKc+Fsd/KraLANl62vD
+ BXzqwcB0Ta+q0/uQSE3ev16+Z1s+SP0qCTxcbYppfsiNpVlaBzkRT6yBzuOAYPC003oO
+ i4VQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=2tDDWhgNEB5bJTcFJlhnu/dr6egOdayi9M5VpMFvy6M=;
- b=g5APdkIawKL/zSTmXZ/lLZ/INEvaAspRmyXdFxejHa+4bCCKsIKEwVGbYR+1TIKXKl
- p5ypLwwBPPTS7GpuJ1YwHpHoKzrZd0mWrtNsyDOvNIJD9VKRIIsLfBeTrUlkFOFC2CjS
- 7rrrrKjTBnae7nrKZTWVYfnywsbgceT9yue09YKVgO9WttQyx3hVPyrG0+gOLdCtX32K
- tMe5dZgQUSrXrDvDgk96Hk1BT1+Gi884AHoZp/exk84wI2IE3jACWKXpZ3EzpYj10l/w
- SyyuMT0KWilgT1lo7eqB9KsJFfCOnOL48mPee5sNAue1y0vCSd+cKjM8rAsN3sqFIYgm
- eCYA==
-X-Gm-Message-State: APjAAAVz+YQnMZZ+yx9E9M6FMzSEDW+FtvjvjxzgS5co8X90FO+4+fHw
- Aq6CTjD8IMJY3XQWkNiZnvZwJA==
-X-Google-Smtp-Source: APXvYqycAMX2LfZD6Hn4iB2x8omd8OuzKXsuYn8CsjSORRFW6ql/ZtcEjSP/xwsER0k+iGWWUL9d8Q==
-X-Received: by 2002:adf:e649:: with SMTP id b9mr28407713wrn.195.1558959994770; 
- Mon, 27 May 2019 05:26:34 -0700 (PDT)
+ bh=IVzLJGX+MsmE++PjIznjRjrAkMHMmJHi4jtucTUiuuc=;
+ b=cUDRyInVbcVHnxYl87OZ9hFxVUK/9eggzQLxQSrhUML5TBJEjZYFj/QMs7J2jFdQ/y
+ Hc4jaSUa2T3hJQCO3lXxCM04bSrA9Bf6vPhhVa5qoqH4bGbcytdNkLXZwuf2qoHPMuO5
+ 0Y6KAO+gesYgMFKfy51O4goylm46gLUOkQ0yF5v7NlX9CKgnOhQOUQjNcRgVv9zOGR3U
+ QtVfkLb9B5MXFsv7Euv8tUGzNaaU+55GKLBWNhEhlwWmCuytRqeXSF+icVwWdBh60dAe
+ m9ipPosyqxP66oCwdaO/j501srMpfCOxhw2U/A13NO7UrB4lpjAwC6zMeb0QUjszQLem
+ Q/AQ==
+X-Gm-Message-State: APjAAAWOnMNot9kW7kEWo5AKxXMLK6OAP6a/evxjaMRUFjrbf9yA0Qfa
+ bNcqbWUhjMucwxGbfO/HbHSESE4H6Qg4xg==
+X-Google-Smtp-Source: APXvYqzC6r8dIkZ/r1ai8+S7e0Xsf+eUf1PZs6k1kuWcoBlp5qWJGGul/RRx+fWRP5pgO0v7rxKyhQ==
+X-Received: by 2002:a1c:254:: with SMTP id 81mr9551903wmc.151.1558960009913;
+ Mon, 27 May 2019 05:26:49 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id d2sm2159504wmb.9.2019.05.27.05.26.33
+ by smtp.gmail.com with ESMTPSA id a204sm4733445wmh.8.2019.05.27.05.26.49
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 27 May 2019 05:26:34 -0700 (PDT)
-Subject: Re: [PATCH 04/14] pwm: meson: change MISC_CLK_SEL_WIDTH to
- MISC_CLK_SEL_MASK
+ Mon, 27 May 2019 05:26:49 -0700 (PDT)
+Subject: Re: [PATCH 05/14] pwm: meson: don't duplicate the polarity internally
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org,
  thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de
 References: <20190525181133.4875-1-martin.blumenstingl@googlemail.com>
- <20190525181133.4875-5-martin.blumenstingl@googlemail.com>
+ <20190525181133.4875-6-martin.blumenstingl@googlemail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -134,16 +133,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <3b61897a-267b-fd6e-181b-a8c7e47918fb@baylibre.com>
-Date: Mon, 27 May 2019 14:26:33 +0200
+Message-ID: <edb82eba-2576-f99a-5553-cec18ee292f1@baylibre.com>
+Date: Mon, 27 May 2019 14:26:48 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190525181133.4875-5-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20190525181133.4875-6-martin.blumenstingl@googlemail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190527_052636_370864_40404654 
-X-CRM114-Status: GOOD (  15.31  )
+X-CRM114-CacheID: sfid-20190527_052651_914855_EDEBB847 
+X-CRM114-Status: GOOD (  20.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -162,43 +161,80 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 25/05/2019 20:11, Martin Blumenstingl wrote:
-> MISC_CLK_SEL_WIDTH is only used in one place where it's converted into
-> a bit-mask. Rename and change the macro to be a bit-mask so that
-> conversion is not needed anymore. No functional changes intended.
+> Let meson_pwm_calc() use the polarity from struct pwm_state directly.
+> This removes a level of indirection where meson_pwm_apply() first had to
+> set a driver-internal inverter mask which was then only used by
+> meson_pwm_calc().
+> 
+> Instead of adding the polarity as parameter to meson_pwm_calc() switch
+> to struct pwm_state directly to make it easier to see where the
+> parameters are actually coming from.
 > 
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->  drivers/pwm/pwm-meson.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  drivers/pwm/pwm-meson.c | 23 ++++++++---------------
+>  1 file changed, 8 insertions(+), 15 deletions(-)
 > 
 > diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-> index c62a3ac924d0..84b28ba0f903 100644
+> index 84b28ba0f903..39ea119add7b 100644
 > --- a/drivers/pwm/pwm-meson.c
 > +++ b/drivers/pwm/pwm-meson.c
-> @@ -33,7 +33,7 @@
->  #define MISC_A_CLK_DIV_SHIFT	8
->  #define MISC_B_CLK_SEL_SHIFT	6
->  #define MISC_A_CLK_SEL_SHIFT	4
-> -#define MISC_CLK_SEL_WIDTH	2
-> +#define MISC_CLK_SEL_MASK	0x3
-
-NIT I would have used GENMASK here
-
->  #define MISC_B_EN		BIT(1)
->  #define MISC_A_EN		BIT(0)
+> @@ -63,7 +63,6 @@ struct meson_pwm {
+>  	struct pwm_chip chip;
+>  	const struct meson_pwm_data *data;
+>  	void __iomem *base;
+> -	u8 inverter_mask;
+>  	/*
+>  	 * Protects register (write) access to the REG_MISC_AB register
+>  	 * that is shared between the two PWMs.
+> @@ -116,14 +115,17 @@ static void meson_pwm_free(struct pwm_chip *chip, struct pwm_device *pwm)
+>  }
 >  
-> @@ -463,7 +463,7 @@ static int meson_pwm_init_channels(struct meson_pwm *meson,
+>  static int meson_pwm_calc(struct meson_pwm *meson,
+> -			  struct meson_pwm_channel *channel, unsigned int id,
+> -			  unsigned int duty, unsigned int period)
+> +			  struct meson_pwm_channel *channel,
+> +			  struct pwm_state *state)
+>  {
+> -	unsigned int pre_div, cnt, duty_cnt;
+> +	unsigned int duty, period, pre_div, cnt, duty_cnt;
+>  	unsigned long fin_freq = -1;
+>  	u64 fin_ps;
 >  
->  		channel->mux.reg = meson->base + REG_MISC_AB;
->  		channel->mux.shift = mux_reg_shifts[i];
-> -		channel->mux.mask = BIT(MISC_CLK_SEL_WIDTH) - 1;
-> +		channel->mux.mask = MISC_CLK_SEL_MASK;
->  		channel->mux.flags = 0;
->  		channel->mux.lock = &meson->lock;
->  		channel->mux.table = NULL;
+> -	if (~(meson->inverter_mask >> id) & 0x1)
+> +	duty = state->duty_cycle;
+> +	period = state->period;
+> +
+> +	if (state->polarity == PWM_POLARITY_INVERSED)
+>  		duty = period - duty;
+>  
+>  	if (period == channel->state.period &&
+> @@ -278,15 +280,7 @@ static int meson_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+>  	if (state->period != channel->state.period ||
+>  	    state->duty_cycle != channel->state.duty_cycle ||
+>  	    state->polarity != channel->state.polarity) {
+> -		if (state->polarity != channel->state.polarity) {
+> -			if (state->polarity == PWM_POLARITY_NORMAL)
+> -				meson->inverter_mask |= BIT(pwm->hwpwm);
+> -			else
+> -				meson->inverter_mask &= ~BIT(pwm->hwpwm);
+> -		}
+> -
+> -		err = meson_pwm_calc(meson, channel, pwm->hwpwm,
+> -				     state->duty_cycle, state->period);
+> +		err = meson_pwm_calc(meson, channel, state);
+>  		if (err < 0)
+>  			return err;
+>  
+> @@ -520,7 +514,6 @@ static int meson_pwm_probe(struct platform_device *pdev)
+>  	meson->chip.of_pwm_n_cells = 3;
+>  
+>  	meson->data = of_device_get_match_data(&pdev->dev);
+> -	meson->inverter_mask = BIT(meson->chip.npwm) - 1;
+>  
+>  	channels = devm_kcalloc(&pdev->dev, meson->chip.npwm,
+>  				sizeof(*channels), GFP_KERNEL);
 > 
-
-Anyway, it's still correct :
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
