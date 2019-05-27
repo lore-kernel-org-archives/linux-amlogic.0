@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
 	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 06B2CC04AB3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 18:22:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6D23FC04AB3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 18:23:12 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D84FC20859
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 18:22:09 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 457EC208CA
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 18:23:12 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CbR2oq2+";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="EXy5Jch2"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D84FC20859
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="BXRki0cs";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="j6D7GGZJ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 457EC208CA
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,58 +26,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+uAeDTTXWmx8m+r2nMJvxMsgfQENy8asE3/7rI6Fj2Y=; b=CbR2oq2+hYcqzI
-	D8Lma0zf6ME+L9sQ0aNnTQIQyqgDk3NQe0fxhFSQtH0DqzUpiIP02ANfEs+HAIXXFRvHn2vT3Cqhs
-	npqHuwR4QglpqRsgrRZv70oYDlKx4Ob2vj3v7PtQobC1qQNkGHvKWyMpA+R48GclEloGGWLQznvgj
-	sQA0au4KhyjIdZhEudK7FihoSdG9hGlqzYspZesLPb5PJwt8A89juRRZSlsRqrBgQBOyri6z6DXY8
-	hSOdJctpvdOu940ToBi1hxpzj1gj5AiO4TFd/xpbK2GxK2av5JBDZEwrzAunOkE99vpVDbFNsQUeJ
-	HB/iMLqgdY11Oqaew4GA==;
+	List-Owner; bh=93foP3hIravaVt1+DoucYiC1a0fWuEUiOLoGD3qHFbY=; b=BXRki0cs7Lc0HC
+	O6nurNhRarIjHAnepB2+5EKAdl36XqeRV/rNlNx7nip0qTM1PZEurPj5ktON7pALQP4NZNGxbyiCc
+	I7o3OwDA3r+KkrYheWTW3L3MHAVj/D1mIVtHQ8KCv1tO8GFY04w/32QDfSVRqGCh/hd+sjASoRtGy
+	2wGo/c9/vOA4n2cCRwbaGmsiXTn58TrtKENJXF6l9/OBSMHke4PEjMwDfvyOqVNYtQZapTrD+E7OW
+	1IN8VGM2OX6KdCEBBaHvpIc9mLE7sMrMUe2MGrxuCtTHahv+OR/lfc/XP3veecYrAVaFQTGMn4l+R
+	5V2kjQjHYCMKMu3XYFkw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hVKG5-0004ju-3d; Mon, 27 May 2019 18:22:05 +0000
-Received: from mail-oi1-x243.google.com ([2607:f8b0:4864:20::243])
+	id 1hVKH5-00051u-Dg; Mon, 27 May 2019 18:23:07 +0000
+Received: from mail-ot1-x342.google.com ([2607:f8b0:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hVKG1-0004j9-P2; Mon, 27 May 2019 18:22:02 +0000
-Received: by mail-oi1-x243.google.com with SMTP id t187so12446788oie.10;
- Mon, 27 May 2019 11:22:01 -0700 (PDT)
+ id 1hVKH3-00051V-EL; Mon, 27 May 2019 18:23:06 +0000
+Received: by mail-ot1-x342.google.com with SMTP id c3so4254979otr.3;
+ Mon, 27 May 2019 11:23:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=P+FiXAOea0Da36+0fuzZTMwOJ1pKxmssdqT24E7Ljks=;
- b=EXy5Jch2r8lQ3wOHylrAfl7aymelwxSm5mLv4h/iH5tNR53XBcL5lLzx9umgiSt9jr
- x+edbQ/1lz+Ng26bcE1uw+teKoot6ROIIFb/85pZhhunR1RVKiAUevyFHYz7RO96Nrb8
- bKB5Kp8E4KRko2n/NMEnx/+Yb0Qb1idYbLIEMsb1w4vy5G1wJvC3azYd067ucdcDBTCW
- 9s/lxR8Xgri+cLcUwhES1GChPO3L84gYbXFOHGYHLMHgXYtq8VrmHYTQUMl36nPj+VV+
- PuaOm+d3Tw2r/30Chj68qN2MUI4hhxVmofs8auot6ag7PtUQKEyPZCI6il86U/XEjlHf
- 3chQ==
+ :cc; bh=i5pS9FIkhrcHEm3eZ5Ga4hDJRUcLD0JmetiyRDO9zL0=;
+ b=j6D7GGZJ3jnysOk0JfkST3h7j24yQmNC88uoYWa5a1qsie60xuPjBU/Cj/GAUICFlC
+ LZo8MfvurqHxMCDwb5EOFeQ8m5KdaAUCNBIK1MTcsBvyV0KQhC1d7Y01//YB5PKn6ib2
+ CUVFiE3JYOcipMj41ocGRmFV1vRmlLfEst7sSDT0dxrfJ0ZXRTdhI4GJwIF+G7hBCess
+ Z0vxiDtJiNV0/F+GfTtDpRr14rH+iUOcUD5jQN78HNxiwJiwoz4EvfA5kNgaVhqMs9YA
+ ReSrGQT88MdeSp7drrfiLU0ShK01qHhkT4Ve8Shfi0JT81JniwQfsUvm9dETgiXVUFWw
+ TZ+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=P+FiXAOea0Da36+0fuzZTMwOJ1pKxmssdqT24E7Ljks=;
- b=IUv1jR9ta9i0Z5/VwAgnbHu58Db2z2R//QUswnKwL0snHMHC54agyZfDRIC8kQ+yV4
- ZryxKLiB03TwGQKSqsLqeSlRNKL4i/zzwEBpmqTpoj0vE9TVAzKsyXxVsosGcFnj8Kt/
- TIbsjgMrQVT113qJsVPqm9ndMpgvIUTWp+8kuhT011838AZI27RrLziVf8JPaYnZItDC
- upicxeD0OM+UidV7PkwQeK+33zUE9f5ZPHsPftL0Pf/x1VMvQuL2uhbVaXDsIKebd2sQ
- kBfPcsoeWieCoQQ1QtMxDOzfD74emZhWgV8wigQiWFamSExsnIBsYiJcqsjzTYHPjaQ7
- vaUw==
-X-Gm-Message-State: APjAAAXneqO2/dvPAWwDwBUWxSFjOq+kZqhZ1N2+2VAlR5oEViFkdzd6
- pzkjZ0vsgZ2nroPMpbpBvXuhJz+wjI+BpqsBiOo=
-X-Google-Smtp-Source: APXvYqxFnHFi0FhTyZznpUbIgThLVqlOOxZ5b60t+J3xjXTJRBUFohr7MpkWLfXXloofSw0ZHtPTxVALCpnakESKsDQ=
-X-Received: by 2002:aca:ed0a:: with SMTP id l10mr188186oih.39.1558981320657;
- Mon, 27 May 2019 11:22:00 -0700 (PDT)
+ bh=i5pS9FIkhrcHEm3eZ5Ga4hDJRUcLD0JmetiyRDO9zL0=;
+ b=X6sd640Wtw4hossAPZQoQufVxa+oD8JySs2WSIS8MvJCKcu5RB6rXh1sI8gh/St74j
+ vduIGNP6x92aoY3d5zC4o3zpLi3dM76M2JZFLO8aNX7GgU32ZM4jCsvM1w2To6x55YZY
+ yaA4Y/4yISiq8nukz0ZpNYFSzyWI99Thb+YRoyrxQlcTnFaSOtP/ThZzSq00oUZ3kvYF
+ Ipaoxhfl6XklqGM1llFXFLZNaYRk/RsdR43DiRWASok0F4UuC9DGCOgn64+hkiq+p7Rr
+ 2idqwtrQ1HfopXy3fRDCpV/h3NGBOMp3+jlD3vQi3Zv5+iBDNKhP9qn6vG5X6Mn6gLHt
+ go3g==
+X-Gm-Message-State: APjAAAV1eWBaCSv+FT6sOaqUue1vFNKcJT1dcmDKYF1juPOnoCkrgfKb
+ q/2Mr/aDCj1un1bgHfTB0JrULlKHdjsF8hWvPaw=
+X-Google-Smtp-Source: APXvYqwfpF+Rik391VHLo9HSAWgoGl6f3qI+cIt2fwDI2QSuXZfaJTA3JGxi5VY1f+Yun54aGJyKfC4SoUdPayCXxws=
+X-Received: by 2002:a9d:7c84:: with SMTP id q4mr2163959otn.98.1558981384606;
+ Mon, 27 May 2019 11:23:04 -0700 (PDT)
 MIME-Version: 1.0
 References: <20190527132200.17377-1-narmstrong@baylibre.com>
- <20190527132200.17377-6-narmstrong@baylibre.com>
-In-Reply-To: <20190527132200.17377-6-narmstrong@baylibre.com>
+ <20190527132200.17377-8-narmstrong@baylibre.com>
+In-Reply-To: <20190527132200.17377-8-narmstrong@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 27 May 2019 20:21:49 +0200
-Message-ID: <CAFBinCCO3gx1d4pjOaHK0VPoYp0z4cPx3_YsTOpzFtmJSYQZYg@mail.gmail.com>
-Subject: Re: [PATCH 05/10] arm64: dts: meson-gxbb-vega-s95: fix regulators
+Date: Mon, 27 May 2019 20:22:53 +0200
+Message-ID: <CAFBinCA2uA9TXZzAYhUm9q-qad22fTjiAGxWuuo_L20o+K5qeg@mail.gmail.com>
+Subject: Re: [PATCH 07/10] arm64: dts: meson-gxbb-vega-s95: enable CEC
 To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190527_112201_810960_90C4CFCF 
-X-CRM114-Status: UNSURE (   7.40  )
+X-CRM114-CacheID: sfid-20190527_112305_481417_47C5528B 
+X-CRM114-Status: UNSURE (   6.89  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -100,15 +100,11 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 On Mon, May 27, 2019 at 3:23 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
-> Align the regulator names with other GXBB SoCS for upcoming
-> SARADC support and SDIO/SDCard fixes.
-> Also fix how regulators are passed to MMC controllers & USB.
-if I understand this last sentence correctly then the usb_pwr
-regulator should be moved to &usb1 and passed as vbus-supply there
-
+> Add CEC nodes to support CEC communication on Vega S95
+>
 > Suggested-by: Christian Hewitt <christianshewitt@gmail.com>
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-apart from that:
+just like on all other boards, so:
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 _______________________________________________
