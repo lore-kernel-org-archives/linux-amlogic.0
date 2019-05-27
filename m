@@ -2,68 +2,71 @@ Return-Path: <SRS0=xEjq=T3=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.9 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	FROM_EXCESS_BASE64,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CD3A6C04AB3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 14:54:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8837FC04AB3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 15:29:59 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A3B1D217F4
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 14:54:42 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5F0FE20645
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 15:29:59 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Tr1vPhVx"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A3B1D217F4
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=xs4all.nl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="c+tMRCtn"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5F0FE20645
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=siol.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=er5IXtRun1AURcM4gh2JL/JqJ6deB76zUJSXWt/mQ/k=; b=Tr1vPhVxwTVEig
-	+v9+CIdJqnNtbuO51QsPZS7e05QnrXj4O4RyLYqIiSpV13B8YcoHBaKe+td3qa28gQQgDVrkV8dXH
-	NBq24DJAKc5Q5NEgfp3yV0NFo04fk55icyUh6NlJ8obkDJyzjzTdBpbHV0lBdT2zJVrDC+r5iyhqB
-	ucKDrJTB1Mq3wAz2tpgupSmva1yL0xB1uNIMPQ5Holc10jltXQUk//42thJkHzhypEblKyaY6tNwu
-	mfa1ZkHe2zcRODmyLzQCYQD7DCRqekmQCWjaJUDOeiM9sMGNh+t6d1aeIsHmwbViPHOpT7ak24rmM
-	eMSYTeT/Hql0VK2TzvQQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=nuYzhSUqrzygtTyZ5JmeOONG0Ln6JNB+uH9aGZsbENs=; b=c+tMRCtnrZjXnB
+	VBCWnl48CkZK9XbyB5b3RMw/WTCYFWiqSSnUOM6Bq/LFNQEfHcvXNjzkiBKxIpL6IMutXPjYrD8dU
+	bq1WrL2bOpBfj/5w8ecvHYpc7AKAVbbJlPCp/X2/Kr4B5dOwPp3X2dRM5SMkC0ZlunI3VtjvONXhj
+	VXcUg0eDDaA3x554vDQw5h8/D2byLnR7DISO7DPYvXC+DcATgW9cP92leuKmt5xrZnqBCNskjrl/j
+	i0kWbg98GZiESIorEA/om04D0ROrOfNmRMDkn/8HkZmDtHA+DL3HXXtEFTazbnUfjYYET3fkgvggZ
+	3OVfvwYSNf8qH+u4ksJw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hVH1J-0002xa-0K; Mon, 27 May 2019 14:54:37 +0000
-Received: from lb3-smtp-cloud7.xs4all.net ([194.109.24.31])
+	id 1hVHZR-00074Z-DM; Mon, 27 May 2019 15:29:53 +0000
+Received: from mailoutvs56.siol.net ([185.57.226.247] helo=mail.siol.net)
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hVH1F-0002wP-9B; Mon, 27 May 2019 14:54:35 +0000
-Received: from [IPv6:2001:983:e9a7:1:10b2:2e62:e4b1:bd13]
- ([IPv6:2001:983:e9a7:1:10b2:2e62:e4b1:bd13])
- by smtp-cloud7.xs4all.net with ESMTPA
- id VH14hbq0b3qlsVH15hdFCw; Mon, 27 May 2019 16:54:27 +0200
-Subject: Re: [PATCH v6 3/4] media: meson: add v4l2 m2m video decoder driver
-To: Maxime Jourdan <mjourdan@baylibre.com>
-References: <20190514135612.30822-1-mjourdan@baylibre.com>
- <20190514135612.30822-4-mjourdan@baylibre.com>
- <07af1a22-d57c-aff6-b476-98fbf72135c1@xs4all.nl>
- <CAMO6naz-cG3F_h70Chjt+GprGWe2EShsMjrietu_JBAdLrPbpQ@mail.gmail.com>
-From: Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <0821bfd9-58e4-5df3-4528-189476d35d89@xs4all.nl>
-Date: Mon, 27 May 2019 16:54:22 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+ id 1hVHZO-00073l-40
+ for linux-amlogic@lists.infradead.org; Mon, 27 May 2019 15:29:52 +0000
+Received: from localhost (localhost [127.0.0.1])
+ by mail.siol.net (Postfix) with ESMTP id AB104520C06;
+ Mon, 27 May 2019 17:29:36 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at psrvmta09.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+ by localhost (psrvmta09.zcs-production.pri [127.0.0.1]) (amavisd-new,
+ port 10032)
+ with ESMTP id D9ETVfFkE8JX; Mon, 27 May 2019 17:29:36 +0200 (CEST)
+Received: from mail.siol.net (localhost [127.0.0.1])
+ by mail.siol.net (Postfix) with ESMTPS id 5733A5217BC;
+ Mon, 27 May 2019 17:29:36 +0200 (CEST)
+Received: from jernej-laptop.localnet (cpe-86-58-52-202.static.triera.net
+ [86.58.52.202]) (Authenticated sender: jernej.skrabec@siol.net)
+ by mail.siol.net (Postfix) with ESMTPA id 9F19C520C06;
+ Mon, 27 May 2019 17:29:33 +0200 (CEST)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH 2/5] drm/bridge: add encoder support to specify bridge
+ input format
+Date: Mon, 27 May 2019 17:29:33 +0200
+Message-ID: <2679412.W4MLjRXsPJ@jernej-laptop>
+In-Reply-To: <20190520133753.23871-3-narmstrong@baylibre.com>
+References: <20190520133753.23871-1-narmstrong@baylibre.com>
+ <20190520133753.23871-3-narmstrong@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <CAMO6naz-cG3F_h70Chjt+GprGWe2EShsMjrietu_JBAdLrPbpQ@mail.gmail.com>
-Content-Language: en-US
-X-CMAE-Envelope: MS4wfC14XOgAejGHDD7XoN677Jj5C7F2ltQrMEguCsVq4TGpM8oUGIcHqhP/Nu0qacv9r4OPXnJCenc9GmvcJxP92PDW8dWI3KiMLUxZm8LnCwQ5j7zx8VOO
- EGb/clJo/8WMmkajPa50FhHZgaXXDGh29g/xHugmlJKsqCZ+LfnvAUVIcrPVcf99X/vK3f7dqVghUTp020T5jo32dlGfj07vT8KnHqG4bqc+/ry9KxXV1bDW
- ynjOowxWW/yQQRd8K0VHu11ct4nm/1H25zRQhlxxLGsfx29GchaKkWISs8oIw2UwsEc+W8lxnSDJpJW/X4gHSKPH6I+0l9HKMzFrlhg+WJ3ngwOxVbL5hT5W
- cWoJwNLoajI4lYSBnZb0Rgyx2ZWB2jn/p+et0R8CJV/uls2oCp8L+v8yb0Upr0riCIxPBbll6vHdl09BYynDda5bXhuiZNazwCuVNJa0rGR6QD0QFYpM8ZT/
- aHlY+4rye/nF3+iXPdRsc9CY2YqTEa5SVxgH1iDn87ORIcJQFw+p2LFnmSgcnj+chKPghKh+Ap6kPpsnu5R7iHDKwl3RMBtLROX2CwYN940KmT9XnZTZbB6l
- ghGbP5jjNibaIXQ0pwyCOfNnmUHUD0HGJfsCNnE9eVJw3Ip5v6ASSFWGvUTm0pFI9KK5DRBH9eMRcv7QyI1SG0dY
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190527_075433_487442_51FCA005 
-X-CRM114-Status: GOOD (  32.31  )
+X-CRM114-CacheID: sfid-20190527_082950_324514_EC7F43B9 
+X-CRM114-Status: UNSURE (   8.13  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -75,230 +78,41 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org, Hans Verkuil <hans.verkuil@cisco.com>,
- linux-amlogic@lists.infradead.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Cc: heiko@sntech.de, jonas@kwiboo.se, maxime.ripard@bootlin.com,
+ hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, hverkuil@xs4all.nl, a.hajda@samsung.com,
+ Laurent.pinchart@ideasonboard.com, linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 5/27/19 4:44 PM, Maxime Jourdan wrote:
-> Hi Hans,
-> On Mon, May 27, 2019 at 12:04 PM Hans Verkuil <hverkuil@xs4all.nl> wrote:
->>
->> Hi Maxime,
->>
->> First a high-level comment: I think this driver should go to staging.
->> Once we finalize the stateful decoder spec, and we've updated the
->> v4l2-compliance test, then this needs to be tested against that and
->> only if it passes can it be moved out of staging.
->>
-> 
-> I chose to send the driver supporting only MPEG2 for now as it keeps
-> it "to the point", but as it turns out it's one of the few formats on
-> Amlogic that can't fully respect the spec at the moment because of the
-> lack of support for V4L2_EVENT_SOURCE_CHANGE, thus the patch in the
-> series that adds a new flag V4L2_FMT_FLAG_FIXED_RESOLUTION. It
-> basically requires userspace to set the format (i.e coded resolution)
-> since the driver/fw can't probe it.
-> At the moment, this is described in the v3 spec like this:
-> 
->>
->> 1. Set the coded format on ``OUTPUT`` via :c:func:`VIDIOC_S_FMT`
->>
->>   * **Required fields:**
->>
->>     ``type``
->>         a ``V4L2_BUF_TYPE_*`` enum appropriate for ``OUTPUT``
->>
->>     ``pixelformat``
->>         a coded pixel format
->>
->>     ``width``, ``height``
->>         required only if cannot be parsed from the stream for the given
->>         coded format; optional otherwise - set to zero to ignore
->>
-> 
-> But MPEG2 being a format where the coded resolution is inside the
-> bitstream, this is purely an Amlogic issue where the firmware doesn't
-> extend the capability to do this.
-> 
-> Here's a proposal: if I were to resend the driver supporting only H264
-> and conforming to the spec, would you be considering it for inclusion
-> in the main tree ? Does your current iteration of v4l2-compliance
-> support testing stateful decoders with H264 bitstreams ?
+Hi!
 
-The core problem is that the spec isn't finalized yet. The v3 spec you
-refer to above is old already since there are various changes planned.
+Thanks for working on this!
 
-If you want to test your driver with a v4l2-compliance that is likely
-to be close to the final version of the spec, then you can use this
-branch:
-
-https://git.linuxtv.org/hverkuil/v4l-utils.git/log/?h=vicodec
-
-You can test with:
-
-v4l2-compliance -s --stream-from <file>
-
-I wouldn't be too worried about keeping it in staging. Having it there
-will already be very nice indeed. Just add a TODO file that states that
-you are waiting for the final version of the stateful decoder spec and
-the corresponding compliance tests.
-
-The V4L2_FMT_FLAG_FIXED_RESOLUTION isn't a blocker. That flag makes sense,
-and so it has nothing to do with keeping this driver in staging.
-
-Regards,
-
-	Hans
-
+Dne ponedeljek, 20. maj 2019 ob 15:37:50 CEST je Neil Armstrong napisal(a):
+> This patch adds a new format_set() callback to the bridge ops permitting
+> the encoder to specify the new input format and encoding.
 > 
->> It is just a bit too soon to have this in mainline at this time.
->>
->> One other comment below:
->>
->> On 5/14/19 3:56 PM, Maxime Jourdan wrote:
->>> Amlogic SoCs feature a powerful video decoder unit able to
->>> decode many formats, with a performance of usually up to 4k60.
->>>
->>> This is a driver for this IP that is based around the v4l2 m2m framework.
->>>
->>> It features decoding for:
->>> - MPEG 1
->>> - MPEG 2
->>>
->>> Supported SoCs are: GXBB (S905), GXL (S905X/W/D), GXM (S912)
->>>
->>> There is also a hardware bitstream parser (ESPARSER) that is handled here.
->>>
->>> Tested-by: Neil Armstrong <narmstrong@baylibre.com>
->>> Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
->>> ---
->>>  drivers/media/platform/Kconfig                |   10 +
->>>  drivers/media/platform/meson/Makefile         |    1 +
->>>  drivers/media/platform/meson/vdec/Makefile    |    8 +
->>>  .../media/platform/meson/vdec/codec_mpeg12.c  |  209 ++++
->>>  .../media/platform/meson/vdec/codec_mpeg12.h  |   14 +
->>>  drivers/media/platform/meson/vdec/dos_regs.h  |   98 ++
->>>  drivers/media/platform/meson/vdec/esparser.c  |  323 +++++
->>>  drivers/media/platform/meson/vdec/esparser.h  |   32 +
->>>  drivers/media/platform/meson/vdec/vdec.c      | 1071 +++++++++++++++++
->>>  drivers/media/platform/meson/vdec/vdec.h      |  265 ++++
->>>  drivers/media/platform/meson/vdec/vdec_1.c    |  229 ++++
->>>  drivers/media/platform/meson/vdec/vdec_1.h    |   14 +
->>>  .../media/platform/meson/vdec/vdec_ctrls.c    |   51 +
->>>  .../media/platform/meson/vdec/vdec_ctrls.h    |   14 +
->>>  .../media/platform/meson/vdec/vdec_helpers.c  |  441 +++++++
->>>  .../media/platform/meson/vdec/vdec_helpers.h  |   80 ++
->>>  .../media/platform/meson/vdec/vdec_platform.c |  107 ++
->>>  .../media/platform/meson/vdec/vdec_platform.h |   30 +
->>>  18 files changed, 2997 insertions(+)
->>>  create mode 100644 drivers/media/platform/meson/vdec/Makefile
->>>  create mode 100644 drivers/media/platform/meson/vdec/codec_mpeg12.c
->>>  create mode 100644 drivers/media/platform/meson/vdec/codec_mpeg12.h
->>>  create mode 100644 drivers/media/platform/meson/vdec/dos_regs.h
->>>  create mode 100644 drivers/media/platform/meson/vdec/esparser.c
->>>  create mode 100644 drivers/media/platform/meson/vdec/esparser.h
->>>  create mode 100644 drivers/media/platform/meson/vdec/vdec.c
->>>  create mode 100644 drivers/media/platform/meson/vdec/vdec.h
->>>  create mode 100644 drivers/media/platform/meson/vdec/vdec_1.c
->>>  create mode 100644 drivers/media/platform/meson/vdec/vdec_1.h
->>>  create mode 100644 drivers/media/platform/meson/vdec/vdec_ctrls.c
->>>  create mode 100644 drivers/media/platform/meson/vdec/vdec_ctrls.h
->>>  create mode 100644 drivers/media/platform/meson/vdec/vdec_helpers.c
->>>  create mode 100644 drivers/media/platform/meson/vdec/vdec_helpers.h
->>>  create mode 100644 drivers/media/platform/meson/vdec/vdec_platform.c
->>>  create mode 100644 drivers/media/platform/meson/vdec/vdec_platform.h
->>>
->>
->> <snip>
->>
->>> diff --git a/drivers/media/platform/meson/vdec/vdec_ctrls.c b/drivers/media/platform/meson/vdec/vdec_ctrls.c
->>> new file mode 100644
->>> index 000000000000..d5d6b1b97aa5
->>> --- /dev/null
->>> +++ b/drivers/media/platform/meson/vdec/vdec_ctrls.c
->>> @@ -0,0 +1,51 @@
->>> +// SPDX-License-Identifier: GPL-2.0+
->>> +/*
->>> + * Copyright (C) 2018 BayLibre, SAS
->>> + * Author: Maxime Jourdan <mjourdan@baylibre.com>
->>> + */
->>> +
->>> +#include "vdec_ctrls.h"
->>> +
->>> +static int vdec_op_g_volatile_ctrl(struct v4l2_ctrl *ctrl)
->>> +{
->>> +     struct amvdec_session *sess =
->>> +           container_of(ctrl->handler, struct amvdec_session, ctrl_handler);
->>> +
->>> +     switch (ctrl->id) {
->>> +     case V4L2_CID_MIN_BUFFERS_FOR_CAPTURE:
->>> +             ctrl->val = sess->dpb_size;
->>> +             break;
->>> +     default:
->>> +             return -EINVAL;
->>> +     };
->>> +
->>> +     return 0;
->>> +}
->>> +
->>> +static const struct v4l2_ctrl_ops vdec_ctrl_ops = {
->>> +     .g_volatile_ctrl = vdec_op_g_volatile_ctrl,
->>> +};
->>> +
->>> +int amvdec_init_ctrls(struct v4l2_ctrl_handler *ctrl_handler)
->>> +{
->>> +     int ret;
->>> +     struct v4l2_ctrl *ctrl;
->>> +
->>> +     ret = v4l2_ctrl_handler_init(ctrl_handler, 1);
->>> +     if (ret)
->>> +             return ret;
->>> +
->>> +     ctrl = v4l2_ctrl_new_std(ctrl_handler, &vdec_ctrl_ops,
->>> +             V4L2_CID_MIN_BUFFERS_FOR_CAPTURE, 1, 32, 1, 1);
->>> +     if (ctrl)
->>> +             ctrl->flags |= V4L2_CTRL_FLAG_VOLATILE;
->>
->> Why is this volatile? That makes little sense.
->>
+> This allows supporting the very specific HDMI2.0 YUV420 output mode
+> when the bridge cannot convert from RGB or YUV444 to YUV420.
 > 
-> I copied this over from other stateful decoders, they all used
-> volatile so it didn't cross my mind too much.
+> In this case, the encode must downsample before the bridge and must
+> specify the bridge the new input bus format differs.
 > 
-> It seems that there are 2 cases:
->  - the control is actually volatile, e.g its value is read from firmware.
->  - the control is not really volatile, e.g its value is set by the driver
+> This will also help supporting the YUV420 mode where the bridge cannot
+> downsample, and also support 10bit, 12bit and 16bit output modes
+> when the bridge cannot convert between different bit depths.
 > 
-> My driver falls in the second case. Is the correct way to deal with
-> that to use v4l2_ctrl_s_ctrl() and remove the volatile flag ?
-> 
-> Regards,
-> Maxime
-> 
-> 
->>> +
->>> +     ret = ctrl_handler->error;
->>> +     if (ret) {
->>> +             v4l2_ctrl_handler_free(ctrl_handler);
->>> +             return ret;
->>> +     }
->>> +
->>> +     return 0;
->>> +}
->>> +EXPORT_SYMBOL_GPL(amvdec_init_ctrls);
->>
->> <snip>
->>
->> Regards,
->>
->>         Hans
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+
+Reviewed-by: Jernej Skrabec <jernej.skrabec@siol.net>
+
+Best regards,
+Jernej
+
 
 
 _______________________________________________
