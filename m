@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH autolearn=ham autolearn_force=no
-	version=3.4.0
+	SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A0F6DC04AB3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 12:25:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0D208C04AB3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 12:25:56 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 750BF20673
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 12:25:36 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CE14320673
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 12:25:55 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MFIoitl2";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="RShj8NHI"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 750BF20673
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dGycUL4b";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Zm97XEoW"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CE14320673
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,63 +26,62 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MHBFiTc4OSQ/qz8c7bH/aI7V315i6v8/IGS6rH62/BI=; b=MFIoitl2d82HNX
-	Jj3ZjqK2B/WsyojVJC/cspAJV3Mb7FQ9zs38XrbsEQ6AzwJC5AOHvkAwdyOpTro4mAlwHx292nyN2
-	t1bQknAjb9FakGr1XMdE7NqGmPz8KCAdPZOfVNHVsHCw/JfQ8Wtqqtl+zLj3Lzwmsn1Gk5ACRHZKV
-	B+Q9IaKtheLtcaWsA5nzzkXVwEmZd93rpIJ4nGcjyDIyvtWoeXKba12GSvDmPBBW2I/rQOQLczWBL
-	PXSmJOV6BMrYlRkjdSNEC5g4yYHREuz/Mkdh/4sBD8yga7ztj+m83hpyNcdYUgBJRMEpidKv+cQCr
-	++nNVUhc6f9WhHu+8POg==;
+	List-Owner; bh=Ao1kF2N3btk4gwpE9uDLlFTH8qq3ZYcnOmzMp9d0Hx4=; b=dGycUL4b+TnYaC
+	hQdJ6Bgsqe9A7HHSVJSovRp2O+PmTKkuKIOETTwo4Ds1LUTukfQM/hLsv4thURJMO4xhHy5/68Iwc
+	JRr95P+Fke0xvxQeO9qRtqWh6Gmzi+R90cUcpUiJMlQ3IRGpfAlE1X76B8KJpToUSuIweCfA6OjXJ
+	+u7XUMvp9kdvrX2YQJI4VdETCVTX487NeXYWPfoYUjpJ3XcKINggWvWtBPug6Yg3W/ZtD6rLt6EJT
+	fJCxF01HNsgMvp7/h2iK8Oui74AsonRH2DflY80XhxoZr+rVRa7o36WeKtcYx3Ma+s3ILQTd+CPeT
+	cFxMzuMhbOPVIWAnTWNg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hVEh2-00046M-5Y; Mon, 27 May 2019 12:25:32 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1hVEhL-0004Sr-Mj; Mon, 27 May 2019 12:25:51 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hVEgy-00042V-53
- for linux-amlogic@lists.infradead.org; Mon, 27 May 2019 12:25:29 +0000
-Received: by mail-wm1-x344.google.com with SMTP id 15so15638334wmg.5
- for <linux-amlogic@lists.infradead.org>; Mon, 27 May 2019 05:25:27 -0700 (PDT)
+ id 1hVEhG-0004OC-UA
+ for linux-amlogic@lists.infradead.org; Mon, 27 May 2019 12:25:50 +0000
+Received: by mail-wr1-x444.google.com with SMTP id e2so7984311wrv.6
+ for <linux-amlogic@lists.infradead.org>; Mon, 27 May 2019 05:25:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=xGiOy/CD4XgulwIIHSIhXC16Zrz6P2ZSbp7JsRj17Gc=;
- b=RShj8NHI8B0WRqoRV6opiHiWCF5SyU2HSF7rp7zeEkoOQxwDFc9uIoFdh7aQtPXLoO
- KA35HEONSjnftchnoAJK3VaaGiAvfGz+3hh61ioNInT1gJfntTXFzuLrgm86IyMBQho6
- uISGT5Jfay4Adcd/BaVKXbgtcs1NLL5uz3phJ5MeNowaFbOSnBHftMG/tBU0kQ20Jtli
- +pwmEG/DXtFT8h/3Gtty9CrRnkYWUP3vQ5fBrw5vakrtmIvovFyLpbuULv4ywYomLR0M
- Nmxh4jgge0Js/EHoDie2OxnTrla/Jhxa20fJyK87BJbelEW8WMkWHCNnQdMXf/R8hJST
- UOMg==
+ bh=iz8qLe1BhhaZ54BDc7wUVaweRviNKZbx0tXlxSxGiy0=;
+ b=Zm97XEoWbkkUMW6vYmy12z2L//XTJtKcv0jeho9kw5/Jdu2dCjdDbWoWf59ClnmAah
+ 6438/L73gKlVXjSTiDAvtqKmPPeNYRmF/EM5/Kd5TdDoZwJh0ENcz6uPpE8vL6XrfQJG
+ fC8HAE8wRxk9g5j7jZ/UcCIZu74LPnH+wpxw/7WV2IkcqbTRdqJPJn1iZ1p9q0v5Y3c3
+ j1iIscywI3KzgNVKsuNNXDSkqzFTQvPca1wusw9J2hFnxoRcLQxslc/UeU7gaIUKvnCO
+ bKS4rjtjI1AXdobjD789x9ycMRG+OgQxPjeAhnWKt5bRv4cvXuCv6q6Lsac0Iwx6Stjz
+ hklQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=xGiOy/CD4XgulwIIHSIhXC16Zrz6P2ZSbp7JsRj17Gc=;
- b=F0ymkiUBGvdKlHH5rRGgYFooNeaHGaw8GxtEwJeLMqErk8UrrZXXsARIRJDLRzd8bS
- PQNZKLxDSMT1R686R7MneiYjRkGYojOitP/CzKPzs4q3QQ5J98Nfy8/TJYusOu6oeonw
- o6lucyaRZr3IHHEXhQkct+DbxP2obyH1/pk/DGZQ9U1XAkLF0lWmM5KRgNsPMHSyTo7C
- dofKRzHqdiwzKutlplVNnuJWsBSnL7EeDGwtxWjZ5+ea+pUKkoHU0mAhrn7+U+tGcvbw
- Pnm4KeXLGopIPHHaM+b797OPhdA9h/QBF7iqQAvsbLfFedtS2C6xiII+sUY3i1+NieyF
- 13ew==
-X-Gm-Message-State: APjAAAUNGRgDMEYtZBIrjFOR//0SHQrXxhqTHylDZkOkoBoMtJIFkSzw
- J/2L8RvBnniHuU+dazueVqXyAQ==
-X-Google-Smtp-Source: APXvYqx0kZcZ0bFvNB1ltFd0rTrrYicB2CHq6sgH1HG/wAPTdfTyex5/TTdQIQ9qf2ssJbwFQ+YdAw==
-X-Received: by 2002:a05:600c:2219:: with SMTP id
- z25mr18258608wml.95.1558959926342; 
- Mon, 27 May 2019 05:25:26 -0700 (PDT)
+ bh=iz8qLe1BhhaZ54BDc7wUVaweRviNKZbx0tXlxSxGiy0=;
+ b=HYVjMHGPQh8t7Pmr33Q/jxUc4qCxRgsEu6AWu+VqaDcdpK42jXBxdTaCnmGN/MhQg1
+ AsVGd4lJi+vc+cLPjdfvAGK0zlDuAZdWtj/XXRlA7wZXeQ9dvic00km6MTA8FjsyFoan
+ nkeMPAS2JVWXmMj7zw67E2HitxbMODjLs+3xKeTnaM6lJjJAjqkBX38LKbYswOtS0YsJ
+ d3VRryDSpztIcJnDRo2pus0BKSMPich9thO8Ts/lQMO4DrcnCAeiGHTAogePYiFnP0VW
+ OO/DmCGPGkzjzOC/8tFgprBBo+XFsHJ0kGawbsWz8/c6HLCMIC5z0hG5ebb+m8ftv8AM
+ LmWA==
+X-Gm-Message-State: APjAAAW3TOi9Ea2DKcZyGFDa8jvkjcGZ+EfnRF6/fzdRZ0RY03K7n616
+ ig3es6Tl55ir+PtmmtiQgIWKMQ==
+X-Google-Smtp-Source: APXvYqz7nznz1Nl9Xihs1RSzr0mxg2AhiWIx+BU5hRCpnRjtjBIl9xhT3OoBqDQXaaCBtMgDnmwOWA==
+X-Received: by 2002:a5d:4e46:: with SMTP id r6mr74373325wrt.290.1558959945354; 
+ Mon, 27 May 2019 05:25:45 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id q14sm8641844wrw.60.2019.05.27.05.25.25
+ by smtp.gmail.com with ESMTPSA id i32sm2369708wri.23.2019.05.27.05.25.44
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 27 May 2019 05:25:25 -0700 (PDT)
-Subject: Re: [PATCH 02/14] pwm: meson: use devm_clk_get_optional() to get the
- input clock
+ Mon, 27 May 2019 05:25:44 -0700 (PDT)
+Subject: Re: [PATCH 03/14] pwm: meson: use GENMASK and FIELD_PREP for the lo
+ and hi values
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org,
  thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de
 References: <20190525181133.4875-1-martin.blumenstingl@googlemail.com>
- <20190525181133.4875-3-martin.blumenstingl@googlemail.com>
+ <20190525181133.4875-4-martin.blumenstingl@googlemail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -135,16 +134,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <b4cfc101-7391-aef2-0f6c-8bdec2044101@baylibre.com>
-Date: Mon, 27 May 2019 14:25:25 +0200
+Message-ID: <b8e06a75-43a8-78f9-b475-61106906ac3e@baylibre.com>
+Date: Mon, 27 May 2019 14:25:44 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190525181133.4875-3-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20190525181133.4875-4-martin.blumenstingl@googlemail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190527_052528_240602_C7C2E62F 
-X-CRM114-Status: GOOD (  18.93  )
+X-CRM114-CacheID: sfid-20190527_052547_267807_715C2D7E 
+X-CRM114-Status: GOOD (  18.04  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -163,40 +162,55 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 25/05/2019 20:11, Martin Blumenstingl wrote:
-> Simplify the code which fetches the input clock for a PWM channel by
-> using devm_clk_get_optional().
-> This comes with a small functional change: previously all errors except
-> EPROBE_DEFER were ignored. Now all other errors are also treated as
-> errors. If no input clock is present devm_clk_get_optional() will return
-> NULL instead of an error which matches the behavior of the old code.
+> meson_pwm_calc() ensures that "lo" is always less than 16 bits wide
+> (otherwise it would overflow into the "hi" part of the REG_PWM_{A,B}
+> register).
+> Use GENMASK and FIELD_PREP for the lo and hi values to make it easier to
+> spot how wide these are internally. Additionally this is a preparation
+> step for the .get_state() implementation where the GENMASK() for lo and
+> hi becomes handy because it can be used with FIELD_GET() to extract the
+> values from the register REG_PWM_{A,B} register.
+> 
+> No functional changes intended.
 > 
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->  drivers/pwm/pwm-meson.c | 11 +++--------
->  1 file changed, 3 insertions(+), 8 deletions(-)
+>  drivers/pwm/pwm-meson.c | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
 > 
 > diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-> index 3fbbc4128ce8..35b38c7201c3 100644
+> index 35b38c7201c3..c62a3ac924d0 100644
 > --- a/drivers/pwm/pwm-meson.c
 > +++ b/drivers/pwm/pwm-meson.c
-> @@ -474,14 +474,9 @@ static int meson_pwm_init_channels(struct meson_pwm *meson,
+> @@ -5,6 +5,8 @@
+>   * Copyright (C) 2014 Amlogic, Inc.
+>   */
 >  
->  		snprintf(name, sizeof(name), "clkin%u", i);
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+>  #include <linux/clk.h>
+>  #include <linux/clk-provider.h>
+>  #include <linux/err.h>
+> @@ -20,7 +22,8 @@
 >  
-> -		channel->clk_parent = devm_clk_get(dev, name);
-> -		if (IS_ERR(channel->clk_parent)) {
-> -			err = PTR_ERR(channel->clk_parent);
-> -			if (err == -EPROBE_DEFER)
-> -				return err;
-> -
-> -			channel->clk_parent = NULL;
-> -		}
-> +		channel->clk_parent = devm_clk_get_optional(dev, name);
-> +		if (IS_ERR(channel->clk_parent))
-> +			return PTR_ERR(channel->clk_parent);
->  	}
+>  #define REG_PWM_A		0x0
+>  #define REG_PWM_B		0x4
+> -#define PWM_HIGH_SHIFT		16
+> +#define PWM_LOW_MASK		GENMASK(15, 0)
+> +#define PWM_HIGH_MASK		GENMASK(31, 16)
 >  
->  	return 0;
+>  #define REG_MISC_AB		0x8
+>  #define MISC_B_CLK_EN		BIT(23)
+> @@ -217,7 +220,8 @@ static void meson_pwm_enable(struct meson_pwm *meson, struct pwm_device *pwm)
+>  	value |= clk_enable;
+>  	writel(value, meson->base + REG_MISC_AB);
+>  
+> -	value = (channel->hi << PWM_HIGH_SHIFT) | channel->lo;
+> +	value = FIELD_PREP(PWM_HIGH_MASK, channel->hi) |
+> +		FIELD_PREP(PWM_LOW_MASK, channel->lo);
+>  	writel(value, meson->base + offset);
+>  
+>  	value = readl(meson->base + REG_MISC_AB);
 > 
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
