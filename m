@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
 	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 75C7CC04AB3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 18:06:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 88E06C04AB3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 18:07:20 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4FD1C20883
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 18:06:55 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 60F6A20859
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 18:07:20 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dvSuDMQC";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="VIMO5j89"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4FD1C20883
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GEF5lOAT";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="LRJKerM3"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 60F6A20859
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3Ta9Ygtv2KxXpewWD7BlXfcL1NgMND94eXwDcyFA6gs=; b=dvSuDMQCtSd7Tr
-	n2UecWCRP2z40ECXPvdJl/tTUJcfGXv9LLEPSFT1DCe5ndCTbCNkh2fIvXOOJ+J+ZUqOuKxHRXl6L
-	tefsTAeIJQ5MUAiJlH/BNcp2OcwjU/x5PjkKNcI6VtSw4aGOsP7ytbBOqxF6emmGjUOhVBKzrnlwD
-	AmRwXbgUcyrxWX6+7u1bqsSukAVG82rIuk3PJY/eCZFLhXX+LQGPsaErXSVDnzIb2uhmr+5KtKB2T
-	YgQl4Tf6468nBQ5W2VO3MEUEQE3dBdS2UeIM0oEJPMwBwTZflQeHT6A40sNVpRxzyuQpMGKAmy0Tp
-	jsrJ6x68kN+vc6vuTvyA==;
+	List-Owner; bh=O3PvwV/QkAJ67Fgfe3IrDlgGxJCN9z4VZ2m9atVhxsI=; b=GEF5lOAT7v5xFy
+	MxtHpAHruTkiSahfSoYZaw0QFkiuFFh+6TraTRByAJ34rMFIiSEFBsuRFZnoXbYrwaxB0EG3OhiVp
+	vpYTnsFzcsTYNm087rW5SQeKvCp+VZpPIOzzmMlnKt41OOLnxgkmxv+WMUPKIW8IIRkik39GcWK8P
+	LiCbYhvA6U/RqYazm5ieREI9ajdz/08XHsjJsMAMzo8AltYQYRxgwz1S3AupzRD6T1ZHHJfbr823o
+	Vkb7VFHQnIr7spl2+B5CouGdbb9sPLHDBmeGE23LRQbVsybpz9eX85zOWBQ/rtoM2johJQqPnjWVq
+	xQyaPZ23lb8Q7xu0nLEg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hVK1L-0003od-3F; Mon, 27 May 2019 18:06:51 +0000
-Received: from mail-ot1-x343.google.com ([2607:f8b0:4864:20::343])
+	id 1hVK1j-000487-UG; Mon, 27 May 2019 18:07:15 +0000
+Received: from mail-oi1-x242.google.com ([2607:f8b0:4864:20::242])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hVK1I-0003ll-CD; Mon, 27 May 2019 18:06:50 +0000
-Received: by mail-ot1-x343.google.com with SMTP id u11so15483948otq.7;
- Mon, 27 May 2019 11:06:48 -0700 (PDT)
+ id 1hVK1h-00047c-1w; Mon, 27 May 2019 18:07:14 +0000
+Received: by mail-oi1-x242.google.com with SMTP id t187so12422571oie.10;
+ Mon, 27 May 2019 11:07:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=snK6jJsPt2cSi+KLqPDOwYhYAz49h47RS/7FICnk118=;
- b=VIMO5j89eAKkZ3BZaR3UNVrOBTq8G7EzDz2d7UVeCRB3QmXVlk6gO5QBY6a+zqiSwq
- XeT5TmkLs6P1XgBDRpyJBEVhem40JqYvx6iuHyspme1Kqc1kSXc2P32gr5PS+Da4sLRs
- 2kCm7xAkLqqaxYpogKocEDBaRqkgFZCwEcnTupyT6lVj+5Hno8Pp1DyqTzaem3jl5VP8
- 3tduNdligrKsnpDlQTofcESHOElwHQuM46FMAclszjZLa5I3MbX7c43WVg253VYEXXfr
- oonqzC/yZDOC2f2eX24JhPWEv/1HGnIhgG0SJSiMHLhjOgnMZTJkHZgIC4BoiAxlxFgj
- ZMKw==
+ :cc; bh=pgdAS9QmA+kymmNkQFCc70wQxZNKe+LAPHfdbYWWNfs=;
+ b=LRJKerM3ylh4upd88+hgx1+BFJPM60FoiVq2gFGCKir4JVIqcEhMr+1Vv9o70obLmy
+ 6U0VbGoOKZadBoCid7j1cGTaS1D5sCGgZ2ekaEl3cJe7gzpwgIR7/Yh8VgJTREckWiH+
+ Ct7i1tT6ISTxEbPGd0gZvd0kEXTbA0zK0tX1CMi3QwKTwsYcfYi6e9/sT81UXpfBF3yg
+ g36U+vmt5d5jNr001ndEmF+/RMHx8uq/SmJJPewd6q/xoDpGCI2ApqRcl9a0w7uv7bKe
+ Zq8OQOlwTMzeC0SaVl37zMMKWDCNpJxVBb4w+n53L3jtiJmeBsXt4bnDxxho/EyPfJhI
+ vXjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=snK6jJsPt2cSi+KLqPDOwYhYAz49h47RS/7FICnk118=;
- b=Vs6+YzjlVUSAytevRVxNcse6EeiooNpdu/O/Zu9BIRX2DkGk1UFocI3TvRmU5js3zZ
- NJtw9shRyuDU9v8Ketdq1clNP0NJK2EjE9C2qlxC8OY+NiJ2/ENf3iFssGS4xnlVU0qL
- p6GfcML/84Wax+APNKNCll70ywJuQwWwCips11XaTmNvZVJFlTmu6JWre2avrG9PIWKt
- 8ep2HJyO7aYnrbOajVZYsosAgNOZ19MIpaYlEnCYej76UWYK9dwtGqDxlBz6FnZag1Fs
- 0CRioMAwIUoaBhm//8/pT9hgqun3PQ/NSjlg9gjmnT34+PeV1lAnq9AlQk6xKef+U9N9
- rYPQ==
-X-Gm-Message-State: APjAAAUowrJBYOFLVOLJOLUKROwHZJz4UmKv7+NwULEfVyrTmVMplNyW
- ntB5LM8kkV9tligxV6tMK9d6dBlr0nYQByyUIA+pV9JseEM=
-X-Google-Smtp-Source: APXvYqzNvbybIxun0sU5draEQ7ge3c2t/2uDs569BXI/oeZpZdVW/zg90e+PwWX1spRmfHdTfLHxqYz6QYBGe1UcujU=
-X-Received: by 2002:a9d:32a6:: with SMTP id u35mr61296326otb.81.1558980407622; 
- Mon, 27 May 2019 11:06:47 -0700 (PDT)
+ bh=pgdAS9QmA+kymmNkQFCc70wQxZNKe+LAPHfdbYWWNfs=;
+ b=jya+UxITNXXtCqXVKt8Mtt+R9YoVx1lAPSgGfcPcTEG4GORp/EMBtgyLM9TULHLrmp
+ jSgcEVv+ftWFbzZMxASmMIgOj/7z7yGAlOQ9+Ir2d2JQZuE7PPNp5Eg6VEX8viJz7FWV
+ 1Z3bpRgICWX83fOpJrAdKEennBN+aKqtwPHCeWoBDxMf2E97BhNBFpf/HZ1jmLLiFwBl
+ ktqkEoghR+8k8pss5X1QaE+63BcczxVsqmlvVfn3YiNL9U/Fsqc2SBmIlkvM1Dh0pBWL
+ 636pvdFMoflpm+HEtVDjgUeTfDUEC8UywLi3VHltnYx1bOBpdyAH3GhwByXugQ47QeaJ
+ xv3g==
+X-Gm-Message-State: APjAAAWSQRZM16TagCAZ8sveeV2u+zFpn2+dsxT4UNBOwPVeZ6nrCW+t
+ cLAvivG8P3eL9cmhHF+pGxymAU9faYSUH8lAlV0=
+X-Google-Smtp-Source: APXvYqyMXmtKIOU8ak7fRZzZtZnF43sZq/2nZIX4JJ6CVMqDmDlUS02YstvGsdCcG9uauJFg2OOUfWiobF2qL+dlXlA=
+X-Received: by 2002:aca:ab04:: with SMTP id u4mr141664oie.15.1558980432356;
+ Mon, 27 May 2019 11:07:12 -0700 (PDT)
 MIME-Version: 1.0
 References: <20190527133857.30108-1-narmstrong@baylibre.com>
- <20190527133857.30108-5-narmstrong@baylibre.com>
-In-Reply-To: <20190527133857.30108-5-narmstrong@baylibre.com>
+ <20190527133857.30108-6-narmstrong@baylibre.com>
+In-Reply-To: <20190527133857.30108-6-narmstrong@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 27 May 2019 20:06:36 +0200
-Message-ID: <CAFBinCABE=C3LP+8kxvBiuaiXVmKM6j1Tkxhi7tdXZcRy=qJNA@mail.gmail.com>
-Subject: Re: [PATCH v2 04/10] ARM: dts: meson8-minix-neo-x8: update with SPDX
- Licence identifier
+Date: Mon, 27 May 2019 20:07:01 +0200
+Message-ID: <CAFBinCAsf4riNYLtJQeqTCZKwomrwfNYG1puTiJq-6VRK4Z_AQ@mail.gmail.com>
+Subject: Re: [PATCH v2 05/10] ARM: dts: meson8: update with SPDX Licence
+ identifier
 To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190527_110648_442942_CA79A977 
-X-CRM114-Status: UNSURE (   8.29  )
+X-CRM114-CacheID: sfid-20190527_110713_091997_7AE1B51E 
+X-CRM114-Status: UNSURE (   8.26  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -98,7 +98,7 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, May 27, 2019 at 3:39 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+On Mon, May 27, 2019 at 3:40 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
 > While the text specifies "of the GPL or the X11 license" the actual
 > license text matches the MIT license as specified at [0]
@@ -106,7 +106,7 @@ On Mon, May 27, 2019 at 3:39 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 > [0] https://spdx.org/licenses/MIT.html
 >
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 _______________________________________________
 linux-amlogic mailing list
