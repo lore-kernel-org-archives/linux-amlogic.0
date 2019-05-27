@@ -2,23 +2,23 @@ Return-Path: <SRS0=xEjq=T3=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E4020C04AB3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 15:41:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E9EDCC04AB3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 17:47:05 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BDD2D20665
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 15:41:41 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C20DB208C3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 17:47:05 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FqWgFb9N";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ybdiq5GD"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BDD2D20665
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="JoDOPvyW";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="sr5PZkAr"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C20DB208C3
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
@@ -26,63 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MQhcDp0Qn+LYYmU9JlJkfTPgXxw1M5SVtDlN7OW+UgU=; b=FqWgFb9NNscXSz
-	p4tjqxjUjjC8cgsZd0hWDwlpdqUYO4+9JYZUqufm8jBPqtQA3trARLCoRkRT/y5lww8/U/OeXWiyM
-	R5LetaKLLNcSVv2luEHetELDcAFDd6JWWYFErJawrjWdqKtQVE6SzmxerE8UNu7H+AvfKZ/fXsvQV
-	+4Dihtblbf+OvZkzqm+PTuypuha39Ap6mTPJAUTt5wDvHdwUbTZNsC/judeTXck+7YgHNpKY8JJ/M
-	E6ag917B+FR2oTPB/tlqv95wAd3vtnyc5WwLwPptmQ3iH7W5YhM38tnteisI1+ZkO3/SK1NPaojrd
-	CAMTB42cZ46AUwiczZ3g==;
+	List-Owner; bh=/IhCrWmlqF1nyBcdovTY53SuTzOxzb27K41qFuXONdU=; b=JoDOPvyWLv3t1f
+	DdNNgBwQ+5IDFhWFl5GLL6aVbt8HhCcNDUKU+fxUg0quzomZ2gUA3YLOFrHDZNL0AB4CSV//6PNZN
+	Kn5Mn76OTgwHwakuknnEcO4jCvmKwk5qDwtH/b0vJChLARElRvKoGixBeT4mixr3+t2cL1Nyp0yEL
+	AGsIWixLZnY6XmDSDwxhNhr5p8fsH2kppxQArMfXYEbHEOcpX/UQR7aZt4Dc8/ClMC0U5o9KF/CV9
+	NCyXcl2tLtILzjqXbmtFeogJpV6iT33asMFqCvfi6Vb+nk7PPwU+OMKUBeQrlRP9UODadQCUcVy4L
+	oChf69qRPbhy4DksKKnQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hVHkm-0003z2-Hg; Mon, 27 May 2019 15:41:36 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1hVJi6-0000qG-5r; Mon, 27 May 2019 17:46:58 +0000
+Received: from mail-oi1-x241.google.com ([2607:f8b0:4864:20::241])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hVHkd-0003qW-DE
- for linux-amlogic@lists.infradead.org; Mon, 27 May 2019 15:41:29 +0000
-Received: by mail-wm1-x341.google.com with SMTP id 15so16153131wmg.5
- for <linux-amlogic@lists.infradead.org>; Mon, 27 May 2019 08:41:26 -0700 (PDT)
+ id 1hVJi3-0000pu-L9; Mon, 27 May 2019 17:46:57 +0000
+Received: by mail-oi1-x241.google.com with SMTP id v2so12398850oie.6;
+ Mon, 27 May 2019 10:46:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Tdsw2aGiBLowdBKompMuLQW0FpeZcju49WmFG8bHyOw=;
- b=ybdiq5GDzdAVwWuupgM0Vyj2TRBmG9n1bTEgd7DCD5KhZsLgMyduZvYjiBX98fmitU
- bjqoEaotnbM2XtAXoWExidPPwYhpO+3qfQF0pgQ1E2bMOeUheDJayDWzbf6I8bm8z2dW
- 74NeFGQkTxKdwyV1QbqvLb5z4ykIgEmVs1qc/fNn+PKZUmrenAu+zBO7ZHsRBmPprdFr
- Fk9aXYknb8WelAnOFM9JRIrQOtNVHqjdZitx6wkYHLlMny5I/OULokvXyJzg25c2TTLF
- xJ5HeJcWPT37ChPr5pr2Tr3JBPb46yU0f4aojrereBVSGoH1x+ezLFvTY2aYnkZzwecr
- hoWw==
+ :cc; bh=RvWmgSpOjlIMaMZlqMhXFOz9qSbgkNwvRngL97A0kDQ=;
+ b=sr5PZkAr/7xMIJI1iE3rnlUf2W//7xEl0rEv8uMQxjtApmCeIfuxKSdL2GConU+qlx
+ P9vCZsz/G7nRW6fh6wnGHfcswe1ykoaXPZpMAXM4lJmzGKnyA6dHHJ15yy41O2Q8EXK1
+ G+q+o9iv6qd6cYrH8i06p+Fg7y+4luf4xPg26eTOT1gSFEWOBF6Wjaf92UcGcuxHr6eL
+ dg7JyncH0+v4PWErlFOWs4YwVy609jJvfk7DjwLW12TL9qjU0xy5wSQcqA/UlzLuX/ai
+ ECfO4NlD85myKsx73AYmyq/4B4G8vl0wKKPVxaRGc0nrhWkVWEP4RxerxdRskW36zJLW
+ yaXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=Tdsw2aGiBLowdBKompMuLQW0FpeZcju49WmFG8bHyOw=;
- b=SD8R4ru+OFnG/o3tA4KBy4EA3Y6Gm4a1VwDuZxMLG6UxqEVnb0iEBPSX54rn8OXt+w
- WjDr1FPOu1JAQc8bUe1lMxfitKnLEYM7N7HYJ0dsv2rReKoTxQhSbmLW6K8tGVz/Bx3Q
- JaMlM03ZxD43MgNG9cdBz34vXlXH/+ZQn3gWpG7D0e9yxKBDG9TsqUYHKCTUYkefPYjV
- kTcwOwglak0J0ZBo0jGhSkYWXDUc7Xn5vGl2nXzTKB6lhepIx1iFmDGfjm1OZU3KWuwZ
- aa5/54Uz25f/hr1u4AyrSHz5C0iwdKFf0kOdQBPjhQRduqYNVoC2HEwbxJ23TEskHE6s
- izvQ==
-X-Gm-Message-State: APjAAAXYPHp5okAjfUKa7kjXFXQoDmuv7VeANZncZY1ca1NatkSKuiRe
- TWElZhjJy3ZMO7Cu/LUI7mtGf+FvirJ721N/Yp+OGA==
-X-Google-Smtp-Source: APXvYqy609IJf/GhOKyCiAwxR8WSs6/tX1M/ieVpzUVpTTjy82ChyMKy4v5VAw0i+AX1iLX+Rwq4+F1lz7sR5gM8dzg=
-X-Received: by 2002:a05:600c:2306:: with SMTP id
- 6mr10042110wmo.162.1558971685659; 
- Mon, 27 May 2019 08:41:25 -0700 (PDT)
+ bh=RvWmgSpOjlIMaMZlqMhXFOz9qSbgkNwvRngL97A0kDQ=;
+ b=P/OzJQswmHLMTaoz77q3qR5BKq2adoHqc8CDOIcL5eLUGXgfsPsyAt7Gv1dZfxputB
+ P0o9ACMgx5aq2yfuAtu+wQo6gOr7lNWbwdjqj7Xid0fGXn2yVjrTMnVr1WIAgXvecMHX
+ g+5r/CBdQGWt0d1uwItOieANg/x/szKUASvCFOKRfPTVHEpEjTdD09NSbGCyr+YulIlZ
+ z3hA8fr3kLvErJ7bKOn2MK15Pqy/vYTtWkWn4EF98F2uaW4WfH2K9hZOFhDlzLRQypKa
+ QCOq8U9rrLhfxDTZkxF0L32LSro0GPkP2f/3EApGprYBdtTgsWCcMWUkcR4gFcob7qyO
+ 74QQ==
+X-Gm-Message-State: APjAAAU8vx0xNuyp5GREM5BQCeHwY2f069KBwz9zqJsk2IHo7pTGfxYC
+ FdJ8v5X5oDACbHyEqEu0+MB/hsx4/Mgqp84i4mc=
+X-Google-Smtp-Source: APXvYqzOlHtTysG/NJMjTORoX4YkIoqs/i6VO44tMBIFa71EQ6WOH2ZGotkbC3hvW9Rj4y8Ks7VrpPwwNZd83dEYYlI=
+X-Received: by 2002:aca:ed0a:: with SMTP id l10mr93471oih.39.1558979214200;
+ Mon, 27 May 2019 10:46:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190514135612.30822-1-mjourdan@baylibre.com>
- <20190514135612.30822-4-mjourdan@baylibre.com>
- <07af1a22-d57c-aff6-b476-98fbf72135c1@xs4all.nl>
- <CAMO6naz-cG3F_h70Chjt+GprGWe2EShsMjrietu_JBAdLrPbpQ@mail.gmail.com>
- <0821bfd9-58e4-5df3-4528-189476d35d89@xs4all.nl>
-In-Reply-To: <0821bfd9-58e4-5df3-4528-189476d35d89@xs4all.nl>
-From: Maxime Jourdan <mjourdan@baylibre.com>
-Date: Mon, 27 May 2019 17:41:14 +0200
-Message-ID: <CAMO6nayi+wWU5jqtWkY0riJc6emHiPh7eqpvdzP=U7NgewfwqA@mail.gmail.com>
-Subject: Re: [PATCH v6 3/4] media: meson: add v4l2 m2m video decoder driver
-To: Hans Verkuil <hverkuil@xs4all.nl>
+References: <20190525181133.4875-1-martin.blumenstingl@googlemail.com>
+ <20190525181133.4875-5-martin.blumenstingl@googlemail.com>
+ <3b61897a-267b-fd6e-181b-a8c7e47918fb@baylibre.com>
+In-Reply-To: <3b61897a-267b-fd6e-181b-a8c7e47918fb@baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Mon, 27 May 2019 19:46:43 +0200
+Message-ID: <CAFBinCDXNy4=6U2gsh6vK6WEtJKAdfDGPMrpPJthbp5Rru1hbg@mail.gmail.com>
+Subject: Re: [PATCH 04/14] pwm: meson: change MISC_CLK_SEL_WIDTH to
+ MISC_CLK_SEL_MASK
+To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190527_084127_829480_704A08A9 
-X-CRM114-Status: GOOD (  23.44  )
+X-CRM114-CacheID: sfid-20190527_104655_722030_3CFC533D 
+X-CRM114-Status: GOOD (  12.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -94,98 +91,52 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org, Hans Verkuil <hans.verkuil@cisco.com>,
- linux-amlogic@lists.infradead.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, May 27, 2019 at 4:54 PM Hans Verkuil <hverkuil@xs4all.nl> wrote:
->
-> On 5/27/19 4:44 PM, Maxime Jourdan wrote:
-> > Hi Hans,
-> > On Mon, May 27, 2019 at 12:04 PM Hans Verkuil <hverkuil@xs4all.nl> wrote:
-> >>
-> >> Hi Maxime,
-> >>
-> >> First a high-level comment: I think this driver should go to staging.
-> >> Once we finalize the stateful decoder spec, and we've updated the
-> >> v4l2-compliance test, then this needs to be tested against that and
-> >> only if it passes can it be moved out of staging.
-> >>
-> >
-> > I chose to send the driver supporting only MPEG2 for now as it keeps
-> > it "to the point", but as it turns out it's one of the few formats on
-> > Amlogic that can't fully respect the spec at the moment because of the
-> > lack of support for V4L2_EVENT_SOURCE_CHANGE, thus the patch in the
-> > series that adds a new flag V4L2_FMT_FLAG_FIXED_RESOLUTION. It
-> > basically requires userspace to set the format (i.e coded resolution)
-> > since the driver/fw can't probe it.
-> > At the moment, this is described in the v3 spec like this:
-> >
-> >>
-> >> 1. Set the coded format on ``OUTPUT`` via :c:func:`VIDIOC_S_FMT`
-> >>
-> >>   * **Required fields:**
-> >>
-> >>     ``type``
-> >>         a ``V4L2_BUF_TYPE_*`` enum appropriate for ``OUTPUT``
-> >>
-> >>     ``pixelformat``
-> >>         a coded pixel format
-> >>
-> >>     ``width``, ``height``
-> >>         required only if cannot be parsed from the stream for the given
-> >>         coded format; optional otherwise - set to zero to ignore
-> >>
-> >
-> > But MPEG2 being a format where the coded resolution is inside the
-> > bitstream, this is purely an Amlogic issue where the firmware doesn't
-> > extend the capability to do this.
-> >
-> > Here's a proposal: if I were to resend the driver supporting only H264
-> > and conforming to the spec, would you be considering it for inclusion
-> > in the main tree ? Does your current iteration of v4l2-compliance
-> > support testing stateful decoders with H264 bitstreams ?
->
-> The core problem is that the spec isn't finalized yet. The v3 spec you
-> refer to above is old already since there are various changes planned.
->
-> If you want to test your driver with a v4l2-compliance that is likely
-> to be close to the final version of the spec, then you can use this
-> branch:
->
-> https://git.linuxtv.org/hverkuil/v4l-utils.git/log/?h=vicodec
->
-> You can test with:
->
-> v4l2-compliance -s --stream-from <file>
->
-> I wouldn't be too worried about keeping it in staging. Having it there
-> will already be very nice indeed. Just add a TODO file that states that
-> you are waiting for the final version of the stateful decoder spec and
-> the corresponding compliance tests.
->
-> The V4L2_FMT_FLAG_FIXED_RESOLUTION isn't a blocker. That flag makes sense,
-> and so it has nothing to do with keeping this driver in staging.
->
+Hi Neil,
 
-Okay, I understand. I will send a v7 with the driver in
-staging+TODO+MAINTAINERS update.
-
-Regards,
-Maxime
-
-> Regards,
+On Mon, May 27, 2019 at 2:26 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
->         Hans
+> On 25/05/2019 20:11, Martin Blumenstingl wrote:
+> > MISC_CLK_SEL_WIDTH is only used in one place where it's converted into
+> > a bit-mask. Rename and change the macro to be a bit-mask so that
+> > conversion is not needed anymore. No functional changes intended.
+> >
+> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > ---
+> >  drivers/pwm/pwm-meson.c | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+> > index c62a3ac924d0..84b28ba0f903 100644
+> > --- a/drivers/pwm/pwm-meson.c
+> > +++ b/drivers/pwm/pwm-meson.c
+> > @@ -33,7 +33,7 @@
+> >  #define MISC_A_CLK_DIV_SHIFT 8
+> >  #define MISC_B_CLK_SEL_SHIFT 6
+> >  #define MISC_A_CLK_SEL_SHIFT 4
+> > -#define MISC_CLK_SEL_WIDTH   2
+> > +#define MISC_CLK_SEL_MASK    0x3
 >
-<snip>
+> NIT I would have used GENMASK here
+that was my initial idea but I decided against it.
+the variant I came up with was: #define MISC_CLK_SEL_MASK    GENMASK(1, 0)
+
+however, the actual offset is either 4 or 6 (depending on the PWM channel)
+and I felt that duplicating the macro would just make it more complicated
+so instead I chose to be consistent with MISC_CLK_DIV_MASK
+
+Let me know if you would like me to change it (then I prefer to update
+MISC_CLK_DIV_MASK as well).
+
+
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
