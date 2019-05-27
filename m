@@ -2,70 +2,87 @@ Return-Path: <SRS0=xEjq=T3=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	FROM_EXCESS_BASE64,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 45C0CC04AB3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 15:30:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E4020C04AB3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 15:41:41 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1BD1C20645
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 15:30:19 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BDD2D20665
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 15:41:41 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="h2bY6RRU"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1BD1C20645
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=siol.net
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FqWgFb9N";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ybdiq5GD"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BDD2D20665
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Lilv2/kCU/yV25XCgChu1Aoijo4aNHYckxngjvTauyE=; b=h2bY6RRUastNAc
-	EPBNdRMHVAADRAUeQ2OYtJa2y7NUTgntsoyVLNDzffd20R4wehh+RFg1ACHiuRCWcKzD8xodn3or8
-	C/NhUqmJynHdXXK/mV1iLDZgU/NSApLaT600F3hXkko4fs+D04Mkwe9PXRYDkRvv6vpHLG5cdsy59
-	XLw0r5iS5oywzPAGcZzy9AA0mY6gSTwoFHjv0a6cCwV3fx2vlzF4xKgn/hGsYlfLAUSVmv/1kqS0/
-	3ok2eGgQSjyicp5UMPlL+2rP29TjM3nyEMemzRaIEC/O2cxxHCYdJ+n7pTXQKRGa1Cqahrg6piRam
-	Q+E7wMEHM73zvOVR/j1A==;
+	List-Owner; bh=MQhcDp0Qn+LYYmU9JlJkfTPgXxw1M5SVtDlN7OW+UgU=; b=FqWgFb9NNscXSz
+	p4tjqxjUjjC8cgsZd0hWDwlpdqUYO4+9JYZUqufm8jBPqtQA3trARLCoRkRT/y5lww8/U/OeXWiyM
+	R5LetaKLLNcSVv2luEHetELDcAFDd6JWWYFErJawrjWdqKtQVE6SzmxerE8UNu7H+AvfKZ/fXsvQV
+	+4Dihtblbf+OvZkzqm+PTuypuha39Ap6mTPJAUTt5wDvHdwUbTZNsC/judeTXck+7YgHNpKY8JJ/M
+	E6ag917B+FR2oTPB/tlqv95wAd3vtnyc5WwLwPptmQ3iH7W5YhM38tnteisI1+ZkO3/SK1NPaojrd
+	CAMTB42cZ46AUwiczZ3g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hVHZo-0008KD-0O; Mon, 27 May 2019 15:30:16 +0000
-Received: from mailoutvs58.siol.net ([185.57.226.249] helo=mail.siol.net)
+	id 1hVHkm-0003z2-Hg; Mon, 27 May 2019 15:41:36 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hVHZk-0008Jh-Ks
- for linux-amlogic@lists.infradead.org; Mon, 27 May 2019 15:30:14 +0000
-Received: from localhost (localhost [127.0.0.1])
- by mail.siol.net (Postfix) with ESMTP id 65F0A522B8D;
- Mon, 27 May 2019 17:30:10 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at psrvmta10.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
- by localhost (psrvmta10.zcs-production.pri [127.0.0.1]) (amavisd-new,
- port 10032)
- with ESMTP id AsIJkzKwdpyq; Mon, 27 May 2019 17:30:09 +0200 (CEST)
-Received: from mail.siol.net (localhost [127.0.0.1])
- by mail.siol.net (Postfix) with ESMTPS id BDA28522C5D;
- Mon, 27 May 2019 17:30:09 +0200 (CEST)
-Received: from jernej-laptop.localnet (cpe-86-58-52-202.static.triera.net
- [86.58.52.202]) (Authenticated sender: jernej.skrabec@siol.net)
- by mail.siol.net (Postfix) with ESMTPA id 32F84522B8D;
- Mon, 27 May 2019 17:30:09 +0200 (CEST)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
-To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH 3/5] drm/bridge: dw-hdmi: Add support for dynamic output
- format setup
-Date: Mon, 27 May 2019 17:30:08 +0200
-Message-ID: <6496480.LkDOl06ZB3@jernej-laptop>
-In-Reply-To: <20190520133753.23871-4-narmstrong@baylibre.com>
-References: <20190520133753.23871-1-narmstrong@baylibre.com>
- <20190520133753.23871-4-narmstrong@baylibre.com>
+ id 1hVHkd-0003qW-DE
+ for linux-amlogic@lists.infradead.org; Mon, 27 May 2019 15:41:29 +0000
+Received: by mail-wm1-x341.google.com with SMTP id 15so16153131wmg.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 27 May 2019 08:41:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Tdsw2aGiBLowdBKompMuLQW0FpeZcju49WmFG8bHyOw=;
+ b=ybdiq5GDzdAVwWuupgM0Vyj2TRBmG9n1bTEgd7DCD5KhZsLgMyduZvYjiBX98fmitU
+ bjqoEaotnbM2XtAXoWExidPPwYhpO+3qfQF0pgQ1E2bMOeUheDJayDWzbf6I8bm8z2dW
+ 74NeFGQkTxKdwyV1QbqvLb5z4ykIgEmVs1qc/fNn+PKZUmrenAu+zBO7ZHsRBmPprdFr
+ Fk9aXYknb8WelAnOFM9JRIrQOtNVHqjdZitx6wkYHLlMny5I/OULokvXyJzg25c2TTLF
+ xJ5HeJcWPT37ChPr5pr2Tr3JBPb46yU0f4aojrereBVSGoH1x+ezLFvTY2aYnkZzwecr
+ hoWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Tdsw2aGiBLowdBKompMuLQW0FpeZcju49WmFG8bHyOw=;
+ b=SD8R4ru+OFnG/o3tA4KBy4EA3Y6Gm4a1VwDuZxMLG6UxqEVnb0iEBPSX54rn8OXt+w
+ WjDr1FPOu1JAQc8bUe1lMxfitKnLEYM7N7HYJ0dsv2rReKoTxQhSbmLW6K8tGVz/Bx3Q
+ JaMlM03ZxD43MgNG9cdBz34vXlXH/+ZQn3gWpG7D0e9yxKBDG9TsqUYHKCTUYkefPYjV
+ kTcwOwglak0J0ZBo0jGhSkYWXDUc7Xn5vGl2nXzTKB6lhepIx1iFmDGfjm1OZU3KWuwZ
+ aa5/54Uz25f/hr1u4AyrSHz5C0iwdKFf0kOdQBPjhQRduqYNVoC2HEwbxJ23TEskHE6s
+ izvQ==
+X-Gm-Message-State: APjAAAXYPHp5okAjfUKa7kjXFXQoDmuv7VeANZncZY1ca1NatkSKuiRe
+ TWElZhjJy3ZMO7Cu/LUI7mtGf+FvirJ721N/Yp+OGA==
+X-Google-Smtp-Source: APXvYqy609IJf/GhOKyCiAwxR8WSs6/tX1M/ieVpzUVpTTjy82ChyMKy4v5VAw0i+AX1iLX+Rwq4+F1lz7sR5gM8dzg=
+X-Received: by 2002:a05:600c:2306:: with SMTP id
+ 6mr10042110wmo.162.1558971685659; 
+ Mon, 27 May 2019 08:41:25 -0700 (PDT)
 MIME-Version: 1.0
+References: <20190514135612.30822-1-mjourdan@baylibre.com>
+ <20190514135612.30822-4-mjourdan@baylibre.com>
+ <07af1a22-d57c-aff6-b476-98fbf72135c1@xs4all.nl>
+ <CAMO6naz-cG3F_h70Chjt+GprGWe2EShsMjrietu_JBAdLrPbpQ@mail.gmail.com>
+ <0821bfd9-58e4-5df3-4528-189476d35d89@xs4all.nl>
+In-Reply-To: <0821bfd9-58e4-5df3-4528-189476d35d89@xs4all.nl>
+From: Maxime Jourdan <mjourdan@baylibre.com>
+Date: Mon, 27 May 2019 17:41:14 +0200
+Message-ID: <CAMO6nayi+wWU5jqtWkY0riJc6emHiPh7eqpvdzP=U7NgewfwqA@mail.gmail.com>
+Subject: Re: [PATCH v6 3/4] media: meson: add v4l2 m2m video decoder driver
+To: Hans Verkuil <hverkuil@xs4all.nl>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190527_083012_998776_DBDC56A1 
-X-CRM114-Status: GOOD (  19.35  )
+X-CRM114-CacheID: sfid-20190527_084127_829480_704A08A9 
+X-CRM114-Status: GOOD (  23.44  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -77,237 +94,98 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: heiko@sntech.de, jonas@kwiboo.se, maxime.ripard@bootlin.com,
- hjc@rock-chips.com, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, hverkuil@xs4all.nl, a.hajda@samsung.com,
- Laurent.pinchart@ideasonboard.com, linux-amlogic@lists.infradead.org
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-media@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Hans Verkuil <hans.verkuil@cisco.com>,
+ linux-amlogic@lists.infradead.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi!
+On Mon, May 27, 2019 at 4:54 PM Hans Verkuil <hverkuil@xs4all.nl> wrote:
+>
+> On 5/27/19 4:44 PM, Maxime Jourdan wrote:
+> > Hi Hans,
+> > On Mon, May 27, 2019 at 12:04 PM Hans Verkuil <hverkuil@xs4all.nl> wrote:
+> >>
+> >> Hi Maxime,
+> >>
+> >> First a high-level comment: I think this driver should go to staging.
+> >> Once we finalize the stateful decoder spec, and we've updated the
+> >> v4l2-compliance test, then this needs to be tested against that and
+> >> only if it passes can it be moved out of staging.
+> >>
+> >
+> > I chose to send the driver supporting only MPEG2 for now as it keeps
+> > it "to the point", but as it turns out it's one of the few formats on
+> > Amlogic that can't fully respect the spec at the moment because of the
+> > lack of support for V4L2_EVENT_SOURCE_CHANGE, thus the patch in the
+> > series that adds a new flag V4L2_FMT_FLAG_FIXED_RESOLUTION. It
+> > basically requires userspace to set the format (i.e coded resolution)
+> > since the driver/fw can't probe it.
+> > At the moment, this is described in the v3 spec like this:
+> >
+> >>
+> >> 1. Set the coded format on ``OUTPUT`` via :c:func:`VIDIOC_S_FMT`
+> >>
+> >>   * **Required fields:**
+> >>
+> >>     ``type``
+> >>         a ``V4L2_BUF_TYPE_*`` enum appropriate for ``OUTPUT``
+> >>
+> >>     ``pixelformat``
+> >>         a coded pixel format
+> >>
+> >>     ``width``, ``height``
+> >>         required only if cannot be parsed from the stream for the given
+> >>         coded format; optional otherwise - set to zero to ignore
+> >>
+> >
+> > But MPEG2 being a format where the coded resolution is inside the
+> > bitstream, this is purely an Amlogic issue where the firmware doesn't
+> > extend the capability to do this.
+> >
+> > Here's a proposal: if I were to resend the driver supporting only H264
+> > and conforming to the spec, would you be considering it for inclusion
+> > in the main tree ? Does your current iteration of v4l2-compliance
+> > support testing stateful decoders with H264 bitstreams ?
+>
+> The core problem is that the spec isn't finalized yet. The v3 spec you
+> refer to above is old already since there are various changes planned.
+>
+> If you want to test your driver with a v4l2-compliance that is likely
+> to be close to the final version of the spec, then you can use this
+> branch:
+>
+> https://git.linuxtv.org/hverkuil/v4l-utils.git/log/?h=vicodec
+>
+> You can test with:
+>
+> v4l2-compliance -s --stream-from <file>
+>
+> I wouldn't be too worried about keeping it in staging. Having it there
+> will already be very nice indeed. Just add a TODO file that states that
+> you are waiting for the final version of the stateful decoder spec and
+> the corresponding compliance tests.
+>
+> The V4L2_FMT_FLAG_FIXED_RESOLUTION isn't a blocker. That flag makes sense,
+> and so it has nothing to do with keeping this driver in staging.
+>
 
-Dne ponedeljek, 20. maj 2019 ob 15:37:51 CEST je Neil Armstrong napisal(a):
-> In order to support the HDMI2.0 YUV420, YUV422 and the 10bit, 12bit and
-> 16bits outpu use cases, add support for the recently introduced bridge
-> callback format_set().
-> 
-> This callback will setup the new input format and encoding from encoder,
-> then these information will be used instead of the default ones
-> in the dw_hdmi_setup() function.
-> 
-> To determine the output bus format, has been added :
-> - support for the connector display_info bus_formats, where a fixed
->   output bus format can be enforced by the encoder
-> - support for synami output bus format depending on the input format,
->   especially the YUV420 input bus format, enforcing YUV420 as output
->   with the correct bit depth
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 121 ++++++++++++++++++++--
->  1 file changed, 112 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c index
-> b50c49caf7ae..284ce59be8f8 100644
-> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-> @@ -103,6 +103,8 @@ struct hdmi_vmode {
->  };
-> 
->  struct hdmi_data_info {
-> +	unsigned int bridge_in_bus_format;
-> +	unsigned int bridge_in_encoding;
->  	unsigned int enc_in_bus_format;
->  	unsigned int enc_out_bus_format;
->  	unsigned int enc_in_encoding;
-> @@ -1838,8 +1840,51 @@ static void hdmi_disable_overflow_interrupts(struct
-> dw_hdmi *hdmi) HDMI_IH_MUTE_FC_STAT2);
->  }
-> 
-> +/*
-> + * The DW-HDMI CSC can only interpolate and decimate from 4:2:2 to
-> 4:4:4/RGB + * and from 4:4:4/RGB to 4:2:2.
-> + * Default to RGB output except if 4:2:0 as input, which CSC cannot
-> convert. + */
-> +static unsigned long dw_hdmi_determine_output_bus_format(struct dw_hdmi
-> *hdmi) +{
-> +	unsigned int depth = hdmi_bus_fmt_color_depth(
-> +					hdmi-
->hdmi_data.enc_in_bus_format);
-> +	bool is_420 = hdmi_bus_fmt_is_yuv420(hdmi-
->hdmi_data.enc_in_bus_format);
-> +	unsigned long fmt = MEDIA_BUS_FMT_RGB888_1X24;
-> +
-> +	switch (depth) {
-> +	case 8:
-> +		if (is_420)
-> +			fmt = MEDIA_BUS_FMT_UYYVYY8_0_5X24;
-> +		else
-> +			fmt = MEDIA_BUS_FMT_RGB888_1X24;
-> +		break;
-> +	case 10:
-> +		if (is_420)
-> +			fmt = MEDIA_BUS_FMT_UYYVYY10_0_5X30;
-> +		else
-> +			fmt = MEDIA_BUS_FMT_RGB101010_1X30;
-> +		break;
-> +	case 12:
-> +		if (is_420)
-> +			fmt = MEDIA_BUS_FMT_UYYVYY12_0_5X36;
-> +		else
-> +			fmt = MEDIA_BUS_FMT_RGB121212_1X36;
-> +		break;
-> +	case 16:
-> +		if (is_420)
-> +			fmt = MEDIA_BUS_FMT_UYYVYY16_0_5X48;
-> +		else
-> +			fmt = MEDIA_BUS_FMT_RGB161616_1X48;
-> +		break;
-> +	}
-> +
-> +	return fmt;
-> +}
-> +
->  static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode
-> *mode) {
-> +	struct drm_display_info *display = &hdmi->connector.display_info;
->  	int ret;
-> 
->  	hdmi_disable_overflow_interrupts(hdmi);
-> @@ -1853,9 +1898,9 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct
-> drm_display_mode *mode) }
-> 
->  	if ((hdmi->vic == 6) || (hdmi->vic == 7) ||
-> -	    (hdmi->vic == 21) || (hdmi->vic == 22) ||
-> -	    (hdmi->vic == 2) || (hdmi->vic == 3) ||
-> -	    (hdmi->vic == 17) || (hdmi->vic == 18))
-> +		 (hdmi->vic == 21) || (hdmi->vic == 22) ||
-> +		 (hdmi->vic == 2) || (hdmi->vic == 3) ||
-> +		 (hdmi->vic == 17) || (hdmi->vic == 18))
->  		hdmi->hdmi_data.enc_out_encoding = V4L2_YCBCR_ENC_601;
->  	else
->  		hdmi->hdmi_data.enc_out_encoding = V4L2_YCBCR_ENC_709;
-> @@ -1863,22 +1908,29 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi,
-> struct drm_display_mode *mode)
-> hdmi->hdmi_data.video_mode.mpixelrepetitionoutput = 0;
->  	hdmi->hdmi_data.video_mode.mpixelrepetitioninput = 0;
-> 
-> -	/* TOFIX: Get input format from plat data or fallback to RGB888 */
-> -	if (hdmi->plat_data->input_bus_format)
-> +	if (hdmi->hdmi_data.bridge_in_bus_format)
-> +		hdmi->hdmi_data.enc_in_bus_format =
-> +			hdmi->hdmi_data.bridge_in_bus_format;
-> +	else if (hdmi->plat_data->input_bus_format)
->  		hdmi->hdmi_data.enc_in_bus_format =
->  			hdmi->plat_data->input_bus_format;
->  	else
->  		hdmi->hdmi_data.enc_in_bus_format = 
-MEDIA_BUS_FMT_RGB888_1X24;
-> 
-> -	/* TOFIX: Get input encoding from plat data or fallback to none */
-> -	if (hdmi->plat_data->input_bus_encoding)
-> +	if (hdmi->hdmi_data.bridge_in_encoding)
-> +		hdmi->hdmi_data.enc_in_encoding =
-> +			hdmi->hdmi_data.bridge_in_encoding;
-> +	else if (hdmi->plat_data->input_bus_encoding)
->  		hdmi->hdmi_data.enc_in_encoding =
->  			hdmi->plat_data->input_bus_encoding;
->  	else
->  		hdmi->hdmi_data.enc_in_encoding = 
-V4L2_YCBCR_ENC_DEFAULT;
-> 
-> -	/* TOFIX: Default to RGB888 output format */
-> -	hdmi->hdmi_data.enc_out_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
-> +	if (display->num_bus_formats)
-> +		hdmi->hdmi_data.enc_out_bus_format = display-
->bus_formats[0];
-> +	else
-> +		hdmi->hdmi_data.enc_out_bus_format =
-> +				
-dw_hdmi_determine_output_bus_format(hdmi);
-> 
->  	hdmi->hdmi_data.pix_repet_factor = 0;
->  	hdmi->hdmi_data.hdcp_enable = 0;
-> @@ -2150,6 +2202,56 @@ dw_hdmi_bridge_mode_valid(struct drm_bridge *bridge,
->  	return mode_status;
->  }
-> 
-> +static bool dw_hdmi_drm_bridge_format_set(struct drm_bridge *bridge,
-> +					 const u32 
-input_bus_format,
-> +					 const u32 
-input_encoding)
-> +{
-> +	struct dw_hdmi *hdmi = bridge->driver_private;
-> +
-> +	/* Filter supported input bus formats */
-> +	switch (input_bus_format) {
-> +	case MEDIA_BUS_FMT_RGB888_1X24:
-> +	case MEDIA_BUS_FMT_RGB101010_1X30:
-> +	case MEDIA_BUS_FMT_RGB121212_1X36:
-> +	case MEDIA_BUS_FMT_RGB161616_1X48:
-> +	case MEDIA_BUS_FMT_YUV8_1X24:
-> +	case MEDIA_BUS_FMT_YUV10_1X30:
-> +	case MEDIA_BUS_FMT_YUV12_1X36:
-> +	case MEDIA_BUS_FMT_YUV16_1X48:
-> +	case MEDIA_BUS_FMT_UYVY8_1X16:
-> +	case MEDIA_BUS_FMT_UYVY10_1X20:
-> +	case MEDIA_BUS_FMT_UYVY12_1X24:
-> +	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
-> +	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
-> +	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
-> +	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
-> +		break;
-> +	default:
-> +		dev_dbg(hdmi->dev, "Unsupported Input bus format %x\n",
-> +			input_bus_format);
-> +		return false;
-> +	}
-> +
-> +	/* Filter supported input bus encoding */
-> +	switch (input_encoding) {
-> +	case V4L2_YCBCR_ENC_DEFAULT:
-> +	case V4L2_YCBCR_ENC_601:
-> +	case V4L2_YCBCR_ENC_709:
-> +	case V4L2_YCBCR_ENC_XV601:
-> +	case V4L2_YCBCR_ENC_XV709:
-> +		break;
-> +	default:
-> +		dev_dbg(hdmi->dev, "Unsupported Input encoding %x\n",
-> +			input_bus_format);
-> +		return false;
-> +	}
-> +
-> +	hdmi->hdmi_data.bridge_in_bus_format = input_bus_format;
-> +	hdmi->hdmi_data.bridge_in_encoding = input_encoding;
-> +
-> +	return true;
-> +}
-> +
->  static void dw_hdmi_bridge_mode_set(struct drm_bridge *bridge,
->  				    const struct drm_display_mode 
-*orig_mode,
->  				    const struct drm_display_mode 
-*mode)
-> @@ -2192,6 +2294,7 @@ static const struct drm_bridge_funcs
-> dw_hdmi_bridge_funcs = { .disable = dw_hdmi_bridge_disable,
->  	.mode_set = dw_hdmi_bridge_mode_set,
->  	.mode_valid = dw_hdmi_bridge_mode_valid,
-> +	.format_set = dw_hdmi_drm_bridge_format_set,
->  };
-> 
->  static irqreturn_t dw_hdmi_i2c_irq(struct dw_hdmi *hdmi)
+Okay, I understand. I will send a v7 with the driver in
+staging+TODO+MAINTAINERS update.
 
-Reviewed-by: Jernej Skrabec <jernej.skrabec@siol.net>
+Regards,
+Maxime
 
-Best regards,
-Jernej
-
-
-
+> Regards,
+>
+>         Hans
+>
+<snip>
 
 _______________________________________________
 linux-amlogic mailing list
