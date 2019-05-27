@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
 	SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 63614C04AB3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 12:28:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D9C38C04AB3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 12:30:48 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 37DC720859
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 12:28:28 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A7E27204EC
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 12:30:48 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Ehg25vz+";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="FK4ulMW7"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 37DC720859
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fB1GMWHh";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="a0kX27wh"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A7E27204EC
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,62 +26,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=clMxjMyUTl+LYLodIX0gn3WrZnI3JuZoqnopNJAuWUk=; b=Ehg25vz+Kpwdmt
-	4TaVrnALkkTljkQAxyg3dWDTR1ACliaYWE3uxHziVl37UQU9xo91P3TfkEmW4xCJ7aGYwoGjYiVeD
-	T4M+++5rPHl8EYJzyMYKoXQ1Totj8bllfA2Ozi565B7Qcczt2+Ohn0acjDEM5yI92iiHYyXwbXS9W
-	QZhwPGw0vBUXW19GC3gZGIanPYtS35J77+kU+c5oqaw6vZ9GxGtAO+KbbiFMnIE18+uVv5a2COINI
-	XgKl5jQycF4PLEUbwVr0h9DZcizlsMmeSF8gNMXl6Xo9NdHm0x1z12GQxOuh7hmYuvvcWvwL9HwtV
-	n6IJSg8Xm56bXEhpRipA==;
+	List-Owner; bh=L3Q3XIJC5tTBwWyk1oR3zIWxdq3Y6y/96DZKvpzreeM=; b=fB1GMWHhbplWon
+	3cTf7AdQjqc0GxwlPlPW9jTHMUznJETJdcKOf0dxLqenhmpoioc2upc0T4R1hwJt7BQjw0zonSss3
+	J41tcNAViPcex5mz/KKAxRCkPoKq3U830sln+eZbXds6ymFLFJaSiNVwrOln+/jtEonKmvjW558iy
+	Qp4atiLQAn+m2dOLZYdE0KTtEIunmVM/YVsiAk977VrzG6PmAEY0/KTlmt3IUyKX76L9kmOH9/lMx
+	9FD9EehIaInMEEYiLBjEeB0uFn3KGaenWgTGgSnrG5oMuuTw+JIhOd2eExHBGuFVGWJZmQzNuYmtc
+	WmIyiFFyzH1tFBl6frrw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hVEjn-00078e-0i; Mon, 27 May 2019 12:28:23 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1hVEm3-0000nI-Ef; Mon, 27 May 2019 12:30:43 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hVEjc-0006vD-8z
- for linux-amlogic@lists.infradead.org; Mon, 27 May 2019 12:28:20 +0000
-Received: by mail-wm1-x341.google.com with SMTP id e19so7112152wme.1
- for <linux-amlogic@lists.infradead.org>; Mon, 27 May 2019 05:28:12 -0700 (PDT)
+ id 1hVEm0-0000mV-5D
+ for linux-amlogic@lists.infradead.org; Mon, 27 May 2019 12:30:41 +0000
+Received: by mail-wm1-x342.google.com with SMTP id d17so2819381wmb.3
+ for <linux-amlogic@lists.infradead.org>; Mon, 27 May 2019 05:30:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=+L5MlIGf1ZwbeZzPIdfj3Gv0vJVeWswnQuXYAx1Br0c=;
- b=FK4ulMW7SqSE2D9cfFBwiCY3PDstRcxOhQ8T9pCq/jZuolDIT6s4xms8ondnaYCZUR
- 5UhxumLHCexaRwZ0x2jMJ3kkp5LO2R05rhGiFoqUQaXLHX7KUO/mO6GIG3eaQyTvH9pJ
- kQLPqlJJJGhdQBseRGjRRrLTYVerrgWtY04h+BrPQDDta4MZnG+LDCpEXB3jHuHcsd/E
- zPxd4mxM7talG8OYxn+PoCOzP4eaA9h3SmcziIet0ZofC3dT5yoq6m37Z0mutXmSC2HT
- bKqx5QNhrye+3R7vj0qM8QWDu/hBFb3wgaevxtaSFMWnGE1rAeyRDQOnFqXUnOh1v3Up
- lTEw==
+ bh=KCBnQSQIG5e0SbMw2qGIIWVisj1dQacQQ5NaC9OOdsI=;
+ b=a0kX27whkYxCa+vnlk7kbRKoFx037MRKt54gCf6xjSdUjzRdHrd+OwVGVJvUSRFLnb
+ sa90OCfPTyXh7FoctRf6jjCikUSF31ilKx8MvVV8UBzQnZpa3Pq4+DkgNPKJaF/oFHkF
+ 9xitIzCenFTzDVrwRa5OY6zzHg8Ima/gZk8Raal9WJLbtxy6xH+fQ4UDT6Pwo7x12Vyi
+ oIzc2wbS/9uL52dlY8SLHHTO8C3XL7mw/eyBVj+XzTutaANWAyk3HV0wbjMHhZsRSwDu
+ UEvfs3WMrSQ6SlO3UHvjgmzx0QI7Zguq0AMacGitIez0iuXByainydNVD03E9Fyti/w5
+ Ff+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=+L5MlIGf1ZwbeZzPIdfj3Gv0vJVeWswnQuXYAx1Br0c=;
- b=NwCchFl1JgrwF4FN2F1saQFEJ1gCDp1nt/ktEg7OnXF91sDDZ0DNLjgmwyEjSf/4op
- c3KlbXnZ8f0TosPwe+0wWwvpPstKMTYEdL/5qG+btcqbU2+vMk3Y8Bx05rh7jM5xPjBO
- cE0NM8vaEnRNymkz1q47YQFGeHZvbHp4l/7wl0VkrlTS4f7zbnijUatHjeNWTMUOg6H1
- eInUjQoCBoEusShqDDILBlglH0ns4TfxMMlwcodMKINL9lXt8kh9iQcX1faNTvK0d43u
- OXpoRbpcrvfQ9LSGxbvJUPVB0cf607Xcr0++HfrLW2f0jksvDdChdkCm95hKWdN4hTY9
- pemA==
-X-Gm-Message-State: APjAAAVBO7ZQ5tmEFp23RB+tOF5YkJ4TRwDOhRob2xd7OwGpNfZu1u/D
- 0sZUZZ8xCpCx5ZMDMNFuSAee9w==
-X-Google-Smtp-Source: APXvYqz1TR2WKIac1Pyptw7ixPyH90e2gWUBaS/ycI863hZFRrdFE+kAR3mZWcGlycqyNcNi1RJqhA==
-X-Received: by 2002:a1c:ed16:: with SMTP id l22mr10071527wmh.96.1558960090710; 
- Mon, 27 May 2019 05:28:10 -0700 (PDT)
+ bh=KCBnQSQIG5e0SbMw2qGIIWVisj1dQacQQ5NaC9OOdsI=;
+ b=sY+F3Kkrcda5AV3zPGcPHzq580U8CMxMvbirEZ1rcoNSm8ovFHlZCoycYL3pBzZu8F
+ jqpNQdx2qrgt7zcLERVYfCDBH7w2gmhRocKRPcDiSEYHOyGNvE82eQxIcRf3jWntnf/+
+ 5d4ZLOh6ytIoj9FLAj00t0rWxx4+XydZVGapmxa0bMtnbzILKoZpMwVq3lZAcrgdS1qj
+ YnHFAoRgFK5APeu1Ya29RhpjpDiTf0hSfnwjRoIF1jOY6E0w+arPnv4ka7eKNkiz7Px/
+ 8RYpH+C963ptHno74Z0kbX1NadOrDubXIKm86YV4XvXeTW/gV+8qpDs8qlt+LEEK7Eb/
+ R6qg==
+X-Gm-Message-State: APjAAAXRdV0063UxhRlrDuHKeCkXI9Xoy5aKDlyYXXSABKS2oS3AOpJ4
+ mgmfhYz69eqjvwd9IB70ZeIJDA==
+X-Google-Smtp-Source: APXvYqyEG6ZlK+E92ITcBfCpfsU875F7+cNbeSaLzogr2/2gcEimyGcruRDaIcuOzKCKK6jOE3bRVw==
+X-Received: by 2002:a05:600c:240e:: with SMTP id
+ 14mr3157460wmp.133.1558960238387; 
+ Mon, 27 May 2019 05:30:38 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id b10sm21638133wrh.59.2019.05.27.05.28.09
+ by smtp.gmail.com with ESMTPSA id a4sm9210277wrf.78.2019.05.27.05.30.37
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 27 May 2019 05:28:10 -0700 (PDT)
-Subject: Re: [PATCH 08/14] pwm: meson: add the per-channel register offsets
- and bits in a struct
+ Mon, 27 May 2019 05:30:37 -0700 (PDT)
+Subject: Re: [PATCH 09/14] pwm: meson: move pwm_set_chip_data() to
+ meson_pwm_request()
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org,
  thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de
 References: <20190525181133.4875-1-martin.blumenstingl@googlemail.com>
- <20190525181133.4875-9-martin.blumenstingl@googlemail.com>
+ <20190525181133.4875-10-martin.blumenstingl@googlemail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -134,16 +135,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <7d169605-e117-70d4-5c66-47d2f80f4d4e@baylibre.com>
-Date: Mon, 27 May 2019 14:28:09 +0200
+Message-ID: <aa6e6832-6bbc-87d7-9937-b18aec83a2ff@baylibre.com>
+Date: Mon, 27 May 2019 14:30:37 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190525181133.4875-9-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20190525181133.4875-10-martin.blumenstingl@googlemail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190527_052812_648075_D742C69F 
-X-CRM114-Status: GOOD (  21.12  )
+X-CRM114-CacheID: sfid-20190527_053040_207965_F89FE216 
+X-CRM114-Status: GOOD (  20.45  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -162,180 +163,83 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 25/05/2019 20:11, Martin Blumenstingl wrote:
-> Introduce struct meson_pwm_channel_data which contains the per-channel
-> offsets for the PWM register and REG_MISC_AB bits. Replace the existing
-> switch (pwm->hwpwm) statements with an access to the new struct.
+> All existing PWM drivers (except pwm-meson and two other ones) call
+> pwm_set_chip_data() from their pwm_ops.request() callback. Now that we
+> can access the struct meson_pwm_channel from struct meson_pwm we can do
+> the same.
 > 
-> This simplifies the code and will make it easier to implement
-> pwm_ops.get_state() because the switch-case which all per-channel
-> registers and offsets (as previously implemented in meson_pwm_enable())
-> doesn't have to be duplicated.
+> Move the call to pwm_set_chip_data() to meson_pwm_request() and drop the
+> custom meson_pwm_add_channels(). This makes the implementation
+> consistent with other drivers and makes it slightly more obvious
+> thatpwm_get_chip_data() cannot be used from pwm_ops.get_state() (because
+> that's called by the PWM core before pwm_ops.request()).
 > 
 > No functional changes intended.
 > 
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->  drivers/pwm/pwm-meson.c | 92 ++++++++++++++++-------------------------
->  1 file changed, 35 insertions(+), 57 deletions(-)
+>  drivers/pwm/pwm-meson.c | 22 ++++++++--------------
+>  1 file changed, 8 insertions(+), 14 deletions(-)
 > 
 > diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-> index d1718f54ecec..ac7e188155fd 100644
+> index ac7e188155fd..27915d6475e3 100644
 > --- a/drivers/pwm/pwm-meson.c
 > +++ b/drivers/pwm/pwm-meson.c
-> @@ -39,9 +39,27 @@
+> @@ -98,12 +98,16 @@ static inline struct meson_pwm *to_meson_pwm(struct pwm_chip *chip)
 >  
->  #define MESON_NUM_PWMS		2
->  
-> -static const unsigned int mux_reg_shifts[] = {
-> -	MISC_A_CLK_SEL_SHIFT,
-> -	MISC_B_CLK_SEL_SHIFT
-> +static struct meson_pwm_channel_data {
-> +	u8		reg_offset;
-> +	u8		clk_sel_shift;
-> +	u8		clk_div_shift;
-> +	u32		clk_en_mask;
-> +	u32		pwm_en_mask;
-> +} meson_pwm_per_channel_data[MESON_NUM_PWMS] = {
-> +	{
-> +		.reg_offset	= REG_PWM_A,
-> +		.clk_sel_shift	= MISC_A_CLK_SEL_SHIFT,
-> +		.clk_div_shift	= MISC_A_CLK_DIV_SHIFT,
-> +		.clk_en_mask	= MISC_A_CLK_EN,
-> +		.pwm_en_mask	= MISC_A_EN,
-> +	},
-> +	{
-> +		.reg_offset	= REG_PWM_B,
-> +		.clk_sel_shift	= MISC_B_CLK_SEL_SHIFT,
-> +		.clk_div_shift	= MISC_B_CLK_DIV_SHIFT,
-> +		.clk_en_mask	= MISC_B_CLK_EN,
-> +		.pwm_en_mask	= MISC_B_EN,
-> +	}
->  };
->  
->  struct meson_pwm_channel {
-> @@ -194,43 +212,26 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
->  static void meson_pwm_enable(struct meson_pwm *meson, struct pwm_device *pwm)
+>  static int meson_pwm_request(struct pwm_chip *chip, struct pwm_device *pwm)
 >  {
->  	struct meson_pwm_channel *channel = pwm_get_chip_data(pwm);
-> -	u32 value, clk_shift, clk_enable, enable;
-> -	unsigned int offset;
-> +	struct meson_pwm_channel_data *channel_data;
->  	unsigned long flags;
-> +	u32 value;
+> -	struct meson_pwm_channel *channel = pwm_get_chip_data(pwm);
+> +	struct meson_pwm *meson = to_meson_pwm(chip);
+> +	struct meson_pwm_channel *channel;
+>  	struct device *dev = chip->dev;
+>  	int err;
 >  
-> -	switch (pwm->hwpwm) {
-> -	case 0:
-> -		clk_shift = MISC_A_CLK_DIV_SHIFT;
-> -		clk_enable = MISC_A_CLK_EN;
-> -		enable = MISC_A_EN;
-> -		offset = REG_PWM_A;
-> -		break;
+> -	if (!channel)
+> -		return -ENODEV;
+> +	channel = pwm_get_chip_data(pwm);
+> +	if (channel)
+> +		return 0;
+> +
+> +	channel = &meson->channels[pwm->hwpwm];
+>  
+>  	if (channel->clk_parent) {
+>  		err = clk_set_parent(channel->clk, channel->clk_parent);
+> @@ -124,7 +128,7 @@ static int meson_pwm_request(struct pwm_chip *chip, struct pwm_device *pwm)
+>  
+>  	chip->ops->get_state(chip, pwm, &channel->state);
+>  
+> -	return 0;
+> +	return pwm_set_chip_data(pwm, channel);
+>  }
+>  
+>  static void meson_pwm_free(struct pwm_chip *chip, struct pwm_device *pwm)
+> @@ -460,14 +464,6 @@ static int meson_pwm_init_channels(struct meson_pwm *meson)
+>  	return 0;
+>  }
+>  
+> -static void meson_pwm_add_channels(struct meson_pwm *meson)
+> -{
+> -	unsigned int i;
 > -
-> -	case 1:
-> -		clk_shift = MISC_B_CLK_DIV_SHIFT;
-> -		clk_enable = MISC_B_CLK_EN;
-> -		enable = MISC_B_EN;
-> -		offset = REG_PWM_B;
-> -		break;
+> -	for (i = 0; i < meson->chip.npwm; i++)
+> -		pwm_set_chip_data(&meson->chip.pwms[i], &meson->channels[i]);
+> -}
 > -
-> -	default:
-> -		return;
-> -	}
-> +	channel_data = &meson_pwm_per_channel_data[pwm->hwpwm];
->  
->  	spin_lock_irqsave(&meson->lock, flags);
->  
->  	value = readl(meson->base + REG_MISC_AB);
-> -	value &= ~(MISC_CLK_DIV_MASK << clk_shift);
-> -	value |= channel->pre_div << clk_shift;
-> -	value |= clk_enable;
-> +	value &= ~(MISC_CLK_DIV_MASK << channel_data->clk_div_shift);
-> +	value |= channel->pre_div << channel_data->clk_div_shift;
-> +	value |= channel_data->clk_en_mask;
->  	writel(value, meson->base + REG_MISC_AB);
->  
->  	value = FIELD_PREP(PWM_HIGH_MASK, channel->hi) |
->  		FIELD_PREP(PWM_LOW_MASK, channel->lo);
-> -	writel(value, meson->base + offset);
-> +	writel(value, meson->base + channel_data->reg_offset);
->  
->  	value = readl(meson->base + REG_MISC_AB);
-> -	value |= enable;
-> +	value |= channel_data->pwm_en_mask;
->  	writel(value, meson->base + REG_MISC_AB);
->  
->  	spin_unlock_irqrestore(&meson->lock, flags);
-> @@ -238,26 +239,13 @@ static void meson_pwm_enable(struct meson_pwm *meson, struct pwm_device *pwm)
->  
->  static void meson_pwm_disable(struct meson_pwm *meson, struct pwm_device *pwm)
+>  static int meson_pwm_probe(struct platform_device *pdev)
 >  {
-> -	u32 value, enable;
->  	unsigned long flags;
+>  	struct meson_pwm *meson;
+> @@ -503,8 +499,6 @@ static int meson_pwm_probe(struct platform_device *pdev)
+>  		return err;
+>  	}
+>  
+> -	meson_pwm_add_channels(meson);
 > -
-> -	switch (pwm->hwpwm) {
-> -	case 0:
-> -		enable = MISC_A_EN;
-> -		break;
-> -
-> -	case 1:
-> -		enable = MISC_B_EN;
-> -		break;
-> -
-> -	default:
-> -		return;
-> -	}
-> +	u32 value;
+>  	platform_set_drvdata(pdev, meson);
 >  
->  	spin_lock_irqsave(&meson->lock, flags);
->  
->  	value = readl(meson->base + REG_MISC_AB);
-> -	value &= ~enable;
-> +	value &= ~meson_pwm_per_channel_data[pwm->hwpwm].pwm_en_mask;
->  	writel(value, meson->base + REG_MISC_AB);
->  
->  	spin_unlock_irqrestore(&meson->lock, flags);
-> @@ -309,18 +297,7 @@ static void meson_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
->  	if (!state)
->  		return;
->  
-> -	switch (pwm->hwpwm) {
-> -	case 0:
-> -		mask = MISC_A_EN;
-> -		break;
-> -
-> -	case 1:
-> -		mask = MISC_B_EN;
-> -		break;
-> -
-> -	default:
-> -		return;
-> -	}
-> +	mask = meson_pwm_per_channel_data[pwm->hwpwm].pwm_en_mask;
->  
->  	value = readl(meson->base + REG_MISC_AB);
->  	state->enabled = (value & mask) != 0;
-> @@ -458,7 +435,8 @@ static int meson_pwm_init_channels(struct meson_pwm *meson)
->  		init.num_parents = meson->data->num_parents;
->  
->  		channel->mux.reg = meson->base + REG_MISC_AB;
-> -		channel->mux.shift = mux_reg_shifts[i];
-> +		channel->mux.shift =
-> +				meson_pwm_per_channel_data[i].clk_sel_shift;
->  		channel->mux.mask = MISC_CLK_SEL_MASK;
->  		channel->mux.flags = 0;
->  		channel->mux.lock = &meson->lock;
-> @@ -509,7 +487,7 @@ static int meson_pwm_probe(struct platform_device *pdev)
->  	meson->chip.dev = &pdev->dev;
->  	meson->chip.ops = &meson_pwm_ops;
->  	meson->chip.base = -1;
-> -	meson->chip.npwm = MESON_NUM_PWM;
-> +	meson->chip.npwm = MESON_NUM_PWMS;
->  	meson->chip.of_xlate = of_pwm_xlate_with_flags;
->  	meson->chip.of_pwm_n_cells = 3;
->  
+>  	return 0;
 > 
 
-This looks a little over-engineered, but it's correct :
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
