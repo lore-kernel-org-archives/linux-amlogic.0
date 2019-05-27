@@ -2,88 +2,84 @@ Return-Path: <SRS0=xEjq=T3=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_MUTT autolearn=ham autolearn_force=no
-	version=3.4.0
+	SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C195CC04AB3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 14:10:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E548FC04AB3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 14:44:27 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 929D821530
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 14:10:16 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BF08E2070D
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 14:44:27 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RGvg0xy6";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kgtqsH9f"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 929D821530
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tfH8Kuuw";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="QFaKOc6p"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BF08E2070D
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=ZC/sdLCvBLWFYy95KiwsphxDASFcYPv6ha5WgfG6eUQ=; b=RGvg0xy6HhUAH3/3vqnimbs8N
-	bAkkznC7QcPNbVaG4NbOEpo9RnQmPUAwiq/ASATFSyepHVKys1norQkf9IjlHDyhebo/ZTX+zKW1E
-	FmX5pcfg2cFU3Pb2lXEG0N0rtPqKzMZICdkkehFmRmaHwMW474fJ38qr5bDcfvs1UL4XR62xdYwpd
-	TnZ6rF+I6HI4UYkLZPSjhVZDzAuM2ZltIMRq7QHz3/oP925bL/0MLWE7tUftlPSZ8pCPe/5ZprKjp
-	ynTaH+TY/vXHrhe+umtO2JViFse+KjoS4/8MeYrbpHUnH9yM6pzmpDcmyYLtfZ+alvxLvjy4kcjJ/
-	+h4vLvizQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=OA90DvwSDpd5OdYXP7ugTh7WXQezyievcOatf3maBjc=; b=tfH8Kuuw6D011T
+	4kfUdYHUBGX7sTSJFop4xP34JvIK1OxNYeXv752+3Mhau5kcGk3RhP0tjHJ+lZJnhXIYRJ2Iu7fDp
+	/IBtU2dseqaD2BYDxcBL456+8j3ENRkxd7Ba3N6MWrfPfgt0s3kFTQUdB1DH1JCTDb5eK1DMqrgqd
+	AKIQPoRFKFS1TDJydx5IfV9ef3G5kQzsITuh9mvrLGgbQZaBsa/ps2/UVwRtKj9yY+GXknmK5xMnv
+	oA3hc04ShNaqq3ACWH5HwyDLN3hXJMEohNqUanwteYnWKd1Jd5UCVAfjfYVc6dhz8BQgxSvb4MmNT
+	GzhOtJuIXxyg24eGL0Xg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hVGKI-00046t-0p; Mon, 27 May 2019 14:10:10 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1hVGrN-0007wE-3E; Mon, 27 May 2019 14:44:21 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hVGK4-0003Vj-Bs; Mon, 27 May 2019 14:09:57 +0000
-Received: by mail-wm1-x344.google.com with SMTP id t5so15992003wmh.3;
- Mon, 27 May 2019 07:09:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=LVQmabqaveoCCphB3DhTxUm42/S6gLtLkjhO6CDB9nU=;
- b=kgtqsH9fZ/rbqOeQ5u5aQvsOmd/i26baPpenLVwHu7A+JjKJ6koZc5A5A4ckFaYxWT
- Y1HIxrC3fM8ZrQZSGIMnuCXeGHfGImgBTk8Zi/7ON/ZsbAt1HfXX4A+n5dG9l7mGBqE9
- ts62hpXoZZAkQk/HcpLWFcxIE5iwDjrexlhpSHTyYTW34YkqKw5ytVdjlXQaWU4jZhig
- FlwCNufb9ebITJF+guuN9cF0X886OcvC1aTC0j3g7rR9EQbZJZqv4B70OaMghb/GCcb6
- LaDxr77KaYjy3/6jQm8NyrJfB18zdL1TjmOSYZ8JS4XqY6TmKV0i5npoTNK0hQXI33q0
- g0Gg==
+ id 1hVGrJ-0007vW-8t
+ for linux-amlogic@lists.infradead.org; Mon, 27 May 2019 14:44:19 +0000
+Received: by mail-wr1-x441.google.com with SMTP id h1so3020707wro.4
+ for <linux-amlogic@lists.infradead.org>; Mon, 27 May 2019 07:44:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=rIgF7xVDbaJhNhkT1oh5cfzIY7s90LlJVnYRpFWsS0Q=;
+ b=QFaKOc6pMzB0FmBtt8ZehlKdjkgmC3jizvPS6unucxOPoEdC39a/y7HuRRiE6hT2/m
+ wWY/Nnm35Wyj73PvUAfL3SjyF9SvLRxMFF00XPU/b7PjvNorH8ZR/41ZhROfwFc8byU3
+ hyLxBQAS+iWE8jsVT4wnERgsy54HkGBPpok5qtr8vn1HxsMYO3uml84RYphkXR0qRyD/
+ kcMLMioKeiaHNUoY6ZAzFfO8kerTPsHojKTmljXjt+pw8Wt4yJ/owenaxsBo8rT2SHes
+ qQWRVzBr8d7Oq62IdQMosnTDusAL+gxpY96zFGyUZ8BnVhiYtQg1iqmVRFWNYjyZSy/b
+ Nqag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=LVQmabqaveoCCphB3DhTxUm42/S6gLtLkjhO6CDB9nU=;
- b=myd+hHFP8Gm6arWKLC/DZ6Rwj21EpIy49jVmMj5OGebEgNWXjOFStNASvsL/sI0czU
- NdRU4JhZJ4XQeGfr9B+n6KOy4xEUNERD4GqleaiSdrFjYC2rZiR9on6g8nEypO2rtMtY
- 5yT2gNz1F78xPqrNTo7ZT0g5TTeJpbkELauFcQ7eF+rF+tMF2z1jtl68DG8JyFx2tca1
- 9sgWQJBUKycFP7NVbBEchyA2n+eeu8gziIj0Imd5SCU+SIt6WgCrJKC04b6tjFPPx58a
- 7pGQ5ccPSYyCf8XEGmox3fR9/ZbxqEA1d+KQGYPBlPjhClv7K+1vHcZBCL1C4OMyFDDl
- d6VA==
-X-Gm-Message-State: APjAAAVt5Qd8VdMBBQho6vEfmfghsZHkZdDmf5vKbwiU2h3cIcJ50hCz
- hvZwfeDfeMQ/pfC4JeJeQOY=
-X-Google-Smtp-Source: APXvYqzsW7BY/2y7fqE7i0gqeAmMCKKdIKqWX/pPSvovlJ8F2qxos0lDWm75mPwzO6yfT2dKy+reSw==
-X-Received: by 2002:a1c:7216:: with SMTP id n22mr26124553wmc.111.1558966194591; 
- Mon, 27 May 2019 07:09:54 -0700 (PDT)
-Received: from localhost (p2E5BEF36.dip0.t-ipconnect.de. [46.91.239.54])
- by smtp.gmail.com with ESMTPSA id a124sm7874010wmh.3.2019.05.27.07.09.53
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 27 May 2019 07:09:53 -0700 (PDT)
-Date: Mon, 27 May 2019 16:09:52 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Hariprasad Kelam <hariprasad.kelam@gmail.com>
-Subject: Re: [PATCH] drivers/pci/controller: fix warning PTR_ERR_OR_ZERO can
- be used
-Message-ID: <20190527140952.GB7202@ulmo>
-References: <20190525085748.GA10926@hari-Inspiron-1545>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=rIgF7xVDbaJhNhkT1oh5cfzIY7s90LlJVnYRpFWsS0Q=;
+ b=Yera0/aWfRDH6CwOk5RNLghl3C3jPndDimDncKG1uY6jXt7SZhyQZYsL2j4PNtf/D+
+ tHRhw3hFHiAlum/vSVAWDukLSYf+r58DiSX783WtbNyBsNcmOo/NTi2JJ3jfrbBo0XoM
+ sgt2gIxTfjooKAkulqZt+Gp77/rQ5HYUTJsWor2BIcupCJmi8f/+guFAffqT+/IxkY0Q
+ QhcEbEXroRKFf8lIWR3ZhUjSA4n7HTssJYshuvQDEAHCrav251uFzR4W4+w/0tI18mya
+ r/H7ld3L99vfJ6w3hGkkqGqQIPCSDvKLXmR4sXYC9M2is9lAH5GDhWna3v8swEmoAbtE
+ OJqQ==
+X-Gm-Message-State: APjAAAUbTKqpQgYSypGARjZYwjzlSbSLwBFAegC8Vvy5uy6ocNFCpKQD
+ MxCrSgPDt0hsSi9edB0Z77ZihT8XNZiQ568oxRInhA==
+X-Google-Smtp-Source: APXvYqxt6xxV/5PxXtamSZZ0dnnDBlNoqz5BkRKvp9HFoI6M8x6CIvknGm0ooYEXbFVx1KWh3xPlUvM7IgMWD9vvRH4=
+X-Received: by 2002:adf:de11:: with SMTP id b17mr3329045wrm.19.1558968254980; 
+ Mon, 27 May 2019 07:44:14 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190525085748.GA10926@hari-Inspiron-1545>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+References: <20190514135612.30822-1-mjourdan@baylibre.com>
+ <20190514135612.30822-4-mjourdan@baylibre.com>
+ <07af1a22-d57c-aff6-b476-98fbf72135c1@xs4all.nl>
+In-Reply-To: <07af1a22-d57c-aff6-b476-98fbf72135c1@xs4all.nl>
+From: Maxime Jourdan <mjourdan@baylibre.com>
+Date: Mon, 27 May 2019 16:44:04 +0200
+Message-ID: <CAMO6naz-cG3F_h70Chjt+GprGWe2EShsMjrietu_JBAdLrPbpQ@mail.gmail.com>
+Subject: Re: [PATCH v6 3/4] media: meson: add v4l2 m2m video decoder driver
+To: Hans Verkuil <hverkuil@xs4all.nl>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190527_070956_434546_910014F3 
-X-CRM114-Status: GOOD (  19.48  )
+X-CRM114-CacheID: sfid-20190527_074417_318914_314A07CA 
+X-CRM114-Status: GOOD (  29.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -95,232 +91,205 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-samsung-soc@vger.kernel.org,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, linux-kernel@vger.kernel.org,
- Binghui Wang <wangbinghui@hisilicon.com>, ingoo Han <jingoohan1@gmail.com>,
- linux-arm-msm@vger.kernel.org, Xiaowei Song <songxiaowei@hisilicon.com>,
- linux-pci@vger.kernel.org, Andy Gross <agross@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>, Yue Wang <yue.wang@amlogic.com>,
- Stanimir Varbanov <svarbanov@mm-sol.com>, David Brown <david.brown@linaro.org>,
- Kukjin Kim <kgene@kernel.org>, linux-tegra@vger.kernel.org,
- Kevin Hilman <khilman@baylibre.com>, Bjorn Helgaas <bhelgaas@google.com>,
- linux-amlogic@lists.infradead.org, Jonathan Hunter <jonathanh@nvidia.com>,
- linux-arm-kernel@lists.infradead.org
-Content-Type: multipart/mixed; boundary="===============5060626229679558964=="
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-media@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Hans Verkuil <hans.verkuil@cisco.com>,
+ linux-amlogic@lists.infradead.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Hans,
+On Mon, May 27, 2019 at 12:04 PM Hans Verkuil <hverkuil@xs4all.nl> wrote:
+>
+> Hi Maxime,
+>
+> First a high-level comment: I think this driver should go to staging.
+> Once we finalize the stateful decoder spec, and we've updated the
+> v4l2-compliance test, then this needs to be tested against that and
+> only if it passes can it be moved out of staging.
+>
 
---===============5060626229679558964==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="qlTNgmc+xy1dBmNv"
-Content-Disposition: inline
+I chose to send the driver supporting only MPEG2 for now as it keeps
+it "to the point", but as it turns out it's one of the few formats on
+Amlogic that can't fully respect the spec at the moment because of the
+lack of support for V4L2_EVENT_SOURCE_CHANGE, thus the patch in the
+series that adds a new flag V4L2_FMT_FLAG_FIXED_RESOLUTION. It
+basically requires userspace to set the format (i.e coded resolution)
+since the driver/fw can't probe it.
+At the moment, this is described in the v3 spec like this:
 
+>
+> 1. Set the coded format on ``OUTPUT`` via :c:func:`VIDIOC_S_FMT`
+>
+>   * **Required fields:**
+>
+>     ``type``
+>         a ``V4L2_BUF_TYPE_*`` enum appropriate for ``OUTPUT``
+>
+>     ``pixelformat``
+>         a coded pixel format
+>
+>     ``width``, ``height``
+>         required only if cannot be parsed from the stream for the given
+>         coded format; optional otherwise - set to zero to ignore
+>
 
---qlTNgmc+xy1dBmNv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+But MPEG2 being a format where the coded resolution is inside the
+bitstream, this is purely an Amlogic issue where the firmware doesn't
+extend the capability to do this.
 
-On Sat, May 25, 2019 at 02:27:48PM +0530, Hariprasad Kelam wrote:
-> fix below warnings reported by coccichek
->=20
-> /drivers/pci/controller/pci-tegra.c:1132:1-3: WARNING: PTR_ERR_OR_ZERO
-> can be used
+Here's a proposal: if I were to resend the driver supporting only H264
+and conforming to the spec, would you be considering it for inclusion
+in the main tree ? Does your current iteration of v4l2-compliance
+support testing stateful decoders with H264 bitstreams ?
 
-This has been discussed many times before, but PTR_ERR_OR_ZERO is not
-liked by everybody. Most of these are actually in place on purpose. One
-of the reasons I hear most frequently cited in opposition to this macro
-is that it complicates things when you need to add some new code in, so
-PTR_ERR_OR_ZERO() becomes wrong and has to be changed. The original,
-with the "return 0;" being explicit doesn't have that problem and you
-can easily add things in between.
+> It is just a bit too soon to have this in mainline at this time.
+>
+> One other comment below:
+>
+> On 5/14/19 3:56 PM, Maxime Jourdan wrote:
+> > Amlogic SoCs feature a powerful video decoder unit able to
+> > decode many formats, with a performance of usually up to 4k60.
+> >
+> > This is a driver for this IP that is based around the v4l2 m2m framework.
+> >
+> > It features decoding for:
+> > - MPEG 1
+> > - MPEG 2
+> >
+> > Supported SoCs are: GXBB (S905), GXL (S905X/W/D), GXM (S912)
+> >
+> > There is also a hardware bitstream parser (ESPARSER) that is handled here.
+> >
+> > Tested-by: Neil Armstrong <narmstrong@baylibre.com>
+> > Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
+> > ---
+> >  drivers/media/platform/Kconfig                |   10 +
+> >  drivers/media/platform/meson/Makefile         |    1 +
+> >  drivers/media/platform/meson/vdec/Makefile    |    8 +
+> >  .../media/platform/meson/vdec/codec_mpeg12.c  |  209 ++++
+> >  .../media/platform/meson/vdec/codec_mpeg12.h  |   14 +
+> >  drivers/media/platform/meson/vdec/dos_regs.h  |   98 ++
+> >  drivers/media/platform/meson/vdec/esparser.c  |  323 +++++
+> >  drivers/media/platform/meson/vdec/esparser.h  |   32 +
+> >  drivers/media/platform/meson/vdec/vdec.c      | 1071 +++++++++++++++++
+> >  drivers/media/platform/meson/vdec/vdec.h      |  265 ++++
+> >  drivers/media/platform/meson/vdec/vdec_1.c    |  229 ++++
+> >  drivers/media/platform/meson/vdec/vdec_1.h    |   14 +
+> >  .../media/platform/meson/vdec/vdec_ctrls.c    |   51 +
+> >  .../media/platform/meson/vdec/vdec_ctrls.h    |   14 +
+> >  .../media/platform/meson/vdec/vdec_helpers.c  |  441 +++++++
+> >  .../media/platform/meson/vdec/vdec_helpers.h  |   80 ++
+> >  .../media/platform/meson/vdec/vdec_platform.c |  107 ++
+> >  .../media/platform/meson/vdec/vdec_platform.h |   30 +
+> >  18 files changed, 2997 insertions(+)
+> >  create mode 100644 drivers/media/platform/meson/vdec/Makefile
+> >  create mode 100644 drivers/media/platform/meson/vdec/codec_mpeg12.c
+> >  create mode 100644 drivers/media/platform/meson/vdec/codec_mpeg12.h
+> >  create mode 100644 drivers/media/platform/meson/vdec/dos_regs.h
+> >  create mode 100644 drivers/media/platform/meson/vdec/esparser.c
+> >  create mode 100644 drivers/media/platform/meson/vdec/esparser.h
+> >  create mode 100644 drivers/media/platform/meson/vdec/vdec.c
+> >  create mode 100644 drivers/media/platform/meson/vdec/vdec.h
+> >  create mode 100644 drivers/media/platform/meson/vdec/vdec_1.c
+> >  create mode 100644 drivers/media/platform/meson/vdec/vdec_1.h
+> >  create mode 100644 drivers/media/platform/meson/vdec/vdec_ctrls.c
+> >  create mode 100644 drivers/media/platform/meson/vdec/vdec_ctrls.h
+> >  create mode 100644 drivers/media/platform/meson/vdec/vdec_helpers.c
+> >  create mode 100644 drivers/media/platform/meson/vdec/vdec_helpers.h
+> >  create mode 100644 drivers/media/platform/meson/vdec/vdec_platform.c
+> >  create mode 100644 drivers/media/platform/meson/vdec/vdec_platform.h
+> >
+>
+> <snip>
+>
+> > diff --git a/drivers/media/platform/meson/vdec/vdec_ctrls.c b/drivers/media/platform/meson/vdec/vdec_ctrls.c
+> > new file mode 100644
+> > index 000000000000..d5d6b1b97aa5
+> > --- /dev/null
+> > +++ b/drivers/media/platform/meson/vdec/vdec_ctrls.c
+> > @@ -0,0 +1,51 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
+> > +/*
+> > + * Copyright (C) 2018 BayLibre, SAS
+> > + * Author: Maxime Jourdan <mjourdan@baylibre.com>
+> > + */
+> > +
+> > +#include "vdec_ctrls.h"
+> > +
+> > +static int vdec_op_g_volatile_ctrl(struct v4l2_ctrl *ctrl)
+> > +{
+> > +     struct amvdec_session *sess =
+> > +           container_of(ctrl->handler, struct amvdec_session, ctrl_handler);
+> > +
+> > +     switch (ctrl->id) {
+> > +     case V4L2_CID_MIN_BUFFERS_FOR_CAPTURE:
+> > +             ctrl->val = sess->dpb_size;
+> > +             break;
+> > +     default:
+> > +             return -EINVAL;
+> > +     };
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static const struct v4l2_ctrl_ops vdec_ctrl_ops = {
+> > +     .g_volatile_ctrl = vdec_op_g_volatile_ctrl,
+> > +};
+> > +
+> > +int amvdec_init_ctrls(struct v4l2_ctrl_handler *ctrl_handler)
+> > +{
+> > +     int ret;
+> > +     struct v4l2_ctrl *ctrl;
+> > +
+> > +     ret = v4l2_ctrl_handler_init(ctrl_handler, 1);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     ctrl = v4l2_ctrl_new_std(ctrl_handler, &vdec_ctrl_ops,
+> > +             V4L2_CID_MIN_BUFFERS_FOR_CAPTURE, 1, 32, 1, 1);
+> > +     if (ctrl)
+> > +             ctrl->flags |= V4L2_CTRL_FLAG_VOLATILE;
+>
+> Why is this volatile? That makes little sense.
+>
 
-It's obviously up to Bjorn to decide whether he wants this, but I
-vaguely remember discussing this particular instance with him before and
-we both agreed that we didn't think this was worth it.
+I copied this over from other stateful decoders, they all used
+volatile so it didn't cross my mind too much.
 
-Perhaps it's time to make checkpatch not complain about this anymore? Or
-at least make this not a WARNING.
+It seems that there are 2 cases:
+ - the control is actually volatile, e.g its value is read from firmware.
+ - the control is not really volatile, e.g its value is set by the driver
 
-Thierry
+My driver falls in the second case. Is the correct way to deal with
+that to use v4l2_ctrl_s_ctrl() and remove the volatile flag ?
 
-> ./drivers/pci/controller/dwc/pcie-qcom.c:703:1-3: WARNING:
-> PTR_ERR_OR_ZERO can be used
-> ./drivers/pci/controller/dwc/pci-meson.c:185:1-3: WARNING:
-> PTR_ERR_OR_ZERO can be used
-> ./drivers/pci/controller/dwc/pci-meson.c:262:1-3: WARNING:
-> PTR_ERR_OR_ZERO can be used
-> ./drivers/pci/controller/dwc/pcie-kirin.c:141:1-3: WARNING:
-> PTR_ERR_OR_ZERO can be used
-> ./drivers/pci/controller/dwc/pcie-kirin.c:177:1-3: WARNING:
-> PTR_ERR_OR_ZERO can be used
-> ./drivers/pci/controller/dwc/pci-exynos.c:95:1-3: WARNING:
-> PTR_ERR_OR_ZERO can be used
->=20
-> Signed-off-by: Hariprasad Kelam <hariprasad.kelam@gmail.com>
-> ---
->  drivers/pci/controller/dwc/pci-exynos.c | 4 +---
->  drivers/pci/controller/dwc/pci-meson.c  | 8 ++------
->  drivers/pci/controller/dwc/pcie-kirin.c | 8 ++------
->  drivers/pci/controller/dwc/pcie-qcom.c  | 4 +---
->  drivers/pci/controller/pci-tegra.c      | 4 +---
->  5 files changed, 7 insertions(+), 21 deletions(-)
->=20
-> diff --git a/drivers/pci/controller/dwc/pci-exynos.c b/drivers/pci/contro=
-ller/dwc/pci-exynos.c
-> index cee5f2f..b0b4849 100644
-> --- a/drivers/pci/controller/dwc/pci-exynos.c
-> +++ b/drivers/pci/controller/dwc/pci-exynos.c
-> @@ -92,10 +92,8 @@ static int exynos5440_pcie_get_mem_resources(struct pl=
-atform_device *pdev,
-> =20
->  	res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
->  	ep->mem_res->elbi_base =3D devm_ioremap_resource(dev, res);
-> -	if (IS_ERR(ep->mem_res->elbi_base))
-> -		return PTR_ERR(ep->mem_res->elbi_base);
-> =20
-> -	return 0;
-> +	return PTR_ERR_OR_ZERO(ep->mem_res->elbi_base);
->  }
-> =20
->  static int exynos5440_pcie_get_clk_resources(struct exynos_pcie *ep)
-> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/control=
-ler/dwc/pci-meson.c
-> index e35e9ea..1ca78c2 100644
-> --- a/drivers/pci/controller/dwc/pci-meson.c
-> +++ b/drivers/pci/controller/dwc/pci-meson.c
-> @@ -182,10 +182,8 @@ static int meson_pcie_get_mems(struct platform_devic=
-e *pdev,
-> =20
->  	/* Meson SoC has two PCI controllers use same phy register*/
->  	mp->mem_res.phy_base =3D meson_pcie_get_mem_shared(pdev, mp, "phy");
-> -	if (IS_ERR(mp->mem_res.phy_base))
-> -		return PTR_ERR(mp->mem_res.phy_base);
-> =20
-> -	return 0;
-> +	return PTR_ERR_OR_ZERO(mp->mem_res.phy_base);
->  }
-> =20
->  static void meson_pcie_power_on(struct meson_pcie *mp)
-> @@ -259,10 +257,8 @@ static int meson_pcie_probe_clocks(struct meson_pcie=
- *mp)
->  		return PTR_ERR(res->general_clk);
-> =20
->  	res->clk =3D meson_pcie_probe_clock(dev, "pcie", 0);
-> -	if (IS_ERR(res->clk))
-> -		return PTR_ERR(res->clk);
-> =20
-> -	return 0;
-> +	return PTR_ERR_OR_ZERO(res->clk);
->  }
-> =20
->  static inline void meson_elb_writel(struct meson_pcie *mp, u32 val, u32 =
-reg)
-> diff --git a/drivers/pci/controller/dwc/pcie-kirin.c b/drivers/pci/contro=
-ller/dwc/pcie-kirin.c
-> index 9b59929..87cfdb4 100644
-> --- a/drivers/pci/controller/dwc/pcie-kirin.c
-> +++ b/drivers/pci/controller/dwc/pcie-kirin.c
-> @@ -138,10 +138,8 @@ static long kirin_pcie_get_clk(struct kirin_pcie *ki=
-rin_pcie,
->  		return PTR_ERR(kirin_pcie->apb_sys_clk);
-> =20
->  	kirin_pcie->pcie_aclk =3D devm_clk_get(dev, "pcie_aclk");
-> -	if (IS_ERR(kirin_pcie->pcie_aclk))
-> -		return PTR_ERR(kirin_pcie->pcie_aclk);
-> =20
-> -	return 0;
-> +	return PTR_ERR_OR_ZERO(kirin_pcie->pcie_aclk);
->  }
-> =20
->  static long kirin_pcie_get_resource(struct kirin_pcie *kirin_pcie,
-> @@ -174,10 +172,8 @@ static long kirin_pcie_get_resource(struct kirin_pci=
-e *kirin_pcie,
-> =20
->  	kirin_pcie->sysctrl =3D
->  		syscon_regmap_lookup_by_compatible("hisilicon,hi3660-sctrl");
-> -	if (IS_ERR(kirin_pcie->sysctrl))
-> -		return PTR_ERR(kirin_pcie->sysctrl);
-> =20
-> -	return 0;
-> +	return PTR_ERR_OR_ZERO(kirin_pcie->sysctrl);
->  }
-> =20
->  static int kirin_pcie_phy_init(struct kirin_pcie *kirin_pcie)
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/control=
-ler/dwc/pcie-qcom.c
-> index 0ed235d..6c421e6 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -700,10 +700,8 @@ static int qcom_pcie_get_resources_2_4_0(struct qcom=
-_pcie *pcie)
->  		return PTR_ERR(res->ahb_reset);
-> =20
->  	res->phy_ahb_reset =3D devm_reset_control_get_exclusive(dev, "phy_ahb");
-> -	if (IS_ERR(res->phy_ahb_reset))
-> -		return PTR_ERR(res->phy_ahb_reset);
-> =20
-> -	return 0;
-> +	return PTR_ERR_OR_ZERO(res->phy_ahb_reset);
->  }
-> =20
->  static void qcom_pcie_deinit_2_4_0(struct qcom_pcie *pcie)
-> diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/=
-pci-tegra.c
-> index 464ba25..3cd5069 100644
-> --- a/drivers/pci/controller/pci-tegra.c
-> +++ b/drivers/pci/controller/pci-tegra.c
-> @@ -1129,10 +1129,8 @@ static int tegra_pcie_resets_get(struct tegra_pcie=
- *pcie)
->  		return PTR_ERR(pcie->afi_rst);
-> =20
->  	pcie->pcie_xrst =3D devm_reset_control_get_exclusive(dev, "pcie_x");
-> -	if (IS_ERR(pcie->pcie_xrst))
-> -		return PTR_ERR(pcie->pcie_xrst);
-> =20
-> -	return 0;
-> +	return PTR_ERR_OR_ZERO(pcie->pcie_xrst);
->  }
-> =20
->  static int tegra_pcie_phys_get_legacy(struct tegra_pcie *pcie)
-> --=20
-> 2.7.4
->=20
-
---qlTNgmc+xy1dBmNv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAlzr77AACgkQ3SOs138+
-s6E3XxAAl/LQJibF57zkjZJ/Sz1qW4r8QI3T/YJg7wQMj+JhzSbD+wvrPqHaE5x0
-rhnQ3Qsr1U8uvz0Brnsnvl83bMvTc17pIRsekAwinfFwT5cKU/eH3A6xTgnHFThq
-8zYBXySXZytLkVXwne0g+7ZG19FbCGhENKX1GxRFJwqKwuFXK7+eThuQtnD+SupS
-vTqd4PZmTFwW+N+tY/OLAf8+UsI9uciASHnjkDI/DeQnG+xAfUzCxu3PYMYP2Wd8
-YD+Lai4w89C0Q6h7sC3U2XTN050gDrFYQ0vAMZGykGGM8hjlW7yEvAKoV027uTVr
-ghCypTYX1l3IlJXyPfk8T8dkWxijj5wzl+vFvCMdmMD4lpOqQGOvi8AOw8RaLYzS
-r3WE1AJfo1iMCuz7lu66Z0bSQWHtPv2rfb9rK2OWOYH5JkPOuT64fdhDCz0USb8/
-Xy4bARALpHhK32oNi7G6pxNmOClCrzl+ri/JNpagTmj0jh9GmeAntW+t2XwCEppH
-70Z+PcA8gq2elvyx5gnA2TkbskGo2O8UH8XEDExr2hVdm8GG8N+LgEtIBbdTuecu
-IKCZ9vk2X1jQ+hJAP6Cz0YSu8E2yrdBQ5Hb6pnlPz6yVzUYkuNdTPW9CDN9BU8Ve
-91Y/9Oy5llAhtP9kKzXGY8wh27C0MI2m0V2+ErpsgSGszupKXRY=
-=2ftq
------END PGP SIGNATURE-----
-
---qlTNgmc+xy1dBmNv--
+Regards,
+Maxime
 
 
---===============5060626229679558964==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+> > +
+> > +     ret = ctrl_handler->error;
+> > +     if (ret) {
+> > +             v4l2_ctrl_handler_free(ctrl_handler);
+> > +             return ret;
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > +EXPORT_SYMBOL_GPL(amvdec_init_ctrls);
+>
+> <snip>
+>
+> Regards,
+>
+>         Hans
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============5060626229679558964==--
-
