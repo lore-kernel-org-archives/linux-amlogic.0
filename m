@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
 	SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 89C6BC04AB3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 12:34:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5E3FEC072B1
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 12:34:24 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5DEC22075E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 12:34:02 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 36D4B2146F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 12:34:24 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VmqcP1iU";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="NMlGmDIu"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5DEC22075E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EIkIz2b8";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="cD/KMYcY"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 36D4B2146F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,63 +26,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=sOn0h6HefTYHf4JrCwDJNZens0m0GIW/DnCpEuyuDBw=; b=VmqcP1iUAeWg8b
-	RGj8J4HDU5Ipu4jJfpcodqp81mpUvWLMcrp1oC74tbyJgC25I77qIehL6RQE02+JUPrAuEazFyKJX
-	bt+DivZFx2kgP3ELBlVG+lbCpES9vGx/WhYSKHAuEdkgltJtfsUeohLVEGR4LS7hoibdVqUVGKvHK
-	Q7M0m9uryzQhT+Hn2IE/yaL2oDjBp2MbPFQ7BwDlx65WX6OLNEi84XRO4yqulxySRk8XoRHXNy2jm
-	qubl9f5gFABLM7ZkHDAbqP3hKep7KDJy7K9WBkfXkWbUtplLuvMzLwTq29NZUA6+w3owXdKsVn9fv
-	xQk9XUGej+keqZXUOakA==;
+	List-Owner; bh=+ardXauSkQ1OdwTlgeGCFKEmhr+48Db0ntugxv4VLlw=; b=EIkIz2b8bjF7iX
+	xzJ/UA894Qr0S/2n36N22LsN7c94fUQZj8xhUv1VPc4lHlfuzMg9a8EfAIYz3Usb5A+TdL/JtCYIG
+	6HcxwSyu0BPMUmA5oLrdK3WivRiO+fIBSLwQM4ISWC9sRwx53haCQhLSjOMA1zS+h4CbPcGWG/QlS
+	L5vElpLy2zrhidSHLv0PWQs5aBWmvusgOprZh4Hh0UxTTV3tL8UU7X2ORjwWwpvJaIi4Oj3+sWFiO
+	9N+8wqvLzp9unTchZM6DyPKthC5ZVKeq8X7adRs8LD9/pO5Zsyc0+cGmvG9GlHaTNpy0Qwc7/q4n2
+	92n109soxk4hNYi3oQEQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hVEpA-0004Gn-Ph; Mon, 27 May 2019 12:33:56 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1hVEpX-0004gS-9x; Mon, 27 May 2019 12:34:19 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hVEp8-0004Fc-5J
- for linux-amlogic@lists.infradead.org; Mon, 27 May 2019 12:33:55 +0000
-Received: by mail-wr1-x443.google.com with SMTP id b18so16749500wrq.12
- for <linux-amlogic@lists.infradead.org>; Mon, 27 May 2019 05:33:54 -0700 (PDT)
+ id 1hVEp9-0004G1-Io
+ for linux-amlogic@lists.infradead.org; Mon, 27 May 2019 12:33:57 +0000
+Received: by mail-wr1-x444.google.com with SMTP id e2so8009852wrv.6
+ for <linux-amlogic@lists.infradead.org>; Mon, 27 May 2019 05:33:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=Lu584p0HvbXxFHDjm3E5Bv6klwwi/JMTJfgsCrnryS4=;
- b=NMlGmDIui5A0tgyFH/7k/K9bwSvhSaMoTcKlOFVWMZYtSnUfiE6aY6euPvWFHlo7E5
- bNW+mNjDAMKNNHQe6TMH+qiFqDFtYXM36A0aSur/kEca6WDIYg8rwQCwFBXEMqawm4ww
- T4mAlF+plB9qlxlc9HTASzDoc3RTgWoKpbJPmUjYRTsnkKJE4ws79xzs55juQglL+Wb3
- 5OqfJJDzeT4ly4v5q7nI3VokTBGkHm3W8i2vgm1vvuB84uYcykyeCs9qZ3E4F1841ZQb
- GZFVJWEhgjQh/KH7Uts5wN0oneGXh8TINJH3zRA0Soq9DqmOdruWD0IRuZqfg2ZaazuG
- sh3w==
+ bh=+cVOiVFCJq/gjwV+btY3+Tpn5Lp/RZnsuWYYB3guIMU=;
+ b=cD/KMYcYKdCaRofRRaoCOCqlDeF88o6vA7EX1SknRosohJiylXLjWoPhAYXjxyvAHu
+ w7j+zVTZn5os5e8lM+/A9Jh1N+WWjfJYLtEZe5s2IYp4Ujcxl+W318MjSW87viEOi/AJ
+ dWFZFQE4kOeaonFjW0iOT9dXyhGbxHRb4Ph4VtYNoNJ+m6ez4JTDTEttmJnKflKaLgrT
+ dChTnYUUvsSnkJk2A4tldQH/ZW2dfcixuGe1lmttykhsk9x9H8yVoZmhw7IrqAGZefpD
+ gS62iTL0hTR6Vi2hUekCwvODxPthOCvl8VYFn9sFT6AU2cSB+9c2gwF0dsCc1CCbly49
+ um7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=Lu584p0HvbXxFHDjm3E5Bv6klwwi/JMTJfgsCrnryS4=;
- b=bNBXyh/mnrM4XJ0oNd0d/wCoOmU5kXOeSXbr5k4Uc/7Uh/aD7LMiBbFCc6Kf6I7604
- 17Y7EdWXkYDe245MrdS5g4Bb7+gCUKgmNcWefQ2qenbKjmZbfveLfvJX/OsAhgBhmnXW
- EnI004cxICHiZYZtBO9C9xPWDqobDH/0Ja4fUvo5hcEMtSV1YpFdI9KygFoWlMNsQyq3
- fsBO8fS9JPKtTuz+EDjNpayBSdojGh/z4SM4yUjkSxg7KgKJtRW5Tg6paZZjyk/TAWjr
- K/JR72XTwCOL29ZiiiBqKOS9wuhwi6Be3PMExjB8FGgCb4AZCMWWK/zg5tYdb++w5d3Y
- kW/g==
-X-Gm-Message-State: APjAAAVav7Y0mPTa+lZ3on/Y9p+GSGYYIebhqpxiUY8TenB+hiGznUiW
- FPC1Ta6L0vPYNAi13A5KKtTPww==
-X-Google-Smtp-Source: APXvYqxHJkwqnZ7CnTcUcxNEIT+3UK8ggiXkqGWeGENh3miaj9PGFisyYZjc3RJG4UEKLA7IcefNaQ==
-X-Received: by 2002:a05:6000:1285:: with SMTP id
- f5mr4275036wrx.112.1558960432650; 
- Mon, 27 May 2019 05:33:52 -0700 (PDT)
+ bh=+cVOiVFCJq/gjwV+btY3+Tpn5Lp/RZnsuWYYB3guIMU=;
+ b=udf3MC/gyEwjTRKnkc+VJmUWkk7zEO6xa30YUjP4wefDVhsRCGpDGre0pbIP4sFPst
+ HFSzXqUsU2GtJWhKMF32YGPJMMbIXPKG3/ODh9E9/S+l/qrI0IWvPOVzMJEowuc4pACN
+ A+YTooh6UcZgd+hEpWAQqWUzRqTViV/x4VL2QbGTUVZMBrX0fHmoxhApkVWsjFu/XL2E
+ moCl/fXyoF1kJjATCi5Oro0321a8MTpsZF5H2CSUcrIcRVvhGJdci73iRzK1ZwezUgun
+ QWOfkxFPyAX6b+yT5aYKYz+9Hbccjh+VqXo0HTqjWQw6GRUKoyGCuNBg0IOsScBiKul0
+ 5WYA==
+X-Gm-Message-State: APjAAAUiHEtEIRN272jKkS9KvU4SvBHvEhrb8v96XIcWxqxuyoK5Bf1B
+ pO+PdyB90xZI2pzOQuQuLquIeg==
+X-Google-Smtp-Source: APXvYqwnPwjtuEjQwUJWuvt7XAdXU/uj6r0mgRRLit94T91pyyxyMOmC5kVUPbZEQb8acNTD4G1m+w==
+X-Received: by 2002:adf:e344:: with SMTP id n4mr21535770wrj.192.1558960434048; 
+ Mon, 27 May 2019 05:33:54 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id c24sm894144wmb.21.2019.05.27.05.33.51
+ by smtp.gmail.com with ESMTPSA id y132sm15173687wmd.35.2019.05.27.05.33.53
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 27 May 2019 05:33:52 -0700 (PDT)
-Subject: Re: [PATCH 13/14] pwm: meson: add support PWM_POLARITY_INVERSED when
- disabling
+ Mon, 27 May 2019 05:33:53 -0700 (PDT)
+Subject: Re: [PATCH 14/14] pwm: meson: add documentation to the driver
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org,
  thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de
 References: <20190525181133.4875-1-martin.blumenstingl@googlemail.com>
- <20190525181133.4875-14-martin.blumenstingl@googlemail.com>
+ <20190525181133.4875-15-martin.blumenstingl@googlemail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -135,16 +133,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <4de7d436-32b7-e4ed-39b2-e85f75a17c16@baylibre.com>
-Date: Mon, 27 May 2019 14:33:42 +0200
+Message-ID: <afc7da5b-dda2-84e0-a6c8-0ab3c41f7e0e@baylibre.com>
+Date: Mon, 27 May 2019 14:33:52 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190525181133.4875-14-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20190525181133.4875-15-martin.blumenstingl@googlemail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190527_053354_274105_9E3A9DC3 
-X-CRM114-Status: GOOD (  26.45  )
+X-CRM114-CacheID: sfid-20190527_053355_665619_F242047D 
+X-CRM114-Status: GOOD (  21.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -157,83 +155,46 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 25/05/2019 20:11, Martin Blumenstingl wrote:
-> meson_pwm_apply() has to consider the PWM polarity when disabling the
-> output.
-> With enabled=false and polarity=PWM_POLARITY_NORMAL the output needs to
-> be LOW. The driver already supports this.
-> With enabled=false and polarity=PWM_POLARITY_INVERSED the output needs
-> to be HIGH. Implement this in the driver by internally enabling the
-> output with the same settings that we already use for "period == duty".
-> 
-> This fixes a PWM API violation which expects that the driver honors the
-> polarity also for enabled=false. Due to the IP block not supporting this
-> natively we only get "an as close as possible" to 100% HIGH signal (in
-> my test setup with input clock of 24MHz and measuring the output with a
-> logic analyzer at 24MHz sampling rate I got a duty cycle of 99.998475%
-> on a Khadas VIM).
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  drivers/pwm/pwm-meson.c | 23 ++++++++++++++++++++++-
->  1 file changed, 22 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-> index 900d362ec3c9..bb48ba85f756 100644
-> --- a/drivers/pwm/pwm-meson.c
-> +++ b/drivers/pwm/pwm-meson.c
-> @@ -245,6 +245,7 @@ static void meson_pwm_disable(struct meson_pwm *meson, struct pwm_device *pwm)
->  static int meson_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
->  			   struct pwm_state *state)
->  {
-> +	struct meson_pwm_channel *channel = pwm_get_chip_data(pwm);
->  	struct meson_pwm *meson = to_meson_pwm(chip);
->  	int err = 0;
->  
-> @@ -252,7 +253,27 @@ static int meson_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
->  		return -EINVAL;
->  
->  	if (!state->enabled) {
-> -		meson_pwm_disable(meson, pwm);
-> +		if (state->polarity == PWM_POLARITY_INVERSED) {
-> +			/*
-> +			 * This IP block revision doesn't have an "always high"
-> +			 * setting which we can use for "inverted disabled".
-> +			 * Instead we achieve this using the same settings
-> +			 * that we use a pre_div of 0 (to get the shortest
-> +			 * possible duration for one "count") and
-> +			 * "period == duty_cycle". This results in a signal
-> +			 * which is LOW for one "count", while being HIGH for
-> +			 * the rest of the (so the signal is HIGH for slightly
-> +			 * less than 100% of the period, but this is the best
-> +			 * we can achieve).
-> +			 */
-> +			channel->pre_div = 0;
-> +			channel->hi = ~0;
-> +			channel->lo = 0;
-> +
-> +			meson_pwm_enable(meson, pwm);
-> +		} else {
-> +			meson_pwm_disable(meson, pwm);
-> +		}
->  	} else {
->  		err = meson_pwm_calc(meson, pwm, state);
->  		if (err < 0)
-> 
-
-While not perfect, it almost fills the gap.
-Another way would be to use a specific pinctrl state setting the pin
-in GPIO output in high level, but this implementation could stay
-if the pinctrl state isn't available.
-
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMjUvMDUvMjAxOSAyMDoxMSwgTWFydGluIEJsdW1lbnN0aW5nbCB3cm90ZToKPiBBZGQgYSBs
+aW5rIHRvIHRoZSBkYXRhc2hlZXQgYW5kIGEgc2hvcnQgc3VtbWFyeSBob3cgdGhlIGhhcmR3YXJl
+IHdvcmtzLgo+IFRoZSBnb2FsIGlzIHRvIG1ha2UgaXQgZWFzaWVyIGZvciBvdGhlciBkZXZlbG9w
+ZXJzIHRvIHVuZGVyc3RhbmQgd2h5IHRoZQo+IHB3bS1tZXNvbiBkcml2ZXIgaXMgaW1wbGVtZW50
+ZWQgdGhlIHdheSBpdCBpcy4KPiAKPiBTdWdnZXN0ZWQtYnk6IFV3ZSBLbGVpbmUtS8O2bmlnIDx1
+LmtsZWluZS1rb2VuaWdAcGVuZ3V0cm9uaXguZGU+Cj4gQ28tYXV0aG9yZWQtYnk6IE5laWwgQXJt
+c3Ryb25nIDxuYXJtc3Ryb25nQGJheWxpYnJlLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBNYXJ0aW4g
+Qmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPgo+IC0tLQo+
+ICBkcml2ZXJzL3B3bS9wd20tbWVzb24uYyB8IDE4ICsrKysrKysrKysrKysrKysrKwo+ICAxIGZp
+bGUgY2hhbmdlZCwgMTggaW5zZXJ0aW9ucygrKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3B3
+bS9wd20tbWVzb24uYyBiL2RyaXZlcnMvcHdtL3B3bS1tZXNvbi5jCj4gaW5kZXggYmI0OGJhODVm
+NzU2Li42YTk3OGNhYmE0ODMgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9wd20vcHdtLW1lc29uLmMK
+PiArKysgYi9kcml2ZXJzL3B3bS9wd20tbWVzb24uYwo+IEBAIC0xLDUgKzEsMjMgQEAKPiAgLy8g
+U1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAgT1IgQlNELTMtQ2xhdXNlCj4gIC8qCj4g
+KyAqIFBXTSBjb250cm9sbGVyIGRyaXZlciBmb3IgQW1sb2dpYyBNZXNvbiBTb0NzLgo+ICsgKgo+
+ICsgKiBUaGlzIFBXTSBpcyBvbmx5IGEgc2V0IG9mIEdhdGVzLCBEaXZpZGVycyBhbmQgQ291bnRl
+cnM6Cj4gKyAqIFBXTSBvdXRwdXQgaXMgYWNoaWV2ZWQgYnkgY2FsY3VsYXRpbmcgYSBjbG9jayB0
+aGF0IHBlcm1pdHMgY2FsY3VsYXRpbmcKPiArICogdHdvIHBlcmlvZHMgKGxvdyBhbmQgaGlnaCku
+IFRoZSBjb3VudGVyIHRoZW4gaGFzIHRvIGJlIHNldCB0byBzd2l0Y2ggYWZ0ZXIKPiArICogTiBj
+eWNsZXMgZm9yIHRoZSBmaXJzdCBoYWxmIHBlcmlvZC4KPiArICogVGhlIGhhcmR3YXJlIGhhcyBu
+byAicG9sYXJpdHkiIHNldHRpbmcuIFRoaXMgZHJpdmVyIHJldmVyc2VzIHRoZSBwZXJpb2QKPiAr
+ICogY3ljbGVzICh0aGUgbG93IGxlbmd0aCBpcyBpbnZlcnRlZCB3aXRoIHRoZSBoaWdoIGxlbmd0
+aCkgZm9yCj4gKyAqIFBXTV9QT0xBUklUWV9JTlZFUlNFRC4gVGhpcyBtZWFucyB0aGF0IC5nZXRf
+c3RhdGUgY2Fubm90IHJlYWQgdGhlIHBvbGFyaXR5Cj4gKyAqIGZyb20gdGhlIGhhcmR3YXJlLgo+
+ICsgKiBTZXR0aW5nIHRoZSBkdXR5IGN5Y2xlIHdpbGwgZGlzYWJsZSBhbmQgcmUtZW5hYmxlIHRo
+ZSBQV00gb3V0cHV0Lgo+ICsgKiBEaXNhYmxpbmcgdGhlIFBXTSBzdG9wcyB0aGUgb3V0cHV0IGlt
+bWVkaWF0ZWx5ICh3aXRob3V0IHdhaXRpbmcgZm9yIHRoZQo+ICsgKiBjdXJyZW50IHBlcmlvZCB0
+byBjb21wbGV0ZSBmaXJzdCkuCj4gKyAqCj4gKyAqIFRoZSBwdWJsaWMgUzkyMlggZGF0YXNoZWV0
+IGNvbnRhaW5zIHNvbWUgZG9jdW1lbnRhdGlvbiBmb3IgdGhpcyBQV00KPiArICogY29udHJvbGxl
+ciBzdGFydGluZyBvbiBwYWdlIDEwODQ6Cj4gKyAqIGh0dHBzOi8vZGwua2hhZGFzLmNvbS9IYXJk
+d2FyZS9WSU0yL0RhdGFzaGVldC9TOTEyX0RhdGFzaGVldF9WMC4yMjAxNzAzMTRwdWJsaWN2ZXJz
+aW9uLVdlc2lvbi5wZGYKPiArICoKPiAgICogQ29weXJpZ2h0IChjKSAyMDE2IEJheUxpYnJlLCBT
+QVMuCj4gICAqIEF1dGhvcjogTmVpbCBBcm1zdHJvbmcgPG5hcm1zdHJvbmdAYmF5bGlicmUuY29t
+Pgo+ICAgKiBDb3B5cmlnaHQgKEMpIDIwMTQgQW1sb2dpYywgSW5jLgo+IAoKUmV2aWV3ZWQtYnk6
+IE5laWwgQXJtc3Ryb25nIDxuYXJtc3Ryb25nQGJheWxpYnJlLmNvbT4KCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBs
+aXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFk
+ZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
