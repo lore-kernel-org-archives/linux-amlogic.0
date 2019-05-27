@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
 	SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4534EC04AB3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 13:23:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9DD69C04AB3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 13:24:00 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DC3C92075E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 13:23:22 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 54E8A2075E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 27 May 2019 13:24:00 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="grebBPNN";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="r2OcgSMZ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DC3C92075E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EocPis10";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="U3aDFZjk"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 54E8A2075E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,65 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ePuZSeaw5778yiccVzdMHnv5uvvDOu/45u74M3PIhCk=; b=grebBPNN75f3ul
-	1lX3IZWgdu4SVeP8dIo1FScgW6clkw3ZLBkPsOdFXOigqoXuWQ8rmPbYncvbV8ZyT1DmJL78iWcVd
-	2i/GyoOy8nFYTSLlxK9AmJjMJOWsuZNADyXD4M3IxUY7u943OxgCgrfIv0NHhbk1eQQnC7u9glqMl
-	SWuclutssdaT3GKHgnj1p1qi2v5Fbn+gi7SqrMZM6p/UPec5N9sflaD7rC4WEzk7xi/KOW9EmBEdP
-	L5h6wttC3h4BPJNkPndwwnTYdoeXAA/SdZlxLD4BRymNFK02w5NtRJ7QGKygOi7K7CjRBSv1cQ/h2
-	qBHkGrJCYMElCGPhZZZA==;
+	List-Owner; bh=E9i9wBaxBcd2ARv8SKEDRnIRFC/lfYrGJH1HXqOrkUo=; b=EocPis10Z5ANWk
+	sy5vFxDnAX0iByFAtTLWg0kh6wN7hGyrIb05V0Lpq68J+1QklboSgj7poCFqcjB26Sg9LxnFRkeHD
+	JfWx08vPESBFiNgaOyRFYVEoJdlwWE4Vco1iorPvsQngU7xit9lkKfXoHH6wQDSqkWzdSSFDA7fFn
+	4wCnMcCcNFntNJ6FWvgPIT0ZxGn1SDk+hFVJ3ZBw4SmKDexM/m7eVv4eiTonGqi2TIqz8uhZvDbtj
+	v1YePLkqww5CeHWr04SFbJPwl9t6olNtvqNPHdOtmL6Vvlt90LjUatT315rk2tsFoAHxtMiCA2Pav
+	8wsLTRKUPmiHPmM4m3fw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hVFav-0003VC-Ie; Mon, 27 May 2019 13:23:17 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1hVFbW-0004EI-Ev; Mon, 27 May 2019 13:23:54 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hVFZo-0002B3-VR
- for linux-amlogic@lists.infradead.org; Mon, 27 May 2019 13:22:16 +0000
-Received: by mail-wr1-x443.google.com with SMTP id m3so16943244wrv.2
- for <linux-amlogic@lists.infradead.org>; Mon, 27 May 2019 06:22:08 -0700 (PDT)
+ id 1hVFZq-0002EE-Vy
+ for linux-amlogic@lists.infradead.org; Mon, 27 May 2019 13:22:21 +0000
+Received: by mail-wr1-x442.google.com with SMTP id f8so16950621wrt.1
+ for <linux-amlogic@lists.infradead.org>; Mon, 27 May 2019 06:22:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=0UO6p2NGpn6/x+RK1bJoMUDg+U4e7UPzCJT+tP40PaA=;
- b=r2OcgSMZb0v4j6KbwLI3lZude7y52PSXwphSwGgAIB9u+xVVV7O/ahSo2ZS/LMcwH4
- wqshUKB2VvyaIvZhSS1V6K9UjnbU/mlFMiBkGhIM8CIkv4bJvseyfm2UDDmt9hu2xBT6
- 7mNhfmxgyl+059rx5X70BqJVEko6sOMPVDMUIj17uk3Mz9YHuInOrtmJOrdDUh5agYy3
- HWxtSiW4Dv1vzm/RcshsbWCqdV4AwrqZqlNL4O7MUcXGlbc8UecfNomF9mp+IvnpLTmx
- eKGYRgm+jZrmQ0ClplDsnJEqjxcxJ3Kyvw+9oxCoU9lggtjHlOnmPBVzAL0C5Y2ya6Ck
- C2Hw==
+ bh=4VtDGZ3OVSVw6HZggJOqUTRYqY5ZUaLIQ9cwARYH99A=;
+ b=U3aDFZjkZXFYe7wNf6AFeyb2CzT8QJzBjLaQiB1ybT58exOolffDkQZVEQs9IwqDlR
+ QupHWofac4pMpepiaHEoTBoAoDbCYUXpGZXPIAHJVsg6zrVjb/cSCHRMpR6uLZMrAIWk
+ 6rBE8L+83X9MjSsf0nrI/eChI1+CYF18c7AFPIb/WYqBGhWRRW4wCj9IwngIHnLdodiD
+ vJcNQV1d2auvf/HD178QOgLZxp/OqkiTLwo7k2i+po9wNsk1Vih74NuIrIR3bKMaDjOQ
+ clJSY0WBe8PP72dtaaKri3ykd9nxXqPJnaz84BsPl6+rXtGdeqp0Pso3z9BhRNexq2PC
+ Yjug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=0UO6p2NGpn6/x+RK1bJoMUDg+U4e7UPzCJT+tP40PaA=;
- b=ixeOQGhzUGcYzs9j+ceHJYsTcp073hGGyOX6/UcQ705vTC3VG+UWFxoJaMIpS1ADbE
- k8k8nNQpppV3m2YGNb1LSDUkFTwowN7ceDeGXDCuOpjnCkyez7vyTH0n0/GaKtaijZkD
- H535cYgEeFKq4Gz0obt6CaaFuAYTcpowDXplocCp9WvDrbQ+G0NP27ck6P2VOUmQFEAC
- QzvWySM5Bso9IaO5/zeHbh4ryyjcXrlm1U5efQvF2MeQOk/E5bt86Q0nBbXjlnJZyOpd
- 0tCPfbRthzl7nG/+Dd+xGr805gCxIab4EX08GY7+4Ow1dioBeLaLldSKaF4XQqcwfI8t
- kDyg==
-X-Gm-Message-State: APjAAAULQvrfmisC7//Yhyqn73gcBT4fQSZ+WJvQyxhlOs/YbXOpusY1
- cNTBQuV+2gKE7PjbOwgoCqOhQQ==
-X-Google-Smtp-Source: APXvYqzCwOlwTFCDqqaeLiT8HaxVqritfgZVZbXUj48aOqAe46yNkgcCzFHUbw7WVsspKUXNijl9Ug==
-X-Received: by 2002:adf:fe07:: with SMTP id n7mr134383wrr.7.1558963327475;
- Mon, 27 May 2019 06:22:07 -0700 (PDT)
+ bh=4VtDGZ3OVSVw6HZggJOqUTRYqY5ZUaLIQ9cwARYH99A=;
+ b=umKOW31BCAsIkdxVlYSgZSukAjEmuDCsbjybzgJekMzsky2X8ET3aVW9CHa3rs0CbB
+ tmXqwacypVj6ox0vhWmVqvGWtZvstT4jZxbPrKYWsdFWsjJglM4oZvchj0LD7vYjQog0
+ x5fGXavGcehta87pTX2qAojdQK0/cYMG/ODM98kcC3mrV1eTW2j1qPq7YdLLky56H9Ln
+ KZ7qQPawSJ+ncHMePSakFvVqKTK32gHjLqLaylnRY2DuOw0LfjUMuHITI5+rFpmg8Ubz
+ Oio5KFcWv6il7Dk1YCkSoiX0zczP9BeNEBQAfHw/UKwA7T1wHXS15rIkeRPgjyFj34R3
+ cSrQ==
+X-Gm-Message-State: APjAAAXZ0qXVHerjGopl4XFdddS/nfOXgACUgozYX3PCj0HYkWqEJ75a
+ j6N7XsKC5zMLkUxgNsqmlSmAng==
+X-Google-Smtp-Source: APXvYqxf3k/7Wb+ZKnTinne4Kei3iMcPjtfcFlS1vpIpQ2xmpLUmTWkDcbZC/+3pmja1wPjdeR5u2w==
+X-Received: by 2002:adf:ec8e:: with SMTP id z14mr45794613wrn.198.1558963329516; 
+ Mon, 27 May 2019 06:22:09 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id l12sm7019836wmj.22.2019.05.27.06.22.06
+ by smtp.gmail.com with ESMTPSA id l12sm7019836wmj.22.2019.05.27.06.22.08
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Mon, 27 May 2019 06:22:07 -0700 (PDT)
+ Mon, 27 May 2019 06:22:08 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: khilman@baylibre.com
-Subject: [PATCH 06/10] arm64: dts: meson-gxbb-vega-s95: add HDMI nodes
-Date: Mon, 27 May 2019 15:21:56 +0200
-Message-Id: <20190527132200.17377-7-narmstrong@baylibre.com>
+Subject: [PATCH 08/10] arm64: dts: meson-gxbb-vega-s95: enable SARADC
+Date: Mon, 27 May 2019 15:21:58 +0200
+Message-Id: <20190527132200.17377-9-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190527132200.17377-1-narmstrong@baylibre.com>
 References: <20190527132200.17377-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190527_062209_351423_3B3AAAF1 
-X-CRM114-Status: GOOD (  10.08  )
+X-CRM114-CacheID: sfid-20190527_062211_488061_5CFF656E 
+X-CRM114-Status: UNSURE (   9.75  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -104,55 +105,45 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add HDMI nodes to support graphics on Vega S95
+Add SARARC node and associated regulator to support reading the
+ADC inputs on the Vega S95
 
 Suggested-by: Christian Hewitt <christianshewitt@gmail.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-index 760730d4e87b..6738b2aac9a0 100644
+index be8799653ad7..4d2aa4dc59e7 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi
-@@ -73,6 +73,17 @@
- 		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
+@@ -54,6 +54,13 @@
+ 		regulator-max-microvolt = <3300000>;
  	};
  
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
++	vddio_ao18: regulator-vddio_ao18 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDIO_AO18";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
 +	};
 +
- 	sdio_pwrseq: sdio-pwrseq {
- 		compatible = "mmc-pwrseq-simple";
- 		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>,
-@@ -108,6 +119,18 @@
- 	};
+ 	vcc_3v3: regulator-vcc_3v3 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "VCC_3V3";
+@@ -152,6 +159,11 @@
+ 	clock-names = "clkin0";
  };
  
-+&hdmi_tx {
++&saradc {
 +	status = "okay";
-+	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
-+	pinctrl-names = "default";
++	vref-supply = <&vddio_ao18>;
 +};
 +
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
- &ir {
+ /* Wireless SDIO Module */
+ &sd_emmc_a {
  	status = "okay";
- 	pinctrl-0 = <&remote_input_ao_pins>;
 -- 
 2.21.0
 
