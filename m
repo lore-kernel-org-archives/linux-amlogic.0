@@ -2,72 +2,87 @@ Return-Path: <SRS0=WX2S=T4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3EC53C04AB6
-	for <linux-amlogic@archiver.kernel.org>; Tue, 28 May 2019 15:07:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DE67CC04AB6
+	for <linux-amlogic@archiver.kernel.org>; Tue, 28 May 2019 18:05:28 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 144432075B
-	for <linux-amlogic@archiver.kernel.org>; Tue, 28 May 2019 15:07:43 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 76D2420883
+	for <linux-amlogic@archiver.kernel.org>; Tue, 28 May 2019 18:05:28 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="W2XCIzSJ";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="xpZgTG8H"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 144432075B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cGtIQbY1";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="S96DHKfG"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 76D2420883
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:
-	In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	References:List-Owner; bh=U5h2rhUT4FDwMPV1hzmH61S0Y0K2YH8eaQ9/S5jeKrk=; b=W2X
-	CIzSJ1dQFxkojRqe9GLtKUDa3Ij6v9HXAT1I9aEl66HuV7YT1U7rn/H+UyboMT50OhqMP7OFevUOu
-	xyv2XhR8G8swrbqJvRv5/SrLihBXu/EA82eNCdclaFjA7IGfKmkMxdKg2hbGNoPaJCVMb9eg8xylt
-	O0fWCOEyeAMkjbEtgH0urdEFFerxjWRRT/nskDXb9VyaDQaY7Cj5rOwZOYqytMhvjg/ynpirGR4PY
-	O5nglg28zu44H/neMYiFwA+tvIWSnXnvxDVGsF0vPnvpI4pqipdxNdn1coUK2ZaqFomlvBiJ22fsP
-	2runCKsVG8o3jUoVoZeirax49jfsfpQ==;
+	List-Owner; bh=m3VYPnx+3QiUFkBiF+JX42yxAj0IpwyePYSiaULJUIs=; b=cGtIQbY1pBIgbN
+	A6zoPzxL2AIuebOK7mESwSgha5nBxhLl8ousEF+xJbFDGkvrrINqwhuFL5YU93gxg0j0N87vbrLbf
+	mDCtsAJjOb6omyIWRSjFYTZnX6Or63KQyNIxunB1vpax7tVvyM9LIK5M47v2RYhyhj0a3U2dIf2tS
+	IrTmMX/JZ15tmxSrXowN+4/ZNBxwBapWPVaw5qvCoPXV0dwJeyKYAGADXMlsMhdAhGoLdmIEx0i4N
+	qDlJsd8lpMW7owyRWeP8s8cbipHSSISo6TUMG1l52Jlyy8xl+5Udo8Br+I6PQHiVRTveYi5cnYTFg
+	GNJpJHpxYVza4Mai2dkw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hVdhP-000078-1c; Tue, 28 May 2019 15:07:35 +0000
-Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
+	id 1hVgTK-0001Ni-0v; Tue, 28 May 2019 18:05:14 +0000
+Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hVdhF-0008Lp-2O; Tue, 28 May 2019 15:07:30 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
- Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
- List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
- List-Archive; bh=0+E2u/R03c5rPCMEH9eEWAg7IhEIFC7wRcCvovhk0TE=; b=xpZgTG8H0HVB
- /crTj5heZptBCg1c+uDaPw0D4ABriLSifu2LzuBjsQ7Ifz2g/q/FVsacgY/zfNY4eTJzK5seXaOF5
- NMoC07kQMX9WclvvAZHLkCqPyM582pY33E743KIHg0yvTRpN9/hEK3Sa+JXJFsSSrrVQsyfIow4Gv
- 4im+U=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net
- ([82.37.168.47] helo=finisterre.sirena.org.uk)
- by heliosphere.sirena.org.uk with esmtpsa
- (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.89)
- (envelope-from <broonie@sirena.org.uk>)
- id 1hVdhD-0002qS-5Y; Tue, 28 May 2019 15:07:23 +0000
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
- id 8F921440046; Tue, 28 May 2019 16:07:22 +0100 (BST)
-From: Mark Brown <broonie@kernel.org>
-To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Applied "spi: spi-meson-spifc: update with SPDX Licence identifier"
- to the spi tree
-In-Reply-To: <20190527134124.3034-1-narmstrong@baylibre.com>
-X-Patchwork-Hint: ignore
-Message-Id: <20190528150722.8F921440046@finisterre.sirena.org.uk>
-Date: Tue, 28 May 2019 16:07:22 +0100 (BST)
-X-Bad-Reply: In-Reply-To but no 'Re:' in Subject.
+ id 1hVgTA-00009X-9T; Tue, 28 May 2019 18:05:12 +0000
+Received: by mail-ot1-x344.google.com with SMTP id l17so18674889otq.1;
+ Tue, 28 May 2019 11:04:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=CQxWFe6czG2bT+E5vQ0cGm/ESs62tRcAolQyTGumg4o=;
+ b=S96DHKfGnrWA3fayeAGBuk0VhGyiR0EWi0nRny8YntXYzTGPKq58f4EJtve596fjOJ
+ codwqPXsn5sDeRcmx9hR2FbNzwUumlg5Rt6mZQuoPP8TJSunDqzcQ1eI+hkckvuwNaw+
+ T0rvJ7Bnyzxl6cWLPWN4nJsqxzOagnXoBx9Vx+WjGun77D+76DZCCPsyWUuwDYsGWTLg
+ E1KClD0GDUyCh+M8yKezXOJZX11761ZeraD7tFnD4LbLBbt7wUREWFG0H+ROARi8GwJA
+ C/x0Rr+/RApnvVW65xyNSSC9PWexT4EaZ9qspfSTB75Dscey7bP0hKUFl/YTI9gEErrv
+ 39jQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=CQxWFe6czG2bT+E5vQ0cGm/ESs62tRcAolQyTGumg4o=;
+ b=QnjuXW1D9zVWJN/vhD0Dd8ReJIpO1N129p8fRoBXm3WsFi6ZZIU1k6Ej/V+L7LQL1N
+ diOZURzbepJzltR8lxunkZ9n6B8BwNAwSU1jq3YbhjZ4T39JCdi4UmVABW2PsMwMBZhp
+ OYXhY/FNhijeDIfgYdU2IQeetyrUuAF8YSZA2YkPjehB6wVRbSL6pzc+Te/n+E1gfus/
+ b5b/cpev2Moz41dXwynbuQpelpD7fm4B9x+7iwENv/k1oFLFUHjsFm39N20M/0154nYD
+ /GvaOBBqQvS6Bv8+PP6hB49D4ZIpPDW5TquLxksHNtGL/lNJZkH30tWkfCf59blpd5R+
+ BoFg==
+X-Gm-Message-State: APjAAAVynjzS0yu9IXFlxwYa62oEre3BwTIHpvZLkJ9HbX9YxKCsN7L3
+ 9fmOzsdCTa2JjbAKZ3bDJUw4GwCj00P3fAfFNNA=
+X-Google-Smtp-Source: APXvYqxQxsGkXFE+oqzGgB8Id81ggPL3jwHGjadRwPTCK4xlA9P4CLJsxyz90d3Pkk+rQcnZDov0VfIxSa3LyGBHu3I=
+X-Received: by 2002:a9d:744d:: with SMTP id p13mr54509230otk.96.1559066696707; 
+ Tue, 28 May 2019 11:04:56 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190525181133.4875-1-martin.blumenstingl@googlemail.com>
+ <20190525181133.4875-5-martin.blumenstingl@googlemail.com>
+ <3b61897a-267b-fd6e-181b-a8c7e47918fb@baylibre.com>
+ <CAFBinCDXNy4=6U2gsh6vK6WEtJKAdfDGPMrpPJthbp5Rru1hbg@mail.gmail.com>
+ <20190527180047.nfsjfqs22coyqmvp@pengutronix.de>
+In-Reply-To: <20190527180047.nfsjfqs22coyqmvp@pengutronix.de>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 28 May 2019 20:04:45 +0200
+Message-ID: <CAFBinCCWYf4TJ8GTL3PrHMRfL3=Ma-QrTAGSyAp5OQc0M-67Jg@mail.gmail.com>
+Subject: Re: [PATCH 04/14] pwm: meson: change MISC_CLK_SEL_WIDTH to
+ MISC_CLK_SEL_MASK
+To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190528_080725_262594_D2729426 
-X-CRM114-Status: GOOD (  12.83  )
+X-CRM114-CacheID: sfid-20190528_110506_139029_0C300E35 
+X-CRM114-Status: GOOD (  20.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -79,84 +94,59 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, Mark Brown <broonie@kernel.org>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-spi@vger.kernel.org
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-pwm@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ linux-kernel@vger.kernel.org, thierry.reding@gmail.com,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The patch
-
-   spi: spi-meson-spifc: update with SPDX Licence identifier
-
-has been applied to the spi tree at
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-5.3
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
-From 891100dfa2d6eeca6913b45c883b72efee7c229b Mon Sep 17 00:00:00 2001
-From: Neil Armstrong <narmstrong@baylibre.com>
-Date: Mon, 27 May 2019 15:41:24 +0200
-Subject: [PATCH] spi: spi-meson-spifc: update with SPDX Licence identifier
-
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- drivers/spi/spi-meson-spifc.c | 18 ++++++------------
- 1 file changed, 6 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/spi/spi-meson-spifc.c b/drivers/spi/spi-meson-spifc.c
-index 616566e793c6..f7fe9b13d122 100644
---- a/drivers/spi/spi-meson-spifc.c
-+++ b/drivers/spi/spi-meson-spifc.c
-@@ -1,15 +1,9 @@
--/*
-- * Driver for Amlogic Meson SPI flash controller (SPIFC)
-- *
-- * Copyright (C) 2014 Beniamino Galvani <b.galvani@gmail.com>
-- *
-- * This program is free software; you can redistribute it and/or
-- * modify it under the terms of the GNU General Public License
-- * version 2 as published by the Free Software Foundation.
-- *
-- * You should have received a copy of the GNU General Public License
-- * along with this program. If not, see <http://www.gnu.org/licenses/>.
-- */
-+// SPDX-License-Identifier: GPL-2.0+
-+//
-+// Driver for Amlogic Meson SPI flash controller (SPIFC)
-+//
-+// Copyright (C) 2014 Beniamino Galvani <b.galvani@gmail.com>
-+//
- 
- #include <linux/clk.h>
- #include <linux/delay.h>
--- 
-2.20.1
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgVXdlLAoKT24gTW9uLCBNYXkgMjcsIDIwMTkgYXQgODowMCBQTSBVd2UgS2xlaW5lLUvDtm5p
+Zwo8dS5rbGVpbmUta29lbmlnQHBlbmd1dHJvbml4LmRlPiB3cm90ZToKPgo+IE9uIE1vbiwgTWF5
+IDI3LCAyMDE5IGF0IDA3OjQ2OjQzUE0gKzAyMDAsIE1hcnRpbiBCbHVtZW5zdGluZ2wgd3JvdGU6
+Cj4gPiBIaSBOZWlsLAo+ID4KPiA+IE9uIE1vbiwgTWF5IDI3LCAyMDE5IGF0IDI6MjYgUE0gTmVp
+bCBBcm1zdHJvbmcgPG5hcm1zdHJvbmdAYmF5bGlicmUuY29tPiB3cm90ZToKPiA+ID4KPiA+ID4g
+T24gMjUvMDUvMjAxOSAyMDoxMSwgTWFydGluIEJsdW1lbnN0aW5nbCB3cm90ZToKPiA+ID4gPiBN
+SVNDX0NMS19TRUxfV0lEVEggaXMgb25seSB1c2VkIGluIG9uZSBwbGFjZSB3aGVyZSBpdCdzIGNv
+bnZlcnRlZCBpbnRvCj4gPiA+ID4gYSBiaXQtbWFzay4gUmVuYW1lIGFuZCBjaGFuZ2UgdGhlIG1h
+Y3JvIHRvIGJlIGEgYml0LW1hc2sgc28gdGhhdAo+ID4gPiA+IGNvbnZlcnNpb24gaXMgbm90IG5l
+ZWRlZCBhbnltb3JlLiBObyBmdW5jdGlvbmFsIGNoYW5nZXMgaW50ZW5kZWQuCj4gPiA+ID4KPiA+
+ID4gPiBTaWduZWQtb2ZmLWJ5OiBNYXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4uYmx1bWVuc3Rp
+bmdsQGdvb2dsZW1haWwuY29tPgo+ID4gPiA+IC0tLQo+ID4gPiA+ICBkcml2ZXJzL3B3bS9wd20t
+bWVzb24uYyB8IDQgKystLQo+ID4gPiA+ICAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCsp
+LCAyIGRlbGV0aW9ucygtKQo+ID4gPiA+Cj4gPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcHdt
+L3B3bS1tZXNvbi5jIGIvZHJpdmVycy9wd20vcHdtLW1lc29uLmMKPiA+ID4gPiBpbmRleCBjNjJh
+M2FjOTI0ZDAuLjg0YjI4YmEwZjkwMyAxMDA2NDQKPiA+ID4gPiAtLS0gYS9kcml2ZXJzL3B3bS9w
+d20tbWVzb24uYwo+ID4gPiA+ICsrKyBiL2RyaXZlcnMvcHdtL3B3bS1tZXNvbi5jCj4gPiA+ID4g
+QEAgLTMzLDcgKzMzLDcgQEAKPiA+ID4gPiAgI2RlZmluZSBNSVNDX0FfQ0xLX0RJVl9TSElGVCA4
+Cj4gPiA+ID4gICNkZWZpbmUgTUlTQ19CX0NMS19TRUxfU0hJRlQgNgo+ID4gPiA+ICAjZGVmaW5l
+IE1JU0NfQV9DTEtfU0VMX1NISUZUIDQKPiA+ID4gPiAtI2RlZmluZSBNSVNDX0NMS19TRUxfV0lE
+VEggICAyCj4gPiA+ID4gKyNkZWZpbmUgTUlTQ19DTEtfU0VMX01BU0sgICAgMHgzCj4gPiA+Cj4g
+PiA+IE5JVCBJIHdvdWxkIGhhdmUgdXNlZCBHRU5NQVNLIGhlcmUKPiA+IHRoYXQgd2FzIG15IGlu
+aXRpYWwgaWRlYSBidXQgSSBkZWNpZGVkIGFnYWluc3QgaXQuCj4gPiB0aGUgdmFyaWFudCBJIGNh
+bWUgdXAgd2l0aCB3YXM6ICNkZWZpbmUgTUlTQ19DTEtfU0VMX01BU0sgICAgR0VOTUFTSygxLCAw
+KQo+ID4KPiA+IGhvd2V2ZXIsIHRoZSBhY3R1YWwgb2Zmc2V0IGlzIGVpdGhlciA0IG9yIDYgKGRl
+cGVuZGluZyBvbiB0aGUgUFdNIGNoYW5uZWwpCj4gPiBhbmQgSSBmZWx0IHRoYXQgZHVwbGljYXRp
+bmcgdGhlIG1hY3JvIHdvdWxkIGp1c3QgbWFrZSBpdCBtb3JlIGNvbXBsaWNhdGVkCj4gPiBzbyBp
+bnN0ZWFkIEkgY2hvc2UgdG8gYmUgY29uc2lzdGVudCB3aXRoIE1JU0NfQ0xLX0RJVl9NQVNLCj4K
+PiBBbiBvcHRpb24gd291bGQgYmU6Cj4KPiAgICAgICAgICNkZWZpbmUgTUlTQ19DTEtfU0VMX01B
+U0soaHdpZCkgICAgICAgICBHRU5NQVNLKDEgKyA0ICogKGh3aWQpLCAwICsgNCAqIChod2lkKSkK
+Pgo+IChOb3RlIEkgZGlkbid0IGNoZWNrIGEgbWFudWFsIHRvIHRoZSA0IGFib3ZlIGlzIHByb2Jh
+Ymx5IHdyb25nLikKdGhhdCAob3IgYXQgbGVhc3Qgc29tZXRoaW5nIHNpbWlsYXIpIHdpbGwgd29y
+awp0aGUgY2F0Y2ggaGVyZSBpczogd2UgdXNlIGl0IHRvIGluaXRpYWxpemUgdGhlIG11eCBjbG9j
+ayBhbmQgdGhlCmNvbW1vbiBjbG9jayBmcmFtZXdvcmsgZXhwZWN0cyB1cyB0byBzZXQgInNoaWZ0
+IiBhbmQgIm1hc2siLCB3aGlsZQptYXNrIHN0YXJ0cyBhdCBiaXQgMCBpbnN0ZWFkIG9mIHNoaWZ0
+Cgp0aGlzIGlzIGhvdyB0aGUgY3VycmVudCBjb2RlIGlzIGJlaW5nIHVzZWQgYXQgdGhlIG1vbWVu
+dDoKICBjaGFubmVsLT5tdXguc2hpZnQgPSBtZXNvbl9wd21fcGVyX2NoYW5uZWxfZGF0YVtpXS5j
+bGtfc2VsX3NoaWZ0OwogIGNoYW5uZWwtPm11eC5tYXNrID0gTUlTQ19DTEtfU0VMX01BU0s7Cgpz
+byB3aXRoIE1JU0NfQ0xLX1NFTF9NQVNLIHRoaXMgd291bGQgYmVjb21lOgogIGNoYW5uZWwtPm11
+eC5zaGlmdCA9IG1lc29uX3B3bV9wZXJfY2hhbm5lbF9kYXRhW2ldLmNsa19zZWxfc2hpZnQ7CiAg
+Y2hhbm5lbC0+bXV4Lm1hc2sgPSBNSVNDX0NMS19TRUxfTUFTSyhpKSA+PiBjaGFubmVsLT5tdXgu
+c2hpZnQ7CgpvciB3ZSBjb3VsZCBkeW5hbWljYWxseSBkZXRlcm1pbmUgdGhlICJzaGlmdCIgdXNp
+bmcgZmZzIG9yIGZyaWVuZHMKCm15IG93biBicmFpbiBwYXJzZXMgdGhlIHZhcmlhbnQgZnJvbSB0
+aGUgcGF0Y2ggYmVzdApJJ20gaGFwcHkgdG8gY2hhbmdlIGl0IHRob3VnaCBpZiB3ZSBjYW4gZmlu
+ZCBzb21ldGhpbmcgImJldHRlciIKCgpNYXJ0aW4KCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFt
+bG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
