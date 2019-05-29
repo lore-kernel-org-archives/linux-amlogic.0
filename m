@@ -2,21 +2,22 @@ Return-Path: <SRS0=QFoF=T5=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	T_DKIMWL_WL_HIGH autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F17D5C28CC0
-	for <linux-amlogic@archiver.kernel.org>; Wed, 29 May 2019 10:25:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AD704C28CC0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 29 May 2019 14:17:49 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C69D32070D
-	for <linux-amlogic@archiver.kernel.org>; Wed, 29 May 2019 10:25:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8311B239BA
+	for <linux-amlogic@archiver.kernel.org>; Wed, 29 May 2019 14:17:49 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RaUOI00N";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="U8R5crfP"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C69D32070D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XeU/8InF";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="d7qZ7oQx"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8311B239BA
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,61 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=nOKGkvJVeHoslNya38HD/ETeYREdMzO60ve3IfMYCAs=; b=RaUOI00NNmqjPN
-	uE9s4JeiRIj3QcU+5F8Gi23Iqw6K9JTrJXyzQx/S8rBwvj2rhaiZmqymv96/vviy0vQKlW1wTXVjZ
-	01D+fqLG76wHBC5k1zLemI2hcfJrJ7+yQ7OyZMU7YYA/wqocRXEdIKIqqc7iUx/6zwDb/KP36WOPZ
-	L3B8US8L+rQal1ufkRwPOB2UkiVkp/9vdB7k759Y3PyDsGgeMxxBPG5A3K7OTS3lm+SQtRDI57QlP
-	mHvmXp116WZWoUQ7Xz0ixQSLKTd4QASPNlj1Qm4+2ZoCVKdqymDjm9AUeMCRrQI4qw6Scxiq8e7J6
-	XZFMdahcbpOlspQSJQoQ==;
+	List-Owner; bh=gy90EqcoNe1BUXZ3xPAlI2Nq4uU3R8NLhrPpZJUHQkM=; b=XeU/8InFPsCymR
+	8GwuUYKYDtGr7Stiz8hJyOy1UEx3qFRRjKbag8i6UlVX7YrebLQIQc1nYjXaUCpjgJOzHOE65xvTy
+	R4xa2Oz/GUwqGrBasyf8d38Zr2Pjkf9xQZidIGDDcHMiLjYk/DmLpIX68JrPgWZoopK0FLU3/xAAz
+	cEJNfFZvpzwDYcLElLwMTKgB/MN/hTc79HP81rLfEAiINq1dMI/h+wPidZfmOoTaGXOzsySu3lqSn
+	gE+WWnNW2mjTxtZXi4vF8Q7+PFei/tD9w7UMMalWSFQNbLJO8O3B1lFw+2AXkmopzYye0cKy9/ZaU
+	TVX9Fb5bbbbpWrgQuUAg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hVvmA-0008H6-DW; Wed, 29 May 2019 10:25:42 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1hVzOe-0007Ia-4Y; Wed, 29 May 2019 14:17:40 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hVvm3-00087R-GA
- for linux-amlogic@lists.infradead.org; Wed, 29 May 2019 10:25:38 +0000
-Received: by mail-wm1-x342.google.com with SMTP id y3so1270201wmm.2
- for <linux-amlogic@lists.infradead.org>; Wed, 29 May 2019 03:25:35 -0700 (PDT)
+ id 1hVzOW-0007Ca-7Z
+ for linux-amlogic@lists.infradead.org; Wed, 29 May 2019 14:17:34 +0000
+Received: by mail-wm1-x341.google.com with SMTP id 7so1740232wmo.2
+ for <linux-amlogic@lists.infradead.org>; Wed, 29 May 2019 07:17:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=OrWPKRKf94hT8XnQfs7Evcez/prBr54uY/SM6sAZ9T0=;
- b=U8R5crfPggKNtGhA6MJb2Ztbx5Y3kLNNCE2nQIKFH4uVBsOySjKK9oXFJ6Nt1X36UE
- hxFwbXq/Ds0wJSXeWQpbVUFkpjGIT6h26p3rYepAegyOr+Tq3UMbg4TITr4qshvwI7u9
- VaucwrKzcfub8Gw4aCUm77ok+5aH5VKkVt9LVCE/iTEzm9oMgxEPeAsoAdmWN+UwrH4J
- Bl/ru7keGEL3oplWzHfylCvMNMATnSLQTuUhJPidFtsQvZZpbA0rkUY1opLzouaYcQMJ
- B/wX+LA6p5m1Mf4agZpTpvVi5Qv7WPlTHSNCDQ5n4p/907LmRio2lwRyPgzVWBKbolGI
- eKLA==
+ bh=c3tkqZh517BY6AR/S6xMnJ7Cpq7UtW1QuIk6bwoE9sc=;
+ b=d7qZ7oQxeIxjAcRQK6bOotSK2OrSTIHA+cK1XesmK7rGtdNFC5OXWnXwqg6+AUOza0
+ v+OeA+1NYvzAc7Enhl9AVn/rXOpCvThdYZp7tjixv2ZHS6b1YguPgOjE5NrEeiggzxt/
+ nJiZgYqVizY+NlTGbzQLferXXqqVMIxdw2JQjuP8eJRVbV0L0IsOvSNFs+cBqG2I4tRc
+ 4ypGM43rph7DBt3g5YfOt5h3no1wSMjKpuGKgv9vV/EdqJkFLd0EuCU+UNtjPWoZgz2c
+ p9Er+UOkNW4RCGHf043WYibs2IjbjbxfwLGhrh7qqIL3orvuscbNPP4x+/UjlDYKYWzl
+ 7AkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=OrWPKRKf94hT8XnQfs7Evcez/prBr54uY/SM6sAZ9T0=;
- b=PJAHaVgSvi9NXwYl4S+nW752V8XUOV48RydEBczH1l/4u7gnPFYsKmrL925hMsX08u
- 9dlnpuPXq1TKYm4aP3K3AhR73wnHIdwkF3QbJezAFDbVDdb3PnQfnYPTAosAA7N6bukk
- /VZlVnL6aHmyWU4whNn6Uc2Ln49oU/RDeDNvUqVA3rYjX1pEU67F/IRunARxkvdGhB4M
- idDx0QsrPDv7eKUv0TJeQgrpbnlU1+WQxXjX38L8tAah1kqXgyJNPoJDl+PfXHahyFqW
- ZrdjK3nlZbO5kToj/AxEBdkKb5y8btdszOae9koh+0Y43/GGpOVioYQo9uVvfUZ7fQTs
- st7g==
-X-Gm-Message-State: APjAAAVX5hBA/t9tZWI013i6ptcTuMDHg05Xwo2b2YxfVYf8Yvp24Wal
- bdkrIKHe6/6izLYBwLWWc8Do4A==
-X-Google-Smtp-Source: APXvYqyfdDV5nRIGB9mTThMPKeDIwUEyH8CWYP04l6x8IVS1dSlA+rnvj41VdoJtD441mT992Qudgw==
-X-Received: by 2002:a1c:188:: with SMTP id 130mr6218740wmb.18.1559125528945;
- Wed, 29 May 2019 03:25:28 -0700 (PDT)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id o6sm3221719wmc.15.2019.05.29.03.25.28
+ bh=c3tkqZh517BY6AR/S6xMnJ7Cpq7UtW1QuIk6bwoE9sc=;
+ b=ID6Eiv+xYYQ/LzDrhf2TSlD2A25zTSEO8/7Cbma5L0vZxuoUigUhn2eQlwrEId8hBc
+ L51taB5SLfP/vBM9xUT7b7aejkWomMnQFjpjRuPZBEeLSbIYdSLLPsJGcGkMh+5l/u9l
+ naSvn1xDiR+DGf7HL+vo8mmFDG/ZmzOmYINn4SYGNZrWmNOik2EnjAp3ABrFzXLqmMzB
+ zmvViCJJaqqHW0zb86UyyZ1XaKEd948Z2J8VLfFT7BI+w/z/pKkqEuyuwIXOODuQ36uX
+ 7wCsIXrjDSIbKYNlVyjH63D8qEalWVK1qU/gjz3wuQTIsqyVWqiQ6GK1rXo60kFP5EgM
+ BhIQ==
+X-Gm-Message-State: APjAAAVVdX58EHJvhUAz7VMb5OJxrh87zI450ivAJKj7WlbS8qr6m3dq
+ JFqqXGgNfpPc7gUZUgc55D5DJQ==
+X-Google-Smtp-Source: APXvYqy+bZBmoM9YkQhFkVcs3V6POwoQx1UEKI0oVjleSevoBo6qB01xpruDbjYGHMlXfRuBN0Ap1w==
+X-Received: by 2002:a1c:a483:: with SMTP id n125mr6153746wme.172.1559139445406; 
+ Wed, 29 May 2019 07:17:25 -0700 (PDT)
+Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr.
+ [176.150.251.154])
+ by smtp.gmail.com with ESMTPSA id u14sm6901110wrt.75.2019.05.29.07.17.24
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 29 May 2019 03:25:28 -0700 (PDT)
-Subject: Re: [PATCH 02/10] arm64: dts: meson-gxm-khadas-vim2: fix Bluetooth
- support
+ Wed, 29 May 2019 07:17:24 -0700 (PDT)
+Subject: Re: [PATCH 08/10] arm64: dts: meson-gxbb-vega-s95: enable SARADC
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 References: <20190527132200.17377-1-narmstrong@baylibre.com>
- <20190527132200.17377-3-narmstrong@baylibre.com>
- <CAFBinCBTK=6OW4kG=i0KZe-+AzGVXyou9g0frnh9yqLsdmB5+w@mail.gmail.com>
+ <20190527132200.17377-9-narmstrong@baylibre.com>
+ <CAFBinCAbFDsT_6+mA4EGy1Tv8_Qkb7mDDbGbwygiKjDDtX79MA@mail.gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -132,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <b54c7899-95b3-1202-d70b-9b8ee2955164@baylibre.com>
-Date: Wed, 29 May 2019 12:25:27 +0200
+Message-ID: <9a33178f-0379-173a-675f-50023c7931a9@baylibre.com>
+Date: Wed, 29 May 2019 16:17:23 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCBTK=6OW4kG=i0KZe-+AzGVXyou9g0frnh9yqLsdmB5+w@mail.gmail.com>
+In-Reply-To: <CAFBinCAbFDsT_6+mA4EGy1Tv8_Qkb7mDDbGbwygiKjDDtX79MA@mail.gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190529_032535_868928_F4C60FDA 
-X-CRM114-Status: GOOD (  12.98  )
+X-CRM114-CacheID: sfid-20190529_071732_281413_88E9F0E9 
+X-CRM114-Status: GOOD (  12.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -153,7 +153,7 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: khilman@baylibre.com, Christian Hewitt <christianshewitt@gmail.com>,
+Cc: khilman@baylibre.com, christianshewitt@gmail.com,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
@@ -161,30 +161,21 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 27/05/2019 20:36, Martin Blumenstingl wrote:
-> On Mon, May 27, 2019 at 3:22 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+On 27/05/2019 20:24, Martin Blumenstingl wrote:
+> On Mon, May 27, 2019 at 3:23 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >>
->> From: Christian Hewitt <christianshewitt@gmail.com>
->>
->> - Remove serial1 alias
->> - Add support for uart_A rts/cts
->> - Add bluetooth uart_A subnode qith shutdown gpio
-> I tried this on my own Khadas VIM2:
-> Bluetooth: hci0: command 0x1001 tx timeout
-> Bluetooth: hci0: BCM: Reading local version info failed (-110)
-> 
-> I'm not sure whether this is specific to my board or what causes this.
+>> Add SARARC node and associated regulator to support reading the
+>> ADC inputs on the Vega S95
+> I'm curious: is this the same problem than on the Wetek boards (where
+> SCPI hwmon reads garbage if SAR ADC is disabled)?
 
-Which kernel version ?
-
-We often see this, growing the delay after probe removes this, it's kind of
-random issue that occurs on pre-5.1 kernels.
-
-Neil
+Yes
 
 > 
-> 
-> Martin
+>> Suggested-by: Christian Hewitt <christianshewitt@gmail.com>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> in any case:
+> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > 
 
 
