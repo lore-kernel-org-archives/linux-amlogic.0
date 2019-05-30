@@ -1,55 +1,63 @@
-Return-Path: <SRS0=QFoF=T5=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=1ds9=T6=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	T_DKIMWL_WL_HIGH,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+X-Spam-Status: No, score=-6.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED,USER_AGENT_NEOMUTT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 32145C28CC2
-	for <linux-amlogic@archiver.kernel.org>; Wed, 29 May 2019 23:24:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EAFD4C28CC3
+	for <linux-amlogic@archiver.kernel.org>; Thu, 30 May 2019 13:41:09 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0B6412433F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 29 May 2019 23:24:39 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C4A49259C2
+	for <linux-amlogic@archiver.kernel.org>; Thu, 30 May 2019 13:41:09 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cD9DUG5L"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0B6412433F
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jVwQt05X"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C4A49259C2
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=gondor.apana.org.au
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oDs1njmdzHPlmrls2vot0M0ShRfjpQ9wplXJ/dRZR5Q=; b=cD9DUG5LeXSkov
-	nHlkakSULQ0h7QJDPMbuLnhtgynxqGO4gkTweBKYGs1cOjbZzCiFMTkwETqfMEh4m4NhVigMBRXn3
-	Hs+VKRjnUv0++FD+GsRjEmK4QsT6vJSIE68K9M5029zXvF6YJUmlCvafz+zTMhMGnDM1W+RMh0/uR
-	tjZjbpbxwoRFm8fHnzqGHtSqa4gcLVnBjX0/4TXcFZpSxVK3lcPoiGqXXWffA4Y6qzt1YBhK0/J2p
-	jjwiyWv/118IlxeGIz31mBoYX4M/+GiKm8tntAWwMVnYht0+WlnDIzNV243a21yS6J9irqDYiu7vd
-	z9qD04wwd6dsqCkgB3uQ==;
+	List-Owner; bh=+23WONjSLCIeaT2vVqVHvKi7hda5ZZ3n23KVpo/yCYs=; b=jVwQt05X/ps3w0
+	ggMStkVACCdb4n1wgwoWhb4GVc/ahVGlomkC0jYhbKSisCY3IMz5LiQDd6O1t2qfITB6tNdKdyoKI
+	cV/1tNjg0eqHZF9kKbCgUu8uHvuTciYheX2ux62UJmb9OF+9uEGOA+DV7UJ4IWrwzgJBe91FUhglC
+	WLGqNaABdBfHKLh/PiDGJcnxt0u2lJUQkLXvy/dKGUrWRtk3pq37Mavv52FW53thrqhPDPjMY1F2Q
+	eHAIGy0Zs7phWx0zYq1J4UbrTtanm0pt+HSq7zYnh+rYsqbtsyuKmPDrWX3ifHL/Wm0Rd5Y1NE5us
+	2B6QSTzX9eBgfviZMfTw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hW7vs-0006Dq-Sn; Wed, 29 May 2019 23:24:32 +0000
-Received: from 177.132.232.81.dynamic.adsl.gvt.net.br ([177.132.232.81]
- helo=bombadil.infradead.org)
- by bombadil.infradead.org with esmtpsa (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hW7vL-0005Ru-I0; Wed, 29 May 2019 23:23:59 +0000
-Received: from mchehab by bombadil.infradead.org with local (Exim 4.92)
- (envelope-from <mchehab@bombadil.infradead.org>)
- id 1hW7vI-0007wt-IQ; Wed, 29 May 2019 20:23:56 -0300
-From: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-To: Linux Doc Mailing List <linux-doc@vger.kernel.org>
-Subject: [PATCH 03/22] dt: fix broken references to nand.txt
-Date: Wed, 29 May 2019 20:23:34 -0300
-Message-Id: <21356cd8ffb906c77e83220e842d0443a5666aa0.1559171394.git.mchehab+samsung@kernel.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <cover.1559171394.git.mchehab+samsung@kernel.org>
-References: <cover.1559171394.git.mchehab+samsung@kernel.org>
+	id 1hWLIg-0003V0-Gc; Thu, 30 May 2019 13:40:58 +0000
+Received: from helcar.hmeau.com ([216.24.177.18] helo=deadmen.hmeau.com)
+ by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1hWLIU-0003Ny-Mf; Thu, 30 May 2019 13:40:52 +0000
+Received: from gondobar.mordor.me.apana.org.au ([192.168.128.4] helo=gondobar)
+ by deadmen.hmeau.com with esmtps (Exim 4.89 #2 (Debian))
+ id 1hWLIQ-0005Un-Qz; Thu, 30 May 2019 21:40:42 +0800
+Received: from herbert by gondobar with local (Exim 4.89)
+ (envelope-from <herbert@gondor.apana.org.au>)
+ id 1hWLIL-0003cM-6P; Thu, 30 May 2019 21:40:37 +0800
+Date: Thu, 30 May 2019 21:40:37 +0800
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH] char: hw_random: meson-rng: update with SPDX Licence
+ identifier
+Message-ID: <20190530134037.joqdncbvbz5b2v3h@gondor.apana.org.au>
+References: <20190520135919.28946-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20190520135919.28946-1-narmstrong@baylibre.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20190530_064050_399499_84572DC9 
+X-CRM114-Status: UNSURE (   6.64  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -61,92 +69,25 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
- Mans Rullgard <mans@mansr.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Jonathan Corbet <corbet@lwn.net>, Richard Weinberger <richard@nod.at>,
- Marc Gonzalez <marc.w.gonzalez@free.fr>, linux-kernel@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>,
- Mauro Carvalho Chehab <mchehab@infradead.org>,
- Marek Vasut <marek.vasut@gmail.com>, Liang Yang <liang.yang@amlogic.com>,
- linux-mtd@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
- linux-amlogic@lists.infradead.org, Brian Norris <computersforpeace@gmail.com>,
- David Woodhouse <dwmw2@infradead.org>, linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-crypto@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ mpm@selenic.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Documentation/devicetree/bindings/mtd/nand.txt were both renamed
-and converted to YAML on a single patch, without updating references
-to it. That caused several cross-references to break.
+On Mon, May 20, 2019 at 03:59:19PM +0200, Neil Armstrong wrote:
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  drivers/char/hw_random/meson-rng.c | 52 +-----------------------------
+>  1 file changed, 1 insertion(+), 51 deletions(-)
 
-Fixes: 212e49693592 ("dt-bindings: mtd: Add YAML schemas for the generic NAND options")
-
-Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
----
- Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt | 2 +-
- Documentation/devicetree/bindings/mtd/gpmc-nand.txt          | 2 +-
- Documentation/devicetree/bindings/mtd/marvell-nand.txt       | 2 +-
- Documentation/devicetree/bindings/mtd/tango-nand.txt         | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-index 3983c11e062c..5794ab1147c1 100644
---- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-+++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.txt
-@@ -24,7 +24,7 @@ Optional children nodes:
- Children nodes represent the available nand chips.
- 
- Other properties:
--see Documentation/devicetree/bindings/mtd/nand.txt for generic bindings.
-+see Documentation/devicetree/bindings/mtd/nand-controller.yaml for generic bindings.
- 
- Example demonstrate on AXG SoC:
- 
-diff --git a/Documentation/devicetree/bindings/mtd/gpmc-nand.txt b/Documentation/devicetree/bindings/mtd/gpmc-nand.txt
-index c059ab74ed88..44919d48d241 100644
---- a/Documentation/devicetree/bindings/mtd/gpmc-nand.txt
-+++ b/Documentation/devicetree/bindings/mtd/gpmc-nand.txt
-@@ -8,7 +8,7 @@ explained in a separate documents - please refer to
- Documentation/devicetree/bindings/memory-controllers/omap-gpmc.txt
- 
- For NAND specific properties such as ECC modes or bus width, please refer to
--Documentation/devicetree/bindings/mtd/nand.txt
-+Documentation/devicetree/bindings/mtd/nand-controller.yaml
- 
- 
- Required properties:
-diff --git a/Documentation/devicetree/bindings/mtd/marvell-nand.txt b/Documentation/devicetree/bindings/mtd/marvell-nand.txt
-index e0c790706b9b..7eeef1e1ed30 100644
---- a/Documentation/devicetree/bindings/mtd/marvell-nand.txt
-+++ b/Documentation/devicetree/bindings/mtd/marvell-nand.txt
-@@ -58,7 +58,7 @@ Optional properties:
-   Step sizes are not completely random for all and follow certain
-   patterns described in AN-379, "Marvell SoC NFC ECC".
- 
--See Documentation/devicetree/bindings/mtd/nand.txt for more details on
-+See Documentation/devicetree/bindings/mtd/nand-controller.yaml for more details on
- generic bindings.
- 
- 
-diff --git a/Documentation/devicetree/bindings/mtd/tango-nand.txt b/Documentation/devicetree/bindings/mtd/tango-nand.txt
-index cd1bf2ac9055..91c8420241af 100644
---- a/Documentation/devicetree/bindings/mtd/tango-nand.txt
-+++ b/Documentation/devicetree/bindings/mtd/tango-nand.txt
-@@ -11,7 +11,7 @@ Required properties:
- - #size-cells: <0>
- 
- Children nodes represent the available NAND chips.
--See Documentation/devicetree/bindings/mtd/nand.txt for generic bindings.
-+See Documentation/devicetree/bindings/mtd/nand-controller.yaml for generic bindings.
- 
- Example:
- 
+Patch applied.  Thanks.
 -- 
-2.21.0
-
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
 _______________________________________________
 linux-amlogic mailing list
