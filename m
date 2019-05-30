@@ -2,83 +2,58 @@ Return-Path: <SRS0=ej2R=UC=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,T_DKIMWL_WL_HIGH,USER_AGENT_MUTT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E729FC04AB5
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jun 2019 12:00:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DB68AC04AB5
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jun 2019 21:58:09 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BCCCF23E05
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jun 2019 12:00:43 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B090626D15
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jun 2019 21:58:09 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LpcdXr4T";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jluM5/sH"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BCCCF23E05
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="W99Gi1wX"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B090626D15
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=the-dreams.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Y03bRVmJa+ES1Pg8I8wHCdn1pgiw1vcCoMj5QheYbFc=; b=LpcdXr4TZj/QIX
-	kYt9/7b1hjGsxnQacyw10BPaZDbCVsM3M2SL8CpL91aIcHpk8pSBiEYAg3t+RGwJo5We3nVUmeqWd
-	GprVyMDO0FBwGpu5HwEFYXdUJ8esIipk8tGwbzcfma+OMROIWR33UmHCx8U0Cf3aSxHkZbStO9xB+
-	oKisOqxqUA6yG/rxJSiecZSjSrgyQ5EtyRNsXAO95l4Mh8qUSFAYJ2V+kYF0PJu0DMi/F86h08Ds6
-	HJKfrWDivKKijUAelR/25FPWz03Kodmdj2t+N4bdrsarawLQVMsJguTO/E5IQ2VcsObG9TQBFHQDz
-	FVFlUpdKinipQTuHsX6w==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=jcYv4nuJrx5MVf+ptFEnqfUigPDpEZz6KZ7BWwmJuR4=; b=W99Gi1wXTZPndGsRaerVNsY58
+	v11DWK8zXe0BRbShYcuUz29KXSip5bQwUAK3yDrBttRdXBEhBMS6w05utczZMZnCgD3QFT6ABpmqM
+	cRAYasUs1Dcp7NM9LvGEew76aWI/HfLgHhxRhIYpKvNoMd4BerREye7vp+1NJ9KFV1okolcyhE/LD
+	xeBUBr+nBcKyuVBJ3880lbd5MMEC4vFVvBatmiGownHAusZpGynGuysnIkcxXJFHpLxib+bAzGDjD
+	bCw2MO7TwJ3g0YnioTXfsEYOA6Peo4PB0WirPAhsv1Z9dL/8s9Vy2qlHEVSuLmU0gRfiWag3Wh0xY
+	ogKsEc/sw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hXldm-0005Dn-BM; Mon, 03 Jun 2019 12:00:38 +0000
-Received: from mail-io1-xd44.google.com ([2607:f8b0:4864:20::d44])
- by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hXldj-0005DP-Fu; Mon, 03 Jun 2019 12:00:37 +0000
-Received: by mail-io1-xd44.google.com with SMTP id u13so14063140iop.0;
- Mon, 03 Jun 2019 05:00:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Vm4ARhjP7lZU5KIyEbHtOOR6KEna+CUnlTc6GUhKUa4=;
- b=jluM5/sH5QqMqPP0q9YgxKtgssTzAbbDmzc8lRImAlXgnM7aHOq4+XjZ1WCY7p1YDA
- f062zMeiw1fqRPU4jJ7rCSicj0sWqMTzEg1jSdRTIrSz6VHz04REMjyyq3NZAULgh0qa
- DP74/rhY+TU51XrjNBjB68D8WSenwSQ8h3VKoPz2RwhItguO7NqSsh6hfaXeiJstnjiP
- meqa17PMxNhL7cXG0WEW/nWStB1acaFLT371EE/aD5g34CFLj/z7XzapT4JCRsdCcHgV
- LKlly1Z/GHXgew+a+Oe39YipeOC51X4opu8yKnjT4RQjzmVBCA+DGWUtB5kcaavSipkj
- MdwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Vm4ARhjP7lZU5KIyEbHtOOR6KEna+CUnlTc6GUhKUa4=;
- b=Q947+MG7pdNPvmgxnK7bJ9tTgVNf6lkf0PHcWPrV2/b8NtZbTW8r16/IP5Immr/qo5
- CWTDlOs1SFLRalhJniODPcl+IS+zucUM7qDmWB/+5C1c6IDbqaAX6vXYlszXp4o/qoMU
- As/dlcHb4kHqnMQdeIKXUhOqqyIOg8eroyRQtFp0fU4iq7mQtt5tRVM7rUnLSo8rX0US
- tkkrDQxZkTeWdhSBvKZ8dAZ/tTTWE5yUqu3c38tz/GdbYiK5R8vXCqM2cJSVEoyxXN0w
- 7KQX+Wurk73UHk7p0i8y8065p5G3GstxbW/XGhbBuccWd489Hoh5nX6OAfHdQo918Rc8
- Vj0w==
-X-Gm-Message-State: APjAAAUXgGgp0k3YHsbh1sjMlDSDPXgETKooKnp2TL1v+RruE4cQXV1R
- JaeXmyqUu0M2JPeMMpJ+i1TuWrRN7bk3BE6snPA=
-X-Google-Smtp-Source: APXvYqzINR7xXf/RUhwE8B8vmM0BQvPtx2qn/UlOp4Wu3bR34coa/MVOvYdLlCsfynrxtuZ/nWeLkgZOk1oMV94rG9c=
-X-Received: by 2002:a5e:aa15:: with SMTP id s21mr5777419ioe.221.1559563234079; 
- Mon, 03 Jun 2019 05:00:34 -0700 (PDT)
+	id 1hXuxv-0000Y6-6a; Mon, 03 Jun 2019 21:58:03 +0000
+Received: from sauhun.de ([88.99.104.3] helo=pokefinder.org)
+ by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1hWFNI-00051z-E0; Thu, 30 May 2019 07:21:22 +0000
+Received: from localhost (unknown [91.64.182.124])
+ by pokefinder.org (Postfix) with ESMTPSA id 2A8B82C360B;
+ Thu, 30 May 2019 09:21:16 +0200 (CEST)
+Date: Thu, 30 May 2019 09:21:14 +0200
+From: Wolfram Sang <wsa@the-dreams.de>
+To: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+Subject: Re: [PATCH 22/22] docs: fix broken documentation links
+Message-ID: <20190530072110.GA1776@kunai>
+References: <cover.1559171394.git.mchehab+samsung@kernel.org>
+ <f9fecacbe4ce0b2b3aed38d71ae3753f2daf3ce3.1559171394.git.mchehab+samsung@kernel.org>
 MIME-Version: 1.0
-References: <20190603091008.2382-1-narmstrong@baylibre.com>
- <20190603091008.2382-4-narmstrong@baylibre.com>
-In-Reply-To: <20190603091008.2382-4-narmstrong@baylibre.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Mon, 3 Jun 2019 17:30:22 +0530
-Message-ID: <CANAwSgT964PY6OMkS-hoqBf39Np99-tzfGbpXGdLtxF600eDtQ@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] arm64: dts: meson: Add minimal support for
- Odroid-N2
-To: Neil Armstrong <narmstrong@baylibre.com>
+In-Reply-To: <f9fecacbe4ce0b2b3aed38d71ae3753f2daf3ce3.1559171394.git.mchehab+samsung@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190603_050035_536346_AA805DD9 
-X-CRM114-Status: GOOD (  24.53  )
+X-CRM114-CacheID: sfid-20190530_002120_775649_DE66CF3B 
+X-CRM114-Status: GOOD (  11.25  )
+X-Mailman-Approved-At: Mon, 03 Jun 2019 14:58:01 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -90,463 +65,148 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Linux Kernel <linux-kernel@vger.kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- linux-amlogic@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Andrew Lunn <andrew@lunn.ch>, Andy Lutomirski <luto@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Will Deacon <will.deacon@arm.com>,
+ Pavel Tatashin <pasha.tatashin@oracle.com>, Paul Mackerras <paulus@samba.org>,
+ Alessia Mantegazza <amantegazza@vaga.pv.it>, Jakub Wilk <jwilk@jwilk.net>,
+ Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+ "Paul E. McKenney" <paulmck@linux.ibm.com>,
+ Kevin Hilman <khilman@baylibre.com>, James Morris <jmorris@namei.org>,
+ linux-acpi@vger.kernel.org, Ingo Molnar <mingo@redhat.com>,
+ Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+ xen-devel@lists.xenproject.org, Jason Wang <jasowang@redhat.com>,
+ Alexander Popov <alex.popov@linux.com>, Qian Cai <cai@lca.pw>,
+ Al Viro <viro@zeniv.linux.org.uk>,
+ Thomas Preston <thomas.preston@codethink.co.uk>,
+ Thomas Gleixner <tglx@linutronix.de>, Kairui Song <kasong@redhat.com>,
+ Ding Xiang <dingxiang@cmss.chinamobile.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rjw@rjwysocki.net>, linux-kernel@vger.kernel.org,
+ Paul Burton <paul.burton@mips.com>, Jiri Kosina <jkosina@suse.cz>,
+ Casey Schaufler <casey@schaufler-ca.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Lu Baolu <baolu.lu@linux.intel.com>,
+ Mark Rutland <mark.rutland@arm.com>, Feng Tang <feng.tang@intel.com>,
+ Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+ Dave Hansen <dave.hansen@linux.intel.com>, Mimi Zohar <zohar@linux.ibm.com>,
+ Kamalesh Babulal <kamalesh@linux.vnet.ibm.com>, linux-mm@kvack.org,
+ Masahiro Yamada <yamada.masahiro@socionext.com>,
+ Yannik Sembritzki <yannik@sembritzki.me>, Harry Wei <harryxiyou@gmail.com>,
+ linux-i2c@vger.kernel.org, Shuah Khan <shuah@kernel.org>,
+ Stephen Rothwell <sfr@canb.auug.org.au>,
+ Stefano Stabellini <sstabellini@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>,
+ YueHaibing <yuehaibing@huawei.com>, Robert Moore <robert.moore@intel.com>,
+ AKASHI Takahiro <takahiro.akashi@linaro.org>, Len Brown <lenb@kernel.org>,
+ Joerg Roedel <jroedel@suse.de>, linux-arm-msm@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, Mauro Carvalho Chehab <mchehab@infradead.org>,
+ linux-gpio@vger.kernel.org, Claudiu Manoil <claudiu.manoil@nxp.com>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, linux-amlogic@lists.infradead.org,
+ Boris Ostrovsky <boris.ostrovsky@oracle.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>,
+ linux-arm-kernel@lists.infradead.org, Tony Luck <tony.luck@intel.com>,
+ Sean Christopherson <sean.j.christopherson@intel.com>,
+ James Morse <james.morse@arm.com>, Michael Ellerman <mpe@ellerman.id.au>,
+ Samuel Mendoza-Jonas <sam@mendozajonas.com>, linux-pci@vger.kernel.org,
+ Bhupesh Sharma <bhsharma@redhat.com>,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ platform-driver-x86@vger.kernel.org, Quentin Perret <quentin.perret@arm.com>,
+ linux-kselftest@vger.kernel.org, Alex Shi <alex.shi@linux.alibaba.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, Baoquan He <bhe@redhat.com>,
+ Jonathan Corbet <corbet@lwn.net>, Raphael Gault <raphael.gault@arm.com>,
+ Joel Stanley <joel@jms.id.au>, Federico Vaga <federico.vaga@vaga.pv.it>,
+ Darren Hart <dvhart@infradead.org>, linux-edac@vger.kernel.org,
+ Erik Schmauss <erik.schmauss@intel.com>, "Serge E. Hallyn" <serge@hallyn.com>,
+ Palmer Dabbelt <palmer@sifive.com>, Kees Cook <keescook@chromium.org>,
+ Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+ Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+ SeongJae Park <sj38.park@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Borislav Petkov <bp@alien8.de>, Sunil Muthuswamy <sunilmut@microsoft.com>,
+ virtualization@lists.linux-foundation.org, devel@acpica.org,
+ Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+ Liam Girdwood <lgirdwood@gmail.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Olof Johansson <olof@lixom.net>,
+ Logan Gunthorpe <logang@deltatee.com>, "David S. Miller" <davem@davemloft.net>,
+ "Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>,
+ Sven Van Asbroeck <thesven73@gmail.com>, Michal Hocko <mhocko@suse.com>,
+ kvm@vger.kernel.org, "Michael S. Tsirkin" <mst@redhat.com>,
+ Peter Zijlstra <peterz@infradead.org>, Thorsten Leemhuis <linux@leemhuis.info>,
+ David Howells <dhowells@redhat.com>, David Brown <david.brown@linaro.org>,
+ "H. Peter Anvin" <hpa@zytor.com>, devel@driverdev.osuosl.org,
+ Manfred Spraul <manfred@colorfullife.com>, x86@kernel.org,
+ Russell King <linux@armlinux.org.uk>, Mike Rapoport <rppt@linux.ibm.com>,
+ Andy Gross <agross@kernel.org>, Dave Young <dyoung@redhat.com>,
+ devicetree@vger.kernel.org, Arnaldo Carvalho de Melo <acme@redhat.com>,
+ Jerome Glisse <jglisse@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Josh Poimboeuf <jpoimboe@redhat.com>, Dmitry Vyukov <dvyukov@google.com>,
+ Luis Chamberlain <mcgrof@kernel.org>, Juergen Gross <jgross@suse.com>,
+ Denis Efremov <efremov@ispras.ru>, netdev@vger.kernel.org,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Changbin Du <changbin.du@intel.com>, linux-security-module@vger.kernel.org,
+ Robin Murphy <robin.murphy@arm.com>, Andy Shevchenko <andy@infradead.org>
+Content-Type: multipart/mixed; boundary="===============2554668738273403661=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Niel,
 
-On Mon, 3 Jun 2019 at 14:41, Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> This patch adds basic support for :
-> - Amlogic G12B, which is very similar to G12A
-> - The HardKernel Odroid-N2 based on the S922X SoC
->
-> The Amlogic G12B SoC is very similar with the G12A SoC, sharing
-> most of the features and architecture, but with these differences :
-> - The first CPU cluster only has 2xCortex-A53 instead of 4
-> - G12B has a second cluster of 4xCortex-A73
-> - Both cluster can achieve 2GHz instead of 1,8GHz for G12A
-> - CPU Clock architecture is difference, thus needing a different
->   compatible to handle this slight difference
-> - Supports a MIPI CSI input
-> - Embeds a Mali-G52 instead of a Mali-G31, but integration is the same
->
-> Actual support is done in the same way as for the GXM support, including
-> the G12A dtsi and redefining the CPU clusters.
-> Unlike GXM, the first cluster is different, thus needing to remove
-> the last 2 cpu nodes of the first cluster.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  arch/arm64/boot/dts/amlogic/Makefile          |   1 +
->  .../boot/dts/amlogic/meson-g12b-odroid-n2.dts | 289 ++++++++++++++++++
->  arch/arm64/boot/dts/amlogic/meson-g12b.dtsi   |  82 +++++
->  3 files changed, 372 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
->
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index e129c03ced14..07b861fe5fa5 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -3,6 +3,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-axg-s400.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nanopi-k2.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nexbox-a95x.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-odroidc2.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> new file mode 100644
-> index 000000000000..161d8f0ff4f3
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> @@ -0,0 +1,289 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2019 BayLibre, SAS
-> + * Author: Neil Armstrong <narmstrong@baylibre.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "meson-g12b.dtsi"
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/gpio/meson-g12a-gpio.h>
-> +
-> +/ {
-> +       compatible = "hardkernel,odroid-n2", "amlogic,g12b";
-> +       model = "Hardkernel ODROID-N2";
-> +
-> +       aliases {
-> +               serial0 = &uart_AO;
-> +               ethernet0 = &ethmac;
-> +       };
-> +
-> +       chosen {
-> +               stdout-path = "serial0:115200n8";
-> +       };
-> +
-> +       memory@0 {
-> +               device_type = "memory";
-> +               reg = <0x0 0x0 0x0 0x40000000>;
-> +       };
-> +
-> +       emmc_pwrseq: emmc-pwrseq {
-> +               compatible = "mmc-pwrseq-emmc";
-> +               reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
-> +       };
-> +
-> +       leds {
-> +               compatible = "gpio-leds";
-> +
-> +               blue {
-> +                       label = "n2:blue";
-> +                       gpios = <&gpio_ao GPIOAO_11 GPIO_ACTIVE_HIGH>;
-> +                       linux,default-trigger = "heartbeat";
-> +               };
-> +       };
-> +
-> +       tflash_vdd: regulator-tflash_vdd {
-> +               compatible = "regulator-fixed";
-> +
-> +               regulator-name = "TFLASH_VDD";
-> +               regulator-min-microvolt = <3300000>;
-> +               regulator-max-microvolt = <3300000>;
-> +
-> +               gpio = <&gpio_ao GPIOAO_8 GPIO_ACTIVE_HIGH>;
-> +               enable-active-high;
-> +       };
-> +
-> +       tf_io: gpio-regulator-tf_io {
-> +               compatible = "regulator-gpio";
-> +
-> +               regulator-name = "TF_IO";
-> +               regulator-min-microvolt = <1800000>;
-> +               regulator-max-microvolt = <3300000>;
-> +
-> +               gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
-> +               gpios-states = <0>;
-> +
-> +               states = <3300000 0
-> +                         1800000 1>;
-> +       };
-> +
-> +       flash_1v8: regulator-flash_1v8 {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "FLASH_1V8";
-> +               regulator-min-microvolt = <1800000>;
-> +               regulator-max-microvolt = <1800000>;
-> +               vin-supply = <&vcc_3v3>;
-> +               regulator-always-on;
-> +       };
-> +
-> +       main_12v: regulator-main_12v {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "12V";
-> +               regulator-min-microvolt = <12000000>;
-> +               regulator-max-microvolt = <12000000>;
-> +               regulator-always-on;
-> +       };
-> +
-> +       vcc_5v: regulator-vcc_5v {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "5V";
-> +               regulator-min-microvolt = <5000000>;
-> +               regulator-max-microvolt = <5000000>;
-> +               regulator-always-on;
+--===============2554668738273403661==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="fUYQa+Pmc3FrFX/N"
+Content-Disposition: inline
 
-As per odroid-n2_rev0.4_20190307 schematic its missing.
-                  vin-supply =  <&main_12v>;
 
-With this please add my.
-Tested-by: Anand Moon <linux.amoon@gmail.com>
+--fUYQa+Pmc3FrFX/N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best Regards
--Anand
-> +       };
-> +
-> +       vcc_1v8: regulator-vcc_1v8 {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "VCC_1V8";
-> +               regulator-min-microvolt = <1800000>;
-> +               regulator-max-microvolt = <1800000>;
-> +               vin-supply = <&vcc_3v3>;
-> +               regulator-always-on;
-> +       };
-> +
-> +       vcc_3v3: regulator-vcc_3v3 {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "VCC_3V3";
-> +               regulator-min-microvolt = <3300000>;
-> +               regulator-max-microvolt = <3300000>;
-> +               vin-supply = <&vddao_3v3>;
-> +               regulator-always-on;
-> +               /* FIXME: actually controlled by VDDCPU_B_EN */
-> +       };
-> +
-> +       hub_5v: regulator-hub_5v {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "HUB_5V";
-> +               regulator-min-microvolt = <5000000>;
-> +               regulator-max-microvolt = <5000000>;
-> +               vin-supply = <&vcc_5v>;
-> +
-> +               /* Connected to the Hub CHIPENABLE, LOW sets low power state */
-> +               gpio = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
-> +               enable-active-high;
-> +       };
-> +
-> +       usb_pwr_en: regulator-usb_pwr_en {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "USB_PWR_EN";
-> +               regulator-min-microvolt = <5000000>;
-> +               regulator-max-microvolt = <5000000>;
-> +               vin-supply = <&vcc_5v>;
-> +
-> +               /* Connected to the microUSB port power enable */
-> +               gpio = <&gpio GPIOH_6 GPIO_ACTIVE_HIGH>;
-> +               enable-active-high;
-> +       };
-> +
-> +       vddao_1v8: regulator-vddao_1v8 {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "VDDAO_1V8";
-> +               regulator-min-microvolt = <1800000>;
-> +               regulator-max-microvolt = <1800000>;
-> +               vin-supply = <&vddao_3v3>;
-> +               regulator-always-on;
-> +       };
-> +
-> +       vddao_3v3: regulator-vddao_3v3 {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "VDDAO_3V3";
-> +               regulator-min-microvolt = <3300000>;
-> +               regulator-max-microvolt = <3300000>;
-> +               vin-supply = <&main_12v>;
-> +               regulator-always-on;
-> +       };
-> +
-> +       hdmi-connector {
-> +               compatible = "hdmi-connector";
-> +               type = "a";
-> +
-> +               port {
-> +                       hdmi_connector_in: endpoint {
-> +                               remote-endpoint = <&hdmi_tx_tmds_out>;
-> +                       };
-> +               };
-> +       };
-> +};
-> +
-> +&cec_AO {
-> +       pinctrl-0 = <&cec_ao_a_h_pins>;
-> +       pinctrl-names = "default";
-> +       status = "disabled";
-> +       hdmi-phandle = <&hdmi_tx>;
-> +};
-> +
-> +&cecb_AO {
-> +       pinctrl-0 = <&cec_ao_b_h_pins>;
-> +       pinctrl-names = "default";
-> +       status = "okay";
-> +       hdmi-phandle = <&hdmi_tx>;
-> +};
-> +
-> +&ext_mdio {
-> +       external_phy: ethernet-phy@0 {
-> +               /* Realtek RTL8211F (0x001cc916) */
-> +               reg = <0>;
-> +               max-speed = <1000>;
-> +       };
-> +};
-> +
-> +&ethmac {
-> +       pinctrl-0 = <&eth_pins>, <&eth_rgmii_pins>;
-> +       pinctrl-names = "default";
-> +       status = "okay";
-> +       phy-mode = "rgmii";
-> +       phy-handle = <&external_phy>;
-> +       amlogic,tx-delay-ns = <2>;
-> +};
-> +
-> +&gpio {
-> +       /*
-> +        * WARNING: The USB Hub on the Odroid-N2 needs a reset signal
-> +        * to be turned high in order to be detected by the USB Controller
-> +        * This signal should be handled by a USB specific power sequence
-> +        * in order to reset the Hub when USB bus is powered down.
-> +        */
-> +       usb-hub {
-> +               gpio-hog;
-> +               gpios = <GPIOH_4 GPIO_ACTIVE_HIGH>;
-> +               output-high;
-> +               line-name = "usb-hub-reset";
-> +       };
-> +};
-> +
-> +&hdmi_tx {
-> +       status = "okay";
-> +       pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
-> +       pinctrl-names = "default";
-> +       hdmi-supply = <&vcc_5v>;
-> +};
-> +
-> +&hdmi_tx_tmds_port {
-> +       hdmi_tx_tmds_out: endpoint {
-> +               remote-endpoint = <&hdmi_connector_in>;
-> +       };
-> +};
-> +
-> +&ir {
-> +       status = "okay";
-> +       pinctrl-0 = <&remote_input_ao_pins>;
-> +       pinctrl-names = "default";
-> +};
-> +
-> +/* SD card */
-> +&sd_emmc_b {
-> +       status = "okay";
-> +       pinctrl-0 = <&sdcard_c_pins>;
-> +       pinctrl-1 = <&sdcard_clk_gate_c_pins>;
-> +       pinctrl-names = "default", "clk-gate";
-> +
-> +       bus-width = <4>;
-> +       cap-sd-highspeed;
-> +       max-frequency = <50000000>;
-> +       disable-wp;
-> +
-> +       cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
-> +       vmmc-supply = <&tflash_vdd>;
-> +       vqmmc-supply = <&tf_io>;
-> +
-> +};
-> +
-> +/* eMMC */
-> +&sd_emmc_c {
-> +       status = "okay";
-> +       pinctrl-0 = <&emmc_pins>, <&emmc_ds_pins>;
-> +       pinctrl-1 = <&emmc_clk_gate_pins>;
-> +       pinctrl-names = "default", "clk-gate";
-> +
-> +       bus-width = <8>;
-> +       cap-mmc-highspeed;
-> +       mmc-ddr-1_8v;
-> +       mmc-hs200-1_8v;
-> +       max-frequency = <200000000>;
-> +       disable-wp;
-> +
-> +       mmc-pwrseq = <&emmc_pwrseq>;
-> +       vmmc-supply = <&vcc_3v3>;
-> +       vqmmc-supply = <&flash_1v8>;
-> +};
-> +
-> +&uart_AO {
-> +       status = "okay";
-> +       pinctrl-0 = <&uart_ao_a_pins>;
-> +       pinctrl-names = "default";
-> +};
-> +
-> +&usb {
-> +       status = "okay";
-> +       vbus-supply = <&usb_pwr_en>;
-> +};
-> +
-> +&usb2_phy0 {
-> +       phy-supply = <&vcc_5v>;
-> +};
-> +
-> +&usb2_phy1 {
-> +       /* Enable the hub which is connected to this port */
-> +       phy-supply = <&hub_5v>;
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-> new file mode 100644
-> index 000000000000..9e88e513b22d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-> @@ -0,0 +1,82 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2019 BayLibre, SAS
-> + * Author: Neil Armstrong <narmstrong@baylibre.com>
-> + */
-> +
-> +#include "meson-g12a.dtsi"
-> +
-> +/ {
-> +       compatible = "amlogic,g12b";
-> +
-> +       cpus {
-> +               cpu-map {
-> +                       cluster0 {
-> +                               core0 {
-> +                                       cpu = <&cpu0>;
-> +                               };
-> +
-> +                               core1 {
-> +                                       cpu = <&cpu1>;
-> +                               };
-> +                       };
-> +
-> +                       cluster1 {
-> +                               core0 {
-> +                                       cpu = <&cpu100>;
-> +                               };
-> +
-> +                               core1 {
-> +                                       cpu = <&cpu101>;
-> +                               };
-> +
-> +                               core2 {
-> +                                       cpu = <&cpu102>;
-> +                               };
-> +
-> +                               core3 {
-> +                                       cpu = <&cpu103>;
-> +                               };
-> +                       };
-> +               };
-> +
-> +               /delete-node/ cpu@2;
-> +               /delete-node/ cpu@3;
-> +
-> +               cpu100: cpu@100 {
-> +                       device_type = "cpu";
-> +                       compatible = "arm,cortex-a73";
-> +                       reg = <0x0 0x100>;
-> +                       enable-method = "psci";
-> +                       next-level-cache = <&l2>;
-> +               };
-> +
-> +               cpu101: cpu@101 {
-> +                       device_type = "cpu";
-> +                       compatible = "arm,cortex-a73";
-> +                       reg = <0x0 0x101>;
-> +                       enable-method = "psci";
-> +                       next-level-cache = <&l2>;
-> +               };
-> +
-> +               cpu102: cpu@102 {
-> +                       device_type = "cpu";
-> +                       compatible = "arm,cortex-a73";
-> +                       reg = <0x0 0x102>;
-> +                       enable-method = "psci";
-> +                       next-level-cache = <&l2>;
-> +               };
-> +
-> +               cpu103: cpu@103 {
-> +                       device_type = "cpu";
-> +                       compatible = "arm,cortex-a73";
-> +                       reg = <0x0 0x103>;
-> +                       enable-method = "psci";
-> +                       next-level-cache = <&l2>;
-> +               };
-> +       };
-> +};
-> +
-> +&clkc {
-> +       compatible = "amlogic,g12b-clkc";
-> +};
-> --
-> 2.21.0
->
->
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+On Wed, May 29, 2019 at 08:23:53PM -0300, Mauro Carvalho Chehab wrote:
+> Mostly due to x86 and acpi conversion, several documentation
+> links are still pointing to the old file. Fix them.
+>=20
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+
+Didn't I ack this already?
+
+For the I2C part:
+
+Reviewed-by: Wolfram Sang <wsa@the-dreams.de>
+
+
+--fUYQa+Pmc3FrFX/N
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAlzvhGEACgkQFA3kzBSg
+KbZPRxAAhFPNKyTqg0No7kzvML2PBj9puH4y5gi/QPmIpGm4lHZikJFOlq9rgwR+
+PNNz1an8lJFTrFan9VvG36hYv4zCcWm80yw2U9xZfBOk1QRHUN5jTbC8UdGyCYh+
+Vo1yR3nEWEODI3yIS8kvTwlFWENBd5YA7O4GllMR1Ink+IPkc+60ji8Rt+VNZuFp
+J8tzUF5tCJlUFQYTgf8fSFvM+hA1shd0gnHRUNGKIBNLONCg9mbWBODwSfZi/VcV
+5J2t00XQuI/cXPk/I5Hm1XHxQKuaV/pQmcTDkrYB/ZFkPOUxqP6PM/I5S+usHBDr
+7CHd3KxR04qYdmaNac8E3NOqnN4xvGMVAGpO5mvvJ0lwSVvVsdMCETSjZ8pjfnXO
+pfDKBThEmJLVp9PdG5pVz1MwHv20PXAYax1rujWRjWIFdr/E8HyoW/qurTZf/bTs
+tQc63rAg5QHrF177J3WR13tZp+zpVN0KL061qk9J65j3aDMsyProevJz2RN/cQzX
+3630pUKa6S/q7r/t2yfL//sGW5K1nbWj3XdtpSZKvyp8KUmEM41oi48rkwMdMGL9
+aB7uRlDM/0J+WIRHeXSMJ50Yfk0rKjdAuyKbhWU9+nwgPaTxUW6KMLsRhjV1K57Y
+VK46VL1PX9nHY6d5572YnbuNT5Nzxeazz5nuBYHTLFDyBkyHHL8=
+=MWyf
+-----END PGP SIGNATURE-----
+
+--fUYQa+Pmc3FrFX/N--
+
+
+--===============2554668738273403661==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============2554668738273403661==--
+
