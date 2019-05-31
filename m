@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 25A7FC28CC3
-	for <linux-amlogic@archiver.kernel.org>; Fri, 31 May 2019 09:31:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3C666C04AB6
+	for <linux-amlogic@archiver.kernel.org>; Fri, 31 May 2019 09:32:24 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EE2DB266E8
-	for <linux-amlogic@archiver.kernel.org>; Fri, 31 May 2019 09:31:55 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0EC7220665
+	for <linux-amlogic@archiver.kernel.org>; Fri, 31 May 2019 09:32:24 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mVs8IPtT";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Hztvbtdd"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EE2DB266E8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MBzIsDCF";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="eZ5o1iOK"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0EC7220665
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,67 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+mauwA4X2uSPd/oXW0EWQcgdKMvIb4qRhX0tJWOXfrs=; b=mVs8IPtTx0md4B
-	uVJ0KYXXxL84G4BHSMRg8SHZP0aX9E1nyOhCA2kX50jCBbRtkOY1pivgoqobI7phqRQx4KdV8YIRe
-	u7gm11CYIA69LM38uEN/xJyTR+CH0KcrAVZdcbfem5q/zY/zLiDMzbrMJ8NZk8ZIuPF+tm5p6pfIw
-	dNr354Xs4N3DmPOlo1RWj/V82BfVWqMvBNuZCPEEaWwhbkvK5FbKEhYNbMqBCMDdgeD+LrywHr/JU
-	xBW2k5a5fz77LWcY4VKMS2QwByt77R/+ieu4b4Aos3weFtqgBq19YKty1Lkg10+LOibLwcDGIw0xh
-	nVA2M3w2VUEtoRadh2Ig==;
+	List-Owner; bh=oC1MrPkPN9wiASce+2HHl07u0Bah5InVE6+5lLppHbY=; b=MBzIsDCFmIV9kS
+	YgA1QVlVgojHzfRBvwo82dq7k8Wv7HDCLumj12caXpkd38pxswR9xoVi83pAz12RCVpfdqbYrResd
+	3tRRPZhRdEIIsb3HMoCzVva0sX+r4T8VgincgpkWHVf6VIowPR3kkukmsp+wHZhw0g/IlVlufSCG0
+	txmUnSDx0J6GmXZIn0HvwXpkjw0Sz9qBVu9195VZ0JvnLoZ7myBcHBJbIuTUsp6thzoebgggZjTJn
+	6XR9lzuo9M158cwYG8NBafykgeZC1jIXyoUbXkuzb9X8MoQjM1pAYX9UeWenMxui3BmBECvV3G/xM
+	pel/5MifQJhYhz+G08CQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hWdt8-0000NB-LJ; Fri, 31 May 2019 09:31:50 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1hWdta-0000u7-Uj; Fri, 31 May 2019 09:32:18 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hWdsq-0008Uu-U2
- for linux-amlogic@lists.infradead.org; Fri, 31 May 2019 09:31:35 +0000
-Received: by mail-wr1-x441.google.com with SMTP id c2so6027331wrm.8
- for <linux-amlogic@lists.infradead.org>; Fri, 31 May 2019 02:31:32 -0700 (PDT)
+ id 1hWdst-0008Vh-K0
+ for linux-amlogic@lists.infradead.org; Fri, 31 May 2019 09:31:38 +0000
+Received: by mail-wr1-x444.google.com with SMTP id c2so6027381wrm.8
+ for <linux-amlogic@lists.infradead.org>; Fri, 31 May 2019 02:31:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=rvJtQg+661w+5Ir5BueWWyrmozrX3JR+SPJBE4ojBNo=;
- b=HztvbtddFm0o/wzj4gVgfBz9gDX87DCVUe5fNi3WlmKcceoMGOS59ILOIA+oppmT9i
- Hx+8hKK37vNOxtIAd4nhhUiZeri7/gHgLHnOjfBVLXlAhHALWhroAKyCC2E5THBWPPya
- QmhZzbtFpjhLZ1KwOfY/NrXW8b9fiVsyeBQHj5+z45dT/IJNHTulASsqKa4BW00ZgeAn
- Z36w62rK3XRlBQNyvw3nDQhpnD9ohlyfVivFd2UlsbMi24/1gL6ndr6T3SaCyT6VRmwJ
- vevMu25h1j1gYvqOSFLkswxt8ypnEot57oB3gyZZXeYsScqIDLWMjkmSt5+e2Z5ZGT8K
- r0EQ==
+ bh=oDHxGsrXeJidj701untt/R6ogKG8h4nrtZU+2E4/fDA=;
+ b=eZ5o1iOKOmU9ImO+ETCAduVNT36sLs+WQ8dQdJ7NPG7cMC+JkE5CEyy0yxxrR058q6
+ cbBygt4YFV4uqu6AS0nSmwion1FztQFXCYEBF9+MKoObTrwoan5UUb38OOjnySOz608H
+ lDpvVtjlrDS1dXbS7BbXtH1Xwirui7c9S6ou185LVWF1jSzK+EwSOJ1ukakLdRPFQTg1
+ mh5uJbpKwPbcob1V/7wleFI3FxtfoeJ0hKpK/eC3u5a+AL92m3yUyT5CM87zKi80dEuu
+ S89IcMPvgiwH93UGEDdkgjFW6Gh+bcs5drh2TC9Awg0CRRLjlM5wPEv18zRKfCd41V72
+ 5cNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=rvJtQg+661w+5Ir5BueWWyrmozrX3JR+SPJBE4ojBNo=;
- b=lE7Jo9FrSNgHU1MFM11P5lVjAYjbQxRy/P7atCcfWU+R5zK/fhyNr/ugXRBjyYjo+x
- ldIQgiiqKGRYBBh4PPFc2cVQjzCsYnCVLdsd9sxmkxDcRIrLgV42fmN8kJ47ZAVwfm4d
- ZhS1klBfQZGf1y//fbuqkF0tQKTA/uBqS4giqhTe3XFmQhUxriHhIbPcGYIiZh6DjuKz
- J38/2y2wj8lqwxpcJbu0t/QpUg2Zzp4Lx2Xg87LkKianPx4J8l8cRxJcFHHVm25mH0wP
- dR1/hZ+zkzglV/lP+yZfiNgATOREQ7PlwZHld5WHeQOUeEiIbzdY78KO/ipAIxQfbk06
- 1Qug==
-X-Gm-Message-State: APjAAAV4kWmRkfe16iAUQfnGZIAYTc+kcVcuVjWSdMxtOeMKL/Y5axQs
- EPJLqQvz1osn+vVDrjpXUbalwA==
-X-Google-Smtp-Source: APXvYqykUEMys93iiEwCmuP7w5CqsGhyG8Yk3Jmpbk3LQsC/f/QxSVCIY45nYJLLMoTJYHHeP8lxcw==
-X-Received: by 2002:adf:e584:: with SMTP id l4mr5753247wrm.54.1559295091602;
- Fri, 31 May 2019 02:31:31 -0700 (PDT)
+ bh=oDHxGsrXeJidj701untt/R6ogKG8h4nrtZU+2E4/fDA=;
+ b=OAhduOJZtdtl4mCpBJxk+6BmegCL2qMMZMm9HItBdHGbSbEUZA+vreEFcEpzoaNMvI
+ LSy3tyLgS/sEJ3UVEfSX3fMSqs0+T6phO/1kvTEjq/GxUdprUKrCPBpKOyiqI1u7MJwb
+ SUipkLv4SYZOnA/VgdOlBCT3ggRtSxeD0qdTpWx0Gv79fskN4FPCjM+BuGNr+88ohAc2
+ G/Pwu3YKCyO9nMUabU2b0LWyLoMsZY+TKj8GyPutHt65oW+0rNQ0iKU5l97j3yvM0X8M
+ F7bNTDhS1PEx2kJg8sTh/vRywrk3o0a1NhCwugIBFkdl9RQkpdBFOuqnoUhK98E76O8t
+ nJHA==
+X-Gm-Message-State: APjAAAUVDXB5yBviO6NQ0G7Q+0LSzeqofnwYJTxdmgMSFbKQimBvxOue
+ HmMlOVaCfuOS3vA2yAu26NNAhg==
+X-Google-Smtp-Source: APXvYqy+FDDF8Pib6Y2BDgETFWEQSTK2um06CcN2NmrEMWrfPEWU/qRyDjEDyw2S9zAZ3x0XMomz8A==
+X-Received: by 2002:adf:dc0c:: with SMTP id t12mr5813693wri.101.1559295092871; 
+ Fri, 31 May 2019 02:31:32 -0700 (PDT)
 Received: from mjourdan-pc.numericable.fr (abo-99-183-68.mtp.modulonet.fr.
  [85.68.183.99])
- by smtp.gmail.com with ESMTPSA id b136sm7187023wme.30.2019.05.31.02.31.30
+ by smtp.gmail.com with ESMTPSA id b136sm7187023wme.30.2019.05.31.02.31.31
  (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Fri, 31 May 2019 02:31:31 -0700 (PDT)
+ Fri, 31 May 2019 02:31:32 -0700 (PDT)
 From: Maxime Jourdan <mjourdan@baylibre.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>,
  Hans Verkuil <hans.verkuil@cisco.com>
-Subject: [PATCH v7 1/4] dt-bindings: media: add Amlogic Video Decoder Bindings
-Date: Fri, 31 May 2019 11:31:23 +0200
-Message-Id: <20190531093126.26956-2-mjourdan@baylibre.com>
+Subject: [PATCH v7 2/4] media: videodev2: add V4L2_FMT_FLAG_FIXED_RESOLUTION
+Date: Fri, 31 May 2019 11:31:24 +0200
+Message-Id: <20190531093126.26956-3-mjourdan@baylibre.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190531093126.26956-1-mjourdan@baylibre.com>
 References: <20190531093126.26956-1-mjourdan@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190531_023132_967857_9CD30E9A 
-X-CRM114-Status: UNSURE (   9.76  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190531_023135_657387_391690E7 
+X-CRM114-Status: GOOD (  11.53  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -98,104 +97,65 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Maxime Jourdan <mjourdan@baylibre.com>, devicetree@vger.kernel.org,
+Cc: Maxime Jourdan <mjourdan@baylibre.com>,
  Neil Armstrong <narmstrong@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
  linux-amlogic@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>,
- Rob Herring <robh@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-media@vger.kernel.org
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add documentation for the meson vdec dts node.
+When a v4l2 driver exposes V4L2_EVENT_SOURCE_CHANGE, some (usually
+OUTPUT) formats may not be able to trigger this event.
+
+For instance, MPEG2 on Amlogic hardware does not support resolution
+switching on the fly, and a decode session must operate at a set
+resolution defined before the decoding start.
+
+Add a enum_fmt format flag to tag those specific formats.
 
 Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- .../bindings/media/amlogic,vdec.txt           | 71 +++++++++++++++++++
- 1 file changed, 71 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/amlogic,vdec.txt
+ Documentation/media/uapi/v4l/vidioc-enum-fmt.rst | 6 ++++++
+ include/uapi/linux/videodev2.h                   | 5 +++--
+ 2 files changed, 9 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/media/amlogic,vdec.txt b/Documentation/devicetree/bindings/media/amlogic,vdec.txt
-new file mode 100644
-index 000000000000..aabdd01bcf32
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/amlogic,vdec.txt
-@@ -0,0 +1,71 @@
-+Amlogic Video Decoder
-+================================
+diff --git a/Documentation/media/uapi/v4l/vidioc-enum-fmt.rst b/Documentation/media/uapi/v4l/vidioc-enum-fmt.rst
+index 822d6730e7d2..b11448a1848b 100644
+--- a/Documentation/media/uapi/v4l/vidioc-enum-fmt.rst
++++ b/Documentation/media/uapi/v4l/vidioc-enum-fmt.rst
+@@ -127,6 +127,12 @@ one until ``EINVAL`` is returned.
+       - This format is not native to the device but emulated through
+ 	software (usually libv4l2), where possible try to use a native
+ 	format instead for better performance.
++    * - ``V4L2_FMT_FLAG_FIXED_RESOLUTION``
++      - 0x0004
++      - Dynamic resolution switching is not supported for this format,
++        even if the event ``V4L2_EVENT_SOURCE_CHANGE`` is supported by
++        the device.
 +
-+The video decoding IP lies within the DOS memory region,
-+except for the hardware bitstream parser that makes use of an undocumented
-+region.
-+
-+It makes use of the following blocks:
-+
-+- ESPARSER is a bitstream parser that outputs to a VIFIFO. Further VDEC blocks
-+then feed from this VIFIFO.
-+- VDEC_1 can decode MPEG-1, MPEG-2, MPEG-4 part 2, MJPEG, H.263, H.264, VC-1.
-+- VDEC_HEVC can decode HEVC and VP9.
-+
-+Both VDEC_1 and VDEC_HEVC share the "vdec" IRQ and as such cannot run
-+concurrently.
-+
-+Device Tree Bindings:
-+---------------------
-+
-+VDEC: Video Decoder
-+--------------------------
-+
-+Required properties:
-+- compatible: value should be different for each SoC family as :
-+	- GXBB (S905) : "amlogic,gxbb-vdec"
-+	- GXL (S905X, S905D) : "amlogic,gxl-vdec"
-+	- GXM (S912) : "amlogic,gxm-vdec"
-+- reg: base address and size of he following memory-mapped regions :
-+	- dos
-+	- esparser
-+- reg-names: should contain the names of the previous memory regions
-+- interrupts: should contain the following IRQs:
-+	- vdec
-+	- esparser
-+- interrupt-names: should contain the names of the previous interrupts
-+- amlogic,ao-sysctrl: should point to the AOBUS sysctrl node
-+- amlogic,canvas: should point to a canvas provider node
-+- clocks: should contain the following clocks :
-+	- dos_parser
-+	- dos
-+	- vdec_1
-+	- vdec_hevc
-+- clock-names: should contain the names of the previous clocks
-+- resets: should contain the parser reset
-+- reset-names: should be "esparser"
-+
-+Example:
-+
-+vdec: video-decoder@c8820000 {
-+	compatible = "amlogic,gxbb-vdec";
-+	reg = <0x0 0xc8820000 0x0 0x10000>,
-+	      <0x0 0xc110a580 0x0 0xe4>;
-+	reg-names = "dos", "esparser";
-+
-+	interrupts = <GIC_SPI 44 IRQ_TYPE_EDGE_RISING>,
-+		     <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>;
-+	interrupt-names = "vdec", "esparser";
-+
-+	amlogic,ao-sysctrl = <&sysctrl_AO>;
-+	amlogic,canvas = <&canvas>;
-+
-+	clocks = <&clkc CLKID_DOS_PARSER>,
-+		 <&clkc CLKID_DOS>,
-+		 <&clkc CLKID_VDEC_1>,
-+		 <&clkc CLKID_VDEC_HEVC>;
-+	clock-names = "dos_parser", "dos", "vdec_1", "vdec_hevc";
-+
-+	resets = <&reset RESET_PARSER>;
-+	reset-names = "esparser";
-+};
+ 
+ 
+ Return Value
+diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
+index 1050a75fb7ef..9b0a7f82dd92 100644
+--- a/include/uapi/linux/videodev2.h
++++ b/include/uapi/linux/videodev2.h
+@@ -768,8 +768,9 @@ struct v4l2_fmtdesc {
+ 	__u32		    reserved[4];
+ };
+ 
+-#define V4L2_FMT_FLAG_COMPRESSED 0x0001
+-#define V4L2_FMT_FLAG_EMULATED   0x0002
++#define V4L2_FMT_FLAG_COMPRESSED	0x0001
++#define V4L2_FMT_FLAG_EMULATED		0x0002
++#define V4L2_FMT_FLAG_FIXED_RESOLUTION	0x0004
+ 
+ 	/* Frame Size and frame rate enumeration */
+ /*
 -- 
 2.21.0
 
