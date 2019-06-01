@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
 	T_DKIMWL_WL_HIGH,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 08C88C28CC4
-	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Jun 2019 13:23:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 525DFC28CC5
+	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Jun 2019 13:24:48 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D577127364
-	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Jun 2019 13:23:18 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2BC122738D
+	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Jun 2019 13:24:48 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="foGJR7y4";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="WPzK1xSX"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D577127364
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dWSE13LS";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="b6w+LUFn"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2BC122738D
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,48 +26,48 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fH9vF8g9B9cj8CHd4NcTeuoeuT91HwVyF9HxGhNhbns=; b=foGJR7y4/Q5lTg
-	Zc5CAjjuUDKyZgDhmRzhpRTjdA3ztS5o34BgoOEnWDcB1+GdhqFLTIfBd17iGSNFfMypVMv8geaIP
-	eoWxuaXMOTGTHhp9x1/sB4fw+ykPcYAPK9u512T6Ndd/VMu69GX5xD8DFRCSqHrEkpd/hN+PjN/Nr
-	+BhCeHsxsIqiGE/efmDs7p2vDAU4BF4bKKSXyDR5UlS2YJunXR5tzyrR9H5yKemHKN4eODHp8x1q1
-	DNHhJ8/SADdglH/7Iqq6zH4d14BvkqGroySIk20SouoPNjLKEbd/sk03xb8w4bK2jRfN+K5O12AMF
-	xAWYVmPcCr/mg0/x8/mQ==;
+	List-Owner; bh=/iAEDeAUT5OSXN2CpCgT1TOBpbhQ0AHzGUshDZDy0gY=; b=dWSE13LStivRW3
+	gVk3bwrRuqF1Ar9OdYRa2vwNtbetk37zYMlQO38QmyTNJPNY/WlNKJzp+lvfftA895QfoIpFvJYna
+	8viUSbCNsbiwCNu3XzbJgvNyOpA6umwRr9OhswFv3DqapCwBPbrGft31fTW618rabqoVkT979nq+d
+	5WQvAr7PlKBru0mKew9WIwBbv9UenorpqcY2YLQ8Yz2DAahO/gA4aTXZZVOVwCK++X7qXwmWzvMvp
+	4odMygxktxb3CdOU0GwP1XTGrJkiUcKfYlX5xZV62vSQOln6h3RK+5MJ7r/dYRR9poxzZQ7XW9N1v
+	tvtVR1tv0V9yGof4NzUw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hX3yc-0003qP-2W; Sat, 01 Jun 2019 13:23:14 +0000
+	id 1hX403-00048c-GH; Sat, 01 Jun 2019 13:24:43 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hX3yY-0003q5-QL
- for linux-amlogic@lists.infradead.org; Sat, 01 Jun 2019 13:23:12 +0000
+ id 1hX400-00047q-I8
+ for linux-amlogic@lists.infradead.org; Sat, 01 Jun 2019 13:24:42 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 8BA11240F2;
- Sat,  1 Jun 2019 13:23:09 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 5F6F02737D;
+ Sat,  1 Jun 2019 13:24:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1559395390;
- bh=Abv9GsTyntkTHWoXQ9xFksd//sO3na6syWyCUco9TYM=;
+ s=default; t=1559395480;
+ bh=aakVm1fe6JS20FpJm/uZt4030/TZ2dr6Dos+i764OZ4=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=WPzK1xSXCcmV7hK0NssgjaZUcpSnwUJX5GtmJcKDl7UXDBuIB2zwMTut6m3ORb2G5
- 9ez2VvSkuiZdz2TqyWr8bIG9v/fw2YcxxDXjq8To/547xoJOMhBHkOrOy4xVYsetQh
- eaNMaapKD1TrRau4sIwuURJzm3igHTqyZlxIuFN0=
+ b=b6w+LUFnA4pxAW0YyEVTqaZ6uF0jF7y6GPtC7RAHW50AMOBaTw/gHYPhvoZSbVeHJ
+ 3MwV2MOGo4co8Q2CKiQ+8UTJk4W8LLB2faee1S5RtXhfp9Riz63O+ouyImQUzw+Syo
+ +X9jqxrDB4IWKiRN5E3x2ax7nvcPzP31y62mCn0o=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 031/141] pwm: meson: Use the spin-lock only to
+Subject: [PATCH AUTOSEL 4.14 25/99] pwm: meson: Use the spin-lock only to
  protect register modifications
-Date: Sat,  1 Jun 2019 09:20:07 -0400
-Message-Id: <20190601132158.25821-31-sashal@kernel.org>
+Date: Sat,  1 Jun 2019 09:22:32 -0400
+Message-Id: <20190601132346.26558-25-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190601132158.25821-1-sashal@kernel.org>
-References: <20190601132158.25821-1-sashal@kernel.org>
+In-Reply-To: <20190601132346.26558-1-sashal@kernel.org>
+References: <20190601132346.26558-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190601_062310_888940_88F24E06 
-X-CRM114-Status: GOOD (  17.60  )
+X-CRM114-CacheID: sfid-20190601_062440_634144_7BBD3E36 
+X-CRM114-Status: GOOD (  17.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -117,7 +117,7 @@ b20+ClNpZ25lZC1vZmYtYnk6IFNhc2hhIExldmluIDxzYXNoYWxAa2VybmVsLm9yZz4KLS0tCiBk
 cml2ZXJzL3B3bS9wd20tbWVzb24uYyB8IDI1ICsrKysrKysrKysrKysrKysrLS0tLS0tLS0KIDEg
 ZmlsZSBjaGFuZ2VkLCAxNyBpbnNlcnRpb25zKCspLCA4IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdp
 dCBhL2RyaXZlcnMvcHdtL3B3bS1tZXNvbi5jIGIvZHJpdmVycy9wd20vcHdtLW1lc29uLmMKaW5k
-ZXggYzFlZDY0MWIzZTI2Ni4uZjZlNzM4YWQ3YmQ5MiAxMDA2NDQKLS0tIGEvZHJpdmVycy9wd20v
+ZXggMzU0MGQwMDQyNWQwMy4uOWI3OWNiYzdhNzE1MiAxMDA2NDQKLS0tIGEvZHJpdmVycy9wd20v
 cHdtLW1lc29uLmMKKysrIGIvZHJpdmVycy9wd20vcHdtLW1lc29uLmMKQEAgLTExMSw2ICsxMTEs
 MTAgQEAgc3RydWN0IG1lc29uX3B3bSB7CiAJY29uc3Qgc3RydWN0IG1lc29uX3B3bV9kYXRhICpk
 YXRhOwogCXZvaWQgX19pb21lbSAqYmFzZTsKIAl1OCBpbnZlcnRlcl9tYXNrOworCS8qCisJICog
