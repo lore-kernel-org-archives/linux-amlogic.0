@@ -1,63 +1,73 @@
-Return-Path: <SRS0=Lu7g=T7=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=xyi4=UA=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED,USER_AGENT_MUTT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	T_DKIMWL_WL_HIGH,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7AF6CC04AB6
-	for <linux-amlogic@archiver.kernel.org>; Fri, 31 May 2019 14:47:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5C988C28CC4
+	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Jun 2019 13:18:48 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 510D62583F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 31 May 2019 14:47:44 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 35974272C0
+	for <linux-amlogic@archiver.kernel.org>; Sat,  1 Jun 2019 13:18:48 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QGbzXCx7"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 510D62583F
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arm.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ajOHQsGX";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="jH/QP21S"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 35974272C0
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+YIVxviccjAqoiz5NMyj5uzQdJBTfndtvkOJbr2JEPE=; b=QGbzXCx7O846Gu
-	6jXiC2jt1Laa2YNge/ZBGx5PkXM4wIbC4e50VxqRYxfgAQnMTtjLJpckx73SkSJjsIcXzaosh5TfI
-	Ie7fKDNpn80249vnJlAZaFJaSztz5rb64xetpNEt5AphAhRUEVZe5KVqTbGtxUfT2/iemuLjG6Jlx
-	NAHZ4nwWdF5uDVz0jqFvG3J8mB71ifdhwuBS297n8UON31Bl4rqi5wQA6Peosse6LhG3wNFIqFUCT
-	xGkMJRz46NrxL9GzNupW9COlR0yG1HTze1YBTmfQKH7B4PC5Vlp8+/ytXbvEkt39vCTnONxIxRQV3
-	r4668QfhatBROqfmGFyQ==;
+	List-Owner; bh=fH9vF8g9B9cj8CHd4NcTeuoeuT91HwVyF9HxGhNhbns=; b=ajOHQsGXNnUmZn
+	r48EUDI/0/P/JWLyo0uzcxKQ+dPlIXDuntCrZiBIgMJvLYZ+Jz1BpTS31VqaHCCGEQFcxidRkhYbU
+	W27SVlVJ8c9+qO9dvrWNhilqD/NhpIbCQdhwyeaE9c0TOV355d2ZU0wTKTfqYmARZ88Ni8g4S5TQv
+	2ta0V7UAMNinbxjKrE+0kWQVLkZJuZnUXeHY3pSbo8fmtBWYgZTrxSJ2mOMPWKb+LWEOOZPrUYdva
+	O3GbI814B1QwosyyhLpL6SNnenzQTsMH5kVj0bn4Wz5mvYLNV1ZfyavPIVrsG9NsPQ7JIno864xIK
+	OmEepyS9Pwz9Bcdm7nyA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hWioj-0005ZM-6l; Fri, 31 May 2019 14:47:37 +0000
-Received: from foss.arm.com ([217.140.101.70])
- by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hWiog-0005YN-AS; Fri, 31 May 2019 14:47:36 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.72.51.249])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BE3AC341;
- Fri, 31 May 2019 07:47:31 -0700 (PDT)
-Received: from redmoon (unknown [10.1.196.255])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5DA8D3F5AF;
- Fri, 31 May 2019 07:47:28 -0700 (PDT)
-Date: Fri, 31 May 2019 15:47:18 +0100
-From: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To: Thierry Reding <thierry.reding@gmail.com>
-Subject: Re: [PATCH] drivers/pci/controller: fix warning PTR_ERR_OR_ZERO can
- be used
-Message-ID: <20190531144710.GA9356@redmoon>
-References: <20190525085748.GA10926@hari-Inspiron-1545>
- <20190527140952.GB7202@ulmo>
+	id 1hX3uB-0001vm-5j; Sat, 01 Jun 2019 13:18:39 +0000
+Received: from mail.kernel.org ([198.145.29.99])
+ by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
+ id 1hX3u8-0001uz-Hi
+ for linux-amlogic@lists.infradead.org; Sat, 01 Jun 2019 13:18:38 +0000
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
+ [73.47.72.35])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 57B46272AB;
+ Sat,  1 Jun 2019 13:18:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1559395116;
+ bh=Abv9GsTyntkTHWoXQ9xFksd//sO3na6syWyCUco9TYM=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=jH/QP21SENmJNm7brza/gPq6gOWN4/ftKCUbvyXoQliiu2JIkpuueD+GqsauQfaoj
+ HTYYTZKeg0kc6MpQOmw1G4+movcOdHhZ/hIdz102jlkaP35TP9BE1MUhj+J4Ra61Y/
+ fxG4HZu+t6qPeUX8CHZRZIH/7dKTJCRRHqniKlr8=
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.1 040/186] pwm: meson: Use the spin-lock only to
+ protect register modifications
+Date: Sat,  1 Jun 2019 09:14:16 -0400
+Message-Id: <20190601131653.24205-40-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190601131653.24205-1-sashal@kernel.org>
+References: <20190601131653.24205-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20190527140952.GB7202@ulmo>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+X-stable: review
+X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190531_074734_578985_05BE460E 
-X-CRM114-Status: GOOD (  23.42  )
+X-CRM114-CacheID: sfid-20190601_061836_619778_D0611AAB 
+X-CRM114-Status: GOOD (  17.60  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -69,183 +79,93 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Hariprasad Kelam <hariprasad.kelam@gmail.com>,
- Binghui Wang <wangbinghui@hisilicon.com>, linux-kernel@vger.kernel.org,
- linux-tegra@vger.kernel.org, ingoo Han <jingoohan1@gmail.com>,
- linux-arm-msm@vger.kernel.org, Xiaowei Song <songxiaowei@hisilicon.com>,
- linux-pci@vger.kernel.org, Andy Gross <agross@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>, Yue Wang <yue.wang@amlogic.com>,
- Stanimir Varbanov <svarbanov@mm-sol.com>, David Brown <david.brown@linaro.org>,
- Kukjin Kim <kgene@kernel.org>, linux-samsung-soc@vger.kernel.org,
- Kevin Hilman <khilman@baylibre.com>, Bjorn Helgaas <bhelgaas@google.com>,
- linux-amlogic@lists.infradead.org, Jonathan Hunter <jonathanh@nvidia.com>,
- linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Sasha Levin <sashal@kernel.org>, linux-pwm@vger.kernel.org,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ linux-amlogic@lists.infradead.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, May 27, 2019 at 04:09:52PM +0200, Thierry Reding wrote:
-> On Sat, May 25, 2019 at 02:27:48PM +0530, Hariprasad Kelam wrote:
-> > fix below warnings reported by coccichek
-> > 
-> > /drivers/pci/controller/pci-tegra.c:1132:1-3: WARNING: PTR_ERR_OR_ZERO
-> > can be used
-> 
-> This has been discussed many times before, but PTR_ERR_OR_ZERO is not
-> liked by everybody. Most of these are actually in place on purpose. One
-> of the reasons I hear most frequently cited in opposition to this macro
-> is that it complicates things when you need to add some new code in, so
-> PTR_ERR_OR_ZERO() becomes wrong and has to be changed. The original,
-> with the "return 0;" being explicit doesn't have that problem and you
-> can easily add things in between.
-> 
-> It's obviously up to Bjorn to decide whether he wants this, but I
-> vaguely remember discussing this particular instance with him before and
-> we both agreed that we didn't think this was worth it.
-
-+1, patch dropped, thanks Hariprasad for reporting it anyway.
-
-Lorenzo
-
-> Perhaps it's time to make checkpatch not complain about this anymore? Or
-> at least make this not a WARNING.
-> 
-> Thierry
-> 
-> > ./drivers/pci/controller/dwc/pcie-qcom.c:703:1-3: WARNING:
-> > PTR_ERR_OR_ZERO can be used
-> > ./drivers/pci/controller/dwc/pci-meson.c:185:1-3: WARNING:
-> > PTR_ERR_OR_ZERO can be used
-> > ./drivers/pci/controller/dwc/pci-meson.c:262:1-3: WARNING:
-> > PTR_ERR_OR_ZERO can be used
-> > ./drivers/pci/controller/dwc/pcie-kirin.c:141:1-3: WARNING:
-> > PTR_ERR_OR_ZERO can be used
-> > ./drivers/pci/controller/dwc/pcie-kirin.c:177:1-3: WARNING:
-> > PTR_ERR_OR_ZERO can be used
-> > ./drivers/pci/controller/dwc/pci-exynos.c:95:1-3: WARNING:
-> > PTR_ERR_OR_ZERO can be used
-> > 
-> > Signed-off-by: Hariprasad Kelam <hariprasad.kelam@gmail.com>
-> > ---
-> >  drivers/pci/controller/dwc/pci-exynos.c | 4 +---
-> >  drivers/pci/controller/dwc/pci-meson.c  | 8 ++------
-> >  drivers/pci/controller/dwc/pcie-kirin.c | 8 ++------
-> >  drivers/pci/controller/dwc/pcie-qcom.c  | 4 +---
-> >  drivers/pci/controller/pci-tegra.c      | 4 +---
-> >  5 files changed, 7 insertions(+), 21 deletions(-)
-> > 
-> > diff --git a/drivers/pci/controller/dwc/pci-exynos.c b/drivers/pci/controller/dwc/pci-exynos.c
-> > index cee5f2f..b0b4849 100644
-> > --- a/drivers/pci/controller/dwc/pci-exynos.c
-> > +++ b/drivers/pci/controller/dwc/pci-exynos.c
-> > @@ -92,10 +92,8 @@ static int exynos5440_pcie_get_mem_resources(struct platform_device *pdev,
-> >  
-> >  	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> >  	ep->mem_res->elbi_base = devm_ioremap_resource(dev, res);
-> > -	if (IS_ERR(ep->mem_res->elbi_base))
-> > -		return PTR_ERR(ep->mem_res->elbi_base);
-> >  
-> > -	return 0;
-> > +	return PTR_ERR_OR_ZERO(ep->mem_res->elbi_base);
-> >  }
-> >  
-> >  static int exynos5440_pcie_get_clk_resources(struct exynos_pcie *ep)
-> > diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-> > index e35e9ea..1ca78c2 100644
-> > --- a/drivers/pci/controller/dwc/pci-meson.c
-> > +++ b/drivers/pci/controller/dwc/pci-meson.c
-> > @@ -182,10 +182,8 @@ static int meson_pcie_get_mems(struct platform_device *pdev,
-> >  
-> >  	/* Meson SoC has two PCI controllers use same phy register*/
-> >  	mp->mem_res.phy_base = meson_pcie_get_mem_shared(pdev, mp, "phy");
-> > -	if (IS_ERR(mp->mem_res.phy_base))
-> > -		return PTR_ERR(mp->mem_res.phy_base);
-> >  
-> > -	return 0;
-> > +	return PTR_ERR_OR_ZERO(mp->mem_res.phy_base);
-> >  }
-> >  
-> >  static void meson_pcie_power_on(struct meson_pcie *mp)
-> > @@ -259,10 +257,8 @@ static int meson_pcie_probe_clocks(struct meson_pcie *mp)
-> >  		return PTR_ERR(res->general_clk);
-> >  
-> >  	res->clk = meson_pcie_probe_clock(dev, "pcie", 0);
-> > -	if (IS_ERR(res->clk))
-> > -		return PTR_ERR(res->clk);
-> >  
-> > -	return 0;
-> > +	return PTR_ERR_OR_ZERO(res->clk);
-> >  }
-> >  
-> >  static inline void meson_elb_writel(struct meson_pcie *mp, u32 val, u32 reg)
-> > diff --git a/drivers/pci/controller/dwc/pcie-kirin.c b/drivers/pci/controller/dwc/pcie-kirin.c
-> > index 9b59929..87cfdb4 100644
-> > --- a/drivers/pci/controller/dwc/pcie-kirin.c
-> > +++ b/drivers/pci/controller/dwc/pcie-kirin.c
-> > @@ -138,10 +138,8 @@ static long kirin_pcie_get_clk(struct kirin_pcie *kirin_pcie,
-> >  		return PTR_ERR(kirin_pcie->apb_sys_clk);
-> >  
-> >  	kirin_pcie->pcie_aclk = devm_clk_get(dev, "pcie_aclk");
-> > -	if (IS_ERR(kirin_pcie->pcie_aclk))
-> > -		return PTR_ERR(kirin_pcie->pcie_aclk);
-> >  
-> > -	return 0;
-> > +	return PTR_ERR_OR_ZERO(kirin_pcie->pcie_aclk);
-> >  }
-> >  
-> >  static long kirin_pcie_get_resource(struct kirin_pcie *kirin_pcie,
-> > @@ -174,10 +172,8 @@ static long kirin_pcie_get_resource(struct kirin_pcie *kirin_pcie,
-> >  
-> >  	kirin_pcie->sysctrl =
-> >  		syscon_regmap_lookup_by_compatible("hisilicon,hi3660-sctrl");
-> > -	if (IS_ERR(kirin_pcie->sysctrl))
-> > -		return PTR_ERR(kirin_pcie->sysctrl);
-> >  
-> > -	return 0;
-> > +	return PTR_ERR_OR_ZERO(kirin_pcie->sysctrl);
-> >  }
-> >  
-> >  static int kirin_pcie_phy_init(struct kirin_pcie *kirin_pcie)
-> > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> > index 0ed235d..6c421e6 100644
-> > --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> > @@ -700,10 +700,8 @@ static int qcom_pcie_get_resources_2_4_0(struct qcom_pcie *pcie)
-> >  		return PTR_ERR(res->ahb_reset);
-> >  
-> >  	res->phy_ahb_reset = devm_reset_control_get_exclusive(dev, "phy_ahb");
-> > -	if (IS_ERR(res->phy_ahb_reset))
-> > -		return PTR_ERR(res->phy_ahb_reset);
-> >  
-> > -	return 0;
-> > +	return PTR_ERR_OR_ZERO(res->phy_ahb_reset);
-> >  }
-> >  
-> >  static void qcom_pcie_deinit_2_4_0(struct qcom_pcie *pcie)
-> > diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/pci-tegra.c
-> > index 464ba25..3cd5069 100644
-> > --- a/drivers/pci/controller/pci-tegra.c
-> > +++ b/drivers/pci/controller/pci-tegra.c
-> > @@ -1129,10 +1129,8 @@ static int tegra_pcie_resets_get(struct tegra_pcie *pcie)
-> >  		return PTR_ERR(pcie->afi_rst);
-> >  
-> >  	pcie->pcie_xrst = devm_reset_control_get_exclusive(dev, "pcie_x");
-> > -	if (IS_ERR(pcie->pcie_xrst))
-> > -		return PTR_ERR(pcie->pcie_xrst);
-> >  
-> > -	return 0;
-> > +	return PTR_ERR_OR_ZERO(pcie->pcie_xrst);
-> >  }
-> >  
-> >  static int tegra_pcie_phys_get_legacy(struct tegra_pcie *pcie)
-> > -- 
-> > 2.7.4
-> > 
-
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+RnJvbTogTWFydGluIEJsdW1lbnN0aW5nbCA8bWFydGluLmJsdW1lbnN0aW5nbEBnb29nbGVtYWls
+LmNvbT4KClsgVXBzdHJlYW0gY29tbWl0IGYxNzM3NDdmZmZkZjAzN2M3OTE0MDVhYjRmMWVjMGVi
+MzkyZmM0OGUgXQoKSG9sZGluZyB0aGUgc3Bpbi1sb2NrIGZvciBhbGwgb2YgdGhlIGNvZGUgaW4g
+bWVzb25fcHdtX2FwcGx5KCkgY2FuCnJlc3VsdCBpbiBhICJCVUc6IHNjaGVkdWxpbmcgd2hpbGUg
+YXRvbWljIi4gVGhpcyBjYW4gaGFwcGVuIGJlY2F1c2UKY2xrX2dldF9yYXRlKCkgKHdoaWNoIGlz
+IGNhbGxlZCBmcm9tIG1lc29uX3B3bV9jYWxjKCkpIG1heSBzbGVlcC4KT25seSBob2xkIHRoZSBz
+cGluLWxvY2sgd2hlbiBtb2RpZnlpbmcgcmVnaXN0ZXJzIHRvIHNvbHZlIHRoaXMuCgpUaGUgcmVh
+c29uIHdoeSB3ZSBuZWVkIGEgc3Bpbi1sb2NrIGluIHRoZSBkcml2ZXIgaXMgYmVjYXVzZSB0aGUK
+UkVHX01JU0NfQUIgcmVnaXN0ZXIgaXMgc2hhcmVkIGJldHdlZW4gdGhlIHR3byBjaGFubmVscyBw
+cm92aWRlZCBieSBvbmUKUFdNIGNvbnRyb2xsZXIuIFRoZSBvbmx5IGZ1bmN0aW9ucyB3aGVyZSBS
+RUdfTUlTQ19BQiBpcyBtb2RpZmllZCBhcmUKbWVzb25fcHdtX2VuYWJsZSgpIGFuZCBtZXNvbl9w
+d21fZGlzYWJsZSgpIHNvIHRoZSByZWdpc3RlciByZWFkcy93cml0ZXMKaW4gdGhlcmUgbmVlZCB0
+byBiZSBwcm90ZWN0ZWQgYnkgdGhlIHNwaW4tbG9jay4KClRoZSBvcmlnaW5hbCBjb2RlIGFsc28g
+dXNlZCB0aGUgc3Bpbi1sb2NrIHRvIHByb3RlY3QgdGhlIHZhbHVlcyBpbgpzdHJ1Y3QgbWVzb25f
+cHdtX2NoYW5uZWwuIFRoaXMgY291bGQgYmUgbmVjZXNzYXJ5IGlmIHR3byBjb25zdW1lcnMgY2Fu
+CnVzZSB0aGUgc2FtZSBQV00gY2hhbm5lbC4gSG93ZXZlciwgUFdNIGNvcmUgZG9lc24ndCBhbGxv
+dyB0aGlzIHNvIHdlCmRvbid0IG5lZWQgdG8gcHJvdGVjdCB0aGUgdmFsdWVzIGluIHN0cnVjdCBt
+ZXNvbl9wd21fY2hhbm5lbCB3aXRoIGEKbG9jay4KCkZpeGVzOiAyMTFlZDYzMDc1M2QyZiAoInB3
+bTogQWRkIHN1cHBvcnQgZm9yIE1lc29uIFBXTSBDb250cm9sbGVyIikKU2lnbmVkLW9mZi1ieTog
+TWFydGluIEJsdW1lbnN0aW5nbCA8bWFydGluLmJsdW1lbnN0aW5nbEBnb29nbGVtYWlsLmNvbT4K
+UmV2aWV3ZWQtYnk6IFV3ZSBLbGVpbmUtS8O2bmlnIDx1LmtsZWluZS1rb2VuaWdAcGVuZ3V0cm9u
+aXguZGU+ClJldmlld2VkLWJ5OiBOZWlsIEFybXN0cm9uZyA8bmFybXN0cm9uZ0BiYXlsaWJyZS5j
+b20+ClNpZ25lZC1vZmYtYnk6IFRoaWVycnkgUmVkaW5nIDx0aGllcnJ5LnJlZGluZ0BnbWFpbC5j
+b20+ClNpZ25lZC1vZmYtYnk6IFNhc2hhIExldmluIDxzYXNoYWxAa2VybmVsLm9yZz4KLS0tCiBk
+cml2ZXJzL3B3bS9wd20tbWVzb24uYyB8IDI1ICsrKysrKysrKysrKysrKysrLS0tLS0tLS0KIDEg
+ZmlsZSBjaGFuZ2VkLCAxNyBpbnNlcnRpb25zKCspLCA4IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvcHdtL3B3bS1tZXNvbi5jIGIvZHJpdmVycy9wd20vcHdtLW1lc29uLmMKaW5k
+ZXggYzFlZDY0MWIzZTI2Ni4uZjZlNzM4YWQ3YmQ5MiAxMDA2NDQKLS0tIGEvZHJpdmVycy9wd20v
+cHdtLW1lc29uLmMKKysrIGIvZHJpdmVycy9wd20vcHdtLW1lc29uLmMKQEAgLTExMSw2ICsxMTEs
+MTAgQEAgc3RydWN0IG1lc29uX3B3bSB7CiAJY29uc3Qgc3RydWN0IG1lc29uX3B3bV9kYXRhICpk
+YXRhOwogCXZvaWQgX19pb21lbSAqYmFzZTsKIAl1OCBpbnZlcnRlcl9tYXNrOworCS8qCisJICog
+UHJvdGVjdHMgcmVnaXN0ZXIgKHdyaXRlKSBhY2Nlc3MgdG8gdGhlIFJFR19NSVNDX0FCIHJlZ2lz
+dGVyCisJICogdGhhdCBpcyBzaGFyZWQgYmV0d2VlbiB0aGUgdHdvIFBXTXMuCisJICovCiAJc3Bp
+bmxvY2tfdCBsb2NrOwogfTsKIApAQCAtMjM1LDYgKzIzOSw3IEBAIHN0YXRpYyB2b2lkIG1lc29u
+X3B3bV9lbmFibGUoc3RydWN0IG1lc29uX3B3bSAqbWVzb24sCiB7CiAJdTMyIHZhbHVlLCBjbGtf
+c2hpZnQsIGNsa19lbmFibGUsIGVuYWJsZTsKIAl1bnNpZ25lZCBpbnQgb2Zmc2V0OworCXVuc2ln
+bmVkIGxvbmcgZmxhZ3M7CiAKIAlzd2l0Y2ggKGlkKSB7CiAJY2FzZSAwOgpAQCAtMjU1LDYgKzI2
+MCw4IEBAIHN0YXRpYyB2b2lkIG1lc29uX3B3bV9lbmFibGUoc3RydWN0IG1lc29uX3B3bSAqbWVz
+b24sCiAJCXJldHVybjsKIAl9CiAKKwlzcGluX2xvY2tfaXJxc2F2ZSgmbWVzb24tPmxvY2ssIGZs
+YWdzKTsKKwogCXZhbHVlID0gcmVhZGwobWVzb24tPmJhc2UgKyBSRUdfTUlTQ19BQik7CiAJdmFs
+dWUgJj0gfihNSVNDX0NMS19ESVZfTUFTSyA8PCBjbGtfc2hpZnQpOwogCXZhbHVlIHw9IGNoYW5u
+ZWwtPnByZV9kaXYgPDwgY2xrX3NoaWZ0OwpAQCAtMjY3LDExICsyNzQsMTQgQEAgc3RhdGljIHZv
+aWQgbWVzb25fcHdtX2VuYWJsZShzdHJ1Y3QgbWVzb25fcHdtICptZXNvbiwKIAl2YWx1ZSA9IHJl
+YWRsKG1lc29uLT5iYXNlICsgUkVHX01JU0NfQUIpOwogCXZhbHVlIHw9IGVuYWJsZTsKIAl3cml0
+ZWwodmFsdWUsIG1lc29uLT5iYXNlICsgUkVHX01JU0NfQUIpOworCisJc3Bpbl91bmxvY2tfaXJx
+cmVzdG9yZSgmbWVzb24tPmxvY2ssIGZsYWdzKTsKIH0KIAogc3RhdGljIHZvaWQgbWVzb25fcHdt
+X2Rpc2FibGUoc3RydWN0IG1lc29uX3B3bSAqbWVzb24sIHVuc2lnbmVkIGludCBpZCkKIHsKIAl1
+MzIgdmFsdWUsIGVuYWJsZTsKKwl1bnNpZ25lZCBsb25nIGZsYWdzOwogCiAJc3dpdGNoIChpZCkg
+ewogCWNhc2UgMDoKQEAgLTI4Niw5ICsyOTYsMTMgQEAgc3RhdGljIHZvaWQgbWVzb25fcHdtX2Rp
+c2FibGUoc3RydWN0IG1lc29uX3B3bSAqbWVzb24sIHVuc2lnbmVkIGludCBpZCkKIAkJcmV0dXJu
+OwogCX0KIAorCXNwaW5fbG9ja19pcnFzYXZlKCZtZXNvbi0+bG9jaywgZmxhZ3MpOworCiAJdmFs
+dWUgPSByZWFkbChtZXNvbi0+YmFzZSArIFJFR19NSVNDX0FCKTsKIAl2YWx1ZSAmPSB+ZW5hYmxl
+OwogCXdyaXRlbCh2YWx1ZSwgbWVzb24tPmJhc2UgKyBSRUdfTUlTQ19BQik7CisKKwlzcGluX3Vu
+bG9ja19pcnFyZXN0b3JlKCZtZXNvbi0+bG9jaywgZmxhZ3MpOwogfQogCiBzdGF0aWMgaW50IG1l
+c29uX3B3bV9hcHBseShzdHJ1Y3QgcHdtX2NoaXAgKmNoaXAsIHN0cnVjdCBwd21fZGV2aWNlICpw
+d20sCkBAIC0yOTYsMTkgKzMxMCwxNiBAQCBzdGF0aWMgaW50IG1lc29uX3B3bV9hcHBseShzdHJ1
+Y3QgcHdtX2NoaXAgKmNoaXAsIHN0cnVjdCBwd21fZGV2aWNlICpwd20sCiB7CiAJc3RydWN0IG1l
+c29uX3B3bV9jaGFubmVsICpjaGFubmVsID0gcHdtX2dldF9jaGlwX2RhdGEocHdtKTsKIAlzdHJ1
+Y3QgbWVzb25fcHdtICptZXNvbiA9IHRvX21lc29uX3B3bShjaGlwKTsKLQl1bnNpZ25lZCBsb25n
+IGZsYWdzOwogCWludCBlcnIgPSAwOwogCiAJaWYgKCFzdGF0ZSkKIAkJcmV0dXJuIC1FSU5WQUw7
+CiAKLQlzcGluX2xvY2tfaXJxc2F2ZSgmbWVzb24tPmxvY2ssIGZsYWdzKTsKLQogCWlmICghc3Rh
+dGUtPmVuYWJsZWQpIHsKIAkJbWVzb25fcHdtX2Rpc2FibGUobWVzb24sIHB3bS0+aHdwd20pOwog
+CQljaGFubmVsLT5zdGF0ZS5lbmFibGVkID0gZmFsc2U7CiAKLQkJZ290byB1bmxvY2s7CisJCXJl
+dHVybiAwOwogCX0KIAogCWlmIChzdGF0ZS0+cGVyaW9kICE9IGNoYW5uZWwtPnN0YXRlLnBlcmlv
+ZCB8fApAQCAtMzI5LDcgKzM0MCw3IEBAIHN0YXRpYyBpbnQgbWVzb25fcHdtX2FwcGx5KHN0cnVj
+dCBwd21fY2hpcCAqY2hpcCwgc3RydWN0IHB3bV9kZXZpY2UgKnB3bSwKIAkJZXJyID0gbWVzb25f
+cHdtX2NhbGMobWVzb24sIGNoYW5uZWwsIHB3bS0+aHdwd20sCiAJCQkJICAgICBzdGF0ZS0+ZHV0
+eV9jeWNsZSwgc3RhdGUtPnBlcmlvZCk7CiAJCWlmIChlcnIgPCAwKQotCQkJZ290byB1bmxvY2s7
+CisJCQlyZXR1cm4gZXJyOwogCiAJCWNoYW5uZWwtPnN0YXRlLnBvbGFyaXR5ID0gc3RhdGUtPnBv
+bGFyaXR5OwogCQljaGFubmVsLT5zdGF0ZS5wZXJpb2QgPSBzdGF0ZS0+cGVyaW9kOwpAQCAtMzQx
+LDkgKzM1Miw3IEBAIHN0YXRpYyBpbnQgbWVzb25fcHdtX2FwcGx5KHN0cnVjdCBwd21fY2hpcCAq
+Y2hpcCwgc3RydWN0IHB3bV9kZXZpY2UgKnB3bSwKIAkJY2hhbm5lbC0+c3RhdGUuZW5hYmxlZCA9
+IHRydWU7CiAJfQogCi11bmxvY2s6Ci0Jc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgmbWVzb24tPmxv
+Y2ssIGZsYWdzKTsKLQlyZXR1cm4gZXJyOworCXJldHVybiAwOwogfQogCiBzdGF0aWMgdm9pZCBt
+ZXNvbl9wd21fZ2V0X3N0YXRlKHN0cnVjdCBwd21fY2hpcCAqY2hpcCwgc3RydWN0IHB3bV9kZXZp
+Y2UgKnB3bSwKLS0gCjIuMjAuMQoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlz
+dHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL2xpbnV4LWFtbG9naWMK
