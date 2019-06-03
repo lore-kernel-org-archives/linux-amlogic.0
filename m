@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
 	SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0FBF3C04AB5
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jun 2019 22:15:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A8063C04AB5
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jun 2019 22:18:53 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D95DE2671F
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jun 2019 22:15:52 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7CD5226A28
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jun 2019 22:18:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QtWP2suH";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="qBcbQOrH"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D95DE2671F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EEzFgsaJ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="swVmE75G"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7CD5226A28
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,67 +26,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=G+kX9AL2NIrEWepzGU2QRt/CAqumwbwWCrxGo9Nu2Gc=; b=QtWP2suHYxeYX/
-	MlhHmj4gVh9REG9o8V96nWwJjGkmk8uGwIcGwnqkuevS+3ZfOY6fXQzT45gcEBoWNtoylpJB4wnwm
-	z8ENAo+Vu9oWFCyUecI9s7+BqEAXAzielQIIahImkU8kBtnFlA+epGL9YDSjw/sCmVsH7p+Jvzkso
-	DsAirhMQVobuwCcaknRK4/STJMpmdTLNFBThxVmNh5d0RKlrrKywTbrtpcW4dbRTFxSUUqOl3d/Tf
-	CzErnnz7rhUDFd+bVpP/Hpb/TY2Hsva9m/PKN4W6V206z0AwM6E7LYUvAUpYJJ6MESPVRlfOTT7lf
-	xwxSIjVrN2Ss1Br7j7IQ==;
+	List-Owner; bh=MWGbw+MbBfXpHV4unPIA5Xe3x4B2CVxxkWva9ZncCRw=; b=EEzFgsaJNhXUcP
+	2Swsmw5gm/2+QjoxF2fSSWUHTk+vJV2FEtYLFlI26GijrONluFPdOXDWfL50gaTBJKQyA2RBKDEmC
+	a2G+l1VrZUDUJ30IqxG7xYW+ELQZf5dGYFK3TTebCaxnR4m3eXewBjSu9zgJntNSiBGheq9xglFV/
+	4iyFpHAF8XqkM0wTUDA8kXZlWHPyYqBpdznWQU9Ogl6bR9RznTo5VdwWGaZRM11Dx+KUUQNK9b6Fp
+	3pUlFF9c3jVgmxnrluCuNpog/LCJKMDA3DMtYdbaSr5momRhvT2T7lPAAhKxDOUL19hLi6K0IhUJK
+	4/In54dwzUHZFlssg1Eg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hXvF6-0007e7-4i; Mon, 03 Jun 2019 22:15:48 +0000
-Received: from mail-pl1-x642.google.com ([2607:f8b0:4864:20::642])
+	id 1hXvHz-0007x9-Ul; Mon, 03 Jun 2019 22:18:47 +0000
+Received: from mail-pg1-x544.google.com ([2607:f8b0:4864:20::544])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hXvEw-0007Vd-GB
- for linux-amlogic@lists.infradead.org; Mon, 03 Jun 2019 22:15:40 +0000
-Received: by mail-pl1-x642.google.com with SMTP id g9so7495869plm.6
- for <linux-amlogic@lists.infradead.org>; Mon, 03 Jun 2019 15:15:38 -0700 (PDT)
+ id 1hXvHx-0007wM-Do
+ for linux-amlogic@lists.infradead.org; Mon, 03 Jun 2019 22:18:47 +0000
+Received: by mail-pg1-x544.google.com with SMTP id 20so9078124pgr.4
+ for <linux-amlogic@lists.infradead.org>; Mon, 03 Jun 2019 15:18:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=AS+5msGMEX1/8R6Y37Be553kjtYeh4WbTw7nlVDQ3fw=;
- b=qBcbQOrH7/lAUooQqY7B354nOSfo8120KYrAagGRLluXFqf/5E8SAIO8ERKuFud2gE
- DrWecjYJNk/bl/ev7vgVtZOG7sM/RMZmAB+BubapSjxCH878TfewaumtVkfkG0jQbQST
- a772e/QIUaUCP1tbEY/5RdTLGx/POkz5uABZ9GTS22CyHk6+ZpJ20vj62+B6trv4A/Nq
- RDjLugBO9fExWsJmkkk9aGrASUEWNz+TVzULoJxaync77pFmd+mRHhuPFnw77c91y38j
- KZGFBsxGV5BIYnuogEDU6PDawdkkRN9orJTj9zTZgDforVxWoW7hDZm2sUBPctKOnY9z
- WTSw==
+ :mime-version; bh=lng3YCfvWetNAz2+44DaHDxjjqaun6E9sSpFqRzVz88=;
+ b=swVmE75Gx9Icf78XSIxk0xvUmHLSxKYl4ZJf6JejS2/x2g/+q3CBP1aebGn9Vh7xnq
+ HCt9rTiXWhZISUMAu/ATX+gJckPqApnN8GQH2CRXsvMb567x7Rr3miNccLFWWebgI061
+ 9qweJrPVvZ9ZWI0J82decXcuBhHRMOy5uTEBuhQdoMU1vS7NCJcEoDWh9Xz3VwgFWsU8
+ npBt6fkSqvCHEt9pUAT9lq84e8bQunHY1NuIMzcK+KvyCY32GrZ44PEzTQLw9B3l2QMD
+ 5jvv5crEUgKIM/SjAA4VIMl8AHEQTBT+Nhc1XB4u286VbUV3L5gs6SIvjnhUGYMYliaG
+ wjnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=AS+5msGMEX1/8R6Y37Be553kjtYeh4WbTw7nlVDQ3fw=;
- b=F7x5SOmF+qqKadTXjZdDbb12hAATRCzI3OR8CciH53+zvbUqzbTvvkOovFi+TrNOsa
- RGTcZDamAPjlSo9VKCh81Dq++xg+xvVwy2FrfZE+lmq0Wi9Kf4LapqGJWp8iXk2XKZRr
- JvcJk46cRexifdJbseQrwJWRb1stUNSnKjmkzdt10GMMPC2g7dcZc8j8vNv7aYvs1FeW
- THg75S1OhczEsw4kvVK3Uj9G0eM47uIG58qEBRjACYoaw0H1MhD2HjLV1Qh/4OfDfznP
- 56i9dMsGtoKVA7REfL/299idiZCfTFpOSzGh6RQ0yVUvSDMqYXmlgOnqmSR7t7x/KT4b
- xZmg==
-X-Gm-Message-State: APjAAAWsnuCeKBHI+0sgEIpH6d53NYO7Mw480nVx2KPElRpUyWwEiJu1
- z/P/tu+Onj+G3OD1fnUWxJQJCw==
-X-Google-Smtp-Source: APXvYqzW4UJMHXhVyffvyuhaOGHNRco6mfxCHAHPih8GypHJkUx+ZG8CTCoQM38gm5YIRTyALBFE5Q==
-X-Received: by 2002:a17:902:31a4:: with SMTP id
- x33mr4946785plb.331.1559600137824; 
- Mon, 03 Jun 2019 15:15:37 -0700 (PDT)
+ bh=lng3YCfvWetNAz2+44DaHDxjjqaun6E9sSpFqRzVz88=;
+ b=GSqBIm9+vfyhjLbrs+JER9pTs6mcbivuVt63l+prRi3VWGuKJjlBkab8fAdSaL2L7Q
+ ugD4El63LxtrGJWVB+a5LfC4jRHHtW26tUrmJcDlX/YWYT5X6zovCQdtIPye6cdOJR7M
+ 4hvPQJK/TklrRfpEGvICenkVtknnrRqChTeqor6Q50kRhe94+P3uShq/vgyTRrQCXtMr
+ 3MOme1l7egppJcMEj2ryHBVP/A/+Gm5sB0ZM6+ET7eJxoic71xcNp0fIqzVNSKlqtvEq
+ n3sXRHFvmhDqCHu7g4XYD83j3FrmVJMPb+eWplhja3HqnHWZQwHSknPwPDHNAZIIdYYY
+ R1Aw==
+X-Gm-Message-State: APjAAAXjd2TqX5P8ivZk1rCZI0xE5MMIvgge9Pdvs0qTzy/96cID8xmT
+ dAWV/QNdhy7+7aI4q4a9YJt2bA==
+X-Google-Smtp-Source: APXvYqz1uHqZZKUs881sATdhhromAIfPEI6o4+UmjIEM+WLgGPKPchtRCk86aJfCmtLcNlhsietZTQ==
+X-Received: by 2002:a63:680a:: with SMTP id d10mr31248979pgc.117.1559600324710; 
+ Mon, 03 Jun 2019 15:18:44 -0700 (PDT)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
  [71.197.186.152])
- by smtp.googlemail.com with ESMTPSA id d6sm14561224pjo.32.2019.06.03.15.15.37
+ by smtp.googlemail.com with ESMTPSA id f2sm12757024pgs.83.2019.06.03.15.18.44
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 03 Jun 2019 15:15:37 -0700 (PDT)
+ Mon, 03 Jun 2019 15:18:44 -0700 (PDT)
 From: Kevin Hilman <khilman@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH v2] arm64: dts: meson-g12a-x96-max: Add Gigabit Ethernet
- Support
-In-Reply-To: <CAFBinCD67XCpT-zmppJ3SSs5Q5ruse-otGqMLdbeaTnkr3PKiQ@mail.gmail.com>
-References: <20190527130043.3384-1-narmstrong@baylibre.com>
- <CAFBinCD67XCpT-zmppJ3SSs5Q5ruse-otGqMLdbeaTnkr3PKiQ@mail.gmail.com>
-Date: Mon, 03 Jun 2019 15:15:36 -0700
-Message-ID: <7hpnnuiad3.fsf@baylibre.com>
+To: hex dump <hexdump0815@gmail.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH 1/1] ARM: dts: meson8b: mxq: improve support for the
+ TRONFY MXQ S805
+In-Reply-To: <CAKTihDVyQqq82KKofCTKoUYJOyT6T738uq_A=kiEqahDx9YQfA@mail.gmail.com>
+References: <20190524181936.29470-1-martin.blumenstingl@googlemail.com>
+ <20190524181936.29470-2-martin.blumenstingl@googlemail.com>
+ <CAKTihDVyQqq82KKofCTKoUYJOyT6T738uq_A=kiEqahDx9YQfA@mail.gmail.com>
+Date: Mon, 03 Jun 2019 15:18:43 -0700
+Message-ID: <7hlfyiia7w.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190603_151538_545452_52A0E786 
-X-CRM114-Status: UNSURE (   7.02  )
+X-CRM114-CacheID: sfid-20190603_151845_462394_F9C0742F 
+X-CRM114-Status: UNSURE (   9.14  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -106,18 +106,43 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+hex dump <hexdump0815@gmail.com> writes:
 
-> On Mon, May 27, 2019 at 3:00 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+> Am Fr., 24. Mai 2019 um 20:19 Uhr schrieb Martin Blumenstingl <
+> martin.blumenstingl@googlemail.com>:
+>
+>> The TRONFY MXQ comes with either 1GB or 2GB RAM.
 >>
->> Enable the network interface of the X96 Mac using an external
->> Realtek RTL8211F gigabit PHY, needing the same broken-eee properties
->> as the previous Amlogic SoC generations.
+>> Both variants share (like most boards based on Amlogic reference
+>> designs):
+>> - 10/100 PHY (IC Plus IP101GR) with GPIOH_4 being the reset line and
+>>   GPIOH_3 the interrupt line
+>> - SD card slot with the card detection GPIO at CARD_6
+>> - VCCK is generated by PWM_C with a period of 1148ns and XTAL as input
+>>   clock
+>> - USB OTG exposed on one of the USB-A connectors
+>> - 4-port USB hub with 3 ports exposed to the outside
 >>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> There seem the multiple board revision out there according to various
+>> forum posts:
+>> - storage: eMMC or NAND flash
+>> - wifi: Ampak AP6210 or Realtek 8189
+>>
+>> Add support for the following functionality:
+>> - SoC temperature (hwmon)
+>> - changing the CPU voltage
+>> - Ethernet connectivity
+>> - SD card
+>> - USB
+>>
+>> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>>
+>
+> Tested-by: hexdump <hexdump0815@googlemail.com>
 
-Queued for v5.3,
+Thanks for testing.
+
+Queued for v5,3,
 
 Kevin
 
