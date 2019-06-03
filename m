@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
 	SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0B4EAC04AB5
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jun 2019 22:13:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0FBF3C04AB5
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jun 2019 22:15:53 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D312726025
-	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jun 2019 22:13:10 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D95DE2671F
+	for <linux-amlogic@archiver.kernel.org>; Mon,  3 Jun 2019 22:15:52 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="st/ZP5lx";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="l1rcmfDP"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D312726025
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QtWP2suH";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="qBcbQOrH"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D95DE2671F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,65 +26,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ebcq1es+cMfMU2IEKnjB645Q7JNDjOU5Q8GboKlkqC4=; b=st/ZP5lx+G6Gwx
-	C8dZ4UUFlpGv6ziq8iIXOHrgao9Q8L6zlQlcB7wzrV9s7QVljQE5QR+1Ie1MWuuAtwfvrfrilCUsP
-	4n5lIpt6lUDjMvZplsWk0hAr9UiG2U8RfQ3EI6+lxF0eVk7iaNOEaB6e+ueXLchdFkn4aB/MFvX9r
-	O2Hnl9kA+udzIN8cdy9BK958C6QlUtLI7p3I3mqFCPoRKu3ij8a8tEI7bfWmdF09DExf+4wNwpLo1
-	XoXcO9Bh1S4wDuIr9lTME70bwqmd4uoE8udSCjF9/K1mAsxycd0JXgpM2tTGwK+V9sWxu4IM9sz12
-	OqmHQ85FVSYWiX816ecQ==;
+	List-Owner; bh=G+kX9AL2NIrEWepzGU2QRt/CAqumwbwWCrxGo9Nu2Gc=; b=QtWP2suHYxeYX/
+	MlhHmj4gVh9REG9o8V96nWwJjGkmk8uGwIcGwnqkuevS+3ZfOY6fXQzT45gcEBoWNtoylpJB4wnwm
+	z8ENAo+Vu9oWFCyUecI9s7+BqEAXAzielQIIahImkU8kBtnFlA+epGL9YDSjw/sCmVsH7p+Jvzkso
+	DsAirhMQVobuwCcaknRK4/STJMpmdTLNFBThxVmNh5d0RKlrrKywTbrtpcW4dbRTFxSUUqOl3d/Tf
+	CzErnnz7rhUDFd+bVpP/Hpb/TY2Hsva9m/PKN4W6V206z0AwM6E7LYUvAUpYJJ6MESPVRlfOTT7lf
+	xwxSIjVrN2Ss1Br7j7IQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hXvCT-0005Zu-Nh; Mon, 03 Jun 2019 22:13:05 +0000
-Received: from mail-pg1-x543.google.com ([2607:f8b0:4864:20::543])
+	id 1hXvF6-0007e7-4i; Mon, 03 Jun 2019 22:15:48 +0000
+Received: from mail-pl1-x642.google.com ([2607:f8b0:4864:20::642])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hXvCM-0005Rn-74
- for linux-amlogic@lists.infradead.org; Mon, 03 Jun 2019 22:12:59 +0000
-Received: by mail-pg1-x543.google.com with SMTP id 20so9070821pgr.4
- for <linux-amlogic@lists.infradead.org>; Mon, 03 Jun 2019 15:12:58 -0700 (PDT)
+ id 1hXvEw-0007Vd-GB
+ for linux-amlogic@lists.infradead.org; Mon, 03 Jun 2019 22:15:40 +0000
+Received: by mail-pl1-x642.google.com with SMTP id g9so7495869plm.6
+ for <linux-amlogic@lists.infradead.org>; Mon, 03 Jun 2019 15:15:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=79eSeDNe0QggiFOBK9zOhkSkQmpm6VlHBwv5gxt7/p4=;
- b=l1rcmfDPB8xZh5ExX5/oeDXna+HD9CgZmCMVmFB+VvD6eo1htrqyiBs/GZ2Yfyausb
- 7UVbLj/TE/avZbpLI9r93eUtQgS6YbumWYhxeushwaJj2PIlRBfC4hNhJHGM9kFkd4dW
- /R3J9reECWGS2OKGZw8sgtQ2BRut6q7/R9cIpnaH1AHx2dye3s/W2eYBpvfO0DGL5/WW
- JwYQxnz9NnbpNZcn8bWtLsSsG+0LxdDexu9oaW6sQthC9v47ZYMuFRSh01BqhHMvPpQU
- Q7H1N+qDDJ8EJyFmo++BJsWng0iPSKfXQjjZr2AqAJMQabqIklXrGc94TowDzc40eflv
- JHkw==
+ :mime-version; bh=AS+5msGMEX1/8R6Y37Be553kjtYeh4WbTw7nlVDQ3fw=;
+ b=qBcbQOrH7/lAUooQqY7B354nOSfo8120KYrAagGRLluXFqf/5E8SAIO8ERKuFud2gE
+ DrWecjYJNk/bl/ev7vgVtZOG7sM/RMZmAB+BubapSjxCH878TfewaumtVkfkG0jQbQST
+ a772e/QIUaUCP1tbEY/5RdTLGx/POkz5uABZ9GTS22CyHk6+ZpJ20vj62+B6trv4A/Nq
+ RDjLugBO9fExWsJmkkk9aGrASUEWNz+TVzULoJxaync77pFmd+mRHhuPFnw77c91y38j
+ KZGFBsxGV5BIYnuogEDU6PDawdkkRN9orJTj9zTZgDforVxWoW7hDZm2sUBPctKOnY9z
+ WTSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=79eSeDNe0QggiFOBK9zOhkSkQmpm6VlHBwv5gxt7/p4=;
- b=poVQoXA2iEhuC4U0l0I1zs3CB880GcxqbcrWX69wNmdZmPYosDLf1MAsnI+w38uEY6
- DS1dBgCxRScwUCDy6F2R6L7jSUel6iOsEnPgUmbn8PQ0B+tYQrQ7VWAN3u0Qz3t3kAGu
- In7R7xyqFqhSzLVWr01iECNjvrxoB7yOoUIysq3JkGZDW4yLnvkrm5gm+HndjMFxsZrc
- ebl5DWiIkHfnwdQEQ38rRB5jD2PxvajiRMAX9BFKo9DWWs0UvqUrrvHWsDOPf398kr38
- VGled7UBoE+Eg2BPJ0oahnCtuvc2bNs9MLvQ0bjAYLoKwgVFMGXwwhy+brnaOH0gNULZ
- QQvw==
-X-Gm-Message-State: APjAAAUi6ZvIz2541w8PjUGzzL9RpMWOGbeTUFTggBrqagWJv+pE7LDn
- Im+o9VN98cqBvu7+r1D7IgkIbA==
-X-Google-Smtp-Source: APXvYqxkGMxpvLdkckFS/GH60j+jfBPnCXI7MzEX2EcX4S0nl6IWm9JFRgyJVj/6Qy9k7P3zcGg6OQ==
-X-Received: by 2002:a62:e511:: with SMTP id n17mr28496063pff.181.1559599977626; 
- Mon, 03 Jun 2019 15:12:57 -0700 (PDT)
+ bh=AS+5msGMEX1/8R6Y37Be553kjtYeh4WbTw7nlVDQ3fw=;
+ b=F7x5SOmF+qqKadTXjZdDbb12hAATRCzI3OR8CciH53+zvbUqzbTvvkOovFi+TrNOsa
+ RGTcZDamAPjlSo9VKCh81Dq++xg+xvVwy2FrfZE+lmq0Wi9Kf4LapqGJWp8iXk2XKZRr
+ JvcJk46cRexifdJbseQrwJWRb1stUNSnKjmkzdt10GMMPC2g7dcZc8j8vNv7aYvs1FeW
+ THg75S1OhczEsw4kvVK3Uj9G0eM47uIG58qEBRjACYoaw0H1MhD2HjLV1Qh/4OfDfznP
+ 56i9dMsGtoKVA7REfL/299idiZCfTFpOSzGh6RQ0yVUvSDMqYXmlgOnqmSR7t7x/KT4b
+ xZmg==
+X-Gm-Message-State: APjAAAWsnuCeKBHI+0sgEIpH6d53NYO7Mw480nVx2KPElRpUyWwEiJu1
+ z/P/tu+Onj+G3OD1fnUWxJQJCw==
+X-Google-Smtp-Source: APXvYqzW4UJMHXhVyffvyuhaOGHNRco6mfxCHAHPih8GypHJkUx+ZG8CTCoQM38gm5YIRTyALBFE5Q==
+X-Received: by 2002:a17:902:31a4:: with SMTP id
+ x33mr4946785plb.331.1559600137824; 
+ Mon, 03 Jun 2019 15:15:37 -0700 (PDT)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152]) by smtp.googlemail.com with ESMTPSA id
- i22sm15769445pfa.127.2019.06.03.15.12.56
+ [71.197.186.152])
+ by smtp.googlemail.com with ESMTPSA id d6sm14561224pjo.32.2019.06.03.15.15.37
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 03 Jun 2019 15:12:57 -0700 (PDT)
+ Mon, 03 Jun 2019 15:15:37 -0700 (PDT)
 From: Kevin Hilman <khilman@baylibre.com>
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH v2] arm64: dts: meson: g12a: Add hwrng node
-In-Reply-To: <CAFBinCBJO3J1wG1wa6X26VT6yGT_c_1XHOPiPpMRZGW8KKxopg@mail.gmail.com>
-References: <20190527125059.32010-1-narmstrong@baylibre.com>
- <CAFBinCBJO3J1wG1wa6X26VT6yGT_c_1XHOPiPpMRZGW8KKxopg@mail.gmail.com>
-Date: Mon, 03 Jun 2019 15:12:56 -0700
-Message-ID: <7hsgsqiahj.fsf@baylibre.com>
+Subject: Re: [PATCH v2] arm64: dts: meson-g12a-x96-max: Add Gigabit Ethernet
+ Support
+In-Reply-To: <CAFBinCD67XCpT-zmppJ3SSs5Q5ruse-otGqMLdbeaTnkr3PKiQ@mail.gmail.com>
+References: <20190527130043.3384-1-narmstrong@baylibre.com>
+ <CAFBinCD67XCpT-zmppJ3SSs5Q5ruse-otGqMLdbeaTnkr3PKiQ@mail.gmail.com>
+Date: Mon, 03 Jun 2019 15:15:36 -0700
+Message-ID: <7hpnnuiad3.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190603_151258_249557_C3E8F9CD 
-X-CRM114-Status: UNSURE (   7.89  )
+X-CRM114-CacheID: sfid-20190603_151538_545452_52A0E786 
+X-CRM114-Status: UNSURE (   7.02  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -106,36 +108,16 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> On Mon, May 27, 2019 at 2:51 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+> On Mon, May 27, 2019 at 3:00 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >>
->> The Amlogic G12A has the hwrng module at the end of an unknown
->> "EFUSE" bus.
->>
->> The hwrng is not enabled on the vendor G12A DTs, but is enabled on
->> next generation SM1 SoC family sharing the exact same memory mapping.
->>
->> Let's add the "EFUSE" bus and the hwrng node.
->>
->> This hwrng has been checked with the rng-tools rngtest FIPS tool :
->> rngtest: starting FIPS tests...
->> rngtest: bits received from input: 1630240032
->> rngtest: FIPS 140-2 successes: 81436
->> rngtest: FIPS 140-2 failures: 76
->> rngtest: FIPS 140-2(2001-10-10) Monobit: 10
->> rngtest: FIPS 140-2(2001-10-10) Poker: 6
->> rngtest: FIPS 140-2(2001-10-10) Runs: 26
->> rngtest: FIPS 140-2(2001-10-10) Long run: 34
->> rngtest: FIPS 140-2(2001-10-10) Continuous run: 0
->> rngtest: input channel speed: (min=3.784; avg=5687.521; max=19073.486)Mibits/s
->> rngtest: FIPS tests speed: (min=47.684; avg=52.348; max=52.835)Mibits/s
->> rngtest: Program run time: 30000987 microseconds
+>> Enable the network interface of the X96 Mac using an external
+>> Realtek RTL8211F gigabit PHY, needing the same broken-eee properties
+>> as the previous Amlogic SoC generations.
 >>
 >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 Queued for v5.3,
-
-Thanks,
 
 Kevin
 
