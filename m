@@ -2,146 +2,87 @@ Return-Path: <SRS0=wdVM=UE=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+	SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 82ED3C282DE
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jun 2019 07:36:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 91459C282DE
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jun 2019 09:02:46 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5843C2075C
-	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jun 2019 07:36:25 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 677C12075C
+	for <linux-amlogic@archiver.kernel.org>; Wed,  5 Jun 2019 09:02:46 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mdoLeN7K";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="dQ9jnZq5"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5843C2075C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fEBMaoe1";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="XKoGucDR"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 677C12075C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fnGB6EH8eBjGbQC6uS92JatQ5m8tTuiZ4rw+h+ESECc=; b=mdoLeN7KdtRn7O
-	l06/1dcQxF9y4AADspTnqtmQhwYItGsUh8BPyXQ3Rdf95PlqApdTJQtHwSkigucxj+wqEQr0hwOs8
-	mJLa96hXnYaTfpj0Le6Xr/sf1e3Gdm4DaSNuAtFE8oaaUF82+7+UZYdT7VfRYzB9FkPCvvJ4Y2CoA
-	Fw1jR/hkdo0UyoyuAWdgT+PzubclNhXaZZfnTHdbjGPRV4hHc3oK2xSYHeyzCPZvp9MoGb1JvYi4P
-	i7Xa//hm7tbKkiwgRC/GmO/bY9y7X2AYzU2n5lbkeBMR5hSEJkdfwYi9ke2Y1kn8Ns992Tngl677S
-	8iKnnDUr58gd7nPgJGgw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=IZVFV25w5RUKzRKvfpw8wWNfHM1A3AxNng805ngPTVg=; b=fEBMaoe1YTuwVm
+	B0uUQFlFuzeIxgIit2meqkg9XHczvncwnJs6hzHAqnrybm4+Okup2YloxEjFyZtkKyxjT18/OgU+t
+	TUU9w03ZHhSnmT9Gz/JeGDSkQSQYZwTz2CELKvMZ8FoiuSvu79KL26KjmFjbHxlGZ2cMEL3sPoAzw
+	Rxyrl1F3npEuG4H2Eh1y7ViiLq/zz4QYcXBXFl63rfT6ahQ5pPZSKWcvzb0W8Xytb17rqCR1SbTIa
+	ytk8kVSyKF944vwx3BV0HqP0IF5DmunimIOZQHsbykq0Zp0oTDUMPw+RIrJf3Ihd31vY78Zp8zIqs
+	ilmaff6HU8LdaDSvaokw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hYQT6-0005ud-EA; Wed, 05 Jun 2019 07:36:20 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1hYRoM-0005hh-5n; Wed, 05 Jun 2019 09:02:22 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hYQSu-0005dQ-Fq
- for linux-amlogic@lists.infradead.org; Wed, 05 Jun 2019 07:36:11 +0000
-Received: by mail-wm1-x341.google.com with SMTP id 22so1152853wmg.2
- for <linux-amlogic@lists.infradead.org>; Wed, 05 Jun 2019 00:36:08 -0700 (PDT)
+ id 1hYRoI-0005eb-RE
+ for linux-amlogic@lists.infradead.org; Wed, 05 Jun 2019 09:02:20 +0000
+Received: by mail-wr1-x442.google.com with SMTP id d18so18606348wrs.5
+ for <linux-amlogic@lists.infradead.org>; Wed, 05 Jun 2019 02:02:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=wU7x45PzeBWtVxHiaVKa0wWI18hA5Maz4gefEy0Ez8U=;
- b=dQ9jnZq5OoFxuUyhWDKEqPmkRUvZqf6CZcyZJFCEfe9mPh6AgwL5PVmVOD9Vnvc/fc
- YJR5hhisnjeaUcjysmARyZQfaGBSjMSl0x0wd0lcL5O0+7JdJ/2p0FDBZs2EgUkEd/MJ
- Dz9Laz/9bLYBkqfREKh1CTyft8p5+dkwht0m2IfGhhE4QRFUCUzb8+edUZYiShxO5IpG
- zLbE5Jz9y/TlmRdg1XEKjgpRZZeOTNo4+4GeGnyJdofYBOLRHE24H8N47kvIUWRDMxDh
- lX/6tqhBPJNxdBZPa6ukV75J4NQRVWYttIcuaU5F3zJ3qd+6SYrlx5uegyi6kct/sEGE
- Mo0Q==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=W0UkzujEUwohNcf3VeH5h/qlE6pjw3A5B8Q608W8mEU=;
+ b=XKoGucDRE59ctdALi55KnuMB2pfY4g1Lt2zBA4dvnGGpwv8Z5gwHb05HCPJDTYlsbv
+ 5TEfJkhJycV628Z7tr8w84ThBaNxy//SPoHYuGOJ0VhosZmyjqvffKiCo1uNMfH2phSz
+ 4/Z+AWW56a/f6ql6qLBNzuywl75gEeAD102Rkce3ha+JURcmzY76hw5YCbVZat/ARTKv
+ VjXv0W9LPviK5+3e65+wQ/+9r0PD/i6Wmq0HNSuHy4K90cwTLPxRfj32qo9BRccs76SB
+ tVQbQBCNFgicGamR/5EkDT2QMolDsY0paIHmFUR1OewGP2Mvn3M1z7hZlsdU5/d8O5hX
+ WKlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=wU7x45PzeBWtVxHiaVKa0wWI18hA5Maz4gefEy0Ez8U=;
- b=LeqsCQ11mWW3GVgLvKANoC1YtADbXYodth0ZqLPtn1CQqYoGmFLDTlG04TyR3+uOAF
- uvXPCbmEBe1S9UvL1OxD2gwT+LRzFTLlNYkyq84pE7IRIUqCDrNNkhX/x0kEwwbW5fP0
- qOARamnxmB1RM8vTsllfyUMtwJIBcTBt7fQt6Q1PfvJkRfOTXvnpe2++31Iu584Xx83B
- Tam+UTv+25DYE/GxJI+jXUoUtWmtkqnylX6x4ZWR3auTjeXBZ0pGdiwHsvFBshNkF/5U
- pzFsOnaH/IM7LaawkT3i6+rGcYt1BkcV1MmwrixV4op1gPsI28ml+z/nC7JffrK0RU8g
- kOAA==
-X-Gm-Message-State: APjAAAWxNDvLhH6LVEbzMIwooNPNXnE+SuSxVMIwjvNXTpUFTiW74LAS
- Z81+TVvKNeeE0EAVoNT/l/S6nw==
-X-Google-Smtp-Source: APXvYqxroyA6pGjIcaQXlQ7NCDQ+yWMiXWNfHslpBxOsOTGOeHsuNOBn7+LlBhtDWvxjkTAS+ZVR9Q==
-X-Received: by 2002:a1c:3886:: with SMTP id f128mr9986918wma.151.1559720166729; 
- Wed, 05 Jun 2019 00:36:06 -0700 (PDT)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id a3sm13399107wmb.35.2019.06.05.00.36.05
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 05 Jun 2019 00:36:06 -0700 (PDT)
-Subject: Re: [PATCH 2/4] arm64: dts: meson-g12a-x96-max: add 32k clock to
- bluetooth node
-To: khilman@baylibre.com
-References: <20190603094740.12255-1-narmstrong@baylibre.com>
- <20190603094740.12255-3-narmstrong@baylibre.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=W0UkzujEUwohNcf3VeH5h/qlE6pjw3A5B8Q608W8mEU=;
+ b=e5e9qcm3OEQoGafd0D6YpFbR3pkITs348yhx+3Kx6jJwGXnTQMgYrenjUhgl3VFIhB
+ YELSvAsMxNKMAeUqbfVxHGf4iw4oWk90DdtO/WG8UKA18y17ea97M3GQysjBirpAJ8m4
+ uwDamoj8hWlrBe6ihCDS1OcUC4x4HErDHIMR0AIL91u2lm5ywGpu4Gz+uE8sJ8KEzRcO
+ Dxpb5CPsj8gyL0TRkmmv2b36O/YrTSl2GcCwxr1MybsRkibMVIayXqW60if44Pv/pBK2
+ kQ7b9+RwE0sphXvhuWo1oyyRswTTxEORmveaFhpN9dEpjnXLTpP58olRK3DOmkn/He++
+ eylQ==
+X-Gm-Message-State: APjAAAVnQOdzaEqzls2C9yEvXRZhIUK7OLTmiToi0B3MgliJODpvo1Is
+ 2yoY/k3wH+Rf3WF7xqzLDMKrNg==
+X-Google-Smtp-Source: APXvYqwa2RNAJJwxMJ6JTg0mjevN5vtgAE668gbRTlJwHBOWetytUnE20xaQcYxq0qE3ERpFLm+yug==
+X-Received: by 2002:adf:fc87:: with SMTP id g7mr20918125wrr.229.1559725337237; 
+ Wed, 05 Jun 2019 02:02:17 -0700 (PDT)
+Received: from bender.baylibre.local
+ (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id c129sm2697842wma.27.2019.06.05.02.02.16
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+ Wed, 05 Jun 2019 02:02:16 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <86183881-4d2d-f94e-4057-51878777af0d@baylibre.com>
-Date: Wed, 5 Jun 2019 09:36:05 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+To: kishon@ti.com
+Subject: [PATCH v2] phy: meson-g12a-usb3-pcie: disable locking for cr_regmap
+Date: Wed,  5 Jun 2019 11:02:15 +0200
+Message-Id: <20190605090215.29905-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <20190603094740.12255-3-narmstrong@baylibre.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190605_003609_037212_559C7E9D 
-X-CRM114-Status: GOOD (  16.39  )
+X-CRM114-CacheID: sfid-20190605_020218_936005_481BBBC3 
+X-CRM114-Status: GOOD (  11.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -154,42 +95,73 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
+ linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 03/06/2019 11:47, Neil Armstrong wrote:
-> The 32k low power clock is necessary for the bluetooth part of the
-> combo module to initialize correctly, simply add the same clock we
-> use for the sdio pwrseq.
-> 
-> Fixes: c5c9c7cff269 ("arm64: dts: meson-g12a-x96-max: Enable BT Module")
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-> index 2c10ebfd9e7c..aa9da5de5c2d 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
-> @@ -206,6 +206,8 @@
->  	bluetooth {
->  		compatible = "brcm,bcm43438-bt";
->  		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-> +		clocks = <&wifi32k>;
-> +		clock-names = "lpo";
->  	};
->  };
->  
-> 
+Locking is not needed for the phy_g12a_usb3_pcie_cr_bus_read/write() and
+currently it causes the following BUG because of the usage of the
+regmap_read_poll_timeout() running in spinlock_irq, configured by regmap fast_io.
 
+Simply disable locking in the cr_regmap config since it's only used from the
+PHY init callback function.
 
-The Fixes is wrong... wifi32k was not present at this time.
+BUG: sleeping function called from invalid context at drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c:85
+in_atomic(): 1, irqs_disabled(): 128, pid: 60, name: kworker/3:1
+[snip]
+Workqueue: events deferred_probe_work_func
+Call trace:
+ dump_backtrace+0x0/0x190
+ show_stack+0x14/0x20
+ dump_stack+0x90/0xb4
+ ___might_sleep+0xec/0x110
+ __might_sleep+0x50/0x88
+ phy_g12a_usb3_pcie_cr_bus_addr.isra.0+0x80/0x1a8
+ phy_g12a_usb3_pcie_cr_bus_read+0x34/0x1d8
+ _regmap_read+0x60/0xe0
+ _regmap_update_bits+0xc4/0x110
+ regmap_update_bits_base+0x60/0x90
+ phy_g12a_usb3_pcie_init+0xdc/0x210
+ phy_init+0x74/0xd0
+ dwc3_meson_g12a_probe+0x2cc/0x4d0
+ platform_drv_probe+0x50/0xa0
+ really_probe+0x20c/0x3b8
+ driver_probe_device+0x68/0x150
+ __device_attach_driver+0xa8/0x170
+ bus_for_each_drv+0x64/0xc8
+ __device_attach+0xd8/0x158
+ device_initial_probe+0x10/0x18
+ bus_probe_device+0x90/0x98
+ deferred_probe_work_func+0x94/0xe8
+ process_one_work+0x1e0/0x338
+ worker_thread+0x230/0x458
+ kthread+0x134/0x138
+ ret_from_fork+0x10/0x1c
 
-Neil
+Fixes: 36077e16c050 ("phy: amlogic: Add Amlogic G12A USB3 + PCIE Combo PHY Driver")
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c b/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
+index 6233a7979a93..ac322d643c7a 100644
+--- a/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
++++ b/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
+@@ -188,7 +188,7 @@ static const struct regmap_config phy_g12a_usb3_pcie_cr_regmap_conf = {
+ 	.reg_read = phy_g12a_usb3_pcie_cr_bus_read,
+ 	.reg_write = phy_g12a_usb3_pcie_cr_bus_write,
+ 	.max_register = 0xffff,
+-	.fast_io = true,
++	.disable_locking = true,
+ };
+ 
+ static int phy_g12a_usb3_init(struct phy *phy)
+-- 
+2.21.0
+
 
 _______________________________________________
 linux-amlogic mailing list
