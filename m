@@ -2,23 +2,22 @@ Return-Path: <SRS0=ULSD=UF=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 600F4C04AB5
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2019 19:47:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B31C4C04AB5
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2019 19:52:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 318D92089E
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2019 19:47:34 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8B791206BB
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2019 19:52:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Jz6sNcr3";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="hlCoftlD";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="JXj2zIOF"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 318D92089E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iznyAMHl";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="lfcvSghZ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8B791206BB
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,75 +26,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ypbwW0ZDFiE8uHm8IagTVV+p5s/vUoSLHxM+018ZBx0=; b=Jz6sNcr3aXlwbl
-	6krLnR6+YXkcCEURvntAT3XcjYwcFjzNTdHNLx6Xm0eOV/33qFOrq0Pgf0irl+bNxiF24h1oPuK0c
-	6X/asLVNLS7xQz5cUT1f1TCvxSG7C2BPp900wrwGR+2rXdNOINij2jDS5VLjf20db8FCx52nx7bZb
-	oGZmP2wJm7GsoPt0gSGvhzI10B2YqBk7ct6gAFD3XhHF9FyWENcQn/QIluVt+gSRR6BmDSohOetLi
-	dI0juHhpBAUap8M7ND3ziVBgc6ByHKYl7/7/hSAb+d+IulhBWS3nnmU/35wt9HmYpWeWlzJWPoO1C
-	kJfgDvl0U7htdISXLbbg==;
+	List-Owner; bh=LktHbKIiYJTZz6486kSan04X62qNJhH6YhEikOwn9yA=; b=iznyAMHlv3//ug
+	AMpSRTVtwCtURZc68qydLg4ePaQdV3sefFDbiO3s2D+V6oGFjeBUqSmKBjQFi1Im43F0DAoog3ZWF
+	e+zUtw6IdCAtpYMl0TiBBl6D0RBCGYOb9wB1UzB66h9Q6Jd6BvWVVC+wzRobpVECSCixIvgk50Ikq
+	0LmsMLBxRvxdbMySWUWo2E4gOAfnIJl96GJ9NA5YnuPkXzTFKVD0JBHd3QFkAwH1TmdbQH91rcxGr
+	oa8NTK/f8GUuceWedC4IXSZYZk50+DWYbn664sllxpSa8KHY47E0LkKrG/0PFROQGr/xXQDZU4d6q
+	+JRdvpqkKhzVT1n0qOgA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hYyMD-0004uv-Mc; Thu, 06 Jun 2019 19:47:29 +0000
-Received: from merlin.infradead.org ([2001:8b0:10b:1231::1])
+	id 1hYyQx-0006Xh-Ru; Thu, 06 Jun 2019 19:52:23 +0000
+Received: from mail-oi1-x241.google.com ([2607:f8b0:4864:20::241])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hYyM9-0004nj-G3; Thu, 06 Jun 2019 19:47:25 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=merlin.20170209; h=Content-Type:Cc:To:Subject:Message-ID:
- Date:From:In-Reply-To:References:MIME-Version:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=8wGfAmKyoK9bVApTeJ1ikTLIPBAYdTrgDhJ6H/YeNVg=; b=hlCoftlD4vXaRZDY67sAXvm8V
- OQ8QaSeCUx0r/Fw5MLgK70sscCrAeobQfYhM+Rw/ITkQBPPaxBBw3fXTuWxDns8n4qyq2182EV1rV
- LbSwI/3IHApyncflZ8uBKcfD2+qtFBy1LKNQ+u44mC6A570tRya6zW9SZ4PBlgd1OnjrYFcuzqdt9
- u/Lph9cpAkLXXkNMdIpsxg9rctAbO4uCeCu5v/x72UV0Gx+ok35OutSGcJhD7h/WBYqZgPcf+ncxc
- /EADL9R7fNK2ZY8HrHjYH225UwdExkVYAwAuf7gmI+SdiTspK8AAqlc6nu6EXcEOHabVYsnKTSZ1X
- RT+fmWvUQ==;
-Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
- by merlin.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hYyM6-0005P2-Pa; Thu, 06 Jun 2019 19:47:23 +0000
-Received: by mail-ot1-x344.google.com with SMTP id z23so3089018ote.13;
- Thu, 06 Jun 2019 12:47:20 -0700 (PDT)
+ id 1hYyQv-0006XL-Bc; Thu, 06 Jun 2019 19:52:22 +0000
+Received: by mail-oi1-x241.google.com with SMTP id q186so2502753oia.0;
+ Thu, 06 Jun 2019 12:52:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=8wGfAmKyoK9bVApTeJ1ikTLIPBAYdTrgDhJ6H/YeNVg=;
- b=JXj2zIOFKEDcuxGqOXtaHzoMslRkH8F57wmo6Zg/C6Z48YMAJJzLyoK0y6q78VFXce
- sdIPp8OqGlBPq3V7mf87QV2UbHH7BIm1Fc3aHqwzCA+oljMlGYlHfkc3TI0I484O1K1S
- OXOMxDp8X8FWBYd/ysRIABwzI1ccbF3aeS12gtq8RJ0gFh57xBlSAoFVpPOzPKUEw+nG
- KtQmVAhtVZFxD6tK91fpiuOjaUaptaq/Q5Ev9mslUgwgexLbnMK5+ugOd7rQ7C1RqPlX
- xDPvBzguKkH0bAG2BPJA6lYOrrj/kAtz+rZsKRLu43r3SFAQxC7HLLwcCN35PWjP9wmm
- z7tg==
+ :cc; bh=AlGSYF3m5pRxceZLV64eIzJ0xhu9mM8TneWE5MMLmMo=;
+ b=lfcvSghZm2oCpWdLgEjYrXEVmh8XE+PsjXfnX3AHi/5voOTkTXZLCTq+seq0WuXEel
+ gtGQ11Z1rgR+Mt1F+lcn7IABiI9vZHDD7nU3a/iM3t7PwlXEjvfNN8k3KEdGWjJ5BYj+
+ umcRd8UAGrHMIxhJCDMnC/d21mFu5JvnYzfihDu+ibXE6SB1fm6V8AFy2/etSwZeFX5s
+ d/M1M2xQrQYxWua9RLY+hs5y2z8gmaM7EMo1FUTViNaC3BmcGNIbRNSyHc1CRuNrZ8NZ
+ hugYIf7UcC+Tt6/EuroDU5yesWKZEiTJ+nbfBdiqkgs9ssxc4eaooHZgdb1B837ArR+w
+ CF4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=8wGfAmKyoK9bVApTeJ1ikTLIPBAYdTrgDhJ6H/YeNVg=;
- b=IpbYLBonqlHM1aVmGgpyJqkFhyllioYZy5w/iW17HlhhCUUTVprZGjSmz4SDKoQZVF
- gh4zmhAU3gx3ql+BTVF38NyTvJKHvFvV1WlyW8a5XauQJUlS0Dw5Yv9GCV1Ks+cBLXhd
- 6Kkm/flkEEi8wUZrJqMc8OeSQ9DkXCwf5sHV61w3qOIiapNAH6Dup/qHsDyoSInQ4MaX
- qu+vVHF3J3wAQ2ha8j1P4aMWWSo2iUv/PJ9xz6I5AQ431uy/LMbKYfd9YFXfoi1fRfAN
- qa8VLIV++EUAszn5A/GXnqRHy27Am/C9/W3gWedfdKYYl5CF4U90R4WMtKXB4BCwl9hm
- IfeA==
-X-Gm-Message-State: APjAAAXI1t0k+Rz5/gThbA8rwm33ikCBmIF8sYxfHpis3/n8j1+FBxmJ
- rezLTQvo2d3Iv0N4a8kksgORQ2W7F+IryfCFZQQ=
-X-Google-Smtp-Source: APXvYqzuT2RwZC2LIrDFehW31R9jvGbrmRuApk42Pg+UA3g4byiNms1PcIULKfXunwPAiHdFS6Np+7uvtr1uGqZj/+s=
-X-Received: by 2002:a9d:14a:: with SMTP id 68mr15424609otu.96.1559850438867;
- Thu, 06 Jun 2019 12:47:18 -0700 (PDT)
+ bh=AlGSYF3m5pRxceZLV64eIzJ0xhu9mM8TneWE5MMLmMo=;
+ b=CmBsEIZmwHARuj6VBzo1u9NdoKAZdVPGIEem2EG+czgGljgs5kaQqFbhSW4yxBWYel
+ K3Rq+zCVSkNakttFKgZpwg0rywukuxzcZgS425sjrc4j1vOJDlBu/7rybgHAYrAx68r2
+ mBCNnOPVA8h9daMA1fsdTFoxLWadu4SntQ9K3Zg//p0e7D0hj+9GPpkX2uXLCBavmhyy
+ qXo7xqMUf7v78EUAbNfRHlHECWS8s/IGL8HeKh7b8Av7AZAKY9Ge0McNgy7AONtqgERQ
+ O2exvro5kIBlgIDHLd9jMTFOnvvUtu3YLPGOV+v7u580ijuwJHI7vV0+j3tFKtNC1vSP
+ EBJA==
+X-Gm-Message-State: APjAAAXQMu9MKqMwuj27B1VCu4iD7FGzaZ4tFDPKch8NTQIrRAVhdxpq
+ o8UAvEJi18vcFJvOdR4Dt9wfKgK9Pczghl31MzetXg==
+X-Google-Smtp-Source: APXvYqzL1PgG0HqdxQzrFaOHvyXNmJ5u5UlGgFrUhioJzm2uaHHH1bWzUlTIRoEmVXlAGFJ1/lpYoiz4ZwltUZn9/8w=
+X-Received: by 2002:aca:4403:: with SMTP id r3mr1313417oia.39.1559850740303;
+ Thu, 06 Jun 2019 12:52:20 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190603094740.12255-1-narmstrong@baylibre.com>
- <20190603094740.12255-3-narmstrong@baylibre.com>
-In-Reply-To: <20190603094740.12255-3-narmstrong@baylibre.com>
+References: <20190527132200.17377-1-narmstrong@baylibre.com>
+ <20190527132200.17377-3-narmstrong@baylibre.com>
+ <CAFBinCBTK=6OW4kG=i0KZe-+AzGVXyou9g0frnh9yqLsdmB5+w@mail.gmail.com>
+ <b54c7899-95b3-1202-d70b-9b8ee2955164@baylibre.com>
+ <CAFBinCB9PZ-mjyjCafK24cH3sN5E1r4vt1z=m+uvkHsmRW2PFQ@mail.gmail.com>
+ <bbf3c69f-8695-d665-c7ca-587b7e77eb4f@baylibre.com>
+In-Reply-To: <bbf3c69f-8695-d665-c7ca-587b7e77eb4f@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Thu, 6 Jun 2019 21:47:07 +0200
-Message-ID: <CAFBinCAR47VuoDoWerX4YZ4=v2G4+L0MW9kP0bEhrLWaWOPdfA@mail.gmail.com>
-Subject: Re: [PATCH 2/4] arm64: dts: meson-g12a-x96-max: add 32k clock to
- bluetooth node
+Date: Thu, 6 Jun 2019 21:52:09 +0200
+Message-ID: <CAFBinCA5tjZ9hxbbQkHE22BYMqQboE4UQ3Vk=w9-zCeQLn6OOA@mail.gmail.com>
+Subject: Re: [PATCH 02/10] arm64: dts: meson-gxm-khadas-vim2: fix Bluetooth
+ support
 To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190606_154722_859236_42B5D34B 
-X-CRM114-Status: UNSURE (   7.96  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190606_125221_425177_509F6EEC 
+X-CRM114-Status: GOOD (  14.66  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -107,23 +94,57 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: khilman@baylibre.com, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+Cc: khilman@baylibre.com, Christian Hewitt <christianshewitt@gmail.com>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jun 3, 2019 at 11:48 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+On Mon, Jun 3, 2019 at 10:57 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
-> The 32k low power clock is necessary for the bluetooth part of the
-> combo module to initialize correctly, simply add the same clock we
-> use for the sdio pwrseq.
+> Hi,
 >
-> Fixes: c5c9c7cff269 ("arm64: dts: meson-g12a-x96-max: Enable BT Module")
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-with the correct fixes tag:
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> On 29/05/2019 20:08, Martin Blumenstingl wrote:
+> > On Wed, May 29, 2019 at 12:25 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+> >>
+> >> On 27/05/2019 20:36, Martin Blumenstingl wrote:
+> >>> On Mon, May 27, 2019 at 3:22 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+> >>>>
+> >>>> From: Christian Hewitt <christianshewitt@gmail.com>
+> >>>>
+> >>>> - Remove serial1 alias
+> >>>> - Add support for uart_A rts/cts
+> >>>> - Add bluetooth uart_A subnode qith shutdown gpio
+> >>> I tried this on my own Khadas VIM2:
+> >>> Bluetooth: hci0: command 0x1001 tx timeout
+> >>> Bluetooth: hci0: BCM: Reading local version info failed (-110)
+> >>>
+> >>> I'm not sure whether this is specific to my board or what causes this.
+> >>
+> >> Which kernel version ?
+> > 5.2-rc2
+> >
+> > it's a Khadas VIM2 Basic (thus it has a AP6356S), board revision v1.2
+>
+> Can you try with :
+>
+> clocks = <&wifi32k>;
+> clock-names = "lpo";
+>
+> added in the bluetooth node ?
+that did it!
+
+I think I also found the explanation why:
+on my Khadas VIM2 SD card I don't have linux-firmware installed.
+Thus the wifi driver will disable the 32kHz LPO clock again, breaking Bluetooth
+
+are you going to send patches for the existing boards or do you want
+someone else to do it?
+
+
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
