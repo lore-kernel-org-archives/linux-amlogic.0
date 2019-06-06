@@ -2,89 +2,84 @@ Return-Path: <SRS0=ULSD=UF=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED autolearn=ham autolearn_force=no
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C5E41C04AB5
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2019 17:30:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 26CCAC04AB5
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2019 19:17:06 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9F0592083D
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2019 17:30:27 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 007B720872
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2019 19:17:05 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tL9DrMb2";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="wm/5HuCV"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9F0592083D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Wo+KEH28";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="MlguHHFV"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 007B720872
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NDyJvL24eXWnuTCpM00qT3CtG6+jeBY8XX4vaBTq05s=; b=tL9DrMb2/yO6r7
-	0Flsr89mM9xz0cHVImhgVoUQFkz4wY4ZV7cCbNPIDihAKBsWPOVKEM6WUASTNYMFfRUfGzLDSJjGj
-	Uaqjk7hItQdUFNyxMwxIoojAFzfetkaZA6E7QQNk3bo6Fz9DqxV7DJl4c+LFKjXa31VNLXHOQ7ObI
-	iho7EpA985BJH9XAvDtyCHe7K8ywVXpXXTrIL9QbflgLf9RI3AHKhZa3uv349+I4MQStRZZOqNyQ7
-	ti/UiaScYw36kPd0t2nxPN4Au2UAL1mUc//KANJMBJ3qDBltKX4vseGPBFjf6FblT5jHyLZxhHGAu
-	AUwoqtIBjVtZndcHz13Q==;
+	List-Owner; bh=D1F36faAZMNfzMRcyY7tJkPoFVkX1WuHwuN+fK8oXEs=; b=Wo+KEH28gQhdGT
+	b/q08gT5f1zHJuCTC6N+1+FkdzDDq/R281r0wPWxcsdwTRdhdK0lRmfE+32rDiLU77eZF7iu21Bbu
+	/e6EEeHfLUYRX27lONqJCom25g/Zk67AT+Ar/tV74VRVXBK6+yy9IEvIn/FXVLLt494A4DPr8J+e4
+	IZ16nPO5AXBzN2ZZyzpsPm5ko4U/DIrSDHIdOhV4X6usVnmDErrttIQh7wAMswOhd3ObIWJODXuXo
+	JIheDUx0nnFHCLSZW40l0qOSEZPqIyUC/GvTX5pxbE1GEOatl7aGvwiJXmE46dFXn3XhVtcmvwHEJ
+	IEqdxhxBh2P25HeaEhEA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hYwDW-0004EM-Go; Thu, 06 Jun 2019 17:30:22 +0000
-Received: from mail-pg1-x541.google.com ([2607:f8b0:4864:20::541])
+	id 1hYxsg-0007pu-2U; Thu, 06 Jun 2019 19:16:58 +0000
+Received: from mail-oi1-x244.google.com ([2607:f8b0:4864:20::244])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hYwDO-00047R-86
- for linux-amlogic@lists.infradead.org; Thu, 06 Jun 2019 17:30:15 +0000
-Received: by mail-pg1-x541.google.com with SMTP id h17so1755921pgv.0
- for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2019 10:30:13 -0700 (PDT)
+ id 1hYxsY-0007iy-Bh; Thu, 06 Jun 2019 19:16:51 +0000
+Received: by mail-oi1-x244.google.com with SMTP id 203so2376033oid.13;
+ Thu, 06 Jun 2019 12:16:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=Er5DZ+jmgl4pACBM9mSuCYlxA1ZXYVy+Ri46ksNsKNU=;
- b=wm/5HuCV6OCqFPMj5n7IL5mdjhSWRNBQjjf7DDWELSUHyHSEkxAJJUzCUh5K1Q/PrT
- 1rU9XPLawCPwYK34YEcRmd16u3HynW0SaTlCWw1xW/8f0xJXLaJFv5Amj8aU+x3jBRGZ
- OirbFJ6smfoYmqM4vpdeGuUA2Diiozc28Ql/BUymxNlyCnF3U3NuNesy19sKjTxlBCZ9
- xYkQgCVNc212j+aq83vwctLQsFzBYDYeCb21vGVD1yCTxbTMQZP9cLHvVL8JSwKlQeP+
- HhhL48FMk2LjvcQQ5bdf6g41dqIbXtWQEnc9Q7xerefNu0gaXl87goSWT899hImcaaCN
- b4UQ==
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=wGZZja4pj4ztNwQ9lR3/UUwJOv78Qh9P9Xjpyh0RQ78=;
+ b=MlguHHFVeVF5g8EuutoY2+4e4/Pw0Jksvx2WO+YX4EXH/vrWpw8vSrRkHDsQ5pCprF
+ VOOrYSbElvFQPDJ1pyFaOT1ZJsULnLmMJqy1IsxnVZdQ2TX7jIHv0e0ss70lh5ntGrCr
+ 9h5SGrKKopTt92DtlXKrgLixrRZN3HTlEp/DsazX5SMtFLNu/HDahe78SQy0E27BH+bd
+ RxBmkb4hwXMColZk5JNlqwaiHmrUdxk+iPbBcJNiYM0JuHJkuGRnqrkSb2EDhX3CPXFR
+ 5vgsiGzCykpZt901hiOso3ha0jcf1ibamJ27d0TLyi7mkiDkAOrclJVHjLg6ZD6sw/qp
+ a+1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=Er5DZ+jmgl4pACBM9mSuCYlxA1ZXYVy+Ri46ksNsKNU=;
- b=Vmt9CnNOWfk0dj4qogBJhGSCkWBCxjIfSITo7TH4qwOeY1KvKrUESOiNeY5kXSkk2W
- XCL5Cryf1mENTDGSChZSzp4aD0MgBiukVA/LLuL6wfr4TZzQyRm/uzKLBH323DDKN3IM
- gR3JTZkCPOOa5bY9zqO/e5jjnZsRE9GO/+UJLbVcbE1AXYv9OFB9WWjb9NGxIj7AE4g4
- O1Qu28NIC22ACyXQJ0GWn4XauYbsnxFnEtQIs2w6tBimS8SWdnWLyjLytlt6f5Rf9WdP
- Qo0XD7/tSVZ+A33rRqrF9WV5dJ7j+vgOToqUROaWfzRXICM2x6gecuNBoT4o2butTFhL
- Telg==
-X-Gm-Message-State: APjAAAVKRUruaRhdGPn0KpbEuBg+GLrbfC+6LuRbvXDG6/U9mt8koP2+
- Grk2/AFk+krOoiR6B5DmHfjpSA==
-X-Google-Smtp-Source: APXvYqxcHDkEaPOHT2K2CyUbipGrVEDze7r7eLCeuaNBURmbKlAo/gGUVa+qM337klyNBaUWwbt8aQ==
-X-Received: by 2002:a17:90a:6505:: with SMTP id i5mr924412pjj.13.1559842213424; 
- Thu, 06 Jun 2019 10:30:13 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152])
- by smtp.googlemail.com with ESMTPSA id o70sm2769938pfo.33.2019.06.06.10.30.12
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Thu, 06 Jun 2019 10:30:12 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Neil Armstrong <narmstrong@baylibre.com>, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 2/2] drm/meson: fix G12A primary plane disabling
-In-Reply-To: <20190605141253.24165-3-narmstrong@baylibre.com>
-References: <20190605141253.24165-1-narmstrong@baylibre.com>
- <20190605141253.24165-3-narmstrong@baylibre.com>
-Date: Thu, 06 Jun 2019 10:30:11 -0700
-Message-ID: <7h1s06ei58.fsf@baylibre.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=wGZZja4pj4ztNwQ9lR3/UUwJOv78Qh9P9Xjpyh0RQ78=;
+ b=RpO1CVgOTtJCrAvIgqL6TzIpOFdzrHzx5D4jVE6BaQTJffKKGCacXLQvdWiToxFuyX
+ UadaJyCb7j8UBjMrCDuLEKE0qj9ie3Ll4zt6Q7wFyXIgEXDn66nnGAStknWg6w8KeqTZ
+ Vo7nyV9DZXkvLBHwwVkr1LJvGv6oGtSNkdDMG6HK3oQNeoJIdV9pDiemQ7oa+z955ddU
+ QvDsjMZ+IfdsYpn5yC3rNoyG3AH1toLDuSSTcV2/BAjTWLTXsDIFx/C+OhtxX3iv6dI+
+ 1X47QX+ToWuipfDD/I/TTAFeOOdXe0WP5f8wM3IDs8adfxQ0MsNFFYwADKfP/z3sQs07
+ p4/g==
+X-Gm-Message-State: APjAAAVxfC7aSMiImvTxyYK5+4g1FsymSpj0VnCCP9ZdZzSwJwucvyVq
+ S45L13iyaA4QaRSGCKT0rdr3k7bjhdhTFv1a5GY=
+X-Google-Smtp-Source: APXvYqzC9WxN3NamhIGFHT81BAmrC45+rcidscjDt+KRt+ASEEUVD3u5cHxp97h+S4hAPTzsUEsNS5LmM87cdCqMsVQ=
+X-Received: by 2002:aca:3545:: with SMTP id c66mr1176682oia.129.1559848608679; 
+ Thu, 06 Jun 2019 12:16:48 -0700 (PDT)
 MIME-Version: 1.0
+References: <20190604144714.2009-1-glaroque@baylibre.com>
+ <20190604144714.2009-2-glaroque@baylibre.com>
+In-Reply-To: <20190604144714.2009-2-glaroque@baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Thu, 6 Jun 2019 21:16:37 +0200
+Message-ID: <CAFBinCBN4QC2tPDEQmTW_c+PP5yu2qoK5M1eSye=SmvpieKWQg@mail.gmail.com>
+Subject: Re: [PATCH 1/3] Documentation: dt-bindings: add the Amlogic Meson
+ Temperature Sensor
+To: Guillaume La Roque <glaroque@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190606_103014_299498_C0851FD7 
-X-CRM114-Status: UNSURE (   7.70  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190606_121650_426431_4FFDF391 
+X-CRM114-Status: GOOD (  18.85  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -96,36 +91,81 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
+Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org, khilman@baylibre.com,
+ linux-kernel@vger.kernel.org, jic23@kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+Hi Guillaume,
 
-> The G12A Primary plane was disabled by writing in the OSD1 configuration
-> registers, but this caused the plane blender to stall instead of continuing
-> blended only the overlay plane.
+thank you for working on this!
 
-grammar nit: "...instead of continuing to blend only the overlay plane."
-
-> Fix this by disabling the OSD1 plane in the blender registers, and also
-> enabling it back using the same register.
+On Tue, Jun 4, 2019 at 4:47 PM Guillaume La Roque <glaroque@baylibre.com> wrote:
 >
-> Fixes: 490f50c109d1 ("drm/meson: Add G12A support for OSD1 Plane")
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> This adds the devicetree binding documentation for the Temperature
+> Sensor found in the Amlogic Meson G12 SoCs.
+> Currently only the G12A SoCs are supported.
+so G12B is not supported (yet)?
 
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+> ---
+>  .../iio/temperature/amlogic,meson-tsensor.txt | 31 +++++++++++++++++++
+>  1 file changed, 31 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/temperature/amlogic,meson-tsensor.txt
+>
+> diff --git a/Documentation/devicetree/bindings/iio/temperature/amlogic,meson-tsensor.txt b/Documentation/devicetree/bindings/iio/temperature/amlogic,meson-tsensor.txt
+> new file mode 100644
+> index 000000000000..d064db0e9cac
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/temperature/amlogic,meson-tsensor.txt
+> @@ -0,0 +1,31 @@
+> +* Amlogic Meson Temperature Sensor
+> +
+> +Required properties:
+> +- compatible:  depending on the SoC and the position of the sensor,
+> +               this should be one of:
+> +               - "amlogic,meson-g12a-cpu-tsensor" for the CPU G12A SoC sensor
+> +               - "amlogic,meson-g12a-ddr-tsensor" for the DDR G12A SoC sensor
+> +               followed by the common :
+> +               - "amlogic,meson-g12a-tsensor" for G12A SoC family
+> +- reg:         the physical base address and length of the registers
+> +- interrupts:  the interrupt indicating end of sampling
+> +- clocks:      phandle identifier for the reference clock of temperature sensor
+> +- #io-channel-cells: must be 1, see ../iio-bindings.txt
+have you considered using the thermal framework [0] instead of the iio
+framework (see below)?
 
-As noted elsewhere, this driver is also full of magic constants used in
-register writes which makes reviewing this kind of change for
-correctness that much more difficult, but since that's already been
-pointed out elsewhere, and it's already on your TODO list, it should not
-block this important fix.
+> +- amlogic,ao-secure: phandle to the ao-secure syscon
+the driver has some "u_efuse_off" access. do we need to get some
+calibration values from the AO syscon or can we also fetch it from the
+eFuse? you can look at arch/arm/boot/dts/meson8.dtsi where I'm passing
+the temperature sensor calibration data to the SAR ADC (there's no
+dedicated temperature sensor IP block prior to G12A) while reading the
+data from the eFuse
 
-Kevin
+> +Optional properties:
+> +- amlogic,critical-temperature: temperature value in milli degrees Celsius
+> +       to set automatic reboot on too high temperature
+as far as I can tell the thermal framework supports multiple trip
+points. I'm seeing this as a benefit because the hardware can raise
+interrupts at four different temperatures (defined by the driver)
+
+> +Example:
+> +       cpu_temp: temperature-sensor@ff634800 {
+> +               compatible = "amlogic,meson-g12a-cpu-tsensor",
+> +                            "amlogic,meson-g12a-tsensor";
+> +               reg = <0x0 0xff634800 0x0 0x50>;
+> +               interrupts = <GIC_SPI 35 IRQ_TYPE_EDGE_RISING>;
+> +               clocks = <&clkc CLKID_TS>;
+> +               status = "okay";
+as far as I know the dt-bindings should not have a status property in
+the examples
+
+
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
