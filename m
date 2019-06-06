@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
 	SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B9E1DC04AB5
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2019 17:26:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C5E41C04AB5
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2019 17:30:27 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 95E4E2083D
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2019 17:26:05 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9F0592083D
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2019 17:30:27 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MPDjHGA5";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ufbn7N0j"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 95E4E2083D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tL9DrMb2";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="wm/5HuCV"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9F0592083D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,64 +26,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6pNM9xubEMmBcDKhUvQjoHBGXQ/sLwK4EDaJc9jOofg=; b=MPDjHGA55wFGJj
-	QkVD7TklnBRE+vgK26m+Pao3iwRPXaAJ23Xa8S1vQZoy4Kf4gCjoitIdE4i5g50o3s8wiXDsOnm8D
-	O1/cgFeQrgIwp0+WL2l0BTrDe3U3jAOT5fqPvKBDqS2jMywoAHmUPYBn20s2C74k8eekPU+axQhFv
-	bqxuBbMbWIjQJ+xvPap3c7mZJV51j+vzxyeryEYJytuxUL6otw/YFUezpxbEf7vws8FVkSX4Xp/lE
-	0l+Mscka5UPZxeTqtnedm7p7XSf+FkJ/BryBBiEML2GOJC0zk166UINIuEmGDlzPyFAfPc7wBaZq2
-	ARAqmvGZdUAFGvv764qg==;
+	List-Owner; bh=NDyJvL24eXWnuTCpM00qT3CtG6+jeBY8XX4vaBTq05s=; b=tL9DrMb2/yO6r7
+	0Flsr89mM9xz0cHVImhgVoUQFkz4wY4ZV7cCbNPIDihAKBsWPOVKEM6WUASTNYMFfRUfGzLDSJjGj
+	Uaqjk7hItQdUFNyxMwxIoojAFzfetkaZA6E7QQNk3bo6Fz9DqxV7DJl4c+LFKjXa31VNLXHOQ7ObI
+	iho7EpA985BJH9XAvDtyCHe7K8ywVXpXXTrIL9QbflgLf9RI3AHKhZa3uv349+I4MQStRZZOqNyQ7
+	ti/UiaScYw36kPd0t2nxPN4Au2UAL1mUc//KANJMBJ3qDBltKX4vseGPBFjf6FblT5jHyLZxhHGAu
+	AUwoqtIBjVtZndcHz13Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hYw9H-0002FI-Lo; Thu, 06 Jun 2019 17:25:59 +0000
-Received: from mail-pf1-x441.google.com ([2607:f8b0:4864:20::441])
+	id 1hYwDW-0004EM-Go; Thu, 06 Jun 2019 17:30:22 +0000
+Received: from mail-pg1-x541.google.com ([2607:f8b0:4864:20::541])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hYw99-00027F-KU
- for linux-amlogic@lists.infradead.org; Thu, 06 Jun 2019 17:25:53 +0000
-Received: by mail-pf1-x441.google.com with SMTP id x15so1937274pfq.0
- for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2019 10:25:51 -0700 (PDT)
+ id 1hYwDO-00047R-86
+ for linux-amlogic@lists.infradead.org; Thu, 06 Jun 2019 17:30:15 +0000
+Received: by mail-pg1-x541.google.com with SMTP id h17so1755921pgv.0
+ for <linux-amlogic@lists.infradead.org>; Thu, 06 Jun 2019 10:30:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=3LKp2333dAsdHgcKPbSCpFKyWi/YPsxy5d/uBrW1vJw=;
- b=ufbn7N0jryrG0HOBOgiTOLSXC+8CPoOdNvpRg5ioCQ2Qnq3/MrgCcULLU781HRzV/Q
- FyI1xMLATPNfnzoHevVmHhEXmu0Xb3yn/a/9SpyrVKYJmdbTqEyUtphCSQkrcuaaX+p2
- adStH4+ROigx3lYaPqm8G8VWsXfWia6rq8hgPt3dBflYTEzen7o/cT/jlTXf/BHfde5S
- Rvg73ZoiiSSqjn6td0HTTOV6iHyNqYfY9lysMaLD7aAicDH2SlsSwX1J4n1H/vRwl6MB
- VGx72V80nauy5tZgAFakAmBVh8F0Ja4xXvg/+RxALTR++Q0atOThCsvkcv1gNEd/HkWz
- LwNw==
+ :mime-version; bh=Er5DZ+jmgl4pACBM9mSuCYlxA1ZXYVy+Ri46ksNsKNU=;
+ b=wm/5HuCV6OCqFPMj5n7IL5mdjhSWRNBQjjf7DDWELSUHyHSEkxAJJUzCUh5K1Q/PrT
+ 1rU9XPLawCPwYK34YEcRmd16u3HynW0SaTlCWw1xW/8f0xJXLaJFv5Amj8aU+x3jBRGZ
+ OirbFJ6smfoYmqM4vpdeGuUA2Diiozc28Ql/BUymxNlyCnF3U3NuNesy19sKjTxlBCZ9
+ xYkQgCVNc212j+aq83vwctLQsFzBYDYeCb21vGVD1yCTxbTMQZP9cLHvVL8JSwKlQeP+
+ HhhL48FMk2LjvcQQ5bdf6g41dqIbXtWQEnc9Q7xerefNu0gaXl87goSWT899hImcaaCN
+ b4UQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=3LKp2333dAsdHgcKPbSCpFKyWi/YPsxy5d/uBrW1vJw=;
- b=o0s6rMMVZKLYwPK/+58r6fv4EJk0IXz/Jufhx0hgXZqntRmwG8qKevB/oB9QxZvhxK
- I1Vaa2CPAZwIl/GTYWoPE2AZxYw86+R2/7xzdlEAc87SNOO+MSHDLeEsQIBFejE1DpAZ
- yVjkWH1gS+Eo7GqXRDfociiYvoZyz7zvJSTRVpXLiK/9AFeUk64XeMIml18ACPmfAHrO
- WCfzWbTMibx/fDHpp3W7phvrv0LmUJnW/uUST+YVqlzVAAv5FU2pKZNsaEh6ri+Z2QJt
- 28euUtUDHopYP7ppiKdNhbPSvsLa+0guRecRHwCQxCMf9+Ong+B4wKVWFoinYT6vlUUB
- eQlw==
-X-Gm-Message-State: APjAAAXmMMY7HV/OyIpGkBJ6I+TYNaVhAS2ODcF+6TlKbh9jYJBKWLR3
- DJoLj3aVyLoFYmyshfSqqzBnRVkUV9U=
-X-Google-Smtp-Source: APXvYqwY6ai4KXXEJsOuFBjETzbH/6l5KeGhPhmBm9jpS8OgNIxzeR41NaXMlAcOyAEwxTNJhTZOnQ==
-X-Received: by 2002:a63:445b:: with SMTP id t27mr4314682pgk.56.1559841950934; 
- Thu, 06 Jun 2019 10:25:50 -0700 (PDT)
+ bh=Er5DZ+jmgl4pACBM9mSuCYlxA1ZXYVy+Ri46ksNsKNU=;
+ b=Vmt9CnNOWfk0dj4qogBJhGSCkWBCxjIfSITo7TH4qwOeY1KvKrUESOiNeY5kXSkk2W
+ XCL5Cryf1mENTDGSChZSzp4aD0MgBiukVA/LLuL6wfr4TZzQyRm/uzKLBH323DDKN3IM
+ gR3JTZkCPOOa5bY9zqO/e5jjnZsRE9GO/+UJLbVcbE1AXYv9OFB9WWjb9NGxIj7AE4g4
+ O1Qu28NIC22ACyXQJ0GWn4XauYbsnxFnEtQIs2w6tBimS8SWdnWLyjLytlt6f5Rf9WdP
+ Qo0XD7/tSVZ+A33rRqrF9WV5dJ7j+vgOToqUROaWfzRXICM2x6gecuNBoT4o2butTFhL
+ Telg==
+X-Gm-Message-State: APjAAAVKRUruaRhdGPn0KpbEuBg+GLrbfC+6LuRbvXDG6/U9mt8koP2+
+ Grk2/AFk+krOoiR6B5DmHfjpSA==
+X-Google-Smtp-Source: APXvYqxcHDkEaPOHT2K2CyUbipGrVEDze7r7eLCeuaNBURmbKlAo/gGUVa+qM337klyNBaUWwbt8aQ==
+X-Received: by 2002:a17:90a:6505:: with SMTP id i5mr924412pjj.13.1559842213424; 
+ Thu, 06 Jun 2019 10:30:13 -0700 (PDT)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
  [71.197.186.152])
- by smtp.googlemail.com with ESMTPSA id t4sm2201097pjq.19.2019.06.06.10.25.50
+ by smtp.googlemail.com with ESMTPSA id o70sm2769938pfo.33.2019.06.06.10.30.12
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Thu, 06 Jun 2019 10:25:50 -0700 (PDT)
+ Thu, 06 Jun 2019 10:30:12 -0700 (PDT)
 From: Kevin Hilman <khilman@baylibre.com>
 To: Neil Armstrong <narmstrong@baylibre.com>, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 1/2] drm/meson: fix primary plane disabling
-In-Reply-To: <20190605141253.24165-2-narmstrong@baylibre.com>
+Subject: Re: [PATCH 2/2] drm/meson: fix G12A primary plane disabling
+In-Reply-To: <20190605141253.24165-3-narmstrong@baylibre.com>
 References: <20190605141253.24165-1-narmstrong@baylibre.com>
- <20190605141253.24165-2-narmstrong@baylibre.com>
-Date: Thu, 06 Jun 2019 10:25:49 -0700
-Message-ID: <7h8sueeici.fsf@baylibre.com>
+ <20190605141253.24165-3-narmstrong@baylibre.com>
+Date: Thu, 06 Jun 2019 10:30:11 -0700
+Message-ID: <7h1s06ei58.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190606_102551_675877_57426ED6 
-X-CRM114-Status: UNSURE (   7.36  )
+X-CRM114-CacheID: sfid-20190606_103014_299498_C0851FD7 
+X-CRM114-Status: UNSURE (   7.70  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
@@ -105,16 +105,27 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Neil Armstrong <narmstrong@baylibre.com> writes:
 
-> The primary plane disable logic is flawed, when the primary plane is
-> disabled, it is re-enabled in the vsync irq when another plane is updated.
->
-> Handle the plane disabling correctly by handling the primary plane
-> enable flag in the primary plane update & disable callbacks.
+> The G12A Primary plane was disabled by writing in the OSD1 configuration
+> registers, but this caused the plane blender to stall instead of continuing
+> blended only the overlay plane.
+
+grammar nit: "...instead of continuing to blend only the overlay plane."
+
+> Fix this by disabling the OSD1 plane in the blender registers, and also
+> enabling it back using the same register.
 >
 > Fixes: 490f50c109d1 ("drm/meson: Add G12A support for OSD1 Plane")
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
 Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+
+As noted elsewhere, this driver is also full of magic constants used in
+register writes which makes reviewing this kind of change for
+correctness that much more difficult, but since that's already been
+pointed out elsewhere, and it's already on your TODO list, it should not
+block this important fix.
+
+Kevin
 
 _______________________________________________
 linux-amlogic mailing list
