@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 977EAC04AB5
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2019 19:40:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 78B7CC04AB5
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2019 19:46:12 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6FE2820693
-	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2019 19:40:57 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 53705206BB
+	for <linux-amlogic@archiver.kernel.org>; Thu,  6 Jun 2019 19:46:12 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LDimHQWV";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Dn/N9iUb"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6FE2820693
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PXFdUjEc";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="dMA1DpS4"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 53705206BB
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FWPwZp/okf0sISzfmtcnr0sDQrMBbezY3aIm52bMky8=; b=LDimHQWVKiPdTk
-	SRT/oP/jtrgt0JUnV0jSfRq2rOKPph5r6W2UZWvSBnAT/MEP4G2RSSbUhJcppYo8mdOv5J1f+Jm/L
-	1KnWOTNtVNAKSN4/2fObNAWRw4x5l7LUvrRsgMs9seSLy4RFPzvCUsGARGhbIFo/V0ZB3y46BXYaf
-	5LYr8Z6dvk6txOVagRS6JLdCA7N1HKZakV97VmRVcEfkiBRcoRHP1iexhDDqmRQ+cs6f7xZtke2Kn
-	XXrGaRz0tHMlEhPUKJ7KFURAK3V8QNZXhyjJtADz7F/TnyiCX97yyezhBhNr/6WQtyR0YEXyr9/jo
-	u1XJv1vc7LsE9nQbcfwg==;
+	List-Owner; bh=HP3kjQaC03wt8tvjk64f5NgsZq2w7MX5spxhI+42+t4=; b=PXFdUjEcsKvsYt
+	lRgziLNc5z7or2brRzoqXFRMeBWSd7RuqDMyKfA/TuugaigtOtIzUKC6VJz51V2fowiqpzs8f/10Q
+	GhHl9xjyRj71ZBB01Nk7F4Nw9OEL4H4w+IuCxjtrHwKPUdMrIU6Xa89BIlT8WNTSpcGGmyBN2zRxQ
+	Yml3aQ1I8oSsCRWPJL/1Lma/ttlly7oDpE+lfY+QmdRC6+2u0tU4GuZ5qliEfuXgsdYEfdz6UxqEV
+	saV02kOliMnRyNBcbeybSXtBpmQLfGV/8Cq1o63XSAE4o0wXYp0NMKRmlxteoY9FCrw0KZrY+IjJX
+	6bjjYqe9VRMP9yTxgrtw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.90_1 #2 (Red Hat Linux))
-	id 1hYyFn-0000et-14; Thu, 06 Jun 2019 19:40:51 +0000
-Received: from mail-oi1-x242.google.com ([2607:f8b0:4864:20::242])
+	id 1hYyKq-0003ET-92; Thu, 06 Jun 2019 19:46:04 +0000
+Received: from mail-oi1-x241.google.com ([2607:f8b0:4864:20::241])
  by bombadil.infradead.org with esmtps (Exim 4.90_1 #2 (Red Hat Linux))
- id 1hYyFf-0000Ip-0r; Thu, 06 Jun 2019 19:40:45 +0000
-Received: by mail-oi1-x242.google.com with SMTP id v186so2455008oie.5;
- Thu, 06 Jun 2019 12:40:41 -0700 (PDT)
+ id 1hYyKU-0002ka-BB; Thu, 06 Jun 2019 19:45:48 +0000
+Received: by mail-oi1-x241.google.com with SMTP id b21so2457807oic.8;
+ Thu, 06 Jun 2019 12:45:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=VUkpswYzIybLr5sewhlaPDFxgSAlH6oiLrNe/6Vj/Y4=;
- b=Dn/N9iUbulCQu6csNUyC/Sd/Q29OclRWcXGVVn3cvkGqxy1QpmzlykuZHEjEi8u/uF
- +E4mfLmAHZ18SJIuP0l6fGggXy5CKBy5e4YzrQlQ6Ql10zvTaQB4GUAKyWtlXeGGC8al
- TnOW7ehroBj5alYfyLG9gcN5o9OAcjhniAeVtgtgIH70N31ekJSzdH50GMD67+Erpnb7
- kWJYF4iQ3TZxIeDwiGVB293rQjYRE9ehnt6GclZTuUfHEz7ucBLPAoUuICvmexCqhaTY
- ohjuvIvSywWGwU7sybu6KvamaVWNU+WXKOEzkAzJr6XPx4UNf7VaKVF2kzWt6tGp3/EI
- 3b3Q==
+ :cc; bh=HvsZS4bOWzh/rxJ7Vbhm+IleDBXmUoCFx+NzSXIR57o=;
+ b=dMA1DpS4lVQzF3ZNO1J8lBPXw7HRf3KPEBh1nnzkpwHzS+JnIlc6I1WhERrDHbG3n6
+ ZZMXV2U73oxBby1z/sJfZS2dxWu0uSLZb5L1SaobDKr1D9R1EP2mnsAUNjBCpgTX9637
+ PaI1fAwxsKymUjv0iwjOkUUzxkGrmTUFQTpo3IqVi2PRDDtcRWWIOzNeDSzyYApA/YIs
+ Iz3P+UD24H7N3ATUYFD71EFh+UsU6bkXcXSU0/dkIV0Yq8MDvXAhEMSRdhbJoB3VOh/s
+ n/R2RIS309HBRdorUaO9BWvnXZdtPYPQd0tb1ZTLKhJE7Gj3eTTzvVAjHU8P/KmrdiBd
+ zD9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=VUkpswYzIybLr5sewhlaPDFxgSAlH6oiLrNe/6Vj/Y4=;
- b=DzYxT6MHxwFCGjil21P9bOoRwSGDabWBWbUww6bAcRjH5eRsUJJr7bfeFyv48mkcBQ
- JIxVh4tmJwvBrsoimZmut/YQ+KuU5H808MkEQdiqN9jGc3eYLldf7/aN4DAmMTucl1um
- MiAb+KyeFpHHzieJ0qFKTZSjXW0e3pXA5EX1MNpfmmdT0YVOzgjugToQIS9Mg6CX/Ix7
- uM6CV+TZKZrFJdG3paUk/3t9NFURyYgNj67pyxXgPd8dDmtXOGY2QiRxreaCSMnhF+16
- IHd3wkJsr6ADyQx3tEQQ32mayX/l5d5QwV8R+aXaK4zyvhEPhruHmiXCKe2NtQsu8P05
- Tmkw==
-X-Gm-Message-State: APjAAAW12LSoJ3/88b0QZNkLmoBV9nF5uFXsufqKDmoDWvTvEbLDxi7R
- mZllmvYDaHmBmzxqFhNP6bwRw4y13241FS/0UV94OZH3
-X-Google-Smtp-Source: APXvYqyBhaSoqBuYAPh0SFHkSREbhkUVa6SoyYMKtyObf/ml8cV/SVJ90QjUl5BNaiCLFwiz0/zojjZKJq8zC9p6aKY=
-X-Received: by 2002:aca:f144:: with SMTP id p65mr1253677oih.47.1559850041022; 
- Thu, 06 Jun 2019 12:40:41 -0700 (PDT)
+ bh=HvsZS4bOWzh/rxJ7Vbhm+IleDBXmUoCFx+NzSXIR57o=;
+ b=EqKApnN5I2qdct0zN9NzAC1CzEAZIcYyaMZBZ/92aP6oQs0l6dHm5YHQlIRlC7EPwY
+ 0Q2WnciO3JLvQRApoc6sEIRg7utJOfVd3lkHu4P2VpagokQIWfJnrR+AVq2BMmLpDAE5
+ UjEs401+BCTl5F0nJ8GdygUv95Hq7Nad7jLzke3KrKvoOva1rRInu4YFSW7T+4eb76HX
+ YgQidkvIr9r5BhlImCZDWX652URs2CjeEZ6Yq1jAXwZOkSoWUpNkaEBUS0fMQ3G7viSz
+ wGyuYg0RnTjKC+6elEU3N6Xnint/x06NGzPwfwpFehhBJuFYDcRDSzk3QlEZBhjf+YyD
+ I+Xg==
+X-Gm-Message-State: APjAAAW2M/FN2HtkrWabbkAoI9zRygA7a6mQqEB2o85BUqPpEcAFL+9O
+ mJPO4nlZpYh6HZdO8/lwAbiKlJz9XdhWA9kLlhQ=
+X-Google-Smtp-Source: APXvYqzwNJzMn8BxHcmZMP8ExVHZkbQto4huDPJ4ia1CxvIjvKtYeqqbd10DSX8Ulxk42tGLcO6UqDoPI3VIjCXSj58=
+X-Received: by 2002:aca:4341:: with SMTP id q62mr1300541oia.140.1559850341244; 
+ Thu, 06 Jun 2019 12:45:41 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190604144714.2009-1-glaroque@baylibre.com>
- <20190604144714.2009-4-glaroque@baylibre.com>
-In-Reply-To: <20190604144714.2009-4-glaroque@baylibre.com>
+References: <20190603100357.16799-1-narmstrong@baylibre.com>
+ <20190603100357.16799-4-narmstrong@baylibre.com>
+In-Reply-To: <20190603100357.16799-4-narmstrong@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Thu, 6 Jun 2019 21:40:29 +0200
-Message-ID: <CAFBinCAecHbXURFMO5z+TuwFMk_h=QMGqWxTou73Vv0q3011fw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] iio: temperature: add a driver for the temperature
- sensor found in Amlogic Meson G12 SoCs
-To: Guillaume La Roque <glaroque@baylibre.com>
+Date: Thu, 6 Jun 2019 21:45:30 +0200
+Message-ID: <CAFBinCD5y4rVO7AU7iDcrJXK7nj1uHowVnQOQT2wMSwL3EjuWw@mail.gmail.com>
+Subject: Re: [PATCH 3/4] arm64: dts: meson-g12a-x96-max: Enable Wifi SDIO
+ Module
+To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190606_124043_122185_53BB4F67 
-X-CRM114-Status: GOOD (  21.30  )
+X-CRM114-CacheID: sfid-20190606_124543_092691_2E8486C7 
+X-CRM114-Status: UNSURE (   9.79  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -90,241 +91,36 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org, khilman@baylibre.com,
- linux-kernel@vger.kernel.org, jic23@kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: khilman@baylibre.com, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Guillaume,
+Hi Neil,
 
-below are my initial impressions. I will have a closer look once
-there's a decision whether this belongs to the IIO or thermal
-framework.
-
-On Tue, Jun 4, 2019 at 4:48 PM Guillaume La Roque <glaroque@baylibre.com> wrote:
+On Mon, Jun 3, 2019 at 12:04 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
-> The code is based on Amlogic source code. No public datasheet for this.
-the public S922X datasheet from Hardkernel [0] has some documentation
-(starting at page 1106).
-
-[...]
-> +config MESON_TSENSOR
-> +       tristate "Amlogic Meson temperature sensor Support"
-> +       default ARCH_MESON
-> +       depends on OF && ARCH_MESON
-depends on OF && (ARCH_MESON || COMPILE_TEST)
-so all the nice auto-builders / testing tools will speak up if someone
-tries to break your driver
-
-> +       help
-> +         If you say yess here you get support for Meson Temperature sensor
-s/yess/yes/
-
-> +         for G12 SoC Family.
-G12 (which I assume includes G12A and G12B) or G12A?
-
-[...]
-> diff --git a/drivers/iio/temperature/meson_tsensor.c b/drivers/iio/temperature/meson_tsensor.c
-> new file mode 100644
-> index 000000000000..be0a8d073ba3
-> --- /dev/null
-> +++ b/drivers/iio/temperature/meson_tsensor.c
-> @@ -0,0 +1,416 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Amlogic Meson Temperature Sensor
-> + *
-> + * Copyright (C) 2017 Huan Biao <huan.biao@amlogic.com>
-> + * Copyright (C) 2019 Guillaume La Roque <glaroque@baylibre.com>
-> + *
-> + * Register value to celsius temperature formulas:
-> + *     Read_Val            m * U
-> + * U = ---------, Uptat = ---------
-> + *     2^16              1 + n * U
-> + *
-> + * Temperature = A * ( Uptat + u_efuse / 2^16 )- B
-> + *
-> + *  A B m n : calibration parameters
-> + *  u_efuse : fused calibration value, it's a signed 16 bits value
-it's great to have this explained in the docs (instead of having to
-look it up in some out of tree driver, as it's not part of the
-datasheet) - thank you for this!
-
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/io.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +
-> +#define TSENSOR_CFG_REG1                       0x4
-> +       #define TSENSOR_CFG_REG1_RSET_VBG       BIT(12)
-> +       #define TSENSOR_CFG_REG1_RSET_ADC       BIT(11)
-> +       #define TSENSOR_CFG_REG1_VCM_EN         BIT(10)
-> +       #define TSENSOR_CFG_REG1_VBG_EN         BIT(9)
-> +       #define TSENSOR_CFG_REG1_OUT_CTL        BIT(6)
-> +       #define TSENSOR_CFG_REG1_FILTER_EN      BIT(5)
-> +       #define TSENSOR_CFG_REG1_DEM_EN         BIT(3)
-> +       #define TSENSOR_CFG_REG1_CH_SEL         GENMASK(1, 0)
-> +       #define TSENSOR_CFG_REG1_ENABLE         \
-> +               (TSENSOR_CFG_REG1_FILTER_EN |   \
-> +                TSENSOR_CFG_REG1_VCM_EN |      \
-> +                TSENSOR_CFG_REG1_VBG_EN |      \
-> +                TSENSOR_CFG_REG1_DEM_EN |      \
-> +                TSENSOR_CFG_REG1_CH_SEL)
-are all of these needed to enabled *and* disable the temperature
-sensor? TSENSOR_CFG_REG1_CH_SEL doesn't seem related when disabling
-the sensor reading (but I don't know since there's no documentation)
-
-> +#define TSENSOR_CFG_REG2                               0x8
-> +       #define TSENSOR_CFG_REG2_HITEMP_EN              BIT(31)
-> +       #define TSENSOR_CFG_REG2_REBOOT_ALL_EN          BIT(30)
-> +       #define TSENSOR_CFG_REG2_REBOOT_TIME            GENMASK(25, 16)
-> +       #define TSENSOR_CFG_REG2_HITEMP_REBOOT_ENABLE   \
-> +               (TSENSOR_CFG_REG2_HITEMP_EN |           \
-> +                TSENSOR_CFG_REG2_REBOOT_ALL_EN |       \
-> +                TSENSOR_CFG_REG2_REBOOT_TIME)
-the name mix between TSENSOR_CFG_REG2_HITEMP_REBOOT_ENABLE and
-TSENSOR_CFG_REG2_HITEMP_REBOOT_ENABLE_MASK confused me.
-personally I would drop the macros which just bit-wise or multiple
-other macros together
-
-> +       #define TSENSOR_CFG_REG2_HITEMP_REBOOT_ENABLE_MASK              \
-> +               (GENMASK(31, 30) | GENMASK(25, 4))
-> +       #define TSENSOR_CFG_REG2_HITEMP_REBOOT_REG_MASK                 \
-> +               GENMASK(15, 4)
-> +       #define TSENSOR_CFG_REG2_HITEMP_REG_VAL(_reg_val)               \
-> +               (FIELD_PREP(TSENSOR_CFG_REG2_HITEMP_REBOOT_REG_MASK,    \
-> +                           _reg_val) |                                 \
-> +                TSENSOR_CFG_REG2_HITEMP_REBOOT_ENABLE)
-> +
-> +#define TSENSOR_CFG_REG3               0xC
-I like to use lower-case hex letters
-and I also pad them -> 0x0c in this case because we have for example 0x10 below)
-
-> +#define TSENSOR_CFG_REG4               0x10
-> +#define TSENSOR_CFG_REG5               0x14
-> +#define TSENSOR_CFG_REG6               0x18
-> +#define TSENSOR_CFG_REG7               0x1C
-> +#define TSENSOR_CFG_REG8               0x20
-> +
-> +#define TSENSOR_STAT0                  0x40
-> +
-> +#define TSENSOR_STAT9                  0x64
-> +
-> +#define TSENSOR_READ_TEMP_MASK         GENMASK(15, 0)
-TSENSOR_STAT0_FILTER_OUT would match the naming from the datasheet
-
-> +#define TSENSOR_TEMP_MASK              GENMASK(11, 0)
+> The X96 Max embeds an AP6398S SDIO module, let's add the
+> corresponding SDIO, PWM clock and mmc-pwrseq nodes.
 >
-> +#define TSENSOR_TRIM_SIGN_MASK         BIT(15)
-> +#define TSENSOR_TRIM_TEMP_MASK         GENMASK(14, 0)
-> +#define TSENSOR_TRIM_VERSION_MASK      GENMASK(31, 24)
-> +
-> +#define TSENSOR_TRIM_VERSION(_version)         \
-> +       FIELD_GET(TSENSOR_TRIM_VERSION_MASK, _version)
-I would drop this and use the FIELD_GET directly where needed (it's
-only one occurrence anyways)
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+with the comment below addressed:
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 [...]
-> +static int meson_tsensor_enable(struct iio_dev *indio_dev)
-> +{
-> +       struct meson_tsensor *priv = iio_priv(indio_dev);
-> +
-> +       clk_prepare_enable(priv->clk);
-may return an error which you're discarding here
-
-> +       regmap_update_bits(priv->regmap, TSENSOR_CFG_REG1,
-> +                          TSENSOR_CFG_REG1_ENABLE, TSENSOR_CFG_REG1_ENABLE);
-> +
-> +       return 0;
-> +}
-> +
-> +static int meson_tsensor_disable(struct iio_dev *indio_dev)
-> +{
-> +       struct meson_tsensor *priv = iio_priv(indio_dev);
-> +
-> +       regmap_update_bits(priv->regmap, TSENSOR_CFG_REG1,
-> +                          TSENSOR_CFG_REG1_ENABLE, 0);
-> +       clk_disable(priv->clk);
-clk_disable_unprepare as you're calling clk_prepare_enable above?
-
-> +
-> +       return 0;
-make it a void function instead?
-
-> +static const struct regmap_config meson_tsensor_regmap_config_g12a = {
-> +       .reg_bits = 8,
-> +       .val_bits = 32,
-> +       .reg_stride = 4,
-> +       .max_register = TSENSOR_STAT9,
-.fast_io = true
-if you ever need to ACK interrupts from the IRQ handler
-(IIRC fast_io will use a spinlock instead of mutex)
-
-[...]
-> +static const struct of_device_id meson_tsensor_of_match[] = {
-> +       {
-> +               .compatible = "amlogic,meson-g12a-ddr-tsensor",
-> +               .data = &meson_tsensor_g12a_ddr_param,
-> +       },
-> +       {
-> +               .compatible = "amlogic,meson-g12a-cpu-tsensor",
-> +               .data = &meson_tsensor_g12a_cpu_param,
-> +       },
-> +       {},
-> +};
-> +MODULE_DEVICE_TABLE(of, meson_tsensor_of_match);
-I would move the of_device_id table above the platform_driver definition below
-of_device_get_match_data doesn't need the of_device_id as parameter
-(compared to it's predecessor)
-
-> +static int meson_tsensor_probe(struct platform_device *pdev)
-> +{
-> +       struct meson_tsensor *priv;
-> +       struct iio_dev *indio_dev;
-> +       struct resource *res;
-> +
-> +       int ret;
-> +
-> +       indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*priv));
-> +       if (!indio_dev) {
-> +               dev_err(&pdev->dev, "failed allocating iio device\n");
-> +               return -ENOMEM;
-> +       }
-> +
-> +       priv = iio_priv(indio_dev);
-> +       priv->data = of_device_get_match_data(&pdev->dev);
-> +       if (!priv->data) {
-> +               dev_err(&pdev->dev, "failed to get match data\n");
-> +               return -ENODEV;
-> +       }
-> +
-> +       indio_dev->channels = temperature_channel;
-> +       indio_dev->num_channels = ARRAY_SIZE(temperature_channel);
-> +       indio_dev->name = dev_name(&pdev->dev);
-> +       indio_dev->dev.parent = &pdev->dev;
-> +       indio_dev->dev.of_node = pdev->dev.of_node;
-> +       indio_dev->modes = INDIO_DIRECT_MODE;
-> +       indio_dev->info = &meson_tsensor_iio_info;
-> +
-> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +       priv->base = devm_ioremap_resource(&pdev->dev, res);
-you're only using priv->base in this function. consider dropping it
-from struct meson_tsensor
-
-
-[0] https://dn.odroid.com/S922X/ODROID-N2/Datasheet/S922X_Public_Datasheet_V0.2.pdf
+> @@ -155,6 +169,12 @@
+>         pinctrl-names = "default";
+>  };
+>
+> +&pwm_ef {
+> +       status = "okay";
+> +       pinctrl-0 = <&pwm_e_pins>;
+> +       pinctrl-names = "default";
+on the other boards we list the input clock explicitly here (I assume
+to avoid jitter due to a less precise parent which may be the chip
+default or set by the bootloader)
 
 _______________________________________________
 linux-amlogic mailing list
