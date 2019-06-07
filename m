@@ -2,22 +2,22 @@ Return-Path: <SRS0=bWzJ=UG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CE677C28CC3
-	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jun 2019 08:08:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C936CC28CC3
+	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jun 2019 08:09:44 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A67992089E
-	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jun 2019 08:08:00 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 98BBB2089E
+	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jun 2019 08:09:44 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Cl177Mn0";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="XvhNsV2W"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A67992089E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QFuTFdTT";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ZfHB7PA9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 98BBB2089E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=U9pqWIWM1fB+t0HIu5zBNvtuZS/ijz2e5+5qh7ihYDE=; b=Cl177Mn0BVSXKK
-	Mx4o1Oxxn5+kWgt8H2wBZrKaX9YWL9XHm2SeDl93mRxC7LUQ1eTgidbJUPBYHF31sXKR7UFthQIr+
-	FabUX6hI9ejtvMfkfn2lWbpU0d+PMrunQVLkgfHA/W+Grm48hMrSplh5IpEiIn6B+saBRLe9dDSAG
-	TCQsOmoNJvnm3nvFKGsQB2NwH75meFavQLpk0/+rICB9J5mxRrVnll36KkBpq5Z42JUg2xZoDBsxo
-	Hde9FA+IS11shKtw24f0hxe3zqkkoCWfH9gH1V5YjyHvq/dzao1tcoqBlNfm6EIlZVnF/a46zr5av
-	3AMpCD+9iHr7+ceZnTKw==;
+	List-Owner; bh=EUHZlSiQ4bD9luFKeJhNzz0C+hFr+tlon86FZwofRCE=; b=QFuTFdTTgd/L6J
+	9rquzPFLcjQad7X+yK9myP1r1BvyrPMy+s244GlGz5L/E+YNQts7iC8tAj2n+dX1iDTtw2v2uCLL+
+	2yjYOXBdBtTVxQuQrNyM+MRHToEfmCCr/r1jxD+TCDv+6DEitKjr45W9/nAi3ohosqP+eXLYUTkNA
+	/+csOJOy1pm0uxr+no7AJKmkUAY1uC1PoKoFfPCiVvRAYFs+7JyNhEUCqDTxfflkQ3RJBdsBbUYAm
+	TqccVeeyndJpG69+q81bCoaREXxqNgBI0nnGxky9aJpCI+eo6q6NoCMowvqF1dZE0cxz3wWDHksl6
+	UfDDQ+xNcyvqsFfpHSiw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hZ9um-0001PB-NI; Fri, 07 Jun 2019 08:07:56 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1hZ9wR-0001sL-J4; Fri, 07 Jun 2019 08:09:39 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hZ9uk-0001OP-2V
- for linux-amlogic@lists.infradead.org; Fri, 07 Jun 2019 08:07:55 +0000
-Received: by mail-wm1-x341.google.com with SMTP id u8so963153wmm.1
- for <linux-amlogic@lists.infradead.org>; Fri, 07 Jun 2019 01:07:53 -0700 (PDT)
+ id 1hZ9wO-0001rZ-Np
+ for linux-amlogic@lists.infradead.org; Fri, 07 Jun 2019 08:09:38 +0000
+Received: by mail-wr1-x441.google.com with SMTP id c2so1162357wrm.8
+ for <linux-amlogic@lists.infradead.org>; Fri, 07 Jun 2019 01:09:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=e207kpaiGZQcsYD8Rw0MT/mLe99N0is+Q2WZ2tzdO8Y=;
- b=XvhNsV2WUvrNYkz4VUTLPQsP5/22Nu1CqNoyH4PauDBNj4OBnwLB92WiXft4n2hOfS
- FCGQhoM8ATM1dzHW7t2pF1BLt7Px4eFkbAzFQXs3kk7dRphUvX5DODED0PQg/bJoUywX
- Fvqf6dtCjeJqoaznktxknG8FRVC8BPq+CNQPXcnphQEVTO5LBwlI3xn3IMX2H4ToHSA2
- 2TGApY3hIyIHDRSUWvjgeNca6yGxETeY9SJYFyrbyKWmtn42biSh7yPeC/A4SQPzme9C
- wCVbdbruo/67vIS+SDbyYPLSCWAcJY/ItpxcUxQFOAQR+5Xlu+6hS7HelVf6cGS0TOmG
- EqGA==
+ bh=ap0XAetM+pT0J8lzDb15ksHa3sKJqhSdyqZL0XBCEG4=;
+ b=ZfHB7PA9Hz6ves72j99VkQp94oROxR3wx2SUlb3gGT3XFITeqkXSLhQ5tkbK3Vxr7X
+ vQHIGyuVgENQcIqma1vXhRpu8pSfMWPbSYnNJiJfFzxci9Dvkups+OE6dW8oRbc8UJLB
+ Fg4kHSC2AcerCfBDhoEg3tEJ/YcxsbSJwFO21JcKC9dyHxlF73CJtez6rvZ0W5W2yncp
+ Msb9YgCmuwmbTGgRbsqYj/rlkslBn2ASoplqc9a3QBSHrMkb/CzQZ8zoeJNJD74v6/jp
+ 4WsVRVE1AkZh/1KBSAV7DW1tYMu9155X/5MuNmQnJVqW+e26vssRF+Tjar8J1wEGIbk5
+ jMfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=e207kpaiGZQcsYD8Rw0MT/mLe99N0is+Q2WZ2tzdO8Y=;
- b=iQc4YhAuKEj+47mHs4mLR19BNC5cugxxiY88VobVkoLAUd7jIaJF2QRcfGZNjOMV4a
- VlZEKGTLLYA6g8xX4QzfUJABiVEkGC5TxiYPssT5k8PrrEukKoatxXM0atpEu9GQAUP9
- 7ESZAU5Y9ZUup3EPgeSjf7ZRO1tGuYp3iXM9Xoxv4Xmb0COJSEQvi9XJ8eWL+8FaD42C
- 0c+q5ONTPWjr4VbLiUlh1h/bxhe15mgChT1RbbFpXSct5FXRI2Vf+GVhA+mlqjJWNxmT
- +35YZpGsVC6PanCuJI5pawGGhmh1QaZdDGmV3NjIVLsN42AZCS7c+NEJBQQz3BP4Qviq
- cDcA==
-X-Gm-Message-State: APjAAAVOBAta4QbHsz5xUP2CyK+TPtVuc7vZhAn1H0NgfCSBChg/AJGH
- qp+mz9WzL2I2rjXCm/eS8QGn9Q==
-X-Google-Smtp-Source: APXvYqxeEKmv+oghi+kTvN/aNae/pwOVModQqEnv6UWccVO/rg4/bAlno9HsebuUVm61sD2tGy52EA==
-X-Received: by 2002:a1c:80c1:: with SMTP id b184mr2427660wmd.24.1559894872459; 
- Fri, 07 Jun 2019 01:07:52 -0700 (PDT)
+ bh=ap0XAetM+pT0J8lzDb15ksHa3sKJqhSdyqZL0XBCEG4=;
+ b=EMYRlLBQTeiaQEijB98BHR5a68wrJQdxA70bZklL0hg7fR7l+cnurYMuBLtppUhgwp
+ Q7l5ANVdmzFT22L3TMieke7aCc3gfghrHwWQzhik3f1i5G0Id3ZyC+3ScTcqDrnwyFC7
+ UHFGzw+/EWN99hHlwXJXnbzitJHhIW4Vcf51s4iTfVfS5wGLIjAvzap7W9qyxP7viUx+
+ /FUopLY9BIZsbRdpUmVtRp9Lz1EeBwzaR7YDb31dNaw1uBd46+9eKHDPJpfzkMXrn4vX
+ D5JlE6UhsXgHz1QRhbebayPw1PinpFveAV5ZOy3A6PWT6ssC8RYUKkVPcsx+/Vdo8z3B
+ VbPg==
+X-Gm-Message-State: APjAAAW92dMbBuEFgonmjB6eP+XhPtLes5RzSMXkEl8QyUeiflThQxQ1
+ xmW/5i0iNjfkHqES9agFYvAXxA==
+X-Google-Smtp-Source: APXvYqxP6A+8A3KS84/Et4P9G/ZJC2IBacGunUaWZeHsk1vVP/T5CFd8ysxnZm05uOsKCYWFFibizg==
+X-Received: by 2002:adf:aa09:: with SMTP id p9mr11794798wrd.59.1559894973940; 
+ Fri, 07 Jun 2019 01:09:33 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id j7sm1646959wru.54.2019.06.07.01.07.51
+ by smtp.gmail.com with ESMTPSA id r9sm1114935wrq.0.2019.06.07.01.09.33
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 07 Jun 2019 01:07:52 -0700 (PDT)
-Subject: Re: [PATCH 1/2] drm/meson: fix primary plane disabling
+ Fri, 07 Jun 2019 01:09:33 -0700 (PDT)
+Subject: Re: [PATCH] drm/meson: fix G12A HDMI PLL settings for 4K60 1000/1001
+ variations
 To: Kevin Hilman <khilman@baylibre.com>, dri-devel@lists.freedesktop.org
-References: <20190605141253.24165-1-narmstrong@baylibre.com>
- <20190605141253.24165-2-narmstrong@baylibre.com>
- <7h8sueeici.fsf@baylibre.com>
+References: <20190605125320.8708-1-narmstrong@baylibre.com>
+ <7hh892fzgj.fsf@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -132,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <97126af5-56da-885a-5260-83dfaf85f738@baylibre.com>
-Date: Fri, 7 Jun 2019 10:07:51 +0200
+Message-ID: <abf63289-dd97-75d7-d3ae-e41e171d59cc@baylibre.com>
+Date: Fri, 7 Jun 2019 10:09:32 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <7h8sueeici.fsf@baylibre.com>
+In-Reply-To: <7hh892fzgj.fsf@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190607_010754_112439_A8CC2CC8 
-X-CRM114-Status: GOOD (  10.39  )
+X-CRM114-CacheID: sfid-20190607_010936_777885_A693E0A2 
+X-CRM114-Status: GOOD (  16.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,26 +160,64 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 06/06/2019 19:25, Kevin Hilman wrote:
+On 06/06/2019 18:30, Kevin Hilman wrote:
 > Neil Armstrong <narmstrong@baylibre.com> writes:
 > 
->> The primary plane disable logic is flawed, when the primary plane is
->> disabled, it is re-enabled in the vsync irq when another plane is updated.
+>> The Amlogic G12A HDMI PLL needs some specific settings to lock with
+>> different fractional values for the 5,4GHz mode.
 >>
->> Handle the plane disabling correctly by handling the primary plane
->> enable flag in the primary plane update & disable callbacks.
+>> Handle the 1000/1001 variation fractional case here to avoid having
+>> the PLL in an non lockable state.
 >>
->> Fixes: 490f50c109d1 ("drm/meson: Add G12A support for OSD1 Plane")
+>> Fixes: 202b9808f8ed ("drm/meson: Add G12A Video Clock setup")
 >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>  drivers/gpu/drm/meson/meson_vclk.c | 13 +++++++++++--
+>>  1 file changed, 11 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/meson/meson_vclk.c b/drivers/gpu/drm/meson/meson_vclk.c
+>> index 44250eff8a3f..83fc2fc82001 100644
+>> --- a/drivers/gpu/drm/meson/meson_vclk.c
+>> +++ b/drivers/gpu/drm/meson/meson_vclk.c
+>> @@ -553,8 +553,17 @@ void meson_hdmi_pll_set_params(struct meson_drm *priv, unsigned int m,
+>>  
+>>  		/* G12A HDMI PLL Needs specific parameters for 5.4GHz */
+>>  		if (m >= 0xf7) {
+>> -			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4, 0xea68dc00);
+>> -			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5, 0x65771290);
+>> +			if (frac < 0x10000) {
+>> +				regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4,
+>> +							0x6a685c00);
+>> +				regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5,
+>> +							0x11551293);
+>> +			} else {
+>> +				regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL4,
+>> +							0xea68dc00);
+>> +				regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL5,
+>> +							0x65771290);
+>> +			}
+>>  			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL6, 0x39272000);
+>>  			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL7, 0x55540000);
+>>  		} else {
 > 
 > Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+
+Applied to drm-misc-fixes
+
 > 
+> nit: this is continuing with more magic constants, and it would be nice
+> to have them converted to #define'd bitfields.  But since that isn't a
+> new problem in this patch, it's fine to cleanup later.
 
-Applying to drm-misc-fixes
-
-Thanks,
+Yep, it's on our to priority.
 
 Neil
+
+
+> 
+> Kevin
+> 
+
 
 _______________________________________________
 linux-amlogic mailing list
