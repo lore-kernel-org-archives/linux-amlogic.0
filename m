@@ -2,89 +2,92 @@ Return-Path: <SRS0=bWzJ=UG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,T_DKIMWL_WL_HIGH,URIBL_BLOCKED autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1DC5BC2BCA1
-	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jun 2019 14:50:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A579EC2BCA1
+	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jun 2019 17:00:19 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D11402083D
-	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jun 2019 14:50:09 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7AAB62089E
+	for <linux-amlogic@archiver.kernel.org>; Fri,  7 Jun 2019 17:00:19 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fyreFolG";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="oOjhENZq"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D11402083D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TbuUS5JK";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="L4akB9WN"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7AAB62089E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=AYt87gaA8cDTMzZQUFdVhlsakrdKekfJoSJlCkXJjsQ=; b=fyreFolGdfQto2
-	mZx2/FSyUPgIIDd/zu0wjPZkzhu/DB1iZEyc8qZzO3AVz2MOkzJAT/nUwQukBM8LiwrWeIOJK3Yn6
-	ZJ1bxi3pG1EMoGH1rrYo5tHUX6ezZ5mD1czsQopf/gkfUWkOCnP57FM55JdSmQ3w4PZwOTUUOhHPB
-	d2z9hGpyDOOT9H8ywL5w4hATNy+/85qx36hblEwqXl7b73qM4SLtQdnmlKOxfEWF8l+0MTOcKiAk+
-	a6G1l0ItbhRRdi7TWcMzU3mjZMxyCFlKoJzJLuVNBA2isioDGDbgQEHIUJypQJ4l93mgM1VoB26vy
-	Yy2bj18wra0G/8tL3MbA==;
+	List-Owner; bh=xYRe7SqX8vEDp9b1cxSOrEDhjRB6+02zZHuuAP/+ruU=; b=TbuUS5JK1BQJfT
+	eJoS7rAPgun1zUGnNHpOjV/6S9RMrWRi8GCEe9io20PNp6K3BM5fsgNQJfgVZoJ7IhGHlNDKbXiey
+	gvpEDh7xh1+Og16J6kTnYUrbIqiFISkn4a5fJP5UkNd54IR+p/+pOHE1MIqR/8aBIO7guy0P2y5sH
+	ym5YY2dLrHsj4wfR3LW0jiAyKKziUegCoLFlYI6t1tFU53GpWs72PT4Sc8gTZCSVVAdoGgwr7pxl5
+	+PpkTznN5Yid5W1MxoWgSBzVPobgAMySoKIXoZjmkMoeGiwvy4j3/n+5DgK/0xx0X27U9zTbjepeE
+	7MrzgOqfQGFHKy7aqxfg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hZGBv-0003Cn-4j; Fri, 07 Jun 2019 14:50:03 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1hZIDt-00069v-Tb; Fri, 07 Jun 2019 17:00:13 +0000
+Received: from mail-pg1-x541.google.com ([2607:f8b0:4864:20::541])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hZG9g-0001Ds-A8
- for linux-amlogic@lists.infradead.org; Fri, 07 Jun 2019 14:47:47 +0000
-Received: by mail-wm1-x341.google.com with SMTP id w9so4244515wmd.1
- for <linux-amlogic@lists.infradead.org>; Fri, 07 Jun 2019 07:47:44 -0700 (PDT)
+ id 1hZIDb-0004nS-4W
+ for linux-amlogic@lists.infradead.org; Fri, 07 Jun 2019 16:59:56 +0000
+Received: by mail-pg1-x541.google.com with SMTP id e6so1460227pgd.9
+ for <linux-amlogic@lists.infradead.org>; Fri, 07 Jun 2019 09:59:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=tPTyfVIwA34LPg5YDvt9kvbQsjNuXGIsGhvwwUrhRvE=;
- b=oOjhENZqL4BhiLGy7B2SBUqZvF7HNB+Ur1xaBXLbkm9NDN7Wkxmv7Vn5iGauOR0BF/
- J/nlHAa6pwsIQsnWpFMnrHygtnbVU211VIDTH+eGKlf0K8dvS8qOJv3j9MRR6m0b6QF1
- c8g8TMX/8Gny7E+W+4eC3qHWXiTDPv27VPRFGqs39ax/KM5jtxrb2GgbwxZOZhQtkcHf
- meLo0oJwYZjBCggIl1Jt+vULGFaNDtLUcZRjR0kjoyzpP34NRtCqp4yhyna1iB57+12W
- Y1/iIu0aWZ8qtUtpbytmj2QAaM9xLz5HAEk45cdqhePq8a+CUcGkAA5msHhXjbmxQiAc
- pBmA==
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=MNcJZMA4q9Qof1r/YfMqt/g7trBAYJtueHwu9fzJ0WI=;
+ b=L4akB9WNfbBACsOjFsABrYcUMZ0d45A2WBoImzWXvmDzcQfL5Z9zXF5ol6MTI1/Igh
+ 7pKIWrGAuHb4n0nXZdg1NdjUDchGYPC9QOZxMuh5PCgJCTKwZsxN9o/q3Irps0B2LtlG
+ Lh2FWJdktH2VCUfpDaSfHxG62xGrNmB/kuoRpbzK4gS3dLpokLfSX2eW7ExInlFDuc1m
+ ziXEQzAH5J1A1ad/7Ud2x/Wii4u1RO/16chpf8v3a1Y4CSHsixCLtbRaPbd2B6RuCK4I
+ cMleBhOaoan2iZh3a0aZwuic7Cedsvi9+vfrLbNo3XN2Wp6J1kkJxyJ1Wgqj25K+yaSF
+ iUoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=tPTyfVIwA34LPg5YDvt9kvbQsjNuXGIsGhvwwUrhRvE=;
- b=XrxcWSt2n8Kh7ZByJlhfdwFYfoYqUTkSmnET6Uj5y1XSI5ounDYkPNoSWYG331zJcP
- dEzLwQsISQd+UvHL4wDL34F2D+gCmjfc0ANWQHwtHrOPYFlP2Xa80WJlTs1VL0dBIK0k
- rQ4GOWmmi/J/MX6tKgQOmu62QM70NFeNAFzPn3hD4j0SkU6LXLzpQt+VpqjbZIigBIIv
- tB145SpkI9w1TjVhV8gajrV5lWpOMdR4gmpxy89JsMGkENrVFkXIMXO7+sNix9GmlHdY
- OZgZJS/k/GLLyDw2LkR3tMGS2KMvPK4DEdc9Kk8xuUXreLlBS0Lp+hJpZ7Yod8JUG1ch
- T4SA==
-X-Gm-Message-State: APjAAAWSIClLFdpDz6CmC0Cl5oAJpgEIDYzVlaPWmfQ3evUvxC1rMfel
- yon8wecvUzI9xxZTZjXY3PSFwz3GoO7RJg==
-X-Google-Smtp-Source: APXvYqwWILUiwv79FHy2wYdmky8oGaRLMAzo72z4Mc1oYEnJ9iaUVsVj578xtD5mptsqtY9zca9QSg==
-X-Received: by 2002:a1c:a848:: with SMTP id r69mr3830844wme.12.1559918862691; 
- Fri, 07 Jun 2019 07:47:42 -0700 (PDT)
-Received: from bender.baylibre.local
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id q20sm5184516wra.36.2019.06.07.07.47.41
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Fri, 07 Jun 2019 07:47:41 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: khilman@baylibre.com
-Subject: [PATCH v2 3/3] arm64: dts: meson-g12a-sei510: Enable Wifi SDIO module
-Date: Fri,  7 Jun 2019 16:47:35 +0200
-Message-Id: <20190607144735.3829-4-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190607144735.3829-1-narmstrong@baylibre.com>
-References: <20190607144735.3829-1-narmstrong@baylibre.com>
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=MNcJZMA4q9Qof1r/YfMqt/g7trBAYJtueHwu9fzJ0WI=;
+ b=ZBo3hSt0lf1KfXsVKIRwTGYCtnBXfq9zIRJxHQlUf4HXmScNpF7mF2J4naZ8zm/yA+
+ R0K1NEn3Hkr87vGUG72NPpM2hnJBpC3ZJzbVU3f47Z1FQFwz9X7n2S7tGT/aMR7vcfwv
+ PYl4jz6/Rz4QoOhSQVWzmVazD23pb5+A8lVMvLIyr0GjzLTigoq+RJrWwRjxJDcBUXa+
+ fRhLb/EElPSqwrwMCznd2az4JFeiFFtOsDj6pfH9dq7EwnhmehMP8bEFPcwTIHeK/BwW
+ lY8+mnVmLrgwMKciWpZzWaKj2hTQxKdB9J4yi9Hqcltd6Kjm2x+Bx/4CFas23vpbrcCP
+ /vug==
+X-Gm-Message-State: APjAAAUz/8nxmcO07L7IIKbUW4TgwWE0pJvyOj+XkOaTaCPkFwcoJtJM
+ xKv0iEJ8BQLeI5/zSrsuoopEUQ==
+X-Google-Smtp-Source: APXvYqxjjfrU5qo3ODqkgEdkborlSAFDI2qtFKnUIi8CiMXFsJ1sXPjdIpXVmVAhK7v1FC47cE9/Hw==
+X-Received: by 2002:a62:640e:: with SMTP id y14mr57808577pfb.109.1559926794332; 
+ Fri, 07 Jun 2019 09:59:54 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
+ [71.197.186.152])
+ by smtp.googlemail.com with ESMTPSA id k6sm3828350pfi.86.2019.06.07.09.59.53
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Fri, 07 Jun 2019 09:59:53 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH 01/10] arm64: dts: meson-gxm-khadas-vim2: fix
+ gpio-keys-polled node
+In-Reply-To: <c8144470-361b-ca26-71c7-d152f976ae19@baylibre.com>
+References: <20190527132200.17377-1-narmstrong@baylibre.com>
+ <20190527132200.17377-2-narmstrong@baylibre.com>
+ <7hy32ecwlu.fsf@baylibre.com>
+ <c8144470-361b-ca26-71c7-d152f976ae19@baylibre.com>
+Date: Fri, 07 Jun 2019 09:59:53 -0700
+Message-ID: <7hblz9covq.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190607_074744_381370_ECF91AE9 
-X-CRM114-Status: GOOD (  10.94  )
+X-CRM114-CacheID: sfid-20190607_095955_183143_B71BF306 
+X-CRM114-Status: UNSURE (   8.83  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,99 +99,53 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org,
+ Christian Hewitt <christianshewitt@gmail.com>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The SEI510 embeds an AP6398S SDIO module, let's add the
-corresponding SDIO, PWM clock and mmc-pwrseq nodes.
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- .../boot/dts/amlogic/meson-g12a-sei510.dts    | 50 +++++++++++++++++++
- 1 file changed, 50 insertions(+)
+> On 06/06/2019 22:00, Kevin Hilman wrote:
+>> Neil Armstrong <narmstrong@baylibre.com> writes:
+>> 
+>>> From: Christian Hewitt <christianshewitt@gmail.com>
+>>>
+>>> Fix DTC warnings:
+>>>
+>>> meson-gxm-khadas-vim2.dtb: Warning (avoid_unnecessary_addr_size):
+>>>    /gpio-keys-polled: unnecessary #address-cells/#size-cells
+>>> 	without "ranges" or child "reg" property
+>>>
+>>> Fixes: b8b74dda3908 ("ARM64: dts: meson-gxm: Add support for Khadas VIM2")
+>>> Suggested-by: Christian Hewitt <christianshewitt@gmail.com>
+>>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> 
+>> This patch is missing a S-o-B from the author (Christian?)
+>> 
+>> The From, Suggested-by and Signed-off-by send mixed messages.  Please
+>> clarify if if this is missing a signoff from Christian or if the author
+>> is Neil.
+>> 
+>> Thanks,
+>> 
+>> Kevin
+>> 
+>
+> The author is Christian Hewitt <christianshewitt@gmail.com>
+>
+> so s/Suggested-by/Signed-off-by/
+>
+> Do you need a resend ?
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-index be1d9ed6d521..a1821d850a6d 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-@@ -128,6 +128,20 @@
- 			no-map;
- 		};
- 	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-+		clocks = <&wifi32k>;
-+		clock-names = "ext_clock";
-+	};
-+
-+	wifi32k: wifi32k {
-+		compatible = "pwm-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
-+	};
- };
- 
- &cec_AO {
-@@ -174,11 +188,47 @@
- 	pinctrl-names = "default";
- };
- 
-+&pwm_ef {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_e_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&xtal>;
-+	clock-names = "clkin0";
-+};
-+
- &saradc {
- 	status = "okay";
- 	vref-supply = <&vddio_ao1v8>;
- };
- 
-+/* SDIO */
-+&sd_emmc_a {
-+	status = "okay";
-+	pinctrl-0 = <&sdio_pins>;
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	sd-uhs-sdr50;
-+	max-frequency = <100000000>;
-+
-+	non-removable;
-+	disable-wp;
-+
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddio_ao1v8>;
-+
-+	brcmf: wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
-+
- /* SD card */
- &sd_emmc_b {
- 	status = "okay";
--- 
-2.21.0
+No need, I'll fix up locally.
 
+Thanks for clarifying,
+
+Kevin
 
 _______________________________________________
 linux-amlogic mailing list
