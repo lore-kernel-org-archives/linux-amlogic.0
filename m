@@ -5,20 +5,20 @@ X-Spam-Level:
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 30DEAC28CC5
-	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jun 2019 18:09:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C4738C28CC5
+	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jun 2019 18:09:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EA394212F5
-	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jun 2019 18:09:12 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A3366212F5
+	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jun 2019 18:09:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bkFwM2wP";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Y9O92Nwl"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EA394212F5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TNyKX7IQ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="HYY27Tka"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A3366212F5
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,67 +27,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=D4R8LH8RCbB+ta4Iuas1UDSWtXisZ7Eng4xEOZjk5uI=; b=bkFwM2wP4urIpq
-	ZrhcHDVueDuyJk2uz4igAs4OhM0h5vkTHxDf8RULcdknf02DQ3Hyj+mnyJCLZDy/Yb0+1YtrNm6yV
-	FCG+V+buLgZZkLijirpZov0V8tSwzZwc+tJT83PQ5Id01HHamWOux8KnFJf1TQ363QeX71BBecDZg
-	gtn9oM130NScEAj4MaJ0HPXSSWyJ5htZPPJzArnpOz5eU0XSxEW32YqCMvSzzuamPXY4bhls5QH0T
-	GVQ5c9NsqsQppccwHoOhF9UAKgR9gYghYRTpttyRk/3TgpP2n1hoLULr0oUsCnn7R6x5Khwr9zb5L
-	wJ8Eheg8zUHdmiYn4YwQ==;
+	List-Owner; bh=kpvTwQ3lqm9RvsHZ54vwN85ue6PpztWnTRXC0M9wbMg=; b=TNyKX7IQ+lau8S
+	GxoeWM3xnE0ONruAZCl8kyc2vic4t7WSnxe1espnIflhF9lpmHuvelyssXjOuQwmiEuFUzYSxHFB5
+	/2uwm0VUylOc65EdlvRdXT6gruflqoZePrcpyKdIMeM5f8dBSZKs6FuH+JzbpmMmB3SVEn3gz96it
+	Zzs8ZweifFOhDNsBORrNFa4Eb3JgRU3THPLBqOoOdSCMYoFmRQHX+QOEbdSl6cGIf6sTFUvEPnfJS
+	fkV6rP1hftysHNpOE7xSSgzuYNHN2rjJgQPzCs968zlrA5+0YpenQs86sAj71I6Wi3e7NHYNzaARj
+	9Rw2qIXQK/9xU8RuseEg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hZfm8-0002zw-65; Sat, 08 Jun 2019 18:09:08 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1hZfmB-00032G-7T; Sat, 08 Jun 2019 18:09:11 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hZfjp-0000rX-WE; Sat, 08 Jun 2019 18:06:47 +0000
-Received: by mail-wm1-x341.google.com with SMTP id x15so4939656wmj.3;
- Sat, 08 Jun 2019 11:06:45 -0700 (PDT)
+ id 1hZfjp-0000qU-Cw; Sat, 08 Jun 2019 18:06:46 +0000
+Received: by mail-wm1-x343.google.com with SMTP id w9so6231871wmd.1;
+ Sat, 08 Jun 2019 11:06:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=2ePKIZM3a5wh4lPG0Ppb3tJa/t/8p/W8m/D9X1owsTQ=;
- b=Y9O92NwlXSOI90yGc6Bd2VwrxCy+i9xulc3WGCWS5CXL4GS0LKERZF0PokmHXIIdfG
- i2h2CvJGMU6NZpGh1zhBEt9UUAAmiuHgf6Io9ckto9M13xLIJbZLoHXI2d6hCq4fh31v
- GygElivXyhYuClQ259oZce3CvWnpI75rkDcfYN+xfDnLBeejcKF6rd2nNBQUDHFfYZfN
- 13zqIvODOVRkMLtgwYRbKb4rnjWjDjIRCIL7z2J/KHljxBRAzUqnQGtiIrJIJDr5jyMg
- HbqMBLz9SEZZqVUBA4WmxnS5CmhEM6GXBRsFot/ijZj+XG1wZKLpjTGpSARp9sf7ibhW
- 9v/w==
+ bh=AZO7qivBo434TSsVVa4YbzWhWwMZ6z2njZ7atSZyZUE=;
+ b=HYY27Tka+Zve8oOw3M3LuURDsY4EXX8qUIvDs9nN77A6hMV7RdCJiqmMLzVYd24D9J
+ NZ8KEuhugImjFpMm7IKgsJss/+2YogqQ42dMk1K5h+cxpN+5BjKguyQjRRdTnj1ywhnj
+ x7wWEg0obaSdlV2gdVABueOS6ybEMlzo0clHpc+g7ePBVyE6/1Z3b67B7pHgvH8+EM3Y
+ EzmvgWJuyTW02VMwmV19skNhqBH+K6mAW17IGIK0PuCQZVH8UobD84u5oEt2ypzgUoE/
+ g0i+CfD3HBjY9u0FgqOJDWHlfS2GqDIWKD/m/IpXYxEApSvMYhGUekx+G6x7rb+jNK6/
+ 7/wA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=2ePKIZM3a5wh4lPG0Ppb3tJa/t/8p/W8m/D9X1owsTQ=;
- b=FCBVhWVTziwofG54+8P+19Jdqds4S5tZE0RoIsDhotTVIlaBRqUzIvQ7qQTzzdDo6i
- incTqY/1In6l9DqYTtD2zIDdPZL8lL5ENIqAQY5wT3+wtVtOjaKPZ/6zaYa6c2RXCbtY
- o1kzJAHdvdh6QSutj9xo7YBd8QIj3zKM2iumpsnz6V2l/P8ck8U2tgpONPSHsjYUUxsE
- CB9rK8ynOg12H5Z5NRxTHSR9/U+Wmz6ymtdbvLUbrixwJ838BF6i4zlBjX5u17t4yn+w
- QUnqO8BVa2E3Pkpn2P2FY9yythb3vpdiysWe/iqM9OvOtxPtvwgWfAB6djseFwc9Orom
- 7uKA==
-X-Gm-Message-State: APjAAAVNRME12U/vwK3KbKQJKokbrySISuHfevsPcl9at0uJit+k8EoC
- pZ5PmP3hFnnhDb+QOquuERAlOgCQ
-X-Google-Smtp-Source: APXvYqxbv/NeCKxrR0YfqhHFUUkHcwGnY64PiWza/hkJzJEYbBvx+QBL4fvOmg2j8osIXtSlnNKi1Q==
-X-Received: by 2002:a7b:c444:: with SMTP id l4mr7641358wmi.15.1560017204346;
- Sat, 08 Jun 2019 11:06:44 -0700 (PDT)
+ bh=AZO7qivBo434TSsVVa4YbzWhWwMZ6z2njZ7atSZyZUE=;
+ b=XPmm8H7uCfWRzkfmz+D6qX36HmSA93zLFTROMIf54jgrexn6vDj3M+iH/uKfdqorB1
+ Qmn3hQpcIvmlh8Yt9fRJ4DWgN+7iVrEuEkhqstMJvrVh/4as8KIN51yDeWPqlX4PV5sW
+ z4sHyb5MU2hJt2m9RJ7JYT1P5yXMR4OttPlUQGBJ2KUum1B95o3ppvCWCZ0RIdfmvhmh
+ LSf+R7GLBU7a/aGUahCCll/Cs+mdZvj/BdW4EW/787rNNehShUq1yWsb89Nokq9khNSR
+ 4NZZ4kORBD2fGNjd0LEvwyS3Xe6KemUaT4NPNIlo+HOm1mc8v8XNCLDXsAmBmuc0Mm+p
+ QgfQ==
+X-Gm-Message-State: APjAAAV780yyIePTft84s/Qkzg2glhhw5tWwFV11sX51yN7nu8SG1VZ7
+ iARxvRu0KaYdld0mEYngvXjUQrZD
+X-Google-Smtp-Source: APXvYqy5gBo0+pcOVgy3Rvl4MUPwN7blfDUL7OIOL3mmZBtcEZnBu9vQTKJGfmXPerM5g/iu3ZkI5Q==
+X-Received: by 2002:a1c:3b45:: with SMTP id i66mr6173542wma.48.1560017203368; 
+ Sat, 08 Jun 2019 11:06:43 -0700 (PDT)
 Received: from blackbox.darklights.net
  (p200300F133DDA400D12EFF43FED1E981.dip0.t-ipconnect.de.
  [2003:f1:33dd:a400:d12e:ff43:fed1:e981])
- by smtp.googlemail.com with ESMTPSA id c7sm5143345wrp.57.2019.06.08.11.06.43
+ by smtp.googlemail.com with ESMTPSA id c7sm5143345wrp.57.2019.06.08.11.06.42
  (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Sat, 08 Jun 2019 11:06:43 -0700 (PDT)
+ Sat, 08 Jun 2019 11:06:42 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org,
  thierry.reding@gmail.com
-Subject: [PATCH v2 10/14] pwm: meson: simplify the calculation of the
- pre-divider and count
-Date: Sat,  8 Jun 2019 20:06:22 +0200
-Message-Id: <20190608180626.30589-11-martin.blumenstingl@googlemail.com>
+Subject: [PATCH v2 09/14] pwm: meson: move pwm_set_chip_data() to
+ meson_pwm_request()
+Date: Sat,  8 Jun 2019 20:06:21 +0200
+Message-Id: <20190608180626.30589-10-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190608180626.30589-1-martin.blumenstingl@googlemail.com>
 References: <20190608180626.30589-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190608_110646_130306_D838E4B8 
-X-CRM114-Status: GOOD (  14.98  )
+X-CRM114-CacheID: sfid-20190608_110645_481254_64B9F852 
+X-CRM114-Status: GOOD (  13.89  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,76 +102,92 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Neil Armstrong <narmstrong@baylibre.com>, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, u.kleine-koenig@pengutronix.de
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-UmVwbGFjZSB0aGUgbG9vcCB0byBjYWxjdWxhdGUgdGhlIHByZS1kaXZpZGVyIGFuZCBjb3VudCB3
-aXRoIHR3bwpzZXBhcmF0ZSBkaXY2NF91NjQoKSBjYWxjdWxhdGlvbnMuIFRoaXMgbWFrZXMgdGhl
-IGNvZGUgZWFzaWVyIHRvIHJlYWQKYW5kIGltcHJvdmVzIHRoZSBwcmVjaXNpb24uCgpUaHJlZSBl
-eGFtcGxlIGNhc2VzOgoxKSAzMi43NjhrSHogTFBPIGNsb2NrIGZvciB0aGUgU0RJTyB3aWZpIGNo
-aXAgb24gS2hhZGFzIFZJTQogICBjbG9jayBpbnB1dDogNTAwTUh6IChGQ0xLX0RJVjQpCiAgIHBl
-cmlvZDogMzA1MThucwogICBkdXR5IGN5Y2xlOiAxNTI1OW5zCm9sZCBhbGdvcml0aG06IHByZV9k
-aXY9MCwgY250PTE1MjU5Cm5ldyBhbGdvcml0aG06IHByZV9kaXY9MCwgY250PTE1MjU5CihubyBk
-aWZmZXJlbmNlIGluIGNhbGN1bGF0ZWQgdmFsdWVzKQoKMikgUFdNIExFRCBvbiBLaGFkYXMgVklN
-CiAgIGNsb2NrIGlucHV0OiAyNE1IeiAoWFRBTCkKICAgcGVyaW9kOiA3ODEyNTAwbnMKICAgZHV0
-eSBjeWNsZTogNzgxMjUwMG5zCm9sZCBhbGdvcml0aG06IHByZV9kaXY9MiwgY250PTYyMDA0Cm5l
-dyBhbGdvcml0aG06IHByZV9kaXY9MiwgY250PTYyNTAwClVzaW5nIGEgc2NvcGUgKDI0TUh6IHNh
-bXBsaW5nIHJhdGUpIHNob3dzIHRoZSBhY3R1YWwgZGlmZmVyZW5jZToKLSBvbGQ6IDc3NTMwMDBu
-cywgb2ZmIGJ5IC01OTUwMG5zICgwLjc2MTYlKQotIG5ldzogNzgxNTAwMG5zLCBvZmYgYnkgKzI1
-MDBucyAoMC4wMzIlKQoKMykgVGhlb3JldGljYWwgY2FzZSB3aGVyZSBwcmVfZGl2IGlzIGRpZmZl
-cmVudAogICBjbG9jayBpbnB1dDogMjRNSHogKFhUQUwpCiAgIHBlcmlvZDogMjczMDYyNG5zCiAg
-IGR1dHkgY3ljbGU6IDEzNjUzMTJucwpvbGQgYWxnb3JpdGhtOiBwcmVfZGl2PTEsIGNudD0zMjc2
-OApuZXcgYWxnb3JpdGhtOiBwcmVfZGl2PTAsIGNudD02NTUzNApVc2luZyBhIHNjb3BlICgyNE1I
-eiBzYW1wbGluZyByYXRlKSBzaG93cyB0aGUgYWN0dWFsIGRpZmZlcmVuY2U6Ci0gb2xkOiAyNzMx
-MDAwbnMKLSBuZXc6IDI3MzEwMDBucwoobXkgc2NvcGUgaXMgbm90IHByZWNpc2UgZW5vdWdoIHRv
-IG1lYXN1cmUgdGhlIGRpZmZlcmVuY2UgaWYgdGhlcmUncwphbnkpCgpTdWdnZXN0ZWQtYnk6IFV3
-ZSBLbGVpbmUtS8O2bmlnIDx1LmtsZWluZS1rb2VuaWdAcGVuZ3V0cm9uaXguZGU+ClNpZ25lZC1v
-ZmYtYnk6IE1hcnRpbiBCbHVtZW5zdGluZ2wgPG1hcnRpbi5ibHVtZW5zdGluZ2xAZ29vZ2xlbWFp
-bC5jb20+CkFja2VkLWJ5OiBVd2UgS2xlaW5lLUvDtm5pZyA8dS5rbGVpbmUta29lbmlnQHBlbmd1
-dHJvbml4LmRlPgpSZXZpZXdlZC1ieTogTmVpbCBBcm1zdHJvbmcgPG5hcm1zdHJvbmdAYmF5bGli
-cmUuY29tPgotLS0KIGRyaXZlcnMvcHdtL3B3bS1tZXNvbi5jIHwgMjUgKysrKysrKysrKy0tLS0t
-LS0tLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDEwIGluc2VydGlvbnMoKyksIDE1IGRlbGV0aW9u
-cygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvcHdtL3B3bS1tZXNvbi5jIGIvZHJpdmVycy9wd20v
-cHdtLW1lc29uLmMKaW5kZXggMjc5MTVkNjQ3NWUzLi45YWZhMWU1YWFlYmYgMTAwNjQ0Ci0tLSBh
-L2RyaXZlcnMvcHdtL3B3bS1tZXNvbi5jCisrKyBiL2RyaXZlcnMvcHdtL3B3bS1tZXNvbi5jCkBA
-IC0xMiw2ICsxMiw3IEBACiAjaW5jbHVkZSA8bGludXgvZXJyLmg+CiAjaW5jbHVkZSA8bGludXgv
-aW8uaD4KICNpbmNsdWRlIDxsaW51eC9rZXJuZWwuaD4KKyNpbmNsdWRlIDxsaW51eC9tYXRoNjQu
-aD4KICNpbmNsdWRlIDxsaW51eC9tb2R1bGUuaD4KICNpbmNsdWRlIDxsaW51eC9vZi5oPgogI2lu
-Y2x1ZGUgPGxpbnV4L29mX2RldmljZS5oPgpAQCAtMTQ1LDcgKzE0Niw2IEBAIHN0YXRpYyBpbnQg
-bWVzb25fcHdtX2NhbGMoc3RydWN0IG1lc29uX3B3bSAqbWVzb24sIHN0cnVjdCBwd21fZGV2aWNl
-ICpwd20sCiAJc3RydWN0IG1lc29uX3B3bV9jaGFubmVsICpjaGFubmVsID0gcHdtX2dldF9jaGlw
-X2RhdGEocHdtKTsKIAl1bnNpZ25lZCBpbnQgZHV0eSwgcGVyaW9kLCBwcmVfZGl2LCBjbnQsIGR1
-dHlfY250OwogCXVuc2lnbmVkIGxvbmcgZmluX2ZyZXEgPSAtMTsKLQl1NjQgZmluX3BzOwogCiAJ
-ZHV0eSA9IHN0YXRlLT5kdXR5X2N5Y2xlOwogCXBlcmlvZCA9IHN0YXRlLT5wZXJpb2Q7CkBAIC0x
-NjQsMjQgKzE2NCwxOSBAQCBzdGF0aWMgaW50IG1lc29uX3B3bV9jYWxjKHN0cnVjdCBtZXNvbl9w
-d20gKm1lc29uLCBzdHJ1Y3QgcHdtX2RldmljZSAqcHdtLAogCX0KIAogCWRldl9kYmcobWVzb24t
-PmNoaXAuZGV2LCAiZmluX2ZyZXE6ICVsdSBIelxuIiwgZmluX2ZyZXEpOwotCWZpbl9wcyA9ICh1
-NjQpTlNFQ19QRVJfU0VDICogMTAwMDsKLQlkb19kaXYoZmluX3BzLCBmaW5fZnJlcSk7Ci0KLQkv
-KiBDYWxjIHByZV9kaXYgd2l0aCB0aGUgcGVyaW9kICovCi0JZm9yIChwcmVfZGl2ID0gMDsgcHJl
-X2RpdiA8PSBNSVNDX0NMS19ESVZfTUFTSzsgcHJlX2RpdisrKSB7Ci0JCWNudCA9IERJVl9ST1VO
-RF9DTE9TRVNUX1VMTCgodTY0KXBlcmlvZCAqIDEwMDAsCi0JCQkJCSAgICBmaW5fcHMgKiAocHJl
-X2RpdiArIDEpKTsKLQkJZGV2X2RiZyhtZXNvbi0+Y2hpcC5kZXYsICJmaW5fcHM9JWxsdSBwcmVf
-ZGl2PSV1IGNudD0ldVxuIiwKLQkJCWZpbl9wcywgcHJlX2RpdiwgY250KTsKLQkJaWYgKGNudCA8
-PSAweGZmZmYpCi0JCQlicmVhazsKLQl9CiAKKwlwcmVfZGl2ID0gZGl2NjRfdTY0KGZpbl9mcmVx
-ICogKHU2NClwZXJpb2QsIE5TRUNfUEVSX1NFQyAqIDB4ZmZmZkxMKTsKIAlpZiAocHJlX2RpdiA+
-IE1JU0NfQ0xLX0RJVl9NQVNLKSB7CiAJCWRldl9lcnIobWVzb24tPmNoaXAuZGV2LCAidW5hYmxl
-IHRvIGdldCBwZXJpb2QgcHJlX2RpdlxuIik7CiAJCXJldHVybiAtRUlOVkFMOwogCX0KIAorCWNu
-dCA9IGRpdjY0X3U2NChmaW5fZnJlcSAqICh1NjQpcGVyaW9kLCBOU0VDX1BFUl9TRUMgKiAocHJl
-X2RpdiArIDEpKTsKKwlpZiAoY250ID4gMHhmZmZmKSB7CisJCWRldl9lcnIobWVzb24tPmNoaXAu
-ZGV2LCAidW5hYmxlIHRvIGdldCBwZXJpb2QgY250XG4iKTsKKwkJcmV0dXJuIC1FSU5WQUw7CisJ
-fQorCiAJZGV2X2RiZyhtZXNvbi0+Y2hpcC5kZXYsICJwZXJpb2Q9JXUgcHJlX2Rpdj0ldSBjbnQ9
-JXVcbiIsIHBlcmlvZCwKIAkJcHJlX2RpdiwgY250KTsKIApAQCAtMTk1LDggKzE5MCw4IEBAIHN0
-YXRpYyBpbnQgbWVzb25fcHdtX2NhbGMoc3RydWN0IG1lc29uX3B3bSAqbWVzb24sIHN0cnVjdCBw
-d21fZGV2aWNlICpwd20sCiAJCWNoYW5uZWwtPmxvID0gY250OwogCX0gZWxzZSB7CiAJCS8qIFRo
-ZW4gY2hlY2sgaXMgd2UgY2FuIGhhdmUgdGhlIGR1dHkgd2l0aCB0aGUgc2FtZSBwcmVfZGl2ICov
-Ci0JCWR1dHlfY250ID0gRElWX1JPVU5EX0NMT1NFU1RfVUxMKCh1NjQpZHV0eSAqIDEwMDAsCi0J
-CQkJCQkgZmluX3BzICogKHByZV9kaXYgKyAxKSk7CisJCWR1dHlfY250ID0gZGl2NjRfdTY0KGZp
-bl9mcmVxICogKHU2NClkdXR5LAorCQkJCSAgICAgTlNFQ19QRVJfU0VDICogKHByZV9kaXYgKyAx
-KSk7CiAJCWlmIChkdXR5X2NudCA+IDB4ZmZmZikgewogCQkJZGV2X2VycihtZXNvbi0+Y2hpcC5k
-ZXYsICJ1bmFibGUgdG8gZ2V0IGR1dHkgY3ljbGVcbiIpOwogCQkJcmV0dXJuIC1FSU5WQUw7Ci0t
-IAoyLjIxLjAKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVh
-ZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1h
-bWxvZ2ljCg==
+All existing PWM drivers (except pwm-meson and two other ones) call
+pwm_set_chip_data() from their pwm_ops.request() callback. Now that we
+can access the struct meson_pwm_channel from struct meson_pwm we can do
+the same.
+
+Move the call to pwm_set_chip_data() to meson_pwm_request() and drop the
+custom meson_pwm_add_channels(). This makes the implementation
+consistent with other drivers and makes it slightly more obvious
+thatpwm_get_chip_data() cannot be used from pwm_ops.get_state() (because
+that's called by the PWM core before pwm_ops.request()).
+
+No functional changes intended.
+
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/pwm/pwm-meson.c | 22 ++++++++--------------
+ 1 file changed, 8 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
+index ac7e188155fd..27915d6475e3 100644
+--- a/drivers/pwm/pwm-meson.c
++++ b/drivers/pwm/pwm-meson.c
+@@ -98,12 +98,16 @@ static inline struct meson_pwm *to_meson_pwm(struct pwm_chip *chip)
+ 
+ static int meson_pwm_request(struct pwm_chip *chip, struct pwm_device *pwm)
+ {
+-	struct meson_pwm_channel *channel = pwm_get_chip_data(pwm);
++	struct meson_pwm *meson = to_meson_pwm(chip);
++	struct meson_pwm_channel *channel;
+ 	struct device *dev = chip->dev;
+ 	int err;
+ 
+-	if (!channel)
+-		return -ENODEV;
++	channel = pwm_get_chip_data(pwm);
++	if (channel)
++		return 0;
++
++	channel = &meson->channels[pwm->hwpwm];
+ 
+ 	if (channel->clk_parent) {
+ 		err = clk_set_parent(channel->clk, channel->clk_parent);
+@@ -124,7 +128,7 @@ static int meson_pwm_request(struct pwm_chip *chip, struct pwm_device *pwm)
+ 
+ 	chip->ops->get_state(chip, pwm, &channel->state);
+ 
+-	return 0;
++	return pwm_set_chip_data(pwm, channel);
+ }
+ 
+ static void meson_pwm_free(struct pwm_chip *chip, struct pwm_device *pwm)
+@@ -460,14 +464,6 @@ static int meson_pwm_init_channels(struct meson_pwm *meson)
+ 	return 0;
+ }
+ 
+-static void meson_pwm_add_channels(struct meson_pwm *meson)
+-{
+-	unsigned int i;
+-
+-	for (i = 0; i < meson->chip.npwm; i++)
+-		pwm_set_chip_data(&meson->chip.pwms[i], &meson->channels[i]);
+-}
+-
+ static int meson_pwm_probe(struct platform_device *pdev)
+ {
+ 	struct meson_pwm *meson;
+@@ -503,8 +499,6 @@ static int meson_pwm_probe(struct platform_device *pdev)
+ 		return err;
+ 	}
+ 
+-	meson_pwm_add_channels(meson);
+-
+ 	platform_set_drvdata(pdev, meson);
+ 
+ 	return 0;
+-- 
+2.21.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
