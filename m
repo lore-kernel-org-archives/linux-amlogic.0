@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3485EC28CC5
-	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jun 2019 18:07:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7A681C28CC5
+	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jun 2019 18:07:58 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 05F332146E
-	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jun 2019 18:07:54 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 49675212F5
+	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jun 2019 18:07:58 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cab84VZr";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Ai7/QxvX"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 05F332146E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RBdtsUHY";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="SGwW5Qi1"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 49675212F5
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,67 +27,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QVN36LJgQaWeFCgywdg9HE2+6SjPJJwu6x//BF4yO+4=; b=cab84VZrvM7ryu
-	DCWfOCuvYKTVxkVJw5CPxpppVJPm+te/CGRpeA8PgYmKm88+VyUTmZcHi3ymd4p9bSOeOLdcsTn60
-	kVxGX/tx5ceU7FFxg2K2x53G7bDp9cB85JwuOgXD0vl1eSkNYBtJFGfznCx4VV25JVYJUIFhQU1uo
-	q6m4ZrJ5FCYriCV7ZjgXDTteIF4HbDga88PeteopPVmBfyKcyFMUxVfOiXd+NvEqAe+lxZIH3Oqyj
-	lmDw/LL12sJ/ReNr9ft/utFkOgCVW8YgdRcBcVm3+/DR+k0WVxWwSk3bXXu8lPDxiNHisERwDScZQ
-	8c/lFjUpsOyV2UmwDmKQ==;
+	List-Owner; bh=WhwshLj+dEz3fL92/LPbvHnx7f4lerzMzZjFwTaY8Bc=; b=RBdtsUHYhFuFRW
+	0PROSzqn9I3HvVtRUSfYjQLqbCWBzGuPyfJYD5yWY2KytO5pYkXpaqDAFRGGT5swkjppV7ewUWSAJ
+	OzCMS3RMv+RYQTxTcCm+W43niVD2sIWmj64BTCcpp10zlUS4hc/fSjTnrXyN0TC0b0c4dCuMnZLu/
+	CnBCzPs0gorsWvUam5VGKClYS70gxM2UH/yXw6je9N1IreUuOZoSnKVxlHbvKBKn4zyvaHk7/7dTk
+	MI9RuNV0GIBJhSu+0Ea1gY+x3x2F2I6LjsDTYWBfcT9+kTjLqaSxfz0FfkWF/prC6/LGpGvqmZQuz
+	FXwB8qWGD689N2gyQFFA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hZfkq-0001mW-Ac; Sat, 08 Jun 2019 18:07:48 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1hZfkv-0001ph-Ga; Sat, 08 Jun 2019 18:07:53 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hZfji-0000l1-EG; Sat, 08 Jun 2019 18:06:39 +0000
-Received: by mail-wr1-x441.google.com with SMTP id f9so5193966wre.12;
- Sat, 08 Jun 2019 11:06:38 -0700 (PDT)
+ id 1hZfjk-0000lS-1s; Sat, 08 Jun 2019 18:06:41 +0000
+Received: by mail-wm1-x342.google.com with SMTP id h19so6231218wme.0;
+ Sat, 08 Jun 2019 11:06:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=OwMt4DN+k+wf0lkZogt5PADN1rzK1u4y6aP41xI0QnE=;
- b=Ai7/QxvXeXJfCjaGIQtUgT0iNOxXJwKg0n0kBlr3qjXO5upyFeXiPfrcnxSDErQlqt
- z3CcgSiDYliWk8qfwFQfdIGenTNvz7W3LmWvsgjivpjVimSrOT9/iTq29lttJxYWO3in
- TpBorSmDyJ58Ey4jcxg/5EGToYDZRxFctSUgdmjxLPkNHZohT/Pi5zEuz7KJ07xmnqqq
- FyPbfsiE7l0h+XwUplRemSXg57k3ZTNpsVu9wiurZXxg7FvIqpiYpJKePoCK5iZmPX2/
- sVVunTRAz/+8AtGYFz60gaSG1xWcbhYBZL0/VbTP7KjG5E84GG3PsY1iXemJjHV76kef
- hl6w==
+ bh=rd/V19A4tSe1xba1SSV3IvSkkngIMc8S68pgolsK8gQ=;
+ b=SGwW5Qi1PzRumMlS2QqA1j7twYoUlovyZOMWknzDn6pTP82HtWJ/uWCOPFFY5efuii
+ mldnIc38SrCgMBVVcFztt9gliqC7yT8waUWd+5PUYUkxcNRESshBHykogWpLcK/7oQwf
+ tLufn2777HA1t+shj1qLcVYNZ8Y9TaxQ+RDm0nQXWyz8InSesskey0ficmQ8msPq/WJV
+ /Q8YiM41p5ThKp6nM3+Y4Hn5pXdvl1p7g7AsUQLtiDGuD9i88IWVkmliGoWkAiN6IV9q
+ V2ff8upHjPtccfR2sAsdb1ZXTm742aJ/8QvcVbP5OTjmIxeJAV8dwRz7mkCA8zB3zHYX
+ dhxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=OwMt4DN+k+wf0lkZogt5PADN1rzK1u4y6aP41xI0QnE=;
- b=sXs2wQlpWp9gbeDc4xZyeivOomkP+hwQAWs9y8eafwhL2rzfjpw3v2+Up5k9Klg05m
- +39bXYuSGLDUMEdZdfUtEl6W0czffZ/3RXoauTzmwvWDvyTisrMTd3c95HEXlZru3r0r
- nafEcIfpZps02qfNZnL9+hbddyyAm+pq58ElfHjTwYSH/9uc36szf6HMoBxMcEtGQpb1
- tab9jQ7wqAZI55ucQgMVJi6plqNZx620036/XjIy7m2CEZXRHl5rvXyo75Of3XKuUTG5
- ER0zBChV17MMYWKCQQx247eEZIQwchQN+X828ekgenGpH3DeF+JkbYETDNq2otrbjEH6
- BW4Q==
-X-Gm-Message-State: APjAAAWyV2GChlllA4gwhKcGERuKHTo0w9yGjjiETLncJjtPssBXxvHC
- zrHamfsiFYpCq7GbyVm8eK/x5Des
-X-Google-Smtp-Source: APXvYqw7+qy9TgcaIMEP5Xeg6k3+WyCNQC4Ctm4DlNXGe2zSe+3cQwnCPGb4yd8IR61g60M4nm9H7Q==
-X-Received: by 2002:a5d:4cc3:: with SMTP id c3mr11748878wrt.259.1560017196918; 
- Sat, 08 Jun 2019 11:06:36 -0700 (PDT)
+ bh=rd/V19A4tSe1xba1SSV3IvSkkngIMc8S68pgolsK8gQ=;
+ b=Hg0Vi4gT+Q90SjhGzG27BBwJR7WNUwBT6YiwQGclxwTSWgLjV2PvrdUI4HCu8nzFI5
+ qXyus5S1VZN9L+COe+DBdJSxIdTqbYDX8+T5vvnzD3j3ONtV3ac7nkRHJqXvYJRg/yVB
+ Lmj7Iu8esVoZsUa6ps1AwY8Vmas826Xf/9Bh5C9cTY3pGDTrB9cKmjspG9qox5WaPtdY
+ t4wp5sEGdh3QgVh9f4FJQ6wE5+yubxiDrDWGePAgUn09zofcl9lU63DkMHQDLc7Q7Xtu
+ T+ws9mqX3NW0zoI+QpjC5RYbFhdcnobTHP8dfYmuyUwYfPC+wc9F5iCqNS6OFc7oNxdB
+ aN/Q==
+X-Gm-Message-State: APjAAAV+VQoj9OGyark9TomIdFT9JhqBWaDe5vf40WbpOZgPnKIopWzS
+ P+sCXDB/yrTZTncLIpy5tDuNGycj
+X-Google-Smtp-Source: APXvYqzfJ3Inv2tkqe5fNSbVH0w39sIKZ3WEIMfS5tKr2+3pHXqvYD+oKzvYSwXsaNvRbuHQh1DYSw==
+X-Received: by 2002:a1c:39d6:: with SMTP id g205mr7273666wma.85.1560017197987; 
+ Sat, 08 Jun 2019 11:06:37 -0700 (PDT)
 Received: from blackbox.darklights.net
  (p200300F133DDA400D12EFF43FED1E981.dip0.t-ipconnect.de.
  [2003:f1:33dd:a400:d12e:ff43:fed1:e981])
  by smtp.googlemail.com with ESMTPSA id c7sm5143345wrp.57.2019.06.08.11.06.36
  (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Sat, 08 Jun 2019 11:06:36 -0700 (PDT)
+ Sat, 08 Jun 2019 11:06:37 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org,
  thierry.reding@gmail.com
-Subject: [PATCH v2 03/14] pwm: meson: use GENMASK and FIELD_PREP for the lo
- and hi values
-Date: Sat,  8 Jun 2019 20:06:15 +0200
-Message-Id: <20190608180626.30589-4-martin.blumenstingl@googlemail.com>
+Subject: [PATCH v2 04/14] pwm: meson: change MISC_CLK_SEL_WIDTH to
+ MISC_CLK_SEL_MASK
+Date: Sat,  8 Jun 2019 20:06:16 +0200
+Message-Id: <20190608180626.30589-5-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190608180626.30589-1-martin.blumenstingl@googlemail.com>
 References: <20190608180626.30589-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190608_110638_478321_CEB44A0D 
-X-CRM114-Status: GOOD (  11.35  )
+X-CRM114-CacheID: sfid-20190608_110640_133168_479F5165 
+X-CRM114-Status: GOOD (  11.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,56 +107,38 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-meson_pwm_calc() ensures that "lo" is always less than 16 bits wide
-(otherwise it would overflow into the "hi" part of the REG_PWM_{A,B}
-register).
-Use GENMASK and FIELD_PREP for the lo and hi values to make it easier to
-spot how wide these are internally. Additionally this is a preparation
-step for the .get_state() implementation where the GENMASK() for lo and
-hi becomes handy because it can be used with FIELD_GET() to extract the
-values from the register REG_PWM_{A,B} register.
-
-No functional changes intended.
+MISC_CLK_SEL_WIDTH is only used in one place where it's converted into
+a bit-mask. Rename and change the macro to be a bit-mask so that
+conversion is not needed anymore. No functional changes intended.
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/pwm/pwm-meson.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ drivers/pwm/pwm-meson.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index 35b38c7201c3..c62a3ac924d0 100644
+index c62a3ac924d0..84b28ba0f903 100644
 --- a/drivers/pwm/pwm-meson.c
 +++ b/drivers/pwm/pwm-meson.c
-@@ -5,6 +5,8 @@
-  * Copyright (C) 2014 Amlogic, Inc.
-  */
+@@ -33,7 +33,7 @@
+ #define MISC_A_CLK_DIV_SHIFT	8
+ #define MISC_B_CLK_SEL_SHIFT	6
+ #define MISC_A_CLK_SEL_SHIFT	4
+-#define MISC_CLK_SEL_WIDTH	2
++#define MISC_CLK_SEL_MASK	0x3
+ #define MISC_B_EN		BIT(1)
+ #define MISC_A_EN		BIT(0)
  
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
- #include <linux/clk.h>
- #include <linux/clk-provider.h>
- #include <linux/err.h>
-@@ -20,7 +22,8 @@
+@@ -463,7 +463,7 @@ static int meson_pwm_init_channels(struct meson_pwm *meson,
  
- #define REG_PWM_A		0x0
- #define REG_PWM_B		0x4
--#define PWM_HIGH_SHIFT		16
-+#define PWM_LOW_MASK		GENMASK(15, 0)
-+#define PWM_HIGH_MASK		GENMASK(31, 16)
- 
- #define REG_MISC_AB		0x8
- #define MISC_B_CLK_EN		BIT(23)
-@@ -217,7 +220,8 @@ static void meson_pwm_enable(struct meson_pwm *meson, struct pwm_device *pwm)
- 	value |= clk_enable;
- 	writel(value, meson->base + REG_MISC_AB);
- 
--	value = (channel->hi << PWM_HIGH_SHIFT) | channel->lo;
-+	value = FIELD_PREP(PWM_HIGH_MASK, channel->hi) |
-+		FIELD_PREP(PWM_LOW_MASK, channel->lo);
- 	writel(value, meson->base + offset);
- 
- 	value = readl(meson->base + REG_MISC_AB);
+ 		channel->mux.reg = meson->base + REG_MISC_AB;
+ 		channel->mux.shift = mux_reg_shifts[i];
+-		channel->mux.mask = BIT(MISC_CLK_SEL_WIDTH) - 1;
++		channel->mux.mask = MISC_CLK_SEL_MASK;
+ 		channel->mux.flags = 0;
+ 		channel->mux.lock = &meson->lock;
+ 		channel->mux.table = NULL;
 -- 
 2.21.0
 
