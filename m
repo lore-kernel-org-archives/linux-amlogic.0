@@ -2,68 +2,89 @@ Return-Path: <SRS0=3i0R=UH=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	T_DKIMWL_WL_HIGH autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DC714C28CC5
-	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jun 2019 13:29:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EE8DBC468BF
+	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jun 2019 18:06:46 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A793F21537
-	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jun 2019 13:29:16 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CECF0212F5
+	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jun 2019 18:06:46 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oB3D2kHg";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="s3nqXbFb"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A793F21537
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="WjB82h4o";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="NMBwiOLI"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CECF0212F5
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=A32rlF20P5JXYOHIwcy4kwo/LV1og9KnLKhrT8duI7w=; b=oB3D2kHg6m8Kcn
-	lBMiECkKi3k1peGLGovNACq/4pJP3V6XW9XBLEA09HT8A5CdbXupSQbeGE8Ojln1/9kSU4hrf+Lcq
-	//ZJnma6JRl+w2Kvq7p2LfohMTR2hc2YgC40g8PbKy9qiRaG0itZC6hK+FxUJXHOFzTlBbcy0Uuew
-	/kcGmXESBXLkK2gNGbtxj3SrykZvcVC5uPPx1jxrhmziSUama0GqqKtNRYcz6OOV9Fov7uuUtGe0O
-	JaCOXBCkydUiZhzU4gc1Lq7hj8l9Y2pRlxEwvsjTxSRA6lCPjsp6tNmLZqEuWh0mOFQ8l67Cj+t7z
-	mAsX/euNoE1mGYk9XlSg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=pfHL0ltS1OGZnx7VlaDF90Bke7G0lKyf49sl8ytlqxQ=; b=WjB82h4oKzfKEn
+	E6idebFzJMTVOnq9Nqcel2zaaXjRtpi/4kL5cw/Uy2C0dDGHMX7GmztL3/VN6OUx0OiH+ccRxPKkA
+	C+AZLHa0gYpoDvX/CQVizuiDhAMQe4ZyV3E/KevZ3awnuzJvWmRvLTT36f/JAQxWvZb1pl18Y/9vX
+	6/JWPlV0tzPym8ysPjfi4ZmRaJCzn4CziI1w51pO8vVbse9MTzp88+gNmSgIXr5LzplFqgbexIwI9
+	5W0rA37jK+g2WD6dRB7yEXE+tKUCpPNRPYNlzUwMuYDiZCdLfb71ORfxrt8ANZSoNMtORmfXxaDwD
+	bO9IiR6kyP0azZ0KB9PQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hZbPD-0002ln-6r; Sat, 08 Jun 2019 13:29:11 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1hZfjj-0000ld-Cd; Sat, 08 Jun 2019 18:06:39 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hZbP9-0002lK-Cb; Sat, 08 Jun 2019 13:29:09 +0000
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net
- [82.4.196.95])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 8851121537;
- Sat,  8 Jun 2019 13:29:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1560000547;
- bh=FVfrwNl8W0tvPxxUwwFg4qUbga7KhOZB7dxWkSysKkw=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=s3nqXbFb0RcSnNmuTDvP3mPSKSdYADJntDY6+L834oFu+HmLgYTEC3EgZ3jpL4wiR
- upZfVw3ZA1s1TsPXq2+7G0+0mTCN3aU3USUAgwPMdZAIPkoV6n8J/SDY3aXewPWM4z
- o1Rgm1EZNV5DYTaqx3xMYZvPE6FyoCuBFwGcql2s=
-Date: Sat, 8 Jun 2019 14:29:01 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Guillaume La Roque <glaroque@baylibre.com>
-Subject: Re: [PATCH 3/3] iio: temperature: add a driver for the temperature
- sensor found in Amlogic Meson G12 SoCs
-Message-ID: <20190608142901.4f45f29e@archlinux>
-In-Reply-To: <20190604144714.2009-4-glaroque@baylibre.com>
-References: <20190604144714.2009-1-glaroque@baylibre.com>
- <20190604144714.2009-4-glaroque@baylibre.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+ id 1hZfjf-0000kA-SE; Sat, 08 Jun 2019 18:06:37 +0000
+Received: by mail-wr1-x441.google.com with SMTP id c2so5203125wrm.8;
+ Sat, 08 Jun 2019 11:06:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=CuUE0MVJ4EiDj/R4+UJN1pSKA+Jns9ufEuzEwI3ecfc=;
+ b=NMBwiOLIzdn0IuBMvEJo7m9mr0pup/SZfwc+LTYFylMBWek4k8fb/5oanI2zRZVyVG
+ ++6Ci7cqfziSdlIXVJ1lmsoWd7srcHkQSeidh17/m0biXfhKzc0ZzkzLNvLvKwbGAlt0
+ pp+Q0rCjF9NGdNpsTMu8Aq3JW9wW20otUvjOozfWEbLVFHJ93N5iBe+iJvc0XSvqXsua
+ cmJUDYo90rhfxOM1kisxWWpywnzVeJfanShGdBuJP5tweH+Wr5xj9Vbholo7DgBQosov
+ oF/iANPXLGa0UGR2SSArlAedGXOI6Z6dZanjTU5xEgCttjydEeHf7NneO3yZRRNetn/z
+ ERBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=CuUE0MVJ4EiDj/R4+UJN1pSKA+Jns9ufEuzEwI3ecfc=;
+ b=X1DRvgHe83xFdNLrceFNNOQi0y5iK09/dIerZK7xBkiJGszzkYSHBaw6UMdyV+U5Y7
+ Ls9po/1FLeZoiZuxnNPzfcMxsAtPHBi4/aQoqnxBg/hWMvqIH1Lpi575UReve63CRYaO
+ NEfEYyfaLzakHycfpzV9Bv9Rvtk9pPWl6pClv/IRM5oSc4BDyG8GoWvsNS005m2pQOrM
+ nvm5d5tXjDmu8Yhn+/As+gWgs02g4s/hpi/qgruvizJzL5mJDUzvUiYAiuJpXCnWbjF7
+ Fi3ucG+x/Q0rlUC9joOt/kd0ncczUa12A4x/0ET9dh4tQIvLFv5nlgUqYzU7jO5OPmPv
+ 0KVw==
+X-Gm-Message-State: APjAAAWBuqq8z+poV1RVRTOps3P6mYPc1TfJdhQVfkTlxZZd6fArXou8
+ CIBi5LnawC72ufdK4O8rIxwXhwKX
+X-Google-Smtp-Source: APXvYqy3O37+yFg/dRFn1re7VJBCjQhw131ukejmKTFgVlkkAI9DNI/H+HB3d7RDWFCQTx4maYTgYg==
+X-Received: by 2002:adf:ed41:: with SMTP id u1mr22980982wro.162.1560017193772; 
+ Sat, 08 Jun 2019 11:06:33 -0700 (PDT)
+Received: from blackbox.darklights.net
+ (p200300F133DDA400D12EFF43FED1E981.dip0.t-ipconnect.de.
+ [2003:f1:33dd:a400:d12e:ff43:fed1:e981])
+ by smtp.googlemail.com with ESMTPSA id c7sm5143345wrp.57.2019.06.08.11.06.32
+ (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+ Sat, 08 Jun 2019 11:06:32 -0700 (PDT)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org,
+ thierry.reding@gmail.com
+Subject: [PATCH v2 00/14] pwm-meson: cleanups and improvements
+Date: Sat,  8 Jun 2019 20:06:12 +0200
+Message-Id: <20190608180626.30589-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190608_062907_473556_84A3EBA8 
-X-CRM114-Status: GOOD (  30.21  )
+X-CRM114-CacheID: sfid-20190608_110635_917694_67C49E3E 
+X-CRM114-Status: GOOD (  14.17  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,532 +96,99 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org, khilman@baylibre.com,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ u.kleine-koenig@pengutronix.de
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue,  4 Jun 2019 16:47:14 +0200
-Guillaume La Roque <glaroque@baylibre.com> wrote:
+This series consists of various cleanups and improvements for the
+pwm-meson driver.
 
-> The code is based on Amlogic source code. No public datasheet for this.
-> Currently the G12A SoCs are supported.
-> 
-> Supported features:
-> - possibility to set an automatic reboot temperature
-> 
-> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
-A few comments inline.
+Patches 1 to 6 are small code cleanups with the goal of making the code
+easier to read.
 
-However, I'm still of the view this is probably better as a thermal
-driver than an IIO one.
+Patches 7 to 9 are reworking the way the per-channel settings are
+accessed. This is a first preparation step for adding full support to
+meson_pwm_get_state() in the pwm-meson driver. Patch 7 makes struct
+meson_pwm_channel accessible from struct meson_pwm because
+meson_pwm_get_state() cannot use pwm_get_chip_data(). Patch 8 removes
+redundant switch/case statements and ensures that we don't have to
+add another redundant one for the upcoming full meson_pwm_get_state()
+implementation. Patch 9 gets rid of meson_pwm_add_channels() and moves
+the pwm_set_chip_data() call to meson_pwm_request() (like all other PWM
+drivers do - except two).
 
-Jonathan
-> ---
->  drivers/iio/temperature/Kconfig         |  11 +
->  drivers/iio/temperature/Makefile        |   1 +
->  drivers/iio/temperature/meson_tsensor.c | 416 ++++++++++++++++++++++++
->  3 files changed, 428 insertions(+)
->  create mode 100644 drivers/iio/temperature/meson_tsensor.c
-> 
-> diff --git a/drivers/iio/temperature/Kconfig b/drivers/iio/temperature/Kconfig
-> index 737faa0901fe..712a0062790d 100644
-> --- a/drivers/iio/temperature/Kconfig
-> +++ b/drivers/iio/temperature/Kconfig
-> @@ -34,6 +34,17 @@ config HID_SENSOR_TEMP
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called hid-sensor-temperature.
->  
-> +config MESON_TSENSOR
-> +	tristate "Amlogic Meson temperature sensor Support"
-> +	default ARCH_MESON
-> +	depends on OF && ARCH_MESON
-> +	help
-> +	  If you say yess here you get support for Meson Temperature sensor
-> +	  for G12 SoC Family.
-> +
-> +	  This driver can also be built as a module. If so, the module will
-> +	  be called meson_tsensor.
-> +
->  config MLX90614
->  	tristate "MLX90614 contact-less infrared sensor"
->  	depends on I2C
-> diff --git a/drivers/iio/temperature/Makefile b/drivers/iio/temperature/Makefile
-> index baca4776ca0d..466d8c1c91d6 100644
-> --- a/drivers/iio/temperature/Makefile
-> +++ b/drivers/iio/temperature/Makefile
-> @@ -6,6 +6,7 @@
->  obj-$(CONFIG_HID_SENSOR_TEMP) += hid-sensor-temperature.o
->  obj-$(CONFIG_MAXIM_THERMOCOUPLE) += maxim_thermocouple.o
->  obj-$(CONFIG_MAX31856) += max31856.o
-> +obj-$(CONFIG_MESON_TSENSOR) += meson_tsensor.o
->  obj-$(CONFIG_MLX90614) += mlx90614.o
->  obj-$(CONFIG_MLX90632) += mlx90632.o
->  obj-$(CONFIG_TMP006) += tmp006.o
-> diff --git a/drivers/iio/temperature/meson_tsensor.c b/drivers/iio/temperature/meson_tsensor.c
-> new file mode 100644
-> index 000000000000..be0a8d073ba3
-> --- /dev/null
-> +++ b/drivers/iio/temperature/meson_tsensor.c
-> @@ -0,0 +1,416 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Amlogic Meson Temperature Sensor
-> + *
-> + * Copyright (C) 2017 Huan Biao <huan.biao@amlogic.com>
-> + * Copyright (C) 2019 Guillaume La Roque <glaroque@baylibre.com>
-> + *
-> + * Register value to celsius temperature formulas:
-> + *	Read_Val	    m * U
-> + * U = ---------, Uptat = ---------
-> + *	2^16		  1 + n * U
-> + *
-> + * Temperature = A * ( Uptat + u_efuse / 2^16 )- B
-> + *
-> + *  A B m n : calibration parameters
-> + *  u_efuse : fused calibration value, it's a signed 16 bits value
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/io.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +
-> +#define TSENSOR_CFG_REG1			0x4
-> +	#define TSENSOR_CFG_REG1_RSET_VBG	BIT(12)
-> +	#define TSENSOR_CFG_REG1_RSET_ADC	BIT(11)
-> +	#define TSENSOR_CFG_REG1_VCM_EN		BIT(10)
-> +	#define TSENSOR_CFG_REG1_VBG_EN		BIT(9)
-> +	#define TSENSOR_CFG_REG1_OUT_CTL	BIT(6)
-> +	#define TSENSOR_CFG_REG1_FILTER_EN	BIT(5)
-> +	#define TSENSOR_CFG_REG1_DEM_EN		BIT(3)
-> +	#define TSENSOR_CFG_REG1_CH_SEL		GENMASK(1, 0)
-> +	#define TSENSOR_CFG_REG1_ENABLE		\
-> +		(TSENSOR_CFG_REG1_FILTER_EN |	\
-> +		 TSENSOR_CFG_REG1_VCM_EN |	\
-> +		 TSENSOR_CFG_REG1_VBG_EN |	\
-> +		 TSENSOR_CFG_REG1_DEM_EN |	\
-> +		 TSENSOR_CFG_REG1_CH_SEL)
-> +
-> +#define TSENSOR_CFG_REG2				0x8
-> +	#define TSENSOR_CFG_REG2_HITEMP_EN		BIT(31)
-> +	#define TSENSOR_CFG_REG2_REBOOT_ALL_EN		BIT(30)
-> +	#define TSENSOR_CFG_REG2_REBOOT_TIME		GENMASK(25, 16)
-> +	#define TSENSOR_CFG_REG2_HITEMP_REBOOT_ENABLE	\
-> +		(TSENSOR_CFG_REG2_HITEMP_EN |		\
-> +		 TSENSOR_CFG_REG2_REBOOT_ALL_EN |	\
-> +		 TSENSOR_CFG_REG2_REBOOT_TIME)
-> +	#define TSENSOR_CFG_REG2_HITEMP_REBOOT_ENABLE_MASK		\
-> +		(GENMASK(31, 30) | GENMASK(25, 4))
-> +	#define TSENSOR_CFG_REG2_HITEMP_REBOOT_REG_MASK			\
-> +		GENMASK(15, 4)
-> +	#define TSENSOR_CFG_REG2_HITEMP_REG_VAL(_reg_val)		\
-> +		(FIELD_PREP(TSENSOR_CFG_REG2_HITEMP_REBOOT_REG_MASK,	\
-> +			    _reg_val) |					\
-> +		 TSENSOR_CFG_REG2_HITEMP_REBOOT_ENABLE)
-> +
-> +#define TSENSOR_CFG_REG3		0xC
-> +#define TSENSOR_CFG_REG4		0x10
-> +#define TSENSOR_CFG_REG5		0x14
-> +#define TSENSOR_CFG_REG6		0x18
-> +#define TSENSOR_CFG_REG7		0x1C
-> +#define TSENSOR_CFG_REG8		0x20
-> +
-> +#define TSENSOR_STAT0			0x40
-> +
-> +#define TSENSOR_STAT9			0x64
-> +
-> +#define TSENSOR_READ_TEMP_MASK		GENMASK(15, 0)
-> +#define TSENSOR_TEMP_MASK		GENMASK(11, 0)
-> +
-> +#define TSENSOR_TRIM_SIGN_MASK		BIT(15)
-> +#define TSENSOR_TRIM_TEMP_MASK		GENMASK(14, 0)
-> +#define TSENSOR_TRIM_VERSION_MASK	GENMASK(31, 24)
-> +
-> +#define TSENSOR_TRIM_VERSION(_version) 	\
-> +	FIELD_GET(TSENSOR_TRIM_VERSION_MASK, _version)
+Patch 10 is based on a suggestion by Uwe to simplify the calculation of
+the values which the PWM IP requires. The nice benefit of this is that
+we have an easier calculation which we can do "in reverse" for the
+meson_pwm_get_state() (which calculates nanoseconds from the hardware
+values).
 
-I'd just use the FIELD_GET directly inline.  What it is doing
-is kind of obvious from the parameter.
+Patch 11 implements reading the period and duty cycle in the
+meson_pwm_get_state() callback.
 
-> +
-> +#define TSENSOR_TRIM_CALIB_VALID_MASK	(GENMASK(3, 2) | BIT(7))
-> +
-> +#define TSENSOR_CALIB_OFFSET	1
-> +#define TSENSOR_CALIB_SHIFT	4
-> +
-> +static const struct iio_chan_spec temperature_channel[] = {
-> +	{
-> +		.type = IIO_TEMP,
-> +		.channel = 0,
-.channel doesn't do anything unless you set indexed.
-> +		.address = 0,
-.address not used...
+Patch 12 removes some internal caching which we don't need anymore now
+meson_pwm_get_state() is fully implemented. The PWM core now takes care
+of not calling pwm_ops.apply() if "nothing has changed".
 
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED),
-> +	},
-> +};
-> +
-> +/**
-> + * struct meson_tsensor_soc_data
-> + * @A, B, m, n: calibration parameters
-> + * This structure is required for configuration of meson tsensor driver.
-> + */
-> +struct meson_tsensor_soc_data {
-> +	int A;
-> +	int B;
-> +	int m;
-> +	int n;
-> +};
-> +
-> +/**
-> + * struct meson_tsensor_data
-> + * @u_efuse_off: register offset to read fused calibration value
-> + * @soc: calibration parameters structure pointer
-> + * @regmap_config: regmap config for the device
-> + * This structure is required for configuration of meson tsensor driver.
-> + */
-> +struct meson_tsensor_data {
-> +	int u_efuse_off;
-> +	const struct meson_tsensor_soc_data *soc;
-> +	const struct regmap_config *regmap_config;
-> +};
-> +
-> +struct meson_tsensor {
-> +	int id;
-> +	const struct meson_tsensor_data *data;
-> +	struct regmap *regmap;
-> +	struct regmap *sec_ao_map;
-> +	struct clk *clk;
-> +	u32 trim_info;
-> +	void __iomem *base;
-> +	int reboot_temp;
-> +};
-> +
-> +/*
-> + * tsensor treats temperature as a mapped temperature code.
-> + * The temperature is converted differently depending on the calibration type.
-> + */
-> +static u32 temp_to_code(struct meson_tsensor *priv, int temp)
-> +{
-> +	const struct meson_tsensor_soc_data *param = priv->data->soc;
-> +	s64 divisor, factor, uefuse;
-> +	u32 reg_code;
-> +
-> +	uefuse = priv->trim_info & TSENSOR_TRIM_SIGN_MASK ?
-> +			 ~(priv->trim_info & TSENSOR_TRIM_TEMP_MASK) + 1 :
-> +			 (priv->trim_info & TSENSOR_TRIM_TEMP_MASK);
-> +
-> +	factor = BIT(16) * (temp * 10 + param->B);
-> +	factor = div_s64(factor, param->A);
-> +	factor = factor + uefuse;
-> +
-> +	factor = factor * 100;
-> +
-> +	divisor = param->n * factor;
-> +	divisor = div_s64(divisor, BIT(16));
-> +	divisor = param->m - divisor;
-> +
-> +	reg_code = div_s64(factor, divisor);
-> +	reg_code = ((reg_code >> TSENSOR_CALIB_SHIFT) & TSENSOR_TEMP_MASK) +
-> +		   TSENSOR_CALIB_OFFSET;
-> +
-> +	return reg_code;
-> +}
-> +
-> +/*
-> + * Calculate a temperature value from a temperature code.
-> + * The unit of the temperature is degree Celsius.
-> + */
-> +static int code_to_temp(struct meson_tsensor *priv, int temp_code)
-> +{
-> +	const struct meson_tsensor_soc_data *param = priv->data->soc;
-> +	int temp;
-> +	s64 factor, Uptat, uefuse;
-> +
-> +	uefuse = priv->trim_info & TSENSOR_TRIM_SIGN_MASK ?
-> +			     ~(priv->trim_info & TSENSOR_TRIM_TEMP_MASK) + 1 :
-> +			     (priv->trim_info & TSENSOR_TRIM_TEMP_MASK);
-Hmm. 2's complement from unsigned + a sign bit.
+Patch 13 adds support for PWM_POLARITY_INVERSED when disabling the
+output as suggested by Uwe.
 
-uefuse = priv->trim_info & TSENSOR_TRIM_TEMP_MASK;
-if (priv->trim_info & TSENSOR_TRIM_SIGN_MASK)
-	uefuse *= -1;
+Patch 14 completes this series by adding some documentation to the
+driver. Thanks to Neil for summarizing how the hardware works
+internally.
 
-Is probably going to do the same thing whilst being more readable.
+Due to the changed PWM calculation in patch 10 I have verified that
+we don't break any existing boards. The patch itself contains two
+examples which show that the new calculation improves precision. I
+made screenshots of the measurements in pulseview [0] for the second
+case ("PWM LED on Khadas VIM"):
+- old algorithm: [1]
+- old algorithm: [2]
 
-> +
-> +	factor = param->n * temp_code;
-> +	factor = div_s64(factor, 100);
-> +
-> +	Uptat = temp_code * param->m;
-Why the capital U?  Not really kernel style.
-> +	Uptat = div_s64(Uptat, 100);
-> +	Uptat = Uptat * BIT(16);
-> +	Uptat = div_s64(Uptat, BIT(16) + factor);
-> +
-> +	temp = (Uptat + uefuse) * param->A;
-> +	temp = div_s64(temp, BIT(16));
-> +	temp = (temp - param->B) * 100;
-> +
-> +	return temp;
-> +}
-> +
-> +static int meson_tsensor_initialize(struct iio_dev *indio_dev)
-> +{
-> +	struct meson_tsensor *priv = iio_priv(indio_dev);
-> +	u32 reg_val;
-> +	int ret = 0;
-> +	int ver;
-> +
-> +	regmap_read(priv->sec_ao_map, priv->data->u_efuse_off,
-> +		    &priv->trim_info);
-> +
-> +	ver = TSENSOR_TRIM_VERSION(priv->trim_info);
-> +
-> +	if ((ver & TSENSOR_TRIM_CALIB_VALID_MASK) == 0) {
-> +		ret = -EINVAL;
-> +		dev_err(&indio_dev->dev,
-> +			"tsensor thermal calibration not supported: 0x%x!\n",
-> +			ver);
-> +		goto out;
-return -EINVAL;
-> +	}
-> +
-> +	/* init the ts reboot soc function */
-> +	if (priv->reboot_temp) {
-> +		/* register need value in celsius */
-> +		reg_val = temp_to_code(priv, priv->reboot_temp / 1000);
-> +		regmap_update_bits(priv->regmap, TSENSOR_CFG_REG2,
-> +				   TSENSOR_CFG_REG2_HITEMP_REBOOT_ENABLE_MASK,
-> +				   TSENSOR_CFG_REG2_HITEMP_REG_VAL(reg_val));
-> +	}
-> +
-return 0;
-> +out:
-> +	return ret;
-> +}
-> +
-> +static int meson_tsensor_enable(struct iio_dev *indio_dev)
-> +{
-> +	struct meson_tsensor *priv = iio_priv(indio_dev);
-> +
-> +	clk_prepare_enable(priv->clk);
-> +	regmap_update_bits(priv->regmap, TSENSOR_CFG_REG1,
-> +			   TSENSOR_CFG_REG1_ENABLE, TSENSOR_CFG_REG1_ENABLE);
-> +
-> +	return 0;
-Given neither this nor the follow up have any error paths,
-stop them having a return value and you can drop some error handling..
+Dependencies:
+This series applies on top of Neil's patch "pwm: pwm-meson: update with
+SPDX Licence identifier" [3]
 
-> +}
-> +
-> +static int meson_tsensor_disable(struct iio_dev *indio_dev)
-> +{
-> +	struct meson_tsensor *priv = iio_priv(indio_dev);
-> +
-> +	regmap_update_bits(priv->regmap, TSENSOR_CFG_REG1,
-> +			   TSENSOR_CFG_REG1_ENABLE, 0);
-> +	clk_disable(priv->clk);
-> +
-> +	return 0;
-> +}
-> +
-> +static int meson_tsensor_read(struct iio_dev *indio_dev,
-> +			      struct iio_chan_spec const *chan, int *val,
-> +			      int *val2, long mask)
-> +{
-> +	unsigned int tvalue;
-> +	struct meson_tsensor *priv = iio_priv(indio_dev);
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_PROCESSED:
-> +		regmap_read(priv->regmap, TSENSOR_STAT0, &tvalue);
-> +		*val = code_to_temp(priv,
-> +				    tvalue & TSENSOR_READ_TEMP_MASK);
-Looks to me like this will fit on one line under 80 chars.
+Changes since v1 at [4]:
+- fixed MESON_NUM_PWM vs MESON_NUM_PWMS typo in patch #7
+- add another example to patch #10 where the pre_div has changed with
+  the new calculation. the generated PWM signal is still the same as
+  measuring shows
+- added Neil's Reviewed-by's and Uwe's Acked-by (thank you!)
 
-> +
-> +		return IIO_VAL_INT;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static const struct iio_info meson_tsensor_iio_info = {
-> +	.read_raw = &meson_tsensor_read,
-> +};
-> +
-> +static const struct regmap_config meson_tsensor_regmap_config_g12a = {
-> +	.reg_bits = 8,
-> +	.val_bits = 32,
-> +	.reg_stride = 4,
-> +	.max_register = TSENSOR_STAT9,
-> +};
-> +
-> +static const struct meson_tsensor_soc_data meson_tsensor_g12a = {
-> +	.A = 9411,
-> +	.B = 3159,
-> +	.m = 424,
-> +	.n = 324,
-> +};
-> +
-> +static const struct meson_tsensor_data meson_tsensor_g12a_cpu_param = {
-> +	.u_efuse_off = 0x128,
-> +	.soc = &meson_tsensor_g12a,
-> +	.regmap_config = &meson_tsensor_regmap_config_g12a,
-> +};
-> +
-> +static const struct meson_tsensor_data meson_tsensor_g12a_ddr_param = {
-> +	.u_efuse_off = 0xF0,
-> +	.soc = &meson_tsensor_g12a,
-> +	.regmap_config = &meson_tsensor_regmap_config_g12a,
-I'm going to guess there is support for other devices on it's way where
-the regmap_config and soc are different?
 
-If it is going to be a while I'd prefer you moved them into this param
-structure only when you need to.
+[0] https://sigrok.org/wiki/PulseView
+[1] https://abload.de/img/old-algormjs9.png
+[2] https://abload.de/img/new-algo4ckjo.png
+[3] https://patchwork.kernel.org/patch/10951319/
+[4] https://patchwork.kernel.org/cover/10961073/
 
-> +};
-> +
-> +static const struct of_device_id meson_tsensor_of_match[] = {
-> +	{
-> +		.compatible = "amlogic,meson-g12a-ddr-tsensor",
 
-Given we don't do a match on the compatible without the type specified
-g12a-tsensor, is there any reason to have that in the binding?
+Martin Blumenstingl (14):
+  pwm: meson: unify the parameter list of meson_pwm_{enable,disable}
+  pwm: meson: use devm_clk_get_optional() to get the input clock
+  pwm: meson: use GENMASK and FIELD_PREP for the lo and hi values
+  pwm: meson: change MISC_CLK_SEL_WIDTH to MISC_CLK_SEL_MASK
+  pwm: meson: don't duplicate the polarity internally
+  pwm: meson: pass struct pwm_device to meson_pwm_calc()
+  pwm: meson: add the meson_pwm_channel data to struct meson_pwm
+  pwm: meson: add the per-channel register offsets and bits in a struct
+  pwm: meson: move pwm_set_chip_data() to meson_pwm_request()
+  pwm: meson: simplify the calculation of the pre-divider and count
+  pwm: meson: read the full hardware state in meson_pwm_get_state()
+  pwm: meson: don't cache struct pwm_state internally
+  pwm: meson: add support PWM_POLARITY_INVERSED when disabling
+  pwm: meson: add documentation to the driver
 
-> +		.data = &meson_tsensor_g12a_ddr_param,
-> +	},
-> +	{
-> +		.compatible = "amlogic,meson-g12a-cpu-tsensor",
-> +		.data = &meson_tsensor_g12a_cpu_param,
-> +	},
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, meson_tsensor_of_match);
-> +
-> +static int meson_tsensor_probe(struct platform_device *pdev)
-> +{
-> +	struct meson_tsensor *priv;
-> +	struct iio_dev *indio_dev;
-> +	struct resource *res;
-> +
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*priv));
-> +	if (!indio_dev) {
-> +		dev_err(&pdev->dev, "failed allocating iio device\n");
-> +		return -ENOMEM;
-> +	}
-> +
-> +	priv = iio_priv(indio_dev);
-> +	priv->data = of_device_get_match_data(&pdev->dev);
-> +	if (!priv->data) {
-> +		dev_err(&pdev->dev, "failed to get match data\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	indio_dev->channels = temperature_channel;
-> +	indio_dev->num_channels = ARRAY_SIZE(temperature_channel);
-> +	indio_dev->name = dev_name(&pdev->dev);
-> +	indio_dev->dev.parent = &pdev->dev;
-> +	indio_dev->dev.of_node = pdev->dev.of_node;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->info = &meson_tsensor_iio_info;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	priv->base = devm_ioremap_resource(&pdev->dev, res);
-> +	if (IS_ERR(priv->base))
-> +		return PTR_ERR(priv->base);
-> +
-> +	priv->regmap = devm_regmap_init_mmio(&pdev->dev, priv->base,
-> +					     priv->data->regmap_config);
-> +	if (IS_ERR(priv->regmap))
-> +		return PTR_ERR(priv->regmap);
-> +
-> +	priv->clk = devm_clk_get(&pdev->dev, NULL);
-> +	if (IS_ERR(priv->clk)) {
-> +		if (PTR_ERR(priv->clk) != -EPROBE_DEFER)
-> +			dev_err(&pdev->dev, "failed to get clock\n");
-> +		return PTR_ERR(priv->clk);
-> +	}
-> +
-> +	if (of_property_read_u32(pdev->dev.of_node,
-> +				 "amlogic,critical-temperature",
-> +				 &priv->reboot_temp)) {
-> +		priv->reboot_temp = 0;
-> +	}
-> +
-> +	priv->sec_ao_map = syscon_regmap_lookup_by_phandle
-> +		(pdev->dev.of_node, "amlogic,ao-secure");
-> +	if (IS_ERR(priv->sec_ao_map)) {
-> +		dev_err(&pdev->dev, "syscon regmap lookup failed.\n");
-> +		return PTR_ERR(priv->sec_ao_map);
-> +	}
-> +
-> +	ret = meson_tsensor_initialize(indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = meson_tsensor_enable(indio_dev);
-> +	if (ret)
-> +		goto err;
-> +
-> +	platform_set_drvdata(pdev, indio_dev);
-> +	ret = iio_device_register(indio_dev);
-> +	if (ret)
-> +		goto err_hw;
-> +
-> +	return 0;
-> +
-> +err_hw:
-> +	meson_tsensor_disable(indio_dev);
-> +err:
-> +	clk_unprepare(priv->clk);
-> +
-> +	return ret;
-> +}
-> +
-> +static int meson_tsensor_remove(struct platform_device *pdev)
-> +{
-> +	struct iio_dev *indio_dev = platform_get_drvdata(pdev);
-> +
-> +	iio_device_unregister(indio_dev);
-> +
-> +	return meson_tsensor_disable(indio_dev);
+ drivers/pwm/pwm-meson.c | 323 +++++++++++++++++++++-------------------
+ 1 file changed, 169 insertions(+), 154 deletions(-)
 
-Is there a missing clk_unprepare in here?
-One option to think about is whether to use devm_add_action_or_reset
-to move all cleanup into the device managed queue.  That way you can
-drop the error handling in probe and get rid of remove entirely.
-
-> +}
-> +
-> +static struct platform_driver meson_tsensor_driver = {
-> +	.probe = meson_tsensor_probe,
-> +	.remove = meson_tsensor_remove,
-> +	.driver = {
-> +			.name = "meson-tsensor",
-> +			.of_match_table = meson_tsensor_of_match,
-> +		},
-> +};
-> +
-> +module_platform_driver(meson_tsensor_driver);
-> +
-> +MODULE_AUTHOR("Guillaume La Roque <glaroque@baylibre.com>");
-> +MODULE_DESCRIPTION("Amlogic Meson Temperature Sensor Driver");
-> +MODULE_LICENSE("GPL v2");
+-- 
+2.21.0
 
 
 _______________________________________________
