@@ -5,20 +5,20 @@ X-Spam-Level:
 X-Spam-Status: No, score=-9.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 348ACC28CC5
-	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jun 2019 18:10:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 304B3C28CC5
+	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jun 2019 18:10:22 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 10392212F5
-	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jun 2019 18:10:17 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D45C8212F5
+	for <linux-amlogic@archiver.kernel.org>; Sat,  8 Jun 2019 18:10:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="M1zwH4ui";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="eywnowT3"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 10392212F5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iIqRZu3g";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="f/hhHhhE"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D45C8212F5
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,66 +27,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZeAzXG8/bFVDRmsa9mmSfG13kf7MKvYCriIB55lR7q4=; b=M1zwH4uikfPOLQ
-	wqso564YyPb8yW/UmhoA8MqyTeOBQ0Jn5uDjytxM/nr/BMQBGWAE5WHRqWdqqvvYd3ShCznbdW6yw
-	BKmhEXCA9DUySLu1bSqxWIsCnYdolOMbbs6k4Mhp62vKaq/KDnNh7zf76LXjzcuSn46agOGwhbyAe
-	k9I0K0LR7MRyhKIHNl1ugVgKmIQlIcTDAdbwKoXMoS/MmtIZUzuGtA9hdgJ418nPiQFlv4ayQtZgu
-	9UJ47ilT0VBV6kr/1OlbOHmj0hAmT/xYIvNuVOmKCKYUvQ1pFuOGFXWxuRXJtetrSJN/99HBsUAgO
-	QYyv2xNeG/0/QjvSbDLg==;
+	List-Owner; bh=IWs3yEmfDVwZWaAvNjzFk8LCNbjbrmGEJRqCYXaXwIQ=; b=iIqRZu3gmFfUTH
+	HCBRVeZIxs4oxUyqhSOn8HrlPgCDT+RCN2wry4D7k7vcTcSv/EgM14pczZm18508vMzGbSWNIsZ0k
+	tLZ5c0kwpIY2Lh+V9YQUFGZB7fe1U1VBOPfeWDTxzkHH9Yj+mB9lrsNa3sc0xLkuox4ZdGXMV8+VS
+	06UFaIwNFsuhu+m0paQf2q5IiCP6QWWz2o8/BlB0YoTYcxNggR0Y5AEUcVZs5GZKYNnwoPLT+/C5P
+	2nhjsgQS5eyKomWoKg4zddlHaECxYyKDSYrq0qy4TR/sMOh+5qkifNb91Yrh7vIMcLVXU2iTImUfH
+	450krLUsR/0PVbBw8JpQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hZfnA-0005E4-Fo; Sat, 08 Jun 2019 18:10:12 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1hZfnC-0005JV-W6; Sat, 08 Jun 2019 18:10:15 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hZfjt-0000tO-09; Sat, 08 Jun 2019 18:06:50 +0000
-Received: by mail-wm1-x344.google.com with SMTP id w9so6231937wmd.1;
- Sat, 08 Jun 2019 11:06:48 -0700 (PDT)
+ id 1hZfju-0000vY-BR; Sat, 08 Jun 2019 18:06:52 +0000
+Received: by mail-wm1-x341.google.com with SMTP id z23so4679585wma.4;
+ Sat, 08 Jun 2019 11:06:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=r2ToPp43IDqJY9ruWYlbIAIk8rREDtHiEg0Zr2a3p3U=;
- b=eywnowT3FV8czlQzFI8M3KB61zx8ksV40JxyuUI2r0EVZJvHfST15EcsA3sliMrZqt
- MftDg+tCTBg1Ttq9RgZaQLBOYrdZC+h7/KpBFeHy+i4NpfluFC4NW7p2e7SaJ4aRcFw2
- CoOuaBKztBKR+/tFZdOsg1+V6AejWVG40dLV5QUvJiAad/ZL/jUauFyabADWZzPeSA6I
- Z1/oZCilwF9bkCEl4k2ywVy1KGL2x3IAUET8gmZDKZ0Eh8w8NT/JHQBnF+Rp7AkAcm5r
- Sd1BnAwBQQJW+pDMvHxGOASFKKBJDhzJPSYIkTx9kdVYKq0D162b64xeaih0ssDBJqoX
- kGig==
+ bh=LcZp+XV+KTOIWOKJ0nzGbLimTWtElgIxN/UQOTUbAxg=;
+ b=f/hhHhhEKLF/T8vWu/eNekD7NioNE5HDoSUFzP/gNeNrARsZr9Xi3ToPkymnMBNLZY
+ APYc06sb5U4MeUqqXM/T7X5et0ZLwnLt1JMQKfD4h64GtQacBOHMVu/qioua03YGdzAQ
+ tbC/HILGO4JMyS8X5FWZbOIVWroxO7/upi1lg3GJwdjBXOM1gTNzTB2pHX6zg72iJ8tu
+ eMU9IbaZIQZ8Uzh9RCIvQhW+ULARcKPutH9Z5Ou4wvp4FV9RPuZFXvZ5fiMAjErb2dKx
+ MvcRRw7C6tC8eff1mfHn7v9gaRkQTLx4hA06QqrqJR1RskuMmP8Vgty1wUuYFRz46qmZ
+ fndA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=r2ToPp43IDqJY9ruWYlbIAIk8rREDtHiEg0Zr2a3p3U=;
- b=JOYZHTqkUKWuA+nMSa7enKVuyZZ3YkJRffZ/HricHIn557j3EOc0BxLFUBKZBILq5s
- klc+ufNWSafHLza7kap+TPRKbhC684gGC3OdOkAf5HAp0VbivR2BmqpvtIVLihuIfDF3
- XbtktwC0mQsV78o14K6iQxXDsVlPh0Zp69+l/7a4SbhT/dNSj3mvS8L8iODxl11OricK
- Ty1Np/6knbySznHE5vCrH8/vBOmMeQ4zar8Pv9UR+kMlCl/WW2IHstW/mAi0+cfltiBS
- CqXzSBf/PRdDP+7Wlb080We/XUYHbZ53GyMxfPmTsBuOuw2wm1EzwhJ7lAmqSbP9Qv6H
- XOIA==
-X-Gm-Message-State: APjAAAVwemHsgorPiTLh12vyEwIWV6gVFUSWI1YAxPE49AB1wqS2ECkg
- 3NgbcNb380VqM5YFJu42okF9iFWr
-X-Google-Smtp-Source: APXvYqzKbhVwCuFbTgMQsfzH5DhqyH4Vq7yYLlluv4xdq4kBEVhrp4ppQhvp/iNKP8GbfnN5So4iEQ==
-X-Received: by 2002:a1c:8049:: with SMTP id b70mr7436969wmd.33.1560017206430; 
- Sat, 08 Jun 2019 11:06:46 -0700 (PDT)
+ bh=LcZp+XV+KTOIWOKJ0nzGbLimTWtElgIxN/UQOTUbAxg=;
+ b=Ph1HV6kySy5aX6Sg4rjFJe0q+f7jro6OUqA5r+TE8gp8zb2YMdTYxdR5BA6/smmMWI
+ /OnomBA3yWeiAoYpoYtUqdmki3gbV3K3R6rofTf2cTTOXQ9Kv4YxQRxLvOSjRrEHnLVF
+ CW63kKcIUuhmx7TxJqHQhg6DUTsKUfM52B+/P8xqMf8qUhicXiQE5weEA+MCgl5R6r3n
+ BaH6hFJNrmHADzODI3tzVHPGDGU/nbkdnO7uT1tF+kv/Sr9uRP3FC4/fHmx4mDW7Xv+Y
+ w6ePEtSnOpRrgN1M0zG2OUeX6/oTDeMCRm5lmD4kHf01r4G7ckOZYpyHLBjFJ/liGIhI
+ P3ig==
+X-Gm-Message-State: APjAAAV/+FrnSmO/kq3LUoxbmkEYaOJYb/rKBC1EuR6lgPfhNuFBAzZh
+ FwLYhSQVX8JUU2gXKMuJEqlYx4b0
+X-Google-Smtp-Source: APXvYqySdvCrYqBKMKqzayv7pE9NT7Fh66b0snU+rte5qZ39fRD1bSiBGfxJQPh0JknCKLonuMpUDA==
+X-Received: by 2002:a1c:7d13:: with SMTP id y19mr7493333wmc.21.1560017208453; 
+ Sat, 08 Jun 2019 11:06:48 -0700 (PDT)
 Received: from blackbox.darklights.net
  (p200300F133DDA400D12EFF43FED1E981.dip0.t-ipconnect.de.
  [2003:f1:33dd:a400:d12e:ff43:fed1:e981])
- by smtp.googlemail.com with ESMTPSA id c7sm5143345wrp.57.2019.06.08.11.06.45
+ by smtp.googlemail.com with ESMTPSA id c7sm5143345wrp.57.2019.06.08.11.06.47
  (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Sat, 08 Jun 2019 11:06:45 -0700 (PDT)
+ Sat, 08 Jun 2019 11:06:47 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org,
  thierry.reding@gmail.com
-Subject: [PATCH v2 12/14] pwm: meson: don't cache struct pwm_state internally
-Date: Sat,  8 Jun 2019 20:06:24 +0200
-Message-Id: <20190608180626.30589-13-martin.blumenstingl@googlemail.com>
+Subject: [PATCH v2 14/14] pwm: meson: add documentation to the driver
+Date: Sat,  8 Jun 2019 20:06:26 +0200
+Message-Id: <20190608180626.30589-15-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190608180626.30589-1-martin.blumenstingl@googlemail.com>
 References: <20190608180626.30589-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190608_110649_067267_9C44AD25 
-X-CRM114-Status: GOOD (  12.66  )
+X-CRM114-CacheID: sfid-20190608_110650_470788_3076458B 
+X-CRM114-Status: GOOD (  13.65  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,100 +101,44 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Neil Armstrong <narmstrong@baylibre.com>, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, u.kleine-koenig@pengutronix.de
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The PWM core already caches the "current struct pwm_state" as the
-"current state of the hardware registers" inside struct pwm_device.
-
-Drop the struct pwm_state from struct meson_pwm_channel in favour of the
-struct pwm_state in struct pwm_device. While here also drop any checks
-based on the pwm_state because the PWM core already takes care of this.
-
-No functional changes intended.
-
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/pwm/pwm-meson.c | 25 +------------------------
- 1 file changed, 1 insertion(+), 24 deletions(-)
-
-diff --git a/drivers/pwm/pwm-meson.c b/drivers/pwm/pwm-meson.c
-index 010212166d5d..900d362ec3c9 100644
---- a/drivers/pwm/pwm-meson.c
-+++ b/drivers/pwm/pwm-meson.c
-@@ -68,8 +68,6 @@ struct meson_pwm_channel {
- 	unsigned int lo;
- 	u8 pre_div;
- 
--	struct pwm_state state;
--
- 	struct clk *clk_parent;
- 	struct clk_mux mux;
- 	struct clk *clk;
-@@ -127,8 +125,6 @@ static int meson_pwm_request(struct pwm_chip *chip, struct pwm_device *pwm)
- 		return err;
- 	}
- 
--	chip->ops->get_state(chip, pwm, &channel->state);
--
- 	return pwm_set_chip_data(pwm, channel);
- }
- 
-@@ -153,10 +149,6 @@ static int meson_pwm_calc(struct meson_pwm *meson, struct pwm_device *pwm,
- 	if (state->polarity == PWM_POLARITY_INVERSED)
- 		duty = period - duty;
- 
--	if (period == channel->state.period &&
--	    duty == channel->state.duty_cycle)
--		return 0;
--
- 	fin_freq = clk_get_rate(channel->clk);
- 	if (fin_freq == 0) {
- 		dev_err(meson->chip.dev, "invalid source clock frequency\n");
-@@ -253,7 +245,6 @@ static void meson_pwm_disable(struct meson_pwm *meson, struct pwm_device *pwm)
- static int meson_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
- 			   struct pwm_state *state)
- {
--	struct meson_pwm_channel *channel = pwm_get_chip_data(pwm);
- 	struct meson_pwm *meson = to_meson_pwm(chip);
- 	int err = 0;
- 
-@@ -262,26 +253,12 @@ static int meson_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
- 
- 	if (!state->enabled) {
- 		meson_pwm_disable(meson, pwm);
--		channel->state.enabled = false;
--
--		return 0;
--	}
--
--	if (state->period != channel->state.period ||
--	    state->duty_cycle != channel->state.duty_cycle ||
--	    state->polarity != channel->state.polarity) {
-+	} else {
- 		err = meson_pwm_calc(meson, pwm, state);
- 		if (err < 0)
- 			return err;
- 
--		channel->state.polarity = state->polarity;
--		channel->state.period = state->period;
--		channel->state.duty_cycle = state->duty_cycle;
--	}
--
--	if (state->enabled && !channel->state.enabled) {
- 		meson_pwm_enable(meson, pwm);
--		channel->state.enabled = true;
- 	}
- 
- 	return 0;
--- 
-2.21.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+QWRkIGEgbGluayB0byB0aGUgZGF0YXNoZWV0IGFuZCBhIHNob3J0IHN1bW1hcnkgaG93IHRoZSBo
+YXJkd2FyZSB3b3Jrcy4KVGhlIGdvYWwgaXMgdG8gbWFrZSBpdCBlYXNpZXIgZm9yIG90aGVyIGRl
+dmVsb3BlcnMgdG8gdW5kZXJzdGFuZCB3aHkgdGhlCnB3bS1tZXNvbiBkcml2ZXIgaXMgaW1wbGVt
+ZW50ZWQgdGhlIHdheSBpdCBpcy4KClN1Z2dlc3RlZC1ieTogVXdlIEtsZWluZS1Lw7ZuaWcgPHUu
+a2xlaW5lLWtvZW5pZ0BwZW5ndXRyb25peC5kZT4KQ28tYXV0aG9yZWQtYnk6IE5laWwgQXJtc3Ry
+b25nIDxuYXJtc3Ryb25nQGJheWxpYnJlLmNvbT4KU2lnbmVkLW9mZi1ieTogTWFydGluIEJsdW1l
+bnN0aW5nbCA8bWFydGluLmJsdW1lbnN0aW5nbEBnb29nbGVtYWlsLmNvbT4KUmV2aWV3ZWQtYnk6
+IE5laWwgQXJtc3Ryb25nIDxuYXJtc3Ryb25nQGJheWxpYnJlLmNvbT4KLS0tCiBkcml2ZXJzL3B3
+bS9wd20tbWVzb24uYyB8IDE4ICsrKysrKysrKysrKysrKysrKwogMSBmaWxlIGNoYW5nZWQsIDE4
+IGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL3B3bS9wd20tbWVzb24uYyBiL2Ry
+aXZlcnMvcHdtL3B3bS1tZXNvbi5jCmluZGV4IGJiNDhiYTg1Zjc1Ni4uNmE5NzhjYWJhNDgzIDEw
+MDY0NAotLS0gYS9kcml2ZXJzL3B3bS9wd20tbWVzb24uYworKysgYi9kcml2ZXJzL3B3bS9wd20t
+bWVzb24uYwpAQCAtMSw1ICsxLDIzIEBACiAvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BM
+LTIuMCBPUiBCU0QtMy1DbGF1c2UKIC8qCisgKiBQV00gY29udHJvbGxlciBkcml2ZXIgZm9yIEFt
+bG9naWMgTWVzb24gU29Dcy4KKyAqCisgKiBUaGlzIFBXTSBpcyBvbmx5IGEgc2V0IG9mIEdhdGVz
+LCBEaXZpZGVycyBhbmQgQ291bnRlcnM6CisgKiBQV00gb3V0cHV0IGlzIGFjaGlldmVkIGJ5IGNh
+bGN1bGF0aW5nIGEgY2xvY2sgdGhhdCBwZXJtaXRzIGNhbGN1bGF0aW5nCisgKiB0d28gcGVyaW9k
+cyAobG93IGFuZCBoaWdoKS4gVGhlIGNvdW50ZXIgdGhlbiBoYXMgdG8gYmUgc2V0IHRvIHN3aXRj
+aCBhZnRlcgorICogTiBjeWNsZXMgZm9yIHRoZSBmaXJzdCBoYWxmIHBlcmlvZC4KKyAqIFRoZSBo
+YXJkd2FyZSBoYXMgbm8gInBvbGFyaXR5IiBzZXR0aW5nLiBUaGlzIGRyaXZlciByZXZlcnNlcyB0
+aGUgcGVyaW9kCisgKiBjeWNsZXMgKHRoZSBsb3cgbGVuZ3RoIGlzIGludmVydGVkIHdpdGggdGhl
+IGhpZ2ggbGVuZ3RoKSBmb3IKKyAqIFBXTV9QT0xBUklUWV9JTlZFUlNFRC4gVGhpcyBtZWFucyB0
+aGF0IC5nZXRfc3RhdGUgY2Fubm90IHJlYWQgdGhlIHBvbGFyaXR5CisgKiBmcm9tIHRoZSBoYXJk
+d2FyZS4KKyAqIFNldHRpbmcgdGhlIGR1dHkgY3ljbGUgd2lsbCBkaXNhYmxlIGFuZCByZS1lbmFi
+bGUgdGhlIFBXTSBvdXRwdXQuCisgKiBEaXNhYmxpbmcgdGhlIFBXTSBzdG9wcyB0aGUgb3V0cHV0
+IGltbWVkaWF0ZWx5ICh3aXRob3V0IHdhaXRpbmcgZm9yIHRoZQorICogY3VycmVudCBwZXJpb2Qg
+dG8gY29tcGxldGUgZmlyc3QpLgorICoKKyAqIFRoZSBwdWJsaWMgUzkyMlggZGF0YXNoZWV0IGNv
+bnRhaW5zIHNvbWUgZG9jdW1lbnRhdGlvbiBmb3IgdGhpcyBQV00KKyAqIGNvbnRyb2xsZXIgc3Rh
+cnRpbmcgb24gcGFnZSAxMDg0OgorICogaHR0cHM6Ly9kbC5raGFkYXMuY29tL0hhcmR3YXJlL1ZJ
+TTIvRGF0YXNoZWV0L1M5MTJfRGF0YXNoZWV0X1YwLjIyMDE3MDMxNHB1YmxpY3ZlcnNpb24tV2Vz
+aW9uLnBkZgorICoKICAqIENvcHlyaWdodCAoYykgMjAxNiBCYXlMaWJyZSwgU0FTLgogICogQXV0
+aG9yOiBOZWlsIEFybXN0cm9uZyA8bmFybXN0cm9uZ0BiYXlsaWJyZS5jb20+CiAgKiBDb3B5cmln
+aHQgKEMpIDIwMTQgQW1sb2dpYywgSW5jLgotLSAKMi4yMS4wCgoKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QK
+bGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQu
+b3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
