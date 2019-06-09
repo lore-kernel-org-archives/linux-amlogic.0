@@ -2,21 +2,21 @@ Return-Path: <SRS0=Y0fp=UI=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,T_DKIMWL_WL_HIGH autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	T_DKIMWL_WL_HIGH autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3F327C28EBD
-	for <linux-amlogic@archiver.kernel.org>; Sun,  9 Jun 2019 21:50:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 482E7C28EBD
+	for <linux-amlogic@archiver.kernel.org>; Sun,  9 Jun 2019 21:52:37 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 156ED20673
-	for <linux-amlogic@archiver.kernel.org>; Sun,  9 Jun 2019 21:50:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 05F7B206C3
+	for <linux-amlogic@archiver.kernel.org>; Sun,  9 Jun 2019 21:52:37 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MAdixXVQ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zlJsT0l/"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 156ED20673
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="uK69Jqzq";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Cl0rVA3z"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 05F7B206C3
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,59 +25,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vXLYWN2lRP7dJbmIh6rk60u2c8iqPiEoCT8O0vZLw5k=; b=MAdixXVQxPaDU/
-	G4nRtLnDxhpbSpfbbmFDzR+r6ITuSimJmTGJKvJ/KUNG1fUB8SZ0bN/43xrqwuwrixuTEODTzYGzC
-	QBxR8of5fkO2X9EXCyM/mJbO526ou2en6kXQiYS2YsFZQ9WMnxY5UX+Qwc7vzeJ55CrAzF7Iux7hz
-	4NVCdkSs9sJvImP2dCApNrIhfkioTDSMGMRWHx19B+c604XYQ7IgyY/EN1cOZYYBwZvakb/NsyvFO
-	WIg09nJ8aAJFeGr70/KrFod1TOSp/43ejX+2MepqBl3FT6FIl3Uptmnp8+zCiariaO0LFziLOtaiS
-	CgzZmQv17qSnoWlSBNvQ==;
+	List-Owner; bh=7XO7rCPFcwV4obn6gS5EuPD2oVke6AkEGSMyVxRjtjM=; b=uK69JqzqrBUyUf
+	z0ydme6ORPzQjKXhU9z5dU51TA6SyqVo/EEP+VMZgJIoa0ifVo75Bp2CkD6AM08AZjoSKvojS29+3
+	3TJQJzXJlMMRe/JrzzmqWJtSqFcpQW3scvj+POE/l/XhOJDMeFJK2ekDB7V36GjwFYbT3jbQa94gp
+	8WXs9gUgWFGBQUKSTx+GOI9vaQIohS3Xta4l8UP20IEdkmw75o8QdHEa7gmmTRzMcJQtoCBg5zEN6
+	nSHZ//mU/7a3LgXKHCXh16EdHlj8GSJZKrtojZ91b+jUAkTQFnFSXCP5zlWcJZj8KaTvanmTZL4Lr
+	rxpn/WBV7fHI+38WiWiA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1ha5hx-0007Jy-6E; Sun, 09 Jun 2019 21:50:33 +0000
-Received: from mail-lf1-x12f.google.com ([2a00:1450:4864:20::12f])
+	id 1ha5jq-0007x2-OM; Sun, 09 Jun 2019 21:52:30 +0000
+Received: from mail-lj1-x233.google.com ([2a00:1450:4864:20::233])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1ha5hu-0007J5-4m
- for linux-amlogic@lists.infradead.org; Sun, 09 Jun 2019 21:50:31 +0000
-Received: by mail-lf1-x12f.google.com with SMTP id y17so5233901lfe.0
- for <linux-amlogic@lists.infradead.org>; Sun, 09 Jun 2019 14:50:29 -0700 (PDT)
+ id 1ha5jg-0007nd-Pv
+ for linux-amlogic@lists.infradead.org; Sun, 09 Jun 2019 21:52:22 +0000
+Received: by mail-lj1-x233.google.com with SMTP id s21so6160899lji.8
+ for <linux-amlogic@lists.infradead.org>; Sun, 09 Jun 2019 14:52:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=He8uuSEDC/b/uWidg8RVfT3AGe4hP03AsY17X0DSxgk=;
- b=zlJsT0l/3IuyndfDS2BTaHnjJraASu525KwaMplyFARGp91fxTu7ST6SIuVl4iRefh
- Zw2rTEVnDvjnMuSCPzdUGoVDoRp8QrZ61tK4XFRB4D3Zl0L6VgXr//I766ZqEDgE17BM
- ARN60spGcN65rNvB7ab14R7DSGuQndhDP7PBCgB3CP8DrR7V+VOu1ATbAAdkQfPQj4IY
- quGE/acE6nwNwUq5m4i9HC26SOp56AoTeO2Nuk1flxiykzI9jViwQQchw1hlF1ArhsRC
- N14lVBN37nhxWkXhB1kOBhH6Fg5Nahbz9F5Ozo1lzj8nZbQmTBZ4tBPY5d9h7mtBuiCS
- cZyA==
+ :cc; bh=3u47NK04VLWnks2ECFn41iwvdVn3zhAxLH2OdU56Dmw=;
+ b=Cl0rVA3z38e6L8+wW94OpWj72TSurDFbVXa3pn24DZWJJzrOrvC+fdcaUtFQndqIgP
+ txxwbLiEo1JBtH/op3umTaxckv2djd/WaR5I5qa+EGNTpKe0HtK0Tq8lpu4RgQ+aidH1
+ RQN+njo2AS3nHqvbBnl0jOecogbHfZyq2ZQoBr6Un7SjO9AiaCcnPinHmJPgJB5ysgy5
+ i4n1mXa2crZfqK3FvymkbMZneKJ/uEnHKZlQ/hZb3BaKT89F9FiUvIiAc0qIjTvgsyHc
+ GdMMVySRP+4084kUDTBoax7mRi1FuV0caKswGmr9183KWlYwKXnOIZg9Gxdz/EPAQTx5
+ IU6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=He8uuSEDC/b/uWidg8RVfT3AGe4hP03AsY17X0DSxgk=;
- b=iBLenhcorbYoJkHIfKxEpUPO09PjBrV0rgeMiIdOlpky3iiUAyY2jCvWSU2W+JIV4W
- iS+i2ZRjqXyf4WgQwvr0UrnH8OOCe87s+7pkajeLijKWX7iZyV3N7lwnjp0BfBncDXCR
- E+ZH1iE5XPAD2nOwSr23YHA+aNvquXL0xDibQ6l4+8mrp5453UxcdsoH8inPGpszz4i1
- PQvQ/7EXUUpb2NcUZRgUpP9T/7LSdAO8iuRk9B4zLtc0qbceHfasWu0oLHFOgqBLhsps
- pFG3K9gFNBhmlg/SSbvakWdcsu5VlnPNY4sJczRiByqZP+uO2c+F0XijyICuMnS3bsh/
- Olig==
-X-Gm-Message-State: APjAAAUF/1oBj3JuHR+N4VX6wQLpfs407du1HaOoPJWxqGh/xQLrwjIw
- PUdY6EkDDq9+mihhIc2Sr4bOJ38cF1StOr/cMc+Tsw==
-X-Google-Smtp-Source: APXvYqyf2NDu19vowinqKXukK4VxadyL6zt3qyCVskmgqawUHY4dBR21FjzW4762E23uuSqmCFocFD/qpnabF+6julg=
-X-Received: by 2002:a19:dc0d:: with SMTP id t13mr9951237lfg.152.1560117028189; 
- Sun, 09 Jun 2019 14:50:28 -0700 (PDT)
+ bh=3u47NK04VLWnks2ECFn41iwvdVn3zhAxLH2OdU56Dmw=;
+ b=A+xk2+yLZVZkKKmr5c4FY1QiZ08YT1AQMIvhPhoZAGq37JuYyLb8jARfoxmkmwl1qH
+ Lg7fucid5zW+Y7cyFIDixl3orwxPnSCQ0NNnOgpdOnhssfWnOV0rJ2vY7kvIa7zNGgUI
+ vDvs+KB5Gr4xBfvZ22N1pH6lB1syPGZw8ETiRBsFFBkVmC45uXWC4nxk7svU4H0Eum36
+ o8K3QrTPaQsszyR5LtM7FI9IUin3NkhPnegpCIYKsy+FVtdD+fSI1mU8olJluYSsgFqi
+ 5zjqUFj9jk5PAFqST9MbgyBoDmIsX0q3rm35Avt9jQgUHYohNmpdgO1KhG7dZvydQp6f
+ Piow==
+X-Gm-Message-State: APjAAAU+i5btZhi0+/zjiC3sv26EyZHnjS13a7kvC4m/gD93mO06YbMt
+ t60qRBvYv/vPkSHYqpaIvMqERpBsuefz27yc163UCA==
+X-Google-Smtp-Source: APXvYqxxvAPH8DO2c0X0YBL0L2eBq2A1RkbOzyw6mq+phUKB0rDXYXygI1YbFcBf/zVxAnxBKN7lStrxUTnG75YtXlc=
+X-Received: by 2002:a2e:9753:: with SMTP id f19mr10655574ljj.113.1560117139172; 
+ Sun, 09 Jun 2019 14:52:19 -0700 (PDT)
 MIME-Version: 1.0
 References: <20190609180621.7607-1-martin.blumenstingl@googlemail.com>
- <20190609180621.7607-4-martin.blumenstingl@googlemail.com>
-In-Reply-To: <20190609180621.7607-4-martin.blumenstingl@googlemail.com>
+ <20190609204510.GB8247@lunn.ch>
+In-Reply-To: <20190609204510.GB8247@lunn.ch>
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Sun, 9 Jun 2019 23:50:21 +0200
-Message-ID: <CACRpkdZCbFiUfW-qOM1Hxuj0e5TC8ViMuiz-VeVjSYP8A9sN3A@mail.gmail.com>
-Subject: Re: [RFC next v1 3/5] net: stmmac: use GPIO descriptors in
- stmmac_mdio_reset
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sun, 9 Jun 2019 23:52:12 +0200
+Message-ID: <CACRpkdbOnxZJZ=Lvv0mbnrCg8kPWyeRsBbOa2cUiwjcPnR=4RA@mail.gmail.com>
+Subject: Re: [RFC next v1 0/5] stmmac: honor the GPIO flags for the PHY reset
+ GPIO
+To: Andrew Lunn <andrew@lunn.ch>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190609_145030_186587_C8A1DCB4 
-X-CRM114-Status: GOOD (  11.87  )
+X-CRM114-CacheID: sfid-20190609_145220_841888_F929C343 
+X-CRM114-Status: UNSURE (   7.14  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,6 +93,7 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Cc: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
  <devicetree@vger.kernel.org>, Alexandre TORGUE <alexandre.torgue@st.com>,
  "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  netdev <netdev@vger.kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
  "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
  Bartosz Golaszewski <bgolaszewski@baylibre.com>,
@@ -105,26 +107,14 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, Jun 9, 2019 at 8:06 PM Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
+On Sun, Jun 9, 2019 at 10:45 PM Andrew Lunn <andrew@lunn.ch> wrote:
 
-> Switch stmmac_mdio_reset to use GPIO descriptors. GPIO core handles the
-> "snps,reset-gpio" for GPIO descriptors so we don't need to take care of
-> it inside the driver anymore.
->
-> The advantage of this is that we now preserve the GPIO flags which are
-> passed via devicetree. This is required on some newer Amlogic boards
-> which use an Open Drain pin for the reset GPIO. This pin can only output
-> a LOW signal or switch to input mode but it cannot output a HIGH signal.
-> There are already devicetree bindings for these special cases and GPIO
-> core already takes care of them but only if we use GPIO descriptors
-> instead of GPIO numbers.
->
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Linus can probably create a stable branch with the GPIO changes, which
+> David can pull into net-next, and then apply the stmmac changes on
+> top.
 
-This is in line with how I want the gpiolib to just swallow all quirks,
-so:
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Sure thing, just tell me what to queue and I'll create an immutable
+branch for this that David can pull.
 
 Yours,
 Linus Walleij
