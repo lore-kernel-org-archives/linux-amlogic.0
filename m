@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
 	SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7771DC43218
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jun 2019 11:06:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CC012C4321A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jun 2019 11:07:00 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4A2C820673
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jun 2019 11:06:30 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A021B20673
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jun 2019 11:07:00 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="azoPuhnf";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="WWyf83ou"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4A2C820673
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="H1NQpOLk";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Uj8cx7Lr"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A021B20673
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,57 +26,57 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:To:References:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=/eCEU6yId9dTXPbh/0kuXEyN7FzgXjwDl/i7RshWQOA=; b=azoPuhnfmrpF9X
-	HIyaUrsZPIstfWk09dT/PZ04qBJkOsSNJt5JdbTC60Pp5F7f5qb64/6FhZ6AxOaVv37d31iimr7dM
-	X2Ywk4kpAlzlwiQRt9La3vB1Sjr2yhdeTu70V9n1GZYb57zztd7R35HpWLhXukpNS0kbwkKyh6cgo
-	mPWEd3hz1rU7k8E8WqwLZO4ZV4HiKbi9mVg1Ak8pBbpFGoSYtiOsPJtp7LDz/m2K0C7e8if9zs9c9
-	wDTanaoADSkwZl5+Xxo+VnVVSamVuXsgqFtvucjzQsFjEdscZZh4H99xBRSoSKcbsRl/HZr4ySqOq
-	Lbys+z8mSKtBffdby6BA==;
+	List-Owner; bh=3ebyuhKQT1JxWsGposic9cMgekLdYFOVaNIA8Ssb6BM=; b=H1NQpOLkjS1XrC
+	bJhD1ydsvHvW3+n5GfIKTkUkowwZhZv+/FlH97trxEq4PIRTFzZBkz7D1ieuGIo1fxbD2pEPT1Ryk
+	ImU7mBfupKqLKa1LiusxjPmKfIdn/PfbBVUc25xAda4QCzBB2vOTouwLghu8WiZmg/JVxaNK2R55w
+	Qaj/Hlv4iTs9uxf7QaGLaHzp6Qbq7XTfMRPIqrHvmj7ZWSCgebBaQOYJVrrPynVRSIMkIeocTJuxC
+	4NRu9x051TTbtzqWJYWjTmygGj3JAWNm7QL4tqxdi3q+I9HxTB10XmSew5L81JPNKTUI+FJ1Spkly
+	D3pJwRsleyBGZ41m5rVg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1haebg-0007br-EL; Tue, 11 Jun 2019 11:06:24 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1haecB-0007yv-5h; Tue, 11 Jun 2019 11:06:55 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1haebV-0007SG-5f
- for linux-amlogic@lists.infradead.org; Tue, 11 Jun 2019 11:06:14 +0000
-Received: by mail-wr1-x441.google.com with SMTP id n9so12570397wru.0
- for <linux-amlogic@lists.infradead.org>; Tue, 11 Jun 2019 04:06:12 -0700 (PDT)
+ id 1haec4-0007s4-CN
+ for linux-amlogic@lists.infradead.org; Tue, 11 Jun 2019 11:06:51 +0000
+Received: by mail-wr1-x444.google.com with SMTP id x4so9878732wrt.6
+ for <linux-amlogic@lists.infradead.org>; Tue, 11 Jun 2019 04:06:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:cc:references:to:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=8qn6FZXDPZHM+Ar1uIfaXQRlD6cr5tI5sGrJOoA+okc=;
- b=WWyf83ouQ9CZ9+bhhtgZipowgDbs2RUlwJNIAv1AlOLbvzjmS0sygtArrFSkSqcf1u
- VRuvHxhbdClW33hMJ8U9icSq2I2ZtkrB2gNwENMKYGFmjwWYy2lOf1boQ58/Wn+BqvA1
- f7Hnvz0Oi8Ww9NKurAvbylLetopuNfy9YHp+n7EaWmrCts0cBA3We6UZiCN6IU+aDn16
- e0nf6O009aDU+yv2iDvjkC58oROlk7Ajl1gjln4VcBeimBnObqG27yOlrRQsGxDrZoCL
- dXlfkHH7/Nd49+piccPuvxD4YlIWGbHaCiZfw2inQGt0MH6q48n8I2HlxfoksTG8hK5D
- vFVg==
+ bh=DtezF41fwOvLQfS+JzBuxvvjPEQ+lwbNCN1bbE2TwWM=;
+ b=Uj8cx7LrXOVXPC159asLoP3gLbG0LJdFlhkiXR8afb5b9r5y3U54Pw/R6h3sfOWidb
+ yykoPvbimvutfWx8tgPhIjGKnPMEEjsUKHUX3fy1f3Yh07768zHii8ZfIO5qZtWg0SkE
+ 3Y8QXvx09npsXPM9fr9Ufxh6YUnh9G1jrUlU1GApmrsDEn64ubmz4+/2qQZXUfeAIxqs
+ PjXv0inyVGjJsA1WEzlsGewbLjDgZyaEjKBzAko+Z4dgdrSGKUgdeFJ67DyXUx76WLEi
+ ZEVaK0cL9Q7VlnGAhmj8u9KgiYi6/RyXwb9hTup8G3X1bDzYwbigUpnmagIlgkMtHHjx
+ XOsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:cc:references:to:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=8qn6FZXDPZHM+Ar1uIfaXQRlD6cr5tI5sGrJOoA+okc=;
- b=Atp20zzktSsUvfk1t/5T9m2QybCA4Uly51jiWV4hNtz2vGLzOuDsqb8CVoXJPKcd8m
- GjMeqIc4LxbPakz3+p2wx4T7ewE4x38QgEZnU/lkooZQn1UEFWZOryHucR/dBpa2M2Yp
- 702Q/uwXIpT8JIDfL9RqYz3hNT2Gw8TNVXgaCTsEkFL4CZPq8jfE+h13glkVL7X1uULt
- VGsf9Jk4P2/m5rfffK/v/aJpyff/c3urS9mlfEQxKfoKuDC5ucYOWuDR/0dYPfYJR7L0
- mT2+Fr12cVC34IIFSrMdfWHNwVqppxAWRRiHJHGgonxPwaC1p+f3BUTqFFlaivOBs2Mv
- 07bw==
-X-Gm-Message-State: APjAAAUz9JMI8hRdJPK3YIptccXcpIshTbC0iyvloV+AIF5RL4OR8qBJ
- 8hMDzLj8yQUzXYk9YHpZwrJbbbhvopJ0jQ==
-X-Google-Smtp-Source: APXvYqyEQuJ51hKpjdLCGHQ0eCQs26Wxh78vE5WdRz9G656LI4ld1z4bIgGk6yCPoHJSrIwDqGp2pA==
-X-Received: by 2002:adf:9003:: with SMTP id h3mr27493718wrh.172.1560251171208; 
- Tue, 11 Jun 2019 04:06:11 -0700 (PDT)
+ bh=DtezF41fwOvLQfS+JzBuxvvjPEQ+lwbNCN1bbE2TwWM=;
+ b=akORqclA3/79pFCzjr83W5jyhy6hUo5TS9sLOJN1SQqghnlJ83+lOmaQOAKJr3LlAs
+ ypLrxSMCc9f1OxfKiQdYI14nN6caFkcldzC3bmKJ05+deOenSCe8geweIxDb7pyeXTQ2
+ JObFKHMHolWJEOsj3PHWac5Zvy7yvV0gi2pCqsSQ4I05BuNatbIWseOcaQPxCJsXJXUw
+ 2Qk5gxJKPzmfyqRKzj8QpB6o7KLOw/JuoG2JX6VzRzv15OrzQ8co1X73a2ipdQV0wPPM
+ Xvk9FvhFGUWl44M3hc37nFm+oIwGM3IxcCGcA56byDM6EcKf7NSjXJfWMhskxvmTgvzt
+ LEqw==
+X-Gm-Message-State: APjAAAXJ+Jc/LpkDZym8fJfhNW+g+eNJF33O9Sbub3r2r/cKis6KQEdO
+ IwQ0zemXYprYxWNPKVJon+YIyEk4tlewWA==
+X-Google-Smtp-Source: APXvYqwy+HPa1ssAYit0J1B0sUoWbUiF0ZRwllLI2B+CYMXOCHcDTIVG/oa+z+jDZCL1Z860Wg+P8A==
+X-Received: by 2002:a5d:63cb:: with SMTP id c11mr49579966wrw.65.1560251204943; 
+ Tue, 11 Jun 2019 04:06:44 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id o6sm2437708wmc.15.2019.06.11.04.06.09
+ by smtp.gmail.com with ESMTPSA id f6sm1429475wrw.68.2019.06.11.04.06.44
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 11 Jun 2019 04:06:10 -0700 (PDT)
-Subject: Re: [PATCH 1/2] ARM: multi_v7_defconfig: add Panfrost driver
-References: <20190604112003.31813-1-tomeu.vizoso@collabora.com>
+ Tue, 11 Jun 2019 04:06:44 -0700 (PDT)
+Subject: Re: [PATCH 1/2] arm64: defconfig: enable Lima driver
+References: <20190606085645.31642-1-narmstrong@baylibre.com>
 To: Kevin Hilman <khilman@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
@@ -130,16 +130,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <71c929a0-d42e-7519-df43-100a474a63d4@baylibre.com>
-Date: Tue, 11 Jun 2019 13:06:09 +0200
+Message-ID: <d3275b3d-7b1a-369c-11c5-e62553a383cf@baylibre.com>
+Date: Tue, 11 Jun 2019 13:06:43 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <20190604112003.31813-1-tomeu.vizoso@collabora.com>
+In-Reply-To: <20190606085645.31642-1-narmstrong@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190611_040613_212945_D4FF326B 
-X-CRM114-Status: GOOD (  16.79  )
+X-CRM114-CacheID: sfid-20190611_040648_439971_FBA28681 
+X-CRM114-Status: GOOD (  15.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,42 +151,36 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Alexandre Torgue <alexandre.torgue@st.com>,
- Tomeu Vizoso <tomeu.vizoso@collabora.com>, Tony Lindgren <tony@atomide.com>,
- Russell King <linux@armlinux.org.uk>, linux-kernel@vger.kernel.org,
- =?UTF-8?Q?Yannick_Fertr=c3=a9?= <yannick.fertre@st.com>, arm@kernel.org,
- Arnd Bergmann <arnd@arndb.de>,
+Cc: arnd@arndb.de, linux-kernel@vger.kernel.org, arm@kernel.org, olof@lixom.net,
  "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Olof Johansson <olof@lixom.net>, Simon Horman <horms+renesas@verge.net.au>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- "moderated list:ARM PORT" <linux-arm-kernel@lists.infradead.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 04/06/2019 13:20, Tomeu Vizoso wrote:
-> With the goal of making it easier for CI services such as KernelCI to
-> run tests for it.
+On 06/06/2019 10:56, Neil Armstrong wrote:
+> A bunch of arm64 boards can now use the Lima driver, let's enable it
+> in defconfig, it will be useful to have it enabled for KernelCI
+> boot and runtime testing.
 > 
-> Signed-off-by: Tomeu Vizoso <tomeu.vizoso@collabora.com>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->  arch/arm/configs/multi_v7_defconfig | 1 +
+>  arch/arm64/configs/defconfig | 1 +
 >  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-> index 6b748f214eae..952dff9d39f2 100644
-> --- a/arch/arm/configs/multi_v7_defconfig
-> +++ b/arch/arm/configs/multi_v7_defconfig
-> @@ -656,6 +656,7 @@ CONFIG_DRM_VC4=m
->  CONFIG_DRM_ETNAVIV=m
->  CONFIG_DRM_MXSFB=m
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index d588ceb9aa3c..7e9d684332be 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -505,6 +505,7 @@ CONFIG_DRM_HISI_HIBMC=m
+>  CONFIG_DRM_HISI_KIRIN=m
+>  CONFIG_DRM_MESON=m
 >  CONFIG_DRM_PL111=m
-> +CONFIG_DRM_PANFROST=m
->  CONFIG_FB_EFI=y
->  CONFIG_FB_WM8505=y
->  CONFIG_FB_SH_MOBILE_LCDC=y
+> +CONFIG_DRM_LIMA=m
+>  CONFIG_DRM_PANFROST=m
+>  CONFIG_FB=y
+>  CONFIG_FB_MODE_HELPERS=y
 > 
 
 Hi Kevin,
