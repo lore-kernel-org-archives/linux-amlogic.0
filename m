@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-8.8 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
 	SPF_HELO_NONE,SPF_PASS,T_DKIMWL_WL_HIGH,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 368D0C43218
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jun 2019 13:59:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 75AC6C4321A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jun 2019 14:31:34 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0B65C206BB
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jun 2019 13:59:01 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 479F8206BB
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jun 2019 14:31:34 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EmOSsoY1";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="EzeY2hPj"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0B65C206BB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kBBci1xD";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="H1Rp4asA"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 479F8206BB
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,64 +26,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
 	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=5zBnN1M03i9nRZVhdf3ebLeHbazdgHfb6HFg+dLI5MQ=; b=EmOSsoY1aDSwJA
-	E3MM+qJ3N/RS81NW9+xNtDk44+pRA2xh8a6W8bFgVQmj6DeN9c1d8XXcZWRJQJYL7bwXlsKFzf22o
-	ilyNRf2+vl6dPjLoQmFTBFXqOGo32vuvkou5oUSCHIfPyZAQQs9i/Kkt67XVoO1J3D+kOf6/cWQs+
-	j68l59yHul2qmYoXrt5ndsiCN1uXardb9/l3I9ekbYoZw+OFFnIigYfW3BLS8raDlDY7jr/JGnZvb
-	+h4DzDy1x4EqmRfBj/4JtdrhGNBAOJU3m6/51CGpzvPT8A+Xd3ygMJGxCGXmvswfxUdLauGdXhDHc
-	Do3Wa9S2EM2FyoE1hBog==;
+	List-Owner; bh=05iDWEEsWYybH66s+n6IMd5pdxbZIdHsNrcqEuPSxPs=; b=kBBci1xDA9SM58
+	UeVXigJFhDZvOTZGqYcYKNU80+y3EfVBu6XzVmEhYL73Rz6wnabOAFGy+4IVUxvCZli3YLKvUqlrN
+	WQORg6H4AZ4hIlOhxvWGkGCekHho3idk5nLw0Sffmh9vL2rxGjqQ3Cmq+dv2YOhmrsvPH0aSbtZbp
+	Rt+gVZGQE8SKNmbQ1ae+sqFSgpEpUzfCLLqP3WbzUyzzhcESg2mahHuEW+O7XrPFL01z1iR0UnRNX
+	u++CRS/B/1zJqcKjE0FV7dvL0Mnoc296xyihXzEF51JWm8QF6K4fg88MAE1odSE7KbLFU90vxZ0RF
+	s+RgOm1STiyZhfutZLcA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hahIW-0005Hs-LT; Tue, 11 Jun 2019 13:58:48 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1haho7-00076V-Iy; Tue, 11 Jun 2019 14:31:27 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hahIT-0005H1-Jg
- for linux-amlogic@lists.infradead.org; Tue, 11 Jun 2019 13:58:47 +0000
-Received: by mail-wm1-x341.google.com with SMTP id u8so3069877wmm.1
- for <linux-amlogic@lists.infradead.org>; Tue, 11 Jun 2019 06:58:45 -0700 (PDT)
+ id 1haho4-0006xf-Oa
+ for linux-amlogic@lists.infradead.org; Tue, 11 Jun 2019 14:31:26 +0000
+Received: by mail-wm1-x344.google.com with SMTP id c66so3219040wmf.0
+ for <linux-amlogic@lists.infradead.org>; Tue, 11 Jun 2019 07:31:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=vKGIIEZ1EWhF8d9VHamuiFuthqcJ8PCoZC+PlSBmz6w=;
- b=EzeY2hPjuYcKKephwbA2K1k8wINtGW9iU2baby+Xliqe1XCNSRPc1BDCV0c7P2Cfyq
- fiswGap6+7EHJyYD4nFTEmjDAndmmuLpxkj0z6N8Si5dC3jZyenH1cLi8DdmoDNfj4ba
- ARQ8YUjx20+dGQtgThBUX9sUMXH4R3nlFlzRiYIEV3Zey05eBOYBfJFFwmCPkmO9Gn1a
- uOoUwOPFvWqAhOOAmKWhhM2wZ98IENtfIHlORA/cK+Qf8dR8LC/pGpZmW1ELLdhHk+Pq
- ydAqAkXyQU1W/SahLXNTTwrpSDtKRdWPjj0lKnHPvnDVgef+NAYipXlO8rplYVr932Yj
- fiwA==
+ bh=I+b0ODQnts8tdntKoRjN83DkfLZxsjTT5tP4ANFK0k4=;
+ b=H1Rp4asAc/hZnrIK3cSDkXVRv+QZjJckPEeF2q/uTMemu80KOX67ebHjCifYvVvnHK
+ qlpRK/E+rZUqmXitAbYXycopEbSc1T02FYsVbUdbaCJeqXKwM1IGM8EaWjmVe6eGuBDC
+ xooTOTX4XsptGZOm9gumVueKn7ZlQ44b2Q9Lemy51VObASpSRRyaP76mHUBSDzjvYVtl
+ 6l/XuxLLT1FfuXmrWk6UEIcFg5MeCHSJjE/AcvtvhPdyDdsL5YbiNO9PLJCmv526UZIZ
+ 2DtX3zCDbQAhrA5gD8F+xvVHvWv9iynL4BmgoEId1oJZispnKUNwCoFd+uFFavMjuqE5
+ LnHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=vKGIIEZ1EWhF8d9VHamuiFuthqcJ8PCoZC+PlSBmz6w=;
- b=LiYOO23X0PakFshL18aaTHLHF10M5OqkTR7p4J6ia74Go51bhf2hQhdriGrbbPrF15
- W7D0jlmlMZDu4/Ew3Z0ppSIZ910CzS1oZLci8T5egUD8pqLEhFhkl9Y2480UMktTNuok
- i6cbevzHK0hMcnCGPJLO/RwfYQF4QMROgoSvJLYmIy29NALlZ+OKZs/xZXugZNT38D5p
- pPRBm7rfkLuNw+4H3fiEZllqobQM5Qxu+9lFpj6++fjr0ndlJ/mOyHSaL261X+t3jxYi
- LVeMZ1HPwfHlqIGV0z3FC2mnBccJkWse+k3T8UOqw6y0F/3REG4eqL62Qlke8m0JUnSH
- YuGw==
-X-Gm-Message-State: APjAAAW03yxc/44S3QGG/6lHkseGAqsUxm3MIL/6YnSenbf9notXhhxV
- GopfgqDW2gUttBwM+x3xhy8Xxw==
-X-Google-Smtp-Source: APXvYqzt0u8aL8eNXkVgF2OmeqrddaS2cdZwbIEkydNhWGlivtGsTJEGph122kdnU4rK2V5IkAeWDw==
-X-Received: by 2002:a05:600c:389:: with SMTP id
- w9mr17129874wmd.139.1560261523914; 
- Tue, 11 Jun 2019 06:58:43 -0700 (PDT)
+ bh=I+b0ODQnts8tdntKoRjN83DkfLZxsjTT5tP4ANFK0k4=;
+ b=X8hlYgAmXkzcvNfY4OXzzvjwAOS4WuPR5H97XVjQh/j9TUOkEQgY1v3uRZW82tVZP0
+ Cvs/j89/w6FOSPiQ6OroNWAAJJTVPP3M7ppIfhKiMivQ6MiUeW1QJemQBEWJKfRk3+cJ
+ m5RQSgB/aV+XpqFJ8kRTHgZWghfY1t1CuGWOHw8MwILxnwIX2ixmRQL/9TozHXpBRP6+
+ 1+10t3pYCYzggh90WYxGCCgX6xpbhU8UBb1lZ49oUIeJHV8J5OGDn18eAlTThZycUqNC
+ /xLd3oPK/uQK9qMCNyFz+sV8Q2Xswk8M6YbTSkt/CjDZadS9rYzHGu2cRUWqxLZDD/mK
+ 17lg==
+X-Gm-Message-State: APjAAAVHXjkk8kA5s0GsViJh5AxUokaE2XxQy1U4UR/frFaSSPXq5qRF
+ QElcgGiexO1MjgTbla6+vpY+Sw==
+X-Google-Smtp-Source: APXvYqx5tAOnKxTMOzMeeFvPPj0lnS6ngD12iizSOqlCEd/5eXH8GUPWfzhko832DOcAeL8z5bH+xg==
+X-Received: by 2002:a1c:67c2:: with SMTP id b185mr17212929wmc.98.1560263482948; 
+ Tue, 11 Jun 2019 07:31:22 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id c16sm12317446wrr.53.2019.06.11.06.58.43
+ by smtp.gmail.com with ESMTPSA id w14sm13427258wrk.44.2019.06.11.07.31.22
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Tue, 11 Jun 2019 06:58:43 -0700 (PDT)
+ Tue, 11 Jun 2019 07:31:22 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
-To: balbi@kernel.org
-Subject: [PATCH] usb: dwc3: meson-g12a: Add support for IRQ based OTG switching
-Date: Tue, 11 Jun 2019 15:58:42 +0200
-Message-Id: <20190611135842.8396-1-narmstrong@baylibre.com>
+To: khilman@baylibre.com,
+	jbrunet@baylibre.com
+Subject: [PATCH] arm64: dts: meson-g12b-odroid-n2: add sound card
+Date: Tue, 11 Jun 2019 16:31:20 +0200
+Message-Id: <20190611143120.25074-1-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190611_065845_678288_2E629B39 
-X-CRM114-Status: GOOD (  12.30  )
+X-CRM114-CacheID: sfid-20190611_073124_843588_8FDD74F1 
+X-CRM114-Status: GOOD (  11.57  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,88 +95,175 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Neil Armstrong <narmstrong@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add support for the OTG ID change interrupt to switch between Host
-and Device mode.
+Enable the sound card on the Hardkernel Odroid-N2, enabling HDMI output
+using the TDM interface B, being aligned on other boards sound cards.
 
-Tested on the Hardkernel Odroid-N2 board.
+The internal DAC connected to the audio jack will be added later on, when
+driver support is added.
+
+Tested by running:
+tinymix set "FRDDR_A SRC 1 EN Switch" 1
+tinymix set "FRDDR_A SINK 1 SEL" "OUT 1"
+tinymix set "FRDDR_B SRC 1 EN Switch" 1
+tinymix set "FRDDR_B SINK 1 SEL" "OUT 1"
+tinymix set "FRDDR_C SRC 1 EN Switch" 1
+tinymix set "FRDDR_C SINK 1 SEL" "OUT 1"
+tinymix set "TOHDMITX I2S SRC" "I2S B"
+tinymix set "TOHDMITX Switch" 1
+
+then:
+tinymix set "TDMOUT_B SRC SEL" "IN 0"
+speaker-test -Dhw:0,0 -c2
+
+then:
+tinymix set "TDMOUT_B SRC SEL" "IN 1"
+speaker-test -Dhw:0,1 -c2
+
+then:
+tinymix set "TDMOUT_B SRC SEL" "IN 2"
+speaker-test -Dhw:0,2 -c2
+
+testing HDMI audio output from the all 3 ASoC playback interfaces.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/usb/dwc3/dwc3-meson-g12a.c | 32 ++++++++++++++++++++++++++++--
- 1 file changed, 30 insertions(+), 2 deletions(-)
+ .../boot/dts/amlogic/meson-g12b-odroid-n2.dts | 88 +++++++++++++++++++
+ 1 file changed, 88 insertions(+)
 
-diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
-index 2aec31a2eacb..e5c5ad0d529e 100644
---- a/drivers/usb/dwc3/dwc3-meson-g12a.c
-+++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
-@@ -348,6 +348,22 @@ static enum usb_role dwc3_meson_g12a_role_get(struct device *dev)
- 		USB_ROLE_HOST : USB_ROLE_DEVICE;
- }
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+index 4146cd84989c..c3e0735e6d9f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+@@ -9,6 +9,7 @@
+ #include "meson-g12b.dtsi"
+ #include <dt-bindings/input/input.h>
+ #include <dt-bindings/gpio/meson-g12a-gpio.h>
++#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
  
-+static irqreturn_t dwc3_meson_g12a_irq_thread(int irq, void *data)
-+{
-+	struct dwc3_meson_g12a *priv = data;
-+	enum phy_mode otg_id;
+ / {
+ 	compatible = "hardkernel,odroid-n2", "amlogic,g12b";
+@@ -165,6 +166,65 @@
+ 			};
+ 		};
+ 	};
 +
-+	otg_id = dwc3_meson_g12a_get_id(priv);
-+	if (otg_id != priv->otg_phy_mode) {
-+		if (dwc3_meson_g12a_otg_mode_set(priv, otg_id))
-+			dev_warn(priv->dev, "Failed to switch OTG mode\n");
-+	}
++	sound {
++		compatible = "amlogic,axg-sound-card";
++		model = "G12A-ODROIDN2";
++		audio-aux-devs = <&tdmout_b>;
++		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
++				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
++				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
++				"TDM_B Playback", "TDMOUT_B OUT";
 +
-+	regmap_update_bits(priv->regmap, USB_R5, USB_R5_ID_DIG_IRQ, 0);
++		assigned-clocks = <&clkc CLKID_MPLL2>,
++				  <&clkc CLKID_MPLL0>,
++				  <&clkc CLKID_MPLL1>;
++		assigned-clock-parents = <0>, <0>, <0>;
++		assigned-clock-rates = <294912000>,
++				       <270950400>,
++				       <393216000>;
++		status = "okay";
 +
-+	return IRQ_HANDLED;
-+}
++		dai-link-0 {
++			sound-dai = <&frddr_a>;
++		};
 +
- static struct device *dwc3_meson_g12_find_child(struct device *dev,
- 						const char *compatible)
- {
-@@ -374,7 +390,7 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
- 	void __iomem *base;
- 	struct resource *res;
- 	enum phy_mode otg_id;
--	int ret, i;
-+	int ret, i, irq;
++		dai-link-1 {
++			sound-dai = <&frddr_b>;
++		};
++
++		dai-link-2 {
++			sound-dai = <&frddr_c>;
++		};
++
++		/* 8ch hdmi interface */
++		dai-link-3 {
++			sound-dai = <&tdmif_b>;
++			dai-format = "i2s";
++			dai-tdm-slot-tx-mask-0 = <1 1>;
++			dai-tdm-slot-tx-mask-1 = <1 1>;
++			dai-tdm-slot-tx-mask-2 = <1 1>;
++			dai-tdm-slot-tx-mask-3 = <1 1>;
++			mclk-fs = <256>;
++
++			codec {
++				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
++			};
++		};
++
++		/* hdmi glue */
++		dai-link-4 {
++			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
++
++			codec {
++				sound-dai = <&hdmi_tx>;
++			};
++		};
++	};
++};
++
++&arb {
++	status = "okay";
+ };
  
- 	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
-@@ -436,6 +452,19 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
- 	/* Get dr_mode */
- 	priv->otg_mode = usb_get_dr_mode(dev);
+ &cec_AO {
+@@ -181,6 +241,10 @@
+ 	hdmi-phandle = <&hdmi_tx>;
+ };
  
-+	if (priv->otg_mode == USB_DR_MODE_OTG) {
-+		/* Ack irq before registering */
-+		regmap_update_bits(priv->regmap, USB_R5,
-+				   USB_R5_ID_DIG_IRQ, 0);
++&clkc_audio {
++	status = "okay";
++};
 +
-+		irq = platform_get_irq(pdev, 0);
-+		ret = devm_request_threaded_irq(&pdev->dev, irq, NULL,
-+						dwc3_meson_g12a_irq_thread,
-+						IRQF_ONESHOT, pdev->name, priv);
-+		if (ret)
-+			return ret;
-+	}
+ &ext_mdio {
+ 	external_phy: ethernet-phy@0 {
+ 		/* Realtek RTL8211F (0x001cc916) */	
+@@ -198,6 +262,18 @@
+ 	amlogic,tx-delay-ns = <2>;
+ };
+ 
++&frddr_a {
++	status = "okay";
++};
 +
- 	dwc3_meson_g12a_usb_init(priv);
++&frddr_b {
++	status = "okay";
++};
++
++&frddr_c {
++	status = "okay";
++};
++
+ &gpio {
+ 	/*
+ 	 * WARNING: The USB Hub on the Odroid-N2 needs a reset signal
+@@ -269,6 +345,18 @@
+ 	vqmmc-supply = <&flash_1v8>;
+ };
  
- 	/* Init PHYs */
-@@ -460,7 +489,6 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
- 
- 	/* Setup OTG mode corresponding to the ID pin */
- 	if (priv->otg_mode == USB_DR_MODE_OTG) {
--		/* TOFIX Handle ID mode toggling via IRQ */
- 		otg_id = dwc3_meson_g12a_get_id(priv);
- 		if (otg_id != priv->otg_phy_mode) {
- 			if (dwc3_meson_g12a_otg_mode_set(priv, otg_id))
++&tdmif_b {
++	status = "okay";
++};
++
++&tdmout_b {
++	status = "okay";
++};
++
++&tohdmitx {
++	status = "okay";
++};
++
+ &uart_AO {
+ 	status = "okay";
+ 	pinctrl-0 = <&uart_ao_a_pins>;
 -- 
 2.21.0
 
