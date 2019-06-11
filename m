@@ -1,85 +1,69 @@
-Return-Path: <SRS0=JCZT=UJ=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=5QiQ=UK=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	T_DKIMWL_WL_HIGH autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 40EE9C31E44
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jun 2019 17:12:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 22F86C43218
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jun 2019 08:53:51 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1902020645
-	for <linux-amlogic@archiver.kernel.org>; Mon, 10 Jun 2019 17:12:48 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id ECA7520657
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jun 2019 08:53:50 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QvRKb7Ks";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="pp0WsTPZ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1902020645
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="A8hkIX2f"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ECA7520657
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Mime-Version:References:In-Reply-To:
+	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yjBKvfeHbmHrUeBT0YYiPb/S8wAo1KVeG0gkg7Dp1Po=; b=QvRKb7Kss2zjJ0
-	ryK823iX/hSVmtPPhua7lDY29LRTPhxNDcKrLlll9M5C3F5U8aduGFC51jgDjipx72o1AiPKJHGjv
-	43aOCj0PZkT8GMfvfe3Lysmt2vXTG4Qs513m5NbMwfaf46lPp7Netgv0g+IXoCk2IZ0uKePIkPq27
-	BZ3A+BzJnpaeh4L9GhC7vb83Xliw63RRHPSI+UPY9Op7nxJxaey9gTUwUSP53b7tZBHcNaGY3rEV3
-	bnjpeIG8iavVPpJ9KNYBhVDu4oHlQtUvX8BR7RePMbbMy2OHD/8Ieskog0WXpx/Vn2d/zTa8GH7BV
-	8HwQtaoXf1Q4parG5WXQ==;
+	List-Owner; bh=8+ez/rp5iqcVsllYRMN9GKHY2ZCKh1TxfXkBZFpfbdU=; b=A8hkIX2fDiM3oK
+	EcJ0iB0FHQlWi9oFd2suOyTG0D2cLLBTjrwTA+i/ZlD0MAWXbPfJXToRSCVYL+ayBpW+DI8/nf1ng
+	7IgvhOFb5kPN0U05qneBXT6aVz1sQwIJo68IBQh5gdROY18k5TmobPQen8DUHOds3p/Uc8OHkIer0
+	RoWbKLAs7xx3gTCat2OHBRgQ60XvREYFuOdM8NNSBJFGslkTLwJKqPmomqPN44gw0+WT4H5nRoWHr
+	WsSMm7LWqYVuPFAlYK9KSWreYB8oB6sWAj9gWAEFacf8xi4XQYDV+Famk6iE9as7t38Ra8l8ZCDql
+	Llq3XUfRWHHrv8gYCCaQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1haNqd-0007gJ-3D; Mon, 10 Jun 2019 17:12:43 +0000
-Received: from mail-ot1-x343.google.com ([2607:f8b0:4864:20::343])
+	id 1hacXE-0001FJ-7W; Tue, 11 Jun 2019 08:53:40 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1haNqa-0007fr-9j; Mon, 10 Jun 2019 17:12:41 +0000
-Received: by mail-ot1-x343.google.com with SMTP id l15so9001903otn.9;
- Mon, 10 Jun 2019 10:12:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=3JnaLJmHCQcBLWJZGsxiSkHwMrFrHuZm5L/F2rfhVWU=;
- b=pp0WsTPZ7OMTL/JJzGLjdzNV9I7yQgICLYWc/yOxPt9S7laf1uppD0WyctgGOvxrRz
- gq/z/PStMuv8OB7T/+MfqM0s8pWMz6luGy3OZtC9GU1IKuXLcosNdY/rfx1OMVMu7e4i
- oNz1VenR2sDfDASurROzhHyrYf5AFOiEvRM55CGFj8F9D3bQYguZQ/CB6s0hJT7lmLn+
- rTJ8ddzV1TJctXFt00xr5SWlGD9rVweyUH28ytqFAuzVpuuKguGSfULoOJpSIzMYdNY9
- W/U0VWyiy/FCEf52FVujCEo+nX3ucCFF9AnXAW1jjfTBzScc2rJND8azIIwaxBrV3gEU
- +fZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=3JnaLJmHCQcBLWJZGsxiSkHwMrFrHuZm5L/F2rfhVWU=;
- b=GTjEluVrvZ8WzlG79AVkjVfelOR/YlSao/xsMY4hsHJ5O7Bt/5xknTercauP0NeOKQ
- qTvIGVosBPR5FJ2e7Owxzog1gWKBEml7+WNFOPtVENN83TUo8+CkJmpJoFe3IIxfHqXw
- 7TwcTxa/YE5XVlLfFR5e3rztlOU4H5Vm+N9EJFrK++GXj+EEFr0nEjKM9dtgqVg8SHb8
- Qika6LhBaBRiFn/rJ/zcezPR1vG9PCTE4uo3mpDh4CUyfGx+rGcSxNNvw6pCeXDVRNPh
- P/T8bDV86ozMciql+SAaWPrMykVnnPVEBbi2DXivdAmj2PaV0QIG5SaHI/2JWwEVD8sV
- bCcQ==
-X-Gm-Message-State: APjAAAW1bhxM9tVemSIpl/R6HxtKN/WQxNV7wleaHa2UbhQ0KBpjHfb1
- 1Z+88q/lkdou8Kt150pYAKF35XXx/4e3fb3D6Rs=
-X-Google-Smtp-Source: APXvYqzcpo4BpZAPqLLLpYSSE01zvU5EUgFlHr+Ht/clKAFUTErJOnLx9oCYmXCnhsHdXKqFqknUD8gL4WoFQP0RIMA=
-X-Received: by 2002:a9d:23ca:: with SMTP id t68mr29361498otb.98.1560186757760; 
- Mon, 10 Jun 2019 10:12:37 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190610163736.6187-1-martin.blumenstingl@googlemail.com>
- <20190610163736.6187-4-martin.blumenstingl@googlemail.com>
- <8075d0ee-36fa-c4f3-f640-98cf54aba87b@arm.com>
-In-Reply-To: <8075d0ee-36fa-c4f3-f640-98cf54aba87b@arm.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Mon, 10 Jun 2019 19:12:26 +0200
-Message-ID: <CAFBinCC8wGZX2B7hc=U7qCHGwQEt9khdTwNinNVYhH=sZtFCZg@mail.gmail.com>
-Subject: Re: [PATCH 3/4] arm64: dts: meson: use the generic Ethernet PHY reset
- GPIO bindings
-To: Robin Murphy <robin.murphy@arm.com>
+ id 1hacVu-0000GQ-JS
+ for linux-amlogic@lists.infradead.org; Tue, 11 Jun 2019 08:52:20 +0000
+Received: from lupine.hi.pengutronix.de
+ ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+ by metis.ext.pengutronix.de with esmtp (Exim 4.89)
+ (envelope-from <p.zabel@pengutronix.de>)
+ id 1hacVl-0000Hr-C9; Tue, 11 Jun 2019 10:52:09 +0200
+Message-ID: <1560243127.13886.3.camel@pengutronix.de>
+Subject: Re: [PATCH v7 2/4] media: videodev2: add
+ V4L2_FMT_FLAG_FIXED_RESOLUTION
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Hans Verkuil <hverkuil@xs4all.nl>, Maxime Jourdan
+ <mjourdan@baylibre.com>,  Mauro Carvalho Chehab <mchehab@kernel.org>, Hans
+ Verkuil <hans.verkuil@cisco.com>
+Date: Tue, 11 Jun 2019 10:52:07 +0200
+In-Reply-To: <9731b2db-efd4-87d0-c48d-87adec433747@xs4all.nl>
+References: <20190531093126.26956-1-mjourdan@baylibre.com>
+ <20190531093126.26956-3-mjourdan@baylibre.com>
+ <9731b2db-efd4-87d0-c48d-87adec433747@xs4all.nl>
+X-Mailer: Evolution 3.22.6-1+deb9u2 
+Mime-Version: 1.0
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
+ SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190610_101240_363283_60CB95F3 
-X-CRM114-Status: GOOD (  13.95  )
+X-CRM114-CacheID: sfid-20190611_015218_839672_F8283A47 
+X-CRM114-Status: GOOD (  11.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,58 +75,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: andrew@lunn.ch, netdev@vger.kernel.org, linus.walleij@linaro.org,
- linux-kernel@vger.kernel.org, khilman@baylibre.com,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>,
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Robin,
+On Wed, 2019-06-05 at 15:39 +0200, Hans Verkuil wrote:
+> Hi Maxime,
+> 
+> I am wondering if this flag shouldn't be inverted: you set
+> V4L2_FMT_FLAG_DYN_RESOLUTION if dynamic resolution is supported,
+> otherwise it isn't.
+> 
+> Can all the existing mainlined codec drivers handle midstream
+> resolution changes?
+> 
+> s5p-mfc, venus and mediatek can, but I see no SOURCE_CHANGE event in
+> the coda drivers, so I suspect that that can't handle this.
+> 
+> Philipp, what is the status of the coda driver for dynamic resolution
+> changes?
 
-On Mon, Jun 10, 2019 at 6:54 PM Robin Murphy <robin.murphy@arm.com> wrote:
->
-> Hi Martin,
->
-> On 10/06/2019 17:37, Martin Blumenstingl wrote:
-> > The snps,reset-gpio bindings are deprecated in favour of the generic
-> > "Ethernet PHY reset" bindings.
-> >
-> > Replace snps,reset-gpio from the &ethmac node with reset-gpios in the
-> > ethernet-phy node. The old snps,reset-active-low property is now encoded
-> > directly as GPIO flag inside the reset-gpios property.
-> >
-> > snps,reset-delays-us is converted to reset-assert-us and
-> > reset-deassert-us. reset-assert-us is the second cell from
-> > snps,reset-delays-us while reset-deassert-us was the third cell.
-> >
-> > Instead of blindly copying the old values (which seems strange since
-> > they gave the PHY one second to come out of reset) over this also
-> > updates the delays based on the datasheets:
-> > - the Realtek RTL8211F PHY needs a 10ms delay (this applies to the
-> >    following boards: GXBB NanoPi K2, GXBB Odroid-C2, GXBB Vega S95
-> >    variants, GXBB Wetek variants, GXL P230, GXM Khadas VIM2, GXM Nexbox
-> >    A1, GXM Q200, GXM RBox Pro)
->
->  From the datasheets I've seen, RTL8211E/F specify an assert delay of
-> 10ms, but a deassert delay of 30ms.
-thank you for spotting this!
+FTR, to my knowledge there is no dynamic resolution change support in
+the firmware, as there is no signal (interrupt nor picture run return
+value) to indicate that different headers were parsed.
 
-I don't have an RTL8211F datasheet, but I now see what you mean based
-on the RTL8211E datasheet.
+I am planning to add the initial source change event required by the
+current decoder API documentation, but I am afraid there will be no
+support for source changes due to mid-stream resolution changes due to
+firmware limitations.
 
-now that you pointed this out: it seems that I made a similar mistake
-with the IP101GR PHY
-The datasheet mentions: "Chip will be able to operate after 2.5ms
-delay of the rising edge of RESET_N"
-However, further down in the datasheet it states: "Set low to RESET_N
-pin, for at least 10ms ..."
-
-I'll wait a few days for more comments and then send a fixed version
-
-
-Martin
+regards
+Philipp
 
 _______________________________________________
 linux-amlogic mailing list
