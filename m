@@ -6,87 +6,84 @@ X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
 	T_DKIMWL_WL_HIGH autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6AE78C4321A
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jun 2019 12:32:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6FA05C43218
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jun 2019 12:33:32 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3EAA220673
-	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jun 2019 12:32:45 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4265720673
+	for <linux-amlogic@archiver.kernel.org>; Tue, 11 Jun 2019 12:33:32 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DTcmLA+G";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="gvKPd7tm"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3EAA220673
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iQst4gF8";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="phjikhGj"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4265720673
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:To:From:Subject:Message-ID:Reply-To:Cc:Content-ID:Content-Description:
+	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=roCvJcnrop1vLUH7m0x5H0PhD/u29yhlTdDzdhEqgAw=; b=DTcmLA+GRdinv+
-	tEaKI/MQxVvWJPop69QH+nQFUn+gdu5FRnJVii2FoQtICfc821esFCrn/INsDzKsyhl2mqGRBYtLr
-	BFYdu7gdLyQXKbTmNghS6L+VLsNxqdPUpr/C9rUh1OJNf6OHiEBZ0L0syAbsb/YZHNKSG71Ug6nVu
-	AXDlgxzn/PV+TwBx16xkd2Xr03RxoSH20t/ezZs/ckEI/snSiNdr46W8I7CEWrlWWiQp2JASps0Ld
-	f1bz3d9/cIc2lGt4aLu4WupDPV2Z2m9YkHafNum4jHmDBq/NZYdwkKXcyJI8ioy2mtENkRdOFndcL
-	7mJFy2rdXdtXQz7SPBLQ==;
+	List-Owner; bh=lLsuqDCh910R73eEu05eJiPvcsvfxh4oU055O/q4ezc=; b=iQst4gF8/7vaBR
+	Tj9uu7NVsi3KUVnwHL19MoRLGaHACtKN71pOQu7MU7ykm6Ijt9BZb3jtavKF9P3VdTgOgVdeRIzFv
+	BTDfC2EG6jiFPIgTT124DNwbCPn8YkBz7cgd+abX7nTH930AopxtGlZxyNo9C2nXF79xZJfL/YLKA
+	M0/anbV0Ilbf66DtwkdNAKPxrv0BwlXlWmUOYwvtU/b4WZ5gMsaV+MGDwPk1PSanDdsFV+e5g0ncV
+	hmzN0Ddl2dNsFT9p5QdgiyKbyd5jXTeGKzn0ApVLvzBnjIZbiA+9Q8WPLv/gKNVkpwwiw7Znn4/iy
+	aA3QFyZNek1lAk85WRtg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hafx5-000856-M2; Tue, 11 Jun 2019 12:32:35 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1hafxu-0008Uj-6Y; Tue, 11 Jun 2019 12:33:26 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hafwq-0007ru-Ar
- for linux-amlogic@lists.infradead.org; Tue, 11 Jun 2019 12:32:21 +0000
-Received: by mail-wr1-x442.google.com with SMTP id x17so12800681wrl.9
- for <linux-amlogic@lists.infradead.org>; Tue, 11 Jun 2019 05:32:19 -0700 (PDT)
+ id 1hafxd-0008Ic-0D
+ for linux-amlogic@lists.infradead.org; Tue, 11 Jun 2019 12:33:10 +0000
+Received: by mail-wm1-x344.google.com with SMTP id h19so1849032wme.0
+ for <linux-amlogic@lists.infradead.org>; Tue, 11 Jun 2019 05:33:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:date:in-reply-to:references:user-agent
- :mime-version:content-transfer-encoding;
- bh=3yIHUZDu0AY3HhtkDpgrI22GPR5WLTd7gWKM7Uzr4Ug=;
- b=gvKPd7tmPRGXoFs/ajGVvNj8YTgXy77rGXtDUalDkJl6wSn1MScUeWXLZH7CG1aN+h
- mSK3RJUofxxJdHUP+Wrn78BZJXxzqhux8eHUTsb7+zx1X0JPktpjbgDXo3UZFThpd6zg
- HKFf7XaNnojUVlMNVu/MGdKipmFUqdSMqoqL5pa+4VQEzN9zUU16X96+p7yqNWZLj90N
- XZLPIRI+Rd2lVhHjWpqVYGgvz6QrBzu+i7XL4/W7cDVaneDtMFrRUogmLHxVtkmEx1du
- FyLweWfV9i52fU3iFDIl/0kdHMVqo2xPkrbyP2ipt9FqjJB3c758Pxn8trzkppTiQFDW
- tw3A==
+ h=message-id:subject:from:to:cc:date:in-reply-to:references
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=uTg/7JRU8sUAP9sX9B8uDa8ujHWb6WL/wVRCRAUyFS4=;
+ b=phjikhGjKSi4pb2wHWUdw0OzLFiLWsxwJ/Sh2Wee9fPwhY3BtTzC6A9p3w6O20cWMh
+ SGM8XSkFjeZmOGEhAJfgjEQikYS7VHtOP3QRqILl3Y+QQdCXqSPdNOzg1dh/rzzz7K2J
+ CShcOxGi6/K3xTD6trwGA1HwXRukCQif9pi7gsxkMnP66bFM9FOEtaQS1CM8AxUKNn+2
+ BugwkCJM2E5awXgKBqnZusf232XWe5RH2EgJqsUNKRNPwP5aYBC0FEasVPkYoQ7Uf0EO
+ KslY2NHRsNu78ZdJ/P2Lo+5TrguVQE7xxGSg7ycI45TXJ7Zp1zKgWkl7+xJ0sD1D/sT3
+ 8oKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
  :references:user-agent:mime-version:content-transfer-encoding;
- bh=3yIHUZDu0AY3HhtkDpgrI22GPR5WLTd7gWKM7Uzr4Ug=;
- b=c7Sm9hwbvXOvcjW5k8l9xjQZxlKzRG0w5VarSyCx1MLqYd2u7IGhr5l4675E00KdRG
- f9/HvXx9N0o3WN0JDgD4gvnCUJo2eGdnZwuavlipY0wjQO56ujDnGQ+sI4cfrvH3hRUg
- OAXf0ShF0a2XnATRrCQn+pJafqQ1yaXyudWyuINszqDLxwVtj49aX9Xlh4LDnNtQuVN3
- GbB2R1yZd6HfUfbgi2Zde0Pzohrnohb3zcx0h9faxn5DiDwblTvWVSz+v7J16i1pyxl7
- 4mfCkt4llf41uXTZda8NC8ULGmA/GYutlzi83o7DgmOrvtNwq8Kv4vN3Yi0GElF/ZHm3
- ZM+g==
-X-Gm-Message-State: APjAAAW6MEg5ircuOT22kUeZ80my1lF4kAj9EVSiNZyvfn1XQJjq6r9X
- HEHqTmKyiFmR7hZCXYwy1v+lTQ==
-X-Google-Smtp-Source: APXvYqzappoDNTggYkuaxQS1YeYjg3ShO+Vgo5CxgEMCr3D2ELz9OdCft3PQSOxBqySsiqmbTruqSQ==
-X-Received: by 2002:a5d:69ce:: with SMTP id s14mr1882971wrw.135.1560256338775; 
- Tue, 11 Jun 2019 05:32:18 -0700 (PDT)
+ bh=uTg/7JRU8sUAP9sX9B8uDa8ujHWb6WL/wVRCRAUyFS4=;
+ b=qRfob91kKRIAzjvfdkcN6BKsVMLmV4hCy1ovMU3k0eddnDreM+zeXZ4hMZEcyh6vSr
+ KOO4xBysURPRxu80dck6oUt6DcZJA+Q07FBUy/rGYUB7dDTLSs8pSvOfWOX1HUuBmShN
+ KzB1SzXkqT//zw6Bd8MIrjrayFqaf7GY/VIFKjltOjTACZy+LHwIbKyq0PPSr51zsvoO
+ y4H45JAV+X2BRhNHaNVs9AlFIoFLwGMhJ76KkG7DJA7xU4BVhXoYrEgjWBYs2/GaILuO
+ jJ+kyq4lbuz96+RX1c5ioXWEfd2VCsdoQU/8lfAYZiuqfUBmmqMenBbVjvG2Qm9qWqRQ
+ khCw==
+X-Gm-Message-State: APjAAAVUhJ67W6WYmEKFvWjW7OodcnBpgJMFK2dNgqBWIFJDpp6ib8s8
+ TjvkcAMCb/+7iRvqGYJvsUqZpw==
+X-Google-Smtp-Source: APXvYqxLwUw5CKKBFj9Ct1lKarfejnmIdjY4bbArmlPVwr1dFEDnfL4CAH4jWhGtSv1JsgGBR6OCIw==
+X-Received: by 2002:a1c:9906:: with SMTP id b6mr17472433wme.117.1560256387633; 
+ Tue, 11 Jun 2019 05:33:07 -0700 (PDT)
 Received: from boomer.baylibre.com
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id 32sm32865503wra.35.2019.06.11.05.32.17
+ by smtp.gmail.com with ESMTPSA id n4sm2205520wmk.41.2019.06.11.05.33.06
  (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Tue, 11 Jun 2019 05:32:18 -0700 (PDT)
-Message-ID: <c216003f9622d022d55ed9eb13458a10189797f2.camel@baylibre.com>
-Subject: Re: [PATCH v3 0/2] Add support of Temperature sensor Clock for G12 SoC
+ Tue, 11 Jun 2019 05:33:07 -0700 (PDT)
+Message-ID: <f19341ab80bcba29d25c3711647d6ff7c96628ee.camel@baylibre.com>
+Subject: Re: [PATCH v2 0/3] clk: meson: add support for Amlogic G12B
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Guillaume La Roque <glaroque@baylibre.com>, narmstrong@baylibre.com, 
- khilman@baylibre.com, linux-amlogic@lists.infradead.org, 
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Date: Tue, 11 Jun 2019 14:32:17 +0200
-In-Reply-To: <20190412100221.26740-1-glaroque@baylibre.com>
-References: <20190412100221.26740-1-glaroque@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Date: Tue, 11 Jun 2019 14:33:06 +0200
+In-Reply-To: <20190528080758.17079-1-narmstrong@baylibre.com>
+References: <20190528080758.17079-1-narmstrong@baylibre.com>
 User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190611_053220_373460_A79387BB 
-X-CRM114-Status: GOOD (  10.67  )
+X-CRM114-CacheID: sfid-20190611_053309_052894_DC5C56CD 
+X-CRM114-Status: GOOD (  14.26  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,34 +95,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 2019-04-12 at 12:02 +0200, Guillaume La Roque wrote:
-> This patch series add support of Clock for temperature sensor
-> on Amlogic G12a SoC.
+On Tue, 2019-05-28 at 10:07 +0200, Neil Armstrong wrote:
+> The Amlogic G12B SoC is very similar with the G12A SoC, sharing
+> most of the features and architecture.
+> G12B clock tree is very close, the main differences are :
+> - SYS_PLL is used for the second cluster (otherwise used fir the first on G12a)
+> - SYS_PLL1 is used for the first cluster (instead of SYS_PLL on G12a)
+> - A duplicate CPU tree is added for the second cluster
+> - G12B has additional clocks like for CSI an other components, not handled yet
 > 
-> Guillaume
+> Dependencies :
+> - Patch 1, 3 : None
+> - Patch 2 : Depends on Guillaume's Temperature sensor Clock patches at [1]
 > 
-> cahnges sinve v2:
-> - rebase on good branch
+> This patchset is a spinoff of the v2 Odroid-N2 megapatchset at [2]
 > 
-> changes since v1:
-> - fix .width value
+> Changes since v1 at [3]:
+> - Added the cpub_clk div2..8 and replaces the ahb/atb/axi/trace divs by muxes
+> - Added the CLK_GATE_SET_TO_DISABLE flag to ahb/atb/axi/trace gates
+> - Fixed all the G12A typos
+> - Added martin's reviewed by on patch 1
 > 
-> Guillaume La Roque (2):
->   dt-bindings: clk: g12a-clkc: add Temperature Sensor clock ID
->   clk: meson-g12a: Add Temperature Sensor clock
+> Changes since original patchset :
+> - Added missing sys1_pll div16, cpub div16 and cpub atb/axi/ahb/trace clocks
+> - Rewrote "This patch .." in commit messages
 > 
->  drivers/clk/meson/g12a.c              | 31 +++++++++++++++++++++++++++
->  drivers/clk/meson/g12a.h              |  3 ++-
->  include/dt-bindings/clock/g12a-clkc.h |  1 +
->  3 files changed, 34 insertions(+), 1 deletion(-)
+> [1] https://lkml.kernel.org/r/20190412100221.26740-1-glaroque@baylibre.com
+> [2] https://lkml.kernel.org/r/20190423091503.10847-1-narmstrong@baylibre.com
+> [3] https://lkml.kernel.org/r/20190521150130.31684-1-narmstrong@baylibre.com
+> 
+> Neil Armstrong (3):
+>   dt-bindings: clk: meson: add g12b periph clock controller bindings
+>   clk: meson: g12a: Add support for G12B CPUB clocks
+>   clk: meson: g12a: mark fclk_div3 as critical
+> 
+>  .../bindings/clock/amlogic,gxbb-clkc.txt      |   1 +
+>  drivers/clk/meson/g12a.c                      | 772 ++++++++++++++++++
+>  drivers/clk/meson/g12a.h                      |  40 +-
+>  3 files changed, 812 insertions(+), 1 deletion(-)
 > 
 
-Fixed the commit messages as suggested by Martin and applied
+Applied
 Thx
 
 
