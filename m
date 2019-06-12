@@ -2,91 +2,88 @@ Return-Path: <SRS0=wFsb=UL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-2.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7AFA4C31E46
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jun 2019 20:04:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8F876C31E48
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jun 2019 20:56:07 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4810F20B7C
-	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jun 2019 20:04:56 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 48EE3208C2
+	for <linux-amlogic@archiver.kernel.org>; Wed, 12 Jun 2019 20:56:07 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DDcbdlyK";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="hsWXPbeC"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4810F20B7C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="WIWHU/w2";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="mg3vmtbO"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 48EE3208C2
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=trOvqyhgAzsLrmh8EUFWN/TE2p9i6RJ6CYt73vMGnq4=; b=DDcbdlyKk6YWpG
-	YRL3echrvQqG8Dy70Cg28EKNaDr4NoWyvO29P45+5zO48y8DyCSTdFVaDo9iFE5IsttfdpR3uzbRg
-	fQAwUXgY0m3e6fsffs8ZHDv2fHZ8DfRTB4Mr1wQuFXBG2ta/E2/vIAxuW+/5/ybIElUfY+C0maoor
-	kwFBsDTKd/AqUl7qDH9deLlvODHS7TQeQZ47wXywphtTzTV271rgVr/l3pVqqvBDnna0Is1ZDTqoi
-	dSXd2dzp0KGpyLGfRG1/dkYIqVJla+kwZYPB2z5M9eB8WLKDTGEg3jXH1N63uLgymGK84m504szlE
-	cQXYaqSYJhHRH+/IKlMg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=Bv5sb78aFAbwP4CUDQk6FOGzlJCGLL9OUa3T9WNUTAk=; b=WIWHU/w2I2h1W4
+	rRk+AziYubfPRWK92ewGt8YKi9gKXGzMafIZTTuCduvwcAZIsMlHv4UQmCgNoX5Nr7xN3Xf7WkzmJ
+	Q/4lPqe7v4kdgcg3TljBONjNAs4R0FNUmwPip/PQK/MdT4YQui5BHe/oUYBwAiWNV8pWx/sGF2gIE
+	eBgrqnC59SjtKZXJs76CHDDozfzYXRjVcnyV6uSCYlD7zgcRs/u82Q9j9bdaLzy/LYzTrpEJxrvll
+	TZFk+duovVoxGcOPNDVsy25WFhghAOQVcIevIWiD+9peVfanScCQxoHF5uI8RYvGJifqGkspgfMzw
+	AXWDoOf/X9cyjiko+1jA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hb9UI-00035r-R3; Wed, 12 Jun 2019 20:04:50 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1hbAHe-0005PH-DW; Wed, 12 Jun 2019 20:55:50 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hb9PP-0005QO-RA; Wed, 12 Jun 2019 19:59:49 +0000
-Received: by mail-wr1-x442.google.com with SMTP id c2so18220991wrm.8;
- Wed, 12 Jun 2019 12:59:47 -0700 (PDT)
+ id 1hbAHb-0005O2-CA; Wed, 12 Jun 2019 20:55:48 +0000
+Received: by mail-wr1-x441.google.com with SMTP id f9so18336312wre.12;
+ Wed, 12 Jun 2019 13:55:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=PXhKgHiRKTDbq5+IaKGfsR6BmgG7q4N1qI/aWdYB6Q8=;
- b=hsWXPbeCUxn3AeVTaPkpWpYSU2rkvwPwmfSQhu5TejlCTxIevBFbCaEhNMeVV3Eadv
- iMEl6v4r1YDJGL+0c92HnsZAUK8z8U8zq9cd1BHn8Wjc0+q7JLDqkjYpVnQJR1NyUNmf
- lD+O+U7pAXvs3nKGVevnBnGsdqiV1HavIGsHSVU+ekgZxBBmLmwYfZGrLHH7SqvjgUDe
- 7elnq0Keg1BIVERCnF7K2WnYAhfvHByXXd4k1xBS/JrA4FQmPERQyS4Qr5z358KOE/dH
- hqPQjLV5c/km5q7eVFSYRaiCxgMEAVLjM99fuQEjERJrVxg15VUSB1dw14m7kB6e5I1i
- n+9g==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=lZ7Q02f4JEf34T5luLcOREHyEm4npQ5trSJ/nqzq8KI=;
+ b=mg3vmtbO7GQE8XVffQtxwJcZF/oIwU11kK+Acbjymrr2vinDGw7IyBsL9IgNyBZY9n
+ JLZ1XMsuYOhdNuxjBwTsptARffVdoBVduDOSs2kjL+wL4qr0Cn69+PcfWtsYo2lPTdKD
+ qdZDu8w4Ept3hxTEEOvo7hmqhqvgbFNm1rGKbUXi0HrzXU9wTGDdix1/vZmZhsbf52/U
+ WshRL/dw4YLGTk2yPYQTPDe32v753sbqy3j1Oc+Qh1oLxit5GuF6kl1u2b41+PmFmsWU
+ jvFVIRWqhMTU+LglW3YXP38+DkPHcVWHoKnl4DyBQXl/Ftbq9KZ110zaZjuQBKV5+kLJ
+ Ld2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=PXhKgHiRKTDbq5+IaKGfsR6BmgG7q4N1qI/aWdYB6Q8=;
- b=iG5yJ9J/1JeIekBt2+liYwEEPhlpVZkUecA8iuDLTk1GWSDZ688Sxq79duM8Ugpxtb
- jR/SyudF3E97D2o/aqoo2lx0LjBNjlJJYbsV640vmsTUb//GuoptLTYbIJZoq3k4tP9z
- 5ACV8fKCN9/slPqHHh3L8pz8aS1icf5NcKTlflfGDuijnxMC9rVabKRAaYqL0ZqeFN4v
- wtpjie/zHmr86JqSyis3Ee3yQtD7Ya8lk5RmUvid2fh8DEM9c6B2A7Yag9hfNdmryVH/
- vdKE27z1i5wWL7AHw2CFqO3UK1fX5uxxp5ihkjTo7uyOO9gyduYD6BtM+IWrZ5SKQ9Mv
- fgnQ==
-X-Gm-Message-State: APjAAAUBS1scio2PA97XlzEuL/+MYgKQVztAzcHcuq+Cai9K0WsbgQ3K
- goG8ba8mhWO1CZSgySe5kx7iSoSV
-X-Google-Smtp-Source: APXvYqx8IAmX+s+7TK5qnozIRIA6bDm97DsRI8ndxcRI4R7vbPriPYONQXPZ8+lE0Itz0xkzmnsqoQ==
-X-Received: by 2002:adf:f68f:: with SMTP id v15mr5871100wrp.4.1560369586066;
- Wed, 12 Jun 2019 12:59:46 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=lZ7Q02f4JEf34T5luLcOREHyEm4npQ5trSJ/nqzq8KI=;
+ b=NppQp5c0hjCekxr+PvIhf3CNVfxp4bum98tHBJGOUMtOt/cbJZxCaX4b6vvPdEOL+5
+ UeiUoK09NheaHq4Y7KonlFmWZusg4E65MpkClznuhAQp0PFREZlkbNGVR4gsEbPnq8KY
+ /rjeA1vk88BdpebLEH16HCI4CnIY5qg0/Jfo7XhmtmDmiSM7KCX3KMxBXBlaXQXvDsPQ
+ 3EVez/OF4ToVYt6DjqOEG1CTWE/6GRgrMk9xXvkIn3LUOOPcIU4kmJrfAXUaikIbRxBK
+ ihvRQRvW6M8109EoWDjkHDKLOnI5HrPbioAW+yGA32P2JHAymWLnKfMGXX/ZRMjvUvMN
+ nmRA==
+X-Gm-Message-State: APjAAAXQ5lA/VhEcUpyZKlX+fe028xH+q82vQDOpk27NIBnL1cq522LS
+ uQ7MVhHsQJnWk51/T4Xu+6iMSKQk
+X-Google-Smtp-Source: APXvYqzPwLw3bVyQPoGki1H86cxQv/CaJAP/waZtaKCPgu6NSjHMKfqFNAFW/GHXnLzN8dcf/35BJQ==
+X-Received: by 2002:a5d:6212:: with SMTP id y18mr8369049wru.178.1560372945219; 
+ Wed, 12 Jun 2019 13:55:45 -0700 (PDT)
 Received: from blackbox.darklights.net
  (p200300F133DDA400428D5CFFFEB99DB8.dip0.t-ipconnect.de.
  [2003:f1:33dd:a400:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id f10sm1026745wrg.24.2019.06.12.12.59.45
+ by smtp.googlemail.com with ESMTPSA id s7sm3445793wmc.2.2019.06.12.13.55.42
  (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Wed, 12 Jun 2019 12:59:45 -0700 (PDT)
+ Wed, 12 Jun 2019 13:55:44 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org,
- thierry.reding@gmail.com
-Subject: [PATCH v3 14/14] pwm: meson: add documentation to the driver
-Date: Wed, 12 Jun 2019 21:59:11 +0200
-Message-Id: <20190612195911.4442-15-martin.blumenstingl@googlemail.com>
+To: linux-amlogic@lists.infradead.org,
+	khilman@baylibre.com
+Subject: [PATCH v2 0/4] Ethernet PHY reset GPIO updates for Amlogic SoCs
+Date: Wed, 12 Jun 2019 22:55:25 +0200
+Message-Id: <20190612205529.19834-1-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190612195911.4442-1-martin.blumenstingl@googlemail.com>
-References: <20190612195911.4442-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190612_125947_909138_20FBCCB0 
-X-CRM114-Status: GOOD (  13.19  )
+X-CRM114-CacheID: sfid-20190612_135547_443434_BE23C6F5 
+X-CRM114-Status: GOOD (  12.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,52 +95,84 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- narmstrong@baylibre.com, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, u.kleine-koenig@pengutronix.de
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: andrew@lunn.ch, Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ netdev@vger.kernel.org, linus.walleij@linaro.org, linux-kernel@vger.kernel.org,
+ robin.murphy@arm.com, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-QWRkIGxpbmtzIHRvIHRoZSBkYXRhc2hlZXQgYW5kIGEgc2hvcnQgc3VtbWFyeSBob3cgdGhlIGhh
-cmR3YXJlIHdvcmtzLgpUaGUgZ29hbCBpcyB0byBtYWtlIGl0IGVhc2llciBmb3Igb3RoZXIgZGV2
-ZWxvcGVycyB0byB1bmRlcnN0YW5kIHdoeSB0aGUKcHdtLW1lc29uIGRyaXZlciBpcyBpbXBsZW1l
-bnRlZCB0aGUgd2F5IGl0IGlzLgoKU3VnZ2VzdGVkLWJ5OiBVd2UgS2xlaW5lLUvDtm5pZyA8dS5r
-bGVpbmUta29lbmlnQHBlbmd1dHJvbml4LmRlPgpDby1hdXRob3JlZC1ieTogTmVpbCBBcm1zdHJv
-bmcgPG5hcm1zdHJvbmdAYmF5bGlicmUuY29tPgpSZXZpZXdlZC1ieTogTmVpbCBBcm1zdHJvbmcg
-PG5hcm1zdHJvbmdAYmF5bGlicmUuY29tPgpTaWduZWQtb2ZmLWJ5OiBNYXJ0aW4gQmx1bWVuc3Rp
-bmdsIDxtYXJ0aW4uYmx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPgotLS0KIGRyaXZlcnMvcHdt
-L3B3bS1tZXNvbi5jIHwgMjIgKysrKysrKysrKysrKysrKysrKysrKwogMSBmaWxlIGNoYW5nZWQs
-IDIyIGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL3B3bS9wd20tbWVzb24uYyBi
-L2RyaXZlcnMvcHdtL3B3bS1tZXNvbi5jCmluZGV4IGJiNDhiYTg1Zjc1Ni4uMzEyNTkwMjY0ODRj
-IDEwMDY0NAotLS0gYS9kcml2ZXJzL3B3bS9wd20tbWVzb24uYworKysgYi9kcml2ZXJzL3B3bS9w
-d20tbWVzb24uYwpAQCAtMSw1ICsxLDI3IEBACiAvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjog
-R1BMLTIuMCBPUiBCU0QtMy1DbGF1c2UKIC8qCisgKiBQV00gY29udHJvbGxlciBkcml2ZXIgZm9y
-IEFtbG9naWMgTWVzb24gU29Dcy4KKyAqCisgKiBUaGlzIFBXTSBpcyBvbmx5IGEgc2V0IG9mIEdh
-dGVzLCBEaXZpZGVycyBhbmQgQ291bnRlcnM6CisgKiBQV00gb3V0cHV0IGlzIGFjaGlldmVkIGJ5
-IGNhbGN1bGF0aW5nIGEgY2xvY2sgdGhhdCBwZXJtaXRzIGNhbGN1bGF0aW5nCisgKiB0d28gcGVy
-aW9kcyAobG93IGFuZCBoaWdoKS4gVGhlIGNvdW50ZXIgdGhlbiBoYXMgdG8gYmUgc2V0IHRvIHN3
-aXRjaCBhZnRlcgorICogTiBjeWNsZXMgZm9yIHRoZSBmaXJzdCBoYWxmIHBlcmlvZC4KKyAqIFRo
-ZSBoYXJkd2FyZSBoYXMgbm8gInBvbGFyaXR5IiBzZXR0aW5nLiBUaGlzIGRyaXZlciByZXZlcnNl
-cyB0aGUgcGVyaW9kCisgKiBjeWNsZXMgKHRoZSBsb3cgbGVuZ3RoIGlzIGludmVydGVkIHdpdGgg
-dGhlIGhpZ2ggbGVuZ3RoKSBmb3IKKyAqIFBXTV9QT0xBUklUWV9JTlZFUlNFRC4gVGhpcyBtZWFu
-cyB0aGF0IC5nZXRfc3RhdGUgY2Fubm90IHJlYWQgdGhlIHBvbGFyaXR5CisgKiBmcm9tIHRoZSBo
-YXJkd2FyZS4KKyAqIFNldHRpbmcgdGhlIGR1dHkgY3ljbGUgd2lsbCBkaXNhYmxlIGFuZCByZS1l
-bmFibGUgdGhlIFBXTSBvdXRwdXQuCisgKiBEaXNhYmxpbmcgdGhlIFBXTSBzdG9wcyB0aGUgb3V0
-cHV0IGltbWVkaWF0ZWx5ICh3aXRob3V0IHdhaXRpbmcgZm9yIHRoZQorICogY3VycmVudCBwZXJp
-b2QgdG8gY29tcGxldGUgZmlyc3QpLgorICoKKyAqIFRoZSBwdWJsaWMgUzkxMiAoR1hNKSBkYXRh
-c2hlZXQgY29udGFpbnMgc29tZSBkb2N1bWVudGF0aW9uIGZvciB0aGlzIFBXTQorICogY29udHJv
-bGxlciBzdGFydGluZyBvbiBwYWdlIDU0MzoKKyAqIGh0dHBzOi8vZGwua2hhZGFzLmNvbS9IYXJk
-d2FyZS9WSU0yL0RhdGFzaGVldC9TOTEyX0RhdGFzaGVldF9WMC4yMjAxNzAzMTRwdWJsaWN2ZXJz
-aW9uLVdlc2lvbi5wZGYKKyAqIEFuIHVwZGF0ZWQgdmVyc2lvbiBvZiB0aGlzIElQIGJsb2NrIGlz
-IGZvdW5kIGluIFM5MjJYIChHMTJCKSBTb0NzLiBUaGUKKyAqIGRhdGFzaGVldCBjb250YWlucyB0
-aGUgZGVzY3JpcHRpb24gZm9yIHRoaXMgSVAgYmxvY2sgcmV2aXNpb24gc3RhcnRpbmcgYXQKKyAq
-IHBhZ2UgMTA4NDoKKyAqIGh0dHBzOi8vZG4ub2Ryb2lkLmNvbS9TOTIyWC9PRFJPSUQtTjIvRGF0
-YXNoZWV0L1M5MjJYX1B1YmxpY19EYXRhc2hlZXRfVjAuMi5wZGYKKyAqCiAgKiBDb3B5cmlnaHQg
-KGMpIDIwMTYgQmF5TGlicmUsIFNBUy4KICAqIEF1dGhvcjogTmVpbCBBcm1zdHJvbmcgPG5hcm1z
-dHJvbmdAYmF5bGlicmUuY29tPgogICogQ29weXJpZ2h0IChDKSAyMDE0IEFtbG9naWMsIEluYy4K
-LS0gCjIuMjIuMAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFk
-ZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4
-LWFtbG9naWMK
+While trying to add the Ethernet PHY interrupt on the X96 Max I found
+that the current reset line definition is incorrect. Patch #1 fixes
+this.
+
+Since the fix requires moving from the deprecated "snps,reset-gpio"
+property to the generic Ethernet PHY reset bindings I decided to move
+all Amlogic boards over to the non-deprecated bindings. That's what
+patches #2 and #3 do.
+
+Finally I found that Odroid-N2 doesn't define the Ethernet PHY's reset
+GPIO yet. I don't have that board so I can't test whether it really
+works but based on the schematics it should. 
+
+This series is a partial successor to "stmmac: honor the GPIO flags
+for the PHY reset GPIO" from [0]. I decided not to take Linus W.'s
+Reviewed-by from patch #4 of that series because I had to change the
+wording and I want to be sure that he's happy with that now.
+
+One quick note regarding patches #1 and #4: I decided to violate the
+"max 80 characters per line" (by 4 characters) limit because I find
+that the result is easier to read then it would be if I split the
+line.
+
+
+Changes since v1 at [1]:
+- fixed the reset deassert delay for RTL8211F PHYs - spotted by Robin
+  Murphy (thank you). according to the public RTL8211E datasheet the
+  correct values seem to be: 10ms assert, 30ms deassert
+- fixed the reset assert and deassert delays for IP101GR PHYs. There
+  are two values given in the public datasheet, use the higher one
+  (10ms instead of 2.5)
+- update the patch descriptions to quote the datasheets (the RTL8211F
+  quotes are taken from the public RTL8211E datasheet because as far
+  as I can tell the reset sequence is identical on both PHYs)
+
+
+[0] https://patchwork.kernel.org/cover/10983801/
+[1] https://patchwork.kernel.org/cover/10985155/
+
+
+Martin Blumenstingl (4):
+  arm64: dts: meson: g12a: x96-max: fix the Ethernet PHY reset line
+  ARM: dts: meson: switch to the generic Ethernet PHY reset bindings
+  arm64: dts: meson: use the generic Ethernet PHY reset GPIO bindings
+  arm64: dts: meson: g12b: odroid-n2: add the Ethernet PHY reset line
+
+ arch/arm/boot/dts/meson8b-ec100.dts                   |  9 +++++----
+ arch/arm/boot/dts/meson8b-mxq.dts                     |  9 +++++----
+ arch/arm/boot/dts/meson8b-odroidc1.dts                |  9 +++++----
+ arch/arm/boot/dts/meson8m2-mxiii-plus.dts             |  8 ++++----
+ arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts    |  7 ++++---
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts  |  4 ++++
+ arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts  |  9 +++++----
+ .../arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts |  8 ++++----
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts   |  9 +++++----
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p200.dts       |  9 +++++----
+ arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi  |  9 +++++----
+ arch/arm64/boot/dts/amlogic/meson-gxbb-wetek.dtsi     |  8 ++++----
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts  | 11 ++++++-----
+ arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 10 +++++-----
+ arch/arm64/boot/dts/amlogic/meson-gxm-nexbox-a1.dts   |  8 ++++----
+ arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts        | 11 ++++++-----
+ arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts    |  8 ++++----
+ 17 files changed, 80 insertions(+), 66 deletions(-)
+
+-- 
+2.22.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
