@@ -2,73 +2,91 @@ Return-Path: <SRS0=0Q1W=UM=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E8D7EC31E49
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2019 19:06:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CD139C31E45
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2019 19:08:14 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C3BDC20B7C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2019 19:06:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A635F20896
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2019 19:08:14 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YF8ojNar";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="cb0JioMR"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C3BDC20B7C
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CZ8zgfUo";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="WkPt5Yf6"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A635F20896
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:
-	In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	References:List-Owner; bh=sdu4VWSBHirVi9jwrfpZIeFOs8UlsFoq3XzJvAHb374=; b=YF8
-	ojNar3UOijLPOEEPq6eHN32lhqPdbEG+75fLB8Z3f/Y8xWJ5R1snZaK8OzeWAtPtwIxnNBSFRUny1
-	y51yxPW8cwRrzZ/oSCzFxbZkcn7pMtisahyb0IlWDwb/hxZ2Jp2OwM0xNCm4I27GryOEGsJbCzu3o
-	9fPhbHQHvG8RRvYpd5SQNBJxjmFjPj/caX3hguEz07W2TYCqZ7j7PsWvbz6Ny8hTMKjT55GaAcIL7
-	xg9tM78xsj1yohY7V+daNbhsHiIP9hbbqNMBYxGA1d2z1zB8OzG1Q8PRKrP2FsLyuAwBa2oKQIfbq
-	b92j32lyAa0JJBZiZECni5de8BPT69Q==;
+	List-Owner; bh=QRZW1f/5ceDhFijtHf5gxcst8XoQpONlA3t9/dIBRpQ=; b=CZ8zgfUo8ylCOB
+	gM7SBF0s5iFdBbJ6z7Q9SKBCe8LtpQzx8OECX5pcZP9GjdTvInu6NJtZQXruoEuS19OfK+Sh+cP13
+	AmMqRn7Resha/Tn4bhj18B4LgIMg556MZVRgpMOZtQMsilwuJUjXsc5TcuZ7x4FRH8IFW4DtpRJxw
+	desOSQMdE2saY1S2PwXFl9QG+PQOzEH7buU+0OJ9shQKbey0SAWF92yB2WT1sZ24vNoAeOFGPuxg9
+	/8oRB1gkXp3tfEq0aNVMSENshIT6/3cetayvC9qfN40NTtcAR3YGowuIe4RcNchSKKnbj+r7Z7az8
+	1bJ/VA8FQiE2Q6iIN7kA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hbV3F-000775-Ol; Thu, 13 Jun 2019 19:06:21 +0000
-Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
+	id 1hbV4t-0007cR-1i; Thu, 13 Jun 2019 19:08:03 +0000
+Received: from mail-pl1-x643.google.com ([2607:f8b0:4864:20::643])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hbV39-00070e-GX
- for linux-amlogic@lists.infradead.org; Thu, 13 Jun 2019 19:06:17 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
- Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
- List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
- List-Archive; bh=7mmi4XPUb9kweIO/XutIMTWP+evApFPSoJxpuHGkTcc=; b=cb0JioMRBD/O
- 0uvo8szUOLwgbD7dmI8lG90EGWlfjX2l7KbRrOvYpkfYgQE/VJYJi9RGtVOTiYjeKg5aN94VLnKeV
- CrLXkqVOUmYnSkchdk+cKiM0E/8+7jP2geSmGX9ZZZLtsjMyWd2sIHw4RCC+DvnnYa1dpECOEBMBG
- oBUXg=;
-Received: from [2001:470:1f1d:6b5:7e7a:91ff:fede:4a45]
- (helo=finisterre.sirena.org.uk)
- by heliosphere.sirena.org.uk with esmtpsa
- (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.89)
- (envelope-from <broonie@sirena.org.uk>)
- id 1hbV36-0005Sy-Tz; Thu, 13 Jun 2019 19:06:12 +0000
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
- id 671D7440046; Thu, 13 Jun 2019 20:06:12 +0100 (BST)
-From: Mark Brown <broonie@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Subject: Applied "ASoC: meson: axg-tdmin: right_j is not supported" to the
- asoc tree
-In-Reply-To: <20190613114233.21130-2-jbrunet@baylibre.com>
-X-Patchwork-Hint: ignore
-Message-Id: <20190613190612.671D7440046@finisterre.sirena.org.uk>
-Date: Thu, 13 Jun 2019 20:06:12 +0100 (BST)
-X-Bad-Reply: In-Reply-To but no 'Re:' in Subject.
+ id 1hbV4p-0007bY-J9
+ for linux-amlogic@lists.infradead.org; Thu, 13 Jun 2019 19:08:01 +0000
+Received: by mail-pl1-x643.google.com with SMTP id bh12so8542281plb.4
+ for <linux-amlogic@lists.infradead.org>; Thu, 13 Jun 2019 12:07:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=GMnghIl7eXWXzs6/0zMCrD5jkYbNpzmrrUy+d4e0iJU=;
+ b=WkPt5Yf6Jc/jE8ojCnCJ4Kr86w57zSBU5UOq7t1FQ8y6mOmpr9OZZjVjAkg7c4VUpB
+ hf+8g5lfbocX8ZWwRefESSQBv5voTSbCTb4JyTRfspIKqwrWNRuEPKOOpRDetar/W+7R
+ YvCOKqUMOLTz4j612toG7PRYuH6C9xT07ToIKfFCi1yHZhOTy912m5P1K5kogRroJr01
+ sGcgZRC71k0GrkKc9YL9SIzXRKFOyh4hD7yFjIZH66V6mTouR1d0FWJsl54/eECWeXfl
+ jbxYps1d1NqT5d62EgLSZibs0JRdUDtnqGZgdeFoyI8bcSS4/c6spBJQ0WErIMXHkXae
+ pCXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=GMnghIl7eXWXzs6/0zMCrD5jkYbNpzmrrUy+d4e0iJU=;
+ b=r35xxmPw5Q2bxW1AzLyNx7h0Fp9UugU4Ql75KD+v72t9ABgPny5aMJ0gjPzNpRXF3O
+ 4DFjCqGqVNnXA519jevXCCEdl7bAS72ib7Ps5wyk/oxB/Sth7M1Hb528LAK/plhwLGz3
+ 2/z2zCxmeER3zLhgha/O3e6ht81xX+HSrOp2adXx8vm/8xibWh1f+72di4HQ/oC0N4U2
+ lGGjGfloJvJGERez/+pBxb1CacqfQbeZBZ6QopDIXa/DSdfOaIunyCW9BS1fWy/kDpF7
+ 81VfWlfE3N4l8ymVTpERZ0Cy68J4MKDy2XRWGmYZWHm3ALzwBmxgctGtpsLwkWSA8/o1
+ p1nw==
+X-Gm-Message-State: APjAAAVjVSf8YyU7W5pf9dhCWpe/4ZfndjTcWV5d25JD4kyBKcVVUg2d
+ YT/QTRqde4mOLitVrajxCeTcKA==
+X-Google-Smtp-Source: APXvYqw9VdST2x6sbLH0VNcls856gB7kMteKDCmWa0BzccKnV9n2mkwqg0v1z57AORxB8mwtaA1o2w==
+X-Received: by 2002:a17:902:2bc5:: with SMTP id
+ l63mr89422886plb.221.1560452878443; 
+ Thu, 13 Jun 2019 12:07:58 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
+ [71.197.186.152])
+ by smtp.googlemail.com with ESMTPSA id w16sm500200pfj.85.2019.06.13.12.07.57
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Thu, 13 Jun 2019 12:07:57 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Jerome Brunet <jbrunet@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>
+Subject: Re: [GIT PULL] clk: meson: fixes for v5.2
+In-Reply-To: <df0dad551db9f344e53db134a3c5a25d5d51ae63.camel@baylibre.com>
+References: <a834836da8de689ec541093f3226a853af001fe4.camel@baylibre.com>
+ <20190612230201.3692F20896@mail.kernel.org>
+ <df0dad551db9f344e53db134a3c5a25d5d51ae63.camel@baylibre.com>
+Date: Thu, 13 Jun 2019 12:07:57 -0700
+Message-ID: <7hlfy54836.fsf@baylibre.com>
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190613_120615_691127_EBE37E1F 
-X-CRM114-Status: GOOD (  11.14  )
+X-CRM114-CacheID: sfid-20190613_120759_654722_9BD0B60E 
+X-CRM114-Status: GOOD (  13.43  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,73 +98,51 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
- Kevin Hilman <khilman@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>,
- linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
- linux-amlogic@lists.infradead.org
-MIME-Version: 1.0
+Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ linux-clk <linux-clk@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The patch
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-   ASoC: meson: axg-tdmin: right_j is not supported
+> On Wed, 2019-06-12 at 16:02 -0700, Stephen Boyd wrote:
+>> Quoting Jerome Brunet (2019-06-11 05:23:33)
+>> > Dear clock maintainers,
+>> > 
+>> > Below is a request to pull a couple of fixes on Amlogic clocks for v5.2
+>> > These are typos in recently added clocks, the most annoying one being in
+>> > the DT binding identifier on the MPLL50M which is used by the network PLL.
+>> > 
+>> > Regards
+>> > 
+>> > The following changes since commit a188339ca5a396acc588e5851ed7e19f66b0ebd9:
+>> > 
+>> >   Linux 5.2-rc1 (2019-05-19 15:47:09 -0700)
+>> > 
+>> > are available in the Git repository at:
+>> > 
+>> >   git://github.com/BayLibre/clk-meson.git tags/clk-meson-5.2-1-fixes
+>> > 
+>> > for you to fetch changes up to 3ff46efbcd90d3d469de8eddaf03d12293aaa50c:
+>> > 
+>> >   clk: meson: meson8b: fix a typo in the VPU parent names array variable (2019-05-20 12:11:08 +0200)
+>> > 
+>> > ----------------------------------------------------------------
+>> 
+>> Thanks. Pulled into clk-next.
+>> 
+>
+> Hi Stephen,
+>
+> This was actually meant for clk-fixes
+> We could probably cope with next, but it would be preferable if the typo in the
+> bindings was fixed by the 5.2 release.
 
-has been applied to the asoc tree at
+Yes please.  That would help my dependency management also.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.2
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
-From 47c317b786b6c1efc2cb3cdb894fd323422fe5ea Mon Sep 17 00:00:00 2001
-From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Thu, 13 Jun 2019 13:42:30 +0200
-Subject: [PATCH] ASoC: meson: axg-tdmin: right_j is not supported
-
-Right justified format is actually not supported by the amlogic tdm input
-decoder.
-
-Fixes: 13a22e6a98f8 ("ASoC: meson: add tdm input driver")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- sound/soc/meson/axg-tdmin.c | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/sound/soc/meson/axg-tdmin.c b/sound/soc/meson/axg-tdmin.c
-index a790f925a4ef..cb87f17f3e95 100644
---- a/sound/soc/meson/axg-tdmin.c
-+++ b/sound/soc/meson/axg-tdmin.c
-@@ -121,7 +121,6 @@ static int axg_tdmin_prepare(struct regmap *map,
- 		break;
- 
- 	case SND_SOC_DAIFMT_LEFT_J:
--	case SND_SOC_DAIFMT_RIGHT_J:
- 	case SND_SOC_DAIFMT_DSP_B:
- 		break;
- 
--- 
-2.20.1
-
+Kevin
 
 _______________________________________________
 linux-amlogic mailing list
