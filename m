@@ -8,78 +8,82 @@ X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 78C11C31E45
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2019 17:51:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8F8D7C31E45
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2019 18:02:16 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4A7CC20679
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2019 17:51:49 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 63CF720645
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2019 18:02:16 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bUbme7zP";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Uwgls6Cl"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4A7CC20679
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UZ3F1izJ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="uaDBvGjL"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 63CF720645
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=7PCKEpdv53leBILD9vQsh/9GDeNpz4jShDyccGKGhek=; b=bUb
-	me7zP8Kz2pKVwuLsJG9ToXoBFWyYdI5Hos+6nKgU5L2cjDWn8YIEdzx/M3D5GMUn4vVDRIuTA2HL/
-	apFBNqClwKfRoBKG+LvX+C9BOlp2JzEBCEUFiTe18W0QC1ifKA1CEajyIGp/e351UBDKnaas+lpZO
-	Xj6Do8YfvmX2UzrgdVyqHcnilUBIJf1Y+zGooP9XcofHv0XDL8qj4T8vSfO0rvWJRdiw4lkUIf2IP
-	yCaQ4L98MGVEbjrMkNqXz5POWzSj3NsQjDp3tOHBm5fnx5fQpm92nKtQt5CNttskm80o/vzUTtrcs
-	r86wqkBU/sI7kQXd2OIOryAkczM1/zQ==;
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:References:
+	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=7PCKEpdv53leBILD9vQsh/9GDeNpz4jShDyccGKGhek=; b=UZ3F1izJJjIeCIgW5ucol1mSQC
+	RQImmG+p5w5Qe21NmShhpUDae75cQ1gCAOw8KBKSFjfcBHulannO3/PZYlqIGVU2ajY9SkJR/6wFG
+	buTn+75iJ255n7tPnqhJi9kJFwIrNk1M47qVCrO7pCsjIwY3d9pyZtYFf7wWYNj65u9jhBWvp6YKE
+	q0JRt2YKTFotNAVb8/ixxm8btoVwSuBsXgM5ChjhRTXs6x07N9nC8h2IdTRAzMPgNOMZ1pSZrfKRQ
+	lOcwHxAGcWE5oHsLEhZQw3KrNbInU/JjNx/duNKrQ+ref/SIUmxtHBFBtBgdIhE6iLoUe5LOMoCAz
+	S0M7BZLA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hbTsx-0006oT-Ob; Thu, 13 Jun 2019 17:51:39 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1hbU38-0002aV-6E; Thu, 13 Jun 2019 18:02:10 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hbTsu-0006o1-Vd
- for linux-amlogic@lists.infradead.org; Thu, 13 Jun 2019 17:51:38 +0000
-Received: by mail-wr1-x443.google.com with SMTP id f9so21687128wre.12
- for <linux-amlogic@lists.infradead.org>; Thu, 13 Jun 2019 10:51:36 -0700 (PDT)
+ id 1hbU35-0002a7-5d
+ for linux-amlogic@lists.infradead.org; Thu, 13 Jun 2019 18:02:08 +0000
+Received: by mail-wm1-x341.google.com with SMTP id v19so11051998wmj.5
+ for <linux-amlogic@lists.infradead.org>; Thu, 13 Jun 2019 11:02:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references;
  bh=DeqhVdtaD0WNb5slV+JdqraC8aBA1NVBU0MN2j+wwj8=;
- b=Uwgls6ClETKeyHdarKOkr/OtGmlw9GlfSYRj8DBTWdsBQHiLwMN8myknO9Mv3MYvFa
- hLXJiXQg+nY8b9irm3T/lmHDoKN6khQ0U9vXMP9S2bsHLT4kGJHBm6UT03GEmUQLWMDb
- E+n7Wxv1CgNwEieLw8yOifX79Mdsw8XLW/pgakuFSauzdV6pbfouY+OKg2BX1mvsFoJQ
- ABFeQ3yo2TKYlE/JKebQIFjwK3G7qhbfPt8BSj+f3Tx9pQIKqr6v9UCynYTWey9L87fv
- kN8qFbP8D6aYIOwdOEOJkJWEKK0SuE9hIEr9MTnDltoDkNbs6Lngo6xBu44xetF49a0Q
- 7Xcg==
+ b=uaDBvGjLoopLPcn9NSp70mZEMPLKjvnhJExTnPpuDQGNC//iT5NHm/5PXJJcHCCbxj
+ XxjSxRWAYbJbJcMEqsTwumFqHFnxHGvElyyRrI+7vy6r2QUb7Z0WKtGN0tDG6YKTxyPv
+ FIsgf1l4kUEjATIc4tT1ciDF8E96HIjT7brBKlU8vkhqye5UYYnPXoAuSmKrXBQ80luj
+ MqyLEe6bBcaW5ZDRabZ3cJZHrvqqAbCSMwqmKaFk+zkPI8/qs7WCHE5BzMHBPIR6OeXC
+ xgQwmIn5IIlA3a2U0O1gkdEx6jaeHt0LCgc5gdQ/bZRrp+dt7J2SFY9uuQboP3zEIJsr
+ yUKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references;
  bh=DeqhVdtaD0WNb5slV+JdqraC8aBA1NVBU0MN2j+wwj8=;
- b=Ytlkfg60IAUz+8rnhwUhbwZuay6R7sYMeEuf3r9nDcbiJJ98ulvrAviJwHjY80sb4P
- yn4kWW5RIUC7wanu4jbxxUNS6zKZYd0e3+/6GhZp25wGIjMDDsEb+OxuFvlroJg07XfB
- Nb9AQmNRaZd8RHr68ABOP+iD0HmRqZgT4KaVrgryVVH4x2iwdVFnZFGmwKj8aLgMHFtf
- Hy5fmRVtOzrMgXHq53qnM1+1QxzVHGDKs7m/GwVcj6u8norehvj5SrZXBGeNpMRaz/RU
- A5YnuCioVf1HIbw6Y8ksGX5kVHGd7et6ZnHdp4Wi6Y+1uDHRYuv2DAxAaIu1WaXjH3bL
- BFIg==
-X-Gm-Message-State: APjAAAXftijZ4FyxJIXqaD3jMwlNGYXJU1LZ5Pwhsj1e8gs8Nc2X0Eyu
- zVIft5n89SH7/L+C0+hW5SelKXeH
-X-Google-Smtp-Source: APXvYqzyEfWv2Ellfja5E/NaZN8qvSLPZLtwcCK4PtNF7o4vMXcFlU3t1riQG/sTS2LNQ7AZ1KseOQ==
-X-Received: by 2002:a5d:4603:: with SMTP id t3mr12453800wrq.315.1560448294759; 
- Thu, 13 Jun 2019 10:51:34 -0700 (PDT)
+ b=P6BDv6aFuvNPNhXw9jPq9IPnhe480LHEi+oeu87znoJTdT0j2LE/I5OW6Tq3LzzkeL
+ tTfyyZlYRm5TPyq1mD8Wobdrl1gmmu3awzIijmhETUCMMFc6PRCEMyZyFHY3Ek9B6Bx1
+ yQ/kfoiLZC0+CCBQb9Zup/dalhA4WZPgy5EOl5z+okNn39pNBpbgfloLTKT5E00nM6x6
+ cc3vRctSqPK6HjISwtOHc7S2RS/EzBmGz7ki/JTo1SMcGbLIikb5yBuCv1fJYQpLpact
+ n41p2Di1owmz6jDUaZJhH4dK0GZCQZ78O75fcVBvnxOTmardoRSsdb6599pDl7nf0T10
+ Uceg==
+X-Gm-Message-State: APjAAAUDVLXS9mQ+ehza2ZtCAHzRk700RsSP87DRkfcMgrLvz48eg8bb
+ c7u3JEYZI2qFQYOstiNd6iqEcWhJ
+X-Google-Smtp-Source: APXvYqw4RiyXGB53grNGtwvg3we2cdH8XepoTk+NLjtLYXVw6T80zMElH7GxJGIqhsyNwSqUsZltOw==
+X-Received: by 2002:a1c:44d7:: with SMTP id r206mr4918036wma.164.1560448924917; 
+ Thu, 13 Jun 2019 11:02:04 -0700 (PDT)
 Received: from afl1.intra.ditec.sk (adsl-dyn95.78-98-50.t-com.sk.
  [78.98.50.95])
- by smtp.googlemail.com with ESMTPSA id d17sm635566wrx.9.2019.06.13.10.51.33
+ by smtp.googlemail.com with ESMTPSA id y133sm909635wmg.5.2019.06.13.11.02.03
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 13 Jun 2019 10:51:33 -0700 (PDT)
+ Thu, 13 Jun 2019 11:02:04 -0700 (PDT)
 From: afl1 <afl2001@gmail.com>
 To: linux-amlogic@lists.infradead.org
 Subject: [PATCH] pinctrl: add tsin pins for meson-gxbb/gxl/gxm
-Date: Thu, 13 Jun 2019 19:50:47 +0200
-Message-Id: <20190613175047.18176-1-afl2001@gmail.com>
+Date: Thu, 13 Jun 2019 20:02:00 +0200
+Message-Id: <20190613180200.18287-1-afl2001@gmail.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20190613175047.18176-1-afl2001@gmail.com>
+References: <20190613175047.18176-1-afl2001@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190613_105137_018573_1E3DA130 
-X-CRM114-Status: UNSURE (   8.50  )
+X-CRM114-CacheID: sfid-20190613_110207_240728_E840BAA7 
+X-CRM114-Status: UNSURE (   9.49  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
