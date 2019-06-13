@@ -2,91 +2,84 @@ Return-Path: <SRS0=0Q1W=UM=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B75ADC31E45
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2019 08:20:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B77E6C31E45
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2019 09:17:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 87F9A20866
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2019 08:20:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 68BF62133D
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2019 09:17:11 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="sQLOJCEy";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Ii3ivdWm"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 87F9A20866
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RYjN3YrO";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="zoB+I1qM"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 68BF62133D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=xyhHb0KgmqL8w808IUJ7I9YYNgu1B4yc9il6w3qOuWk=; b=sQLOJCEyXtp5pd
-	IHr1eeFf7TvuYwYaGez6pax1AXhZL+dHS4XqdROYVBesgzcBbh8ylEpteFKTDQliTkxvMb+CrYD3+
-	uqOWzPT1GoT2V+uPxv7+Ouhv+Xpz3JwJA82utraELf+e9+9Enxr0k4zmadb4nqB4VbxVl2QIzSYxB
-	UnhYs9G+R+58t/VgeQfcdh4PHjBxlUCsUCuxbGv4orwzB+1XT9BbCI0VybO6rjUpsQxFNpxrGzMyw
-	oYp5FajyblkVqWfUP6efhekSCETafqUZEnuwGCvpaaMkkMA0CO+4eUVYd948oK4XUsMVdb5q9+Vz2
-	Ivji9NzWKSqYi7vimB8w==;
+	List-Owner; bh=EKDBhteLYZmIKik339+qGW1dIqwK06GJ9kOwh1BXYKc=; b=RYjN3YrO+Jd3bt
+	ryntanDB54jXN7nuw95e7lPza3rM1O34IesHGCEG1uczl88e0WKxluNg4A4ktSpWJmY4WDGSEWjGX
+	1UlEJo6JVZTW+A981idYJi4Xb3TtQDcO45glDxwHBxV00Ol+ePA/Ug46bnuJY89jADYIBZzvraUvN
+	6TL+8VlgPKLbrTUWRl8gk2d83ZjHZIfCeQ9/PR3TuI+Q+X73u+wBoZn0XMJPQItpBse7GiPqmtPFX
+	g3Lr1hpG1MUY/R1fj3jF7BOlljB8jvdwLq6tb5jP2gSdUtvGzdQlqEJ9YIIB5ql5cZdKRe+76umQD
+	nk1KL8hBX4J6kPtnQhzg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hbKxm-0007NE-K7; Thu, 13 Jun 2019 08:20:02 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1hbLqy-0006OF-LQ; Thu, 13 Jun 2019 09:17:04 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hbKxj-0007JE-66
- for linux-amlogic@lists.infradead.org; Thu, 13 Jun 2019 08:20:00 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id c6so9127013wml.0
- for <linux-amlogic@lists.infradead.org>; Thu, 13 Jun 2019 01:19:56 -0700 (PDT)
+ id 1hbLqf-0006L0-7c
+ for linux-amlogic@lists.infradead.org; Thu, 13 Jun 2019 09:17:02 +0000
+Received: by mail-wm1-x343.google.com with SMTP id x15so9357839wmj.3
+ for <linux-amlogic@lists.infradead.org>; Thu, 13 Jun 2019 02:16:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:cc:date:in-reply-to:references
- :user-agent:mime-version:content-transfer-encoding;
- bh=lMgrbgr5m4Rq383287CDalQy+dWiEqm9D3wZKZJwVy0=;
- b=Ii3ivdWmrHA0L8XZV2P3l5I1A/5IfUpok0nrJ9pPWLa2IWymXolnQquEyavScsIeLh
- Vrl3jl3bKOERQkvJVrPpUPYaMyNg+HdYxS2uMhD+LiemEdRHGl+/Q4hEsbYTrSq8noXg
- iviXzrJYDonmf93KMDsRLuaRX/CVlBZSOFwiGG69Awm0Mq3yUNOAbJ2YO4mAEqoPzl90
- bW7EOuY/IkpRaCSTYd2jCr3s26DtImg58AY53+ELiluZSIBwKujI8SBqnOlYQAisNsCb
- aL8KZ1677LH065FzPs9kvDQmVfr3MLyeluZtqf2RGt5X46B8QKsz5lN5LXoAiEY2bRCA
- CGxg==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=P4N1UtPKJVcelijw7QBQ1XLSRt7ridPaKRyOBmFmp0w=;
+ b=zoB+I1qMrXW5msQjRKnTgAM/Hh9auE47o+cxvqiEVcyurJ9wsx1RAYtZBDnCaKqDof
+ m1Ka4fuQ842iFh57kWp7h+yZO+dKcLrZpYRtQolBfQ39M/3DG3mCMDtqhEsHLr6dNRla
+ y/Uc11TrqvR08utOekpguuKCeTIWNQmbKCYf+sSd2FAqk+FEFwpdJVTvb+qSjd7GAa/s
+ kBpbAdqYwmGMqkkI3YhCUFXD8oa+rDgIdLyeq5ym0FbmIKsEItDizEy0cX6vyncJePWp
+ BZ7zlU7oGjUbfvuB7MiLU354VdrVer90caAiU3wh9nfbR3emhxaBGhOhkrpW/MC3+Qus
+ KRYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=lMgrbgr5m4Rq383287CDalQy+dWiEqm9D3wZKZJwVy0=;
- b=PsiSt2kzPmWmiAfz7toQaGentCEfVrYVCImReTUwf5iaagAP+eQS+oU9ukLNFQf9Py
- goA461z/P7oFwLYnOEV++1ReNvaN5IkCNEW5sCG3k/i92+XAt12AQrVDRzr/tnHRl2mR
- th64Q52F5SU2wlV5WzoaR8VAo6pBpmPrC6ZGlzQrEFA/0ufDWMQ6wrFHolOzcwXfjBDz
- U92wfYDgwA6IEp1EoX5h6QGHD93so+wcYOwDeg6oMG3dts4htpnNiWCUSe2EKdOtny2R
- vQ3WL3PtiLEzi2XR3qsgSvyBcIFO+2xXvefNaVU0ovu4UNoc1J4XmjT2J/cBOrbLKJ/Z
- DQ/g==
-X-Gm-Message-State: APjAAAVYaMkbM4rPXtvv3DcyokY7fItimFwrtKjoepOmkUdSYJfQDGyu
- 8em2XlBOL2r3bB2mSdcYNShEaQ==
-X-Google-Smtp-Source: APXvYqwAhEgTqcc4HsUpnrH3aYRdCJ35vX3Cult1dw2Ys29bWPKwU+d0WEqChPnt/nYzuchsbvx4cA==
-X-Received: by 2002:a7b:c0d0:: with SMTP id s16mr2627651wmh.141.1560413995247; 
- Thu, 13 Jun 2019 01:19:55 -0700 (PDT)
-Received: from boomer.baylibre.com
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id l9sm2382040wrt.13.2019.06.13.01.19.54
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Thu, 13 Jun 2019 01:19:54 -0700 (PDT)
-Message-ID: <df0dad551db9f344e53db134a3c5a25d5d51ae63.camel@baylibre.com>
-Subject: Re: [GIT PULL] clk: meson: fixes for v5.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Stephen Boyd <sboyd@kernel.org>, Michael Turquette
- <mturquette@baylibre.com>
-Date: Thu, 13 Jun 2019 10:19:53 +0200
-In-Reply-To: <20190612230201.3692F20896@mail.kernel.org>
-References: <a834836da8de689ec541093f3226a853af001fe4.camel@baylibre.com>
- <20190612230201.3692F20896@mail.kernel.org>
-User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=P4N1UtPKJVcelijw7QBQ1XLSRt7ridPaKRyOBmFmp0w=;
+ b=PqeXB4mTDUFvVvsO3iX/CaXDYNTz6X87MjUUQhe/pViaSTC6OEhcBKL878Or2HWvR8
+ hMgvtevnpcIQzAMiTb3xzFwKYjYrOf6dqsLVB80JnkvGj3WJkF9i+doTYuMrwFtiiR8n
+ ov1LAIyNa5TgOlO9HnLG7qSTQUpXA0nR8G68cJ6V53nghB4nh6vpW+m9t8s4VWxc6KOJ
+ UdWNJNdBBxQcNlfukjH5WdtSSKA0Br3Uz7+DhQIbhcZMio3Uz6Z/D2SPuQNpRehvYOi8
+ gIwgb64FxQt265orMwj41pwIpId3P3t3x4B/qx37t2LPTDEH/2quvoILhTLdqXsJ678m
+ 5ViA==
+X-Gm-Message-State: APjAAAWZyC6itVfv3XUpdThCTRAwYq/8EeQU6OOlZcSkQWuAlF/RGY4K
+ INGkQiXDSK7qSZOw7gdyuuQvhshfODWApukNSHEu2u4HTiE=
+X-Google-Smtp-Source: APXvYqya9k5qn89YYNprL6zry6x5KHz6UoRI9nvUtHBgDzPVPTHE/ALR4XfG2GiQ1hwNRfaH+VxDHQlRLeGVdjjdK7k=
+X-Received: by 2002:a1c:700b:: with SMTP id l11mr2827093wmc.106.1560417403085; 
+ Thu, 13 Jun 2019 02:16:43 -0700 (PDT)
 MIME-Version: 1.0
+References: <20190612170027.13dbb84b@canb.auug.org.au>
+ <c526a510-a08f-8b99-a396-4274590e904f@infradead.org>
+In-Reply-To: <c526a510-a08f-8b99-a396-4274590e904f@infradead.org>
+From: Maxime Jourdan <mjourdan@baylibre.com>
+Date: Thu, 13 Jun 2019 11:16:31 +0200
+Message-ID: <CAMO6nazLss_4cfAJZZLA+Ydrx0wPCxMYrZM2NQKDw1AmvSj_0Q@mail.gmail.com>
+Subject: Re: linux-next: Tree for Jun 12 (staging/media/meson/)
+To: Randy Dunlap <rdunlap@infradead.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190613_011959_290615_23280BC9 
-X-CRM114-Status: GOOD (  13.10  )
+X-CRM114-CacheID: sfid-20190613_021645_748758_19D86148 
+X-CRM114-Status: UNSURE (   8.41  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,51 +91,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kevin Hilman <khilman@baylibre.com>, linux-clk <linux-clk@vger.kernel.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Stephen Rothwell <sfr@canb.auug.org.au>, linux-amlogic@lists.infradead.org,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ linux-media <linux-media@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 2019-06-12 at 16:02 -0700, Stephen Boyd wrote:
-> Quoting Jerome Brunet (2019-06-11 05:23:33)
-> > Dear clock maintainers,
-> > 
-> > Below is a request to pull a couple of fixes on Amlogic clocks for v5.2
-> > These are typos in recently added clocks, the most annoying one being in
-> > the DT binding identifier on the MPLL50M which is used by the network PLL.
-> > 
-> > Regards
-> > 
-> > The following changes since commit a188339ca5a396acc588e5851ed7e19f66b0ebd9:
-> > 
-> >   Linux 5.2-rc1 (2019-05-19 15:47:09 -0700)
-> > 
-> > are available in the Git repository at:
-> > 
-> >   git://github.com/BayLibre/clk-meson.git tags/clk-meson-5.2-1-fixes
-> > 
-> > for you to fetch changes up to 3ff46efbcd90d3d469de8eddaf03d12293aaa50c:
-> > 
-> >   clk: meson: meson8b: fix a typo in the VPU parent names array variable (2019-05-20 12:11:08 +0200)
-> > 
-> > ----------------------------------------------------------------
-> 
-> Thanks. Pulled into clk-next.
-> 
-
-Hi Stephen,
-
-This was actually meant for clk-fixes
-We could probably cope with next, but it would be preferable if the typo in the
-bindings was fixed by the 5.2 release.
-
-Thx
-Jerome
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGkgUmFuZHksCk9uIFdlZCwgSnVuIDEyLCAyMDE5IGF0IDExOjUwIFBNIFJhbmR5IER1bmxhcCA8
+cmR1bmxhcEBpbmZyYWRlYWQub3JnPiB3cm90ZToKPgo+IE9uIDYvMTIvMTkgMTI6MDAgQU0sIFN0
+ZXBoZW4gUm90aHdlbGwgd3JvdGU6Cj4gPiBIaSBhbGwsCj4gPgo+ID4gQ2hhbmdlcyBzaW5jZSAy
+MDE5MDYxMToKPiA+Cj4KPgo+IG9uIGkzODY6Cj4KPiAuLi9kcml2ZXJzL3N0YWdpbmcvbWVkaWEv
+bWVzb24vdmRlYy92ZGVjLmM6IEluIGZ1bmN0aW9uIOKAmHZkZWNfcmVjeWNsZV90aHJlYWTigJk6
+Cj4gLi4vZHJpdmVycy9zdGFnaW5nL21lZGlhL21lc29uL3ZkZWMvdmRlYy5jOjU5OjI6IGVycm9y
+OiBpbXBsaWNpdCBkZWNsYXJhdGlvbiBvZiBmdW5jdGlvbiDigJhrdGhyZWFkX3Nob3VsZF9zdG9w
+4oCZIFstV2Vycm9yPWltcGxpY2l0LWZ1bmN0aW9uLWRlY2xhcmF0aW9uXQo+ICAgd2hpbGUgKCFr
+dGhyZWFkX3Nob3VsZF9zdG9wKCkpIHsKPiAgIF4KPiAuLi9kcml2ZXJzL3N0YWdpbmcvbWVkaWEv
+bWVzb24vdmRlYy92ZGVjLmM6IEluIGZ1bmN0aW9uIOKAmHZkZWNfc3RhcnRfc3RyZWFtaW5n4oCZ
+Ogo+IC4uL2RyaXZlcnMvc3RhZ2luZy9tZWRpYS9tZXNvbi92ZGVjL3ZkZWMuYzozMjQ6MzogZXJy
+b3I6IGltcGxpY2l0IGRlY2xhcmF0aW9uIG9mIGZ1bmN0aW9uIOKAmGt0aHJlYWRfcnVu4oCZIFst
+V2Vycm9yPWltcGxpY2l0LWZ1bmN0aW9uLWRlY2xhcmF0aW9uXQo+ICAgIHNlc3MtPnJlY3ljbGVf
+dGhyZWFkID0ga3RocmVhZF9ydW4odmRlY19yZWN5Y2xlX3RocmVhZCwgc2VzcywKPiAgICBeCj4g
+Li4vZHJpdmVycy9zdGFnaW5nL21lZGlhL21lc29uL3ZkZWMvdmRlYy5jOjMyNDoyNDogd2Fybmlu
+ZzogYXNzaWdubWVudCBtYWtlcyBwb2ludGVyIGZyb20gaW50ZWdlciB3aXRob3V0IGEgY2FzdCBb
+ZW5hYmxlZCBieSBkZWZhdWx0XQo+ICAgIHNlc3MtPnJlY3ljbGVfdGhyZWFkID0ga3RocmVhZF9y
+dW4odmRlY19yZWN5Y2xlX3RocmVhZCwgc2VzcywKPiAgICAgICAgICAgICAgICAgICAgICAgICBe
+Cj4gLi4vZHJpdmVycy9zdGFnaW5nL21lZGlhL21lc29uL3ZkZWMvdmRlYy5jOiBJbiBmdW5jdGlv
+biDigJh2ZGVjX3N0b3Bfc3RyZWFtaW5n4oCZOgo+IC4uL2RyaXZlcnMvc3RhZ2luZy9tZWRpYS9t
+ZXNvbi92ZGVjL3ZkZWMuYzozODk6NDogZXJyb3I6IGltcGxpY2l0IGRlY2xhcmF0aW9uIG9mIGZ1
+bmN0aW9uIOKAmGt0aHJlYWRfc3RvcOKAmSBbLVdlcnJvcj1pbXBsaWNpdC1mdW5jdGlvbi1kZWNs
+YXJhdGlvbl0KPiAgICAga3RocmVhZF9zdG9wKHNlc3MtPnJlY3ljbGVfdGhyZWFkKTsKPiAgICAg
+Xgo+Cj4gRnVsbCByYW5kY29uZmlnIGZpbGUgaXMgYXR0YWNoZWQuCj4KClRoaXMgaXMgZml4ZWQg
+d2l0aCAibWVkaWE6IG1lc29uOiB2ZGVjOiBBZGQgbWlzc2luZyBrdGhyZWFkLmgiIGZyb20KWXVl
+IEhhaWJpbmcgWzBdLiBUaGUgcGF0Y2ggaXMgc2l0dGluZyBpbiBtZWRpYV90cmVlL21hc3Rlci4K
+ClswXSBodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3BhdGNoLzEwOTg5MzMzLwoKUmVnYXJk
+cywKTWF4aW1lCgo+Cj4gLS0KPiB+UmFuZHkKPgoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgtYW1s
+b2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxt
+YW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
