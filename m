@@ -4,19 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-0.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E958EC31E45
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2019 19:44:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 45599C31E45
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2019 19:52:04 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C232420B7C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2019 19:44:03 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id EF06E207E0
+	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2019 19:52:03 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Q8p0P08E";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="GXPxPEvK"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C232420B7C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QsqC29Rd";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="WjINMRpt"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EF06E207E0
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,65 +25,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uVYp0Ih/TwjLOlaLDKtBbD5bQkL5e8XZq/eKtEL4duk=; b=Q8p0P08EAhrQaR
-	gOOEISajvSkYBQvaLDNAJqan07zPbnUV3MMqZxYtdzDC7yZxFAGWCf5NPgQE557S4fl2U4/1mG/bv
-	1V+PP5gV32o6GvlG9LiCoruBfk0gkkvgXiqHqLbVKTtkxFW+tEfvYOY46jW7EiahUukPXxGCbnWJF
-	LmIPW/fTiA2v7olMG8SEVqMZ8IHmMpjpvsgMNT9stPSr2wVdADotNpalgximj8AWIqQV3chjh9iyJ
-	YYZcqR33ydJnNHyeGeuGegUxlFpkzm1FDN60KjKq2NHpopK9WudSybyEDrKfYdTjlDlQUDE1foxng
-	yPZjuSoC9NL+8Z9MMf8g==;
+	List-Owner; bh=zkdkABNv3ElnymUSyJW7J3b3giefjh+IdZ8BUWb0lUU=; b=QsqC29RdvmLVnt
+	UcAxQdPCgXD19dt6nyotMWRxNZIYgt3GYVjfeK1QpAq6VSlik+sl/DAxZZbCU86NX6f6NY5LvKIuy
+	axs6fLTzMTHF5Kluq9PWfkfHr/gEMQ+jLGGiIO7mIE+i/3VfXNJfgAFdRdnz2SXTqyOKnrvT0LNTk
+	bAif6lFRD5e4Cn1AhJq/6uF7F2Ni6oBJL2jdO/Ak7CdtApPOnlm/fyTx5xZAqsH4Hz5LnMYbE+tDo
+	jhMvgK3Zl4vbQnP60BZq2E7qWOWvH8vWKgNt6P9/0SNXSTrmPbTdjP2sek9a3b8V4tBP8oxWqXmGN
+	XRjbgW381rG5NgyGpOlA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hbVdX-0006ZG-NG; Thu, 13 Jun 2019 19:43:51 +0000
-Received: from mail-pg1-x543.google.com ([2607:f8b0:4864:20::543])
+	id 1hbVlO-0002P9-2d; Thu, 13 Jun 2019 19:51:58 +0000
+Received: from mail-pg1-x541.google.com ([2607:f8b0:4864:20::541])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hbVdN-0006O8-5K
- for linux-amlogic@lists.infradead.org; Thu, 13 Jun 2019 19:43:42 +0000
-Received: by mail-pg1-x543.google.com with SMTP id 20so101670pgr.4
- for <linux-amlogic@lists.infradead.org>; Thu, 13 Jun 2019 12:43:38 -0700 (PDT)
+ id 1hbVlK-0002Oh-Pf
+ for linux-amlogic@lists.infradead.org; Thu, 13 Jun 2019 19:51:56 +0000
+Received: by mail-pg1-x541.google.com with SMTP id 196so107999pgc.6
+ for <linux-amlogic@lists.infradead.org>; Thu, 13 Jun 2019 12:51:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=KW0Z4bu+Gf02siC8Ql384namK/DDKjE4PFjCJrNDUjg=;
- b=GXPxPEvK72RwpcZiLiyRReXtw1Wjc/AGegiT4k7TB6D4NOH32vHiL2klJ7WDzrKRLd
- yFNZGhHmTM+M2WsPXWENW0p6HPCAxffoF+NtziVfVxZ0MC2CeUOhhl5EzPSryEoaJSZp
- tSZS0Qdx35I+q3Lhl5eqYLv+HsqBHwKCf2a1IjyByC2+Po9PcBx8fEvyNg7sgkl8HY3a
- LwkNJJPbz5V/n9zNDbIpO9nOAlLsTI9s/43jiCBHmB3wBjGgMv1kVQEpwCDddh3EZiIV
- /nG6WrLkpGvvwZMECY31KU9ciO/o58PjtWDXXPmtlUSlL0hhpMJ692W16K7a/tIjUv9B
- MrKQ==
+ :mime-version; bh=OzDF3aubB5pSwPDekd3OuhaKbAjZcfEkdUY9h4rLw7Y=;
+ b=WjINMRptrJCvqpriro1+/6ZHJSjOgh/X8F709MMSEdo8kX+mKNdaHOXm+Zy0bxbk35
+ k5PcOmIg9I1322RePlSaqR4u/qXbH4D9iYGXs+2ejEJeNmrjPgEfhkqiQoRGkDAXsoNu
+ KJTNQ2oYHhqhz/XytpC0yf4Ff5dX588KMPJmpYOmVsPStFY9C17TUHFGQ4vnkK0/Vgwg
+ u6xktb/5oqO3FiDtxmfV9SayDhOPoowlKmdf6O+9c/vlEW8pLCJgLOoOz6YpJGHXaR5K
+ jtGKbG2LrXe3TeWT0NWGfa5L6QpGIKJxHogBMCjJq5ivB+nQmKKw08vtc6A2f2IWZ26e
+ tqlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=KW0Z4bu+Gf02siC8Ql384namK/DDKjE4PFjCJrNDUjg=;
- b=Sw1MELkOUD5wHJm+qmUKCN08OfGUL4DTB8jQXYoYZa4MlFNzQz3w1QURh0awY+DTdQ
- FkqI4mhoieDFkd/VT4+Tf1m9pzw+vFI/9PhBJeepRfB1yjgcUEKrJlHuXlvp5+3edk9A
- MBuJZnsVTQRZR9wTCs9Bk0g9xAx6vTQW1yO9StYmuIBsmhbCRrn7ITOqtoQ+fZr4Bjm4
- SWLT8TyNOKRT3jBTsg5fHifbulUIWWEsShvPdTGLEYQabd0WxloqNIJccI24DpxJIUmm
- K/ohMs0bcTbFArCg0z0DowD3oBLWOWZTaauh+9AMHI73DPNnQ5KdxsUnT+Xz0QHU2FZS
- AVhA==
-X-Gm-Message-State: APjAAAXiDSmhdxJTZnX0IYZmwOYooqDlK5Aj+SHrRppXD4fS2hwEyvju
- tqJPD4iTvD3X8pra6Fr9xA2/Pw==
-X-Google-Smtp-Source: APXvYqxSYHqNZdqTSfRe1FzHStMnfFh8RI/pkpNSFr1I9FxUSOwyYqc3IxV80z5rXApnfUIRc0w0zQ==
-X-Received: by 2002:a63:610d:: with SMTP id v13mr31667742pgb.341.1560455017658; 
- Thu, 13 Jun 2019 12:43:37 -0700 (PDT)
+ bh=OzDF3aubB5pSwPDekd3OuhaKbAjZcfEkdUY9h4rLw7Y=;
+ b=Li9vsm2nVnABMe0CO0SLdmNpSUGJUYRUIBdNA7kT/U3Pt6cv75J+/H5qk3+nhg/KdA
+ WEpfBThTbOEnofXfUsoxbRyYcw9VFONTQym9jsxJ2I/6o9Gm5Kl/0nejVL0dPL0KSfP4
+ 9ZV49zQoppQhC1E+hjgzCffsAR7irFgipc58ptioxiAHXIVhaHFtfoDnXKjkL2e9QAeo
+ uZs3O6KrChpZ9z5JUxPsahGYXZaEhE/7T8G3WVMjbHdUqx7sewvebROtwNkSxM5lmxa7
+ 12od+uh0sH6TjhQQdJQjZEF+zKrO3GYFn0xY+F6jQgbfQcESdyDa7btifb6PoOTvI+KE
+ VxSg==
+X-Gm-Message-State: APjAAAXoPFltJMuMUzIeUzQXL4BWfv0FWakLVF11iujTw+vS37jocdRu
+ bTLOsExcQD6mYl3o/iy/xxeKvA==
+X-Google-Smtp-Source: APXvYqzWf9uvz00p9UwGWsnLphTuN6d19KekRXTMYzPsxoeKEysN+l0QHmIjFIaj4imLXrCJLxsQCA==
+X-Received: by 2002:aa7:90ce:: with SMTP id k14mr95327159pfk.239.1560455513966; 
+ Thu, 13 Jun 2019 12:51:53 -0700 (PDT)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
  [71.197.186.152])
- by smtp.googlemail.com with ESMTPSA id g71sm602255pgc.41.2019.06.13.12.43.36
+ by smtp.googlemail.com with ESMTPSA id u2sm683435pjv.9.2019.06.13.12.51.53
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Thu, 13 Jun 2019 12:43:37 -0700 (PDT)
+ Thu, 13 Jun 2019 12:51:53 -0700 (PDT)
 From: Kevin Hilman <khilman@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH 0/4] ARM: dts: meson8b: add VDDEE / mali-supply
-In-Reply-To: <CAFBinCAVqBxiRz+Fw5D+8XEPTxP13O35OhSD0pEzKjFcGK1H=A@mail.gmail.com>
-References: <20190525190204.7897-1-martin.blumenstingl@googlemail.com>
- <7htvcv3dhh.fsf@baylibre.com>
- <CAFBinCAVqBxiRz+Fw5D+8XEPTxP13O35OhSD0pEzKjFcGK1H=A@mail.gmail.com>
-Date: Thu, 13 Jun 2019 12:43:36 -0700
-Message-ID: <7hd0jh46fr.fsf@baylibre.com>
+To: afl1 <afl2001@gmail.com>, linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH] pinctrl: add tsin pins for meson-gxbb/gxl/gxm
+In-Reply-To: <20190613183846.18679-1-afl2001@gmail.com>
+References: <20190613183846.18679-1-afl2001@gmail.com>
+Date: Thu, 13 Jun 2019 12:51:52 -0700
+Message-ID: <7hzhml2rhj.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190613_124341_204924_1EAE6B45 
-X-CRM114-Status: GOOD (  15.10  )
+X-CRM114-CacheID: sfid-20190613_125154_844897_4E8CAE4A 
+X-CRM114-Status: UNSURE (   7.04  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,49 +94,46 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
+Cc: afl1 <afl2001@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+Hello,
 
-> On Wed, Jun 12, 2019 at 1:32 AM Kevin Hilman <khilman@baylibre.com> wrote:
->>
->> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
->>
->> > EC-100 and Odroid-C1 use a "copy" of the VCCK regulator as "VDDEE"
->> > regulator. VDDEE supplies the Mali GPU and various other bits within
->> > the SoC.
->> >
->> > The VDDEE regulator is not exclusive to the Mali GPU so it must not
->> > change it's voltage. The GPU OPP table has a fixed voltage for all
->> > frequencies of 1.10V. This matches with what u-boot sets on my EC-100
->> > and Odroid-C1.
->> >
->> > Dependencies:
->> > - compile time: patch #4 depends on my other patch "ARM: meson8b-mxq:
->> >   better support for the TRONFY MXQ" from [0]
->> > - runtime: we don't want the kernel to change the output of the VDDEE
->> >   regulator to the maximum value. Thus the PWM driver has to be able
->> >   to read the PWM period and duty cycle from u-boot. This is supported
->> >   with my series called "pwm-meson: cleanups and improvements" from [1]
->>
->> Just FYI... unless I hear otherwise, I'll wait for the PWM cleanups to
->> land before queuing this series.
+afl1 <afl2001@gmail.com> writes:
+
+> Sorry for previous two emails. I hoppe this will be correctly formatted.
+> This patch adds missing  pins for tsin in meson-gxbb/gxl/gxm  platform.
 >
-> I'm happy with that because I'm not sure what will happen *without*
-> the PWM improvements
+> Author: afl1 <afl2001@gmail.com>
+> Date:   Sun Feb 3 11:30:17 2019 +0100
+>
+>     pinctrl: add tsin pins for meson-gxbb/gxl/gxm
 
-OK, then I'll rely on you to ping (or resend) on this series to remind
-me when the PWM stuff has landed.
+Thanks for wanting to contribute your improvements back to the upstream
+kernel.  We really appreciate it.  I have aa few tips/comments for patch
+submissions:
 
-Thanks,
+It's still not quite the right format for the changelog.  The author and
+date are not needed (those come from the email headers).
+
+The changelog will also appear in permanent git history so the "sorry
+for the previous two emails" stuff is not relevant for that.  Instead,
+just summarize the changes, and epecially answer "why" the changes are
+needed.
+
+You're also missing a Signed-off-by.
+
+I highly recommend you read through the "Submitting Patches" guide for
+the kernel here:
+https://www.kernel.org/doc/html/latest/process/submitting-patches.html
+
+Thanks again for your contributions.  You're not very far off from
+having this ready.
 
 Kevin
-
 
 _______________________________________________
 linux-amlogic mailing list
