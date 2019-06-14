@@ -1,72 +1,89 @@
-Return-Path: <SRS0=0Q1W=UM=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=Cb+X=UN=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PULL_REQUEST,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-8.7 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A00AEC31E45
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2019 20:48:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A5E63C31E44
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Jun 2019 08:59:00 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 75ACF2133D
-	for <linux-amlogic@archiver.kernel.org>; Thu, 13 Jun 2019 20:48:26 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 79D3020866
+	for <linux-amlogic@archiver.kernel.org>; Fri, 14 Jun 2019 08:59:00 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CxOLw1JH";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="QmXkX+dJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 75ACF2133D
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PWivuHSA";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ygwDU90/"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 79D3020866
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:From:To:
-	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dbHJ0w3OPaSoxqFLExLaZ5mpe71BozheIB52alGqREQ=; b=CxOLw1JHBq+wvW
-	0Qmh1XKAQq913ovhUIDGdE6a4bTUsuM7YnZ/bH8YhmaOurtpL+cg4iG7wDhmE7LhnvTBDn713ksbo
-	aZaqCkhBGuVP31ALCh/OSMH4IWUDh5Cxs9uK6JHcSo5ThU5jmFRfZfnvgH41emnVUmU2ux+dwp7v1
-	wANb0b2e6MxmWP2NqUqvew2liI+JbAbL3nf1ECV4yrcWTSmY0BWV5wBZedK/4EsGcTtUVbQQ6ti59
-	+wMyxQfN2QbuBs9hqDmhlYqF+Ad3+Ysh5o1g2/pptBQk8mBJd8vF1Cvj9P4wZxPYItgXFKwJjzY+u
-	a+pE2hxJhtFoC1LItKkA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=f9I14bSYNjUgvRSZnlQaLtk6dhaXHKjZB1CVEihgPt0=; b=PWivuHSAfp4ZFf
+	TlzNXcAupX2Ncvv/EXxguBwSoNO1Hf0m7SOjK8Bpchjl4gMuS6JKctnKlD6fnFowqBMDXO9ElCPUe
+	xoVmTsTorzSbtWejLz4WgK6KO064xdTUVWGc1gJO6omOD7NvwUFKrNlceQD6mlzsi9wzQxmfCGkv8
+	meeY3uJv2p30drD7ihQpu6v/0vyXZ+mxYXv0WIYE1B1RvwRdNyhv6V+gb7KWPqtUv+MBYeYaEyPkj
+	pcO0XDhqTkfG8LnvlhfQ2CK9w/S0P7DZPiknQvIcg6SuzeFPZ4ethfXm/ypH6u5Qw74QhWxPjptcm
+	3BWDUecR/gE+KpLfm4Hw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hbWdj-0000NN-Tb; Thu, 13 Jun 2019 20:48:07 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1hbi2Z-0001YS-Ed; Fri, 14 Jun 2019 08:58:31 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hbWdh-0000Mm-KU
- for linux-amlogic@lists.infradead.org; Thu, 13 Jun 2019 20:48:06 +0000
-Received: from kernel.org (unknown [104.132.0.74])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 1EF442133D;
- Thu, 13 Jun 2019 20:48:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1560458885;
- bh=H1APmz4uK9ccVsYdF4n6bh54danBGEaWI7jnHJJpFp8=;
- h=In-Reply-To:References:To:From:Subject:Cc:Date:From;
- b=QmXkX+dJzVMh+SLeIpnwXUylGjU6fGNxVFA58oQA4FajliSdoIldV6QKDDg9N2NnY
- KbEyl8LL9ZMgLRA3rHwTpcvo/g1XMCcdW0fB2Xipz9BJUw8LzlRZg53IjVHaoELOU7
- ecV8aCW0wcLKLotoavMl77xvKJ4jsjY7h4fWjSwE=
+ id 1hbi2W-0001Xn-RH
+ for linux-amlogic@lists.infradead.org; Fri, 14 Jun 2019 08:58:30 +0000
+Received: by mail-wr1-x442.google.com with SMTP id p11so1649173wre.7
+ for <linux-amlogic@lists.infradead.org>; Fri, 14 Jun 2019 01:58:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=nQzfi5pCNjbWy0L+GM97E8S0hKWGfnv4Ct4OLdEoTWQ=;
+ b=ygwDU90/bi1g10z7gM0VCKByS/vE0RY0Mqms4KLT+5oQ8yni0T9alBS4/LbqjjUU8O
+ CMduCLq82OBf0/FCW23pRrjy6MPK3NlzWhoH2X2Kx0CLV8aegxIuYVPevaekx8eHrss1
+ 2SsMq88cy1p8HtUW4cQ2/e6dTbgSu/GBTp5TI5V2dUrTXe+7OJOUBrkdFyYnltCRimqR
+ grgDVsfyIznazMBGeb/RtN+LCMdoksG65JataHHx8nXm9CigDVyvIA5ne0TRENQz3BVl
+ fgX4hegRPe7emSbCUv+wQJZP8+VsTYA+Eaf1zHePeoAuTmsOtbHKRWfi2ktbxcpBxAcs
+ 9chg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=nQzfi5pCNjbWy0L+GM97E8S0hKWGfnv4Ct4OLdEoTWQ=;
+ b=cJAxwKICEXdWUnm2w9p2GLzzzPjb19xHH7Oq10jmdYKrPedy+2wtd2k+wRDe2Wnzlu
+ GuhJPlieurCgc9K/dlnuUu06wny3FphLFLTiAQlj2bot+GceZTPxO5F+75i+Xes694P+
+ zRSPHQBsM8PONKjpXCfZMR8It6SJ+LUWPd8IJ/nr9RrYyxWoZoQCdRSL8bsplNdIuHb6
+ sWubqvlIccSiNLtAnuv0xY+6ub3bZyVyamUCXZofNI+0TSze9RQ/99+EfLpXnv2nVewF
+ 5E+7YmAJSyVwj3qgXOE7liAJ0gVU3ZqCERlxmsJFKK3QeU1XVag+wyTAOMOJhweHqVbk
+ NDbQ==
+X-Gm-Message-State: APjAAAXxaKlJbQOD3hOU+iF7n1ZAe4FoqBToBS5WQExMzFM4CSoDkrdw
+ CARy4xHk2lFtAVyss4QEdYtwvg==
+X-Google-Smtp-Source: APXvYqw485uYVt+kqDbpQ0wxUDiPbGSM8KdkwxJABu2kHY2ceJEAOlsM1vw93IQ0cwpPB9fhmy66qw==
+X-Received: by 2002:adf:a749:: with SMTP id e9mr64394856wrd.64.1560502706508; 
+ Fri, 14 Jun 2019 01:58:26 -0700 (PDT)
+Received: from bender.baylibre.local
+ (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id c2sm2178672wrf.75.2019.06.14.01.58.25
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+ Fri, 14 Jun 2019 01:58:25 -0700 (PDT)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: balbi@kernel.org
+Subject: [PATCH v2] usb: dwc3: meson-g12a: Add support for IRQ based OTG
+ switching
+Date: Fri, 14 Jun 2019 10:58:24 +0200
+Message-Id: <20190614085824.23307-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <7hlfy54836.fsf@baylibre.com>
-References: <a834836da8de689ec541093f3226a853af001fe4.camel@baylibre.com>
- <20190612230201.3692F20896@mail.kernel.org>
- <df0dad551db9f344e53db134a3c5a25d5d51ae63.camel@baylibre.com>
- <7hlfy54836.fsf@baylibre.com>
-To: Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>
-From: Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [GIT PULL] clk: meson: fixes for v5.2
-User-Agent: alot/0.8.1
-Date: Thu, 13 Jun 2019 13:48:04 -0700
-Message-Id: <20190613204805.1EF442133D@mail.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190613_134805_694314_B267B33C 
-X-CRM114-Status: GOOD (  14.04  )
+X-CRM114-CacheID: sfid-20190614_015828_933342_AE7D4FA0 
+X-CRM114-Status: GOOD (  12.54  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,54 +95,103 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- linux-clk <linux-clk@vger.kernel.org>
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Kevin Hilman (2019-06-13 12:07:57)
-> Jerome Brunet <jbrunet@baylibre.com> writes:
-> 
-> > On Wed, 2019-06-12 at 16:02 -0700, Stephen Boyd wrote:
-> >> Quoting Jerome Brunet (2019-06-11 05:23:33)
-> >> > Dear clock maintainers,
-> >> > 
-> >> > Below is a request to pull a couple of fixes on Amlogic clocks for v5.2
-> >> > These are typos in recently added clocks, the most annoying one being in
-> >> > the DT binding identifier on the MPLL50M which is used by the network PLL.
-> >> > 
-> >> > Regards
-> >> > 
-> >> > The following changes since commit a188339ca5a396acc588e5851ed7e19f66b0ebd9:
-> >> > 
-> >> >   Linux 5.2-rc1 (2019-05-19 15:47:09 -0700)
-> >> > 
-> >> > are available in the Git repository at:
-> >> > 
-> >> >   git://github.com/BayLibre/clk-meson.git tags/clk-meson-5.2-1-fixes
-> >> > 
-> >> > for you to fetch changes up to 3ff46efbcd90d3d469de8eddaf03d12293aaa50c:
-> >> > 
-> >> >   clk: meson: meson8b: fix a typo in the VPU parent names array variable (2019-05-20 12:11:08 +0200)
-> >> > 
-> >> > ----------------------------------------------------------------
-> >> 
-> >> Thanks. Pulled into clk-next.
-> >> 
-> >
-> > Hi Stephen,
-> >
-> > This was actually meant for clk-fixes
-> > We could probably cope with next, but it would be preferable if the typo in the
-> > bindings was fixed by the 5.2 release.
-> 
-> Yes please.  That would help my dependency management also.
-> 
+Add support for the OTG ID change interrupt to switch between Host
+and Device mode.
 
-I pulled it into fixes. Don't worry, it was just a typo due to my usage
-of wrong key binding.
+Tested on the Hardkernel Odroid-N2 board.
+
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/usb/dwc3/dwc3-meson-g12a.c | 36 +++++++++++++++++++++++++-----
+ 1 file changed, 31 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
+index 2aec31a2eacb..bca7e92a10e9 100644
+--- a/drivers/usb/dwc3/dwc3-meson-g12a.c
++++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
+@@ -11,9 +11,7 @@
+  * - Control registers for each USB2 Ports
+  * - Control registers for the USB PHY layer
+  * - SuperSpeed PHY can be enabled only if port is used
+- *
+- * TOFIX:
+- * - Add dynamic OTG switching with ID change interrupt
++ * - Dynamic OTG switching with ID change interrupt
+  */
+ 
+ #include <linux/module.h>
+@@ -348,6 +346,22 @@ static enum usb_role dwc3_meson_g12a_role_get(struct device *dev)
+ 		USB_ROLE_HOST : USB_ROLE_DEVICE;
+ }
+ 
++static irqreturn_t dwc3_meson_g12a_irq_thread(int irq, void *data)
++{
++	struct dwc3_meson_g12a *priv = data;
++	enum phy_mode otg_id;
++
++	otg_id = dwc3_meson_g12a_get_id(priv);
++	if (otg_id != priv->otg_phy_mode) {
++		if (dwc3_meson_g12a_otg_mode_set(priv, otg_id))
++			dev_warn(priv->dev, "Failed to switch OTG mode\n");
++	}
++
++	regmap_update_bits(priv->regmap, USB_R5, USB_R5_ID_DIG_IRQ, 0);
++
++	return IRQ_HANDLED;
++}
++
+ static struct device *dwc3_meson_g12_find_child(struct device *dev,
+ 						const char *compatible)
+ {
+@@ -374,7 +388,7 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+ 	void __iomem *base;
+ 	struct resource *res;
+ 	enum phy_mode otg_id;
+-	int ret, i;
++	int ret, i, irq;
+ 
+ 	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+ 	if (!priv)
+@@ -436,6 +450,19 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+ 	/* Get dr_mode */
+ 	priv->otg_mode = usb_get_dr_mode(dev);
+ 
++	if (priv->otg_mode == USB_DR_MODE_OTG) {
++		/* Ack irq before registering */
++		regmap_update_bits(priv->regmap, USB_R5,
++				   USB_R5_ID_DIG_IRQ, 0);
++
++		irq = platform_get_irq(pdev, 0);
++		ret = devm_request_threaded_irq(&pdev->dev, irq, NULL,
++						dwc3_meson_g12a_irq_thread,
++						IRQF_ONESHOT, pdev->name, priv);
++		if (ret)
++			return ret;
++	}
++
+ 	dwc3_meson_g12a_usb_init(priv);
+ 
+ 	/* Init PHYs */
+@@ -460,7 +487,6 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+ 
+ 	/* Setup OTG mode corresponding to the ID pin */
+ 	if (priv->otg_mode == USB_DR_MODE_OTG) {
+-		/* TOFIX Handle ID mode toggling via IRQ */
+ 		otg_id = dwc3_meson_g12a_get_id(priv);
+ 		if (otg_id != priv->otg_phy_mode) {
+ 			if (dwc3_meson_g12a_otg_mode_set(priv, otg_id))
+-- 
+2.21.0
 
 
 _______________________________________________
