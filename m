@@ -2,87 +2,90 @@ Return-Path: <SRS0=SHiD=UY=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_NEOMUTT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1640DC48BD4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Jun 2019 12:37:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9D904C48BD4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Jun 2019 13:08:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DD554208CA
-	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Jun 2019 12:37:25 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 72D7120644
+	for <linux-amlogic@archiver.kernel.org>; Tue, 25 Jun 2019 13:08:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="U43mSshA";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="HpzFOXWo"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DD554208CA
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XXjMJo+k";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lixom-net.20150623.gappssmtp.com header.i=@lixom-net.20150623.gappssmtp.com header.b="buRYqyPE"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 72D7120644
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=lixom.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=Otsx8wvrEkNZ39uoURuH/focwKtOOsUPwcqh/3L9x8A=; b=U43mSshA21TN2c
-	HwiscT7aFRZTHaNzdsh3qAcr0eKscoz6VAhYFf/3BSuxdkFeHpO2QQVsHALq45FTVnwW16gZOem6e
-	eHkhpFlwbE/Mg6t4OHMLQcrtxDsVL2q0mi5wIhidUIr/aCtVZcUnvlIIMvJd4GdidBUIiN0AabPAG
-	Twgl4CxGK2ODH5b0e1DbJwmKwueS74iKdq0hyZX9jtW3ueVfMCqPitK18e9s3XIsDPjASmmGWmngm
-	tJWPnQHAqq5tELaJojMlIMgA1uZVECmo5nmtNZPTDNgXx/Ych8bUu8YDzmJ/pG3vqsyi6KpIza9xo
-	pIzNqCTORNvpuTPwJV0w==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=kX+Dj3BXwkNKSNYkFvnzwY4bckTd6+CFRoltoPBJT1Y=; b=XXjMJo+k5yXjJc
+	Co4svsWXBniveSHGwNye7TRmF2+xcjxEO3fwtVqoMnaZGPVTq8UzutpzGOVr7kRckpR0S6U1kc7uU
+	GiJwDjfJJRQzzrW4d7M7OuTl9D7WslidzvdzpP9tBhTZw8i4wpW35HKMqZ1RM72STB7lSMO0b/11T
+	n8YExjrr8e6AEGIh4hPmbu1HW4O/SYmtJdimHCFvCp8kwaBfDGPaE7h+5j8CmXc4NGMmR3i7o+MEn
+	RHrwMyMVCK7qXX3EOy4461iVyIFIiV5qqPfFORfFnyNztcStjNJO/5YpE4pHc7I/j2w3CI/lBykGV
+	3vcID6gsJmN2Ec4nlmdQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hfkhL-0005uG-Un; Tue, 25 Jun 2019 12:37:20 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1hflBK-0004tm-8b; Tue, 25 Jun 2019 13:08:18 +0000
+Received: from mail-lf1-x143.google.com ([2a00:1450:4864:20::143])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hfkgv-0005RY-KD
- for linux-amlogic@lists.infradead.org; Tue, 25 Jun 2019 12:36:56 +0000
-Received: by mail-wm1-x341.google.com with SMTP id c66so2672277wmf.0
- for <linux-amlogic@lists.infradead.org>; Tue, 25 Jun 2019 05:36:52 -0700 (PDT)
+ id 1hfl7x-0001YV-8S
+ for linux-amlogic@lists.infradead.org; Tue, 25 Jun 2019 13:04:54 +0000
+Received: by mail-lf1-x143.google.com with SMTP id j29so12556297lfk.10
+ for <linux-amlogic@lists.infradead.org>; Tue, 25 Jun 2019 06:04:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=9ZX4reNH1Y4oGZx//omW4y+4kXs+97gm3IKdBMyA4qA=;
- b=HpzFOXWoy+175TZnrqU8T7yGRS2B6tYI96yqoa477Sr0PvZoubHe0dGEE8qR0w9FJ7
- CG87WTWkE5tBOtH+TJYq6Z2JvVZYEi9F69fZ79Z+EGjKnngJSHH4QhxCA3u87A/nl0Fy
- dRrf+rU+uWsBAdpFvOH25TJbTFOknCo7fbfhO5fkeJOMie3CbjWCJgcNd+6rqzhGp6jz
- bjuIyDa1nNsgmc2kxyXTkMMKDr7TFy4CfcIwU3Ws3CjQ350eBLrdJPCVE5Q3Jz+1xt8Y
- 43Tkf62WO0jRZW4efWk19shXgogUl/d3voY4MWwz7kVVN3LiEp0euMMXxqMSF59GECjx
- v/Eg==
+ d=lixom-net.20150623.gappssmtp.com; s=20150623;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=TlUuZT0bMmqEGb0gZA/e8+9GQjvzG1BvoAMh5r6tsAI=;
+ b=buRYqyPESo1QdE7VXPt6RVOCCP7PauVE6AorZfRUwKAzFpud4X+ZqIEOpWhqW+/1qi
+ +gx3cGanB/UormWo277jGwBxBOPAVxjqclWB4oZ2PwvG/rSR4WXNoyzgCUjRmovaDET3
+ pefljqc4uEEe9R3z6yVDna1uCzi3A6xFcaj1FWOGNf3WqMXLxZSg7clCJFs78KxysMi9
+ SuUnx9zLiJP2dmunzU+in+qacHcuJuIOBeGxpoTnRyt4caJCQ5b8M89ttynIdvwuRhdE
+ KlojGlnaYeoOQH5M9o8xBrWyaDCE15kY+VUT3uPVtHMuNX1yCwheFs6z79rLp2hqxfYr
+ pyjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=9ZX4reNH1Y4oGZx//omW4y+4kXs+97gm3IKdBMyA4qA=;
- b=EJGUh/BriLjIA+CUN3kk9ywfrmRmtqnjDRJhNXq6u8oLWpC5L35Mpv5Lt39KFaLHdN
- MAK249xrXaCbYL8BPu1Im2ZZZtNx7BOx3TO5swJ0F2PspMP8TtHYEziEJP7mx/NZZuCt
- ObYJ/3y7ikM8z1N8FRnw/NlMsd9jFf1748/iOcuVfF4c5qf4qUSpYMKL2ua4jVPGjXN+
- rp2kMNEswYeD4Y6JedlHEEJvLWS+GVYBke2dDihe1L9FuEAgk/TIRIPe/k5TxDrJvuXE
- Fasf5RaIHWCemrLXPUGeSWJkSdJeVOAXCBtr/JKOQOWI1c/TQJ3F2JbVm8yEIWO1nY/0
- rbcA==
-X-Gm-Message-State: APjAAAW8ZbOD6lGBgRu8N7qPWvcoT7YLsFO6AQzAHOme4ynjZPXrQMph
- HwfFu6oCxRHF8ul6Ckau76T3Kg==
-X-Google-Smtp-Source: APXvYqzgY9PHUvM/ccsDS26S+XkhVdKSnIkiIIFWVo1bY8TU03TmD1YWUBru8miYVEDgfNd2A4wSag==
-X-Received: by 2002:a1c:cf0b:: with SMTP id f11mr20443151wmg.138.1561466210920; 
- Tue, 25 Jun 2019 05:36:50 -0700 (PDT)
-Received: from bender.baylibre.local
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id n1sm10983882wrx.39.2019.06.25.05.36.50
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Tue, 25 Jun 2019 05:36:50 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: khilman@baylibre.com
-Subject: [PATCH] arm64: dts: meson-g12a: add missing dwc2 phy-names
-Date: Tue, 25 Jun 2019 14:36:47 +0200
-Message-Id: <20190625123647.26117-1-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.21.0
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=TlUuZT0bMmqEGb0gZA/e8+9GQjvzG1BvoAMh5r6tsAI=;
+ b=WbpNngeZ4PIwwvrWXb6cxXWZxq+ejZe+LjzIfg+PW3lXohDQ1ht4r7veWRHx8Se/Ys
+ DB7+bkyuf3NKIMEyIhmcXF0JDsPj2OhTQIMjWnHEMVwbg5NiTrbQaHmsGAtki4HljtAn
+ VfmHH5i31RqyIFaw3EDcW6tiEyHQEel5ZdQgoi4bOfeDSyLCg+NQwF7XAf/JExWQH34t
+ Uvrpebs5j4yf6/dhit39BARXvlMJPtg4z0VwOIjloJ56xJT2wdjEuCH+fMW4KJy0hHMT
+ PGu+k6lKzhz4b7w0mH+FEEwq8hiawiRIZrY1Hf17HZ0W1SNlRhSFgKN47TkF2eFnm30B
+ LN+g==
+X-Gm-Message-State: APjAAAV0oARj2MqreH7+DNaNs67b+plOXRI+PPuqpIWiJqbu8/Whi3b9
+ b9XFCza7z/QKAVW6Ab52Ui7CDg==
+X-Google-Smtp-Source: APXvYqwLbJZ5xA2uJ4b3HGjtFMPdIY4cFcfc6BfIHb5uSTH0RLInJ6gxfR53NFfHddiFf93+UK6HOg==
+X-Received: by 2002:a05:6512:29a:: with SMTP id
+ j26mr45182326lfp.44.1561467887011; 
+ Tue, 25 Jun 2019 06:04:47 -0700 (PDT)
+Received: from localhost (h85-30-9-151.cust.a3fiber.se. [85.30.9.151])
+ by smtp.gmail.com with ESMTPSA id o9sm1932476lfb.47.2019.06.25.06.04.45
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Tue, 25 Jun 2019 06:04:45 -0700 (PDT)
+Date: Tue, 25 Jun 2019 05:41:13 -0700
+From: Olof Johansson <olof@lixom.net>
+To: Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [GIT PULL] soc: Amlogic driver updates for v5.3
+Message-ID: <20190625124113.onwiktixyw3vlqsg@localhost>
+References: <7hlfxweyh8.fsf@baylibre.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <7hlfxweyh8.fsf@baylibre.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190625_053653_833041_9ED2B9B4 
-X-CRM114-Status: GOOD (  10.51  )
+X-CRM114-CacheID: sfid-20190625_060449_330456_8BD8896C 
+X-CRM114-Status: GOOD (  10.72  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,45 +97,34 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, arm@kernel.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The G12A USB2 OTG capable PHY uses a 8bit large UTMI bus, and the OTG
-controller gets the PHY but width by probing the associated phy.
+On Thu, Jun 20, 2019 at 02:30:27PM -0700, Kevin Hilman wrote:
+> The following changes since commit a188339ca5a396acc588e5851ed7e19f66b0ebd9:
+> 
+>   Linux 5.2-rc1 (2019-05-19 15:47:09 -0700)
+> 
+> are available in the git repository at:
+> 
+>   https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-drivers
+> 
+> for you to fetch changes up to 9a98fdf5b6e635d9d9710f87e1da42aeab12ff0d:
+> 
+>   soc: amlogic: canvas: add support for Meson8, Meson8b and Meson8m2 (2019-05-22 18:19:14 -0700)
+> 
+> ----------------------------------------------------------------
+> soc: Amlogic driver updates for v5.3
+> - canvas: add support for Meson8*
 
-By default it will use 16bit wide settings if a phy is not specified,
-in our case we specified the phy, but not the phy-names.
+Merged, thanks!
 
-The dwc2 bindings specifies that if phys is present, phy-names shall be
-"usb2-phy".
 
-Adding phy-names = "usb2-phy" solves the OTG PHY bus configuration.
-
-Fixes: 9baf7d6be730 ("arm64: dts: meson: g12a: Add G12A USB nodes")
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-index f8d43e3dcf20..1785552d450c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-@@ -2386,6 +2386,7 @@
- 				clocks = <&clkc CLKID_USB1_DDR_BRIDGE>;
- 				clock-names = "ddr";
- 				phys = <&usb2_phy1>;
-+				phy-names = "usb2-phy";
- 				dr_mode = "peripheral";
- 				g-rx-fifo-size = <192>;
- 				g-np-tx-fifo-size = <128>;
--- 
-2.21.0
-
+-Olof
 
 _______________________________________________
 linux-amlogic mailing list
