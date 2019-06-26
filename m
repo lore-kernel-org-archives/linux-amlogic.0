@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-8.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 669E2C48BD3
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jun 2019 09:08:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B3729C48BD6
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jun 2019 09:08:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 329072054F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jun 2019 09:08:01 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8784F2054F
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jun 2019 09:08:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fF9madxt";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="0dQvF2Y3"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 329072054F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hSbkahhK";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="EOIDTbSR"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8784F2054F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CYRb5uYmO6DZ0Ynzm45EGohCHevDphq/F5auyNQ5JVQ=; b=fF9madxt1iVhe/
-	ntVVEWwD4qAm4BcVgs1jCZvkw9WVsFR18K07DMg0Flr+4eBsaYNlNWhFvRoqKf6UMZVczcKR8QqSm
-	odASyZeqzJ4Tz5lLcUOMPH4TqzpxW3uIwPmo3v/FCDkfN1EmusFquS3dQXhBodiSf9cMUe4/HaELP
-	nxnFYAZjBGR/P0Sktisr1STwjzNSszy0duT0kb64zh7KSQUkZtwqna8YWWzkGQXwauLOK7AIt28pA
-	5njqf92E2yVb8M8jbcgkv/yIFWeNuwiwyBWzrQ4yL7EJAD3/l59f7bl63XHgo0gqQQabAZiBnEzQ+
-	JCrulGUtIPk/tvqDrtag==;
+	List-Owner; bh=jUA2HnTbIR8loP0SpSPPgWY25HWDQpKDDNlg4gxBpuY=; b=hSbkahhKPeB+L5
+	TYLZdQUmiK/ygh9QimWiPE0gxFf4U1HvQdRmQp4yirUcGgQV8qIRql0Pude9EQ2q6YmSlmuztr9KO
+	rvGTEHLXptS2xOPKqdA0RY/tee3qQ7GEOFdcnhDM3jYb1AUBwfSpFVyFN/n+wqF7vjHtZv1tEv98f
+	w+P7wQaLaiSHPtaJozxvGmqiYuQGuzRsaVwAoRaETr+eiV8oSFO58ob9D5POfEiozPQoRPEdE74sr
+	WvNvaxcTahExY7FJ3U61e7rGwXxsyRlEFXcf7z4FE1TtS0+kGaR1s6W/DfAhRJwpbW8AZSx9+00VX
+	YuZz/Lc/nRTnmkne6ZzQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hg3uE-0003K3-TA; Wed, 26 Jun 2019 09:07:55 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1hg3ue-0003bM-Pm; Wed, 26 Jun 2019 09:08:21 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hg3t2-0002Xi-BR
- for linux-amlogic@lists.infradead.org; Wed, 26 Jun 2019 09:06:41 +0000
-Received: by mail-wr1-x443.google.com with SMTP id r16so1751270wrl.11
- for <linux-amlogic@lists.infradead.org>; Wed, 26 Jun 2019 02:06:40 -0700 (PDT)
+ id 1hg3t3-0002Y5-DM
+ for linux-amlogic@lists.infradead.org; Wed, 26 Jun 2019 09:06:42 +0000
+Received: by mail-wr1-x442.google.com with SMTP id x17so1762945wrl.9
+ for <linux-amlogic@lists.infradead.org>; Wed, 26 Jun 2019 02:06:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=3PBhHywaKoqeEXor4qGKKEbTn6ANfeSg4ls1LrAVLLs=;
- b=0dQvF2Y37cH6qhAVKYSNd6wABJorxdelAViXz4ofOHPaWbEl0G4K+YJkciOphm7wCj
- Yqg0PEZzw/3DDwW4RH+HZVs7miXIE4EGM0Z450dN9YOu+OZxfvRyYoaEQQhmNAlIFPQm
- uhKfWMtUTzbaw8aOM99khqpNMqeOnkVVHhBYJbhUNhrmfRYpzkXNebTF+0fqCHkJH7r7
- OXif0OQ13z7qvVprUKI2oREU5H5PqDHYT9+NXF9T0nPgGxU71WAs4fXbbQmBtPmtJkVr
- 0bwDZDsF88vzy3fHx8tQ2UY6ZZqnh+vslTNeoxd+/RoZFqPBfcVhY/btLgVIcNSIAxt/
- CPyg==
+ bh=QF6xtFv2zQ8ZUqjO9Cs7FIQcWQGqk9AuakROnInyaSE=;
+ b=EOIDTbSRmHPt/lFJvqYWsxI4pCg4Dy45ntsrrp31zEPhOT03iRH3/jj/+1rogovQ67
+ NfjLB2W6EYnIYpDdLL9uCHUB0IyHXlPgD8/DxDTjtFcCd9Jo0zNs9K74n3aMIuRMrsTM
+ qOr3PdCuf1nS8zWejXEnvxM3cwTfNnMjQ5m8P2QwHnXzYrgsfac8mYdLqk47BYfChLEu
+ SYydOMncB/OrY/E76Su6Y0BpV2DOT4JJcO4hz/DoDnLdIGx8cvfPjBib2bQx27yOU/sE
+ tCVV60jH13P9vnamKEDQzkLqltVVWmMY1hBbqNr6y0bKUcQPvL5JIVOneYSQTVJ5f3HS
+ PyTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=3PBhHywaKoqeEXor4qGKKEbTn6ANfeSg4ls1LrAVLLs=;
- b=Ng7NxfNVagT8NoScSfXEWJS3CeyFzw16XFFae5wymA9wOkeeeDcpvcROaFbZS6msF8
- l1FbHbLO7t9xQ8TSpNofUzVXFLXxC9wlVb8WBWwAeD5Uz110rB1ebVjxhz5Bmp6a31SX
- oPO41GpmZ+SsfRRuLRpkhIhIpso48r54u8WxdPW/W6l/aTbwFDUft1rrpQCe9I4fruPq
- r+bX5cK3kg3Syd1xpIS8etHA17KkEBysJTxdRnyIDvz6wkHtn0fRQw633Jr2AUzSYTDW
- +/TiA6qg0wUo4lzQDvETW35UlvnIODX9oE54eb9unPLUWF8Pz0uxo0Xg1Cs2MWXuYeSz
- 8Cmw==
-X-Gm-Message-State: APjAAAVeOYnzI8Ih2gfTPudinxhUIxXEQwA1vwYfbM1STVT4Td6DZsbq
- IodYYc6zEvHqbwC5A+n+Y2oAQw==
-X-Google-Smtp-Source: APXvYqxvUFmJny+jMH1kZs7aju+I59XRIseKcpXP0X5SnQQR7xSg23DSD/lqG4I9aJxmcv8Xe0QucA==
-X-Received: by 2002:adf:b605:: with SMTP id f5mr1726864wre.305.1561539999021; 
- Wed, 26 Jun 2019 02:06:39 -0700 (PDT)
+ bh=QF6xtFv2zQ8ZUqjO9Cs7FIQcWQGqk9AuakROnInyaSE=;
+ b=P9oy0jgsswGxDtcqdHjmGdeuee0fgGiUOCdwrFdNsiFInVJJ6zO+1rkwKHNm9h02tw
+ cQvedAGJNtKw8FMRJLI4+5oov/1M9/Ozf2/AOY9FlVIuYnk85tIIZ49KNX32gSKIEINA
+ hUCqaqVgszK10TcpGOGfbHDm9iuQ/RE7gkK4VLgTQPtXgmld5z/FhOX29Q1gDBXZohsk
+ bFQR3aiaMlDxvDGO66nJGi0TKXUAXlaJQn2ewcufSR/IJbZkuvgW+nTcKvNzNjKK6D08
+ OjscHyf/VfCmYIIuzXHyeSjCNZ+2ANaftdWigComRLRfX8TzYUeu5Lds5FHcb3Wt0sEx
+ cw6w==
+X-Gm-Message-State: APjAAAU+/ydmRqfIrme3s1aj5UwVCMKCpiAI2b7rWCzUoAlIc3/QF1VB
+ 0hS+EgmB10ucMdZ7/ClbssAoqQ==
+X-Google-Smtp-Source: APXvYqyOJTQLTQr5UOlvihb2uvDm1M8Bu0G5R2D6gXBw7OAcDmhWQNRUOM5NXcNu+psXLHm/tUm3aQ==
+X-Received: by 2002:adf:afd5:: with SMTP id y21mr2687630wrd.12.1561540000020; 
+ Wed, 26 Jun 2019 02:06:40 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id o6sm1925797wmc.46.2019.06.26.02.06.37
+ by smtp.gmail.com with ESMTPSA id o6sm1925797wmc.46.2019.06.26.02.06.39
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Wed, 26 Jun 2019 02:06:38 -0700 (PDT)
+ Wed, 26 Jun 2019 02:06:39 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: jbrunet@baylibre.com,
 	khilman@baylibre.com
-Subject: [RFC/RFT v2 02/14] clk: core: introduce clk_hw_set_parent()
-Date: Wed, 26 Jun 2019 11:06:20 +0200
-Message-Id: <20190626090632.7540-3-narmstrong@baylibre.com>
+Subject: [RFC/RFT v2 03/14] clk: meson: regmap: export regmap_div ops functions
+Date: Wed, 26 Jun 2019 11:06:21 +0200
+Message-Id: <20190626090632.7540-4-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190626090632.7540-1-narmstrong@baylibre.com>
 References: <20190626090632.7540-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190626_020640_388885_C10623EE 
-X-CRM114-Status: UNSURE (   9.22  )
+X-CRM114-CacheID: sfid-20190626_020641_552738_72C4B949 
+X-CRM114-Status: UNSURE (   9.71  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -107,48 +107,69 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Introduce the clk_hw_set_parent() provider call to change parent of
-a clock by using the clk_hw pointers.
+The G12A CPU Clock Postmux divider needs a custom div_set_rate() call.
 
-This eases the clock reparenting from clock rate notifiers and
-implementing DVFS with simpler code avoiding the boilerplates
-functions as __clk_lookup(clk_hw_get_name()) then clk_set_parent().
+Export the clk_regmap_div_round_rate() and clk_regmap_div_recalc_rate()
+to be able to override the default clk_regmap_div_set_rate() callback.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/clk/clk.c            | 6 ++++++
- include/linux/clk-provider.h | 1 +
- 2 files changed, 7 insertions(+)
+ drivers/clk/meson/clk-regmap.c | 10 ++++++----
+ drivers/clk/meson/clk-regmap.h |  5 +++++
+ 2 files changed, 11 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index aa51756fd4d6..06e1abe3391c 100644
---- a/drivers/clk/clk.c
-+++ b/drivers/clk/clk.c
-@@ -2490,6 +2490,12 @@ static int clk_core_set_parent_nolock(struct clk_core *core,
- 	return ret;
+diff --git a/drivers/clk/meson/clk-regmap.c b/drivers/clk/meson/clk-regmap.c
+index dcd1757cc5df..26c8c74a8cf0 100644
+--- a/drivers/clk/meson/clk-regmap.c
++++ b/drivers/clk/meson/clk-regmap.c
+@@ -56,8 +56,8 @@ const struct clk_ops clk_regmap_gate_ro_ops = {
+ };
+ EXPORT_SYMBOL_GPL(clk_regmap_gate_ro_ops);
+ 
+-static unsigned long clk_regmap_div_recalc_rate(struct clk_hw *hw,
+-						unsigned long prate)
++unsigned long clk_regmap_div_recalc_rate(struct clk_hw *hw,
++					 unsigned long prate)
+ {
+ 	struct clk_regmap *clk = to_clk_regmap(hw);
+ 	struct clk_regmap_div_data *div = clk_get_regmap_div_data(clk);
+@@ -74,9 +74,10 @@ static unsigned long clk_regmap_div_recalc_rate(struct clk_hw *hw,
+ 	return divider_recalc_rate(hw, prate, val, div->table, div->flags,
+ 				   div->width);
+ }
++EXPORT_SYMBOL_GPL(clk_regmap_div_recalc_rate);
+ 
+-static long clk_regmap_div_round_rate(struct clk_hw *hw, unsigned long rate,
+-				      unsigned long *prate)
++long clk_regmap_div_round_rate(struct clk_hw *hw, unsigned long rate,
++			       unsigned long *prate)
+ {
+ 	struct clk_regmap *clk = to_clk_regmap(hw);
+ 	struct clk_regmap_div_data *div = clk_get_regmap_div_data(clk);
+@@ -100,6 +101,7 @@ static long clk_regmap_div_round_rate(struct clk_hw *hw, unsigned long rate,
+ 	return divider_round_rate(hw, rate, prate, div->table, div->width,
+ 				  div->flags);
+ }
++EXPORT_SYMBOL_GPL(clk_regmap_div_round_rate);
+ 
+ static int clk_regmap_div_set_rate(struct clk_hw *hw, unsigned long rate,
+ 				   unsigned long parent_rate)
+diff --git a/drivers/clk/meson/clk-regmap.h b/drivers/clk/meson/clk-regmap.h
+index 1dd0abe3ba91..d22b83fb9bad 100644
+--- a/drivers/clk/meson/clk-regmap.h
++++ b/drivers/clk/meson/clk-regmap.h
+@@ -78,6 +78,11 @@ clk_get_regmap_div_data(struct clk_regmap *clk)
+ 	return (struct clk_regmap_div_data *)clk->data;
  }
  
-+int clk_hw_set_parent(struct clk_hw *hw, struct clk_hw *parent)
-+{
-+	return clk_core_set_parent_nolock(hw->core, parent->core);
-+}
-+EXPORT_SYMBOL_GPL(clk_hw_set_parent);
++unsigned long clk_regmap_div_recalc_rate(struct clk_hw *hw,
++					 unsigned long prate);
++long clk_regmap_div_round_rate(struct clk_hw *hw, unsigned long rate,
++			       unsigned long *prate);
 +
- /**
-  * clk_set_parent - switch the parent of a mux clk
-  * @clk: the mux clk whose input we are switching
-diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
-index bb6118f79784..8a453380f9a4 100644
---- a/include/linux/clk-provider.h
-+++ b/include/linux/clk-provider.h
-@@ -812,6 +812,7 @@ unsigned int clk_hw_get_num_parents(const struct clk_hw *hw);
- struct clk_hw *clk_hw_get_parent(const struct clk_hw *hw);
- struct clk_hw *clk_hw_get_parent_by_index(const struct clk_hw *hw,
- 					  unsigned int index);
-+int clk_hw_set_parent(struct clk_hw *hw, struct clk_hw *new_parent);
- unsigned int __clk_get_enable_count(struct clk *clk);
- unsigned long clk_hw_get_rate(const struct clk_hw *hw);
- unsigned long __clk_get_flags(struct clk *clk);
+ extern const struct clk_ops clk_regmap_divider_ops;
+ extern const struct clk_ops clk_regmap_divider_ro_ops;
+ 
 -- 
 2.21.0
 
