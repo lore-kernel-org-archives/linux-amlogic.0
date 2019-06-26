@@ -2,22 +2,22 @@ Return-Path: <SRS0=vIah=UZ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-8.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 48D9AC4646B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jun 2019 08:24:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2FFF2C48BD3
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jun 2019 08:27:37 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1FF3120663
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jun 2019 08:24:58 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DEE8220663
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jun 2019 08:27:36 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="JOmpNhan";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="b9t/P33L"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1FF3120663
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="a6baMRKc";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="zSNPgz9Y"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DEE8220663
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,61 +26,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=43NhqXt9cqR5UM02P1ncmWw9T/zf27iEyY+fG75Rfzw=; b=JOmpNhanObE0Ka
-	+1+xz7f73UQPZgX70Vb7ex4iwJpij/MRU9PPIYJ9qy01DskkE4mr/N2n4CiSI6ZrWRoOF85Zix7Qs
-	03mFvppITEMLYFttNEM2hdCp75fbNN7Ws7P3Mndd+ZchoK4a3QzdqNwYFw85e+17+YNP1kaB9Soru
-	sYLdAYoqvKhl1zPWVkMRT7G/bOGbVmaFUykMA74gnPlR2+7yOLEQo0Aje8FIS/504o0Ucjy0ZlE4G
-	vP8QcnD4xutiJCoD6eNNrpWyL+k9R3pn+RKRqNTrATUGQ5PTWk6Xa3cZRUKpPufaTvTiW302MwBVh
-	yhtDrax7PCvjntG3SmBA==;
+	List-Owner; bh=6WfhobNxkT/Cjaf+XNaZ5EGPxhcSJKkT/zzH8Xwny1U=; b=a6baMRKcuNPg6K
+	xX6oyxDoK2uHidIW0j4r3J+/UJkwdDOcoqLeRc9eNv2CXDCDKi6qFdk3Ey74/Qe13zDnj+DzpIxb7
+	MAJ/u4ZCv/1QQ1/GLQSM7OIrfCmbL/7u+LIfDuc9srHXQ0GsQZ3qobPRLcy6X5PKqtD+TmZxOnndy
+	bHF34j0Y8aHr+MdJoAeOEPD8ZdsQ1wc+q99ZUsvpS3lWkHRqruTZxq/xoqHElAmATgDG72yHOQqzm
+	oeS56Up3Gk+y9o5N5r3svNQnlrgQTAvHnd0+rFj98q7gnh4jf5HDSu8h5cVeTbfJ6hfgCFMy7LORd
+	Zzxp1wWAb5S6Cc2yIBrw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hg3Eb-0001MD-1b; Wed, 26 Jun 2019 08:24:53 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1hg3H8-0003UV-18; Wed, 26 Jun 2019 08:27:30 +0000
+Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hg3EY-0001LM-Dw
- for linux-amlogic@lists.infradead.org; Wed, 26 Jun 2019 08:24:51 +0000
-Received: by mail-wr1-x441.google.com with SMTP id v14so1630074wrr.4
- for <linux-amlogic@lists.infradead.org>; Wed, 26 Jun 2019 01:24:49 -0700 (PDT)
+ id 1hg3Go-0003I6-Mp
+ for linux-amlogic@lists.infradead.org; Wed, 26 Jun 2019 08:27:12 +0000
+Received: by mail-wr1-x42d.google.com with SMTP id p13so1602898wru.10
+ for <linux-amlogic@lists.infradead.org>; Wed, 26 Jun 2019 01:27:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=9DNJHIe0qI38aHs6zqZk/jm9gpEnYcn1ir7ZTOFghgk=;
- b=b9t/P33LvmT09EMKcIF/dqMZIzt/imOy4XjK9VeRcY3ci1NkBIF/d40sjvfCuZpGiU
- CHJrzGD1fomMeyyEob7kR0zvl9AwvfSpoOPde8/RK9xgFFR/xSCysiGX6kG44MZs+wYn
- JFMfCyhAi2rw3nnMiLaNqLxcR0VKoSTc7SQpoOKtBw6+tvOJZpcsc3e+VihESro2sd2u
- XhPYKF3ws98z9nnV3QqlHHSNL/einLNmMMkuRw8U2nICg7q7D6L723wClwxpcxpHrei+
- U3lbt2Z+BrO/B9508QBxJn/NlJl1epkfqJ739P2AJ5iTs2aR2bMQTWOL1fm/f7suLW1G
- ROtA==
+ bh=NjBGXtFI+1wAIIWeuIukIDBT9tMDnuLj71B1BtmpDZE=;
+ b=zSNPgz9Y1rwKcXVLQx+zKjzciItrBD+k4lDHZWa8hHV6YpBL6UjAOj0Pyfl6ze3FJB
+ qBeuIyyKJZlQ3Ayc25Rh5W1WtVES4FKtnNBNEjzoYlvf7ypvp8jl1MUeCjrbCZ+jnxqC
+ bEJT2/QeyZMlMyrcN8UMa9ghOROLEf5JAC5iRXwK4OZQpxHx7AUI5qESWqid3fdqC4qG
+ mtCa4n0QvQpxKEwzxV33Bla3gnGMkxUtKcfpn/nsAXrAmFrEEl86knSACc/CjwbUzb4F
+ MXuYZ9nn585t29wqh7njys4dlZ+JDatAgqi+rSdj3jFr/JTqAorlhREUc6WADX0Wm+/o
+ vjFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=9DNJHIe0qI38aHs6zqZk/jm9gpEnYcn1ir7ZTOFghgk=;
- b=A9pz22mkc+Cwh4WChSO1iZ05BCTrAtr7Z/DAqL89hhFJGBfci83aoLvDD8R1Vqpr21
- IAgWopW5LKCvqUPsPRXQELySnXdZ1DZfffz2OYaJbsW4g90sTzacY+6OMWPMqFdBTP+Z
- Pegja8Dnbw4x7KeWTPmaABXs7kDr0Rm0b1ZzdBU4VF531+JvQSZRpah1BnTwbBk7Zt9O
- OBs/gmgQ8zVC6n6SsObBBWiSknbbj//aMvIUFF8zWHrh8fu7t/oeF6UXr5GYGuSKyIQH
- Kmxtt0zxPkKvvrCvCelNXdRExH+4dYikaqdaDpOst5l8eogK0MiCExKXfeU0mVhUIcrz
- fuCA==
-X-Gm-Message-State: APjAAAVlayyIROWxOHQ5XwJPJGIEkVuWEpPYMVRptCYnuaH6mVCXSlRk
- sqtAreGV2KkavCDqeGG+obptojrtsLw=
-X-Google-Smtp-Source: APXvYqxw4uXdQXnl1JQoMpPwH+BTgm/Vm1yy7dvntOu+4GNB7u/9X8yDsEyIB0PGWAfFOwPV7e2ZYw==
-X-Received: by 2002:a5d:4d81:: with SMTP id b1mr1537872wru.27.1561537488672;
- Wed, 26 Jun 2019 01:24:48 -0700 (PDT)
+ bh=NjBGXtFI+1wAIIWeuIukIDBT9tMDnuLj71B1BtmpDZE=;
+ b=gLajlaYwQtGxBnEByGtNjmeZK8/FsrueQrHvlgJQx1QKcye5Ebom02k2WzfcYV3b2p
+ UxwgTEfB8upj20cbHBCpNqirON6up/mKOw++2WgiwrNuNOuGFXm1jptFrXXewxqE6Rz5
+ DkkQNe2Z9G7E4PGGq8iHCzmCcdkdiqAcm2CNOrcxhgg0yRqll2wfj3aEd/hgpCfKzVcO
+ ZYsZ0Aes1BRiyPcqV0c5Cmd7TJCv+fQzJcTIi/i6MgkLMsKz1n3HAeGSlPYCcVNhkGh6
+ FouYmMkbkGPb0pF5lJgOYXlUs3vjece3EduCAuAorPDnBN/bBCsRdmD7a0xXSD2ENt/1
+ nkBw==
+X-Gm-Message-State: APjAAAUyAK/UMnMNIwFX9kJvFraFvx2aukJ1U/cLkFb/pzcPdgD5PODr
+ xTDeuvAvCCJfXjH1hCx9jdWhmw==
+X-Google-Smtp-Source: APXvYqx8jZMG+o/ryqCcSbWtbD/Zxzh9yUy++b6b++28BbzW4GYCR/z53WHOE3pwgzCp9z/4l84VJA==
+X-Received: by 2002:adf:ce82:: with SMTP id r2mr2419082wrn.223.1561537628908; 
+ Wed, 26 Jun 2019 01:27:08 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id j32sm38163601wrj.43.2019.06.26.01.24.47
+ by smtp.gmail.com with ESMTPSA id h133sm1039910wme.28.2019.06.26.01.27.07
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 26 Jun 2019 01:24:48 -0700 (PDT)
-Subject: Re: [RFC/RFT 05/14] soc: amlogic: meson-clk-measure: protect measure
- with a mutex
+ Wed, 26 Jun 2019 01:27:08 -0700 (PDT)
+Subject: Re: [RFC/RFT 07/14] clk: meson: g12a: add notifiers to handle cpu
+ clock change
 To: Stephen Boyd <sboyd@kernel.org>, jbrunet@baylibre.com, khilman@baylibre.com
 References: <20190620150013.13462-1-narmstrong@baylibre.com>
- <20190620150013.13462-6-narmstrong@baylibre.com>
- <20190625202702.B9A9B208CB@mail.kernel.org>
+ <20190620150013.13462-8-narmstrong@baylibre.com>
+ <20190625203152.6060B208CB@mail.kernel.org>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -133,16 +133,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <2ceca0ca-8f8e-78a8-df39-67a763f28f30@baylibre.com>
-Date: Wed, 26 Jun 2019 10:24:47 +0200
+Message-ID: <0e9d3dbe-ec5d-c4dc-478a-7a21561b0910@baylibre.com>
+Date: Wed, 26 Jun 2019 10:27:07 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <20190625202702.B9A9B208CB@mail.kernel.org>
+In-Reply-To: <20190625203152.6060B208CB@mail.kernel.org>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190626_012450_483565_6107D880 
-X-CRM114-Status: GOOD (  12.73  )
+X-CRM114-CacheID: sfid-20190626_012710_756896_4EE6B4B7 
+X-CRM114-Status: GOOD (  18.82  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,51 +162,165 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 25/06/2019 22:27, Stephen Boyd wrote:
-> Quoting Neil Armstrong (2019-06-20 08:00:04)
->> In order to protect clock measuring when multiple process asks for
->> a mesure, protect the main measure function with mutexes.
+On 25/06/2019 22:31, Stephen Boyd wrote:
+> Quoting Neil Armstrong (2019-06-20 08:00:06)
+>> In order to implement clock switching for the CLKID_CPU_CLK and
+>> CLKID_CPUB_CLK, notifiers are added on specific points of the
+>> clock tree :
+>>
+>> cpu_clk / cpub_clk
+>> |   \- cpu_clk_dyn
+>> |      |  \- cpu_clk_premux0
+>> |      |        |- cpu_clk_postmux0
+>> |      |        |    |- cpu_clk_dyn0_div
+>> |      |        |    \- xtal/fclk_div2/fclk_div3
+>> |      |        \- xtal/fclk_div2/fclk_div3
+>> |      \- cpu_clk_premux1
+>> |            |- cpu_clk_postmux1
+>> |            |    |- cpu_clk_dyn1_div
+>> |            |    \- xtal/fclk_div2/fclk_div3
+>> |            \- xtal/fclk_div2/fclk_div3
+>> \ sys_pll / sys1_pll
+>>
+>> This for each cluster, a single one for G12A, two for G12B.
+>>
+>> Each cpu_clk_premux1 tree is marked as read-only and CLK_SET_RATE_NO_REPARENT,
+>> to be used as "parking" clock in a safe clock frequency.
+>>
+>> A notifier is added on each cpu_clk_premux0 to detech when CCF want to
+>> change the frequency of the cpu_clk_dyn tree.
+>> In this notifier, the cpu_clk_premux1 tree is configured to use the xtal
+>> clock and then the cpu_clk_dyn is switch to cpu_clk_premux1 while CCF
+>> updates the cpu_clk_premux0 tree.
+>>
+>> A notifier is added on each sys_pll/sys1_pll to detect when CCF wants to
+>> change the PLL clock source of the cpu_clk.
+>> In this notifier, the cpu_clk is switched to cpu_clk_dyn while CCF
+>> updates the sys_pll/sys1_pll frequency.
+>>
+>> A third small notifier is added on each cpu_clk / cpub_clk and cpu_clk_dyn,
+>> add a small delay at PRE_RATE_CHANGE/POST_RATE_CHANGE to let the other
+>> notofiers change propagate before changing the cpu_clk_premux0 and sys_pll
+>> clock trees.
+>>
+>> This notifier set permits switching the cpu_clk / cpub_clk without any
+>> glitches and using a safe parking clock while switching between sub-GHz
+>> clocks using the cpu_clk_dyn tree.
+>>
+>> This setup has been tested and validated on the Amlogic G12A and G12B
+>> SoCs running the arm64 cpuburn at [1] and cycling between all the possible
+>> cpufreq translations of each cluster and checking the final frequency using
+>> the clock-measurer, script at [2].
+>>
+>> [1] https://github.com/ssvb/cpuburn-arm/blob/master/cpuburn-a53.S
+>> [2] https://gist.github.com/superna9999/d4de964dbc0f84b7d527e1df2ddea25f
 >>
 >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  drivers/soc/amlogic/meson-clk-measure.c | 12 +++++++++++-
->>  1 file changed, 11 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/soc/amlogic/meson-clk-measure.c b/drivers/soc/amlogic/meson-clk-measure.c
->> index 19d4cbc93a17..c470e24f1dfa 100644
->> --- a/drivers/soc/amlogic/meson-clk-measure.c
->> +++ b/drivers/soc/amlogic/meson-clk-measure.c
->> @@ -11,6 +11,8 @@
->>  #include <linux/debugfs.h>
->>  #include <linux/regmap.h>
+> [...]
+>> @@ -418,6 +458,35 @@ static struct clk_regmap g12b_cpub_clk_premux0 = {
+>>         },
+>>  };
 >>  
->> +static DEFINE_MUTEX(measure_lock);
+>> +/* This divider uses bit 26 to take change in account */
+>> +static int g12b_cpub_clk_mux0_div_set_rate(struct clk_hw *hw, unsigned long rate,
+>> +                                         unsigned long parent_rate)
+>> +{
+>> +       struct clk_regmap *clk = to_clk_regmap(hw);
+>> +       struct clk_regmap_div_data *div = clk_get_regmap_div_data(clk);
+>> +       unsigned int val;
+>> +       int ret;
 >> +
->>  #define MSR_CLK_DUTY           0x0
->>  #define MSR_CLK_REG0           0x4
->>  #define MSR_CLK_REG1           0x8
->> @@ -360,6 +362,10 @@ static int meson_measure_id(struct meson_msr_id *clk_msr_id,
->>         unsigned int val;
->>         int ret;
->>  
->> +       ret = mutex_lock_interruptible(&measure_lock);
-> 
-> Why interruptible?
-
-
-I supposed _interruptible was needed since it's called from userspace via
-debugfs, locking indefinitely isn't wanted, no ? or maybe I missed something...
-
-Neil
-
-> 
->> +       if (ret)
+>> +       ret = divider_get_val(rate, parent_rate, div->table, div->width,
+>> +                             div->flags);
+>> +       if (ret < 0)
 >> +               return ret;
 >> +
->>         regmap_write(priv->regmap, MSR_CLK_REG0, 0);
->>  
->>         /* Set measurement duration */
+>> +       val = (unsigned int)ret << div->shift;
+>> +
+>> +       regmap_update_bits(clk->map, HHI_SYS_CPUB_CLK_CNTL,
+>> +                          SYS_CPU_DYN_ENABLE, SYS_CPU_DYN_ENABLE);
+>> +
+>> +       return regmap_update_bits(clk->map, div->offset,
+>> +                                 clk_div_mask(div->width) << div->shift | SYS_CPU_DYN_ENABLE, val);
+>> +};
+>> +
+>> +const struct clk_ops g12b_cpub_clk_mux0_div_ops = {
+> 
+> static?
 
+Ack
+
+> 
+>> +       .recalc_rate = clk_regmap_div_recalc_rate,
+>> +       .round_rate = clk_regmap_div_round_rate,
+>> +       .set_rate = g12b_cpub_clk_mux0_div_set_rate,
+>> +};
+>> +
+>>  /* Datasheet names this field as "mux0_divn_tcnt" */
+>>  static struct clk_regmap g12b_cpub_clk_mux0_div = {
+>>         .data = &(struct clk_regmap_div_data){
+> [...]
+>>  
+>> +static int g12a_cpu_clk_mux_notifier_cb(struct notifier_block *nb,
+>> +                                       unsigned long event, void *data)
+>> +{
+>> +       switch (event) {
+>> +       case POST_RATE_CHANGE:
+>> +       case PRE_RATE_CHANGE:
+>> +               /* Wait for clock propagation before/after changing the mux */
+>> +               udelay(100);
+>> +               return NOTIFY_OK;
+>> +
+>> +       default:
+>> +               return NOTIFY_DONE;
+>> +       }
+> 
+> Maybe convert this into a if statement and then have a default return
+> of NOTIFY_DONE otherwise?
+
+Would be similar, I'm not against it.
+
+> 
+>> +}
+>> +
+>> +struct notifier_block g12a_cpu_clk_mux_nb = {
+> 
+> static?
+
+Ack
+
+> 
+>> +       .notifier_call = g12a_cpu_clk_mux_notifier_cb,
+>> +};
+>> +
+>> +struct g12a_cpu_clk_postmux_nb_data {
+>> +       struct notifier_block nb;
+>> +       struct clk_hw *xtal;
+>> +       struct clk_hw *cpu_clk_dyn;
+>> +       struct clk_hw *cpu_clk_postmux0;
+>> +       struct clk_hw *cpu_clk_postmux1;
+>> +       struct clk_hw *cpu_clk_premux1;
+>> +};
+>> +
+>> +static int g12a_cpu_clk_postmux_notifier_cb(struct notifier_block *nb,
+>> +                                        unsigned long event, void *data)
+>> +{
+>> +       struct g12a_cpu_clk_postmux_nb_data *nb_data =
+>> +               container_of(nb, struct g12a_cpu_clk_postmux_nb_data, nb);
+>> +
+>> +       switch (event) {
+>> +       case PRE_RATE_CHANGE:
+>> +               /*
+>> +                * This notifier means cpu_clk_postmux0 clock will be changed
+>> +                * to feed cpu_clk, this the current path :
+> 
+> Maybe write "this is the current path"?
+> 
+
+Ack
+
+Thanks,
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
