@@ -2,146 +2,88 @@ Return-Path: <SRS0=vIah=UZ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+X-Spam-Status: No, score=-2.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 069C0C48BD6
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jun 2019 09:06:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 13605C48BD3
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jun 2019 09:06:46 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A6A3620644
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jun 2019 09:06:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E2F3320645
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jun 2019 09:06:45 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ccXcKxgj";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="kzRyVXO3"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A6A3620644
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZQZZigTU";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="EmhhuBkj"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E2F3320645
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=JxS7ciop+JoUe1mc5n768UBRA96iAfN31V4acOlgEYg=; b=ccXcKxgj0pP+Rdz6Sh2xiy56u6
-	Ma45wwE05+kELMIWJtKTR2xMz2iHTCDyxbdSboHp7+HGwZE3OUUuo/UdC2qdXqJql/SdRIyTb96hs
-	KFA0508apGOiPFsY/6IcZsx5Z1DcVopAp3aWnd35uOtGncjCZnZiKSRJPOVMKdv+/RO3NdAIfCFJD
-	ZhreANyM6pWWJoO1H3xmS2M+SV7E8Lnm/BOW5i8KY7MZLAATXNxOjRDlFRWKBig6Ydi0Jw0RanP9i
-	TwMVH/xlSSZSohIx49QcoA8itemjHkvQ6L1FPfUnkmmJD1bUSCWBhovymnJUB9As0ODlJVNvv2qHs
-	VVqFdpgA==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=OsywfDIXU51pJOJIM9Vt6p6+PTqkA2saRXxiXqwUVok=; b=ZQZZigTUxW/jXA
+	KtKLOHf3IO2MqyClh1V4Or3YtoQKQN1UTajGg6FYVZte/c5OJHBUZnIAj98fJbPO8aCxqgohaNacb
+	FSr3W2bVv5jgJ6HauGQpB+jd/gLK5LDzj+WCBNlPulmMmcw0zgWlhcQM1J8TVrCpO4iBe8TmKyAuT
+	/I0/N1AN9J8YNSIc+WFC/6xyEfp69qPHzv77kPPv6iUMycKy70R4w/5mrIh9ZtcElABg53NNj99kP
+	eLnjHrkTm3XGsUFTeg5yXijdh1JotrWMVZ2t3RiDzKZojnKwQimsebYsLvKcKkJ+ZjY+FZgylm9u/
+	Ql7oSwMR0d4OWL3nsw6Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hg3si-0002TS-KG; Wed, 26 Jun 2019 09:06:20 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1hg3t2-0002Y0-LB; Wed, 26 Jun 2019 09:06:40 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hg3sd-0002T4-RH
- for linux-amlogic@lists.infradead.org; Wed, 26 Jun 2019 09:06:17 +0000
-Received: by mail-wr1-x443.google.com with SMTP id c2so1768226wrm.8
- for <linux-amlogic@lists.infradead.org>; Wed, 26 Jun 2019 02:06:15 -0700 (PDT)
+ id 1hg3sz-0002WS-Qa
+ for linux-amlogic@lists.infradead.org; Wed, 26 Jun 2019 09:06:39 +0000
+Received: by mail-wr1-x441.google.com with SMTP id f15so1807409wrp.2
+ for <linux-amlogic@lists.infradead.org>; Wed, 26 Jun 2019 02:06:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=F0/plHWRpIjD5hmrxcN6GKwnEELaggCF4StxkAxpwd8=;
- b=kzRyVXO36D1JuIt7BUBRjYHvSM4GxdBFO3jmMhJ+PPMS60JsBkI8T05TcQSc5+AUhe
- r0iM9gsKUeb+toxZvO7JdPSMwasCNuMViit7OVd10kZ7iVYSLvU2/wGee8DoLA1kwWUL
- uq8nHRTaQVYKT5Y389a8pOMgzcIBBrukLX8cqooYL4sUfTotpVpSm78UAYPFuGnAl/lB
- KgdnP+XP9ho9S58gtuOm7Eu4KcKH8JvJvHuy2FxR28cKZWLiAnd3ytuGtW7O/053VkbU
- vOu2dhaiGFHLvVYdwhGyQEinUrV6SF6C4qE6LdeOnATm/5qIvkHYXrTwp2+x/N/HfiLO
- qi1w==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=mNkBOhUSKZktXVzPgYHzPfOcBUciHYL1qLyKm8m40Ho=;
+ b=EmhhuBkjS/9rAtIkcIwpIcgZ3Gwn0zrnRkXyLjCQGmjeXCOilfqZFNx1wo3/FJFa7U
+ 9Zf3mWYjuMWiSMztjZ+t0JkNLNA6+0NxTB0hHImzdVdROhyBF+N/VFwugbb1cfquvnDM
+ GigBE7k6TeDt+uMKPhQ6uMbUFN9qCJoBpsLPJXOVwMC1otSloUNC73MuEtir+kHO0GpJ
+ tf6H17PB/xAW7OUvxq1AdK5eoVwnr8vjho6yMVp+WQGfyPxn3AUJX6jitZCBLI+iwgR1
+ Yv64S3XIM0zji9dq5d9l+SNyhHmrsz6JnPZIiYZwTnGRwGDwbOdd2uQvWaS+1r9FPz7r
+ kYxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=F0/plHWRpIjD5hmrxcN6GKwnEELaggCF4StxkAxpwd8=;
- b=OFy27BluoKVe+F3swskOIF8yQTSFse+scZJIk4P3QhzLBcKBNxgOirXlhE6RZYS8Wq
- ThmuZcoZ7qAxgot/33YAdtsqcKPBhFWgFOYRwLbmu70uGSrIXclDVZXlkwGPK/O5AIgD
- 8lq0wQlkcrvrNhHpZchvFmfQysdeElDXCDDnwzLbzBEi+CzeY2NG44nRYskXQzgML6eX
- b/b28kfTt/+qFZ3UM7oSM2G5GXalq6s/76avgztre4UoXwdISY8xe6xu0KQZCaWCZm3H
- U2g46JLWktuoCkmXD+oXaNEaAFoPWMw9spnarPethF1bwIIUmV56jtn6chFRfeZ8h3N/
- X6UQ==
-X-Gm-Message-State: APjAAAUlFN29s2oZq3Ned4VLheaQJEn/SgyRR3VmkxMDp8FFPawJXhZ3
- rVDiTJIp1w9E6LNu8kieVTPbeTWFhFE=
-X-Google-Smtp-Source: APXvYqyQgSsiThi9rCdtXHpfxet3nWkouBo0DJRQJ1cITVbBvW0boVef7AKJFIkXAewPXhuigWR8OQ==
-X-Received: by 2002:a5d:6742:: with SMTP id l2mr2626441wrw.323.1561539974099; 
- Wed, 26 Jun 2019 02:06:14 -0700 (PDT)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id 67sm2045875wmd.38.2019.06.26.02.06.13
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 26 Jun 2019 02:06:13 -0700 (PDT)
-Subject: Re: [PATCH] pinctrl: meson: add missing tsin pinctrl for meson
- gxbb/gxl
-To: afl1 <afl2001@gmail.com>, linux-amlogic@lists.infradead.org
-References: <20190615075902.32341-1-afl2001@gmail.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=mNkBOhUSKZktXVzPgYHzPfOcBUciHYL1qLyKm8m40Ho=;
+ b=cdYQQtiyQlAbyuxP8/dA/Lj10EAA/ogPixgeOZNjFBSUXh9Iqe+LpE8iYiUKvD1+vo
+ tSiZh9fVx5ZvnQTm8KrM6h/YPc0kSYZksZCd/WrasVpcU+rbNgxxuTRdSvr6r1DXy1mW
+ PPmtnDqWZ/qujTsonwlIuqotOAaVZ+21Pz9gOhva9gQlrSwZ7Ez1qiMRzBQh58hhTHXF
+ 76ppyLDwSWnrTjq/bsRfFYHjReD9IBC7L/MEpI/s1oNBmu1O0QZot7w67AR7VC3fcqQ7
+ /qe0WG3JhnkGTkbxJOmMlwu8do164j7YP8TMDTF2XdosImml9yGP+DZcZoF4i3eVMFjR
+ O+Hg==
+X-Gm-Message-State: APjAAAVzQNmhbKonBlkoe59+emeoCKD6HzOSUvpna31B0JksRAt5uowG
+ /z0m2PC4YUie0YqjVTAFn/xo6g==
+X-Google-Smtp-Source: APXvYqwkO8aDGnvu8iP8rFMRwxiWuy/j1doyJakOZ/B3vub9BJrH3obe1f2ZF8drEhnPsKEo5ODJtQ==
+X-Received: by 2002:adf:afde:: with SMTP id y30mr2683421wrd.197.1561539996153; 
+ Wed, 26 Jun 2019 02:06:36 -0700 (PDT)
+Received: from bender.baylibre.local
+ (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id o6sm1925797wmc.46.2019.06.26.02.06.35
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+ Wed, 26 Jun 2019 02:06:35 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <b8e467d3-16a8-519d-440e-fbb316df48a6@baylibre.com>
-Date: Wed, 26 Jun 2019 11:06:12 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+To: jbrunet@baylibre.com,
+	khilman@baylibre.com
+Subject: [RFC/RFT v2 00/14] arm64: g12a: add support for DVFS
+Date: Wed, 26 Jun 2019 11:06:18 +0200
+Message-Id: <20190626090632.7540-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <20190615075902.32341-1-afl2001@gmail.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190626_020615_890478_B9527DC9 
-X-CRM114-Status: GOOD (  17.37  )
+X-CRM114-CacheID: sfid-20190626_020637_867050_26D1637F 
+X-CRM114-Status: GOOD (  11.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,170 +95,100 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
+ martin.blumenstingl@googlemail.com, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 15/06/2019 09:59, afl1 wrote:
-> This patch adds missing tsin pinctrl definitions
-> for meson gxbb and gxl/gxm.
-> 
-> Signed-off-by: afl1 <afl2001@gmail.com>
-> ---
->  drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 35 ++++++++++++++++++++++
->  drivers/pinctrl/meson/pinctrl-meson-gxl.c  | 27 +++++++++++++++++
->  2 files changed, 62 insertions(+)
-> 
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-> index 4edeb4cae72a..63a25b5bc4c0 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-> @@ -237,10 +237,24 @@ static const unsigned int hdmi_hpd_pins[]	= { GPIOH_0 };
->  static const unsigned int hdmi_sda_pins[]	= { GPIOH_1 };
->  static const unsigned int hdmi_scl_pins[]	= { GPIOH_2 };
->  
-> +static const unsigned int tsin_a_d_valid_pins[] = { GPIOY_0 };
-> +static const unsigned int tsin_a_sop_pins[]	= { GPIOY_1 };
-> +static const unsigned int tsin_a_clk_pins[]	= { GPIOY_2 };
-> +static const unsigned int tsin_a_d0_pins[]	= { GPIOY_3 };
-> +static const unsigned int tsin_a_dp_pins[]	= {
-> +	GPIOY_4, GPIOY_5, GPIOY_6, GPIOY_7, GPIOY_8, GPIOY_9, GPIOY_10
-> +};
-> +
-> +static const unsigned int tsin_a_fail_pins[]	= { GPIOY_11 };
->  static const unsigned int i2s_out_ch23_y_pins[]	= { GPIOY_8 };
->  static const unsigned int i2s_out_ch45_y_pins[]	= { GPIOY_9 };
->  static const unsigned int i2s_out_ch67_y_pins[]	= { GPIOY_10 };
->  
-> +static const unsigned int tsin_b_d_valid_pins[] = { GPIOX_6 };
-> +static const unsigned int tsin_b_sop_pins[]	= { GPIOX_7 };
-> +static const unsigned int tsin_b_clk_pins[]	= { GPIOX_8 };
-> +static const unsigned int tsin_b_d0_pins[]	= { GPIOX_9 };
-> +
->  static const unsigned int spdif_out_y_pins[]	= { GPIOY_12 };
->  
->  static const unsigned int gen_clk_out_pins[]	= { GPIOY_15 };
-> @@ -443,8 +457,18 @@ static struct meson_pmx_group meson_gxbb_periphs_groups[] = {
->  	GROUP(pwm_a_x,		3,	17),
->  	GROUP(pwm_e,		2,	30),
->  	GROUP(pwm_f_x,		3,	18),
-> +	GROUP(tsin_b_d_valid,	3,	9),
-> +	GROUP(tsin_b_sop,	3,	8),
-> +	GROUP(tsin_b_clk,	3,	10),
-> +	GROUP(tsin_b_d0,	3,	7),
->  
->  	/* Bank Y */
-> +	GROUP(tsin_a_fail,	3,	3),
-> +	GROUP(tsin_a_d_valid,	3,	2),
-> +	GROUP(tsin_a_sop,	3,	1),
-> +	GROUP(tsin_a_clk,	3,	0),
-> +	GROUP(tsin_a_d0,	3,	4),
-> +	GROUP(tsin_a_dp,	3,	5),
->  	GROUP(uart_cts_c,	1,	19),
->  	GROUP(uart_rts_c,	1,	18),
->  	GROUP(uart_tx_c,	1,	17),
-> @@ -607,6 +631,15 @@ static const char * const gpio_periphs_groups[] = {
->  	"GPIOX_20", "GPIOX_21", "GPIOX_22",
->  };
->  
-> +static const char * const tsin_a_groups[] = {
-> +	"tsin_a_clk", "tsin_a_sop", "tsin_a_d_valid", "tsin_a_d0",
-> +	"tsin_a_dp", "tsin_a_fail",
-> +};
-> +
-> +static const char * const tsin_b_groups[] = {
-> +	"tsin_b_clk", "tsin_b_sop", "tsin_b_d_valid", "tsin_b_d0",
-> +};
-> +
->  static const char * const emmc_groups[] = {
->  	"emmc_nand_d07", "emmc_clk", "emmc_cmd", "emmc_ds",
->  };
-> @@ -798,6 +831,8 @@ static struct meson_pmx_func meson_gxbb_periphs_functions[] = {
->  	FUNCTION(i2s_out),
->  	FUNCTION(spdif_out),
->  	FUNCTION(gen_clk_out),
-> +	FUNCTION(tsin_a),
-> +	FUNCTION(tsin_b),
->  };
->  
->  static struct meson_pmx_func meson_gxbb_aobus_functions[] = {
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-> index 0c0a5018102b..984d0e2086a5 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-> @@ -247,6 +247,17 @@ static const unsigned int tsin_a_dp_pins[] = {
->  	GPIODV_1, GPIODV_2, GPIODV_3, GPIODV_4, GPIODV_5, GPIODV_6, GPIODV_7,
->  };
->  
-> +static const unsigned int tsin_b_clk_pins[]	= { GPIOH_6 };
-> +static const unsigned int tsin_b_d0_pins[]	= { GPIOH_7 };
-> +static const unsigned int tsin_b_sop_pins[]	= { GPIOH_8 };
-> +static const unsigned int tsin_b_d_valid_pins[] = { GPIOH_9 };
-> +
-> +static const unsigned int tsin_b_fail_z4_pins[] = { GPIOZ_4 };
-> +static const unsigned int tsin_b_clk_z3_pins[]	= { GPIOZ_3 };
-> +static const unsigned int tsin_b_d0_z2_pins[]	= { GPIOZ_2 };
-> +static const unsigned int tsin_b_sop_z1_pins[]	= { GPIOZ_1 };
-> +static const unsigned int tsin_b_d_valid_z0_pins[] = { GPIOZ_0 };
-> +
->  static const struct pinctrl_pin_desc meson_gxl_aobus_pins[] = {
->  	MESON_PIN(GPIOAO_0),
->  	MESON_PIN(GPIOAO_1),
-> @@ -444,6 +455,11 @@ static struct meson_pmx_group meson_gxl_periphs_groups[] = {
->  	GROUP(eth_txd1,		4,	12),
->  	GROUP(eth_txd2,		4,	11),
->  	GROUP(eth_txd3,		4,	10),
-> +	GROUP(tsin_b_fail_z4,	3,	15),
-> +	GROUP(tsin_b_clk_z3,	3,	16),
-> +	GROUP(tsin_b_d0_z2,	3,	17),
-> +	GROUP(tsin_b_sop_z1,	3,	18),
-> +	GROUP(tsin_b_d_valid_z0, 3,	19),
->  	GROUP(pwm_c,		3,	20),
->  	GROUP(i2s_out_ch23_z,	3,	26),
->  	GROUP(i2s_out_ch45_z,	3,	25),
-> @@ -460,6 +476,10 @@ static struct meson_pmx_group meson_gxl_periphs_groups[] = {
->  	GROUP(i2s_out_lr_clk,	6,	24),
->  	GROUP(i2s_out_ch01,	6,	23),
->  	GROUP(spdif_out_h,	6,	28),
-> +	GROUP(tsin_b_d0,	6,	17),
-> +	GROUP(tsin_b_sop,	6,	18),
-> +	GROUP(tsin_b_d_valid,	6,	19),
-> +	GROUP(tsin_b_clk,	6,	20),
->  
->  	/* Bank DV */
->  	GROUP(uart_tx_b,	2,	16),
-> @@ -695,6 +715,12 @@ static const char * const tsin_a_groups[] = {
->  	"tsin_a_dp", "tsin_a_fail",
->  };
->  
-> +static const char * const tsin_b_groups[] = {
-> +	"tsin_b_clk", "tsin_b_sop", "tsin_b_d_valid", "tsin_b_d0",
-> +	"tsin_b_clk_z3", "tsin_b_sop_z1", "tsin_b_d_valid_z0", "tsin_b_d0_z2",
-> +	"tsin_b_fail_z4",
-> +};
-> +
->  static const char * const gpio_aobus_groups[] = {
->  	"GPIOAO_0", "GPIOAO_1", "GPIOAO_2", "GPIOAO_3", "GPIOAO_4",
->  	"GPIOAO_5", "GPIOAO_6", "GPIOAO_7", "GPIOAO_8", "GPIOAO_9",
-> @@ -770,6 +796,7 @@ static struct meson_pmx_func meson_gxl_periphs_functions[] = {
->  	FUNCTION(spdif_out),
->  	FUNCTION(eth_led),
->  	FUNCTION(tsin_a),
-> +	FUNCTION(tsin_b),
->  };
->  
->  static struct meson_pmx_func meson_gxl_aobus_functions[] = {
-> 
+The G12A/G12B Socs embeds a specific clock tree for each CPU cluster :
+cpu_clk / cpub_clk
+|   \- cpu_clk_dyn
+|      |  \- cpu_clk_premux0
+|      |        |- cpu_clk_postmux0
+|      |        |    |- cpu_clk_dyn0_div
+|      |        |    \- xtal/fclk_div2/fclk_div3
+|      |        \- xtal/fclk_div2/fclk_div3
+|      \- cpu_clk_premux1
+|            |- cpu_clk_postmux1
+|            |    |- cpu_clk_dyn1_div
+|            |    \- xtal/fclk_div2/fclk_div3
+|            \- xtal/fclk_div2/fclk_div3
+\ sys_pll / sys1_pll
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+This patchset adds notifiers on cpu_clk / cpub_clk, cpu_clk_dyn,
+cpu_clk_premux0 and sys_pll / sys1_pll to permit change frequency of
+the CPU clock in a safe way as recommended by the vendor Documentation
+and reference code.
 
-Please keep this in resends, and resend to linux-gpio@vger.kernel.org and other lists reported by get-maintainer.pl
+This patchset :
+- introduces needed core and meson clk changes
+- adds support for the G12B second cluster clock measurer ids
+- protects clock measurer from cooncurent measures
+- adds the clock notifiers
+- moves the G12A DT to a common g12a-common dtsi
+- adds the G12A and G12B OPPs
+- enables DVFS on all supported boards
 
-And in future resends, please add a number "PATCH v3" to identify them, and add a changelog
-under the --- line of the patch.
+Dependencies:
+- PWM AO input order fix at [1]
+- PWM enhancements from Martin at [2]
 
-Neil
+Changes since RFT/RFC v1 at [3]:
+- Added EXPORT_SYMBOL_GPL() to clk_hw_set_parent
+- Added missing static to g12b_cpub_clk_mux0_div_ops and g12a_cpu_clk_mux_nb
+- Simplified g12a_cpu_clk_mux_notifier_cb() without switch/case
+- Fixed typo in "this the current path" in g12a.c
+- Fixed G12B dtsi by adding back the sdio quirk
+- Fixed G12A dtsi unwanted sdio quirk removal
+- Fixed various checkpatch errors
+
+[1] https://patchwork.kernel.org/patch/11006835/
+[2] https://patchwork.kernel.org/patch/11006835/
+[3] https://patchwork.kernel.org/cover/11006929/
+
+Neil Armstrong (14):
+  pinctrl: meson-g12a: add pwm_a on GPIOE_2 pinmux
+  clk: core: introduce clk_hw_set_parent()
+  clk: meson: regmap: export regmap_div ops functions
+  clk: meson: eeclk: add setup callback
+  soc: amlogic: meson-clk-measure: protect measure with a mutex
+  soc: amlogic: meson-clk-measure: add G12B second cluster cpu clk
+  clk: meson: g12a: add notifiers to handle cpu clock change
+  clk: meson: g12a: expose CPUB clock ID for G12B
+  arm64: dts: move common G12A & G12B modes to meson-g12-common.dtsi
+  arm64: dts: meson-g12-common: add pwm_a on GPIOE_2 pinmux
+  arm64: dts: meson-g12a: add cpus OPP table
+  arm64: dts: meson-g12a: enable DVFS on G12A boards
+  arm64: dts: meson-g12b: add cpus OPP tables
+  arm64: dts: meson-g12b-odroid-n2: enable DVFS
+
+ .../boot/dts/amlogic/meson-g12-common.dtsi    | 2464 ++++++++++++++++
+ .../boot/dts/amlogic/meson-g12a-sei510.dts    |   55 +
+ .../boot/dts/amlogic/meson-g12a-u200.dts      |   55 +
+ .../boot/dts/amlogic/meson-g12a-x96-max.dts   |   52 +
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi   | 2502 +----------------
+ .../boot/dts/amlogic/meson-g12b-odroid-n2.dts |   96 +
+ arch/arm64/boot/dts/amlogic/meson-g12b.dtsi   |  145 +-
+ drivers/clk/clk.c                             |    6 +
+ drivers/clk/meson/clk-regmap.c                |   10 +-
+ drivers/clk/meson/clk-regmap.h                |    5 +
+ drivers/clk/meson/g12a.c                      |  500 +++-
+ drivers/clk/meson/meson-eeclk.c               |    6 +
+ drivers/clk/meson/meson-eeclk.h               |    1 +
+ drivers/pinctrl/meson/pinctrl-meson-g12a.c    |    9 +
+ drivers/soc/amlogic/meson-clk-measure.c       |   14 +-
+ include/dt-bindings/clock/g12a-clkc.h         |    1 +
+ include/linux/clk-provider.h                  |    1 +
+ 17 files changed, 3439 insertions(+), 2483 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+
+-- 
+2.21.0
+
 
 _______________________________________________
 linux-amlogic mailing list
