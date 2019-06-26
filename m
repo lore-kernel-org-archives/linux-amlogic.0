@@ -2,88 +2,91 @@ Return-Path: <SRS0=vIah=UZ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 13605C48BD3
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jun 2019 09:06:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5EB9DC48BD3
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jun 2019 09:07:55 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E2F3320645
-	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jun 2019 09:06:45 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 34D5D20645
+	for <linux-amlogic@archiver.kernel.org>; Wed, 26 Jun 2019 09:07:55 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZQZZigTU";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="EmhhuBkj"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E2F3320645
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TdFI7ig7";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="IZqNG4Ef"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 34D5D20645
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=OsywfDIXU51pJOJIM9Vt6p6+PTqkA2saRXxiXqwUVok=; b=ZQZZigTUxW/jXA
-	KtKLOHf3IO2MqyClh1V4Or3YtoQKQN1UTajGg6FYVZte/c5OJHBUZnIAj98fJbPO8aCxqgohaNacb
-	FSr3W2bVv5jgJ6HauGQpB+jd/gLK5LDzj+WCBNlPulmMmcw0zgWlhcQM1J8TVrCpO4iBe8TmKyAuT
-	/I0/N1AN9J8YNSIc+WFC/6xyEfp69qPHzv77kPPv6iUMycKy70R4w/5mrIh9ZtcElABg53NNj99kP
-	eLnjHrkTm3XGsUFTeg5yXijdh1JotrWMVZ2t3RiDzKZojnKwQimsebYsLvKcKkJ+ZjY+FZgylm9u/
-	Ql7oSwMR0d4OWL3nsw6Q==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=rZtWiav3ZiCt+BXP3kM3a0U9/XAfVowm0Cy3/rmqAoE=; b=TdFI7ig7QdmnuT
+	C8gj0cBgU65T6vA+JwsJ+3HF56iuy3rBJRI/pRiiRs599o8zpYq9YolyZrqLScPtBzfZ/ysm/eHt5
+	Duhfdu06k2r0j2f1ZTwdrizSyPZb8nV+oIt+vTTfwnGlBuI1ew0I3dzMlFtJCcBOKe2rirorIS+sF
+	qKje+UiK8ArLRxTwMooLii/WQZWP2h7nAR8dWROvaqHE3875rozdUi15Ub1wce9aivf6Y9k+mNA26
+	FrKLTkDjVrkoB9w3MVpwPPO0BqiTnj5PScjMvgzhaLj9yTfiugXaZEOE6YrzZwzJ/KFw7JlfPzwlr
+	no/ORDt7dhs/6CA3simw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hg3t2-0002Y0-LB; Wed, 26 Jun 2019 09:06:40 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1hg3u8-0003Gk-Sx; Wed, 26 Jun 2019 09:07:49 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hg3sz-0002WS-Qa
- for linux-amlogic@lists.infradead.org; Wed, 26 Jun 2019 09:06:39 +0000
-Received: by mail-wr1-x441.google.com with SMTP id f15so1807409wrp.2
- for <linux-amlogic@lists.infradead.org>; Wed, 26 Jun 2019 02:06:37 -0700 (PDT)
+ id 1hg3t1-0002Wx-1O
+ for linux-amlogic@lists.infradead.org; Wed, 26 Jun 2019 09:06:41 +0000
+Received: by mail-wr1-x443.google.com with SMTP id p13so1752675wru.10
+ for <linux-amlogic@lists.infradead.org>; Wed, 26 Jun 2019 02:06:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=mNkBOhUSKZktXVzPgYHzPfOcBUciHYL1qLyKm8m40Ho=;
- b=EmhhuBkjS/9rAtIkcIwpIcgZ3Gwn0zrnRkXyLjCQGmjeXCOilfqZFNx1wo3/FJFa7U
- 9Zf3mWYjuMWiSMztjZ+t0JkNLNA6+0NxTB0hHImzdVdROhyBF+N/VFwugbb1cfquvnDM
- GigBE7k6TeDt+uMKPhQ6uMbUFN9qCJoBpsLPJXOVwMC1otSloUNC73MuEtir+kHO0GpJ
- tf6H17PB/xAW7OUvxq1AdK5eoVwnr8vjho6yMVp+WQGfyPxn3AUJX6jitZCBLI+iwgR1
- Yv64S3XIM0zji9dq5d9l+SNyhHmrsz6JnPZIiYZwTnGRwGDwbOdd2uQvWaS+1r9FPz7r
- kYxQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=LYe7DDXQIL9cgrU/J6+VemHeiSBNByBQZKqrYUm/eeo=;
+ b=IZqNG4EfbttnhxMV2QVAFvrf6vu4GQ9PI6Nso+6ApbR26KHmMJbjaKClJPn6E8EwzJ
+ M4fiqHw1Kc8wiwFms+DATHH4T1c7EAfmdHOUTPBhj2rHWElIVkFxfquftNP5Nyms1LT0
+ EWDBVhaDfz0DV/O6jLwx8U0GE+3sDgHtyor0/ME4mLv8QB1t2ky7GYK+aqkrJLqFF4pW
+ RO+vFGcHywf+f/8/D20FUSQVt/4koC5zevXCTdGVlvsj/AGDz3q/VCY6OfcibA0kbKEA
+ zm59NkZUXbwHy3ni+n8VHieAyW4eC40UXpewg7qRbE710/pLNgOsVHZn8yZx8SyfNCjd
+ boJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=mNkBOhUSKZktXVzPgYHzPfOcBUciHYL1qLyKm8m40Ho=;
- b=cdYQQtiyQlAbyuxP8/dA/Lj10EAA/ogPixgeOZNjFBSUXh9Iqe+LpE8iYiUKvD1+vo
- tSiZh9fVx5ZvnQTm8KrM6h/YPc0kSYZksZCd/WrasVpcU+rbNgxxuTRdSvr6r1DXy1mW
- PPmtnDqWZ/qujTsonwlIuqotOAaVZ+21Pz9gOhva9gQlrSwZ7Ez1qiMRzBQh58hhTHXF
- 76ppyLDwSWnrTjq/bsRfFYHjReD9IBC7L/MEpI/s1oNBmu1O0QZot7w67AR7VC3fcqQ7
- /qe0WG3JhnkGTkbxJOmMlwu8do164j7YP8TMDTF2XdosImml9yGP+DZcZoF4i3eVMFjR
- O+Hg==
-X-Gm-Message-State: APjAAAVzQNmhbKonBlkoe59+emeoCKD6HzOSUvpna31B0JksRAt5uowG
- /z0m2PC4YUie0YqjVTAFn/xo6g==
-X-Google-Smtp-Source: APXvYqwkO8aDGnvu8iP8rFMRwxiWuy/j1doyJakOZ/B3vub9BJrH3obe1f2ZF8drEhnPsKEo5ODJtQ==
-X-Received: by 2002:adf:afde:: with SMTP id y30mr2683421wrd.197.1561539996153; 
- Wed, 26 Jun 2019 02:06:36 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=LYe7DDXQIL9cgrU/J6+VemHeiSBNByBQZKqrYUm/eeo=;
+ b=F9yaJWP7F6UMzJcGeSHKiWSz3/dIu/Ti/dHyQTfWl6tMxua2gcmuhiggbZSPdLzLbp
+ QhZfbS/KlGohCiSfzH19PgEms8/UP0T9AwvrKm6Gtx0Mc0/Plpei+p4qe9NgloUw+WVO
+ Pnp3UWovuzJ2CjKgitoIJAJe4KV5Mp6Z8v/9tnV3gve1PBgLrtwgYm9oVx1Lv7dFQzZ4
+ /PAyVKqNe1J7hwAIoUlgqWroqxJUcdXVwF9jqhjpZKraXxcNy1YyMk9wu0xEYc5k3X32
+ 0aMA1o+/6Y9GKqcRAffs8RveN1XPDNCqNdR/ZdEau/YxDOLDLP9LnQ9Bs+ULj6ZlnKFS
+ 4dQQ==
+X-Gm-Message-State: APjAAAU/PkZN0/RAkqfqFKV1Q1b8el8zPZwN+DJdiA9Vqf7fpcxAAPIc
+ KWnEdlrZan21Rf5SuzQvhzULAQ==
+X-Google-Smtp-Source: APXvYqyxjpfHTQzVG2c8KK9cmuSDK8HOXSqc8Faf7OuNvUlQtReJFxvDWffzUoHhiuLi3+ZLFL0ilg==
+X-Received: by 2002:adf:f04d:: with SMTP id t13mr2744391wro.36.1561539997693; 
+ Wed, 26 Jun 2019 02:06:37 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id o6sm1925797wmc.46.2019.06.26.02.06.35
+ by smtp.gmail.com with ESMTPSA id o6sm1925797wmc.46.2019.06.26.02.06.36
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Wed, 26 Jun 2019 02:06:35 -0700 (PDT)
+ Wed, 26 Jun 2019 02:06:36 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: jbrunet@baylibre.com,
 	khilman@baylibre.com
-Subject: [RFC/RFT v2 00/14] arm64: g12a: add support for DVFS
-Date: Wed, 26 Jun 2019 11:06:18 +0200
-Message-Id: <20190626090632.7540-1-narmstrong@baylibre.com>
+Subject: [RFC/RFT v2 01/14] pinctrl: meson-g12a: add pwm_a on GPIOE_2 pinmux
+Date: Wed, 26 Jun 2019 11:06:19 +0200
+Message-Id: <20190626090632.7540-2-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20190626090632.7540-1-narmstrong@baylibre.com>
+References: <20190626090632.7540-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190626_020637_867050_26D1637F 
-X-CRM114-Status: GOOD (  11.13  )
+X-CRM114-CacheID: sfid-20190626_020639_089507_2D80EE57 
+X-CRM114-Status: UNSURE (   9.22  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,88 +107,54 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The G12A/G12B Socs embeds a specific clock tree for each CPU cluster :
-cpu_clk / cpub_clk
-|   \- cpu_clk_dyn
-|      |  \- cpu_clk_premux0
-|      |        |- cpu_clk_postmux0
-|      |        |    |- cpu_clk_dyn0_div
-|      |        |    \- xtal/fclk_div2/fclk_div3
-|      |        \- xtal/fclk_div2/fclk_div3
-|      \- cpu_clk_premux1
-|            |- cpu_clk_postmux1
-|            |    |- cpu_clk_dyn1_div
-|            |    \- xtal/fclk_div2/fclk_div3
-|            \- xtal/fclk_div2/fclk_div3
-\ sys_pll / sys1_pll
+Add the missing pinmux for the pwm_a function on the GPIOE_2 pin.
 
-This patchset adds notifiers on cpu_clk / cpub_clk, cpu_clk_dyn,
-cpu_clk_premux0 and sys_pll / sys1_pll to permit change frequency of
-the CPU clock in a safe way as recommended by the vendor Documentation
-and reference code.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/pinctrl/meson/pinctrl-meson-g12a.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-This patchset :
-- introduces needed core and meson clk changes
-- adds support for the G12B second cluster clock measurer ids
-- protects clock measurer from cooncurent measures
-- adds the clock notifiers
-- moves the G12A DT to a common g12a-common dtsi
-- adds the G12A and G12B OPPs
-- enables DVFS on all supported boards
-
-Dependencies:
-- PWM AO input order fix at [1]
-- PWM enhancements from Martin at [2]
-
-Changes since RFT/RFC v1 at [3]:
-- Added EXPORT_SYMBOL_GPL() to clk_hw_set_parent
-- Added missing static to g12b_cpub_clk_mux0_div_ops and g12a_cpu_clk_mux_nb
-- Simplified g12a_cpu_clk_mux_notifier_cb() without switch/case
-- Fixed typo in "this the current path" in g12a.c
-- Fixed G12B dtsi by adding back the sdio quirk
-- Fixed G12A dtsi unwanted sdio quirk removal
-- Fixed various checkpatch errors
-
-[1] https://patchwork.kernel.org/patch/11006835/
-[2] https://patchwork.kernel.org/patch/11006835/
-[3] https://patchwork.kernel.org/cover/11006929/
-
-Neil Armstrong (14):
-  pinctrl: meson-g12a: add pwm_a on GPIOE_2 pinmux
-  clk: core: introduce clk_hw_set_parent()
-  clk: meson: regmap: export regmap_div ops functions
-  clk: meson: eeclk: add setup callback
-  soc: amlogic: meson-clk-measure: protect measure with a mutex
-  soc: amlogic: meson-clk-measure: add G12B second cluster cpu clk
-  clk: meson: g12a: add notifiers to handle cpu clock change
-  clk: meson: g12a: expose CPUB clock ID for G12B
-  arm64: dts: move common G12A & G12B modes to meson-g12-common.dtsi
-  arm64: dts: meson-g12-common: add pwm_a on GPIOE_2 pinmux
-  arm64: dts: meson-g12a: add cpus OPP table
-  arm64: dts: meson-g12a: enable DVFS on G12A boards
-  arm64: dts: meson-g12b: add cpus OPP tables
-  arm64: dts: meson-g12b-odroid-n2: enable DVFS
-
- .../boot/dts/amlogic/meson-g12-common.dtsi    | 2464 ++++++++++++++++
- .../boot/dts/amlogic/meson-g12a-sei510.dts    |   55 +
- .../boot/dts/amlogic/meson-g12a-u200.dts      |   55 +
- .../boot/dts/amlogic/meson-g12a-x96-max.dts   |   52 +
- arch/arm64/boot/dts/amlogic/meson-g12a.dtsi   | 2502 +----------------
- .../boot/dts/amlogic/meson-g12b-odroid-n2.dts |   96 +
- arch/arm64/boot/dts/amlogic/meson-g12b.dtsi   |  145 +-
- drivers/clk/clk.c                             |    6 +
- drivers/clk/meson/clk-regmap.c                |   10 +-
- drivers/clk/meson/clk-regmap.h                |    5 +
- drivers/clk/meson/g12a.c                      |  500 +++-
- drivers/clk/meson/meson-eeclk.c               |    6 +
- drivers/clk/meson/meson-eeclk.h               |    1 +
- drivers/pinctrl/meson/pinctrl-meson-g12a.c    |    9 +
- drivers/soc/amlogic/meson-clk-measure.c       |   14 +-
- include/dt-bindings/clock/g12a-clkc.h         |    1 +
- include/linux/clk-provider.h                  |    1 +
- 17 files changed, 3439 insertions(+), 2483 deletions(-)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-
+diff --git a/drivers/pinctrl/meson/pinctrl-meson-g12a.c b/drivers/pinctrl/meson/pinctrl-meson-g12a.c
+index 3475cd7bd2af..582665fd362a 100644
+--- a/drivers/pinctrl/meson/pinctrl-meson-g12a.c
++++ b/drivers/pinctrl/meson/pinctrl-meson-g12a.c
+@@ -801,6 +801,9 @@ static const unsigned int remote_ao_input_pins[]	= { GPIOAO_5 };
+ /* ir_out */
+ static const unsigned int remote_ao_out_pins[]		= { GPIOAO_4 };
+ 
++/* pwm_a_e */
++static const unsigned int pwm_a_e_pins[]		= { GPIOE_2 };
++
+ /* pwm_ao_a */
+ static const unsigned int pwm_ao_a_pins[]		= { GPIOAO_11 };
+ static const unsigned int pwm_ao_a_hiz_pins[]		= { GPIOAO_11 };
+@@ -888,6 +891,7 @@ static struct meson_pmx_group meson_g12a_aobus_groups[] = {
+ 	GROUP(i2c_ao_slave_sda,		3),
+ 	GROUP(remote_ao_input,		1),
+ 	GROUP(remote_ao_out,		1),
++	GROUP(pwm_a_e,			3),
+ 	GROUP(pwm_ao_a,			3),
+ 	GROUP(pwm_ao_a_hiz,		2),
+ 	GROUP(pwm_ao_b,			3),
+@@ -1192,6 +1196,10 @@ static const char * const remote_ao_out_groups[] = {
+ 	"remote_ao_out",
+ };
+ 
++static const char * const pwm_a_e_groups[] = {
++	"pwm_a_e",
++};
++
+ static const char * const pwm_ao_a_groups[] = {
+ 	"pwm_ao_a", "pwm_ao_a_hiz",
+ };
+@@ -1290,6 +1298,7 @@ static struct meson_pmx_func meson_g12a_aobus_functions[] = {
+ 	FUNCTION(i2c_ao_slave),
+ 	FUNCTION(remote_ao_input),
+ 	FUNCTION(remote_ao_out),
++	FUNCTION(pwm_a_e),
+ 	FUNCTION(pwm_ao_a),
+ 	FUNCTION(pwm_ao_b),
+ 	FUNCTION(pwm_ao_c),
 -- 
 2.21.0
 
