@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8A5D8C4321A
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Jun 2019 16:56:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CD3E7C5B57B
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Jun 2019 16:56:45 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5F0E1208C4
-	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Jun 2019 16:56:46 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A699420645
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Jun 2019 16:56:45 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="m6el6mJ0";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="bgpibUjt"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5F0E1208C4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Vv75sc6g";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="ick8YSwu"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A699420645
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,48 +26,48 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:
 	In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	References:List-Owner; bh=GYSwfhPvXMcn39OQy6ZIkr1d/bgAISlbkmjENDCCKpk=; b=m6e
-	l6mJ06tJ1HllEGvJ0dJPFPOCvwMqeY6cqi4fs8zUp2J4Kwslz3uXibKyaKJjkkvY+YTGWNhsvU8zr
-	lRyebO1iv3KKFyBujClCb9sGrHuSGof/mCwFGXs99SxYCKhfawijHXOUgVPcIA9G71Y6mqKF22s4K
-	fUzjfALOfuPO57lvkLTqeHvDBzo+Vo1vHi45prL8OD+d6phHexWZNwewgG1NuOB1WKe2X1chnPkf8
-	4PKhyLZcCpd+KnsBcO6uLmLgbWWr5OBjiKY5C5ZHMMAebxECd0DI3+s11cvTc/dU2VZtnv1Cdn834
-	jtKJDlVORUKOvCUDspFBH6u1crjO+/A==;
+	References:List-Owner; bh=Ckt4MRbmcrDMWEKNyo5jHcz1zPSYkLISAYiiNzkYhBY=; b=Vv7
+	5sc6gAT9QeZ1qVqb75cCCUGo6cpu2LTuoQCapryOYTwTiDYo/eOGlUMJd2b0dP7aj5K9mCqF0UmCj
+	mNEJA+kp7fhoTuDxm3Z/FOxwzT+C7vLlEasyFY+O+0StqeW6vbYDWwpS00fqNY3NfC68opKHkdVGo
+	/tCR5u1zHwmpi02BhGSk/tplzZh4sOsmJmndlt9BKCxjAgX9atyfm+pBLkb1GWFLIGUx6aWE+9QAG
+	z6I2XphB34yAB3w+k+KyDuOPCvm3emVMiuN+mOtXrlsjfexX64uUOumFm9DfM35d1mpgYfyJozvqW
+	DQ8B131KI5jvubz2o3Qpd4jBEp9uxag==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hguAw-00044H-C4; Fri, 28 Jun 2019 16:56:38 +0000
+	id 1hguAx-00046P-NW; Fri, 28 Jun 2019 16:56:39 +0000
 Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hguAq-00041e-89
- for linux-amlogic@lists.infradead.org; Fri, 28 Jun 2019 16:56:35 +0000
+ id 1hguAq-00041f-9k
+ for linux-amlogic@lists.infradead.org; Fri, 28 Jun 2019 16:56:38 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
  Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
  Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
  List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
- List-Archive; bh=ecIA+WKfp5Dim18TsWkMPLdTo8UyAuEPpYiOnFVbOeE=; b=bgpibUjtu/Wu
- dqFPepZZSSjLL8ajojpvvnFlDJik2XlCFpoq3h4EesaqHWlKbN8/neuLZQ5Iu0gF4jVT/N1bD2zeV
- aZZ0OKrngbxsDJwahuyjET6lwbhNlKeKlZ9ZCceKovxUZdEiKmzfBl5qxlJ3ejE75xniMGGy+MNa7
- inXsg=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net
- ([82.37.168.47] helo=finisterre.sirena.org.uk)
+ List-Archive; bh=9kUAjdy2iW6Uc+2HQD3Freg59GbE2w/VGxT6YCQv6To=; b=ick8YSwuhryY
+ 5UBEv9SG1hZuPf6yMSWnq94/a1Wi1LmaElRJNXqPrvTro+V9oaaky59JgmSTAk6XjFjsYK4DEKvDM
+ mI+cAGLv8FVuhHmh/KdEa2lk8upP6cxQ4G0wsP2wgqB/P5Yikb7RUJ7/fQ5SavHin8uS+Dl29aVzb
+ cyoK8=;
+Received: from [2001:470:1f1d:6b5:7e7a:91ff:fede:4a45]
+ (helo=finisterre.sirena.org.uk)
  by heliosphere.sirena.org.uk with esmtpsa
  (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.89)
  (envelope-from <broonie@sirena.org.uk>)
- id 1hguAm-0007Bd-P3; Fri, 28 Jun 2019 16:56:28 +0000
+ id 1hguAm-0007BX-NQ; Fri, 28 Jun 2019 16:56:28 +0000
 Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
- id 3FB8B44004C; Fri, 28 Jun 2019 17:56:28 +0100 (BST)
+ id 26843440046; Fri, 28 Jun 2019 17:56:28 +0100 (BST)
 From: Mark Brown <broonie@kernel.org>
 To: Jerome Brunet <jbrunet@baylibre.com>
-Subject: Applied "ASoC: soc-core: defer card registration if codec component
- is missing" to the asoc tree
-In-Reply-To: <20190627121350.21027-2-jbrunet@baylibre.com>
+Subject: Applied "ASoC: soc-core: support dai_link with platforms_num != 1" to
+ the asoc tree
+In-Reply-To: <20190627121350.21027-3-jbrunet@baylibre.com>
 X-Patchwork-Hint: ignore
-Message-Id: <20190628165628.3FB8B44004C@finisterre.sirena.org.uk>
+Message-Id: <20190628165628.26843440046@finisterre.sirena.org.uk>
 Date: Fri, 28 Jun 2019 17:56:28 +0100 (BST)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190628_095632_444857_A2CB3500 
-X-CRM114-Status: GOOD (  12.16  )
+X-CRM114-CacheID: sfid-20190628_095632_487704_628D2851 
+X-CRM114-Status: GOOD (  18.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,6 +80,7 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
  Kevin Hilman <khilman@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>,
  linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
  linux-amlogic@lists.infradead.org
@@ -91,7 +92,7 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 The patch
 
-   ASoC: soc-core: defer card registration if codec component is missing
+   ASoC: soc-core: support dai_link with platforms_num != 1
 
 has been applied to the asoc tree at
 
@@ -116,46 +117,163 @@ to this mail.
 Thanks,
 Mark
 
-From af18b13fedae4637b439d1265038b30929ca5a4c Mon Sep 17 00:00:00 2001
+From 34614739988ad60c3493da66dd856002ee93edf9 Mon Sep 17 00:00:00 2001
 From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Thu, 27 Jun 2019 14:13:49 +0200
-Subject: [PATCH] ASoC: soc-core: defer card registration if codec component is
- missing
+Date: Thu, 27 Jun 2019 14:13:50 +0200
+Subject: [PATCH] ASoC: soc-core: support dai_link with platforms_num != 1
 
-Like cpus and platforms, defer sound card initialization if the codec
-component is missing when initializing the dai_link
+Add support platforms_num != 1 in dai_link. Initially, the main purpose of
+this change was to make the platform optional in the dai_link, instead of
+inserting the dummy platform driver.
 
+This particular case had just been solved by Kuninori Morimoto with
+commit 1d7689892878 ("ASoC: soc-core: allow no Platform on dai_link").
+
+However, this change may still be useful for those who need multiple
+platform components on a single dai_link (it solves one of the FIXME
+note in soc-core)
+
+Acked-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- sound/soc/soc-core.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ include/sound/soc.h  |  6 +++++
+ sound/soc/soc-core.c | 59 ++++++++++++++++++--------------------------
+ 2 files changed, 30 insertions(+), 35 deletions(-)
 
+diff --git a/include/sound/soc.h b/include/sound/soc.h
+index 64405cdab8bb..4e8071269639 100644
+--- a/include/sound/soc.h
++++ b/include/sound/soc.h
+@@ -997,6 +997,12 @@ struct snd_soc_dai_link {
+ 	     ((i) < link->num_codecs) && ((codec) = &link->codecs[i]);	\
+ 	     (i)++)
+ 
++#define for_each_link_platforms(link, i, platform)			\
++	for ((i) = 0;							\
++	     ((i) < link->num_platforms) &&				\
++	     ((platform) = &link->platforms[i]);			\
++	     (i)++)
++
+ /*
+  * Sample 1 : Single CPU/Codec/Platform
+  *
 diff --git a/sound/soc/soc-core.c b/sound/soc/soc-core.c
-index 05cd710273b6..b5f3c09311c3 100644
+index b5f3c09311c3..b9061cd8d787 100644
 --- a/sound/soc/soc-core.c
 +++ b/sound/soc/soc-core.c
-@@ -1071,12 +1071,20 @@ static int soc_init_dai_link(struct snd_soc_card *card,
- 				link->name);
- 			return -EINVAL;
+@@ -896,7 +896,7 @@ static int soc_bind_dai_link(struct snd_soc_card *card,
+ 	struct snd_soc_dai_link *dai_link)
+ {
+ 	struct snd_soc_pcm_runtime *rtd;
+-	struct snd_soc_dai_link_component *codecs;
++	struct snd_soc_dai_link_component *codec, *platform;
+ 	struct snd_soc_component *component;
+ 	int i;
+ 
+@@ -926,13 +926,14 @@ static int soc_bind_dai_link(struct snd_soc_card *card,
+ 
+ 	/* Find CODEC from registered CODECs */
+ 	rtd->num_codecs = dai_link->num_codecs;
+-	for_each_link_codecs(dai_link, i, codecs) {
+-		rtd->codec_dais[i] = snd_soc_find_dai(codecs);
++	for_each_link_codecs(dai_link, i, codec) {
++		rtd->codec_dais[i] = snd_soc_find_dai(codec);
+ 		if (!rtd->codec_dais[i]) {
+ 			dev_info(card->dev, "ASoC: CODEC DAI %s not registered\n",
+-				 codecs->dai_name);
++				 codec->dai_name);
+ 			goto _err_defer;
  		}
 +
- 		/* Codec DAI name must be specified */
- 		if (!codec->dai_name) {
- 			dev_err(card->dev, "ASoC: codec_dai_name not set for %s\n",
- 				link->name);
- 			return -EINVAL;
- 		}
-+
-+		/*
-+		 * Defer card registration if codec component is not added to
-+		 * component list.
-+		 */
-+		if (!soc_find_component(codec))
-+			return -EPROBE_DEFER;
+ 		snd_soc_rtdcom_add(rtd, rtd->codec_dais[i]->component);
  	}
  
- 	/*
+@@ -940,12 +941,13 @@ static int soc_bind_dai_link(struct snd_soc_card *card,
+ 	rtd->codec_dai = rtd->codec_dais[0];
+ 
+ 	/* Find PLATFORM from registered PLATFORMs */
+-	for_each_component(component) {
+-		if (!snd_soc_is_matching_component(dai_link->platforms,
+-						   component))
+-			continue;
++	for_each_link_platforms(dai_link, i, platform) {
++		for_each_component(component) {
++			if (!snd_soc_is_matching_component(platform, component))
++				continue;
+ 
+-		snd_soc_rtdcom_add(rtd, component);
++			snd_soc_rtdcom_add(rtd, component);
++		}
+ 	}
+ 
+ 	soc_add_pcm_runtime(card, rtd);
+@@ -1058,15 +1060,14 @@ static int soc_init_dai_link(struct snd_soc_card *card,
+ 			     struct snd_soc_dai_link *link)
+ {
+ 	int i;
+-	struct snd_soc_dai_link_component *codec;
++	struct snd_soc_dai_link_component *codec, *platform;
+ 
+ 	for_each_link_codecs(link, i, codec) {
+ 		/*
+ 		 * Codec must be specified by 1 of name or OF node,
+ 		 * not both or neither.
+ 		 */
+-		if (!!codec->name ==
+-		    !!codec->of_node) {
++		if (!!codec->name == !!codec->of_node) {
+ 			dev_err(card->dev, "ASoC: Neither/both codec name/of_node are set for %s\n",
+ 				link->name);
+ 			return -EINVAL;
+@@ -1087,36 +1088,24 @@ static int soc_init_dai_link(struct snd_soc_card *card,
+ 			return -EPROBE_DEFER;
+ 	}
+ 
+-	/*
+-	 * Platform may be specified by either name or OF node,
+-	 * or no Platform.
+-	 *
+-	 * FIXME
+-	 *
+-	 * We need multi-platform support
+-	 */
+-	if (link->num_platforms > 0) {
+-
+-		if (link->num_platforms > 1) {
+-			dev_err(card->dev,
+-				"ASoC: multi platform is not yet supported %s\n",
+-				link->name);
+-			return -EINVAL;
+-		}
+-
+-		if (link->platforms->name && link->platforms->of_node) {
++	for_each_link_platforms(link, i, platform) {
++		/*
++		 * Platform may be specified by either name or OF node, but it
++		 * can be left unspecified, then no components will be inserted
++		 * in the rtdcom list
++		 */
++		if (!!platform->name == !!platform->of_node) {
+ 			dev_err(card->dev,
+-				"ASoC: Both platform name/of_node are set for %s\n",
++				"ASoC: Neither/both platform name/of_node are set for %s\n",
+ 				link->name);
+ 			return -EINVAL;
+ 		}
+ 
+ 		/*
+-		 * Defer card registartion if platform dai component is not
+-		 * added to component list.
++		 * Defer card registration if platform component is not added to
++		 * component list.
+ 		 */
+-		if ((link->platforms->of_node || link->platforms->name) &&
+-		    !soc_find_component(link->platforms))
++		if (!soc_find_component(platform))
+ 			return -EPROBE_DEFER;
+ 	}
+ 
 -- 
 2.20.1
 
