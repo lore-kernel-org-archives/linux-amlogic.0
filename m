@@ -1,93 +1,92 @@
-Return-Path: <SRS0=4hYR=U2=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=LO2h=U3=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4638EC48BD7
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Jun 2019 12:14:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 07BC1C4321A
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Jun 2019 08:17:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 19A072085A
-	for <linux-amlogic@archiver.kernel.org>; Thu, 27 Jun 2019 12:14:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CFE052064A
+	for <linux-amlogic@archiver.kernel.org>; Fri, 28 Jun 2019 08:17:24 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="o4K5nCaB";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="UhohxZSB"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 19A072085A
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="c/skM/7t";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="pqUrZZrH"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CFE052064A
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TVoBjpsmCaIeXPTDN/g6Rr5g0E87RdD601USM7yjKtc=; b=o4K5nCaBb6d1zs
-	0W1MFx8tloYVRKWdX5kLekM849/emACk8MRTZbDma+pam5cwT26tRmsInaEFgz7hxqGwgp7KPM+K1
-	Psb4FqHJp8eEF8g4Gz2r/zL2fWWUWscnVEPKwJc8d0Y86Sbgf49s3ZwWlxxzuMOUf/QzGPC7cTS4P
-	XXjwVgZn02LCb8yCozvFGZuEhW/QRH7h9rGqIweA1t7BlFf73iVyQnhlKyZhdB4VXUagXgDfbO1Ed
-	JUN9uhSwxwcNxcPjUmYG1hr6/bulFxmHSYfZw+e55O+J3itKcggqI+xz5nVBSDdCl4AL6ivn9ZPMg
-	GTiQ4WqSd6gp7iDjb7dA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=M7aei2Yn4/+UwKTfOHEWZexvlTgbPDLry/+qqbiHcK4=; b=c/skM/7t1KdoJA
+	gG9gU17QwCKZmEhZomrktVyX9o1UirUksfSmY7Bk3S9ts9JVxqlhaTM7G2SzXC2EqulJZuopIZK6/
+	u4/9jwVr9Ai9wqKu4gBBOYc4SS+w0L2LnarlndaCzqWJwfudSbGbfveD07FJhkxwfK4Sz7cAKMHY0
+	zns1AqePTWcuR8Qem++izNYFRJfZ+wz2iZ+rPlAi5bNECS8+vNYvShxCkfaJiynXsJTyBPeWTuYIB
+	SDYi1vpGI4jShHXl0w+39e8JKzg4WD2/RkGmLqfrgraFZl3zb1KU2Aw1slftvbe49g03btrqh5GAK
+	ctw5EgyLWDkzqKsFT1nw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hgTI1-0004EL-16; Thu, 27 Jun 2019 12:14:09 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1hgm4L-0001y5-52; Fri, 28 Jun 2019 08:17:17 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hgTHu-0004A5-NY
- for linux-amlogic@lists.infradead.org; Thu, 27 Jun 2019 12:14:04 +0000
-Received: by mail-wm1-x342.google.com with SMTP id x15so5505263wmj.3
- for <linux-amlogic@lists.infradead.org>; Thu, 27 Jun 2019 05:14:02 -0700 (PDT)
+ id 1hgm4I-0001xZ-CB
+ for linux-amlogic@lists.infradead.org; Fri, 28 Jun 2019 08:17:16 +0000
+Received: by mail-wr1-x444.google.com with SMTP id p13so5261653wru.10
+ for <linux-amlogic@lists.infradead.org>; Fri, 28 Jun 2019 01:17:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=6PqH7FtXAyTVmgRsql/9Vt6uYwCKZA1EzRvgR9PRCkQ=;
- b=UhohxZSBhwVGzRN5sjpR2ypPIONf+8GU9/388Qyunz9WdEExkKcDyUXrjsD2j/7QLk
- i6uIVB+v9aetT6bkneXelTtWodDRCTjCeUFfPeMRtuxXN0X6wM3dXiS9WXaxkKt7sJXF
- yptlETEn8CDMz08vjnx/gIikHwQ/DNYwXqOyLY9z3xZHZcuos4UlnodAvrgpao0oV9iB
- 11L5dPCvpCGPyTj3gewwdoPHN+z6jUMNGq5ADkCmSsGo3u6gIu7ALtf/wqb2HPcz9Gdm
- KyuUhMBX+EO/uldm6thj+CLA5sHKQrjNg0ucRhQVprBCZRsTA1WIuaRZRYrdeNMlmJzs
- z6FA==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=0iX4GoXUMjYo0yWAqnak7nWNu9SahWjJ+qIlyX2DjnA=;
+ b=pqUrZZrHnpMwYQiyu/1jCW1Vn1dbIBUApoVZMhyhBwvnhvhfumKMpGn/HD06hkyLKV
+ mAr70tgH1UWNF40M5i4Iu7TZyBCOF9E4DVrgXNhfgFoe68UERxt7W4BtnpD/aXQbHgrr
+ KSKRFDsze0oQlGIrrEesEJEXxvjGoX7ByoMNidbjknRj4Bylt+bqRjjgIIVO6eX4pKnN
+ 1AmfDbD/NeC/4Z9WHyrLlNhDEE1EW62NsHUnaW1L+cOpLHwoL1tVmmD214BJEgmzEGJp
+ UBCPbzQkK8BSlSG9gz7fGNCBlajjvLjh/2C21gkCh6AjXCuIST7i+hrq6mn684QyGZ60
+ KhUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=6PqH7FtXAyTVmgRsql/9Vt6uYwCKZA1EzRvgR9PRCkQ=;
- b=j06eWARsM9Qcmx+fwuXzLzLLiCxoYeutLu3i9gtPQMocRsZYr+/UD6ceE6MyyfIpdU
- O6Ypd3zwXrrQJwKaZ1Uj1QeB9t6qhQN8bmG3c9+8zu75cP7aTI6gqKyvE6WMzpSL3207
- CCyYFxwh8aX7bhg0JL1WACpLeIxuwek1dktX8tTCEC69IdSE6QNATrG7Rp20TnKSrPIR
- BBCvXkPb5buJrp3erBW5jSnVN7jowvfeJd7Qs+Dywr1/v9Q8WfJmmp4jRnysnfyv2eix
- FIYlQ5ptWyluQImH9QdEt3R28EQc4daLeotlH1H+0dcl7dAu5mlqHNnDnKvq23E1XB8/
- AkgA==
-X-Gm-Message-State: APjAAAUgvgLvVdgM+JUSyzDscXXcX/RNYgmGBaAlCnswHafN9CTDbyES
- S2cLJFIegJGxYRM/+Og9T6mPWg==
-X-Google-Smtp-Source: APXvYqy6mtChxwDtyR5Jh1xEngeE3SkTPccDJu6eNMVT6HXO76ZboMJZAJ6y2aPsXhzlNUEe4WNiNg==
-X-Received: by 2002:a7b:c450:: with SMTP id l16mr3239638wmi.0.1561637641154;
- Thu, 27 Jun 2019 05:14:01 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=0iX4GoXUMjYo0yWAqnak7nWNu9SahWjJ+qIlyX2DjnA=;
+ b=OaG0XrN5Z7QUl7rV3WsiY2IEclKJVjM8fWUF1sAkSCYSdmK4YKFu8a8mH8/uGjYi67
+ Kfvg71kegnq2TATRwZDqFQ8z+64njL6EpJvXPPS60fQgipJATreA5zW4S9DCWLwq+MyQ
+ M2N9+/F+dKy2wbLg2thoxJgWLHwpxmeO4ZOYS1mtKru4zxy1U6ELh9gPm+DtaK1883RL
+ G9h5c3wns3ySNHQ4LPy9KftWuw5Xe6kwdbHEpMej/OOyTTsQ8CBSY/ycv5g4rNhIOds2
+ hf1DLhPmk7h+KHW5gX0gqchhN+oO0+UbIGWGkAvynPpKBBBHOoSwAkZROdTkCa2+anDg
+ cdaA==
+X-Gm-Message-State: APjAAAXGIFCQutT6YJS3Ef9Fe5WxjlzzmcNJVdIbMBtBzBN47Aip2Vtc
+ Mp5fFz+us8yGrgHOvr2SjXESc9gzQHdJEQ==
+X-Google-Smtp-Source: APXvYqw+rkcyh3PTU9URJjuIKiu4kZ97NgtKOX3PAukWMiU12hf7kxkJIrnT5wyWxV6LyDzzRWcw8A==
+X-Received: by 2002:a05:6000:124a:: with SMTP id
+ j10mr6749454wrx.191.1561709832291; 
+ Fri, 28 Jun 2019 01:17:12 -0700 (PDT)
 Received: from starbuck.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id i11sm6160594wmi.33.2019.06.27.05.14.00
+ by smtp.googlemail.com with ESMTPSA id r5sm2819216wrg.10.2019.06.28.01.17.11
  (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Thu, 27 Jun 2019 05:14:00 -0700 (PDT)
+ Fri, 28 Jun 2019 01:17:11 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
  Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH v2 2/2] ASoC: soc-core: support dai_link with platforms_num !=
- 1
-Date: Thu, 27 Jun 2019 14:13:50 +0200
-Message-Id: <20190627121350.21027-3-jbrunet@baylibre.com>
+Subject: [PATCH] ASoC: meson: axg-card: remove useless check on codec
+Date: Fri, 28 Jun 2019 10:17:08 +0200
+Message-Id: <20190628081708.22039-1-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190627121350.21027-1-jbrunet@baylibre.com>
-References: <20190627121350.21027-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190627_051402_872979_2B0C7C46 
-X-CRM114-Status: GOOD (  15.41  )
+X-CRM114-CacheID: sfid-20190628_011714_478632_1167C2A2 
+X-CRM114-Status: UNSURE (   9.71  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,163 +99,34 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
  linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
+ Dan Carpenter <dan.carpenter@oracle.com>, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add support platforms_num != 1 in dai_link. Initially, the main purpose of
-this change was to make the platform optional in the dai_link, instead of
-inserting the dummy platform driver.
+While checking cpus before dereferencing the pointer is required, it is
+not necessary for codecs. 'codec' can't possibly be NULL in the loop
 
-This particular case had just been solved by Kuninori Morimoto with
-commit 1d7689892878 ("ASoC: soc-core: allow no Platform on dai_link").
-
-However, this change may still be useful for those who need multiple
-platform components on a single dai_link (it solves one of the FIXME
-note in soc-core)
-
-Acked-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- include/sound/soc.h  |  6 +++++
- sound/soc/soc-core.c | 59 ++++++++++++++++++--------------------------
- 2 files changed, 30 insertions(+), 35 deletions(-)
+ sound/soc/meson/axg-card.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/include/sound/soc.h b/include/sound/soc.h
-index 64405cdab8bb..4e8071269639 100644
---- a/include/sound/soc.h
-+++ b/include/sound/soc.h
-@@ -997,6 +997,12 @@ struct snd_soc_dai_link {
- 	     ((i) < link->num_codecs) && ((codec) = &link->codecs[i]);	\
- 	     (i)++)
- 
-+#define for_each_link_platforms(link, i, platform)			\
-+	for ((i) = 0;							\
-+	     ((i) < link->num_platforms) &&				\
-+	     ((platform) = &link->platforms[i]);			\
-+	     (i)++)
-+
- /*
-  * Sample 1 : Single CPU/Codec/Platform
-  *
-diff --git a/sound/soc/soc-core.c b/sound/soc/soc-core.c
-index 0ec1d7a59b24..c17d2f73fa71 100644
---- a/sound/soc/soc-core.c
-+++ b/sound/soc/soc-core.c
-@@ -887,7 +887,7 @@ static int soc_bind_dai_link(struct snd_soc_card *card,
- 	struct snd_soc_dai_link *dai_link)
- {
- 	struct snd_soc_pcm_runtime *rtd;
--	struct snd_soc_dai_link_component *codecs;
-+	struct snd_soc_dai_link_component *codec, *platform;
- 	struct snd_soc_component *component;
- 	int i;
- 
-@@ -917,13 +917,14 @@ static int soc_bind_dai_link(struct snd_soc_card *card,
- 
- 	/* Find CODEC from registered CODECs */
- 	rtd->num_codecs = dai_link->num_codecs;
--	for_each_link_codecs(dai_link, i, codecs) {
--		rtd->codec_dais[i] = snd_soc_find_dai(codecs);
-+	for_each_link_codecs(dai_link, i, codec) {
-+		rtd->codec_dais[i] = snd_soc_find_dai(codec);
- 		if (!rtd->codec_dais[i]) {
- 			dev_info(card->dev, "ASoC: CODEC DAI %s not registered\n",
--				 codecs->dai_name);
-+				 codec->dai_name);
- 			goto _err_defer;
+diff --git a/sound/soc/meson/axg-card.c b/sound/soc/meson/axg-card.c
+index 70bb0cbad233..14a8321744da 100644
+--- a/sound/soc/meson/axg-card.c
++++ b/sound/soc/meson/axg-card.c
+@@ -118,8 +118,7 @@ static void axg_card_clean_references(struct axg_card *priv)
+ 			if (link->cpus)
+ 				of_node_put(link->cpus->of_node);
+ 			for_each_link_codecs(link, j, codec)
+-				if (codec)
+-					of_node_put(codec->of_node);
++				of_node_put(codec->of_node);
  		}
-+
- 		snd_soc_rtdcom_add(rtd, rtd->codec_dais[i]->component);
- 	}
- 
-@@ -931,12 +932,13 @@ static int soc_bind_dai_link(struct snd_soc_card *card,
- 	rtd->codec_dai = rtd->codec_dais[0];
- 
- 	/* Find PLATFORM from registered PLATFORMs */
--	for_each_component(component) {
--		if (!snd_soc_is_matching_component(dai_link->platforms,
--						   component))
--			continue;
-+	for_each_link_platforms(dai_link, i, platform) {
-+		for_each_component(component) {
-+			if (!snd_soc_is_matching_component(platform, component))
-+				continue;
- 
--		snd_soc_rtdcom_add(rtd, component);
-+			snd_soc_rtdcom_add(rtd, component);
-+		}
- 	}
- 
- 	soc_add_pcm_runtime(card, rtd);
-@@ -1051,15 +1053,14 @@ static int soc_init_dai_link(struct snd_soc_card *card,
- 			     struct snd_soc_dai_link *link)
- {
- 	int i;
--	struct snd_soc_dai_link_component *codec;
-+	struct snd_soc_dai_link_component *codec, *platform;
- 
- 	for_each_link_codecs(link, i, codec) {
- 		/*
- 		 * Codec must be specified by 1 of name or OF node,
- 		 * not both or neither.
- 		 */
--		if (!!codec->name ==
--		    !!codec->of_node) {
-+		if (!!codec->name == !!codec->of_node) {
- 			dev_err(card->dev, "ASoC: Neither/both codec name/of_node are set for %s\n",
- 				link->name);
- 			return -EINVAL;
-@@ -1080,36 +1081,24 @@ static int soc_init_dai_link(struct snd_soc_card *card,
- 			return -EPROBE_DEFER;
- 	}
- 
--	/*
--	 * Platform may be specified by either name or OF node,
--	 * or no Platform.
--	 *
--	 * FIXME
--	 *
--	 * We need multi-platform support
--	 */
--	if (link->num_platforms > 0) {
--
--		if (link->num_platforms > 1) {
--			dev_err(card->dev,
--				"ASoC: multi platform is not yet supported %s\n",
--				link->name);
--			return -EINVAL;
--		}
--
--		if (link->platforms->name && link->platforms->of_node) {
-+	for_each_link_platforms(link, i, platform) {
-+		/*
-+		 * Platform may be specified by either name or OF node, but it
-+		 * can be left unspecified, then no components will be inserted
-+		 * in the rtdcom list
-+		 */
-+		if (!!platform->name == !!platform->of_node) {
- 			dev_err(card->dev,
--				"ASoC: Both platform name/of_node are set for %s\n",
-+				"ASoC: Neither/both platform name/of_node are set for %s\n",
- 				link->name);
- 			return -EINVAL;
- 		}
- 
- 		/*
--		 * Defer card registartion if platform dai component is not
--		 * added to component list.
-+		 * Defer card registration if platform component is not added to
-+		 * component list.
- 		 */
--		if ((link->platforms->of_node || link->platforms->name) &&
--		    !soc_find_component(link->platforms))
-+		if (!soc_find_component(platform))
- 			return -EPROBE_DEFER;
  	}
  
 -- 
