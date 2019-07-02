@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-3.9 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
 	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AB56CC5B57D
-	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Jul 2019 23:11:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0481FC5B57D
+	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Jul 2019 23:12:12 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 834BF21993
-	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Jul 2019 23:11:35 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CBF0D21BD5
+	for <linux-amlogic@archiver.kernel.org>; Tue,  2 Jul 2019 23:12:11 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hNf9U5dT";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="m1ZfnGZP"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 834BF21993
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="uWsYlx1V";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="F9MUeCgD"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CBF0D21BD5
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,58 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BLBV/G8Qdqbd8/P5dzoxBx9jJEmd6cbXv593QL61byQ=; b=hNf9U5dTLNVoXb
-	ytlvnJI/HEAdvGooIHw4div9tINT1+xCqYUazwiFvFuJaZOFgc03nXO1W9fPXSJ4qhPRIRwlJeDwn
-	MTTVibvlncANyFjx4se8zFcVr04/t1wTYe9q0DDBwoh4+8bi7N1IJZoM1a3iHJTmIbxBAyYyXaNt7
-	jh/bpN0jaUpj6m5AN+/QRHetxvr072/NbVHnotbIvDKdEShQdKwUXPsmJIncBXIids5QQYprAZtJz
-	0ZX/oodrxgfSgowScS/L5cwstoGJ2fFNUx43zJHu0zN/DlzcefFTuBbQkfk65SnteJzTB6IGuoctb
-	OX2vXCgyGvHTuP4E+73w==;
+	List-Owner; bh=/4wNryMdMztlsgajtmJaVV4gdXuEVSLlD4buWruG0ZI=; b=uWsYlx1VMJbTBI
+	yD7L1HT4UUqBGX3XyfuPv/LNpF08XBwG3nQD5Ahn0nmWJE1lncIjHRsZHmI9pTbcsqehh8bUnU5eq
+	P+kdGMcMfBCbFLkiSW3QjAVsIwWr/dBHbwWQRfHA5VBNiy2pbicznU+LuJ8hNNltptDdYx6NU7f0T
+	ehUWq3m4d4JBc+qH7ny+hPuPJRCZF8YHTodVjmQ9K42bsK47d1GYfB1Uh4pet7qLjbZTG805x8SXT
+	QpUtjyfALOhejT5CVaYV1XwVu6fYuZ7D1rlXRLlrSvW88Dre95AfzS7QfAK47Eeqx0O+sa0qJhI+q
+	9Bh55H0WlZhC4JzcvjpA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hiRvt-0007xL-SQ; Tue, 02 Jul 2019 23:11:29 +0000
-Received: from mail-oi1-x244.google.com ([2607:f8b0:4864:20::244])
+	id 1hiRwV-0008Pc-0R; Tue, 02 Jul 2019 23:12:07 +0000
+Received: from mail-oi1-x243.google.com ([2607:f8b0:4864:20::243])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hiRvr-0007wz-GA; Tue, 02 Jul 2019 23:11:28 +0000
-Received: by mail-oi1-x244.google.com with SMTP id w196so419908oie.7;
- Tue, 02 Jul 2019 16:11:27 -0700 (PDT)
+ id 1hiRwF-0008DY-D0; Tue, 02 Jul 2019 23:11:52 +0000
+Received: by mail-oi1-x243.google.com with SMTP id w7so439434oic.3;
+ Tue, 02 Jul 2019 16:11:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Q/LR59K4n2NpGvRZpSrMlExpZ6t8aHVL7QCUI5shco4=;
- b=m1ZfnGZP2wao1pfpBciR9QVwvmICdJ4yeAKJXaIVlcbimy7/OKpd3vAuPRVC6fvrAG
- Paaxs7nDaOQNrJgGk7bBlPbHF+/HooMpT2EWnQNFYZB94nf22g9mzCW3WBfffmhVou31
- C5ykE+MxpfB1QOBe1uGXl/YOyvVK745m30pJjkvik5NuAPVWzyOhLo8gnGGmZDOGW457
- Qby0QbhvCNuhSBup7IbkPzlH0CjTLxDJpqyVgkHVAZFxTRoULwm9DgYqR7HeN947HMWy
- qzlPlUb35ILttMlYn2dxCyVk3Cn++LxqAFBTfpYIBsBlU3bYd7fGzie/v87dWe474olr
- j3bg==
+ :cc; bh=svNvFatzWg+J+IzhDu/8UapYNg/XQoHt/D9xO5S8sAU=;
+ b=F9MUeCgD5cE83rQOPzxx5wJd9MM4XsOaW7CIpa4R+sQxmLnclcmJO63t/siBAt1bnG
+ dIq1jh2p3nvQRTk0klvt+b+dpokQiEvBU/mW8Tz0/iJhNbNb5VS4lIjToMtRZI/IEpCl
+ witmuIYcjSU0uTUAs/gfjuL22B7GZKSiIWHLpET9fUaEvmReFRIc7y+jZUIUkl+KGFez
+ VFO1+gJp2ROeOhbIcjhj8mdVRjMS938Wbz4n+9d06KWPmZEzJO02wIgDirjXj7o/yGus
+ lD5EYU0K+0/34oYdedokRlbfGcTNxqXAcEJ1UY5wCLwjl9Fy4FWiYGq3r2u+DSd1+3Bw
+ D33g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=Q/LR59K4n2NpGvRZpSrMlExpZ6t8aHVL7QCUI5shco4=;
- b=BznRdRMeZS1OdAm+4OUcDC0RT/ePzHKmQ49SlPj35COrfpFhie7XFJ+P8NM4x+Ilbd
- jq7OEwIhoFMDYHS6jMsnIHo1fQwP3Jab8nl0TEj14jn/g3C7h2BfHtTz+SZAhUE7F4z0
- HPb1fI3gGXI4Fqg+Kv5gdyonDMmjzBhAf/44AaAfpW6l+eNsXBjwHy3YaVzuhAZRyaJl
- eBBn5LlP0xJe9uQeWSrmA4aPd1YrR5KRlxIqfSuUNVSQNJ1CkkySGwd3laZMwZxW8pLz
- UCFCt/2aBrAROyFB0xJhv8Z2Qe91JyWobPiM+NIH7dosmeaPbZ+QCQbZ4JbIz9Dru6pE
- HTng==
-X-Gm-Message-State: APjAAAURpsa7ZfF3QV/0OnML9c6Z7KKhT0gvtnbq2MH1oP3xF9IlvUb0
- aiRIgDH2wpIlZVbOMt/42+eKXq7axupE0nY8eapBN7TW
-X-Google-Smtp-Source: APXvYqztWhmeaDg8T3K0pmGU/qZhQ+fCAj/s1HnyoXH6d4sZovOx7CJ19m/uyyQ3H8w+wL38c17urJw0X9Mw0cHLFag=
-X-Received: by 2002:aca:4ad2:: with SMTP id x201mr4620515oia.129.1562109086426; 
- Tue, 02 Jul 2019 16:11:26 -0700 (PDT)
+ bh=svNvFatzWg+J+IzhDu/8UapYNg/XQoHt/D9xO5S8sAU=;
+ b=RopmJcP1aOTLoKAfpPjyzkAKuKjPgEYr55fpLmbBwwQ3+lxr4QVQYns7fXfTct+kr1
+ VJN65VVErq8ELMnJG8QDdAfKX9WcXhSk1jmqMzcypM0FWdYhKP7zfalCpCm8pKNnN69r
+ +Z9N+RGXMHpGB4BQTpxDOYUpmvJD5US63pvfNDF6AdcecoTwK+Q4d/qoa0v1CX/sezTR
+ kkJbrBzPPbOlX4JqOArd3Sr/L/T4zc8josR6mMn5Og93GrssQMbteu4untVfaD2j3cuO
+ PFzChDfyGcFuBtN3zTAb0AL2g8oAM8FqFZKDalJhMxAHer31Lr9/H/OzumJQNe1pXZru
+ 0MuA==
+X-Gm-Message-State: APjAAAWzg3jm7ZBFjZT+0CjOwutr/24s/Q9tqM9jMvc1eeHBx2vR5jUa
+ Zw1KQUFGYsLbAtTF0av0NqPScaU49RGcqjVRLpg=
+X-Google-Smtp-Source: APXvYqynGDp6RgAE+20EuhfnSaAl8FY4WjfZlQXJcX2FtOElvoAuFudGEiRTQUO42XE3uT6QyB6b3k1bfYY3Tam0nmc=
+X-Received: by 2002:a05:6808:8f0:: with SMTP id
+ d16mr1458640oic.47.1562109110323; 
+ Tue, 02 Jul 2019 16:11:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190701104705.18271-1-narmstrong@baylibre.com>
- <20190701104705.18271-2-narmstrong@baylibre.com>
-In-Reply-To: <20190701104705.18271-2-narmstrong@baylibre.com>
+References: <20190701091258.3870-1-narmstrong@baylibre.com>
+ <20190701091258.3870-11-narmstrong@baylibre.com>
+In-Reply-To: <20190701091258.3870-11-narmstrong@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Wed, 3 Jul 2019 01:11:15 +0200
-Message-ID: <CAFBinCA5iZDanZ5f=y_J3PH-2bXOfKfjQDP9hiz1RSmKszMRPQ@mail.gmail.com>
-Subject: Re: [RFC 01/11] soc: amlogic: meson-gx-socinfo: Add SM1 and S905X3 IDs
+Date: Wed, 3 Jul 2019 01:11:39 +0200
+Message-ID: <CAFBinCAJPQ-gu20UoJEGx+fx6TZ1Eezh4sA+24mppffH5Ft25A@mail.gmail.com>
+Subject: Re: [RFC/RFT v3 10/14] arm64: dts: meson-g12-common: add pwm_a on
+ GPIOE_2 pinmux
 To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190702_161127_560461_33C92C17 
-X-CRM114-Status: UNSURE (   5.79  )
+X-CRM114-CacheID: sfid-20190702_161151_439411_D01470C9 
+X-CRM114-Status: UNSURE (   6.04  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -90,17 +92,18 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: khilman@baylibre.com, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+Cc: khilman@baylibre.com, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Jul 1, 2019 at 12:48 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+On Mon, Jul 1, 2019 at 11:13 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
-> Add the SoC IDs for the S905X3 Amlogic SM1 SoC.
+> Add the ao_pinctrl subnode for the pwm_a function on GPIOE_2.
 >
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
