@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B6D64C4646D
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B98FCC46478
 	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Jul 2019 12:26:34 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 896FB218BB
+	by mail.kernel.org (Postfix) with ESMTPS id 88D01218BA
 	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Jul 2019 12:26:34 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="U9joN55u";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="15DE6QGN"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 896FB218BB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MGe8gjbz";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="vKwjNK/h"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 88D01218BA
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,65 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5OG2NFRdJzQoZ2jakSawR+B5kEBj073fn9poZnvuENc=; b=U9joN55uXzuKH/
-	5JvCdMQ299YON5IH7CRN8gz9Yl1cCAftksIQhPRI5M81+5lXvqJcX+adR2DJSZSrn1FlNui43t7lV
-	JThi/51LwUPp04JwQU7cv+SlgvWJimCL5+cnk/r/GOdpwI85n5LYLG4of2Ca9g6QqVlZFndZp2GmC
-	ieOMjFwGgBJASUUCtvZtwjwH9Y/nAn9d0hDYc1czuGK1g96ab7CgbVX3fB2q4bbcb5HAQ0eOdh7F4
-	jvBkaIEAhf1YUhssQGg6vv1WsLo2d3GoPvr2Wzy34egLEJh0ACMe/a3Fo2ApsLDso035ifmDqmty/
-	ClIY9bKm30jD/P3kigng==;
+	List-Owner; bh=sKfQ6tXEtk2gz7d6DGEHMoKF+2bkwzyg/ZraWeFJWwE=; b=MGe8gjbzaqJUgC
+	t01vDCSic82YyoOQ51G6dZHPDG3o6mPupumrYEN1oGWf7NZWFQ5+VYb27m44dVCrwROcYI5eqUg0N
+	TbgMUon/6bABE6/iyZlSp4lk3BAxbOBfY+9FSeQfkAjk3ZKne/cLVpm5k7aVlsSW6tp1VZn1Eya6L
+	1mndUquzOSfphPLp6+GjotbFoyY9qJahChsYqlP73xFws+7mNZhjLdkej+SvNkCf2BMUOqQZu4ZAB
+	4QvA/E6OHKU9y8OUa48L7C8wJBrEMgL1H4PagbvFXhdoTD+pdPC09HQfbUUmzOySyUmU9gTyTGJX3
+	9nMXCbgtdvgwY+fsoI4A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hieLG-0003sh-48; Wed, 03 Jul 2019 12:26:30 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1hieLE-0003qm-8w; Wed, 03 Jul 2019 12:26:28 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hieLB-0003oj-9u
- for linux-amlogic@lists.infradead.org; Wed, 03 Jul 2019 12:26:27 +0000
-Received: by mail-wr1-x443.google.com with SMTP id n4so2547190wrw.13
- for <linux-amlogic@lists.infradead.org>; Wed, 03 Jul 2019 05:26:25 -0700 (PDT)
+ id 1hieLA-0003oW-WB
+ for linux-amlogic@lists.infradead.org; Wed, 03 Jul 2019 12:26:26 +0000
+Received: by mail-wm1-x342.google.com with SMTP id x15so2005946wmj.3
+ for <linux-amlogic@lists.infradead.org>; Wed, 03 Jul 2019 05:26:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=JILUVyhQViuGdxVU7msStBtHX6blqTuLXOnzbseIUxY=;
- b=15DE6QGNII0vC99FAxzXL/XNAKOz1spvux5aiNDajerPemkY0N0Yvhp2NZCZ56aXTd
- V2F1xuct6cDSpr46JtcIMfT0bY+qWkhe+ryMJyyN3VyCojjWzkFD36pkScxrT6gquK2Z
- mNf6E4S6+B9Vjc3sY/l4IQ40/p5dnlRb044FAl8PI7y18/lcpTNGk2LBS1A4BV2d5VkC
- UVkkVb7iyhWRM4GL6g9a1XzJi/zV/bzZ3psfBINcuReBkawJoee3Vf9yBnestkcfkdaZ
- Rji7UjMscG4KTSfq2gpJBzs8UNT7oFgw3yE4242/k0j/r450VClhz57RXPNJt3Rba9cJ
- gcng==
+ bh=plGjGyOid1jI+Xxis9Als2EenBhEyLHhPcpZxpUYN30=;
+ b=vKwjNK/hbuj6CRQyXmuujsWGLSTqcTiws2yP8LSdxlJtYieRupvb/tstkm0v5ucpoy
+ DLpHwzTi00otlUo6DokRJOPR5J/p/RZI63uNqAGusirRv93U+drv1lY6fDhVtuCo/4XM
+ 4+fumzfXgWgThbkFfyKfdF24HsLshbXFCe5whSS88ST24f3VZJ2sZOIQjj+pt0kqX1oZ
+ cvARhlbm8Q52SR73bwi4J7gDhg/3Qcwt2teLzkl94He8lRjO25Eae31tJ+uVIF93V3x0
+ s9LEIT3KkZsss+DitpyzKUALqapb8sLePy/fqGvXgf9fQ8XXkJwj2URsmlbhXxU3JhTa
+ ukMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=JILUVyhQViuGdxVU7msStBtHX6blqTuLXOnzbseIUxY=;
- b=WauI+tmnsv7XDhoVy9E1/zRYrNvh1NNxJZQYQ72lhxYZx1l4pGv7w0Thja8oaZ+H41
- 6tjKmoE6azy7bSroYdNuwFraoqlMAE/pT/pdGsra0VJyTiRWa82JU5cC9PSSOTaF3Bc6
- MN4UEUMiCbQN42CcXTq9Su6VCjoTfwYDXVpRRKKKR6sWTYtdiEWe7hotgOOXP4c8c0bB
- lyTvtBAxYIfbM5GnPe9Nxbd7T7QNyH+3Pa2YlNnpkhm6Aa5ggVFd0UrmVwiYkMNHrv8I
- EOVhGA2hzdn+G6TaPgXCSs23L3M7vqtTCq+Gnas2d7XFY4bXCnFjuUkw5U+22SvfClO3
- 6kMA==
-X-Gm-Message-State: APjAAAUQGVOHcd7fD37VJyymw/kHYFFrkxZdXbAjZUpOjVqMgI1fdmDw
- C2d7IfAROF56sK3YRyyIWfFzvA==
-X-Google-Smtp-Source: APXvYqw/fJylWhA1wOFDAASQ7snUTEyMNdcCC+ljsbuq5ZdsSzk61cFVRouS0SUaOm+SNLZ6a3mjPA==
-X-Received: by 2002:a5d:4ecc:: with SMTP id s12mr29803490wrv.157.1562156784072; 
- Wed, 03 Jul 2019 05:26:24 -0700 (PDT)
+ bh=plGjGyOid1jI+Xxis9Als2EenBhEyLHhPcpZxpUYN30=;
+ b=HnJ4J7k6WJLD6ctS3+N82feIZ/CUHpQ/nvv0pJBn2kP48K9ksttOB2Uhb1tIrFDaVw
+ 19u/qi7uF/P2uswjuilIaCkggxUExRYs3CbxBnV/M/Jo1u6kcAtyb7wm8KdqBd3piKya
+ Iv2/EzNCV7+pCxshqROZ9jNziykI3qYTArHZ8/Bhhzmudbei/05SVsMXrJJxIkJVy5i1
+ yZtbzoP4bAZhlcyXyEDnXUOHjCunNR5rlNxi1yIJgjoBF4jOKlWJnNCl4mcJoEq547uh
+ 47apqP6w5JMXQGsJ2Xj5vzQn3z2JB7t4yP1dXdJ90r2bSD1AiLKKgRDtXxXqf79eT1Q5
+ D9Pw==
+X-Gm-Message-State: APjAAAVnS+/02aehn67p5BY8rdF1zifQirFSFZ/3JUDs3vVOL8xC9h0E
+ qsS0I+N7f+8fJ0xnD7BNIYch1w==
+X-Google-Smtp-Source: APXvYqxekxAtRSw1KL+dcb0nQEkMKDJSI1lDzUIG2OBv7pXWrxalbz0a5fJ1T3HDFVQvQuZzrFX8lQ==
+X-Received: by 2002:a1c:630a:: with SMTP id x10mr8506501wmb.113.1562156783223; 
+ Wed, 03 Jul 2019 05:26:23 -0700 (PDT)
 Received: from starbuck.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id v67sm2868132wme.24.2019.07.03.05.26.23
+ by smtp.googlemail.com with ESMTPSA id v67sm2868132wme.24.2019.07.03.05.26.22
  (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Wed, 03 Jul 2019 05:26:23 -0700 (PDT)
+ Wed, 03 Jul 2019 05:26:22 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH 2/2] clk: meson: axg-audio: add g12a reset support
-Date: Wed,  3 Jul 2019 14:26:14 +0200
-Message-Id: <20190703122614.3579-3-jbrunet@baylibre.com>
+Subject: [PATCH 1/2] dt-bindings: clock: meson: add resets to the audio clock
+ controller
+Date: Wed,  3 Jul 2019 14:26:13 +0200
+Message-Id: <20190703122614.3579-2-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190703122614.3579-1-jbrunet@baylibre.com>
 References: <20190703122614.3579-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190703_052625_349287_2142C62E 
-X-CRM114-Status: GOOD (  15.81  )
+X-CRM114-CacheID: sfid-20190703_052625_033441_B67CC9CD 
+X-CRM114-Status: GOOD (  12.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,182 +105,72 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On the g12a, the register space dedicated to the audio clock also
-provides some resets. Let the clock controller register a reset
-provider as well for this SoC family.
-
-the axg SoC family does not appear to provide this feature.
+Add the documentation and bindings for the resets provided by the g12a
+audio clock controller
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/axg-audio.c | 107 +++++++++++++++++++++++++++++++++-
- drivers/clk/meson/axg-audio.h |   1 +
- 2 files changed, 106 insertions(+), 2 deletions(-)
+ .../bindings/clock/amlogic,axg-audio-clkc.txt |  1 +
+ .../reset/amlogic,meson-g12a-audio-reset.h    | 38 +++++++++++++++++++
+ 2 files changed, 39 insertions(+)
+ create mode 100644 include/dt-bindings/reset/amlogic,meson-g12a-audio-reset.h
 
-diff --git a/drivers/clk/meson/axg-audio.c b/drivers/clk/meson/axg-audio.c
-index 8028ff6f6610..ce163bd03aad 100644
---- a/drivers/clk/meson/axg-audio.c
-+++ b/drivers/clk/meson/axg-audio.c
-@@ -12,6 +12,7 @@
- #include <linux/platform_device.h>
- #include <linux/regmap.h>
- #include <linux/reset.h>
-+#include <linux/reset-controller.h>
- #include <linux/slab.h>
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
+index 0f777749f4f1..b3957d10d241 100644
+--- a/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
++++ b/Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt
+@@ -22,6 +22,7 @@ Required Properties:
+ 				       components.
+ - resets	: phandle of the internal reset line
+ - #clock-cells	: should be 1.
++- #reset-cells  : should be 1 on the g12a (and following) soc family
  
- #include "axg-audio.h"
-@@ -916,6 +917,84 @@ static int axg_register_clk_hw_inputs(struct device *dev,
- 	return 0;
- }
- 
-+struct axg_audio_reset_data {
-+	struct reset_controller_dev rstc;
-+	struct regmap *map;
-+	unsigned int offset;
-+};
+ Each clock is assigned an identifier and client nodes can use this identifier
+ to specify the clock which they consume. All available clocks are defined as
+diff --git a/include/dt-bindings/reset/amlogic,meson-g12a-audio-reset.h b/include/dt-bindings/reset/amlogic,meson-g12a-audio-reset.h
+new file mode 100644
+index 000000000000..14b78dabed0e
+--- /dev/null
++++ b/include/dt-bindings/reset/amlogic,meson-g12a-audio-reset.h
+@@ -0,0 +1,38 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Copyright (c) 2019 BayLibre, SAS.
++ * Author: Jerome Brunet <jbrunet@baylibre.com>
++ *
++ */
 +
-+static void axg_audio_reset_reg_and_bit(struct axg_audio_reset_data *rst,
-+					unsigned long id,
-+					unsigned int *reg,
-+					unsigned int *bit)
-+{
-+	unsigned int stride = regmap_get_reg_stride(rst->map);
++#ifndef _DT_BINDINGS_AMLOGIC_MESON_G12A_AUDIO_RESET_H
++#define _DT_BINDINGS_AMLOGIC_MESON_G12A_AUDIO_RESET_H
 +
-+	*reg = (id / (stride * BITS_PER_BYTE)) * stride;
-+	*reg += rst->offset;
-+	*bit = id % (stride * BITS_PER_BYTE);
-+}
++#define AUD_RESET_PDM		0
++#define AUD_RESET_TDMIN_A	1
++#define AUD_RESET_TDMIN_B	2
++#define AUD_RESET_TDMIN_C	3
++#define AUD_RESET_TDMIN_LB	4
++#define AUD_RESET_LOOPBACK	5
++#define AUD_RESET_TODDR_A	6
++#define AUD_RESET_TODDR_B	7
++#define AUD_RESET_TODDR_C	8
++#define AUD_RESET_FRDDR_A	9
++#define AUD_RESET_FRDDR_B	10
++#define AUD_RESET_FRDDR_C	11
++#define AUD_RESET_TDMOUT_A	12
++#define AUD_RESET_TDMOUT_B	13
++#define AUD_RESET_TDMOUT_C	14
++#define AUD_RESET_SPDIFOUT	15
++#define AUD_RESET_SPDIFOUT_B	16
++#define AUD_RESET_SPDIFIN	17
++#define AUD_RESET_EQDRC		18
++#define AUD_RESET_RESAMPLE	19
++#define AUD_RESET_DDRARB	20
++#define AUD_RESET_POWDET	21
++#define AUD_RESET_TORAM		22
++#define AUD_RESET_TOACODEC	23
++#define AUD_RESET_TOHDMITX	24
++#define AUD_RESET_CLKTREE	25
 +
-+static int axg_audio_reset_update(struct reset_controller_dev *rcdev,
-+				unsigned long id, bool assert)
-+{
-+	struct axg_audio_reset_data *rst =
-+		container_of(rcdev, struct axg_audio_reset_data, rstc);
-+	unsigned int offset, bit;
-+
-+	axg_audio_reset_reg_and_bit(rst, id, &offset, &bit);
-+
-+	regmap_update_bits(rst->map, offset, BIT(bit),
-+			assert ? BIT(bit) : 0);
-+
-+	return 0;
-+}
-+
-+static int axg_audio_reset_status(struct reset_controller_dev *rcdev,
-+				unsigned long id)
-+{
-+	struct axg_audio_reset_data *rst =
-+		container_of(rcdev, struct axg_audio_reset_data, rstc);
-+	unsigned int val, offset, bit;
-+
-+	axg_audio_reset_reg_and_bit(rst, id, &offset, &bit);
-+
-+	regmap_read(rst->map, offset, &val);
-+
-+	return !!(val & BIT(bit));
-+}
-+
-+static int axg_audio_reset_assert(struct reset_controller_dev *rcdev,
-+				unsigned long id)
-+{
-+	return axg_audio_reset_update(rcdev, id, true);
-+}
-+
-+static int axg_audio_reset_deassert(struct reset_controller_dev *rcdev,
-+				unsigned long id)
-+{
-+	return axg_audio_reset_update(rcdev, id, false);
-+}
-+
-+static int axg_audio_reset_toggle(struct reset_controller_dev *rcdev,
-+				unsigned long id)
-+{
-+	int ret;
-+
-+	ret = axg_audio_reset_assert(rcdev, id);
-+	if (ret)
-+		return ret;
-+
-+	return axg_audio_reset_deassert(rcdev, id);
-+}
-+
-+static const struct reset_control_ops axg_audio_rstc_ops = {
-+	.assert = axg_audio_reset_assert,
-+	.deassert = axg_audio_reset_deassert,
-+	.reset = axg_audio_reset_toggle,
-+	.status = axg_audio_reset_status,
-+};
-+
- static const struct regmap_config axg_audio_regmap_cfg = {
- 	.reg_bits	= 32,
- 	.val_bits	= 32,
-@@ -925,12 +1004,15 @@ static const struct regmap_config axg_audio_regmap_cfg = {
- 
- struct audioclk_data {
- 	struct clk_hw_onecell_data *hw_onecell_data;
-+	unsigned int reset_offset;
-+	unsigned int reset_num;
- };
- 
- static int axg_audio_clkc_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	const struct audioclk_data *data;
-+	struct axg_audio_reset_data *rst;
- 	struct regmap *map;
- 	struct resource *res;
- 	void __iomem *regs;
-@@ -1005,8 +1087,27 @@ static int axg_audio_clkc_probe(struct platform_device *pdev)
- 		}
- 	}
- 
--	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
--					   data->hw_onecell_data);
-+	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
-+					data->hw_onecell_data);
-+	if (ret)
-+		return ret;
-+
-+	/* Stop here if there is no reset */
-+	if (!data->reset_num)
-+		return 0;
-+
-+	rst = devm_kzalloc(dev, sizeof(*rst), GFP_KERNEL);
-+	if (!rst)
-+		return -ENOMEM;
-+
-+	rst->map = map;
-+	rst->offset = data->reset_offset;
-+	rst->rstc.nr_resets = data->reset_num;
-+	rst->rstc.ops = &axg_audio_rstc_ops;
-+	rst->rstc.of_node = dev->of_node;
-+	rst->rstc.owner = THIS_MODULE;
-+
-+	return ret = devm_reset_controller_register(dev, &rst->rstc);
- }
- 
- static const struct audioclk_data axg_audioclk_data = {
-@@ -1015,6 +1116,8 @@ static const struct audioclk_data axg_audioclk_data = {
- 
- static const struct audioclk_data g12a_audioclk_data = {
- 	.hw_onecell_data = &g12a_audio_hw_onecell_data,
-+	.reset_offset = AUDIO_SW_RESET,
-+	.reset_num = 26,
- };
- 
- static const struct of_device_id clkc_match_table[] = {
-diff --git a/drivers/clk/meson/axg-audio.h b/drivers/clk/meson/axg-audio.h
-index 5d972d55d6c7..c00e28b2e1a9 100644
---- a/drivers/clk/meson/axg-audio.h
-+++ b/drivers/clk/meson/axg-audio.h
-@@ -22,6 +22,7 @@
- #define AUDIO_MCLK_F_CTRL	0x018
- #define AUDIO_MST_PAD_CTRL0	0x01c
- #define AUDIO_MST_PAD_CTRL1	0x020
-+#define AUDIO_SW_RESET		0x024
- #define AUDIO_MST_A_SCLK_CTRL0	0x040
- #define AUDIO_MST_A_SCLK_CTRL1	0x044
- #define AUDIO_MST_B_SCLK_CTRL0	0x048
++#endif
 -- 
 2.21.0
 
