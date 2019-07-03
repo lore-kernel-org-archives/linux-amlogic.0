@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-2.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 88757C0650E
-	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Jul 2019 11:52:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B42FAC06511
+	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Jul 2019 11:53:26 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5D102218A3
-	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Jul 2019 11:52:13 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 87BFD218A4
+	for <linux-amlogic@archiver.kernel.org>; Wed,  3 Jul 2019 11:53:26 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CpYkt4h9";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="onN8jeMR"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5D102218A3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="a/1jKGeH";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Lo998Vzv"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 87BFD218A4
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,61 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=owO6CAjoqE0UbHjmIGlnTdWNd8NEDszDOrPWnpDnabs=; b=CpYkt4h9McenjM
-	QVRhXS8wQGuYiKgkBgVBpXyvjCchngKmUa86ySBa9GJa3ZlP2mY+M7fu1OcW3Fx5rot2HutrkGQXE
-	vWNu5bt+rlHj2FnVxFjZpQi+n2IQug1txDNB1IDH/H0yHvei9/nXFbkUGrc0an3PQRywQuMVh8Qz9
-	xXVgnCWdb8PBUpspeGTLyrvonL4z/AnmjATSHp0ufMJfBKlxE3kVdBO+wQgHSGdIkBwJMHnZ8Xmwi
-	LODzqmQWA5lGu9NsmvZKjFARfVAfTIDtQpSeWV9SzYdzKDjqkscbShQETp/CIJFp9/Y+h0kHfiAJP
-	ohey8I2ONtPQX2qMi/Bw==;
+	List-Owner; bh=L38ZALU5CWvDJerwfZu2NNSEtCEFNcqDAa1bzySErjk=; b=a/1jKGeHasDgo1
+	p6PewHE9g52w6PiHjPBOoQ3F/6JinI+CYpHOP2lT2pIzf8hw4F2u0Ll/dbqVy8ViEXesje2CRIP+A
+	tJ4dIe7T3d5jnYDrKktCYycbPpGRAxLOs/67estv1EdLmYQuVbteaOSw7JONNdYhwlUtTZtnOGLmx
+	t0t23dHu5/NfZ0rBykiBdY8TW9JabH9BqJlV393tzlsiSpuAF7vIbEj2K+u9y0MUR5H5PqN5TATbT
+	XkKogX6IuTA3YYk7ZVhznBuDBJx82x/3iB46zQh07N6af2D8+pUwS+eFYJy2uCYQbLT2qRZvIVKT3
+	KuN5tgoD/Ik+CestU6Dg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hido0-0004lm-BT; Wed, 03 Jul 2019 11:52:08 +0000
-Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
+	id 1hidpB-0004xe-Kx; Wed, 03 Jul 2019 11:53:21 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hidnj-0004Xf-9c
- for linux-amlogic@lists.infradead.org; Wed, 03 Jul 2019 11:51:55 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id f17so2056741wme.2
- for <linux-amlogic@lists.infradead.org>; Wed, 03 Jul 2019 04:51:50 -0700 (PDT)
+ id 1hidp8-0004x0-6n
+ for linux-amlogic@lists.infradead.org; Wed, 03 Jul 2019 11:53:19 +0000
+Received: by mail-wm1-x332.google.com with SMTP id z23so2058158wma.4
+ for <linux-amlogic@lists.infradead.org>; Wed, 03 Jul 2019 04:53:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=dmgOtc0ef0vbCSF0u6LPGuLXsa2YCDJRWJ/SIOjqW40=;
- b=onN8jeMRJY50imh5s232CApZjReU1Aepo/SIzqZj8uyG7KxjdgK69PXHs5V+t9UWVh
- O4APw4Hed8+MpBq6DkCwNr1sOyf+Yp92YmIj0/JxTdrKP2Fh6EybkBI4CPthXto+Xbr0
- fJGh5pi64hwMiVSFFNvectw5MIQz4iPzCpTQEoXhrvjSvPXERr8bCpo734nUWXCG9jZa
- QmXSIEpDUr8IBEhw7xtccViL51+LyaU0+vlnw9Jxuzel3Hda5OjqiDRB6vJfrP+Oom9E
- hpOav+wZ5jWSU/iRGAshsCNq5uJ0xMkq7tFibkSaw1DP1F9btOKSGflbtP+r1srcKIjC
- JpSQ==
+ bh=ECYcI8AlM2+Up/9U9dhONTZIuaFVroymFXWiMWPGvhA=;
+ b=Lo998VzvGouMh4VaHm3pLpdC8XOaBts7PQecaj21Fj9ykSqkytbOHmWEHR/xa/XM2Q
+ m12klRrbHu6kFGbfGpU6YcyM1Vx0SywqPrcGUud+p67+r+FBP413FPAZeeTzkQMb5b6K
+ 5diORxd/AlYNhcAGRNaP+MB5StUHBcRKWkqzuoADPICZfKVTmc0X99fHnTquMn4HaAVi
+ ws9XvLVo11qAE0qVeAuq5at6M68rPd5cx7IwPLoPL+qX58tfv7oCpukPnfEEa7L0URRY
+ 9voXuft/bbTLaVXm4pnm94Yvy79QB634ZVvTTcY6GPhsA0RkrtaqIRnoyG7gGdAtMIT7
+ 1xCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=dmgOtc0ef0vbCSF0u6LPGuLXsa2YCDJRWJ/SIOjqW40=;
- b=lZyzi3R2Ymro9o1xXf5i0TNkMdAkEwYvwuq1O2tNZjys+Ufoo/aIrOB19VZB9Ah3le
- wcBCTq1JpLmBQOFiUrRaSSfsd8ToQVw9GdMrb6n3OfJqCrBJqm+LdgHZq1BPKAuKulLx
- 1v8ieGbrCuE6uy2+AJcNL3/rmYKJRViZmJdtDPtS0NF4CLcKEd2n2cXXm4tKxBELIh5u
- tkhPXqw4+fxFvfjuXoX5pEfW0e5BRYPMptXpRr31qTrcHF+jhmA13m8K2N3+NDSAimnZ
- 7gDMbWR0t1sv/k/Cm2tVfmI9oUWq+XsOEuusPAt+JkA056qPDK4zcQPqjZPfjbVH80T2
- 8UaA==
-X-Gm-Message-State: APjAAAWw+evrBY/y7i9DVlVcVIvXkNlLOJHaZK9WkFjyJ4g5IjL6QHpp
- lvHtGPgRF66fFU1+x3Al+RyGmA==
-X-Google-Smtp-Source: APXvYqwtmuYxu0DeX2VCYgfGjgEDXUxplZP3POyu+75SNarwPxYKc8rpIh/ZyDZ3MDj4L4AC5GM6HQ==
-X-Received: by 2002:a1c:b782:: with SMTP id h124mr7804735wmf.20.1562154709486; 
- Wed, 03 Jul 2019 04:51:49 -0700 (PDT)
+ bh=ECYcI8AlM2+Up/9U9dhONTZIuaFVroymFXWiMWPGvhA=;
+ b=QZx4B27oCB4sqM1rJptbgvwngX/VJjRdnbCaHHxugn4rJSh+zVEW3778K20NnmfraJ
+ 4LHgWziKWo0fyo7qIsyAMpqMCCej5C1z0qEb9jTTR64gZMZsXuKhN9Bu5gKxEw12Rxxn
+ iPlUrUPnzcinuyugGdGbQm0m6DctJHx9AeJ1HMGKELFjyq5+t3VkOmjHiQWbXFDZtqWW
+ D1D525yjKM8NLE5pLBBgNxhlpURzcd6UZM+zMCR/jI/KI5h8ofgh70PHBRUwYt9oD9M1
+ 0nyMkaEjyUBkDugYhGrE+/ISMfaFg3zOQzcfOKPUO7OEjGzzHa/X0gEmuxnn02QKlNK5
+ wprQ==
+X-Gm-Message-State: APjAAAU+z9s/0HmcUC6Uoe4LyegboMme0Ud9q1Yc6njFtieybGnt3lEl
+ R+nu5dyUk4S0tRva+o71eoO+hQ==
+X-Google-Smtp-Source: APXvYqw1UydkA6XdM3tn/Mh6Trc55NumI7hz88+bOC34gP3xPxq6ffraSlp3cxtYo3lA+fJa+NR25g==
+X-Received: by 2002:a7b:cf27:: with SMTP id m7mr8004579wmg.7.1562154796842;
+ Wed, 03 Jul 2019 04:53:16 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id z1sm2217403wrv.90.2019.07.03.04.51.48
+ by smtp.gmail.com with ESMTPSA id h8sm2000695wmf.12.2019.07.03.04.53.16
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 03 Jul 2019 04:51:49 -0700 (PDT)
-Subject: Re: [RFC/RFT v3 09/14] arm64: dts: move common G12A & G12B modes to
- meson-g12-common.dtsi
+ Wed, 03 Jul 2019 04:53:16 -0700 (PDT)
+Subject: Re: [RFC/RFT v3 11/14] arm64: dts: meson-g12a: add cpus OPP table
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 References: <20190701091258.3870-1-narmstrong@baylibre.com>
- <20190701091258.3870-10-narmstrong@baylibre.com>
- <CAFBinCA537EV9kzz+5syaF1Q-stTJ4no+NBdcYD3QL-FJSoWfQ@mail.gmail.com>
+ <20190701091258.3870-12-narmstrong@baylibre.com>
+ <CAFBinCBg57gh1x3CKs-YrCvTD0WR2s5zVGWtycb=RGqMiQ-VgA@mail.gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -133,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <e49bfb8f-23e9-c834-62c7-a40528a2ef06@baylibre.com>
-Date: Wed, 3 Jul 2019 13:51:48 +0200
+Message-ID: <7acdafc1-39e7-a2ec-886f-ca337c60dfe7@baylibre.com>
+Date: Wed, 3 Jul 2019 13:53:15 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCA537EV9kzz+5syaF1Q-stTJ4no+NBdcYD3QL-FJSoWfQ@mail.gmail.com>
+In-Reply-To: <CAFBinCBg57gh1x3CKs-YrCvTD0WR2s5zVGWtycb=RGqMiQ-VgA@mail.gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190703_045152_310615_18FECE69 
-X-CRM114-Status: GOOD (  12.34  )
+X-CRM114-CacheID: sfid-20190703_045318_246947_9F9A309F 
+X-CRM114-Status: GOOD (  13.69  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,38 +162,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 03/07/2019 01:54, Martin Blumenstingl wrote:
+On 03/07/2019 01:47, Martin Blumenstingl wrote:
 > Hi Neil,
 > 
 > On Mon, Jul 1, 2019 at 11:13 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >>
->> To simplify the representation of differences betweem the G12A and G12B
->> SoCs, move the common nodes into a meson-g12-common.dtsi file and
->> express the CPU nodes and differences in meson-g12a.dtsi and meson-g12b.dtsi.
+>> Add the OPP table taken from the vendor u200 and u211 DTS.
 >>
->> This separation will help for DVFS and future Amlogic SM1 Family support.
+>> The Amlogic G12A SoC seems to available in 3 types :
+>> - low-speed: up to 1,8GHz
+>> - mid-speed: up to 1,908GHz
+>> - high-speed: up to 2.1GHz
 >>
->> The sd_emmc_a quirk is added in the g12a/g12b since since it's already
->> known the sd_emmc_a controller is fixed in the next SM1 SoC family.
-> too bad they named the upcoming SoC family SM1
+>> And the S905X2 opp voltages are slightly higher than the S905D2
+>> OPP voltages for the low-speed table.
+>>
+>> This adds the conservative OPP table with the S905X2 higher voltages
+>> and the maximum low-speed OPP frequency.
+> have you considered all three as separate voltage tables?
+> you're other patches are assigning the OPP table to the CPU in the
+> board.dts anyways, so it's easy to use different OPP tables for
+> different boards
 
-Yeah weird naming, but seems SM1 is the new "AI" oriented SoC family
+We can't assume the board and the CPU type :-/
 
-> 
-> does it make sense to name this file "meson-g12a-g12b-sm1-common.dtsi" instead?
-> do you know whether there will be a successor to G12B and what it's
-> code-name will be?
-
-meson-g12a-g12b-sm1-common seems a bit long to me...
-
-We don't have naming of the future SoCs, since SM1 is only available on
-prototypes yet.
+Kevin told me about cpufreq policy, where we could add a policy reading the
+eFUSE and changing the max frequency, then we could add the whole OPP table.
 
 Neil
 
-> 
-> 
-> Martin
 > 
 
 
