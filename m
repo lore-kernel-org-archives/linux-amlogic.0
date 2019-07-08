@@ -1,73 +1,91 @@
-Return-Path: <SRS0=8Pz9=VB=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=sv0b=VF=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ABB48C4646D
-	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Jul 2019 12:25:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 37878C606BD
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jul 2019 17:34:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 83A67218A0
-	for <linux-amlogic@archiver.kernel.org>; Thu,  4 Jul 2019 12:25:22 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0F5BC2175B
+	for <linux-amlogic@archiver.kernel.org>; Mon,  8 Jul 2019 17:34:11 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cEew5ohD";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="mm0hugq4"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 83A67218A0
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gaVjDdRu";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Ms9u75JB"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0F5BC2175B
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:
-	In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	References:List-Owner; bh=EGjcc+jazb9LqXbFj2a4i6n6EtILxfMKTAPIU50vXp4=; b=cEe
-	w5ohDu9fG12k0lHItpQ/3O/e5ZlKArANgTGBJA6Tw2Nui5HYRjrRJs7rhxg7M+JRsTL/kMR5TpRH6
-	Yqwn7VDmH+V2tEzzO6t5lYJAgr+ZbGAu9JXrIY0WKsEgNzv0lFdgORtqepBOCBLpz2QDHD8L6VTMR
-	y2WzPS4l/xoW73jr9g9TFcrwswgpyEGMLwslWwRCycNZZli0drMFXaiXg1Q1DTTyhpRTKVOn7U26Q
-	MFMvrCV9ArHR6JUO2nHFIeD120BOE4h2gPnkRcdIJR2nz7togsjIvCjugHEOg22bi/ELHBNqUFzdF
-	CXUKVPrGu+872Oq+9VIPLvrvnPLmeWQ==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=vjsFpl6RywOIN0q13s7E2DN4wo0IQpV4KQ6DWakYwQs=; b=gaVjDdRuXS/1VV
+	ISuixfdC6jDXCNGgyIoTgK3tg2rUo6PVjEpR7U5DsinVDemBeW4A5ytPMGdJnp1ZbJakLynoG3vsP
+	+hL4wztnF69kTYLCnUK1mjh8cLLDKRknxPHkHPxnGmLB2P1Qow5EnbCLDkoXvqwG7sbjyqJKllNyV
+	fNciQvs4J2DwIa8ikFUpBhiswY5tWZq+coVwE1csqOWGCmEN26KGXshHWfFGzBkvto2upmvxVCHNB
+	wCGLJAMm9fv8exP8Zg6lVz8MM3TWmypBffRsLX6V8aW0dUdC0anFugVmVma22uALwX/DAqvPf44xr
+	ih0y4rx28ih/KeLjfOGg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hj0nW-0005HK-H2; Thu, 04 Jul 2019 12:25:10 +0000
-Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
+	id 1hkXWT-0004Mo-Nw; Mon, 08 Jul 2019 17:33:53 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hj0nN-0004Hr-47
- for linux-amlogic@lists.infradead.org; Thu, 04 Jul 2019 12:25:04 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
- Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
- List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
- List-Archive; bh=vFXKWZbVlhtP1uV3m8Dyf6rla7JmlnmBJTS3Fskfk3I=; b=mm0hugq4fRA9
- ejjmmKIjkCCbP7VOXFMeeNif7zZri8yEK7qmskL8U7p2b+jCRPmiVLtu4JmoSTdofNT5ysqXHwzS/
- YoaFUueq/YaFHVaf30i0SPNttcVfLhL9NjRpUFUtp8Bj35V6E1mxHhomEcsCse8y8VJrWldu+Zn6Z
- otkRo=;
-Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
- by heliosphere.sirena.org.uk with esmtpsa
- (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.89)
- (envelope-from <broonie@sirena.org.uk>)
- id 1hj0nH-0000ig-9E; Thu, 04 Jul 2019 12:24:55 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
- id A00DD274389C; Thu,  4 Jul 2019 13:24:54 +0100 (BST)
-From: Mark Brown <broonie@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Subject: Applied "ASoC: meson: axg-tdm-formatter: add reset to the bindings
- documentation" to the asoc tree
-In-Reply-To: <20190703120749.32341-2-jbrunet@baylibre.com>
-X-Patchwork-Hint: ignore
-Message-Id: <20190704122454.A00DD274389C@ypsilon.sirena.org.uk>
-Date: Thu,  4 Jul 2019 13:24:54 +0100 (BST)
-X-Bad-Reply: In-Reply-To but no 'Re:' in Subject.
+ id 1hkXWR-0004L8-9x; Mon, 08 Jul 2019 17:33:52 +0000
+Received: by mail-wr1-x444.google.com with SMTP id r1so11726551wrl.7;
+ Mon, 08 Jul 2019 10:33:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Q4VeygN0Abg7eEmu02zPFKG/LiENvzvS9nqQqihkBL4=;
+ b=Ms9u75JBvQ3ZWj+BbPa8CjoX1faSTZB5rIGp8XdgdD+Ph+4ylCuVHXHEpV83vhU0Nl
+ 0g1hzGyVSMzgFBNeszzX20XxoFoIr6vaBzjTKkesBzJXV6zZUxeEAH7kMoRL39cV2U8p
+ hcqgM2xqn1LqHZly3XYgYNyxgoyvGu0dUp04G5jpcB3Icoqf7YT1nghZXcI2H0G+48/S
+ N8U2riQAIlEyNF790SnBjFDHoQ2BQ6ZLL3bjbpefR1jXwbCc9fOnh/UbFiSZFe0IB6OD
+ awZv2tPTY599CabMhLP82xSrw97aV6CgqeJex86/nMA50+nWzu3LLiSYJjxaUXOSrSOG
+ YO6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Q4VeygN0Abg7eEmu02zPFKG/LiENvzvS9nqQqihkBL4=;
+ b=AeoMf3qbS1XeUIXnVUwv6AucWmf2jv1eo3Km4pspqmfNTR+/t+m+/dlSAPYmk1e6jQ
+ QmXvIhGAJArB0JVo3IeqO59bBMgjFQ24YAF1k3EeaaM1w5Ri04pDIw5Xzu1udiR+eJgT
+ FDa7jtb9HgaJEJW6nFd6VKuIVWtIRY+3pw8lE+lLR4ZfSeWiVHAw8+tHJ9MI7qgNyNFn
+ XmTQLMu/WkaSAPoCSkX3QSN024PpOlliLgRm9WyI9919ew419N0aazwCHSX8O874/Hg2
+ iBB+bu7haxfHhPDen4TYj6tQW+fC53S/sz9FsT6Mg86XRjuMPqKXCKmkItRgMfymgDUW
+ MBjw==
+X-Gm-Message-State: APjAAAVji9ZxsjW4/1qFC+UZOGwXmJP3McclnULARmJk5BJqwgJmEpCf
+ UZKQVkxatokfpEss+TZnbI+4ZnFt
+X-Google-Smtp-Source: APXvYqzfDOsaXbuIlIodiPzCSM9B4fMT2fL+R7nHm6g6q58Rvjk/xi/cA3+25XYz89sPIVOalja1uw==
+X-Received: by 2002:a5d:46cf:: with SMTP id g15mr1029573wrs.93.1562607225190; 
+ Mon, 08 Jul 2019 10:33:45 -0700 (PDT)
+Received: from blackbox.darklights.net
+ (p200300F133D62000D8A33B20A298F2F2.dip0.t-ipconnect.de.
+ [2003:f1:33d6:2000:d8a3:3b20:a298:f2f2])
+ by smtp.googlemail.com with ESMTPSA id s3sm222975wmh.27.2019.07.08.10.33.43
+ (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+ Mon, 08 Jul 2019 10:33:44 -0700 (PDT)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-mmc@vger.kernel.org, robh+dt@kernel.org, ulf.hansson@linaro.org,
+ jianxin.pan@amlogic.com
+Subject: [PATCH RFC v1 0/2] Amlogic 32-bit Meson SDHC MMC controller driver
+Date: Mon,  8 Jul 2019 19:33:28 +0200
+Message-Id: <20190708173330.13217-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.22.0
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190704_052501_428808_53E9A839 
-X-CRM114-Status: GOOD (  12.69  )
+X-CRM114-CacheID: sfid-20190708_103351_345753_29518EB1 
+X-CRM114-Status: UNSURE (   9.77  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,82 +97,45 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
- Kevin Hilman <khilman@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>,
- linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
- linux-amlogic@lists.infradead.org
-MIME-Version: 1.0
+Cc: mark.rutland@arm.com,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The patch
+Hello,
 
-   ASoC: meson: axg-tdm-formatter: add reset to the bindings documentation
+this is RFC v1 of the attempt to upstream the driver for the "SDHC" MMC
+controller found on Meson6, Meson8, Meson8b and Meson8m2 SoCs.
 
-has been applied to the asoc tree at
+The public S805 (Meson8b) datasheet has some documentation starting on
+page 74: [0]
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.3
+The goal of this RFC v1 is to:
+- find out how to set up the MMC clock correctly with Jianxin's help (see
+  the description of patch #2 with questions)
+- get feedback from the MMC maintainers to see which bits need changing
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+[0] https://dn.odroid.com/S805/Datasheet/S805_Datasheet%20V0.8%2020150126.pdf
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Martin Blumenstingl (2):
+  dt-bindings: mmc: Document the Amlogic Meson SDHC MMC host controller
+  mmc: host: meson-mx-sdhc: new driver for the Amlogic Meson SDHC host
 
-Thanks,
-Mark
+ .../bindings/mmc/amlogic,meson-mx-sdhc.txt    |   34 +
+ drivers/mmc/host/Kconfig                      |   14 +
+ drivers/mmc/host/Makefile                     |    1 +
+ drivers/mmc/host/meson-mx-sdhc.c              | 1161 +++++++++++++++++
+ 4 files changed, 1210 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdhc.txt
+ create mode 100644 drivers/mmc/host/meson-mx-sdhc.c
 
-From 094380ea2bf9f0fa7d63e67bf500b8c77e8d1910 Mon Sep 17 00:00:00 2001
-From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Wed, 3 Jul 2019 14:07:48 +0200
-Subject: [PATCH] ASoC: meson: axg-tdm-formatter: add reset to the bindings
- documentation
-
-Add an optional reset property to the tdm formatter bindings. The
-dedicated reset line is present on some SoC families, such as the g12a.
-
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Link: https://lore.kernel.org/r/20190703120749.32341-2-jbrunet@baylibre.com
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- .../bindings/sound/amlogic,axg-tdm-formatters.txt           | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
-index 3b94a715a0b9..8835a43edfbb 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
-@@ -15,11 +15,15 @@ Required properties:
-   * "lrclk"    : sample clock
-   * "lrclk_sel": sample clock input multiplexer
- 
--Example of TDMOUT_A on the A113 SoC:
-+Optional property:
-+- resets: phandle to the dedicated reset line of the tdm formatter.
-+
-+Example of TDMOUT_A on the S905X2 SoC:
- 
- tdmout_a: audio-controller@500 {
- 	compatible = "amlogic,axg-tdmout";
- 	reg = <0x0 0x500 0x0 0x40>;
-+	resets = <&clkc_audio AUD_RESET_TDMOUT_A>;
- 	clocks = <&clkc_audio AUD_CLKID_TDMOUT_A>,
- 		 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK>,
- 		 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK_SEL>,
 -- 
-2.20.1
+2.22.0
 
 
 _______________________________________________
