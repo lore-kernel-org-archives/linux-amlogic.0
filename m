@@ -2,78 +2,67 @@ Return-Path: <SRS0=benv=VH=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=3.4.0
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3AA9AC73C7C
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jul 2019 09:46:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 82A6FC74A21
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jul 2019 15:46:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0CD3D2084B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jul 2019 09:46:55 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5B2CA2086D
+	for <linux-amlogic@archiver.kernel.org>; Wed, 10 Jul 2019 15:46:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Kkd33ItB";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="SuuW/7NN"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0CD3D2084B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=armlinux.org.uk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bN74605Y"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5B2CA2086D
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=perches.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2wVUF2f9Xta7jP9+hGGdkfJi/TUXMZc1xMRPbAX8bpI=; b=Kkd33ItBsJtgBp
-	b+gm8LotDMPG4oDhXxosY27TQ3qt9yb5Bs0EC2wGx/pVSe1fAhj9jQsz29MabnjYGorWq9gqpO7z4
-	GvsNXyE+i8o5fqxIk9d1lmO3Q2C4GDqQOpUxPJc7nLqVGw/Nxsd3PqujsMHrEjXydKf20zjEDTS0s
-	MVMgDOhMzGl8qF9ZhWIb8mH1Y+apXvVhYreFix7HtIaGmQUmbzPKelvxc8zNWRvaJtD4IsYVvYnps
-	1xZBPzHnTbSy5RJKZzhI04sGp3Heu5CTQLbg82z1u5HLVvKLfUb57IRiaCz/BZk+Hw9bBc6iqbCEr
-	08zDnPYGk4F/Jdn14Qfw==;
+	List-Owner; bh=jXGlKmPu4BmhxD8wsNCVjIFtVuA3hdAuANoMgZrWCLQ=; b=bN74605YJxU/du
+	+MluzUnLkGbyh0M7iBPImaeZDdAC7MspmeOM/2zLkJEGYoF9JzgzJkQ7kp3qz0d2MuLHihG61KbTj
+	LDNn7oWKVT/oY547LHRbYEofHoBUQGVe4+qgIl2GlLBTAfWNdPHtw4pXv2FO2k4ElZphYlZqx+BWD
+	LYRVXd8EiAkEvmdUjQErmgrF5VfyQIhDqnUe35T5RhvNp1NTEM/Qmpv7dxys4d8A8jMvjX2OUwV42
+	hYwXuDRdi3KwFgkhfGZNe5BvVBZVQZxBf66+6IZMDPaj+OE7PvU6ELA0SdLJcV6dSukcnzTbMplRk
+	iNRgCosAm1S3/yFbzyFg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hl9BU-0001dT-JL; Wed, 10 Jul 2019 09:46:44 +0000
-Received: from pandora.armlinux.org.uk
- ([2001:4d48:ad52:3201:214:fdff:fe10:1be6])
+	id 1hlEnR-0003Qu-Kd; Wed, 10 Jul 2019 15:46:17 +0000
+Received: from smtprelay0085.hostedemail.com ([216.40.44.85]
+ helo=smtprelay.hostedemail.com)
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hl9BF-00005L-Md; Wed, 10 Jul 2019 09:46:31 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=j/WSDXca8rXK9NsDZMmI4ZGVD5lmMYmQNn9cX+c1P0c=; b=SuuW/7NN1z53N126yQd0mfU0n
- ntWsBeL22jFfrqe6UV7yYYjaWAb/mGvo82v/VpffWPeHAXC8qvHdMVqjvTeqQYorTqKjPyjcVkd0Y
- ehhidoReYAcrBOGYvK5hg+mxgyuD5Njr2SLIjID07Kvs0w8adz+Czb2UlD+NlXUjcnJQShORaFQ6X
- Xl3J1vYZGJzoNp6wHmHn8OimwqiNyO9IG6bSDFpjxItLMpKnIWdEU05QuowI2tkahamV/uty376Ez
- mf5JMQomwfeTQc+3SQ9pZj0NiYOkjfuIR3hSKUK/aQunmlQ7Q5KSFX7XpTfFzFgMc9EjJ+4N1wSfg
- nEpyIjNkA==;
-Received: from shell.armlinux.org.uk
- ([2001:4d48:ad52:3201:5054:ff:fe00:4ec]:59340)
- by pandora.armlinux.org.uk with esmtpsa
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <linux@armlinux.org.uk>)
- id 1hl98c-0005tt-RN; Wed, 10 Jul 2019 10:43:47 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.89)
- (envelope-from <linux@shell.armlinux.org.uk>)
- id 1hl98T-0003nw-5z; Wed, 10 Jul 2019 10:43:37 +0100
-Date: Wed, 10 Jul 2019 10:43:37 +0100
-From: Russell King - ARM Linux admin <linux@armlinux.org.uk>
-To: Johannes Berg <johannes@sipsolutions.net>
+ id 1hlEnO-0003Ps-G7; Wed, 10 Jul 2019 15:46:16 +0000
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
+ [216.40.38.60])
+ by smtprelay05.hostedemail.com (Postfix) with ESMTP id C502F1802912E;
+ Wed, 10 Jul 2019 15:46:09 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-HE-Tag: range96_50d7d845d712e
+X-Filterd-Recvd-Size: 3121
+Received: from XPS-9350 (cpe-23-242-196-136.socal.res.rr.com [23.242.196.136])
+ (Authenticated sender: joe@perches.com)
+ by omf13.hostedemail.com (Postfix) with ESMTPA;
+ Wed, 10 Jul 2019 15:45:54 +0000 (UTC)
+Message-ID: <b9c3b83c9be50286062ae8cefd5d38e2baa0fb22.camel@perches.com>
 Subject: Re: [PATCH 00/12] treewide: Fix GENMASK misuses
-Message-ID: <20190710094337.wf2lftxzfjq2etro@shell.armlinux.org.uk>
+From: Joe Perches <joe@perches.com>
+To: Russell King - ARM Linux admin <linux@armlinux.org.uk>, Johannes Berg
+ <johannes@sipsolutions.net>
+Date: Wed, 10 Jul 2019 08:45:53 -0700
+In-Reply-To: <20190710094337.wf2lftxzfjq2etro@shell.armlinux.org.uk>
 References: <cover.1562734889.git.joe@perches.com>
  <5fa1fa6998332642c49e2d5209193ffe2713f333.camel@sipsolutions.net>
+ <20190710094337.wf2lftxzfjq2etro@shell.armlinux.org.uk>
+User-Agent: Evolution 3.30.5-0ubuntu0.18.10.1 
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <5fa1fa6998332642c49e2d5209193ffe2713f333.camel@sipsolutions.net>
-User-Agent: NeoMutt/20170113 (1.7.2)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190710_024629_747276_10950746 
-X-CRM114-Status: GOOD (  13.22  )
+X-CRM114-CacheID: sfid-20190710_084614_672923_2AAE9EE1 
+X-CRM114-Status: GOOD (  13.48  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,8 +81,8 @@ Cc: devel@driverdev.osuosl.org, linux-mmc@vger.kernel.org,
  linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-iio@vger.kernel.org, Nancy Yuen <yuenn@google.com>,
  linux-mediatek@lists.infradead.org, dri-devel@lists.freedesktop.org,
- netdev@vger.kernel.org, Joe Perches <joe@perches.com>,
- linux-amlogic@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
+ netdev@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ Andrew Morton <akpm@linux-foundation.org>,
  linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org,
  linux-media@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
@@ -101,56 +90,49 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jul 10, 2019 at 11:17:31AM +0200, Johannes Berg wrote:
-> On Tue, 2019-07-09 at 22:04 -0700, Joe Perches wrote:
-> > These GENMASK uses are inverted argument order and the
-> > actual masks produced are incorrect.  Fix them.
+On Wed, 2019-07-10 at 10:43 +0100, Russell King - ARM Linux admin wrote:
+> On Wed, Jul 10, 2019 at 11:17:31AM +0200, Johannes Berg wrote:
+> > On Tue, 2019-07-09 at 22:04 -0700, Joe Perches wrote:
+> > > These GENMASK uses are inverted argument order and the
+> > > actual masks produced are incorrect.  Fix them.
+> > > 
+> > > Add checkpatch tests to help avoid more misuses too.
+> > > 
+> > > Joe Perches (12):
+> > >   checkpatch: Add GENMASK tests
 > > 
-> > Add checkpatch tests to help avoid more misuses too.
-> > 
-> > Joe Perches (12):
-> >   checkpatch: Add GENMASK tests
+> > IMHO this doesn't make a lot of sense as a checkpatch test - just throw
+> > in a BUILD_BUG_ON()?
+
+I tried that.
+
+It'd can't be done as it's used in declarations
+and included in asm files and it uses the UL()
+macro.
+
+I also tried just making it do the right thing
+whatever the argument order.
+
+Oh well.
+
+> My personal take on this is that GENMASK() is really not useful, it's
+> just pure obfuscation and leads to exactly these kinds of mistakes.
 > 
-> IMHO this doesn't make a lot of sense as a checkpatch test - just throw
-> in a BUILD_BUG_ON()?
+> Yes, I fully understand the argument that you can just specify the
+> start and end bits, and it _in theory_ makes the code more readable.
+> 
+> However, the problem is when writing code.  GENMASK(a, b).  Is a the
+> starting bit or ending bit?  Is b the number of bits?  It's confusing
+> and causes mistakes resulting in incorrect code.  A BUILD_BUG_ON()
+> can catch some of the cases, but not all of them.
 
-My personal take on this is that GENMASK() is really not useful, it's
-just pure obfuscation and leads to exactly these kinds of mistakes.
+It's a horrid little macro and I agree with Russell.
 
-Yes, I fully understand the argument that you can just specify the
-start and end bits, and it _in theory_ makes the code more readable.
+I also think if it existed at all it should have been
+GENMASK(low, high) not GENMASK(high, low).
 
-However, the problem is when writing code.  GENMASK(a, b).  Is a the
-starting bit or ending bit?  Is b the number of bits?  It's confusing
-and causes mistakes resulting in incorrect code.  A BUILD_BUG_ON()
-can catch some of the cases, but not all of them.
+I
 
-For example:
-
-	GENMASK(6, 2)
-
-would satisify the requirement that a > b, so a BUILD_BUG_ON() will
-not trigger, but was the author meaning 0x3c or 0xc0?
-
-Personally, I've decided I am _not_ going to use GENMASK() in my code
-because I struggle to get the macro arguments correct - I'm _much_
-happier, and it is way more reliable for me to write the mask in hex
-notation.
-
-I think this is where use of a ternary operator would come in use.  The
-normal way of writing a number of bits tends to be "a:b", so if GENMASK
-took something like GENMASK(6:2), then I'd have less issue with it,
-because it's argument is then in a familiar notation.
-
-Yes, I'm sure that someone will point out that the GENMASK arguments
-are just in the same order, but that doesn't prevent _me_ frequently
-getting it wrong - and that's the point.  The macro seems to me to
-cause more problems than it solves.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
-According to speedtest.net: 11.9Mbps down 500kbps up
 
 _______________________________________________
 linux-amlogic mailing list
