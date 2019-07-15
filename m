@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 71278C7618F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Jul 2019 14:08:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BC0A1C76191
+	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Jul 2019 14:09:01 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4612B2083D
-	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Jul 2019 14:08:23 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 94B3F212F5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 15 Jul 2019 14:09:01 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ijbh6xZx";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="WDikP0q5"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4612B2083D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="W7l6gXDv";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="J6jKx/Mc"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 94B3F212F5
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,38 +26,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vgFHQhHl4p535p2usIFGtmiflsOfz+XZykBcwFhnwLE=; b=ijbh6xZxm0WYj0
-	zA1ZvuPBxQ7zAZbDHgbiD4K8fUbDmPqZiyK5NNHyAw0wpV0v2+KfEoz2aX+4D5RbwSShpLRcjMNjk
-	pJBVLSwtXfbLpSTUOoibAXC0kK/NKpnhdJ2xR7WKxKS+j3xFp321S2fdoaJEPTzdX6HMI3NZp6AYp
-	b/6s+JQicrwzZ+L0QnsNrfdCSFENLxahehqPNd2fYM0LT84U/DxAMsrc5yPCDM5UYQXKOKs2fRgEZ
-	Na45+Wjr/PATQUU4ldhnYnYugZFqUgH24TP+ytLqfJOMhrodAyVqVJOMN6sMhBd13eUvb2tthdH//
-	gR3UBzCa+Q742V8KxZAA==;
+	List-Owner; bh=0XuXnFPt2pCGMhzPiOKt6eiUOctjIh0ZJGYmsnGgnco=; b=W7l6gXDvszikau
+	fPgAKvyGJsBXJg7w9bSlJDjFsBfdR99S2caLmYrnWseewfYles+29NJPUI382zfzOzssMaFfP/seo
+	h7Cyq1mWueAndi+gMeo81CNcQ6Xrl9D27K9TmBtem3oJ4RYCxapoYFX5v4WFhB9N3w3//wFcc4WWv
+	FZe6kA1WxZqHEG02nZ+FvEwkkNO/Hp3r/5cBHjo7aAxru6oMF8Ght1PF34YbwL9vM2gjfmHY7nrD4
+	iHTWfXROi+wYdrG6DH3GHFJ3MovFccsbZP/YP5y687CVR1286b3bKJBR1njwX3UTBpsHu8f+ADoEx
+	YMTfDEwSCqaYYHN9AA3w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hn1eM-0005UG-E4; Mon, 15 Jul 2019 14:08:18 +0000
+	id 1hn1ez-0005sB-58; Mon, 15 Jul 2019 14:08:57 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hn1eH-0005QB-Mh
- for linux-amlogic@lists.infradead.org; Mon, 15 Jul 2019 14:08:15 +0000
+ id 1hn1ev-0005oC-Kd
+ for linux-amlogic@lists.infradead.org; Mon, 15 Jul 2019 14:08:54 +0000
 Received: from sasha-vm.mshome.net (unknown [73.61.17.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 052B42083D;
- Mon, 15 Jul 2019 14:08:11 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 1DB4A206B8;
+ Mon, 15 Jul 2019 14:08:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1563199693;
- bh=uD0iJ8pg9FMGfYsCPPx6lt0Ci+QLueRNLz1NcRGd82I=;
+ s=default; t=1563199733;
+ bh=5KpwBiolgatbtUkN/plbwqIBH7FRPYA+Rb8GfzJyAIY=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=WDikP0q5qkRBcK2//7E7LlEv21Bjm/jPkVO8jDxbuAv8/TPfeOGuj5ev8qs48pNsc
- A5C1Q7dO1z3aipWzrC7WJfJUeB6NSkycRMLDjbu0p2caRzh2f9IRbSVDZAhM4jBLMd
- Hwa5aGlzg3WG19PZ8Sp2Qkjlp4Pt28NClDcNfFYw=
+ b=J6jKx/McLJmqFNphOt07cZg3HGaldw4lawm+uK0UEF/kjB4sdAQCJbqwMeZIhcuF+
+ mUkgXRjzjNgYbNZvAeUBca6JYi2BqVzPbYT0B7dPgt3rzKOBf+bokP5r6wG0AhuWK6
+ fPL78CeHPc3sInJXY6pDTUqPfql01PKcZTu9K4EQ=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.1 074/219] irqchip/meson-gpio: Add support for
- Meson-G12A SoC
-Date: Mon, 15 Jul 2019 10:01:15 -0400
-Message-Id: <20190715140341.6443-74-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.1 088/219] ASoC: meson: axg-tdm: fix sample clock
+ inversion
+Date: Mon, 15 Jul 2019 10:01:29 -0400
+Message-Id: <20190715140341.6443-88-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190715140341.6443-1-sashal@kernel.org>
 References: <20190715140341.6443-1-sashal@kernel.org>
@@ -65,8 +65,8 @@ MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190715_070813_788560_B3BA298E 
-X-CRM114-Status: GOOD (  10.67  )
+X-CRM114-CacheID: sfid-20190715_070853_751424_4429D437 
+X-CRM114-Status: GOOD (  11.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,52 +78,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, Jianxin Pan <jianxin.pan@amlogic.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Marc Zyngier <marc.zyngier@arm.com>, linux-amlogic@lists.infradead.org,
- Xingyu Chen <xingyu.chen@amlogic.com>
+Cc: Sasha Levin <sashal@kernel.org>, linux-amlogic@lists.infradead.org,
+ Mark Brown <broonie@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Xingyu Chen <xingyu.chen@amlogic.com>
+From: Jerome Brunet <jbrunet@baylibre.com>
 
-[ Upstream commit c64a9e804ccf86eb202bfd1c6a8c5233c75a0431 ]
+[ Upstream commit cb36ff785e868992e96e8b9e5a0c2822b680a9e2 ]
 
-The Meson-G12A SoC uses the same GPIO interrupt controller IP block as the
-other Meson SoCs, A totle of 100 pins can be spied on, which is the sum of:
+The content of SND_SOC_DAIFMT_FORMAT_MASK is a number, not a bitfield,
+so the test to check if the format is i2s is wrong. Because of this the
+clock setting may be wrong. For example, the sample clock gets inverted
+in DSP B mode, when it should not.
 
-- 223:100 undefined (no interrupt)
-- 99:97   3 pins on bank GPIOE
-- 96:77   20 pins on bank GPIOX
-- 76:61   16 pins on bank GPIOA
-- 60:53   8 pins on bank GPIOC
-- 52:37   16 pins on bank BOOT
-- 36:28   9 pins on bank GPIOH
-- 27:12   16 pins on bank GPIOZ
-- 11:0    12 pins in the AO domain
+Fix the lrclk invert helper function
 
-Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
-Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Marc Zyngier <marc.zyngier@arm.com>
+Fixes: 1a11d88f499c ("ASoC: meson: add tdm formatter base driver")
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Mark Brown <broonie@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/irqchip/irq-meson-gpio.c | 1 +
- 1 file changed, 1 insertion(+)
+ sound/soc/meson/axg-tdm.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
-index 7b531fd075b8..7599b10ecf09 100644
---- a/drivers/irqchip/irq-meson-gpio.c
-+++ b/drivers/irqchip/irq-meson-gpio.c
-@@ -73,6 +73,7 @@ static const struct of_device_id meson_irq_gpio_matches[] = {
- 	{ .compatible = "amlogic,meson-gxbb-gpio-intc", .data = &gxbb_params },
- 	{ .compatible = "amlogic,meson-gxl-gpio-intc", .data = &gxl_params },
- 	{ .compatible = "amlogic,meson-axg-gpio-intc", .data = &axg_params },
-+	{ .compatible = "amlogic,meson-g12a-gpio-intc", .data = &axg_params },
- 	{ }
- };
+diff --git a/sound/soc/meson/axg-tdm.h b/sound/soc/meson/axg-tdm.h
+index e578b6f40a07..5774ce0916d4 100644
+--- a/sound/soc/meson/axg-tdm.h
++++ b/sound/soc/meson/axg-tdm.h
+@@ -40,7 +40,7 @@ struct axg_tdm_iface {
+ 
+ static inline bool axg_tdm_lrclk_invert(unsigned int fmt)
+ {
+-	return (fmt & SND_SOC_DAIFMT_I2S) ^
++	return ((fmt & SND_SOC_DAIFMT_FORMAT_MASK) == SND_SOC_DAIFMT_I2S) ^
+ 		!!(fmt & (SND_SOC_DAIFMT_IB_IF | SND_SOC_DAIFMT_NB_IF));
+ }
  
 -- 
 2.20.1
