@@ -2,87 +2,64 @@ Return-Path: <SRS0=7EgU=VN=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E25FEC76188
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jul 2019 06:44:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EE4E7C76188
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jul 2019 06:50:45 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B5403206C2
-	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jul 2019 06:44:23 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C6C31206C2
+	for <linux-amlogic@archiver.kernel.org>; Tue, 16 Jul 2019 06:50:45 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ViWDD7aY";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h3TcAt1y"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B5403206C2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="H4MXhCeO"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C6C31206C2
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vPK2033GJhqB5PSczNx0bvgVk+hv+yO0NTUcdKDxpLE=; b=ViWDD7aY83AdMo
-	RUjkkG9Nhx+8beXQocFupXnNd9ND6gubty+GqRKmWEayCLZP41L3h+2zSx8qYiRtkJjjAoUN9Qu71
-	m0hczQ7sZuMr+BcUyTGQdSzAWABrdcaqNC8MuZCdQNGgWzDDQXfmOyXCpL7m88z8EwvUiuDbzHYSJ
-	mpwQH0AeJc5FylXbJhOtxOukpoNoFl4On0NE5yPfC6tLOOasLfefyO5MwTjl3eq+9RVApGPwKICfO
-	dil4gqolmAC6DN/wlxLq4pufrSSE9pBqaem8O6AA6qYHH5MgIvcZfhxkwbAnP64+HGMqECjEyhbzI
-	UZa6nMlrMdCQwDeaNsGQ==;
+	List-Owner; bh=9pI+/bGEXja5lKTny/RHXbc6HvCBZs0codbN+lRBdag=; b=H4MXhCeOtlzHH1
+	rPYoEdCSRawi5mUBk4S401xB5qSl62dly1MAgbaQwEXfH83yluccHHh0QwNjBmVK3DKRfgEUqSHDu
+	uPJegpsJwQjR2eRIeveL4l7yGp+S78harPZmglTJJgQpdAds4TGUQDXH2bTtOBGi1Oet4W5t0H2Y9
+	rJ4nc1tevZC2+u0mQwdIA/GHj7P8vUsAt7GhAyiD6qUAyDOXGFv/F3mDqf+/SQbmOcg7toy4uIFT4
+	UEDr1x4nPrYgYmedOaudF00Lz2/yz9vnnZk0EOP2xkml9YXV5LFow+5iIr6cxCNrfI71Hin7rAdRS
+	ipwHdav7DkLx5XpI+PpA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hnHC4-0000Rm-9B; Tue, 16 Jul 2019 06:44:08 +0000
-Received: from mail-lj1-x244.google.com ([2a00:1450:4864:20::244])
+	id 1hnHIN-0004ts-K6; Tue, 16 Jul 2019 06:50:39 +0000
+Received: from asavdk4.altibox.net ([109.247.116.15])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hnHBz-0000RC-LT; Tue, 16 Jul 2019 06:44:06 +0000
-Received: by mail-lj1-x244.google.com with SMTP id h10so18762380ljg.0;
- Mon, 15 Jul 2019 23:44:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=tXnVfqQrao+tt76BO8pYymLa2fme49ujWAZnSVLIB7c=;
- b=h3TcAt1yC/7A9uSBsN8020Rym0dJtJYWMU8QuEZzJ+c7PyO2pm52ZF/Cx8N9l/JVjz
- JtqWmYWqR/6dGF8eyLcGG5U8Nt8R7GGLU4B7GbAxyrTCUbJHd8OuIb/lAasCwTf/zrM+
- wLJt3GcseV9BS2YXucq1tBxT892GKUkiHPrFdSsKwxJGGmNQiZL6IVW8miYjNf8axYCH
- 2O2uZz2Tg1y9kTDJ8tur1mjHLcqh5Z7FPqTcRcjfYZa3Cwt+s6EF0Wv6/WIh7ED0NITF
- 5hpMdlp61MhMXxfIiHDza98SA5BT9Xlk85bFHgi+GMl8id4VdPpgyYdwto+y0PVIre47
- qG0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
- :in-reply-to:references:mime-version:content-transfer-encoding;
- bh=tXnVfqQrao+tt76BO8pYymLa2fme49ujWAZnSVLIB7c=;
- b=gkXEcn5paP1E5mSYMHalbm1DeYN7ftvgthBswsJJDbhfwiV58rc1dfaifptqSbXuYO
- NOECPNZyI/aZQyyUxPDQln5LpK2AjYXphyR5W8CvGs/LHayzSll45NoX0HKisadlO3On
- vzTnt3eG+Ov3iGYAZrYOPz2V8MkJTd5yDVrQAGucyeDqdhPc7XtUBNMGDLLnjf2d0tds
- 1zBZ88GudJoOuiXKG6b9ScgyXVso7rKUT91zZ1d5dEwuoAjO18PkHtrJdOsC1tgeCkin
- KespkpDJo1oJB4V31xUQsfv4Qp6/cg7S5jsTJ4cGtX/5DQEsyleivOImzIqUSl8qLgKn
- vkFA==
-X-Gm-Message-State: APjAAAXMheHp2MQ+Hr1wEfZ/yUx4NGzewWWeZSbSXGAuuyTctQk6Iz8y
- Cw31NSDrFMVN3ZEZ7cEU7DU=
-X-Google-Smtp-Source: APXvYqxImr+ZmDJow7WJD0gKiPUHylqMWpiF6lPSWK29LJTWE/6UKZmluCF/GurneWgdrKkTpg1jNQ==
-X-Received: by 2002:a2e:9155:: with SMTP id q21mr16197012ljg.198.1563259441170; 
- Mon, 15 Jul 2019 23:44:01 -0700 (PDT)
-Received: from saturn.lan (18.158-248-194.customer.lyse.net. [158.248.194.18])
- by smtp.gmail.com with ESMTPSA id
- 27sm3529993ljw.97.2019.07.15.23.44.00
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Mon, 15 Jul 2019 23:44:00 -0700 (PDT)
+ id 1hnHIJ-0004tL-UM; Tue, 16 Jul 2019 06:50:38 +0000
+Received: from ravnborg.org (unknown [158.248.194.18])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by asavdk4.altibox.net (Postfix) with ESMTPS id 319798032F;
+ Tue, 16 Jul 2019 08:50:23 +0200 (CEST)
+Date: Tue, 16 Jul 2019 08:50:22 +0200
 From: Sam Ravnborg <sam@ravnborg.org>
 To: dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 01/19] drm/meson: drop use of drmP.h
-Date: Tue, 16 Jul 2019 08:42:02 +0200
-Message-Id: <20190716064220.18157-2-sam@ravnborg.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190716064220.18157-1-sam@ravnborg.org>
+Subject: Re: [PATCH v2 0/19] drm: drop use of drmp.h in drm-misc
+Message-ID: <20190716065022.GA18452@ravnborg.org>
 References: <20190716064220.18157-1-sam@ravnborg.org>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20190716064220.18157-1-sam@ravnborg.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=VcLZwmh9 c=1 sm=1 tr=0
+ a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+ a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=e5mUnYsNAAAA:8
+ a=D69vayMUP9x4mJoDBdEA:9 a=CjuIK1q_8ugA:10 a=Vxmtnl_E_bksehYqCbjh:22
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190715_234403_735621_3709B0F6 
-X-CRM114-Status: GOOD (  11.48  )
+X-CRM114-CacheID: sfid-20190715_235036_511685_E94E9F66 
+X-CRM114-Status: GOOD (  21.74  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,452 +72,236 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Maxime Jourdan <mjourdan@baylibre.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- linux-amlogic@lists.infradead.org, Emil Velikov <emil.velikov@collabora.com>,
- Sam Ravnborg <sam@ravnborg.org>, linux-arm-kernel@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
+ Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+ Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
+ Alexandru-Cosmin Gheorghe <Alexandru-Cosmin.Gheorghe@arm.com>,
+ Eric Anholt <eric@anholt.net>, Fabio Estevam <festevam@gmail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Deepak Sharma <deepak.sharma@amd.com>,
+ Maxime Ripard <maxime.ripard@bootlin.com>,
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-rockchip@lists.infradead.org,
+ Chen-Yu Tsai <wens@csie.org>, Tomi Valkeinen <tomi.valkeinen@ti.com>,
+ NXP Linux Team <linux-imx@nxp.com>, CK Hu <ck.hu@mediatek.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Francisco Jerez <currojerez@riseup.net>,
+ Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+ Dan Carpenter <dan.carpenter@oracle.com>,
+ Robert Tarasov <tutankhamen@chromium.org>, Emil Lundmark <lndmrk@chromium.org>,
+ Jani Nikula <jani.nikula@intel.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Jyri Sarha <jsarha@ti.com>, linux-mediatek@lists.infradead.org,
+ Matthias Brugger <matthias.bgg@gmail.com>, linux-amlogic@lists.infradead.org,
+ Sean Paul <sean@poorly.run>, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ linux-arm-kernel@lists.infradead.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Sandy Huang <hjc@rock-chips.com>,
+ Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ Mikulas Patocka <mpatocka@redhat.com>, Shawn Guo <shawnguo@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Drop use of the deprecated drmP.h header.
-While doing so used the opportunity
-to clean up a little so includes are now
-sorted and removed unused include files.
-In a few cases added some forwards to allow header
-files to built in different include order.
+Copied all recipients on the cover letter.
+As the list is long this mail may not hit the mailing lists.
 
-Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
-Acked-by: Emil Velikov <emil.velikov@collabora.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Cc: Kevin Hilman <khilman@baylibre.com>
-Cc: Maxime Jourdan <mjourdan@baylibre.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>
-Cc: linux-amlogic@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org
----
- drivers/gpu/drm/meson/meson_crtc.c       | 16 ++++++--------
- drivers/gpu/drm/meson/meson_drv.c        | 27 ++++++++++--------------
- drivers/gpu/drm/meson/meson_drv.h        | 11 ++++++----
- drivers/gpu/drm/meson/meson_dw_hdmi.c    | 19 +++++++++--------
- drivers/gpu/drm/meson/meson_overlay.c    | 13 +++++-------
- drivers/gpu/drm/meson/meson_plane.c      | 16 ++++++--------
- drivers/gpu/drm/meson/meson_registers.h  |  2 ++
- drivers/gpu/drm/meson/meson_vclk.c       |  7 +++---
- drivers/gpu/drm/meson/meson_vclk.h       |  4 ++++
- drivers/gpu/drm/meson/meson_venc.c       | 10 ++++-----
- drivers/gpu/drm/meson/meson_venc.h       |  2 ++
- drivers/gpu/drm/meson/meson_venc_cvbs.c  | 11 +++++-----
- drivers/gpu/drm/meson/meson_viu.c        |  7 ++----
- drivers/gpu/drm/meson/meson_vpp.c        |  7 +++---
- drivers/gpu/drm/meson/meson_vpp.h        |  3 +++
- include/linux/soc/amlogic/meson-canvas.h |  1 +
- 16 files changed, 77 insertions(+), 79 deletions(-)
+	Sam
 
-diff --git a/drivers/gpu/drm/meson/meson_crtc.c b/drivers/gpu/drm/meson/meson_crtc.c
-index aa8ea107524e..3320a74e67fa 100644
---- a/drivers/gpu/drm/meson/meson_crtc.c
-+++ b/drivers/gpu/drm/meson/meson_crtc.c
-@@ -9,23 +9,21 @@
-  *     Jasper St. Pierre <jstpierre@mecheye.net>
-  */
- 
--#include <linux/kernel.h>
--#include <linux/module.h>
--#include <linux/mutex.h>
--#include <linux/platform_device.h>
- #include <linux/bitfield.h>
--#include <drm/drmP.h>
--#include <drm/drm_atomic.h>
-+#include <linux/soc/amlogic/meson-canvas.h>
-+
- #include <drm/drm_atomic_helper.h>
--#include <drm/drm_flip_work.h>
-+#include <drm/drm_device.h>
-+#include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
-+#include <drm/drm_vblank.h>
- 
- #include "meson_crtc.h"
- #include "meson_plane.h"
-+#include "meson_registers.h"
- #include "meson_venc.h"
--#include "meson_vpp.h"
- #include "meson_viu.h"
--#include "meson_registers.h"
-+#include "meson_vpp.h"
- 
- #define MESON_G12A_VIU_OFFSET	0x5ec0
- 
-diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-index 37dca83d6eb1..42af49afdd75 100644
---- a/drivers/gpu/drm/meson/meson_drv.c
-+++ b/drivers/gpu/drm/meson/meson_drv.c
-@@ -8,35 +8,30 @@
-  *     Jasper St. Pierre <jstpierre@mecheye.net>
-  */
- 
--#include <linux/kernel.h>
--#include <linux/module.h>
--#include <linux/mutex.h>
--#include <linux/platform_device.h>
- #include <linux/component.h>
-+#include <linux/module.h>
- #include <linux/of_graph.h>
-+#include <linux/platform_device.h>
-+#include <linux/soc/amlogic/meson-canvas.h>
- 
--#include <drm/drmP.h>
--#include <drm/drm_atomic.h>
- #include <drm/drm_atomic_helper.h>
--#include <drm/drm_fb_cma_helper.h>
-+#include <drm/drm_drv.h>
- #include <drm/drm_fb_helper.h>
--#include <drm/drm_flip_work.h>
- #include <drm/drm_gem_cma_helper.h>
- #include <drm/drm_gem_framebuffer_helper.h>
--#include <drm/drm_plane_helper.h>
-+#include <drm/drm_irq.h>
-+#include <drm/drm_modeset_helper_vtables.h>
- #include <drm/drm_probe_helper.h>
--#include <drm/drm_rect.h>
-+#include <drm/drm_vblank.h>
- 
-+#include "meson_crtc.h"
- #include "meson_drv.h"
--#include "meson_plane.h"
- #include "meson_overlay.h"
--#include "meson_crtc.h"
-+#include "meson_plane.h"
-+#include "meson_registers.h"
- #include "meson_venc_cvbs.h"
--
--#include "meson_vpp.h"
- #include "meson_viu.h"
--#include "meson_venc.h"
--#include "meson_registers.h"
-+#include "meson_vpp.h"
- 
- #define DRIVER_NAME "meson"
- #define DRIVER_DESC "Amlogic Meson DRM driver"
-diff --git a/drivers/gpu/drm/meson/meson_drv.h b/drivers/gpu/drm/meson/meson_drv.h
-index 7b6593f33dfe..c9aaec1a846e 100644
---- a/drivers/gpu/drm/meson/meson_drv.h
-+++ b/drivers/gpu/drm/meson/meson_drv.h
-@@ -7,11 +7,14 @@
- #ifndef __MESON_DRV_H
- #define __MESON_DRV_H
- 
--#include <linux/platform_device.h>
--#include <linux/regmap.h>
-+#include <linux/device.h>
- #include <linux/of.h>
--#include <linux/soc/amlogic/meson-canvas.h>
--#include <drm/drmP.h>
-+#include <linux/regmap.h>
-+
-+struct drm_crtc;
-+struct drm_device;
-+struct drm_plane;
-+struct meson_drm;
- 
- struct meson_drm {
- 	struct device *dev;
-diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-index df3f9ddd2234..9f0b08eaf003 100644
---- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-@@ -5,29 +5,30 @@
-  * Copyright (C) 2015 Amlogic, Inc. All rights reserved.
-  */
- 
-+#include <linux/clk.h>
-+#include <linux/component.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
--#include <linux/component.h>
- #include <linux/of_device.h>
- #include <linux/of_graph.h>
--#include <linux/reset.h>
--#include <linux/clk.h>
- #include <linux/regulator/consumer.h>
-+#include <linux/reset.h>
- 
--#include <drm/drmP.h>
-+#include <drm/bridge/dw_hdmi.h>
- #include <drm/drm_atomic_helper.h>
-+#include <drm/drm_device.h>
- #include <drm/drm_edid.h>
- #include <drm/drm_probe_helper.h>
--#include <drm/bridge/dw_hdmi.h>
-+#include <drm/drm_print.h>
- 
--#include <uapi/linux/media-bus-format.h>
--#include <uapi/linux/videodev2.h>
-+#include <linux/media-bus-format.h>
-+#include <linux/videodev2.h>
- 
- #include "meson_drv.h"
--#include "meson_venc.h"
--#include "meson_vclk.h"
- #include "meson_dw_hdmi.h"
- #include "meson_registers.h"
-+#include "meson_vclk.h"
-+#include "meson_venc.h"
- 
- #define DRIVER_NAME "meson-dw-hdmi"
- #define DRIVER_DESC "Amlogic Meson HDMI-TX DRM driver"
-diff --git a/drivers/gpu/drm/meson/meson_overlay.c b/drivers/gpu/drm/meson/meson_overlay.c
-index cc7c6ae3013d..5aa9dcb4b35e 100644
---- a/drivers/gpu/drm/meson/meson_overlay.c
-+++ b/drivers/gpu/drm/meson/meson_overlay.c
-@@ -5,24 +5,21 @@
-  * Copyright (C) 2015 Amlogic, Inc. All rights reserved.
-  */
- 
--#include <linux/kernel.h>
--#include <linux/module.h>
--#include <linux/mutex.h>
- #include <linux/bitfield.h>
--#include <linux/platform_device.h>
--#include <drm/drmP.h>
-+
- #include <drm/drm_atomic.h>
- #include <drm/drm_atomic_helper.h>
-+#include <drm/drm_device.h>
-+#include <drm/drm_fourcc.h>
- #include <drm/drm_plane_helper.h>
- #include <drm/drm_gem_cma_helper.h>
- #include <drm/drm_fb_cma_helper.h>
- #include <drm/drm_gem_framebuffer_helper.h>
--#include <drm/drm_rect.h>
- 
- #include "meson_overlay.h"
--#include "meson_vpp.h"
--#include "meson_viu.h"
- #include "meson_registers.h"
-+#include "meson_viu.h"
-+#include "meson_vpp.h"
- 
- /* VD1_IF0_GEN_REG */
- #define VD_URGENT_CHROMA		BIT(28)
-diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
-index 7a7e88dadd0b..80b8d70c4d75 100644
---- a/drivers/gpu/drm/meson/meson_plane.c
-+++ b/drivers/gpu/drm/meson/meson_plane.c
-@@ -9,24 +9,20 @@
-  *     Jasper St. Pierre <jstpierre@mecheye.net>
-  */
- 
--#include <linux/kernel.h>
--#include <linux/module.h>
--#include <linux/mutex.h>
- #include <linux/bitfield.h>
--#include <linux/platform_device.h>
--#include <drm/drmP.h>
-+
- #include <drm/drm_atomic.h>
- #include <drm/drm_atomic_helper.h>
--#include <drm/drm_plane_helper.h>
--#include <drm/drm_gem_cma_helper.h>
-+#include <drm/drm_device.h>
- #include <drm/drm_fb_cma_helper.h>
-+#include <drm/drm_fourcc.h>
-+#include <drm/drm_gem_cma_helper.h>
- #include <drm/drm_gem_framebuffer_helper.h>
--#include <drm/drm_rect.h>
-+#include <drm/drm_plane_helper.h>
- 
- #include "meson_plane.h"
--#include "meson_vpp.h"
--#include "meson_viu.h"
- #include "meson_registers.h"
-+#include "meson_viu.h"
- 
- /* OSD_SCI_WH_M1 */
- #define SCI_WH_M1_W(w)			FIELD_PREP(GENMASK(28, 16), w)
-diff --git a/drivers/gpu/drm/meson/meson_registers.h b/drivers/gpu/drm/meson/meson_registers.h
-index 410e324d6f93..057453ce027c 100644
---- a/drivers/gpu/drm/meson/meson_registers.h
-+++ b/drivers/gpu/drm/meson/meson_registers.h
-@@ -6,6 +6,8 @@
- #ifndef __MESON_REGISTERS_H
- #define __MESON_REGISTERS_H
- 
-+#include <linux/io.h>
-+
- /* Shift all registers by 2 */
- #define _REG(reg)	((reg) << 2)
- 
-diff --git a/drivers/gpu/drm/meson/meson_vclk.c b/drivers/gpu/drm/meson/meson_vclk.c
-index 26732f038d19..8abff51f937d 100644
---- a/drivers/gpu/drm/meson/meson_vclk.c
-+++ b/drivers/gpu/drm/meson/meson_vclk.c
-@@ -5,9 +5,10 @@
-  * Copyright (C) 2015 Amlogic, Inc. All rights reserved.
-  */
- 
--#include <linux/kernel.h>
--#include <linux/module.h>
--#include <drm/drmP.h>
-+#include <linux/export.h>
-+
-+#include <drm/drm_print.h>
-+
- #include "meson_drv.h"
- #include "meson_vclk.h"
- 
-diff --git a/drivers/gpu/drm/meson/meson_vclk.h b/drivers/gpu/drm/meson/meson_vclk.h
-index ed993d20abda..b62125540aef 100644
---- a/drivers/gpu/drm/meson/meson_vclk.h
-+++ b/drivers/gpu/drm/meson/meson_vclk.h
-@@ -9,6 +9,10 @@
- #ifndef __MESON_VCLK_H
- #define __MESON_VCLK_H
- 
-+#include <drm/drm_modes.h>
-+
-+struct meson_drm;
-+
- enum {
- 	MESON_VCLK_TARGET_CVBS = 0,
- 	MESON_VCLK_TARGET_HDMI = 1,
-diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
-index 7b7a0d8d737c..3d4791798ae0 100644
---- a/drivers/gpu/drm/meson/meson_venc.c
-+++ b/drivers/gpu/drm/meson/meson_venc.c
-@@ -5,14 +5,14 @@
-  * Copyright (C) 2015 Amlogic, Inc. All rights reserved.
-  */
- 
--#include <linux/kernel.h>
--#include <linux/module.h>
--#include <drm/drmP.h>
-+#include <linux/export.h>
-+
-+#include <drm/drm_modes.h>
-+
- #include "meson_drv.h"
-+#include "meson_registers.h"
- #include "meson_venc.h"
- #include "meson_vpp.h"
--#include "meson_vclk.h"
--#include "meson_registers.h"
- 
- /**
-  * DOC: Video Encoder
-diff --git a/drivers/gpu/drm/meson/meson_venc.h b/drivers/gpu/drm/meson/meson_venc.h
-index 985642a1678e..576768bdd08d 100644
---- a/drivers/gpu/drm/meson/meson_venc.h
-+++ b/drivers/gpu/drm/meson/meson_venc.h
-@@ -14,6 +14,8 @@
- #ifndef __MESON_VENC_H
- #define __MESON_VENC_H
- 
-+struct drm_display_mode;
-+
- enum {
- 	MESON_VENC_MODE_NONE = 0,
- 	MESON_VENC_MODE_CVBS_PAL,
-diff --git a/drivers/gpu/drm/meson/meson_venc_cvbs.c b/drivers/gpu/drm/meson/meson_venc_cvbs.c
-index 6313a519f257..45a467f10b9b 100644
---- a/drivers/gpu/drm/meson/meson_venc_cvbs.c
-+++ b/drivers/gpu/drm/meson/meson_venc_cvbs.c
-@@ -9,19 +9,18 @@
-  *     Jasper St. Pierre <jstpierre@mecheye.net>
-  */
- 
--#include <linux/kernel.h>
--#include <linux/module.h>
-+#include <linux/export.h>
- #include <linux/of_graph.h>
- 
--#include <drm/drmP.h>
- #include <drm/drm_atomic_helper.h>
-+#include <drm/drm_device.h>
- #include <drm/drm_edid.h>
- #include <drm/drm_probe_helper.h>
-+#include <drm/drm_print.h>
- 
--#include "meson_venc_cvbs.h"
--#include "meson_venc.h"
--#include "meson_vclk.h"
- #include "meson_registers.h"
-+#include "meson_vclk.h"
-+#include "meson_venc_cvbs.h"
- 
- /* HHI VDAC Registers */
- #define HHI_VDAC_CNTL0		0x2F4 /* 0xbd offset in data sheet */
-diff --git a/drivers/gpu/drm/meson/meson_viu.c b/drivers/gpu/drm/meson/meson_viu.c
-index 4b2b3024d371..9f8a450d50d5 100644
---- a/drivers/gpu/drm/meson/meson_viu.c
-+++ b/drivers/gpu/drm/meson/meson_viu.c
-@@ -6,13 +6,10 @@
-  * Copyright (C) 2014 Endless Mobile
-  */
- 
--#include <linux/kernel.h>
--#include <linux/module.h>
--#include <drm/drmP.h>
-+#include <linux/export.h>
-+
- #include "meson_drv.h"
- #include "meson_viu.h"
--#include "meson_vpp.h"
--#include "meson_venc.h"
- #include "meson_registers.h"
- 
- /**
-diff --git a/drivers/gpu/drm/meson/meson_vpp.c b/drivers/gpu/drm/meson/meson_vpp.c
-index bfee30fa6e34..cbe6cf46e541 100644
---- a/drivers/gpu/drm/meson/meson_vpp.c
-+++ b/drivers/gpu/drm/meson/meson_vpp.c
-@@ -6,12 +6,11 @@
-  * Copyright (C) 2014 Endless Mobile
-  */
- 
--#include <linux/kernel.h>
--#include <linux/module.h>
--#include <drm/drmP.h>
-+#include <linux/export.h>
-+
- #include "meson_drv.h"
--#include "meson_vpp.h"
- #include "meson_registers.h"
-+#include "meson_vpp.h"
- 
- /**
-  * DOC: Video Post Processing
-diff --git a/drivers/gpu/drm/meson/meson_vpp.h b/drivers/gpu/drm/meson/meson_vpp.h
-index 9fc82db8a12d..afc9553ed8d3 100644
---- a/drivers/gpu/drm/meson/meson_vpp.h
-+++ b/drivers/gpu/drm/meson/meson_vpp.h
-@@ -9,6 +9,9 @@
- #ifndef __MESON_VPP_H
- #define __MESON_VPP_H
- 
-+struct drm_rect;
-+struct meson_drm;
-+
- /* Mux VIU/VPP to ENCI */
- #define MESON_VIU_VPP_MUX_ENCI	0x5
- /* Mux VIU/VPP to ENCP */
-diff --git a/include/linux/soc/amlogic/meson-canvas.h b/include/linux/soc/amlogic/meson-canvas.h
-index b4dde2fbeb3f..0cb2a6050d1f 100644
---- a/include/linux/soc/amlogic/meson-canvas.h
-+++ b/include/linux/soc/amlogic/meson-canvas.h
-@@ -20,6 +20,7 @@
- #define MESON_CANVAS_ENDIAN_SWAP64	0x7
- #define MESON_CANVAS_ENDIAN_SWAP128	0xf
- 
-+struct device;
- struct meson_canvas;
- 
- /**
--- 
-2.20.1
-
+On Tue, Jul 16, 2019 at 08:42:01AM +0200, Sam Ravnborg wrote:
+> This patch set removes a far share of the remaining uses of drmP.h.
+> Common for all patches are that the respective files are maintained
+> in drm-misc.
+> All patches are independent.
+> 
+> Patches have all been build tested with various configs and various
+> architectures.
+> There are likely introduced a few build issues that randconfig
+> build will reveal, but for all configs I have used the build was OK.
+> 
+> This patchset does not conclude the quest to kill all uses
+> of drmP.h, but it is a major step towards the goal.
+> 
+> Please review/ack.
+> I plan to apply the patches to drm-misc, but feel free
+> to do it yourself.
+> 
+> There will be conflicts with the ongoing work on ttm, gem etc.
+> But let's deal with the conflicts when they hit us - it
+> is simple conflicts in the list of include files.
+> 
+> v2:
+> - Removed merged patches
+> - Added ack from Emil Velikov to the full series
+> - Rebased on top of drm-misc-next
+> - Hand-edited the list of Cc: as get_maintainer.pl in some
+>   cases looks up too much people, due to cross kernel commits
+> 
+>         Sam
+> 
+> Sam Ravnborg (19):
+>       drm/meson: drop use of drmP.h
+>       drm/v3d: drop use of drmP.h
+>       drm/pl111: drop use of drmP.h
+>       drm/zte: drop use of drmP.h
+>       drm/sun4i: drop use of drmP.h
+>       drm/vc4: drop use of drmP.h
+>       drm/r128: drop use of drmP.h
+>       drm/udl: drop use of drmP.h
+>       drm/omapdrm: drop use of drmP.h
+>       drm/selftests: drop use of drmP.h
+>       drm/tdfx: drop use of drmP.h
+>       drm/vgem: drop use of drmP.h
+>       drm/i810: drop use of drmP.h
+>       drm/tilcdc: drop use of drmP.h
+>       drm/i2c/ch7006: drop use of drmP.h
+>       drm/i2c/sil164: drop use of drmP.h
+>       drm/imx: drop use of drmP.h
+>       drm/rockchip: drop use of drmP.h
+>       drm/mediatek: drop use of drmP.h
+> 
+>  drivers/gpu/drm/i2c/ch7006_priv.h                |  1 -
+>  drivers/gpu/drm/i2c/sil164_drv.c                 |  3 ++-
+>  drivers/gpu/drm/i810/i810_dma.c                  | 17 +++++++++----
+>  drivers/gpu/drm/i810/i810_drv.c                  |  8 +++---
+>  drivers/gpu/drm/i810/i810_drv.h                  |  2 ++
+>  drivers/gpu/drm/imx/dw_hdmi-imx.c                | 14 ++++++-----
+>  drivers/gpu/drm/imx/imx-drm-core.c               |  8 ++++--
+>  drivers/gpu/drm/imx/imx-ldb.c                    | 22 +++++++++--------
+>  drivers/gpu/drm/imx/imx-tve.c                    | 10 +++++---
+>  drivers/gpu/drm/imx/ipuv3-crtc.c                 |  8 ++++--
+>  drivers/gpu/drm/imx/ipuv3-plane.c                |  5 ++--
+>  drivers/gpu/drm/imx/parallel-display.c           |  8 +++---
+>  drivers/gpu/drm/mediatek/mtk_disp_color.c        |  2 +-
+>  drivers/gpu/drm/mediatek/mtk_disp_ovl.c          |  2 +-
+>  drivers/gpu/drm/mediatek/mtk_disp_rdma.c         |  2 +-
+>  drivers/gpu/drm/mediatek/mtk_dpi.c               | 18 ++++++++------
+>  drivers/gpu/drm/mediatek/mtk_drm_crtc.c          | 10 +++++---
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c      |  2 +-
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.c           | 16 +++++++-----
+>  drivers/gpu/drm/mediatek/mtk_drm_fb.c            |  7 +++---
+>  drivers/gpu/drm/mediatek/mtk_drm_gem.c           |  6 +++--
+>  drivers/gpu/drm/mediatek/mtk_drm_plane.c         |  2 +-
+>  drivers/gpu/drm/mediatek/mtk_dsi.c               | 14 ++++++-----
+>  drivers/gpu/drm/mediatek/mtk_hdmi.c              | 14 +++++++----
+>  drivers/gpu/drm/meson/meson_crtc.c               | 16 ++++++------
+>  drivers/gpu/drm/meson/meson_drv.c                | 27 +++++++++------------
+>  drivers/gpu/drm/meson/meson_drv.h                | 11 ++++++---
+>  drivers/gpu/drm/meson/meson_dw_hdmi.c            | 19 ++++++++-------
+>  drivers/gpu/drm/meson/meson_overlay.c            | 13 ++++------
+>  drivers/gpu/drm/meson/meson_plane.c              | 16 +++++-------
+>  drivers/gpu/drm/meson/meson_registers.h          |  2 ++
+>  drivers/gpu/drm/meson/meson_vclk.c               |  7 +++---
+>  drivers/gpu/drm/meson/meson_vclk.h               |  4 +++
+>  drivers/gpu/drm/meson/meson_venc.c               | 10 ++++----
+>  drivers/gpu/drm/meson/meson_venc.h               |  2 ++
+>  drivers/gpu/drm/meson/meson_venc_cvbs.c          | 11 ++++-----
+>  drivers/gpu/drm/meson/meson_viu.c                |  7 ++----
+>  drivers/gpu/drm/meson/meson_vpp.c                |  7 +++---
+>  drivers/gpu/drm/meson/meson_vpp.h                |  3 +++
+>  drivers/gpu/drm/omapdrm/omap_crtc.c              |  4 ++-
+>  drivers/gpu/drm/omapdrm/omap_debugfs.c           |  2 ++
+>  drivers/gpu/drm/omapdrm/omap_drv.c               | 10 ++++++--
+>  drivers/gpu/drm/omapdrm/omap_drv.h               |  5 ++--
+>  drivers/gpu/drm/omapdrm/omap_fb.c                |  4 +--
+>  drivers/gpu/drm/omapdrm/omap_fbdev.c             |  2 ++
+>  drivers/gpu/drm/omapdrm/omap_gem.c               |  2 ++
+>  drivers/gpu/drm/omapdrm/omap_gem_dmabuf.c        |  3 +++
+>  drivers/gpu/drm/omapdrm/omap_irq.c               |  2 ++
+>  drivers/gpu/drm/pl111/pl111_debugfs.c            |  4 ++-
+>  drivers/gpu/drm/pl111/pl111_display.c            |  6 +++--
+>  drivers/gpu/drm/pl111/pl111_drm.h                | 11 +++++----
+>  drivers/gpu/drm/pl111/pl111_drv.c                |  9 ++++---
+>  drivers/gpu/drm/pl111/pl111_nomadik.h            |  3 ++-
+>  drivers/gpu/drm/pl111/pl111_versatile.c          |  9 ++++---
+>  drivers/gpu/drm/pl111/pl111_versatile.h          |  3 +++
+>  drivers/gpu/drm/r128/r128_ioc32.c                |  3 ++-
+>  drivers/gpu/drm/r128/r128_irq.c                  |  5 +++-
+>  drivers/gpu/drm/rockchip/analogix_dp-rockchip.c  | 10 +++-----
+>  drivers/gpu/drm/rockchip/cdn-dp-core.c           | 17 ++++++-------
+>  drivers/gpu/drm/rockchip/cdn-dp-core.h           |  2 +-
+>  drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c  |  9 ++++---
+>  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c      |  5 ++--
+>  drivers/gpu/drm/rockchip/inno_hdmi.c             |  3 +--
+>  drivers/gpu/drm/rockchip/rockchip_drm_drv.c      | 12 +++++----
+>  drivers/gpu/drm/rockchip/rockchip_drm_fb.c       |  3 ++-
+>  drivers/gpu/drm/rockchip/rockchip_drm_fbdev.c    |  2 +-
+>  drivers/gpu/drm/rockchip/rockchip_drm_gem.c      |  8 +++---
+>  drivers/gpu/drm/rockchip/rockchip_drm_psr.c      |  1 -
+>  drivers/gpu/drm/rockchip/rockchip_drm_vop.c      | 31 ++++++++++++------------
+>  drivers/gpu/drm/rockchip/rockchip_lvds.c         | 16 ++++++------
+>  drivers/gpu/drm/rockchip/rockchip_rgb.c          |  9 +++----
+>  drivers/gpu/drm/rockchip/rockchip_vop_reg.c      | 11 ++++++---
+>  drivers/gpu/drm/selftests/test-drm_framebuffer.c |  7 +++++-
+>  drivers/gpu/drm/sun4i/sun4i_backend.c            | 16 ++++++------
+>  drivers/gpu/drm/sun4i/sun4i_crtc.c               | 13 +++++-----
+>  drivers/gpu/drm/sun4i/sun4i_drv.c                |  5 +++-
+>  drivers/gpu/drm/sun4i/sun4i_framebuffer.c        |  1 -
+>  drivers/gpu/drm/sun4i/sun4i_frontend.c           | 10 +++++---
+>  drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c           | 17 +++++++------
+>  drivers/gpu/drm/sun4i/sun4i_layer.c              |  3 +--
+>  drivers/gpu/drm/sun4i/sun4i_lvds.c               |  2 +-
+>  drivers/gpu/drm/sun4i/sun4i_rgb.c                |  2 +-
+>  drivers/gpu/drm/sun4i/sun4i_tcon.c               | 20 ++++++++-------
+>  drivers/gpu/drm/sun4i/sun4i_tv.c                 |  4 ++-
+>  drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c           |  9 ++++---
+>  drivers/gpu/drm/sun4i/sun8i_csc.c                |  2 +-
+>  drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c            |  3 +--
+>  drivers/gpu/drm/sun4i/sun8i_mixer.c              | 14 +++++------
+>  drivers/gpu/drm/sun4i/sun8i_tcon_top.c           |  6 ++---
+>  drivers/gpu/drm/sun4i/sun8i_ui_layer.c           |  2 +-
+>  drivers/gpu/drm/sun4i/sun8i_vi_layer.c           |  1 -
+>  drivers/gpu/drm/tdfx/tdfx_drv.c                  | 11 ++++++---
+>  drivers/gpu/drm/tilcdc/tilcdc_crtc.c             | 18 ++++++++------
+>  drivers/gpu/drm/tilcdc/tilcdc_drv.c              | 19 ++++++++++++---
+>  drivers/gpu/drm/tilcdc/tilcdc_drv.h              | 31 +++++++++++++-----------
+>  drivers/gpu/drm/tilcdc/tilcdc_external.c         |  1 +
+>  drivers/gpu/drm/tilcdc/tilcdc_panel.c            | 11 ++++++---
+>  drivers/gpu/drm/tilcdc/tilcdc_plane.c            |  4 +--
+>  drivers/gpu/drm/tilcdc/tilcdc_tfp410.c           |  8 +++---
+>  drivers/gpu/drm/udl/udl_connector.c              |  4 +--
+>  drivers/gpu/drm/udl/udl_connector.h              |  2 ++
+>  drivers/gpu/drm/udl/udl_dmabuf.c                 |  6 +++--
+>  drivers/gpu/drm/udl/udl_drv.c                    |  7 +++++-
+>  drivers/gpu/drm/udl/udl_drv.h                    |  8 +++++-
+>  drivers/gpu/drm/udl/udl_encoder.c                |  6 ++---
+>  drivers/gpu/drm/udl/udl_fb.c                     | 15 ++++++------
+>  drivers/gpu/drm/udl/udl_gem.c                    |  9 ++++---
+>  drivers/gpu/drm/udl/udl_main.c                   |  6 +++--
+>  drivers/gpu/drm/udl/udl_modeset.c                |  6 ++---
+>  drivers/gpu/drm/udl/udl_transfer.c               |  4 ---
+>  drivers/gpu/drm/v3d/v3d_debugfs.c                |  3 ++-
+>  drivers/gpu/drm/v3d/v3d_drv.c                    |  5 +++-
+>  drivers/gpu/drm/v3d/v3d_drv.h                    | 13 ++++++++--
+>  drivers/gpu/drm/v3d/v3d_gem.c                    | 12 +++++----
+>  drivers/gpu/drm/v3d/v3d_irq.c                    |  2 ++
+>  drivers/gpu/drm/vc4/vc4_crtc.c                   | 11 ++++++---
+>  drivers/gpu/drm/vc4/vc4_debugfs.c                |  1 -
+>  drivers/gpu/drm/vc4/vc4_drv.c                    |  7 +++++-
+>  drivers/gpu/drm/vc4/vc4_drv.h                    | 17 +++++++++----
+>  drivers/gpu/drm/vc4/vc4_dsi.c                    | 17 +++++++------
+>  drivers/gpu/drm/vc4/vc4_gem.c                    |  2 ++
+>  drivers/gpu/drm/vc4/vc4_hvs.c                    |  5 +++-
+>  drivers/gpu/drm/vc4/vc4_kms.c                    |  4 ++-
+>  drivers/gpu/drm/vc4/vc4_plane.c                  |  6 +++--
+>  drivers/gpu/drm/vc4/vc4_txp.c                    | 14 ++++++-----
+>  drivers/gpu/drm/vc4/vc4_v3d.c                    |  4 +++
+>  drivers/gpu/drm/vgem/vgem_drv.c                  | 11 +++++++--
+>  drivers/gpu/drm/vgem/vgem_drv.h                  |  1 -
+>  drivers/gpu/drm/vgem/vgem_fence.c                |  2 ++
+>  drivers/gpu/drm/zte/zx_drm_drv.c                 |  3 ++-
+>  drivers/gpu/drm/zte/zx_hdmi.c                    |  2 +-
+>  drivers/gpu/drm/zte/zx_plane.c                   |  2 +-
+>  drivers/gpu/drm/zte/zx_tvenc.c                   |  4 ++-
+>  drivers/gpu/drm/zte/zx_vga.c                     |  4 ++-
+>  drivers/gpu/drm/zte/zx_vou.c                     |  5 +++-
+>  include/linux/soc/amlogic/meson-canvas.h         |  1 +
+>  136 files changed, 626 insertions(+), 427 deletions(-)
+> 
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 
 _______________________________________________
 linux-amlogic mailing list
