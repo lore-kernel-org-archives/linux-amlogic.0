@@ -2,65 +2,74 @@ Return-Path: <SRS0=zsg5=VO=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-2.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 335DEC76192
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jul 2019 10:59:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 61C43C76186
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jul 2019 11:54:14 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 09E2D217F4
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jul 2019 10:59:57 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3B10D2077C
+	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jul 2019 11:54:14 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PGoKc1vy"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 09E2D217F4
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cXJmOAZk";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="u2vA0thv"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3B10D2077C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dPWE6lTsvgKADu8vLUDqQVUNj3Hir/vd9c0MV5xBY6I=; b=PGoKc1vytZKKiy
-	xhcG5Tf7tq0iny4xlSupC/HZYqwSJ2waIbbuw5bj84qpL9Mi6Rkh+5YaMgLmS4ruhJjJ+LK/5LEXi
-	h8233EzMG3R5ej77aTqG5O75LSGaMND+AVsvuak62oAu4jIhtTq0NNSVNyJvmGpcSIfr2M8l1Dbej
-	kIfiRAET5nToWRZIPMVUvdVZxWxgh1yMN7YDqFwdk6xBCmSbbd6JHAyzGiVTXM3iYnx/paqmNZtyM
-	fbhkVdt+zlUTQscxNRWIYhp/aXTmZn/FdvcnonQ4CvOm5/eu+lbsBUp1bXMDWGsxhp1wV6YM40gNr
-	tKgDHEYnHLk4u+tWmeUA==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=YpxQDamB++efP8YzOFtyR/yJH8SfLoOJWccBKrklkAk=; b=cXJmOAZk2Y6eyPWpIOdNEQxEo
+	iQlT9ZFc8pdIwPLuj4LYXMrPYO85HKUP7jPMpVYBbVO/veTlXhtJKESw8HSFu77vOog85DkP/1CQA
+	YSlV2S76f3I/h3gZWr+jN6g6Hkey5DcJaXykhhR0/HCTVVRdiVBjXPLHoIgAGTf/HKPy+zX5mNE9w
+	Ky56JxuZYOkwfHS/ov0sOKewasjvDwh+MZYU//qMqzEiU316uuHZtuKrN96b7ZFhfOXuNslEH7h3M
+	Z3knJPi0uBkde0ItTwFOMJniv25OqBhBy5bE1AlUtfYHeKpnmbATcVvgUc1uMzNnDSVmXf31v1gUF
+	SvKz510NQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hnhf3-0001mb-CR; Wed, 17 Jul 2019 10:59:49 +0000
-Received: from asavdk4.altibox.net ([109.247.116.15])
+	id 1hniVd-0004Yt-3B; Wed, 17 Jul 2019 11:54:09 +0000
+Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hnhez-0001lB-Hj; Wed, 17 Jul 2019 10:59:47 +0000
-Received: from ravnborg.org (unknown [158.248.194.18])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by asavdk4.altibox.net (Postfix) with ESMTPS id F142F8034E;
- Wed, 17 Jul 2019 12:59:33 +0200 (CEST)
-Date: Wed, 17 Jul 2019 12:59:32 +0200
-From: Sam Ravnborg <sam@ravnborg.org>
-To: dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v2 0/19] drm: drop use of drmp.h in drm-misc
-Message-ID: <20190717105932.GA5188@ravnborg.org>
-References: <20190716064220.18157-1-sam@ravnborg.org>
- <20190716065022.GA18452@ravnborg.org>
+ id 1hniVa-0004YI-N3; Wed, 17 Jul 2019 11:54:08 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=bNOnC8lxCe3aDAnG0jcKQgNER1fc49FPtWHXlWhI7Rw=; b=u2vA0thvYVj2uWis+6spoRzNj
+ c9AB8hzRFLHxONpE0pk1P+hArYT9OAzNX43036VzrZJ/gglEoyrzsJWoNmbQplliAwniVbis1MUig
+ EAXUNaDLRm6rxOCIUFjXuzSf+e8MNFKCoUtzJNiVvQnonYFhLS5pRfC6Y5DDWDG/zG3Og=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net
+ ([82.37.168.47] helo=ypsilon.sirena.org.uk)
+ by heliosphere.sirena.org.uk with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <broonie@sirena.org.uk>)
+ id 1hniVX-0000Ub-2i; Wed, 17 Jul 2019 11:54:03 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+ id C1E682742C26; Wed, 17 Jul 2019 12:54:01 +0100 (BST)
+Date: Wed, 17 Jul 2019 12:54:01 +0100
+From: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Tomeu Vizoso <tomeu.vizoso@collabora.com>
+To: Kevin Hilman <khilman@baylibre.com>
+Subject: Re: next/master boot: 265 boots: 17 failed, 243 passed with 4
+ offline, 1 conflict (next-20190717)
+Message-ID: <20190717115401.GC4459@sirena.org.uk>
+References: <5d2f063c.1c69fb81.69fe8.9d45@mx.google.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20190716065022.GA18452@ravnborg.org>
+In-Reply-To: <5d2f063c.1c69fb81.69fe8.9d45@mx.google.com>
+X-Cookie: Fremen add life to spice!
 User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=VcLZwmh9 c=1 sm=1 tr=0
- a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
- a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10
- a=e1VmrhLkSVZGwi_aLusA:9 a=CjuIK1q_8ugA:10
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190717_035945_768087_899047AB 
-X-CRM114-Status: GOOD (  18.23  )
+X-CRM114-CacheID: sfid-20190717_045406_776481_9CB38D3A 
+X-CRM114-Status: UNSURE (   8.13  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,70 +81,109 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Maxime Jourdan <mjourdan@baylibre.com>,
- Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
- Alexandru-Cosmin Gheorghe <Alexandru-Cosmin.Gheorghe@arm.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Deepak Sharma <deepak.sharma@amd.com>,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- Kevin Hilman <khilman@baylibre.com>, Maxime Ripard <maxime.ripard@bootlin.com>,
- Chen-Yu Tsai <wens@csie.org>, Tomi Valkeinen <tomi.valkeinen@ti.com>,
- NXP Linux Team <linux-imx@nxp.com>, linux-rockchip@lists.infradead.org,
- Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
- Dan Carpenter <dan.carpenter@oracle.com>,
- Robert Tarasov <tutankhamen@chromium.org>, Emil Lundmark <lndmrk@chromium.org>,
- Jani Nikula <jani.nikula@intel.com>, Jyri Sarha <jsarha@ti.com>,
- linux-mediatek@lists.infradead.org, Matthias Brugger <matthias.bgg@gmail.com>,
- linux-amlogic@lists.infradead.org, Sean Paul <sean@poorly.run>,
- linux-arm-kernel@lists.infradead.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- Mikulas Patocka <mpatocka@redhat.com>, Shawn Guo <shawnguo@kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, kernel-build-reports@lists.linaro.org
+Content-Type: multipart/mixed; boundary="===============6400537855910910396=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Jul 16, 2019 at 08:50:22AM +0200, Sam Ravnborg wrote:
-> Copied all recipients on the cover letter.
-> As the list is long this mail may not hit the mailing lists.
-> 
-> 	Sam
-> 
-> On Tue, Jul 16, 2019 at 08:42:01AM +0200, Sam Ravnborg wrote:
-> > This patch set removes a far share of the remaining uses of drmP.h.
-> > Common for all patches are that the respective files are maintained
-> > in drm-misc.
-> > All patches are independent.
-> > 
-> > Patches have all been build tested with various configs and various
-> > architectures.
-> > There are likely introduced a few build issues that randconfig
-> > build will reveal, but for all configs I have used the build was OK.
-> > 
-> > This patchset does not conclude the quest to kill all uses
-> > of drmP.h, but it is a major step towards the goal.
-> > 
-> > Please review/ack.
-> > I plan to apply the patches to drm-misc, but feel free
-> > to do it yourself.
-> > 
-> > There will be conflicts with the ongoing work on ttm, gem etc.
-> > But let's deal with the conflicts when they hit us - it
-> > is simple conflicts in the list of include files.
-> > 
-> > v2:
-> > - Removed merged patches
-> > - Added ack from Emil Velikov to the full series
-> > - Rebased on top of drm-misc-next
-> > - Hand-edited the list of Cc: as get_maintainer.pl in some
-> >   cases looks up too much people, due to cross kernel commits
 
-I have collected the additional r-bs and acks and pushed out the full
-series. Thanks for feedback to everyone!
+--===============6400537855910910396==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="hYooF8G/hrfVAmum"
+Content-Disposition: inline
 
-	Sam
+
+--hYooF8G/hrfVAmum
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Wed, Jul 17, 2019 at 04:27:56AM -0700, kernelci.org bot wrote:
+
+Today's -next fails to boot on meson-gxm-khadas-vim2 in a variety
+of configurations:
+
+>     defconfig:
+>         gcc-8:
+>           meson-gxm-khadas-vim2:
+>               lab-baylibre: new failure (last pass: next-20190705)
+
+>     defconfig+CONFIG_CPU_BIG_ENDIAN=y:
+>         gcc-8:
+>           meson-gxm-khadas-vim2:
+>               lab-baylibre: new failure (last pass: next-20190705)
+
+>     defconfig+CONFIG_RANDOMIZE_BASE=y:
+>         gcc-8:
+>           meson-gxm-khadas-vim2:
+>               lab-baylibre: new failure (last pass: next-20190705)
+
+It looks like it gets to userspace and then hangs (end of the log
+below).  More details at:
+
+    https://kernelci.org/boot/id/5d2ed6ad59b514a0e649e937/
+
+Compared to working boots in mainline it looks like the main difference
+is the addition of the panfrost driver but that could be a complete red
+herring.
+
+08:00:51.567064  [   14.844034] Run /init as init process
+08:00:51.590902  Starting syslogd: OK
+08:00:51.645937  Starting klogd: OK
+08:00:51.650193  Populating /dev using udev: [   14.894327] udevd[214]: starting version 3.2.7
+08:00:51.651409  [   14.894906] random: udevd: uninitialized urandom read (16 bytes read)
+08:00:51.652703  [   14.899720] random: udevd: uninitialized urandom read (16 bytes read)
+08:00:51.653946  [   14.905958] random: udevd: uninitialized urandom read (16 bytes read)
+08:00:51.655192  [   14.913972] udevd[214]: specified group 'kvm' unknown
+08:00:51.656495  [   14.920901] udevd[215]: starting eudev-3.2.7
+08:00:51.790817  [BL31]: tee size: 0
+08:00:51.820838  [   15.089001] meson-gx-mmc d0070000.mmc: allocated mmc-pwrseq
+08:00:51.860744  [   15.106647] meson8b-dwmac c9410000.ethernet: PTP uses main clock
+08:00:51.865096  [   15.107020] meson8b-dwmac c9410000.ethernet: no reset control found
+08:00:51.866318  [   15.114743] meson8b-dwmac c9410000.ethernet: User ID: 0x11, Synopsys ID: 0x37
+08:00:51.867556  [   15.120434] meson8b-dwmac c9410000.ethernet: 	DWMAC1000
+08:00:51.868872  [   15.123055] panfrost d00c0000.gpu: clock rate = 666666666
+08:00:51.870123  [   15.125580] meson8b-dwmac c9410000.ethernet: DMA HW capability register supported
+08:00:51.871365  [   15.126609] meson-drm d0100000.vpu: Queued 2 outputs on vpu
+08:00:51.903478  [   15.131066] panfrost d00c0000.gpu: mali-t820 id 0x820 major 0x1 minor 0x0 status 0x0
+08:00:51.907981  [   15.138262] meson8b-dwmac c9410000.ethernet: RX Checksum Offload Engine supported
+08:00:51.909205  [   15.138269] meson8b-dwmac c9410000.ethernet: COE Type 2
+08:00:51.910449  [   15.143806] panfrost d00c0000.gpu: features: 00000000,101e76ff, issues: 00000000,24040400
+08:00:51.911698  [   15.145058] Bluetooth: Core ver 2.22
+08:00:51.913009  [   15.145170] NET: Registered protocol family 31
+08:00:51.914253  [   15.145175] Bluetooth: HCI device and connection manager initialized
+08:00:51.919829  [   15.145197] Bluetooth: HCI socket layer initialized
+08:02:48.216650  ShellCommand command timed out.: Sending # in case of corruption. Connection timeout 00:04:20, retry in 00:02:10
+08:02:48.321432  #
+
+--hYooF8G/hrfVAmum
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl0vDFgACgkQJNaLcl1U
+h9AmnAf6A2RyN/7aPmjn2gXehhdC8E4x5bEjyk2uiDng1fvvwtm1sj+3wlvUMRPX
+t8oF0pAgE2WzeVc5xAfLk6T0WHeKXuRR3wzKXobQL1fcABuaJIMLEMsgadcPIiMD
+wrL5VJ2bjkrascfygj+e1o1cdSTXweJ/nMAYeQXJ+S1vfxMgh1d1lC8X7R4prk+Z
+Rx4BZEjAG+uCNFV9lbZrfnZ3ObVL9xa3uLBiswEcHW4fgXC6iVsnKfU5ZFJFmxks
+kpCnj7Gs3KHCVrLpZ4P6sr1sveQ+tyJ+iOXaSYP53GX0dNXPfI9hpgGJet0pVecJ
+/rg0vgOW7d+ypGJXJZjY0FTqvL3wFg==
+=7gnR
+-----END PGP SIGNATURE-----
+
+--hYooF8G/hrfVAmum--
+
+
+--===============6400537855910910396==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============6400537855910910396==--
+
