@@ -1,75 +1,67 @@
-Return-Path: <SRS0=zsg5=VO=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=T9/u=VP=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 61C43C76186
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jul 2019 11:54:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CBA1CC76191
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jul 2019 03:58:49 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3B10D2077C
-	for <linux-amlogic@archiver.kernel.org>; Wed, 17 Jul 2019 11:54:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9ECF42085A
+	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jul 2019 03:58:49 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cXJmOAZk";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="u2vA0thv"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3B10D2077C
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="K4ATlK2C"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9ECF42085A
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=YpxQDamB++efP8YzOFtyR/yJH8SfLoOJWccBKrklkAk=; b=cXJmOAZk2Y6eyPWpIOdNEQxEo
-	iQlT9ZFc8pdIwPLuj4LYXMrPYO85HKUP7jPMpVYBbVO/veTlXhtJKESw8HSFu77vOog85DkP/1CQA
-	YSlV2S76f3I/h3gZWr+jN6g6Hkey5DcJaXykhhR0/HCTVVRdiVBjXPLHoIgAGTf/HKPy+zX5mNE9w
-	Ky56JxuZYOkwfHS/ov0sOKewasjvDwh+MZYU//qMqzEiU316uuHZtuKrN96b7ZFhfOXuNslEH7h3M
-	Z3knJPi0uBkde0ItTwFOMJniv25OqBhBy5bE1AlUtfYHeKpnmbATcVvgUc1uMzNnDSVmXf31v1gUF
-	SvKz510NQ==;
+	 bh=GFpd9hB1Y08X8WluMqR7X3GfOZYejWECiLwyZGSEqT8=; b=K4ATlK2Cy4on5JZ33MWRf7tPD
+	bm/xEyD20ZQOdU1Ov2voZbeKLpmPET7XOWwergjgHybG7n5KAAHjJUJ5Wuorc2b+SbjFSII20HJfV
+	Yd4qT0DqmAEOABoR/ttkYqmlJ6XF2p6vU/dnkUzjScl9VuQFSASCDPMWAC9qLLfJdj0ZeYrtOSJc4
+	rpmi0ipBYuA2LcNVyhcHk+hVO8cGWxBPGzud/bdd1bUAOvvMXz46a5RM2yyi14Arx16Gt//8b9Efz
+	BY/yICqy7eQ9l5SuMLWGThCpbuzrjMhCv0I4Kruud8u6x4kF6GOPlsirXJIUpjXSJUqdAJ+/yCDmP
+	oZR5J7HtQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hniVd-0004Yt-3B; Wed, 17 Jul 2019 11:54:09 +0000
-Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
+	id 1hnxZ1-0007AN-EG; Thu, 18 Jul 2019 03:58:39 +0000
+Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hniVa-0004YI-N3; Wed, 17 Jul 2019 11:54:08 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=bNOnC8lxCe3aDAnG0jcKQgNER1fc49FPtWHXlWhI7Rw=; b=u2vA0thvYVj2uWis+6spoRzNj
- c9AB8hzRFLHxONpE0pk1P+hArYT9OAzNX43036VzrZJ/gglEoyrzsJWoNmbQplliAwniVbis1MUig
- EAXUNaDLRm6rxOCIUFjXuzSf+e8MNFKCoUtzJNiVvQnonYFhLS5pRfC6Y5DDWDG/zG3Og=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net
- ([82.37.168.47] helo=ypsilon.sirena.org.uk)
- by heliosphere.sirena.org.uk with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <broonie@sirena.org.uk>)
- id 1hniVX-0000Ub-2i; Wed, 17 Jul 2019 11:54:03 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
- id C1E682742C26; Wed, 17 Jul 2019 12:54:01 +0100 (BST)
-Date: Wed, 17 Jul 2019 12:54:01 +0100
-From: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Tomeu Vizoso <tomeu.vizoso@collabora.com>
-To: Kevin Hilman <khilman@baylibre.com>
-Subject: Re: next/master boot: 265 boots: 17 failed, 243 passed with 4
- offline, 1 conflict (next-20190717)
-Message-ID: <20190717115401.GC4459@sirena.org.uk>
-References: <5d2f063c.1c69fb81.69fe8.9d45@mx.google.com>
+ id 1hnxYk-0006zh-9R; Thu, 18 Jul 2019 03:58:23 +0000
+Received: from [10.28.18.185] (10.28.18.185) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Thu, 18 Jul
+ 2019 11:58:46 +0800
+Subject: Re: [PATCH] mtd: rawnand: meson: Add of_node_put() before return
+To: Nishka Dasgupta <nishkadg.linux@gmail.com>, <miquel.raynal@bootlin.com>,
+ <richard@nod.at>, <dwmw2@infradead.org>, <computersforpeace@gmail.com>,
+ <marek.vasut@gmail.com>, <vigneshr@ti.com>, <linux-mtd@lists.infradead.org>,
+ <linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+ <khilman@baylibre.com>
+References: <20190709171640.13511-1-nishkadg.linux@gmail.com>
+From: Liang Yang <liang.yang@amlogic.com>
+Message-ID: <1e53cc6f-59d7-9bd2-8961-ce223d5cd0d5@amlogic.com>
+Date: Thu, 18 Jul 2019 11:58:46 +0800
+User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-In-Reply-To: <5d2f063c.1c69fb81.69fe8.9d45@mx.google.com>
-X-Cookie: Fremen add life to spice!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190709171640.13511-1-nishkadg.linux@gmail.com>
+Content-Language: en-US
+X-Originating-IP: [10.28.18.185]
+X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
+ (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190717_045406_776481_9CB38D3A 
-X-CRM114-Status: UNSURE (   8.13  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190717_205822_331934_74FB1C5B 
+X-CRM114-Status: GOOD (  12.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,109 +73,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org, kernel-build-reports@lists.linaro.org
-Content-Type: multipart/mixed; boundary="===============6400537855910910396=="
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi Nishka,
 
---===============6400537855910910396==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="hYooF8G/hrfVAmum"
-Content-Disposition: inline
+On 2019/7/10 1:16, Nishka Dasgupta wrote:
+> Each iteration of for_each_child_of_node puts the previous node, but in
+> the case of a return from the middle of the loop, there is no put, thus
+> causing a memory leak. Hence add an of_node_put before the return.
+> Issue found with Coccinelle.
+> 
+> Signed-off-by: Nishka Dasgupta <nishkadg.linux@gmail.com>
+> ---
+>   drivers/mtd/nand/raw/meson_nand.c | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+> index ea57ddcec41e..1b82b687e5a5 100644
+> --- a/drivers/mtd/nand/raw/meson_nand.c
+> +++ b/drivers/mtd/nand/raw/meson_nand.c
+> @@ -1320,6 +1320,7 @@ static int meson_nfc_nand_chips_init(struct device *dev,
+>   		ret = meson_nfc_nand_chip_init(dev, nfc, nand_np);
+>   		if (ret) {
+>   			meson_nfc_nand_chip_cleanup(nfc);
+> +			of_node_put(nand_np);
 
+Thank you. Looks good to me:
+Acked-by: Liang Yang <liang.yang@amlogic.com>
 
---hYooF8G/hrfVAmum
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Wed, Jul 17, 2019 at 04:27:56AM -0700, kernelci.org bot wrote:
-
-Today's -next fails to boot on meson-gxm-khadas-vim2 in a variety
-of configurations:
-
->     defconfig:
->         gcc-8:
->           meson-gxm-khadas-vim2:
->               lab-baylibre: new failure (last pass: next-20190705)
-
->     defconfig+CONFIG_CPU_BIG_ENDIAN=y:
->         gcc-8:
->           meson-gxm-khadas-vim2:
->               lab-baylibre: new failure (last pass: next-20190705)
-
->     defconfig+CONFIG_RANDOMIZE_BASE=y:
->         gcc-8:
->           meson-gxm-khadas-vim2:
->               lab-baylibre: new failure (last pass: next-20190705)
-
-It looks like it gets to userspace and then hangs (end of the log
-below).  More details at:
-
-    https://kernelci.org/boot/id/5d2ed6ad59b514a0e649e937/
-
-Compared to working boots in mainline it looks like the main difference
-is the addition of the panfrost driver but that could be a complete red
-herring.
-
-08:00:51.567064  [   14.844034] Run /init as init process
-08:00:51.590902  Starting syslogd: OK
-08:00:51.645937  Starting klogd: OK
-08:00:51.650193  Populating /dev using udev: [   14.894327] udevd[214]: starting version 3.2.7
-08:00:51.651409  [   14.894906] random: udevd: uninitialized urandom read (16 bytes read)
-08:00:51.652703  [   14.899720] random: udevd: uninitialized urandom read (16 bytes read)
-08:00:51.653946  [   14.905958] random: udevd: uninitialized urandom read (16 bytes read)
-08:00:51.655192  [   14.913972] udevd[214]: specified group 'kvm' unknown
-08:00:51.656495  [   14.920901] udevd[215]: starting eudev-3.2.7
-08:00:51.790817  [BL31]: tee size: 0
-08:00:51.820838  [   15.089001] meson-gx-mmc d0070000.mmc: allocated mmc-pwrseq
-08:00:51.860744  [   15.106647] meson8b-dwmac c9410000.ethernet: PTP uses main clock
-08:00:51.865096  [   15.107020] meson8b-dwmac c9410000.ethernet: no reset control found
-08:00:51.866318  [   15.114743] meson8b-dwmac c9410000.ethernet: User ID: 0x11, Synopsys ID: 0x37
-08:00:51.867556  [   15.120434] meson8b-dwmac c9410000.ethernet: 	DWMAC1000
-08:00:51.868872  [   15.123055] panfrost d00c0000.gpu: clock rate = 666666666
-08:00:51.870123  [   15.125580] meson8b-dwmac c9410000.ethernet: DMA HW capability register supported
-08:00:51.871365  [   15.126609] meson-drm d0100000.vpu: Queued 2 outputs on vpu
-08:00:51.903478  [   15.131066] panfrost d00c0000.gpu: mali-t820 id 0x820 major 0x1 minor 0x0 status 0x0
-08:00:51.907981  [   15.138262] meson8b-dwmac c9410000.ethernet: RX Checksum Offload Engine supported
-08:00:51.909205  [   15.138269] meson8b-dwmac c9410000.ethernet: COE Type 2
-08:00:51.910449  [   15.143806] panfrost d00c0000.gpu: features: 00000000,101e76ff, issues: 00000000,24040400
-08:00:51.911698  [   15.145058] Bluetooth: Core ver 2.22
-08:00:51.913009  [   15.145170] NET: Registered protocol family 31
-08:00:51.914253  [   15.145175] Bluetooth: HCI device and connection manager initialized
-08:00:51.919829  [   15.145197] Bluetooth: HCI socket layer initialized
-08:02:48.216650  ShellCommand command timed out.: Sending # in case of corruption. Connection timeout 00:04:20, retry in 00:02:10
-08:02:48.321432  #
-
---hYooF8G/hrfVAmum
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl0vDFgACgkQJNaLcl1U
-h9AmnAf6A2RyN/7aPmjn2gXehhdC8E4x5bEjyk2uiDng1fvvwtm1sj+3wlvUMRPX
-t8oF0pAgE2WzeVc5xAfLk6T0WHeKXuRR3wzKXobQL1fcABuaJIMLEMsgadcPIiMD
-wrL5VJ2bjkrascfygj+e1o1cdSTXweJ/nMAYeQXJ+S1vfxMgh1d1lC8X7R4prk+Z
-Rx4BZEjAG+uCNFV9lbZrfnZ3ObVL9xa3uLBiswEcHW4fgXC6iVsnKfU5ZFJFmxks
-kpCnj7Gs3KHCVrLpZ4P6sr1sveQ+tyJ+iOXaSYP53GX0dNXPfI9hpgGJet0pVecJ
-/rg0vgOW7d+ypGJXJZjY0FTqvL3wFg==
-=7gnR
------END PGP SIGNATURE-----
-
---hYooF8G/hrfVAmum--
-
-
---===============6400537855910910396==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+>   			return ret;
+>   		}
+>   	}
+> 
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============6400537855910910396==--
-
