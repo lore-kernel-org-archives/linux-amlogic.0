@@ -2,72 +2,86 @@ Return-Path: <SRS0=5tt1=VQ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+X-Spam-Status: No, score=-9.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8DE3FC76188
-	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Jul 2019 03:59:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 14ACBC76197
+	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Jul 2019 19:30:12 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6781F218A3
-	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Jul 2019 03:59:58 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DCF872186A
+	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Jul 2019 19:30:11 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="U0Ha/qYx";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="aVRWS/+k"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6781F218A3
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="q1QzvL8s";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mPOJjaoZ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DCF872186A
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=AmPrf9tUI8uMRAgEMoKSyCL4XMVU12em6vz7Blo9KKA=; b=U0Ha/qYx0resSd
-	XwW0BmcpspcKtWyh6jL6mrNnewP0iUQotlTTq+8M7HGbQuwWDcIhVcXfSfqLjsB8/vZhtbiO0jEjv
-	07YmcSCfMpYa8f0BoLF+LjnnGAjS6+dgcEY5R7Me0uafBzRuiPsSKzAWJvXtyyD/pJL1+RanYfE/y
-	loAs6rr2ye0OBrSCPZDfKDErmwY8iqLeQkY4AgOjPhJOJ+dIy1UR6+hVP8wlRh4RnFSVvkdaM4yTp
-	Ju3RBQx82mtFDtRJreoLioWUtQh26665nYw+1pmO/5mGGUiwYfRPuVUxCdn452yTQvThTmpWXPJDN
-	Ej1pc1bjaLVIsVovA1vw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=NxKEj0XZ3A9AivEh+m0tAD1G+gQwOVOZSIG/wii/6nY=; b=q1QzvL8s5YbpBv
+	aQ+rQXsYQyCyc1wt7VrF5Q//1AZTR1O4tWCTYM1xanQ6IzJSGMts92x6kB+Tt3f7NWg87jV/OIAoz
+	fCmIdeyQ4R4vO1BQYKIIs6nk5GRn1QxR63ru74haN5tBTGglAW6Yfv/XUR2DULkrp9mQvUrx/mBBQ
+	aS3LtL4ZlNiC/chKPO6KAYEyIjm2hYlURJJHMhZch+AxJMhhWmezZryPBlyCHF2yD6/jtNzgyXCvk
+	r4z2NESdEejuP/ggfKWWlvXfoNjjRzfsekFi+NhCNYXu+adKmApWML+FDyXfWUK444wcQUv/07FWQ
+	AmBLVHPpf4/2GM7qtLOA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hoK3i-0004sX-Ro; Fri, 19 Jul 2019 03:59:50 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1hoYZr-00022Z-UV; Fri, 19 Jul 2019 19:29:59 +0000
+Received: from mail-ed1-x542.google.com ([2a00:1450:4864:20::542])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hoK3g-0004rW-BE
- for linux-amlogic@lists.infradead.org; Fri, 19 Jul 2019 03:59:49 +0000
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
- [73.47.72.35])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 5487321873;
- Fri, 19 Jul 2019 03:59:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1563508788;
- bh=zf5ao4F8rb16M8OQVxdQOMg95lCMsO8s27tKgCZ4R9k=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=aVRWS/+kaZ1uJzlRd0q7G7DHiL8ukrmpvseeL4QvSAyNYHDiYT3EE6MXB+kspx0rc
- zug/n/xYFtlHmvYZeC0SC/hmW3AcGqAJivMpOPQxyr319JqrsL88AXZlZZ8NhuITHs
- xZWBZgjOFlKxgKgkGayabdE7LRl00HJJRdfHlhg0=
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.2 088/171] phy: meson-g12a-usb3-pcie: disable
- locking for cr_regmap
-Date: Thu, 18 Jul 2019 23:55:19 -0400
-Message-Id: <20190719035643.14300-88-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190719035643.14300-1-sashal@kernel.org>
-References: <20190719035643.14300-1-sashal@kernel.org>
+ id 1hoYZp-00021t-8a; Fri, 19 Jul 2019 19:29:58 +0000
+Received: by mail-ed1-x542.google.com with SMTP id e3so35417628edr.10;
+ Fri, 19 Jul 2019 12:29:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Wppe19Sbg/LaJHpxWMdO2Cb51TOC5T5tbB13DPqYbts=;
+ b=mPOJjaoZ8B7DFK7HNdHEH/Bw5fbLR+1KxuWp2BA2vv0HUD0YEGHXoJQZY54jVODQw/
+ YhRra+7xWLba9fuM14ry76BA+ljUlOoSb8yMuT3Zapv1d0u93v78SjdnwI9r3d3a07tV
+ H0LkhC2VK1+ucQxDxv6V4FCWtg1vCeBif9OM9er0VolH4LBtVGtnTa6qTSpawVCmKDJp
+ 5W6pYxqYICLJOnHyxeBVwwYZxRACZO4Vv9g0vodIIMB0GU80X33yAoQLW2fit2LfmC7f
+ Y7o1ITm1lmWFOOt3TO4rhQXPRp5kJWNBewVwnUxPLY2DVVFL3LmUybZUqSdYCAnPhBYJ
+ 7tvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Wppe19Sbg/LaJHpxWMdO2Cb51TOC5T5tbB13DPqYbts=;
+ b=MHEhBbYr4dPG3kt/p8PsDbl/vkDipwAcPvQuNcS5r519hrovDI7tXMgk9Sq72l2CF0
+ io5nCrelw/xWpmyfPUMoj+ni+BLYgC9PssocWow+51/VwPPWI8n4wdOsvTmcJIi16dl2
+ 2yZLbB50qEg1WPH5ZJhoqWoTDB7Rs3pebCUq2UTaQpKjgc36XqwaocaBsV6KRXUpmYrU
+ IGROtc8e7Lbj/cQOFbCB55V8ZfGkzClcUXD7QR08n8pYA7VU6rOSo/NakWOplRK0r23g
+ 9qXQpNXB1EzMSG1b+o6olnV5izNX6KnnOyij9pPWQ/ssqh7xCfeSckW60Jzmw8awFubG
+ 0HjQ==
+X-Gm-Message-State: APjAAAVwl3LYQZDX5rU+4PyN1dTjOvWmSRz42LQUVM/elolvx4TIK9w9
+ Qzm7vr+VjpwT7RsQVBtkJuc=
+X-Google-Smtp-Source: APXvYqzYGfoa+2Rs+xxkevrhYuAWHQ7Z7bZb+FBxde/d70WtXAkvJgTnGcsuMrHKhgpC4pYgls3CMg==
+X-Received: by 2002:a50:84e2:: with SMTP id 89mr48449082edq.218.1563564594936; 
+ Fri, 19 Jul 2019 12:29:54 -0700 (PDT)
+Received: from archon.lan (adsl-89-217-88-77.adslplus.ch. [89.217.88.77])
+ by smtp.gmail.com with ESMTPSA id d4sm8738624edb.4.2019.07.19.12.29.54
+ (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+ Fri, 19 Jul 2019 12:29:54 -0700 (PDT)
+From: Xavier Ruppen <xruppen@gmail.com>
+To: khilman@baylibre.com
+Subject: [PATCH] arm64: dts: meson: odroid-n2: keep SD card regulator always on
+Date: Fri, 19 Jul 2019 21:29:54 +0200
+Message-Id: <20190719192954.26481-1-xruppen@gmail.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190718_205948_403927_0FFC80DB 
-X-CRM114-Status: GOOD (  12.38  )
+X-CRM114-CacheID: sfid-20190719_122957_330076_9DDF13B3 
+X-CRM114-Status: UNSURE (   9.40  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,81 +93,68 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- linux-amlogic@lists.infradead.org, Kishon Vijay Abraham I <kishon@ti.com>,
- Neil Armstrong <narmstrong@baylibre.com>
+Cc: narmstrong@baylibre.com, martin.blumenstingl@googlemail.com,
+ linux-kernel@vger.kernel.org, Xavier Ruppen <xruppen@gmail.com>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Neil Armstrong <narmstrong@baylibre.com>
+When powering off the Odroid N2, the tflash_vdd regulator is
+automatically turned off by the kernel. This is a problem
+when issuing the "reboot" command while using an SD card.
+The boot ROM does not power this regulator back on, blocking
+the reboot process at the boot ROM stage, preventing the
+SD card from being detected.
 
-[ Upstream commit 5fc2aa3ec9efad97dd7c316f3c8e4c6268bbed9b ]
+Adding the "regulator-always-on" property fixes the problem.
 
-Locking is not needed for the phy_g12a_usb3_pcie_cr_bus_read/write() and
-currently it causes the following BUG because of the usage of the
-regmap_read_poll_timeout() running in spinlock_irq, configured by regmap fast_io.
-
-Simply disable locking in the cr_regmap config since it's only used from the
-PHY init callback function.
-
-BUG: sleeping function called from invalid context at drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c:85
-in_atomic(): 1, irqs_disabled(): 128, pid: 60, name: kworker/3:1
-[snip]
-Workqueue: events deferred_probe_work_func
-Call trace:
- dump_backtrace+0x0/0x190
- show_stack+0x14/0x20
- dump_stack+0x90/0xb4
- ___might_sleep+0xec/0x110
- __might_sleep+0x50/0x88
- phy_g12a_usb3_pcie_cr_bus_addr.isra.0+0x80/0x1a8
- phy_g12a_usb3_pcie_cr_bus_read+0x34/0x1d8
- _regmap_read+0x60/0xe0
- _regmap_update_bits+0xc4/0x110
- regmap_update_bits_base+0x60/0x90
- phy_g12a_usb3_pcie_init+0xdc/0x210
- phy_init+0x74/0xd0
- dwc3_meson_g12a_probe+0x2cc/0x4d0
- platform_drv_probe+0x50/0xa0
- really_probe+0x20c/0x3b8
- driver_probe_device+0x68/0x150
- __device_attach_driver+0xa8/0x170
- bus_for_each_drv+0x64/0xc8
- __device_attach+0xd8/0x158
- device_initial_probe+0x10/0x18
- bus_probe_device+0x90/0x98
- deferred_probe_work_func+0x94/0xe8
- process_one_work+0x1e0/0x338
- worker_thread+0x230/0x458
- kthread+0x134/0x138
- ret_from_fork+0x10/0x1c
-
-Fixes: 36077e16c050 ("phy: amlogic: Add Amlogic G12A USB3 + PCIE Combo PHY Driver")
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Tested-by: Kevin Hilman <khilman@baylibre.com>
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Xavier Ruppen <xruppen@gmail.com>
 ---
- drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c b/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
-index 6233a7979a93..ac322d643c7a 100644
---- a/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
-+++ b/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
-@@ -188,7 +188,7 @@ static const struct regmap_config phy_g12a_usb3_pcie_cr_regmap_conf = {
- 	.reg_read = phy_g12a_usb3_pcie_cr_bus_read,
- 	.reg_write = phy_g12a_usb3_pcie_cr_bus_write,
- 	.max_register = 0xffff,
--	.fast_io = true,
-+	.disable_locking = true,
- };
+Here is what the boot ROM output looks like without this patch:
+
+    [root@alarm ~]# reboot 
+    [...]
+    [   24.275860] shutdown[1]: All loop devices detached.
+    [   24.278864] shutdown[1]: Detaching DM devices.
+    [   24.287105] kvm: exiting hardware virtualization
+    [   24.318776] reboot: Restarting system
+    bl31 reboot reason: 0xd
+    bl31 reboot reason: 0x0
+    system cmd  1.
+    G12B:BL:6e7c85:7898ac;FEAT:E0F83180:2000;POC:F;RCY:0;
+    EMMC:800;NAND:81;SD?:0;SD:400;USB:8;LOOP:1;EMMC:800;
+    NAND:81;SD?:0;SD:400;USB:8;LOOP:2;EMMC:800;NAND:81;
+    SD?:0;SD:400;USB:8;LOOP:3; [...]
+
+Other people can be seen having this problem on the odroid
+forum [1].
+
+The cause of the problem was found by Martin Blumenstingl
+on #linux-amlogic. We may want to add his Suggested-by tag
+if he agrees.
+
+[1] https://forum.odroid.com/viewtopic.php?f=176&t=33993
+
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+index 81780ffcc7f0..4e916e1f71f7 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+@@ -53,6 +53,7 @@
  
- static int phy_g12a_usb3_init(struct phy *phy)
+ 		gpio = <&gpio_ao GPIOAO_8 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
++		regulator-always-on;
+ 	};
+ 
+ 	tf_io: gpio-regulator-tf_io {
 -- 
-2.20.1
+2.21.0
 
 
 _______________________________________________
