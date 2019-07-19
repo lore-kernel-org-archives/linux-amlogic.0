@@ -1,90 +1,73 @@
-Return-Path: <SRS0=T9/u=VP=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=5tt1=VQ=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E7055C76195
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jul 2019 09:36:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8DE3FC76188
+	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Jul 2019 03:59:58 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BBEEC20693
-	for <linux-amlogic@archiver.kernel.org>; Thu, 18 Jul 2019 09:36:37 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6781F218A3
+	for <linux-amlogic@archiver.kernel.org>; Fri, 19 Jul 2019 03:59:58 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Jb98/FYq";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="XIc39DhV"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BBEEC20693
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="U0Ha/qYx";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="aVRWS/+k"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6781F218A3
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=13DAQLRjU8vdQ+YxrkUzORzSem35W1PIrvmolF4/aYo=; b=Jb98/FYqPiYx30
-	gj/pySec3NAq9JEgOLXwDgtsREbi2wQcxqcDRszuXjUjFXdmgB5/s5c1gpp2X5zIufROJ4KYx3kU1
-	wmPADWK5vb0BUl2NflUdRS8euc6Zc2tsuwkD273QE2Z6BagEPwMhLSYUIG8ExTHunHUXNl93EQZVE
-	xodA5pg6w8KLoAcj1cdf0+LcR8lb6Pi3irJMfGDue5sylShgXKpm56SQgNrRHV/a8++adIY2oa21L
-	HvHjv7y0tXKL3rsXDPdC53OdXL5VmMwvHB91Yl1kAQBlwuBXn+vEuliXorvDkyY9tVHMXW0/C6O3b
-	ziw24mPQvglmRn8dVDTw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=AmPrf9tUI8uMRAgEMoKSyCL4XMVU12em6vz7Blo9KKA=; b=U0Ha/qYx0resSd
+	XwW0BmcpspcKtWyh6jL6mrNnewP0iUQotlTTq+8M7HGbQuwWDcIhVcXfSfqLjsB8/vZhtbiO0jEjv
+	07YmcSCfMpYa8f0BoLF+LjnnGAjS6+dgcEY5R7Me0uafBzRuiPsSKzAWJvXtyyD/pJL1+RanYfE/y
+	loAs6rr2ye0OBrSCPZDfKDErmwY8iqLeQkY4AgOjPhJOJ+dIy1UR6+hVP8wlRh4RnFSVvkdaM4yTp
+	Ju3RBQx82mtFDtRJreoLioWUtQh26665nYw+1pmO/5mGGUiwYfRPuVUxCdn452yTQvThTmpWXPJDN
+	Ej1pc1bjaLVIsVovA1vw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1ho2py-0006Er-Jk; Thu, 18 Jul 2019 09:36:30 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1hoK3i-0004sX-Ro; Fri, 19 Jul 2019 03:59:50 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1ho2pv-0006EY-D7
- for linux-amlogic@lists.infradead.org; Thu, 18 Jul 2019 09:36:29 +0000
-Received: by mail-wm1-x343.google.com with SMTP id v19so24948937wmj.5
- for <linux-amlogic@lists.infradead.org>; Thu, 18 Jul 2019 02:36:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=rcydOW70nVBt2WhrQ5MEx1NUU78KyQhLgGrKfsLYnKE=;
- b=XIc39DhVV6wP9pHG9VdjrepeAIErmxbaSyrZIDZWBwL2cz/IkGTEpnmmzos7L58uon
- S0C1WwcM2PDrmVrjm05LUQqZ/53FWr5txzGmzl/Euuxd/vHpJeD5Z2K3tQlgfJGG96Ew
- RMGf/MvvYrS9hLAbChxZYRxtDFcoQlcb9nnAX20CT5fznZMTzpfDhJyx/R0RoJf0+nOH
- uZWVYazu+ITWtlRdHFKbrl4l1dwjkpA4VPmoxdEqc1actQGG++eYRT9HktMSDf59Y8zq
- IEu3BwAcpvvH9pH/jZADQim8AynqAbPZ/8NF+//UdFPN+jjWw4+B2NYzFV8rLzM2O/B7
- 2/Ug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=rcydOW70nVBt2WhrQ5MEx1NUU78KyQhLgGrKfsLYnKE=;
- b=GPXKcUYEBAJ7vZ1c3LHLrsStZ2NUVnxK/ewhXSOqohERIJL1VZUPCbukKDJbrsugXp
- JXd96O7pyr2ewnJFW+YaWtVJp36yKe3FVzKpO6cSGsqyRgI14thB1i4++OVltNrPf4pc
- npvZzQOCxgU9Z4+ddIzv686Um5t/PYUxZjL+dznx+p+80iHcNkazbv8olJiMvFve+H0B
- rU1KkdroEISyT41bwfSbdDOhuuC09Ihh8SS3owwBXud3RO9tw+1JM5+7o7n2z/gGFtrA
- WMV3nPp2aaaWCItBpFw+cw5/HXXCrcsNJAwAss+rf5A7Guh5YcOoGCpzLPBMow4we7ho
- ZXFw==
-X-Gm-Message-State: APjAAAWM8qFLCQMzTSGTahJH9MffYs1ZMqvswJ3acnGTNXWQ0TD2/Pgw
- 1oOWlo4Ym/+loDoD813Ngh+A/g==
-X-Google-Smtp-Source: APXvYqxi617JdD5W+kC67+u9HU0QK3FbZtBaYU7SVdRiq0lXyfDfYn7ExO0wqjFAymUs/5beoqERcQ==
-X-Received: by 2002:a7b:c106:: with SMTP id w6mr43693379wmi.80.1563442585757; 
- Thu, 18 Jul 2019 02:36:25 -0700 (PDT)
-Received: from starbuck.baylibre.local
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id u13sm31569350wrq.62.2019.07.18.02.36.24
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Thu, 18 Jul 2019 02:36:25 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH] ARM: dts: meson8b: add ethernet fifo sizes
-Date: Thu, 18 Jul 2019 11:36:23 +0200
-Message-Id: <20190718093623.23598-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.21.0
+ id 1hoK3g-0004rW-BE
+ for linux-amlogic@lists.infradead.org; Fri, 19 Jul 2019 03:59:49 +0000
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
+ [73.47.72.35])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 5487321873;
+ Fri, 19 Jul 2019 03:59:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1563508788;
+ bh=zf5ao4F8rb16M8OQVxdQOMg95lCMsO8s27tKgCZ4R9k=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=aVRWS/+kaZ1uJzlRd0q7G7DHiL8ukrmpvseeL4QvSAyNYHDiYT3EE6MXB+kspx0rc
+ zug/n/xYFtlHmvYZeC0SC/hmW3AcGqAJivMpOPQxyr319JqrsL88AXZlZZ8NhuITHs
+ xZWBZgjOFlKxgKgkGayabdE7LRl00HJJRdfHlhg0=
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.2 088/171] phy: meson-g12a-usb3-pcie: disable
+ locking for cr_regmap
+Date: Thu, 18 Jul 2019 23:55:19 -0400
+Message-Id: <20190719035643.14300-88-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190719035643.14300-1-sashal@kernel.org>
+References: <20190719035643.14300-1-sashal@kernel.org>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+X-stable: review
+X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190718_023627_449078_593C290D 
-X-CRM114-Status: UNSURE (   8.18  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190718_205948_403927_0FFC80DB 
+X-CRM114-Status: GOOD (  12.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,40 +79,81 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
+Cc: Sasha Levin <sashal@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ linux-amlogic@lists.infradead.org, Kishon Vijay Abraham I <kishon@ti.com>,
+ Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-If unspecified in DT, the fifo sizes are not automatically detected by
-the dwmac1000 dma driver and the reported fifo sizes default to 0.
-Because of this, flow control will be turned off on the device.
+From: Neil Armstrong <narmstrong@baylibre.com>
 
-Add the fifo sizes provided by the datasheet in the SoC in DT so
-flow control may be enabled if necessary.
+[ Upstream commit 5fc2aa3ec9efad97dd7c316f3c8e4c6268bbed9b ]
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Locking is not needed for the phy_g12a_usb3_pcie_cr_bus_read/write() and
+currently it causes the following BUG because of the usage of the
+regmap_read_poll_timeout() running in spinlock_irq, configured by regmap fast_io.
+
+Simply disable locking in the cr_regmap config since it's only used from the
+PHY init callback function.
+
+BUG: sleeping function called from invalid context at drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c:85
+in_atomic(): 1, irqs_disabled(): 128, pid: 60, name: kworker/3:1
+[snip]
+Workqueue: events deferred_probe_work_func
+Call trace:
+ dump_backtrace+0x0/0x190
+ show_stack+0x14/0x20
+ dump_stack+0x90/0xb4
+ ___might_sleep+0xec/0x110
+ __might_sleep+0x50/0x88
+ phy_g12a_usb3_pcie_cr_bus_addr.isra.0+0x80/0x1a8
+ phy_g12a_usb3_pcie_cr_bus_read+0x34/0x1d8
+ _regmap_read+0x60/0xe0
+ _regmap_update_bits+0xc4/0x110
+ regmap_update_bits_base+0x60/0x90
+ phy_g12a_usb3_pcie_init+0xdc/0x210
+ phy_init+0x74/0xd0
+ dwc3_meson_g12a_probe+0x2cc/0x4d0
+ platform_drv_probe+0x50/0xa0
+ really_probe+0x20c/0x3b8
+ driver_probe_device+0x68/0x150
+ __device_attach_driver+0xa8/0x170
+ bus_for_each_drv+0x64/0xc8
+ __device_attach+0xd8/0x158
+ device_initial_probe+0x10/0x18
+ bus_probe_device+0x90/0x98
+ deferred_probe_work_func+0x94/0xe8
+ process_one_work+0x1e0/0x338
+ worker_thread+0x230/0x458
+ kthread+0x134/0x138
+ ret_from_fork+0x10/0x1c
+
+Fixes: 36077e16c050 ("phy: amlogic: Add Amlogic G12A USB3 + PCIE Combo PHY Driver")
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Tested-by: Kevin Hilman <khilman@baylibre.com>
+Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/meson8b.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index fba2c70c2fda..b044ad78b475 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -410,6 +410,8 @@
- 		 <&clkc CLKID_MPLL2>,
- 		 <&clkc CLKID_MPLL2>;
- 	clock-names = "stmmaceth", "clkin0", "clkin1";
-+	rx-fifo-depth = <4096>;
-+	tx-fifo-depth = <2048>;
+diff --git a/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c b/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
+index 6233a7979a93..ac322d643c7a 100644
+--- a/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
++++ b/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
+@@ -188,7 +188,7 @@ static const struct regmap_config phy_g12a_usb3_pcie_cr_regmap_conf = {
+ 	.reg_read = phy_g12a_usb3_pcie_cr_bus_read,
+ 	.reg_write = phy_g12a_usb3_pcie_cr_bus_write,
+ 	.max_register = 0xffff,
+-	.fast_io = true,
++	.disable_locking = true,
+ };
  
- 	resets = <&reset RESET_ETHERNET>;
- 	reset-names = "stmmaceth";
+ static int phy_g12a_usb3_init(struct phy *phy)
 -- 
-2.21.0
+2.20.1
 
 
 _______________________________________________
