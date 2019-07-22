@@ -6,16 +6,16 @@ X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
 	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B1AD5C7618F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Jul 2019 22:12:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A0DE8C7618F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Jul 2019 22:12:41 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 82CC021900
-	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Jul 2019 22:12:12 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 71A6721900
+	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Jul 2019 22:12:41 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="OgOeHu3Q"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 82CC021900
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="SkDKyZ/S"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 71A6721900
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -24,55 +24,54 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Hw5vgNUwakWUJzBB5YKlM0QXJm7KNDlL/mYzl7uuv2c=; b=OgOeHu3QRsTq+m
-	ncxm8XhBhuf7p5s+xNDLkfhoTIW17J2m79f2ZFulmGBmCu+HJ5xYDdFN4PXrxntMoWWay4SCvQbNf
-	ChgMHgNOs4/qv4zLdr6YAp8bfkl6rQkDMLRYemaoE4cfF762AwYlZxzboKX6zWygS4lQlF8F9roZ8
-	/gmoJpGekID3BZRVW0osk9KoV+U0iEWS32tXik99lgHBI0ifYZvgKbfJ2G0KJTL1oCBqJmr52Awnh
-	ypeW5Ro0ZrlMmyt0RKDRIA91j8H62c8NQcOIJI3Rak3tr2xfc7q84Hef3M6bNIG3WG5OjRC6tYVpG
-	+ZS34hJ5718vQxVsDwlg==;
+	List-Owner; bh=oznlKZSh6i1cbgfmq6lc1lXwT8XkRt70CbeA/K4equQ=; b=SkDKyZ/Sw6HeBr
+	NF93aHlLr3p2d39NoXFPCn9SVpqPBMc/AfueZhyhKkgz/oVNDQM9+7hn4eP9rHi7riN1H12db++1U
+	TKemrJhq2rXmnQPoDDfQGtuqyM0IKgLjPxD+qIpp7S8zfNoDETR54m/THSaY3K2QxnxaaI/n3yHOu
+	SQN+Favd5daxInQXDZuO3SOb8Y3auGlzLvXn0zZO+r3Uz+FtxjUYO+KsWpP8DqzsgyEotqDNcIgEt
+	h5hAEY9PKJDaXw4BmBKSHHy7CUHjM2NlWMHQkAa1Yft04WKTX4dAbd+2H+RIkxnLs0umcn/QVhwnx
+	bND+sVbaMTElfKc5faOA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hpgXI-00060R-N9; Mon, 22 Jul 2019 22:12:01 +0000
-Received: from mail-io1-f66.google.com ([209.85.166.66])
+	id 1hpgXs-0006KR-Uv; Mon, 22 Jul 2019 22:12:37 +0000
+Received: from mail-io1-f67.google.com ([209.85.166.67])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hpgW7-0005Z0-HH; Mon, 22 Jul 2019 22:10:49 +0000
-Received: by mail-io1-f66.google.com with SMTP id g20so77466397ioc.12;
- Mon, 22 Jul 2019 15:10:47 -0700 (PDT)
+ id 1hpgWv-0005qy-SQ; Mon, 22 Jul 2019 22:11:39 +0000
+Received: by mail-io1-f67.google.com with SMTP id o9so77566136iom.3;
+ Mon, 22 Jul 2019 15:11:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to:user-agent;
- bh=so3TguXhHjajKSvaOLSucOk7rXy936Gzk4d2QA02XtA=;
- b=aYiOm07Aje8ejnRiuunf4GtNEdwY6bSmqtOxqsvPLO+W2pX5KLo6Fqp0jk8P2GEHrn
- eYjlLCatjMuNsfxfCYjvFt4On5IlrZd8D/aaU5IaO4DX44Nd/bwJR5AC/egATdZYZoLA
- UZr86ITuqzO2jA2hsssJgwpaWeyN4UwqIB4azJKBwk1va3XAyHjOCQ89uRfRlWYnSG4R
- Fixdn0kMgDBRMPOSFRVUQ8TDV+TrlatMp9Y0j2J6XFZgAj0wHPbJGiApSyxJ2ctDgLTX
- SFsFcIeytNYpYbA11CViNwEks4K2NmqoveiCLGeVHeEY7ukjNBezr8CrD/Wg9gLrFeZ6
- a/7A==
-X-Gm-Message-State: APjAAAV8iw4ZAK6XJ1nBTOJxoMG6/nZvai75D1CcyD3uiSvsvI79VPBf
- 0OOdr0gAtn0RXXQLi30CHw==
-X-Google-Smtp-Source: APXvYqwhN7RA27SVa6mIjcHdSIUhlwnMBkhE2+F2OczdEmCOQCiFU41dl37RKc0vjcv14UOGyFPR+g==
-X-Received: by 2002:a5d:8890:: with SMTP id d16mr20374962ioo.274.1563833446531; 
- Mon, 22 Jul 2019 15:10:46 -0700 (PDT)
+ bh=ZZjeYarbm2uHTbPqEU/SfJr1OMvMhmzpfbxIokfphLg=;
+ b=ef5vPuQlpbO0UGsT8w75iGFGzqwSlBzvfWU7LgtYX3NYqQDYKZfehpwZfZOqS/qR4T
+ F0gJ6wHdita6Pd+10SefG2EVJJ/yNrN7HcLe8dmnv0Z2woF977hU7apmF08+qHp/vxvz
+ g0jjHiDq5jQc+EQreAGfwB1jbeOAROXCRVNvtCQAZzp6Qz6p+UUJiAPZpKIxvxANMpGl
+ mODhPsN928Q4Ke4Ki2C5i0mqvWmGTOwdYYGwbn6Tbhp9X9aMYDNSrPrTtRJQ8GjClnre
+ FYaViAwUG6MgCbrdie4bLoYpEFgLuwDMvg3CYkgqv/tbFwTAuLDH5HYevzzPrsLe6oh2
+ shJQ==
+X-Gm-Message-State: APjAAAWvmGla7dbm2Bozxdqa6T/BnEebBPEfy1S69uIL4NjAzu9rsrm8
+ mYUukQV/7F0eWC9XLyxsjQ==
+X-Google-Smtp-Source: APXvYqwybodqBsnRMzwxflKMmSxt7BwWQbvI4+93D/Ql0XrEVFvtTEtzmr5T6L7GyUnVm3y5riatKg==
+X-Received: by 2002:a02:a581:: with SMTP id b1mr4163149jam.84.1563833496727;
+ Mon, 22 Jul 2019 15:11:36 -0700 (PDT)
 Received: from localhost ([64.188.179.254])
- by smtp.gmail.com with ESMTPSA id s2sm29616314ioj.8.2019.07.22.15.10.45
+ by smtp.gmail.com with ESMTPSA id p10sm58670815iob.54.2019.07.22.15.11.35
  (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Mon, 22 Jul 2019 15:10:45 -0700 (PDT)
-Date: Mon, 22 Jul 2019 16:10:45 -0600
+ Mon, 22 Jul 2019 15:11:36 -0700 (PDT)
+Date: Mon, 22 Jul 2019 16:11:35 -0600
 From: Rob Herring <robh@kernel.org>
 To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [RFC 05/11] dt-bindings: soc: amlogic: clk-measure: Add SM1
- compatible
-Message-ID: <20190722221045.GA30948@bogus>
+Subject: Re: [RFC 07/11] dt-bindings: media: meson-ao-cec: add SM1 compatible
+Message-ID: <20190722221135.GA32382@bogus>
 References: <20190701104705.18271-1-narmstrong@baylibre.com>
- <20190701104705.18271-6-narmstrong@baylibre.com>
+ <20190701104705.18271-8-narmstrong@baylibre.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20190701104705.18271-6-narmstrong@baylibre.com>
+In-Reply-To: <20190701104705.18271-8-narmstrong@baylibre.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190722_151047_749752_FE9D608F 
-X-CRM114-Status: UNSURE (   8.65  )
+X-CRM114-CacheID: sfid-20190722_151138_259848_7740CD08 
+X-CRM114-Status: UNSURE (   8.04  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -87,20 +86,21 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
  khilman@baylibre.com, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- jbrunet@baylibre.com
+ linux-amlogic@lists.infradead.org, jbrunet@baylibre.com,
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon,  1 Jul 2019 12:46:59 +0200, Neil Armstrong wrote:
-> Add the Amlogic SM1 Compatible for the clk-measurer IP.
+On Mon,  1 Jul 2019 12:47:01 +0200, Neil Armstrong wrote:
+> Add AO-CEC compatible string for the Amlogic SM1 SoC family,
+> a derivate of the G12A AO-CECB controller.
 > 
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->  Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/media/meson-ao-cec.txt | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
