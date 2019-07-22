@@ -4,20 +4,21 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7C3B0C76188
-	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Jul 2019 09:55:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8308AC76188
+	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Jul 2019 09:56:28 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4F4632199C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Jul 2019 09:55:59 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4F9E52199C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Jul 2019 09:56:28 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lz6DkgDL";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="09eZ7CUQ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4F4632199C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="G8lNdFD3";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="WWEOrDjR";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="tKsjU5by"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4F9E52199C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,64 +28,79 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=AB3TiQEv/Wabf47h8mZwXCg6UAXV1ax2DuQjPhAx9rM=; b=lz6DkgDLEcagdNAaaI6blwnoko
-	FvrDpF8KOVd0U3wKIMDVKpFyMV0cjerC13zX8Tq49I+RZQvyvOT8Gb9ZeWnJ3eYiylFAgIaLIalGt
-	qB+okS6U6HfkOw8sEE/4BjiCz9N0jZ61iBlkBl1XFXYtUQTIHlchJDs29MQnvbyTInbwfeue2arb1
-	jINMvLvhl8ebfCrlIBtUZfEnItFiw4BC1nxrYbW2VuJRU0xCPYYj0UeBn/clvXOw2G8nHLCy9OWTo
-	lUsY7kTRoFpopYMBdJSvbTB9wehWy1VxxLcX9IlBcrgN/Tk+5UwH4OLnBx1u72FYKakuVYRD7Kva4
-	LhSyHMVQ==;
+	bh=yGaAbL9HzOjlKMlN7yDXJERxA7HqS/btR0kZJb1Z8+o=; b=G8lNdFD3Jih6Kucy7EHKCK0LEy
+	1JnNvUlsdf943nJs/mmdIXja11A9wAchQylxwCSkg14m8c5uQYTiDw2deCY7tcrvvOtEnmV9+pE17
+	UYKlkVWhueJ+G+dvG3ZwnV6Jpc7DSUVuffy+xnrxQoRx1G3yYkAAYYcZqe/Y2LTSqA4katElmhURf
+	nvCApeiqOk54VKLQccldOVv42DCArcMMJQTAhJPNdU4DYw1lU6VJPcBtshuv6sBdD60CPvs/7OKWj
+	eVcClGSJN62PAbXcqJ6crKGOQpD7hV47+/0A/61Ixwz0XG7GGR4gr88B5jfNX+mVj7/YDj/jDOjgl
+	CF94fdag==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hpV2w-0001d6-7J; Mon, 22 Jul 2019 09:55:54 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1hpV3O-0001wI-4T; Mon, 22 Jul 2019 09:56:22 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hpV1a-00084c-GX
- for linux-amlogic@lists.infradead.org; Mon, 22 Jul 2019 09:54:36 +0000
-Received: by mail-wr1-x444.google.com with SMTP id g17so38727522wrr.5
- for <linux-amlogic@lists.infradead.org>; Mon, 22 Jul 2019 02:54:30 -0700 (PDT)
+ id 1hpV1o-0008Dh-Eg
+ for linux-amlogic@bombadil.infradead.org; Mon, 22 Jul 2019 09:54:44 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=References:In-Reply-To:Message-Id:Date:
+ Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=BuoDlpPb1vre+s0M4n7UQuzVeVmwTbnqlEv8lDT4UWI=; b=WWEOrDjRp2ITo0RH+X9XA8oFB
+ Y88K8/8fygEqxTj0snNhh28elmIfwSsVJcC6QD5hPhp8ow1P8oeU+Xp1usGDXq9+2iJgaejnNGlqT
+ Ch0Vnz2kJfcn0Fg3umZCG96viRrTs0YsPUidk1Ne5XdR4+cGVA6X1H44xCAtI+mzGFbBjdm8X82pw
+ Ub0CV0oOZ5ycQcM2WZ6J5bMKWgxHYdSNdl0xqguA4kE5hXlYutP7lkLv8WFt1ijMPXDPIK0Jt40Cg
+ TA3AcOEo9vdzbTrhELWfqoC+/p+2EeiVVrVOkj+IZ5cvD1bZDAvSFXt9HtRf2xU206PwRFiX9UjFv
+ CnWAPU3dg==;
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+ by casper.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
+ id 1hpV1s-0007rn-Cm
+ for linux-amlogic@lists.infradead.org; Mon, 22 Jul 2019 09:54:50 +0000
+Received: by mail-wr1-x443.google.com with SMTP id f9so38677992wre.12
+ for <linux-amlogic@lists.infradead.org>; Mon, 22 Jul 2019 02:54:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=cIceYeZmXLnDB8KmyjeQxrFIl+tdDqzy/AgzjLz1uyc=;
- b=09eZ7CUQJWjEDPknM+glm7nGARL3191dfdnzDoDTIcXUf2VN/coQPKSBZPFyz9NNfC
- GEpjW3GMEewKb1ip9yr6C+f0EGNH+oJMtSnZh4o4fmfolLpJYq0qj5qoRXtmoLrSMamp
- nUc+JDRBop0pxkonQ1UlKoFZoohi6DPwc8SiO9p5MW2Qs9Fyk68m5bmzKtfpJdJe+5sx
- E1SspGW/gU3dRoQRjzUmh6F7t40J6L8GQph5JtuYVKFiYXGuDpGmx/sRuMOnRlALG4rS
- kWCmtJw73zCURV1MhJEG/rSXxW8fgPTIc1eu0Uogi/W6QdiGka/jpW2NiCDfN9FqAR2+
- YRUg==
+ bh=BuoDlpPb1vre+s0M4n7UQuzVeVmwTbnqlEv8lDT4UWI=;
+ b=tKsjU5byCoZ5Sa+GP1Va7H9RQlqX/jqqS/q2WCk4JH/Cah1N2dHDB/kGpm4ruyddOv
+ /u6dzzGOGiOZalKUIfiBGWJUx7fUruazlVJJetd3nBhKlMbSRS8pTCHrIUr8UmzYdpP9
+ XchSEBbNVnFJV2uy46sIazeoKX6j+daD4DPGyMhHqCzgMJ0kaNJjuWOA8P+b0ImnJaEA
+ XL2DbM2wuoAgFUEifMONziWGqE4jYLjCaYk0F0Ahnx7dI4tA8inuRs89OExzu4ctRTE3
+ T3YGEoD/5/4oK1aMSx5dgwPWDdqPq1uhypMS1P/TgB2uPoVHV7opKMN4LUdF1z9ZuD4A
+ 15qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references;
- bh=cIceYeZmXLnDB8KmyjeQxrFIl+tdDqzy/AgzjLz1uyc=;
- b=Y4AdGgomv4P7Wu/L2DHJwT6TQqYV39Ibi+wYDo6UwJ7RJyI9EXzB6Ckb5+4OHsR7iz
- JkcopRCV2S3Lt1eXPbTVPqnMf0tOTNOC11u6sYYmjBASSGl5aXK9ItB7R56Mypi0jbOu
- jL9Sd5JuNzhY8SbvK9DTRpgnnA/hE3ZjQgn64/01mq1LVYIgyQCudlGKGdZC2ZMJDIf/
- SZqcohTaKqAN0Cz7sXKRayFQ/Fa0Zho+SrlnaOtpofByL9GA7i01BZThJXMs46r14w8E
- j8baxTzRpqEpCdPGK3vQt8LW6nyL1ZtrcJythWFf/13a90IOW3BAStvSyWMGiKIkYkuh
- nXoQ==
-X-Gm-Message-State: APjAAAVMbZ8rRfheZruXEne3SdxYj5fl++7L/Pyc+1wnOvOS/foSDDgY
- BtrTgJcTjvrOoKWFy7JcdsTJwg2Jt+s=
-X-Google-Smtp-Source: APXvYqzLxOM30MoA/Cs6XJMrso0FW9Y4DTwH7k8jtslzDTkT8KdRK3RB5BI+8Zi1/XhsuvNPDS2TMA==
-X-Received: by 2002:a5d:4090:: with SMTP id o16mr22577752wrp.292.1563789269259; 
- Mon, 22 Jul 2019 02:54:29 -0700 (PDT)
+ bh=BuoDlpPb1vre+s0M4n7UQuzVeVmwTbnqlEv8lDT4UWI=;
+ b=T6e8sDs+iJxeWkA+YugHjgsTooKCwmMXdAk5tsq4Q9j4hOmkdzPWhNiEyvHF7mH05j
+ 2sYJbETC415GhOFaewTy0uGXNOY7XichJBVuaGwmixYt9/cGNbq5k0ntA5OZbWBkNpP1
+ k1rLKry1HsCvSfShSTfO22y6a++92NxtwO7xq8Mx8EiJrSd7A/yAmv5GJ31Dh9ozRmct
+ 3MY0U2KVkCWeGYwHcp1Jkdq3awHA7mIhiXGTlWHolIN0pmE110jqjvWHxpg3LvSsaKJk
+ U4Yld4YeT6hLBgbk8JF/D/o7sxPXs0wpgZuXrofPRRaqU/Cn0/+cC90dB4xXXeixWh29
+ L3GQ==
+X-Gm-Message-State: APjAAAWg7qE+4BZCi/H1otLHMjJNPUEThq00i9q22JbuUsyYkwK1kEFT
+ CteH/ifWPY0DxNolgl/1VAAv0Q==
+X-Google-Smtp-Source: APXvYqzEI8Yc89xIk5KnT0N0hiwsBpvaUVjuHPZEKB+qhbA7krIHnkZEIerewidwdBrfvIOKyMR26g==
+X-Received: by 2002:adf:9486:: with SMTP id 6mr42268769wrr.242.1563789276066; 
+ Mon, 22 Jul 2019 02:54:36 -0700 (PDT)
 Received: from pop-os.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id 91sm83158469wrp.3.2019.07.22.02.54.28
+ by smtp.googlemail.com with ESMTPSA id 91sm83158469wrp.3.2019.07.22.02.54.35
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 22 Jul 2019 02:54:28 -0700 (PDT)
+ Mon, 22 Jul 2019 02:54:35 -0700 (PDT)
 From: Alexandre Mergnat <amergnat@baylibre.com>
 To: jbrunet@baylibre.com
-Subject: [PATCH 1/8] clk: meson: g12a: move clock declaration to dependency
- order
-Date: Mon, 22 Jul 2019 11:54:18 +0200
-Message-Id: <20190722095425.14193-2-amergnat@baylibre.com>
+Subject: [PATCH 8/8] clk: meson: remove clk input helper
+Date: Mon, 22 Jul 2019 11:54:25 +0200
+Message-Id: <20190722095425.14193-9-amergnat@baylibre.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190722095425.14193-1-amergnat@baylibre.com>
 References: <20190722095425.14193-1-amergnat@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190722_025432_058496_7D14A2F3 
-X-CRM114-Status: GOOD (  15.79  )
+X-CRM114-CacheID: sfid-20190722_105448_466860_0D2FB82B 
+X-CRM114-Status: GOOD (  13.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,334 +122,124 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This clock controller use the string comparison method to describe parent
-relation between the clocks.
-
-In order to migrate to clk_hw pointers, it is easier if the parent is
-declared before being used. This patch just move the declaration to
-facilitate the review of migration to the parent description method.
+The clk input function which allows clock controllers to register a bypass
+clock from a clock producer is no longer needed anymore since meson clock
+controllers have migrated to a new parent allocation method.
 
 Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
 ---
- drivers/clk/meson/g12a.c | 270 +++++++++++++++++++--------------------
- 1 file changed, 135 insertions(+), 135 deletions(-)
+ drivers/clk/meson/Kconfig     |  3 ---
+ drivers/clk/meson/Makefile    |  1 -
+ drivers/clk/meson/clk-input.c | 49 -----------------------------------
+ drivers/clk/meson/clk-input.h | 19 --------------
+ 4 files changed, 72 deletions(-)
+ delete mode 100644 drivers/clk/meson/clk-input.c
+ delete mode 100644 drivers/clk/meson/clk-input.h
 
-diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
-index 7bc5566b66f7..cbd56b2e05d0 100644
---- a/drivers/clk/meson/g12a.c
-+++ b/drivers/clk/meson/g12a.c
-@@ -257,6 +257,64 @@ static struct clk_fixed_factor g12b_sys1_pll_div16 = {
- 	},
- };
- 
-+static struct clk_fixed_factor g12a_fclk_div2_div = {
-+	.mult = 1,
-+	.div = 2,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div2_div",
-+		.ops = &clk_fixed_factor_ops,
-+		.parent_names = (const char *[]){ "fixed_pll" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap g12a_fclk_div2 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_FIX_PLL_CNTL1,
-+		.bit_idx = 24,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div2",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "fclk_div2_div" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_fixed_factor g12a_fclk_div3_div = {
-+	.mult = 1,
-+	.div = 3,
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div3_div",
-+		.ops = &clk_fixed_factor_ops,
-+		.parent_names = (const char *[]){ "fixed_pll" },
-+		.num_parents = 1,
-+	},
-+};
-+
-+static struct clk_regmap g12a_fclk_div3 = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_FIX_PLL_CNTL1,
-+		.bit_idx = 20,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "fclk_div3",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "fclk_div3_div" },
-+		.num_parents = 1,
-+		/*
-+		 * This clock is used by the resident firmware and is required
-+		 * by the platform to operate correctly.
-+		 * Until the following condition are met, we need this clock to
-+		 * be marked as critical:
-+		 * a) Mark the clock used by a firmware resource, if possible
-+		 * b) CCF has a clock hand-off mechanism to make the sure the
-+		 *    clock stays on until the proper driver comes along
-+		 */
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+};
-+
- /* Datasheet names this field as "premux0" */
- static struct clk_regmap g12a_cpu_clk_premux0 = {
- 	.data = &(struct clk_regmap_mux_data){
-@@ -274,6 +332,23 @@ static struct clk_regmap g12a_cpu_clk_premux0 = {
- 	},
- };
- 
-+/* Datasheet names this field as "premux1" */
-+static struct clk_regmap g12a_cpu_clk_premux1 = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = HHI_SYS_CPU_CLK_CNTL0,
-+		.mask = 0x3,
-+		.shift = 16,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "cpu_clk_dyn1_sel",
-+		.ops = &clk_regmap_mux_ro_ops,
-+		.parent_names = (const char *[]){ IN_PREFIX "xtal",
-+						  "fclk_div2",
-+						  "fclk_div3" },
-+		.num_parents = 3,
-+	},
-+};
-+
- /* Datasheet names this field as "mux0_divn_tcnt" */
- static struct clk_regmap g12a_cpu_clk_mux0_div = {
- 	.data = &(struct clk_regmap_div_data){
-@@ -305,23 +380,6 @@ static struct clk_regmap g12a_cpu_clk_postmux0 = {
- 	},
- };
- 
--/* Datasheet names this field as "premux1" */
--static struct clk_regmap g12a_cpu_clk_premux1 = {
--	.data = &(struct clk_regmap_mux_data){
--		.offset = HHI_SYS_CPU_CLK_CNTL0,
--		.mask = 0x3,
--		.shift = 16,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "cpu_clk_dyn1_sel",
--		.ops = &clk_regmap_mux_ro_ops,
--		.parent_names = (const char *[]){ IN_PREFIX "xtal",
--						  "fclk_div2",
--						  "fclk_div3" },
--		.num_parents = 3,
--	},
--};
+diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+index 72a37572501f..500be0b0d473 100644
+--- a/drivers/clk/meson/Kconfig
++++ b/drivers/clk/meson/Kconfig
+@@ -1,7 +1,4 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-config COMMON_CLK_MESON_INPUT
+-	tristate
 -
- /* Datasheet names this field as "Mux1_divn_tcnt" */
- static struct clk_regmap g12a_cpu_clk_mux1_div = {
- 	.data = &(struct clk_regmap_div_data){
-@@ -1305,64 +1363,6 @@ static struct clk_regmap g12a_hdmi_pll = {
- 	},
- };
- 
--static struct clk_fixed_factor g12a_fclk_div2_div = {
--	.mult = 1,
--	.div = 2,
--	.hw.init = &(struct clk_init_data){
--		.name = "fclk_div2_div",
--		.ops = &clk_fixed_factor_ops,
--		.parent_names = (const char *[]){ "fixed_pll" },
--		.num_parents = 1,
--	},
--};
+ config COMMON_CLK_MESON_REGMAP
+ 	tristate
+ 	select REGMAP
+diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+index bc35a4efd6b7..f09d83dc3d60 100644
+--- a/drivers/clk/meson/Makefile
++++ b/drivers/clk/meson/Makefile
+@@ -4,7 +4,6 @@
+ obj-$(CONFIG_COMMON_CLK_MESON_AO_CLKC) += meson-aoclk.o
+ obj-$(CONFIG_COMMON_CLK_MESON_DUALDIV) += clk-dualdiv.o
+ obj-$(CONFIG_COMMON_CLK_MESON_EE_CLKC) += meson-eeclk.o
+-obj-$(CONFIG_COMMON_CLK_MESON_INPUT) += clk-input.o
+ obj-$(CONFIG_COMMON_CLK_MESON_MPLL) += clk-mpll.o
+ obj-$(CONFIG_COMMON_CLK_MESON_PHASE) += clk-phase.o
+ obj-$(CONFIG_COMMON_CLK_MESON_PLL) += clk-pll.o
+diff --git a/drivers/clk/meson/clk-input.c b/drivers/clk/meson/clk-input.c
+deleted file mode 100644
+index 086226e9dba6..000000000000
+--- a/drivers/clk/meson/clk-input.c
++++ /dev/null
+@@ -1,49 +0,0 @@
+-// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+-/*
+- * Copyright (c) 2018 BayLibre, SAS.
+- * Author: Jerome Brunet <jbrunet@baylibre.com>
+- */
 -
--static struct clk_regmap g12a_fclk_div2 = {
--	.data = &(struct clk_regmap_gate_data){
--		.offset = HHI_FIX_PLL_CNTL1,
--		.bit_idx = 24,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "fclk_div2",
--		.ops = &clk_regmap_gate_ops,
--		.parent_names = (const char *[]){ "fclk_div2_div" },
--		.num_parents = 1,
--	},
--};
+-#include <linux/clk.h>
+-#include <linux/clk-provider.h>
+-#include <linux/device.h>
+-#include <linux/module.h>
+-#include "clk-input.h"
 -
--static struct clk_fixed_factor g12a_fclk_div3_div = {
--	.mult = 1,
--	.div = 3,
--	.hw.init = &(struct clk_init_data){
--		.name = "fclk_div3_div",
--		.ops = &clk_fixed_factor_ops,
--		.parent_names = (const char *[]){ "fixed_pll" },
--		.num_parents = 1,
--	},
--};
+-static const struct clk_ops meson_clk_no_ops = {};
 -
--static struct clk_regmap g12a_fclk_div3 = {
--	.data = &(struct clk_regmap_gate_data){
--		.offset = HHI_FIX_PLL_CNTL1,
--		.bit_idx = 20,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "fclk_div3",
--		.ops = &clk_regmap_gate_ops,
--		.parent_names = (const char *[]){ "fclk_div3_div" },
--		.num_parents = 1,
--		/*
--		 * This clock is used by the resident firmware and is required
--		 * by the platform to operate correctly.
--		 * Until the following condition are met, we need this clock to
--		 * be marked as critical:
--		 * a) Mark the clock used by a firmware resource, if possible
--		 * b) CCF has a clock hand-off mechanism to make the sure the
--		 *    clock stays on until the proper driver comes along
--		 */
--		.flags = CLK_IS_CRITICAL,
--	},
--};
+-struct clk_hw *meson_clk_hw_register_input(struct device *dev,
+-					   const char *of_name,
+-					   const char *clk_name,
+-					   unsigned long flags)
+-{
+-	struct clk *parent_clk = devm_clk_get(dev, of_name);
+-	struct clk_init_data init;
+-	const char *parent_name;
+-	struct clk_hw *hw;
+-	int ret;
 -
- static struct clk_fixed_factor g12a_fclk_div4_div = {
- 	.mult = 1,
- 	.div = 4,
-@@ -1900,6 +1900,66 @@ static struct clk_regmap g12a_sd_emmc_c_clk0 = {
- 	},
- };
- 
-+/* Video Clocks */
-+
-+static struct clk_regmap g12a_vid_pll_div = {
-+	.data = &(struct meson_vid_pll_div_data){
-+		.val = {
-+			.reg_off = HHI_VID_PLL_CLK_DIV,
-+			.shift   = 0,
-+			.width   = 15,
-+		},
-+		.sel = {
-+			.reg_off = HHI_VID_PLL_CLK_DIV,
-+			.shift   = 16,
-+			.width   = 2,
-+		},
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "vid_pll_div",
-+		.ops = &meson_vid_pll_div_ro_ops,
-+		.parent_names = (const char *[]){ "hdmi_pll" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT | CLK_GET_RATE_NOCACHE,
-+	},
-+};
-+
-+static const char * const g12a_vid_pll_parent_names[] = { "vid_pll_div",
-+							  "hdmi_pll" };
-+
-+static struct clk_regmap g12a_vid_pll_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = HHI_VID_PLL_CLK_DIV,
-+		.mask = 0x1,
-+		.shift = 18,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "vid_pll_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		/*
-+		 * bit 18 selects from 2 possible parents:
-+		 * vid_pll_div or hdmi_pll
-+		 */
-+		.parent_names = g12a_vid_pll_parent_names,
-+		.num_parents = ARRAY_SIZE(g12a_vid_pll_parent_names),
-+		.flags = CLK_SET_RATE_NO_REPARENT | CLK_GET_RATE_NOCACHE,
-+	},
-+};
-+
-+static struct clk_regmap g12a_vid_pll = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = HHI_VID_PLL_CLK_DIV,
-+		.bit_idx = 19,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "vid_pll",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_names = (const char *[]){ "vid_pll_sel" },
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
-+	},
-+};
-+
- /* VPU Clock */
- 
- static const char * const g12a_vpu_parent_names[] = {
-@@ -2287,66 +2347,6 @@ static struct clk_regmap g12a_vapb = {
- 	},
- };
- 
--/* Video Clocks */
+-	if (IS_ERR(parent_clk))
+-		return (struct clk_hw *)parent_clk;
 -
--static struct clk_regmap g12a_vid_pll_div = {
--	.data = &(struct meson_vid_pll_div_data){
--		.val = {
--			.reg_off = HHI_VID_PLL_CLK_DIV,
--			.shift   = 0,
--			.width   = 15,
--		},
--		.sel = {
--			.reg_off = HHI_VID_PLL_CLK_DIV,
--			.shift   = 16,
--			.width   = 2,
--		},
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "vid_pll_div",
--		.ops = &meson_vid_pll_div_ro_ops,
--		.parent_names = (const char *[]){ "hdmi_pll" },
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT | CLK_GET_RATE_NOCACHE,
--	},
--};
+-	hw = devm_kzalloc(dev, sizeof(*hw), GFP_KERNEL);
+-	if (!hw)
+-		return ERR_PTR(-ENOMEM);
 -
--static const char * const g12a_vid_pll_parent_names[] = { "vid_pll_div",
--							  "hdmi_pll" };
+-	parent_name = __clk_get_name(parent_clk);
+-	init.name = clk_name;
+-	init.ops = &meson_clk_no_ops;
+-	init.flags = flags;
+-	init.parent_names = &parent_name;
+-	init.num_parents = 1;
+-	hw->init = &init;
 -
--static struct clk_regmap g12a_vid_pll_sel = {
--	.data = &(struct clk_regmap_mux_data){
--		.offset = HHI_VID_PLL_CLK_DIV,
--		.mask = 0x1,
--		.shift = 18,
--	},
--	.hw.init = &(struct clk_init_data){
--		.name = "vid_pll_sel",
--		.ops = &clk_regmap_mux_ops,
--		/*
--		 * bit 18 selects from 2 possible parents:
--		 * vid_pll_div or hdmi_pll
--		 */
--		.parent_names = g12a_vid_pll_parent_names,
--		.num_parents = ARRAY_SIZE(g12a_vid_pll_parent_names),
--		.flags = CLK_SET_RATE_NO_REPARENT | CLK_GET_RATE_NOCACHE,
--	},
--};
+-	ret = devm_clk_hw_register(dev, hw);
 -
--static struct clk_regmap g12a_vid_pll = {
--	.data = &(struct clk_regmap_gate_data){
--		.offset = HHI_VID_PLL_CLK_DIV,
--		.bit_idx = 19,
--	},
--	.hw.init = &(struct clk_init_data) {
--		.name = "vid_pll",
--		.ops = &clk_regmap_gate_ops,
--		.parent_names = (const char *[]){ "vid_pll_sel" },
--		.num_parents = 1,
--		.flags = CLK_SET_RATE_PARENT | CLK_IGNORE_UNUSED,
--	},
--};
+-	return ret ? ERR_PTR(ret) : hw;
+-}
+-EXPORT_SYMBOL_GPL(meson_clk_hw_register_input);
 -
- static const char * const g12a_vclk_parent_names[] = {
- 	"vid_pll", "gp0_pll", "hifi_pll", "mpll1", "fclk_div3", "fclk_div4",
- 	"fclk_div5", "fclk_div7"
+-MODULE_DESCRIPTION("Amlogic clock input helper");
+-MODULE_AUTHOR("Jerome Brunet <jbrunet@baylibre.com>");
+-MODULE_LICENSE("GPL v2");
+diff --git a/drivers/clk/meson/clk-input.h b/drivers/clk/meson/clk-input.h
+deleted file mode 100644
+index 4a541b9685a6..000000000000
+--- a/drivers/clk/meson/clk-input.h
++++ /dev/null
+@@ -1,19 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0 */
+-/*
+- * Copyright (c) 2019 BayLibre, SAS.
+- * Author: Jerome Brunet <jbrunet@baylibre.com>
+- */
+-
+-#ifndef __MESON_CLK_INPUT_H
+-#define __MESON_CLK_INPUT_H
+-
+-#include <linux/clk-provider.h>
+-
+-struct device;
+-
+-struct clk_hw *meson_clk_hw_register_input(struct device *dev,
+-					   const char *of_name,
+-					   const char *clk_name,
+-					   unsigned long flags);
+-
+-#endif /* __MESON_CLK_INPUT_H */
 -- 
 2.17.1
 
