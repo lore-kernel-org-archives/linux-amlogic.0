@@ -2,22 +2,22 @@ Return-Path: <SRS0=kT+d=VT=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DF2CBC76195
-	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Jul 2019 07:23:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D1CADC76196
+	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Jul 2019 07:23:32 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B76FF21743
-	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Jul 2019 07:23:12 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id AD2A02229B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Jul 2019 07:23:32 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Dv3h4vEo";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="va4gVpxx"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B76FF21743
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZGfTfxLt";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="F74SsFtc"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AD2A02229B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=x/ANa7hiL4viGbVuu87XwmZVKiBLjzdDB1upEvG+tkQ=; b=Dv3h4vEoofxemT
-	eczUrTmQpxUxYrVf4NUdJtBtYJCrPg0NPcyYuctUc/cCNAeUQ/3FCuQ11AG/XhRNezHvnqj9I5GLN
-	bSgB8bafgYKkapsRRGR98rXX2ZsP+BSEFHKEZ7yOccIE9z2z3xlcgSS6TtvMq6mKjOLp+wGfLNNzb
-	7pc2qOXgbvmKBmoR+UloPIuRbNjYtUp8E+rG0Xca06fxswBmgO4GfQDOvqMBypO2Sqj7z8Z6Czk3v
-	Jh+zKdO5thOiLSjr0tyjlnr2WLmn/fdJtf2cAbPokDtf4dSBgCAg/6TXQvB/L8JqgioekobqttomN
-	nyraIbI7zOcLHluNob8g==;
+	List-Owner; bh=kdA45ayP2VSBw4O6qJGBjeJpW4f98TU3U0jvfJtw+Lk=; b=ZGfTfxLt4Q/Iul
+	7aCgViPgqyWpVQ+hbsKxRQq9PEKhYidTgxkh2dbRPb4713MTqwod9ko9t0+gszOmXQmIRVYBkEE93
+	mhmFDvgw/0MskMQygfFTWlQAZdmMe1vraaToSjEieOnzARkkFVBrzhEjivKVqRKjUNnrORJR8CyF+
+	+Yjb5ebjtu+rny3iAVCQwl4GofiIOrg4vUnC/0fxMBNVZj3/CIAk2PstUrNjbWvDYe41WrEDyQgmU
+	RC9YHCpVME5vMjlqWeSarhYJC+uVaXV3oQRWJUD6vGiX1iML+3al/Tku3qzjfU64L0HUoMW+b3yU1
+	U5ELTXg9/7Le1KlTLeeg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hpSf4-0007L3-8t; Mon, 22 Jul 2019 07:23:06 +0000
+	id 1hpSfO-0007aF-89; Mon, 22 Jul 2019 07:23:26 +0000
 Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hpSf1-0007KI-HV
- for linux-amlogic@lists.infradead.org; Mon, 22 Jul 2019 07:23:04 +0000
-Received: by mail-wm1-x341.google.com with SMTP id v19so34201571wmj.5
- for <linux-amlogic@lists.infradead.org>; Mon, 22 Jul 2019 00:23:03 -0700 (PDT)
+ id 1hpSfG-0007Ue-W3
+ for linux-amlogic@lists.infradead.org; Mon, 22 Jul 2019 07:23:20 +0000
+Received: by mail-wm1-x341.google.com with SMTP id u25so23824537wmc.4
+ for <linux-amlogic@lists.infradead.org>; Mon, 22 Jul 2019 00:23:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=TOTv7uCWWUepqm6PfKM2SaT6Nn+hZ72/5dRfO/btysA=;
- b=va4gVpxx8Ddp52uLp9QB6u/a0brtIiJ2SIZJbLGK3PBo54+H+XQR8wR7JnKWvAVUwa
- pAfbrpRsa1SQZ21Kbn57lws3LZB9IwlZ7OBp3HYNRqp9dfrhmDhM5xiCEJbx1T05Wkmj
- v9Aluh4fKHMNtAMmdqWK03vlkO8z6L5NzJiKJeihBRQSsiLrPYEyyjjhv3tNu3yTjx5T
- jHqw/aIP/vfdvis8ESjj+R/pyB4QmoL1vzjndp+FaBULX6zfcElSaxSgVk2ErksNEIp6
- 0ti+qYoQuSCa8ObGz0wirVsxY8i+NsDFa5QEAKbkoktvPQS94P+zVZZ2+1fQt4QumJOQ
- d9HA==
+ bh=LD9GCw1eG9QEzwE6oFNEQIzVZACLaoYqLB+k/zbJCdM=;
+ b=F74SsFtcbnsipPjtAFo3nZeUH6oXlGCJDRP0xnmIpynir4g/z65Znh/Rxdd2tc3lki
+ wx0RAIVfTJIsG7ZTIfRtu2bdYa+BCBHz3OVhl8COPy1j3OnmhfseibhuazJJnFwc4sMn
+ PLrUS0kTR6HsNoSyBW3EEOG4Pfl0FhLObowRIh1kbW+zfjWnouJe1brgMeHF/LWG+Ncr
+ NHoZ233iLFrxLCi//oLTNEjrGvo+2+wva77zg9rRZjTwCqO2VULUGR53ys5IKvj31ey9
+ mdRsjJpQ8bQsS7Sc80nE9tMeweKFjVNI19QKv9GeLPDowm9rs3BZRoBwRngv6pEh3p4t
+ 2g5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=TOTv7uCWWUepqm6PfKM2SaT6Nn+hZ72/5dRfO/btysA=;
- b=aySSP9kE5F7ePfuGkpIC35/o1jW6jtFYe6vFF6i0y8BPQJdaV4l5vmw/GHCn4EyaNa
- CM6Y13ar5S5vyU44tjEJmfYTRKkyP+4A2u0ry2Tf6pnYGrnrbA8mPwQ/Ea9LHtaKqzOu
- wACr/aYBzNfo5/LGJNPyRsDR/3XmBSHi1InYtdE8IA71QAH8x9xwPV/SBpBpAMR/K7G4
- 9vcbmobUPLz/pPeHhFWjfPESAnLIo4AyUChYeHJc4VmaTQ7FMIdD2xLuwGonZyYsvBEm
- SHcEpvURsItyUEKYk2NolA5GixDHkZ+6+IbISg9sKyD18XvcZe/aIj3+J83VULtYkr3l
- Jnig==
-X-Gm-Message-State: APjAAAVcV3pEBS/dF9rn+CqCN1lpALBfdXd9JnzkpJs0iRCIOIhgJZ1z
- UO9p18ZYKgMNl6P9SCexmC6bew==
-X-Google-Smtp-Source: APXvYqzGk0j9+TvPzkwuBFE4N1gSCPq1qpQSdy3LSOZtUdshF70HtqPPtoN0CD2oModtTC9MP4w7kA==
-X-Received: by 2002:a1c:2d8b:: with SMTP id t133mr62088566wmt.57.1563780182154; 
- Mon, 22 Jul 2019 00:23:02 -0700 (PDT)
+ bh=LD9GCw1eG9QEzwE6oFNEQIzVZACLaoYqLB+k/zbJCdM=;
+ b=ZQ+sIprbA8r33Hu9TfFeMP/QQg8V+m6YKGSU9cY0SIShTgnPOz3jItcbG/92k24aLQ
+ 32pWEZvojDWbhNF4x4dEoUZzyybRYsdCKleMcxsZ69roTiuSQR+qaoUCPbjlJ5IGNUK3
+ k5qdjZ0HXrw50Qki6jPb4DXcohpPkenVBJiCAIAcP+YZ/394b1AtIbIT4lXm1QZcX3iA
+ jn42erYbXO/t+7vjZlAjxzamwQO0Wbk8EgQytH2+FFmSVL3GIzKYIz1iPTd7mlgfX4rz
+ O+9vtxs/aq61zSlRKe9w8mc3D1H9CDNMI7hSVlBuzMSO+KZr1pq3+II0C/3AtfAELg3b
+ XiMg==
+X-Gm-Message-State: APjAAAUyrRiZ+K5fn3cnWCywwgSZv1nCFO8/K7xUAlDdXLwOhcV/VLJL
+ wzpYlM7aW5rjCDsLQqRWBWBqSopYxsw=
+X-Google-Smtp-Source: APXvYqzfS7FtcRA+07esTVYwytBlm7aKVdZY4D+n+4hAm1mqPLE6MFCdAZwiJjT7e6DFVVuG48UgJg==
+X-Received: by 2002:a1c:7f57:: with SMTP id a84mr60819167wmd.3.1563780197608; 
+ Mon, 22 Jul 2019 00:23:17 -0700 (PDT)
 Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
  by smtp.gmail.com with ESMTPSA id
- s188sm30077096wmf.40.2019.07.22.00.23.01
+ s10sm50309877wmf.8.2019.07.22.00.23.16
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 22 Jul 2019 00:23:01 -0700 (PDT)
-Subject: Re: [PATCH 10/12] phy: amlogic: G12A: Fix misuse of GENMASK macro
+ Mon, 22 Jul 2019 00:23:17 -0700 (PDT)
+Subject: Re: [PATCH 06/12] mmc: meson-mx-sdio: Fix misuse of GENMASK macro
 To: Joe Perches <joe@perches.com>, Andrew Morton <akpm@linux-foundation.org>, 
  Kevin Hilman <khilman@baylibre.com>
 References: <cover.1562734889.git.joe@perches.com>
- <d149d2851f9aa2425c927cb8e311e20c4b83e186.1562734889.git.joe@perches.com>
+ <94dcbeb13b08a67ae9f404aa590c1c1459bc5287.1562734889.git.joe@perches.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -132,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <c6cabf9c-7edd-eea8-3388-df781163cddd@baylibre.com>
-Date: Mon, 22 Jul 2019 09:23:01 +0200
+Message-ID: <abf1a3b1-d221-6ad5-bdd1-98d7d1eefe83@baylibre.com>
+Date: Mon, 22 Jul 2019 09:23:16 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.2
 MIME-Version: 1.0
-In-Reply-To: <d149d2851f9aa2425c927cb8e311e20c4b83e186.1562734889.git.joe@perches.com>
+In-Reply-To: <94dcbeb13b08a67ae9f404aa590c1c1459bc5287.1562734889.git.joe@perches.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190722_002303_584913_F8871DFB 
-X-CRM114-Status: GOOD (  13.88  )
+X-CRM114-CacheID: sfid-20190722_002319_061613_3956FD95 
+X-CRM114-Status: GOOD (  14.07  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,8 +153,9 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Kishon Vijay Abraham I <kishon@ti.com>
+Cc: linux-amlogic@lists.infradead.org, Ulf Hansson <ulf.hansson@linaro.org>,
+ linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
@@ -165,22 +166,22 @@ On 10/07/2019 07:04, Joe Perches wrote:
 > 
 > Signed-off-by: Joe Perches <joe@perches.com>
 > ---
->  drivers/phy/amlogic/phy-meson-g12a-usb2.c | 2 +-
+>  drivers/mmc/host/meson-mx-sdio.c | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/phy/amlogic/phy-meson-g12a-usb2.c b/drivers/phy/amlogic/phy-meson-g12a-usb2.c
-> index 9065ffc85eb4..cd7eccab2649 100644
-> --- a/drivers/phy/amlogic/phy-meson-g12a-usb2.c
-> +++ b/drivers/phy/amlogic/phy-meson-g12a-usb2.c
-> @@ -66,7 +66,7 @@
->  #define PHY_CTRL_R14						0x38
->  	#define PHY_CTRL_R14_I_RDP_EN				BIT(0)
->  	#define PHY_CTRL_R14_I_RPU_SW1_EN			BIT(1)
-> -	#define PHY_CTRL_R14_I_RPU_SW2_EN			GENMASK(2, 3)
-> +	#define PHY_CTRL_R14_I_RPU_SW2_EN			GENMASK(3, 2)
->  	#define PHY_CTRL_R14_PG_RSTN				BIT(4)
->  	#define PHY_CTRL_R14_I_C2L_DATA_16_8			BIT(5)
->  	#define PHY_CTRL_R14_I_C2L_ASSERT_SINGLE_EN_ZERO	BIT(6)
+> diff --git a/drivers/mmc/host/meson-mx-sdio.c b/drivers/mmc/host/meson-mx-sdio.c
+> index 2d736e416775..ba9a63db73da 100644
+> --- a/drivers/mmc/host/meson-mx-sdio.c
+> +++ b/drivers/mmc/host/meson-mx-sdio.c
+> @@ -73,7 +73,7 @@
+>  	#define MESON_MX_SDIO_IRQC_IF_CONFIG_MASK		GENMASK(7, 6)
+>  	#define MESON_MX_SDIO_IRQC_FORCE_DATA_CLK		BIT(8)
+>  	#define MESON_MX_SDIO_IRQC_FORCE_DATA_CMD		BIT(9)
+> -	#define MESON_MX_SDIO_IRQC_FORCE_DATA_DAT_MASK		GENMASK(10, 13)
+> +	#define MESON_MX_SDIO_IRQC_FORCE_DATA_DAT_MASK		GENMASK(13, 10)
+>  	#define MESON_MX_SDIO_IRQC_SOFT_RESET			BIT(15)
+>  	#define MESON_MX_SDIO_IRQC_FORCE_HALT			BIT(30)
+>  	#define MESON_MX_SDIO_IRQC_HALT_HOLE			BIT(31)
 > 
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
