@@ -1,78 +1,83 @@
-Return-Path: <SRS0=kT+d=VT=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=6vAg=VU=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A0DE8C7618F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Jul 2019 22:12:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0B014C76186
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Jul 2019 19:49:01 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 71A6721900
-	for <linux-amlogic@archiver.kernel.org>; Mon, 22 Jul 2019 22:12:41 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D440C218F0
+	for <linux-amlogic@archiver.kernel.org>; Tue, 23 Jul 2019 19:49:00 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="SkDKyZ/S"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 71A6721900
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="aVtqQz7K";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="oAhMeVMI"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D440C218F0
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oznlKZSh6i1cbgfmq6lc1lXwT8XkRt70CbeA/K4equQ=; b=SkDKyZ/Sw6HeBr
-	NF93aHlLr3p2d39NoXFPCn9SVpqPBMc/AfueZhyhKkgz/oVNDQM9+7hn4eP9rHi7riN1H12db++1U
-	TKemrJhq2rXmnQPoDDfQGtuqyM0IKgLjPxD+qIpp7S8zfNoDETR54m/THSaY3K2QxnxaaI/n3yHOu
-	SQN+Favd5daxInQXDZuO3SOb8Y3auGlzLvXn0zZO+r3Uz+FtxjUYO+KsWpP8DqzsgyEotqDNcIgEt
-	h5hAEY9PKJDaXw4BmBKSHHy7CUHjM2NlWMHQkAa1Yft04WKTX4dAbd+2H+RIkxnLs0umcn/QVhwnx
-	bND+sVbaMTElfKc5faOA==;
+	List-Owner; bh=ZCHXMpYEXAViNKu3naOiV6LQa8Ce5lEc+kt24SjqF+8=; b=aVtqQz7KgNcRZY
+	q+/HPPKJi1yVqhBxRuoe7/IFfy1eGyu/Otmokgp0ajfjjen8rLLHoLA8G+cnMsncXNuFZtOAeBNKK
+	78Gyq9vCxM1jDEA5UUG0J0xHCQQ1Wd7jLu/konNfkETcAFIFWnPheUa5rDwgcSRpkhPCIwZEGXxsN
+	MlzPZjkyk/qgJIRCXxJbHc94L7XfbKfdTVLiDy/UlFDUCvx12kscmYMh6LEHDCSJYFvQB5f5NGgmV
+	I3ha0bPcMprqcun64g+kpqY+M+loF5afsu0vLSPkja++a4o5T5zRCSUdu0F85G1Na3zYROKG5Rpmx
+	KVr0PXb8lT9iyLsUPX2Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hpgXs-0006KR-Uv; Mon, 22 Jul 2019 22:12:37 +0000
-Received: from mail-io1-f67.google.com ([209.85.166.67])
+	id 1hq0mH-0005At-JS; Tue, 23 Jul 2019 19:48:49 +0000
+Received: from mail-ot1-x343.google.com ([2607:f8b0:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hpgWv-0005qy-SQ; Mon, 22 Jul 2019 22:11:39 +0000
-Received: by mail-io1-f67.google.com with SMTP id o9so77566136iom.3;
- Mon, 22 Jul 2019 15:11:37 -0700 (PDT)
+ id 1hq0mE-0005AR-OB; Tue, 23 Jul 2019 19:48:48 +0000
+Received: by mail-ot1-x343.google.com with SMTP id r6so45321070oti.3;
+ Tue, 23 Jul 2019 12:48:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=3y2Rp7SMI3XNaqXS79DCDXZRuJ6DjUasigpS5O8UtzA=;
+ b=oAhMeVMIqxcslXOZp+fN01DYk7ZSL+gRIe91aqObFv1d0shZNBp7uGvSNjhf93u4K4
+ nhHo47WlvlFMwl49hCFcLmr3kXP6VdNeNoOTfbxPS7oFs1Ym4Nwz5foL7NX1bQyZPPLS
+ ZONFhen8K/symnRpQCMk1pOaxhQipkn1QtGp9q5alww8mNRwv7MRMDzwbK7MJ8bCsgRe
+ UHl3JlirEe0ktiJxe/6KGZlaDkB1nc4lodOFWB2WVZRPdfvgQrgTJ7s+a6nOiyKTmefb
+ NK7FAob1/ThIiM+GobuZB4q9l/7qmyFBSUyY56TsgtYs1OnDl7OUN4jUrb2lYnXiaIel
+ HbfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=ZZjeYarbm2uHTbPqEU/SfJr1OMvMhmzpfbxIokfphLg=;
- b=ef5vPuQlpbO0UGsT8w75iGFGzqwSlBzvfWU7LgtYX3NYqQDYKZfehpwZfZOqS/qR4T
- F0gJ6wHdita6Pd+10SefG2EVJJ/yNrN7HcLe8dmnv0Z2woF977hU7apmF08+qHp/vxvz
- g0jjHiDq5jQc+EQreAGfwB1jbeOAROXCRVNvtCQAZzp6Qz6p+UUJiAPZpKIxvxANMpGl
- mODhPsN928Q4Ke4Ki2C5i0mqvWmGTOwdYYGwbn6Tbhp9X9aMYDNSrPrTtRJQ8GjClnre
- FYaViAwUG6MgCbrdie4bLoYpEFgLuwDMvg3CYkgqv/tbFwTAuLDH5HYevzzPrsLe6oh2
- shJQ==
-X-Gm-Message-State: APjAAAWvmGla7dbm2Bozxdqa6T/BnEebBPEfy1S69uIL4NjAzu9rsrm8
- mYUukQV/7F0eWC9XLyxsjQ==
-X-Google-Smtp-Source: APXvYqwybodqBsnRMzwxflKMmSxt7BwWQbvI4+93D/Ql0XrEVFvtTEtzmr5T6L7GyUnVm3y5riatKg==
-X-Received: by 2002:a02:a581:: with SMTP id b1mr4163149jam.84.1563833496727;
- Mon, 22 Jul 2019 15:11:36 -0700 (PDT)
-Received: from localhost ([64.188.179.254])
- by smtp.gmail.com with ESMTPSA id p10sm58670815iob.54.2019.07.22.15.11.35
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Mon, 22 Jul 2019 15:11:36 -0700 (PDT)
-Date: Mon, 22 Jul 2019 16:11:35 -0600
-From: Rob Herring <robh@kernel.org>
-To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [RFC 07/11] dt-bindings: media: meson-ao-cec: add SM1 compatible
-Message-ID: <20190722221135.GA32382@bogus>
-References: <20190701104705.18271-1-narmstrong@baylibre.com>
- <20190701104705.18271-8-narmstrong@baylibre.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=3y2Rp7SMI3XNaqXS79DCDXZRuJ6DjUasigpS5O8UtzA=;
+ b=d0SPGQ87zYYFp/PRn3V5uqTeKuZFBy6oNgmG0VVoSJnAsNPVoDHEFID93xo40QJkyU
+ w44oF34aLNAKERV7o3cBM7p1HWDfUCfz5Dd7JDXFd0wn7lt+Qr+ZBrD+ztqf0f4PW3ZB
+ nXnYFU/0wlBhoPWImf6jInZfYhtC+TizTt0+61yiXVlvvhvix1B+C6tBtBzD8RFcKQTu
+ +z7TuxhJVARazJ+KpyRrKUfxc6YLStKp69BoTx78kXLLmk7ZA5v1wPOtbWflqigCShAP
+ HOfiTyaWa9SdVzGNUTrK30DFmHIf22NmUaYTrUxgstKKrqMWGZrcqOlKvNsV/QRO+Sav
+ k3LA==
+X-Gm-Message-State: APjAAAWmKxxxdtw+wlFqUOlQhH/7ZFTFXM4pawAUSuw8rPbGZtepXo/S
+ Y/KpVOFb48hUkxbc1NLFye/czY0p7TkBIzDjuKs=
+X-Google-Smtp-Source: APXvYqw/uKPTduoxeheqy1d3LXpDotwVX18KQYuRpL6MWLDg3MwWHQz/jKriVKqFVvSKsjH4LkYRoVJs7LfrUSTwnKU=
+X-Received: by 2002:a9d:23ca:: with SMTP id t68mr57217603otb.98.1563911325066; 
+ Tue, 23 Jul 2019 12:48:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20190701104705.18271-8-narmstrong@baylibre.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190719192954.26481-1-xruppen@gmail.com>
+In-Reply-To: <20190719192954.26481-1-xruppen@gmail.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 23 Jul 2019 21:48:33 +0200
+Message-ID: <CAFBinCDRHbsDPe58qCfOzM_mZ+tmZpg2=dbfWcHntCn4xajOdw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: meson: odroid-n2: keep SD card regulator
+ always on
+To: Xavier Ruppen <xruppen@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190722_151138_259848_7740CD08 
-X-CRM114-Status: UNSURE (   8.04  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190723_124846_814190_56DA7A5A 
+X-CRM114-Status: GOOD (  12.72  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,26 +89,58 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
- khilman@baylibre.com, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, jbrunet@baylibre.com,
- linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
+Cc: khilman@baylibre.com, Neil Armstrong <narmstrong@baylibre.com>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon,  1 Jul 2019 12:47:01 +0200, Neil Armstrong wrote:
-> Add AO-CEC compatible string for the Amlogic SM1 SoC family,
-> a derivate of the G12A AO-CECB controller.
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/media/meson-ao-cec.txt | 8 +++++---
->  1 file changed, 5 insertions(+), 3 deletions(-)
-> 
+On Fri, Jul 19, 2019 at 9:29 PM Xavier Ruppen <xruppen@gmail.com> wrote:
+>
+> When powering off the Odroid N2, the tflash_vdd regulator is
+> automatically turned off by the kernel. This is a problem
+> when issuing the "reboot" command while using an SD card.
+> The boot ROM does not power this regulator back on, blocking
+> the reboot process at the boot ROM stage, preventing the
+> SD card from being detected.
+>
+> Adding the "regulator-always-on" property fixes the problem.
+>
+> Signed-off-by: Xavier Ruppen <xruppen@gmail.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+>
+> Here is what the boot ROM output looks like without this patch:
+>
+>     [root@alarm ~]# reboot
+>     [...]
+>     [   24.275860] shutdown[1]: All loop devices detached.
+>     [   24.278864] shutdown[1]: Detaching DM devices.
+>     [   24.287105] kvm: exiting hardware virtualization
+>     [   24.318776] reboot: Restarting system
+>     bl31 reboot reason: 0xd
+>     bl31 reboot reason: 0x0
+>     system cmd  1.
+>     G12B:BL:6e7c85:7898ac;FEAT:E0F83180:2000;POC:F;RCY:0;
+>     EMMC:800;NAND:81;SD?:0;SD:400;USB:8;LOOP:1;EMMC:800;
+>     NAND:81;SD?:0;SD:400;USB:8;LOOP:2;EMMC:800;NAND:81;
+>     SD?:0;SD:400;USB:8;LOOP:3; [...]
+>
+> Other people can be seen having this problem on the odroid
+> forum [1].
+thank you for submitting this patch (and not keeping it to yourself)!
+
+> The cause of the problem was found by Martin Blumenstingl
+> on #linux-amlogic. We may want to add his Suggested-by tag
+> if he agrees.
+yes, if you re-send this patch to address Neil's comment then feel
+free to add my Reviewed-by as well as a Suggested-by
+
+
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
