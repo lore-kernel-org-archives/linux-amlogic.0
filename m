@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 00C8EC76191
-	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Jul 2019 17:00:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9A504C7618B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Jul 2019 17:00:07 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CE0DC22C7C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Jul 2019 17:00:03 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6D03822C7B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Jul 2019 17:00:07 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="M5AbftWO";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="m0yzJqTL"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CE0DC22C7C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mkiLKy+D";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="qxL/QDJI"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6D03822C7B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,67 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TmsU9WQuSEQJH/xzdOWGG+yWK0ehAxc502xlOsBbuls=; b=M5AbftWOJtZH7x
-	pMcsbyztEZAj6aZjolcR7BZgaoP8eVzGOD98slmOwZGwX58Ccta9VAUzYCpG6TToWKkjgytCIyFkQ
-	ZCIPJZB2O+k+9ydUEOS5Vh/U0YnIEJPG1DbHk10AbCQLBlFMggfYYp6FTTwxDFse2l7sduidoMAQ5
-	4zwzd0nbpQESOjaJaKHNtMaJazyLMuNN3ru8Bb2OSxD5tAJM7LCaMpxPuKOap291gEWUNgDxidlVz
-	WeV7oBhqDZvpvvcOVmxWbbOdNGzjPmG519boORMQcsPkcphUTGZ2SQHj3Z60Frggdb5gxw/VPEyy0
-	DEH4yGboF+wuaqstO83w==;
+	List-Owner; bh=4KFaAykyqVydL5YxKUKe93JelIZd4tzE9ikZ7S4DDKo=; b=mkiLKy+D37lNll
+	faZPkTl99WGezwZiaRrt6/POVUwg8As7aS7abPMjWq/o478TQR0jXOPE9U7VL1sV7a53fKq042eh2
+	QBfI8dIZziG33EFd7Ecp3PMSJ4yrmjEyfJBIjiKe01V3wi4vfAS1khQ2ohFl6Pb9f+kuVW9Qum1Uo
+	uqQHyaGsSogxEjmyEFR1o9rXybPHoj5vymHZ3Yu2BJJCPQLp0kj2k0YmLnMSDps6A3H4EXYOgKqZU
+	iQc8y+PsVjupm/zMzWVBtfSOfPzJQTlN6fbjYf6U7RIOcclhBAfFcXINbTgATNN+o5LMguWOC6D1z
+	QrwUvxwciVRhvqwHSyRA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hqh5y-0005Bo-PO; Thu, 25 Jul 2019 16:59:58 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1hqh61-0005Eb-Tg; Thu, 25 Jul 2019 17:00:01 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hqh5u-00058k-MN
- for linux-amlogic@lists.infradead.org; Thu, 25 Jul 2019 16:59:56 +0000
-Received: by mail-wr1-x443.google.com with SMTP id n9so51642433wru.0
- for <linux-amlogic@lists.infradead.org>; Thu, 25 Jul 2019 09:59:54 -0700 (PDT)
+ id 1hqh5v-00059E-Om
+ for linux-amlogic@lists.infradead.org; Thu, 25 Jul 2019 16:59:57 +0000
+Received: by mail-wr1-x444.google.com with SMTP id c2so48331880wrm.8
+ for <linux-amlogic@lists.infradead.org>; Thu, 25 Jul 2019 09:59:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=RjZlNK5foaQOSQzbPfrKvphWkFDjBwZWcqfyFOMILTw=;
- b=m0yzJqTLfQUVO9D+Kp04i0U6B7GihD54VtnGw83R3RZXjnk719z2IdBOI4yHFIO8pg
- BcdA7IFFjKE+VXE5k7AdT6/t48Cn8BgYW1es8YENonXXslAi0vXw0v/7RxiVUZWu40NY
- oxLDlEcPXF18or7K10CjlHkCS2P3s/IbPNxHzqFR//ddxQkc2D7HdacUD4CzQwNnFDmn
- 5ceEzOgsjLEtp3yWBOEQKSZCkSGxgNweL34gsO9+3A0vzwlmku1j47Ahvuhn6oVWNEjd
- z7MYMCObi6thyoGQ89GVEUCXW1s2RSyuvrGM86imrJQ+cKvmVgt5WggZfZAcsq50cfon
- uJfA==
+ bh=g/jrkR4hgpIY3IEk8lJ9coIWHj6BT0CIAMNbTJmR/YI=;
+ b=qxL/QDJIp2o63X7xJzs9kR9eme+RY19oKFA3sv/4jACT3uZA7tM5wT5OVmqIkqJew7
+ WkqaQHmP0EA4kIgwJ8tyjckEtbj4eRa0Yo1eFaR9a98Vf9UbymNWtQyHOpHsaW0TTHJb
+ ko5LcV6CzamQgg2zO1BYZqrsJ1eJySWMDHh+rTl3OKYYhujCq4X/GeadawMabL5g7lKj
+ 50TQrfD1m5zsXD4TuNxjO+hJrsnkS8RyeHTCyemcFY4KotA8JLsymTHntcp5UXe7zPka
+ XHp6dYizSOtMgWuIMfLptctCbjrHIGXCGfEFznNSPNbwxNJxBxzW/h8e7Frm+1OCPiGN
+ Uuug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=RjZlNK5foaQOSQzbPfrKvphWkFDjBwZWcqfyFOMILTw=;
- b=ALxOmiRM0cSRtx7efkZKyFeuDsmMKRWj2NFUA2iaMTN77/YC681Df6qGuYNI44zOE5
- geQPo7z30jd1kpTmqXscCdn9IGuITmuzYds/krE7tHLePBKVTnOo9hvEI4RG+Gneutj8
- Txh+JCh3qUzbp3DZCQnfJ54+0Og+V5fNoqVOGoWiHt6G7uoz4efgdw7zh6nGx+UX+qUh
- DLfuE54vBqVWPQdlZ/3U1awKh1XV43idalGj3C4oQmOHJ1F1/rQz6rlPlqLFfXN4UwlF
- XPOAsQJa5kPiK1C0lDF3S+XHU5nZEteyPCeMyyncRJ8t/LOz+42Z+3Fe3prHKylRUu51
- tYXQ==
-X-Gm-Message-State: APjAAAXVhsNm2g3RYQ9INyfrxJkKPSJEwHI6TmlpihoNWWnCuogX+Zt1
- reqieodwE4t2Ha/Ckg0Ai3F4Ig==
-X-Google-Smtp-Source: APXvYqzkZIFz+KVxgJBu1r3Q+ftdDRhPRxm5CuaClhVaUFvnLzyoMd84/wr8z2QjCOwDlYK0tfyViw==
-X-Received: by 2002:adf:eb51:: with SMTP id u17mr3481607wrn.257.1564073993318; 
- Thu, 25 Jul 2019 09:59:53 -0700 (PDT)
+ bh=g/jrkR4hgpIY3IEk8lJ9coIWHj6BT0CIAMNbTJmR/YI=;
+ b=Qo+fAPmj5q7R2wOB+YRGlQJPYepR6+7PKQv4z3sRZNBPG8PKQY2yB5/Ide24Rl5pMy
+ K7Oeondd0FNvo5DX0uuKNsCOAsWFHorSFzL9t5m3miBHbJMo2YAstHZ3mMxl8nnmd2QW
+ 9AmmeV+cYgWxH1j9MS0U0a4aiKHr/yXjCLH9ep8KuROA82BSjbtdgvHedEdL6pOs23F1
+ pz9GKK1EAN3PUCBnmSn7klySTlDws72HD8cZjJ8YDqeo3D9PWCtaoTTOTQhHh4/uMqxL
+ trvxS0NQcRSzJP1i/ZOYMOgfOBD+/cYWmSOrEIDKBC+1YMs8D0jm9E4m/XUO56cLKfiv
+ TSdg==
+X-Gm-Message-State: APjAAAW5X3QWlYlFlL2WsfqtqWFmlf+wy+RDn1trH8AmH8Uyxwn4BCea
+ 1kw7CuaOXG+52Rd0Gjm1FncPjA==
+X-Google-Smtp-Source: APXvYqzpTVvhh/KLIlDh7egDJKaGFgaz2cliKjsP5Ce7avkqYayCPiWNr+RETi3mzno+aLH8mp+cjQ==
+X-Received: by 2002:adf:f84a:: with SMTP id d10mr89216078wrq.319.1564073994390; 
+ Thu, 25 Jul 2019 09:59:54 -0700 (PDT)
 Received: from starbuck.baylibre.local (uluru.liltaz.com. [163.172.81.188])
- by smtp.googlemail.com with ESMTPSA id q10sm53627199wrf.32.2019.07.25.09.59.52
+ by smtp.googlemail.com with ESMTPSA id q10sm53627199wrf.32.2019.07.25.09.59.53
  (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Thu, 25 Jul 2019 09:59:52 -0700 (PDT)
+ Thu, 25 Jul 2019 09:59:53 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
  Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH v2 1/6] ASoC: codec2codec: run callbacks in order
-Date: Thu, 25 Jul 2019 18:59:44 +0200
-Message-Id: <20190725165949.29699-2-jbrunet@baylibre.com>
+Subject: [PATCH v2 2/6] ASoC: codec2codec: name link using stream direction
+Date: Thu, 25 Jul 2019 18:59:45 +0200
+Message-Id: <20190725165949.29699-3-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190725165949.29699-1-jbrunet@baylibre.com>
 References: <20190725165949.29699-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190725_095954_728101_5C65A901 
-X-CRM114-Status: UNSURE (   9.89  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190725_095955_801931_40133998 
+X-CRM114-Status: GOOD (  10.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,86 +105,69 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-When handling dai_link events on codec to codec links, run all .startup()
-callbacks on sinks and sources before running any .hw_params(). Same goes
-for hw_free() and shutdown(). This is closer to the behavior of regular
-dai links
+At the moment, codec to codec dai link widgets are named after the
+cpu dai and the 1st codec valid on the link. This might be confusing
+if there is multiple valid codecs on the link for one stream
+direction.
+
+Instead, use the dai link name and the stream direction to name the
+the dai link widget
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- sound/soc/soc-dapm.c | 36 +++++++++++++++++++++++++++---------
- 1 file changed, 27 insertions(+), 9 deletions(-)
+ sound/soc/soc-dapm.c | 12 ++++--------
+ 1 file changed, 4 insertions(+), 8 deletions(-)
 
 diff --git a/sound/soc/soc-dapm.c b/sound/soc/soc-dapm.c
-index 1d04612601ad..034b31fd2ecb 100644
+index 034b31fd2ecb..7db4abd9a0a5 100644
 --- a/sound/soc/soc-dapm.c
 +++ b/sound/soc/soc-dapm.c
-@@ -3835,11 +3835,6 @@ static int snd_soc_dai_link_event(struct snd_soc_dapm_widget *w,
- 				goto out;
- 			}
- 			source->active++;
--			ret = snd_soc_dai_hw_params(source, &substream, params);
--			if (ret < 0)
--				goto out;
--
--			dapm_update_dai_unlocked(&substream, params, source);
- 		}
+@@ -4056,8 +4056,7 @@ snd_soc_dapm_alloc_kcontrol(struct snd_soc_card *card,
  
- 		substream.stream = SNDRV_PCM_STREAM_PLAYBACK;
-@@ -3853,6 +3848,23 @@ static int snd_soc_dai_link_event(struct snd_soc_dapm_widget *w,
- 				goto out;
- 			}
- 			sink->active++;
-+		}
-+
-+		substream.stream = SNDRV_PCM_STREAM_CAPTURE;
-+		snd_soc_dapm_widget_for_each_source_path(w, path) {
-+			source = path->source->priv;
-+
-+			ret = snd_soc_dai_hw_params(source, &substream, params);
-+			if (ret < 0)
-+				goto out;
-+
-+			dapm_update_dai_unlocked(&substream, params, source);
-+		}
-+
-+		substream.stream = SNDRV_PCM_STREAM_PLAYBACK;
-+		snd_soc_dapm_widget_for_each_sink_path(w, path) {
-+			sink = path->sink->priv;
-+
- 			ret = snd_soc_dai_hw_params(sink, &substream, params);
- 			if (ret < 0)
- 				goto out;
-@@ -3889,9 +3901,18 @@ static int snd_soc_dai_link_event(struct snd_soc_dapm_widget *w,
- 		substream.stream = SNDRV_PCM_STREAM_CAPTURE;
- 		snd_soc_dapm_widget_for_each_source_path(w, path) {
- 			source = path->source->priv;
--
- 			snd_soc_dai_hw_free(source, &substream);
-+		}
-+
-+		substream.stream = SNDRV_PCM_STREAM_PLAYBACK;
-+		snd_soc_dapm_widget_for_each_sink_path(w, path) {
-+			sink = path->sink->priv;
-+			snd_soc_dai_hw_free(sink, &substream);
-+		}
+ static struct snd_soc_dapm_widget *
+ snd_soc_dapm_new_dai(struct snd_soc_card *card, struct snd_soc_pcm_runtime *rtd,
+-		     struct snd_soc_dapm_widget *source,
+-		     struct snd_soc_dapm_widget *sink)
++		     char *id)
+ {
+ 	struct snd_soc_dapm_widget template;
+ 	struct snd_soc_dapm_widget *w;
+@@ -4067,7 +4066,7 @@ snd_soc_dapm_new_dai(struct snd_soc_card *card, struct snd_soc_pcm_runtime *rtd,
+ 	int ret;
  
-+		substream.stream = SNDRV_PCM_STREAM_CAPTURE;
-+		snd_soc_dapm_widget_for_each_source_path(w, path) {
-+			source = path->source->priv;
- 			source->active--;
- 			snd_soc_dai_shutdown(source, &substream);
- 		}
-@@ -3899,9 +3920,6 @@ static int snd_soc_dai_link_event(struct snd_soc_dapm_widget *w,
- 		substream.stream = SNDRV_PCM_STREAM_PLAYBACK;
- 		snd_soc_dapm_widget_for_each_sink_path(w, path) {
- 			sink = path->sink->priv;
+ 	link_name = devm_kasprintf(card->dev, GFP_KERNEL, "%s-%s",
+-				   source->name, sink->name);
++				   rtd->dai_link->name, id);
+ 	if (!link_name)
+ 		return ERR_PTR(-ENOMEM);
+ 
+@@ -4247,15 +4246,13 @@ static void dapm_connect_dai_link_widgets(struct snd_soc_card *card,
+ 	}
+ 
+ 	for_each_rtd_codec_dai(rtd, i, codec_dai) {
 -
--			snd_soc_dai_hw_free(sink, &substream);
--
- 			sink->active--;
- 			snd_soc_dai_shutdown(sink, &substream);
- 		}
+ 		/* connect BE DAI playback if widgets are valid */
+ 		codec = codec_dai->playback_widget;
+ 
+ 		if (playback_cpu && codec) {
+ 			if (!playback) {
+ 				playback = snd_soc_dapm_new_dai(card, rtd,
+-								playback_cpu,
+-								codec);
++								"playback");
+ 				if (IS_ERR(playback)) {
+ 					dev_err(rtd->dev,
+ 						"ASoC: Failed to create DAI %s: %ld\n",
+@@ -4284,8 +4281,7 @@ static void dapm_connect_dai_link_widgets(struct snd_soc_card *card,
+ 		if (codec && capture_cpu) {
+ 			if (!capture) {
+ 				capture = snd_soc_dapm_new_dai(card, rtd,
+-							       codec,
+-							       capture_cpu);
++							       "capture");
+ 				if (IS_ERR(capture)) {
+ 					dev_err(rtd->dev,
+ 						"ASoC: Failed to create DAI %s: %ld\n",
 -- 
 2.21.0
 
