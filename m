@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2EE64C76190
-	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Jul 2019 19:43:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BBDD1C41514
+	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Jul 2019 19:44:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 04051218EA
-	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Jul 2019 19:43:57 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 95B3C229F3
+	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Jul 2019 19:44:15 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PPrH/mss";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="RlLIlegs"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 04051218EA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tYtuDYO2";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="jxH8gQG9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 95B3C229F3
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,64 +27,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=Oojxw2Cmag9d/IZ7pL17oO+Nv602aF6T3JNqsK4pMjg=; b=PPrH/mss31HDMuRvZVfcliVWLO
-	eUNU2AYFENHxvoX5TVq1T12Lv1C1xCm96lq0Tfk7PKhEe/Yvdct6SZ0iuNzeVX+6IvcjmAIRCMXnV
-	7htS8MP6tstVzVunjFK1wG2BZ3jv4h/FBPJ5ZaIsZFpDHdQ57l28D2fM1tL1h2Te3jMG7FzTsjWvt
-	lzEZJkJJz8bu8C5CwU/tmjcQiE9k2B4CpNWGAwoAvEPY6D6fa0f/rcgGzszz3/M8l9MdXXPuoT+SD
-	rEZh/ldZ+A87y2+HIbhORws1iqp5oLL5IIQnMu257JXh600+O5+O1H/62oEzkeZD6F4bn+oItpqrB
-	zVjmGpQA==;
+	bh=MkYAfTUhyNZwNxw5SmDxIuYMYiyqErC/EgnlwWWx+QM=; b=tYtuDYO2qwwh5CQ85DII/mszJo
+	T6ofI8rOeG+/IgI3TcUEXqKs5Et1rY53W8+W7QxkiZzjWQZRkc3cJ6T0Rogt3Wfn8q3oZ2kfJ77Tg
+	5J2hXPdDQJnEe2oLrKeuAia1qt1RCfLm6Ebn60cSvKlpSk6LXs8a0DDqcHFYDKm1kWgvLBKCzsGG/
+	kzxw8Y9yQEZvoZNNM1ckXp9A90xQPY5Urhv2+pf01ValAxzhapQvJvYZOKJ7dBYDQO2PURlQl+0zB
+	d/ASsPO3HlXO1qw96udY0TupycMxCzHN8EYsHbou7tW/iuK79G+3L/eqmXkJC8X8JTVcFVWIoraGW
+	ZT+9cKqQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hqjea-00023s-PY; Thu, 25 Jul 2019 19:43:52 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1hqjet-0002Kp-QO; Thu, 25 Jul 2019 19:44:11 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hqjdv-0001SG-3J
- for linux-amlogic@lists.infradead.org; Thu, 25 Jul 2019 19:43:12 +0000
-Received: by mail-wr1-x441.google.com with SMTP id n9so52077147wru.0
- for <linux-amlogic@lists.infradead.org>; Thu, 25 Jul 2019 12:43:10 -0700 (PDT)
+ id 1hqjdw-0001TO-4x
+ for linux-amlogic@lists.infradead.org; Thu, 25 Jul 2019 19:43:14 +0000
+Received: by mail-wm1-x341.google.com with SMTP id u25so35382193wmc.4
+ for <linux-amlogic@lists.infradead.org>; Thu, 25 Jul 2019 12:43:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=rCLV7+XgVoqa77OFHC2tYmqnV175cwJKyP8wP05iwpI=;
- b=RlLIlegsq38ldfiYl5JNdHC+1z0E685X1TVdFQdFCMU1V/XLKm7JrAD2RvkbUS+6jX
- BILivk9wLP0APZgO5lmITzu4fkNC5o32dWuFHM+rifJdCmOEAitkh8jjjFybowbmh8M9
- /BkfyiGnbr+MBkZK60Cm/t5fcuMHxnea/yNrmTo5itWn9JD9WK6PBWKaJASAaw0LJ/JG
- soehhQzDJiTgZgrtbwxxGvSfkqmG2US8YOUdv8bTBv94MlMDY+ttdRrFyyyODXI6Jc3i
- XOXSQ0HRjUOZHf0HzFZXtf6pBDT5YS5QzvWqcGQBXqj2aFF69BTfnskgOd21uJc18QP/
- kPaw==
+ bh=fJc1atiQz5OEztuHQqSGjdoiIKBAFWAgorgVo68gaaQ=;
+ b=jxH8gQG9+QwY+aN4xvMC+QDz2s4wMg21chw6VUnY+kxHdY2WvCjNGfGPBrhfBFzWED
+ PqnVkdS5vFVbeJFcHbIl4afpzVwhUtRzuDyrEoleiOCY8EPfczuGBdd5zJEOqLykBeNY
+ uAivAzxlDx9irmBuIlLER532F7awvAWTgiuRkWOstlaNGi28VPfD0AIaAiZLYqtC2bpS
+ uwmIuM8W1TPTAVbn7HlUokavL3V8UtQ7RoYciJ5CmbASfsPgTscUXuDSOghTjyZZu1R6
+ vPep7y8JFYDjYKwCIlHXGWO0SorSaNN9XjZrIqlhNr6MRD8w/bjWzjRbAfuvMLd5cNXH
+ MLHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references;
- bh=rCLV7+XgVoqa77OFHC2tYmqnV175cwJKyP8wP05iwpI=;
- b=RetAaVTshMfd8DUt3gegGSnJ1yx7cbgvQGZ5W22QQkKvvMgepSe2gzVj+Kjud44se9
- Kf28ofLGCmlara/j14iOTFj7pEi3/7EYMMx+i5I1d0jDGKL43z7OaZuJY8R4G0JFuSGK
- 5k01PRWf5XKccLaOCR4FWv3/uwbQsAxeC94kbcohkwFAf7WruK2NNJCVt70XnaeRbkVo
- IayyYYp9FhbglKGhmWG8+jUZSazShlVpBi68W3NczIlns3j5nnpAoC3+goSdSi8kqbXI
- kiYLjkzo4ebPlG3ndJSSMSsS9JecrvymAfUKptZvixl+hVNiafN0uQUjiqN+IAjR4R02
- fBYg==
-X-Gm-Message-State: APjAAAXWnm05v7yKcqndC/OGEJ0eUVwRDOFrEY1HhykHaJ9J9zOjbcYC
- hJI9HDmrp4bzm2lNi51LiU6Icg==
-X-Google-Smtp-Source: APXvYqyWLBlCaPGOONr/8VuVeNPBnAgDE597l7zfFJNDEyXa14Jyu2F+mFFV14v0+EMTQFwN3Z2iUA==
-X-Received: by 2002:a5d:5452:: with SMTP id w18mr56554103wrv.327.1564083789686; 
- Thu, 25 Jul 2019 12:43:09 -0700 (PDT)
+ bh=fJc1atiQz5OEztuHQqSGjdoiIKBAFWAgorgVo68gaaQ=;
+ b=QX8AzRtgJAuZvWeoLw4ECRvwuNnipbGNjOQ6cSEdfiS7N2888RrebKTiUyBcAeG3ld
+ TAgU41LnsoCloX1SdXSpntpyxOGrFw6+GXPC8b7v6XC4aAVnykQ2+6GYwz8msUpcvqpJ
+ lGMJ80cjDozCIQ4LkCrlpkattvm2SfGLuVVyAeHwRKqW6xiQr9+TdXvclSOabxYM7Zop
+ RA3i6O/a3oC7YGYtGAuYtEo/mt9b7Ou2SIRDW6/EoGZMsmABcXPF7+ogbmU5jTq+hflC
+ dLVoAsPmcKOeSqRpbR6QZ3AZUy3bXvEUalb0bZ7jcd53C93T87piPg2SIi5CJVbUtK0G
+ LN/g==
+X-Gm-Message-State: APjAAAXX+0H+tErwSWRjyUiyiF9J4YM+04ZqXCBqNo4vrdh4vJyvYjY0
+ mW6pvSIOvETDfqtj3tVkpy3/PA==
+X-Google-Smtp-Source: APXvYqyQwu1nmcB4abCQ5zAFUj2iSjiM9xVcT8A6OcXmoRgvpTb6oyQWmgU37KVPZS42Kw0Z+zWV8g==
+X-Received: by 2002:a1c:a7c6:: with SMTP id
+ q189mr82252637wme.146.1564083790917; 
+ Thu, 25 Jul 2019 12:43:10 -0700 (PDT)
 Received: from localhost.localdomain ([51.15.160.169])
  by smtp.googlemail.com with ESMTPSA id
- y16sm103410662wrg.85.2019.07.25.12.43.08
+ y16sm103410662wrg.85.2019.07.25.12.43.09
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Thu, 25 Jul 2019 12:43:09 -0700 (PDT)
+ Thu, 25 Jul 2019 12:43:10 -0700 (PDT)
 From: Corentin Labbe <clabbe@baylibre.com>
 To: davem@davemloft.net, herbert@gondor.apana.org.au, khilman@baylibre.com,
  mark.rutland@arm.com, robh+dt@kernel.org
-Subject: [PATCH 3/4] MAINTAINERS: Add myself as maintainer of amlogic crypto
-Date: Thu, 25 Jul 2019 19:42:55 +0000
-Message-Id: <1564083776-20540-4-git-send-email-clabbe@baylibre.com>
+Subject: [PATCH 4/4] ARM64: dts: amlogic: adds crypto hardware node
+Date: Thu, 25 Jul 2019 19:42:56 +0000
+Message-Id: <1564083776-20540-5-git-send-email-clabbe@baylibre.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1564083776-20540-1-git-send-email-clabbe@baylibre.com>
 References: <1564083776-20540-1-git-send-email-clabbe@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190725_124311_143720_279C4AF5 
-X-CRM114-Status: UNSURE (   8.16  )
+X-CRM114-CacheID: sfid-20190725_124312_214875_BFED742A 
+X-CRM114-Status: UNSURE (   9.76  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -107,31 +108,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-I will maintain the amlogic crypto driver.
+This patch adds the GXL crypto hardware node for all GXL SoCs.
 
 Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 ---
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 93d6cae3274d..48e7fd110688 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1450,6 +1450,13 @@ F:	drivers/mmc/host/meson*
- F:	drivers/soc/amlogic/
- N:	meson
- 
-+ARM/Amlogic Meson SoC Crypto Drivers
-+M:	Corentin Labbe <clabbe@baylibre.com>
-+L:	linux-crypto@vger.kernel.org
-+S:	Maintained
-+F:	drivers/crypto/amlogic/
-+F:	Documentation/devicetree/bindings/crypto/amlogic*
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+index c959456bacc6..fdcda12a7113 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+@@ -36,6 +36,17 @@
+ 				phys = <&usb3_phy>, <&usb2_phy0>, <&usb2_phy1>;
+ 			};
+ 		};
 +
- ARM/Amlogic Meson SoC Sound Drivers
- M:	Jerome Brunet <jbrunet@baylibre.com>
- L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
++		crypto: crypto@c883e000 {
++			compatible = "amlogic,gxl-crypto";
++			reg = <0x0 0xc883e000 0x0 0x36>;
++			interrupts = <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>;
++			clocks = <&clkc CLKID_BLKMV>;
++			clock-names = "blkmv";
++			status = "okay";
++		};
++
+ 	};
+ };
+ 
 -- 
 2.21.0
 
