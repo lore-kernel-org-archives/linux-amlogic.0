@@ -2,77 +2,71 @@ Return-Path: <SRS0=Jj0Y=VW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CE0D0C76191
-	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Jul 2019 17:09:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 06C91C76190
+	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Jul 2019 17:43:55 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 984F22238C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Jul 2019 17:09:43 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D49A422BEF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 25 Jul 2019 17:43:54 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MZqNMnqP";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="V2kS5kGz"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 984F22238C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="U8XtJOTU";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="Lys2mjZW"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D49A422BEF
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:
+	In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=14NUKVVpgiIgGzxNsxBinIdx80tKUGIC0FviZO4wPLo=; b=MZqNMnqPtWH1Mj
-	XCAQks3RD6oaKkq9ZhYmy1FDyHoj62j/JGOCqGVaznyqFKD9o3oxVjqS1gkoUDkBh4Q1A7hetBP5/
-	VYV8AImg4YRX4guBTUDED8c0LlEjLkYJVk7y2byNB/KJwxeTjBa772qZK6ut6g28KsnGuJ1UTgTcB
-	4LR64iAFfimoKkT0xEpoZMK8UKQixWE8QTkuMJg2JVGxNbu0M2tJuT0w6RhZcUBdE3MrDltXYsA6H
-	lv864ap62/fdHB9G661vuPFh1/SO3paP+ww13UTwEMMCYWKpjAiEXzOG9YJu0qQG8xo2qvib0YLsq
-	MN229QAxiRQ/wz2tu5rg==;
+	References:List-Owner; bh=CzLVlvjz20WpvfypESNswGBUF0Qagwz6vPLYEAajHRI=; b=U8X
+	tJOTUTHiUnhN2b+Y2bH3dSqRH+FyiZ+KqZc4G9/uExBgwEEfAdIudHfzylEMdthGj68HtnQkSM4XG
+	Iipb+Eh0mWowitXkyV7JD/GOja+OCfoAwU6dE0CyMDJSdWhhRaDMtUTSL8tdUPROP0yqRHaisCgHk
+	NgXiEH8/OeL5V2dYLBcCX7P8aqAT078W65XGvnVg7lRIDhi0gLbkmupELhasuwPHbeHdA2P+kr3TM
+	dDp3rOO4D5vXOwF+gxEiUhruUWs4Ova+pzPQNVS0EZbhmxU1Y29Kvjf+biIhdIhVko4lAHASqkNSv
+	sQ0HJ1RrTqJPRAsVcIGrGAGiJXUgv1Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hqhFJ-0000ol-Fg; Thu, 25 Jul 2019 17:09:37 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1hqhmQ-0006h5-40; Thu, 25 Jul 2019 17:43:50 +0000
+Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hqhFG-0000oE-93; Thu, 25 Jul 2019 17:09:35 +0000
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
- [209.85.221.52])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 6733E22C7C;
- Thu, 25 Jul 2019 17:09:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1564074573;
- bh=rkdM8CWr1A1LMWe/EH04Dnfcj0n7tqCfgrgm7BTi5jQ=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=V2kS5kGzF++a03Gk5zIP6RZHen6WFgWlfieoKDlrHqhEHPec5TNp/uyFIM1M9uehw
- LnN/eGuu4aLZCbQHXlzK4cEM25XKPTnaNYChzXcEWdoNw9zQyjL+vFPdlyy6PV4aH5
- wyN/g5oynAZo0AxPt7Dvwsws0Sm+M9vkaj0veq4o=
-Received: by mail-wr1-f52.google.com with SMTP id p13so51544001wru.10;
- Thu, 25 Jul 2019 10:09:33 -0700 (PDT)
-X-Gm-Message-State: APjAAAUyapbx3QmtplWVk2r8DJPtzsb1qh2JowR/7/emSHemOR/wVbCV
- a+/AxS1+7Ia7bIj2mpjryM6oeU6g2Eu5xCcFOXI=
-X-Google-Smtp-Source: APXvYqyhMUD0VRm57goMo+umKK9xrgzMe/ILEaoUR4e6spWK6lgrnxam7yAoo2qceAKGdHiCpgWiUDRXhXO1xXYbZ1k=
-X-Received: by 2002:adf:c613:: with SMTP id n19mr39171710wrg.109.1564074571943; 
- Thu, 25 Jul 2019 10:09:31 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190722095425.14193-1-amergnat@baylibre.com>
- <20190722095425.14193-4-amergnat@baylibre.com>
- <1j5znqxj74.fsf@starbuckisacylon.baylibre.com>
-In-Reply-To: <1j5znqxj74.fsf@starbuckisacylon.baylibre.com>
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Fri, 26 Jul 2019 01:09:20 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64AJFMkZQaytYMN+EsLT0sS-3VwzWUfb3g7SdL7kCfu+g@mail.gmail.com>
-Message-ID: <CAGb2v64AJFMkZQaytYMN+EsLT0sS-3VwzWUfb3g7SdL7kCfu+g@mail.gmail.com>
-Subject: Re: [PATCH 3/8] clk: meson: gxbb: migrate to the new parent
- description method
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Alexandre Mergnat <amergnat@baylibre.com>
+ id 1hqhmL-0006eH-81
+ for linux-amlogic@lists.infradead.org; Thu, 25 Jul 2019 17:43:48 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
+ Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+ List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
+ List-Archive; bh=vJGclLg2/SizjBD0uAOxWAOde9Sqq4M2mnEoGMzJw7w=; b=Lys2mjZWqvWr
+ Hs817Rj0fgrtTWOrJhgUlHo165JjvMORPDK2B8fErlTc2L0VSjqEC/n0YKGevhLFGdQxthtntl+yb
+ D0jWSXgMEGqvVWKI0D4pEhwSABaz15QK7to7pa+G8QGRms8BAZXxZSxd5EYyrfXxR6Q/Lkaz9oit+
+ JkKEA=;
+Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
+ by heliosphere.sirena.org.uk with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <broonie@sirena.org.uk>)
+ id 1hqhmG-0003NI-Qc; Thu, 25 Jul 2019 17:43:41 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+ id F005E2742B63; Thu, 25 Jul 2019 18:43:39 +0100 (BST)
+From: Mark Brown <broonie@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Subject: Applied "ASoC: codec2codec: run callbacks in order" to the asoc tree
+In-Reply-To: <20190725165949.29699-2-jbrunet@baylibre.com>
+X-Patchwork-Hint: ignore
+Message-Id: <20190725174339.F005E2742B63@ypsilon.sirena.org.uk>
+Date: Thu, 25 Jul 2019 18:43:39 +0100 (BST)
+X-Bad-Reply: In-Reply-To but no 'Re:' in Subject.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190725_100934_353411_E1A5A68F 
-X-CRM114-Status: GOOD (  16.02  )
+X-CRM114-CacheID: sfid-20190725_104345_317170_654178A7 
+X-CRM114-Status: GOOD (  13.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,68 +78,133 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>,
- linux-kernel <linux-kernel@vger.kernel.org>, baylibre-upstreaming@groups.io,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- linux-clk <linux-clk@vger.kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Cc: devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+ Kevin Hilman <khilman@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+ linux-amlogic@lists.infradead.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Jul 25, 2019 at 10:50 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
->
-> On Mon 22 Jul 2019 at 11:54, Alexandre Mergnat <amergnat@baylibre.com> wrote:
->
->
-> > @@ -1592,13 +1737,29 @@ static struct clk_regmap gxbb_vid_pll_div = {
-> >       .hw.init = &(struct clk_init_data) {
-> >               .name = "vid_pll_div",
-> >               .ops = &meson_vid_pll_div_ro_ops,
-> > -             .parent_names = (const char *[]){ "hdmi_pll" },
-> > +             .parent_data = &(const struct clk_parent_data) {
-> > +                     /*
-> > +                      * This clock is declared here for GXL and GXBB SoC, so
-> > +                      * we must use string name to set this parent to avoid
-> > +                      * pointer issue.
-> > +                      */
->
-> I don't really get the issue with this comment.
->
-> How about:
->
-> /*
->  * Note:
->  * gxl and gxbb have different hdmi_plls (with different struct clk_hw).
->  * We fallback to the global naming string mechanism so vid_pll_div picks
->  * up the appropriate one.
->  */
+The patch
 
-If you're sticking to global names for now, you could just skip converting
-this clock altogether. I suspect .parent_names will be around for some time.
+   ASoC: codec2codec: run callbacks in order
 
-On the other hand, if you really want to get rid of global clock name based
-parenting, you could use clk_hw pointers, and have the probe function fix
-up this one based on the compatible string. That's what I did.
+has been applied to the asoc tree at
 
-Just my two cents.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.4
 
-ChenYu
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
 
-> > +                     .name = "hdmi_pll",
-> > +                     .index = -1,
-> > +             },
-> >               .num_parents = 1,
-> >               .flags = CLK_SET_RATE_PARENT | CLK_GET_RATE_NOCACHE,
-> >       },
-> >  };
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+From 68c907f10cd816cad2287167a1a1d77914a6d466 Mon Sep 17 00:00:00 2001
+From: Jerome Brunet <jbrunet@baylibre.com>
+Date: Thu, 25 Jul 2019 18:59:44 +0200
+Subject: [PATCH] ASoC: codec2codec: run callbacks in order
+
+When handling dai_link events on codec to codec links, run all .startup()
+callbacks on sinks and sources before running any .hw_params(). Same goes
+for hw_free() and shutdown(). This is closer to the behavior of regular
+dai links
+
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Link: https://lore.kernel.org/r/20190725165949.29699-2-jbrunet@baylibre.com
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ sound/soc/soc-dapm.c | 36 +++++++++++++++++++++++++++---------
+ 1 file changed, 27 insertions(+), 9 deletions(-)
+
+diff --git a/sound/soc/soc-dapm.c b/sound/soc/soc-dapm.c
+index 1d04612601ad..034b31fd2ecb 100644
+--- a/sound/soc/soc-dapm.c
++++ b/sound/soc/soc-dapm.c
+@@ -3835,11 +3835,6 @@ static int snd_soc_dai_link_event(struct snd_soc_dapm_widget *w,
+ 				goto out;
+ 			}
+ 			source->active++;
+-			ret = snd_soc_dai_hw_params(source, &substream, params);
+-			if (ret < 0)
+-				goto out;
+-
+-			dapm_update_dai_unlocked(&substream, params, source);
+ 		}
+ 
+ 		substream.stream = SNDRV_PCM_STREAM_PLAYBACK;
+@@ -3853,6 +3848,23 @@ static int snd_soc_dai_link_event(struct snd_soc_dapm_widget *w,
+ 				goto out;
+ 			}
+ 			sink->active++;
++		}
++
++		substream.stream = SNDRV_PCM_STREAM_CAPTURE;
++		snd_soc_dapm_widget_for_each_source_path(w, path) {
++			source = path->source->priv;
++
++			ret = snd_soc_dai_hw_params(source, &substream, params);
++			if (ret < 0)
++				goto out;
++
++			dapm_update_dai_unlocked(&substream, params, source);
++		}
++
++		substream.stream = SNDRV_PCM_STREAM_PLAYBACK;
++		snd_soc_dapm_widget_for_each_sink_path(w, path) {
++			sink = path->sink->priv;
++
+ 			ret = snd_soc_dai_hw_params(sink, &substream, params);
+ 			if (ret < 0)
+ 				goto out;
+@@ -3889,9 +3901,18 @@ static int snd_soc_dai_link_event(struct snd_soc_dapm_widget *w,
+ 		substream.stream = SNDRV_PCM_STREAM_CAPTURE;
+ 		snd_soc_dapm_widget_for_each_source_path(w, path) {
+ 			source = path->source->priv;
+-
+ 			snd_soc_dai_hw_free(source, &substream);
++		}
++
++		substream.stream = SNDRV_PCM_STREAM_PLAYBACK;
++		snd_soc_dapm_widget_for_each_sink_path(w, path) {
++			sink = path->sink->priv;
++			snd_soc_dai_hw_free(sink, &substream);
++		}
+ 
++		substream.stream = SNDRV_PCM_STREAM_CAPTURE;
++		snd_soc_dapm_widget_for_each_source_path(w, path) {
++			source = path->source->priv;
+ 			source->active--;
+ 			snd_soc_dai_shutdown(source, &substream);
+ 		}
+@@ -3899,9 +3920,6 @@ static int snd_soc_dai_link_event(struct snd_soc_dapm_widget *w,
+ 		substream.stream = SNDRV_PCM_STREAM_PLAYBACK;
+ 		snd_soc_dapm_widget_for_each_sink_path(w, path) {
+ 			sink = path->sink->priv;
+-
+-			snd_soc_dai_hw_free(sink, &substream);
+-
+ 			sink->active--;
+ 			snd_soc_dai_shutdown(sink, &substream);
+ 		}
+-- 
+2.20.1
+
 
 _______________________________________________
 linux-amlogic mailing list
