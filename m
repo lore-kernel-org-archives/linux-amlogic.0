@@ -2,84 +2,74 @@ Return-Path: <SRS0=e4TN=VY=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 25161C7618B
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jul 2019 12:17:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 46D35C7618B
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jul 2019 15:09:31 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 08AB72070B
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jul 2019 12:17:59 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 25DEE2084C
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jul 2019 15:09:31 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="sQkBKIwB";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="cG6Q289S"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 08AB72070B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GXUqnYba"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 25DEE2084C
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=huawei.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=s0J139+7mOSxwUzNTWK5BJAs9mvFw9mxwx/PLFQpmmY=; b=sQkBKIwBNxOPkk
-	JlS8A7iR3Jk8Y8x2W43RAbGdX+36Wd9Quy48P7C5gMvwHStFM+qKupSx8z/Ltz78qNFUK+AtTPea5
-	/TFcgclyOr0BMGQbWP1btDd83iRS3Mi/YY3pcw54Eu7JscAkAX3L23rZC6ENWCWkiSH+f5H9F5NyJ
-	uaFg/D1W9xexrjr2rUzZvAMqf+iHHv8luJ6Kw4uhtK1Kkil3cMHUA0XOTSzukarOOgoUuCOowQ8Km
-	FCuiamLb+Fdj1UirkodihzBIGcfHo5TURqR2ljVQn7nBqwgO7thmXZgz9IO8jsPVMTpTTcGF6e5Kv
-	+JSc3rsEQUmZH9+Dn/SA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=FHUnpI0N1Q7HwBa2/LNQld9m50UqIRZ+RrkvpgaSm48=; b=GXUqnYbazD+UDV
+	vyvztOxlJWj7wV2b+Dhgl79UxPAKx37n+JKNbtrWaIVgBRikr0mCzYXVReXURb3ceqwiGD3p/HdPv
+	F7zfKb4bRA8JwUReWtOwodhc3de5AHBLWorRVTwvWOSb9RLKf19P6+rVv4abFWMVcclVHQtpzSerz
+	E/VahjchqtR2KWixzwYzd/JFBMV/pn7ygi8oTZz18ZWCoovZvX3GQFfo8uDRDUOYnNoXPK/TSRmjU
+	iAdkP8FZ4K0hmunAJ7vcU0KM9CPW2YVwlODZbLb8hU0YThba0k489FD7dQAynbv7Opz6uNUjiYmAl
+	+W5baiU5wtMKIMieWf7w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hrLe5-00046G-GJ; Sat, 27 Jul 2019 12:17:53 +0000
-Received: from mail-oi1-x241.google.com ([2607:f8b0:4864:20::241])
+	id 1hrOK2-0003s7-DX; Sat, 27 Jul 2019 15:09:22 +0000
+Received: from szxga06-in.huawei.com ([45.249.212.32] helo=huawei.com)
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hrLe2-00045l-Oy; Sat, 27 Jul 2019 12:17:52 +0000
-Received: by mail-oi1-x241.google.com with SMTP id m202so42160031oig.6;
- Sat, 27 Jul 2019 05:17:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=CNhzHRz2iYbGXTP3IdkSPFEl3dlcBhQ0pu5ysWhbMII=;
- b=cG6Q289SNMExyqzT4BzCmFr+agW8QLE1G4qTS2lsKXwVxXNT3vnliR9NUCiJkWb4xa
- vv0mIgP2g9+350JqUUFYxCyArFuss1h1e6tua1+bGGeJIhxODu3Ca8AYeU1w9FP/v8iI
- MhZRHQjeTZU9ZhOSTQHw5+MavL3KVbpg3gYGy75V492PRmtmOQP1h0HsWUIrqQYsJEE6
- VGA92fXomnLb+NbLAV1HnkMtcWqbTipnp/jgiQRN2/fkFoHYEBEpHZX99vlLQQe95XU+
- zY7eAKlSeOxuKctyhesPANP5vpf2YzPuKkrEdLbrHf10PIAjG8cms8yoMCAMLto5iGBG
- 3UHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=CNhzHRz2iYbGXTP3IdkSPFEl3dlcBhQ0pu5ysWhbMII=;
- b=hn4wHwKL0HsaFXXNXX7JUe76tY+ywVswfR59FA31nvHatDbPtKHgE1Fmhxe5l9j/e9
- xsslLhRe++q0oxJtqnIA0fQajShIJT3CDHwjQrzyl1VejVpygLXqtxnycFxA4CkElgNF
- qmOCTKeAQ8HHSbryM8+yYw5b7nuBi5BA7HSMPWBTfKT49W5deTX9mcjY4tA8yIxsT46G
- QImvU9MYvDLJif7yOgbc/F0oTuOgJBbXdZT607zIIPnW0rZRH2HfqSKP49V4wR4MB7Sp
- aoLIXdT0a459lNjU/Ii99fxVamsv6bGWnTyfaSlRBlNYHyqp8JUfd5oTjGIyGayCK7R7
- zXvA==
-X-Gm-Message-State: APjAAAVcJsvMXi/SWlWSMlR+ezGejIntYqskaw3iEw8YW4lSaXA5QLT+
- z6PoM8fTUlsXr5X1ESmKTVj131ZWjuF1QSD7MkU=
-X-Google-Smtp-Source: APXvYqwYmHppUXdfjPmHAHr52sRX654Hjj0LrUImUSO2z34wUj15h3dYIjxdcEN6XIljQQh4wx43Te/Ly0JritXHa9A=
-X-Received: by 2002:aca:4ad2:: with SMTP id
- x201mr48673019oia.129.1564229869688; 
- Sat, 27 Jul 2019 05:17:49 -0700 (PDT)
+ id 1hrOJy-0003re-J3; Sat, 27 Jul 2019 15:09:20 +0000
+Received: from DGGEMS407-HUB.china.huawei.com (unknown [172.30.72.60])
+ by Forcepoint Email with ESMTP id 40F02F258955C599E725;
+ Sat, 27 Jul 2019 23:09:12 +0800 (CST)
+Received: from localhost (10.133.213.239) by DGGEMS407-HUB.china.huawei.com
+ (10.3.19.207) with Microsoft SMTP Server id 14.3.439.0; Sat, 27 Jul 2019
+ 23:09:06 +0800
+From: YueHaibing <yuehaibing@huawei.com>
+To: <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
+ <tiwai@suse.com>, <eric@anholt.net>, <wahrenst@gmx.net>,
+ <f.fainelli@gmail.com>, <rjui@broadcom.com>, <sbranden@broadcom.com>,
+ <bcm-kernel-feedback-list@broadcom.com>, <paul@crapouillou.net>,
+ <timur@kernel.org>, <nicoleotsuka@gmail.com>, <Xiubo.Lee@gmail.com>,
+ <festevam@gmail.com>, <shawnguo@kernel.org>, <s.hauer@pengutronix.de>,
+ <kernel@pengutronix.de>, <linux-imx@nxp.com>, <matthias.bgg@gmail.com>,
+ <jbrunet@baylibre.com>, <khilman@baylibre.com>, <daniel@zonque.org>,
+ <haojian.zhuang@gmail.com>, <robert.jarzmik@free.fr>, <baohua@kernel.org>,
+ <olivier.moysan@st.com>, <arnaud.pouliquen@st.com>,
+ <mcoquelin.stm32@gmail.com>, <alexandre.torgue@st.com>, <mripard@kernel.org>, 
+ <wens@csie.org>, <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+ <yamada.masahiro@socionext.com>, <michal.simek@xilinx.com>,
+ <jcmvbkbc@gmail.com>
+Subject: [PATCH -next 00/34] ASoC: use devm_platform_ioremap_resource() to
+ simplify code
+Date: Sat, 27 Jul 2019 23:07:04 +0800
+Message-ID: <20190727150738.54764-1-yuehaibing@huawei.com>
+X-Mailer: git-send-email 2.10.2.windows.1
 MIME-Version: 1.0
-References: <1564083776-20540-1-git-send-email-clabbe@baylibre.com>
- <1564083776-20540-3-git-send-email-clabbe@baylibre.com>
-In-Reply-To: <1564083776-20540-3-git-send-email-clabbe@baylibre.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 27 Jul 2019 14:17:38 +0200
-Message-ID: <CAFBinCD7pgUaBJgeGHTOu-uZRA9a6K2kxPsu+huKe23wcnKPoA@mail.gmail.com>
-Subject: Re: [PATCH 2/4] crypto: amlogic: Add crypto accelerator for amlogic
- GXL
-To: Corentin Labbe <clabbe@baylibre.com>
+X-Originating-IP: [10.133.213.239]
+X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190727_051750_812068_9B020CF1 
-X-CRM114-Status: GOOD (  12.73  )
+X-CRM114-CacheID: sfid-20190727_080918_814014_AC79D360 
+X-CRM114-Status: UNSURE (   3.69  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,56 +81,121 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mark.rutland@arm.com, devicetree@vger.kernel.org,
- herbert@gondor.apana.org.au, baylibre-upstreaming@groups.io,
- khilman@baylibre.com, linux-kernel@vger.kernel.org, robh+dt@kernel.org,
- linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
- davem@davemloft.net, linux-arm-kernel@lists.infradead.org
+Cc: linux-xtensa@linux-xtensa.org, alsa-devel@alsa-project.org,
+ gregkh@linuxfoundation.org, YueHaibing <yuehaibing@huawei.com>,
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-rpi-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Corentin,
+devm_platform_ioremap_resource() internally have platform_get_resource()
+and devm_ioremap_resource() in it. So instead of calling them separately
+use devm_platform_ioremap_resource() directly.
 
-it's great to see you working on this :)
+YueHaibing (34):
+  ASoC: tegra20_das: use devm_platform_ioremap_resource() to simplify
+    code
+  ASoC: tegra: use devm_platform_ioremap_resource() to simplify code
+  ASoC: rockchip: use devm_platform_ioremap_resource() to simplify code
+  ASoC: ep93xx-i2s: use devm_platform_ioremap_resource() to simplify
+    code
+  ASoC: mt8173: use devm_platform_ioremap_resource() to simplify code
+  ASoC: mt6797: use devm_platform_ioremap_resource() to simplify code
+  ASoC: imx-audmux: use devm_platform_ioremap_resource() to simplify
+    code
+  ASoC: fsl_audmix: use devm_platform_ioremap_resource() to simplify
+    code
+  ASoC: bcm2835-i2s: use devm_platform_ioremap_resource() to simplify
+    code
+  ASoC: sirf: use devm_platform_ioremap_resource() to simplify code
+  ASoC: mxs-saif: use devm_platform_ioremap_resource() to simplify code
+  ASoC: spear: use devm_platform_ioremap_resource() to simplify code
+  ASoC: kirkwood-i2s: use devm_platform_ioremap_resource() to simplify
+    code
+  ASoC: xtfpga-i2s: use devm_platform_ioremap_resource() to simplify
+    code
+  ASoC: stm32: sai: use devm_platform_ioremap_resource() to simplify
+    code
+  ASoC: codecs: msm8916-wcd: use devm_platform_ioremap_resource() to
+    simplify code
+  ASoC: codecs: jz4725b: use devm_platform_ioremap_resource() to
+    simplify code
+  ASoC: mmp-sspa: use devm_platform_ioremap_resource() to simplify code
+  ASoC: jz4740: use devm_platform_ioremap_resource() to simplify code
+  ASoC: inno_rk3036: use devm_platform_ioremap_resource() to simplify
+    code
+  ASoC: uniphier: evea: use devm_platform_ioremap_resource() to simplify
+    code
+  ASoC: uniphier: aio-dma: use devm_platform_ioremap_resource() to
+    simplify code
+  ASoC: psc-ac97: use devm_platform_ioremap_resource() to simplify code
+  ASoC: au1x: psc-i2s: use devm_platform_ioremap_resource() to simplify
+    code
+  ASoC: meson: g12a-tohdmitx: use devm_platform_ioremap_resource() to
+    simplify code
+  ASoC: meson: axg-tdm-formatter: use devm_platform_ioremap_resource()
+    to simplify code
+  ASoC: meson: axg-pdm: use devm_platform_ioremap_resource() to simplify
+    code
+  ASoC: meson: axg-spdifin: use devm_platform_ioremap_resource() to
+    simplify code
+  ASoC: meson: axg-spdifout: use devm_platform_ioremap_resource() to
+    simplify code
+  ASoC: meson: axg-fifo: use devm_platform_ioremap_resource() to
+    simplify code
+  ASoC: xlnx: use devm_platform_ioremap_resource() to simplify code
+  ASoC: sun8i-codec-analog: use devm_platform_ioremap_resource() to
+    simplify code
+  ASoC: sunxi: sun50i-codec-analog: use devm_platform_ioremap_resource()
+    to simplify code
+  ASoC: sun8i-codec: use devm_platform_ioremap_resource() to simplify
+    code
 
-On Thu, Jul 25, 2019 at 9:45 PM Corentin Labbe <clabbe@baylibre.com> wrote:
->
-> This patch adds support for the amlogic GXL cryptographic offloader present
-> on GXL SoCs.
->
-> This driver supports AES cipher in CBC/ECB mode.
->
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-> ---
->  drivers/crypto/Kconfig                  |   2 +
->  drivers/crypto/Makefile                 |   1 +
->  drivers/crypto/amlogic/Kconfig          |  24 ++
->  drivers/crypto/amlogic/Makefile         |   2 +
->  drivers/crypto/amlogic/amlogic-cipher.c | 358 ++++++++++++++++++++++++
->  drivers/crypto/amlogic/amlogic-core.c   | 326 +++++++++++++++++++++
->  drivers/crypto/amlogic/amlogic.h        | 172 ++++++++++++
->  7 files changed, 885 insertions(+)
->  create mode 100644 drivers/crypto/amlogic/Kconfig
->  create mode 100644 drivers/crypto/amlogic/Makefile
->  create mode 100644 drivers/crypto/amlogic/amlogic-cipher.c
->  create mode 100644 drivers/crypto/amlogic/amlogic-core.c
->  create mode 100644 drivers/crypto/amlogic/amlogic.h
-there are two different crypto IPs on Amlogic SoCs:
-- GXL and newer use the "BLKMV" crypto IP
-- GXBB, Meson8/Meson8b/Meson8m2 (and probably older SoCs) use the
-"NDMA" crypto IP
+ sound/soc/au1x/psc-ac97.c                  | 5 ++---
+ sound/soc/au1x/psc-i2s.c                   | 5 ++---
+ sound/soc/bcm/bcm2835-i2s.c                | 4 +---
+ sound/soc/cirrus/ep93xx-i2s.c              | 4 +---
+ sound/soc/codecs/inno_rk3036.c             | 4 +---
+ sound/soc/codecs/jz4725b.c                 | 4 +---
+ sound/soc/codecs/jz4740.c                  | 4 +---
+ sound/soc/codecs/msm8916-wcd-digital.c     | 4 +---
+ sound/soc/codecs/rk3328_codec.c            | 4 +---
+ sound/soc/fsl/fsl_audmix.c                 | 4 +---
+ sound/soc/fsl/imx-audmux.c                 | 4 +---
+ sound/soc/kirkwood/kirkwood-i2s.c          | 4 +---
+ sound/soc/mediatek/mt6797/mt6797-afe-pcm.c | 5 +----
+ sound/soc/mediatek/mt8173/mt8173-afe-pcm.c | 4 +---
+ sound/soc/meson/axg-fifo.c                 | 4 +---
+ sound/soc/meson/axg-pdm.c                  | 4 +---
+ sound/soc/meson/axg-spdifin.c              | 4 +---
+ sound/soc/meson/axg-spdifout.c             | 4 +---
+ sound/soc/meson/axg-tdm-formatter.c        | 4 +---
+ sound/soc/meson/g12a-tohdmitx.c            | 4 +---
+ sound/soc/mxs/mxs-saif.c                   | 5 +----
+ sound/soc/pxa/mmp-sspa.c                   | 4 +---
+ sound/soc/sirf/sirf-usp.c                  | 4 +---
+ sound/soc/spear/spdif_in.c                 | 5 ++---
+ sound/soc/stm/stm32_sai.c                  | 4 +---
+ sound/soc/sunxi/sun50i-codec-analog.c      | 4 +---
+ sound/soc/sunxi/sun8i-codec-analog.c       | 4 +---
+ sound/soc/sunxi/sun8i-codec.c              | 4 +---
+ sound/soc/tegra/tegra20_das.c              | 4 +---
+ sound/soc/tegra/tegra30_i2s.c              | 4 +---
+ sound/soc/uniphier/aio-dma.c               | 4 +---
+ sound/soc/uniphier/evea.c                  | 4 +---
+ sound/soc/xilinx/xlnx_i2s.c                | 4 +---
+ sound/soc/xilinx/xlnx_spdif.c              | 3 +--
+ sound/soc/xtensa/xtfpga-i2s.c              | 4 +---
+ 35 files changed, 38 insertions(+), 106 deletions(-)
 
-personally I think it makes sense to either have the IP name (blkmv)
-or SoC name (GXL) in the file or directory names as well as being
-consistent with that in the Kconfig option names
-
-(I have no experience with the crypto framework so I cannot comment on
-the driver implementation itself)
+-- 
+2.7.4
 
 
-Martin
 
 _______________________________________________
 linux-amlogic mailing list
