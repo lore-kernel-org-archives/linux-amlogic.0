@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EAEF4C7618B
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jul 2019 15:13:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 22210C7618B
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jul 2019 15:14:09 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CEC772084C
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jul 2019 15:13:44 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 02B1D2084C
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jul 2019 15:14:09 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TImzLd7D"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CEC772084C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tHMQWwFG"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 02B1D2084C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=huawei.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,24 +25,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1DRbFM6z2kOb7mXMEIgkbILn2qumb+J6WM2T7+1etfk=; b=TImzLd7Df22q5h
-	jcvfzdzXnwuFumrnnTAK+krNVzT8t025gNzDmHUf0Xh8PkduiK4GFH4shm4wqmGgbY49mNbifcWFD
-	wdFqLDU6GAM7xz6kgwWN4kIexdmFsSa/q2/mqwpG40vsQYqkN4OAGUb5c4FZhKpdIZvfzrQsvHqWm
-	L5MCNgB6pYsF/MXR4SsGWgeIQVpnJUg9GoTe6lJEMQJPk1TNg18is2Frjx+iYF6WcWmDeBspeTgha
-	UbVYBiYRCGYuXh8l4IGRGk1vWCUCMtNmjRS+UYrBbG9foNoO+H4CK/rXnLVKFGcUIXSDtledEZKk6
-	QKjhWNQIxPJSBQ5JG2WQ==;
+	List-Owner; bh=VDiPdzSHCyUkSCOKhzBcYrbdrGhnsJF11DbqJTfstsE=; b=tHMQWwFGF1GcUr
+	8NN6k95/g0omX1239lJhhhurEHvNAjvNcGYQeJYM6IFsfwGaLTDyegoAyyyQNlSnqaYDeZXkUyoPt
+	m25vyHBLvZDJe8k36hTuG8b2Pv0V6lfNl234gRkF/hfg6iLNNZjzIbpu4B2b4BXBeTThLEJVXU6/h
+	ss64rnCjClRTnxtQ1yC6t+KmtVQ4BvNKF/FQsTMsfhj+4bX0hZVzxx2269hOAq51VyWyILRqYSOUI
+	rIe6LwqUS0V2ojGPST5h2sv1SRKg4hS1RtDvXKRyFS5wyciyLHj8/KNsF/kaJ3GjvI7oo0zPZX3Jj
+	t7rxvILq1ExE2mBhXeUg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hrOOB-0008H1-Gi; Sat, 27 Jul 2019 15:13:39 +0000
-Received: from szxga05-in.huawei.com ([45.249.212.191] helo=huawei.com)
+	id 1hrOOa-0000AT-I2; Sat, 27 Jul 2019 15:14:04 +0000
+Received: from szxga07-in.huawei.com ([45.249.212.35] helo=huawei.com)
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hrOKg-0004Lc-6Z; Sat, 27 Jul 2019 15:10:04 +0000
-Received: from DGGEMS407-HUB.china.huawei.com (unknown [172.30.72.60])
- by Forcepoint Email with ESMTP id EB0D1A561A98382AC3E5;
- Sat, 27 Jul 2019 23:09:57 +0800 (CST)
-Received: from localhost (10.133.213.239) by DGGEMS407-HUB.china.huawei.com
- (10.3.19.207) with Microsoft SMTP Server id 14.3.439.0; Sat, 27 Jul 2019
- 23:09:49 +0800
+ id 1hrOKi-0004V4-Cz; Sat, 27 Jul 2019 15:10:06 +0000
+Received: from DGGEMS402-HUB.china.huawei.com (unknown [172.30.72.59])
+ by Forcepoint Email with ESMTP id 506BE4AE61FA2FC5AF70;
+ Sat, 27 Jul 2019 23:10:01 +0800 (CST)
+Received: from localhost (10.133.213.239) by DGGEMS402-HUB.china.huawei.com
+ (10.3.19.202) with Microsoft SMTP Server id 14.3.439.0; Sat, 27 Jul 2019
+ 23:09:52 +0800
 From: YueHaibing <yuehaibing@huawei.com>
 To: <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
  <tiwai@suse.com>, <eric@anholt.net>, <wahrenst@gmx.net>,
@@ -58,10 +58,10 @@ To: <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
  <wens@csie.org>, <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
  <yamada.masahiro@socionext.com>, <michal.simek@xilinx.com>,
  <jcmvbkbc@gmail.com>
-Subject: [PATCH -next 09/34] ASoC: bcm2835-i2s: use
- devm_platform_ioremap_resource() to simplify code
-Date: Sat, 27 Jul 2019 23:07:13 +0800
-Message-ID: <20190727150738.54764-10-yuehaibing@huawei.com>
+Subject: [PATCH -next 10/34] ASoC: sirf: use devm_platform_ioremap_resource()
+ to simplify code
+Date: Sat, 27 Jul 2019 23:07:14 +0800
+Message-ID: <20190727150738.54764-11-yuehaibing@huawei.com>
 X-Mailer: git-send-email 2.10.2.windows.1
 In-Reply-To: <20190727150738.54764-1-yuehaibing@huawei.com>
 References: <20190727150738.54764-1-yuehaibing@huawei.com>
@@ -69,8 +69,8 @@ MIME-Version: 1.0
 X-Originating-IP: [10.133.213.239]
 X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190727_081002_707320_059FE17D 
-X-CRM114-Status: UNSURE (   7.57  )
+X-CRM114-CacheID: sfid-20190727_081004_965434_883862CE 
+X-CRM114-Status: UNSURE (   7.09  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -100,31 +100,31 @@ This is detected by coccinelle.
 Reported-by: Hulk Robot <hulkci@huawei.com>
 Signed-off-by: YueHaibing <yuehaibing@huawei.com>
 ---
- sound/soc/bcm/bcm2835-i2s.c | 4 +---
+ sound/soc/sirf/sirf-usp.c | 4 +---
  1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/sound/soc/bcm/bcm2835-i2s.c b/sound/soc/bcm/bcm2835-i2s.c
-index 5ef80f3..e6a12e2 100644
---- a/sound/soc/bcm/bcm2835-i2s.c
-+++ b/sound/soc/bcm/bcm2835-i2s.c
-@@ -828,7 +828,6 @@ static int bcm2835_i2s_probe(struct platform_device *pdev)
- {
- 	struct bcm2835_i2s_dev *dev;
+diff --git a/sound/soc/sirf/sirf-usp.c b/sound/soc/sirf/sirf-usp.c
+index 8bab119c..2af0c6f 100644
+--- a/sound/soc/sirf/sirf-usp.c
++++ b/sound/soc/sirf/sirf-usp.c
+@@ -359,7 +359,6 @@ static int sirf_usp_pcm_probe(struct platform_device *pdev)
  	int ret;
--	struct resource *mem;
+ 	struct sirf_usp *usp;
  	void __iomem *base;
- 	const __be32 *addr;
- 	dma_addr_t dma_base;
-@@ -848,8 +847,7 @@ static int bcm2835_i2s_probe(struct platform_device *pdev)
- 	}
+-	struct resource *mem_res;
  
- 	/* Request ioarea */
--	mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	base = devm_ioremap_resource(&pdev->dev, mem);
+ 	usp = devm_kzalloc(&pdev->dev, sizeof(struct sirf_usp),
+ 			GFP_KERNEL);
+@@ -368,8 +367,7 @@ static int sirf_usp_pcm_probe(struct platform_device *pdev)
+ 
+ 	platform_set_drvdata(pdev, usp);
+ 
+-	mem_res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	base = devm_ioremap_resource(&pdev->dev, mem_res);
 +	base = devm_platform_ioremap_resource(pdev, 0);
  	if (IS_ERR(base))
  		return PTR_ERR(base);
- 
+ 	usp->regmap = devm_regmap_init_mmio(&pdev->dev, base,
 -- 
 2.7.4
 
