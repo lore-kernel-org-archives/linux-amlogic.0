@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 945A2C433FF
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jul 2019 15:16:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7E19CC7618B
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jul 2019 15:16:47 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 74C7A2084C
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jul 2019 15:16:28 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5C2452084C
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jul 2019 15:16:47 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="duLEKLXw"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 74C7A2084C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rD4kxSUJ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5C2452084C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=huawei.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,24 +25,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dVFVImI/igGK7472qpUL7/bvauXdd0l/1xtKgOZtypw=; b=duLEKLXwel4g4U
-	Qkc8umIM0giYcWUKu73y/jaQGEgOaFfnfoyXIOgwqXPvyQ1Cpe1Kd1HbZhyHGGfYOW1CQtx6EvEQj
-	+56Ol8Fe4Kt/1/kDCLmrTsf4kmdv72OhuIuB2yOiT0/hxXcQm35/MNGBr/BJPovnB3KTaHsfUhM74
-	iIYV0XBWrb1u4K/8snGcUNzNXpirMtfNixlO0lAwdbZCZhO3QAFoi5fvm7DAxrH9ZXYlOp+O6lIMd
-	ExqSd/OEyxvZdWlqjYVs7sBsZkz60zdIcPmTDg1R2m8Tlbr5YQV2l9Yze365pEGvdW8S5VRLULltY
-	PNtxC5uAHdz9paD4HFCA==;
+	List-Owner; bh=1lZ49yb5pk/e2nwsf47t71S2jK9oBPNFBOlQZUHa7+o=; b=rD4kxSUJQZJE6j
+	ufPrLCKHNX+j2IlkMTl/WO1kBgKU0ze7vqMVXxwXZ4VSMk6erbWlRoOPVTOy7LRZ7pV/fR44uCktq
+	SyBa5Sl0lYPjttFag2wHQuDOWBZNMcvNnLnppgoZCvO1KF/WjqAahx+/ksrBYz/K1Zvg8rU9uZ187
+	S5f3McOVjcuDRxdUc0VvkabmGbtYAjCpgcEaUrShkEDJ1ZCr62URTpqn1z+00fJ6ki2TxEYFDGPiN
+	OaZCismPZmeLc/JI4cRcpe6G+OLCj1jad8LSrBvd/WsKMZtikb+GniDGArXl+fL8S6oqKwrnzdBdl
+	WmtJnfzRc35Q6eyAw0Mw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hrOQp-0003DI-Eq; Sat, 27 Jul 2019 15:16:23 +0000
+	id 1hrOR9-0003Vu-IA; Sat, 27 Jul 2019 15:16:43 +0000
 Received: from szxga07-in.huawei.com ([45.249.212.35] helo=huawei.com)
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hrOKw-0005m1-HZ; Sat, 27 Jul 2019 15:10:20 +0000
-Received: from DGGEMS413-HUB.china.huawei.com (unknown [172.30.72.59])
- by Forcepoint Email with ESMTP id 01CF66C90E18C1F42A26;
- Sat, 27 Jul 2019 23:10:17 +0800 (CST)
-Received: from localhost (10.133.213.239) by DGGEMS413-HUB.china.huawei.com
- (10.3.19.213) with Microsoft SMTP Server id 14.3.439.0; Sat, 27 Jul 2019
- 23:10:10 +0800
+ id 1hrOL0-0005p4-NB; Sat, 27 Jul 2019 15:10:24 +0000
+Received: from DGGEMS401-HUB.china.huawei.com (unknown [172.30.72.58])
+ by Forcepoint Email with ESMTP id A46AD9911FF182FFAE54;
+ Sat, 27 Jul 2019 23:10:19 +0800 (CST)
+Received: from localhost (10.133.213.239) by DGGEMS401-HUB.china.huawei.com
+ (10.3.19.201) with Microsoft SMTP Server id 14.3.439.0; Sat, 27 Jul 2019
+ 23:10:13 +0800
 From: YueHaibing <yuehaibing@huawei.com>
 To: <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
  <tiwai@suse.com>, <eric@anholt.net>, <wahrenst@gmx.net>,
@@ -58,10 +58,10 @@ To: <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
  <wens@csie.org>, <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
  <yamada.masahiro@socionext.com>, <michal.simek@xilinx.com>,
  <jcmvbkbc@gmail.com>
-Subject: [PATCH -next 16/34] ASoC: codecs: msm8916-wcd: use
+Subject: [PATCH -next 17/34] ASoC: codecs: jz4725b: use
  devm_platform_ioremap_resource() to simplify code
-Date: Sat, 27 Jul 2019 23:07:20 +0800
-Message-ID: <20190727150738.54764-17-yuehaibing@huawei.com>
+Date: Sat, 27 Jul 2019 23:07:21 +0800
+Message-ID: <20190727150738.54764-18-yuehaibing@huawei.com>
 X-Mailer: git-send-email 2.10.2.windows.1
 In-Reply-To: <20190727150738.54764-1-yuehaibing@huawei.com>
 References: <20190727150738.54764-1-yuehaibing@huawei.com>
@@ -69,8 +69,8 @@ MIME-Version: 1.0
 X-Originating-IP: [10.133.213.239]
 X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190727_081019_108460_63E6F1AE 
-X-CRM114-Status: UNSURE (   7.40  )
+X-CRM114-CacheID: sfid-20190727_081023_121385_0836F8FB 
+X-CRM114-Status: UNSURE (   7.52  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -100,30 +100,29 @@ This is detected by coccinelle.
 Reported-by: Hulk Robot <hulkci@huawei.com>
 Signed-off-by: YueHaibing <yuehaibing@huawei.com>
 ---
- sound/soc/codecs/msm8916-wcd-digital.c | 4 +---
+ sound/soc/codecs/jz4725b.c | 4 +---
  1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/sound/soc/codecs/msm8916-wcd-digital.c b/sound/soc/codecs/msm8916-wcd-digital.c
-index 1db7e43..9fa5d44 100644
---- a/sound/soc/codecs/msm8916-wcd-digital.c
-+++ b/sound/soc/codecs/msm8916-wcd-digital.c
-@@ -1143,7 +1143,6 @@ static int msm8916_wcd_digital_probe(struct platform_device *pdev)
- 	struct msm8916_wcd_digital_priv *priv;
+diff --git a/sound/soc/codecs/jz4725b.c b/sound/soc/codecs/jz4725b.c
+index 766354c..2567a5d 100644
+--- a/sound/soc/codecs/jz4725b.c
++++ b/sound/soc/codecs/jz4725b.c
+@@ -545,15 +545,13 @@ static int jz4725b_codec_probe(struct platform_device *pdev)
+ {
  	struct device *dev = &pdev->dev;
- 	void __iomem *base;
--	struct resource *mem_res;
- 	struct regmap *digital_map;
+ 	struct jz_icdc *icdc;
+-	struct resource *mem;
  	int ret;
  
-@@ -1151,8 +1150,7 @@ static int msm8916_wcd_digital_probe(struct platform_device *pdev)
- 	if (!priv)
+ 	icdc = devm_kzalloc(dev, sizeof(*icdc), GFP_KERNEL);
+ 	if (!icdc)
  		return -ENOMEM;
  
--	mem_res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	base = devm_ioremap_resource(&pdev->dev, mem_res);
-+	base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(base))
- 		return PTR_ERR(base);
+-	mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	icdc->base = devm_ioremap_resource(dev, mem);
++	icdc->base = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(icdc->base))
+ 		return PTR_ERR(icdc->base);
  
 -- 
 2.7.4
