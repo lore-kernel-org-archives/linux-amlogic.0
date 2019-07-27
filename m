@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 96319C7618B
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jul 2019 15:22:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D1091C7618B
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jul 2019 15:23:04 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 777522086D
-	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jul 2019 15:22:45 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id AF2392087C
+	for <linux-amlogic@archiver.kernel.org>; Sat, 27 Jul 2019 15:23:04 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tzE/R7ZO"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 777522086D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="btiAH+mg"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AF2392087C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=huawei.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,24 +25,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=MQucu/Xu/zE5+Z8JRyFrV8gupkNWqukJXEoci/j3bPI=; b=tzE/R7ZOYqfMXY
-	t4rftMOnY8pjAvdR0wwYMq8B7lcIJXe/NuVNVE59LhDXvfBalWVCwJmmbik/15epUCfEEU7kP1Hdh
-	ViqhvTt8zpxOORN2LN0hqQ6usWgB5iNl5ZYcEAfRtgGXsihldVqsk0LaXfpM3Gzwiofg692sRqtpD
-	Eg0wyy9o2A0F9IU07X++X8c/zprMFS3If1WwIY4vizbdWkVeJg9xKCD27GurE3to+8+IU5ijoJPa5
-	rrVXKnCTY7XuIKTVOQdAQq0PLeIVubai/5qB4NXZMXCmS1BZ1HftxKsT0V24RRi5xSJWj31AQ6biG
-	PPweg3BDX04rWCzSyQ4A==;
+	List-Owner; bh=aovOJvkZr9RfWCLN26rNZagiAqqrrWCPazpWOVWEwwE=; b=btiAH+mglTW02a
+	ThEFoaqOspC7pNJ795A96/kx/BXI0rVqkb5srGF6qm+nQv5biqZi7hBDfW1Tq/FLwILhm4tzc4uV+
+	HReXoqj9p+0MhIfS8qK7gumLlll28q1MxexiQ38EFBbDb2a+yKra9ZFh+mqU/VQRsu9RrTMpQ6lNn
+	XTQjM2vAbqkvES4ehNdy/xQARqsGCKPoMVMde+z+tEHIMMl6IUFyR9Gepv59hRaqfyC0sFQfaVScI
+	zH4raoG82CyLxXw5xfXCA1g08dglTFNdClZkVa4Cxuu18OCbc26U7eVij9ein4VEcMWCFB08YKwy8
+	wsyoZ5bFp/J4tstxguxA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hrOWt-0001IT-NB; Sat, 27 Jul 2019 15:22:39 +0000
-Received: from szxga06-in.huawei.com ([45.249.212.32] helo=huawei.com)
+	id 1hrOXE-0001dX-Q0; Sat, 27 Jul 2019 15:23:00 +0000
+Received: from szxga04-in.huawei.com ([45.249.212.190] helo=huawei.com)
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hrOLq-0006Y9-Aj; Sat, 27 Jul 2019 15:11:16 +0000
-Received: from DGGEMS412-HUB.china.huawei.com (unknown [172.30.72.59])
- by Forcepoint Email with ESMTP id E16A81528AAE38F64C1B;
- Sat, 27 Jul 2019 23:11:12 +0800 (CST)
-Received: from localhost (10.133.213.239) by DGGEMS412-HUB.china.huawei.com
- (10.3.19.212) with Microsoft SMTP Server id 14.3.439.0; Sat, 27 Jul 2019
- 23:11:03 +0800
+ id 1hrOLu-0006bJ-M4; Sat, 27 Jul 2019 15:11:20 +0000
+Received: from DGGEMS406-HUB.china.huawei.com (unknown [172.30.72.60])
+ by Forcepoint Email with ESMTP id C9A5F66E5937C1026AEE;
+ Sat, 27 Jul 2019 23:11:16 +0800 (CST)
+Received: from localhost (10.133.213.239) by DGGEMS406-HUB.china.huawei.com
+ (10.3.19.206) with Microsoft SMTP Server id 14.3.439.0; Sat, 27 Jul 2019
+ 23:11:06 +0800
 From: YueHaibing <yuehaibing@huawei.com>
 To: <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
  <tiwai@suse.com>, <eric@anholt.net>, <wahrenst@gmx.net>,
@@ -58,10 +58,10 @@ To: <lgirdwood@gmail.com>, <broonie@kernel.org>, <perex@perex.cz>,
  <wens@csie.org>, <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
  <yamada.masahiro@socionext.com>, <michal.simek@xilinx.com>,
  <jcmvbkbc@gmail.com>
-Subject: [PATCH -next 33/34] ASoC: sunxi: sun50i-codec-analog: use
+Subject: [PATCH -next 34/34] ASoC: sun8i-codec: use
  devm_platform_ioremap_resource() to simplify code
-Date: Sat, 27 Jul 2019 23:07:37 +0800
-Message-ID: <20190727150738.54764-34-yuehaibing@huawei.com>
+Date: Sat, 27 Jul 2019 23:07:38 +0800
+Message-ID: <20190727150738.54764-35-yuehaibing@huawei.com>
 X-Mailer: git-send-email 2.10.2.windows.1
 In-Reply-To: <20190727150738.54764-1-yuehaibing@huawei.com>
 References: <20190727150738.54764-1-yuehaibing@huawei.com>
@@ -69,8 +69,8 @@ MIME-Version: 1.0
 X-Originating-IP: [10.133.213.239]
 X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190727_081115_021868_56EF7D4C 
-X-CRM114-Status: UNSURE (   7.50  )
+X-CRM114-CacheID: sfid-20190727_081118_940501_AF0D8359 
+X-CRM114-Status: UNSURE (   8.60  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -100,23 +100,27 @@ This is detected by coccinelle.
 Reported-by: Hulk Robot <hulkci@huawei.com>
 Signed-off-by: YueHaibing <yuehaibing@huawei.com>
 ---
- sound/soc/sunxi/sun50i-codec-analog.c | 4 +---
+ sound/soc/sunxi/sun8i-codec.c | 4 +---
  1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/sound/soc/sunxi/sun50i-codec-analog.c b/sound/soc/sunxi/sun50i-codec-analog.c
-index 6d1de56..f5b7069 100644
---- a/sound/soc/sunxi/sun50i-codec-analog.c
-+++ b/sound/soc/sunxi/sun50i-codec-analog.c
-@@ -459,12 +459,10 @@ MODULE_DEVICE_TABLE(of, sun50i_codec_analog_of_match);
+diff --git a/sound/soc/sunxi/sun8i-codec.c b/sound/soc/sunxi/sun8i-codec.c
+index 0e0e8eb..55798bc 100644
+--- a/sound/soc/sunxi/sun8i-codec.c
++++ b/sound/soc/sunxi/sun8i-codec.c
+@@ -533,7 +533,6 @@ static const struct regmap_config sun8i_codec_regmap_config = {
  
- static int sun50i_codec_analog_probe(struct platform_device *pdev)
+ static int sun8i_codec_probe(struct platform_device *pdev)
  {
--	struct resource *res;
- 	struct regmap *regmap;
+-	struct resource *res_base;
+ 	struct sun8i_codec *scodec;
  	void __iomem *base;
+ 	int ret;
+@@ -556,8 +555,7 @@ static int sun8i_codec_probe(struct platform_device *pdev)
+ 		return PTR_ERR(scodec->clk_bus);
+ 	}
  
--	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	base = devm_ioremap_resource(&pdev->dev, res);
+-	res_base = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	base = devm_ioremap_resource(&pdev->dev, res_base);
 +	base = devm_platform_ioremap_resource(pdev, 0);
  	if (IS_ERR(base)) {
  		dev_err(&pdev->dev, "Failed to map the registers\n");
