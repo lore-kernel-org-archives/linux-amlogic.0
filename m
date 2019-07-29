@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-14.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 980CAC7618B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 13:27:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 243A5C7618B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 13:27:52 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6D9A9206E0
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 13:27:35 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id EB14D206E0
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 13:27:51 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CJZsZ2OS";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="uPs/pRoh"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6D9A9206E0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gnr/9Hsu";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="OFeOg7Jg"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EB14D206E0
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+hMpc2nBgQHJAXTB3Q0ygRWkNY/JIFxnYQFgStsrDgI=; b=CJZsZ2OSUqXyDX
-	cQpRJkcnaMjtH/TAy+w6Zdyhma6RAzC5xwZlJbAtWZarRX0myvSivLRhtx3DkHHyw8oLZJSSLJRMw
-	pX+Z46jjrx5TD4t8sCOWCP3fwPbySyY6FGlLZmPUalL6+3gECQ7vjwGWeDfftUcA634Wt5SW+eBtO
-	c0qkWnNR7JDGcnO7DOVXbG7tIgWRh891Xf4G4i4DZUDzwUYcPwh/PYMUKXRevaJl4kVmyr+5+D4E1
-	c1P7c/r3Wrky2LP9kJzT1d1k58mbD1wX2tBpPbjv+dA1GnQp7O6uCOUMMsr+a6p01PGwzIeHBR825
-	n5mNpO1gmH66DGXyc5zw==;
+	List-Owner; bh=vrAbyI6kiiw/wuivHfCpWf6iAsj41Usvl+BU15fzYw0=; b=gnr/9HsurwbOqY
+	oCEeAGeF81xZAOlI7yO1rsEofF5sAHSyuV9IG+ECvYPZKYVToM9xLPuiC8P9zGzYkpIdaa0DNRBFi
+	OBf+LG16x/XY0Nhmb26/V6IpqJdtQMaLuHUITaK4HuoPz1PPBsvf6CmiSHNo4mYLkK5Wy6WHFplus
+	RNowmRCjpLmspO5UqgZFjvTuIv1Pjrh+HjRp5GbfTFEngaA2oKGLe1CNhcL0DJp7DXU8RHXhOW01B
+	kadIku8+iIJirzly5uESVzQIBWh2iB9r8z4eULJuU9WPxje649plci9GUzPNYDTpGmaDqBy6MZl/j
+	ISVQDIk3O4jaKF+tA9SA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hs5gZ-0004Lg-9c; Mon, 29 Jul 2019 13:27:31 +0000
+	id 1hs5gp-0004hs-Bj; Mon, 29 Jul 2019 13:27:47 +0000
 Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hs5fb-0002yI-NI
- for linux-amlogic@lists.infradead.org; Mon, 29 Jul 2019 13:26:36 +0000
-Received: by mail-wr1-x443.google.com with SMTP id x4so8691929wrt.6
- for <linux-amlogic@lists.infradead.org>; Mon, 29 Jul 2019 06:26:30 -0700 (PDT)
+ id 1hs5fb-0002xf-Ny
+ for linux-amlogic@lists.infradead.org; Mon, 29 Jul 2019 13:26:37 +0000
+Received: by mail-wr1-x443.google.com with SMTP id n9so61957280wru.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 29 Jul 2019 06:26:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=Ab59+H2WDkGLtDUjRYAahowCKGHxyYpXq1ICYjuPet8=;
- b=uPs/pRohH0UeODJ9yLiONupgiLKx4dCDAdsWMAkAaq4uA7Vv/QhqtOWP7dR5YbaJt8
- nfBgkHTE/0rMOY7+i3FtxwB+kTZC0Yp6wG8D4dxud6FtNiqbjzfV0C4qMLupC8qt1mIr
- k+mddbAR+PwmmPTLkgvCiu9TgtCIK1SzB7I391NtUgweWzgHiH1y0DwFioP0yJ5CojC7
- 8CRE6pw9l3+MLp+e2+v10V7nj2QSvsSFLTioVwsYxh7CxoJtWBLdmVdG7xdo3bj7ywsv
- 9/P/bszvgTTfX9qtnyL4myncdPaAPaJfFGe2PeIuWKaHSHSWwgMOmylKuJYYOiu7lzvB
- b74A==
+ bh=H599BftyGgZGeuvjylSPb30Ip+K44PQz6UV6QIRWDVA=;
+ b=OFeOg7JgBUV4RUYsWPEYo3tVjVMt4zr3MoUttpQJUKwKE+8z0skTH00a2umzu3bxxM
+ i5qPoI3jqZdagq6pZ7zl8TH2dblrPWgyUYU7BFeg3b6kBf9YohCl1VGNsRrNpddoOm1W
+ ytMZM1U7GVPvMPpMLfOfLAYZd91D6+WquCcVXqSxVrgOj/1nNR2Qk0oRuujmH0WztgE9
+ v5cDuHocm3L76O/GWoDlwdj6IFlW+5PB6Jvv6Ois5LMj7R/lqOedrREPKmx66UzKgWAX
+ IMeBRGlA9S9FSybigDdxOD4/iaSkQ+HAnSug8auDSxIAclUT1aIllD/N4lOq0gRKsTuJ
+ nGbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=Ab59+H2WDkGLtDUjRYAahowCKGHxyYpXq1ICYjuPet8=;
- b=F2l5cTtzxc4xCCD/FjYHjEef9IrDkE43kNvMuWp6i55bqhaBhGk9ewqyhWyUBJDC51
- Z9vHhuuC1HhT1VYJgvnG16zESL9dEKvLNYtPcflC3Biu84HsYzrY6A3rValhz714KKvm
- 0LuMTUuHGbPxXIUsmIK1jfb0YPc2ZyOVOcU757on14Pn6USNdYL5Ub+Xd3wYyEr6wcP2
- nRIt4BtpdRiKS1U+0aOBcJTAMYuo+Pj/rWuGwRx/XpTroEHQEUpaNL43oRxFItigvkpH
- VdZ9uckg2DK3xvSDj8WlJwWsAbo5lJFmn3c1Hieq0LLPpZ5ii8lPhVEBAgZ8K6LlGtl7
- e0pw==
-X-Gm-Message-State: APjAAAVaOgFcZ2aGzoEBhuM13j3W0Q2BHNr12u53soyIgHmiNEqyd7s4
- Ju5iinLkvZpfE2smC40rC7c+Zw==
-X-Google-Smtp-Source: APXvYqx/8UWwARY5Rf8tcUBojz8hWYrqoqS7KmIDwvZBcySrJLGzZOiU0nnhjRfgKm8ZtlficUnPSw==
-X-Received: by 2002:adf:b60c:: with SMTP id f12mr86087098wre.231.1564406788898; 
+ bh=H599BftyGgZGeuvjylSPb30Ip+K44PQz6UV6QIRWDVA=;
+ b=HjgVJ1O14GLmrl0tbECLRYlnyG3zk9e1C6g+Cq6s9NpZ4Vphl00ZGkWH6Gaxmjcna8
+ fWxBIKd8GoQJSBP8+no3SL7WL8X0UvwC6axkFeRTIYk9mM/0cTFdqO55DJRKp2GmYrYw
+ xaGbRTYbYovBm0jb+l+WjDeWLdtI3M4iP/SRq2Z3ERy8f3GjwSDKBI/tAF+PFfQtVdHB
+ pWUbIHTJPGMrDFZBWn/oodR6bBgdXOcA3AY6TOfVBPnUsZMBRGeMCTOxbXajROSYGSp9
+ bIuppZZmi8ovp5n5ylPtyp012Qg9sn2tZGFuNne2Lj1WfcKJ7apNKbwsTSoP0XPPmxcZ
+ VYvA==
+X-Gm-Message-State: APjAAAU86Ob/vNOlJUn+EBzrFZWp5wvZrfbZp9Tr+dGr0uH4Bxicx6+t
+ srrH1wGoR2d20bloNqiOQgtH7+tTvHs=
+X-Google-Smtp-Source: APXvYqzHzgVQNRMd2/TlWVqqXU5uIwXTXNY9xqzXhTE2q0wnL1BamjYmmtnUW9iAvDznyFtgqFKR8g==
+X-Received: by 2002:a5d:518d:: with SMTP id k13mr25880915wrv.40.1564406788248; 
  Mon, 29 Jul 2019 06:26:28 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id y2sm50270053wrl.4.2019.07.29.06.26.28
+ by smtp.gmail.com with ESMTPSA id y2sm50270053wrl.4.2019.07.29.06.26.26
  (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Mon, 29 Jul 2019 06:26:28 -0700 (PDT)
+ Mon, 29 Jul 2019 06:26:27 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: khilman@baylibre.com
-Subject: [PATCH 5/6] arm64: dts: meson-g12b: add cpus OPP tables
-Date: Mon, 29 Jul 2019 15:26:21 +0200
-Message-Id: <20190729132622.7566-6-narmstrong@baylibre.com>
+Subject: [PATCH 4/6] arm64: dts: meson-g12a: enable DVFS on G12A boards
+Date: Mon, 29 Jul 2019 15:26:20 +0200
+Message-Id: <20190729132622.7566-5-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20190729132622.7566-1-narmstrong@baylibre.com>
 References: <20190729132622.7566-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190729_062631_795425_210B2378 
-X-CRM114-Status: UNSURE (   9.62  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190729_062631_805478_C6DF7B43 
+X-CRM114-Status: GOOD (  11.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,166 +96,271 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the OPP table taken from the HardKernel Odroid-N2 DTS.
+Enable DVFS for the U200, SEI520 and X96-Max Amlogic G12A based board
+by setting the clock, OPP and supply for each CPU cores.
 
-The Amlogic G12B SoC seems to available in 2 types :
-- low-speed: Cortex-A73 Cluster up to 1,704GHz
-- high-speed: Cortex-A73 Cluster up to 2.208GHz
+The CPU cluster power supply can achieve 0.73V to 1.01V using a PWM
+output clocked at 800KHz with an inverse duty-cycle.
 
-The Cortex-A73 Cluster can be clocked up to 1,896GHz for both types.
-
-The Vendor Amlogic A311D OPP table are slighly different, with lower
-voltages than the HardKernel S922X tables but seems to be high-speed type.
-
-This adds the conservative OPP table with the S922X higher voltages
-and the maximum low-speed OPP frequency.
-
-The values were tested to be stable on an HardKernel Odroid-N2 board
-running the arm64 cpuburn at [1] and cycling between all the possible
-cpufreq translations for both clusters and checking the final frequency
-using the clock-measurer, script at [2].
+DVFS has been tested by running the arm64 cpuburn at [1] and cycling
+between all the possible cpufreq translations and checking the final
+frequency using the clock-measurer, script at [2].
 
 [1] https://github.com/ssvb/cpuburn-arm/blob/master/cpuburn-a53.S
 [2] https://gist.github.com/superna9999/d4de964dbc0f84b7d527e1df2ddea25f
 
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12b.dtsi | 115 ++++++++++++++++++++
- 1 file changed, 115 insertions(+)
+ .../boot/dts/amlogic/meson-g12a-sei510.dts    | 55 +++++++++++++++++++
+ .../boot/dts/amlogic/meson-g12a-u200.dts      | 54 ++++++++++++++++++
+ .../boot/dts/amlogic/meson-g12a-x96-max.dts   | 52 ++++++++++++++++++
+ 3 files changed, 161 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-index d5edbc1a1991..98ae8a7c8b41 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-@@ -95,6 +95,121 @@
- 			compatible = "cache";
- 		};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+index 12aa7eaeaf68..c9fa23a56562 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+@@ -129,6 +129,25 @@
+ 		enable-active-high;
  	};
+ 
++	vddcpu: regulator-vddcpu {
++		/*
++		 * SY8120B1ABC DC/DC Regulator.
++		 */
++		compatible = "pwm-regulator";
 +
-+	cpu_opp_table_0: opp-table-0 {
-+		compatible = "operating-points-v2";
-+		opp-shared;
++		regulator-name = "VDDCPU";
++		regulator-min-microvolt = <721000>;
++		regulator-max-microvolt = <1022000>;
 +
-+		opp-100000000 {
-+			opp-hz = /bits/ 64 <100000000>;
-+			opp-microvolt = <731000>;
-+		};
++		vin-supply = <&dc_in>;
 +
-+		opp-250000000 {
-+			opp-hz = /bits/ 64 <250000000>;
-+			opp-microvolt = <731000>;
-+		};
++		pwms = <&pwm_AO_cd 1 1250 0>;
++		pwm-dutycycle-range = <100 0>;
 +
-+		opp-500000000 {
-+			opp-hz = /bits/ 64 <500000000>;
-+			opp-microvolt = <731000>;
-+		};
-+
-+		opp-666666666 {
-+			opp-hz = /bits/ 64 <666666666>;
-+			opp-microvolt = <731000>;
-+		};
-+
-+		opp-1000000000 {
-+			opp-hz = /bits/ 64 <1000000000>;
-+			opp-microvolt = <731000>;
-+		};
-+
-+		opp-1200000000 {
-+			opp-hz = /bits/ 64 <1200000000>;
-+			opp-microvolt = <731000>;
-+		};
-+
-+		opp-1398000000 {
-+			opp-hz = /bits/ 64 <1398000000>;
-+			opp-microvolt = <761000>;
-+		};
-+
-+		opp-1512000000 {
-+			opp-hz = /bits/ 64 <1512000000>;
-+			opp-microvolt = <791000>;
-+		};
-+
-+		opp-1608000000 {
-+			opp-hz = /bits/ 64 <1608000000>;
-+			opp-microvolt = <831000>;
-+		};
-+
-+		opp-1704000000 {
-+			opp-hz = /bits/ 64 <1704000000>;
-+			opp-microvolt = <861000>;
-+		};
-+
-+		opp-1896000000 {
-+			opp-hz = /bits/ 64 <1896000000>;
-+			opp-microvolt = <981000>;
-+		};
++		regulator-boot-on;
++		regulator-always-on;
 +	};
 +
-+	cpub_opp_table_1: opp-table-1 {
-+		compatible = "operating-points-v2";
-+		opp-shared;
+ 	vddio_ao1v8: regulator-vddio_ao1v8 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "VDDIO_AO1V8";
+@@ -297,6 +316,34 @@
+ 	status = "okay";
+ };
+ 
++&cpu0 {
++	cpu-supply = <&vddcpu>;
++	operating-points-v2 = <&cpu_opp_table>;
++	clocks = <&clkc CLKID_CPU_CLK>;
++	clock-latency = <50000>;
++};
 +
-+		opp-100000000 {
-+			opp-hz = /bits/ 64 <100000000>;
-+			opp-microvolt = <751000>;
-+		};
++&cpu1 {
++	cpu-supply = <&vddcpu>;
++	operating-points-v2 = <&cpu_opp_table>;
++	clocks = <&clkc CLKID_CPU_CLK>;
++	clock-latency = <50000>;
++};
 +
-+		opp-250000000 {
-+			opp-hz = /bits/ 64 <250000000>;
-+			opp-microvolt = <751000>;
-+		};
++&cpu2 {
++	cpu-supply = <&vddcpu>;
++	operating-points-v2 = <&cpu_opp_table>;
++	clocks = <&clkc CLKID_CPU_CLK>;
++	clock-latency = <50000>;
++};
 +
-+		opp-500000000 {
-+			opp-hz = /bits/ 64 <500000000>;
-+			opp-microvolt = <751000>;
-+		};
++&cpu3 {
++	cpu-supply = <&vddcpu>;
++	operating-points-v2 = <&cpu_opp_table>;
++	clocks = <&clkc CLKID_CPU_CLK>;
++	clock-latency = <50000>;
++};
 +
-+		opp-666666666 {
-+			opp-hz = /bits/ 64 <666666666>;
-+			opp-microvolt = <751000>;
-+		};
+ &cvbs_vdac_port {
+ 	cvbs_vdac_out: endpoint {
+ 		remote-endpoint = <&cvbs_connector_in>;
+@@ -345,6 +392,14 @@
+ 	pinctrl-names = "default";
+ };
+ 
++&pwm_AO_cd {
++	pinctrl-0 = <&pwm_ao_d_e_pins>;
++	pinctrl-names = "default";
++	clocks = <&xtal>;
++	clock-names = "clkin1";
++	status = "okay";
++};
 +
-+		opp-1000000000 {
-+			opp-hz = /bits/ 64 <1000000000>;
-+			opp-microvolt = <751000>;
-+		};
+ &pwm_ef {
+ 	status = "okay";
+ 	pinctrl-0 = <&pwm_e_pins>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+index 8551fbd4a488..2a324f0136e3 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+@@ -129,6 +129,24 @@
+ 		regulator-always-on;
+ 	};
+ 
++	vddcpu: regulator-vddcpu {
++		/*
++		 * MP8756GD Regulator.
++		 */
++		compatible = "pwm-regulator";
 +
-+		opp-1200000000 {
-+			opp-hz = /bits/ 64 <1200000000>;
-+			opp-microvolt = <771000>;
-+		};
++		regulator-name = "VDDCPU";
++		regulator-min-microvolt = <721000>;
++		regulator-max-microvolt = <1022000>;
 +
-+		opp-1398000000 {
-+			opp-hz = /bits/ 64 <1398000000>;
-+			opp-microvolt = <791000>;
-+		};
++		vin-supply = <&main_12v>;
 +
-+		opp-1512000000 {
-+			opp-hz = /bits/ 64 <1512000000>;
-+			opp-microvolt = <821000>;
-+		};
++		pwms = <&pwm_AO_cd 1 1250 0>;
++		pwm-dutycycle-range = <100 0>;
 +
-+		opp-1608000000 {
-+			opp-hz = /bits/ 64 <1608000000>;
-+			opp-microvolt = <861000>;
-+		};
-+
-+		opp-1704000000 {
-+			opp-hz = /bits/ 64 <1704000000>;
-+			opp-microvolt = <891000>;
-+		};
++		regulator-boot-on;
++		regulator-always-on;
 +	};
  };
  
- &clkc {
+ &cec_AO {
+@@ -145,6 +163,34 @@
+ 	hdmi-phandle = <&hdmi_tx>;
+ };
+ 
++&cpu0 {
++	cpu-supply = <&vddcpu>;
++	operating-points-v2 = <&cpu_opp_table>;
++	clocks = <&clkc CLKID_CPU_CLK>;
++	clock-latency = <50000>;
++};
++
++&cpu1 {
++	cpu-supply = <&vddcpu>;
++	operating-points-v2 = <&cpu_opp_table>;
++	clocks = <&clkc CLKID_CPU_CLK>;
++	clock-latency = <50000>;
++};
++
++&cpu2 {
++	cpu-supply = <&vddcpu>;
++	operating-points-v2 = <&cpu_opp_table>;
++	clocks = <&clkc CLKID_CPU_CLK>;
++	clock-latency = <50000>;
++};
++
++&cpu3 {
++	cpu-supply = <&vddcpu>;
++	operating-points-v2 = <&cpu_opp_table>;
++	clocks = <&clkc CLKID_CPU_CLK>;
++	clock-latency = <50000>;
++};
++
+ &cvbs_vdac_port {
+ 	cvbs_vdac_out: endpoint {
+ 		remote-endpoint = <&cvbs_connector_in>;
+@@ -197,6 +243,14 @@
+ 	pinctrl-names = "default";
+ };
+ 
++&pwm_AO_cd {
++	pinctrl-0 = <&pwm_ao_d_e_pins>;
++	pinctrl-names = "default";
++	clocks = <&xtal>;
++	clock-names = "clkin1";
++	status = "okay";
++};
++
+ /* SD card */
+ &sd_emmc_b {
+ 	status = "okay";
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
+index fe4013cca876..c1e58a69d434 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
+@@ -132,6 +132,22 @@
+ 		regulator-always-on;
+ 	};
+ 
++	vddcpu: regulator-vddcpu {
++		compatible = "pwm-regulator";
++
++		regulator-name = "VDDCPU";
++		regulator-min-microvolt = <721000>;
++		regulator-max-microvolt = <1022000>;
++
++		vin-supply = <&dc_in>;
++
++		pwms = <&pwm_AO_cd 1 1250 0>;
++		pwm-dutycycle-range = <100 0>;
++
++		regulator-boot-on;
++		regulator-always-on;
++	};
++
+ 	sound {
+ 		compatible = "amlogic,axg-sound-card";
+ 		model = "G12A-X96-MAX";
+@@ -242,6 +258,34 @@
+ 	status = "okay";
+ };
+ 
++&cpu0 {
++	cpu-supply = <&vddcpu>;
++	operating-points-v2 = <&cpu_opp_table>;
++	clocks = <&clkc CLKID_CPU_CLK>;
++	clock-latency = <50000>;
++};
++
++&cpu1 {
++	cpu-supply = <&vddcpu>;
++	operating-points-v2 = <&cpu_opp_table>;
++	clocks = <&clkc CLKID_CPU_CLK>;
++	clock-latency = <50000>;
++};
++
++&cpu2 {
++	cpu-supply = <&vddcpu>;
++	operating-points-v2 = <&cpu_opp_table>;
++	clocks = <&clkc CLKID_CPU_CLK>;
++	clock-latency = <50000>;
++};
++
++&cpu3 {
++	cpu-supply = <&vddcpu>;
++	operating-points-v2 = <&cpu_opp_table>;
++	clocks = <&clkc CLKID_CPU_CLK>;
++	clock-latency = <50000>;
++};
++
+ &cvbs_vdac_port {
+ 	cvbs_vdac_out: endpoint {
+ 		remote-endpoint = <&cvbs_connector_in>;
+@@ -279,6 +323,14 @@
+ 	pinctrl-names = "default";
+ };
+ 
++&pwm_AO_cd {
++	pinctrl-0 = <&pwm_ao_d_e_pins>;
++	pinctrl-names = "default";
++	clocks = <&xtal>;
++	clock-names = "clkin1";
++	status = "okay";
++};
++
+ &ext_mdio {
+ 	external_phy: ethernet-phy@0 {
+ 		/* Realtek RTL8211F (0x001cc916) */
 -- 
 2.22.0
 
