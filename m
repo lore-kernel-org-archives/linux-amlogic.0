@@ -5,19 +5,19 @@ X-Spam-Level:
 X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=3.4.0
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 40EEDC7618B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 13:05:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 611FCC7618B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 13:05:52 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 10285206DD
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 13:05:36 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 37732206DD
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 13:05:52 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="p1NIHBZo";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="RcPimZ4s"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 10285206DD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Rowpe6qj";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="FhI0DC5D"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 37732206DD
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9Ptw6hDNAShEhGXyIHg729jDYz5XoLYo0Hwcw4OkjZY=; b=p1NIHBZonxw9K0
-	4AOlB8X/7xpg9fklJchOgMLYcMCQhpNMH29/KGWmcnFPc/kwetyy1RallsQ1+3IhaEs01q+7aVw0S
-	jx0xUI7BnOAxyWSthiWnkMu090qFWa+/CNOzVwIFoeXDYA4X3yptpe6X9BD+kk2ny8zUbZMovyeLb
-	6KpudmqlKGZk91M6ZF+67PTWoedQ/P0JBC8vY2WoHXF6WbdQUQ10OHpcTpkN2wm7kqNnvGWF+XKQa
-	0OscoaX35Kc8oRJHzAxonvWN92m3S1I33FZXGOmyLsIOI1yDBRck+5jrBEjyXyGLqyQO+J1Wyo8kY
-	qL1jBh//fFOmdwhRAJtQ==;
+	List-Owner; bh=y4zjsZka9j6DOxc7SpMRuXTQh8eWMxoaa8yO5crK9SU=; b=Rowpe6qjrP5u9u
+	JL8mwPHfekMd6f899YJuXaYIAy8Y6c/AKUERwAXoZO/+3CtvoQJnma/xY9fNOkddNA+nGA/K2dkCD
+	SHkhpa8EzuA0DKxACAWg4YOA58WH7gigpnxELC0xThI6p7ZFZwWLUk+qI5jEQOHHP1CfRKkE+j7k1
+	ucY0N2FtBrFN+QD3Dxq/vA7HaJN0r4IlCO34SFaMENpEgzXy8cj7JnV5tY4B348LxVdxMTYl578wp
+	U8C/2KTB4ZpZvzonwiGo3bhjUl6xvh5jR9ivpiTGWIaFem/GnpzgBzYmtPNFypgKxYKBnVrEroRSP
+	sJsanxcAPVM9XfKsElRw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hs5LG-0002CY-LM; Mon, 29 Jul 2019 13:05:30 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1hs5LY-0002Yg-Ao; Mon, 29 Jul 2019 13:05:48 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hs5L8-00023W-Hw
- for linux-amlogic@lists.infradead.org; Mon, 29 Jul 2019 13:05:23 +0000
-Received: by mail-wm1-x343.google.com with SMTP id l2so53386768wmg.0
- for <linux-amlogic@lists.infradead.org>; Mon, 29 Jul 2019 06:05:22 -0700 (PDT)
+ id 1hs5LM-0002Je-Je
+ for linux-amlogic@lists.infradead.org; Mon, 29 Jul 2019 13:05:38 +0000
+Received: by mail-wr1-x444.google.com with SMTP id n9so61877205wru.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 29 Jul 2019 06:05:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=j0+gH+XJcAx4/WK5B8ajaIVZr5svz0xnQ0NGMIOg6Qo=;
- b=RcPimZ4sI4L/Wn5tThBMNzOIzeZBVjf8NG17hCoBkhFE5/UmfiFzRYjGQwf+wDTKvb
- SzUJVxl6FH/ohe9RWMiwHHJYnRJCYnImHQ0MH0npus/vhH9Oxs/uAms6Scjx4mGtJRcm
- hWV1mL5ByGMWW++CB2bbRH+vCJuwPVz8JtsjIghpXJaAMYE4EmzGJjlBa8pX0wap0q0B
- Mbx2e+KwKZ3dFhF8T0vFcW5a+QtuTlFxZ86nzaaqzaiWFGL+Cf2gg/5su1nlmKpC/vpw
- 1puPcrUS1H6O0xZKbOBlnKtf0td0xo9YfNF1kURFQg/81j+Rxz1Xsu036JCWCc7+Kunb
- N7BQ==
+ bh=7W7NAPTLBQYZPI0wvBRAlGZjV0LGMc5vvrYwHFtU02I=;
+ b=FhI0DC5DEwZ+Dr0AN3Umx9BKX7yNEMmmPJ2ChjPvztfE5VIwl+ze+ldJr9J6FtIBJo
+ KGyufXNJOJp5wzOKiVdrxNGJEa9hwBlKaUnb3p4IPIUPy3fAut6Rvfb2hFBpZmnAIllV
+ TkyANr/M7Cri3yCNZd2f4lK4pahG1MWwcuKnHM1xEK30IQ6NIY4dkX1u+CiP/wM4PhJv
+ YkrqdU7mHaVT5YA9lHVFXaSM8NLssMOqxdbMmaXnoTUgcppkTdJTejVwBLReHVRZT+mV
+ y7RTdXWI6XICeJg9lbZAzIpIAqbIzJ3H1UNde+4Z6ZuLlfW+Mg6wwp0EgdVUYi8wnt7e
+ OVgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=j0+gH+XJcAx4/WK5B8ajaIVZr5svz0xnQ0NGMIOg6Qo=;
- b=fIlC3f+UHLBTU4w96AzGhvlN1Yr/IeDEesKtdtHGcvQnGxtGP47jAdRdAdzVIDpP/Y
- aMjrX1lqt0lt4v6JJixEqHAPCBbL3zuOJ0QDPcyWvbxu0Iz1rseUT+6iRmdEVo+2svG1
- IzcBIZ6WPAY8S2HtTT30QMB0/jshFHQEn57FqVRLn3x2QieqUZtHkGRQzrPftNjlDvY1
- o2Ya8DV9Yy9MK1T33wRnIZhvE98zxMzZMUI56PzFav8WOcLMI5sIgUFaOeKTJODLzExZ
- yAg/qVkqczgwdTfrfq+JXjEQ62GY+1qk8C4MClHjomFoktkR229CynGS6pRrYZMXootC
- 2pJw==
-X-Gm-Message-State: APjAAAUn3y3IkpzexPckJTf0V0JqwZEyXj7jbTEB/CJg7809m1eM9iDw
- ieB/VX51Rk1jevej/rSauZ+O7o4iRGg=
-X-Google-Smtp-Source: APXvYqyZ9wIaOg6v1AlkQUYxmkjoplizWqY8dZvTi1LbYLZ6E/hW+bE5wfIeWy9FYRPa/aFf6WLHOQ==
-X-Received: by 2002:a1c:c14b:: with SMTP id r72mr84021665wmf.166.1564405521127; 
- Mon, 29 Jul 2019 06:05:21 -0700 (PDT)
+ bh=7W7NAPTLBQYZPI0wvBRAlGZjV0LGMc5vvrYwHFtU02I=;
+ b=UV/tlDGpQq3lpWA3IEaJ4M17kKy6PrlOBgm8b0J+INOXz34nKcDG57TsfzLQuixnTg
+ Od6YCYbC1+qFeJiQttu/cOb/ZU76wqL/3poh+17pw5tClUCELE1wqBBP83iPiCEetpk5
+ GF3p48kouaLg+6lB/jrwt09GzHaWukdGUNs6PdLudD4DMW31TcSVylIaPArQ3Me2CrFQ
+ S5oAv3DbkYxNWPlBpD9Vtzvbtq7vJW1biKSfPprCLBvcSzUH6TqTuh1ITQeRn0rSmdMj
+ hu/CQQlmz3s0XAWE+mlFa9ubBSfvc5W7OmPjm/9NC6v9FwvRe5KZxclLuDzZEAUVn63K
+ 4fAw==
+X-Gm-Message-State: APjAAAXbtZB69PugaVQCaTuq6XS2zad8Q+cp1uArCGZKM1iPYmwVo6u2
+ JZrq5vhrTJRwulLqtnjP3nOC5Q==
+X-Google-Smtp-Source: APXvYqzWHJQv+MDKrfVT0E7PtAgKxHjocwHgZzo2ob/4JQCa36tOMcgLqfanffm5ec0yAE1SazJtVQ==
+X-Received: by 2002:a5d:55c2:: with SMTP id i2mr82663829wrw.96.1564405534826; 
+ Mon, 29 Jul 2019 06:05:34 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id p12sm46641432wrt.13.2019.07.29.06.05.20
+ by smtp.gmail.com with ESMTPSA id i13sm54311179wrr.73.2019.07.29.06.05.33
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 29 Jul 2019 06:05:20 -0700 (PDT)
-Subject: Re: [PATCH 2/3] arm64: dts: meson-gx: add video decoder entry
+ Mon, 29 Jul 2019 06:05:34 -0700 (PDT)
+Subject: Re: [PATCH 3/3] arm64: dts: meson: add video decoder entries
 To: Maxime Jourdan <mjourdan@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
 References: <20190726124639.7713-1-mjourdan@baylibre.com>
- <20190726124639.7713-3-mjourdan@baylibre.com>
+ <20190726124639.7713-4-mjourdan@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -131,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <0a384af2-9c81-f798-82c0-eae07ed5981c@baylibre.com>
-Date: Mon, 29 Jul 2019 15:05:20 +0200
+Message-ID: <77240589-1e86-6e35-0d7b-25f349057a79@baylibre.com>
+Date: Mon, 29 Jul 2019 15:05:33 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190726124639.7713-3-mjourdan@baylibre.com>
+In-Reply-To: <20190726124639.7713-4-mjourdan@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190729_060522_596791_FA15A642 
-X-CRM114-Status: GOOD (  14.80  )
+X-CRM114-CacheID: sfid-20190729_060536_675767_456F101E 
+X-CRM114-Status: GOOD (  15.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,39 +160,65 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 26/07/2019 14:46, Maxime Jourdan wrote:
-> Add the base video decoder node compatible with the meson vdec driver,
-> for GX* chips.
+> This enables the video decoder for GXBB, GXL and GXM chips
 > 
 > Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
+>  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi | 11 +++++++++++
+>  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 11 +++++++++++
+>  arch/arm64/boot/dts/amlogic/meson-gxm.dtsi  |  4 ++++
+>  3 files changed, 26 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> index 74d03fc706be..86e26ed551e0 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-> @@ -437,6 +437,20 @@
->  			};
->  		};
->  
-> +		vdec: video-codec@c8820000 {
-> +			compatible = "amlogic,gx-vdec";
-> +			reg = <0x0 0xc8820000 0x0 0x10000>,
-> +			      <0x0 0xc110a580 0x0 0xe4>;
-> +			reg-names = "dos", "esparser";
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+> index f734faaf7b78..0cb40326b0d3 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi
+> @@ -845,3 +845,14 @@
+>  	compatible = "amlogic,meson-gxbb-vpu", "amlogic,meson-gx-vpu";
+>  	power-domains = <&pwrc_vpu>;
+>  };
 > +
-> +			interrupts = <GIC_SPI 44 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>;
-> +			interrupt-names = "vdec", "esparser";
+> +&vdec {
+> +	compatible = "amlogic,gxbb-vdec", "amlogic,gx-vdec";
+> +	clocks = <&clkc CLKID_DOS_PARSER>,
+> +		 <&clkc CLKID_DOS>,
+> +		 <&clkc CLKID_VDEC_1>,
+> +		 <&clkc CLKID_VDEC_HEVC>;
+> +	clock-names = "dos_parser", "dos", "vdec_1", "vdec_hevc";
+> +	resets = <&reset RESET_PARSER>;
+> +	reset-names = "esparser";
+> +};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+> index c959456bacc6..a09c53aaa0e8 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+> @@ -848,3 +848,14 @@
+>  	compatible = "amlogic,meson-gxl-vpu", "amlogic,meson-gx-vpu";
+>  	power-domains = <&pwrc_vpu>;
+>  };
 > +
-> +			amlogic,ao-sysctrl = <&sysctrl_AO>;
-> +			amlogic,canvas = <&canvas>;
-> +		};
+> +&vdec {
+> +	compatible = "amlogic,gxl-vdec", "amlogic,gx-vdec";
+> +	clocks = <&clkc CLKID_DOS_PARSER>,
+> +		 <&clkc CLKID_DOS>,
+> +		 <&clkc CLKID_VDEC_1>,
+> +		 <&clkc CLKID_VDEC_HEVC>;
+> +	clock-names = "dos_parser", "dos", "vdec_1", "vdec_hevc";
+> +	resets = <&reset RESET_PARSER>;
+> +	reset-names = "esparser";
+> +};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
+> index 7a85a82bf65d..a0e677d5a8f7 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
+> @@ -144,3 +144,7 @@
+>  &dwc3 {
+>  	phys = <&usb3_phy>, <&usb2_phy0>, <&usb2_phy1>, <&usb2_phy2>;
+>  };
 > +
->  		periphs: periphs@c8834000 {
->  			compatible = "simple-bus";
->  			reg = <0x0 0xc8834000 0x0 0x2000>;
+> +&vdec {
+> +	compatible = "amlogic,gxm-vdec", "amlogic,gx-vdec";
+> +};
 > 
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
