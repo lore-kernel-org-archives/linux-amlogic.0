@@ -2,89 +2,89 @@ Return-Path: <SRS0=fUxg=V2=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 99717C433FF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 07:42:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 023E7C7618B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 08:02:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6B9FC20657
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 07:42:52 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CAD652070B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 08:02:24 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gKgdxicS";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="02iwdyH2"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6B9FC20657
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Ox1Iwtcu";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="MTNriKxV"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CAD652070B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Z4Sw2m465gwTexH80MNlNxco23pTNL1Cr87DAzJJJKo=; b=gKgdxicSxoIbhA
-	fx+RI/+9G9We9ZIjcwHakfle4sfipFCRLiCwRv4o2i40zkmmdgC+3ETe1/YN69skACSRCqyYxSnBg
-	1YIn2f4EUbblE0+5QSm4wlCiNsxN0EclmFDk1WO/qZFtPyFnITr6uVB3nGtKQu9l3h6Mv53pyjqk0
-	G6lFDnp5Mj+rP6CRIQ1uU0qeoI31Q2VRnVNqYdbsHTrEWk7dcEe3QLvRjJFrD5/vFcJbOThnxrW8w
-	t1cPUPIbKuMX5FC6xO+tjhlKNc2RjFXxu9CvnvxnxfcqcTov5vDii8zubrSV3aAZgOlB47i3iebFU
-	qmZK3QVI6pjLWAZe1fWg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=6vLlNqxNqKA1gdr45EoMmflB2SWJkFS/t0fOGGC6e8s=; b=Ox1Iwtcu2igpb8
+	tK1Mqg2CVSCX6D2ta/3+iz6fZ+lbjxFPq4uurzyLPmuHXXhrmhLHsVkI4asD2e6i0EJS02OYTfAzj
+	rKVyPTTlSrgAT55IOyAG7jUptfhCivfAODonssFYAabowGPcchmz/+2O3gNMioO1XJQZVn5oImXfT
+	xiq9MXvLLA3q4cXSDIIzrpL1hjICFYmThMFq0V8t/6CJKZ29BVEB7zwJeZQRWcuK8lkzAOzRzhPcp
+	WV9hHDq6rKfgpMD4wi+kld4Q2M4eIH017sGJ5Q4dcoto6vOGGmQj3IZXlLmLjV4e8qzrsbjKfMSRg
+	xbQ7qFB3IympNy6gGWLA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hs0Iv-0007qD-F4; Mon, 29 Jul 2019 07:42:45 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1hs0br-0003I2-AB; Mon, 29 Jul 2019 08:02:19 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hs0Ir-0007oh-NJ
- for linux-amlogic@lists.infradead.org; Mon, 29 Jul 2019 07:42:43 +0000
-Received: by mail-wr1-x444.google.com with SMTP id c2so57432700wrm.8
- for <linux-amlogic@lists.infradead.org>; Mon, 29 Jul 2019 00:42:41 -0700 (PDT)
+ id 1hs0bn-0003HQ-LB
+ for linux-amlogic@lists.infradead.org; Mon, 29 Jul 2019 08:02:17 +0000
+Received: by mail-wr1-x443.google.com with SMTP id f9so60678232wre.12
+ for <linux-amlogic@lists.infradead.org>; Mon, 29 Jul 2019 01:02:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=qcDHQ1YIyua0Lz0XKlvtzGchQOF/q8YhLFhQTQqfSnA=;
- b=02iwdyH22+odFMvWr/fUSOWV/YsZSHqKDJDdL3e/jHLksFamrMNdydoLixPsostjig
- yYzQEFDjoaLkJAPyPt/dX5djgi4pTpVW7k5O+EuK9vRV4b+kvVD3KdHyP+fHdAXOLJZw
- fs4K6etimfyGJgHmMkzEWYXpz0YXtnA5d3Ujv3pcGXoUovVU2fuxrFw2Zx9N+4HQJ2Xh
- 6ZfZtL98PhcYOUCA0uf9O/gU8Ho3Ar5Xd5LTTZyfiGybMwcM7ykT0tlFaILBVDsfNIyn
- qOJAT7FJydgp4as6OIcwX3bPsXYJAYc4F7EkgbuacqIjLhJho48k5LzbAupoJo3tSI69
- B2mw==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=9RA94ICutOEe48WXCPH8Kz/PFpg7/2L2e8y1Aso6Yrg=;
+ b=MTNriKxVQBKmei1wel/XbIBlCJK8WQMMHKPY/R+8DD7Vq1DWOv1c1p03soQwYEWuC6
+ wDN0boNiENDCEG/tur73v8PTxB5MHU/KgHEJeinhTsC9L48LMY3ptVFTd8HZGN1snVJ0
+ RAC1JXik9zm4Vh32++d84mg93S4QM8lS6WWa3PwPZdotjTD+WkIVvv/hXI8UgpOQBAP4
+ +HTO9KpM5XX5MF45h1ijxg8+W88UBododOIvtUYi2TpzHPigukzxN5NrrRY7mpf407YK
+ 0mNb1iNHOcsqp3NkSYIqlcgGRF+fexOs76a19uHu8BfxJWnq+iKWfAlCNmwO0+mmlmnt
+ 4FQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=qcDHQ1YIyua0Lz0XKlvtzGchQOF/q8YhLFhQTQqfSnA=;
- b=duFp/5rCnNSkenMT99EnZEUPYYT+/5fDYTOgsI7PnhQT5DPlcubU2BRoe4m+fO87Q8
- yOCTrJhAMOTw4aOo31hzGsZRrsNIIHfMvJgIs3fFQGsp/rX2FkAKrIDzJG5r1zi8vEnn
- 4NoIqSRajL1G6BmdIG2a9VOxYfPI//vvRjqhkBHsMcBj1CkvBOZayXemiHfZOvc5zyVk
- pxvXVOaarpYHJQAc1xq0rJkNtWgJPJ/ESPT635cAUvlaqowwUzRZLKsUgyyr9s6f6Zvm
- NXbM/M1DKsSx+hdnYdNUBlUTiFvbdtk85QkHYQBwO4dqBllBSAhphie10g3PWjCqhfkA
- B4eg==
-X-Gm-Message-State: APjAAAWDb530MPT0Hh0o67Hk8Dw63BGhpTOyIOfKZv2Rj63ziWReAeBn
- +bj004Tbm+aKixRCA9cx8pJdaw==
-X-Google-Smtp-Source: APXvYqyu0KuT71WZYrYu+y1RASylJuxEoqAUq39HAC9JSxF3uZuROG3LU/D595xuazk7xstMkJnTUA==
-X-Received: by 2002:adf:cd04:: with SMTP id w4mr69069194wrm.230.1564386159762; 
- Mon, 29 Jul 2019 00:42:39 -0700 (PDT)
-Received: from localhost ([2a01:e34:eeb6:4690:ecfa:1144:aa53:4a82])
- by smtp.gmail.com with ESMTPSA id m24sm37058830wmi.39.2019.07.29.00.42.38
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=9RA94ICutOEe48WXCPH8Kz/PFpg7/2L2e8y1Aso6Yrg=;
+ b=eBe6D4mCuxZ1yW3Jw9o/P5FkwYGXtsFSmiBpquEb4tGpGDCjAQFZel8WK897kbxJCL
+ QOzAXPMqwwKVp5QDI3Hu5TmOiLeFsIgLiqpjuS4UMu6BfIhjS4Go3lBND/fotCkNecWM
+ zYhytUv2jgXLOcDylAsI8o1jCAlS9ECMF0OGZSI0RTcW+nqHFy4nLct9AtLQYpj9EkY/
+ omXxxGUMIRLW2FwHGs7c95NEf1gyCavhQXDPVw4SuNSgpag43+2eEPh/brubtknl6hDq
+ y/fZaotHXQ+p4zgrIdt7zldR07A5D7S6W7ssWkTXMRTr0uttd5bgRYinBRAlY8n2ultZ
+ OnKw==
+X-Gm-Message-State: APjAAAWnTrB/Zu7shZoxrFLxnohJAsHQnLinx/sZkzIR5Fb4scpivZOs
+ Vazw4ogyR3cApfI7JIHN5xWaJA==
+X-Google-Smtp-Source: APXvYqwADxrFEOUZ64tv0Wk/f+cSLqtMt/lXaNmVznyzUgfsI7zu68MZijDvv18qher7+QJCrrQplQ==
+X-Received: by 2002:adf:f64a:: with SMTP id x10mr16431382wrp.287.1564387334288; 
+ Mon, 29 Jul 2019 01:02:14 -0700 (PDT)
+Received: from starbuck.baylibre.local
+ ([2a01:e34:eeb6:4690:ecfa:1144:aa53:4a82])
+ by smtp.googlemail.com with ESMTPSA id a2sm62043546wmj.9.2019.07.29.01.02.12
  (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Mon, 29 Jul 2019 00:42:39 -0700 (PDT)
+ Mon, 29 Jul 2019 01:02:13 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <narmstrong@baylibre.com>, khilman@baylibre.com
-Subject: Re: [RFC/RFT v3 04/14] clk: meson: eeclk: add setup callback
-In-Reply-To: <55ce9b5e-de2f-9da3-8eec-13b5ead23e6c@baylibre.com>
-References: <20190701091258.3870-1-narmstrong@baylibre.com>
- <20190701091258.3870-5-narmstrong@baylibre.com>
- <1jh8836w49.fsf@starbuckisacylon.baylibre.com>
- <55ce9b5e-de2f-9da3-8eec-13b5ead23e6c@baylibre.com>
-Date: Mon, 29 Jul 2019 09:42:37 +0200
-Message-ID: <1j1ry9s2vm.fsf@starbuckisacylon.baylibre.com>
+To: Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCH] ASoC: meson: g12a-tohdmitx: override codec2codec params
+Date: Mon, 29 Jul 2019 10:01:39 +0200
+Message-Id: <20190729080139.32068-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
+X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190729_004241_761516_69F70ABC 
-X-CRM114-Status: GOOD (  15.57  )
+X-CRM114-CacheID: sfid-20190729_010215_697191_A7A8880D 
+X-CRM114-Status: GOOD (  12.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,95 +96,99 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: martin.blumenstingl@googlemail.com, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri 26 Jul 2019 at 16:50, Neil Armstrong <narmstrong@baylibre.com> wrote:
+So far, forwarding the hw_params of the input to output relied on the
+.hw_params() callback of the cpu side of the codec2codec link to be called
+first. This is a bit weak.
 
-> On 03/07/2019 16:17, Jerome Brunet wrote:
->> On Mon 01 Jul 2019 at 11:12, Neil Armstrong <narmstrong@baylibre.com> wrote:
->> 
->>> Add a setup() callback in the eeclk structure, to call an optional
->>> call() function at end of eeclk probe to setup clocks.
->>>
->>> It's used for the G12A clock controller to setup the CPU clock
->>> notifiers.
->> 
->> I'd prefer if you implement the probe function in the related controller
->> have this probe function call meson_eeclkc_probe() for the common part
->> 
->> In your case, I suppose it means implementing the g12a controller probe
->> to deal with the notifiers
->
-> Sure, but with this eeclk setup callback I can provide a different setup() callback
-> for g12a and g12b (and later sm1), without this means adding a top data struct
-> containing a setup() callback pointer and the soc meson_eeclkc_data struct to be able
-> to call a setup() for each family like done actually, but this will broke eeclk since
-> the match_data data won't be a meson_eeclkc_data() struct anymore.
+Instead, override the stream params of the codec2codec to link to set it up
+correctly.
 
-meson_eeclkc_probe is an helper we added to factorize common code out of the
-clock controllers we had. I don't like the idea to now add callback in it
-deal with the specifics of each SoCs. It feels like we are going in circles.
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ sound/soc/meson/g12a-tohdmitx.c | 34 ++++++++++++++++-----------------
+ 1 file changed, 16 insertions(+), 18 deletions(-)
 
-I think SoC/controller specific stuff should be dealt with in
-related probe function of each clock controller which would then call
-the 'common helper' if necessary.
+diff --git a/sound/soc/meson/g12a-tohdmitx.c b/sound/soc/meson/g12a-tohdmitx.c
+index 707ccb192e4c..9943c807ec5d 100644
+--- a/sound/soc/meson/g12a-tohdmitx.c
++++ b/sound/soc/meson/g12a-tohdmitx.c
+@@ -28,7 +28,7 @@
+ #define  CTRL0_SPDIF_CLK_SEL		BIT(0)
+ 
+ struct g12a_tohdmitx_input {
+-	struct snd_pcm_hw_params params;
++	struct snd_soc_pcm_stream params;
+ 	unsigned int fmt;
+ };
+ 
+@@ -225,26 +225,17 @@ static int g12a_tohdmitx_input_hw_params(struct snd_pcm_substream *substream,
+ {
+ 	struct g12a_tohdmitx_input *data = dai->playback_dma_data;
+ 
+-	/* Save the stream params for the downstream link */
+-	memcpy(&data->params, params, sizeof(*params));
++	data->params.rates = snd_pcm_rate_to_rate_bit(params_rate(params));
++	data->params.rate_min = params_rate(params);
++	data->params.rate_max = params_rate(params);
++	data->params.formats = 1 << params_format(params);
++	data->params.channels_min = params_channels(params);
++	data->params.channels_max = params_channels(params);
++	data->params.sig_bits = dai->driver->playback.sig_bits;
+ 
+ 	return 0;
+ }
+ 
+-static int g12a_tohdmitx_output_hw_params(struct snd_pcm_substream *substream,
+-					  struct snd_pcm_hw_params *params,
+-					  struct snd_soc_dai *dai)
+-{
+-	struct g12a_tohdmitx_input *in_data =
+-		g12a_tohdmitx_get_input_data(dai->capture_widget);
+-
+-	if (!in_data)
+-		return -ENODEV;
+-
+-	memcpy(params, &in_data->params, sizeof(*params));
+-
+-	return 0;
+-}
+ 
+ static int g12a_tohdmitx_input_set_fmt(struct snd_soc_dai *dai,
+ 				       unsigned int fmt)
+@@ -266,6 +257,14 @@ static int g12a_tohdmitx_output_startup(struct snd_pcm_substream *substream,
+ 	if (!in_data)
+ 		return -ENODEV;
+ 
++	if (WARN_ON(!rtd->dai_link->params)) {
++		dev_warn(dai->dev, "codec2codec link expected\n");
++		return -EINVAL;
++	}
++
++	/* Replace link params with the input params */
++	rtd->dai_link->params = &in_data->params;
++
+ 	if (!in_data->fmt)
+ 		return 0;
+ 
+@@ -278,7 +277,6 @@ static const struct snd_soc_dai_ops g12a_tohdmitx_input_ops = {
+ };
+ 
+ static const struct snd_soc_dai_ops g12a_tohdmitx_output_ops = {
+-	.hw_params	= g12a_tohdmitx_output_hw_params,
+ 	.startup	= g12a_tohdmitx_output_startup,
+ };
+ 
+-- 
+2.21.0
 
-If the common part interface needs to be reworked, maybe changing
-the parameters, I'm ok with it.
-
->
-> If you still prefer this, I can rework it like that.
->
-> I'm rebasing all the stuff on v5.3-rc1 and plan to repost an updated version
-> shortly, solving this would be easier.
->
-> Neil
->
->> 
->>>
->>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->>> ---
->>>  drivers/clk/meson/meson-eeclk.c | 6 ++++++
->>>  drivers/clk/meson/meson-eeclk.h | 1 +
->>>  2 files changed, 7 insertions(+)
->>>
->>> diff --git a/drivers/clk/meson/meson-eeclk.c b/drivers/clk/meson/meson-eeclk.c
->>> index 6ba2094be257..81fd2abcd173 100644
->>> --- a/drivers/clk/meson/meson-eeclk.c
->>> +++ b/drivers/clk/meson/meson-eeclk.c
->>> @@ -61,6 +61,12 @@ int meson_eeclkc_probe(struct platform_device *pdev)
->>>  		}
->>>  	}
->>>  
->>> +	if (data->setup) {
->>> +		ret = data->setup(pdev);
->>> +		if (ret)
->>> +			return ret;
->>> +	}
->>> +
->>>  	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
->>>  					   data->hw_onecell_data);
->>>  }
->>> diff --git a/drivers/clk/meson/meson-eeclk.h b/drivers/clk/meson/meson-eeclk.h
->>> index 9ab5d6fa7ccb..7fdf424f71a6 100644
->>> --- a/drivers/clk/meson/meson-eeclk.h
->>> +++ b/drivers/clk/meson/meson-eeclk.h
->>> @@ -20,6 +20,7 @@ struct meson_eeclkc_data {
->>>  	const struct reg_sequence	*init_regs;
->>>  	unsigned int			init_count;
->>>  	struct clk_hw_onecell_data	*hw_onecell_data;
->>> +	int				(*setup)(struct platform_device *pdev);
->>>  };
->>>  
->>>  int meson_eeclkc_probe(struct platform_device *pdev);
->>> -- 
->>> 2.21.0
 
 _______________________________________________
 linux-amlogic mailing list
