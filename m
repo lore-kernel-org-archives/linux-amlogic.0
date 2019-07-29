@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E8C02C433FF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 13:04:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 40EEDC7618B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 13:05:36 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BDFD6206DD
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 13:04:36 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 10285206DD
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 13:05:36 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AEQlN3ca";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="LnS5pu/b"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BDFD6206DD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="p1NIHBZo";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="RcPimZ4s"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 10285206DD
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,61 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Tnfmalhr8D9vtnGV920w1C1YpsffVc90arxj0OZoOzg=; b=AEQlN3ca+juKeN
-	sL/3msVdp6Gk28kHvxQn+ZOXQQ9iCzLPK8MykgfGX5j9zkQNkxKDGh0epIJo6C38K6BQLImvlKoJy
-	W1MNSnwNPjmeqsdUfCRRugGT6fZhnEw9borC6KS6YuZkRm0X0SfouFGJLsH15WTiEIPPRdPtpuFQa
-	fkhhfsjGb0lRcxfY2Qhm1bAXsIhWh8XcpNMH7NLBFOYLclmC8bfptcotIHU6dG3/EgKUTVNZavtsV
-	HSk8ac20eCjNnM8kbgHN++PKlzp5r24/mTPPOLRNUMyhuoujbQQ97nok2Y+iCArq7/wmqKvFwBrqq
-	AT2JLwjeNbRTyDssYL5w==;
+	List-Owner; bh=9Ptw6hDNAShEhGXyIHg729jDYz5XoLYo0Hwcw4OkjZY=; b=p1NIHBZonxw9K0
+	4AOlB8X/7xpg9fklJchOgMLYcMCQhpNMH29/KGWmcnFPc/kwetyy1RallsQ1+3IhaEs01q+7aVw0S
+	jx0xUI7BnOAxyWSthiWnkMu090qFWa+/CNOzVwIFoeXDYA4X3yptpe6X9BD+kk2ny8zUbZMovyeLb
+	6KpudmqlKGZk91M6ZF+67PTWoedQ/P0JBC8vY2WoHXF6WbdQUQ10OHpcTpkN2wm7kqNnvGWF+XKQa
+	0OscoaX35Kc8oRJHzAxonvWN92m3S1I33FZXGOmyLsIOI1yDBRck+5jrBEjyXyGLqyQO+J1Wyo8kY
+	qL1jBh//fFOmdwhRAJtQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hs5KL-0000ZK-1f; Mon, 29 Jul 2019 13:04:33 +0000
+	id 1hs5LG-0002CY-LM; Mon, 29 Jul 2019 13:05:30 +0000
 Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hs5KH-0000Yd-V2
- for linux-amlogic@lists.infradead.org; Mon, 29 Jul 2019 13:04:31 +0000
-Received: by mail-wm1-x343.google.com with SMTP id s15so32050716wmj.3
- for <linux-amlogic@lists.infradead.org>; Mon, 29 Jul 2019 06:04:29 -0700 (PDT)
+ id 1hs5L8-00023W-Hw
+ for linux-amlogic@lists.infradead.org; Mon, 29 Jul 2019 13:05:23 +0000
+Received: by mail-wm1-x343.google.com with SMTP id l2so53386768wmg.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 29 Jul 2019 06:05:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=pOCkuIpr6BhQzQiluCHcFgCcQrubHBjUxnpP1eOGXt0=;
- b=LnS5pu/bDE06Du84FfKCMcv/5kK64zGcOHTep/9Q9lhq0ZZz5EgtkoH9WrR2YSUEAp
- JECNHLYzwmK5bWzpEUcxlgSxpek0dCPmVvePoEdovskH1NX8t/GhWZ2mgQoLGZhhypvW
- n9l7ken9o9hqv2dCrrH8ssIycPc5qZA7Le8SSroDBjaIdGr48RHycLzcIG0dMmAwjCN7
- T8rl+sARGfPwrlvCQY0CdYu5L/WBtvxJgfpnGGPjTdbsiLAduImtL8Ue0k0uaGtj9atJ
- csRdQNt/X3KPDp2YTFQEZS+lk9QrvAHian6lFWyVHhPZr8M1m1r3GeNnncAHwWBRCoGD
- Hp7A==
+ bh=j0+gH+XJcAx4/WK5B8ajaIVZr5svz0xnQ0NGMIOg6Qo=;
+ b=RcPimZ4sI4L/Wn5tThBMNzOIzeZBVjf8NG17hCoBkhFE5/UmfiFzRYjGQwf+wDTKvb
+ SzUJVxl6FH/ohe9RWMiwHHJYnRJCYnImHQ0MH0npus/vhH9Oxs/uAms6Scjx4mGtJRcm
+ hWV1mL5ByGMWW++CB2bbRH+vCJuwPVz8JtsjIghpXJaAMYE4EmzGJjlBa8pX0wap0q0B
+ Mbx2e+KwKZ3dFhF8T0vFcW5a+QtuTlFxZ86nzaaqzaiWFGL+Cf2gg/5su1nlmKpC/vpw
+ 1puPcrUS1H6O0xZKbOBlnKtf0td0xo9YfNF1kURFQg/81j+Rxz1Xsu036JCWCc7+Kunb
+ N7BQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=pOCkuIpr6BhQzQiluCHcFgCcQrubHBjUxnpP1eOGXt0=;
- b=Yg0zuJ7OxxUn/ByedgEhZUBKvtC9UTiYNhPvVtk/OnE+lV1D4Z3Ew8tpX3crvuHwwr
- +wIpvi4Nju20Z/5m7AjoDv/EMrlWJTSZ/FiD/0OWOFnopznTJTLelI/JySLWWckcImcs
- DBjH8LQ05NXwmR7woHMeG5NntglzCoGMeuO5O0x+m417Ar7x6LwA67YoC5I+iLG9wrDb
- +eS6eaLd4+iXBWUJeveg5JnWQD32p6Sgr7mzS3IBWimo0+mtnGsGPrHMboqpU8Ov8y9M
- ViYkYKc9QwfO7Ry+mtILcIpqS4pHPKHMjn6BSHf7k8zBN89ql+ZgOUi5Xr+HvsLvg/XA
- jiYQ==
-X-Gm-Message-State: APjAAAWQlS1L7fjH/7cw1asrQ+GbsjjYlUgb8aGU4Er90dYzvsCwWDgw
- 9KBYa5rPeAM1JpTYtQP31Q96Wg==
-X-Google-Smtp-Source: APXvYqzIPsR5qt9mUsWCf7G9w4lv3dLBs/+bqFrXqun+n/VNAUdR0zQALE5MPuni59O4oOKowCVYkA==
-X-Received: by 2002:a05:600c:20d:: with SMTP id
- 13mr100133113wmi.141.1564405468573; 
- Mon, 29 Jul 2019 06:04:28 -0700 (PDT)
+ bh=j0+gH+XJcAx4/WK5B8ajaIVZr5svz0xnQ0NGMIOg6Qo=;
+ b=fIlC3f+UHLBTU4w96AzGhvlN1Yr/IeDEesKtdtHGcvQnGxtGP47jAdRdAdzVIDpP/Y
+ aMjrX1lqt0lt4v6JJixEqHAPCBbL3zuOJ0QDPcyWvbxu0Iz1rseUT+6iRmdEVo+2svG1
+ IzcBIZ6WPAY8S2HtTT30QMB0/jshFHQEn57FqVRLn3x2QieqUZtHkGRQzrPftNjlDvY1
+ o2Ya8DV9Yy9MK1T33wRnIZhvE98zxMzZMUI56PzFav8WOcLMI5sIgUFaOeKTJODLzExZ
+ yAg/qVkqczgwdTfrfq+JXjEQ62GY+1qk8C4MClHjomFoktkR229CynGS6pRrYZMXootC
+ 2pJw==
+X-Gm-Message-State: APjAAAUn3y3IkpzexPckJTf0V0JqwZEyXj7jbTEB/CJg7809m1eM9iDw
+ ieB/VX51Rk1jevej/rSauZ+O7o4iRGg=
+X-Google-Smtp-Source: APXvYqyZ9wIaOg6v1AlkQUYxmkjoplizWqY8dZvTi1LbYLZ6E/hW+bE5wfIeWy9FYRPa/aFf6WLHOQ==
+X-Received: by 2002:a1c:c14b:: with SMTP id r72mr84021665wmf.166.1564405521127; 
+ Mon, 29 Jul 2019 06:05:21 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id s2sm49282668wmj.33.2019.07.29.06.04.27
+ by smtp.gmail.com with ESMTPSA id p12sm46641432wrt.13.2019.07.29.06.05.20
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 29 Jul 2019 06:04:28 -0700 (PDT)
-Subject: Re: [PATCH v2] nvmem: meson-mx-efuse: allow reading data smaller than
- word_size
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, srinivas.kandagatla@linaro.org
-References: <20190727193414.11371-1-martin.blumenstingl@googlemail.com>
+ Mon, 29 Jul 2019 06:05:20 -0700 (PDT)
+Subject: Re: [PATCH 2/3] arm64: dts: meson-gx: add video decoder entry
+To: Maxime Jourdan <mjourdan@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
+References: <20190726124639.7713-1-mjourdan@baylibre.com>
+ <20190726124639.7713-3-mjourdan@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -133,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <affe16d6-b289-34c6-ea32-beb855f72be9@baylibre.com>
-Date: Mon, 29 Jul 2019 15:04:27 +0200
+Message-ID: <0a384af2-9c81-f798-82c0-eae07ed5981c@baylibre.com>
+Date: Mon, 29 Jul 2019 15:05:20 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190727193414.11371-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20190726124639.7713-3-mjourdan@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190729_060429_997161_60F2815B 
-X-CRM114-Status: GOOD (  18.10  )
+X-CRM114-CacheID: sfid-20190729_060522_596791_FA15A642 
+X-CRM114-Status: GOOD (  14.80  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,45 +152,47 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 27/07/2019 21:34, Martin Blumenstingl wrote:
-> Some Amlogic boards store the Ethernet MAC address inside the eFuse. The
-> Ethernet MAC address uses 6 bytes. The existing logic in
-> meson_mx_efuse_read() would write beyond the end of the data buffer when
-> trying to read data with a size that is not aligned to word_size (4
-> bytes on Meson8, Meson8b and Meson8m2).
+On 26/07/2019 14:46, Maxime Jourdan wrote:
+> Add the base video decoder node compatible with the meson vdec driver,
+> for GX* chips.
 > 
-> Calculate the remaining data to copy inside meson_mx_efuse_read() so
-> reading 6 bytes doesn't write beyond the end of the data buffer.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
 > ---
-> Changes since v1:
-> - switch from min() to min_t() to get rid of a compiler warning
+>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 > 
-> 
->  drivers/nvmem/meson-mx-efuse.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/nvmem/meson-mx-efuse.c b/drivers/nvmem/meson-mx-efuse.c
-> index 2976aef87c82..e8fc0baa09e7 100644
-> --- a/drivers/nvmem/meson-mx-efuse.c
-> +++ b/drivers/nvmem/meson-mx-efuse.c
-> @@ -155,7 +155,8 @@ static int meson_mx_efuse_read(void *context, unsigned int offset,
->  		if (err)
->  			break;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> index 74d03fc706be..86e26ed551e0 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> @@ -437,6 +437,20 @@
+>  			};
+>  		};
 >  
-> -		memcpy(buf + i, &tmp, efuse->config.word_size);
-> +		memcpy(buf + i, &tmp,
-> +		       min_t(size_t, bytes - i, efuse->config.word_size));
->  	}
->  
->  	meson_mx_efuse_mask_bits(efuse, MESON_MX_EFUSE_CNTL1,
+> +		vdec: video-codec@c8820000 {
+> +			compatible = "amlogic,gx-vdec";
+> +			reg = <0x0 0xc8820000 0x0 0x10000>,
+> +			      <0x0 0xc110a580 0x0 0xe4>;
+> +			reg-names = "dos", "esparser";
+> +
+> +			interrupts = <GIC_SPI 44 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "vdec", "esparser";
+> +
+> +			amlogic,ao-sysctrl = <&sysctrl_AO>;
+> +			amlogic,canvas = <&canvas>;
+> +		};
+> +
+>  		periphs: periphs@c8834000 {
+>  			compatible = "simple-bus";
+>  			reg = <0x0 0xc8834000 0x0 0x2000>;
 > 
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
