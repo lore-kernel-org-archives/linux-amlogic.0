@@ -3,62 +3,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D93CDC7618B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 17:57:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 54C00C433FF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 18:40:55 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B1A5E206BA
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 17:57:46 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2C68E20C01
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 18:40:55 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UdHHSqcs"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B1A5E206BA
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=davemloft.net
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ORoUul8E";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="CqHs7d9n"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2C68E20C01
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Mime-Version:References:In-Reply-To:
-	From:Subject:To:Message-Id:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gazz/NcRqlDUw5uE9/o2y3iVjYSLUgkhqahq9+B987M=; b=UdHHSqcsFoW4mV
-	GFPsw64Rv0MEWro2Wni2gTu1yXOwB4bI6IsEiZ5RjDPgif1tbVI6Zw0XiUF5Oba6BL2B51W7a1tGY
-	4b4WnO5gnZUzrDOa/+2AakzA/6p6KE5YeDpJxvTz8Psro9w6HC/vquOXmVUxORvbpcKS7Lh1TuYx/
-	4I14xKiMlVn3IxoYJ7NasIqvAqVJk3EBJ3gESsF6KbxgnK/TIW158npY2kj+AoCj1tL0qBXgZvNWS
-	GUxFCDQW65JvpVksBEKUVseocCZnpGa38C+HsJD/sWT6TBkznAaLUQT6b+OQtCwnojYrLCYBh/P1Q
-	9ZzDVsXexXHpFdxNMlfQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=QyWGEUAdkXEztdRX0ae3UQMI2BB07n+oFDh1P990Edg=; b=ORoUul8Ef/nerY
+	va4G4FzulBwH+N4Inrur1hHuF/egcS1yWyf1re/7XLAb9UIkp6FxOvRWFiCnIJhAWBCSD9sjrZysL
+	n962aozRKxEVVQzV2OIDy/DSYP6hQrogeRDOuz3emINpmwO1wqUp1qXRdgfwEoujLvtiJier9Dchk
+	3F0HfCtd4c7dgr4RaMn2nTl+amaxJS5FfFcVAXvackdPaBU2ISOkzKSwHZZd8MZDrzXLBq/Gn2lci
+	zfZog0FwrtM+TD9OQ7gnnl2Rbnyc/jOgdatkIg2pfoBD+k8EoCMbOiFrx4UG5AonagxaGEMVh4+5X
+	rTVxMejJUaTvvOpK9xoA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hs9tz-0005tp-OI; Mon, 29 Jul 2019 17:57:39 +0000
-Received: from shards.monkeyblade.net ([2620:137:e000::1:9])
+	id 1hsAZl-0003vJ-D2; Mon, 29 Jul 2019 18:40:49 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hs9tw-0005rd-Ea; Mon, 29 Jul 2019 17:57:37 +0000
-Received: from localhost (unknown [IPv6:2601:601:9f80:35cd::d71])
- (using TLSv1 with cipher AES256-SHA (256/256 bits))
- (Client did not present a certificate)
- (Authenticated sender: davem-davemloft)
- by shards.monkeyblade.net (Postfix) with ESMTPSA id 6124B14015B10;
- Mon, 29 Jul 2019 10:57:32 -0700 (PDT)
-Date: Mon, 29 Jul 2019 10:57:31 -0700 (PDT)
-Message-Id: <20190729.105731.2008954478313187190.davem@davemloft.net>
-To: martin.blumenstingl@googlemail.com
-Subject: Re: [PATCH] net: stmmac: manage errors returned by
- of_get_mac_address()
-From: David Miller <davem@davemloft.net>
-In-Reply-To: <20190727192137.27881-1-martin.blumenstingl@googlemail.com>
-References: <20190727192137.27881-1-martin.blumenstingl@googlemail.com>
-X-Mailer: Mew version 6.8 on Emacs 26.1
-Mime-Version: 1.0
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12
- (shards.monkeyblade.net [149.20.54.216]);
- Mon, 29 Jul 2019 10:57:32 -0700 (PDT)
+ id 1hsAZP-0003fq-C0
+ for linux-amlogic@lists.infradead.org; Mon, 29 Jul 2019 18:40:29 +0000
+Received: by mail-wr1-x444.google.com with SMTP id g17so62952569wrr.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 29 Jul 2019 11:40:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=bkXWhG7MXe6STbKu1qqb3L1jlh1sGkN515kybH+rXAo=;
+ b=CqHs7d9nti1w2rKX27XPzF2MS6YxULAmpUuD2Y0dgR3P+vs40IZlW1yVmzTvCE86Rm
+ kxGKvKaFf1eJpxPRI9W9BuTHuTsfffO3zUjBznhceuVfgFf/bg11+vhwVYbumzLTCymr
+ R4Ilw4euEfRoZgScQ9SbW+CiYPK/Fv/rq3KyHVJPZgMGNYZZJsOgZA70YJ8BT7eLg1lU
+ AsXi3BND5nEDTC47udYJRv0/oWr7wZ3od4OsDJnplw4M4Ue6zoS+bm7e1VlMhaHurRcA
+ UJQzXRiNPK/YDvw2HpIu5YDpktc8irJV7TkpW7xfPKSdt+lazPUR7svNyFSHeniUe8Y/
+ MAOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=bkXWhG7MXe6STbKu1qqb3L1jlh1sGkN515kybH+rXAo=;
+ b=Zl5UIPHJeAPNcba0X8HY7WVLe7HREZEU12DYykcDabWmCJ4j/lLQPIUzo3kZLlwvK1
+ 0mzgnq4Rq2wFAa9RyizGkBHQF0hTxq2ASzEBju0g3m20g80OOAj9caDZu4g0s71hJToo
+ PJGLl5wdmsJshRA65Jotxqnxl+u5j6NW4vrnOD6z+QOp+/bxKaiAVEESH0uLCO8O7oII
+ W3I9seMaxUpB3+7R4tCdLT0kJt90+tOG0HAd6EJEqbMmMbKJqOfYK6LzgEOX0iDg+NY2
+ /JhG5zxq4Jps2z8lOPRz4naUrab/hdKwL8lcprdVqZ5ove1Y5iXQmg7+83DQNPnPOIcd
+ 5vNQ==
+X-Gm-Message-State: APjAAAXFbHyCovjUEo9trDAp5oCBNQ5MtSsX03T9nBKbqBeXwYmpQ0x3
+ eGP+ZPPoWZVvyPhXglYse1aeMA==
+X-Google-Smtp-Source: APXvYqxSXQkF9cDxt8gMbHRF3vNlc51YWMrI43me2BpQRaRCIl9YH6NCkwxRiT3W61EJWzFoljIGRw==
+X-Received: by 2002:a5d:50c2:: with SMTP id f2mr27809694wrt.106.1564425625466; 
+ Mon, 29 Jul 2019 11:40:25 -0700 (PDT)
+Received: from localhost.localdomain ([2a00:23c4:f78c:d00:1570:f96d:dab8:76ae])
+ by smtp.gmail.com with ESMTPSA id g8sm60735790wmf.17.2019.07.29.11.40.24
+ (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+ Mon, 29 Jul 2019 11:40:24 -0700 (PDT)
+From: Carlo Caione <ccaione@baylibre.com>
+To: srinivas.kandagatla@linaro.org, khilman@baylibre.com,
+ narmstrong@baylibre.com, robh+dt@kernel.org, tglx@linutronix.de,
+ jbrunet@baylibre.com, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH 0/5] Rework secure-monitor driver
+Date: Mon, 29 Jul 2019 19:39:36 +0100
+Message-Id: <20190729183941.18164-1-ccaione@baylibre.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190729_105736_487889_6875A216 
-X-CRM114-Status: UNSURE (   9.79  )
+X-CRM114-CacheID: sfid-20190729_114027_485535_1B813529 
+X-CRM114-Status: UNSURE (   7.74  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -71,34 +97,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: alexandre.torgue@st.com, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, joabreu@synopsys.com,
- linux-amlogic@lists.infradead.org, peppe.cavallaro@st.com,
- linux-arm-kernel@lists.infradead.org
+Cc: Carlo Caione <ccaione@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 27 Jul 2019 21:21:37 +0200
+The secure-monitor driver is currently in really bad shape, not my 
+proudest piece of code (thanks Jerome for pointing that out ;). I tried 
+to rework it a bit to make it a bit more tolerable.
 
-> Commit d01f449c008a ("of_net: add NVMEM support to of_get_mac_address")
-> added support for reading the MAC address from an nvmem-cell. This
-> required changing the logic to return an error pointer upon failure.
-> 
-> If stmmac is loaded before the nvmem provider driver then
-> of_get_mac_address() return an error pointer with -EPROBE_DEFER.
-> 
-> Propagate this error so the stmmac driver will be probed again after the
-> nvmem provider driver is loaded.
-> Default to a random generated MAC address in case of any other error,
-> instead of using the error pointer as MAC address.
-> 
-> Fixes: d01f449c008a ("of_net: add NVMEM support to of_get_mac_address")
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+I needed to change a bit the APIs and consequently adapt the only user 
+we have, that is the nvmem/efuses driver. To not break bisectability I 
+added one single commit to change both the drivers.
 
-Applied, thanks.
+The remaining commits are cosmetic and DTS/docs fixes.
+
+Carlo Caione (5):
+  nvmem: meson-efuse: Move data to a container struct
+  firmware: meson_sm: Mark chip struct as static const
+  nvmem: meson-efuse: bindings: Add secure-monitor phandle
+  firmware: meson_sm: Rework driver as a proper platform driver
+  arm64: dts: meson: Link nvmem and secure-monitor nodes
+
+ .../bindings/nvmem/amlogic-efuse.txt          |  6 ++
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |  1 +
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi   |  1 +
+ drivers/firmware/meson/meson_sm.c             | 96 +++++++++++++------
+ drivers/nvmem/meson-efuse.c                   | 70 +++++++++-----
+ include/linux/firmware/meson/meson_sm.h       | 15 +--
+ 6 files changed, 128 insertions(+), 61 deletions(-)
+
+-- 
+2.20.1
+
 
 _______________________________________________
 linux-amlogic mailing list
