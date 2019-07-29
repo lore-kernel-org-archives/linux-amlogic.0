@@ -1,94 +1,148 @@
-Return-Path: <SRS0=7Z6j=VZ=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=fUxg=V2=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EC64FC7618F
-	for <linux-amlogic@archiver.kernel.org>; Sun, 28 Jul 2019 19:42:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 35C5FC7618B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 07:12:47 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C5BE720578
-	for <linux-amlogic@archiver.kernel.org>; Sun, 28 Jul 2019 19:42:24 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 044A320679
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 07:12:47 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ut7hvLt3";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="kBrMw64w"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C5BE720578
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="SwXyTJ62";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="tlG/+oUJ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 044A320679
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Cc:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=kL543FkMz+S3vjqffkHDXvNsi37ErSSmW4CBGMPtMUI=; b=ut7hvLt3k3D1Vc
-	SYTEHNn/ZPd/6NUxTjuaJZ3OsupaHArcLbhitgnv6E1a23sb+5bQYRH/enunq0zb9GR0QzG5zwaKN
-	5musXkCcb0ODW0Lf0+d5nICStn9GAlhdIRI1sZFpOSLAr2DxsDuqC73i0yUvhckx2qAbMblq9bAeA
-	iIcvcR2gqE2W80CfYZqguVDvyLVkrHGU/ckZUeKxEohX9Ue4rLxZr5hRrTxZEYDRAWcyMMbmvWVmx
-	exT0pTZHZM9Y8ZhozsQ5YhqBNT3SKKlF5nauFdmycCDadSSQw9vhZinfbN9b/0vJtrKHcX/Jd3QQS
-	6TSFmFxTLJmzGN7OEE3Q==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=WU0Ksy4rtS0RNjuDbas53evYVRgYX7DvN+sRzsnjgqA=; b=SwXyTJ62S6/JGD
+	IBN5+DzXufmfop2B9Oz9Y5pepZi+7hIzZ6+4PSqS+DNnNCyBbEEE9nTyHXo8GWDtukBrgUzkzBe2p
+	h66U80Oe42uMVCHl01917EYyOj7N4Z0tRYEdNgHAt8cj+g0ygayIsf7Pn9EXD9QI7994btVkxJcJi
+	bPdk6/8akN+m5zzi0aRBU/ZiO34E4q70Zmo1epSB58URbyCwjL4EzosdhKE+68swyLzRN4hd0s0Xu
+	KsDLeSj0aVShZzVME3KKOSUf1vO3wDjri5Xup45xXLWhgFebMiMW0XFujB0lRLZhH6b8BrzyDgOrb
+	uFw0xTq2GRtJ1Aa79rPQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hrp3j-00079y-Q7; Sun, 28 Jul 2019 19:42:19 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1hrzpk-00040z-JF; Mon, 29 Jul 2019 07:12:36 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hrp3g-00079A-IH
- for linux-amlogic@lists.infradead.org; Sun, 28 Jul 2019 19:42:18 +0000
-Received: by mail-wm1-x344.google.com with SMTP id p74so51948230wme.4
- for <linux-amlogic@lists.infradead.org>; Sun, 28 Jul 2019 12:42:15 -0700 (PDT)
+ id 1hrzox-0003mB-7A
+ for linux-amlogic@lists.infradead.org; Mon, 29 Jul 2019 07:11:49 +0000
+Received: by mail-wm1-x343.google.com with SMTP id h19so42300332wme.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 29 Jul 2019 00:11:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=date:from:to:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=cZDsP6Vjh3qAchq5bA/Y9mmlq5ggucZoGBTvUsBqZwY=;
- b=kBrMw64w8gKf1todfhDdsIKKZmXKC6CCIhiFXHRQnj8umEefttWPZlBNP8Zo5WYV+s
- JU3IcM1QagwKNUKJIWn7RjXL/rZBHj2Fd3AjEW67vicePxs8sbnKzjgFOJYfkU7oNEdR
- cjsuNjxPfeHfTV/FknaxlGZZEPWo/ivyeuoCJ12E8U0Durrq7T5LKDaIHT1Xhiz8jiKc
- s6LeT1DX7/gLob/k/Dxio+0kUTvxqCv5RsdZQZtFQz51kMqT5tFNXJS9ZvSE7liLDAfZ
- rCZ1568QBESuMV1b/QktAYD3Jv6miQYVwvhH30OaP86iiW8oGr7Dp4W+QMIMRLLV7KGm
- mKWA==
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=GFweOTKiHKWnxQGw26mWByxeIDw89PbEUkHje7I1HUc=;
+ b=tlG/+oUJAAvJV/qXcBUw+mhiHIBb3TIyhd5Cx0Cr684FG45NYo+hCDUx/Qo4LiLr2d
+ eAR3kmnmC+WXZsK90uFwrZkEAVUbukiWF98EJDeF9LwcNB7TQto6QwlamJDH2yg7YrqQ
+ 7InVI1KFGxoJ+UPq1E3F3yiJyXH2fEiTE/BOFV6NoR/jklqiLxqebcbxhKSMVaZRtEuZ
+ VRDWiJ8Qw5sLw3rCKVWL3l7BP4CDSBcWuXnJw2f4rmryKOCdivKV/l5Nxkuv2N7OqfVN
+ ARfgIZwWA5BmnYDG1g1+i0nlaTDTdYiTzVGuua8AI5tQLiA0BHt2WlrL7vRtf2NTIpxT
+ ZbSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=cZDsP6Vjh3qAchq5bA/Y9mmlq5ggucZoGBTvUsBqZwY=;
- b=OoX0+3vMmP7dwTJfBBdMCQxn7XT9flf3A63LYaiONV3cJZqK6Wphsi0Vn77jXDrXbO
- OH8ty3rcelLV86T/knykL9f86PLFEMCzJ/YpULh0uE1yM1AKGUgt4lHHvP+Hb8mP0AeV
- Gn4P9CeC/xon0acCHtG0pNSRg86brchzpVZk9R6idKe96/fGg4DOlrj/ZuTrr7NRaAKF
- EbBoIJy89/WemD85HlHjYjcgJiqtVmRelmGZBtypEZKgwB8Ny+clgwECKLiKiIUcRE0N
- DGtBT5CwyAmy4meG8hxA0s4jjwNOWkuDNpTb0eYqMuFNfqLCruHYXZWV+17jj8Yuttem
- aCmw==
-X-Gm-Message-State: APjAAAVAovoEO4jZdqEY0HIckeQrIm3ZM8pvRER9uaQ3umLrPiPIcmGK
- P5Ll+0I/Mp9IiY0fZmuVSuCa7w==
-X-Google-Smtp-Source: APXvYqzIGsx/VwsniuHVTl0QO3Oov9lrT/Mj3/pwgJwPSU5voW/QBxHEjrOMbARMEqeEAiO9dnkabg==
-X-Received: by 2002:a7b:c081:: with SMTP id r1mr45595665wmh.76.1564342934763; 
- Sun, 28 Jul 2019 12:42:14 -0700 (PDT)
-Received: from Red ([2a01:cb1d:147:7200:2e56:dcff:fed2:c6d6])
- by smtp.googlemail.com with ESMTPSA id o24sm65369199wmh.2.2019.07.28.12.42.13
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=GFweOTKiHKWnxQGw26mWByxeIDw89PbEUkHje7I1HUc=;
+ b=ZogjYxHI4O4wwNAVhgD6w/6sHaHVjcZYC2YZoUSYZwlPLZ6c3baDCU/WWWV3l7LodF
+ NH0uoLFFsrfFmDCUbAHkyeCRdqqzTxOnd9vDcdG6G13IUHKgiuC4bsFzK0g8XveGzIsI
+ Ye0AtIRnALjSkgzR9cuEwSh88NoQfkXiWxXJVh0P9r3yUDioFKaJ2V3++5ME9q7Tgkfu
+ zsu961CNosa+dl3VRLCpPDLRnZqpP4UxyeVFtDhCgUWnos3AwfMm4neKxlrC6wba98rI
+ f+DPc+X7wVjz9MedmEf9HsZxwD9Rsa8eFjPLPc0hPvm7/mwuIY5BqarjQAw8V3f32AxT
+ f9CA==
+X-Gm-Message-State: APjAAAW9yE+r9vNqpeY70fj49MlBQ9lsbdbcA8QmVBG3shoZDQvuFE9y
+ mnaIADEb00NlB8EB32pZ78y+OA==
+X-Google-Smtp-Source: APXvYqy9He4h9i13tdNRBIbaaHCUAwcq/SAYNDqR+4h8BzfL9k9YzgIRX0x9k1vEjU/S98cdQtfHmg==
+X-Received: by 2002:a1c:a942:: with SMTP id s63mr96493881wme.76.1564384304407; 
+ Mon, 29 Jul 2019 00:11:44 -0700 (PDT)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id k124sm100557445wmk.47.2019.07.29.00.11.43
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sun, 28 Jul 2019 12:42:14 -0700 (PDT)
-Date: Sun, 28 Jul 2019 21:42:11 +0200
-From: LABBE Corentin <clabbe@baylibre.com>
-To: davem@davemloft.net, herbert@gondor.apana.org.au, khilman@baylibre.com,
- mark.rutland@arm.com, robh+dt@kernel.org,
- devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
- linux-kernel@vger.kernel.org, baylibre-upstreaming@groups.io
-Subject: Re: [PATCH 0/4] crypto: add amlogic crypto offloader driver
-Message-ID: <20190728194211.GA29444@Red>
-References: <1564083776-20540-1-git-send-email-clabbe@baylibre.com>
- <20190728184803.GA14920@sol.localdomain>
+ Mon, 29 Jul 2019 00:11:43 -0700 (PDT)
+Subject: Re: [PATCH 1/2] ARM: dts: meson8b: add the nvmem cell with the
+ board's MAC address
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, khilman@baylibre.com
+References: <20190727194647.15355-1-martin.blumenstingl@googlemail.com>
+ <20190727194647.15355-2-martin.blumenstingl@googlemail.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <9814939f-8580-c8f6-5c2f-7e64db60e6ae@baylibre.com>
+Date: Mon, 29 Jul 2019 09:11:43 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20190728184803.GA14920@sol.localdomain>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190727194647.15355-2-martin.blumenstingl@googlemail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190728_124216_670036_0CC16869 
-X-CRM114-Status: GOOD (  11.02  )
+X-CRM114-CacheID: sfid-20190729_001147_342269_E32055B9 
+X-CRM114-Status: GOOD (  18.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,33 +154,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: linux.amoon@gmail.com, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, ottuzzi@gmail.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, Jul 28, 2019 at 11:48:03AM -0700, Eric Biggers wrote:
-> Hi Corentin,
+Hi Martin,
+
+On 27/07/2019 21:46, Martin Blumenstingl wrote:
+> Amlogic's BSP kernel defines that all boards with a MAC address stored
+> in the eFuse have it at offset 0x1b4. It is up to the board to
+> decide whether to use this MAC address or not:
+> - Odroid-C1 uses the MAC address from the eFuse
+> - EC-100 seems to read the MAC address from eMMC
 > 
-> On Thu, Jul 25, 2019 at 07:42:52PM +0000, Corentin Labbe wrote:
-> > Hello
-> > 
-> > This serie adds support for the crypto offloader present on amlogic GXL
-> > SoCs.
-> > 
-> > Tested on meson-gxl-s905x-khadas-vim and meson-gxl-s905x-libretech-cc
-> > 
-> > Regards
-> > 
+> Add the nvmem cell which describes the Ethernet MAC address. Don't
+> assign it to the Ethernet controller, because depending on the board the
+> actual MAC address may be read from somewhere else.
 > 
-> Does this new driver pass all the crypto self-tests?
-> Including with CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y?
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  arch/arm/boot/dts/meson8b.dtsi | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
+> index 30fca9bb4bbe..c7de58b71d08 100644
+> --- a/arch/arm/boot/dts/meson8b.dtsi
+> +++ b/arch/arm/boot/dts/meson8b.dtsi
+> @@ -402,6 +402,10 @@
+>  	clocks = <&clkc CLKID_EFUSE>;
+>  	clock-names = "core";
+>  
+> +	ethernet_mac_address: mac@1b4 {
+> +		reg = <0x1b4 0x6>;
+> +	};
+
+Is this a fixed position for all boards ? if not, I'll suggest moving
+it to the odroid-c1 dt until you have more users.
+
+Neil
+
+> +
+>  	temperature_calib: calib@1f4 {
+>  		/* only the upper two bytes are relevant */
+>  		reg = <0x1f4 0x4>;
 > 
 
-Yes it pass all extra self-tests.
-I forgot to write it in the cover letter.
-
-Regards
 
 _______________________________________________
 linux-amlogic mailing list
