@@ -2,147 +2,89 @@ Return-Path: <SRS0=fUxg=V2=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 35C5FC7618B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 07:12:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 99717C433FF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 07:42:52 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 044A320679
-	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 07:12:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6B9FC20657
+	for <linux-amlogic@archiver.kernel.org>; Mon, 29 Jul 2019 07:42:52 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="SwXyTJ62";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="tlG/+oUJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 044A320679
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gKgdxicS";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="02iwdyH2"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6B9FC20657
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WU0Ksy4rtS0RNjuDbas53evYVRgYX7DvN+sRzsnjgqA=; b=SwXyTJ62S6/JGD
-	IBN5+DzXufmfop2B9Oz9Y5pepZi+7hIzZ6+4PSqS+DNnNCyBbEEE9nTyHXo8GWDtukBrgUzkzBe2p
-	h66U80Oe42uMVCHl01917EYyOj7N4Z0tRYEdNgHAt8cj+g0ygayIsf7Pn9EXD9QI7994btVkxJcJi
-	bPdk6/8akN+m5zzi0aRBU/ZiO34E4q70Zmo1epSB58URbyCwjL4EzosdhKE+68swyLzRN4hd0s0Xu
-	KsDLeSj0aVShZzVME3KKOSUf1vO3wDjri5Xup45xXLWhgFebMiMW0XFujB0lRLZhH6b8BrzyDgOrb
-	uFw0xTq2GRtJ1Aa79rPQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Z4Sw2m465gwTexH80MNlNxco23pTNL1Cr87DAzJJJKo=; b=gKgdxicSxoIbhA
+	fx+RI/+9G9We9ZIjcwHakfle4sfipFCRLiCwRv4o2i40zkmmdgC+3ETe1/YN69skACSRCqyYxSnBg
+	1YIn2f4EUbblE0+5QSm4wlCiNsxN0EclmFDk1WO/qZFtPyFnITr6uVB3nGtKQu9l3h6Mv53pyjqk0
+	G6lFDnp5Mj+rP6CRIQ1uU0qeoI31Q2VRnVNqYdbsHTrEWk7dcEe3QLvRjJFrD5/vFcJbOThnxrW8w
+	t1cPUPIbKuMX5FC6xO+tjhlKNc2RjFXxu9CvnvxnxfcqcTov5vDii8zubrSV3aAZgOlB47i3iebFU
+	qmZK3QVI6pjLWAZe1fWg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hrzpk-00040z-JF; Mon, 29 Jul 2019 07:12:36 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1hs0Iv-0007qD-F4; Mon, 29 Jul 2019 07:42:45 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hrzox-0003mB-7A
- for linux-amlogic@lists.infradead.org; Mon, 29 Jul 2019 07:11:49 +0000
-Received: by mail-wm1-x343.google.com with SMTP id h19so42300332wme.0
- for <linux-amlogic@lists.infradead.org>; Mon, 29 Jul 2019 00:11:45 -0700 (PDT)
+ id 1hs0Ir-0007oh-NJ
+ for linux-amlogic@lists.infradead.org; Mon, 29 Jul 2019 07:42:43 +0000
+Received: by mail-wr1-x444.google.com with SMTP id c2so57432700wrm.8
+ for <linux-amlogic@lists.infradead.org>; Mon, 29 Jul 2019 00:42:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=GFweOTKiHKWnxQGw26mWByxeIDw89PbEUkHje7I1HUc=;
- b=tlG/+oUJAAvJV/qXcBUw+mhiHIBb3TIyhd5Cx0Cr684FG45NYo+hCDUx/Qo4LiLr2d
- eAR3kmnmC+WXZsK90uFwrZkEAVUbukiWF98EJDeF9LwcNB7TQto6QwlamJDH2yg7YrqQ
- 7InVI1KFGxoJ+UPq1E3F3yiJyXH2fEiTE/BOFV6NoR/jklqiLxqebcbxhKSMVaZRtEuZ
- VRDWiJ8Qw5sLw3rCKVWL3l7BP4CDSBcWuXnJw2f4rmryKOCdivKV/l5Nxkuv2N7OqfVN
- ARfgIZwWA5BmnYDG1g1+i0nlaTDTdYiTzVGuua8AI5tQLiA0BHt2WlrL7vRtf2NTIpxT
- ZbSw==
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=qcDHQ1YIyua0Lz0XKlvtzGchQOF/q8YhLFhQTQqfSnA=;
+ b=02iwdyH22+odFMvWr/fUSOWV/YsZSHqKDJDdL3e/jHLksFamrMNdydoLixPsostjig
+ yYzQEFDjoaLkJAPyPt/dX5djgi4pTpVW7k5O+EuK9vRV4b+kvVD3KdHyP+fHdAXOLJZw
+ fs4K6etimfyGJgHmMkzEWYXpz0YXtnA5d3Ujv3pcGXoUovVU2fuxrFw2Zx9N+4HQJ2Xh
+ 6ZfZtL98PhcYOUCA0uf9O/gU8Ho3Ar5Xd5LTTZyfiGybMwcM7ykT0tlFaILBVDsfNIyn
+ qOJAT7FJydgp4as6OIcwX3bPsXYJAYc4F7EkgbuacqIjLhJho48k5LzbAupoJo3tSI69
+ B2mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=GFweOTKiHKWnxQGw26mWByxeIDw89PbEUkHje7I1HUc=;
- b=ZogjYxHI4O4wwNAVhgD6w/6sHaHVjcZYC2YZoUSYZwlPLZ6c3baDCU/WWWV3l7LodF
- NH0uoLFFsrfFmDCUbAHkyeCRdqqzTxOnd9vDcdG6G13IUHKgiuC4bsFzK0g8XveGzIsI
- Ye0AtIRnALjSkgzR9cuEwSh88NoQfkXiWxXJVh0P9r3yUDioFKaJ2V3++5ME9q7Tgkfu
- zsu961CNosa+dl3VRLCpPDLRnZqpP4UxyeVFtDhCgUWnos3AwfMm4neKxlrC6wba98rI
- f+DPc+X7wVjz9MedmEf9HsZxwD9Rsa8eFjPLPc0hPvm7/mwuIY5BqarjQAw8V3f32AxT
- f9CA==
-X-Gm-Message-State: APjAAAW9yE+r9vNqpeY70fj49MlBQ9lsbdbcA8QmVBG3shoZDQvuFE9y
- mnaIADEb00NlB8EB32pZ78y+OA==
-X-Google-Smtp-Source: APXvYqy9He4h9i13tdNRBIbaaHCUAwcq/SAYNDqR+4h8BzfL9k9YzgIRX0x9k1vEjU/S98cdQtfHmg==
-X-Received: by 2002:a1c:a942:: with SMTP id s63mr96493881wme.76.1564384304407; 
- Mon, 29 Jul 2019 00:11:44 -0700 (PDT)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id k124sm100557445wmk.47.2019.07.29.00.11.43
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 29 Jul 2019 00:11:43 -0700 (PDT)
-Subject: Re: [PATCH 1/2] ARM: dts: meson8b: add the nvmem cell with the
- board's MAC address
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, khilman@baylibre.com
-References: <20190727194647.15355-1-martin.blumenstingl@googlemail.com>
- <20190727194647.15355-2-martin.blumenstingl@googlemail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <9814939f-8580-c8f6-5c2f-7e64db60e6ae@baylibre.com>
-Date: Mon, 29 Jul 2019 09:11:43 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=qcDHQ1YIyua0Lz0XKlvtzGchQOF/q8YhLFhQTQqfSnA=;
+ b=duFp/5rCnNSkenMT99EnZEUPYYT+/5fDYTOgsI7PnhQT5DPlcubU2BRoe4m+fO87Q8
+ yOCTrJhAMOTw4aOo31hzGsZRrsNIIHfMvJgIs3fFQGsp/rX2FkAKrIDzJG5r1zi8vEnn
+ 4NoIqSRajL1G6BmdIG2a9VOxYfPI//vvRjqhkBHsMcBj1CkvBOZayXemiHfZOvc5zyVk
+ pxvXVOaarpYHJQAc1xq0rJkNtWgJPJ/ESPT635cAUvlaqowwUzRZLKsUgyyr9s6f6Zvm
+ NXbM/M1DKsSx+hdnYdNUBlUTiFvbdtk85QkHYQBwO4dqBllBSAhphie10g3PWjCqhfkA
+ B4eg==
+X-Gm-Message-State: APjAAAWDb530MPT0Hh0o67Hk8Dw63BGhpTOyIOfKZv2Rj63ziWReAeBn
+ +bj004Tbm+aKixRCA9cx8pJdaw==
+X-Google-Smtp-Source: APXvYqyu0KuT71WZYrYu+y1RASylJuxEoqAUq39HAC9JSxF3uZuROG3LU/D595xuazk7xstMkJnTUA==
+X-Received: by 2002:adf:cd04:: with SMTP id w4mr69069194wrm.230.1564386159762; 
+ Mon, 29 Jul 2019 00:42:39 -0700 (PDT)
+Received: from localhost ([2a01:e34:eeb6:4690:ecfa:1144:aa53:4a82])
+ by smtp.gmail.com with ESMTPSA id m24sm37058830wmi.39.2019.07.29.00.42.38
+ (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+ Mon, 29 Jul 2019 00:42:39 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>, khilman@baylibre.com
+Subject: Re: [RFC/RFT v3 04/14] clk: meson: eeclk: add setup callback
+In-Reply-To: <55ce9b5e-de2f-9da3-8eec-13b5ead23e6c@baylibre.com>
+References: <20190701091258.3870-1-narmstrong@baylibre.com>
+ <20190701091258.3870-5-narmstrong@baylibre.com>
+ <1jh8836w49.fsf@starbuckisacylon.baylibre.com>
+ <55ce9b5e-de2f-9da3-8eec-13b5ead23e6c@baylibre.com>
+Date: Mon, 29 Jul 2019 09:42:37 +0200
+Message-ID: <1j1ry9s2vm.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20190727194647.15355-2-martin.blumenstingl@googlemail.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190729_001147_342269_E32055B9 
-X-CRM114-Status: GOOD (  18.31  )
+X-CRM114-CacheID: sfid-20190729_004241_761516_69F70ABC 
+X-CRM114-Status: GOOD (  15.57  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,54 +96,95 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux.amoon@gmail.com, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, ottuzzi@gmail.com
+Cc: martin.blumenstingl@googlemail.com, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
+On Fri 26 Jul 2019 at 16:50, Neil Armstrong <narmstrong@baylibre.com> wrote:
 
-On 27/07/2019 21:46, Martin Blumenstingl wrote:
-> Amlogic's BSP kernel defines that all boards with a MAC address stored
-> in the eFuse have it at offset 0x1b4. It is up to the board to
-> decide whether to use this MAC address or not:
-> - Odroid-C1 uses the MAC address from the eFuse
-> - EC-100 seems to read the MAC address from eMMC
-> 
-> Add the nvmem cell which describes the Ethernet MAC address. Don't
-> assign it to the Ethernet controller, because depending on the board the
-> actual MAC address may be read from somewhere else.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  arch/arm/boot/dts/meson8b.dtsi | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-> index 30fca9bb4bbe..c7de58b71d08 100644
-> --- a/arch/arm/boot/dts/meson8b.dtsi
-> +++ b/arch/arm/boot/dts/meson8b.dtsi
-> @@ -402,6 +402,10 @@
->  	clocks = <&clkc CLKID_EFUSE>;
->  	clock-names = "core";
->  
-> +	ethernet_mac_address: mac@1b4 {
-> +		reg = <0x1b4 0x6>;
-> +	};
+> On 03/07/2019 16:17, Jerome Brunet wrote:
+>> On Mon 01 Jul 2019 at 11:12, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>> 
+>>> Add a setup() callback in the eeclk structure, to call an optional
+>>> call() function at end of eeclk probe to setup clocks.
+>>>
+>>> It's used for the G12A clock controller to setup the CPU clock
+>>> notifiers.
+>> 
+>> I'd prefer if you implement the probe function in the related controller
+>> have this probe function call meson_eeclkc_probe() for the common part
+>> 
+>> In your case, I suppose it means implementing the g12a controller probe
+>> to deal with the notifiers
+>
+> Sure, but with this eeclk setup callback I can provide a different setup() callback
+> for g12a and g12b (and later sm1), without this means adding a top data struct
+> containing a setup() callback pointer and the soc meson_eeclkc_data struct to be able
+> to call a setup() for each family like done actually, but this will broke eeclk since
+> the match_data data won't be a meson_eeclkc_data() struct anymore.
 
-Is this a fixed position for all boards ? if not, I'll suggest moving
-it to the odroid-c1 dt until you have more users.
+meson_eeclkc_probe is an helper we added to factorize common code out of the
+clock controllers we had. I don't like the idea to now add callback in it
+deal with the specifics of each SoCs. It feels like we are going in circles.
 
-Neil
+I think SoC/controller specific stuff should be dealt with in
+related probe function of each clock controller which would then call
+the 'common helper' if necessary.
 
-> +
->  	temperature_calib: calib@1f4 {
->  		/* only the upper two bytes are relevant */
->  		reg = <0x1f4 0x4>;
-> 
+If the common part interface needs to be reworked, maybe changing
+the parameters, I'm ok with it.
 
+>
+> If you still prefer this, I can rework it like that.
+>
+> I'm rebasing all the stuff on v5.3-rc1 and plan to repost an updated version
+> shortly, solving this would be easier.
+>
+> Neil
+>
+>> 
+>>>
+>>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>>> ---
+>>>  drivers/clk/meson/meson-eeclk.c | 6 ++++++
+>>>  drivers/clk/meson/meson-eeclk.h | 1 +
+>>>  2 files changed, 7 insertions(+)
+>>>
+>>> diff --git a/drivers/clk/meson/meson-eeclk.c b/drivers/clk/meson/meson-eeclk.c
+>>> index 6ba2094be257..81fd2abcd173 100644
+>>> --- a/drivers/clk/meson/meson-eeclk.c
+>>> +++ b/drivers/clk/meson/meson-eeclk.c
+>>> @@ -61,6 +61,12 @@ int meson_eeclkc_probe(struct platform_device *pdev)
+>>>  		}
+>>>  	}
+>>>  
+>>> +	if (data->setup) {
+>>> +		ret = data->setup(pdev);
+>>> +		if (ret)
+>>> +			return ret;
+>>> +	}
+>>> +
+>>>  	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+>>>  					   data->hw_onecell_data);
+>>>  }
+>>> diff --git a/drivers/clk/meson/meson-eeclk.h b/drivers/clk/meson/meson-eeclk.h
+>>> index 9ab5d6fa7ccb..7fdf424f71a6 100644
+>>> --- a/drivers/clk/meson/meson-eeclk.h
+>>> +++ b/drivers/clk/meson/meson-eeclk.h
+>>> @@ -20,6 +20,7 @@ struct meson_eeclkc_data {
+>>>  	const struct reg_sequence	*init_regs;
+>>>  	unsigned int			init_count;
+>>>  	struct clk_hw_onecell_data	*hw_onecell_data;
+>>> +	int				(*setup)(struct platform_device *pdev);
+>>>  };
+>>>  
+>>>  int meson_eeclkc_probe(struct platform_device *pdev);
+>>> -- 
+>>> 2.21.0
 
 _______________________________________________
 linux-amlogic mailing list
