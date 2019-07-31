@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 45594C32751
-	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 12:31:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3A295C433FF
+	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 12:31:07 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1733220693
-	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 12:31:03 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1036120693
+	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 12:31:07 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="S235tS9n";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="D10VQ49Q"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1733220693
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="seTM/rqW";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="aGtkSSze"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1036120693
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,48 +26,47 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:
 	In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	References:List-Owner; bh=FA5rGUHhOUS1dAGojoSxnqoFTR7gHXC5nQDSsId5s04=; b=S23
-	5tS9nsmXk1uVXTlwNpT8K5Nvy2EXficydnaKE3ujhgxRDCFV+7Jx3FpK2M4/fErXWguC6Q712zQLj
-	dUGlfot0l7RTNFgAOdVnSDLfQqzeWeLK0lxyUDNmb9pzmyIkomsV+X26rqLiZ82EDx30BDtTFedHT
-	2j8/NZxZQOiuSdyQKgSJSd2SNb4I+Z+jP61o2Dof8G6fJ2Y2kQ8FFTa6h+EtDpSGiDuoqyUu1//8b
-	0y2O78RUME12gGztbi3htAmvYYJcqE1E4jXB3dCa+A5iPKDvfbZ68wtTBOMCJm43fSwiQi3zkJNON
-	4ha86Z3ke2yr8zB3nzmg+l7alH9oQtw==;
+	References:List-Owner; bh=leeJE8Dv9+YXel79FY22x/9ISSBQmOLyVW1DtSrJCUs=; b=seT
+	M/rqWiyl1jwMhFUHIFfKiglU4b2yVKK1c2UN/aGvXsd3L0hpYhsJg6w/1x05jMRATHKgSS75a3Kf2
+	5B71fwfbTgDBzGSU9iZRu2JU7jf8R/q9Pa/GGEjvQSJ23JVEuF5EtX0YddOlrm8YphvEImDegsHWg
+	e+LsTt1lrPuoW5Ds1xg+n5fhB6vuN0YDfnZPNTRq4QYQi6tKbyrZy0KzGeQI0W45qDZ5ctqML4cSL
+	JDpgEaWtOkCaoI7xnTJmwU/Aq0wqGd1THU/WVBcT5qRno8TeHDXFA/9lghnDGLDiposA7l72LLfrp
+	UyxAejHomWcXWF+NcqgixMU8tFn1++A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hsnkw-0003S4-I4; Wed, 31 Jul 2019 12:30:58 +0000
+	id 1hsnkv-0003RF-Uj; Wed, 31 Jul 2019 12:30:57 +0000
 Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hsmnv-0000rh-9d; Wed, 31 Jul 2019 11:30:00 +0000
+ id 1hsmnv-0000ri-9d; Wed, 31 Jul 2019 11:30:00 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
  Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
  Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
  List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
- List-Archive; bh=kf++0n0/P0qzAOEm7iMuFPfvM6eTDtZm3AGZFRD7ba8=; b=D10VQ49Q1dfn
- KoTLAjChiNu+e4zSNLg6W02jNpXjG/FssPXbDz+WcOUu/zPpB2tjTZLYtXWPb03sB4NmgW4AOwN1M
- q+MjYSDtG6hv0+Mgf0LUcNh8Mdrz9trFqLbO+P9uT8+4FT68utpw66obY6mOrWQxljrE91RdfBQ6P
- Uy80g=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net
- ([82.37.168.47] helo=ypsilon.sirena.org.uk)
+ List-Archive; bh=EqyAK/JNK2ARshSsWcKdC1rIHp0lvAvnPMamc2x2Z18=; b=aGtkSSze11Tk
+ RNv0zggKrfH3lr4GNOKToag2m1vAa+pyWnexSuF0wx2X/1xCX2dV1AUqZZ42hPs5TG5Q5yUpETI4u
+ 2l+X6nMhC+dJZMZt7yarJSnsXvUIlFi7m/lc7kMPSwUqdq9Pk0wU93MgMIj4MKfPx6o2x2cnWujOB
+ uPtxg=;
+Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
  by heliosphere.sirena.org.uk with esmtpsa
  (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
  (envelope-from <broonie@sirena.org.uk>)
- id 1hsmng-0001ll-Es; Wed, 31 Jul 2019 11:29:44 +0000
+ id 1hsmnc-0001l5-K0; Wed, 31 Jul 2019 11:29:40 +0000
 Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
- id 025422742C99; Wed, 31 Jul 2019 12:29:43 +0100 (BST)
+ id 0A1CB2742CDE; Wed, 31 Jul 2019 12:29:39 +0100 (BST)
 From: Mark Brown <broonie@kernel.org>
 To: YueHaibing <yuehaibing@huawei.com>
-Subject: Applied "ASoC: xlnx: use devm_platform_ioremap_resource() to simplify
- code" to the asoc tree
-In-Reply-To: <20190727150738.54764-32-yuehaibing@huawei.com>
+Subject: Applied "ASoC: uniphier: aio-dma: use
+ devm_platform_ioremap_resource() to simplify code" to the asoc tree
+In-Reply-To: <20190727150738.54764-23-yuehaibing@huawei.com>
 X-Patchwork-Hint: ignore
-Message-Id: <20190731112944.025422742C99@ypsilon.sirena.org.uk>
-Date: Wed, 31 Jul 2019 12:29:43 +0100 (BST)
+Message-Id: <20190731112940.0A1CB2742CDE@ypsilon.sirena.org.uk>
+Date: Wed, 31 Jul 2019 12:29:39 +0100 (BST)
 X-Bad-Reply: In-Reply-To but no 'Re:' in Subject.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190731_042959_346674_3FEA8986 
-X-CRM114-Status: GOOD (  13.31  )
+X-CRM114-CacheID: sfid-20190731_042959_347114_6050BAC9 
+X-CRM114-Status: GOOD (  12.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,7 +105,7 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 The patch
 
-   ASoC: xlnx: use devm_platform_ioremap_resource() to simplify code
+   ASoC: uniphier: aio-dma: use devm_platform_ioremap_resource() to simplify code
 
 has been applied to the asoc tree at
 
@@ -131,60 +130,41 @@ to this mail.
 Thanks,
 Mark
 
-From cf80aa2c1359f5d014981e251049bcc21a2217bc Mon Sep 17 00:00:00 2001
+From b885c9fa363fa4604d78ea00adfed64db656fb78 Mon Sep 17 00:00:00 2001
 From: YueHaibing <yuehaibing@huawei.com>
-Date: Sat, 27 Jul 2019 23:07:35 +0800
-Subject: [PATCH] ASoC: xlnx: use devm_platform_ioremap_resource() to simplify
- code
+Date: Sat, 27 Jul 2019 23:07:26 +0800
+Subject: [PATCH] ASoC: uniphier: aio-dma: use devm_platform_ioremap_resource()
+ to simplify code
 
 Use devm_platform_ioremap_resource() to simplify the code a bit.
 This is detected by coccinelle.
 
 Reported-by: Hulk Robot <hulkci@huawei.com>
 Signed-off-by: YueHaibing <yuehaibing@huawei.com>
-Link: https://lore.kernel.org/r/20190727150738.54764-32-yuehaibing@huawei.com
+Link: https://lore.kernel.org/r/20190727150738.54764-23-yuehaibing@huawei.com
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- sound/soc/xilinx/xlnx_i2s.c   | 4 +---
- sound/soc/xilinx/xlnx_spdif.c | 3 +--
- 2 files changed, 2 insertions(+), 5 deletions(-)
+ sound/soc/uniphier/aio-dma.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/sound/soc/xilinx/xlnx_i2s.c b/sound/soc/xilinx/xlnx_i2s.c
-index 8b353166ad44..cc641e582c82 100644
---- a/sound/soc/xilinx/xlnx_i2s.c
-+++ b/sound/soc/xilinx/xlnx_i2s.c
-@@ -95,7 +95,6 @@ MODULE_DEVICE_TABLE(of, xlnx_i2s_of_match);
- 
- static int xlnx_i2s_probe(struct platform_device *pdev)
+diff --git a/sound/soc/uniphier/aio-dma.c b/sound/soc/uniphier/aio-dma.c
+index fa001d3c1a88..862346d66774 100644
+--- a/sound/soc/uniphier/aio-dma.c
++++ b/sound/soc/uniphier/aio-dma.c
+@@ -276,12 +276,10 @@ int uniphier_aiodma_soc_register_platform(struct platform_device *pdev)
  {
+ 	struct uniphier_aio_chip *chip = platform_get_drvdata(pdev);
+ 	struct device *dev = &pdev->dev;
 -	struct resource *res;
- 	void __iomem *base;
- 	struct snd_soc_dai_driver *dai_drv;
- 	int ret;
-@@ -107,8 +106,7 @@ static int xlnx_i2s_probe(struct platform_device *pdev)
- 	if (!dai_drv)
- 		return -ENOMEM;
+ 	void __iomem *preg;
+ 	int irq, ret;
  
 -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	base = devm_ioremap_resource(&pdev->dev, res);
-+	base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(base))
- 		return PTR_ERR(base);
+-	preg = devm_ioremap_resource(dev, res);
++	preg = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(preg))
+ 		return PTR_ERR(preg);
  
-diff --git a/sound/soc/xilinx/xlnx_spdif.c b/sound/soc/xilinx/xlnx_spdif.c
-index 3b9000fd8c49..e2ca087adee6 100644
---- a/sound/soc/xilinx/xlnx_spdif.c
-+++ b/sound/soc/xilinx/xlnx_spdif.c
-@@ -260,8 +260,7 @@ static int xlnx_spdif_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
--	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	ctx->base = devm_ioremap_resource(dev, res);
-+	ctx->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(ctx->base)) {
- 		ret = PTR_ERR(ctx->base);
- 		goto clk_err;
 -- 
 2.20.1
 
