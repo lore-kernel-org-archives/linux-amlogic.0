@@ -2,90 +2,72 @@ Return-Path: <SRS0=czMH=V4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 16D9EC433FF
-	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 08:41:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1BF7FC433FF
+	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 11:30:32 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DD58B206A2
-	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 08:41:56 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E708C206A2
+	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 11:30:31 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="sqXZVusM";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="mQ/GItiV"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DD58B206A2
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dfI/M0Lx";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="it7QpXTq"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E708C206A2
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:
+	In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gNlxkb1MmrQrYT0ETeWu4rSAQ2jchKcB36dX2NzsMTU=; b=sqXZVusMe6lxNr
-	72k0R/kngpyqHlPRztUG6/dPeQmGPeuNzXFKn6YbncYt6XT59z35/KJWYT0qH3mwqJDaJe1JckBaC
-	OSt4DsouuHvXKtlINKKtoEDG4XjKsrZG/qzX/mfdyk0d9993GTgDLFZXG0GwgJ5HMTWCGtmSmyxO7
-	kLgvoWBIpU9sEW0HvmBCgCEdJo0xGLUjrrrLOIW842gjvqIcyJ8KF9G2PHNquUpMIxvBTaO9xB48l
-	xNP0HBaLRw6P+mRJn6qYe0gxIIl8KBByqaIM26fbauMlzcUgZZVNGAbqYDiiaBmHmh6TrVFOJCCD6
-	sye0l40G/2oh8i+SrMOw==;
+	References:List-Owner; bh=RYxonD/HwxlojIiQ0/9Yus49TfCBFWw6tYwW5Moi6nY=; b=dfI
+	/M0LxgV9iRVXZJTtFQIxknZBqV7DsLIYeKBdjr1mUfGo7FfSs65VZKjZBdRKZilzx3Inmb0Qh74j2
+	F9bensv+CuQ4N3LaAz7r69KRGG8rD5KezZFzNA/HaI6TGmDqKYYa4nzpCkzpEoro4yzWBUWsHFT4u
+	X1uhCzI01IVcuP/WkaTySQZx4Cm+w2Qrd2cQeao9JUqzoeCDZPbFIe3m24OA6i1azQAMUUpASOOYt
+	e6GH2VOLSxbpP5Gy9KMt7M7WncUbGbV/ZbmnTxQsZiT0yXOS5eIy/TUjLD7zAbiorD2GOoELja9QV
+	BYY84G4DOwytQp0VAlLmg0zprtWIweA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hskBF-0007Eu-25; Wed, 31 Jul 2019 08:41:53 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1hsmoN-0002Ty-9j; Wed, 31 Jul 2019 11:30:27 +0000
+Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hsk9r-000624-EL
- for linux-amlogic@lists.infradead.org; Wed, 31 Jul 2019 08:40:30 +0000
-Received: by mail-wr1-x442.google.com with SMTP id x4so15530541wrt.6
- for <linux-amlogic@lists.infradead.org>; Wed, 31 Jul 2019 01:40:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=75XNmhFNb9+dcVa4YPmR0y+UGapfOVB2uryDAdPU4o4=;
- b=mQ/GItiV/jIekXUfQF4MaKyeF2xxU5ZvV65tC6WZtOplsowpKXAcaU2ed76arFJ2HF
- FRrWiFna/EnHvHxzgRZqv/+XpaJ27aSEQLNVHv0fTRsStQlfzxlUE31f7kYDoDoGEM2+
- LR1I6fEfN+WigiRr1yzP2X2YunGiuAh4/Ya265Ada7lN82hSuP0n9z8pIs/wPGx3F5AV
- AcivDHZutEmkStVMWqMtfAEqbMTZG0dN9LyQ7aoN3T4h3BlZSMLDbguHvRT3ydv2nQSU
- Uaf4bN0q+oQm12t0bypww0qe//veBeJZ9glvWslrbP1JBZQIW7BrI4CZULyhUkGiY0xF
- EiwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=75XNmhFNb9+dcVa4YPmR0y+UGapfOVB2uryDAdPU4o4=;
- b=F8bJ50qf24D4fwadft/VUJXJOhbie1/OZo1rVfsllKZfgfiSVqvGsEVNLTly2EfVOU
- pQPkOIxX4kJ20Y23mQpMFJKohfj5RgaLjKV8J6koGGmkFZSuo7ygn+3MxSYN+IA3kMB8
- Z9/b/vBX4eTGT1MS0uRa6LjEUmq3IdXkbG1xvqy17CE08Ndgws6c5/Cu46oa58aJNUDn
- A3meQrA4YnwI1eLbub98vU4UsAasMRzvN2TMa8hfn+K+d52owH2QP291F22OVXDCHtiU
- j+78hiULDaWCNXDjwEG+CYU0mypAk9edy1YTKWVgO/XF9L39/Ku/fxLEljwXDkFyY/SI
- A6qA==
-X-Gm-Message-State: APjAAAXtywL2u605ujXS1zlRbCq2WMVMIQRcVvh4WDeRyNaClxHy1RVq
- Mqjos+Zac9JNGjgzjaVOqQgHqw==
-X-Google-Smtp-Source: APXvYqyi4k1XS4obufEQe9GPrtTQh4Ldosu/Cj3LUEjIEn/ydGYaGOvK4niO7KpZnRyZkkeRGMiirg==
-X-Received: by 2002:adf:f04d:: with SMTP id t13mr17572698wro.133.1564562426143; 
- Wed, 31 Jul 2019 01:40:26 -0700 (PDT)
-Received: from bender.baylibre.local
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id 18sm56049308wmg.43.2019.07.31.01.40.25
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Wed, 31 Jul 2019 01:40:25 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: jbrunet@baylibre.com
-Subject: [PATCH v2 4/4] clk: meson: g12a: expose CPUB clock ID for G12B
-Date: Wed, 31 Jul 2019 10:40:19 +0200
-Message-Id: <20190731084019.8451-5-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190731084019.8451-1-narmstrong@baylibre.com>
-References: <20190731084019.8451-1-narmstrong@baylibre.com>
-MIME-Version: 1.0
+ id 1hsmnv-0000rm-Fo
+ for linux-amlogic@lists.infradead.org; Wed, 31 Jul 2019 11:30:03 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
+ Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+ List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
+ List-Archive; bh=QcGmBVpDOdgqukjU+sGeVWU68WD55hAUZCPdArb9dVo=; b=it7QpXTqCKjT
+ EjZ4pPZAezG1Z4SYVc4k4tvPHDuAiPs5gTSOa9r3/JEL8KULqKbFMiXjHu/pQcMGivq9kOje2fdrw
+ JEDRLSsdNqcOWn2Td/uZT031g39gliOgRJv5TT3AH10z52mLuJiR9LQzg4r5yLkF4+xc0m9xDqy2u
+ 5sdVQ=;
+Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
+ by heliosphere.sirena.org.uk with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <broonie@sirena.org.uk>)
+ id 1hsmno-0001pQ-0o; Wed, 31 Jul 2019 11:29:52 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+ id 41B9A2742CC3; Wed, 31 Jul 2019 12:29:51 +0100 (BST)
+From: Mark Brown <broonie@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Subject: Applied "ASoC: meson: g12a-tohdmitx: override codec2codec params" to
+ the asoc tree
+In-Reply-To: <20190729080139.32068-1-jbrunet@baylibre.com>
+X-Patchwork-Hint: ignore
+Message-Id: <20190731112951.41B9A2742CC3@ypsilon.sirena.org.uk>
+Date: Wed, 31 Jul 2019 12:29:51 +0100 (BST)
+X-Bad-Reply: In-Reply-To but no 'Re:' in Subject.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190731_014027_485420_44609092 
-X-CRM114-Status: UNSURE (   9.98  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190731_042959_554393_6DB1580D 
+X-CRM114-Status: GOOD (  16.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,50 +79,134 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+ Kevin Hilman <khilman@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+ linux-amlogic@lists.infradead.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Expose the CPUB clock id to add DVFS to the second CPU cluster of
-the Amlogic G12B SoC.
+The patch
 
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+   ASoC: meson: g12a-tohdmitx: override codec2codec params
+
+has been applied to the asoc tree at
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.4
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+From 2c4956bc1e9062e5e3c5ea7612294f24e6d4fbdd Mon Sep 17 00:00:00 2001
+From: Jerome Brunet <jbrunet@baylibre.com>
+Date: Mon, 29 Jul 2019 10:01:39 +0200
+Subject: [PATCH] ASoC: meson: g12a-tohdmitx: override codec2codec params
+
+So far, forwarding the hw_params of the input to output relied on the
+.hw_params() callback of the cpu side of the codec2codec link to be called
+first. This is a bit weak.
+
+Instead, override the stream params of the codec2codec to link to set it up
+correctly.
+
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Link: https://lore.kernel.org/r/20190729080139.32068-1-jbrunet@baylibre.com
+Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- drivers/clk/meson/g12a.h              | 1 -
- include/dt-bindings/clock/g12a-clkc.h | 1 +
- 2 files changed, 1 insertion(+), 1 deletion(-)
+ sound/soc/meson/g12a-tohdmitx.c | 34 ++++++++++++++++-----------------
+ 1 file changed, 16 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/clk/meson/g12a.h b/drivers/clk/meson/g12a.h
-index c8aed31fbe17..559a34cfdfeb 100644
---- a/drivers/clk/meson/g12a.h
-+++ b/drivers/clk/meson/g12a.h
-@@ -216,7 +216,6 @@
- #define CLKID_CPUB_CLK_DYN1_DIV			221
- #define CLKID_CPUB_CLK_DYN1			222
- #define CLKID_CPUB_CLK_DYN			223
--#define CLKID_CPUB_CLK				224
- #define CLKID_CPUB_CLK_DIV16_EN			225
- #define CLKID_CPUB_CLK_DIV16			226
- #define CLKID_CPUB_CLK_DIV2			227
-diff --git a/include/dt-bindings/clock/g12a-clkc.h b/include/dt-bindings/clock/g12a-clkc.h
-index b6b127e45634..8ccc29ac7a72 100644
---- a/include/dt-bindings/clock/g12a-clkc.h
-+++ b/include/dt-bindings/clock/g12a-clkc.h
-@@ -137,5 +137,6 @@
- #define CLKID_VDEC_HEVC				207
- #define CLKID_VDEC_HEVCF			210
- #define CLKID_TS				212
-+#define CLKID_CPUB_CLK				224
+diff --git a/sound/soc/meson/g12a-tohdmitx.c b/sound/soc/meson/g12a-tohdmitx.c
+index 707ccb192e4c..9943c807ec5d 100644
+--- a/sound/soc/meson/g12a-tohdmitx.c
++++ b/sound/soc/meson/g12a-tohdmitx.c
+@@ -28,7 +28,7 @@
+ #define  CTRL0_SPDIF_CLK_SEL		BIT(0)
  
- #endif /* __G12A_CLKC_H */
+ struct g12a_tohdmitx_input {
+-	struct snd_pcm_hw_params params;
++	struct snd_soc_pcm_stream params;
+ 	unsigned int fmt;
+ };
+ 
+@@ -225,26 +225,17 @@ static int g12a_tohdmitx_input_hw_params(struct snd_pcm_substream *substream,
+ {
+ 	struct g12a_tohdmitx_input *data = dai->playback_dma_data;
+ 
+-	/* Save the stream params for the downstream link */
+-	memcpy(&data->params, params, sizeof(*params));
++	data->params.rates = snd_pcm_rate_to_rate_bit(params_rate(params));
++	data->params.rate_min = params_rate(params);
++	data->params.rate_max = params_rate(params);
++	data->params.formats = 1 << params_format(params);
++	data->params.channels_min = params_channels(params);
++	data->params.channels_max = params_channels(params);
++	data->params.sig_bits = dai->driver->playback.sig_bits;
+ 
+ 	return 0;
+ }
+ 
+-static int g12a_tohdmitx_output_hw_params(struct snd_pcm_substream *substream,
+-					  struct snd_pcm_hw_params *params,
+-					  struct snd_soc_dai *dai)
+-{
+-	struct g12a_tohdmitx_input *in_data =
+-		g12a_tohdmitx_get_input_data(dai->capture_widget);
+-
+-	if (!in_data)
+-		return -ENODEV;
+-
+-	memcpy(params, &in_data->params, sizeof(*params));
+-
+-	return 0;
+-}
+ 
+ static int g12a_tohdmitx_input_set_fmt(struct snd_soc_dai *dai,
+ 				       unsigned int fmt)
+@@ -266,6 +257,14 @@ static int g12a_tohdmitx_output_startup(struct snd_pcm_substream *substream,
+ 	if (!in_data)
+ 		return -ENODEV;
+ 
++	if (WARN_ON(!rtd->dai_link->params)) {
++		dev_warn(dai->dev, "codec2codec link expected\n");
++		return -EINVAL;
++	}
++
++	/* Replace link params with the input params */
++	rtd->dai_link->params = &in_data->params;
++
+ 	if (!in_data->fmt)
+ 		return 0;
+ 
+@@ -278,7 +277,6 @@ static const struct snd_soc_dai_ops g12a_tohdmitx_input_ops = {
+ };
+ 
+ static const struct snd_soc_dai_ops g12a_tohdmitx_output_ops = {
+-	.hw_params	= g12a_tohdmitx_output_hw_params,
+ 	.startup	= g12a_tohdmitx_output_startup,
+ };
+ 
 -- 
-2.22.0
+2.20.1
 
 
 _______________________________________________
