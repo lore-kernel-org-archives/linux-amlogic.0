@@ -7,17 +7,18 @@ X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6AFB4C433FF
-	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 11:31:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A411DC433FF
+	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 11:31:13 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2A8D0208E3
-	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 11:31:09 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7A8D7206A3
+	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 11:31:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bwoFO8BJ";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="AxqqpbRN"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2A8D0208E3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cZn+d8cz";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="i/xJjDC1";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="r9mBPI6m"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7A8D7206A3
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,47 +27,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:
 	In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	References:List-Owner; bh=OZJDG6XFESKSI51d5c5/oIn637OZU+wwiR2L9DsRa40=; b=bwo
-	FO8BJsDXQOTO7M2dMlAlKGNQO3FVa/EGtI+5EANdOMDH45ZCs7Gz750s9WUA35vymJ4zvc9KBZKLb
-	EHtlLUy/SpU0/zKVw66ngiPPtPPgExloZlsrcV02lCfSBTJTETkeHa3Sl31X0F6rEBSTxalLGfSPj
-	EfXc+G/Cq2qU30VaWPTrKNrrSKATcf5ljw6cdBTRbpbr4TP04ENgmOGdcFuAdPhV7EEY9vj1ZVC1E
-	b9HmA+Sh0ORrkECzi1PjIJXXcgvdY73fOR2MxpJ/DaQZtn4MuHXkvqy839siPv7+aMf3DtbmvUt6k
-	EWWHjdu46dOQRhwMRiDGYmmE73ipdww==;
+	References:List-Owner; bh=hBfy/HAGKOshTP3iZ5pgdKcYxpLA3YMYnTddZr/s5Us=; b=cZn
+	+d8czspR6OPBls+t3fQRorqoK8oOqiqsecbPFpjZ1Ju+s+FMIdwxov8RS8ZJBdk1E0ka+B12m0TwB
+	RYpEuBJF0UOGYi4BvRlzxY9cU+ycILDcEFzm9uleiu6zj8kU8YSz3mBySca4po7CLWWWRaCFE7gij
+	eyBbNxJGtaCSD5snvOo896F1G9PD3j9Ld5K2nRdRNNaIwRClV3h3EMEf6xpDwrLy/YvDN8J4Vq5ae
+	FlaRoafvvQKaIMNKTV+gB4zPdGDrkQpR5jyZ/LoT8eEVm/ZOo4Eg8HqLSR/t8lPBArSZJZ6q4C5HQ
+	GUjfTdiIwmW36YpFU8icGFHR9kGsL5Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hsmox-0003KC-S7; Wed, 31 Jul 2019 11:31:03 +0000
-Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
+	id 1hsmp2-0003ZT-Ms; Wed, 31 Jul 2019 11:31:08 +0000
+Received: from merlin.infradead.org ([2001:8b0:10b:1231::1])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hsmnx-0000tX-EO; Wed, 31 Jul 2019 11:30:11 +0000
+ id 1hsmo8-0001ZR-3S; Wed, 31 Jul 2019 11:30:12 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=merlin.20170209; h=Date:Message-Id:In-Reply-To:Subject:Cc:
+ To:From:Sender:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:References:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=x9Az2l9jRA1fvbltqAEskyHx15EQpvhr5JUZPqMPcJg=; b=i/xJjDC1HizgU85F63cVICEeN/
+ 92wYFgMZDkNRN0c6L4USDGhQNlVH1ixKpDOqg0psw/XF5SbSDVdYSbUAwGGUygYuAG2BLaeZGiqOs
+ HGATgPS80a0j3dvJZG9Ei8l/44RyjAAF/yL6uOJGjpia5Yv53yg4j8GHQSp7rlXqNFnHV+gP/pj44
+ A+wxrsaa3ReG8Zo0N9AN55y8UQy18lz1QWnZjO5EwO3hnyclIxF7QsNoS7rJ7AoMGs871ZoeYgkfc
+ YQEwK7u/GdzZj04XNOJlmS6Ag7gblEmbPBNhOHEShUBFU4Nx7VAOCt87A/VtnXXD6K9T3gVJcEL2W
+ L/0o1eoQ==;
+Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
+ by merlin.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
+ id 1hsmo3-0001Nc-Cr; Wed, 31 Jul 2019 11:30:09 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
  Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
  Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
  List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
- List-Archive; bh=JDdIiMRNxz3nh4P58eL+dgzzdUBoAUTuWptHyMpnAPw=; b=AxqqpbRNKGZD
- w7Hz+Ywyhl2Kr8lziN1RSWQFJDQzfSWLBm9w/6ibuQAD9OcT8Ttni2/CJdmYmT+ZoVFm35FVdAquM
- Km4dy2OJ/K/R985/Xoc47p5GQaPquCn+N3FHCDrZfE50MFOQp+1vXpi7JxBrSOS0LhsRSh/4kDIFz
- dMwqE=;
+ List-Archive; bh=x9Az2l9jRA1fvbltqAEskyHx15EQpvhr5JUZPqMPcJg=; b=r9mBPI6mq1Wt
+ 9wWcxy04DISQgMzTe9zjN17SICHierskov65a5G/KTGzIPfLYk6OdBqGBKCHjQx/7yuNoZErFaONO
+ V34xTi/pyn0mJ38McNc0yybWE278vdQR+qmyytMH/MUuqGWupGkQrfmbWkiNlcMS3ZFiL3ZMZnePy
+ 8qAow=;
 Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
  by heliosphere.sirena.org.uk with esmtpsa
  (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
  (envelope-from <broonie@sirena.org.uk>)
- id 1hsmnc-0001kz-23; Wed, 31 Jul 2019 11:29:40 +0000
+ id 1hsmnl-0001ne-1i; Wed, 31 Jul 2019 11:29:49 +0000
 Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
- id 5B1722742C99; Wed, 31 Jul 2019 12:29:39 +0100 (BST)
+ id 339E92742C99; Wed, 31 Jul 2019 12:29:48 +0100 (BST)
 From: Mark Brown <broonie@kernel.org>
 To: YueHaibing <yuehaibing@huawei.com>
-Subject: Applied "ASoC: au1x: psc-i2s: use devm_platform_ioremap_resource() to
+Subject: Applied "ASoC: bcm2835-i2s: use devm_platform_ioremap_resource() to
  simplify code" to the asoc tree
-In-Reply-To: <20190727150738.54764-25-yuehaibing@huawei.com>
+In-Reply-To: <20190727150738.54764-10-yuehaibing@huawei.com>
 X-Patchwork-Hint: ignore
-Message-Id: <20190731112939.5B1722742C99@ypsilon.sirena.org.uk>
-Date: Wed, 31 Jul 2019 12:29:39 +0100 (BST)
+Message-Id: <20190731112948.339E92742C99@ypsilon.sirena.org.uk>
+Date: Wed, 31 Jul 2019 12:29:48 +0100 (BST)
 X-Bad-Reply: In-Reply-To but no 'Re:' in Subject.
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190731_043001_645888_26E092B9 
-X-CRM114-Status: GOOD (  12.65  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,7 +118,7 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 The patch
 
-   ASoC: au1x: psc-i2s: use devm_platform_ioremap_resource() to simplify code
+   ASoC: bcm2835-i2s: use devm_platform_ioremap_resource() to simplify code
 
 has been applied to the asoc tree at
 
@@ -130,10 +143,10 @@ to this mail.
 Thanks,
 Mark
 
-From 12a63c0fa03691328b948690601dc7dde8fc527b Mon Sep 17 00:00:00 2001
+From d400b1b30cbff1c0962bbb3f895e839ccd120cb7 Mon Sep 17 00:00:00 2001
 From: YueHaibing <yuehaibing@huawei.com>
-Date: Sat, 27 Jul 2019 23:07:28 +0800
-Subject: [PATCH] ASoC: au1x: psc-i2s: use devm_platform_ioremap_resource() to
+Date: Sat, 27 Jul 2019 23:07:13 +0800
+Subject: [PATCH] ASoC: bcm2835-i2s: use devm_platform_ioremap_resource() to
  simplify code
 
 Use devm_platform_ioremap_resource() to simplify the code a bit.
@@ -141,34 +154,33 @@ This is detected by coccinelle.
 
 Reported-by: Hulk Robot <hulkci@huawei.com>
 Signed-off-by: YueHaibing <yuehaibing@huawei.com>
-Link: https://lore.kernel.org/r/20190727150738.54764-25-yuehaibing@huawei.com
+Link: https://lore.kernel.org/r/20190727150738.54764-10-yuehaibing@huawei.com
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- sound/soc/au1x/psc-i2s.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ sound/soc/bcm/bcm2835-i2s.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/sound/soc/au1x/psc-i2s.c b/sound/soc/au1x/psc-i2s.c
-index 076303f96b8c..767ce950d0da 100644
---- a/sound/soc/au1x/psc-i2s.c
-+++ b/sound/soc/au1x/psc-i2s.c
-@@ -291,7 +291,7 @@ static const struct snd_soc_component_driver au1xpsc_i2s_component = {
- 
- static int au1xpsc_i2s_drvprobe(struct platform_device *pdev)
+diff --git a/sound/soc/bcm/bcm2835-i2s.c b/sound/soc/bcm/bcm2835-i2s.c
+index 5ef80f3d446a..e6a12e271b07 100644
+--- a/sound/soc/bcm/bcm2835-i2s.c
++++ b/sound/soc/bcm/bcm2835-i2s.c
+@@ -828,7 +828,6 @@ static int bcm2835_i2s_probe(struct platform_device *pdev)
  {
--	struct resource *iores, *dmares;
-+	struct resource *dmares;
- 	unsigned long sel;
- 	struct au1xpsc_audio_data *wd;
+ 	struct bcm2835_i2s_dev *dev;
+ 	int ret;
+-	struct resource *mem;
+ 	void __iomem *base;
+ 	const __be32 *addr;
+ 	dma_addr_t dma_base;
+@@ -848,8 +847,7 @@ static int bcm2835_i2s_probe(struct platform_device *pdev)
+ 	}
  
-@@ -300,8 +300,7 @@ static int au1xpsc_i2s_drvprobe(struct platform_device *pdev)
- 	if (!wd)
- 		return -ENOMEM;
- 
--	iores = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	wd->mmio = devm_ioremap_resource(&pdev->dev, iores);
-+	wd->mmio = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(wd->mmio))
- 		return PTR_ERR(wd->mmio);
+ 	/* Request ioarea */
+-	mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	base = devm_ioremap_resource(&pdev->dev, mem);
++	base = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(base))
+ 		return PTR_ERR(base);
  
 -- 
 2.20.1
