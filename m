@@ -2,91 +2,72 @@ Return-Path: <SRS0=czMH=V4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 897D0C32751
-	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 12:15:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 45594C32751
+	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 12:31:03 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5E737206A2
-	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 12:15:50 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1733220693
+	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 12:31:03 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cQrx0NX0";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="kzR+HTfy"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5E737206A2
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="S235tS9n";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="D10VQ49Q"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1733220693
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:References:
-	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=0q+ep8D7Tmkt13YJ5zd6e7cuW5CYAQzPBCqY85tabsc=; b=cQrx0NX0XBM3xv4g5WeTEYMy3e
-	Oa159TaMElARtqWBOUKndiIQ4RuEOabgwboHxx9I7vGRQWKyjuhAXJhKtiLaIqMUmHqnyzzcGNd6V
-	vO2jeKv3vafWcwc0b8Fpw2+XZh+h560UiIzjeY4It55jk7YRqIYMAYT+n6MGP7PRKAQXgDeji89zJ
-	MTYBQRc0+Xd4JdyBh5xB634MYiEc6f0KQzmAWTTqQMr9LrVlGqh8mkkMX31pZsa8SLBxqzCBXlQw1
-	71EbXhtqzVjT8MicMmOelGxuq8VBxxVBqAd6hBvDIIf2pjOOmnYGwP+MTmYPtiDQCN/UZ5zow7Fm6
-	7o4G3yHw==;
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:
+	In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	References:List-Owner; bh=FA5rGUHhOUS1dAGojoSxnqoFTR7gHXC5nQDSsId5s04=; b=S23
+	5tS9nsmXk1uVXTlwNpT8K5Nvy2EXficydnaKE3ujhgxRDCFV+7Jx3FpK2M4/fErXWguC6Q712zQLj
+	dUGlfot0l7RTNFgAOdVnSDLfQqzeWeLK0lxyUDNmb9pzmyIkomsV+X26rqLiZ82EDx30BDtTFedHT
+	2j8/NZxZQOiuSdyQKgSJSd2SNb4I+Z+jP61o2Dof8G6fJ2Y2kQ8FFTa6h+EtDpSGiDuoqyUu1//8b
+	0y2O78RUME12gGztbi3htAmvYYJcqE1E4jXB3dCa+A5iPKDvfbZ68wtTBOMCJm43fSwiQi3zkJNON
+	4ha86Z3ke2yr8zB3nzmg+l7alH9oQtw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hsnWE-0008O2-9A; Wed, 31 Jul 2019 12:15:46 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1hsnkw-0003S4-I4; Wed, 31 Jul 2019 12:30:58 +0000
+Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hsnUq-0005Ro-8T
- for linux-amlogic@lists.infradead.org; Wed, 31 Jul 2019 12:14:23 +0000
-Received: by mail-wm1-x344.google.com with SMTP id g67so55499014wme.1
- for <linux-amlogic@lists.infradead.org>; Wed, 31 Jul 2019 05:14:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=/dy6tDwrDZyQwCbBNtI3rvHog6QhVWeb1hPHlqbhReg=;
- b=kzR+HTfyhqOF5B0psynwHitDS5M5lgyvesQmRWyJVlV9jqMOaUnE+AVFRXp1M4H1Yu
- xn4FMMwB3LiyZTWnm4rZ0nOG2r4OZqBi18gRFUqxrC9weYcDY1E0FavjRHhW5pTtUjuu
- gxUa5C1VfZtk9MXIbl82EBNGyUinA5CXVo/4O4u9V33NHCjscxUt0eSYo2B6krLA3bk1
- vKc85SttiGAvhvj2dTxKNq2vUcVJzUvA8dKoZlBzDKrMIJZL7WArbqHaQSRLTi/lwxCi
- m7RAxchFhPRZBW/pEkGuLftOLhfeEP3DBP283XWvwLO7iAb1GllGbdMntPm9eOZWUx1o
- hrUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=/dy6tDwrDZyQwCbBNtI3rvHog6QhVWeb1hPHlqbhReg=;
- b=AtwFW6cyIy/JNIOMy0KbXeLnHhSE/Ey0p7gGwoJeNd70QOPQLbQwi4iTjQoAbHMqr6
- EObgZ9Vs0M9yIUirVI37YB5RuxX0x4DrnGA4AYJZcY/DPjzWUFl0z8iF1zO6Wrqk/pdj
- SSquaPgr7Ri2swDvjhaij2BvyeFA0/MpKYn8/kbVr2y3ghe2ENAIvTCAbgSFlepjZeL7
- cmNzXN564M+uH6N7/Ldk2cnxBeXlDTyrzgQaU6OY9FAoqY31qClwkNoBUSbDaEsYTPoU
- UWpg2LqejCIACRzkgRM2kwPThzC5kKbL5N5/QmHp7wAd03D4DlvsUJizcSZUV/1KmiH+
- eDHQ==
-X-Gm-Message-State: APjAAAU5YNkXWY1Mwelu2TQH08WkQSMTfwDNmmT+bjGZX9UzL/L6DNTR
- dc85uSOtI4mmUj2ClKdkE32hDw==
-X-Google-Smtp-Source: APXvYqwiXLefKrRh2int86J1ClmPTnKB6ds2eofOnlZxzgE2XsT6NJ7qlB851jUxzNz+12Fsd6Bh7w==
-X-Received: by 2002:a1c:3587:: with SMTP id
- c129mr114572270wma.90.1564575259044; 
- Wed, 31 Jul 2019 05:14:19 -0700 (PDT)
-Received: from glaroque-ThinkPad-T480.baylibre.local
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id a64sm3613713wmf.1.2019.07.31.05.14.18
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Wed, 31 Jul 2019 05:14:18 -0700 (PDT)
-From: Guillaume La Roque <glaroque@baylibre.com>
-To: daniel.lezcano@linaro.org,
-	khilman@baylibre.com
-Subject: [PATCH 6/6] MAINTAINERS: add entry for Amlogic Thermal driver
-Date: Wed, 31 Jul 2019 14:14:09 +0200
-Message-Id: <20190731121409.17285-7-glaroque@baylibre.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190731121409.17285-1-glaroque@baylibre.com>
-References: <20190731121409.17285-1-glaroque@baylibre.com>
+ id 1hsmnv-0000rh-9d; Wed, 31 Jul 2019 11:30:00 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
+ Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+ List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
+ List-Archive; bh=kf++0n0/P0qzAOEm7iMuFPfvM6eTDtZm3AGZFRD7ba8=; b=D10VQ49Q1dfn
+ KoTLAjChiNu+e4zSNLg6W02jNpXjG/FssPXbDz+WcOUu/zPpB2tjTZLYtXWPb03sB4NmgW4AOwN1M
+ q+MjYSDtG6hv0+Mgf0LUcNh8Mdrz9trFqLbO+P9uT8+4FT68utpw66obY6mOrWQxljrE91RdfBQ6P
+ Uy80g=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net
+ ([82.37.168.47] helo=ypsilon.sirena.org.uk)
+ by heliosphere.sirena.org.uk with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <broonie@sirena.org.uk>)
+ id 1hsmng-0001ll-Es; Wed, 31 Jul 2019 11:29:44 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+ id 025422742C99; Wed, 31 Jul 2019 12:29:43 +0100 (BST)
+From: Mark Brown <broonie@kernel.org>
+To: YueHaibing <yuehaibing@huawei.com>
+Subject: Applied "ASoC: xlnx: use devm_platform_ioremap_resource() to simplify
+ code" to the asoc tree
+In-Reply-To: <20190727150738.54764-32-yuehaibing@huawei.com>
+X-Patchwork-Hint: ignore
+Message-Id: <20190731112944.025422742C99@ypsilon.sirena.org.uk>
+Date: Wed, 31 Jul 2019 12:29:43 +0100 (BST)
+X-Bad-Reply: In-Reply-To but no 'Re:' in Subject.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190731_051420_350888_F4813EF2 
-X-CRM114-Status: UNSURE (   7.28  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190731_042959_346674_3FEA8986 
+X-CRM114-Status: GOOD (  13.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,44 +79,114 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-pm@vger.kernel.org
+Cc: mripard@kernel.org, alsa-devel@alsa-project.org, olivier.moysan@st.com,
+ Xiubo.Lee@gmail.com, linux-kernel@vger.kernel.org, paul@crapouillou.net,
+ jcmvbkbc@gmail.com, thierry.reding@gmail.com, shawnguo@kernel.org,
+ festevam@gmail.com, linux-stm32@st-md-mailman.stormreply.com,
+ jbrunet@baylibre.com, f.fainelli@gmail.com, khilman@baylibre.com,
+ tiwai@suse.com, michal.simek@xilinx.com, jonathanh@nvidia.com,
+ Hulk Robot <hulkci@huawei.com>, wens@csie.org,
+ bcm-kernel-feedback-list@broadcom.com, linux-imx@nxp.com,
+ s.hauer@pengutronix.de, matthias.bgg@gmail.com, linux-xtensa@linux-xtensa.org,
+ alexandre.torgue@st.com, yamada.masahiro@socionext.com, rjui@broadcom.com,
+ robert.jarzmik@free.fr, haojian.zhuang@gmail.com, nicoleotsuka@gmail.com,
+ Mark Brown <broonie@kernel.org>, linux-mediatek@lists.infradead.org,
+ linux-rpi-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, perex@perex.cz,
+ linux-arm-kernel@lists.infradead.org, mcoquelin.stm32@gmail.com,
+ baohua@kernel.org, timur@kernel.org, sbranden@broadcom.com, eric@anholt.net,
+ gregkh@linuxfoundation.org, arnaud.pouliquen@st.com, lgirdwood@gmail.com,
+ wahrenst@gmx.net, kernel@pengutronix.de, linuxppc-dev@lists.ozlabs.org,
+ daniel@zonque.org
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add myself as maintainer for Amlogic Thermal driver.
+The patch
 
-Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+   ASoC: xlnx: use devm_platform_ioremap_resource() to simplify code
+
+has been applied to the asoc tree at
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.4
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+From cf80aa2c1359f5d014981e251049bcc21a2217bc Mon Sep 17 00:00:00 2001
+From: YueHaibing <yuehaibing@huawei.com>
+Date: Sat, 27 Jul 2019 23:07:35 +0800
+Subject: [PATCH] ASoC: xlnx: use devm_platform_ioremap_resource() to simplify
+ code
+
+Use devm_platform_ioremap_resource() to simplify the code a bit.
+This is detected by coccinelle.
+
+Reported-by: Hulk Robot <hulkci@huawei.com>
+Signed-off-by: YueHaibing <yuehaibing@huawei.com>
+Link: https://lore.kernel.org/r/20190727150738.54764-32-yuehaibing@huawei.com
+Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ sound/soc/xilinx/xlnx_i2s.c   | 4 +---
+ sound/soc/xilinx/xlnx_spdif.c | 3 +--
+ 2 files changed, 2 insertions(+), 5 deletions(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index fb2b12f75c37..299f27d11058 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15910,6 +15910,15 @@ F:	Documentation/driver-api/thermal/cpu-cooling-api.rst
- F:	drivers/thermal/cpu_cooling.c
- F:	include/linux/cpu_cooling.h
+diff --git a/sound/soc/xilinx/xlnx_i2s.c b/sound/soc/xilinx/xlnx_i2s.c
+index 8b353166ad44..cc641e582c82 100644
+--- a/sound/soc/xilinx/xlnx_i2s.c
++++ b/sound/soc/xilinx/xlnx_i2s.c
+@@ -95,7 +95,6 @@ MODULE_DEVICE_TABLE(of, xlnx_i2s_of_match);
  
-+THERMAL DRIVER FOR AMLOGIC SOCS
-+M:	Guillaume La Roque <glaroque@baylibre.com>
-+L:	linux-pm@vger.kernel.org
-+L:	linux-amlogic@lists.infradead.org
-+W:	http://linux-meson.com/
-+S:	Supported
-+F:	drivers/thermal/amlogic_thermal.c
-+F:	Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
-+
- THINKPAD ACPI EXTRAS DRIVER
- M:	Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>
- L:	ibm-acpi-devel@lists.sourceforge.net
+ static int xlnx_i2s_probe(struct platform_device *pdev)
+ {
+-	struct resource *res;
+ 	void __iomem *base;
+ 	struct snd_soc_dai_driver *dai_drv;
+ 	int ret;
+@@ -107,8 +106,7 @@ static int xlnx_i2s_probe(struct platform_device *pdev)
+ 	if (!dai_drv)
+ 		return -ENOMEM;
+ 
+-	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	base = devm_ioremap_resource(&pdev->dev, res);
++	base = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(base))
+ 		return PTR_ERR(base);
+ 
+diff --git a/sound/soc/xilinx/xlnx_spdif.c b/sound/soc/xilinx/xlnx_spdif.c
+index 3b9000fd8c49..e2ca087adee6 100644
+--- a/sound/soc/xilinx/xlnx_spdif.c
++++ b/sound/soc/xilinx/xlnx_spdif.c
+@@ -260,8 +260,7 @@ static int xlnx_spdif_probe(struct platform_device *pdev)
+ 		return ret;
+ 	}
+ 
+-	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	ctx->base = devm_ioremap_resource(dev, res);
++	ctx->base = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(ctx->base)) {
+ 		ret = PTR_ERR(ctx->base);
+ 		goto clk_err;
 -- 
-2.17.1
+2.20.1
 
 
 _______________________________________________
