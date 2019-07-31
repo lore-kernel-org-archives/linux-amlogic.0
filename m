@@ -4,21 +4,21 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 406B5C32751
-	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 11:30:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A7534C32751
+	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 11:30:58 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 17548206A3
-	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 11:30:57 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7F1A0208E3
+	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 11:30:58 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="BN2yw7Lz";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="YY3/5mRD";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="MWl7ooSD"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 17548206A3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YYH/22Z7";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="xL1Wktaf";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="HzFMQvEj"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7F1A0208E3
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,63 +27,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:
 	In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	References:List-Owner; bh=BtfLz2qkdCoW3SMfeeRpV9hvoJ3fw080swZJQ0vIBXc=; b=BN2
-	yw7Lz/nU1vFNwyOp8lLcv2/XDg/qKvCCtEt/HVG5U6hI1VDoslV2TLj5vnBLZ4W3Ig7bY3bjh/oVr
-	fvb/4NM23jMw7DlUmS6KMsPUvgfcU/7UHJD98Z9NwpSbAA5qvzPEKX2u7QDd9h411tPZxarYbw/Na
-	LEay/Lvk3HLZy/1T5FohSLeCBOkm1rMu9pWfUJ9MYG7Nuqir5QuePsJT9IugowyL0qP7uklG4knlL
-	1D1EF7ATQFtpvKW/LZN54WfHCNQ1I6iAOOpncJZ3zr6vJCI0SomF+pPjIoOY0bOioE2hYDCrzlInJ
-	2NBOYVYg6u+uLz02zw+gKiLyem9jWwA==;
+	References:List-Owner; bh=o1MF2HX7xE9+M8XyJJA4LzG/aifzPf48pCUPiu7p1Xw=; b=YYH
+	/22Z7tVRsVMun+OcHDYQJZjeyr3rJpbOkzTiN/WxW6KpqCyFgzTwP5Y4j1an65lXQMpebpy4fusZS
+	4PEnnf7oCcx1kddVBcmy34CNMLTXvNaJ4cMYKRCVXVghf01RNQGElXjWnErpzF/og94oheKYM2X/Y
+	21hAW3anyRp76GmGSxYfYiT64HpLCEi/m8/WdVE21RnJOJvp3EK9+2td5QWQlyu0i+zrYqZoozctD
+	HQSNy2aLK+c8mBHsZG8qN8UV/NePuJEF+tafDiY/PYoxhLBVMQi4CbtJzTtg1KTuO701WA/rLDWoG
+	OLpcXkKs0jfgXzy7PSvWtQ00LQkCDIw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hsmom-00033X-7A; Wed, 31 Jul 2019 11:30:52 +0000
-Received: from casper.infradead.org ([85.118.1.10])
+	id 1hsmon-00035y-JO; Wed, 31 Jul 2019 11:30:53 +0000
+Received: from merlin.infradead.org ([205.233.59.134])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hsmo7-0001Tg-BQ; Wed, 31 Jul 2019 11:30:11 +0000
+ id 1hsmo7-0001h6-O4; Wed, 31 Jul 2019 11:30:11 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=Date:Message-Id:In-Reply-To:Subject:Cc:
+ d=infradead.org; s=merlin.20170209; h=Date:Message-Id:In-Reply-To:Subject:Cc:
  To:From:Sender:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:References:List-Id:List-Help:
  List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Oc00lErgK9TOIwDxfVL0TGkToNOIUPKLzcyDE4l8jTo=; b=YY3/5mRDVUDi3B+IIgFoNfCxiG
- 9qAMuMj44H8Md1Mh3wBkQOlWRJfWxjPInOeUIXpPhsUt72QYTbH7hHoOpm4p3kiEydXtJZtX/JAVQ
- ayAMu0vR/aC1qnWrwSc+mUfhVQXYYh0DE8fPxtZ5bo+nsIyQwyQ6TqtPjN5sHzKtoY3lyM0bk41ro
- mFoIS5w/jjgZqRxTHroyPEJrt8TsdfhGZ8rKhUCS3z0AgFC50ssAZzH0eYTySOlJZMLbsL7mnRsDH
- pSKHhxTVy6lsQ99lf3MYQ8elweadzL2l/Vmq2bj40HPjCu2cdS1aaELd/TdYcbheQxC166ge/p9QS
- RKbh3GzA==;
+ bh=LPcMA1o77HKX43GsHKyVecF06+o1mUT9VBwNz+iFXMo=; b=xL1Wktafjl4jkxpp2gIALYpkkN
+ ae4XsuLv0Rz8r+TUZA2y2THagCY9/lnlMII9Z1hdwzEGu5aahLiqzU6m/z04LPavxs0/vcfmOoKoh
+ FeZHrylJr2f25SyGZqi0ycLOrQ0ST9TOL8mzD5u1JXceaB3B8UQlicrx1ty1OG2jfHARNMaveiUQf
+ X91X91eD9Usgt03UzDGEuzaIEL/UfqAsZtU9Td9uNsYLE8Rj2LYEo9Zo5bqE2E9b52+ap8f4qeo/a
+ 9wHdGoUk3WawHXoyEphJymTXigTBCP0SdtySbXwxFZ3DfroJmN87AhIWJMeYj7Af1a3FKy08iWpy8
+ Nx5s0QZw==;
 Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
- by casper.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hsmoE-0008Vb-SN; Wed, 31 Jul 2019 11:30:21 +0000
+ by merlin.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
+ id 1hsmo4-0001Ny-VJ; Wed, 31 Jul 2019 11:30:10 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
  Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
  Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
  List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
- List-Archive; bh=Oc00lErgK9TOIwDxfVL0TGkToNOIUPKLzcyDE4l8jTo=; b=MWl7ooSDiy8l
- ZsfUmwvPp4rcYzXloF5d28C1TXqzuFMWJ810qZ/0v1KdizN5/T0Zsx78LlaNpT0z6MLwpKJjTPhPR
- U5qxJ51R5u7pfTmCvaJrmn92PN1OtazSkegLpgphoQgyXBEo+x3+IYE5RNWF5q+GRz1sqH/nIg3YG
- 5YRLo=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net
- ([82.37.168.47] helo=ypsilon.sirena.org.uk)
+ List-Archive; bh=LPcMA1o77HKX43GsHKyVecF06+o1mUT9VBwNz+iFXMo=; b=HzFMQvEjsOVh
+ XLfYvHR/3qgBqQK0ZJzR+WOLriQDmxegipE/C6imXRGHa7CDbinVSkkj678e4/+t3O1hGpl29jcCQ
+ 5BsOjLDFSFCiBXHceELzZ96ibSaYRDxwVwdPpCtWlnSPqE7ksYn+JzL2uWdQ1r6g2Ik9j0+TQjKcq
+ PtkWU=;
+Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
  by heliosphere.sirena.org.uk with esmtpsa
  (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
  (envelope-from <broonie@sirena.org.uk>)
- id 1hsmnl-0001ns-5M; Wed, 31 Jul 2019 11:29:49 +0000
+ id 1hsmnn-0001pL-RE; Wed, 31 Jul 2019 11:29:51 +0000
 Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
- id 8D5682742CC3; Wed, 31 Jul 2019 12:29:48 +0100 (BST)
+ id 10AC62742D57; Wed, 31 Jul 2019 12:29:51 +0100 (BST)
 From: Mark Brown <broonie@kernel.org>
 To: YueHaibing <yuehaibing@huawei.com>
-Subject: Applied "ASoC: fsl_audmix: use devm_platform_ioremap_resource() to
+Subject: Applied "ASoC: tegra20_das: use devm_platform_ioremap_resource() to
  simplify code" to the asoc tree
-In-Reply-To: <20190727150738.54764-9-yuehaibing@huawei.com>
+In-Reply-To: <20190727150738.54764-2-yuehaibing@huawei.com>
 X-Patchwork-Hint: ignore
-Message-Id: <20190731112948.8D5682742CC3@ypsilon.sirena.org.uk>
-Date: Wed, 31 Jul 2019 12:29:48 +0100 (BST)
+Message-Id: <20190731112951.10AC62742D57@ypsilon.sirena.org.uk>
+Date: Wed, 31 Jul 2019 12:29:51 +0100 (BST)
 X-Bad-Reply: In-Reply-To but no 'Re:' in Subject.
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190731_123018_949132_20150D6C 
-X-CRM114-Status: GOOD (  17.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,7 +118,7 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 The patch
 
-   ASoC: fsl_audmix: use devm_platform_ioremap_resource() to simplify code
+   ASoC: tegra20_das: use devm_platform_ioremap_resource() to simplify code
 
 has been applied to the asoc tree at
 
@@ -147,10 +143,10 @@ to this mail.
 Thanks,
 Mark
 
-From 959bb6b54d708652fe06097feecc3acd4d6b8c89 Mon Sep 17 00:00:00 2001
+From 21cc4ea85879c1b424fb01caa6e481c14286f7f0 Mon Sep 17 00:00:00 2001
 From: YueHaibing <yuehaibing@huawei.com>
-Date: Sat, 27 Jul 2019 23:07:12 +0800
-Subject: [PATCH] ASoC: fsl_audmix: use devm_platform_ioremap_resource() to
+Date: Sat, 27 Jul 2019 23:07:05 +0800
+Subject: [PATCH] ASoC: tegra20_das: use devm_platform_ioremap_resource() to
  simplify code
 
 Use devm_platform_ioremap_resource() to simplify the code a bit.
@@ -158,34 +154,34 @@ This is detected by coccinelle.
 
 Reported-by: Hulk Robot <hulkci@huawei.com>
 Signed-off-by: YueHaibing <yuehaibing@huawei.com>
-Link: https://lore.kernel.org/r/20190727150738.54764-9-yuehaibing@huawei.com
+Link: https://lore.kernel.org/r/20190727150738.54764-2-yuehaibing@huawei.com
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- sound/soc/fsl/fsl_audmix.c | 4 +---
+ sound/soc/tegra/tegra20_das.c | 4 +---
  1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/sound/soc/fsl/fsl_audmix.c b/sound/soc/fsl/fsl_audmix.c
-index 3897a54a11fe..c7e4e9757dce 100644
---- a/sound/soc/fsl/fsl_audmix.c
-+++ b/sound/soc/fsl/fsl_audmix.c
-@@ -458,7 +458,6 @@ static int fsl_audmix_probe(struct platform_device *pdev)
+diff --git a/sound/soc/tegra/tegra20_das.c b/sound/soc/tegra/tegra20_das.c
+index 10f9c3b19c88..1070b2710d5e 100644
+--- a/sound/soc/tegra/tegra20_das.c
++++ b/sound/soc/tegra/tegra20_das.c
+@@ -120,7 +120,6 @@ static const struct regmap_config tegra20_das_regmap_config = {
+ 
+ static int tegra20_das_probe(struct platform_device *pdev)
  {
- 	struct device *dev = &pdev->dev;
- 	struct fsl_audmix *priv;
 -	struct resource *res;
- 	const char *mdrv;
- 	const struct of_device_id *of_id;
  	void __iomem *regs;
-@@ -475,8 +474,7 @@ static int fsl_audmix_probe(struct platform_device *pdev)
- 		return -ENOMEM;
+ 	int ret = 0;
  
- 	/* Get the addresses */
+@@ -134,8 +133,7 @@ static int tegra20_das_probe(struct platform_device *pdev)
+ 	}
+ 	das->dev = &pdev->dev;
+ 
 -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	regs = devm_ioremap_resource(dev, res);
+-	regs = devm_ioremap_resource(&pdev->dev, res);
 +	regs = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(regs))
- 		return PTR_ERR(regs);
- 
+ 	if (IS_ERR(regs)) {
+ 		ret = PTR_ERR(regs);
+ 		goto err;
 -- 
 2.20.1
 
