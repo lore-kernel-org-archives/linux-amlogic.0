@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E7430C32751
-	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 11:31:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6C124C433FF
+	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 11:31:53 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BE668208E3
-	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 11:31:49 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3F8E6208E3
+	for <linux-amlogic@archiver.kernel.org>; Wed, 31 Jul 2019 11:31:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XvMP/ejW";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="mWnXJlkj"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BE668208E3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pZppQjr6";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="hNkfTKOq"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3F8E6208E3
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,48 +26,48 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:
 	In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	References:List-Owner; bh=N3GqDtoQ83BQ0dSnoUDH/eTDmp1seY/FdXAw9e68V5M=; b=XvM
-	P/ejW2X6pZ7tfrvw0TtBdvyqXVyNChXcNAhjwpCvx0vjyKKQTkaeM4HuQrvBdAXkXY8I3746Olk0e
-	jY3bBBK4Uxe0tGg7SyrD4xzgLFRGkGDjukyCfk+GDEscNGNOS+csxjk/KT2NiX2RsycJF0oyMhaRX
-	HHosqeLYuBKGABOjOGeUhGbt4ybngfgjc6fadxWkiu+H7pXTODl3ySqdEtZgK+vtxswaWwrGC/Exd
-	4RtRW1mW/wOVoeQJvoXAiXxFJMfn6ANMw64GajfadpzcRTaBvO+xZnkAoN9Txm2dmCcM5Y2K2Ff6v
-	2n0EBP9Qmd2MHqhPoZeHYejMwMbVDbg==;
+	References:List-Owner; bh=zabHJY8AoqII2CQwlGqkVJ8QhL+D490jvl860Qwvd/c=; b=pZp
+	pQjr6QR9cFqDueDDh92KR/UcTHA9hxKbv2By6zPou+zMr5l10N6fAWEFSUGt8UwwLSC80aam4PYI3
+	IBz77pXZFVY97OkymQY/Gu7brJDpOtGzeE8gojz3jXrRd6uHJa2jFPJcsl1Y21mc24LCZ3UPIIYj4
+	8KZwvAgWZN6arw5X4ZXzUx9mNZH7+AQrOc15IezAwef15leWyYSVmhM3XNa8a2nIAe5U34W5agqSU
+	uAFH4hwioqPhL/e4HtDk8DjqSSLlUF6n36Cc08ePqEM/b/Vft63FVNJulJDBj1gA9iy922z1DdP9P
+	I1ptek5pGKrkiPh8zqsqf9vlBTE/YEA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hsmpd-0004O1-Kt; Wed, 31 Jul 2019 11:31:45 +0000
+	id 1hsmpg-0004Qn-Sk; Wed, 31 Jul 2019 11:31:48 +0000
 Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hsmnz-0000vo-RG; Wed, 31 Jul 2019 11:30:16 +0000
+ id 1hsmnz-0000vh-7X; Wed, 31 Jul 2019 11:30:16 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
  Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
  Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
  List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
- List-Archive; bh=v871jHNt077vZnIyaI0zzBzYEd+b7ft04H2qC4RPmxI=; b=mWnXJlkjB31Y
- InebYKQLQ2UXpj1I1Y94Yv2fVSGf7ksuzho7F+sQD2I/Y6s4mcyX5cxeBedTO0Y4SCD/npXHQKmB4
- b40IWuD38EjPia6ZWvZ029ty/zI869MrMZ8uy9qVybmWSXRruhl4FXNcPZR/UxKYwbeITpAfQ35gl
- LmHmI=;
+ List-Archive; bh=1+pT3ctx398IjJGsV4QKspIhkRKYicy/NIkBKdhKy/4=; b=hNkfTKOqNoyX
+ 5XkBXUgM40eLNZinRxNMeWdOfK9Qg5zMC+sf16W8TCCEcx3YBEUDHiwJJh1mcv9yaeggc2HsyTuo1
+ zRtdWBAS1IJyTfnpfR82warrFeYVNcU1aHaytOwG66ZdpTysjdjj40C9y9GgJI/nLc9x+k4bEdIiT
+ g0N4k=;
 Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net
  ([82.37.168.47] helo=ypsilon.sirena.org.uk)
  by heliosphere.sirena.org.uk with esmtpsa
  (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
  (envelope-from <broonie@sirena.org.uk>)
- id 1hsmnj-0001mw-8r; Wed, 31 Jul 2019 11:29:47 +0000
+ id 1hsmnb-0001kv-4a; Wed, 31 Jul 2019 11:29:39 +0000
 Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
- id B0EE02742CC3; Wed, 31 Jul 2019 12:29:46 +0100 (BST)
+ id 99BC02742C99; Wed, 31 Jul 2019 12:29:38 +0100 (BST)
 From: Mark Brown <broonie@kernel.org>
 To: YueHaibing <yuehaibing@huawei.com>
-Subject: Applied "ASoC: kirkwood-i2s: use devm_platform_ioremap_resource() to
- simplify code" to the asoc tree
-In-Reply-To: <20190727150738.54764-14-yuehaibing@huawei.com>
+Subject: Applied "ASoC: meson: axg-tdm-formatter: use
+ devm_platform_ioremap_resource() to simplify code" to the asoc tree
+In-Reply-To: <20190727150738.54764-27-yuehaibing@huawei.com>
 X-Patchwork-Hint: ignore
-Message-Id: <20190731112946.B0EE02742CC3@ypsilon.sirena.org.uk>
-Date: Wed, 31 Jul 2019 12:29:46 +0100 (BST)
+Message-Id: <20190731112938.99BC02742C99@ypsilon.sirena.org.uk>
+Date: Wed, 31 Jul 2019 12:29:38 +0100 (BST)
 X-Bad-Reply: In-Reply-To but no 'Re:' in Subject.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190731_043003_945656_3ECFA3F7 
-X-CRM114-Status: GOOD (  12.30  )
+X-CRM114-CacheID: sfid-20190731_043003_763889_97BCA75B 
+X-CRM114-Status: GOOD (  11.91  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,7 +106,7 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 The patch
 
-   ASoC: kirkwood-i2s: use devm_platform_ioremap_resource() to simplify code
+   ASoC: meson: axg-tdm-formatter: use devm_platform_ioremap_resource() to simplify code
 
 has been applied to the asoc tree at
 
@@ -131,44 +131,44 @@ to this mail.
 Thanks,
 Mark
 
-From 89dd38bf130e661d92c6ab7e3b003907f1d3f367 Mon Sep 17 00:00:00 2001
+From 10392fcad7dfc8ea38959b18327ff18b81b1c161 Mon Sep 17 00:00:00 2001
 From: YueHaibing <yuehaibing@huawei.com>
-Date: Sat, 27 Jul 2019 23:07:17 +0800
-Subject: [PATCH] ASoC: kirkwood-i2s: use devm_platform_ioremap_resource() to
- simplify code
+Date: Sat, 27 Jul 2019 23:07:30 +0800
+Subject: [PATCH] ASoC: meson: axg-tdm-formatter: use
+ devm_platform_ioremap_resource() to simplify code
 
 Use devm_platform_ioremap_resource() to simplify the code a bit.
 This is detected by coccinelle.
 
 Reported-by: Hulk Robot <hulkci@huawei.com>
 Signed-off-by: YueHaibing <yuehaibing@huawei.com>
-Link: https://lore.kernel.org/r/20190727150738.54764-14-yuehaibing@huawei.com
+Link: https://lore.kernel.org/r/20190727150738.54764-27-yuehaibing@huawei.com
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- sound/soc/kirkwood/kirkwood-i2s.c | 4 +---
+ sound/soc/meson/axg-tdm-formatter.c | 4 +---
  1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/sound/soc/kirkwood/kirkwood-i2s.c b/sound/soc/kirkwood/kirkwood-i2s.c
-index 3446a113f482..5076ec4cc7a6 100644
---- a/sound/soc/kirkwood/kirkwood-i2s.c
-+++ b/sound/soc/kirkwood/kirkwood-i2s.c
-@@ -523,7 +523,6 @@ static int kirkwood_i2s_dev_probe(struct platform_device *pdev)
- 	struct kirkwood_asoc_platform_data *data = pdev->dev.platform_data;
- 	struct snd_soc_dai_driver *soc_dai = kirkwood_i2s_dai;
- 	struct kirkwood_dma_data *priv;
--	struct resource *mem;
- 	struct device_node *np = pdev->dev.of_node;
- 	int err;
+diff --git a/sound/soc/meson/axg-tdm-formatter.c b/sound/soc/meson/axg-tdm-formatter.c
+index 2e498201139f..21c735afab35 100644
+--- a/sound/soc/meson/axg-tdm-formatter.c
++++ b/sound/soc/meson/axg-tdm-formatter.c
+@@ -253,7 +253,6 @@ int axg_tdm_formatter_probe(struct platform_device *pdev)
+ 	struct device *dev = &pdev->dev;
+ 	const struct axg_tdm_formatter_driver *drv;
+ 	struct axg_tdm_formatter *formatter;
+-	struct resource *res;
+ 	void __iomem *regs;
+ 	int ret;
  
-@@ -533,8 +532,7 @@ static int kirkwood_i2s_dev_probe(struct platform_device *pdev)
+@@ -269,8 +268,7 @@ int axg_tdm_formatter_probe(struct platform_device *pdev)
+ 	platform_set_drvdata(pdev, formatter);
+ 	formatter->drv = drv;
  
- 	dev_set_drvdata(&pdev->dev, priv);
- 
--	mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	priv->io = devm_ioremap_resource(&pdev->dev, mem);
-+	priv->io = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(priv->io))
- 		return PTR_ERR(priv->io);
+-	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	regs = devm_ioremap_resource(dev, res);
++	regs = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(regs))
+ 		return PTR_ERR(regs);
  
 -- 
 2.20.1
