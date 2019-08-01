@@ -6,17 +6,17 @@ X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
 	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F0C5EC433FF
-	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Aug 2019 14:42:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 97942C433FF
+	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Aug 2019 15:07:55 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C5C3020665
-	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Aug 2019 14:42:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6926C206B8
+	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Aug 2019 15:07:55 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LJyKg52r";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="z/HdMI/A"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C5C3020665
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cjqR03Su";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="gwPTDBqS"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6926C206B8
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,51 +25,51 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=jqpi6oNsTyw6fQ7bBBipEah4PoOH6ZOSSFHx6zlZh4w=; b=LJyKg52rXQFFBc
-	TtI67jJFuy84KxNvwGCs0xB3LMBaUnubBduXhFKP6QvbvvbSFZ6iZ10l0fhKuaqibfIgjws/0XAZ4
-	TUSKL79DukgNHa0ShINjV4RJ3ctDo8d2+0b9kllCnZwbvbk5avYMqNk58RqLbOyv74EO0GWupesmV
-	Gt1bfmEiyt3guLF6qBB9QZi7AHiPJoXc8jjPN1y7q2Sn5uK7zEqg387UUeBCRvJKd4dC18iJ9lfCo
-	enoFbVUqmfimQB/mlPnz1iQugtr+JmRVZzYE73XMY5zyr1Lvuv+6xML/T544xTob+5oQa/Cux9MHP
-	TV3ikEjs4wNm+lSagxOw==;
+	List-Owner; bh=DzJ17+re9mFH/roE1PHPYDhgAw5p9xwwQMFWRzC/VOw=; b=cjqR03Sur6FWDM
+	wgSAafZzrIlLzuS54khhVn0laC0SOiYe13/r+6JNxAB3k7Ki+fJmYD0CO1nxqMCq3yJvvNzh3/T9S
+	JB+nw+OX1vKA4i9Do6irBZw6jWftSrvkNvY46M7uIj6/ygn3WWJC0y8pZen7Sv4esn9amUwoK9Soh
+	27joFYdTP/13iR14z1cWfrtwv+Zi2kZaMzm7++3S3gr+zxeVE5vNWrO4JOWz3giODTO+phcWCWFzP
+	F57hEZEJoq45Al3SHT78NvWtxFuc6ZloCMZKbhnTbSiJXyy5sMv26mMtAi0mJOI0pZF3BMUl65U85
+	p1uUFQ6QLPCbbvNdPKhg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1htCHw-0008Sf-W4; Thu, 01 Aug 2019 14:42:40 +0000
+	id 1htCgE-0002Bp-UF; Thu, 01 Aug 2019 15:07:46 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1htCHu-0008Rf-4O; Thu, 01 Aug 2019 14:42:39 +0000
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com
- [209.85.160.175])
+ id 1htCgC-0002BS-H0; Thu, 01 Aug 2019 15:07:46 +0000
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com
+ [209.85.160.172])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id A6A9120665;
- Thu,  1 Aug 2019 14:42:37 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id E672F216C8;
+ Thu,  1 Aug 2019 15:07:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1564670557;
- bh=GprFswuM78S+VgBUwByzLyrYSPJVf3nxGZ4gKaEnPOI=;
+ s=default; t=1564672064;
+ bh=iSl6ok6B2SROLYHTwlF9Rt9vwiSJ20o3/syGoRjvS4k=;
  h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=z/HdMI/AIy5FG1El2tcpyMP7dY2ibpvP+xRzzk8m0sK5HDQZTnayJoCJObknAGVZ4
- W1uKR5i//rhhMJjOvZkNEJrEiib7P59EoQP6Hfb72LXpKeqytILuerqVXOcJOxD2NK
- grcU3VwO0oom9Fe5WlBevZ+wHeX2T33aW2GXOYBc=
-Received: by mail-qt1-f175.google.com with SMTP id h18so70475336qtm.9;
- Thu, 01 Aug 2019 07:42:37 -0700 (PDT)
-X-Gm-Message-State: APjAAAWMPH2GAugCnmNKd7iD7irLo5efwvMrbrabnshS2p/aAaSSTs04
- 8YWGptkln/lQZCfUlXdfIh2BzMA0KyRFEugdFQ==
-X-Google-Smtp-Source: APXvYqw7U48NblAeJFrFkeTHFyKp5QLlcheCe1VY0HORPOiVyncpm84GhT+LSusKRubHI4v73Qi9L1rIYf5NYy03mFs=
-X-Received: by 2002:aed:3f10:: with SMTP id p16mr90788503qtf.110.1564670556872; 
- Thu, 01 Aug 2019 07:42:36 -0700 (PDT)
+ b=gwPTDBqSBdwKa7yeRMuwVfg3mJvvuhisdPYP1JnpirCoSUXWvBLGj+YvmKnoOLAWO
+ SEMLFTYKzvNxJ9AShvtkVCIEhmy/WLWSD9Y5OwRQX8fhhoaUyS0HorXz0AtNbmA1SQ
+ zIzhJQ5lx2n8XBdwrhIk4iciJE4J11QnvRUPvoQY=
+Received: by mail-qt1-f172.google.com with SMTP id l9so70504538qtu.6;
+ Thu, 01 Aug 2019 08:07:43 -0700 (PDT)
+X-Gm-Message-State: APjAAAU4rhDa363MLF9YjwkPjEVDzw3JVSYaYUe/ZITumubMsVu2772L
+ tR+MjjXKPoXf8EARBQSB+tf5TOciNbk/1FXHgQ==
+X-Google-Smtp-Source: APXvYqy7Pqe/EM1KT5Xeue0nhWEZlvbnoGusFTQHCOXMTlxdphxp7CGKAsGtOykYhiSsvQo3hQWcwNukIZ5EHYeeHME=
+X-Received: by 2002:a0c:b627:: with SMTP id f39mr94377748qve.72.1564672063061; 
+ Thu, 01 Aug 2019 08:07:43 -0700 (PDT)
 MIME-Version: 1.0
 References: <20190801135644.12843-1-narmstrong@baylibre.com>
- <20190801135644.12843-4-narmstrong@baylibre.com>
-In-Reply-To: <20190801135644.12843-4-narmstrong@baylibre.com>
+ <20190801135644.12843-7-narmstrong@baylibre.com>
+In-Reply-To: <20190801135644.12843-7-narmstrong@baylibre.com>
 From: Rob Herring <robh+dt@kernel.org>
-Date: Thu, 1 Aug 2019 08:42:23 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqK9ODpXq_VkP4ztW7JAfPNOxpdP1W1duQwaUu0tYNh_Dw@mail.gmail.com>
-Message-ID: <CAL_JsqK9ODpXq_VkP4ztW7JAfPNOxpdP1W1duQwaUu0tYNh_Dw@mail.gmail.com>
-Subject: Re: [RFC 3/9] dt-bindings: spi: meson: convert to yaml
+Date: Thu, 1 Aug 2019 09:07:31 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJbt=rzDrD8+Py0EcGx8ZiaqEupv5Rq+tCMk1ZcxKaOcg@mail.gmail.com>
+Message-ID: <CAL_JsqJbt=rzDrD8+Py0EcGx8ZiaqEupv5Rq+tCMk1ZcxKaOcg@mail.gmail.com>
+Subject: Re: [RFC 6/9] dt-bindings: phy: meson-g12a-usb2-phy: convert to yaml
 To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190801_074238_217118_5A870019 
-X-CRM114-Status: GOOD (  17.97  )
+X-CRM114-CacheID: sfid-20190801_080744_611572_BF2AAA64 
+X-CRM114-Status: GOOD (  19.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,9 +81,9 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+Cc: linux-amlogic@lists.infradead.org, Kishon Vijay Abraham I <kishon@ti.com>,
  "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>, linux-spi <linux-spi@vger.kernel.org>
+ <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
@@ -93,189 +93,127 @@ On Thu, Aug 1, 2019 at 7:56 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->  .../bindings/spi/amlogic,meson-gx-spicc.yaml  | 74 +++++++++++++++++++
->  .../bindings/spi/amlogic,meson6-spifc.yaml    | 57 ++++++++++++++
->  .../devicetree/bindings/spi/spi-meson.txt     | 55 --------------
->  3 files changed, 131 insertions(+), 55 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
->  create mode 100644 Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml
->  delete mode 100644 Documentation/devicetree/bindings/spi/spi-meson.txt
+>  .../bindings/phy/meson-g12a-usb2-phy.txt      | 22 ------
+>  .../bindings/phy/meson-g12a-usb2-phy.yaml     | 67 +++++++++++++++++++
+>  2 files changed, 67 insertions(+), 22 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/phy/meson-g12a-usb2-phy.txt
+>  create mode 100644 Documentation/devicetree/bindings/phy/meson-g12a-usb2-phy.yaml
 >
-> diff --git a/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml b/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
+> diff --git a/Documentation/devicetree/bindings/phy/meson-g12a-usb2-phy.txt b/Documentation/devicetree/bindings/phy/meson-g12a-usb2-phy.txt
+> deleted file mode 100644
+> index a6ebc3dea159..000000000000
+> --- a/Documentation/devicetree/bindings/phy/meson-g12a-usb2-phy.txt
+> +++ /dev/null
+> @@ -1,22 +0,0 @@
+> -* Amlogic G12A USB2 PHY binding
+> -
+> -Required properties:
+> -- compatible:  Should be "amlogic,meson-g12a-usb2-phy"
+> -- reg:         The base address and length of the registers
+> -- #phys-cells: must be 0 (see phy-bindings.txt in this directory)
+> -- clocks:      a phandle to the clock of this PHY
+> -- clock-names: must be "xtal"
+> -- resets:      a phandle to the reset line of this PHY
+> -- reset-names: must be "phy"
+> -- phy-supply:  see phy-bindings.txt in this directory
+> -
+> -Example:
+> -       usb2_phy0: phy@36000 {
+> -               compatible = "amlogic,g12a-usb2-phy";
+> -               reg = <0x0 0x36000 0x0 0x2000>;
+> -               clocks = <&xtal>;
+> -               clock-names = "xtal";
+> -               resets = <&reset RESET_USB_PHY21>;
+> -               reset-names = "phy";
+> -               #phy-cells = <0>;
+> -       };
+> diff --git a/Documentation/devicetree/bindings/phy/meson-g12a-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/meson-g12a-usb2-phy.yaml
 > new file mode 100644
-> index 000000000000..6e2c41c730b5
+> index 000000000000..4cd5ba97d469
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
-> @@ -0,0 +1,74 @@
+> +++ b/Documentation/devicetree/bindings/phy/meson-g12a-usb2-phy.yaml
+> @@ -0,0 +1,67 @@
 > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 > +# Copyright 2019 BayLibre, SAS
 > +%YAML 1.2
 > +---
-> +$id: "http://devicetree.org/schemas/spi/amlogic,meson-gx-spicc.yaml#"
+> +$id: "http://devicetree.org/schemas/phy/meson-g12a-usb2-phy.yaml#"
+
+For this and the filename, use the compatible string (i.e. add 'amlogic,').
+
 > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 > +
-> +title: Amlogic Meson SPI Communication Controller
+> +title: Amlogic G12A USB2 PHY
 > +
 > +maintainers:
 > +  - Neil Armstrong <narmstrong@baylibre.com>
 > +
-> +allOf:
-> +  - $ref: "spi-controller.yaml#"
-> +
-> +description: |
-> +  The Meson SPICC is a generic SPI controller for general purpose Full-Duplex
-> +  communications with dedicated 16 words RX/TX PIO FIFOs.
-> +
 > +properties:
 > +  compatible:
-> +    oneOf:
-> +     - description: SPICC controller on Amlogic GX and compatible SoCs
-> +       enum:
-> +       - amlogic,meson-gx-spicc
-> +     - description: SPICC controller on Amlogic AXG and compatible SoCs
-> +       enum:
-> +       - amlogic,meson-axg-spicc
-
-'oneOf' results in vague error messages and can be avoided here. Plus
-I don't think the descriptions add much as I could pretty much
-generate the desc "<block> controller on <vendor> <soc> and compatible
-SoCs" from <vendor>,<soc>-<block>.
-
-Though, if you want to keep the description, do it as a comment:
-
-enum:
-  - amlogic,meson-gx-spicc # SPICC controller on Amlogic GX and compatible SoCs
-  - amlogic,meson-axg-spicc # SPICC controller on Amlogic AXG and
-compatible SoCs
-
-> +
-> +  interrupts:
-> +    maxItems: 1
+> +    enum:
+> +      - amlogic,meson-g12a-usb2-phy
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  resets:
-> +    description: phandle of the internal reset line
-
-Standard property, don't need a description unless there's something
-special about this binding.
-
-> +    maxItems: 1
-> +
 > +  clocks:
 > +    maxItems: 1
+> +    description:
+> +      A phandle to the clock of this PHY
+
+As mentioned elsewhere, this description can be dropped.
+
 > +
 > +  clock-names:
-> +    description: input clock for the baud rate generator
 > +    items:
-> +      - const: core
+> +      - const: xtal
 > +
-
-> +  "#address-cells":
-> +    const: 1
+> +  resets:
+> +    maxItems: 1
+> +    description:
+> +      A phandle to the reset line of this PHY
 > +
-> +  "#size-cells":
+> +  reset-names:
+> +    items:
+> +      - const: phy
+> +
+> +  "#phy-cells":
 > +    const: 0
-
-These 2 can be dropped as they are covered by spi-controller.yaml.
-
+> +
+> +  phy-supply:
+> +     maxItems: 1
+> +     description:
+> +       Phandle to a regulator that provides power to the PHY. This
+> +       regulator will be managed during the PHY power on/off sequence.
 > +
 > +required:
 > +  - compatible
 > +  - reg
-> +  - interrupts
 > +  - clocks
 > +  - clock-names
-> +  - "#address-cells"
-> +  - "#size-cells"
+> +  - resets
+> +  - reset-names
+> +  - "#phy-cells"
+
+phy-supply was required in the old doc though the example disagrees.
+If dropping required is desired, just mention so in the commit
+message.
+
 > +
 > +examples:
 > +  - |
-> +    spi@c1108d80 {
-> +          compatible = "amlogic,meson-gx-spicc";
-> +          reg = <0xc1108d80 0x80>;
-> +          interrupts = <112>;
-> +          clocks = <&clk81>;
-> +          clock-names = "core";
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-
-Probably should add a slave node. Once I figure out how to always
-build the examples with W=12, the lack of a chlid node will throw a
-dtc warning.
-
+> +    phy@36000 {
+> +          compatible = "amlogic,meson-g12a-usb2-phy";
+> +          reg = <0x36000 0x2000>;
+> +          clocks = <&xtal>;
+> +          clock-names = "xtal";
+> +          resets = <&phy_reset>;
+> +          reset-names = "phy";
+> +          #phy-cells = <0>;
 > +    };
-> +
-> diff --git a/Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml b/Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml
-> new file mode 100644
-> index 000000000000..5f34aed1ad40
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml
-
-Some of the same comments apply to this one.
-
-> @@ -0,0 +1,57 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2019 BayLibre, SAS
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/spi/amlogic,meson6-spifc.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Amlogic Meson SPI Flash Controller
-> +
-> +maintainers:
-> +  - Neil Armstrong <narmstrong@baylibre.com>
-> +
-> +allOf:
-> +  - $ref: "spi-controller.yaml#"
-> +
-> +description: |
-> +  The Meson SPIFC is a controller optimized for communication with SPI
-> +  NOR memories, without DMA support and a 64-byte unified transmit /
-> +  receive buffer.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +     - enum:
-> +       - amlogic,meson6-spifc
-> +     - enum:
-> +       - amlogic,meson-gxbb-spifc
-
-Drop the oneOf. A single enum is sufficient.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +examples:
-> +  - |
-> +    spi@c1108c80 {
-> +          compatible = "amlogic,meson6-spifc";
-> +          reg = <0xc1108c80 0x80>;
-> +          clocks = <&clk81>;
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +    };
-> +
+> --
+> 2.22.0
+>
 
 _______________________________________________
 linux-amlogic mailing list
