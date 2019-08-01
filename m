@@ -2,72 +2,89 @@ Return-Path: <SRS0=NajJ=V5=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DE20AC32753
-	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Aug 2019 13:11:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4142CC19759
+	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Aug 2019 13:57:13 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B5F9F21726
-	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Aug 2019 13:11:05 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 119BD20838
+	for <linux-amlogic@archiver.kernel.org>; Thu,  1 Aug 2019 13:57:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cAcOb6A+";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="D0wRGNLx"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B5F9F21726
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MV2+iNYv";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="13O0vL5D"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 119BD20838
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:
-	In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	References:List-Owner; bh=ingGNV9SRx6TZCXvuSCdQPboxAs7bbZhOR5JuNokfsY=; b=cAc
-	Ob6A+iljGQL5iL4DVP6aqLNgLluSaYOUrJ3kzyQDJoYITkGAmazMYejWkLViDoSYApSYzE42ZnhFT
-	vUqHO7x4L4XjUiGo8/ShIaVl6nJA73//20uJLwpU8yCiWIjTrbE3s5VFZJM8+bnAYQuQJ6Gqohuz0
-	mzpkgfz4Aqu85cqE4uKrvlm/r7iHA0Orp57p9k2+71uuIoB547TCUog3Rxf2z490Ioh6Z4xNxIl5S
-	lA6JvhNVDdj4NHW9L8bJlXIrutDlnx6rzPl+EFlJJmU0NqGyZDnkpNBxIUAj29i25HiwbVazB2Mwc
-	uj5CclOJYOCUMj4QUlJ2TQEh81rX+3g==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=HgAy+w1NK3PV6hMItPrKAwpSbabhbv+iQEjXlvIqRyc=; b=MV2+iNYvTfKHDf
+	uTstVOmvpWOHsFYzzf2CG7t8/9DO2xZR8da7vXqYgnGlXkT5kOxV/gU2IK9gV1vEeODtGTcSq0qpz
+	N7ol64u79355gGsNG2WcSGPwhqEKo3Q/4GpiZnbRlYXbF8P2ONTl91yX07Vm1RG5ghJjppfIibp9g
+	mUJxYIDMPvtXtV7uuuCazz86xFAO8XE4es0FZ7YwPZ5eEOF7mCasN85WWTEPz/HupK9LBAYepxz+s
+	t1v2xFG2mJHfoIiD++0bDO58WICzqpTGEgHbhmmcKo6JdKSySDfFnVdkvwBfk/WMfP+eLhJujX604
+	JVo8QvD38Sn2VCk1ud3w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1htArF-0000C9-8I; Thu, 01 Aug 2019 13:11:01 +0000
-Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
+	id 1htBZn-0001Ek-NA; Thu, 01 Aug 2019 13:57:03 +0000
+Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1htAr0-0008ME-1o
- for linux-amlogic@lists.infradead.org; Thu, 01 Aug 2019 13:10:51 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
- Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
- List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
- List-Archive; bh=yt/S/eLXPax0RaHMCPV+686Z6HNMhsr3yQ9vBPcPgRo=; b=D0wRGNLxuXnX
- n9HAo7KYFVQBuuRAVNuG4B98UAwKz7LqJGBZnf5oHCQtCSPER8xvB1dfpyiQV1yTz6U/LbAOed1hg
- 8nt8YQB7wix7Szfx6U7xaaX5nK2UqMbBJwcu9NsHBAZtLZi3lgzBVqHM6+peU559y0FVSwvfZNMVW
- 0eVDE=;
-Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
- by heliosphere.sirena.org.uk with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <broonie@sirena.org.uk>)
- id 1htAqv-0004iv-1Z; Thu, 01 Aug 2019 13:10:41 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
- id 6D0F12742D9A; Thu,  1 Aug 2019 14:10:40 +0100 (BST)
-From: Mark Brown <broonie@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Subject: Applied "ASoC: codec2codec: remove ephemeral variables" to the asoc
- tree
-In-Reply-To: <20190725165949.29699-6-jbrunet@baylibre.com>
-X-Patchwork-Hint: ignore
-Message-Id: <20190801131040.6D0F12742D9A@ypsilon.sirena.org.uk>
-Date: Thu,  1 Aug 2019 14:10:40 +0100 (BST)
-X-Bad-Reply: In-Reply-To but no 'Re:' in Subject.
+ id 1htBZa-0000zX-GP
+ for linux-amlogic@lists.infradead.org; Thu, 01 Aug 2019 13:56:52 +0000
+Received: by mail-wm1-x32b.google.com with SMTP id g67so59191225wme.1
+ for <linux-amlogic@lists.infradead.org>; Thu, 01 Aug 2019 06:56:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=lIm81eDhukyw6fbCl/+3h+QPFrHXYcRhnM9vCZm0FBU=;
+ b=13O0vL5DX2cs4dd++hzfRHv1CPifo+nEBZIfEK/xPAm8LBOTVk9bmKI2ZMbRTH1Qny
+ gGc5Etb+oieTHOJzEcqzxWDGO6QQqX8ZqANnbyLDBv2TvisCVoaDgG+Sk1kHTmon4u7p
+ 23GDtno64u2hTvVK4IASbns2pDTl99MQ9lBi+m6sVEXUkUpyjOdGM2BNfLvVc5T/fqbP
+ 9RYMi1RBDw8zjzxwomGDcNw8yXfmP3fnwqKgmxCfWTSa6c7Ru6292ZJe91J3mLvVO1do
+ 1LdLqXyr4MpjfSurQz0trb5nuP2J9ZMxqd5XwmuOpZpWwQRuERRQeyL/kh7Wen7RuCof
+ AwZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=lIm81eDhukyw6fbCl/+3h+QPFrHXYcRhnM9vCZm0FBU=;
+ b=qGoBncihdw6uocGSC71SN7kjWeJLrT0DGjubrngX8jqiFQ5QRV3bvjlEWEB3yGnfGQ
+ D8KXXJtpXqJUUPCu3v3X9G9onjxJF8n6RVN7PyG4L3LywyjgCRlho4fGP9PZCQorjRwI
+ Ai3jFTBb9sI4Kox3loVz4Fgzef12KwaAr0zXYbqRqp5bNiZ0jvcmMz6nDxkZYPO/dluT
+ ZpKDsUgnnQOOSOJmPWLxyie10nplgkwcW78maLNIxfvY/SfmXR7dbosblmM5VNULEdGn
+ 8EfBR3vYFsbU+4cpLbsRTVfFD72k2+3bCgA/G/PAqkBpV7U6b6h7DagP0kYjfVub5F2R
+ K+pg==
+X-Gm-Message-State: APjAAAXoUG+r19/E+URi/rSP5i+uc1jTua3M6n5X584ukE304Rrb03Ke
+ y3GVUpsyPZ7z9JFLY6tzrZJgVQ==
+X-Google-Smtp-Source: APXvYqz463HiGivdjA4sUX+UrCKICPNW2Wd+t3590qMCqsuXMkM9GjxeAukrBa4PObzWj+jGQXbYjg==
+X-Received: by 2002:a1c:ef0c:: with SMTP id
+ n12mr111159574wmh.132.1564667808166; 
+ Thu, 01 Aug 2019 06:56:48 -0700 (PDT)
+Received: from bender.baylibre.local
+ (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id u6sm69659952wml.9.2019.08.01.06.56.47
+ (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+ Thu, 01 Aug 2019 06:56:47 -0700 (PDT)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: robh+dt@kernel.org
+Subject: [RFC 0/9] dt-bindings: first tentative of conversion to yaml format
+Date: Thu,  1 Aug 2019 15:56:35 +0200
+Message-Id: <20190801135644.12843-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190801_061046_244586_6C816B3D 
-X-CRM114-Status: GOOD (  18.15  )
+X-CRM114-CacheID: sfid-20190801_065650_575487_DFD251C0 
+X-CRM114-Status: UNSURE (   6.76  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,255 +96,80 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
- Kevin Hilman <khilman@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>,
- linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
- linux-amlogic@lists.infradead.org
-MIME-Version: 1.0
+Cc: p.zabel@pengutronix.de, devicetree@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ jassisinghbrar@gmail.com, linux-spi@vger.kernel.org,
+ linux-crypto@vger.kernel.org, linux-serial@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, kishon@ti.com,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The patch
+This is a first tentative to convert some of the simplest Amlogic
+dt-bindings to the yaml format.
 
-   ASoC: codec2codec: remove ephemeral variables
+All have been tested using :
+$ make ARCH=arm64 dtbs_check
 
-has been applied to the asoc tree at
+Issues with the amlogic arm64 DTs has already been identified thanks
+to the validation scripts. The DT fixes will be pushed once these yaml
+bindings are acked.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.4
+Neil Armstrong (9):
+  dt-bindings: mailbox: meson-mhu: convert to yaml
+  dt-bindings: rng: amlogic,meson-rng: convert to yaml
+  dt-bindings: spi: meson: convert to yaml
+  dt-bindings: reset: amlogic,meson-reset: convert to yaml
+  dt-bindings: arm: amlogic: amlogic,meson-gx-ao-secure: convert to yaml
+  dt-bindings: phy: meson-g12a-usb2-phy: convert to yaml
+  dt-bindings: phy: meson-g12a-usb3-pcie-phy: convert to yaml
+  dt-bindings: serial: meson-uart: convert to yaml
+  dt-bindings: watchdog: meson-gxbb-wdt: convert to yaml
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
+ .../amlogic/amlogic,meson-gx-ao-secure.txt    | 28 -------
+ .../amlogic/amlogic,meson-gx-ao-secure.yaml   | 42 +++++++++++
+ .../devicetree/bindings/mailbox/meson-mhu.txt | 34 ---------
+ .../bindings/mailbox/meson-mhu.yaml           | 53 +++++++++++++
+ .../bindings/phy/meson-g12a-usb2-phy.txt      | 22 ------
+ .../bindings/phy/meson-g12a-usb2-phy.yaml     | 67 +++++++++++++++++
+ .../bindings/phy/meson-g12a-usb3-pcie-phy.txt | 22 ------
+ .../phy/meson-g12a-usb3-pcie-phy.yaml         | 61 +++++++++++++++
+ .../bindings/reset/amlogic,meson-reset.txt    | 19 -----
+ .../bindings/reset/amlogic,meson-reset.yaml   | 40 ++++++++++
+ .../bindings/rng/amlogic,meson-rng.txt        | 21 ------
+ .../bindings/rng/amlogic,meson-rng.yaml       | 37 +++++++++
+ .../bindings/serial/amlogic,meson-uart.txt    | 38 ----------
+ .../bindings/serial/amlogic,meson-uart.yaml   | 75 +++++++++++++++++++
+ .../bindings/spi/amlogic,meson-gx-spicc.yaml  | 74 ++++++++++++++++++
+ .../bindings/spi/amlogic,meson6-spifc.yaml    | 57 ++++++++++++++
+ .../devicetree/bindings/spi/spi-meson.txt     | 55 --------------
+ .../bindings/watchdog/meson-gxbb-wdt.txt      | 16 ----
+ .../bindings/watchdog/meson-gxbb-wdt.yaml     | 37 +++++++++
+ 19 files changed, 543 insertions(+), 255 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mailbox/meson-mhu.txt
+ create mode 100644 Documentation/devicetree/bindings/mailbox/meson-mhu.yaml
+ delete mode 100644 Documentation/devicetree/bindings/phy/meson-g12a-usb2-phy.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/meson-g12a-usb2-phy.yaml
+ delete mode 100644 Documentation/devicetree/bindings/phy/meson-g12a-usb3-pcie-phy.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/meson-g12a-usb3-pcie-phy.yaml
+ delete mode 100644 Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt
+ create mode 100644 Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+ delete mode 100644 Documentation/devicetree/bindings/rng/amlogic,meson-rng.txt
+ create mode 100644 Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
+ delete mode 100644 Documentation/devicetree/bindings/serial/amlogic,meson-uart.txt
+ create mode 100644 Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+ create mode 100644 Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
+ create mode 100644 Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/spi/spi-meson.txt
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/meson-gxbb-wdt.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/meson-gxbb-wdt.yaml
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
-From a72706ed8208ac3f72d1c3ebbc6509e368b0dcb0 Mon Sep 17 00:00:00 2001
-From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Thu, 25 Jul 2019 18:59:48 +0200
-Subject: [PATCH] ASoC: codec2codec: remove ephemeral variables
-
-Now that codec to codec links struct snd_soc_pcm_runtime have lasting pcm
-and substreams, let's use them. Alsa allocate and keep the
-struct snd_pcm_runtime as long as the link is powered.
-
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Link: https://lore.kernel.org/r/20190725165949.29699-6-jbrunet@baylibre.com
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- sound/soc/soc-dapm.c | 72 ++++++++++++++++++++++++++------------------
- 1 file changed, 42 insertions(+), 30 deletions(-)
-
-diff --git a/sound/soc/soc-dapm.c b/sound/soc/soc-dapm.c
-index 2d183e2d23de..1c953a1b46ce 100644
---- a/sound/soc/soc-dapm.c
-+++ b/sound/soc/soc-dapm.c
-@@ -3775,6 +3775,7 @@ snd_soc_dai_link_event_pre_pmu(struct snd_soc_dapm_widget *w,
- 	struct snd_soc_pcm_runtime *rtd = substream->private_data;
- 	struct snd_pcm_hw_params *params = NULL;
- 	const struct snd_soc_pcm_stream *config = NULL;
-+	struct snd_pcm_runtime *runtime = NULL;
- 	unsigned int fmt;
- 	int ret = 0;
- 
-@@ -3782,6 +3783,14 @@ snd_soc_dai_link_event_pre_pmu(struct snd_soc_dapm_widget *w,
- 	if (!params)
- 		return -ENOMEM;
- 
-+	runtime = kzalloc(sizeof(*runtime), GFP_KERNEL);
-+	if (!runtime) {
-+		ret = -ENOMEM;
-+		goto out;
-+	}
-+
-+	substream->runtime = runtime;
-+
- 	substream->stream = SNDRV_PCM_STREAM_CAPTURE;
- 	snd_soc_dapm_widget_for_each_source_path(w, path) {
- 		source = path->source->priv;
-@@ -3808,6 +3817,8 @@ snd_soc_dai_link_event_pre_pmu(struct snd_soc_dapm_widget *w,
- 		sink->active++;
- 	}
- 
-+	substream->hw_opened = 1;
-+
- 	/*
- 	 * Note: getting the config after .startup() gives a chance to
- 	 * either party on the link to alter the configuration if
-@@ -3864,6 +3875,9 @@ snd_soc_dai_link_event_pre_pmu(struct snd_soc_dapm_widget *w,
- 	}
- 
- out:
-+	if (ret < 0)
-+		kfree(runtime);
-+
- 	kfree(params);
- 	return ret;
- }
-@@ -3873,29 +3887,16 @@ static int snd_soc_dai_link_event(struct snd_soc_dapm_widget *w,
- {
- 	struct snd_soc_dapm_path *path;
- 	struct snd_soc_dai *source, *sink;
--	struct snd_soc_pcm_runtime *rtd = w->priv;
--	struct snd_pcm_substream substream;
--	struct snd_pcm_runtime *runtime = NULL;
--	int ret = 0;
-+	struct snd_pcm_substream *substream = w->priv;
-+	int ret = 0, saved_stream = substream->stream;
- 
- 	if (WARN_ON(list_empty(&w->edges[SND_SOC_DAPM_DIR_OUT]) ||
- 		    list_empty(&w->edges[SND_SOC_DAPM_DIR_IN])))
- 		return -EINVAL;
- 
--	memset(&substream, 0, sizeof(substream));
--
--	/* Allocate a dummy snd_pcm_runtime for startup() and other ops() */
--	runtime = kzalloc(sizeof(*runtime), GFP_KERNEL);
--	if (!runtime) {
--		ret = -ENOMEM;
--		goto out;
--	}
--	substream.runtime = runtime;
--	substream.private_data = rtd;
--
- 	switch (event) {
- 	case SND_SOC_DAPM_PRE_PMU:
--		ret = snd_soc_dai_link_event_pre_pmu(w, &substream);
-+		ret = snd_soc_dai_link_event_pre_pmu(w, substream);
- 		if (ret < 0)
- 			goto out;
- 
-@@ -3926,40 +3927,45 @@ static int snd_soc_dai_link_event(struct snd_soc_dapm_widget *w,
- 			ret = 0;
- 		}
- 
--		substream.stream = SNDRV_PCM_STREAM_CAPTURE;
-+		substream->stream = SNDRV_PCM_STREAM_CAPTURE;
- 		snd_soc_dapm_widget_for_each_source_path(w, path) {
- 			source = path->source->priv;
--			snd_soc_dai_hw_free(source, &substream);
-+			snd_soc_dai_hw_free(source, substream);
- 		}
- 
--		substream.stream = SNDRV_PCM_STREAM_PLAYBACK;
-+		substream->stream = SNDRV_PCM_STREAM_PLAYBACK;
- 		snd_soc_dapm_widget_for_each_sink_path(w, path) {
- 			sink = path->sink->priv;
--			snd_soc_dai_hw_free(sink, &substream);
-+			snd_soc_dai_hw_free(sink, substream);
- 		}
- 
--		substream.stream = SNDRV_PCM_STREAM_CAPTURE;
-+		substream->stream = SNDRV_PCM_STREAM_CAPTURE;
- 		snd_soc_dapm_widget_for_each_source_path(w, path) {
- 			source = path->source->priv;
- 			source->active--;
--			snd_soc_dai_shutdown(source, &substream);
-+			snd_soc_dai_shutdown(source, substream);
- 		}
- 
--		substream.stream = SNDRV_PCM_STREAM_PLAYBACK;
-+		substream->stream = SNDRV_PCM_STREAM_PLAYBACK;
- 		snd_soc_dapm_widget_for_each_sink_path(w, path) {
- 			sink = path->sink->priv;
- 			sink->active--;
--			snd_soc_dai_shutdown(sink, &substream);
-+			snd_soc_dai_shutdown(sink, substream);
- 		}
- 		break;
- 
-+	case SND_SOC_DAPM_POST_PMD:
-+		kfree(substream->runtime);
-+		break;
-+
- 	default:
- 		WARN(1, "Unknown event %d\n", event);
- 		ret = -EINVAL;
- 	}
- 
- out:
--	kfree(runtime);
-+	/* Restore the substream direction */
-+	substream->stream = saved_stream;
- 	return ret;
- }
- 
-@@ -4082,9 +4088,11 @@ snd_soc_dapm_alloc_kcontrol(struct snd_soc_card *card,
- }
- 
- static struct snd_soc_dapm_widget *
--snd_soc_dapm_new_dai(struct snd_soc_card *card, struct snd_soc_pcm_runtime *rtd,
-+snd_soc_dapm_new_dai(struct snd_soc_card *card,
-+		     struct snd_pcm_substream *substream,
- 		     char *id)
- {
-+	struct snd_soc_pcm_runtime *rtd = substream->private_data;
- 	struct snd_soc_dapm_widget template;
- 	struct snd_soc_dapm_widget *w;
- 	const char **w_param_text;
-@@ -4103,7 +4111,7 @@ snd_soc_dapm_new_dai(struct snd_soc_card *card, struct snd_soc_pcm_runtime *rtd,
- 	template.name = link_name;
- 	template.event = snd_soc_dai_link_event;
- 	template.event_flags = SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMU |
--		SND_SOC_DAPM_PRE_PMD;
-+		SND_SOC_DAPM_PRE_PMD | SND_SOC_DAPM_POST_PMD;
- 	template.kcontrol_news = NULL;
- 
- 	/* allocate memory for control, only in case of multiple configs */
-@@ -4138,7 +4146,7 @@ snd_soc_dapm_new_dai(struct snd_soc_card *card, struct snd_soc_pcm_runtime *rtd,
- 		goto outfree_kcontrol_news;
- 	}
- 
--	w->priv = rtd;
-+	w->priv = substream;
- 
- 	return w;
- 
-@@ -4260,6 +4268,8 @@ static void dapm_connect_dai_link_widgets(struct snd_soc_card *card,
- 	struct snd_soc_dai *codec_dai;
- 	struct snd_soc_dapm_widget *playback = NULL, *capture = NULL;
- 	struct snd_soc_dapm_widget *codec, *playback_cpu, *capture_cpu;
-+	struct snd_pcm_substream *substream;
-+	struct snd_pcm_str *streams = rtd->pcm->streams;
- 	int i;
- 
- 	if (rtd->dai_link->params) {
-@@ -4278,7 +4288,8 @@ static void dapm_connect_dai_link_widgets(struct snd_soc_card *card,
- 
- 		if (playback_cpu && codec) {
- 			if (!playback) {
--				playback = snd_soc_dapm_new_dai(card, rtd,
-+				substream = streams[SNDRV_PCM_STREAM_PLAYBACK].substream;
-+				playback = snd_soc_dapm_new_dai(card, substream,
- 								"playback");
- 				if (IS_ERR(playback)) {
- 					dev_err(rtd->dev,
-@@ -4307,7 +4318,8 @@ static void dapm_connect_dai_link_widgets(struct snd_soc_card *card,
- 
- 		if (codec && capture_cpu) {
- 			if (!capture) {
--				capture = snd_soc_dapm_new_dai(card, rtd,
-+				substream = streams[SNDRV_PCM_STREAM_CAPTURE].substream;
-+				capture = snd_soc_dapm_new_dai(card, substream,
- 							       "capture");
- 				if (IS_ERR(capture)) {
- 					dev_err(rtd->dev,
 -- 
-2.20.1
+2.22.0
 
 
 _______________________________________________
