@@ -5,20 +5,19 @@ X-Spam-Level:
 X-Spam-Status: No, score=-6.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D6666C31E40
-	for <linux-amlogic@archiver.kernel.org>; Sat,  3 Aug 2019 18:25:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ED153C433FF
+	for <linux-amlogic@archiver.kernel.org>; Sat,  3 Aug 2019 18:29:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AAEC0206A2
-	for <linux-amlogic@archiver.kernel.org>; Sat,  3 Aug 2019 18:25:20 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B8A78214AE
+	for <linux-amlogic@archiver.kernel.org>; Sat,  3 Aug 2019 18:29:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UvHROhWz";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Us8rileH"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AAEC0206A2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lRX14szi";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="PvBvg4hu"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B8A78214AE
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,59 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2aO9xJTMLYXAEVGR/rfAncoVuNciu/vuLL8JBP3l0g8=; b=UvHROhWzaQIKAu
-	3iCIysOZSAAFHARrcmtcQRYy3qn2XcDI1K5LUAVYeKvhDd1oJzZlTdIosnTkRcztj/63HATOzPFe4
-	ifASvHBL2Du//3Di2BXwYDaAJqhs8aM8jNH/QaDQyRLjRfdpCzBGcgdnfIHmyPq2wgdWk4JMb8zT1
-	Pnmtv7x5gpYP6XbGKFHUaDMR2O1pGkRt2m165y+CwShQON66y60ObTlDz8Msecn/7RnOcetkBKzoK
-	v+Yr6J94XetrDgGiura5PSRbD/WuHmLFJNiSkCUKM9VCexnf9qinMntxFuj2om5umybQjbsRGmwys
-	VS2y+kwCZgCxXlCDtsOw==;
+	List-Owner; bh=Jo9RYXi9Jcy7akseKtoVdrzPu2NRGVwLbLtNkvEYFWk=; b=lRX14szinl9nfE
+	W3QibQcAEHe0WbYm7T01dCmnjncMIGEdW80vSortKVF6pmosAYVBCD7rkuMvmdzs461e6oh1ob0QI
+	ILRsAJUzKv1if/HIqRfXK4m5XLK9xNXiDJdRUDnUFRadPo/fmkTbAY3Von1o07X9Qa5CszCATQKLW
+	7aeZr3Nyx9lFAQ0uxW0yNUjvNwMgTMzu94/MPNub1eW08irmyTxEj72TUOKk9beoLop0Smo/5kM7N
+	nNc53hOMFPV37F81O4Ic5lMoFxUsbyuXzMvhZqKo5/XGwLRqH1kWoMc7f5lBSyWyyRv5RiLr8hHM1
+	kriPTs9TwSdHwRDloCXg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1htyiO-0003tK-5g; Sat, 03 Aug 2019 18:25:12 +0000
-Received: from mail-ot1-x341.google.com ([2607:f8b0:4864:20::341])
+	id 1htymS-0004Hr-Sk; Sat, 03 Aug 2019 18:29:24 +0000
+Received: from mail-oi1-x243.google.com ([2607:f8b0:4864:20::243])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1htyiK-0003f3-Dc; Sat, 03 Aug 2019 18:25:10 +0000
-Received: by mail-ot1-x341.google.com with SMTP id o101so81440426ota.8;
- Sat, 03 Aug 2019 11:25:06 -0700 (PDT)
+ id 1htymQ-0004HV-PP; Sat, 03 Aug 2019 18:29:24 +0000
+Received: by mail-oi1-x243.google.com with SMTP id c15so3874038oic.3;
+ Sat, 03 Aug 2019 11:29:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=0k/3wM0F9hkcUv0u81phO5YELB+EYkQGAmqQnT3ZS1k=;
- b=Us8rileHENKvobs3syDjHKWM5OF1Aa2j4WI5uHrhNeVEIKpIwlqcGoP8twTdGWWHwM
- QK97jEf4N2q2Of/FGYubC8EQk7OrF8QvyGLFk2racGYjrhDzWFO/dXOm5jGbIqWmOB19
- akTa01WYT0afd/NZNvn8RJtdfHHARVOjN6LfQXueYutAg8QJJ7SiYWYoeiQ1Nd+qWYAJ
- hpXytOcwgErCj0AkPPclEiO7AqUkZT3ewRBMN7wcnbstjk78dPXnUvkJtLyriL7KXPw5
- UucpQ4ob29f02VE0v2p/9hRmM7jsGykPm23zDZEFfKaWHpJ0i0OMTnf3aLJim7z3PS5C
- c8+Q==
+ :cc; bh=ZmwQzZFWN1VH43yyrewfQCrNQzkLp/L4+LR2NbHJc20=;
+ b=PvBvg4hunsTs0giKyiL15cDxqpUWZJJxBgAjtmY8q1EH6FPxs1nx8kirnGu9sEPZUN
+ 75hgG7VfyjDLpXEvGHkxVqQs9zoZRNlMRUykM50jFIEucPSSSZ4q3V0USvdDbIwc3LWc
+ HLSRMU/zaU4p8RdS39kddAqUBXtmsqp3r+XHRijt2RiABnuM3hcZF85C//2UY9Xv6swM
+ Ga2ItWR4PddVdwlcCACr358tayUXsZDUT/Z07QWU2Uk3McQt8TcDYBUy627Wm9Rhj/+6
+ zd5pPteLyTRm8jvU0qHe4W5qPUsOht+JJQtwKBLq5F0PTSSGYbl/hX1cNsTWMPfZKsWF
+ rNFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=0k/3wM0F9hkcUv0u81phO5YELB+EYkQGAmqQnT3ZS1k=;
- b=Q2cVzUln/Lb+QxjAnDBLMgbq4YNg+eW34yXDVB/50qDEAzwKXfqbCxQ+sYtjnDKE0H
- sxFQM4eW1pQWNGBTtJ4YDtbk1LUnRoTohVxEmQEuV9/drDhQ/cyDoFIibULoIKBVSL7t
- SmsBkq7qriXTNrHUxZ/bXGks/nZ+IW8AcJ9JrO11VIC++mD1UkIbNzP0zfaEjuyLB6k1
- Lgl+QH1PAeODslhTIsUUQmF1pWG+W709QiNFUnGJsy0o/3AWStVfIKsMqUvt/pd7xR4s
- RoK4XPy7iLPBxR376jDi3RzRaNUXSgbqGR3+pjKLHXi01fs3/kAf65PaN8tLw9QXZGmM
- 3bIQ==
-X-Gm-Message-State: APjAAAXJmwxu2/YIPF/0pcRBXqBVG4Ojeg/wE9afYOdQCAnsKxfkXL1Y
- fwaCO9iMbSekyFFUHezQ7gyiKwHHtsn2XfRqlh4=
-X-Google-Smtp-Source: APXvYqxNo1Y+A6MJXdJl28CDf2nMoUwhIsGw4mZMR5DIF5eM9XrgOQQG12ZuWebxmTC0QKW3HNs4qMLC6KmZ58QzaZo=
-X-Received: by 2002:a9d:226c:: with SMTP id o99mr24398880ota.42.1564856705915; 
- Sat, 03 Aug 2019 11:25:05 -0700 (PDT)
+ bh=ZmwQzZFWN1VH43yyrewfQCrNQzkLp/L4+LR2NbHJc20=;
+ b=VvP2cCyDizoSupA150Fpl9B/4uFlUmyNjTIw2NOMXxsAn5kX1rytB6oGkA71kKkCTP
+ wviuJW6nNf8i79drzsBCEiVcc6AiDBTKhlcoCBluTTr3YqeovA3nEjVugdXoXCi2nz1P
+ nRKcUqNQvCCZ9fLDl9gWV5EfZ6sLoQJ/PwFdPZqEkH+4UnYWYzy8tDJdeRD7EgdQi61T
+ vJT9WU7cATRQRTIPwdTLq0Cv4fgjqBhQHrO7lr5NZldy2ALhIsbpUnIT4iwwA9EsOA4K
+ XziM9XJOjf6tEgghhooGho20aLDCb6OLJgKnTk8B3k+dNNv7INmDveQcQGPk+XtL/09R
+ EkqQ==
+X-Gm-Message-State: APjAAAVNugfRJR6x6oB2Nx2LfI8ntn59y2dvLLKMFvk/BP6i+1tmel07
+ JIbCxnynqNPbwWJAb4sx8oAPddMVA6wPHX8pWYo=
+X-Google-Smtp-Source: APXvYqwJbx+70CCBTietpO39u7K1TgLKPTpN4Bi1Ow630XW6U1gtXiCVC87cK74QbovUvi45FqC4+cT21hLCfvd82L4=
+X-Received: by 2002:a05:6808:3d6:: with SMTP id
+ o22mr6459987oie.140.1564856961731; 
+ Sat, 03 Aug 2019 11:29:21 -0700 (PDT)
 MIME-Version: 1.0
 References: <20190731153529.30159-1-glaroque@baylibre.com>
- <20190731153529.30159-3-glaroque@baylibre.com>
-In-Reply-To: <20190731153529.30159-3-glaroque@baylibre.com>
+ <20190731153529.30159-5-glaroque@baylibre.com>
+In-Reply-To: <20190731153529.30159-5-glaroque@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 3 Aug 2019 20:24:54 +0200
-Message-ID: <CAFBinCDGSJABnS1L1ULueyeXZaV38qrxEA0a12gB-uyRC_TvPQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/6] thermal: amlogic: Add thermal driver to support
- G12 SoCs
+Date: Sat, 3 Aug 2019 20:29:10 +0200
+Message-ID: <CAFBinCD-DUEjPgfUEJmHpPjw1ShZy7nemaFBKANmM5M42XBG4Q@mail.gmail.com>
+Subject: Re: [PATCH v2 4/6] arm64: dts: meson: sei510: Add minimal thermal zone
 To: Guillaume La Roque <glaroque@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190803_112508_490173_CCE4A685 
-X-CRM114-Status: GOOD (  24.18  )
+X-CRM114-CacheID: sfid-20190803_112922_830138_0324B644 
+X-CRM114-Status: GOOD (  12.45  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,177 +100,131 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi Guillaume,
 
-(I still don't have any experience with the thermal framework, so
-below are some general comments)
-
 On Wed, Jul 31, 2019 at 5:36 PM Guillaume La Roque
 <glaroque@baylibre.com> wrote:
-I would add a patch description here:
-"
-Amlogic G12A and G12B SoCs integrate two thermal sensors with the same design.
-One is located close to the DDR (controller?) and the other one is
-located close to the PLLs (between the CPU and GPU).
-
-The calibration data for each of the thermal sensors instance is
-stored in a different location within the AO region.
-
-Implement reading the temperature from each thermal sensor.
-
-The IP block has more functionality, which may be added to this driver
-in the future:
-- reading up to 16 stored temperature samples
-- chip reset when the temperature exceeds a configurable threshold
-- up to four interrupts when the temperature has risen above a
-configurable threshold
-- up to four interrupts when the temperature has fallen below a
-configurable threshold
-"
+>
+> Add minimal thermal zone for DDR and CPU sensor
+so high DDR (controller?) temperatures will throttle Mali and high PLL
+temperatures will throttle the CPU?
+to get things started I'm fine with this, but I think it should be
+mentioned here
 
 > Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
 > ---
->  drivers/thermal/Kconfig           |  11 +
->  drivers/thermal/Makefile          |   1 +
->  drivers/thermal/amlogic_thermal.c | 332 ++++++++++++++++++++++++++++++
->  3 files changed, 344 insertions(+)
->  create mode 100644 drivers/thermal/amlogic_thermal.c
+>  .../boot/dts/amlogic/meson-g12a-sei510.dts    | 56 +++++++++++++++++++
+>  1 file changed, 56 insertions(+)
 >
-> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
-> index 9966364a6deb..0f31bb4bc372 100644
-> --- a/drivers/thermal/Kconfig
-> +++ b/drivers/thermal/Kconfig
-> @@ -348,6 +348,17 @@ config MTK_THERMAL
->           Enable this option if you want to have support for thermal management
->           controller present in Mediatek SoCs
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+> index 979449968a5f..2c16a2cba0a3 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+> @@ -10,6 +10,7 @@
+>  #include <dt-bindings/input/input.h>
+>  #include <dt-bindings/gpio/meson-g12a-gpio.h>
+>  #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+> +#include <dt-bindings/thermal/thermal.h>
 >
-> +config AMLOGIC_THERMAL
-we typically use "MESON" in the Kconfig symbols:
-$ grep -c AMLOGIC .config
-1
-$ grep -c MESON .config
-33
-
-I also wonder if we should add G12 or G12A so we don't conflict with
-upcoming thermal sensors with a different design (assuming that this
-will be a thing).
-for example we already have three different USB2 PHY drivers
-
-[...]
-> +/*
-> + * Calculate a temperature value from a temperature code.
-> + * The unit of the temperature is degree Celsius.
-is it really degree Celsius or millicelsius?
-
-> + */
-> +static int code_to_temp(struct amlogic_thermal *pdata, int temp_code)
-PREFIX_thermal_code_to_millicelsius?
-
-[...]
-> +static int amlogic_thermal_enable(struct amlogic_thermal *data)
-> +{
-> +       clk_prepare_enable(data->clk);
-no clock error handling?
-
-> +       regmap_update_bits(data->regmap, TSENSOR_CFG_REG1,
-> +                          TSENSOR_CFG_REG1_ENABLE, TSENSOR_CFG_REG1_ENABLE);
+>  / {
+>         compatible = "seirobotics,sei510", "amlogic,g12a";
+> @@ -33,6 +34,53 @@
+>                 ethernet0 = &ethmac;
+>         };
+>
+> +       thermal-zones {
+> +               cpu-thermal {
+> +                       polling-delay = <1000>;
+> +                       polling-delay-passive = <100>;
+> +                       thermal-sensors = <&cpu_temp>;
 > +
-> +       return 0;
-> +}
+> +                       trips {
+> +                               cpu_critical: cpu-critical {
+> +                                       temperature = <110000>; /* millicelsius */
+> +                                       hysteresis = <2000>; /* millicelsius */
+> +                                       type = "critical";
+> +                               };
+> +                       };
 > +
-> +static int amlogic_thermal_disable(struct amlogic_thermal *data)
-> +{
-> +       regmap_update_bits(data->regmap, TSENSOR_CFG_REG1,
-> +                          TSENSOR_CFG_REG1_ENABLE, 0);
-> +       clk_disable(data->clk);
-either clk_disable_unprepare here or use only clk_enable in
-amlogic_thermal_enable and move prepare/unprepare somewhere else
-
+> +                       cooling-maps {
+> +                               map {
+> +                                       trip = <&cpu_critical>;
+> +                                       cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +                                                        <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +                                                        <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +                                                        <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +                               };
+> +                       };
+> +               };
 > +
-> +       return 0;
-> +}
+> +               ddr-thermal {
+> +                       polling-delay = <1000>;
+> +                       polling-delay-passive = <100>;
+> +                       thermal-sensors = <&ddr_temp>;
 > +
-> +static int amlogic_thermal_get_temp(void *data, int *temp)
-> +{
-> +       unsigned int tvalue;
-> +       struct amlogic_thermal *pdata = data;
+> +                       trips {
+> +                               ddr_critical: ddr-critical {
+> +                                       temperature = <110000>; /* millicelsius */
+> +                                       hysteresis = <2000>; /* millicelsius */
+> +                                       type = "critical";
+> +                               };
+> +                       };
 > +
-> +       if (!data)
-> +               return -EINVAL;
+> +                       cooling-maps {
+> +                               map {
+> +                                       trip = <&ddr_critical>;
+> +                                       cooling-device = <&mali THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +                               };
+> +                       };
+> +               };
+> +       };
 > +
-> +       regmap_read(pdata->regmap, TSENSOR_STAT0, &tvalue);
-> +       *temp = code_to_temp(pdata,
-> +                            tvalue & TSENSOR_READ_TEMP_MASK);
-maybe simply move the implementation from code_to_temp here?
-
-[...]
-> +static const struct amlogic_thermal_data amlogic_thermal_g12_cpu_param = {
-> +       .u_efuse_off = 0x128,
-> +       .soc = &amlogic_thermal_g12,
-based on the variable name I expected this to be an enum of some sort.
-I would have expected it to be called calibration_parameters or
-similar to match the explanation in the driver description
-(no need to change it if you prefer it like this, I just want to make
-you aware of this)
-
-> +       .regmap_config = &amlogic_thermal_regmap_config_g12,
-if regmap_config is always the same you may also pass it directly to
-devm_regmap_init_mmio
-
+>         mono_dac: audio-codec-0 {
+>                 compatible = "maxim,max98357a";
+>                 #sound-dai-cells = <0>;
+> @@ -321,6 +369,7 @@
+>         operating-points-v2 = <&cpu_opp_table>;
+>         clocks = <&clkc CLKID_CPU_CLK>;
+>         clock-latency = <50000>;
+> +       #cooling-cells = <2>;
+>  };
+>
+>  &cpu1 {
+> @@ -328,6 +377,7 @@
+>         operating-points-v2 = <&cpu_opp_table>;
+>         clocks = <&clkc CLKID_CPU_CLK>;
+>         clock-latency = <50000>;
+> +       #cooling-cells = <2>;
+>  };
+>
+>  &cpu2 {
+> @@ -335,6 +385,7 @@
+>         operating-points-v2 = <&cpu_opp_table>;
+>         clocks = <&clkc CLKID_CPU_CLK>;
+>         clock-latency = <50000>;
+> +       #cooling-cells = <2>;
+>  };
+>
+>  &cpu3 {
+> @@ -342,6 +393,7 @@
+>         operating-points-v2 = <&cpu_opp_table>;
+>         clocks = <&clkc CLKID_CPU_CLK>;
+>         clock-latency = <50000>;
+> +       #cooling-cells = <2>;
+>  };
+>
+>  &cvbs_vdac_port {
+> @@ -368,6 +420,10 @@
+>         status = "okay";
+>  };
+>
+> +&mali {
+> +       #cooling-cells = <2>;
 > +};
-> +
-> +static const struct amlogic_thermal_data amlogic_thermal_g12_ddr_param = {
-> +       .u_efuse_off = 0xF0,
-I believe we use lower-case hex everywhere else
-
-[...]
-> +static const struct of_device_id of_amlogic_thermal_match[] = {
-> +       {
-> +               .compatible = "amlogic,g12-ddr-thermal",
-> +               .data = &amlogic_thermal_g12_ddr_param,
-> +       },
-> +       {
-> +               .compatible = "amlogic,g12-cpu-thermal",
-> +               .data = &amlogic_thermal_g12_cpu_param,
-> +       },
-> +       { /* end */ }
-other drivers use "sentinel", but personally I have no preference here
-
-[...]
-> +       pdata->tzd = devm_thermal_zone_of_sensor_register
-> +                               (&pdev->dev,
-> +                                0,
-> +                                pdata,
-> +                                &amlogic_thermal_ops);
-I believe the opening brace has to go onto the same line as the function name
-
-[...]
-> +       ret = amlogic_thermal_enable(pdata);
-> +       if (ret)
-> +               clk_unprepare(pdata->clk);
-clk_disable_unprepare, else you'll leave the clock prepared
-
-> +#ifdef CONFIG_PM_SLEEP
-> +static int amlogic_thermal_suspend(struct device *dev)
-> +{
-> +       struct amlogic_thermal *data = dev_get_drvdata(dev);
-> +
-> +       return amlogic_thermal_disable(data);
-> +}
-> +
-> +static int amlogic_thermal_resume(struct device *dev)
-> +{
-> +       struct amlogic_thermal *data = dev_get_drvdata(dev);
-> +
-> +       return amlogic_thermal_enable(data);
-> +}
-> +#endif
-instead of using an #ifdef here annotate the suspend/resume functions
-with __maybe_unused, see [0]
+is there something device-specific in this patch? I'm wondering
+whether we can move all of this go g12a.dtsi to simplify maintenance
+in the future
 
 
 Martin
-
-
-[0] https://lore.kernel.org/patchwork/patch/732981/
 
 _______________________________________________
 linux-amlogic mailing list
