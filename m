@@ -2,87 +2,94 @@ Return-Path: <SRS0=EYbA=WB=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8E8A0C433FF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Aug 2019 12:26:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 08478C32751
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Aug 2019 12:49:05 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5F1852086D
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Aug 2019 12:26:21 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D1EC4205C9
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Aug 2019 12:49:04 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="s+Sq50XL";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ilexiR7Q"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5F1852086D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Olli8Wza";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="FChwJRHW"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D1EC4205C9
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=T+2ijK/SUkxHCNyyJDI3zCbBs+fDTdfWYWejeY5e4qU=; b=s+Sq50XLglU+9u
-	Nd34BYbDT2aDOEWB81N1gp8kp6KaiLCv2Nz0ZTH6UIL/Upmshjr5OlXfEHvoiG5r1w6gxpJfQYffY
-	o59Xl67qagXPN4n1/j3IFBL4iN4AMwjru8CVykMK/WrtoF9iSEp2pAt63r5lcak5+Ag7EhKnxMecL
-	M/0Lzds2Cqo16t+0tNcTZDZXUi6HQZeQ+NzR+57M22tigxryNRRHIVorDlGgHlwp1QQLSPC5Fh5ug
-	sQkshd33/7uIspfjuARVBlhqr/EVwsuGM2UkT6pLBOZkpKp96BSnBZEWHCT5Plg0xxKoWcioFUf7w
-	twl7EAIXGhRbl3G4qaGQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=UfA7FzHyQeE81Z6Kp0fGZfq4t6ReEwRYvWR9360Arps=; b=Olli8Wza1mA0HP
+	2Hm0AqA1ifmJvIGZA7kpOMzaxTyiIVvONyOyoBbLORWZJKhDyzE+jvqraVyRC1R9pvpaQWcc/6Mal
+	abJAPAQWq2fDeRGRs0S/hYBjmQO6MY1AWLnlugNgRmC6S2WseDKSi/gEtbCvkbHeV5fcCpa+mngyc
+	k9cXiSxaoZFdt94VfnG0pu7zDZ8CAfnnGlsupDWGuFpNgkxWp100FIK3srMgpxsXjla+I4M+0nEGJ
+	VJPJQinKWNB3NPP2n+Feh0UkpzdhnY1fhkQjmZnp+wOP/iOOHRjNh1BYI7jX7zvsLlx8pc76LD4rl
+	1a4IhNKwMG3/ALZ1YTPA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1huc47-0007q8-S8; Mon, 05 Aug 2019 12:26:15 +0000
+	id 1hucQ7-0008Jy-5L; Mon, 05 Aug 2019 12:48:59 +0000
 Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1huc3u-0007en-3j
- for linux-amlogic@lists.infradead.org; Mon, 05 Aug 2019 12:26:04 +0000
-Received: by mail-wr1-x442.google.com with SMTP id y4so84230290wrm.2
- for <linux-amlogic@lists.infradead.org>; Mon, 05 Aug 2019 05:26:01 -0700 (PDT)
+ id 1hucPt-00088O-CL
+ for linux-amlogic@lists.infradead.org; Mon, 05 Aug 2019 12:48:47 +0000
+Received: by mail-wr1-x442.google.com with SMTP id n9so84411105wru.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 05 Aug 2019 05:48:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=oWDikhbWmDPIzHQPw7NBV+lELUhdD4KoLaJEZ3W7XPA=;
- b=ilexiR7QMVdt7h2Ih9EJPZn/h5R81FbqMUiEqEIXc1qXUDgyHvxtQCkA8UhRgVyXQa
- RpTw+62ard3K6ELZM70d4hwWP7RY87dNSNN5uGNae7vz5SWA7ZgHAyvFOHxRazBGlrzp
- r9iSBVY71qgVVDv0Maz+oWzlJtz53uwD/TdTLGncwtKo3erkc9U/6nlno3f9fEjYVC5Q
- Kg8VIlve+gFTKWu40wfZZ9lAovnUkJbqk4rgudbHfKrIVaftgINczVsL/XPY0Je4gfp4
- aITl5HeZ4XJuzn3cpGv4So5ygmWw2QzmTdnqrV/VwgSF0bTfS28MB/m2pAdaf4y9ql2G
- gLJQ==
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=oCcvAOHAqO79xgLqFQJG5nX7dFejuUKhdOvFqVtwuaQ=;
+ b=FChwJRHWW3dzV7lekARV8knI19kr3MzoJn8IqdhP2RrgaIya3gGRxFzMMdCQx+/4Et
+ SfeIjcJm4iL1rCJoTTV1Gm7sE9jr2PGwx3XIrr0p4kOTNDGLVeOJmNJg+OolThWDII41
+ 2UjZew70luwFIku1SOAptaZ5FVp3z7R/XqZ+6Qdxt7lK6EIot0c/SYpHfPtXpU08dJLe
+ d42SuTPE9omXgun2WNbF6OAoPCq0SYKORw2F+ad8su6uj+VnerLYfGcGnt3fqrPWD4Yl
+ MBZWeoB8EK/5OcFfRKZ2m4h35w6+F+5kXUd7mKHRVgABr4BH0rgCCjFtDSldjpbsTRwt
+ mvOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=oWDikhbWmDPIzHQPw7NBV+lELUhdD4KoLaJEZ3W7XPA=;
- b=nOF4BdV2F2C4mQZ/ro/B6XUZG7JV6X7yt1YwdQ2ptpk2AccGEGVse7nWUAXLPrBD+e
- qpGRqGAOfaCE0ywE5hpeHSuxMKw7YSIKvdBuvSTVz0nkVRxkwM5rItLhd8Q20/0OFcpW
- e3IMdoYg3EyrH1C6dR6a1QdufwZP6zhrjqTObQH2eymVDly5u/ELQdV/SbE85HSK+2Ei
- qUj77/DiRpF3wdknhfB42gHejZR5+7+0re1gTYd3Y1QJcGp19p4UE8KNzSV0dQ21HWGH
- 1vyJW9EiursT5HLQ/goC9/7sl/8aaa6ycr8YX5sx6LM8XJGQqWk4zpxrXgg2RalONkrR
- 61GQ==
-X-Gm-Message-State: APjAAAW421q5HVq0plBLBUKCxK8d+2idlMAUbkjPQzlpoRZs+lpOV5/2
- xLKostkHazD5qmcioKvnxIaIZwAbPG2fBw==
-X-Google-Smtp-Source: APXvYqyCO5yEbUFaEdNB0dykZgEdWSc8TF4y2SacBXTbCEh/v4JahAdgr07NTeyYXpESoZaZ1QGo8w==
-X-Received: by 2002:adf:f088:: with SMTP id n8mr1632051wro.58.1565007960540;
- Mon, 05 Aug 2019 05:26:00 -0700 (PDT)
-Received: from bender.baylibre.local
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id i66sm151536351wmi.11.2019.08.05.05.25.59
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Mon, 05 Aug 2019 05:25:59 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: robh+dt@kernel.org
-Subject: [PATCH] dt-bindings: net: meson-dwmac: convert to yaml
-Date: Mon,  5 Aug 2019 14:25:58 +0200
-Message-Id: <20190805122558.5130-1-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-transfer-encoding
+ :content-language;
+ bh=oCcvAOHAqO79xgLqFQJG5nX7dFejuUKhdOvFqVtwuaQ=;
+ b=ubS5qv5OnZAnllkiwlJjG2rjSJcBoEXnzqLoSK4GRjL1lw6qH4wowObxIKGL+cFhfD
+ aAo+Naab7vaWXxrxppoq8kn4j+JaQXebKB8QvZEwxuuIvTLmOZGtdOgGIVjrVDzRozy1
+ OkGnh+XfEaw/FwWqktzMM38N+Yp2zW3LffJpBR91DCyXSTmBhiWXDVILo1H6Qpck4SOs
+ UV36hfDTzoL4Nh4nlmk7F02UEjA8ipgNiRAzHWA/Y2kQUEO0euvTXApedvJUArURcecU
+ ymjZaCC4+5MqR7MRN/eEV3ek9/lc8SLkWYlpprfXxVkzkEQbAb4Wv0ZNQcz96y8Jt7vw
+ CrJQ==
+X-Gm-Message-State: APjAAAUKFVund1Jm2QsxMndmEzKqbqSQs1I+6C5/L1hbGeEDMBhpSckS
+ naEYdMsZ63ynrlTyNj+PCnV8mA==
+X-Google-Smtp-Source: APXvYqwBfUtY4HHqJanim3CfED7337YIudrlcue/iSf8ew+PnhRdLMvdK0/Bpmpr1FNIz44UJYNDZg==
+X-Received: by 2002:a5d:52c5:: with SMTP id r5mr15344303wrv.146.1565009324012; 
+ Mon, 05 Aug 2019 05:48:44 -0700 (PDT)
+Received: from [10.1.4.98] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id r5sm91425958wmh.35.2019.08.05.05.48.43
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 05 Aug 2019 05:48:43 -0700 (PDT)
+Subject: Re: [PATCH v2 4/6] arm64: dts: meson: sei510: Add minimal thermal zone
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20190731153529.30159-1-glaroque@baylibre.com>
+ <20190731153529.30159-5-glaroque@baylibre.com>
+ <CAFBinCD-DUEjPgfUEJmHpPjw1ShZy7nemaFBKANmM5M42XBG4Q@mail.gmail.com>
+From: guillaume La Roque <glaroque@baylibre.com>
+Message-ID: <805dc9fd-1c1f-a23a-27a7-d91908a95a13@baylibre.com>
+Date: Mon, 5 Aug 2019 14:48:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
+In-Reply-To: <CAFBinCD-DUEjPgfUEJmHpPjw1ShZy7nemaFBKANmM5M42XBG4Q@mail.gmail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190805_052602_158552_628C3547 
-X-CRM114-Status: GOOD (  19.18  )
+X-CRM114-CacheID: sfid-20190805_054845_427361_BEBF57DB 
+X-CRM114-Status: GOOD (  17.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,258 +101,158 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
- martin.blumenstingl@googlemail.com, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org, linux-pm@vger.kernel.org, khilman@baylibre.com,
+ daniel.lezcano@linaro.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Now that we have the DT validation in place, let's convert the device tree
-bindings for the Synopsys DWMAC Glue for Amlogic SoCs over to a YAML schemas.
+Hi Martin,
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
-Rob, 
 
-I keep getting :
-.../devicetree/bindings/net/amlogic,meson-dwmac.example.dt.yaml: ethernet@c9410000: reg: [[3376480256, 65536], [3364046144, 8]] is too long
+On 8/3/19 8:29 PM, Martin Blumenstingl wrote:
+> Hi Guillaume,
+>
+> On Wed, Jul 31, 2019 at 5:36 PM Guillaume La Roque
+> <glaroque@baylibre.com> wrote:
+>> Add minimal thermal zone for DDR and CPU sensor
+> so high DDR (controller?) temperatures will throttle Mali and high PLL
+> temperatures will throttle the CPU?
+> to get things started I'm fine with this, but I think it should be
+> mentioned here
 
-for the example DT
+i will add in commit description
 
-and for the board DT :
-../amlogic/meson-gxl-s905x-libretech-cc.dt.yaml: ethernet@c9410000: reg: [[0, 3376480256, 0, 65536, 0, 3364046144, 0, 4]] is too short
-../amlogic/meson-gxl-s905x-nexbox-a95x.dt.yaml: soc: ethernet@c9410000:reg:0: [0, 3376480256, 0, 65536, 0, 3364046144, 0, 4] is too long
+>
+>> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+>> ---
+>>  .../boot/dts/amlogic/meson-g12a-sei510.dts    | 56 +++++++++++++++++++
+>>  1 file changed, 56 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+>> index 979449968a5f..2c16a2cba0a3 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+>> @@ -10,6 +10,7 @@
+>>  #include <dt-bindings/input/input.h>
+>>  #include <dt-bindings/gpio/meson-g12a-gpio.h>
+>>  #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+>> +#include <dt-bindings/thermal/thermal.h>
+>>
+>>  / {
+>>         compatible = "seirobotics,sei510", "amlogic,g12a";
+>> @@ -33,6 +34,53 @@
+>>                 ethernet0 = &ethmac;
+>>         };
+>>
+>> +       thermal-zones {
+>> +               cpu-thermal {
+>> +                       polling-delay = <1000>;
+>> +                       polling-delay-passive = <100>;
+>> +                       thermal-sensors = <&cpu_temp>;
+>> +
+>> +                       trips {
+>> +                               cpu_critical: cpu-critical {
+>> +                                       temperature = <110000>; /* millicelsius */
+>> +                                       hysteresis = <2000>; /* millicelsius */
+>> +                                       type = "critical";
+>> +                               };
+>> +                       };
+>> +
+>> +                       cooling-maps {
+>> +                               map {
+>> +                                       trip = <&cpu_critical>;
+>> +                                       cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>> +                                                        <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>> +                                                        <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>> +                                                        <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>> +                               };
+>> +                       };
+>> +               };
+>> +
+>> +               ddr-thermal {
+>> +                       polling-delay = <1000>;
+>> +                       polling-delay-passive = <100>;
+>> +                       thermal-sensors = <&ddr_temp>;
+>> +
+>> +                       trips {
+>> +                               ddr_critical: ddr-critical {
+>> +                                       temperature = <110000>; /* millicelsius */
+>> +                                       hysteresis = <2000>; /* millicelsius */
+>> +                                       type = "critical";
+>> +                               };
+>> +                       };
+>> +
+>> +                       cooling-maps {
+>> +                               map {
+>> +                                       trip = <&ddr_critical>;
+>> +                                       cooling-device = <&mali THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>> +                               };
+>> +                       };
+>> +               };
+>> +       };
+>> +
+>>         mono_dac: audio-codec-0 {
+>>                 compatible = "maxim,max98357a";
+>>                 #sound-dai-cells = <0>;
+>> @@ -321,6 +369,7 @@
+>>         operating-points-v2 = <&cpu_opp_table>;
+>>         clocks = <&clkc CLKID_CPU_CLK>;
+>>         clock-latency = <50000>;
+>> +       #cooling-cells = <2>;
+>>  };
+>>
+>>  &cpu1 {
+>> @@ -328,6 +377,7 @@
+>>         operating-points-v2 = <&cpu_opp_table>;
+>>         clocks = <&clkc CLKID_CPU_CLK>;
+>>         clock-latency = <50000>;
+>> +       #cooling-cells = <2>;
+>>  };
+>>
+>>  &cpu2 {
+>> @@ -335,6 +385,7 @@
+>>         operating-points-v2 = <&cpu_opp_table>;
+>>         clocks = <&clkc CLKID_CPU_CLK>;
+>>         clock-latency = <50000>;
+>> +       #cooling-cells = <2>;
+>>  };
+>>
+>>  &cpu3 {
+>> @@ -342,6 +393,7 @@
+>>         operating-points-v2 = <&cpu_opp_table>;
+>>         clocks = <&clkc CLKID_CPU_CLK>;
+>>         clock-latency = <50000>;
+>> +       #cooling-cells = <2>;
+>>  };
+>>
+>>  &cvbs_vdac_port {
+>> @@ -368,6 +420,10 @@
+>>         status = "okay";
+>>  };
+>>
+>> +&mali {
+>> +       #cooling-cells = <2>;
+>> +};
+> is there something device-specific in this patch? I'm wondering
+> whether we can move all of this go g12a.dtsi to simplify maintenance
+> in the future
 
-and I don't know how to get rid of it.
+this is depending of each board. actually it's same on all
 
-What should I do for reg ?
+but if a new one have a fan this value should be different or not.
 
-Neil
 
- .../bindings/net/amlogic,meson-dwmac.yaml     | 113 ++++++++++++++++++
- .../devicetree/bindings/net/meson-dwmac.txt   |  71 -----------
- .../devicetree/bindings/net/snps,dwmac.yaml   |   5 +
- 3 files changed, 118 insertions(+), 71 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
- delete mode 100644 Documentation/devicetree/bindings/net/meson-dwmac.txt
+>
+>
+> Martin
 
-diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-new file mode 100644
-index 000000000000..ae91aa9d8616
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-@@ -0,0 +1,113 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2019 BayLibre, SAS
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/net/amlogic,meson-dwmac.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Amlogic Meson DWMAC Ethernet controller
-+
-+maintainers:
-+  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-+
-+# We need a select here so we don't match all nodes with 'snps,dwmac'
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - amlogic,meson6-dwmac
-+          - amlogic,meson8b-dwmac
-+          - amlogic,meson8m2-dwmac
-+          - amlogic,meson-gxbb-dwmac
-+          - amlogic,meson-axg-dwmac
-+  required:
-+    - compatible
-+
-+allOf:
-+  - $ref: "snps,dwmac.yaml#"
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - amlogic,meson8b-dwmac
-+              - amlogic,meson8m2-dwmac
-+              - amlogic,meson-gxbb-dwmac
-+              - amlogic,meson-axg-dwmac
-+
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: GMAC main clock
-+            - description: First parent clock of the internal mux
-+            - description: Second parent clock of the internal mux
-+
-+        clock-names:
-+          minItems: 3
-+          maxItems: 3
-+          items:
-+            - const: stmmaceth
-+            - const: clkin0
-+            - const: clkin1
-+
-+        amlogic,tx-delay-ns:
-+          $ref: /schemas/types.yaml#definitions/uint32
-+          description:
-+            The internal RGMII TX clock delay (provided by this driver) in
-+            nanoseconds. Allowed values are 0ns, 2ns, 4ns, 6ns.
-+            When phy-mode is set to "rgmii" then the TX delay should be
-+            explicitly configured. When not configured a fallback of 2ns is
-+            used. When the phy-mode is set to either "rgmii-id" or "rgmii-txid"
-+            the TX clock delay is already provided by the PHY. In that case
-+            this property should be set to 0ns (which disables the TX clock
-+            delay in the MAC to prevent the clock from going off because both
-+            PHY and MAC are adding a delay).
-+            Any configuration is ignored when the phy-mode is set to "rmii".
-+
-+properties:
-+  compatible:
-+    additionalItems: true
-+    maxItems: 3
-+    items:
-+      - enum:
-+          - amlogic,meson6-dwmac
-+          - amlogic,meson8b-dwmac
-+          - amlogic,meson8m2-dwmac
-+          - amlogic,meson-gxbb-dwmac
-+          - amlogic,meson-axg-dwmac
-+    contains:
-+      enum:
-+        - snps,dwmac-3.70a
-+        - snps,dwmac
-+
-+  reg:
-+    items:
-+      - description:
-+          The first register range should be the one of the DWMAC controller
-+      - description:
-+          The second range is is for the Amlogic specific configuration
-+          (for example the PRG_ETHERNET register range on Meson8b and newer)
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - clock-names
-+  - phy-mode
-+
-+examples:
-+  - |
-+    ethmac: ethernet@c9410000 {
-+         compatible = "amlogic,meson-gxbb-dwmac", "snps,dwmac";
-+         reg = <0xc9410000 0x10000>, <0xc8834540 0x8>;
-+         interrupts = <8>;
-+         interrupt-names = "macirq";
-+         clocks = <&clk_eth>, <&clkc_fclk_div2>, <&clk_mpll2>;
-+         clock-names = "stmmaceth", "clkin0", "clkin1";
-+         phy-mode = "rgmii";
-+    };
-diff --git a/Documentation/devicetree/bindings/net/meson-dwmac.txt b/Documentation/devicetree/bindings/net/meson-dwmac.txt
-deleted file mode 100644
-index 1321bb194ed9..000000000000
---- a/Documentation/devicetree/bindings/net/meson-dwmac.txt
-+++ /dev/null
-@@ -1,71 +0,0 @@
--* Amlogic Meson DWMAC Ethernet controller
--
--The device inherits all the properties of the dwmac/stmmac devices
--described in the file stmmac.txt in the current directory with the
--following changes.
--
--Required properties on all platforms:
--
--- compatible:	Depending on the platform this should be one of:
--			- "amlogic,meson6-dwmac"
--			- "amlogic,meson8b-dwmac"
--			- "amlogic,meson8m2-dwmac"
--			- "amlogic,meson-gxbb-dwmac"
--			- "amlogic,meson-axg-dwmac"
--		Additionally "snps,dwmac" and any applicable more
--		detailed version number described in net/stmmac.txt
--		should be used.
--
--- reg:	The first register range should be the one of the DWMAC
--	controller. The second range is is for the Amlogic specific
--	configuration (for example the PRG_ETHERNET register range
--	on Meson8b and newer)
--
--Required properties on Meson8b, Meson8m2, GXBB and newer:
--- clock-names:	Should contain the following:
--		- "stmmaceth" - see stmmac.txt
--		- "clkin0" - first parent clock of the internal mux
--		- "clkin1" - second parent clock of the internal mux
--
--Optional properties on Meson8b, Meson8m2, GXBB and newer:
--- amlogic,tx-delay-ns:	The internal RGMII TX clock delay (provided
--			by this driver) in nanoseconds. Allowed values
--			are: 0ns, 2ns, 4ns, 6ns.
--			When phy-mode is set to "rgmii" then the TX
--			delay should be explicitly configured. When
--			not configured a fallback of 2ns is used.
--			When the phy-mode is set to either "rgmii-id"
--			or "rgmii-txid" the TX clock delay is already
--			provided by the PHY. In that case this
--			property should be set to 0ns (which disables
--			the TX clock delay in the MAC to prevent the
--			clock from going off because both PHY and MAC
--			are adding a delay).
--			Any configuration is ignored when the phy-mode
--			is set to "rmii".
--
--Example for Meson6:
--
--	ethmac: ethernet@c9410000 {
--		compatible = "amlogic,meson6-dwmac", "snps,dwmac";
--		reg = <0xc9410000 0x10000
--		       0xc1108108 0x4>;
--		interrupts = <0 8 1>;
--		interrupt-names = "macirq";
--		clocks = <&clk81>;
--		clock-names = "stmmaceth";
--	}
--
--Example for GXBB:
--	ethmac: ethernet@c9410000 {
--		compatible = "amlogic,meson-gxbb-dwmac", "snps,dwmac";
--		reg = <0x0 0xc9410000 0x0 0x10000>,
--			<0x0 0xc8834540 0x0 0x8>;
--		interrupts = <0 8 1>;
--		interrupt-names = "macirq";
--		clocks = <&clkc CLKID_ETH>,
--				<&clkc CLKID_FCLK_DIV2>,
--				<&clkc CLKID_MPLL2>;
--		clock-names = "stmmaceth", "clkin0", "clkin1";
--		phy-mode = "rgmii";
--	};
-diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-index 76fea2be66ac..ff1dc662a4e3 100644
---- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-@@ -50,6 +50,11 @@ properties:
-         - allwinner,sun8i-r40-emac
-         - allwinner,sun8i-v3s-emac
-         - allwinner,sun50i-a64-emac
-+        - amlogic,meson6-dwmac
-+        - amlogic,meson8b-dwmac
-+        - amlogic,meson8m2-dwmac
-+        - amlogic,meson-gxbb-dwmac
-+        - amlogic,meson-axg-dwmac
-         - snps,dwmac
-         - snps,dwmac-3.50a
-         - snps,dwmac-3.610
--- 
-2.22.0
+
+thanks,
+
+Guillaume
 
 
 _______________________________________________
