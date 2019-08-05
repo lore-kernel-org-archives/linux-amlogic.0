@@ -2,91 +2,88 @@ Return-Path: <SRS0=EYbA=WB=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EA429C32751
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Aug 2019 13:41:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 92753C433FF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Aug 2019 13:43:37 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BEA4720880
-	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Aug 2019 13:41:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6644121871
+	for <linux-amlogic@archiver.kernel.org>; Mon,  5 Aug 2019 13:43:37 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="auq5aOZC";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="djq1XNNC"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BEA4720880
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mGUECfmu";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="vUJfOghB"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6644121871
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YjvhZSmo3OOpAQYCjAdJnYYJxiLJ1W5yUttXDfzb7DY=; b=auq5aOZCb4LIqe
-	0Kd9rwIT6s0WrDfgHDLuoHuqtdbLiQ89XJRxpWQD5fVuvw9X9qCsN7r60V/FdZmRuNistBioPj6gx
-	lOCyaicNAqmg54gvY5+19Hv0iQL9616+COmPnVqui7QBZZkEzLXafk1t6McgWtwSnNMHErjRW7V6K
-	zQeylYXqX/KhCjIGMV2SC8mOw/eq/4NbpZOhMgCsdVyKKTa1rYlX2AduZRUZpZS5zfmFYm03gD1uK
-	GFCU5S0O/27MFwJ9AAl7DH1gWAvIhLwhhT8k6mOnQF3ebIl9X9r5ouon3Ku5KhyD6WGA5xpKiHD1y
-	7afTTDbCRH6nZoCD3n4A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=LweXNunsp9PLDSFctCopeGzQkZZZWKDL7QaRxbH2uso=; b=mGUECfmui1Tkm4
+	j+jJDYuk85oHArszrV6bHNvEYRKAJ7C2HPdbWNuvOrRwkCL5OM0xCfgy5hL+KbDyjiTI/VW+8Bvrv
+	qBIoR7/nWY7OkHdRSiIbmexdcYWIPpigMvRbmz+7CGRZ6jBK+132t9o/wtkNh/vURNlp3Gnz+nbgX
+	sREgnAWkluq2Mf7HjHmUdZN+hG0Ir9nTb1JDUBp3beFlrxvnZDXvBIZ2vq5WvzhUVuuPqe+u6EOhn
+	XLd3thh0LRHuwG52uwdT2sCTATuQd9gRgsocyV4ybtZNg9Ztj8Q0B5xcWXzdAJc60CxGqlxOloMAT
+	WJI4VVSa+9c2CGHyXG7g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hudEr-0000vj-Pn; Mon, 05 Aug 2019 13:41:25 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1hudGt-0001tu-1D; Mon, 05 Aug 2019 13:43:31 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hudEi-0000g5-1s
- for linux-amlogic@lists.infradead.org; Mon, 05 Aug 2019 13:41:17 +0000
-Received: by mail-wm1-x341.google.com with SMTP id s15so51712354wmj.3
- for <linux-amlogic@lists.infradead.org>; Mon, 05 Aug 2019 06:41:15 -0700 (PDT)
+ id 1hudGp-0001p8-Es
+ for linux-amlogic@lists.infradead.org; Mon, 05 Aug 2019 13:43:28 +0000
+Received: by mail-wm1-x344.google.com with SMTP id g67so68960547wme.1
+ for <linux-amlogic@lists.infradead.org>; Mon, 05 Aug 2019 06:43:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=x+WcHBmr4prRt0vIkSfM9PPUqwEgU3pvt4JgB//l4IQ=;
- b=djq1XNNCaa80etpmbt/t52jE3VOpu447E/HlXbMrdXc4UCAeGM1biJA8j1G/SxpTSI
- v+VzJq4HpD++RmUH3M6U3m+jS8S2emGkORh5sRBm2LnD9l6vrNZNF8aqU+4Z1nZXDBvZ
- uNvwfeYVTsBbHmQ94RdlN/ll9Xb00pD7PfEn9Ef/bE+ysLCoMdKRAtubd3m2ovyEq/qY
- IdB3WIu2s2PYsQ53POMt1Q7JvfrjWPiqZ6MrTYCRz+1WSPX/3JoDdnzghdJQLSskqINU
- eKFIJqbT0a7cN2Lngixg3wJqPQrhYfjyovnI9dvgYknO7XVgISZUhzYhvXawyv4IVOdA
- YzFA==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=JhUROw1HvhUxcOE9NaUVqqed4sa60oTqgrJfdf5Zd0w=;
+ b=vUJfOghBWCqqLATCC18WkSf+axtMpfn3516CSlWGv8IM33ESEoYS7LgHT/JXThmFV+
+ R50C/1ljsKosMRkum31NKzxE5GcDf1+cS4PqPboNZkOM842UqaJBkA6t+fVzr5B7cSw8
+ XrDB8nUL6WKJ6Mv3ra5McwOCZvYWzVZDnZVLE8WfPFCysZiJfbQgJUiuCEnGzfFunNoe
+ wyO7bkgzybB1vzbiu5vUMKJXNhS0d/6ZypXY2dk8Do5vE1HttC9naKxVdJJ53oPBMZlL
+ 3WC8lqxQs75xql5XaRGCWP6WetYgx47N/5VY5WQpugIwIDIdpTY4OBGqzyq6IPkpqlYQ
+ MNlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=x+WcHBmr4prRt0vIkSfM9PPUqwEgU3pvt4JgB//l4IQ=;
- b=UUfqNZ+KTpNoHiuUsEKLbDofhrRzq4CPLBDD2PtCajzstAw89xbSEAxJxH2HX6sO7q
- BOK5jUSy+8zUmvelukcRznXoa2ZPfI22CvERbjg34G7iR8AY3HJgVHwA2AFDaq2v+uaL
- qxUdtbLeOSG5IVIP7ATMQ56Auxh2QFylRbsa8UzqMDX8Ci7d9t3b63SoWqn/U7UPVaVB
- JHldv2scVj/fASoREMIa4LFQtJWew8e2H65aDL+8WMITwvKajLZ2MWxJAUIQSmcYfXeV
- zDLSsjzgW7lbI8U+avfV+5UfJi3C1gAPCYW4FU1uElkOxNBhbPC/bpWoP8JRvMJiwwY2
- OpDQ==
-X-Gm-Message-State: APjAAAVCS5U8x3XAJWf+4JjFDYb4tPgFiolzvkPDaOgeJsQcUr0s6pyt
- 8LYL+k0pVVPySIJvMrri65EF5Q==
-X-Google-Smtp-Source: APXvYqy/drVrAb85EbTmmCjdLZAL3PlrstNRykKo/mQZKHCMjPluiL7BXjLnhtg2pTt038NuwCvmCA==
-X-Received: by 2002:a1c:480a:: with SMTP id v10mr18887642wma.120.1565012474656; 
- Mon, 05 Aug 2019 06:41:14 -0700 (PDT)
-Received: from starbuck.baylibre.local
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=JhUROw1HvhUxcOE9NaUVqqed4sa60oTqgrJfdf5Zd0w=;
+ b=fGgyqObGYQULavm37Vqpk3W9wY3IZATFpfBiZXuLmf3G5X4Oobek3xfLx3qSYVKuOH
+ 3WmHIBrcPUsmIY+Z7+g4DbMtoV9Vw3j7b0LHX1MWJ0M5AcUvLl+41hduZgTslxt6Lzuq
+ QK7UkIhRXQA6pMU4Gm6CZXKCT271rHk225TpWci70E9TGUbPKw3l5BoTe3Y86RDKEEcK
+ +BYPvqROtaqRSb5R6vAbEyvb9avTmUuEnjnq0cOOAeD6631Kxz6SvHyaA5QUBz8R0Hl1
+ pO+SAeEJgFT7LO3hqoXldi2d9vhoswgEQsZctzH3/rjkc8NDpB22t/bx8DA+kUZSL9Ef
+ NMFA==
+X-Gm-Message-State: APjAAAUDiEmk2Oi+pCkVjRy01o4IkiItf5Bc8BXzWVa1nvpFGbIjKo6y
+ fiIf+tVJdeVRtY8mLFdLWttZ/L1LIz7pTw==
+X-Google-Smtp-Source: APXvYqwRQ8LTdh+aO2Wutd286Aw3WmG2Oy0ABsRw8fE9gC5QuZErdhrI3Sy/Vj9G8jN3TZSG3y4rYg==
+X-Received: by 2002:a7b:c5c2:: with SMTP id n2mr18523606wmk.92.1565012606039; 
+ Mon, 05 Aug 2019 06:43:26 -0700 (PDT)
+Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id w7sm99040534wrn.11.2019.08.05.06.41.13
+ by smtp.gmail.com with ESMTPSA id t3sm67835842wmi.6.2019.08.05.06.43.25
  (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Mon, 05 Aug 2019 06:41:14 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Andrzej Hajda <a.hajda@samsung.com>,
- Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH 8/8] drm/bridge: dw-hdmi-i2s: add .get_eld support
-Date: Mon,  5 Aug 2019 15:41:02 +0200
-Message-Id: <20190805134102.24173-9-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190805134102.24173-1-jbrunet@baylibre.com>
-References: <20190805134102.24173-1-jbrunet@baylibre.com>
+ Mon, 05 Aug 2019 06:43:25 -0700 (PDT)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: robh+dt@kernel.org
+Subject: [PATCH 0/3] drm/meson: convert bindings to YAML schemas
+Date: Mon,  5 Aug 2019 15:43:16 +0200
+Message-Id: <20190805134319.737-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190805_064116_129010_DFFA8E2A 
-X-CRM114-Status: GOOD (  12.06  )
+X-CRM114-CacheID: sfid-20190805_064327_612179_B6D3A19C 
+X-CRM114-Status: UNSURE (   6.55  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,80 +95,43 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Jonas Karlman <jonas@kwiboo.se>, Kevin Hilman <khilman@baylibre.com>,
+Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-amlogic@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+ Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Provide the eld to the generic hdmi-codec driver.
-This will let the driver enforce the maximum channel number and set the
-channel allocation depending on the hdmi sink.
+This patchset converts the existing text bindings to YAML schemas.
 
-Cc: Jonas Karlman <jonas@kwiboo.se>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/gpu/drm/bridge/synopsys/dw-hdmi-audio.h     |  1 +
- drivers/gpu/drm/bridge/synopsys/dw-hdmi-i2s-audio.c | 10 ++++++++++
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c           |  1 +
- 3 files changed, 12 insertions(+)
+Those bindings have a lot of texts, thus is interesting to convert.
 
-diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-audio.h b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-audio.h
-index 63b5756f463b..cb07dc0da5a7 100644
---- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-audio.h
-+++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-audio.h
-@@ -14,6 +14,7 @@ struct dw_hdmi_audio_data {
- 
- struct dw_hdmi_i2s_audio_data {
- 	struct dw_hdmi *hdmi;
-+	u8 *eld;
- 
- 	void (*write)(struct dw_hdmi *hdmi, u8 val, int offset);
- 	u8 (*read)(struct dw_hdmi *hdmi, int offset);
-diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-i2s-audio.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-i2s-audio.c
-index b8ece9c1ba2c..14d499b344c0 100644
---- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-i2s-audio.c
-+++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-i2s-audio.c
-@@ -121,6 +121,15 @@ static void dw_hdmi_i2s_audio_shutdown(struct device *dev, void *data)
- 	dw_hdmi_audio_disable(hdmi);
- }
- 
-+static int dw_hdmi_i2s_get_eld(struct device *dev, void *data, uint8_t *buf,
-+			       size_t len)
-+{
-+	struct dw_hdmi_i2s_audio_data *audio = data;
-+
-+	memcpy(buf, audio->eld, min(sizeof(audio->eld), len));
-+	return 0;
-+}
-+
- static int dw_hdmi_i2s_get_dai_id(struct snd_soc_component *component,
- 				  struct device_node *endpoint)
- {
-@@ -144,6 +153,7 @@ static int dw_hdmi_i2s_get_dai_id(struct snd_soc_component *component,
- static struct hdmi_codec_ops dw_hdmi_i2s_ops = {
- 	.hw_params	= dw_hdmi_i2s_hw_params,
- 	.audio_shutdown	= dw_hdmi_i2s_audio_shutdown,
-+	.get_eld	= dw_hdmi_i2s_get_eld,
- 	.get_dai_id	= dw_hdmi_i2s_get_dai_id,
- };
- 
-diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-index bed4bb017afd..8df69c9dbfad 100644
---- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-+++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-@@ -2797,6 +2797,7 @@ __dw_hdmi_probe(struct platform_device *pdev,
- 		struct dw_hdmi_i2s_audio_data audio;
- 
- 		audio.hdmi	= hdmi;
-+		audio.eld	= hdmi->connector.eld;
- 		audio.write	= hdmi_writeb;
- 		audio.read	= hdmi_readb;
- 		hdmi->enable_audio = dw_hdmi_i2s_audio_enable;
+All have been tested using :
+$ make ARCH=arm64 dtbs_check
+
+Issues with the amlogic arm64 DTs has already been identified thanks
+to the validation scripts. The DT fixes will be pushed once these yaml
+bindings are acked.
+
+Neil Armstrong (3):
+  dt-bindings: display: amlogic,meson-dw-hdmi: convert to yaml
+  dt-bindings: display: amlogic,meson-vpu: convert to yaml
+  MAINTAINERS: Update with Amlogic DRM bindings converted as YAML
+
+ .../display/amlogic,meson-dw-hdmi.txt         | 119 -------------
+ .../display/amlogic,meson-dw-hdmi.yaml        | 160 ++++++++++++++++++
+ .../bindings/display/amlogic,meson-vpu.txt    | 121 -------------
+ .../bindings/display/amlogic,meson-vpu.yaml   | 153 +++++++++++++++++
+ MAINTAINERS                                   |   4 +-
+ 5 files changed, 315 insertions(+), 242 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
+ create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
+ create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
+
 -- 
-2.21.0
+2.22.0
 
 
 _______________________________________________
