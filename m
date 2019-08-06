@@ -2,22 +2,22 @@ Return-Path: <SRS0=TmCu=WC=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-0.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 794A0C31E40
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Aug 2019 19:25:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E5716C31E40
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Aug 2019 19:52:53 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4AD5220818
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Aug 2019 19:25:21 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B664B205C9
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Aug 2019 19:52:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="X/M1tRKq";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="mD/z0LTm"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4AD5220818
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DHmSenue";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Yzk47bOJ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B664B205C9
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,62 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VXfQn/Y0jsA2kQfFv+ydtz0k/P+BaMIN26kvu6U5rWc=; b=X/M1tRKqAD6TId
-	BccZp/u5wRJ52RmhNFnVLPQJjxFhK5gdz2/Xo0Wo7zY+qEYDbyP4/veE/HNQHIxK6P9kMOPY+8Ab/
-	XN9Q06dEGhn0T+d7Uxjvro+Czpw7Jiwau5zZfwUUUG8SRBi+eqlqG6/cxk8H4wnlRSxG+Z8+1zfUD
-	+ha0Ez4ByfBWjvbY2unH02UCC/Fut/DmkXflWwFzYbeDRA8PIk39B4lGT3jXhvoX+Sf+Xme4EWd+U
-	xch/x+zMYLJk8QnXjT+6NovyX2DTR+IEs/4c/sMMfi1pnvKQHOm3YByib1iCMkNeAxQIRzqiqWfMV
-	erV4x/fJ6BVszjb1W8Yw==;
+	List-Owner; bh=y54rvaxU8K3cskpvdyMI+3py5vjOzlqCXAgrLHSIlg0=; b=DHmSenuemWHyiB
+	Qv2kI0f4OEQ/c5PaJEn3bYEbTxNehBAwHIN0j9SAyB3lHtzrzS1SeW4Q1qnkaaJfsS70CQutqmzdu
+	d9XQqfSGuUtz9yoynxjPuFXdIlrcA3oyhTSTqJU29aNtm2a5XXs8HhrhPpefrpS/Nmu8Z7qOD66ak
+	nHUM8le7AFsA5iP4fnwlMgARoSa325ewhwKg2lBWsR874tdMJ3xCGLBztjUyb4l7MVBZr5Q7yOcQD
+	Tybz617IaeB3QN2BikwPs3c8No1yrZBsDKUt9Q3MW6RJ7SXlWEFz0xp4p50U4Qui3MC6m4g3toccN
+	qlQmTnjHJ0+28br9n3PQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hv55B-0000tA-Jp; Tue, 06 Aug 2019 19:25:17 +0000
-Received: from mail-oi1-x241.google.com ([2607:f8b0:4864:20::241])
+	id 1hv5Vo-0001c3-Lc; Tue, 06 Aug 2019 19:52:48 +0000
+Received: from mail-oi1-x242.google.com ([2607:f8b0:4864:20::242])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hv558-0000q1-Le; Tue, 06 Aug 2019 19:25:15 +0000
-Received: by mail-oi1-x241.google.com with SMTP id t76so68315410oih.4;
- Tue, 06 Aug 2019 12:25:14 -0700 (PDT)
+ id 1hv5Vl-0001bb-6M; Tue, 06 Aug 2019 19:52:46 +0000
+Received: by mail-oi1-x242.google.com with SMTP id c15so13007690oic.3;
+ Tue, 06 Aug 2019 12:52:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=r400Du+BdhcnVb2kJzBt3FbA/D2Jmeeyq4b8DmzoTuE=;
- b=mD/z0LTmYu+WiqSkvRq3LLNujYAd8HlJFwozWt4552r1/zczO8LbiytL3e/MDZPv93
- tKx2hPMqdZNJy4AZEtSf1xYNmFi9cTQ0pg/e1V2e9LTpcKZL2x+lIaiQsQXoXYAfsjNF
- MswbQTt1PmNXl/ZdWsUgdcCG54PR1yGVHLAo1DzYg231IGuaZYdXpqMocD6Lorye/0Ii
- wxqgPZY4+DO5OKhBhuujKEGKCh+I94hhv+5PYRhqxR8LTf/p+JDW57C97tpbCY5SuUg4
- sre2BahrbnzfpUPj+zKkiKXpU4R62NHuLps/qXZyzUkDpsHPwYeMjcPsJ2DniB/2h5Fy
- xAfA==
+ :cc; bh=4E/kye31gm/TUQMINOCXfCGV9Lfx0lm6nnvhyTx90lw=;
+ b=Yzk47bOJktflINEYudmIXcRskp+l8U5BovlNaqWp2akIE2xwTuHvoX3zT22MAUDuJ3
+ XO8JCNSJ39+r3FvB83PSqvCOdBb6dA453gqBq5UjxYm/x939xxHrUQzGEjpWMeDkbg7C
+ PU9R1vq6BARJBbD+Qx8FegPLsD/BA+rrPXewHWSRN9ukZN2EId0grtB068+Xr6vbxVvs
+ fJ9+rJiecg5Jn3pzoqdn4FJOtqfEIua19AftTYsNEwolx2VFWVCN7f0cwiIYqdjfj2ew
+ nwgw6Avn3h9aL2w/i5R+J0oEt6Ie4TjULWWKGT8FbgpuY1Nd4cVcGk7HfaKsTVYhV7NB
+ aslA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=r400Du+BdhcnVb2kJzBt3FbA/D2Jmeeyq4b8DmzoTuE=;
- b=kasrkkIyQ8Nck44boe3vGU7GgfezF3mLeS0oP66uwGgKzKhZWrqfmMlmXR0YbTGx/r
- qAByYxmZ0qGgCqCo4lWIipOgcT/AtSKayDYPaj6euIVaWoyJ1HwedQVwDz8q7q8aStK0
- EW0MSWZqVOGfMasi7oGuh6F5Uyj2fW5mM0sad7z71pSCcJp9VRdLuU73FA25gqcsw+9y
- LzVxs78YXn5OAWhPx/Iu7CQUCdPGEj7k5U20MWGb/9vyDxNAku1bt46FdfWuGu6IoGz5
- xeFLbuugk1uWFU02z1foBVcxp9Zb66v4IbbCrSOasWMhjuY6QfsHRNGlMMV3E5AyW6Rb
- w28w==
-X-Gm-Message-State: APjAAAU5VgNW4SCSwrDt2FBAQC3SZKYeMbHlsXRGn/tbcWCLhLqTbapM
- qr8hwBZvX+9sigXlC1MDOZQRLzn9WrdgksZzRWw=
-X-Google-Smtp-Source: APXvYqycqxwAz4ajkkyCaUP9+StDKHGffRIZJGY2i531ZcuklTJ3ImWMc0UgBRuQREKN2HBys+2LheHpq2cOHQCsqK0=
-X-Received: by 2002:aca:5c55:: with SMTP id q82mr2887362oib.15.1565119513938; 
- Tue, 06 Aug 2019 12:25:13 -0700 (PDT)
+ bh=4E/kye31gm/TUQMINOCXfCGV9Lfx0lm6nnvhyTx90lw=;
+ b=OJdgfweOZbCKFyYuecfp9BcHYOGqq0l24Ig2G3+xVMP1JNRwFyN64OXstc3YBuzppx
+ HvCNWMteU7yjF8Ww4eZP2VV708MUG6BFudRJYegzJ/ZcrsUfScj/FX6+sXawOWlKSaT1
+ 3GjX7C6oKqlA5+kADF8saay0jzmWApWaeDD8iM56t5A7yG1bMmFs2mG4TdjWQq4X6mDS
+ LLJWBBq+iSHzxk15rNIoRw7EkOGvj6SFAiv5ww/ZmGMfsjoGg0n9boj5anDBKiiU8BSt
+ kWaW9xT5vub7inI6Ho+fEqjHSt2vrFejHfIeXvOx1KKahK2U29iAPJoVS4iHRuQu3tnI
+ uc5Q==
+X-Gm-Message-State: APjAAAWYyZqwS+52YDVcJIInpw9JCoBnlu8g2C7lqvhz9wyHSPNgHgek
+ yajK0iRwQObKFD0kSYO5Upri5zTopikXYICNqByn3obh
+X-Google-Smtp-Source: APXvYqw1ATDKzq4Ht5dmq0BSO1jAsgEOQjI9m/cdHrI7S9kc9h6PS8yJ28neuhhhpzIY2bUqGqV7RB4pF2K8DWgt1V0=
+X-Received: by 2002:a05:6808:3d6:: with SMTP id
+ o22mr3801512oie.140.1565121163808; 
+ Tue, 06 Aug 2019 12:52:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190806130506.8753-1-glaroque@baylibre.com>
- <20190806130506.8753-6-glaroque@baylibre.com>
-In-Reply-To: <20190806130506.8753-6-glaroque@baylibre.com>
+References: <20190731153529.30159-1-glaroque@baylibre.com>
+ <20190731153529.30159-3-glaroque@baylibre.com>
+ <CAFBinCDGSJABnS1L1ULueyeXZaV38qrxEA0a12gB-uyRC_TvPQ@mail.gmail.com>
+ <14e14cd9-46bd-0d43-654c-6db64397f5c7@baylibre.com>
+In-Reply-To: <14e14cd9-46bd-0d43-654c-6db64397f5c7@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 6 Aug 2019 21:25:03 +0200
-Message-ID: <CAFBinCCtuL_3TcYJS625ZdJQE_9Lt0n_nNVtxKoY-Nyoz2wSDQ@mail.gmail.com>
-Subject: Re: [PATCH v3 5/6] arm64: dts: amlogic: odroid-n2: add minimal
- thermal zone
-To: Guillaume La Roque <glaroque@baylibre.com>
+Date: Tue, 6 Aug 2019 21:52:32 +0200
+Message-ID: <CAFBinCB3ZBPVEJKV2Rfh_w-zWrhoToYdoYE6Wox+JeB-YH+Khw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/6] thermal: amlogic: Add thermal driver to support
+ G12 SoCs
+To: guillaume La Roque <glaroque@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190806_122514_724050_51DF197C 
-X-CRM114-Status: UNSURE (   8.58  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190806_125245_268932_E9231334 
+X-CRM114-Status: GOOD (  22.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,15 +101,102 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Aug 6, 2019 at 3:06 PM Guillaume La Roque <glaroque@baylibre.com> wrote:
+Hi Guillaume,
+
+On Mon, Aug 5, 2019 at 2:48 PM guillaume La Roque <glaroque@baylibre.com> wrote:
 >
-> Add minimal thermal zone for two temperature sensor
-> One is located close to the DDR and the other one is
-> located close to the PLLs (between the CPU and GPU)
+> Hi Martin,
 >
-> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
-I'm not familiar with the thermal subsystem but this looks sane so:
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> again thanks for your review.
+you're welcome - thank you for working on the driver :-)
+
+[...]
+> > The IP block has more functionality, which may be added to this driver
+> > in the future:
+> > - reading up to 16 stored temperature samples
+>
+> it's not working, you can verify it if you check the regmap define in the driver. in fact temp is only write in one register, it's confirmed by amlogic.
+I missed that - so please skip this part
+
+[...]
+> >> +config AMLOGIC_THERMAL
+> > we typically use "MESON" in the Kconfig symbols:
+> > $ grep -c AMLOGIC .config
+> > 1
+> > $ grep -c MESON .config
+> > 33
+> >
+> > I also wonder if we should add G12 or G12A so we don't conflict with
+> > upcoming thermal sensors with a different design (assuming that this
+> > will be a thing).
+> > for example we already have three different USB2 PHY drivers
+> >
+> > [...]
+>
+> i check with Neil and for new family it's better to use Amlogic instead of meson.
+can you please share the considerations behind this decision?
+if new drivers should use AMLOGIC_* Kconfig symbols instead of MESON_*
+then we all should know about it
+
+> i don't add G12 because we already know it's same sensors for SM1 SoC family [0].
+my idea behind this was to avoid conflicts in the future
+in case of the thermal driver we may be fine with using a generic name
+assuming that Amlogic will not switch to a new IP block in the next
+years
+I'm not saying you have to change the name - I'm bringing this up so
+you can decide for yourself based on examples from the past
+
+here are a few examples:
+- when Kevin upstreamed the MMC driver for GX he decided to use
+MMC_MESON_GX for the Kconfig symbol name. it turns out that this is
+smart because there are at least two other MMC controller IPs on the
+32-bit SoCs. due to him including GX in the name the drivers are easy
+to differentiate (MMC_MESON_MX_SDIO and MMC_MESON_MX_SDHC being the
+other ones, while the latter is not upstream yet)
+- when Carlo upstreamed the eFuse driver he decided to use MESON_EFUSE
+for the Kconfig symbol name. I found out much later that the 32-bit
+SoCs use a different IP (or at least direct register access instead of
+going through Secure Monitor). the driver for the 32-bit SoCs now uses
+MESON_MX_EFUSE. if you don't know which driver applies where then it's
+easy to mix up MESON_EFUSE and MESON_MX_EFUSE
+- when Jerome upstreamed the ALSA driver for AXG (which is also used
+on G12A and G12B) he decided to use the SND_MESON_AXG_* prefix for the
+Kconfig symbol names. in my opinion this was a good choice because GXM
+and everything earlier (including the 32-bit SoCs) use a different
+audio IP block. we won't have a Kconfig symbol name clash when a
+driver for the "older" SoCs is upstreamed
+- (there are more examples, Meson8b USB PHY driver, Meson8b DWMAC
+glue, ... - just like there's many examples where the IP block is
+mostly compatible with older generations: SAR ADC, RNG, SPI, ...)
+
+I'm not sure what driver naming rules other mainline SoC teams use
+to me it seems that the rule for Allwinner driver names is to use the
+"code-name of the first SoC the IP block appeared in"
+
+[...]
+> >> +static int amlogic_thermal_get_temp(void *data, int *temp)
+> >> +{
+> >> +       unsigned int tvalue;
+> >> +       struct amlogic_thermal *pdata = data;
+> >> +
+> >> +       if (!data)
+> >> +               return -EINVAL;
+> >> +
+> >> +       regmap_read(pdata->regmap, TSENSOR_STAT0, &tvalue);
+> >> +       *temp = code_to_temp(pdata,
+> >> +                            tvalue & TSENSOR_READ_TEMP_MASK);
+> > maybe simply move the implementation from code_to_temp here?
+>
+> for the optional function it could be a problem if i move all in code_to_temp.
+>
+> i prefer to have a function which are just do the conversion.
+I didn't consider this before but you are right
+if the other temperature registers (like IRQ thresholds) also use a
+"temperature code" then it should be a dedicated function (so it'll be
+easier to add more functionality to the driver)
+
+
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
