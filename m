@@ -2,147 +2,76 @@ Return-Path: <SRS0=TmCu=WC=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1DF3DC31E40
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Aug 2019 15:20:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 42690C433FF
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Aug 2019 15:22:33 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E249F20717
-	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Aug 2019 15:20:31 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1453D20C01
+	for <linux-amlogic@archiver.kernel.org>; Tue,  6 Aug 2019 15:22:33 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DtocInsE";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="yHCLfXut"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E249F20717
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ikGKPb+j";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="WB6QyejA"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1453D20C01
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vFVf3EIQMkgzYnohMG+uhGD2n3PG2XIs3m/sO0WG7y8=; b=DtocInsEnUw3pK
-	qxErAV1I9zduNQLQrtNS1FewSrozpReAIUn3+gXGkHo+LROLHEjaXScdtefxt2cBYTU/5eZWIpEe5
-	OsRMA49AaYgNwUtYQGAEPHxGFXJwWrOCnzeHEnYCa5D9gKK3yxAbqJrOi6STo8uocf5gWdLh01xVl
-	lIHEunUiMT3dD0NMZPFDuHDM4H41JIBnH9rVW1OP0JsmTOlpFU58RBMBBDCkGEuWcEGbMqZjZxQUN
-	i7h6DERZd4igQ/sxi3CBkUj4+efLn5GJQgVfGH9loyms+5SkfkjoR2CoxBjTT7QKo4Zi7yJcApTGI
-	+iA/ka/ahMBtEqggkf/g==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=xfvbECQY1FCe9r2Ajr8zEPYOnW+CU3IDyfCs4Xg7FLc=; b=ikGKPb+j2QYG1I
+	rQyW/JKrYHA0qxDSjwRQH1u/t8C7PFgYn/gfaVzGLQCNHQ4yoWTT8KyTlUdxedLVe2/oX1VU+Rueq
+	Ka0ip5zU3sf9EtA60yK9pFraaYYf7xub+JxgF+zTpcBMAmylnA2tThJGk9z+5GaRAdk4gnFZRaWQw
+	bXIZ6lzfa/15X94IpNcsvsLnJoSteslbhV33wyHHdpAcDbefZS2qDh07HK3Uq6WyeV7apHkc7fGTk
+	LiSuDWo7se9W+joIqZxv2ojJW24PYeA+4TXw9CFccmv5M8yZa1hlVaaHG3G5W0lzUGWXaSato/g2C
+	mOutd+Luzh1Vt90uG48g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hv1GF-0006cJ-D3; Tue, 06 Aug 2019 15:20:27 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1hv1IC-00073J-Em; Tue, 06 Aug 2019 15:22:28 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hv1GC-0006bq-JV
- for linux-amlogic@lists.infradead.org; Tue, 06 Aug 2019 15:20:26 +0000
-Received: by mail-wr1-x441.google.com with SMTP id g17so88298814wrr.5
- for <linux-amlogic@lists.infradead.org>; Tue, 06 Aug 2019 08:20:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=TYaSujJB8AjUE/mL3dFUGkFVQfhh4XyBtVxfATnPyb8=;
- b=yHCLfXut4OvNYRY6wyJLqdk+LSiDM7gkl1Vg6s3TnqGLupy43mOFw4+QfSCd7318Kr
- l7C5SjScjQQVrKiPhxF593pXO47t87ydTOL0KE+1N/ZfQToUeIez12ew7O8rSCd9XOy2
- AdSTQMw7WoKhAG83ff8kt/RNbFdc4FvvMUtgkkAhXv4PYb7SEG/4vIZQQiiP5UK7+6kS
- uYO8oYetE/5uCKVotWwH2vxMdvM0bICg9/CZww0z0uWvlxrnnpFFhCYUr1agvlo5tgf6
- hbY9Lhl7TGNxMvcFq0FB7oGxsW23TSUz8gbI2S4mn6dEVFJWIuyeCaC4dDuQN8FObb+y
- 2/4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=TYaSujJB8AjUE/mL3dFUGkFVQfhh4XyBtVxfATnPyb8=;
- b=IyMGOWTU3DDtTlXqC7VrrqoWp691m40CVDSXvj0KdQudcSsb+VJfThjahcILKZki2v
- jZZwP6Sp7fOfykhcLzdf5zYtqYJYi/eujy24NphpF+d4BwTW+GKZCDVaauPWTpJQAE8g
- LYgre586q7wAJWs9fuGDiHLpLv+sKtSrZGz6ANgLh2YUvZfb4AauH3Z5bsLaDXvO79UT
- hAGkILiAQ/erIQkPNrsLNgCCDzIegPhtFr41tIurXi+XbUEHeGZTPoHQi4tokmnJsixN
- tjO1Ltsydt4VNO6G/1BLNV1JpBsrWyGpIwlmOu60DiPr+k42tIF0CrIkOCVLqc4Clm2x
- yqRA==
-X-Gm-Message-State: APjAAAU7Krjsve38xDJHOsLpYQzbLlTUIubyD9Yn8biu60XCDEZefFDP
- cfFyNUxpMdAQ3Haw1he5ikYaBQ==
-X-Google-Smtp-Source: APXvYqyESJpUwM+2vlQpQpC2fNiMFk6tYD0yityn1JVxyS1RsbIz1Wgs325rjrWROHYxrfWW/Z0nYg==
-X-Received: by 2002:a5d:4284:: with SMTP id k4mr801849wrq.6.1565104822560;
- Tue, 06 Aug 2019 08:20:22 -0700 (PDT)
-Received: from [10.1.3.173] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id i12sm101885942wrx.61.2019.08.06.08.20.21
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 06 Aug 2019 08:20:22 -0700 (PDT)
-Subject: Re: [PATCH v2 2/3] dt-bindings: display: amlogic,meson-vpu: convert
- to yaml
-To: Rob Herring <robh+dt@kernel.org>
-References: <20190806124416.15561-1-narmstrong@baylibre.com>
- <20190806124416.15561-3-narmstrong@baylibre.com>
- <CAL_JsqKS7KeUBhEn1kxT0HZddOZ6oDaZDStUppSdL2vXfAuccg@mail.gmail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <2c83379c-0857-86da-6f4d-ade728fd5b10@baylibre.com>
-Date: Tue, 6 Aug 2019 17:20:21 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ id 1hv1I9-00072s-UW; Tue, 06 Aug 2019 15:22:27 +0000
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com
+ [209.85.160.176])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 298AC216F4;
+ Tue,  6 Aug 2019 15:22:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1565104945;
+ bh=JMOEGp6KBvPBaAeXLbOqrCVjJ676yUa1QkpMH2rvtq4=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=WB6QyejA8rC5KTGkiRanEHrenr2L+WDGFEwbW+24bcL6OUKddBHt1Km2Qppjg/bK5
+ g6/jDc8o51vd81bcLHPWsTds7N81BByiFL2CDoWg7U0NJOyGa1kRPubYoEDiXKxvsd
+ u0YsfNugfJZSgo/DSk6wYjlQaQsowFhNnHCQfeI8=
+Received: by mail-qt1-f176.google.com with SMTP id l9so84851188qtu.6;
+ Tue, 06 Aug 2019 08:22:25 -0700 (PDT)
+X-Gm-Message-State: APjAAAXMJxCKuax6LyNuc0h2foPacooxuQv/+3MeSt1DcrPPW4Vuv6tI
+ X5weNjhvqbNjufdXLCXeBvrF9CCjjkvteJ3Cyg==
+X-Google-Smtp-Source: APXvYqxiYQR/HHbmEVYeeT1TCkPHwlx94sDjj7D7ngVhqwAXC1LaYwuz8JDKA4JGq7UFpO7Gh+2kiQyApncgjpmPu2I=
+X-Received: by 2002:aed:3fb0:: with SMTP id s45mr3591713qth.136.1565104944340; 
+ Tue, 06 Aug 2019 08:22:24 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqKS7KeUBhEn1kxT0HZddOZ6oDaZDStUppSdL2vXfAuccg@mail.gmail.com>
-Content-Language: en-US
+References: <20190806125041.16105-1-narmstrong@baylibre.com>
+ <20190806125041.16105-2-narmstrong@baylibre.com>
+In-Reply-To: <20190806125041.16105-2-narmstrong@baylibre.com>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Tue, 6 Aug 2019 09:22:12 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+6kCO8x53d1670VjgEjfs5opKY+R3OgsAo0WsXqq512Q@mail.gmail.com>
+Message-ID: <CAL_Jsq+6kCO8x53d1670VjgEjfs5opKY+R3OgsAo0WsXqq512Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: net: snps,
+ dwmac: update reg minItems maxItems
+To: Neil Armstrong <narmstrong@baylibre.com>,
+ Maxime Ripard <maxime.ripard@bootlin.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190806_082024_787065_21EB45CE 
-X-CRM114-Status: GOOD (  14.67  )
+X-CRM114-CacheID: sfid-20190806_082226_008140_D468222F 
+X-CRM114-Status: GOOD (  11.36  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,46 +84,35 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: devicetree@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ netdev <netdev@vger.kernel.org>,
  "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, linux-amlogic@lists.infradead.org
+ linux-amlogic@lists.infradead.org,
+ "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Rob,
++Maxime
 
-On 06/08/2019 17:08, Rob Herring wrote:
-> On Tue, Aug 6, 2019 at 6:44 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->>
->> Now that we have the DT validation in place, let's convert the device tree
->> bindings for the Amlogic Display Controller over to YAML schemas.
->>
->> The original example has a leftover "dmc" memory cell, that has been
->> removed in the yaml rewrite.
->>
->> The port connection table has been dropped in favor of a description
->> of each port.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  .../bindings/display/amlogic,meson-vpu.txt    | 121 ---------------
->>  .../bindings/display/amlogic,meson-vpu.yaml   | 138 ++++++++++++++++++
->>  2 files changed, 138 insertions(+), 121 deletions(-)
->>  delete mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
->>  create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
-> 
->> +  power-domains:
->> +    description: phandle to the associated power domain
->> +    allOf:
->> +      - $ref: /schemas/types.yaml#/definitions/phandle
-> 
-> You missed this one.
-> 
+On Tue, Aug 6, 2019 at 6:50 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> The Amlogic Meson DWMAC glue bindings needs a second reg cells for the
+> glue registers, thus update the reg minItems/maxItems to allow more
+> than a single reg cell.
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 
-Indeed, thanks for spotting, I'll resend without it.
+I haven't checked, but the derivative schema could be assuming this
+schema enforced reg is 1 item. I don't think that's a major issue
+though.
 
-Neil
+Acked-by: Rob Herring <robh@kernel.org>
 
 _______________________________________________
 linux-amlogic mailing list
