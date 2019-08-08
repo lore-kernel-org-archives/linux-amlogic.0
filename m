@@ -2,21 +2,22 @@ Return-Path: <SRS0=t7Bi=WE=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C111EC433FF
-	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Aug 2019 03:00:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5D950C433FF
+	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Aug 2019 03:02:45 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8EDB52171F
-	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Aug 2019 03:00:43 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2D15921873
+	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Aug 2019 03:02:45 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="j3kQJI0c";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="wO9Xh2PX"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8EDB52171F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HeVgf3Vt";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="VMkDtAtL"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2D15921873
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,70 +26,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZkaaI0vsnSQl1O0xbYVHYksJkd3ZW7KFWK57ylCWvj4=; b=j3kQJI0cNbFjjA
-	Br0IQMrFtt7e3KEZ4Gv4HYgAKEoVWbwkv8VtMBfK90h59zFDxgZdlcQxbWSde2lqzcPYksCWnToNh
-	A6sh6LlljUEFZBKcTRpA65/4daZoneSK+4xDJZ4FozPGdbOX2gwVXkUYW8gW5FaLrwm0oxDkYcrvx
-	uLGC2+k9da2V8DAHcK9Ywp5KFwhOqFROUwMKkTnY1XE5Th9HNvjaGm3IYXNTiUQv4p0VWTMabk6He
-	ghFvfOpw48XQbVHgKJOh1hypMwJycBwCmHdv1gC4KY7+3AgktYihw/OxDRFBV7Bx/Iu9Se3c2tjWI
-	nlga9EJOvkHO8d35h0mg==;
+	List-Owner; bh=QldcsaUlyBMdtGtIIiAaBbM5fCJXgIASGBwV7+NjQsQ=; b=HeVgf3Vtx7Tqnq
+	b9FikU/uLaCsd1mJl7oC+jCGQZu+cn20psNlElYHmsURjaJxZXA6yD5apiP0u/WZeVkm1lv48+AlW
+	cyuHUHp3KIESl3JdzShWapdHpKC//lEpHdxnQqk4M6ktQYRWI7FaiHbptj6l4Zlk8xJVTn4pIuMZb
+	jUfmUNK+0M+DLWzNLQZaUKyJw/UlI7JkDBXiWAbkT0eZ77KfDOuO5bA8NFDar50haSl8D8XJtwK3r
+	EgISmlmm41ksh1MsPnXBgxIhJiMCMq+UgR9NJKo0RNgSGaxykR15upevUdQj+8SONWTgqjC3wzvYG
+	TyHX61nuObBKFQGkfRsA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hvYfI-0005cP-IN; Thu, 08 Aug 2019 03:00:32 +0000
-Received: from mail-pl1-x642.google.com ([2607:f8b0:4864:20::642])
+	id 1hvYhL-0005mX-09; Thu, 08 Aug 2019 03:02:39 +0000
+Received: from mail-pf1-x444.google.com ([2607:f8b0:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hvYeY-0004Et-L6
- for linux-amlogic@lists.infradead.org; Thu, 08 Aug 2019 02:59:49 +0000
-Received: by mail-pl1-x642.google.com with SMTP id t14so42848313plr.11
- for <linux-amlogic@lists.infradead.org>; Wed, 07 Aug 2019 19:59:45 -0700 (PDT)
+ id 1hvYhH-0005lW-Po
+ for linux-amlogic@lists.infradead.org; Thu, 08 Aug 2019 03:02:37 +0000
+Received: by mail-pf1-x444.google.com with SMTP id b13so43220797pfo.1
+ for <linux-amlogic@lists.infradead.org>; Wed, 07 Aug 2019 20:02:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=M46+rRD9490JDPK9ddkL3Wmb4Wh5zKQCmCDCkR+q5kg=;
- b=wO9Xh2PXrpg9lU0IsFaORz0XFZmPbM1HXodeJlUo0SCuE2yy7Fj3+g4OIoXK82mHy+
- +ArgkMosO7hF6RtLc2jyV+Cr6Tofxyig1mge9yOHd4ZmHmSIWyKwUYvrOjphOfaBVkDQ
- ipcx6WXAHaLsSjeOYnpBqtwfWDHIa+oJkCKMnTy68/gMwLB0i49RwxdXcEjI7ylsvXbE
- wkpmdCR37V3yqabyJT0Qq1g4kiEX4ehM5uArO4F8lh3Fh2BWxA61kuVyLzyJ3fg7fc2Z
- 3NAYzY8Li9PFoC7jsf3b1GAhDygCDA6COvp++KwnIjMdcT5YpWzt3KZjt6foFcDHqu5B
- BDRA==
+ :mime-version; bh=/Z7L8SyshdubRcyIY95repgYfqLBFE4FKfh7eq8hsWQ=;
+ b=VMkDtAtLTGvihLldZdjOKfErDSzMhon6bH5G3BdL+lkNsLL3dhRGrdijMSDj0i4/7d
+ I4trJ2cPBcfQ9b3hUyrfivjLrr4sWMt8cYYyyVntaeqVNyAvZ5dxivLyOgVXVvDiPk6c
+ jkqX9k20VGWNQKfp3L0eAGSlUB+86FaeW6LxVEayaRqcWTMWv0F3CGeFSxefboLbNnsR
+ S1XHjj1FrqZi3qhOfdimenhnFDt052N8RMB9eb8BKX6yHcHBDlefcglRUp7sKokpTRMx
+ sd9CmtD2VJcXM8d2+Wd2EqZ/6xbNLNJMIZshGNVOVfMuYEXBx85IGCNog25/90slfPuc
+ dtZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=M46+rRD9490JDPK9ddkL3Wmb4Wh5zKQCmCDCkR+q5kg=;
- b=XD/yjV3RcPKcpHzzO/Hc0CTIX4v21kPqYzZAtkcc5SiQZZ74bVD1FTe3oGhMbb0/0h
- dp0oU9Jc1NhugVQIcXpeIRpGno/WWZP719emeSYZutlxz19kJlgsTgZh4o+wt/aO7cri
- 1ds8M8uQf6V91AFS7luLKk5prUhR6RJheL4FkJXso37VS8n+7/sgrVVnNHxOwhD/OCKg
- Jfc9JfdfoLNM9n7WUTdLvuXh2Llrm5CTO2NdOHUlUuNvxXSku1dqdg5HcfdUgtVLdaZb
- Ndfyz64/THQiUiyhKEGe9BKpiZh8Sd72QVUiqabrTtDqDoYmPSQhP/D7q2ftRGR9hvFV
- Yg6A==
-X-Gm-Message-State: APjAAAWKsCe/WxvG0QRkJr1ZVEQernxPaR0KZp4Dpwb9t+cB9q+1B3kx
- pwMkObPXbClElydBNph7cslSn/BD7fZ1RA==
-X-Google-Smtp-Source: APXvYqydfCMfjzlAEJHfPHmY2ccUh+xmD8VV6YjY9PVxun1Oekki1EK+6Uzfy4f1k1yFW/OMQeiMjw==
-X-Received: by 2002:a17:902:f089:: with SMTP id
- go9mr11197346plb.81.1565233185039; 
- Wed, 07 Aug 2019 19:59:45 -0700 (PDT)
+ bh=/Z7L8SyshdubRcyIY95repgYfqLBFE4FKfh7eq8hsWQ=;
+ b=ibvBZRPbQlSjEFFXNd09VA5pz+w19jzxHsw/rYeVvZgGfgLKCK+Q5wH3xZgDjLipvn
+ 8yoUTlc2s/Mz+yEaAeNvpkp+cv3pOTdxN8RYIjeDxNRd4EA55YgXYLfYiofI+IDyIYma
+ 3ZUCIHU2pRgVlwtisHVIn2eAkutIbQ2A9rAFFkZhMniHVxyQdOZtpLF5GMLN7/DY767K
+ fqnkEfTuEa76E412qiGAY7caSzf3GUK94/N13Qj98N+gcccPBVqk1bJXr/io50II//uw
+ +17wInYZcJAn2Zht6PadTHgI4cYzPCLgEXUlGg5XLCtqWFvjpLEZswN57Me9ZKU2feEj
+ rD9Q==
+X-Gm-Message-State: APjAAAXR6b/pY1Z4dEriM4hY/sPL+lIQn2zjo5Q9lw7Ig8YWgSwNOMzX
+ ipwq8fHhC727A1GgSwCUWrh15A==
+X-Google-Smtp-Source: APXvYqylJQrZTaVlqLyT+6q2Nr1Mjd7x1ZREstnHaNOUKd1r3XvtkoAaiLRMfJ80fzLmRpUIRf0/6A==
+X-Received: by 2002:a62:1d8f:: with SMTP id
+ d137mr13114157pfd.207.1565233355043; 
+ Wed, 07 Aug 2019 20:02:35 -0700 (PDT)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
  [71.197.186.152]) by smtp.googlemail.com with ESMTPSA id
- j20sm88282137pfr.113.2019.08.07.19.59.44
+ q126sm52203296pfb.56.2019.08.07.20.02.34
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Wed, 07 Aug 2019 19:59:44 -0700 (PDT)
+ Wed, 07 Aug 2019 20:02:34 -0700 (PDT)
 From: Kevin Hilman <khilman@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- guillaume La Roque <glaroque@baylibre.com>
-Subject: Re: [PATCH v2 2/6] thermal: amlogic: Add thermal driver to support
- G12 SoCs
-In-Reply-To: <CAFBinCB3ZBPVEJKV2Rfh_w-zWrhoToYdoYE6Wox+JeB-YH+Khw@mail.gmail.com>
-References: <20190731153529.30159-1-glaroque@baylibre.com>
- <20190731153529.30159-3-glaroque@baylibre.com>
- <CAFBinCDGSJABnS1L1ULueyeXZaV38qrxEA0a12gB-uyRC_TvPQ@mail.gmail.com>
- <14e14cd9-46bd-0d43-654c-6db64397f5c7@baylibre.com>
- <CAFBinCB3ZBPVEJKV2Rfh_w-zWrhoToYdoYE6Wox+JeB-YH+Khw@mail.gmail.com>
-Date: Wed, 07 Aug 2019 19:59:43 -0700
-Message-ID: <7hblx0fjkw.fsf@baylibre.com>
+To: Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH 2/6] dt-bindings: arm: amlogic: add bindings for G12B
+ based S922X SoC
+In-Reply-To: <CAL_JsqL_L2qHe334sB57hR_coRhawKiqXYjKAQDJt_DHfBamBQ@mail.gmail.com>
+References: <20190731124000.22072-1-narmstrong@baylibre.com>
+ <20190731124000.22072-3-narmstrong@baylibre.com>
+ <7hblx3gua3.fsf@baylibre.com>
+ <CAL_JsqL_L2qHe334sB57hR_coRhawKiqXYjKAQDJt_DHfBamBQ@mail.gmail.com>
+Date: Wed, 07 Aug 2019 20:02:33 -0700
+Message-ID: <7h7e7ofjg6.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190807_195946_983226_C8D13AB8 
-X-CRM114-Status: GOOD (  24.53  )
+X-CRM114-CacheID: sfid-20190807_200235_841986_030A820F 
+X-CRM114-Status: GOOD (  13.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,100 +99,50 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
- daniel.lezcano@linaro.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ Christian Hewitt <christianshewitt@gmail.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ linux-amlogic@lists.infradead.org,
+ "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+Rob Herring <robh@kernel.org> writes:
 
-> Hi Guillaume,
->
-> On Mon, Aug 5, 2019 at 2:48 PM guillaume La Roque <glaroque@baylibre.com> wrote:
+> On Mon, Aug 5, 2019 at 3:46 PM Kevin Hilman <khilman@baylibre.com> wrote:
 >>
->> Hi Martin,
+>> Neil Armstrong <narmstrong@baylibre.com> writes:
 >>
->> again thanks for your review.
-> you're welcome - thank you for working on the driver :-)
->
-> [...]
->> > The IP block has more functionality, which may be added to this driver
->> > in the future:
->> > - reading up to 16 stored temperature samples
->>
->> it's not working, you can verify it if you check the regmap define in the driver. in fact temp is only write in one register, it's confirmed by amlogic.
-> I missed that - so please skip this part
->
-> [...]
->> >> +config AMLOGIC_THERMAL
->> > we typically use "MESON" in the Kconfig symbols:
->> > $ grep -c AMLOGIC .config
->> > 1
->> > $ grep -c MESON .config
->> > 33
+>> > Add a specific compatible for the Amlogic G12B family based S922X SoC
+>> > to differentiate with the A311D SoC from the same family.
 >> >
->> > I also wonder if we should add G12 or G12A so we don't conflict with
->> > upcoming thermal sensors with a different design (assuming that this
->> > will be a thing).
->> > for example we already have three different USB2 PHY drivers
+>> > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> > ---
+>> >  Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+>> >  1 file changed, 1 insertion(+)
 >> >
->> > [...]
+>> > diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+>> > index 325c6fd3566d..3c3bc806cd23 100644
+>> > --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
+>> > +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+>> > @@ -139,6 +139,7 @@ properties:
+>> >          items:
+>> >            - enum:
+>> >                - hardkernel,odroid-n2
+>> > +          - const: amlogic,s922x
+>> >            - const: amlogic,g12b
 >>
->> i check with Neil and for new family it's better to use Amlogic instead of meson.
-> can you please share the considerations behind this decision?
-> if new drivers should use AMLOGIC_* Kconfig symbols instead of MESON_*
-> then we all should know about it
+>> nit: in previous binding docs, we were trying to keep these sorted
+>> alphabetically.  I'll reorder the new "s922x" after "g12b" when
+>> applying.
 >
->> i don't add G12 because we already know it's same sensors for SM1 SoC family [0].
-> my idea behind this was to avoid conflicts in the future
-> in case of the thermal driver we may be fine with using a generic name
-> assuming that Amlogic will not switch to a new IP block in the next
-> years
-> I'm not saying you have to change the name - I'm bringing this up so
-> you can decide for yourself based on examples from the past
->
-> here are a few examples:
-> - when Kevin upstreamed the MMC driver for GX he decided to use
-> MMC_MESON_GX for the Kconfig symbol name. it turns out that this is
-> smart because there are at least two other MMC controller IPs on the
-> 32-bit SoCs. due to him including GX in the name the drivers are easy
-> to differentiate (MMC_MESON_MX_SDIO and MMC_MESON_MX_SDHC being the
-> other ones, while the latter is not upstream yet)
-> - when Carlo upstreamed the eFuse driver he decided to use MESON_EFUSE
-> for the Kconfig symbol name. I found out much later that the 32-bit
-> SoCs use a different IP (or at least direct register access instead of
-> going through Secure Monitor). the driver for the 32-bit SoCs now uses
-> MESON_MX_EFUSE. if you don't know which driver applies where then it's
-> easy to mix up MESON_EFUSE and MESON_MX_EFUSE
-> - when Jerome upstreamed the ALSA driver for AXG (which is also used
-> on G12A and G12B) he decided to use the SND_MESON_AXG_* prefix for the
-> Kconfig symbol names. in my opinion this was a good choice because GXM
-> and everything earlier (including the 32-bit SoCs) use a different
-> audio IP block. we won't have a Kconfig symbol name clash when a
-> driver for the "older" SoCs is upstreamed
-> - (there are more examples, Meson8b USB PHY driver, Meson8b DWMAC
-> glue, ... - just like there's many examples where the IP block is
-> mostly compatible with older generations: SAR ADC, RNG, SPI, ...)
+> No, this is not documentation ordering. It's the order compatible
+> strings must be in.
 
-While these are all good examples, you can see it can go both ways, so
-there's really no way know up front what is the "right" way.  We only
-know after the fact.  Unfortunately, we simply have no visibility into
-future chips and where IP blocks may be shared or not (there are other
-examples where vendors add a new version of an IP *and* keep the old
-version. ;)
-
-Even having worked inside a (different) SoC vendor and having some
-knowledge about what IPs are shared, it's difficult to get this right.
-
-> I'm not sure what driver naming rules other mainline SoC teams use
-> to me it seems that the rule for Allwinner driver names is to use the
-> "code-name of the first SoC the IP block appeared in"
-
-That's a good rule of thumb (and one we generally follow) but I don't
-feel it's important enough to enforce strictly either.
+Ah, thanks for clarifying,
 
 Kevin
 
