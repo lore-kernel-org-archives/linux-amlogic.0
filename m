@@ -2,89 +2,88 @@ Return-Path: <SRS0=t7Bi=WE=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0C43BC433FF
-	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Aug 2019 08:55:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DCA6EC0650F
+	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Aug 2019 08:55:50 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D03B72173E
-	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Aug 2019 08:55:16 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id AE6FE2173E
+	for <linux-amlogic@archiver.kernel.org>; Thu,  8 Aug 2019 08:55:50 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZljzkXU7";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="085HPgPD"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D03B72173E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="K1e/aViE";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="gkdlcrlz"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AE6FE2173E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JnjyH++OUBpL3zjgmvok/6cLz0ie0zRyjX/U41usz1c=; b=ZljzkXU7sOKWDG
-	7p7ms7z74qPRKCUY5xiP8yseeEOAgzXqwZdFR2smQilcZz6m8BDq+gRMtUEF47HgTs58Jd8Eee1va
-	X6w+Ggx7sZT3rA5rDG73csRy9jJrsO0brOrRIlsCSwiqqut4o2iVodpdj/8ke1xAwHzj6is/T32Pw
-	AI+yRNAQiDiDg6U9jA6LIE9Bss7gOAINe3E2tx/vORrmVv4Sgpq3oMnfmkqpROEcKKEoujQTi9/pB
-	KM6KQCwryeiNmMDCx8p5IatAmBhHUWwRll+AIQy2L2uR/w8Y5xI25mdoFYQFpzsLCAoS+b8p/oOsD
-	Pwm/oze8f81qoORb6ezw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=3Y0FNhw/td55XtMTi78HcE+/O8nQdPFXNUeaSdEbibE=; b=K1e/aViE5wWQr1
+	WT145e5BUVze355/enPRDMRpRsobVy/EFN5Eg+EgdWofBy4OQZt9p/HNqhjhthXnVfXty5kFGajOT
+	tjLR2k6dNFU7JthK2Kv3dJkVbc8+UvRPX5kEXQ70zfcctGm7TCh8HcDTY/onhxf+1L6BWgMRpvKWW
+	LjcXhYQBB5soioetoe49ezbdrbz6GfCwhQuFbak2iD+tDiK6L9Xs7v7PTwipX1NDtumBw6+Y+ACGE
+	U0xNsQQfY4zS8XRhCYrYeFoQoXXvZrAUklDQ9x260FJWPkWtIEfMkUbNiaEMJlyQXeSWUPshG+O+t
+	pPHLNOydEuHSirgMSeWw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hveCW-0004bx-2O; Thu, 08 Aug 2019 08:55:12 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1hveD3-00058f-V4; Thu, 08 Aug 2019 08:55:46 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hve9G-0000eI-Jq
- for linux-amlogic@lists.infradead.org; Thu, 08 Aug 2019 08:51:58 +0000
-Received: by mail-wm1-x344.google.com with SMTP id p74so1556558wme.4
- for <linux-amlogic@lists.infradead.org>; Thu, 08 Aug 2019 01:51:50 -0700 (PDT)
+ id 1hveCk-0004qS-7Q
+ for linux-amlogic@lists.infradead.org; Thu, 08 Aug 2019 08:55:27 +0000
+Received: by mail-wr1-x444.google.com with SMTP id p13so19497811wru.10
+ for <linux-amlogic@lists.infradead.org>; Thu, 08 Aug 2019 01:55:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=x4bXtEWTaRCFx8YfX85ELnedQT6Jwcsnd8GE4lw4kXo=;
- b=085HPgPDQ0N5PTt53cQWFodc9dxIUFjGs+st4Q2qtb+nGm/5Af05U4Yx9B9cewCCud
- JKPEk0gvFur0u7DpSraYsjcBaq3SbePLfLgomfjRuLEm0pias7afDstgDZGmcCaMljEP
- yGhtdOBwlRAS6ll8OWzoWqBT1gq9DPC2f2uwtfzpJKehETZqBbtQwKdt2r8Rp8R3keCy
- Am4fvyistL5qnOv8I6NlrMUq8i67kX74Dn2PhxXrmsEvDjO8i9IA9yI804ojl77jrkMp
- QxZMQGJfcK0WMQYoZ3OgS1k45KWtMiFbnkWdJINPnhkSqFpw4nUTZNpUD6hluhZUEMCg
- uLqQ==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=U7mRPaAFiVltDPu4JSR3Yp6zM4Cf+22qPlOKI/zfYrU=;
+ b=gkdlcrlz3L1NcoJFdDDV7X9nMVELcEblkgxcYsF7dUHOi/CeiGmlqx+C+uEn5bFvrr
+ iwaBW4qCWbND0XKzks4YF81jkntz3/zVTohZhnNkR4jB/rEdApnvA52KVGCuRp3fR9cf
+ L+dZcCwOl7xRI8fbor/W9sQCmMbxqnILRlFifyvyeALYukSSWw/we+sx/gCo+qJIyd68
+ 7IbOKuPNaENrBcYBsvlmBoBMpedoKtj1Y7bQoNcH3f8Pq+sPxe+gsiaVR8+Cks7WPwc6
+ b+p/9pcNvEqy95KahteRW7wyIEdDQZhlMC6RGIAClUAa88O28ygd+HCZJ3drLaBwXnfc
+ l62Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=x4bXtEWTaRCFx8YfX85ELnedQT6Jwcsnd8GE4lw4kXo=;
- b=cm7BOgSAIJ3vA0PLp3Jr8hwEmqd6kZWZpmX7V7+x/ST0MiEPo+AHZ45YmNhkYZwjH+
- 6a6cjNGqibhanWglzMbyNjREScUnOhsplEtc1/Z+Td4shIFnUzpBrrVB3xmRZd/brb9p
- +6dx3lWVArF4/MosPIe6aNZUsbSP5vqNq3KgIT3aatOUuMU8soXaa5X9Wb2SfmmDGiT5
- ODLqZvEhVevKpepzH/lSShTKl9vXt39iIWT/CetrQWbY9zd/LFbOuGS23joHujYW1Euw
- R+kezXYT7+SpmtUoTecYp+HYGJoqET7PR4AQnI0LFLJLq4CkXRkKfJPECXcJUyl80zDn
- 4oRA==
-X-Gm-Message-State: APjAAAXLHfVcZFD5sFd4V9NXVBxO1VQJnZNF2Xy44yEQp14u2NerP4L+
- jX7hxAZ3sWyre1ri6UhkDAk+0g==
-X-Google-Smtp-Source: APXvYqzAOom3OF14Yxh8TWXbG4DY8j5GejfsQ9NTKdZAyaXdE18kUaBOcC7YBG8YJKoUPv99y3WXfQ==
-X-Received: by 2002:a1c:7e85:: with SMTP id z127mr3125738wmc.95.1565254308991; 
- Thu, 08 Aug 2019 01:51:48 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=U7mRPaAFiVltDPu4JSR3Yp6zM4Cf+22qPlOKI/zfYrU=;
+ b=D2+tLdywoyX+nJuZPkcIqRjnhx7pmPYMSQS9KltRtxoEAw4ZZNO4Ms6RIKYw3LDzFq
+ 3Cti6hlSTvCgEtw6Oz+oUrexcRMJZwl9w+yBB3lB79qvgcSmdI3A6u4ObgzkGz3iiZsx
+ J1Sl8hVrrBZMtrMXiNM16KsY3j4XphjotvR0iNquHpdkn47+Cp+ZcUGV3uBqFc0PM9EU
+ NdaeVy87KuF4PLWuMv+mUWyGXPhm9HfpcQQmIvwZ1xmjgrMsLjhyT4dls8Cohr4S0KlL
+ pbyYeRLCwi/DyRWEmm0omEktzeT2DasXmQHFtFLygDKWSy2zUAhBPK1zeTCB23JS4QOa
+ mLaw==
+X-Gm-Message-State: APjAAAUE1RqoSVfqcT/ofwyuoLWr5DxU0cvEg5GKrj259V1c7baKEilj
+ 8KzlVpWk+Oj2bLns+TaT4f69xg==
+X-Google-Smtp-Source: APXvYqzd7NmT/FM1gVCi923HMojL2+NSOYVprF5ZiqEcVi0GIfQIkAt5xkVVtJuUqtq+PdXpXwjLhw==
+X-Received: by 2002:adf:8bd1:: with SMTP id w17mr16642922wra.50.1565254524653; 
+ Thu, 08 Aug 2019 01:55:24 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id i66sm3360031wmi.11.2019.08.08.01.51.48
+ by smtp.gmail.com with ESMTPSA id i66sm3380649wmi.11.2019.08.08.01.55.23
  (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Thu, 08 Aug 2019 01:51:48 -0700 (PDT)
+ Thu, 08 Aug 2019 01:55:23 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: robh+dt@kernel.org
-Subject: [PATCH 9/9] dt-bindings: watchdog: meson-gxbb-wdt: convert to yaml
-Date: Thu,  8 Aug 2019 10:51:39 +0200
-Message-Id: <20190808085139.21438-10-narmstrong@baylibre.com>
+Subject: [PATCH v3 0/3] drm/meson: convert bindings to YAML schemas
+Date: Thu,  8 Aug 2019 10:55:19 +0200
+Message-Id: <20190808085522.21950-1-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190808085139.21438-1-narmstrong@baylibre.com>
-References: <20190808085139.21438-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190808_015150_967709_EBC1A96B 
-X-CRM114-Status: GOOD (  11.85  )
+X-CRM114-CacheID: sfid-20190808_015526_323466_3E3EFB4A 
+X-CRM114-Status: UNSURE (   6.90  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,93 +95,45 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
- Guenter Roeck <linux@roeck-us.net>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Now that we have the DT validation in place, let's convert the device tree
-bindings for the Amlogic GXBB Watchdog timer over to a YAML schemas.
+This patchset converts the existing text bindings to YAML schemas.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- .../watchdog/amlogic,meson-gxbb-wdt.yaml      | 37 +++++++++++++++++++
- .../bindings/watchdog/meson-gxbb-wdt.txt      | 16 --------
- 2 files changed, 37 insertions(+), 16 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
- delete mode 100644 Documentation/devicetree/bindings/watchdog/meson-gxbb-wdt.txt
+Those bindings have a lot of texts, thus is interesting to convert.
 
-diff --git a/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml b/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
-new file mode 100644
-index 000000000000..d7352f709b37
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
-@@ -0,0 +1,37 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2019 BayLibre, SAS
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/watchdog/amlogic,meson-gxbb-wdt.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Meson GXBB SoCs Watchdog timer
-+
-+maintainers:
-+  - Neil Armstrong <narmstrong@baylibre.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - amlogic,meson-gxbb-wdt
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+    description:
-+      A phandle to the clock of this PHY
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+
-+examples:
-+  - |
-+    watchdog@98d0 {
-+          compatible = "amlogic,meson-gxbb-wdt";
-+          reg = <0x98d0 0x10>;
-+          clocks = <&xtal>;
-+    };
-diff --git a/Documentation/devicetree/bindings/watchdog/meson-gxbb-wdt.txt b/Documentation/devicetree/bindings/watchdog/meson-gxbb-wdt.txt
-deleted file mode 100644
-index c7fe36fa739c..000000000000
---- a/Documentation/devicetree/bindings/watchdog/meson-gxbb-wdt.txt
-+++ /dev/null
-@@ -1,16 +0,0 @@
--Meson GXBB SoCs Watchdog timer
--
--Required properties:
--
--- compatible : should be "amlogic,meson-gxbb-wdt"
--- reg : Specifies base physical address and size of the registers.
--- clocks : Should be a phandle to the Watchdog clock source, for GXBB the xtal
--	   is the default clock source.
--
--Example:
--
--wdt: watchdog@98d0 {
--	compatible = "amlogic,meson-gxbb-wdt";
--	reg = <0 0x98d0 0x0 0x10>;
--	clocks = <&xtal>;
--};
+All have been tested using :
+$ make ARCH=arm64 dtbs_check
+
+Issues with the amlogic arm64 DTs has already been identified thanks
+to the validation scripts. The DT fixes will be pushed once these yaml
+bindings are acked.
+
+Changes since v2:
+- Added review tag on amlogic,meson-dw-hdmi.yaml
+- Removed power-domains type from amlogic,meson-vpu.yaml
+
+Neil Armstrong (3):
+  dt-bindings: display: amlogic,meson-dw-hdmi: convert to yaml
+  dt-bindings: display: amlogic,meson-vpu: convert to yaml
+  MAINTAINERS: Update with Amlogic DRM bindings converted as YAML
+
+ .../display/amlogic,meson-dw-hdmi.txt         | 119 --------------
+ .../display/amlogic,meson-dw-hdmi.yaml        | 150 ++++++++++++++++++
+ .../bindings/display/amlogic,meson-vpu.txt    | 121 --------------
+ .../bindings/display/amlogic,meson-vpu.yaml   | 137 ++++++++++++++++
+ MAINTAINERS                                   |   4 +-
+ 5 files changed, 289 insertions(+), 242 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
+ create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
+ create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
+
 -- 
 2.22.0
 
