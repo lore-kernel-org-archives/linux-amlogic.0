@@ -1,87 +1,85 @@
-Return-Path: <SRS0=P2sN=WG=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=WLY2=WH=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 98293C433FF
-	for <linux-amlogic@archiver.kernel.org>; Sat, 10 Aug 2019 00:12:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 13214C433FF
+	for <linux-amlogic@archiver.kernel.org>; Sun, 11 Aug 2019 15:44:18 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 69EEB20C01
-	for <linux-amlogic@archiver.kernel.org>; Sat, 10 Aug 2019 00:12:01 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DA6B82085B
+	for <linux-amlogic@archiver.kernel.org>; Sun, 11 Aug 2019 15:44:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ndTyJFF/";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="KECCdmkn"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 69EEB20C01
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gT2Gj9yx";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="o+O/hv48"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DA6B82085B
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TlfOLAcXd1yng2WA1z3hC2xFkVepzf4iRk59V5zu5t0=; b=ndTyJFF/e0G7Qp
-	A7X36+cCf43/cU9iNh7Y6rc1dx3Auq0jhX9kbAOs1i+AR6FkzlXdsz6X/6q60pfYaMy2UP+v8h5NW
-	7w0lBa8zc9ZgxMvN4q+Iox7T5o+eK1V/ZUe2FAMCRMVmPE+Lh0KeuN05YSzDhRy8zL9r0m/UZ0sWx
-	Gay5t+ZrXd+U0HicFnnX9a1DCdiXib+q0+db7A0NaK6MyEoRJC4ZYUKqR0gBUfJdqTERjhxJmbCqb
-	hvY+Vq+gwf1k5cnbO4JauZPvwigNO1bqBAIG8sfJgi//xOGt2nI1jKWdmVnjZz5e7XQ3+0DTB5R/l
-	3cipL/1YMmvpT7IqZByg==;
+	List-Owner; bh=4HfqozEp30wbNkiDArEuSPdwTLrObw8XdKZCCw83BnU=; b=gT2Gj9yxY9XRwU
+	wNUd/SEAo3oKffjL4EW22aJ4/X/vEnroHzeoqD8/ug1/Tn+XMGQjr2Vzv+gmdCymTSbYsgChfjtu/
+	t6L0JTdi95yEJ2bpIuW+LlarVQkut2/J3FFZyKz8T0Bh1G3iZIOaWC3gVSuEiq03X3YvDuvgdog72
+	PRGEljOXS+q8BpLMAzuHdRXC2DueFTHnUzDgzGhuANXzOOoTl6w7bo4gae7jKqUN/0P2hHOiV007P
+	HG9kZLeBoCnTB5t/+PSr3uI8qGxztHscu+TiDxr0HULuLVpIz7gICt3n0ew5oD1nN7/z9MlG9AIXX
+	kVTUgfBRxNd0hzSuwG2g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hwEzA-0007qo-N9; Sat, 10 Aug 2019 00:11:52 +0000
-Received: from mail-pf1-x441.google.com ([2607:f8b0:4864:20::441])
+	id 1hwq0r-0005v6-5F; Sun, 11 Aug 2019 15:44:05 +0000
+Received: from mail-ot1-x341.google.com ([2607:f8b0:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hwEyz-0007jO-8i
- for linux-amlogic@lists.infradead.org; Sat, 10 Aug 2019 00:11:43 +0000
-Received: by mail-pf1-x441.google.com with SMTP id p184so46861670pfp.7
- for <linux-amlogic@lists.infradead.org>; Fri, 09 Aug 2019 17:11:40 -0700 (PDT)
+ id 1hwq0n-0005uP-Sb; Sun, 11 Aug 2019 15:44:03 +0000
+Received: by mail-ot1-x341.google.com with SMTP id b7so100311480otl.11;
+ Sun, 11 Aug 2019 08:44:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=EuQ/R3CppOBh2T1D6FSE6/gAUMLd+emlPXZ8P0KlK4E=;
- b=KECCdmknzaH0Ve1akzRhLGqPfYzLSqiQZzqIGqUTh+SAcO6Q19ScBeUTVGmT9Kn2fi
- wuc/H+9Zvt1RiYlS2YMjELwda9ElQG3tetwgpwSLKyc3GMze7p3oJ/iAFf+mlr04fS3p
- 4SoG8g9Vg49LMc+XN9CN2yjxwMYkHbcBup94eMKinNVLCmVJIOstAPR1bTlg+BvjkpIY
- cd36ZXrgFEWiqQp6BRzMLy0rpNVl0ji479pxHPF2OWsm4aIthkJshQrCEUBBzGGR6KqN
- xCB5+OxoXjeEhzq/eUA6LgN2F98/tP71hoMrI7Rz306vlRZd504t0Hj1N10xjJOIG5GQ
- EZNQ==
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=RgzDUY8iEdtjWOC/UcjlQu0YWYk/dEALxCJaSLPEEOM=;
+ b=o+O/hv48sg3cHwHlW8B8v0viNUMFEX8D2CGWAPNzX9pjzuu/6K7dFO7SSRtt2y1bhV
+ 7jKQAk4MWx9nG/yoH+SE4caHw/uu9/DzLJy6fjcx0ZiKYbC7E8bWqkIeJPYHSsW5MvOK
+ H298XXnhhFWqJ7Ywh1i6i7IaPm9io3SWKnbkSZUCJJiqcjHs9Iwn9wDdqsSnnR5u18Us
+ yPwcZGmvwNxzPEDgvOKruL+EDjUeODouMUmA1RobQOVJwCfPqIvEr75T3kD7DKSAth42
+ 15cgsvRSL3VL1Y4NJI/ChaSumrxgEUXqmeRtgj1yrY4E4Ogo3XWGopCuM3sC623wBrEx
+ xGjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=EuQ/R3CppOBh2T1D6FSE6/gAUMLd+emlPXZ8P0KlK4E=;
- b=qwEzVyC8j1iZHPZ4mk+X9g8f5dwYjZPUqXb/qJ2tq1K6HlYU4mFWS6S/eX3fyQsJkk
- miXE8My91HUw/Dk5WUMSF5N2McH0RaX64aSQPSKENx6qw0hKtTGBGX7U0Gdxci25kAL0
- twtQVCvEnoOnRGCeDD+IiVThY6RH2G8Tk2aJru0Vyhr8X3G78Q37FJhmNtZ5RVcwQb/o
- D1uMRuxRZ80cHRb/w1Vdt8oX8DOYrhyDExtKkhaXfEZGDCyimwe2E/U1etg+tPZXuGrN
- 1vSrg8JIsp0UGA0uSdz0riWBvsGj5sh/Fk3/aybarK0PWRYW2/SpiYWYZTLj1hSXXHgA
- FpBw==
-X-Gm-Message-State: APjAAAU9tHg8Z7ppPzqtzpf1dagxSZYKF+Mg5g5vXoCTpCVOmUB2/y26
- ZmTn7Uq0qSP2bWeQNCZxLXH+EA==
-X-Google-Smtp-Source: APXvYqwfo3bJUKvTH7g4ZfJhFp6Q9sQXhh6NsNs21MEaB/aVJYLW2l4lX40Zlrs3JJt56T2EbsbNBA==
-X-Received: by 2002:a62:82c1:: with SMTP id w184mr24770723pfd.8.1565395899475; 
- Fri, 09 Aug 2019 17:11:39 -0700 (PDT)
-Received: from localhost ([2601:602:9200:a1a5:b873:707a:e893:cdb3])
- by smtp.gmail.com with ESMTPSA id k14sm25201452pgb.78.2019.08.09.17.11.38
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Fri, 09 Aug 2019 17:11:38 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Guillaume La Roque <glaroque@baylibre.com>, daniel.lezcano@linaro.org
-Subject: Re: [PATCH v3 0/6] Add support of New Amlogic temperature sensor for
- G12 SoCs
-In-Reply-To: <20190806130506.8753-1-glaroque@baylibre.com>
-References: <20190806130506.8753-1-glaroque@baylibre.com>
-Date: Fri, 09 Aug 2019 17:11:37 -0700
-Message-ID: <7hd0hd3mme.fsf@baylibre.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=RgzDUY8iEdtjWOC/UcjlQu0YWYk/dEALxCJaSLPEEOM=;
+ b=gI+zLTonz3IC1puQAQktPqonH57+82N2aB0fTSPGjzyUpC1cpZlqmZqXP4hrZe3hYb
+ PI2lp8FTPGc0jLPdKf811RuQB2yATxB8jZlSMTMDns5EQxfDRqAC2xAv9X8ypwlDu3h9
+ 8i5Lg2nBRaIzyLzSbwp+Oek7GUSH7fXh0k5B9MuRbtrmK9v8XMeK7npINKF5McqcDFW3
+ GbfJXRU0lHBf7WiMPPLBgOzwNzgytpxHwoi8tj4ya61Sy2OcUnViwkLKEtfCNn6ceagM
+ gAJe0gOnSueFffFOj16xh6/rmrhwHSL/h3U7utPdmY50U4Fr8o1463J2QFAaMQ0IJ3Js
+ 7uXw==
+X-Gm-Message-State: APjAAAVw0fe6i+Srx0aShk2SocaIY7Z+LY6ZQPKneP53n0fQ2wbQeNVa
+ plCV61V0bhuyYkjWQi3XNXc7bk0LNiqzeEQY9Ek=
+X-Google-Smtp-Source: APXvYqxWNrdwhdZjUN0E+QG+e/rP9vdmU9vDHg66HyoGvwKrC0kqPidAohwxJoPiEC9Es5jTZv3FayaUbUh8NtS3QYo=
+X-Received: by 2002:a05:6830:1e5a:: with SMTP id
+ e26mr11850575otj.96.1565538240642; 
+ Sun, 11 Aug 2019 08:44:00 -0700 (PDT)
 MIME-Version: 1.0
+References: <20190806130506.8753-1-glaroque@baylibre.com>
+ <20190806130506.8753-3-glaroque@baylibre.com>
+In-Reply-To: <20190806130506.8753-3-glaroque@baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sun, 11 Aug 2019 17:43:49 +0200
+Message-ID: <CAFBinCAMjtWTAvVEhMxDx1NPvCp9dU8HewxBxxp1TAtr3ZbKtw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/6] thermal: amlogic: Add thermal driver to support
+ G12 SoCs
+To: Guillaume La Roque <glaroque@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190809_171141_449983_A4355511 
-X-CRM114-Status: GOOD (  13.44  )
+X-CRM114-CacheID: sfid-20190811_084401_951618_C2DB9394 
+X-CRM114-Status: GOOD (  10.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,59 +91,62 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-pm@vger.kernel.org
+Cc: devicetree@vger.kernel.org, linux-pm@vger.kernel.org, khilman@baylibre.com,
+ daniel.lezcano@linaro.org, linux-kernel@vger.kernel.org,
+ Neil Armstrong <narmstrong@baylibre.com>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Guillaume La Roque <glaroque@baylibre.com> writes:
+Hi Guillaume,
 
-> This patchs series add support of New Amlogic temperature sensor and minimal
-> thermal zone for SEI510 and ODROID-N2 boards.
->
-> First implementation was doing on IIO[1] but after comments i move on thermal framework.
-> Formulas and calibration values come from amlogic.
->
-> Changes since v2:
->   - fix yaml documention 
->   - remove unneeded status variable for temperature-sensor node
->   - rework driver after Martin review
->   - add some information in commit message
->
-> Changes since v1:
->   - fix enum vs const in documentation
->   - fix error with thermal-sensor-cells value set to 1 instead of 0
->   - add some dependencies needed to add cooling-maps
->
-> Dependencies :
-> - patch 3,4 & 5: depends on Neil's patch and series :
->               - missing dwc2 phy-names[2]
->               - patchsets to add DVFS on G12a[3] which have deps on [4] and [5]
->
-> [1] https://lore.kernel.org/linux-amlogic/20190604144714.2009-1-glaroque@baylibre.com/
-> [2] https://lore.kernel.org/linux-amlogic/20190625123647.26117-1-narmstrong@baylibre.com/
-> [3] https://lore.kernel.org/linux-amlogic/20190729132622.7566-1-narmstrong@baylibre.com/
-> [4] https://lore.kernel.org/linux-amlogic/20190731084019.8451-5-narmstrong@baylibre.com/
-> [5] https://lore.kernel.org/linux-amlogic/20190729132622.7566-3-narmstrong@baylibre.com/
+[...]
+> +struct amlogic_thermal {
+> +       struct platform_device *pdev;
+> +       const struct amlogic_thermal_data *data;
+> +       struct regmap *regmap;
+> +       struct regmap *sec_ao_map;
+> +       struct clk *clk;
+> +       struct thermal_zone_device *tzd;
+> +       u32 trim_info;
+> +       void __iomem *base;
+nit-pick: this is only used in _probe() so you could make it a local
+variable there
 
-Thank you for the detailed list of dependencies!  Much appreciated.
+[...]
+> +static const struct of_device_id of_amlogic_thermal_match[] = {
+> +       {
+> +               .compatible = "amlogic,g12-ddr-thermal",
+> +               .data = &amlogic_thermal_g12_ddr_param,
+> +       },
+> +       {
+> +               .compatible = "amlogic,g12-cpu-thermal",
+> +               .data = &amlogic_thermal_g12_cpu_param,
+> +       },
+I assume you are using "g12" to indicate that it's valid for both,
+G12A and G12B?
+meson-g12-common.dtsi currently does not use any other "amlogic,g12-*"
+compatible string (there are some meson-axg-*, meson-gx-* and
+meson-g12a-* ones, but no g12-*)
+I would like to hear Kevin's and Neil's opinion on this one whether we
+should introduce that "amlogic,g12-*" prefix or stick to
+"amlogic,g12a-*"
 
-With all the deps, I tested this on sei510 and odroid-n2, and basic
-functionality seems to work.
+[...]
+> +       ret = amlogic_thermal_enable(pdata);
+> +       if (ret)
+> +               clk_disable_unprepare(pdata->clk);
+amlogic_thermal_enable only returns an error-code if clk_prepare_enable() fails
+in that case the clock is neither prepared nor enabled so we must not
+call clk_disable_unprepare
 
-As discussed off-list: it would be nice to have an example of how
-cpufreq could be used as a cooling device for hot temperatures.  The
-vendor kernel has some trip points that could be included as examples,
-or even included as extra patches.
-
-Also the driver patch is missing the two main thermal maintainers, so
-please resend at least the driver and bindings including them.
+apart from that it looks good to me (as someone who doesn't know the
+thermal framework)
 
 
-Kevin
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
