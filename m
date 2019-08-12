@@ -2,89 +2,92 @@ Return-Path: <SRS0=Dn2N=WI=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 46F78C433FF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Aug 2019 12:07:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 08C5CC32750
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Aug 2019 12:07:45 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1ABD0214C6
+	by mail.kernel.org (Postfix) with ESMTPS id D182E208C2
 	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Aug 2019 12:07:44 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="JJ6swWP4";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ZSHKMJha"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1ABD0214C6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Xd2O1eNe";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="DvTuwoTR"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D182E208C2
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=5iP7/0EcvOXKJmCpUp8unZziKKyvLjRKLBJ5666SVeI=; b=JJ6swWP4+zUMt0
-	OIuF1z9Bw+NRSZHoiaG+tNDvBbkSUU1t8vavLgEgxN2TTdks4yUnSP88wA1mPCS4myW79Fhd8yiBQ
-	my67jQNVMeMo16Eran6+VK7Esb9Stf6l2FWLkJvdV6QLkKcq7ha5pj/em5sY6XGbcErTAQJ7wsA5/
-	pdDsQPfkAY8M4DkoihQ10Vhfrw2HLbYCrT7+1jQS9WqFv6MQ1bh2kwcMOoZQgQEE8hEbhF8WRXILU
-	bwna9121KiEejFdV5RgAKEqAvQrofNC0hV5va3kwWVPv8XQEM0MWC2p/adm3eeupw6WAyQralHiVe
-	F+Sotew4NWog/Zm10yxg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=SLQeUN6utWD7wAJJq80ifVPx9iGMv8lNAF3rtMdR7ck=; b=Xd2O1eNeX5OKMG
+	TbjYSmaFcO6v2xvdRzJ4ig70px5nPVQz/l7kVNQjx1mG/gx5osiFYyy45PEirkx8yjyfr5Z/V1Fue
+	u4vb4y5mxd5dF5hvDIL3RHvFrMUNcplFHpW5Ugo+MwR/lW8xkJgQkk+Q5SW+YMZ/WY4uvZ2xKhDdZ
+	qr2FwWMVoNq+e8qQqtSK9EJAZlk8CDD8l/0YT2UZ50kX7rpCOLzgVi0/ntGz9eUFXhQxW82v3HtMJ
+	uJ+7T/XD9vHZb0mmnXhlJBrxRSaelWc46juWcIp2r34uYV4VasuVHYDeTZEScOPk0UPrOd26skwvO
+	B1cMXwKmAadEOd2mG0VA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hx96t-0006be-77; Mon, 12 Aug 2019 12:07:35 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1hx96y-0006gm-P3; Mon, 12 Aug 2019 12:07:40 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hx96p-0006aP-RW
- for linux-amlogic@lists.infradead.org; Mon, 12 Aug 2019 12:07:34 +0000
-Received: by mail-wr1-x443.google.com with SMTP id n9so104454152wru.0
- for <linux-amlogic@lists.infradead.org>; Mon, 12 Aug 2019 05:07:31 -0700 (PDT)
+ id 1hx96r-0006b8-Tb
+ for linux-amlogic@lists.infradead.org; Mon, 12 Aug 2019 12:07:35 +0000
+Received: by mail-wr1-x442.google.com with SMTP id r3so10601831wrt.3
+ for <linux-amlogic@lists.infradead.org>; Mon, 12 Aug 2019 05:07:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=PMduQLcYqJa9E1xoRdmMO8whZQuhJA1DUXAc3zPrO3g=;
- b=ZSHKMJha6yfzKyUtd06NcDFZ3gN6HThtYSZHVhI1dWDon6ToPzcz/3Own8XjxQ6mgY
- cNZxnu/TVZ+61qFCnUFdEJLOgky25gQCDhsH/+hNfvo1/tuwRFVAYIZ0rlF6tlIm0KyF
- iUCMnmfJERpt/DBw38nE6bUD0UhHm32KkD+TwpX8kS784VDRNuZ4zM0XGH1+eHhHNIGF
- rfG1P9vlqoj1SknmEStYhp/BpCNJvZPevmhinSS3o/GeDoPPCkItQDqi5o7p0o/Z19H4
- V/l1fiLnkQUc1tJTXSRA6hZMqewIKizbra1XnWkTwB1TSx5TgqY0slk6QhUZjZoyT3JS
- G5FA==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=ZGlThzviYa74KjZe20Ku3Xepd8/yx78CuAyvtGlIM58=;
+ b=DvTuwoTROuHbVQDxdqWmO0f39ZU0wzX4eGo8P1Qq0wZnKZ7jRQCMZZ/Q0RrCDo8hln
+ aqatg2peAcIo1JBQXJUjXd/9raZ7v398jHI1ERa6NAPmzKVUIPIQ+98vi+EEYT0/o1pJ
+ Anjes/w6rsqescn13KeKvhzXqbUsd+b9N+rxhNa4xNWcB7tM5rvItjoAXS2BP5m4d+do
+ dXoTx1Sz7+XBQCK7TjC1nlEay/35okDkeq7KbV8j4nA9jHROcKJ+JTXqD4qqhFRCf9H1
+ cZLxSK3snuiK1FsPN9SijQgW7Ybuwe6e63LvcYiXt0gtnZEUbMV53tL5Cazvny95LWQ6
+ cqug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=PMduQLcYqJa9E1xoRdmMO8whZQuhJA1DUXAc3zPrO3g=;
- b=ZzoEkAfgvzBt1SSmegsftsbgHjf1TByxUeY8+YkL/PD10vSL+/65ZXnOiwpstAyU3B
- 0OoZlfZxYpevOvX9sLCJgwlHMa3qmh1EegK1shgHC/SBNY+ElYOIhdMQdjuU9T+Y9hZs
- X3vss6ftwbrZCGPvDeiqONlXonNklK3+z/e7KlTakZVMPhyiWmnME8Fp5rI7ByW2T5bU
- Mo8/33NEBpincDS+HVl9cJhB5FU6X6mPm9FeS5KGM72JbfBC5NfkxqPzVcMpwFgGCb7p
- ntogFGkWTRPHqE7jhV0W839xTc6MGuOkSh8RtO7Gd5hAZAWCoeTo5KrvH+BGvcJRTNfI
- JgDQ==
-X-Gm-Message-State: APjAAAVJkiqfIEGTgm+OJf2a5uYliLAThNfw5kGQSbpP9xqWwxQ31QIO
- PiJM+XNdOlmpcuId+xj81MA2mA==
-X-Google-Smtp-Source: APXvYqwBXFdcnSm3N9WSnk3H4/5r6eeqaMC73NAcum/+jEQe399Q3DLr4ex5iwjbxozzlPA6mgZt0w==
-X-Received: by 2002:adf:e887:: with SMTP id d7mr24777870wrm.282.1565611649905; 
- Mon, 12 Aug 2019 05:07:29 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=ZGlThzviYa74KjZe20Ku3Xepd8/yx78CuAyvtGlIM58=;
+ b=tBypeFcZEik0CoKb72LKRXlY+3iyGHCaywSMm0603pZ5RKCybsCBKlNqEx2OPpPGHN
+ G/7tTSKkDjRR0sQM0PpcO0ieoVd1W8v4copuFWMe1OO3JXJVNSkkUwETxCTLqW6mmYRs
+ 6JA3aFL3YU0MK8JQsxafPsUDh2v9MWPZUZ1dXn0YEfERRT1jaibPR1CCD6q932rAC8R/
+ 70NZRHAOIEK/IIGrgTMQUYQ1qA1jgHoETVXwHE8oYgHp1uvNnlVWwWMNUbmElIOkb4AU
+ SNtbbk6kvW4D94LBf74A43EgP8VtUuanTtBOzhJJHjjp24GamFiGF14/tJOuPYdHI2vz
+ cf9Q==
+X-Gm-Message-State: APjAAAVmM9Q950i8uvpSgxiuiXdCWmTiMsvOs9n0OWUwCBOTW8NEshMh
+ p2OCqNIP25UPv8jtOOlxEOKncA==
+X-Google-Smtp-Source: APXvYqwyPz46p57eTysQVwY46wCsT+0OYu9uGaKrclq3p6YfT4lDPfbi5P4UsmaTt2jiysECa6xwjA==
+X-Received: by 2002:adf:ec4f:: with SMTP id w15mr38067769wrn.311.1565611652662; 
+ Mon, 12 Aug 2019 05:07:32 -0700 (PDT)
 Received: from starbuck.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id j9sm1883415wrx.66.2019.08.12.05.07.28
+ by smtp.googlemail.com with ESMTPSA id j9sm1883415wrx.66.2019.08.12.05.07.31
  (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Mon, 12 Aug 2019 05:07:29 -0700 (PDT)
+ Mon, 12 Aug 2019 05:07:32 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Andrzej Hajda <a.hajda@samsung.com>,
  Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH v2 0/8] drm/bridge: dw-hdmi: improve i2s support
-Date: Mon, 12 Aug 2019 14:07:18 +0200
-Message-Id: <20190812120726.1528-1-jbrunet@baylibre.com>
+Subject: [PATCH v2 3/8] drm/bridge: dw-hdmi: set channel count in the
+ infoframes
+Date: Mon, 12 Aug 2019 14:07:21 +0200
+Message-Id: <20190812120726.1528-4-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20190812120726.1528-1-jbrunet@baylibre.com>
+References: <20190812120726.1528-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190812_050731_961110_1FFE105E 
-X-CRM114-Status: UNSURE (   8.81  )
+X-CRM114-CacheID: sfid-20190812_050733_949194_132185A2 
+X-CRM114-Status: UNSURE (   7.39  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -105,47 +108,29 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The purpose of this patchset is to improve the support of the i2s
-interface of the synopsys hdmi controller.
+Set the number of channel in the infoframes
 
-Once applied, the interface should support all the usual i2s bus formats,
-8 channels playback and properly setup the channel number and allocation
-in the infoframes.
+Reviewed-by: Jonas Karlman <jonas@kwiboo.se>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Also, the dw-hdmi i2s interface will now provide the eld to the generic
-hdmi-codec so it can expose the related controls to user space.
-
-This work was inspired by Jonas Karlman's work, available here [0].
-
-This was tested the Amlogic meson-g12a-sei510 platform.
-For this specific platform, which uses codec2codec links, there is a
-runtime dependency for patch 8 on this ASoC series [1].
-
-Changes since v1 [2]:
- * Fix copy size in .get_eld()
-
-[0]: https://github.com/Kwiboo/linux-rockchip/commits/rockchip-5.2-for-libreelec-v5.2.3
-[1]: https://lkml.kernel.org/r/20190725165949.29699-1-jbrunet@baylibre.com
-[2]: https://lkml.kernel.org/r/20190805134102.24173-1-jbrunet@baylibre.com
-
-Jerome Brunet (8):
-  drm/bridge: dw-hdmi-i2s: support more i2s format
-  drm/bridge: dw-hdmi: move audio channel setup out of ahb
-  drm/bridge: dw-hdmi: set channel count in the infoframes
-  drm/bridge: dw-hdmi-i2s: enable lpcm multi channels
-  drm/bridge: dw-hdmi-i2s: set the channel allocation
-  drm/bridge: dw-hdmi-i2s: reset audio fifo before applying new params
-  drm/bridge: dw-hdmi-i2s: enable only the required i2s lanes
-  drm/bridge: dw-hdmi-i2s: add .get_eld support
-
- .../drm/bridge/synopsys/dw-hdmi-ahb-audio.c   | 20 ++-----
- .../gpu/drm/bridge/synopsys/dw-hdmi-audio.h   |  1 +
- .../drm/bridge/synopsys/dw-hdmi-i2s-audio.c   | 60 +++++++++++++++++--
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c     | 37 ++++++++++++
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.h     | 13 +++-
- include/drm/bridge/dw_hdmi.h                  |  2 +
- 6 files changed, 108 insertions(+), 25 deletions(-)
-
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+index be6d6819bef4..bed4bb017afd 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+@@ -663,6 +663,10 @@ void dw_hdmi_set_channel_count(struct dw_hdmi *hdmi, unsigned int cnt)
+ 	hdmi_modb(hdmi, layout, HDMI_FC_AUDSCONF_AUD_PACKET_LAYOUT_MASK,
+ 		  HDMI_FC_AUDSCONF);
+ 
++	/* Set the audio infoframes channel count */
++	hdmi_modb(hdmi, (cnt - 1) << HDMI_FC_AUDICONF0_CC_OFFSET,
++		  HDMI_FC_AUDICONF0_CC_MASK, HDMI_FC_AUDICONF0);
++
+ 	mutex_unlock(&hdmi->audio_mutex);
+ }
+ EXPORT_SYMBOL_GPL(dw_hdmi_set_channel_count);
 -- 
 2.21.0
 
