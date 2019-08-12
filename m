@@ -2,86 +2,62 @@ Return-Path: <SRS0=Dn2N=WI=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D7DD2C31E40
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Aug 2019 20:57:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F3BAAC31E40
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Aug 2019 21:13:48 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AA66820820
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Aug 2019 20:57:56 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C5C2F206C2
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Aug 2019 21:13:48 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mD2zfJKT";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="koihRlA8"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AA66820820
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iqXID59z"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C5C2F206C2
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=bootlin.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PqoYH8rIzK0aMRS/PZaFMgHcaTlZfXgDx9FX8lXwJBg=; b=mD2zfJKTwx+Rvx
-	xSWnq7o6CnFf9RJP4OoUfErf11dlcKQEb2ZZGuq0p4ayNX6+X1pYfrWO2zgy1BbWQT0KHeP14bQQ6
-	KU9d41jY/JweuTJy2GHZz172pw9NhEFF8QEcGLHLdd5GGsjx0NJLD0xtlu2U8OrDK/ra3TaljnKQ+
-	Rz2DzRsitSE7W4RS/c6BEzMz+VqCXV+n7rZFqYIIabQcmhyouqBgXRCJ3I/ujd0s1lnYnRMKXZMKA
-	yBfMhjopp2VDkPTxAJkUz0laL5DVvMqV7ruut4FXhlO6WulHKbBahzdcRzpeogwtYSCODI7rPcW8/
-	1SMOiBixy0KmrVMIb9pQ==;
+	List-Owner; bh=4z8BRgAPKJ/AIFxUQR+yZ0zCYZhqr5BIrZWuO9Erytw=; b=iqXID59z3mHJZo
+	HtUOBwyfiunnwL6SOFkq90Hi51G5owjnrUWEANPPVNI+17M86NagtflbxKfr1rzaZryaqQo5l5+i3
+	zWKONCrwelEBCjCtleGriZeIWN0tJWvddq2wYcCQ89H5j6mrWHwUyWrPlEfOD4KFz3irVct+66g2d
+	yBn8/iSTiQ05X2oJvnVffSGpdUPd+2hiYFDj3d4XIBguf7HsR2+g+He80/3OZC0Nxu6e7XaqQ82sh
+	lEwxgm68IIqoIv+zrWMSeDL76tLiMqA+AtXVGxIYZBdz6b0mLQf/GjUwW/17chHPtoOq8hvqetcZl
+	Jb6y8fcbEM+21deRJaBg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hxHO2-0007Cl-Lb; Mon, 12 Aug 2019 20:57:50 +0000
-Received: from mail-pg1-x544.google.com ([2607:f8b0:4864:20::544])
+	id 1hxHdP-0004bT-9y; Mon, 12 Aug 2019 21:13:43 +0000
+Received: from relay3-d.mail.gandi.net ([217.70.183.195])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hxHNz-0007C4-Cy
- for linux-amlogic@lists.infradead.org; Mon, 12 Aug 2019 20:57:48 +0000
-Received: by mail-pg1-x544.google.com with SMTP id n190so9278862pgn.0
- for <linux-amlogic@lists.infradead.org>; Mon, 12 Aug 2019 13:57:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=SP/9CzjkRvY0IAQnRlslEa5+7OIaKNdwjFiyaogAY4o=;
- b=koihRlA8DkC1jPEjiuBto/yHr73waYw8INi81cjQ8wYgQvncxRWlxOnqf3LquySrVR
- cfJm2VSGHuP2gNoWHpQyi/yr2rQLoe7A9hocNYNrDTJG70pDaV3nLUpD9wt99mW/miM4
- jIwBHs1dKOU+mVfLoaLkekb1jiGrypYtGT3buec3jV8kl8/xY5+zpSP4o25OXv0vNQsV
- DrEbo+i+OGkpzC3cssC2o1MDNX3z3h2dUCZ0OlCwSGaouGSVVumgfSQq0cFQDdTXDweu
- WnN/xwplCeQSuZ3XMqfsetYgX+QlUUwFyLqe/R0SE2ueJg4hVmjE7uBmovCYVaLtN1RW
- foug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=SP/9CzjkRvY0IAQnRlslEa5+7OIaKNdwjFiyaogAY4o=;
- b=OeyzudlLwrlglmehp4SYlWOgtMa/mPgtb+7wgEweA2Yqa5OfbvHZTfqY8n6OqEi/0u
- EHFiTS9z/mqfkKhy5tB2OeMYs7rBWe5Tg68AK84Ioi4fsXlEunzWSi+V2LW4Ncw7RJA1
- boRNn6MAhfVIuExV3zADBg4Qb/Fpazf5hMIM0bYeZlDvcg36mLMH25hph9xeC6ty7kbF
- 3vos3jENul2pOANk5cmFRznSFC0b3N10/QkwY0OqhFq3av5KkO0YDp1+eyCcfxHxtB84
- F3V2FTqyLyO556VQXQt+s3uvlgtjgQwirxSi0BCLfmMlH9eUl5moEicI6O/5EdM/zvfM
- cgBQ==
-X-Gm-Message-State: APjAAAWvQ+wrk15GXS+tSiIGmfO8j5vm38tBo91uKsIwpgRFJo9aUK85
- 83zvcRJoEwr06Q7EZw+mmxZkiQ==
-X-Google-Smtp-Source: APXvYqy5zQMAbf6dfIFvVZ18Z29/TOUHQy1GHM+YU4DdeyuN/HLmGdxiI8MOSOYzdFXUuKm9K0FFuQ==
-X-Received: by 2002:aa7:92d2:: with SMTP id k18mr37367965pfa.153.1565643466826; 
- Mon, 12 Aug 2019 13:57:46 -0700 (PDT)
-Received: from localhost ([2601:602:9200:a1a5:14bb:580e:e4d6:b3a8])
- by smtp.gmail.com with ESMTPSA id i17sm12125252pfo.28.2019.08.12.13.57.46
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 12 Aug 2019 13:57:46 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Will Deacon <will@kernel.org>, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: cpufeature: Don't treat granule sizes as strict
-In-Reply-To: <20190812150225.25386-1-will@kernel.org>
-References: <20190812150225.25386-1-will@kernel.org>
-Date: Mon, 12 Aug 2019 13:57:45 -0700
-Message-ID: <7himr214qe.fsf@baylibre.com>
+ id 1hxHdM-0004b9-J0; Mon, 12 Aug 2019 21:13:42 +0000
+X-Originating-IP: 90.65.161.137
+Received: from localhost (lfbn-1-1545-137.w90-65.abo.wanadoo.fr
+ [90.65.161.137])
+ (Authenticated sender: alexandre.belloni@bootlin.com)
+ by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 2468360004;
+ Mon, 12 Aug 2019 21:13:38 +0000 (UTC)
+Date: Mon, 12 Aug 2019 23:13:37 +0200
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Kevin Hilman <khilman@kernel.org>
+Subject: Re: [PATCH v2 2/2] rtc: Add Amlogic Virtual Wake RTC
+Message-ID: <20190812211337.GW3600@piout.net>
+References: <20190808042357.4663-1-khilman@kernel.org>
+ <20190808042357.4663-3-khilman@kernel.org>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20190808042357.4663-3-khilman@kernel.org>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190812_135747_443763_B2EA443B 
-X-CRM114-Status: GOOD (  10.48  )
+X-CRM114-CacheID: sfid-20190812_141340_775538_49171275 
+X-CRM114-Status: UNSURE (   6.92  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,46 +69,52 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>,
- Suzuki Poulose <suzuki.poulose@arm.com>, Marc Zyngier <maz@kernel.org>,
- Catalin Marinas <catalin.marinas@arm.com>, linux-amlogic@lists.infradead.org,
- Will Deacon <will@kernel.org>
+Cc: linux-rtc@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ Kevin Hilman <khilman@baylibre.com>, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Will Deacon <will@kernel.org> writes:
+On 07/08/2019 21:23:57-0700, Kevin Hilman wrote:
+> +static int meson_vrtc_probe(struct platform_device *pdev)
+> +{
+> +	struct meson_vrtc_data *vrtc;
+> +	struct resource *res;
+> +
+> +	vrtc = devm_kzalloc(&pdev->dev, sizeof(*vrtc), GFP_KERNEL);
+> +	if (!vrtc)
+> +		return -ENOMEM;
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	vrtc->io_alarm = devm_ioremap_resource(&pdev->dev, res);
 
-> If a CPU doesn't support the page size for which the kernel is
-> configured, then we will complain and refuse to bring it online. For
-> secondary CPUs (and the boot CPU on a system booting with EFI), we will
-> also print an error identifying the mismatch.
->
-> Consequently, the only time that the cpufeature code can detect a
-> granule size mismatch is for a granule other than the one that is
-> currently being used. Although we would rather such systems didn't
-> exist, we've unfortunately lost that battle and Kevin reports that
-> on his amlogic S922X (odroid-n2 board) we end up warning and taining
-> with defconfig because 16k pages are not supported by all of the CPUs.
->
-> In such a situation, we don't actually care about the feature mismatch,
-> particularly now that KVM only exposes the sanitised view of the CPU
-> registers. Treat the granule fields as non-strict and let Kevin run
-> without a tainted kernel.
->
-> Cc: Mark Rutland <mark.rutland@arm.com>
-> Cc: Marc Zyngier <maz@kernel.org>
-> Cc: Suzuki Poulose <suzuki.poulose@arm.com>
-> Cc: Catalin Marinas <catalin.marinas@arm.com>
-> Reported-by: Kevin Hilman <khilman@baylibre.com>
-> Signed-off-by: Will Deacon <will@kernel.org>
+You could use devm_platform_ioremap_resource.
 
-Tested-by: Kevin Hilman <khilman@baylibre.com>
+> +	if (IS_ERR(vrtc->io_alarm))
+> +		return PTR_ERR(vrtc->io_alarm);
+> +
+> +	device_init_wakeup(&pdev->dev, 1);
+> +
+> +	platform_set_drvdata(pdev, vrtc);
+> +
+> +	vrtc->rtc = devm_rtc_device_register(&pdev->dev, "meson-vrtc",
+> +					     &meson_vrtc_ops, THIS_MODULE);
 
-Thanks for the fix Will!
+Please use devm_rtc_allocate_device and rtc_register_device.
 
-Kevin
+> +	if (IS_ERR(vrtc->rtc))
+> +		return PTR_ERR(vrtc->rtc);
+> +
+> +	return 0;
+> +}
+> +
+
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 _______________________________________________
 linux-amlogic mailing list
