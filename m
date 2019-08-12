@@ -2,68 +2,85 @@ Return-Path: <SRS0=Dn2N=WI=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7788FC31E40
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Aug 2019 23:29:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 79347C433FF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Aug 2019 23:49:46 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4724D20665
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Aug 2019 23:29:35 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 463BC20679
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Aug 2019 23:49:46 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="aS0ixZ6l";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="0+YYfz1z"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4724D20665
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eqdFLHYW";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="JNdvWFQz"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 463BC20679
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hR7nn+l+5yUq5LJgzQtPrIK9J3B4fNxhzWGFb2Kq8vk=; b=aS0ixZ6lrYcUsT
-	izoazKmV7ezG6vz4HGXgfoyfuBNu1YG3S46FJDUzIIjL+zW9S2hN5LPppfFbS90KgrU7u0KStTbAt
-	dRFNVKcPyqq1ugmYJnbnOULCfQUcTCFGY/+RSTZ3pGlj42lnJsfLJkHpJxPNVcakUSDmLuOKAgPGD
-	3yU1QJxEViLFOMDdPoXTBbkW9p33SD6OiADTDzerdZCSUQx4UhAh22LwjKHDH6tP3YNuOJXWNIJOU
-	C/W/Yu7hZT+1DHpJvTkXMc9lLDz2dpWJdV6E8tTpKOzm3Q7FkoZMIsZdKkFywQx8H5ISEKD6ffcUt
-	tU/+O7mJ+xT/OBWXRvdg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=aFkwE24YNlsy0x9UyqVZI/9yfp8zo9ZCLo/+7b1MGD4=; b=eqdFLHYWh9b2C1
+	wNFsfSrU+xeYN+9cUjxu1arleJiOZUEKuh4H+VQK0jkrYaNmvbUYVwGDqNfmCuAu5TTENZP7NlUvG
+	f56cjJ2+9rNULydKGt+UYEVDkWDyvehQbkQ1ey+ed5ZdrKTgJtvhkCigfSkJT/3DLh9vyRJEHoX1T
+	5PxgNn7v2rHw2pGHOsrK2NdrNQIKd4aFXrrZ61T4S/8PO3eKvz5yt8psxDREYun4BHux49rxXTn1G
+	HTD1ox7pLF/LPrqYaDItJTXFB1boTDjp6ZuWORd+LxD8j8l7XBsFyvAQoUcJlTUFcBFKFbEDYw4Fz
+	zn+kBM95hpEGgffBYU/Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hxJkp-0003wL-E9; Mon, 12 Aug 2019 23:29:31 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1hxK4K-0003EY-RF; Mon, 12 Aug 2019 23:49:40 +0000
+Received: from mail-pf1-x442.google.com ([2607:f8b0:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hxJkI-0003F3-1o; Mon, 12 Aug 2019 23:28:59 +0000
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net
- [71.197.186.152])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id ABD3B2070C;
- Mon, 12 Aug 2019 23:28:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1565652537;
- bh=8DGYsZ2vpwHRKpuHggefj6/H5D3EzUYWO9120Yp/h0k=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=0+YYfz1zJ/m+zWzz8czp4mTt82CPqhqbRI6XkD2KzPKeYZOdwBxgshULUS5KciOsH
- 78VMjZJKurXfvGNjIFQ0b71bmk6t/mwNreR5SspAmP3Dupc39G75CGTQKEJTpML6qJ
- PkatQ8DCC+v9alprNV2+EldgGAytz5c2ptn+7qd4=
-From: Kevin Hilman <khilman@kernel.org>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-rtc@vger.kernel.org
-Subject: [PATCH v3 2/2] rtc: Add Amlogic Virtual Wake RTC
-Date: Mon, 12 Aug 2019 16:28:50 -0700
-Message-Id: <20190812232850.8016-3-khilman@kernel.org>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190812232850.8016-1-khilman@kernel.org>
-References: <20190812232850.8016-1-khilman@kernel.org>
+ id 1hxK48-00034O-6G
+ for linux-amlogic@lists.infradead.org; Mon, 12 Aug 2019 23:49:29 +0000
+Received: by mail-pf1-x442.google.com with SMTP id r7so50503418pfl.3
+ for <linux-amlogic@lists.infradead.org>; Mon, 12 Aug 2019 16:49:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=TVGgo0zksBDaPs/9V0AiD7GJ//qvTyql6PCEDIReDJM=;
+ b=JNdvWFQzIQ78Ee5LRZT1pvz/l5pxcveu3JQgK8Qc8eeh/UXUlm8abSkmtF3izqwI86
+ sukJIz70OXya+sz7YmvPEdih/RVnuk4WiMJh27iHYfXCv5gzSlfvI8hNJbyDIm1zi2yT
+ Mt7tXYDSUGbwDzBAeCOzl0XQRHUlYjNBz08RNbOzEddW2ZdWfgVejB41veuoOaO2CZqh
+ iXDItyDGK1bQ42X7Q+/JO7Fq2EyCmsUYV4CTpyJXMWWPB6ANZCkhVmqVko7luUcCWEC7
+ m4fAsOJtBfKp56AGZ4SL25ps/PqH4bD/IgIxx/zJO7XUZWUYeMrUpaeu9XCTr5Kdngcw
+ BJ1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version;
+ bh=TVGgo0zksBDaPs/9V0AiD7GJ//qvTyql6PCEDIReDJM=;
+ b=C3eAl2oYD4uq3HgUROuf7LiFUd4Vd0OyYAT3EWCxlrgfLZjeD5nCqS6EZStnisIsyL
+ /F2JOJv1JOFb4A69v+X2VUs8Q4TN2Vp2UKsgLN3xHoq8aRPhqWTv+9qmZabQC8nr7wi4
+ om0AshjGWhl31Zk5a5VCqlQAfqd09fR1VoHws4jfg7BtUgjEc/P9oJprQ8NrTiUwDurm
+ sLRp5YWIMHXWw4Gkqp3f9eOALG6dO6+USbZXP4YPAkwCsVXG8M8ly0P6+5aaJE9vCLxy
+ 15SRq+LUIDSUl2PVkIJrz/z/rHl3erBTNksA97Y6bdZFrouc6VM4bWpwya44AibDWeX/
+ GY5A==
+X-Gm-Message-State: APjAAAXQPrF7ac45QK5f8BEKQ8/1iwhbqM+rk3ZY9UOuV0/2uDzxucbv
+ 9FWe1G762+0Irfc+DdO/vFfQIA==
+X-Google-Smtp-Source: APXvYqyiA0KS72VgktwxN8Yq7FTG1lgidXyG979I9fbscnCp9GWmENKrr/N2Yiys2H+nRjo3Szn6Lg==
+X-Received: by 2002:a17:90a:26ac:: with SMTP id
+ m41mr1604768pje.59.1565653767173; 
+ Mon, 12 Aug 2019 16:49:27 -0700 (PDT)
+Received: from localhost ([2601:602:9200:a1a5:14bb:580e:e4d6:b3a8])
+ by smtp.gmail.com with ESMTPSA id l124sm106824486pgl.54.2019.08.12.16.49.26
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Mon, 12 Aug 2019 16:49:26 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: arm@kernel.org
+Subject: [GIT PULL] arm64: dts: Amlogic fixes for v5.3-rc
+Date: Mon, 12 Aug 2019 16:49:26 -0700
+Message-ID: <7h1rxq0ws9.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190812_162858_198070_900E10EB 
-X-CRM114-Status: GOOD (  18.32  )
+X-CRM114-CacheID: sfid-20190812_164928_229108_41D474ED 
+X-CRM114-Status: UNSURE (   8.60  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,244 +92,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Neil Armstrong <narmstrong@baylibre.com>
+The following changes since commit 5f9e832c137075045d15cd6899ab0505cfb2ca4b:
 
-The Amlogic Meson GX SoCs uses a special register to store the
-time in seconds to wakeup after a system suspend.
+  Linus 5.3-rc1 (2019-07-21 14:05:38 -0700)
 
-In order to be able to reuse the RTC wakealarm feature, this
-driver implements a fake RTC device which uses the system time
-to deduce a suspend delay.
+are available in the Git repository at:
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-[khilman: rebase to v5.3-rc, rework and modernization]
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
----
- MAINTAINERS                  |   1 +
- drivers/rtc/Kconfig          |  11 +++
- drivers/rtc/Makefile         |   1 +
- drivers/rtc/rtc-meson-vrtc.c | 156 +++++++++++++++++++++++++++++++++++
- 4 files changed, 169 insertions(+)
- create mode 100644 drivers/rtc/rtc-meson-vrtc.c
+  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-fixes
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 783569e3c4b4..2ae83e1acb05 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1443,6 +1443,7 @@ F:	arch/arm64/boot/dts/amlogic/
- F:	drivers/pinctrl/meson/
- F:	drivers/mmc/host/meson*
- F:	drivers/soc/amlogic/
-+F:	drivers/rtc/rtc-meson*
- N:	meson
- 
- ARM/Amlogic Meson SoC Sound Drivers
-diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-index e72f65b61176..7cd325ecc10b 100644
---- a/drivers/rtc/Kconfig
-+++ b/drivers/rtc/Kconfig
-@@ -373,6 +373,17 @@ config RTC_DRV_MAX77686
- 	  This driver can also be built as a module. If so, the module
- 	  will be called rtc-max77686.
- 
-+config RTC_DRV_MESON_VRTC
-+	tristate "Amlogic Meson Virtual RTC"
-+	depends on ARCH_MESON || COMPILE_TEST
-+	default m if ARCH_MESON
-+	help
-+	  If you say yes here you will get support for the
-+	  Virtual RTC of Amlogic SoCs.
-+
-+	  This driver can also be built as a module. If so, the module
-+	  will be called rtc-meson-vrtc.
-+
- config RTC_DRV_RK808
- 	tristate "Rockchip RK805/RK808/RK809/RK817/RK818 RTC"
- 	depends on MFD_RK808
-diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
-index 6b09c21dc1b6..b50fd3aa81b3 100644
---- a/drivers/rtc/Makefile
-+++ b/drivers/rtc/Makefile
-@@ -102,6 +102,7 @@ obj-$(CONFIG_RTC_DRV_MAX8907)	+= rtc-max8907.o
- obj-$(CONFIG_RTC_DRV_MAX8925)	+= rtc-max8925.o
- obj-$(CONFIG_RTC_DRV_MAX8997)	+= rtc-max8997.o
- obj-$(CONFIG_RTC_DRV_MAX8998)	+= rtc-max8998.o
-+obj-$(CONFIG_RTC_DRV_MESON_VRTC)+= rtc-meson-vrtc.o
- obj-$(CONFIG_RTC_DRV_MC13XXX)	+= rtc-mc13xxx.o
- obj-$(CONFIG_RTC_DRV_MCP795)	+= rtc-mcp795.o
- obj-$(CONFIG_RTC_DRV_MESON)	+= rtc-meson.o
-diff --git a/drivers/rtc/rtc-meson-vrtc.c b/drivers/rtc/rtc-meson-vrtc.c
-new file mode 100644
-index 000000000000..4621a4715179
---- /dev/null
-+++ b/drivers/rtc/rtc-meson-vrtc.c
-@@ -0,0 +1,156 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2019 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ * Copyright (C) 2015 Amlogic, Inc. All rights reserved.
-+ */
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/rtc.h>
-+#include <linux/io.h>
-+#include <linux/of.h>
-+#include <linux/time64.h>
-+
-+struct meson_vrtc_data {
-+	void __iomem *io_alarm;
-+	struct rtc_device *rtc;
-+	unsigned long alarm_time;
-+	bool enabled;
-+};
-+
-+static int meson_vrtc_read_time(struct device *dev, struct rtc_time *tm)
-+{
-+	struct timespec64 time;
-+
-+	dev_dbg(dev, "%s\n", __func__);
-+	ktime_get_raw_ts64(&time);
-+	rtc_time64_to_tm(time.tv_sec, tm);
-+
-+	return 0;
-+}
-+
-+static void meson_vrtc_set_wakeup_time(struct meson_vrtc_data *vrtc,
-+				       unsigned long time)
-+{
-+	writel_relaxed(time, vrtc->io_alarm);
-+}
-+
-+static int meson_vrtc_set_alarm(struct device *dev, struct rtc_wkalrm *alarm)
-+{
-+	struct meson_vrtc_data *vrtc = dev_get_drvdata(dev);
-+
-+	dev_dbg(dev, "%s: alarm->enabled=%d\n", __func__, alarm->enabled);
-+	if (alarm->enabled)
-+		vrtc->alarm_time = rtc_tm_to_time64(&alarm->time);
-+	else
-+		vrtc->alarm_time = 0;
-+
-+	return 0;
-+}
-+
-+static int meson_vrtc_alarm_irq_enable(struct device *dev, unsigned int enabled)
-+{
-+	struct meson_vrtc_data *vrtc = dev_get_drvdata(dev);
-+
-+	vrtc->enabled = enabled;
-+	return 0;
-+}
-+
-+static const struct rtc_class_ops meson_vrtc_ops = {
-+	.read_time = meson_vrtc_read_time,
-+	.set_alarm = meson_vrtc_set_alarm,
-+	.alarm_irq_enable = meson_vrtc_alarm_irq_enable,
-+};
-+
-+static int meson_vrtc_probe(struct platform_device *pdev)
-+{
-+	struct meson_vrtc_data *vrtc;
-+	int ret;
-+
-+	vrtc = devm_kzalloc(&pdev->dev, sizeof(*vrtc), GFP_KERNEL);
-+	if (!vrtc)
-+		return -ENOMEM;
-+
-+	vrtc->io_alarm = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(vrtc->io_alarm))
-+		return PTR_ERR(vrtc->io_alarm);
-+
-+	device_init_wakeup(&pdev->dev, 1);
-+
-+	platform_set_drvdata(pdev, vrtc);
-+
-+	vrtc->rtc = devm_rtc_allocate_device(&pdev->dev);
-+	if (IS_ERR(vrtc->rtc))
-+		return PTR_ERR(vrtc->rtc);
-+
-+	vrtc->rtc->ops = &meson_vrtc_ops;
-+	ret = rtc_register_device(vrtc->rtc);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+#ifdef CONFIG_PM_SLEEP
-+static int meson_vrtc_suspend(struct device *dev)
-+{
-+	struct meson_vrtc_data *vrtc = dev_get_drvdata(dev);
-+
-+	dev_dbg(dev, "%s\n", __func__);
-+	if (vrtc->alarm_time) {
-+		unsigned long local_time;
-+		long alarm_secs;
-+		struct timespec64 time;
-+
-+		ktime_get_raw_ts64(&time);
-+		local_time = time.tv_sec;
-+
-+		dev_dbg(dev, "alarm_time = %lus, local_time=%lus\n",
-+			vrtc->alarm_time, local_time);
-+		alarm_secs = vrtc->alarm_time - local_time;
-+		if (alarm_secs > 0) {
-+			meson_vrtc_set_wakeup_time(vrtc, alarm_secs);
-+			dev_dbg(dev, "system will wakeup in %lds.\n",
-+				alarm_secs);
-+		} else {
-+			dev_err(dev, "alarm time already passed: %lds.\n",
-+				alarm_secs);
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int meson_vrtc_resume(struct device *dev)
-+{
-+	struct meson_vrtc_data *vrtc = dev_get_drvdata(dev);
-+
-+	dev_dbg(dev, "%s\n", __func__);
-+
-+	vrtc->alarm_time = 0;
-+	meson_vrtc_set_wakeup_time(vrtc, 0);
-+	return 0;
-+}
-+#endif
-+static SIMPLE_DEV_PM_OPS(meson_vrtc_pm_ops,
-+			 meson_vrtc_suspend, meson_vrtc_resume);
-+
-+static const struct of_device_id meson_vrtc_dt_match[] = {
-+	{ .compatible = "amlogic,meson-vrtc"},
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, meson_vrtc_dt_match);
-+
-+static struct platform_driver meson_vrtc_driver = {
-+	.probe = meson_vrtc_probe,
-+	.driver = {
-+		.name = "meson-vrtc",
-+		.of_match_table = meson_vrtc_dt_match,
-+		.pm = &meson_vrtc_pm_ops,
-+	},
-+};
-+
-+module_platform_driver(meson_vrtc_driver);
-+
-+MODULE_DESCRIPTION("Amlogic Virtual Wakeup RTC Timer driver");
-+MODULE_LICENSE("GPL");
--- 
-2.22.0
+for you to fetch changes up to dc7f2cb218b5ef65ab3d455a0e62d27e44075203:
 
+  arm64: dts: amlogic: odroid-n2: keep SD card regulator always on (2019-08-05 14:06:55 -0700)
+
+----------------------------------------------------------------
+arm64: dts: Amlogic fixes for v5.3-rc
+- a few small DT fixes for g12a/g12b platforms
+
+----------------------------------------------------------------
+Neil Armstrong (2):
+      arm64: dts: meson-g12a: add missing dwc2 phy-names
+      arm64: dts: meson-g12a-sei510: enable IR controller
+
+Xavier Ruppen (1):
+      arm64: dts: amlogic: odroid-n2: keep SD card regulator always on
+
+ arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts    | 6 ++++++
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi          | 1 +
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts | 1 +
+ 3 files changed, 8 insertions(+)
 
 _______________________________________________
 linux-amlogic mailing list
