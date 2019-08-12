@@ -5,19 +5,19 @@ X-Spam-Level:
 X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D743EC31E40
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Aug 2019 12:07:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E1716C32750
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Aug 2019 12:08:01 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A792F214C6
-	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Aug 2019 12:07:58 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B689A214C6
+	for <linux-amlogic@archiver.kernel.org>; Mon, 12 Aug 2019 12:08:01 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="K/YNY2iT";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="daHHObEV"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A792F214C6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UBX9ER/Z";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="JCgKaHji"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B689A214C6
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,68 +26,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8vY33ADAkjl/7g5wru6xxXnc88v8Mcr7v81zC4/R8ak=; b=K/YNY2iTVAexN5
-	ghxwigikiH5+trYdgHhyYT0xVxNh0M9KMbIt/GJoMpb1iaaaDn+H8epBlyPlFHFgo7m5K49RnMGq5
-	CWydLscS9b1epv4OQceW5vzuhi1SJMX/MRkh1KFZOy5ucrD5ud22iy3IAPTdMDHP8Go+acz+/aTVu
-	TJlvXe0IcrUrI8xGo5y/bM9zNrJkXFkIm4kBvbKZj5C+CMa7HGnBuzXCsR3L5Fbp6HsWxiwv01h+0
-	1NuMasPcU4CiKhQtEMBeI01jMZiBH0WPM9i99Z5qenVSEoo6IBvZbqef84hD8MKSK1l2VGjg8PJR6
-	nHjfkyUaHiHtp6b35VHg==;
+	List-Owner; bh=aZWadmSIfxk+g+68bR10LzeNexTNOY4HrmQM59VkPLs=; b=UBX9ER/ZwWErLf
+	d3ZWcmM4P2FVEv2zawT5XYKeO+rSN7jv6T2xrcD0uTgx5YsU5u4KBwYYlThsTe9/hqWyoQEXwIW1B
+	LnegCOeVW2QNTdmmKNqwHrs8wtQhtuQ4cAIuTY2cE858ukDVjBcQ5fMCG1Sl1JcADe4uAgV2Yf6Zr
+	9r6v8L37Sw/BsXlrO11J3EkfNUhMUggZriYPA25l3JDLS90KQEszxHECHZ9exYX3hVJ/LxZ3IbsDQ
+	kUxqbzOpuEiPQ3cw1pwmeiJ6erdU9FwQFi8HWLeX7prJ7AZ1LzDtxvTS3TodFn94UFaiqX+g/lbwz
+	XdPiMfMkPq7HJ2MiyyVg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hx97C-0006uv-MM; Mon, 12 Aug 2019 12:07:54 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1hx97G-0006zC-0d; Mon, 12 Aug 2019 12:07:58 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hx96v-0006dB-JW
+ id 1hx96w-0006db-Di
  for linux-amlogic@lists.infradead.org; Mon, 12 Aug 2019 12:07:39 +0000
-Received: by mail-wm1-x344.google.com with SMTP id l2so11550372wmg.0
- for <linux-amlogic@lists.infradead.org>; Mon, 12 Aug 2019 05:07:37 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id l2so11550426wmg.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 12 Aug 2019 05:07:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=nyk3iRwUiWOF3HR8AgEI8oTD0AAO9L4Qd9ulSVgUQuc=;
- b=daHHObEVwiPB5m8eB3TinS4M9hhoYOX7OGD3cCnIcEdu8mEBbC2sxvbHgwNQgNQaGl
- e+ADZVLpFJLcl5mKHLragQdiafg85cuqpCUuGO05kZO+gqWvdMosoWdf76Lir6wDtR+G
- wnM/evLYE5mIEGNMDuMjreFZbxAt2EM/BzD4bWna14viPvYztIKdPE8Jjk2RtbvecAiH
- +vTiUF5wWddKT/m+Wal8DQpROpSVRSZ7RWDQLYKJ0cneQ7GBQEZGV/d/J3AAidyIBRzk
- kxtw4nWL8qMqRra9ftu6k3t/ezDcKlv0PBbJUX4418BaYieMPY6X3fasAC7Y3ddZnMCg
- N1ig==
+ bh=jc9/cSBhIwTuXPvQDL6txYFXAJblot8ynaeVI0KB+kI=;
+ b=JCgKaHjiK9nXytoYeRJc1oNQnDr/iTA4L8Cs/nMSQTvwrHCjI8V6q/fMKElW1iq4kH
+ QVfNygjYCJLIR2X+73dkH1YWR5jd4IZKoHby+j8qpmF4XhZajY4Kjk0JETHWN8nefT3I
+ BfO806OgbneAJNQFFiN1knQc1xLRpBUENeHPFywv44hICM1gob6lINnEr6lMqhzVnZI0
+ 45ko6hz6x7sRZ4R5nYlMEf5MlYQPrQ0o3lAqjqwFZ8KdHKkua1sCJd0NOmLrjZP+qAlF
+ e2qBWgoDEBeqiW5bZLuERfieGV41O7+oENtJiTUejXx6Sj1XEVjw8F1jz4H8xldgpDiF
+ UFHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=nyk3iRwUiWOF3HR8AgEI8oTD0AAO9L4Qd9ulSVgUQuc=;
- b=hDmktURmG/ypVNMBoANQy4N/PUUrzRm/K8eSEJAVjzMvQd4QIxKq6dvdjKerSv2x0s
- MlGRDz2h9DF0+8UT+3lgk3nYtdSGZaZIJiDkEmaSDKJFUN8RkushkF5kczk9Yq6uJ7z+
- 0LSm+EkoJF1TNKlc/YlZ5pWttQ2LXZzgsKD+uogTFabJzdPa2cG+luhBhpDCWekcIZoc
- HyD9wNZti3WLuecC6WzqfQl6UtEuHNjfEO6E6dXZgZd1rOVGA3SIsK2S3pfsGuUKbr0+
- ss4qazuGmU4i7b96DMBUmj7aIWH8Kydwe7TQax+IMLo+mkA6J5D7dlRXEDx41TCn7paw
- 4R1g==
-X-Gm-Message-State: APjAAAUNSGkN/0tFuNfx5pzfH9Q4U43lM51GXImYxYctaoxy0XQnhF/F
- Bkq9/Gi2oHQ+2lhstMXFsXNysw==
-X-Google-Smtp-Source: APXvYqwZVxC6uqEmw1OcoTKuej0fydwIHFvl7lI/fxWxv8zWW97aQe6c/fxAXhNOvT0IR2pM7GDSRA==
-X-Received: by 2002:a1c:6641:: with SMTP id a62mr26440820wmc.175.1565611656356; 
- Mon, 12 Aug 2019 05:07:36 -0700 (PDT)
+ bh=jc9/cSBhIwTuXPvQDL6txYFXAJblot8ynaeVI0KB+kI=;
+ b=mRGBuKREt4mQ9rAuwSnWd33Az1Cfu52snfcXSbxSCcBF8auAXjuBC90ZiUMkG86/Gw
+ sBjy24sc0nymyuIuZGw5p0oUHRbqf25jm9z3gPWedUxj2wUrF1yyAeADtPRWb3DrXJqi
+ d4Fr+/ryJ/geslEfMkOgEiZEno9/bLQ2VJo87K8xPiCoMZpel19nMxQUcy9XHo5PkU3x
+ +916vBxUUAtlVN0KItffLuurPOgI02Kr7R9NwfFLKeXO1nc2wIe16IuUSNKzEBTsrMzd
+ Du8tVNVqFKTsVKT9xlPeNj5hF6b8N8P0Ify2tVJTZGo2/ypL2OZEna5EpfO8tjU6O0Pf
+ fCkQ==
+X-Gm-Message-State: APjAAAV486JkjOAWR5hFe0v6om7IgnyBJI1TTyR0GmKX2KMN7XXwViU/
+ z2zfFkQAoZBrC/RpGyufQYmZeQ==
+X-Google-Smtp-Source: APXvYqyA8FXUTAV5OWQlM4IOpnMuM4a1amICXKUVnbBgBqhQLoLXQVYGeXcaLrL4ghbO8MhHX2OFhw==
+X-Received: by 2002:a7b:cf3a:: with SMTP id m26mr28033074wmg.111.1565611657147; 
+ Mon, 12 Aug 2019 05:07:37 -0700 (PDT)
 Received: from starbuck.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id j9sm1883415wrx.66.2019.08.12.05.07.35
+ by smtp.googlemail.com with ESMTPSA id j9sm1883415wrx.66.2019.08.12.05.07.36
  (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Mon, 12 Aug 2019 05:07:35 -0700 (PDT)
+ Mon, 12 Aug 2019 05:07:36 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Andrzej Hajda <a.hajda@samsung.com>,
  Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH v2 7/8] drm/bridge: dw-hdmi-i2s: enable only the required i2s
- lanes
-Date: Mon, 12 Aug 2019 14:07:25 +0200
-Message-Id: <20190812120726.1528-8-jbrunet@baylibre.com>
+Subject: [PATCH v2 8/8] drm/bridge: dw-hdmi-i2s: add .get_eld support
+Date: Mon, 12 Aug 2019 14:07:26 +0200
+Message-Id: <20190812120726.1528-9-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190812120726.1528-1-jbrunet@baylibre.com>
 References: <20190812120726.1528-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190812_050737_862417_D3385464 
-X-CRM114-Status: GOOD (  10.55  )
+X-CRM114-CacheID: sfid-20190812_050738_545923_EA8DE200 
+X-CRM114-Status: GOOD (  12.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,58 +106,78 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Enable the i2s lanes depending on the number of channel in the stream
+Provide the eld to the generic hdmi-codec driver.
+This will let the driver enforce the maximum channel number and set the
+channel allocation depending on the hdmi sink.
 
-Reviewed-by: Jonas Karlman <jonas@kwiboo.se>
+Cc: Jonas Karlman <jonas@kwiboo.se>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- .../gpu/drm/bridge/synopsys/dw-hdmi-i2s-audio.c   | 15 ++++++++++++++-
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.h         |  6 +++++-
- 2 files changed, 19 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-audio.h     |  1 +
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-i2s-audio.c | 11 +++++++++++
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c           |  1 +
+ 3 files changed, 13 insertions(+)
 
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-audio.h b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-audio.h
+index 63b5756f463b..cb07dc0da5a7 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-audio.h
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-audio.h
+@@ -14,6 +14,7 @@ struct dw_hdmi_audio_data {
+ 
+ struct dw_hdmi_i2s_audio_data {
+ 	struct dw_hdmi *hdmi;
++	u8 *eld;
+ 
+ 	void (*write)(struct dw_hdmi *hdmi, u8 val, int offset);
+ 	u8 (*read)(struct dw_hdmi *hdmi, int offset);
 diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-i2s-audio.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-i2s-audio.c
-index 41bee0099578..b8ece9c1ba2c 100644
+index b8ece9c1ba2c..62e737b81462 100644
 --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-i2s-audio.c
 +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-i2s-audio.c
-@@ -54,7 +54,20 @@ static int dw_hdmi_i2s_hw_params(struct device *dev, void *data,
- 	hdmi_write(audio, (u8)~HDMI_MC_SWRSTZ_I2SSWRST_REQ, HDMI_MC_SWRSTZ);
+@@ -10,6 +10,7 @@
+ #include <linux/module.h>
  
- 	inputclkfs	= HDMI_AUD_INPUTCLKFS_64FS;
--	conf0		= HDMI_AUD_CONF0_I2S_ALL_ENABLE;
-+	conf0		= (HDMI_AUD_CONF0_I2S_SELECT | HDMI_AUD_CONF0_I2S_EN0);
+ #include <drm/bridge/dw_hdmi.h>
++#include <drm/drm_crtc.h>
+ 
+ #include <sound/hdmi-codec.h>
+ 
+@@ -121,6 +122,15 @@ static void dw_hdmi_i2s_audio_shutdown(struct device *dev, void *data)
+ 	dw_hdmi_audio_disable(hdmi);
+ }
+ 
++static int dw_hdmi_i2s_get_eld(struct device *dev, void *data, uint8_t *buf,
++			       size_t len)
++{
++	struct dw_hdmi_i2s_audio_data *audio = data;
 +
-+	/* Enable the required i2s lanes */
-+	switch (hparms->channels) {
-+	case 7 ... 8:
-+		conf0 |= HDMI_AUD_CONF0_I2S_EN3;
-+		/* Fall-thru */
-+	case 5 ... 6:
-+		conf0 |= HDMI_AUD_CONF0_I2S_EN2;
-+		/* Fall-thru */
-+	case 3 ... 4:
-+		conf0 |= HDMI_AUD_CONF0_I2S_EN1;
-+		/* Fall-thru */
-+	}
++	memcpy(buf, audio->eld, min(sizeof(MAX_ELD_BYTES), len));
++	return 0;
++}
++
+ static int dw_hdmi_i2s_get_dai_id(struct snd_soc_component *component,
+ 				  struct device_node *endpoint)
+ {
+@@ -144,6 +154,7 @@ static int dw_hdmi_i2s_get_dai_id(struct snd_soc_component *component,
+ static struct hdmi_codec_ops dw_hdmi_i2s_ops = {
+ 	.hw_params	= dw_hdmi_i2s_hw_params,
+ 	.audio_shutdown	= dw_hdmi_i2s_audio_shutdown,
++	.get_eld	= dw_hdmi_i2s_get_eld,
+ 	.get_dai_id	= dw_hdmi_i2s_get_dai_id,
+ };
  
- 	switch (hparms->sample_width) {
- 	case 16:
-diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.h b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.h
-index a272fa393ae6..6988f12d89d9 100644
---- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.h
-+++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.h
-@@ -865,7 +865,11 @@ enum {
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+index bed4bb017afd..8df69c9dbfad 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+@@ -2797,6 +2797,7 @@ __dw_hdmi_probe(struct platform_device *pdev,
+ 		struct dw_hdmi_i2s_audio_data audio;
  
- /* AUD_CONF0 field values */
- 	HDMI_AUD_CONF0_SW_RESET = 0x80,
--	HDMI_AUD_CONF0_I2S_ALL_ENABLE = 0x2F,
-+	HDMI_AUD_CONF0_I2S_SELECT = 0x20,
-+	HDMI_AUD_CONF0_I2S_EN3 = 0x08,
-+	HDMI_AUD_CONF0_I2S_EN2 = 0x04,
-+	HDMI_AUD_CONF0_I2S_EN1 = 0x02,
-+	HDMI_AUD_CONF0_I2S_EN0 = 0x01,
- 
- /* AUD_CONF1 field values */
- 	HDMI_AUD_CONF1_MODE_I2S = 0x00,
+ 		audio.hdmi	= hdmi;
++		audio.eld	= hdmi->connector.eld;
+ 		audio.write	= hdmi_writeb;
+ 		audio.read	= hdmi_readb;
+ 		hdmi->enable_audio = dw_hdmi_i2s_audio_enable;
 -- 
 2.21.0
 
