@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-8.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 78742C3A59E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Aug 2019 20:32:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CF0E5C3A59D
+	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Aug 2019 20:32:49 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4F198206C1
-	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Aug 2019 20:32:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A60A8206C1
+	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Aug 2019 20:32:49 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="uGIoCwyU";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="pTqAuqCZ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4F198206C1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mZ7ptab/";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="t7+fzq1L"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A60A8206C1
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,70 +27,70 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:References:To:From:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cfsZTOrh/XM2iX3GOF/FBql2mFczQ9Y20OU44JyLm9o=; b=uGIoCwyUMUUeBH
-	q2xApxYBbcvKSQD8Q2JcSHDjTb+QoecJtt9olue5bY/Xv/AsziCNBZ++RlN4U5O83ZtXTEd47J5gw
-	phRXjCyvmUX+ZDMeQpXlkoT9/W07ItrjYY6joLFxM6k8eNZlTZDbev5nx+eJ57ow9RLHpMqNinEDG
-	B1M6qjd8U8eUDd4vyl/1Oxnm/Q/WUNgw6K6ZiuDngKVVqZz97TY+/Dv/f/CPfXE2UV9WZ3IMyVbBp
-	YI/YZ3Eoawt5/0/iPWil7dNHR2EqsDiJLospP2IkWm8BmHVEYbcYZ4SUsR0uA3KMFLA8NocAS/VeE
-	SB47GK8FnGG45f8oAetQ==;
+	List-Owner; bh=3tm2Mkw+QlelVRM2KYeJi4L53bgNh2qkeyPpqBpeTPo=; b=mZ7ptab/K3MXYy
+	y8bIaV9dAnWch67TpIl+kiYpgXUXEd5QD2KUSlKAVy6GuI2CJ4KWS86D+RQGKSDWGTGzF4UqaC5Ey
+	YdqzFyqnA3i5PzcIvYhX/xKQnHYvhSIgUyk3JNacTmjjJ0Y7FBjFGl0TDd8rcAC5LT5cnrUiDe3Hg
+	insBt2W6uG7t5Ze9P88fG7BXLQqwxXBNhgFnx75djTrc6oWrdlA5qfVb3NDDP/p4evjNWaCNb8RUm
+	ixaASWmAdWLT62foVUjgw3Jfjct34HI9F9hKvR0sd+pQ7I25WHLP8/xjxedY7NXj02rIKw3Q1J/Mu
+	mEWEE2ksxqjLVRNL0NsQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hyitu-00014v-Ji; Fri, 16 Aug 2019 20:32:42 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1hyitw-00016k-80; Fri, 16 Aug 2019 20:32:44 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hyitq-00012t-2h
- for linux-amlogic@lists.infradead.org; Fri, 16 Aug 2019 20:32:39 +0000
-Received: by mail-wm1-x343.google.com with SMTP id l2so5043965wmg.0
- for <linux-amlogic@lists.infradead.org>; Fri, 16 Aug 2019 13:32:36 -0700 (PDT)
+ id 1hyitr-00013L-Rb
+ for linux-amlogic@lists.infradead.org; Fri, 16 Aug 2019 20:32:41 +0000
+Received: by mail-wr1-x431.google.com with SMTP id u16so2700202wrr.0
+ for <linux-amlogic@lists.infradead.org>; Fri, 16 Aug 2019 13:32:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=subject:from:to:cc:references:message-id:date:user-agent
  :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=UJpE68/hI6oL5djsLkek8sBhrIbJvWmRdwubJ+Xloms=;
- b=pTqAuqCZCuw0R0HvxTkiNwWvf02L7tWeuoMsY5SZTXr8rgFdYLTflE2Mo36sbo2hul
- gBkuNEI2vqczJCTP6iOfmEEoTf2zDwf/8f4tcRUx+dtoZLmrkdYTqH7a5eQhGLVssH25
- ZhDmcXHkstuptWBqnIMk/CYIUp7txqbdIsaS2hLT1J3l3gseg3+Q4rJqdMMIrxY3gz/E
- xLPewDOqvsAlr2JExeV/IoOeMImzsWMP+BB+g3nfIO+i6vxgWXEtoqFmeQZJkJ2UQq6T
- Up+I2PblkDJfyOlksFnXpMkAtWIKNRjGfcbkz2AK8mL62YX4f0E+GS1vjQoTl/vHPzj3
- TcTw==
+ bh=2mx9+lMjWlDBJoaKKItBGduSQiKJLy0OqvNV+u7gJVo=;
+ b=t7+fzq1L9xHD7bUCZ2AX6xvXFGTs4mIrL0yG57pxQA4WQwa6AP7SF1s4nLVW00zseR
+ kgDtLgAm3OjfYz7ibBZdA+qqiG4AVbRF2uQC0Pjr5Mzyb5gqvDaTkgBuvu7xx1VP7Xpk
+ gifvoLx2mKPXdA92QhIRuBS/nb7BSUTvvxbRTMDditE7YvlYWN2hx5YDMbEGsv9vpPIw
+ hoZxSnNvNIUwS6JldXljosGwu02P5mslm1oAMm5wrO9hBdUwBtlMYYh9Ld+M/FTd13ky
+ Sgqw/6uri/dfkjMPon/AuItkL0/IUtiTM4+NdLTNtva7BtY4NIXEjbNVdNxKk8KMGVzl
+ 7G0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:from:to:cc:references:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=UJpE68/hI6oL5djsLkek8sBhrIbJvWmRdwubJ+Xloms=;
- b=oBNjdqgT/jD0k/9D6EJ/SKKRlaRp1H+ukGFXRbUgJII0IIs2cuqMKnCS/nKSHACzoj
- jS3u/U7umzCMkWMECNE3YfVCc0cW6djaBRs+fNsEWtt+8jXLeWzAtsP2ODyikKa5mGd9
- ilXqFvRhSypZyy9SYp34s3In2d9XkryK3oUIs6X9grO/Z7Y4Z4+KwkcMQ5C5WMulkTLp
- eprGkttyuIQtRze7ycg5h4vnGrWR629HeNO6EhtafRDLGO50+F+wu3GbRmvy9rkO/pIM
- c2fA9MT9ly4NcGTzn5eKShcgUyy2Dt5Ez1+iUR5MAcMqrt8VIJMZZikFPmiv6deLV0eV
- LhEA==
-X-Gm-Message-State: APjAAAXsf02Pkc4RNIyrY/Qrb5UyKVzD/knMy/Cpu8XOj0W0lXDS/RMH
- gFIBV0ZANmeba4BtwRQ4vEWLJF9d
-X-Google-Smtp-Source: APXvYqxOSdWKazVUb5FhhgZ3cqdrAATQO1QhfACa2ohJWFLmqhD9/XzhOz4fytNIIbF+7dn7M/RfXw==
-X-Received: by 2002:a7b:c649:: with SMTP id q9mr8675646wmk.108.1565987555171; 
- Fri, 16 Aug 2019 13:32:35 -0700 (PDT)
+ bh=2mx9+lMjWlDBJoaKKItBGduSQiKJLy0OqvNV+u7gJVo=;
+ b=jylW7VwHa++cpfDvT/eElAh8IfV8E5oOTTeVyfJmKrXFUT1MZGaiuculZ4xj3ARNSy
+ 1DwQ7rbPRYgd8jcTnDejNHw04nT9EXlO6OaP6CfPSxxjdh7DR9+DThHyE1btUscACYNW
+ C+2ViVZtAyhryZug6dnGZgVLF14QDskT0RzouPC/xSILpilBKpCxAHqEKsj7P1S1YsZG
+ J5sHMKlesoR19GRBfX5uIyNDa7DHi0XFq/HfNGul0irOFGC7fWv5HfuissY4rKVa+AwJ
+ HoUfPPy8oa8ZW3ABpvl70yWQ63Lh7s2SoLQenjZosIb0ou4y5siaGaqJ/ZsvclmK3UX7
+ fwIg==
+X-Gm-Message-State: APjAAAVWnJtQ0CUytEnvA/d2738YnEoVxKZh61LEPIXWG+YOKpg87NMH
+ OiDz9kgu4ECH6GVPCtnFizf1eLnm
+X-Google-Smtp-Source: APXvYqxG65IYpoM1P7kDNVmZsnLwm7l5pbnGfBY5HWJ7PvBsDfsQ0vI/ZG2Zy3jBrjaLR6DoWgEhMg==
+X-Received: by 2002:adf:eccb:: with SMTP id s11mr12654945wro.351.1565987558024; 
+ Fri, 16 Aug 2019 13:32:38 -0700 (PDT)
 Received: from ?IPv6:2003:ea:8f2f:3200:4112:e131:7f21:ec09?
  (p200300EA8F2F32004112E1317F21EC09.dip0.t-ipconnect.de.
  [2003:ea:8f2f:3200:4112:e131:7f21:ec09])
- by smtp.googlemail.com with ESMTPSA id 39sm20359118wrc.45.2019.08.16.13.32.34
+ by smtp.googlemail.com with ESMTPSA id t63sm5004055wmt.6.2019.08.16.13.32.37
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 16 Aug 2019 13:32:34 -0700 (PDT)
-Subject: [PATCH net-next v2 1/3] net: phy: remove calls to genphy_config_init
+ Fri, 16 Aug 2019 13:32:37 -0700 (PDT)
+Subject: [PATCH net-next v2 3/3] net: phy: remove genphy_config_init
 From: Heiner Kallweit <hkallweit1@gmail.com>
 To: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
  David Miller <davem@davemloft.net>, Kevin Hilman <khilman@baylibre.com>,
  Vivien Didelot <vivien.didelot@gmail.com>
 References: <62de47ba-0624-28c0-56a1-e2fc39a36061@gmail.com>
-Message-ID: <cf0de135-516c-c3e4-6fc7-bf4dbef6462d@gmail.com>
-Date: Fri, 16 Aug 2019 22:31:06 +0200
+Message-ID: <6c657d36-97e5-0feb-ddf2-a59e4c38c437@gmail.com>
+Date: Fri, 16 Aug 2019 22:32:19 +0200
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
 In-Reply-To: <62de47ba-0624-28c0-56a1-e2fc39a36061@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190816_133238_128808_1B00FA7E 
-X-CRM114-Status: GOOD (  16.34  )
+X-CRM114-CacheID: sfid-20190816_133239_888546_B2B814DE 
+X-CRM114-Status: GOOD (  10.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,230 +109,88 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Supported PHY features are either auto-detected or explicitly set.
-In both cases calling genphy_config_init isn't needed. All that
-genphy_config_init does is removing features that are set as
-supported but can't be auto-detected. Basically it duplicates the
-code in genphy_read_abilities. Therefore remove such calls from
-all PHY drivers.
-
-v2:
-- remove call also from new adin PHY driver
+Now that all users have been removed we can remove genphy_config_init.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/net/phy/adin.c         |  4 ----
- drivers/net/phy/at803x.c       |  4 ----
- drivers/net/phy/dp83822.c      |  5 -----
- drivers/net/phy/dp83848.c      | 16 ++++++++--------
- drivers/net/phy/dp83tc811.c    |  4 ----
- drivers/net/phy/meson-gxl.c    |  2 +-
- drivers/net/phy/microchip.c    |  1 -
- drivers/net/phy/microchip_t1.c |  1 -
- drivers/net/phy/mscc.c         |  4 ++--
- drivers/net/phy/vitesse.c      |  6 +++---
- 10 files changed, 14 insertions(+), 33 deletions(-)
+ drivers/net/phy/phy_device.c | 51 ------------------------------------
+ include/linux/phy.h          |  1 -
+ 2 files changed, 52 deletions(-)
 
-diff --git a/drivers/net/phy/adin.c b/drivers/net/phy/adin.c
-index ac79e16cd..4dec83df0 100644
---- a/drivers/net/phy/adin.c
-+++ b/drivers/net/phy/adin.c
-@@ -356,10 +356,6 @@ static int adin_config_init(struct phy_device *phydev)
+diff --git a/drivers/net/phy/phy_device.c b/drivers/net/phy/phy_device.c
+index 9c546bae9..d5db7604d 100644
+--- a/drivers/net/phy/phy_device.c
++++ b/drivers/net/phy/phy_device.c
+@@ -1885,57 +1885,6 @@ int genphy_soft_reset(struct phy_device *phydev)
+ }
+ EXPORT_SYMBOL(genphy_soft_reset);
  
- 	phydev->mdix_ctrl = ETH_TP_MDI_AUTO;
- 
--	rc = genphy_config_init(phydev);
--	if (rc < 0)
--		return rc;
+-int genphy_config_init(struct phy_device *phydev)
+-{
+-	int val;
+-	__ETHTOOL_DECLARE_LINK_MODE_MASK(features) = { 0, };
 -
- 	rc = adin_config_rgmii_mode(phydev);
- 	if (rc < 0)
- 		return rc;
-diff --git a/drivers/net/phy/at803x.c b/drivers/net/phy/at803x.c
-index 222ccd9ec..d98aa5671 100644
---- a/drivers/net/phy/at803x.c
-+++ b/drivers/net/phy/at803x.c
-@@ -249,10 +249,6 @@ static int at803x_config_init(struct phy_device *phydev)
- {
- 	int ret;
- 
--	ret = genphy_config_init(phydev);
--	if (ret < 0)
--		return ret;
+-	linkmode_set_bit_array(phy_basic_ports_array,
+-			       ARRAY_SIZE(phy_basic_ports_array),
+-			       features);
+-	linkmode_set_bit(ETHTOOL_LINK_MODE_Pause_BIT, features);
+-	linkmode_set_bit(ETHTOOL_LINK_MODE_Asym_Pause_BIT, features);
 -
- 	/* The RX and TX delay default is:
- 	 *   after HW reset: RX delay enabled and TX delay disabled
- 	 *   after SW reset: RX delay enabled, while TX delay retains the
-diff --git a/drivers/net/phy/dp83822.c b/drivers/net/phy/dp83822.c
-index 7ed4760fb..8a4b1d167 100644
---- a/drivers/net/phy/dp83822.c
-+++ b/drivers/net/phy/dp83822.c
-@@ -254,13 +254,8 @@ static int dp83822_config_intr(struct phy_device *phydev)
- 
- static int dp83822_config_init(struct phy_device *phydev)
- {
--	int err;
- 	int value;
- 
--	err = genphy_config_init(phydev);
--	if (err < 0)
--		return err;
+-	/* Do we support autonegotiation? */
+-	val = phy_read(phydev, MII_BMSR);
+-	if (val < 0)
+-		return val;
 -
- 	value = DP83822_WOL_MAGIC_EN | DP83822_WOL_SECURE_ON | DP83822_WOL_EN;
- 
- 	return phy_write_mmd(phydev, DP83822_DEVADDR, MII_DP83822_WOL_CFG,
-diff --git a/drivers/net/phy/dp83848.c b/drivers/net/phy/dp83848.c
-index 6f9bc7d91..11644579a 100644
---- a/drivers/net/phy/dp83848.c
-+++ b/drivers/net/phy/dp83848.c
-@@ -68,13 +68,8 @@ static int dp83848_config_intr(struct phy_device *phydev)
- 
- static int dp83848_config_init(struct phy_device *phydev)
- {
--	int err;
- 	int val;
- 
--	err = genphy_config_init(phydev);
--	if (err < 0)
--		return err;
+-	if (val & BMSR_ANEGCAPABLE)
+-		linkmode_set_bit(ETHTOOL_LINK_MODE_Autoneg_BIT, features);
 -
- 	/* DP83620 always reports Auto Negotiation Ability on BMSR. Instead,
- 	 * we check initial value of BMCR Auto negotiation enable bit
- 	 */
-@@ -85,6 +80,11 @@ static int dp83848_config_init(struct phy_device *phydev)
- 	return 0;
- }
- 
-+static int dummy_config_init(struct phy_device *phydev)
-+{
-+	return 0;
-+}
-+
- static struct mdio_device_id __maybe_unused dp83848_tbl[] = {
- 	{ TI_DP83848C_PHY_ID, 0xfffffff0 },
- 	{ NS_DP83848C_PHY_ID, 0xfffffff0 },
-@@ -113,13 +113,13 @@ MODULE_DEVICE_TABLE(mdio, dp83848_tbl);
- 
- static struct phy_driver dp83848_driver[] = {
- 	DP83848_PHY_DRIVER(TI_DP83848C_PHY_ID, "TI DP83848C 10/100 Mbps PHY",
--			   genphy_config_init),
-+			   dummy_config_init),
- 	DP83848_PHY_DRIVER(NS_DP83848C_PHY_ID, "NS DP83848C 10/100 Mbps PHY",
--			   genphy_config_init),
-+			   dummy_config_init),
- 	DP83848_PHY_DRIVER(TI_DP83620_PHY_ID, "TI DP83620 10/100 Mbps PHY",
- 			   dp83848_config_init),
- 	DP83848_PHY_DRIVER(TLK10X_PHY_ID, "TI TLK10X 10/100 Mbps PHY",
--			   genphy_config_init),
-+			   dummy_config_init),
- };
- module_phy_driver(dp83848_driver);
- 
-diff --git a/drivers/net/phy/dp83tc811.c b/drivers/net/phy/dp83tc811.c
-index ac27da168..06f08832e 100644
---- a/drivers/net/phy/dp83tc811.c
-+++ b/drivers/net/phy/dp83tc811.c
-@@ -277,10 +277,6 @@ static int dp83811_config_init(struct phy_device *phydev)
- {
- 	int value, err;
- 
--	err = genphy_config_init(phydev);
--	if (err < 0)
--		return err;
+-	if (val & BMSR_100FULL)
+-		linkmode_set_bit(ETHTOOL_LINK_MODE_100baseT_Full_BIT, features);
+-	if (val & BMSR_100HALF)
+-		linkmode_set_bit(ETHTOOL_LINK_MODE_100baseT_Half_BIT, features);
+-	if (val & BMSR_10FULL)
+-		linkmode_set_bit(ETHTOOL_LINK_MODE_10baseT_Full_BIT, features);
+-	if (val & BMSR_10HALF)
+-		linkmode_set_bit(ETHTOOL_LINK_MODE_10baseT_Half_BIT, features);
 -
- 	value = phy_read(phydev, MII_DP83811_SGMII_CTRL);
- 	if (phydev->interface == PHY_INTERFACE_MODE_SGMII) {
- 		err = phy_write(phydev, MII_DP83811_SGMII_CTRL,
-diff --git a/drivers/net/phy/meson-gxl.c b/drivers/net/phy/meson-gxl.c
-index fa80d6dce..e8f2ca625 100644
---- a/drivers/net/phy/meson-gxl.c
-+++ b/drivers/net/phy/meson-gxl.c
-@@ -136,7 +136,7 @@ static int meson_gxl_config_init(struct phy_device *phydev)
- 	if (ret)
- 		return ret;
+-	if (val & BMSR_ESTATEN) {
+-		val = phy_read(phydev, MII_ESTATUS);
+-		if (val < 0)
+-			return val;
+-
+-		if (val & ESTATUS_1000_TFULL)
+-			linkmode_set_bit(ETHTOOL_LINK_MODE_1000baseT_Full_BIT,
+-					 features);
+-		if (val & ESTATUS_1000_THALF)
+-			linkmode_set_bit(ETHTOOL_LINK_MODE_1000baseT_Half_BIT,
+-					 features);
+-		if (val & ESTATUS_1000_XFULL)
+-			linkmode_set_bit(ETHTOOL_LINK_MODE_1000baseX_Full_BIT,
+-					 features);
+-	}
+-
+-	linkmode_and(phydev->supported, phydev->supported, features);
+-	linkmode_and(phydev->advertising, phydev->advertising, features);
+-
+-	return 0;
+-}
+-EXPORT_SYMBOL(genphy_config_init);
+-
+ /**
+  * genphy_read_abilities - read PHY abilities from Clause 22 registers
+  * @phydev: target phy_device struct
+diff --git a/include/linux/phy.h b/include/linux/phy.h
+index 5ac7d2137..d26779f1f 100644
+--- a/include/linux/phy.h
++++ b/include/linux/phy.h
+@@ -1069,7 +1069,6 @@ void phy_attached_print(struct phy_device *phydev, const char *fmt, ...)
+ void phy_attached_info(struct phy_device *phydev);
  
--	return genphy_config_init(phydev);
-+	return 0;
- }
- 
- /* This function is provided to cope with the possible failures of this phy
-diff --git a/drivers/net/phy/microchip.c b/drivers/net/phy/microchip.c
-index eb1b3287f..a644e8e50 100644
---- a/drivers/net/phy/microchip.c
-+++ b/drivers/net/phy/microchip.c
-@@ -305,7 +305,6 @@ static int lan88xx_config_init(struct phy_device *phydev)
- {
- 	int val;
- 
--	genphy_config_init(phydev);
- 	/*Zerodetect delay enable */
- 	val = phy_read_mmd(phydev, MDIO_MMD_PCS,
- 			   PHY_ARDENNES_MMD_DEV_3_PHY_CFG);
-diff --git a/drivers/net/phy/microchip_t1.c b/drivers/net/phy/microchip_t1.c
-index 3d09b4716..001def450 100644
---- a/drivers/net/phy/microchip_t1.c
-+++ b/drivers/net/phy/microchip_t1.c
-@@ -48,7 +48,6 @@ static struct phy_driver microchip_t1_phy_driver[] = {
- 
- 		.features       = PHY_BASIC_T1_FEATURES,
- 
--		.config_init    = genphy_config_init,
- 		.config_aneg    = genphy_config_aneg,
- 
- 		.ack_interrupt  = lan87xx_phy_ack_interrupt,
-diff --git a/drivers/net/phy/mscc.c b/drivers/net/phy/mscc.c
-index 645d354ff..7ada1fd9c 100644
---- a/drivers/net/phy/mscc.c
-+++ b/drivers/net/phy/mscc.c
-@@ -1725,7 +1725,7 @@ static int vsc8584_config_init(struct phy_device *phydev)
- 			return ret;
- 	}
- 
--	return genphy_config_init(phydev);
-+	return 0;
- 
- err:
- 	mutex_unlock(&phydev->mdio.bus->mdio_lock);
-@@ -1767,7 +1767,7 @@ static int vsc85xx_config_init(struct phy_device *phydev)
- 			return rc;
- 	}
- 
--	return genphy_config_init(phydev);
-+	return 0;
- }
- 
- static int vsc8584_did_interrupt(struct phy_device *phydev)
-diff --git a/drivers/net/phy/vitesse.c b/drivers/net/phy/vitesse.c
-index 43691b1ac..bb6803527 100644
---- a/drivers/net/phy/vitesse.c
-+++ b/drivers/net/phy/vitesse.c
-@@ -197,7 +197,7 @@ static int vsc738x_config_init(struct phy_device *phydev)
- 
- 	vsc73xx_config_init(phydev);
- 
--	return genphy_config_init(phydev);
-+	return 0;
- }
- 
- static int vsc739x_config_init(struct phy_device *phydev)
-@@ -229,7 +229,7 @@ static int vsc739x_config_init(struct phy_device *phydev)
- 
- 	vsc73xx_config_init(phydev);
- 
--	return genphy_config_init(phydev);
-+	return 0;
- }
- 
- static int vsc73xx_config_aneg(struct phy_device *phydev)
-@@ -267,7 +267,7 @@ static int vsc8601_config_init(struct phy_device *phydev)
- 	if (ret < 0)
- 		return ret;
- 
--	return genphy_config_init(phydev);
-+	return 0;
- }
- 
- static int vsc824x_ack_interrupt(struct phy_device *phydev)
+ /* Clause 22 PHY */
+-int genphy_config_init(struct phy_device *phydev);
+ int genphy_read_abilities(struct phy_device *phydev);
+ int genphy_setup_forced(struct phy_device *phydev);
+ int genphy_restart_aneg(struct phy_device *phydev);
 -- 
 2.22.1
 
