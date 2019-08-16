@@ -7,88 +7,87 @@ X-Spam-Status: No, score=-2.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
 	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 697B5C3A59D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Aug 2019 20:02:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B876EC3A59D
+	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Aug 2019 20:30:34 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3C5082077C
-	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Aug 2019 20:02:38 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8A8B5206C1
+	for <linux-amlogic@archiver.kernel.org>; Fri, 16 Aug 2019 20:30:34 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NbHdaewQ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ryl/jnO3"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3C5082077C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ShEJqCK6";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CG1NKHbp"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8A8B5206C1
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CpZnRV/BpXDld6TCIUOeJU1C07GFiDQ+6FstPgFnuHU=; b=NbHdaewQBQloxy
-	gNUV3tuRaEtGxKlMtJDQzPx3W3wFdeO15CORfl7ObDfQ+fjz4Bt+l9Q343Y9MirbahfYsxznYTNCk
-	u0d2RLppQDoBpGQvGLkjd4gG3vdPCHFEfA0gLwpeEryXLANLFBVe4/Ym0/7QEHPsDyL/6vfwnMgx8
-	HPdQ7Sm4aN3a3hvQ5qvJyP2aIfP4awSVApwiJ6EHOobr6e5ZXgMjPTEQ/ve0zFF9MbJFIB7eRWiBK
-	KbjacPiXU90im4cNhB8Uj4Th2IlMKAcwiLZLHLB/04ae3wx8L/lxfEUQtBh9TDqgC04DqSgRh64ic
-	eVAojM1mN+vh9MS6BC3A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:To:Subject
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=jDVexW40mJ+E5TyQgA49989MVDUfPi7BCjpg0FH2/v4=; b=ShEJqCK6HQYduA
+	HFsigr+g6F7JDzXWPNR8gaOIeZzMyiF4CoJztstC9l2cZEMQMkR9hk+lhI1hMmH9JWaZSVu3PtfW7
+	DvTHqSzvVlOdB5MVmJfZRPM2vWXyge2Exdq1gS8AjIhzuJIzeciXJWeM7UIhr5e5/tb/cKb4F+uXz
+	DHweH7YS9fqaeFonYO+65YuyIemkIN0NbViSEHF12wooRIh/cpK65j3jclu2qEKHCHHUAy2oocihi
+	8e9pHPfFQjBPhi4q3PhVkkO56y7uHCXVIfNJcywUh/jXrweFGFaGs8ZuQdclBGZxh+13YnF+GPBAc
+	fgJcP5YYse4ZOKqPxY5g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hyiQh-0006Ge-1U; Fri, 16 Aug 2019 20:02:31 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1hyirj-0000jD-CW; Fri, 16 Aug 2019 20:30:27 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hyiQd-0006GC-FA
- for linux-amlogic@lists.infradead.org; Fri, 16 Aug 2019 20:02:28 +0000
-Received: by mail-wm1-x341.google.com with SMTP id o4so4933115wmh.2
- for <linux-amlogic@lists.infradead.org>; Fri, 16 Aug 2019 13:02:26 -0700 (PDT)
+ id 1hyirg-0000iu-Fe
+ for linux-amlogic@lists.infradead.org; Fri, 16 Aug 2019 20:30:25 +0000
+Received: by mail-wm1-x336.google.com with SMTP id f72so4985871wmf.5
+ for <linux-amlogic@lists.infradead.org>; Fri, 16 Aug 2019 13:30:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=MVcky00cL9Izjkmq24TTUY3wBYWfFwCVX+CmLNIxHAc=;
- b=Ryl/jnO35VzIc5OmYxSXuX9ZOHwWKrrh9/XKBA2mrIEy6dyJKxcqnc9KP1rmtfbg5z
- +gBgpfQYBWg7tNUMj57KQI+nD27aRFeq6ixsxCONUU849JpGxOBTCrNAR9d/+bnrBchU
- j6K5+0GosP79nhbWtKcE6ExLoSscvu6msxmMAzD/6ovYoPckNfL2vSsN9GFmdYQOzngZ
- t+1zb8DH1QwOSR/cJnh3DkiVU10/fbaXNrP96VLCdg29vIPrN1ILvMlNiisy5PjfuMz0
- pLALKMZZ0mBt3VR0qV4t+WPly5/vYX9gngoJqkHoPRWhBlwrESh0aSDvxKe3a/1J9nJj
- CtzA==
+ h=from:subject:to:cc:message-id:date:user-agent:mime-version
+ :content-language:content-transfer-encoding;
+ bh=T9zrjLIygzStwRFu7jZ+vDx/MRzKjAVtrqummeEGsVY=;
+ b=CG1NKHbp5/TMq+MEe9V6fFd+i4eP5avzHiad9kljw6XMeF3d8/VAClvo+Y2ZTu71H9
+ suIHM2YHtcw/KAWHWSanFwsTCxiz5H4+J8AqIdnFC85WcZ+YJsyGapGWmzoFnBZNC1uN
+ On1Zt+yKTNtJzmFqKDgkLE0igqbSYS9wnXe+aTeUWs59ULwY6tW6V7axXYFbSKlHz/n9
+ Se+6uXqoOGx+qk9Aye6yjNF6mSL7Slik7VnxfuD7qLZN4GmLche7wp7LZhX4Po81Ruqb
+ BC2QAV+/qGjSrWyD6/pL5T6FgqpLrszMTPXwnnYSVkOVnNhLmGWm406ROphWAq4PRMfe
+ kzBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=MVcky00cL9Izjkmq24TTUY3wBYWfFwCVX+CmLNIxHAc=;
- b=CXlRcFWFYLue22gbr3CrsO3KNrcBt0VsWOwlJbW/x0ZQsFQa4Ic0YvMGS7E8RedcqR
- ur3Ui9HtkFANDdTQq3Dk6EBLPv1YX3eVfUcJtvte+JEivmm0k6mvvzovcfSEJRV89WGV
- /Fj+5gdcmWgAEnApoecGQrk6nd+/6d1jNyz6/m6nf4cgkJWSdyZDLZUOwi6wgR7zIgV5
- bw79gjUzQm41o4u+zvf5v5PEeEPQ6h2IffvrrAemQODqVYPqDAqF3u0W1KyHvFf3PMTK
- 7EwN3N21EMOsf4idJhgF5/IAPGTEebXtheUlkusuA8h0KnFE7b4fdo+80VQacdtvRpRu
- 4sUQ==
-X-Gm-Message-State: APjAAAWzF9Vr5dYBUDZZg4yFwGQJAiacJO7S+P0dUsL9wGg2cH1yNDIu
- IIfSds6f3jZiRsCIHo4Nj88a7+33
-X-Google-Smtp-Source: APXvYqzcYrIDjzKdpiQ4tI4a5N55fRtIJCU5ASVcbUwgQs7l82l96u+O+kkNkpM2rDgx/qA1ozKh1A==
-X-Received: by 2002:a1c:2302:: with SMTP id j2mr8505269wmj.174.1565985745527; 
- Fri, 16 Aug 2019 13:02:25 -0700 (PDT)
+ h=x-gm-message-state:from:subject:to:cc:message-id:date:user-agent
+ :mime-version:content-language:content-transfer-encoding;
+ bh=T9zrjLIygzStwRFu7jZ+vDx/MRzKjAVtrqummeEGsVY=;
+ b=AX3UvF0ddHYILYvx7d5VRjDWz8YsdUOkBC6Oh3b+hL9FCvHtaLSa7eKw8dFLELr1aU
+ jSwgUekQXWfiJtVMvWEuy5YGD7w8TdG60cn9+ooUMHpvh4tEK3zeztgdN0jh14G2VVtO
+ 2+m1gKdyl1u9ZijxtsVNFKzkI/02aJmWwMWqCh3BQFFkeF/wIe4kfwQ6yqjh/gsWGCsx
+ QUuNZGhmN3YRFrAFGO1quMRRs2nF//MwRj2ykRIUMNqchiYwJz/rNz51Awq1dFMe94qm
+ uWWW88w9cqdNa2x/bblq6MGfFLGcIJHro57LZzvtgfzqink3khoWxdq1EefjNwlbEsx4
+ ACnA==
+X-Gm-Message-State: APjAAAVsWssbddcfRtcwQw3cPb+BopoP9iE262Tr0DcIr74mWIi3Re9l
+ 1OAvAkOOUKKvRCIgGA2zVRowxerl
+X-Google-Smtp-Source: APXvYqx7oJ4Z5dwI7ZN3OzyuiffQGw6u7ZJ1GJYeeJpiiBIq2be/gWh57gDXhou7nCypWyx9NiPNJg==
+X-Received: by 2002:a1c:39c5:: with SMTP id g188mr8684502wma.167.1565987422640; 
+ Fri, 16 Aug 2019 13:30:22 -0700 (PDT)
 Received: from ?IPv6:2003:ea:8f2f:3200:4112:e131:7f21:ec09?
  (p200300EA8F2F32004112E1317F21EC09.dip0.t-ipconnect.de.
  [2003:ea:8f2f:3200:4112:e131:7f21:ec09])
- by smtp.googlemail.com with ESMTPSA id z8sm4295465wmi.7.2019.08.16.13.02.24
+ by smtp.googlemail.com with ESMTPSA id g12sm6579332wrv.9.2019.08.16.13.30.21
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 16 Aug 2019 13:02:24 -0700 (PDT)
-Subject: Re: [PATCH net-next 0/3] net: phy: remove genphy_config_init
-To: David Miller <davem@davemloft.net>
-References: <95dfdb55-415c-c995-cba3-1902bdd46aec@gmail.com>
- <20190816.115754.393902669786330872.davem@davemloft.net>
+ Fri, 16 Aug 2019 13:30:22 -0700 (PDT)
 From: Heiner Kallweit <hkallweit1@gmail.com>
-Message-ID: <7ca48c8c-80d0-7abc-c0d9-f0ab7f787f04@gmail.com>
-Date: Fri, 16 Aug 2019 22:02:20 +0200
+Subject: [PATCH net-next v2 0/3] net: phy: remove genphy_config_init
+To: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+ David Miller <davem@davemloft.net>, Kevin Hilman <khilman@baylibre.com>,
+ Vivien Didelot <vivien.didelot@gmail.com>
+Message-ID: <62de47ba-0624-28c0-56a1-e2fc39a36061@gmail.com>
+Date: Fri, 16 Aug 2019 22:30:15 +0200
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190816.115754.393902669786330872.davem@davemloft.net>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190816_130227_511806_A90D19CA 
-X-CRM114-Status: GOOD (  10.64  )
+X-CRM114-CacheID: sfid-20190816_133024_550800_C8D1B06A 
+X-CRM114-Status: UNSURE (   9.71  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,30 +99,45 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: andrew@lunn.ch, f.fainelli@gmail.com, netdev@vger.kernel.org,
- khilman@baylibre.com, linux-amlogic@lists.infradead.org,
- vivien.didelot@gmail.com
+Cc: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 16.08.2019 20:57, David Miller wrote:
-> From: Heiner Kallweit <hkallweit1@gmail.com>
-> Date: Thu, 15 Aug 2019 14:01:43 +0200
-> 
->> Supported PHY features are either auto-detected or explicitly set.
->> In both cases calling genphy_config_init isn't needed. All that
->> genphy_config_init does is removing features that are set as
->> supported but can't be auto-detected. Basically it duplicates the
->> code in genphy_read_abilities. Therefore remove genphy_config_init.
-> 
-> Heiner you will need to respin this series as the new adin driver
-> added a new call to genphy_config_init().
-> 
-> Thank you.
-> 
-OK, will do. Thanks.
+Supported PHY features are either auto-detected or explicitly set.
+In both cases calling genphy_config_init isn't needed. All that
+genphy_config_init does is removing features that are set as
+supported but can't be auto-detected. Basically it duplicates the
+code in genphy_read_abilities. Therefore remove genphy_config_init.
+
+v2:
+- remove call also from new adin driver
+
+Heiner Kallweit (3):
+  net: phy: remove calls to genphy_config_init
+  net: dsa: remove calls to genphy_config_init
+  net: phy: remove genphy_config_init
+
+ drivers/net/phy/adin.c         |  4 ---
+ drivers/net/phy/at803x.c       |  4 ---
+ drivers/net/phy/dp83822.c      |  5 ----
+ drivers/net/phy/dp83848.c      | 16 +++++------
+ drivers/net/phy/dp83tc811.c    |  4 ---
+ drivers/net/phy/meson-gxl.c    |  2 +-
+ drivers/net/phy/microchip.c    |  1 -
+ drivers/net/phy/microchip_t1.c |  1 -
+ drivers/net/phy/mscc.c         |  4 +--
+ drivers/net/phy/phy_device.c   | 51 ----------------------------------
+ drivers/net/phy/vitesse.c      |  6 ++--
+ include/linux/phy.h            |  1 -
+ net/dsa/port.c                 |  5 ----
+ 13 files changed, 14 insertions(+), 90 deletions(-)
+
+-- 
+2.22.1
+
 
 _______________________________________________
 linux-amlogic mailing list
