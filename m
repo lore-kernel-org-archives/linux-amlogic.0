@@ -2,88 +2,147 @@ Return-Path: <SRS0=FxKK=WP=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D689EC3A59B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Aug 2019 07:27:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8BA1CC3A59B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Aug 2019 08:06:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A60CF2086C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Aug 2019 07:27:50 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 56A59206DF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Aug 2019 08:06:11 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ptej4tko";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X41GCFmj"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A60CF2086C
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Q1fpebJP";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="eyA+0Uzj"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 56A59206DF
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=FS1AIZcm+vSjxjoqcfXFNW008sudUgBwmVX9bPwskT8=; b=ptej4tkoAljrAJ
-	qitbo3EqG4BpJdjYGumSnwDw3JabcXfP4h2NcNzDjsqr2tszFCjlgJACV8xHkhEB7xl6mF+m+TCwD
-	LirCbn2XyMclKiHREs+7VpVNAB2dqCesIt+VK5i/63+TU24BmUJkv5idb75/pYPINKK4ThJF/1qU4
-	1vwFB1SHxmprv/vi4LJXwtAXX1e3J3snPUltXgvBJrfJ/BLeVMYMZJokW2ey7KOZqmDHuUoqjb5hy
-	TfFsRqOh91z65TkD8vsP124BBv22kSYWf1ec7F6sUkIqrL3b6HL/MxOuSQRSlggKdsbH2cpB7ZeBy
-	npE7CbWs25Oxfx5NJWwA==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=nErDFsXuYWOvDstcpqQ2UPKDQ4dONtJqM19k84VmXwE=; b=Q1fpebJP4Y2q77IrHVGhFZi28i
+	mbL7RPLK5ndlgk3rl4Qop8oZYgx8/xll3sjGQvuI/yD+H5BcTDxS0WIJj2wRLV5MFVcsrpCFHAhof
+	reDjGxtd/eXcEaiuSuVcxU8cpdvVKrekCZszwRZzS/NtGGPV/L1n0OWTci+ZP96lDQeiNICH+XGCX
+	10UBs9+qhFmbAvI3G2kLsVQwF11eLWYnlOuf+bhQNRF1hShp7iF+u8CncJULQLFqikK75kwIsbvgk
+	8ogwnudNzbULAqGgEE0q5LTzOP0AH8AYfWFwE74aVjUBCa0IhMKwya9m6iosEQuk3j2K1doK7fhnS
+	Z43NzAIQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hzc4l-0006cz-GU; Mon, 19 Aug 2019 07:27:35 +0000
-Received: from mail-pf1-x441.google.com ([2607:f8b0:4864:20::441])
+	id 1hzcfz-0006KS-WC; Mon, 19 Aug 2019 08:06:04 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hzc4T-0006Mc-Vu; Mon, 19 Aug 2019 07:27:19 +0000
-Received: by mail-pf1-x441.google.com with SMTP id 129so657825pfa.4;
- Mon, 19 Aug 2019 00:27:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=VQRIe3TChFRyXdxRGe3aSOX8NvTgeh2sO+MrQdRfJfQ=;
- b=X41GCFmjZE+53yWhhAhv+BG9ETVRpdLMB39GhtJePpASGXI66HFO3qalN7vAdwxzKo
- 2qIDZUakhTxlNhyUSrZy4vY+ZERhEDtdlalGYfSgVdB0cQYxB4WZZVk85Vm6njBK8AR5
- HkD6qPu9LaZkVeFLX1sJyIEgU4BdywADTfKNfFLvYvIYtuuVLq+MrVj7zegdoO4t3ESX
- 7kb5rJ0IiNbeQelLmXzpV31uhBCkkRixcU9zV2E+3bgY8piX9LKc8+bNc2H5ondH86+s
- O588PvL8t7wv4gAd3Z84plQCoW3/WEAAewpHGOFYMRmdmmUh9R239zobJGGU07jYi5Yb
- TwJA==
+ id 1hzcfw-0006Jn-Ue
+ for linux-amlogic@lists.infradead.org; Mon, 19 Aug 2019 08:06:02 +0000
+Received: by mail-wm1-x342.google.com with SMTP id 10so731745wmp.3
+ for <linux-amlogic@lists.infradead.org>; Mon, 19 Aug 2019 01:06:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=epBAzomTwREF7utKAiO8uA/nDet3+6nidpQfeCgeSNU=;
+ b=eyA+0UzjkcPUkSrFKirbwINff48bvpAQESz6g9jyMn5vR6Anveh7rQtCd42VE35OCz
+ sDtcbY8+lFmI9rVVfBr7AB9o9eLoB2BGrKMdP5WTsK19vLcYXhXscHgZ/pmzkPsoD+sc
+ amUt3STX6a9vkhm0XyxI78j4Wf+CeUFqvN+DXMeXIv3u2WIOVxJwLcB1Ni5AK3rbzZ4s
+ Hqd9br2+mE4W04oQuskmMR4KSE3DguNG11+43h0qmKN6TaqHrzR21cYxWV7Fz3MLPIVW
+ SSbfcTQe01IYxaKw/rXelLfsm6ZjErQbgPDT+nBVaYcBR7vGm096er9H1yK6ft0H4GJD
+ eYpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=VQRIe3TChFRyXdxRGe3aSOX8NvTgeh2sO+MrQdRfJfQ=;
- b=DlQHLgciV88AlAOw8hiBdOlkJ2QonK4QptFYSRWJZyxpB5ZBkT9/PqL6cdPXIDbK/J
- o/ihU8AR8TzLQGrep3VLC4uaDb/hugrKW+DDdPJmUVhzV8yhyDwdTsgcmVM0g3cdhAhs
- fcSLOLcwiH5MHW+c4h+lKAzcDCQ8joOjiaGZTkWlqjXUjTdjtI1UEofjsKtfvlA5sLaA
- dawrbQ8u2pstEyEA7vLddY795p17Wizgy2fprutYNKk0Z6uet2SvMyp6c/5hXMIoz3L1
- ddNFJetksImWajH8XtCCWImeOFfdBN5LhsoAgDQoOoepq8QcEvuiGHndMygLPmZrNHnx
- lZog==
-X-Gm-Message-State: APjAAAVsODm1ELoZJ7toaFZYy36g+Tgi6kxEIbct33wSLWW9/FDww1f2
- EUmadVNPTjHxV98fggNlbIBvt2s4
-X-Google-Smtp-Source: APXvYqzhl7TSi883y2yAyMZn4MZoHhDOoBmIbs55kK1oFVR+R13YRJoVT+8P0NhIlGTWusuc4QduiA==
-X-Received: by 2002:a17:90a:17ab:: with SMTP id
- q40mr19679774pja.106.1566199637529; 
- Mon, 19 Aug 2019 00:27:17 -0700 (PDT)
-Received: from localhost.localdomain ([110.225.16.165])
- by smtp.gmail.com with ESMTPSA id p1sm14994814pfn.83.2019.08.19.00.27.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 19 Aug 2019 00:27:17 -0700 (PDT)
-From: Nishka Dasgupta <nishkadg.linux@gmail.com>
-To: khilman@baylibre.com, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
-Subject: [PATCH] soc: amlogic: meson-gx-socinfo: Add of_node_put() before
+ h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=epBAzomTwREF7utKAiO8uA/nDet3+6nidpQfeCgeSNU=;
+ b=VORKMls3gVXh3HF9X+bwsK0Kq/dCrzXPUIESxyqR/UxVVeDjIE/ys3pHxvj66fdxSp
+ iHjea4mvGt1U+boJ7Mmevq3yiqG9pFw7aQoO0do0ZbNgDp5eGtHp6gsb85DgpL5SaUHz
+ yW1AzkmC/kaOl6IZjOq6aZql6wShptllsklLWdyp9HrlLybAEC2xJLT33T6j7ISD1AJV
+ jfHrd7PgHRk/1YsULcGaF6QP5DEe6mx5rFSsqUkoFxnm6g+tsY4KBIqt4H6ApOBs8tKk
+ MXtOKHQrZhXtq8hfdZNsJ55BPMcdBMOGWKbgs9RgLnt5NmrWXTPfzYtYZTMm89Bwyfzl
+ MR+Q==
+X-Gm-Message-State: APjAAAXUAjzhOgke7b8flrfvI3Md6Ag+Hd3tqzsERHVdKn4nIXYoi/B2
+ FoSdi+4Jr2tn34BCk4eFUqMCpQnUYwFL9g==
+X-Google-Smtp-Source: APXvYqzDG/U3Y2iIIL7F7xJpQt/Sa2BUizNjztSfAT/n70UClAk/8xZuG3OCt9nwr9rVwEJOjjzX9g==
+X-Received: by 2002:a1c:4d05:: with SMTP id o5mr18434019wmh.129.1566201958482; 
+ Mon, 19 Aug 2019 01:05:58 -0700 (PDT)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id t8sm37904176wra.73.2019.08.19.01.05.57
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 19 Aug 2019 01:05:57 -0700 (PDT)
+Subject: Re: [PATCH] soc: amlogic: meson-gx-socinfo: Add of_node_put() before
  return
-Date: Mon, 19 Aug 2019 12:57:06 +0530
-Message-Id: <20190819072706.31732-1-nishkadg.linux@gmail.com>
-X-Mailer: git-send-email 2.19.1
+To: Nishka Dasgupta <nishkadg.linux@gmail.com>, khilman@baylibre.com,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+References: <20190819072706.31732-1-nishkadg.linux@gmail.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <c30d200e-1bee-f61a-8721-ec58a8b5f93a@baylibre.com>
+Date: Mon, 19 Aug 2019 10:05:57 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
+In-Reply-To: <20190819072706.31732-1-nishkadg.linux@gmail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190819_002718_029708_D1D5ED8E 
-X-CRM114-Status: GOOD (  10.90  )
+X-CRM114-CacheID: sfid-20190819_010601_022244_64844FA0 
+X-CRM114-Status: GOOD (  19.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,42 +154,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Nishka Dasgupta <nishkadg.linux@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The variable np in function meson_gx_socinfo_init takes the return value
-of of_find_compatible_node, which gets a node but does not put it. If
-this node is not put it may cause a memory leak. Hence put np after its
-usefulness has been exhausted.
-Issue found with Coccinelle.
+On 19/08/2019 09:27, Nishka Dasgupta wrote:
+> The variable np in function meson_gx_socinfo_init takes the return value
+> of of_find_compatible_node, which gets a node but does not put it. If
+> this node is not put it may cause a memory leak. Hence put np after its
+> usefulness has been exhausted.
+> Issue found with Coccinelle.
+> 
+> Signed-off-by: Nishka Dasgupta <nishkadg.linux@gmail.com>
+> ---
+>  drivers/soc/amlogic/meson-gx-socinfo.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
+> index bca34954518e..13695a72c695 100644
+> --- a/drivers/soc/amlogic/meson-gx-socinfo.c
+> +++ b/drivers/soc/amlogic/meson-gx-socinfo.c
+> @@ -138,8 +138,10 @@ static int __init meson_gx_socinfo_init(void)
+>  	}
+>  
+>  	/* check if chip-id is available */
+> -	if (!of_property_read_bool(np, "amlogic,has-chip-id"))
+> +	if (!of_property_read_bool(np, "amlogic,has-chip-id")) {
+> +		of_node_put(np);
+>  		return -ENODEV;
+> +	}
+>  
+>  	/* node should be a syscon */
+>  	regmap = syscon_node_to_regmap(np);
+> 
 
-Signed-off-by: Nishka Dasgupta <nishkadg.linux@gmail.com>
----
- drivers/soc/amlogic/meson-gx-socinfo.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Thanks !
 
-diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
-index bca34954518e..13695a72c695 100644
---- a/drivers/soc/amlogic/meson-gx-socinfo.c
-+++ b/drivers/soc/amlogic/meson-gx-socinfo.c
-@@ -138,8 +138,10 @@ static int __init meson_gx_socinfo_init(void)
- 	}
- 
- 	/* check if chip-id is available */
--	if (!of_property_read_bool(np, "amlogic,has-chip-id"))
-+	if (!of_property_read_bool(np, "amlogic,has-chip-id")) {
-+		of_node_put(np);
- 		return -ENODEV;
-+	}
- 
- 	/* node should be a syscon */
- 	regmap = syscon_node_to_regmap(np);
--- 
-2.19.1
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
+Would need :
+Fixes: a9daaba2965e ("soc: Add Amlogic SoC Information driver")
+
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
