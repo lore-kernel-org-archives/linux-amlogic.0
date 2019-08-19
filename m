@@ -2,149 +2,87 @@ Return-Path: <SRS0=FxKK=WP=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E7407C3A59B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Aug 2019 08:44:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B1F5AC3A5A0
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Aug 2019 23:57:22 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B6757206DF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Aug 2019 08:44:41 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7E408206C1
+	for <linux-amlogic@archiver.kernel.org>; Mon, 19 Aug 2019 23:57:22 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UlfK5YG9";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="jIcYdSUC"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B6757206DF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="JacDlTlL";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="tHSxGQVt"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7E408206C1
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=e6Rea6aXeQwEu8Np2zUQkSo2pG2z3M4vUu9Sie3XoVI=; b=UlfK5YG99AkPzV
-	PHHqiGNNTYyDWYBJrxber97Wm5oGFpdObCK6oo+9A9dZ553lCd1Sx8uOD5prCujC2occro8GSiQqI
-	rcJRrnVbCaJmKiMRgNNs4t3fK1AI/dnnLJaUWIVsb+9DW2s49vIeURj8ZbIMLYktxmDIlOYUEoxCF
-	CX041YP9scc+8z9xWqDVusZvI9QnHzM7GTR8yJq+g/qG/VScTtedFKvbJN2E8G8DwPRk+4RUIFUwU
-	ld+CfaTkq1x/fwZnVdgZaG+pwlgKnuC2Y6W2BlRIG04voJz74mFgrKy1DKQaHxtTQRkat9EbJl1Q/
-	Z/24+1RGIr3L8k1w8nrw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=1V6X7cgEc4/3HI6Im/SAyMNTUFNeEgy9pAFs5D0DYiU=; b=JacDlTlL9ud6Pl
+	HFwCXdNPpTRSaHk0nHv6fknO1k/VHuRLxxOVIMfi8e3rfDy2sV3sDO012sOu8U0LQw7W9E+zs/+nt
+	jX2y9agrDRjwnzHOVdBgoooxVIz3VcrGk33xQl77JfpjWtY5at8ErP4RwaYY4PN1ONbE86YQsgFcX
+	loI8hvo9I+BDo4SlB4k93XmiWtXPvy8h6OsVftL1+Gt9QDApT0USBjI9lsR1uxU/em5BHL1ZH11jC
+	0NrG0P+oArbTX7IAzEphhfBteC08JOANFphZPaGiYAFmAGO22jH342a1W1PPLjkDZOM+d5IMZEjlv
+	19v55qEO1eDIHvS7Nr8w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hzdHF-0005KV-M2; Mon, 19 Aug 2019 08:44:33 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1hzrWQ-0007KE-MB; Mon, 19 Aug 2019 23:57:10 +0000
+Received: from mail-pg1-x541.google.com ([2607:f8b0:4864:20::541])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hzdGC-0004Ze-BC
- for linux-amlogic@lists.infradead.org; Mon, 19 Aug 2019 08:43:30 +0000
-Received: by mail-wr1-x444.google.com with SMTP id z1so7774414wru.13
- for <linux-amlogic@lists.infradead.org>; Mon, 19 Aug 2019 01:43:27 -0700 (PDT)
+ id 1hzrWM-0007JG-Na
+ for linux-amlogic@lists.infradead.org; Mon, 19 Aug 2019 23:57:09 +0000
+Received: by mail-pg1-x541.google.com with SMTP id e11so2104832pga.5
+ for <linux-amlogic@lists.infradead.org>; Mon, 19 Aug 2019 16:57:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=sp6JOe2UVBs6PLytrxxuOCrhswEeaqVUNhszYrb2k9w=;
- b=jIcYdSUCecb2h/hqtX52oMRLGd/EW3h/SFIaR/b2ltMRaY9loJSNOfbnTEifkE42n9
- b1bx4Cso0ouoo1qZCWdlxyNxF2VqvrziE08WNlHivn+zmwLd3OIWc06uNAFzjDiDNtMx
- ry9KJBiUEsy9sarx8TSV8x4IfbnvJx4cO1YWLjLxC0XGIMTpfEJru7PNkK1j7tT/Chow
- szn9e7YZWJ1gQPXBAWRg6yBFwjPktJ8Y3jOmKmHj809M53mWASMs4AeHRMwQI/BB8q/l
- 0yFFtH0FrmGTaGxdTAWAb69ZBiIyz1XFbJjtuVT0U6tB5NbVl4RwHZBTsJt86fQyCSFj
- dwZw==
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=rz5flzgwGak4NNzNVSfLJ5qh9oyJuRgNqH+DgyR69y0=;
+ b=tHSxGQVtPdwNCbdBlr3EUeet2KzcghwAx5OLJmU1osGsm5s7ayUadXIPOZAdRSrAM2
+ HnhD0t5RLFE6J+MeJ/5YdgsBe2xzaMdKD93BkYDFjuJkP8FCHX0Mn3AJnYsmjaK5Hda9
+ wW7Vm6kRMV4LLduRWAgj4hqH1cGX8AKgt+1VrdgebZ10JgUmc8nNOx0BQZ3ER/yhkNXH
+ shVJsQ+vVSdRtcAvZc7Wxp00stxPl/8jwdzUkFoQE2EoQX9U5OGNZqj0cUauczTLmqdH
+ PlrQi83nFCcDfHNvDeyk4G0EntDzf3mZJp4kWdvZsPGovrEza3/HrmnU2BIJ25OXLF4S
+ 61/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=sp6JOe2UVBs6PLytrxxuOCrhswEeaqVUNhszYrb2k9w=;
- b=p7lECn9uAa2iQSt278dG2iva1Ro7kCq2StGtUZpcJtvghwDDzIGjjhFj9eTK95FM6S
- CrNnHYUO5MtAcFE1OfVTCq8jA1G7zgz2/xYq2C9SxYFt1RLAFg3WTnZGBKlTz/wtEzgC
- 9/n3kYWf9D+o5WrzVaLiuzTHzFhtJYdSuphiZcXlfutXdpI5S/mulhSETUQxyei7w4rn
- UtRUocbvg79IADYsgBpLO+RwPGmwhkBG8pAwqt5ilPwhe9AsFbfcO7ndOGzD0DWRKlhK
- zx0x+2EXxSNYRM1YNWbEQF+32KoXggZWQhGuS0CVzvCQkqzQzpJlNWCplSQQ568xHDuL
- NtOA==
-X-Gm-Message-State: APjAAAU3XyXIHbna2lkTfOXd83D4svwV5+wrKBcxZ7H3Vk9zj3loPjQa
- bDMs58LgK4pTmiVuQMlhOpb90IFzQboq+g==
-X-Google-Smtp-Source: APXvYqxDb8PeVkwCL6tuUvNTdOWkLbDqOokiYbzIrTc/Mo09U6geHqQzuP7uJFnNxGErnDlHxUSk0A==
-X-Received: by 2002:a5d:4f91:: with SMTP id d17mr25585376wru.74.1566204206351; 
- Mon, 19 Aug 2019 01:43:26 -0700 (PDT)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id r15sm25195629wrj.68.2019.08.19.01.43.25
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 19 Aug 2019 01:43:25 -0700 (PDT)
-Subject: Re: [PATCH RFC v1] clk: Fix potential NULL dereference in
- clk_fetch_parent_index()
-To: Stephen Boyd <sboyd@kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20190815223155.21384-1-martin.blumenstingl@googlemail.com>
- <20190815232951.AA402206C2@mail.kernel.org>
- <CAFBinCA1i=4Lu1xMVyASoFEDhCEn6phDb4h1s15h0ZfGRQX1kw@mail.gmail.com>
- <20190816173147.ED6022086C@mail.kernel.org>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <3653ea15-e223-e7f9-1871-f7c8aa84bf5d@baylibre.com>
-Date: Mon, 19 Aug 2019 10:43:25 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=rz5flzgwGak4NNzNVSfLJ5qh9oyJuRgNqH+DgyR69y0=;
+ b=Wb3/Dw8NXlIYBg6DHqJ46aVIe4kbUvOVxlLh2NBG2q3l0AXxoXh9ICnvzu6q6fttqi
+ t9JUqG7pIY/d4L4Xf53o5OmwvG7pL9O8r8TDgMlQiwz8ydYgE/4kgwSpPsmDennL4z38
+ NjjXGtHQMfmuShfZqCHPt8kfgVX9WD4KY2pAbzqg8I6/V34zzxHOmODc3SbDLfxrDTL+
+ AQG0DqQKzF5Sq+SUyTdrFUQa0vCs8gnuVux6cyZB7IoPk2LRCnOcO2a1Kq6Ah40044CM
+ NBJ/rwvgrq7y2ymE3tcvemDq3E6bkqpIl5hPn3ttL3LIvFwK+RTiTuDg5zvimJzH6a5T
+ 4ykA==
+X-Gm-Message-State: APjAAAV9mRPpL2V6rTqTGjuued30rrK7oN1v3lIRNyDVTidhbo7eOyD+
+ k5yRzI2F2YAMRoula02FxRwrebH7oIc=
+X-Google-Smtp-Source: APXvYqyG2CFR6aRg5YaSP/aZOjNzo2KmtAnC64ArOTdPKTGyLWnsgG+SwjMw2iOl5rS7+z69nBAy7w==
+X-Received: by 2002:a65:4b89:: with SMTP id t9mr21830331pgq.55.1566259025209; 
+ Mon, 19 Aug 2019 16:57:05 -0700 (PDT)
+Received: from localhost ([2601:602:9200:a1a5:35:cf9b:bad:702c])
+ by smtp.gmail.com with ESMTPSA id c199sm21383170pfb.28.2019.08.19.16.57.04
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Mon, 19 Aug 2019 16:57:04 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>, jbrunet@baylibre.com
+Subject: Re: [RFC 04/11] soc: amlogic: Add support for SM1 power controller
+In-Reply-To: <20190701104705.18271-5-narmstrong@baylibre.com>
+References: <20190701104705.18271-1-narmstrong@baylibre.com>
+ <20190701104705.18271-5-narmstrong@baylibre.com>
+Date: Mon, 19 Aug 2019 16:56:55 -0700
+Message-ID: <7hftlwvhdk.fsf@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20190816173147.ED6022086C@mail.kernel.org>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190819_014328_448879_4B057E2B 
-X-CRM114-Status: GOOD (  16.67  )
+X-CRM114-CacheID: sfid-20190819_165706_913654_3E4956A3 
+X-CRM114-Status: GOOD (  17.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,110 +94,125 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- mturquette@baylibre.com, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-On 16/08/2019 19:31, Stephen Boyd wrote:
-> Quoting Martin Blumenstingl (2019-08-15 23:48:08)
->>>> I have seen the original crash when I was testing an MMC driver which
->>>> is not upstream yet on v5.3-rc4. I'm not sure whether this fix is
->>>> "correct" (it fixes the crash for me) or where to point the Fixes tag
->>>> to, it may be one of:
->>>> - fc0c209c147f ("clk: Allow parents to be specified without string names")
->>>> - 1a079560b145 ("clk: Cache core in clk_fetch_parent_index() without names")
->>>>
->>>> This is meant to be applied on top of v5.3-rc4.
->>>>
->>>
->>> Ah ok. I thought that strcmp() would ignore NULL arguments, but
->>> apparently not. I can apply this to clk-fixes.
->> at least ARM [0] and the generic [1] implementations don't
->>
->> I did not bisect this so do you have any suggestion for a Fixes tag? I
->> mentioned two candidates above, but I'm not sure which one to use
->> just let me know, then I'll resend with the fixes tag so you can take
->> it through clk-fixes
->>
->>
-> 
-> I added the fixes tag for the first one, where it was broken, i.e.
-> fc0c209c147f. Thanks.
-> 
+> Add support for the General Purpose Amlogic SM1 Power controller,
+> dedicated to the PCIe, USB, NNA and GE2D Power Domains.
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-For the record, this also fixes the Amlogic Meson GXBB/GXL when AO-CEC driver
-is enabled :
+I like this driver in general, but as I look at all the EE power domains
+for GX, G12 and SM1 they are really very similar.  I had started to
+generalize the gx-pwrc-vpu driver and it ends up looking just like this.
 
-[    7.790319] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000000
-[    7.790324] Mem abort info:
-[    7.790326]   ESR = 0x96000007
-[    7.790330]   Exception class = DABT (current EL), IL = 32 bits
-[    7.790331]   SET = 0, FnV = 0
-[    7.790333]   EA = 0, S1PTW = 0
-[    7.790334] Data abort info:
-[    7.790336]   ISV = 0, ISS = 0x00000007
-[    7.790337]   CM = 0, WnR = 0
-[    7.790341] user pgtable: 4k pages, 48-bit VAs, pgdp=00000000364b7000
-[    7.790343] [0000000000000000] pgd=00000000364f5003, pud=00000000364f6003, pmd=00000000364f7003, pte=0000000000000000
-[    7.790350] Internal error: Oops: 96000007 [#1] SMP
-[    7.790461] Modules linked in: ao_cec(+)
-[    7.793569] CPU: 1 PID: 398 Comm: systemd-udevd Not tainted 5.3.0-rc5 #1
-[    7.800199] Hardware name: Libre Computer Board AML-S905X-CC (DT)
-[    7.806233] pstate: 40000005 (nZcv daif -PAN -UAO)
-[    7.810985] pc : __pi_strcmp+0x1c/0x154
-[    7.814775] lr : clk_fetch_parent_index.part.43+0xe4/0x120
-[    7.820203] sp : ffff0000113d3770
-[    7.823481] x29: ffff0000113d3770 x28: ffff00001136f000
-[    7.828741] x27: 0000000000000100 x26: ffff000010130648
-[    7.834012] x25: ffff000008943100 x24: 0000000000008000
-[    7.839273] x23: ffff80007c15cc00 x22: ffff80007c15cd00
-[    7.844525] x21: ffff80007c15ca00 x20: 0000000000000000
-[    7.849791] x19: 0000000000000000 x18: 0000000000000001
-[    7.855048] x17: 0000000000000000 x16: 0000000000000000
-[    7.860316] x15: ffffffffffffffff x14: ffffffffffffffff
-[    7.865578] x13: 0000000000000028 x12: 0101010101010101
-[    7.870831] x11: 0000000000000004 x10: 0101010101010101
-[    7.876092] x9 : ffffffffffffffff x8 : 7f7f7f7f7f7f7f7f
-[    7.881354] x7 : 0000000000000000 x6 : 0d0d0206ebadf2e1
-[    7.886615] x5 : 61722d6b06020d0d x4 : 8080808000000000
-[    7.891876] x3 : 36c6f636b2d72610 x2 : 00006b32335f6f61
-[    7.897137] x1 : 0000000000000000 x0 : ffff000010b147f0
-[    7.902405] Call trace:
-[    7.904825]  __pi_strcmp+0x1c/0x154
-[    7.908269]  clk_calc_new_rates+0x208/0x260
-[    7.912419]  clk_calc_new_rates+0x10c/0x260
-[    7.916556]  clk_core_set_rate_nolock+0xe8/0x1e8
-[    7.921129]  clk_set_rate+0x34/0xa0
-[    7.924583]  meson_ao_cec_probe+0x19c/0x278 [ao_cec]
-[    7.929498]  platform_drv_probe+0x50/0xa0
-[    7.933461]  really_probe+0xec/0x3d0
-[    7.936989]  driver_probe_device+0xdc/0x130
-[    7.941128]  device_driver_attach+0x6c/0x78
-[    7.945267]  __driver_attach+0x9c/0x168
-[    7.949065]  bus_for_each_dev+0x70/0xc0
-[    7.952860]  driver_attach+0x20/0x28
-[    7.956394]  bus_add_driver+0x190/0x220
-[    7.960190]  driver_register+0x60/0x110
-[    7.963987]  __platform_driver_register+0x44/0x50
-[    7.968646]  meson_ao_cec_driver_init+0x1c/0x1000 [ao_cec]
-[    7.974079]  do_one_initcall+0x74/0x1b0
-[    7.977873]  do_init_module+0x50/0x208
-[    7.981581]  load_module+0x1dc4/0x2350
-[    7.985288]  __se_sys_finit_module+0x9c/0xf8
-[    7.989515]  __arm64_sys_finit_module+0x18/0x20
-[    7.994001]  el0_svc_common.constprop.0+0x7c/0xe8
-[    7.998658]  el0_svc_compat_handler+0x18/0x20
-[    8.002970]  el0_svc_compat+0x8/0x10
-[    8.006510] Code: 540002e1 f2400807 54000141 f8408402 (f8408423)
-[    8.012543] ---[ end trace e915b8961764bcd0 ]---
+I think this driver could be generalized just a little bit more and then
+replace the the GX-specific VPU one, and AFAICT, then be used across all
+the 64-bit SoCs, and be called "meson-pwrc-ee" or something like that...
 
-Neil
+> ---
+>  drivers/soc/amlogic/Kconfig          |  11 ++
+>  drivers/soc/amlogic/Makefile         |   1 +
+>  drivers/soc/amlogic/meson-sm1-pwrc.c | 245 +++++++++++++++++++++++++++
+>  3 files changed, 257 insertions(+)
+>  create mode 100644 drivers/soc/amlogic/meson-sm1-pwrc.c
+>
+> diff --git a/drivers/soc/amlogic/Kconfig b/drivers/soc/amlogic/Kconfig
+> index 5501ad5650b2..596f1afef1a7 100644
+> --- a/drivers/soc/amlogic/Kconfig
+> +++ b/drivers/soc/amlogic/Kconfig
+> @@ -36,6 +36,17 @@ config MESON_GX_PM_DOMAINS
+>  	  Say yes to expose Amlogic Meson GX Power Domains as
+>  	  Generic Power Domains.
+>  
+> +config MESON_SM1_PM_DOMAINS
+> +	bool "Amlogic Meson SM1 Power Domains driver"
+> +	depends on ARCH_MESON || COMPILE_TEST
+> +	depends on PM && OF
+> +	default ARCH_MESON
+> +	select PM_GENERIC_DOMAINS
+> +	select PM_GENERIC_DOMAINS_OF
+> +	help
+> +	  Say yes to expose Amlogic Meson SM1 Power Domains as
+> +	  Generic Power Domains.
+> +
+>  config MESON_MX_SOCINFO
+>  	bool "Amlogic Meson MX SoC Information driver"
+>  	depends on ARCH_MESON || COMPILE_TEST
+> diff --git a/drivers/soc/amlogic/Makefile b/drivers/soc/amlogic/Makefile
+> index bf2d109f61e9..f99935499ee6 100644
+> --- a/drivers/soc/amlogic/Makefile
+> +++ b/drivers/soc/amlogic/Makefile
+> @@ -3,3 +3,4 @@ obj-$(CONFIG_MESON_CLK_MEASURE) += meson-clk-measure.o
+>  obj-$(CONFIG_MESON_GX_SOCINFO) += meson-gx-socinfo.o
+>  obj-$(CONFIG_MESON_GX_PM_DOMAINS) += meson-gx-pwrc-vpu.o
+>  obj-$(CONFIG_MESON_MX_SOCINFO) += meson-mx-socinfo.o
+> +obj-$(CONFIG_MESON_SM1_PM_DOMAINS) += meson-sm1-pwrc.o
+> diff --git a/drivers/soc/amlogic/meson-sm1-pwrc.c b/drivers/soc/amlogic/meson-sm1-pwrc.c
+> new file mode 100644
+> index 000000000000..9ece1d06f417
+> --- /dev/null
+> +++ b/drivers/soc/amlogic/meson-sm1-pwrc.c
+> @@ -0,0 +1,245 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (c) 2017 BayLibre, SAS
+> + * Author: Neil Armstrong <narmstrong@baylibre.com>
+> + */
+> +
+> +#include <linux/of_address.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_domain.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/regmap.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/of_device.h>
+> +#include <dt-bindings/power/meson-sm1-power.h>
+> +
+> +/* AO Offsets */
+> +
+> +#define AO_RTI_GEN_PWR_SLEEP0		(0x3a << 2)
+> +#define AO_RTI_GEN_PWR_ISO0		(0x3b << 2)
+> +
+> +/* HHI Offsets */
+> +
+> +#define HHI_MEM_PD_REG0			(0x40 << 2)
+> +#define HHI_NANOQ_MEM_PD_REG0		(0x46 << 2)
+> +#define HHI_NANOQ_MEM_PD_REG1		(0x47 << 2)
+> +
+> +struct meson_sm1_pwrc;
+> +
+> +struct meson_sm1_pwrc_mem_domain {
+> +	unsigned int reg;
+> +	unsigned int mask;
+> +};
+> +
+> +struct meson_sm1_pwrc_domain_desc {
+> +	char *name;
+> +	unsigned int sleep_reg;
+> +	unsigned int sleep_bit;
+> +	unsigned int iso_reg;
+> +	unsigned int iso_bit;
+> +	unsigned int mem_pd_count;
+> +	struct meson_sm1_pwrc_mem_domain *mem_pd;
+> +};
+
+If you add resets and clocks (using clk bulk like my other proposed
+patch to gx-pwrc-vpu) then this could be used for VPU also.  We could
+ignore my clk bulk patch and then just deprecate the old driver and use
+this one for everything.
+
+We would just need SoC-specific tables selected by compatible-string to
+select the memory pds, and the clocks and resets could (optionaly) come
+from the DT.
+
+Kevin
 
 _______________________________________________
 linux-amlogic mailing list
