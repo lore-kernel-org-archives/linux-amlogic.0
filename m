@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-3.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
 	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7E686C3A589
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2019 20:29:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AECC3C3A589
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2019 20:30:10 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4BCBB20656
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2019 20:29:12 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 80E0522DA7
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2019 20:30:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZZ5By0CH";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="tj0pYCCs"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4BCBB20656
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZTzxiFpg";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="edBJe8t3"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 80E0522DA7
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,58 +26,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2WFkKOChP0smm9gK5zEZaXbbjPDxn4KzOuXVd0hD6pg=; b=ZZ5By0CHnlIM3f
-	c2lZEnilNDipogOmebyGAuXDlI21xhIZMVCJeirJ/zjh2VkSJ7SaIbSBg9lki/nXr4H7o5vN7+g7j
-	JpjqaFdyPJEGTyzp0hiIhGB8dPEMfvCtkFWYXqYHYEO7Gt7rX7jpp4CawSH8RxKRRJorQgloy3U5L
-	aBfb5/CZZelHLYT0Yl3b9D9E2IVzscugAiLl1KZEpjyaw5X9WMRE8BTUrWEX8+6U3G+PFJLzkxtTs
-	nxRe5ZaLEf8fUTPjRmxYjaWut2R3lfU00NfHLAcZpGp6qiUmQB4PkqOY63Cq5V5oKPSXsYk4bJLEk
-	oSEcwxfsahFEW7hvoOLg==;
+	List-Owner; bh=OOlChgr+wH+/zx+GoKvcVVLVo0mOd5QuzC7gj7rh+OM=; b=ZTzxiFpg9HDM3R
+	Xc5zqeCjgFfeaDLzKJBs1KwBiws39lZVQBBredAS1wN3EcLsHb7PP+L0yApmk4yTRykfunVCJ8xd+
+	YO/T5k0V2Q25ssflBIcsoVF5LMNo3cQph+x4+72ZGs0KEEINKxQjChVUr7G0hBQdMo0ynurbAOb+R
+	VEIrFesnQ0GEA2AWByf5ODGp249zcUSI5zJyiJAacq6V6nwLPgcdBvIb6fZ/GF5MgXh48IUnoaAf4
+	PX6YG5nkNjCkDBpQWQS3g6Cjm24JLErN6cm0BDFKaReZOiZBOPMfSHI04SyJyWaTF9AvQ80fTG4W4
+	mGf/m/M7dQHNjr4BP7mg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i0Akd-0005Ez-Cv; Tue, 20 Aug 2019 20:29:07 +0000
-Received: from mail-oi1-x243.google.com ([2607:f8b0:4864:20::243])
+	id 1i0Ala-0006Xy-Nd; Tue, 20 Aug 2019 20:30:06 +0000
+Received: from mail-ot1-x343.google.com ([2607:f8b0:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i0Aka-0005EB-Hr; Tue, 20 Aug 2019 20:29:05 +0000
-Received: by mail-oi1-x243.google.com with SMTP id o6so5159228oic.9;
- Tue, 20 Aug 2019 13:29:04 -0700 (PDT)
+ id 1i0AlX-00060M-M1; Tue, 20 Aug 2019 20:30:04 +0000
+Received: by mail-ot1-x343.google.com with SMTP id q20so6327207otl.0;
+ Tue, 20 Aug 2019 13:30:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=j6E1lyHDsgDU8DiTt3vegXCDVprFaiy8n8sbPdFHGho=;
- b=tj0pYCCsetgnZSZRPyv4P8EZfHeUJz7Oq8sYze0pLvO5MNR/8KfKlfjvm9LnjZtdMm
- 0RMWONs9gPFVr72LH7qMEQaEahe0nxLAEmcZK4hT7DbaqF3ExCtLpAUcIPePe4dsVL08
- InHaq+2NNvkD1PvM3BFhNrUF6owR6q7I8EHUsxO1iMoFI0OzCfCT7MX5tOM6rtC/eaNy
- yflsKa6NMo2TrgHCdqfo6WkirtzOMWWRGc/OqEEAcfE1T1skJEklkJlH+x9BBsYITb6N
- +vj1lFUy2wLbIMeXdS3Rvx9h1lDOX20owB9/qpH7wPO6FuWYUhsE2muoOAF1Ea+xnyjd
- 7HiA==
+ :cc; bh=nrGQupHWTyriQoaaHMHBYejqwnStP0bo0yYGdWFV+8Y=;
+ b=edBJe8t3FW/Ho/MATx/w0v1bez6U7GmZnIcPcVp9+mW+Tzq86GVrTaSENPffngf6jb
+ 9HDiD6txhBfdHAwt9VN0/XwirDey+5QP5tCWAo0j22c8TCaK8ttiyoDOVwlfjqt3M6wC
+ LidmZUfjey5NtpxfZMBvlYjPH1tg+pxIMZLqXYJN3oqfPNi+Br5wpSgSlFJku/EJRDyF
+ Wm+T2nacUB3igFUJUGJofvMR9uRHxPDFIdJrruUoNx8Ot71WCS0egiKRP/AwV1J9tDUJ
+ QJejL3RBsONA5pWHr72npq2v7Al90GangRz5kCzdwW5hW7auR8JgA9j8G/2CtdYn3coQ
+ 2ncA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=j6E1lyHDsgDU8DiTt3vegXCDVprFaiy8n8sbPdFHGho=;
- b=ApumVFvcuQy4rw+VPdWrg3n8lBPOskXXtZEVRjXv8fXz+Ngkr//YqdGWcDJxvYhI1j
- /GZjmk0ISQBTqlKwMb3kxOevP3lQeXL6OEERxPfpQCK7W7jdzQBC6WXd8IpEWOYdDIxK
- hxkpq1aXiSy33jm46fZKl2zNei2Rh56AoiYbXyNrGkB/VewXXpiBH68HsiMweMYQwGdL
- Fx8WCuFlsJavegswVtq+VL6qDhuavNOqM5nsLQZR8iFJOQD9NjjnwsBlKNA3ks0ZOQmw
- yifZFGfY0e7xMHwnT+/fy9HdpucAvRgAhe2xud6ZCS7NI6uST7BSt7VTYVd0HzJNb8Uy
- pplg==
-X-Gm-Message-State: APjAAAXCx0ZVcATo57Z0LLFPw0huZg9aULURIxj+y3HzuDnFmGWSQRyt
- 5HW9B8z/E0pPDXEcnjmIJ7Dt6Xxwr2+H1SGa3tg=
-X-Google-Smtp-Source: APXvYqw0L67k2dTpl+TcYZzMhdPd+8VdAypm5lktacA1LHAmxmKNHY2j19AbzoOhGAoriRZFeI/NEDh66fA5zXBXjEM=
-X-Received: by 2002:aca:4f17:: with SMTP id d23mr1354353oib.154.1566332943483; 
- Tue, 20 Aug 2019 13:29:03 -0700 (PDT)
+ bh=nrGQupHWTyriQoaaHMHBYejqwnStP0bo0yYGdWFV+8Y=;
+ b=t8vvkNroknPaHfKOb3FwiZGorOUORa6oGNEtAbzNrsDbm7a5tYxuedVCCSfyzDoCBm
+ KyE2LH5r7U4gZvxLFiFGokUwm2FYwpH+riWh8wwXqwfShJYwEIlBIBL5PvMAzLl8NYgZ
+ hI0pjtKBwG6gm90CP/jmueqj2bWjo3M7qgPmEHb31+kuQiOZLdoHDLnnMmSnZsH+mG1k
+ i0GEqDY+UlsLQ1B6WdayYO5OCs6hkqliHbVq2QRESlrjqlT1a63X59BPuzlCRt3dzIs8
+ xnlhmTs1+d25G+WrfZpkrnjt18DbNHljXEMT2fOrvdxLuUzfsUOKpTKnG9b1JbVdU22+
+ o1Zg==
+X-Gm-Message-State: APjAAAXcF6V7HdH5VCr6tZ6CMO2JaCpI4flqtV+XzpmxytdkkFCDwH1+
+ lmMFBzOVUR6Ryy1i42qX5RughCqkzrpG5DdlsdOr0088
+X-Google-Smtp-Source: APXvYqy1Lo7z783U1wJS86qYzKMOflQXpO+kzDeScKysRwtKbWufBka5KHmUWv08D7nxtFGp2IQwNA1COCLc+oBL5gY=
+X-Received: by 2002:a9d:604a:: with SMTP id v10mr23610019otj.274.1566333002946; 
+ Tue, 20 Aug 2019 13:30:02 -0700 (PDT)
 MIME-Version: 1.0
 References: <20190814142918.11636-1-narmstrong@baylibre.com>
- <20190814142918.11636-3-narmstrong@baylibre.com>
-In-Reply-To: <20190814142918.11636-3-narmstrong@baylibre.com>
+ <20190814142918.11636-5-narmstrong@baylibre.com>
+In-Reply-To: <20190814142918.11636-5-narmstrong@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 20 Aug 2019 22:28:52 +0200
-Message-ID: <CAFBinCBQwsoO1dGKzzkE4Jh9VeqDhiy__m96X=CZBKSDRrHDOw@mail.gmail.com>
-Subject: Re: [PATCH 02/14] arm64: dts: meson-gx: drop the vpu dmc memory cell
+Date: Tue, 20 Aug 2019 22:29:51 +0200
+Message-ID: <CAFBinCA73WmyzmwY8uooMFdRCP4iGGZjaHjTU4q_6oNnZrkWqQ@mail.gmail.com>
+Subject: Re: [PATCH 04/14] arm64: dts: meson-gx: fix spifc compatible
 To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190820_132904_617482_5392AB6A 
-X-CRM114-Status: UNSURE (   8.68  )
+X-CRM114-CacheID: sfid-20190820_133003_731318_35ABD6ED 
+X-CRM114-Status: UNSURE (   7.41  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -101,16 +101,8 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 On Wed, Aug 14, 2019 at 4:31 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
 > This fixes the following DT schemas check errors:
-> meson-gxl-s805x-libretech-ac.dt.yaml: vpu@d0100000: reg-names: Additional items are not allowed ('dmc' was unexpected)
-> meson-gxl-s805x-libretech-ac.dt.yaml: vpu@d0100000: reg-names: ['vpu', 'hhi', 'dmc'] is too long
-if you have to re-send it for whatever reason I would add:
-"
-The 'dmc' register area was replaced by the amlogic,canvas property
-which was introduced in commit f1726043426c73 ("arm64: dts: meson-gx:
-add dmcbus and canvas nodes.") and commit cf34287986d0b6 ("arm64: dts:
-meson-gx: Add canvas provider node to the vpu")
-"
-
+> meson-gxl-s805x-libretech-ac.dt.yaml: spi@8c80: compatible:0: 'amlogic,meson-gx-spifc' is not one of ['amlogic,meson6-spifc', 'amlogic,meson-gxbb-spifc']
+>
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
