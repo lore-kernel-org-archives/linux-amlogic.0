@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4849AC3A59D
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2019 08:41:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 69362C3A589
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2019 08:42:00 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1CAE622CF7
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2019 08:41:53 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3B9A32377F
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2019 08:42:00 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="q4YyJChS";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="MsWPu6jF"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1CAE622CF7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="O90LRMCk";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="GdPfWrKs"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3B9A32377F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oD1F6rK3yvAvZ0/i2CGrWG1csHDXOtgp92N7wT1MzLE=; b=q4YyJChSHerRJI
-	TL2/Sb5AtU6ASe+Q0qJlN+oXbCpDAnm6JT0kYr6Qij70Iuq8qF3M94mCFsFNqQYuUbb1+kVlEEDAO
-	UBvF5P+jLFetY/bXAkIpA5LFGBmYTKY2Ut/uY0bx/rSe+V3Y1C3xgqiQ0InJMFSaiqpnfW2O94hDb
-	WoHR2LSJ/wAK9CosmHWecWzMZA22SrJMuu2zOqXKTFf3LR9rm+965ER5MMj8aXTKs/uAUe3mvZxdR
-	2wxj3pcUkPuuK97h06fJnO9rPHXJP6ZF3Gsz+7a1JGW6Op+bqHdMAcrdduLf0Fq3WkcLKG76Yw+aL
-	ixxYlbx1di0apk6nOr7A==;
+	List-Owner; bh=P8RbDo9SUAwS76bIy9WymOjg5qCbrocM9UoGIfp/kKQ=; b=O90LRMCkCyUutx
+	96JYIhgyFD3amsnoFVOR2ePCgGmnVSQD0eacg4poH6W+Jgo10c+hopybICIxKVMhD6zM8Eyd9fQiL
+	aZzuWkhzrPNmev73+BerP9nMvd1tYYbuAWpbdPSf12neZk6E2nTRPwCXaoMs2ScFg11HqrRSMvsG8
+	JI5yACsccueBhEnI05j/SVUm4Qe0ukrz75hJ7dBxrAVzqWUeM7dt5/Vr2A/WbOIu9296z1+2fqmjC
+	BrNdk4fXS+10+hCcVIrgAcUdB2j8hHU7L/H0GVeE7W0aH2XLyKwi3jPNMwHVRS3PKYNA+PS8b+DeO
+	YB0alDMaezDtbc89qwVw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hzzi8-0005Gi-Dr; Tue, 20 Aug 2019 08:41:48 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1hzziE-0005Kn-KG; Tue, 20 Aug 2019 08:41:54 +0000
+Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hzzhh-0004u3-Ew
- for linux-amlogic@lists.infradead.org; Tue, 20 Aug 2019 08:41:22 +0000
-Received: by mail-wm1-x342.google.com with SMTP id o4so1862133wmh.2
- for <linux-amlogic@lists.infradead.org>; Tue, 20 Aug 2019 01:41:21 -0700 (PDT)
+ id 1hzzhj-0004vv-0M
+ for linux-amlogic@lists.infradead.org; Tue, 20 Aug 2019 08:41:24 +0000
+Received: by mail-wm1-x329.google.com with SMTP id k1so1569640wmi.1
+ for <linux-amlogic@lists.infradead.org>; Tue, 20 Aug 2019 01:41:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=jE5m0TfqElnaXCkHBFVwFbXc+R1MiIYDmSAYCCl3YU4=;
- b=MsWPu6jFBtdd3leXvljR+mIFouGHkKizVhM8iGdY2lNx+9fBmeUAh5kwBxAy3psYXD
- eeZn/5cjiwstKXDAQa92bAYcvYQCHFf18N2M/Txqe/D4sKuiTYCcgAZUtKaSowmsKaPt
- mdVUi9N1+X4Bw+OSzcfc47lWHTtLHpqJH51wVdWfwpcZabcoDhkWzAhae7/d+B2R+bYh
- o3xGHXuJA58v4Rqd1CMi26soJy6n3bV8vfnYZXwvcSuU1Gl42OmbDRfYO+bARdnDAi8W
- TslFqrIQDT1Jfw/forC72E95oxJ5jC1DERORG4AU1pMNuB/EG66TBPnhAMV+1l4pvgZ9
- R1aA==
+ bh=7lLrSRS8pvD415Y7pil0oxXPvn0IdPhB7KI2Ad+RFYU=;
+ b=GdPfWrKshjNkikUSOYnn/MNowhVUPN//wLj9zC1QBalNX4iF1bDDWiGqlPTEFAjPFd
+ 6JdydSpSg78Ti3PB2/ndGZ8DzoNKJBprGfM+rRSOa5MlafV3yAcFw+zzVU72YvRFN9ZU
+ AhwLMPGytbUritZbatAUwNNe1w/MfGVdWSEOq+1RPKIodRQKVwudCjOUNEQYPe0UuCpN
+ xmY3+xUv52zUZ4WZo1Y71DCr22UbIIofmkKxlwYm+AizZIxl4+fvYeozM58PlPIUVT74
+ M/uo58NK618BYuWSbelEvHQRS2wnGKQIaq9w71HbLuQUrejt37RXGrX2XnMob6rGo1Lb
+ 7QTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=jE5m0TfqElnaXCkHBFVwFbXc+R1MiIYDmSAYCCl3YU4=;
- b=Xax6AVkZEijlWRryQddr2iliZ2eBYcPA3d7qRcfQy8syJks9xt4MRF+fp1F9CH/vNQ
- Re62NjA7LTmIQywKM+82alDGgdEetR8CYgTsFhoVQjyBsGA95Gm8p8UwCLLI73JL/Dha
- HJyE2PyY250rD79g9AILFc+jlw9dswMIGXTcOobfMcQ1yJ+4bLtVUOmdTV2cLUEHbONG
- PIYUDUAHISF8NDKVzdANg3qUdRRPhdtAAfvJROwJZWUvIzBc0PEsJpjau5vHp7Ss05IC
- VynJ8UvaelV1BLt+1qpFsTI77Nt9Y+7B3/wPrPIauYRQCUo3iyxXytl6vLM7hv5uEB+9
- Yaww==
-X-Gm-Message-State: APjAAAWoDQnFikaMf9yajCbt4DALTTISlHbSO1W1+qHpzdOhzq21dles
- cocy929yU+F1Cqxj4Ma+zHWzwg==
-X-Google-Smtp-Source: APXvYqxz2QfYRtKrzranf4cVovpcdQcEZHLRNe8Ltpfp2/9EWb41HLsZFmalHz+UQINsNt8K92A/kQ==
-X-Received: by 2002:a7b:c8cb:: with SMTP id f11mr24737137wml.138.1566290479876; 
- Tue, 20 Aug 2019 01:41:19 -0700 (PDT)
+ bh=7lLrSRS8pvD415Y7pil0oxXPvn0IdPhB7KI2Ad+RFYU=;
+ b=GLlK3Edg32+PwxTNXqVa9hM70UXX2wxk8rJd11gMaBAxZ7+62yFyPfxiPsngB1sZkJ
+ F9G/KY7K1XCFUdYz7H3aYlwjDbiMKmkJtMVo9t2l1sMJIWTdfzHM7sT7l19ZYf8gxWRD
+ 86ZowU7zB7sinxqBjLJXtpS69YW5WDqMzkqG8QistL4Pf52vp/6LGjG+6bfHEnH7bPUd
+ yR3N94r/A+zLzEmgp4JJ8e3wkxL6cmgDZSjOeeqylMD/HdmvoQ+ddckEY5MsMaOdWyJn
+ HYMYE8LMUjwXmYPTqz7bGkcmpT+ilFNFB6PL2Je5TF+qQO4w9BJb1S/d0BH9vI0Niutk
+ 4ULQ==
+X-Gm-Message-State: APjAAAVYD9plTkygnXYNFM1z042K19LxA6S0iw5Hsvx/XVKHu+yvHh/z
+ bmXbTwGX+gD5t8RwMDIKyXvzog==
+X-Google-Smtp-Source: APXvYqwiHM21/zJHepoK/A0Ag59YPDuYQqEc20EqsPCkhW8DLHYUGWxrHv5h2btYx8v7YOae1PMtsQ==
+X-Received: by 2002:a1c:760b:: with SMTP id r11mr557337wmc.41.1566290481158;
+ Tue, 20 Aug 2019 01:41:21 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id g2sm34275648wru.27.2019.08.20.01.41.18
+ by smtp.gmail.com with ESMTPSA id g2sm34275648wru.27.2019.08.20.01.41.19
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 20 Aug 2019 01:41:18 -0700 (PDT)
+ Tue, 20 Aug 2019 01:41:20 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: a.hajda@samsung.com, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
  jernej.skrabec@siol.net, boris.brezillon@collabora.com
-Subject: [RFC 06/11] drm/meson: dw-hdmi: stop enforcing input_bus_format
-Date: Tue, 20 Aug 2019 10:41:04 +0200
-Message-Id: <20190820084109.24616-7-narmstrong@baylibre.com>
+Subject: [RFC 07/11] drm/bridge: dw-hdmi: allow ycbcr420 modes for >= 0x200a
+Date: Tue, 20 Aug 2019 10:41:05 +0200
+Message-Id: <20190820084109.24616-8-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20190820084109.24616-1-narmstrong@baylibre.com>
 References: <20190820084109.24616-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190820_014121_528049_5D7F53E1 
-X-CRM114-Status: UNSURE (   7.85  )
+X-CRM114-CacheID: sfid-20190820_014123_175687_E3F8D840 
+X-CRM114-Status: UNSURE (   9.14  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -105,26 +105,46 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-To allow using formats from negociation, stop enforcing input_bus_format
-in the private dw-plat-data struct.
+Now the DW-HDMI Controller supports the HDMI2.0 modes, enable support
+for these modes in the connector if the platform supports them.
+We limit these modes to DW-HDMI IP version >= 0x200a which
+are designed to support HDMI2.0 display modes.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/gpu/drm/meson/meson_dw_hdmi.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 6 ++++++
+ include/drm/bridge/dw_hdmi.h              | 1 +
+ 2 files changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-index 9a99d3920610..fb09592eba3e 100644
---- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
-+++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-@@ -975,7 +975,6 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
- 	dw_plat_data->phy_ops = &meson_dw_hdmi_phy_ops;
- 	dw_plat_data->phy_name = "meson_dw_hdmi_phy";
- 	dw_plat_data->phy_data = meson_dw_hdmi;
--	dw_plat_data->input_bus_format = MEDIA_BUS_FMT_YUV8_1X24;
- 	dw_plat_data->input_bus_encoding = V4L2_YCBCR_ENC_709;
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+index 316823abdd00..cb560b231d74 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+@@ -2793,6 +2793,12 @@ __dw_hdmi_probe(struct platform_device *pdev,
+ 	hdmi->bridge.of_node = pdev->dev.of_node;
+ #endif
  
- 	platform_set_drvdata(pdev, meson_dw_hdmi);
++	if (hdmi->version >= 0x200a)
++		hdmi->connector.ycbcr_420_allowed =
++			hdmi->plat_data->ycbcr_420_allowed;
++	else
++		hdmi->connector.ycbcr_420_allowed = false;
++
+ 	memset(&pdevinfo, 0, sizeof(pdevinfo));
+ 	pdevinfo.parent = dev;
+ 	pdevinfo.id = PLATFORM_DEVID_AUTO;
+diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
+index c402364aec0d..04e63ed29417 100644
+--- a/include/drm/bridge/dw_hdmi.h
++++ b/include/drm/bridge/dw_hdmi.h
+@@ -126,6 +126,7 @@ struct dw_hdmi_plat_data {
+ 					   const struct drm_display_mode *mode);
+ 	unsigned long input_bus_format;
+ 	unsigned long input_bus_encoding;
++	bool ycbcr_420_allowed;
+ 
+ 	/* Vendor PHY support */
+ 	const struct dw_hdmi_phy_ops *phy_ops;
 -- 
 2.22.0
 
