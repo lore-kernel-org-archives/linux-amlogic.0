@@ -2,89 +2,146 @@ Return-Path: <SRS0=f3iC=WQ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-8.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 02482C3A589
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2019 14:43:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C99D1C3A589
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2019 14:56:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C4ACD22CF7
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2019 14:43:08 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 986C922DA7
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2019 14:56:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EXq39x4c";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="CmcrB9ui"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C4ACD22CF7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EryfLcRD";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="tposMaif"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 986C922DA7
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=aX/bUg7lL6DsIYbhw4VH+7AhK+gIhJr88O3dMGE0v2w=; b=EXq39x4cmZ1kbw
-	O5xBDBu5krdTKJce80V6ClOZbexU2FIJCsBNZvr0G67YENXyjYPr/EI3HgbiPjGdKGSlJ2i71PeUJ
-	CXOrKuFAicn6kCcFwS2hXwktsWFw8n0FA8yW9176M/pXv/0tp3cO2+bmtHR0puUhxhVojEpYZEduq
-	bSZ8i9L/sNBDKEjXkxeCf9v/NnUaBSSBGGeQ7BEE1HJ+3AyxH9q/PIr3DSe0LUEXT9vK6rSvRn6x7
-	uQUH8SjpLxf0Abbjrra70IFgDlvwVoyPzF6z9ZmT0SCSvkcs7sv7DrtiorWyUTzrmcAgqqfgkd7eY
-	bsrn2CgoBgw6ohV9GiQw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=eaDKegRYkjXJASDB3KtWnae+/I0X1fclPPClF6zZgJ0=; b=EryfLcRDVn9JpD
+	K65p/v4H+irN69JUo0j4LipZafON/jLW6pWtVjuw0DPV7TuObVInJ+kaNroY81gA1eHA4hxirof6n
+	PEdG6s4lZZ/+Oi7UePfAHpsPSanKodySt2+PCosPpqMQDqmDbWZePLhV8PlqjxsJ8Oh0D5jzwjZuZ
+	hPwJVlm+6/Auv9Wtlh9x+GC2g0D7bhyHccGyQ0l36QHb24iLiK/NxnMPMEwatduAVkJhLQC8zOm2n
+	TBr9GP0Hjolf7E81jwfZTn1+WsEuUUpE6gwkkoSN4hnyA6QhUJJeaQ/WcXCEQNGKdfEhg8JYknEgK
+	3+laMs0rQ23rZfZGgiVA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i05Lk-0005WX-JA; Tue, 20 Aug 2019 14:43:04 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1i05Ya-0004Ul-3b; Tue, 20 Aug 2019 14:56:20 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i05Jm-0003WF-SE
- for linux-amlogic@lists.infradead.org; Tue, 20 Aug 2019 14:41:09 +0000
-Received: by mail-wm1-x344.google.com with SMTP id p77so2572082wme.0
- for <linux-amlogic@lists.infradead.org>; Tue, 20 Aug 2019 07:41:02 -0700 (PDT)
+ id 1i05Y3-0003wD-Uf
+ for linux-amlogic@lists.infradead.org; Tue, 20 Aug 2019 14:55:50 +0000
+Received: by mail-wr1-x442.google.com with SMTP id c3so12741054wrd.7
+ for <linux-amlogic@lists.infradead.org>; Tue, 20 Aug 2019 07:55:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=hkyCmmALp09LgyfzPKG7zyXxpn4Vp2Gtq8noIIEOGls=;
- b=CmcrB9uin8EfyBZRLXA131OjGURvTTniB88LvhaxXWmne1raEW/V8XBgXqb8gBcFnN
- voDrqW6B+XiJSkDUf6UDCFeYTUJIsQFXkklLJb/29c+P1Y2iKQA//5tMf1Vf37jTgcMi
- 5YM5A+mRqbf1D7TbFauFN0ZR6s6DLJd3shJXz79hVSHZ8fDJoQQQNzauJBXq8fLZDKRI
- cdaH+Px80OJNcWCskaEi5HUCuu/O+XPB109VFsh3jofx/0rmcJtEdt0Kv2zlkI95e0mA
- d8zE7VJu7DlXLB9IgiM2AZV0ojSjGGbOUIJGZgaZ3MR/MsyZozBZxfMRgPyHZFUV2wJS
- O/rQ==
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=zZepwu9ueKEOx+fYqmSpoK5g7HYyUbH4KWMECFWOdXU=;
+ b=tposMaifZ4yckMr/uXwvNYEb9viI167UgXc0+QSJe2vsGZAvXR1PxA9xww65M68zhx
+ nHjdM9vFnE/DID1v81OAp5In+uv2Naq++AGPMeH6tsl4YTslwn3fOcETdugZM4JrimEf
+ YtjFXRHHvve29I9zGlYvxuemmLH0KYGHF/tSWNNomgleo8DD26+rTf3nvlW4s+d1bqyt
+ E4RnqLDCNwAgKUOG+Z6KcMJxEIIGhG9pR3BU3M2j1LQacqnsfjX8aQaTn3qmALCv6hqu
+ f7nTUbFsGfJhcYWvmC++KN4P36F80mCnH+gZUtN7anaZhVms1QTF6A2Fcd1FPZ15wmfs
+ 7g0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=hkyCmmALp09LgyfzPKG7zyXxpn4Vp2Gtq8noIIEOGls=;
- b=OgqT6zXhoI3aYLkG6moMenhWTYvNgeRlPc6CsaZw1ZNxvuPY3Qvy547r0PLRp3ceP4
- FHzu60JyhZvK8Hn1JSlGFwgA7FnSREHo4zUGHWQ/e0LDeFDIuixHtcmIysU8dMdqP5nM
- HLrvP8Q1Efz3PLA4Rcxv0yDAj+Bzi0VmCQyapbtdJ/m0r8Z6REPMmi887gBIbpJUopvy
- Gm9NzJH/QQy5G+TBw1MTPMWsqq6opLv/hhtdV/X/af2gEZBy4P7lnA1P7i2vOys1YrXZ
- OGnFrR/5IUTM5zTko31dLsC90O2QDHZ2p0uDqwpiUs2MC0ctLy81zeFlotXVtIbqsrEB
- 9yPg==
-X-Gm-Message-State: APjAAAVhdOOJtpd1nSgSbQezwhK+GlLO1PGbUr2VUXBdomjjHimp0Gtw
- rMtSDQr7niX5Ro05jIpKqY7zeA==
-X-Google-Smtp-Source: APXvYqxE1UocLLJIGj+qa121b1J1P2Z7TFTsdeLiYhSC8aPtfjpP2T2/VhNf3pAQR82l3L5H3plJmg==
-X-Received: by 2002:a1c:d185:: with SMTP id i127mr361632wmg.63.1566312061423; 
- Tue, 20 Aug 2019 07:41:01 -0700 (PDT)
-Received: from bender.baylibre.local
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id a18sm21826750wrt.18.2019.08.20.07.41.00
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 20 Aug 2019 07:41:00 -0700 (PDT)
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=zZepwu9ueKEOx+fYqmSpoK5g7HYyUbH4KWMECFWOdXU=;
+ b=K55qiJ/ENMucfk9itosDq3NCGl4cYXyZZkGYaiy8fBwD06uHOAHblRGjbqcAjsjhpS
+ F7nXful4s8OtgBTDJHmlNtDhrU/CWdb2M2yF8B05DJs4UzS5Qi/l7WfRb038TGlfiHC/
+ atxWlB8FHqHPmQpi/X3Sh83Czr6TCnZok9T2Ivo7ktDL0WK2SHrIRbfeU/9XNpTaJpAh
+ xeCXYfyEBF8ga+VgrQMzEXcWecnk7KbSSOPWzhBdbbr6Q8DWuld4/EG8ANntRCFzZYBt
+ LgG/MZMJGqRjR7LpwyuxACh5Gb/1e9oRxUYvS6V4kn9+pYbKTLbmN75Hs4TIU83m559J
+ uZpw==
+X-Gm-Message-State: APjAAAW4gUJxmvNq2lXvMPjJIoU7oLydUlNBDosOVmlIS1CUXQjJLbkl
+ iHluZBngJvCFT/xsUXTvWeWxEw==
+X-Google-Smtp-Source: APXvYqyVV9STfrHmB0MpI1nYhPbNbC/FZfvcSzifiQ4xXgnsgfCDp6k+ftvdfOZh9QaJIyxRu2Up1g==
+X-Received: by 2002:adf:fc51:: with SMTP id e17mr34586492wrs.348.1566312946192; 
+ Tue, 20 Aug 2019 07:55:46 -0700 (PDT)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id 24sm151066wmf.10.2019.08.20.07.55.45
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 20 Aug 2019 07:55:45 -0700 (PDT)
+Subject: Re: [RFC 04/11] soc: amlogic: Add support for SM1 power controller
+To: Kevin Hilman <khilman@baylibre.com>, jbrunet@baylibre.com
+References: <20190701104705.18271-1-narmstrong@baylibre.com>
+ <20190701104705.18271-5-narmstrong@baylibre.com>
+ <7hftlwvhdk.fsf@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
-To: khilman@baylibre.com
-Subject: [PATCH 6/6] arm64: dts: add support for SM1 based SEI Robotics SEI610
-Date: Tue, 20 Aug 2019 16:40:52 +0200
-Message-Id: <20190820144052.18269-7-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190820144052.18269-1-narmstrong@baylibre.com>
-References: <20190820144052.18269-1-narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <98bda35e-1b4c-404c-fdbd-eaef9ecf38a6@baylibre.com>
+Date: Tue, 20 Aug 2019 16:55:44 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
+In-Reply-To: <7hftlwvhdk.fsf@baylibre.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190820_074102_935631_F6592C7A 
-X-CRM114-Status: GOOD (  17.12  )
+X-CRM114-CacheID: sfid-20190820_075548_106524_E5D37A53 
+X-CRM114-Status: GOOD (  22.30  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,430 +154,139 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add support for the Amlogic SM1 Based SEI610 board.
+On 20/08/2019 01:56, Kevin Hilman wrote:
+> Neil Armstrong <narmstrong@baylibre.com> writes:
+> 
+>> Add support for the General Purpose Amlogic SM1 Power controller,
+>> dedicated to the PCIe, USB, NNA and GE2D Power Domains.
+>>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> 
+> I like this driver in general, but as I look at all the EE power domains
+> for GX, G12 and SM1 they are really very similar.  I had started to
+> generalize the gx-pwrc-vpu driver and it ends up looking just like this.
 
-The SM1 SoC is a derivative of the G12A SoC Family with :
-- Cortex-A55 core instead of A53
-- more power domains, including USB & PCIe
-- a neural network co-processor (NNA)
-- a CSI input and image processor
-- some changes in the audio complex, thus not yet enabled
+Yes I developed it to be generic, but when starting to fill up the GXBB/GXL/G12A
+domains, except the VPU, they only need the PD parts.
 
-The SEI610 board is a derivative of the SEI510 board with :
-- removed ADC based touch button, replaced with 3x GPIO buttons
-- physical switch disabling on-board MICs
-- USB-C port for USB 2.0 OTG
-- On-board FTDI USB2SERIAL port for Linux console
+> 
+> I think this driver could be generalized just a little bit more and then
+> replace the the GX-specific VPU one, and AFAICT, then be used across all
+> the 64-bit SoCs, and be called "meson-pwrc-ee" or something like that...
+> 
+>> ---
+>>  drivers/soc/amlogic/Kconfig          |  11 ++
+>>  drivers/soc/amlogic/Makefile         |   1 +
+>>  drivers/soc/amlogic/meson-sm1-pwrc.c | 245 +++++++++++++++++++++++++++
+>>  3 files changed, 257 insertions(+)
+>>  create mode 100644 drivers/soc/amlogic/meson-sm1-pwrc.c
+>>
+>> diff --git a/drivers/soc/amlogic/Kconfig b/drivers/soc/amlogic/Kconfig
+>> index 5501ad5650b2..596f1afef1a7 100644
+>> --- a/drivers/soc/amlogic/Kconfig
+>> +++ b/drivers/soc/amlogic/Kconfig
+>> @@ -36,6 +36,17 @@ config MESON_GX_PM_DOMAINS
+>>  	  Say yes to expose Amlogic Meson GX Power Domains as
+>>  	  Generic Power Domains.
+>>  
+>> +config MESON_SM1_PM_DOMAINS
+>> +	bool "Amlogic Meson SM1 Power Domains driver"
+>> +	depends on ARCH_MESON || COMPILE_TEST
+>> +	depends on PM && OF
+>> +	default ARCH_MESON
+>> +	select PM_GENERIC_DOMAINS
+>> +	select PM_GENERIC_DOMAINS_OF
+>> +	help
+>> +	  Say yes to expose Amlogic Meson SM1 Power Domains as
+>> +	  Generic Power Domains.
+>> +
+>>  config MESON_MX_SOCINFO
+>>  	bool "Amlogic Meson MX SoC Information driver"
+>>  	depends on ARCH_MESON || COMPILE_TEST
+>> diff --git a/drivers/soc/amlogic/Makefile b/drivers/soc/amlogic/Makefile
+>> index bf2d109f61e9..f99935499ee6 100644
+>> --- a/drivers/soc/amlogic/Makefile
+>> +++ b/drivers/soc/amlogic/Makefile
+>> @@ -3,3 +3,4 @@ obj-$(CONFIG_MESON_CLK_MEASURE) += meson-clk-measure.o
+>>  obj-$(CONFIG_MESON_GX_SOCINFO) += meson-gx-socinfo.o
+>>  obj-$(CONFIG_MESON_GX_PM_DOMAINS) += meson-gx-pwrc-vpu.o
+>>  obj-$(CONFIG_MESON_MX_SOCINFO) += meson-mx-socinfo.o
+>> +obj-$(CONFIG_MESON_SM1_PM_DOMAINS) += meson-sm1-pwrc.o
+>> diff --git a/drivers/soc/amlogic/meson-sm1-pwrc.c b/drivers/soc/amlogic/meson-sm1-pwrc.c
+>> new file mode 100644
+>> index 000000000000..9ece1d06f417
+>> --- /dev/null
+>> +++ b/drivers/soc/amlogic/meson-sm1-pwrc.c
+>> @@ -0,0 +1,245 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +/*
+>> + * Copyright (c) 2017 BayLibre, SAS
+>> + * Author: Neil Armstrong <narmstrong@baylibre.com>
+>> + */
+>> +
+>> +#include <linux/of_address.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/pm_domain.h>
+>> +#include <linux/bitfield.h>
+>> +#include <linux/regmap.h>
+>> +#include <linux/mfd/syscon.h>
+>> +#include <linux/of_device.h>
+>> +#include <dt-bindings/power/meson-sm1-power.h>
+>> +
+>> +/* AO Offsets */
+>> +
+>> +#define AO_RTI_GEN_PWR_SLEEP0		(0x3a << 2)
+>> +#define AO_RTI_GEN_PWR_ISO0		(0x3b << 2)
+>> +
+>> +/* HHI Offsets */
+>> +
+>> +#define HHI_MEM_PD_REG0			(0x40 << 2)
+>> +#define HHI_NANOQ_MEM_PD_REG0		(0x46 << 2)
+>> +#define HHI_NANOQ_MEM_PD_REG1		(0x47 << 2)
+>> +
+>> +struct meson_sm1_pwrc;
+>> +
+>> +struct meson_sm1_pwrc_mem_domain {
+>> +	unsigned int reg;
+>> +	unsigned int mask;
+>> +};
+>> +
+>> +struct meson_sm1_pwrc_domain_desc {
+>> +	char *name;
+>> +	unsigned int sleep_reg;
+>> +	unsigned int sleep_bit;
+>> +	unsigned int iso_reg;
+>> +	unsigned int iso_bit;
+>> +	unsigned int mem_pd_count;
+>> +	struct meson_sm1_pwrc_mem_domain *mem_pd;
+>> +};
+> 
+> If you add resets and clocks (using clk bulk like my other proposed
+> patch to gx-pwrc-vpu) then this could be used for VPU also.  We could
+> ignore my clk bulk patch and then just deprecate the old driver and use
+> this one for everything.
+> 
+> We would just need SoC-specific tables selected by compatible-string to
+> select the memory pds, and the clocks and resets could (optionaly) come
+> from the DT.
 
-Audio, Display and USB support will be added later when support of the
-corresponding power domains will be added, for now they are kept disabled.
+Could you elaborate ?
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../boot/dts/amlogic/meson-sm1-sei610.dts     | 300 ++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-sm1.dtsi    |  68 ++++
- 3 files changed, 369 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+Do you mean I should slit out the memory PDs as different compatible ?
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index ae5e8d0c08da..edbf128e7707 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -34,3 +34,4 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-q200.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-q201.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-rbox-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-vega-s96.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-new file mode 100644
-index 000000000000..12dab0ba2f26
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-@@ -0,0 +1,300 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 BayLibre SAS. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-sm1.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/gpio/meson-g12a-gpio.h>
-+
-+/ {
-+	compatible = "seirobotics,sei610", "amlogic,sm1";
-+	model = "SEI Robotics SEI610";
-+
-+	aliases {
-+		serial0 = &uart_AO;
-+		ethernet0 = &ethmac;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys-polled";
-+		poll-interval = <100>;
-+
-+		key1 {
-+			label = "A";
-+			linux,code = <BTN_0>;
-+			gpios = <&gpio GPIOH_6 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		key2 {
-+			label = "B";
-+			linux,code = <BTN_1>;
-+			gpios = <&gpio GPIOH_7 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		key3 {
-+			label = "C";
-+			linux,code = <BTN_2>;
-+			gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		bluetooth {
-+			label = "sei610:blue:bt";
-+			gpios = <&gpio GPIOC_7 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
-+			default-state = "off";
-+		};
-+	};
-+
-+	pwmleds {
-+		compatible = "pwm-leds";
-+
-+		power {
-+			label = "sei610:red:power";
-+			pwms = <&pwm_AO_ab 0 30518 0>;
-+			max-brightness = <255>;
-+			linux,default-trigger = "default-on";
-+			active-low;
-+		};
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x40000000>;
-+	};
-+
-+	ao_5v: regulator-ao_5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "AO_5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&dc_in>;
-+		regulator-always-on;
-+	};
-+
-+	dc_in: regulator-dc_in {
-+		compatible = "regulator-fixed";
-+		regulator-name = "DC_IN";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	emmc_1v8: regulator-emmc_1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "EMMC_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	vddao_3v3: regulator-vddao_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&dc_in>;
-+		regulator-always-on;
-+	};
-+
-+	/* Used by Tuner, RGB Led & IR Emitter LED array */
-+	vddao_3v3_t: regultor-vddao_3v3_t {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_3V3_T";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vddao_3v3>;
-+		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
-+		enable-active-low;
-+		regulator-always-on;
-+	};
-+
-+	vddio_ao1v8: regulator-vddio_ao1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_AO1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	reserved-memory {
-+		/* TEE Reserved Memory */
-+		bl32_reserved: bl32@5000000 {
-+			reg = <0x0 0x05300000 0x0 0x2000000>;
-+			no-map;
-+		};
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-+		clocks = <&wifi32k>;
-+		clock-names = "ext_clock";
-+	};
-+
-+	wifi32k: wifi32k {
-+		compatible = "pwm-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
-+	};
-+};
-+
-+&cec_AO {
-+	pinctrl-0 = <&cec_ao_a_h_pins>;
-+	pinctrl-names = "default";
-+	status = "disabled";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&cecb_AO {
-+	pinctrl-0 = <&cec_ao_b_h_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&ethmac {
-+	status = "okay";
-+	phy-handle = <&internal_ephy>;
-+	phy-mode = "rmii";
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+	pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&ir {
-+	status = "okay";
-+	pinctrl-0 = <&remote_input_ao_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&pwm_AO_ab {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_ao_a_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&xtal>;
-+	clock-names = "clkin0";
-+};
-+
-+&pwm_ef {
-+	status = "okay";
-+	pinctrl-0 = <&pwm_e_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&xtal>;
-+	clock-names = "clkin0";
-+};
-+
-+&saradc {
-+	status = "okay";
-+	vref-supply = <&vddio_ao1v8>;
-+};
-+
-+/* SDIO */
-+&sd_emmc_a {
-+	status = "okay";
-+	pinctrl-0 = <&sdio_pins>;
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	sd-uhs-sdr50;
-+	max-frequency = <100000000>;
-+
-+	non-removable;
-+	disable-wp;
-+
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddio_ao1v8>;
-+
-+	brcmf: wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
-+
-+/* SD card */
-+&sd_emmc_b {
-+	status = "okay";
-+	pinctrl-0 = <&sdcard_c_pins>;
-+	pinctrl-1 = <&sdcard_clk_gate_c_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <50000000>;
-+	disable-wp;
-+
-+	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddao_3v3>;
-+};
-+
-+/* eMMC */
-+&sd_emmc_c {
-+	status = "okay";
-+	pinctrl-0 = <&emmc_pins>, <&emmc_ds_pins>;
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	max-frequency = <200000000>;
-+	non-removable;
-+	disable-wp;
-+
-+	mmc-pwrseq = <&emmc_pwrseq>;
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&emmc_1v8>;
-+};
-+
-+&uart_A {
-+	status = "okay";
-+	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-+		max-speed = <2000000>;
-+		clocks = <&wifi32k>;
-+		clock-names = "lpo";
-+		vbat-supply = <&vddao_3v3>;
-+		vddio-supply = <&vddio_ao1v8>;
-+	};
-+};
-+
-+/* Exposed via the on-board USB to Serial FT232RL IC */
-+&uart_AO {
-+	status = "okay";
-+	pinctrl-0 = <&uart_ao_a_pins>;
-+	pinctrl-names = "default";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-new file mode 100644
-index 000000000000..e902d4f9165f
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-@@ -0,0 +1,68 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ */
-+
-+#include "meson-g12-common.dtsi"
-+
-+/ {
-+	compatible = "amlogic,sm1";
-+
-+	cpus {
-+		#address-cells = <0x2>;
-+		#size-cells = <0x0>;
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x0>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+
-+		cpu1: cpu@1 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x1>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+
-+		cpu2: cpu@2 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x2>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+
-+		cpu3: cpu@3 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x3>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+
-+		l2: l2-cache0 {
-+			compatible = "cache";
-+		};
-+	};
-+};
-+
-+&cecb_AO {
-+	compatible = "amlogic,meson-sm1-ao-cec";
-+};
-+
-+&clk_msr {
-+	compatible = "amlogic,meson-sm1-clk-measure";
-+};
-+
-+&pwrc_vpu {
-+	status = "disabled";
-+};
-+
-+&vpu {
-+	status = "disabled";
-+};
--- 
-2.22.0
+Let me try to fit the VPU stuff in it.
+
+Neil
+
+> 
+> Kevin
+> 
 
 
 _______________________________________________
