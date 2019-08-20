@@ -2,90 +2,86 @@ Return-Path: <SRS0=f3iC=WQ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 89287C3A5A0
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2019 00:06:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A8E78C3A589
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2019 05:46:05 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5AE0B2082F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2019 00:06:37 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7B1A5214DA
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2019 05:46:05 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mLYvwRPz";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="wGnT9m7b"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5AE0B2082F
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="L8U7AXQM";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="hFOjmkcH"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7B1A5214DA
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Tb4Kd9r9WW3lukvfwW6R/1VduGa1UNIKprJPUqtIXhg=; b=mLYvwRPzxe/iL/
-	wxdnW13ULyb8Dg+G69WMGkVDoX1wUyT4w/xg0koa5RX3gyBhYawJP7L+MNcqT6yLbJCAAqQg29Ax5
-	1zWpU1Eo4x2hGwvr6x0vzJc7gEWYoEa4Te8xrBzYTTQKzT3GVw+A5VLiaMljNQg5mEzU/3+36MWxL
-	9EAhshLJjf6o7uPo0MgMqaLAYhAVdiIYsIp4pMHUeunvShUtA8y9pjZadpgVOcZnnG1W4PCeJQ8rF
-	etgBga/+4n8O6NUcO61mewz/9rStNbbYDUJ4msRB/p44xy7xiwyr+rMk5kGQ+alKfOatb4zopNC5F
-	ztYEOhWVSfr32fkvdMXg==;
+	List-Owner; bh=4pdlKhGv7kND+MXMhxIzPa4q39Atfw7CE3ubs0boyLc=; b=L8U7AXQME7ZAa4
+	+5D78G42IJHqyApXGay998+GD2eFVTCOlq1esy0Kis6SgEB9+6dO3psR1+ESsUBvPTXIZ56qw0qE1
+	2xLI5gRjzlZCKGXZOvD0hCxF2b62LguGWnauYKt+McwfeBsoiW7M8ns23ZFrWUKEkazNdAqilOHNN
+	2cUR9I72qmgYPwZAOiTwxWaLjAb1z2aIQHdhX46O5/J6vCp9Foh4hY98w90pFV5N/qvUpu/SubnMP
+	Xc0X62CEy1wp/rLTUvFN+EqYSWN0V0PgsnHxnEALpF/nH5bZ/vp5UsdqyCcVl6b/+qS+aDMxejrNf
+	S3KmkDs27nMBVBGxqSDg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1hzrfQ-0002mA-Tw; Tue, 20 Aug 2019 00:06:28 +0000
-Received: from mail-pl1-x643.google.com ([2607:f8b0:4864:20::643])
+	id 1hzwxv-0003lN-U1; Tue, 20 Aug 2019 05:45:55 +0000
+Received: from mail-oi1-x242.google.com ([2607:f8b0:4864:20::242])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1hzrf5-0002ae-5L
- for linux-amlogic@lists.infradead.org; Tue, 20 Aug 2019 00:06:09 +0000
-Received: by mail-pl1-x643.google.com with SMTP id 4so1755837pld.10
- for <linux-amlogic@lists.infradead.org>; Mon, 19 Aug 2019 17:06:05 -0700 (PDT)
+ id 1hzwxs-0003ka-Nn; Tue, 20 Aug 2019 05:45:54 +0000
+Received: by mail-oi1-x242.google.com with SMTP id y8so3197662oih.10;
+ Mon, 19 Aug 2019 22:45:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=qQOXa0QSQ8+7zZiklPWl3hCCcZsK+hqnhGUid1sWCU8=;
- b=wGnT9m7b9TR7M7i9MBlpKp6tEOWrDHxiWt77j4NAxEsRfJe/itBFxWCAr7XoUItxbK
- zeP9aFQ/wUJgiuSXIObMoXTjG6xFILJo8WmbIVvsE5IjpT1xQJFvDTJZ3z9i/ICG6t8D
- uZaiGVv8m+1cLepmoqsGHfcQsLCUNHsZ9uNwR7v0MTQsEjqeYijC80kN1yZM9T3qTo6B
- rlAISdOA/qwXYZCWu+6AsxlF/iAM/+nKcaZRPxMa9Knikvh7y4CWffTaqOc4tGUB5m74
- 7cmuPVfGzBzCBA3wPl/JaYvwFeFl7dIz68XgvMUL4rVTW3O35pUyCwAtKvqFTer9YMkZ
- mGhA==
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=SUi6S9fkx8K9UBpuxHy4pZiVt9/OmtTgDbX0hbV2Tuo=;
+ b=hFOjmkcH7RFWvN6+QDT1OwUVPXgsmELeE2XT9k9xYzkiyXBmxBbESdtvvm9LgrZ9E9
+ S4A6/V7J07psnKpkeCI/1UCuxG4lmicIgPVJbHhdlyFZZG6iH2J2YBWjr+rpBaAccHNc
+ ZL0q1xqEC7QL3wUi/3LXIHIU4kcxU7DCrpwXdGmVUkplrPVhQNrHgU8UT5Y2nnoeGIsM
+ 86/UYCHqz/0WUtEczq/ovBvKAlygBGLDj56jw4fZvXkt+YnGBcXhc5lwRptgJjQ/mcDo
+ qn1Oa4RleIRleeFlBKsnxOImKyRBYSCzImcFVAwLWWMTsVZvvjLtTO9zEKa4+LR8UIxX
+ hnaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=qQOXa0QSQ8+7zZiklPWl3hCCcZsK+hqnhGUid1sWCU8=;
- b=LaQ5LZ7sKP1QHVUtxltj1MKXQ/AlbsWeY/fnF8lngArSXzOtCs5yfeykG4zYtVBSeu
- E3V+DvBut1ZwzJEUaFN2AIPXalePExCeXpllWLBi0tlvhzyou12Rg5FBBIaOGAi++6jR
- f/cFU9UTV/cr+VO+jH1YbUoBa0FJIFVg5pK2cVyIIvMEN8e6RFBv9s2V9DkvxxyNuhEd
- tR/aCBGRkDBTq6UbFPdYVocG34Xbck0DVQQEgoemM9Vyu03HPqsE6MRurVPGt8kKMvoq
- 2x90Qv2O8sRscmo0eO+31/Qn9a1lwuiz5DbG9vYATzKsy2wqULgHVKudGELKtDMayYxF
- wYFA==
-X-Gm-Message-State: APjAAAWX4E+IxewgYEMD+TdEP02yis1P9rEIln0hrz00gv533c+IM/wm
- MTUWK+AOfMSIu/2OpqGJYOr8gA==
-X-Google-Smtp-Source: APXvYqxODMOaWdUOfaqCWz58eCyX2XpNVazF2y31NY989nA8wv08oSs0Wv5q/o/p1dAhx7h45OxnQA==
-X-Received: by 2002:a17:902:6f10:: with SMTP id
- w16mr2661912plk.143.1566259565283; 
- Mon, 19 Aug 2019 17:06:05 -0700 (PDT)
-Received: from localhost ([2601:602:9200:a1a5:35:cf9b:bad:702c])
- by smtp.gmail.com with ESMTPSA id e129sm6062949pfa.92.2019.08.19.17.06.04
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 19 Aug 2019 17:06:04 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [RFC 02/11] dt-bindings: power: amlogic,
- meson-gx-pwrc: Add SM1 bindings
-In-Reply-To: <CAFBinCAT1JaK6ksD9OzCK_wEEWJdaZL2vLzGeCzVVbz9V67btQ@mail.gmail.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=SUi6S9fkx8K9UBpuxHy4pZiVt9/OmtTgDbX0hbV2Tuo=;
+ b=Wxbk0d+8zkSjsOx85Y6GlkLcnK8DRmNhjGGNIIM8Z/6IT1BJ3qdnlxLztxoyEbxuw9
+ AABVnWYIurDdgTypgIV8FqeqMV4hLRd5kGc720u4hXkN4zudo1zbunoT2N59WvmUOOHY
+ HlxD/534lzhdZ+aV+t+5ynlWuzpB6bSX8AoProrKVoJXe87diLq8FXgXLz64XUn1/bbW
+ 846Yb5aMbV+JXh+UmdblhfTS4/3yOKLpeScLjze1KhJIxNhvunGGI4VdYaOBgUDeMD6f
+ 10UxRnmCyZlqydwzLzJtMm7bgqE7Bah2dZIWJLGNnbzKw+uamHdXm13fv8ZKxuHgwo2q
+ 31qA==
+X-Gm-Message-State: APjAAAUaLKwnVeaUvqVTXrv5+i2iH3HQoU9KZz4WEgAImjTTFwWkgXG2
+ jbz4NPJI5iYTFTNsgwazQp6u1f0H1l6ZZEuNJ/c=
+X-Google-Smtp-Source: APXvYqyuvbOSADoY+T3Wj5DBVQGWO+FqdTmBktSIDhEpkdufHlmxqDGHR+EwA5PnNUMSeosRa7BAeu1nbdPDZOECelY=
+X-Received: by 2002:a05:6808:8e2:: with SMTP id
+ d2mr16569844oic.47.1566279951111; 
+ Mon, 19 Aug 2019 22:45:51 -0700 (PDT)
+MIME-Version: 1.0
 References: <20190701104705.18271-1-narmstrong@baylibre.com>
  <20190701104705.18271-3-narmstrong@baylibre.com>
  <CAFBinCAT1JaK6ksD9OzCK_wEEWJdaZL2vLzGeCzVVbz9V67btQ@mail.gmail.com>
-Date: Mon, 19 Aug 2019 17:05:56 -0700
-Message-ID: <7h1rxgvgyj.fsf@baylibre.com>
-MIME-Version: 1.0
+ <7h1rxgvgyj.fsf@baylibre.com>
+In-Reply-To: <7h1rxgvgyj.fsf@baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 20 Aug 2019 07:45:39 +0200
+Message-ID: <CAFBinCCubjTCvzFWA-JJeGPJ_29O5az3=-99G3dvcnBNZGt+gw@mail.gmail.com>
+Subject: Re: [RFC 02/11] dt-bindings: power: amlogic,
+ meson-gx-pwrc: Add SM1 bindings
+To: Kevin Hilman <khilman@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190819_170608_035288_DC54C8E6 
-X-CRM114-Status: GOOD (  14.15  )
+X-CRM114-CacheID: sfid-20190819_224552_802364_542BB4B7 
+X-CRM114-Status: GOOD (  21.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,94 +93,92 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- jbrunet@baylibre.com
+Cc: devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+Hi Kevin,
 
-> Hi Neil,
+On Tue, Aug 20, 2019 at 2:06 AM Kevin Hilman <khilman@baylibre.com> wrote:
+[...]
+> >> +ao_sysctrl: sys-ctrl@0 {
+> >> +       compatible = "amlogic,meson-gx-ao-sysctrl", "syscon", "simple-mfd";
+> >> +       reg =  <0x0 0x0 0x0 0x100>;
+> >> +
+> >> +       pwrc: power-controller {
+> >> +               compatible = "amlogic,meson-sm1-pwrc";
+> >> +               #power-domain-cells = <1>;
+> >> +               amlogic,hhi-sysctrl = <&hhi>;
+> >> +       };
+> >> +};
+> >
+> > I'm not sure that we want to mix HHI and AO power domains in one driver again
 >
-> On Mon, Jul 1, 2019 at 12:48 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
-> [...]
->> +General Purpose Power Controller
->> +--------------------------------
->>
->> +The Amlogic SM1 SoCs embeds a General Purpose Power Controller used
->> +to control the power domain for, at least, the USB PHYs and PCIe
->> +peripherals.
-> AFAIK each binding document should only describe one IP block.
-> this one seems to be new / different
+> We're not mixing here. These are all EE domains.  They just have some
+> control registers in the AO memory region.
+looking at patch 04/11 I see what you mean
+(I'm describing it in my own words to make sure I got it right)
+we are controlling the EE power domains with this binding.
+each power domain has 1 bit in the HHI registers and 2 more bits
+("sleep" and "isolation") in the AO region
+
+then it makes sense to describe this together
+
+> > back in March I asked a few questions about modelling the power
+> > domains and Kevin explained that we can implement them hierarchical:
+> > [0]
+> > unfortunately I didn't have the time to work on this - however, now
+> > that we implement a new driver: should we follow this hierarchical
+> > approach?
 >
-> should it get it's own file?
-> also should it be a .yaml binding?
+> The more I look at this, I don't think we have a commpelling need to
+> model them hierarchically.  The main reason being is that of the 3
+> top-level domains I listed[0], we can only managing the EE domains in the
+> kernel.  It doesn't make sense to model/manage AO domains because, well,
+> they are always-on (AO).  The CPU domains are managed my the PSCI
+> firmware, and we don't/won't have any control over that.
+agreed, this is the same for the 32-bit SoCs except that we manage the
+CPU domains in arch/arm/mach-meson/platsmp.c instead of PSCI firmware
+(no problem here, I'm just mentioning it to get a complete picture)
 
-I don't think this is a new IP block.  Comparing across the various
-(64-bit) SoCs, it seems to be very similar across all SoCs.
-
->> +
->> +Device Tree Bindings:
->> +---------------------
->> +
->> +Required properties:
->> +- compatible: should be one of the following :
->> +       - "amlogic,meson-sm1-pwrc" for the Meson SM1 SoCs
->> +- #power-domain-cells: should be 0
->> +- amlogic,hhi-sysctrl: phandle to the HHI sysctrl node
->> +
->> +Parent node should have the following properties :
->> +- compatible: "amlogic,meson-gx-ao-sysctrl", "syscon", "simple-mfd"
->> +- reg: base address and size of the AO system control register space.
->> +
->> +
->> +Example:
->> +-------
->> +
->> +ao_sysctrl: sys-ctrl@0 {
->> +       compatible = "amlogic,meson-gx-ao-sysctrl", "syscon", "simple-mfd";
->> +       reg =  <0x0 0x0 0x0 0x100>;
->> +
->> +       pwrc: power-controller {
->> +               compatible = "amlogic,meson-sm1-pwrc";
->> +               #power-domain-cells = <1>;
->> +               amlogic,hhi-sysctrl = <&hhi>;
->> +       };
->> +};
+> For that reason, I think it makes the most sense to have a generic
+> driver that handles all the EE domains.
 >
-> I'm not sure that we want to mix HHI and AO power domains in one driver again
+> IMO, the SM1 driver that Neil wrote in patch 4 of this series is 80%
+> there.  If we generalize that little more, it can be quite easily used
+> for all the EE domains.
+with your description above I agree.
 
-We're not mixing here. These are all EE domains.  They just have some
-control registers in the AO memory region.
+for the 32-bit SoCs it would be beneficial if the register layout in
+the bindings was swapped:
+- have the power controller as child of HHI
+- pass the AO syscon
 
-> back in March I asked a few questions about modelling the power
-> domains and Kevin explained that we can implement them hierarchical:
-> [0]
-> unfortunately I didn't have the time to work on this - however, now
-> that we implement a new driver: should we follow this hierarchical
-> approach?
+my main points for this are:
+- it seems that for some power domains there are no AO register bits,
+for example the Ethernet Memory PD (GXBB datasheet [0] section 18.3 on
+page 48 and Meson8b datasheet [1] section 5.4 on page 17)
+- less confusion: if it's a power domain controller for the EE region
+then it should be located there, even if it has additional bits
+elsewhere
+- (weakest argument though) on the 32-bit SoCs we currently don't have
+a "big AO syscon" (and I don't see that we actually need it), but we
+do have a "amlogic,meson8b-pmu", "syscon" binding which covers
+AO_RTI_GEN_PWR_SLEEP0 (I should probably extend it so it covers
+AO_RTI_GEN_PWR_ISO0 as well, that just extra 4 bytes)
 
-The more I look at this, I don't think we have a commpelling need to
-model them hierarchically.  The main reason being is that of the 3
-top-level domains I listed[0], we can only managing the EE domains in the
-kernel.  It doesn't make sense to model/manage AO domains because, well,
-they are always-on (AO).  The CPU domains are managed my the PSCI
-firmware, and we don't/won't have any control over that.
+What do you think?
 
-For that reason, I think it makes the most sense to have a generic
-driver that handles all the EE domains.
 
-IMO, the SM1 driver that Neil wrote in patch 4 of this series is 80%
-there.  If we generalize that little more, it can be quite easily used
-for all the EE domains.
+Martin
 
-Kevin
 
-[0] http://lists.infradead.org/pipermail/linux-amlogic/2019-March/010512.html
-
+[0] https://dn.odroid.com/S905/DataSheet/S905_Public_Datasheet_V1.1.4.pdf
+[1] https://dn.odroid.com/S805/Datasheet/S805_Datasheet%20V0.8%2020150126.pdf
 
 _______________________________________________
 linux-amlogic mailing list
