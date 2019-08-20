@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A10DCC3A589
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2019 14:41:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 57F17C3A589
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2019 14:42:04 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 72DD922DCC
-	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2019 14:41:25 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2887A22CF7
+	for <linux-amlogic@archiver.kernel.org>; Tue, 20 Aug 2019 14:42:04 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PUeJtUKm";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Y/hLIPMr"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 72DD922DCC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Zm5xIDkr";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="AQsuMZUZ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2887A22CF7
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,65 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9hUaY7dLyQO+dROwuYeFFNqSrtlv49KaTPhA8vp9Z+k=; b=PUeJtUKmiYuvoX
-	H/LXdDSauZG1NMgKxU0ypQG4q4Q+qiOBLHdXjhFxuHIMCWSAWh1xIsFIm7wqiJV7rhtjutV+dohel
-	BOg0Mpf6UTynQDZIuvq5X64/lKssRz+Qug6tia+goTWlHZgmuJpji+55zTWLENOU6b8Na0hq2q6V+
-	uZdkVfvyjxk7YjgvHjVbAIbwhcee/9vBTDnsRYnrlP4nVXSnzYQqS/UyQ40pHmt33j+7lcnmNN+GI
-	BykYzs6XFaJtU8zy9/W+AXq/RjnsuwYvTe05oRLG2JdvQPUSTzl7UcePp9TwUvZZPFlbjtRKuKf3N
-	EEzXaO49WXF75bz8Hd7w==;
+	List-Owner; bh=7Hu3Esi1w5aHgEm4WDiBymzu2kSHTS8oQUClsOuo2Ik=; b=Zm5xIDkrO9wyj4
+	EIEa2ahdVCEWl3OKQdJjlX8ZQXmVUDsfb6ZkfWkDSzdodof6MtJTa37B5QoEVeiCz404icz7vAfFs
+	/PqOleyQhelaaRi5pQrBPbcQsB5iVY4qjhA4DC+tRg8KvhOrCBf/8PJtVcKdjS9IefLFL+ILZBOGm
+	TYeczRWH8zwYR+XO+m3hXxOovdcCt0qCp50qqwZzTXU4mJsfIdCtQqd+V6iuVmd7WKgyBSb52w0Xj
+	RnNnXeFEEVKkVKbC29n50x0V3a8fJRVChlzpbGCqDuFKXNkON3NAytvJWLFEn50qd++wO8inpyE/p
+	V6vAoon3GVmZyb/53BMw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i05K2-0003jy-53; Tue, 20 Aug 2019 14:41:18 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1i05Kg-0004Fq-Pv; Tue, 20 Aug 2019 14:41:58 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i05Jj-0003T9-B7
- for linux-amlogic@lists.infradead.org; Tue, 20 Aug 2019 14:41:03 +0000
-Received: by mail-wm1-x341.google.com with SMTP id g67so2896413wme.1
- for <linux-amlogic@lists.infradead.org>; Tue, 20 Aug 2019 07:40:58 -0700 (PDT)
+ id 1i05Jh-0003T6-DH
+ for linux-amlogic@lists.infradead.org; Tue, 20 Aug 2019 14:41:05 +0000
+Received: by mail-wm1-x342.google.com with SMTP id d16so2890019wme.2
+ for <linux-amlogic@lists.infradead.org>; Tue, 20 Aug 2019 07:40:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=FtjbfzxxRQVlXomA51tccWbA15Rb8KwyrlxD2ZA+wlQ=;
- b=Y/hLIPMrAuVaUxTSVXjbJHQmQQ8JLEBe1TvDbYh0gvKcX2L/Q/YU6tCzL+yKFrGpZ5
- ++ri4z7NgbbXSYnpAP9cfnIKYfRqe6h736YsHvXgGFZfhrlp8i6rE9I0FqQeijg5Ywkd
- dSxEds04VSwwrRZjM0p1JUPOWxO0Drr+rqefb6Znck07/Vgb482CYubnYJfz1jZUuzGz
- ljFEX685mjvDyQG923roLxR5fBE0IEULiyQxg0QqAmYuxMTXDJH8LVbQYWH0KvnhG7OW
- D8IE/GWDFqaEzeeSTlYlvnjYGETQC7pdoEmQkBd1sT3eay60Q5JzCHIqi/MjXCwfRPFF
- Cz8g==
+ bh=Qk9x+0yCuWahWTJ+d7U2hM8TpGj03opy/Zg7wU4wyWE=;
+ b=AQsuMZUZoJCGFnG8pBMu4BcPk/gvh3HXAsjo9HRD48NR6bVp/F6ie64bEd7teqsYWr
+ maNMIeLQrv2cWwsZlkYlDyAIaM6swmLWJgiQUP0iF1dyBIrG1nUK3Xrs1T8IdrwSXAzX
+ LyTMYd9DViD/+sCR2xdwOFzG2fiPqtyl5Ix3NOcCwzoUFWkLr1lWxKPNCZi+phCqmNd0
+ MErT/kb044CgXKa2Q3QiJIvhYPnEsYigSYjVB8wkZNGX/GAkG0NIq/TEtFmg4LwZJysR
+ VoxQ7XZww3rPdkk7wdO9fwJBqyiocwsJwhn+YvwX867bN0/f3hq8m9uNNeIUkiNvWGvl
+ nfOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=FtjbfzxxRQVlXomA51tccWbA15Rb8KwyrlxD2ZA+wlQ=;
- b=Q4sg3Kdnc6Lpw3U03htiNgunbeTf/KikwsN0gId3NNhKTFXlpfTqlJBKMuBfdq8Xt0
- XynBYO+rM3vOrTDD/vyDy8b9X1cTnjwl5yn0JMVXqZ/he6tAN8uG+1W4tQUltqRiXze6
- Sllv9/1El+bjxBeCXU6+VQnAm9QsP1Ga8lRecKGZSUSAWJ//EscviXfrYLE+0DYB+Vuq
- e3c9+Pun+BBcLzldUUzO/FNGeqyYXCmdnt6k0+H24ugiul+06wR4jYPZxulHy1Qqrzrn
- mmtUj1Pc9EBOYJn6PgGBh/YNKS/xwh9tqpPCfOVlSANXOYnfPXcu4W5EOWfvEJ8rkkwN
- NGXw==
-X-Gm-Message-State: APjAAAXlX6fcFY0wVAv/JDaeCtLg5so5XCSWBL1l1TNZizrFvPkbEBQk
- 14ZSqNRWeOHqMNebT9RdX5ImZw==
-X-Google-Smtp-Source: APXvYqwBS4oD1m88wTCd7yYz/NuvNsTh8uemnpLC23aAqfqzhSziSlAqHUgACd7BA6CGz5CxGnWs0g==
-X-Received: by 2002:a1c:740b:: with SMTP id p11mr400414wmc.6.1566312057392;
- Tue, 20 Aug 2019 07:40:57 -0700 (PDT)
+ bh=Qk9x+0yCuWahWTJ+d7U2hM8TpGj03opy/Zg7wU4wyWE=;
+ b=PRW2pLRFK09a7k3uFlnTSnJ16AlatGUfH87xf/rraOegVK4g5ILPD9cXZTUkhgTSiQ
+ 9Hz+f7qzE7ZelpK5/q5BX8TC5ExytmsLF1PL7JB00hpOuBVrPTtM3PZKT1N/QYTgll+t
+ kd/H+J3zYaE8XiRnx+609MM5GCnsaGSmjkS2XhpexHutP4qLOtc8AjtRCUxthAqbtFX+
+ 7zYhK9HjaQvJ7cY2mCzP/V7Ealn4uEuldyQfbbRxrXDuR07L728J/oEPOdEnLn844TGL
+ EOzIDw7MAz5StrXKXB5nWZQalQo+GhMONqoalG4Vk58MWYFdoPBperwl9ncBMzO4bNfB
+ 1biA==
+X-Gm-Message-State: APjAAAVcNiRkL8FZlwd2GIxtk5zbLlB73kgufEpI94kIiaxi22VZQX54
+ dcU4V2dNa0vUiuGE1rlC4pAt2g==
+X-Google-Smtp-Source: APXvYqyATvzMqlJgk0npoKT6MYofXdZjDlqt0Tu0cvJTJxNhlNG0pp+89Pj2oysiKwBtg3gUHQCl6Q==
+X-Received: by 2002:a1c:eb0a:: with SMTP id j10mr337735wmh.125.1566312055993; 
+ Tue, 20 Aug 2019 07:40:55 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id a18sm21826750wrt.18.2019.08.20.07.40.56
+ by smtp.gmail.com with ESMTPSA id a18sm21826750wrt.18.2019.08.20.07.40.55
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 20 Aug 2019 07:40:56 -0700 (PDT)
+ Tue, 20 Aug 2019 07:40:55 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: khilman@baylibre.com
-Subject: [PATCH 2/6] dt-bindings: soc: amlogic: clk-measure: Add SM1 compatible
-Date: Tue, 20 Aug 2019 16:40:48 +0200
-Message-Id: <20190820144052.18269-3-narmstrong@baylibre.com>
+Subject: [PATCH 1/6] soc: amlogic: meson-gx-socinfo: Add SM1 and S905X3 IDs
+Date: Tue, 20 Aug 2019 16:40:47 +0200
+Message-Id: <20190820144052.18269-2-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20190820144052.18269-1-narmstrong@baylibre.com>
 References: <20190820144052.18269-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190820_074101_616325_EC874739 
-X-CRM114-Status: UNSURE (   8.00  )
+X-CRM114-CacheID: sfid-20190820_074101_637568_92960408 
+X-CRM114-Status: UNSURE (   7.43  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -97,36 +97,44 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
- Rob Herring <robh@kernel.org>, linux-arm-kernel@lists.infradead.org
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the Amlogic SM1 Compatible for the clk-measurer IP.
+Add the SoC IDs for the S905X3 Amlogic SM1 SoC.
 
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/soc/amlogic/meson-gx-socinfo.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt b/Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt
-index 6bf6b43f8dd8..3dd563cec794 100644
---- a/Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt
-+++ b/Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt
-@@ -11,6 +11,7 @@ Required properties:
- 			"amlogic,meson8b-clk-measure" for Meson8b SoCs
- 			"amlogic,meson-axg-clk-measure" for AXG SoCs
- 			"amlogic,meson-g12a-clk-measure" for G12a SoCs
-+			"amlogic,meson-sm1-clk-measure" for SM1 SoCs
- - reg: base address and size of the Clock Measurer register space.
+diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
+index ff86a75939e8..b9f4c6f4fd03 100644
+--- a/drivers/soc/amlogic/meson-gx-socinfo.c
++++ b/drivers/soc/amlogic/meson-gx-socinfo.c
+@@ -39,6 +39,7 @@ static const struct meson_gx_soc_id {
+ 	{ "TXHD", 0x27 },
+ 	{ "G12A", 0x28 },
+ 	{ "G12B", 0x29 },
++	{ "SM1", 0x2b },
+ };
  
- Example:
+ static const struct meson_gx_package_id {
+@@ -66,6 +67,7 @@ static const struct meson_gx_package_id {
+ 	{ "S905X2", 0x28, 0x40, 0xf0 },
+ 	{ "S922X", 0x29, 0x40, 0xf0 },
+ 	{ "A311D", 0x29, 0x10, 0xf0 },
++	{ "S905X3", 0x2b, 0x5, 0xf },
+ };
+ 
+ static inline unsigned int socinfo_to_major(u32 socinfo)
 -- 
 2.22.0
 
