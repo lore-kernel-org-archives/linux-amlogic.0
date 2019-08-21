@@ -2,22 +2,22 @@ Return-Path: <SRS0=UIdE=WR=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 19E0DC3A59E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Aug 2019 14:07:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6C4F6C3A59E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Aug 2019 14:08:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E06412339E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Aug 2019 14:07:27 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3A0B12339E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Aug 2019 14:08:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="W5jJ7N23";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="C+heZauL"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E06412339E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EYB9E/rk";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="BhfIP0wB"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3A0B12339E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,61 +26,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QSen0FbprOLxZUJNdoT+qblPQawglj4mttt8r4dHVzI=; b=W5jJ7N23aXM+it
-	U9FHJ3qfkcgxNRM6xqvN1xQ5H0F28eO/Dw3m9/6GT8ev+I02WM97MZMFu9wNRgjHk1kAeLbXfnMVD
-	YoSz/hiT3FJUvopct8jAfB/54U392S0oZf3ZdTMwNi7QPc8Qs0WBsadOtvLkipMuIIV97/Tcl5HEE
-	dVm7wh7hs/YAcyLXEyhlX69fFfyr3f21JbUUHMwvoo85L8ZrikE4jJibBUzn3LsJmPgeYztKJeU3N
-	CfBL8xHxF51YzqeG9K6IaT9IfZZgnlCwwnKXpTpWYqz4OTeTH6mKxRt/B+pxQC8nGDrILGNkVTPxv
-	1TzQS1rzF7LOQm31eRpQ==;
+	List-Owner; bh=Mj208HrVArs6031F2+09mSh0jPWPXR4E8Tmh6ADKeNg=; b=EYB9E/rk7p2Wpn
+	BBwQfwmq20dMiLw9uNqsMJ81nbX4POZwPlXUjU8gQGk8Mfu9FiiPQKrEHLNvkkWIHQK6PryCZlpaT
+	XlgbBRZq4ruMnwUhx6WjmyKY8c4SA/vS2jx5GA5z1f+AwF9ESuro+uECrOrAspgA2/DuBAPG0ypNl
+	liWabQD1qtuj8dB7C3/ocL1HZdHviocV1G2tF2QEESoqQwTbZf9Z2/tOGEbjTi7vYxAhl1DZJUzTQ
+	daevt3J7/T8ZKp9X4i+hLZ+sfJMbtXxYSS6yg/qBvv+UMzUprR1gf/CeYz/JIYlBdBL736k8qeKby
+	7ZrCAfnFWoh5BS6tJWbQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i0RGk-0000sC-AX; Wed, 21 Aug 2019 14:07:22 +0000
+	id 1i0RHj-0001B8-LP; Wed, 21 Aug 2019 14:08:23 +0000
 Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i0RGY-0000i1-6r
- for linux-amlogic@lists.infradead.org; Wed, 21 Aug 2019 14:07:11 +0000
-Received: by mail-wm1-x344.google.com with SMTP id f72so2267512wmf.5
- for <linux-amlogic@lists.infradead.org>; Wed, 21 Aug 2019 07:07:09 -0700 (PDT)
+ id 1i0RHV-00010g-1N
+ for linux-amlogic@lists.infradead.org; Wed, 21 Aug 2019 14:08:10 +0000
+Received: by mail-wm1-x344.google.com with SMTP id o4so2287400wmh.2
+ for <linux-amlogic@lists.infradead.org>; Wed, 21 Aug 2019 07:08:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=oUhjfRkjOGkm9ELzvijHUs/x1QUpKZ8wRrXOGiFDrl8=;
- b=C+heZauLukh60cWDzfa0hZEScY0R5vbFGyajHX7r+rrvVZ8x3xOq5KVn68h30idUA8
- tYXFdcCsZWufZSKVaXmgKNKsuQL2ZA4/A82Y9dJ6hQdosvFI6A6Vsh3DoaF2aCfc8PBp
- 0huL2JdO2CwxqSwE+kRkRLjOKdyFnOC1ZFx/xSboA7aR1cGtA1cRev8qX9s+qrfI7jc4
- IgC7uB/kHu4lY+iyq0nanNeNCv07SJauPqYr/WtFnw394RusIssBK6BDEkFuBUL//Tu8
- 1FzuYopdojlLU41ywE7CUxPhpqVvhXb6sR8RUlF0+/caXO0M7RvoppcHXSuCt2OHOgf7
- s+TQ==
+ bh=eVloRIjpVIeY57SWMpzWuRot/YPT8cIpveh1AqGjZWI=;
+ b=BhfIP0wB/c4MlGuXrCaP2zeCCyEMDwthOx7UBYQ89t+Cd64hm/TIoJWCEvywn8pHhf
+ JQquZKjk6VEPxKgx+teUzjK8dbqBPdrgeuHj6R7Olei6gvK+gdRia9TSDKlYKENbjIvr
+ iYnIMdJQy/EhY31gIfyplVo8v9yMUuQni7JbQjDtZtUwd90RIdsdo1hN5V7TiG8vLWO/
+ tESuwxXkR2IVS1jBrHfZJBhV9qkYKScgWimn4o4Cwoh5mCXyU1VEHROh/g/TFG9nS6P7
+ JeYtgnU3Owc/aQDqg2bsFBvO9c2VLypU20o8FZSpXK2siUfVw1JWow+D0L5hN5ftgUlR
+ jhFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=oUhjfRkjOGkm9ELzvijHUs/x1QUpKZ8wRrXOGiFDrl8=;
- b=LHRdT76U+dKenTc+cq9EgHNeybWSsJTKiLqgKcKI8MhQ6ISVpBmhFVmkjz1DfQa1ME
- mlj/b6G3xArKMuRo9+LAnNxA4fooDW4oErw2sQX7/5oSLSRX5BQiUn9X7MYoYM9/Bbsz
- xplEfKEpGPoYuOrrXV1e56nAEz4cAeiVJtOigpjMk2lMyzftYcEEe/PS2uQ5bZbMcoMH
- RiA85ITbITblfTj8JgEDEhAOz/jhrU13VdZnlTSA3hfyqQOPuBsrhEwaJdHhdsm8GZQL
- 2UvLljTA7zLDNeU9dTiTDqQnNKcSC/nCmb5lwKTYAAXKsjfI0+tbeRu/lXX4UTZ/LEVT
- PAsw==
-X-Gm-Message-State: APjAAAUDRlzvYwC16Jwx+VzvC+4Nhp9O9WCmgfhoTJJCHAwGfG8o5NzO
- NeeQekJUmI+Cagw4SW7woBCPp/hmcDdU9A==
-X-Google-Smtp-Source: APXvYqxAAvjBc6PJvYfBvaR4OV8QOikUPN082WzSWa6tjG63CeieKvh07gvoK1hVcvFEgPHEOU8ytw==
-X-Received: by 2002:a1c:eb0a:: with SMTP id j10mr194381wmh.125.1566396427902; 
- Wed, 21 Aug 2019 07:07:07 -0700 (PDT)
+ bh=eVloRIjpVIeY57SWMpzWuRot/YPT8cIpveh1AqGjZWI=;
+ b=ihLRYoeR6E7zYPVMw8gUPEHWqtYwJu/4B8KMAMMqd0f1dovA8k/+NdJdKU9K3II71k
+ n70CYGKp7NXAGRR8GsXTWGJxABWDFppjqe1BdW9crQaqD25PiRE0xquxdkB8BAYSEjse
+ FhvSHVk+RxJfKO9Y7fP/I+UYm/CV984J0PNmkHhuEAUOGcChkq8UUeS2zGbzW/ld26Mb
+ uK96+VdgOjb3QTEwsSnvkdvDGgYq8K2F9srbFi0JlCnpJnlMng1OOZmyde8YdPsLmmjM
+ YRiCoYU4UPXi/h3P4hyNYcS3QWyLPHoQtYNH2cYCjf6IJcdJDxNrolN5hJC7WPK9VgvK
+ hB7A==
+X-Gm-Message-State: APjAAAXRT/iztSyc2RPb4JEY8Di4jwsYZuoKl8iHEKRWJWZp+nCVywfc
+ O2yIuaX2aWHnC1N/9bSGIxX7KA==
+X-Google-Smtp-Source: APXvYqxaOmmnBbqUInTFJV7KgcHoX2qxGV4+Y226M2QdCgFJPGA/7Zg9CpBLf6IkML9UypeOJZAucA==
+X-Received: by 2002:a05:600c:352:: with SMTP id
+ u18mr190628wmd.141.1566396487610; 
+ Wed, 21 Aug 2019 07:08:07 -0700 (PDT)
 Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr.
  [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id 91sm65886784wrp.3.2019.08.21.07.07.06
+ by smtp.gmail.com with ESMTPSA id p10sm158248wma.8.2019.08.21.07.08.06
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 21 Aug 2019 07:07:07 -0700 (PDT)
-Subject: Re: [PATCH 08/14] arm64: dts: meson-gxl: fix internal phy compatible
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- jbrunet@baylibre.com
+ Wed, 21 Aug 2019 07:08:06 -0700 (PDT)
+Subject: Re: [PATCH 11/14] arm64: dts: meson-g12a-x96-max: fix compatible
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 References: <20190814142918.11636-1-narmstrong@baylibre.com>
- <20190814142918.11636-9-narmstrong@baylibre.com>
- <CAFBinCAyhfk1wq0ejXazTWQ=eNqDROauB_Kbc80+ekPQ7oB9Ww@mail.gmail.com>
+ <20190814142918.11636-12-narmstrong@baylibre.com>
+ <CAFBinCBWFNJNAWdeZ2LfEJA-MVpSf-A5SrLZEx+0z_P+-iBFDg@mail.gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -133,16 +133,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <ba66449e-504c-2937-bc68-1d2b5b03d6b9@baylibre.com>
-Date: Wed, 21 Aug 2019 16:07:06 +0200
+Message-ID: <c2d78c7c-d9a8-e486-d3b1-c1447e24284b@baylibre.com>
+Date: Wed, 21 Aug 2019 16:08:06 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCAyhfk1wq0ejXazTWQ=eNqDROauB_Kbc80+ekPQ7oB9Ww@mail.gmail.com>
+In-Reply-To: <CAFBinCBWFNJNAWdeZ2LfEJA-MVpSf-A5SrLZEx+0z_P+-iBFDg@mail.gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190821_070710_247413_60068F9C 
-X-CRM114-Status: GOOD (  19.52  )
+X-CRM114-CacheID: sfid-20190821_070809_085865_7DB4D06E 
+X-CRM114-Status: GOOD (  12.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,51 +162,26 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 20/08/2019 22:38, Martin Blumenstingl wrote:
-> adding Jerome
-> 
-> On Wed, Aug 14, 2019 at 4:31 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+On 20/08/2019 22:32, Martin Blumenstingl wrote:
+> On Wed, Aug 14, 2019 at 4:33 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >>
 >> This fixes the following DT schemas check errors:
->> meson-gxl-s805x-libretech-ac.dt.yaml: ethernet-phy@8: compatible: ['ethernet-phy-id0181.4400', 'ethernet-phy-ieee802.3-c22'] is not valid under any of the given schemas
+>> meson-g12a-x96-max.dt.yaml: /: compatible: ['amediatech,x96-max', 'amlogic,u200', 'amlogic,g12a'] is not valid under any of the given schemas
 >>
 >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
->> index ee1ecdbcc958..43eb158bee24 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
->> @@ -709,7 +709,7 @@
->>                         #size-cells = <0>;
->>
->>                         internal_phy: ethernet-phy@8 {
->> -                               compatible = "ethernet-phy-id0181.4400", "ethernet-phy-ieee802.3-c22";
->> +                               compatible = "ethernet-phy-id0181.4400";
-> on G12A there was a specific reason (iirc it was because the PHY ID
-> can be any arbitrary value programmed into some register) why we added
-> it with a compatible string
-> Jerome, do we have the same situation on GXL/GXM as well?
+> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> 
+> [...]
+>> -       compatible = "amediatech,x96-max", "amlogic,u200", "amlogic,g12a";
+>> +       compatible = "amediatech,x96-max", "amlogic,g12a";
+> only partially related: I wonder if we should add a s905x2 compatible
+> string here and to the .dts filename (just like we separate the GXL
+> variants s905x, s905d, s905w, ...)
+> 
 
-Yes the ID in encoded in the register, but we use the very basic mmio mux, but we should
-switch to the same g12a-mdio-mux at some point..
-
-=> infinite TODO list !
+We could, but AFAIK no variants of G12A are planned yet...
 
 Neil
-
-> 
-> if not I prefer to drop the compatible string because it's probably
-> from a time where the PHY dt-bindings stated "add the PHY ID
-> compatible string if you know it" while the actual suggestion was
-> "only add it if reading the ID doesn't work for some reason"
-> 
-> 
-> Martin
-> 
-
 
 _______________________________________________
 linux-amlogic mailing list
