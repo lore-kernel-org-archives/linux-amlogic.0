@@ -2,70 +2,81 @@ Return-Path: <SRS0=UIdE=WR=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 90673C3A59E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Aug 2019 12:39:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B310BC3A59E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Aug 2019 13:05:36 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 62A312341F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Aug 2019 12:39:44 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 87B022339E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Aug 2019 13:05:36 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AfmcH0Qb";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="TupyVj17"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 62A312341F
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=linuxfoundation.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bhfxUyn4";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=pobox.com header.i=@pobox.com header.b="c1PME/SJ";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=fluxnic.net header.i=@fluxnic.net header.b="u8QzXJ4j"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 87B022339E
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=fluxnic.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:Message-ID:
+	In-Reply-To:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Gv21qyT/8egkVJl2vE7bh3YhXO0ikzWwAmpRMtEoyxs=; b=AfmcH0QbkwRW44
-	dnmpB/6hMaaF0d6dFJkKOeUT6+DNUx+UOQK4WaCZRvAMsESU5sDvZscMaw4XvP7gt3z6/y/dtTPA5
-	yJEq3Uc3VXPEEIpeoMJwEWq2/KRHieQy0sZtDLWCPORKDb0HVamZK4McqZoFjf04CvEEPZWfZjvn3
-	UqQs2cdZpFVRs06sMr1mSOwMUrZnc2/78izLd1J+GXjIFQxaLUlZBKyl6lStkQWR7DSmikf8au3wz
-	4aj5/DqhQNa5KlYphodlfOUnNzmKtMnc646tcz1rjsot6iCK4CycMIA7A3RbYXGayyvQBqzJwuElo
-	o56+FfoyzEjU0gKpdM4w==;
+	List-Owner; bh=jyP6DznZ9Ab1OuyZMjqqxoWlCDnIj5W8C56vzSS4qo0=; b=bhfxUyn4eTfocm
+	Tu+0jnbqE6YpaqbQPvqqv7aVfu/92tUGQbH9PrENMgVd54E1QGQO8i/SJR31C07V/NYf42K07slSi
+	s/JSdwfAYZKJtpKxx3Vq8o4Q+3a6vEC6tqvjUjQjO0VeTuh0zFoNy20ZRsLp7eJsb+wFRrCNIGGyp
+	ifHgJ93zrblStWeS4AUy5f0DECJ7uddXtPJrPySsPg7v/lu+jlId7pLPIkJ6QOVQypkYhHuN32pGl
+	7NcvrZ16vTTS2SRPbf3h7azQ6OzU/TRBc0rvAs/XQJ0q5EPj50MZslzHjU7Mh9aXl7NQXNglS6Ss/
+	0ojSKJzGvieLlvizJY3Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i0Ptp-0005BH-5K; Wed, 21 Aug 2019 12:39:37 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1i0QIs-0000JA-ON; Wed, 21 Aug 2019 13:05:30 +0000
+Received: from pb-sasl-trial2.pobox.com ([64.147.108.86])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i0Ptm-0005Aa-Q8; Wed, 21 Aug 2019 12:39:36 +0000
-Received: from localhost (unknown [12.166.174.13])
+ id 1i0QIp-0000Ih-A0; Wed, 21 Aug 2019 13:05:29 +0000
+Received: from pb-sasl-trial2.pobox.com (localhost.local [127.0.0.1])
+ by pb-sasl-trial2.pobox.com (Postfix) with ESMTP id 61EBA1840C;
+ Wed, 21 Aug 2019 09:05:22 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=pobox.com; h=date:from:to
+ :cc:subject:in-reply-to:message-id:references:mime-version
+ :content-type; s=sasl; bh=8OJtyeNZ9sCoH4BVmhH8yW8Bvtc=; b=c1PME/
+ SJzr4aFk09ikfKp1bezTdBSw1zwNS3hrdNtoOqlYZR7yA8XltYBalyFTKDMKbjP0
+ N65/OlgmcPY1jK1+z15I44JCS9KM0+7x8/h7bHxlIX4/NT+azCbj5YqM8+gMtbTp
+ uXIkLMunbK+ZmjnijFcehZ1TUdsCiepGgzujk=
+Received: from pb-smtp1.nyi.icgroup.com (pb-smtp1.pobox.com [10.90.30.53])
+ by pb-sasl-trial2.pobox.com (Postfix) with ESMTP id 3E97C1840B;
+ Wed, 21 Aug 2019 09:05:22 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=fluxnic.net;
+ h=date:from:to:cc:subject:in-reply-to:message-id:references:mime-version:content-type;
+ s=2016-12.pbsmtp; bh=V25/yKN9jlMjRVCEXCSuKB+Re2Fd96dfPM01Z+/Jqwg=;
+ b=u8QzXJ4jPt13KgiTpgzojpKoWuF5UnQufQIrmIF1V1GDjy6AYPilfpABHbSnzJ1cD46DKsQ+JPEMRPYBtPL2vVu09z8iN4C6o7z6Kg63KVX0atNi1l+zBI4OCk5fsPv9COf6vzghotcslIvOnBR1dt1b3O/PjBpbMEOUK+25Eh8=
+Received: from yoda.home (unknown [24.203.50.76])
  (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 81D002341E;
- Wed, 21 Aug 2019 12:39:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1566391173;
- bh=9bKz63tfFMpFQqEEIloPUowFJ5JwR4y30ptvJscL/Iw=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=TupyVj17ES+TfT+ew5wxVn8/RoB+TY3kzi7v4OUpPABmXN54r5OmVi6tbiKQX/bZY
- 5gCzoLUZziA2oHRwBivvPBaJ3vxbNxMmuKTqKq08ygNvwKx22cXMo1ObY0kyFKURpq
- clArw0ZdRLuq6XCWIqAV2EpnFRwl4GNUZtxnjD1Y=
-Date: Wed, 21 Aug 2019 05:39:33 -0700
-From: Greg KH <gregkh@linuxfoundation.org>
+ by pb-smtp1.pobox.com (Postfix) with ESMTPSA id 0BFFA157B47;
+ Wed, 21 Aug 2019 08:46:49 -0400 (EDT)
+Received: from xanadu.home (xanadu.home [192.168.2.2])
+ by yoda.home (Postfix) with ESMTPSA id 0CE5A2DA023B;
+ Wed, 21 Aug 2019 08:46:48 -0400 (EDT)
+Date: Wed, 21 Aug 2019 08:46:47 -0400 (EDT)
+From: Nicolas Pitre <nico@fluxnic.net>
 To: Matthias Maennich <maennich@google.com>
-Subject: Re: [PATCH v3 11/11] RFC: watchdog: export core symbols in
- WATCHDOG_CORE namespace
-Message-ID: <20190821123933.GC4059@kroah.com>
+Subject: Re: [PATCH v3 00/11] Symbol Namespaces
+In-Reply-To: <20190821114955.12788-1-maennich@google.com>
+Message-ID: <nycvar.YSQ.7.76.1908210840490.19480@knanqh.ubzr>
 References: <20190813121733.52480-1-maennich@google.com>
  <20190821114955.12788-1-maennich@google.com>
- <20190821114955.12788-12-maennich@google.com>
+User-Agent: Alpine 2.21 (LFD 202 2017-01-01)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20190821114955.12788-12-maennich@google.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+X-Pobox-Relay-ID: BDE512AC-C411-11E9-A63C-46F8B7964D18-78420484!pb-smtp1.pobox.com
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190821_053934_890404_35624912 
-X-CRM114-Status: GOOD (  19.34  )
+X-CRM114-CacheID: sfid-20190821_060527_584235_B033F56C 
+X-CRM114-Status: GOOD (  10.03  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,96 +88,61 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Tomer Maimon <tmaimon77@gmail.com>, lucas.de.marchi@gmail.com,
- linux-stm32@st-md-mailman.stormreply.com, linux-arch@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
- Michal Simek <michal.simek@xilinx.com>,
- Ludovic Desroches <ludovic.desroches@microchip.com>, mingo@redhat.com,
+Cc: kstewart@linuxfoundation.org, oneukum@suse.com,
+ linux-stm32@st-md-mailman.stormreply.com, linux-aspeed@lists.ozlabs.org,
+ usb-storage@lists.one-eyed-alien.net, Toru Komatsu <k0ma@utam0k.jp>,
+ Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ David Howells <dhowells@redhat.com>, yamada.masahiro@socionext.com,
+ Will Deacon <will@kernel.org>, patches@opensource.cirrus.com,
+ Michael Ellerman <mpe@ellerman.id.au>, hpa@zytor.com, joel@joelfernandes.org,
+ bcm-kernel-feedback-list@broadcom.com, sam@ravnborg.org, cocci@systeme.lip6.fr,
+ linux-arch@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ Benjamin Fair <benjaminfair@google.com>, linux-scsi@vger.kernel.org,
+ Fabio Estevam <festevam@gmail.com>, openbmc@lists.ozlabs.org, x86@kernel.org,
+ lucas.de.marchi@gmail.com, Nancy Yuen <yuenn@google.com>, mingo@redhat.com,
  geert@linux-m68k.org, NXP Linux Team <linux-imx@nxp.com>,
- Tomas Winkler <tomas.winkler@intel.com>, Guenter Roeck <linux@roeck-us.net>,
- Jean Delvare <jdelvare@suse.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- tglx@linutronix.de, michal.lkml@markovi.net,
- Scott Branden <sbranden@broadcom.com>, Andrew Jeffery <andrew@aj.id.au>,
- linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-aspeed@lists.ozlabs.org, yamada.masahiro@socionext.com,
- Thierry Reding <thierry.reding@gmail.com>,
- Alexandre Torgue <alexandre.torgue@st.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>,
- Kukjin Kim <kgene@kernel.org>, kernel-team@android.com, sspatil@google.com,
- linux-watchdog@vger.kernel.org, linux-kbuild@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, pombredanne@nexb.com,
- linux-m68k@lists.linux-m68k.org, linux-rpi-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, maco@android.com,
- linux-arm-kernel@lists.infradead.org, Barry Song <baohua@kernel.org>,
- Johannes Thumshirn <morbidrsa@gmail.com>, oneukum@suse.com,
- Patrice Chotard <patrice.chotard@st.com>, Stefan Wahren <wahrenst@gmx.net>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, kstewart@linuxfoundation.org,
- usb-storage@lists.one-eyed-alien.net, linux-tegra@vger.kernel.org,
- patches@opensource.cirrus.com, joel@joelfernandes.org, sam@ravnborg.org,
- linux-rtc@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>,
- Benjamin Fair <benjaminfair@google.com>, Eric Anholt <eric@anholt.net>,
- Krzysztof Kozlowski <krzk@kernel.org>, Nancy Yuen <yuenn@google.com>,
- Chen-Yu Tsai <wens@csie.org>, bcm-kernel-feedback-list@broadcom.com,
- Joel Stanley <joel@jms.id.au>, stern@rowland.harvard.edu, arnd@arndb.de,
- Ray Jui <rjui@broadcom.com>, Vladimir Zapolskiy <vz@mleia.com>,
- Orson Zhai <orsonzhai@gmail.com>, linux-hwmon@vger.kernel.org,
- Support Opensource <support.opensource@diasemi.com>,
- Andreas Werner <andreas.werner@men.de>, Avi Fishman <avifishman70@gmail.com>,
- maco@google.com, jeyu@kernel.org, Shawn Guo <shawnguo@kernel.org>,
- Baruch Siach <baruch@tkos.co.il>, Mans Rullgard <mans@mansr.com>,
- Maxime Ripard <maxime.ripard@bootlin.com>,
- Jerry Hoemann <jerry.hoemann@hpe.com>, Tali Perry <tali.perry1@gmail.com>,
- hpa@zytor.com, linux-scsi@vger.kernel.org, openbmc@lists.ozlabs.org,
- x86@kernel.org, Andy Gross <agross@kernel.org>,
- Marc Gonzalez <marc.w.gonzalez@free.fr>,
- William Breathitt Gray <vilhelm.gray@gmail.com>,
- linux-mediatek@lists.infradead.org, Fabio Estevam <festevam@gmail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Wim Van Sebroeck <wim@linux-watchdog.org>,
- Alessandro Zummo <a.zummo@towertech.it>, Baolin Wang <baolin.wang@linaro.org>,
- Patrick Venture <venture@google.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>, linux-modules@vger.kernel.org
+ Johannes Weiner <hannes@cmpxchg.org>, Patrick Venture <venture@google.com>,
+ stern@rowland.harvard.edu, kernel-team@android.com,
+ Ingo Molnar <mingo@kernel.org>, linux-rtc@vger.kernel.org,
+ Gleb Fotengauer-Malinovskiy <glebfm@altlinux.org>, sspatil@google.com,
+ linux-watchdog@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+ linux-kbuild@vger.kernel.org, Jani Nikula <jani.nikula@intel.com>,
+ linux-arm-msm@vger.kernel.org, jeyu@kernel.org,
+ Dan Williams <dan.j.williams@intel.com>, Julia Lawall <julia.lawall@lip6.fr>,
+ linux-m68k@lists.linux-m68k.org, linux-mediatek@lists.infradead.org,
+ linux-rpi-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, tglx@linutronix.de, maco@android.com,
+ linux-arm-kernel@lists.infradead.org, Adrian Reber <adrian@lisas.de>,
+ linux-hwmon@vger.kernel.org, michal.lkml@markovi.net,
+ Ard Biesheuvel <ard.biesheuvel@linaro.org>, Andrew Jeffery <andrew@aj.id.au>,
+ gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
+ Alexey Gladkov <gladkov.alexey@gmail.com>, linux-kernel@vger.kernel.org,
+ Patrick Bellasi <patrick.bellasi@arm.com>, Richard Guy Briggs <rgb@redhat.com>,
+ maco@google.com, Pengutronix Kernel Team <kernel@pengutronix.de>,
+ pombredanne@nexb.com, Tejun Heo <tj@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "David S. Miller" <davem@davemloft.net>, linux-modules@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Aug 21, 2019 at 12:49:26PM +0100, Matthias Maennich wrote:
-> Modules using these symbols are required to explicitly import the
-> namespace. This patch was generated with the following steps and serves
-> as a reference to use the symbol namespace feature:
-> 
->  1) Use EXPORT_SYMBOL_NS* macros instead of EXPORT_SYMBOL* for symbols
->     in watchdog_core.c
->  2) make  (see warnings during modpost about missing imports)
->  3) make nsdeps
-> 
-> I used 'allmodconfig' for the above steps to ensure all occurrences are
-> patched.
-> 
-> Defining DEFAULT_SYMBOL_NAMESPACE in the Makefile is not trivial in this
-> case as not only watchdog_core is defined in drivers/watchdog/Makefile.
-> Hence this patch uses the variant of using the EXPORT_SYMBOL_NS* macros
-> to export into a different namespace.
-> 
-> An alternative to this patch would be a single definition line before
-> any use of EXPORT_SYMBOL*:
->  #define DEFAULT_SYMBOL_NAMESPACE WATCHDOG_CORE
-> 
-> Signed-off-by: Matthias Maennich <maennich@google.com>
+On Wed, 21 Aug 2019, Matthias Maennich wrote:
 
-As we talked in chat, the cc: list for this patch was crazy :)
+> As of Linux 5.3-rc5, there are 31205 [1] exported symbols in the kernel.
+> That is a growth of roughly 1000 symbols since 4.17 (30206 [2]).  There
+> seems to be some consensus amongst kernel devs that the export surface
+> is too large, and hard to reason about.
 
-If you end up resending this (as odds are the mailing lists will trash
-it for too many recipients), feel free to add:
+This is good work.
 
-Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+One solution for drastically reducing the effective export surface is to 
+have CONFIG_TRIM_UNUSED_KSYMS=y. This is more extreme than symbol 
+namespace, but might be worth mentioning nevertheless.
 
-Great work,
 
-greg k-h
+Nicolas
 
 _______________________________________________
 linux-amlogic mailing list
