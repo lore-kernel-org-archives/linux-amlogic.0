@@ -2,147 +2,91 @@ Return-Path: <SRS0=UIdE=WR=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=0.9 required=3.0 tests=DKIMWL_WL_HIGH,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,FSL_HELO_FAKE,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3F0F4C3A59E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Aug 2019 14:03:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 752FDC3A59E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Aug 2019 14:04:06 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1055A206BA
-	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Aug 2019 14:03:42 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 475BE206BA
+	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Aug 2019 14:04:06 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Cmx7T8jC";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="CpkE/GAB"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1055A206BA
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eJA9RWNK";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=google.com header.i=@google.com header.b="MidKkLyv"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 475BE206BA
+Authentication-Results: mail.kernel.org; dmarc=fail (p=reject dis=none) header.from=google.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=1Y/uNDj/35SRR1ndocKP8MTsfcuO6hb/VIFLxEk7GGw=; b=Cmx7T8jCcq4QYo
-	L0qVLFx0jQKJmNLg/ZQM5wEagHO/4i1ON8LftE/xlSpTD5SZRqhumoL9UjzfXd6q9JFkKWU9MgCB2
-	znMm0jvL5HGsQwNZCkTE8Bwz0oqZoFYDUzryt4bWZ1qPuWnfVrNDdSBQ3CsuwCJmPQCjk8+ggWcNc
-	GzohqEHv2ZsmLxAtIegBPNlSwSGDh3TyMu9CIADpCUhrRB3FSFKZjQGuj++vW2nZDdk5JyHhQBZJ3
-	Gv6DzQr9u/wL5gQ9eFyB4H5dxNuH1ZlI69UH1DPnAQ464kv68Au/7qe2zuxMFJ8no+Y/42GwgnE4x
-	QBKq84jZ3I1+CfOT06SQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
+	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=wx/w25NnovXOv9vAi1H5k6nZK3S/Tvq3J4S/k8q5EgU=; b=eJA9RWNKYikWKtHbcrM+MCsQ0
+	rYug7hgnkeAHzkoALrrFsr/9IWcT5tnRwyybFrDQiFQAzAHAcE0jDKVAwhWWI8/EYUwUQ9JCAD+BW
+	n0G0ftW4GE1mse+rr6EXH3qiRC9HJTEVfvcLSiLFnH5t9jbQgojlzzyppCJYQqVLgP2QtnwzIDhW0
+	xpG0wo6mRJDFtBG8QK3TdjMiUK1IUoXzqvqrg4YeMmYcY9lqwSgbdV2YKfkDUTttRk0sX4p6ll71N
+	FNS4TnznOwtyTHJxV/1glGTq/gUuXjXBrMnevQN8IwO3EElgo+7JtPNWcDM5V5xbIQL2MECiClBuv
+	yQlJPfqnA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i0RD7-0006ed-Bk; Wed, 21 Aug 2019 14:03:37 +0000
+	id 1i0RDU-0006w4-PT; Wed, 21 Aug 2019 14:04:01 +0000
 Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i0RCv-0006X9-Ee
- for linux-amlogic@lists.infradead.org; Wed, 21 Aug 2019 14:03:26 +0000
-Received: by mail-wm1-x343.google.com with SMTP id 10so2264520wmp.3
- for <linux-amlogic@lists.infradead.org>; Wed, 21 Aug 2019 07:03:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=CLOw/hEMUQ9/5tlE3cojRH7apiTWHcQg1Sw+ywKgLCE=;
- b=CpkE/GAB00ki5KXft8btdkV/XrnGxj5rGRiwXKPnhYwGh+DG5TUI4REXdBW0Ylwupn
- L2NdKDQI0maZIx1fP9vC3QSGmphx5sEzOmBeZBKmISvKR9tQrdDRnKhKIPz4bpN399aH
- xeCMksxmahixsgLz9YnabifXmbp7A14xDUjE9X0Wv3KPfDHBIoyNNXNqOAWaPMCZDO7i
- OUwfYcezDs1wXhRqj0X6Vn8jCGGyXJEx8Prpjajs2UCWmFlGexVhPCecjduJHwRbisFi
- IEBznLA+7MoA/SDM2o8Is3+NBJ0sk84OXH2xuzBItxHAUuCkCBSLvOSbCNR/wtIMY6ur
- EK2Q==
+ id 1i0RDK-0006jR-8s
+ for linux-amlogic@lists.infradead.org; Wed, 21 Aug 2019 14:03:52 +0000
+Received: by mail-wm1-x343.google.com with SMTP id g67so2283031wme.1
+ for <linux-amlogic@lists.infradead.org>; Wed, 21 Aug 2019 07:03:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=rNyl/GAwTmLTUNQynVbw/8SOsQqQ1R7n+k4XVH7pAfA=;
+ b=MidKkLyv9HQjM9YsTFAD+JjCp0plA1IFovR06fjrPRys0G/br9M706YWoy8q4p5/+u
+ KHMnu8KUpMSUR+rUPfBWFC1tcN4nmqkp824MEEu4bKTGz4TqaBozd1S1lfhlZGvURoXQ
+ 2iSG6SwE2o3O0d4g5BsHAAjQIRjUJD9p6MyAJMgX4QH9ynSqrn8UBIZ3TCXVJ2LbK9db
+ EpUvt2+anuLDXYizRUoFQcdngZ/yDsVOEtN0fM8qnMdbPA9bQjtPBqJzQo2aiU9/HbN6
+ SDkBqgZc0sCcrnr7GIF4NjYAPRRmkBwwUFWHE2aa0RrPCig66hntOKeL8+fD4F27he+P
+ q2lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=CLOw/hEMUQ9/5tlE3cojRH7apiTWHcQg1Sw+ywKgLCE=;
- b=cIfA96m96aPHFQCvYo+Kkk7zSr7gLNm2DGICwjg7U/8/f8haD0QC16ZyNHWw8t0YCd
- RiTicb7q1SteTxrWfWC3SKSpWdz/yFYGsynkuhJP7rwP5moWChLCU7sfoEURAi0ho/aV
- jBgf2kg5x0OMmIDVZ3c17ZUVQV5RM2y8ZhpeXmgcHpMqOgu69t+xMqjsxLIkLSE+DtOb
- wTeMf0DHnSsPGGFTnBYWjbRQKc1ZfoBR0pH2vLb4GzCl7wkaaNwcccu+JCdT/SRKvKVV
- faggRscafUncOiF9jQ/a8OyneCup0hi0NcUCk34Z9lzeAWtj4Jd/zLGlV9Zk70wPfvD+
- TA+A==
-X-Gm-Message-State: APjAAAVoIFoWgrAv+DhEPCbr9FIK146OXKAKBKc3ntnyfdgwRImFfihx
- Qlg5dBMSST2LXn0Wqil2u6BhPQ==
-X-Google-Smtp-Source: APXvYqxrweEJjRnaFR20j6Qnbjw/4ZsedAf0FK41D9veE1O4/yaJ+aYdi+tCgXvFD18KlpV+PdOTnw==
-X-Received: by 2002:a1c:2582:: with SMTP id l124mr161208wml.153.1566396203956; 
- Wed, 21 Aug 2019 07:03:23 -0700 (PDT)
-Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr.
- [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id a141sm4478525wmd.0.2019.08.21.07.03.22
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 21 Aug 2019 07:03:23 -0700 (PDT)
-Subject: Re: [PATCH net-next] net: stmmac: dwmac-meson8b: use
- devm_platform_ioremap_resource() to simplify code
-To: YueHaibing <yuehaibing@huawei.com>, davem@davemloft.net,
- peppe.cavallaro@st.com, alexandre.torgue@st.com, joabreu@synopsys.com,
- khilman@baylibre.com, mcoquelin.stm32@gmail.com
-References: <20190821135130.68636-1-yuehaibing@huawei.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <0405cd33-9bbc-b2db-d066-2934b76c5dc2@baylibre.com>
-Date: Wed, 21 Aug 2019 16:03:22 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=rNyl/GAwTmLTUNQynVbw/8SOsQqQ1R7n+k4XVH7pAfA=;
+ b=V2XVNntU9AXHI4bgWIFQD4motH0Spbw8+dQQ33pGG942m5vf8gGdYphdZhRsuA8wwl
+ X1DyATQnF8Wiv84pmX+PHszKCK+Ms4Gu6h+UBxBy7Q8IlbbhAg5tJxQ9vXy6xn6mUEgK
+ bcP304NS7g2BC1BeusyMQaQrjDyk4FTRKWaQixqZe25T1MTBzW7+/gcbbzvEAmu2qZmO
+ TlTQfkkVLI1fItsY5T5V/WLN5cjMvN3nFJiFGt2aAgXsJuWWmHh81VkallgYwZfozbHG
+ /+ozu+T/3OpEaaaICINhtVnM6mSS61hy5WlmPibPqtZ23/mUp+VsFVYxTgLcS2K830bA
+ 6Ctw==
+X-Gm-Message-State: APjAAAXJoknW4XMTZDyO7koHIpQn5PXcGNinXxzfk1gBGXekImeAthuL
+ 1M/RGA31huCfKnv/M9uh/8IXJg==
+X-Google-Smtp-Source: APXvYqystIzk+HhGz6Qa4p93wRRKjwZmEcSqSZ+P4isDGvGod84XS7SVOqOw9UvX3/TfshAObReWaw==
+X-Received: by 2002:a7b:c4d2:: with SMTP id g18mr173265wmk.79.1566396225923;
+ Wed, 21 Aug 2019 07:03:45 -0700 (PDT)
+Received: from google.com ([2a00:79e0:d:210:e8f7:125b:61e9:733d])
+ by smtp.gmail.com with ESMTPSA id g7sm170768wme.17.2019.08.21.07.03.44
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 21 Aug 2019 07:03:45 -0700 (PDT)
+Date: Wed, 21 Aug 2019 15:03:41 +0100
+From: Matthias Maennich <maennich@google.com>
+To: Greg KH <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH v3 00/11] Symbol Namespaces
+Message-ID: <20190821140341.GA126314@google.com>
+References: <20190813121733.52480-1-maennich@google.com>
+ <20190821114955.12788-1-maennich@google.com>
+ <20190821131140.GC2349@hirez.programming.kicks-ass.net>
+ <20190821133846.GC4890@kroah.com>
 MIME-Version: 1.0
-In-Reply-To: <20190821135130.68636-1-yuehaibing@huawei.com>
-Content-Language: en-US
+Content-Disposition: inline
+In-Reply-To: <20190821133846.GC4890@kroah.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190821_070325_558120_56CD03EB 
-X-CRM114-Status: GOOD (  15.54  )
+X-CRM114-CacheID: sfid-20190821_070350_368319_62D36CDC 
+X-CRM114-Status: GOOD (  19.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,49 +98,114 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: kstewart@linuxfoundation.org, oneukum@suse.com,
+ linux-aspeed@lists.ozlabs.org, Peter Zijlstra <peterz@infradead.org>,
+ Toru Komatsu <k0ma@utam0k.jp>,
+ Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ David Howells <dhowells@redhat.com>, yamada.masahiro@socionext.com,
+ Will Deacon <will@kernel.org>, patches@opensource.cirrus.com,
+ Michael Ellerman <mpe@ellerman.id.au>, hpa@zytor.com, joel@joelfernandes.org,
+ bcm-kernel-feedback-list@broadcom.com, sam@ravnborg.org, cocci@systeme.lip6.fr,
+ linux-arch@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ Benjamin Fair <benjaminfair@google.com>, linux-scsi@vger.kernel.org,
+ Nancy Yuen <yuenn@google.com>, Fabio Estevam <festevam@gmail.com>,
+ openbmc@lists.ozlabs.org, x86@kernel.org, lucas.de.marchi@gmail.com,
+ usb-storage@lists.one-eyed-alien.net, mingo@redhat.com, geert@linux-m68k.org,
+ NXP Linux Team <linux-imx@nxp.com>, Johannes Weiner <hannes@cmpxchg.org>,
+ Patrick Venture <venture@google.com>, stern@rowland.harvard.edu,
+ kernel-team@android.com, Ingo Molnar <mingo@kernel.org>,
+ linux-rtc@vger.kernel.org, Gleb Fotengauer-Malinovskiy <glebfm@altlinux.org>,
+ sspatil@google.com, linux-watchdog@vger.kernel.org, arnd@arndb.de,
+ linux-kbuild@vger.kernel.org, Jani Nikula <jani.nikula@intel.com>,
+ linux-arm-msm@vger.kernel.org, pombredanne@nexb.com,
+ Dan Williams <dan.j.williams@intel.com>, Julia Lawall <julia.lawall@lip6.fr>,
+ linux-m68k@lists.linux-m68k.org, linux-mediatek@lists.infradead.org,
+ linux-rpi-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, tglx@linutronix.de, maco@android.com,
+ linux-arm-kernel@lists.infradead.org, Adrian Reber <adrian@lisas.de>,
+ linux-hwmon@vger.kernel.org, michal.lkml@markovi.net,
+ Ard Biesheuvel <ard.biesheuvel@linaro.org>, Andrew Jeffery <andrew@aj.id.au>,
+ Alexey Gladkov <gladkov.alexey@gmail.com>, linux-usb@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-kernel@vger.kernel.org,
+ Nicolas Pitre <nico@fluxnic.net>, Patrick Bellasi <patrick.bellasi@arm.com>,
+ Richard Guy Briggs <rgb@redhat.com>, maco@google.com,
+ Pengutronix Kernel Team <kernel@pengutronix.de>, jeyu@kernel.org,
+ Tejun Heo <tj@kernel.org>, Andrew Morton <akpm@linux-foundation.org>,
+ "David S. Miller" <davem@davemloft.net>, linux-modules@vger.kernel.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 21/08/2019 15:51, YueHaibing wrote:
-> Use devm_platform_ioremap_resource() to simplify the code a bit.
-> This is detected by coccinelle.
-> 
-> Reported-by: Hulk Robot <hulkci@huawei.com>
-> Signed-off-by: YueHaibing <yuehaibing@huawei.com>
-> ---
->  drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c | 4 +---
->  1 file changed, 1 insertion(+), 3 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-> index 786ca4a..9cda29e 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-> @@ -308,7 +308,6 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
->  {
->  	struct plat_stmmacenet_data *plat_dat;
->  	struct stmmac_resources stmmac_res;
-> -	struct resource *res;
->  	struct meson8b_dwmac *dwmac;
->  	int ret;
->  
-> @@ -332,8 +331,7 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
->  		ret = -EINVAL;
->  		goto err_remove_config_dt;
->  	}
-> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> -	dwmac->regs = devm_ioremap_resource(&pdev->dev, res);
-> +	dwmac->regs = devm_platform_ioremap_resource(pdev, 1);
->  	if (IS_ERR(dwmac->regs)) {
->  		ret = PTR_ERR(dwmac->regs);
->  		goto err_remove_config_dt;
-> 
+On Wed, 21 Aug, 06:38, Greg Kroah-Hartman wrote:
+>On Wed, Aug 21, 2019 at 03:11:40PM +0200, Peter Zijlstra wrote:
+>> On Wed, Aug 21, 2019 at 12:49:15PM +0100, Matthias Maennich wrote:
+>> > As of Linux 5.3-rc5, there are 31205 [1] exported symbols in the kernel.
+>> > That is a growth of roughly 1000 symbols since 4.17 (30206 [2]).  There
+>> > seems to be some consensus amongst kernel devs that the export surface
+>> > is too large, and hard to reason about.
+>> >
+>> > Generally, these symbols fall in one of these categories:
+>> > 1) Symbols actually meant for drivers
+>> > 2) Symbols that are only exported because functionality is split over
+>> >    multiple modules, yet they really shouldn't be used by modules outside
+>> >    of their own subsystem
+>> > 3) Symbols really only meant for in-tree use
+>> >
+>> > When module developers try to upstream their code, it regularly turns
+>> > out that they are using exported symbols that they really shouldn't be
+>> > using. This problem is even bigger for drivers that are currently
+>> > out-of-tree, which may be using many symbols that they shouldn't be
+>> > using, and that break when those symbols are removed or modified.
+>> >
+>> > This patch allows subsystem maintainers to partition their exported
+>> > symbols into separate namespaces, and module authors to import such
+>> > namespaces only when needed.
+>> >
+>> > This allows subsystem maintainers to more easily limit availability of
+>> > these namespaced symbols to other parts of the kernel. It can also be
+>> > used to partition the set of exported symbols for documentation
+>> > purposes; for example, a set of symbols that is really only used for
+>> > debugging could be in a "SUBSYSTEM_DEBUG" namespace.
+>>
+>> I'm missing how one can prohibit these random out of tree modules from
+>> doing MODULE_IMPORT_NS().
+>
+>Nothing, but then they are explicitly being "bad" :)
+>
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+As a side effect of this implementation (namespace imports via modinfo
+tags), imports are very visible for (out-of-tree) modules, e.g.
+
+$ modinfo drivers/usb/storage/ums-usbat.ko
+  filename:       drivers/usb/storage/ums-usbat.ko
+  import_ns:      USB_STORAGE
+  license:        GPL
+  author:         ...
+  ...
+
+>> That is; suppose I stick all the preempt_notifier symbols in a KVM
+>> namespace, how do I enforce no out-of-tree modules ever do
+>> MODULE_IMPORT_NS(KVM) and gain access?
+>>
+
+That is actually a feature worth following up: Restricting the
+namespaces that can be imported by modules. I am afraid it is not part
+of this series, but should not be too hard once agreed how such a list
+will be defined.
+
+>> (the above would basically break virtualbox, which I knows uses preempt
+>> notifiers too, but I don't give a rats arse about that)
+>
+>It's a huge red flag for anyone reviewing the code that this module is
+>doing something it probably really should not be doing at all.  It will
+>make reviewing code easier, this isn't there to try to "prevent bad
+>actors" at all, sorry.
+>
+
+Cheers,
+Matthias
 
 _______________________________________________
 linux-amlogic mailing list
