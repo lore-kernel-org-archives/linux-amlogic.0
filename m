@@ -2,79 +2,62 @@ Return-Path: <SRS0=UIdE=WR=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-7.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_2
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 32889C3A59E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Aug 2019 18:15:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1870FC3A59E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Aug 2019 18:31:06 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 059FF20679
-	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Aug 2019 18:15:19 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DECC4216F4
+	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Aug 2019 18:31:05 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="P8m8yf6p"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 059FF20679
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PNFBGsgU"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DECC4216F4
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=collabora.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gM7soxtq2gOJMSWQyqYYzqzMUKD9SI22fcLP4iG70o8=; b=P8m8yf6p+i5F0n
-	294livC3eD+znuMQZ++sTWlFFwymo/WHmPJ08Qc866Prf+Ksa4lODRIe6UCPr8U6iT4/gweIwWxW8
-	sSWbui2BzF/6oC0JIMZV3QvXSGw/l5+oHNYXdt1aCVxDxrFRfHgAcsBygI/Acx1GP93mw1HDla8A7
-	gS7ckmbcxCuZTrywQRs2O6k0bcNMvY18ibOKp4lS+rfi9cdZfRjiYEOLFmODEbFPHRcnaYbG75v6i
-	OeGS8oqieROlGvjYFsO3nxNmVa5DXb2/XIEbNcUxsbJmwSo9BC1wMl3d3m5geu+Q0xYYiFE4XqU85
-	J4WCGfQZ+4mUt5aSr9lQ==;
+	List-Owner; bh=mNe49c5+NrF4m8m7cWt06/4w7MU1QJ+IM9lwsXCrEhI=; b=PNFBGsgUbfKPfy
+	yHHbCYZ4KOVok7oX0dPdyTGkDwpXnN9moAlfO5pnAGz/Y5EQd2R8YDFKI48J0F2wLFGJLEiz8qeUp
+	2G9vPbc6v3jJSSQ9GmJLSFAmxZSYYMC5Eh5ZWRjeSNg2iv77tbwXMtiP60meQIjrqFjC+w2vBYqRk
+	Rxtv28GD9HqyDl2vDaM6dG7bpFg5fXnW0WE5SDNVkiuLkYtgungCSAy4L4eJFyIA98QX6s9XwfMRr
+	zj2N0K8JGGfZvvfPI7ZGfrOcf3yjY3H1oHPOEU0V7AXek337ziW5570MwUMSXNdvo5db3gzPAYeYm
+	e8Uq2w1ci/+sAFN/RyvQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i0V8c-0005pS-JZ; Wed, 21 Aug 2019 18:15:14 +0000
-Received: from mail-oi1-f193.google.com ([209.85.167.193])
+	id 1i0VNr-0003rj-St; Wed, 21 Aug 2019 18:30:59 +0000
+Received: from bhuna.collabora.co.uk ([46.235.227.227])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i0V8O-0004UE-RJ; Wed, 21 Aug 2019 18:15:02 +0000
-Received: by mail-oi1-f193.google.com with SMTP id 16so2323899oiq.6;
- Wed, 21 Aug 2019 11:15:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=m5nuLuMsfkxZNIzHnYqhL4fj6+pQ1WScxNpfqvSjJaI=;
- b=PZoJcz3NSw2yZ1kc/xY9u4yw6X4wkR1XuJ30qpOLy+JXvPxIAI6BozihNrMvXYk26q
- XyDOTRvSjyRE12+CeZ715sno3Wiye9YciH7rx65SedsWYckjDAOg34R/UO9SjJcHpaW9
- S2F+UmItb/ROmhf7v9dHi7L3Qjf8rx1ZzV3CROJXwdcLc00H5+cVcS89iUrUQ/Wcmh4T
- BvGuQdMhJRmXh13gYzLC8IJ0KByCZ4mRWK63v3ZMBBxqjtuTW+7otd62IejXkeO/l3JN
- 5TVVStkLuu7Pf355kMDB213gu63Of4oVViYNzq/RUQjNWE7McDNXLyhkbQ8Z3JZqv18M
- 4jbw==
-X-Gm-Message-State: APjAAAULKdGhS+YpaI3CrNICrY8lh21qgfpk7K3hWy7Wjbin3y1LBBOc
- yyGtK4Jh476Mkxr4ba6dFQ==
-X-Google-Smtp-Source: APXvYqzwhKlJjpqtFevAij5ECQaAFh8CyzecW1FB3eA+DYuuqoWkt1MaKqYsC9EIdtIdbe4Chhf4HQ==
-X-Received: by 2002:aca:b989:: with SMTP id j131mr951663oif.147.1566411299295; 
- Wed, 21 Aug 2019 11:14:59 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net.
- [24.155.109.49])
- by smtp.gmail.com with ESMTPSA id p11sm7874311oto.4.2019.08.21.11.14.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 21 Aug 2019 11:14:58 -0700 (PDT)
-Date: Wed, 21 Aug 2019 13:14:58 -0500
-From: Rob Herring <robh@kernel.org>
-To: Carlo Caione <ccaione@baylibre.com>
-Subject: Re: [PATCH v2 2/4] nvmem: meson-efuse: bindings: Add secure-monitor
- phandle
-Message-ID: <20190821181458.GA2886@bogus>
-References: <20190731082339.20163-1-ccaione@baylibre.com>
- <20190731082339.20163-3-ccaione@baylibre.com>
+ id 1i0VNo-0003qz-Kz
+ for linux-amlogic@lists.infradead.org; Wed, 21 Aug 2019 18:30:58 +0000
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:b93f:9fae:b276:a89a])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256
+ bits)) (No client certificate requested)
+ (Authenticated sender: bbrezillon)
+ by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 9AD3C2699FC;
+ Wed, 21 Aug 2019 19:30:51 +0100 (BST)
+Date: Wed, 21 Aug 2019 20:30:47 +0200
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [RFC 00/11] drm/bridge: dw-hdmi: implement bus-format
+ negotiation and YUV420 support
+Message-ID: <20190821203047.06730da4@collabora.com>
+In-Reply-To: <20190820084109.24616-1-narmstrong@baylibre.com>
+References: <20190820084109.24616-1-narmstrong@baylibre.com>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20190731082339.20163-3-ccaione@baylibre.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190821_111500_885892_AF9E7BF9 
-X-CRM114-Status: GOOD (  15.83  )
+X-CRM114-CacheID: sfid-20190821_113056_821672_1E8DB019 
+X-CRM114-Status: GOOD (  16.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,62 +69,67 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, narmstrong@baylibre.com, khilman@baylibre.com,
- srinivas.kandagatla@linaro.org, linux-amlogic@lists.infradead.org,
- tglx@linutronix.de, linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
+Cc: jernej.skrabec@siol.net, jonas@kwiboo.se, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, a.hajda@samsung.com,
+ Laurent.pinchart@ideasonboard.com, linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Jul 31, 2019 at 09:23:37AM +0100, Carlo Caione wrote:
-> Add a new property to link the nvmem driver to the secure-monitor. The
-> nvmem driver needs to access the secure-monitor to be able to access the
-> fuses.
+On Tue, 20 Aug 2019 10:40:58 +0200
+Neil Armstrong <narmstrong@baylibre.com> wrote:
+
+> This patchset is based on Boris's "drm: Add support for bus-format negotiation" RFC at [1]
+
+Small clarification. Neil's work in based on a slightly different
+version of my RFC [4] (I plan to post a v2 very soon).
+
+> patchset to implement :
+> - basic bus-format negotiation for DW-HDMI
+> - advanced HDMI2.0 YUV420 bus-format negotiation for DW-HDMI
 > 
-> Signed-off-by: Carlo Caione <ccaione@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt | 6 ++++++
->  1 file changed, 6 insertions(+)
+> And the counterpart implementation in the Amlogic Meson VPU dw-hdmi glue :
+> - basic bus-format negotiation to select YUV444 bus-format as DW-HDMI input
+> - YUV420 support when HDMI2.0 YUV420 modeset
 > 
-> diff --git a/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt b/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
-> index 2e0723ab3384..f7b3ed74db54 100644
-> --- a/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
-> +++ b/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
-> @@ -4,6 +4,7 @@ Required properties:
->  - compatible: should be "amlogic,meson-gxbb-efuse"
->  - clocks: phandle to the efuse peripheral clock provided by the
->  	  clock controller.
-> +- secure-monitor: phandle to the secure-monitor node
->  
->  = Data cells =
->  Are child nodes of eFuse, bindings of which as described in
-> @@ -16,6 +17,7 @@ Example:
->  		clocks = <&clkc CLKID_EFUSE>;
->  		#address-cells = <1>;
->  		#size-cells = <1>;
-> +		secure-monitor = <&sm>;
->  
->  		sn: sn@14 {
->  			reg = <0x14 0x10>;
-> @@ -30,6 +32,10 @@ Example:
->  		};
->  	};
->  
-> +	sm: secure-monitor {
-> +		compatible = "amlogic,meson-gxbb-sm";
-> +	};
+> This is a follow-up from the previous attempts :
+> - "drm/meson: Add support for HDMI2.0 YUV420 4k60" at [2]
+> - "drm/meson: Add support for HDMI2.0 4k60" at [3]
+> 
+> [1] https://patchwork.freedesktop.org/patch/msgid/20190808151150.16336-1-boris.brezillon@collabora.com
+> [2] https://patchwork.freedesktop.org/patch/msgid/20190520133753.23871-1-narmstrong@baylibre.com
+> [3] https://patchwork.freedesktop.org/patch/msgid/1549022873-40549-1-git-send-email-narmstrong@baylibre.com
 
-I guess I acked this a while back, but I'm not sure I would today. It 
-seems incomplete and a node with only a compatible string and no 
-resources doesn't need to be in DT. But that's already done...
+[4]https://github.com/bbrezillon/linux-0day/commits/drm-bridge-busfmt-2
 
-There's no need for 'secure-monitor' anyways. Just do 
-'of_find_compatible_node(NULL, NULL, "amlogic,meson-gxbb-sm")' or search 
-for the driver directly. It's not like there's more than one secure 
-monitor...
+> 
+> Neil Armstrong (11):
+>   fixup! drm/bridge: Add the necessary bits to support bus format
+>     negotiation
+>   drm/meson: venc: make drm_display_mode const
+>   drm/meson: meson_dw_hdmi: switch to drm_bridge_funcs
+>   drm/bridge: synopsys: dw-hdmi: add basic bridge_atomic_check
+>   drm/bridge: synopsys: dw-hdmi: use negociated bus formats
+>   drm/meson: dw-hdmi: stop enforcing input_bus_format
+>   drm/bridge: dw-hdmi: allow ycbcr420 modes for >= 0x200a
+>   drm/bridge: synopsys: dw-hdmi: add 420 mode format negociation
+>   drm/meson: venc: add support for YUV420 setup
+>   drm/meson: vclk: add support for YUV420 setup
+>   drm/meson: Add YUV420 output support
+> 
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi.c |  97 +++++++++++++++-
+>  drivers/gpu/drm/drm_bridge.c              |   6 +-
+>  drivers/gpu/drm/meson/meson_dw_hdmi.c     | 135 +++++++++++++++++-----
+>  drivers/gpu/drm/meson/meson_vclk.c        |  93 +++++++++++----
+>  drivers/gpu/drm/meson/meson_vclk.h        |   7 +-
+>  drivers/gpu/drm/meson/meson_venc.c        |   8 +-
+>  drivers/gpu/drm/meson/meson_venc.h        |  13 ++-
+>  drivers/gpu/drm/meson/meson_venc_cvbs.c   |   3 +-
+>  include/drm/bridge/dw_hdmi.h              |   1 +
+>  9 files changed, 295 insertions(+), 68 deletions(-)
+> 
 
-Rob
 
 _______________________________________________
 linux-amlogic mailing list
