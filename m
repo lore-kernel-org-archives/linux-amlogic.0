@@ -2,84 +2,87 @@ Return-Path: <SRS0=N67E=WS=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 995E1C3A5A1
-	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Aug 2019 13:53:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CDD15C3A5A1
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Aug 2019 14:19:38 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6C91322CE3
-	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Aug 2019 13:53:24 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9981B21743
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Aug 2019 14:19:38 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jSeThlWf";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RIpf24nR"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6C91322CE3
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="T5wRmB+b";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="mgm6r/dq"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9981B21743
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
+	In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NLrbMTEIP2zosKYk/vfh22T+EZx5CYcjgDoigOi63IA=; b=jSeThlWf/oT2Rh
-	851M5zjAyweaeWTru8emBF2qyUeA0+yU/FR+YK2rUSm75gIA7zpdCvlPAys36mVSElBrjdWnua8Qp
-	6csc8V3INh64CPnuALTkznnGOMw6IyZkhGYxBcVy1+nLU35SLzeEZtniHAttmGhxZyiJ0hNJks3V2
-	rV8lXjts7JD2kES7LgudggD/oN0aJ4Lvqmv1pgpIL9LIFt9irmf798zSXnJ//Eemz5XVG7N2jQu8E
-	0MhUVpDncg44/4tL7L7QCY4CxT7QJOrXVL1ar3yvcOGObuxk8j5uobAv2PT0WHJSnVrrK7xXu0xdB
-	lUSOB1nbc6uVrMr0YVxA==;
+	References:List-Owner; bh=9zV2u94UZU1pBhXTVbQ8E8UXJtaJyixR0XEdaFIbhF0=; b=T5w
+	RmB+bHfXOZTdm1ot24BTRiPegsMcJXT30WlNRJ6r1XbKOMnZlbfDvl5j7QQZVlKHJb9XaVLjgj7Pl
+	H540Qs1C2tNp4LqyY4/HpqfWkIFout6KAHw46bw5WsFJO3m77cE5SjBTLLOOlw1m+8ONNtL9aSih6
+	95IUvwrNymT705k+iZz5LU4H2iT8AycZXTlv/ZHKcUW4URAVaXZ90xo9CDP41MRND3XYlGgoVU7zw
+	kl9jOljFAWOeo3a6m8urzwx9wwKWnGzW+UmUIr5jntmGjmLgWJfvCFmt55BrUyX2RjqKbAIrWq+7M
+	1hFTqnA96Q/SAZY/+fyj9fCwyP1dZjg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i0nWe-000565-5C; Thu, 22 Aug 2019 13:53:16 +0000
-Received: from mail-vs1-xe42.google.com ([2607:f8b0:4864:20::e42])
+	id 1i0nw4-0007qZ-PM; Thu, 22 Aug 2019 14:19:32 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i0nWP-0004uC-Gr
- for linux-amlogic@lists.infradead.org; Thu, 22 Aug 2019 13:53:02 +0000
-Received: by mail-vs1-xe42.google.com with SMTP id y16so3897005vsc.3
- for <linux-amlogic@lists.infradead.org>; Thu, 22 Aug 2019 06:53:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=tuGMouOtFOL6qd6oBESyF32JYfPiKh5leEjrSnKcwpo=;
- b=RIpf24nRH3NUjh7tR/MywKsXGcriypUW3Nw3anrRX3qatgw7KCnHTkXo3cU/OFH3X2
- NQeZCbxcPKcmtt7MbN/GPbEOg9oYcgPV2XCjK02rdsa0QPEezNRFzYcsNkaBHcH5Pe6y
- UqMYqZIINSZ39LZeTGVvj7L/jZXZFHzYNFSUmk7gxCW974AGFMP85ICYFbaLD2jmircr
- bHH603dKDy9u//yt275AVzVyqZ+GIXaLMYfSmSyxAUt/ZZqlHex64BJXlaG9J0iUkY1B
- SY++cLbJvsB6MHyhQotX+Y+tXTaF1SCJAFRyK71QAX/he5OHCp3ajltLGSNtA833uZNO
- esaA==
+ id 1i0nvo-0007fB-EN
+ for linux-amlogic@lists.infradead.org; Thu, 22 Aug 2019 14:19:19 +0000
+Received: by mail-wr1-x443.google.com with SMTP id g17so5617037wrr.5
+ for <linux-amlogic@lists.infradead.org>; Thu, 22 Aug 2019 07:19:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:in-reply-to:date:message-id:mime-version;
+ bh=gBgmKyJYFdCpscwxxha8Re10EltDsjWfbzB7SNj8fMI=;
+ b=mgm6r/dqpypOrTVzEP/TQZstSNriWYGVB7QzZRvEEwfsEZV6ueLzcP1anpCOCbhT+S
+ NjhbVv3g/wFFrBdsTN7H7conolLLTIgdPYkYq2FzKF/IAyOrcjojoHekNyP4W5US4iSY
+ Zj5nMbVKMDuZlafdyI/2WYq2hkTjdrfT0eqiF/mx9Quv5rOdRnBqpIdwP/fvfufXD7e9
+ FrbDysAs8JKkSo0WMAe2iBNwtH/T15yU9nzIf5B9TonKYZPyCFVpPwPefGG2K0oZlcqq
+ dWyjB3SkrDMpRexOAdU/vu2HbdB6rKRsshctv5sYlebdomurjGRfoUsTyim3+g9MPJUY
+ bL9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=tuGMouOtFOL6qd6oBESyF32JYfPiKh5leEjrSnKcwpo=;
- b=J+Y0Lsq2r7yr7i1PP/9BytHN5DUVLr1CgxLFhxx3J3zHm0tXGXLXmmr26Gh9PHKSbC
- NfaS6QmVrv0N+xiERabntO/zOU5Wg5pPyxS6cHifAd5fZrTYXDN3x1XnXt9a7Sd5aSU4
- 58Bo4Fw65NPGKAKhfPPQgffH0nWGEIK3Dfn00n6H1V1JExTjzECZ/RsKBnBAfTYLz6v4
- ltLIe2I3f4ygTw6LqA3UC6T2WAEhxDRKBgx//4NIrNABhWtnyV3OqR/xlPxBLyQY9Ogo
- JExocHKj32nTxIS8ZH5XX2WoeMKR44ijY597oLAS0J0WMCdYlgyjr9gUuIxAMRuKDggs
- oQAg==
-X-Gm-Message-State: APjAAAVr24DmyZ1X9/ZFVXzgyhnbVzVxvS70yHzHlUYVelL7+oJqFVVj
- shcsiyfUC+qbG4tQyUwnZBpSc7+gnEfttDQH+16X5r3Jt28=
-X-Google-Smtp-Source: APXvYqwLUBPKQGwaCHNT/xqZtRG5kBo+RsrpLvjiu+PO1wXYnj3Lf88aoVFjhAhrpB2zEipWIW/7o+VlnllMarHDCvA=
-X-Received: by 2002:a67:61c7:: with SMTP id
- v190mr24937528vsb.165.1566481980346; 
- Thu, 22 Aug 2019 06:53:00 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:date:message-id
+ :mime-version;
+ bh=gBgmKyJYFdCpscwxxha8Re10EltDsjWfbzB7SNj8fMI=;
+ b=BMb6gtjmY/eDuqwC1S/0VMB7o+tak7zlvp42fYuqvRiZkTYsWmTbvRUfbrrXmNH40R
+ 0C+rf+DnW68ZFKn1CBP7IbXdhEh/msljJ4PQr73FWHBim7V/Po0mtsEHZmdyxt5nqdV0
+ Y3Le1B1mZnN20b4JsQNDOSqeLnaC4YAm3uHVGi0+R7icftPP6fZEJXId6QHey8D5/oAK
+ bMtfFDV2lxnzoKiBryGMfmTwUPDrDnKuQ7xaDDVT2KTDxxBIiQn9iXskqieTGCMLnu2S
+ HEd7dT7qwWdiFIhx4CCd5UgwxQhWPvTm2gbE7C1MPlUtHy8HPXDMjUTdZ754SGRX1Otj
+ yTHQ==
+X-Gm-Message-State: APjAAAWP85u/CvWZXkGOLHPlxFO/QxQOkn3JC2H8kMvHbjhteGoa6ckl
+ iCsb1bIkPYO0jgB2YGEN/2z4NghFkus3lA==
+X-Google-Smtp-Source: APXvYqxl3JkwwWyvwM8tz0v1fdEIXqxaoXFVyEZL00RwVo44hOoYD1UUjfqdAhDYpaPEZ7IeyrKoIg==
+X-Received: by 2002:a5d:54ce:: with SMTP id x14mr10002107wrv.237.1566483554850; 
+ Thu, 22 Aug 2019 07:19:14 -0700 (PDT)
+Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id c8sm24542373wrn.50.2019.08.22.07.19.13
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Thu, 22 Aug 2019 07:19:14 -0700 (PDT)
+From: Julien Masson <jmasson@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [PATCH] drm: meson: use match data to detect vpu compatibility
+In-Reply-To: <87o90hzi3x.fsf@masson.i-did-not-set--mail-host-address--so-tickle-me>
+Date: Thu, 22 Aug 2019 16:19:12 +0200
+Message-ID: <87k1b5z3j3.fsf@masson.i-did-not-set--mail-host-address--so-tickle-me>
 MIME-Version: 1.0
-References: <20190708173330.13217-1-martin.blumenstingl@googlemail.com>
- <20190708173330.13217-3-martin.blumenstingl@googlemail.com>
-In-Reply-To: <20190708173330.13217-3-martin.blumenstingl@googlemail.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 22 Aug 2019 15:52:24 +0200
-Message-ID: <CAPDyKFoFQ_QvHD-+Mg_VAR5rqs3CM_h7dw25p81JTzE1Yz7d1A@mail.gmail.com>
-Subject: Re: [PATCH RFC v1 2/2] mmc: host: meson-mx-sdhc: new driver for the
- Amlogic Meson SDHC host
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190822_065301_569598_A31D0808 
-X-CRM114-Status: GOOD (  15.16  )
+X-CRM114-CacheID: sfid-20190822_071916_581731_CC8DC091 
+X-CRM114-Status: GOOD (  16.76  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,64 +94,516 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, DTML <devicetree@vger.kernel.org>,
- jianxin.pan@amlogic.com,
- "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>
+Cc: linux-amlogic@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, 8 Jul 2019 at 19:33, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> WiP - only partially working - see performance numbers.
->
-> Odroid-C1 eMMC (HS-200):
-> Amlogic's vendor driver @ Linux 3.10:
->   7781351936 bytes (7.8 GB) copied, 134.714 s, 57.8 MB/s
-> This driver:
->   7781351936 bytes (7.8 GB, 7.2 GiB) copied, 189.02 s, 41.2 MB/s
->
-> EC-100 eMMC (HS MMC):
-> Amlogic's vendor driver @ Linux 3.10:
->   15762194432 bytes (16 GB) copied, 422.967 s, 37.3 MB/s
-> This driver:
->   15762194432 bytes (16 GB, 15 GiB) copied, 9232.65 s, 1.7 MB/s
->
-> 1) Amlogic's vendor driver does some magic with the divider:
->       clk_div = input_rate / clk_ios - !(input_rate%clk_ios);
->       if (!(clk_div & 0x01)) // if even number, turn it to an odd one
->          clk_div++;
->    It's not clear to me whether what the reason behind this is, what is
->    supposed to be achieved with this?
->
-> 2) The hardcoded RX clock phases are taken from the vendor driver. It
->    seems that these are only valid when fclk_div3 is used as input
->    clock (however, there are four more inputs). It's not clear to me how
->    to calculate the RX clock phases in set_ios based on the input clock
->    and the ios rate.
->
-> 3) The hardware supports a timeout IRQ but the max_busy_timeout is not
->    documented anywhere.
->
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Hi Neil,
 
-Martin, overall this looks good to me. Once you moved from RFC to a
-formal patch I will check again, of course.
+On Thu 22 Aug 2019 at 16:14, Julien Masson <jmasson@baylibre.com> wrote:
 
-There are a couple of calls to readl_poll_timeout(), for different
-reasons, that I have some questions about, but we can discuss those in
-the next step.
+> On 22/08/2019 11:03, Julien Masson wrote:
+>> This patch introduce new enum which contains all VPU family (GXBB,
+>> GXL, GXM and G12A).
+>> This enum is used to detect the VPU compatible with the device.
+>> 
+>> We only need to set .data to the corresponding enum in the device
+>> table, no need to check .compatible string anymore.
+>> 
+>> Signed-off-by: Julien Masson <jmasson@baylibre.com>
+>> ---
+>>  drivers/gpu/drm/meson/meson_crtc.c      |  2 +-
+>>  drivers/gpu/drm/meson/meson_drv.c       | 12 +++--
+>>  drivers/gpu/drm/meson/meson_drv.h       | 15 +++++-
+>>  drivers/gpu/drm/meson/meson_dw_hdmi.c   |  2 +-
+>>  drivers/gpu/drm/meson/meson_overlay.c   |  2 +-
+>>  drivers/gpu/drm/meson/meson_plane.c     | 10 ++--
+>>  drivers/gpu/drm/meson/meson_vclk.c      | 64 ++++++++++++-------------
+>>  drivers/gpu/drm/meson/meson_venc.c      |  2 +-
+>>  drivers/gpu/drm/meson/meson_venc_cvbs.c | 10 ++--
+>>  drivers/gpu/drm/meson/meson_viu.c       | 10 ++--
+>>  drivers/gpu/drm/meson/meson_vpp.c       | 10 ++--
+>>  11 files changed, 77 insertions(+), 62 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/meson/meson_crtc.c b/drivers/gpu/drm/meson/meson_crtc.c
+>> index bba25325aa9c..57ae1c13d1e6 100644
+>> --- a/drivers/gpu/drm/meson/meson_crtc.c
+>> +++ b/drivers/gpu/drm/meson/meson_crtc.c
+>> @@ -575,7 +575,7 @@ int meson_crtc_create(struct meson_drm *priv)
+>>  		return ret;
+>>  	}
+>>  
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
+>>  		meson_crtc->enable_osd1 = meson_g12a_crtc_enable_osd1;
+>>  		meson_crtc->enable_vd1 = meson_g12a_crtc_enable_vd1;
+>>  		meson_crtc->viu_offset = MESON_G12A_VIU_OFFSET;
+>> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+>> index ae0166181606..97e9945f66c0 100644
+>> --- a/drivers/gpu/drm/meson/meson_drv.c
+>> +++ b/drivers/gpu/drm/meson/meson_drv.c
+>> @@ -380,10 +380,14 @@ static int compare_of(struct device *dev, void *data)
+>>  
+>>  /* Possible connectors nodes to ignore */
+>>  static const struct of_device_id connectors_match[] = {
+>> -	{ .compatible = "composite-video-connector" },
+>> -	{ .compatible = "svideo-connector" },
+>> -	{ .compatible = "hdmi-connector" },
+>> -	{ .compatible = "dvi-connector" },
+>> +	{ .compatible = "amlogic,meson-gxbb-vpu",
+>> +	  .data       = (void *)VPU_COMPATIBLE_GXBB },
+>> +	{ .compatible = "amlogic,meson-gxl-vpu",
+>> +	  .data       = (void *)VPU_COMPATIBLE_GXL },
+>> +	{ .compatible = "amlogic,meson-gxm-vpu",
+>> +	  .data       = (void *)VPU_COMPATIBLE_GXM },
+>> +	{ .compatible = "amlogic,meson-g12a-vpu",
+>> +	  .data       = (void *)VPU_COMPATIBLE_G12A },
+>>  	{}
+>>  };
 
-[...]
+Oups I sent the wrong version of this patch, this is wrong.
+I must set .data in struct dt_match instead of connectors_match.
+Will be done in v2, sorry for that.
 
-Kind regards
-Uffe
+>>  
+>> diff --git a/drivers/gpu/drm/meson/meson_drv.h b/drivers/gpu/drm/meson/meson_drv.h
+>> index c9aaec1a846e..eab8c710c4e3 100644
+>> --- a/drivers/gpu/drm/meson/meson_drv.h
+>> +++ b/drivers/gpu/drm/meson/meson_drv.h
+>> @@ -9,6 +9,7 @@
+>>  
+>>  #include <linux/device.h>
+>>  #include <linux/of.h>
+>> +#include <linux/of_device.h>
+>>  #include <linux/regmap.h>
+>>  
+>>  struct drm_crtc;
+>> @@ -16,6 +17,13 @@ struct drm_device;
+>>  struct drm_plane;
+>>  struct meson_drm;
+>>  
+>> +enum vpu_compatible {
+>> +	VPU_COMPATIBLE_GXBB = 0,
+>> +	VPU_COMPATIBLE_GXL  = 1,
+>> +	VPU_COMPATIBLE_GXM  = 2,
+>> +	VPU_COMPATIBLE_G12A = 3,
+>> +};
+>> +
+>>  struct meson_drm {
+>>  	struct device *dev;
+>>  	void __iomem *io_base;
+>> @@ -116,9 +124,12 @@ struct meson_drm {
+>>  };
+>>  
+>>  static inline int meson_vpu_is_compatible(struct meson_drm *priv,
+>> -					  const char *compat)
+>> +					  enum vpu_compatible family)
+>>  {
+>> -	return of_device_is_compatible(priv->dev->of_node, compat);
+>> +	enum vpu_compatible compat =
+>> +		(enum vpu_compatible)of_device_get_match_data(priv->dev);
+>
+> Can you store the family into struct meson_drm at probe then check the variable here instead ?
+>
+> Otherwise the rest looks fine.
+>
+> Neil
+>
+
+Yes sure, I will send you this change in v2 :)
+
+>> +
+>> +	return compat == family;
+>>  }
+>>  
+>>  #endif /* __MESON_DRV_H */
+>> diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+>> index f893ebd0b799..68bbd987147b 100644
+>> --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
+>> +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+>> @@ -937,7 +937,7 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
+>>  	reset_control_reset(meson_dw_hdmi->hdmitx_phy);
+>>  
+>>  	/* Enable APB3 fail on error */
+>> -	if (!meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
+>> +	if (!meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
+>>  		writel_bits_relaxed(BIT(15), BIT(15),
+>>  				    meson_dw_hdmi->hdmitx + HDMITX_TOP_CTRL_REG);
+>>  		writel_bits_relaxed(BIT(15), BIT(15),
+>> diff --git a/drivers/gpu/drm/meson/meson_overlay.c b/drivers/gpu/drm/meson/meson_overlay.c
+>> index 5aa9dcb4b35e..2468b0212d52 100644
+>> --- a/drivers/gpu/drm/meson/meson_overlay.c
+>> +++ b/drivers/gpu/drm/meson/meson_overlay.c
+>> @@ -513,7 +513,7 @@ static void meson_overlay_atomic_disable(struct drm_plane *plane,
+>>  	priv->viu.vd1_enabled = false;
+>>  
+>>  	/* Disable VD1 */
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
+>>  		writel_relaxed(0, priv->io_base + _REG(VD1_BLEND_SRC_CTRL));
+>>  		writel_relaxed(0, priv->io_base + _REG(VD2_BLEND_SRC_CTRL));
+>>  		writel_relaxed(0, priv->io_base + _REG(VD1_IF0_GEN_REG + 0x17b0));
+>> diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
+>> index b9e1e117fb85..ed543227b00d 100644
+>> --- a/drivers/gpu/drm/meson/meson_plane.c
+>> +++ b/drivers/gpu/drm/meson/meson_plane.c
+>> @@ -138,7 +138,7 @@ static void meson_plane_atomic_update(struct drm_plane *plane,
+>>  				      OSD_ENDIANNESS_LE);
+>>  
+>>  	/* On GXBB, Use the old non-HDR RGB2YUV converter */
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu"))
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXBB))
+>>  		priv->viu.osd1_blk0_cfg[0] |= OSD_OUTPUT_COLOR_RGB;
+>>  
+>>  	switch (fb->format->format) {
+>> @@ -292,7 +292,7 @@ static void meson_plane_atomic_update(struct drm_plane *plane,
+>>  	priv->viu.osd1_blk0_cfg[3] = ((dest.x2 - 1) << 16) | dest.x1;
+>>  	priv->viu.osd1_blk0_cfg[4] = ((dest.y2 - 1) << 16) | dest.y1;
+>>  
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
+>>  		priv->viu.osd_blend_din0_scope_h = ((dest.x2 - 1) << 16) | dest.x1;
+>>  		priv->viu.osd_blend_din0_scope_v = ((dest.y2 - 1) << 16) | dest.y1;
+>>  		priv->viu.osb_blend0_size = dst_h << 16 | dst_w;
+>> @@ -308,8 +308,8 @@ static void meson_plane_atomic_update(struct drm_plane *plane,
+>>  
+>>  	if (!meson_plane->enabled) {
+>>  		/* Reset OSD1 before enabling it on GXL+ SoCs */
+>> -		if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
+>> -		    meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
+>> +		if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM) ||
+>> +		    meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXL))
+>>  			meson_viu_osd1_reset(priv);
+>>  
+>>  		meson_plane->enabled = true;
+>> @@ -327,7 +327,7 @@ static void meson_plane_atomic_disable(struct drm_plane *plane,
+>>  	struct meson_drm *priv = meson_plane->priv;
+>>  
+>>  	/* Disable OSD1 */
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu"))
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
+>>  		writel_bits_relaxed(VIU_OSD1_POSTBLD_SRC_OSD1, 0,
+>>  				    priv->io_base + _REG(OSD1_BLEND_SRC_CTRL));
+>>  	else
+>> diff --git a/drivers/gpu/drm/meson/meson_vclk.c b/drivers/gpu/drm/meson/meson_vclk.c
+>> index 869231c93617..ac491a781952 100644
+>> --- a/drivers/gpu/drm/meson/meson_vclk.c
+>> +++ b/drivers/gpu/drm/meson/meson_vclk.c
+>> @@ -242,7 +242,7 @@ static void meson_venci_cvbs_clock_config(struct meson_drm *priv)
+>>  	unsigned int val;
+>>  
+>>  	/* Setup PLL to output 1.485GHz */
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu")) {
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXBB)) {
+>>  		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x5800023d);
+>>  		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x00404e00);
+>>  		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x0d5c5091);
+>> @@ -254,8 +254,8 @@ static void meson_venci_cvbs_clock_config(struct meson_drm *priv)
+>>  		/* Poll for lock bit */
+>>  		regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL, val,
+>>  					 (val & HDMI_PLL_LOCK), 10, 0);
+>> -	} else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
+>> -		   meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu")) {
+>> +	} else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM) ||
+>> +		   meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXL)) {
+>>  		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x4000027b);
+>>  		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x800cb300);
+>>  		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0xa6212844);
+>> @@ -272,7 +272,7 @@ static void meson_venci_cvbs_clock_config(struct meson_drm *priv)
+>>  		/* Poll for lock bit */
+>>  		regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL, val,
+>>  					 (val & HDMI_PLL_LOCK), 10, 0);
+>> -	} else if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
+>> +	} else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
+>>  		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x1a0504f7);
+>>  		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x00010000);
+>>  		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x00000000);
+>> @@ -300,7 +300,7 @@ static void meson_venci_cvbs_clock_config(struct meson_drm *priv)
+>>  				VCLK2_DIV_MASK, (55 - 1));
+>>  
+>>  	/* select vid_pll for vclk2 */
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu"))
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
+>>  		regmap_update_bits(priv->hhi, HHI_VIID_CLK_CNTL,
+>>  					VCLK2_SEL_MASK, (0 << VCLK2_SEL_SHIFT));
+>>  	else
+>> @@ -455,7 +455,7 @@ void meson_hdmi_pll_set_params(struct meson_drm *priv, unsigned int m,
+>>  {
+>>  	unsigned int val;
+>>  
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu")) {
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXBB)) {
+>>  		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x58000200 | m);
+>>  		if (frac)
+>>  			regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2,
+>> @@ -475,8 +475,8 @@ void meson_hdmi_pll_set_params(struct meson_drm *priv, unsigned int m,
+>>  		/* Poll for lock bit */
+>>  		regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL,
+>>  					 val, (val & HDMI_PLL_LOCK), 10, 0);
+>> -	} else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
+>> -		   meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu")) {
+>> +	} else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM) ||
+>> +		   meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXL)) {
+>>  		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x40000200 | m);
+>>  		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL2, 0x800cb000 | frac);
+>>  		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL3, 0x860f30c4);
+>> @@ -493,7 +493,7 @@ void meson_hdmi_pll_set_params(struct meson_drm *priv, unsigned int m,
+>>  		/* Poll for lock bit */
+>>  		regmap_read_poll_timeout(priv->hhi, HHI_HDMI_PLL_CNTL, val,
+>>  				(val & HDMI_PLL_LOCK), 10, 0);
+>> -	} else if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
+>> +	} else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
+>>  		regmap_write(priv->hhi, HHI_HDMI_PLL_CNTL, 0x0b3a0400 | m);
+>>  
+>>  		/* Enable and reset */
+>> @@ -545,36 +545,36 @@ void meson_hdmi_pll_set_params(struct meson_drm *priv, unsigned int m,
+>>  		} while(1);
+>>  	}
+>>  
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu"))
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXBB))
+>>  		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL2,
+>>  				3 << 16, pll_od_to_reg(od1) << 16);
+>> -	else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
+>> -		 meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
+>> +	else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM) ||
+>> +		 meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXL))
+>>  		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL3,
+>>  				3 << 21, pll_od_to_reg(od1) << 21);
+>> -	else if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu"))
+>> +	else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
+>>  		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
+>>  				3 << 16, pll_od_to_reg(od1) << 16);
+>>  
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu"))
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXBB))
+>>  		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL2,
+>>  				3 << 22, pll_od_to_reg(od2) << 22);
+>> -	else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
+>> -		 meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
+>> +	else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM) ||
+>> +		 meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXL))
+>>  		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL3,
+>>  				3 << 23, pll_od_to_reg(od2) << 23);
+>> -	else if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu"))
+>> +	else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
+>>  		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
+>>  				3 << 18, pll_od_to_reg(od2) << 18);
+>>  
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu"))
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXBB))
+>>  		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL2,
+>>  				3 << 18, pll_od_to_reg(od3) << 18);
+>> -	else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
+>> -		 meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
+>> +	else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM) ||
+>> +		 meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXL))
+>>  		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL3,
+>>  				3 << 19, pll_od_to_reg(od3) << 19);
+>> -	else if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu"))
+>> +	else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
+>>  		regmap_update_bits(priv->hhi, HHI_HDMI_PLL_CNTL,
+>>  				3 << 20, pll_od_to_reg(od3) << 20);
+>>  }
+>> @@ -585,7 +585,7 @@ static unsigned int meson_hdmi_pll_get_m(struct meson_drm *priv,
+>>  					 unsigned int pll_freq)
+>>  {
+>>  	/* The GXBB PLL has a /2 pre-multiplier */
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu"))
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXBB))
+>>  		pll_freq /= 2;
+>>  
+>>  	return pll_freq / XTAL_FREQ;
+>> @@ -605,12 +605,12 @@ static unsigned int meson_hdmi_pll_get_frac(struct meson_drm *priv,
+>>  	unsigned int frac;
+>>  
+>>  	/* The GXBB PLL has a /2 pre-multiplier and a larger FRAC width */
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu")) {
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXBB)) {
+>>  		frac_max = HDMI_FRAC_MAX_GXBB;
+>>  		parent_freq *= 2;
+>>  	}
+>>  
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu"))
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
+>>  		frac_max = HDMI_FRAC_MAX_G12A;
+>>  
+>>  	/* We can have a perfect match !*/
+>> @@ -631,15 +631,15 @@ static bool meson_hdmi_pll_validate_params(struct meson_drm *priv,
+>>  					   unsigned int m,
+>>  					   unsigned int frac)
+>>  {
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu")) {
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXBB)) {
+>>  		/* Empiric supported min/max dividers */
+>>  		if (m < 53 || m > 123)
+>>  			return false;
+>>  		if (frac >= HDMI_FRAC_MAX_GXBB)
+>>  			return false;
+>> -	} else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
+>> -		   meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu") ||
+>> -		   meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
+>> +	} else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM) ||
+>> +		   meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXL) ||
+>> +		   meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
+>>  		/* Empiric supported min/max dividers */
+>>  		if (m < 106 || m > 247)
+>>  			return false;
+>> @@ -759,7 +759,7 @@ static void meson_vclk_set(struct meson_drm *priv, unsigned int pll_base_freq,
+>>  	/* Set HDMI PLL rate */
+>>  	if (!od1 && !od2 && !od3) {
+>>  		meson_hdmi_pll_generic_set(priv, pll_base_freq);
+>> -	} else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu")) {
+>> +	} else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXBB)) {
+>>  		switch (pll_base_freq) {
+>>  		case 2970000:
+>>  			m = 0x3d;
+>> @@ -776,8 +776,8 @@ static void meson_vclk_set(struct meson_drm *priv, unsigned int pll_base_freq,
+>>  		}
+>>  
+>>  		meson_hdmi_pll_set_params(priv, m, frac, od1, od2, od3);
+>> -	} else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
+>> -		   meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu")) {
+>> +	} else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM) ||
+>> +		   meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXL)) {
+>>  		switch (pll_base_freq) {
+>>  		case 2970000:
+>>  			m = 0x7b;
+>> @@ -794,7 +794,7 @@ static void meson_vclk_set(struct meson_drm *priv, unsigned int pll_base_freq,
+>>  		}
+>>  
+>>  		meson_hdmi_pll_set_params(priv, m, frac, od1, od2, od3);
+>> -	} else if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
+>> +	} else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
+>>  		switch (pll_base_freq) {
+>>  		case 2970000:
+>>  			m = 0x7b;
+>> diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
+>> index 679d2274531c..4efd7864d5bf 100644
+>> --- a/drivers/gpu/drm/meson/meson_venc.c
+>> +++ b/drivers/gpu/drm/meson/meson_venc.c
+>> @@ -1759,7 +1759,7 @@ void meson_venc_disable_vsync(struct meson_drm *priv)
+>>  void meson_venc_init(struct meson_drm *priv)
+>>  {
+>>  	/* Disable CVBS VDAC */
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
+>>  		regmap_write(priv->hhi, HHI_VDAC_CNTL0_G12A, 0);
+>>  		regmap_write(priv->hhi, HHI_VDAC_CNTL1_G12A, 8);
+>>  	} else {
+>> diff --git a/drivers/gpu/drm/meson/meson_venc_cvbs.c b/drivers/gpu/drm/meson/meson_venc_cvbs.c
+>> index 6dc130a24070..9ab27aecfcf3 100644
+>> --- a/drivers/gpu/drm/meson/meson_venc_cvbs.c
+>> +++ b/drivers/gpu/drm/meson/meson_venc_cvbs.c
+>> @@ -155,7 +155,7 @@ static void meson_venc_cvbs_encoder_disable(struct drm_encoder *encoder)
+>>  	struct meson_drm *priv = meson_venc_cvbs->priv;
+>>  
+>>  	/* Disable CVBS VDAC */
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
+>>  		regmap_write(priv->hhi, HHI_VDAC_CNTL0_G12A, 0);
+>>  		regmap_write(priv->hhi, HHI_VDAC_CNTL1_G12A, 0);
+>>  	} else {
+>> @@ -174,14 +174,14 @@ static void meson_venc_cvbs_encoder_enable(struct drm_encoder *encoder)
+>>  	writel_bits_relaxed(VENC_VDAC_SEL_ATV_DMD, 0,
+>>  			    priv->io_base + _REG(VENC_VDAC_DACSEL0));
+>>  
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxbb-vpu")) {
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXBB)) {
+>>  		regmap_write(priv->hhi, HHI_VDAC_CNTL0, 1);
+>>  		regmap_write(priv->hhi, HHI_VDAC_CNTL1, 0);
+>> -	} else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
+>> -		 meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu")) {
+>> +	} else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM) ||
+>> +		 meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXL)) {
+>>  		regmap_write(priv->hhi, HHI_VDAC_CNTL0, 0xf0001);
+>>  		regmap_write(priv->hhi, HHI_VDAC_CNTL1, 0);
+>> -	} else if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
+>> +	} else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
+>>  		regmap_write(priv->hhi, HHI_VDAC_CNTL0_G12A, 0x906001);
+>>  		regmap_write(priv->hhi, HHI_VDAC_CNTL1_G12A, 0);
+>>  	}
+>> diff --git a/drivers/gpu/drm/meson/meson_viu.c b/drivers/gpu/drm/meson/meson_viu.c
+>> index e70cd55d56c9..68cf2c2eca5f 100644
+>> --- a/drivers/gpu/drm/meson/meson_viu.c
+>> +++ b/drivers/gpu/drm/meson/meson_viu.c
+>> @@ -353,10 +353,10 @@ void meson_viu_init(struct meson_drm *priv)
+>>  			    priv->io_base + _REG(VIU_OSD2_CTRL_STAT));
+>>  
+>>  	/* On GXL/GXM, Use the 10bit HDR conversion matrix */
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu") ||
+>> -	    meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM) ||
+>> +	    meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXL))
+>>  		meson_viu_load_matrix(priv);
+>> -	else if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu"))
+>> +	else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
+>>  		meson_viu_set_g12a_osd1_matrix(priv, RGB709_to_YUV709l_coeff,
+>>  					       true);
+>>  
+>> @@ -367,7 +367,7 @@ void meson_viu_init(struct meson_drm *priv)
+>>  		VIU_OSD_WORDS_PER_BURST(4) | /* 4 words in 1 burst */
+>>  		VIU_OSD_FIFO_LIMITS(2);      /* fifo_lim: 2*16=32 */
+>>  
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu"))
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
+>>  		reg |= meson_viu_osd_burst_length_reg(32);
+>>  	else
+>>  		reg |= meson_viu_osd_burst_length_reg(64);
+>> @@ -394,7 +394,7 @@ void meson_viu_init(struct meson_drm *priv)
+>>  	writel_relaxed(0x00FF00C0,
+>>  			priv->io_base + _REG(VD2_IF0_LUMA_FIFO_SIZE));
+>>  
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
+>>  		writel_relaxed(VIU_OSD_BLEND_REORDER(0, 1) |
+>>  			       VIU_OSD_BLEND_REORDER(1, 0) |
+>>  			       VIU_OSD_BLEND_REORDER(2, 0) |
+>> diff --git a/drivers/gpu/drm/meson/meson_vpp.c b/drivers/gpu/drm/meson/meson_vpp.c
+>> index 1429f3be6028..154837688ab0 100644
+>> --- a/drivers/gpu/drm/meson/meson_vpp.c
+>> +++ b/drivers/gpu/drm/meson/meson_vpp.c
+>> @@ -91,20 +91,20 @@ static void meson_vpp_write_vd_scaling_filter_coefs(struct meson_drm *priv,
+>>  void meson_vpp_init(struct meson_drm *priv)
+>>  {
+>>  	/* set dummy data default YUV black */
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-gxl-vpu"))
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXL))
+>>  		writel_relaxed(0x108080, priv->io_base + _REG(VPP_DUMMY_DATA1));
+>> -	else if (meson_vpu_is_compatible(priv, "amlogic,meson-gxm-vpu")) {
+>> +	else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM)) {
+>>  		writel_bits_relaxed(0xff << 16, 0xff << 16,
+>>  				    priv->io_base + _REG(VIU_MISC_CTRL1));
+>>  		writel_relaxed(VPP_PPS_DUMMY_DATA_MODE,
+>>  			       priv->io_base + _REG(VPP_DOLBY_CTRL));
+>>  		writel_relaxed(0x1020080,
+>>  				priv->io_base + _REG(VPP_DUMMY_DATA1));
+>> -	} else if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu"))
+>> +	} else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
+>>  		writel_relaxed(0xf, priv->io_base + _REG(DOLBY_PATH_CTRL));
+>>  
+>>  	/* Initialize vpu fifo control registers */
+>> -	if (meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu"))
+>> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
+>>  		writel_relaxed(VPP_OFIFO_SIZE_DEFAULT,
+>>  			       priv->io_base + _REG(VPP_OFIFO_SIZE));
+>  	else
+> @@ -113,7 +113,7 @@ void meson_vpp_init(struct meson_drm *priv)
+>  	writel_relaxed(VPP_POSTBLEND_HOLD_LINES(4) | VPP_PREBLEND_HOLD_LINES(4),
+>  		       priv->io_base + _REG(VPP_HOLD_LINES));
+>  
+> -	if (!meson_vpu_is_compatible(priv, "amlogic,meson-g12a-vpu")) {
+> +	if (!meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
+>  		/* Turn off preblend */
+>  		writel_bits_relaxed(VPP_PREBLEND_ENABLE, 0,
+>  				    priv->io_base + _REG(VPP_MISC));
+> 
+
+-- 
+Julien Masson
 
 _______________________________________________
 linux-amlogic mailing list
