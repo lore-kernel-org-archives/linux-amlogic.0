@@ -1,93 +1,147 @@
-Return-Path: <SRS0=UIdE=WR=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=N67E=WS=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 781A8C3A59E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Aug 2019 23:40:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AAC49C3A59D
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Aug 2019 08:25:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 49D3B2339E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 21 Aug 2019 23:40:45 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7864A20870
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Aug 2019 08:25:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RKdngCiu";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="mzfyNIBH"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 49D3B2339E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Q4nCtMyX";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="G8PGFUZf"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7864A20870
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7vZlFYSFXTNu1hX+zhk6jB25+nxyx/7PUdHYrtKISZE=; b=RKdngCiu8+DeVn
-	ZXrsCdqDUkWFufnjPbkLP7+EcUk1LqcPp/KVjakF5x9gbfcOx5osg2b3mjKW9iwt9dH/7IRGuEnDi
-	7dLrVQI2Jvm/6WJf4x78iVFF7Yd2GTWcxMIfU0Qdz3tsKCSoyEa4IdiNb8pVFP+k9W6F00BUMHwqc
-	8t1JomGclrGczySL5EIocKlW1+AsNDPZVtqYKpDS3xmi5IfqwEzpnLG8VkLEdJHD/XduVMAyTNqap
-	ZUtqGyaEZCikrpe3+SKo6HRyzlg7lfVhYTuzJaUPIMlu12smzb4NbzwuAfBx7aaQ8azePbzxhPLwU
-	hmHJ8ZC6LiOdEWBMun5Q==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=4BnGapZpLB4cMR0KONWEvIOxff+Fgydcf4pE0hc7iNY=; b=Q4nCtMyXT4QNFo
+	zu73WSVCmxD1Oq9oR66P9C3bbpRrHve5Z6a1Etd8T2koRlBE3c1IM2LA0uvaJFfYfn4Vn0AFc4d3F
+	6YGrn+lWnolwvAswJgRWgiylnBNATgnIWne97WfY4PPC5vHIR5f4owFHi3EwSTGy6IQI+PtC/eSIJ
+	zGhI4494jvObrtXBCRHMY6NqWcWY5Aop9A9jhiH9hP+W3m/cI4JrQAjWgSPWqupi9TZDKaRRV8CPt
+	u7SQUD8IlpEvhhH2QxR4RPlMv2PGK3s67d0GdSRj3Qa0bWgmX5n0ZW2nJaBKLdY6yMP0IhZ3HbP4s
+	AVBXjDZLbYaZNDN+9kxw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i0aDZ-0007Id-Bt; Wed, 21 Aug 2019 23:40:41 +0000
-Received: from mail-pl1-x641.google.com ([2607:f8b0:4864:20::641])
+	id 1i0iP0-0004nx-NA; Thu, 22 Aug 2019 08:25:02 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i0aDV-0007Hq-SI
- for linux-amlogic@lists.infradead.org; Wed, 21 Aug 2019 23:40:39 +0000
-Received: by mail-pl1-x641.google.com with SMTP id 4so2224012pld.10
- for <linux-amlogic@lists.infradead.org>; Wed, 21 Aug 2019 16:40:37 -0700 (PDT)
+ id 1i0iNb-0003hj-OZ
+ for linux-amlogic@lists.infradead.org; Thu, 22 Aug 2019 08:23:38 +0000
+Received: by mail-wr1-x441.google.com with SMTP id u16so4548082wrr.0
+ for <linux-amlogic@lists.infradead.org>; Thu, 22 Aug 2019 01:23:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=PdGmstYjj4UcbwNUp869OtVuxov1WvQjhoAxWHt7vJo=;
- b=mzfyNIBHNRCTGRIjuIu6tTYOToZwmVVnG633lROYmZz407Fg369qEh433GRk9g46qr
- qZET8vlULsVr/1I0eG4WGKcI+worE3kCeP24qFF+KIORfCcaQs8wyob4PbLoMIm1XpDf
- WanKKGUVelZOnpW4sKm+nFUXJMthRLptAYWZmioldfobL4WbEeKjQzxZq4uhY3SxNFuD
- N3vUAk0TwaNsSApmgBV3FFc/UXPQrBiGaG02+d+yUDGbCdSRiN8TghsG86TSNeadztFI
- cT9z4ZPH3G821E42COUqMezutD91ivm1ulCeE0SkybxPehAzaryyXVVOA6mOBtYcSZOu
- pVAA==
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=pdSEt99/CAmqV4fLv18bovPaZEVnOI86pAE/GZZ1s8o=;
+ b=G8PGFUZfNXXmilf161dMeUTcpEBj+qTrlmsTnkGZuXZyum2+F9+g8Uj4QM9Ou+A/+z
+ QlSOh3eqahxos/JE8qqoby3HAWtEadv0K7tJAHNg3vMTkCoOh9MMuE3/JkaBnPsv19Mu
+ Zc+47ASy/6fCfJEiM1+2V3ttMKInkjAkWSrnkl5UrW1k38gmLEbCRA43mKcj1U9BGUdG
+ O8kr+27+CSQ41Yw7KCkv0UwP2zfK+fHMqINg8PtnUMk/s2tO0TNrhRpKSqRH0TJfXBFl
+ lw1RU1aTNxbVSoBqMwR+r5akQOdWyYCo+QJ2DqoNOma+h0JJE5G4L7xpgRCZPHaZKMh9
+ kbtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=PdGmstYjj4UcbwNUp869OtVuxov1WvQjhoAxWHt7vJo=;
- b=OUKqc0/KKWWkDPulC4QYDuomDn7R1RzaEe3wxuG2odYy2memkL3svgkeam2xTN+Rmb
- 4XC/4yFGWlnUdnb9tY5+j3yTdjzOWeN9d85fVen812BqcgSaeTroX91qFM4UyZFu0foD
- 35zEMHPPnM/wjjo7Wvn4ofE2ev0bGla2AUZ0sCqmJrxYpfCjB3iUxQzcrsoxFfIeC+VT
- 8/c7Srb9zAtpNdOD/2PjfcLcI19bVIlNZVyBfbzNRiC9sEPHYIR+lmamPweyCaebWg2d
- AwMpv0kK/KUldxDZBzCRXOU7clUB3FOx4wQhZVy8J4V+uxDx6XUsBi1VlTtBAVdh9RxQ
- 5vbQ==
-X-Gm-Message-State: APjAAAUsNlPUTlfjtdKIRPsZdrHeOC+GaCxNh0p8lZkf3260zQfCRIpj
- 38Hir/4mbRhBOHUnklCgsdy8VQ==
-X-Google-Smtp-Source: APXvYqzBpl28fBuk/sy46hFZ1+kwlWBC/dMV3X0jeBb3i46IAc+BgSafaFw9tf/2hKy8B3vf8N/ceQ==
-X-Received: by 2002:a17:902:e592:: with SMTP id
- cl18mr5064788plb.291.1566430837336; 
- Wed, 21 Aug 2019 16:40:37 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id e17sm1122052pjt.6.2019.08.21.16.40.36
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Wed, 21 Aug 2019 16:40:36 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Guillaume La Roque <glaroque@baylibre.com>, rui.zhang@intel.com,
- edubezval@gmail.com, daniel.lezcano@linaro.org
-Subject: Re: [PATCH v4 1/6] dt-bindings: thermal: Add DT bindings
- documentation for Amlogic Thermal
-In-Reply-To: <20190821222421.30242-2-glaroque@baylibre.com>
-References: <20190821222421.30242-1-glaroque@baylibre.com>
- <20190821222421.30242-2-glaroque@baylibre.com>
-Date: Wed, 21 Aug 2019 16:40:35 -0700
-Message-ID: <7hef1e5bpo.fsf@baylibre.com>
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=pdSEt99/CAmqV4fLv18bovPaZEVnOI86pAE/GZZ1s8o=;
+ b=TMnn6++cNYu2W4TKCrfNUDyOZW/NnJoqcDXt9sIw0ZbI2kb182z+BfChVBtohsgG72
+ WWpfomprdfm9RVo19qQbm/Xw8or2JKQ123gKgSOAfXMz0sYKD5IP+i696CPbkEM57hyM
+ kWEzG4xJa73r8ni7ZoAWVUrHn6uuG8vvbu4/gzleZv0Ghl/W9Cuau3PpdBaJ8XGJ35Te
+ AEkZmSVlFLbqSuILdKL/EMrFSey6J/RDhiwkACdqHpbynSkq6YRQwzGgye/tIVm70naH
+ uwRk/n8FOinOhoUzcZidRFisz/RQ/zWlldLQ+qry81lXwUeAKXLSDu3sG6lURYMKB58P
+ iQug==
+X-Gm-Message-State: APjAAAVT3EbNK/pkY+7zXSRSoNxFj5na3O5OZzyShr9DmPncIysCDow1
+ k5FcLkE344TfifhRKHyW6jA51A==
+X-Google-Smtp-Source: APXvYqxZAhFzPIllWHgOfm1YJnUgWV3//Of7Tq/vW5OyikIqSWVvyroTMOmPiwWv1xAe+2JPFgJNSw==
+X-Received: by 2002:adf:a54d:: with SMTP id j13mr992885wrb.261.1566462213455; 
+ Thu, 22 Aug 2019 01:23:33 -0700 (PDT)
+Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr.
+ [176.150.251.154])
+ by smtp.gmail.com with ESMTPSA id f134sm4484687wmg.20.2019.08.22.01.23.32
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 22 Aug 2019 01:23:32 -0700 (PDT)
+Subject: Re: [PATCH 4/5] arm64: dts: meson-sm1-sei610: add HDMI display support
+To: Kevin Hilman <khilman@baylibre.com>, ulf.hansson@linaro.org
+References: <20190821114121.10430-1-narmstrong@baylibre.com>
+ <20190821114121.10430-5-narmstrong@baylibre.com>
+ <7ho90i5c41.fsf@baylibre.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <09a5372b-3ff1-b6fc-9a06-d8f9c235e763@baylibre.com>
+Date: Thu, 22 Aug 2019 10:23:31 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
+In-Reply-To: <7ho90i5c41.fsf@baylibre.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190821_164037_917391_28AAD9EB 
-X-CRM114-Status: UNSURE (   5.35  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190822_012336_021212_AB145CF1 
+X-CRM114-Status: GOOD (  14.40  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,27 +153,76 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-pm@vger.kernel.org
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Guillaume La Roque <glaroque@baylibre.com> writes:
+On 22/08/2019 01:31, Kevin Hilman wrote:
+> Neil Armstrong <narmstrong@baylibre.com> writes:
+> 
+>> Update compatible of the pwc-vpu node and add the HDMI support nodes
+>> for the Amlogic SM1 Based SEI610 Board.
+> 
+> I think this changelog is out of date.  It's not doing anything with the
+> VPU pwrc node.
 
-> Adding the devicetree binding documentation for the Amlogic temperature
-> sensor found in the Amlogic Meson G12 SoCs.
-> the G12A  and G12B SoCs are supported.
->
-> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Exact, thanks for pointing it
 
-nit: put your sign-off at the end.  The tags you collect from
-reviewers/testers should go first.
+> 
+> Kevin
+> 
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>  .../boot/dts/amlogic/meson-sm1-sei610.dts     | 23 +++++++++++++++++++
+>>  1 file changed, 23 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
+>> index 12dab0ba2f26..66bd3bfbaf91 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
+>> @@ -51,6 +51,17 @@
+>>  		};
+>>  	};
+>>  
+>> +	hdmi-connector {
+>> +		compatible = "hdmi-connector";
+>> +		type = "a";
+>> +
+>> +		port {
+>> +			hdmi_connector_in: endpoint {
+>> +				remote-endpoint = <&hdmi_tx_tmds_out>;
+>> +			};
+>> +		};
+>> +	};
+>> +
+>>  	leds {
+>>  		compatible = "gpio-leds";
+>>  
+>> @@ -177,6 +188,18 @@
+>>  	phy-mode = "rmii";
+>>  };
+>>  
+>> +&hdmi_tx {
+>> +	status = "okay";
+>> +	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
+>> +	pinctrl-names = "default";
+>> +};
+>> +
+>> +&hdmi_tx_tmds_port {
+>> +	hdmi_tx_tmds_out: endpoint {
+>> +		remote-endpoint = <&hdmi_connector_in>;
+>> +	};
+>> +};
+>> +
+>>  &i2c3 {
+>>  	status = "okay";
+>>  	pinctrl-0 = <&i2c3_sda_a_pins>, <&i2c3_sck_a_pins>;
+>> -- 
+>> 2.22.0
 
-Kevin
 
 _______________________________________________
 linux-amlogic mailing list
