@@ -2,147 +2,84 @@ Return-Path: <SRS0=N67E=WS=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0404BC3A59D
-	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Aug 2019 09:16:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 995E1C3A5A1
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Aug 2019 13:53:24 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C8ABB21848
-	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Aug 2019 09:16:12 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6C91322CE3
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Aug 2019 13:53:24 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HHkEwTZ1";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="QyIV0ILf"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C8ABB21848
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jSeThlWf";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RIpf24nR"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6C91322CE3
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=HUsZt65ISo0ShPTX+oO5rM7kA3Ytyqo7AV+T9xujTns=; b=HHkEwTZ19cQ7Mg
-	7K1cFpwXREcvbERu3C+wXp4IQPGCSolX9j+3hgyACgN8EtAU4D8Uom5yXSXy3mZXE6pcjrPgG48Eb
-	uAROGgJj+WMKDWXz4fegGJLpPZgfnA+AnPUl2CrbZldGpzZb3qlgFzsE1+Op48HJTgjkV8OBjU9Nb
-	KWtrq0/QfooPpfiwFBA2/DZ6OsJxUOXzPmjKoM8sJPJoUgOksZddmhJnxGntpSqXcRRwyhKOeVMIw
-	SAtsBVt6KUmNx3mzftn+y/EcsAZ4ah6t2FVOc3y+wo5nS+hWFts5SDneqE9J65DSHmkRNGcQ/XQEv
-	GuUzfx5ttnK+MiwZavXQ==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=NLrbMTEIP2zosKYk/vfh22T+EZx5CYcjgDoigOi63IA=; b=jSeThlWf/oT2Rh
+	851M5zjAyweaeWTru8emBF2qyUeA0+yU/FR+YK2rUSm75gIA7zpdCvlPAys36mVSElBrjdWnua8Qp
+	6csc8V3INh64CPnuALTkznnGOMw6IyZkhGYxBcVy1+nLU35SLzeEZtniHAttmGhxZyiJ0hNJks3V2
+	rV8lXjts7JD2kES7LgudggD/oN0aJ4Lvqmv1pgpIL9LIFt9irmf798zSXnJ//Eemz5XVG7N2jQu8E
+	0MhUVpDncg44/4tL7L7QCY4CxT7QJOrXVL1ar3yvcOGObuxk8j5uobAv2PT0WHJSnVrrK7xXu0xdB
+	lUSOB1nbc6uVrMr0YVxA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i0jCQ-0006Rl-0t; Thu, 22 Aug 2019 09:16:06 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1i0nWe-000565-5C; Thu, 22 Aug 2019 13:53:16 +0000
+Received: from mail-vs1-xe42.google.com ([2607:f8b0:4864:20::e42])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i0jBs-000600-AY
- for linux-amlogic@lists.infradead.org; Thu, 22 Aug 2019 09:15:36 +0000
-Received: by mail-wm1-x342.google.com with SMTP id k1so4880136wmi.1
- for <linux-amlogic@lists.infradead.org>; Thu, 22 Aug 2019 02:15:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=ifonjkk4pkYZcIGDOZ8rC3Ei47dn9VrNBHIZBqiXNdM=;
- b=QyIV0ILfet6vmo4AnEzU0YOARH6X6dMF92FlHTffqYR00LslCx2Ez6xtcGlrFR7PM2
- Np3UafbM5xdfujg6XX/R05/7O3M8hRbV8kyPQkfoM5Sf9VoYfnpPxjiepliG7++w37xR
- zgRYFzye2riga/+MTOL2EfyGT/kg/yWk35Wkk717BI/IVYbOuW+Fo+kJ+uxxlecX3mHC
- Q6+lYTmFuaQ4P6+9HLS+WcrQuDsQonJq3fN7iC7EZ5w2GFOJiCdILkiXZtuxHIn+W942
- 8iGisSC2lYkLuyIupqZBkS6Mv1j3s6mju+XWXaKWXJjGV+XbU5wAbhyYQdr0mMXcWF7G
- mEsw==
+ id 1i0nWP-0004uC-Gr
+ for linux-amlogic@lists.infradead.org; Thu, 22 Aug 2019 13:53:02 +0000
+Received: by mail-vs1-xe42.google.com with SMTP id y16so3897005vsc.3
+ for <linux-amlogic@lists.infradead.org>; Thu, 22 Aug 2019 06:53:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=tuGMouOtFOL6qd6oBESyF32JYfPiKh5leEjrSnKcwpo=;
+ b=RIpf24nRH3NUjh7tR/MywKsXGcriypUW3Nw3anrRX3qatgw7KCnHTkXo3cU/OFH3X2
+ NQeZCbxcPKcmtt7MbN/GPbEOg9oYcgPV2XCjK02rdsa0QPEezNRFzYcsNkaBHcH5Pe6y
+ UqMYqZIINSZ39LZeTGVvj7L/jZXZFHzYNFSUmk7gxCW974AGFMP85ICYFbaLD2jmircr
+ bHH603dKDy9u//yt275AVzVyqZ+GIXaLMYfSmSyxAUt/ZZqlHex64BJXlaG9J0iUkY1B
+ SY++cLbJvsB6MHyhQotX+Y+tXTaF1SCJAFRyK71QAX/he5OHCp3ajltLGSNtA833uZNO
+ esaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=ifonjkk4pkYZcIGDOZ8rC3Ei47dn9VrNBHIZBqiXNdM=;
- b=AJn9/1xVuNNF691hgZAPAuLOA+IAI/BK1gUJEx8GhErdLggoV/RdioFqX9pGIaozAs
- M61vIyoXP/7L91O2IkFCFDp+LwJ+HeWAP4fVOkQjS/Li02zjfC0btuffqGuC0ZgGYqYC
- MGqZXHuyUyMNxb7YCTO3InaKZlOj5CH3Cb895hWmzAdjFUZSAbfRs1PZ4yTiW/gexHzY
- cBp/wZMZc8xI4qFGCo/FWjuG+VaMcZpImw6JhoTZXz5POSVJJU4QdrOfGMwmSeHfWVPx
- 8sGcEN4awfTF5jM4K3+9lI5vH8S9mxj3blS6vsLHjbbJFxMgU5kfzVEuvzfHzw47OvGz
- CLrw==
-X-Gm-Message-State: APjAAAXU8jmH1JLlcfVPuNhsWQL6Lsz1gArgWT9oVadJPjkmjva5pu75
- 7aOHi97U+KcjA7tZCczlY2PQqA==
-X-Google-Smtp-Source: APXvYqzYlvCEFiMtcT4GLnAvlRegeLLQctqcFt5+mqDJmrzy6VxVay8I5CPiIVTnpvs1yn90ZbF7Ww==
-X-Received: by 2002:a7b:cc86:: with SMTP id p6mr5047049wma.106.1566465330663; 
- Thu, 22 Aug 2019 02:15:30 -0700 (PDT)
-Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id
- r16sm52922710wrc.81.2019.08.22.02.15.29
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 22 Aug 2019 02:15:30 -0700 (PDT)
-Subject: Re: [PATCH v4 4/6] arm64: dts: meson: sei510: Add minimal thermal zone
-To: Kevin Hilman <khilman@baylibre.com>,
- Guillaume La Roque <glaroque@baylibre.com>, rui.zhang@intel.com,
- edubezval@gmail.com, daniel.lezcano@linaro.org
-References: <20190821222421.30242-1-glaroque@baylibre.com>
- <20190821222421.30242-5-glaroque@baylibre.com> <7hsgpu5c7j.fsf@baylibre.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <a6881ab8-21b0-ecd6-f7d9-cfe081455c24@baylibre.com>
-Date: Thu, 22 Aug 2019 11:15:29 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=tuGMouOtFOL6qd6oBESyF32JYfPiKh5leEjrSnKcwpo=;
+ b=J+Y0Lsq2r7yr7i1PP/9BytHN5DUVLr1CgxLFhxx3J3zHm0tXGXLXmmr26Gh9PHKSbC
+ NfaS6QmVrv0N+xiERabntO/zOU5Wg5pPyxS6cHifAd5fZrTYXDN3x1XnXt9a7Sd5aSU4
+ 58Bo4Fw65NPGKAKhfPPQgffH0nWGEIK3Dfn00n6H1V1JExTjzECZ/RsKBnBAfTYLz6v4
+ ltLIe2I3f4ygTw6LqA3UC6T2WAEhxDRKBgx//4NIrNABhWtnyV3OqR/xlPxBLyQY9Ogo
+ JExocHKj32nTxIS8ZH5XX2WoeMKR44ijY597oLAS0J0WMCdYlgyjr9gUuIxAMRuKDggs
+ oQAg==
+X-Gm-Message-State: APjAAAVr24DmyZ1X9/ZFVXzgyhnbVzVxvS70yHzHlUYVelL7+oJqFVVj
+ shcsiyfUC+qbG4tQyUwnZBpSc7+gnEfttDQH+16X5r3Jt28=
+X-Google-Smtp-Source: APXvYqwLUBPKQGwaCHNT/xqZtRG5kBo+RsrpLvjiu+PO1wXYnj3Lf88aoVFjhAhrpB2zEipWIW/7o+VlnllMarHDCvA=
+X-Received: by 2002:a67:61c7:: with SMTP id
+ v190mr24937528vsb.165.1566481980346; 
+ Thu, 22 Aug 2019 06:53:00 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <7hsgpu5c7j.fsf@baylibre.com>
-Content-Language: en-US
+References: <20190708173330.13217-1-martin.blumenstingl@googlemail.com>
+ <20190708173330.13217-3-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20190708173330.13217-3-martin.blumenstingl@googlemail.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Thu, 22 Aug 2019 15:52:24 +0200
+Message-ID: <CAPDyKFoFQ_QvHD-+Mg_VAR5rqs3CM_h7dw25p81JTzE1Yz7d1A@mail.gmail.com>
+Subject: Re: [PATCH RFC v1 2/2] mmc: host: meson-mx-sdhc: new driver for the
+ Amlogic Meson SDHC host
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190822_021532_728646_BE4C3FFC 
-X-CRM114-Status: GOOD (  17.84  )
+X-CRM114-CacheID: sfid-20190822_065301_569598_A31D0808 
+X-CRM114-Status: GOOD (  15.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,170 +91,64 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
+Cc: Mark Rutland <mark.rutland@arm.com>, DTML <devicetree@vger.kernel.org>,
+ jianxin.pan@amlogic.com,
+ "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 22/08/2019 01:29, Kevin Hilman wrote:
-> Guillaume La Roque <glaroque@baylibre.com> writes:
-> 
->> Add minimal thermal zone for two temperature sensor
->> One is located close to the DDR and the other one is
->> located close to the PLLs (between the CPU and GPU)
->>
->> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
->> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->> ---
->>  .../boot/dts/amlogic/meson-g12a-sei510.dts    | 70 +++++++++++++++++++
->>  1 file changed, 70 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
->> index c9fa23a56562..35d2ebbd6d4e 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
->> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
->> @@ -10,6 +10,7 @@
->>  #include <dt-bindings/input/input.h>
->>  #include <dt-bindings/gpio/meson-g12a-gpio.h>
->>  #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
->> +#include <dt-bindings/thermal/thermal.h>
->>  
->>  / {
->>  	compatible = "seirobotics,sei510", "amlogic,g12a";
->> @@ -33,6 +34,67 @@
->>  		ethernet0 = &ethmac;
->>  	};
->>  
->> +	thermal-zones {
->> +		cpu-thermal {
->> +			polling-delay = <1000>;
->> +			polling-delay-passive = <100>;
->> +			thermal-sensors = <&cpu_temp>;
->> +
->> +			trips {
->> +				cpu_hot: cpu-hot {
->> +					temperature = <85000>; /* millicelsius */
->> +					hysteresis = <2000>; /* millicelsius */
->> +					type = "hot";
->> +				};
->> +
->> +				cpu_critical: cpu-critical {
->> +					temperature = <110000>; /* millicelsius */
->> +					hysteresis = <2000>; /* millicelsius */
->> +					type = "critical";
->> +				};
->> +			};
->> +
->> +			cooling-maps {
->> +				map0 {
->> +					trip = <&cpu_hot>;
->> +					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->> +							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->> +							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->> +							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->> +				};
->> +
->> +				map1 {
->> +					trip = <&cpu_critical>;
->> +					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->> +							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->> +							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->> +							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->> +				};
->> +			};
->> +		};
->> +
->> +		ddr-thermal {
->> +			polling-delay = <1000>;
->> +			polling-delay-passive = <100>;
->> +			thermal-sensors = <&ddr_temp>;
->> +
->> +			trips {
->> +				ddr_critical: ddr-critical {
->> +					temperature = <110000>; /* millicelsius */
->> +					hysteresis = <2000>; /* millicelsius */
->> +					type = "critical";
->> +				};
->> +			};
->> +
->> +			cooling-maps {
->> +				map {
->> +					trip = <&ddr_critical>;
->> +					cooling-device = <&mali THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->> +				};
->> +			};
->> +		};
->> +	};
->> +
->>  	mono_dac: audio-codec-0 {
->>  		compatible = "maxim,max98357a";
->>  		#sound-dai-cells = <0>;
->> @@ -321,6 +383,7 @@
->>  	operating-points-v2 = <&cpu_opp_table>;
->>  	clocks = <&clkc CLKID_CPU_CLK>;
->>  	clock-latency = <50000>;
->> +	#cooling-cells = <2>;
->>  };
->>  
->>  &cpu1 {
->> @@ -328,6 +391,7 @@
->>  	operating-points-v2 = <&cpu_opp_table>;
->>  	clocks = <&clkc CLKID_CPU_CLK>;
->>  	clock-latency = <50000>;
->> +	#cooling-cells = <2>;
->>  };
->>  
->>  &cpu2 {
->> @@ -335,6 +399,7 @@
->>  	operating-points-v2 = <&cpu_opp_table>;
->>  	clocks = <&clkc CLKID_CPU_CLK>;
->>  	clock-latency = <50000>;
->> +	#cooling-cells = <2>;
->>  };
->>  
->>  &cpu3 {
->> @@ -342,6 +407,7 @@
->>  	operating-points-v2 = <&cpu_opp_table>;
->>  	clocks = <&clkc CLKID_CPU_CLK>;
->>  	clock-latency = <50000>;
->> +	#cooling-cells = <2>;
->>  };
->>  
->>  &cvbs_vdac_port {
->> @@ -368,6 +434,10 @@
->>  	status = "okay";
->>  };
->>  
->> +&mali {
->> +	#cooling-cells = <2>;
->> +};
->> +
-> 
-> Is there a reason these #cooling-cells properties belong in the SoC
-> .dtsi and not the board .dts.  Seems like you'll have to repeat this in
-> every board .dts which doesn't seem necessary.
+On Mon, 8 Jul 2019 at 19:33, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> WiP - only partially working - see performance numbers.
+>
+> Odroid-C1 eMMC (HS-200):
+> Amlogic's vendor driver @ Linux 3.10:
+>   7781351936 bytes (7.8 GB) copied, 134.714 s, 57.8 MB/s
+> This driver:
+>   7781351936 bytes (7.8 GB, 7.2 GiB) copied, 189.02 s, 41.2 MB/s
+>
+> EC-100 eMMC (HS MMC):
+> Amlogic's vendor driver @ Linux 3.10:
+>   15762194432 bytes (16 GB) copied, 422.967 s, 37.3 MB/s
+> This driver:
+>   15762194432 bytes (16 GB, 15 GiB) copied, 9232.65 s, 1.7 MB/s
+>
+> 1) Amlogic's vendor driver does some magic with the divider:
+>       clk_div = input_rate / clk_ios - !(input_rate%clk_ios);
+>       if (!(clk_div & 0x01)) // if even number, turn it to an odd one
+>          clk_div++;
+>    It's not clear to me whether what the reason behind this is, what is
+>    supposed to be achieved with this?
+>
+> 2) The hardcoded RX clock phases are taken from the vendor driver. It
+>    seems that these are only valid when fclk_div3 is used as input
+>    clock (however, there are four more inputs). It's not clear to me how
+>    to calculate the RX clock phases in set_ios based on the input clock
+>    and the ios rate.
+>
+> 3) The hardware supports a timeout IRQ but the max_busy_timeout is not
+>    documented anywhere.
+>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-I asked him to keep the cooling-cells in the boards until we add the thermal
-in all the remaining boards.
+Martin, overall this looks good to me. Once you moved from RFC to a
+formal patch I will check again, of course.
 
-Seemed to be safer way at the time...
+There are a couple of calls to readl_poll_timeout(), for different
+reasons, that I have some questions about, but we can discuss those in
+the next step.
 
-Neil
+[...]
 
-> 
-> Same comment for patch 5/6
-> 
-> Kevin
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-> 
-
+Kind regards
+Uffe
 
 _______________________________________________
 linux-amlogic mailing list
