@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 59777C3A5A1
-	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Aug 2019 20:32:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 47922C3A5A1
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Aug 2019 20:49:23 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 28E6323401
-	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Aug 2019 20:32:50 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 117EE22CE3
+	for <linux-amlogic@archiver.kernel.org>; Thu, 22 Aug 2019 20:49:23 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ikf1Gy8u";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="P8zhTm0f"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 28E6323401
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="s04w9F9r";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Nt3rthPr"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 117EE22CE3
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,67 +26,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hG2lkK/Cw2ageVIXQ+cJ1vODsMKgCieISW2UkRX6aZQ=; b=ikf1Gy8u2GNwFw
-	a5F10lxbLS97xmCR6njo06Oj5pcC03yBStymXWmVGzma3F6wFIPvBNHFgPozA97UtKSetN5lhEBCE
-	0dzWUd87y3cPYNwWnEOD8ga54HfwAxgHhhsYKpUmQcCJGlc8mdbjOCGU5GoCNsie1jSGR6cBTraF5
-	b69V1domfOXGVn+Ll/MsNOSEWwleYClAVUjGpVA431lzIoB1zQdbWBR73iURApzt5AjZE/SthPNZo
-	pFIa2WVuJbp8KtuNVTc8mS4eQ28Quqaj5Zmm2PPC3Cz5fIiF2Np+5yGCB/7N4BePgH9v8yIcYmwwV
-	EP15BSwTDZycgyWG9XCg==;
+	List-Owner; bh=0tIwIPts+Kk+haodUBWLTkcaKMicPIcKrbX9XxaFV30=; b=s04w9F9rpHwmLC
+	xZRcSWBQgvf2iRu979bgSM/+179hIs6RYj9eGR3P8Jh2PgKwkt+ZDbv45ag9LmUIZhlDH08tnFJ4O
+	ExwH6kUinNrkCi521rZcNUkuIZkHrq3tnYJPTcV+xU4jOfXsroihTZqifGFfQOnq95Kjp9mxk03ua
+	urbqT+OdQV/1KUSeR2uui+RXDaA5QjisgrertRFFAlaWqu0wgYVRS5YM4UeAcLGARUPTJApJzSGOh
+	KKVE7CgSXoOB0HmNVH9QlEWGb2vwSeksFfphxqDla/kAjJLA/6nFa0Xeqcpds3oJzOIezgTrfe47A
+	i0LXew5koL2SkXebwISA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i0tlB-0005WH-9T; Thu, 22 Aug 2019 20:32:41 +0000
-Received: from mail-pg1-x544.google.com ([2607:f8b0:4864:20::544])
+	id 1i0u1F-00037s-BB; Thu, 22 Aug 2019 20:49:17 +0000
+Received: from mail-pl1-x642.google.com ([2607:f8b0:4864:20::642])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i0tl6-0005VG-4s
- for linux-amlogic@lists.infradead.org; Thu, 22 Aug 2019 20:32:39 +0000
-Received: by mail-pg1-x544.google.com with SMTP id n190so4355929pgn.0
- for <linux-amlogic@lists.infradead.org>; Thu, 22 Aug 2019 13:32:36 -0700 (PDT)
+ id 1i0u10-0002tR-NK
+ for linux-amlogic@lists.infradead.org; Thu, 22 Aug 2019 20:49:05 +0000
+Received: by mail-pl1-x642.google.com with SMTP id 4so4125663pld.10
+ for <linux-amlogic@lists.infradead.org>; Thu, 22 Aug 2019 13:49:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=RFOgqYhHHIGejl0HbA/fjeJeGoxmrXDRE4DYi+A8/8A=;
- b=P8zhTm0fAS/ixy3THy5IgTC1YE0omjEaozvX6NmYF+jcO/QbTtPNRK068nu0PjEiEU
- iakeI+gBMgvX2OdeVIGHQ1Q8HP00ZY2TvKxgNiyGlAV1KuG+5O1m38UgORhecfFgc4iy
- ZIYs0T1Oor0FdBp3veYWBtReBFXLwwW7V4quCDn8KcusoMdfI1A9UElYqGYu/ToKoY4q
- fdFOn1KZ6ZcXwZgtkAsug1FgtEiqRA+49xihnA/oe6dvJWZ9aLM5gEFywpzn0KpZnneG
- 4vze4FKJmKU3cDcboBiny19OLeGab5oeDzMUBP2W7x8oqEmNA1y87mcEPDXYlghJBMIB
- xKWg==
+ :mime-version; bh=PRyBdHjQx8YQuiWlWDuZaRk18ZPfvPfoxp9juAJhPE0=;
+ b=Nt3rthPrwSqsNTxwWEFNc3alLqc2wECW4EsvmIl3hj6d8BU2kUpNDs5RWHcrvZ06Ha
+ 52lfo4PXNczdqV2WwSh7J71j1s9c2/Ird/b6f6N9/lKSXp1wyAiwpgq5ARNimV+FBJwv
+ cL+uPV19RjKoXZFEHsh/wtmATmEuVokrT3eyx21oz/RoS6uwZNkGJWrW6uOyjEHcTS7i
+ alC/R0Lz7KNgTCPha9tElM/8CQkIrGUCx+uDr6jKDLO0WS/BHxJ+xPSqDf3qIgmXI85b
+ puBmPmgavEVgDXoUpxZ3OxLyXILsPEKWR37/0xyHymu6kVpnccpbfvneQBPPlwLEiaxh
+ gOdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=RFOgqYhHHIGejl0HbA/fjeJeGoxmrXDRE4DYi+A8/8A=;
- b=nPeRCTV9EvcHrY81ieGz0F4x5xCgO04HxQV640uqg81jpfksM40SYMK1Y4YoS/CCoB
- nKYo34sr1WdSoBB9A99/qtIQoR+Qi3AmOt6nt/AjM4k+8QKN7h7EWCmZRDJGK60wIabX
- JvOG6H2FXiF4/VGD1jbsXAbX+2xx9NuVcdIA/e+f+eC+eIkRD+hckfO0xAX/WjaP2mvv
- O3T7yMVNZuSXbt/kYV8FbJjWrf5/7VPr46V5F78gJF5oxa+I/axCgvCiWjoEa9Or9M1m
- n+E33gS2WXbLQClFrrEE00koOBMY35RZ/rMR24h2LbYdAtxdv/kxnhh5z505Oa3kwKQt
- i5TA==
-X-Gm-Message-State: APjAAAWs2GfDSL2dXhDrNCFkRwwflic1nXvAdIqpe4ln+jUWbgDJAIyv
- gMPiN4DsJCpEpQRjqTPqbtTTXw==
-X-Google-Smtp-Source: APXvYqwMi2757VWPTYax3PWZoVJt/zaEQVx1DtRihbn2pb3v3lX6DDbVTNaw7kPSjD7ANOcN4v17NA==
-X-Received: by 2002:a17:90a:cc0c:: with SMTP id
- b12mr1529730pju.138.1566505955081; 
- Thu, 22 Aug 2019 13:32:35 -0700 (PDT)
+ bh=PRyBdHjQx8YQuiWlWDuZaRk18ZPfvPfoxp9juAJhPE0=;
+ b=U4tLGsqksMs9hGv10tz8CT9yfDLhmq73/jidDqdGF6swmCiKFo5FRgY2mRwylVJIx1
+ x5kGRASSknz98d5NrodtTKK23OHrNJK1V+EB2waVLxHW7zQnu4EDh3Jn412ci3SJ+Ccu
+ DaXsMVAhoNtrcZJZ/W4lcLq5HZaHrIaCmD2RXJ4PQSQZYIpNYmG475iktJVYvOtn4foi
+ AlfdDMF+SKLmYlRuCO5E8mYoieBXN+XKdvnJuX9rU4U9wb6VtXH8ZiZ84CVTPBFb2uly
+ 0KcBfwohKSJoAgpznvyE7CWOZ01L4pbFp6qs/mvRYrBsmYbCP2hK6OuGSG0KBJutd6zJ
+ 93NQ==
+X-Gm-Message-State: APjAAAXbOnoZHMXRFtMklocQhmyQODTutEj/u9qR4YowvE+4HAMDO3Zw
+ UURQ1RcJ/3j+v0C8Kt2RVOhYCQ==
+X-Google-Smtp-Source: APXvYqyBOZY+Y8qPyRTGoHFxY7bYv7/YpxBaX72z5hY0CRGeCbyY7yfKY2UAF99J0VAB5mBEbwC5xA==
+X-Received: by 2002:a17:902:f217:: with SMTP id
+ gn23mr774044plb.21.1566506941988; 
+ Thu, 22 Aug 2019 13:49:01 -0700 (PDT)
 Received: from localhost ([2601:602:9200:a1a5:89d4:68d1:fc04:721])
- by smtp.gmail.com with ESMTPSA id c13sm275532pfi.17.2019.08.22.13.32.34
+ by smtp.gmail.com with ESMTPSA id b123sm311081pfg.64.2019.08.22.13.49.01
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Thu, 22 Aug 2019 13:32:34 -0700 (PDT)
+ Thu, 22 Aug 2019 13:49:01 -0700 (PDT)
 From: Kevin Hilman <khilman@baylibre.com>
-To: Neil Armstrong <narmstrong@baylibre.com>, ulf.hansson@linaro.org
-Subject: Re: [PATCH 2/5] soc: amlogic: Add support for Everything-Else power
- domains controller
-In-Reply-To: <b6cfb770-76eb-00b1-e088-1a73b7978f33@baylibre.com>
-References: <20190821114121.10430-1-narmstrong@baylibre.com>
- <20190821114121.10430-3-narmstrong@baylibre.com>
- <7hzhk25ct3.fsf@baylibre.com>
- <b6cfb770-76eb-00b1-e088-1a73b7978f33@baylibre.com>
-Date: Thu, 22 Aug 2019 13:32:33 -0700
-Message-ID: <7hzhk12b6m.fsf@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>, jbrunet@baylibre.com,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: clk: meson: add sm1 periph clock
+ controller bindings
+In-Reply-To: <20190822142455.12506-2-narmstrong@baylibre.com>
+References: <20190822142455.12506-1-narmstrong@baylibre.com>
+ <20190822142455.12506-2-narmstrong@baylibre.com>
+Date: Thu, 22 Aug 2019 13:49:00 -0700
+Message-ID: <7hr25d2af7.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190822_133236_198890_39AF6275 
-X-CRM114-Status: GOOD (  33.12  )
+X-CRM114-CacheID: sfid-20190822_134902_763658_7F9B4EC3 
+X-CRM114-Status: UNSURE (   7.64  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,7 +99,8 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
@@ -107,394 +108,17 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Neil Armstrong <narmstrong@baylibre.com> writes:
 
-> On 22/08/2019 01:16, Kevin Hilman wrote:
->> Neil Armstrong <narmstrong@baylibre.com> writes:
->> 
->>> Add support for the General Purpose Amlogic Everything-Else Power controller,
->>> with the first support for G12A and SM1 SoCs dedicated to the VPU, PCIe,
->>> USB, NNA, GE2D and Ethernet Power Domains.
->>>
->>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> 
->> Nice!  Thanks for generalizing this.
->> 
->> A few comments/concerns below, but this is mostly ready.
-
-[...]
-
->>> +#define VPU_PD(__name, __resets, __clks, __top_pd, __mem, __get_power)	\
->>> +	{								\
->>> +		.name = __name,						\
->>> +		.reset_names_count = ARRAY_SIZE(__resets),		\
->>> +		.reset_names = __resets,				\
->>> +		.clk_names_count = ARRAY_SIZE(__clks),			\
->>> +		.clk_names = __clks,					\
->>> +		.top_pd = __top_pd,					\
->>> +		.mem_pd_count = ARRAY_SIZE(__mem),			\
->>> +		.mem_pd = __mem,					\
->>> +		.get_power = __get_power,				\
->>> +	}
->>> +
->>> +#define TOP_PD(__name, __top_pd, __mem)					\
->>> +	{								\
->>> +		.name = __name,						\
->>> +		.top_pd = __top_pd,					\
->>> +		.mem_pd_count = ARRAY_SIZE(__mem),			\
->>> +		.mem_pd = __mem,					\
->>> +	}
->> 
->> Why can't the TOP_PD domains also have a __get_power().  Shouldn't we
->> just be able to check the sleep_reg/sleep_mask like in the VPU case?
+> Update the documentation to support clock driver for the Amlogic SM1 SoC.
 >
-> It can, I can add it later, do we need it for this version ?
-
-Yes please.  Seems a pretty simple addition, let's have it from the
-beginning.
-
->> Also, for readability, I think the arguments to VPU_PD and TOP_PD to
->> have the same order, at least for the common ones.  IOW, __name,
->> __top_pd, __mem should be first.
+> SM1 clock tree is very close, the main differences are :
+> - each CPU core can achieve a different frequency, albeit a common PLL
+> - a similar tree as the clock tree has been added for the DynamIQ Shared Unit
+> - has a new GP1 PLL used for the DynamIQ Shared Unit
+> - SM1 has additional clocks like for CSI, NanoQ an other components
 >
-> Sure, will fix
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-and you can add __get_power to the common list too.
-
-[...]
-
->>> +static int meson_ee_clk_disable(struct meson_ee_pwrc_domain *pwrc_domain)
->>> +{
->>> +	int i;
->>> +
->>> +	for (i = 0 ; i < pwrc_domain->num_clks ; ++i)
->>> +		clk_disable(pwrc_domain->clks[i]);
->>> +
->>> +	for (i = 0 ; i < pwrc_domain->num_clks ; ++i)
->>> +		clk_unprepare(pwrc_domain->clks[i]);
->>> +
->>> +	return 0;
->>> +}
->>> +
->>> +static int meson_ee_clk_enable(struct meson_ee_pwrc_domain *pwrc_domain)
->>> +{
->>> +	int i, ret;
->>> +
->>> +	for (i = 0 ; i < pwrc_domain->num_clks ; ++i) {
->>> +		ret = clk_prepare(pwrc_domain->clks[i]);
->>> +		if (ret)
->>> +			goto fail_prepare;
->>> +	}
->>> +
->>> +	for (i = 0 ; i < pwrc_domain->num_clks ; ++i) {
->>> +		ret = clk_enable(pwrc_domain->clks[i]);
->>> +		if (ret)
->>> +			goto fail_enable;
->>> +	}
->>> +
->>> +	return 0;
->>> +fail_enable:
->>> +	while (--i)
->>> +		clk_disable(pwrc_domain->clks[i]);
->>> +
->>> +	/* Unprepare all clocks */
->>> +	i = pwrc_domain->num_clks;
->>> +
->>> +fail_prepare:
->>> +	while (--i)
->>> +		clk_unprepare(pwrc_domain->clks[i]);
->>> +
->>> +	return ret;
->>> +}
->> 
->> Both the clk enable and disable functions above are just open-coding of
->> the clk_bulk equivalents.  Please use clk_bulk_*, then you don't need
->> these helpers.  (c.f. the RFT patch I did to convert the old driver to
->> clk_bulk[1])
->
-> Yes, but clk_bulk takes _all_ the clocks from the node, you canot specify
-> a list of names, maybe it's overengineered but I wanted to specify the
-> exact resets and clocks for each power domain, clk_bulk doesn't provide this.
-
-I've been going on the assumption that there's no reason to list clocks
-in the pwrc DT node that you don't want managed by the driver.  This
-also seems to match the exisiting driver, and this new one.
-
-What is the case where you would list clocks in the DT node for the
-power-domain, but not want to manage them in the driver?
-
-If there's no good reason to do that, then clk_bulk greatly simplifies
-this code.
-
->>> +static int meson_ee_pwrc_off(struct generic_pm_domain *domain)
->>> +{
->>> +	struct meson_ee_pwrc_domain *pwrc_domain =
->>> +		container_of(domain, struct meson_ee_pwrc_domain, base);
->>> +	int i;
->>> +
->>> +	if (pwrc_domain->desc.top_pd)
->>> +		regmap_update_bits(pwrc_domain->pwrc->regmap_ao,
->>> +				   pwrc_domain->desc.top_pd->sleep_reg,
->>> +				   pwrc_domain->desc.top_pd->sleep_mask,
->>> +				   pwrc_domain->desc.top_pd->sleep_mask);
->>> +	udelay(20);
->>> +
->>> +	for (i = 0 ; i < pwrc_domain->desc.mem_pd_count ; ++i)
->>> +		regmap_update_bits(pwrc_domain->pwrc->regmap_hhi,
->>> +				   pwrc_domain->desc.mem_pd[i].reg,
->>> +				   pwrc_domain->desc.mem_pd[i].mask,
->>> +				   pwrc_domain->desc.mem_pd[i].mask);
->>> +
->>> +	udelay(20);
->>> +
->>> +	if (pwrc_domain->desc.top_pd)
->>> +		regmap_update_bits(pwrc_domain->pwrc->regmap_ao,
->>> +				   pwrc_domain->desc.top_pd->iso_reg,
->>> +				   pwrc_domain->desc.top_pd->iso_mask,
->>> +				   pwrc_domain->desc.top_pd->iso_mask);
->>> +
->>> +	if (pwrc_domain->num_clks) {
->>> +		msleep(20);
->>> +		meson_ee_clk_disable(pwrc_domain);
->>> +	}
->>> +
->>> +	return 0;
->>> +}
->>> +
->>> +static int meson_ee_pwrc_on(struct generic_pm_domain *domain)
->>> +{
->>> +	struct meson_ee_pwrc_domain *pwrc_domain =
->>> +		container_of(domain, struct meson_ee_pwrc_domain, base);
->>> +	int i, ret;
->>> +
->>> +	if (pwrc_domain->desc.top_pd)
->>> +		regmap_update_bits(pwrc_domain->pwrc->regmap_ao,
->>> +				   pwrc_domain->desc.top_pd->sleep_reg,
->>> +				   pwrc_domain->desc.top_pd->sleep_mask, 0);
->>> +	udelay(20);
->>> +
->>> +	for (i = 0 ; i < pwrc_domain->desc.mem_pd_count ; ++i)
->>> +		regmap_update_bits(pwrc_domain->pwrc->regmap_hhi,
->>> +				   pwrc_domain->desc.mem_pd[i].reg,
->>> +				   pwrc_domain->desc.mem_pd[i].mask, 0);
->>> +
->>> +	udelay(20);
->>> +
->>> +	ret = meson_ee_reset_assert(pwrc_domain);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	if (pwrc_domain->desc.top_pd)
->>> +		regmap_update_bits(pwrc_domain->pwrc->regmap_ao,
->>> +				   pwrc_domain->desc.top_pd->iso_reg,
->>> +				   pwrc_domain->desc.top_pd->iso_mask, 0);
->>> +
->>> +	ret = meson_ee_reset_deassert(pwrc_domain);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	return meson_ee_clk_enable(pwrc_domain);
->>> +}
->>> +
->>> +static int meson_ee_pwrc_init_domain(struct platform_device *pdev,
->>> +				     struct meson_ee_pwrc *sm1_pwrc,
->>> +				     struct meson_ee_pwrc_domain *dom)
->>> +{
->>> +	dom->pwrc = sm1_pwrc;
->>> +	dom->num_rstc = dom->desc.reset_names_count;
->>> +	dom->num_clks = dom->desc.clk_names_count;
->>> +
->>> +	if (dom->num_rstc) {
->>> +		int rst;
->>> +
->>> +		dom->rstc = devm_kcalloc(&pdev->dev, dom->num_rstc,
->>> +				sizeof(struct reset_control *),	GFP_KERNEL);
->>> +		if (!dom->rstc)
->>> +			return -ENOMEM;
->>> +
->>> +		for (rst = 0 ; rst < dom->num_rstc ; ++rst) {
->>> +			dom->rstc[rst] = devm_reset_control_get_exclusive(
->>> +					&pdev->dev,
->>> +					dom->desc.reset_names[rst]);
->>> +			if (IS_ERR(dom->rstc[rst]))
->>> +				return PTR_ERR(dom->rstc[rst]);
->>> +		}
->> 
->> Why not simplify and use the helpers that get multiple reset lines (like
->> devm_reset_control_array_get() used in meson-gx-pwrc-vpu.c)?
->
-> Same comment as clk_bulk, we cannot be sure we select the right reset lines.
-
-Again, what is the case for listing resets in the power-domain node that
-you don't want to be managed by the driver?
-
->> You could also use reset_control_get_count() and compare to the expected
->> number (dom->num_rstc).
->
-> This seems oversimplified
-
-Similar to above, if you're always going to manage all the reset lines
-in the DT node, then simple is good.
-
-If there are reasons to list reset lines in the DT node that will not be
-managed by the driver, I'm defintiely curious why.
-
-If not, using the reset API helpers is much more readable and
-maintainble IMO.
-
->> 
->>> +	}
->>> +
->>> +	if (dom->num_clks) {
->>> +		int clk;
->>> +
->>> +		dom->clks = devm_kcalloc(&pdev->dev, dom->num_clks,
->>> +				sizeof(struct clk *), GFP_KERNEL);
->>> +		if (!dom->clks)
->>> +			return -ENOMEM;
->>> +
->>> +		for (clk = 0 ; clk < dom->num_clks ; ++clk) {
->>> +			dom->clks[clk] = devm_clk_get(&pdev->dev,
->>> +					dom->desc.clk_names[clk]);
->>> +			if (IS_ERR(dom->clks[clk]))
->>> +				return PTR_ERR(dom->clks[clk]);
->>> +		}
->>> +	}
->> 
->> Please use clk_bulk API, and then just double-check that the number of
->> clocks found matches the expected number.
->
-> Same, I'll either take all the clks and resets for the vpu power domain,
-> or keep this code to make sure we get the right clocks and resets.
-
-Similar to above.  IMO, we should be sure to put the "right clocks and
-resets" into the DT, and then simplify the code.
-
->> 
->>> +	dom->base.name = dom->desc.name;
->>> +	dom->base.power_on = meson_ee_pwrc_on;
->>> +	dom->base.power_off = meson_ee_pwrc_off;
->>> +
->>> +	if (dom->desc.get_power) {
->>> +		bool powered_off = dom->desc.get_power(dom);
->> 
->> nit: insert blank line here
->> 
->> More importantly, we defintely will have problem here in the
->> !powered_off case.  TL;DR; the driver's state does not match the actual
->> hardware state.
->> 
->> When powered_off = false, you're telling the genpd core that this domain
->> is already turned on.  However, you haven't called _pwrc_on() yet for
->> the domain, which means internal state of the driver for this domain
->> (e.g. clock enables, resets, etc.) is not in sync with the HW.  On
->> SEI610 this case is happending for the VPU, which seems to be enabled by
->> u-boot, so this driver detects it as already on, which is fine.  But...
->> 
->> Remember that the ->power_off() function will be called during suspend,
->> and will lead to the clk unprepare/disable calls.  However, for domains
->> that are detected as on (!powered_off), clk prepare/enable will never
->> have been called, so that when suspend happens, you'll get "already
->> unprepared" errors from the clock core
->> 
->> IOW, I think you need something like this here:
->> 
->> 		if (!powered_off)
->> 			meson_ee_pwrc_on(&dom->base);
->> 
->> so that the internal state of clock fwk etc. matches the detected state
->> of the HW.  The problem with that simple fix, at least for the VPU is
->> that it might cause us to lose any existing display or framebuffer
->> console that's on-going.  Probably needs some testing.
->
-> Yes, I forgot to take the _shutdown() function from gx_pwrc_vpu driver :
->
-> 349 static void meson_gx_pwrc_vpu_shutdown(struct platform_device *pdev)
-> 350 {
-> 351         struct meson_gx_pwrc_vpu *vpu_pd = platform_get_drvdata(pdev);
-> 352         bool powered_off;
-> 353
-> 354         powered_off = meson_gx_pwrc_vpu_get_power(vpu_pd);
-> 355         if (!powered_off)
-> 356                 vpu_pd->genpd.power_off(&vpu_pd->genpd);
-> 357 }
-
-OK, yeah, I hadn't noticed that in the original driver.  I tested
-something simliar with suspend/resume on SEI610 and it gets rid of the
-"already unprepared" splats from the clock core.
-
->> 
->> Anyways, to see what I mean, try suspend/resume (you can test this
->> series on my integ branch with "rtcwake -d rtc0 -m mem -s4") and you'll
->> see error splats from the clock core during suspend.
->> 
->> 
->> 
->>> +		pm_genpd_init(&dom->base, &pm_domain_always_on_gov,
->>> +			      powered_off);
->> 
->>> +	} else
->>> +		pm_genpd_init(&dom->base, NULL, true);
->> 
->> nit: the else clause should also have {} to match the if
->> (c.f. CodingStyle)
->
-> OK
->
->> 
->> Why do you force the always-on governor in the case where ->get_power()
->> exists, but not the other?
->> 
->> If you force that, then for any devices connected to these domains that
->> use runtime PM, they will never turn off the domain when it's idle.
->> IOW, these domains will only ever be turned off on system-wide
->> suspend/resume.
->> 
->> IMO, unless there's a good reason not to, you should pass NULL for the
->> governor.
->
-> It's for legacy when VPU is initialized from vendor U-Boot, look at commit :
-> 339cd0ea082287ea8e2b7e7159a5a33665a2cbe3 "soc: amlogic: meson-gx-pwrc-vpu: fix power-off when powered by bootloader"
->
->     In the case the VPU power domain has been powered on by the bootloader
->     and no driver are attached to this power domain, the genpd will power it
->     off after a certain amount of time, but the clocks hasn't been enabled
->     by the kernel itself and the power-off will trigger some faults.
->     This patch enable the clocks to have a coherent state for an eventual
->     poweroff and switches to the pm_domain_always_on_gov governor.
-
-The key phrase there being "and no driver is attached".  Now that we
-have a driver, it claims this domain so I don't think it will be
-powered off:
-
-# cat /sys/kernel/debug/pm_genpd/pm_genpd_summary 
-domain                          status          slaves
-    /device                                             runtime status
-----------------------------------------------------------------------
-ETH                             on              
-    /devices/platform/soc/ff3f0000.ethernet             unsupported
-AUDIO                           off-0           
-GE2D                            off-0           
-PCI                             off-0           
-USB                             on              
-    /devices/platform/soc/ffe09000.usb                  active
-NNA                             off-0           
-VPU                             on              
-    /devices/platform/soc/ff900000.vpu                  unsupported
-
-In my tests with a framebuffer console (over HDMI), I don't see the
-display being powered off.
-
-> I could set always-on governor only if the domain was already enabled,
-> what do you think ?
-
-I don't think that's necessary now that we have a driver.  We really
-want to be able to power-down this domain when the display is not in
-use, and if you use always_on, that will never happen.
-
-> And seems I'm also missing the "This patch enable the clocks".
-
-I'm not sure what patch you're referring to.
-
-Kevin
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
