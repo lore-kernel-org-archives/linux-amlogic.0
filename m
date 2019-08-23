@@ -2,91 +2,86 @@ Return-Path: <SRS0=pKyR=WT=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 55220C3A5A2
-	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Aug 2019 15:44:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E515BC3A5A2
+	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Aug 2019 16:10:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2994921726
-	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Aug 2019 15:44:49 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BC6232173E
+	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Aug 2019 16:10:15 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Nk8u/7jM";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ksIuzB7/"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2994921726
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LH/r4xuR";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="j/qmk0il"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BC6232173E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Lsmgghc2ruV1Lkp9uD4mIn0EuPO8Qq9ZIdyPXhjVHUA=; b=Nk8u/7jMFRWMe4
-	iNihJ4y3f6efJy1FO8ubAUcN6O0ne4OZ6pnicx5/GoZKiEwrD7Oh9laxySKCd+eH0KIGs3Dz+uJz/
-	CCLoVFxCR8B/C7TkeB3IhikvLYNLiU7jEzIS3xU8sg4sOM52eSDO3rc+RsEhp0XuqeXJCHePHCjNB
-	APELSKMcjZ6Gcue3kWwjPIiXFd3FJNA66OvTTIdJsArm2QxWl8jF3sosI9F8gZi4f+y38+NEAARtE
-	9KIh6NUI6cpt0dXYSnCi66T+c2/2ndM/YZZiplPPoWVHfTfuNxTagoWUtNz/jZ+qyR6nBnT/A4UC3
-	izW/RIMkaydPqhtlkW2Q==;
+	List-Owner; bh=ViEWOrr0WFyGPBd1Xrjw9qQsPr1AbbQPdTppf9CN1bc=; b=LH/r4xuR+iruAI
+	kLFIurQgr68xs5ZXBxLEdL1Ac7xVm6jjZOkIHhHmqoebGyOEohqjKE6kpGgbHpWaVmHfoeQsoDTo3
+	DeGEAZOPDlQJxnprs7xQkPXDWGOGm9b2O4pnNsbIupPiNkY5ouMspRkDU1HoivnT4zTC86B5i9UF7
+	qaugPL826W7mppfpUtWqwF0TWRdjbpUphif+ar26EXCbZNESMb45IFXK2Wz3s3VtAKhbwZYmeQXEa
+	Z6TKMPHvHcy/G2UaKPziJbiPsZxlGUSRZ5S+/thMx4V+1ChGZlFM8k6apScdIJmchj3avnOjMfhMj
+	GtNTvs/yXdTorOPY4KEg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i1Bk5-0006v9-3Q; Fri, 23 Aug 2019 15:44:45 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1i1C8f-00022D-GH; Fri, 23 Aug 2019 16:10:09 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i1Bjy-0006qz-Rb
- for linux-amlogic@lists.infradead.org; Fri, 23 Aug 2019 15:44:41 +0000
-Received: by mail-wr1-x442.google.com with SMTP id q12so9022477wrj.12
- for <linux-amlogic@lists.infradead.org>; Fri, 23 Aug 2019 08:44:38 -0700 (PDT)
+ id 1i1C8b-0001Cf-Ud
+ for linux-amlogic@lists.infradead.org; Fri, 23 Aug 2019 16:10:07 +0000
+Received: by mail-wm1-x343.google.com with SMTP id c5so9432903wmb.5
+ for <linux-amlogic@lists.infradead.org>; Fri, 23 Aug 2019 09:10:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=OmtWBO1n+ZKCQXJ6AqaMInrPsxYx+c+GGrvrczYdURo=;
- b=ksIuzB7/OWZsHX54bVPcYMM69ePDkVsFJvpeEsHhF4PW4hBLzg2GjNxDflSD0UxGMp
- oUPTkgr1sIAZB+gvKG18hZ+lflkeq5Qp2Hcu2B7FcIiXjqdOMd8OV7ZUpGMSRaauI8z6
- gk0gPdGbNJ8fqcQeu+zQBcoHyd60DwagCxo/tT/DELtGbZNhdsU/gIQheaGCQXHSSO6P
- pR9CDJACYL2tVEc58sL42M5ylPgsFhTsBprDYuZ+gTLeUo2mNooGOlRUnQkNjikrZo8g
- 47PfvX2DrhrsX2aNzyo71qmww6NQa+NCvxlECIBP+t+mLecpfoUs6Bq/+99b6bvxRSxO
- GCoQ==
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=qCpJ5DiOoAHU5lhDofCgzNtjT/DAKjPBpHrmlHOG6vQ=;
+ b=j/qmk0ilPhQUF7l0BN9NueVXnVk2TKnE2zRM8pYHg2uQDvM/AGnH+Bfx6hFLi7fMA5
+ +pwScOhCd4T7VHxRIEH4eBmsM4mLGXagmBK8019XMPY7vfm4XHPmV9qMAoyE+idALv01
+ o7oNlPtNdnmURS3gpvwjKwUcVItSTRYeVFdCPkJZZPVwvRd1joN4Ni+1b0OLf73t1wbN
+ th/Tv6JxhO5HfB+s8kXKbo0JAlOSinY2G7P9cRqm4RQSzqsYnM3u3JxjmeJRPXAqt19Y
+ CtUXa/GyRT/rRgMqOLJofptHhMWhFh8rOycf/niTiIfDQd+JvLT3tunPocq01Y86lZHg
+ 8hRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=OmtWBO1n+ZKCQXJ6AqaMInrPsxYx+c+GGrvrczYdURo=;
- b=TGLdgN95upq8FHN8E9Ga2oQy4FLB0hCMt52yP+3BVJuNaZVwQEUodN3B6io5S7WpVp
- ooFsbRoIjn6le/VyzuZnNxeQpauCfbcG3W4fDupfrUKeNLs+OMD0Ixcpch/Z/79xz72e
- P4zvzuJYscIaTkVtlAWSNCAfg7MoNebyM5KnqTGHtWF+Eq0gOCQfVwobEuUrnWfdFx9A
- Jaie9j5YxSmUUsp+owI6Jsd8Sb+VAfTCtw5nGso1ZeEGY/mpnkG0acSEr3gQS3Rq03Px
- QE8xIB+2wq4HgToC+7H0q2jcHj7lMg6lBsiONrtx6H+dWZPM5Oxg7DZtbdQkS/KqjdnP
- USGw==
-X-Gm-Message-State: APjAAAWmUbbwOHpGD/BY/LnKU5idTqwRJ69+9l3sVZwISFbLrnLwPluu
- prtdGK2+RtUFJyTwDj+hLypQoA==
-X-Google-Smtp-Source: APXvYqwijk5AmRYmJRxLF0wlW75lhH46QFkzLlttL1bzSCN8eI/O+klK5GLvJSjNodHvRP0l4Z6f6g==
-X-Received: by 2002:a5d:63d1:: with SMTP id c17mr2612595wrw.3.1566575077641;
- Fri, 23 Aug 2019 08:44:37 -0700 (PDT)
-Received: from starbuck.baylibre.local
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id v7sm3567342wrn.41.2019.08.23.08.44.36
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=qCpJ5DiOoAHU5lhDofCgzNtjT/DAKjPBpHrmlHOG6vQ=;
+ b=LloAHe6G0OVJ8/YrObYo08kAUiknwUT+7nS4Cbo1EItpjM3z5ZFysL4R/UpXvZH51/
+ OU1+Bck9YJ5am9IY+O5TPtoIULrcdQjKJ+V7WRv7wv69J+TlKxCI9H1pJxuiJXOKylzB
+ 2BnWZwqxOlmEMSnOejCmBQBcSDb/44raa2IpWvr5On8meRZgKZyaZ5ZdidivENelgkhp
+ tTZuy1sThzLgP9h6hgoSOAumXA4PBA3fCV/hit7tpHDwwt7fuQH5Lqw4O7wfYJ02ttLS
+ VsZg6ELA+6ZQsmP87sHmk6IyL5RbYp/7hBIbqc0mtJv8YZ7I3+/745kVgVMdy0HSmUp2
+ kouQ==
+X-Gm-Message-State: APjAAAVXUwrxREnmnfz6WoKE3q3mdzY4hZ1/Y4P90pJS1CkHRelh0LTl
+ 4sEs26MkFfIR32D3xDdYgF+H1+Ip1iQ=
+X-Google-Smtp-Source: APXvYqzAdjPuuRgo0jN5MfNpSucyg8E+yaUYECo/wLyzD0iRmP6TdW/S7hVnAWdyxU8Skx4en26LQQ==
+X-Received: by 2002:a7b:cd17:: with SMTP id f23mr6259424wmj.177.1566576603459; 
+ Fri, 23 Aug 2019 09:10:03 -0700 (PDT)
+Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id s2sm2909998wrp.32.2019.08.23.09.10.02
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 23 Aug 2019 08:44:37 -0700 (PDT)
+ Fri, 23 Aug 2019 09:10:02 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH v2 2/2] arm64: dts: meson: g12a: add reset to tdm formatters
-Date: Fri, 23 Aug 2019 17:44:32 +0200
-Message-Id: <20190823154432.16268-3-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190823154432.16268-1-jbrunet@baylibre.com>
-References: <20190823154432.16268-1-jbrunet@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>, khilman@baylibre.com
+Subject: Re: [PATCH 0/6] arm64: meson-sm1: add support for DVFS
+In-Reply-To: <20190822142455.12506-1-narmstrong@baylibre.com>
+References: <20190822142455.12506-1-narmstrong@baylibre.com>
+Date: Fri, 23 Aug 2019 18:10:01 +0200
+Message-ID: <1jlfvjeucm.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190823_084438_894543_43A4FA18 
-X-CRM114-Status: UNSURE (   8.80  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190823_091006_030304_FC621000 
+X-CRM114-Status: GOOD (  12.89  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,94 +93,58 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- Neil Armstrong <narmstrong@baylibre.com>, linux-kernel@vger.kernel.org,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the reset to the TDM formatters of the g12a. This helps
-with channel mapping when a playback/capture uses more than 1 lane.
+On Thu 22 Aug 2019 at 16:24, Neil Armstrong <narmstrong@baylibre.com> wrote:
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+> Following DVFS support for the Amlogic G12A and G12B SoCs, this serie
+> enables DVFS on the SM1 SoC for the SEI610 board.
+>
+> The SM1 Clock structure is slightly different because of the Cortex-A55
+> core used, having the capability for each core of a same cluster to run
+> at a different frequency thanks to the newly used DynamIQ Shared Unit.
+>
+> This is why SM1 has a CPU clock tree for each core and for DynamIQ Shared Unit,
+> with a bypass mux to use the CPU0 instead of the dedicated trees.
+>
+> The DSU uses a new GP1 PLL as default clock, thus GP1 is added as read-only.
+>
+> The SM1 OPPs has been taken from the Amlogic Vendor tree, and unlike
+> G12A only a single version of the SoC is available.
+>
+> Dependencies:
+> - patch 6 is based on the "arm64: meson: add support for SM1 Power Domains" serie,
+> 	but is not a strong dependency, it will work without
+>
+> Neil Armstrong (6):
+>   dt-bindings: clk: meson: add sm1 periph clock controller bindings
+>   clk: meson: g12a: add support for SM1 GP1 PLL
+>   clk: meson: g12a: add support for SM1 DynamIQ Shared Unit clock
+>   clk: meson: g12a: add support for SM1 CPU 1, 2 & 3 clocks
+>   clk: meson: g12a: expose SM1 CPU 1, 2 & 3 clocks
+>   arm64: dts: meson-sm1-sei610: enable DVFS
+>
+>  .../bindings/clock/amlogic,gxbb-clkc.txt      |   1 +
+>  .../boot/dts/amlogic/meson-sm1-sei610.dts     |  59 +-
+>  arch/arm64/boot/dts/amlogic/meson-sm1.dtsi    |  69 +++
+>  drivers/clk/meson/g12a.c                      | 544 ++++++++++++++++++
+>  drivers/clk/meson/g12a.h                      |  26 +-
+>  include/dt-bindings/clock/g12a-clkc.h         |   3 +
+>  6 files changed, 697 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index edbc30572958..ee1b71284a83 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -11,6 +11,7 @@
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
-+#include <dt-bindings/reset/amlogic,meson-g12a-audio-reset.h>
- #include <dt-bindings/reset/amlogic,meson-g12a-reset.h>
- 
- / {
-@@ -1543,6 +1544,7 @@
- 						     "amlogic,axg-tdmin";
- 					reg = <0x0 0x300 0x0 0x40>;
- 					sound-name-prefix = "TDMIN_A";
-+					resets = <&clkc_audio AUD_RESET_TDMIN_A>;
- 					clocks = <&clkc_audio AUD_CLKID_TDMIN_A>,
- 						 <&clkc_audio AUD_CLKID_TDMIN_A_SCLK>,
- 						 <&clkc_audio AUD_CLKID_TDMIN_A_SCLK_SEL>,
-@@ -1558,6 +1560,7 @@
- 						     "amlogic,axg-tdmin";
- 					reg = <0x0 0x340 0x0 0x40>;
- 					sound-name-prefix = "TDMIN_B";
-+					resets = <&clkc_audio AUD_RESET_TDMIN_B>;
- 					clocks = <&clkc_audio AUD_CLKID_TDMIN_B>,
- 						 <&clkc_audio AUD_CLKID_TDMIN_B_SCLK>,
- 						 <&clkc_audio AUD_CLKID_TDMIN_B_SCLK_SEL>,
-@@ -1573,6 +1576,7 @@
- 						     "amlogic,axg-tdmin";
- 					reg = <0x0 0x380 0x0 0x40>;
- 					sound-name-prefix = "TDMIN_C";
-+					resets = <&clkc_audio AUD_RESET_TDMIN_C>;
- 					clocks = <&clkc_audio AUD_CLKID_TDMIN_C>,
- 						 <&clkc_audio AUD_CLKID_TDMIN_C_SCLK>,
- 						 <&clkc_audio AUD_CLKID_TDMIN_C_SCLK_SEL>,
-@@ -1588,6 +1592,7 @@
- 						     "amlogic,axg-tdmin";
- 					reg = <0x0 0x3c0 0x0 0x40>;
- 					sound-name-prefix = "TDMIN_LB";
-+					resets = <&clkc_audio AUD_RESET_TDMIN_LB>;
- 					clocks = <&clkc_audio AUD_CLKID_TDMIN_LB>,
- 						 <&clkc_audio AUD_CLKID_TDMIN_LB_SCLK>,
- 						 <&clkc_audio AUD_CLKID_TDMIN_LB_SCLK_SEL>,
-@@ -1627,6 +1632,7 @@
- 					compatible = "amlogic,g12a-tdmout";
- 					reg = <0x0 0x500 0x0 0x40>;
- 					sound-name-prefix = "TDMOUT_A";
-+					resets = <&clkc_audio AUD_RESET_TDMOUT_A>;
- 					clocks = <&clkc_audio AUD_CLKID_TDMOUT_A>,
- 						 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK>,
- 						 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK_SEL>,
-@@ -1641,6 +1647,7 @@
- 					compatible = "amlogic,g12a-tdmout";
- 					reg = <0x0 0x540 0x0 0x40>;
- 					sound-name-prefix = "TDMOUT_B";
-+					resets = <&clkc_audio AUD_RESET_TDMOUT_B>;
- 					clocks = <&clkc_audio AUD_CLKID_TDMOUT_B>,
- 						 <&clkc_audio AUD_CLKID_TDMOUT_B_SCLK>,
- 						 <&clkc_audio AUD_CLKID_TDMOUT_B_SCLK_SEL>,
-@@ -1655,6 +1662,7 @@
- 					compatible = "amlogic,g12a-tdmout";
- 					reg = <0x0 0x580 0x0 0x40>;
- 					sound-name-prefix = "TDMOUT_C";
-+					resets = <&clkc_audio AUD_RESET_TDMOUT_C>;
- 					clocks = <&clkc_audio AUD_CLKID_TDMOUT_C>,
- 						 <&clkc_audio AUD_CLKID_TDMOUT_C_SCLK>,
- 						 <&clkc_audio AUD_CLKID_TDMOUT_C_SCLK_SEL>,
--- 
-2.21.0
+Series looks good to me overall.
+Just drop patch 5 and expose every ID necessary directly with patch 1
+(same goes for the GP1 clock ID)
 
+>
+> -- 
+> 2.22.0
 
 _______________________________________________
 linux-amlogic mailing list
