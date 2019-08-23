@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8BC7BC3A5A4
-	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Aug 2019 07:19:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D241EC3A5A2
+	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Aug 2019 07:20:32 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 626F622CF7
-	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Aug 2019 07:19:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A8B48233A0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 23 Aug 2019 07:20:32 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MdMyhHUt";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="R+kf7K0N"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 626F622CF7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RYnX/f80";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="nOu1hJ2w"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A8B48233A0
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bW4WXZHGhVcmbLS1Gh7ck0SB8l34miB71uWRGNX0tfM=; b=MdMyhHUtSfDiYM
-	viU/la2FobVwqZKnyHkJr9WKB8VKVQg5NQmTNbGrdK8zMwu0HxH3PEaQ9F+BERoDH51XC0BE3eCYy
-	RyTLrH8/tT6enuvwYXOwoY3A52x5LwA1Eq8QGFeyJvXROcz0QtobUCcLMhnv2c9T053gne9/45dcK
-	wmuslDDOt0mWjBGFyAm2FwIwRWgF+ehIWd5cHGyrZiY9ITNH2CBMpT56vtVutAtgpkZ85fY2GUxlK
-	WAhptTY3b3WLaoPWa3/7ZOhXrDDcnemwPXybavduMY7XLUXumBmGK+jmDIhIs7NzRh9au+Vm0zFQR
-	y4XySJZKezp/934OzqCw==;
+	List-Owner; bh=0S2ySB7sA1pFIkbgrB9zsRpyMXE1NlKLrrPtNSc1CCc=; b=RYnX/f80X/1b4Z
+	c9x3Jrz15okqSgws4RW2JohdSuhnGnrodB4mGsSC9IF+0S3NSkdt3G19dA9xy3akGQhPThFsBULmn
+	jKZymq1uiGUltRZWQ9Kn5+TEpsTR/rhe9oU03G/eEmLklr5sGvW0Pzdm5k9bUCCbnipwt3Lw8utot
+	CBxB9HOu7Y34OJVAG7qkkjXWEg3T0YEsuAB9UMOGIQfuZzbMR4NwHuj7aHYD6VE5ehoSY6nH0AIoT
+	FDXPUo8p7Gfwun0ltBsdbovQlZTabGBQJjUk0lGtKq9lMZ1aR+QJaaSxl7WGgs9wJaCst7j3Kj+uG
+	liD3/8c5JJSaDlAOa0Aw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i13rK-0002mr-S6; Fri, 23 Aug 2019 07:19:43 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1i13s3-0004Ll-9g; Fri, 23 Aug 2019 07:20:27 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i13bB-000142-6b
- for linux-amlogic@lists.infradead.org; Fri, 23 Aug 2019 07:03:07 +0000
-Received: by mail-wm1-x342.google.com with SMTP id v15so7873635wml.0
- for <linux-amlogic@lists.infradead.org>; Fri, 23 Aug 2019 00:02:57 -0700 (PDT)
+ id 1i13bB-00014N-6k
+ for linux-amlogic@lists.infradead.org; Fri, 23 Aug 2019 07:03:09 +0000
+Received: by mail-wr1-x442.google.com with SMTP id b16so7590210wrq.9
+ for <linux-amlogic@lists.infradead.org>; Fri, 23 Aug 2019 00:02:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=h+5T06TTiEzeZ5DL95/p5N6dIurOyS8YvrG0lGH33jQ=;
- b=R+kf7K0NnOHDn39pFTT0lY4UjTC2TYwryRqgh0n56w2o2f8AMGJA9iD+VndqUzyUNS
- I8La1oB2B6REb5Zm0Ls/DqRGgv7M9ar/eD3g9wEiRSUmlG3eZgqm2oNM0E3CjUMhPNpe
- Ia0RgbtmoHbEPmqgJAdWpwjPNYd40jKuTkiyr/I02e7F+uQLlc/ReJ9U9jz1N1tlwg7Y
- 7aMWLprWSL/gSRZWaqye79ky7L3mAd36+yeSi3nkKGoDt3RkMNuRQ51RnS2GesO8uz+w
- KpAnlBec8g4EIpCOSpZO6AwoxVA/0p9hNkdLa+lDMMenokTwKbqx4DyDCtZZczwFv06L
- G3tw==
+ bh=Z/b1mhikbg+EPmNH/s2Xt1LyR+vNVX1tk6yq7Qa4/MI=;
+ b=nOu1hJ2wwRA59HSMRqpTfcIiHiskYmD68/3tC7t8v4OpPhcAvKvuh3bNdLHQK0POnp
+ FhtFeuTMXCkb6SSnCYDrKkGQWN31zpRQAsntyWJmIRqsansJmJB8bL0MtDAVYFsYc7o1
+ dvHMX9GWDaWycAn4GP5zXKfxylz7pfrp1pGOyGK8fEQaNUufNuiDe0nFGiKTV6dfIR/J
+ hrJB3C4I5O8R5vc88faq+kMormgsNPzuYggeAGBmwqnFIADMqfAG0whVOW8P9WUP1FKO
+ WhA/+NDagtIQ8/3s0OLrXUZLfMOR13KWND700Lgyev7nWSNwhB+v0ziUWpu1IkiqjYN/
+ MWzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=h+5T06TTiEzeZ5DL95/p5N6dIurOyS8YvrG0lGH33jQ=;
- b=d8qoC7U3Rn/Fe3KICCO1XrRKrvlT5LEkrdUg+pgrCvmH/WP21VMvdBIrsdTiMpRT+3
- A1Wbx9xHigMAHB/NpyYtj5kvUOLoZMeqRR4/u3WNTCgX/SyC6SWgszOX0TvsWxACQG2I
- 4u0x3mOh4KW8rFePzZtmhXFsCno0aKQ72sddUjc5cpelD+3IvnkEMxPG16n0a94tUOc7
- kEaVuZgCc5tLZ5q4sQVECsWwmhnW0Q/93+rvs/EBZNFWUrMRiPl1DXsEIOnOXCq0ARhk
- f2ZcnPSoY3F0BH6pEbXidEZRUwAdhGuA91o6NBMB0Lp8BH7b1DWYBynJ2Cel4rU7/AjF
- SoWA==
-X-Gm-Message-State: APjAAAVebGAg/fvu3JGg0BTSLinxEiJsxiyGF1zZScOfjcrjAEqjRN/t
- YYMtCiNfwKb3eqkPYie/xXgavg==
-X-Google-Smtp-Source: APXvYqw/SoF5DYn9b1vauvyrI8ghQkPIaZ7tJrCuSiAODuGMQFFRrHp0vHNZABXeC0QAMAyzZOl/KA==
-X-Received: by 2002:a1c:ed04:: with SMTP id l4mr3328349wmh.81.1566543775720;
- Fri, 23 Aug 2019 00:02:55 -0700 (PDT)
+ bh=Z/b1mhikbg+EPmNH/s2Xt1LyR+vNVX1tk6yq7Qa4/MI=;
+ b=jMn213jN/ypPKJTwDHr/qocab9/mepCaSC0vIMVsP6E0lj2CNuJGAnQ1zoFmKUpX6l
+ HgpiPHheU8u0APleO93ZUuIxxVea45M+Mh3WRgPGoX2KgUmG9HZ/y49L7hHJR4EjR42u
+ k1F/e3pvd1URPtVT6zs5nzyonbRsfKVFgNomA0rs+q4VfrByrVnRg2WZRpjeqnXoFIfC
+ rdcmhqs45tPAcCYSqOnLxkIREZU6CNhn0VMAxX6wbtoTp3+XMvIqi1nhVtDkfK2uoeNw
+ 6tFWzYP5m7XPKdKvfSg50Ndjc+KByKRIDH1gSm5bZJNKiPiRswrVXcZcNxLVWAApYczC
+ 3pIQ==
+X-Gm-Message-State: APjAAAVUHxz0ZfROdgKXrXXXTl20dDKVNbnb+EgK/qTg8SOpD96eQX8y
+ TinLjmSBbaWeKjp/iSGkd1Rk2w==
+X-Google-Smtp-Source: APXvYqyuqMJL2L5NeOppIMame3Tj3HMfeW5/PBCBwC0GPH9k/60jj7yNgLoziG/B+Lt97Ilb64QaUg==
+X-Received: by 2002:adf:d4c6:: with SMTP id w6mr3262263wrk.98.1566543776738;
+ Fri, 23 Aug 2019 00:02:56 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
  by smtp.gmail.com with ESMTPSA id a26sm1741833wmg.45.2019.08.23.00.02.55
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 23 Aug 2019 00:02:55 -0700 (PDT)
+ Fri, 23 Aug 2019 00:02:56 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: khilman@baylibre.com
-Subject: [RESEND PATCH v2 02/14] arm64: dts: meson-gx: drop the vpu dmc memory
- cell
-Date: Fri, 23 Aug 2019 09:02:36 +0200
-Message-Id: <20190823070248.25832-3-narmstrong@baylibre.com>
+Subject: [RESEND PATCH v2 03/14] arm64: dts: meson-gx: fix reset controller
+ compatible
+Date: Fri, 23 Aug 2019 09:02:37 +0200
+Message-Id: <20190823070248.25832-4-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20190823070248.25832-1-narmstrong@baylibre.com>
 References: <20190823070248.25832-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190823_000302_177017_E8A7C71E 
-X-CRM114-Status: UNSURE (   8.74  )
+X-CRM114-CacheID: sfid-20190823_000302_207766_421645FD 
+X-CRM114-Status: UNSURE (   9.46  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -108,36 +108,27 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 This fixes the following DT schemas check errors:
-meson-gxl-s805x-libretech-ac.dt.yaml: vpu@d0100000: reg-names: Additional items are not allowed ('dmc' was unexpected)
-meson-gxl-s805x-libretech-ac.dt.yaml: vpu@d0100000: reg-names: ['vpu', 'hhi', 'dmc'] is too long
-
-The 'dmc' register area was replaced by the amlogic,canvas property
-which was introduced in commit f1726043426c73 ("arm64: dts: meson-gx:
-add dmcbus and canvas nodes.") and commit cf34287986d0b6 ("arm64: dts:
-meson-gx: Add canvas provider node to the vpu")
+meson-gxbb-nanopi-k2.dt.yaml: reset-controller@4404: compatible:0: 'amlogic,meson-gx-reset' is not one of ['amlogic,meson8b-reset', 'amlogic,meson-gxbb-reset', 'amlogic,meson-axg-reset']
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-index f3ae5a3685f9..239ec08b3023 100644
+index 239ec08b3023..08c01e11ba1b 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
-@@ -544,9 +544,8 @@
- 		vpu: vpu@d0100000 {
- 			compatible = "amlogic,meson-gx-vpu";
- 			reg = <0x0 0xd0100000 0x0 0x100000>,
--			      <0x0 0xc883c000 0x0 0x1000>,
--			      <0x0 0xc8838000 0x0 0x1000>;
--			reg-names = "vpu", "hhi", "dmc";
-+			      <0x0 0xc883c000 0x0 0x1000>;
-+			reg-names = "vpu", "hhi";
- 			interrupts = <GIC_SPI 3 IRQ_TYPE_EDGE_RISING>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
+@@ -220,7 +220,7 @@
+ 			};
+ 
+ 			reset: reset-controller@4404 {
+-				compatible = "amlogic,meson-gx-reset", "amlogic,meson-gxbb-reset";
++				compatible = "amlogic,meson-gxbb-reset";
+ 				reg = <0x0 0x04404 0x0 0x9c>;
+ 				#reset-cells = <1>;
+ 			};
 -- 
 2.22.0
 
