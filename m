@@ -2,88 +2,86 @@ Return-Path: <SRS0=Ixac=WW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 32AD2C3A59F
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Aug 2019 14:47:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 91984C3A59F
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Aug 2019 22:40:41 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 057F7217F5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Aug 2019 14:47:26 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5EC222173E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Aug 2019 22:40:41 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="E36YFGqh";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="oOsWkVyy"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 057F7217F5
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Vcm0IbSa";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="q9KKwFI2"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5EC222173E
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=8m2/jkQfdD09BiqKmtWSZjLWeEVMvJuf2c9E1FzqxUs=; b=E36YFGqhZOlHli
-	ztb9/Uc4Zsz74Kj96M9x55h+YsIBl1IUTWSw/hOvwXd36+Qgl9Mn21p85qsvZCzmF3YXbUvvoG0cc
-	Jq8l3m9JZXVR37VmOlz9JI3T34QZve+2/fYi19nA4Yf6EyI5uxXtju3VEkzbZksgpyeq0CrQ5aSka
-	/BfrjpYF4bNFAEcLDiVp04lrhwCE2BwcoJYUkPtzN7MpGMTEh0t7aT9TWeiCSP9qg13UnbyqWrlxS
-	BjEfGjFLcaCtQjKkDkl2Sdb0ybtB+zbXCtQsTmgQHKydFkbDgB+Oq8zlfEQMJm1gwT0AEYBFVOQ2B
-	dNwOyxFX9jvTA/tTgHmg==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=5REEi2qdqPa3k9z4yz2vWkW9DVqA6lR09bya/G7nXSI=; b=Vcm0IbSanNFi8s
+	aaUmVrpPVQE9NaLQi7IpnSQZ8tUrJPPp/NXuzexruZgZEeXqs/AhTZSBsVv1Msa6tVf5pH23a5ZtX
+	izwgKNhYbKXNZexsAu5KrGa79o3+BVkxidezK2xaBzSaLxCMEP9qDkDtv0OtJydsoOJihdSUPDUHE
+	FyceausNDOF5krjWQam3zG0jkM8vsBghp8VKejYyPNXQ7a/gv+74vGHBeQh2CNCRirW3/+izv1AR1
+	bN/EqyCarAMd5okBQ4Em1mxM0q29FI0TQpjYkqEm+UJDES1R9ED5GBq/q0L/3GwA7PsdxfxgtB8iA
+	ONO0OaKbuQ77v6wACFMg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i2GH4-0006QS-Md; Mon, 26 Aug 2019 14:47:15 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1i2Nf4-0004Dp-Oe; Mon, 26 Aug 2019 22:40:30 +0000
+Received: from mail-ot1-x341.google.com ([2607:f8b0:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i2GGk-0006CJ-Nq
- for linux-amlogic@lists.infradead.org; Mon, 26 Aug 2019 14:46:56 +0000
-Received: by mail-wr1-x443.google.com with SMTP id j16so15587335wrr.8
- for <linux-amlogic@lists.infradead.org>; Mon, 26 Aug 2019 07:46:52 -0700 (PDT)
+ id 1i2Nf0-0004Ar-O4; Mon, 26 Aug 2019 22:40:28 +0000
+Received: by mail-ot1-x341.google.com with SMTP id k18so16841434otr.3;
+ Mon, 26 Aug 2019 15:40:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=lKqFlQ5uAweiWoy5Q0NBtlqDIxAoWdFqAZ3hE0aWMrA=;
- b=oOsWkVyy0OVNO3GEWtL9KUlBPcNQ8EXb5NCLaRrryxI86WLE7itY1IhCRJ//gMudtE
- MI6ag1jiTbVVcDqAqXe22G5Ebaq5BNPFjs6B3Wib8wz4iLstk/g8GUietWVUDOVMtFLD
- B72moJ69pMr5bro4U1czlxVb8JfS6SU1/pnwUeOux5P8jlS5AmQgmodOo1MfubsAtRFd
- 6thkrxpAUURZh4j5Bx+8fONziNmU3yKSV12jDFNhld88vr6ZzSyAwVmUIXXrkmddsp89
- B3dw+IJyZkAPVaiO4vKQIwopRI6ZxW7dUD8oDdsLLhWbf2C5s+AV7/4TTATXNxBIP2Vf
- RzRw==
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=DBtUgp09ILtLJx82v7/9S8a2bPggcu3SBMJmSRWkOWU=;
+ b=q9KKwFI2spBd11DLhVGrnyWQ1itKWiJjNUpvQb1lcigAsiIa+zqXV82lgLULFRFzvY
+ i/A5q06MVmhusfme0Ht+CbyPFuNMSHhcZYLY8I4jksbTYGpNIuOmgXorJ5KIDpiRD80d
+ 0zhLZqPjdoEjoVBAOLrpQMonWWoSoNqSpUUzUZBAm8wRtSHcdYw60KPG3ITSWALzqpTQ
+ CEKoNBmEfKEjOnz2LA4YCMClL8//qfoXF7ybS3TZRxu+x2+AyvdmlGx5GAmhZ5KV5AbL
+ 1LCSqWmL7gpHIxS6ZfGtcF+QfQvgAeypN9W97aH7Zp97DKtIu6KdXpA6IwBYNPrKjm66
+ Un+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=lKqFlQ5uAweiWoy5Q0NBtlqDIxAoWdFqAZ3hE0aWMrA=;
- b=X+F6sRrvxvi6dpF2D5LYtRBbPdipidZxzV/LRNFAyHIaptwtOVCcyqEXbabKK4ZZ9F
- WyRufgHP0dmbSjo/Kl/08Ln3iooaL1GVUJySwLc/A0VrYmbLfKzzS8SkSt/rjr+wrzFi
- fnXutTMazjLFkliuONH6d2yFhuNlFh7iI5GQxOMWfTT5esq74LW7C2dQRXqgHm+DVgd6
- yISqtmtDuOnYKOfy82f6M8qVCr/+SB9R8RtgmRxWJleOFbL3/+79N1BHAsZLTydhBCEz
- pJTlYk2N0JpcCJYpUGHnM02JDuNBzRlj6w/JX4873DGD4GwftRuIiwe+ZHEL9/ihZkLw
- k/HA==
-X-Gm-Message-State: APjAAAUBRgLiQ4KgbuvgmknGrTtS+LxRFr26J7jSGw+zdn/T0QuKZpRv
- kcxPUlYYIyHJ9dUvU0VzjBCfyQ==
-X-Google-Smtp-Source: APXvYqzj8GflBpfqyAQoqHVpAUfVZVDf2xgGir3LWPo8zTibAZW8llY0SCOEuBpqNLk+uWaJWp10ZQ==
-X-Received: by 2002:a5d:408c:: with SMTP id o12mr21617046wrp.176.1566830811145; 
- Mon, 26 Aug 2019 07:46:51 -0700 (PDT)
-Received: from bender.baylibre.local
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id e9sm12984595wrm.43.2019.08.26.07.46.49
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 26 Aug 2019 07:46:50 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: dri-devel@lists.freedesktop.org
-Subject: [PATCH] drm/meson: vclk: use the correct G12A frac max value
-Date: Mon, 26 Aug 2019 16:46:47 +0200
-Message-Id: <20190826144647.17302-1-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=DBtUgp09ILtLJx82v7/9S8a2bPggcu3SBMJmSRWkOWU=;
+ b=FseH80sIIbJIrcVqdspPN+Pp1VQaHvL4sIy/5qkwso7KGWMcVYap5LhstZL6npdySL
+ sLSkya2ZobkZSScQ1Jrjzv2psJXnMdza8FdytlRQDoFqXU6zbLxhK0gzg3nZiksCKq3v
+ o/5EH604mE0zgiJbxABlT7OJzAMDnIM6FUMD6DR22hw970/9WeL4YqRzlPB8tneB1L/J
+ 2+oIKPqMSJURyAtbh759/yWGhaD1B5Qak7zd8aqnB2tm0JF7BXL+fyBOKLO8hdlePooy
+ nIHD6oEcHpvtKlDtCaOENewSF//eAX0Q/kRGBFl9GIyeEKcPmbLZ5pE5WeTJqbaLWk7f
+ 6OYw==
+X-Gm-Message-State: APjAAAVKhCG3AL2gdQG+g7Ynuf4lT8XQdoeNdQdL9aOynspvNJcte+92
+ WPWP26UFkCpBHAdfTdwBMHRjYd5aHskM6bIdhcY=
+X-Google-Smtp-Source: APXvYqz1tIwsKtjQUBPVQFswHzIWhO2ha2uKXMrM0jPjl6uCPWwQ2ehNr4SbBIrZI0zPPR9GJOgG6djB2Nf93UqVxso=
+X-Received: by 2002:a05:6830:1e5a:: with SMTP id
+ e26mr16553944otj.96.1566859224972; 
+ Mon, 26 Aug 2019 15:40:24 -0700 (PDT)
 MIME-Version: 1.0
+References: <20190823090418.17148-1-narmstrong@baylibre.com>
+ <20190823090418.17148-3-narmstrong@baylibre.com>
+ <CAFBinCBy-VxfSMPMR0cEDuNg8=UOUVvWfkDi2Tp=QhBZka93aQ@mail.gmail.com>
+ <f6e7e4de-e1b7-f642-07cb-fa029ff2a883@baylibre.com>
+In-Reply-To: <f6e7e4de-e1b7-f642-07cb-fa029ff2a883@baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 27 Aug 2019 00:40:14 +0200
+Message-ID: <CAFBinCDDygiafTwLgqB9BimqrmwxL2=HFQD8cX8CQL23AFZNXQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] soc: amlogic: Add support for Everything-Else
+ power domains controller
+To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190826_074654_814453_1F10A89E 
-X-CRM114-Status: UNSURE (   9.15  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190826_154026_813306_637849F9 
+X-CRM114-Status: GOOD (  33.75  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,52 +93,241 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
+Cc: ulf.hansson@linaro.org, linux-pm@vger.kernel.org, khilman@baylibre.com,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-When calculating the HDMI PLL settings for a DMT mode PHY frequency,
-use the correct max fractional PLL value for G12A VPU.
+Hi Neil,
 
-With this fix, we can finally setup the 1024x76-60 mode.
+On Mon, Aug 26, 2019 at 10:10 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> On 25/08/2019 23:10, Martin Blumenstingl wrote:
+> > Hi Neil,
+> >
+> > thank you for this update
+> > I haven't tried this on the 32-bit SoCs yet, but I am confident that I
+> > can make it work by "just" adding the SoC specific bits!
+> >
+> > On Fri, Aug 23, 2019 at 11:06 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+> > [...]
+> >> +/* AO Offsets */
+> >> +
+> >> +#define AO_RTI_GEN_PWR_SLEEP0          (0x3a << 2)
+> >> +#define AO_RTI_GEN_PWR_ISO0            (0x3b << 2)
+> >> +
+> >> +/* HHI Offsets */
+> >> +
+> >> +#define HHI_MEM_PD_REG0                        (0x40 << 2)
+> >> +#define HHI_VPU_MEM_PD_REG0            (0x41 << 2)
+> >> +#define HHI_VPU_MEM_PD_REG1            (0x42 << 2)
+> >> +#define HHI_VPU_MEM_PD_REG3            (0x43 << 2)
+> >> +#define HHI_VPU_MEM_PD_REG4            (0x44 << 2)
+> >> +#define HHI_AUDIO_MEM_PD_REG0          (0x45 << 2)
+> >> +#define HHI_NANOQ_MEM_PD_REG0          (0x46 << 2)
+> >> +#define HHI_NANOQ_MEM_PD_REG1          (0x47 << 2)
+> >> +#define HHI_VPU_MEM_PD_REG2            (0x4d << 2)
+> > should we switch to the actual register offsets like we did in the
+> > clock drivers?
+>
+> I find it simpler to refer to the numbers in the documentation...
+OK, I have no strong preference here
+for the 32-bit SoCs I will need to use the offsets based on the
+"amlogic,meson8b-pmu", "syscon" [0], so these will be magic anyways
 
-Fixes: 202b9808f8ed ("drm/meson: Add G12A Video Clock setup")
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/gpu/drm/meson/meson_vclk.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+[...]
+> >> +#define VPU_HHI_MEMPD(__reg)                                   \
+> >> +       { __reg, BIT(8) },                                      \
+> >> +       { __reg, BIT(9) },                                      \
+> >> +       { __reg, BIT(10) },                                     \
+> >> +       { __reg, BIT(11) },                                     \
+> >> +       { __reg, BIT(12) },                                     \
+> >> +       { __reg, BIT(13) },                                     \
+> >> +       { __reg, BIT(14) },                                     \
+> >> +       { __reg, BIT(15) }
+> > the Amlogic implementation from buildroot-openlinux-A113-201901 (the
+> > latest one I have)
+> > kernel/aml-4.9/drivers/amlogic/media/vout/hdmitx/hdmi_tx_20/hw/hdmi_tx_hw.c
+> > uses:
+> > hd_set_reg_bits(P_HHI_MEM_PD_REG0, 0, 8, 8)
+> > that basically translates to: GENMASK(15, 8) (which means we could
+> > drop this macro)
+> >
+> > the datasheet also states: 15~8 [...] HDMI memory PD (as a single
+> > 8-bit wide register)
+>
+> Yep, but the actual code setting the VPU power domain is in u-boot :
+>
+> drivers/vpu/aml_vpu_power_init.c:
+> 108         for (i = 8; i < 16; i++) {
+> 109                 vpu_hiu_setb(HHI_MEM_PD_REG0, 0, i, 1);
+> 110                 udelay(5);
+> 111         }
+>
+> the linux code is like never used here, my preference goes to the u-boot code
+> implementation.
+I see, let's keep your implementation then
 
-diff --git a/drivers/gpu/drm/meson/meson_vclk.c b/drivers/gpu/drm/meson/meson_vclk.c
-index ac491a781952..f690793ae2d5 100644
---- a/drivers/gpu/drm/meson/meson_vclk.c
-+++ b/drivers/gpu/drm/meson/meson_vclk.c
-@@ -638,13 +638,18 @@ static bool meson_hdmi_pll_validate_params(struct meson_drm *priv,
- 		if (frac >= HDMI_FRAC_MAX_GXBB)
- 			return false;
- 	} else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM) ||
--		   meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXL) ||
--		   meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
-+		   meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXL)) {
- 		/* Empiric supported min/max dividers */
- 		if (m < 106 || m > 247)
- 			return false;
- 		if (frac >= HDMI_FRAC_MAX_GXL)
- 			return false;
-+	} else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A)) {
-+		/* Empiric supported min/max dividers */
-+		if (m < 106 || m > 247)
-+			return false;
-+		if (frac >= HDMI_FRAC_MAX_G12A)
-+			return false;
- 	}
- 
- 	return true;
--- 
-2.22.0
+> >
+> > [...]
+> >> +static struct meson_ee_pwrc_domain_desc g12a_pwrc_domains[] = {
+> >> +       [PWRC_G12A_VPU_ID]  = VPU_PD("VPU", &g12a_pwrc_vpu, g12a_pwrc_mem_vpu,
+> >> +                                    pwrc_ee_get_power, 11, 2),
+> >> +       [PWRC_G12A_ETH_ID] = MEM_PD("ETH", g12a_pwrc_mem_eth),
+> >> +};
+> >> +
+> >> +static struct meson_ee_pwrc_domain_desc sm1_pwrc_domains[] = {
+> >> +       [PWRC_SM1_VPU_ID]  = VPU_PD("VPU", &sm1_pwrc_vpu, sm1_pwrc_mem_vpu,
+> >> +                                   pwrc_ee_get_power, 11, 2),
+> >> +       [PWRC_SM1_NNA_ID]  = TOP_PD("NNA", &sm1_pwrc_nna, sm1_pwrc_mem_nna,
+> >> +                                   pwrc_ee_get_power),
+> >> +       [PWRC_SM1_USB_ID]  = TOP_PD("USB", &sm1_pwrc_usb, sm1_pwrc_mem_usb,
+> >> +                                   pwrc_ee_get_power),
+> >> +       [PWRC_SM1_PCIE_ID] = TOP_PD("PCI", &sm1_pwrc_pci, sm1_pwrc_mem_pcie,
+> >> +                                   pwrc_ee_get_power),
+> >> +       [PWRC_SM1_GE2D_ID] = TOP_PD("GE2D", &sm1_pwrc_ge2d, sm1_pwrc_mem_ge2d,
+> >> +                                   pwrc_ee_get_power),
+> >> +       [PWRC_SM1_AUDIO_ID] = MEM_PD("AUDIO", sm1_pwrc_mem_audio),
+> >> +       [PWRC_SM1_ETH_ID] = MEM_PD("ETH", g12a_pwrc_mem_eth),
+> >> +};
+> > my impression: I find this hard to read as it merges the TOP and
+> > Memory PD domains from above, adding some seemingly random "11, 2" for
+> > the VPU PD as well as pwrc_ee_get_power for some of the power domains
+> > personally I like the way we describe clk_regmap because it's easy to
+> > read (even though it adds a bit of boilerplate). I'm not sure if we
+> > can make it work here, but this (not compile tested) is what I have in
+> > mind (I chose two random power domains):
+> >   [PWRC_SM1_VPU_ID]  = {
+> >     .name = "VPU",
+> >     .top_pd = SM1_EE_PD(8),
+> >     .mem_pds = {
+> >         VPU_MEMPD(HHI_VPU_MEM_PD_REG0),
+> >         VPU_MEMPD(HHI_VPU_MEM_PD_REG1),
+> >         VPU_MEMPD(HHI_VPU_MEM_PD_REG2),
+> >         VPU_MEMPD(HHI_VPU_MEM_PD_REG3),
+> >         { HHI_VPU_MEM_PD_REG4, GENMASK(1, 0) },
+> >         { HHI_VPU_MEM_PD_REG4, GENMASK(3, 2) },
+> >         { HHI_VPU_MEM_PD_REG4, GENMASK(5, 4) },
+> >         { HHI_VPU_MEM_PD_REG4, GENMASK(7, 6) },
+> >         { HHI_MEM_PD_REG0, GENMASK(15, 8) },
+> >     },
+> >     .num_mem_pds = 9,
+> >     .reset_names_count = 11,
+> >     .clk_names_count = 2,
+> >   },
+> >   [PWRC_SM1_ETH_ID] = {
+> >     .name = "ETH",
+> >     .mem_pds = { HHI_MEM_PD_REG0, GENMASK(3, 2) },
+> >     .num_mem_pds = 1,
+> >   },
+> > ...
+> >
+> > I'd like to get Kevin's feedback on this
+> > what you have right now is probably good enough for the initial
+> > version of this driver. I'm bringing this discussion up because we
+> > will add support for more SoCs to this driver (we migrate GX over to
+> > it and I want to add 32-bit SoC support, which probably means at least
+> > Meson8 - assuming they kept the power domains identical between
+> > Meson8/8b/8m2).
+>
+> I find it more compact, but nothing is set in stone, you can refactor this as
+> will when adding meson8 support, no problems here.
+OK. if Kevin (or someone else) has feedback on this then I don't have
+to waste time if it turns out that it's not a great idea ;)
 
+> >
+> > [...]
+> >> +struct meson_ee_pwrc_domain {
+> >> +       struct generic_pm_domain base;
+> >> +       bool enabled;
+> >> +       struct meson_ee_pwrc *pwrc;
+> >> +       struct meson_ee_pwrc_domain_desc desc;
+> >> +       struct clk_bulk_data *clks;
+> >> +       int num_clks;
+> >> +       struct reset_control *rstc;
+> >> +       int num_rstc;
+> >> +};
+> >> +
+> >> +struct meson_ee_pwrc {
+> >> +       struct regmap *regmap_ao;
+> >> +       struct regmap *regmap_hhi;
+> >> +       struct meson_ee_pwrc_domain *domains;
+> >> +       struct genpd_onecell_data xlate;
+> >> +};
+> > (my impressions on this: I was surprised to find more structs down
+> > here, I expected them to be together with the other structs further
+> > up)
+>
+> These are the "live" structures, opposed to the static structures defining the
+> data and these are allocated and filled a probe time.
+I see, thanks for the explanation
+
+> I dislike changing static global data at runtime, this is why I clearly separated both.
+I didn't mean to make them static - the thing that caught my eye was
+that some of the structs are defined at the top of the driver while
+these two are define much further down
+I am used to having all struct definitions in one place
+
+> >
+> >> +static bool pwrc_ee_get_power(struct meson_ee_pwrc_domain *pwrc_domain)
+> >> +{
+> >> +       u32 reg;
+> >> +
+> >> +       regmap_read(pwrc_domain->pwrc->regmap_ao,
+> >> +                   pwrc_domain->desc.top_pd->sleep_reg, &reg);
+> >> +
+> >> +       return (reg & pwrc_domain->desc.top_pd->sleep_mask);
+> > should this also check for top_pd->iso_* as well as mem_pd->*?
+> > if the top_pd part was optional we could even use the get_power
+> > callback for *all* power domains in this driver (right now audio and
+> > Ethernet don't have any get_power callback)
+>
+> We could, but how should we handle if one unexpected bit is set ? No idea...
+hmm, I see
+if we need it for other power domains then we can still implement it,
+so it's good for now
+
+[...]
+> > bonus question: what about the video decoder power domains?
+> > here is an example from vdec_1_start
+> > (drivers/staging/media/meson/vdec/vdec_1.c):
+> >   /* Enable power for VDEC_1 */
+> >   regmap_update_bits(core->regmap_ao, AO_RTI_GEN_PWR_SLEEP0,
+> >                                    GEN_PWR_VDEC_1, 0);
+> >   usleep_range(10, 20);
+> >   [...]
+> >   /* enable VDEC Memories */
+> >   amvdec_write_dos(core, DOS_MEM_PD_VDEC, 0);
+> >   /* Remove VDEC1 Isolation */
+> >   regmap_write(core->regmap_ao, AO_RTI_GEN_PWR_ISO0, 0);
+> >
+> > (my point here is that it mixes video decoder "DOS" registers with
+> > AO_RTI_GEN_PWR registers)
+> > do we also want to add support for these "DOS" power domains to the
+> > meson-ee-pwrc driver?
+> > what about the AO_RTI_GEN_PWR part then - should we keep management
+> > for the video decoder power domain bits in AO_RTI_GEN_PWR as part of
+> > the video decoder driver?
+>
+> I left the decoders power domains aside so we can discuss it later on,
+> we should expose multiple power domains, but the driver would need to
+> be changed to support multiple power domains. But will loose the ability
+> to enable/disable each domain at will unless it created a sub-device for
+> each decoder and attaches the domain to to each device and use runtime pm.
+>
+> It's simpler to discuss it later on !
+OK - does this mean you and/or Maxime have "discuss decoder power
+domains" on your (long) TODO-list or do you want me to open this
+discussion after this driver is merged?
+
+
+Martin
+
+
+[0] https://www.kernel.org/doc/Documentation/devicetree/bindings/arm/amlogic/pmu.txt
 
 _______________________________________________
 linux-amlogic mailing list
