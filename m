@@ -2,88 +2,92 @@ Return-Path: <SRS0=Ixac=WW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C9E5BC3A59E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Aug 2019 07:26:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CC62BC3A59E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Aug 2019 07:26:47 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9B8FC206BA
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Aug 2019 07:26:27 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9A5A8206BA
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Aug 2019 07:26:47 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RnTlI7Pk";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="PSbBqb6X"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9B8FC206BA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DohNqMk9";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="qT5sO3/V"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9A5A8206BA
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=e3Iz4366VLR/wu6G1cNmZvsKWgX3dxhTWTHEcgviTUo=; b=RnTlI7Pkj80L+K
-	g66kjvh9wLyB4HWs5RUpl0PB67jRPFs2qQd1GAxoGgZX5ooN5DTXDyMt0nyuI8P6r1/BpsUOhjVke
-	5hmYjL54/5f/7FMajmeCm/GGDs9QDf0oq/hR3XVyqdIStU4u6so7HiJb5AjtrKGhhDZHD2nSOXe94
-	E9J3OhZFEefBysRJqz69HIl5wtvoc38sushkC9a9BjmQSg64UQ2IXrD7c+tmLoZ3zXyevm86PWA1E
-	iCjaVE6fLX9fiF9vO41kObx5UvNkgNladw7C72MnChNvDWM05vBTzf2nJSvCUXNKW3kXho5icLmGT
-	x+RfRlcT7FdfWzqc096A==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=AIyLwBO+YcnQchnn0lsWbTWfP0+/UbhZ7KrDaVoQXuw=; b=DohNqMk9JC863O
+	UCMsfbUZW4B0qXbyZbITAKTqAdBohRDCOAt4b1RB8xvScVeRcjlU3WHhnyJqsJ1bMGJA/LUZRCqjy
+	6zxCky1UHqANvql894a6wWyoGJdgHwbTGZRFt2PuonfeIstkIy/OPAlYKixtJb7gsHN5U/uI3cPgO
+	GtixGXbllWmYl/3qPbNrRySIrxcz/3Se8E7Sjra02WsE0a55u/RpdkVKxLgfBWNT6Ef8GiZY9/2qd
+	iKQCyRvjnDZlyLYD1TQpL8f4x8okdi2DDFY9oRxZcJrgQJ5HkAD70UphVmi0cLiaw676C0M/s07Ja
+	ANQ5h4+UJ/7tPIRHiS0w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i29OK-0001Fc-7w; Mon, 26 Aug 2019 07:26:16 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1i29Ok-0001Wy-Rm; Mon, 26 Aug 2019 07:26:42 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i29Np-0000yL-ID
- for linux-amlogic@lists.infradead.org; Mon, 26 Aug 2019 07:25:47 +0000
-Received: by mail-wr1-x441.google.com with SMTP id t16so14245033wra.6
- for <linux-amlogic@lists.infradead.org>; Mon, 26 Aug 2019 00:25:44 -0700 (PDT)
+ id 1i29Nq-0000yN-7e
+ for linux-amlogic@lists.infradead.org; Mon, 26 Aug 2019 07:25:48 +0000
+Received: by mail-wr1-x443.google.com with SMTP id j16so14224798wrr.8
+ for <linux-amlogic@lists.infradead.org>; Mon, 26 Aug 2019 00:25:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=vi+5MAs5YPmzj2/dMi2vTYN5J12g6DXwnBkbqOyuq8o=;
- b=PSbBqb6XZgEn2SRTKyC47UhqHnWOTSu2ER6bJb/T9wDwAMRSL/t+cR1GbxWep4zY8t
- bcDEPF+1mpeK6UFcBaLHyp4WK/oe0ow2VML4rHRfZHPw4lekBr+yRp04oU1Jum/Z4fNT
- BePoai6t+Y+ZHNeGEOfKmafXAPXOWjUtyzzoQuu3fA6+iXkrrA8/5z+RFcGTDbt96erC
- z9/RSt2NpYdJkaYkPYmHL5fYtMjKd2GadjZ3gco6SCSnGLp1YlkDecMWBpiG0ywgiqLB
- vbSnRwRVCMz3cLYImyKRaIrWA82ddWcF9IXn7mj3DrbJN7XCW7+iLLz8O2oOa1L7Gfp0
- uqQg==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=CGSQN1D6LMdbmgRSGuE1QGkShUk3nt2JdTILP9Ti30I=;
+ b=qT5sO3/VwNLT9TYqFJpq3GUIhwypqUCsOJYUBM/JGzJ/gCpXWQiNF1AM6Gi6hIqIsH
+ W+DNZxpwQSlQ/bWfL5331VrESChFxdIa8OBRlfuGlHAfYIZThkf6SUCakQ499aGtoD8A
+ xlRZGuz8leZeFBkz6lF+U7393CssphmGpF7rznn47Pg8bxx+9aMs1ws/oeRbl7qKpigs
+ SARsEA2jq6l7cLv0phk2SQ+9ynqJUrdGdcl795ULoIayT2/b2cjA3BCNFkdbAzZgcpfh
+ wyQ52xxVMQIlDFGRwLQaTMEjziHECD024y92rUV/T4MldmvJisruNiWMlWqgXxlMuIw5
+ 5CSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=vi+5MAs5YPmzj2/dMi2vTYN5J12g6DXwnBkbqOyuq8o=;
- b=Tf2OLHDdRmmMn5/c/zt4b1W6+em0no+/n7KjVBLTjcDMrtwryCOM3tbQ6Xk3mTxM/w
- 8dB0p5dbsBIfXDukRgVzqD1e6eTIkImCXs+Rwmrq9n9A+Ka9r15djCOhMqqWqBLeeyuR
- NPMtcHsEZMnZ6jsGstlkxQot9yUpnOzuy5RDygHSKNybvvKuxwmx65ibG0pcJ77aqjIz
- sfFLTHkos6hdu+tH9FCIXNICJdbsvNobeMhyUtFQWl/mMNeNUmFvqDl+1w6FISWrCCC4
- TYW6kl8cIMyOhLGFgt3o2Zbh8XhsxZSbkX/hTS2d9Tj9ZMV615kbNLF/lXom5pRVCV0A
- y7xA==
-X-Gm-Message-State: APjAAAU9amdSEzEolRozzBAvjYSp56/4jdG9sC4YtqMpPd1kNOHbFJbU
- wn6zZwsTgkjrWuApJXWmvn1nVQ==
-X-Google-Smtp-Source: APXvYqybtZYW+ukLWrnL9K43ubqngTyIbj8VraKPg6F0WHgGq8IMkM07gENqA5Th9n+bokqLsYeLPQ==
-X-Received: by 2002:adf:d4c6:: with SMTP id w6mr20804133wrk.98.1566804343185; 
- Mon, 26 Aug 2019 00:25:43 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=CGSQN1D6LMdbmgRSGuE1QGkShUk3nt2JdTILP9Ti30I=;
+ b=Cb6F9ZpmApWVNEvrXTwGyyH7wj/mhlectx8g60/AG96TjvL4bJZD4KH9cG/6mK8huv
+ 7QEGFSmSXLKt7Wshkv44AjKnVkjktaNA3kOdStXzocLqEGqANN/49cfmRK2eA1Nz055h
+ FHhOUekB7cWYcRtcIfK3WKaCbUqiAdc6biVMQMloHdRXAQvzRNCn/gF/RP5VRO3Tpjql
+ lt1l+R08S/s/ZPnjCSsI3jMu2w7HAJjeA6xldwKcPXURxcl3ZNnhYh0WgEJjun44Lina
+ jvi+tLf4WtelILaczpfu97kp+Lk93W5NrZS/kwzqHk7bzMwUxBrGqUZ8tHW8VJUcn+3m
+ ZilQ==
+X-Gm-Message-State: APjAAAXy3hDc/DR0utV2eL6A2SdXQDwwfuWdExp+gfijyJakq8LU/fDl
+ HLDDZbZ3CMRKqWeRQ8mDc7F6Fg==
+X-Google-Smtp-Source: APXvYqwlbtNtWnQBNuZa6LXcquUhpElWikUs08sQ+LU2PHstPRCWiPiyF+S0J+d1FpO1H6bp1Vu7DA==
+X-Received: by 2002:adf:e4c6:: with SMTP id v6mr19549498wrm.315.1566804344540; 
+ Mon, 26 Aug 2019 00:25:44 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id a26sm10821324wmg.45.2019.08.26.00.25.42
+ by smtp.gmail.com with ESMTPSA id a26sm10821324wmg.45.2019.08.26.00.25.43
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 26 Aug 2019 00:25:42 -0700 (PDT)
+ Mon, 26 Aug 2019 00:25:43 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: khilman@baylibre.com,
-	jbrunet@baylibre.com
-Subject: [PATCH v2 0/5] 0/6] arm64: meson-sm1: add support for DVFS
-Date: Mon, 26 Aug 2019 09:25:34 +0200
-Message-Id: <20190826072539.27725-1-narmstrong@baylibre.com>
+	jbrunet@baylibre.com,
+	devicetree@vger.kernel.org
+Subject: [PATCH v2 1/5] dt-bindings: clk: meson: add sm1 periph clock
+ controller bindings
+Date: Mon, 26 Aug 2019 09:25:35 +0200
+Message-Id: <20190826072539.27725-2-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20190826072539.27725-1-narmstrong@baylibre.com>
+References: <20190826072539.27725-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190826_002545_655305_E5FFC6C7 
-X-CRM114-Status: UNSURE (   9.51  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190826_002546_365441_D59C3252 
+X-CRM114-Status: GOOD (  10.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,43 +107,49 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Following DVFS support for the Amlogic G12A and G12B SoCs, this serie
-enables DVFS on the SM1 SoC for the SEI610 board.
+Update the documentation to support clock driver for the Amlogic SM1 SoC
+and expose the GP1, DSU and the CPU 1, 2 & 3 clocks.
 
-The SM1 Clock structure is slightly different because of the Cortex-A55
-core used, having the capability for each core of a same cluster to run
-at a different frequency thanks to the newly used DynamIQ Shared Unit.
+SM1 clock tree is very close, the main differences are :
+- each CPU core can achieve a different frequency, albeit a common PLL
+- a similar tree as the clock tree has been added for the DynamIQ Shared Unit
+- has a new GP1 PLL used for the DynamIQ Shared Unit
+- SM1 has additional clocks like for CSI, NanoQ an other components
 
-This is why SM1 has a CPU clock tree for each core and for DynamIQ Shared Unit,
-with a bypass mux to use the CPU0 instead of the dedicated trees.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+---
+ .../devicetree/bindings/clock/amlogic,gxbb-clkc.txt          | 1 +
+ include/dt-bindings/clock/g12a-clkc.h                        | 5 +++++
+ 2 files changed, 6 insertions(+)
 
-The DSU uses a new GP1 PLL as default clock, thus GP1 is added as read-only.
-
-The SM1 OPPs has been taken from the Amlogic Vendor tree, and unlike
-G12A only a single version of the SoC is available.
-
-Dependencies:
-- patch 6 is based on the "arm64: meson: add support for SM1 Power Domains" serie,
-	but is not a strong dependency, it will work without
-
-Changes since v1:
-- exposed GP1, DSU and CPU 1,2,3 clock in patch 1
-
-Neil Armstrong (5):
-  dt-bindings: clk: meson: add sm1 periph clock controller bindings
-  clk: meson: g12a: add support for SM1 GP1 PLL
-  clk: meson: g12a: add support for SM1 DynamIQ Shared Unit clock
-  clk: meson: g12a: add support for SM1 CPU 1, 2 & 3 clocks
-  arm64: dts: meson-sm1-sei610: enable DVFS
-
- .../bindings/clock/amlogic,gxbb-clkc.txt      |   1 +
- .../boot/dts/amlogic/meson-sm1-sei610.dts     |  59 +-
- arch/arm64/boot/dts/amlogic/meson-sm1.dtsi    |  69 +++
- drivers/clk/meson/g12a.c                      | 544 ++++++++++++++++++
- drivers/clk/meson/g12a.h                      |  24 +-
- include/dt-bindings/clock/g12a-clkc.h         |   5 +
- 6 files changed, 697 insertions(+), 5 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+index 6eaa52092313..7ccecd5c02c1 100644
+--- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
++++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+@@ -11,6 +11,7 @@ Required Properties:
+ 		"amlogic,axg-clkc" for AXG SoC.
+ 		"amlogic,g12a-clkc" for G12A SoC.
+ 		"amlogic,g12b-clkc" for G12B SoC.
++		"amlogic,sm1-clkc" for SM1 SoC.
+ - clocks : list of clock phandle, one for each entry clock-names.
+ - clock-names : should contain the following:
+   * "xtal": the platform xtal
+diff --git a/include/dt-bindings/clock/g12a-clkc.h b/include/dt-bindings/clock/g12a-clkc.h
+index 8ccc29ac7a72..0837c1a7ae49 100644
+--- a/include/dt-bindings/clock/g12a-clkc.h
++++ b/include/dt-bindings/clock/g12a-clkc.h
+@@ -138,5 +138,10 @@
+ #define CLKID_VDEC_HEVCF			210
+ #define CLKID_TS				212
+ #define CLKID_CPUB_CLK				224
++#define CLKID_GP1_PLL				243
++#define CLKID_DSU_CLK				252
++#define CLKID_CPU1_CLK				253
++#define CLKID_CPU2_CLK				254
++#define CLKID_CPU3_CLK				255
+ 
+ #endif /* __G12A_CLKC_H */
 -- 
 2.22.0
 
