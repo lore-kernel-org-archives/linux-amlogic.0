@@ -2,22 +2,22 @@ Return-Path: <SRS0=Ixac=WW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-13.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BFA90C3A59E
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Aug 2019 07:28:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AF482C3A59E
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Aug 2019 07:36:43 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 93747206BA
-	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Aug 2019 07:28:52 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 80FB8206BA
+	for <linux-amlogic@archiver.kernel.org>; Mon, 26 Aug 2019 07:36:43 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rnnyxSu4";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="SxK04tzt"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 93747206BA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oivhre2r";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="tH+nNPL3"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 80FB8206BA
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +26,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OKNtONL0oU1OyyqxIgkEanva8zbFRUn3QmKAGgw90Xk=; b=rnnyxSu4NhPxPZ
-	sPjYNjXpD4Fhc9d/usEg55jzlXmcbZfW1ry/5qurUMP3qN0LjapyXYgfevM8gwxpDv+FbRrTSNKvL
-	AJ/lZCXQPpQ/Cw+5lwXEIVZf1Fv+8R+hdyQ97JJ68EmoSA6o3BUysfwatgbV2LpdD6Ua7OiixLuJv
-	s6KQ1r8HuwaxNW79M88i99CA6EDhAktYPL9iyxdpN+2DkVI0XhOKr5g+OHkfpn8T4YNlKdTtGpBhP
-	4BTb2MC4M2+4+X/tNA5Jc2hja6e5NThiSe04pWExkYcKddJgnAr/Wb1j+CWjPmM6KLQifNrtr2tvW
-	praMU0cb6boCDou1OWQA==;
+	List-Owner; bh=YwQWINMrS94NnEamHYIDUSjqD/PBHQaUT3iFqnS1tzM=; b=oivhre2rmGTOnw
+	S/GWi3Rf7goDrNz7qAIw5ysynwVvy7dYqW5g2iMfulrwPU8ESnMp58U2jTbEDNvwllmTa0RH6JzCi
+	SUP9Yxyz0pB+cDhkGr2sC2EjTMoDfRVb7OLvBkoFUo8S5yyveIjhoDCVjh4CAeHhMQGmokUBDI6Tu
+	ziFuDLqNOutB6laxMPxaWKndBNQvWS0YNYcXEiicIxUPiqmxz0sAjcBMMkHekKjqb04Suo/rVXRzA
+	BAhZM5uOjq3O7AP14mCjPiFrVk11JAU8RehmOFbno2i+8lTHLkeFAHAKH2+BhafKNzysEWMvoCey5
+	gjVKkbMARfduwBHMPlDQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i29Ql-00036o-LB; Mon, 26 Aug 2019 07:28:47 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1i29YL-0001Fy-I5; Mon, 26 Aug 2019 07:36:37 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i29OZ-0001NN-Vy
- for linux-amlogic@lists.infradead.org; Mon, 26 Aug 2019 07:26:34 +0000
-Received: by mail-wm1-x343.google.com with SMTP id 10so14397058wmp.3
- for <linux-amlogic@lists.infradead.org>; Mon, 26 Aug 2019 00:26:31 -0700 (PDT)
+ id 1i29YI-0001FE-8z
+ for linux-amlogic@lists.infradead.org; Mon, 26 Aug 2019 07:36:35 +0000
+Received: by mail-wr1-x443.google.com with SMTP id q12so14229269wrj.12
+ for <linux-amlogic@lists.infradead.org>; Mon, 26 Aug 2019 00:36:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=eMztcD5T3f6mdE4zYfhwD64KmaOGDT/GGN6RKYoRptA=;
- b=SxK04tzt9VTk4oLl4TMi54tt1C+lE3qmqtJVTwrYz4s7xxeSx0sCVeoZANY89ZXKWt
- 1hEORciFxGmvfT37VS3tqS0EjKrCJcsF4AdMKb50LqHLNc5rpbefxpBJrwoHzJSaDOM4
- 9nulyZJw4CWT/BCpZfNIZytitTCiho7QaLotGamvP4NE3qzen30gLD/g+9LeZYqKLq6Y
- 0qd2WtlG4WMmalNIYAb24pSbkI9lDezFMcgZz4QSu8DZ81mNH6+ashK3ack36L4W/5Wo
- 3RI3PB4euy2zNHX7x+Px8hZz56xD17e1nrUY199s87V6sVsLCn52UfJcxSUbFeJgr6oN
- xsbA==
+ bh=fOlrQUMFysqry6MQ8H18txJ8hcjpMIQa138RGu70IUs=;
+ b=tH+nNPL3VNODjYu0vHDuzgM+q4e9S7GqiPoBdAmcPnFdfiuZvHF7RuUBqZTi+u9+e3
+ hpWerJfDXGh7exIeORMf6d0iuyro7+TlW5jttw9xiENw3DZWrBPBpLT8T8PjxEm9mITh
+ Ih9dhgQ9+CtEhcjXii4EhnPL1LOnoeFV8e0xeR6SVYpWD3lVe3poz44jEw7W2dGB6Nwn
+ MhiNAQHUYmjXTGgxzhj6DQf/XET5MENZX3Vi81iqIt7sL1gJeWwWF7q92ZfiPOWL67ZC
+ vKnn2JkXDWmS4q5FoPk6Xc0mqy+M11OR1muo7geY5TpVHjhxdPLnv1tF3Kw9yHohO0R4
+ assQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=eMztcD5T3f6mdE4zYfhwD64KmaOGDT/GGN6RKYoRptA=;
- b=Vk1YmhJfcmc1f/s3mKt5fuRfX5TMYfMMDT3VTWDwM0WQo22JJM+m2rsgJDe9jRNwCw
- qpNP/iardASEVvMjO8zIwZ0sXj7EKoSZ9KBKpq2/tbYt1kin4RjyGiK2hJZyoy+e+EtH
- duPUaeVSB7SJSsod4IMxYcxzRIFvAymiLct1Z83+HFnu552oRkkcTZctcSwPKjHHgkKk
- /xFnC6bqI6RGvA40PnwP67JQA8Xd7WLrvL1mQET7dMe6zg2rG5j/zWNyX0bmi8sliXM7
- 8BvfaAvS/DsYFE1BbXDAUfPvTjrS0MRlVsRT2TMZY6lXwFZlj6K1Owk3KUw5LumE8nzH
- xJYA==
-X-Gm-Message-State: APjAAAW5nxo0SqY9R2ItIhgYgmGkxh1p1vUcGCOX5hfzyP0lZ5p/ApXg
- x5T7UuhKcg68rfpfr0/gehdDvQ==
-X-Google-Smtp-Source: APXvYqxjv84TSy0MwgeJAa+e+vhl7LhblxZmbqjR07kjZZnQefi++a6lFhbIRLUhnItrU9SlqvwTtA==
-X-Received: by 2002:a1c:f916:: with SMTP id x22mr19797372wmh.156.1566804390416; 
- Mon, 26 Aug 2019 00:26:30 -0700 (PDT)
+ bh=fOlrQUMFysqry6MQ8H18txJ8hcjpMIQa138RGu70IUs=;
+ b=FOh24bH0Di1ypgw9kq9IXercXfOSlsDG7VTOEqO91Mcvin2OLluUbChNZpqwi2iwyf
+ u/gUVfMivD6Y0mdrvNnrOk8/nuXT0qjng33qPqpRBm9TTqXvyD8pM7PzZb/S9jSpxOH5
+ tcDC9SyRaQMoezdLiqfQFapN7bOGekn0soDx8IyiMjGMN087FvF/MARBPM/y+kva9fdj
+ AhW9t6WpQwcbKgB1c3GYvgs1D2uBf6hPBEnPkPRPZmcr0m4+opRSeQq0w6gIp/3FmXhJ
+ gZUMSkBg4rI2qWSuX1omJrMuf8abpTYigmVanmWin3/W370UxccmvRmtOwSVuA9GsciF
+ 7yew==
+X-Gm-Message-State: APjAAAV/5KXNL8PjvoHQVY9+4XlZgKr11mxXi09+sABj73aq26waY5CE
+ 6uw5iImHDhsdfI/+qWg+zBYQtw==
+X-Google-Smtp-Source: APXvYqwWa/X24Es2Suo+qjNOJb9UK9/c45Qp5k3IdZqTxfLq6jfbo3qBEink8jb0U5g/OOrIzb6AGA==
+X-Received: by 2002:a5d:4f8e:: with SMTP id d14mr18355775wru.207.1566804992737; 
+ Mon, 26 Aug 2019 00:36:32 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id a6sm9720095wmj.15.2019.08.26.00.26.29
+ by smtp.gmail.com with ESMTPSA id n14sm41143970wra.75.2019.08.26.00.36.31
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 26 Aug 2019 00:26:29 -0700 (PDT)
-Subject: Re: [PATCH v2 5/5] arm64: dts: meson-sm1-sei610: enable DVFS
-To: khilman@baylibre.com, jbrunet@baylibre.com
-References: <20190826072539.27725-1-narmstrong@baylibre.com>
- <20190826072539.27725-6-narmstrong@baylibre.com>
+ Mon, 26 Aug 2019 00:36:32 -0700 (PDT)
+Subject: Re: [PATCH 1/3] arm64: dts: khadas-vim3: move common nodes into
+ meson-khadas-vim3.dtsi
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20190823081427.17228-1-narmstrong@baylibre.com>
+ <20190823081427.17228-2-narmstrong@baylibre.com>
+ <CAFBinCACwWqMGDJ9R7f5D2YhyWz7n7UgH7A4fJbkAp2drKC2Kg@mail.gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -131,16 +133,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <16322ca1-d66d-ccab-adf1-eddc51746305@baylibre.com>
-Date: Mon, 26 Aug 2019 09:26:29 +0200
+Message-ID: <a08aaa7a-86ba-9e24-ae28-d3ce5bc08f9b@baylibre.com>
+Date: Mon, 26 Aug 2019 09:36:31 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190826072539.27725-6-narmstrong@baylibre.com>
+In-Reply-To: <CAFBinCACwWqMGDJ9R7f5D2YhyWz7n7UgH7A4fJbkAp2drKC2Kg@mail.gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190826_002632_148440_4CE737A9 
-X-CRM114-Status: GOOD (  20.30  )
+X-CRM114-CacheID: sfid-20190826_003634_312791_93D3A3C2 
+X-CRM114-Status: GOOD (  12.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,220 +154,30 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc: khilman@baylibre.com, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 26/08/2019 09:25, Neil Armstrong wrote:
-> This enables DVFS for the Amlogic SM1 based SEI610 board by:
-> - Adding the SM1 SoC OPPs taken from the vendor tree
-> - Selecting the SM1 Clock controller instead of the G12A one
-> - Adding the CPU rail regulator, PWM and OPPs for each CPU nodes.
-> 
-> Each power supply can achieve 0.69V to 1.05V using a single PWM
-> output clocked at 666KHz with an inverse duty-cycle.
-> 
-> DVFS has been tested by running the arm64 cpuburn at [1] and cycling
-> between all the possible cpufreq translations of the cpu cluster and
-> checking the final frequency using the clock-measurer, script at [2].
-> 
-> [1] https://github.com/ssvb/cpuburn-arm/blob/master/cpuburn-a53.S
-> [2] https://gist.github.com/superna9999/d4de964dbc0f84b7d527e1df2ddea25f
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+On 25/08/2019 21:41, Martin Blumenstingl wrote:
+> On Fri, Aug 23, 2019 at 10:15 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>
+>> To prepare support of the Amlogic SM1 based Khadas VIM3, move the non-G12B
+>> specific nodes (all except DVFS and Audio) to a new meson-khadas-vim3.dtsi
+> out of curiosity: is audio because of different routing on the board
+> or is it just because the audio driver needs more work for SM1?
 
-Sorry forgot:
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-Tested-by: Kevin Hilman <khilman@baylibre.com>
+The audio driver is slightly different, but the vim3 nodes will be the exact same
+here when audio will be finished on sm1.
 
-> ---
->  .../boot/dts/amlogic/meson-sm1-sei610.dts     | 59 ++++++++++++++--
->  arch/arm64/boot/dts/amlogic/meson-sm1.dtsi    | 69 +++++++++++++++++++
->  2 files changed, 124 insertions(+), 4 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-> index 36ac2e4b970d..69966e2e0611 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts
-> @@ -19,10 +19,6 @@
->  		ethernet0 = &ethmac;
->  	};
->  
-> -	chosen {
-> -		stdout-path = "serial0:115200n8";
-> -	};
-> -
->  	emmc_pwrseq: emmc-pwrseq {
->  		compatible = "mmc-pwrseq-emmc";
->  		reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
-> @@ -136,6 +132,25 @@
->  		regulator-always-on;
->  	};
->  
-> +	vddcpu: regulator-vddcpu {
-> +		/*
-> +		 * SY8120B1ABC DC/DC Regulator.
-> +		 */
-> +		compatible = "pwm-regulator";
-> +
-> +		regulator-name = "VDDCPU";
-> +		regulator-min-microvolt = <690000>;
-> +		regulator-max-microvolt = <1050000>;
-> +
-> +		vin-supply = <&dc_in>;
-> +
-> +		pwms = <&pwm_AO_cd 1 1500 0>;
-> +		pwm-dutycycle-range = <100 0>;
-> +
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
->  	vddio_ao1v8: regulator-vddio_ao1v8 {
->  		compatible = "regulator-fixed";
->  		regulator-name = "VDDIO_AO1V8";
-> @@ -182,6 +197,34 @@
->  	hdmi-phandle = <&hdmi_tx>;
->  };
->  
-> +&cpu0 {
-> +	cpu-supply = <&vddcpu>;
-> +	operating-points-v2 = <&cpu_opp_table>;
-> +	clocks = <&clkc CLKID_CPU_CLK>;
-> +	clock-latency = <50000>;
-> +};
-> +
-> +&cpu1 {
-> +	cpu-supply = <&vddcpu>;
-> +	operating-points-v2 = <&cpu_opp_table>;
-> +	clocks = <&clkc CLKID_CPU1_CLK>;
-> +	clock-latency = <50000>;
-> +};
-> +
-> +&cpu2 {
-> +	cpu-supply = <&vddcpu>;
-> +	operating-points-v2 = <&cpu_opp_table>;
-> +	clocks = <&clkc CLKID_CPU2_CLK>;
-> +	clock-latency = <50000>;
-> +};
-> +
-> +&cpu3 {
-> +	cpu-supply = <&vddcpu>;
-> +	operating-points-v2 = <&cpu_opp_table>;
-> +	clocks = <&clkc CLKID_CPU3_CLK>;
-> +	clock-latency = <50000>;
-> +};
-> +
->  &ethmac {
->  	status = "okay";
->  	phy-handle = <&internal_ephy>;
-> @@ -220,6 +263,14 @@
->  	clock-names = "clkin0";
->  };
->  
-> +&pwm_AO_cd {
-> +	pinctrl-0 = <&pwm_ao_d_e_pins>;
-> +	pinctrl-names = "default";
-> +	clocks = <&xtal>;
-> +	clock-names = "clkin1";
-> +	status = "okay";
-> +};
-> +
->  &pwm_ef {
->  	status = "okay";
->  	pinctrl-0 = <&pwm_e_pins>;
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> index 37064d7f66c1..2b61406b0610 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> @@ -50,6 +50,71 @@
->  			compatible = "cache";
->  		};
->  	};
-> +
-> +	cpu_opp_table: opp-table {
-> +		compatible = "operating-points-v2";
-> +		opp-shared;
-> +
-> +		opp-100000000 {
-> +			opp-hz = /bits/ 64 <100000000>;
-> +			opp-microvolt = <730000>;
-> +		};
-> +
-> +		opp-250000000 {
-> +			opp-hz = /bits/ 64 <250000000>;
-> +			opp-microvolt = <730000>;
-> +		};
-> +
-> +		opp-500000000 {
-> +			opp-hz = /bits/ 64 <500000000>;
-> +			opp-microvolt = <730000>;
-> +		};
-> +
-> +		opp-667000000 {
-> +			opp-hz = /bits/ 64 <666666666>;
-> +			opp-microvolt = <750000>;
-> +		};
-> +
-> +		opp-1000000000 {
-> +			opp-hz = /bits/ 64 <1000000000>;
-> +			opp-microvolt = <770000>;
-> +		};
-> +
-> +		opp-1200000000 {
-> +			opp-hz = /bits/ 64 <1200000000>;
-> +			opp-microvolt = <780000>;
-> +		};
-> +
-> +		opp-1404000000 {
-> +			opp-hz = /bits/ 64 <1404000000>;
-> +			opp-microvolt = <790000>;
-> +		};
-> +
-> +		opp-1512000000 {
-> +			opp-hz = /bits/ 64 <1500000000>;
-> +			opp-microvolt = <800000>;
-> +		};
-> +
-> +		opp-1608000000 {
-> +			opp-hz = /bits/ 64 <1608000000>;
-> +			opp-microvolt = <810000>;
-> +		};
-> +
-> +		opp-1704000000 {
-> +			opp-hz = /bits/ 64 <1704000000>;
-> +			opp-microvolt = <850000>;
-> +		};
-> +
-> +		opp-1800000000 {
-> +			opp-hz = /bits/ 64 <1800000000>;
-> +			opp-microvolt = <900000>;
-> +		};
-> +
-> +		opp-1908000000 {
-> +			opp-hz = /bits/ 64 <1908000000>;
-> +			opp-microvolt = <950000>;
-> +		};
-> +	};
->  };
->  
->  &cecb_AO {
-> @@ -60,6 +125,10 @@
->  	compatible = "amlogic,meson-sm1-clk-measure";
->  };
->  
-> +&clkc {
-> +	compatible = "amlogic,sm1-clkc";
-> +};
-> +
->  &ethmac {
->  	power-domains = <&pwrc PWRC_SM1_ETH_ID>;
->  };
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > 
 
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
