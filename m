@@ -4,19 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C82D7C3A5A3
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 19:12:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 00649C3A5A3
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 19:18:09 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9971A2184D
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 19:12:28 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CAF06214DA
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 19:18:08 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="JoJWqc5u";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="m0bqYITn"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9971A2184D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Akzetmw6";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="l6uFNGI6"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CAF06214DA
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,64 +25,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=v/lfH3Hk9ZhBmpJeWU0k7Y8zc1UPDsP81LsCEfUq8Mk=; b=JoJWqc5usOefti
-	xnzvnd26ifzwCFOWaNbN/JWkv/WFAvflSNLiU31xnfUxfGVrNIiptfkxqu54sXFcGw1IZmWLyxJ4l
-	EBs3F7IEfYU/BGYaljwJ7WL3JNcEzFobUeKmSiERIFP/tlm+C1CPZKa7I9L0z0RkJZnwU4zo4R0NJ
-	k/2GAxFEktP7NBXg9T0+I19o62c5vEVKH7a1EFM7MsFgU4Uyqkc6PjgmQJtx5N3DTGVMbPWETOVaM
-	Fg3MPrqMSa/VD2DtjuakgWYCObAJ/1/DSlhqW8tiiKoHnD30AhvKOemMma88PTgXXhqIUAYwdaKOG
-	x5vEVoEkOcdIIqwZdLCg==;
+	List-Owner; bh=NhFkt52aqmB+Qlyt/zYUw3BChzIVY7iDZBeytrE24GE=; b=Akzetmw6X0uIQm
+	Y/v79WK4FEmFqNvWDZNjk+mAb/CWAeSMruQ5mRaz/IGfV2wxIgQ+GYu58UBnh2DVEazh3461mxo6l
+	E3lYgGMfyme+nJDNvcrlfPz7QFp8zLY3JMhEicPv7JLalyFZ0dIJNr3BKazpL+sg+t1Uu2Uxw4lMc
+	zxXOff774J77XMzI/JMiVH4RnTMj6vIfw13CV51tH0Kh4rdwteWik7etgoLvO9uvU5nKWVF0vbiY6
+	K1U0feIA/aXOhEpM3S6solNa3jik0elOxFFQscN4LZmZ5t8CzAk1+dTXMYbYUTN4RPCAlA59IvJoa
+	4Z+zzd5Rrv6I0k6+n/Cw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i2gtB-0000MI-Sl; Tue, 27 Aug 2019 19:12:21 +0000
-Received: from mail-pf1-x442.google.com ([2607:f8b0:4864:20::442])
+	id 1i2gyh-0002GE-R7; Tue, 27 Aug 2019 19:18:03 +0000
+Received: from mail-pl1-x644.google.com ([2607:f8b0:4864:20::644])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i2gt3-0000EX-EX
- for linux-amlogic@lists.infradead.org; Tue, 27 Aug 2019 19:12:15 +0000
-Received: by mail-pf1-x442.google.com with SMTP id b24so39325pfp.1
- for <linux-amlogic@lists.infradead.org>; Tue, 27 Aug 2019 12:12:12 -0700 (PDT)
+ id 1i2gyY-000280-Ch
+ for linux-amlogic@lists.infradead.org; Tue, 27 Aug 2019 19:17:56 +0000
+Received: by mail-pl1-x644.google.com with SMTP id t14so13273plr.11
+ for <linux-amlogic@lists.infradead.org>; Tue, 27 Aug 2019 12:17:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=QlG0MCXrlsLf9bJR8f8bjOG6+UwZjxA04tjv5z1sPNs=;
- b=m0bqYITngjSGYta6fMhmwP9YQH2m9QkENNogl9TLA8dzoJ0grFsKJyyADSsDUGFKgl
- /lsrx+CnXSeR2yPHYhRo0ixyyTKX5o+K0XOW3OcLwnD4uDU83F9MRxTHzSKQKQ8a5/8B
- aM/9ojvpNGOWl9IBG9ymayfZcsD1SG7mDjPz7EB+S9XGkuUXqWnUN924CyQGlrHqp7kB
- kAFj8DUp9BYOPSi7tojk9KsDikWnTCCpqsXOJt/PN53gTGqluU1138cGMBaI0ZSM7AnV
- DbI9BFeHTFOU9I3a5Rqg2kc7TkI5eImebFMx47lzJ98BbHXw5ODCCZZ11AW2O36P5kE/
- McpQ==
+ :mime-version; bh=vJzw3QpMeKUQN9mhk1L8KwSYlM1O8J0WfSacmAROoZs=;
+ b=l6uFNGI6x957C+EC5/aW9Yx7fg8JZ+lcCqjjsTH+8k7iItlRBiXO8ZTf9SNIpupFkC
+ oSuNmg7PFn/ebDs8M8g+KOaI04jIfrTDroOVpzIItWImSWSf1eHhACbRgzRsaNUONRsh
+ rplv2ndYyVe5diOf99PXG0oxUEzZRkYGLNFmLv4iahEuBPwYYdWAqzVdNsmtakNIxeqB
+ a/NrJiL8vYCBFeFXW2y2TzpuH0JTd+0iRIqS20qyq6GuCiSuN3vt5+20VU5OZMuLjE27
+ CDDG6b9OsVLL8Tk6E10FTyg9ncG/KR2ZmGwP9VZN1jPOiZ1aVMcfT3q5LkACVukAJZks
+ YqGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=QlG0MCXrlsLf9bJR8f8bjOG6+UwZjxA04tjv5z1sPNs=;
- b=MvMsBeU4nDCZCCoQNz5UV7l2YoLEJF/dg9Hxqde5wJA4OdeLabnXVcJ2+5MTESB+us
- oCjPjMlj24nds4L1Q4Gjo5GpIMj8MTx96og1WJki+pAJP3nKD4tY69/3S01y3EXseGnI
- Rn3LK/WbSAq7YNT+MhdMVfe0quEYpYx5GbP2EJaRuXvhuQBMx8uQlrLtiK6IPwMkZ9CW
- tjpaTL+gLcHru5xmlg1xGzYh+p8tbaDNp0yxrVGEmbObSfza6HbJ3nCqkIj6g/jNkT82
- jSMVlQ8dC6XZKJirh1WMAXL3RTpWvehBGEyoISZ3imDzTXxyMNx207lL4spSitUSdl+b
- FbmA==
-X-Gm-Message-State: APjAAAVDZNlC+fSWD+VnJSHyus8Rzums3uruYSgdHoQ0dlXx99Td4HPD
- o3Q13FSHU49UA1PBn4qviJG8Lw==
-X-Google-Smtp-Source: APXvYqzzoUzbs2yNWZLrVcTZcXe2K8bnbvlaeqGp8P/D5qzS/gw8hp34XezYimT2ZeaIuDknZJoZJg==
-X-Received: by 2002:a65:60cd:: with SMTP id r13mr7312189pgv.315.1566933131786; 
- Tue, 27 Aug 2019 12:12:11 -0700 (PDT)
+ bh=vJzw3QpMeKUQN9mhk1L8KwSYlM1O8J0WfSacmAROoZs=;
+ b=mJaQQt+rR83ZE9z6aZ+MELVu+gHiJ3OfCELhZ+SHIr1zPOp+Kk+pxEsfIvRjCySsu1
+ kWVivD9RqOMFryz05PNR69kTgy1R9mA8GhOdTriuqGz63yg7uhUPKMPWRLdzN9A6y8aP
+ Sj3EjDQXWVkZQ+M1tVku7ZysTfg1d6dBBZ96JEV9NurF1OzRv4+kjfvRjRJAW0zIBdHL
+ BteJ0+yrVY+p5cCZupvGyOhFiHy2EBQ6JxNYqIlT+hq7/2xn29bM7xZC4mFpkZ4gl6Vz
+ s+x9MHNvdR5GfNTvBNC9v+NpTvMAMM9/KLhqQ9QLln1SCU469+DeGEIQ8+wXKInzVUt4
+ YJkg==
+X-Gm-Message-State: APjAAAW5J0tEiUexT/tRmsMkVKVNFjV1St8uwPT+uLzJZ3MMu4UA7EDr
+ ybJF5ZHcMMoofV0w/iQq2sg/Ig==
+X-Google-Smtp-Source: APXvYqweKeR+O1L8NUQ1dGQZwjj/kGMRlK298lUWAQfX/o+FgU8fpeeMRjkf/+I6PLTs1JLB3DAJow==
+X-Received: by 2002:a17:902:8488:: with SMTP id
+ c8mr440778plo.164.1566933473391; 
+ Tue, 27 Aug 2019 12:17:53 -0700 (PDT)
 Received: from localhost ([2601:602:9200:a1a5:cc35:e750:308e:47f])
- by smtp.gmail.com with ESMTPSA id 14sm56500pfy.40.2019.08.27.12.12.11
+ by smtp.gmail.com with ESMTPSA id z16sm65758pfr.136.2019.08.27.12.17.52
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Tue, 27 Aug 2019 12:12:11 -0700 (PDT)
+ Tue, 27 Aug 2019 12:17:52 -0700 (PDT)
 From: Kevin Hilman <khilman@baylibre.com>
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH v2 0/5] 0/6] arm64: meson-sm1: add support for DVFS
-In-Reply-To: <1jblwc6wjq.fsf@starbuckisacylon.baylibre.com>
-References: <20190826072539.27725-1-narmstrong@baylibre.com>
- <1jblwc6wjq.fsf@starbuckisacylon.baylibre.com>
-Date: Tue, 27 Aug 2019 12:12:09 -0700
-Message-ID: <7h8srexw1i.fsf@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 0/2] drm/meson: add resume/suspend hooks
+In-Reply-To: <20190827095825.21015-1-narmstrong@baylibre.com>
+References: <20190827095825.21015-1-narmstrong@baylibre.com>
+Date: Tue, 27 Aug 2019 12:17:52 -0700
+Message-ID: <7h5zmixvrz.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190827_121213_517517_AD353E46 
-X-CRM114-Status: GOOD (  11.61  )
+X-CRM114-CacheID: sfid-20190827_121754_435896_E6D850E8 
+X-CRM114-Status: UNSURE (   7.26  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,57 +95,26 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Neil Armstrong <narmstrong@baylibre.com>
+ linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-> On Mon 26 Aug 2019 at 09:25, Neil Armstrong <narmstrong@baylibre.com> wrote:
+> This serie adds the resume/suspend hooks in the Amlogic Meson VPU main driver
+> and the DW-HDMI Glue driver to correctly save state and disable HW before
+> suspend, and succesfully re-init the HW to recover functionnal display
+> after resume.
 >
->> Following DVFS support for the Amlogic G12A and G12B SoCs, this serie
->> enables DVFS on the SM1 SoC for the SEI610 board.
->>
->> The SM1 Clock structure is slightly different because of the Cortex-A55
->> core used, having the capability for each core of a same cluster to run
->> at a different frequency thanks to the newly used DynamIQ Shared Unit.
->>
->> This is why SM1 has a CPU clock tree for each core and for DynamIQ Shared Unit,
->> with a bypass mux to use the CPU0 instead of the dedicated trees.
->>
->> The DSU uses a new GP1 PLL as default clock, thus GP1 is added as read-only.
->>
->> The SM1 OPPs has been taken from the Amlogic Vendor tree, and unlike
->> G12A only a single version of the SoC is available.
->>
->> Dependencies:
->> - patch 6 is based on the "arm64: meson: add support for SM1 Power Domains" serie,
->> 	but is not a strong dependency, it will work without
->>
->> Changes since v1:
->> - exposed GP1, DSU and CPU 1,2,3 clock in patch 1
->>
->> Neil Armstrong (5):
->>   dt-bindings: clk: meson: add sm1 periph clock controller bindings
->>   clk: meson: g12a: add support for SM1 GP1 PLL
->>   clk: meson: g12a: add support for SM1 DynamIQ Shared Unit clock
->>   clk: meson: g12a: add support for SM1 CPU 1, 2 & 3 clocks
->>   arm64: dts: meson-sm1-sei610: enable DVFS
->>
->>  .../bindings/clock/amlogic,gxbb-clkc.txt      |   1 +
->>  .../boot/dts/amlogic/meson-sm1-sei610.dts     |  59 +-
->>  arch/arm64/boot/dts/amlogic/meson-sm1.dtsi    |  69 +++
->>  drivers/clk/meson/g12a.c                      | 544 ++++++++++++++++++
->>  drivers/clk/meson/g12a.h                      |  24 +-
->>  include/dt-bindings/clock/g12a-clkc.h         |   5 +
->>  6 files changed, 697 insertions(+), 5 deletions(-)
->
-> Applied 1 to 4
+> This serie has been tested on Amlogic G12A based SEI510 board, using
+> the newly accepted VRTC driver and the rtcwake utility.
 
-Will there be a stable tag I can use for that so I can apply patch 5?
+Tested-by: Kevin Hilman <khilman@baylibre.com>
+
+Tested on my G12A SEI510 board, and I verified that it fixes
+suspend/resume issues previously seen.
 
 Kevin
 
