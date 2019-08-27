@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 035DBC3A5A3
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 08:14:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 282CFC3A5A6
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 08:14:49 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CA5A22173E
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 08:14:45 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id ED4CF206BF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 08:14:48 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jlOSF0qQ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="jwq4busv"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CA5A22173E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Gyat8wpd";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="tHMHiMgS"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ED4CF206BF
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,67 +26,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EloL6AHRjsa3dEFyXh4pITnT5poFR40rjyHeQlcyZpI=; b=jlOSF0qQ/ZRCYW
-	8tqXYtA9+nI6WsuUFn2e/qFtna8WhNJzzPZQXH7umTZWMl3n8WkCp3S4lEf+YpJGXGWBaFHrzabPY
-	EVQEWpYRd7GvosVZrUjngF9Zva0bOd3SFdTBJceHrEAxaOA/XOR6TZ6VJcpNytMTPZv52f2eKpenQ
-	1O8an22l3ZLeygTZDajY572hGF+mFq97M7nuDchEKuMs3qc2lyXEwrc8wv7tYnVH24Pb8mNO7UIC6
-	vh6BT80SNxBjMpGeG/k/VHUDpMMf11bDwTaRGkRJMQI1ymNSMMasma5frpyrkTzM5LgrtTTdHu1GY
-	FH75aRRyjSksG/qxlD3A==;
+	List-Owner; bh=eMg2j4ZyrB8Tm3Dcs9oPkVmVP9HxdRK5MAHSqAxCvMc=; b=Gyat8wpdxgz/bl
+	ND+bygeRwPV+8HjJTdWSbdkra78wFFgJbEu+wi+YWBij5YS+vWuOomALRh2sLgXVadDwOCzJQUoEe
+	geiI1c2NJNVlYaOSXQZyn/SDZD1MQC8DxsPxeuupIj1e8bROzabUuRg6hgVsTVIHmH8RLcts+MjFX
+	a0UyUJASR1iq4sWqkeDIvZymlUA60y3ldf2wzPJYB5Ubykaaseew0Hfki557so2gpPhJHMwN824bG
+	HOX7MKS1/OoE+oZjcGHuT0DT9xwk7vrFVBuUWSdYM2zEXDNBkZdkBxo6u2JSfa1AicMPgfTgakQTe
+	Lj008XLHNxbMA+vtEtZA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i2Wcj-0003sn-Fn; Tue, 27 Aug 2019 08:14:41 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1i2Wcl-0003v9-Kn; Tue, 27 Aug 2019 08:14:43 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i2Wcc-0003n2-PI
+ id 1i2Wca-0003m0-SG
  for linux-amlogic@lists.infradead.org; Tue, 27 Aug 2019 08:14:36 +0000
-Received: by mail-wm1-x341.google.com with SMTP id k1so2072020wmi.1
- for <linux-amlogic@lists.infradead.org>; Tue, 27 Aug 2019 01:14:34 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id t16so17820965wra.6
+ for <linux-amlogic@lists.infradead.org>; Tue, 27 Aug 2019 01:14:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=NHmY8pxEcNdhvGFCmnE/5DGDKeL3pKczVPiHriBHsDc=;
- b=jwq4busvYotbATUX25Jrg9zhdC3QfcvMCXHpyn1j80JhduMKwxdP9ZOtml83XfPubY
- B1+oM52yDCWmWx+ud7fOQ+LXO1/33wW/7MxWDxehokqCXSFdUhOByah6A9NsHd/7vbyc
- rfkwvDz/TMJX2CZYQDyqaTAKaJX9ZjWVT9bnHSu85IDYNlF7l0vXRYtO3pXXAKC9+mPK
- UwzM8R8R6RHfz+9PxRpgrRsw4J84FPNE32+4JOpvnqjh8PItCd3Y3U8p2GPXfqcCwcqn
- wUWvwITuucTmb7HXFSRrUHeXgNpaWqlxhcG163ZFP5ZxZgJ9phy4YZ2ozR+juhu0LUhb
- ryWQ==
+ bh=P263Nz8GEJ4vmRFoF7UucI5AUC0r0zMRf0rnaRk+enY=;
+ b=tHMHiMgSk47lpDEmrla9XXBM90OwrHN+lkL+/xh2RCq0cro5bbtsH/H12lBK+XQyPE
+ Qkwk0TTJbfPh8pWIshAMztu+Kg7TiV2UFJnczaOAFCUC4w5TV7G1gSoKPC0nBMgnBMhG
+ nUZqfwbwWeMOuARUiXgDZuIjYnqL2NOzdPHrmKHGYnsVH4eFXmeOcHIXlv2iIO+eOK/V
+ te9YSmTZTbpJkXfnaqOgrxN4nnVDClGTXNj8cSUV920GwkyQwd+KnoUjhATe/5YC0G4p
+ omwlvu9weNOdnFgeNFaKFEv894XlPbYCrB2/l01w3iBL+c0JBvedmUjvraTrgHBYF9h0
+ w5pQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=NHmY8pxEcNdhvGFCmnE/5DGDKeL3pKczVPiHriBHsDc=;
- b=uLveZnw45vZCfphh+PnQyXXTicm6/Dt/AVk+H66uYA9g8M4RY66LVHhFBVLKmAJu0R
- C0yK2jxkRSQYqfcDgYruHCjTnOVXTWGEPipGHn+Pc4NdXrPYwGxVzr3pCMxbfXC41Vqf
- x8A7K08W93Q6hnnOB0XYdVHZDHBkkexJ0QAsntLK53kSX54BtuNxwV9g518h+CjkXk8m
- KYVqng1w0+SObjAK+3AZmZkkGsUetsEfQLdSBxMGB1CLX/AfSx10AN2VzUJ3wzTxWY3d
- KUCrAnR6zUVKfh9RmHNVDYLIMqq0+jMDlzglLyKplLvnK7oYFu2py6CLImizbfL4rPNn
- /nFA==
-X-Gm-Message-State: APjAAAUu2h/PXqKAXI+X0/5qyItfR/KaukwExY96OSUVmWw7DSehH70X
- RT7ZmNgE/WzlcwDiVYlvdc2ISA==
-X-Google-Smtp-Source: APXvYqwQCFhuEkIldrSpk+reMaSAS12NfRiuafCS3NYofTZVdHef/iSfRYZqvq3vcQKqXQ2NDSy6bQ==
-X-Received: by 2002:a05:600c:21d3:: with SMTP id
- x19mr26083979wmj.45.1566893673444; 
- Tue, 27 Aug 2019 01:14:33 -0700 (PDT)
+ bh=P263Nz8GEJ4vmRFoF7UucI5AUC0r0zMRf0rnaRk+enY=;
+ b=jm4hSxUMCGrvvD4HF0sFSiybhQO+PKvn5YNyVXJizv4Oa+VNKXZlyn6kOGZ8ez8zGz
+ cRFjzo+lwsAxajE75za9nO9qlaDXvNTwynhgASM25CHN/IEzEgstoQBhM7qeZNX2h/yM
+ SZg0rHUE4sGeHiiEDNMJffAkCJ7wVPYpTBeI4z9jw/BpNBgkV/8t9hDqzA73TneGMgFv
+ 73J29ClcGdO+XiRd9h5ylHEHrd4Zlf7YGJ1fYQivruesCAkz2XpIkgk5JS6AZ8Kb2fu4
+ KOEWmPh09le/yK5b5sZwpcbl++2PfZ61n7Ovp/oFe7K+ViWlbdKjiLqqHFZwXRrUFR/E
+ BoXA==
+X-Gm-Message-State: APjAAAWJ+AoJXsDHH2Eyiva8ltSC9ZH7bjP7m1smE+f3iUuPcnK7jm+M
+ ID6iYvr4DguFwq30Nj4MDZm1ww==
+X-Google-Smtp-Source: APXvYqwpvbZyC/pu+tVMvm17ws3ojExWy0ldiSpgNaiDeRPVrh1zPmuhZG2aTGT2a9jcu4lVoorn0w==
+X-Received: by 2002:a5d:4446:: with SMTP id x6mr27380733wrr.11.1566893669899; 
+ Tue, 27 Aug 2019 01:14:29 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id f18sm11911792wrx.85.2019.08.27.01.14.32
+ by smtp.gmail.com with ESMTPSA id f18sm11911792wrx.85.2019.08.27.01.14.29
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 27 Aug 2019 01:14:33 -0700 (PDT)
+ Tue, 27 Aug 2019 01:14:29 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: a.hajda@samsung.com, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
  jernej.skrabec@siol.net, boris.brezillon@collabora.com
-Subject: [PATCH RFC v2 6/8] drm/meson: venc: add support for YUV420 setup
-Date: Tue, 27 Aug 2019 10:14:23 +0200
-Message-Id: <20190827081425.15011-7-narmstrong@baylibre.com>
+Subject: [PATCH RFC v2 2/8] drm/meson: meson_dw_hdmi: switch to
+ drm_bridge_funcs
+Date: Tue, 27 Aug 2019 10:14:19 +0200
+Message-Id: <20190827081425.15011-3-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20190827081425.15011-1-narmstrong@baylibre.com>
 References: <20190827081425.15011-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190827_011434_816626_039C775F 
-X-CRM114-Status: GOOD (  12.24  )
+X-CRM114-CacheID: sfid-20190827_011433_056362_3FFB20FD 
+X-CRM114-Status: GOOD (  12.36  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,82 +105,144 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patch adds encoding support for the YUV420 output from the
-Amlogic Meson SoCs Video Processing Unit to the HDMI Controller.
-
-The YUV420 is obtained by generating a YUV444 pixel stream like
-the classic HDMI display modes, but then the Video Encoder output
-can be configured to down-sample the YUV444 pixel stream to a YUV420
-stream.
-
-In addition if pixel stream down-sampling, the Y Cb Cr components must
-also be mapped differently to align with the HDMI2.0 specifications.
+Switch the dw-hdmi driver to drm_bridge_funcs, and implement the
+atomic_get_input_bus_fmts/atomic_get_output_bus_fmts.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/gpu/drm/meson/meson_dw_hdmi.c | 3 ++-
- drivers/gpu/drm/meson/meson_venc.c    | 8 +++++---
- drivers/gpu/drm/meson/meson_venc.h    | 2 ++
- 3 files changed, 9 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/meson/meson_dw_hdmi.c | 67 +++++++++++++++++++++------
+ 1 file changed, 54 insertions(+), 13 deletions(-)
 
 diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-index 9ae24cc5faa2..2c69024e5bcf 100644
+index f893ebd0b799..333583ef3ab9 100644
 --- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
 +++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
-@@ -758,7 +758,8 @@ static void meson_venc_hdmi_encoder_mode_set(struct drm_bridge *bridge,
- 	DRM_DEBUG_DRIVER("\"%s\" vic %d\n", mode->name, vic);
+@@ -368,7 +368,7 @@ static inline void meson_dw_hdmi_phy_reset(struct meson_dw_hdmi *dw_hdmi)
+ }
  
- 	/* VENC + VENC-DVI Mode setup */
--	meson_venc_hdmi_mode_set(priv, vic, mode);
-+	meson_venc_hdmi_mode_set(priv, vic, ycrcb_map, false,
-+				 VPU_HDMI_OUTPUT_CBYCR);
- 
- 	/* VCLK Set clock */
- 	dw_hdmi_set_vclk(dw_hdmi, mode);
-diff --git a/drivers/gpu/drm/meson/meson_venc.c b/drivers/gpu/drm/meson/meson_venc.c
-index d2d4c3ebf46b..be1fb08a80f5 100644
---- a/drivers/gpu/drm/meson/meson_venc.c
-+++ b/drivers/gpu/drm/meson/meson_venc.c
-@@ -946,6 +946,8 @@ bool meson_venc_hdmi_venc_repeat(int vic)
- EXPORT_SYMBOL_GPL(meson_venc_hdmi_venc_repeat);
- 
- void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
-+			      unsigned int ycrcb_map,
-+			      bool yuv420_mode,
- 			      const struct drm_display_mode *mode)
+ static void dw_hdmi_set_vclk(struct meson_dw_hdmi *dw_hdmi,
+-			     struct drm_display_mode *mode)
++			     const struct drm_display_mode *mode)
  {
- 	union meson_hdmi_venc_mode *vmode = NULL;
-@@ -1528,14 +1530,14 @@ void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
- 	if (mode->flags & DRM_MODE_FLAG_PVSYNC)
- 		reg |= VPU_HDMI_INV_VSYNC;
+ 	struct meson_drm *priv = dw_hdmi->priv;
+ 	int vic = drm_match_cea_mode(mode);
+@@ -663,6 +663,10 @@ dw_hdmi_mode_valid(struct drm_connector *connector,
  
--	/* Output data format: CbYCr */
--	reg |= VPU_HDMI_OUTPUT_CBYCR;
-+	/* Output data format */
-+	reg |= ycrcb_map;
+ /* Encoder */
  
- 	/*
- 	 * Write rate to the async FIFO between VENC and HDMI.
- 	 * One write every 2 wr_clk.
- 	 */
--	if (venc_repeat)
-+	if (venc_repeat || yuv420_mode)
- 		reg |= VPU_HDMI_WR_RATE(2);
++static const u32 meson_dw_hdmi_out_bus_fmts[] = {
++	MEDIA_BUS_FMT_YUV8_1X24,
++};
++
+ static void meson_venc_hdmi_encoder_destroy(struct drm_encoder *encoder)
+ {
+ 	drm_encoder_cleanup(encoder);
+@@ -672,15 +676,50 @@ static const struct drm_encoder_funcs meson_venc_hdmi_encoder_funcs = {
+ 	.destroy        = meson_venc_hdmi_encoder_destroy,
+ };
  
- 	/*
-diff --git a/drivers/gpu/drm/meson/meson_venc.h b/drivers/gpu/drm/meson/meson_venc.h
-index 1abdcbdf51c0..9138255ffc9e 100644
---- a/drivers/gpu/drm/meson/meson_venc.h
-+++ b/drivers/gpu/drm/meson/meson_venc.h
-@@ -60,6 +60,8 @@ extern struct meson_cvbs_enci_mode meson_cvbs_enci_ntsc;
- void meson_venci_cvbs_mode_set(struct meson_drm *priv,
- 			       struct meson_cvbs_enci_mode *mode);
- void meson_venc_hdmi_mode_set(struct meson_drm *priv, int vic,
-+			      unsigned int ycrcb_map,
-+			      bool yuv420_mode,
- 			      const struct drm_display_mode *mode);
- unsigned int meson_venci_get_field(struct meson_drm *priv);
+-static int meson_venc_hdmi_encoder_atomic_check(struct drm_encoder *encoder,
++static void
++meson_venc_hdmi_encoder_get_out_bus_fmts(struct drm_bridge *bridge,
++					 struct drm_bridge_state *bridge_state,
++					 struct drm_crtc_state *crtc_state,
++					 struct drm_connector_state *conn_state,
++					 unsigned int *num_output_fmts,
++					 u32 *output_fmts)
++{
++	*num_output_fmts = ARRAY_SIZE(meson_dw_hdmi_out_bus_fmts);
++
++	if (output_fmts)
++		memcpy(output_fmts, meson_dw_hdmi_out_bus_fmts,
++		       ARRAY_SIZE(meson_dw_hdmi_out_bus_fmts));
++}
++
++static void
++meson_venc_hdmi_encoder_get_inp_bus_fmts(struct drm_bridge *bridge,
++					struct drm_bridge_state *bridge_state,
++					struct drm_crtc_state *crtc_state,
++					struct drm_connector_state *conn_state,
++					u32 output_fmt,
++					unsigned int *num_input_fmts,
++					u32 *input_fmts)
++{
++	if (output_fmt == meson_dw_hdmi_out_bus_fmts[0]) {
++		*num_input_fmts = 1;
++		if (input_fmts)
++			input_fmts[0] = output_fmt;
++	}
++	else
++		*num_input_fmts = 0;
++}
++
++static int meson_venc_hdmi_encoder_atomic_check(struct drm_bridge *bridge,
++					struct drm_bridge_state *bridge_state,
+ 					struct drm_crtc_state *crtc_state,
+ 					struct drm_connector_state *conn_state)
+ {
+ 	return 0;
+ }
  
+-static void meson_venc_hdmi_encoder_disable(struct drm_encoder *encoder)
++static void meson_venc_hdmi_encoder_disable(struct drm_bridge *bridge)
+ {
++	struct drm_encoder *encoder = bridge_to_encoder(bridge);
+ 	struct meson_dw_hdmi *dw_hdmi = encoder_to_meson_dw_hdmi(encoder);
+ 	struct meson_drm *priv = dw_hdmi->priv;
+ 
+@@ -693,8 +732,9 @@ static void meson_venc_hdmi_encoder_disable(struct drm_encoder *encoder)
+ 	writel_relaxed(0, priv->io_base + _REG(ENCP_VIDEO_EN));
+ }
+ 
+-static void meson_venc_hdmi_encoder_enable(struct drm_encoder *encoder)
++static void meson_venc_hdmi_encoder_enable(struct drm_bridge *bridge)
+ {
++	struct drm_encoder *encoder = bridge_to_encoder(bridge);
+ 	struct meson_dw_hdmi *dw_hdmi = encoder_to_meson_dw_hdmi(encoder);
+ 	struct meson_drm *priv = dw_hdmi->priv;
+ 
+@@ -706,10 +746,11 @@ static void meson_venc_hdmi_encoder_enable(struct drm_encoder *encoder)
+ 		writel_relaxed(1, priv->io_base + _REG(ENCP_VIDEO_EN));
+ }
+ 
+-static void meson_venc_hdmi_encoder_mode_set(struct drm_encoder *encoder,
+-				   struct drm_display_mode *mode,
+-				   struct drm_display_mode *adjusted_mode)
++static void meson_venc_hdmi_encoder_mode_set(struct drm_bridge *bridge,
++				   const struct drm_display_mode *mode,
++				   const struct drm_display_mode *adjusted_mode)
+ {
++	struct drm_encoder *encoder = bridge_to_encoder(bridge);
+ 	struct meson_dw_hdmi *dw_hdmi = encoder_to_meson_dw_hdmi(encoder);
+ 	struct meson_drm *priv = dw_hdmi->priv;
+ 	int vic = drm_match_cea_mode(mode);
+@@ -726,11 +767,12 @@ static void meson_venc_hdmi_encoder_mode_set(struct drm_encoder *encoder,
+ 	writel_relaxed(0, priv->io_base + _REG(VPU_HDMI_FMT_CTRL));
+ }
+ 
+-static const struct drm_encoder_helper_funcs
+-				meson_venc_hdmi_encoder_helper_funcs = {
+-	.atomic_check	= meson_venc_hdmi_encoder_atomic_check,
+-	.disable	= meson_venc_hdmi_encoder_disable,
++static const struct drm_bridge_funcs meson_venc_hdmi_encoder_bridge_funcs = {
+ 	.enable		= meson_venc_hdmi_encoder_enable,
++	.disable	= meson_venc_hdmi_encoder_disable,
++	.atomic_check	= meson_venc_hdmi_encoder_atomic_check,
++	.atomic_get_output_bus_fmts = meson_venc_hdmi_encoder_get_out_bus_fmts,
++	.atomic_get_input_bus_fmts = meson_venc_hdmi_encoder_get_inp_bus_fmts,
+ 	.mode_set	= meson_venc_hdmi_encoder_mode_set,
+ };
+ 
+@@ -912,8 +954,7 @@ static int meson_dw_hdmi_bind(struct device *dev, struct device *master,
+ 
+ 	/* Encoder */
+ 
+-	drm_encoder_helper_add(encoder, &meson_venc_hdmi_encoder_helper_funcs);
+-
++	encoder->bridge.funcs = &meson_venc_hdmi_encoder_bridge_funcs;
+ 	ret = drm_encoder_init(drm, encoder, &meson_venc_hdmi_encoder_funcs,
+ 			       DRM_MODE_ENCODER_TMDS, "meson_hdmi");
+ 	if (ret) {
 -- 
 2.22.0
 
