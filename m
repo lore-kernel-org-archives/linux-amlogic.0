@@ -5,19 +5,19 @@ X-Spam-Level:
 X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B72D0C3A5A3
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 08:14:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 15B37C3A5A3
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 08:14:59 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 881AC206BF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 08:14:56 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D4B1021883
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 08:14:58 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Nsh4MyU6";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="KWmJrIF5"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 881AC206BF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tXqPkl3L";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="dKf+hYqW"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D4B1021883
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,67 +26,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=XXK9R+lrIrW4WjjH+GqvGQklacc/wVXmNYdMOdJb3sQ=; b=Nsh4MyU6MYgFKL
-	97RmkWDKrwQHLlvZVqAJAGHC7TPhp9pfYQbP6cr3liWGmuxhik/pZhU7BJ1/IHQhmYu6/7TS98NsW
-	uEApm7KnwEC3znFkErsSAFXV2j62ZKGa9Va4dyYSjIEfqU565yNPwhVEN7A75o2fsp+RofkD0WMMA
-	mXA7kvSADnxjZ8gkwcniAsdFIE4AKrJcb6jK4Pvhz/hddO5z2Em6PCICie5LTB57Z1/j+eEaBDV/o
-	svU4qdHoqoleVDJztzFnpEF6YeBUxgXfb9hOdLHjmt43sYo49cUnIyBCgPQ9bYxw0ej1Lp5ly1RMc
-	99xDjg6M/3hs9X52pXVA==;
+	List-Owner; bh=WlH/HSt7HnoiBKQh+bsb+7o9MAftcQS0ZjGwFCf16lo=; b=tXqPkl3Ls5qqU1
+	AnlFlqUU+9kI734eScVK+OPUX3i8aPRBQDoTkY/e40qsDFlRZLaB1s5636S5avbYao/xJa6Omez0J
+	oA6lVLf9wujRzU4QKU6xIB3uJfx0cMY8XeE1t5NqTiNDoIJf/XsRcPm4e2JkF/TeJnKInauRQNQsl
+	zHjvAO4XYlefi9Qj+0d5dWSOWGUVYT0pe3KZDe9Rbz7pbbjAIAwDXXsvqe+hBGha5/fGuwEdRXSa6
+	sCHz/y1r+GPIcP6EfK+PPE1gZ9B9LShOuJhtLDwv3GLp8GfGkGOpF/khSTBoeNR7atNbHHPwsgYCl
+	qcqT3kQWwnw4leFE8tzA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i2Wcu-000456-6Q; Tue, 27 Aug 2019 08:14:52 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1i2Wcw-00047X-As; Tue, 27 Aug 2019 08:14:54 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i2Wcb-0003m1-NL
- for linux-amlogic@lists.infradead.org; Tue, 27 Aug 2019 08:14:37 +0000
-Received: by mail-wm1-x341.google.com with SMTP id g67so2004754wme.1
- for <linux-amlogic@lists.infradead.org>; Tue, 27 Aug 2019 01:14:32 -0700 (PDT)
+ id 1i2Wce-0003ni-J3
+ for linux-amlogic@lists.infradead.org; Tue, 27 Aug 2019 08:14:38 +0000
+Received: by mail-wm1-x342.google.com with SMTP id i63so1982399wmg.4
+ for <linux-amlogic@lists.infradead.org>; Tue, 27 Aug 2019 01:14:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=D4e7iGHsnMCj/mwiWKJTzKLUGfzuq+WR9rmN1dnOPAE=;
- b=KWmJrIF5DhACxVfxJuxqoiBamz86vy3kyWZvsEo2ZlNlEFVsiGIFodSwTWpLcX6Fdx
- 2VTUDNOipJSYOFR1VAQfxpxk9pGhaat/NPalWshlriMRzGHXauhgP9Wprs6gVW/OS2VB
- YfYrq+8zaQ8mwTufZOC0JrVP3i2RjQZRiBUa5ul3DdUIBra/NTzCZzalP9zNpuE1OJyq
- AKW5d5tq2dQlfXcLHn8DbO7oTNh840c3KKgo2moHwZqjCI6IuL5b05V5Aw/5x/LcNvLd
- 90U+TMMR/B61z9ZJZ/tp9q6Kt+dlKFBi9qZcHqZtjFxubtEPajNniiknzSiu6VsapRyJ
- 76jA==
+ bh=AHSCP8eF6R66zBKuoLdUdIg9WzlUKOlPH86Fd6tbhWo=;
+ b=dKf+hYqW55ms2Fszjnk+WqnXaINcywJjgX6BKG6QUkaklf7//doHDj75pZ/1HsTgj6
+ n7MEZf/VNHTv/IswknNw1al/HnBrMNX+NpEKMTn91vdli4zfnnB7V73bIL69Nf/NV/PF
+ /138gumu+DGgweyinkT0YjsPYqfV02VEJIpKFvL2jl8bIPjXMijcMjJhUtLJJs7/DABU
+ vtkP87S4tmgmzMPx/oSGhgsWNbL8FnwwBaWT70KUl3+R5f+6EFyBOuS6vWtoOIyR6VX/
+ aQfUuqrOsQ0mHERnSL5xGa46GAxjAJL2mHf1h1YuBlDQwrBBkmmtysr3mU7Xkr9bPi6q
+ vwYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=D4e7iGHsnMCj/mwiWKJTzKLUGfzuq+WR9rmN1dnOPAE=;
- b=f9EY3WYOHflDs0+qiP+SxzXKFQ+IzIu9Cy4oxAH7OqJJC+ylr3wuI8YaZ3lFOlb2s2
- YMC6Nu63YPuao4HM/o+iaX7r7lRvhhG/8G+N9usNWpQm687jc7/Fl2PmM8LFE5ZVGmZY
- s/vcycmGLp5ItO4CodkkMWr97dINfD7ihA8qYTHffzUzCnvpIXnoIL5uYL4dezYk8o2/
- IC5XvlyrRARruw2ge8HK6MKSnTS8NTpB0QJPX1+VXITLUkozGTMVAEIKncJXsgluTvjp
- jjA72qLV2BKLidgMgVClE4AtBG6YWjakujwLX63H5c4iyxjC0ohevA2AL+0pFPapRbq5
- 8kbA==
-X-Gm-Message-State: APjAAAWfHYuEgdpmK0Q+K8+sFkadlW1BjkDoXDgHqGgNe7HU6pL5ozEt
- uzJk0RgWe0ftJpMZqfKPs5a03g==
-X-Google-Smtp-Source: APXvYqzLXBigLBi2lvRnCuJqjyc4AYPGhWY6lt0F37CPz03pQQSr11lfP/riguLWT7NS8aD1+lTn4w==
-X-Received: by 2002:a1c:a514:: with SMTP id o20mr27565979wme.149.1566893670659; 
- Tue, 27 Aug 2019 01:14:30 -0700 (PDT)
+ bh=AHSCP8eF6R66zBKuoLdUdIg9WzlUKOlPH86Fd6tbhWo=;
+ b=boCFxXBNaM9Nm+5BvE9dJdkJYbDu6aECCApA6Q/oX2CumkaamUp7PIdizIujAuNdIh
+ 2k19NIYsROGmNyyCWzcWDUzZVQixeM3AnQXD0DX8ABS02VaHiAmxAI5DVAg+wgj4K35P
+ jQ0/PGZH3Uz+SrvAfw7Tt9nN2QHiH4YKo+Fleyld1pAEX4dp+1sNCMyM8Rk+dqqjtC6U
+ sJMCMhNm3/rhgGYLaFDsZwxQvcGmZbOsoASWI1tLj48bGU7bYsh4krADT8oLpABNyEc8
+ M4idZk7WBrmbN5srO7mayNL975KzU/QKteQHbNQkJTrY4trRV6TECXHAECmJ65k8XQJz
+ 3Mxg==
+X-Gm-Message-State: APjAAAUlZcJ673VaLBncoMud9EwdGNy+Qai3XoMpYRpjOl0pazrVfqE1
+ XyyNPOgb8S96BwAV4UezX8Oypw==
+X-Google-Smtp-Source: APXvYqyczMkD3BCWCKbqBKK2Epk+8BKX1eKSbZkdVuqz7gSEUlx6nyzrmOicXiNWRsP4gnuS1RSAcw==
+X-Received: by 2002:a05:600c:389:: with SMTP id
+ w9mr26156481wmd.119.1566893674449; 
+ Tue, 27 Aug 2019 01:14:34 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id f18sm11911792wrx.85.2019.08.27.01.14.29
+ by smtp.gmail.com with ESMTPSA id f18sm11911792wrx.85.2019.08.27.01.14.33
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 27 Aug 2019 01:14:30 -0700 (PDT)
+ Tue, 27 Aug 2019 01:14:33 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: a.hajda@samsung.com, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
  jernej.skrabec@siol.net, boris.brezillon@collabora.com
-Subject: [PATCH RFC v2 3/8] drm/bridge: synopsys: dw-hdmi: add bus format
- negociation
-Date: Tue, 27 Aug 2019 10:14:20 +0200
-Message-Id: <20190827081425.15011-4-narmstrong@baylibre.com>
+Subject: [PATCH RFC v2 7/8] drm/meson: vclk: add support for YUV420 setup
+Date: Tue, 27 Aug 2019 10:14:24 +0200
+Message-Id: <20190827081425.15011-8-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20190827081425.15011-1-narmstrong@baylibre.com>
 References: <20190827081425.15011-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190827_011433_770231_868C2B1C 
-X-CRM114-Status: GOOD (  14.92  )
+X-CRM114-CacheID: sfid-20190827_011436_721446_CB78568D 
+X-CRM114-Status: GOOD (  17.54  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,302 +105,357 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the atomic_get_output_bus_fmts, atomic_get_input_bus_fmts to negociate
-the possible output and input formats for the current mode and monitor,
-and use the negociated formats in a basic atomic_check callback.
+This patch adds clocking support for the YUV420 output from the
+Amlogic Meson SoCs Video Processing Unit to the HDMI Controller.
+
+The YUV420 is obtained by generating a YUV444 pixel stream like
+the classic HDMI display modes, but then the Video Encoder output
+can be configured to down-sample the YUV444 pixel stream to a YUV420
+stream.
+
+This mode needs a different clock generation scheme since the TMDS PHY
+clock must match the 10x ratio with the YUV420 pixel clock, but
+the video encoder must run at 2x the pixel clock.
+
+This patch adds the TMDS PHY clock value in all the video clock setup
+in order to better support these specific uses cases and switch
+to the Common Clock framework for clocks handling in the future.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 245 +++++++++++++++++++++-
- 1 file changed, 241 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/meson/meson_dw_hdmi.c   | 24 ++++---
+ drivers/gpu/drm/meson/meson_vclk.c      | 93 +++++++++++++++++++------
+ drivers/gpu/drm/meson/meson_vclk.h      |  7 +-
+ drivers/gpu/drm/meson/meson_venc_cvbs.c |  3 +-
+ 4 files changed, 93 insertions(+), 34 deletions(-)
 
-diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-index bd65d0479683..00aacad51e29 100644
---- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-+++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-@@ -1987,11 +1987,10 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
- 	hdmi->hdmi_data.video_mode.mpixelrepetitionoutput = 0;
- 	hdmi->hdmi_data.video_mode.mpixelrepetitioninput = 0;
+diff --git a/drivers/gpu/drm/meson/meson_dw_hdmi.c b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+index 2c69024e5bcf..38316c6cac26 100644
+--- a/drivers/gpu/drm/meson/meson_dw_hdmi.c
++++ b/drivers/gpu/drm/meson/meson_dw_hdmi.c
+@@ -372,15 +372,19 @@ static void dw_hdmi_set_vclk(struct meson_dw_hdmi *dw_hdmi,
+ {
+ 	struct meson_drm *priv = dw_hdmi->priv;
+ 	int vic = drm_match_cea_mode(mode);
++	unsigned int phy_freq;
+ 	unsigned int vclk_freq;
+ 	unsigned int venc_freq;
+ 	unsigned int hdmi_freq;
  
--	/* TOFIX: Get input format from plat data or fallback to RGB888 */
- 	if (hdmi->plat_data->input_bus_format)
- 		hdmi->hdmi_data.enc_in_bus_format =
- 			hdmi->plat_data->input_bus_format;
--	else
-+	else if (hdmi->hdmi_data.enc_in_bus_format == MEDIA_BUS_FMT_FIXED)
- 		hdmi->hdmi_data.enc_in_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
+ 	vclk_freq = mode->clock;
  
- 	/* TOFIX: Get input encoding from plat data or fallback to none */
-@@ -2001,8 +2000,8 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
- 	else
- 		hdmi->hdmi_data.enc_in_encoding = V4L2_YCBCR_ENC_DEFAULT;
++	/* TMDS clock is pixel_clock * 10 */
++	phy_freq = vclk_freq * 10;
++
+ 	if (!vic) {
+-		meson_vclk_setup(priv, MESON_VCLK_TARGET_DMT, vclk_freq,
+-				 vclk_freq, vclk_freq, false);
++		meson_vclk_setup(priv, MESON_VCLK_TARGET_DMT, phy_freq,
++				 vclk_freq, vclk_freq, vclk_freq, false);
+ 		return;
+ 	}
  
--	/* TOFIX: Default to RGB888 output format */
--	hdmi->hdmi_data.enc_out_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
-+	if (hdmi->hdmi_data.enc_out_bus_format == MEDIA_BUS_FMT_FIXED)
-+		hdmi->hdmi_data.enc_out_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
+@@ -398,11 +402,11 @@ static void dw_hdmi_set_vclk(struct meson_dw_hdmi *dw_hdmi,
+ 	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
+ 		venc_freq /= 2;
  
- 	hdmi->hdmi_data.pix_repet_factor = 0;
- 	hdmi->hdmi_data.hdcp_enable = 0;
-@@ -2227,6 +2226,240 @@ static const struct drm_connector_helper_funcs dw_hdmi_connector_helper_funcs =
- 	.get_modes = dw_hdmi_connector_get_modes,
+-	DRM_DEBUG_DRIVER("vclk:%d venc=%d hdmi=%d enci=%d\n",
+-		vclk_freq, venc_freq, hdmi_freq,
++	DRM_DEBUG_DRIVER("vclk:%d phy=%d venc=%d hdmi=%d enci=%d\n",
++		phy_freq, vclk_freq, venc_freq, hdmi_freq,
+ 		priv->venc.hdmi_use_enci);
+ 
+-	meson_vclk_setup(priv, MESON_VCLK_TARGET_HDMI, vclk_freq,
++	meson_vclk_setup(priv, MESON_VCLK_TARGET_HDMI, phy_freq, vclk_freq,
+ 			 venc_freq, hdmi_freq, priv->venc.hdmi_use_enci);
+ }
+ 
+@@ -613,6 +617,7 @@ dw_hdmi_mode_valid(struct drm_connector *connector,
+ 		   const struct drm_display_mode *mode)
+ {
+ 	struct meson_drm *priv = connector->dev->dev_private;
++	unsigned int phy_freq;
+ 	unsigned int vclk_freq;
+ 	unsigned int venc_freq;
+ 	unsigned int hdmi_freq;
+@@ -639,6 +644,9 @@ dw_hdmi_mode_valid(struct drm_connector *connector,
+ 
+ 	vclk_freq = mode->clock;
+ 
++	/* TMDS clock is pixel_clock * 10 */
++	phy_freq = vclk_freq * 10;
++
+ 	/* 480i/576i needs global pixel doubling */
+ 	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
+ 		vclk_freq *= 2;
+@@ -655,10 +663,10 @@ dw_hdmi_mode_valid(struct drm_connector *connector,
+ 	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
+ 		venc_freq /= 2;
+ 
+-	dev_dbg(connector->dev->dev, "%s: vclk:%d venc=%d hdmi=%d\n", __func__,
+-		vclk_freq, venc_freq, hdmi_freq);
++	dev_dbg(connector->dev->dev, "%s: vclk:%d phy=%d venc=%d hdmi=%d\n",
++		__func__, phy_freq, vclk_freq, venc_freq, hdmi_freq);
+ 
+-	return meson_vclk_vic_supported_freq(vclk_freq);
++	return meson_vclk_vic_supported_freq(phy_freq, vclk_freq);
+ }
+ 
+ /* Encoder */
+diff --git a/drivers/gpu/drm/meson/meson_vclk.c b/drivers/gpu/drm/meson/meson_vclk.c
+index 869231c93617..a7cbbc75ef1b 100644
+--- a/drivers/gpu/drm/meson/meson_vclk.c
++++ b/drivers/gpu/drm/meson/meson_vclk.c
+@@ -354,12 +354,17 @@ enum {
+ /* 2970 /1 /1 /1 /5 /2  => /1 /1 */
+ 	MESON_VCLK_HDMI_297000,
+ /* 5940 /1 /1 /2 /5 /1  => /1 /1 */
+-	MESON_VCLK_HDMI_594000
++	MESON_VCLK_HDMI_594000,
++/* 2970 /1 /1 /1 /5 /1  => /1 /2 */
++	MESON_VCLK_HDMI_594000_YUV420,
  };
  
-+static void dw_hdmi_bridge_atomic_get_output_bus_fmts(struct drm_bridge *bridge,
-+					struct drm_bridge_state *bridge_state,
-+					struct drm_crtc_state *crtc_state,
-+					struct drm_connector_state *conn_state,
-+					unsigned int *num_output_fmts,
-+					u32 *output_fmts)
-+{
-+	struct drm_connector *conn = conn_state->connector;
-+	struct drm_display_info *info = &conn->display_info;
-+	struct drm_display_mode *mode = &crtc_state->mode;
-+	bool is_hdmi2_sink = info->hdmi.scdc.supported;	
-+	int i = 0;
-+
-+	/*
-+	 * If the current mode enforces 4:2:0, force the output but format
-+	 * to 4:2:0 and do not add the YUV422/444/RGB formats
-+	 */
-+	if (drm_mode_is_420_only(info, mode) ||
-+	    (!is_hdmi2_sink && drm_mode_is_420_also(info, mode))) {
-+
-+		/* Order bus formats from 16bit to 8bit if supported */
-+		if (info->bpc == 16 &&
-+		    (info->hdmi.y420_dc_modes & DRM_EDID_YCBCR420_DC_48)) {
-+			if (output_fmts)
-+				output_fmts[i] = MEDIA_BUS_FMT_UYYVYY16_0_5X48;
-+			++i;
-+		}
-+
-+		if (info->bpc >= 12 &&
-+		    (info->hdmi.y420_dc_modes & DRM_EDID_YCBCR420_DC_36)) {
-+			if (output_fmts)
-+				output_fmts[i] = MEDIA_BUS_FMT_UYYVYY12_0_5X36;
-+			++i;
-+		}
-+
-+		if (info->bpc >= 10 &&
-+		    (info->hdmi.y420_dc_modes & DRM_EDID_YCBCR420_DC_30)) {
-+			if (output_fmts)
-+				output_fmts[i] = MEDIA_BUS_FMT_UYYVYY10_0_5X30;
-+			++i;
-+		}
-+
-+		/* Default 8bit fallback */
-+		if (output_fmts)
-+			output_fmts[i] = MEDIA_BUS_FMT_UYYVYY8_0_5X24;
-+		++i;
-+
-+		*num_output_fmts = i;
-+
-+		return;
-+	}
-+
-+	/*
-+	 * Order bus formats from 16bit to 8bit and from YUV422 to RGB
-+	 * if supported. In any case the default RGB888 format is added
-+	 */
-+
-+	if (info->bpc == 16) {
-+		if (info->color_formats & DRM_COLOR_FORMAT_YCRCB444) {
-+			if (output_fmts)
-+				output_fmts[i] = MEDIA_BUS_FMT_YUV16_1X48;
-+			++i;
-+		}
-+
-+		if (output_fmts)
-+			output_fmts[i] = MEDIA_BUS_FMT_RGB161616_1X48;
-+		++i;
-+	}
-+
-+	if (info->bpc >= 12) {
-+		if (info->color_formats & DRM_COLOR_FORMAT_YCRCB422) {
-+			if (output_fmts)
-+				output_fmts[i] = MEDIA_BUS_FMT_UYVY12_1X24;
-+			++i;
-+		}
-+
-+		if (info->color_formats & DRM_COLOR_FORMAT_YCRCB444) {
-+			if (output_fmts)
-+				output_fmts[i] = MEDIA_BUS_FMT_YUV12_1X36;
-+			++i;
-+		}
-+
-+		if (output_fmts)
-+			output_fmts[i] = MEDIA_BUS_FMT_RGB121212_1X36;
-+		++i;
-+	}
-+
-+	if (info->bpc >= 10) {
-+		if (info->color_formats & DRM_COLOR_FORMAT_YCRCB422) {
-+			if (output_fmts)
-+				output_fmts[i] = MEDIA_BUS_FMT_UYVY10_1X20;
-+			++i;
-+		}
-+
-+		if (info->color_formats & DRM_COLOR_FORMAT_YCRCB444) {
-+			if (output_fmts)
-+				output_fmts[i] = MEDIA_BUS_FMT_YUV10_1X30;
-+			++i;
-+		}
-+
-+		if (output_fmts)
-+			output_fmts[i] = MEDIA_BUS_FMT_RGB101010_1X30;
-+		++i;
-+	}
-+
-+	if (info->color_formats & DRM_COLOR_FORMAT_YCRCB422) {
-+		if (output_fmts)
-+			output_fmts[i] = MEDIA_BUS_FMT_UYVY8_1X16;
-+		++i;
-+	}
-+
-+	if (info->color_formats & DRM_COLOR_FORMAT_YCRCB444) {
-+		if (output_fmts)
-+			output_fmts[i] = MEDIA_BUS_FMT_YUV8_1X24;
-+		++i;
-+	}
-+
-+	/* Default 8bit RGB fallback */
-+	if (output_fmts)
-+		output_fmts[i] = MEDIA_BUS_FMT_RGB888_1X24;
-+	++i;
-+
-+	*num_output_fmts = i;
-+}
-+
-+static void dw_hdmi_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
-+					struct drm_bridge_state *bridge_state,
-+					struct drm_crtc_state *crtc_state,
-+					struct drm_connector_state *conn_state,
-+					u32 output_fmt,
-+					unsigned int *num_input_fmts,
-+					u32 *input_fmts)
-+{
-+	int i = 0;
-+
-+	switch (output_fmt) {
-+		/* 8bit */
-+		case MEDIA_BUS_FMT_RGB888_1X24:
-+			if (input_fmts)
-+				input_fmts[i] = MEDIA_BUS_FMT_RGB888_1X24;
-+			++i;
-+		/* Fallthrought */
-+		case MEDIA_BUS_FMT_YUV8_1X24:
-+			if (input_fmts)
-+				input_fmts[i] = MEDIA_BUS_FMT_YUV8_1X24;
-+			++i;
-+			break;
-+		case MEDIA_BUS_FMT_UYVY8_1X16:
-+		/* Fallthrought */
-+		case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
-+			if (input_fmts)
-+				input_fmts[i] = output_fmt;
-+			++i;
-+			break;
-+
-+		/* 10bit */
-+		case MEDIA_BUS_FMT_RGB101010_1X30:
-+			if (input_fmts)
-+				input_fmts[i] = output_fmt;
-+			++i;
-+		/* Fallthrought */
-+		case MEDIA_BUS_FMT_YUV10_1X30:
-+			if (input_fmts)
-+				input_fmts[i] = MEDIA_BUS_FMT_YUV10_1X30;
-+			++i;
-+			break;
-+		case MEDIA_BUS_FMT_UYVY10_1X20:
-+		/* Fallthrought */
-+		case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
-+			if (input_fmts)
-+				input_fmts[i] = output_fmt;
-+			++i;
-+			break;
-+
-+		/* 12bit */
-+		case MEDIA_BUS_FMT_RGB121212_1X36:
-+			if (input_fmts)
-+				input_fmts[i] = output_fmt;
-+			++i;
-+		/* Fallthrought */
-+		case MEDIA_BUS_FMT_YUV12_1X36:
-+			if (input_fmts)
-+				input_fmts[i] = MEDIA_BUS_FMT_YUV12_1X36;
-+			++i;
-+			break;
-+		case MEDIA_BUS_FMT_UYVY12_1X24:
-+		/* Fallthrought */
-+		case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
-+			if (input_fmts)
-+				input_fmts[i] = output_fmt;
-+			++i;
-+			break;
-+
-+		/* 16bit */
-+		case MEDIA_BUS_FMT_RGB161616_1X48:
-+			if (input_fmts)
-+				input_fmts[i] = output_fmt;
-+			++i;
-+		/* Fallthrought */
-+		case MEDIA_BUS_FMT_YUV16_1X48:
-+			if (input_fmts)
-+				input_fmts[i] = MEDIA_BUS_FMT_YUV16_1X48;
-+			++i;
-+			break;
-+		case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
-+			if (input_fmts)
-+				input_fmts[i] = output_fmt;
-+			++i;
-+			break;
-+	}
-+
-+	*num_input_fmts = i;
-+}
-+
-+static int dw_hdmi_bridge_atomic_check(struct drm_bridge *bridge,
-+				       struct drm_bridge_state *bridge_state,
-+				       struct drm_crtc_state *crtc_state,
-+				       struct drm_connector_state *conn_state)
-+{
-+	struct dw_hdmi *hdmi = bridge->driver_private;
-+
-+	dev_dbg(hdmi->dev, "selected output format %x\n",
-+			bridge_state->output_bus_cfg.fmt);
-+
-+	hdmi->hdmi_data.enc_out_bus_format = bridge_state->output_bus_cfg.fmt;
-+
-+	dev_dbg(hdmi->dev, "selected input format %x\n",
-+			bridge_state->input_bus_cfg.fmt);
-+
-+	hdmi->hdmi_data.enc_in_bus_format = bridge_state->input_bus_cfg.fmt;
-+
-+	return 0;
-+}
-+
- static int dw_hdmi_bridge_attach(struct drm_bridge *bridge)
- {
- 	struct dw_hdmi *hdmi = bridge->driver_private;
-@@ -2327,6 +2560,9 @@ static void dw_hdmi_bridge_enable(struct drm_bridge *bridge)
- static const struct drm_bridge_funcs dw_hdmi_bridge_funcs = {
- 	.attach = dw_hdmi_bridge_attach,
- 	.detach = dw_hdmi_bridge_detach,
-+	.atomic_check = dw_hdmi_bridge_atomic_check,
-+	.atomic_get_output_bus_fmts = dw_hdmi_bridge_atomic_get_output_bus_fmts,
-+	.atomic_get_input_bus_fmts = dw_hdmi_bridge_atomic_get_input_bus_fmts,
- 	.enable = dw_hdmi_bridge_enable,
- 	.disable = dw_hdmi_bridge_disable,
- 	.mode_set = dw_hdmi_bridge_mode_set,
-@@ -2790,6 +3026,7 @@ __dw_hdmi_probe(struct platform_device *pdev,
+ struct meson_vclk_params {
++	unsigned int pll_freq;
++	unsigned int phy_freq;
++	unsigned int vclk_freq;
++	unsigned int venc_freq;
+ 	unsigned int pixel_freq;
+-	unsigned int pll_base_freq;
+ 	unsigned int pll_od1;
+ 	unsigned int pll_od2;
+ 	unsigned int pll_od3;
+@@ -367,8 +372,11 @@ struct meson_vclk_params {
+ 	unsigned int vclk_div;
+ } params[] = {
+ 	[MESON_VCLK_HDMI_ENCI_54000] = {
++		.pll_freq = 4320000,
++		.phy_freq = 270000,
++		.vclk_freq = 54000,
++		.venc_freq = 54000,
+ 		.pixel_freq = 54000,
+-		.pll_base_freq = 4320000,
+ 		.pll_od1 = 4,
+ 		.pll_od2 = 4,
+ 		.pll_od3 = 1,
+@@ -376,8 +384,11 @@ struct meson_vclk_params {
+ 		.vclk_div = 1,
+ 	},
+ 	[MESON_VCLK_HDMI_DDR_54000] = {
+-		.pixel_freq = 54000,
+-		.pll_base_freq = 4320000,
++		.pll_freq = 4320000,
++		.phy_freq = 270000,
++		.vclk_freq = 54000,
++		.venc_freq = 54000,
++		.pixel_freq = 27000,
+ 		.pll_od1 = 4,
+ 		.pll_od2 = 4,
+ 		.pll_od3 = 1,
+@@ -385,8 +396,11 @@ struct meson_vclk_params {
+ 		.vclk_div = 1,
+ 	},
+ 	[MESON_VCLK_HDMI_DDR_148500] = {
+-		.pixel_freq = 148500,
+-		.pll_base_freq = 2970000,
++		.pll_freq = 2970000,
++		.phy_freq = 742500,
++		.vclk_freq = 148500,
++		.venc_freq = 148500,
++		.pixel_freq = 74250,
+ 		.pll_od1 = 4,
+ 		.pll_od2 = 1,
+ 		.pll_od3 = 1,
+@@ -394,8 +408,11 @@ struct meson_vclk_params {
+ 		.vclk_div = 1,
+ 	},
+ 	[MESON_VCLK_HDMI_74250] = {
++		.pll_freq = 2970000,
++		.phy_freq = 742500,
++		.vclk_freq = 74250,
++		.venc_freq = 74250,
+ 		.pixel_freq = 74250,
+-		.pll_base_freq = 2970000,
+ 		.pll_od1 = 2,
+ 		.pll_od2 = 2,
+ 		.pll_od3 = 2,
+@@ -403,8 +420,11 @@ struct meson_vclk_params {
+ 		.vclk_div = 1,
+ 	},
+ 	[MESON_VCLK_HDMI_148500] = {
++		.pll_freq = 2970000,
++		.phy_freq = 1485000,
++		.vclk_freq = 148500,
++		.venc_freq = 148500,
+ 		.pixel_freq = 148500,
+-		.pll_base_freq = 2970000,
+ 		.pll_od1 = 1,
+ 		.pll_od2 = 2,
+ 		.pll_od3 = 2,
+@@ -412,8 +432,11 @@ struct meson_vclk_params {
+ 		.vclk_div = 1,
+ 	},
+ 	[MESON_VCLK_HDMI_297000] = {
++		.pll_freq = 5940000,
++		.phy_freq = 2970000,
++		.venc_freq = 297000,
++		.vclk_freq = 297000,
+ 		.pixel_freq = 297000,
+-		.pll_base_freq = 5940000,
+ 		.pll_od1 = 2,
+ 		.pll_od2 = 1,
+ 		.pll_od3 = 1,
+@@ -421,14 +444,29 @@ struct meson_vclk_params {
+ 		.vclk_div = 2,
+ 	},
+ 	[MESON_VCLK_HDMI_594000] = {
++		.pll_freq = 5940000,
++		.phy_freq = 5940000,
++		.venc_freq = 594000,
++		.vclk_freq = 594000,
+ 		.pixel_freq = 594000,
+-		.pll_base_freq = 5940000,
+ 		.pll_od1 = 1,
+ 		.pll_od2 = 1,
+ 		.pll_od3 = 2,
+ 		.vid_pll_div = VID_PLL_DIV_5,
+ 		.vclk_div = 1,
+ 	},
++	[MESON_VCLK_HDMI_594000_YUV420] = {
++		.pll_freq = 5940000,
++		.phy_freq = 2970000,
++		.venc_freq = 594000,
++		.vclk_freq = 594000,
++		.pixel_freq = 297000,
++		.pll_od1 = 2,
++		.pll_od2 = 1,
++		.pll_od3 = 1,
++		.vid_pll_div = VID_PLL_DIV_5,
++		.vclk_div = 1,
++	},
+ 	{ /* sentinel */ },
+ };
  
- 	hdmi->bridge.driver_private = hdmi;
- 	hdmi->bridge.funcs = &dw_hdmi_bridge_funcs;
-+
- #ifdef CONFIG_OF
- 	hdmi->bridge.of_node = pdev->dev.of_node;
- #endif
+@@ -696,6 +734,7 @@ static void meson_hdmi_pll_generic_set(struct meson_drm *priv,
+ 	unsigned int od, m, frac, od1, od2, od3;
+ 
+ 	if (meson_hdmi_pll_find_params(priv, pll_freq, &m, &frac, &od)) {
++		/* OD2 goes to the PHY, and needs to be *10, so keep OD3=1 */
+ 		od3 = 1;
+ 		if (od < 4) {
+ 			od1 = 2;
+@@ -718,21 +757,28 @@ static void meson_hdmi_pll_generic_set(struct meson_drm *priv,
+ }
+ 
+ enum drm_mode_status
+-meson_vclk_vic_supported_freq(unsigned int freq)
++meson_vclk_vic_supported_freq(unsigned int phy_freq,
++			      unsigned int vclk_freq)
+ {
+ 	int i;
+ 
+-	DRM_DEBUG_DRIVER("freq = %d\n", freq);
++	DRM_DEBUG_DRIVER("phy_freq = %d vclk_freq = %d\n",
++			 phy_freq, vclk_freq);
+ 
+ 	for (i = 0 ; params[i].pixel_freq ; ++i) {
+ 		DRM_DEBUG_DRIVER("i = %d pixel_freq = %d alt = %d\n",
+ 				 i, params[i].pixel_freq,
+ 				 FREQ_1000_1001(params[i].pixel_freq));
++		DRM_DEBUG_DRIVER("i = %d phy_freq = %d alt = %d\n",
++				 i, params[i].phy_freq,
++				 FREQ_1000_1001(params[i].phy_freq/10)*10);
+ 		/* Match strict frequency */
+-		if (freq == params[i].pixel_freq)
++		if (phy_freq == params[i].phy_freq &&
++		    vclk_freq == params[i].vclk_freq)
+ 			return MODE_OK;
+ 		/* Match 1000/1001 variant */
+-		if (freq == FREQ_1000_1001(params[i].pixel_freq))
++		if (phy_freq == (FREQ_1000_1001(params[i].phy_freq/10)*10) &&
++		    vclk_freq == FREQ_1000_1001(params[i].vclk_freq))
+ 			return MODE_OK;
+ 	}
+ 
+@@ -960,8 +1006,9 @@ static void meson_vclk_set(struct meson_drm *priv, unsigned int pll_base_freq,
+ }
+ 
+ void meson_vclk_setup(struct meson_drm *priv, unsigned int target,
+-		      unsigned int vclk_freq, unsigned int venc_freq,
+-		      unsigned int dac_freq, bool hdmi_use_enci)
++		      unsigned int phy_freq, unsigned int vclk_freq,
++		      unsigned int venc_freq, unsigned int dac_freq,
++		      bool hdmi_use_enci)
+ {
+ 	bool vic_alternate_clock = false;
+ 	unsigned int freq;
+@@ -981,7 +1028,7 @@ void meson_vclk_setup(struct meson_drm *priv, unsigned int target,
+ 		 * - venc_div = 1
+ 		 * - encp encoder
+ 		 */
+-		meson_vclk_set(priv, vclk_freq * 10, 0, 0, 0,
++		meson_vclk_set(priv, phy_freq, 0, 0, 0,
+ 			       VID_PLL_DIV_5, 2, 1, 1, false, false);
+ 		return;
+ 	}
+@@ -1003,9 +1050,11 @@ void meson_vclk_setup(struct meson_drm *priv, unsigned int target,
+ 	}
+ 
+ 	for (freq = 0 ; params[freq].pixel_freq ; ++freq) {
+-		if (vclk_freq == params[freq].pixel_freq ||
+-		    vclk_freq == FREQ_1000_1001(params[freq].pixel_freq)) {
+-			if (vclk_freq != params[freq].pixel_freq)
++		if ((phy_freq == params[freq].phy_freq ||
++		     phy_freq == FREQ_1000_1001(params[freq].phy_freq/10)*10) &&
++		    (vclk_freq == params[freq].vclk_freq ||
++		     vclk_freq == FREQ_1000_1001(params[freq].vclk_freq))) {
++			if (vclk_freq != params[freq].vclk_freq)
+ 				vic_alternate_clock = true;
+ 			else
+ 				vic_alternate_clock = false;
+@@ -1034,7 +1083,7 @@ void meson_vclk_setup(struct meson_drm *priv, unsigned int target,
+ 		return;
+ 	}
+ 
+-	meson_vclk_set(priv, params[freq].pll_base_freq,
++	meson_vclk_set(priv, params[freq].pll_freq,
+ 		       params[freq].pll_od1, params[freq].pll_od2,
+ 		       params[freq].pll_od3, params[freq].vid_pll_div,
+ 		       params[freq].vclk_div, hdmi_tx_div, venc_div,
+diff --git a/drivers/gpu/drm/meson/meson_vclk.h b/drivers/gpu/drm/meson/meson_vclk.h
+index b62125540aef..aed0ab2efa71 100644
+--- a/drivers/gpu/drm/meson/meson_vclk.h
++++ b/drivers/gpu/drm/meson/meson_vclk.h
+@@ -25,10 +25,11 @@ enum {
+ enum drm_mode_status
+ meson_vclk_dmt_supported_freq(struct meson_drm *priv, unsigned int freq);
+ enum drm_mode_status
+-meson_vclk_vic_supported_freq(unsigned int freq);
++meson_vclk_vic_supported_freq(unsigned int phy_freq, unsigned int vclk_freq);
+ 
+ void meson_vclk_setup(struct meson_drm *priv, unsigned int target,
+-		      unsigned int vclk_freq, unsigned int venc_freq,
+-		      unsigned int dac_freq, bool hdmi_use_enci);
++		      unsigned int phy_freq, unsigned int vclk_freq,
++		      unsigned int venc_freq, unsigned int dac_freq,
++		      bool hdmi_use_enci);
+ 
+ #endif /* __MESON_VCLK_H */
+diff --git a/drivers/gpu/drm/meson/meson_venc_cvbs.c b/drivers/gpu/drm/meson/meson_venc_cvbs.c
+index 6dc130a24070..564def4d0b04 100644
+--- a/drivers/gpu/drm/meson/meson_venc_cvbs.c
++++ b/drivers/gpu/drm/meson/meson_venc_cvbs.c
+@@ -206,7 +206,8 @@ static void meson_venc_cvbs_encoder_mode_set(struct drm_encoder *encoder,
+ 			/* Setup 27MHz vclk2 for ENCI and VDAC */
+ 			meson_vclk_setup(priv, MESON_VCLK_TARGET_CVBS,
+ 					 MESON_VCLK_CVBS, MESON_VCLK_CVBS,
+-					 MESON_VCLK_CVBS, true);
++					 MESON_VCLK_CVBS, MESON_VCLK_CVBS,
++					 true);
+ 			break;
+ 		}
+ 	}
 -- 
 2.22.0
 
