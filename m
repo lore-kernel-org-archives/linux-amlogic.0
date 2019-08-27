@@ -2,89 +2,89 @@ Return-Path: <SRS0=C9TS=WX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7ED04C3A5A3
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 09:59:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3DA0EC3A5A3
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 10:03:43 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 52CAD206BB
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 09:59:22 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0FA60206BB
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 10:03:43 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bP8AeU5d";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="mOB8HFsH"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 52CAD206BB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CoXZEGdE";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="scgDvIvY"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0FA60206BB
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NjLEN05TmNPoTQa7/DcmE4yn2SZT7wlYqoVkMdz0Ny0=; b=bP8AeU5dHnH/2R
-	xLRWzyMSEoRbkTGOzitGLX65UOTTHNDSMjEgwF3Cj+FTkEwZnd9pZNP1cnaWZ17EGMy9a0GBvWX/i
-	bIYTim/GhO3dI2tzf7kBJzHLdoqYQKp/0BvOCVzA30C0E7nAly2QeKLHgbBzSvidu4y07YKp0Y/Sy
-	H233jZGL2NKwpNih7qllrFbR20PORMYWczdOMZq5nuSfLtxtT4Em7IasG+1ukyzKT3q/2cEtNfBPL
-	WbUyafmTOe2/tPmZSs9C6g7SMXXr8ovkmdrfgzIaD6daxYec78jF+B45FbrQpjvg6qZPG5bKsLRXS
-	FTxZAhC2NrNNyY12lwAA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=sMR2vnxPAl3D15pDkweLgDOaQxqyY2vxdmERta0LOAg=; b=CoXZEGdE0MYCav
+	9iXcw2HiHRj3Lw4filRWqruBZUQqO/2m6dixKkdna86ksUKY2zrot/Vr0na4Z/j0Y6+G4qeTrMnD/
+	OGnpoe0TA+0s0yJUd7iwbh2+VctQ8gydi32aUsVHb24XUBRioSnrgj56mfWGAc+FS+oR8sB8nU1sy
+	jFloyGXv0WUQOlQdXyzrq8uEkz6e+VsAfIzjdJx93QE5xaiwd++nB3QiC9Y0iTkE7OqukTRknbmCT
+	R8Ux2ayfqC2rrOQ7Y1ztiwfvUf7UImxh+9UO4A6Ya+cnY9c8q0sP3rqTCnChgiYi06BijOIQJxdia
+	2fb3Ri1fYgJJ6qvUkr2Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i2YFx-0001TL-Kk; Tue, 27 Aug 2019 09:59:17 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1i2YK8-0004ql-HY; Tue, 27 Aug 2019 10:03:36 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i2YFD-0000xi-UF
- for linux-amlogic@lists.infradead.org; Tue, 27 Aug 2019 09:58:33 +0000
-Received: by mail-wr1-x441.google.com with SMTP id c3so18127935wrd.7
- for <linux-amlogic@lists.infradead.org>; Tue, 27 Aug 2019 02:58:31 -0700 (PDT)
+ id 1i2YJk-0004Sd-Gh
+ for linux-amlogic@lists.infradead.org; Tue, 27 Aug 2019 10:03:13 +0000
+Received: by mail-wm1-x344.google.com with SMTP id i63so2346565wmg.4
+ for <linux-amlogic@lists.infradead.org>; Tue, 27 Aug 2019 03:03:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=wbdxbxYZcKVLdPE0Y/8WQgSXBgDUmbVqM2Rjtf0OVOI=;
- b=mOB8HFsHRuuCRYt9Kp+g2Vrx/KvyTnWXGglzhl804o2JfqJ/QDMeTgZoO+Ued+xtAJ
- TsIhTzlWDYZdbIWQcdYRQomzPGGDcnNvhXxY5ncQKWOpnCKWoaRWuZ8Vg/I7othlgGnc
- 8UMoMLp1R1rWbJ9ya7spTIgvhPMIs0kwWyOxJYppM3Hc2stPXW/gJiRVeOGl9ICcfVOr
- JnOpENKyJyp37NeDesmyZP6FSvgqpY+YBz/ld3SmFp0pMHPad2BWgChIlhkMP3+ugTgm
- VyxwniLooNR/upSBilO/t4y9/bdbW2v+nwtyLjrOKOBljWrmUnAuJRfc+sCrxF07LpAq
- VulA==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=dfpmBSGlcGs38lFamRyhz8Fa4xFl9r4NMSFw+nilf+4=;
+ b=scgDvIvYRNMAtfMsmF6Kh5SAZnT0KCRLs+0S/9i8oDKab6se5Z5PPJmdgM3hUyWwGg
+ oNRzD2ab73hMIsdjPOhvy4BfuCYiK8X+yPGeNIdkDm9M/x70PxQshaNZDT+G+vDhcOqA
+ Sbs+LOEBKDPBuAoicHDF1b1lMFVhvFxYBwUZFhKOLEYmWgOa40f7sR+Q9M/Fn1A5MkOL
+ ItsxIMys3gGfraHcxeYWYf0RW3cuF2b4GnrvbBfV7AJgK1W8JmZMKJ7porS1vak4FIBV
+ w1XS3t8Fey0CM3EXuWJ5D9MaSppcUh/au6vtXwF1eb9vqJ89JtMhN9nh5qXLRwBkSrw6
+ zujw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=wbdxbxYZcKVLdPE0Y/8WQgSXBgDUmbVqM2Rjtf0OVOI=;
- b=CecblU4b2PBqfplhDdLLWxZwwbwAbNXTOVWCcsj8tGrSlBzDBCcyiDUK/ukzQ7ODh8
- EXJ53J2/1e+DbGePD2gitKuClSGMx6yzgIHPee4GsMplcuSY8cQGfep8b2tituyKh88x
- XbINGe6dsPESdu09PvwWDv6BW3X8fN+ayj3ug/+SZUj9kRnOA2dZpy3UzAF8IuDhiYpD
- YqNueMSr5yrpkwaRda2umcG/rII+qGUh9oDCTltt/UXbjGZNG+RF8i5zv426tYKS2sRL
- xJ+Opc95KnNtvP7/gX4K6q+CSsUyADStwf39BS6dSULwqynpYC/sluUSMD57KWpQh3oK
- gQgg==
-X-Gm-Message-State: APjAAAUWxudwSHZC4JCs47paT3lvCjuOjkCufPd7BBTMziPH0me8u2eJ
- GcEZNWHD6HC7Cl6FAkSmyTmMmw==
-X-Google-Smtp-Source: APXvYqzlJBCTaG+pE4o2jLBqQI6zVkgZsqDDyXOyYdI2n3XJFdcBqkqNW7xzsAxTdeooMlTarCQ78Q==
-X-Received: by 2002:a5d:5112:: with SMTP id s18mr2484026wrt.34.1566899910193; 
- Tue, 27 Aug 2019 02:58:30 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=dfpmBSGlcGs38lFamRyhz8Fa4xFl9r4NMSFw+nilf+4=;
+ b=UgDODrgUA9BPJ7BAwbFjQwYBkM/SNb0qvXt9dXRO7I2YkXWgOFnSTDw04NPWTx5d/E
+ cCswoECxFGfUVst+xb+rqiimNANGM8yYP2mlciwIbbWeW2X+8eYvQomhiy9jh/3IvQnr
+ kHOycHr7rDBuCmtBHSSjZgUoY6qH5/9PzBuo5RT6Mk1z8VLJoXDg/f5+horUgEGtxfCD
+ mT2lqe+notxq7eS71E8eDkQWkeHFpXFgVgima6YXWB0Q/GETkkjPxmmInIKRGiqS/gCu
+ CMuEJI5ypMoEODacMoYZzkcd7mQxGKdY9LIKrj0Ghauq4U7ANUX1KL+L++/lIcyb1bWY
+ OTnA==
+X-Gm-Message-State: APjAAAVDPxWXRoy+B3wrkkUZWtTstMgyYdM/boWDts+gqjlfXebilfPT
+ mdVivBwYue6WpWZUjHCHa37aww==
+X-Google-Smtp-Source: APXvYqwSlvXctj1/5N+lx0316n3C/TFLI2SVBe9G3fCjk/sXsHm1IWI8Id8tmjD/QhJB0i02kSVDGA==
+X-Received: by 2002:a1c:a481:: with SMTP id
+ n123mr25414549wme.123.1566900190939; 
+ Tue, 27 Aug 2019 03:03:10 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id m6sm10862084wrq.95.2019.08.27.02.58.29
+ by smtp.gmail.com with ESMTPSA id o25sm1816289wmc.36.2019.08.27.03.03.10
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 27 Aug 2019 02:58:29 -0700 (PDT)
+ Tue, 27 Aug 2019 03:03:10 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
-To: dri-devel@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/meson: add resume/suspend hooks
-Date: Tue, 27 Aug 2019 11:58:25 +0200
-Message-Id: <20190827095825.21015-3-narmstrong@baylibre.com>
+To: khilman@baylibre.com
+Subject: [PATCH 0/3] arm64: dts: meson-g12: specify suspend OPP
+Date: Tue, 27 Aug 2019 12:03:04 +0200
+Message-Id: <20190827100307.21661-1-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190827095825.21015-1-narmstrong@baylibre.com>
-References: <20190827095825.21015-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190827_025831_984807_AD680666 
-X-CRM114-Status: GOOD (  10.14  )
+X-CRM114-CacheID: sfid-20190827_030312_716557_91E56002 
+X-CRM114-Status: UNSURE (   7.28  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,80 +96,31 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: khilman@baylibre.com, Neil Armstrong <narmstrong@baylibre.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the suspend and resume hooks to:
-- save and disable the entire DRM driver on suspend
-- re-init the entire VPU subsystem on resume, to recover CRTC and pixel
-generator functionnal usage after DDR suspend, then recover DRM driver
-state
+Tag the 1,2GHz OPP as suspend OPP to be set before going in suspend mode,
+for the G12A, G12B and SM1 SoCs.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/gpu/drm/meson/meson_drv.c | 32 +++++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+It has been reported that using various OPPs can lead to error or
+resume with a different OPP from the ROM, thus use this safe OPP as
+it is the default OPP used by the BL2 boot firmware.
 
-diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
-index 2310c96fff46..dc573ffd1f4c 100644
---- a/drivers/gpu/drm/meson/meson_drv.c
-+++ b/drivers/gpu/drm/meson/meson_drv.c
-@@ -361,6 +361,33 @@ static const struct component_master_ops meson_drv_master_ops = {
- 	.unbind	= meson_drv_unbind,
- };
- 
-+static int __maybe_unused meson_drv_pm_suspend(struct device *dev)
-+{
-+	struct meson_drm *priv = dev_get_drvdata(dev);
-+
-+	if (!priv)
-+		return 0;
-+
-+	return drm_mode_config_helper_suspend(priv->drm);
-+}
-+
-+static int __maybe_unused meson_drv_pm_resume(struct device *dev)
-+{
-+	struct meson_drm *priv = dev_get_drvdata(dev);
-+
-+	if (!priv)
-+		return 0;
-+
-+	meson_vpu_init(priv);
-+	meson_venc_init(priv);
-+	meson_vpp_init(priv);
-+	meson_viu_init(priv);
-+
-+	drm_mode_config_helper_resume(priv->drm);
-+
-+	return 0;
-+}
-+
- static int compare_of(struct device *dev, void *data)
- {
- 	DRM_DEBUG_DRIVER("Comparing of node %pOF with %pOF\n",
-@@ -452,11 +479,16 @@ static const struct of_device_id dt_match[] = {
- };
- MODULE_DEVICE_TABLE(of, dt_match);
- 
-+static const struct dev_pm_ops meson_drv_pm_ops = {
-+	SET_SYSTEM_SLEEP_PM_OPS(meson_drv_pm_suspend, meson_drv_pm_resume)
-+};
-+
- static struct platform_driver meson_drm_platform_driver = {
- 	.probe      = meson_drv_probe,
- 	.driver     = {
- 		.name	= "meson-drm",
- 		.of_match_table = dt_match,
-+		.pm = &meson_drv_pm_ops,
- 	},
- };
- 
+Neil Armstrong (3):
+  arm64: dts: meson-g12a: specify suspend OPP
+  arm64: dts: meson-sm1: specify suspend OPP
+  arm64: dts: meson-g12b: specify suspend OPP
+
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi       | 1 +
+ arch/arm64/boot/dts/amlogic/meson-g12b-a311d.dtsi | 2 ++
+ arch/arm64/boot/dts/amlogic/meson-g12b-s922x.dtsi | 2 ++
+ arch/arm64/boot/dts/amlogic/meson-sm1.dtsi        | 1 +
+ 4 files changed, 6 insertions(+)
+
 -- 
 2.22.0
 
