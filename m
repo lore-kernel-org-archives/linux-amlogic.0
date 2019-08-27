@@ -2,22 +2,22 @@ Return-Path: <SRS0=C9TS=WX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5AA97C3A5A4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 10:08:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1C5A6C3A5A3
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 10:11:34 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2FC9B205ED
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 10:08:07 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E230C20656
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 10:11:33 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="uhToGiJH";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="EItYCrNm"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2FC9B205ED
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AqLM1D2/";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="iy6c/gCG"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E230C20656
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,61 +26,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=f9zeyDhaAos6K3KiilGcLhuvzuZ15ZWiO4VPn1wu2pU=; b=uhToGiJHQlPcOX
-	1oyHTA554/jUi3ziikTkFRBVsmAqklf44SBQshRLL1gPjWUm9mKDXLy11h7CWFRgzai6L+4BKglmq
-	rhTlYHO62ZfGZc/v7a/tY0V+XvOuAyWowYMSdqu1GsfanS5iQwo0jucSJph/9GOcBeVM26s1jIYxZ
-	NRse+rXn7SUpYqA+BDKE3MHXe7q26EBLihsCOWU+c7t2Fdr0kn5jMIcaawHUoVbhl2/YGPtNFRVby
-	dxrfYJShSgo8EcJ05TrFAJxvSJkLsybVG2aShhxDUZPpmyiI2bCH48TW4dWKxuYyL63+Ukv99NIK6
-	ScpR1pBL+nKdOi9n5EOw==;
+	List-Owner; bh=f6+GVFXv/PwSRIdr0hkekLX6XcwnHGVvKVxPBn/VkNs=; b=AqLM1D2/qXJpIR
+	83UsMFf+MxuaHPzz042wXQQvpLaPbWXRcOY9VQFLjmWhR2HqiCBfMkLAEkA4bBRFgXszJU7K3JocI
+	EhiHbt4m4tNMG98FVaKaM+ce5oqt++bQ78HNb68h93deE7XhhqMPvpoOaX92382P70UWwMiG8VA2f
+	p+B4GTmvjL245MKZ8gvVrFj5FeQmFbWpnfiefkA6x5opK/j4wXeFgV3DffhA67H27Ug4hxGcAvhRm
+	0iE7YyXGp5f02rKeEU2i8S2r2U1OEkVOwLTzYLujHoXjcgqylhvAwgwpcnlXjdXVzhUMhR1mZEhQR
+	u/1Gh0SVudddtGHcqBBw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i2YOQ-0007tx-H9; Tue, 27 Aug 2019 10:08:02 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1i2YRk-0000nv-N5; Tue, 27 Aug 2019 10:11:28 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i2YOO-0007td-2O
- for linux-amlogic@lists.infradead.org; Tue, 27 Aug 2019 10:08:01 +0000
-Received: by mail-wm1-x344.google.com with SMTP id p74so2427102wme.4
- for <linux-amlogic@lists.infradead.org>; Tue, 27 Aug 2019 03:07:59 -0700 (PDT)
+ id 1i2YRh-0000nF-9B
+ for linux-amlogic@lists.infradead.org; Tue, 27 Aug 2019 10:11:27 +0000
+Received: by mail-wr1-x444.google.com with SMTP id z1so18174696wru.13
+ for <linux-amlogic@lists.infradead.org>; Tue, 27 Aug 2019 03:11:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=rtjwDU5qcv28MMp78xkTBLMUS41bKQ40q7Db+jhHAzE=;
- b=EItYCrNmPdU7CRo/xIQ8vt8XQmyJcPLaHg+luHT4hOpz0g7nXTtqMulGa/qMLDc/Zj
- cB1vxIIvhv55s2EDDiPX0TScLIz23KBA/w/x08Mm3H/+HiSkFpEaI/d54LnuAHevAJEH
- 1SSfsKJJlb+EQX0A3Muk29Lgo+JgCGcCGs3Flg0atL2Ff6cYw8Nh2bO43/CURAWnPFmL
- qiNSS/5Bw8VfR9HrkAgBdA5DCTup7RWdXuDM1FPmmXo1ucpi8iabjjbJW/N9hxsihvQ0
- xD/Kmw9nM/iVIiHaddq2Rd/Qk/7Q25J+BZAZ23Yiz9JOLNPbBrSZZIRL0pgLAoIhG+xv
- WZqA==
+ bh=tkna0aUhgXF1vo9IZYq7Jw+bvzmL4pUu5WAhq5klAu0=;
+ b=iy6c/gCGD3tlntcjbXE8i8cDx2WqH1+FISQOdrBZGhElQxxj6aefO+zvKk+WsyTk5z
+ oFrWdHy43zTwG2w08QYuPYWq78YVXkMaFxq0G119k+2WcKU56VTBa4BHMTRsEhV/pGFM
+ vJqAkTWJpx4lmRqqm8l6pihTGS7OkoEly4EWuYFWyLOMFibtv8OZFhuODUypCB/zaFj/
+ R7Wj5QnTAtcINBjYhxA4KVInc4mJibs+V3DQlpSSjW8khUfJSmPNFT7DtFWlmNQZpgAh
+ zcY4CDwHTcEJTrYL6YIPincVhogOaSGYE1/mUZJIneV1Hjxgh+D8mF5l9+iVPcSYBpe5
+ ZrnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=rtjwDU5qcv28MMp78xkTBLMUS41bKQ40q7Db+jhHAzE=;
- b=NO5PwZeP9VvGKBHL+PvvKoMNjY0QWJXWKWib2CtMdL8YHlW6g6tJc2v4IzQWqHuwsX
- ZKbERC9H7fPpDrrbcxtdJm7kDZH06HxHjTnCgoo1A40nTOeRiNAv3ZoaY4/FwYXBv5sa
- A78FLrDCLulIlzLfNcLmE5unoRS4cAozxQSA10R2IxoqzVljDlmTpYz1HZb5I1P6x/m/
- IqBFU1IIYCIgwTkn2L5Mw1Tv3UsiCaR/Bc80og60bQUB1FdDbjEuvaSy/a07g7CFWagm
- aPiuih4XL3SJ0wo/ghr3u8RrcPev/TFBzSNsWpH5PePXmHj1dvpvBARQY/440daN3Pcu
- LPlg==
-X-Gm-Message-State: APjAAAXSs5/yhdu6fB59pj4CHOES2kQKsRbKcMcNbiPmdoE3cI1Iw1No
- pj8+AGJMYwhEz3+VPWhi+OyKtw==
-X-Google-Smtp-Source: APXvYqxPbJE239TGw9j2Hv1Rcc2YynYi24ykLKO7u5gl1ISSXBj22e8eEKFojGjaEee4xoPJQyxqYQ==
-X-Received: by 2002:a1c:4c06:: with SMTP id z6mr26754788wmf.47.1566900478640; 
- Tue, 27 Aug 2019 03:07:58 -0700 (PDT)
+ bh=tkna0aUhgXF1vo9IZYq7Jw+bvzmL4pUu5WAhq5klAu0=;
+ b=ZVNAD/4BKY24WLfkdZZaIjqzNDWauXc0c8W9PXpvM1x+lvWKAFnhkxRO8bKAZH08fX
+ gGOj+Hbe4iRUP6SZ44WJ/X7HgbuJUBn8nReTDoghGBBwDpPpe6ar/s7+7VTJnfAwjPUm
+ F7YJu/1qiL74gmaewf8CZu6yyT0o0muJ2iU8k6g5YfvGJWc7bpD0RHeawEZ847rUmQVS
+ 4/xo2Xq4/8T8F6gaXmk182ARxlB3iH5zJz0BXZDu70RRIw1CAJDxUNitia4v46jv/ys2
+ vLnxN3XMRRqqjV4uc77nFaoIM5Zibb4vUYK5MeocNlnglADEKS/4mT3gJBVgAToCA7h7
+ CTZA==
+X-Gm-Message-State: APjAAAXp8KYvpgxTJfa2M/B00ZFwNjEOqDy/aFhHao0NxKhliFXBbdRy
+ NcT5wmUKoROLf+QqhsBEjGXkpw==
+X-Google-Smtp-Source: APXvYqzFnusOnL686XHXuwsnTQuwpfRXfGQpciJadUCBSll988d56Idev6tfUQb8uPhcz5TWPE6rqQ==
+X-Received: by 2002:adf:e885:: with SMTP id d5mr3284141wrm.15.1566900683512;
+ Tue, 27 Aug 2019 03:11:23 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id n8sm12068644wrw.28.2019.08.27.03.07.57
+ by smtp.gmail.com with ESMTPSA id q3sm2899956wma.48.2019.08.27.03.11.22
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 27 Aug 2019 03:07:58 -0700 (PDT)
-Subject: Re: [PATCH RFC v2 3/8] drm/bridge: synopsys: dw-hdmi: add bus format
- negociation
-To: Boris Brezillon <boris.brezillon@collabora.com>
-References: <20190827081425.15011-1-narmstrong@baylibre.com>
- <20190827081425.15011-4-narmstrong@baylibre.com>
- <20190827110356.3bec488b@collabora.com>
+ Tue, 27 Aug 2019 03:11:22 -0700 (PDT)
+Subject: Re: [PATCH v2 2/5] soc: amlogic: Add support for Everything-Else
+ power domains controller
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20190823090418.17148-1-narmstrong@baylibre.com>
+ <20190823090418.17148-3-narmstrong@baylibre.com>
+ <CAFBinCBy-VxfSMPMR0cEDuNg8=UOUVvWfkDi2Tp=QhBZka93aQ@mail.gmail.com>
+ <f6e7e4de-e1b7-f642-07cb-fa029ff2a883@baylibre.com>
+ <CAFBinCDDygiafTwLgqB9BimqrmwxL2=HFQD8cX8CQL23AFZNXQ@mail.gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -133,16 +135,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <c200ac12-6fe7-6d20-8fdf-6629950a71bf@baylibre.com>
-Date: Tue, 27 Aug 2019 12:07:57 +0200
+Message-ID: <25e60f94-9be1-76b0-147f-abdd2d01872f@baylibre.com>
+Date: Tue, 27 Aug 2019 12:11:22 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190827110356.3bec488b@collabora.com>
+In-Reply-To: <CAFBinCDDygiafTwLgqB9BimqrmwxL2=HFQD8cX8CQL23AFZNXQ@mail.gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190827_030800_117477_0EC123CE 
-X-CRM114-Status: GOOD (  17.07  )
+X-CRM114-CacheID: sfid-20190827_031125_330953_463942EE 
+X-CRM114-Status: GOOD (  27.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,89 +156,251 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: jernej.skrabec@siol.net, jonas@kwiboo.se, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, a.hajda@samsung.com,
- Laurent.pinchart@ideasonboard.com, linux-amlogic@lists.infradead.org
+Cc: ulf.hansson@linaro.org, linux-pm@vger.kernel.org, khilman@baylibre.com,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 27/08/2019 11:03, Boris Brezillon wrote:
-> On Tue, 27 Aug 2019 10:14:20 +0200
-> Neil Armstrong <narmstrong@baylibre.com> wrote:
+On 27/08/2019 00:40, Martin Blumenstingl wrote:
+> Hi Neil,
 > 
->> Add the atomic_get_output_bus_fmts, atomic_get_input_bus_fmts to negociate
-> 
-> 								   ^negotiate
-> 
->> the possible output and input formats for the current mode and monitor,
->> and use the negociated formats in a basic atomic_check callback.
-> 
-> 	      ^negotiated
-
-Indeed, thx
-
-> 
+> On Mon, Aug 26, 2019 at 10:10 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
+>> On 25/08/2019 23:10, Martin Blumenstingl wrote:
+>>> Hi Neil,
+>>>
+>>> thank you for this update
+>>> I haven't tried this on the 32-bit SoCs yet, but I am confident that I
+>>> can make it work by "just" adding the SoC specific bits!
+>>>
+>>> On Fri, Aug 23, 2019 at 11:06 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>> [...]
+>>>> +/* AO Offsets */
+>>>> +
+>>>> +#define AO_RTI_GEN_PWR_SLEEP0          (0x3a << 2)
+>>>> +#define AO_RTI_GEN_PWR_ISO0            (0x3b << 2)
+>>>> +
+>>>> +/* HHI Offsets */
+>>>> +
+>>>> +#define HHI_MEM_PD_REG0                        (0x40 << 2)
+>>>> +#define HHI_VPU_MEM_PD_REG0            (0x41 << 2)
+>>>> +#define HHI_VPU_MEM_PD_REG1            (0x42 << 2)
+>>>> +#define HHI_VPU_MEM_PD_REG3            (0x43 << 2)
+>>>> +#define HHI_VPU_MEM_PD_REG4            (0x44 << 2)
+>>>> +#define HHI_AUDIO_MEM_PD_REG0          (0x45 << 2)
+>>>> +#define HHI_NANOQ_MEM_PD_REG0          (0x46 << 2)
+>>>> +#define HHI_NANOQ_MEM_PD_REG1          (0x47 << 2)
+>>>> +#define HHI_VPU_MEM_PD_REG2            (0x4d << 2)
+>>> should we switch to the actual register offsets like we did in the
+>>> clock drivers?
+>>
+>> I find it simpler to refer to the numbers in the documentation...
+> OK, I have no strong preference here
+> for the 32-bit SoCs I will need to use the offsets based on the
+> "amlogic,meson8b-pmu", "syscon" [0], so these will be magic anyways
 > 
+> [...]
+>>>> +#define VPU_HHI_MEMPD(__reg)                                   \
+>>>> +       { __reg, BIT(8) },                                      \
+>>>> +       { __reg, BIT(9) },                                      \
+>>>> +       { __reg, BIT(10) },                                     \
+>>>> +       { __reg, BIT(11) },                                     \
+>>>> +       { __reg, BIT(12) },                                     \
+>>>> +       { __reg, BIT(13) },                                     \
+>>>> +       { __reg, BIT(14) },                                     \
+>>>> +       { __reg, BIT(15) }
+>>> the Amlogic implementation from buildroot-openlinux-A113-201901 (the
+>>> latest one I have)
+>>> kernel/aml-4.9/drivers/amlogic/media/vout/hdmitx/hdmi_tx_20/hw/hdmi_tx_hw.c
+>>> uses:
+>>> hd_set_reg_bits(P_HHI_MEM_PD_REG0, 0, 8, 8)
+>>> that basically translates to: GENMASK(15, 8) (which means we could
+>>> drop this macro)
+>>>
+>>> the datasheet also states: 15~8 [...] HDMI memory PD (as a single
+>>> 8-bit wide register)
+>>
+>> Yep, but the actual code setting the VPU power domain is in u-boot :
+>>
+>> drivers/vpu/aml_vpu_power_init.c:
+>> 108         for (i = 8; i < 16; i++) {
+>> 109                 vpu_hiu_setb(HHI_MEM_PD_REG0, 0, i, 1);
+>> 110                 udelay(5);
+>> 111         }
+>>
+>> the linux code is like never used here, my preference goes to the u-boot code
+>> implementation.
+> I see, let's keep your implementation then
 > 
->>  
->> +static void dw_hdmi_bridge_atomic_get_output_bus_fmts(struct drm_bridge *bridge,
->> +					struct drm_bridge_state *bridge_state,
->> +					struct drm_crtc_state *crtc_state,
->> +					struct drm_connector_state *conn_state,
->> +					unsigned int *num_output_fmts,
->> +					u32 *output_fmts)
->> +{
->> +	struct drm_connector *conn = conn_state->connector;
->> +	struct drm_display_info *info = &conn->display_info;
->> +	struct drm_display_mode *mode = &crtc_state->mode;
->> +	bool is_hdmi2_sink = info->hdmi.scdc.supported;	
->> +	int i = 0;
->> +
->> +	/*
->> +	 * If the current mode enforces 4:2:0, force the output but format
->> +	 * to 4:2:0 and do not add the YUV422/444/RGB formats
->> +	 */
->> +	if (drm_mode_is_420_only(info, mode) ||
->> +	    (!is_hdmi2_sink && drm_mode_is_420_also(info, mode))) {
->> +
->> +		/* Order bus formats from 16bit to 8bit if supported */
->> +		if (info->bpc == 16 &&
->> +		    (info->hdmi.y420_dc_modes & DRM_EDID_YCBCR420_DC_48)) {
->> +			if (output_fmts)
->> +				output_fmts[i] = MEDIA_BUS_FMT_UYYVYY16_0_5X48;
->> +			++i;
->> +		}
+>>>
+>>> [...]
+>>>> +static struct meson_ee_pwrc_domain_desc g12a_pwrc_domains[] = {
+>>>> +       [PWRC_G12A_VPU_ID]  = VPU_PD("VPU", &g12a_pwrc_vpu, g12a_pwrc_mem_vpu,
+>>>> +                                    pwrc_ee_get_power, 11, 2),
+>>>> +       [PWRC_G12A_ETH_ID] = MEM_PD("ETH", g12a_pwrc_mem_eth),
+>>>> +};
+>>>> +
+>>>> +static struct meson_ee_pwrc_domain_desc sm1_pwrc_domains[] = {
+>>>> +       [PWRC_SM1_VPU_ID]  = VPU_PD("VPU", &sm1_pwrc_vpu, sm1_pwrc_mem_vpu,
+>>>> +                                   pwrc_ee_get_power, 11, 2),
+>>>> +       [PWRC_SM1_NNA_ID]  = TOP_PD("NNA", &sm1_pwrc_nna, sm1_pwrc_mem_nna,
+>>>> +                                   pwrc_ee_get_power),
+>>>> +       [PWRC_SM1_USB_ID]  = TOP_PD("USB", &sm1_pwrc_usb, sm1_pwrc_mem_usb,
+>>>> +                                   pwrc_ee_get_power),
+>>>> +       [PWRC_SM1_PCIE_ID] = TOP_PD("PCI", &sm1_pwrc_pci, sm1_pwrc_mem_pcie,
+>>>> +                                   pwrc_ee_get_power),
+>>>> +       [PWRC_SM1_GE2D_ID] = TOP_PD("GE2D", &sm1_pwrc_ge2d, sm1_pwrc_mem_ge2d,
+>>>> +                                   pwrc_ee_get_power),
+>>>> +       [PWRC_SM1_AUDIO_ID] = MEM_PD("AUDIO", sm1_pwrc_mem_audio),
+>>>> +       [PWRC_SM1_ETH_ID] = MEM_PD("ETH", g12a_pwrc_mem_eth),
+>>>> +};
+>>> my impression: I find this hard to read as it merges the TOP and
+>>> Memory PD domains from above, adding some seemingly random "11, 2" for
+>>> the VPU PD as well as pwrc_ee_get_power for some of the power domains
+>>> personally I like the way we describe clk_regmap because it's easy to
+>>> read (even though it adds a bit of boilerplate). I'm not sure if we
+>>> can make it work here, but this (not compile tested) is what I have in
+>>> mind (I chose two random power domains):
+>>>   [PWRC_SM1_VPU_ID]  = {
+>>>     .name = "VPU",
+>>>     .top_pd = SM1_EE_PD(8),
+>>>     .mem_pds = {
+>>>         VPU_MEMPD(HHI_VPU_MEM_PD_REG0),
+>>>         VPU_MEMPD(HHI_VPU_MEM_PD_REG1),
+>>>         VPU_MEMPD(HHI_VPU_MEM_PD_REG2),
+>>>         VPU_MEMPD(HHI_VPU_MEM_PD_REG3),
+>>>         { HHI_VPU_MEM_PD_REG4, GENMASK(1, 0) },
+>>>         { HHI_VPU_MEM_PD_REG4, GENMASK(3, 2) },
+>>>         { HHI_VPU_MEM_PD_REG4, GENMASK(5, 4) },
+>>>         { HHI_VPU_MEM_PD_REG4, GENMASK(7, 6) },
+>>>         { HHI_MEM_PD_REG0, GENMASK(15, 8) },
+>>>     },
+>>>     .num_mem_pds = 9,
+>>>     .reset_names_count = 11,
+>>>     .clk_names_count = 2,
+>>>   },
+>>>   [PWRC_SM1_ETH_ID] = {
+>>>     .name = "ETH",
+>>>     .mem_pds = { HHI_MEM_PD_REG0, GENMASK(3, 2) },
+>>>     .num_mem_pds = 1,
+>>>   },
+>>> ...
+>>>
+>>> I'd like to get Kevin's feedback on this
+>>> what you have right now is probably good enough for the initial
+>>> version of this driver. I'm bringing this discussion up because we
+>>> will add support for more SoCs to this driver (we migrate GX over to
+>>> it and I want to add 32-bit SoC support, which probably means at least
+>>> Meson8 - assuming they kept the power domains identical between
+>>> Meson8/8b/8m2).
+>>
+>> I find it more compact, but nothing is set in stone, you can refactor this as
+>> will when adding meson8 support, no problems here.
+> OK. if Kevin (or someone else) has feedback on this then I don't have
+> to waste time if it turns out that it's not a great idea ;)
 > 
-> You could probably add the following helper:
+>>>
+>>> [...]
+>>>> +struct meson_ee_pwrc_domain {
+>>>> +       struct generic_pm_domain base;
+>>>> +       bool enabled;
+>>>> +       struct meson_ee_pwrc *pwrc;
+>>>> +       struct meson_ee_pwrc_domain_desc desc;
+>>>> +       struct clk_bulk_data *clks;
+>>>> +       int num_clks;
+>>>> +       struct reset_control *rstc;
+>>>> +       int num_rstc;
+>>>> +};
+>>>> +
+>>>> +struct meson_ee_pwrc {
+>>>> +       struct regmap *regmap_ao;
+>>>> +       struct regmap *regmap_hhi;
+>>>> +       struct meson_ee_pwrc_domain *domains;
+>>>> +       struct genpd_onecell_data xlate;
+>>>> +};
+>>> (my impressions on this: I was surprised to find more structs down
+>>> here, I expected them to be together with the other structs further
+>>> up)
+>>
+>> These are the "live" structures, opposed to the static structures defining the
+>> data and these are allocated and filled a probe time.
+> I see, thanks for the explanation
 > 
-> static void dw_hdmi_bridge_add_fmt(unsigned int *num_fmts, u32 *fmts,
-> 				   u32 new_fmt)
-> {
-> 	if (fmts)
-> 		fmts[*num_fmts] = new_fmt;
-> 
-> 	(*num_fmts)++;
-> }
-> 
-> to avoid duplicating the
-> 
-> 	if (fmts)
-> 		...
-> 
-> 	i++;			
-> 
-> logic.
-> 
+>> I dislike changing static global data at runtime, this is why I clearly separated both.
+> I didn't mean to make them static - the thing that caught my eye was
+> that some of the structs are defined at the top of the driver while
+> these two are define much further down
+> I am used to having all struct definitions in one place
 
-Yes, I was planning this,
+I'll let Kevin leave his feedback on this aswell.
 
-Thanks,
+> 
+>>>
+>>>> +static bool pwrc_ee_get_power(struct meson_ee_pwrc_domain *pwrc_domain)
+>>>> +{
+>>>> +       u32 reg;
+>>>> +
+>>>> +       regmap_read(pwrc_domain->pwrc->regmap_ao,
+>>>> +                   pwrc_domain->desc.top_pd->sleep_reg, &reg);
+>>>> +
+>>>> +       return (reg & pwrc_domain->desc.top_pd->sleep_mask);
+>>> should this also check for top_pd->iso_* as well as mem_pd->*?
+>>> if the top_pd part was optional we could even use the get_power
+>>> callback for *all* power domains in this driver (right now audio and
+>>> Ethernet don't have any get_power callback)
+>>
+>> We could, but how should we handle if one unexpected bit is set ? No idea...
+> hmm, I see
+> if we need it for other power domains then we can still implement it,
+> so it's good for now
+> 
+> [...]
+>>> bonus question: what about the video decoder power domains?
+>>> here is an example from vdec_1_start
+>>> (drivers/staging/media/meson/vdec/vdec_1.c):
+>>>   /* Enable power for VDEC_1 */
+>>>   regmap_update_bits(core->regmap_ao, AO_RTI_GEN_PWR_SLEEP0,
+>>>                                    GEN_PWR_VDEC_1, 0);
+>>>   usleep_range(10, 20);
+>>>   [...]
+>>>   /* enable VDEC Memories */
+>>>   amvdec_write_dos(core, DOS_MEM_PD_VDEC, 0);
+>>>   /* Remove VDEC1 Isolation */
+>>>   regmap_write(core->regmap_ao, AO_RTI_GEN_PWR_ISO0, 0);
+>>>
+>>> (my point here is that it mixes video decoder "DOS" registers with
+>>> AO_RTI_GEN_PWR registers)
+>>> do we also want to add support for these "DOS" power domains to the
+>>> meson-ee-pwrc driver?
+>>> what about the AO_RTI_GEN_PWR part then - should we keep management
+>>> for the video decoder power domain bits in AO_RTI_GEN_PWR as part of
+>>> the video decoder driver?
+>>
+>> I left the decoders power domains aside so we can discuss it later on,
+>> we should expose multiple power domains, but the driver would need to
+>> be changed to support multiple power domains. But will loose the ability
+>> to enable/disable each domain at will unless it created a sub-device for
+>> each decoder and attaches the domain to to each device and use runtime pm.
+>>
+>> It's simpler to discuss it later on !
+> OK - does this mean you and/or Maxime have "discuss decoder power
+> domains" on your (long) TODO-list or do you want me to open this
+> discussion after this driver is merged?
+
+Both I think, let this be an open discussion !
+
 Neil
+
+> 
+> 
+> Martin
+> 
+> 
+> [0] https://www.kernel.org/doc/Documentation/devicetree/bindings/arm/amlogic/pmu.txt
+> 
 
 
 _______________________________________________
