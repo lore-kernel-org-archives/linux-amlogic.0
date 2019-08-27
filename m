@@ -2,87 +2,85 @@ Return-Path: <SRS0=C9TS=WX=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+X-Spam-Status: No, score=-3.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
 	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 00649C3A5A3
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 19:18:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F7BCC3A5A3
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 21:18:47 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CAF06214DA
-	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 19:18:08 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 71113214DA
+	for <linux-amlogic@archiver.kernel.org>; Tue, 27 Aug 2019 21:18:47 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Akzetmw6";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="l6uFNGI6"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CAF06214DA
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KeJEIBlg";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="WfKFP2Ex"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 71113214DA
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NhFkt52aqmB+Qlyt/zYUw3BChzIVY7iDZBeytrE24GE=; b=Akzetmw6X0uIQm
-	Y/v79WK4FEmFqNvWDZNjk+mAb/CWAeSMruQ5mRaz/IGfV2wxIgQ+GYu58UBnh2DVEazh3461mxo6l
-	E3lYgGMfyme+nJDNvcrlfPz7QFp8zLY3JMhEicPv7JLalyFZ0dIJNr3BKazpL+sg+t1Uu2Uxw4lMc
-	zxXOff774J77XMzI/JMiVH4RnTMj6vIfw13CV51tH0Kh4rdwteWik7etgoLvO9uvU5nKWVF0vbiY6
-	K1U0feIA/aXOhEpM3S6solNa3jik0elOxFFQscN4LZmZ5t8CzAk1+dTXMYbYUTN4RPCAlA59IvJoa
-	4Z+zzd5Rrv6I0k6+n/Cw==;
+	List-Owner; bh=lj8MiFWaG5YzP290Hr6DGMCBLXnqcSH8M3YlFalOiLo=; b=KeJEIBlgw+AQw2
+	bknCbnL0TbTafgZeaZ1ue1SA/1mS8cMDh/8BDVlT9EjQYiv8TAy92vV+EaS1vpzoYInd2XMoxMUak
+	ugvpQMcfZQbByMX2O/nSRTDvQv0RQtryWr40Sq7fxj5xC9tLr5tghM5tjTViJ8DmDTVTnLyggaNf7
+	sDkdCvLtmCGGeK8O2ZPVQQICTvrUYDZD9THhWHdes+pTLFs8AiLdnHzgdLSkHX66xF+xU44uYb+fn
+	KJqzShPFPjZQKFNJ3oRKuV+dUhVXVe9dlDoDelNQYHCX4j2waR9z7vmD+ua2LWMMev7NhFSnW975B
+	fcY7obiucTcr5JHzlIvQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i2gyh-0002GE-R7; Tue, 27 Aug 2019 19:18:03 +0000
-Received: from mail-pl1-x644.google.com ([2607:f8b0:4864:20::644])
+	id 1i2irP-0008S5-El; Tue, 27 Aug 2019 21:18:39 +0000
+Received: from mail-ot1-x341.google.com ([2607:f8b0:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i2gyY-000280-Ch
- for linux-amlogic@lists.infradead.org; Tue, 27 Aug 2019 19:17:56 +0000
-Received: by mail-pl1-x644.google.com with SMTP id t14so13273plr.11
- for <linux-amlogic@lists.infradead.org>; Tue, 27 Aug 2019 12:17:53 -0700 (PDT)
+ id 1i2irM-0008RI-9g; Tue, 27 Aug 2019 21:18:37 +0000
+Received: by mail-ot1-x341.google.com with SMTP id e12so580678otp.10;
+ Tue, 27 Aug 2019 14:18:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=vJzw3QpMeKUQN9mhk1L8KwSYlM1O8J0WfSacmAROoZs=;
- b=l6uFNGI6x957C+EC5/aW9Yx7fg8JZ+lcCqjjsTH+8k7iItlRBiXO8ZTf9SNIpupFkC
- oSuNmg7PFn/ebDs8M8g+KOaI04jIfrTDroOVpzIItWImSWSf1eHhACbRgzRsaNUONRsh
- rplv2ndYyVe5diOf99PXG0oxUEzZRkYGLNFmLv4iahEuBPwYYdWAqzVdNsmtakNIxeqB
- a/NrJiL8vYCBFeFXW2y2TzpuH0JTd+0iRIqS20qyq6GuCiSuN3vt5+20VU5OZMuLjE27
- CDDG6b9OsVLL8Tk6E10FTyg9ncG/KR2ZmGwP9VZN1jPOiZ1aVMcfT3q5LkACVukAJZks
- YqGg==
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=79O2d4MxaNzshKkDgbf9PCXtK+1faNjqfacVtcjhXCw=;
+ b=WfKFP2Ex7iHPWuOIN+wXVARM//Fw+EtyALZ2RHdD2VFf+u0UdwMzKBy3aPxg/7RPR/
+ pYJqOuJj0qomXcd2rN3UpcOUFUw8Te0rvzryveTSoFLLKuz9uBTGHHZeGoXBb1HDcwkh
+ P4KNTBURWbvWCfte0L+pEJbEatRgNmt4QzDU9JxVdcIW+lWwlw23gSLvYqoiscpm2ckT
+ lsj3Bq39CEouDk2Ngp62twh+Oebm/Ssxc4voexjQq+sn44Nn+bJDjoNsV6Uc0Ij80O04
+ D5nyNFuMbQtVPo3CMRAWfJUQc2XEfLcN0T6kVN+E6nNvnGMZkw/b7XXvq+TSsrC+CMJA
+ 0EdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=vJzw3QpMeKUQN9mhk1L8KwSYlM1O8J0WfSacmAROoZs=;
- b=mJaQQt+rR83ZE9z6aZ+MELVu+gHiJ3OfCELhZ+SHIr1zPOp+Kk+pxEsfIvRjCySsu1
- kWVivD9RqOMFryz05PNR69kTgy1R9mA8GhOdTriuqGz63yg7uhUPKMPWRLdzN9A6y8aP
- Sj3EjDQXWVkZQ+M1tVku7ZysTfg1d6dBBZ96JEV9NurF1OzRv4+kjfvRjRJAW0zIBdHL
- BteJ0+yrVY+p5cCZupvGyOhFiHy2EBQ6JxNYqIlT+hq7/2xn29bM7xZC4mFpkZ4gl6Vz
- s+x9MHNvdR5GfNTvBNC9v+NpTvMAMM9/KLhqQ9QLln1SCU469+DeGEIQ8+wXKInzVUt4
- YJkg==
-X-Gm-Message-State: APjAAAW5J0tEiUexT/tRmsMkVKVNFjV1St8uwPT+uLzJZ3MMu4UA7EDr
- ybJF5ZHcMMoofV0w/iQq2sg/Ig==
-X-Google-Smtp-Source: APXvYqweKeR+O1L8NUQ1dGQZwjj/kGMRlK298lUWAQfX/o+FgU8fpeeMRjkf/+I6PLTs1JLB3DAJow==
-X-Received: by 2002:a17:902:8488:: with SMTP id
- c8mr440778plo.164.1566933473391; 
- Tue, 27 Aug 2019 12:17:53 -0700 (PDT)
-Received: from localhost ([2601:602:9200:a1a5:cc35:e750:308e:47f])
- by smtp.gmail.com with ESMTPSA id z16sm65758pfr.136.2019.08.27.12.17.52
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Tue, 27 Aug 2019 12:17:52 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Neil Armstrong <narmstrong@baylibre.com>, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 0/2] drm/meson: add resume/suspend hooks
-In-Reply-To: <20190827095825.21015-1-narmstrong@baylibre.com>
-References: <20190827095825.21015-1-narmstrong@baylibre.com>
-Date: Tue, 27 Aug 2019 12:17:52 -0700
-Message-ID: <7h5zmixvrz.fsf@baylibre.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=79O2d4MxaNzshKkDgbf9PCXtK+1faNjqfacVtcjhXCw=;
+ b=GAipWY2hUXa4rHxJZvJBk6xgQKhj41PKVNCZNsRisEXTL5Lfe0vbta18qUitsUtKg9
+ cKTlic9UFvXvD9cyiFGY5LLMZ8oMSj+JvN8/ovq45KbDUnvnau121/SIwaqV/jo/WMBt
+ NbXXKs5t74/X5mxPL/v8y59JYO4HF6jcHxBmS7dysHkxjGwJJes56VbazRVwXnjCE+TP
+ NCqcAKqjSA1iICfZtpnrB2og7tFEC3BXYaCcTBy8qkGoUbKIZxYPfdjP+8AM5dTN/kv4
+ xGf+Hf29IJJ8auLTqQ/HBB0721yT51zCUvyIQKrCbgBTPmx5LnnoQRN6gqS+nyYOlgU4
+ Eq2A==
+X-Gm-Message-State: APjAAAXf1WjzYz2uPAXhHPFFk6edoufBcM+/Np9NP38SxyVsM7RKNF8C
+ 3CpbiZjBmhZFunSeTcsKMLokUQyJBn62s6gB97w=
+X-Google-Smtp-Source: APXvYqwGwnC+flBOhOIUQLHX1WACuwTk+aVA1Xep4g6gD4QcHubhVgX2ByYgZ7v0D2tQL2mAd7UJqcYjnDBDStIY/rY=
+X-Received: by 2002:a9d:7b44:: with SMTP id f4mr571632oto.42.1566940713518;
+ Tue, 27 Aug 2019 14:18:33 -0700 (PDT)
 MIME-Version: 1.0
+References: <20190823081427.17228-1-narmstrong@baylibre.com>
+ <20190823081427.17228-3-narmstrong@baylibre.com>
+ <CAFBinCBLVDVWPbDZ+_cPTbJNCavvzJH4A6U8D9XWVSR-j3fzFQ@mail.gmail.com>
+ <c853d934-113c-2305-f229-1e2c7138fc3f@baylibre.com>
+In-Reply-To: <c853d934-113c-2305-f229-1e2c7138fc3f@baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 27 Aug 2019 23:18:22 +0200
+Message-ID: <CAFBinCBLxW2r-N0z10Z7uUpvdoPikkZ0Lca6J-NctGYXtuxb2Q@mail.gmail.com>
+Subject: Re: [PATCH 2/3] amlogic: arm: add Amlogic SM1 based Khadas VIM3
+ variant bindings
+To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190827_121754_435896_E6D850E8 
-X-CRM114-Status: UNSURE (   7.26  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190827_141836_340048_22DA89A3 
+X-CRM114-Status: GOOD (  14.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,29 +92,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
+Cc: khilman@baylibre.com, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
-
-> This serie adds the resume/suspend hooks in the Amlogic Meson VPU main driver
-> and the DW-HDMI Glue driver to correctly save state and disable HW before
-> suspend, and succesfully re-init the HW to recover functionnal display
-> after resume.
+On Mon, Aug 26, 2019 at 9:42 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+[...]
+> >> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> >> index b48ea1e4913a..2751dd778ce0 100644
+> >> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
+> >> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> >> @@ -150,9 +150,10 @@ properties:
+> >>            - const: amlogic,s922x
+> >>            - const: amlogic,g12b
+> >>
+> >> -      - description: Boards with the Amlogic Meson SM1 S905X3 SoC
+> >> +      - description: Boards with the Amlogic Meson SM1 S905X3/D3/Y3 SoC
+> >>          items:
+> >>            - enum:
+> >>                - seirobotics,sei610
+> >> +              - khadas,vim3
 >
-> This serie has been tested on Amlogic G12A based SEI510 board, using
-> the newly accepted VRTC driver and the rtcwake utility.
+> Khadas asked me to rename the board to "vim3l", which is the commercial name,
+> should I only change the DT name or also the compatible "khadas,vim3l" ?
+I vote for being consistent:
+- rename the .dts to vim3l
+- and change the compatible string
 
-Tested-by: Kevin Hilman <khilman@baylibre.com>
+> >>            - const: amlogic,sm1
+> > on the GXL we differentiate between S905X and S905D
+> > do we need to differentiate S905X3 from S905D3 (for example)?
+>
+> From a pure SoC die perspective they are the same, exactly like
+> the S905X and S905D, only the package changes.
+> So only the board DT will determine which eth PHY is used,
+> if a DSI panel is connected, a demodulator is connected.. even
+> if the underlying package is S905Y3 without any of these pins
+> available.
+OK, I see - fine for me then
+GXL's S905W and/or S805X are the "special cases" then which (AFAIK)
+use a different (smaller) package (so it made sense to differentiate
+all GXL SoCs)
 
-Tested on my G12A SEI510 board, and I verified that it fixes
-suspend/resume issues previously seen.
 
-Kevin
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
