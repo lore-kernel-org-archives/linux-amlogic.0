@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 03664C3A59F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Aug 2019 15:31:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 97A2AC3A59F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Aug 2019 15:31:19 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C6C212073F
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Aug 2019 15:31:04 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 65AC72073F
+	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Aug 2019 15:31:19 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fqcCL4Rf";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="xdD1rGlC"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C6C212073F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="OPrEhijV";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="iz3w00oM"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 65AC72073F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,48 +26,48 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dIgSQ7snjkPIXXV7daij2ftNCfyjATxkHmv0ooCbEho=; b=fqcCL4RfM1GK40
-	SIhgEz1ykpvmGRIrVCZPMMURQHSBHGzi9l6AcY1bn9idhJ7abNVNwO72/BXMRxOPlftM3Xzu/nKOd
-	cmp6Blqvo5+ayasR/QrAcigVkOSAq8ZCE7LiTtrS4K+myAP+RZH6iYkRufvHthCSAF4URPL2lZX33
-	hV+nVWZ2QwEH1SAIataVr7ChUOuawIztjFJX6G+j9VBwZv56PthPMMZYoqAasZWszBUnithP1nc86
-	AoKlhXladruWPZkonh0O2HKfKztQh2G2BNh8yh7mRr8d5UBIWoucM5jSCctAwciRFcZ68xmlGVoDL
-	iSwQ3tOJJkh3BUM+ckWA==;
+	List-Owner; bh=Jtk8r0RSOJx1Z3utU9fFoo9u8UIIu7IcvRr7JmUaXGk=; b=OPrEhijVAJCpSc
+	npf+sIZZs8sNbIBB+yLnlYiqvl735buuwCp+wFEVZct1/YaM1uVhIccoE25M+pDzMZ2F72vKYg0Uu
+	NGp43RjGsQlkFrhyZLBvm0tE/5l+E4GBMZSELGaeNZSsZYyUvpR/H00h4EhU5+NOqtV3ExD1hAM1+
+	lBxRLZ4UOKe34bD8sks5SSFrjQRI60VFDN3+1n/lWQar9T+MuQXtqbcL0sF8gcp1AqcQflitX+9ZZ
+	25ryoFed+EeSa+KzagIeugU5ABwWLd9+OaCzEooTXy+W6BV3S8k0UXUu5cvk0k5hh5JdVkQocME89
+	hoTADAZ+T7th2Y6xbRPA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i3MO3-0002uV-7x; Thu, 29 Aug 2019 15:30:59 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1i3MOE-0002xj-Lx; Thu, 29 Aug 2019 15:31:11 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i3MHD-0007Ug-Eq
+ id 1i3MHC-0007UB-Qn
  for linux-amlogic@lists.infradead.org; Thu, 29 Aug 2019 15:23:58 +0000
-Received: by mail-wm1-x344.google.com with SMTP id o184so4292128wme.3
- for <linux-amlogic@lists.infradead.org>; Thu, 29 Aug 2019 08:23:55 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id q12so3822106wrj.12
+ for <linux-amlogic@lists.infradead.org>; Thu, 29 Aug 2019 08:23:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=CNct68VLdvOJio/5Gf7jYfAx8Jm9CSApcCCK+DehTpM=;
- b=xdD1rGlCDppR2G3tq2+Afor02L9Lnru3XcK4gyu03zLYhux3tnOdWcFA9uaXQG1WnU
- 6Q4JYSRjbgvCJBFE0gGwUjt7zre9uwnqq6x6fhFiPZmRYjPVZM6iKe1zQR1VN1nFM4Z6
- K/Re2HoM/+UDeEl7dWjG/IBG7hBzvQSIl4pHaNAVkoSThZyrK4OOMpL3Lq/Ovu/DqUUx
- U+juR23BbNDF4W3Wtib+cjCxGvo1/0iBqroAuCbSnklMvi5vUfAZful9aqjUHt3Pb+Sz
- hYj9u0IRN4AURaJohbzU3iKogFKWMHH8GTjPDe/Yem4auNrMmWnPSELLHfn/IC6oIYcj
- DB2Q==
+ bh=SiL45R060WCezmhZNNgvA5GD6ew6UdT9naA5+iprxJs=;
+ b=iz3w00oMmhwELo5mlz7WH3W3SCHzbt/CfLJWsAoY91Ld9m+Ysai9qYSacAS3GizB4m
+ kMqlbOhOXjDfHq3XiJ7j2dIERqKE5plX/KZAqA4D8uhnrPgKCxQZAgBB34yhvh2HkRk7
+ s85NcR6XFFCR8/xbuJmgHX0afclGzVCVvvOaKrjxUDjOta6Vasf7+nVMTDtdeFeV3Exd
+ cNWIYk8yN8i8yO5NnE1RKT7IDu9D9DglTndbLtMGjppQioO0LjofVRQBIHBIHrwJP0bX
+ n4LQyboRqzBjgrOFllI97n6xmZJZX9WPG8Hc41rAyQ4LDx5ExOfvsmAg+uD3+0BSgnG8
+ +0vQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=CNct68VLdvOJio/5Gf7jYfAx8Jm9CSApcCCK+DehTpM=;
- b=eoPYYhghyfT0W3wJdvTzPUs0UM3aN8fhcu01PfIaR4+AUDzTXAvyzvZH0atJPXXT/n
- 2Y8dHzGStZU/VygJcygeUU+CDR2G/CsIaZXLmyzo881x4/ytc3+I1z+yWrcAxp+ayOmA
- 3OXuk6KnLUz1LE8xyKGQOxIvwQCR9QJj5QrWE8g1VPOX0snz50cFJDCkLZcHF+RPtnUz
- zsJi69a24iR2y3IQu6YQb5aF1FMoO5/Q4c202LtqekjBNjP+nuURNHs5whrGYdGyl8E0
- yFVCNMH3ABZgxVb6jzgTSvDmlzwVnsuZMnzExc4MxwpN7x5Sf34rGXDb3t4w9OVPD+sl
- A2bg==
-X-Gm-Message-State: APjAAAU6tVyff2KTYyAMZPyLclbjZAwSJH4TjoBBkgvJ2iGII7r4VbeV
- laKBIUkTv5f9G2YBG2w42f/d8Q==
-X-Google-Smtp-Source: APXvYqyxkniha6um+qP2owGsl3mhEShJhy9rrrm7n8jV9cz/FPjsOQkUroI676R6AzEmgachU49oDQ==
-X-Received: by 2002:a7b:cd0f:: with SMTP id f15mr12604588wmj.86.1567092234111; 
- Thu, 29 Aug 2019 08:23:54 -0700 (PDT)
+ bh=SiL45R060WCezmhZNNgvA5GD6ew6UdT9naA5+iprxJs=;
+ b=mYgczbAHBJyoTcYjrHie0easRfxa7hVwYxDQkZffft2JuBVfG9PvyzgATbED8+2h6n
+ 0xHIj//ejKCXJOH3mRf07BvWKLwNbY/sNngZ/D9bKP/QDOjrkkDHjWf5AwG0L8tBycyQ
+ fcPNptKeIloPH0fHOVQaQuSTNNPkuiaQ96gdsfOVLAsEwNFhXS7ezLE3kqZ7lmeanq7v
+ v4r0Y5d2qV+wU5LFIkPGUYoqY4CXpvhJFOHJVk47Jb2YOwIGu7k+Jzzyc3nQ1GcKJqwl
+ WofNObWVhmoHYW60u/8EaKKX8WT4IZo8YR4wWdTVyw+91VezGLXRePrhddi8TM8xOg5I
+ ipSQ==
+X-Gm-Message-State: APjAAAXJt7xlaKxLIqQYA/dN1aK+baqYyce4+KzLTbcM2bZGdghbiqbC
+ Epg+zD0EzKf4G3IBF6liqVOSJg==
+X-Google-Smtp-Source: APXvYqw4kFKc52LDFXq9PBL0wPfc+IrjPgZFhUUCyDOFG0eZ0v47NcbuorEHE2HuyIfF3ef4eLIGkg==
+X-Received: by 2002:a5d:45cb:: with SMTP id b11mr12837183wrs.117.1567092233542; 
+ Thu, 29 Aug 2019 08:23:53 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
  by smtp.gmail.com with ESMTPSA id d17sm4866871wre.27.2019.08.29.08.23.53
@@ -75,17 +75,17 @@ Received: from bender.baylibre.local
  Thu, 29 Aug 2019 08:23:53 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: khilman@baylibre.com
-Subject: [PATCH 14/15] arm64: dts: meson-gxm-rbox-pro: add
+Subject: [PATCH 13/15] arm64: dts: meson-gxm-khadas-vim2: add
  keep-power-in-suspend property in SDIO node
-Date: Thu, 29 Aug 2019 17:23:41 +0200
-Message-Id: <20190829152342.27794-15-narmstrong@baylibre.com>
+Date: Thu, 29 Aug 2019 17:23:40 +0200
+Message-Id: <20190829152342.27794-14-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20190829152342.27794-1-narmstrong@baylibre.com>
 References: <20190829152342.27794-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190829_082356_351977_F3E6428C 
-X-CRM114-Status: UNSURE (   8.57  )
+X-CRM114-CacheID: sfid-20190829_082355_166757_194B430B 
+X-CRM114-Status: UNSURE (   8.47  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -112,14 +112,14 @@ suspend state.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts | 3 +++
+ arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 3 +++
  1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
-index 5cd4d35006d0..420a88e9a195 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-rbox-pro.dts
-@@ -148,6 +148,9 @@
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+index f25ddd18a607..5fc38788610f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+@@ -332,6 +332,9 @@
  	non-removable;
  	disable-wp;
  
