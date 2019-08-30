@@ -1,88 +1,147 @@
-Return-Path: <SRS0=jO5x=WZ=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=8XHu=W2=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F399C3A5A6
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Aug 2019 23:40:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1F644C3A5A3
+	for <linux-amlogic@archiver.kernel.org>; Fri, 30 Aug 2019 07:31:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F138723405
-	for <linux-amlogic@archiver.kernel.org>; Thu, 29 Aug 2019 23:40:25 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E1C9C21897
+	for <linux-amlogic@archiver.kernel.org>; Fri, 30 Aug 2019 07:31:20 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="IUHsNr2K";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="nwo9p5Bg"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F138723405
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VrWGzkSX";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="BrEbiUqf"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E1C9C21897
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=pTOWmaIxDNZM/2US4XpTW8j7KG6QR/v0wb8uin/wzNk=; b=IUHsNr2Kxbb/fn
-	uLxFrUb/FbfgnYa6zZH1lS4FaOEm1+qWSJj7mWz2h47a0jMOGmPOxCHnkE1kYXYYQ1b66uu2Wp5Z5
-	wcMXPfCKduhqYaQsjJj6GOooMZmdOH9qTsIo9HUuhxsMlPfi6XlNgo1t9Hkg6GqWA8znLCoy8qz/j
-	BVRAxK/Dm/y9EnVl7SruvKQXjUzay11dYRsX724Cd7mURa1KoX0MN/iUmArqwStnuPWgSUHq/LunP
-	Hy88fuYRA524Ybv4b6ro23cr7Jj9vrTIxrCHy6LsUnLl7E+WaG3gK36NwTUQ0K7wz2u84yerkdg5m
-	zqtHprzN1qVREYsyG9/Q==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=29Z8c8UyYbKbdEhMihtUn1MsaairawoQAbEvjZfxwFY=; b=VrWGzkSXMNaJDm
+	oN+80YRWg7UccWd76mM9Gzrwi5UqUE7NIo2Id1S9P0/zs+M5ZhP7W9X1ZHqchlNrN0oxGoVbjTw0O
+	mJXWA/TckDK34/KIKNYOJQlm96Q8SZ2bu2EOLWuPCrTRyRbbKXdHQTwy+bhLnvjXVd18gtNzrFXQG
+	07PtVhp1UfBiJTyhSJt6FuCqU2LpUk6rMreg6qfF67dOb/kqb0emuTFZbS7Q32mauxqFDRB98aPib
+	mcXjSoPyWvSBEnwsG8pId+TOQe4MZYMMefBDk3J8mcyS/jM2946WfKFNAWcs+xTDsb7fAo0DGJiY+
+	U1q4WgmS835gFQvrQomQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i3U1Y-0005d2-Os; Thu, 29 Aug 2019 23:40:16 +0000
-Received: from mail-pg1-x542.google.com ([2607:f8b0:4864:20::542])
+	id 1i3bNK-0006zX-54; Fri, 30 Aug 2019 07:31:14 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i3U14-00043w-NF
- for linux-amlogic@lists.infradead.org; Thu, 29 Aug 2019 23:39:49 +0000
-Received: by mail-pg1-x542.google.com with SMTP id l21so2457778pgm.3
- for <linux-amlogic@lists.infradead.org>; Thu, 29 Aug 2019 16:39:46 -0700 (PDT)
+ id 1i3bNG-0006yN-Hx
+ for linux-amlogic@lists.infradead.org; Fri, 30 Aug 2019 07:31:12 +0000
+Received: by mail-wm1-x343.google.com with SMTP id 10so6180853wmp.3
+ for <linux-amlogic@lists.infradead.org>; Fri, 30 Aug 2019 00:31:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=HEiVkY+3jrwwZ9UTeF03txZpd3QG0gPJ7jjbBDpNrpI=;
- b=nwo9p5BgaEzokeDc4g1OPJH9QuiReCkeiNFj2UgJolVT/cvKrvWVMp8xN/QjN27dVh
- 1UBRrTQV8CgIWQ/T6yQ1BMqQ90CAFHIiv1fVjux9DMa2Ihlq7a076Nqs2EoVt7s8IBHW
- /zXFlTTfw6yUflnfZq2Sl9Z0BpOwJi0sH0XcRfM5ZuiAFCma1zw5xF2CUvqjMl226/9v
- JF4sNJPdRYoo2tkdHv1du9S19qRNs9/3lzXvcnqqoFXhJ/Jw0NkBzwWY8YuauXncQ6T0
- xXVmKxt/xin7exmrkS0j4y91GbIJn+AkmMGnIQT7vXsjgpvPX7veGTEegLh1At9JXsrh
- AGeg==
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=eT0V9By0wFOQbPXq6H4vvmj3LHP78Pt4zF687HucEZU=;
+ b=BrEbiUqfta0ytJ1900WPvFX7spWQ+TDoAzBxqX6mDdxRoSlNEcU0R5WVAf9vhO9KeQ
+ RS0CDXWvw5LgU/cTijsQ0GR4LC1aaFnKTQ3rNnGTpCo9E6o5X+RXmeOqWm89WgMg1dDo
+ j7SI/sZlj/qo4HGcDMbPQ5VaH5WomS20xtsva/trCFfbFANoHH1AEVZ8QS8h1SNBpAYH
+ wwJj1MHgErXGliymGwWD1o7k5IHqNIibm9VjD9LrfrRLaUfTrcbaA7dEo6ND3pZcpoWi
+ oR6kyyRc/yCIjt9BhKx1/tOMT/SOZ5IbAO2lCSeQ+fzDeCej1vM+XrIuq8fesWlp1e5J
+ 7CEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=HEiVkY+3jrwwZ9UTeF03txZpd3QG0gPJ7jjbBDpNrpI=;
- b=FrXIJN8LRHt2HXTGZjBQBgIguVvPHw+CZr8oOUvZiC9r5yNOFehRd4StjgA/fFRFAI
- qzwxjWcQqCeICnjOoxpBz01aRZuki+Lecu7yWGtG3Z3jdlP3D1Mp7vp/NN6gmIoqrgMB
- ycQb+U89daNFvMsDZVzmrtpOFNVxEuRfhl+H5Tm5sfclhwncAY5tzf+X3NDNrGPNg4K4
- 91BDHjWA7kIIu7UcrDD4Vg7UfQ854c5KmKL2j05TkdfxWrLz6QMwfbp7gcCE0E8iYX+C
- pbPeYiRCYGubC8K/NFmFittirs8CvMAmMaYtanvjfHHvq3mVVZZPByrPYinwzqPj+HZx
- K7Eg==
-X-Gm-Message-State: APjAAAUBpTki4ram2JpQZXWSe0ftkWFVWNx8RTVgCuY8PXw2k4iCsY79
- CNAeoWPwimVzvUMyTX0vWQ915w==
-X-Google-Smtp-Source: APXvYqzk3XbUqRC+l30V9x8gLtbrnvzE9Ix4qlBiqAzb2/NyKBAi+5ZcC5T5AENtMDjgAiG6rTFUfA==
-X-Received: by 2002:a63:593:: with SMTP id 141mr10416110pgf.78.1567121985496; 
- Thu, 29 Aug 2019 16:39:45 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id b18sm4668903pfi.160.2019.08.29.16.39.44
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Thu, 29 Aug 2019 16:39:45 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: arm@kernel.org, soc@kernel.org
-Subject: Re: [GIT PULL] arm64: dts: Amlogic updates for v5.4 (round 2)
-In-Reply-To: <7h4l1zrf84.fsf@baylibre.com>
-References: <7h4l1zrf84.fsf@baylibre.com>
-Date: Thu, 29 Aug 2019 16:39:44 -0700
-Message-ID: <7hv9ufmthb.fsf@baylibre.com>
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=eT0V9By0wFOQbPXq6H4vvmj3LHP78Pt4zF687HucEZU=;
+ b=TL+L6uvtTJxLTBACHf5e/lN1TomsdTs7R2gmwyEdnTU1FijWHRia6TP6/EhaUn2NMX
+ NQzRZQIsUiRRVWvPJby+2QGdE1EhEQLyt8lurw/8aLZs5/k63SJ4pftR01X51d1LBWWC
+ KNXhI7DCkweNsllG5+CEKQT2Z96tv+EmlbphR31RZ18OQHI+9s1soiRcK0nlr4rn/OUD
+ FxRE9kXxAzRUvNMkPxjlN5a/rCtaF3rbZfx8WYg8cTuxoDSFQL73VfekxH5ztq4/sZjW
+ rP00XDMYvgHBiztfO2zPXmWQ+SU9CC+cjlNqijSFShUyZxk2ROQZ/LL46g38xplNHPAg
+ Tb/A==
+X-Gm-Message-State: APjAAAXfQm4I4ZRqIH2NW9aLZqTmw2b65dTmaQYxrLvilDgHK1Vhq43v
+ qqgAp3Dt4RE+UC1RiT08Ralk5w==
+X-Google-Smtp-Source: APXvYqxXcMOWh19YnabgtyHTqH8xVJ2EuxiFv86HFpNTTKT/Hj/XNspHRc2IP5QiTflz7jrI8x0LoA==
+X-Received: by 2002:a1c:720e:: with SMTP id n14mr8249776wmc.54.1567150268718; 
+ Fri, 30 Aug 2019 00:31:08 -0700 (PDT)
+Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr.
+ [176.150.251.154])
+ by smtp.gmail.com with ESMTPSA id n8sm10261657wma.7.2019.08.30.00.31.07
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 30 Aug 2019 00:31:08 -0700 (PDT)
+Subject: Re: [PATCHv1 0/3] Odroid c2 missing regulator linking
+To: Anand Moon <linux.amoon@gmail.com>
+References: <20190828202723.1145-1-linux.amoon@gmail.com>
+ <8c40f334-c723-b524-857c-73734b7d0827@baylibre.com>
+ <CANAwSgShr-K-44UzdxFC7pvpTye_pbEMdS6ug1eWwYhnsVNGdQ@mail.gmail.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <101a12ac-1464-8864-4f8c-56bb46034a08@baylibre.com>
+Date: Fri, 30 Aug 2019 09:31:07 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
+In-Reply-To: <CANAwSgShr-K-44UzdxFC7pvpTye_pbEMdS6ug1eWwYhnsVNGdQ@mail.gmail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190829_163946_830465_E8A23254 
-X-CRM114-Status: GOOD (  16.40  )
+X-CRM114-CacheID: sfid-20190830_003110_737043_56A40C8F 
+X-CRM114-Status: GOOD (  17.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,161 +153,78 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: devicetree <devicetree@vger.kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Linux Kernel <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Arnd, Olof,
+On 29/08/2019 20:35, Anand Moon wrote:
+> Hi Neil,
+> 
+> On Thu, 29 Aug 2019 at 13:58, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>
+>> On 28/08/2019 22:27, Anand Moon wrote:
+>>> Below small changes help re-configure or fix missing inter linking
+>>> of regulator node.
+>>>
+>>> Changes based top on my prevoius series.
+>>
+>> For the serie:
+>> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+>>
+> 
+> Thanks for your review.
+> 
+>>>
+>>> [0] https://patchwork.kernel.org/cover/11113091/
+>>>
+>>> TOOD: Add support for DVFS GXBB odroid board in next series.
+>>
+>> I'm curious how you will do this !
+> 
+> I was just studying you previous series on how you have implemented
+> this feature for C1, N2 and VIM3 boards.
+> 
+> [0] https://patchwork.kernel.org/cover/11114125/
+> 
+> I started gathering key inputs needed for this ie *clk / pwm*
+> like VDDCPU and VDDE clk changes.
+> 
+> But it looks like of the complex clk framework needed, so I leave this to the
+> expert like your team of developers to do this much quick and efficiently.
 
-Kevin Hilman <khilman@baylibre.com> writes:
+On GXBB, GXL, GXM and AXG SoCs, CPU Frequency setting and PWM Regulator setup is
+done by the SCPI Co-processor via the SCPI protocol.
 
-> Another (final) round of 64-bit DT updates for Amlogic SoCs for v5.4.
-> Highlights are in the tag description, but of note is a tag pulled in
-> from the clock tree due to a handful of new clocks used for DVFS and
-> power domains.
+Thus, we should not handle it from Linux, and even if we could, we don't have the
+registers documentation of the CPU clusters clock tree.
 
-Here's the promised respin (round 2.1):
+SCPI works fine on all tested devices, except Odroid-C2, because Hardkernel left
+the > 1.5GHz freq in the initial SCPI tables loaded by the BL2, i.e. packed with U-Boot.
+Nowadays they have removed the bad frequencies, but still some devices uses the old
+bootloader.
 
-In addition to the clock dependency listed above, this branch adds a
-bunch of DT users of a new PM domain driver, which has new bindings and
-DT headers added in my drivers PR.  That drivers branch is also merged
-here to ensure this branch builds standlone also.
+But in the SCPI case we trust the table returned by the firmware and use it as-in,
+and there is no (simple ?) way to override the table and set a max frequency.
 
-Sorry for the noise on the first attempt.
+This is why we disabled SCPI.
 
-Please pull,
+See https://patchwork.kernel.org/patch/9500175/
 
-Kevin
+Neil
 
-The following changes since commit e9a12e14322d7ddafeed6aec0d3fb02c0b5dc03c:
+> 
+> Best Regards,
+> -Anand
+> 
 
-  arm64: dts: add support for SM1 based SEI Robotics SEI610 (2019-08-20 13:31:11 -0700)
-
-are available in the Git repository at:
-
-  https://git.kernel.org/pub/scm/linux/kernel/git/khilman/linux-amlogic.git tags/amlogic-dt64-2.1
-
-for you to fetch changes up to b09d116b787a4ee2587a631baf2532738a5ce833:
-
-  arm64: dts: meson-sm1-sei610: add stdout-path property back (2019-08-29 16:18:38 -0700)
-
-----------------------------------------------------------------
-arm64: dts: Amlogic updates for v5.4 (round 2)
-- new board: Khadas VIM3L (SM1/S905D3 SoC)
-- support power domains on G12[AB] and SM1 SoCs
-- DT binding fixups based on YAML schema
-- add a bunch of remote control keymap
-- enable DVFS on SM1/SEI610 board
-
-----------------------------------------------------------------
-Christian Hewitt (8):
-      soc: amlogic: meson-gx-socinfo: add A311D id
-      arm64: dts: meson-g12b-odroid-n2: add rc-odroid keymap
-      arm64: dts: meson-g12a-x96-max: add rc-x96max keymap
-      arm64: dts: meson-gxbb-wetek-hub: add rc-wetek-hub keymap
-      arm64: dts: meson-gxbb-wetek-play2: add rc-wetek-play2 keymap
-      arm64: dts: meson-gxl-s905x-khadas-vim: use rc-khadas keymap
-      arm64: dts: meson-gxl-s905w-tx3-mini: add rc-tx3mini keymap
-      arm64: dts: meson-gxm-khadas-vim2: use rc-khadas keymap
-
-Jerome Brunet (3):
-      dt-bindings: clock: meson: add resets to the audio clock controller
-      arm64: dts: meson: g12a: audio clock controller provides resets
-      arm64: dts: meson: g12a: add reset to tdm formatters
-
-Kevin Hilman (3):
-      Merge tag 'amlogic-drivers-2.1' of https://git.kernel.org/.../khilman/linux-amlogic into v5.4/dt64-2
-      Merge tag 'clk-meson-dt-v5.4-3' of git://github.com/BayLibre/clk-meson into v5.4/dt64-2
-      arm64: dts: meson: g12a-common: add VRTC
-
-Neil Armstrong (31):
-      soc: amlogic: meson-clk-measure: protect measure with a mutex
-      soc: amlogic: meson-clk-measure: add G12B second cluster cpu clk
-      soc: amlogic: meson-gx-socinfo: Add SM1 and S905X3 IDs
-      dt-bindings: soc: amlogic: clk-measure: Add SM1 compatible
-      soc: amlogic: clk-measure: Add support for SM1
-      dt-bindings: clk: meson: add sm1 periph clock controller bindings
-      soc: amlogic: Add support for Everything-Else power domains controller
-      dt-bindings: power: add Amlogic Everything-Else power domains bindings
-      arm64: dts: meson: fix ethernet mac reg format
-      arm64: dts: meson-gx: drop the vpu dmc memory cell
-      arm64: dts: meson-gx: fix reset controller compatible
-      arm64: dts: meson-gx: fix spifc compatible
-      arm64: dts: meson-gx: fix watchdog compatible
-      arm64: dts: meson-gx: fix mhu compatible
-      arm64: dts: meson-gx: fix periphs bus node name
-      arm64: dts: meson-gxl: fix internal phy compatible
-      arm64: dts: meson-axg: fix MHU compatible
-      arm64: dts: meson-g12a: fix reset controller compatible
-      arm64: dts: meson-g12a-x96-max: fix compatible
-      arm64: dts: meson-gxbb-nanopi-k2: add missing model
-      arm64: dts: meson-gxbb-p201: fix snps, reset-delays-us format
-      arm64: dts: meson: fix boards regulators states format
-      arm64: dts: meson-g12: add Everything-Else power domain controller
-      arm64: dts: meson-sm1-sei610: add HDMI display support
-      arm64: dts: meson-sm1-sei610: add USB support
-      arm64: dts: meson-sm1-sei610: enable DVFS
-      arm64: dts: khadas-vim3: move common nodes into meson-khadas-vim3.dtsi
-      dt-bindings: arm: amlogic: add Amlogic SM1 based Khadas VIM3L bindings
-      arm64: dts: khadas-vim3: add support for the SM1 based VIM3L
-      arm64: dts: meson-sm1-sei610: enable DVFS
-      arm64: dts: meson-sm1-sei610: add stdout-path property back
-
-Nishka Dasgupta (1):
-      soc: amlogic: meson-gx-socinfo: Add of_node_put() before return
-
- Documentation/devicetree/bindings/arm/amlogic.yaml                 |   3 +-
- Documentation/devicetree/bindings/clock/amlogic,axg-audio-clkc.txt |   1 +
- Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt      |   1 +
- Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml |  93 +++++++++++++++++++
- Documentation/devicetree/bindings/soc/amlogic/clk-measure.txt      |   1 +
- arch/arm64/boot/dts/amlogic/Makefile                               |   1 +
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi                         |   6 +-
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi                  | 113 +++++++++++++----------
- arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts                 |   3 +-
- arch/arm64/boot/dts/amlogic/meson-g12a.dtsi                        |   9 ++
- arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts       |   1 +
- arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi            | 355 ----------------------------------------------------------------------
- arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts               |   5 +-
- arch/arm64/boot/dts/amlogic/meson-g12b-s922x-khadas-vim3.dts       |   1 +
- arch/arm64/boot/dts/amlogic/meson-g12b.dtsi                        |   9 ++
- arch/arm64/boot/dts/amlogic/meson-gx.dtsi                          |  19 ++--
- arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts               |   1 +
- arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts             |   4 +-
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts                |   4 +-
- arch/arm64/boot/dts/amlogic/meson-gxbb-p201.dts                    |   2 +-
- arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi                   |   4 +-
- arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-hub.dts               |   4 +
- arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts             |   4 +
- arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dts           |   4 +
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts     |   4 +-
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts         |   2 +-
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts        |   4 +-
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi                         |   5 +-
- arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts              |   2 +-
- arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi                 | 360 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts             |  70 ++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts                   |  83 +++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-sm1.dtsi                         |  85 ++++++++++++++++-
- drivers/soc/amlogic/Kconfig                                        |  11 +++
- drivers/soc/amlogic/Makefile                                       |   1 +
- drivers/soc/amlogic/meson-clk-measure.c                            | 148 ++++++++++++++++++++++++++++-
- drivers/soc/amlogic/meson-ee-pwrc.c                                | 492 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- drivers/soc/amlogic/meson-gx-socinfo.c                             |   7 +-
- include/dt-bindings/clock/g12a-clkc.h                              |   5 +
- include/dt-bindings/power/meson-g12a-power.h                       |  13 +++
- include/dt-bindings/power/meson-sm1-power.h                        |  18 ++++
- include/dt-bindings/reset/amlogic,meson-g12a-audio-reset.h         |  38 ++++++++
- 42 files changed, 1553 insertions(+), 443 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
- create mode 100644 drivers/soc/amlogic/meson-ee-pwrc.c
- create mode 100644 include/dt-bindings/power/meson-g12a-power.h
- create mode 100644 include/dt-bindings/power/meson-sm1-power.h
- create mode 100644 include/dt-bindings/reset/amlogic,meson-g12a-audio-reset.h
 
 _______________________________________________
 linux-amlogic mailing list
