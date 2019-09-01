@@ -1,110 +1,60 @@
-Return-Path: <SRS0=8XHu=W2=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=MCOz=W4=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 55CA8C3A59B
-	for <linux-amlogic@archiver.kernel.org>; Fri, 30 Aug 2019 14:02:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F556C3A5A4
+	for <linux-amlogic@archiver.kernel.org>; Sun,  1 Sep 2019 10:46:24 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 269E823405
-	for <linux-amlogic@archiver.kernel.org>; Fri, 30 Aug 2019 14:02:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id F358021897
+	for <linux-amlogic@archiver.kernel.org>; Sun,  1 Sep 2019 10:46:23 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eFY0fMh4"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 269E823405
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arm.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oqYfv9eH"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F358021897
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=triplefau.lt
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qoOoaBrElKttGlVRiuyFiC60iVJ09K3kyvzbwmZ9KX4=; b=eFY0fMh4vBfbwY
-	DC+UHqK5Y2mOjkjKZdAUvnkgE2LpEQ5Yw2IEMQhfBdsJzZqyyYWqd84yZx/mQFfjXBm+4zIby8XaQ
-	HE2KaG4MrtINdTvFzrK14iYRvqFm7tWhbLTMPAqDCK9J6w4qOoWLRcEsGHOmq6mYJUHuqPsbATMvj
-	YfjlgEV1BOsRrMlFBgloROzlrl+XHDionDGfkUWpCU6X6Kg7gBvZdQPZJQ8U6CtePKVVJsIc0lOq9
-	W6heKFFUvukYP+F10OpIQlU3YinawhX6GIndAabRg7BDrjlvYgrc6EKQBAtJM3LcgWhby34tDPh8Z
-	iNXW7lEP9HBjpLWXaYRg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=JmycvSfjvJIjvLz9Bzvci2uTSWPwWhQtOW3f9r8vYNs=; b=oqYfv9eHRJakFa
+	kIUhPlSVpHgkB4hN/NyYgVNntfUFgRBQHDS724JoprHbMInltrBjI3pwV+gJjSXxo2HuzHt0xbeku
+	+UUr5K0Qe1pN+ipgPn84Jj5yDshYMPMbjMJKBBS/g0NZsR3F7QrztIUYzLp8w+Ke1nQm1ln8Oh7LK
+	hT6WQzZia11BIAUstGCDOqSDUbqQ7gXAadjwZOyPJJzr33hX+b9Bd4VFsFr3qO0tv9r8L7o+vhX/p
+	/aMtaHL9UaUbsfZ7ELrvSr01tTMWFdn4V6XEd2QU9iPXlD7U45kwbcs9jYKLN117/Jl9rBkZyN2dC
+	mtZilARPt+uazDu5ekMw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i3hTY-00080A-Iv; Fri, 30 Aug 2019 14:02:04 +0000
-Received: from foss.arm.com ([217.140.110.172])
- by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
- id 1i3hT5-0007Xt-OS
- for linux-amlogic@lists.infradead.org; Fri, 30 Aug 2019 14:01:37 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D96F3344;
- Fri, 30 Aug 2019 07:01:31 -0700 (PDT)
-Received: from [10.1.197.61] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id
- E63023F703; Fri, 30 Aug 2019 07:01:30 -0700 (PDT)
-Subject: Re: [PATCH 0/2] irqchip/meson-gpio: add sm1 support
-To: Jerome Brunet <jbrunet@baylibre.com>, Thomas Gleixner
- <tglx@linutronix.de>, Jason Cooper <jason@lakedaemon.net>,
+	id 1i4NN4-0004j5-PN; Sun, 01 Sep 2019 10:46:10 +0000
+Received: from relay3-d.mail.gandi.net ([217.70.183.195])
+ by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
+ id 1i4NN1-0004gg-Uo; Sun, 01 Sep 2019 10:46:09 +0000
+X-Originating-IP: 88.190.179.123
+Received: from localhost (unknown [88.190.179.123])
+ (Authenticated sender: repk@triplefau.lt)
+ by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id EFF7460004;
+ Sun,  1 Sep 2019 10:45:47 +0000 (UTC)
+From: Remi Pommarel <repk@triplefau.lt>
+To: Jonathan Cameron <jic23@kernel.org>, Hartmut Knaack <knaack.h@gmx.de>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
  Kevin Hilman <khilman@baylibre.com>
-References: <20190829161635.25067-1-jbrunet@baylibre.com>
-From: Marc Zyngier <marc.zyngier@arm.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=marc.zyngier@arm.com; prefer-encrypt=mutual; keydata=
- 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
- Z46HaNmN2hZS/oJ69c1DI5Rcww==
-Organization: ARM Ltd
-Message-ID: <b6f1c3d5-9098-03c6-b843-6eb2ddbe35a9@arm.com>
-Date: Fri, 30 Aug 2019 15:01:29 +0100
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+Subject: [PATCH] iio: adc: meson_saradc: Fix memory allocation order
+Date: Sun,  1 Sep 2019 12:54:10 +0200
+Message-Id: <20190901105410.23567-1-repk@triplefau.lt>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20190829161635.25067-1-jbrunet@baylibre.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190830_070135_899566_66958B3B 
-X-CRM114-Status: GOOD (  11.66  )
+X-CRM114-CacheID: sfid-20190901_034608_191981_C65D6946 
+X-CRM114-Status: GOOD (  10.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,31 +66,61 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Elie Roudninski <xademax@gmail.com>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, Remi Pommarel <repk@triplefau.lt>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 29/08/2019 17:16, Jerome Brunet wrote:
-> This patchset adds support for the new sm1 SoC family in the Amlogic gpio
-> interrupt controller.
-> 
-> Jerome Brunet (2):
->   dt-bindings: interrupt-controller: new binding for the meson sm1 SoCs
->   irqchip/meson-gpio: Add support for meson sm1 SoCs
-> 
->  .../amlogic,meson-gpio-intc.txt               |  1 +
->  drivers/irqchip/irq-meson-gpio.c              | 52 ++++++++++++++-----
->  2 files changed, 39 insertions(+), 14 deletions(-)
-> 
+meson_saradc's irq handler uses priv->regmap so make sure that it is
+allocated before the irq get enabled.
 
-Applied to irqchip-next.
+This also fixes crash when CONFIG_DEBUG_SHIRQ is enabled, as device
+managed resources are freed in the inverted order they had been
+allocated, priv->regmap was freed before the spurious fake irq that
+CONFIG_DEBUG_SHIRQ adds called the handler.
 
-	M.
+Reported-by: Elie Roudninski <xademax@gmail.com>
+Signed-off-by: Remi Pommarel <repk@triplefau.lt>
+---
+ drivers/iio/adc/meson_saradc.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+index 7b28d045d271..7b27306330a3 100644
+--- a/drivers/iio/adc/meson_saradc.c
++++ b/drivers/iio/adc/meson_saradc.c
+@@ -1219,6 +1219,11 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
+ 	if (IS_ERR(base))
+ 		return PTR_ERR(base);
+ 
++	priv->regmap = devm_regmap_init_mmio(&pdev->dev, base,
++					     priv->param->regmap_config);
++	if (IS_ERR(priv->regmap))
++		return PTR_ERR(priv->regmap);
++
+ 	irq = irq_of_parse_and_map(pdev->dev.of_node, 0);
+ 	if (!irq)
+ 		return -EINVAL;
+@@ -1228,11 +1233,6 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		return ret;
+ 
+-	priv->regmap = devm_regmap_init_mmio(&pdev->dev, base,
+-					     priv->param->regmap_config);
+-	if (IS_ERR(priv->regmap))
+-		return PTR_ERR(priv->regmap);
+-
+ 	priv->clkin = devm_clk_get(&pdev->dev, "clkin");
+ 	if (IS_ERR(priv->clkin)) {
+ 		dev_err(&pdev->dev, "failed to get clkin\n");
 -- 
-Jazz is not dead. It just smells funny...
+2.20.1
+
 
 _______________________________________________
 linux-amlogic mailing list
