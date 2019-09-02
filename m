@@ -2,89 +2,92 @@ Return-Path: <SRS0=Oax9=W5=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-9.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 23B19C3A5A8
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Sep 2019 08:58:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1AB3EC3A59B
+	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Sep 2019 08:59:16 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id ED3B9215EA
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Sep 2019 08:58:55 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E1F08215EA
+	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Sep 2019 08:59:15 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UWajXKSe";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cbb0X2d+"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org ED3B9215EA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="JNmL0S2L";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="uJnoEnp6"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E1F08215EA
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=tVOy2kpzrrBpjWh6hd3H3ex7MXVNOaP2gB5/j+s1YHs=; b=UWajXKSeCsNfV2
-	RCF7Ft5Os8MhFKSqptEjA1W+a9WNgMQ6f7GiYhYlmztVhYz+yU1XT0ycIRxEoNFfq9/xZvLK5nmRR
-	rZKbi9oMQFHka+Cy1r0jRraJKpLFW7/x+w58WZr9Q877FTTbZjUl3gAcRwh8EHQZNMFtr64zvwtUO
-	1S/MJUvQ8yWrDpmt9nUj48ZK1vMW0x1jae9tmFTsFabBtlk3FjVHgvw69BNScD6Qoq/3vRP/7mDAb
-	UYmae14fHtb6UYXusRuEMAJDFdu15PZr1ij8aPXgPe451Mp5WptQsYZcvXG7fRZSbXPwDtYpg6rlq
-	kswUlOwGvxdLTk6IiIDQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=vQkhJf3QYNq3jjuoBzp6wFuzMwkNdxf8RVw3nA+F1Ws=; b=JNmL0S2LYQRhbS
+	fVb64LylrQLw+msA9nGlxihheE4ViW+lNgBuj+F0nyYHZZ/w6Ub7/2tc+mpp5FxhrDB5RRPJmvV+g
+	SScjhCVFn0N9AfHULviWz4s06v0eEM2tleiYs7EVL/K/q2VvYHibjjxuH9/s4Dpc6462HsoOsgjvZ
+	wTnIVGYZ81sbWSvHAeSh7mFbxbX1MG4xkMSoh95zMBxuLrqoYZMy5JhqFtBB0w2xdSsWjGqIrxozf
+	NLB7qAajZAHdJbTr3xUBE1HTxasZ1dlbzpxZW8e2dHvpips+dIvdXoz4UQ0hnGdS73Xe3uk0dZSZu
+	zAWRu7lIAN0GbKaNqWPQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i4iAh-0004EO-Fj; Mon, 02 Sep 2019 08:58:47 +0000
-Received: from mail-pf1-x42e.google.com ([2607:f8b0:4864:20::42e])
+	id 1i4iB4-0004VP-NG; Mon, 02 Sep 2019 08:59:10 +0000
+Received: from mail-pg1-x544.google.com ([2607:f8b0:4864:20::544])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i4iAQ-0003ys-Lz; Mon, 02 Sep 2019 08:58:32 +0000
-Received: by mail-pf1-x42e.google.com with SMTP id w16so8669728pfn.7;
- Mon, 02 Sep 2019 01:58:30 -0700 (PDT)
+ id 1i4iAY-00044G-M3; Mon, 02 Sep 2019 08:58:40 +0000
+Received: by mail-pg1-x544.google.com with SMTP id u72so2978164pgb.10;
+ Mon, 02 Sep 2019 01:58:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=qNKkEatiJoZRzu3l7+tCiW/lbxptuU32yXwmrhQiGjw=;
- b=cbb0X2d+8o6qvDEi5+eUjNHtnp8B4P2+Bpa/eMT09/s83FMYUNjWDUf7DuL2em3yND
- 6X0ZhAa0Tu8oYm0xrR2KMNPqWQKrW8E7Iogz63mHSQpmKzWMlAuwvayi+7ZWlkiTi+vf
- rYAlD/DSPisHTEQaYKPIzWh9Tu3cayXp4d7dLUm8n2cChVxivAwD3VBSPbndXbZo6657
- UXaj13IZ8ftwiJOZe0tke4LlZO0BFu8bdm8cGl7zWeWiPkWYiPKsXMPXSnfblsoAVw+0
- BF8c/caIajOxZW1Ad5vL7egQGOvZNbTtMzB3hvQB9cxQ5T/STwHh7SlixheJNR8ICG8e
- fRZg==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=EBJJZiLTlyHQcUFWi8qoZ9At1kM31HK9hl2nVQuOJ2c=;
+ b=uJnoEnp6UQq3q56OIGpn91LI+Lb7z64K3bEgJtC4UYLUnlk7INET6LAaeNoMQNAsen
+ kaAEkT+dGNSwp0bmZ464/QnZdZlMkGn4W4xD5jD4+5zAcXLPmlgxQLAZ41AiC1CJKRiA
+ Vj2xDVutt1MDC030JngWtY5ecl8OBqvBqc+8rJmaF2Ff0oVsxtSC9xN1C4uqZ6vaR/E/
+ iWSoqG+f1nfNogt/Hx3LHX2VoE7sK50HWlL2v6xHHSUZAtHY2nY47F7YJenKnIUjj+dg
+ g+BXoSofgoFXpindXrh1KbtIsqqAN9Wm7f2DelYdedxuLjW3hqpqsuF18OLRfsvb1/6m
+ so+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=qNKkEatiJoZRzu3l7+tCiW/lbxptuU32yXwmrhQiGjw=;
- b=Iu1rO3eHtL8VAT8eCKkOoIM7E04QFB7wPID7GuDmq6zABzL6xTV3H6yb4WfmB0YXm+
- wZDy6ziy/QSyQTh1vBAbEfvW0qJZkTPUpGiIkfXeWUP/dC9Jjtm5ZzNhTOK/6sOggsa9
- lXIw4gMsMQMWHPRexoTcg/CJ0UegtP9rVbgXpTxA9pww1W3aP0jS7WrVtIZvKaVHiaG5
- PY0LxC++TMLPAAPPEbIzJxZbN4tE7iyllCdFdhnW6XpX61xpSxlR3RVoW80TRioM12Bk
- LVor/wFoqDz8snQboTsd2wmn7NG8NlmMXpCB1BVfSW7NOR6QSodbYWKq/KVBe4VPNRXK
- bJ7A==
-X-Gm-Message-State: APjAAAUFXKBQ1c6IcMTGN9Z2w/wWGTW4PBinI5dQRp5t0xgJbM1plQIg
- OzmFhjS0Rv9r9sL7Xx/Giec=
-X-Google-Smtp-Source: APXvYqz+ki+D4n1A3ykcoqOa5nft6U8cBaJd+tedI5eD+VnnpGUSbpoErI9k9eWEYk9iujG1E8MmPw==
-X-Received: by 2002:a65:504c:: with SMTP id k12mr24593144pgo.252.1567414709776; 
- Mon, 02 Sep 2019 01:58:29 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=EBJJZiLTlyHQcUFWi8qoZ9At1kM31HK9hl2nVQuOJ2c=;
+ b=OzwiaGDQmr2JMQDbYXU07zZvocext8Cb5+RpxjKMSnFt5FSmRpNv0HH2CVFLZFfHXn
+ n9M1SilDnFYCQmwALH01yQk0APpKThuGnm+Ot1xHoH0e0C5sZ3YUNJcelM94PVWfV0xr
+ 0HkiYv3JB7wOFx9asV04H/MbsW3LzGr4T8lzaM7pcBOWnBfYEU8/KLAQGReutj73/4Oa
+ H4ii8ZwiEni5JCDyQMrHXy4YPWs2rderGuyihvHYGYG/OWG1oLe04Ru/tLgVNxk9WRJQ
+ f/s1p0SgXLXZufm8JXNUqNs1bAVWVkIWIzFc4ovP9SoKbIhvX4Xnhrv1XeXrw91VJvzm
+ 4aCA==
+X-Gm-Message-State: APjAAAW9wPnlE57GTFj0p6oAoNr41D08D4MCEeoJJjWTBrH0/0cR2RIJ
+ JRr3zInzi3wLPAq1etabno8=
+X-Google-Smtp-Source: APXvYqxDkvnzZTNNAe1ds51ArcA57zi+5grJfD4+nj5NMlFU6xjf5LaMuCod1wpZnEAE2Gdpk5Qqng==
+X-Received: by 2002:a65:6454:: with SMTP id s20mr24238401pgv.15.1567414717995; 
+ Mon, 02 Sep 2019 01:58:37 -0700 (PDT)
 Received: from localhost.localdomain ([45.114.62.203])
- by smtp.gmail.com with ESMTPSA id y6sm6313117pfp.82.2019.09.02.01.58.26
+ by smtp.gmail.com with ESMTPSA id y6sm6313117pfp.82.2019.09.02.01.58.35
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 02 Sep 2019 01:58:29 -0700 (PDT)
+ Mon, 02 Sep 2019 01:58:37 -0700 (PDT)
 From: Anand Moon <linux.amoon@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Jerome Brunet <jbrunet@baylibre.com>,
  Neil Armstrong <narmstrong@baylibre.com>,
  Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCHv2-next 0/3] Odroid c2 missing regulator linking
-Date: Mon,  2 Sep 2019 08:58:18 +0000
-Message-Id: <20190902085821.1263-1-linux.amoon@gmail.com>
+Subject: [PATCHv2-next 1/3] arm64: dts: meson: odroid-c2: Add missing
+ regulator linked to P5V0 regulator
+Date: Mon,  2 Sep 2019 08:58:19 +0000
+Message-Id: <20190902085821.1263-2-linux.amoon@gmail.com>
 X-Mailer: git-send-email 2.23.0
+In-Reply-To: <20190902085821.1263-1-linux.amoon@gmail.com>
+References: <20190902085821.1263-1-linux.amoon@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190902_015830_748833_417A3B0D 
-X-CRM114-Status: UNSURE (   6.86  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190902_015838_748010_20FE53D9 
+X-CRM114-Status: GOOD (  10.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,32 +106,62 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Below small changes help re-configure or fix missing inter linking
-of regulator node.
+As per schematics VDDIO_AO18, VDDIO_AO3V3/VDD3V3 DDR3_1V5/DDR_VDDC:
+fixed regulator output which is supplied by P5V0.
 
-Rebased on linux-next-20190830
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+---
+Changes from previous.
+- drop the rename and linking vcc3v3 regulator node.
+- fix the typo spelling.
+---
+ .../boot/dts/amlogic/meson-gxbb-odroidc2.dts  | 30 +++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-Changes based top on my prevoius series.
-[0] https://patchwork.kernel.org/cover/11125987/
-
-Changes for prevoius changes.
-Fix some typo.
-Updated few patches as per Martin's suggetion.
-
-Best Regards
--Anand
-
-Anand Moon (3):
-  arm64: dts: meson: odroid-c2: Add missing regulator linked to P5V0
-    regulator
-  arm64: dts: meson: odroid-c2: Add missing regulator linked to
-    VDDIO_AO3V3 regulator
-  arm64: dts: meson: odroid-c2: Add missing regulator linked to HDMI
-    supply
-
- .../boot/dts/amlogic/meson-gxbb-odroidc2.dts  | 53 +++++++++++++++++--
- 1 file changed, 50 insertions(+), 3 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+index 3e51f0835c8d..b763b76820ba 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+@@ -111,6 +111,36 @@
+ 		regulator-max-microvolt = <3300000>;
+ 	};
+ 
++	vddio_ao1v8: regulator-vddio-ao1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDIO_AO1V8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		regulator-always-on;
++		/* U17 RT9179GB */
++		vin-supply = <&p5v0>;
++	};
++
++	vddio_ao3v3: regulator-vddio-ao3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDIO_AO3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-always-on;
++		/* U11 MP2161GJ-C499 */
++		vin-supply = <&p5v0>;
++	};
++
++	vddc_ddr: regulator-vddc-ddr {
++		compatible = "regulator-fixed";
++		regulator-name = "DDR3_1V5";
++		regulator-min-microvolt = <1500000>;
++		regulator-max-microvolt = <1500000>;
++		regulator-always-on;
++		/* U15 MP2161GJ-C499 */
++		vin-supply = <&p5v0>;
++	};
++
+ 	emmc_pwrseq: emmc-pwrseq {
+ 		compatible = "mmc-pwrseq-emmc";
+ 		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
 -- 
 2.23.0
 
