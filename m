@@ -2,92 +2,146 @@ Return-Path: <SRS0=Oax9=W5=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 88305C3A59B
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Sep 2019 05:51:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E20A4C3A59B
+	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Sep 2019 08:12:10 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 58A2A21897
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Sep 2019 05:51:12 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id AEDE2206BB
+	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Sep 2019 08:12:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="liKuDdca";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cialufXN"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 58A2A21897
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GrqSOONr";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="hG4hMkTL"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AEDE2206BB
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rjp8vd5IIGXS4Ru+MiYTznVwcDkPTfflsiPsvh4NHIY=; b=liKuDdcaAt047q
-	hdhB/hGFQZlluP4N3d1LL6iIw59kFfFulIgYJ8pFethSlsDbCWXw2cCdSIbaqsvd/7mzcAGzB2uvN
-	mTKD+rc7IQnzmS+D1tzzW1lfPMgUmswvxHUkclnsHOmyO6NzeBk140XonjfaAxahaCxuUXLMu3Dwa
-	iBVisbZRWx3CO6r+P88LZDgv0fu1mstOlHbE38Nm27HDQHpWx8kC92ypyFPEb2jErf71a2OsaOFKp
-	R9nkOoRVQI3GB9di3OuaEgUXI56zcCV5aNWq205BIVUtWTB01pm+RNacQOAdnYds7qE3x51/Hcc5+
-	6XUUyDUJjt3NfGVZ5mBw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=mJuGepsWY1DSW63iQK+hW+otrj7V/pdwlz9MS1SWrtY=; b=GrqSOONrju+Hqa
+	B2nkswZuBKS/TDOZpWC4VQ0Bb7kiSqA0bQsvJxMGR07FOCLuI4wOD5ZLbKUzqFjFLQ+3vvwBqWoWl
+	9w7hzwe5q91mozhrDBUghbWZQFanqouEirAIfuyEnwsnD+RJhbSVOr9dd8n2EgdiLbIc/DxLVwYmF
+	i3OXOwLfGuR8ZEO18xwgwLFpsTypjiCwHTIqVbR2QhPkX9N+7vBBKNnlUlqUvyxnPxv8EBIUAKYT/
+	kM6jEZ9Hxxg9k8CwwO2RsegBdQg81UvYarR/rKecxEVv74MluIrI29TzFzDl9kZwbe6CuABiVEhRc
+	lzR3KTTP/DruO1E03Zjg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i4fF4-0003Ja-A9; Mon, 02 Sep 2019 05:51:06 +0000
-Received: from mail-pg1-x543.google.com ([2607:f8b0:4864:20::543])
+	id 1i4hRP-0002MT-Pg; Mon, 02 Sep 2019 08:11:59 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i4fE4-0001UD-8Z; Mon, 02 Sep 2019 05:50:06 +0000
-Received: by mail-pg1-x543.google.com with SMTP id u72so2702844pgb.10;
- Sun, 01 Sep 2019 22:50:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=VHR2oUikhGymiq3l3JPn9qwh6SndWvo22AKhZbZsGIM=;
- b=cialufXNcKV8EuxIGCx/p8H3ino+76F5AJnlHGROi/dnpZo2D7BV37b4WI3I13UnpB
- anU2jXoBXqv+PT+iBCAyj5Gw150lp/UcP/Ikbf8JxQUK+GSwLFCBqe4ArQoqxtUxZFX6
- HSFalxecBr4wGbFmuXPX+guu3BOcQQ5XeSU3PFNrH4Yzg3x5zyRgcuduHnVxdlQq6k9G
- YmjGxsvVnXprGi3eu/nQNjGccBbDbqAGioWDACwUyZlMNtttZm95y7owZCoJS5R9CDcA
- E6YtNhuNcTeIsr6fVtntKQ/oNnBhXl9nJeMU/PTeXaJUd7LfcptNVNcwHOyVoTamKCGb
- jMpg==
+ id 1i4hQx-0001x2-3C
+ for linux-amlogic@lists.infradead.org; Mon, 02 Sep 2019 08:11:33 +0000
+Received: by mail-wr1-x444.google.com with SMTP id q12so12945605wrj.12
+ for <linux-amlogic@lists.infradead.org>; Mon, 02 Sep 2019 01:11:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=w92SUE4m/HEUWacLPrzvu2G0/cbtaLoyLMZJnGRKdzM=;
+ b=hG4hMkTL+3jgyeyyMAY4ux3vem2xV+WDYPMeNdldxUL2q2xNIabjPPkfQynE9at4Ey
+ 2j7szsxgNZVrDYu7aCpLbCctNArLPPL1dbgbv22/rK9kRAY/te/tO3CYRU/EBC+S4XJU
+ jS9j8DQDVDVppaAoO+DkXxCvW/UL4wP03B+HCbYYne9aBZi+3/JSPNWxsoSIicrYZgbq
+ Kho9DjKczxmV7zgJK3hRXzt3cWvPBV7pAUn+X0FYG1/Su/zUH5pkk1leSDGCw0hWQ1D5
+ EroOxvpqNX1U0nbaFK9uNzWQPVAk6r3Kk8sH3RmNJ5JxEuFL1iW2OEeZws2KqerRmMdj
+ MdJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=VHR2oUikhGymiq3l3JPn9qwh6SndWvo22AKhZbZsGIM=;
- b=LM3ksF4ywOmbeiAOi9saZWGnmoKqUcXACsKuh6mA2DSJdRovp9hLP3+nryDA8X/EH1
- vmFrGA+rJJyjcbwYfvy71fkjUyN0zfNu8QIThhddYSmO0BgSweyEr1Rz2ae+Czbg3n6O
- gJJFdFljcIP15A+LwDGftj9JgN1oeNvgRyEDn+/FFYl6fiHPPUCkhG4qRRg0+O7CiStw
- 91aqzZ1X28aDlvfPGG2RIOkwk7WPoIDPyer1DITqB9guDClygPyHLvL85Aq9yjI01UeQ
- v4ha9lXiNeoldTRPyXRNFFcWtgn9TdC01PoKWPb3yJ8Of5k66iyYIZqlFKHVWuxvN8Pt
- 3Axw==
-X-Gm-Message-State: APjAAAWjqrnXisij5VkeFS5zqb3O+k+/Nm2jiiCLfyX2kAnwJsqzxOB8
- sjNya4OPH6gTAAs2pTQ/NXEDmSLy
-X-Google-Smtp-Source: APXvYqwmdUXPqi3ELKdd7JJ6ITxSjC1Cb8KnMkJcNc+1LyCD1qxliCCAz2zLAfU5/txxmlOJFyi6Aw==
-X-Received: by 2002:a62:b412:: with SMTP id h18mr28505359pfn.175.1567403403285; 
- Sun, 01 Sep 2019 22:50:03 -0700 (PDT)
-Received: from localhost.localdomain ([45.114.62.203])
- by smtp.gmail.com with ESMTPSA id 136sm16533912pfz.123.2019.09.01.22.50.00
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 01 Sep 2019 22:50:02 -0700 (PDT)
-From: Anand Moon <linux.amoon@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCHv4-next 3/3] arm64: dts: meson: odroid-c2: Disable usb_otg bus
- to avoid power failed warning
-Date: Mon,  2 Sep 2019 05:49:35 +0000
-Message-Id: <20190902054935.4899-4-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20190902054935.4899-1-linux.amoon@gmail.com>
-References: <20190902054935.4899-1-linux.amoon@gmail.com>
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=w92SUE4m/HEUWacLPrzvu2G0/cbtaLoyLMZJnGRKdzM=;
+ b=l2Sx70pXZFKMt36MN74XcGXbqU+fVcbhc/Ii8DhNynRtVQy8qBopTqT3LucqpXh1ZN
+ 38GD+pZOoDeh9v8a9M3KkBGHmx6WBhbiy7ZsK4r7PCVMlzYbu1EEHtDQpfKotfVgT1ia
+ WIIUS6ORkSiGwYWIyhFjLXSIeCzNgCOT0qLpdICCQK+WChczamhHCz0QSYCKaVqQc3K1
+ gpy2RK3sU717+tqgeVJKeWp2/ESUWa1C/b5XQvwEt8HHrO8yjRcx0m7EhrAeVCYMlFOn
+ TopOGgSUSGr94tqPL2JAXUWakJbhOv60npjVzsYKW8wOG1F5vrimSOjw04hAuvV54LDJ
+ +EFg==
+X-Gm-Message-State: APjAAAVomX+Jl/5f1wOPoXhlalAA5FE9XunKKi8FUCUBBdULJOwdLl2d
+ u2vWeXplTgUpBl0EzL0uFoSDMg1iWNo=
+X-Google-Smtp-Source: APXvYqw2kA6PmYNeaVRf0f/E0q5ZBYXMBNnrp/EkSytva9JvHYM8FfJ+l17RjiFDaY7FAiUlRH5v1g==
+X-Received: by 2002:adf:fa0a:: with SMTP id m10mr32289917wrr.174.1567411887523; 
+ Mon, 02 Sep 2019 01:11:27 -0700 (PDT)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id k9sm21029759wrd.7.2019.09.02.01.11.26
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Mon, 02 Sep 2019 01:11:27 -0700 (PDT)
+Subject: Re: [PATCH] PCI: amlogic: Fix reset assertion via gpio descriptor
+To: Remi Pommarel <repk@triplefau.lt>, Yue Wang <yue.wang@Amlogic.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Kevin Hilman <khilman@baylibre.com>
+References: <20190901133915.12899-1-repk@triplefau.lt>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <f5fa3d46-20c4-3e44-731b-c8f043d5fb14@baylibre.com>
+Date: Mon, 2 Sep 2019 10:11:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
+In-Reply-To: <20190901133915.12899-1-repk@triplefau.lt>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190901_225004_471439_B1CD1C43 
-X-CRM114-Status: GOOD (  14.44  )
+X-CRM114-CacheID: sfid-20190902_011131_155058_B87E3405 
+X-CRM114-Status: GOOD (  17.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,156 +153,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+Cc: linux-pci@vger.kernel.org, linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-usb_otg bus needs to get initialize from the u-boot to be configured
-to used as power source to SBC or usb otg port will get configured
-as host device. Right now this support is missing in the u-boot and
-phy driver so to avoid power failed warning, we would disable this
-feature  until proper fix is found.
+On 01/09/2019 15:39, Remi Pommarel wrote:
+> Normally asserting reset signal on gpio would be achieved with:
+> 	gpiod_set_value_cansleep(reset_gpio, 1);
+> 
+> Meson PCI driver set reset value to '0' instead of '1' as it takes into
+> account the PERST# signal polarity. The polarity should be taken care
+> in the device tree instead.
+> 
+> This fixes the reset assertion meaning and moves out the polarity
+> configuration in DT (please note that there is no DT currently using
+> this driver).
+> 
+> Signed-off-by: Remi Pommarel <repk@triplefau.lt>
+> ---
+>  drivers/pci/controller/dwc/pci-meson.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+> index e35e9eaa50ee..541f37a6f6a5 100644
+> --- a/drivers/pci/controller/dwc/pci-meson.c
+> +++ b/drivers/pci/controller/dwc/pci-meson.c
+> @@ -287,9 +287,9 @@ static inline void meson_cfg_writel(struct meson_pcie *mp, u32 val, u32 reg)
+>  
+>  static void meson_pcie_assert_reset(struct meson_pcie *mp)
+>  {
+> -	gpiod_set_value_cansleep(mp->reset_gpio, 0);
+> -	udelay(500);
+>  	gpiod_set_value_cansleep(mp->reset_gpio, 1);
+> +	udelay(500);
+> +	gpiod_set_value_cansleep(mp->reset_gpio, 0);
+>  }
+>  
+>  static void meson_pcie_init_dw(struct meson_pcie *mp)
+> 
 
-[    2.716048] phy phy-c0000000.phy.0: USB ID detect failed!
-[    2.720186] phy phy-c0000000.phy.0: phy poweron failed --> -22
-[    2.726001] ------------[ cut here ]------------
-[    2.730583] WARNING: CPU: 0 PID: 12 at drivers/regulator/core.c:2039 _regulator_put+0x3c/0xe8
-[    2.738983] Modules linked in:
-[    2.742005] CPU: 0 PID: 12 Comm: kworker/0:1 Not tainted 5.2.9-1-ARCH #1
-[    2.748643] Hardware name: Hardkernel ODROID-C2 (DT)
-[    2.753566] Workqueue: events deferred_probe_work_func
-[    2.758649] pstate: 60000005 (nZCv daif -PAN -UAO)
-[    2.763394] pc : _regulator_put+0x3c/0xe8
-[    2.767361] lr : _regulator_put+0x3c/0xe8
-[    2.771326] sp : ffff000011aa3a50
-[    2.774604] x29: ffff000011aa3a50 x28: ffff80007ed1b600
-[    2.779865] x27: ffff80007f7036a8 x26: ffff80007f7036a8
-[    2.785126] x25: 0000000000000000 x24: ffff000011a44458
-[    2.790387] x23: ffff000011344218 x22: 0000000000000009
-[    2.795649] x21: ffff000011aa3b68 x20: ffff80007ed1b500
-[    2.800910] x19: ffff80007ed1b500 x18: 0000000000000010
-[    2.806171] x17: 000000005be5943c x16: 00000000f1c73b29
-[    2.811432] x15: ffffffffffffffff x14: ffff0000117396c8
-[    2.816694] x13: ffff000091aa37a7 x12: ffff000011aa37af
-[    2.821955] x11: ffff000011763000 x10: ffff000011aa3730
-[    2.827216] x9 : 00000000ffffffd0 x8 : ffff000010871760
-[    2.832477] x7 : 00000000000000d0 x6 : ffff0000119d151b
-[    2.837739] x5 : 000000000000000f x4 : 0000000000000000
-[    2.843000] x3 : 0000000000000000 x2 : 38104b2678c20100
-[    2.848261] x1 : 0000000000000000 x0 : 0000000000000024
-[    2.853523] Call trace:
-[    2.855940]  _regulator_put+0x3c/0xe8
-[    2.859562]  regulator_put+0x34/0x48
-[    2.863098]  regulator_bulk_free+0x40/0x58
-[    2.867153]  devm_regulator_bulk_release+0x24/0x30
-[    2.871896]  release_nodes+0x1f0/0x2e0
-[    2.875604]  devres_release_all+0x64/0xa4
-[    2.879571]  really_probe+0x1c8/0x3e0
-[    2.883194]  driver_probe_device+0xe4/0x138
-[    2.887334]  __device_attach_driver+0x90/0x110
-[    2.891733]  bus_for_each_drv+0x8c/0xd8
-[    2.895527]  __device_attach+0xdc/0x160
-[    2.899322]  device_initial_probe+0x24/0x30
-[    2.903463]  bus_probe_device+0x9c/0xa8
-[    2.907258]  deferred_probe_work_func+0xa0/0xf0
-[    2.911745]  process_one_work+0x1b4/0x408
-[    2.915711]  worker_thread+0x54/0x4b8
-[    2.919334]  kthread+0x12c/0x130
-[    2.922526]  ret_from_fork+0x10/0x1c
-[    2.926060] ---[ end trace 51a68f4c0035d6c0 ]---
-[    2.930691] ------------[ cut here ]------------
-[    2.935242] WARNING: CPU: 0 PID: 12 at drivers/regulator/core.c:2039 _regulator_put+0x3c/0xe8
-[    2.943653] Modules linked in:
-[    2.946675] CPU: 0 PID: 12 Comm: kworker/0:1 Tainted: G        W         5.2.9-1-ARCH #1
-[    2.954694] Hardware name: Hardkernel ODROID-C2 (DT)
-[    2.959613] Workqueue: events deferred_probe_work_func
-[    2.964700] pstate: 60000005 (nZCv daif -PAN -UAO)
-[    2.969445] pc : _regulator_put+0x3c/0xe8
-[    2.973412] lr : _regulator_put+0x3c/0xe8
-[    2.977377] sp : ffff000011aa3a50
-[    2.980655] x29: ffff000011aa3a50 x28: ffff80007ed1b600
-[    2.985916] x27: ffff80007f7036a8 x26: ffff80007f7036a8
-[    2.991177] x25: 0000000000000000 x24: ffff000011a44458
-[    2.996439] x23: ffff000011344218 x22: 0000000000000009
-[    3.001700] x21: ffff000011aa3b68 x20: ffff80007ed1bd00
-[    3.006961] x19: ffff80007ed1bd00 x18: 0000000000000010
-[    3.012222] x17: 000000005be5943c x16: 00000000f1c73b29
-[    3.017484] x15: ffffffffffffffff x14: ffff0000117396c8
-[    3.022745] x13: ffff000091aa37a7 x12: ffff000011aa37af
-[    3.028006] x11: ffff000011763000 x10: ffff000011aa3730
-[    3.033267] x9 : 00000000ffffffd0 x8 : ffff000010871760
-[    3.038528] x7 : 00000000000000fd x6 : ffff0000119d151b
-[    3.043790] x5 : 000000000000000f x4 : 0000000000000000
-[    3.049051] x3 : 0000000000000000 x2 : 38104b2678c20100
-[    3.054312] x1 : 0000000000000000 x0 : 0000000000000024
-[    3.059574] Call trace:
-[    3.061991]  _regulator_put+0x3c/0xe8
-[    3.065613]  regulator_put+0x34/0x48
-[    3.069149]  regulator_bulk_free+0x40/0x58
-[    3.073203]  devm_regulator_bulk_release+0x24/0x30
-[    3.077947]  release_nodes+0x1f0/0x2e0
-[    3.081655]  devres_release_all+0x64/0xa4
-[    3.085622]  really_probe+0x1c8/0x3e0
-[    3.089245]  driver_probe_device+0xe4/0x138
-[    3.093385]  __device_attach_driver+0x90/0x110
-[    3.097784]  bus_for_each_drv+0x8c/0xd8
-[    3.101578]  __device_attach+0xdc/0x160
-[    3.105373]  device_initial_probe+0x24/0x30
-[    3.109514]  bus_probe_device+0x9c/0xa8
-[    3.113309]  deferred_probe_work_func+0xa0/0xf0
-[    3.117796]  process_one_work+0x1b4/0x408
-[    3.121762]  worker_thread+0x54/0x4b8
-[    3.125384]  kthread+0x12c/0x130
-[    3.128575]  ret_from_fork+0x10/0x1c
-[    3.132110] ---[ end trace 51a68f4c0035d6c1 ]---
-[    3.136753] dwc2: probe of c9000000.usb failed with error -22
-
-Fixes: 5a0803bd5ae2 ("ARM64: dts: meson-gxbb-odroidc2: Enable USB Nodes")
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
-Rebased on linux-next
-Added Acked by Martin
-
-[0] https://patchwork.kernel.org/patch/10757569/
-Earlier my approach to initialize the usb0 bus was limited, some more
-phy tuning is required both at driver and u-boot to get this feature
-working. So for now just disable this.
----
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index d4c8b896dd26..3e51f0835c8d 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -312,7 +312,7 @@
- };
- 
- &usb0_phy {
--	status = "okay";
-+	status = "disabled";
- 	phy-supply = <&usb_otg_pwr>;
- };
- 
-@@ -322,7 +322,7 @@
- };
- 
- &usb0 {
--	status = "okay";
-+	status = "disabled";
- };
- 
- &usb1 {
--- 
-2.23.0
-
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
