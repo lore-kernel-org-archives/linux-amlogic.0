@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-8.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1B4C0C3A5A7
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2019 14:15:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2D2FFC41514
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2019 14:15:37 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E4B5A22CEA
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2019 14:15:18 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 011612339E
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2019 14:15:37 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="a9ZNy2Vq";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="bEqMCkG4"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E4B5A22CEA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tpL4NoVG";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="EHWSt5bq"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 011612339E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,56 +26,56 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=47IdEa7OYAbNaNTe5jA5uop1Bcf/g2z/QbdP/dVnF4s=; b=a9ZNy2VqWo91yN
-	wMSJP6hneM7BdZWYB45WELmp9wK+N0VcWMiNSFSJnULRxYPtHICUTVHqoWJWeHV1G/LUNfZ9kuObI
-	i+Puxy+RZevWx8Ft7dkZ7nynLVIodic0kIDtMFQ1H+HPr0oEqkp90OkqiCsem4TYvJU+KVI2a1e/Q
-	TSGyae2gSV7hlCq0Qa7oYgBt/bOvwQi85jUreYUr656eMQWePCQ+5kg0w2Pd72TNW62zM0XSnAA5H
-	6FEhnqJHOaWaJATXl2VUELfHsz6ZTFWGqOY9GoeJVOUh9+CaZShfijSg2+kY3C/TgEqgDoCOr+SqT
-	w1KBAra9CTIOQa/+XoFQ==;
+	List-Owner; bh=8/oOn+ZpqUcRnCxVBUduTqqYk4ui0pviHssdE4nGysI=; b=tpL4NoVGdh3KWo
+	iBdi0+cQe5jcp8eWGqrW3nRyrNS9hjCSTO0zcEWOcn7K1TSpbvCHO7CxbQsYvk1zbBoJN5S3VZDLx
+	LLNJ7MWE/uLLPs337Sp4ufzLtyl68RQXIwdC7YdPQdxttJnDY9u9gtl6cwlO9ALqiNqGkjoI1vs0y
+	MkIDnWOm8r+C4Jren9DEenl3ahAcakY3ofYBEpWsY3BwpZhb7Nip1SwisGh0h8RLD1jN/1eYPdSil
+	ZJcMKG+XaqPNGI5TsjLphMWcptNP+15hZKC3ea0ngX+aaNOo5aPS3lH+KAF3wrZNohBnk1fr/0WAA
+	WbH8V2R8IFFpc4dBxifQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i5W3z-0007oR-Ik; Wed, 04 Sep 2019 14:15:11 +0000
+	id 1i5W4K-00008X-JV; Wed, 04 Sep 2019 14:15:32 +0000
 Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i5W2e-0005h5-AN
- for linux-amlogic@lists.infradead.org; Wed, 04 Sep 2019 14:13:51 +0000
-Received: by mail-wr1-x443.google.com with SMTP id y8so21432526wrn.10
- for <linux-amlogic@lists.infradead.org>; Wed, 04 Sep 2019 07:13:46 -0700 (PDT)
+ id 1i5W3C-0006CN-99
+ for linux-amlogic@lists.infradead.org; Wed, 04 Sep 2019 14:14:25 +0000
+Received: by mail-wr1-x443.google.com with SMTP id c3so21454598wrd.7
+ for <linux-amlogic@lists.infradead.org>; Wed, 04 Sep 2019 07:14:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=1t2a0vmNpD+krkpW5/ed7Lgd4DJQlz51QzbVC1XkalQ=;
- b=bEqMCkG4MJtCXLxO2pyMlNR3DCoGnaHivvsTQGeBPO3CFEImwy6xB/1YVoPgogwmDg
- mvM/HH/NGT8HeXF08WSyHJRofVnzdSuNy968qnJQPElpEG+/17X12AsJT9pGt26dKw/c
- JnnAda3k1jDU5omG3NlXa9nGAGatHlwgq598fBVMJGke8LkjfGlcVvYtitV0VruN/vNo
- HZWA0oA5OJLfF4p60snKhhoEPI/mrfFkL87lyidwroa7KlAkqOwCgt4meLgrnWEuudYQ
- WqV2fwQbdqx+4CqhpITG9dVOLm8NiVz4pd62EgVAq9gRWN++PYttfKJ7PRviYt4o/rMC
- qWsQ==
+ bh=IzWNB9ivZ/fQ2z8XW0T5fI33J0UqA0TM8uL61ZbcYJY=;
+ b=EHWSt5bqO5EcZw1Q+2tRqdWGuG5DPO2TW3pony+Xy3VJjhWA7pP76uBvtepruGRzZr
+ Y2byUBATCMXeMhtksoo2yv3JYuj8pjESoEYoaaut3uXIBnHqX7rKHuJOL8CUb4PFsAvy
+ IHM/+05kJHzx2ewRh/8Fc259CPvtM0UCInIMo9tAoJ9FFkVXfRsptE+frY/DvP9HzgWC
+ mmlHmuRLa4hFnZqt13yI+r73iwAt8f3yFjjDkXrGGR4YKOD5iEJzrwsXGNvFQZiZM0JL
+ D1xmYHQGp2Hu3offUIF5ZLO4vW/Re67ujzhn0ZHfQcTCEXszSlAOTxl7tB1AkppbUmxZ
+ FK9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=1t2a0vmNpD+krkpW5/ed7Lgd4DJQlz51QzbVC1XkalQ=;
- b=Juqq3KajxuiR02IrAAu1j4vN+FuFfqzgasNpDKWiQhL8uwizvKW2QbtqL4x4jH4PxT
- 2O8/FOqsBCMIwbKAAPaVj7XiP98VbKUX6OhIUvl45ttirtvhby6d9J2U2QoclSNH/uWu
- YSsqSzCGHWU6KJSd7uXnu7F968Vdz+ooo55lqRpuLL3p04pJ1UFycp/N6hk2ssUmt/bL
- 8i1af/AX5TzZVppqLAGDKSZYso1gg8BJhB3Kfyg+xdnq+gB2isoMU2UO4dsVRzdZHqmm
- 77uiPK4ow6DyPx13mKPa1Kox7Ip8GvTg53gJ2nkMLYkYqw3jiqfp472fxf/zr9GLU9MP
- 9j6Q==
-X-Gm-Message-State: APjAAAUm57ohSQjTRDPlXTej/QFeTJp6byvMQT0NHxin70aaMOKAif+L
- WGc27iOfKinIxwymPCCGmTG3oQ==
-X-Google-Smtp-Source: APXvYqxbfkIv8VlJAvAeHaITYdl98dpgyZfMVFHFOHJxvJ37cTvX5hTfAph3rk2uz0iK4r0eq+pshQ==
-X-Received: by 2002:a5d:6302:: with SMTP id i2mr6205010wru.249.1567606425323; 
- Wed, 04 Sep 2019 07:13:45 -0700 (PDT)
+ bh=IzWNB9ivZ/fQ2z8XW0T5fI33J0UqA0TM8uL61ZbcYJY=;
+ b=CZEuXasLvY4sPULsdaf++RjvrC9f2FWmRlLMrvYON1yko8gf+lolCgx5zrlPniQki1
+ C/U3ssUHq2QjnvhpTMxrYYd61zoq/uPYboNLX9nktgrlT0rneSOHnM8Ry1ZFIg8wSADI
+ tJ6pbmqgPAU4eFV9iPpAXdGZXO6d6M+9Y6JTPTyC0oeYFNMVhAJihsctw4kkBEM3grw9
+ 9zdnDadJpPkBKFy9mIBGNRMeNINxaXQpFmrI+ZCfJsIzZtoCEPBowjn6OfRdKR8VF6WS
+ VlWIY6CFa3JCLMJJj9VYDT8nA+ExzPMGCDww+ldU7sg3h62AwTMZtCNakccSpxsDd3Di
+ g8FQ==
+X-Gm-Message-State: APjAAAWUiVt02WYCCxr69nR4Npd7txib3kdlEO8CNfq90NBYUtIpf2It
+ WtnRLRps0p40q+M8ANsr3+kmRA==
+X-Google-Smtp-Source: APXvYqwd412+TYADIB2T8KWcQvdznVreKrPX5Wc2QP3/iEI4IkUTb7u9lNJVz++zzLVE5BEaAUwxyA==
+X-Received: by 2002:a5d:6811:: with SMTP id w17mr13456149wru.181.1567606460658; 
+ Wed, 04 Sep 2019 07:14:20 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id w8sm4362920wmc.1.2019.09.04.07.13.42
+ by smtp.gmail.com with ESMTPSA id k26sm2792181wmi.37.2019.09.04.07.14.14
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 04 Sep 2019 07:13:44 -0700 (PDT)
-Subject: Re: [PATCH -next 15/36] spi: meson-spicc: use
+ Wed, 04 Sep 2019 07:14:18 -0700 (PDT)
+Subject: Re: [PATCH -next 16/36] spi: spi-meson-spifc: use
  devm_platform_ioremap_resource() to simplify code
 To: YueHaibing <yuehaibing@huawei.com>, broonie@kernel.org,
  f.fainelli@gmail.com, rjui@broadcom.com, sbranden@broadcom.com,
@@ -90,7 +90,7 @@ To: YueHaibing <yuehaibing@huawei.com>, broonie@kernel.org,
  thierry.reding@gmail.com, jonathanh@nvidia.com,
  yamada.masahiro@socionext.com, michal.simek@xilinx.com
 References: <20190904135918.25352-1-yuehaibing@huawei.com>
- <20190904135918.25352-16-yuehaibing@huawei.com>
+ <20190904135918.25352-17-yuehaibing@huawei.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -143,16 +143,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <231852cf-274a-797c-1c01-c7264629a915@baylibre.com>
-Date: Wed, 4 Sep 2019 16:13:41 +0200
+Message-ID: <f4afcae3-8796-2ce4-0377-918536d5bf3e@baylibre.com>
+Date: Wed, 4 Sep 2019 16:14:12 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190904135918.25352-16-yuehaibing@huawei.com>
+In-Reply-To: <20190904135918.25352-17-yuehaibing@huawei.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190904_071348_517641_C255E198 
-X-CRM114-Status: GOOD (  14.96  )
+X-CRM114-CacheID: sfid-20190904_071422_372038_7EB1F9A7 
+X-CRM114-Status: GOOD (  15.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -182,34 +182,34 @@ On 04/09/2019 15:58, YueHaibing wrote:
 > Reported-by: Hulk Robot <hulkci@huawei.com>
 > Signed-off-by: YueHaibing <yuehaibing@huawei.com>
 > ---
->  drivers/spi/spi-meson-spicc.c | 4 +---
+>  drivers/spi/spi-meson-spifc.c | 4 +---
 >  1 file changed, 1 insertion(+), 3 deletions(-)
 > 
-> diff --git a/drivers/spi/spi-meson-spicc.c b/drivers/spi/spi-meson-spicc.c
-> index 7fe4488..f3f1044 100644
-> --- a/drivers/spi/spi-meson-spicc.c
-> +++ b/drivers/spi/spi-meson-spicc.c
-> @@ -503,7 +503,6 @@ static int meson_spicc_probe(struct platform_device *pdev)
+> diff --git a/drivers/spi/spi-meson-spifc.c b/drivers/spi/spi-meson-spifc.c
+> index f7fe9b1..c7b0399 100644
+> --- a/drivers/spi/spi-meson-spifc.c
+> +++ b/drivers/spi/spi-meson-spifc.c
+> @@ -286,7 +286,6 @@ static int meson_spifc_probe(struct platform_device *pdev)
 >  {
 >  	struct spi_master *master;
->  	struct meson_spicc_device *spicc;
+>  	struct meson_spifc *spifc;
 > -	struct resource *res;
->  	int ret, irq, rate;
->  
->  	master = spi_alloc_master(&pdev->dev, sizeof(*spicc));
-> @@ -517,8 +516,7 @@ static int meson_spicc_probe(struct platform_device *pdev)
->  	spicc->pdev = pdev;
->  	platform_set_drvdata(pdev, spicc);
+>  	void __iomem *base;
+>  	unsigned int rate;
+>  	int ret = 0;
+> @@ -300,8 +299,7 @@ static int meson_spifc_probe(struct platform_device *pdev)
+>  	spifc = spi_master_get_devdata(master);
+>  	spifc->dev = &pdev->dev;
 >  
 > -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> -	spicc->base = devm_ioremap_resource(&pdev->dev, res);
-> +	spicc->base = devm_platform_ioremap_resource(pdev, 0);
->  	if (IS_ERR(spicc->base)) {
->  		dev_err(&pdev->dev, "io resource mapping failed\n");
->  		ret = PTR_ERR(spicc->base);
+> -	base = devm_ioremap_resource(spifc->dev, res);
+> +	base = devm_platform_ioremap_resource(pdev, 0);
+>  	if (IS_ERR(base)) {
+>  		ret = PTR_ERR(base);
+>  		goto out_err;
 > 
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
