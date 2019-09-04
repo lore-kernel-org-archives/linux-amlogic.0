@@ -2,73 +2,76 @@ Return-Path: <SRS0=DSrP=W7=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AEF94C3A5A9
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2019 15:58:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 54C9AC3A5A8
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2019 16:14:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 86B2322CED
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2019 15:58:05 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2B65822CED
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2019 16:14:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mNBfID+U";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="FCEo2fQk"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 86B2322CED
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pBo1maQT";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="oeJSTcdI"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2B65822CED
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=z++Nk75rMZkaJpyk6eLMFK3uqPbRmdZOz2F718P3lCs=; b=mNBfID+UL0c5Aa
-	rpbA3AxEiDYrgUA+xYXR57O7L/tiDMVTxDzJ60Y2u/0VcFNxqVPAP/DFX1FfZ3MFokLO0+GYTU/GD
-	eb793PeWCViCHV+KmQi8r2x+5u2fH4NwFl5EwJiA8U4bF9gHGIoYU4P9WW3tTRcw9eWQyNkP+bBfg
-	CYnO+iksZ8fk5K/8DRUikWqopa69i9ukut0GU5kYQqSd/LbDpXRlZRhqlnJvpAZ5+xAl+9M7+VkzC
-	ZBxpv4ncAaPyr7KS78iektTtUI7KufT7Lk7NfkwGduqOdQMeW6ij0klq+tTiD7R1uE68rUSAAFfxU
-	J9D/OIMksv+ht53IxyWA==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=BklPM4I9qUpPfBTMKp8ss7o9zWasY/fiI7vbFRS8YrI=; b=pBo1maQTWrFVDs8zgPt9NiOEp
+	x70eyY+dOJZnwDKmGJqCF7IGlic5LzZwvxFdNgZjxrvMEgvbRaykI+s9h3GU5yR1CD4onoC8um+Cf
+	wtl7Mb8dHF8mw85EO8rIfvH9ALA1JzhSfQd6YL3GKmV4CjsQ7EJeovuvHm3OY5LGTEmfsNoJx7hEL
+	0rkHlEQ6qXkEG+rFrhcx9o8N4Ne1TS5drDJUqHhrUZ4735F5m92JKVTf31B0uLXXjm09L40IY8h3P
+	NqLR5AXMTZbIjuiu3U7kJBp4LCj1pCe6xhe3hm5TcjUTca1fgW5yQ7K8KpmsMH5oc/lnIPMxoe/tU
+	JAgd8qq0w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i5XfU-0001IF-3z; Wed, 04 Sep 2019 15:58:00 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1i5Xv7-00010P-OU; Wed, 04 Sep 2019 16:14:09 +0000
+Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i5XfQ-0001HU-V7
- for linux-amlogic@lists.infradead.org; Wed, 04 Sep 2019 15:57:58 +0000
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
- [73.47.72.35])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id C780520820;
- Wed,  4 Sep 2019 15:57:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1567612676;
- bh=17rbaqT/jginQt/FhvS50ubtnD5Kp84zT/frCb6KDG8=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=FCEo2fQkhlUnOJGvGphMe2TCyzdeahSR10TbiYnUYrXO+sftk3JBNVnkGA933SwqL
- sLVRiyBSV3fIlHBLYxXe5OF4EEq1JXKZgeS1WcmgR9DilhxSdhZBIeNiCjvuUW9oN5
- lrLPXVTnBOE93OdwqirMhAOmldqbWvM1nkwBeNE8=
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.2 09/94] arm64: dts: meson-g12a: add missing dwc2
- phy-names
-Date: Wed,  4 Sep 2019 11:56:14 -0400
-Message-Id: <20190904155739.2816-9-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190904155739.2816-1-sashal@kernel.org>
-References: <20190904155739.2816-1-sashal@kernel.org>
+ id 1i5Xv5-0000zS-9O; Wed, 04 Sep 2019 16:14:08 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=1EyANVYB8OYlB3yXu3/GSCY+3MXUWjqGnAuH+zG2V+8=; b=oeJSTcdIDcOk3Y6i6oSHYnqaK
+ mbpR6uQLQflGkucJXLK1X+2eg2NvuIzkQ2cgHhhXiK+gq+r57luFLU1d+pYjzappehwqj8iyH2FRH
+ 3UVBQP5H5gwc2TmttChlxUCjhqE0xghi0XAtJFdsAa7iqj1fNovs+5a+x0opvYVUoIEAo=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net
+ ([82.37.168.47] helo=ypsilon.sirena.org.uk)
+ by heliosphere.sirena.org.uk with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <broonie@sirena.co.uk>)
+ id 1i5Xun-0006R9-Ad; Wed, 04 Sep 2019 16:13:49 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+ id 67FED2742B45; Wed,  4 Sep 2019 17:13:48 +0100 (BST)
+Date: Wed, 4 Sep 2019 17:13:48 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH -next 25/36] spi: s3c24xx: use
+ devm_platform_ioremap_resource() to simplify code
+Message-ID: <20190904161348.GE4348@sirena.co.uk>
+References: <20190904135918.25352-1-yuehaibing@huawei.com>
+ <20190904135918.25352-26-yuehaibing@huawei.com>
+ <CAJKOXPdq4as1Oe3U+9znkvP0RA=sxUoiWVBCSbzf_wq_um2t=w@mail.gmail.com>
+ <20190904143928.GB4348@sirena.co.uk>
+ <CAJKOXPeRtbAvmR-=8Qa8ukGXt-cCj3ud_7y1Z4LgRpX3YCeumg@mail.gmail.com>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
+In-Reply-To: <CAJKOXPeRtbAvmR-=8Qa8ukGXt-cCj3ud_7y1Z4LgRpX3YCeumg@mail.gmail.com>
+X-Cookie: Help fight continental drift.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190904_085757_026733_E698B4E9 
-X-CRM114-Status: UNSURE (   9.78  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190904_091407_338105_45557D34 
+X-CRM114-Status: GOOD (  13.38  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,54 +83,102 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
- Neil Armstrong <narmstrong@baylibre.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: tmaimon77@gmail.com, palmer@sifive.com, tali.perry1@gmail.com,
+ eric@anholt.net, ldewangan@nvidia.com, linux-riscv@lists.infradead.org,
+ festevam@gmail.com, f.fainelli@gmail.com, benjaminfair@google.com,
+ shc_work@mail.ru, khilman@baylibre.com, openbmc@lists.ozlabs.org,
+ YueHaibing <yuehaibing@huawei.com>, michal.simek@xilinx.com,
+ jonathanh@nvidia.com, yuenn@google.com, wens@csie.org, agross@kernel.org,
+ bcm-kernel-feedback-list@broadcom.com, linux-imx@nxp.com,
+ linux-arm-msm@vger.kernel.org, linux-tegra@vger.kernel.org,
+ Andi Shyti <andi@etezian.org>, rjui@broadcom.com, s.hauer@pengutronix.de,
+ mripard@kernel.org,
+ "linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>,
+ linux-mediatek@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
+ paul.walmsley@sifive.com, matthias.bgg@gmail.com,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ baohua@kernel.org, sbranden@broadcom.com, yamada.masahiro@socionext.com,
+ avifishman70@gmail.com, venture@google.com,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ linux-spi@vger.kernel.org, thierry.reding@gmail.com, wahrenst@gmx.net,
+ kernel@pengutronix.de, kgene@kernel.org, shawnguo@kernel.org
+Content-Type: multipart/mixed; boundary="===============3101255071552913389=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Neil Armstrong <narmstrong@baylibre.com>
 
-[ Upstream commit 3d4bacdc207a7b62941700b374e7199cbb184a43 ]
+--===============3101255071552913389==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="N1GIdlSm9i+YlY4t"
+Content-Disposition: inline
 
-The G12A USB2 OTG capable PHY uses a 8bit large UTMI bus, and the OTG
-controller gets the PHY but width by probing the associated phy.
 
-By default it will use 16bit wide settings if a phy is not specified,
-in our case we specified the phy, but not the phy-names.
+--N1GIdlSm9i+YlY4t
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-The dwc2 bindings specifies that if phys is present, phy-names shall be
-"usb2-phy".
+On Wed, Sep 04, 2019 at 05:09:45PM +0200, Krzysztof Kozlowski wrote:
+> On Wed, 4 Sep 2019 at 16:39, Mark Brown <broonie@kernel.org> wrote:
 
-Adding phy-names = "usb2-phy" solves the OTG PHY bus configuration.
+> > I think it's reasonable, it's giving credit to the automated system
+> > they've got running coccinelle (which they do mention in their commit
+> > logs).  It doesn't really hurt anyone and lets people see their system
+> > is finding stuff.
 
-Fixes: 9baf7d6be730 ("arm64: dts: meson: g12a: Add G12A USB nodes")
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+> Running internally coccinelle is already credited with commit author.
+> The credits are coming with "From:" field.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-index 9f72396ba7103..4c92c197aeb8a 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-@@ -591,6 +591,7 @@
- 				clocks = <&clkc CLKID_USB1_DDR_BRIDGE>;
- 				clock-names = "ddr";
- 				phys = <&usb2_phy1>;
-+				phy-names = "usb2-phy";
- 				dr_mode = "peripheral";
- 				g-rx-fifo-size = <192>;
- 				g-np-tx-fifo-size = <128>;
--- 
-2.20.1
+I guess if other people look at the same CI and send patches as well
+then there's some use tying them all together.
 
+> Otherwise for commits I send I could use:
+>   From: krzk
+>   ...
+>   Reported-by: www.krzk.eu
+>   Signed-off-by: krzk
+> To me it is ridiculous.
+
+Sure, on the other hand it doesn't really cost anyone anything if you do
+that.
+
+> Different thing is that Reported-by is for fixing bugs or issues.
+> There is no bug here. There is no problem solved except making the
+> code smaller. That's not what is Reported-by for.
+
+That is true, this one isn't fixing any bug but then the line does get a
+bit fuzzy all round with things like warnings and coccinelle output -
+even just having the warning pop up is noise for people looking at the
+output even if there's no concrete problem.  Again I don't see it as
+something that's worth getting worked up over.
+
+--N1GIdlSm9i+YlY4t
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1v4rsACgkQJNaLcl1U
+h9ADfQf/V7pUFkik9p4ok45W4iQXJ+1Wee9ghMi2ut+nuRzX8NRSwWYnFgK3w119
+nf1YXfJsWCcs9af+DjcSoEyJWq/wegSyF/egvEd36QdqtaJJbMs/J5Kl+TEcglDA
+uRJW6F/zevMcwamDE2I6UqdQjTIa2R8QG2S9yaw36Hd2b0k38lLq2Z1knHnQNbX7
+6mFEqyt+sTaFjsBtlkgeUiTkMp36WsnTY7oRzGr/RKAd9ByHDmQKtPTuJl4eQTx6
+zzkUK0PzNpBPqNyILAt7MYr01EyZfO3gjxnRNIH8yKl+80mkhiV2Td6DJehCuNqE
+F30QD0NUhsOuqyDT26hqXFcIWtym6A==
+=GPj9
+-----END PGP SIGNATURE-----
+
+--N1GIdlSm9i+YlY4t--
+
+
+--===============3101255071552913389==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============3101255071552913389==--
+
