@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 23DFBC3A5A7
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2019 14:00:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AB1A8C3A5A7
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2019 14:00:40 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CE1482341E
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2019 14:00:18 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 82BD123401
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2019 14:00:40 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RJ+ZAdRI"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CE1482341E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="l8GGDXth"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 82BD123401
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=huawei.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,24 +25,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=23JcJdfolX8C8gymaz8BTe00J8lFxxDkYvYzceF3+5Y=; b=RJ+ZAdRIhT4e/Z
-	TtmVXEsqWFIpvGzt1iSQIGstzzss4iR1SVQzgLGFMGy67HiXVZpWNNMi6myVvahQ1yVcfld4KfXdO
-	E3FfCSBH7jnyyYyTPEUvT616yRuQCpPgwj7PzZN9axuloKUj21NN6bSF3u23JFaAun8m9JCXvprYb
-	2sUIGyBqVoQSyYpd/hFuykk0z/VRWYFh/Bx9ae4B8zdj18rSLLQKn2ITuRy4kVTCWA8kJ5MrayAp2
-	q6evsOTKfDqDGs0SZz4QDqMWwml5ztFS/37UgmtJDF77fnL0vtlG2PJK3csVWb+ENRZVKLf/TMOtD
-	hGVjU6JOc4FpdLWYauBA==;
+	List-Owner; bh=eplFMz08LHlgtlPKu/CwwdRtKg0/F/6uHdyCDaNngMk=; b=l8GGDXtholiJAt
+	PJlDlTEqfThQZ7lggEeonwzv5afeXyONV/BVf7QfzwFaZI6TBOfsqc6x2Tp2FGJ7HdE1DElAWBWFp
+	gZtq5h9sMQdMFBBR87P6TnCnUf8SUUs/IXVIjpZodog4NEqrjGRdN7HV8Un1GhQeRFOsk+2iQd1fk
+	kl/7cB98A468GjC5Q9yugSIkklWQjKjS8O3ry4uV4PgDsHQ4LRf528y5jbH8P64LXe+ALRUUrPkNm
+	NdltjpBH3ZNyj2IcVYLzy0Mjk1EJm1pVREcw61DrFH3QB2WHshovNfrJ1K/EjvNbE19MvaSiJMupg
+	hjm1YGJgLasYxm4jkQoQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i5VpW-0004gd-B6; Wed, 04 Sep 2019 14:00:14 +0000
+	id 1i5Vpr-00057V-MP; Wed, 04 Sep 2019 14:00:35 +0000
 Received: from szxga05-in.huawei.com ([45.249.212.191] helo=huawei.com)
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i5Vp2-0002w7-Cn; Wed, 04 Sep 2019 13:59:45 +0000
-Received: from DGGEMS407-HUB.china.huawei.com (unknown [172.30.72.59])
- by Forcepoint Email with ESMTP id 6627ABE449B6A38CB421;
+ id 1i5Vp3-0002w8-Sv; Wed, 04 Sep 2019 13:59:47 +0000
+Received: from DGGEMS411-HUB.china.huawei.com (unknown [172.30.72.60])
+ by Forcepoint Email with ESMTP id E874BB639D651121E52E;
  Wed,  4 Sep 2019 21:59:40 +0800 (CST)
-Received: from localhost (10.133.213.239) by DGGEMS407-HUB.china.huawei.com
- (10.3.19.207) with Microsoft SMTP Server id 14.3.439.0; Wed, 4 Sep 2019
- 21:59:31 +0800
+Received: from localhost (10.133.213.239) by DGGEMS411-HUB.china.huawei.com
+ (10.3.19.211) with Microsoft SMTP Server id 14.3.439.0; Wed, 4 Sep 2019
+ 21:59:34 +0800
 From: YueHaibing <yuehaibing@huawei.com>
 To: <broonie@kernel.org>, <f.fainelli@gmail.com>, <rjui@broadcom.com>,
  <sbranden@broadcom.com>, <eric@anholt.net>, <wahrenst@gmx.net>,
@@ -56,10 +56,10 @@ To: <broonie@kernel.org>, <f.fainelli@gmail.com>, <rjui@broadcom.com>,
  <mripard@kernel.org>, <wens@csie.org>, <ldewangan@nvidia.com>,
  <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
  <yamada.masahiro@socionext.com>, <michal.simek@xilinx.com>
-Subject: [PATCH -next 01/36] spi: altera: use devm_platform_ioremap_resource()
+Subject: [PATCH -next 02/36] spi: a3700: use devm_platform_ioremap_resource()
  to simplify code
-Date: Wed, 4 Sep 2019 21:58:43 +0800
-Message-ID: <20190904135918.25352-2-yuehaibing@huawei.com>
+Date: Wed, 4 Sep 2019 21:58:44 +0800
+Message-ID: <20190904135918.25352-3-yuehaibing@huawei.com>
 X-Mailer: git-send-email 2.10.2.windows.1
 In-Reply-To: <20190904135918.25352-1-yuehaibing@huawei.com>
 References: <20190904135918.25352-1-yuehaibing@huawei.com>
@@ -67,8 +67,8 @@ MIME-Version: 1.0
 X-Originating-IP: [10.133.213.239]
 X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190904_065944_605678_481033BB 
-X-CRM114-Status: UNSURE (   8.37  )
+X-CRM114-CacheID: sfid-20190904_065946_503024_D016161D 
+X-CRM114-Status: UNSURE (   8.22  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -99,31 +99,31 @@ This is detected by coccinelle.
 Reported-by: Hulk Robot <hulkci@huawei.com>
 Signed-off-by: YueHaibing <yuehaibing@huawei.com>
 ---
- drivers/spi/spi-altera.c | 4 +---
+ drivers/spi/spi-armada-3700.c | 4 +---
  1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/drivers/spi/spi-altera.c b/drivers/spi/spi-altera.c
-index ea160f11..41d71ba 100644
---- a/drivers/spi/spi-altera.c
-+++ b/drivers/spi/spi-altera.c
-@@ -170,7 +170,6 @@ static int altera_spi_probe(struct platform_device *pdev)
+diff --git a/drivers/spi/spi-armada-3700.c b/drivers/spi/spi-armada-3700.c
+index 119ae87..e450ee1 100644
+--- a/drivers/spi/spi-armada-3700.c
++++ b/drivers/spi/spi-armada-3700.c
+@@ -817,7 +817,6 @@ static int a3700_spi_probe(struct platform_device *pdev)
  {
- 	struct altera_spi *hw;
- 	struct spi_master *master;
+ 	struct device *dev = &pdev->dev;
+ 	struct device_node *of_node = dev->of_node;
 -	struct resource *res;
- 	int err = -ENODEV;
+ 	struct spi_master *master;
+ 	struct a3700_spi *spi;
+ 	u32 num_cs = 0;
+@@ -855,8 +854,7 @@ static int a3700_spi_probe(struct platform_device *pdev)
  
- 	master = spi_alloc_master(&pdev->dev, sizeof(struct altera_spi));
-@@ -189,8 +188,7 @@ static int altera_spi_probe(struct platform_device *pdev)
- 	hw = spi_master_get_devdata(master);
+ 	spi->master = master;
  
- 	/* find and map our resources */
 -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	hw->base = devm_ioremap_resource(&pdev->dev, res);
-+	hw->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(hw->base)) {
- 		err = PTR_ERR(hw->base);
- 		goto exit;
+-	spi->base = devm_ioremap_resource(dev, res);
++	spi->base = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(spi->base)) {
+ 		ret = PTR_ERR(spi->base);
+ 		goto error;
 -- 
 2.7.4
 
