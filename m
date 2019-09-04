@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 76203C3A5A7
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2019 14:04:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CD2DDC3A5A7
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2019 14:05:02 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 442AF23401
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2019 14:04:38 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9BC602339D
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2019 14:05:02 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GtUPWUT2"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 442AF23401
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PQM9HYvt"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9BC602339D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=huawei.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,24 +25,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6/bDM3WbWXfueKnToeRmyNZSaRQ64ZyIwCshwlARXdM=; b=GtUPWUT2ej2AU6
-	b5vKUfERgCpjas7N1Jdm4TdKih21I/ijBiru232bgwHylYv7JF3TeMGn8i/0AHQ/HH/HANfQB+St3
-	kzj8IN+otxgoG/0OfJAfUVR8bzkgMxrYdq8XLs1tW+5ggn7+F2C68kKJiV21mFT3TDGOICI06kdUL
-	WTxH7Y2o+tZOkTZFfyL4S4uqQ082FBvm5DmyiCsXPeXsUY5+X5ccyX1f7cH4tWCJkCqlRYEzZvfnq
-	PiXIBbXVw5M3Ug6Y2C/7xguYkwxxQXP6tleKQ73Ag5QHt1NL5wW8+gajcrwuwJnuKtsZieq02/Rvn
-	rUASDJATmx9I1Njk8j2w==;
+	List-Owner; bh=uFxWfwZuvlGZJ3a1S8Si/LBfzCiTV3Dpeo3xbG5ivjc=; b=PQM9HYvts/wM6l
+	C4pwmjeFJbeEQfSxYHiWuZeIpFQ6h59Afnp3zKhQLtksjuhYzYxIIEbYFL8kWRx0K1SV82CXhItv+
+	1ulVbr7mYa/mcb7XGQslyGRHhHtgpMifSrLZPEm4D+5XNDSPzSiFOc5Xdt1+7h0TcOblIKOkTm6fZ
+	mnU3eO+UbYTPDLe62aK3MxwrQSTEAXqpZBTJOKbbdYKavxEUdvue4m04oEdotX7OoPC8M2ivY5B1E
+	ygevjGnnKDiRbrSd6bDjeQXq9/AN6fCX8tI2kPaHHMPeFg+zhh2CTqy6dP+/KJ3lm9sOm9raGy1Qg
+	gRN5tO2kOv6SrUOpOI9Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i5Vti-00018G-CH; Wed, 04 Sep 2019 14:04:34 +0000
+	id 1i5Vu5-0001YE-Ds; Wed, 04 Sep 2019 14:04:57 +0000
 Received: from szxga06-in.huawei.com ([45.249.212.32] helo=huawei.com)
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i5Vpa-0004l2-9A; Wed, 04 Sep 2019 14:00:20 +0000
-Received: from DGGEMS414-HUB.china.huawei.com (unknown [172.30.72.58])
- by Forcepoint Email with ESMTP id ABA633EA834E6FCC6DF4;
- Wed,  4 Sep 2019 22:00:15 +0800 (CST)
-Received: from localhost (10.133.213.239) by DGGEMS414-HUB.china.huawei.com
- (10.3.19.214) with Microsoft SMTP Server id 14.3.439.0; Wed, 4 Sep 2019
- 22:00:06 +0800
+ id 1i5Vpf-0004q0-I9; Wed, 04 Sep 2019 14:00:25 +0000
+Received: from DGGEMS406-HUB.china.huawei.com (unknown [172.30.72.58])
+ by Forcepoint Email with ESMTP id AC7DEA50BA2E69D637D3;
+ Wed,  4 Sep 2019 22:00:19 +0800 (CST)
+Received: from localhost (10.133.213.239) by DGGEMS406-HUB.china.huawei.com
+ (10.3.19.206) with Microsoft SMTP Server id 14.3.439.0; Wed, 4 Sep 2019
+ 22:00:09 +0800
 From: YueHaibing <yuehaibing@huawei.com>
 To: <broonie@kernel.org>, <f.fainelli@gmail.com>, <rjui@broadcom.com>,
  <sbranden@broadcom.com>, <eric@anholt.net>, <wahrenst@gmx.net>,
@@ -56,10 +56,10 @@ To: <broonie@kernel.org>, <f.fainelli@gmail.com>, <rjui@broadcom.com>,
  <mripard@kernel.org>, <wens@csie.org>, <ldewangan@nvidia.com>,
  <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
  <yamada.masahiro@socionext.com>, <michal.simek@xilinx.com>
-Subject: [PATCH -next 13/36] spi: spi-geni-qcom: use
+Subject: [PATCH -next 14/36] spi: lp-8841: use
  devm_platform_ioremap_resource() to simplify code
-Date: Wed, 4 Sep 2019 21:58:55 +0800
-Message-ID: <20190904135918.25352-14-yuehaibing@huawei.com>
+Date: Wed, 4 Sep 2019 21:58:56 +0800
+Message-ID: <20190904135918.25352-15-yuehaibing@huawei.com>
 X-Mailer: git-send-email 2.10.2.windows.1
 In-Reply-To: <20190904135918.25352-1-yuehaibing@huawei.com>
 References: <20190904135918.25352-1-yuehaibing@huawei.com>
@@ -67,8 +67,8 @@ MIME-Version: 1.0
 X-Originating-IP: [10.133.213.239]
 X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190904_070018_948652_A390ED01 
-X-CRM114-Status: UNSURE (   7.83  )
+X-CRM114-CacheID: sfid-20190904_070023_900589_3CD483C8 
+X-CRM114-Status: UNSURE (   7.69  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -99,31 +99,31 @@ This is detected by coccinelle.
 Reported-by: Hulk Robot <hulkci@huawei.com>
 Signed-off-by: YueHaibing <yuehaibing@huawei.com>
 ---
- drivers/spi/spi-geni-qcom.c | 4 +---
+ drivers/spi/spi-lp8841-rtc.c | 4 +---
  1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/drivers/spi/spi-geni-qcom.c b/drivers/spi/spi-geni-qcom.c
-index 242b6c8..6f3d64a 100644
---- a/drivers/spi/spi-geni-qcom.c
-+++ b/drivers/spi/spi-geni-qcom.c
-@@ -534,7 +534,6 @@ static int spi_geni_probe(struct platform_device *pdev)
- 	int ret, irq;
- 	struct spi_master *spi;
- 	struct spi_geni_master *mas;
--	struct resource *res;
- 	void __iomem *base;
- 	struct clk *clk;
+diff --git a/drivers/spi/spi-lp8841-rtc.c b/drivers/spi/spi-lp8841-rtc.c
+index f50779f..2d43654 100644
+--- a/drivers/spi/spi-lp8841-rtc.c
++++ b/drivers/spi/spi-lp8841-rtc.c
+@@ -185,7 +185,6 @@ spi_lp8841_rtc_probe(struct platform_device *pdev)
+ 	int				ret;
+ 	struct spi_master		*master;
+ 	struct spi_lp8841_rtc		*data;
+-	void				*iomem;
  
-@@ -542,8 +541,7 @@ static int spi_geni_probe(struct platform_device *pdev)
- 	if (irq < 0)
- 		return irq;
+ 	master = spi_alloc_master(&pdev->dev, sizeof(*data));
+ 	if (!master)
+@@ -207,8 +206,7 @@ spi_lp8841_rtc_probe(struct platform_device *pdev)
  
--	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	base = devm_ioremap_resource(&pdev->dev, res);
-+	base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(base))
- 		return PTR_ERR(base);
+ 	data = spi_master_get_devdata(master);
  
+-	iomem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	data->iomem = devm_ioremap_resource(&pdev->dev, iomem);
++	data->iomem = devm_platform_ioremap_resource(pdev, 0);
+ 	ret = PTR_ERR_OR_ZERO(data->iomem);
+ 	if (ret) {
+ 		dev_err(&pdev->dev, "failed to get IO address\n");
 -- 
 2.7.4
 
