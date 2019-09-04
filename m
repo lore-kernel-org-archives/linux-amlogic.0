@@ -2,65 +2,78 @@ Return-Path: <SRS0=DSrP=W7=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 19E5EC3A5A9
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2019 14:42:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2E2B9C3A5A7
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2019 15:10:10 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DAB1822CF7
-	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2019 14:42:26 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id EB5C622CF5
+	for <linux-amlogic@archiver.kernel.org>; Wed,  4 Sep 2019 15:10:09 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hkRyq4pQ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DAB1822CF7
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=huawei.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pvC948no";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="AWidQoGU"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EB5C622CF5
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=92MV8ObvkbpwzxbPuwSaKUQ9IlpAiSwF2J6W3U8+JIk=; b=hkRyq4pQC8KqSc
-	Xs1mRgqjMWNj1LE+ZHZTCP4alN0LFI2lFspL682UIJZEJGifj8sKgARiZzl0b9ZX4SEcBJFl44S61
-	fTYqUlYN0jqYRPFmnCIlH3n7zRz5j2owAj5+yo6mE5wj2YK+ggj7kLna+Y3PxQLVHS2Rt3Jatzv/N
-	aK+6YgA1Bj81ZakYkL3WYDUuGSr8Kqdme+8xfd18XXjGWT3pOMPm8xDAAeYChbUkJmZazXCdjjwkI
-	Ggucijp3kIXUNn/Zzi3DRcDX8Vd+ixQb8Fw7PwmzDYcVg6DAOEIpuJYnBvb+C6Mb1lI+iKPAuG513
-	PO1ioZde0+PJC1DYvNow==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=fML46G6Da2t7ndnApDLkVXaF9aM25XGkGLxB5fl+rEE=; b=pvC948noX9ri+O
+	RvXB0/ZiJvjNa4IAuGdc1++/XdrNg3KydOPHaw0x8HQU7Sn6XhCo4BYO+mYFihfBNs9HScoDm7eC0
+	HFhF750Jjp7FufbTB2fzI1cELw0RAjF10/zO/To/Bwlvoa1R9rBcIu+B1tezzHXEP6W9sBU5BRF1i
+	Tzrk05WHOeEbnm62JghsWZBc5Ho5NUUSUSzOYQfk0dqd5+nMskaURLQJzMQ9LwjH4V5WJavhGxrYR
+	Fp54ZisjCEeV/YFR2g4xB/AdZB67HGjXlZuj4KfUwrf5h6n159sZIWVykALPj/C0q0TXkZMKMmiK7
+	MHkWxomLghauMCABvQ7w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i5WUI-0003b8-3e; Wed, 04 Sep 2019 14:42:22 +0000
-Received: from szxga05-in.huawei.com ([45.249.212.191] helo=huawei.com)
+	id 1i5Wv5-0007g0-46; Wed, 04 Sep 2019 15:10:03 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i5WUE-0003a7-Ux; Wed, 04 Sep 2019 14:42:20 +0000
-Received: from DGGEMS412-HUB.china.huawei.com (unknown [172.30.72.59])
- by Forcepoint Email with ESMTP id AF49BB8E4149F22B28EE;
- Wed,  4 Sep 2019 22:42:15 +0800 (CST)
-Received: from [127.0.0.1] (10.133.213.239) by DGGEMS412-HUB.china.huawei.com
- (10.3.19.212) with Microsoft SMTP Server id 14.3.439.0;
- Wed, 4 Sep 2019 22:42:10 +0800
-Subject: Re: [PATCH -next 25/36] spi: s3c24xx: use
- devm_platform_ioremap_resource() to simplify code
-To: Krzysztof Kozlowski <krzk@kernel.org>
+ id 1i5Wv1-0007Nm-W4; Wed, 04 Sep 2019 15:10:01 +0000
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com
+ [209.85.167.41])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 8408623401;
+ Wed,  4 Sep 2019 15:09:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1567609798;
+ bh=NqqPlIXhQO92I7kvb7x3or16fY9V13TR0NCZAUTlJWQ=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=AWidQoGUGTEdAWDkyAQISkCNmxGOCVo2yHgzKUIPb1rWWyUYYvUj0TuGpJtJIdGR/
+ dzccXezv1sNoQ0yruF9u11a6H/6iwIB/gtyccWWtz8dKuZSwGte3k4tssFtb3jdPV4
+ PjPhAy257Cd8DYrkZNOy9W2gZGHSBqmSukET7M/A=
+Received: by mail-lf1-f41.google.com with SMTP id l11so16249000lfk.6;
+ Wed, 04 Sep 2019 08:09:58 -0700 (PDT)
+X-Gm-Message-State: APjAAAVYAQKWs6qLanFATs3IGF6frirfX3P5TgF/YTiCJOUKCQJbB55n
+ fwvIykcjStFsnIQ0FRv9Jy9ukThk+hnKkrF8Fw4=
+X-Google-Smtp-Source: APXvYqyPSaOFdTAZs9Jlj3fYyUPiQ+i5JR3LIfqaMYnX+qGBlZPtuYUs9/i9kuI0c87VBPXwtFxNFox7lL+fRxUp36w=
+X-Received: by 2002:a05:6512:25b:: with SMTP id
+ b27mr12719024lfo.60.1567609796654; 
+ Wed, 04 Sep 2019 08:09:56 -0700 (PDT)
+MIME-Version: 1.0
 References: <20190904135918.25352-1-yuehaibing@huawei.com>
  <20190904135918.25352-26-yuehaibing@huawei.com>
  <CAJKOXPdq4as1Oe3U+9znkvP0RA=sxUoiWVBCSbzf_wq_um2t=w@mail.gmail.com>
-From: Yuehaibing <yuehaibing@huawei.com>
-Message-ID: <3595bac1-e426-b4f9-4e24-01e104fdfe5d@huawei.com>
-Date: Wed, 4 Sep 2019 22:42:06 +0800
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101
- Thunderbird/45.2.0
-MIME-Version: 1.0
-In-Reply-To: <CAJKOXPdq4as1Oe3U+9znkvP0RA=sxUoiWVBCSbzf_wq_um2t=w@mail.gmail.com>
-X-Originating-IP: [10.133.213.239]
-X-CFilter-Loop: Reflected
+ <20190904143928.GB4348@sirena.co.uk>
+In-Reply-To: <20190904143928.GB4348@sirena.co.uk>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Date: Wed, 4 Sep 2019 17:09:45 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPeRtbAvmR-=8Qa8ukGXt-cCj3ud_7y1Z4LgRpX3YCeumg@mail.gmail.com>
+Message-ID: <CAJKOXPeRtbAvmR-=8Qa8ukGXt-cCj3ud_7y1Z4LgRpX3YCeumg@mail.gmail.com>
+Subject: Re: [PATCH -next 25/36] spi: s3c24xx: use
+ devm_platform_ioremap_resource() to simplify code
+To: Mark Brown <broonie@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190904_074219_344419_A98A716E 
-X-CRM114-Status: GOOD (  12.91  )
+X-CRM114-CacheID: sfid-20190904_081000_075890_1B24BEC6 
+X-CRM114-Status: GOOD (  12.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,19 +87,20 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: tmaimon77@gmail.com, palmer@sifive.com, tali.perry1@gmail.com,
  eric@anholt.net, ldewangan@nvidia.com, linux-riscv@lists.infradead.org,
- festevam@gmail.com,
- "linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>,
- f.fainelli@gmail.com, benjaminfair@google.com, shc_work@mail.ru,
- khilman@baylibre.com, openbmc@lists.ozlabs.org, michal.simek@xilinx.com,
+ festevam@gmail.com, f.fainelli@gmail.com, benjaminfair@google.com,
+ shc_work@mail.ru, khilman@baylibre.com, openbmc@lists.ozlabs.org,
+ YueHaibing <yuehaibing@huawei.com>, michal.simek@xilinx.com,
  jonathanh@nvidia.com, yuenn@google.com, wens@csie.org, agross@kernel.org,
  bcm-kernel-feedback-list@broadcom.com, linux-imx@nxp.com,
  linux-arm-msm@vger.kernel.org, linux-tegra@vger.kernel.org,
  Andi Shyti <andi@etezian.org>, rjui@broadcom.com, s.hauer@pengutronix.de,
- mripard@kernel.org, broonie@kernel.org, linux-mediatek@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org, paul.walmsley@sifive.com,
- matthias.bgg@gmail.com, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, baohua@kernel.org, sbranden@broadcom.com,
- yamada.masahiro@socionext.com, avifishman70@gmail.com, venture@google.com,
+ mripard@kernel.org,
+ "linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>,
+ linux-mediatek@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
+ paul.walmsley@sifive.com, matthias.bgg@gmail.com,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ baohua@kernel.org, sbranden@broadcom.com, yamada.masahiro@socionext.com,
+ avifishman70@gmail.com, venture@google.com,
  "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
  linux-spi@vger.kernel.org, thierry.reding@gmail.com, wahrenst@gmx.net,
  kernel@pengutronix.de, kgene@kernel.org, shawnguo@kernel.org
@@ -95,59 +109,37 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 2019/9/4 22:28, Krzysztof Kozlowski wrote:
-> On Wed, 4 Sep 2019 at 16:00, YueHaibing <yuehaibing@huawei.com> wrote:
->>
->> Use devm_platform_ioremap_resource() to simplify the code a bit.
->> This is detected by coccinelle.
->>
->> Reported-by: Hulk Robot <hulkci@huawei.com>
-> 
-> This tag does not look real... First of all where is the report?
+On Wed, 4 Sep 2019 at 16:39, Mark Brown <broonie@kernel.org> wrote:
+>
+> On Wed, Sep 04, 2019 at 04:28:29PM +0200, Krzysztof Kozlowski wrote:
+> > On Wed, 4 Sep 2019 at 16:00, YueHaibing <yuehaibing@huawei.com> wrote:
+>
+> > > Reported-by: Hulk Robot <hulkci@huawei.com>
+>
+> > This tag does not look real... First of all where is the report?
+> > Second, it was reported by coccinelle.
+> > Reported-by should be use to give real credits.
+>
+> I think it's reasonable, it's giving credit to the automated system
+> they've got running coccinelle (which they do mention in their commit
+> logs).  It doesn't really hurt anyone and lets people see their system
+> is finding stuff.
 
-It is our internal CI robot, which is unavailable to external temporarily.
+Running internally coccinelle is already credited with commit author.
+The credits are coming with "From:" field.
+Otherwise for commits I send I could use:
+  From: krzk
+  ...
+  Reported-by: www.krzk.eu
+  Signed-off-by: krzk
+To me it is ridiculous.
 
-> Second, it was reported by coccinelle.
-> Reported-by should be use to give real credits.
-> 
-> Best regards,
-> Krzysztof
-> 
->> Signed-off-by: YueHaibing <yuehaibing@huawei.com>
->> ---
->>  drivers/spi/spi-s3c24xx.c | 4 +---
->>  1 file changed, 1 insertion(+), 3 deletions(-)
->>
->> diff --git a/drivers/spi/spi-s3c24xx.c b/drivers/spi/spi-s3c24xx.c
->> index aea8fd9..2d6e37f 100644
->> --- a/drivers/spi/spi-s3c24xx.c
->> +++ b/drivers/spi/spi-s3c24xx.c
->> @@ -487,7 +487,6 @@ static int s3c24xx_spi_probe(struct platform_device *pdev)
->>         struct s3c2410_spi_info *pdata;
->>         struct s3c24xx_spi *hw;
->>         struct spi_master *master;
->> -       struct resource *res;
->>         int err = 0;
->>
->>         master = spi_alloc_master(&pdev->dev, sizeof(struct s3c24xx_spi));
->> @@ -536,8 +535,7 @@ static int s3c24xx_spi_probe(struct platform_device *pdev)
->>         dev_dbg(hw->dev, "bitbang at %p\n", &hw->bitbang);
->>
->>         /* find and map our resources */
->> -       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->> -       hw->regs = devm_ioremap_resource(&pdev->dev, res);
->> +       hw->regs = devm_platform_ioremap_resource(pdev, 0);
->>         if (IS_ERR(hw->regs)) {
->>                 err = PTR_ERR(hw->regs);
->>                 goto err_no_pdata;
->> --
->> 2.7.4
->>
->>
-> 
-> .
-> 
+Different thing is that Reported-by is for fixing bugs or issues.
+There is no bug here. There is no problem solved except making the
+code smaller. That's not what is Reported-by for.
 
+Best regards,
+Krzysztof
 
 _______________________________________________
 linux-amlogic mailing list
