@@ -2,72 +2,104 @@ Return-Path: <SRS0=+PkE=XA=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.2 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5ADADC43331
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Sep 2019 17:39:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8A3F5C43140
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Sep 2019 18:40:03 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 426072070C
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Sep 2019 17:39:16 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7BED7206DE
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Sep 2019 18:40:04 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XQEsvQgg";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="mowcuX34"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 426072070C
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tvnSgvQq";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=gmx.net header.i=@gmx.net header.b="Lz3Av3TL"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7BED7206DE
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=gmx.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:
-	In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	References:List-Owner; bh=ycJ85VnyIEbsT7dw48x1y3puYsgs69OTdcVgp0WKRjo=; b=XQE
-	svQgg3aGgqsMOxoqc2NHkhPnJLW79adjZ0j7PI7SOxgg/gCshYmJaPh/CzgDC5egoQ6docR01wEwx
-	2si7uRnIjpdxxtr2fx+3Cv3lKyfy1M+iF8BVH1s/ek9QH2F7sczIcHduTQcn5jx+BAnOB8b6EA+L7
-	W+E+FjUyj0PmwUg783t2sgkk9VweTsmCm2MZJ8iYVlE+/MOZLXWbP2SdT/Vx9XwiNpXjbTlHT85ZX
-	fqLFEB/sHVZ1FMwIVD+ALBa4IKC2BOJ/IV9fFNPGOmldejkrwby9/8zU99Wa/CI5AQL5RJKAv1/mr
-	BZ/E+yiL50wi6KTAz0yy9n8gXUVy9Dg==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=m9h+s9GqMEwSKnv2fFHzs47ORLEj/x3l0b/2Qb8GRow=; b=tvnSgvQq1hBfRv
+	BJ3u0OQNVb8UxEbD4/t+BFBEHl6dnU1GF9WAZTHgJBQqwuqRoOs6I47t0YsVDzuOSxmYQzW0QVkv9
+	sccGCN10m7PtkRKU9fRZOeWa7cIasffhENze3kR3g+zA/UDqeQ9vsgvNCopSHFgcJdCuO1LJ7qtH7
+	k+r5mbpXKFHRRAj5tjL+V3/Cv9UrfHh+EAsre/CNmlgPb/HrQYk6LckNQyIp0ki1qSlTf8HWoTV/H
+	efe9O3LE+icfsQocH1vt+xU2541zpMleYMgPKKLl04dWQf2xKzKj6UwZs4AvKkQHydHPVsCllAfUa
+	seoA5TsX9LE2fqfSguGg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i5viw-0000v2-PX; Thu, 05 Sep 2019 17:39:10 +0000
-Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
+	id 1i5wfk-0007UC-Ak; Thu, 05 Sep 2019 18:39:56 +0000
+Received: from mout.gmx.net ([212.227.15.19])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i5vij-0000cn-VV
- for linux-amlogic@lists.infradead.org; Thu, 05 Sep 2019 17:39:02 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
- Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
- List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
- List-Archive; bh=Kw7Sc8/OUQI+XpZIlQtPa4/jzKwmZbnxhfallE10YPc=; b=mowcuX34XcKt
- v+4geV1ZMQnB+/NsSasJjxDooP6ryicAAxa2GfxQOvQXvY5uXFahofnXDH0mkfgyl2LucPgBKTx54
- apbFNdNeEZoGMNZouDybLLDbQ5SHMZbKY9WDLP08+JlXLpIFY0Zba52Mk5gufIa7JXA4wMYv5Fxvq
- Q6FHU=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net
- ([82.37.168.47] helo=ypsilon.sirena.org.uk)
- by heliosphere.sirena.org.uk with esmtpsa
- (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <broonie@sirena.co.uk>)
- id 1i5vih-0005HM-B8; Thu, 05 Sep 2019 17:38:55 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
- id CD1272742D1C; Thu,  5 Sep 2019 18:38:54 +0100 (BST)
-From: Mark Brown <broonie@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Subject: Applied "ASoC: meson: add sm1 compatibles" to the asoc tree
-In-Reply-To: <20190905120120.31752-2-jbrunet@baylibre.com>
-X-Patchwork-Hint: ignore
-Message-Id: <20190905173854.CD1272742D1C@ypsilon.sirena.org.uk>
-Date: Thu,  5 Sep 2019 18:38:54 +0100 (BST)
-X-Bad-Reply: In-Reply-To but no 'Re:' in Subject.
+ id 1i5wfh-0007Ti-7s
+ for linux-amlogic@lists.infradead.org; Thu, 05 Sep 2019 18:39:54 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=badeba3b8450; t=1567708735;
+ bh=bhJITHNaDSNk82tHbXwjAU2m4OSwrTVq9Dh6XgoEVgM=;
+ h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
+ b=Lz3Av3TLOi0x6l/ZeUn+JxA7lQAvjyfrdG6ivPQ0tce6WJsbQnRbTWZ4LLQEViLGA
+ XYtu5l9Sctw/yz6mYOl7fHcGBSORZGwnAXbJe3W2yzfsgKoKGLZ0flZoolm7UAaCzK
+ 4/1Dy3RmaMBNVt3vWnheS+pgVtxqCQ6sZIorEq/M=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [192.168.1.162] ([37.4.249.90]) by mail.gmx.com (mrgmx003
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 0M86jp-1iIvGQ1k4f-00vgyM; Thu, 05
+ Sep 2019 20:38:55 +0200
+Subject: Re: [PATCH -next 05/36] spi: bcm2835aux: use
+ devm_platform_ioremap_resource() to simplify code
+To: YueHaibing <yuehaibing@huawei.com>, broonie@kernel.org,
+ f.fainelli@gmail.com, rjui@broadcom.com, sbranden@broadcom.com,
+ eric@anholt.net, shc_work@mail.ru, agross@kernel.org, khilman@baylibre.com,
+ matthias.bgg@gmail.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+ avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+ venture@google.com, yuenn@google.com, benjaminfair@google.com,
+ kgene@kernel.org, krzk@kernel.org, andi@etezian.org, palmer@sifive.com,
+ paul.walmsley@sifive.com, baohua@kernel.org, mripard@kernel.org,
+ wens@csie.org, ldewangan@nvidia.com, thierry.reding@gmail.com,
+ jonathanh@nvidia.com, yamada.masahiro@socionext.com, michal.simek@xilinx.com
+References: <20190904135918.25352-1-yuehaibing@huawei.com>
+ <20190904135918.25352-6-yuehaibing@huawei.com>
+From: Stefan Wahren <wahrenst@gmx.net>
+Message-ID: <491084d3-c2d6-3a24-687b-2668c7f0c09a@gmx.net>
+Date: Thu, 5 Sep 2019 20:38:50 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <20190904135918.25352-6-yuehaibing@huawei.com>
+Content-Language: en-US
+X-Provags-ID: V03:K1:AhcbQzoTSubicST5gNCmmM86WbvgdCiog0LAte4hswQdx10x9U3
+ BT165vadZAyHuDZCp8X1/ZeC5JqpOYObS1+m486oNy3rM9gdrgI14dPE3E74e3EEZB2IUMv
+ MVb3xpFYe5Ue4GjAp6XFrQN4OdX747yTNloHKxIU674bbUjkCOPjkelEUkEYdQlffEFwOWE
+ srn/8FFG4jK+iaZNJwzcQ==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:adRENuIYEO4=:fdhVudO9gEG5Ljf2I1JjWN
+ zlT9EzVbICLQwAwbKCfsOQRNuiWdjGbg1HTZ2n4vqfeMrXKuzzWTLhtEeKL1GurMQubfSs/Nk
+ 504yTYHxt4sRVjaoRan5iROj5BY9QkmDRr8AR2aD+SLeCvN9O51OW2iKDxAcHaRR1nRjkKZ1Y
+ cAqTQJNfItknmAGHIip3RZ6sHJ5VlXl24G3y9etJ1beufi4/srwC351zuj83ePNdlyoiDVxf3
+ P9XLCesHv0eNFNXwgmqL80K3zUg5d58q0+xUo7NX1Hh9xuJvcMgYXwJ/+aDTcSJYVy/AOHrHQ
+ Afc8wED5sIUL4pAW4+tAZ/SDzFy/vjq5Owrmo9URhzEi/3pjAKI1tOrNstohH4K6Bv+BP5Dln
+ FE3zFYzkL/wXe7iONVwAJCncwvNcKN5/SDAnltTPN+euDlMjG6u/t/QPU8kxRmNFBfSrFHUGn
+ 2ndDpb4GRcpEDzL5kN/45FZavu4H+5ZcdR7lIMK1aChVCcWOhwQ7B6YrGvUg2H50N/jvHCfyn
+ 526BdViUsblAPBwL78V1gj7j3b9AAzDQHY2ympbwgl7wwOFtQlyAE6T7lgSgeA/PYdB62bzF0
+ 04yzE+TeCWjBBaZgBYNMRSHy8Pwcu9Zat6gk4NEH4h8SgFnU9gRUXmGo0ep4Bkacd8jXRscQT
+ iBr0yIlAkLdV54u3L5bK4j6h95WuCXfYrSPR6qFwVBks3dNc9Xy297aBj90c3iNAnr+gUAz9e
+ lW35VtwaT5cBBOwI4hYvgqF2US/amjBWJPmXRj0I90xdZguKHhfjno/vwpjLWDvkelwLDm5+J
+ 6tNo++B91nktW884NEgj9AGSRua5xKVDINuKE9Y/DhqGiNSSglBs50DCigRddr/LeX3kZ4nxb
+ Z0FN1ASdo0wA/mnyPx8EQ+lGCmHhnCdsBCL79Dls3gKaDuiioQVb6Vw4vNrkaC9E0zGMUF8Hp
+ rxDOttRPcszyKuJbeG0T3D9t4RcGnsYDo651EDHRCwJYx0umLWiClmoacgCwRL/CpknpINu1w
+ b92BDA9sc3Lu6cjTvQCNmZ5o3r+o72tNaMaJtJ5zobxWoYrjUalmzxQ10KG4OjoO5GkOloodr
+ Fhc3rFJkKoMqjXC0xxg1nmlPg3vN4+5ICP3xT1bv60sGeu0+mUNwM3Lg290Q1ASsbXndICX2M
+ WNqNpRy/dU6NrJ1Ll6zy4xH2n3a7gVFBzIVh0d0giFSOdX1vhKy2ZLyxgO8MgBCbu9DNhDmr/
+ 8vEOmM+86m1g+1+ib
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190905_103858_012185_BADD4F03 
-X-CRM114-Status: GOOD (  11.68  )
+X-CRM114-CacheID: sfid-20190905_113953_616706_275AA8D5 
+X-CRM114-Status: UNSURE (   6.01  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,152 +111,24 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
- Kevin Hilman <khilman@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>,
- linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
- linux-amlogic@lists.infradead.org
-MIME-Version: 1.0
+Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ openbmc@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+ bcm-kernel-feedback-list@broadcom.com, linux-rpi-kernel@lists.infradead.org,
+ linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The patch
-
-   ASoC: meson: add sm1 compatibles
-
-has been applied to the asoc tree at
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.4
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
-From f466309534b6f21304e1ee0573a60df9c4590272 Mon Sep 17 00:00:00 2001
-From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Thu, 5 Sep 2019 14:01:13 +0200
-Subject: [PATCH] ASoC: meson: add sm1 compatibles
-
-Document the compatible strings of the audio devices of the sm1 SoC
-family
-
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Link: https://lore.kernel.org/r/20190905120120.31752-2-jbrunet@baylibre.com
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt  | 4 +++-
- Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt   | 3 ++-
- .../devicetree/bindings/sound/amlogic,axg-spdifin.txt         | 3 ++-
- .../devicetree/bindings/sound/amlogic,axg-spdifout.txt        | 3 ++-
- .../devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt  | 4 +++-
- .../devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt       | 3 ++-
- 6 files changed, 14 insertions(+), 6 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
-index 4330fc9dca6d..4b17073c8f8c 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
-@@ -4,7 +4,9 @@ Required properties:
- - compatible: 'amlogic,axg-toddr' or
- 	      'amlogic,axg-toddr' or
- 	      'amlogic,g12a-frddr' or
--	      'amlogic,g12a-toddr'
-+	      'amlogic,g12a-toddr' or
-+	      'amlogic,sm1-frddr' or
-+	      'amlogic,sm1-toddr'
- - reg: physical base address of the controller and length of memory
-        mapped region.
- - interrupts: interrupt specifier for the fifo.
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
-index 73f473a9365f..b3f097976e6b 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
-@@ -2,7 +2,8 @@
- 
- Required properties:
- - compatible: 'amlogic,axg-pdm' or
--	      'amlogic,g12a-pdm'
-+	      'amlogic,g12a-pdm' or
-+	      'amlogic,sm1-pdm'
- - reg: physical base address of the controller and length of memory
-        mapped region.
- - clocks: list of clock phandle, one for each entry clock-names.
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt
-index 0b82504fa419..62e5bca71664 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt
-@@ -2,7 +2,8 @@
- 
- Required properties:
- - compatible: 'amlogic,axg-spdifin' or
--	      'amlogic,g12a-spdifin'
-+	      'amlogic,g12a-spdifin' or
-+	      'amlogic,sm1-spdifin'
- - interrupts: interrupt specifier for the spdif input.
- - clocks: list of clock phandle, one for each entry clock-names.
- - clock-names: should contain the following:
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
-index 826152730508..d38aa35ec630 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
-@@ -2,7 +2,8 @@
- 
- Required properties:
- - compatible: 'amlogic,axg-spdifout' or
--	      'amlogic,g12a-spdifout'
-+	      'amlogic,g12a-spdifout' or
-+	      'amlogic,sm1-spdifout'
- - clocks: list of clock phandle, one for each entry clock-names.
- - clock-names: should contain the following:
-   * "pclk" : peripheral clock.
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
-index 8835a43edfbb..5996c0cd89c2 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
-@@ -4,7 +4,9 @@ Required properties:
- - compatible: 'amlogic,axg-tdmin' or
- 	      'amlogic,axg-tdmout' or
- 	      'amlogic,g12a-tdmin' or
--	      'amlogic,g12a-tdmout'
-+	      'amlogic,g12a-tdmout' or
-+	      'amlogic,sm1-tdmin' or
-+	      'amlogic,sm1-tdmout
- - reg: physical base address of the controller and length of memory
-        mapped region.
- - clocks: list of clock phandle, one for each entry clock-names.
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt b/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt
-index aa6c35570d31..173a95045540 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt
-@@ -1,7 +1,8 @@
- * Amlogic HDMI Tx control glue
- 
- Required properties:
--- compatible: "amlogic,g12a-tohdmitx"
-+- compatible: "amlogic,g12a-tohdmitx" or
-+	      "amlogic,sm1-tohdmitx"
- - reg: physical base address of the controller and length of memory
-        mapped region.
- - #sound-dai-cells: should be 1.
--- 
-2.20.1
-
+Am 04.09.19 um 15:58 schrieb YueHaibing:
+> Use devm_platform_ioremap_resource() to simplify the code a bit.
+> This is detected by coccinelle.
+>
+> Reported-by: Hulk Robot <hulkci@huawei.com>
+> Signed-off-by: YueHaibing <yuehaibing@huawei.com>
+Acked-by: Stefan Wahren <wahrenst@gmx.net>
 
 _______________________________________________
 linux-amlogic mailing list
