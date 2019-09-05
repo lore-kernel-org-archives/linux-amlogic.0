@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 92DBDC3A5AB
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 991F6C3A5AA
 	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Sep 2019 13:00:19 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D81A021BE5
+	by mail.kernel.org (Postfix) with ESMTPS id DDE7321D6C
 	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Sep 2019 13:00:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="SIG+xQcW";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="SnuwT5mI"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D81A021BE5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oOzY5qEu";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="h/8tLCzM"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DDE7321D6C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,67 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=WLIby0NnX7eSlRNbinR/WTUBXwYeZaWDHfm6jvtTM78=; b=SIG+xQcWeYt/ca
-	+5X4d87adCytCWVV47cWZ1K70fINtmOioENfTM3LLPPkY/c0XQb4tL/hTEzCOMADDEWb0czvxV6Bh
-	y6QSpypqS3GznXhF1chhY4aeNM5dIFKPVaga0u2at3aiKbs7kcEq1u2oejzLG+lusRkbUb+n3o58l
-	uok7VapmgxFYCR7MO1tl9lilmfecrz0BgJoVlhVyW7lYMB/67t2b4re/lX+AX8t2yUp5LTuRik5nP
-	PD47xIOmr6/Zoj0JY67rwJKtxY+xazMLuNHs/9sMCYxJaIStQbdJb7y2CkswaR81ymRVWNuG3EiAN
-	RCIyqd0ycdH9Sm7TI1rQ==;
+	List-Owner; bh=lInDHXJ5NWT37ZPu7a60qffaCXt8PWz2MRv+5YFr/7M=; b=oOzY5qEuQIuXph
+	QPdrZcnuJjW/zcra1S5UosRClr54hzkrat6pE1YqjG/v8DQKypvJV/WmhrumD0Z5TLBolSIk4zC17
+	gLHIgGa/p2o63NHu7w5w0xEgxdB+crlq7ZNY4xqYKEnCo7691J+3jMby2AjxBIqFzI0dibpK0aj3s
+	yXVPulcFGF3eAft+SSCmOp9F87VK7jqjeXA4+ujQajeJ9NFq4y3ElYJZjHwKrTd6VBuBWzLToEwuD
+	ipH8ztKq4EwjpVr2PQebVnFJIAdD0b8e0H1+ehHodrHUCBltMS80oHYxZ1PCfaVnUFJHu9RRWEKzf
+	MeGf4YcWQVL4x7zkUulA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i5rMx-0006Xe-QA; Thu, 05 Sep 2019 13:00:11 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1i5rMw-0006Va-2m; Thu, 05 Sep 2019 13:00:10 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i5rMt-0005zs-2m
- for linux-amlogic@lists.infradead.org; Thu, 05 Sep 2019 13:00:08 +0000
-Received: by mail-wr1-x443.google.com with SMTP id q14so2658628wrm.9
- for <linux-amlogic@lists.infradead.org>; Thu, 05 Sep 2019 06:00:06 -0700 (PDT)
+ id 1i5rMr-0005p6-Of
+ for linux-amlogic@lists.infradead.org; Thu, 05 Sep 2019 13:00:07 +0000
+Received: by mail-wm1-x341.google.com with SMTP id c10so2709195wmc.0
+ for <linux-amlogic@lists.infradead.org>; Thu, 05 Sep 2019 06:00:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=to9nPxGvpAjI2vmBY6hiBkK0HN4KqohuKcK/qXqDNPY=;
- b=SnuwT5mIhn9C8R/kG87+eslWK4M08z27tnIDQ/toGWNx0ojS1cWn09AJM87Ul8otC7
- syKEujMS+EpLHYDEiwjuyN/zVqjk1XKNHnRjjFPN4NW+7Hy7872vp62w8rS/Q4JF3qkg
- rs98UZRdufTi7TKufZ9JeOQe450oKBOy4WUSlTUQcdNKLHTvUI86418VWK+TXUEx1z8P
- LlT1Wfexo1rLCmmkX8GIWWbLAOiv/YPzM7Zg4HEVtTLcYMkV7iMRt/AGmQMuxWQfs5TL
- ZdT0b4OU5F1WaXI7hc3EZ7lsKR3Tj50eg6jkJSMHVWQyLtuZR5BaxpMWMSpsNNgeyOIa
- SoJw==
+ bh=9o518Q9M+VA62cCsQMBXOXpf3ntmSugaTgtOZlotIoo=;
+ b=h/8tLCzMrNIiSCKb1hq3bANqq0O7NXfwEbtD1KjJQJdIo9X0zm4Sg6VlbVIyFJa22D
+ fzT9tMGKti05cgQ7H5y55cnhLBYmX1S6TUg3vFz7rEoF8Gqmyfy/9JM5lYKBYHNkeTHb
+ uMznWW0jHU57LOQa9ej99KKjg/geC2wnY8xK4m/1czGaQlWrzt5H4bDJzFfpXz/sXqF3
+ o7MKD0cGl24WBul/wImWbW2Vrb0tnQeJTwwZziBEeyzu2C1ttCJRsS0fH+F3bUFgMUFd
+ NSrIRGELQk+/+zzLzSuQGkzCmQrV2T2Sdx08DtmDLkGGgBeU3X9BoAo5X12pB+hwIEBw
+ 4ZYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=to9nPxGvpAjI2vmBY6hiBkK0HN4KqohuKcK/qXqDNPY=;
- b=GfZMF0yNUOzL3uG7koYKxUXuplIzru0hhAEKf/5P15HeOSyRPvpSG5vfswjrh4eRYh
- 2zDpH0AphdXcFFl5bvdqdIrlPPcVDnktWtbzHCkA5hG+RKgUiFPUEFs8C8Z5sj+gHRn5
- f/p0Y/2Yjg/CiyrPwbIT3d+k8MoUL+PjD0Q1JQZ/KIJrR5C95L1tEJVIBn0M1kaHECne
- j2yItZHYMUNAbsc9hp1CX9ZkvnmQlDkwtIjHtHNE2JiPmBaJqqg3eVtfAcTxjiG9MK0H
- s+JW1uVg2rKorT2qFyTcmAcmvPigNX9x2QgOrTd/GaBbqQKxUfEKDVJDfveIAwyyupe0
- pPrw==
-X-Gm-Message-State: APjAAAXktIM+CjQgMFKiL6QpdJ4Tw9A64YauDeQSC08xwn2YOj8B48Wa
- H/I2jW/WFGSXF3uhrIKgglzKLADYvCTgAQ==
-X-Google-Smtp-Source: APXvYqyWLZJ5ptNeLjAU/5Y4+RE4paQzv79ZLTG/PR8hFu5o1WDdkpKLnFc5q7mcqJc3J1ZSrLAgjA==
-X-Received: by 2002:a05:6000:12d1:: with SMTP id
- l17mr2510949wrx.91.1567688405327; 
- Thu, 05 Sep 2019 06:00:05 -0700 (PDT)
+ bh=9o518Q9M+VA62cCsQMBXOXpf3ntmSugaTgtOZlotIoo=;
+ b=dxTIGa7aJxDO+gVR83nEG8h12cfzhI/4tG0msL/YAEPfE7ahkidhen2FCadA8EW6vR
+ ZEhx6pPKrGz/4gaWEYlnWbTHXHsuFBtB08cuqDBXUBdKDtr8BuDbPuWgFd6fXU1IreNx
+ uLX8fznRAFtMadbveme7EO/glvSGrSa5Os919o0iVAxHspv6gy6D2Gvu3vzIkRPCb4BL
+ iFgy7m00n1NI68IiLo1U56LJcB1wmdgtiOiEbeclg83iQaXCjBCcsxPa/ky5x7u5Ss7v
+ Zu15/mGpOE97s1cAKiF/w+5pvU5Ci8jaLlN6yjdQgIwDVohWsyBniwxekH2xiKn6GwLl
+ /zKQ==
+X-Gm-Message-State: APjAAAXh8aS00zuyHfLJB7tiFvEconnKYePfMcJfFeGRRIKAnphc4OKi
+ 4YdwC3V9vuFZSqwiAz062A9DoQ==
+X-Google-Smtp-Source: APXvYqwTs4hlT/F1FYODJLFlYoxd4c+WS6plu/pzJAf6EYVvYB882hNz9pcfxd/K5ReyoWJJ4fwRQw==
+X-Received: by 2002:a1c:c911:: with SMTP id f17mr2880993wmb.73.1567688404367; 
+ Thu, 05 Sep 2019 06:00:04 -0700 (PDT)
 Received: from starbuck.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id z189sm3727903wmc.25.2019.09.05.06.00.04
+ by smtp.googlemail.com with ESMTPSA id z189sm3727903wmc.25.2019.09.05.06.00.03
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 05 Sep 2019 06:00:04 -0700 (PDT)
+ Thu, 05 Sep 2019 06:00:03 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH 2/5] arm64: dts: meson: g12: fix audio fifo reg size
-Date: Thu,  5 Sep 2019 14:59:53 +0200
-Message-Id: <20190905125956.4384-3-jbrunet@baylibre.com>
+Subject: [PATCH 1/5] arm64: dts: meson: axg: fix audio fifo reg size
+Date: Thu,  5 Sep 2019 14:59:52 +0200
+Message-Id: <20190905125956.4384-2-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190905125956.4384-1-jbrunet@baylibre.com>
 References: <20190905125956.4384-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190905_060007_138005_1F5E4402 
-X-CRM114-Status: UNSURE (   7.43  )
+X-CRM114-CacheID: sfid-20190905_060005_806917_B7C5C97B 
+X-CRM114-Status: UNSURE (   7.57  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -109,70 +108,70 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 The register region size initially is too small to access all
 the fifo registers.
 
-Fixes: c59b7fe5aafd ("arm64: dts: meson: g12a: add audio fifos")
+Fixes: f2b8f6a93357 ("arm64: dts: meson-axg: add audio fifos")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 12 ++++++------
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 12 ++++++------
  1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 3f39e020f74e..0ee8a369c547 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -1509,7 +1509,7 @@
- 				toddr_a: audio-controller@100 {
- 					compatible = "amlogic,g12a-toddr",
- 						     "amlogic,axg-toddr";
--					reg = <0x0 0x100 0x0 0x1c>;
-+					reg = <0x0 0x100 0x0 0x2c>;
- 					#sound-dai-cells = <0>;
- 					sound-name-prefix = "TODDR_A";
- 					interrupts = <GIC_SPI 148 IRQ_TYPE_EDGE_RISING>;
-@@ -1521,7 +1521,7 @@
- 				toddr_b: audio-controller@140 {
- 					compatible = "amlogic,g12a-toddr",
- 						     "amlogic,axg-toddr";
--					reg = <0x0 0x140 0x0 0x1c>;
-+					reg = <0x0 0x140 0x0 0x2c>;
- 					#sound-dai-cells = <0>;
- 					sound-name-prefix = "TODDR_B";
- 					interrupts = <GIC_SPI 149 IRQ_TYPE_EDGE_RISING>;
-@@ -1533,7 +1533,7 @@
- 				toddr_c: audio-controller@180 {
- 					compatible = "amlogic,g12a-toddr",
- 						     "amlogic,axg-toddr";
--					reg = <0x0 0x180 0x0 0x1c>;
-+					reg = <0x0 0x180 0x0 0x2c>;
- 					#sound-dai-cells = <0>;
- 					sound-name-prefix = "TODDR_C";
- 					interrupts = <GIC_SPI 150 IRQ_TYPE_EDGE_RISING>;
-@@ -1545,7 +1545,7 @@
- 				frddr_a: audio-controller@1c0 {
- 					compatible = "amlogic,g12a-frddr",
- 						     "amlogic,axg-frddr";
--					reg = <0x0 0x1c0 0x0 0x1c>;
-+					reg = <0x0 0x1c0 0x0 0x2c>;
- 					#sound-dai-cells = <0>;
- 					sound-name-prefix = "FRDDR_A";
- 					interrupts = <GIC_SPI 152 IRQ_TYPE_EDGE_RISING>;
-@@ -1557,7 +1557,7 @@
- 				frddr_b: audio-controller@200 {
- 					compatible = "amlogic,g12a-frddr",
- 						     "amlogic,axg-frddr";
--					reg = <0x0 0x200 0x0 0x1c>;
-+					reg = <0x0 0x200 0x0 0x2c>;
- 					#sound-dai-cells = <0>;
- 					sound-name-prefix = "FRDDR_B";
- 					interrupts = <GIC_SPI 153 IRQ_TYPE_EDGE_RISING>;
-@@ -1569,7 +1569,7 @@
- 				frddr_c: audio-controller@240 {
- 					compatible = "amlogic,g12a-frddr",
- 						     "amlogic,axg-frddr";
--					reg = <0x0 0x240 0x0 0x1c>;
-+					reg = <0x0 0x240 0x0 0x2c>;
- 					#sound-dai-cells = <0>;
- 					sound-name-prefix = "FRDDR_C";
- 					interrupts = <GIC_SPI 154 IRQ_TYPE_EDGE_RISING>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+index 82919b106010..bb4a2acb9970 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -1162,7 +1162,7 @@
+ 
+ 			toddr_a: audio-controller@100 {
+ 				compatible = "amlogic,axg-toddr";
+-				reg = <0x0 0x100 0x0 0x1c>;
++				reg = <0x0 0x100 0x0 0x2c>;
+ 				#sound-dai-cells = <0>;
+ 				sound-name-prefix = "TODDR_A";
+ 				interrupts = <GIC_SPI 84 IRQ_TYPE_EDGE_RISING>;
+@@ -1173,7 +1173,7 @@
+ 
+ 			toddr_b: audio-controller@140 {
+ 				compatible = "amlogic,axg-toddr";
+-				reg = <0x0 0x140 0x0 0x1c>;
++				reg = <0x0 0x140 0x0 0x2c>;
+ 				#sound-dai-cells = <0>;
+ 				sound-name-prefix = "TODDR_B";
+ 				interrupts = <GIC_SPI 85 IRQ_TYPE_EDGE_RISING>;
+@@ -1184,7 +1184,7 @@
+ 
+ 			toddr_c: audio-controller@180 {
+ 				compatible = "amlogic,axg-toddr";
+-				reg = <0x0 0x180 0x0 0x1c>;
++				reg = <0x0 0x180 0x0 0x2c>;
+ 				#sound-dai-cells = <0>;
+ 				sound-name-prefix = "TODDR_C";
+ 				interrupts = <GIC_SPI 86 IRQ_TYPE_EDGE_RISING>;
+@@ -1195,7 +1195,7 @@
+ 
+ 			frddr_a: audio-controller@1c0 {
+ 				compatible = "amlogic,axg-frddr";
+-				reg = <0x0 0x1c0 0x0 0x1c>;
++				reg = <0x0 0x1c0 0x0 0x2c>;
+ 				#sound-dai-cells = <0>;
+ 				sound-name-prefix = "FRDDR_A";
+ 				interrupts = <GIC_SPI 88 IRQ_TYPE_EDGE_RISING>;
+@@ -1206,7 +1206,7 @@
+ 
+ 			frddr_b: audio-controller@200 {
+ 				compatible = "amlogic,axg-frddr";
+-				reg = <0x0 0x200 0x0 0x1c>;
++				reg = <0x0 0x200 0x0 0x2c>;
+ 				#sound-dai-cells = <0>;
+ 				sound-name-prefix = "FRDDR_B";
+ 				interrupts = <GIC_SPI 89 IRQ_TYPE_EDGE_RISING>;
+@@ -1217,7 +1217,7 @@
+ 
+ 			frddr_c: audio-controller@240 {
+ 				compatible = "amlogic,axg-frddr";
+-				reg = <0x0 0x240 0x0 0x1c>;
++				reg = <0x0 0x240 0x0 0x2c>;
+ 				#sound-dai-cells = <0>;
+ 				sound-name-prefix = "FRDDR_C";
+ 				interrupts = <GIC_SPI 90 IRQ_TYPE_EDGE_RISING>;
 -- 
 2.21.0
 
