@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 51BBAC43140
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Sep 2019 17:39:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A4799C43140
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Sep 2019 17:39:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 38F7D2070C
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Sep 2019 17:39:11 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 83CC820828
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Sep 2019 17:39:12 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KTGJZZjR";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="wuY8kl0A"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 38F7D2070C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YrZcZhVH";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=sirena.org.uk header.i=@sirena.org.uk header.b="uBfipR5w"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 83CC820828
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,47 +26,48 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Message-Id:
 	In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	References:List-Owner; bh=f586h7X6zhwWtyM+2XxocNrRjSUIre9l8VAgr+gvjLY=; b=KTG
-	JZZjRACblh8preUdll10JzDXi26mBdEN0PSoR+JLVtnE7yRcbw9hV9/5zNztGWdgND0upcw2Qlkc0
-	eyCkOG7BCjjUJiqGvWJ+tVIHGZj5k5zHGExWE4FBA59HX07eM0xZNPlCD2fsvy6LzvTDh1ayqESTq
-	3qCPGgNWV+UIU9uuanFaWumrZawRHmBKuJwGYc0TdvTTYlLGeUYEISfTCwf19TogjlBX1kaicFKpL
-	wUQrttiH+URO+2PZA7XYUbtDmNud0vXyclCOzUje3unP2W+BmvzB8/zvMpLRRRAKa5rhi2J/GVMBD
-	lr8ZlWiXHkwv1wFJXtR5Mu4FNl18RQg==;
+	References:List-Owner; bh=Wz0j+epUbcUB7vOd21kB2qnYiBZ+l0WPINUYfQHCE0U=; b=YrZ
+	cZhVHjrVcLhttgNrom3mlKCN1q8JXEVhbSLX3CONpnWsfNVM+kny8HMvVBXkAZzS15paxCVS/+MJ6
+	9iXsmESUWmRhTPEQN5GVbkzdgHkd3N/P4Om5FPVleueXkrG2JrDbm8TLXAztzsfrMbNS2+8tkfC8D
+	dTK9rMpI8jLhF04nfeYFtlMvMa2okvWtrkcmJ10mpctukIjEzdlOs7O5IyeWRiBNN4iDYvD8IgYOw
+	7eYGYvqmMISlaWVe6+0Ka1thPTTzMrAezRTEgOEAmPW7jTvwtkEH0CCk5eIhBQnAlNZWadaQKshpO
+	+eiB2u8F69l8zS6BJV8ZGkF9iDjlWYg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i5vir-0000m5-Kw; Thu, 05 Sep 2019 17:39:05 +0000
+	id 1i5vit-0000p9-7M; Thu, 05 Sep 2019 17:39:07 +0000
 Received: from heliosphere.sirena.org.uk ([2a01:7e01::f03c:91ff:fed4:a3b6])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i5vij-0000cl-Pv
- for linux-amlogic@lists.infradead.org; Thu, 05 Sep 2019 17:38:59 +0000
+ id 1i5vii-0000bY-Bl
+ for linux-amlogic@lists.infradead.org; Thu, 05 Sep 2019 17:39:00 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
  Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
  Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
  Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
  List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
- List-Archive; bh=DwBokQZNNtRg9EVjpvNf70nDH91xn3+otVOKWRMwdXc=; b=wuY8kl0AYbf/
- rK3iK07pefHy6TlZiqwwBdBDJeWbDCWsR6Gc5gG1qUhhWk5uQ6Fpr+wUgecS4dAoLyyIduAutXULf
- XYwhfM6yzy8mSgXQaiQldp/FS3OFjIqMqiX4OMRhYi2wX+DcV5vzp56dQBA/EMyn6JLAemXS+tXfH
- cYAXs=;
-Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
+ List-Archive; bh=gTgJa1L/jTwLywRAIQiBfZOqjxeh0zydmkNCB3pWhPA=; b=uBfipR5wpgho
+ h16X77E0wy0NbeFj+4Pcd6e8lokmZqeGmG5CgX6ZN3Yn/xVQUfBVCb3WdorOgd8Y8N7OlCtGXoX6A
+ B4aE/vzbg87+r+dVwWYATP+Fr7KM7D8MuNvdeR8KLLcQaYNDxvBa0u7uuG84FxYslIKdN4qVS6E1t
+ XbojI=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net
+ ([82.37.168.47] helo=ypsilon.sirena.org.uk)
  by heliosphere.sirena.org.uk with esmtpsa
  (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
  (envelope-from <broonie@sirena.co.uk>)
- id 1i5vih-0005HK-6Z; Thu, 05 Sep 2019 17:38:55 +0000
+ id 1i5vie-0005Gf-6U; Thu, 05 Sep 2019 17:38:52 +0000
 Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
- id 9BF082742D17; Thu,  5 Sep 2019 18:38:54 +0100 (BST)
+ id A52752742D1C; Thu,  5 Sep 2019 18:38:51 +0100 (BST)
 From: Mark Brown <broonie@kernel.org>
 To: Jerome Brunet <jbrunet@baylibre.com>
-Subject: Applied "ASoC: meson: add reset binding" to the asoc tree
-In-Reply-To: <20190905120120.31752-3-jbrunet@baylibre.com>
+Subject: Applied "ASoC: meson: axg-toddr: add sm1 support" to the asoc tree
+In-Reply-To: <20190905120120.31752-8-jbrunet@baylibre.com>
 X-Patchwork-Hint: ignore
-Message-Id: <20190905173854.9BF082742D17@ypsilon.sirena.org.uk>
-Date: Thu,  5 Sep 2019 18:38:54 +0100 (BST)
+Message-Id: <20190905173851.A52752742D1C@ypsilon.sirena.org.uk>
+Date: Thu,  5 Sep 2019 18:38:51 +0100 (BST)
 X-Bad-Reply: In-Reply-To but no 'Re:' in Subject.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190905_103857_835091_1D1FD836 
-X-CRM114-Status: GOOD (  16.57  )
+X-CRM114-CacheID: sfid-20190905_103856_431881_036D2D2A 
+X-CRM114-Status: GOOD (  12.00  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,7 +91,7 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 The patch
 
-   ASoC: meson: add reset binding
+   ASoC: meson: axg-toddr: add sm1 support
 
 has been applied to the asoc tree at
 
@@ -115,109 +116,113 @@ to this mail.
 Thanks,
 Mark
 
-From 6b59b8f8222146fc1912e0b783c81e4122e240ac Mon Sep 17 00:00:00 2001
+From 5ac825c3d85e6c1cb8e43d67d8cb95a2a1e2bc60 Mon Sep 17 00:00:00 2001
 From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Thu, 5 Sep 2019 14:01:14 +0200
-Subject: [PATCH] ASoC: meson: add reset binding
+Date: Thu, 5 Sep 2019 14:01:19 +0200
+Subject: [PATCH] ASoC: meson: axg-toddr: add sm1 support
 
-The g12a audio subsystem, which is a derivative of the axg subsystem,
-provides a dedicated reset line for each of the audio components.
-
-The axg did not provide that and it is unclear if/when these reset are
-required. The reset already helped solve a channel mapping issue on the
-tdm formatter devices. Let's add the reset binding for the other
-components, so we can describe this in DT. We'll use it later on
-in the driver when/if needed.
+On sm1, the maximum number TODDR inputs is extended to 16.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Link: https://lore.kernel.org/r/20190905120120.31752-3-jbrunet@baylibre.com
+Link: https://lore.kernel.org/r/20190905120120.31752-8-jbrunet@baylibre.com
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt | 5 ++++-
- Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt  | 3 +++
- .../devicetree/bindings/sound/amlogic,axg-spdifin.txt        | 3 +++
- .../devicetree/bindings/sound/amlogic,axg-spdifout.txt       | 3 +++
- .../devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt      | 2 ++
- 5 files changed, 15 insertions(+), 1 deletion(-)
+ sound/soc/meson/axg-toddr.c | 68 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 68 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
-index 4b17073c8f8c..3080979350a0 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
-@@ -12,7 +12,10 @@ Required properties:
- - interrupts: interrupt specifier for the fifo.
- - clocks: phandle to the fifo peripheral clock provided by the audio
- 	  clock controller.
--- resets: phandle to memory ARB line provided by the arb reset controller.
-+- resets: list of reset phandle, one for each entry reset-names.
-+- reset-names: should contain the following:
-+  * "arb" : memory ARB line (required)
-+  * "rst" : dedicated device reset line (optional)
- - #sound-dai-cells: must be 0.
+diff --git a/sound/soc/meson/axg-toddr.c b/sound/soc/meson/axg-toddr.c
+index 2e9a2e5862ce..c8ea2145f576 100644
+--- a/sound/soc/meson/axg-toddr.c
++++ b/sound/soc/meson/axg-toddr.c
+@@ -25,6 +25,7 @@
+ #define CTRL0_TODDR_LSB_POS_MASK	GENMASK(7, 3)
+ #define CTRL0_TODDR_LSB_POS(x)		((x) << 3)
+ #define CTRL1_TODDR_FORCE_FINISH	BIT(25)
++#define CTRL1_SEL_SHIFT			28
  
- Example of FRDDR A on the A113 SoC:
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
-index b3f097976e6b..716878107a24 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
-@@ -13,6 +13,9 @@ Required properties:
-   * "sysclk" : dsp system clock
- - #sound-dai-cells: must be 0.
+ #define TODDR_MSB_POS	31
  
-+Optional property:
-+- resets: phandle to the dedicated reset line of the pdm input.
-+
- Example of PDM on the A113 SoC:
- 
- pdm: audio-controller@ff632000 {
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt
-index 62e5bca71664..df92a4ecf288 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt
-@@ -11,6 +11,9 @@ Required properties:
-   * "refclk" : spdif input reference clock
- - #sound-dai-cells: must be 0.
- 
-+Optional property:
-+- resets: phandle to the dedicated reset line of the spdif input.
-+
- Example on the A113 SoC:
- 
- spdifin: audio-controller@400 {
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
-index d38aa35ec630..28381dd1f633 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
-@@ -10,6 +10,9 @@ Required properties:
-   * "mclk" : master clock
- - #sound-dai-cells: must be 0.
- 
-+Optional property:
-+- resets: phandle to the dedicated reset line of the spdif output.
-+
- Example on the A113 SoC:
- 
- spdifout: audio-controller@480 {
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt b/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt
-index 173a95045540..4e8cd7eb7cec 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt
-@@ -6,6 +6,7 @@ Required properties:
- - reg: physical base address of the controller and length of memory
-        mapped region.
- - #sound-dai-cells: should be 1.
-+- resets: phandle to the dedicated reset line of the hdmitx glue.
- 
- Example on the S905X2 SoC:
- 
-@@ -13,6 +14,7 @@ tohdmitx: audio-controller@744 {
- 	compatible = "amlogic,g12a-tohdmitx";
- 	reg = <0x0 0x744 0x0 0x4>;
- 	#sound-dai-cells = <1>;
-+	resets = <&clkc_audio AUD_RESET_TOHDMITX>;
+@@ -221,6 +222,70 @@ static const struct axg_fifo_match_data g12a_toddr_match_data = {
+ 	.dai_drv	= &g12a_toddr_dai_drv
  };
  
- Example of an 'amlogic,axg-sound-card':
++static const char * const sm1_toddr_sel_texts[] = {
++	"IN 0", "IN 1", "IN 2",  "IN 3",  "IN 4",  "IN 5",  "IN 6",  "IN 7",
++	"IN 8", "IN 9", "IN 10", "IN 11", "IN 12", "IN 13", "IN 14", "IN 15"
++};
++
++static SOC_ENUM_SINGLE_DECL(sm1_toddr_sel_enum, FIFO_CTRL1, CTRL1_SEL_SHIFT,
++			    sm1_toddr_sel_texts);
++
++static const struct snd_kcontrol_new sm1_toddr_in_mux =
++	SOC_DAPM_ENUM("Input Source", sm1_toddr_sel_enum);
++
++static const struct snd_soc_dapm_widget sm1_toddr_dapm_widgets[] = {
++	SND_SOC_DAPM_MUX("SRC SEL", SND_SOC_NOPM, 0, 0, &sm1_toddr_in_mux),
++	SND_SOC_DAPM_AIF_IN("IN 0",  NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 1",  NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 2",  NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 3",  NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 4",  NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 5",  NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 6",  NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 7",  NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 8",  NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 9",  NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 10", NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 11", NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 12", NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 13", NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 14", NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 15", NULL, 0, SND_SOC_NOPM, 0, 0),
++};
++
++static const struct snd_soc_dapm_route sm1_toddr_dapm_routes[] = {
++	{ "Capture", NULL, "SRC SEL" },
++	{ "SRC SEL", "IN 0",  "IN 0" },
++	{ "SRC SEL", "IN 1",  "IN 1" },
++	{ "SRC SEL", "IN 2",  "IN 2" },
++	{ "SRC SEL", "IN 3",  "IN 3" },
++	{ "SRC SEL", "IN 4",  "IN 4" },
++	{ "SRC SEL", "IN 5",  "IN 5" },
++	{ "SRC SEL", "IN 6",  "IN 6" },
++	{ "SRC SEL", "IN 7",  "IN 7" },
++	{ "SRC SEL", "IN 8",  "IN 8" },
++	{ "SRC SEL", "IN 9",  "IN 9" },
++	{ "SRC SEL", "IN 10", "IN 10" },
++	{ "SRC SEL", "IN 11", "IN 11" },
++	{ "SRC SEL", "IN 12", "IN 12" },
++	{ "SRC SEL", "IN 13", "IN 13" },
++	{ "SRC SEL", "IN 14", "IN 14" },
++	{ "SRC SEL", "IN 15", "IN 15" },
++};
++
++static const struct snd_soc_component_driver sm1_toddr_component_drv = {
++	.dapm_widgets		= sm1_toddr_dapm_widgets,
++	.num_dapm_widgets	= ARRAY_SIZE(sm1_toddr_dapm_widgets),
++	.dapm_routes		= sm1_toddr_dapm_routes,
++	.num_dapm_routes	= ARRAY_SIZE(sm1_toddr_dapm_routes),
++	.ops			= &g12a_fifo_pcm_ops
++};
++
++static const struct axg_fifo_match_data sm1_toddr_match_data = {
++	.component_drv	= &sm1_toddr_component_drv,
++	.dai_drv	= &g12a_toddr_dai_drv
++};
++
+ static const struct of_device_id axg_toddr_of_match[] = {
+ 	{
+ 		.compatible = "amlogic,axg-toddr",
+@@ -228,6 +293,9 @@ static const struct of_device_id axg_toddr_of_match[] = {
+ 	}, {
+ 		.compatible = "amlogic,g12a-toddr",
+ 		.data = &g12a_toddr_match_data,
++	}, {
++		.compatible = "amlogic,sm1-toddr",
++		.data = &sm1_toddr_match_data,
+ 	}, {}
+ };
+ MODULE_DEVICE_TABLE(of, axg_toddr_of_match);
 -- 
 2.20.1
 
