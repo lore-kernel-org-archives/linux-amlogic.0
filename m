@@ -2,102 +2,83 @@ Return-Path: <SRS0=+PkE=XA=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.2 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 38A03C43331
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Sep 2019 18:40:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3ECCAC43331
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Sep 2019 20:15:58 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 16E1F206DE
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Sep 2019 18:40:40 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 72200206BB
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Sep 2019 20:15:58 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Igf+MONS";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=gmx.net header.i=@gmx.net header.b="l5gka5lT"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 16E1F206DE
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=gmx.net
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="H4o3k80x";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="t3et7p6L"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 72200206BB
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=m9h+s9GqMEwSKnv2fFHzs47ORLEj/x3l0b/2Qb8GRow=; b=Igf+MONSS19tEq
-	pL88cvasRDE53Jf7Hf/WRdZ1mmE4knxGEWgE1nWoRSkTKyHI2rw0xvuQxqNC0BNLn0MBLvGUJywai
-	GypMtTgDwjB3VxFkvtOCzdA3iU728nhxaUpTzJ4XAJiEvgtg7VJHYONI8tZvEHcKBazH9VHo10NjP
-	+HRxXpq5dY5BjXte8yfK0wHaIRaPRTaT/4D8Y2w9Y+s99YsKiGqvw2ob4MlHU+VhBeSrbqYXT1t+Z
-	WaOX0INB6196CimL25DzX8f9l3YRBa+/ih6ft/iedISEG8UVenbgleN2/at79q8g7fEwjsFBD2k4W
-	ngnlmJy6VdlStYuFPsSw==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=T+OoYTLMtJPif5Qtc4ik+rflW63TKq4LqnVPQyRUbxw=; b=H4o3k80xAWkF4j
+	9NDUuDDJ0sour9jKNH0U/d2e/AWqEGUaUBALTDIzT/tH02V2MOVj/CCKzdu7RFxSm8wcM/8+4iP8y
+	KJby+0XY7TD5P+8KvWHjWLLqDhmeG8Di/ETN63imlpB6HvQWzpStqUvXP4Nc68RLxDlYuAvrwpKdv
+	gQyTNECs0YB8eWt2gbkDu77J61iQv8CRqV5hh/NkxhYuMOZuohQGjKwmuEX+vjTpFdAH8tlpjs8M+
+	PybbAZ+Ed8OKKk91/mPlidEow9kXOEoDyttmCI+shky1Fn/FbNWOlc0T1jtt4NkK8hTkgt2IeDvo1
+	xt1HevkGyJIJwKJ92tAQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i5wgL-0000qQ-UR; Thu, 05 Sep 2019 18:40:33 +0000
-Received: from mout.gmx.net ([212.227.15.19])
+	id 1i5yAY-0006tk-G8; Thu, 05 Sep 2019 20:15:50 +0000
+Received: from mail-oi1-x241.google.com ([2607:f8b0:4864:20::241])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i5wg5-0000Wr-RF; Thu, 05 Sep 2019 18:40:19 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=badeba3b8450; t=1567708792;
- bh=bhJITHNaDSNk82tHbXwjAU2m4OSwrTVq9Dh6XgoEVgM=;
- h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
- b=l5gka5lTwefMebb8U4HzIol6vblHmV57FMzes8yN8THNc2vXcQcJZM5dhzYH/tQK4
- Rm3QwWOLfBaeoh2LLT7euoAQqboVIkauh19AbkTP6fIUnF2EtRFEnmRjZxtUUyjeWW
- qjS0cTFWD7MMMZtMvn1Fe9ouR8oBJi5t0xopZDuk=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [192.168.1.162] ([37.4.249.90]) by mail.gmx.com (mrgmx001
- [212.227.17.190]) with ESMTPSA (Nemesis) id 0MMCFR-1i4Ygs4Bw5-00859O; Thu, 05
- Sep 2019 20:39:52 +0200
-Subject: Re: [PATCH -next 06/36] spi: bcm2835: use
- devm_platform_ioremap_resource() to simplify code
-To: YueHaibing <yuehaibing@huawei.com>, broonie@kernel.org,
- f.fainelli@gmail.com, rjui@broadcom.com, sbranden@broadcom.com,
- eric@anholt.net, shc_work@mail.ru, agross@kernel.org, khilman@baylibre.com,
- matthias.bgg@gmail.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
- avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
- venture@google.com, yuenn@google.com, benjaminfair@google.com,
- kgene@kernel.org, krzk@kernel.org, andi@etezian.org, palmer@sifive.com,
- paul.walmsley@sifive.com, baohua@kernel.org, mripard@kernel.org,
- wens@csie.org, ldewangan@nvidia.com, thierry.reding@gmail.com,
- jonathanh@nvidia.com, yamada.masahiro@socionext.com, michal.simek@xilinx.com
-References: <20190904135918.25352-1-yuehaibing@huawei.com>
- <20190904135918.25352-7-yuehaibing@huawei.com>
-From: Stefan Wahren <wahrenst@gmx.net>
-Message-ID: <c9c6a9ca-5725-513f-2ef3-734ecf0878b8@gmx.net>
-Date: Thu, 5 Sep 2019 20:39:45 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ id 1i5yAU-0006sQ-Tw; Thu, 05 Sep 2019 20:15:48 +0000
+Received: by mail-oi1-x241.google.com with SMTP id w6so3010826oie.11;
+ Thu, 05 Sep 2019 13:15:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=f4Km6SD866R0K00m5TcRPMaTtKdzrbq/4ljlsuFwyq4=;
+ b=t3et7p6L0/whLJE/CMRrP2K3uNDjk8pWYu6Z+iHJ/66Y1V1Y6L0cwifYXlDTXXLZU3
+ 3MBi7QwdaNrwDJDSiIIvPoke8D4qYmR5KifsoiZvryw5rCskksgTXJIgtTdbkyJgh8qV
+ MJtYVr3BW9cjCbQ41WAa98hOnuGLeq4iDZN56LFw/ekt4nC8vTPzq264Qt5ezYI9sCTJ
+ +c4RKH3NC5pp7zQoE+JvgkdxisarX3FPxmxyzSpxbX7RfbIIJzrBHCmsifjnzFTn+wL+
+ HLYJB/guTPodagOyMZiPuYILX1K2IHMxDbuYFdTogyBfGFbE2z+fgHbQK52gQmjRpO/4
+ 8WXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=f4Km6SD866R0K00m5TcRPMaTtKdzrbq/4ljlsuFwyq4=;
+ b=pZQPDQYuL+xVR9vIo8ZSAwCEvkZEX1Cz1w9NsijDxtJOJVLxNEQxgvLfL2YWe8DEwz
+ OAPKGDxe7hH4fpuolKnkW0ov8ofL4gbFPaCguFMg7Tb7jHS653AdHMyKS4EUgdn5CjJc
+ ehEMjMCZzw0ps27LnNrfYSrqdzuGB8JSQLzJMxoulqW6EXIOduo850DQW8BNzbJ3szF+
+ eBI+vSQ2IBj0q9iu+fdUnPIl6gLc6FU5OEu20ZUt8ZK6An8m3r+PoQAMEOoSU2vc0hML
+ rHVrewRRGZlIjaUFoiHzmikwICRixWu4y7jrXFkF43p0sRtn0r4haqmRwZYsZ0GDP6aH
+ q+GA==
+X-Gm-Message-State: APjAAAUpp2AiRJ5r7Ug62ZxSCMToR1+A10KcM7tnsp8tFvowng1rmm5k
+ o89Ldd8YXavfdCF6Et7o3iOFViel10ceaLxvjlA=
+X-Google-Smtp-Source: APXvYqz10+RYiYCkiOZQNb4X6pwZA8FC8OaEWNeVGyU1oIcgk9EjqHMgE+OjmcTpYIwU9qrIKMWD+qXHhX6pFCO82+I=
+X-Received: by 2002:a05:6808:b14:: with SMTP id
+ s20mr4202379oij.15.1567714545391; 
+ Thu, 05 Sep 2019 13:15:45 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190904135918.25352-7-yuehaibing@huawei.com>
-Content-Language: en-US
-X-Provags-ID: V03:K1:PJZW3p24Sgs9pPgM0nquSd55ClUOxvx8h/ANFNBZrD5MaK8bvKD
- dHfxSFK5ClXmMrJSUR8lOZtZfJA56JgmfFkwVv7amqZJ26WGT9rJFbEFaH/uolq/SSk3/Ik
- CaU2qBvQ+UiBNHCAXrwBe+mgP4L5nXoKh99c43NCmIKAYgIHM3GmDJzctwbGc8axkanZrqb
- kItlAw0DrA85Zrq1bckLw==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:anpvg5mTIZw=:5SNYFyWX4G6ecfNsrbwtlx
- /TNEmn+IvOxzbLdzuF8xREYo/Mb0quJpFUk4fLZIaDZRc/+F/YFcML45laZ3kAnjx4pBNoRjO
- FaTTfRdwtSx5/5J9nYb0tB67pARyFpiLNRZHPeVLgFdUlMdrfx0AViG2lcR1WyrQu8EmG0w66
- FupD6Vsv3CPNx5UyEqdvrM3FS14URpj0UbKkRqhhmqSsGNa/m8W9Eot0yghivFIPbC/W+4n4o
- jaTEuayyGrRuIkPrylx/NzddppI6WbP3xHMIYbF4TaVS3IkR+abQ7z50D/5xVjLSQDpKFa57B
- ckqCfAhpYRsoKkvJVpw/+ipQjDIAF41qmM6g4CRaGbxWun3LwiZB90S2AOGePNA4ppJ7aK6Og
- 93MNpeQDqmJC4jF40SzBiV5bGYKY9t+sQ2mJ9B24d0iAjzEDa/g0K89frdKWOack+tm82B6gc
- ltMtrA0QSll5wIayinj6TBLy4S3mmBODD3LFeA67qATaC6MCSj69O4LuMtMpKbtfgth06HEMu
- YJ0FQhW4KW/0YU98OTNbUKqXrcY6VxuTAlHxN5kzpG2kcl73oo3uuVp/pW874PR2mqKpBYkAF
- o17lCCG8Hmrgnk+CY4zH2ZucP3GbNBJ3NPZXroU2mZYq+cy/1ZtQEuBRWNr5TfodKF+u15XKj
- cu+WWfsEaKkKsoLiS2dJnJ8c+Lwnn9jECz1wsbWKv4phl7tgWxwFlgPe/pNTVpZ++TjJKuCsg
- T+AEnJ5C7cuUvMW8Uy1C1xK5ZCiOQe9jMAtPKAZu237ChXgkj8wrwlFue2DSDeXfP9j+jtLTA
- 0NhL8w0Uq3LMDQW6S8dUioyZ5pjNAaSxp88yWp0qceEyktCtxOL2hmy30iJPAB8V3qJyGe/Hs
- TDQiNNZqGcJ/LQ1EfJTKbn1KwFAg40weTKSTQFAHoG6T1sCUfd5POPN71s+ZYacM5pSDbzqBF
- deyy1C9MIYl0iKHg8Ajzk5Mhyl3sTIi4XtSYvss9RewaUBcYedvXA0rnnK1fxdjZrVzQAFLD4
- LAuNFdEbCzupNWUGMAeZYtJV1B6BhPD7j6jNYoXOerQckMjA6Ke57e0yNkddTN3RCspo2hPyl
- tvCoWGf7hkWKnybbkWmAhueCK2DCj42Dm/1l5jozBLE3rORYfNVAq64ralDwip1IBHAaf3bqR
- seRgj/4/fnfu787yaeEO9o1oR+2J5hYn41YKsgVXMUjRfztTZ70iv+mH+1iD3m/vETnZk=
+References: <1567667251-33466-1-git-send-email-jianxin.pan@amlogic.com>
+ <1567667251-33466-5-git-send-email-jianxin.pan@amlogic.com>
+In-Reply-To: <1567667251-33466-5-git-send-email-jianxin.pan@amlogic.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Thu, 5 Sep 2019 22:15:34 +0200
+Message-ID: <CAFBinCBSmW4y-Dz7EkJMV8HOU4k6Z0G-K6T77XnVrHyubaSsdg@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] arm64: dts: add support for A1 based Amlogic AD401
+To: Jianxin Pan <jianxin.pan@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190905_114018_194398_5F178E6C 
-X-CRM114-Status: UNSURE (   6.13  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190905_131546_968765_411684AE 
+X-CRM114-Status: GOOD (  13.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,24 +90,79 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-samsung-soc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- openbmc@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
- bcm-kernel-feedback-list@broadcom.com, linux-rpi-kernel@lists.infradead.org,
- linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org, Hanjie Lin <hanjie.lin@amlogic.com>,
+ Victor Wan <victor.wan@amlogic.com>, Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ Qiufang Dai <qiufang.dai@amlogic.com>, Rob Herring <robh+dt@kernel.org>,
+ Jian Hu <jian.hu@amlogic.com>, Xingyu Chen <xingyu.chen@amlogic.com>,
+ Tao Zeng <tao.zeng@amlogic.com>, Carlo Caione <carlo@caione.org>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Am 04.09.19 um 15:58 schrieb YueHaibing:
-> Use devm_platform_ioremap_resource() to simplify the code a bit.
-> This is detected by coccinelle.
->
-> Reported-by: Hulk Robot <hulkci@huawei.com>
-> Signed-off-by: YueHaibing <yuehaibing@huawei.com>
-Acked-by: Stefan Wahren <wahrenst@gmx.net>
+Hi Jianxin,
+
+(it's great to see that you and your team are upstreaming this early)
+
+On Thu, Sep 5, 2019 at 9:08 AM Jianxin Pan <jianxin.pan@amlogic.com> wrote:
+[...]
+> +       memory@0 {
+> +               device_type = "memory";
+> +               reg = <0x0 0x0 0x0 0x8000000>;
+> +               /*linux,usable-memory = <0x0 0x0 0x0 0x8000000>;*/
+why do we need that comment here (I don't understand it - why doesn't
+the "reg" property cover this)?
+
+> +       };
+> +};
+> +
+> +&uart_AO_B {
+> +       status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> new file mode 100644
+> index 00000000..4d476ac
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> @@ -0,0 +1,122 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+> + */
+> +
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +/ {
+> +       compatible = "amlogic,a1";
+> +
+> +       interrupt-parent = <&gic>;
+> +       #address-cells = <2>;
+> +       #size-cells = <2>;
+> +
+> +       cpus {
+> +               #address-cells = <0x2>;
+> +               #size-cells = <0x0>;
+only now I notice that all our other .dtsi also use hex values
+(instead of decimal as just a few lines above) here
+do you know if there is a particular reason for this?
+
+[...]
+> +               uart_AO_B: serial@fe002000 {
+> +                       compatible = "amlogic,meson-gx-uart",
+> +                                    "amlogic,meson-ao-uart";
+> +                                    reg = <0x0 0xfe002000 0x0 0x18>;
+the indentation of the "reg" property is off here
+
+also I'm a bit surprised to see no busses (like aobus, cbus, periphs, ...) here
+aren't there any busses defined in the A1 SoC implementation or are
+were you planning to add them later?
+
+
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
