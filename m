@@ -2,89 +2,90 @@ Return-Path: <SRS0=Pg3q=XB=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B81A5C43331
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Sep 2019 08:48:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 857C6C43331
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Sep 2019 12:21:10 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9084920650
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Sep 2019 08:48:41 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 59734206CD
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Sep 2019 12:21:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="aVzf5z40";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="HjBx0MkB"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9084920650
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="h5GV9/Ic";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="sBi5fWpL"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 59734206CD
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=m3NUfC48ZEIDZfSoCFCZUi1duOHd69MOZLX0ILOAJ7U=; b=aVzf5z40IxBcOS
-	hdJM8Su9s8nQeIFKMqn8d9K/wFw6BjKn6KfbBPh0MyhTNsEg0PGMxMlI/L08bEIgWV1bthJPUHOov
-	LMsk8EY1EcWcd6MOx79e2YE1x5fw5yQl0LAlzjKz8ZgnZRbSoXpwcW4bRr5JACLI1OLp1WkritjYl
-	TrCHTj3zeBRKmJtrORDIPC8QLJ1OcWXqCxqyIdRu4l9zrBI2HTo+gj5T3BSH6eZ6WFVwAzjirSCek
-	bPSwKhCpkvgz48xGIK7nQdjFIuJoINdeVRJBQh5q7kQRygCskO7GZjrjVcFmLNo/5XHkQBOUu2jYo
-	qlHM+M1tx4rNLREY3S7Q==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=FvyUCsEBWmQXNWL7gNZytGBwOrX0Lpb/hdgdzBX7XfQ=; b=h5GV9/IcQFx1Vo
+	NavSmYI31d7ctoQN4W3hCKbjpf9XWhoZHg+vc5UmusyME3UCGUJNMMqreoJ5VwCmVn4YTF27C8OSo
+	tl51IxWMRlxIgZUkt1Qvi889zFTNb9DaZHHovJSc7kSPxSX+7lS/Sf0x3Sy4/b5fahEtLl28e6FS8
+	npIy6uKdT+Ln11DW7qb6wNkPsw35zeTXW8vAA4XSfTPdH9N/Q8xhbncYa5dNKkfMI0Mxfk73QJqIR
+	ZBFXwB1noJJNBbh1Hyn7pOmDXek/oX6a1eSWjblqIbTZMyjgpvfKXEKU3bpKfu+NSBsVvKRg05bMj
+	CXKxQO0h0RpKHoEApcVA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i69uy-0007Fr-BZ; Fri, 06 Sep 2019 08:48:32 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1i6DEa-00068S-5z; Fri, 06 Sep 2019 12:21:00 +0000
+Received: from mail-pl1-x643.google.com ([2607:f8b0:4864:20::643])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i69u1-0006mC-L8
- for linux-amlogic@lists.infradead.org; Fri, 06 Sep 2019 08:47:36 +0000
-Received: by mail-wr1-x443.google.com with SMTP id s18so5680188wrn.1
- for <linux-amlogic@lists.infradead.org>; Fri, 06 Sep 2019 01:47:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=CfSPQ11gyL7LqqJg+RfxL7pUmtUK1NuleIgsu8AI50g=;
- b=HjBx0MkBebOyrjQ51slXLTQOOyqLUMka35p52q5dCPEkOoeD78IHBI/Z9AEP4+vIcn
- OKBCX5MjwA0GrX2TYkMksZqvUEugNCv1NXQ/JTaxgrnUROcRsv0B8q/knrOWVg36nk5t
- rRVrQSgEggtShsP10h9DIhud+PuQ9d6gytfJ6ETRD8ZfsBnWDu15NZwVBLFk7U8etroK
- y0RLEA6oDQGlxCqHF7iU5DzO6Xnh8b5QT7P4XG7MpEEXNxiahCeuH1viypdP7zyyVrDJ
- os8CGeBSYPLOEilqK7Y3jAQ1lBuiGHKlx6/PHUtTReUrz2v2QtJPp8cHX3HOzoLCxcC/
- +jiQ==
+ id 1i6DET-00061R-G9; Fri, 06 Sep 2019 12:20:54 +0000
+Received: by mail-pl1-x643.google.com with SMTP id gn20so3071952plb.2;
+ Fri, 06 Sep 2019 05:20:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Yz8E2Km3qb90hXAs0IYE6gU7l6QgyfYQZCSLqivyf6E=;
+ b=sBi5fWpLkJxLG+1JbIBpFxU2wYFj0Rs9t7FdUjuEGTXEdUskawkWs7bKLQTbSiRpG7
+ qjhl0dF9LHFwxei4SsNWyHZYsRyITHY1813nt5Qmhl+ekqxXelwFqEcADBaOHIKXX/0V
+ khF8myUbLbxdgH2l8IGeznwGAlWmeOPqKraFv7lW4jPV1UHxMzEYrAaMxmgXfRKklht8
+ 3KZpkKg8mfU/uXRHZ13pYQo24TfaYwGj180ya/4o/m81xAdpJ+HDpQ6GOZWyXCRx2kaO
+ jSNd6NlTTHccjWA3MrzpQdVAtKPzijDLC9pUugAWmkipIibe5KE6wbEzDvoq8MnF4xcE
+ D9zA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=CfSPQ11gyL7LqqJg+RfxL7pUmtUK1NuleIgsu8AI50g=;
- b=aiRHydxKuPhjZtdkKJFs3KLedNkirBmG5qi+6bw3H+ay4zan93R72IF/1TGJCqfHz8
- xBO0A+/Yxu6yRWsxMEl/aJ0IQpSRc9IgBTP4zzLKF2MZmURHXnUUVfxXLJwqsBK61N0q
- m/gt3VZZawE2p+FTbrbfMhueAlEWNgQ1oI8aNItoWj8f5iyirrzhDRSFsjrkaGdAF4cw
- rnqRn1WIjU5mD9E5fBRu6HT1qHMDdLn0zFKFCTk3mwACGe4xBGmEY9uvmXkcTOlBU5rU
- Q3FhIlWTEPpjozdbbbkImhynbcLnDssZLMwYozXOUfFnPpZva0jqUqb8LmmypME3i7SK
- ftXA==
-X-Gm-Message-State: APjAAAVWLdYhWyayg/wmyrJaJd25ee9x8dlM+UJXKI/yiV/0SNUDvW5J
- 2laWoz5AfhVXyCX2BEH7Pl0ARHoSgLnzug==
-X-Google-Smtp-Source: APXvYqzgyU/+indOnTNrg+U/5WDAdwju1MgsP1cT9PecaBiEJfZB6rRcN63enCexjtj7BJZDawOwAQ==
-X-Received: by 2002:adf:f2cd:: with SMTP id d13mr4964942wrp.143.1567759652033; 
- Fri, 06 Sep 2019 01:47:32 -0700 (PDT)
-Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id n1sm6222078wrg.67.2019.09.06.01.47.30
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Yz8E2Km3qb90hXAs0IYE6gU7l6QgyfYQZCSLqivyf6E=;
+ b=nqsGOPgo3ErVPSPGe94gdw8R0hCUjCPNgj6UFK71IdZ9tz9Uak/ybB2yxQTREKFHxo
+ RqCpJROTXcBpXIKCwb8ayJGMLbXhbY1JaVF7QSwB/wYsPY5uwnOaFTl/4HERFDPMpf4m
+ +zGs/7G8LqHdfGippSqm2gpPYONsi+dD5qNr2MSV3vzNa8xQ+YpXcWgmlJqF17XaI/dh
+ cJn7Ym9HjTefvdAe+gODhOpXhv+Nt14ymc79wFIsm7o8Ht38oSPUTPcGds/YBqclNoMV
+ 3dM/fxs/AbVo+sSUa5QE/3OLrL1UWZXbyR5eb/LiLTe3B8PWS/Fnl/XKF0stz3QcovXl
+ F75g==
+X-Gm-Message-State: APjAAAVzJNtrpaCQHCHJnHd3rezx9PF5QFKusgGgcS5WcrxnbACSaLBs
+ OU5tfxVvZq9qfTDLlUYFLVeF8h6F
+X-Google-Smtp-Source: APXvYqytNc4583TyUBAV/uTzWtXmL7i+BG+xiP2y5wuQOBP1Lr6CNp2zeZDS6Vji8zuvtspD30AQow==
+X-Received: by 2002:a17:902:7b8c:: with SMTP id
+ w12mr8244462pll.276.1567772452654; 
+ Fri, 06 Sep 2019 05:20:52 -0700 (PDT)
+Received: from localhost.localdomain ([45.114.62.203])
+ by smtp.gmail.com with ESMTPSA id c23sm4944218pgj.62.2019.09.06.05.20.49
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 06 Sep 2019 01:47:31 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [PATCH] arm64: dts: meson: sm1: set gpio interrupt controller
- compatible
-In-Reply-To: <7hpnkeqxxy.fsf@baylibre.com>
-References: <20190902160334.14321-1-jbrunet@baylibre.com>
- <7hpnkeqxxy.fsf@baylibre.com>
-Date: Fri, 06 Sep 2019 10:47:30 +0200
-Message-ID: <1jmufh3j6l.fsf@starbuckisacylon.baylibre.com>
+ Fri, 06 Sep 2019 05:20:52 -0700 (PDT)
+From: Anand Moon <linux.amoon@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCHv3-next 0/3] Odroid c2 missing regulator linking
+Date: Fri,  6 Sep 2019 12:20:41 +0000
+Message-Id: <20190906122044.372-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190906_014734_218787_712DF643 
-X-CRM114-Status: GOOD (  10.49  )
+X-CRM114-CacheID: sfid-20190906_052053_565605_80FD43E0 
+X-CRM114-Status: UNSURE (   6.74  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,64 +97,55 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu 05 Sep 2019 at 13:40, Kevin Hilman <khilman@baylibre.com> wrote:
+Below small changes help re-configure or fix missing inter linking
+of regulator node.
 
-> Jerome Brunet <jbrunet@baylibre.com> writes:
->
->> Set the appropriate gpio interrupt controller compatible for the
->> sm1 SoC family. This newer version of the controller can now
->> trig irq on both edge of the input signal
->>
->> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->
-> Queued.
->
-> I may do a late round for the dev cycle of v5.4, otherwise this will go
-> for v5.5.
+Re-based on linux-next-20190904
+Changes from previous patch's series.
+Build using Cross Compiler.
 
-No problem
+Added missing Reviewed-by Neil's and Martin.
+Added few suggestion from martin for rename of node.
 
-> If it goes for v5.5, it should probably have a Fixes tag, no?
+Dependencies:
+Changes based top on my previous usb fix series patch's.
 
-Maybe, but then every change to meson-sm1.dtsi would be some kind of fix
-on what is provided by meson-g12-common.dtsi.
+[0] https://patchwork.kernel.org/patch/11113095/
+[1] https://patchwork.kernel.org/patch/11113099/
+[3] https://patchwork.kernel.org/patch/11113103/
 
-Not sure this really qualify as a fix but I'll do as you prefer, just
-let me know
+Hope this series get picked up for 5.4-rc1, finger crossed.
 
+Changes for previous changes.
+Fix some typo.
+Updated few patches as per Martin's suggestion.
 
->
-> Kevin
->
->> ---
->>  arch/arm64/boot/dts/amlogic/meson-sm1.dtsi | 5 +++++
->>  1 file changed, 5 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
->> index 521573f3a5ba..6152e928aef2 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
->> @@ -134,6 +134,11 @@
->>  	power-domains = <&pwrc PWRC_SM1_ETH_ID>;
->>  };
->>  
->> +&gpio_intc {
->> +	compatible = "amlogic,meson-sm1-gpio-intc",
->> +		     "amlogic,meson-gpio-intc";
->> +};
->> +
->>  &pwrc {
->>  	compatible = "amlogic,meson-sm1-pwrc";
->>  };
->> -- 
->> 2.21.0
+I will try to commit less mistake in the future.
+
+Best Regards
+-Anand
+
+Anand Moon (3):
+  arm64: dts: meson: odroid-c2: Add missing regulator linked to P5V0
+    regulator
+  arm64: dts: meson: odroid-c2: Add missing regulator linked to
+    VDDIO_AO3V3 regulator
+  arm64: dts: meson: odroid-c2: Add missing regulator linked to HDMI
+    supply
+
+ .../boot/dts/amlogic/meson-gxbb-odroidc2.dts  | 53 +++++++++++++++++--
+ 1 file changed, 50 insertions(+), 3 deletions(-)
+
+-- 
+2.23.0
+
 
 _______________________________________________
 linux-amlogic mailing list
