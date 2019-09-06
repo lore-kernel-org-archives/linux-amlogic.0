@@ -2,90 +2,84 @@ Return-Path: <SRS0=Pg3q=XB=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C32D1C43331
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Sep 2019 14:10:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8573DC43331
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Sep 2019 14:33:49 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9231E2070C
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Sep 2019 14:10:01 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 59FE420693
+	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Sep 2019 14:33:49 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cqy12dI4";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bnR/YOyg"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9231E2070C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tpVwCZPx";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Dwm8lWGd"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 59FE420693
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:References:
-	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=yQKQ+eV1CdqmoiPVNOZLMS1enS+j3zDheLvtIMsKIco=; b=cqy12dI46ORzHE321ryJTUmSqf
-	xLZR0Qj15NK1sjHC/AoV/LBsxYGV5ha/hw8q83bKT7Ck0Z7zzGQqbcwAPgLUhOWeGvYqJ7kvXUZzj
-	YwimswLNircNy5G9UzQCZ1DVRfkGkl/RsILMoj3ZRM6CqjWEvgS5eBVIDvThSm9TlYp4nVyvjMgDx
-	JvqoqPKlCa9vrTvc4Sa3Q3iSv1VTML0oW/wI+pRlusIm16TQs8UHYm7eIn5BsSW6S1k6sJNXzIsBQ
-	fQ8l8XOAnHz0kEgGrMLeqLb8ff+za92uOsyEfejd5CZxbKYAzrLi2SEC5DvLOTIRD2/3cvg6eRyqV
-	aM8FYsZA==;
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=NfB1yBZ5ud2FmHhTfVcOOXoNE1DkOHx3oe2KOpQvuhQ=; b=tpV
+	wCZPxuVX/g91n/6oc+JOq5SjfyhwUWGi2bhmQU9ElSXLlVj5ONW/nphAj8RaKZiRZaC3gegXeiJj8
+	gPAaIPFGc4iEYvTHunfkVmLy846NSuO3mcdcpb2pjPiId8AR50OBTZ31JtXaBBFwgjrzIBvmmJIeE
+	SieQJwzF8uhI82rtWGQRJkYCUBm0b3BUFa0L7MKYiL9ur7uYKxlVjLRwJkfNcFY1P52xqFj9YMsrO
+	30RT3lkPGoI74vYx5hTvE/rZ1U0E8sJJwTD3rcQr8aHIgwOqhUJB/2d+dkuASLKrm3htHYrDhZGMa
+	IT6d0LoNOshr6xAFaDClqXZaxzjgG5A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i6Evz-0005Z1-Pw; Fri, 06 Sep 2019 14:09:56 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1i6FIy-0006Na-Tl; Fri, 06 Sep 2019 14:33:40 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i6EsB-0004RG-MN; Fri, 06 Sep 2019 14:06:02 +0000
-Received: by mail-wm1-x342.google.com with SMTP id t17so6666251wmi.2;
- Fri, 06 Sep 2019 07:05:58 -0700 (PDT)
+ id 1i6FIj-0006BM-N3; Fri, 06 Sep 2019 14:33:26 +0000
+Received: by mail-wr1-x443.google.com with SMTP id 30so6801296wrk.11;
+ Fri, 06 Sep 2019 07:33:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=LINkBpg8YJV2SX09G2+wRUrB2A7bky6qnIDMfqLxxlI=;
- b=bnR/YOyg97j4xLyhu2oTh4Qsr97Ha/Cqzd/1V6f0CxuF7EPcYt8mHJTe7xmCSV4IUJ
- wNCJNRAVy813BrBgWMvULjEhvG8tQRkKFW2Zai3Q7o9ebwAGMt4Y1IeunX1ZMM2Uj0wO
- 7dRxgOmyyfTf9CIMgUw2jt+sqMz/fGO/ivy48aGQbqxCr+qeeTDt0d3VUXNze6PCDcbB
- mjVcq99AVRAHneMwyYiIY2TNAt2P0BaLXpZDQVlxxX6ewFF4+DDDi3uks6esRYAw8XV8
- YAqT8JVg/H4lUOA5rUq7dQWJILN9nx5p8yDcdLRbo9HagdtSS2CKQdEc3+5IRah9nsR4
- OAyw==
+ h=from:to:cc:subject:date:message-id;
+ bh=YhOPiGQ/jKMfAKNMmBIBmilg3dwIp+IShaOpXqxWprg=;
+ b=Dwm8lWGdUfC0GE7Rtw818ox0Io/TAtpAZBPZwpQUuPsDnSRSlrYN+jCD9mNWWFgdK4
+ j4a0eB5omczZilSZ7ulLqflJcjHmKtm3/5FwVDYfDWUd2NWx+8VgQvQ+VvXgkQLc/w3Q
+ TCO8DOlc9P3rYEoO+da2Fy6JtnNOP/DK8O+ny8ekeDW6ksFcpwWBOlzcWISQm0z/0kGi
+ OmIBA8Ebfswojg9WcOK8TXLX2mqd0DknsH7t/Rw63q9erBbkT7BAs46SvDpBskdxrlCm
+ SPeQPK1kDW8kCxfMZWH+k0/Iju1spAq8DuZm7ePQ34F4UdBA4gi+IL2hVZ44vpKM6BIw
+ byBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=LINkBpg8YJV2SX09G2+wRUrB2A7bky6qnIDMfqLxxlI=;
- b=ls7yF9wVEzoW/IOzD4ujqmEPEbCx/1GRea3ThKsKpX3VfNjPP+KRyWIDt4NflM+aGJ
- Y1ju9n2S4Ju4Io4K0laIbi9pIcFmbeOddE9J7cSDKZ1OEeIvaENcOLYThNduhsYVghuQ
- 1hb+cUWwH6gETUWmH358vgocUOGlxAN9iDjYflq/bnAkFL8ZxktbwMtFXw6QDMG6ZQy0
- lhzW27m/B7Yyb9UP1xP2+BvRbNbwsSRP9SFX9j0AcV+U+lSEU8mqwCo55u9BHbvomGqC
- 4+UDdJQgPSr5FQ4kkZ7w89cNqFBJI4Z/WGONpFfeAtL0JN1KEgbKGiCvR95UHJbhd624
- M7Ng==
-X-Gm-Message-State: APjAAAXrUZTKiAB2RhWUh/fHvQqdhXPW9TjcDI3j2r1kV0m0xoO1RwH3
- IJaORe7W6uw5RPTHYG4sFfM=
-X-Google-Smtp-Source: APXvYqzD2OyYNbil1TP/pZnZrxOob946drZpngoVBZDlUfOILnK9AYS18euWTQDQmO5zt3ZhBp0JGw==
-X-Received: by 2002:a1c:c1cc:: with SMTP id r195mr7922631wmf.50.1567778757646; 
- Fri, 06 Sep 2019 07:05:57 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=YhOPiGQ/jKMfAKNMmBIBmilg3dwIp+IShaOpXqxWprg=;
+ b=SxSs1g6eMl2H4QrR5NAv8kxvXiyWKp7oLCrEFxA5a6v2+Lg8J4L30DtVRXCoEM6dzS
+ qM7/jSSffZtFxdz15aBfYDgshRnHk1okfwjnQTDUMpWxbHEMeN9cJos1vihIv1qPtIVg
+ M9Ap9PpCVzotqiagavaGFquImeRo24dwNyp+qIwnVZlu2vRC1pB52XW4fCmunBw6jcBW
+ 1/Au+tsMaj3yeY7+fxQ3F4PV+C96Zev4DwW1v6VB8BPsRsDmfMmaJAQk+QbWWlAWzGkw
+ ZhnP4iO0mrbMQIZ37ELZQ9yy5Ti/WJm3ypa/qDGmXNWa+bojstlLjX/9c8n4Np4SW8Jo
+ nEaQ==
+X-Gm-Message-State: APjAAAW3SlXfxUulcipPRbCxK0Nb8U3jF/doYtEzvwuZc8IpsJd2wmmc
+ g0ZQIlynJGwUPOJu/6xaEWg=
+X-Google-Smtp-Source: APXvYqw8wZl/LTWgg0Chrhk0TDYioBtuoFUHLvwZXVA3/hte6Kq+jsmDp9J3p5QcsrlFvFLn+mterA==
+X-Received: by 2002:a5d:6ac8:: with SMTP id u8mr7431909wrw.104.1567780404007; 
+ Fri, 06 Sep 2019 07:33:24 -0700 (PDT)
 Received: from localhost.localdomain ([94.204.252.234])
- by smtp.gmail.com with ESMTPSA id e20sm7480542wrc.34.2019.09.06.07.05.55
+ by smtp.gmail.com with ESMTPSA id s9sm9300198wme.36.2019.09.06.07.33.21
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Fri, 06 Sep 2019 07:05:56 -0700 (PDT)
+ Fri, 06 Sep 2019 07:33:23 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
-Subject: [PATCH v3 3/3] arm64: dts: meson-g12b-ugoos-am6: add initial
- device-tree
-Date: Fri,  6 Sep 2019 18:04:59 +0400
-Message-Id: <1567778699-59231-4-git-send-email-christianshewitt@gmail.com>
+Subject: [RESEND PATCH v3 0/3] arm64: meson-g12b: Add support for the Ugoos AM6
+Date: Fri,  6 Sep 2019 18:32:31 +0400
+Message-Id: <1567780354-59472-1-git-send-email-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1567778699-59231-1-git-send-email-christianshewitt@gmail.com>
-References: <1567778699-59231-1-git-send-email-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190906_070600_444847_B1A02F51 
-X-CRM114-Status: GOOD (  17.65  )
+X-CRM114-CacheID: sfid-20190906_073325_778929_50421B90 
+X-CRM114-Status: GOOD (  10.42  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,609 +99,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Ugoos AM6 is based on the Amlogic W400 (G12B) reference design using the
-S922X chipset. Hardware specifications:
+This patchset adds support for the Ugoos AM6, an Android STB based on
+the Amlogic W400 reference design with the S922X chipset.
 
-- 2GB LPDDR4 RAM
-- 16GB eMMC storage
-- 10/100/1000 Base-T Ethernet using External RGMII PHY
-- 802.11 a/b/g/b/ac + BT 5.0 sdio wireless (Ampak 6398S)
-- HDMI 2.0 (4k@60p) video
-- Composite video + 2-channel audio output on 3.5mm jack
-- S/PDIF audio output
-- Aux input
-- 1x USB 3.0
-- 3x USB 2.0
-- 1x micro SD card slot
+v2: correction of minor nits
 
-The device-tree is largely based on meson-g12b-odroid-n2 but with audio
-and USB config copied from meson-g12a-x96-max.
+v3: address regulator and GPIO corrections from Neil Armstrong (using
+schematic excerpts from Ugoos) and related v2 comments from Martin
+Blumenstingle. Add acks on patches 1/2 from Rob Herring.
 
-Tested-by: Oleg Ivanov <balbes-150@yandex.ru>
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
+Christian Hewitt (3):
+  dt-bindings: Add vendor prefix for Ugoos
+  dt-bindings: arm: amlogic: Add support for the Ugoos AM6
+  arm64: dts: meson-g12b-ugoos-am6: add initial device-tree
+
+ Documentation/devicetree/bindings/arm/amlogic.yaml |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
  arch/arm64/boot/dts/amlogic/Makefile               |   1 +
  .../boot/dts/amlogic/meson-g12b-ugoos-am6.dts      | 557 +++++++++++++++++++++
- 2 files changed, 558 insertions(+)
+ 4 files changed, 561 insertions(+)
  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 07b861f..21e2810 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -4,6 +4,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-g12b-ugoos-am6.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nanopi-k2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nexbox-a95x.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-odroidc2.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
-new file mode 100644
-index 0000000..8bf4482
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
-@@ -0,0 +1,557 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ * Copyright (c) 2019 Christian Hewitt <christianshewitt@gmail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-g12b.dtsi"
-+#include "meson-g12b-s922x.dtsi"
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/gpio/meson-g12a-gpio.h>
-+#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-+
-+/ {
-+	compatible = "ugoos,am6", "amlogic,g12b";
-+	model = "Ugoos AM6";
-+
-+	aliases {
-+		serial0 = &uart_AO;
-+		ethernet0 = &ethmac;
-+	};
-+
-+	spdif_dit: audio-codec-1 {
-+		#sound-dai-cells = <0>;
-+		compatible = "linux,spdif-dit";
-+		status = "okay";
-+		sound-name-prefix = "DIT";
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x40000000>;
-+	};
-+
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio BOOT_12 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio GPIOX_6 GPIO_ACTIVE_LOW>;
-+		clocks = <&wifi32k>;
-+		clock-names = "ext_clock";
-+	};
-+
-+	flash_1v8: regulator-flash_1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "FLASH_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	main_12v: regulator-main_12v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "12V";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		regulator-always-on;
-+	};
-+
-+	vcc_5v: regulator-vcc_5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&main_12v>;
-+
-+		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
-+		enable-active-high;
-+	};
-+
-+	vcc_1v8: regulator-vcc_1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	vcc_3v3: regulator-vcc_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+		/* FIXME: actually controlled by VDDCPU_B_EN */
-+	};
-+
-+	vddcpu_a: regulator-vddcpu-a {
-+		/*
-+		 * MP1653 Regulator.
-+		 */
-+		compatible = "pwm-regulator";
-+
-+		regulator-name = "VDDCPU_A";
-+		regulator-min-microvolt = <721000>;
-+		regulator-max-microvolt = <1022000>;
-+
-+		vin-supply = <&main_12v>;
-+
-+		pwms = <&pwm_ab 0 1250 0>;
-+		pwm-dutycycle-range = <100 0>;
-+
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vddcpu_b: regulator-vddcpu-b {
-+		/*
-+		 * MP1652 Regulator.
-+		 */
-+		compatible = "pwm-regulator";
-+
-+		regulator-name = "VDDCPU_B";
-+		regulator-min-microvolt = <721000>;
-+		regulator-max-microvolt = <1022000>;
-+
-+		vin-supply = <&main_12v>;
-+
-+		pwms = <&pwm_AO_cd 1 1250 0>;
-+		pwm-dutycycle-range = <100 0>;
-+
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	usb1_pow: regulator-usb1_pow {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB1_POW";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc_5v>;
-+
-+		/* connected to SY6280A Power Switch */
-+		gpio = <&gpio GPIOA_8 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	usb_pwr_en: regulator-usb_pwr_en {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB_PWR_EN";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc_5v>;
-+
-+		/* Connected to USB3 Type-A Port power enable */
-+		gpio = <&gpio GPIOAO_7 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	vddao_1v8: regulator-vddao_1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_1V8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vddao_3v3>;
-+		regulator-always-on;
-+	};
-+
-+	vddao_3v3: regulator-vddao_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDAO_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&main_12v>;
-+		regulator-always-on;
-+	};
-+
-+	cvbs-connector {
-+		compatible = "composite-video-connector";
-+
-+		port {
-+			cvbs_connector_in: endpoint {
-+				remote-endpoint = <&cvbs_vdac_out>;
-+			};
-+		};
-+	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
-+
-+	sound {
-+		compatible = "amlogic,axg-sound-card";
-+		model = "G12B-UGOOS-AM6";
-+		audio-aux-devs = <&tdmout_b>;
-+		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-+				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-+				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-+				"TDM_B Playback", "TDMOUT_B OUT",
-+				"SPDIFOUT IN 0", "FRDDR_A OUT 3",
-+				"SPDIFOUT IN 1", "FRDDR_B OUT 3",
-+				"SPDIFOUT IN 2", "FRDDR_C OUT 3";
-+
-+		assigned-clocks = <&clkc CLKID_MPLL2>,
-+				  <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		status = "okay";
-+
-+		dai-link-0 {
-+			sound-dai = <&frddr_a>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&frddr_b>;
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&frddr_c>;
-+		};
-+
-+		/* 8ch hdmi interface */
-+		dai-link-3 {
-+			sound-dai = <&tdmif_b>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			dai-tdm-slot-tx-mask-1 = <1 1>;
-+			dai-tdm-slot-tx-mask-2 = <1 1>;
-+			dai-tdm-slot-tx-mask-3 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-+			};
-+		};
-+
-+		/* spdif hdmi or toslink interface */
-+		dai-link-4 {
-+			sound-dai = <&spdifout>;
-+
-+			codec-0 {
-+				sound-dai = <&spdif_dit>;
-+			};
-+
-+			codec-1 {
-+				sound-dai = <&tohdmitx TOHDMITX_SPDIF_IN_A>;
-+			};
-+		};
-+
-+		/* spdif hdmi interface */
-+		dai-link-5 {
-+			sound-dai = <&spdifout_b>;
-+
-+			codec {
-+				sound-dai = <&tohdmitx TOHDMITX_SPDIF_IN_B>;
-+			};
-+		};
-+
-+		/* hdmi glue */
-+		dai-link-6 {
-+			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-+
-+			codec {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+	};
-+
-+	wifi32k: wifi32k {
-+		compatible = "pwm-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		pwms = <&pwm_ef 0 30518 0>; /* PWM_E at 32.768KHz */
-+	};
-+};
-+
-+&arb {
-+	status = "okay";
-+};
-+
-+&cec_AO {
-+	pinctrl-0 = <&cec_ao_a_h_pins>;
-+	pinctrl-names = "default";
-+	status = "disabled";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&cecb_AO {
-+	pinctrl-0 = <&cec_ao_b_h_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	hdmi-phandle = <&hdmi_tx>;
-+};
-+
-+&clkc_audio {
-+	status = "okay";
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&vddcpu_b>;
-+	operating-points-v2 = <&cpu_opp_table_0>;
-+	clocks = <&clkc CLKID_CPU_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu1 {
-+	cpu-supply = <&vddcpu_b>;
-+	operating-points-v2 = <&cpu_opp_table_0>;
-+	clocks = <&clkc CLKID_CPU_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu100 {
-+	cpu-supply = <&vddcpu_a>;
-+	operating-points-v2 = <&cpub_opp_table_1>;
-+	clocks = <&clkc CLKID_CPUB_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu101 {
-+	cpu-supply = <&vddcpu_a>;
-+	operating-points-v2 = <&cpub_opp_table_1>;
-+	clocks = <&clkc CLKID_CPUB_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu102 {
-+	cpu-supply = <&vddcpu_a>;
-+	operating-points-v2 = <&cpub_opp_table_1>;
-+	clocks = <&clkc CLKID_CPUB_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cpu103 {
-+	cpu-supply = <&vddcpu_a>;
-+	operating-points-v2 = <&cpub_opp_table_1>;
-+	clocks = <&clkc CLKID_CPUB_CLK>;
-+	clock-latency = <50000>;
-+};
-+
-+&cvbs_vdac_port {
-+	cvbs_vdac_out: endpoint {
-+		remote-endpoint = <&cvbs_connector_in>;
-+	};
-+};
-+
-+&ext_mdio {
-+	external_phy: ethernet-phy@0 {
-+		/* Realtek RTL8211F (0x001cc916) */
-+		reg = <0>;
-+		max-speed = <1000>;
-+
-+		reset-assert-us = <10000>;
-+		reset-deassert-us = <30000>;
-+		reset-gpios = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
-+
-+		interrupt-parent = <&gpio_intc>;
-+		/* MAC_INTR on GPIOZ_14 */
-+		interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+};
-+
-+&ethmac {
-+	pinctrl-0 = <&eth_pins>, <&eth_rgmii_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	phy-mode = "rgmii";
-+	phy-handle = <&external_phy>;
-+	amlogic,tx-delay-ns = <2>;
-+};
-+
-+&frddr_a {
-+	status = "okay";
-+};
-+
-+&frddr_b {
-+	status = "okay";
-+};
-+
-+&frddr_c {
-+	status = "okay";
-+};
-+
-+&hdmi_tx {
-+	status = "okay";
-+	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
-+	pinctrl-names = "default";
-+	hdmi-supply = <&vcc_5v>;
-+};
-+
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
-+&ir {
-+	status = "okay";
-+	pinctrl-0 = <&remote_input_ao_pins>;
-+	pinctrl-names = "default";
-+	linux,rc-map-name = "rc-khadas";
-+};
-+
-+&pwm_ab {
-+	pinctrl-0 = <&pwm_a_e_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&xtal>;
-+	clock-names = "clkin0";
-+	status = "okay";
-+};
-+
-+&pwm_AO_cd {
-+	pinctrl-0 = <&pwm_ao_d_e_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&xtal>;
-+	clock-names = "clkin1";
-+	status = "okay";
-+};
-+
-+&pwm_ef {
-+	pinctrl-0 = <&pwm_e_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&xtal>;
-+	clock-names = "clkin0";
-+	status = "okay";
-+};
-+
-+&uart_A {
-+	status = "okay";
-+	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-+		max-speed = <2000000>;
-+		clocks = <&wifi32k>;
-+		clock-names = "lpo";
-+	};
-+};
-+
-+&uart_AO {
-+	status = "okay";
-+	pinctrl-0 = <&uart_ao_a_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&usb {
-+	status = "okay";
-+	dr_mode = "host";
-+	vbus-regulator = <&usb_pwr_en>;
-+};
-+
-+&usb2_phy0 {
-+	phy-supply = <&usb1_pow>;
-+};
-+
-+&usb2_phy1 {
-+	phy-supply = <&usb1_pow>;
-+};
-+
-+/* SDIO */
-+&sd_emmc_a {
-+	status = "okay";
-+	pinctrl-0 = <&sdio_pins>;
-+	pinctrl-1 = <&sdio_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	sd-uhs-sdr50;
-+	max-frequency = <100000000>;
-+
-+	non-removable;
-+	disable-wp;
-+
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddao_1v8>;
-+
-+	brcmf: wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
-+
-+/* SD card */
-+&sd_emmc_b {
-+	status = "okay";
-+	pinctrl-0 = <&sdcard_c_pins>;
-+	pinctrl-1 = <&sdcard_clk_gate_c_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	max-frequency = <50000000>;
-+	disable-wp;
-+
-+	cd-gpios = <&gpio GPIOC_6 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&vddao_3v3>;
-+	vqmmc-supply = <&vddao_3v3>;
-+};
-+
-+/* eMMC */
-+&sd_emmc_c {
-+	status = "okay";
-+	pinctrl-0 = <&emmc_pins>, <&emmc_ds_pins>;
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	max-frequency = <100000000>;
-+	disable-wp;
-+
-+	mmc-pwrseq = <&emmc_pwrseq>;
-+	vmmc-supply = <&vcc_3v3>;
-+	vqmmc-supply = <&flash_1v8>;
-+};
-+
-+&spdifout {
-+	pinctrl-0 = <&spdif_out_h_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&spdifout_b {
-+	status = "okay";
-+};
-+
-+&tdmif_b {
-+	status = "okay";
-+};
-+
-+&tdmout_b {
-+	status = "okay";
-+};
-+
-+&tohdmitx {
-+	status = "okay";
-+};
 -- 
 2.7.4
+
 
 _______________________________________________
 linux-amlogic mailing list
