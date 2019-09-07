@@ -1,61 +1,83 @@
-Return-Path: <SRS0=Pg3q=XB=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=mB3M=XC=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6C453C43140
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Sep 2019 19:31:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 05ADEC43331
+	for <linux-amlogic@archiver.kernel.org>; Sat,  7 Sep 2019 14:58:16 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 42A63206BB
-	for <linux-amlogic@archiver.kernel.org>; Fri,  6 Sep 2019 19:31:02 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C51E62178F
+	for <linux-amlogic@archiver.kernel.org>; Sat,  7 Sep 2019 14:58:15 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bzanlYlV"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 42A63206BB
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arm.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XIxM4H0N";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="C7nRy5n5"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C51E62178F
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QvTSOhJHYt7F+9eZreYUUue9GBcs0gpk4SPnKIwKMmM=; b=bzanlYlVOZPH5A
-	RKNED5kEdFgK5Tofohbu17y2GAHDou46/5//ue7Unaqt08KEYVERfOooRnDI7Uutm4NXi5wG/TJFL
-	nmwL8Mw+ip9uaLQSwGWXJYEH/bzNeBKUsJS1yb+k/Ig3jnbyAbuj4LXAByfhK1NUR+RvID1Smmn5u
-	0KiKfYm0R+oIbCMTywUeo3G9yZPHdXftFzfWhcPDC/TrsxRoF97T1qQzq4JLs692pQiCsOrhi1W/m
-	WLrSKCkCoRuZ5wMbcZQ8I3TvLSlEp38hIZGgWlc3LC5YIgO5r0ZNqIFLgKjFvUrnhdUkCBLhj+ziQ
-	atYvNSX5XsjIihgIxpbQ==;
+	List-Owner; bh=WWGDPsatZJVgyc8jFqvqfuLhgCDpjohSoXsm+TojUlQ=; b=XIxM4H0NYzOwjk
+	TZh7Hp8czXSOMpOVifvjW4kh9Ok+c9wuyFebWDVbL8eZ24Juwn/27Z6sT/QY0JM/BgOXZiVGg0pCK
+	u09BkCalNhUbRkImcPhOhOMeKq9EMlqMTP0RpPrfIy+Ji4x7xiyKKUjmnoAjUc1pWhKQLJVm48wSw
+	GF9HRigdT7E6hjRJoCHnKyB2er6EuOseOg6HZ8ZJrT9OPCf2vAiEWVEoIR2JqihdQD7Iyo0CjLyDv
+	IfGEy8K6zYh8f1zqTeJYMniadzXNpSNdbQkVO78RAgQaTW9wKRtcrBlHN4/RYtcNc48Ywl+L3RV7Y
+	xS8+j1F52CKV/jR733sg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i6Jwb-0006xv-Us; Fri, 06 Sep 2019 19:30:53 +0000
-Received: from foss.arm.com ([217.140.110.172])
- by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
- id 1i6JwY-0006wa-Bz; Fri, 06 Sep 2019 19:30:52 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EC7CD28;
- Fri,  6 Sep 2019 12:30:42 -0700 (PDT)
-Received: from localhost (unknown [10.37.6.20])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3C5EB3F718;
- Fri,  6 Sep 2019 12:30:42 -0700 (PDT)
-Date: Fri, 6 Sep 2019 20:30:40 +0100
-From: Andrew Murray <andrew.murray@arm.com>
-To: Markus Elfring <Markus.Elfring@web.de>
-Subject: Re: [PATCH] PCI: dwc: Use PTR_ERR_OR_ZERO() in five functions
-Message-ID: <20190906193040.GG9720@e119886-lin.cambridge.arm.com>
-References: <95c9dfae-af81-82ad-e989-1fdf5f29808e@web.de>
+	id 1i6cA6-0001gG-1U; Sat, 07 Sep 2019 14:58:02 +0000
+Received: from mail-ot1-x341.google.com ([2607:f8b0:4864:20::341])
+ by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
+ id 1i6cA2-0001fw-Da
+ for linux-amlogic@lists.infradead.org; Sat, 07 Sep 2019 14:58:00 +0000
+Received: by mail-ot1-x341.google.com with SMTP id s28so8516361otd.4
+ for <linux-amlogic@lists.infradead.org>; Sat, 07 Sep 2019 07:57:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=3ijvzbpmR5G2fll0xuJrHpgiM7/NRRmoNnpXQj5BVhY=;
+ b=C7nRy5n535icRoS3rB9/NmeOtjPXKbk0qSin6HVYDA0bZsXSAmiHaMJhL8ocVPNQQn
+ OXS7I/CzyleoB5auAIaP3uuZ6B+BN9O7pnpquLTyWN4lWXDAc8/WdDJ3bPBl2ej7iZ19
+ 68eu1qRkA416WhzgwUGM1614l1v0op9qnxFctGtyMuqedRleI56ezVd+W9RJb5e/HjqU
+ s4yEkNHuKe2CleZSLhFbYd7CYUDy+pUep6de1glV3WC9WxQLbDfiMrTZe76OGwszQx9v
+ lKndSynIWHegi+v56Xl1hrz/kMWz0LbWhuuMq7KkRlE6NHQNL6Ev/sjG0yTWytPgw22L
+ dMtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=3ijvzbpmR5G2fll0xuJrHpgiM7/NRRmoNnpXQj5BVhY=;
+ b=h8jCwfhPwdcGtlhjZW39JQagSSwN5rXiio2bIrFF4H8rvhS3JxfUacGa27MXPfNfLa
+ KIohVNk18uv0sARyqiamdV6HFeVbG0xIo0PvTky6QkjZugiYux18omDukmPvSqaIUaw8
+ KJSR5Vo2pSVBiWxsaIi6i5vZop4UCrBCSXYkvQ7koe+ZVr9sb1Ce7NI2onWCfEFY2mgW
+ wVhmrjbJbzNY30Ff27/qlExoGR5a10m2yaoVml9ql8pZsJLPgBNkdKUmjYYFNFFuY6n3
+ 1cO8fDNHNElm0KFv4+/97FJzuld18o68PBPPVUWqgYleqHmHit+4mdEDWBx8YrEWgTuE
+ YFMQ==
+X-Gm-Message-State: APjAAAWSN4oiwIvqBfw45B76sXeIegvINwXJaEJUf+0/X//DmYdUwhiv
+ u8uYrqK1kpjcn97ILOQOry4kqhNG7Wqn8zZ4fy0=
+X-Google-Smtp-Source: APXvYqyHbQMJm+9MOanyEl2hZx9Q+JSw5joYtqNW6gQXujzue+BDrbxrLE31fAkmbkxFu5AiwCr1uSq3RWcgMwevqEY=
+X-Received: by 2002:a9d:12e7:: with SMTP id g94mr10290698otg.6.1567868276771; 
+ Sat, 07 Sep 2019 07:57:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <95c9dfae-af81-82ad-e989-1fdf5f29808e@web.de>
-User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
+References: <b99e39ce-30b9-4def-3b98-eb463e5ae57d@gmx.net>
+In-Reply-To: <b99e39ce-30b9-4def-3b98-eb463e5ae57d@gmx.net>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sat, 7 Sep 2019 16:57:45 +0200
+Message-ID: <CAFBinCBV+5g5tgHs99U2PaUH8RP=WKQJrRno5LLWy-=J4TTAwQ@mail.gmail.com>
+Subject: Re: [BUG] wrong pinning definition or uart_c in pinctrl-meson-gxbb.c
+To: Otto Meier <gf435@gmx.net>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190906_123050_500719_4E8FAA92 
-X-CRM114-Status: GOOD (  15.85  )
+X-CRM114-CacheID: sfid-20190907_075758_494679_9A2E4E1C 
+X-CRM114-Status: GOOD (  12.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,121 +89,61 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- Xiaowei Song <songxiaowei@hisilicon.com>, linux-pci@vger.kernel.org,
- Binghui Wang <wangbinghui@hisilicon.com>, YueHaibing <yuehaibing@huawei.com>,
- LKML <linux-kernel@vger.kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Yue Wang <yue.wang@Amlogic.com>, Kukjin Kim <kgene@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>, Jingoo Han <jingoohan1@gmail.com>,
- Bjorn Helgaas <bhelgaas@google.com>, linux-amlogic@lists.infradead.org,
- zhong jiang <zhongjiang@huawei.com>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Sep 06, 2019 at 08:50:07PM +0200, Markus Elfring wrote:
-> From: Markus Elfring <elfring@users.sourceforge.net>
-> Date: Fri, 6 Sep 2019 20:40:06 +0200
-> 
-> Simplify these function implementations by using a known function.
-> 
-> Generated by: scripts/coccinelle/api/ptr_ret.cocci
-> 
-> Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
+Hi Otto,
 
-Thanks for this, looks good to me:
+On Thu, Sep 5, 2019 at 1:49 PM Otto Meier <gf435@gmx.net> wrote:
+>
+> Hi i tried to use uart_C of the the odroid-c2.
+>
+> I enabled it int the dts file. During boot it crashed when the
+> the sdcard slot is addressd.
+>
+> After long search in the net i found this:
+>
+> https://forum.odroid.com/viewtopic.php?f=139&t=25371&p=194370&hilit=uart_C#p177856
+thank you for doing research on this...
 
-Reviewed-by: Andrew Murray <andrew.murray@arm.com>
+>
+> After changing the pin definitios accordingly erverything works.
+>
+> Uart_c is functioning and sdcard ist working.
+>
+> Patch attached
+...as well as going the extra mile (writing a patch and submitting it)
 
-> ---
->  drivers/pci/controller/dwc/pci-exynos.c |  5 +----
->  drivers/pci/controller/dwc/pci-meson.c  | 10 ++--------
->  drivers/pci/controller/dwc/pcie-kirin.c | 10 ++--------
->  3 files changed, 5 insertions(+), 20 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-exynos.c b/drivers/pci/controller/dwc/pci-exynos.c
-> index cee5f2f590e2..b6ab1cc5d895 100644
-> --- a/drivers/pci/controller/dwc/pci-exynos.c
-> +++ b/drivers/pci/controller/dwc/pci-exynos.c
-> @@ -92,10 +92,7 @@ static int exynos5440_pcie_get_mem_resources(struct platform_device *pdev,
-> 
->  	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->  	ep->mem_res->elbi_base = devm_ioremap_resource(dev, res);
-> -	if (IS_ERR(ep->mem_res->elbi_base))
-> -		return PTR_ERR(ep->mem_res->elbi_base);
-> -
-> -	return 0;
-> +	return PTR_ERR_OR_ZERO(ep->mem_res->elbi_base);
->  }
-> 
->  static int exynos5440_pcie_get_clk_resources(struct exynos_pcie *ep)
-> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-> index e35e9eaa50ee..713059918002 100644
-> --- a/drivers/pci/controller/dwc/pci-meson.c
-> +++ b/drivers/pci/controller/dwc/pci-meson.c
-> @@ -182,10 +182,7 @@ static int meson_pcie_get_mems(struct platform_device *pdev,
-> 
->  	/* Meson SoC has two PCI controllers use same phy register*/
->  	mp->mem_res.phy_base = meson_pcie_get_mem_shared(pdev, mp, "phy");
-> -	if (IS_ERR(mp->mem_res.phy_base))
-> -		return PTR_ERR(mp->mem_res.phy_base);
-> -
-> -	return 0;
-> +	return PTR_ERR_OR_ZERO(mp->mem_res.phy_base);
->  }
-> 
->  static void meson_pcie_power_on(struct meson_pcie *mp)
-> @@ -259,10 +256,7 @@ static int meson_pcie_probe_clocks(struct meson_pcie *mp)
->  		return PTR_ERR(res->general_clk);
-> 
->  	res->clk = meson_pcie_probe_clock(dev, "pcie", 0);
-> -	if (IS_ERR(res->clk))
-> -		return PTR_ERR(res->clk);
-> -
-> -	return 0;
-> +	return PTR_ERR_OR_ZERO(res->clk);
->  }
-> 
->  static inline void meson_elb_writel(struct meson_pcie *mp, u32 val, u32 reg)
-> diff --git a/drivers/pci/controller/dwc/pcie-kirin.c b/drivers/pci/controller/dwc/pcie-kirin.c
-> index c19617a912bd..75b1f1dde747 100644
-> --- a/drivers/pci/controller/dwc/pcie-kirin.c
-> +++ b/drivers/pci/controller/dwc/pcie-kirin.c
-> @@ -138,10 +138,7 @@ static long kirin_pcie_get_clk(struct kirin_pcie *kirin_pcie,
->  		return PTR_ERR(kirin_pcie->apb_sys_clk);
-> 
->  	kirin_pcie->pcie_aclk = devm_clk_get(dev, "pcie_aclk");
-> -	if (IS_ERR(kirin_pcie->pcie_aclk))
-> -		return PTR_ERR(kirin_pcie->pcie_aclk);
-> -
-> -	return 0;
-> +	return PTR_ERR_OR_ZERO(kirin_pcie->pcie_aclk);
->  }
-> 
->  static long kirin_pcie_get_resource(struct kirin_pcie *kirin_pcie,
-> @@ -174,10 +171,7 @@ static long kirin_pcie_get_resource(struct kirin_pcie *kirin_pcie,
-> 
->  	kirin_pcie->sysctrl =
->  		syscon_regmap_lookup_by_compatible("hisilicon,hi3660-sctrl");
-> -	if (IS_ERR(kirin_pcie->sysctrl))
-> -		return PTR_ERR(kirin_pcie->sysctrl);
-> -
-> -	return 0;
-> +	return PTR_ERR_OR_ZERO(kirin_pcie->sysctrl);
->  }
-> 
->  static int kirin_pcie_phy_init(struct kirin_pcie *kirin_pcie)
-> --
-> 2.23.0
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+your patch is looking good to me apart from some small formal issues:
+- some typos in the commit message (int -> in, addressd -> addressed,
+definitios -> definitions, ist -> is)
+- please add the following line above your Signed-off-by line (to get
+your fix also into -stable kernels): Fixes: 6db0f3a8a04e46 ("pinctrl:
+amlogic: gxbb: add more UART pins")
+- your "Signed-off-by" has to be in a specific format
+- patches must be sent inline (not as attachment)
+- the pinctrl maintainers are not Cc'ed (so they won't notice this patch)
+
+here's a simplified version of the patch submission flow that I use:
+- (change the code)
+- git commit --signoff (give a good description why you are changing
+things, include a Fixes line if appropriate)
+- git format-patch HEAD~1
+- run ./scripts/checkpatch.pl 0001-*.patch (fix all checkpatch errors,
+"git commit --amend" the changes, then run git format-patch again)
+- find the email recipients with: ./scripts/get_maintainer.pl 0001-*.patch
+- run: git send-email 0001-*.patch --to=<maintainer or mailing list
+email> --to=<another maintainer mailing list or email> --cc=<more
+mailing lists...>
+
+feel free to ask if you have any questions
+
+
+I'm looking forward to an updated  patch!
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
