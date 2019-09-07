@@ -2,84 +2,90 @@ Return-Path: <SRS0=mB3M=XC=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-8.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5A1CCC43331
-	for <linux-amlogic@archiver.kernel.org>; Sat,  7 Sep 2019 15:02:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 19D96C43331
+	for <linux-amlogic@archiver.kernel.org>; Sat,  7 Sep 2019 16:52:07 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2E3A621835
-	for <linux-amlogic@archiver.kernel.org>; Sat,  7 Sep 2019 15:02:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E10F621835
+	for <linux-amlogic@archiver.kernel.org>; Sat,  7 Sep 2019 16:52:06 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Bp3Z6XKd";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="TtZYR2EF"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2E3A621835
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Xan5vKR4";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="rJO3Xx+L"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E10F621835
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BKlABoGlOYFX+eXreyQUi0DANVEpdS6AVWORWpQ3cLQ=; b=Bp3Z6XKd4FF2EQ
-	OgxU7SAk4PlPe0h8t8xG5wp0H2DfJTWUcHUOMfoyJfC0PDcCwmA0zn2e/ssb29JFJKd+tIsevp/ch
-	+WL31Dii04D0SnvnpYhSqEz0ZPuA3diQ3H+VSBO3Bf+njK8Hp6nYqp5RvwdtmIOvxga2dz7Rw/1Fs
-	gmG9fN86fWUq9+soRmhIO/k6IWPlRvD2uAv1PYYgFV+K3PQxlCNRAtHP9GxPWZg54cDQtrFwMNwF7
-	LDb9ukrJWHu5pDJTk2i25m5WHAVH04C3rY1Wz2iGf3rugf/Lb36fVZTlZs8MpX17K/26F1QDD0cCm
-	Akdd7Nc4ILwzfsj12m/g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=TI2VMKEdUwpeQ1Fu0OvhNtRQPn/bs5jYW5BUK452TLc=; b=Xan5vKR4hvIW88
+	F2v5wPrTK/APK5LqORU5AFYmEWeZIBnxSZj8jNi3KQqhyqFL7ircWZU0vF5WVFXTGZP1QvbvGEgIv
+	Yj3rUkOPcSX0eitznNl6DDSO/MzN6WDpvEuS+pgPVchnwVMRVok7whXZBarEnOFiBIAtwae0fOlNM
+	syR3kSJiVUCoaXBgekWoHeWmrUCiVz8OKOzG1fggWjeItQb+nfyZ9BJ+PMHwUdo4BOYEj4EFJVglN
+	OAd1Vk02viMpiZSE6B/nDZTW3U6lgSjenqK9jU1Kosj8L6o+66T9L52+HKQKOp0Mdp9TdDAlTnwoY
+	NBDF5Zbqhxtp39x2rddA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i6cEG-0003Jv-7i; Sat, 07 Sep 2019 15:02:20 +0000
-Received: from mail-ot1-x343.google.com ([2607:f8b0:4864:20::343])
+	id 1i6dwM-0004K6-Il; Sat, 07 Sep 2019 16:51:58 +0000
+Received: from mail-pl1-x62d.google.com ([2607:f8b0:4864:20::62d])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i6cEE-0003JU-6k; Sat, 07 Sep 2019 15:02:19 +0000
-Received: by mail-ot1-x343.google.com with SMTP id g19so8485407otg.13;
- Sat, 07 Sep 2019 08:02:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=vQuUa7SD4x8TPRd4rEMdVFipQdAElSjSwWznDJwYZRs=;
- b=TtZYR2EFApgjge1T6n3joQtpMqyYmTxuLma+kCVNN7wn/Td2sozX4uMMJyJOBh7cW4
- kuejU+OweVVkrAGmTKoS9jy8O7VSEzhwrKsu/XQYz4JGiLlb4/v9Oj2K61iItcV03uxD
- XGbdCpzAYDZDHIfItszdiml7ALRrPBQy7oYrMe1M0q9v5OmefhcPQP6bdBjS2OFHuIHp
- s2aIyVQhQV7q5e5QDOqkOc5hFXeTww48b2ucrRtyI2y5k+8+dElAjTG39dpzMzVHV+ZF
- 8mGjwrC0tO9qU5v86blecaWHXjKJC2KfzoeW8mWAmuyr6tKzygm8r2rBxPtqpw1GAF8z
- ByfA==
+ id 1i6dw9-0004AK-AA; Sat, 07 Sep 2019 16:51:46 +0000
+Received: by mail-pl1-x62d.google.com with SMTP id y1so4601502plp.9;
+ Sat, 07 Sep 2019 09:51:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=XqUaOhrKnokp+U3BIhPoQDVqzR2PKGp9qPpm7e89sj8=;
+ b=rJO3Xx+LJilHSOb9TezJLprHbKLa2dVOr3TaqvRVliNReXln4ikSTBUFy1tINhdqbJ
+ 3nKy9dg+tTVf3PB4Q5TT7gmvcrI4S+fonQh0IeQ+3PyyCxK8PERFscpbBQCdyP9kvwtD
+ j5dKgwau3ziI1vhYat1Mf0s84GvZUKlFEb2tLczomkR8g+BAGq4PVN9Nzt8Fw6KPhlfj
+ WxWpGpNFrSnLkhqKZwOv3wCv1c9LppF7TgesGuEQ/qDa4q2fVdTi497CoXWq10A8tfxE
+ EUgumPkeV8CHvoYTlkpL8yyLFWysH49yvmanA7lpEocj1Gw/MboNRnbIy9M5S20xBOXu
+ HQkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=vQuUa7SD4x8TPRd4rEMdVFipQdAElSjSwWznDJwYZRs=;
- b=Ynq96QsQD82Vczd0pybUOzJuyUuOn6kxiaXvewQ7LWfDxABl61gjwkxeqJ/+SEsS0M
- aRg8Hw703dj9FSA7ZY0l1F5gCJdUlEiMClQ5G9iPrPzcsRTMujKdvi7w2S4E4/lucPby
- YNUFj2ERZ0qY3yq1+v+hhvL70mLf2c4fNGRxrh5HkcVKowxK/jNuSXkHzMJ18KNMw6eD
- ql5Wu3voQ42Ss9oV0NgWLEaosbzBgfm75zmy/cIZCSN8W7TV2kxZcb8QpasU12mJkPul
- WN9/HyuYevSRIvxMtVn+Zqb6eLbKeXmoX2bg3KOaXWtqjVoANtygH9YCFNGqZo75Cpgo
- GWoQ==
-X-Gm-Message-State: APjAAAX12RBblrOxec+qelpe80JFk9dxoEpovnrWsUYFWHK7kbIirqb9
- wxdewpKmrZMl3X+f2UWdztM3ZWk+CK4eLKdeETw=
-X-Google-Smtp-Source: APXvYqzw933n7nrVPDE4QwDETJQm86n4LQrpvyL7WcPRzCKuuvqnDMkVghSGxwDP0EhrM2T8GOZ8diF0Pz2476G3pcE=
-X-Received: by 2002:a9d:5c0f:: with SMTP id o15mr12429347otk.81.1567868537282; 
- Sat, 07 Sep 2019 08:02:17 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=XqUaOhrKnokp+U3BIhPoQDVqzR2PKGp9qPpm7e89sj8=;
+ b=P5EF2tqNrDQNS+34+z+T/G6I2K5WLeFEwi22rnah8CAie6Ld5GiTXLz2d2uUjck/9n
+ BqrI+5qGpwZXw4W7YJA4HbQ+WDqmKohuOO4QiFWJx9EN4QQIycwjv0rRi18C6wDgj4Ib
+ xEuCt89tF5vTUN/PoPJNuM3EgHKcF8My/9baw8f6s8W2xemghFCUFfQpoFgBibY8E6bp
+ Cibj3sQnDTGr/aziNj9oXWGikkvKGWl+vV7P+9KHB+MILNdqoxo23YW1N+9Uu03OrzcM
+ 0Fe4jiLpH/6LDdwdRGG/2YVTLOsGC8f5Gknj1f5CSK0aS5aShswWeqRy3rYaC5cQEUn9
+ LKdg==
+X-Gm-Message-State: APjAAAV0Rp2ubBm9ap5LM4j0adpfycTmW7UEb4d7CLnw781sEB2t+6Z+
+ 9a+AJVgQKmFPtWdoZd3/cec=
+X-Google-Smtp-Source: APXvYqzvVkIDHOF9Yw52KIee27ayrvwR/SoHofhN/T9/LVtP7i2DCkkwvkpYy39Yp0g2ee8MuwIUZQ==
+X-Received: by 2002:a17:902:be12:: with SMTP id
+ r18mr14697890pls.341.1567875103917; 
+ Sat, 07 Sep 2019 09:51:43 -0700 (PDT)
+Received: from localhost.localdomain ([45.114.62.203])
+ by smtp.gmail.com with ESMTPSA id v27sm20028215pgn.76.2019.09.07.09.51.39
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 07 Sep 2019 09:51:43 -0700 (PDT)
+From: Anand Moon <linux.amoon@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>
+Subject: [RFCv1 0/1] Odroid C2: Enable DVFS for cpu
+Date: Sat,  7 Sep 2019 16:51:31 +0000
+Message-Id: <20190907165132.464-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-References: <1567667251-33466-1-git-send-email-jianxin.pan@amlogic.com>
- <1567667251-33466-5-git-send-email-jianxin.pan@amlogic.com>
- <CAFBinCBSmW4y-Dz7EkJMV8HOU4k6Z0G-K6T77XnVrHyubaSsdg@mail.gmail.com>
- <be032a85-b60d-f7f0-8404-b27784d809df@amlogic.com>
-In-Reply-To: <be032a85-b60d-f7f0-8404-b27784d809df@amlogic.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 7 Sep 2019 17:02:06 +0200
-Message-ID: <CAFBinCD7gFzOsmZCB8T1KJKVsgL7WMhoEkj3dRzyqwAnjC0CNA@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] arm64: dts: add support for A1 based Amlogic AD401
-To: Jianxin Pan <jianxin.pan@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190907_080218_251978_E87EC31F 
-X-CRM114-Status: UNSURE (   9.68  )
+X-CRM114-CacheID: sfid-20190907_095145_354494_408516E3 
+X-CRM114-Status: UNSURE (   8.35  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -92,36 +98,36 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Hanjie Lin <hanjie.lin@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>, Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- Qiufang Dai <qiufang.dai@amlogic.com>, Rob Herring <robh+dt@kernel.org>,
- Jian Hu <jian.hu@amlogic.com>, Xingyu Chen <xingyu.chen@amlogic.com>,
- Tao Zeng <tao.zeng@amlogic.com>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jianxin,
+This patch enable DVFS on GXBB Odroid C2.
 
-On Fri, Sep 6, 2019 at 7:58 AM Jianxin Pan <jianxin.pan@amlogic.com> wrote:
-[...]
-> > also I'm a bit surprised to see no busses (like aobus, cbus, periphs, ...) here
-> > aren't there any busses defined in the A1 SoC implementation or are
-> > were you planning to add them later?
-> Unlike previous series,there is no Cortex-M3 AO CPU in A1, and there is no AO/EE power domain.
-> Most of the registers are on the apb_32b bus.  aobus, cbus and periphs are not used in A1.
-OK, thank you for the explanation
-since you're going to re-send the patch anyways: can you please
-include the apb_32b bus?
-all other upstream Amlogic .dts are using the bus definitions, so that
-will make A1 consistent with the other SoCs
+DVFS has been tested by running the arm64 cpuburn
+[1] https://github.com/ssvb/cpuburn-arm/blob/master/cpuburn-a53.S
+PM-QA testing
+[2] https://git.linaro.org/power/pm-qa.git [cpufreq testcase]
 
+Tested on latest U-Boot 2019.07-1 (Aug 01 2019 - 23:58:01 +0000) Arch Linux ARM
 
-Martin
+Patch based on my linu-next-20190904 on top of my previous patch's.
+
+Best Regards
+-Anand
+
+Anand Moon (1):
+  arm64: dts: meson: odroid-c2: Enable SCPI DVFS for cpu
+
+ arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+-- 
+2.23.0
+
 
 _______________________________________________
 linux-amlogic mailing list
