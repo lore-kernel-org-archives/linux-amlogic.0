@@ -2,66 +2,86 @@ Return-Path: <SRS0=Cl/A=XE=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 02E92C4740A
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Sep 2019 12:04:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AB3ADC4740A
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Sep 2019 15:03:05 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C7B702067B
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Sep 2019 12:03:59 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7D4472086D
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Sep 2019 15:03:05 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="E3MgobG4"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C7B702067B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eqIIB3i8";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kYLKHoHw"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7D4472086D
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Rr2ELNyNTQCPDOzvkLP3jQmSlOWqP9asmRgNYJJxJmo=; b=E3MgobG4jI8tJA
-	mjg72nhkqaaQnIXJLNEZbvY4Ic/hv1+H51iHaPxCiojuyNSgtutOzQkdmlNyA3pftN++L5wVJTD6j
-	+NbxZUraUKeY90ijAaGwqY7NukGI/BLQP1g9bq8kamR88QL24izk0vjxCggS74w3LUSAOkMsWRKy9
-	yZJEDJcUjffVq3n+Htqg/ChppdUq7nXKPQCw1W7SV0AvUN7VnhkqdE3waZq8FBLByttvlwSPkTCpw
-	pZ9239VwlRDjSe6Js0i8yANzzVPHAo5szQU6Oq+tMcrSpTofj0gvSbEoNXSva8yuWz0jfgTJKbg/9
-	o8mYQgUAs6OeIc5YePpw==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=rn+YYnUt6BzFUsDUzbhEiELlUVAn+FNt1vZEaDEcOUg=; b=eqI
+	IB3i8mcRLmHTeUPeuWVcAy3N26mcPliwnZSQeDBr+P83X84/QUh7BNa6GoHi3i7R+6WFIwaoLQMQd
+	J18ykVKCju7TI5uSWJA/heId9yfzZ6+QK2G0uEywKwaxywS8ybfv7f+eJ7VIyNEilswSIwQYzW71L
+	5IVqSghR0UlTQBj9Hs8vOKmiVIuR1rJVK0Ht0OYA3EM9lCOzH6MalNMAyhwlcQxW5ZZ8Kog9pFETX
+	qwQC9Vc6E2aJqGg2BJY9E6ZN/i+Tsh7Flawtv2r11YszjVLVjErXTfr+hOLbJZ9IPTmICYkRKlWzH
+	rMXQqsET4O9QwIQ0n7mMC7UXvaKAGzQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i7IOg-0002Nc-Ry; Mon, 09 Sep 2019 12:03:54 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1i7LBw-0001Qo-QH; Mon, 09 Sep 2019 15:02:56 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i7IOZ-0002FU-JA; Mon, 09 Sep 2019 12:03:48 +0000
-Received: from [10.18.29.226] (10.18.29.226) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Mon, 9 Sep
- 2019 20:04:28 +0800
-Subject: Re: [PATCH v2 4/4] arm64: dts: add support for A1 based Amlogic AD401
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <1567667251-33466-1-git-send-email-jianxin.pan@amlogic.com>
- <1567667251-33466-5-git-send-email-jianxin.pan@amlogic.com>
- <CAFBinCBSmW4y-Dz7EkJMV8HOU4k6Z0G-K6T77XnVrHyubaSsdg@mail.gmail.com>
- <be032a85-b60d-f7f0-8404-b27784d809df@amlogic.com>
- <CAFBinCD7gFzOsmZCB8T1KJKVsgL7WMhoEkj3dRzyqwAnjC0CNA@mail.gmail.com>
-From: Jianxin Pan <jianxin.pan@amlogic.com>
-Message-ID: <a82336e2-44df-5682-1c86-daf8a8448d30@amlogic.com>
-Date: Mon, 9 Sep 2019 20:04:27 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <CAFBinCD7gFzOsmZCB8T1KJKVsgL7WMhoEkj3dRzyqwAnjC0CNA@mail.gmail.com>
-Content-Language: en-US
-X-Originating-IP: [10.18.29.226]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
+ id 1i7LBQ-0000xS-4Q; Mon, 09 Sep 2019 15:02:25 +0000
+Received: by mail-wm1-x342.google.com with SMTP id o184so15087458wme.3;
+ Mon, 09 Sep 2019 08:02:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id;
+ bh=hz2LLAs1cNin8+Ffsd99n/VCZu9MKmEH6kess00jubE=;
+ b=kYLKHoHw1+FdpSAoZzgikfbFo4aHSD51QuWxTqCKhwqj3oiheEFX+WJYtWCKXssu02
+ hgshnQvzqDW6oYrgdphx07wtfGM8lDdRbRvsPsExSMMNYRdVOpVxjx6VtYTdIQvH6PN3
+ 98yBv7dEucrqRlXp+ndBEpQelQyanNmQza5dRg6BDmMSI0Mxory2upSb10YDzOdXYOtl
+ CF3/rOTbY/8MQb5xEJjRkR2JFAMtv8lOL1LFmY+HDPss6uk+qekUOa/Yi1jL1aZ3YGqP
+ Lglhg0dARlwzBtOnieW7qwhqKhDoIlwCTAh9DojPChQ+HReemA5EMLoJZSWJDnkudBsn
+ px8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=hz2LLAs1cNin8+Ffsd99n/VCZu9MKmEH6kess00jubE=;
+ b=MiNaOhYkqHrtqc1or3RSDRy1LE32VZCVgdnkiNPf4Qj+YPOpJXA4W3dUwyyZBjVsBZ
+ AiO8U+69crJZFNSfgqHJ1IeJtxeqkLpPXSslxeJy4mbv6u9SOE9NOyQNpEQSAe7jtadE
+ 8OZH9/i05v3rjO30x5yowwITMXUdbtb/hmbPJEY4a/FTDh84qRPoz2HfZBFciA7EJeaO
+ fKmQwbm3CPyBaXE0fPtU3ZhkcqvxMrKbA8lVn3LycKpf71pOJj29t/geIjLbF3CJ9g+h
+ BbUgAGwuChgRMsbsCyPjZT+f7KvwUGqOwZM8SnBdbqNQTnxNgT4aMHwH+h6nVc0/oJRv
+ 7vcQ==
+X-Gm-Message-State: APjAAAWDpktLhRbLXWL+tBV/vxc70cxjmQenGx31SjBUwzkFQFj26cfQ
+ R54VHq7XIqbxG0xAkd7isVohwxKknChZ/A==
+X-Google-Smtp-Source: APXvYqxuVkRXu5Dx4fweA5WFPPS8e3xjqSXDcwP0Si25TxUEBUwQkdppodEEW3Bh9ipx6K8IG31EeA==
+X-Received: by 2002:a05:600c:259:: with SMTP id
+ 25mr18717914wmj.158.1568041337964; 
+ Mon, 09 Sep 2019 08:02:17 -0700 (PDT)
+Received: from localhost.localdomain ([94.204.252.234])
+ by smtp.gmail.com with ESMTPSA id s26sm27755397wrs.63.2019.09.09.08.02.15
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+ Mon, 09 Sep 2019 08:02:17 -0700 (PDT)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH 0/6] arm64: meson-gx: misc fixes and updates
+Date: Mon,  9 Sep 2019 19:01:21 +0400
+Message-Id: <1568041287-7805-1-git-send-email-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.7.4
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190909_050347_632844_8AE5E611 
-X-CRM114-Status: GOOD (  11.11  )
+X-CRM114-CacheID: sfid-20190909_080224_177151_F093716E 
+X-CRM114-Status: UNSURE (   8.13  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,45 +93,38 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Hanjie Lin <hanjie.lin@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>, Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- Qiufang Dai <qiufang.dai@amlogic.com>, Rob Herring <robh+dt@kernel.org>,
- Jian Hu <jian.hu@amlogic.com>, Xingyu Chen <xingyu.chen@amlogic.com>,
- Tao Zeng <tao.zeng@amlogic.com>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: Chrisitian Hewitt <christianshewitt@gmail.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
+This patchset:
 
-On 2019/9/7 23:02, Martin Blumenstingl wrote:
-> Hi Jianxin,
-> 
-> On Fri, Sep 6, 2019 at 7:58 AM Jianxin Pan <jianxin.pan@amlogic.com> wrote:
-> [...]
->>> also I'm a bit surprised to see no busses (like aobus, cbus, periphs, ...) here
->>> aren't there any busses defined in the A1 SoC implementation or are
->>> were you planning to add them later?
->> Unlike previous series,there is no Cortex-M3 AO CPU in A1, and there is no AO/EE power domain.
->> Most of the registers are on the apb_32b bus.  aobus, cbus and periphs are not used in A1.
-> OK, thank you for the explanation
-> since you're going to re-send the patch anyways: can you please
-> include the apb_32b bus?
-> all other upstream Amlogic .dts are using the bus definitions, so that
-> will make A1 consistent with the other SoCs
-In A1 (and the later C1), BUS is not mentioned in the memmap and register spec.
-Registers are organized and grouped by functions, and we can not find information about buses from the SoC document.
-Maybe it's better to remove bus definitions for these chips.
-> 
-> 
-> Martin
-> 
-> .
-> 
+- Fixes bluetooth on Khadas VIM2
+- Fixes bluetooth on Khadas VIM
+- Fixes GPIO key dt on Khadas VIM
+- Updates model for AML-S805X-CC
+- Updates model/compatible for AML-S905X-CC
+
+Christian Hewitt (6):
+  arm64: dts: meson-gxl-s905x-khadas-vim: fix gpio-keys-polled node
+  arm64: dts: meson-gxl-s905x-khadas-vim: fix uart_A bluetooth node
+  arm64: dts: meson-gxm-khadas-vim2: fix uart_A bluetooth node
+  arm64: dts: meson: libretech-ac: update model description
+  dt-bindings: arm: amlogic: update libretech-cc compatible
+  arm64: dts: meson: libretech-cc: update model and compatible
+
+ Documentation/devicetree/bindings/arm/amlogic.yaml           | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-gxl-s805x-libretech-ac.dts | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts   | 7 ++++---
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 5 +++--
+ arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts        | 3 +++
+ 5 files changed, 12 insertions(+), 7 deletions(-)
+
+-- 
+2.7.4
 
 
 _______________________________________________
