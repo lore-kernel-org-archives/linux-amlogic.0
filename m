@@ -2,84 +2,71 @@ Return-Path: <SRS0=L2Ze=XI=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
+	FAKE_REPLY_A1,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E802DC49ED7
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Sep 2019 10:42:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1ADFCC4CEC5
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Sep 2019 11:40:15 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BC7EA208C2
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Sep 2019 10:42:08 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E79A420693
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Sep 2019 11:40:14 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gVAkd+7V";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=verdurent-com.20150623.gappssmtp.com header.i=@verdurent-com.20150623.gappssmtp.com header.b="f3NLr6fb"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BC7EA208C2
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=verdurent.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tHGNtTP7"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E79A420693
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=gmx.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PP7h9xmEhOmlYXyAzCC+FoXqSjEdGE1v8VPAhLUgDy4=; b=gVAkd+7Vtbx0Io
-	CnFja+5qu0Nh+dqlg/q0CCCjAbLcAwb/5Mh6psHrssVpwfG70Pa5ysHL8rdRyA4jhrRKH8gAr0QPz
-	iNxFxhaB0pv5nUsuCRMrzfmEHWEl2qxOn/ICCrtLjAllCQvpCacXabJSfj0aCOcxHoGsaJNehmoe6
-	p4YhFiaXjkT4z10kLS1Sqbze8oRV17t83s7jYjtZHXt0gCa9dZ14LCChR9+wwB6sFy6Pa66rd8Uws
-	b1YGdRGsHFDPyseU4hqely5c1oqV3IwBfhi7a2+vy3XmobZa9neWK8kJmAb49qIsqnDYk9PzhbgFC
-	5GYHWbwyelLbMcDfW34g==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:To:Subject:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=DUgfHlB+OLScr2VDz3rNibQV+oR1XCmxsN2I+obuBRM=; b=tHGNtTP7gzhVV0HiECnTcBDg11
+	tpP+SAEH6GxLcCl1Svzl3k/1y9bRTLwyZEeDayke+TymRdMW0PbBh/QextqRsSktNlzmWNefarISy
+	5FFzE6esU2PJjI7ZgH7pZ1GqT8kOuMD8ubpoZwYgdeiQl+595V1SfACcUlsMl+MrX96amlR3fHZEg
+	zle/2wJpyj7Y8EEy5ALTNyVkiiEohyI60lBzrkBIePCnCbOrLqh3tsMkSlXcLQ7C5kXRA3ZRd0OGZ
+	70KLx5214x+Iq0ebQPrtTtmXhTRhzOuretAWV/cC5/ORAm3n1/UzY0eFvBGSTDZNMPttG1TwYKm8u
+	oC4Qfphg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1i8j1c-0003QQ-I1; Fri, 13 Sep 2019 10:42:00 +0000
-Received: from mail-vk1-xa43.google.com ([2607:f8b0:4864:20::a43])
- by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1i8j1Z-0003P0-EI
- for linux-amlogic@lists.infradead.org; Fri, 13 Sep 2019 10:41:59 +0000
-Received: by mail-vk1-xa43.google.com with SMTP id v78so5825425vke.4
- for <linux-amlogic@lists.infradead.org>; Fri, 13 Sep 2019 03:41:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=verdurent-com.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=VzFtOukORn6BTxSSinbhVvnit+eXevFHlnBe06UcHUA=;
- b=f3NLr6fbzNYDtDc9NetNG83qATddX3ST7qNfOKiC7D5A26Lz2W6t+TDvpUxWeoYtT3
- M4aApAZGloRKGHMgH5L8irTiEYBLKD3B/TRtWOrBOlsAjjACHoc4sHORYAgqvS0mL4E7
- t30zdO7NhhgWVnNDKr0/2Bh3D/lnBW2Kv3e4DwIMIDa17R97vTDrnH1O2Okzk0a4Kq+o
- kQ7BLoiH1T9lNsHm2mbS7J+LamF28uuFHwj5hA7c0oM0csUOHIolCIFZAva9Njfv3iIH
- Dtn3ozGFbppAKM4KDwUz8SJW1Z+2yZo2q6DQ2w3yD6hcXQSIQMiQ8gv7iN/j0A0ewzRo
- yIgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=VzFtOukORn6BTxSSinbhVvnit+eXevFHlnBe06UcHUA=;
- b=oSa68AACjXUOJpjv/cnYvn1pk4jmDl+KH7QeOCLUv4lfCBxBjJ9LEuoHuHvbXoh8eG
- G1jgSJj7PaW2rLo+ZPBHbpQWKUfdh9AVXPPiRamWmsgmyVKPuJ07OGPRoV5fWrZ0pNVI
- 5eT8JmQJHhgMXZ2AC04uVONZLFNI05CsJenkZuH7o//PHztNhMIhQYUbupcXej2kGUHz
- 1NjhMSsPd5LAHtN1T4zfiNc2nvBzCCbHrzyqqW03lK02FUx3v5VMr8p44BB6xG3a88VT
- 3fZgl0f21n6/2exkeBNiO5GGVFQxWkm6LQwmUAxkMDVzCDFJJnEhOjIvr1Zw9PPIbGzh
- 8bpQ==
-X-Gm-Message-State: APjAAAXshNfBLfg2xAHE0Dkx3D5c1Gte9nA4i19JbvE+sCjNCCJDfHTA
- tXKBfRKlLB3Gz23eFv6wbRVNWDYAUN7vnaxoOQvLLA==
-X-Google-Smtp-Source: APXvYqxu3cBj6Axf6oFZHBU9kgVq97krzKOT0Ts3wNrOj22Hb1h0mDeMG74eyOdiEpKHd1mAbLgszYVEJZSRRFRkBo8=
-X-Received: by 2002:a1f:410f:: with SMTP id o15mr19922615vka.82.1568371312972; 
- Fri, 13 Sep 2019 03:41:52 -0700 (PDT)
+	id 1i8jvr-0004qk-5T; Fri, 13 Sep 2019 11:40:07 +0000
+Received: from dd10532.kasserver.com ([85.13.133.80])
+ by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
+ id 1i7iaP-0002UW-3Q
+ for linux-amlogic@lists.infradead.org; Tue, 10 Sep 2019 16:01:47 +0000
+Received: from odsus.home.arpa (p57B0B03F.dip0.t-ipconnect.de [87.176.176.63])
+ by dd10532.kasserver.com (Postfix) with ESMTPSA id 711D21F422D0;
+ Tue, 10 Sep 2019 18:01:43 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+ by odsus.home.arpa (Postfix) with ESMTP id 227F73EA6E;
+ Tue, 10 Sep 2019 18:01:43 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at home.arpa
+Received: from odsus.home.arpa ([127.0.0.1])
+ by localhost (odsus.home.arpa [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id de1pHL-kTbqR; Tue, 10 Sep 2019 18:01:41 +0200 (CEST)
+Received: from [192.168.20.240] (vdr.home.arpa [192.168.20.240])
+ by odsus.home.arpa (Postfix) with ESMTP id 514183EA6D;
+ Tue, 10 Sep 2019 18:01:41 +0200 (CEST)
+From: Otto Meier <gf435@gmx.net>
+Subject: Re: [BUG] wrong pinning definition or uart_c in pinctrl-meson-gxbb.c
+To: linux-amlogic@lists.infradead.org
+Message-ID: <1cc32a18-464d-5531-7a1c-084390e2ecb1@gmx.net>
+Date: Tue, 10 Sep 2019 18:01:41 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <20190821222421.30242-1-glaroque@baylibre.com>
- <20190821222421.30242-2-glaroque@baylibre.com>
-In-Reply-To: <20190821222421.30242-2-glaroque@baylibre.com>
-From: Amit Kucheria <amit.kucheria@verdurent.com>
-Date: Fri, 13 Sep 2019 16:11:41 +0530
-Message-ID: <CAHLCerONjCa4Az7+d_0Qn8X36oOxXEMps++5MnBRdH5QE+aS=g@mail.gmail.com>
-Subject: Re: [PATCH v4 1/6] dt-bindings: thermal: Add DT bindings
- documentation for Amlogic Thermal
-To: Guillaume La Roque <glaroque@baylibre.com>
+Content-Language: de-DE
+X-Bad-Reply: 'Re:' in Subject but no References or In-Reply-To headers
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190913_034157_540264_67EB1960 
-X-CRM114-Status: GOOD (  13.51  )
+X-CRM114-CacheID: sfid-20190910_090145_310622_87B062BA 
+X-CRM114-Status: UNSURE (   7.38  )
+X-CRM114-Notice: Please train this message.
+X-Mailman-Approved-At: Fri, 13 Sep 2019 04:40:06 -0700
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,96 +78,66 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, Linux PM list <linux-pm@vger.kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- LKML <linux-kernel@vger.kernel.org>, Eduardo Valentin <edubezval@gmail.com>,
- linux-amlogic@lists.infradead.org, Zhang Rui <rui.zhang@intel.com>,
- lakml <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="us-ascii"
+Cc: martin.blumenstingl@googlemail.com, linux-gpio@vger.kernel.org,
+ linus.walleij@linaro.org, khilman@baylibre.com
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Aug 22, 2019 at 3:54 AM Guillaume La Roque
-<glaroque@baylibre.com> wrote:
->
-> Adding the devicetree binding documentation for the Amlogic temperature
-> sensor found in the Amlogic Meson G12 SoCs.
-> the G12A  and G12B SoCs are supported.
+Hi i tried to use the uart_C of the the odroid-c2.
 
-Merge the two sentences into a single one?
+I enabled it in the dts file. During boot it crashed when the
+the sdcard slot is addressed.
 
-> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  .../bindings/thermal/amlogic,thermal.yaml     | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
->
-> diff --git a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
-> new file mode 100644
-> index 000000000000..f761681e4c0d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/thermal/amlogic,thermal.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic Thermal
-> +
-> +maintainers:
-> +  - Guillaume La Roque <glaroque@baylibre.com>
-> +
-> +description: Binding for Amlogic Thermal
-> +
-> +properties:
-> +  compatible:
-> +      items:
-> +        - enum:
-> +            - amlogic,g12a-cpu-thermal
-> +            - amlogic,g12a-ddr-thermal
-> +        - const: amlogic,g12a-thermal
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  amlogic,ao-secure:
-> +    description: phandle to the ao-secure syscon
-> +    $ref: '/schemas/types.yaml#/definitions/phandle'
-> +
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - amlogic,ao-secure
-> +
-> +examples:
-> +  - |
-> +        cpu_temp: temperature-sensor@ff634800 {
-> +                compatible = "amlogic,g12a-cpu-thermal",
-> +                             "amlogic,g12a-thermal";
-> +                reg = <0xff634800 0x50>;
-> +                interrupts = <0x0 0x24 0x0>;
-> +                clocks = <&clk 164>;
-> +                #thermal-sensor-cells = <0>;
-> +                amlogic,ao-secure = <&sec_AO>;
-> +        };
-> +...
-> --
-> 2.17.1
->
+After long search in the net i found this:
+
+https://forum.odroid.com/viewtopic.php?f=139&t=25371&p=194370&hilit=uart_C#p177856
+
+After changing the pin definitions accordingly erverything works.
+Uart_c is functioning and sdcard ist working.
+
+
+Fixes: 6db0f3a8a04e46 ("pinctrl: amlogic: gxbb: add more UART pins")
+Signed-off-by: Otto Meiergf435@gmx.net
+---
+
+
+--- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c 2019-08-26 
+18:24:45.450089334 +0200
++++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c 2019-09-05 
+13:07:38.518637214 +0200
+@@ -192,8 +192,8 @@  static const unsigned int uart_rts_b_pin
+  
+  static const unsigned int uart_tx_c_pins[]     = { GPIOY_13 };
+  static const unsigned int uart_rx_c_pins[]     = { GPIOY_14 };
+-static const unsigned int uart_cts_c_pins[] = { GPIOX_11 };
+-static const unsigned int uart_rts_c_pins[] = { GPIOX_12 };
++static const unsigned int uart_cts_c_pins[] = { GPIOY_11 };
++static const unsigned int uart_rts_c_pins[] = { GPIOY_12 };
+  
+  static const unsigned int i2c_sck_a_pins[]     = { GPIODV_25 };
+  static const unsigned int i2c_sda_a_pins[]     = { GPIODV_24 };
+@@ -439,10 +439,10 @@  static struct meson_pmx_group meson_gxbb
+         GROUP(pwm_f_x,          3,      18),
+  
+         /* Bank Y */
+- GROUP(uart_cts_c, 1, 19),
+- GROUP(uart_rts_c, 1, 18),
+- GROUP(uart_tx_c, 1, 17),
+- GROUP(uart_rx_c, 1, 16),
++ GROUP(uart_cts_c, 1, 17),
++ GROUP(uart_rts_c, 1, 16),
++ GROUP(uart_tx_c, 1, 19),
++ GROUP(uart_rx_c, 1, 18),
+         GROUP(pwm_a_y,          1,      21),
+         GROUP(pwm_f_y,          1,      20),
+         GROUP(i2s_out_ch23_y,   1,      5),
+
+
+
+
+
 
 _______________________________________________
 linux-amlogic mailing list
