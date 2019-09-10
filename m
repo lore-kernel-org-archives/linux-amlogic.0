@@ -2,118 +2,59 @@ Return-Path: <SRS0=ENg4=XF=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3C5FFC4740A
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Sep 2019 13:50:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 811FCC4740A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Sep 2019 14:16:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0FBFB208E4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Sep 2019 13:50:46 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 55C7D2081B
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Sep 2019 14:16:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gkw/luFh"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0FBFB208E4
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=microchip.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="k6ltvEvs"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 55C7D2081B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=bootlin.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dWh/gizCIjE94Y667QUx5OywDoJ7OtOiYd5+ExDhJ6k=; b=gkw/luFhSU+c0d
-	rGPw+acYfTCg8X6ZFHnvFQphuhy6Bt+yLP65ZpFzPKopqMZP7s1gdCcNxYTkos+Pfvy7W81UuudIe
-	pGK59YGMICDpxIUbI+UzzwLohUozkBfMDHFZ0oISWi6nDU78dS5XCoKt6SRSn2hsqFh+IpmwxKfGI
-	For/MT+inbcUSm7iAxRWBYcNJNJ2vyxbsopYeTcpxgo2xrt7BDgKomGEKIxVLvUEtTZWtIzyexQD1
-	njTuMyexRaLcVL4Bli6iSBu4rAryK5JCSXIxzoov3IAaz3Clz1tTapK31Ok2VG6/nadA4AR+tjSFm
-	j9NKdxknHdBjncXvn6Lg==;
+	List-Owner; bh=VG7sErn4Q4jwfFkE+ImCcgctsVIhLTLWy1oV99Y39rU=; b=k6ltvEvseHw5uN
+	qhRxul8C1IeOQGoCnbZT7sFnJ1IZuY+vxdFq6ydTvLpMIoFhUueUk3+H2GaaxhcHsZ7Qp+G/WnLPF
+	jX9iWsdZ+a6/K+ppC9Ot+brg5QmKHe779+Gnjlhl6IvlEWlHk3zRySKUnw8+5POXfx6ZPtwRGKGZE
+	8y5ofbsQHhLVrypU37tCg/9Q30SMtydM+3bFr3avPxwKPTvetueq83o7L7DrMUEoYHdgsIWr9FtVS
+	wH6tuamWdn1nKDug3K3AylCgu+zAzZgetCxbZNKFSkHOxielrFiDnAYgbaOoZgEMyIxqV/RJI5Qhf
+	K3pK/y7eCBtS1EEQtMjQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i7gXZ-0000rF-Rf; Tue, 10 Sep 2019 13:50:41 +0000
-Received: from esa3.microchip.iphmx.com ([68.232.153.233])
+	id 1i7gwG-0001AE-Iv; Tue, 10 Sep 2019 14:16:12 +0000
+Received: from relay10.mail.gandi.net ([217.70.178.230])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i7gXU-0000dd-KE; Tue, 10 Sep 2019 13:50:38 +0000
-Received-SPF: Pass (esa3.microchip.iphmx.com: domain of
- Claudiu.Beznea@microchip.com designates 198.175.253.82 as
- permitted sender) identity=mailfrom;
- client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
- envelope-from="Claudiu.Beznea@microchip.com";
- x-sender="Claudiu.Beznea@microchip.com";
- x-conformance=spf_only; x-record-type="v=spf1";
- x-record-text="v=spf1 mx a:ushub1.microchip.com
- a:smtpout.microchip.com a:mx1.microchip.iphmx.com
- a:mx2.microchip.iphmx.com include:servers.mcsv.net
- include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa3.microchip.iphmx.com: no sender
- authenticity information available from domain of
- postmaster@email.microchip.com) identity=helo;
- client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
- envelope-from="Claudiu.Beznea@microchip.com";
- x-sender="postmaster@email.microchip.com"; x-conformance=spf_only
-Authentication-Results: esa3.microchip.iphmx.com;
- dkim=none (message not signed) header.i=none;
- spf=Pass smtp.mailfrom=Claudiu.Beznea@microchip.com;
- spf=None smtp.helo=postmaster@email.microchip.com;
- dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: 7Qx/t+qsjV6E0Dj1xcyp25xO9F6J0eJMEgv8Rljttory/h06/GeKzflrUaMK23yk4zpcyzRSgD
- oc7X0UF5ZKXrf8PPjGuE4u5QFaEIVxR4voyfKyb3pZ+bW+1/amxVUdogsl++SEkth8xqzN7fiC
- 2cW8K4IWn+UhZN2FvlZT5ULMgk4nHeh06WVzpS/tVawEfSwvFI3NAhxNOQiiiRqT++v7ZXDv6d
- e/omb4OFyKX+MKSCiBXGp+7xlJnBhpZDZgUm66rk0ykVRhT17zotZ/yYy7Hy4kCN71Um3RINx+
- JN4=
-X-IronPort-AV: E=Sophos;i="5.64,489,1559545200"; d="scan'208";a="48512205"
-Received: from smtpout.microchip.com (HELO email.microchip.com)
- ([198.175.253.82])
- by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 10 Sep 2019 06:50:33 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 10 Sep 2019 06:50:27 -0700
-Received: from m18063-ThinkPad-T460p.mchp-main.com (10.10.85.251) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.1713.5 via Frontend Transport; Tue, 10 Sep 2019 06:50:05 -0700
-From: Claudiu Beznea <claudiu.beznea@microchip.com>
-To: <daniel.lezcano@linaro.org>, <robh+dt@kernel.org>, <mark.rutland@arm.com>, 
- <linux@armlinux.org.uk>, <nsekhar@ti.com>, <bgolaszewski@baylibre.com>,
- <monstr@monstr.eu>, <john@phrozen.org>, <ralf@linux-mips.org>,
- <paul.burton@mips.com>, <jhogan@kernel.org>, <lftan@altera.com>,
- <tglx@linutronix.de>, <vgupta@synopsys.com>, <marc.zyngier@arm.com>,
- <patrice.chotard@st.com>, <mcoquelin.stm32@gmail.com>,
- <alexandre.torgue@st.com>, <eric@anholt.net>, <wahrenst@gmx.net>,
- <f.fainelli@gmail.com>, <rjui@broadcom.com>, <sbranden@broadcom.com>,
- <bcm-kernel-feedback-list@broadcom.com>, <linus.walleij@linaro.org>,
- <shc_work@mail.ru>, <kgene@kernel.org>, <krzk@kernel.org>,
- <ysato@users.sourceforge.jp>, <liviu.dudau@arm.com>, <sudeep.holla@arm.com>,
- <lorenzo.pieralisi@arm.com>, <shawnguo@kernel.org>, <s.hauer@pengutronix.de>, 
- <kernel@pengutronix.de>, <festevam@gmail.com>, <linux-imx@nxp.com>,
- <baohua@kernel.org>, <nicolas.ferre@microchip.com>,
- <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
- <baruch@tkos.co.il>, <u.kleine-koenig@pengutronix.de>, <guoren@kernel.org>,
- <kaloz@openwrt.org>, <khalasa@piap.pl>, <ssantosh@kernel.org>,
- <vz@mleia.com>, <slemieux.tyco@gmail.com>, <khilman@baylibre.com>,
- <avifishman70@gmail.com>, <tmaimon77@gmail.com>, <tali.perry1@gmail.com>,
- <venture@google.com>, <yuenn@google.com>, <benjaminfair@google.com>,
- <afaerber@suse.de>, <manivannan.sadhasivam@linaro.org>,
- <narmstrong@baylibre.com>, <agross@kernel.org>, <palmer@sifive.com>,
- <aou@eecs.berkeley.edu>, <heiko@sntech.de>, <orsonzhai@gmail.com>,
- <baolin.wang@linaro.org>, <zhang.lyra@gmail.com>,
- <maxime.ripard@bootlin.com>, <wens@csie.org>, <thierry.reding@gmail.com>,
- <jonathanh@nvidia.com>, <linux@prisktech.co.nz>, <john.stultz@linaro.org>,
- <sboyd@kernel.org>, <matthias.bgg@gmail.com>
-Subject: [PATCH 7/7] clocksource/drivers/integrator-ap: parse the chosen node
-Date: Tue, 10 Sep 2019 16:47:16 +0300
-Message-ID: <1568123236-767-8-git-send-email-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1568123236-767-1-git-send-email-claudiu.beznea@microchip.com>
-References: <1568123236-767-1-git-send-email-claudiu.beznea@microchip.com>
+ id 1i7gwD-00014z-6S; Tue, 10 Sep 2019 14:16:11 +0000
+Received: from localhost (unknown [148.69.85.38])
+ (Authenticated sender: alexandre.belloni@bootlin.com)
+ by relay10.mail.gandi.net (Postfix) with ESMTPSA id 9604424001D;
+ Tue, 10 Sep 2019 14:16:00 +0000 (UTC)
+Date: Tue, 10 Sep 2019 16:15:57 +0200
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Arnd Bergmann <arnd@arndb.de>
+Subject: Re: [PATCH] rtc: meson: mark PM functions as __maybe_unused
+Message-ID: <20190910141557.GU21254@piout.net>
+References: <20190906152438.1533833-1-arnd@arndb.de>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20190906152438.1533833-1-arnd@arndb.de>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190910_065036_887679_03444F6F 
-X-CRM114-Status: GOOD (  12.25  )
+X-CRM114-CacheID: sfid-20190910_071609_498916_90CD5059 
+X-CRM114-Status: UNSURE (   9.68  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,106 +66,35 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: uclinux-h8-devel@lists.sourceforge.jp, devicetree@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, openbmc@lists.ozlabs.org, linux-oxnas@groups.io,
- linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
- linux-unisoc@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-tegra@vger.kernel.org, nios2-dev@lists.rocketboards.org,
- linux-riscv@lists.infradead.org, linux-snps-arc@lists.infradead.org, Claudiu
- Beznea <claudiu.beznea@microchip.com>, linux-stm32@st-md-mailman.stormreply.com,
+Cc: linux-rtc@vger.kernel.org, Alessandro Zummo <a.zummo@towertech.it>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+On 06/09/2019 17:24:29+0200, Arnd Bergmann wrote:
+> The meson_vrtc_set_wakeup_time() function is only used by
+> the PM functions and causes a warning when they are disabled:
+> 
+> drivers/rtc/rtc-meson-vrtc.c:32:13: error: unused function 'meson_vrtc_set_wakeup_time' [-Werror,-Wunused-function]
+> 
+> Remove the #ifdef around the callers and add a __maybe_unused
+> annotation as a more reliable way to avoid these warnings.
+> 
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> ---
+>  drivers/rtc/rtc-meson-vrtc.c | 7 +++----
+>  1 file changed, 3 insertions(+), 4 deletions(-)
+> 
+Applied, thanks.
 
-The driver currently uses aliases to know whether the timer is the
-clocksource or the clockevent. Add the /chosen/linux,clocksource and
-/chosen/linux,clockevent parsing while keeping backward compatibility.
-
-Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
----
- drivers/clocksource/Kconfig               |  1 +
- drivers/clocksource/timer-integrator-ap.c | 21 ++++++++++++++++++++-
- 2 files changed, 21 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
-index a642c23b2fba..e1742c0abb03 100644
---- a/drivers/clocksource/Kconfig
-+++ b/drivers/clocksource/Kconfig
-@@ -240,6 +240,7 @@ config KEYSTONE_TIMER
- config INTEGRATOR_AP_TIMER
- 	bool "Integrator-ap timer driver" if COMPILE_TEST
- 	select CLKSRC_MMIO
-+	select TIMER_OF
- 	help
- 	  Enables support for the Integrator-ap timer.
- 
-diff --git a/drivers/clocksource/timer-integrator-ap.c b/drivers/clocksource/timer-integrator-ap.c
-index 8d6f814ace36..78af89e73125 100644
---- a/drivers/clocksource/timer-integrator-ap.c
-+++ b/drivers/clocksource/timer-integrator-ap.c
-@@ -14,6 +14,7 @@
- #include <linux/interrupt.h>
- #include <linux/sched_clock.h>
- 
-+#include "timer-of.h"
- #include "timer-sp.h"
- 
- static void __iomem * sched_clk_base;
-@@ -160,6 +161,12 @@ static int integrator_clockevent_init(unsigned long inrate,
- 	return 0;
- }
- 
-+static struct timer_of to[] = {
-+	{ .flags = TIMER_OF_TYPE_CS, },
-+	{ .flags = TIMER_OF_TYPE_CE, },
-+	{ /* sentinel */ }
-+};
-+
- static int __init integrator_ap_timer_init_of(struct device_node *node)
- {
- 	const char *path;
-@@ -169,6 +176,7 @@ static int __init integrator_ap_timer_init_of(struct device_node *node)
- 	struct clk *clk;
- 	unsigned long rate;
- 	struct device_node *alias_node;
-+	struct timer_of *to = node->data;
- 
- 	base = of_io_request_and_map(node, 0, "integrator-timer");
- 	if (IS_ERR(base))
-@@ -183,6 +191,17 @@ static int __init integrator_ap_timer_init_of(struct device_node *node)
- 	rate = clk_get_rate(clk);
- 	writel(0, base + TIMER_CTRL);
- 
-+	if (timer_of_is_clocksource(to))
-+		/* The primary timer lacks IRQ, use as clocksource */
-+		return integrator_clocksource_init(rate, base);
-+
-+	if (timer_of_is_clockevent(to)) {
-+		/* The secondary timer will drive the clock event */
-+		irq = irq_of_parse_and_map(node, 0);
-+		return integrator_clockevent_init(rate, base, irq);
-+	}
-+
-+	/* DT ABI compatibility below */
- 	err = of_property_read_string(of_aliases,
- 				"arm,timer-primary", &path);
- 	if (err) {
-@@ -227,4 +246,4 @@ static int __init integrator_ap_timer_init_of(struct device_node *node)
- }
- 
- TIMER_OF_DECLARE(integrator_ap_timer, "arm,integrator-timer",
--		       integrator_ap_timer_init_of, NULL);
-+		       integrator_ap_timer_init_of, to);
 -- 
-2.7.4
-
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 _______________________________________________
 linux-amlogic mailing list
