@@ -2,149 +2,116 @@ Return-Path: <SRS0=ENg4=XF=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B3582C3A5A2
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Sep 2019 09:14:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 56DF4C4740A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Sep 2019 13:48:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 807F8208E4
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Sep 2019 09:14:32 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 26B5F208E4
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Sep 2019 13:48:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Zj9rsXkC";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="NDqL1gX8"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 807F8208E4
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FINkzP9C"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 26B5F208E4
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=microchip.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=VmnpkIohBhkZZ0c9G6rr70EcjIXqL8y0KX1fGYpqFGY=; b=Zj9rsXkC2jP8fc
-	Qp42We/ScLBPmMZ8HTGYlXMUSvo5ujTT2bVJyGeNexxjSy/DmbvzdAMvZ5ySKGbLcDRmH8rZfbBPN
-	5bwXvFF0+hdbmaoKqgx0Mkos3L1e9LY/5LtiNW1O61v1ZRRG8u31EDHmx3Ul6Ll2910kmv4bSwAv7
-	EXerZHSb2Y+YMgLRdFm/El0KMbjvGw8CKsPWpu2RsCHPEvkYMNjd+vFbeuWbwwyVRyuEqmj5bU0s0
-	fp0ciq7wg294DAl09+zTTwHK7HUrlXkSqjLp0gAXRfGCasB3yv1dZGo5M+UepetLT+YTeVrUBo9gN
-	F08cjoyCQw1kstqy26Aw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=a9Ivmq6a2o4AweL6L8BRczfQLhzOzoKrSyWAnp/mch4=; b=FINkzP9CYX7wU3
+	AA0HgoCNcnKWrbDKbyzP8e9Wpz9xZRHtpZKu78SDzdXWWnxHMS9EGR2ZnqScz6DHo4pNvh56LJR0r
+	o7Wptu/g82Y6+wr7Q4odnBbj/0hxTgjWkBRx2/flSbMKNdy7nOrmomrId/vd6dxkUpszQ07OLee6I
+	W1xg5UYrCV6DbUPR192qMUyZepBmRzsXoUiiKntH/K+OmGqBwRMYWuBa3Jcns0DWdEcEvBm4hWv5F
+	uSQIu20PNleOHiFlKefbJkgZUatSmIwcjeyQiBeSATQet24k9cfKuIcDXhA2U4n4ApkwW51P4sG1p
+	eR6H98+JqgVEPWUCWSqw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i7cEE-0006W1-Tu; Tue, 10 Sep 2019 09:14:27 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1i7gV8-0006De-Bi; Tue, 10 Sep 2019 13:48:10 +0000
+Received: from esa6.microchip.iphmx.com ([216.71.154.253])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i7cEB-0006VJ-GP
- for linux-amlogic@lists.infradead.org; Tue, 10 Sep 2019 09:14:25 +0000
-Received: by mail-wr1-x441.google.com with SMTP id w13so18567561wru.7
- for <linux-amlogic@lists.infradead.org>; Tue, 10 Sep 2019 02:14:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=KggzyQTt9YMyc2e0zeHCKuseEmxSFUreE/D03f8R1R0=;
- b=NDqL1gX8Ar9j3idQWlhCBLfl2ifiSbwLFgp/lPjUdkMLZVaLI+dxj+pmLWgfzN+VNn
- q5QilFx3dcH6M/qg8NNqF0Sf4nE5RoUTtj3Yi+/Qm1f6AqAsfVFBrJBqfqN0pasZ+Lqd
- DIOoV/SfplYO7hM12+n9yvnxfQ3tvM9yBmjbhuvptlv7rS8H7KpOwjjyZUVLLImTVVUL
- 6vinHeRzaIAEIiaehPyRQzC2AGpeLXJ5mvCNe+j+SPubgah+fsciZ/J5sdoSFx9jjJ6k
- /TA6n+N+JiA/AZ6SECzRb4h+31h/Jq102kN+lmlW+MWyBGfepGzi9p68ppzwvuyptPtM
- zmfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=KggzyQTt9YMyc2e0zeHCKuseEmxSFUreE/D03f8R1R0=;
- b=hQE0W9OvU8ir+HoOifPj9oed1gW0zM72S7eSYNMj4Qfci43vi98dx+I3GLaVi3+/Ao
- wMAiVvLXbjvSFM8s80plZeqVTYC2KEutzhjjzvMwNGiMRDhZftflcv8konh11XgLTpZo
- 4XO9omxKOdhvlCRSy0k2Zb02gYWe4HcGpbZ9WK1Ng2lJ8beYDlnMbTzVGDjzsQzsf8jw
- uuaVQLr6hiPlFUWU+Cz5+RJsG+03B2NkgMS6yVgYIX8oT6fxPpj/ir2Rs9EulXcqClv0
- 4mXpjtD7sXJuSuQOpoSwiCVgTH3rtEvtjiqmUKp/uUpRqVpmmm7qGHQkmkVuUpFZOc3W
- pPcA==
-X-Gm-Message-State: APjAAAWV46fnoiMahEPoXzm62+XamzLvj+5/xCmOLAWUwjRsL3esPm9+
- +2xnQxXVgPJ3k9Omj8bS8H78ug==
-X-Google-Smtp-Source: APXvYqxjKHgmYxziqpFCqlhzhz7yM8EGCE/yXsYx9BaDfdVvKV6ats+0t7Sgfw0b984HcDIj7YcQPQ==
-X-Received: by 2002:adf:fc8a:: with SMTP id g10mr19319081wrr.354.1568106861769; 
- Tue, 10 Sep 2019 02:14:21 -0700 (PDT)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id f143sm2485376wme.40.2019.09.10.02.14.20
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 10 Sep 2019 02:14:21 -0700 (PDT)
-Subject: Re: [PATCH 6/6] arm64: dts: khadas-vim3: add commented support for
- PCIe
-To: Marc Zyngier <marc.zyngier@arm.com>
-References: <1567950178-4466-1-git-send-email-narmstrong@baylibre.com>
- <1567950178-4466-7-git-send-email-narmstrong@baylibre.com>
- <864l1ls9wy.wl-maz@kernel.org>
- <2c25e8b5-191f-96c9-8989-23959a7b1c4e@baylibre.com>
- <8636h4seeq.wl-marc.zyngier@arm.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <837e8ced-de84-1645-b5ba-6db1eacbc50d@baylibre.com>
-Date: Tue, 10 Sep 2019 11:14:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ id 1i7gUz-000690-P8; Tue, 10 Sep 2019 13:48:04 +0000
+Received-SPF: Pass (esa6.microchip.iphmx.com: domain of
+ Claudiu.Beznea@microchip.com designates 198.175.253.82 as
+ permitted sender) identity=mailfrom;
+ client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
+ envelope-from="Claudiu.Beznea@microchip.com";
+ x-sender="Claudiu.Beznea@microchip.com";
+ x-conformance=spf_only; x-record-type="v=spf1";
+ x-record-text="v=spf1 mx a:ushub1.microchip.com
+ a:smtpout.microchip.com a:mx1.microchip.iphmx.com
+ a:mx2.microchip.iphmx.com include:servers.mcsv.net
+ include:mktomail.com include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa6.microchip.iphmx.com: no sender
+ authenticity information available from domain of
+ postmaster@email.microchip.com) identity=helo;
+ client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
+ envelope-from="Claudiu.Beznea@microchip.com";
+ x-sender="postmaster@email.microchip.com"; x-conformance=spf_only
+Authentication-Results: esa6.microchip.iphmx.com;
+ dkim=none (message not signed) header.i=none;
+ spf=Pass smtp.mailfrom=Claudiu.Beznea@microchip.com;
+ spf=None smtp.helo=postmaster@email.microchip.com;
+ dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: WYS5UQP5HXf7OLJq54zsEnQ1oNnAeHdIAxZAYemrOsYCgwy2OLXHpkudvePjABycZHpsCUnCPx
+ hu9HPi6WthTulW4WGOPo5tGVzYQV3GKoGEXIiCsaZiM623CAJpJrIP9wk6CCE5s+Qy009xJJ21
+ mDzhyiR/G+V8C523m1u+uwrtT56/z5DgndQ/KpSmIP2hql0xZkyl+7eGa4R/dYfa0NcdrC9l1G
+ CRYzjZ+PHY057XrnVVfhadcc3MU+IwyUoLsOtLWnnN4YuCAKQpcGcdzshzOYbjVhc6fHmuJgWM
+ suU=
+X-IronPort-AV: E=Sophos;i="5.64,489,1559545200"; d="scan'208";a="45604858"
+Received: from smtpout.microchip.com (HELO email.microchip.com)
+ ([198.175.253.82])
+ by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 10 Sep 2019 06:47:52 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 10 Sep 2019 06:47:52 -0700
+Received: from m18063-ThinkPad-T460p.mchp-main.com (10.10.85.251) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.1713.5 via Frontend Transport; Tue, 10 Sep 2019 06:47:29 -0700
+From: Claudiu Beznea <claudiu.beznea@microchip.com>
+To: <daniel.lezcano@linaro.org>, <robh+dt@kernel.org>, <mark.rutland@arm.com>, 
+ <linux@armlinux.org.uk>, <nsekhar@ti.com>, <bgolaszewski@baylibre.com>,
+ <monstr@monstr.eu>, <john@phrozen.org>, <ralf@linux-mips.org>,
+ <paul.burton@mips.com>, <jhogan@kernel.org>, <lftan@altera.com>,
+ <tglx@linutronix.de>, <vgupta@synopsys.com>, <marc.zyngier@arm.com>,
+ <patrice.chotard@st.com>, <mcoquelin.stm32@gmail.com>,
+ <alexandre.torgue@st.com>, <eric@anholt.net>, <wahrenst@gmx.net>,
+ <f.fainelli@gmail.com>, <rjui@broadcom.com>, <sbranden@broadcom.com>,
+ <bcm-kernel-feedback-list@broadcom.com>, <linus.walleij@linaro.org>,
+ <shc_work@mail.ru>, <kgene@kernel.org>, <krzk@kernel.org>,
+ <ysato@users.sourceforge.jp>, <liviu.dudau@arm.com>, <sudeep.holla@arm.com>,
+ <lorenzo.pieralisi@arm.com>, <shawnguo@kernel.org>, <s.hauer@pengutronix.de>, 
+ <kernel@pengutronix.de>, <festevam@gmail.com>, <linux-imx@nxp.com>,
+ <baohua@kernel.org>, <nicolas.ferre@microchip.com>,
+ <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
+ <baruch@tkos.co.il>, <u.kleine-koenig@pengutronix.de>, <guoren@kernel.org>,
+ <kaloz@openwrt.org>, <khalasa@piap.pl>, <ssantosh@kernel.org>,
+ <vz@mleia.com>, <slemieux.tyco@gmail.com>, <khilman@baylibre.com>,
+ <avifishman70@gmail.com>, <tmaimon77@gmail.com>, <tali.perry1@gmail.com>,
+ <venture@google.com>, <yuenn@google.com>, <benjaminfair@google.com>,
+ <afaerber@suse.de>, <manivannan.sadhasivam@linaro.org>,
+ <narmstrong@baylibre.com>, <agross@kernel.org>, <palmer@sifive.com>,
+ <aou@eecs.berkeley.edu>, <heiko@sntech.de>, <orsonzhai@gmail.com>,
+ <baolin.wang@linaro.org>, <zhang.lyra@gmail.com>,
+ <maxime.ripard@bootlin.com>, <wens@csie.org>, <thierry.reding@gmail.com>,
+ <jonathanh@nvidia.com>, <linux@prisktech.co.nz>, <john.stultz@linaro.org>,
+ <sboyd@kernel.org>, <matthias.bgg@gmail.com>
+Subject: [PATCH 0/7] add support for clocksource/clockevent DT selection
+Date: Tue, 10 Sep 2019 16:47:09 +0300
+Message-ID: <1568123236-767-1-git-send-email-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <8636h4seeq.wl-marc.zyngier@arm.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190910_021423_547866_B38DA0A8 
-X-CRM114-Status: GOOD (  19.21  )
+X-CRM114-CacheID: sfid-20190910_064801_852727_37FCFE12 
+X-CRM114-Status: GOOD (  15.68  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,77 +123,219 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: lorenzo.pieralisi@arm.com, khilman@baylibre.com,
- linux-kernel@vger.kernel.org, kishon@ti.com, repk@triplefau.lt,
- linux-pci@vger.kernel.org, bhelgaas@google.com,
- linux-amlogic@lists.infradead.org, yue.wang@Amlogic.com,
+Cc: uclinux-h8-devel@lists.sourceforge.jp, devicetree@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, openbmc@lists.ozlabs.org, linux-oxnas@groups.io,
+ linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+ linux-unisoc@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-rpi-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-tegra@vger.kernel.org, nios2-dev@lists.rocketboards.org,
+ linux-riscv@lists.infradead.org, linux-snps-arc@lists.infradead.org, Claudiu
+ Beznea <claudiu.beznea@microchip.com>, linux-stm32@st-md-mailman.stormreply.com,
  linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMTAvMDkvMjAxOSAxMToxMiwgTWFyYyBaeW5naWVyIHdyb3RlOgo+IE9uIE1vbiwgMDkgU2Vw
-IDIwMTkgMTg6NTA6NDIgKzAxMDAsCj4gTmVpbCBBcm1zdHJvbmcgPG5hcm1zdHJvbmdAYmF5bGli
-cmUuY29tPiB3cm90ZToKPj4KPj4gSGkgTWFyYywKPj4KPj4gTGUgMDkvMDkvMjAxOSDDoCAxODoz
-NywgTWFyYyBaeW5naWVyIGEgw6ljcml0IDoKPj4+IE9uIFN1biwgMDggU2VwIDIwMTkgMTQ6NDI6
-NTggKzAxMDAsCj4+PiBOZWlsIEFybXN0cm9uZyA8bmFybXN0cm9uZ0BiYXlsaWJyZS5jb20+IHdy
-b3RlOgo+Pj4+Cj4+Pj4gVGhlIFZJTTMgb24tYm9hcmQgIE1DVSBjYW4gbXV4IHRoZSBQQ0llL1VT
-QjMuMCBzaGFyZWQgZGlmZmVyZW50aWFsCj4+Pj4gbGluZXMgdXNpbmcgYSBGVVNCMzQwVE1YIFVT
-QiAzLjEgU3VwZXJTcGVlZCBEYXRhIFN3aXRjaCBiZXR3ZWVuCj4+Pj4gYW4gVVNCMy4wIFR5cGUg
-QSBjb25uZWN0b3IgYW5kIGEgTS4yIEtleSBNIHNsb3QuCj4+Pj4gVGhlIFBIWSBkcml2aW5nIHRo
-ZXNlIGRpZmZlcmVudGlhbCBsaW5lcyBpcyBzaGFyZWQgYmV0d2Vlbgo+Pj4+IHRoZSBVU0IzLjAg
-Y29udHJvbGxlciBhbmQgdGhlIFBDSWUgQ29udHJvbGxlciwgdGh1cyBvbmx5Cj4+Pj4gYSBzaW5n
-bGUgY29udHJvbGxlciBjYW4gdXNlIGl0Lgo+Pj4+Cj4+Pj4gVGhlIG5lZWRlZCBEVCBjb25maWd1
-cmF0aW9uIHdoZW4gdGhlIE1DVSBpcyBjb25maWd1cmVkIHRvIG11eAo+Pj4+IHRoZSBQQ0llL1VT
-QjMuMCBkaWZmZXJlbnRpYWwgbGluZXMgdG8gdGhlIE0uMiBLZXkgTSBzbG90IGlzCj4+Pj4gYWRk
-ZWQgY29tbWVudGVkIGFuZCBtYXkgdW5jb21tZW50ZWQgdG8gZGlzYWJsZSBVU0IzLjAgZnJvbSB0
-aGUKPj4+PiBVU0IgQ29tcGxleCBhbmQgZW5hYmxlIHRoZSBQQ0llIGNvbnRyb2xsZXIuCj4+Pj4K
-Pj4+PiBTaWduZWQtb2ZmLWJ5OiBOZWlsIEFybXN0cm9uZyA8bmFybXN0cm9uZ0BiYXlsaWJyZS5j
-b20+Cj4+Pj4gLS0tCj4+Pj4gIC4uLi9hbWxvZ2ljL21lc29uLWcxMmItYTMxMWQta2hhZGFzLXZp
-bTMuZHRzICB8IDIyICsrKysrKysrKysrKysrKysrKysKPj4+PiAgLi4uL2FtbG9naWMvbWVzb24t
-ZzEyYi1zOTIyeC1raGFkYXMtdmltMy5kdHMgIHwgMjIgKysrKysrKysrKysrKysrKysrKwo+Pj4+
-ICAuLi4vYm9vdC9kdHMvYW1sb2dpYy9tZXNvbi1raGFkYXMtdmltMy5kdHNpICAgfCAgNCArKysr
-Cj4+Pj4gIC4uLi9kdHMvYW1sb2dpYy9tZXNvbi1zbTEta2hhZGFzLXZpbTNsLmR0cyAgICB8IDIy
-ICsrKysrKysrKysrKysrKysrKysKPj4+PiAgNCBmaWxlcyBjaGFuZ2VkLCA3MCBpbnNlcnRpb25z
-KCspCj4+Pj4KPj4+PiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9hbWxvZ2ljL21l
-c29uLWcxMmItYTMxMWQta2hhZGFzLXZpbTMuZHRzIGIvYXJjaC9hcm02NC9ib290L2R0cy9hbWxv
-Z2ljL21lc29uLWcxMmItYTMxMWQta2hhZGFzLXZpbTMuZHRzCj4+Pj4gaW5kZXggM2E2YTFlMGMx
-ZTMyLi4wNTc3YjE0MzVjYmIgMTAwNjQ0Cj4+Pj4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9h
-bWxvZ2ljL21lc29uLWcxMmItYTMxMWQta2hhZGFzLXZpbTMuZHRzCj4+Pj4gKysrIGIvYXJjaC9h
-cm02NC9ib290L2R0cy9hbWxvZ2ljL21lc29uLWcxMmItYTMxMWQta2hhZGFzLXZpbTMuZHRzCj4+
-Pj4gQEAgLTE0LDMgKzE0LDI1IEBACj4+Pj4gIC8gewo+Pj4+ICAJY29tcGF0aWJsZSA9ICJraGFk
-YXMsdmltMyIsICJhbWxvZ2ljLGEzMTFkIiwgImFtbG9naWMsZzEyYiI7Cj4+Pj4gIH07Cj4+Pj4g
-Kwo+Pj4+ICsvKgo+Pj4+ICsgKiBUaGUgVklNMyBvbi1ib2FyZCAgTUNVIGNhbiBtdXggdGhlIFBD
-SWUvVVNCMy4wIHNoYXJlZCBkaWZmZXJlbnRpYWwKPj4+PiArICogbGluZXMgdXNpbmcgYSBGVVNC
-MzQwVE1YIFVTQiAzLjEgU3VwZXJTcGVlZCBEYXRhIFN3aXRjaCBiZXR3ZWVuCj4+Pj4gKyAqIGFu
-IFVTQjMuMCBUeXBlIEEgY29ubmVjdG9yIGFuZCBhIE0uMiBLZXkgTSBzbG90Lgo+Pj4+ICsgKiBU
-aGUgUEhZIGRyaXZpbmcgdGhlc2UgZGlmZmVyZW50aWFsIGxpbmVzIGlzIHNoYXJlZCBiZXR3ZWVu
-Cj4+Pj4gKyAqIHRoZSBVU0IzLjAgY29udHJvbGxlciBhbmQgdGhlIFBDSWUgQ29udHJvbGxlciwg
-dGh1cyBvbmx5Cj4+Pj4gKyAqIGEgc2luZ2xlIGNvbnRyb2xsZXIgY2FuIHVzZSBpdC4KPj4+PiAr
-ICogSWYgdGhlIE1DVSBpcyBjb25maWd1cmVkIHRvIG11eCB0aGUgUENJZS9VU0IzLjAgZGlmZmVy
-ZW50aWFsIGxpbmVzCj4+Pj4gKyAqIHRvIHRoZSBNLjIgS2V5IE0gc2xvdCwgdW5jb21tZW50IHRo
-ZSBmb2xsb3dpbmcgYmxvY2sgdG8gZGlzYWJsZQo+Pj4+ICsgKiBVU0IzLjAgZnJvbSB0aGUgVVNC
-IENvbXBsZXggYW5kIGVuYWJsZSB0aGUgUENJZSBjb250cm9sbGVyLgo+Pj4+ICsgKi8KPj4+PiAr
-LyoKPj4+PiArJnBjaWUgewo+Pj4+ICsJc3RhdHVzID0gIm9rYXkiOwo+Pj4+ICt9Owo+Pj4+ICsK
-Pj4+PiArJnVzYiB7Cj4+Pj4gKwlwaHlzID0gPCZ1c2IyX3BoeTA+LCA8JnVzYjJfcGh5MT47Cj4+
-Pj4gKwlwaHktbmFtZXMgPSAidXNiMi1waHkwIiwgInVzYjItcGh5MSI7Cj4+Pj4gK307Cj4+Pj4g
-KyAqLwo+Pj4KPj4+IEFsdGhvdWdoIHlvdSBjYW4ndCBkbyBtdWNoIG1vcmUgdGhhbiB0aGlzIGhl
-cmUsIEknZCBleHBlY3QgZmlybXdhcmUgb24KPj4+IHRoZSBtYWNoaW5lIHRvIHByb3ZpZGUgdGhl
-IERUIHRoYXQgbWF0Y2hlcyBpdHMgY29uZmlndXJhdGlvbi4gSXMgaXQKPj4+IHRoZSB3YXkgaXQg
-YWN0dWFsbHkgd29ya3M/IE9yIGlzIHRoZSB1c2VyIGFjdHVhbGx5IGV4cGVjdGVkIHRvIGVkaXQK
-Pj4+IHRoaXMgZmlsZT8KPj4KPj4gSXQncyB0aGUgcGxhbiB3aGVuIGluaXRpYWwgVklNMyBzdXBw
-b3J0IHdpbGwgYmUgbWVyZ2VkIGluIHUtYm9vdCBtYWlubGluZSwKPj4gYW5kIHRoZSBNQ1UgZHJp
-dmVyIHdpbGwgYmUgYWRkZWQgYXN3ZWxsIDoKPj4gaHR0cHM6Ly9wYXRjaHdvcmsub3psYWJzLm9y
-Zy9jb3Zlci8xMTU2NjE4Lwo+PiBBIGN1c3RvbSBib2FyZCBzdXBwb3J0IGFsdGVyaW5nIHRoZSBE
-VCB3aWxsIGJlIGFkZGVkIHdoZW4gdGhpcyBwYXRjaHNldAo+PiBpcyBtZXJnZWQgdXBzdHJlYW0u
-Cj4+Cj4+IEJ1dCBzaW5jZSB0aGVzZSBhcmUgc2VwYXJhdGUgcHJvamVjdHMsIGxlYXZpbmcgdGhp
-cyBhcyBjb21tZW50ZWQgaXMgdWdseSwKPj4gYnV0IG5lY2Vzc2FyeS4KPiAKPiBJIGFncmVlIHdp
-dGggdGhlIHVuZm9ydHVuYXRlIG5lY2Vzc2l0eS4gSG93ZXZlciwgY291bGQgeW91IHBsZWFzZSBo
-YXZlCj4gYSBjb21tZW50IGhlcmUsIGluZGljYXRpbmcgdGhhdCB0aGUgdXNlciBpc24ndCBleHBl
-Y3RlZCB0byBjaGFuZ2UgdGhpcwo+IG9uIHRoZWlyIG93biwgYnV0IGluc3RlYWQgcmVseSBvbiB0
-aGUgZmlybXdhcmUvYm9vdGxvYWRlciB0byBkbyBpdAo+IGFjY29yZGluZ2x5PwoKWWVzLCBzdXJl
-LgoKTmVpbAoKPiAKPiBUaGFua3MsCj4gCj4gCU0uCj4gCgoKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGlu
-dXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3Jn
-L21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+Hi,
+
+This series adds support to permit the selection of clocksource/clockevent
+via DT.
+
+In [1] I proposed a solution other than the one in this series, with parsing DT
+bindings and at probe time and passing it to timer specific probe function.
+Looking forward though the clocksource/clockevent drivers implementation and
+taking into account the response at [2] I sticked the implementation to
+timer-of specific library.
+
+The implementation in this series is using timer-of specific library to parse
+the DT bindings related to timers functions: clocksource or clockevent.
+
+With this implementation a timer's driver registers for probing an array of
+objects of type struct timer_of. In flags member of struct timer_of object it
+has to be passed the following new flags (related to how the driver will behave)
+as follows:
+- TIMER_OF_TYPE_CS: timer could work only as clocksource at a time
+- TIMER_OF_TYPE_CE: timer could work only as clockevent at a time
+- TIMER_OF_TYPE_CE_AND_CE: timer could work at a time as both, clocksource and
+clockevent.
+
+The timer registration macro (for probing) now gets a new argument which should
+be an array of struct timer_of objects:
+
+TIMER_OF_DECLARE(name, compat, handler, to)
+CLOCKSOURCE_OF_DECLARE(name, compat, handler, to)
+
+In case driver could work to feed only the clocksource subsystem or only the
+clockevent subsystem the struct timer_of array passed to TIMER_OF_DECLARE()/
+CLOCKSOURCE_OF_DECLARE() should contain 2 entries: one to be filled if probed
+timer works as clocksource device, one to be filled if probed timer works as
+clockevent device.
+
+For such a case, the minimal format of struct timer_of array is as follows:
+struct timer_of to[] = {
+	{ .flags = TIMER_OF_TYPE_CS }
+	{ .flags = TIMER_OF_TYPE_CE }
+	{ /* sentinel. */
+};
+
+If timer could work as both, clocksource and clockevent at the same time,
+the struct timer_of array should look as follows:
+struct timer_of to[] = {
+	{ .flags = TIMER_OF_TYPE_CE_AND_CS }
+	{ /* sentinel. */
+};
+
+And in device tree there should be added chosen bindings as follows:
+
+chosen {
+	linux,clocksource {
+		timer = <&timer1>
+	};
+	
+	linux,clockevent {
+		timer = <&timer2>;
+	}
+};
+
+timer1: t1@123 {
+	compatible = "timerx-compatible";
+	/* the rest of DT bindings here */
+};
+
+timer2: t1@234 {
+	compatible = "timerx-compatible";
+	/* the rest of DT bindings here */
+};
+
+At probing time (timer_probe()), timer_of_init() will check the DT bindings
+and try to match with one of the entries in struct timer_of array passed at
+probe. The used entry will be considered used if the timers' device_node 
+pointer is set. If no matching b/w DT and what has been passed for probe
+via struct timer_of array then probe should fail.
+
+The patches in this series are organized as follows:
+1/7 - avoid calling timer_of_init() for every CPU since it should not be needed
+2/7 - changes timer registration macro by adding a new argument (pointer to
+      struct timer_of)
+3/7 - use BIT() macro
+4/7 - add clocksource/clockevent selection documentation [3]
+5/7 - implement support described above
+6/7 - remove an unnecessary line
+7/7 - implement this support for integrator-ap timer
+
+I implemented this support for timer published at [4].
+
+Thank you,
+Claudiu Beznea
+
+[1] https://lore.kernel.org/lkml/34574b0f-7d09-eb92-ea62-4199c293b0e7@microchip.com/
+[2] https://lore.kernel.org/lkml/1ebaa306-8a7f-fd58-56e0-a61b767357f7@linaro.org/
+[3] https://lore.kernel.org/lkml/20171213185313.20017-1-alexandre.belloni@free-electrons.com/
+[4] https://lore.kernel.org/lkml/1552580772-8499-1-git-send-email-claudiu.beznea@microchip.com/
+
+Alexandre Belloni (2):
+  dt-bindings: chosen: Add clocksource and clockevent selection
+  clocksource/drivers/integrator-ap: parse the chosen node
+
+Claudiu Beznea (5):
+  clocksource/drivers/c-sky: request timer_of_init only for probing CPU
+  clocksource: change timer registration macros
+  clocksource/timer_of: use BIT() macro
+  clocksource/drivers/timer-of: add support support for timer's
+    functionalities
+  drivers/clocksource/timer-of: keep declaration on one line
+
+ Documentation/devicetree/bindings/chosen.txt |  20 +++++
+ arch/arm/kernel/smp_twd.c                    |  10 ++-
+ arch/arm/mach-davinci/time.c                 |   2 +-
+ arch/microblaze/kernel/timer.c               |   2 +-
+ arch/mips/ralink/cevt-rt3352.c               |   2 +-
+ arch/nios2/kernel/time.c                     |   2 +-
+ drivers/clocksource/Kconfig                  |   1 +
+ drivers/clocksource/arc_timer.c              |   6 +-
+ drivers/clocksource/arm_arch_timer.c         |   6 +-
+ drivers/clocksource/arm_global_timer.c       |   2 +-
+ drivers/clocksource/armv7m_systick.c         |   2 +-
+ drivers/clocksource/asm9260_timer.c          |   2 +-
+ drivers/clocksource/bcm2835_timer.c          |   2 +-
+ drivers/clocksource/bcm_kona_timer.c         |   4 +-
+ drivers/clocksource/clksrc-dbx500-prcmu.c    |   2 +-
+ drivers/clocksource/clksrc_st_lpc.c          |   2 +-
+ drivers/clocksource/clps711x-timer.c         |   2 +-
+ drivers/clocksource/dw_apb_timer_of.c        |   9 ++-
+ drivers/clocksource/exynos_mct.c             |   4 +-
+ drivers/clocksource/h8300_timer16.c          |   2 +-
+ drivers/clocksource/h8300_timer8.c           |   2 +-
+ drivers/clocksource/h8300_tpu.c              |   2 +-
+ drivers/clocksource/jcore-pit.c              |   2 +-
+ drivers/clocksource/mips-gic-timer.c         |   2 +-
+ drivers/clocksource/mps2-timer.c             |   2 +-
+ drivers/clocksource/mxs_timer.c              |   2 +-
+ drivers/clocksource/nomadik-mtu.c            |   2 +-
+ drivers/clocksource/renesas-ostm.c           |   2 +-
+ drivers/clocksource/samsung_pwm_timer.c      |  12 ++-
+ drivers/clocksource/timer-armada-370-xp.c    |   6 +-
+ drivers/clocksource/timer-atcpit100.c        |  74 +++++++++---------
+ drivers/clocksource/timer-atlas7.c           |   3 +-
+ drivers/clocksource/timer-atmel-pit.c        |   2 +-
+ drivers/clocksource/timer-atmel-st.c         |   2 +-
+ drivers/clocksource/timer-atmel-tcb.c        |   2 +-
+ drivers/clocksource/timer-cadence-ttc.c      |   2 +-
+ drivers/clocksource/timer-davinci.c          |   3 +-
+ drivers/clocksource/timer-digicolor.c        |   2 +-
+ drivers/clocksource/timer-efm32.c            |   4 +-
+ drivers/clocksource/timer-fsl-ftm.c          |   2 +-
+ drivers/clocksource/timer-fttmr010.c         |  10 +--
+ drivers/clocksource/timer-gx6605s.c          |  58 +++++++-------
+ drivers/clocksource/timer-imx-gpt.c          |  24 +++---
+ drivers/clocksource/timer-imx-sysctr.c       |  61 +++++++--------
+ drivers/clocksource/timer-imx-tpm.c          |  69 ++++++++---------
+ drivers/clocksource/timer-integrator-ap.c    |  21 +++++-
+ drivers/clocksource/timer-ixp4xx.c           |   2 +-
+ drivers/clocksource/timer-keystone.c         |   2 +-
+ drivers/clocksource/timer-lpc32xx.c          |   2 +-
+ drivers/clocksource/timer-mediatek.c         | 108 +++++++++++++++------------
+ drivers/clocksource/timer-meson6.c           |   2 +-
+ drivers/clocksource/timer-milbeaut.c         |  59 ++++++++-------
+ drivers/clocksource/timer-mp-csky.c          |  52 ++++++-------
+ drivers/clocksource/timer-npcm7xx.c          |  87 +++++++++++----------
+ drivers/clocksource/timer-nps.c              |   6 +-
+ drivers/clocksource/timer-of.c               |  91 +++++++++++++++++++++-
+ drivers/clocksource/timer-of.h               |  36 +++++++--
+ drivers/clocksource/timer-orion.c            |   2 +-
+ drivers/clocksource/timer-owl.c              |   6 +-
+ drivers/clocksource/timer-oxnas-rps.c        |   4 +-
+ drivers/clocksource/timer-pistachio.c        |   2 +-
+ drivers/clocksource/timer-prima2.c           |   2 +-
+ drivers/clocksource/timer-probe.c            |  17 ++++-
+ drivers/clocksource/timer-pxa.c              |   2 +-
+ drivers/clocksource/timer-qcom.c             |   4 +-
+ drivers/clocksource/timer-rda.c              |  66 ++++++++--------
+ drivers/clocksource/timer-riscv.c            |   2 +-
+ drivers/clocksource/timer-rockchip.c         |   4 +-
+ drivers/clocksource/timer-sp804.c            |   4 +-
+ drivers/clocksource/timer-sprd.c             |  75 +++++++++----------
+ drivers/clocksource/timer-stm32.c            |  39 +++++-----
+ drivers/clocksource/timer-sun4i.c            |  78 +++++++++----------
+ drivers/clocksource/timer-sun5i.c            |   4 +-
+ drivers/clocksource/timer-tango-xtal.c       |   2 +-
+ drivers/clocksource/timer-tegra.c            |  31 ++++----
+ drivers/clocksource/timer-ti-32k.c           |   2 +-
+ drivers/clocksource/timer-u300.c             |   2 +-
+ drivers/clocksource/timer-versatile.c        |   4 +-
+ drivers/clocksource/timer-vf-pit.c           |   2 +-
+ drivers/clocksource/timer-vt8500.c           |   2 +-
+ drivers/clocksource/timer-zevio.c            |   2 +-
+ include/linux/clocksource.h                  |  30 +++++++-
+ 82 files changed, 748 insertions(+), 544 deletions(-)
+
+-- 
+2.7.4
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
