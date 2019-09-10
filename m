@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 62DAEC49ED6
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Sep 2019 13:49:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D685EC4740A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Sep 2019 13:49:41 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 357F221019
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Sep 2019 13:49:23 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A9E7321019
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Sep 2019 13:49:41 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="aX4vrPLr"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 357F221019
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GvXlJ6Uk"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A9E7321019
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=microchip.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,22 +25,22 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gMv4fYEO1WS/5+90CmxK64SpkxtS0VBpNhJe9YeKsSk=; b=aX4vrPLrX3UsG+
-	bgeAck9A/rl8FiICuaUnef/HASv+isKcRMbFlOYcIjj59CPptfYHUOxv013RfRChVXJpChUj272jJ
-	VE5/H2NeQd4NexT00UhxXPdYCAVFv7OJf70cby7nKNWYlmyKz6nR9yQpvGIhltuDgatG85kSAQiuq
-	7sqKUvqj29BZIt+qeBTWr8fjtAevjX371tZffQY5QFReXH9UfFZPGFcPuAQwnGMlowGa13RkW7gv4
-	2OPo8TjSpUImaLCHszDjcOvrmCVMdY2aLc9PJFuUjRERj4rlilu8qAqi5i/ADvXJCuFJYWVdwI9oP
-	WH3LxkfVlYdaonBj65Hg==;
+	List-Owner; bh=Yj8DX3vsrmrW4sKpGDtl+mSUDGCTeemdcDyfSITuvQI=; b=GvXlJ6UkDvARUj
+	Dkdx4GkaKuV31kvHBYpkhWW1ULIDTABx6nVMd8tNBHG3OOyW3cxC0wOpPEW7Kmnr9V7OX55gvUgBm
+	vHB10x76CDIMjWBsoe4SYifVk75JoE5pF/CNtNG/vp2O11Fh4KKZahamam2rDSzTBrHdD1+IGiJmP
+	SQ9l+Oc0whpv6v3g0tqARUNjPzrE1pHbjDwgxgh0FPR7WNluH5/Vy4QBTr/dzkH9AZ7htJuJcXzoW
+	ePGZHUVJIpEOr8thxWQtmI2Q8NeXLsUzDa4hsJIe6/cJL58sbbfEXJrZU7I4XQKRb2i5daTknngqQ
+	tgFLuzB4st1W57DOCXWw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i7gWD-000766-SY; Tue, 10 Sep 2019 13:49:17 +0000
-Received: from esa5.microchip.iphmx.com ([216.71.150.166])
+	id 1i7gWX-0007JA-3G; Tue, 10 Sep 2019 13:49:37 +0000
+Received: from esa1.microchip.iphmx.com ([68.232.147.91])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i7gW2-0006vB-L0; Tue, 10 Sep 2019 13:49:08 +0000
-Received-SPF: Pass (esa5.microchip.iphmx.com: domain of
+ id 1i7gWS-0007FP-Ct; Tue, 10 Sep 2019 13:49:33 +0000
+Received-SPF: Pass (esa1.microchip.iphmx.com: domain of
  Claudiu.Beznea@microchip.com designates 198.175.253.82 as
  permitted sender) identity=mailfrom;
- client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
+ client-ip=198.175.253.82; receiver=esa1.microchip.iphmx.com;
  envelope-from="Claudiu.Beznea@microchip.com";
  x-sender="Claudiu.Beznea@microchip.com";
  x-conformance=spf_only; x-record-type="v=spf1";
@@ -48,34 +48,34 @@ Received-SPF: Pass (esa5.microchip.iphmx.com: domain of
  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
  a:mx2.microchip.iphmx.com include:servers.mcsv.net
  include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa5.microchip.iphmx.com: no sender
+Received-SPF: None (esa1.microchip.iphmx.com: no sender
  authenticity information available from domain of
  postmaster@email.microchip.com) identity=helo;
- client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
+ client-ip=198.175.253.82; receiver=esa1.microchip.iphmx.com;
  envelope-from="Claudiu.Beznea@microchip.com";
  x-sender="postmaster@email.microchip.com"; x-conformance=spf_only
-Authentication-Results: esa5.microchip.iphmx.com;
+Authentication-Results: esa1.microchip.iphmx.com;
  dkim=none (message not signed) header.i=none;
  spf=Pass smtp.mailfrom=Claudiu.Beznea@microchip.com;
  spf=None smtp.helo=postmaster@email.microchip.com;
  dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: MElAMnx6DZVg0Fxo1HADhYt/CKppFOarcOtVBiJiMKeqVnerD1EXIxGfHfSFctWJdco3XjLv78
- xUkwH1JjmqvCa9jwOWHft9UhE4IXIlyPDEqRDe1OmIoHKpYSIJkLv0x17aUJyITNTyMRWpbodc
- lneFK/GmovYQEw7PxtjEpC6x3k055LWthXiCT2LjFHc4mhhZjgYC9JbHpDUcCEUuK6GlcFGY4v
- IB24qVrPtZXjzjhQigi2HVgLJL1r1E4yVKmsBEmm+UvKvhVt0qxPzmjS9H6KMJaeRjzAMwOHH2
- jYg=
-X-IronPort-AV: E=Sophos;i="5.64,489,1559545200"; d="scan'208";a="46913719"
+IronPort-SDR: b75I1LzCCu1/54dRZDZYIr5KSzjKbnrmgj6SHlBobZRrbpldI3euWWShMFFRXiwY5IaK2xmvSJ
+ Cow5bZF5wc6jsyPXZ3XRjGIiMw1CCqtQIsrnqiNHMgZkyBh2RjuqjC9EjyLC6IjzcpmFVFypHa
+ QUbjmyqCeeuTKlgffpbCLva/QhVmsXoFKiDyIS7LtMrmZvViO+3V1SNhJux1dXzQKratBoFAj/
+ 2u29RQufIBygo+W5hSn6h3vHkPYZrG9nAS/1rcAwqZVO8YdHoydtCqmTM4RRhrg2I5g/Hl380p
+ 7XM=
+X-IronPort-AV: E=Sophos;i="5.64,489,1559545200"; d="scan'208";a="49899008"
 Received: from smtpout.microchip.com (HELO email.microchip.com)
  ([198.175.253.82])
- by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 10 Sep 2019 06:48:58 -0700
+ by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 10 Sep 2019 06:49:26 -0700
 Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 10 Sep 2019 06:48:58 -0700
+ 15.1.1713.5; Tue, 10 Sep 2019 06:49:19 -0700
 Received: from m18063-ThinkPad-T460p.mchp-main.com (10.10.85.251) by
  chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.1713.5 via Frontend Transport; Tue, 10 Sep 2019 06:48:36 -0700
+ 15.1.1713.5 via Frontend Transport; Tue, 10 Sep 2019 06:48:58 -0700
 From: Claudiu Beznea <claudiu.beznea@microchip.com>
 To: <daniel.lezcano@linaro.org>, <robh+dt@kernel.org>, <mark.rutland@arm.com>, 
  <linux@armlinux.org.uk>, <nsekhar@ti.com>, <bgolaszewski@baylibre.com>,
@@ -104,16 +104,17 @@ To: <daniel.lezcano@linaro.org>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
  <maxime.ripard@bootlin.com>, <wens@csie.org>, <thierry.reding@gmail.com>,
  <jonathanh@nvidia.com>, <linux@prisktech.co.nz>, <john.stultz@linaro.org>,
  <sboyd@kernel.org>, <matthias.bgg@gmail.com>
-Subject: [PATCH 3/7] clocksource/timer_of: use BIT() macro
-Date: Tue, 10 Sep 2019 16:47:12 +0300
-Message-ID: <1568123236-767-4-git-send-email-claudiu.beznea@microchip.com>
+Subject: [PATCH 4/7] dt-bindings: chosen: Add clocksource and clockevent
+ selection
+Date: Tue, 10 Sep 2019 16:47:13 +0300
+Message-ID: <1568123236-767-5-git-send-email-claudiu.beznea@microchip.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1568123236-767-1-git-send-email-claudiu.beznea@microchip.com>
 References: <1568123236-767-1-git-send-email-claudiu.beznea@microchip.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190910_064906_823730_00FFDAC0 
-X-CRM114-Status: UNSURE (   7.26  )
+X-CRM114-CacheID: sfid-20190910_064932_441925_5AFA08B0 
+X-CRM114-Status: UNSURE (   8.27  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -141,30 +142,51 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Use BIT() macro for timer_of flags.
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
+Some timer drivers may behave either as clocksource or clockevent
+or both. Until now, in case of platforms with multiple hardware
+resources of the same type, the drivers were chosing the first
+registered hardware resource as clocksource/clockevent and the
+next one as clockevent/clocksource. Other were using different
+compatibles (one for each functionality, although its about the
+same hardware). Add DT bindings to be able to choose the
+functionality of a timer.
+
+Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 ---
- drivers/clocksource/timer-of.h | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ Documentation/devicetree/bindings/chosen.txt | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-diff --git a/drivers/clocksource/timer-of.h b/drivers/clocksource/timer-of.h
-index ee467bb16ca3..df861ea2ec42 100644
---- a/drivers/clocksource/timer-of.h
-+++ b/drivers/clocksource/timer-of.h
-@@ -4,9 +4,9 @@
- 
- #include <linux/clockchips.h>
- 
--#define TIMER_OF_BASE	0x1
--#define TIMER_OF_CLOCK	0x2
--#define TIMER_OF_IRQ	0x4
-+#define TIMER_OF_BASE		BIT(0)
-+#define TIMER_OF_CLOCK		BIT(1)
-+#define TIMER_OF_IRQ		BIT(2)
- 
- struct of_timer_irq {
- 	int irq;
+diff --git a/Documentation/devicetree/bindings/chosen.txt b/Documentation/devicetree/bindings/chosen.txt
+index 45e79172a646..aad3034cdbdf 100644
+--- a/Documentation/devicetree/bindings/chosen.txt
++++ b/Documentation/devicetree/bindings/chosen.txt
+@@ -135,3 +135,23 @@ e.g.
+ 		linux,initrd-end = <0x82800000>;
+ 	};
+ };
++
++linux,clocksource and linux,clockevent
++--------------------------------------
++
++Those nodes have a timer property. This property is a phandle to the timer to be
++chosen as the clocksource or clockevent. This is only useful when the platform
++has multiple identical timers and it is not possible to let linux make the
++correct choice.
++
++/ {
++	chosen {
++		linux,clocksource {
++			timer = <&timer0>;
++		};
++
++		linux,clockevent {
++			timer = <&timer1>;
++		};
++	};
++};
 -- 
 2.7.4
 
