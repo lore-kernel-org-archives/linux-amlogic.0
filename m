@@ -2,68 +2,61 @@ Return-Path: <SRS0=xGzz=XG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DCEA5ECDE27
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2019 07:37:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 35A95ECDE20
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2019 09:15:45 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B16FB208E4
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2019 07:37:27 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 08EEC206A1
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2019 09:15:44 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cuM5GMv5"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B16FB208E4
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mdTHS6HL"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 08EEC206A1
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=bootlin.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ntT75SxhH3muSqLFEPUDp1x6xK/QPqEVkF+zG40jtwI=; b=cuM5GMv58tWQGI
-	5/XWd0Fj7HUQbJP7uutbM6TY6nww+JpVRXPB25tevquOhDsR5sur2f9JrbIXm9KwsvmiNHpENUur3
-	ojcV7o/90+kmD2yuVzKj88Dz2X0o2VrKx2kXU5XUV6sXGtkwL2imPlAXE8o9gqyJQzsQsAq6bTYDF
-	de9AUDVWiJ5ovyQdPzL0VGmNdM8xcTOVHIyOt1mTNC/LMQCHYG3mlDEb/yhadGGNkHEXUYPR8aVBJ
-	wD/R0rqDFvxRjGu0f7sZp3ePrBH0NJskIM7pe2cx/Hg6nPUVlVQf8zXhw6q8QWTZ+aM/nLWWSWUdi
-	XaBFZtWsVmQFGZJffScA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=rDbMnrG42H/1pA1eczEPmxoH0GLGbJzrTzKtoaGa7z4=; b=mdTHS6HLPbPZ6Q
+	AfzZsY1p+uqo/i/DdwjyzP1pomrRaY9dCnp8ciBf7o6y8qn0N/Wr/CI0i4HXjkDOZgt1NjbL/rFrw
+	5DxtS5ETlC9VC5v8CmqwKW1N7SW5OPo0vFfYDX+hiIpgiXplIvsEjly/4841cH1LyLzW4uXQ4lAuE
+	IQS/k21Erdw11r45CYjxzINAxViPZWjQRPlOSbTw1UZdhHY2NCsjOq8+CQxSMBSNMqpjiezWGa4eY
+	O6Me2LA5hs7YELPEofpFcgK7+7sKjyGmA1Mdax+lsoGVg0Qj9BLsqtauhEPx9DlX+93oWwA6RZYlE
+	aDZ7ptT/RAkBp5YBkSvg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92 #3 (Red Hat Linux))
-	id 1i7xBq-0005Hh-NU; Wed, 11 Sep 2019 07:37:22 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1i7yiu-0008En-HB; Wed, 11 Sep 2019 09:15:36 +0000
+Received: from relay11.mail.gandi.net ([217.70.178.231])
  by bombadil.infradead.org with esmtps (Exim 4.92 #3 (Red Hat Linux))
- id 1i7xAp-00054e-7n; Wed, 11 Sep 2019 07:36:21 +0000
-Received: from [10.18.29.226] (10.18.29.226) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Wed, 11 Sep
- 2019 15:37:02 +0800
-Subject: Re: [PATCH v2 4/4] arm64: dts: add support for A1 based Amlogic AD401
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <1567667251-33466-1-git-send-email-jianxin.pan@amlogic.com>
- <1567667251-33466-5-git-send-email-jianxin.pan@amlogic.com>
- <CAFBinCBSmW4y-Dz7EkJMV8HOU4k6Z0G-K6T77XnVrHyubaSsdg@mail.gmail.com>
- <be032a85-b60d-f7f0-8404-b27784d809df@amlogic.com>
- <CAFBinCD7gFzOsmZCB8T1KJKVsgL7WMhoEkj3dRzyqwAnjC0CNA@mail.gmail.com>
- <a82336e2-44df-5682-1c86-daf8a8448d30@amlogic.com>
- <CAFBinCAJG4=M3BSXfREGU+iadMPkc7=yt3AdcqA1KAhQx6Wh9w@mail.gmail.com>
-From: Jianxin Pan <jianxin.pan@amlogic.com>
-Message-ID: <09d7f5cc-9063-28f4-b68f-79f21fca500b@amlogic.com>
-Date: Wed, 11 Sep 2019 15:37:02 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+ id 1i7yir-0008E7-2D; Wed, 11 Sep 2019 09:15:35 +0000
+Received: from localhost (unknown [148.69.85.38])
+ (Authenticated sender: alexandre.belloni@bootlin.com)
+ by relay11.mail.gandi.net (Postfix) with ESMTPSA id 1EE6D10000D;
+ Wed, 11 Sep 2019 09:15:02 +0000 (UTC)
+Date: Wed, 11 Sep 2019 11:14:58 +0200
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH 4/7] dt-bindings: chosen: Add clocksource and clockevent
+ selection
+Message-ID: <20190911091458.GD21254@piout.net>
+References: <1568123236-767-1-git-send-email-claudiu.beznea@microchip.com>
+ <1568123236-767-5-git-send-email-claudiu.beznea@microchip.com>
+ <81da473f-54d7-2a00-61ec-9351cdfcaaf3@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCAJG4=M3BSXfREGU+iadMPkc7=yt3AdcqA1KAhQx6Wh9w@mail.gmail.com>
-Content-Language: en-US
-X-Originating-IP: [10.18.29.226]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
+Content-Disposition: inline
+In-Reply-To: <81da473f-54d7-2a00-61ec-9351cdfcaaf3@baylibre.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190911_003619_437492_E8D15178 
-X-CRM114-Status: GOOD (  15.29  )
+X-CRM114-CacheID: sfid-20190911_021533_410920_C53D0BC3 
+X-CRM114-Status: GOOD (  17.12  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,65 +68,119 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Hanjie Lin <hanjie.lin@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>, Neil Armstrong <narmstrong@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- Qiufang Dai <qiufang.dai@amlogic.com>, Rob Herring <robh+dt@kernel.org>,
- Jian Hu <jian.hu@amlogic.com>, Xingyu Chen <xingyu.chen@amlogic.com>,
- Tao Zeng <tao.zeng@amlogic.com>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: tmaimon77@gmail.com, linus.walleij@linaro.org, nsekhar@ti.com,
+ guoren@kernel.org, linux-stm32@st-md-mailman.stormreply.com, heiko@sntech.de,
+ linux-samsung-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ khilman@baylibre.com, ludovic.desroches@microchip.com, linux-imx@nxp.com,
+ u.kleine-koenig@pengutronix.de, uclinux-h8-devel@lists.sourceforge.jp,
+ marc.zyngier@arm.com, s.hauer@pengutronix.de, linux-unisoc@lists.infradead.org,
+ khalasa@piap.pl, tglx@linutronix.de, sbranden@broadcom.com,
+ linux-kernel@vger.kernel.org, ralf@linux-mips.org, paul.burton@mips.com,
+ kernel@pengutronix.de, Claudiu Beznea <claudiu.beznea@microchip.com>,
+ mark.rutland@arm.com, jhogan@kernel.org, palmer@sifive.com, eric@anholt.net,
+ thierry.reding@gmail.com, manivannan.sadhasivam@linaro.org,
+ ysato@users.sourceforge.jp, zhang.lyra@gmail.com, daniel.lezcano@linaro.org,
+ jonathanh@nvidia.com, bgolaszewski@baylibre.com, kgene@kernel.org,
+ alexandre.torgue@st.com, linux-arm-msm@vger.kernel.org, sudeep.holla@arm.com,
+ f.fainelli@gmail.com, john.stultz@linaro.org,
+ linux-rpi-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, baohua@kernel.org, kaloz@openwrt.org,
+ sboyd@kernel.org, patrice.chotard@st.com, wahrenst@gmx.net,
+ mcoquelin.stm32@gmail.com, linux-tegra@vger.kernel.org, festevam@gmail.com,
+ lorenzo.pieralisi@arm.com, benjaminfair@google.com, shc_work@mail.ru,
+ krzk@kernel.org, yuenn@google.com, wens@csie.org,
+ bcm-kernel-feedback-list@broadcom.com, orsonzhai@gmail.com,
+ linux-snps-arc@lists.infradead.org, rjui@broadcom.com, vz@mleia.com,
+ john@phrozen.org, tali.perry1@gmail.com, avifishman70@gmail.com,
+ venture@google.com, lftan@altera.com, linux-oxnas@groups.io,
+ shawnguo@kernel.org, afaerber@suse.de, baruch@tkos.co.il,
+ maxime.ripard@bootlin.com, liviu.dudau@arm.com, linux-mips@vger.kernel.org,
+ linux-riscv@lists.infradead.org, openbmc@lists.ozlabs.org,
+ linux@armlinux.org.uk, agross@kernel.org, slemieux.tyco@gmail.com,
+ devicetree@vger.kernel.org, aou@eecs.berkeley.edu, robh+dt@kernel.org,
+ linux-mediatek@lists.infradead.org, ssantosh@kernel.org,
+ matthias.bgg@gmail.com, monstr@monstr.eu, baolin.wang@linaro.org,
+ vgupta@synopsys.com, nicolas.ferre@microchip.com, linux@prisktech.co.nz,
+ nios2-dev@lists.rocketboards.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
+On 11/09/2019 09:34:27+0200, Neil Armstrong wrote:
+> Hi,
+> 
+> On 10/09/2019 15:47, Claudiu Beznea wrote:
+> > From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> > 
+> > Some timer drivers may behave either as clocksource or clockevent
+> > or both. Until now, in case of platforms with multiple hardware
+> > resources of the same type, the drivers were chosing the first
+> > registered hardware resource as clocksource/clockevent and the
+> > next one as clockevent/clocksource. Other were using different
+> > compatibles (one for each functionality, although its about the
+> > same hardware). Add DT bindings to be able to choose the
+> > functionality of a timer.
+> > 
+> > Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> > Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> > ---
+> >  Documentation/devicetree/bindings/chosen.txt | 20 ++++++++++++++++++++
+> >  1 file changed, 20 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/chosen.txt b/Documentation/devicetree/bindings/chosen.txt
+> > index 45e79172a646..aad3034cdbdf 100644
+> > --- a/Documentation/devicetree/bindings/chosen.txt
+> > +++ b/Documentation/devicetree/bindings/chosen.txt
+> > @@ -135,3 +135,23 @@ e.g.
+> >  		linux,initrd-end = <0x82800000>;
+> >  	};
+> >  };
+> > +
+> > +linux,clocksource and linux,clockevent
+> > +--------------------------------------
+> > +
+> > +Those nodes have a timer property. This property is a phandle to the timer to be
+> > +chosen as the clocksource or clockevent. This is only useful when the platform
+> > +has multiple identical timers and it is not possible to let linux make the
+> > +correct choice.
+> > +
+> > +/ {
+> > +	chosen {
+> > +		linux,clocksource {
+> > +			timer = <&timer0>;
+> > +		};
+> > +
+> > +		linux,clockevent {
+> > +			timer = <&timer1>;
+> > +		};
+> > +	};
+> > +};
+> > 
+> 
+> Why not in aliases ?
+> 
+> aliases {
+>     clocksource0 = &timer0;
+>     clockevent0 = &timer1;
+> };
+> 
+> since we can have multiple of each, we should not limit ourselves to 1 clkevent
+> and 1 clksource.
+> 
+> In the aliases case, each driver would expose both capabilities, and the core would select
+> what to enable.
+> 
 
-On 2019/9/10 1:24, Martin Blumenstingl wrote:
-> Hi Jianxin,
-> 
-> On Mon, Sep 9, 2019 at 2:03 PM Jianxin Pan <jianxin.pan@amlogic.com> wrote:
->>
->> Hi Martin,
->>
->> On 2019/9/7 23:02, Martin Blumenstingl wrote:
->>> Hi Jianxin,
->>>
->>> On Fri, Sep 6, 2019 at 7:58 AM Jianxin Pan <jianxin.pan@amlogic.com> wrote:
->>> [...]
->>>>> also I'm a bit surprised to see no busses (like aobus, cbus, periphs, ...) here
->>>>> aren't there any busses defined in the A1 SoC implementation or are
->>>>> were you planning to add them later?
->>>> Unlike previous series,there is no Cortex-M3 AO CPU in A1, and there is no AO/EE power domain.
->>>> Most of the registers are on the apb_32b bus.  aobus, cbus and periphs are not used in A1.
->>> OK, thank you for the explanation
->>> since you're going to re-send the patch anyways: can you please
->>> include the apb_32b bus?
->>> all other upstream Amlogic .dts are using the bus definitions, so that
->>> will make A1 consistent with the other SoCs
->> In A1 (and the later C1), BUS is not mentioned in the memmap and register spec.
->> Registers are organized and grouped by functions, and we can not find information about buses from the SoC document.
-> do you know why the busses are not part of the documentation?
-> 
->> Maybe it's better to remove bus definitions for these chips.
-> my understanding is that devicetree describes the hardware
-> so if there's a bus in hardware (that we know about) then we should
-> describe it in devicetree
-> 
-> personally I think busses also make the .dts easier to read:
-> instead of a huge .dts with all nodes on one level it's split into
-> multiple smaller sub-nodes - thus making it easier to keep track of
-> "where am I in this file".
-> 
-OK, I will add the bus description for A1.
-Thank you for your suggestion.
-> 
-> Martin
-> 
-> .
-> 
+For extendability, you need nodes for that because at some point, you
+may need to also be able to select the timer frequency. You can't do
+that with an alias.
 
+
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 _______________________________________________
 linux-amlogic mailing list
