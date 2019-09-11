@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1595AC49ED6
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2019 12:40:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 028E0C49ED6
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2019 12:45:38 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D8A092082C
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2019 12:40:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C541D2082C
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2019 12:45:37 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="uIt46IhX";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="SOgetsuX"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D8A092082C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="p4Ex4ce+";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="YxweOHwI"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C541D2082C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=iIWTUJypXlih9lJdAumwSYRlTaamjWFdnicYDvXNpSk=; b=uIt46IhXgqFu9K
-	ic3pf/26afrDzbheBGBdddIXXuvLW8BGpG/Iokc40zFX07PaHSbkRmrv+9CKFcRAvSe5VVgw0rGWH
-	RcqP6ndZyAy7yCUiD1SkzytNWw21HRDTeH2i+TSNtUxHjHyWJ723qnstwrd/P+ZlYxEV+iTXNgye1
-	2Kn9WJkJaIjmYnjduQIvB4deczy9hv5D3k5D4q7rkP74agrdxWtisvUNjNz9voFIUfUAyloaG8hKL
-	b/kbeCRoialq6sptaUzKM+iVeGEXJBiSqDva7Z8fAxxWQ68MASLOKJh3aW7/nfQPuZj6xSdgRQWgc
-	SL/1W3zjgvH1Ti9aw0vg==;
+	List-Owner; bh=hCKo5NDMg548G7qYMJJbvnUU4ExQBejYMmoXBGPXEi0=; b=p4Ex4ce+xBu8TS
+	pDK+t55z74v+Z9SLcN1NjpwCHnT1yGyH3wWxZR/EjhlIrPUNW+fqobEoevP5oFordISp95gMR0C2M
+	MN1IC6ubNmkQ2G3SQ8OQ86WWJ5sRSDmOwXj7AmmguD0gFPNrMtunS8uLyqW+wBg19v2XLt4BJeaVS
+	C4/uvU9d1tgtEkq5lRrFBxcEm/OJUkyaRtCz9noHrcTD0l/i8irabbCRYD/tM/ySVbV6pCn0Lo+wt
+	9Qes86sgEeGSRPV8iVAtNUPAlHalS9a17xokdveNlNnJikT2gKnTAgAHJCGbwP9T7LqtBX79/M0bb
+	YQApGUUR2MGe19QPeTLA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1i81us-0006xf-Kl; Wed, 11 Sep 2019 12:40:10 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1i8203-0000yp-Jx; Wed, 11 Sep 2019 12:45:31 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1i81uT-0005vs-GL
- for linux-amlogic@lists.infradead.org; Wed, 11 Sep 2019 12:39:47 +0000
-Received: by mail-wr1-x442.google.com with SMTP id a11so14608929wrx.1
- for <linux-amlogic@lists.infradead.org>; Wed, 11 Sep 2019 05:39:45 -0700 (PDT)
+ id 1i8200-0000xy-DH
+ for linux-amlogic@lists.infradead.org; Wed, 11 Sep 2019 12:45:30 +0000
+Received: by mail-wm1-x344.google.com with SMTP id t9so3376252wmi.5
+ for <linux-amlogic@lists.infradead.org>; Wed, 11 Sep 2019 05:45:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=dwr7geTx9+ke2SEfXb0XdiP/5AHzRCCREQ0jz0O3H24=;
- b=SOgetsuXOSouBSo+zRRExeA/CHTEmr/rasH6WVrzzZOnZA9wEe3TKvSwzSrqP852v9
- i2olFDQrezDy5AG3UK87fQa2KD7241ujoPgm7DZEAI7rlfzH2htfCjiJmc0sFaruE5FQ
- D3BJzMZcXBezH1QPjMkZO/bu/kZPPm7Xf/aQdz9MS6wT4mj+dKddcpfWSSdXZVbLSfCF
- 06huTE2qmAmIqblEEoFMEX1ajo6SUCidGEGm37V96EIUeMmzWdhoErZ5ZDM1KEO6cp/W
- bUBLVRUYvZcaihabZYsJR9ejkuhrBr3hdOrlcM9L7itY1rM/mD1/U4SerWcMaJfAOH3H
- GBtw==
+ bh=sYTCPQr58Ua4ctdJ+VnB47YHWrWIBH3iEJ3RS9pRSbc=;
+ b=YxweOHwIShbCH6hPS6i6HV84ePL/8cEwnniaq115pVZCO5TbxKkSDODe32M1V4EEcp
+ kkvAWuy94ZbnizIyYiG/68Etc5xCsb5L2K0F/wnD8Z0T1/zmZB3W8nlgiBl46+hLGb3l
+ 8cDyaEku+ZkPIVqy4WrasJR182doXyud39F8FnbqWQklXrJtbo9d37Gq53dDsgT38+68
+ uhcm73eH6zYBPMflwvFivpuyPAl6hX5UqX5TwSE2UKSUBsQYngi1R7Kh4mJc1O1UD23t
+ Hu6ED0MLURUNKVvtT0PlmP5K1sSv+umSwhZOo/WZQYp2pZeIvyRsrI5aJwJ0//huUHte
+ VACA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=dwr7geTx9+ke2SEfXb0XdiP/5AHzRCCREQ0jz0O3H24=;
- b=bLs45zOWqwk9x6AvUh0Op8bpsLE2+ExrA8DEjA5d0zdpu9MDbURTfVzdHdJKAjnJuQ
- wN2RDe5r7iWI6xDSGSptXPqO8wZJtyukxps/eRduQm7rGkiZCgQmv61phPXYWT+FhJ1l
- E1UgFVOpCnQA1u2fGSW1mdWCLFZ3MYJxJRcVqjDap9LumI6YvgP5+Gaq9ihEZNG1Eg17
- 0Zu00Z/sFzY15jdJS163waRz2OpZEFW0NJ7RiLTeXfuJHXNBU6dUUVrNzB/ZADusH136
- 3P0HXNs8cCnJr/IyKJk/kHsArTDMCwOpVScMh8Vw8R4qqRmqH92sPXw86dmrRAQbXD3p
- 36dg==
-X-Gm-Message-State: APjAAAWRxY1u/VRBntTI+FoOC7YM5S4rYi8wX7eod3x+ztM2Zc4uttHK
- 132+2Vq7xfPKB1tgvVMN5akQiw==
-X-Google-Smtp-Source: APXvYqw4upRPwH4xndlv1C6vfZX4nM9tDRuAekjc4YPPTWh2ab8+sveb6zx1lbwzeIiikFaOGILA0Q==
-X-Received: by 2002:a5d:4081:: with SMTP id o1mr2076177wrp.41.1568205583708;
- Wed, 11 Sep 2019 05:39:43 -0700 (PDT)
+ bh=sYTCPQr58Ua4ctdJ+VnB47YHWrWIBH3iEJ3RS9pRSbc=;
+ b=c4+ee7WnGheheXsi910Il95kSUjF6KiN4moXU5GUrTo7AjixIQ3dJK2JGoTznrccfb
+ zK6Ymuu+M4QEBLPBlWdL1Kn+ttigJW+WJP7fwWza00TJVV+/mts2WFZB001crosTdook
+ XUacXQZxT01kDWiMnCRThAcNDA5KSp6hMm3RGhTs7cg4fIfpXx1SLMALfi78VpbNUemY
+ 6Y4vzgFMjTpP8H0i2Mxa62XUleI0DcL7GP4zRzHFxeevnhmNPsb2zfAf3Si/bdFEV2hd
+ MGZJS7CPzWTmiXkeY1YTpxWk9M5YdwWqxqMMpkVeOKr5APtblvjARrFpgPAZpPNJRR1i
+ nO3A==
+X-Gm-Message-State: APjAAAWYRnqhxnjHFjAzK8NQQVlXMsLBZbKFtZhUdwH2KGFkILDXz1Iy
+ nN5Lh4NRAjLKogmkbATjgLRkFw==
+X-Google-Smtp-Source: APXvYqzuBGTWjnqVDdMs2zEFwas3SIFlbtItk3NMd8bprZpJajDKQbiu1luuEHm9SFCTUIv/iE7wrg==
+X-Received: by 2002:a05:600c:24e:: with SMTP id
+ 14mr3921540wmj.140.1568205924684; 
+ Wed, 11 Sep 2019 05:45:24 -0700 (PDT)
 Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr.
  [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id r18sm23920698wrx.36.2019.09.11.05.39.42
+ by smtp.gmail.com with ESMTPSA id x5sm29802865wrg.69.2019.09.11.05.45.23
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 11 Sep 2019 05:39:43 -0700 (PDT)
-Subject: Re: [PATCH 3/6] PCI: amlogic: meson: Add support for G12A
+ Wed, 11 Sep 2019 05:45:24 -0700 (PDT)
+Subject: Re: [PATCH 4/6] phy: meson-g12a-usb3-pcie: Add support for PCIe mode
 To: Andrew Murray <andrew.murray@arm.com>
 References: <1567950178-4466-1-git-send-email-narmstrong@baylibre.com>
- <1567950178-4466-4-git-send-email-narmstrong@baylibre.com>
- <20190911113633.GR9720@e119886-lin.cambridge.arm.com>
+ <1567950178-4466-5-git-send-email-narmstrong@baylibre.com>
+ <20190911121954.GS9720@e119886-lin.cambridge.arm.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -132,16 +133,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <bb5794e7-44c6-c889-b555-21c531003548@baylibre.com>
-Date: Wed, 11 Sep 2019 14:39:42 +0200
+Message-ID: <e4249d3a-9a98-c596-01ae-2917ffd78f17@baylibre.com>
+Date: Wed, 11 Sep 2019 14:45:23 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190911113633.GR9720@e119886-lin.cambridge.arm.com>
+In-Reply-To: <20190911121954.GS9720@e119886-lin.cambridge.arm.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190911_053945_543746_2F1FC408 
-X-CRM114-Status: GOOD (  29.37  )
+X-CRM114-CacheID: sfid-20190911_054528_606041_89E477AA 
+X-CRM114-Status: GOOD (  19.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,267 +163,52 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Andrew,
-
-On 11/09/2019 13:36, Andrew Murray wrote:
-> On Sun, Sep 08, 2019 at 01:42:55PM +0000, Neil Armstrong wrote:
->> Add support for the Amlogic G12A SoC using a separate shared PHY.
+On 11/09/2019 14:19, Andrew Murray wrote:
+> On Sun, Sep 08, 2019 at 01:42:56PM +0000, Neil Armstrong wrote:
+>> This adds extended PCIe PHY functions for the Amlogic G12A
+>> USB3+PCIE Combo PHY to support reset, power_on and power_off for
+>> PCIe exclusively.
 >>
->> This adds support for fetching a PHY phandle and call the PHY init,
->> reset and power on/off calls instead of writing in the PHY register or
->> toggling the PHY reset line.
->>
->> The MIPI clock is also made optional since it is used for setting up
-> 
-> Is it worth indicating here that the MIPI clock is *only required* for
-> the G12A (or controllers with a shared phy)? It's still required for
-> AXG. It's not optional for G12A - it's ignored.
-
-Indeed it's ignored, I'll reword it.
-
-> 
->> the PHY reference clock chared with the DSI controller on AXG.
-> 
-> s/chared/shared/
-
-Ack
-
-> 
+>> With these callbacks, we can handle all the needed operations of the
+>> Amlogic PCIe controller driver.
 >>
 >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 >> ---
->>  drivers/pci/controller/dwc/pci-meson.c | 101 ++++++++++++++++++++-----
->>  1 file changed, 84 insertions(+), 17 deletions(-)
+>>  .../phy/amlogic/phy-meson-g12a-usb3-pcie.c    | 70 ++++++++++++++++---
+>>  1 file changed, 61 insertions(+), 9 deletions(-)
 >>
->> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
->> index ab79990798f8..3fadad381762 100644
->> --- a/drivers/pci/controller/dwc/pci-meson.c
->> +++ b/drivers/pci/controller/dwc/pci-meson.c
->> @@ -16,6 +16,7 @@
->>  #include <linux/reset.h>
->>  #include <linux/resource.h>
->>  #include <linux/types.h>
->> +#include <linux/phy/phy.h>
+>> diff --git a/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c b/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
+>> index ac322d643c7a..08e322789e59 100644
+>> --- a/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
+>> +++ b/drivers/phy/amlogic/phy-meson-g12a-usb3-pcie.c
+>> @@ -50,6 +50,8 @@
+>>  	#define PHY_R5_PHY_CR_ACK				BIT(16)
+>>  	#define PHY_R5_PHY_BS_OUT				BIT(17)
 >>  
->>  #include "pcie-designware.h"
->>  
->> @@ -96,12 +97,18 @@ struct meson_pcie_rc_reset {
->>  	struct reset_control *apb;
->>  };
->>  
->> +struct meson_pcie_param {
->> +	bool has_shared_phy;
->> +};
+>> +#define PCIE_RESET_DELAY					500
 >> +
->>  struct meson_pcie {
->>  	struct dw_pcie pci;
->>  	struct meson_pcie_mem_res mem_res;
->>  	struct meson_pcie_clk_res clk_res;
->>  	struct meson_pcie_rc_reset mrst;
->>  	struct gpio_desc *reset_gpio;
->> +	struct phy *phy;
->> +	const struct meson_pcie_param *param;
->>  };
+>>  struct phy_g12a_usb3_pcie_priv {
+>>  	struct regmap		*regmap;
+>>  	struct regmap		*regmap_cr;
+>> @@ -196,6 +198,10 @@ static int phy_g12a_usb3_init(struct phy *phy)
+>>  	struct phy_g12a_usb3_pcie_priv *priv = phy_get_drvdata(phy);
+>>  	int data, ret;
 >>  
->>  static struct reset_control *meson_pcie_get_reset(struct meson_pcie *mp,
->> @@ -123,10 +130,12 @@ static int meson_pcie_get_resets(struct meson_pcie *mp)
->>  {
->>  	struct meson_pcie_rc_reset *mrst = &mp->mrst;
->>  
->> -	mrst->phy = meson_pcie_get_reset(mp, "phy", PCIE_SHARED_RESET);
->> -	if (IS_ERR(mrst->phy))
->> -		return PTR_ERR(mrst->phy);
->> -	reset_control_deassert(mrst->phy);
->> +	if (!mp->param->has_shared_phy) {
->> +		mrst->phy = meson_pcie_get_reset(mp, "phy", PCIE_SHARED_RESET);
->> +		if (IS_ERR(mrst->phy))
->> +			return PTR_ERR(mrst->phy);
->> +		reset_control_deassert(mrst->phy);
->> +	}
->>  
->>  	mrst->port = meson_pcie_get_reset(mp, "port", PCIE_NORMAL_RESET);
->>  	if (IS_ERR(mrst->port))
->> @@ -180,6 +189,9 @@ static int meson_pcie_get_mems(struct platform_device *pdev,
->>  	if (IS_ERR(mp->mem_res.cfg_base))
->>  		return PTR_ERR(mp->mem_res.cfg_base);
->>  
->> +	if (mp->param->has_shared_phy)
->> +		return 0;
->> +
-> 
-> It may be more consistent if, rather than returning here, you wrapped
-> the following 3 lines by the if statement.
-
-ok
-
-> 
->>  	/* Meson SoC has two PCI controllers use same phy register*/
-> 
-> I guess this comment should now be updated to refer to AXG?
-
-Indeed
-
-> 
->>  	mp->mem_res.phy_base = meson_pcie_get_mem_shared(pdev, mp, "phy");
->>  	if (IS_ERR(mp->mem_res.phy_base))
->> @@ -188,19 +200,33 @@ static int meson_pcie_get_mems(struct platform_device *pdev,
->>  	return 0;
->>  }
->>  
->> -static void meson_pcie_power_on(struct meson_pcie *mp)
->> +static int meson_pcie_power_on(struct meson_pcie *mp)
->>  {
->> -	writel(MESON_PCIE_PHY_POWERUP, mp->mem_res.phy_base);
->> +	int ret = 0;
->> +
->> +	if (mp->param->has_shared_phy)
->> +		ret = phy_power_on(mp->phy);
-> 
-> I haven't seen any phy_[init/exit] calls, should there be any?
-
-There is no _init() needed, but indeed we should still call them even it's
-a no-op.
-
-> 
->> +	else
->> +		writel(MESON_PCIE_PHY_POWERUP, mp->mem_res.phy_base);
->> +
->> +	return ret;
->>  }
->>  
->> -static void meson_pcie_reset(struct meson_pcie *mp)
->> +static int meson_pcie_reset(struct meson_pcie *mp)
->>  {
->>  	struct meson_pcie_rc_reset *mrst = &mp->mrst;
->> -
->> -	reset_control_assert(mrst->phy);
->> -	udelay(PCIE_RESET_DELAY);
->> -	reset_control_deassert(mrst->phy);
->> -	udelay(PCIE_RESET_DELAY);
->> +	int ret = 0;
->> +
->> +	if (mp->param->has_shared_phy) {
->> +		ret = phy_reset(mp->phy);
->> +		if (ret)
->> +			return ret;
->> +	} else {
->> +		reset_control_assert(mrst->phy);
->> +		udelay(PCIE_RESET_DELAY);
->> +		reset_control_deassert(mrst->phy);
->> +		udelay(PCIE_RESET_DELAY);
->> +	}
->>  
->>  	reset_control_assert(mrst->port);
->>  	reset_control_assert(mrst->apb);
->> @@ -208,6 +234,8 @@ static void meson_pcie_reset(struct meson_pcie *mp)
->>  	reset_control_deassert(mrst->port);
->>  	reset_control_deassert(mrst->apb);
->>  	udelay(PCIE_RESET_DELAY);
->> +
->> +	return 0;
->>  }
->>  
->>  static inline struct clk *meson_pcie_probe_clock(struct device *dev,
->> @@ -250,9 +278,11 @@ static int meson_pcie_probe_clocks(struct meson_pcie *mp)
->>  	if (IS_ERR(res->port_clk))
->>  		return PTR_ERR(res->port_clk);
->>  
->> -	res->mipi_gate = meson_pcie_probe_clock(dev, "mipi", 0);
->> -	if (IS_ERR(res->mipi_gate))
->> -		return PTR_ERR(res->mipi_gate);
->> +	if (!mp->param->has_shared_phy) {
->> +		res->mipi_gate = meson_pcie_probe_clock(dev, "mipi", 0);
->> +		if (IS_ERR(res->mipi_gate))
->> +			return PTR_ERR(res->mipi_gate);
->> +	}
->>  
->>  	res->general_clk = meson_pcie_probe_clock(dev, "general", 0);
->>  	if (IS_ERR(res->general_clk))
->> @@ -524,6 +554,7 @@ static const struct dw_pcie_ops dw_pcie_ops = {
->>  
->>  static int meson_pcie_probe(struct platform_device *pdev)
->>  {
->> +	const struct meson_pcie_param *match_data;
->>  	struct device *dev = &pdev->dev;
->>  	struct dw_pcie *pci;
->>  	struct meson_pcie *mp;
->> @@ -537,6 +568,20 @@ static int meson_pcie_probe(struct platform_device *pdev)
->>  	pci->dev = dev;
->>  	pci->ops = &dw_pcie_ops;
->>  
->> +	match_data = of_device_get_match_data(dev);
->> +	if (!match_data) {
->> +		dev_err(dev, "failed to get match data\n");
->> +		return -ENODEV;
->> +	}
->> +	mp->param = match_data;
->> +
->> +	if (mp->param->has_shared_phy) {
->> +		mp->phy = devm_phy_get(dev, "pcie");
->> +		if (IS_ERR(mp->phy)) {
->> +			return PTR_ERR(mp->phy);
->> +		}
->> +	}
->> +
->>  	mp->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
->>  	if (IS_ERR(mp->reset_gpio)) {
->>  		dev_err(dev, "get reset gpio failed\n");
->> @@ -555,8 +600,17 @@ static int meson_pcie_probe(struct platform_device *pdev)
->>  		return ret;
->>  	}
->>  
->> -	meson_pcie_power_on(mp);
->> -	meson_pcie_reset(mp);
->> +	ret = meson_pcie_power_on(mp);
->> +	if (ret) {
->> +		dev_err(dev, "phy power on failed, %d\n", ret);
+>> +	ret = reset_control_reset(priv->reset);
+>> +	if (ret)
 >> +		return ret;
->> +	}
 >> +
->> +	ret = meson_pcie_reset(mp);
->> +	if (ret) {
->> +		dev_err(dev, "reset failed, %d\n", ret);
->> +		return ret;
->> +	}
->>  
->>  	ret = meson_pcie_probe_clocks(mp);
->>  	if (ret) {
->> @@ -575,9 +629,22 @@ static int meson_pcie_probe(struct platform_device *pdev)
->>  	return 0;
->>  }
->>  
->> +static struct meson_pcie_param meson_pcie_axg_param = {
->> +	.has_shared_phy = false,
->> +};
->> +
->> +static struct meson_pcie_param meson_pcie_g12a_param = {
->> +	.has_shared_phy = true,
->> +};
->> +
->>  static const struct of_device_id meson_pcie_of_match[] = {
->>  	{
->>  		.compatible = "amlogic,axg-pcie",
->> +		.data = &meson_pcie_axg_param,
->> +	},
->> +	{
->> +		.compatible = "amlogic,g12a-pcie",
->> +		.data = &meson_pcie_g12a_param,
 > 
-> Here, we hard-code knowledge about the SOCs regarding if they have shared phys
-> or not. I guess the alternative would have been to assume there is a shared
-> phy if the DT has a phandle for it. I.e. instead of mp->param->has_shared_phy
-> everywhere you could test for mp->phy. Though I guess at least with the
-> current approach you guard against bad DTs, this seems OK.
+> Right, so we've moved this to apply to USB only, thus assuming PCI will
+> call .reset for its reset (why the asymmetry?).
 
-I could split with if(mp->phy) and .needs_mipi_clk, but overall it would
-be the same, and I wouldn't know how to react if we forget the PHY in g12a DT
-since we wouldn't have the PHY register memory zone.
-On G12A, the PHY is mandatory unlike AXG.
+Exact, there is no power_on/power_off when USB3 mode is used, and vendor
+always reset the PHY before switching to USB3, but for PCIe, it seems the
+reset and the power_on must be done separately with the PCIe controller init
+and reset in the middle.
 
-And finally this MIPI clock is part of the PHY ref clock, so I think
-it's fine to wrap it in the .has_shared_phy knowledge.
+I would prefer symmetry aswell :-/
 
-Thanks for the review,
 Neil
 
 > 
@@ -430,9 +216,104 @@ Neil
 > 
 > Andrew Murray
 > 
->>  	},
->>  	{},
+>>  	/* Switch PHY to USB3 */
+>>  	/* TODO figure out how to handle when PCIe was set in the bootloader */
+>>  	regmap_update_bits(priv->regmap, PHY_R0,
+>> @@ -272,24 +278,64 @@ static int phy_g12a_usb3_init(struct phy *phy)
+>>  	return 0;
+>>  }
+>>  
+>> -static int phy_g12a_usb3_pcie_init(struct phy *phy)
+>> +static int phy_g12a_usb3_pcie_power_on(struct phy *phy)
+>> +{
+>> +	struct phy_g12a_usb3_pcie_priv *priv = phy_get_drvdata(phy);
+>> +
+>> +	if (priv->mode == PHY_TYPE_USB3)
+>> +		return 0;
+>> +
+>> +	regmap_update_bits(priv->regmap, PHY_R0,
+>> +			   PHY_R0_PCIE_POWER_STATE,
+>> +			   FIELD_PREP(PHY_R0_PCIE_POWER_STATE, 0x1c));
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int phy_g12a_usb3_pcie_power_off(struct phy *phy)
+>> +{
+>> +	struct phy_g12a_usb3_pcie_priv *priv = phy_get_drvdata(phy);
+>> +
+>> +	if (priv->mode == PHY_TYPE_USB3)
+>> +		return 0;
+>> +
+>> +	regmap_update_bits(priv->regmap, PHY_R0,
+>> +			   PHY_R0_PCIE_POWER_STATE,
+>> +			   FIELD_PREP(PHY_R0_PCIE_POWER_STATE, 0x1d));
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int phy_g12a_usb3_pcie_reset(struct phy *phy)
+>>  {
+>>  	struct phy_g12a_usb3_pcie_priv *priv = phy_get_drvdata(phy);
+>>  	int ret;
+>>  
+>> -	ret = reset_control_reset(priv->reset);
+>> +	if (priv->mode == PHY_TYPE_USB3)
+>> +		return 0;
+>> +
+>> +	ret = reset_control_assert(priv->reset);
+>>  	if (ret)
+>>  		return ret;
+>>  
+>> +	udelay(PCIE_RESET_DELAY);
+>> +
+>> +	ret = reset_control_deassert(priv->reset);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	udelay(PCIE_RESET_DELAY);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int phy_g12a_usb3_pcie_init(struct phy *phy)
+>> +{
+>> +	struct phy_g12a_usb3_pcie_priv *priv = phy_get_drvdata(phy);
+>> +
+>>  	if (priv->mode == PHY_TYPE_USB3)
+>>  		return phy_g12a_usb3_init(phy);
+>>  
+>> -	/* Power UP PCIE */
+>> -	/* TODO figure out when the bootloader has set USB3 mode before */
+>> -	regmap_update_bits(priv->regmap, PHY_R0,
+>> -			   PHY_R0_PCIE_POWER_STATE,
+>> -			   FIELD_PREP(PHY_R0_PCIE_POWER_STATE, 0x1c));
+>> -
+>>  	return 0;
+>>  }
+>>  
+>> @@ -297,7 +343,10 @@ static int phy_g12a_usb3_pcie_exit(struct phy *phy)
+>>  {
+>>  	struct phy_g12a_usb3_pcie_priv *priv = phy_get_drvdata(phy);
+>>  
+>> -	return reset_control_reset(priv->reset);
+>> +	if (priv->mode == PHY_TYPE_USB3)
+>> +		return reset_control_reset(priv->reset);
+>> +
+>> +	return 0;
+>>  }
+>>  
+>>  static struct phy *phy_g12a_usb3_pcie_xlate(struct device *dev,
+>> @@ -326,6 +375,9 @@ static struct phy *phy_g12a_usb3_pcie_xlate(struct device *dev,
+>>  static const struct phy_ops phy_g12a_usb3_pcie_ops = {
+>>  	.init		= phy_g12a_usb3_pcie_init,
+>>  	.exit		= phy_g12a_usb3_pcie_exit,
+>> +	.power_on	= phy_g12a_usb3_pcie_power_on,
+>> +	.power_off	= phy_g12a_usb3_pcie_power_off,
+>> +	.reset		= phy_g12a_usb3_pcie_reset,
+>>  	.owner		= THIS_MODULE,
 >>  };
+>>  
 >> -- 
 >> 2.17.1
 >>
