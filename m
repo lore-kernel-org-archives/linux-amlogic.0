@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BACC5C5ACAE
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2019 15:39:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A9A60C5ACAE
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2019 15:39:30 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 89C5D2085B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2019 15:39:12 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7D29A2085B
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2019 15:39:30 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YYl0ADT4"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 89C5D2085B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="IkxT6R7d"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7D29A2085B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,34 +25,34 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=k+cs5gAq+oEp50xHYiX7LOS4sz4QdJkbvdRm1Ani8T4=; b=YYl0ADT4YCwh3i
-	beQgF9fRZFiRPynDJs5MbSttLIWZAFA9QMbO0OkGletqNnpfQceAB8MfsgvpW81cxoSutXZiIiVyO
-	XHLTe51IWunNId8FnuAZoGN/EozqMEaOh13pQbwHdbkFGrDUYn+2fZOT3xpZZUYqkgGXojMHWRstZ
-	mmcouySHUCPOWhFWZ+NomF/4HoHkTflkKhGwv/J1V7B1hdVNj8sTFTLeHxoZNzYZ1vTV8ECIH4UqI
-	8t0NANd4lgPSK8oAkyWYNfsCSOwTqg/Sik/eoUJ/Tvks/O448ZjOwojiLMwx7qCXrgqFdbME8F/aL
-	rRoHOKMQnMHs475l0ZAg==;
+	List-Owner; bh=waOU4oF/qFpR7dGZuJM9si1CTJ7d/I+Q0agxQz4TGSQ=; b=IkxT6R7dNDtQiO
+	B9rIHZ6UOSfziAEJjz2u7DKlhYXkrkO/UNsDz29EPTbnuYOTYKdZ1sRfPZNrJnm+4elDxqKmu7riv
+	iDOxRamllvlZU5dWO5u2pFvBqNsJ9J3asXkOH8d6C+ULSj6Fz2+eYxHVRtHfRVG1FzlU1OcAC/srR
+	XlODzHnxbcYb2iKwqHI/dRzOiTsM4WKtETAjajpsyJPFcrFbo7TvIdai8VbthZxGKz3CmPL6bSifs
+	I+3tC9AM39VrOU35zsX8qkKFnfzgP91XgIDhcvLeKf6ty81SxrC0amUUsk2m4N02+4fbllCEylMPR
+	1DYUDLv+ZkB8sTAa86og==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1i84i3-0000yW-Fy; Wed, 11 Sep 2019 15:39:07 +0000
+	id 1i84iM-0001GS-7l; Wed, 11 Sep 2019 15:39:26 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1i84hT-0000RA-LQ; Wed, 11 Sep 2019 15:38:32 +0000
+ id 1i84hV-0000RA-9Y; Wed, 11 Sep 2019 15:38:34 +0000
 Received: from droid13.amlogic.com (116.236.93.172) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.1591.10; Wed, 11 Sep 2019
- 23:39:08 +0800
+ 23:39:09 +0800
 From: Jianxin Pan <jianxin.pan@amlogic.com>
 To: Kevin Hilman <khilman@baylibre.com>, <linux-amlogic@lists.infradead.org>
-Subject: [PATCH v3 1/4] soc: amlogic: meson-gx-socinfo: Add A1 and A113L IDs
-Date: Wed, 11 Sep 2019 11:38:07 -0400
-Message-ID: <1568216290-84219-2-git-send-email-jianxin.pan@amlogic.com>
+Subject: [PATCH v3 2/4] dt-bindings: arm: amlogic: add A1 bindings
+Date: Wed, 11 Sep 2019 11:38:08 -0400
+Message-ID: <1568216290-84219-3-git-send-email-jianxin.pan@amlogic.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1568216290-84219-1-git-send-email-jianxin.pan@amlogic.com>
 References: <1568216290-84219-1-git-send-email-jianxin.pan@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [116.236.93.172]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190911_083831_699910_CDCE6959 
-X-CRM114-Status: UNSURE (   6.57  )
+X-CRM114-CacheID: sfid-20190911_083833_346305_FEE0EF15 
+X-CRM114-Status: UNSURE (   6.02  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -79,34 +79,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the SoC IDs for the A113L Amlogic A1 SoC.
+Add bindings for the new Amlogic A1 SoC family.
+
+A1 is an application processor designed for smart audio and IoT applications,
+with dual core Cortex-A35.
 
 Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- drivers/soc/amlogic/meson-gx-socinfo.c | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
-index 6d0d04f..3c86d8d 100644
---- a/drivers/soc/amlogic/meson-gx-socinfo.c
-+++ b/drivers/soc/amlogic/meson-gx-socinfo.c
-@@ -40,6 +40,7 @@ static const struct meson_gx_soc_id {
- 	{ "G12A", 0x28 },
- 	{ "G12B", 0x29 },
- 	{ "SM1", 0x2b },
-+	{ "A1", 0x2c },
- };
- 
- static const struct meson_gx_package_id {
-@@ -68,6 +69,7 @@ static const struct meson_gx_package_id {
- 	{ "S922X", 0x29, 0x40, 0xf0 },
- 	{ "A311D", 0x29, 0x10, 0xf0 },
- 	{ "S905X3", 0x2b, 0x5, 0xf },
-+	{ "A113L", 0x2c, 0x0, 0xf8 },
- };
- 
- static inline unsigned int socinfo_to_major(u32 socinfo)
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 99015ce..0ef45ac 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -156,4 +156,8 @@ properties:
+               - seirobotics,sei610
+               - khadas,vim3l
+           - const: amlogic,sm1
++
++      - description: Boards with the Amlogic Meson A1 A113L SoC
++        items:
++          - const: amlogic,a1
+ ...
 -- 
 2.7.4
 
