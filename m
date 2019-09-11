@@ -2,146 +2,82 @@ Return-Path: <SRS0=xGzz=XG=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 39A78C5ACAE
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2019 15:55:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DFB45C49ED6
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2019 16:06:28 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 04D00206A5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2019 15:55:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B36C72075C
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2019 16:06:28 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="piGXy1QE";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="berDa54j"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 04D00206A5
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ShuKoHtS";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QWNGM8sN"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B36C72075C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Akjqm0uK23TNv/bzotu/dNrqv/tkoDw7joJvsojRuXk=; b=piGXy1QEsxyPOl
-	vzjgDz2XerxSJ8H0f64yEehgYLe12ipCc/GXCAdvVRPWZdI+GAsBLQX+03XMLP+TKet+6kC7/8FEm
-	9GGVGJ9V31SZPSQLdoBY6S2OrVLxUlEfSCAvjUpoUjyTYS/TisEMw5uHoduy6cCMgWqtrBfVVTw2b
-	V9PGRR3hFs8qXmsTjJel5hOvEial1BNm2UuGi9kQZ7bZ4cPu4l9DGf0STLAfeJjtxmuEb5fdjnGsu
-	zpdWRRHOEOHIaP8N9AM10Ik+MkokSPeYDBUlaT83p0qxxmnB9egiBcAHiUjIYB7+Tkl5WkLRSmWES
-	MCgAzKeygtEYSx6wHSig==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Wcw63Zo/9a65/WEdWXJE7WTHgCmMbeXjvynMY2pa3uQ=; b=ShuKoHtSOuWE5F
+	3BmuUJ5in1J1a9Qe5GuxXz7SVfOvx6gy3NkmBAqJQn7EAxfWgMsbl/V9FOyTCl9A/5jzXfBkTdOTf
+	j4pte2mm0CwaQTfhtrCVXWFYjYFBb88hiGLronlH2OqKEXlkV72s8ZX1AxGmaqXAsvjeBrTWCdRHt
+	enl5MB3jreVgjrB3+O6C9XKLXeGmxIgc//4voBKAyaRFS+f/FK7DbCEEKjStyoYiehauUsiZKd7CU
+	gSEMoBH5hcbfpNNCYFYlyftW0HPNf4eXHBHdTfXTO5rDzwXL5EYnT6w3XlbeqkDlC3v+jST58Szx1
+	KrG1fk+En1Fw2vYjzTzg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1i84xY-00078b-Qm; Wed, 11 Sep 2019 15:55:09 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1i858R-0002hS-7q; Wed, 11 Sep 2019 16:06:23 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1i84xK-0006FO-0v
- for linux-amlogic@lists.infradead.org; Wed, 11 Sep 2019 15:54:56 +0000
-Received: by mail-wm1-x344.google.com with SMTP id t17so4106690wmi.2
- for <linux-amlogic@lists.infradead.org>; Wed, 11 Sep 2019 08:54:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=mvvOS/sqUBhPu8WpbD9ESoPKpPJlW80v1nzcyWDzFnk=;
- b=berDa54jZShV5yj/T8FtyatN1X7Am1A9RTI2E4oedaNH0OFoXGJIW45ngV/8/HRvCO
- eiBpHkJhX+/j1hv75eHhND2KTS2/quVGuVYmRHu15NkQjUrC6su2GZL3DP/zSDcXiUkI
- JTNWXYrmYyHcj0Ej6OXxVR8gTTzgGalNJd/QbonIilTMi5M0v73b+/VcnLpBNCk9tj15
- 9Lh/qw1L0Pvj1wJi+H8Dszk592L98sYZUqH8h/PP0tSSMQhopWmN+4vpDXFEIh5FXQNo
- Yj4fgCWcBp6xCvzJaUoyeDwRCkO8D/FWCm40D3Epc82Hu3o8ZnmsG9qxP2vopdUYL2hS
- h1UA==
+ id 1i858J-0002cC-Hj
+ for linux-amlogic@lists.infradead.org; Wed, 11 Sep 2019 16:06:18 +0000
+Received: by mail-wm1-x341.google.com with SMTP id t3so144943wmj.1
+ for <linux-amlogic@lists.infradead.org>; Wed, 11 Sep 2019 09:06:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=FJJVoiOf8d1fBVlmA2WPx0ovMbhLVMUnVRYpkmmId2Y=;
+ b=QWNGM8sNd2DIqJUVU1OLR1sxZVnOhxhVhHWu6sn3G/HkbQD0a3Uet0ziDi173OygoS
+ WcCdb71vVpMMGSMyODgDg7v3IKgDf+jcLohmqJhvxgRITZz4nTjg9kVPY79Dko6yGRwI
+ 7UB4qyMqR7ARnOknOJewxCb4y85Ikwb+PhhkX+/oC/E4rQZpxLeGuMO8CJ0bYDynNZAm
+ te2Ui37mkNIuuDsWoWjiAyozjSyhLVPQDxNAu4pBSuumnFcQXJUuqopd6dCi8EcH5BuY
+ CIK5/sU5mY617ien2evGACtTIB+KI8R4dlzQ405tx5mrGMqpJZIlUTXC+9Q+34LJuYnC
+ KOCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=mvvOS/sqUBhPu8WpbD9ESoPKpPJlW80v1nzcyWDzFnk=;
- b=e5h1dufzVnQuO9nQkHNgsICZKs8q8NpaUqSMwz12ShSyHQgFJxHIZ5ha08/Y+gXQMY
- gagzI4EtoUGFdffuMraUi+u17jC+OW+c5xdKpHZdDtIBH6OuEGcXuF7nA2Cg1YMiAU/p
- xF0KNVmetq4YIAFTuan4rfGrNuGjCSanQ/lOfR09NtvWBs7WMyke2txZMX4njk1aNxzT
- k6gjZHcK6ns9DKX0tgxbw+0PAqx9DckfAqbrVWob6II60JNYdAiLl4c79TZ0fwibxCpd
- pqYoi09kq2Fa1ItBrmcG4PCILQzXPlmq5L70ULCbEFBXlsxKV6d38jc9t4zqxaIg7Kjk
- atGg==
-X-Gm-Message-State: APjAAAV1mv0Xw496kVHzV2ioF1B+W34JG4cleaTo3CERduimzx9XUcV/
- IBMK79/4ru6zqDnKSdRzgI3Tary0RkALjw==
-X-Google-Smtp-Source: APXvYqwxrY5aqD7yuz7QrYEDqFnizyeWFIeFjtg4MRUvNx/wHZNRO/Pwkk41hM6E3jLKEmiWzmNIxw==
-X-Received: by 2002:a7b:cc94:: with SMTP id p20mr4603927wma.171.1568217292018; 
- Wed, 11 Sep 2019 08:54:52 -0700 (PDT)
-Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr.
- [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id y3sm4420368wmg.2.2019.09.11.08.54.50
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 11 Sep 2019 08:54:51 -0700 (PDT)
-Subject: Re: [PATCH v3 4/4] arm64: dts: add support for A1 based Amlogic AD401
-To: Jianxin Pan <jianxin.pan@amlogic.com>, Kevin Hilman
- <khilman@baylibre.com>, linux-amlogic@lists.infradead.org
-References: <1568216290-84219-1-git-send-email-jianxin.pan@amlogic.com>
- <1568216290-84219-5-git-send-email-jianxin.pan@amlogic.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <e0054a53-7516-0527-3df7-c85e168003ba@baylibre.com>
-Date: Wed, 11 Sep 2019 17:54:50 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=FJJVoiOf8d1fBVlmA2WPx0ovMbhLVMUnVRYpkmmId2Y=;
+ b=qNkcG+uMSwrFda07q+h3TVTAzy8dyAxGGl9ZeTQ/hryc87cSmRHshhN/GmRW1dNsD3
+ SZ2BLIru6VNiaIvMVWN30DNpvbmrWHrpLhcMRvcF0yfiL47iRh+cZbpNrBxqGWEdzBCF
+ cNY9EoQOBIzFGpW/EcVHKa1GkZWmeGxrXQTA1ejM2oW1SVmAflgKE+wz+jwk9wIf8xzG
+ TtFmKruXnA6/9s97isKHMPUBMuQwFC4dTFeTKaldGxThu6RkP+tVhODkOlybSM7SMcph
+ A3f37RhW8bC+NF5ySAIIW/1oeSmD0reSV8fYX6KCfG/meYaDRrFeDC6CHJ2gNz1SOcQS
+ 1oRw==
+X-Gm-Message-State: APjAAAXck/E1W4iecgFhld/CEeAa8TTgjdzi9MPDPQE3lVjGT4JjBgYf
+ IxbcDzeR56HIrMvmoj5chs2/mJut1OZ88DAVNfLguw==
+X-Google-Smtp-Source: APXvYqxfo4OMflbhF8NmSJjJ2Gu/Ff2Dfhm+/6sbn8+WMGkQs5//gS6kM0XKRfWRoFsRG4rHItMc0Gt2atTI93osxFs=
+X-Received: by 2002:a1c:7a05:: with SMTP id v5mr4328922wmc.173.1568217973514; 
+ Wed, 11 Sep 2019 09:06:13 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1568216290-84219-5-git-send-email-jianxin.pan@amlogic.com>
-Content-Language: en-US
+References: <1568123236-767-1-git-send-email-claudiu.beznea@microchip.com>
+ <CALAqxLWLStTqGx5DAvUKOYupdgK-doOxRF5Z_Us=L5vnFaa=7w@mail.gmail.com>
+ <cb451591-88ad-f1b3-b654-cea86ae11cac@microchip.com>
+In-Reply-To: <cb451591-88ad-f1b3-b654-cea86ae11cac@microchip.com>
+From: John Stultz <john.stultz@linaro.org>
+Date: Wed, 11 Sep 2019 09:06:01 -0700
+Message-ID: <CALAqxLXRVc-K5q=me1=5tA0XYT7ncrArSoD+hq=JOGWVF9-7SQ@mail.gmail.com>
+Subject: Re: [PATCH 0/7] add support for clocksource/clockevent DT selection
+To: Claudiu Beznea <Claudiu.Beznea@microchip.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190911_085454_123915_BE3A1D9F 
-X-CRM114-Status: GOOD (  18.40  )
+X-CRM114-CacheID: sfid-20190911_090615_603185_4FDC5FE4 
+X-CRM114-Status: GOOD (  21.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,225 +89,108 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Hanjie Lin <hanjie.lin@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, Qiufang Dai <qiufang.dai@amlogic.com>,
- Rob Herring <robh+dt@kernel.org>, Jian Hu <jian.hu@amlogic.com>,
- Xingyu Chen <xingyu.chen@amlogic.com>, Carlo Caione <carlo@caione.org>,
- Tao Zeng <tao.zeng@amlogic.com>, linux-arm-kernel@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: tmaimon77@gmail.com, Linus Walleij <linus.walleij@linaro.org>,
+ nsekhar@ti.com, guoren@kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ linux-samsung-soc@vger.kernel.org,
+ "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+ Kevin Hilman <khilman@baylibre.com>, Ludovic.Desroches@microchip.com,
+ linux-imx@nxp.com,
+ =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ uclinux-h8-devel@lists.sourceforge.jp, Marc Zyngier <marc.zyngier@arm.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>, linux-unisoc@lists.infradead.org,
+ =?UTF-8?Q?Krzysztof_Ha=C5=82asa?= <khalasa@piap.pl>,
+ Thomas Gleixner <tglx@linutronix.de>, sbranden@broadcom.com,
+ lkml <linux-kernel@vger.kernel.org>, Ralf Baechle <ralf@linux-mips.org>,
+ Paul Burton <paul.burton@mips.com>, kernel@pengutronix.de,
+ Mark Rutland <mark.rutland@arm.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>, jhogan@kernel.org,
+ palmer@sifive.com, eric@anholt.net, Thierry Reding <thierry.reding@gmail.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Yoshinori Sato <ysato@users.sourceforge.jp>, zhang.lyra@gmail.com,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Jon Hunter <jonathanh@nvidia.com>,
+ bgolaszewski@baylibre.com, Kukjin Kim <kgene@kernel.org>,
+ alexandre.torgue@st.com, linux-arm-msm@vger.kernel.org,
+ Sudeep Holla <sudeep.holla@arm.com>, Florian Fainelli <f.fainelli@gmail.com>,
+ linux-rpi-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, baohua@kernel.org,
+ kaloz@openwrt.org, Stephen Boyd <sboyd@kernel.org>, patrice.chotard@st.com,
+ wahrenst@gmx.net, mcoquelin.stm32@gmail.com,
+ Neil Armstrong <narmstrong@baylibre.com>, linux-tegra@vger.kernel.org,
+ Fabio Estevam <festevam@gmail.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Benjamin Fair <benjaminfair@google.com>, shc_work@mail.ru,
+ Krzysztof Kozlowski <krzk@kernel.org>, Nancy Yuen <yuenn@google.com>,
+ Chen-Yu Tsai <wens@csie.org>, bcm-kernel-feedback-list@broadcom.com,
+ orsonzhai@gmail.com, linux-snps-arc@lists.infradead.org, rjui@broadcom.com,
+ vz@mleia.com, john@phrozen.org, tali.perry1@gmail.com, avifishman70@gmail.com,
+ Patrick Venture <venture@google.com>, lftan@altera.com, linux-oxnas@groups.io,
+ Shawn Guo <shawnguo@kernel.org>, afaerber@suse.de,
+ Baruch Siach <baruch@tkos.co.il>, maxime.ripard@bootlin.com,
+ Liviu Dudau <liviu.dudau@arm.com>, linux-mips@vger.kernel.org,
+ linux-riscv@lists.infradead.org, openbmc@lists.ozlabs.org,
+ Russell King - ARM Linux <linux@armlinux.org.uk>,
+ Andy Gross <agross@kernel.org>, slemieux.tyco@gmail.com,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, aou@eecs.berkeley.edu,
+ Rob Herring <robh+dt@kernel.org>, linux-mediatek@lists.infradead.org,
+ Santosh Shilimkar <ssantosh@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Michal Simek <monstr@monstr.eu>,
+ Baolin Wang <baolin.wang@linaro.org>, vgupta@synopsys.com,
+ Nicolas.Ferre@microchip.com, linux@prisktech.co.nz,
+ nios2-dev@lists.rocketboards.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 11/09/2019 17:38, Jianxin Pan wrote:
-> Add basic support for the Amlogic A1 based Amlogic AD401 board:
-> which describe components as follows: Reserve Memory, CPU, GIC, IRQ,
-> Timer, UART. It's capable of booting up into the serial console.
-> 
-> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
-> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
-> ---
->  arch/arm64/boot/dts/amlogic/Makefile           |   1 +
->  arch/arm64/boot/dts/amlogic/meson-a1-ad401.dts |  30 ++++++
->  arch/arm64/boot/dts/amlogic/meson-a1.dtsi      | 131 +++++++++++++++++++++++++
->  3 files changed, 162 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-a1-ad401.dts
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index 84afecb..a90be52 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -36,3 +36,4 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-rbox-pro.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxm-vega-s96.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-khadas-vim3l.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1-ad401.dts b/arch/arm64/boot/dts/amlogic/meson-a1-ad401.dts
-> new file mode 100644
-> index 00000000..69c25c6
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-a1-ad401.dts
-> @@ -0,0 +1,30 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "meson-a1.dtsi"
-> +
-> +/ {
-> +	compatible = "amlogic,ad401", "amlogic,a1";
-> +	model = "Amlogic Meson A1 AD401 Development Board";
-> +
-> +	aliases {
-> +		serial0 = &uart_AO_B;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	memory@0 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x0 0x0 0x8000000>;
-> +	};
-> +};
-> +
-> +&uart_AO_B {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> new file mode 100644
-> index 00000000..7da448c
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> @@ -0,0 +1,131 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +/ {
-> +	compatible = "amlogic,a1";
-> +
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	cpus {
-> +		#address-cells = <2>;
-> +		#size-cells = <0>;
-> +
-> +		cpu0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a35";
-> +			reg = <0x0 0x0>;
-> +			enable-method = "psci";
-> +			next-level-cache = <&l2>;
-> +		};
-> +
-> +		cpu1: cpu@1 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a35";
-> +			reg = <0x0 0x1>;
-> +			enable-method = "psci";
-> +			next-level-cache = <&l2>;
-> +		};
-> +
-> +		l2: l2-cache0 {
-> +			compatible = "cache";
-> +		};
-> +	};
-> +
-> +	psci {
-> +		compatible = "arm,psci-1.0";
-> +		method = "smc";
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		linux,cma {
-> +			compatible = "shared-dma-pool";
-> +			reusable;
-> +			size = <0x0 0x800000>;
-> +			alignment = <0x0 0x400000>;
-> +			linux,cma-default;
-> +		};
-> +	};
-> +
-> +	sm: secure-monitor {
-> +		compatible = "amlogic,meson-gxbb-sm";
-> +	};
-> +
-> +	soc {
-> +		compatible = "simple-bus";
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +
-> +		apb: bus@0xfe000000 {
+On Tue, Sep 10, 2019 at 11:52 PM <Claudiu.Beznea@microchip.com> wrote:
+> On 10.09.2019 19:05, John Stultz wrote:
+> > External E-Mail
+> > On Tue, Sep 10, 2019 at 6:47 AM Claudiu Beznea
+> > <claudiu.beznea@microchip.com> wrote:
+> >>
+> >> This series adds support to permit the selection of clocksource/clockevent
+> >> via DT.
+> >
+> > Sorry about this, but could you try to include more of a rational for
+> > *why* this would be useful in your cover-letter/commit messages?
+> >
+>
+> Sorry for not being to clear in the cover letter.
+>
+> The case I am trying to solve here is as follows:
+> The timer hardware for which I publish a driver at [1] cannot work at the
+> same time as a clocksource and clockevent. On some of our platforms we have
+> more than one such a timer. So we could use one hardware resource as
+> clocksource and one as clockevent but not one for both.
+> Due to this, I proposed in the driver at [1] to have 1st probed hardware to
+> work as clocksource and the 2nd one to work as clockevent.
+[snip]
+> Due to this Daniel proposed to have an unified mechanism for this scenario,
+> see [2], (something like what I proposed in this series), such that to have
+> a determinism b/w the function that the hardware resources would behave
+> (either clocksource or clockevent or both).
 
-Should be bus@fe000000
+Thanks for the additional explanation! I'd suggest adding something
+like it to the commit logs for next time.
 
-> +			compatible = "simple-bus";
-> +			reg = <0x0 0xfe000000 0x0 0x1000000>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x1000000>;
-> +
-> +			uart_AO: serial@1c00 {
-> +				compatible = "amlogic,meson-gx-uart",
-> +					     "amlogic,meson-ao-uart";
-> +				reg = <0x0 0x1c00 0x0 0x18>;
-> +				interrupts = <GIC_SPI 25 IRQ_TYPE_EDGE_RISING>;
-> +				clocks = <&xtal>, <&xtal>, <&xtal>;
-> +				clock-names = "xtal", "pclk", "baud";
-> +				status = "disabled";
-> +			};
-> +
-> +			uart_AO_B: serial@2000 {
-> +				compatible = "amlogic,meson-gx-uart",
-> +					     "amlogic,meson-ao-uart";
-> +				reg = <0x0 0x2000 0x0 0x18>;
-> +				interrupts = <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>;
-> +				clocks = <&xtal>, <&xtal>, <&xtal>;
-> +				clock-names = "xtal", "pclk", "baud";
-> +				status = "disabled";
-> +			};
-> +		};
-> +
-> +		gic: interrupt-controller@ff901000 {
-> +			compatible = "arm,gic-400";
-> +			reg = <0x0 0xff901000 0x0 0x1000>,
-> +			      <0x0 0xff902000 0x0 0x2000>,
-> +			      <0x0 0xff904000 0x0 0x2000>,
-> +			      <0x0 0xff906000 0x0 0x2000>;
-> +			interrupt-controller;
-> +			interrupts = <GIC_PPI 9
-> +				(GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_HIGH)>;
-> +			#interrupt-cells = <3>;
-> +			#address-cells = <0>;
-> +		};
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13
-> +			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 14
-> +			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 11
-> +			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 10
-> +			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>;
-> +	};
-> +
-> +	xtal: xtal-clk {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <24000000>;
-> +		clock-output-names = "xtal";
-> +		#clock-cells = <0>;
-> +	};
-> +};
-> 
+Personally, I tend to think of DT bindings as a big harry ABI, and as
+such avoid it as much as possible. :)
 
-With that fixed:
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+I'd probably favor driver tweaks to ensure the hardware only gets
+registered once for each, using a minimal DT compatible or flag on the
+hardware to better describe the underlying hardware quirk that keeps
+it from being usable for both clocksource and clockevent usage.
 
-Neil
+That way the DT sticks to accurately describing hardware, instead of
+system/software-abstraction configuration details that just apply for
+Linux.
+
+But, again, I'm not really a DT person, so I'll defer to Rob and Daniel.
+
+thanks
+-john
 
 _______________________________________________
 linux-amlogic mailing list
