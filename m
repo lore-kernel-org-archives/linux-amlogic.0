@@ -7,58 +7,142 @@ X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 78128C5ACAE
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2019 12:58:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3037DC5ACAE
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2019 12:58:53 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4F80420863
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2019 12:58:27 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0436F20863
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Sep 2019 12:58:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Y9Q7yQJG"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4F80420863
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arm.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="JiGNXMex";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Momjp4mY"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0436F20863
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mp4Jm6wt7DuS0CfeF44V9FkrQ+ojJJnqUQUCwvNj6Js=; b=Y9Q7yQJGrvzt37
-	1Qh+IIhdmrozoLnS42PYqZWDbhOm2D+v8NXetVGPdhiU8cxV95GRtDNjjsdQ03045by1fVc/oxI3j
-	giRs7p21Rmv75miaM0jbOAVPARMSCfhy/u6dNWMAl381ZzJ3k5BxCCz2Jx4kmKyP0x2OjQp8C6alP
-	psi1bWUtaiFjqOqevGBFYR/UrV0ktz3aFvaweWTtyfeBuGqoN+B/pKWBqRR/iiCuvHYj1ZKKP2wZk
-	Hz3hm74ZKsqOzIsq6bo8Gwvnmw+aBc3yBELcQTpPPGqGal2A4cGUU0KQ0fJA63+Es92Z7xag2XlYI
-	j3nCpOYoyv/mqqe++Tmg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=/Ymof+IwLCwyeeNFwyGJmtt7fc9ExInrxmokSoVqWZo=; b=JiGNXMexcLRSbB
+	6iodg62gi5T4UdAS/FkQ7RASf65FNSFJb2yzF1TyQKWfgxdyhJwlYgdKsXwpRw1qf6Hff5UmdkBqp
+	C2NMOK75Fl7wtXzw+cb/SuNkr5l93/MZHs6QNHfIzStjO1azDtMTkAnLTPbmVkocfSQZs6pBQI+AF
+	2gdORLPoEBmvKaK6iLoXEw0C5VIHfG+e+3hgNrYj2Rtko2olxBHmqwKL+uMkySVnrh+MSLO8b6mVR
+	5n7Rv58vrEjwfgL2Pptf9t+c+kZQQvWUMfT/AAgFYuHJN/YB50aGXzqZtSiNNFmVeGGcyvPmxxihR
+	+oc8yemj7sKwbhU1sCSw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1i82CS-0005GC-Rh; Wed, 11 Sep 2019 12:58:21 +0000
-Received: from foss.arm.com ([217.140.110.172])
- by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
- id 1i82CP-0005Fk-Rj; Wed, 11 Sep 2019 12:58:19 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 19AE81000;
- Wed, 11 Sep 2019 05:58:17 -0700 (PDT)
-Received: from localhost (unknown [10.37.6.20])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 838DC3F59C;
- Wed, 11 Sep 2019 05:58:16 -0700 (PDT)
-Date: Wed, 11 Sep 2019 13:58:14 +0100
-From: Andrew Murray <andrew.murray@arm.com>
-To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH 3/6] PCI: amlogic: meson: Add support for G12A
-Message-ID: <20190911125814.GV9720@e119886-lin.cambridge.arm.com>
+	id 1i82Ct-0005ZR-O2; Wed, 11 Sep 2019 12:58:47 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+ by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
+ id 1i82CT-0005GA-Jc
+ for linux-amlogic@lists.infradead.org; Wed, 11 Sep 2019 12:58:24 +0000
+Received: by mail-wr1-x443.google.com with SMTP id g7so24514223wrx.2
+ for <linux-amlogic@lists.infradead.org>; Wed, 11 Sep 2019 05:58:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=EKhN+cEo1xcqXJ5HNPYxKNrU0blKUmSK5ftq5aw9QXg=;
+ b=Momjp4mYl9LJIRu9U6m3qLwdMRSvKilc8kCpCBi7iCTFvxh4ySL9FjcoULvlPTGqav
+ /J3ImPJWh+G0ydTeDkVC5Wlg1FDwbSRbz3CCCfYBSpyWRCBUXUz8A+NQgDcm3SOrseUL
+ 1VjcJNuqxHZ8CEERPNvJXqBnzDtQLnBikdnnYybd5363Y+nFFjveUZ/7MkOsciztUAB6
+ 8HX9SCT0yyXjh3lxWlOxtb5ylmpRQ32s7gT5KobwQHlnyUo7JJbie3UkOmrzlR5cXaY3
+ VmkAUZ8BWMPAffG5gFngjF0OeX3TOR44EMXSXFMoiRcT93XdA6KREpSyijRGKLKL1H/h
+ JjBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=EKhN+cEo1xcqXJ5HNPYxKNrU0blKUmSK5ftq5aw9QXg=;
+ b=lpxOWmAbI8iQeYkEujEjwJEmRUGFy68vYadt8ONIDmPRTAfyRM+RDoFUTx5+ai1Q+3
+ ksnfXxB/P/2My9ypCzi5kNxc0m0RwlEMqXRumvBRGWLfQ38o7fSbofNp6PI+syHenea5
+ Zls7qKjX8RiohjBtNJEChJdDVlUbwg4bSL0GP+yT5sKHNUA+AzMHaMDW/CleIUSA9G0F
+ bUaWHaLCHqN12j1ip/XV/XUmfA1ogPEAgoGE2wiGYa6UiVL3IrtaWF2d2RWCyHeJ3utM
+ JXZr4oekhLpg18upt7O8nav4JoWyvSpRMapVgkBDTxsJtRyWNTjQMoaoGowjdaCXTk9q
+ Cx6Q==
+X-Gm-Message-State: APjAAAVXscxNYvn22p35khkA+NGQiUsREFNoxPJ0ghNa0xwm1oy8IZR+
+ cXazOj+yAv6Zceoz3GVlzYNy3Q==
+X-Google-Smtp-Source: APXvYqw4SGPx9AzRv5yy5KmlS0K95Q/EdHx4awughanHS2+T/LcipVKcPUyCdBV2uIQshbsoeC3BEQ==
+X-Received: by 2002:a5d:4b4e:: with SMTP id w14mr2827908wrs.191.1568206700018; 
+ Wed, 11 Sep 2019 05:58:20 -0700 (PDT)
+Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr.
+ [176.150.251.154])
+ by smtp.gmail.com with ESMTPSA id t123sm3932721wma.40.2019.09.11.05.58.19
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 11 Sep 2019 05:58:19 -0700 (PDT)
+Subject: Re: [PATCH 6/6] arm64: dts: khadas-vim3: add commented support for
+ PCIe
+To: Andrew Murray <andrew.murray@arm.com>
 References: <1567950178-4466-1-git-send-email-narmstrong@baylibre.com>
- <1567950178-4466-4-git-send-email-narmstrong@baylibre.com>
- <20190911113633.GR9720@e119886-lin.cambridge.arm.com>
- <bb5794e7-44c6-c889-b555-21c531003548@baylibre.com>
+ <1567950178-4466-7-git-send-email-narmstrong@baylibre.com>
+ <20190911125035.GU9720@e119886-lin.cambridge.arm.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <bf7b735d-e682-52db-ea8c-4ccd786f0ed9@baylibre.com>
+Date: Wed, 11 Sep 2019 14:58:18 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <bb5794e7-44c6-c889-b555-21c531003548@baylibre.com>
-User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
+In-Reply-To: <20190911125035.GU9720@e119886-lin.cambridge.arm.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190911_055817_990141_E54AEA16 
-X-CRM114-Status: GOOD (  35.70  )
+X-CRM114-CacheID: sfid-20190911_055822_076391_57CD3955 
+X-CRM114-Status: GOOD (  21.21  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,302 +163,169 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Sep 11, 2019 at 02:39:42PM +0200, Neil Armstrong wrote:
-> Hi Andrew,
+On 11/09/2019 14:50, Andrew Murray wrote:
+> On Sun, Sep 08, 2019 at 01:42:58PM +0000, Neil Armstrong wrote:
+>> The VIM3 on-board  MCU can mux the PCIe/USB3.0 shared differential
+>> lines using a FUSB340TMX USB 3.1 SuperSpeed Data Switch between
+>> an USB3.0 Type A connector and a M.2 Key M slot.
+>> The PHY driving these differential lines is shared between
+>> the USB3.0 controller and the PCIe Controller, thus only
+>> a single controller can use it.
+>>
+>> The needed DT configuration when the MCU is configured to mux
+>> the PCIe/USB3.0 differential lines to the M.2 Key M slot is
+>> added commented and may uncommented to disable USB3.0 from the
 > 
-> On 11/09/2019 13:36, Andrew Murray wrote:
-> > On Sun, Sep 08, 2019 at 01:42:55PM +0000, Neil Armstrong wrote:
-> >> Add support for the Amlogic G12A SoC using a separate shared PHY.
-> >>
-> >> This adds support for fetching a PHY phandle and call the PHY init,
-> >> reset and power on/off calls instead of writing in the PHY register or
-> >> toggling the PHY reset line.
-> >>
-> >> The MIPI clock is also made optional since it is used for setting up
-> > 
-> > Is it worth indicating here that the MIPI clock is *only required* for
-> > the G12A (or controllers with a shared phy)? It's still required for
-> > AXG. It's not optional for G12A - it's ignored.
+> *and may be*
 > 
-> Indeed it's ignored, I'll reword it.
+>> USB Complex and enable the PCIe controller.
+>>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>  .../amlogic/meson-g12b-a311d-khadas-vim3.dts  | 22 +++++++++++++++++++
+>>  .../amlogic/meson-g12b-s922x-khadas-vim3.dts  | 22 +++++++++++++++++++
+>>  .../boot/dts/amlogic/meson-khadas-vim3.dtsi   |  4 ++++
+>>  .../dts/amlogic/meson-sm1-khadas-vim3l.dts    | 22 +++++++++++++++++++
+>>  4 files changed, 70 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
+>> index 3a6a1e0c1e32..0577b1435cbb 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
+>> @@ -14,3 +14,25 @@
+>>  / {
+>>  	compatible = "khadas,vim3", "amlogic,a311d", "amlogic,g12b";
+>>  };
+>> +
+>> +/*
+>> + * The VIM3 on-board  MCU can mux the PCIe/USB3.0 shared differential
+>> + * lines using a FUSB340TMX USB 3.1 SuperSpeed Data Switch between
+>> + * an USB3.0 Type A connector and a M.2 Key M slot.
+>> + * The PHY driving these differential lines is shared between
+>> + * the USB3.0 controller and the PCIe Controller, thus only
+>> + * a single controller can use it.
+>> + * If the MCU is configured to mux the PCIe/USB3.0 differential lines
+>> + * to the M.2 Key M slot, uncomment the following block to disable
+>> + * USB3.0 from the USB Complex and enable the PCIe controller.
+>> + */
+>> +/*
+>> +&pcie {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&usb {
+>> +	phys = <&usb2_phy0>, <&usb2_phy1>;
+>> +	phy-names = "usb2-phy0", "usb2-phy1";
+>> +};
 > 
-> > 
-> >> the PHY reference clock chared with the DSI controller on AXG.
-> > 
-> > s/chared/shared/
-> 
-> Ack
-> 
-> > 
-> >>
-> >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> >> ---
-> >>  drivers/pci/controller/dwc/pci-meson.c | 101 ++++++++++++++++++++-----
-> >>  1 file changed, 84 insertions(+), 17 deletions(-)
-> >>
-> >> diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-> >> index ab79990798f8..3fadad381762 100644
-> >> --- a/drivers/pci/controller/dwc/pci-meson.c
-> >> +++ b/drivers/pci/controller/dwc/pci-meson.c
-> >> @@ -16,6 +16,7 @@
-> >>  #include <linux/reset.h>
-> >>  #include <linux/resource.h>
-> >>  #include <linux/types.h>
-> >> +#include <linux/phy/phy.h>
-> >>  
-> >>  #include "pcie-designware.h"
-> >>  
-> >> @@ -96,12 +97,18 @@ struct meson_pcie_rc_reset {
-> >>  	struct reset_control *apb;
-> >>  };
-> >>  
-> >> +struct meson_pcie_param {
-> >> +	bool has_shared_phy;
-> >> +};
-> >> +
-> >>  struct meson_pcie {
-> >>  	struct dw_pcie pci;
-> >>  	struct meson_pcie_mem_res mem_res;
-> >>  	struct meson_pcie_clk_res clk_res;
-> >>  	struct meson_pcie_rc_reset mrst;
-> >>  	struct gpio_desc *reset_gpio;
-> >> +	struct phy *phy;
-> >> +	const struct meson_pcie_param *param;
-> >>  };
-> >>  
-> >>  static struct reset_control *meson_pcie_get_reset(struct meson_pcie *mp,
-> >> @@ -123,10 +130,12 @@ static int meson_pcie_get_resets(struct meson_pcie *mp)
-> >>  {
-> >>  	struct meson_pcie_rc_reset *mrst = &mp->mrst;
-> >>  
-> >> -	mrst->phy = meson_pcie_get_reset(mp, "phy", PCIE_SHARED_RESET);
-> >> -	if (IS_ERR(mrst->phy))
-> >> -		return PTR_ERR(mrst->phy);
-> >> -	reset_control_deassert(mrst->phy);
-> >> +	if (!mp->param->has_shared_phy) {
-> >> +		mrst->phy = meson_pcie_get_reset(mp, "phy", PCIE_SHARED_RESET);
-> >> +		if (IS_ERR(mrst->phy))
-> >> +			return PTR_ERR(mrst->phy);
-> >> +		reset_control_deassert(mrst->phy);
-> >> +	}
-> >>  
-> >>  	mrst->port = meson_pcie_get_reset(mp, "port", PCIE_NORMAL_RESET);
-> >>  	if (IS_ERR(mrst->port))
-> >> @@ -180,6 +189,9 @@ static int meson_pcie_get_mems(struct platform_device *pdev,
-> >>  	if (IS_ERR(mp->mem_res.cfg_base))
-> >>  		return PTR_ERR(mp->mem_res.cfg_base);
-> >>  
-> >> +	if (mp->param->has_shared_phy)
-> >> +		return 0;
-> >> +
-> > 
-> > It may be more consistent if, rather than returning here, you wrapped
-> > the following 3 lines by the if statement.
-> 
-> ok
-> 
-> > 
-> >>  	/* Meson SoC has two PCI controllers use same phy register*/
-> > 
-> > I guess this comment should now be updated to refer to AXG?
-> 
-> Indeed
-> 
-> > 
-> >>  	mp->mem_res.phy_base = meson_pcie_get_mem_shared(pdev, mp, "phy");
-> >>  	if (IS_ERR(mp->mem_res.phy_base))
-> >> @@ -188,19 +200,33 @@ static int meson_pcie_get_mems(struct platform_device *pdev,
-> >>  	return 0;
-> >>  }
-> >>  
-> >> -static void meson_pcie_power_on(struct meson_pcie *mp)
-> >> +static int meson_pcie_power_on(struct meson_pcie *mp)
-> >>  {
-> >> -	writel(MESON_PCIE_PHY_POWERUP, mp->mem_res.phy_base);
-> >> +	int ret = 0;
-> >> +
-> >> +	if (mp->param->has_shared_phy)
-> >> +		ret = phy_power_on(mp->phy);
-> > 
-> > I haven't seen any phy_[init/exit] calls, should there be any?
-> 
-> There is no _init() needed, but indeed we should still call them even it's
-> a no-op.
+> I assume there is no way other way to determine from the hardware which way
+> the mux is set?
 
-Yes - and that makes it easier for someone to modify the phy driver and not
-have to worry that there may be users that don't call init.
+No, it would be simpler :-/ The MUX is on-board and the MCU drives the MUX selection.
+
+You can look at the https://dl.khadas.com/Hardware/VIM3/Schematic/VIM3_V11_Sch.pdf
+The PCIE_EN signal is driven by the STM8S MCU.
 
 > 
-> > 
-> >> +	else
-> >> +		writel(MESON_PCIE_PHY_POWERUP, mp->mem_res.phy_base);
-> >> +
-> >> +	return ret;
-> >>  }
-> >>  
-> >> -static void meson_pcie_reset(struct meson_pcie *mp)
-> >> +static int meson_pcie_reset(struct meson_pcie *mp)
-> >>  {
-> >>  	struct meson_pcie_rc_reset *mrst = &mp->mrst;
-> >> -
-> >> -	reset_control_assert(mrst->phy);
-> >> -	udelay(PCIE_RESET_DELAY);
-> >> -	reset_control_deassert(mrst->phy);
-> >> -	udelay(PCIE_RESET_DELAY);
-> >> +	int ret = 0;
-> >> +
-> >> +	if (mp->param->has_shared_phy) {
-> >> +		ret = phy_reset(mp->phy);
-> >> +		if (ret)
-> >> +			return ret;
-> >> +	} else {
-> >> +		reset_control_assert(mrst->phy);
-> >> +		udelay(PCIE_RESET_DELAY);
-> >> +		reset_control_deassert(mrst->phy);
-> >> +		udelay(PCIE_RESET_DELAY);
-> >> +	}
-> >>  
-> >>  	reset_control_assert(mrst->port);
-> >>  	reset_control_assert(mrst->apb);
-> >> @@ -208,6 +234,8 @@ static void meson_pcie_reset(struct meson_pcie *mp)
-> >>  	reset_control_deassert(mrst->port);
-> >>  	reset_control_deassert(mrst->apb);
-> >>  	udelay(PCIE_RESET_DELAY);
-> >> +
-> >> +	return 0;
-> >>  }
-> >>  
-> >>  static inline struct clk *meson_pcie_probe_clock(struct device *dev,
-> >> @@ -250,9 +278,11 @@ static int meson_pcie_probe_clocks(struct meson_pcie *mp)
-> >>  	if (IS_ERR(res->port_clk))
-> >>  		return PTR_ERR(res->port_clk);
-> >>  
-> >> -	res->mipi_gate = meson_pcie_probe_clock(dev, "mipi", 0);
-> >> -	if (IS_ERR(res->mipi_gate))
-> >> -		return PTR_ERR(res->mipi_gate);
-> >> +	if (!mp->param->has_shared_phy) {
-> >> +		res->mipi_gate = meson_pcie_probe_clock(dev, "mipi", 0);
-> >> +		if (IS_ERR(res->mipi_gate))
-> >> +			return PTR_ERR(res->mipi_gate);
-> >> +	}
-> >>  
-> >>  	res->general_clk = meson_pcie_probe_clock(dev, "general", 0);
-> >>  	if (IS_ERR(res->general_clk))
-> >> @@ -524,6 +554,7 @@ static const struct dw_pcie_ops dw_pcie_ops = {
-> >>  
-> >>  static int meson_pcie_probe(struct platform_device *pdev)
-> >>  {
-> >> +	const struct meson_pcie_param *match_data;
-> >>  	struct device *dev = &pdev->dev;
-> >>  	struct dw_pcie *pci;
-> >>  	struct meson_pcie *mp;
-> >> @@ -537,6 +568,20 @@ static int meson_pcie_probe(struct platform_device *pdev)
-> >>  	pci->dev = dev;
-> >>  	pci->ops = &dw_pcie_ops;
-> >>  
-> >> +	match_data = of_device_get_match_data(dev);
-> >> +	if (!match_data) {
-> >> +		dev_err(dev, "failed to get match data\n");
-> >> +		return -ENODEV;
-> >> +	}
-> >> +	mp->param = match_data;
-> >> +
-> >> +	if (mp->param->has_shared_phy) {
-> >> +		mp->phy = devm_phy_get(dev, "pcie");
-> >> +		if (IS_ERR(mp->phy)) {
-> >> +			return PTR_ERR(mp->phy);
-> >> +		}
-> >> +	}
-> >> +
-> >>  	mp->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-> >>  	if (IS_ERR(mp->reset_gpio)) {
-> >>  		dev_err(dev, "get reset gpio failed\n");
-> >> @@ -555,8 +600,17 @@ static int meson_pcie_probe(struct platform_device *pdev)
-> >>  		return ret;
-> >>  	}
-> >>  
-> >> -	meson_pcie_power_on(mp);
-> >> -	meson_pcie_reset(mp);
-> >> +	ret = meson_pcie_power_on(mp);
-> >> +	if (ret) {
-> >> +		dev_err(dev, "phy power on failed, %d\n", ret);
-> >> +		return ret;
-> >> +	}
-> >> +
-> >> +	ret = meson_pcie_reset(mp);
-> >> +	if (ret) {
-> >> +		dev_err(dev, "reset failed, %d\n", ret);
-> >> +		return ret;
-> >> +	}
-> >>  
-> >>  	ret = meson_pcie_probe_clocks(mp);
-> >>  	if (ret) {
-> >> @@ -575,9 +629,22 @@ static int meson_pcie_probe(struct platform_device *pdev)
-> >>  	return 0;
-> >>  }
-> >>  
-> >> +static struct meson_pcie_param meson_pcie_axg_param = {
-> >> +	.has_shared_phy = false,
-> >> +};
-> >> +
-> >> +static struct meson_pcie_param meson_pcie_g12a_param = {
-> >> +	.has_shared_phy = true,
-> >> +};
-> >> +
-> >>  static const struct of_device_id meson_pcie_of_match[] = {
-> >>  	{
-> >>  		.compatible = "amlogic,axg-pcie",
-> >> +		.data = &meson_pcie_axg_param,
-> >> +	},
-> >> +	{
-> >> +		.compatible = "amlogic,g12a-pcie",
-> >> +		.data = &meson_pcie_g12a_param,
-> > 
-> > Here, we hard-code knowledge about the SOCs regarding if they have shared phys
-> > or not. I guess the alternative would have been to assume there is a shared
-> > phy if the DT has a phandle for it. I.e. instead of mp->param->has_shared_phy
-> > everywhere you could test for mp->phy. Though I guess at least with the
-> > current approach you guard against bad DTs, this seems OK.
-> 
-> I could split with if(mp->phy) and .needs_mipi_clk, but overall it would
-> be the same, and I wouldn't know how to react if we forget the PHY in g12a DT
-> since we wouldn't have the PHY register memory zone.
-> On G12A, the PHY is mandatory unlike AXG.
+> Otherwise phy_g12a_usb3_pcie_xlate could determine the hardware mode, and
+> reject the phy instance with the wrong mode. Thus resulting in either the
+> PCI or USB to fail their probe. And avoiding the need to modify the DT on
+> boot.
 
-Indeed.
+Yep, it would have been simpler this way. Maybe a board vendor will set a gpio ?
+who knows, but for actual boards it's static or with 0ohm resistors, and for the
+VIM3 we only know by asking the MCU.
+
+Maybe we could add a fake PHY as a MCU MFD subdevice, wrapping calls to the
+right PHY. But for now the MCU has no upstream driver anyway.
+
+Neil
 
 > 
-> And finally this MIPI clock is part of the PHY ref clock, so I think
-> it's fine to wrap it in the .has_shared_phy knowledge.
-
-I feel like the naming of "mipi" is unfortunate as ideally it'd be something
-like "ref" or similar. Especially if another SoC uses meson PCI, without a
-shared phy but with a reference clock that isn't MIPI. But I don't think
-anyone wants to change the existing bindings.
-
-I think your current approach is robust, I have no objections.
-
+> Thanks,
 > 
-> Thanks for the review,
-
-Thanks,
-
-Andrew Murray
-
-> Neil
+> Andrew Murray
 > 
-> > 
-> > Thanks,
-> > 
-> > Andrew Murray
-> > 
-> >>  	},
-> >>  	{},
-> >>  };
-> >> -- 
-> >> 2.17.1
-> >>
-> 
+>> + */
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-s922x-khadas-vim3.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-s922x-khadas-vim3.dts
+>> index b73deb282120..1ef5c2f04f67 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-s922x-khadas-vim3.dts
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-s922x-khadas-vim3.dts
+>> @@ -14,3 +14,25 @@
+>>  / {
+>>  	compatible = "khadas,vim3", "amlogic,s922x", "amlogic,g12b";
+>>  };
+>> +
+>> +/*
+>> + * The VIM3 on-board  MCU can mux the PCIe/USB3.0 shared differential
+>> + * lines using a FUSB340TMX USB 3.1 SuperSpeed Data Switch between
+>> + * an USB3.0 Type A connector and a M.2 Key M slot.
+>> + * The PHY driving these differential lines is shared between
+>> + * the USB3.0 controller and the PCIe Controller, thus only
+>> + * a single controller can use it.
+>> + * If the MCU is configured to mux the PCIe/USB3.0 differential lines
+>> + * to the M.2 Key M slot, uncomment the following block to disable
+>> + * USB3.0 from the USB Complex and enable the PCIe controller.
+>> + */
+>> +/*
+>> +&pcie {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&usb {
+>> +	phys = <&usb2_phy0>, <&usb2_phy1>;
+>> +	phy-names = "usb2-phy0", "usb2-phy1";
+>> +};
+>> + */
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+>> index 8647da7d6609..eac5720dc15f 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+>> @@ -246,6 +246,10 @@
+>>  	linux,rc-map-name = "rc-khadas";
+>>  };
+>>  
+>> +&pcie {
+>> +	reset-gpios = <&gpio GPIOA_8 GPIO_ACTIVE_LOW>;
+>> +};
+>> +
+>>  &pwm_ef {
+>>          status = "okay";
+>>          pinctrl-0 = <&pwm_e_pins>;
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+>> index 5233bd7cacfb..d9c7cbedce53 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+>> @@ -68,3 +68,25 @@
+>>  	clock-names = "clkin1";
+>>  	status = "okay";
+>>  };
+>> +
+>> +/*
+>> + * The VIM3 on-board  MCU can mux the PCIe/USB3.0 shared differential
+>> + * lines using a FUSB340TMX USB 3.1 SuperSpeed Data Switch between
+>> + * an USB3.0 Type A connector and a M.2 Key M slot.
+>> + * The PHY driving these differential lines is shared between
+>> + * the USB3.0 controller and the PCIe Controller, thus only
+>> + * a single controller can use it.
+>> + * If the MCU is configured to mux the PCIe/USB3.0 differential lines
+>> + * to the M.2 Key M slot, uncomment the following block to disable
+>> + * USB3.0 from the USB Complex and enable the PCIe controller.
+>> + */
+>> +/*
+>> +&pcie {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&usb {
+>> +	phys = <&usb2_phy0>, <&usb2_phy1>;
+>> +	phy-names = "usb2-phy0", "usb2-phy1";
+>> +};
+>> + */
+>> -- 
+>> 2.17.1
+>>
+
 
 _______________________________________________
 linux-amlogic mailing list
