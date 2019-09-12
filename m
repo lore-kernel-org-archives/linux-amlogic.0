@@ -2,89 +2,91 @@ Return-Path: <SRS0=9KOL=XH=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ABE0BC4CEC6
-	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Sep 2019 14:19:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A6FBC4CEC6
+	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Sep 2019 16:49:46 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8197D20684
-	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Sep 2019 14:19:19 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D1FFE2084D
+	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Sep 2019 16:49:45 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cbNpxLxL";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rsoX6y1Y"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8197D20684
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pi7JloQE"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D1FFE2084D
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=49KsWccjMvBZmkPf1u0QMb5mulYmpsCuoljn5ckruzY=; b=cbNpxLxLhe3hID
-	pPcQL6oPgztmjuMPHNIbSHeV6NpmmfZ9a6uYRVlbkhqGvZtEvNSYmz3JeG4F/tAnih+kxkm0SvT7x
-	/tjJvPw8s3IKA00NOlemogLxbzZtMW9nSMK0/XQHyA4onOOj45d7mQmxXn06UPJljMDBrOVF/Ms47
-	LAGb0B+2+UK186A1SBcxp8PxzPQUchug4BGkkHLGurZ+NC/r8qTc5ZIndfo7WouBLFYVP0ItA0NQ3
-	mlM72N/9Evlm4jRwvimM84RY0y4c7SS4s8AmHiLpqhD8R83K7ID9pznViISb5o2mXOKlReMtlJf+U
-	4/cwplLF992+E245Y/FA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=mjw4QBWOIgbBpxjDJMn9lL8rKTcyrFdFzhvVv+HF8rA=; b=pi7JloQEVmYuT9
+	ZfOYNgQu9feHgYdbAOmVH4uU3xtMozfZqX8jb51P7dDmWM8mkDzQr8jkYuC7AVYZSGJzCRr6NGXmb
+	0jw+LVpaqez2V2c3AFuc32dhD3nMBxWUq84a5i95M86q/fsFCRRhkZLhGkuct6ozVnBvep5IbiO8l
+	266nvmgMuWNjwZLamB5Ti/vuFpu46Kuzz70vaEEiH/LVE343qzyqFAFnOWyDQ/YOyEK2Y2ty3+TpP
+	Sm9lDYKLLQYE1nNHLGMcw40TiNSPw4cASa1lrfxQaqJho2X+3RTYVmghY1haiibA1UbtNN2ON3SV+
+	l9+uBwjTWEd1RHNe1obw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1i8PwG-0006Gs-8f; Thu, 12 Sep 2019 14:19:12 +0000
-Received: from mail-lj1-x244.google.com ([2a00:1450:4864:20::244])
+	id 1i8SHm-0007sQ-Ug; Thu, 12 Sep 2019 16:49:34 +0000
+Received: from mx1.redhat.com ([209.132.183.28])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1i8PwC-0006EV-KV
- for linux-amlogic@lists.infradead.org; Thu, 12 Sep 2019 14:19:10 +0000
-Received: by mail-lj1-x244.google.com with SMTP id e17so23746977ljf.13
- for <linux-amlogic@lists.infradead.org>; Thu, 12 Sep 2019 07:19:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=EaseRjemZ1nH3H3ai+89HustdIaoQgkZxvxn81voHgw=;
- b=rsoX6y1YAOzqbx2rs5yY1TJbSmu7WAyddlNG+Ji8jLL6qD8p1RBNugHFYlNQFlKSB8
- /HGDvzTO9dWJaVyS7zIOH11WvDhCFHhIeG/RblZHgUjHwtbDjYPcH4cXDpSGmmE2nUj0
- U6VL1XQE80wNOM7ht77ywzV5AM7lk48hIBbv+1hXcArDqYqEtvHAhEc9KRV0y8mTp2Lc
- ApW2O9cFYxpDbCdQTnVG9tiN5mUIzl0v5TXdlr9D99chkIpZje5iX/oAjdcc95A3KdiX
- q5ZdpEGXM8dvO1N021lPANQ/2ob6PqB/kzCSCjuyZQ0GqxK9v0IjZNYn2QGE3q7b/0QK
- 3iXg==
+ id 1i8SHj-0007rB-38
+ for linux-amlogic@lists.infradead.org; Thu, 12 Sep 2019 16:49:32 +0000
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mx1.redhat.com (Postfix) with ESMTPS id 5DD603E2D3
+ for <linux-amlogic@lists.infradead.org>; Thu, 12 Sep 2019 16:49:29 +0000 (UTC)
+Received: by mail-wr1-f71.google.com with SMTP id t16so12322153wro.3
+ for <linux-amlogic@lists.infradead.org>; Thu, 12 Sep 2019 09:49:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=EaseRjemZ1nH3H3ai+89HustdIaoQgkZxvxn81voHgw=;
- b=kPWYineIH7rVxwicpdHVFDjmmfjEAEim9XwcB+PSCF4SIF/LMAx4vUDuiuViIaU4/W
- ozstTosA/qxeJ3yBrr4OGghi0oUYVVNbow13IqbhT8hbDukTC2tEsPZxgtdjQDwQzHja
- 8V35XUBDX5J3t1EVEQ2clPsf/WnhcZACfzrnJj7+Kyjmt1g3s4DuJYxdCylqWmMf/5VX
- Y3Q6YIw3YpIs4lVQ161bA0d1c35vsKSBMyXyrWkRgWqP66oqgX5VNpE9eGQY9RwVZO52
- lBT1mz/+msBN/fKGlytc8mNkageMOnILOionB9umKBn72JzQdfAGkhblTZR2eqqUX8S2
- I+nQ==
-X-Gm-Message-State: APjAAAUV0jjjLSp7Q6daf6iUuO29y7Fn/eYHfDAJ1eUm/NHfNRimehJO
- 0/p/Ad+HHXM3e5YPgG8hUA0666u2ll02Xf5NtdjEig==
-X-Google-Smtp-Source: APXvYqyop0XBEejhycCA/uXWCe+v8fXqapp+IE1UpB4CQ6vUty8WM9HhBr1lSJ1uA5PXMzJA1vilAybkoKwYmXmFiJ0=
-X-Received: by 2002:a05:651c:1108:: with SMTP id
- d8mr18997780ljo.180.1568297943530; 
- Thu, 12 Sep 2019 07:19:03 -0700 (PDT)
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=p6UoFWsgsPkuQtSEESX9kkhleKRjVbh91vbkMxi8FIw=;
+ b=pfiPICPw5/0inXZ4muaqeA5sxKQBic89c7qeVselRNGOQ7aFNOlgwwsCwoS6YA9rBH
+ yIhpKBY/aPSrVJQwaG5M6GmijeBAI4CD2zejU+svcAzo3j279fMAUb/jsUQP1+TND4nY
+ i+01o6PZk1ghbBSDThWA2QovC+5ME0Efs/fMMNvvbk4NqMKr2f3/fZeIxvqzyTZVrF7B
+ C16grhpdGxSa0vf0SMBN+RM/GAXjsqPyTer1ggY/xaw7jxGPOlIEOO3aV0U+1xCpe+2G
+ 8/8lUK2YjN5aHQ9u7p6YIJzVtVrUy5IVexLnGulfUtzM5AAPEFTTXhFrhrrnjxBNFI0Y
+ thWA==
+X-Gm-Message-State: APjAAAWwixv55jScsETQf6ET/KzAgLbsb72gxctfsn1Q7G0CaBZ87Vbn
+ NS0wsE8V0Au0GR4GKa6KyZCTkQv3HNAzpv6iTG58HPd9HG8JxlPQw6cm8Vymn3MfP5sRJsgFjx/
+ SWa4BgNOcmzCIzZ9HSrdpmUww6Akk1fE=
+X-Received: by 2002:a5d:6811:: with SMTP id w17mr31804409wru.181.1568306967705; 
+ Thu, 12 Sep 2019 09:49:27 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxrL3VP6sAEDt0Bo0M7LVEBolaalUXmcE8h3jDG603x7fhGBgsss6KO8uKCmP0qnEKPpoX5oQ==
+X-Received: by 2002:a5d:6811:: with SMTP id w17mr31804366wru.181.1568306967374; 
+ Thu, 12 Sep 2019 09:49:27 -0700 (PDT)
+Received: from ?IPv6:2001:b07:6468:f312:3166:d768:e1a7:aab8?
+ ([2001:b07:6468:f312:3166:d768:e1a7:aab8])
+ by smtp.gmail.com with ESMTPSA id h17sm807220wme.6.2019.09.12.09.49.25
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 12 Sep 2019 09:49:26 -0700 (PDT)
+Subject: Re: KASAN: slab-out-of-bounds Read in handle_vmptrld
+To: Vitaly Kuznetsov <vkuznets@redhat.com>, kvm@vger.kernel.org
+References: <000000000000a9d4f705924cff7a@google.com>
+ <87lfutei1j.fsf@vitty.brq.redhat.com>
+From: Paolo Bonzini <pbonzini@redhat.com>
+Openpgp: preference=signencrypt
+Message-ID: <5218e70e-8a80-7c5f-277b-01d9ab70692a@redhat.com>
+Date: Thu, 12 Sep 2019 18:49:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <1568123236-767-1-git-send-email-claudiu.beznea@microchip.com>
- <1568123236-767-5-git-send-email-claudiu.beznea@microchip.com>
- <20190910143231.GB14966@e107533-lin.cambridge.arm.com>
- <ab43b209-78fa-0cab-b8ea-acd4c550e689@microchip.com>
- <20190910150826.GA18308@e107533-lin.cambridge.arm.com>
- <20190910151055.GX21254@piout.net>
- <CACRpkda4mmpbPWa2nD93CvD6HWzcTUDzyyLdQxC2gNB7XiJF3w@mail.gmail.com>
- <a2aca46a-8eb9-d8a8-de42-9850a8a8f44c@microchip.com>
-In-Reply-To: <a2aca46a-8eb9-d8a8-de42-9850a8a8f44c@microchip.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 12 Sep 2019 15:18:49 +0100
-Message-ID: <CACRpkda1T_5D697wphrEGEsbj3zBfTaOOLN0T5zS1xfT949cjA@mail.gmail.com>
-Subject: Re: [PATCH 4/7] dt-bindings: chosen: Add clocksource and clockevent
- selection
-To: Claudiu Beznea <Claudiu.Beznea@microchip.com>
+In-Reply-To: <87lfutei1j.fsf@vitty.brq.redhat.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190912_071908_712873_1F65C172 
-X-CRM114-Status: GOOD (  16.58  )
+X-CRM114-CacheID: sfid-20190912_094931_180999_7615E613 
+X-CRM114-Status: GOOD (  18.69  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,89 +98,84 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Tomer Maimon <tmaimon77@gmail.com>, "Nori, Sekhar" <nsekhar@ti.com>,
- guoren@kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
- "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Ludovic Desroches <Ludovic.Desroches@microchip.com>,
- NXP Linux Team <linux-imx@nxp.com>,
- =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- "moderated list:H8/300 ARCHITECTURE" <uclinux-h8-devel@lists.sourceforge.jp>,
- Marc Zyngier <marc.zyngier@arm.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- linux-unisoc@lists.infradead.org, Krzysztof Halasa <khalasa@piap.pl>,
- Thomas Gleixner <tglx@linutronix.de>, Scott Branden <sbranden@broadcom.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Ralf Baechle <ralf@linux-mips.org>, Paul Burton <paul.burton@mips.com>,
- Sascha Hauer <kernel@pengutronix.de>, Mark Rutland <mark.rutland@arm.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- James Hogan <jhogan@kernel.org>, Palmer Dabbelt <palmer@sifive.com>,
- Eric Anholt <eric@anholt.net>,
- "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Yoshinori Sato <ysato@users.sourceforge.jp>, Lyra Zhang <zhang.lyra@gmail.com>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Jon Hunter <jonathanh@nvidia.com>,
- Bartosz Golaszewski <bgolaszewski@baylibre.com>, Kukjin Kim <kgene@kernel.org>,
- Alexandre TORGUE <alexandre.torgue@st.com>,
- MSM <linux-arm-msm@vger.kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
- Florian Fainelli <f.fainelli@gmail.com>, John Stultz <john.stultz@linaro.org>,
- linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Barry Song <baohua@kernel.org>, Imre Kaloz <kaloz@openwrt.org>,
- Stephen Boyd <sboyd@kernel.org>, Patrice CHOTARD <patrice.chotard@st.com>,
- Stefan Wahren <wahrenst@gmx.net>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Neil Armstrong <narmstrong@baylibre.com>, linux-tegra@vger.kernel.org,
- Fabio Estevam <festevam@gmail.com>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Benjamin Fair <benjaminfair@google.com>, Alexander Shiyan <shc_work@mail.ru>,
- Krzysztof Kozlowski <krzk@kernel.org>, Nancy Yuen <yuenn@google.com>,
- Chen-Yu Tsai <wens@csie.org>,
- bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
- Orson Zhai <orsonzhai@gmail.com>,
- "open list:SYNOPSYS ARC ARCHITECTURE" <linux-snps-arc@lists.infradead.org>,
- Ray Jui <rjui@broadcom.com>, Vladimir Zapolskiy <vz@mleia.com>,
- John Crispin <john@phrozen.org>, tali.perry1@gmail.com,
- Avi Fishman <avifishman70@gmail.com>, Patrick Venture <venture@google.com>,
- Ley Foon Tan <lftan@altera.com>, linux-oxnas@groups.io,
- Shawn Guo <shawnguo@kernel.org>,
- =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
- Baruch Siach <baruch@tkos.co.il>, Maxime Ripard <maxime.ripard@bootlin.com>,
- Liviu Dudau <liviu.dudau@arm.com>, linux-mips@vger.kernel.org,
- linux-riscv@lists.infradead.org, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
- Russell King <linux@armlinux.org.uk>, Andy Gross <agross@kernel.org>,
- Sylvain Lemieux <slemieux.tyco@gmail.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, aou@eecs.berkeley.edu,
- Rob Herring <robh+dt@kernel.org>,
- "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
- Santosh Shilimkar <ssantosh@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, Michal Simek <monstr@monstr.eu>,
- Baolin Wang <baolin.wang@linaro.org>, Vineet Gupta <vgupta@synopsys.com>,
- Nicolas Ferre <Nicolas.Ferre@microchip.com>,
- Tony Prisk <linux@prisktech.co.nz>,
- "moderated list:NIOS2 ARCHITECTURE" <nios2-dev@lists.rocketboards.org>
+Cc: mark.rutland@arm.com, wanpengli@tencent.com, narmstrong@baylibre.com,
+ catalin.marinas@arm.com, will.deacon@arm.com, rkrcmar@redhat.com,
+ hpa@zytor.com, khilman@baylibre.com, joro@8bytes.org, x86@kernel.org,
+ mingo@redhat.com, Dmitry Vyukov <dvyukov@google.com>,
+ syzbot <syzbot+46f1dd7dbbe2bfb98b10@syzkaller.appspotmail.com>,
+ devicetree@vger.kernel.org, syzkaller-bugs@googlegroups.com,
+ robh+dt@kernel.org, bp@alien8.de, linux-amlogic@lists.infradead.org,
+ tglx@linutronix.de, linux-arm-kernel@lists.infradead.org, jmattson@google.com,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ USB list <linux-usb@vger.kernel.org>, linux-kernel@vger.kernel.org,
+ sean.j.christopherson@intel.com, carlo@caione.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Sep 11, 2019 at 8:18 AM <Claudiu.Beznea@microchip.com> wrote:
-> [Me]
-> > In that case why not just pick the first one you find as clocksource
-> > and the second one as clock event?
+[tl;dr: there could be a /dev/usb bug only affecting KASAN
+configurations, jump to the end to skip the analysis and get to the bug
+details]
 
-> That was also my proposal for the driver I'm sending this series for (see
-> [1]) but it has been proposed to implement a mechanism similar to this one
-> in this series (see [2] and [3]).
+On 12/09/19 15:54, Vitaly Kuznetsov wrote:
+> Hm, the bisection seems bogus but the stack points us to the following
+> piece of code:
+> 
+>  4776)              if (kvm_vcpu_map(vcpu, gpa_to_gfn(vmptr), &map)) {
+> <skip>
+>  4783)                      return nested_vmx_failValid(vcpu,
+>  4784)                              VMXERR_VMPTRLD_INCORRECT_VMCS_REVISION_ID);
+>  4785)              }
+>  4786) 
+>  4787)              new_vmcs12 = map.hva;
+>  4788) 
+> *4789)              if (new_vmcs12->hdr.revision_id != VMCS12_REVISION ||
+>  4790)                  (new_vmcs12->hdr.shadow_vmcs &&
+>  4791)                   !nested_cpu_has_vmx_shadow_vmcs(vcpu))) {
+> 
+> the reported problem seems to be on VMCS12 region access but it's part
+> of guest memory and we successfuly managed to map it. We're definitely
+> within 1-page range. Maybe KASAN is just wrong here?
 
-OK I am not going to challenge the clock source maintainers on this,
-so if that is what they want then that is what they should get.
-It's fine to convert the Integrator driver too!
+Here is the relevant part of the syzkaller repro:
 
-Yours,
-Linus Walleij
+syz_kvm_setup_cpu$x86(r1, 0xffffffffffffffff,
+&(0x7f0000000000/0x18000)=nil, 0x0, 0x133, 0x0, 0x0, 0xff7d)
+r3 = syz_open_dev$usb(&(0x7f0000000080)='/dev/bus/usb/00#/00#\x00',
+0x40000fffffd, 0x200800000000042)
+mmap$IORING_OFF_SQES(&(0x7f0000007000/0x2000)=nil, 0x2000, 0x4, 0x13,
+r3, 0x10000000)
+syz_kvm_setup_cpu$x86(0xffffffffffffffff, r2,
+&(0x7f0000000000/0x18000)=nil, 0x0, 0xfefd, 0x40, 0x0, 0xfffffffffffffdd4)
+ioctl$KVM_RUN(r2, 0xae80, 0x0)
+
+The mmap$IORING_OFF_SQES is just a normal mmap from a device, which
+replaces the previous mapping for guest memory and in particular
+0x7f0000007000 which is the VMCS (from the C reproducer: "#define
+ADDR_VAR_VMCS 0x7000").
+
+The previous mapping is freed with do_munmap and then repopulated in
+usbdev_mmap with remap_pfn_range.  In KVM this means that kvm_vcpu_map
+goes through hva_to_pfn_remapped, which correctly calls get_page via
+kvm_get_pfn.  (Note that although drivers/usb/core/devio.c's usbdev_mmap
+sets VM_IO *after* calling remap_pfn_range, remap_pfn_range itself
+helpfully sets it before calling remap_p4d_range.  And anyway KVM is
+looking at vma->vm_flags under mmap_sem, which is held during mmap).
+
+So, KVM should be doing the right thing.  Now, the error is:
+
+> Read of size 4 at addr ffff888091e10000 by task syz-executor758/10006
+> The buggy address belongs to the object at ffff888091e109c0 
+> The buggy address is located 2496 bytes to the left of
+>  8192-byte region [ffff888091e109c0, ffff888091e129c0) 
+
+And given the use of remap_pfn_range in devusb_mmap, the simplest
+explanation could be that USB expects kmalloc-8k to return 8k-aligned
+values, but this is not true anymore with KASAN.  CCing Dmitry, Greg and
+linux-usb.
+
+Paolo
 
 _______________________________________________
 linux-amlogic mailing list
