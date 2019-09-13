@@ -2,93 +2,83 @@ Return-Path: <SRS0=L2Ze=XI=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6C87DC49ED7
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Sep 2019 07:34:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 19A3FC49ED7
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Sep 2019 07:48:04 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 419BF20678
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Sep 2019 07:34:53 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DE3E7214AE
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Sep 2019 07:48:03 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RvzSBLSG"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 419BF20678
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EBlwudRx";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WJkm19FF"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DE3E7214AE
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mvpvtlPeNLaGAvlC5NfcyMf9n+azQE6dauYOAak8r/I=; b=RvzSBLSG6s9J4+
-	R94mOQd+H/P4/ETb1+Y5fMs3OTW0z9yE6F3UFIjD5B2uSgH3zGWn/wnNymAnNRZ6EpgLLZT23pHIu
-	iSGxokhY2OeQeCnfXNqCnVNMcw/ZQIFSAfmZF3zTtMrOp+i0oNu1iRCt9izy4tnaRTQDfOByiIl9a
-	vXjSrfqLaQ29s2lPKAeY9D/Ide8nM81gOPJaetGoVEpk1m2yAmOY1Kk5Nxc4wL2T8xukzeLRuqv8K
-	iWxNQVBuQQVsL/y7SyU0T5SL/FVKeo9q5uNQRBxOnrM1sdsHBK3+FP4LziaP0v22Ye4xuY4TiqZWg
-	33+hWPgMVv/SbD+hID4g==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=NxpTbXENHUoaAncJ7S3+/X3xJAE6hDNJrJJ7iQjvwIE=; b=EBlwudRxASHjx8
+	R60ThQqjAb5dvhwgXuwLIdm5pd35pFqbaGJnAqY7q5YjEyepGu3ddHY8A7kSUxLT/8L0ZEcgVSFsO
+	0nCgius+LLAF9cOSBcYMQI26IOsPMVAGaGDHgia2s5rmhBzndRqncknUg0R9L7+oXeQMbkUZxi4dD
+	vU4rUX6W8vPGOqxZiUTy7tO2EpwKZCZLJrf9j38aW8fxQIUlv9R/ndPQQ+REnWHp11qoVRbZSdVsr
+	sQM+EVbkw0dONvI3gwKoNjTlJsROB1EIUmrhDyxwfklKO0fH2Qbkjh9tgcCBZa0v31xq66kcHFG8u
+	1OLxWKnZMZM8v4gTQXog==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1i8g6J-0001cQ-8C; Fri, 13 Sep 2019 07:34:39 +0000
-Received: from mx1.redhat.com ([209.132.183.28])
+	id 1i8gJA-0007fE-Pf; Fri, 13 Sep 2019 07:47:56 +0000
+Received: from mail-ua1-x944.google.com ([2607:f8b0:4864:20::944])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1i8g6F-0001bA-83
- for linux-amlogic@lists.infradead.org; Fri, 13 Sep 2019 07:34:37 +0000
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mx1.redhat.com (Postfix) with ESMTPS id 4CF37883D7
- for <linux-amlogic@lists.infradead.org>; Fri, 13 Sep 2019 07:34:34 +0000 (UTC)
-Received: by mail-wm1-f71.google.com with SMTP id k67so991594wmf.3
- for <linux-amlogic@lists.infradead.org>; Fri, 13 Sep 2019 00:34:34 -0700 (PDT)
+ id 1i8gJ7-0007dz-Hx
+ for linux-amlogic@lists.infradead.org; Fri, 13 Sep 2019 07:47:55 +0000
+Received: by mail-ua1-x944.google.com with SMTP id h23so8884827uao.10
+ for <linux-amlogic@lists.infradead.org>; Fri, 13 Sep 2019 00:47:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=BY3Xdm/EuEh+5xQuU5r1eTj+ek/4Ndp2HWrdgEDsjzc=;
+ b=WJkm19FFgfc2GD6vL1mFJQN6LlvObf/GmbYBDNtuIIzm2tqbA9cMbf4vr4LQorJO/Q
+ EZiMU05SVRjKv3jYbT3b9WhN25IIYPTSxoS56bRuaTpAtWiEVtIc8Spxw+BM5TKvPPeU
+ XppVfL9AmQttSDSycCqcd77+sVw9EdQ15SSXzrczsbZ5qZzO7AFNaZQEvPf1JBPFT8e4
+ GTU3DlXxwGRmMsGsbLyQcyiYxxNaSE2cXKAKyuMoOF2GBTfsW1RiO+xBKkVKEQJUFvfk
+ RwLopqoFtujhyyjh23scuKoskkK/GRlHujIsHBn4bsklMNzeE2Pg1ac6lzQLkVZXLVXG
+ SoCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:message-id
- :date:user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=0wZRdSHIeheVxa4DE7SyQMfDWHvTTN3LMA+T1b8qSjs=;
- b=mh8G6OzYr25DRJmgsBkRYAbs6KgGFxkXeY+1kCuTn6vS+RbPac5jekexSB6KhCwOpx
- vhLTt46EunPtMgg9CQg23zKzSBq/MN75zeElPQwKjCygpSBJqluPGuhdXhDZrXjl6VWl
- WHm9JJxoKyre2VD0WuUEvJbWyKHcTxhAcU64b0cbfI6OFwZstjdtebAkTGQxm+HjDZ4d
- GNFZdiaxviFoLjw+lEGZPpPCCusLHbyJ4U8uQd7vZYv69sJ16P+cQqMsleE5fSM9t0X1
- IwRkRlMg43Xv2CKNZ48s2P9SGlq2DBuqAevl8Jy9CmdMXiusEdEphK39eRv2Yrf4xivt
- mnyg==
-X-Gm-Message-State: APjAAAU37tZpfsAQzcSfmommaaQ62SKl7ziZRx58aeoyDHmfpkxzD20h
- YNc37XGZz7D5+B8XOscA1p0v5QEvN0XEptFpRIfgLfl6eQA4Q9IBlVCJS4zkyeKkoPlqLpWyp1i
- r1JGtQ7jMM9/mxkJSCH+T2Or1I6I3kyM=
-X-Received: by 2002:a5d:49c7:: with SMTP id t7mr6515874wrs.229.1568360072884; 
- Fri, 13 Sep 2019 00:34:32 -0700 (PDT)
-X-Google-Smtp-Source: APXvYqxXYHxfnOF9dKY5KYFw0qMwImUhJMX0+wKShi7tbwxtPLXAruWfIDZ1aSZJYxfR9HQPil13Fg==
-X-Received: by 2002:a5d:49c7:: with SMTP id t7mr6515852wrs.229.1568360072601; 
- Fri, 13 Sep 2019 00:34:32 -0700 (PDT)
-Received: from ?IPv6:2001:b07:6468:f312:3166:d768:e1a7:aab8?
- ([2001:b07:6468:f312:3166:d768:e1a7:aab8])
- by smtp.gmail.com with ESMTPSA id l1sm33488980wrb.1.2019.09.13.00.34.31
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 13 Sep 2019 00:34:32 -0700 (PDT)
-Subject: Re: KASAN: slab-out-of-bounds Read in handle_vmptrld
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-References: <000000000000a9d4f705924cff7a@google.com>
- <87lfutei1j.fsf@vitty.brq.redhat.com>
- <5218e70e-8a80-7c5f-277b-01d9ab70692a@redhat.com>
- <20190913044614.GA120223@kroah.com>
-From: Paolo Bonzini <pbonzini@redhat.com>
-Openpgp: preference=signencrypt
-Message-ID: <db02a285-ad1d-6094-6359-ba80e6d3f2e0@redhat.com>
-Date: Fri, 13 Sep 2019 09:34:32 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=BY3Xdm/EuEh+5xQuU5r1eTj+ek/4Ndp2HWrdgEDsjzc=;
+ b=C0JFMrPXsTDnistmftMAjp+t+8X7RmrXi3IfVu35L9BDmO3lX8PqXvBNCFERrO+eDH
+ eGMEFttNMDRMF6YgWwlchkcfvblGNCUt1u2AmqXlJxGAQPiMzToXuFr3kyKAfty4UIz0
+ sM8jDeHMHYaqNMJcfBZWPY0tdJBVgmR8+txXuuBs4gU06FgHCJ5Bym3oVGCIjvpX38eA
+ dCO4sC+l1ojb67WV9pXDZltddIqt8hmxtbIHHePOUf96iY109DhHlsbJGiQXzA0Kh0UP
+ zHKmRGltpXn4d0GIb2hJX8qQdT/rhvNKIBQq06x8PEsMGwRWTzNqXEjsIi81g7aWhw+c
+ H3gA==
+X-Gm-Message-State: APjAAAX/AEqUbYvf2Rw1kqlRK5hSgbMm/YbwjcBrWKQSqQERNtXc7L5T
+ D6yqxwT1+N0f+w0nbzVAX4FBbtpVZj0KKxPMvh12lw==
+X-Google-Smtp-Source: APXvYqw+RuXy2zCguY4C1QAkE27a8kK5UVarVaOFgDQP/kO/+YACn54gFQCdTxOviAuCW1sKD8pQvibhMSHWBtF6fqA=
+X-Received: by 2002:ab0:2855:: with SMTP id c21mr23850232uaq.67.1568360870892; 
+ Fri, 13 Sep 2019 00:47:50 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190913044614.GA120223@kroah.com>
-Content-Language: en-US
+References: <20190821222421.30242-1-glaroque@baylibre.com>
+ <20190821222421.30242-5-glaroque@baylibre.com>
+ <7hsgpu5c7j.fsf@baylibre.com>
+In-Reply-To: <7hsgpu5c7j.fsf@baylibre.com>
+From: Amit Kucheria <amit.kucheria@linaro.org>
+Date: Fri, 13 Sep 2019 13:17:39 +0530
+Message-ID: <CAHLCerPtDH2VLGBgETJkqkLQZ=8T5C=8VY-=SLKAAEpx5nZf5A@mail.gmail.com>
+Subject: Re: [PATCH v4 4/6] arm64: dts: meson: sei510: Add minimal thermal zone
+To: Kevin Hilman <khilman@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190913_003435_325768_89DD98B4 
-X-CRM114-Status: GOOD (  19.73  )
+X-CRM114-CacheID: sfid-20190913_004753_631485_675621E7 
+X-CRM114-Status: GOOD (  18.11  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,74 +90,180 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mark.rutland@arm.com, x86@kernel.org, wanpengli@tencent.com,
- kvm@vger.kernel.org, narmstrong@baylibre.com, catalin.marinas@arm.com,
- will.deacon@arm.com, hpa@zytor.com, khilman@baylibre.com, joro@8bytes.org,
- rkrcmar@redhat.com, mingo@redhat.com, Dmitry Vyukov <dvyukov@google.com>,
- syzbot <syzbot+46f1dd7dbbe2bfb98b10@syzkaller.appspotmail.com>,
- devicetree@vger.kernel.org, syzkaller-bugs@googlegroups.com,
- robh+dt@kernel.org, bp@alien8.de, linux-amlogic@lists.infradead.org,
- tglx@linutronix.de, linux-arm-kernel@lists.infradead.org, jmattson@google.com,
- USB list <linux-usb@vger.kernel.org>, linux-kernel@vger.kernel.org,
- sean.j.christopherson@intel.com, carlo@caione.org,
- Vitaly Kuznetsov <vkuznets@redhat.com>
+Cc: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, Linux PM list <linux-pm@vger.kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ LKML <linux-kernel@vger.kernel.org>, Eduardo Valentin <edubezval@gmail.com>,
+ Guillaume La Roque <glaroque@baylibre.com>, linux-amlogic@lists.infradead.org,
+ Zhang Rui <rui.zhang@intel.com>, lakml <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 13/09/19 06:46, Greg Kroah-Hartman wrote:
-> USB drivers expect kmalloc to return DMA-able memory.  I don't know
-> about specific alignment issues, that should only an issue for the host
-> controller being used here, which you do not say in the above list.
+On Thu, Aug 22, 2019 at 4:59 AM Kevin Hilman <khilman@baylibre.com> wrote:
+>
+> Guillaume La Roque <glaroque@baylibre.com> writes:
+>
+> > Add minimal thermal zone for two temperature sensor
+> > One is located close to the DDR and the other one is
+> > located close to the PLLs (between the CPU and GPU)
+> >
+> > Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+> > Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > ---
+> >  .../boot/dts/amlogic/meson-g12a-sei510.dts    | 70 +++++++++++++++++++
+> >  1 file changed, 70 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+> > index c9fa23a56562..35d2ebbd6d4e 100644
+> > --- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+> > +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+> > @@ -10,6 +10,7 @@
+> >  #include <dt-bindings/input/input.h>
+> >  #include <dt-bindings/gpio/meson-g12a-gpio.h>
+> >  #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+> > +#include <dt-bindings/thermal/thermal.h>
+> >
+> >  / {
+> >       compatible = "seirobotics,sei510", "amlogic,g12a";
+> > @@ -33,6 +34,67 @@
+> >               ethernet0 = &ethmac;
+> >       };
+> >
+> > +     thermal-zones {
+> > +             cpu-thermal {
+> > +                     polling-delay = <1000>;
+> > +                     polling-delay-passive = <100>;
+> > +                     thermal-sensors = <&cpu_temp>;
+> > +
+> > +                     trips {
+> > +                             cpu_hot: cpu-hot {
+> > +                                     temperature = <85000>; /* millicelsius */
+> > +                                     hysteresis = <2000>; /* millicelsius */
+> > +                                     type = "hot";
+> > +                             };
 
-I have no idea, this is just the analysis of a syzkaller report.  From 
-the backtrace, it's one that ends up calling kmalloc; all of them should
-have the same issue with KASAN.
+No passive trip point? That is where the cooling-maps are really useful.
 
-The specific alignment requirement for this bug comes from this call in
-usbdev_mmap:
+> > +
+> > +                             cpu_critical: cpu-critical {
+> > +                                     temperature = <110000>; /* millicelsius */
+> > +                                     hysteresis = <2000>; /* millicelsius */
+> > +                                     type = "critical";
+> > +                             };
+> > +                     };
+> > +
 
-	if (remap_pfn_range(vma, vma->vm_start,
-			virt_to_phys(usbm->mem) >> PAGE_SHIFT,
-			size, vma->vm_page_prot) < 0) {
+I think, what you really want is to change your hot trip point above
+to passive. And if you need another trip before that (to send
+notification to userspace, for example), just add another hot trip
+point at a lower temperature.
 
-> We have had some reports that usbdev_mmap() does not do the "correct
-> thing" for all host controllers, but a lot of the DMA work that is in
-> linux-next for 5.4-rc1 should have helped resolve those issues.  What
-> tree are you seeing these bug reports happening from?
+> > +                     cooling-maps {
+> > +                             map0 {
+> > +                                     trip = <&cpu_hot>;
+> > +                                     cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> > +                                                      <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> > +                                                      <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> > +                                                      <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> > +                             };
+> > +
+> > +                             map1 {
+> > +                                     trip = <&cpu_critical>;
+> > +                                     cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> > +                                                      <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> > +                                                      <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> > +                                                      <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> > +                             };
 
-It's in master, but the relevant code is the same in linux-next; in fact
-in this case there is no DMA involved at all.  hcd_buffer_alloc hits
-the case "some USB hosts just use PIO".
+The cooling-map associated with a critical trip point is of no use in
+my experience because the device is already on its way to shutting
+down then.
 
-On those host controllers, it should be reproducible with just this:
+> > +                     };
+> > +             };
+> > +
+> > +             ddr-thermal {
+> > +                     polling-delay = <1000>;
+> > +                     polling-delay-passive = <100>;
+> > +                     thermal-sensors = <&ddr_temp>;
+> > +
+> > +                     trips {
+> > +                             ddr_critical: ddr-critical {
+> > +                                     temperature = <110000>; /* millicelsius */
+> > +                                     hysteresis = <2000>; /* millicelsius */
+> > +                                     type = "critical";
+> > +                             };
+> > +                     };
+> > +
+> > +                     cooling-maps {
+> > +                             map {
+> > +                                     trip = <&ddr_critical>;
+> > +                                     cooling-device = <&mali THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
 
-diff --git a/drivers/usb/core/usb.c b/drivers/usb/core/usb.c
-index 7fcb9f782931..cc0460730bce 100644
---- a/drivers/usb/core/usb.c
-+++ b/drivers/usb/core/usb.c
-@@ -905,9 +905,12 @@ EXPORT_SYMBOL_GPL(__usb_get_extra_descriptor);
- void *usb_alloc_coherent(struct usb_device *dev, size_t size, gfp_t mem_flags,
- 			 dma_addr_t *dma)
- {
-+	void *buf;
- 	if (!dev || !dev->bus)
- 		return NULL;
--	return hcd_buffer_alloc(dev->bus, size, mem_flags, dma);
-+	buf = hcd_buffer_alloc(dev->bus, size, mem_flags, dma);
-+	WARN_ON_ONCE(virt_to_phys(buf) & ~PAGE_MASK);
-+	return buf;
- }
- EXPORT_SYMBOL_GPL(usb_alloc_coherent);
- 
+Same here. The cooling-map makes more sense against a passive trip type.
 
-and CONFIG_KASAN=y or possibly just CONFIG_DEBUG_SLAB=y.  mmap-ing /dev/usb
-should warn if my analysis is correct.
+> > +                             };
+> > +                     };
+> > +             };
+> > +     };
+> > +
+> >       mono_dac: audio-codec-0 {
+> >               compatible = "maxim,max98357a";
+> >               #sound-dai-cells = <0>;
+> > @@ -321,6 +383,7 @@
+> >       operating-points-v2 = <&cpu_opp_table>;
+> >       clocks = <&clkc CLKID_CPU_CLK>;
+> >       clock-latency = <50000>;
+> > +     #cooling-cells = <2>;
+> >  };
+> >
+> >  &cpu1 {
+> > @@ -328,6 +391,7 @@
+> >       operating-points-v2 = <&cpu_opp_table>;
+> >       clocks = <&clkc CLKID_CPU_CLK>;
+> >       clock-latency = <50000>;
+> > +     #cooling-cells = <2>;
+> >  };
+> >
+> >  &cpu2 {
+> > @@ -335,6 +399,7 @@
+> >       operating-points-v2 = <&cpu_opp_table>;
+> >       clocks = <&clkc CLKID_CPU_CLK>;
+> >       clock-latency = <50000>;
+> > +     #cooling-cells = <2>;
+> >  };
+> >
+> >  &cpu3 {
+> > @@ -342,6 +407,7 @@
+> >       operating-points-v2 = <&cpu_opp_table>;
+> >       clocks = <&clkc CLKID_CPU_CLK>;
+> >       clock-latency = <50000>;
+> > +     #cooling-cells = <2>;
+> >  };
+> >
+> >  &cvbs_vdac_port {
+> > @@ -368,6 +434,10 @@
+> >       status = "okay";
+> >  };
+> >
+> > +&mali {
+> > +     #cooling-cells = <2>;
+> > +};
+> > +
+>
+> Is there a reason these #cooling-cells properties belong in the SoC
+> .dtsi and not the board .dts.  Seems like you'll have to repeat this in
+> every board .dts which doesn't seem necessary.
+>
+> Same comment for patch 5/6
 
-If you think the above patch makes sense, I can test it and submit it formally.
+Agreed. Even the thermal zones belong in the SoC .dtsi. You can always
+override the trip-points in a board .dts if required if you have a
+board designed in a different form-factor or with active cooling.
 
-Paolo
+/Amit
 
 _______________________________________________
 linux-amlogic mailing list
