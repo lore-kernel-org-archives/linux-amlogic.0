@@ -2,77 +2,95 @@ Return-Path: <SRS0=L2Ze=XI=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 96C92C4CEC7
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Sep 2019 14:38:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C1838C49ED7
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Sep 2019 15:04:40 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 58E7A2089F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Sep 2019 14:38:59 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 99A8720830
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Sep 2019 15:04:40 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rLIJp3N/"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 58E7A2089F
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RY+uHLoE"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 99A8720830
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=redhat.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:To:In-Reply-To:
-	References:Subject:From:Date:Message-ID:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=NcYgztnC+2wpW8DEjVCnnh25K3dK4vDEQ9rYg851P0A=; b=rLIJp3N/371minoh1cAa72NwhK
-	zZ7MHo52/ET3PTBHYKiBH8DIP1kehgDpdmYCTCUyfQV0U8VL7zJWL/BWImBb/W2hmOgqzzGu1Axt5
-	2ReLrugJjLckI52hMzXFfjaCquko2uhWKULhcFoyfvNM5HGQ/CLZ72zDURxoivBKnwj0l7x8KmXVN
-	6QJ3nYzKKu//8lYySiD/vYhm+XnoNVON3RnsC23AwbjcMhRrCDcyGIpXEhgg9669cvuDzziUHEDne
-	fBnfDzXwnMMM0jKfq1RnwvGTgLbKF8pKgswfPNuZydt8t7zWg3NV2HuqGakEnMj6gQobAYxXlzEJD
-	CxNJYSYw==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=kxBSZ0RQmZq1SXr/2SnEAjzHV3HNtM/3osiRgbd/LQI=; b=RY+uHLoELGoHTU
+	aAZq6tNG1O3mR+R645XWLvwgleVXA7zgBF4nKTGTx2tK/EufiLV4V3qH8hXiv7qeeFhdL9jnq8+L5
+	FeOV5vEewYgWM8Q8OOEpZp/Kvq9mfSFq9WcI8Lr8zIcF9IPCLCNGVsvtFsXsyyyGyFBA04VCM7hgl
+	6wnHxKzkfT8e4LUdHYkC2lvTvZcdoEnw2cxH/00KvPFPNkFaZyQtfG3NJv6RrOyovs22qjpkBsWJJ
+	1+Mk78fVhOvpQ5pkC5JsVm2iXjztaxlgZx71pRNJxI3SWvxwABubM8RcbfwkyuSHW3/t2DWBFQmP0
+	82i0DYrnpvYmefh2h2zQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1i8mil-0004ET-Vi; Fri, 13 Sep 2019 14:38:48 +0000
-Received: from mail-oi1-f196.google.com ([209.85.167.196])
+	id 1i8n7V-0006oO-OO; Fri, 13 Sep 2019 15:04:21 +0000
+Received: from mx1.redhat.com ([209.132.183.28])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1i8mgP-0002VI-9D; Fri, 13 Sep 2019 14:36:24 +0000
-Received: by mail-oi1-f196.google.com with SMTP id e12so2834533oie.0;
- Fri, 13 Sep 2019 07:36:21 -0700 (PDT)
+ id 1i8n4i-0006Kj-Gh
+ for linux-amlogic@lists.infradead.org; Fri, 13 Sep 2019 15:01:30 +0000
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mx1.redhat.com (Postfix) with ESMTPS id 17BE76907A
+ for <linux-amlogic@lists.infradead.org>; Fri, 13 Sep 2019 15:01:28 +0000 (UTC)
+Received: by mail-wr1-f71.google.com with SMTP id f11so13756309wrt.18
+ for <linux-amlogic@lists.infradead.org>; Fri, 13 Sep 2019 08:01:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:date:from:subject:references
- :in-reply-to:cc:cc:to;
- bh=YbpiQzIM3eQL4XQ34vYEddsWeG9VMivV31FLcj+hIuc=;
- b=q8WiDbYPzs1AdOZmwm0KN7Hmwu5jbtgwyLH6gMbMOC88CSgaSIXJlWDNcoDPhnHhEJ
- 6pyvsydc+oAr5972jxk2KRfW34UnlzcRC7i06W/yPvrUv+jcDQYhsLkWCkqE0gSeqSVa
- 5o3TqMswFOXBHSSdAz55o8THIpt8A/0Z73hpaVsai8O2AMwpmIfY8C9FhQcEksVEp4f2
- zOf8raRdN42+R64rcCDBkVGbl4/BitNYlAfNPSEoVDqRNZSi9nbwi6jqxAHCJ5+mNV9w
- Kf0TZvFsBh8lkwD6oYgOR4/fYEB+lhZlUM1/qGHUJfJgSEe8JzbcPCEaa/3t7KdTAfMV
- mcGg==
-X-Gm-Message-State: APjAAAWwGLjCEI/jht/4c5vMoThRCXdjybF7+rHkdQV8XYpYAoR9wjHp
- CewRZCzujdEQ6/5W/b6ZKQ==
-X-Google-Smtp-Source: APXvYqyjj6rIVWDuqKwqqDB6O49ywBjZD3PZQ4+xjM00i6c2gbMnanfPNY4AfSDhsOstHiycfTtKVQ==
-X-Received: by 2002:aca:ed0a:: with SMTP id l10mr3624662oih.83.1568385380257; 
- Fri, 13 Sep 2019 07:36:20 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net.
- [24.155.109.49])
- by smtp.gmail.com with ESMTPSA id h20sm4239119otj.81.2019.09.13.07.36.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 13 Sep 2019 07:36:19 -0700 (PDT)
-Message-ID: <5d7ba963.1c69fb81.4869.eb19@mx.google.com>
-Date: Fri, 13 Sep 2019 15:36:18 +0100
-From: Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH 1/6] dt-bindings: pci: amlogic,
- meson-pcie: Add G12A bindings
-References: <1567950178-4466-1-git-send-email-narmstrong@baylibre.com>
- <1567950178-4466-2-git-send-email-narmstrong@baylibre.com>
-In-Reply-To: <1567950178-4466-2-git-send-email-narmstrong@baylibre.com>
-To: Neil Armstrong <narmstrong@baylibre.com>
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=zuzwEhDdM8nFD/eqeUMdkZbahAvWuck1YuH/cdNiv9o=;
+ b=reX/DKi4srCwEluV6FTMao6ytW1UopJbNB911JK+LhhjM/Ll38czpsMP8EFd16ncNN
+ e3ovydH28M+VmAjWWxN2l7/TsvkqfUmdcydFMAHGfrRaLkrH4ZoiM3hDhDm7FR4b26MP
+ iCulPiKc+JRDCSB4mJuduEu83LJhcdpr4RHGHZxAOdrPX/7mlTXNWAZv8tz86SpEeLzl
+ LYXPOPt6kMs1rnP/LNfDCWm9koE+NHjRDxLIpZYncc/EHiY+PzXoLrtgoyb7DB6Xd2Ux
+ l3t3cs/n7Cf3hOOIHQqBmyQJQqHEu2gF6y6zSoQs3Kh+Vabby8A2Pkn9kqf8QL/qPaRe
+ LmHw==
+X-Gm-Message-State: APjAAAUyQVEikLRC+XFVq8bR9ORzm8D0QKBKl8+qOo76uaOnyBX6VFfB
+ AW+S4IBK2iM195W1pZuamG4w/u1Zytp2GrhbirgdbMZY3LgZKNWGBqtcXZ35uROz04H1WzhZSM2
+ TPyrmvxdiMbnWTPzTP7vpILqd9Ll08YI=
+X-Received: by 2002:a1c:c013:: with SMTP id q19mr3447786wmf.87.1568386884925; 
+ Fri, 13 Sep 2019 08:01:24 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxVmkhicWbX9sM2V6LPnr+xLUUrZU9HvAJMzAOfyJJVoRtNarvooFR4sjG8yibYs2ccdb68wg==
+X-Received: by 2002:a1c:c013:: with SMTP id q19mr3447762wmf.87.1568386884662; 
+ Fri, 13 Sep 2019 08:01:24 -0700 (PDT)
+Received: from ?IPv6:2001:b07:6468:f312:c5d2:4bb2:a923:3a9a?
+ ([2001:b07:6468:f312:c5d2:4bb2:a923:3a9a])
+ by smtp.gmail.com with ESMTPSA id y15sm1949532wmj.32.2019.09.13.08.01.23
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 13 Sep 2019 08:01:24 -0700 (PDT)
+Subject: Re: KASAN: slab-out-of-bounds Read in handle_vmptrld
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+References: <000000000000a9d4f705924cff7a@google.com>
+ <87lfutei1j.fsf@vitty.brq.redhat.com>
+ <5218e70e-8a80-7c5f-277b-01d9ab70692a@redhat.com>
+ <20190913044614.GA120223@kroah.com>
+ <db02a285-ad1d-6094-6359-ba80e6d3f2e0@redhat.com>
+ <20190913130226.GB403359@kroah.com>
+From: Paolo Bonzini <pbonzini@redhat.com>
+Openpgp: preference=signencrypt
+Message-ID: <6a0ec3a2-2a52-f67a-6140-e0a60874538a@redhat.com>
+Date: Fri, 13 Sep 2019 17:01:22 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <20190913130226.GB403359@kroah.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190913_073623_351167_395DA4E0 
-X-CRM114-Status: UNSURE (   8.37  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190913_080129_010091_9331ACE8 
+X-CRM114-Status: GOOD (  14.19  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,33 +102,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, lorenzo.pieralisi@arm.com,
- Neil Armstrong <narmstrong@baylibre.com>, khilman@baylibre.com,
- linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, kishon@ti.com,
- repk@triplefau.lt, maz@kernel.org, bhelgaas@google.com,
- linux-amlogic@lists.infradead.org, yue.wang@Amlogic.com,
- linux-arm-kernel@lists.infradead.org
-MIME-Version: 1.0
+Cc: mark.rutland@arm.com, x86@kernel.org, wanpengli@tencent.com,
+ kvm@vger.kernel.org, narmstrong@baylibre.com, catalin.marinas@arm.com,
+ will.deacon@arm.com, hpa@zytor.com, khilman@baylibre.com, joro@8bytes.org,
+ rkrcmar@redhat.com, mingo@redhat.com, Dmitry Vyukov <dvyukov@google.com>,
+ syzbot <syzbot+46f1dd7dbbe2bfb98b10@syzkaller.appspotmail.com>,
+ devicetree@vger.kernel.org, syzkaller-bugs@googlegroups.com,
+ robh+dt@kernel.org, bp@alien8.de, linux-amlogic@lists.infradead.org,
+ tglx@linutronix.de, linux-arm-kernel@lists.infradead.org, jmattson@google.com,
+ USB list <linux-usb@vger.kernel.org>, linux-kernel@vger.kernel.org,
+ sean.j.christopherson@intel.com, carlo@caione.org,
+ Vitaly Kuznetsov <vkuznets@redhat.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun,  8 Sep 2019 13:42:53 +0000, Neil Armstrong wrote:
-> Add PCIE bindings for the Amlogic G12A SoC, the support is the same
-> but the PHY is shared with USB3 to control the differential lines.
-> 
-> Thus this adds a phy phandle to control the PHY, and sets invalid
-> MIPI clock as optional for G12A.
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  .../devicetree/bindings/pci/amlogic,meson-pcie.txt   | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
-> 
+On 13/09/19 15:02, Greg Kroah-Hartman wrote:
+> Look at linux-next, we "should" have fixed up hcd_buffer_alloc() now to
+> not need this type of thing.  If we got it wrong, please let us know and
+> then yes, a fix like this would be most appreciated :)
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I still see
 
+	/* some USB hosts just use PIO */
+	if (!hcd_uses_dma(hcd)) {
+		*dma = ~(dma_addr_t) 0;
+		return kmalloc(size, mem_flags);
+	}
+
+in linux-next's hcd_buffer_alloc and also in usb.git's usb-next branch.
+ I also see the same
+
+	if (remap_pfn_range(vma, vma->vm_start,
+			virt_to_phys(usbm->mem) >> PAGE_SHIFT,
+			size, vma->vm_page_prot) < 0) {
+		...
+	}
+
+in usbdev_mmap.  Of course it's possible that I'm looking at the wrong
+branch, or just being dense.
+
+Paolo
 
 _______________________________________________
 linux-amlogic mailing list
