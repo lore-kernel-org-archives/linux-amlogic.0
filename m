@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 32829C4CECE
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Sep 2019 13:43:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6CDAAC49ED7
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Sep 2019 13:46:00 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0849D216C8
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Sep 2019 13:43:13 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 420A920830
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Sep 2019 13:46:00 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XEJ4Rakv"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0849D216C8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="JZr+5r3N"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 420A920830
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arm.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,38 +25,39 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FsdEOvvxDCyxJusZ8IjmAd8srfx1q4m+XgjAGteEU4M=; b=XEJ4RakvUx9tL+
-	Nf2Kzk5h4TL77VDB+BGHC430RP2VgjDL2tVf9++vbvpElgrCXB3oZiY6RBwK/53cH9yPYjHTFBD+3
-	ASgE8zNFUlWCyhOi6m5W5nbYRKI6PPRjGSjMFoX8NEERKOyBbF11qdKK/IqCc2NU40Th3tSqbEmpr
-	xw7Vm4M7j/8BwKf8yQhcdrYQ96yhEPuQP+s8JkK0hyEghyp1lH97AttxXKMg+XqOM0ecg1ewGKlKI
-	EPRJ4XqqvKg9hDbox4LWCBUx48Y5DCp2nYmBJKGt83XRAA/e7bM+xx1Z3tOcR/h9Webtn45/nAybH
-	0m8qT2ZIfIpYjXY1hiTw==;
+	List-Owner; bh=NDZBVbmi9JE6YkeRRT8vfyIvLf7S2SRcpsjgKXNQ8LI=; b=JZr+5r3Nxla6Zi
+	O/Waf3pqF+ZwS1cwQrtAdQmJ9/IWvlKB4nZnM4LDadsScTZZ1qM8MX9cau+EaQLC0DHqCi4c9Z77X
+	Or+jKkRxZfBROEyIssNwgqo71+bQPwcm4qtgMQbSOtLKNeB7K5hyUxD2xo1uoUJkoE3YDYToMQMFF
+	IYdXPKLxTmfqsf0YsmsgEfEuq7iBUQ4CglBGzNNRYotuKZCAOxzHgOyfmneQUcl70aByDjxq3Kdxd
+	VV637FmefLLRUJ+2lmLMIEXkOdl9m5qUyyRoA8+PiJbmqnBstipqeWUDRq1RN3bVs/tRC8faXIL7/
+	93QY2LqE67pwN/oLxxyA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1i9rHR-0000MQ-5n; Mon, 16 Sep 2019 13:43:01 +0000
+	id 1i9rKF-0002bB-1L; Mon, 16 Sep 2019 13:45:55 +0000
 Received: from foss.arm.com ([217.140.110.172])
  by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
- id 1i9rHE-0000Ha-3h; Mon, 16 Sep 2019 13:42:50 +0000
+ id 1i9rKB-0002aA-BB; Mon, 16 Sep 2019 13:45:52 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B21AD337;
- Mon, 16 Sep 2019 06:42:44 -0700 (PDT)
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7CD1F337;
+ Mon, 16 Sep 2019 06:45:49 -0700 (PDT)
 Received: from localhost (unknown [10.37.6.20])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 288663F67D;
- Mon, 16 Sep 2019 06:42:43 -0700 (PDT)
-Date: Mon, 16 Sep 2019 14:42:42 +0100
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E84043F67D;
+ Mon, 16 Sep 2019 06:45:48 -0700 (PDT)
+Date: Mon, 16 Sep 2019 14:45:47 +0100
 From: Andrew Murray <andrew.murray@arm.com>
 To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH v2 5/6] arm64: dts: meson-g12a: Add PCIe node
-Message-ID: <20190916134241.GR9720@e119886-lin.cambridge.arm.com>
+Subject: Re: [PATCH v2 6/6] arm64: dts: khadas-vim3: add commented support
+ for PCIe
+Message-ID: <20190916134546.GS9720@e119886-lin.cambridge.arm.com>
 References: <20190916125022.10754-1-narmstrong@baylibre.com>
- <20190916125022.10754-6-narmstrong@baylibre.com>
+ <20190916125022.10754-7-narmstrong@baylibre.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20190916125022.10754-6-narmstrong@baylibre.com>
+In-Reply-To: <20190916125022.10754-7-narmstrong@baylibre.com>
 User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190916_064248_476704_FB58C129 
-X-CRM114-Status: GOOD (  15.46  )
+X-CRM114-CacheID: sfid-20190916_064551_477542_F4D78E06 
+X-CRM114-Status: GOOD (  20.81  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,82 +79,148 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Sep 16, 2019 at 02:50:21PM +0200, Neil Armstrong wrote:
-> This adds the Amlogic G12A PCI Express controller node, also
-> using the USB3+PCIe Combo PHY.
+On Mon, Sep 16, 2019 at 02:50:22PM +0200, Neil Armstrong wrote:
+> The VIM3 on-board  MCU can mux the PCIe/USB3.0 shared differential
+> lines using a FUSB340TMX USB 3.1 SuperSpeed Data Switch between
+> an USB3.0 Type A connector and a M.2 Key M slot.
+> The PHY driving these differential lines is shared between
+> the USB3.0 controller and the PCIe Controller, thus only
+> a single controller can use it.
 > 
-> The PHY mode selection is static, thus the USB3+PCIe Combo PHY
-> phandle would need to be removed from the USB control node if the
-> shared differential lines are used for PCIe instead of USB3.
+> The needed DT configuration when the MCU is configured to mux
+> the PCIe/USB3.0 differential lines to the M.2 Key M slot is
+> added commented and may be uncommented to disable USB3.0 from the
+> USB Complex and enable the PCIe controller.
+> 
+> The End User is not expected to uncomment the following except for
+> testing purposes, but instead rely on the firmware/bootloader to
+> update these nodes accordingly if PCIe mode is selected by the MCU.
 > 
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
 Reviewed-by: Andrew Murray <andrew.murray@arm.com>
 
 > ---
->  .../boot/dts/amlogic/meson-g12-common.dtsi    | 33 +++++++++++++++++++
->  arch/arm64/boot/dts/amlogic/meson-sm1.dtsi    |  4 +++
->  2 files changed, 37 insertions(+)
+>  .../amlogic/meson-g12b-a311d-khadas-vim3.dts  | 25 +++++++++++++++++++
+>  .../amlogic/meson-g12b-s922x-khadas-vim3.dts  | 25 +++++++++++++++++++
+>  .../boot/dts/amlogic/meson-khadas-vim3.dtsi   |  4 +++
+>  .../dts/amlogic/meson-sm1-khadas-vim3l.dts    | 25 +++++++++++++++++++
+>  4 files changed, 79 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> index 852cf9cf121b..7330dc37b7a6 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> @@ -95,6 +95,39 @@
->  		#size-cells = <2>;
->  		ranges;
->  
-> +		pcie: pcie@fc000000 {
-> +			compatible = "amlogic,g12a-pcie", "snps,dw-pcie";
-> +			reg = <0x0 0xfc000000 0x0 0x400000
-> +			       0x0 0xff648000 0x0 0x2000
-> +			       0x0 0xfc400000 0x0 0x200000>;
-> +			reg-names = "elbi", "cfg", "config";
-> +			interrupts = <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>;
-> +			#interrupt-cells = <1>;
-> +			interrupt-map-mask = <0 0 0 0>;
-> +			interrupt-map = <0 0 0 0 &gic GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
-> +			bus-range = <0x0 0xff>;
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +			device_type = "pci";
-> +			ranges = <0x81000000 0 0 0x0 0xfc600000 0 0x00100000
-> +				  0x82000000 0 0xfc700000 0x0 0xfc700000 0 0x1900000>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
+> index 3a6a1e0c1e32..124a80901084 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
+> @@ -14,3 +14,28 @@
+>  / {
+>  	compatible = "khadas,vim3", "amlogic,a311d", "amlogic,g12b";
+>  };
 > +
-> +			clocks = <&clkc CLKID_PCIE_PHY
-> +				  &clkc CLKID_PCIE_COMB
-> +				  &clkc CLKID_PCIE_PLL>;
-> +			clock-names = "general",
-> +				      "pclk",
-> +				      "port";
-> +			resets = <&reset RESET_PCIE_CTRL_A>,
-> +				 <&reset RESET_PCIE_APB>;
-> +			reset-names = "port",
-> +				      "apb";
-> +			num-lanes = <1>;
-> +			phys = <&usb3_pcie_phy PHY_TYPE_PCIE>;
-> +			phy-names = "pcie";
-> +			status = "disabled";
-> +		};
+> +/*
+> + * The VIM3 on-board  MCU can mux the PCIe/USB3.0 shared differential
+> + * lines using a FUSB340TMX USB 3.1 SuperSpeed Data Switch between
+> + * an USB3.0 Type A connector and a M.2 Key M slot.
+> + * The PHY driving these differential lines is shared between
+> + * the USB3.0 controller and the PCIe Controller, thus only
+> + * a single controller can use it.
+> + * If the MCU is configured to mux the PCIe/USB3.0 differential lines
+> + * to the M.2 Key M slot, uncomment the following block to disable
+> + * USB3.0 from the USB Complex and enable the PCIe controller.
+> + * The End User is not expected to uncomment the following except for
+> + * testing purposes, but instead rely on the firmware/bootloader to
+> + * update these nodes accordingly if PCIe mode is selected by the MCU.
+> + */
+> +/*
+> +&pcie {
+> +	status = "okay";
+> +};
 > +
->  		ethmac: ethernet@ff3f0000 {
->  			compatible = "amlogic,meson-axg-dwmac",
->  				     "snps,dwmac-3.70a",
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> index 91492819d0d8..ee9ea3c69433 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-> @@ -135,6 +135,10 @@
->  	power-domains = <&pwrc PWRC_SM1_ETH_ID>;
+> +&usb {
+> +	phys = <&usb2_phy0>, <&usb2_phy1>;
+> +	phy-names = "usb2-phy0", "usb2-phy1";
+> +};
+> + */
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-s922x-khadas-vim3.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-s922x-khadas-vim3.dts
+> index b73deb282120..bba98f982ad6 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-s922x-khadas-vim3.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-s922x-khadas-vim3.dts
+> @@ -14,3 +14,28 @@
+>  / {
+>  	compatible = "khadas,vim3", "amlogic,s922x", "amlogic,g12b";
+>  };
+> +
+> +/*
+> + * The VIM3 on-board  MCU can mux the PCIe/USB3.0 shared differential
+> + * lines using a FUSB340TMX USB 3.1 SuperSpeed Data Switch between
+> + * an USB3.0 Type A connector and a M.2 Key M slot.
+> + * The PHY driving these differential lines is shared between
+> + * the USB3.0 controller and the PCIe Controller, thus only
+> + * a single controller can use it.
+> + * If the MCU is configured to mux the PCIe/USB3.0 differential lines
+> + * to the M.2 Key M slot, uncomment the following block to disable
+> + * USB3.0 from the USB Complex and enable the PCIe controller.
+> + * The End User is not expected to uncomment the following except for
+> + * testing purposes, but instead rely on the firmware/bootloader to
+> + * update these nodes accordingly if PCIe mode is selected by the MCU.
+> + */
+> +/*
+> +&pcie {
+> +	status = "okay";
+> +};
+> +
+> +&usb {
+> +	phys = <&usb2_phy0>, <&usb2_phy1>;
+> +	phy-names = "usb2-phy0", "usb2-phy1";
+> +};
+> + */
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+> index 4fe7d33ebe8a..90815fa25ec6 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+> @@ -246,6 +246,10 @@
+>  	linux,rc-map-name = "rc-khadas";
 >  };
 >  
 > +&pcie {
-> +	power-domains = <&pwrc PWRC_SM1_PCIE_ID>;
+> +	reset-gpios = <&gpio GPIOA_8 GPIO_ACTIVE_LOW>;
 > +};
 > +
->  &pwrc {
->  	compatible = "amlogic,meson-sm1-pwrc";
+>  &pwm_ef {
+>          status = "okay";
+>          pinctrl-0 = <&pwm_e_pins>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+> index 5233bd7cacfb..dbbf29a0dbf6 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+> @@ -68,3 +68,28 @@
+>  	clock-names = "clkin1";
+>  	status = "okay";
 >  };
+> +
+> +/*
+> + * The VIM3 on-board  MCU can mux the PCIe/USB3.0 shared differential
+> + * lines using a FUSB340TMX USB 3.1 SuperSpeed Data Switch between
+> + * an USB3.0 Type A connector and a M.2 Key M slot.
+> + * The PHY driving these differential lines is shared between
+> + * the USB3.0 controller and the PCIe Controller, thus only
+> + * a single controller can use it.
+> + * If the MCU is configured to mux the PCIe/USB3.0 differential lines
+> + * to the M.2 Key M slot, uncomment the following block to disable
+> + * USB3.0 from the USB Complex and enable the PCIe controller.
+> + * The End User is not expected to uncomment the following except for
+> + * testing purposes, but instead rely on the firmware/bootloader to
+> + * update these nodes accordingly if PCIe mode is selected by the MCU.
+> + */
+> +/*
+> +&pcie {
+> +	status = "okay";
+> +};
+> +
+> +&usb {
+> +	phys = <&usb2_phy0>, <&usb2_phy1>;
+> +	phy-names = "usb2-phy0", "usb2-phy1";
+> +};
+> + */
 > -- 
 > 2.22.0
 > 
