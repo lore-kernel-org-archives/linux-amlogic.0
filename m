@@ -2,88 +2,90 @@ Return-Path: <SRS0=wpca=XL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 15EC6C49ED7
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Sep 2019 12:50:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 57E87C49ED7
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Sep 2019 12:52:02 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DF3E6216C8
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Sep 2019 12:50:49 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2069A214AF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Sep 2019 12:52:02 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="uKMyM1ce";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="rCcoPIlr"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DF3E6216C8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="a8rVLGG9";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="KUcpVPrD"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2069A214AF
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=s2Wa52SE+9mDqWVOdLadRqTv2X8KfneIaq7L4GB544c=; b=uKMyM1ce0k+PLc
-	TZNL+x9eBy/Z5YdKI6GdKTUw7qQ/hr9rnQqYmE/3imkX1tC2lg+cCVp8jL0J+9rVLNhnrIPt4dvGk
-	l0B4UmpYgLOcEnyGAxa50+n6UYTsbII7VC6Y9F6FacIedmU/dbP5ofNvmM4S3FQolbfj0otLvYStp
-	5zIUNX01wWSSWUpgMiiSRCMH0KReU7KPol7DxfSiOsbdI4Q73U0p5q7jKcdtzeRFiLPelukAJI9nO
-	nC3zxFBbTX+w7OlxEIdxpA3lHauL4Wzcurz2I5BjES5/Jp/VgM5FqhPVwy2fHPsijdZ4gACwvF9iT
-	BqYqzs/f2eUB9Tst+c3w==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Na5YXm+dAitCtV5vwgMIhhM9jYszSsdrvXb8zMMjo0k=; b=a8rVLGG9hnpblC
+	1V0EtQZ9idEx8GWWPeuZbgyhIvGTAFG2UylPZitW+ITCjdHTVoQyL0h91yZjQM91J1SRzweONbKc8
+	10teVbbpA5mmc+psgEhJz4ZcU+xVdZoPJaupc3FzA3W54PxbmA11K4WUNqh8FouXkfA0MneIgngYc
+	whmQG2Ji3sFDBozQuv03H9NyeG++IjPv+FfjkCu+TKhL2lskHwfaTGYLAWmzFdto55fs6dxqvb1qy
+	e9o+a2e7yFeGNrCoIIWXv2k6KgRWJSdFyDvaBWUipPva73jkf/ZovNw4z4CstNIZb6ANpISMQfVq6
+	91Ve+dG/55xOFSBw6KDA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1i9qSm-0002uV-P7; Mon, 16 Sep 2019 12:50:40 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1i9qU0-0003i6-Nz; Mon, 16 Sep 2019 12:51:56 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1i9qSY-0002n4-Po
- for linux-amlogic@lists.infradead.org; Mon, 16 Sep 2019 12:50:30 +0000
-Received: by mail-wm1-x344.google.com with SMTP id g207so9985032wmg.5
- for <linux-amlogic@lists.infradead.org>; Mon, 16 Sep 2019 05:50:25 -0700 (PDT)
+ id 1i9qSb-0002o9-6E
+ for linux-amlogic@lists.infradead.org; Mon, 16 Sep 2019 12:50:32 +0000
+Received: by mail-wr1-x444.google.com with SMTP id q14so38713545wrm.9
+ for <linux-amlogic@lists.infradead.org>; Mon, 16 Sep 2019 05:50:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=n0nWXjEKuyezEGLTlcOc5a95BxXTlVx30DizfXSeliY=;
- b=rCcoPIlrwFYixV0LYkox3EHEWUvNOSmGLVZr5kMmD8v9E4IyKfdkDQSIWvEui/KKuh
- GmfhSKP0nsPa/pvtOtmMfUqNtNxD4LOxUG4mC09v0Z+6hbiaoouuyEmbSi2R6HzIhIcp
- 1Fxc50tbkGLdh+IpSlrXopG/0K5wIxL8/MbFIEv2eGaV9/HICIQw2mSCnYuum97wTzq1
- Rxo3OfhlWw5DMCmwSPNejV3DzEgEkj5x7M2ucP58Kz5/FpR/eu5QlBElqOXgoC4G25vZ
- iuIzjhePr/rH6ZSQwjjx14oCB3niPwUoex6SW6Np5cxXkaGSCDd9tPSCyJOpiF3AMrXr
- 7bVw==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=l+Hjb1KZXu9Y+kfoSzj2+UuCM6t2hRuLtjmW3mDPljc=;
+ b=KUcpVPrDi8HaBFJDSDar0cFx9ymhhGZ5WqfIzWJdIf8xz+ylf9qIUl9u++yqbV6aSA
+ ZQNKyxh/EqwXceW6W8coRjudYwFXRsDpeNHA6fqzn9BxqmdTlVqKayFXbdQqDzawgI4d
+ LepD21ZFu386GTyTW3I7aOaJon1cS6nh8K0UhE/6A0uBnmVRZeFIteeljbB5zIZkDOqt
+ BEnBk0b1HmQuVCGSvew1pouuuFKx919qztABNpbZo6W396GzJyZo1KxwSKiGSueCr/UC
+ VFaahvA/YssGc38soZ3xr0MLMxZ7SvDaSI/ahCuwWtD+v6dIfEQ6jitSaGfwiBoZohCi
+ aHkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=n0nWXjEKuyezEGLTlcOc5a95BxXTlVx30DizfXSeliY=;
- b=gjk5Xf31pgp5gJDey5tJ1Dw6RS9NN0VNpfAzyndU7rP0Yjc38SN5fOMGn8QFTcyeKz
- LaZ4NoNr3v/ngP8cMZNvNNz245jgvWdKPqCxOxso0kHZDy7hqd9Otrb/npQ6U3dUsr5H
- TIfW2Plyr32Y6wa6Vh/+VnpX3D2hmdZmvUYgnV6t8Iwc8kEA/S8IKa4yb5zw5jOKLlNU
- mhCQw7/h6DBKggdLuQcjYrVfGRLs9gtWQlGfN+oszJBtvL4DGEXD7K4tBYIve1sXVPUi
- TCp1GoBdcVjNCNcdXzewbkvB75xSFj5UYmLch2NvC6whYMeBcY7eS+oB1lA2sY8g35/D
- oxRw==
-X-Gm-Message-State: APjAAAUO1FJd51aSoi1TDMh0vsQ5oNuWiTUarHeug3TuZFm8HKfgOFJz
- hPmFjkP08dzHndSXBziWR59EyA==
-X-Google-Smtp-Source: APXvYqxt1quSs6ZODA5XRA7qdpJ1rjqMP7CeuDbJm5vLj3TnHa4eGsYXp/6f5dSgZsxBwneSvqn0tQ==
-X-Received: by 2002:a7b:ce0e:: with SMTP id m14mr14440842wmc.138.1568638224331; 
- Mon, 16 Sep 2019 05:50:24 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=l+Hjb1KZXu9Y+kfoSzj2+UuCM6t2hRuLtjmW3mDPljc=;
+ b=Xl1nmxXxGltOVPfHJsPi23pzA7WKiNgx62KWJvIYwzAZMeZO4Cai3vB8R4GwiMjdYU
+ EZez9btJu99kda1U4OT/NtintUZBjTYPl5+1tOwcWgjxm1KoGfOJg7CZP+KPyjVz9hyZ
+ wFMmoRhvW6rrLc2eTjF4BPzmnxFsdkt9abvP3k7jTFsUYh04WsJLrVb8beBKfxe9s059
+ 5WtT6JhweLKWEFoPKTgHWh8NgfNrKS9B18lMaSsQfqkqK+znuD8J6IhVpxuftXMBuznN
+ HWFZSCPsFp2FCpdiJNL2JJbcrpe8VvXQquHQg7+dK/KVZMhTwJP2TEESOwtM4GcnAV13
+ 2fhg==
+X-Gm-Message-State: APjAAAVu8BXmkwRK6zmVpoA/0AHRx9egwA9m2BXQX4XG0+H8+bwgzN1j
+ iQEhsJOrzh9ndsSwcFuryxOKFQ==
+X-Google-Smtp-Source: APXvYqxwnkva6dHx+V5SOAT97517JhRt9Wr5dcN5qaTd/V2MxMj7/CjmemHmTPjBqBjwDNxDLI+kGw==
+X-Received: by 2002:a5d:6088:: with SMTP id w8mr9806148wrt.31.1568638227671;
+ Mon, 16 Sep 2019 05:50:27 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id o12sm15109960wrm.23.2019.09.16.05.50.23
+ by smtp.gmail.com with ESMTPSA id o12sm15109960wrm.23.2019.09.16.05.50.26
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 16 Sep 2019 05:50:23 -0700 (PDT)
+ Mon, 16 Sep 2019 05:50:27 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: khilman@baylibre.com, lorenzo.pieralisi@arm.com, kishon@ti.com,
  bhelgaas@google.com, andrew.murray@arm.com
-Subject: [PATCH v2 0/6] arm64: dts: meson-g12: add support for PCIe
-Date: Mon, 16 Sep 2019 14:50:16 +0200
-Message-Id: <20190916125022.10754-1-narmstrong@baylibre.com>
+Subject: [PATCH v2 3/6] PCI: amlogic: meson: Add support for G12A
+Date: Mon, 16 Sep 2019 14:50:19 +0200
+Message-Id: <20190916125022.10754-4-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20190916125022.10754-1-narmstrong@baylibre.com>
+References: <20190916125022.10754-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190916_055027_119218_8EF5BB40 
-X-CRM114-Status: GOOD (  10.61  )
+X-CRM114-CacheID: sfid-20190916_055029_231037_DFD86103 
+X-CRM114-Status: GOOD (  15.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,66 +106,250 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patchset :
-- updates the Amlogic PCI bindings for G12A
-- reworks the Amlogic PCIe driver to make use of the
-G12a USB3+PCIe Combo PHY instead of directly writing in
-the PHY register
-- adds the necessary operations to the G12a USB3+PCIe Combo PHY driver
-- adds the PCIe Node for G12A, G12B and SM1 SoCs
-- adds the commented support for the S922X, A311D and S905D3 based
-VIM3 boards.
+Add support for the Amlogic G12A SoC using a separate shared PHY.
 
-The VIM3 schematic can be found at [1].
+This adds support for fetching a PHY phandle and call the PHY init,
+reset and power on/off calls instead of writing in the PHY register or
+toggling the PHY reset line.
 
-This patchset is dependent on Remi's "Fix reset assertion via gpio descriptor"
-patch at [2].
+The MIPI clock and the PHY memory resource are only required for the
+Amlogic AXG SoC PCIe PHY setup, thus these elements are ignored for
+the Amlogic G12A having a separate shared PHY.
 
-This patchset has been tested in a A311D VIM3 and S905D3 VIM3L using a
-128Go TS128GMTE110S NVMe PCIe module.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/pci/controller/dwc/pci-meson.c | 128 ++++++++++++++++++++-----
+ 1 file changed, 105 insertions(+), 23 deletions(-)
 
-For indication, here is a bonnie++ run as ext4 formatted on the VIM3:
-     ------Sequential Output------ --Sequential Input- --Random-
-     -Per Chr- --Block-- -Rewrite- -Per Chr- --Block-- --Seeks--
-Size K/sec %CP K/sec %CP K/sec %CP K/sec %CP K/sec %CP /sec %CP
-  4G 93865  99 312837  96 194487  23 102808  97 415501 21 +++++ +++
-
-and the S905D3 VIM3L version:
-     ------Sequential Output------ --Sequential Input- --Random-
-     -Per Chr- --Block-- -Rewrite- -Per Chr- --Block-- --Seeks--
-Size K/sec %CP K/sec %CP K/sec %CP K/sec %CP K/sec %CP  /sec %CP
-  4G 52144  95 71766  21 47302  10 57078  98 415469  44 +++++ +++
-
-Changes since v1 at [3]:
- - Collected Andrew's and Rob's Reviewed-by tags
- - Added missing calls to phy_init/phy_exit
- - Fixes has_shared_phy handling for MIPI clock
- - Add comment in the DT concerning firmware setting the right properties
- - Added SM1 Power Domain to PCIe node
-
-[1] https://docs.khadas.com/vim3/HardwareDocs.html
-[2] https://patchwork.kernel.org/patch/11125261/
-[3] https://patchwork.kernel.org/cover/11136927/
-
-Neil Armstrong (6):
-  dt-bindings: pci: amlogic,meson-pcie: Add G12A bindings
-  PCI: amlogic: Fix probed clock names
-  PCI: amlogic: meson: Add support for G12A
-  phy: meson-g12a-usb3-pcie: Add support for PCIe mode
-  arm64: dts: meson-g12a: Add PCIe node
-  arm64: dts: khadas-vim3: add commented support for PCIe
-
- .../bindings/pci/amlogic,meson-pcie.txt       |  12 +-
- .../boot/dts/amlogic/meson-g12-common.dtsi    |  33 +++++
- .../amlogic/meson-g12b-a311d-khadas-vim3.dts  |  25 ++++
- .../amlogic/meson-g12b-s922x-khadas-vim3.dts  |  25 ++++
- .../boot/dts/amlogic/meson-khadas-vim3.dtsi   |   4 +
- .../dts/amlogic/meson-sm1-khadas-vim3l.dts    |  25 ++++
- arch/arm64/boot/dts/amlogic/meson-sm1.dtsi    |   4 +
- drivers/pci/controller/dwc/pci-meson.c        | 132 ++++++++++++++----
- .../phy/amlogic/phy-meson-g12a-usb3-pcie.c    |  70 ++++++++--
- 9 files changed, 292 insertions(+), 38 deletions(-)
-
+diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
+index ab79990798f8..3772b02a5c55 100644
+--- a/drivers/pci/controller/dwc/pci-meson.c
++++ b/drivers/pci/controller/dwc/pci-meson.c
+@@ -16,6 +16,7 @@
+ #include <linux/reset.h>
+ #include <linux/resource.h>
+ #include <linux/types.h>
++#include <linux/phy/phy.h>
+ 
+ #include "pcie-designware.h"
+ 
+@@ -96,12 +97,18 @@ struct meson_pcie_rc_reset {
+ 	struct reset_control *apb;
+ };
+ 
++struct meson_pcie_param {
++	bool has_shared_phy;
++};
++
+ struct meson_pcie {
+ 	struct dw_pcie pci;
+ 	struct meson_pcie_mem_res mem_res;
+ 	struct meson_pcie_clk_res clk_res;
+ 	struct meson_pcie_rc_reset mrst;
+ 	struct gpio_desc *reset_gpio;
++	struct phy *phy;
++	const struct meson_pcie_param *param;
+ };
+ 
+ static struct reset_control *meson_pcie_get_reset(struct meson_pcie *mp,
+@@ -123,10 +130,12 @@ static int meson_pcie_get_resets(struct meson_pcie *mp)
+ {
+ 	struct meson_pcie_rc_reset *mrst = &mp->mrst;
+ 
+-	mrst->phy = meson_pcie_get_reset(mp, "phy", PCIE_SHARED_RESET);
+-	if (IS_ERR(mrst->phy))
+-		return PTR_ERR(mrst->phy);
+-	reset_control_deassert(mrst->phy);
++	if (!mp->param->has_shared_phy) {
++		mrst->phy = meson_pcie_get_reset(mp, "phy", PCIE_SHARED_RESET);
++		if (IS_ERR(mrst->phy))
++			return PTR_ERR(mrst->phy);
++		reset_control_deassert(mrst->phy);
++	}
+ 
+ 	mrst->port = meson_pcie_get_reset(mp, "port", PCIE_NORMAL_RESET);
+ 	if (IS_ERR(mrst->port))
+@@ -180,27 +189,52 @@ static int meson_pcie_get_mems(struct platform_device *pdev,
+ 	if (IS_ERR(mp->mem_res.cfg_base))
+ 		return PTR_ERR(mp->mem_res.cfg_base);
+ 
+-	/* Meson SoC has two PCI controllers use same phy register*/
+-	mp->mem_res.phy_base = meson_pcie_get_mem_shared(pdev, mp, "phy");
+-	if (IS_ERR(mp->mem_res.phy_base))
+-		return PTR_ERR(mp->mem_res.phy_base);
++	/* Meson AXG SoC has two PCI controllers use same phy register */
++	if (!mp->param->has_shared_phy) {
++		mp->mem_res.phy_base =
++			meson_pcie_get_mem_shared(pdev, mp, "phy");
++		if (IS_ERR(mp->mem_res.phy_base))
++			return PTR_ERR(mp->mem_res.phy_base);
++	}
+ 
+ 	return 0;
+ }
+ 
+-static void meson_pcie_power_on(struct meson_pcie *mp)
++static int meson_pcie_power_on(struct meson_pcie *mp)
+ {
+-	writel(MESON_PCIE_PHY_POWERUP, mp->mem_res.phy_base);
++	int ret = 0;
++
++	if (mp->param->has_shared_phy) {
++		ret = phy_init(mp->phy);
++		if (ret)
++			return ret;
++
++		ret = phy_power_on(mp->phy);
++		if (ret) {
++			phy_exit(mp->phy);
++			return ret;
++		}
++	} else
++		writel(MESON_PCIE_PHY_POWERUP, mp->mem_res.phy_base);
++
++	return 0;
+ }
+ 
+-static void meson_pcie_reset(struct meson_pcie *mp)
++static int meson_pcie_reset(struct meson_pcie *mp)
+ {
+ 	struct meson_pcie_rc_reset *mrst = &mp->mrst;
+-
+-	reset_control_assert(mrst->phy);
+-	udelay(PCIE_RESET_DELAY);
+-	reset_control_deassert(mrst->phy);
+-	udelay(PCIE_RESET_DELAY);
++	int ret = 0;
++
++	if (mp->param->has_shared_phy) {
++		ret = phy_reset(mp->phy);
++		if (ret)
++			return ret;
++	} else {
++		reset_control_assert(mrst->phy);
++		udelay(PCIE_RESET_DELAY);
++		reset_control_deassert(mrst->phy);
++		udelay(PCIE_RESET_DELAY);
++	}
+ 
+ 	reset_control_assert(mrst->port);
+ 	reset_control_assert(mrst->apb);
+@@ -208,6 +242,8 @@ static void meson_pcie_reset(struct meson_pcie *mp)
+ 	reset_control_deassert(mrst->port);
+ 	reset_control_deassert(mrst->apb);
+ 	udelay(PCIE_RESET_DELAY);
++
++	return 0;
+ }
+ 
+ static inline struct clk *meson_pcie_probe_clock(struct device *dev,
+@@ -250,9 +286,11 @@ static int meson_pcie_probe_clocks(struct meson_pcie *mp)
+ 	if (IS_ERR(res->port_clk))
+ 		return PTR_ERR(res->port_clk);
+ 
+-	res->mipi_gate = meson_pcie_probe_clock(dev, "mipi", 0);
+-	if (IS_ERR(res->mipi_gate))
+-		return PTR_ERR(res->mipi_gate);
++	if (!mp->param->has_shared_phy) {
++		res->mipi_gate = meson_pcie_probe_clock(dev, "mipi", 0);
++		if (IS_ERR(res->mipi_gate))
++			return PTR_ERR(res->mipi_gate);
++	}
+ 
+ 	res->general_clk = meson_pcie_probe_clock(dev, "general", 0);
+ 	if (IS_ERR(res->general_clk))
+@@ -524,6 +562,7 @@ static const struct dw_pcie_ops dw_pcie_ops = {
+ 
+ static int meson_pcie_probe(struct platform_device *pdev)
+ {
++	const struct meson_pcie_param *match_data;
+ 	struct device *dev = &pdev->dev;
+ 	struct dw_pcie *pci;
+ 	struct meson_pcie *mp;
+@@ -537,6 +576,19 @@ static int meson_pcie_probe(struct platform_device *pdev)
+ 	pci->dev = dev;
+ 	pci->ops = &dw_pcie_ops;
+ 
++	match_data = of_device_get_match_data(dev);
++	if (!match_data) {
++		dev_err(dev, "failed to get match data\n");
++		return -ENODEV;
++	}
++	mp->param = match_data;
++
++	if (mp->param->has_shared_phy) {
++		mp->phy = devm_phy_get(dev, "pcie");
++		if (IS_ERR(mp->phy))
++			return PTR_ERR(mp->phy);
++	}
++
+ 	mp->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
+ 	if (IS_ERR(mp->reset_gpio)) {
+ 		dev_err(dev, "get reset gpio failed\n");
+@@ -555,13 +607,22 @@ static int meson_pcie_probe(struct platform_device *pdev)
+ 		return ret;
+ 	}
+ 
+-	meson_pcie_power_on(mp);
+-	meson_pcie_reset(mp);
++	ret = meson_pcie_power_on(mp);
++	if (ret) {
++		dev_err(dev, "phy power on failed, %d\n", ret);
++		return ret;
++	}
++
++	ret = meson_pcie_reset(mp);
++	if (ret) {
++		dev_err(dev, "reset failed, %d\n", ret);
++		goto err_phy;
++	}
+ 
+ 	ret = meson_pcie_probe_clocks(mp);
+ 	if (ret) {
+ 		dev_err(dev, "init clock resources failed, %d\n", ret);
+-		return ret;
++		goto err_phy;
+ 	}
+ 
+ 	platform_set_drvdata(pdev, mp);
+@@ -569,15 +630,36 @@ static int meson_pcie_probe(struct platform_device *pdev)
+ 	ret = meson_add_pcie_port(mp, pdev);
+ 	if (ret < 0) {
+ 		dev_err(dev, "Add PCIe port failed, %d\n", ret);
+-		return ret;
++		goto err_phy;
+ 	}
+ 
+ 	return 0;
++
++err_phy:
++	if (mp->param->has_shared_phy) {
++		phy_power_off(mp->phy);
++		phy_exit(mp->phy);
++	}
++
++	return ret;
+ }
+ 
++static struct meson_pcie_param meson_pcie_axg_param = {
++	.has_shared_phy = false,
++};
++
++static struct meson_pcie_param meson_pcie_g12a_param = {
++	.has_shared_phy = true,
++};
++
+ static const struct of_device_id meson_pcie_of_match[] = {
+ 	{
+ 		.compatible = "amlogic,axg-pcie",
++		.data = &meson_pcie_axg_param,
++	},
++	{
++		.compatible = "amlogic,g12a-pcie",
++		.data = &meson_pcie_g12a_param,
+ 	},
+ 	{},
+ };
 -- 
 2.22.0
 
