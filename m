@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A7262C4CED0
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Sep 2019 10:59:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 10E03C4CEC9
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Sep 2019 11:50:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 740FB21881
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Sep 2019 10:59:03 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CF91421881
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Sep 2019 11:50:41 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AioZfZ6B"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 740FB21881
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mmQAAXOX"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CF91421881
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,42 +25,41 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=4hdA62d0lBGYNKLzn8UXav1Bfbc7vS1BPD5iewZKoAg=; b=AioZfZ6Bi+LfWn
-	6SjhNM1M8sxyd2YF1VDIAhpUGXIBsNaDq6fwgeZGZ3jX0veWAeAh96hrLbSGwTfket1DkRo6LEJwo
-	6kTIrvZmSv0Ap5bppCnk//OdNxuhKoN3rJyj4KU5VDZgHzIlFMjtK8rGHxgg2L850nQ+2UewpKfjT
-	BAd4tHk7Z0SYwbJsKicMx0BhJkIAPAhGQVcZTXLrzjeaV6PuHpob6rs8gjzW5ABdeBaQaz3RJfPyv
-	We12S2IOdI1VXaDLt+JkjEab74J21+7yF3/aE050CfhSbgjz0KIs1lZIuxokbmxvWC8XoqVGO0xlY
-	/Yn7LmmNoxFdNkdnadsg==;
+	List-Owner; bh=nb595T/5u9FNIWHzBX0c1Vm/eeh1xoJnOt/ZMMfpb9o=; b=mmQAAXOXKfiQT2
+	4jk1AI8DM0yrBxQWkPWnfAy9mWzMqB7wGlg0po5bq2L/mUrzm2y6FaxHPu43/Yk78LXtweR96hbcu
+	TYCoc9nvRLv1hRTkQdznLn7lm6LzX60qCZKj1WakXxzN7z5opbFeaeKixIpifkr7kJuE/5vxAk+0g
+	Mzmpm/wKmXj/CLe3amZqeAaungMDq+buCZ10m6dE44W3HumLm6YJOeu+MKNlrIiYsg+aIOyOzaSZx
+	MgeRf9Obmz3rDd3B5PWmuOlNwuZ2ifsvGis3RqieWBkM3QgwV6/Y8+AyyyMLkn8A8UoS7DwoGdhwK
+	4G8uOJw41iU0QhuD+NpA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iABCA-0004ax-L9; Tue, 17 Sep 2019 10:58:54 +0000
+	id 1iAC09-0001uw-QO; Tue, 17 Sep 2019 11:50:33 +0000
 Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iABC5-0004aN-Cd; Tue, 17 Sep 2019 10:58:52 +0000
+ id 1iAC04-0001uS-Sn; Tue, 17 Sep 2019 11:50:32 +0000
 Received: from [10.28.18.45] (10.28.18.45) by mail-sz.amlogic.com (10.28.11.5)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Tue, 17 Sep
- 2019 18:59:43 +0800
+ 2019 19:51:21 +0800
 Subject: Re: [PATCH 2/3] pinctrl: meson-a1: add pinctrl driver for Meson A1 Soc
-To: Neil Armstrong <narmstrong@baylibre.com>, Linus Walleij
- <linus.walleij@linaro.org>, <linux-gpio@vger.kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
 References: <1568700442-18540-1-git-send-email-qianggui.song@amlogic.com>
  <1568700442-18540-3-git-send-email-qianggui.song@amlogic.com>
- <ffd2aa02-5269-9c7a-149e-99bda3439457@baylibre.com>
+ <1jef0f46fj.fsf@starbuckisacylon.baylibre.com>
 From: Qianggui Song <qianggui.song@amlogic.com>
-Message-ID: <816b471f-22e4-f1c3-1404-eca53a0743ff@amlogic.com>
-Date: Tue, 17 Sep 2019 18:59:43 +0800
+Message-ID: <73dc56bd-d6c5-1de7-e97e-91479a89a29e@amlogic.com>
+Date: Tue, 17 Sep 2019 19:51:20 +0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <ffd2aa02-5269-9c7a-149e-99bda3439457@baylibre.com>
+In-Reply-To: <1jef0f46fj.fsf@starbuckisacylon.baylibre.com>
 Content-Language: en-US
 X-Originating-IP: [10.28.18.45]
 X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
  (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190917_035849_618620_A9AD3DDB 
-X-CRM114-Status: GOOD (  19.10  )
+X-CRM114-CacheID: sfid-20190917_045029_143889_A4BD1D05 
+X-CRM114-Status: GOOD (  14.57  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,21 +73,25 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Mark Rutland <mark.rutland@arm.com>, Hanjie Lin <hanjie.lin@amlogic.com>,
  Jianxin Pan <jianxin.pan@amlogic.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ Kevin Hilman <khilman@baylibre.com>, Linus Walleij <linus.walleij@linaro.org>,
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
  Rob Herring <robh+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
  Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
- Xingyu Chen <xingyu.chen@amlogic.com>, Jerome Brunet <jbrunet@baylibre.com>
+ Xingyu Chen <xingyu.chen@amlogic.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi, Jerome
+    Thanks for your review
 
-On 2019/9/17 15:15, Neil Armstrong wrote:
-> Hi,
+On 2019/9/17 17:29, Jerome Brunet wrote:
 > 
-> On 17/09/2019 08:07, Qianggui Song wrote:
+> On Tue 17 Sep 2019 at 08:07, Qianggui Song <qianggui.song@amlogic.com> wrote:
+> 
 >> Add pinctrl driver for Meson A1 Soc which share the same register layout of
 >> pinmux with previous Meson-G12A, however there is difference for gpio
 >> and pin config register in A1. The register layout is as below:
@@ -114,63 +117,11 @@ On 2019/9/17 15:15, Neil Armstrong wrote:
 >> two adjacent P_PADCTRL_GPIO[X]_I, there is an offset 0x10, that is to say,
 >> for third bank, the offsets will be 0x20,0x21,0x22,0x23,0x24,0x25 according
 >> to above register layout.
-> 
-> Sorry but the explanation is not very clear, could you show the G12A mapping
-> in comparison to explain your point and how reg_ds = reg_pullen solves the issue
-> here ?
-> 
-For G12A EE groups, register layout is like:
-- PREG_PAD_GPIO[N]_EN_N
-- PREG_PAD_GPIO[N]_O
-- PREG_PAD_GPIO[N]_I
- ------address not continue----
-- PAD_PULL_UP_REG[N]
-		...
- ------address not continue----
-- PAD_PULL_UP_EN_REG[N]
-		...
- ------address not continue----
-- PAD_DS_REG[N][M]
-
-where N=0~5, M=A or B
-
-So for G12A EE groups , to calculate other register, we have five
-register bases in dts:
-"gpio"(reg_gpio), "mux"(reg_mux), "pull(reg_pull)",
-"pull_enable(reg_pull)", "ds(reg_ds)",
-
-For G12A AO groups
-- AO_PAD_DS_A
-- AO_PAD_DS_B
-- AO_GPIO_O_EN_N
-- AO_GPIO_I
-- AO_RTI_PULL_UP_REG
-- AO_RTI_PULL_UP_EN_REG
-- AO_GPIO_O
-
-we only need three register bases in dts: "mux"(reg_mux), "ds"(reg_ds),
-"gpio"(reg_gpio).
-To do that "reg_pull = reg_gpio",  "reg_pullen = reg_pull" have done by
-previous work.
-
-In A1, there are no EE and AO groups, register layout depicted in commit
-log shows that we just use one register base (for A1 here is
-P_PADCTRL_GPIOP_I), other register bases can be easily calculated for
-simple rule. Since we just use one register base,reg_ds should be
-equaled to reg_pullen.
-
-G12A gpio and pin config registers is grouped according to function,
-while A1 is according to bank.
-
 >>
 >> Current Meson pinctrl driver can cover such change by using base address of
 >> GPIO as that of drive-strength. While simply giving reg_ds = reg_pullen
 >> make wrong value to reg_ds for Soc that not support drive-strength like AXG
 >> . Here a private data used to identify register layout is introduced.
-> 
-> Could you also precise there is no AO pinctrl bank on A1.
-> 
-will add description in the next patch
 >>
 >> Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
 >> Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
@@ -1167,11 +1118,28 @@ will add description in the next patch
 >> -		dev_dbg(pc->dev, "ds registers not found - skipping\n");
 >> -		pc->reg_ds = NULL;
 >> +		if (pc->data->reg_layout == A1_LAYOUT) {
-> 
-> If the ds_reg is not used in A1_LAYOUT, simply avoid mapping it and mark
-> it unneeded for A1 SoCs in the bindings instead.
-> 
 >> +			pc->reg_ds = pc->reg_pullen;
+> 
+> IMO, this kind of ID based init fixup is not going to scale and will
+> lead to something difficult to maintain in the end.
+> 
+> The way the different register sets interract with each other is already
+> pretty complex to follow.
+> 
+> You could rework this in 2 different ways:
+> #1 - Have the generic function parse all the register sets and have all
+> drivers provide a specific (as in gxbb, gxl, axg, etc ...)  function to :
+>  - Verify the expected sets have been provided
+>  - Make assignement fixup as above if necessary
+> 
+> #2 - Rework the driver to have only one single register region
+>  I think one of your colleague previously mentionned this was not
+>  possible. It is still unclear to me why ...
+> 
+Appreciate your advice.  I have an idea based on #1, how about providing
+only two dt parse function, one is for chips before A1(the old one),
+another is for A1 and later chips that share the same layout. Assign
+these two functions to their own driver.
 >> +		} else {
 >> +			dev_dbg(pc->dev, "ds registers not found - skipping\n");
 >> +			pc->reg_ds = NULL;
@@ -1206,11 +1174,6 @@ will add description in the next patch
 >>  };
 >>  
 >>  struct meson_pinctrl {
->>
-> 
-> Apart that look good to me,
-> 
-> Neil
 > 
 > .
 > 
