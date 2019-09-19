@@ -2,66 +2,89 @@ Return-Path: <SRS0=mQoY=XO=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D4891C4CEC4
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Sep 2019 02:34:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3CA49C49ED7
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Sep 2019 09:37:03 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A00F720578
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Sep 2019 02:34:30 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0E9E921907
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Sep 2019 09:37:02 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MD+BW0bT"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A00F720578
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fejxqKlj";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ZpxIQpFM"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0E9E921907
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=TcphCoc8e+C12BNplhobPgylWQQGnAs9FICpzDYMnYk=; b=MD+BW0bTmUniWm0TYwh6YfT6K
-	w7UAr5fWRoxIG7nb7KnFXkSxGhbGDbPfMHMKPWfSBH0zbzeor6iyZLCv99YkLLE4F8OJThSBqz4aT
-	uW4Vj935I7DpDgeteTzUahOJzqqrbmG2va+1bQJKMF/z6XC741Dn5E4Os/o+g5ww09a3vB0MVpTR0
-	1FeOVudYUxfR0ZSndDkjRDaZykJK8O3ZNycikjO5x2EMWAYCEmWZxCvpsZ3yBCqc/dZb9EMuZRDaQ
-	sDv/JCZqsWTZ0YYO9x8+hNFOJgjKtAaSYMvgfBSvzaKmtaJYM8Snw+I36OTnzs5FC7+oHOij1Dgj4
-	WmuZZgY8A==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Snj8Egynze9PuH7aFK8BrfYgTFrtFLBGDdYSaX8VJfQ=; b=fejxqKlj1rTT1c
+	OeNUiOIxl6zUz/LUmqg3t2JZUT7iQQpmgyjStwqeeD2Uj9wvO0IUt+soK8hI2VGGPG1s2eZbjiTMl
+	7CvZMQwYz5I5GLqWjMIQJJ2Qw1WfjLbEp0uXIRPiY/IsMlJfbnmnDKSLCnYNSmSr/68Vvk54iideS
+	WjmLzJcPGdMJGNq2+QLosBv4tm8pm+D5sUhM2vz9RjXP8G1UQHQKmYMUAHt4PwR4032+tuNrfMy6/
+	m1nMQ2PDnO03QNaSUNTkMOIQOZ2iivHBvZioyXdgrkQaMDMd9rMEsj4ru3EqbUNiVfWJqBL9kx7FD
+	T5vf0+RiQH9QYydxO98g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iAmGt-0005dm-2Y; Thu, 19 Sep 2019 02:34:15 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1iAsrs-000662-CB; Thu, 19 Sep 2019 09:36:52 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iAmGc-0005Ow-0e; Thu, 19 Sep 2019 02:33:59 +0000
-Received: from [10.28.19.63] (10.28.19.63) by mail-sz.amlogic.com (10.28.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Thu, 19 Sep
- 2019 10:34:49 +0800
-Subject: Re: [PATCH 2/3] dt-bindings: reset: add bindings for the Meson-A1 SoC
- Reset Controller
-To: Neil Armstrong <narmstrong@baylibre.com>, Philipp Zabel
- <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>
-References: <1568808746-1153-1-git-send-email-xingyu.chen@amlogic.com>
- <1568808746-1153-3-git-send-email-xingyu.chen@amlogic.com>
- <d99786ec-7635-67e5-3e47-738ce131b634@baylibre.com>
-From: Xingyu Chen <xingyu.chen@amlogic.com>
-Message-ID: <b6d7ad13-1bb4-5aea-ed13-3d695e8218e1@amlogic.com>
-Date: Thu, 19 Sep 2019 10:34:48 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+ id 1iAsrY-0005qZ-Li
+ for linux-amlogic@lists.infradead.org; Thu, 19 Sep 2019 09:36:34 +0000
+Received: by mail-wr1-x443.google.com with SMTP id r5so2287680wrm.12
+ for <linux-amlogic@lists.infradead.org>; Thu, 19 Sep 2019 02:36:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=HU8Y6pbxWWxRHBUPCakNxeD6oqUY5n5mmhoUaSAT3gk=;
+ b=ZpxIQpFM42BVxOwOhk7rXeg7LiQ/OzWnqWklrcETy22L7NdwvJOg25CPHHr/9bBzA7
+ yYeWiVE3oPtqE9Erb4DWeZ/tpghfcW9ioBBOioDqpw6G892y1x48m8xMPjmcy18Nry2o
+ pw9WB4k9l0ZVsvVLUzhO7itF/vALzH+A5+u7WatGxEyn2WbEkNM7f+iinKkXxLrij3nR
+ X8tXVIol/mse55uThB8RwHlSkQ1nypybZx9fynaYkSTUuvRmFID1CcA0+rCFTrRVlBCl
+ KMjZIRs1sRY7Iur537wQ8DVFU9fuM+Yg/pHUEo9uqHvs7dUPEpEFnBAop33UTd/G+n80
+ QpPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=HU8Y6pbxWWxRHBUPCakNxeD6oqUY5n5mmhoUaSAT3gk=;
+ b=D0SqMCHY92rIqmtRjGq/fSZ+Vf4MwRE/KPuO1HEp+7LlWO/uQoDn3iJGw23bPnAvxZ
+ /TigjglTYKyCEXIuLJczBrHCwEBdUWKnPYRKmjPJ3KBOTIVJIQTzEVbP+9VOzfJm1oaz
+ Igm1mB43kQQUCq7WSCjTZ078Waz/hMNXP/UxnMEypChaZs4FDvI6SfhDfjrZD4Eowq0B
+ uFfw3ZcVd/z+9pRszGBnak0qj9Bh6KuInRmKi7j8Y18jbiVbDEuAh3jhwYc0SKSR0Ewn
+ chr91GjTr+WmSbbjWBeaaaidGqnw20gL+K7hCaou1ViBVlqgTKoMPmTSC/tXr9IT4qMA
+ iL6Q==
+X-Gm-Message-State: APjAAAWNaMrVlASedZMYdqr+XuaSuONSUDybc4gx9bF75HbNc0adPArX
+ vinb64y+5zpkjr1ymXOHVfLvzw==
+X-Google-Smtp-Source: APXvYqwcwTAoAq6ipI04IFWalCiIwGVkBNhcLNPZV6e9XreTF113hZ1ic9ciMzNKiT6P7nJFBGetVA==
+X-Received: by 2002:adf:e48f:: with SMTP id i15mr6926414wrm.26.1568885790071; 
+ Thu, 19 Sep 2019 02:36:30 -0700 (PDT)
+Received: from bender.baylibre.local
+ (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr. [176.150.251.154])
+ by smtp.gmail.com with ESMTPSA id q19sm16701186wra.89.2019.09.19.02.36.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 19 Sep 2019 02:36:29 -0700 (PDT)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: jbrunet@baylibre.com
+Subject: [PATCH 1/3] clk: meson: g12a: fix cpu clock rate setting
+Date: Thu, 19 Sep 2019 11:36:25 +0200
+Message-Id: <20190919093627.21245-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20190919093627.21245-1-narmstrong@baylibre.com>
+References: <20190919093627.21245-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <d99786ec-7635-67e5-3e47-738ce131b634@baylibre.com>
-Content-Language: en-GB
-X-Originating-IP: [10.28.19.63]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190918_193358_058154_D5117B86 
-X-CRM114-Status: GOOD (  14.01  )
+X-CRM114-CacheID: sfid-20190919_023632_773377_EB804391 
+X-CRM114-Status: GOOD (  10.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,123 +96,50 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Hanjie Lin <hanjie.lin@amlogic.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>, linux-kernel@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi, Neil
-Thanks for your review
+CLK_SET_RATE_NO_REPARENT is wrongly set on the g12a cpu premux0 clocks
+flags, and CLK_SET_RATE_PARENT is required for the g12a cpu premux0 clock
+and the g12b cpub premux0 clock, otherwise CCF always selects the SYS_PLL
+clock to feed the cpu cluster.
 
-On 2019/9/18 20:39, Neil Armstrong wrote:
-> Hi,
-> 
-> On 18/09/2019 14:12, Xingyu Chen wrote:
->> Add DT bindings for the Meson-A1 SoC Reset Controller include file,
->> and also slightly update documentation.
->>
->> Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
->> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
->> ---
->>   .../bindings/reset/amlogic,meson-reset.txt         |  4 +-
-> 
-> The reset bindings has been moved to yaml, either rebase on linux-next or wait for v5.4-rc1 :
-> https://kernel.googlesource.com/pub/scm/linux/kernel/git/next/linux-next/+/refs/tags/next-20190917/Documentation/devicetree/bindings/reset/amlogic%2Cmeson-reset.yaml
-> 
-> NeilI will fix it in next version.
-> 
->>   include/dt-bindings/reset/amlogic,meson-a1-reset.h | 59 ++++++++++++++++++++++
->>   2 files changed, 61 insertions(+), 2 deletions(-)
->>   create mode 100644 include/dt-bindings/reset/amlogic,meson-a1-reset.h
->>
->> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt
->> index 28ef6c2..011151a 100644
->> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt
->> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt
->> @@ -5,8 +5,8 @@ Please also refer to reset.txt in this directory for common reset
->>   controller binding usage.
->>   
->>   Required properties:
->> -- compatible: Should be "amlogic,meson8b-reset", "amlogic,meson-gxbb-reset" or
->> -	"amlogic,meson-axg-reset".
->> +- compatible: Should be "amlogic,meson8b-reset", "amlogic,meson-gxbb-reset",
->> +	"amlogic,meson-axg-reset" or "amlogic,meson-a1-reset".
->>   - reg: should contain the register address base
->>   - #reset-cells: 1, see below
->>   
->> diff --git a/include/dt-bindings/reset/amlogic,meson-a1-reset.h b/include/dt-bindings/reset/amlogic,meson-a1-reset.h
->> new file mode 100644
->> index 00000000..8d76a47
->> --- /dev/null
->> +++ b/include/dt-bindings/reset/amlogic,meson-a1-reset.h
->> @@ -0,0 +1,59 @@
->> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> + *
->> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
->> + * Author: Xingyu Chen <xingyu.chen@amlogic.com>
->> + *
->> + */
->> +
->> +#ifndef _DT_BINDINGS_AMLOGIC_MESON_A1_RESET_H
->> +#define _DT_BINDINGS_AMLOGIC_MESON_A1_RESET_H
->> +
->> +/* RESET0 */
->> +#define RESET_AM2AXI_VAD		1
->> +#define RESET_PSRAM			4
->> +#define RESET_PAD_CTRL			5
->> +#define RESET_TEMP_SENSOR		7
->> +#define RESET_AM2AXI_DEV		8
->> +#define RESET_SPICC_A			10
->> +#define RESET_MSR_CLK			11
->> +#define RESET_AUDIO			12
->> +#define RESET_ANALOG_CTRL		13
->> +#define RESET_SAR_ADC			14
->> +#define RESET_AUDIO_VAD			15
->> +#define RESET_CEC			16
->> +#define RESET_PWM_EF			17
->> +#define RESET_PWM_CD			18
->> +#define RESET_PWM_AB			19
->> +#define RESET_IR_CTRL			21
->> +#define RESET_I2C_S_A			22
->> +#define RESET_I2C_M_D			24
->> +#define RESET_I2C_M_C			25
->> +#define RESET_I2C_M_B			26
->> +#define RESET_I2C_M_A			27
->> +#define RESET_I2C_PROD_AHB		28
->> +#define RESET_I2C_PROD			29
->> +
->> +/* RESET1 */
->> +#define RESET_ACODEC			32
->> +#define RESET_DMA			33
->> +#define RESET_SD_EMMC_A			34
->> +#define RESET_USBCTRL			36
->> +#define RESET_USBPHY			38
->> +#define RESET_RSA			42
->> +#define RESET_DMC			43
->> +#define RESET_IRQ_CTRL			45
->> +#define RESET_NIC_VAD			47
->> +#define RESET_NIC_AXI			48
->> +#define RESET_RAMA			49
->> +#define RESET_RAMB			50
->> +#define RESET_ROM			53
->> +#define RESET_SPIFC			54
->> +#define RESET_GIC			55
->> +#define RESET_UART_C			56
->> +#define RESET_UART_B			57
->> +#define RESET_UART_A			58
->> +#define RESET_OSC_RING			59
->> +
->> +/* RESET2 Reserved */
->> +
->> +#endif
->>
-> 
-> .
-> 
+Fixes: ffae8475b90c ("clk: meson: g12a: add notifiers to handle cpu clock change")
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/clk/meson/g12a.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+index ea4c791f106d..33c7e04b4a82 100644
+--- a/drivers/clk/meson/g12a.c
++++ b/drivers/clk/meson/g12a.c
+@@ -353,8 +353,7 @@ static struct clk_regmap g12a_cpu_clk_premux0 = {
+ 			{ .hw = &g12a_fclk_div3.hw },
+ 		},
+ 		.num_parents = 3,
+-		/* This sub-tree is used a parking clock */
+-		.flags = CLK_SET_RATE_NO_REPARENT,
++		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
+ 
+@@ -533,6 +532,7 @@ static struct clk_regmap g12b_cpub_clk_premux0 = {
+ 			{ .hw = &g12a_fclk_div3.hw },
+ 		},
+ 		.num_parents = 3,
++		.flags = CLK_SET_RATE_PARENT,
+ 	},
+ };
+ 
+-- 
+2.22.0
+
 
 _______________________________________________
 linux-amlogic mailing list
