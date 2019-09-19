@@ -2,92 +2,69 @@ Return-Path: <SRS0=mQoY=XO=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F1423C3A5A6
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Sep 2019 16:26:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 60AB3C3A5A6
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Sep 2019 17:06:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C035A21928
-	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Sep 2019 16:26:34 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3421F214AF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Sep 2019 17:06:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZcTm9eZt";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="0TbJzFxY"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C035A21928
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ggNNZ2Vd";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="U6NcaTMN"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3421F214AF
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:From:To:
+	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YH9wasPYzKJaM/RhZEeE+46mSofjP/h5bOOE6kIJc9s=; b=ZcTm9eZtQnbbKZ
-	NYtEgaNI1aWdqE7oPkDqql50uamjt0JiHJNwpAuYP+k8L1Bno1PM+aHnOaUiAj6hHwbL34xxtUhOe
-	zPJQpQn6gAp/rGrZFUfbJAmFZ1aw/m4CxATn4vaRxfCnVMZUMopy4OaoLuCmbq3ZjTGA6lKUvX2or
-	kYvQpSbMewhJmjKPmGEfmgGo7T5bKpQzgNWV6jnQ4UnjxN9ahA55B+NfFegepAIwXI2PnCGkXI91s
-	KDf9HEUjyFvF/6zNbp1VJGWKCd6qcxDI6DdcyzU4Hd1E+x4Qq105i4NHt7bHLTOGRO7YRJw7fcHzC
-	pB9+r9rB+z2ou06+CEjw==;
+	List-Owner; bh=rxSq/Ra/iQFEcK5oldetjMB7mzWJqtKjCY7BDFTTsKo=; b=ggNNZ2VdsWPC1g
+	KqFzYIXkDFeyxjNxX35EZbjxGbZSHTH24+IoJNMfobZQqXwpC0ubNgu3pl7jHzVMyLQKaa4DFO2SD
+	EI/6axtUiQpjhEOuRfCDAVbFBBGj2uzSqpRpTrFO5y7RkhuUOaVIRd8WOsx0DdZvkuUkTqiyrTCaF
+	vC/VnGqLofth4ECs5BtJLScqDjVJEUosAxO+h+afy3ejVERrXzSYkocxXPTv1ItLdpzjDQJJXH7Tp
+	EJ/C25xLBKTBTbjioCproQjEsZkyRZAntzGJFLITUcqRmAW4RdqEF/8KxinMW5YfaPSxQ+4coD2+m
+	ws3MIH2vcQbx+HG5OYhg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iAzGA-00055E-VF; Thu, 19 Sep 2019 16:26:23 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1iAzsk-0001rw-0G; Thu, 19 Sep 2019 17:06:14 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iAzG6-00053f-OO
- for linux-amlogic@lists.infradead.org; Thu, 19 Sep 2019 16:26:20 +0000
-Received: by mail-wr1-x443.google.com with SMTP id n14so3732926wrw.9
- for <linux-amlogic@lists.infradead.org>; Thu, 19 Sep 2019 09:26:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=eb8f6VuJqsSMS2/D/ckOQPK7W3A97rYvCXWb3UVC6+4=;
- b=0TbJzFxYZopHqvYwhH1BVVBEYrOmtm1w81nyw8Wyw5JulXLOQOjIYq9hyFlcqfF52/
- byLel52p0mJoHcWGe0iYOuZz4+2JFKTd2D7s0t/uPjlZFX2AV7vj0De/JaH0kw/gh1OH
- fE8W8IHheejwM8ReGx87CVquAnConNpINqlWgRJBXyQlkXQaz6xFoMCNNY0fBWxc3+93
- 2w1riLyGAZd1mX9ujVzUNWAtUGpNmZk38oQ9RBU7ds2NCOOOQe1+BqCa7q2LzkWDDJk7
- RBkbkf7r6w2IRiOOiY0M/9mDwYCDgPCcZ1F+2fvKXBPMRen/ng4R6NFp8oVq7StCIKNt
- ubVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=eb8f6VuJqsSMS2/D/ckOQPK7W3A97rYvCXWb3UVC6+4=;
- b=tVQ62Eis6K+SkKdFoz4y/8JCOsKnlLs+z8y7PKG881psGLJ77pW+Bw50peCeaxFwku
- 18iB/j5qhMruTX0YEw0qn04MI4tl7dUxhS78oDKWMBtDT4zBL64JCTLoCJf+RuBNGOcY
- xB8Tswitklf1ipr6NMZYlPjuckFoU6MlS6Ae6FJRoNcQ83ECczTV2Q4yiStmM5ZX4k5d
- Xlegz5VctbGRCDCz2b0KKqfjzrqugsnPXhIXPbTskJeT1yeUKuY5xgODq6kyz4jPyLTS
- v9HBrcHUjGFK5gAQkB76U78X/h3Pxitl/AbR5ZoqVN8REBayJAPieTYtltkLYqLbEv92
- uh7w==
-X-Gm-Message-State: APjAAAXHxGABXFyf7u3P9FRk7cnOl7qWAWpo9dH6ABIiqsuDSnYqLS+V
- mgHqIO7u/zoCKmVUXbJRS58K9w==
-X-Google-Smtp-Source: APXvYqwTyge27dKIdDfTXksz1QHnAKrUp59hkcTX1p/cAbYcmRmSomHcTOHZ1TvU0jQsbUUt0YXudQ==
-X-Received: by 2002:a5d:6647:: with SMTP id f7mr8068290wrw.170.1568910377158; 
- Thu, 19 Sep 2019 09:26:17 -0700 (PDT)
-Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id h26sm19458181wrc.13.2019.09.19.09.26.16
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 19 Sep 2019 09:26:16 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Qianggui Song <qianggui.song@amlogic.com>
-Subject: Re: [PATCH 2/3] pinctrl: meson-a1: add pinctrl driver for Meson A1 Soc
-In-Reply-To: <45b97927-c771-808a-b214-509af6c16931@amlogic.com>
-References: <1568700442-18540-1-git-send-email-qianggui.song@amlogic.com>
- <1568700442-18540-3-git-send-email-qianggui.song@amlogic.com>
- <1jef0f46fj.fsf@starbuckisacylon.baylibre.com>
- <73dc56bd-d6c5-1de7-e97e-91479a89a29e@amlogic.com>
- <1j8sqn3tjt.fsf@starbuckisacylon.baylibre.com>
- <45b97927-c771-808a-b214-509af6c16931@amlogic.com>
-Date: Thu, 19 Sep 2019 18:26:15 +0200
-Message-ID: <1jk1a4b6c8.fsf@starbuckisacylon.baylibre.com>
+ id 1iAzsh-0001rY-9h; Thu, 19 Sep 2019 17:06:12 +0000
+Received: from kernel.org (unknown [104.132.0.74])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 541D620644;
+ Thu, 19 Sep 2019 17:06:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1568912770;
+ bh=FRD3cLqXl21dfjVTSUUFS+CztYthOlCax3P4tSmWNxo=;
+ h=In-Reply-To:References:Cc:To:From:Subject:Date:From;
+ b=U6NcaTMNde1Oip6/3oJe2Rq3emdMiuBNKMTvl9ioWGPXRl0567TcrCjB/dvM+62er
+ jUqNJLjhOvXukdqRUlbxxk+kS1rPQujQehuR0aGc7kYpxrkx4R0z3jQZwNaBbyDI6H
+ BzVl2I+9DajPMLvWU9n4Taf829gZ04Hr9RLjV5FU=
 MIME-Version: 1.0
+In-Reply-To: <1j1rwce8yf.fsf@starbuckisacylon.baylibre.com>
+References: <20190919093627.21245-1-narmstrong@baylibre.com>
+ <20190919093809.21364-1-narmstrong@baylibre.com>
+ <1j1rwce8yf.fsf@starbuckisacylon.baylibre.com>
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>
+From: Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH 3/3] clk: meson: clk-pll: always enable a critical PLL
+ when setting the rate
+User-Agent: alot/0.8.1
+Date: Thu, 19 Sep 2019 10:06:09 -0700
+Message-Id: <20190919170610.541D620644@mail.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190919_092618_836794_AE2599A2 
-X-CRM114-Status: GOOD (  21.09  )
+X-CRM114-CacheID: sfid-20190919_100611_406212_DA1CE36E 
+X-CRM114-Status: GOOD (  24.46  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,164 +76,76 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Hanjie Lin <hanjie.lin@amlogic.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Linus Walleij <linus.walleij@linaro.org>,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
- Xingyu Chen <xingyu.chen@amlogic.com>
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed 18 Sep 2019 at 14:36, Qianggui Song <qianggui.song@amlogic.com> wrote:
+Quoting Jerome Brunet (2019-09-19 06:01:28)
+> On Thu 19 Sep 2019 at 11:38, Neil Armstrong <narmstrong@baylibre.com> wrote:
+> 
+> > Make sure we always enable a PLL on a set_rate() when the PLL is
+> > flagged as critical.
+> >
+> > This fixes the case when the Amlogic G12A SYS_PLL gets disabled by the
+> > PSCI firmware when resuming from suspend-to-memory, in the case
+> > where the CPU was not clocked by the SYS_PLL, but by the fixed PLL
+> > fixed divisors.
+> > In this particular case, when changing the PLL rate, CCF doesn't handle
+> > the fact the PLL could have been disabled in the meantime and set_rate()
+> > only changes the rate and never enables it again.
+> >
+> > Fixes: d6e81845b7d9 ("clk: meson: clk-pll: check if the clock is already enabled')
+> > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> > ---
+> >  drivers/clk/meson/clk-pll.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+> > index ddb1e5634739..8c5adccb7959 100644
+> > --- a/drivers/clk/meson/clk-pll.c
+> > +++ b/drivers/clk/meson/clk-pll.c
+> > @@ -379,7 +379,7 @@ static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+> >       }
+> >  
+> >       /* If the pll is stopped, bail out now */
+> > -     if (!enabled)
+> > +     if (!(hw->init->flags & CLK_IS_CRITICAL) && !enabled)
+> 
+> This is surely a work around to the issue at hand but:
+> 
+> * Enabling the clock, critical or not, should not be done but the
+> set_rate() callback. This is not the purpose of this callback.
+> 
+> * Enabling the clock in such way does not walk the tree. So, if there is
+> ever another PSCI Fw which disable we would get into the same issue
+> again. IOW, This is not specific to the PLL driver so it should not have
+> to deal with this.
 
-> On 2019/9/17 22:07, Jerome Brunet wrote:
->> 
->> On Tue 17 Sep 2019 at 13:51, Qianggui Song <qianggui.song@amlogic.com> wrote:
->>>>> diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
->>>>> index 8bba9d0..885b89d 100644
->>>>> --- a/drivers/pinctrl/meson/pinctrl-meson.c
->>>>> +++ b/drivers/pinctrl/meson/pinctrl-meson.c
->>>>> @@ -688,8 +688,12 @@ static int meson_pinctrl_parse_dt(struct meson_pinctrl *pc,
->>>>>  
->>>>>  	pc->reg_ds = meson_map_resource(pc, gpio_np, "ds");
->>>>>  	if (IS_ERR(pc->reg_ds)) {
->>>>> -		dev_dbg(pc->dev, "ds registers not found - skipping\n");
->>>>> -		pc->reg_ds = NULL;
->>>>> +		if (pc->data->reg_layout == A1_LAYOUT) {
->>>>> +			pc->reg_ds = pc->reg_pullen;
->>>>
->>>> IMO, this kind of ID based init fixup is not going to scale and will
->>>> lead to something difficult to maintain in the end.
->>>>
->>>> The way the different register sets interract with each other is already
->>>> pretty complex to follow.
->>>>
->>>> You could rework this in 2 different ways:
->>>> #1 - Have the generic function parse all the register sets and have all
->>>> drivers provide a specific (as in gxbb, gxl, axg, etc ...)  function to :
->>>>  - Verify the expected sets have been provided
->>>>  - Make assignement fixup as above if necessary
->>>>
->>>> #2 - Rework the driver to have only one single register region
->>>>  I think one of your colleague previously mentionned this was not
->>>>  possible. It is still unclear to me why ...
->>>>
->>> Appreciate your advice.  I have an idea based on #1, how about providing
->>> only two dt parse function, one is for chips before A1(the old one),
->>> another is for A1 and later chips that share the same layout. Assign
->>> these two functions to their own driver.
->> 
->> That's roughly the same thing as your initial proposition with function
->> pointer instead of IDs ... IMO, this would still be a quick fix to
->> address your immediate topic instead of dealing with the driver as
->> whole, which is my concern here.
->> 
-> For #1. It would be like
-> generic_parse_dt()
-> {
-> 	1. parse all register regions (mux gpio pull pull_en ds)
-> 	
-> 	2. call  specific function through function pointer in
->  	   meson_pinctrl_data.(each platform should have AO and EE two
->            specific functions for they are not the same)
-> 	{
-> 		do work you mentioned above
-> 	}
-> }
-> right ?
-> If that so, maybe there are a lot of duplicated codes
+Exactly.
 
-Only if you make it so. Providing a callback and duplicating code are
-not the same thing
+> 
+> Since this clock can change out of CCF maybe it should be marked with
+> CLK_GET_RATE_NOCACHE ?
 
-> for most Socs share the same reg layout.
+Yes, or figure out a way to make the clk state match what PSCI leaves it
+in on resume from suspend.
 
-That's not really accurate:
 
-So far they all have the "mux" and "gpio" region but
+> 
+> When CCF hits a clock with CLK_GET_RATE_NOCACHE while walking the tree,
+> in addition to to calling get_rate(), CCF could also call is_enabled()
+> if the clock has CLK_IS_CRITICAL and possibly .enable() ?
 
-gxbb, gxl, axg, meson8 EE:
- has: pull, pull-en
- remap: non
- unsupported: ds
+This logic should go under a new flag. The CLK_GET_RATE_NOCACHE flag
+specifically means get rate shouldn't be a cached operation. It doesn't
+relate to the enable state. I hope that you can implement some sort of
+resume hook that synchronizes the state though so that you don't need to
+rely on clk_set_rate() or clk_get_rate() to trigger a sync.
 
-gxbb, gxl, axg, meson8 AO:
- has: pull
- remap: pull-en -> pull
- unsupported: ds
-
-g12 and sm1 EE:
- has: pull, pull-en, ds
- remap: none
-
-g12 and sm1 AO:
- has: ds
- remap: pull->gpio, pull_en->gpio
-
-And now a1 chip remaps "ds" to "pull_en" ...
-
-As said previouly all this is getting pretty difficult to follow and
-maintain. Adding a proper callback for each meson pinctrl would make the
-above explicit in the code ... which helps maintain thing, at least for
-a while ...
-
-Judging by the offsets between those regions, I still think one single
-region would make things a whole lot simpler. If it is not possible to
-map it with one single region, could you tell us why ? What non-pinctrl
-related device do we have there ?
-
-> So I guess five specific functions are
-> enough: AXG and before(ao,ee), G12A(ao,ee) and A1(will place them in
-> pinctrl_meson.c). Since m8 to AXG are the same register layout for both
-> ee and ao, G12A with new feature ds and new ao register layout.
->
-> Or I misunderstood the #1 ?
->>>>> +		} else {
->>>>> +			dev_dbg(pc->dev, "ds registers not found - skipping\n");
->>>>> +			pc->reg_ds = NULL;
->>>>> +		}
->>>>>  	}
->>>>>  
->>>>>  	return 0;
->>>>> diff --git a/drivers/pinctrl/meson/pinctrl-meson.h b/drivers/pinctrl/meson/pinctrl-meson.h
->>>>> index c696f32..3d0c58d 100644
->>>>> --- a/drivers/pinctrl/meson/pinctrl-meson.h
->>>>> +++ b/drivers/pinctrl/meson/pinctrl-meson.h
->>>>> @@ -80,6 +80,14 @@ enum meson_pinconf_drv {
->>>>>  };
->>>>>  
->>>>>  /**
->>>>> + * enum meson_reg_layout - identify two types of reg layout
->>>>> + */
->>>>> +enum meson_reg_layout {
->>>>> +	LEGACY_LAYOUT,
->>>>> +	A1_LAYOUT,
->>>>> +};
->>>>> +
->>>>> +/**
->>>>>   * struct meson bank
->>>>>   *
->>>>>   * @name:	bank name
->>>>> @@ -114,6 +122,7 @@ struct meson_pinctrl_data {
->>>>>  	unsigned int num_banks;
->>>>>  	const struct pinmux_ops *pmx_ops;
->>>>>  	void *pmx_data;
->>>>> +	unsigned int reg_layout;
->>>>>  };
->>>>>  
->>>>>  struct meson_pinctrl {
->>>>
->>>> .
->>>>
->> 
->> .
->> 
 
 _______________________________________________
 linux-amlogic mailing list
