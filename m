@@ -1,81 +1,67 @@
-Return-Path: <SRS0=mLAe=XN=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=mQoY=XO=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A92F2C4CECE
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Sep 2019 17:35:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D4891C4CEC4
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Sep 2019 02:34:30 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8364C21848
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Sep 2019 17:35:45 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A00F720578
+	for <linux-amlogic@archiver.kernel.org>; Thu, 19 Sep 2019 02:34:30 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LsqQjvpJ";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="DvkvvauW"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8364C21848
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MD+BW0bT"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A00F720578
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:References:
-	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=r7B38VZivUfVsp0qb/0CiuL6xvZUXTLyF8jTjYaU6VM=; b=LsqQjvpJponS6eJI8DaL+mhVEw
-	Yq8UGTMre76DkifbHPvEkE0RXmYcwU13/aPkSY3VliiISpfwo6rpqG9qcPu8rv/zDDD8zneQo4T04
-	O76FpY0n3DhUY1/nr6HgB8d6bDrC2qOTwOVI0Ik4zmywpDasDVZH+8+O85INHy4cDEBLsf5JQ984X
-	YxK6YxMith+uXUBeHIli3QYr9cumQxP3ha6YUZ0szX7cOPRFDYzL+MlR/nhxmqy2x0HnALnIJUskN
-	skcbftBi6TXRWCyLwzpQuFjl4v7rJhPaZCWBAI5bgQZ41gWe7B8P0MKNgYQIvl8VyPjrRcAD9RClE
-	rH5GFWqQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=TcphCoc8e+C12BNplhobPgylWQQGnAs9FICpzDYMnYk=; b=MD+BW0bTmUniWm0TYwh6YfT6K
+	w7UAr5fWRoxIG7nb7KnFXkSxGhbGDbPfMHMKPWfSBH0zbzeor6iyZLCv99YkLLE4F8OJThSBqz4aT
+	uW4Vj935I7DpDgeteTzUahOJzqqrbmG2va+1bQJKMF/z6XC741Dn5E4Os/o+g5ww09a3vB0MVpTR0
+	1FeOVudYUxfR0ZSndDkjRDaZykJK8O3ZNycikjO5x2EMWAYCEmWZxCvpsZ3yBCqc/dZb9EMuZRDaQ
+	sDv/JCZqsWTZ0YYO9x8+hNFOJgjKtAaSYMvgfBSvzaKmtaJYM8Snw+I36OTnzs5FC7+oHOij1Dgj4
+	WmuZZgY8A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iAdrf-0000gf-4E; Wed, 18 Sep 2019 17:35:39 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1iAmGt-0005dm-2Y; Thu, 19 Sep 2019 02:34:15 +0000
+Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iAdp3-0005HV-Ew; Wed, 18 Sep 2019 17:32:59 +0000
-Received: from localhost.localdomain (unknown [194.230.155.145])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 6F47621925;
- Wed, 18 Sep 2019 17:32:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1568827977;
- bh=NfJ9sRleyQQ5tZgP4QFSZEUinJ+3DSTjk/BekNqpBzg=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=DvkvvauWtTZxYAuzUUBqMADQXEYtupsymGMZ9i8bCRI0eD4uxwy9Mrekx+m7lo608
- xXOoC18wwUbAVnB6tbyj6CivJ990xXRyTxbCl/ehV5A+YCwzqW6gWTAS6TYIk27B/m
- t5v6muzQDp89MsyDGgmfGZt6jDCemAvG/Z7pkoDA=
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Thierry Reding <thierry.reding@gmail.com>, Matt Mackall <mpm@selenic.com>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- Wim Van Sebroeck <wim@linux-watchdog.org>,
- Guenter Roeck <linux@roeck-us.net>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-pwm@vger.kernel.org, linux-tegra@vger.kernel.org,
- bcm-kernel-feedback-list@broadcom.com,
- linux-rpi-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-crypto@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject: [PATCH v2 8/8] dt-bindings: pwm: Convert Samsung PWM bindings to
- json-schema
-Date: Wed, 18 Sep 2019 19:31:41 +0200
-Message-Id: <20190918173141.4314-8-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190918173141.4314-1-krzk@kernel.org>
-References: <20190918173141.4314-1-krzk@kernel.org>
+ id 1iAmGc-0005Ow-0e; Thu, 19 Sep 2019 02:33:59 +0000
+Received: from [10.28.19.63] (10.28.19.63) by mail-sz.amlogic.com (10.28.11.5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Thu, 19 Sep
+ 2019 10:34:49 +0800
+Subject: Re: [PATCH 2/3] dt-bindings: reset: add bindings for the Meson-A1 SoC
+ Reset Controller
+To: Neil Armstrong <narmstrong@baylibre.com>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>
+References: <1568808746-1153-1-git-send-email-xingyu.chen@amlogic.com>
+ <1568808746-1153-3-git-send-email-xingyu.chen@amlogic.com>
+ <d99786ec-7635-67e5-3e47-738ce131b634@baylibre.com>
+From: Xingyu Chen <xingyu.chen@amlogic.com>
+Message-ID: <b6d7ad13-1bb4-5aea-ed13-3d695e8218e1@amlogic.com>
+Date: Thu, 19 Sep 2019 10:34:48 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+MIME-Version: 1.0
+In-Reply-To: <d99786ec-7635-67e5-3e47-738ce131b634@baylibre.com>
+Content-Language: en-GB
+X-Originating-IP: [10.28.19.63]
+X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
+ (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190918_103257_787418_11573839 
-X-CRM114-Status: GOOD (  14.44  )
+X-CRM114-CacheID: sfid-20190918_193358_058154_D5117B86 
+X-CRM114-Status: GOOD (  14.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,204 +73,123 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Cc: devicetree@vger.kernel.org, Hanjie Lin <hanjie.lin@amlogic.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, linux-kernel@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Convert Samsung PWM (S3C, S5P and Exynos SoCs) bindings to DT schema
-format using json-schema.
+Hi, Neil
+Thanks for your review
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-
----
-
-Changes since v1:
-1. Indent example with four spaces (more readable),
-2. Fix samsung,pwm-outputs after review,
-3. Remove double-quotes from clock names.
----
- .../devicetree/bindings/pwm/pwm-samsung.txt   |  51 ---------
- .../devicetree/bindings/pwm/pwm-samsung.yaml  | 107 ++++++++++++++++++
- 2 files changed, 107 insertions(+), 51 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-samsung.txt
- create mode 100644 Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
-
-diff --git a/Documentation/devicetree/bindings/pwm/pwm-samsung.txt b/Documentation/devicetree/bindings/pwm/pwm-samsung.txt
-deleted file mode 100644
-index 5538de9c2007..000000000000
---- a/Documentation/devicetree/bindings/pwm/pwm-samsung.txt
-+++ /dev/null
-@@ -1,51 +0,0 @@
--* Samsung PWM timers
--
--Samsung SoCs contain PWM timer blocks which can be used for system clock source
--and clock event timers, as well as to drive SoC outputs with PWM signal. Each
--PWM timer block provides 5 PWM channels (not all of them can drive physical
--outputs - see SoC and board manual).
--
--Be aware that the clocksource driver supports only uniprocessor systems.
--
--Required properties:
--- compatible : should be one of following:
--    samsung,s3c2410-pwm - for 16-bit timers present on S3C24xx SoCs
--    samsung,s3c6400-pwm - for 32-bit timers present on S3C64xx SoCs
--    samsung,s5p6440-pwm - for 32-bit timers present on S5P64x0 SoCs
--    samsung,s5pc100-pwm - for 32-bit timers present on S5PC100, S5PV210,
--			  Exynos4210 rev0 SoCs
--    samsung,exynos4210-pwm - for 32-bit timers present on Exynos4210,
--                          Exynos4x12, Exynos5250 and Exynos5420 SoCs
--- reg: base address and size of register area
--- interrupts: list of timer interrupts (one interrupt per timer, starting at
--  timer 0)
--- clock-names: should contain all following required clock names:
--    - "timers" - PWM base clock used to generate PWM signals,
--  and any subset of following optional clock names:
--    - "pwm-tclk0" - first external PWM clock source,
--    - "pwm-tclk1" - second external PWM clock source.
--  Note that not all IP variants allow using all external clock sources.
--  Refer to SoC documentation to learn which clock source configurations
--  are available.
--- clocks: should contain clock specifiers of all clocks, which input names
--  have been specified in clock-names property, in same order.
--- #pwm-cells: should be 3. See pwm.txt in this directory for a description of
--  the cells format. The only third cell flag supported by this binding is
--  PWM_POLARITY_INVERTED.
--
--Optional properties:
--- samsung,pwm-outputs: list of PWM channels used as PWM outputs on particular
--    platform - an array of up to 5 elements being indices of PWM channels
--    (from 0 to 4), the order does not matter.
--
--Example:
--	pwm@7f006000 {
--		compatible = "samsung,s3c6400-pwm";
--		reg = <0x7f006000 0x1000>;
--		interrupt-parent = <&vic0>;
--		interrupts = <23>, <24>, <25>, <27>, <28>;
--		clocks = <&clock 67>;
--		clock-names = "timers";
--		samsung,pwm-outputs = <0>, <1>;
--		#pwm-cells = <3>;
--	}
-diff --git a/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml b/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
-new file mode 100644
-index 000000000000..06d11faabff6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
-@@ -0,0 +1,107 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/pwm-samsung.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Samsung SoC PWM timers
-+
-+maintainers:
-+  - Thierry Reding <thierry.reding@gmail.com>
-+  - Krzysztof Kozlowski <krzk@kernel.org>
-+
-+description: |+
-+  Samsung SoCs contain PWM timer blocks which can be used for system clock source
-+  and clock event timers, as well as to drive SoC outputs with PWM signal. Each
-+  PWM timer block provides 5 PWM channels (not all of them can drive physical
-+  outputs - see SoC and board manual).
-+
-+  Be aware that the clocksource driver supports only uniprocessor systems.
-+
-+allOf:
-+  - $ref: pwm.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - samsung,s3c2410-pwm             # 16-bit, S3C24xx
-+      - samsung,s3c6400-pwm             # 32-bit, S3C64xx
-+      - samsung,s5p6440-pwm             # 32-bit, S5P64x0
-+      - samsung,s5pc100-pwm             # 32-bit, S5PC100, S5PV210, Exynos4210 rev0 SoCs
-+      - samsung,exynos4210-pwm          # 32-bit, Exynos
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 3
-+
-+  clock-names:
-+    description: |
-+      Should contain all following required clock names:
-+      - "timers" - PWM base clock used to generate PWM signals,
-+      and any subset of following optional clock names:
-+      - "pwm-tclk0" - first external PWM clock source,
-+      - "pwm-tclk1" - second external PWM clock source.
-+      Note that not all IP variants allow using all external clock sources.
-+      Refer to SoC documentation to learn which clock source configurations
-+      are available.
-+    oneOf:
-+      - items:
-+        - const: timers
-+      - items:
-+        - const: timers
-+        - const: pwm-tclk0
-+      - items:
-+        - const: timers
-+        - const: pwm-tclk1
-+      - items:
-+        - const: timers
-+        - const: pwm-tclk0
-+        - const: pwm-tclk1
-+
-+  interrupts:
-+    description:
-+      One interrupt per timer, starting at timer 0.
-+    minItems: 1
-+    maxItems: 5
-+
-+  "#pwm-cells":
-+    description:
-+      The only third cell flag supported by this binding
-+      is PWM_POLARITY_INVERTED.
-+    const: 3
-+
-+  samsung,pwm-outputs:
-+    description:
-+      A list of PWM channels used as PWM outputs on particular platform.
-+      It is an array of up to 5 elements being indices of PWM channels
-+      (from 0 to 4), the order does not matter.
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32-array
-+      - uniqueItems: true
-+      - items:
-+          minimum: 0
-+          maximum: 4
-+
-+required:
-+  - clocks
-+  - clock-names
-+  - compatible
-+  - interrupts
-+  - "#pwm-cells"
-+  - reg
-+
-+examples:
-+  - |
-+    pwm@7f006000 {
-+        compatible = "samsung,s3c6400-pwm";
-+        reg = <0x7f006000 0x1000>;
-+        interrupt-parent = <&vic0>;
-+        interrupts = <23>, <24>, <25>, <27>, <28>;
-+        clocks = <&clock 67>;
-+        clock-names = "timers";
-+        samsung,pwm-outputs = <0>, <1>;
-+        #pwm-cells = <3>;
-+    };
--- 
-2.17.1
-
+On 2019/9/18 20:39, Neil Armstrong wrote:
+> Hi,
+> 
+> On 18/09/2019 14:12, Xingyu Chen wrote:
+>> Add DT bindings for the Meson-A1 SoC Reset Controller include file,
+>> and also slightly update documentation.
+>>
+>> Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
+>> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+>> ---
+>>   .../bindings/reset/amlogic,meson-reset.txt         |  4 +-
+> 
+> The reset bindings has been moved to yaml, either rebase on linux-next or wait for v5.4-rc1 :
+> https://kernel.googlesource.com/pub/scm/linux/kernel/git/next/linux-next/+/refs/tags/next-20190917/Documentation/devicetree/bindings/reset/amlogic%2Cmeson-reset.yaml
+> 
+> NeilI will fix it in next version.
+> 
+>>   include/dt-bindings/reset/amlogic,meson-a1-reset.h | 59 ++++++++++++++++++++++
+>>   2 files changed, 61 insertions(+), 2 deletions(-)
+>>   create mode 100644 include/dt-bindings/reset/amlogic,meson-a1-reset.h
+>>
+>> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt
+>> index 28ef6c2..011151a 100644
+>> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt
+>> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt
+>> @@ -5,8 +5,8 @@ Please also refer to reset.txt in this directory for common reset
+>>   controller binding usage.
+>>   
+>>   Required properties:
+>> -- compatible: Should be "amlogic,meson8b-reset", "amlogic,meson-gxbb-reset" or
+>> -	"amlogic,meson-axg-reset".
+>> +- compatible: Should be "amlogic,meson8b-reset", "amlogic,meson-gxbb-reset",
+>> +	"amlogic,meson-axg-reset" or "amlogic,meson-a1-reset".
+>>   - reg: should contain the register address base
+>>   - #reset-cells: 1, see below
+>>   
+>> diff --git a/include/dt-bindings/reset/amlogic,meson-a1-reset.h b/include/dt-bindings/reset/amlogic,meson-a1-reset.h
+>> new file mode 100644
+>> index 00000000..8d76a47
+>> --- /dev/null
+>> +++ b/include/dt-bindings/reset/amlogic,meson-a1-reset.h
+>> @@ -0,0 +1,59 @@
+>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> + *
+>> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+>> + * Author: Xingyu Chen <xingyu.chen@amlogic.com>
+>> + *
+>> + */
+>> +
+>> +#ifndef _DT_BINDINGS_AMLOGIC_MESON_A1_RESET_H
+>> +#define _DT_BINDINGS_AMLOGIC_MESON_A1_RESET_H
+>> +
+>> +/* RESET0 */
+>> +#define RESET_AM2AXI_VAD		1
+>> +#define RESET_PSRAM			4
+>> +#define RESET_PAD_CTRL			5
+>> +#define RESET_TEMP_SENSOR		7
+>> +#define RESET_AM2AXI_DEV		8
+>> +#define RESET_SPICC_A			10
+>> +#define RESET_MSR_CLK			11
+>> +#define RESET_AUDIO			12
+>> +#define RESET_ANALOG_CTRL		13
+>> +#define RESET_SAR_ADC			14
+>> +#define RESET_AUDIO_VAD			15
+>> +#define RESET_CEC			16
+>> +#define RESET_PWM_EF			17
+>> +#define RESET_PWM_CD			18
+>> +#define RESET_PWM_AB			19
+>> +#define RESET_IR_CTRL			21
+>> +#define RESET_I2C_S_A			22
+>> +#define RESET_I2C_M_D			24
+>> +#define RESET_I2C_M_C			25
+>> +#define RESET_I2C_M_B			26
+>> +#define RESET_I2C_M_A			27
+>> +#define RESET_I2C_PROD_AHB		28
+>> +#define RESET_I2C_PROD			29
+>> +
+>> +/* RESET1 */
+>> +#define RESET_ACODEC			32
+>> +#define RESET_DMA			33
+>> +#define RESET_SD_EMMC_A			34
+>> +#define RESET_USBCTRL			36
+>> +#define RESET_USBPHY			38
+>> +#define RESET_RSA			42
+>> +#define RESET_DMC			43
+>> +#define RESET_IRQ_CTRL			45
+>> +#define RESET_NIC_VAD			47
+>> +#define RESET_NIC_AXI			48
+>> +#define RESET_RAMA			49
+>> +#define RESET_RAMB			50
+>> +#define RESET_ROM			53
+>> +#define RESET_SPIFC			54
+>> +#define RESET_GIC			55
+>> +#define RESET_UART_C			56
+>> +#define RESET_UART_B			57
+>> +#define RESET_UART_A			58
+>> +#define RESET_OSC_RING			59
+>> +
+>> +/* RESET2 Reserved */
+>> +
+>> +#endif
+>>
+> 
+> .
+> 
 
 _______________________________________________
 linux-amlogic mailing list
