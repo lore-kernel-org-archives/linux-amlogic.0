@@ -2,75 +2,68 @@ Return-Path: <SRS0=KMNI=XP=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E7107C4CEC9
-	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Sep 2019 15:51:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7E847C4CEC9
+	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Sep 2019 16:21:47 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BD38E208C3
-	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Sep 2019 15:51:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 512942086A
+	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Sep 2019 16:21:47 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tIt3WiIx";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="OZM0VO15"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BD38E208C3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="D0kELHlV";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="2dMv4gKG"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 512942086A
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=YBidGfNdyjMm7KiMINBE2pFXesRte3MopE0nwrVIuIo=; b=tIt3WiIxDAffo+
-	lqjMkHYgQ/pKWVkWe1Qy1CJQvSjdg+x3QU0hGHT66/KhHiLzcH1iOhXIRREkN3tTYnl/+M1CWe5Kl
-	8ZPLJBHQ9viBtxRMdsOnYlo56gURRsgqz0HNRBXVpMR3f/iQmboFCWrNOayu6Gyityxv/pux9TE4I
-	BBsJoxUpuNSORrpyHMbM+Y650QnKnKHzpWligU69sCS8y3lGGW6UcQS22F0lDl1flDacM/8pzimgb
-	wRWz7WSjFpUvRI85kil9sZ7CQ78VcQhxBRAtF5V514wO6+FIwV3xtGDPouu5gYw/41OpKpONLISJp
-	Vxa1CwgbvISstZLIfWkg==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=py8+jnFgvi962qN3ZfHaUjm/v13qEhcO2WlwvRO2qZ4=; b=D0k
+	ELHlVAKikunDs9FZFpe9s9JBXgs0MZFGqF5E8rSvpsaq3O6M0uuSACmGiAdhebHWugQZqRSO3IDCm
+	hi9qrQJ8dtM6jQ7ns4v5LVnHeZ2RHrxaROhnPUBt1cRkg5sgXLtzcmLbqbc23IIk/X01DxyPmIBd3
+	krCTOOsbMUy0nr3yKwkcTxTG8zv0b8XTS5JzczM7xO6/LKhI/oDB27fez+TXxKnLV0Y7UP3yjHjtY
+	zm8IJK/ZqhnZmDMe9SNyie3XXq7g8GA1X/INQ19F20adzTmx9pes7uOTiC4Yt3PWC5UweC4Zu3hbl
+	iW9CCPRbdy+UmVsmOhcFUHuoamz1hgQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iBLBa-0003NF-3K; Fri, 20 Sep 2019 15:51:06 +0000
+	id 1iBLfA-0005dt-O0; Fri, 20 Sep 2019 16:21:40 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iBLBX-0003MJ-9u; Fri, 20 Sep 2019 15:51:05 +0000
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com
- [209.85.160.179])
+ id 1iBLf7-0005d8-UW; Fri, 20 Sep 2019 16:21:39 +0000
+Received: from localhost.localdomain (unknown [194.230.155.145])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id A5A352184C;
- Fri, 20 Sep 2019 15:51:02 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 0DB6520C01;
+ Fri, 20 Sep 2019 16:21:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1568994662;
- bh=Gk8b96/zmrgvgnCdppmwZEWWClB9i1dZv17q7MLhgfc=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=OZM0VO15KguCMz8L73yAu9wwfmIvWTtRKsRWtXbjJFKVXMMLe2p8bfBQAQkCKcL2U
- ZC9RtUZrL5eJL0Hk2B8lfXus6Mb7THpBP0h7NAF9u+kkBEJeVMK5UCXfPgFFwcMQVI
- OoR623SUjj3mRa2R4ehGSSj+mTawpcia4HoOgbSk=
-Received: by mail-qt1-f179.google.com with SMTP id r5so9245213qtd.0;
- Fri, 20 Sep 2019 08:51:02 -0700 (PDT)
-X-Gm-Message-State: APjAAAUvkwO1I8vCAVFpEX9p0ppmt7LhI5/1mA6ceg9NijZiguUCtgL9
- L0A2p1JaDQ1Co0dM5TjPpS0ghxCUQCtJCYsv/A==
-X-Google-Smtp-Source: APXvYqwMIrqIhbU+PH2zwmKFyZZ7p9gmNZDVfDvJtsMY/FngbKyrGtmiBbkzWBc5h/SVux0vE5Rh9MaGgWH9K6YJIV0=
-X-Received: by 2002:ac8:444f:: with SMTP id m15mr4046894qtn.110.1568994661811; 
- Fri, 20 Sep 2019 08:51:01 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190918173141.4314-1-krzk@kernel.org>
- <20190918173141.4314-8-krzk@kernel.org>
-In-Reply-To: <20190918173141.4314-8-krzk@kernel.org>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Fri, 20 Sep 2019 10:50:50 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+0ikCageBv3TSwx0tp=ZDkrFwpFVt2gJHWsFe2f-K2pA@mail.gmail.com>
-Message-ID: <CAL_Jsq+0ikCageBv3TSwx0tp=ZDkrFwpFVt2gJHWsFe2f-K2pA@mail.gmail.com>
-Subject: Re: [PATCH v2 8/8] dt-bindings: pwm: Convert Samsung PWM bindings to
- json-schema
-To: Krzysztof Kozlowski <krzk@kernel.org>
+ s=default; t=1568996496;
+ bh=G4ZWXDDOctrbtK9IV3kMcbrs/YmvosJWapnn4V56nvQ=;
+ h=From:To:Cc:Subject:Date:From;
+ b=2dMv4gKGZ2vVFWgyWkGWdSMy2Di/pvOoU6hPZv63Uy16TKnhnB6kYGji2GP8gVwC9
+ 6sxGbRg41pP6pwfavuLFXjJFxNmnkJ88MbUuKZVlNjgmR8fUDyrlfZN5r0KZ1hm23F
+ IhnUK0hl/KOLKz0NhWnM6pOSrFuAC9P/OsyH3FyM=
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh+dt@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>, Kevin Hilman <khilman@baylibre.com>,
+ linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/3] dt-bindings: watchdog: Convert Samsung SoC watchdog
+ bindings to json-schema
+Date: Fri, 20 Sep 2019 18:21:22 +0200
+Message-Id: <20190920162124.7036-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190920_085103_387705_B9B73A56 
-X-CRM114-Status: GOOD (  22.68  )
+X-CRM114-CacheID: sfid-20190920_092138_031735_70C72CF7 
+X-CRM114-Status: GOOD (  14.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,217 +75,145 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>,
- Linux PWM List <linux-pwm@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Thierry Reding <thierry.reding@gmail.com>, linux-riscv@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com,
- Linux LED Subsystem <linux-leds@vger.kernel.org>,
- linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- linux-clk <linux-clk@vger.kernel.org>,
- "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
- "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE"
- <bcm-kernel-feedback-list@broadcom.com>, Guenter Roeck <linux@roeck-us.net>,
- devicetree@vger.kernel.org, LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
- "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
- "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE"
- <linux-rpi-kernel@lists.infradead.org>, Matt Mackall <mpm@selenic.com>,
- linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org,
- Wim Van Sebroeck <wim@linux-watchdog.org>,
- "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "open list:HARDWARE RANDOM NUMBER GENERATOR CORE"
- <linux-crypto@vger.kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Sep 18, 2019 at 12:32 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> Convert Samsung PWM (S3C, S5P and Exynos SoCs) bindings to DT schema
-> format using json-schema.
->
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
->
-> ---
->
-> Changes since v1:
-> 1. Indent example with four spaces (more readable),
-> 2. Fix samsung,pwm-outputs after review,
-> 3. Remove double-quotes from clock names.
-> ---
->  .../devicetree/bindings/pwm/pwm-samsung.txt   |  51 ---------
->  .../devicetree/bindings/pwm/pwm-samsung.yaml  | 107 ++++++++++++++++++
->  2 files changed, 107 insertions(+), 51 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-samsung.txt
->  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
->
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-samsung.txt b/Documentation/devicetree/bindings/pwm/pwm-samsung.txt
-> deleted file mode 100644
-> index 5538de9c2007..000000000000
-> --- a/Documentation/devicetree/bindings/pwm/pwm-samsung.txt
-> +++ /dev/null
-> @@ -1,51 +0,0 @@
-> -* Samsung PWM timers
-> -
-> -Samsung SoCs contain PWM timer blocks which can be used for system clock source
-> -and clock event timers, as well as to drive SoC outputs with PWM signal. Each
-> -PWM timer block provides 5 PWM channels (not all of them can drive physical
-> -outputs - see SoC and board manual).
-> -
-> -Be aware that the clocksource driver supports only uniprocessor systems.
-> -
-> -Required properties:
-> -- compatible : should be one of following:
-> -    samsung,s3c2410-pwm - for 16-bit timers present on S3C24xx SoCs
-> -    samsung,s3c6400-pwm - for 32-bit timers present on S3C64xx SoCs
-> -    samsung,s5p6440-pwm - for 32-bit timers present on S5P64x0 SoCs
-> -    samsung,s5pc100-pwm - for 32-bit timers present on S5PC100, S5PV210,
-> -                         Exynos4210 rev0 SoCs
-> -    samsung,exynos4210-pwm - for 32-bit timers present on Exynos4210,
-> -                          Exynos4x12, Exynos5250 and Exynos5420 SoCs
-> -- reg: base address and size of register area
-> -- interrupts: list of timer interrupts (one interrupt per timer, starting at
-> -  timer 0)
-> -- clock-names: should contain all following required clock names:
-> -    - "timers" - PWM base clock used to generate PWM signals,
-> -  and any subset of following optional clock names:
-> -    - "pwm-tclk0" - first external PWM clock source,
-> -    - "pwm-tclk1" - second external PWM clock source.
-> -  Note that not all IP variants allow using all external clock sources.
-> -  Refer to SoC documentation to learn which clock source configurations
-> -  are available.
-> -- clocks: should contain clock specifiers of all clocks, which input names
-> -  have been specified in clock-names property, in same order.
-> -- #pwm-cells: should be 3. See pwm.txt in this directory for a description of
-> -  the cells format. The only third cell flag supported by this binding is
-> -  PWM_POLARITY_INVERTED.
-> -
-> -Optional properties:
-> -- samsung,pwm-outputs: list of PWM channels used as PWM outputs on particular
-> -    platform - an array of up to 5 elements being indices of PWM channels
-> -    (from 0 to 4), the order does not matter.
-> -
-> -Example:
-> -       pwm@7f006000 {
-> -               compatible = "samsung,s3c6400-pwm";
-> -               reg = <0x7f006000 0x1000>;
-> -               interrupt-parent = <&vic0>;
-> -               interrupts = <23>, <24>, <25>, <27>, <28>;
-> -               clocks = <&clock 67>;
-> -               clock-names = "timers";
-> -               samsung,pwm-outputs = <0>, <1>;
-> -               #pwm-cells = <3>;
-> -       }
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml b/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
-> new file mode 100644
-> index 000000000000..06d11faabff6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-samsung.yaml
-> @@ -0,0 +1,107 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/pwm-samsung.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Samsung SoC PWM timers
-> +
-> +maintainers:
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +  - Krzysztof Kozlowski <krzk@kernel.org>
-> +
-> +description: |+
-> +  Samsung SoCs contain PWM timer blocks which can be used for system clock source
-> +  and clock event timers, as well as to drive SoC outputs with PWM signal. Each
-> +  PWM timer block provides 5 PWM channels (not all of them can drive physical
-> +  outputs - see SoC and board manual).
-> +
-> +  Be aware that the clocksource driver supports only uniprocessor systems.
-> +
-> +allOf:
-> +  - $ref: pwm.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - samsung,s3c2410-pwm             # 16-bit, S3C24xx
-> +      - samsung,s3c6400-pwm             # 32-bit, S3C64xx
-> +      - samsung,s5p6440-pwm             # 32-bit, S5P64x0
-> +      - samsung,s5pc100-pwm             # 32-bit, S5PC100, S5PV210, Exynos4210 rev0 SoCs
-> +      - samsung,exynos4210-pwm          # 32-bit, Exynos
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 3
-> +
-> +  clock-names:
-> +    description: |
-> +      Should contain all following required clock names:
-> +      - "timers" - PWM base clock used to generate PWM signals,
-> +      and any subset of following optional clock names:
-> +      - "pwm-tclk0" - first external PWM clock source,
-> +      - "pwm-tclk1" - second external PWM clock source.
-> +      Note that not all IP variants allow using all external clock sources.
-> +      Refer to SoC documentation to learn which clock source configurations
-> +      are available.
-> +    oneOf:
-> +      - items:
-> +        - const: timers
-> +      - items:
-> +        - const: timers
-> +        - const: pwm-tclk0
-> +      - items:
-> +        - const: timers
-> +        - const: pwm-tclk1
-> +      - items:
-> +        - const: timers
-> +        - const: pwm-tclk0
-> +        - const: pwm-tclk1
-> +
-> +  interrupts:
-> +    description:
-> +      One interrupt per timer, starting at timer 0.
-> +    minItems: 1
-> +    maxItems: 5
-> +
-> +  "#pwm-cells":
-> +    description:
-> +      The only third cell flag supported by this binding
-> +      is PWM_POLARITY_INVERTED.
-> +    const: 3
-> +
-> +  samsung,pwm-outputs:
-> +    description:
-> +      A list of PWM channels used as PWM outputs on particular platform.
-> +      It is an array of up to 5 elements being indices of PWM channels
-> +      (from 0 to 4), the order does not matter.
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/uint32-array
-> +      - uniqueItems: true
-> +      - items:
-> +          minimum: 0
-> +          maximum: 4
-> +
-> +required:
-> +  - clocks
-> +  - clock-names
-> +  - compatible
-> +  - interrupts
-> +  - "#pwm-cells"
-> +  - reg
+Convert Samsung S3C/S5P/Exynos watchdog bindings to DT schema format
+using json-schema.
 
-additionalProperties: false
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-should work here. And in the rng binding too.
+---
 
-Rob
+Changes since v1:
+1. Indent example with four spaces (more readable),
+2. Remove unneeded timeout-sec description and include generic bindings.
+---
+ .../bindings/watchdog/samsung-wdt.txt         | 35 ----------
+ .../bindings/watchdog/samsung-wdt.yaml        | 65 +++++++++++++++++++
+ 2 files changed, 65 insertions(+), 35 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/samsung-wdt.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+
+diff --git a/Documentation/devicetree/bindings/watchdog/samsung-wdt.txt b/Documentation/devicetree/bindings/watchdog/samsung-wdt.txt
+deleted file mode 100644
+index 46dcb48e75b4..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/samsung-wdt.txt
++++ /dev/null
+@@ -1,35 +0,0 @@
+-* Samsung's Watchdog Timer Controller
+-
+-The Samsung's Watchdog controller is used for resuming system operation
+-after a preset amount of time during which the WDT reset event has not
+-occurred.
+-
+-Required properties:
+-- compatible : should be one among the following
+-	- "samsung,s3c2410-wdt" for S3C2410
+-	- "samsung,s3c6410-wdt" for S3C6410, S5PV210 and Exynos4
+-	- "samsung,exynos5250-wdt" for Exynos5250
+-	- "samsung,exynos5420-wdt" for Exynos5420
+-	- "samsung,exynos7-wdt" for Exynos7
+-
+-- reg : base physical address of the controller and length of memory mapped
+-	region.
+-- interrupts : interrupt number to the cpu.
+-- samsung,syscon-phandle : reference to syscon node (This property required only
+-	in case of compatible being "samsung,exynos5250-wdt" or "samsung,exynos5420-wdt".
+-	In case of Exynos5250 and 5420 this property points to syscon node holding the PMU
+-	base address)
+-
+-Optional properties:
+-- timeout-sec : contains the watchdog timeout in seconds.
+-
+-Example:
+-
+-watchdog@101d0000 {
+-	compatible = "samsung,exynos5250-wdt";
+-	reg = <0x101D0000 0x100>;
+-	interrupts = <0 42 0>;
+-	clocks = <&clock 336>;
+-	clock-names = "watchdog";
+-	samsung,syscon-phandle = <&pmu_syscon>;
+-};
+diff --git a/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+new file mode 100644
+index 000000000000..5a3a3cec8e20
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+@@ -0,0 +1,65 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/samsung-wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Samsung SoC Watchdog Timer Controller
++
++maintainers:
++  - Krzysztof Kozlowski <krzk@kernel.org>
++
++description: |+
++  The Samsung's Watchdog controller is used for resuming system operation
++  after a preset amount of time during which the WDT reset event has not
++  occurred.
++
++properties:
++  compatible:
++    enum:
++      - samsung,s3c2410-wdt                   # for S3C2410
++      - samsung,s3c6410-wdt                   # for S3C6410, S5PV210 and Exynos4
++      - samsung,exynos5250-wdt                # for Exynos5250
++      - samsung,exynos5420-wdt                # for Exynos5420
++      - samsung,exynos7-wdt                   # for Exynos7
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  samsung,syscon-phandle:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Phandle to the PMU system controller node (in case of Exynos5250
++      and Exynos5420).
++
++required:
++  - compatible
++  - interrupts
++  - reg
++
++allOf:
++  - $ref: watchdog.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - samsung,exynos5250-wdt
++              - samsung,exynos5420-wdt
++    then:
++      required:
++        - samsung,syscon-phandle
++
++examples:
++  - |
++    watchdog@101d0000 {
++        compatible = "samsung,exynos5250-wdt";
++        reg = <0x101D0000 0x100>;
++        interrupts = <0 42 0>;
++        clocks = <&clock 336>;
++        clock-names = "watchdog";
++        samsung,syscon-phandle = <&pmu_syscon>;
++    };
+-- 
+2.17.1
+
 
 _______________________________________________
 linux-amlogic mailing list
