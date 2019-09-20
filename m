@@ -6,17 +6,17 @@ X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
 	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7A55BC3A5A2
-	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Sep 2019 16:23:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 34108C49ED7
+	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Sep 2019 16:24:03 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 522FB208C0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Sep 2019 16:23:22 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 069EF2086A
+	for <linux-amlogic@archiver.kernel.org>; Fri, 20 Sep 2019 16:24:01 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="vAQ3KCZy";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="I5p+hmb6"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 522FB208C0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KiK4EfOF";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y0NPYxXS"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 069EF2086A
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,58 +26,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:References:MIME-Version:Reply-To:Cc:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=fFOK0sW2iUmfYDAa6j/cYFsGCwE2n3yBhVuRXbvVf4Y=; b=vAQ3KCZy9aIjFAqv+5yY4I4grF
-	UfYrsIxMeS45+QGoyjxu3wQ+hi/R5iwnlBIPE2a8gccH69/e5xj/GeN8WXH5KHOECgM8Z4H5sY2st
-	UKC/c79aRW+ihUgnkSfnNwvzuZ2mA5YjIG3fnSG6YOWFv5fetcu8RciSK1OKAPlijQkq1aRLPkxPb
-	TxFMRPiVKPTrhzWvC69Z0A1NXyzYWCo7nk2yCUzw3h6lm0VMu9YN8u/yahIOW4h0uE9Bk9sF8a3ip
-	gM9jNi3ewi8527qaMH3t4KGcC5jWrB0zo4znJAiY79oxXqO3iH7H14CkK9LS8myJY/3tK4gZAovXb
-	eDvYO1pg==;
+	bh=uhBWzVWtz7hp48V0c2eNGSBDShc655JziV1rn6kHK1I=; b=KiK4EfOFYBIEfPwAdjU9iUw04c
+	OsWm26K2cWTlGTguo8oXiySqRMYD8SJ+dh87oLhaQr+C/tgVdTCD131bTcltPe4EfB36RA1ZMQbBo
+	mHdFG9IbcukE26Y8FtsK7G3oLKr7l7kZKDnom3EUWJBpa3wUu+ySrbj8dCO3JjjsReZEuEetpTlvd
+	1KFRkoce8zsLP8ALHxidplcvAqEpBL3rDw26+EnPq+9ceUpPrQsgfGFhTFoBQrbc5wndMcMdUl8uC
+	Nw4D90cTkDylg/v/tDnYJM5kxRYWfxoaUVls2y1yJ0AxD507f8ItNmkrwXw/5DoUg5PhLwxXmyeZ4
+	dCR6IehQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iBLgj-0006fw-KU; Fri, 20 Sep 2019 16:23:17 +0000
+	id 1iBLhN-00077B-Ax; Fri, 20 Sep 2019 16:23:57 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iBLgg-0006dV-MN; Fri, 20 Sep 2019 16:23:15 +0000
+ id 1iBLhL-00076Z-BC; Fri, 20 Sep 2019 16:23:56 +0000
 Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com
  [209.85.210.43])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 4F05921907;
- Fri, 20 Sep 2019 16:23:14 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id EFE392190F;
+ Fri, 20 Sep 2019 16:23:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1568996594;
- bh=/gY3eyN/99Vwc+rE/mubQe3N1CXXiv7Fbgs2nWfoFDc=;
+ s=default; t=1568996635;
+ bh=SDWrzZuVG71v0J2X6nPbnKE1kFEZUtHXnpXPTYAQdcM=;
  h=References:In-Reply-To:From:Date:Subject:To:From;
- b=I5p+hmb6P8nedLs1fqxO6ODqniyBYw/gRUMEovWLLh1yw3O5O1q0GGiWUqwik8sOA
- J4KQSaEWgWFGD4nuUdpolKf4JfqyV5QNVcdSxNLyi13n+KU9g7P53wBElx8Z0Shnn5
- 5JMp4vX8nT/yLz1zQIn2jblCh2b9N7frBmft6TGU=
-Received: by mail-ot1-f43.google.com with SMTP id 21so6642308otj.11;
- Fri, 20 Sep 2019 09:23:14 -0700 (PDT)
-X-Gm-Message-State: APjAAAWuvABjchhnLGMICJdowx1Km59FHj9fhVPeEoqVPGyVVsnqe0vw
- t+AM+8psRuuvu1VOyfhAu0uWnviC+GghPP+iVs0=
-X-Google-Smtp-Source: APXvYqyo+eHqYY+wd1hJeskVQu73EQIp1tU7G1a9ZEYeGtJO8llZMStv0HcB/C9UjvxekPWe0ZjxxZedr3kEHQe+9Lc=
-X-Received: by 2002:a05:6830:10cc:: with SMTP id
- z12mr6558999oto.20.1568996593576; 
- Fri, 20 Sep 2019 09:23:13 -0700 (PDT)
+ b=Y0NPYxXS5lxvCc5BrOJBS+38DHx4Vw4tGLuccuPjWhQHZjLN1+SP2QJbwffe6Fo6R
+ SGaBxYr0YFTOcZZ74KP24FDLyP9h6k+pQ2VXu9tF4gCqFBfBD4s3DyPTPENUcLZ1/t
+ wlNhYEZpL/2F2pyw54AFDUqkleli+20BjzwXfEhY=
+Received: by mail-ot1-f43.google.com with SMTP id k32so6684828otc.4;
+ Fri, 20 Sep 2019 09:23:54 -0700 (PDT)
+X-Gm-Message-State: APjAAAX/EEtJPiakbs7XU61h8Q3Dogiiul32wHSvkulQzLfnKq9kUgUb
+ 2TTclo/m18R2VvxLJPUPPnkVXZbIAl81VjtZjb8=
+X-Google-Smtp-Source: APXvYqzVXOyysg9607AyFbe3o2oRNE6mFVRauJhZAfa1N2RVl6I/Rt2f5iakVGo4VwLzm014Px6jKLwO2nAgy6rn4nA=
+X-Received: by 2002:a9d:6c9a:: with SMTP id c26mr12313571otr.241.1568996634274; 
+ Fri, 20 Sep 2019 09:23:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190920162124.7036-1-krzk@kernel.org>
-In-Reply-To: <20190920162124.7036-1-krzk@kernel.org>
+References: <20190918173141.4314-1-krzk@kernel.org>
+ <20190918173141.4314-5-krzk@kernel.org>
+In-Reply-To: <20190918173141.4314-5-krzk@kernel.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-Date: Fri, 20 Sep 2019 18:23:00 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPcsSjVoHmCJN_AF8a2gkVN3+kQh4D+J01GnxGmMOZh4Hg@mail.gmail.com>
-Message-ID: <CAJKOXPcsSjVoHmCJN_AF8a2gkVN3+kQh4D+J01GnxGmMOZh4Hg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: watchdog: Convert Samsung SoC
+Date: Fri, 20 Sep 2019 18:23:41 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPfQFg5wC-JcHUs8btYJRfpC=NW2FOpWTHkTD6zekzHV0A@mail.gmail.com>
+Message-ID: <CAJKOXPfQFg5wC-JcHUs8btYJRfpC=NW2FOpWTHkTD6zekzHV0A@mail.gmail.com>
+Subject: Re: [PATCH v2 5/8] dt-bindings: watchdog: Convert Samsung SoC
  watchdog bindings to json-schema
-To: Wim Van Sebroeck <wim@linux-watchdog.org>,
- Guenter Roeck <linux@roeck-us.net>, 
- Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
- Kevin Hilman <khilman@baylibre.com>, linux-watchdog@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, 
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+ Thierry Reding <thierry.reding@gmail.com>, Matt Mackall <mpm@selenic.com>, 
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, 
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ dri-devel@lists.freedesktop.org, 
+ linux-leds@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ "linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>,
+ linux-pwm@vger.kernel.org, 
+ linux-tegra@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com, 
+ linux-rpi-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, 
+ linux-crypto@vger.kernel.org, linux-watchdog@vger.kernel.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190920_092314_749066_77DAC707 
-X-CRM114-Status: UNSURE (   7.89  )
+X-CRM114-CacheID: sfid-20190920_092355_403541_58415B4D 
+X-CRM114-Status: UNSURE (   8.12  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -95,7 +104,7 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 20 Sep 2019 at 18:21, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On Wed, 18 Sep 2019 at 19:32, Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >
 > Convert Samsung S3C/S5P/Exynos watchdog bindings to DT schema format
 > using json-schema.
@@ -106,9 +115,9 @@ On Fri, 20 Sep 2019 at 18:21, Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >
 > Changes since v1:
 > 1. Indent example with four spaces (more readable),
-> 2. Remove unneeded timeout-sec description and include generic bindings.
+> 2. Remove unneeded timeout-sec description.
 
-My bad, this is actually v3.
+Superseded by v3 (although named v2...).
 
 Best regards,
 Krzysztof
