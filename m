@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-9.6 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6C2DAC4740A
-	for <linux-amlogic@archiver.kernel.org>; Sat, 21 Sep 2019 15:13:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7EBDDC4360D
+	for <linux-amlogic@archiver.kernel.org>; Sat, 21 Sep 2019 15:13:53 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 415B120C01
-	for <linux-amlogic@archiver.kernel.org>; Sat, 21 Sep 2019 15:13:33 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5042A20C01
+	for <linux-amlogic@archiver.kernel.org>; Sat, 21 Sep 2019 15:13:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Ur7HwWEi";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="tyKJBdOM"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 415B120C01
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PQscZGNm";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="tSf36BVW"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5042A20C01
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,69 +27,69 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=iyDvlGKU4hkh7sbs4x+D2bKDPqV85dr0vR/D1qJueRA=; b=Ur7HwWEisBugCK
-	j1RvOaswuxj3PI3wOUZWRp64/07Ur/88QAQtgDV7LhlftayVdqm1jgkgJxjz9CbPA1vfEGYm80WO6
-	+MYeIvyz1sFn6bh3k/eKaW1PjrDELv4E4dlxqZTcyentF7IIrFDn4RzRTYAinnGNoGf67ZccUQ1CD
-	1+MS1NFJCD+NIPGtpST0zWHylG2lu6Ola9aslJWrldPyI6IKH7Qy121i1oLwFLAxh2niFwQDer5IA
-	7KlPW3o/qdgqZplEumUl3vUpu318ByIaVSaF3tjrEZ4wY022TIRgLoUljZxK/Ino45GZaKPIcwXIk
-	0zkIuZ7KY0tknxjRKd+A==;
+	List-Owner; bh=lEsSNZWwOOZXXkesZHkqQnoxdVHv/yK/RcHiTJt88QM=; b=PQscZGNmZ2qw2L
+	E2tLfM9BXilnxhXk/ZzlQINEB/Pgqmu7h+/pCa4l4fzbeTAJ3thhP8KnaAckraewx5albX7KTQq0V
+	YC6B09/MFyl3rlm9ENlSyO/LVvmCuEg5/rrzJvQ4FTM+hqKwtrKQKzx+Lvt35yL4zF0yYqqnEgnJf
+	jYz0Ey2Gx5EdCwxE+LNVPFO4Gxy5xojU4Kq6GgY/X77dMWYgiHeZD6WHBCbHJH/IphjaRpLJNMjHr
+	QEPlq97UPpej0xnycGqoi7J7aGhitydHcRxwoPT2ELWFLdsW+wT7Woy5WHK22h507kmgkHex2wMI1
+	6zI9xbMJxhE77I2O3mzA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iBh4i-0007ge-HF; Sat, 21 Sep 2019 15:13:28 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1iBh51-0007yf-Uj; Sat, 21 Sep 2019 15:13:48 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iBh44-00077h-0J; Sat, 21 Sep 2019 15:12:49 +0000
-Received: by mail-wr1-x442.google.com with SMTP id h7so9579110wrw.8;
- Sat, 21 Sep 2019 08:12:47 -0700 (PDT)
+ id 1iBh45-00078M-DU; Sat, 21 Sep 2019 15:12:51 +0000
+Received: by mail-wr1-x441.google.com with SMTP id a11so9649801wrx.1;
+ Sat, 21 Sep 2019 08:12:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=CPQNzivuVZNWDtPwgDvWYp9o/YTaW3TY1ny0gNcTyh8=;
- b=tyKJBdOMcUtbyFEEuDYriQySbMRUnzXuTDnHyk5sSVY9vIyXw98fB0hQyP6qVFJ819
- DfquyskfRywLFLSYTc4YKTG24fIDU9iNeW3oT3mQyd4k/jSF63Gc80ivqn1BpQzJ8NDC
- Cm6xzIST6MSIpYsoLgu6bkosOUGBDKvWKf5IX7aX6bljDyWXSMafPMACH/PZIZeC9Bjz
- yW18+/FdXg4beschyz7151ft/qab39sCKXnygfB7RmGcCLjddnDATjrI3w7hiqsTboo9
- dRcPgHweDogzdhcO2WbGaTDqIGsedGomszlBQYyR8RQd+fa4D1NzjHWhYU/0+2LY8+Qa
- FNrg==
+ bh=+ELKKDirjp0oZPBJ44VpnYEwyvsV3MSi9kYfRjT4vis=;
+ b=tSf36BVWvtXx+VPiJbvevWv9xlJ1MUcJK4nZLS1qWGYNLxNoHdV/7xgWGIod4J18ne
+ 9bpfamIpQ6rlDAewCfWEch+b3DIMg12XG5ZiLs5/C2Cx4Z4YXWyux/iDi3msAT3US/ry
+ Pko0MtDG5LmeNd2zARa2loDVGhCAdgexNmZIFqU/PEPNVQoAX3MRPpvpkC28NZvuzL4c
+ kXztKPpRiaAru9syL6RcQ0CwNAiCFbJsDJw0PD9/k3hWR9kV34MPf2RssSYirgiJeucn
+ TGFOqWe5OeaVg9FWH83tY5HoV0MCZYvjWWXH6jLnsZbeeTEcrI6HCBFonKgTt96aczaY
+ T4Lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=CPQNzivuVZNWDtPwgDvWYp9o/YTaW3TY1ny0gNcTyh8=;
- b=TQcAPhuiMiHn+Fb8h1y1IJOrFYMMQwz2cIGKyI1UNwAHtEyf9QZoXf1Xf+tMC3vi1x
- GbzC93sCqE7Fd1bOeBqK+FXd7M/xgUV+s73wfKwWekbp60jJRMDrkbnscAOpUi+27hnM
- wqO+0g6ZiF7sQUyvaNdqQ9CrjgpJCjbsOGkIKRCB1EC/tpad+oMunyDyRrNIf2A4jHKC
- 8KGaczOT2XM/EUTe/StsG3oftftyV0L2V8X2HVogLHXmpCE9O52wGXEjs2yVn3FTfxq1
- oKi8TTYHTk7I+nPgCGZUbezGjwb5QchpIaxcC+W6EctAiw/odrjCGZjRxXLHgE5lq6bw
- yiqQ==
-X-Gm-Message-State: APjAAAXJM/glYuo9a65WmB/v4D7+MhpmXFk+f2A5ePEnDEaS8Zo+Drr5
- w8FhSVWq7q3Z7WSEkAfXclA=
-X-Google-Smtp-Source: APXvYqwnd+5qIx487C1bZirqZ9rqerQUlrUb7EkYpyDE0y3bXL3OIoYGID3wBEp9e0T8xvje4DoNEQ==
-X-Received: by 2002:a5d:5592:: with SMTP id i18mr15044038wrv.316.1569078766284; 
- Sat, 21 Sep 2019 08:12:46 -0700 (PDT)
+ bh=+ELKKDirjp0oZPBJ44VpnYEwyvsV3MSi9kYfRjT4vis=;
+ b=ieAUsJ4NhowT0C/S8qCMduUMJca1YZN5u0L8X8G+uOWW3Eou85F8uo/CUrX34VQdCC
+ byPWolXLQjfoZrbTvAC5S2yJg1gxoWh0VbvzhdBMAA/K6Ps8lYS/ZzEjs2uqN0lIoXyi
+ CMoi8J0IJeytHDZHhxOzTNH8uzIjVI3jWPDBAUs27w6tCyHnbYQoCzpg6nAJi1+kBe02
+ F+Jl4sNXwGqxUnqYJZOjjSneblpfwJMwBwKYLtjF3rPGfvWgWfJgh0i3NIHozA+gAaNY
+ mtT07QWTkXeJZII90ZkcgLVJ8tLj55MvZpIxEVVCOOn7AXfuLlYzDSTmt23vDuQoVnZU
+ 73QA==
+X-Gm-Message-State: APjAAAVtLHFLnqjrdLByRf9dddNuHmIrNXIh3dbOXzcqYgzbVQ6A4iB/
+ ZnWs6sEyWd18uoGCgxyK0rM=
+X-Google-Smtp-Source: APXvYqwx45owz2FGuyA/qiPoL6+BJkR2g+Q1oinww/HO5IBtLhd+znAWfPtMJt/w4Y6dclBVZlf0Og==
+X-Received: by 2002:a5d:5403:: with SMTP id g3mr15302198wrv.338.1569078767754; 
+ Sat, 21 Sep 2019 08:12:47 -0700 (PDT)
 Received: from blackbox.darklights.net
  (p200300F133CE0B0028BAA8C744A6F562.dip0.t-ipconnect.de.
  [2003:f1:33ce:b00:28ba:a8c7:44a6:f562])
  by smtp.googlemail.com with ESMTPSA id
- y186sm10712491wmb.41.2019.09.21.08.12.45
+ y186sm10712491wmb.41.2019.09.21.08.12.46
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 21 Sep 2019 08:12:45 -0700 (PDT)
+ Sat, 21 Sep 2019 08:12:46 -0700 (PDT)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: narmstrong@baylibre.com, jbrunet@baylibre.com, robh+dt@kernel.org,
  mark.rutland@arm.com, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org, khilman@baylibre.com
-Subject: [PATCH 2/5] clk: meson: meson8b: use clk_hw_set_parent in the CPU
- clock notifier
-Date: Sat, 21 Sep 2019 17:12:20 +0200
-Message-Id: <20190921151223.768842-3-martin.blumenstingl@googlemail.com>
+Subject: [PATCH 3/5] clk: meson: meson8b: change references to the XTAL clock
+ to use the name
+Date: Sat, 21 Sep 2019 17:12:21 +0200
+Message-Id: <20190921151223.768842-4-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.23.0
 In-Reply-To: <20190921151223.768842-1-martin.blumenstingl@googlemail.com>
 References: <20190921151223.768842-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190921_081248_049623_84082CC6 
-X-CRM114-Status: GOOD (  11.74  )
+X-CRM114-CacheID: sfid-20190921_081249_487313_3BE6131A 
+X-CRM114-Status: GOOD (  13.74  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,74 +109,176 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Switch from clk_set_parent() to clk_hw_set_parent() now that we have a
-way to configure a mux clock based on clk_hw pointers. This simplifies
-the meson8b_cpu_clk_notifier_cb logic. No functional changes.
+The XTAL clock is an actual crystal which is mounted on the PCB. Thus
+the meson8b clock controller driver should not provide the XTAL clock.
+
+The meson8b clock controller driver must not use references to
+the meson8b_xtal clock anymore before we can provide the XTAL clock
+via OF. Replace the references to the meson8b_xtal.hw by using
+clk_parent_data.name = "xtal" (along with index = -1) because this works
+regardless how the XTAL clock is registered (either as fixed-clock in
+the .dtb or - if missing - when registered in the meson8b clock
+controller driver).
 
 Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- drivers/clk/meson/meson8b.c | 21 ++++++++-------------
- 1 file changed, 8 insertions(+), 13 deletions(-)
+ drivers/clk/meson/meson8b.c | 73 ++++++++++++++++++++-----------------
+ 1 file changed, 39 insertions(+), 34 deletions(-)
 
 diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
-index 67e6691e080c..d376f80e806d 100644
+index d376f80e806d..b785b67baf2b 100644
 --- a/drivers/clk/meson/meson8b.c
 +++ b/drivers/clk/meson/meson8b.c
-@@ -3585,7 +3585,7 @@ static const struct reset_control_ops meson8b_clk_reset_ops = {
- 
- struct meson8b_nb_data {
- 	struct notifier_block nb;
--	struct clk_hw_onecell_data *onecell_data;
-+	struct clk_hw *cpu_clk;
+@@ -97,8 +97,9 @@ static struct clk_regmap meson8b_fixed_pll_dco = {
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "fixed_pll_dco",
+ 		.ops = &meson_clk_pll_ro_ops,
+-		.parent_hws = (const struct clk_hw *[]) {
+-			&meson8b_xtal.hw
++		.parent_data = &(const struct clk_parent_data) {
++			.name = "xtal",
++			.index = -1,
+ 		},
+ 		.num_parents = 1,
+ 	},
+@@ -162,8 +163,9 @@ static struct clk_regmap meson8b_hdmi_pll_dco = {
+ 		/* sometimes also called "HPLL" or "HPLL PLL" */
+ 		.name = "hdmi_pll_dco",
+ 		.ops = &meson_clk_pll_ro_ops,
+-		.parent_hws = (const struct clk_hw *[]) {
+-			&meson8b_xtal.hw
++		.parent_data = &(const struct clk_parent_data) {
++			.name = "xtal",
++			.index = -1,
+ 		},
+ 		.num_parents = 1,
+ 	},
+@@ -237,8 +239,9 @@ static struct clk_regmap meson8b_sys_pll_dco = {
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "sys_pll_dco",
+ 		.ops = &meson_clk_pll_ops,
+-		.parent_hws = (const struct clk_hw *[]) {
+-			&meson8b_xtal.hw
++		.parent_data = &(const struct clk_parent_data) {
++			.name = "xtal",
++			.index = -1,
+ 		},
+ 		.num_parents = 1,
+ 	},
+@@ -631,9 +634,9 @@ static struct clk_regmap meson8b_cpu_in_sel = {
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "cpu_in_sel",
+ 		.ops = &clk_regmap_mux_ops,
+-		.parent_hws = (const struct clk_hw *[]) {
+-			&meson8b_xtal.hw,
+-			&meson8b_sys_pll.hw,
++		.parent_data = (const struct clk_parent_data[]) {
++			{ .name = "xtal", .index = -1, },
++			{ .hw = &meson8b_sys_pll.hw, },
+ 		},
+ 		.num_parents = 2,
+ 		.flags = (CLK_SET_RATE_PARENT |
+@@ -736,9 +739,9 @@ static struct clk_regmap meson8b_cpu_clk = {
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "cpu_clk",
+ 		.ops = &clk_regmap_mux_ops,
+-		.parent_hws = (const struct clk_hw *[]) {
+-			&meson8b_xtal.hw,
+-			&meson8b_cpu_scale_out_sel.hw,
++		.parent_data = (const struct clk_parent_data[]) {
++			{ .name = "xtal", .index = -1, },
++			{ .hw = &meson8b_cpu_scale_out_sel.hw, },
+ 		},
+ 		.num_parents = 2,
+ 		.flags = (CLK_SET_RATE_PARENT |
+@@ -758,12 +761,12 @@ static struct clk_regmap meson8b_nand_clk_sel = {
+ 		.name = "nand_clk_sel",
+ 		.ops = &clk_regmap_mux_ops,
+ 		/* FIXME all other parents are unknown: */
+-		.parent_hws = (const struct clk_hw *[]) {
+-			&meson8b_fclk_div4.hw,
+-			&meson8b_fclk_div3.hw,
+-			&meson8b_fclk_div5.hw,
+-			&meson8b_fclk_div7.hw,
+-			&meson8b_xtal.hw,
++		.parent_data = (const struct clk_parent_data[]) {
++			{ .hw = &meson8b_fclk_div4.hw, },
++			{ .hw = &meson8b_fclk_div3.hw, },
++			{ .hw = &meson8b_fclk_div5.hw, },
++			{ .hw = &meson8b_fclk_div7.hw, },
++			{ .name = "xtal", .index = -1, },
+ 		},
+ 		.num_parents = 5,
+ 		.flags = CLK_SET_RATE_PARENT,
+@@ -1721,8 +1724,9 @@ static struct clk_regmap meson8b_hdmi_sys_sel = {
+ 		.name = "hdmi_sys_sel",
+ 		.ops = &clk_regmap_mux_ro_ops,
+ 		/* FIXME: all other parents are unknown */
+-		.parent_hws = (const struct clk_hw *[]) {
+-			&meson8b_xtal.hw
++		.parent_data = &(const struct clk_parent_data) {
++			.name = "xtal",
++			.index = -1,
+ 		},
+ 		.num_parents = 1,
+ 		.flags = CLK_SET_RATE_NO_REPARENT,
+@@ -1767,14 +1771,14 @@ static struct clk_regmap meson8b_hdmi_sys = {
+  * muxed by a glitch-free switch on Meson8b and Meson8m2. Meson8 only
+  * has mali_0 and no glitch-free mux.
+  */
+-static const struct clk_hw *meson8b_mali_0_1_parent_hws[] = {
+-	&meson8b_xtal.hw,
+-	&meson8b_mpll2.hw,
+-	&meson8b_mpll1.hw,
+-	&meson8b_fclk_div7.hw,
+-	&meson8b_fclk_div4.hw,
+-	&meson8b_fclk_div3.hw,
+-	&meson8b_fclk_div5.hw,
++static const struct clk_parent_data meson8b_mali_0_1_parent_data[] = {
++	{ .name = "xtal", .index = -1, },
++	{ .hw = &meson8b_mpll2.hw, },
++	{ .hw = &meson8b_mpll1.hw, },
++	{ .hw = &meson8b_fclk_div7.hw, },
++	{ .hw = &meson8b_fclk_div4.hw, },
++	{ .hw = &meson8b_fclk_div3.hw, },
++	{ .hw = &meson8b_fclk_div5.hw, },
  };
  
- static int meson8b_cpu_clk_notifier_cb(struct notifier_block *nb,
-@@ -3593,30 +3593,25 @@ static int meson8b_cpu_clk_notifier_cb(struct notifier_block *nb,
- {
- 	struct meson8b_nb_data *nb_data =
- 		container_of(nb, struct meson8b_nb_data, nb);
--	struct clk_hw **hws = nb_data->onecell_data->hws;
--	struct clk_hw *cpu_clk_hw, *parent_clk_hw;
--	struct clk *cpu_clk, *parent_clk;
-+	struct clk_hw *parent_clk;
- 	int ret;
- 
- 	switch (event) {
- 	case PRE_RATE_CHANGE:
--		parent_clk_hw = hws[CLKID_XTAL];
-+		/* xtal */
-+		parent_clk = clk_hw_get_parent_by_index(nb_data->cpu_clk, 0);
- 		break;
- 
- 	case POST_RATE_CHANGE:
--		parent_clk_hw = hws[CLKID_CPU_SCALE_OUT_SEL];
-+		/* cpu_scale_out_sel */
-+		parent_clk = clk_hw_get_parent_by_index(nb_data->cpu_clk, 1);
- 		break;
- 
- 	default:
- 		return NOTIFY_DONE;
- 	}
- 
--	cpu_clk_hw = hws[CLKID_CPUCLK];
--	cpu_clk = __clk_lookup(clk_hw_get_name(cpu_clk_hw));
--
--	parent_clk = __clk_lookup(clk_hw_get_name(parent_clk_hw));
--
--	ret = clk_set_parent(cpu_clk, parent_clk);
-+	ret = clk_hw_set_parent(nb_data->cpu_clk, parent_clk);
- 	if (ret)
- 		return notifier_from_errno(ret);
- 
-@@ -3695,7 +3690,7 @@ static void __init meson8b_clkc_init_common(struct device_node *np,
- 			return;
- 	}
- 
--	meson8b_cpu_nb_data.onecell_data = clk_hw_onecell_data;
-+	meson8b_cpu_nb_data.cpu_clk = clk_hw_onecell_data->hws[CLKID_CPUCLK];
- 
- 	/*
- 	 * FIXME we shouldn't program the muxes in notifier handlers. The
+ static u32 meson8b_mali_0_1_mux_table[] = { 0, 2, 3, 4, 5, 6, 7 };
+@@ -1789,8 +1793,8 @@ static struct clk_regmap meson8b_mali_0_sel = {
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mali_0_sel",
+ 		.ops = &clk_regmap_mux_ops,
+-		.parent_hws = meson8b_mali_0_1_parent_hws,
+-		.num_parents = ARRAY_SIZE(meson8b_mali_0_1_parent_hws),
++		.parent_data = meson8b_mali_0_1_parent_data,
++		.num_parents = ARRAY_SIZE(meson8b_mali_0_1_parent_data),
+ 		/*
+ 		 * Don't propagate rate changes up because the only changeable
+ 		 * parents are mpll1 and mpll2 but we need those for audio and
+@@ -1844,8 +1848,8 @@ static struct clk_regmap meson8b_mali_1_sel = {
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "mali_1_sel",
+ 		.ops = &clk_regmap_mux_ops,
+-		.parent_hws = meson8b_mali_0_1_parent_hws,
+-		.num_parents = ARRAY_SIZE(meson8b_mali_0_1_parent_hws),
++		.parent_data = meson8b_mali_0_1_parent_data,
++		.num_parents = ARRAY_SIZE(meson8b_mali_0_1_parent_data),
+ 		/*
+ 		 * Don't propagate rate changes up because the only changeable
+ 		 * parents are mpll1 and mpll2 but we need those for audio and
+@@ -1944,8 +1948,9 @@ static struct clk_regmap meson8m2_gp_pll_dco = {
+ 	.hw.init = &(struct clk_init_data){
+ 		.name = "gp_pll_dco",
+ 		.ops = &meson_clk_pll_ops,
+-		.parent_hws = (const struct clk_hw *[]) {
+-			&meson8b_xtal.hw
++		.parent_data = &(const struct clk_parent_data) {
++			.name = "xtal",
++			.index = -1,
+ 		},
+ 		.num_parents = 1,
+ 	},
 -- 
 2.23.0
 
