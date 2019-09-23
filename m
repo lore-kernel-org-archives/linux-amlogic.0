@@ -4,20 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DFADFC3A5A6
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Sep 2019 08:35:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A2E39C49ED7
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Sep 2019 08:39:07 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B195A2064A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Sep 2019 08:35:51 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 747F12064A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 23 Sep 2019 08:39:07 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="s4xpmlh0";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="iweD1MXs"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B195A2064A
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Dx+xOEJO";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="IghFe3Y9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 747F12064A
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +25,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vtZXe06vKW52tMljSMiK0E5feqS4k1YxoxS4CJlOFYc=; b=s4xpmlh0OGMKoZ
-	BCNSALXZ6zMGR4KldChNEwVyp+Dk+NZYskSTDOlKcQ3sXYIRc0+qp6xIKoQvORGMKeVWEJvYsPpdm
-	Tye5BfRw+l5O2vhauUWh4VuOWlHo8Vy8IhamMayPPDRlu//hLTGA9W30R54xUUmIfXelVlngvqdj0
-	/7e1WmAfLWEGdSdpOWgBQe3fci1rNxvIr5FrlCkhXcr9OFbc5m5nT4A8h/Eg2s8ekKmoSw7BUlZyY
-	caHbZlg3n6Bk2ucoI/R26AM+OU9POxZG1NN5ivWpT9C7uE9AJjlBZlfzuq3g5FfG/b5bObKiX8wJR
-	PLkJchuLbHb0UOSGlSaA==;
+	List-Owner; bh=ed6lsQ1vDED1kHIPm9B54XmuOwrF9leda5TNy3IJHC4=; b=Dx+xOEJOv0ZZsY
+	QQE0FTUmFCwPzFpNN/WjIavdIN7sXplXYq1fZQLHeQzn87mwrt2I3CqpyXu7GHTIR0o2K/XdZFDT8
+	yA4QwCkEDR62UnA/H5g03Qkb6CmngkSXf3uV1uQgcgjH73xudZCvrUnVAMt3gLJLc3JJ/ESGc0BLP
+	/xrsrC9v7UN/DWNNB9YWAkmgRcexu3crBydl4mbFcqHL5iHQMMECZmrdURT728JQDi4aViFwsQKAX
+	SOUu6VMI+rTXc9LNsV1SJeiTJvEGTXHDt2TRYuxYAqR3njwgp+SXqfDHCp6+D0fMo+EY7m1DAvOVP
+	tNiF4+k2siqGV5kBIkeQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iCJox-0000u1-Sc; Mon, 23 Sep 2019 08:35:47 +0000
+	id 1iCJs6-0001CA-4j; Mon, 23 Sep 2019 08:39:02 +0000
 Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iCJop-0000k6-Ga
- for linux-amlogic@lists.infradead.org; Mon, 23 Sep 2019 08:35:41 +0000
-Received: by mail-wr1-x442.google.com with SMTP id l11so12878304wrx.5
- for <linux-amlogic@lists.infradead.org>; Mon, 23 Sep 2019 01:35:38 -0700 (PDT)
+ id 1iCJs3-0001BU-0q
+ for linux-amlogic@lists.infradead.org; Mon, 23 Sep 2019 08:39:00 +0000
+Received: by mail-wr1-x442.google.com with SMTP id y19so12918206wrd.3
+ for <linux-amlogic@lists.infradead.org>; Mon, 23 Sep 2019 01:38:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=DonLaU+ALkUO4XcKRBTGh6tkB6YDwuQS1LIpYKsRKI0=;
- b=iweD1MXsqfvUS94mRK6CuoKUGcj8JkfPP+1CofV6Ctqi9Zgrez1OViiWsNU4+5c9b3
- 1v+Wlc6urwR5u48jExvDWPNV+b3xTmp577z0x9kdXFBVyFQUebSuMf8E1et5vWygC0wh
- BGMI+Q+gK2RunsyXNXM/I2ECIP6ap5PQQ7tlDaI6PWhk+9y+/59I2ld9Hl5Ce53t0s5n
- WMnZyjd6MyeGecXc+z8N8DfSowIX3WoHhi+euxfLNBkWSNJdv+aX7jtMW49/86y3zCOg
- XrPPRlfpPeHWL/GRo/wLm827Cc9vJJJ0CxfzJN1eBxB8tUI1uGbW6TfE5JcNWgejWrbv
- JIUA==
+ :mime-version; bh=nwiGQiE38HtZcmw6CWeBg4qfY5GYbo0p333nLt6wTfk=;
+ b=IghFe3Y9bi1OIf+T0BVbUqifsHRXMu4xWRUWvzexMuhJ4MorveaatsE5c2GnCI+84a
+ Bqx0FzIXkolcI77UhylFeOKxmtwpKe9AUMcjHExUAVS+hF6+GX11MENc6c6CKLisbkhU
+ b9Ts9JV5TR8s7v3h7HczUFMlV75yIvoSso+xPxb2dWoJGiNJCOVjR0+SvNXGapK7ocsa
+ HGGW4pVQf7UAT44HCNRvqfwXb1IWJyD1YzR9fLdLsLMHoEzNFWJy5uxlqyzsmbeJ7NPI
+ foBJjIBuJRCnK//2IKw8qaIOokqj5JUovfoGEVLI+AkqSB2yHohlwvIpAIpd4546nJUR
+ Q80Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=DonLaU+ALkUO4XcKRBTGh6tkB6YDwuQS1LIpYKsRKI0=;
- b=Lr+tviC5+lz5K8hFWcfJn6DeEXjEVqklj7TgVNzlJmyoVYiZTVNx8rrOyt6FFsI80n
- Ezy+wn+sW/6vXcHJrDseV2IKe7oUAlTkBgIkM9pLGm+J9Cemp+v4e1Snj+++VGWKefU6
- A7B39/m0Njnls7sc73dFJC8ANnYMoPNyk6v0S9C5j+zNH5hLaG4eFED43Mo++Hr6wJo4
- WKxMyfCmCZNtGIsnNMrHPG5Tx8SABt+qgeVEXZQgh3H7tQOxxWvNUkB3FU4VJmJz6H8w
- pRQzrLcje0EFP1KCtdHKiQXyfn8khSwG49/CknuGlF+t4ambdxsxEHExDufehAsS2sIk
- 8WOQ==
-X-Gm-Message-State: APjAAAUMSNY4FzJ5BmQZtW0L3h0ujHn0Ok9Wl5T3qAGJtzcscJP7Kv+u
- i0JXyNUdYnp0xiEOZI7+ILL9cw==
-X-Google-Smtp-Source: APXvYqxJcD4Iva8LjauXdRv7MdXdwAKMDkOV0VwKKJWiJJiS8vUfgnWZhmg47YeFRhHeSnOuDhR7JQ==
-X-Received: by 2002:adf:fac3:: with SMTP id a3mr20173795wrs.24.1569227737278; 
- Mon, 23 Sep 2019 01:35:37 -0700 (PDT)
+ bh=nwiGQiE38HtZcmw6CWeBg4qfY5GYbo0p333nLt6wTfk=;
+ b=fYmYbi5ETefDhDfyNizrcD7Vs94kFDKkky844Doi2f6yYFDLgTZz7Hhzea0jG67YCF
+ oKUo3rAxArnTyn/AAvSqmRmPBIQRk2e2irvgq+pAiXW6WyScIhTYxC+6vsKxMuFVNDNe
+ zRG+VrYdGPKrq38t9DKyxPp+shmpKQmhO2rlLzWJ4n2xdczm6sRqopKp6QagvpTWhpT9
+ MnfGxMkZ5AebfaupSlpoWkkN7wMUmZn7KY+DgTpiAYIY/mN0uX5PHtv2h2syHtuFuda8
+ GU5bgb+iXDAZv6xJ5JicfHDSaywE6rjIgsXRnjJiXThIsNosaNHLnySH6v4bFBlpLwqi
+ MirQ==
+X-Gm-Message-State: APjAAAVw5yNv4rHZEtX56JLpUrUFEvp0He68ve4mRvPqSNAtdDvekqnC
+ fMsC5G1RKDY4t5vmFRge6iPsrA==
+X-Google-Smtp-Source: APXvYqw3ZqNhDs1DwDmXDjeQ+UCFX7R57TXtgHP+2m5w6ijcpVvYw+PpPwVSLBebaiNyvUoQipm8bA==
+X-Received: by 2002:a05:6000:45:: with SMTP id
+ k5mr20259104wrx.259.1569227937789; 
+ Mon, 23 Sep 2019 01:38:57 -0700 (PDT)
 Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id r6sm9279229wmh.38.2019.09.23.01.35.36
+ by smtp.gmail.com with ESMTPSA id n7sm10988940wrt.59.2019.09.23.01.38.56
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 23 Sep 2019 01:35:36 -0700 (PDT)
+ Mon, 23 Sep 2019 01:38:57 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Sasha Levin <sashal@kernel.org>, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org
-Subject: Re: [PATCH AUTOSEL 5.3 034/203] ASoC: meson: g12a-tohdmitx: override
- codec2codec params
-In-Reply-To: <20190922184350.30563-34-sashal@kernel.org>
-References: <20190922184350.30563-1-sashal@kernel.org>
- <20190922184350.30563-34-sashal@kernel.org>
-Date: Mon, 23 Sep 2019 10:35:35 +0200
-Message-ID: <1j7e5ztnoo.fsf@starbuckisacylon.baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ narmstrong@baylibre.com, linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 1/1] clk: meson: gxbb: let sar_adc_clk_div set the parent
+ clock rate
+In-Reply-To: <20190921150411.767290-1-martin.blumenstingl@googlemail.com>
+References: <20190921150411.767290-1-martin.blumenstingl@googlemail.com>
+Date: Mon, 23 Sep 2019 10:38:56 +0200
+Message-ID: <1j4l13tnj3.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190923_013539_728515_361B0DB1 
-X-CRM114-Status: UNSURE (   8.35  )
+X-CRM114-CacheID: sfid-20190923_013859_062519_5CAB5006 
+X-CRM114-Status: UNSURE (   7.26  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -98,46 +97,30 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, linux-amlogic@lists.infradead.org,
- Mark Brown <broonie@kernel.org>
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun 22 Sep 2019 at 14:41, Sasha Levin <sashal@kernel.org> wrote:
+On Sat 21 Sep 2019 at 17:04, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
 
-> From: Jerome Brunet <jbrunet@baylibre.com>
+> The meson-saradc driver manually sets the input clock for
+> sar_adc_clk_sel. Update the GXBB clock driver (which is used on GXBB,
+> GXL and GXM) so the rate settings on sar_adc_clk_div are propagated up
+> to sar_adc_clk_sel which will let the common clock framework select the
+> best matching parent clock if we want that.
 >
-> [ Upstream commit 2c4956bc1e9062e5e3c5ea7612294f24e6d4fbdd ]
+> This makes sar_adc_clk_div consistent with the axg-aoclk and g12a-aoclk
+> drivers, which both also specify CLK_SET_RATE_PARENT.
 >
-> So far, forwarding the hw_params of the input to output relied on the
-> .hw_params() callback of the cpu side of the codec2codec link to be called
-> first. This is a bit weak.
->
-> Instead, override the stream params of the codec2codec to link to set it up
-> correctly.
+> Fixes: 33d0fcdfe0e870 ("clk: gxbb: add the SAR ADC clocks and expose them")
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-Hi Sasha
-
-This change depends on the following series in ASoC:
-https://lore.kernel.org/r/20190725165949.29699-1-jbrunet@baylibre.com
-which has also been merged in this merge window.
-
-With this change, things are done (IMO) in a better way but there was no
-known issue before that.
-
-I don't think it is worth backporting the mentioned ASoC series to
-5.3. I would suggest to just drop this change from stable.
-
-Regards
-Jerome
-
->
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-> Link: https://lore.kernel.org/r/20190729080139.32068-1-jbrunet@baylibre.com
-> Signed-off-by: Mark Brown <broonie@kernel.org>
-> Signed-off-by: Sasha Levin <sashal@kernel.org>
+Looks good. I'll apply it once rc1 is tagged
+Thanks
 
 _______________________________________________
 linux-amlogic mailing list
