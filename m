@@ -2,81 +2,87 @@ Return-Path: <SRS0=mdkS=XT=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 07DD9C432C1
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Sep 2019 17:29:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 039EEC432C1
+	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Sep 2019 18:35:10 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D41A420673
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Sep 2019 17:29:04 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D17AA207FD
+	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Sep 2019 18:35:09 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qvWLKPxI";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=codeaurora.org header.i=@codeaurora.org header.b="nZ8owIVv";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=codeaurora.org header.i=@codeaurora.org header.b="VHb6ytHq"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D41A420673
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FcsD/LQQ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="z0UDEipE"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D17AA207FD
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:To:From:
-	Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=J34cyFpshKpQBJxXsfTDdQl3pprXc0WqGJlfxNqUm2A=; b=qvWLKPxIQUPbknphbuOk3Xhs0
-	CMxrHcuacQFKDd1HknJ+zgqgRV+v+zjGqIdJ1Zm52BfEQ2HKJXQdz9Rbu2aqEjzshCFAWG++kLDK+
-	INGoCh+Lipww35X83iq6oHKClOwXLtkOtBoT1N1m651aOkijm1VqLfpFfymCCr7Ig/bu+dopCwG4w
-	4HQhKMmKSOehTY+zFsLoBTHrupExID6cn5NzyrUl0rEhmVRCtLptWgFqAXnRe+ozZvSsqA3fDLcZC
-	TxhjN4sofnl7AiITJFmKVkvXPAd2zCTDp1C81gbx3E3qj1vMEbA3L5SP/ESOo1qqFDydLzeImp6hM
-	IKfFgxmxw==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=bBEfzs0UwJuzQaPP+puBbRqV65zkXY24dCJgLonMTkM=; b=FcsD/LQQn3sq12
+	40tomaNEQNCSuQ+bnEF8jyOWF6/Z08Dy1MTS3VjZWx2o2p2Wc8SLxTeF0WFB9CvNSPuwJNH9+w1N1
+	mbs1NplC53ZTYUNkPbQdYxuFzJEZ8EthBwM8sVJlEYBJgV9vUWJq/L3ycSMoQIOqqaerTFGfchtOo
+	E6zbo8VmikC39itrPui8xQWSm+G9t5Ltq/dKzksogz6g2jDqEaW8qe2DUXKloql+WVmY7Z+MtCGi/
+	zPE4NfxDKJnsEUJJUlfbXdP6wqsb/Igsd9Ki5CwHdUmLYqNtj11CyPC6QxNxG7zL9E+WGcRGqXzAn
+	gtCFdmxlCj33mjDoM1Jw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iCocS-0004x8-39; Tue, 24 Sep 2019 17:28:56 +0000
-Received: from smtp.codeaurora.org ([198.145.29.96])
+	id 1iCpeL-0004wD-UE; Tue, 24 Sep 2019 18:34:58 +0000
+Received: from mail-pg1-x544.google.com ([2607:f8b0:4864:20::544])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iCocO-0004tH-Av; Tue, 24 Sep 2019 17:28:54 +0000
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
- id 0EF6261214; Tue, 24 Sep 2019 17:28:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
- s=default; t=1569346130;
- bh=m5nRpCCGsAeJVX0FTjg6i2xbJTPmx0BJPve6hoE/kIo=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=nZ8owIVvsWeqZqrm8BUr6pGuopffd6EJJfc2u4FMnVTh1Pk/cxCNTA32pg0Z2mN7m
- Te1efabp8rSdDvdO3sJ8PjgwM943Bn0PmeV2iUKpxS8IyKLWpaOATJr+7WI7A+0Y+a
- TW7o8SvQmmBh8zvAIDxeMyfhbXBpnUwKRdG+042I=
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
- by smtp.codeaurora.org (Postfix) with ESMTP id B673E61214;
- Tue, 24 Sep 2019 17:28:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
- s=default; t=1569346128;
- bh=m5nRpCCGsAeJVX0FTjg6i2xbJTPmx0BJPve6hoE/kIo=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=VHb6ytHqFfkvnGh/XX/YQdEQJVoueT4RPiEaoUqqv9J98u2ecMdvNsEHCwLqIRDxI
- UKFLZtrB3AYTpj6ZBNBsHx+SUztKyBuVksO/2cMZivUfKKY2gzX1G2MeLZOfhCsRDK
- lRW+5dSlmv7JpdOr4fyEKLTi+5I5QFIqbWuTIXNA=
+ id 1iCpeI-0004vU-9c
+ for linux-amlogic@lists.infradead.org; Tue, 24 Sep 2019 18:34:56 +0000
+Received: by mail-pg1-x544.google.com with SMTP id x10so1772836pgi.5
+ for <linux-amlogic@lists.infradead.org>; Tue, 24 Sep 2019 11:34:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=jkBCXzn4Uj1xLOMo29hksQeWQpwjGA82dIjcLoLZzTE=;
+ b=z0UDEipE4W/AzOwgLuwPGd0hbYj8lB6P6p5iCggsB+uSOZ2ercDuI6QViE8trcyi68
+ Ms4bpDlbC17FktVTBM5gBlQ8QRBa/OvosuNUn8F9cuqs+nnRgHavcXYsV+fXIn4fOfHi
+ 3q+G+MOUuWBNFpOrO58Nvy2MO67v5H5csoVbOuHFdSn2E3jLpAvwwn61KL0KvX26re9h
+ S6apGVlqOmapAPl58/oSQBvm4AnBTkNGbaE12ncpt23zSxAPwjzixYva1rmfmWA87KtC
+ DL8FB7ElOkvo+l+Vcqt3S5bOGU+5NT5G2NZ1yzPV8VUutxTR9xN2DCHz51458mFtWBnR
+ DTdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=jkBCXzn4Uj1xLOMo29hksQeWQpwjGA82dIjcLoLZzTE=;
+ b=NQo8FD3Oj4veNapRlLJv6HvRDKfK1h8IP4U+uUTYaqYx3EAujNHisyEyfrPesrQm5k
+ OCX394OfqXoefy7G1NHRlXvpb8fuj1q6GiJqDgvqXPjxwdECYrbGEHTHynh2w82tYVSo
+ yFf+H4LkvUmOT6FjvGb3OX6gMAIZbwLPsB67jPNnePHennfH9LhKfqON4I0wpkwDUw/C
+ xCkqFZf/VgK/fCZux7Bdv/NR7MmLoHdpGyDmHpjOM8genawiyCvPkDhux+KSVxalD/mJ
+ EVS/vgwJYy4m7juCqIqROAfllls5Pi/ZNirz7ULHTqzQ1qwhO7Yhk0RWR7c8huCRzdQi
+ 7Dsw==
+X-Gm-Message-State: APjAAAU86wVGtcT0ArNHmyHJu40zbBsNb3PxB9b5/F3j9kkdP7pYSytf
+ fqg92K/TVkR8pNdKJt+ORiET0pFJ5PxuuQ==
+X-Google-Smtp-Source: APXvYqw2jfPgxdDoSNqWWhnD7kHlXKrQE4WFeQl8IkHVJv88EXWMyWgt15LGw/6oqqVsdoLFFr5Qmw==
+X-Received: by 2002:a62:4e0f:: with SMTP id c15mr4989864pfb.42.1569350092855; 
+ Tue, 24 Sep 2019 11:34:52 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
+ [71.197.186.152])
+ by smtp.gmail.com with ESMTPSA id f62sm5013581pfg.74.2019.09.24.11.34.52
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Tue, 24 Sep 2019 11:34:52 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Subject: Re: [PATCH 0/5] arm64: dts: meson: audio updates
+In-Reply-To: <20190905125956.4384-1-jbrunet@baylibre.com>
+References: <20190905125956.4384-1-jbrunet@baylibre.com>
+Date: Tue, 24 Sep 2019 11:34:51 -0700
+Message-ID: <7hk19x7dbo.fsf@baylibre.com>
 MIME-Version: 1.0
-Date: Tue, 24 Sep 2019 10:28:48 -0700
-From: Jeykumar Sankaran <jsanka@codeaurora.org>
-To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH] drm/meson: fix max mode_config height/width
-In-Reply-To: <5dbd6337-7e08-f3f7-6d4a-d6bcaddfd3be@baylibre.com>
-References: <1538642563-22465-1-git-send-email-narmstrong@baylibre.com>
- <20181004100958.GI31561@phenom.ffwll.local>
- <0ef7fa13-ce77-f8a5-f5f3-6568be3d6145@baylibre.com>
- <CAKMK7uHxiDF3z19cMBb0o2o4Ev0DFJkhMR7Ny6U2776Ry4oc=A@mail.gmail.com>
- <8e980de4-5a52-8f3d-fba2-734617e40d1b@baylibre.com>
- <CAKMK7uE71OeOdDPb+5-cs9bByD-unYPxBV_R1t+4A0Nb4H6CAw@mail.gmail.com>
- <5dbd6337-7e08-f3f7-6d4a-d6bcaddfd3be@baylibre.com>
-Message-ID: <91cd8a2aebefd4ea3e9bcee5a4ef796a@codeaurora.org>
-X-Sender: jsanka@codeaurora.org
-User-Agent: Roundcube Webmail/1.2.5
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190924_102852_491007_13FEAC3A 
-X-CRM114-Status: GOOD (  18.39  )
+X-CRM114-CacheID: sfid-20190924_113454_362257_FF1B8133 
+X-CRM114-Status: UNSURE (   8.23  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,203 +94,35 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Daniel Vetter <daniel@ffwll.ch>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Reviving this thread from the context of the below conversion:
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-https://lore.kernel.org/linux-arm-msm/db26145b-3f64-a334-f698-76f972332881@baylibre.com/T/#u
+> The patchset features a few updates to prepare the addition of the audio
+> on sm1. It fixes the register range of audio fifo which was incorrect.
+>
+> It also create another layer of dtsi, common to g12a and g12b but not sm1.
+> The audio related device are moved to this file.
+>
+> This was done because the audio bus, which was at 0xff642000 on g12, has
+> moved 0xff660000 on sm1. Overwriting the reg property was option but it
+> would have left confusing node names on the sm1.
+>
+> Jerome Brunet (5):
+>   arm64: dts: meson: axg: fix audio fifo reg size
+>   arm64: dts: meson: g12: fix audio fifo reg size
+>   arm64: dts: meson: g12: add a g12 layer
+>   arm64: dts: meson: g12: factor the power domain.
+>   arm64: dts: meson: g12: move audio bus out of g12-common
 
-On 2018-10-05 01:19, Neil Armstrong wrote:
-> On 05/10/2018 09:58, Daniel Vetter wrote:
->> On Fri, Oct 5, 2018 at 9:39 AM Neil Armstrong 
->> <narmstrong@baylibre.com> wrote:
->>> 
-> 
-> [...]
-> 
->>> OK, won't this be enough ?
->>> --- a/include/drm/drm_mode_config.h
->>> +++ b/include/drm/drm_mode_config.h
->>> @@ -333,6 +333,8 @@ struct drm_mode_config_funcs {
->>>   * @min_height: minimum fb pixel height on this device
->>>   * @max_width: maximum fb pixel width on this device
->>>   * @max_height: maximum fb pixel height on this device
->>> + * @max_fb_width: maximum fb buffer width if differs from max_width
->>> + * @max_fb_height: maximum fb buffer height if differs from 
->>> max_height
->>>   * @funcs: core driver provided mode setting functions
->>>   * @fb_base: base address of the framebuffer
->>>   * @poll_enabled: track polling support for this device
->>> @@ -508,6 +510,7 @@ struct drm_mode_config {
->>> 
->>>         int min_width, min_height;
->>>         int max_width, max_height;
->>> +       int max_fb_width, max_fb_height;
->>>         const struct drm_mode_config_funcs *funcs;
->>>         resource_size_t fb_base;
->>> 
->>> --- a/drivers/gpu/drm/drm_framebuffer.c
->>> +++ b/drivers/gpu/drm/drm_framebuffer.c
->>> @@ -283,14 +283,20 @@ drm_internal_framebuffer_create(struct 
->>> drm_device *dev,
->>>                 return ERR_PTR(-EINVAL);
->>>         }
->>> 
->>> -       if ((config->min_width > r->width) || (r->width > 
->>> config->max_width)) {
->>> +       if ((config->min_width > r->width) ||
->>> +           (!config->max_fb_width && r->width > config->max_width) 
->>> ||
->>> +           (config->max_fb_width && r->width > 
->>> config->max_fb_width)) {
->>>                 DRM_DEBUG_KMS("bad framebuffer width %d, should be >= 
->>> %d && <= %d\n",
->>> -                         r->width, config->min_width, 
->>> config->max_width);
->>> +                         r->width, config->min_width, 
->>> config->max_fb_width ?
->>> +                         config->max_fb_width : config->max_width);
->>>                 return ERR_PTR(-EINVAL);
->>>         }
->>> -       if ((config->min_height > r->height) || (r->height > 
->>> config->max_height)) {
->>> +       if ((config->min_height > r->height) ||
->>> +           (!config->max_fb_height && r->height > 
->>> config->max_height) ||
->>> +           (config->max_fb_height && r->height > 
->>> config->max_fb_height)) {
->>>                 DRM_DEBUG_KMS("bad framebuffer height %d, should be 
->>> >= %d && <= %d\n",
->>> -                         r->height, config->min_height, 
->>> config->max_height);
->>> +                         r->height, config->min_height, 
->>> config->max_fb_height ?
->>> +                         config->max_fb_height : 
->>> config->max_height);
->>>                 return ERR_PTR(-EINVAL);
->>>         }
->>> 
->>> and in the driver :
->>> 
->>> +       drm->mode_config.max_width = 4096;
->>> +       drm->mode_config.max_height = 3840;
->>> +       drm->mode_config.max_fb_width = 16384;
->>> +       drm->mode_config.max_fb_height = 8192;
->>> 
->>> With this I leave the mode filtering intact.
->> 
->> Not enough. See
->> https://dri.freedesktop.org/docs/drm/gpu/drm-kms-helpers.html#c.drm_connector_helper_funcs
->> and scroll down to mode_valid. You need to filter modes both in the
->> detect paths, and the atomic_check paths.
->> 
->> Detect is explicitly filtered out, but atomic_check was only
->> implicitly filtered, through the max fb size checks. Ok, you could
->> light up a mode that's bigger than max fb, but in practice, no
->> userspace ever did that.
+Queued for v5.5,
 
-Daniel, MSM and few other vendor hardware have upscale blocks where the 
-driver can expose fb sizes smaller than
-the mode resolution and use h/w upscaling to fill the screen. This would 
-optimize the fetch bandwidth.
-
-But with your code we're missing crucial
->> validation now, and userspace could fall over that. What I think we
->> need is to add mode filter against mode_config.max_width/height in
->> drm_atomic_helper_check_modeset(). Probably best to stuff that into
->> the mode_valid() function.
-> 
-Agreed! Since the above patch from Niel is taking care of cases where 
-max/min fb values
-are not set, by checking against the original max/min values, can we 
-separate out this
-core change from the driver level mode_valid changes? If Niel couldn't 
-find the time, I can
-repost the above change.
-
-Thanks and Regards,
-Jeykumar S.
-
-> Ok I understood now, thanks for pointer, I'll try to add this.
-> 
-> Neil
-> 
->> 
->> Cheers, Daniel
->>> 
->>> Neil
->>> 
->>> 
->>>> -Daniel
->>>> 
->>>>> 
->>>>> Neil
->>>>> 
->>>>>> 
->>>>>> Bunch of igt to make sure we're not missing anything would be 
->>>>>> sweet on
->>>>>> top, e.g. e.g. trying to set a mode over the limit and making sure 
->>>>>> it
->>>>>> fails.
->>>>>> 
->>>>>> Cheers, Daniel
->>>>>> 
->>>>>>> ---
->>>>>>>  drivers/gpu/drm/meson/meson_drv.c | 4 ++--
->>>>>>>  1 file changed, 2 insertions(+), 2 deletions(-)
->>>>>>> 
->>>>>>> diff --git a/drivers/gpu/drm/meson/meson_drv.c 
->>>>>>> b/drivers/gpu/drm/meson/meson_drv.c
->>>>>>> index d344312..2e29968 100644
->>>>>>> --- a/drivers/gpu/drm/meson/meson_drv.c
->>>>>>> +++ b/drivers/gpu/drm/meson/meson_drv.c
->>>>>>> @@ -243,8 +243,8 @@ static int meson_drv_bind_master(struct 
->>>>>>> device *dev, bool has_components)
->>>>>>>              goto free_drm;
->>>>>>> 
->>>>>>>      drm_mode_config_init(drm);
->>>>>>> -    drm->mode_config.max_width = 3840;
->>>>>>> -    drm->mode_config.max_height = 2160;
->>>>>>> +    drm->mode_config.max_width = 16384;
->>>>>>> +    drm->mode_config.max_height = 8192;
->>>>>>>      drm->mode_config.funcs = &meson_mode_config_funcs;
->>>>>>> 
->>>>>>>      /* Hardware Initialization */
->>>>>>> --
->>>>>>> 2.7.4
->>>>>>> 
->>>>>>> _______________________________________________
->>>>>>> dri-devel mailing list
->>>>>>> dri-devel@lists.freedesktop.org
->>>>>>> https://lists.freedesktop.org/mailman/listinfo/dri-devel
->>>>>> 
->>>>> 
->>>>> _______________________________________________
->>>>> dri-devel mailing list
->>>>> dri-devel@lists.freedesktop.org
->>>>> https://lists.freedesktop.org/mailman/listinfo/dri-devel
->>>> 
->>>> 
->>>> 
->>> 
->> 
->> 
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
--- 
-Jeykumar S
+Kevin
 
 _______________________________________________
 linux-amlogic mailing list
