@@ -2,57 +2,59 @@ Return-Path: <SRS0=JnL7=XU=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5AA11C432C1
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Sep 2019 11:45:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 659FCC4320D
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Sep 2019 11:45:32 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1DEFF20640
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Sep 2019 11:45:07 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3C78C21D7E
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Sep 2019 11:45:32 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iYMNTsVx"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1DEFF20640
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="sOMZLOgE"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3C78C21D7E
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=L1HBg2EQbHhD52ojyLOQPKu4nQNdCcHU9wefY0csTzs=; b=iYMNTsVxpz1+lk
-	4ieK5+udRvzqcZ9xgWyb+28Kutt5Zo/2m05TuRYWmiU9aurKJ/Ucu0cFGDGmSggX1HdAc7/OSaA5C
-	qAvsSl4Ylgsw2X6x55FZvywdglh58pcqPVr5FmV1UTkbaHwHQdXwq7N/JEANXFoqI8zEeMK0XckPZ
-	5uavrb/6RMNWDnl/G0NM0ixGGVuI3B6A4dQhYVnF2OhG/wRJOsXzZWTD/90CjHFCgeITu0yqMZanW
-	DqllBXEepyT34WW2f6e4B1vVASDgLuzg/3sY9ZERKxQI6pvAFKcKG0IXTLcPDPLmgh6msejQeDkY6
-	7sW9B7aNkU6tUwa8fgvA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=ZMrRGVLI5tO2EDcagaARWp4OL57k5GWJgehMquDWRD8=; b=sOMZLOgE9rLi+3
+	sA/07GbU3EevgfutL7QksAoqdBXox6dBBfe7qgb3UaqC55rkJPEDaCZN0ztWnM/UxJYpJnLyvmMJu
+	X1uWRXW3tMSacH+i3usnhpsFipQKcl0x/QywsO0zBn9GChGABY3H++IW4zZPR/dPDITUpzuxnG3A/
+	tqrJyndTFapnDUI8NlITyOwd0mDcCgzX6zEOw5oMGCTXyNf8V+RM9oj5X02XpAZZOSJxXDQ1W3C3j
+	6aSTGn4H/sZrIWzWVG2i5J5GFkyDCLBdXmmCdQVkHOGo5VHAfcR+4Jsvlt8HKYvPy3PZ7oOV3Iu+N
+	tX7WZl81DaOBceDcoN3g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iD5jA-0007vc-H4; Wed, 25 Sep 2019 11:45:00 +0000
+	id 1iD5jZ-0000xS-GG; Wed, 25 Sep 2019 11:45:26 +0000
 Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iD5j7-0007up-O7; Wed, 25 Sep 2019 11:44:58 +0000
+ id 1iD5j9-0007up-AX; Wed, 25 Sep 2019 11:45:03 +0000
 Received: from droid15-sz.amlogic.com (10.28.8.25) by mail-sz.amlogic.com
  (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Wed, 25 Sep 2019
  19:44:49 +0800
 From: Jian Hu <jian.hu@amlogic.com>
 To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
  <narmstrong@baylibre.com>
-Subject: [PATCH 0/2] add Amlogic A1 clock controller driver
-Date: Wed, 25 Sep 2019 19:44:46 +0800
-Message-ID: <1569411888-98116-1-git-send-email-jian.hu@amlogic.com>
+Subject: [PATCH 1/2] dt-bindings: clock: meson: add A1 clock controller
+ bindings
+Date: Wed, 25 Sep 2019 19:44:47 +0800
+Message-ID: <1569411888-98116-2-git-send-email-jian.hu@amlogic.com>
 X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1569411888-98116-1-git-send-email-jian.hu@amlogic.com>
+References: <1569411888-98116-1-git-send-email-jian.hu@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.28.8.25]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190925_044457_786625_DA6021FA 
-X-CRM114-Status: UNSURE (   7.03  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20190925_044459_362469_B6AA5BDD 
+X-CRM114-Status: GOOD (  10.91  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,30 +79,197 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-add support for Amlogic A1 clock driver, the clock includes 
-three parts: peripheral clocks, pll clocks, CPU clocks.
-sys pll and CPU clocks will be sent in next patch.
+Add the documentation to support Amlogic A1 clock driver,
+and add A1 clock controller bindings.
 
-Unlike the previous series, there is no EE/AO domain in A1
-clock controllers.
-
-Jian Hu (2):
-  dt-bindings: clock: meson: add A1 clock controller bindings
-  clk: meson: a1: add support for Amlogic A1 clock driver
-
- .../devicetree/bindings/clock/amlogic,a1-clkc.yaml |   65 +
- arch/arm64/Kconfig.platforms                       |    1 +
- drivers/clk/meson/Kconfig                          |   10 +
- drivers/clk/meson/Makefile                         |    1 +
- drivers/clk/meson/a1.c                             | 2617 ++++++++++++++++++++
- drivers/clk/meson/a1.h                             |  172 ++
- include/dt-bindings/clock/a1-clkc.h                |  102 +
- 7 files changed, 2968 insertions(+)
+Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+---
+ .../devicetree/bindings/clock/amlogic,a1-clkc.yaml |  65 +++++++++++++
+ include/dt-bindings/clock/a1-clkc.h                | 102 +++++++++++++++++++++
+ 2 files changed, 167 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
- create mode 100644 drivers/clk/meson/a1.c
- create mode 100644 drivers/clk/meson/a1.h
  create mode 100644 include/dt-bindings/clock/a1-clkc.h
 
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+new file mode 100644
+index 0000000..f012eb2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+@@ -0,0 +1,65 @@
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
++/*
++ * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
++ */
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/clock/amlogic,a1-clkc.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Amlogic Meson A1 Clock Control Unit Device Tree Bindings
++
++maintainers:
++  - Neil Armstrong <narmstrong@baylibre.com>
++  - Jerome Brunet <jbrunet@baylibre.com>
++  - Jian Hu <jian.hu@jian.hu.com>
++
++properties:
++  compatible:
++    - enum:
++        - amlogic,a1-clkc
++
++  reg:
++    minItems: 1
++    maxItems: 3
++    items:
++      - description: peripheral registers
++      - description: cpu registers
++      - description: pll registers
++
++  reg-names:
++    items:
++      - const: peripheral
++      - const: pll
++      - const: cpu
++
++  clocks:
++    maxItems: 1
++    items:
++      - description: Input Oscillator (usually at 24MHz)
++
++  clock-names:
++    maxItems: 1
++    items:
++      - const: xtal
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - clocks
++  - clock-names
++  - "#clock-cells"
++
++examples:
++  - |
++    clkc: clock-controller {
++        compatible = "amlogic,a1-clkc";
++        reg = <0x0 0xfe000800 0x0 0x100>,
++              <0x0 0xfe007c00 0x0 0x21c>,
++              <0x0 0xfd000080 0x0 0x20>;
++        reg-names = "peripheral", "pll", "cpu";
++        clocks = <&xtal;
++        clock-names = "xtal";
++        #clock-cells = <1>;
++    };
+diff --git a/include/dt-bindings/clock/a1-clkc.h b/include/dt-bindings/clock/a1-clkc.h
+new file mode 100644
+index 0000000..69fbf37
+--- /dev/null
++++ b/include/dt-bindings/clock/a1-clkc.h
+@@ -0,0 +1,102 @@
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
++/*
++ * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
++ */
++
++#ifndef __A1_CLKC_H
++#define __A1_CLKC_H
++
++#define CLKID_FIXED_PLL				1
++#define CLKID_FCLK_DIV2				2
++#define CLKID_FCLK_DIV3				3
++#define CLKID_FCLK_DIV5				4
++#define CLKID_FCLK_DIV7				5
++#define CLKID_FCLK_DIV2_DIV			6
++#define CLKID_FCLK_DIV3_DIV			7
++#define CLKID_FCLK_DIV5_DIV			8
++#define CLKID_FCLK_DIV7_DIV			9
++#define CLKID_SYS_CLK				16
++#define CLKID_HIFI_PLL				17
++#define CLKID_CLKTREE				25
++#define CLKID_RESET_CTRL			26
++#define CLKID_ANALOG_CTRL			27
++#define CLKID_PWR_CTRL				28
++#define CLKID_PAD_CTRL				29
++#define CLKID_SYS_CTRL				30
++#define CLKID_TEMP_SENSOR			31
++#define CLKID_AM2AXI_DIV			32
++#define CLKID_SPICC_B				33
++#define CLKID_SPICC_A				34
++#define CLKID_CLK_MSR				35
++#define CLKID_AUDIO				36
++#define CLKID_JTAG_CTRL				37
++#define CLKID_SARADC				38
++#define CLKID_PWM_EF				39
++#define CLKID_PWM_CD				40
++#define CLKID_PWM_AB				41
++#define CLKID_CEC				42
++#define CLKID_I2C_S				43
++#define CLKID_IR_CTRL				44
++#define CLKID_I2C_M_D				45
++#define CLKID_I2C_M_C				46
++#define CLKID_I2C_M_B				47
++#define CLKID_I2C_M_A				48
++#define CLKID_ACODEC				49
++#define CLKID_OTP				50
++#define CLKID_SD_EMMC_A				51
++#define CLKID_USB_PHY				52
++#define CLKID_USB_CTRL				53
++#define CLKID_SYS_DSPB				54
++#define CLKID_SYS_DSPA				55
++#define CLKID_DMA				56
++#define CLKID_IRQ_CTRL				57
++#define CLKID_NIC				58
++#define CLKID_GIC				59
++#define CLKID_UART_C				60
++#define CLKID_UART_B				61
++#define CLKID_UART_A				62
++#define CLKID_SYS_PSRAM				63
++#define CLKID_RSA				64
++#define CLKID_CORESIGHT				65
++#define CLKID_AM2AXI_VAD			66
++#define CLKID_AUDIO_VAD				67
++#define CLKID_AXI_DMC				68
++#define CLKID_AXI_PSRAM				69
++#define CLKID_RAMB				70
++#define CLKID_RAMA				71
++#define CLKID_AXI_SPIFC				72
++#define CLKID_AXI_NIC				73
++#define CLKID_AXI_DMA				74
++#define CLKID_CPU_CTRL				75
++#define CLKID_ROM				76
++#define CLKID_PROC_I2C				77
++#define CLKID_DSPA_SEL				84
++#define CLKID_DSPB_SEL				91
++#define CLKID_DSPA_EN_DSPA			92
++#define CLKID_DSPA_EN_NIC			93
++#define CLKID_DSPB_EN_DSPB			94
++#define CLKID_DSPB_EN_NIC			95
++#define CLKID_RTC_CLK				100
++#define CLKID_CECA_32K				105
++#define CLKID_CECB_32K				110
++#define CLKID_24M				111
++#define CLKID_12M				112
++#define CLKID_FCLK_DIV2_DIVN			114
++#define CLKID_GEN				118
++#define CLKID_SARADC_SEL			119
++#define CLKID_SARADC_CLK			121
++#define CLKID_PWM_A				124
++#define CLKID_PWM_B				127
++#define CLKID_PWM_C				130
++#define CLKID_PWM_D				133
++#define CLKID_PWM_E				136
++#define CLKID_PWM_F				139
++#define CLKID_SPICC				143
++#define CLKID_TS				145
++#define CLKID_SPIFC				149
++#define CLKID_USB_BUS				152
++#define CLKID_SD_EMMC				156
++#define CLKID_PSRAM				160
++#define CLKID_DMC				164
++
++#endif /* __A1_CLKC_H */
 -- 
 1.9.1
 
