@@ -2,178 +2,58 @@ Return-Path: <SRS0=JnL7=XU=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 770DDC432C2
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Sep 2019 17:19:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 31F22C4360D
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Sep 2019 19:12:47 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 454D22146E
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Sep 2019 17:19:36 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 06ED821D7A
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Sep 2019 19:12:47 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Cx44NF/p";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bbxDbhQo"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 454D22146E
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LVcseJYA"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 06ED821D7A
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=OnncA7u4dOVpLOVP0/9o2g8ZGIRkOk+idvT1NAKriwM=; b=Cx44NF/p83cbVE
-	eRTLyg+U0UGT4lBVLKSjr4lKOl3uexS7gji+v3W8wfm7u+1GovnPBuTLkDpATvueuH2hNq2UzjJ6/
-	GEOuU2JbOon3RDQBXurNCvFiALfHRzuCoXdM1mVun0Mb4wvPlZ6hqplN2NmZ+fDC+72z6+IdCKtl4
-	2bUP/tDhlMaG6Gwi/1Fo1Gq9+IsqA9rbxiCWX08u37RGte3OFUpr5GCJ55ixNfYA0llw4IaNmqeQQ
-	URW5qPHrlmyBSrodeihD8dBFLBlTxMXxil9u6pvnq0fmmhg29fOSQb1/w4C5gmES7zvb5JjC8rXtM
-	a/RhosKvB1rTMIdoZevw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=TUTnaKXFMm3XxdILmBUTBmTF2Rwj5Da+aH7H1un6NI0=; b=LVcseJYAw7oFGM
+	JOrRkHmGtR1ENW0sraKC6bUzzNXswN1JW3xa+GGh7rc41N6+/EMfBlMoTw3YMjqGQwYICvEQGj+6J
+	VNiNJz4N83lFl6/Uvl+W2DNNjFNrG99ppcXLrep96TQMiFulcel+bmr1yyAooAy8XlnEmAgppPj8v
+	WdkkJGFkHAEFo2bjToou4GHGjBrpNWE3wxe4wZ24gKIWF0e4A+O+uC2hfsn+cXl+qU5FaB/cOXAvY
+	jC2T86eAoLaLbhCRHbJY1Pge8KcULehzOcZOj5xYvv8/iYs9vQp2+bgenko/FV+L+uLvFbf98JBLV
+	Iu03M20IaJ9Bhnu814/g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iDAwo-0007o9-P0; Wed, 25 Sep 2019 17:19:26 +0000
-Received: from mail-pf1-x443.google.com ([2607:f8b0:4864:20::443])
+	id 1iDCiL-0001Do-6z; Wed, 25 Sep 2019 19:12:37 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iDAwl-0007m0-SE
- for linux-amlogic@lists.infradead.org; Wed, 25 Sep 2019 17:19:25 +0000
-Received: by mail-pf1-x443.google.com with SMTP id v4so3937017pff.6
- for <linux-amlogic@lists.infradead.org>; Wed, 25 Sep 2019 10:19:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=+knljEWncolAjBdvN8pwD54ICm12QL7Qb+IPqgAT4f0=;
- b=bbxDbhQofwpYighC+vqSmccT+hbYTcl7FQqzQvLjTYNSkLI2GaIBjXeMOLS787jdc1
- bh7H5rsyC2c9rTjRCsDs9z2u7ZHcWe+ZhNs6Q8t3Cxt4+XpbMyVJUiQkpCMtS5FQfaTa
- irgsfbATrOrQR2sjGR6FfTS2Mk+/AoSmsG30vmb5JJqY0cGXAvvMm9prF4SJHIknT9hw
- Wbi1Y3GGSoRlEiFlT7aLu5CiWg2Jk+8W7QWraCsTXWPZJPBl4rJsQHTleI7wUXMcy8bU
- /mpl9Zz+6lIaaQT9+zE4mciinoCfv584KZFa89yLV8kkAqErjz7lCkGcZUSEvueU7/Gg
- mrfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=+knljEWncolAjBdvN8pwD54ICm12QL7Qb+IPqgAT4f0=;
- b=PNY5K842mdiczPzWAcrCgEZoqmQqEviDwyTQmnuj7beH5eKjef1iB3Xzso9JdysGhu
- NWqp/JQk5WwqZBfJpwoHIV53dpcJtmy5cplHz+SDB/1LBP+9FE2cZn8auQFVeFrvd5oW
- Sp7cZ3CjRr6f8og7NQRbtAWioLEQL6beKc4C8X/uAwtFVYB8a+IJnAITo/qjglGm28dU
- on+EYe44e3n+eNQawLFeXO6x3Bcvv2T+Dj8twzyye6V8294RZG2YTtV7ajjFtz11o6Pb
- dWh9pnY58cCtwVqfxroa4f+M8maZZKavCsWPLJrfaDK94/buqmWLOXeMcTh+5G9kzb6c
- 2U2w==
-X-Gm-Message-State: APjAAAW+KQ0VIidOTts/Y85CngWCl6K58CGyvhIRe6FrLWSvMPuNOpzH
- +i2P8STytZ58FJf5wlKd8vesRA==
-X-Google-Smtp-Source: APXvYqwzKs1E6F68cWoJeYdEGuSGdo8tpvre4Ow58D5PCRc3vv3TApoe1mEVqajgJalyhMpBF58FbQ==
-X-Received: by 2002:a17:90a:9301:: with SMTP id
- p1mr7885667pjo.31.1569431962685; 
- Wed, 25 Sep 2019 10:19:22 -0700 (PDT)
-Received: from [172.20.32.102] ([12.206.46.62])
- by smtp.googlemail.com with ESMTPSA id r30sm4986457pfl.42.2019.09.25.10.19.17
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 25 Sep 2019 10:19:21 -0700 (PDT)
-Subject: Re: [PATCH 0/7] add support for clocksource/clockevent DT selection
-To: Claudiu Beznea <claudiu.beznea@microchip.com>, robh+dt@kernel.org,
- mark.rutland@arm.com, linux@armlinux.org.uk, nsekhar@ti.com,
- bgolaszewski@baylibre.com, monstr@monstr.eu, john@phrozen.org,
- ralf@linux-mips.org, paul.burton@mips.com, jhogan@kernel.org,
- lftan@altera.com, tglx@linutronix.de, vgupta@synopsys.com,
- marc.zyngier@arm.com, patrice.chotard@st.com, mcoquelin.stm32@gmail.com,
- alexandre.torgue@st.com, eric@anholt.net, wahrenst@gmx.net,
- f.fainelli@gmail.com, rjui@broadcom.com, sbranden@broadcom.com,
- bcm-kernel-feedback-list@broadcom.com, linus.walleij@linaro.org,
- shc_work@mail.ru, kgene@kernel.org, krzk@kernel.org,
- ysato@users.sourceforge.jp, liviu.dudau@arm.com, sudeep.holla@arm.com,
- lorenzo.pieralisi@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
- kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
- baohua@kernel.org, nicolas.ferre@microchip.com,
- alexandre.belloni@bootlin.com, ludovic.desroches@microchip.com,
- baruch@tkos.co.il, u.kleine-koenig@pengutronix.de, guoren@kernel.org,
- kaloz@openwrt.org, khalasa@piap.pl, ssantosh@kernel.org, vz@mleia.com,
- slemieux.tyco@gmail.com, khilman@baylibre.com, avifishman70@gmail.com,
- tmaimon77@gmail.com, tali.perry1@gmail.com, venture@google.com,
- yuenn@google.com, benjaminfair@google.com, afaerber@suse.de,
- manivannan.sadhasivam@linaro.org, narmstrong@baylibre.com,
- agross@kernel.org, palmer@sifive.com, aou@eecs.berkeley.edu,
- heiko@sntech.de, orsonzhai@gmail.com, baolin.wang@linaro.org,
- zhang.lyra@gmail.com, maxime.ripard@bootlin.com, wens@csie.org,
- thierry.reding@gmail.com, jonathanh@nvidia.com, linux@prisktech.co.nz,
- john.stultz@linaro.org, sboyd@kernel.org, matthias.bgg@gmail.com
-References: <1568123236-767-1-git-send-email-claudiu.beznea@microchip.com>
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=daniel.lezcano@linaro.org; prefer-encrypt=mutual; keydata=
- mQINBFv/yykBEADDdW8RZu7iZILSf3zxq5y8YdaeyZjI/MaqgnvG/c3WjFaunoTMspeusiFE
- sXvtg3ehTOoyD0oFjKkHaia1Zpa1m/gnNdT/WvTveLfGA1gH+yGes2Sr53Ht8hWYZFYMZc8V
- 2pbSKh8wepq4g8r5YI1XUy9YbcTdj5mVrTklyGWA49NOeJz2QbfytMT3DJmk40LqwK6CCSU0
- 9Ed8n0a+vevmQoRZJEd3Y1qXn2XHys0F6OHCC+VLENqNNZXdZE9E+b3FFW0lk49oLTzLRNIq
- 0wHeR1H54RffhLQAor2+4kSSu8mW5qB0n5Eb/zXJZZ/bRiXmT8kNg85UdYhvf03ZAsp3qxcr
- xMfMsC7m3+ADOtW90rNNLZnRvjhsYNrGIKH8Ub0UKXFXibHbafSuq7RqyRQzt01Ud8CAtq+w
- P9EftUysLtovGpLSpGDO5zQ++4ZGVygdYFr318aGDqCljKAKZ9hYgRimPBToDedho1S1uE6F
- 6YiBFnI3ry9+/KUnEP6L8Sfezwy7fp2JUNkUr41QF76nz43tl7oersrLxHzj2dYfWUAZWXva
- wW4IKF5sOPFMMgxoOJovSWqwh1b7hqI+nDlD3mmVMd20VyE9W7AgTIsvDxWUnMPvww5iExlY
- eIC0Wj9K4UqSYBOHcUPrVOKTcsBVPQA6SAMJlt82/v5l4J0pSQARAQABtCpEYW5pZWwgTGV6
- Y2FubyA8ZGFuaWVsLmxlemNhbm9AbGluYXJvLm9yZz6JAlcEEwEIAEECGwEFCwkIBwIGFQoJ
- CAsCBBYCAwECHgECF4ACGQEWIQQk1ibyU76eh+bOW/SP9LjScWdVJwUCXAkeagUJDRnjhwAK
- CRCP9LjScWdVJ+vYEACStDg7is2JdE7xz1PFu7jnrlOzoITfw05BurgJMqlvoiFYt9tEeUMl
- zdU2+r0cevsmepqSUVuUvXztN8HA/Ep2vccmWnCXzlE56X1AK7PRRdaQd1SK/eVsJVaKbQTr
- ii0wjbs6AU1uo0LdLINLjwwItnQ83/ttbf1LheyN8yknlch7jn6H6J2A/ORZECTfJbG4ecVr
- 7AEm4A/G5nyPO4BG7dMKtjQ+crl/pSSuxV+JTDuoEWUO+YOClg6azjv8Onm0cQ46x9JRtahw
- YmXdIXD6NsJHmMG9bKmVI0I7o5Q4XL52X6QxkeMi8+VhvqXXIkIZeizZe5XLTYUvFHLdexzX
- Xze0LwLpmMObFLifjziJQsLP2lWwOfg6ZiH8z8eQJFB8bYTSMqmfTulB61YO0mhd676q17Y7
- Z7u3md3CLH7rh61wU1g7FcLm9p5tXXWWaAud9Aa2kne2O3sirO0+JhsKbItz3d9yXuWgv6w3
- heOIF0b91JyrY6tjz42hvyjxtHywRr4cdAEQa2S7HeQkw48BQOG6PqQ9d3FYU34pt3WFJ19V
- A5qqAiEjqc4N0uPkC79W32yLGdyg0EEe8v0Uhs3CxM9euGg37kr5fujMm+akMtR1ENITo+UI
- fgsxdwjBD5lNb/UGodU4QvPipB/xx4zz7pS5+2jGimfLeoe7mgGJxrkBDQRb/8z6AQgAvSkg
- 5w7dVCSbpP6nXc+i8OBz59aq8kuL3YpxT9RXE/y45IFUVuSc2kuUj683rEEgyD7XCf4QKzOw
- +XgnJcKFQiACpYAowhF/XNkMPQFspPNM1ChnIL5KWJdTp0DhW+WBeCnyCQ2pzeCzQlS/qfs3
- dMLzzm9qCDrrDh/aEegMMZFO+reIgPZnInAcbHj3xUhz8p2dkExRMTnLry8XXkiMu9WpchHy
- XXWYxXbMnHkSRuT00lUfZAkYpMP7La2UudC/Uw9WqGuAQzTqhvE1kSQe0e11Uc+PqceLRHA2
- bq/wz0cGriUrcCrnkzRmzYLoGXQHqRuZazMZn2/pSIMZdDxLbwARAQABiQI2BBgBCAAgFiEE
- JNYm8lO+nofmzlv0j/S40nFnVScFAlv/zPoCGwwACgkQj/S40nFnVSf4OhAAhWJPjgUu6VfS
- mV53AUGIyqpOynPvSaMoGJzhNsDeNUDfV5dEZN8K4qjuz2CTNvGIyt4DE/IJbtasvi5dW4wW
- Fl85bF6xeLM0qpCaZtXAsU5gzp3uT7ut++nTPYW+CpfYIlIpyOIzVAmw7rZbfgsId2Lj7g1w
- QCjvGHw19mq85/wiEiZZNHeJQ3GuAr/uMoiaRBnf6wVcdpUTFMXlkE8/tYHPWbW0YKcKFwJ3
- uIsNxZUe6coNzYnL0d9GK2fkDoqKfKbFjNhW9TygfeL2Qhk949jMGQudFS3zlwvN9wwVaC0i
- KC/D303DiTnB0WFPT8CltMAZSbQ1WEWfwqxhY26di3k9pj+X3BfOmDL9GBlnRTSgwjqjqzpG
- VZsWouuTfXd9ZPPzvYdUBrlTKgojk1C8v4fhSqb+ard+bZcwNp8Tzl/EI9ygw6lYEATGCUYI
- Wco+fjehCgG1FWvWavMU+jLNs8/8uwj1u+BtRpWFj4ug/VaDDIuiApKPwl1Ge+zoC7TLMtyb
- c00W5/8EckjmNgLDIINEsOsidMH61ZOlwDKCxo2lbV+Ij078KHBIY76zuHlwonEQaHLCAdqm
- WiI95pYZNruAJEqZCpvXDdClmBVMZRDRePzSljCvoHxn7ArEt3F14mabn2RRq/hqB8IhC6ny
- xAEPQIZaxxginIFYEziOjR65AQ0EW//NCAEIALcJqSmQdkt04vIBD12dryF6WcVWYvVwhspt
- RlZbZ/NZ6nzarzEYPFcXaYOZCOCv+Xtm6hB8fh5XHd7Y8CWuZNDVp3ozuqwTkzQuux/aVdNb
- Fe4VNeKGN2FK1aNlguAXJNCDNRCpWgRHuU3rWwGUMgentJogARvxfex2/RV/5mzYG/N1DJKt
- F7g1zEcQD3JtK6WOwZXd+NDyke3tdG7vsNRFjMDkV4046bOOh1BKbWYu8nL3UtWBxhWKx3Pu
- 1VOBUVwL2MJKW6umk+WqUNgYc2bjelgcTSdz4A6ZhJxstUO4IUfjvYRjoqle+dQcx1u+mmCn
- 8EdKJlbAoR4NUFZy7WUAEQEAAYkDbAQYAQgAIBYhBCTWJvJTvp6H5s5b9I/0uNJxZ1UnBQJb
- /80IAhsCAUAJEI/0uNJxZ1UnwHQgBBkBCAAdFiEEGn3N4YVz0WNVyHskqDIjiipP6E8FAlv/
- zQgACgkQqDIjiipP6E+FuggAl6lkO7BhTkrRbFhrcjCm0bEoYWnCkQtX9YFvElQeA7MhxznO
- BY/r1q2Uf6Ifr3YGEkLnME/tQQzUwznydM94CtRJ8KDSa1CxOseEsKq6B38xJtjgYSxNdgQb
- EIfCzUHIGfk94AFKPdV6pqqSU5VpPUagF+JxiAkoEPOdFiQCULFNRLMsOtG7yp8uSyJRp6Tz
- cQ+0+1QyX1krcHBUlNlvfdmL9DM+umPtbS9F6oRph15mvKVYiPObI1z8ymHoc68ReWjhUuHc
- IDQs4w9rJVAyLypQ0p+ySDcTc+AmPP6PGUayIHYX63Q0KhJFgpr1wH0pHKpC78DPtX1a7HGM
- 7MqzQ4NbD/4oLKKwByrIp12wLpSe3gDQPxLpfGgsJs6BBuAGVdkrdfIx2e6ENnwDoF0Veeji
- BGrVmjVgLUWV9nUP92zpyByzd8HkRSPNZNlisU4gnz1tKhQl+j6G/l2lDYsqKeRG55TXbu9M
- LqJYccPJ85B0PXcy63fL9U5DTysmxKQ5RgaxcxIZCM528ULFQs3dfEx5euWTWnnh7pN30RLg
- a+0AjSGd886Bh0kT1Dznrite0dzYlTHlacbITZG84yRk/gS7DkYQdjL8zgFr/pxH5CbYJDk0
- tYUhisTESeesbvWSPO5uNqqy1dAFw+dqRcF5gXIh3NKX0gqiAA87NM7nL5ym/CNpJ7z7nRC8
- qePOXubgouxumi5RQs1+crBmCDa/AyJHKdG2mqCt9fx5EPbDpw6Zzx7hgURh4ikHoS7/tLjK
- iqWjuat8/HWc01yEd8rtkGuUcMqbCi1XhcAmkaOnX8FYscMRoyyMrWClRZEQRokqZIj79+PR
- adkDXtr4MeL8BaB7Ij2oyRVjXUwhFQNKi5Z5Rve0a3zvGkkqw8Mz20BOksjSWjAF6g9byukl
- CUVjC03PdMSufNLK06x5hPc/c4tFR4J9cLrV+XxdCX7r0zGos9SzTPGNuIk1LK++S3EJhLFj
- 4eoWtNhMWc1uiTf9ENza0ntqH9XBWEQ6IA1gubCniGG+Xg==
-Message-ID: <c3a68a08-d134-cd28-c8af-f757628e07f1@linaro.org>
-Date: Wed, 25 Sep 2019 19:19:16 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ id 1iDCiI-0001Ci-Kz; Wed, 25 Sep 2019 19:12:36 +0000
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net
+ [71.197.186.152])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id A317221D79;
+ Wed, 25 Sep 2019 19:12:33 +0000 (UTC)
+From: Kevin Hilman <khilman@baylibre.com>
+To: linux-amlogic@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH 0/2] soc: amlogic: ee-pwrc: cleanup init state
+Date: Wed, 25 Sep 2019 12:12:31 -0700
+Message-Id: <20190925191233.22253-1-khilman@baylibre.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-In-Reply-To: <1568123236-767-1-git-send-email-claudiu.beznea@microchip.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190925_101923_945983_5D5623F8 
-X-CRM114-Status: GOOD (  11.37  )
+X-CRM114-CacheID: sfid-20190925_121234_703985_E285ADD6 
+X-CRM114-Status: UNSURE (   6.00  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -185,31 +65,29 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: uclinux-h8-devel@lists.sourceforge.jp, devicetree@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, openbmc@lists.ozlabs.org, linux-oxnas@groups.io,
- linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
- linux-unisoc@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-tegra@vger.kernel.org, nios2-dev@lists.rocketboards.org,
- linux-riscv@lists.infradead.org, linux-snps-arc@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-CkhpIENsYXVkaXUsCgpPbiAxMC8wOS8yMDE5IDE1OjQ3LCBDbGF1ZGl1IEJlem5lYSB3cm90ZToK
-PiBIaSwKPiAKPiBUaGlzIHNlcmllcyBhZGRzIHN1cHBvcnQgdG8gcGVybWl0IHRoZSBzZWxlY3Rp
-b24gb2YgY2xvY2tzb3VyY2UvY2xvY2tldmVudAo+IHZpYSBEVC4KClRoYW5rcyBmb3IgdGhlIHBy
-b3Bvc2FsIGFuZCB0YWtpbmcgY2FyZSBvZiBtYWtpbmcgc29tZSBwcm9ncmVzcyBvbiB0aGlzLgoK
-SSBqdXN0IHdhbnRlZCB0byBsZXQgeW91IGtub3cgSSd2ZSBiZWVuIHRyYXZlbGluZyBidXQgdGhl
-IHNlcmllcyBpcyBpbgpteSBwaXBlIGFuZCBJIGRpZCBub3QgZm9yZ2V0IGl0LiBJJ2xsIGNvbW1l
-bnQgaXQgbmV4dCB3ZWVrLgoKIC0tIERhbmllbAoKCi0tIAogPGh0dHA6Ly93d3cubGluYXJvLm9y
-Zy8+IExpbmFyby5vcmcg4pSCIE9wZW4gc291cmNlIHNvZnR3YXJlIGZvciBBUk0gU29DcwoKRm9s
-bG93IExpbmFybzogIDxodHRwOi8vd3d3LmZhY2Vib29rLmNvbS9wYWdlcy9MaW5hcm8+IEZhY2Vi
-b29rIHwKPGh0dHA6Ly90d2l0dGVyLmNvbS8jIS9saW5hcm9vcmc+IFR3aXR0ZXIgfAo8aHR0cDov
-L3d3dy5saW5hcm8ub3JnL2xpbmFyby1ibG9nLz4gQmxvZwoKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0Cmxp
-bnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+Cleanup the PM domain init state and ensure that the driver state
+matches the HW state for all domains.
+
+Tested on meson-sm1-sei610.
+
+Kevin Hilman (2):
+  soc: amlogic: ee-pwrc: rename get_power
+  soc: amlogic: ee-pwrc: ensure driver state maches HW state
+
+ drivers/soc/amlogic/meson-ee-pwrc.c | 58 ++++++++++++-----------------
+ 1 file changed, 23 insertions(+), 35 deletions(-)
+
+-- 
+2.22.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
