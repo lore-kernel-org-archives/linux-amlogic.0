@@ -2,83 +2,92 @@ Return-Path: <SRS0=DMeG=XV=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.6 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 129B7C4360C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Sep 2019 15:39:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 95B60C4360C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Sep 2019 16:24:03 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D8EC821D56
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Sep 2019 15:39:03 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6916721D56
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Sep 2019 16:24:03 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nPInK+Z5";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ddZiXkOG"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D8EC821D56
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AlM5MUzO";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="AN9tMr/x"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6916721D56
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oPe9a52PjjZh2yLKURpqtA1Ek65E+Qa0kkozKUTkgd4=; b=nPInK+Z5fCYZwN
-	xN05lrb8edkR4CNHtsHrb4cnJasCwW76XCmGsBOqfZ602Ph/HC1sAeNWvNxsLMm+kBKNB3sWapmWp
-	oUtNPz0LvD8UNdvGa5evLzCcW8KqHMSxiovLZE4kf1gXMRKFJiNqp+uJ5a0Tkf3l5Kg3HzTWF5JmE
-	sUdxaFJ6Bgwib00am4+SvVJYcEuBf3lDiiYsPals1FaZ3uvjgC+0UNiXeiEJ7DPweU4jswEZhF90J
-	QcYslzsVQ2e4gUfFrGYOc6TAITJ/mmQR7cRQbHpownVpISsAGwjyis8dVHyGd7KMnl0OpPlIRtSF5
-	67RHgwyeVp/zkS7T6tSg==;
+	List-Owner; bh=GczXRVsqNcO5O1Boq9bfdNBnJZxc+dlRjKfq31IHcyk=; b=AlM5MUzOTQxIJu
+	svaCg/pB6mWtFVgftqWr2bUUW4+kD4QJX93YIq9Oxmw38Jv//cvZXd3FYAr3bjmVPaydvPnKK1s6i
+	Y2UBJA/zk/Zj9WlCd8tUX9Q2MrrC5EbDkz28mC95X3ctS3CvmVF6qYMhfu4suNAeW2mExHkoVCKfK
+	/ppGgp1C7iagrMiY+vB47KhVMkfzGg4VFufOVcLhhNiiRiesKGkefcZpE3u6x1wFckAhfG6x/SIQO
+	05eq4tg5VwntD3v/y87Swiee5CC2xhs+fNVXeWh/1FKeUyvHtKv3uYMrWQVIMf47KUe9CJ7VbxkvH
+	lyiwDROugk2IIHvsIccw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iDVr6-0001CG-Ag; Thu, 26 Sep 2019 15:38:56 +0000
-Received: from mail-io1-xd44.google.com ([2607:f8b0:4864:20::d44])
+	id 1iDWYf-0007i1-1x; Thu, 26 Sep 2019 16:23:57 +0000
+Received: from mail-pf1-x441.google.com ([2607:f8b0:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iDVqu-00011K-2N; Thu, 26 Sep 2019 15:38:45 +0000
-Received: by mail-io1-xd44.google.com with SMTP id b136so7762058iof.3;
- Thu, 26 Sep 2019 08:38:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Li57q73MX1RVx23YfgpvWF5w0x4ow2nEwbE6KvqKXw4=;
- b=ddZiXkOGcNyt3yIpQx4T3/Gj0lMxo5fD6jC8orTuZHFI28MUf8nRRhWDRT3KHHhPSL
- 2QkgJq3B3CkBEs2qVqnO2XzZ/b3xh0C5DItoQmeyhM7ZssdZUem0rhRUJRkkwSEPuqhb
- TsfJnifEzBgUSl6rNTR6Y/I2+QwUfSAfrIXzYsLw6zlKsb4ORWAJKTPEGEaz6/z2Rrjj
- grlrAU5A1pz8Td00+qZCozRZVZZTVsLUU1RticRT0EcsJ+s0Plpjbpu5nuzCJcIz9FmW
- isHVVt8SUg33ne8/OYfOzsug+Y6qdnVxsb6lh7qYLCuzfIGgUWWjX5c1x0HLg9PR8gQ9
- I1MQ==
+ id 1iDWYS-0007Yo-PN
+ for linux-amlogic@lists.infradead.org; Thu, 26 Sep 2019 16:23:46 +0000
+Received: by mail-pf1-x441.google.com with SMTP id h195so2129997pfe.5
+ for <linux-amlogic@lists.infradead.org>; Thu, 26 Sep 2019 09:23:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=5KJXkwykZKMxFzMHYA7DO1LT2mHdYgxlgFlqTK43aSg=;
+ b=AN9tMr/xQI6ixjCkoOmGxFdfQQtzy7Olh9LVYyYm42aA6ePb3swjBmTLHJbDhDG9c0
+ m5sPVQYWjy4J96xClewSCc6+peXtW96QKUk3yBLYrK31fpIxgabsfI9rRa5cZzLh4cNr
+ aVBYR8He61kDNtVrQWRiVcdpVmJMik1lgj+t6QFUnD2C7MbYsC3LJpfhOKW0vF7+AWDr
+ ULvseh5sJ3UZ15ccyuqK1N3Vbyz/NxUVWqq8BGpNiRhLS4Ph7LFD26WxlZp2MLcyPk5w
+ n5tdImLhl1Jqs1CiX409ZOVDPm2M7503awCd/tQopa4Bs5821cSrOpImfVJoT6cbGuqI
+ nKHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=Li57q73MX1RVx23YfgpvWF5w0x4ow2nEwbE6KvqKXw4=;
- b=dzDsidgm+U4jOTHgvHlMmYqNVnkz/2jwZKSmfbN+v5Jgylp/oQ4o9LIjwKJN3HSeM6
- ecY+3uzR/8dN3AG3hoItsATgQ08wphDm2ydFF2mKp2wlsFHs5KizpCfGvSes35tOiTRb
- O+B4Fv2GeLSNr6wEMep1/XN+Oh7NcNwt4S1Fro1TrbLTkmF7hvzUYUJb7UXdra+0BL8C
- A3KCNsL3FOmzCT9T+PpD24H86ff6pCIYrZbg8YcS1ABaXQi6ARCukZMT8sP7Askh2J48
- 2g6i/vPe1mbt2PFx2fcQBAPUnTAx6I/AXaMglIseklo2KTZrgyQozG59ze3Wr72n8MhV
- YZJA==
-X-Gm-Message-State: APjAAAWmhGnNRLUnjqMkIqTfcWXXaVCu00OZ8e2JqcyzcqeaI+ws/abA
- 0lF3fTATkLmIGMOs+KODHzIlrjuXtU0wlqhvNng=
-X-Google-Smtp-Source: APXvYqz8oVdb4PXIBRw7lIbY55HKL5mDby64gFcwc20gU6l9i2bzFhmg5ZIz7Rt3qIXsTSJXHdzLp4EDv7kKxqLjQbg=
-X-Received: by 2002:a02:e47:: with SMTP id 68mr4042317jae.126.1569512323132;
- Thu, 26 Sep 2019 08:38:43 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=5KJXkwykZKMxFzMHYA7DO1LT2mHdYgxlgFlqTK43aSg=;
+ b=KPwkpup+kOdoIEv3H1nWzRgbKgISDTFonheSLclWEoM5eH5aUnYdyd215vzPTzWpxB
+ S0rcOYGBNw2jUFGZQyW/b8yGy5gRnxhqUO/0q1dNBL3wbnc/nGJ94zmMBhxxvMMg++wL
+ fVQ+DEW0jCtqR1I0CERPZS58r1+lK2atTjT7fm6nZ6V2Ez1y8H94hpUyjkP3K3mNyVKU
+ 5F0kuYCJaglZFcHKtSCbbLF9Z4B+o6JlS1V0MTYqXaIcESSYwI1eEHr6lFT77P5UQPvE
+ 5Db8PZIMg0fBWzZm6k4hvkiNVhPHJQu/Im18G1heVQSmKlI6ZTEd1WHBj7+EUyuK7c+J
+ vIxg==
+X-Gm-Message-State: APjAAAVH6H3KPcxKU25k3l24aLMeJjWkQ/sJ6eUi2whufvEduOOP+ov5
+ gPPVm9AqfW7C1g13gO7Caa0ciBuQcDgnMw==
+X-Google-Smtp-Source: APXvYqyXRYUH9jhldr03tJ4HTnP6NcLAFrGaRJdGlX81M87HTImuFCaOBIrqy502qWA3AiMe4YNO+g==
+X-Received: by 2002:a17:90a:8c15:: with SMTP id
+ a21mr4308094pjo.99.1569515023652; 
+ Thu, 26 Sep 2019 09:23:43 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
+ [71.197.186.152])
+ by smtp.gmail.com with ESMTPSA id y144sm3041925pfb.188.2019.09.26.09.23.42
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Thu, 26 Sep 2019 09:23:42 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Jianxin Pan <jianxin.pan@amlogic.com>, linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 2/3] soc: amlogic: Add support for Secure power domains
+ controller
+In-Reply-To: <3859c748-01f0-4dbd-05d6-20fff31edf11@amlogic.com>
+References: <1568895064-4116-1-git-send-email-jianxin.pan@amlogic.com>
+ <1568895064-4116-3-git-send-email-jianxin.pan@amlogic.com>
+ <7hh850t2wy.fsf@baylibre.com>
+ <3859c748-01f0-4dbd-05d6-20fff31edf11@amlogic.com>
+Date: Thu, 26 Sep 2019 09:23:42 -0700
+Message-ID: <7ha7arrppt.fsf@baylibre.com>
 MIME-Version: 1.0
-References: <20190906122044.372-1-linux.amoon@gmail.com>
-In-Reply-To: <20190906122044.372-1-linux.amoon@gmail.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Thu, 26 Sep 2019 21:08:31 +0530
-Message-ID: <CANAwSgT-RDicoTxe1574_0KhCJ0=JpRGXydjGPdedJ+sULRfpA@mail.gmail.com>
-Subject: Re: [PATCHv3-next 0/3] Odroid c2 missing regulator linking
-To: Rob Herring <robh+dt@kernel.org>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jerome Brunet <jbrunet@baylibre.com>, 
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190926_083844_139721_5C1B5FDC 
-X-CRM114-Status: GOOD (  10.24  )
+X-CRM114-CacheID: sfid-20190926_092344_857196_95D91F68 
+X-CRM114-Status: GOOD (  21.82  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,67 +99,160 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree <devicetree@vger.kernel.org>,
- Linux Kernel <linux-kernel@vger.kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- linux-amlogic@lists.infradead.org
+Cc: devicetree@vger.kernel.org, Hanjie Lin <hanjie.lin@amlogic.com>,
+ Victor Wan <victor.wan@amlogic.com>, linux-pm@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, linux-kernel@vger.kernel.org,
+ Zhiqiang Liang <zhiqiang.liang@amlogic.com>, Rob Herring <robh+dt@kernel.org>,
+ Jian Hu <jian.hu@amlogic.com>, Xingyu Chen <xingyu.chen@amlogic.com>,
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Kevin,
+Jianxin Pan <jianxin.pan@amlogic.com> writes:
 
-On Fri, 6 Sep 2019 at 17:50, Anand Moon <linux.amoon@gmail.com> wrote:
+> Hi Kevin,
 >
-> Below small changes help re-configure or fix missing inter linking
-> of regulator node.
+> Thanks for your review. Please see my comments below.
 >
-> Re-based on linux-next-20190904
-> Changes from previous patch's series.
-> Build using Cross Compiler.
 >
-> Added missing Reviewed-by Neil's and Martin.
-> Added few suggestion from martin for rename of node.
+> On 2019/9/26 6:41, Kevin Hilman wrote:
+>> Hi Jianxin,
+>> 
+>> Jianxin Pan <jianxin.pan@amlogic.com> writes:
+>> 
+>>> Add support for the Amlogic Secure Power controller. In A1/C1 series, power
+>>> control registers are in secure domain, and should be accessed by smc.
+>>>
+>>> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+>>> Signed-off-by: Zhiqiang Liang <zhiqiang.liang@amlogic.com>
+>> 
+>> Thanks for the new power domain driver.
+>> 
+>>> ---
+>>>  drivers/soc/amlogic/Kconfig             |  13 +++
+>>>  drivers/soc/amlogic/Makefile            |   1 +
+>>>  drivers/soc/amlogic/meson-secure-pwrc.c | 182 ++++++++++++++++++++++++++++++++
+>>>  3 files changed, 196 insertions(+)
+>>>  create mode 100644 drivers/soc/amlogic/meson-secure-pwrc.c
+>>>
+>>> diff --git a/drivers/soc/amlogic/Kconfig b/drivers/soc/amlogic/Kconfig
+>>> index bc2c912..6cb06e7 100644
+>>> --- a/drivers/soc/amlogic/Kconfig
+>>> +++ b/drivers/soc/amlogic/Kconfig
+>>> @@ -48,6 +48,19 @@ config MESON_EE_PM_DOMAINS
+>>>  	  Say yes to expose Amlogic Meson Everything-Else Power Domains as
+>>>  	  Generic Power Domains.
+>>>  
+>>> +config MESON_SECURE_PM_DOMAINS
+>>> +	bool "Amlogic Meson Secure Power Domains driver"
+>>> +	depends on ARCH_MESON || COMPILE_TEST
+>>> +	depends on PM && OF
+>>> +	depends on HAVE_ARM_SMCCC
+>>> +	default ARCH_MESON
+>>> +	select PM_GENERIC_DOMAINS
+>>> +	select PM_GENERIC_DOMAINS_OF
+>>> +	help
+>>> +	  Support for the power controller on Amlogic A1/C1 series.
+>>> +	  Say yes to expose Amlogic Meson Secure Power Domains as Generic
+>>> +	  Power Domains.
+>>> +
+>>>  config MESON_MX_SOCINFO
+>>>  	bool "Amlogic Meson MX SoC Information driver"
+>>>  	depends on ARCH_MESON || COMPILE_TEST
+>>> diff --git a/drivers/soc/amlogic/Makefile b/drivers/soc/amlogic/Makefile
+>>> index de79d044..7b8c5d3 100644
+>>> --- a/drivers/soc/amlogic/Makefile
+>>> +++ b/drivers/soc/amlogic/Makefile
+>>> @@ -5,3 +5,4 @@ obj-$(CONFIG_MESON_GX_SOCINFO) += meson-gx-socinfo.o
+>>>  obj-$(CONFIG_MESON_GX_PM_DOMAINS) += meson-gx-pwrc-vpu.o
+>>>  obj-$(CONFIG_MESON_MX_SOCINFO) += meson-mx-socinfo.o
+>>>  obj-$(CONFIG_MESON_EE_PM_DOMAINS) += meson-ee-pwrc.o
+>>> +obj-$(CONFIG_MESON_SECURE_PM_DOMAINS) += meson-secure-pwrc.o
+>>> diff --git a/drivers/soc/amlogic/meson-secure-pwrc.c b/drivers/soc/amlogic/meson-secure-pwrc.c
+>>> new file mode 100644
+>>> index 00000000..00c7232
+>>> --- /dev/null
+>>> +++ b/drivers/soc/amlogic/meson-secure-pwrc.c
+>>> @@ -0,0 +1,182 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> [...]
+>>> +
+>>> +static bool pwrc_secure_get_power(struct meson_secure_pwrc_domain *pwrc_domain)
+>>> +{
+>>> +	struct arm_smccc_res res;
+>>> +
+>>> +	arm_smccc_smc(SMC_PWRC_GET, pwrc_domain->index, 0,
+>>> +		      0, 0, 0, 0, 0, &res);
+>>> +
+>>> +	return res.a0 & 0x1;
+>> 
+>> Please use a #define with a readable name for this mask.
+>> The return type of this smc is bool. I will remove 0x1 mask in next version. 
 >
-> Dependencies:
-> Changes based top on my previous usb fix series patch's.
->
-> [0] https://patchwork.kernel.org/patch/11113095/
-> [1] https://patchwork.kernel.org/patch/11113099/
-> [3] https://patchwork.kernel.org/patch/11113103/
->
-> Hope this series get picked up for 5.4-rc1, finger crossed.
->
-> Changes for previous changes.
-> Fix some typo.
-> Updated few patches as per Martin's suggestion.
->
-> I will try to commit less mistake in the future.
->
-> Best Regards
-> -Anand
->
+> Another question about smc:
+> In this driver, no share memory is needed, and I use arm_smccc_smc() directly.
+> Should I add secure-monitor = <&sm> in dtb and use meson_sm_call() from sm driver instead? 
 
-Gentle ping for this series.
+Yes, that would be preferred.
 
-Best Regards
--Anand
+>>> +}
+>> 
+>> What does the return value for this function mean?  Does true mean
+>> "powered off" or "powered on">
+> The return vaule for SMC_PWRC_GET :
+> 0 -> power on
+> 1 -> power off> See the rename I just did on the ee-pwrc driver:
+>> https://lore.kernel.org/linux-amlogic/20190925213528.21515-2-khilman@kernel.org/
+>> I will follow and rename to _is_off() in the next verson.
+>>> +static int meson_secure_pwrc_off(struct generic_pm_domain *domain)
+>>> +{
+>>> +	struct arm_smccc_res res;
+>>> +	struct meson_secure_pwrc_domain *pwrc_domain =
+> [...]
+>>> +
+>>> +#define SEC_PD(__name, __flag)			\
+>>> +{						\
+>>> +	.name = #__name,			\
+>>> +	.index = PWRC_##__name##_ID,		\
+>>> +	.get_power = pwrc_secure_get_power,	\
+>>> +	.flags = __flag,			\
+>>> +}
+>>> +
+>>> +static struct meson_secure_pwrc_domain_desc a1_pwrc_domains[] = {
+>>> +	SEC_PD(DSPA,	0),
+>>> +	SEC_PD(DSPB,	0),
+>>> +	SEC_PD(UART,	GENPD_FLAG_ALWAYS_ON),
+>> 
+>> This flag should only be used for domains where there are no linux
+>> drivers.
+>> 
+>> Rather than using this flag, you need to add a 'power-domain' property
+>> to the uart driver in DT, and then update the meson_uart driver to use
+>> the runtime PM API so that the domain is enabled whenever the UART is in
+>> use.
+>
+> PM_UART Power domain is shared by uart, msr, jtag and cec.
+> Uart should keep working in BL31, after kernel suspend and before kernel resume.
 
-> Anand Moon (3):
->   arm64: dts: meson: odroid-c2: Add missing regulator linked to P5V0
->     regulator
->   arm64: dts: meson: odroid-c2: Add missing regulator linked to
->     VDDIO_AO3V3 regulator
->   arm64: dts: meson: odroid-c2: Add missing regulator linked to HDMI
->     supply
+OK.
+
+>> 
+>>> +	SEC_PD(DMC,	GENPD_FLAG_ALWAYS_ON),
+>> 
+>> Please explain the need for ALWAYS_ON.
+>> 
+> PM_DMC is used for DDR PHY ana/dig and DMC. 
+> There is no linux drver for them, and it should be always on. 
 >
->  .../boot/dts/amlogic/meson-gxbb-odroidc2.dts  | 53 +++++++++++++++++--
->  1 file changed, 50 insertions(+), 3 deletions(-)
->
-> --
-> 2.23.0
->
+> I will add comments for all these always on domains.
+
+OK, thank you.
+
+
+Kevin
 
 _______________________________________________
 linux-amlogic mailing list
