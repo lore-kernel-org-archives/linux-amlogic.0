@@ -2,183 +2,146 @@ Return-Path: <SRS0=DMeG=XV=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 86BB4C432C2
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Sep 2019 08:44:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A1B3C432C2
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Sep 2019 09:08:01 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 571AC222BF
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Sep 2019 08:44:52 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CF9DD222C3
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Sep 2019 09:08:00 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GBceeulw";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=microchiptechnology.onmicrosoft.com header.i=@microchiptechnology.onmicrosoft.com header.b="sRxHJIvV"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 571AC222BF
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=microchip.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="g2EZnoIJ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="gnwJafIB"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CF9DD222C3
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
-	References:Message-ID:Date:Subject:To:From:Reply-To:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Z62xVznd+XGDoDwShY3mg5gVW3XzJ5dyLIgaAicZzyU=; b=GBceeulw1mmaWO
-	CwwBj/dB6hWH+TeFK6G7RI0TWCY6v3irCxfU1CZGtm0nPPMxdS/OHVdRk1d8odAUgiNfH2HP3d2/l
-	k+cGPrO4Vbq2act+MjQg6pbMWrPMXSL4VqB3vzgN9hsz6cCGWBUWZZJjPtt7WHlpjIvB1yX8WgYTF
-	tq7tBqYYIkze4/pBxPiCqVClS8efLZhmqUayEYhqyMOTEOTF1U/7QyJv7w5rvS19fk+onzyJ+aOPp
-	YOPd954M6w5JdqV7b6XfrcEbC8WS7p6AFAUNyEZTEk02rRMZmOzr/cP+glLF/g1gIJHW5dEaqZH9H
-	wYkl7wGhYXGLdgXJ472w==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=aWW2Jvjk12O7FFxfLIfNnPQ7vYFoKfjqw1a1T8pNb8s=; b=g2EZnoIJtKPEV1
+	H3un+103SewuqOaeWLVKplYJxGS8DGuXWYwRP6pfcugL0CNp2Hg2iDl5ujvCN/cHczfQ8cOx2DEm7
+	+n6fqVC9FbYiejtv/THh+ttaf6Z3apBcDVaZW7q8EIFbv0xdBKAK2C/SVi3sCovtReXBTTWvku0pn
+	//AHoffaVbEvbZxxe/VaK9qfF5VZajfOWwEXhmpfpwncQSiDmGwq6QGnByhu62xbZNXAeqWvluXx0
+	DDeZCiKtATdI+O5XMNB6ffaMV+mhMO7rBAq1B50PfVVBfpijIj75H07AIFRHFk71ciUpaQ4mGaM7T
+	jtEkdlttxbAbGduVSi1w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iDPO8-00089N-Kk; Thu, 26 Sep 2019 08:44:36 +0000
-Received: from esa3.microchip.iphmx.com ([68.232.153.233])
+	id 1iDPkK-0008W2-2s; Thu, 26 Sep 2019 09:07:33 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iDPN8-0007ko-Sy; Thu, 26 Sep 2019 08:43:38 +0000
-Received-SPF: Pass (esa3.microchip.iphmx.com: domain of
- Claudiu.Beznea@microchip.com designates 198.175.253.82 as
- permitted sender) identity=mailfrom;
- client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
- envelope-from="Claudiu.Beznea@microchip.com";
- x-sender="Claudiu.Beznea@microchip.com";
- x-conformance=spf_only; x-record-type="v=spf1";
- x-record-text="v=spf1 mx a:ushub1.microchip.com
- a:smtpout.microchip.com a:mx1.microchip.iphmx.com
- a:mx2.microchip.iphmx.com include:servers.mcsv.net
- include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa3.microchip.iphmx.com: no sender
- authenticity information available from domain of
- postmaster@email.microchip.com) identity=helo;
- client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
- envelope-from="Claudiu.Beznea@microchip.com";
- x-sender="postmaster@email.microchip.com"; x-conformance=spf_only
-Authentication-Results: esa3.microchip.iphmx.com;
- spf=Pass smtp.mailfrom=Claudiu.Beznea@microchip.com;
- spf=None smtp.helo=postmaster@email.microchip.com;
- dkim=pass (signature verified) header.i=@microchiptechnology.onmicrosoft.com;
- dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: bGPvAKkYtCCIgj6XsufIyAqUrQrFHrlqJehWu8yrdxg4XiZIE8HY3m74zYA4pBIl2dM7Pq+ZiJ
- LMvmeWr6vZnbyNa1dvP5oH0bFOGDI+E7wEt2XDFgNrRn/F2jWKLV/Sui2cTi/x8ankFs/PIURZ
- TCg8MTFdqbtLfps3qWHL/iIhNj31YdPJxbUvZNLKnOEScDu8lsPFT/Lo48djBzoPV70jWJWvau
- vMusOB4QRQ1oBRtYgjzGwcUplzmz3fjJ4kwuop2bnbMgjUTrRgFlSlR/yGLz4fFsqwnPjLBbN+
- /Jg=
-X-IronPort-AV: E=Sophos;i="5.64,551,1559545200"; d="scan'208";a="50637679"
-Received: from smtpout.microchip.com (HELO email.microchip.com)
- ([198.175.253.82])
- by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 26 Sep 2019 01:43:21 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 26 Sep 2019 01:43:00 -0700
-Received: from NAM03-DM3-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, 
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5 via Frontend
- Transport; Thu, 26 Sep 2019 01:43:00 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LAKd7nZdlrszjrScV/mDSpWwlBQpz4OW0Dq5CkoWjMuANbBM/5HX/mvCJ1BNkwGaou60fK1luDG1SuErBCcdivcJl6U97E+tf1icsRtvuQ/c+Vr2D92oKwwatg0KqviXN2zYMA798CDsrMljh0bRj+9j1SbWoeVILlyHFAkEqx84mpvhrLkUSFLHJt4KtSrf/z7OA4pgb9SOD2xLoG0W4nM2nMGaKlqL1hWyj4ap6F9Q7eD/Dwx55GTPy9NYABjKlRNGK1h+vhv9d6jaUomv8NBO5QBvowkgirRyJRDu6PpaLkQDcirfByS9IQ6JXG+x/2GcEY46GPeFLsYudjLlxw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6EWbUDqnvgUzzXQW00IRG+60rKbfAvKMDdZxX46efN0=;
- b=PMuHzwlKZ/fYZX5ADVZQMHPliV3OCxDJetV6TPNVzFVpB9wpLqxsMO4dGQNYuW20PuyJ1gi3lxhJY2T7t0XOtb60I9UIvRErFWu0AakkepzRnilU+wMxIEn7YSnUWm315jeiJ1n9jl3CaJ9iIFD9QOFvG/zkfG7//OozLJdk5UxfBrXWpS68TI21N8kiWIIiE7jSToEPXJyxoMNzYcFomFLL+dxvwKQ4CAd/GIYbuKUGFHRHwLgZbGNKfW9ygkwPtRQFbsZIhzc8QabpS3eFPJQig+U2BqU+r4p3K44MosG5VXOrEtN0H1s7i5FFbpsZO5ToS4D6o1jN0neJDEjLcg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+ id 1iDPio-0008DC-I9
+ for linux-amlogic@lists.infradead.org; Thu, 26 Sep 2019 09:06:10 +0000
+Received: by mail-wm1-x341.google.com with SMTP id 7so1787662wme.1
+ for <linux-amlogic@lists.infradead.org>; Thu, 26 Sep 2019 02:05:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6EWbUDqnvgUzzXQW00IRG+60rKbfAvKMDdZxX46efN0=;
- b=sRxHJIvVGtZ8/GEHxWp33aMPe7Q4GBN7VmF5wkFAFLTlyjSyrWQenBoVymB9ziCE1mLc20JUtKFtda5cfZmJD77buGVJQ/kmAe0jvenOIQF+StDHIvxBJI3+CHQiN/0f+r5T2RN8LBa8K6t8Z5LFY6BQYYDheLYNVw6KDBXpydM=
-Received: from MWHPR11MB1549.namprd11.prod.outlook.com (10.172.54.17) by
- MWHPR11MB1901.namprd11.prod.outlook.com (10.175.54.12) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2284.26; Thu, 26 Sep 2019 08:42:58 +0000
-Received: from MWHPR11MB1549.namprd11.prod.outlook.com
- ([fe80::1c73:1329:a07:ab9a]) by MWHPR11MB1549.namprd11.prod.outlook.com
- ([fe80::1c73:1329:a07:ab9a%12]) with mapi id 15.20.2305.017; Thu, 26 Sep 2019
- 08:42:57 +0000
-From: <Claudiu.Beznea@microchip.com>
-To: <daniel.lezcano@linaro.org>, <robh+dt@kernel.org>, <mark.rutland@arm.com>, 
- <linux@armlinux.org.uk>, <nsekhar@ti.com>, <bgolaszewski@baylibre.com>,
- <monstr@monstr.eu>, <john@phrozen.org>, <ralf@linux-mips.org>,
- <paul.burton@mips.com>, <jhogan@kernel.org>, <lftan@altera.com>,
- <tglx@linutronix.de>, <vgupta@synopsys.com>, <marc.zyngier@arm.com>,
- <patrice.chotard@st.com>, <mcoquelin.stm32@gmail.com>,
- <alexandre.torgue@st.com>, <eric@anholt.net>, <wahrenst@gmx.net>,
- <f.fainelli@gmail.com>, <rjui@broadcom.com>, <sbranden@broadcom.com>,
- <bcm-kernel-feedback-list@broadcom.com>, <linus.walleij@linaro.org>,
- <shc_work@mail.ru>, <kgene@kernel.org>, <krzk@kernel.org>,
- <ysato@users.sourceforge.jp>, <liviu.dudau@arm.com>, <sudeep.holla@arm.com>,
- <lorenzo.pieralisi@arm.com>, <shawnguo@kernel.org>, <s.hauer@pengutronix.de>, 
- <kernel@pengutronix.de>, <festevam@gmail.com>, <linux-imx@nxp.com>,
- <baohua@kernel.org>, <Nicolas.Ferre@microchip.com>,
- <alexandre.belloni@bootlin.com>, <Ludovic.Desroches@microchip.com>,
- <baruch@tkos.co.il>, <u.kleine-koenig@pengutronix.de>, <guoren@kernel.org>,
- <kaloz@openwrt.org>, <khalasa@piap.pl>, <ssantosh@kernel.org>,
- <vz@mleia.com>, <slemieux.tyco@gmail.com>, <khilman@baylibre.com>,
- <avifishman70@gmail.com>, <tmaimon77@gmail.com>, <tali.perry1@gmail.com>,
- <venture@google.com>, <yuenn@google.com>, <benjaminfair@google.com>,
- <afaerber@suse.de>, <manivannan.sadhasivam@linaro.org>,
- <narmstrong@baylibre.com>, <agross@kernel.org>, <palmer@sifive.com>,
- <aou@eecs.berkeley.edu>, <heiko@sntech.de>, <orsonzhai@gmail.com>,
- <baolin.wang@linaro.org>, <zhang.lyra@gmail.com>,
- <maxime.ripard@bootlin.com>, <wens@csie.org>, <thierry.reding@gmail.com>,
- <jonathanh@nvidia.com>, <linux@prisktech.co.nz>, <john.stultz@linaro.org>,
- <sboyd@kernel.org>, <matthias.bgg@gmail.com>
-Subject: Re: [PATCH 0/7] add support for clocksource/clockevent DT selection
-Thread-Topic: [PATCH 0/7] add support for clocksource/clockevent DT selection
-Thread-Index: AQHVc8VbrLXkUp4vH02J/Sk0g3X+4Kc9pRwA
-Date: Thu, 26 Sep 2019 08:42:57 +0000
-Message-ID: <72edc5fd-df05-cba5-5aa7-39da1709415b@microchip.com>
-References: <1568123236-767-1-git-send-email-claudiu.beznea@microchip.com>
- <c3a68a08-d134-cd28-c8af-f757628e07f1@linaro.org>
-In-Reply-To: <c3a68a08-d134-cd28-c8af-f757628e07f1@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: MR2P264CA0113.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:500:33::29) To MWHPR11MB1549.namprd11.prod.outlook.com
- (2603:10b6:301:c::17)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tagtoolbar-keys: D20190926114228283
-x-originating-ip: [94.177.32.156]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: bc557067-1077-42be-6717-08d7425d8720
-x-microsoft-antispam: BCL:0; PCL:0;
- RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600167)(711020)(4605104)(1401327)(2017052603328)(7193020);
- SRVR:MWHPR11MB1901; 
-x-ms-traffictypediagnostic: MWHPR11MB1901:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MWHPR11MB19011D574DC5569C649FB82D87860@MWHPR11MB1901.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 0172F0EF77
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(346002)(396003)(376002)(136003)(39860400002)(366004)(51914003)(199004)(189003)(446003)(4744005)(71200400001)(25786009)(386003)(6506007)(52116002)(229853002)(71190400001)(53546011)(6486002)(7416002)(76176011)(36756003)(7406005)(7366002)(31686004)(7336002)(14454004)(6512007)(66946007)(1191002)(561944003)(64756008)(66446008)(66476007)(7736002)(305945005)(99286004)(2501003)(5660300002)(102836004)(256004)(14444005)(66556008)(476003)(26005)(6116002)(6246003)(11346002)(486006)(86362001)(31696002)(316002)(8676002)(81166006)(81156014)(6436002)(478600001)(186003)(2171002)(3846002)(8936002)(110136005)(54906003)(2201001)(2616005)(4326008)(2906002)(66066001)(921003)(1121003);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MWHPR11MB1901;
- H:MWHPR11MB1549.namprd11.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: microchip.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: JsNRlFiKu2xImweAE+BluMpKIUoInHFuE2sg+dLKuGs4T9kFDOqgcHKJUCYS2gybgMXXZI5osydBUn9KNyoHWWJ6/NEaYP7KAKFfRJ0/CBzJRNVV9Mpz72YJ/dwnH04AjmMgpY41/nVVGtmUYJYTJXrEzGLfmayrGh8nNn5Sbf4qIM3pSA5H8Sl3NizOFZQjufDCOp/GxaNSWWnBaSVrEfjMjVKTtgnofFe0H1aEiy8Tt0GakCl/TvuOscqDULtqdRbtiBBDaTwX3stbA4aowKc9J1UXVNNUbKf75xSs3TjOyQ7u+YASL6mozZNWDOz84BYusPgi0naRrvDr9rr+RxZsw27ZcfUbWPxhjmHmc/eWGyOuc1UAcucjh0WBPML8WyL/9v1fZOEV2kZBxSHkZAgdTmCtqwt/9/u7k/BT0i0=
-Content-ID: <BCA8ECD1111F6948AB05E557D0B1C52E@namprd11.prod.outlook.com>
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=y3UAKILIqpgM19VWO+ghuctuhVWrhxkcd8iKP1VJBP8=;
+ b=gnwJafIBrwq0EIp4RDn08UIZ08l7IIRf7mtmT4dxDOOcZBfSvct5ndYseSAMZs0E71
+ HaRj0jbiu90eRoW0Q6Rv6xTZAbv2AMkDCgLEARbTMX25ZrJ4cMLrRIOwECYLan0eCI0j
+ ZSVC1X4DPNDHa9HQFu7c+Mp8V2upBqkjfS29BRTEhdoUIp6K1AHToUOGntfe/Fsvfcow
+ Ob4R+b8QZ0NBXB34MQCyshnktp3kghJwYXfGsJcXdWTuFdcixKLixBx4zc8D9dc4hbyo
+ pTbFBmHPsR6aESZ2W4/ZUuVMC7OUaUfd20AC+axsdZOudddWcuK7Mr6T7sgqlEvlLaiH
+ QnyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=y3UAKILIqpgM19VWO+ghuctuhVWrhxkcd8iKP1VJBP8=;
+ b=OeKDDUlRNxJmsiru1DDOYRm2jOtoigO+DbBW4v0R5Ub+SbXKZvlzIFiNN68phT8meZ
+ /+R+35OuLcQULl9Xnh0ZRuQkClPWjY2sabD3tu0B/NC/ui3uzHBgFDvsCaOJBH7roBaj
+ imhpOEOrvre17uf7fuljwOtVEsxb0qdsospxmmbeh1DUXE9FGLnIN7vjVcHkgok/KDXN
+ JFufUX8cUgUTRCkRSWxPZzM2fQVz2BE19wY1fxT98u0Fp31yuZDzXTEZhbJFkySV7lEO
+ vTVY8AQIW6G8YJfhv8aturDlUslko4VGvLsUAu0sIffvD8OSNwcOdEuzkLlz3bQlddcd
+ ZGKQ==
+X-Gm-Message-State: APjAAAWO4JSbwFKP4FcNfQcnnr/eeUBs1J7MSEX8K2gm0luisaIdS5kH
+ o5HDJQsdM0zClDO+37opu/3mfA==
+X-Google-Smtp-Source: APXvYqxOXCCanM1wt6rtzf5BBxuK3PzOwqkWJ4j6vkm4GpILZMxzBY5FVLhNNCeOGNKGVw0rgft4/Q==
+X-Received: by 2002:a1c:a404:: with SMTP id n4mr2032775wme.41.1569488754154;
+ Thu, 26 Sep 2019 02:05:54 -0700 (PDT)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id x129sm2412840wmg.8.2019.09.26.02.05.53
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 26 Sep 2019 02:05:53 -0700 (PDT)
+Subject: Re: [PATCH v2 2/2] soc: amlogic: ee-pwrc: ensure driver state maches
+ HW state
+To: Kevin Hilman <khilman@kernel.org>, linux-amlogic@lists.infradead.org
+References: <20190925213528.21515-1-khilman@kernel.org>
+ <20190925213528.21515-3-khilman@kernel.org>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <8936e777-8996-5c7b-ea9d-8e17c8d6c4b1@baylibre.com>
+Date: Thu, 26 Sep 2019 11:05:52 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: bc557067-1077-42be-6717-08d7425d8720
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Sep 2019 08:42:57.4048 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: eE5XSWl4V1fxZGL0K/Lmn+PqH/2rvLsnNBp8C6u5rbSFictpiZGwaDBVFvOtdFPhk1KlWc6lCOOc/r1X6WP3h/tNVqI8F7Vm3oPSfeDBGRU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB1901
+In-Reply-To: <20190925213528.21515-3-khilman@kernel.org>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190926_014335_061859_1D0C3B5A 
-X-CRM114-Status: GOOD (  10.15  )
+X-CRM114-CacheID: sfid-20190926_020601_010763_5004DAA2 
+X-CRM114-Status: GOOD (  25.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -190,49 +153,96 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: uclinux-h8-devel@lists.sourceforge.jp, devicetree@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, openbmc@lists.ozlabs.org, linux-oxnas@groups.io,
- linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
- linux-unisoc@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-tegra@vger.kernel.org, nios2-dev@lists.rocketboards.org,
- linux-riscv@lists.infradead.org, linux-snps-arc@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+On 25/09/2019 23:35, Kevin Hilman wrote:
+> From: Kevin Hilman <khilman@baylibre.com>
+> 
+> During init, ensure that the driver on/off state as well as clock and
+> reset state matches the hardware state.  Do this by always calling the
+> drivers 'on' function, and then callling the 'off' function if the
+> HW state was initially detected as off.
+> 
+> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+> ---
+>  drivers/soc/amlogic/meson-ee-pwrc.c | 29 ++++++++---------------------
+>  1 file changed, 8 insertions(+), 21 deletions(-)
+> 
+> diff --git a/drivers/soc/amlogic/meson-ee-pwrc.c b/drivers/soc/amlogic/meson-ee-pwrc.c
+> index dcce8e694a07..2e8eee0dc166 100644
+> --- a/drivers/soc/amlogic/meson-ee-pwrc.c
+> +++ b/drivers/soc/amlogic/meson-ee-pwrc.c
+> @@ -323,6 +323,8 @@ static int meson_ee_pwrc_init_domain(struct platform_device *pdev,
+>  				     struct meson_ee_pwrc *pwrc,
+>  				     struct meson_ee_pwrc_domain *dom)
+>  {
+> +	bool is_off;
+> +
+>  	dom->pwrc = pwrc;
+>  	dom->num_rstc = dom->desc.reset_names_count;
+>  	dom->num_clks = dom->desc.clk_names_count;
+> @@ -356,27 +358,12 @@ static int meson_ee_pwrc_init_domain(struct platform_device *pdev,
+>  	dom->base.power_on = meson_ee_pwrc_on;
+>  	dom->base.power_off = meson_ee_pwrc_off;
+>  
+> -	/*
+> -         * TOFIX: This is a special case for the VPU power domain, which can
+> -	 * be enabled previously by the bootloader. In this case the VPU
+> -         * pipeline may be functional but no driver maybe never attach
+> -         * to this power domain, and if the domain is disabled it could
+> -         * cause system errors. This is why the pm_domain_always_on_gov
+> -         * is used here.
+> -         * For the same reason, the clocks should be enabled in case
+> -         * we need to power the domain off, otherwise the internal clocks
+> -         * prepare/enable counters won't be in sync.
+> -         */
+> -	if (dom->num_clks && dom->desc.is_off && !dom->desc.is_off(dom)) {
+> -		int ret = clk_bulk_prepare_enable(dom->num_clks, dom->clks);
+> -		if (ret)
+> -			return ret;
+> -
+> -		pm_genpd_init(&dom->base, &pm_domain_always_on_gov, false);
+> -	} else
+> -		pm_genpd_init(&dom->base, NULL,
+> -			      (dom->desc.is_off ?
+> -			       dom->desc.is_off(dom) : true));
+> +	/* Ensure that driver state matches HW state */
+> +	is_off = dom->desc.is_off ? dom->desc.is_off(dom) : true;
+> +	meson_ee_pwrc_on(&dom->base);
+> +	if (is_off)
+> +		meson_ee_pwrc_off(&dom->base);
+> +	pm_genpd_init(&dom->base, NULL, is_off);
+>  
+>  	return 0;
+>  }
+> 
 
+I don't see what you are trying to solve except simplifying the code.
 
-On 25.09.2019 20:19, Daniel Lezcano wrote:
-> External E-Mail
-> 
-> 
-> Hi Claudiu,
-> 
-> On 10/09/2019 15:47, Claudiu Beznea wrote:
->> Hi,
->>
->> This series adds support to permit the selection of clocksource/clockevent
->> via DT.
-> 
-> Thanks for the proposal and taking care of making some progress on this.
-> 
-> I just wanted to let you know I've been traveling but the series is in
-> my pipe and I did not forget it. I'll comment it next week.
+And the case is more that "matching the clock state" here, the
+pm_domain_always_on_gov was is a real case when booting from the Amlogic
+U-boot.
 
-Hi Daniel,
+The display power domain is complex and as been half solved by using
+"simple-framebuffer" on gx and is missing on g12a/g12b/sm1.
 
-No problem. Thank you for letting me know.
+For example, Debian installer runs without the modules, but will use
+the EFIfb set by U-Boot, but in this precise case :
+- the DRM driver isn't loaded
+- we can't hook this power domain with EFIfb
 
-Claudiu
+When *not* in EFIfb, we use simple-framebuffer on GX, using this
+power domain, but it hasn't been copied to G12A.
 
-> 
->  -- Daniel
-> 
-> 
+Personally I'll leave this code until we really tested and checked all
+uses cases, not only on the sei510/sei610 using mainline u-boot.
+
+Neil
+
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
