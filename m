@@ -2,66 +2,149 @@ Return-Path: <SRS0=3dzI=XW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 52712C352AB
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 06:09:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5C93AC4360C
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 06:37:49 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 249ED20863
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 06:09:20 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2EBA7206B7
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 06:37:49 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XjPgVHuh"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 249ED20863
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dxGeQiLu";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="c2PP/mwX"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2EBA7206B7
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=lrbym/2aVHnYHdzaTDthxZ8y/cOq+wgMtqjtezFCHTM=; b=XjPgVHuhlQOeD1invZWAbNdTP
-	YU3iP39vq0q+OYIJxx1OG8ZNsiLrGlAs8HGqOKKh8kghp5IurrgDbiF5fJWpR7DdQXOnGn7Pg3Jey
-	lRRAlxa2KVVE/XOeLqDhJYWadMae6ibZ6ENBOVM3Du7Wot+tO1TRcfs5CON29IGtZDem3tMImCm0n
-	ij+fqsCfmUQtjjmpyWA8RE/wj5IgbpdixNZJuERpDXab3jeCEzxVAZ1SnxpeyT0iYcp8R1DE/eP1w
-	ZEMBKZH7AQMLnRM7p9QLK1wMxyELhCSI711FEYInIIwR/tfH7vft4j66fn5Jq7q+yWsgqRPZeO0B+
-	CTXQ5FPyg==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=/AXjmCEvXNPBWXScxugYN2NTA1XdDMLrSRjo/Tyd1Ko=; b=dxGeQiLu9BMB7A
+	G9LSXsr2AS14aZ3Y+fXAoPB9cnRlfEwa9AnirCYZjiW/1I/DRgqO/5tA9rxMAEBXil1pW68sQTL/c
+	iY+zyTvMOOSXevGrW2sjlHiVTrdGZ2Dd/x9iiwPUxCenxoFCwHRRRVNxLsnsSZldC6vz9G3o7AKyX
+	jtqwzyGm14Z106zOkE/P7vU5JPzU9a6CV1RDEiDofWl6IXueq+GluYmFbRsO2JEP6epL9Uu6KiRxK
+	rzKYsULHF3MIYT7kfkR4tbTN3CFCSPQj4W/P/l0Jyy5iqCEBsSxvsonQq5x4TgGCo1Oq0Jykizxdb
+	+honGP7AH64cCoIzvEsw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iDjRE-0007GP-Lb; Fri, 27 Sep 2019 06:09:08 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1iDjsr-0000qn-BY; Fri, 27 Sep 2019 06:37:41 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iDjQk-000778-8N; Fri, 27 Sep 2019 06:08:42 +0000
-Received: from [10.28.19.114] (10.28.19.114) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Fri, 27 Sep
- 2019 14:08:34 +0800
-Subject: Re: [PATCH 1/2] dt-bindings: clock: meson: add A1 clock controller
- bindings
-To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
- <narmstrong@baylibre.com>
-References: <1569411888-98116-1-git-send-email-jian.hu@amlogic.com>
- <1569411888-98116-2-git-send-email-jian.hu@amlogic.com>
- <1j4l10motk.fsf@starbuckisacylon.baylibre.com>
-From: Jian Hu <jian.hu@amlogic.com>
-Message-ID: <d9b23872-3d6f-ddb0-d44b-174fb2984232@amlogic.com>
-Date: Fri, 27 Sep 2019 14:08:34 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.3.3
+ id 1iDjsY-0000eC-AX
+ for linux-amlogic@lists.infradead.org; Fri, 27 Sep 2019 06:37:24 +0000
+Received: by mail-wr1-x443.google.com with SMTP id r5so1296018wrm.12
+ for <linux-amlogic@lists.infradead.org>; Thu, 26 Sep 2019 23:37:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=nWDL5fqaR8obQqMwXte7vHWbAUknsL1rJWwNBs58thQ=;
+ b=c2PP/mwXQM7IoE231d/I5ADBcKd53eoRjDnbXU7V4/HXy/CNas3t3vYsjaKljFq/Wl
+ e4OuGCckvgLBR8BdPVxEoht8KufRKx3EFc6yJnZdiQQ95kTjkOK4AnoSgEoalnvnqU1E
+ NajrZ//jYh1yavwWyOH8wES3H9zHYVQduzJLst0Mhhl4Jw1VM4F5NgS9i6n/3OdXlNcm
+ YFT+6NhXr4PUaZmtydLsJP8H5JPEtVetJgMnGmg5JoBVkwVjwwI+r6C1eRfm8jJM0qDH
+ GVVxMxzbK6MrIQ+/d8sarwzRpKkJTJ1p7xVZwuO6NFE88D60A4qwUXSok9/PsrhpWw9Z
+ u3eQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=nWDL5fqaR8obQqMwXte7vHWbAUknsL1rJWwNBs58thQ=;
+ b=iCOQf5jLx3P6r6GiQ91xHN8TSpJ7W4JyBYvcP96Yd2Jiu3YGPjUpydBmu/fJ+ZyO/y
+ AIjCGevaZzxQS9+RRA5fmECggiIpteXYAc79sYBnP82koJ84WyY/WAXWA3TfwvHAQMro
+ kavIFPCPGZLex1/RASdjVnMnzWpOVgaStUgT1ub9ShzjBsD4U7OWSoxyR29k0dh5xmFp
+ zwT5551FoQ/5UeNANBU3MxG0yBZc9LHhFW9g1BYuECQhzRqC4wZ9YlDIMFn4WZQ64lHq
+ pl7sYVUS0cJ7GVW/LyxqS+sYjzihZ2hKifB6ybpcUXzIYyGe2MKRQE/H846kQ4KRdIlq
+ e2aQ==
+X-Gm-Message-State: APjAAAX5+eGDWT12eZYY86y0JuXZRvyy0R6ok0AHnDthbJNJPvl7SFXZ
+ 57VPPN0cRj9pKAzrWXvKOjUxVQ==
+X-Google-Smtp-Source: APXvYqwAzt8FtaeB+KFZzlFTM6WHW+HqcYDFQCMO8rOIyoRVqXniocNzeL8p860gre9ivXi+zZG0KA==
+X-Received: by 2002:adf:ebd0:: with SMTP id v16mr1521702wrn.352.1569566240519; 
+ Thu, 26 Sep 2019 23:37:20 -0700 (PDT)
+Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
+ by smtp.gmail.com with ESMTPSA id
+ i8sm1959210wrw.36.2019.09.26.23.37.19
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 26 Sep 2019 23:37:19 -0700 (PDT)
+Subject: Re: [PATCH v2 2/2] soc: amlogic: ee-pwrc: ensure driver state maches
+ HW state
+To: Kevin Hilman <khilman@baylibre.com>, Kevin Hilman <khilman@kernel.org>,
+ linux-amlogic@lists.infradead.org
+References: <20190925213528.21515-1-khilman@kernel.org>
+ <20190925213528.21515-3-khilman@kernel.org>
+ <8936e777-8996-5c7b-ea9d-8e17c8d6c4b1@baylibre.com>
+ <7hwodulvu6.fsf@baylibre.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <21eafa69-fe26-2df1-d187-cddfe5b37951@baylibre.com>
+Date: Fri, 27 Sep 2019 08:37:18 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <1j4l10motk.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <7hwodulvu6.fsf@baylibre.com>
 Content-Language: en-US
-X-Originating-IP: [10.28.19.114]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190926_230838_295918_E3C3B513 
-X-CRM114-Status: GOOD (  15.24  )
+X-CRM114-CacheID: sfid-20190926_233722_362521_480144EB 
+X-CRM114-Status: GOOD (  41.42  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,127 +156,178 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Jianxin Pan <jianxin.pan@amlogic.com>,
- devicetree@vger.kernel.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
- Stephen Boyd <sboyd@kernel.org>, Qiufang Dai <qiufang.dai@amlogic.com>,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi, Jerome
-
-Thank you for review.
-
-On 2019/9/25 22:29, Jerome Brunet wrote:
-> On Wed 25 Sep 2019 at 19:44, Jian Hu <jian.hu@amlogic.com> wrote:
+On 26/09/2019 21:08, Kevin Hilman wrote:
+> Neil Armstrong <narmstrong@baylibre.com> writes:
 > 
-> In addition to the comment expressed by Stephen on patch 2
+>> On 25/09/2019 23:35, Kevin Hilman wrote:
+>>> From: Kevin Hilman <khilman@baylibre.com>
+>>>
+>>> During init, ensure that the driver on/off state as well as clock and
+>>> reset state matches the hardware state.  Do this by always calling the
+>>> drivers 'on' function, and then callling the 'off' function if the
+>>> HW state was initially detected as off.
 > 
-got it.
->> Add the documentation to support Amlogic A1 clock driver,
->> and add A1 clock controller bindings.
+> [...]
+> 
+>> I don't see what you are trying to solve except simplifying the code.
+> 
+> Simplifying the code is a worthwhile goal on its own, but that's not the
+> only thing I'm tring to accomplish.
+
+I still find it ugly to power_on a domain to power it off right afterwards.
+The issue is with the CCF enable handling which is not in sync with the
+HW, if you boot with an already enabled clock, it won't be marked enabled
+in CCF, and it's clearly bad when you want to have a fine-tuned gate state
+handling.
+
+> 
+> Part of the goal is make the init less VPU specific and thus make it
+> more understandable/maintainable.  But the more important part is to
+> ensure that the driver state and HW state is consistent for all the
+> domains (not just VPU.)  I've had to debug lots of power-domain issues,
+> and inconsistiences between HW state and driver state tend to be the
+> primary cause of problems.
+> 
+> Also I'm generally not a fan of the "don't mess with bootloader state"
+> approach as that leads to subtle dependencies on specific bootloader
+> versions that are also difficult to debug.
+> 
+> Antother equally important goal is to actually be able to power-down the
+> VPU when it's not used.  Right now, we'll never power off the VPU if the
+> bootloader enabled it, and that seems a bit extreme so I'm looking to
+> improve that and be able to power off the VPU when not used.
+> 
+>> And the case is more that "matching the clock state" here, the
+>> pm_domain_always_on_gov was is a real case when booting from the Amlogic
+>> U-boot.
+> 
+> I'm not understanding what you mean about vendor uboot.  I've done
+> testing with vendor uboot too:
+> 
+> I tried on g12a-u200, g12a-x96-max, and sm1-khadas-vim3l all of which
+> have vendor uboot, and I tried before and after $SUBJECT patch.
+> 
+> In all cases, I see the vendor uboot splash screen, and I see the
+> framebuffer console from linux after kernel boot.  I see the same
+> behavior before and after my patch.
+> 
+> I also tried on g12b-odroid-n2 (vendor uboot), and there is _no_ uboot
+> spash screen, but I see the linux framebuffer console come up both
+> before and after my patch.
+
+Thanks for testing all these cases
+
+> 
+> What's the specific case you're worried about with vendor uboot?
+
+It's an issue I got when bringing up mainline uboot and the vpu power controller
+driver, I had regressions on GXBB and GXL boards.
+But it seems it's no more the case on G12A/G12B, we'll see this when
+GX support will be added in this driver.
+
+> 
+> Also...  note something interesting I noticed on sm1-khadas-vim3l:
+> before my patch, the framebuffer console appears, but the background is
+> a bluish/green color.  After my patch, the background is black (as
+> expected.)  
+
+Yes it's an issue I have on my infinite todo list, it's a different
+init done by the latest vendor uboot. I have a fix but it seems it
+breaks display when booting other boards.
+
+> 
+>> The display power domain is complex and as been half solved by using
+>> "simple-framebuffer" on gx and is missing on g12a/g12b/sm1.
 >>
->> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
->> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
->> ---
->>   .../devicetree/bindings/clock/amlogic,a1-clkc.yaml |  65 +++++++++++++
->>   include/dt-bindings/clock/a1-clkc.h                | 102 +++++++++++++++++++++
->>   2 files changed, 167 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
->>   create mode 100644 include/dt-bindings/clock/a1-clkc.h
->>
->> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
->> new file mode 100644
->> index 0000000..f012eb2
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
->> @@ -0,0 +1,65 @@
->> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
->> +/*
->> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
->> + */
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/clock/amlogic,a1-clkc.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->> +
->> +title: Amlogic Meson A1 Clock Control Unit Device Tree Bindings
->> +
->> +maintainers:
->> +  - Neil Armstrong <narmstrong@baylibre.com>
->> +  - Jerome Brunet <jbrunet@baylibre.com>
->> +  - Jian Hu <jian.hu@jian.hu.com>
->> +
->> +properties:
->> +  compatible:
->> +    - enum:
->> +        - amlogic,a1-clkc
->> +
->> +  reg:
->> +    minItems: 1
->> +    maxItems: 3
->> +    items:
->> +      - description: peripheral registers
->> +      - description: cpu registers
->> +      - description: pll registers
->> +
->> +  reg-names:
->> +    items:
->> +      - const: peripheral
->> +      - const: pll
->> +      - const: cpu
->> +
->> +  clocks:
->> +    maxItems: 1
->> +    items:
->> +      - description: Input Oscillator (usually at 24MHz)
->> +
->> +  clock-names:
->> +    maxItems: 1
->> +    items:
->> +      - const: xtal
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - reg-names
->> +  - clocks
->> +  - clock-names
->> +  - "#clock-cells"
->> +
->> +examples:
->> +  - |
->> +    clkc: clock-controller {
->> +        compatible = "amlogic,a1-clkc";
->> +        reg = <0x0 0xfe000800 0x0 0x100>,
->> +              <0x0 0xfe007c00 0x0 0x21c>,
->> +              <0x0 0xfd000080 0x0 0x20>;
->> +        reg-names = "peripheral", "pll", "cpu";
+>> For example, Debian installer runs without the modules, but will use
+>> the EFIfb set by U-Boot, but in this precise case :
+>> - the DRM driver isn't loaded
+>> - we can't hook this power domain with EFIfb
 > 
-> I'm sorry but I don't agree with this. You are trying to regroup several
-> controllers into one with this, and it is not OK
+> OK, so I agree that this case where we want the display to continue to
+> work but linux DRM drivers never loaded is a special case.
 > 
-> By the looks of it there are 3 different controllers, including one you
-> did not implement in the driver.
+> Is there a way to check if efifb is enabled?  Is the the linux driver
+> (drivers/video/fbdev/efifb.c) or something else only done by uboot?
 > 
-Yes, In A1, the clock registers include three regions.
+> If we can detect efifb from the kernel (not just whether the domain is
+> already on), then a simple addition to my patch like this:
+> 
+>  	if (is_off)
+>  		meson_ee_pwrc_off(&dom->base);
+> +	else if (efifb_is_enabled)
+> +		dom->base.flags |= GENPD_FLAG_ALWAYS_ON;
+> 
+> would force the domain always-on in the case of efifb.  
+> 
+> In fact, now that I think of it, simply adding:
+> 
+>  	if (is_off)
+>  		meson_ee_pwrc_off(&dom->base);
+> +	else
+> +		dom->base.flags |= GENPD_FLAG_ALWAYS_ON;
+> 
+> to my current patch would get back to the same behavior of the existing
+> driver.  But I still don't like the idea that we can *never* power off
+> the VPU if the bootloader enables it. :( I'd rather see patches
+> conditionally adding that flag with detailed explanations as to why it's
+> needed.
+> 
+>> When *not* in EFIfb, we use simple-framebuffer on GX, using this
+>> power domain, but it hasn't been copied to G12A.
+> 
+> I don't quite understand what problem simple-framebuffer is
+> solving. Could you explain that in more detail.
 
-I agree with your opinion. I will implement the two clock drivers of 
-peripheral and plls first in PATCH V2. And CPU clock driver will be sent 
-after the patches are merged.
+simple-framebuffer has the power domain hooked in it's node, so
+when u-boot will boot linux with HDMI enabled it will enable
+this node and until the DRM driver loads the simple-framebuffer
+will live and keep the power domain enabled.
 
->> +        clocks = <&xtal;
->> +        clock-names = "xtal";
->> +        #clock-cells = <1>;
 > 
-> .
+> Assuming it is solving something, why can't it be used on g12[ab]/sm1 ?
+
+It will, but I need to push the patches.
+
 > 
+>> Personally I'll leave this code until we really tested and checked all
+>> uses cases, 
+> 
+> Right, I don't want to break anything on purpose, but I think the
+> current state of this driver is fragile and difficult to
+> understand/maintain, so I would be grateful for any help in
+> understanding the corner cases better, as well as testing them (or
+> explaining to me how to reproduce them.)
+> 
+> Generally, with long-term maintenance in mind, if I'm forced to choose
+> between understandable/maintainable code and "covers 100% of corner
+> cases" I will most often chose the former.
+> 
+>> not only on the sei510/sei610 using mainline u-boot.
+> 
+> See above about all the other boards with vendor uboots also tested.
+
+Let's leave apart the vendor uboot issue for g12.
+
+Since display support for G12A will land soon in mainline U-boot, let me
+push the DT patches for simple-framebuffer to we have a fallback in
+case the DRM driver isn't loaded/built.
+
+We can consider that in case of EFIfb, the simple-framebuffer node would have
+been enabled and the power domain hooked and enabled.
+
+Neil
+
+> 
+> Kevin
+> 
+
 
 _______________________________________________
 linux-amlogic mailing list
