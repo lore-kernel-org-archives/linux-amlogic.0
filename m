@@ -3,92 +3,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BB3ABC4360C
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 16:39:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F27AFC388F3
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 18:44:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8DCB2207E0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 16:39:09 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 82B95217D9
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 18:44:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="aD9NBIuv";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="vlJH88ij"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8DCB2207E0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mas5Mhgh";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="gEAZsKg3"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 82B95217D9
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
-	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=Znu0xoSbIqIIvfb2hFeDgONRdiBgPLngUX5MDzUT9fE=; b=aD9NBIuv7vHLgj0Co0ZMgIBsje
-	2RrtL0s2bjBoHPUrIWPUOpk/3U7D1TyTPg2ARDzI+lLZPQJ9KayLIRKWCksGwB4VEXFTAo/d48aY2
-	y+p/VjwOwU08em2zmlUt/X6hrUrs++bgmyZkTcbsq1ee8P9TAa/VtvzWXjNH7uyW8qya/rEKMvL8n
-	mFkORQyahm610/4QHSJPwnzy4y9CXmM5ZNUJ2qY6NOXVw5o1DkxW2hTNT4jquLa7I/egWepl11fw5
-	wkZf/RmojuXzwn2UecO9CXygHDo3VqVnVnhg7vN0Mjd2oHwHbDYUkJluRHHBJoNU1o/V5ZodKsQ4J
-	rj3fGa/g==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=C37ktaC1g20mwNTl1EPHJGEzMmOJ9uha6Ai1+qq8Fjg=; b=mas
+	5Mhgh96tIJ45z4ca5ekPoiFL3TmfsDz55fsuU0JnbB/Ly/QDGxgXi+CP1RB8TWH+KPemM6YJKm/yT
+	F9wuGlKxccz1gqtTAXS8UHVuBJ+8QNp+THA+sg4XkMObFpEFGq/laKnxUtwIbUiWxazgwDVIn/ivZ
+	gQ3pa85VF2sBIo08FQc+uqEivaNpHkyMJGlwYFjX6UrbkKodVUOosFIXtQdu/n1yKWq6iiOMf21TF
+	wuugm9ymRrEAniz7XHRpU4iid+Zv6Q99dyRZ5mRVM6wRas7lUT3q0C+jvxxgv6D+oVxJrvvbb0amT
+	I1yoLkaxLApuZvZU8qDco31pNoRumbw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iDtGp-0002Wc-MQ; Fri, 27 Sep 2019 16:39:03 +0000
+	id 1iDvDz-00010Z-Nc; Fri, 27 Sep 2019 18:44:15 +0000
 Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iDtGb-0002M5-Eq
- for linux-amlogic@lists.infradead.org; Fri, 27 Sep 2019 16:38:51 +0000
-Received: by mail-wr1-x443.google.com with SMTP id i18so3862275wru.11
- for <linux-amlogic@lists.infradead.org>; Fri, 27 Sep 2019 09:38:48 -0700 (PDT)
+ id 1iDvDg-00007k-19
+ for linux-amlogic@lists.infradead.org; Fri, 27 Sep 2019 18:43:58 +0000
+Received: by mail-wr1-x443.google.com with SMTP id a11so4340466wrx.1
+ for <linux-amlogic@lists.infradead.org>; Fri, 27 Sep 2019 11:43:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version;
- bh=H9qpcAXROEOSHATHIODGl5R6XLJmU3Nit6aFPlUl9PY=;
- b=vlJH88ijYnpukf4ZiGFC3tgXvxD1NRCykGaXRu7yCbSTKpcKP3ety0gptHFmz1x+9A
- R/Zij0mk9nhPfjOY+LKUIwqed8VuCJy6QuPiI87ofhmDeo6H6oLRNVsZ5zE71JbcpYs7
- uc7+vzjvAFtQ712pTxhRUUUTQcZwPb4HlY/iTEal88bUJii40H23wDmbW1J9zCSWVHGO
- 4dLbPL+BvvZoXBrCGsugMVLtvI/uFbz+gafElcBGJnTW7LkFpuxjK4NBrzMpXkDvwg/i
- zRdsMSnPa1NibDmYOg/w0WIKy76RjgF1OahTmnNR5MoE/6qCzo8Gl5LJSwGSRso85PN5
- DL2A==
+ h=from:to:cc:subject:date:message-id;
+ bh=BlLuKMnAqwTIEJThXWcT+NCQrpuc31hvcyRBdlbTc+8=;
+ b=gEAZsKg36xaTruyiqdmuUhST/Lw16pTt6NvZCi8oFmvWKVaq3wQVtqci8/3EnBkk3/
+ HT5sfz/tfMSyCyYHnRd+jOUKuOOSIPtna3cgYa8t9fGu0Km8O+zeG01iQQDUfpt6GBLh
+ ica5zJitiOvbmJYuWnzr36l++X1vsvvRL/75xfhhdgQPJrjIKByvv2yWVEy5hH3INNpM
+ aQLPAjfgmHfpfOcOslLrksDQ4eocq/BBrKJuIDXSHOXOu6Yt8wYBjF/bGiga2KeX8BaY
+ +J/l5zJGL0WzQQhwA8w3RegQUC/JiwnokFq4w3ogg04g3OxBn4YF7WuXF73uOTmPlnW0
+ kCNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version;
- bh=H9qpcAXROEOSHATHIODGl5R6XLJmU3Nit6aFPlUl9PY=;
- b=jH4uHoVzwbPgIqIldPIOvaQx4JJxz4TA0XUZNaWWaVM8i+3SzAH/NYD7VmXtyw3vCN
- g+ls6g30QBSqPpyLX0sRcDfs3rj5+2alTib1mnc+cwirtwzvFoiuarPELDVILmWj0DZV
- iCIGpbDFe4n0TATQQ9d9Hur8GovZM/SGSLgOZ0yzzJkq3z80gJcOLoVKsFSvVXJFZGq1
- 0cexkuPoEPT4NE/I82KQLL1MfgecW+MEFzeiJE9N41TTjFR5I7k29Z3I8ydSdxDx3GRg
- +ZwpU9MP18J7XeAu+gw/X7/jMDbSFVTnCydogD0Rr/Fwyyelra85Edf9MRd4+lJvTsJT
- 51Eg==
-X-Gm-Message-State: APjAAAU2mnNUv2TAzV++ryz9lBVswv3J9QCP6TKTiOxY+cXo74E+CcWW
- C4u40UW0rVPb8ivCpiy/ZArREg==
-X-Google-Smtp-Source: APXvYqyOToIhXgMB3p4wq1eYwswK4+ABcMmXeNT+QmoldWbGpxe9NmpO0SA2ZuMkhyc8J4VZ7vGPAw==
-X-Received: by 2002:adf:f547:: with SMTP id j7mr3872939wrp.119.1569602327457; 
- Fri, 27 Sep 2019 09:38:47 -0700 (PDT)
-Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id j1sm6587771wrg.24.2019.09.27.09.38.46
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=BlLuKMnAqwTIEJThXWcT+NCQrpuc31hvcyRBdlbTc+8=;
+ b=COEeqyyz/0UovBMFBBanTy+9w9INPz0ahefEz/B2bsoLoSZFDZmBMAvgfurIWt3OpP
+ 80QuOfT23NQs6U3a9NsKzKN7RkIx25uX+WsVlHB8t2Vk0n7q+xWodXyV5usVchpV7FSX
+ //Wq/kmfJueDFw1RaD/FRtzp1FsCrAz8xT+LmvaMPeYYk+Nn3rDyaJGoNYMZozvGhuVY
+ Yed+OXMky9aCLOXsZuTRkj2Iq6OGPkeiCBcs0MVhZD8gS7D1ioEiVW7cKibEyKNRT1eZ
+ c9WgTmCr8TG3vVQ9dfK/vJrO12gjTVQDBwQKit434RG6b+yL33R9h82ScTfX932sC1zh
+ 24lQ==
+X-Gm-Message-State: APjAAAXxKxDFca7ChX8+I0QvbVSNwDlvW1OkBZApBAb2noTHrva4dBQ7
+ Cm5YwENXnAMA3H1A3ULbyIo91Q==
+X-Google-Smtp-Source: APXvYqxgRo3KRebRbFSHXBAYv8zrdjIWybW5ueEgqgeeDgsADeXUR38eeRp/Rru7dKw/2IGg4cEpDw==
+X-Received: by 2002:adf:e488:: with SMTP id i8mr4333542wrm.20.1569609834506;
+ Fri, 27 Sep 2019 11:43:54 -0700 (PDT)
+Received: from glaroque-ThinkPad-T480.home
+ ([2a01:cb1d:6e7:d500:82a9:347a:43f3:d2ca])
+ by smtp.gmail.com with ESMTPSA id r13sm6246272wrn.0.2019.09.27.11.43.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 27 Sep 2019 09:38:46 -0700 (PDT)
-References: <20190919102518.25126-1-narmstrong@baylibre.com>
- <20190919102518.25126-2-narmstrong@baylibre.com>
- <20190927001425.DFDC7207FF@mail.kernel.org>
- <8486dec0-8aea-ea39-2a52-7347a01c5c40@baylibre.com>
-User-agent: mu4e 1.3.3; emacs 26.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <narmstrong@baylibre.com>, Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH RFC 1/2] clk: introduce clk_invalidate_rate()
-In-reply-to: <8486dec0-8aea-ea39-2a52-7347a01c5c40@baylibre.com>
-Date: Fri, 27 Sep 2019 18:38:45 +0200
-Message-ID: <1jef011yp6.fsf@starbuckisacylon.baylibre.com>
-MIME-Version: 1.0
+ Fri, 27 Sep 2019 11:43:53 -0700 (PDT)
+From: Guillaume La Roque <glaroque@baylibre.com>
+To: amit.kucheria@linaro.org, rui.zhang@intel.com, edubezval@gmail.com,
+ daniel.lezcano@linaro.org
+Subject: [PATCH v6 0/7] Add support of New Amlogic temperature sensor for G12
+ SoCs
+Date: Fri, 27 Sep 2019 20:43:45 +0200
+Message-Id: <20190927184352.28759-1-glaroque@baylibre.com>
+X-Mailer: git-send-email 2.17.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190927_093849_545869_909FA88D 
-X-CRM114-Status: GOOD (  16.44  )
+X-CRM114-CacheID: sfid-20190927_114356_110138_8AF0501A 
+X-CRM114-Status: GOOD (  10.95  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,80 +93,81 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, mturquette@baylibre.com,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-pm@vger.kernel.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+This patchs series add support of New Amlogic temperature sensor and minimal
+thermal zone for SEI510 and ODROID-N2 boards.
 
-On Fri 27 Sep 2019 at 08:40, Neil Armstrong <narmstrong@baylibre.com> wrote:
+First implementation was doing on IIO[1] but after comments i move on thermal framework.
+Formulas and calibration values come from amlogic.
 
-> On 27/09/2019 02:14, Stephen Boyd wrote:
->> Quoting Neil Armstrong (2019-09-19 03:25:17)
->>> This introduces the clk_invalidate_rate() call used to recalculate the
->>> rate and parent tree of a particular clock if it's known that the
->>> underlying registers set has been altered by the firmware, like from
->>> a suspend/resume handler running in trusted cpu mode.
->>>
->>> The call refreshes the actual parent and when changed, instructs CCF
->>> the parent has changed. Finally the call will recalculate the rate of
->>> each part of the tree to make sure the CCF cached tree is in sync with
->>> the hardware.
->>>
->>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->>> ---
->> 
->> The knee-jerk reaction to these patches is that it shouldn't be a
->> consumer API (i.e. taking a struct clk) but a provider API (i.e. taking
->> a struct clk_hw). I haven't looked in any more detail but just know that
->> it's a non-starter to be a consumer based API because we don't want
->> random consumers out there to be telling the CCF or provider drivers
->> that some clk has lost state and needs to be "refreshed".
->> 
->
-> Totally agree, I hesitated and obviously did the wrong choice, but
-> this is a nit, the main algorithm is not tied to the API level.
->
-> Should I resend it with clk_hw ? the difference will be small and
-> the main subject is the resync algorithm.
+Changes since v5:
+  - fix patch 5 and 6 send twice
 
-Independent of the point above (partly a least), I wonder what will
-happen in some particular use cases
+Changes since v4:
+  - Move thermal-zone in soc dtsi file
+  - Remove critical trip point and add passive one
+  - fix commit message
+  - use devm_platform_ioremap_resource instead of platform_get_resource
 
-* If clock is changed while in suspend. This clock can be a parent of
-  the clock invalidated but currently is not. What happen, if later,
-  it becomes the parent ?
+Changes since v3:
+  - Add cooling map and trip point for hot type
+  - move compatible on g12a instead of g12 to be aligned with others
+  - add all reviewer, sorry for this mistake
 
-  Since it is not parent on resume it won't be invalidated. CCF might
-  still take a decision based on an invalid cached value.
+Changes since v2:
+  - fix yaml documention
+  - remove unneeded status variable for temperature-sensor node
+  - rework driver after Martin review
+  - add some information in commit message
 
-* If a mux is changed while in suspend, the parent is not correct
-  anymore. The proposed patch recurse through the parents, it might
-  not invalidate what we need/expect ... things are getting a bit
-  unpredictable
+Changes since v1:
+  - fix enum vs const in documentation
+  - fix error with thermal-sensor-cells value set to 1 instead of 0
+  - add some dependencies needed to add cooling-maps
 
-IOW, this change take a leaf clock and tries to tell CCF that any parent
-of this clock should not be trusted, but it might get it wrong in some
-cases.
+Dependencies :
+- patch 3,4 & 5: depends on Neil's patch and series :
+              - missing dwc2 phy-names[2]
+              - patchsets to add DVFS on G12a[3] which have deps on [4] and [5]
 
-I think we should do it in the opposite way:
- * Mark the "rogue" clock with a flag (CLK_REFRESH ?)
- * Let CCF update the children of these clocks based on the new status
+[1] https://lore.kernel.org/linux-amlogic/20190604144714.2009-1-glaroque@baylibre.com/
+[2] https://lore.kernel.org/linux-amlogic/20190625123647.26117-1-narmstrong@baylibre.com/
+[3] https://lore.kernel.org/linux-amlogic/20190729132622.7566-1-narmstrong@baylibre.com/
+[4] https://lore.kernel.org/linux-amlogic/20190731084019.8451-5-narmstrong@baylibre.com/
+[5] https://lore.kernel.org/linux-amlogic/20190729132622.7566-3-narmstrong@baylibre.com/
 
-Back to Stephen point, I don't know which API it should be, but I
-think the platform (fw driver or power stuff - not only clock provider)
-should be able somehow to trigger the mechanism to let CCF know
-something sketchy may have happened.
+Guillaume La Roque (7):
+  dt-bindings: thermal: Add DT bindings documentation for Amlogic
+    Thermal
+  thermal: amlogic: Add thermal driver to support G12 SoCs
+  arm64: dts: amlogic: g12: add temperature sensor
+  arm64: dts: meson: g12: Add minimal thermal zone
+  arm64: dts: amlogic: g12a: add cooling properties
+  arm64: dts: amlogic: g12b: add cooling properties
+  MAINTAINERS: add entry for Amlogic Thermal driver
 
-For the parameter, maybe there should not be any (no struct clk or
-clk_hw) ? Maybe it would better if we let CCF refresh all the "rogue"
-clocks ?
+ .../bindings/thermal/amlogic,thermal.yaml     |  54 +++
+ MAINTAINERS                                   |   9 +
+ .../boot/dts/amlogic/meson-g12-common.dtsi    |  66 ++++
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi   |  24 ++
+ arch/arm64/boot/dts/amlogic/meson-g12b.dtsi   |  29 ++
+ drivers/thermal/Kconfig                       |  11 +
+ drivers/thermal/Makefile                      |   1 +
+ drivers/thermal/amlogic_thermal.c             | 333 ++++++++++++++++++
+ 8 files changed, 527 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
+ create mode 100644 drivers/thermal/amlogic_thermal.c
 
->
-> Neil
+-- 
+2.17.1
 
 
 _______________________________________________
