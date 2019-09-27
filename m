@@ -2,149 +2,86 @@ Return-Path: <SRS0=3dzI=XW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 60DD2C4360C
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 11:48:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 994C2C388F3
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 12:48:22 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2DD3A21848
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 11:48:31 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 672E6217D9
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 12:48:22 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DXsdeSEQ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="J3eYAVqp"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2DD3A21848
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tKfBYP1b";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Lmd5I2we"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 672E6217D9
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:References:To:From:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=b3jgzCnxsZAu/4pCEFFiPJg+7hY0unpNISCJ7Js7PNk=; b=DXsdeSEQZ7RS2B
-	5puOyS5D0pTqRthufuXqr4svKO0uqn9qiU4DfMslK54fV/cxGM0T8vq807KfSIy0ZVp21rL9QcSgh
-	dezwrp7f0vic3bu4d9IQBIj8qQ9juMEJjhd64K+4SvfaTw3lFfls9dfRqpVMPxPL9+go5lzkmuDJI
-	6LiYWb1WbiAqVqWa6nqTnfU5otdehEvAqzt6PQEEG8avLSLjDXKKj1s7SdxI1JJMpcNjck5G59vcs
-	EOXsLIS7/CQMwfhvGKescrlCT/u5nwRXA710MlAAwgxXI+OIxCCuxZkJPWqRd9jOOvs6L1kpBOj+A
-	lX7LijpvqWi7m+jYzK5g==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=EtwsWlKhs9KK1WGsFiIGm8MCLyXYRPvpWSRt/tqN5mM=; b=tKf
+	BYP1btSJ9Tj/1Up/NT62jQA0JuEfI8jRPgK1Q4yCqZng9opciD5JzoF/mC0P2hSY512q9TnFY1Wpl
+	Hqo3JOMVNyTdlpsFm51asUSCkA0D/TTTyTmSYndFVNjIe10CfmHeaReh8NfPcvgwhWmPqLmEbZFzU
+	SVXaZGfBTgVh3vIFZruM9i/BtvAWseBr1wZ+gh/YGcAIgIAw0RBxyAojPUGwhpBMOX0SPiaMkPgth
+	qqJYqvE7YcloDQjhuIuHaH3gRENWgVKe4RWeGTYxXimcVa7+unwCyG1kBKnXIg8AMSiABvU4dejWj
+	JRrj2V5wLKp520nSG6zRDHBb6oHI3Jg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iDojZ-00051g-U5; Fri, 27 Sep 2019 11:48:25 +0000
+	id 1iDpfR-00020O-Nw; Fri, 27 Sep 2019 12:48:13 +0000
 Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iDojW-00051B-S8
- for linux-amlogic@lists.infradead.org; Fri, 27 Sep 2019 11:48:25 +0000
-Received: by mail-wm1-x344.google.com with SMTP id b24so5838838wmj.5
- for <linux-amlogic@lists.infradead.org>; Fri, 27 Sep 2019 04:48:22 -0700 (PDT)
+ id 1iDpf8-0001iq-HG
+ for linux-amlogic@lists.infradead.org; Fri, 27 Sep 2019 12:47:56 +0000
+Received: by mail-wm1-x344.google.com with SMTP id 3so6038082wmi.3
+ for <linux-amlogic@lists.infradead.org>; Fri, 27 Sep 2019 05:47:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:from:to:cc:references:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=ug+sBO0tkCpwdU9HKEk6e2HvXXPsdBoZldU4WxvHVS0=;
- b=J3eYAVqp8uTe0LLK4ZduSAGyHARQx9+d0k9L/yiIdwQ3WRFDgKsjRvDZswS65gCRwV
- I1GKL6BiHVCMtY8q+fg1HjIaswMIfJDRqBTdEJ9OM2Xn+IjP7u+ZkeiSXvXV6EpaDCWB
- 3+vzKoW0OM4XXjrN5KLyayAtGJdL81rY5NYHiI70CmfwJmKY7sklkXBwN8YVH/kkygCx
- cg+DNwFpIGWN7wlVzvTtXllfbcfq4Xa+6VVTIxdaQOfYGzJRwG2BKd7TUSPytrloUIpS
- ROXV9Ks1k7ELUALyxfJ3w+eHXPhRiHWv47ucRjnePjgp5VphmWijoF1s+vIONpry4CGx
- o3+w==
+ h=from:to:cc:subject:date:message-id;
+ bh=5nfsuBQARAaBBmwNqsfwCMEnjyOr8SwXnC8MGaFfPbc=;
+ b=Lmd5I2weT/CLbzqu8U0AzVZ02d19bxTe+oGwl7weveUIH5QqjVhLpCn2ppfW4UwOdb
+ BAQXl+idGpTR2JqZYmDG2jfUuDlB7o+9m0izlMk9efwnBQCgLp3sDZv9DCRkWApwhl/C
+ 27gqFXsobnH0uvNGPKrCHMopDzJhZdi4gciwKydh6pyULekFY6mx0EHldxQcwbVDDYoG
+ YKV+Cm0pDgGZyn3vjAoH23TjOjzsDHB7IDBKgblKrKSLw/qQQX6LTlg83EdIyT/tC2Oq
+ +3uC/RBKI7AwNln6XPDks5o5bYossAjdx2K8OqvUaQih9kXN8oYcU3aqxFWM9mfMHRCj
+ TQdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:from:to:cc:references:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=ug+sBO0tkCpwdU9HKEk6e2HvXXPsdBoZldU4WxvHVS0=;
- b=EIkwVN4XmZ10jvbCSse8Iqn/0YoEq0MvRrGl/+aTur4JNkNF/QN0VrUPESqWAKcieQ
- qLbxK0pcXNGrZOHDLmZ2Ubgdamm3FfxKDeW3A2FbPx8Iq8jl5Er6eeD5R/MthSAUo95t
- vMVfNPYxGnYD6JdpHa+3Qe5Fa1uRVxQUPomrdsFtHCXdOT2JNOng/JzVgSJZBnbBNUL2
- AOY6JzgscCUdgHOx8bU27b001n2EmXGy5WnzUqR8RpCzTiov4F6b6ICC1W3x2ndLHRLI
- DhGrtCjG7uUd4dvp/owPzgGq9nz3CykKpLQ3Ij9CR+oSQZgpoGYC0RTZ3KO+aPX9WPCd
- Fn4A==
-X-Gm-Message-State: APjAAAVkDk0n1MrnokKPKklsVp1/bzz3a0I17e35hO6weayvKggujWwF
- e4XnHFm7MVDkoTibJo5oeAwgtA==
-X-Google-Smtp-Source: APXvYqyCvAFEUX4pyXAm1MZVJRBXHDIaylSGV5ndGZ+63m9ONhhn3j/aRyRFEYfXA/NuuzBYCIr0DA==
-X-Received: by 2002:a05:600c:389:: with SMTP id
- w9mr6615733wmd.139.1569584901129; 
- Fri, 27 Sep 2019 04:48:21 -0700 (PDT)
-Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id
- i1sm13170582wmb.19.2019.09.27.04.48.20
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 27 Sep 2019 04:48:20 -0700 (PDT)
-Subject: Re: drm_sched with panfrost crash on T820
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: Steven Price <steven.price@arm.com>, daniel@ffwll.ch, airlied@linux.ie,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-References: <e450fbe6-dec7-2704-59c2-db7e869d67f5@baylibre.com>
- <3fb178d8-f069-0ae2-1ed3-4ded84a71951@arm.com>
- <26ae2a4d-8df1-e8db-3060-41638ed63e2a@arm.com>
- <1eec2f1b-0467-cd4d-aa22-23c70388ac0f@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <645fd795-7d22-268d-a8af-5ff090379505@baylibre.com>
-Date: Fri, 27 Sep 2019 13:48:19 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <1eec2f1b-0467-cd4d-aa22-23c70388ac0f@baylibre.com>
-Content-Language: en-US
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=5nfsuBQARAaBBmwNqsfwCMEnjyOr8SwXnC8MGaFfPbc=;
+ b=ehHQH+DZwO8v4jDFaZMSBS5g8+xQS5rUcpdXvFPG2w8Ql52inYFdv0vHvJ495KBXn0
+ ISuY0ssqHugK0Dr8t1Pt6Rjx3Da0qBc9YQTotZyhEgpfXjbGqlCyqqedJXN8aso6XEI0
+ /AAypQKsKRA5AVp4SbR6AWUfLrpTjsNUtjdZASQ9SX3dDApFJw55y2f22Go3nAG/Pn3q
+ y4DdoKapO/cpw2MinvMgdjTHyjIwyXTw8aYhreD9WioZ1Ghg7RcxDCDMhKBG7FGg8QFT
+ Gn6YZh+FnxehYxQpWh4l2ygCCz5qHbQl9NVf4wn04VDu+OLRz7XiHHVxnomqcgito3DN
+ Dqsw==
+X-Gm-Message-State: APjAAAWOFIiBZhz2M88wPVc+ZRxSSN9DaMlcufnoV7hcG3AiUIzsoi8P
+ pIHmKn3rsvhgpMB1Mp0xhMjrxg==
+X-Google-Smtp-Source: APXvYqxLUxcPLNObTAWH3B8Ce/vrxLkKzpczxQPY4N2mta6NTnGqrSrm/65RoiX/D+py9JoOesJGdg==
+X-Received: by 2002:a1c:7c10:: with SMTP id x16mr6776554wmc.175.1569588471586; 
+ Fri, 27 Sep 2019 05:47:51 -0700 (PDT)
+Received: from glaroque-ThinkPad-T480.baylibre.local
+ (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id h9sm2985564wrv.30.2019.09.27.05.47.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 27 Sep 2019 05:47:51 -0700 (PDT)
+From: Guillaume La Roque <glaroque@baylibre.com>
+To: amit.kucheria@linaro.org, rui.zhang@intel.com, edubezval@gmail.com,
+ daniel.lezcano@linaro.org
+Subject: [PATCH v5 0/7] Add support of New Amlogic temperature sensor for G12
+ SoCs
+Date: Fri, 27 Sep 2019 14:47:41 +0200
+Message-Id: <20190927124750.12467-1-glaroque@baylibre.com>
+X-Mailer: git-send-email 2.17.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190927_044822_905603_D5E78461 
-X-CRM114-Status: GOOD (  26.24  )
+X-CRM114-CacheID: sfid-20190927_054754_715323_03D33E38 
+X-CRM114-Status: GOOD (  11.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,172 +93,78 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Erico Nunes <nunes.erico@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-pm@vger.kernel.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
+This patchs series add support of New Amlogic temperature sensor and minimal
+thermal zone for SEI510 and ODROID-N2 boards.
 
-On 27/09/2019 13:27, Neil Armstrong wrote:
-> Hi Steven,
-> 
-> Thanks for your prompt reaction !
-> 
-> On 27/09/2019 12:48, Steven Price wrote:
->> On 27/09/2019 10:55, Steven Price wrote:
->> [...]
->>> One obvious issue with the DRM scheduler is that there is a call to
->>> cancel_delayed_work() in drm_sched_stop() which to me looks like it
->>> should be cancel_delayed_work_sync() to ensure that the timeout handling
->>> has completed.
->>>
->>> However in the above scenario a _sync() variety would then cause a
->>> deadlock (one thread has pfdev->reset_lock and is waiting for the other
->>> thread which is trying to take the lock).
->>>
->>> So we need to update Panfrost so that it can coordinate the reset
->>> between schedulers. Can you try something like the following (untested):
->>
->> And actually testing it I of course discover it doesn't quite work. We
->> do need the cancel_delayed_work_sync() in the DRM scheduler (when
->> stopping a different scheduler) and we need to avoid holding the
->> reset_lock during the drm_sched_stop() call to prevent deadlocking with
->> another thread handling a timeout.
-> 
-> Yep the first patch wasn't fixing the issue all the time.
-> 
->>
->> Can you give the following patch a spin? I don't have a great
->> reproduction case, so it would be good to get some confidence it fixes
->> the problem.
-> 
-> Running it right now.
+First implementation was doing on IIO[1] but after comments i move on thermal framework.
+Formulas and calibration values come from amlogic.
 
-First run gave me (while applying on v5.3):
-[  307.969230] Unable to handle kernel NULL pointer dereference at virtual address 00000000000000c0
-[...]
-[  308.029358] Hardware name: Khadas VIM2 (DT)
-[  308.033510] Workqueue: events drm_sched_job_timedout
-[  308.038416] pstate: 80000005 (Nzcv daif -PAN -UAO)
-[  308.043160] pc : drm_sched_start+0x88/0x138
-[  308.047300] lr : drm_sched_start+0xb0/0x138
-[...]
-[  308.133635] Call trace:
-[  308.136052]  drm_sched_start+0x88/0x138
-[  308.139847]  panfrost_job_timedout+0x1cc/0x208
-[  308.144245]  drm_sched_job_timedout+0x44/0xa8
-[  308.148560]  process_one_work+0x1e0/0x320
-[  308.152524]  worker_thread+0x40/0x450
-[  308.156149]  kthread+0x124/0x128
-[  308.159342]  ret_from_fork+0x10/0x18
-[  308.162879] Code: 54000280 f9400862 52800020 aa1a03e1 (f940605b)
-[  308.168914] ---[ end trace 256b7f5faec101d2 ]---
+Changes since v4:
+  - Move thermal-zone in soc dtsi file
+  - Remove critical trip point and add passive one
+  - fix commit message
+  - use devm_platform_ioremap_resource instead of platform_get_resource
 
-Bad pointer seems to be struct dma_fence *fence = s_job->s_fence->parent that
-could be a NULL return from panfrost_job_run().
+Changes since v3:
+  - Add cooling map and trip point for hot type
+  - move compatible on g12a instead of g12 to be aligned with others
+  - add all reviewer, sorry for this mistake
 
-Neil
-> 
-> Thanks,
-> Neil
-> 
->>
->> ----8<----
->> From 521a286789260197ae94f698932ebf369efc45ad Mon Sep 17 00:00:00 2001
->> From: Steven Price <steven.price@arm.com>
->> Date: Fri, 27 Sep 2019 11:42:40 +0100
->> Subject: [PATCH] drm/panfrost: Handle resetting on timeout better
->>
->> Panfrost uses multiple schedulers (one for each slot, so 2 in reality),
->> and on a timeout has to stop all the schedulers to safely perform a
->> reset. However more than one scheduler can trigger a timeout at the same
->> time. This race condition results in jobs being freed while they are
->> still in use.
->>
->> Modify drm_sched_stop() to call cancel_delayed_work_sync() when stopping
->> a different scheduler to the one belonging to the passed in job.
->> panfrost_job_timedout() is also modified to only allow one thread at a
->> time to handle the reset. Any subsequent threads simply return assuming
->> that the first thread will handle the situation.
->>
->> Signed-off-by: Steven Price <steven.price@arm.com>
->> ---
->>  drivers/gpu/drm/panfrost/panfrost_device.h |  2 ++
->>  drivers/gpu/drm/panfrost/panfrost_job.c    | 11 ++++++++++-
->>  drivers/gpu/drm/scheduler/sched_main.c     |  5 ++++-
->>  3 files changed, 16 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/panfrost/panfrost_device.h b/drivers/gpu/drm/panfrost/panfrost_device.h
->> index f503c566e99f..6441c7fba6c4 100644
->> --- a/drivers/gpu/drm/panfrost/panfrost_device.h
->> +++ b/drivers/gpu/drm/panfrost/panfrost_device.h
->> @@ -99,6 +99,8 @@ struct panfrost_device {
->>  		unsigned long cur_volt;
->>  		struct panfrost_devfreq_slot slot[NUM_JOB_SLOTS];
->>  	} devfreq;
->> +
->> +	bool is_resetting;
->>  };
->>  
->>  struct panfrost_mmu {
->> diff --git a/drivers/gpu/drm/panfrost/panfrost_job.c b/drivers/gpu/drm/panfrost/panfrost_job.c
->> index 05c85f45a0de..1b2019e08b43 100644
->> --- a/drivers/gpu/drm/panfrost/panfrost_job.c
->> +++ b/drivers/gpu/drm/panfrost/panfrost_job.c
->> @@ -388,13 +388,21 @@ static void panfrost_job_timedout(struct drm_sched_job *sched_job)
->>  
->>  	mutex_lock(&pfdev->reset_lock);
->>  
->> +	if (pfdev->is_resetting) {
->> +		mutex_unlock(&pfdev->reset_lock);
->> +		return;
->> +	}
->> +	pfdev->is_resetting = true;
->> +
->> +	mutex_unlock(&pfdev->reset_lock);
->> +
->>  	for (i = 0; i < NUM_JOB_SLOTS; i++)
->>  		drm_sched_stop(&pfdev->js->queue[i].sched, sched_job);
->>  
->>  	if (sched_job)
->>  		drm_sched_increase_karma(sched_job);
->>  
->> -	/* panfrost_core_dump(pfdev); */
->> +	mutex_lock(&pfdev->reset_lock);
->>  
->>  	panfrost_devfreq_record_transition(pfdev, js);
->>  	panfrost_device_reset(pfdev);
->> @@ -406,6 +414,7 @@ static void panfrost_job_timedout(struct drm_sched_job *sched_job)
->>  	for (i = 0; i < NUM_JOB_SLOTS; i++)
->>  		drm_sched_start(&pfdev->js->queue[i].sched, true);
->>  
->> +	pfdev->is_resetting = false;
->>  	mutex_unlock(&pfdev->reset_lock);
->>  }
->>  
->> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
->> index 148468447ba9..bc6d1862ec8a 100644
->> --- a/drivers/gpu/drm/scheduler/sched_main.c
->> +++ b/drivers/gpu/drm/scheduler/sched_main.c
->> @@ -415,7 +415,10 @@ void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad)
->>  	 * this TDR finished and before the newly restarted jobs had a
->>  	 * chance to complete.
->>  	 */
->> -	cancel_delayed_work(&sched->work_tdr);
->> +	if (bad->sched != sched)
->> +		cancel_delayed_work_sync(&sched->work_tdr);
->> +	else
->> +		cancel_delayed_work(&sched->work_tdr);
->>  }
->>  
->>  EXPORT_SYMBOL(drm_sched_stop);
->>
-> 
+Changes since v2:
+  - fix yaml documention
+  - remove unneeded status variable for temperature-sensor node
+  - rework driver after Martin review
+  - add some information in commit message
+
+Changes since v1:
+  - fix enum vs const in documentation
+  - fix error with thermal-sensor-cells value set to 1 instead of 0
+  - add some dependencies needed to add cooling-maps
+
+Dependencies :
+- patch 3,4 & 5: depends on Neil's patch and series :
+              - missing dwc2 phy-names[2]
+              - patchsets to add DVFS on G12a[3] which have deps on [4] and [5]
+
+[1] https://lore.kernel.org/linux-amlogic/20190604144714.2009-1-glaroque@baylibre.com/
+[2] https://lore.kernel.org/linux-amlogic/20190625123647.26117-1-narmstrong@baylibre.com/
+[3] https://lore.kernel.org/linux-amlogic/20190729132622.7566-1-narmstrong@baylibre.com/
+[4] https://lore.kernel.org/linux-amlogic/20190731084019.8451-5-narmstrong@baylibre.com/
+[5] https://lore.kernel.org/linux-amlogic/20190729132622.7566-3-narmstrong@baylibre.com/
+
+Guillaume La Roque (7):
+  dt-bindings: thermal: Add DT bindings documentation for Amlogic
+    Thermal
+  thermal: amlogic: Add thermal driver to support G12 SoCs
+  arm64: dts: amlogic: g12: add temperature sensor
+  arm64: dts: meson: g12: Add minimal thermal zone
+  arm64: dts: amlogic: g12a: add cooling properties
+  arm64: dts: amlogic: g12b: add cooling properties
+  MAINTAINERS: add entry for Amlogic Thermal driver
+
+ .../bindings/thermal/amlogic,thermal.yaml     |  54 +++
+ MAINTAINERS                                   |   9 +
+ .../boot/dts/amlogic/meson-g12-common.dtsi    |  66 ++++
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi   |  24 ++
+ arch/arm64/boot/dts/amlogic/meson-g12b.dtsi   |  29 ++
+ drivers/thermal/Kconfig                       |  11 +
+ drivers/thermal/Makefile                      |   1 +
+ drivers/thermal/amlogic_thermal.c             | 333 ++++++++++++++++++
+ 8 files changed, 527 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
+ create mode 100644 drivers/thermal/amlogic_thermal.c
+
+-- 
+2.17.1
 
 
 _______________________________________________
