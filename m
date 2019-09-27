@@ -2,150 +2,93 @@ Return-Path: <SRS0=3dzI=XW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9C266C4360C
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 15:20:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 25A7DC4360C
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 16:02:37 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6CA24207E0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 15:20:51 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E9F56207E0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 16:02:36 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PGzEVXem";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="fHyggQnA"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6CA24207E0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="VsNdijEC";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="hjOW3C4S"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E9F56207E0
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FyZ1zRPR8mqFilXc4Cz+HStwxHarz6lIqGOLNh3LrDg=; b=PGzEVXemTO/P+F
-	wh/BIWbM+Ik3ltCioa/B48iS947BqXNm6/phrzrKyF50xWuEiL65deqytoUUZu1jNwDzd6Mp2jonu
-	W1ya/t1Xo+dHI/it+P2Oi+sXZybLu4dftSHtPD/oOwJ4Z6vRStar78gAww9dSIxlSA3FMcUKuR/ez
-	hm5H63USNdO4+yxN37k1R9c/VbcfkdvMzJz7v+DOcXjlnu1+B+JouTYZVDNc7WHBieoHE8eFmr6E5
-	ZZ/3Xhf/8LSTxJA2jikzayd6ghj7QUGac/UP//I7U2uwk6ab61tnqhHv1ziVoQRMufepOv+msQzyU
-	I74btkLQGJIFVldlaNgg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Eq5cJMkhdIFrDU3d12BDyo79pazZ98yUFXqHp/ocFOU=; b=VsNdijECtuyV37
+	yDoXd88ZiS/Y6XlWwHA4Of4arAo/DziGGMDKnj4IW11d2/X3iD3qwlpGzeWEYSKLnot2oLmSXU7gX
+	P3bIibvqmxOPKJvWLasPkLGBdnRY+z1AR0CjaHj7o3GWpXyfk1exKFmNXYECnaHIJHYkDTWOfpR/5
+	7lBzZnAAd4C6pZlnR9TWIkbG6dtKUXRc73hSKQozC5U1ZxFEIG2eAg6itGDxeb9t41ndDlGMRwuLe
+	vxUHrTvCA1zLAWmeyyH0qI5IglQfLqzET9PLR10oTIDpe/Vd6Fv3udOEhlM/Tr81pOS573N3PXL9Y
+	rfUiTARyH/OiMw/IjSqw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iDs33-0000FR-P5; Fri, 27 Sep 2019 15:20:45 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1iDshR-00069E-HX; Fri, 27 Sep 2019 16:02:29 +0000
+Received: from mail-pl1-x641.google.com ([2607:f8b0:4864:20::641])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iDs30-0000E5-GD
- for linux-amlogic@lists.infradead.org; Fri, 27 Sep 2019 15:20:45 +0000
-Received: by mail-wr1-x443.google.com with SMTP id i1so3407095wro.4
- for <linux-amlogic@lists.infradead.org>; Fri, 27 Sep 2019 08:20:39 -0700 (PDT)
+ id 1iDshE-0005zY-BY
+ for linux-amlogic@lists.infradead.org; Fri, 27 Sep 2019 16:02:18 +0000
+Received: by mail-pl1-x641.google.com with SMTP id q24so1262865plr.13
+ for <linux-amlogic@lists.infradead.org>; Fri, 27 Sep 2019 09:02:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=eafMU3hWvqz7GVzjN0no0dPexMfcOIzXRqYnJ9AVx5s=;
- b=fHyggQnAaXptoY56HIWgoHPIvY8wrcgIHsKpA5YCV6c2xNtD7pgDVAyArZHuTf/rt9
- qRkdfGQElhl06zRV91Bn/pP3m0ijg7sDhS8LNYodkHUHVxst1hbibyhHTtUXKAKn/Zgz
- 9WwbsinRSBz0xMDuJm3kbJfJmaT1st0f90hu4Eur6ac/BN1L4cj6q4FVD75ThFP0s/2O
- k0QPC7gREbASyNcu+YhtQSOVEF9s9VhsfqWrkwDFBDdjvr4sT/LqZUqJ3jZa3OV3npkz
- YHpxi5GpJ6m0wgPuyJ+GZusFMYbOl1CWDhZRBEAlpG1iA62asVhsEwicr9+SrIRoVS+Z
- +Apg==
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=29a3oTunOouDFzxMtIrWBXRyyY3LWhUwRCrePjAx2qE=;
+ b=hjOW3C4SuSB7unJjx+5yJqjFuAldtauxybxk3cFSxQaAi/4e2KMQ5NI0EB1NNtU0qH
+ cGdKRs/ubtIEtWKlpW1ocUVwjIJRmYWOzzUhbRyKQdXU+6wQ0TgkJr1gw+EqD3zHXdH0
+ n8Yh8s/nV0q88MN/8eTOSlrHBN54E60xXDlIqi4XS+0r5whpKFVIm5W9GzB2TGCXXsYg
+ Abgl4pZGte7BQ2QkOSc8lgsBxcO2JERK0RIAkorcmy6y1T/xwnUUewm+J//PZ6Y1bx49
+ Pk9N2zMO6R7zVsUrJt/SJrV5GvSOETzFSEI+ZDMZoK53UcVEfDZhyWiJXRy2e4Q1QuJk
+ NOKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=eafMU3hWvqz7GVzjN0no0dPexMfcOIzXRqYnJ9AVx5s=;
- b=gZgq+BXEl8eieGMFfy5khYV9vYMcfbbWa71pi+x3XP4VEB2qHXDwL02fV107WQig5f
- 4UxTcunJUv1u5sWgzVarVgjPBPjGMbHOBKWV80GKU4nl0Pq+rsQAuqymNWxvwSj6CvZo
- jObD9eUbm3J4TxghvxwR3TaNSjk9c3u0Djzr3BumJGyUR1ArFsFTvbsivmvt+gCDc3NP
- fzNU5vNhx+21wy3tjBpFvJCqDHbhrMYQuiNBna8svaysb87h3SFOlb2Rxth6hWOTQVY0
- e3o93wNPXJDiPXXp2ntjLy8Hdi22lrGN0k8hoURS7i4aPREsbupJuUcSJ9EN/lUH8qdz
- jlyg==
-X-Gm-Message-State: APjAAAU6H4V1MYla5pdjGF/T8v0QBBYeMJvvbpcHhxIzmBk7l5aRFb/b
- 5NDybU3TzSqiMHrGwwVrGNOccg==
-X-Google-Smtp-Source: APXvYqwJ67OLpUy8ik5GEIV98e+Ti7WflPXFmGRZ6g+k7Zzadydl8nw+D0EsrJHWFgEHMtwFYcFuVw==
-X-Received: by 2002:a5d:4803:: with SMTP id l3mr3690677wrq.301.1569597638646; 
- Fri, 27 Sep 2019 08:20:38 -0700 (PDT)
-Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr.
- [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id y3sm19469948wmg.2.2019.09.27.08.20.37
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 27 Sep 2019 08:20:37 -0700 (PDT)
-Subject: Re: drm_sched with panfrost crash on T820
-To: Steven Price <steven.price@arm.com>, daniel@ffwll.ch, airlied@linux.ie,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-References: <e450fbe6-dec7-2704-59c2-db7e869d67f5@baylibre.com>
- <3fb178d8-f069-0ae2-1ed3-4ded84a71951@arm.com>
- <26ae2a4d-8df1-e8db-3060-41638ed63e2a@arm.com>
- <1eec2f1b-0467-cd4d-aa22-23c70388ac0f@baylibre.com>
- <645fd795-7d22-268d-a8af-5ff090379505@baylibre.com>
- <5e4592e8-e1ef-864d-5ed4-3b82f54fb43d@arm.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <74acedc9-016e-4c39-ebb4-5572e6b94305@baylibre.com>
-Date: Fri, 27 Sep 2019 17:20:36 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=29a3oTunOouDFzxMtIrWBXRyyY3LWhUwRCrePjAx2qE=;
+ b=kzoEvDEhvHNQzkL3zFJqqKpmju7Rol2buc/5SSQWdXAw+pRVhSzcFGlvO+63swtxJH
+ uGLbCp6x6Mqw+gPRmECktsKP5pVT2+3gyT0LG2bJ6hO7wr9uUjv5vPpuDWEUisYGcN6t
+ /x4cAp8xmhTpOlrD+CSfv4k09ui+ameefq6SsdDIUg7H7beRJS2lgy08beCGKwzDIBh2
+ 1Mg6X+Yb8td1WnoEzrWF5gsvSpo/JgoXnar5hSH+3/izT+0ejQ32AUQgDGP72h0KtB2w
+ NkK/IK9B9/uLAYojMipgJIAWyI/WL9ZWDeZPafuXgg6XXrVuIk1tJk04WLac3REQM25W
+ 1FYQ==
+X-Gm-Message-State: APjAAAVuYaPYskmWZkexnD5JLZgkBhkAUwjNTFPbYtAVPcMBuspVyVDe
+ oZ3nnl9nGAy2WZVZEyeZDai57Q==
+X-Google-Smtp-Source: APXvYqwb2qcrphZZtwIWMoEm1Jl9XAX4IezpkCTvrSf1SgdfEcRynzdCEgT5Z+6j0c7zO2GfixPHEw==
+X-Received: by 2002:a17:902:9896:: with SMTP id
+ s22mr5360521plp.207.1569600135203; 
+ Fri, 27 Sep 2019 09:02:15 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
+ [71.197.186.152])
+ by smtp.gmail.com with ESMTPSA id 196sm3586887pfz.99.2019.09.27.09.02.14
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Fri, 27 Sep 2019 09:02:14 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@kernel.org>,
+ linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v2 2/2] soc: amlogic: ee-pwrc: ensure driver state maches
+ HW state
+In-Reply-To: <21eafa69-fe26-2df1-d187-cddfe5b37951@baylibre.com>
+References: <20190925213528.21515-1-khilman@kernel.org>
+ <20190925213528.21515-3-khilman@kernel.org>
+ <8936e777-8996-5c7b-ea9d-8e17c8d6c4b1@baylibre.com>
+ <7hwodulvu6.fsf@baylibre.com>
+ <21eafa69-fe26-2df1-d187-cddfe5b37951@baylibre.com>
+Date: Fri, 27 Sep 2019 09:02:13 -0700
+Message-ID: <7h1rw1iv7e.fsf@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <5e4592e8-e1ef-864d-5ed4-3b82f54fb43d@arm.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190927_082042_613724_7A303B4A 
-X-CRM114-Status: GOOD (  28.03  )
+X-CRM114-CacheID: sfid-20190927_090216_397369_C58482C0 
+X-CRM114-Status: GOOD (  34.32  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,208 +100,191 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Tomeu Vizoso <tomeu.vizoso@collabora.com>, Erico Nunes <nunes.erico@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 27/09/2019 17:00, Steven Price wrote:
-> On 27/09/2019 12:48, Neil Armstrong wrote:
->> Hi,
->>
->> On 27/09/2019 13:27, Neil Armstrong wrote:
->>> Hi Steven,
->>>
->>> Thanks for your prompt reaction !
->>>
->>> On 27/09/2019 12:48, Steven Price wrote:
->>>> On 27/09/2019 10:55, Steven Price wrote:
->>>> [...]
->>>>> One obvious issue with the DRM scheduler is that there is a call to
->>>>> cancel_delayed_work() in drm_sched_stop() which to me looks like it
->>>>> should be cancel_delayed_work_sync() to ensure that the timeout handling
->>>>> has completed.
->>>>>
->>>>> However in the above scenario a _sync() variety would then cause a
->>>>> deadlock (one thread has pfdev->reset_lock and is waiting for the other
->>>>> thread which is trying to take the lock).
->>>>>
->>>>> So we need to update Panfrost so that it can coordinate the reset
->>>>> between schedulers. Can you try something like the following (untested):
->>>>
->>>> And actually testing it I of course discover it doesn't quite work. We
->>>> do need the cancel_delayed_work_sync() in the DRM scheduler (when
->>>> stopping a different scheduler) and we need to avoid holding the
->>>> reset_lock during the drm_sched_stop() call to prevent deadlocking with
->>>> another thread handling a timeout.
->>>
->>> Yep the first patch wasn't fixing the issue all the time.
->>>
->>>>
->>>> Can you give the following patch a spin? I don't have a great
->>>> reproduction case, so it would be good to get some confidence it fixes
->>>> the problem.
->>>
->>> Running it right now.
->>
->> First run gave me (while applying on v5.3):
->> [  307.969230] Unable to handle kernel NULL pointer dereference at virtual address 00000000000000c0
->> [...]
->> [  308.029358] Hardware name: Khadas VIM2 (DT)
->> [  308.033510] Workqueue: events drm_sched_job_timedout
->> [  308.038416] pstate: 80000005 (Nzcv daif -PAN -UAO)
->> [  308.043160] pc : drm_sched_start+0x88/0x138
->> [  308.047300] lr : drm_sched_start+0xb0/0x138
->> [...]
->> [  308.133635] Call trace:
->> [  308.136052]  drm_sched_start+0x88/0x138
->> [  308.139847]  panfrost_job_timedout+0x1cc/0x208
->> [  308.144245]  drm_sched_job_timedout+0x44/0xa8
->> [  308.148560]  process_one_work+0x1e0/0x320
->> [  308.152524]  worker_thread+0x40/0x450
->> [  308.156149]  kthread+0x124/0x128
->> [  308.159342]  ret_from_fork+0x10/0x18
->> [  308.162879] Code: 54000280 f9400862 52800020 aa1a03e1 (f940605b)
->> [  308.168914] ---[ end trace 256b7f5faec101d2 ]---
->>
->> Bad pointer seems to be struct dma_fence *fence = s_job->s_fence->parent that
->> could be a NULL return from panfrost_job_run().
-> 
-> I haven't managed reproduce this locally, admittedly the test case I was
-> using before relies on changes in drm-misc-next (HEAPs specifically), so
-> it might be a bug present in v5.3 which isn't present in drm-misc-next.
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-I have a hard time reproducing it... anyway the original regression
-doesn't happen anymore.
+> On 26/09/2019 21:08, Kevin Hilman wrote:
+>> Neil Armstrong <narmstrong@baylibre.com> writes:
+>> 
+>>> On 25/09/2019 23:35, Kevin Hilman wrote:
+>>>> From: Kevin Hilman <khilman@baylibre.com>
+>>>>
+>>>> During init, ensure that the driver on/off state as well as clock and
+>>>> reset state matches the hardware state.  Do this by always calling the
+>>>> drivers 'on' function, and then callling the 'off' function if the
+>>>> HW state was initially detected as off.
+>> 
+>> [...]
+>> 
+>>> I don't see what you are trying to solve except simplifying the code.
+>> 
+>> Simplifying the code is a worthwhile goal on its own, but that's not the
+>> only thing I'm tring to accomplish.
+>
+> I still find it ugly to power_on a domain to power it off right afterwards.
+> The issue is with the CCF enable handling which is not in sync with the
+> HW, if you boot with an already enabled clock, it won't be marked enabled
+> in CCF, and it's clearly bad when you want to have a fine-tuned gate state
+> handling.
 
-I'll continue running it a few times this week-end.
+It's not just the clocks.  The only thing we actually know is the HW
+state of the sleep bit (because we read it.)  We don't know the state of
+all the mem_pd bits or the iso_reg, nor do we know the state of the
+reset lines.  Calling 'on' ensures everything is where we expect, and
+we're not relying on the bootloader to do it.
+
+>> Part of the goal is make the init less VPU specific and thus make it
+>> more understandable/maintainable.  But the more important part is to
+>> ensure that the driver state and HW state is consistent for all the
+>> domains (not just VPU.)  I've had to debug lots of power-domain issues,
+>> and inconsistiences between HW state and driver state tend to be the
+>> primary cause of problems.
+>> 
+>> Also I'm generally not a fan of the "don't mess with bootloader state"
+>> approach as that leads to subtle dependencies on specific bootloader
+>> versions that are also difficult to debug.
+>> 
+>> Antother equally important goal is to actually be able to power-down the
+>> VPU when it's not used.  Right now, we'll never power off the VPU if the
+>> bootloader enabled it, and that seems a bit extreme so I'm looking to
+>> improve that and be able to power off the VPU when not used.
+>> 
+>>> And the case is more that "matching the clock state" here, the
+>>> pm_domain_always_on_gov was is a real case when booting from the Amlogic
+>>> U-boot.
+>> 
+>> I'm not understanding what you mean about vendor uboot.  I've done
+>> testing with vendor uboot too:
+>> 
+>> I tried on g12a-u200, g12a-x96-max, and sm1-khadas-vim3l all of which
+>> have vendor uboot, and I tried before and after $SUBJECT patch.
+>> 
+>> In all cases, I see the vendor uboot splash screen, and I see the
+>> framebuffer console from linux after kernel boot.  I see the same
+>> behavior before and after my patch.
+>> 
+>> I also tried on g12b-odroid-n2 (vendor uboot), and there is _no_ uboot
+>> spash screen, but I see the linux framebuffer console come up both
+>> before and after my patch.
+>
+> Thanks for testing all these cases
+>
+>> 
+>> What's the specific case you're worried about with vendor uboot?
+>
+> It's an issue I got when bringing up mainline uboot and the vpu power controller
+> driver, I had regressions on GXBB and GXL boards.
+> But it seems it's no more the case on G12A/G12B, we'll see this when
+> GX support will be added in this driver.
+>
+>> Also...  note something interesting I noticed on sm1-khadas-vim3l:
+>> before my patch, the framebuffer console appears, but the background is
+>> a bluish/green color.  After my patch, the background is black (as
+>> expected.)  
+>
+> Yes it's an issue I have on my infinite todo list, it's a different
+> init done by the latest vendor uboot. I have a fix but it seems it
+> breaks display when booting other boards.
+>
+>> 
+>>> The display power domain is complex and as been half solved by using
+>>> "simple-framebuffer" on gx and is missing on g12a/g12b/sm1.
+>>>
+>>> For example, Debian installer runs without the modules, but will use
+>>> the EFIfb set by U-Boot, but in this precise case :
+>>> - the DRM driver isn't loaded
+>>> - we can't hook this power domain with EFIfb
+>> 
+>> OK, so I agree that this case where we want the display to continue to
+>> work but linux DRM drivers never loaded is a special case.
+>> 
+>> Is there a way to check if efifb is enabled?  Is the the linux driver
+>> (drivers/video/fbdev/efifb.c) or something else only done by uboot?
+>> 
+>> If we can detect efifb from the kernel (not just whether the domain is
+>> already on), then a simple addition to my patch like this:
+>> 
+>>  	if (is_off)
+>>  		meson_ee_pwrc_off(&dom->base);
+>> +	else if (efifb_is_enabled)
+>> +		dom->base.flags |= GENPD_FLAG_ALWAYS_ON;
+>> 
+>> would force the domain always-on in the case of efifb.  
+>> 
+>> In fact, now that I think of it, simply adding:
+>> 
+>>  	if (is_off)
+>>  		meson_ee_pwrc_off(&dom->base);
+>> +	else
+>> +		dom->base.flags |= GENPD_FLAG_ALWAYS_ON;
+>> 
+>> to my current patch would get back to the same behavior of the existing
+>> driver.  But I still don't like the idea that we can *never* power off
+>> the VPU if the bootloader enables it. :( I'd rather see patches
+>> conditionally adding that flag with detailed explanations as to why it's
+>> needed.
+>> 
+>>> When *not* in EFIfb, we use simple-framebuffer on GX, using this
+>>> power domain, but it hasn't been copied to G12A.
+>> 
+>> I don't quite understand what problem simple-framebuffer is
+>> solving. Could you explain that in more detail.
+>
+> simple-framebuffer has the power domain hooked in it's node, so
+> when u-boot will boot linux with HDMI enabled it will enable
+> this node and until the DRM driver loads the simple-framebuffer
+> will live and keep the power domain enabled.
+
+Ah, thanks for the explanation.  I didn't realize it was u-boot that was
+adding/enabling the simplefb node in the DT.
+
+>> 
+>> Assuming it is solving something, why can't it be used on g12[ab]/sm1 ?
+>
+> It will, but I need to push the patches.
+>
+
+OK.
+
+>>> Personally I'll leave this code until we really tested and checked all
+>>> uses cases, 
+>> 
+>> Right, I don't want to break anything on purpose, but I think the
+>> current state of this driver is fragile and difficult to
+>> understand/maintain, so I would be grateful for any help in
+>> understanding the corner cases better, as well as testing them (or
+>> explaining to me how to reproduce them.)
+>> 
+>> Generally, with long-term maintenance in mind, if I'm forced to choose
+>> between understandable/maintainable code and "covers 100% of corner
+>> cases" I will most often chose the former.
+>> 
+>>> not only on the sei510/sei610 using mainline u-boot.
+>> 
+>> See above about all the other boards with vendor uboots also tested.
+>
+> Let's leave apart the vendor uboot issue for g12.
+>
+> Since display support for G12A will land soon in mainline U-boot, let me
+> push the DT patches for simple-framebuffer to we have a fallback in
+> case the DRM driver isn't loaded/built.
+>
+> We can consider that in case of EFIfb, the simple-framebuffer node would have
+> been enabled and the power domain hooked and enabled.
+
+OK, that makes sense to me.
+
+So can I consider this an 'ack' from you for this patch, as long as I
+wait to apply it until the simplefb DT patches are also merged?
 
 Thanks,
-Neil
 
-> 
-> From the code dumped we have:
-> 
->    0:	54000280 	b.eq	50 <.text+0x50>  // b.none
->    4:	f9400862 	ldr	x2, [x3, #16]
->    8:	52800020 	mov	w0, #0x1                   	// #1
->    c:	aa1a03e1 	mov	x1, x26
->   10:	f940605b 	ldr	x27, [x2, #192]
-> 
-> Which looks like the expression s_job->s_fence->parent, so it looks like
-> s_job->s_fence == NULL. Which looks to me like drm_sched_job_cleanup()
-> has been called on the job. But I can't work out why.
-> 
-> Steve
-> 
->> Neil
->>>
->>> Thanks,
->>> Neil
->>>
->>>>
->>>> ----8<----
->>>> From 521a286789260197ae94f698932ebf369efc45ad Mon Sep 17 00:00:00 2001
->>>> From: Steven Price <steven.price@arm.com>
->>>> Date: Fri, 27 Sep 2019 11:42:40 +0100
->>>> Subject: [PATCH] drm/panfrost: Handle resetting on timeout better
->>>>
->>>> Panfrost uses multiple schedulers (one for each slot, so 2 in reality),
->>>> and on a timeout has to stop all the schedulers to safely perform a
->>>> reset. However more than one scheduler can trigger a timeout at the same
->>>> time. This race condition results in jobs being freed while they are
->>>> still in use.
->>>>
->>>> Modify drm_sched_stop() to call cancel_delayed_work_sync() when stopping
->>>> a different scheduler to the one belonging to the passed in job.
->>>> panfrost_job_timedout() is also modified to only allow one thread at a
->>>> time to handle the reset. Any subsequent threads simply return assuming
->>>> that the first thread will handle the situation.
->>>>
->>>> Signed-off-by: Steven Price <steven.price@arm.com>
->>>> ---
->>>>  drivers/gpu/drm/panfrost/panfrost_device.h |  2 ++
->>>>  drivers/gpu/drm/panfrost/panfrost_job.c    | 11 ++++++++++-
->>>>  drivers/gpu/drm/scheduler/sched_main.c     |  5 ++++-
->>>>  3 files changed, 16 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/panfrost/panfrost_device.h b/drivers/gpu/drm/panfrost/panfrost_device.h
->>>> index f503c566e99f..6441c7fba6c4 100644
->>>> --- a/drivers/gpu/drm/panfrost/panfrost_device.h
->>>> +++ b/drivers/gpu/drm/panfrost/panfrost_device.h
->>>> @@ -99,6 +99,8 @@ struct panfrost_device {
->>>>  		unsigned long cur_volt;
->>>>  		struct panfrost_devfreq_slot slot[NUM_JOB_SLOTS];
->>>>  	} devfreq;
->>>> +
->>>> +	bool is_resetting;
->>>>  };
->>>>  
->>>>  struct panfrost_mmu {
->>>> diff --git a/drivers/gpu/drm/panfrost/panfrost_job.c b/drivers/gpu/drm/panfrost/panfrost_job.c
->>>> index 05c85f45a0de..1b2019e08b43 100644
->>>> --- a/drivers/gpu/drm/panfrost/panfrost_job.c
->>>> +++ b/drivers/gpu/drm/panfrost/panfrost_job.c
->>>> @@ -388,13 +388,21 @@ static void panfrost_job_timedout(struct drm_sched_job *sched_job)
->>>>  
->>>>  	mutex_lock(&pfdev->reset_lock);
->>>>  
->>>> +	if (pfdev->is_resetting) {
->>>> +		mutex_unlock(&pfdev->reset_lock);
->>>> +		return;
->>>> +	}
->>>> +	pfdev->is_resetting = true;
->>>> +
->>>> +	mutex_unlock(&pfdev->reset_lock);
->>>> +
->>>>  	for (i = 0; i < NUM_JOB_SLOTS; i++)
->>>>  		drm_sched_stop(&pfdev->js->queue[i].sched, sched_job);
->>>>  
->>>>  	if (sched_job)
->>>>  		drm_sched_increase_karma(sched_job);
->>>>  
->>>> -	/* panfrost_core_dump(pfdev); */
->>>> +	mutex_lock(&pfdev->reset_lock);
->>>>  
->>>>  	panfrost_devfreq_record_transition(pfdev, js);
->>>>  	panfrost_device_reset(pfdev);
->>>> @@ -406,6 +414,7 @@ static void panfrost_job_timedout(struct drm_sched_job *sched_job)
->>>>  	for (i = 0; i < NUM_JOB_SLOTS; i++)
->>>>  		drm_sched_start(&pfdev->js->queue[i].sched, true);
->>>>  
->>>> +	pfdev->is_resetting = false;
->>>>  	mutex_unlock(&pfdev->reset_lock);
->>>>  }
->>>>  
->>>> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
->>>> index 148468447ba9..bc6d1862ec8a 100644
->>>> --- a/drivers/gpu/drm/scheduler/sched_main.c
->>>> +++ b/drivers/gpu/drm/scheduler/sched_main.c
->>>> @@ -415,7 +415,10 @@ void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad)
->>>>  	 * this TDR finished and before the newly restarted jobs had a
->>>>  	 * chance to complete.
->>>>  	 */
->>>> -	cancel_delayed_work(&sched->work_tdr);
->>>> +	if (bad->sched != sched)
->>>> +		cancel_delayed_work_sync(&sched->work_tdr);
->>>> +	else
->>>> +		cancel_delayed_work(&sched->work_tdr);
->>>>  }
->>>>  
->>>>  EXPORT_SYMBOL(drm_sched_stop);
->>>>
->>>
->>
->> _______________________________________________
->> dri-devel mailing list
->> dri-devel@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/dri-devel
->>
-> 
-
+Kevin
 
 _______________________________________________
 linux-amlogic mailing list
