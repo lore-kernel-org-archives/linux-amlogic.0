@@ -2,86 +2,82 @@ Return-Path: <SRS0=3dzI=XW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 03FEFC4360C
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 06:40:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 75F68C4360C
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 08:13:05 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C9216206B7
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 06:40:52 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 45540217D7
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 08:13:05 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="u1ipWbMX";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="2FvSir+M"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C9216206B7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TE4LLARo";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="h7VHDbvv"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 45540217D7
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JAqgJQ0m5i/L1tvJp0DCmcM2lZdaDiJzkTYlf6luZoY=; b=u1ipWbMXRxPuMm
-	3XiQwwBe5Nz8ZbB9/fSVcu/lD3dL2EZ5SeM962o/CUXRn0RgLhvhlJa0H2/iutqA4tF0bKi+CDKCw
-	xkOwwosxts0dl4oh47B2vQnCKTfHKwCqiDQjq5OuwTodBCmBVUk/vwGd8bl/xdi9dfTJskMVNS6yB
-	6OdLFn+66NNam5N25Lb0g1XknE+GLUwzin75KjINVFE/j17o8+TKLe0TCli3D0Wmr97SHe9/wzNJq
-	+vKCz7mzujqb9E/Jctok1BwyuM7IStAE2MaZnA95sCL/P5dX1XK+3Mr/vO4QtfBTZQ9qhLXLDTFdv
-	9xrc7X4vomNB3vtjAyFg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:Message-ID:Subject:
+	From:To:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=iaHP4pAt7mxbSfwDGc8W+AtvKb0/HgKBsV5kG84uif0=; b=TE4LLARojdVx9w
+	3zRjAfil8o0ni+NUwoGBS9c9JyhG6Vkn3yJtR7FZmMzOkWXE0eCM9zpVTPvfhac+6uAsPhp+P8VPY
+	kVmOcEBXtI4L4mmRATWMUawk3It37ZYBavidRtNwCNjPtXWowb5KRU+VtFCzztjXpGFeUtY9T/sm1
+	/O3PTqNJjoe2h/7wU4Ls01/HAValjruohg9WEpa+P+cNcWrKVO/9RFQ0cdPc+2AfnBAQ/YSuOYXbx
+	RO4Ds2QDuwmM2tVYaeZABERHn9zhshJiQ5zkq27zWwt/AyqmMQwtJss7Q3VtnVzV53cokoah4uqbO
+	ZAdvn3CLRltWAz1tQQyA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iDjvr-0002hj-MS; Fri, 27 Sep 2019 06:40:47 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1iDlN2-0002hH-Jw; Fri, 27 Sep 2019 08:12:56 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iDjvp-0002h5-CW
- for linux-amlogic@lists.infradead.org; Fri, 27 Sep 2019 06:40:46 +0000
-Received: by mail-wm1-x344.google.com with SMTP id 3so4889147wmi.3
- for <linux-amlogic@lists.infradead.org>; Thu, 26 Sep 2019 23:40:44 -0700 (PDT)
+ id 1iDlMz-0002gh-3T
+ for linux-amlogic@lists.infradead.org; Fri, 27 Sep 2019 08:12:55 +0000
+Received: by mail-wr1-x443.google.com with SMTP id r3so1629418wrj.6
+ for <linux-amlogic@lists.infradead.org>; Fri, 27 Sep 2019 01:12:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=PHQhF1Uf8xVr36GTPK8xxc4d83dA9hQ4yXimfprGDGg=;
- b=2FvSir+M/YgOB6XuiiX0hGFMFd7J0eZGu7Vn8aKrTBZL9HnCouMYPDJ4jixL8qOZK2
- 2gCkqC9nMOjvuLTY0HiX+bRdo6Ppf/b00kMNZPauq86C3FWMjrdtwIFtC269p323iE+9
- Kf6KAKpSwzJk6goXM9wiM7lOk1nGjJ1rkaXgza/LITKDdRv3gBSscxHx+ra5+TsykBCj
- Dx0nTfkDL5KEqTqIhwRXFo3IoEJbUJLjQryiddtDBKaIinWXgegwP5f+lL+EB0+uluuL
- ZhHS47bNp6A7JTdUhzxTxsAOsJK/rDkdBlzoYgCXg9FLlQzkv7M2ZZfJVJRt/X+MZ66X
- uZnw==
+ h=to:cc:from:subject:openpgp:autocrypt:organization:message-id:date
+ :user-agent:mime-version:content-language:content-transfer-encoding;
+ bh=Ex6o6iK/9RL21+NQO5EVoATLXo1UjsfmNRyP+eLI70g=;
+ b=h7VHDbvvREToP7ByBL1x5fbolZ8BvB7x9eBzOwNPTSQZ68h2S3GqtGdrXBi1JiCt4w
+ v6HVEKUpipFwHfPcEjpb5bMP5+bPvn/up1nHaRQL91pCnqFLnC0VtiCw/eSDNNLJ6TeW
+ wwEdnSNORyQq5frCe7cTuyRWzrYnRhwnljkfqCkz2hKmlj0R6wCJ+FP4pXnL9w+9wPUl
+ M1aw9aTYg99VvbZTkNj6JSe9WmHaxfIBax3LjXRX+H0MFXbJImRi/cTyPx+FER4eJuPK
+ zWVF3B+fb4cD1GxOjW3xe+xbyx6jd2Na2QkVO3GsawEsZDeJH/vQh4+v600EhIqVc/g8
+ 21hA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
+ h=x-gm-message-state:to:cc:from:subject:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version
  :content-language:content-transfer-encoding;
- bh=PHQhF1Uf8xVr36GTPK8xxc4d83dA9hQ4yXimfprGDGg=;
- b=QNHl59dOBIwQP6Ef+ygACtQ8cwK2g1CWZ3eo59+Itd+Ih5Amg4IesdK0u62BdPMxKT
- AtjcXzUBQiKKZeg0XSXkXKszlCOfqT87WY7T1tBPUguaNtC+HBVlTYrXpq9WlzKnU/QL
- woyJlo/4JvDKhm1uV9Z7X5Twa00H4bbhDg70PR5MbYHAY8DD0/q4g7Xw906/fTR3dep/
- IjdyuhVjP/bskgt8vPwDXM7sm+rJGwacaRFqJXJa7Eu+QiVwHSF52pP9iuUIW3UfMHsM
- /p4zIYq+xScZ4O5188amMiSCdl6MkTe933WsebM87AonGdJsjn2wHerZY4eFgzW4knYk
- +doQ==
-X-Gm-Message-State: APjAAAW2JvbRWnZf3VgcalwKrtBoPBcXwFm037+NUlw+N/n+oS0ZtDdb
- 2uW5Txzwsq7lFrB03VzXlFbgNg==
-X-Google-Smtp-Source: APXvYqzO7faOpfYkbitY0KwoI/cYZPPeFot3uk06M2C/f11Z4QbBMv/OBs42MToBEijbBQTE/4anzQ==
-X-Received: by 2002:a1c:f30d:: with SMTP id q13mr5364119wmq.60.1569566443678; 
- Thu, 26 Sep 2019 23:40:43 -0700 (PDT)
+ bh=Ex6o6iK/9RL21+NQO5EVoATLXo1UjsfmNRyP+eLI70g=;
+ b=OThQ+8MAiUGAeFo/9k+wbjEH5plZeqbkFky/xQ8Vxs7j1bCS3cY+rMia3uj/M+ivEY
+ dUUXK8OX2CTtZ3ZlmXH5GIhSwSxs1mysgeEsF8NR2NIAlH5kdqymsQJ+ryJbeyLLDwhc
+ gf7veC7T+t/vF5yNCsrrY7zJ5D8jMmkzXdJ6PQU2WoAfwuMwnH9StPqKcwH8nlcrPft2
+ pFj7GQ/nZvvLZwONuH7jkgIRwsTBT76mKfba9IAn+nHed/VyyL5RzS25PI3a4YBjL0qO
+ 7tyvEWu8cSN03o+1QDHRGgMGp+tkAhV2BUZUGH2kmbw/+EUrWMiDqEJYrFF5YkK+30Is
+ 4tnw==
+X-Gm-Message-State: APjAAAU9aK78kNY2gCJ7oi/0oUDBXxsb7DKLSTq0ocgB9DFTxACMzdxb
+ B/DpbtmgPa9NyQFqefhDh99+FlF/MJwp0g==
+X-Google-Smtp-Source: APXvYqyAyvZhOb57JVeAQ8LJZD2qosO2xWuw0z0vKqeXIgjLjarLMBeIOOehk8wg4zXr3Xy5DXIQDQ==
+X-Received: by 2002:adf:e951:: with SMTP id m17mr1870220wrn.154.1569571970828; 
+ Fri, 27 Sep 2019 01:12:50 -0700 (PDT)
 Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
  by smtp.gmail.com with ESMTPSA id
- a18sm3299443wrh.25.2019.09.26.23.40.42
+ b22sm6191462wmj.36.2019.09.27.01.12.49
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 26 Sep 2019 23:40:43 -0700 (PDT)
-Subject: Re: [PATCH RFC 1/2] clk: introduce clk_invalidate_rate()
-To: Stephen Boyd <sboyd@kernel.org>, jbrunet@baylibre.com,
- mturquette@baylibre.com
-References: <20190919102518.25126-1-narmstrong@baylibre.com>
- <20190919102518.25126-2-narmstrong@baylibre.com>
- <20190927001425.DFDC7207FF@mail.kernel.org>
+ Fri, 27 Sep 2019 01:12:50 -0700 (PDT)
+To: daniel@ffwll.ch, airlied@linux.ie,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
+Subject: drm_sched with panfrost crash on T820
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  mQENBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -133,16 +129,15 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <8486dec0-8aea-ea39-2a52-7347a01c5c40@baylibre.com>
-Date: Fri, 27 Sep 2019 08:40:42 +0200
+Message-ID: <e450fbe6-dec7-2704-59c2-db7e869d67f5@baylibre.com>
+Date: Fri, 27 Sep 2019 10:12:49 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190927001425.DFDC7207FF@mail.kernel.org>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190926_234045_430625_51943A25 
-X-CRM114-Status: GOOD (  14.56  )
+X-CRM114-CacheID: sfid-20190927_011253_285175_4FB623F1 
+X-CRM114-Status: GOOD (  10.20  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,42 +149,107 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, steven.price@arm.com,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Erico Nunes <nunes.erico@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 27/09/2019 02:14, Stephen Boyd wrote:
-> Quoting Neil Armstrong (2019-09-19 03:25:17)
->> This introduces the clk_invalidate_rate() call used to recalculate the
->> rate and parent tree of a particular clock if it's known that the
->> underlying registers set has been altered by the firmware, like from
->> a suspend/resume handler running in trusted cpu mode.
->>
->> The call refreshes the actual parent and when changed, instructs CCF
->> the parent has changed. Finally the call will recalculate the rate of
->> each part of the tree to make sure the CCF cached tree is in sync with
->> the hardware.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
-> 
-> The knee-jerk reaction to these patches is that it shouldn't be a
-> consumer API (i.e. taking a struct clk) but a provider API (i.e. taking
-> a struct clk_hw). I haven't looked in any more detail but just know that
-> it's a non-starter to be a consumer based API because we don't want
-> random consumers out there to be telling the CCF or provider drivers
-> that some clk has lost state and needs to be "refreshed".
-> 
+Hi Christian,
 
-Totally agree, I hesitated and obviously did the wrong choice, but
-this is a nit, the main algorithm is not tied to the API level.
+In v5.3, running dEQP triggers the following kernel crash :
 
-Should I resend it with clk_hw ? the difference will be small and
-the main subject is the resync algorithm.
+[   20.224982] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000038
+[...]
+[   20.291064] Hardware name: Khadas VIM2 (DT)
+[   20.295217] Workqueue: events drm_sched_job_timedout
+[...]
+[   20.304867] pc : drm_sched_increase_karma+0x5c/0xf0
+[   20.309696] lr : drm_sched_increase_karma+0x44/0xf0
+[...]
+[   20.396720] Call trace:
+[   20.399138]  drm_sched_increase_karma+0x5c/0xf0
+[   20.403623]  panfrost_job_timedout+0x12c/0x1e0
+[   20.408021]  drm_sched_job_timedout+0x48/0xa0
+[   20.412336]  process_one_work+0x1e0/0x320
+[   20.416300]  worker_thread+0x40/0x450
+[   20.419924]  kthread+0x124/0x128
+[   20.423116]  ret_from_fork+0x10/0x18
+[   20.426653] Code: f9400001 540001c0 f9400a83 f9402402 (f9401c64)
+[   20.432690] ---[ end trace bd02f890139096a7 ]---
 
+Which never happens, at all, on v5.2.
+
+I did a (very) long (7 days, ~100runs) bisect run using our LAVA lab (thanks tomeu !), but
+bisecting was not easy since the bad commit landed on drm-misc-next after v5.1-rc6, and
+then v5.2-rc1 was backmerged into drm-misc-next at:
+[1] 374ed5429346 Merge drm/drm-next into drm-misc-next
+
+Thus bisecting between [1] ang v5.2-rc1 leads to commit based on v5.2-rc1... where panfrost was
+not enabled in the Khadas VIM2 DT.
+
+Anyway, I managed to identify 3 possibly breaking commits :
+[2] 290764af7e36 drm/sched: Keep s_fence->parent pointer
+[3] 5918045c4ed4 drm/scheduler: rework job destruction
+[4] a5343b8a2ca5 drm/scheduler: Add flag to hint the release of guilty job.
+
+But [1] and [2] doesn't crash the same way :
+[   16.257912] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000060
+[...]
+[   16.308307] CPU: 4 PID: 80 Comm: kworker/4:1 Not tainted 5.1.0-rc2-01185-g290764af7e36-dirty #378
+[   16.317099] Hardware name: Khadas VIM2 (DT)
+[...])
+[   16.330907] pc : refcount_sub_and_test_checked+0x4/0xb0
+[   16.336078] lr : refcount_dec_and_test_checked+0x14/0x20
+[...]
+[   16.423533] Process kworker/4:1 (pid: 80, stack limit = 0x(____ptrval____))
+[   16.430431] Call trace:
+[   16.432851]  refcount_sub_and_test_checked+0x4/0xb0
+[   16.437681]  drm_sched_job_cleanup+0x24/0x58
+[   16.441908]  panfrost_job_free+0x14/0x28
+[   16.445787]  drm_sched_job_timedout+0x6c/0xa0
+[   16.450102]  process_one_work+0x1e0/0x320
+[   16.454067]  worker_thread+0x40/0x450
+[   16.457690]  kthread+0x124/0x128
+[   16.460882]  ret_from_fork+0x10/0x18
+[   16.464421] Code: 52800000 d65f03c0 d503201f aa0103e3 (b9400021)
+[   16.470456] ---[ end trace 39a67412ee1b64b5 ]---
+
+and [3] fails like on v5.3 (in drm_sched_increase_karma):
+[   33.830080] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000038
+[...]
+[   33.871946] Internal error: Oops: 96000004 [#1] PREEMPT SMP
+[   33.877450] Modules linked in:
+[   33.880474] CPU: 6 PID: 81 Comm: kworker/6:1 Not tainted 5.1.0-rc2-01186-ga5343b8a2ca5-dirty #380
+[   33.889265] Hardware name: Khadas VIM2 (DT)
+[   33.893419] Workqueue: events drm_sched_job_timedout
+[...]
+[   33.903069] pc : drm_sched_increase_karma+0x5c/0xf0
+[   33.907898] lr : drm_sched_increase_karma+0x44/0xf0
+[...]
+[   33.994924] Process kworker/6:1 (pid: 81, stack limit = 0x(____ptrval____))
+[   34.001822] Call trace:
+[   34.004242]  drm_sched_increase_karma+0x5c/0xf0
+[   34.008726]  panfrost_job_timedout+0x12c/0x1e0
+[   34.013122]  drm_sched_job_timedout+0x48/0xa0
+[   34.017438]  process_one_work+0x1e0/0x320
+[   34.021402]  worker_thread+0x40/0x450
+[   34.025026]  kthread+0x124/0x128
+[   34.028218]  ret_from_fork+0x10/0x18
+[   34.031755] Code: f9400001 540001c0 f9400a83 f9402402 (f9401c64)
+[   34.037792] ---[ end trace be3fd6f77f4df267 ]---
+
+
+When I revert [3] on [1], i get the same crash as [2], meaning
+the commit [3] masks the failure [2] introduced.
+
+Do you know how to solve this ?
+
+Thanks,
 Neil
 
 _______________________________________________
