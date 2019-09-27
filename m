@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CB545C4360C
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 09:10:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7A2ACC4360C
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 09:11:19 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9CA132146E
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 09:10:50 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4670220863
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 09:11:19 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UJm4aflF";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="p20iWOiy"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9CA132146E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Ju2/lGeI";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="NOFEJ5yP"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4670220863
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NauMtmQ9rF2WkuR9xKC27v/yh4PA/IacZTbwHqup4RI=; b=UJm4aflFNE3x21
-	C/LFAde39VxEyBlDhKf2cfo+OXHWCwSlosLWJUafhcqZFNUfic0c0e6LPHzo8pMUuYaEX5mUz2NSe
-	3AcmDYkXXuf3KJJOnnbgKi3rnF+hThcyibuG/eBTQW3BWVVWu0nYzB7b8jnus94LhD78KNTGJpbeR
-	xGzMBOcFFvXpzqXxQwRIQ4VmA2dhUxVGVyxcdmmNkrY5Kjr3UutkG8cCYXGwGv2eUC3RQdldIE+f3
-	Z+5Kaae4kD+TZdjcWnMoHBMa6b+R7Xr/X6ZuDM5SutmNuhW/0X+aCLYjxCQ/TUgOUxgycugTeakMr
-	J4P2BaWKXs5tbM8StbAw==;
+	List-Owner; bh=IzH9U5ZXokBzQgQFHU3rcRX5j0AiHuvZ0UFOMg86Jes=; b=Ju2/lGeIZaSzW1
+	I1ikDMtAO1qXLlLh5+vH23re8w/fWmt/BSbF2eEMGhgLJnjcdW6kSR+M+oca/BzDCF7kHMax91aJr
+	JKvhjMyu8tzkvog76yrwriYZd04yneqonvMX7oXutuF0GP9oDQTtT2+Z64OqzraDag19PFKUyWu4I
+	40GGQG1ylwtajur8BXht9Od0K/5TyuKL+/ZNkJGQwnUfAyO8xWXbLi1aFOYhKUYk1yAJal1MadxQj
+	GH/yFshJtF4gW1HMAgar3VwlywSNQsad5A2UNLz4jazJ7GuPrUNSSxthLu0IrNLYw21yKMTBd7byc
+	t6c5BWGqVrKu3E01BEbg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iDmH0-0000rS-QG; Fri, 27 Sep 2019 09:10:46 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1iDmHS-0000wr-GF; Fri, 27 Sep 2019 09:11:14 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iDmGx-0000qs-TR
- for linux-amlogic@lists.infradead.org; Fri, 27 Sep 2019 09:10:45 +0000
-Received: by mail-wm1-x341.google.com with SMTP id v17so5337301wml.4
- for <linux-amlogic@lists.infradead.org>; Fri, 27 Sep 2019 02:10:43 -0700 (PDT)
+ id 1iDmHQ-0000wM-7B
+ for linux-amlogic@lists.infradead.org; Fri, 27 Sep 2019 09:11:13 +0000
+Received: by mail-wr1-x442.google.com with SMTP id l3so1829110wru.7
+ for <linux-amlogic@lists.infradead.org>; Fri, 27 Sep 2019 02:11:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=9JDXSZfO3QSzLOKM13WUrHPFbh8gtWNxXZ5DE6hIJbM=;
- b=p20iWOiyVHHW7ceDNPTmqJBElKRd+6hRMNGA10VGdtObZJaJ3AC5a3vH4kuTxwF0GM
- LCgoWZ6HxbGfPXzhnVW+TFe6UVh7zZONrhh+clEcQiiyPQqRd8yj+5Ydf2ethYc5gPJ6
- ZykEFdcz3OBCdGyEas8AtB0/a/QgF8+tAkDpoE1XOtuAmnzwj/2Z/j99HUYpnx4N6u5M
- BxG/b+15VPUbReSaA1i6AFsNC4U25Bkb7pCuhs9293YpXxrcYzx5U0k1e1U7aCpqngtJ
- NG05aQ3NNjFqosBnIxVOGS1SahFMU80JQjACGSJ2+RuOWcM0yjvyx337rU8m2CvMlNX0
- QVTg==
+ bh=XhZeJVcBOJ2xCWrGGYvmOiCOlizQIuhT2Abx6vL8JTU=;
+ b=NOFEJ5yPnxxtKtI7EcImx1vallPgQkoP4HLjMtIE//PWX9m62QD8LAEfzemkhmmDbY
+ 4FkQHCuFLQwkMk2QbsBOHRMajcIQsBhY1urp6FWTvsPis8pUCkN8ZT4Ypfvg1eGF2Fll
+ UtFhYJRqXowfohTn9ygNRNVsOvWaqDgvmpSPGFynQRIOLJ+OOa+VAktdOrhf7AwS1G+R
+ SlC2jOGrxSaD5FAypI2pMPaoJ2Ts7JhrDvtjo9XtMbJKa+ar2xVs5EF4rsCAka9HmIX9
+ e2PvxjRqehAG8h6wepeDUn2f0kpDZqPnlb/CJpYbDjduTQUpj+Wsr486qGdGebfTqLOi
+ jPHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=9JDXSZfO3QSzLOKM13WUrHPFbh8gtWNxXZ5DE6hIJbM=;
- b=C6GDKuK+CiWXAJmMb39T0/AvBDJZn7/LrzzikIppiv9/oUvJEJw9VbFOAZgJeoNyge
- XqDAkAi4Xl1M3SmVvroTqumw21tqiGiDb09cNV2P82j6TesLfUTd8dPWel6n/1sWrdne
- dRTJCoJ/gpf6ZrYZjyN2ZPop1vho9PMDpEwe2IOrNOkGTkmlFfBhv87VGY2n9iGDe4Pu
- d2h8cP8DZ4pUqVSf4u0Hm4RNLKWLgEzuFOh1KQrXgkfleKAvq8b3SqUzmXjvI6o6dIAV
- QA1qSsOrMR1CTOka43KfuxoTW+F3SVlhgFlVgd0cq6mBFkIr2F82eRdfDP7Z9pONqrdb
- EXfQ==
-X-Gm-Message-State: APjAAAUPbtyaimGqKjWwcXF2ya1QxvUNJm63m6xSeXUlecyCuUT4Z7kB
- Bwq2myvOyidcDVxu/WphG7ybGA==
-X-Google-Smtp-Source: APXvYqwJmyvJuQ3C5mzoVzAe4tLN/ZVjMLytQqz95VDUtQpNpmgZs/XT05X8JPl6P+cwVL9YLkm5Hg==
-X-Received: by 2002:a1c:4085:: with SMTP id n127mr6641515wma.68.1569575442169; 
- Fri, 27 Sep 2019 02:10:42 -0700 (PDT)
+ bh=XhZeJVcBOJ2xCWrGGYvmOiCOlizQIuhT2Abx6vL8JTU=;
+ b=OpZTd0DzeUnTw2yELRmYsccrDJlVmhLK9FpbdvkHVDAleKYdJcWr1+C/2bT4gl/fkX
+ zB7auo+oqgUghlnHBAdcO3Rb136l4smup6gwGy4r2lZV1BN+J7uxSouoYz0EnP/Qn0t+
+ H0sOf78MqEmnsNfIXFn/7petZsenWL19kgyLKf/C4UPWgFlfeYC8RFJZd345Q4tkYL8b
+ LhaG1raJHQpvLqMFdCCbafDAvuYcRN+khwWkJUHESbBAYUUQG/VzjfdsZ8z3X8ukQ6Bb
+ p+L+9+IKe2k0jK3Gf74Q5MOYjJ6e2e1TqYqG9K3uDSz1ZDknx1sPkJSsxXWWmxCmoeO6
+ sOVA==
+X-Gm-Message-State: APjAAAU32X/wJgdxcjYCoOsew6ae3KHB9JXOvRwuC1AjtslQC+ykyLyp
+ Y/w+mraPO61gHOTRu+m/ABMn5w==
+X-Google-Smtp-Source: APXvYqyaoCErvBoRFreCO0ImrjaX+o3au5aiA3oIYK/6IRYud0tL/RgYgiG2Y8sOSoFtME4PQerQgA==
+X-Received: by 2002:adf:f303:: with SMTP id i3mr2032723wro.242.1569575470537; 
+ Fri, 27 Sep 2019 02:11:10 -0700 (PDT)
 Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
  by smtp.gmail.com with ESMTPSA id
- n1sm4095115wrg.67.2019.09.27.02.10.41
+ j1sm4406161wrg.24.2019.09.27.02.11.09
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Fri, 27 Sep 2019 02:10:41 -0700 (PDT)
-Subject: Re: [PATCH 3/7] clk: meson: axg-audio: remove useless defines
+ Fri, 27 Sep 2019 02:11:10 -0700 (PDT)
+Subject: Re: [PATCH 4/7] clk: meson: axg-audio: fix regmap last register
 To: Jerome Brunet <jbrunet@baylibre.com>
 References: <20190924153356.24103-1-jbrunet@baylibre.com>
- <20190924153356.24103-4-jbrunet@baylibre.com>
+ <20190924153356.24103-5-jbrunet@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -131,16 +131,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <cbad7e7c-34aa-f276-c541-b5e96ea4d4bb@baylibre.com>
-Date: Fri, 27 Sep 2019 11:10:41 +0200
+Message-ID: <de874598-ee2c-46e7-3b42-87517c9bae25@baylibre.com>
+Date: Fri, 27 Sep 2019 11:11:09 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190924153356.24103-4-jbrunet@baylibre.com>
+In-Reply-To: <20190924153356.24103-5-jbrunet@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190927_021043_955124_0ADA77E2 
-X-CRM114-Status: GOOD (  13.31  )
+X-CRM114-CacheID: sfid-20190927_021112_263166_E8AE0220 
+X-CRM114-Status: GOOD (  15.22  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,30 +160,28 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 24/09/2019 17:33, Jerome Brunet wrote:
-> Defining the number of each input type is no longer necessary since
-> we are not using the clk-input hack anymore
+> Since the addition of the g12a, the last register is
+> AUDIO_CLK_SPDIFOUT_B_CTRL.
 > 
-> Fixes: 282420eed23f ("clk: meson: axg-audio: migrate to the new parent description method")
+> Fixes: 075001385c66 ("clk: meson: axg-audio: add g12a support")
 > Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
->  drivers/clk/meson/axg-audio.c | 4 ----
->  1 file changed, 4 deletions(-)
+>  drivers/clk/meson/axg-audio.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 > diff --git a/drivers/clk/meson/axg-audio.c b/drivers/clk/meson/axg-audio.c
-> index 18b23cdf679c..60ac71856e5e 100644
+> index 60ac71856e5e..4b34601342bb 100644
 > --- a/drivers/clk/meson/axg-audio.c
 > +++ b/drivers/clk/meson/axg-audio.c
-> @@ -20,10 +20,6 @@
->  #include "clk-phase.h"
->  #include "sclk-div.h"
+> @@ -997,7 +997,7 @@ static const struct regmap_config axg_audio_regmap_cfg = {
+>  	.reg_bits	= 32,
+>  	.val_bits	= 32,
+>  	.reg_stride	= 4,
+> -	.max_register	= AUDIO_CLK_PDMIN_CTRL1,
+> +	.max_register	= AUDIO_CLK_SPDIFOUT_B_CTRL,
+>  };
 >  
-> -#define AUD_MST_IN_COUNT	8
-> -#define AUD_SLV_SCLK_COUNT	10
-> -#define AUD_SLV_LRCLK_COUNT	10
-> -
->  #define AUD_GATE(_name, _reg, _bit, _phws, _iflags)			\
->  struct clk_regmap aud_##_name = {					\
->  	.data = &(struct clk_regmap_gate_data){				\
+>  struct audioclk_data {
 > 
 
 Acked-by: Neil Armstrong <narmstrong@baylibre.com>
