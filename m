@@ -5,19 +5,19 @@ X-Spam-Level:
 X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 54B6DC4360C
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 18:45:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 61593C4360C
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 18:45:09 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8650020872
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 18:45:04 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A656D20872
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 18:45:08 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="BSzFaU7G";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="fAHqj2fG"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8650020872
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jhtdeIla";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="MikSGlZe"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A656D20872
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,65 +27,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=hNhzY1yj14SFuzwd9gEAfirqE1wWschabUlIcG/n4Dc=; b=BSzFaU7GsNLWHbsv6PmwsVcxL+
-	JDeseErCOSPF4BJf3AmJ0ZKX/NTpzLoqUHdv712A2J/NsqfIQwF0xgz3/+uUX2tcUS0+A+6thSCWw
-	IG6r698HKEi0BzOxWwX/RP49dAuNyZfXTzqGdJDW9SxNyIO/zfShoRdqOYADgakG0CzcZKgHbIHlw
-	PdP7kfbHloi7HMDetKKE3CoyFIg9oP4b1jemJTTBh9tbZ++/GDTlqEaBnYB+IU2AFsDx0xTAyV1FS
-	imPTjYBuVhHbu6eKGVHHYYh28tsngJLnkRQX2ANsICMO9qVpI6qrD5XEZMuYVT0+tqwHxt1zyHQ/G
-	Pimzyhng==;
+	bh=xYgh8t7Xs4e/LwgCTLwieRCBEXS19hmeZJz4nVTJ8tM=; b=jhtdeIlabvy+r3aYuoScgal/vE
+	galpTOrL/V2mglnkbkNNx17lo1LwyBlGPwBSRV6qH31nMFO7nfiuaAnt/yifssx4xpAJeoPJMnvxy
+	P6K2chPPKyXhe5rxrOjzjPgbTVLYAkzym53CIzwyxTnRR0Vjfbv286vOL85Irasg6pQaBxBxoWmF6
+	BxVP9VuukIUAHqrGU8LyQz14L+qUYFKuefkOc3vptqH6hZXvXDlb+wdaEu/lBz+jhK3dn5cRc4RFS
+	6epQYOyc3mF6kvOc4Ft0bO9f6XjONYkAadPDSsaYUpLeq4yyZwzazWlboXKK6asxCNJ32UPm+lO/7
+	AfKIH0iw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iDvEe-0001vU-9e; Fri, 27 Sep 2019 18:44:56 +0000
+	id 1iDvEh-0001zm-W6; Fri, 27 Sep 2019 18:45:00 +0000
 Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iDvDj-0000Li-8N
- for linux-amlogic@lists.infradead.org; Fri, 27 Sep 2019 18:44:03 +0000
-Received: by mail-wr1-x444.google.com with SMTP id i18so4289248wru.11
- for <linux-amlogic@lists.infradead.org>; Fri, 27 Sep 2019 11:43:58 -0700 (PDT)
+ id 1iDvDj-0000Pd-UL
+ for linux-amlogic@lists.infradead.org; Fri, 27 Sep 2019 18:44:04 +0000
+Received: by mail-wr1-x444.google.com with SMTP id l3so4312217wru.7
+ for <linux-amlogic@lists.infradead.org>; Fri, 27 Sep 2019 11:43:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=ER97/R5LpHP0TZCH/NRWaP/d3mMARrFg/th00p8XlIw=;
- b=fAHqj2fGBeddJU84hyglCfB73qLeW9bPS7SHuQV/c56aF+8V/ZHEy+fKtzqXAPWv5N
- 8gXN4YZCaNf9eW02lPJwu+J2BJulkYgMMWVg3OyxoxB/8fHGt/mL5ugd/6fRP/eXCfQY
- zx1rjtPBfNnozlTCT2XcvN0p5sAdKeg64hadOWx5LY0tr2tCBXjeQRJzEUlw3n+PpCQS
- JcU0/DRWNdH5YFtpW7nFgkIOp0zoEH2fkZgTsKGUaMhTa9x+6AnwIoO/Hd2aXvhN9OnZ
- sb9ol2cpYTKNB+mTbz7W9akcpXSRY7qp5qU2f9jUxEii/8skaKPYkza+qrT6dnFQ9Udy
- deLA==
+ bh=uFRkuroOBs+uKwTPCimySu+UhJ9t5OAbbzvyFqNj3Aw=;
+ b=MikSGlZe0uqOkaubiy1RQV05Ryu/fAimSnGuIod6zI/bkIxwYw871JO1JwE51iYQm+
+ 4uj9azF9xbXtpyJHchneV3CO3wKJhdY0T9rqVgqLqpeMXKIj/L//AjglSvJtOTd5vEL4
+ JeAGn/m7kMiX5bLtvKI3izvMAcPnpQFpuwUZIJZnK7YRsxmwaQ5NMDxjXC2xuXlZNh8u
+ hON3DP8hubHBv9LVkP07y1Zg5PE6j6IIGKm0nh/Skxb6DcL0YHKdpbG3GcF1pPNEhUBQ
+ IOetegYVw+Oldn5XB6Y4Ve53PBYtSEpB7wU8CO8pmuGh/UZa+NKEh+fQ3t/1QSedFd7I
+ dqJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references;
- bh=ER97/R5LpHP0TZCH/NRWaP/d3mMARrFg/th00p8XlIw=;
- b=jRhS/bl2z+bg5yab1zDgK/cGTCGPra4Hr0L5pJWCeYbX1wA4x8ujh+MH9FfiV8Nej5
- 14/X4s5eVxLehE+h5N7h8wioYchJ/ZdP2jb9GpOFQinDwjzYdxfR4KCwAqPakYvKKDCi
- xpFKkdBVwszp/0QdCCmbgC+o7qNn0Kl1BllCXu7/8T3qWYSG5c0ISAX7JZXRxlVRdEn4
- nFKrzAV4SRm1OZgbGAyVcFJLg86orylXPGijeS2t7kXIFp1PAyQsiehe5VqaduD0AMy7
- eBaX0wOEemk2bqv7vgZyKXtk1QpcemnomoWmB7085vZSoEy9X8bZCS8bsgcmlN7kAyy/
- ngPQ==
-X-Gm-Message-State: APjAAAVwc8094QGFecOuys3mdMFyTTGpnQZx2kUQFEcoZfReuM/kndOI
- b+y4EZLe7BcDviaw5pFv0FhGfg==
-X-Google-Smtp-Source: APXvYqy9uatu5J2+moIhIGCy5z+uqI/zMqtGsL8oRAFu97gdSP+rMfHBNq2FVULr4w3fMlSiCLwJVw==
-X-Received: by 2002:a5d:4350:: with SMTP id u16mr100152wrr.289.1569609837677; 
- Fri, 27 Sep 2019 11:43:57 -0700 (PDT)
+ bh=uFRkuroOBs+uKwTPCimySu+UhJ9t5OAbbzvyFqNj3Aw=;
+ b=K1AZ0IBMhmJHX6pJtQcl6o8KNW68G3mGqtLi6dFZjYvwJp3zyeo5te9S5ZGUZ3Hrag
+ 8H+p8ToWmdBlIU73VBr5fg2lOCZKy+YbpbHnXeXTlaEHoQwAa6uyLzY6v4FEO5jQuWg9
+ 9DqxDvV19bOwUgE4CYu9UXOKM6dLZvTUTTC0wQw11H0ZYIC0/H+qakwH37ARq/Ownwqt
+ rNFYI0dXEvYzKyeyEx6quKgMC3KxyZAms86OJz6h8v2Xk7aIXgoAz2kOtzuR0B0wN/M1
+ ZlcTrJl79Lrop6L43DVdXVHsGNVEcETK2YsLoMHZwew84oVP7jMRxDCGFIZIgGVZk+a9
+ VPGg==
+X-Gm-Message-State: APjAAAV6HDJrl/gVb3EhWH0bbNFmIuErwU703yK9fp5TO8igtZjcKFuL
+ FL7Px5LHbHwqFDkazhRzDYrZCQ==
+X-Google-Smtp-Source: APXvYqywejFLNmLubXQ+lIajg77P8IR0wPRSPIhJuiMQsC6g7ImkqPZHkFpB+MQ5Po1oPHBJeOnLsA==
+X-Received: by 2002:adf:f081:: with SMTP id n1mr4402788wro.273.1569609838776; 
+ Fri, 27 Sep 2019 11:43:58 -0700 (PDT)
 Received: from glaroque-ThinkPad-T480.home
  ([2a01:cb1d:6e7:d500:82a9:347a:43f3:d2ca])
- by smtp.gmail.com with ESMTPSA id r13sm6246272wrn.0.2019.09.27.11.43.56
+ by smtp.gmail.com with ESMTPSA id r13sm6246272wrn.0.2019.09.27.11.43.57
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 27 Sep 2019 11:43:56 -0700 (PDT)
+ Fri, 27 Sep 2019 11:43:58 -0700 (PDT)
 From: Guillaume La Roque <glaroque@baylibre.com>
 To: amit.kucheria@linaro.org, rui.zhang@intel.com, edubezval@gmail.com,
  daniel.lezcano@linaro.org
-Subject: [PATCH v6 2/7] thermal: amlogic: Add thermal driver to support G12
- SoCs
-Date: Fri, 27 Sep 2019 20:43:47 +0200
-Message-Id: <20190927184352.28759-3-glaroque@baylibre.com>
+Subject: [PATCH v6 3/7] arm64: dts: amlogic: g12: add temperature sensor
+Date: Fri, 27 Sep 2019 20:43:48 +0200
+Message-Id: <20190927184352.28759-4-glaroque@baylibre.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190927184352.28759-1-glaroque@baylibre.com>
 References: <20190927184352.28759-1-glaroque@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190927_114359_317417_AE5BD382 
-X-CRM114-Status: GOOD (  21.37  )
+X-CRM114-CacheID: sfid-20190927_114400_007426_51189FE2 
+X-CRM114-Status: UNSURE (   6.99  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,403 +106,47 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Amlogic G12A and G12B SoCs integrate two thermal sensors
-with the same design. One is located close to the DDR controller
-and the other one is located close to the PLLs (between the CPU and GPU).
+Add cpu and ddr temperature sensors for G12 Socs
 
-The calibration data for each of the thermal sensors instance is stored
-in a different location within the AO region.
-
-Implement reading the temperature from each thermal sensor.
-
-The IP block has more functionality, which may be added to this driver
-in the future:
-- chip reset when the temperature exceeds a configurable threshold
-- up to four interrupts when the temperature has risen above a
-configurable threshold
-- up to four interrupts when the temperature has fallen below a
-configurable threshold
-
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Tested-by: Christian Hewitt <christianshewitt@gmail.com>
 Tested-by: Kevin Hilman <khilman@baylibre.com>
 Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
 ---
- drivers/thermal/Kconfig           |  11 +
- drivers/thermal/Makefile          |   1 +
- drivers/thermal/amlogic_thermal.c | 333 ++++++++++++++++++++++++++++++
- 3 files changed, 345 insertions(+)
- create mode 100644 drivers/thermal/amlogic_thermal.c
+ .../boot/dts/amlogic/meson-g12-common.dtsi    | 20 +++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
-index 9966364a6deb..0f31bb4bc372 100644
---- a/drivers/thermal/Kconfig
-+++ b/drivers/thermal/Kconfig
-@@ -348,6 +348,17 @@ config MTK_THERMAL
- 	  Enable this option if you want to have support for thermal management
- 	  controller present in Mediatek SoCs
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index 38d70ce1cfc7..0660d9ef6a86 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -1353,6 +1353,26 @@
+ 				};
+ 			};
  
-+config AMLOGIC_THERMAL
-+	tristate "Amlogic Thermal Support"
-+	default ARCH_MESON
-+	depends on OF && ARCH_MESON
-+	help
-+	  If you say yes here you get support for Amlogic Thermal
-+	  for G12 SoC Family.
++			cpu_temp: temperature-sensor@34800 {
++				compatible = "amlogic,g12a-cpu-thermal",
++					     "amlogic,g12a-thermal";
++				reg = <0x0 0x34800 0x0 0x50>;
++				interrupts = <GIC_SPI 35 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc CLKID_TS>;
++				#thermal-sensor-cells = <0>;
++				amlogic,ao-secure = <&sec_AO>;
++			};
 +
-+	  This driver can also be built as a module. If so, the module will
-+	  be called amlogic_thermal.
++			ddr_temp: temperature-sensor@34c00 {
++				compatible = "amlogic,g12a-ddr-thermal",
++					     "amlogic,g12a-thermal";
++				reg = <0x0 0x34c00 0x0 0x50>;
++				interrupts = <GIC_SPI 36 IRQ_TYPE_EDGE_RISING>;
++				clocks = <&clkc CLKID_TS>;
++				#thermal-sensor-cells = <0>;
++				amlogic,ao-secure = <&sec_AO>;
++			};
 +
- menu "Intel thermal drivers"
- depends on X86 || X86_INTEL_QUARK || COMPILE_TEST
- source "drivers/thermal/intel/Kconfig"
-diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
-index 74a37c7f847a..baeb70bf0568 100644
---- a/drivers/thermal/Makefile
-+++ b/drivers/thermal/Makefile
-@@ -54,3 +54,4 @@ obj-$(CONFIG_MTK_THERMAL)	+= mtk_thermal.o
- obj-$(CONFIG_GENERIC_ADC_THERMAL)	+= thermal-generic-adc.o
- obj-$(CONFIG_ZX2967_THERMAL)	+= zx2967_thermal.o
- obj-$(CONFIG_UNIPHIER_THERMAL)	+= uniphier_thermal.o
-+obj-$(CONFIG_AMLOGIC_THERMAL)     += amlogic_thermal.o
-diff --git a/drivers/thermal/amlogic_thermal.c b/drivers/thermal/amlogic_thermal.c
-new file mode 100644
-index 000000000000..8a9e9bc421c6
---- /dev/null
-+++ b/drivers/thermal/amlogic_thermal.c
-@@ -0,0 +1,333 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Amlogic Thermal Sensor Driver
-+ *
-+ * Copyright (C) 2017 Huan Biao <huan.biao@amlogic.com>
-+ * Copyright (C) 2019 Guillaume La Roque <glaroque@baylibre.com>
-+ *
-+ * Register value to celsius temperature formulas:
-+ *	Read_Val	    m * U
-+ * U = ---------, Uptat = ---------
-+ *	2^16		  1 + n * U
-+ *
-+ * Temperature = A * ( Uptat + u_efuse / 2^16 )- B
-+ *
-+ *  A B m n : calibration parameters
-+ *  u_efuse : fused calibration value, it's a signed 16 bits value
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/io.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/thermal.h>
-+
-+#include "thermal_core.h"
-+
-+#define TSENSOR_CFG_REG1			0x4
-+	#define TSENSOR_CFG_REG1_RSET_VBG	BIT(12)
-+	#define TSENSOR_CFG_REG1_RSET_ADC	BIT(11)
-+	#define TSENSOR_CFG_REG1_VCM_EN		BIT(10)
-+	#define TSENSOR_CFG_REG1_VBG_EN		BIT(9)
-+	#define TSENSOR_CFG_REG1_OUT_CTL	BIT(6)
-+	#define TSENSOR_CFG_REG1_FILTER_EN	BIT(5)
-+	#define TSENSOR_CFG_REG1_DEM_EN		BIT(3)
-+	#define TSENSOR_CFG_REG1_CH_SEL		GENMASK(1, 0)
-+	#define TSENSOR_CFG_REG1_ENABLE		\
-+		(TSENSOR_CFG_REG1_FILTER_EN |	\
-+		 TSENSOR_CFG_REG1_VCM_EN |	\
-+		 TSENSOR_CFG_REG1_VBG_EN |	\
-+		 TSENSOR_CFG_REG1_DEM_EN |	\
-+		 TSENSOR_CFG_REG1_CH_SEL)
-+
-+#define TSENSOR_STAT0			0x40
-+
-+#define TSENSOR_STAT9			0x64
-+
-+#define TSENSOR_READ_TEMP_MASK		GENMASK(15, 0)
-+#define TSENSOR_TEMP_MASK		GENMASK(11, 0)
-+
-+#define TSENSOR_TRIM_SIGN_MASK		BIT(15)
-+#define TSENSOR_TRIM_TEMP_MASK		GENMASK(14, 0)
-+#define TSENSOR_TRIM_VERSION_MASK	GENMASK(31, 24)
-+
-+#define TSENSOR_TRIM_VERSION(_version)	\
-+	FIELD_GET(TSENSOR_TRIM_VERSION_MASK, _version)
-+
-+#define TSENSOR_TRIM_CALIB_VALID_MASK	(GENMASK(3, 2) | BIT(7))
-+
-+#define TSENSOR_CALIB_OFFSET	1
-+#define TSENSOR_CALIB_SHIFT	4
-+
-+/**
-+ * struct amlogic_thermal_soc_calib_data
-+ * @A, B, m, n: calibration parameters
-+ * This structure is required for configuration of amlogic thermal driver.
-+ */
-+struct amlogic_thermal_soc_calib_data {
-+	int A;
-+	int B;
-+	int m;
-+	int n;
-+};
-+
-+/**
-+ * struct amlogic_thermal_data
-+ * @u_efuse_off: register offset to read fused calibration value
-+ * @calibration_parameters: calibration parameters structure pointer
-+ * @regmap_config: regmap config for the device
-+ * This structure is required for configuration of amlogic thermal driver.
-+ */
-+struct amlogic_thermal_data {
-+	int u_efuse_off;
-+	const struct amlogic_thermal_soc_calib_data *calibration_parameters;
-+	const struct regmap_config *regmap_config;
-+};
-+
-+struct amlogic_thermal {
-+	struct platform_device *pdev;
-+	const struct amlogic_thermal_data *data;
-+	struct regmap *regmap;
-+	struct regmap *sec_ao_map;
-+	struct clk *clk;
-+	struct thermal_zone_device *tzd;
-+	u32 trim_info;
-+};
-+
-+/*
-+ * Calculate a temperature value from a temperature code.
-+ * The unit of the temperature is degree milliCelsius.
-+ */
-+static int amlogic_thermal_code_to_millicelsius(struct amlogic_thermal *pdata,
-+						int temp_code)
-+{
-+	const struct amlogic_thermal_soc_calib_data *param =
-+					pdata->data->calibration_parameters;
-+	int temp;
-+	s64 factor, Uptat, uefuse;
-+
-+	uefuse = pdata->trim_info & TSENSOR_TRIM_SIGN_MASK ?
-+			     ~(pdata->trim_info & TSENSOR_TRIM_TEMP_MASK) + 1 :
-+			     (pdata->trim_info & TSENSOR_TRIM_TEMP_MASK);
-+
-+	factor = param->n * temp_code;
-+	factor = div_s64(factor, 100);
-+
-+	Uptat = temp_code * param->m;
-+	Uptat = div_s64(Uptat, 100);
-+	Uptat = Uptat * BIT(16);
-+	Uptat = div_s64(Uptat, BIT(16) + factor);
-+
-+	temp = (Uptat + uefuse) * param->A;
-+	temp = div_s64(temp, BIT(16));
-+	temp = (temp - param->B) * 100;
-+
-+	return temp;
-+}
-+
-+static int amlogic_thermal_initialize(struct amlogic_thermal *pdata)
-+{
-+	int ret = 0;
-+	int ver;
-+
-+	regmap_read(pdata->sec_ao_map, pdata->data->u_efuse_off,
-+		    &pdata->trim_info);
-+
-+	ver = TSENSOR_TRIM_VERSION(pdata->trim_info);
-+
-+	if ((ver & TSENSOR_TRIM_CALIB_VALID_MASK) == 0) {
-+		ret = -EINVAL;
-+		dev_err(&pdata->pdev->dev,
-+			"tsensor thermal calibration not supported: 0x%x!\n",
-+			ver);
-+	}
-+
-+	return ret;
-+}
-+
-+static int amlogic_thermal_enable(struct amlogic_thermal *data)
-+{
-+	int ret;
-+
-+	ret = clk_prepare_enable(data->clk);
-+	if (ret)
-+		return ret;
-+
-+	regmap_update_bits(data->regmap, TSENSOR_CFG_REG1,
-+			   TSENSOR_CFG_REG1_ENABLE, TSENSOR_CFG_REG1_ENABLE);
-+
-+	return 0;
-+}
-+
-+static int amlogic_thermal_disable(struct amlogic_thermal *data)
-+{
-+	regmap_update_bits(data->regmap, TSENSOR_CFG_REG1,
-+			   TSENSOR_CFG_REG1_ENABLE, 0);
-+	clk_disable_unprepare(data->clk);
-+
-+	return 0;
-+}
-+
-+static int amlogic_thermal_get_temp(void *data, int *temp)
-+{
-+	unsigned int tval;
-+	struct amlogic_thermal *pdata = data;
-+
-+	if (!data)
-+		return -EINVAL;
-+
-+	regmap_read(pdata->regmap, TSENSOR_STAT0, &tval);
-+	*temp =
-+	   amlogic_thermal_code_to_millicelsius(pdata,
-+						tval & TSENSOR_READ_TEMP_MASK);
-+
-+	return 0;
-+}
-+
-+static const struct thermal_zone_of_device_ops amlogic_thermal_ops = {
-+	.get_temp	= amlogic_thermal_get_temp,
-+};
-+
-+static const struct regmap_config amlogic_thermal_regmap_config_g12a = {
-+	.reg_bits = 8,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+	.max_register = TSENSOR_STAT9,
-+};
-+
-+static const struct amlogic_thermal_soc_calib_data amlogic_thermal_g12a = {
-+	.A = 9411,
-+	.B = 3159,
-+	.m = 424,
-+	.n = 324,
-+};
-+
-+static const struct amlogic_thermal_data amlogic_thermal_g12a_cpu_param = {
-+	.u_efuse_off = 0x128,
-+	.calibration_parameters = &amlogic_thermal_g12a,
-+	.regmap_config = &amlogic_thermal_regmap_config_g12a,
-+};
-+
-+static const struct amlogic_thermal_data amlogic_thermal_g12a_ddr_param = {
-+	.u_efuse_off = 0xf0,
-+	.calibration_parameters = &amlogic_thermal_g12a,
-+	.regmap_config = &amlogic_thermal_regmap_config_g12a,
-+};
-+
-+static const struct of_device_id of_amlogic_thermal_match[] = {
-+	{
-+		.compatible = "amlogic,g12a-ddr-thermal",
-+		.data = &amlogic_thermal_g12a_ddr_param,
-+	},
-+	{
-+		.compatible = "amlogic,g12a-cpu-thermal",
-+		.data = &amlogic_thermal_g12a_cpu_param,
-+	},
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, of_amlogic_thermal_match);
-+
-+static int amlogic_thermal_probe(struct platform_device *pdev)
-+{
-+	struct amlogic_thermal *pdata;
-+	struct device *dev = &pdev->dev;
-+	void __iomem *base;
-+	int ret;
-+
-+	pdata = devm_kzalloc(dev, sizeof(*pdata), GFP_KERNEL);
-+	if (!pdata)
-+		return -ENOMEM;
-+
-+	pdata->data = of_device_get_match_data(dev);
-+	pdata->pdev = pdev;
-+	platform_set_drvdata(pdev, pdata);
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base)) {
-+		dev_err(dev, "failed to get io address\n");
-+		return PTR_ERR(base);
-+	}
-+
-+	pdata->regmap = devm_regmap_init_mmio(dev, base,
-+					      pdata->data->regmap_config);
-+	if (IS_ERR(pdata->regmap))
-+		return PTR_ERR(pdata->regmap);
-+
-+	pdata->clk = devm_clk_get(dev, NULL);
-+	if (IS_ERR(pdata->clk)) {
-+		if (PTR_ERR(pdata->clk) != -EPROBE_DEFER)
-+			dev_err(dev, "failed to get clock\n");
-+		return PTR_ERR(pdata->clk);
-+	}
-+
-+	pdata->sec_ao_map = syscon_regmap_lookup_by_phandle
-+		(pdev->dev.of_node, "amlogic,ao-secure");
-+	if (IS_ERR(pdata->sec_ao_map)) {
-+		dev_err(dev, "syscon regmap lookup failed.\n");
-+		return PTR_ERR(pdata->sec_ao_map);
-+	}
-+
-+	pdata->tzd = devm_thermal_zone_of_sensor_register(&pdev->dev,
-+							  0,
-+							  pdata,
-+							  &amlogic_thermal_ops);
-+	if (IS_ERR(pdata->tzd)) {
-+		ret = PTR_ERR(pdata->tzd);
-+		dev_err(dev, "Failed to register tsensor: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = amlogic_thermal_initialize(pdata);
-+	if (ret)
-+		return ret;
-+
-+	ret = amlogic_thermal_enable(pdata);
-+
-+	return ret;
-+}
-+
-+static int amlogic_thermal_remove(struct platform_device *pdev)
-+{
-+	struct amlogic_thermal *data = platform_get_drvdata(pdev);
-+
-+	return amlogic_thermal_disable(data);
-+}
-+
-+static int __maybe_unused amlogic_thermal_suspend(struct device *dev)
-+{
-+	struct amlogic_thermal *data = dev_get_drvdata(dev);
-+
-+	return amlogic_thermal_disable(data);
-+}
-+
-+static int __maybe_unused amlogic_thermal_resume(struct device *dev)
-+{
-+	struct amlogic_thermal *data = dev_get_drvdata(dev);
-+
-+	return amlogic_thermal_enable(data);
-+}
-+
-+static SIMPLE_DEV_PM_OPS(amlogic_thermal_pm_ops,
-+			 amlogic_thermal_suspend, amlogic_thermal_resume);
-+
-+static struct platform_driver amlogic_thermal_driver = {
-+	.driver = {
-+		.name		= "amlogic_thermal",
-+		.pm		= &amlogic_thermal_pm_ops,
-+		.of_match_table = of_amlogic_thermal_match,
-+	},
-+	.probe	= amlogic_thermal_probe,
-+	.remove	= amlogic_thermal_remove,
-+};
-+
-+module_platform_driver(amlogic_thermal_driver);
-+
-+MODULE_AUTHOR("Guillaume La Roque <glaroque@baylibre.com>");
-+MODULE_DESCRIPTION("Amlogic thermal driver");
-+MODULE_LICENSE("GPL v2");
+ 			usb2_phy0: phy@36000 {
+ 				compatible = "amlogic,g12a-usb2-phy";
+ 				reg = <0x0 0x36000 0x0 0x2000>;
 -- 
 2.17.1
 
