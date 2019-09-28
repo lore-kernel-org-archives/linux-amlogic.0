@@ -1,120 +1,133 @@
-Return-Path: <SRS0=3dzI=XW=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=08rP=XX=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EB68CC4360C
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 20:56:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CAFC4C4360C
+	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Sep 2019 00:46:13 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B89AE20872
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Sep 2019 20:56:09 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9A9FE20863
+	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Sep 2019 00:46:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XWbYD7B0";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=amdcloud.onmicrosoft.com header.i=@amdcloud.onmicrosoft.com header.b="Zixga9Uh"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B89AE20872
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amd.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="SJISGhgg";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=ucr.edu header.i=@ucr.edu header.b="r4fcNMNe"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9A9FE20863
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=ucr.edu
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
-	References:Message-ID:Date:Subject:To:From:Reply-To:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=K3rYN61Xlx4OugmBdMVoNIwRyDWiucDXboyqrMg+e80=; b=XWbYD7B0nDLs24
-	kh6ViBoyXfTuZz9XtxJ6LTrZa5chY8JmG1c47fI4HF3fnOvyVJ+kOgiN+4kP1rcqVkO2ZxYuo/8+o
-	DRlSmOLGwbcFFQP/emUg9D2hX3KnE27MUEng9Tz1luzMWcY9maMqlvTt+vWPESwjKGN1lsZAu6Guf
-	c6cXQH25b3A0wl9IIQgeRywvWNb4m8tQ10tr1r6DPzti8H0PeynD9a0alF/pHZzd+a0g1ypuLxYo3
-	S0w42Aibz4PdiCTJ/uck/AzprPA9vL6CSJntiJ3w0fXrdrMlyrF85y8yH+0htFfbSmKtMfNoRAWuB
-	gjRJoIa7W70BvKhAIZ2g==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=0V2Dt2kMCq2iFv68xnpGKjajBP9LCNVwRA0zQ5EMJzk=; b=SJI
+	SGhggXKXrQBv+jYILxHYD3Zq4LU4G2CYOP5dkQ4DRN6Lfz6ryhH3WC3aly9Ti9uhzem2qAdIz54kY
+	qpoMILy278j/7m/ySw0RdVRGECOIQs9Pjf9B9/u7X0l5dN4IPtpmr+EW5jX0/xXJcZiuFIbFudZMI
+	m5wJHRoEgNrQpWA1OcshRFcCkD050qP13dQ/DV+LXkgN4HrNV6WBgC4JX1OfgovmV4skPIFgbbecr
+	4bTovy1Bo758uSwAElbxIG8Zbc5IxbPJuSXPIFxfdJ2WkiP5g4VKX/o8JdhhRP3x3mpWh0xJEtpjd
+	H34P21P78+qHQBVL8Jb+82Sx4DCsufA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iDxHV-0003wk-6T; Fri, 27 Sep 2019 20:56:01 +0000
-Received: from mail-eopbgr770088.outbound.protection.outlook.com
- ([40.107.77.88] helo=NAM02-SN1-obe.outbound.protection.outlook.com)
+	id 1iE0s7-000370-Vc; Sat, 28 Sep 2019 00:46:03 +0000
+Received: from mx2.ucr.edu ([138.23.62.3])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iDxHT-0003wE-2Z
- for linux-amlogic@lists.infradead.org; Fri, 27 Sep 2019 20:56:00 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=P++z8aeo2frWt5N9REo7D7puyHfyQVCi6ElZGjMGGlPuH0QY15U5m/wQFjFx4HtrgPR85l04RtSvDdyfROxGPfb4j/SAayX9FAj24hXwHV5qoXDEEuwJzNxOgYspzouJjPaeZaYx6tF/2RuudnGRXRm2R4m+fLDPXiCHN/+0YjmoxfAiwk/VAQxMuwUVxTodX9CdfJEXezSi+Wj+P6OsHYcGCGL4KutEmAiCAcBtFlddXue9y4dhpX7LtB1mYxwWyPB5m2kWMtGp40hOyJE7usfp5ztxFSma5WLcCssnP0GItIikajQQZek23N9Tl6doAXXq+jspIZoN7OUx0JL4oA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JX7yj9jLUzQcm5DBkaAkxFwoyZkri3auLn7bi0rCrXY=;
- b=TV2f6oBHII9R428ZHiY25ue6Jq+7HcG6/2Ks8E/vmlic/4osxoeFbM2utpR2bLbKv+5saxMhRr+g8e2oqvVsMwevgDMq9VNuh9zQYmVnjUB0rXLN6FeUnVrzRKDHq3Mt0SZc97Nclgr9tvEoxZtYRzhBr5zASVAFHykGikGdMETgAHwXqCFGB3TV+ycLx7gtG6EOrTtMddir1EBIS5RIic7tLE2kNJer571FkR73YTi3nh116ArJEd03Ti5hGR8gajJprFhCHdx3mZHpMezlxr9Q+34+h5urA9GbDc6LT6gy3iyR8G63jjqK/8/HNQdSc15Rrtm/lbkvXPPdom//cQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JX7yj9jLUzQcm5DBkaAkxFwoyZkri3auLn7bi0rCrXY=;
- b=Zixga9UhFs1Y30lswDwLbPnp85/A50w0EudfyFudkLai17BSlG6Zbas/zhCWUdBrkdudEGgq3JcB9OQYgXEPNJ9wlUNTxVA0XpkBuMyblMREOTxziEisSGkj78yFqxcE1kWjF7wxaJwPwrHMN/5C2gPye9TMHlXES1eM7AUTt2s=
-Received: from MWHPR12MB1453.namprd12.prod.outlook.com (10.172.55.22) by
- MWHPR12MB1693.namprd12.prod.outlook.com (10.172.56.8) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2305.20; Fri, 27 Sep 2019 20:55:55 +0000
-Received: from MWHPR12MB1453.namprd12.prod.outlook.com
- ([fe80::4803:438a:eb1d:d6a6]) by MWHPR12MB1453.namprd12.prod.outlook.com
- ([fe80::4803:438a:eb1d:d6a6%10]) with mapi id 15.20.2305.017; Fri, 27 Sep
- 2019 20:55:55 +0000
-From: "Grodzovsky, Andrey" <Andrey.Grodzovsky@amd.com>
-To: Neil Armstrong <narmstrong@baylibre.com>, "daniel@ffwll.ch"
- <daniel@ffwll.ch>, "airlied@linux.ie" <airlied@linux.ie>, "Koenig, Christian"
- <Christian.Koenig@amd.com>
-Subject: Re: drm_sched with panfrost crash on T820
-Thread-Topic: drm_sched with panfrost crash on T820
-Thread-Index: AQHVdQtdjrcnE/APhki/CyOIa6xfH6dAAc4A
-Date: Fri, 27 Sep 2019 20:55:55 +0000
-Message-ID: <f0ab487e-8d49-987b-12b8-7a115a6543e1@amd.com>
-References: <e450fbe6-dec7-2704-59c2-db7e869d67f5@baylibre.com>
-In-Reply-To: <e450fbe6-dec7-2704-59c2-db7e869d67f5@baylibre.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: YT1PR01CA0006.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01::19)
- To MWHPR12MB1453.namprd12.prod.outlook.com
- (2603:10b6:301:e::22)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Andrey.Grodzovsky@amd.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [165.204.55.251]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d0aed735-28c0-4f50-83c5-08d7438d16f8
-x-ms-office365-filtering-ht: Tenant
-x-ms-traffictypediagnostic: MWHPR12MB1693:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MWHPR12MB16935EAF24DF9FC3C1CB6D31EA810@MWHPR12MB1693.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-forefront-prvs: 0173C6D4D5
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(4636009)(346002)(376002)(136003)(396003)(39860400002)(366004)(199004)(189003)(51234002)(52314003)(316002)(478600001)(446003)(5660300002)(11346002)(14444005)(256004)(66066001)(2616005)(476003)(6246003)(99286004)(7416002)(229853002)(86362001)(6512007)(7736002)(52116002)(36756003)(8936002)(31686004)(66556008)(66946007)(6506007)(64756008)(54906003)(66476007)(486006)(386003)(66446008)(2201001)(53546011)(110136005)(45080400002)(3846002)(6116002)(6636002)(305945005)(25786009)(26005)(2906002)(14454004)(186003)(4326008)(2501003)(76176011)(71190400001)(71200400001)(6436002)(8676002)(102836004)(31696002)(81156014)(6486002)(81166006);
- DIR:OUT; SFP:1101; SCL:1; SRVR:MWHPR12MB1693;
- H:MWHPR12MB1453.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: sjcSFo5wb8fu2vsivCgc1cI63PoUPWrL1Jc8/qJt2iL1lVzAJs2ixfDfnvwEHI+D35n4Yz3WTz3/Om0OfIbcKN8Dwxf/PtgM5arT9TNc/SVcoWf8ssxVkzkCh7oXWazQML4nOSu4NAOzIk7qYRFoQ9ONL4CTp6xck2LQyAyxOuK4/uXwfEyoIRkzdTudDD7Pf8vPBxQV7q/JqHjZlcU2eGecoQ/k8Ht6heUcVn1BlVofoHGZ/ZF6KcYwgTEr8f22jg86lY+seDrnJKFAJnryHMRBqPaV8jkaLRg4plJwxGLu9n5g5SsGE1JLCZXy9/CB3TGlmUF/Hwvp8WJO9yWvhazPYdw7gFnsEpugJyWcV3M0A6UymJ2Rs1vO29VnT5MeP/uvkhutyDkifV/bxiuRsoi498Qq5adTw3S5yoo7nOk=
-Content-ID: <C59B838ADB0BFB40BDF91512DA78EF80@namprd12.prod.outlook.com>
-MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d0aed735-28c0-4f50-83c5-08d7438d16f8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Sep 2019 20:55:55.4738 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RqjwhEx7DkbtNXlFFgp77gueyq6PVBLvyc7QAfdx6qokz3RJXAkdL0h0xcFKLLFvvl0p2q5dgHqqzZWBWYmUYw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1693
+ id 1iE0s5-00036R-Ev
+ for linux-amlogic@lists.infradead.org; Sat, 28 Sep 2019 00:46:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+ d=ucr.edu; i=@ucr.edu; q=dns/txt; s=selector3;
+ t=1569631561; x=1601167561;
+ h=from:to:cc:subject:date:message-id;
+ bh=Gyih0+ys/dsZuk6p5tTk9jxHvhG3+TejPRIPLUcLycQ=;
+ b=r4fcNMNelVKQz6Ykpc2XLK+N5160eGKs8qfNIHumoGr5+jc8p3Xd0yv3
+ BSwq5gjXZw8sgw/ql2L4tWUD4XIFAz64XHct932t/+EPeny0x946YVNCJ
+ Obt8GvnRmI06fs9RXoRqakOmS/AWbuxZsODrkfmpN255giprJT1z8/+IL
+ NmfGLyyUpZ1fGxoWT8HIjM9SEfI8JBM96XLekB821zM69wooJVZLIQLdQ
+ AZBc6elqiYPh38n9iiyDF91xH9GBi2KRxscl1sd0pdwOY8x6VhIGaxuNJ
+ AyJV89cML5K17E94xweLfty+OTK+Zjq0N9JMc005F1C5J8dPtoS+3Isj5 A==;
+IronPort-SDR: iMivE65R/1VGROgKa9jz07/onH1+xsMD/pTzyiwmm03S/rl6zHle6Vwz8MPdG5DcWIPKumP4R6
+ xiXd8/Bhspt+cjnuzbw8+fHZSexLHVYO+SFgffw6CspQ+lU8J/VZcXj8cTva5rU+pt9ngj0EpE
+ dW7jKjcI7xLt+tMQV2doGzRj9M21Jtxg59ufSgD79ijHuI1WegBxxz7PtDY0ZyvXWMMxioi4kO
+ 54r3O0mNFX3mcxXFqQUMjRYUEazUfO8SrZB4RGUZW0YB+uP34D0iqJkR2MteEuTAkNju9qmE2S
+ Lpc=
+IronPort-PHdr: =?us-ascii?q?9a23=3ABip/YBIL/mDIhbRhTdmcpTZWNBhigK39O0sv0r?=
+ =?us-ascii?q?FitYgeKv3xwZ3uMQTl6Ol3ixeRBMOHsqkC0LWd6P2ocFdDyK7JiGoFfp1IWk?=
+ =?us-ascii?q?1NouQttCtkPvS4D1bmJuXhdS0wEZcKflZk+3amLRodQ56mNBXdrXKo8DEdBA?=
+ =?us-ascii?q?j0OxZrKeTpAI7SiNm82/yv95HJbAhEmTSwbal8IRi0ogncuMkbipZ+J6gszR?=
+ =?us-ascii?q?fEvmFGcPlMy2NyIlKTkRf85sOu85Nm7i9dpfEv+dNeXKvjZ6g3QqBWAzogM2?=
+ =?us-ascii?q?Au+c3krgLDQheV5nsdSWoZjBxFCBXY4R7gX5fxtiz6tvdh2CSfIMb7Q6w4VS?=
+ =?us-ascii?q?ik4qx2UxLjljsJOCAl/2HWksxwjbxUoBS9pxxk3oXYZJiZOOdicq/BeN8XQ2?=
+ =?us-ascii?q?9BXsdKVyxaA4O8aYQPBPcfM+hBsoL9qVoOogW6BQaxGejjzjFFimPz0aA8zu?=
+ =?us-ascii?q?8vExzJ3BY4EtwOrnrasdv7OqQVX+2u0KXE0S/OY+9M1Dvh9ITFdA0qr/GWXb?=
+ =?us-ascii?q?J3dMrc0UsgFwLEj1WQtIzlOC6e2+MNsmma7+pvT+Ovh3I7pwx/uTWv29sjip?=
+ =?us-ascii?q?PTio0L11/E6Dx0zYAoLtO7UE52ecCoHIdUui2ANIZ7QtkuT391tCs10LEKpJ?=
+ =?us-ascii?q?q2cSoSxJg6xhPSb+aLf5aG7x/jTuqdPzZ1iGhndb+wgRu57FKuxffmVsau1V?=
+ =?us-ascii?q?ZHti9Fkt7RuX8TzxHT8c2HSudl/kemxDaPyxjf6uFaLkAwkqrWM5shzaQxlp?=
+ =?us-ascii?q?oXqEjDBiv2lFjvgK+Ya0kp/uql5/7oYrXhoZ+cOIt0hR/kPqsyncy/BPw0Mg?=
+ =?us-ascii?q?kIX2eF5eSxzKPv8VH9TblQjfA7krPVvI7HKckUvKK1HgtY34Q75xa6FTim0d?=
+ =?us-ascii?q?AYnXcdLFJCfRKKl4joOlDOIP/iDPezn0ignTlwyvDbIrLhGI/BIWben7f8Zb?=
+ =?us-ascii?q?p98VJTyBIvzdBD4JJZErUBIPP1Wk/su93UFwU2Mwmww+bgB9V9158RVHmLAq?=
+ =?us-ascii?q?+YK6PSrUSI6vguI+mKao8VoizyJOU76PH0kHA1g1gdfbOm3chfRmq/G6FXIl?=
+ =?us-ascii?q?eZfH2k1sYTEW4L5lJlZPHhkhuPXSMFNCX6ZL41+jxuUNHuNozEXI34xePZ0Q?=
+ =?us-ascii?q?=3D=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2FFCgCvrI5dgMXWVdFmHgEGEoFcC4N?=
+ =?us-ascii?q?eTBCNHoVzUAMGiyaBCYV6iDGBewEIAQEBDAEBLQIBAYRAgzojNAkOAgMJAQE?=
+ =?us-ascii?q?FAQEBAQEFBAEBAhABAQkNCQgnhUKCOimDNQsWFVKBFQEFATUiOYJHAYF2FKE?=
+ =?us-ascii?q?xgQM8jCUziHEBCQ2BSAkBCIEihzWEWYEQgQeBEYNQh2OCRASBLwEBAYs/gjG?=
+ =?us-ascii?q?HK5ZJAQYCghAUgXiTByeEOYk9iz8BLYoonGoCCgcGDyOBL4IRTSWBbAqBRFA?=
+ =?us-ascii?q?QFIFaFxWOLSEzgQiOPQE?=
+X-IPAS-Result: =?us-ascii?q?A2FFCgCvrI5dgMXWVdFmHgEGEoFcC4NeTBCNHoVzUAMGi?=
+ =?us-ascii?q?yaBCYV6iDGBewEIAQEBDAEBLQIBAYRAgzojNAkOAgMJAQEFAQEBAQEFBAEBA?=
+ =?us-ascii?q?hABAQkNCQgnhUKCOimDNQsWFVKBFQEFATUiOYJHAYF2FKExgQM8jCUziHEBC?=
+ =?us-ascii?q?Q2BSAkBCIEihzWEWYEQgQeBEYNQh2OCRASBLwEBAYs/gjGHK5ZJAQYCghAUg?=
+ =?us-ascii?q?XiTByeEOYk9iz8BLYoonGoCCgcGDyOBL4IRTSWBbAqBRFAQFIFaFxWOLSEzg?=
+ =?us-ascii?q?QiOPQE?=
+X-IronPort-AV: E=Sophos;i="5.64,557,1559545200"; d="scan'208";a="11257792"
+Received: from mail-pl1-f197.google.com ([209.85.214.197])
+ by smtp2.ucr.edu with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256;
+ 27 Sep 2019 17:46:00 -0700
+Received: by mail-pl1-f197.google.com with SMTP id h11so2623273plt.11
+ for <linux-amlogic@lists.infradead.org>; Fri, 27 Sep 2019 17:46:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=WVXKJFPAYYP31lJ6IlM5/o8x5LjKeBVij0jUlLnOB1Y=;
+ b=mqMHAHjPMhchJqu5r2zDIgcoR1iqg9fzZwHfW1WbSRY3skR8tRilSb4cgGd89PWYme
+ 6wCbzwj42elcPCKj/m04wJ7OTSPegJUxx/+sP/+v84Pi08S+bdukHO3V46uwVAu7/8rX
+ xVhJY72ent/RrNdmWL3/Xc46xePPED2QEZivoGwG12tOFkv83l1/wOxl+7vGsxuZV8jc
+ 8XuMT/2ylDOMTFqWN3HqFf/TJogYnJb0UVmebHAQy4xvHCAMIm8/eJBbe4pMuHm6pT6q
+ H3jeSliNj2ej5nUiidqjREa2BDYmjKCkKXzNZLgkR/OK3f+cy0so2gpyFejXYVRZRM9N
+ vmOQ==
+X-Gm-Message-State: APjAAAVpXdlRWFdfoCQqwrDn9d7aOHYXWoyjqpTRP/yZQzlofm1b7Hbg
+ 0N+Y+67dipeYPw2PHUeT4/GHprXKpErcSZ/GL/H5bpfyqaEQzhbyKWibVbM8Km+JxSYKSnHEasm
+ ILlhCRyYYNbWGzn03zpIe5BuBDd83LWv3
+X-Received: by 2002:a17:90a:3301:: with SMTP id
+ m1mr13556466pjb.27.1569631560294; 
+ Fri, 27 Sep 2019 17:46:00 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqx/7cnNYMLx9aWgtGrOZYcIU8PemYtXquLbvog1tYQtmk61OBe75ni/14YXREFeG7CW3SRlDg==
+X-Received: by 2002:a17:90a:3301:: with SMTP id
+ m1mr13556446pjb.27.1569631560014; 
+ Fri, 27 Sep 2019 17:46:00 -0700 (PDT)
+Received: from Yizhuo.cs.ucr.edu (yizhuo.cs.ucr.edu. [169.235.26.74])
+ by smtp.googlemail.com with ESMTPSA id r2sm4136689pfq.60.2019.09.27.17.45.58
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 27 Sep 2019 17:45:59 -0700 (PDT)
+From: Yizhuo <yzhai003@ucr.edu>
+To: 
+Subject: [PATCH] iio: adc: meson-saradc: Variables could be uninitalized if
+ regmap_read() fails
+Date: Fri, 27 Sep 2019 17:46:41 -0700
+Message-Id: <20190928004642.28932-1-yzhai003@ucr.edu>
+X-Mailer: git-send-email 2.17.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190927_135559_174924_329CD637 
-X-CRM114-Status: GOOD (  17.30  )
+X-CRM114-CacheID: sfid-20190927_174601_528521_A5E00F3C 
+X-CRM114-Status: GOOD (  13.24  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,116 +139,117 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "steven.price@arm.com" <steven.price@arm.com>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Erico Nunes <nunes.erico@gmail.com>
+Cc: csong@cs.ucr.edu, Lars-Peter Clausen <lars@metafoo.de>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, Nicholas Mc Guire <hofrat@osadl.org>,
+ zhiyunq@cs.ucr.edu, linux-kernel@vger.kernel.org, Yizhuo <yzhai003@ucr.edu>,
+ linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Peter Meerwald-Stadler <pmeerw@pmeerw.net>, Hartmut Knaack <knaack.h@gmx.de>,
+ linux-amlogic@lists.infradead.org, Thomas Gleixner <tglx@linutronix.de>,
+ Jonathan Cameron <jic23@kernel.org>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Can you please use addr2line or gdb to pinpoint where in 
-drm_sched_increase_karma you hit the NULL ptr ? It looks like the guilty 
-job, but to be sure.
+Several functions in this file are trying to use regmap_read() to
+initialize the specific variable, however, if regmap_read() fails,
+the variable could be uninitialized but used directly, which is
+potentially unsafe. The return value of regmap_read() should be
+checked and handled.
 
-Andrey
+Signed-off-by: Yizhuo <yzhai003@ucr.edu>
+---
+ drivers/iio/adc/meson_saradc.c | 28 +++++++++++++++++++++++-----
+ 1 file changed, 23 insertions(+), 5 deletions(-)
 
-On 9/27/19 4:12 AM, Neil Armstrong wrote:
-> Hi Christian,
->
-> In v5.3, running dEQP triggers the following kernel crash :
->
-> [   20.224982] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000038
-> [...]
-> [   20.291064] Hardware name: Khadas VIM2 (DT)
-> [   20.295217] Workqueue: events drm_sched_job_timedout
-> [...]
-> [   20.304867] pc : drm_sched_increase_karma+0x5c/0xf0
-> [   20.309696] lr : drm_sched_increase_karma+0x44/0xf0
-> [...]
-> [   20.396720] Call trace:
-> [   20.399138]  drm_sched_increase_karma+0x5c/0xf0
-> [   20.403623]  panfrost_job_timedout+0x12c/0x1e0
-> [   20.408021]  drm_sched_job_timedout+0x48/0xa0
-> [   20.412336]  process_one_work+0x1e0/0x320
-> [   20.416300]  worker_thread+0x40/0x450
-> [   20.419924]  kthread+0x124/0x128
-> [   20.423116]  ret_from_fork+0x10/0x18
-> [   20.426653] Code: f9400001 540001c0 f9400a83 f9402402 (f9401c64)
-> [   20.432690] ---[ end trace bd02f890139096a7 ]---
->
-> Which never happens, at all, on v5.2.
->
-> I did a (very) long (7 days, ~100runs) bisect run using our LAVA lab (thanks tomeu !), but
-> bisecting was not easy since the bad commit landed on drm-misc-next after v5.1-rc6, and
-> then v5.2-rc1 was backmerged into drm-misc-next at:
-> [1] 374ed5429346 Merge drm/drm-next into drm-misc-next
->
-> Thus bisecting between [1] ang v5.2-rc1 leads to commit based on v5.2-rc1... where panfrost was
-> not enabled in the Khadas VIM2 DT.
->
-> Anyway, I managed to identify 3 possibly breaking commits :
-> [2] 290764af7e36 drm/sched: Keep s_fence->parent pointer
-> [3] 5918045c4ed4 drm/scheduler: rework job destruction
-> [4] a5343b8a2ca5 drm/scheduler: Add flag to hint the release of guilty job.
->
-> But [1] and [2] doesn't crash the same way :
-> [   16.257912] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000060
-> [...]
-> [   16.308307] CPU: 4 PID: 80 Comm: kworker/4:1 Not tainted 5.1.0-rc2-01185-g290764af7e36-dirty #378
-> [   16.317099] Hardware name: Khadas VIM2 (DT)
-> [...])
-> [   16.330907] pc : refcount_sub_and_test_checked+0x4/0xb0
-> [   16.336078] lr : refcount_dec_and_test_checked+0x14/0x20
-> [...]
-> [   16.423533] Process kworker/4:1 (pid: 80, stack limit = 0x(____ptrval____))
-> [   16.430431] Call trace:
-> [   16.432851]  refcount_sub_and_test_checked+0x4/0xb0
-> [   16.437681]  drm_sched_job_cleanup+0x24/0x58
-> [   16.441908]  panfrost_job_free+0x14/0x28
-> [   16.445787]  drm_sched_job_timedout+0x6c/0xa0
-> [   16.450102]  process_one_work+0x1e0/0x320
-> [   16.454067]  worker_thread+0x40/0x450
-> [   16.457690]  kthread+0x124/0x128
-> [   16.460882]  ret_from_fork+0x10/0x18
-> [   16.464421] Code: 52800000 d65f03c0 d503201f aa0103e3 (b9400021)
-> [   16.470456] ---[ end trace 39a67412ee1b64b5 ]---
->
-> and [3] fails like on v5.3 (in drm_sched_increase_karma):
-> [   33.830080] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000038
-> [...]
-> [   33.871946] Internal error: Oops: 96000004 [#1] PREEMPT SMP
-> [   33.877450] Modules linked in:
-> [   33.880474] CPU: 6 PID: 81 Comm: kworker/6:1 Not tainted 5.1.0-rc2-01186-ga5343b8a2ca5-dirty #380
-> [   33.889265] Hardware name: Khadas VIM2 (DT)
-> [   33.893419] Workqueue: events drm_sched_job_timedout
-> [...]
-> [   33.903069] pc : drm_sched_increase_karma+0x5c/0xf0
-> [   33.907898] lr : drm_sched_increase_karma+0x44/0xf0
-> [...]
-> [   33.994924] Process kworker/6:1 (pid: 81, stack limit = 0x(____ptrval____))
-> [   34.001822] Call trace:
-> [   34.004242]  drm_sched_increase_karma+0x5c/0xf0
-> [   34.008726]  panfrost_job_timedout+0x12c/0x1e0
-> [   34.013122]  drm_sched_job_timedout+0x48/0xa0
-> [   34.017438]  process_one_work+0x1e0/0x320
-> [   34.021402]  worker_thread+0x40/0x450
-> [   34.025026]  kthread+0x124/0x128
-> [   34.028218]  ret_from_fork+0x10/0x18
-> [   34.031755] Code: f9400001 540001c0 f9400a83 f9402402 (f9401c64)
-> [   34.037792] ---[ end trace be3fd6f77f4df267 ]---
->
->
-> When I revert [3] on [1], i get the same crash as [2], meaning
-> the commit [3] masks the failure [2] introduced.
->
-> Do you know how to solve this ?
->
-> Thanks,
-> Neil
+diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
+index 7b28d045d271..c032a64108b4 100644
+--- a/drivers/iio/adc/meson_saradc.c
++++ b/drivers/iio/adc/meson_saradc.c
+@@ -323,6 +323,7 @@ static int meson_sar_adc_wait_busy_clear(struct iio_dev *indio_dev)
+ {
+ 	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
+ 	int regval, timeout = 10000;
++	int ret;
+ 
+ 	/*
+ 	 * NOTE: we need a small delay before reading the status, otherwise
+@@ -331,7 +332,9 @@ static int meson_sar_adc_wait_busy_clear(struct iio_dev *indio_dev)
+ 	 */
+ 	do {
+ 		udelay(1);
+-		regmap_read(priv->regmap, MESON_SAR_ADC_REG0, &regval);
++		ret = regmap_read(priv->regmap, MESON_SAR_ADC_REG0, &regval);
++		if (ret)
++			return ret;
+ 	} while (FIELD_GET(MESON_SAR_ADC_REG0_BUSY_MASK, regval) && timeout--);
+ 
+ 	if (timeout < 0)
+@@ -358,7 +361,11 @@ static int meson_sar_adc_read_raw_sample(struct iio_dev *indio_dev,
+ 		return -EINVAL;
+ 	}
+ 
+-	regmap_read(priv->regmap, MESON_SAR_ADC_FIFO_RD, &regval);
++	int ret = regmap_read(priv->regmap, MESON_SAR_ADC_FIFO_RD, &regval);
++
++	if (ret)
++		return ret;
++
+ 	fifo_chan = FIELD_GET(MESON_SAR_ADC_FIFO_RD_CHAN_ID_MASK, regval);
+ 	if (fifo_chan != chan->address) {
+ 		dev_err(&indio_dev->dev,
+@@ -491,6 +498,7 @@ static int meson_sar_adc_lock(struct iio_dev *indio_dev)
+ {
+ 	struct meson_sar_adc_priv *priv = iio_priv(indio_dev);
+ 	int val, timeout = 10000;
++	int ret;
+ 
+ 	mutex_lock(&indio_dev->mlock);
+ 
+@@ -506,7 +514,10 @@ static int meson_sar_adc_lock(struct iio_dev *indio_dev)
+ 		 */
+ 		do {
+ 			udelay(1);
+-			regmap_read(priv->regmap, MESON_SAR_ADC_DELAY, &val);
++			ret = regmap_read(priv->regmap,
++					MESON_SAR_ADC_DELAY, &val);
++			if (ret)
++				return ret;
+ 		} while (val & MESON_SAR_ADC_DELAY_BL30_BUSY && timeout--);
+ 
+ 		if (timeout < 0) {
+@@ -784,7 +795,10 @@ static int meson_sar_adc_init(struct iio_dev *indio_dev)
+ 		 * BL30 to make sure BL30 gets the values it expects when
+ 		 * reading the temperature sensor.
+ 		 */
+-		regmap_read(priv->regmap, MESON_SAR_ADC_REG3, &regval);
++		ret = regmap_read(priv->regmap, MESON_SAR_ADC_REG3, &regval);
++		if (ret)
++			return ret;
++
+ 		if (regval & MESON_SAR_ADC_REG3_BL30_INITIALIZED)
+ 			return 0;
+ 	}
+@@ -1014,7 +1028,11 @@ static irqreturn_t meson_sar_adc_irq(int irq, void *data)
+ 	unsigned int cnt, threshold;
+ 	u32 regval;
+ 
+-	regmap_read(priv->regmap, MESON_SAR_ADC_REG0, &regval);
++	int ret = regmap_read(priv->regmap, MESON_SAR_ADC_REG0, &regval);
++
++	if (ret)
++		return ret;
++
+ 	cnt = FIELD_GET(MESON_SAR_ADC_REG0_FIFO_COUNT_MASK, regval);
+ 	threshold = FIELD_GET(MESON_SAR_ADC_REG0_FIFO_CNT_IRQ_MASK, regval);
+ 
+-- 
+2.17.1
+
+
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
