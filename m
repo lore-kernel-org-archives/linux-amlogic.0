@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D5C90C4360C
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Sep 2019 08:22:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4030DC4360C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Sep 2019 08:23:41 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 698402086A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Sep 2019 08:22:59 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 056332086A
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Sep 2019 08:23:41 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EN4ZceeD";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="EeIByHWZ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 698402086A
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ubhYRAgD";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="zSbOu0cu"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 056332086A
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=mq8Wp25Pl+lSL7tiiIV66YypXfjS1wqRJfabLC45tpo=; b=EN4ZceeDP0wKNP
-	UGSL5kiyVxR7pd1uYo5bzzRxlb9j1ECqgZu4KvDKJp8TZTFG/cZUioOeRbJWeIdm3y9/Vi4IRxHbQ
-	M5rVax35oLeU8Q/wNqkJFoVqkilFyJQXnl8ZASg7wexBoRAy9PtO/Q6UHg2LFSSmjWhA/AzQJtG0q
-	o3ZWtJ/JNL1K9TpcruXpIhiM2lOx2r0h5SWu4v8DL9oj4ciYEf4Di1x+AOhizKkVUcgl4D/VPVz9J
-	lKbNQ8M1+ZKSkFrPRrNcWtgsaRx5t6SV8nsExSNBI8L5rJJ60rFG9m6McSDSIxcR8tViQ9OyfG9d5
-	rRt7VH/yTqINdF3uborg==;
+	List-Owner; bh=HKvrGvjhbOqgDM86vaNzzl0kZR8nzRIPrgc8mj63ifE=; b=ubhYRAgDf+uJr1
+	QSHW1hAMyizPGjEZyK0ETRPcrXwTe2AUW67W9xOvF7geA9Qxm50rKo+gw8C+ZroRlgHkXwgoz7ANq
+	pgb2vUpry3UUvzv+WE+/OT8CxKkIGSsiYt2lhBg4RqYzpZk/iepByNCC/3DS3JKRC9u56IJwBDPde
+	Fpsyg3JvBBiuUw27CrkOe+swB9sYSxyEkEf0hK3O/424qBmgLtkTiyKSrLOMjCH3Y3mxypPnDwXz/
+	KKfJDO6IWgSRV89raIigUX9SBrymW6GacBL07QrmJP09aaSI9DYmbVgk4WMHRsjZ2++k20MRcNlXu
+	x5+PGg+8KLgu4I2l/yXw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iEqxI-0001YC-Ue; Mon, 30 Sep 2019 08:22:52 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1iEqxz-0002CV-9Z; Mon, 30 Sep 2019 08:23:35 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iEquF-0005rj-NP
- for linux-amlogic@lists.infradead.org; Mon, 30 Sep 2019 08:19:45 +0000
-Received: by mail-wr1-x441.google.com with SMTP id b9so10153749wrs.0
- for <linux-amlogic@lists.infradead.org>; Mon, 30 Sep 2019 01:19:43 -0700 (PDT)
+ id 1iEqvN-0007y3-2g
+ for linux-amlogic@lists.infradead.org; Mon, 30 Sep 2019 08:20:55 +0000
+Received: by mail-wr1-x443.google.com with SMTP id q17so10107874wrx.10
+ for <linux-amlogic@lists.infradead.org>; Mon, 30 Sep 2019 01:20:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=sTtLExAZUDqto9elcG2wBU4oj3KBERgKskP3MU4MTqc=;
- b=EeIByHWZ+VtCWDzeyWTTU6XMXivxQJsXAL5AkBe08MN9lRMyVO/2xgJzJ85NjrbqpH
- xS7D60lMFnZmR8wxDu15KZL2fpbpqHJ5wcC3kfo4pvMukW104t1ewwHwLiHtCuVyCkSG
- lrd4J1PmLyrJlI4R9aibpt3N0mGWrtfGyMbO4d9JFWvGbCxdMs/CgTw/WJzAOvzId/TI
- sTDLbk09qNugbbK0RywlDaDUI7PTBteL25DP5Oh2ADLs4LkzwlhwtbuXy9znB/6SQxy2
- AjTz034HqX+v4kRioG2R398qO+lcSONRpbUTcecVnJH4RuT9B2Mrhw4UD8GCLfTCkRMR
- yIbA==
+ bh=wdxTBl8cU2cVPs/w2lTCBljy6drx0Eb06vJ1V1ISALk=;
+ b=zSbOu0cuMgrqVrg2TA4dvy9qeU8bB0uoAmv3vIKTNdn+XwhbpAxcIzwvyGflTNpBye
+ 1XDJuEBrrfXTpWlxuW6MYyykKnEvU0m9T/DdksJeboCkQez5syGJuVPY92VlRvHjoi82
+ kQrrktwvokdHYGosQlVI8hls+XZJ77Qyu3pwKERvtbKDNsy2JFqbtrxNfXImECcG8NOl
+ Y91Y6zo7Ioi0nEArnKkM8kD9/GXnFywgNLL1gP1eJBaro3zVepkXp48AP4UPvqobp8ad
+ 0yIdKozJF5q8u0s67iufCB3Ighso054aD3fxCit8kmt166i/bc+qEuLEsRN+lxXTb6Qo
+ 6izg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=sTtLExAZUDqto9elcG2wBU4oj3KBERgKskP3MU4MTqc=;
- b=O47hJBiooCFfbXq0wQoC6xNU9hZliHVbmjM0qfE2+phBh07kLXFxC6iFtQot6AryrK
- 5YJrvOrkOSJMaA5TIRFjcCF7XX2XIR22qHjl/BZVc4gZjhwCOji8sKartCkdmQTywTHj
- pOVbAh6Dh0DCJG54pIKHIghF1haeMHnwmAL1twhDnEL7I9o6IGxXOTSmKeG/EVkRSAQY
- gnNxQCUZIT5X6T/zFTP1/xzdwHV6ake9TDJ5+Vu42IFj3PRmcAA7r/dP/OSgABFcdElT
- bqaNYv8WOWRoOFgOokEsL/gOfdGpJV8zqn6FWAj3GYzu2iPS5mEOVkeomaXvyYIyYQyJ
- ca0Q==
-X-Gm-Message-State: APjAAAWhscjY+XibLG9HUrLP9y9NYhXC2OTjjS3TyETVFzAQgLVLzmVO
- 1sC1OpYYs926xVNW3HTtiE2cCQ==
-X-Google-Smtp-Source: APXvYqxAu+cLZcxrwYT1pH8ucvRwOk+EIGXSlH8Oa9k2FrxuU+RbN+P4DaE/1ynIzhQiOSuT6/v4Jg==
-X-Received: by 2002:adf:dbc6:: with SMTP id e6mr11964509wrj.149.1569831582291; 
- Mon, 30 Sep 2019 01:19:42 -0700 (PDT)
+ bh=wdxTBl8cU2cVPs/w2lTCBljy6drx0Eb06vJ1V1ISALk=;
+ b=SR01p5zo1lVTm32KOdXMPHea2mIaofMkFxiMxhGpqhUN/xbimbn1DR9jnQmWtT9DZk
+ eGM55xozu2pDW9umexXVTMQPsBJvch6+5iL3tWHeKMmDr2FbS4ARu3NLIRMFTyouY9l7
+ bC6ik4Hx/KYVOtnLdUTVQCrVHI8AxtHYyhVERwTJkRLEtwP4+c6NIht9gb2ZG18thyU1
+ zs6ZV2UhdGlqooiiclHyITzeaH9KIZRhGI4naSp2fc+hcEMioiKw4h1C93yWEvLBD3F0
+ d3QnZ6m9bIrHfhkqropzt7Lsdrp0vNF3IQjeFPmHA8SWYo6YP9nuPXe2Mz9RMZ7D9sNR
+ Op+A==
+X-Gm-Message-State: APjAAAXhi+rh0bQY6lKnjb2Qs0Bg2m5Sr7FsI01L7jXURCeEmc8KUGVk
+ aPh1BRmHWKSaBSDd5M5OghLqKQ==
+X-Google-Smtp-Source: APXvYqzVxfFKRFJiabLeJLa1njRxX1vJlWUqYSjjGipZgbi6615EZhxUuvoaf5D2oqW4nbz9sHxnoQ==
+X-Received: by 2002:adf:e292:: with SMTP id v18mr13309640wri.232.1569831651429; 
+ Mon, 30 Sep 2019 01:20:51 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id x5sm17914950wrg.69.2019.09.30.01.19.41
+ by smtp.gmail.com with ESMTPSA id w125sm39270770wmg.32.2019.09.30.01.20.50
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 30 Sep 2019 01:19:41 -0700 (PDT)
-Subject: Re: [PATCH v6 6/7] arm64: dts: amlogic: g12b: add cooling properties
-To: Guillaume La Roque <glaroque@baylibre.com>, amit.kucheria@linaro.org,
- rui.zhang@intel.com, edubezval@gmail.com, daniel.lezcano@linaro.org
-References: <20190927184352.28759-1-glaroque@baylibre.com>
- <20190927184352.28759-7-glaroque@baylibre.com>
+ Mon, 30 Sep 2019 01:20:50 -0700 (PDT)
+Subject: Re: [PATCH] drm/meson: enable runtime PM
+To: Kevin Hilman <khilman@kernel.org>, dri-devel@lists.freedesktop.org
+References: <20190925193154.20732-1-khilman@kernel.org>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -132,16 +130,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <e57cd8d9-5174-bd1b-e091-98d6328f7891@baylibre.com>
-Date: Mon, 30 Sep 2019 10:19:41 +0200
+Message-ID: <c0db12a0-66c3-7636-a7bd-b071d0820426@baylibre.com>
+Date: Mon, 30 Sep 2019 10:20:50 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190927184352.28759-7-glaroque@baylibre.com>
+In-Reply-To: <20190925193154.20732-1-khilman@kernel.org>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190930_011943_815942_179A234D 
-X-CRM114-Status: GOOD (  14.90  )
+X-CRM114-CacheID: sfid-20190930_012053_141140_EF2ED664 
+X-CRM114-Status: GOOD (  17.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,107 +151,66 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 27/09/2019 20:43, Guillaume La Roque wrote:
-> Add missing #colling-cells field for G12B SoC
-> Add cooling-map for passive and hot trip point
+Hi Kevin,
+
+On 25/09/2019 21:31, Kevin Hilman wrote:
+> From: Kevin Hilman <khilman@baylibre.com>
 > 
-> Tested-by: Christian Hewitt <christianshewitt@gmail.com>
-> Tested-by: Kevin Hilman <khilman@baylibre.com>
-> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+> On some SoCs, the VPU is in a power-domain and needs runtime PM
+> enabled and used in order to keep the power domain on.
+> 
+> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-g12b.dtsi | 29 +++++++++++++++++++++
->  1 file changed, 29 insertions(+)
+>  drivers/gpu/drm/meson/meson_drv.c | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-> index 98ae8a7c8b41..4bb89bce758f 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
-> @@ -49,6 +49,7 @@
->  			reg = <0x0 0x0>;
->  			enable-method = "psci";
->  			next-level-cache = <&l2>;
-> +			#cooling-cells = <2>;
->  		};
+> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+> index 2310c96fff46..256b6a0e9c6b 100644
+> --- a/drivers/gpu/drm/meson/meson_drv.c
+> +++ b/drivers/gpu/drm/meson/meson_drv.c
+> @@ -14,6 +14,7 @@
+>  #include <linux/platform_device.h>
+>  #include <linux/component.h>
+>  #include <linux/of_graph.h>
+> +#include <linux/pm_runtime.h>
 >  
->  		cpu1: cpu@1 {
-> @@ -57,6 +58,7 @@
->  			reg = <0x0 0x1>;
->  			enable-method = "psci";
->  			next-level-cache = <&l2>;
-> +			#cooling-cells = <2>;
->  		};
+>  #include <drm/drmP.h>
+>  #include <drm/drm_atomic.h>
+> @@ -274,6 +275,7 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
 >  
->  		cpu100: cpu@100 {
-> @@ -65,6 +67,7 @@
->  			reg = <0x0 0x100>;
->  			enable-method = "psci";
->  			next-level-cache = <&l2>;
-> +			#cooling-cells = <2>;
->  		};
+>  	/* Hardware Initialization */
 >  
->  		cpu101: cpu@101 {
-> @@ -73,6 +76,7 @@
->  			reg = <0x0 0x101>;
->  			enable-method = "psci";
->  			next-level-cache = <&l2>;
-> +			#cooling-cells = <2>;
->  		};
+> +	pm_runtime_get_sync(dev);
+>  	meson_vpu_init(priv);
+>  	meson_venc_init(priv);
+>  	meson_vpp_init(priv);
+> @@ -416,6 +418,7 @@ static int meson_drv_probe(struct platform_device *pdev)
+>  	struct device_node *ep, *remote;
+>  	int count = 0;
 >  
->  		cpu102: cpu@102 {
-> @@ -81,6 +85,7 @@
->  			reg = <0x0 0x102>;
->  			enable-method = "psci";
->  			next-level-cache = <&l2>;
-> +			#cooling-cells = <2>;
->  		};
+> +	pm_runtime_enable(&pdev->dev);
+>  	for_each_endpoint_of_node(np, ep) {
+>  		remote = of_graph_get_remote_port_parent(ep);
+>  		if (!remote || !of_device_is_available(remote)) {
+> @@ -440,6 +443,7 @@ static int meson_drv_probe(struct platform_device *pdev)
+>  	}
 >  
->  		cpu103: cpu@103 {
-> @@ -89,6 +94,7 @@
->  			reg = <0x0 0x103>;
->  			enable-method = "psci";
->  			next-level-cache = <&l2>;
-> +			#cooling-cells = <2>;
->  		};
->  
->  		l2: l2-cache0 {
-> @@ -219,3 +225,26 @@
->  &sd_emmc_a {
->  	amlogic,dram-access-quirk;
+>  	/* If no output endpoints were available, simply bail out */
+> +	pm_runtime_disable(&pdev->dev);
+>  	return 0;
 >  };
-> +
-> +&cpu_thermal {
-> +	cooling-maps {
-> +		map0 {
-> +			trip = <&cpu_passive>;
-> +			cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +					 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +					 <&cpu100 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +					 <&cpu101 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +					 <&cpu102 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +					 <&cpu103 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +		};
-> +		map1 {
-> +			trip = <&cpu_hot>;
-> +			cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +					 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +					 <&cpu100 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +					 <&cpu101 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +					 <&cpu102 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +					 <&cpu103 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +		};
-> +	};
-> +};
+>  
 > 
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+I'll rather implement true runtime PM instead,
+
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
