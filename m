@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D6CB6C388F3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Sep 2019 08:17:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id ED61AC388F3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Sep 2019 08:19:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8CC12206BB
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Sep 2019 08:17:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C2518218DE
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Sep 2019 08:19:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="td3Q3wSd";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="PpgsICO8"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8CC12206BB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="npSSq8xV";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="y0Be53V8"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C2518218DE
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=lNTrhKB8RfE5CUHSk4/w57HAsX4docbnSOg4yo6KVVo=; b=td3Q3wSdxSTpfT
-	23mvKC5jZ1k1P9wG37va0UgFTa8aoTKyOpzM6eW1Dx+XSLJOnFZ9oeMKz0UQULx67MfmZv0i7mU/M
-	uCm371Q1mEdzWbvzkWWyDmpC1zNdF2BJSr8lj1IXs2v9Up683x4Sy+VhVhnX4LhKX4TO/hreZFjDE
-	E/0nFPKm7wFROPuGNRZ5rHiJjYZY/39q0kQUD9Yec8Na84buIZQOpcQx+9UA1UbNLKh3Iar1SiVYh
-	C/KDRvlhXRkHYe7n0enibwBPWYHocqxGGi++OPhD/m28g9cwWuU++uunrWYkxxcZLumUtP0sVng40
-	zFW3ZBUTOrCY7f2mOoMA==;
+	List-Owner; bh=yDxwi0+GxTboPc4H6vC76kSqZQg9A1La9qTULfVujg0=; b=npSSq8xVZVZmup
+	xDQRduVxhiQ2Qlvhtvy9/KsZefY39NflR9AL0amvcTfX8EPHGo3emJyhx93YvQ7dZB6RIWTL4lkwP
+	14y7KpJcFUNQeIK4e+JvQIlGqNOqBbNr0NXsm/RiMGTOACPrcegjbDAJJvqZDOCa0PE9IN/9tkSkp
+	GsFZOcMJwH9BHLfrWyxbzl5UUQTISv1B+oO05fDCe3bEQ3uCMpT+2uprvJAn7o2U8ZUwLmKhkJWx3
+	amP6EBEAlq6zgavh1XB89FQrQvpw8FOBqcQboH4zCYv828uiJyhNJu1YnLB7iSMwXggXrN2/XmSdg
+	laZI8sZMyZTaI4Da8/ZA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iEqrg-0004GX-TI; Mon, 30 Sep 2019 08:17:04 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1iEqtr-0005Vv-1M; Mon, 30 Sep 2019 08:19:19 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iEqrZ-00047b-Vo
- for linux-amlogic@lists.infradead.org; Mon, 30 Sep 2019 08:17:00 +0000
-Received: by mail-wr1-x442.google.com with SMTP id i18so10082685wru.11
- for <linux-amlogic@lists.infradead.org>; Mon, 30 Sep 2019 01:16:56 -0700 (PDT)
+ id 1iEqte-0005Ki-L4
+ for linux-amlogic@lists.infradead.org; Mon, 30 Sep 2019 08:19:07 +0000
+Received: by mail-wr1-x444.google.com with SMTP id h7so10128697wrw.8
+ for <linux-amlogic@lists.infradead.org>; Mon, 30 Sep 2019 01:19:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=oGL+KVpjDYu5JQqL9adGqVt6dshMee4Ju5jCrtoVE20=;
- b=PpgsICO8qyiHSSGG9UvsjooaS40NckOJtNzU0O+7IrnF6iGYVMsxbef57nfR8O0rnE
- NGjdQ2/9pO/WhRxqryFEXZzM32e+TxTfVJo6VJnuvvnZG4/AH/7mjQlo4Le79QOyh0HD
- nq3/jVYiXFh6/ExBeKYLbQ0E8DIHyNnQjwUar914EELH8gqOE6VQ0IGzh4uKw2IWzcfC
- QxLQ0PoKTf3IxKUMoaZshsWR3mG4b1QYLXKwwTny5/Z5R6ido9/p10qkugrLb2wCgpJD
- ilJvnfg6A+OmMegUwcGHwrVl+AZkVuvtinnS3HP3AD1tAwrqvujBSmw2jMd9P6ru31P+
- vcAQ==
+ bh=x0XGX0p2g1eVIlvAKXleMxs/akDsCWqOinlGv4rBIQ0=;
+ b=y0Be53V8mLwX21Q5YFuM17HmPOuuZIafNiSQN52m8A9vMiV8Q43bXkNtIj8UNaAikY
+ prpMDxS+uqbZN0LEeevdj9KKQhhbbon9qfVh6mZ6e1A7HsLeFGGd4LlF95fJr/ttO9ga
+ hhSRKhVQww3EX7/b5Yi2UXe//mtSfgYrCGphshQC3VibaxZq7M3x5qai16GqxrWtJb19
+ PHCgVIxeuo0oNCxVDAbON9GXlUBi2Gxb3wUe1V2+xOGRCAp5EVw+uheLiaLa+mke0qpZ
+ kWVGPqaqIRVsM8ZcuiYrKI/Ac8StVLJ3YENlidBnbV1n4u1X2zLP2CWnUliji6gbJZ12
+ QQ3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=oGL+KVpjDYu5JQqL9adGqVt6dshMee4Ju5jCrtoVE20=;
- b=KU5CMEsBMjob4rE0k2MBUUHF+noH1+6/Asm0s/yunDXnIGjH+NeKYB4N/MNl95g1fF
- TwW1JxbEXZ/no4vWMRKZ78JsC3e/OQBcGTCQuEX5dg8alkbWl1fi445qJjDLdUe9zKQp
- g580MgPjPUozaMkID34ufRg2wDl4Qx6oew+4iwGqKld0zrleY63D2AyFZ8s1zVPovx88
- 4Rn7DtD3jDdGMcUN1Wn7G91g24m6T7RckzAslkuDoMOj0HsI1Nac2QeeROzuz6POi1tc
- DwseWVz+pky5P7yK1fy9C5PjPoMMKOUPPa8rNbkdiY7msR5VziejG9m62vK40iFLciYD
- ZXSA==
-X-Gm-Message-State: APjAAAV0ukFWCMixbtAPgyy2zS1/NRU/7I9DOg3nx0TRX07g2yLnzYyX
- TRZqu8KOjZBOL4Xn6Kwl5/MZUw==
-X-Google-Smtp-Source: APXvYqyOSFZeRSc0p67LRKfAeql49g9aRTQp+3+UZeHbD7Q8eGLRjsxpOu0v1xS/1qReu0oVY7EY4g==
-X-Received: by 2002:adf:ee10:: with SMTP id y16mr11700508wrn.47.1569831415148; 
- Mon, 30 Sep 2019 01:16:55 -0700 (PDT)
+ bh=x0XGX0p2g1eVIlvAKXleMxs/akDsCWqOinlGv4rBIQ0=;
+ b=b5k4zxof71s9LrWreu+6rx/iT/QNAPqSdU39Z/GPTycyWF9QtrNtHyaNB05ZoYznJ+
+ MUFS02wXXroY8UycngNQujdDveiFOBrfYybSNKhkDw4th/liGpHySbZr/81w+IxCQyKB
+ IOB2J4uJSue5cSTUz/lnMFfnjV3Vc3VsVMn5OiO43CHO3eD47xsq8WTf7kmEiQNH7GuB
+ hSaciEjJ1oQgoJwaPfwVAyu8VhsC8XgNmesXUTyHscEJ+Q8aFjYBWhazXBdnkSSZ7jZy
+ X8IO7ZETcEbm22ciUsPRIqRit/Z7tPjdB5mz1jWji6HFkWWP+5+5TunLl+2IXvZBwS2x
+ k1cg==
+X-Gm-Message-State: APjAAAVutfnmOv+I+RznfIv3Z6R9a9lFDc+GSWjzFeYZ0H5ezDgCnEwn
+ I0ba7ZFrF0i+R8InGTKWT3L6vQ==
+X-Google-Smtp-Source: APXvYqxYTiKVWT4mxgVLvUlRxFMopqZqi66bgYb3b0oH2ELYWVa+Jot0BTXb4UGgotbXrSXzPQPMfA==
+X-Received: by 2002:adf:dd41:: with SMTP id u1mr12780409wrm.49.1569831545020; 
+ Mon, 30 Sep 2019 01:19:05 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id a10sm11923438wrm.52.2019.09.30.01.16.53
+ by smtp.gmail.com with ESMTPSA id e9sm30510461wme.3.2019.09.30.01.19.04
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 30 Sep 2019 01:16:54 -0700 (PDT)
-Subject: Re: [PATCH] watchdog: meson: Fix the wrong value of left time
-To: Xingyu Chen <xingyu.chen@amlogic.com>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
- <linux@roeck-us.net>, Kevin Hilman <khilman@baylibre.com>
-References: <1569754429-17287-1-git-send-email-xingyu.chen@amlogic.com>
+ Mon, 30 Sep 2019 01:19:04 -0700 (PDT)
+Subject: Re: [PATCH v6 3/7] arm64: dts: amlogic: g12: add temperature sensor
+To: Guillaume La Roque <glaroque@baylibre.com>, amit.kucheria@linaro.org,
+ rui.zhang@intel.com, edubezval@gmail.com, daniel.lezcano@linaro.org
+References: <20190927184352.28759-1-glaroque@baylibre.com>
+ <20190927184352.28759-4-glaroque@baylibre.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -132,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <06f3e719-a6e1-ef70-0c5c-1a07f809905a@baylibre.com>
-Date: Mon, 30 Sep 2019 10:16:53 +0200
+Message-ID: <6aff984e-cb77-cc02-9df6-905a517b428d@baylibre.com>
+Date: Mon, 30 Sep 2019 10:19:03 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <1569754429-17287-1-git-send-email-xingyu.chen@amlogic.com>
+In-Reply-To: <20190927184352.28759-4-glaroque@baylibre.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20190930_011658_085954_F813C5D5 
-X-CRM114-Status: GOOD (  19.92  )
+X-CRM114-CacheID: sfid-20190930_011906_688515_B45372B8 
+X-CRM114-Status: GOOD (  14.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,48 +153,59 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Qianggui Song <qianggui.song@amlogic.com>, linux-watchdog@vger.kernel.org,
- Jianxin Pan <jianxin.pan@amlogic.com>, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 29/09/2019 12:53, Xingyu Chen wrote:
-> The left time value is wrong when we get it by sysfs. The left time value
-> should be equal to preset timeout value minus elapsed time value. According
-> to the Meson-GXB/GXL datasheets which can be found at [0], the timeout value
-> is saved to BIT[0-15] of the WATCHDOG_TCNT, and elapsed time value is saved
-> to BIT[16-31] of the WATCHDOG_TCNT.
+On 27/09/2019 20:43, Guillaume La Roque wrote:
+> Add cpu and ddr temperature sensors for G12 Socs
 > 
-> [0]: http://linux-meson.com
-> 
-> Fixes: 683fa50f0e18 ("watchdog: Add Meson GXBB Watchdog Driver")
-> Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
+> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Tested-by: Christian Hewitt <christianshewitt@gmail.com>
+> Tested-by: Kevin Hilman <khilman@baylibre.com>
+> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
 > ---
->  drivers/watchdog/meson_gxbb_wdt.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  .../boot/dts/amlogic/meson-g12-common.dtsi    | 20 +++++++++++++++++++
+>  1 file changed, 20 insertions(+)
 > 
-> diff --git a/drivers/watchdog/meson_gxbb_wdt.c b/drivers/watchdog/meson_gxbb_wdt.c
-> index d17c1a6..5a9ca10 100644
-> --- a/drivers/watchdog/meson_gxbb_wdt.c
-> +++ b/drivers/watchdog/meson_gxbb_wdt.c
-> @@ -89,8 +89,8 @@ static unsigned int meson_gxbb_wdt_get_timeleft(struct watchdog_device *wdt_dev)
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> index 38d70ce1cfc7..0660d9ef6a86 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> @@ -1353,6 +1353,26 @@
+>  				};
+>  			};
 >  
->  	reg = readl(data->reg_base + GXBB_WDT_TCNT_REG);
->  
-> -	return ((reg >> GXBB_WDT_TCNT_CNT_SHIFT) -
-> -		(reg & GXBB_WDT_TCNT_SETUP_MASK)) / 1000;
-> +	return ((reg & GXBB_WDT_TCNT_SETUP_MASK) -
-> +		(reg >> GXBB_WDT_TCNT_CNT_SHIFT)) / 1000;
->  }
->  
->  static const struct watchdog_ops meson_gxbb_wdt_ops = {
+> +			cpu_temp: temperature-sensor@34800 {
+> +				compatible = "amlogic,g12a-cpu-thermal",
+> +					     "amlogic,g12a-thermal";
+> +				reg = <0x0 0x34800 0x0 0x50>;
+> +				interrupts = <GIC_SPI 35 IRQ_TYPE_EDGE_RISING>;
+> +				clocks = <&clkc CLKID_TS>;
+> +				#thermal-sensor-cells = <0>;
+> +				amlogic,ao-secure = <&sec_AO>;
+> +			};
+> +
+> +			ddr_temp: temperature-sensor@34c00 {
+> +				compatible = "amlogic,g12a-ddr-thermal",
+> +					     "amlogic,g12a-thermal";
+> +				reg = <0x0 0x34c00 0x0 0x50>;
+> +				interrupts = <GIC_SPI 36 IRQ_TYPE_EDGE_RISING>;
+> +				clocks = <&clkc CLKID_TS>;
+> +				#thermal-sensor-cells = <0>;
+> +				amlogic,ao-secure = <&sec_AO>;
+> +			};
+> +
+>  			usb2_phy0: phy@36000 {
+>  				compatible = "amlogic,g12a-usb2-phy";
+>  				reg = <0x0 0x36000 0x0 0x2000>;
 > 
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
