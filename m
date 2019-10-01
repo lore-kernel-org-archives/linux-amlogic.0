@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BF177C352AA
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Oct 2019 11:55:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C0A9AC352AA
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Oct 2019 11:55:34 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9687621920
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Oct 2019 11:55:31 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8DE4620640
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Oct 2019 11:55:34 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="olfYtB9e";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="oWJ+OKnv"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9687621920
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="H0wmMmaI";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="lHX5hII/"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8DE4620640
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,65 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oBeBE1gaGc5omPTHVkKkbqOGPwFwumwJ0m9HszjTUCU=; b=olfYtB9ea0Q6wl
-	y9TSnZfrPUeuSZU/YuMytK4xvUy85hmAz9+PPFNsgKE11SZcFl4rbsnfCjExOW5i8FG8ukN7IErtf
-	zwAwIddrAdxflX5YdfBlkAYcj79YOthoiMfukcIhUBeYaLOKyoEmBp54M+Ce3HSyroOkcwpTrCYM7
-	J4sHT0UuBArqGdpCQBfygl0+UOeSg0rpUS7F8meGFJ1P8CqL1ySCY46i71D3zOf2BQFw0y4swJui0
-	BhKbyYqv3FkdFUA6UXx/XXdxOpgknqAWqa3x0XcVCsQa5RNgsTc994EaJmD/TyTz63h/K+4kGZvue
-	BrbI31W2vL1sLjhBxYkw==;
+	List-Owner; bh=YzkZD0EDM2Ca62R4EKPvle6y29Zss9PGomm27vD0Uaw=; b=H0wmMmaIiI6N82
+	oq/BkJtWQmjBwCq7PjdDRhqf9tLJlYQLSPUSmY4V6EmKnBpTCm+J6H6LS8xWBSXV88BmkhSOHgv9a
+	9O0gBL43VJ13z71QiDDg2muJlUBZl7l56Jas+mTI+UaNe6qhKZ2ljj77cqMfMhHNEzL6GMc0BKx3J
+	u1nlDF8tqCSmcplQoJnARQzlHXJCEaUc4nfT9JafcqCl+GStUbZ64AdPpGnwU2jGNl7NPhvIrCzVz
+	/EKBWLqtnaFbKwqJa67O3+T/NhQS3XJWTIAjdJAc3xEZ7QD2wikehjqcpU1g9j5ZoQPAVaMBnE3j5
+	GCls6Rxe62MrfGIML07A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iFGkZ-0007D4-HM; Tue, 01 Oct 2019 11:55:27 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1iFGkb-0007G0-AS; Tue, 01 Oct 2019 11:55:29 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iFGkS-00073z-9o
- for linux-amlogic@lists.infradead.org; Tue, 01 Oct 2019 11:55:21 +0000
-Received: by mail-wr1-x442.google.com with SMTP id w12so15143458wro.5
- for <linux-amlogic@lists.infradead.org>; Tue, 01 Oct 2019 04:55:19 -0700 (PDT)
+ id 1iFGkU-00076m-01
+ for linux-amlogic@lists.infradead.org; Tue, 01 Oct 2019 11:55:23 +0000
+Received: by mail-wr1-x444.google.com with SMTP id w12so15143567wro.5
+ for <linux-amlogic@lists.infradead.org>; Tue, 01 Oct 2019 04:55:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=nE4XL8qms/9Kpgy3n+0LiYMlRLilMKnu0uTWVFko214=;
- b=oWJ+OKnvV1nEG85+oJzgPToAX9vlxIWdG33ZmNo089bYl4219SMu9P+4ZiKS5alPnv
- 5UHCIPKTg/6CjUPmjjl7COJyHASgZ7djN6vERzU3JRqTG5L8bPIElMntHt+sA8PpJI1V
- IvJlWa3b5iRZTemB7JePoQxA3AXeJx/CCyRXUiWTRLx2vb3eXCNIM5RKPGSL/X4pnFF2
- D4F2zIBTK+yyY8Eju1H5Iyw/NAbBZBOyZL4Gb/UDwyYhEwLtKHiaHV8ePa5S72ivUO5X
- opbH8Sxi5bqTWYhRKCyjxnb9bQPWuHeY8sZVnOQd3+cPmzSeWbxKdgHs8yRkyeD1CM2x
- DyoQ==
+ bh=79/6tSnPTRZJSx7l9IqqNNwN+2xwDedu3PFaTFq6EtI=;
+ b=lHX5hII/HavOBp9PR/x6k1xIe5WOZuin7rWRrFy66/GQBQS1RCbjdXY2d3zqSzLOTH
+ tHhEFans8qI/lDcrzLs6QhgqeEgAnnspDzFOab2LnMetS57O2jZhELMMwSOAGb1uiTly
+ ySBXPTM4qeye0bBLiNo7tA8WDtzaJUqNNNFD0HE1/SQUPxfEhwq6VpLLbJFeKftf+TP8
+ 5/WL6e+GDUe5zePozG/LqQCxDwTJmo8DGJyxBQjd/naBIrmhzgQG/cEVGRLn5e7KI4D6
+ Zxf5PT0Kq0K0B5dhUP1ijF7i4hoRLO3EkF6xt0BAgNm6xds1ZhacCWj6WFLkRd64KONj
+ hf5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=nE4XL8qms/9Kpgy3n+0LiYMlRLilMKnu0uTWVFko214=;
- b=GQUdzGNDQqr/G/w1rB3Rez1eCQ3rMMqOGxO3pFzz2+GmqoG9VxO5EyyBcnr3mj/leQ
- BtbXzA7OnRXWq0ro7cG0x8bQ9E1/3RNhR3WkcCbQdoB/wXt5FBkUnKHyEOEECV6PdSgn
- cXV3Szul9ioVwupo07BVbjOmAEiXIBm3a3lmEjLqQH9Yjn1GL8gr327TGQ83mcont+IK
- mm516jFS0HRCd+BNM14DdMm9iFVjFnkixxS7H+IqPriEe6wph4zpvRtpto/RhDENj22J
- AZs8BYf1lSUNQSQJLiJBhvylVrhrjBJI1lPwI2r512Jq0VwuwfiiHAXwU5GZRJJKHCFl
- vb3A==
-X-Gm-Message-State: APjAAAUFgQ9RZvHeqVC/o53r8B8CRMuCUiwpcXe3fdEQvhtCRxBKB38w
- llazaJjqX1Bg+LlMHodaEdaz/w==
-X-Google-Smtp-Source: APXvYqxw28X8pR77Rx9+mC0iRniK+Od8uatu5Uhz9j9oHbBWi+WdTmjujMGlSGZOE+lCuwODEk45pA==
-X-Received: by 2002:adf:cf0c:: with SMTP id o12mr17227829wrj.30.1569930918809; 
- Tue, 01 Oct 2019 04:55:18 -0700 (PDT)
+ bh=79/6tSnPTRZJSx7l9IqqNNwN+2xwDedu3PFaTFq6EtI=;
+ b=G8Nq8MCy6z2YB874g+Bfk2YfnhURktRWJylataHbfef11j9tTUEPHm1BCOa2yNGjz9
+ +vNnRVHHvNa7bVO84qr2ay9ED81Kiuu4cZJfyzXEXYY9ewV05qKw1h9YiVNjz0kH5sa0
+ znMPtnfNrtceqz8A6u4lmdDeaUVcViFbQ9bIVzHbvUe2OuIwgjKRZZvxRaSsW3vOZfdx
+ pJyz64KjLD0WMNd7Laa/HD4gJnWYvspdmTcFVW0WbGiKiNO2I1OYbce+TgS5YY5rOZmc
+ EVRu+stadrZtlwo2IV2WYTnAI/o9cmuyEIm1bb6I5klVRi+3JydG3ojUpm2GsdyMVTTd
+ EBJw==
+X-Gm-Message-State: APjAAAVQCKpl/v+BL1FmlpHkJjI0+BwVRWBw2y1JRcIz/qz73uJrtAZ7
+ BuGN8ZJcY+us7xdZeeJ5VdTAXQ==
+X-Google-Smtp-Source: APXvYqwM4rW0g5tDCknEL/a7c4Qsmfn9MeIadCvt7DY4Cna7Ma6Px7o6YSRRurJKiIssbKjEmIeUxw==
+X-Received: by 2002:adf:bb8e:: with SMTP id q14mr18860966wrg.74.1569930920794; 
+ Tue, 01 Oct 2019 04:55:20 -0700 (PDT)
 Received: from starbuck.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id p85sm4052171wme.23.2019.10.01.04.55.17
+ by smtp.googlemail.com with ESMTPSA id p85sm4052171wme.23.2019.10.01.04.55.19
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 01 Oct 2019 04:55:18 -0700 (PDT)
+ Tue, 01 Oct 2019 04:55:20 -0700 (PDT)
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH v2 4/7] clk: meson: axg-audio: fix regmap last register
-Date: Tue,  1 Oct 2019 13:55:07 +0200
-Message-Id: <20191001115511.17357-5-jbrunet@baylibre.com>
+Subject: [PATCH v2 6/7] clk: meson: axg-audio: provide clk top signal name
+Date: Tue,  1 Oct 2019 13:55:09 +0200
+Message-Id: <20191001115511.17357-7-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20191001115511.17357-1-jbrunet@baylibre.com>
 References: <20191001115511.17357-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191001_045520_350789_C344F753 
-X-CRM114-Status: GOOD (  11.26  )
+X-CRM114-CacheID: sfid-20191001_045522_043353_4C515A96 
+X-CRM114-Status: GOOD (  13.16  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,29 +104,86 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Since the addition of the g12a, the last register is
-AUDIO_CLK_SPDIFOUT_B_CTRL.
+The peripheral clock on the sm1 goes through some muxes
+and dividers before reaching the audio gates. To model that,
+without repeating our self too much, the "top" clock signal
+is introduced and will serve as a the parent of the gates.
 
-Fixes: 075001385c66 ("clk: meson: axg-audio: add g12a support")
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+On the axg and g12a, the top clock is just a pass-through to
+the audio peripheral clock provided by the main controller.
+
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- drivers/clk/meson/axg-audio.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/clk/meson/axg-audio.c | 18 +++++++++++++++---
+ drivers/clk/meson/axg-audio.h |  3 ++-
+ 2 files changed, 17 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/clk/meson/axg-audio.c b/drivers/clk/meson/axg-audio.c
-index 60ac71856e5e..4b34601342bb 100644
+index ce8836776d1c..1a4c50a29ad7 100644
 --- a/drivers/clk/meson/axg-audio.c
 +++ b/drivers/clk/meson/axg-audio.c
-@@ -997,7 +997,7 @@ static const struct regmap_config axg_audio_regmap_cfg = {
- 	.reg_bits	= 32,
- 	.val_bits	= 32,
- 	.reg_stride	= 4,
--	.max_register	= AUDIO_CLK_PDMIN_CTRL1,
-+	.max_register	= AUDIO_CLK_SPDIFOUT_B_CTRL,
- };
+@@ -74,9 +74,7 @@
+ 	.hw.init = &(struct clk_init_data) {				\
+ 		.name = "aud_"#_name,					\
+ 		.ops = &clk_regmap_gate_ops,				\
+-		.parent_data = &(const struct clk_parent_data) {	\
+-			.fw_name = "pclk",				\
+-		},							\
++		.parent_names = (const char *[]){ "aud_top" },		\
+ 		.num_parents = 1,					\
+ 	},								\
+ }
+@@ -504,6 +502,18 @@ static struct clk_regmap tdmout_c_lrclk =
+ 	AUD_TDM_LRLCK(out_c, AUDIO_CLK_TDMOUT_C_CTRL);
  
- struct audioclk_data {
+ /* AXG/G12A Clocks */
++static struct clk_hw axg_aud_top = {
++	.init = &(struct clk_init_data) {
++		/* Provide aud_top signal name on axg and g12a */
++		.name = "aud_top",
++		.ops = &(const struct clk_ops) {},
++		.parent_data = &(const struct clk_parent_data) {
++			.fw_name = "pclk",
++		},
++		.num_parents = 1,
++	},
++};
++
+ static struct clk_regmap mst_a_mclk_sel =
+ 	AUD_MST_MCLK_MUX(mst_a_mclk, AUDIO_MCLK_A_CTRL);
+ static struct clk_regmap mst_b_mclk_sel =
+@@ -691,6 +701,7 @@ static struct clk_hw_onecell_data axg_audio_hw_onecell_data = {
+ 		[AUD_CLKID_TDMOUT_A_LRCLK]	= &tdmout_a_lrclk.hw,
+ 		[AUD_CLKID_TDMOUT_B_LRCLK]	= &tdmout_b_lrclk.hw,
+ 		[AUD_CLKID_TDMOUT_C_LRCLK]	= &tdmout_c_lrclk.hw,
++		[AUD_CLKID_TOP]			= &axg_aud_top,
+ 		[NR_CLKS] = NULL,
+ 	},
+ 	.num = NR_CLKS,
+@@ -835,6 +846,7 @@ static struct clk_hw_onecell_data g12a_audio_hw_onecell_data = {
+ 		[AUD_CLKID_TDM_SCLK_PAD0]	= &g12a_tdm_sclk_pad_0.hw,
+ 		[AUD_CLKID_TDM_SCLK_PAD1]	= &g12a_tdm_sclk_pad_1.hw,
+ 		[AUD_CLKID_TDM_SCLK_PAD2]	= &g12a_tdm_sclk_pad_2.hw,
++		[AUD_CLKID_TOP]			= &axg_aud_top,
+ 		[NR_CLKS] = NULL,
+ 	},
+ 	.num = NR_CLKS,
+diff --git a/drivers/clk/meson/axg-audio.h b/drivers/clk/meson/axg-audio.h
+index c00e28b2e1a9..a4956837f597 100644
+--- a/drivers/clk/meson/axg-audio.h
++++ b/drivers/clk/meson/axg-audio.h
+@@ -116,9 +116,10 @@
+ #define AUD_CLKID_SPDIFOUT_B_CLK_SEL	153
+ #define AUD_CLKID_SPDIFOUT_B_CLK_DIV	154
+ 
++
+ /* include the CLKIDs which are part of the DT bindings */
+ #include <dt-bindings/clock/axg-audio-clkc.h>
+ 
+-#define NR_CLKS	163
++#define NR_CLKS	164
+ 
+ #endif /*__AXG_AUDIO_CLKC_H */
 -- 
 2.21.0
 
