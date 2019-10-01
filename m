@@ -2,79 +2,85 @@ Return-Path: <SRS0=zbOs=X2=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-0.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 51733ECE58A
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Oct 2019 15:24:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F679C352AA
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Oct 2019 18:54:24 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2852F2168B
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Oct 2019 15:24:48 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7836820B7C
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Oct 2019 18:54:24 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Qlkg0+Bs"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2852F2168B
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Tg8+4JmA";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="IVRg4ziD"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7836820B7C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NM+7V5gNJ1bp4mDHs/P4A52YKUVJyFauiWlxIfCgVX8=; b=Qlkg0+BsjE3ZGM
-	sN6JGohrITqv6J59Yo1urMa04l4tdZKARPUDhyDZ7N9eg+/oCJCpEyYkjm4b7A+pWjagB6h3ApGTM
-	HQF8+gSK+8ZajgZEbReqBgSz+EXDiyTKxOX2GIZfglNOCMXpbq9R8yJmt5mI6E2LbMNRcPSvasovY
-	fdzlYoBw6Wzg9zDmTVmO9p5ksDLKarV/pvJT0klzsNoP00gYc24A1sUMzyrv72b0eAd2Kzf5cW10E
-	9nnYtQPPbdBb8GQ6SVVtDoZkX1X6s6d/4ufI6Uc5bCjxeBOasBXeTTgYVkq1FL5TngnWd5xBABgE7
-	0LFpvi9U8JMSPy2S3dxw==;
+	List-Owner; bh=4DCuCg+FUgaBCNxYnjRMCj1IFiCD0XejeQuiS5vi2pI=; b=Tg8+4JmAy3jfjV
+	OL7HiT+S8LgT4Z+OPF/IStAe930KEsv2VPe/13Eam6o255yNdLBf/Y+E0HU+j49+NvmzfS9myosxi
+	ES4kuS9PleiCN9LG7ghMCykm5Qx8HMLdvhEkOYS0l1XZ5zRELHI7O7xCN4Opq+FAVeKbkltI4mkPa
+	U/QnxrRtUUIge5gNNl6ARoN7aSpp3GNt3muRv1CTpNoHubF4OjKJr9nGA87Nz48QQ0SGu8QSmcZsE
+	+dcQlwFM5S1CBSh9XlamLMt0ljyouVEcAXU7gTjZc4CSKxtgKWeITpVgFkOhTTH+XcmKB94HAJHTz
+	TdLtM9KCGNu4gaxLDLgg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iFK13-0006GP-Of; Tue, 01 Oct 2019 15:24:41 +0000
-Received: from mail-wm1-f66.google.com ([209.85.128.66])
+	id 1iFNHt-0004YH-46; Tue, 01 Oct 2019 18:54:17 +0000
+Received: from mail-ot1-x343.google.com ([2607:f8b0:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iFK0w-00069J-BY; Tue, 01 Oct 2019 15:24:36 +0000
-Received: by mail-wm1-f66.google.com with SMTP id v17so3707217wml.4;
- Tue, 01 Oct 2019 08:24:31 -0700 (PDT)
+ id 1iFNHq-0004WT-Fz; Tue, 01 Oct 2019 18:54:15 +0000
+Received: by mail-ot1-x343.google.com with SMTP id o44so12503668ota.10;
+ Tue, 01 Oct 2019 11:54:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=57yXlV8OeF+0A0WSjdRw1RAKAtRQrYraqmnbKpxC2+Y=;
+ b=IVRg4ziD4+m3AGA84oC1PB6cVSjQE841td4dJj4H4TiI3uRrXjHOY9tPNPttnsefSC
+ O/wQGnPrIVk5CYD/e2mKINg3Q9+Yy0hbKRD0kBjE/FWb0Js9aQWEhYi8cLeZE+aj7NQl
+ POude1xddiy+mipI/Z8vyxQ2Ci0pft9aGW0k8y+xS9rO7CiKlVYoHiVaVYvpjUkT1EFr
+ sjZzKdCsSP34UG2KoUoAMGSvdzPdAY8JNUJKcWxRaeW1HICJNne7GtoR0XM0XGTuBYc5
+ RXprE73Olm5ge/vMWloiBAjGfX8Yqgz/h6BiG3uuZQDIP202qRtjoFHMRgtBQPYPRMgw
+ 0FRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=qIz20MyIeJ4YRS3q69VVUyLU1/qqd5R6Zf74yV/b9ww=;
- b=Jo2Strk3UOyLXIsdvUM36G6pAbxSbf6qgbRgkdC/iWHvWI/Q/8nuVrSVVndYYEgEuz
- UYKO1HvkdAit5nxpX+Ytn3BEvXADSYvvbLIJ58td6BOWq4Acck1EPWp6eAE7JOjrTpy8
- q2JtuPEREVOtHsP+yky3lN64xS0v4w7+ITA9z2xn1uLY+HkZgckzaBwj9aN66/41tYxR
- xQ+wCxCRSU0f6zpoPHoQZYU9YwWRFrcSExqyH565OjPB2eH2TY21AwxLobqIsH5m/+iK
- 6helwP5KFxPGdrD+R7p8PoOEt/iLUmzsL+uUIlLKRP8qKXLwZXyR+5d5L7tB98CpjAeM
- evWw==
-X-Gm-Message-State: APjAAAWGD3Q6Gpp9z9o2Kxc2GQ+FQzUidJW0oEslexKGk/Tw9uzsMys6
- LuuVxqDEkUfkjkBhEq/4vmc=
-X-Google-Smtp-Source: APXvYqzgA01GZd24cae9Ug02bMZVgbmEoHDdIAy+uHttgtTk16j30giNWmxHikB8fPnYof+FbNzouQ==
-X-Received: by 2002:a1c:60c1:: with SMTP id u184mr4104201wmb.32.1569943469278; 
- Tue, 01 Oct 2019 08:24:29 -0700 (PDT)
-Received: from pi3 ([194.230.155.145])
- by smtp.googlemail.com with ESMTPSA id i1sm4699293wmb.19.2019.10.01.08.24.26
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 01 Oct 2019 08:24:28 -0700 (PDT)
-Date: Tue, 1 Oct 2019 17:24:22 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 2/8] dt-bindings: sram: Convert SRAM bindings to
- json-schema
-Message-ID: <20191001152422.GA31358@pi3>
-References: <20190918173141.4314-1-krzk@kernel.org>
- <20190918173141.4314-2-krzk@kernel.org>
- <20191001140003.GA31344@bogus>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=57yXlV8OeF+0A0WSjdRw1RAKAtRQrYraqmnbKpxC2+Y=;
+ b=XKH8E6QeUyJSALmrilA80fT1X9NbzsN3NwzYOeVbmKRXUnNR1I+B8JmoEBK2R+wwf+
+ JJafVBMPJEkDL4lFHI9PSQ8wxkixT1nkH5hUKxyiGb0bI11LE826cRRdu0nWsbbOwvrr
+ n9PlYdriAMRicTCiqh3exGz7kFB80w/dnZYoq5JvKw7OB6o2wiiM8UMrIw1TiK/jXWro
+ OlzJC5H8RqmMe/Vi/K+2beWgKnV0WZUPuI2XA9gY1B8RaOBBfqn/D4hZVWo45th0B/az
+ ROhSwLBEmrdEQhdRp1YTt2XG4IVwptRN0VwzQs4+HtLPU4IQfuf5jnTS8LvPzPXnorhV
+ TEYQ==
+X-Gm-Message-State: APjAAAVdHsQobNKX7Sv2HVLAoQ6FZHVARwvJWqYwmzOvMkpVbmhbglI/
+ 67o0MfmQ2p3/4ZsN+2Hv/9yoedCGmaOhUjvkz1Y=
+X-Google-Smtp-Source: APXvYqxLEQLgzH4uct9tKZ1G7O2LATrGxjQXO5VcuOdLMA8/sRylhq0Z66fDA037/nvoHjZZHwt1o+5IEgjEjGZQuWM=
+X-Received: by 2002:a05:6830:150d:: with SMTP id
+ k13mr11986095otp.98.1569956050467; 
+ Tue, 01 Oct 2019 11:54:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191001140003.GA31344@bogus>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+References: <20190921151835.770263-1-martin.blumenstingl@googlemail.com>
+ <20190921151835.770263-3-martin.blumenstingl@googlemail.com>
+ <1jftkcr3uy.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <1jftkcr3uy.fsf@starbuckisacylon.baylibre.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 1 Oct 2019 20:53:59 +0200
+Message-ID: <CAFBinCCED4YWYkdtrfrC80C8WLE=fyMJdjTa3wFNMJgC1OsoOA@mail.gmail.com>
+Subject: Re: [PATCH 2/6] clk: meson: add a driver for the Meson8/8b/8m2 DDR
+ clock controller
+To: Jerome Brunet <jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191001_082434_397814_C59E4372 
-X-CRM114-Status: GOOD (  26.96  )
+X-CRM114-CacheID: sfid-20191001_115414_557067_4988C9B2 
+X-CRM114-Status: GOOD (  13.64  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,183 +92,68 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, linux-pwm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Thierry Reding <thierry.reding@gmail.com>,
- linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-leds@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- Herbert Xu <herbert@gondor.apana.org.au>, linux-clk@vger.kernel.org,
- linux-rockchip@lists.infradead.org, bcm-kernel-feedback-list@broadcom.com,
- Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
- linux-watchdog@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org, Matt Mackall <mpm@selenic.com>,
- linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org,
- Wim Van Sebroeck <wim@linux-watchdog.org>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-crypto@vger.kernel.org
+Cc: devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ khilman@baylibre.com, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Oct 01, 2019 at 09:00:03AM -0500, Rob Herring wrote:
-> On Wed, Sep 18, 2019 at 07:31:35PM +0200, Krzysztof Kozlowski wrote:
-> > Convert generic mmio-sram bindings to DT schema format using
-> > json-schema.
-> 
-> I've been slow getting to this because I started on the same thing...
-> 
-> > 
-> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > 
-> > ---
-> > 
-> > Changes since v1:
-> > 1. Indent example with four spaces (more readable).
-> > ---
-> >  .../devicetree/bindings/sram/sram.txt         |  80 ----------
-> >  .../devicetree/bindings/sram/sram.yaml        | 138 ++++++++++++++++++
-> >  2 files changed, 138 insertions(+), 80 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/sram/sram.txt
-> >  create mode 100644 Documentation/devicetree/bindings/sram/sram.yaml
-> 
-> > diff --git a/Documentation/devicetree/bindings/sram/sram.yaml b/Documentation/devicetree/bindings/sram/sram.yaml
-> > new file mode 100644
-> > index 000000000000..8d9d6ce494b2
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/sram/sram.yaml
-> > @@ -0,0 +1,138 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/sram/sram.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Generic on-chip SRAM
-> > +
-> > +maintainers:
-> > +  - FIXME <who@should.it.be>
-> 
-> You can put me.
+Hi Jerome,
 
-Sure.
+thank you for taking the time to go through this!
 
-> 
-> > +
-> > +description: |+
-> > +  Simple IO memory regions to be managed by the genalloc API.
-> > +
-> > +  Each child of the sram node specifies a region of reserved memory. Each
-> > +  child node should use a 'reg' property to specify a specific range of
-> > +  reserved memory.
-> > +
-> > +  Following the generic-names recommended practice, node names should
-> > +  reflect the purpose of the node. Unit address (@<address>) should be
-> > +  appended to the name.
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    pattern: "^sram(@.*)?"
-> > +
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - mmio-sram
-> > +          - atmel,sama5d2-securam
-> 
-> I was trying to go down the path of putting all the compatibles for 
-> various SRAM bindings here, but I ran into some issues. I need to 
-> revisit as I've forgotten the exact issue.
-> 
-> This would need to be a 'contains' if this is going to work for others.
+On Tue, Oct 1, 2019 at 3:29 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
+[...]
+> > +#include <linux/platform_device.h>
+> > +#include <linux/mfd/syscon.h>
+>
+> syscon is not used in the driver
+oops, good catch - thank you
 
-OK.
+[...]
+> > +static struct clk_hw_onecell_data meson8_ddr_clk_hw_onecell_data = {
+> > +     .hws = {
+> > +             [DDR_CLKID_DDR_PLL_DCO]         = &meson8_ddr_pll_dco.hw,
+> > +             [DDR_CLKID_DDR_PLL]             = &meson8_ddr_pll.hw,
+>
+> I wonder if onecell is not overkill for this driver. We won't expose the
+> DCO, so only the post divider remains
+>
+> Do you expect this provider to have more than one leaf clock ?
+> If not, maybe you could use of_clk_hw_simple_get() instead ?
+there's some more clock bits in DDR_CLK_CNTL - the public A311D
+datasheet has a description for these bits but I'm not sure they do
+the same on Meson8/Meson8b/Meson8m2
+all I know is that some magic bytes are written to DDR_CLK_CNTL in the
+old u-boot code
 
-> 
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  "#address-cells":
-> > +    description: Should use the same values as the root node.
-> > +
-> > +  "#size-cells":
-> > +    description: Should use the same values as the root node.
-> 
-> I defined both of these to be 1 as 4GB of SRAM should be enough for a 
-> while. We can debate 1 or 2 cells vs. 1, but there's no reason it has to 
-> be the same as the root (unless we're failing to do address 
-> translation).
+that's why I don't want to make any assumptions and play safe here (by
+using a onecell clock provider)
 
-That was copied from txt version. I can adjust them to 1 although this
-is will more than simple conversion.
+> > +     },
+> > +     .num = 2,
+> > +};
+> > +
+> > +static struct clk_regmap *const meson8_ddr_clk_regmaps[] = {
+> > +     &meson8_ddr_pll_dco,
+> > +     &meson8_ddr_pll,
+> > +};
+> > +
+> > +static const struct regmap_config meson8_ddr_clkc_regmap_config = {
+> > +     .reg_bits = 8,
+> > +     .val_bits = 32,
+> > +     .reg_stride = 4,
+> > +     .fast_io = true,
+>
+> I think fast_io will default to true with memory based register.
+> Setting the max_register would be nice
+good point - I'll take care of this when sending v2
 
-> 
-> > +
-> > +  ranges:
-> > +    description:
-> > +      Should translate from local addresses within the sram to bus addresses.
-> > +
-> > +  no-memory-wc:
-> > +    description:
-> > +      The flag indicating, that SRAM memory region has not to be remapped
-> > +      as write combining. WC is used by default.
-> > +    type: boolean
-> > +
-> > +  # TODO: additionalProperties: false
-> > +
-> > +patternProperties:
-> > +  "^([a-z]*-)?sram@[a-f0-9]$":
-> > +    type: object
-> > +    description:
-> > +      Each child of the sram node specifies a region of reserved memory.
-> > +    properties:
-> > +      reg:
-> > +        description:
-> > +          IO mem address range, relative to the SRAM range.
-> 
-> maxItems: 1
 
-OK
-
-> 
-> > +
-> > +      compatible:
-> > +        $ref: /schemas/types.yaml#/definitions/string
-> > +        description:
-> > +          Should contain a vendor specific string in the form
-> > +          <vendor>,[<device>-]<usage>
-> > +
-> > +      pool:
-> > +        description:
-> > +          Indicates that the particular reserved SRAM area is addressable
-> > +          and in use by another device or devices.
-> > +        type: boolean
-> > +
-> > +      export:
-> > +        description:
-> > +          Indicates that the reserved SRAM area may be accessed outside
-> > +          of the kernel, e.g. by bootloader or userspace.
-> > +        type: boolean
-> > +
-> > +      protect-exec:
-> > +        description: |
-> > +          Same as 'pool' above but with the additional constraint that code
-> > +          will be run from the region and that the memory is maintained as
-> > +          read-only, executable during code execution. NOTE: This region must
-> > +          be page aligned on start and end in order to properly allow
-> > +          manipulation of the page attributes.
-> > +        type: boolean
-> > +
-> > +      label:
-> > +        $ref: /schemas/types.yaml#/definitions/string
-> 
-> Already has a type definition.
-
-OK
-
-Best regards,
-Krzysztof
-
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
