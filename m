@@ -2,71 +2,79 @@ Return-Path: <SRS0=zbOs=X2=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9AD0FECE587
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Oct 2019 14:19:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 51733ECE58A
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Oct 2019 15:24:48 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6BA412086A
-	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Oct 2019 14:19:00 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2852F2168B
+	for <linux-amlogic@archiver.kernel.org>; Tue,  1 Oct 2019 15:24:48 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="B0P4bBDK";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="LuvHpqFn"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6BA412086A
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Qlkg0+Bs"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2852F2168B
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:Message-ID:
-	Subject:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=p2KIm4ruIVAt/Yuf5oGIy77bPAvb8bDMy8Cyi5spbgw=; b=B0P4bBDKyYaFA3hpmUX2qvkSo
-	2GlyJXa0FT1zDXCfFwA0ITloY9WmbpMEFjHpebAvJfnqW5f7Ede3xGsWYdTqD0sWedz/TBIjBhfgD
-	X4FpFLMOFGDxLihdTxLgTyWCMmt4v7ZuGj1LK/qCvsq5VJdvuATPFMhTpDrpTIGzYUnXw7Zle+9Yp
-	k03a8OdujpMiINAFaSGrpR6TCTYemjoTYtIIzRUuDecwaScIkdyPZCLNFyFdYuOD0KEH5FHsL7T3R
-	VLaeYQfrz1UNStV0rSZQf/ovilCNhyuWYnxnfPXEAy9FrICY1DX+tI9hUqQcIpxDlU5d+UpSsMQ9n
-	IupIMYh/g==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=NM+7V5gNJ1bp4mDHs/P4A52YKUVJyFauiWlxIfCgVX8=; b=Qlkg0+BsjE3ZGM
+	sN6JGohrITqv6J59Yo1urMa04l4tdZKARPUDhyDZ7N9eg+/oCJCpEyYkjm4b7A+pWjagB6h3ApGTM
+	HQF8+gSK+8ZajgZEbReqBgSz+EXDiyTKxOX2GIZfglNOCMXpbq9R8yJmt5mI6E2LbMNRcPSvasovY
+	fdzlYoBw6Wzg9zDmTVmO9p5ksDLKarV/pvJT0klzsNoP00gYc24A1sUMzyrv72b0eAd2Kzf5cW10E
+	9nnYtQPPbdBb8GQ6SVVtDoZkX1X6s6d/4ufI6Uc5bCjxeBOasBXeTTgYVkq1FL5TngnWd5xBABgE7
+	0LFpvi9U8JMSPy2S3dxw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iFIzL-0006Ed-Tq; Tue, 01 Oct 2019 14:18:51 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1iFK13-0006GP-Of; Tue, 01 Oct 2019 15:24:41 +0000
+Received: from mail-wm1-f66.google.com ([209.85.128.66])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iFIzJ-0006D1-7L
- for linux-amlogic@lists.infradead.org; Tue, 01 Oct 2019 14:18:50 +0000
-Received: from localhost (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 1F78E2086A;
- Tue,  1 Oct 2019 14:18:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1569939528;
- bh=BZoLkO7pPzU3r96BwmjE8Yk+cfOBfvTp6vVFJajgGi0=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=LuvHpqFnQEAf2BjLJouneSSWDpXnphl0go8fxpv4Np+kR/D7JMIYeMixWOcgAGOtR
- Z4z06rexQ5MhaJ1WtOeaYIX/aSmVcJA3YLsYIAciSbfVbyhs1akYxuTApsNlVSoSCh
- tSX8x5tbdGjsvyvGROQLF2Ptws9GzIE+lgDBmphs=
-Date: Tue, 1 Oct 2019 10:18:46 -0400
-From: Sasha Levin <sashal@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Subject: Re: [PATCH AUTOSEL 5.3 034/203] ASoC: meson: g12a-tohdmitx: override
- codec2codec params
-Message-ID: <20191001141846.GU8171@sasha-vm>
-References: <20190922184350.30563-1-sashal@kernel.org>
- <20190922184350.30563-34-sashal@kernel.org>
- <1j7e5ztnoo.fsf@starbuckisacylon.baylibre.com>
+ id 1iFK0w-00069J-BY; Tue, 01 Oct 2019 15:24:36 +0000
+Received: by mail-wm1-f66.google.com with SMTP id v17so3707217wml.4;
+ Tue, 01 Oct 2019 08:24:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=qIz20MyIeJ4YRS3q69VVUyLU1/qqd5R6Zf74yV/b9ww=;
+ b=Jo2Strk3UOyLXIsdvUM36G6pAbxSbf6qgbRgkdC/iWHvWI/Q/8nuVrSVVndYYEgEuz
+ UYKO1HvkdAit5nxpX+Ytn3BEvXADSYvvbLIJ58td6BOWq4Acck1EPWp6eAE7JOjrTpy8
+ q2JtuPEREVOtHsP+yky3lN64xS0v4w7+ITA9z2xn1uLY+HkZgckzaBwj9aN66/41tYxR
+ xQ+wCxCRSU0f6zpoPHoQZYU9YwWRFrcSExqyH565OjPB2eH2TY21AwxLobqIsH5m/+iK
+ 6helwP5KFxPGdrD+R7p8PoOEt/iLUmzsL+uUIlLKRP8qKXLwZXyR+5d5L7tB98CpjAeM
+ evWw==
+X-Gm-Message-State: APjAAAWGD3Q6Gpp9z9o2Kxc2GQ+FQzUidJW0oEslexKGk/Tw9uzsMys6
+ LuuVxqDEkUfkjkBhEq/4vmc=
+X-Google-Smtp-Source: APXvYqzgA01GZd24cae9Ug02bMZVgbmEoHDdIAy+uHttgtTk16j30giNWmxHikB8fPnYof+FbNzouQ==
+X-Received: by 2002:a1c:60c1:: with SMTP id u184mr4104201wmb.32.1569943469278; 
+ Tue, 01 Oct 2019 08:24:29 -0700 (PDT)
+Received: from pi3 ([194.230.155.145])
+ by smtp.googlemail.com with ESMTPSA id i1sm4699293wmb.19.2019.10.01.08.24.26
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 01 Oct 2019 08:24:28 -0700 (PDT)
+Date: Tue, 1 Oct 2019 17:24:22 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2 2/8] dt-bindings: sram: Convert SRAM bindings to
+ json-schema
+Message-ID: <20191001152422.GA31358@pi3>
+References: <20190918173141.4314-1-krzk@kernel.org>
+ <20190918173141.4314-2-krzk@kernel.org>
+ <20191001140003.GA31344@bogus>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <1j7e5ztnoo.fsf@starbuckisacylon.baylibre.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20191001140003.GA31344@bogus>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191001_071849_286019_F925255F 
-X-CRM114-Status: UNSURE (   9.20  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20191001_082434_397814_C59E4372 
+X-CRM114-Status: GOOD (  26.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,44 +86,183 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, Mark Brown <broonie@kernel.org>,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc: Mark Rutland <mark.rutland@arm.com>, linux-pwm@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Thierry Reding <thierry.reding@gmail.com>,
+ linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-leds@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ Herbert Xu <herbert@gondor.apana.org.au>, linux-clk@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, bcm-kernel-feedback-list@broadcom.com,
+ Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-rpi-kernel@lists.infradead.org, Matt Mackall <mpm@selenic.com>,
+ linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ Wim Van Sebroeck <wim@linux-watchdog.org>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-crypto@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Sep 23, 2019 at 10:35:35AM +0200, Jerome Brunet wrote:
->On Sun 22 Sep 2019 at 14:41, Sasha Levin <sashal@kernel.org> wrote:
->
->> From: Jerome Brunet <jbrunet@baylibre.com>
->>
->> [ Upstream commit 2c4956bc1e9062e5e3c5ea7612294f24e6d4fbdd ]
->>
->> So far, forwarding the hw_params of the input to output relied on the
->> .hw_params() callback of the cpu side of the codec2codec link to be called
->> first. This is a bit weak.
->>
->> Instead, override the stream params of the codec2codec to link to set it up
->> correctly.
->
->Hi Sasha
->
->This change depends on the following series in ASoC:
->https://lore.kernel.org/r/20190725165949.29699-1-jbrunet@baylibre.com
->which has also been merged in this merge window.
->
->With this change, things are done (IMO) in a better way but there was no
->known issue before that.
->
->I don't think it is worth backporting the mentioned ASoC series to
->5.3. I would suggest to just drop this change from stable.
+On Tue, Oct 01, 2019 at 09:00:03AM -0500, Rob Herring wrote:
+> On Wed, Sep 18, 2019 at 07:31:35PM +0200, Krzysztof Kozlowski wrote:
+> > Convert generic mmio-sram bindings to DT schema format using
+> > json-schema.
+> 
+> I've been slow getting to this because I started on the same thing...
+> 
+> > 
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > 
+> > ---
+> > 
+> > Changes since v1:
+> > 1. Indent example with four spaces (more readable).
+> > ---
+> >  .../devicetree/bindings/sram/sram.txt         |  80 ----------
+> >  .../devicetree/bindings/sram/sram.yaml        | 138 ++++++++++++++++++
+> >  2 files changed, 138 insertions(+), 80 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/sram/sram.txt
+> >  create mode 100644 Documentation/devicetree/bindings/sram/sram.yaml
+> 
+> > diff --git a/Documentation/devicetree/bindings/sram/sram.yaml b/Documentation/devicetree/bindings/sram/sram.yaml
+> > new file mode 100644
+> > index 000000000000..8d9d6ce494b2
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/sram/sram.yaml
+> > @@ -0,0 +1,138 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/sram/sram.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Generic on-chip SRAM
+> > +
+> > +maintainers:
+> > +  - FIXME <who@should.it.be>
+> 
+> You can put me.
 
-I've dropped it, thank you.
+Sure.
 
---
-Thanks,
-Sasha
+> 
+> > +
+> > +description: |+
+> > +  Simple IO memory regions to be managed by the genalloc API.
+> > +
+> > +  Each child of the sram node specifies a region of reserved memory. Each
+> > +  child node should use a 'reg' property to specify a specific range of
+> > +  reserved memory.
+> > +
+> > +  Following the generic-names recommended practice, node names should
+> > +  reflect the purpose of the node. Unit address (@<address>) should be
+> > +  appended to the name.
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: "^sram(@.*)?"
+> > +
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - mmio-sram
+> > +          - atmel,sama5d2-securam
+> 
+> I was trying to go down the path of putting all the compatibles for 
+> various SRAM bindings here, but I ran into some issues. I need to 
+> revisit as I've forgotten the exact issue.
+> 
+> This would need to be a 'contains' if this is going to work for others.
+
+OK.
+
+> 
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  "#address-cells":
+> > +    description: Should use the same values as the root node.
+> > +
+> > +  "#size-cells":
+> > +    description: Should use the same values as the root node.
+> 
+> I defined both of these to be 1 as 4GB of SRAM should be enough for a 
+> while. We can debate 1 or 2 cells vs. 1, but there's no reason it has to 
+> be the same as the root (unless we're failing to do address 
+> translation).
+
+That was copied from txt version. I can adjust them to 1 although this
+is will more than simple conversion.
+
+> 
+> > +
+> > +  ranges:
+> > +    description:
+> > +      Should translate from local addresses within the sram to bus addresses.
+> > +
+> > +  no-memory-wc:
+> > +    description:
+> > +      The flag indicating, that SRAM memory region has not to be remapped
+> > +      as write combining. WC is used by default.
+> > +    type: boolean
+> > +
+> > +  # TODO: additionalProperties: false
+> > +
+> > +patternProperties:
+> > +  "^([a-z]*-)?sram@[a-f0-9]$":
+> > +    type: object
+> > +    description:
+> > +      Each child of the sram node specifies a region of reserved memory.
+> > +    properties:
+> > +      reg:
+> > +        description:
+> > +          IO mem address range, relative to the SRAM range.
+> 
+> maxItems: 1
+
+OK
+
+> 
+> > +
+> > +      compatible:
+> > +        $ref: /schemas/types.yaml#/definitions/string
+> > +        description:
+> > +          Should contain a vendor specific string in the form
+> > +          <vendor>,[<device>-]<usage>
+> > +
+> > +      pool:
+> > +        description:
+> > +          Indicates that the particular reserved SRAM area is addressable
+> > +          and in use by another device or devices.
+> > +        type: boolean
+> > +
+> > +      export:
+> > +        description:
+> > +          Indicates that the reserved SRAM area may be accessed outside
+> > +          of the kernel, e.g. by bootloader or userspace.
+> > +        type: boolean
+> > +
+> > +      protect-exec:
+> > +        description: |
+> > +          Same as 'pool' above but with the additional constraint that code
+> > +          will be run from the region and that the memory is maintained as
+> > +          read-only, executable during code execution. NOTE: This region must
+> > +          be page aligned on start and end in order to properly allow
+> > +          manipulation of the page attributes.
+> > +        type: boolean
+> > +
+> > +      label:
+> > +        $ref: /schemas/types.yaml#/definitions/string
+> 
+> Already has a type definition.
+
+OK
+
+Best regards,
+Krzysztof
+
 
 _______________________________________________
 linux-amlogic mailing list
