@@ -2,147 +2,77 @@ Return-Path: <SRS0=Ikdi=X3=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ACAA9C352AA
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Oct 2019 14:45:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DA029ECE58E
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Oct 2019 16:07:04 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 675CF21783
-	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Oct 2019 14:45:45 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A834A21A4C
+	for <linux-amlogic@archiver.kernel.org>; Wed,  2 Oct 2019 16:07:04 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lpkbxXdA";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="N5wcQz6t"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 675CF21783
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="uZf3rk86";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="KQVZGvGW"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A834A21A4C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=GmX8YFOR/lo9n2CNXFHOPJ1fqLIuYs9DcONG9t+3uUE=; b=lpkbxXdA+yPyIZ
-	9ZKFaIfsbmXGBwUITr/nfcguL1W0+PP/Je7PQ37eNJnm0moCfVdCL6rOgPNxzPOWQ9YNlMa5VsjtI
-	MY684XzQT3fLDIaQ/BVuzWv/C8OskGXy6UaOEFzcE5Z0+bQD/G9HCmQ78DghyfXJ5WlWd4rsdToxH
-	ZIBOhifiTQSs1wwz8YghnF4DWZP22txPuCgUd2w+6hgGst8NpAm4l8SP9tVWuwgDXvBylG2nJCFvK
-	EcmQ72uyvlt7WqO8kLUKs6xBl7H0eeuibdK2WDML7QGAhQ681TFF4JO/7ilFDEfeeaP7AS83ck4+L
-	33szg66KlrgPwz8S61SA==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=1hXVKREUTOfKuyW9ul16QrZYRYR3tPnGslUJHveUW0w=; b=uZf
+	3rk86LZOwIdZ5GCtT+2HOMsNLF7Rbfs634vure9Y3K6l0LJcOi6FCHnOCHl9SvMpFfqub9mA3AZO1
+	HXC8hm1tcZSs8zFpgG8I6HTf8dWoqjxym9Bb5bfrmYyVRyJYr8Gyw9LxYpQamKWyuhoMpCX9z0fbN
+	ft+ikGowtGkgeHkeFHyrWuwXIn6TJCST3PO8fsk3C/mgyOXMDugz8HMjkOUdOZZFzrcukC0v9dsJh
+	8ox3qnwv6bVdnL483jOjAUYK1eAPMVaPFnOCqSQqLWsNcF/LfS85GVCFHXfy04218xWD2ZuT7ACwP
+	RCE/aH0x1/P6vAv5KcGfsT8Mu/6vwXg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iFfsp-0006td-B8; Wed, 02 Oct 2019 14:45:39 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1iFh9T-00015c-Um; Wed, 02 Oct 2019 16:06:55 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iFfro-0004aX-Ks
- for linux-amlogic@lists.infradead.org; Wed, 02 Oct 2019 14:44:39 +0000
-Received: by mail-wm1-x341.google.com with SMTP id b24so7261861wmj.5
- for <linux-amlogic@lists.infradead.org>; Wed, 02 Oct 2019 07:44:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=LKzMTTB8XV2AJkzo5S/56DrG6y6U1OC2/G5Z8Cw0zJE=;
- b=N5wcQz6tmc0QNH2OOHLHL1cfArP/bC7kbYrThjsiadXH3X4OjM8HrimpMIh0iNpxM9
- SVM7vpkt1agIkPjijOFf9O1qBIaT9IykydKmfy3OzE8LFpjorWWC3fzu/AoHNkUTsjB8
- vvX7LKpJrFH0/4kHC8arM7S99H/IFF2IegBPb1jsRZPWk8z5p0ZJAj6G+9l8eXPdKwWr
- 92k8sgElo21Y48o4pG6T7uyrjN77rnTFe1uigBAria5xOT3NEsfYufy8KFAM9hXy235K
- uauIVQKo+KdheuHYY9w/aUGWOhRm4co/ngPyhJUjLZAu1mTCmvoiVjRCwELzbsymiKnK
- lftQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=LKzMTTB8XV2AJkzo5S/56DrG6y6U1OC2/G5Z8Cw0zJE=;
- b=RiiT7Djy+NIry9of0KqWDP4o23zqAdKrWxH/hjCw2NiwhZEQ2SQVsya6uNzh8goGd5
- hfExBoc1vzS70LX4yNGrQ3MEkz2GhiadEFCWDe2EYh2ynSKSTWiQ/b+im4+sjDZKw5ku
- k2JcTtGqfENTqt33ZIxq0EQXtHJIJsO7t98vSCA4pyInHTHboeg6ed5MKoqE1M2Ebc0x
- IqQ3TAk2APkn/PgEeqGY0d5mh/v90L4NdW0tgjqIo9J7s9cnVtUj9rbak5NYC9b6HmdO
- JofP/eMRI9Mps8rCWDaFFJReaHESqY2d8iotTgWE7gveCpa7hXp9L2+07u0oGyKSI5ts
- PjHQ==
-X-Gm-Message-State: APjAAAUfWju2xdpkviHOrYskDBXhGZuzDxU5DYPVptNt2T61LfyNPpkJ
- I+gRYxXVQYo8P7U5yrVDDaTVRmYe+HAwOw==
-X-Google-Smtp-Source: APXvYqw5vtCHPqtCkgw9ZdxQdx3eNIPI89zqupQVrUgJSgf01qmh1DfG369DRIKsrte1anj4Ed6h5Q==
-X-Received: by 2002:a7b:c258:: with SMTP id b24mr3132435wmj.21.1570027473707; 
- Wed, 02 Oct 2019 07:44:33 -0700 (PDT)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id h17sm11313874wme.6.2019.10.02.07.44.32
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 02 Oct 2019 07:44:32 -0700 (PDT)
-Subject: Re: drm_sched with panfrost crash on T820
-To: "Grodzovsky, Andrey" <Andrey.Grodzovsky@amd.com>,
- Hillf Danton <hdanton@sina.com>
-References: <e450fbe6-dec7-2704-59c2-db7e869d67f5@baylibre.com>
- <f0ab487e-8d49-987b-12b8-7a115a6543e1@amd.com>
- <20190930145228.14000-1-hdanton@sina.com>
- <d2888614-8644-7d04-b73b-3ab7c6623e9a@amd.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <81694dcc-0bb5-0c47-dab2-ed61a65a5845@baylibre.com>
-Date: Wed, 2 Oct 2019 16:44:32 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <d2888614-8644-7d04-b73b-3ab7c6623e9a@amd.com>
-Content-Language: en-US
+ id 1iFh9P-00014T-1E; Wed, 02 Oct 2019 16:06:54 +0000
+Received: from localhost.localdomain (unknown [194.230.155.145])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 12D3B21A4C;
+ Wed,  2 Oct 2019 16:06:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1570032410;
+ bh=ZYTT8+x2f8J1Q98Mquu/qM+iwlrMoT/DWwJOBNQH2Bg=;
+ h=From:To:Cc:Subject:Date:From;
+ b=KQVZGvGWg038KS1aCpLEtFNBGPGzUKOA4n8oXAaSWKIp/jGV7Qi9C16wyKwPgWKCT
+ W1eMEDK78SL/q5ieETPQJoBcDZaF3vmpYlYOhw2TP6EVvJUOWde+Ev0Qw6u36e5cOx
+ uATREgiDu+bfsoigPFy3AisDj/t0BrEhCXBnabSs=
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh+dt@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+ Ulf Hansson <ulf.hansson@linaro.org>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ etnaviv@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, bcm-kernel-feedback-list@broadcom.com,
+ linux-rpi-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
+ linux-mediatek@lists.infradead.org
+Subject: [PATCH v2 1/3] dt-bindings: power: Convert Generic Power Domain
+ bindings to json-schema
+Date: Wed,  2 Oct 2019 18:06:30 +0200
+Message-Id: <20191002160632.11140-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191002_074436_858408_6EE9C061 
-X-CRM114-Status: GOOD (  15.78  )
+X-CRM114-CacheID: sfid-20191002_090651_148375_88C23B53 
+X-CRM114-Status: GOOD (  13.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,54 +84,986 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- "airlied@linux.ie" <airlied@linux.ie>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "steven.price@arm.com" <steven.price@arm.com>,
- "daniel@ffwll.ch" <daniel@ffwll.ch>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, "Koenig,
- Christian" <Christian.Koenig@amd.com>, Erico Nunes <nunes.erico@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Krzysztof Kozlowski <krzk@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgQW5kcmV5LAoKCk9uIDAyLzEwLzIwMTkgMTY6NDAsIEdyb2R6b3Zza3ksIEFuZHJleSB3cm90
-ZToKPiAKPiBPbiA5LzMwLzE5IDEwOjUyIEFNLCBIaWxsZiBEYW50b24gd3JvdGU6Cj4+IE9uIE1v
-biwgMzAgU2VwIDIwMTkgMTE6MTc6NDUgKzAyMDAgTmVpbCBBcm1zdHJvbmcgd3JvdGU6Cj4+PiBE
-aWQgYSBuZXcgcnVuIGZyb20gNS4zOgo+Pj4KPj4+IFsgICAzNS45NzE5NzJdIENhbGwgdHJhY2U6
-Cj4+PiBbICAgMzUuOTc0MzkxXSAgZHJtX3NjaGVkX2luY3JlYXNlX2thcm1hKzB4NWMvMHhmMAo+
-Pj4gCQkJZmZmZjAwMDAxMDY2N2YzOAlGRkZGMDAwMDEwNjY3Rjk0Cj4+PiAJCQlkcml2ZXJzL2dw
-dS9kcm0vc2NoZWR1bGVyL3NjaGVkX21haW4uYzozMzUKPj4+Cj4+PiBUaGUgY3Jhc2hpbmcgbGlu
-ZSBpcyA6Cj4+PiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpZiAoYmFkLT5zX2Zl
-bmNlLT5zY2hlZHVsZWQuY29udGV4dCA9PQo+Pj4gICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgIGVudGl0eS0+ZmVuY2VfY29udGV4dCkgewo+Pj4KPj4+IERvZXNuJ3Qgc2VlbSBy
-ZWxhdGVkIHRvIGd1aWx0eSBqb2IuCj4+IEJhaWwgb3V0IGlmIHNfZmVuY2UgaXMgbm8gbG9uZ2Vy
-IGZyZXNoLgo+Pgo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vc2NoZWR1bGVyL3NjaGVkX21haW4u
-Ywo+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vc2NoZWR1bGVyL3NjaGVkX21haW4uYwo+PiBAQCAt
-MzMzLDYgKzMzMywxMCBAQCB2b2lkIGRybV9zY2hlZF9pbmNyZWFzZV9rYXJtYShzdHJ1Y3QgZHJt
-Cj4+ICAgCj4+ICAgCQkJc3Bpbl9sb2NrKCZycS0+bG9jayk7Cj4+ICAgCQkJbGlzdF9mb3JfZWFj
-aF9lbnRyeV9zYWZlKGVudGl0eSwgdG1wLCAmcnEtPmVudGl0aWVzLCBsaXN0KSB7Cj4+ICsJCQkJ
-aWYgKCFzbXBfbG9hZF9hY3F1aXJlKCZiYWQtPnNfZmVuY2UpKSB7Cj4+ICsJCQkJCXNwaW5fdW5s
-b2NrKCZycS0+bG9jayk7Cj4+ICsJCQkJCXJldHVybjsKPj4gKwkJCQl9Cj4+ICAgCQkJCWlmIChi
-YWQtPnNfZmVuY2UtPnNjaGVkdWxlZC5jb250ZXh0ID09Cj4+ICAgCQkJCSAgICBlbnRpdHktPmZl
-bmNlX2NvbnRleHQpIHsKPj4gICAJCQkJCWlmIChhdG9taWNfcmVhZCgmYmFkLT5rYXJtYSkgPgo+
-PiBAQCAtNTQzLDcgKzU0Nyw3IEBAIEVYUE9SVF9TWU1CT0woZHJtX3NjaGVkX2pvYl9pbml0KTsK
-Pj4gICB2b2lkIGRybV9zY2hlZF9qb2JfY2xlYW51cChzdHJ1Y3QgZHJtX3NjaGVkX2pvYiAqam9i
-KQo+PiAgIHsKPj4gICAJZG1hX2ZlbmNlX3B1dCgmam9iLT5zX2ZlbmNlLT5maW5pc2hlZCk7Cj4+
-IC0Jam9iLT5zX2ZlbmNlID0gTlVMTDsKPj4gKwlzbXBfc3RvcmVfcmVsZWFzZSgmam9iLT5zX2Zl
-bmNlLCAwKTsKPj4gICB9Cj4+ICAgRVhQT1JUX1NZTUJPTChkcm1fc2NoZWRfam9iX2NsZWFudXAp
-Owo+IAo+IAo+IERvZXMgdGhpcyBjaGFuZ2UgaGVscCB0aGUgcHJvYmxlbSA/IE5vdGUgdGhhdCBk
-cm1fc2NoZWRfam9iX2NsZWFudXAgaXMgCj4gY2FsbGVkIGZyb20gc2NoZWR1bGVyIHRocmVhZCB3
-aGljaCBpcyBzdG9wcGVkIGF0IGFsbCB0aW1lcyB3aGVuIHdvcmtfdGRyIAo+IHRocmVhZCBpcyBy
-dW5uaW5nIGFuZCBhbnl3YXkgdGhlICdiYWQnIGpvYiBpcyBzdGlsbCBpbiB0aGUgCj4gcmluZ19t
-aXJyb3JfbGlzdCB3aGlsZSBpdCdzIGJlaW5nIGFjY2Vzc2VkIGZyb23CoCAKPiBkcm1fc2NoZWRf
-aW5jcmVhc2Vfa2FybWEgc28gSSBkb24ndCB0aGluayBkcm1fc2NoZWRfam9iX2NsZWFudXAgY2Fu
-IGJlIAo+IGNhbGxlZCBmb3IgaXQgQkVGT1JFIG9yIHdoaWxlIGRybV9zY2hlZF9pbmNyZWFzZV9r
-YXJtYSBpcyBleGVjdXRlZC4KCkknbSBydW5uaW5nIGl0IHJpZ2h0IG5vdywgd2lsbCBwb3N0IHJl
-c3VsdHMgd2hlbiBmaW5pc2hlZC4KClRoYW5rcywKTmVpbAoKPiAKPiBBbmRyZXkKPiAKPiAKPj4g
-ICAKPj4gLS0KPj4KCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJh
-ZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51
-eC1hbWxvZ2ljCg==
+Convert Generic Power Domain bindings to DT schema format using
+json-schema.  The consumer bindings are split to separate file.
+
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+
+---
+
+Changes since v1:
+1. Select all nodes for consumers,
+2. Remove from consumers duplicated properties with dt-schema,
+3. Fix power domain pattern,
+4. Remove unneeded types.
+---
+ .../devicetree/bindings/arm/arm,scmi.txt      |   2 +-
+ .../devicetree/bindings/arm/arm,scpi.txt      |   2 +-
+ .../bindings/arm/freescale/fsl,scu.txt        |   2 +-
+ .../bindings/clock/clk-exynos-audss.txt       |   2 +-
+ .../bindings/clock/exynos5433-clock.txt       |   4 +-
+ .../bindings/clock/renesas,cpg-mssr.txt       |   2 +-
+ .../clock/renesas,r8a7778-cpg-clocks.txt      |   2 +-
+ .../clock/renesas,r8a7779-cpg-clocks.txt      |   2 +-
+ .../clock/renesas,rcar-gen2-cpg-clocks.txt    |   2 +-
+ .../bindings/clock/renesas,rz-cpg-clocks.txt  |   2 +-
+ .../bindings/clock/ti/davinci/psc.txt         |   2 +-
+ .../bindings/display/etnaviv/etnaviv-drm.txt  |   2 +-
+ .../devicetree/bindings/display/msm/dpu.txt   |   2 +-
+ .../devicetree/bindings/display/msm/mdp5.txt  |   2 +-
+ .../devicetree/bindings/dsp/fsl,dsp.yaml      |   2 +-
+ .../firmware/nvidia,tegra186-bpmp.txt         |   2 +-
+ .../bindings/media/imx7-mipi-csi2.txt         |   3 +-
+ .../bindings/media/mediatek-jpeg-decoder.txt  |   3 +-
+ .../bindings/media/mediatek-mdp.txt           |   3 +-
+ .../bindings/opp/qcom-nvmem-cpufreq.txt       |   2 +-
+ .../devicetree/bindings/pci/pci-keystone.txt  |   2 +-
+ .../bindings/phy/ti,phy-am654-serdes.txt      |   2 +-
+ .../bindings/power/amlogic,meson-gx-pwrc.txt  |   2 +-
+ .../devicetree/bindings/power/fsl,imx-gpc.txt |   2 +-
+ .../bindings/power/fsl,imx-gpcv2.txt          |   2 +-
+ .../power/power-domain-consumers.yaml         | 105 +++++++++
+ .../bindings/power/power-domain.yaml          | 134 ++++++++++++
+ .../bindings/power/power_domain.txt           | 205 ------------------
+ .../devicetree/bindings/power/qcom,rpmpd.txt  |   2 +-
+ .../bindings/power/renesas,rcar-sysc.txt      |   2 +-
+ .../bindings/power/renesas,sysc-rmobile.txt   |   2 +-
+ .../bindings/power/xlnx,zynqmp-genpd.txt      |   2 +-
+ .../bindings/soc/bcm/brcm,bcm2835-pm.txt      |   2 +-
+ .../bindings/soc/mediatek/scpsys.txt          |   2 +-
+ .../bindings/soc/ti/sci-pm-domain.txt         |   2 +-
+ .../bindings/usb/nvidia,tegra124-xusb.txt     |   4 +-
+ MAINTAINERS                                   |   2 +-
+ 37 files changed, 278 insertions(+), 241 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/power-domain-consumers.yaml
+ create mode 100644 Documentation/devicetree/bindings/power/power-domain.yaml
+ delete mode 100644 Documentation/devicetree/bindings/power/power_domain.txt
+
+diff --git a/Documentation/devicetree/bindings/arm/arm,scmi.txt b/Documentation/devicetree/bindings/arm/arm,scmi.txt
+index 083dbf96ee00..f493d69e6194 100644
+--- a/Documentation/devicetree/bindings/arm/arm,scmi.txt
++++ b/Documentation/devicetree/bindings/arm/arm,scmi.txt
+@@ -100,7 +100,7 @@ Required sub-node properties:
+ 
+ [0] http://infocenter.arm.com/help/topic/com.arm.doc.den0056a/index.html
+ [1] Documentation/devicetree/bindings/clock/clock-bindings.txt
+-[2] Documentation/devicetree/bindings/power/power_domain.txt
++[2] Documentation/devicetree/bindings/power/power-domain.yaml
+ [3] Documentation/devicetree/bindings/thermal/thermal.txt
+ [4] Documentation/devicetree/bindings/sram/sram.txt
+ [5] Documentation/devicetree/bindings/reset/reset.txt
+diff --git a/Documentation/devicetree/bindings/arm/arm,scpi.txt b/Documentation/devicetree/bindings/arm/arm,scpi.txt
+index 401831973638..7b83ef43b418 100644
+--- a/Documentation/devicetree/bindings/arm/arm,scpi.txt
++++ b/Documentation/devicetree/bindings/arm/arm,scpi.txt
+@@ -110,7 +110,7 @@ Required properties:
+ [1] Documentation/devicetree/bindings/clock/clock-bindings.txt
+ [2] Documentation/devicetree/bindings/thermal/thermal.txt
+ [3] Documentation/devicetree/bindings/sram/sram.txt
+-[4] Documentation/devicetree/bindings/power/power_domain.txt
++[4] Documentation/devicetree/bindings/power/power-domain.yaml
+ 
+ Example:
+ 
+diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+index c149fadc6f47..6c8a61b971f1 100644
+--- a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
++++ b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+@@ -124,7 +124,7 @@ Required properties for Pinctrl sub nodes:
+ 			CONFIG settings.
+ 
+ [1] Documentation/devicetree/bindings/clock/clock-bindings.txt
+-[2] Documentation/devicetree/bindings/power/power_domain.txt
++[2] Documentation/devicetree/bindings/power/power-domain.yaml
+ [3] Documentation/devicetree/bindings/pinctrl/fsl,imx-pinctrl.txt
+ 
+ RTC bindings based on SCU Message Protocol
+diff --git a/Documentation/devicetree/bindings/clock/clk-exynos-audss.txt b/Documentation/devicetree/bindings/clock/clk-exynos-audss.txt
+index 6030afb10b5c..fda095e1fa7a 100644
+--- a/Documentation/devicetree/bindings/clock/clk-exynos-audss.txt
++++ b/Documentation/devicetree/bindings/clock/clk-exynos-audss.txt
+@@ -36,7 +36,7 @@ Required Properties:
+ Optional Properties:
+ 
+   - power-domains: a phandle to respective power domain node as described by
+-    generic PM domain bindings (see power/power_domain.txt for more
++    generic PM domain bindings (see power/power-domain-consumers.yaml for more
+     information).
+ 
+ The following is the list of clocks generated by the controller. Each clock is
+diff --git a/Documentation/devicetree/bindings/clock/exynos5433-clock.txt b/Documentation/devicetree/bindings/clock/exynos5433-clock.txt
+index 183c327a7d6b..52880914228d 100644
+--- a/Documentation/devicetree/bindings/clock/exynos5433-clock.txt
++++ b/Documentation/devicetree/bindings/clock/exynos5433-clock.txt
+@@ -178,8 +178,8 @@ Required Properties:
+ 
+ Optional properties:
+   - power-domains: a phandle to respective power domain node as described by
+-	generic PM domain bindings (see power/power_domain.txt for more
+-	information).
++	generic PM domain bindings (see power/power-domain-consumers.yaml
++	for more information).
+ 
+ Each clock is assigned an identifier and client nodes can use this identifier
+ to specify the clock which they consume.
+diff --git a/Documentation/devicetree/bindings/clock/renesas,cpg-mssr.txt b/Documentation/devicetree/bindings/clock/renesas,cpg-mssr.txt
+index 916a601b76a7..2def42096886 100644
+--- a/Documentation/devicetree/bindings/clock/renesas,cpg-mssr.txt
++++ b/Documentation/devicetree/bindings/clock/renesas,cpg-mssr.txt
+@@ -59,7 +59,7 @@ Required Properties:
+ 	power-managed through Module Standby should refer to the CPG device
+ 	node in their "power-domains" property, as documented by the generic PM
+ 	Domain bindings in
+-	Documentation/devicetree/bindings/power/power_domain.txt.
++	Documentation/devicetree/bindings/power/power-domain.yaml.
+ 
+   - #reset-cells: Must be 1
+       - The single reset specifier cell must be the module number, as defined
+diff --git a/Documentation/devicetree/bindings/clock/renesas,r8a7778-cpg-clocks.txt b/Documentation/devicetree/bindings/clock/renesas,r8a7778-cpg-clocks.txt
+index 7cc4c0330b53..be24c2c023a2 100644
+--- a/Documentation/devicetree/bindings/clock/renesas,r8a7778-cpg-clocks.txt
++++ b/Documentation/devicetree/bindings/clock/renesas,r8a7778-cpg-clocks.txt
+@@ -17,7 +17,7 @@ Required Properties:
+ SoC devices that are part of the CPG/MSTP Clock Domain and can be power-managed
+ through an MSTP clock should refer to the CPG device node in their
+ "power-domains" property, as documented by the generic PM domain bindings in
+-Documentation/devicetree/bindings/power/power_domain.txt.
++Documentation/devicetree/bindings/power/power-domain-consumers.yaml.
+ 
+ 
+ Examples
+diff --git a/Documentation/devicetree/bindings/clock/renesas,r8a7779-cpg-clocks.txt b/Documentation/devicetree/bindings/clock/renesas,r8a7779-cpg-clocks.txt
+index 8c81547c29f5..263d7ef2e6de 100644
+--- a/Documentation/devicetree/bindings/clock/renesas,r8a7779-cpg-clocks.txt
++++ b/Documentation/devicetree/bindings/clock/renesas,r8a7779-cpg-clocks.txt
+@@ -19,7 +19,7 @@ Required Properties:
+ SoC devices that are part of the CPG/MSTP Clock Domain and can be power-managed
+ through an MSTP clock should refer to the CPG device node in their
+ "power-domains" property, as documented by the generic PM domain bindings in
+-Documentation/devicetree/bindings/power/power_domain.txt.
++Documentation/devicetree/bindings/power/power-domain-consumers.yaml.
+ 
+ 
+ Examples
+diff --git a/Documentation/devicetree/bindings/clock/renesas,rcar-gen2-cpg-clocks.txt b/Documentation/devicetree/bindings/clock/renesas,rcar-gen2-cpg-clocks.txt
+index f8c05bb4116e..8c06a93ab730 100644
+--- a/Documentation/devicetree/bindings/clock/renesas,rcar-gen2-cpg-clocks.txt
++++ b/Documentation/devicetree/bindings/clock/renesas,rcar-gen2-cpg-clocks.txt
+@@ -28,7 +28,7 @@ Required Properties:
+ SoC devices that are part of the CPG/MSTP Clock Domain and can be power-managed
+ through an MSTP clock should refer to the CPG device node in their
+ "power-domains" property, as documented by the generic PM domain bindings in
+-Documentation/devicetree/bindings/power/power_domain.txt.
++Documentation/devicetree/bindings/power/power-domain-consumers.yaml.
+ 
+ 
+ Examples
+diff --git a/Documentation/devicetree/bindings/clock/renesas,rz-cpg-clocks.txt b/Documentation/devicetree/bindings/clock/renesas,rz-cpg-clocks.txt
+index 8ff3e2774ed8..56d632165030 100644
+--- a/Documentation/devicetree/bindings/clock/renesas,rz-cpg-clocks.txt
++++ b/Documentation/devicetree/bindings/clock/renesas,rz-cpg-clocks.txt
+@@ -21,7 +21,7 @@ Required Properties:
+ SoC devices that are part of the CPG/MSTP Clock Domain and can be power-managed
+ through an MSTP clock should refer to the CPG device node in their
+ "power-domains" property, as documented by the generic PM domain bindings in
+-Documentation/devicetree/bindings/power/power_domain.txt.
++Documentation/devicetree/bindings/power/power-domain-consumers.yaml.
+ 
+ 
+ Examples
+diff --git a/Documentation/devicetree/bindings/clock/ti/davinci/psc.txt b/Documentation/devicetree/bindings/clock/ti/davinci/psc.txt
+index dae4ad8e198c..5f746ebf7a2c 100644
+--- a/Documentation/devicetree/bindings/clock/ti/davinci/psc.txt
++++ b/Documentation/devicetree/bindings/clock/ti/davinci/psc.txt
+@@ -67,5 +67,5 @@ Examples:
+ 
+ Also see:
+ - Documentation/devicetree/bindings/clock/clock-bindings.txt
+-- Documentation/devicetree/bindings/power/power_domain.txt
++- Documentation/devicetree/bindings/power/power-domain.yaml
+ - Documentation/devicetree/bindings/reset/reset.txt
+diff --git a/Documentation/devicetree/bindings/display/etnaviv/etnaviv-drm.txt b/Documentation/devicetree/bindings/display/etnaviv/etnaviv-drm.txt
+index 8def11b16a24..6067ef3f108a 100644
+--- a/Documentation/devicetree/bindings/display/etnaviv/etnaviv-drm.txt
++++ b/Documentation/devicetree/bindings/display/etnaviv/etnaviv-drm.txt
+@@ -20,7 +20,7 @@ Required properties:
+ 
+ Optional properties:
+ - power-domains: a power domain consumer specifier according to
+-  Documentation/devicetree/bindings/power/power_domain.txt
++  Documentation/devicetree/bindings/power/power-domain-consumers.yaml
+ 
+ example:
+ 
+diff --git a/Documentation/devicetree/bindings/display/msm/dpu.txt b/Documentation/devicetree/bindings/display/msm/dpu.txt
+index a61dd40f3792..002a3a1270f9 100644
+--- a/Documentation/devicetree/bindings/display/msm/dpu.txt
++++ b/Documentation/devicetree/bindings/display/msm/dpu.txt
+@@ -13,7 +13,7 @@ Required properties:
+ - reg-names: register region names. The following region is required:
+   * "mdss"
+ - power-domains: a power domain consumer specifier according to
+-  Documentation/devicetree/bindings/power/power_domain.txt
++  Documentation/devicetree/bindings/power/power-domain-consumers.yaml
+ - clocks: list of clock specifiers for clocks needed by the device.
+ - clock-names: device clock names, must be in same order as clocks property.
+   The following clocks are required:
+diff --git a/Documentation/devicetree/bindings/display/msm/mdp5.txt b/Documentation/devicetree/bindings/display/msm/mdp5.txt
+index 4e11338548aa..9cbfcdfa46b4 100644
+--- a/Documentation/devicetree/bindings/display/msm/mdp5.txt
++++ b/Documentation/devicetree/bindings/display/msm/mdp5.txt
+@@ -19,7 +19,7 @@ Required properties:
+ - #interrupt-cells: specifies the number of cells needed to encode an interrupt
+   source, should be 1.
+ - power-domains: a power domain consumer specifier according to
+-  Documentation/devicetree/bindings/power/power_domain.txt
++  Documentation/devicetree/bindings/power/power-domain-consumers.yaml
+ - clocks: device clocks. See ../clocks/clock-bindings.txt for details.
+ - clock-names: the following clocks are required.
+   * "iface"
+diff --git a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+index 3248595dc93c..d7680b7fbe19 100644
+--- a/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
++++ b/Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+@@ -36,7 +36,7 @@ properties:
+   power-domains:
+     description:
+       List of phandle and PM domain specifier as documented in
+-      Documentation/devicetree/bindings/power/power_domain.txt
++      Documentation/devicetree/bindings/power/power-domain-consumers.yaml
+     maxItems: 4
+ 
+   mboxes:
+diff --git a/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.txt b/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.txt
+index ff380dadb5f9..e44a13bc06ed 100644
+--- a/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.txt
++++ b/Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.txt
+@@ -32,7 +32,7 @@ implemented by this node:
+ 
+ - .../clock/clock-bindings.txt
+ - <dt-bindings/clock/tegra186-clock.h>
+-- ../power/power_domain.txt
++- ../power/power-domain.yaml
+ - <dt-bindings/power/tegra186-powergate.h>
+ - .../reset/reset.txt
+ - <dt-bindings/reset/tegra186-reset.h>
+diff --git a/Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt b/Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
+index 71fd74ed3ec8..7a7a8b672983 100644
+--- a/Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
++++ b/Documentation/devicetree/bindings/media/imx7-mipi-csi2.txt
+@@ -17,7 +17,8 @@ Required properties:
+ - clock-names   : must contain "pclk", "wrap" and "phy" entries, matching
+                   entries in the clock property;
+ - power-domains : a phandle to the power domain, see
+-          Documentation/devicetree/bindings/power/power_domain.txt for details.
++          Documentation/devicetree/bindings/power/power-domain-consumers.yaml
++          for details.
+ - reset-names   : should include following entry "mrst";
+ - resets        : a list of phandle, should contain reset entry of
+                   reset-names;
+diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.txt b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.txt
+index 044b11913c49..04c46adaa460 100644
+--- a/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.txt
++++ b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.txt
+@@ -14,7 +14,8 @@ Required properties:
+   Documentation/devicetree/bindings/clock/clock-bindings.txt for details.
+ - clock-names: must contain "jpgdec-smi" and "jpgdec".
+ - power-domains: a phandle to the power domain, see
+-  Documentation/devicetree/bindings/power/power_domain.txt for details.
++  Documentation/devicetree/bindings/power/power-domain-consumers.yaml
++  for details.
+ - mediatek,larb: must contain the local arbiters in the current Socs, see
+   Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt
+   for details.
+diff --git a/Documentation/devicetree/bindings/media/mediatek-mdp.txt b/Documentation/devicetree/bindings/media/mediatek-mdp.txt
+index 0d03e3ae2be2..5a8c9ab9b3bd 100644
+--- a/Documentation/devicetree/bindings/media/mediatek-mdp.txt
++++ b/Documentation/devicetree/bindings/media/mediatek-mdp.txt
+@@ -17,7 +17,8 @@ Required properties (all function blocks, child node):
+ - clocks: device clocks, see
+   Documentation/devicetree/bindings/clock/clock-bindings.txt for details.
+ - power-domains: a phandle to the power domain, see
+-  Documentation/devicetree/bindings/power/power_domain.txt for details.
++  Documentation/devicetree/bindings/power/power-domain-consumers.yaml
++  for details.
+ 
+ Required properties (DMA function blocks, child node):
+ - compatible: Should be one of
+diff --git a/Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt b/Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt
+index 4751029b9b74..cb091b2ce5db 100644
+--- a/Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt
++++ b/Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt
+@@ -27,7 +27,7 @@ In 'cpu' nodes:
+ - power-domains: A phandle pointing to the PM domain specifier which provides
+ 		the performance states available for active state management.
+ 		Please refer to the power-domains bindings
+-		Documentation/devicetree/bindings/power/power_domain.txt
++		Documentation/devicetree/bindings/power/power-domain-consumers.yaml
+ 		and also examples below.
+ - power-domain-names: Should be
+ 	- 'cpr' for qcs404.
+diff --git a/Documentation/devicetree/bindings/pci/pci-keystone.txt b/Documentation/devicetree/bindings/pci/pci-keystone.txt
+index 47202a2938f2..5ee0bf171ce6 100644
+--- a/Documentation/devicetree/bindings/pci/pci-keystone.txt
++++ b/Documentation/devicetree/bindings/pci/pci-keystone.txt
+@@ -88,7 +88,7 @@ num-ob-windows: As specified in
+ num-lanes: As specified in
+ 	   Documentation/devicetree/bindings/pci/designware-pcie.txt
+ power-domains: As documented by the generic PM domain bindings in
+-	       Documentation/devicetree/bindings/power/power_domain.txt.
++	       Documentation/devicetree/bindings/power/power-domain-consumers.yaml.
+ ti,syscon-pcie-mode: phandle to the device control module required to configure
+ 		      PCI in either RC mode or EP mode.
+ 
+diff --git a/Documentation/devicetree/bindings/phy/ti,phy-am654-serdes.txt b/Documentation/devicetree/bindings/phy/ti,phy-am654-serdes.txt
+index 64b286d2d398..b5f17a3e8dba 100644
+--- a/Documentation/devicetree/bindings/phy/ti,phy-am654-serdes.txt
++++ b/Documentation/devicetree/bindings/phy/ti,phy-am654-serdes.txt
+@@ -17,7 +17,7 @@ Required properties:
+ 		1 - PCIe0 Lane1
+ 		2 - ICSS2 SGMII Lane1
+  - power-domains: As documented by the generic PM domain bindings in
+-	Documentation/devicetree/bindings/power/power_domain.txt.
++	Documentation/devicetree/bindings/power/power-domain-consumers.yaml.
+  - clocks: List of clock-specifiers representing the input to the SERDES.
+ 	Should have 3 items representing the left input clock, external
+ 	reference clock and right input clock in that order.
+diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-gx-pwrc.txt b/Documentation/devicetree/bindings/power/amlogic,meson-gx-pwrc.txt
+index 0fdc3dd1125e..99b5b10cda31 100644
+--- a/Documentation/devicetree/bindings/power/amlogic,meson-gx-pwrc.txt
++++ b/Documentation/devicetree/bindings/power/amlogic,meson-gx-pwrc.txt
+@@ -10,7 +10,7 @@ The Video Processing Unit power domain is controlled by this power controller,
+ but the domain requires some external resources to meet the correct power
+ sequences.
+ The bindings must respect the power domain bindings as described in the file
+-power_domain.txt
++power-domain.yaml
+ 
+ Device Tree Bindings:
+ ---------------------
+diff --git a/Documentation/devicetree/bindings/power/fsl,imx-gpc.txt b/Documentation/devicetree/bindings/power/fsl,imx-gpc.txt
+index 726ec2875223..f0f5553a9e74 100644
+--- a/Documentation/devicetree/bindings/power/fsl,imx-gpc.txt
++++ b/Documentation/devicetree/bindings/power/fsl,imx-gpc.txt
+@@ -19,7 +19,7 @@ Required properties:
+   - ipg
+ 
+ The power domains are generic power domain providers as documented in
+-Documentation/devicetree/bindings/power/power_domain.txt. They are described as
++Documentation/devicetree/bindings/power/power-domain.yaml. They are described as
+ subnodes of the power gating controller 'pgc' node of the GPC and should
+ contain the following:
+ 
+diff --git a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.txt b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.txt
+index 7c7e972aaa42..61649202f6f5 100644
+--- a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.txt
++++ b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.txt
+@@ -17,7 +17,7 @@ Required properties:
+ 
+ Power domains contained within GPC node are generic power domain
+ providers, documented in
+-Documentation/devicetree/bindings/power/power_domain.txt, which are
++Documentation/devicetree/bindings/power/power-domain.yaml, which are
+ described as subnodes of the power gating controller 'pgc' node,
+ which, in turn, is expected to contain the following:
+ 
+diff --git a/Documentation/devicetree/bindings/power/power-domain-consumers.yaml b/Documentation/devicetree/bindings/power/power-domain-consumers.yaml
+new file mode 100644
+index 000000000000..f65078e1260e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/power-domain-consumers.yaml
+@@ -0,0 +1,105 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/power/power-domain-consumers.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: PM domain consumers
++
++maintainers:
++  - Rafael J. Wysocki <rjw@rjwysocki.net>
++  - Kevin Hilman <khilman@kernel.org>
++  - Ulf Hansson <ulf.hansson@linaro.org>
++
++description: |+
++  See power-domain.yaml
++
++select: true
++
++allOf:
++  - $ref: /schemas/power-domain/power-domain-consumer.yaml
++
++properties:
++  required-opps:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      This contains phandle to an OPP node in another device's OPP table.
++      It may contain an array of phandles, where each phandle points to an OPP
++      of a different device. It should not contain multiple phandles to the OPP
++      nodes in the same OPP table. This specifies the minimum required OPP
++      of the device(s), whose OPP's phandle is present in this property,
++      for the functioning of the current device at the current OPP (where this
++      property is present).
++
++examples:
++  - |
++    leaky-device@12350000 {
++      compatible = "foo,i-leak-current";
++      reg = <0x12350000 0x1000>;
++      power-domains = <&power 0>;
++      power-domain-names = "io";
++    };
++
++    leaky-device@12351000 {
++      compatible = "foo,i-leak-current";
++      reg = <0x12351000 0x1000>;
++      power-domains = <&power 0>, <&power 1> ;
++      power-domain-names = "io", "clk";
++    };
++
++    // The first example above defines a typical PM domain consumer device, which is
++    // located inside a PM domain with index 0 of a power controller represented by a
++    // node with the label "power".
++    // In the second example the consumer device are partitioned across two PM domains,
++    // the first with index 0 and the second with index 1, of a power controller that
++    // is represented by a node with the label "power".
++
++  - |
++    // Example with  OPP table for domain provider that provides two domains:
++
++    domain0_opp_table: opp-table0 {
++      compatible = "operating-points-v2";
++
++      domain0_opp_0: opp-1000000000 {
++        opp-hz = /bits/ 64 <1000000000>;
++        opp-microvolt = <975000 970000 985000>;
++      };
++      domain0_opp_1: opp-1100000000 {
++        opp-hz = /bits/ 64 <1100000000>;
++        opp-microvolt = <1000000 980000 1010000>;
++      };
++    };
++
++    domain1_opp_table: opp-table1 {
++      compatible = "operating-points-v2";
++
++      domain1_opp_0: opp-1200000000 {
++        opp-hz = /bits/ 64 <1200000000>;
++        opp-microvolt = <975000 970000 985000>;
++      };
++      domain1_opp_1: opp-1300000000 {
++        opp-hz = /bits/ 64 <1300000000>;
++        opp-microvolt = <1000000 980000 1010000>;
++      };
++    };
++
++    power: power-controller@12340000 {
++      compatible = "foo,power-controller";
++      reg = <0x12340000 0x1000>;
++      #power-domain-cells = <1>;
++      operating-points-v2 = <&domain0_opp_table>, <&domain1_opp_table>;
++    };
++
++    leaky-device0@12350000 {
++      compatible = "foo,i-leak-current";
++      reg = <0x12350000 0x1000>;
++      power-domains = <&power 0>;
++      required-opps = <&domain0_opp_0>;
++    };
++
++    leaky-device1@12350000 {
++      compatible = "foo,i-leak-current";
++      reg = <0x12350000 0x1000>;
++      power-domains = <&power 1>;
++      required-opps = <&domain1_opp_1>;
++    };
+diff --git a/Documentation/devicetree/bindings/power/power-domain.yaml b/Documentation/devicetree/bindings/power/power-domain.yaml
+new file mode 100644
+index 000000000000..dd1376cff51b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/power-domain.yaml
+@@ -0,0 +1,134 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/power/power-domain.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Generic PM domains
++
++maintainers:
++  - Rafael J. Wysocki <rjw@rjwysocki.net>
++  - Kevin Hilman <khilman@kernel.org>
++  - Ulf Hansson <ulf.hansson@linaro.org>
++
++description: |+
++  System on chip designs are often divided into multiple PM domains that can be
++  used for power gating of selected IP blocks for power saving by reduced leakage
++  current.
++
++  This device tree binding can be used to bind PM domain consumer devices with
++  their PM domains provided by PM domain providers. A PM domain provider can be
++  represented by any node in the device tree and can provide one or more PM
++  domains. A consumer node can refer to the provider by a phandle and a set of
++  phandle arguments (so called PM domain specifiers) of length specified by the
++  \#power-domain-cells property in the PM domain provider node.
++
++properties:
++  $nodename:
++    pattern: "^(power-controller|power-domain)(@.*)?$"
++
++  domain-idle-states:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    description:
++      A phandle of an idle-state that shall be soaked into a generic domain
++      power state. The idle state definitions are compatible with
++      domain-idle-state specified in
++      Documentation/devicetree/bindings/power/domain-idle-state.txt
++      phandles that are not compatible with domain-idle-state will be ignored.
++      The domain-idle-state property reflects the idle state of this PM domain
++      and not the idle states of the devices or sub-domains in the PM domain.
++      Devices and sub-domains have their own idle-states independent
++      of the parent domain's idle states. In the absence of this property,
++      the domain would be considered as capable of being powered-on
++      or powered-off.
++
++  operating-points-v2:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    description:
++      Phandles to the OPP tables of power domains provided by a power domain
++      provider. If the provider provides a single power domain only or all
++      the power domains provided by the provider have identical OPP tables,
++      then this shall contain a single phandle. Refer to ../opp/opp.txt
++      for more information.
++
++  "#power-domain-cells":
++    description:
++      Number of cells in a PM domain specifier. Typically 0 for nodes
++      representing a single PM domain and 1 for nodes providing multiple PM
++      domains (e.g. power controllers), but can be any value as specified
++      by device tree binding documentation of particular provider.
++
++  power-domains:
++    description:
++       A phandle and PM domain specifier as defined by bindings of the power
++       controller specified by phandle. Some power domains might be powered
++       from another power domain (or have other hardware specific
++       dependencies). For representing such dependency a standard PM domain
++       consumer binding is used. When provided, all domains created
++       by the given provider should be subdomains of the domain specified
++       by this binding. More details about power domain specifier are
++       available in the power-domain-consumers.yaml.
++
++required:
++  - "#power-domain-cells"
++
++examples:
++  - |
++    power: power-controller@12340000 {
++      compatible = "foo,power-controller";
++      reg = <0x12340000 0x1000>;
++      #power-domain-cells = <1>;
++    };
++
++    // The node above defines a power controller that is a PM domain provider and
++    // expects one cell as its phandle argument.
++
++  - |
++    parent2: power-controller@12340000 {
++      compatible = "foo,power-controller";
++      reg = <0x12340000 0x1000>;
++      #power-domain-cells = <1>;
++    };
++
++    child2: power-controller@12341000 {
++      compatible = "foo,power-controller";
++      reg = <0x12341000 0x1000>;
++      power-domains = <&parent2 0>;
++      #power-domain-cells = <1>;
++    };
++
++    // The nodes above define two power controllers: 'parent' and 'child'.
++    // Domains created by the 'child' power controller are subdomains of '0' power
++    // domain provided by the 'parent' power controller.
++
++  - |
++    parent3: power-controller@12340000 {
++      compatible = "foo,power-controller";
++      reg = <0x12340000 0x1000>;
++      #power-domain-cells = <0>;
++      domain-idle-states = <&DOMAIN_RET>, <&DOMAIN_PWR_DN>;
++    };
++
++    child3: power-controller@12341000 {
++      compatible = "foo,power-controller";
++      reg = <0x12341000 0x1000>;
++      power-domains = <&parent3>;
++      #power-domain-cells = <0>;
++      domain-idle-states = <&DOMAIN_PWR_DN>;
++    };
++
++    DOMAIN_RET: state@0 {
++      compatible = "domain-idle-state";
++      reg = <0x0 0x0>;
++      entry-latency-us = <1000>;
++      exit-latency-us = <2000>;
++      min-residency-us = <10000>;
++    };
++
++    DOMAIN_PWR_DN: state@1 {
++      compatible = "domain-idle-state";
++      reg = <0x1 0x0>;
++      entry-latency-us = <5000>;
++      exit-latency-us = <8000>;
++      min-residency-us = <7000>;
++    };
+diff --git a/Documentation/devicetree/bindings/power/power_domain.txt b/Documentation/devicetree/bindings/power/power_domain.txt
+deleted file mode 100644
+index 8f8b25a24b8f..000000000000
+--- a/Documentation/devicetree/bindings/power/power_domain.txt
++++ /dev/null
+@@ -1,205 +0,0 @@
+-* Generic PM domains
+-
+-System on chip designs are often divided into multiple PM domains that can be
+-used for power gating of selected IP blocks for power saving by reduced leakage
+-current.
+-
+-This device tree binding can be used to bind PM domain consumer devices with
+-their PM domains provided by PM domain providers. A PM domain provider can be
+-represented by any node in the device tree and can provide one or more PM
+-domains. A consumer node can refer to the provider by a phandle and a set of
+-phandle arguments (so called PM domain specifiers) of length specified by the
+-#power-domain-cells property in the PM domain provider node.
+-
+-==PM domain providers==
+-
+-Required properties:
+- - #power-domain-cells : Number of cells in a PM domain specifier;
+-   Typically 0 for nodes representing a single PM domain and 1 for nodes
+-   providing multiple PM domains (e.g. power controllers), but can be any value
+-   as specified by device tree binding documentation of particular provider.
+-
+-Optional properties:
+- - power-domains : A phandle and PM domain specifier as defined by bindings of
+-                   the power controller specified by phandle.
+-   Some power domains might be powered from another power domain (or have
+-   other hardware specific dependencies). For representing such dependency
+-   a standard PM domain consumer binding is used. When provided, all domains
+-   created by the given provider should be subdomains of the domain
+-   specified by this binding. More details about power domain specifier are
+-   available in the next section.
+-
+-- domain-idle-states : A phandle of an idle-state that shall be soaked into a
+-                generic domain power state. The idle state definitions are
+-                compatible with domain-idle-state specified in [1]. phandles
+-                that are not compatible with domain-idle-state will be
+-                ignored.
+-  The domain-idle-state property reflects the idle state of this PM domain and
+-  not the idle states of the devices or sub-domains in the PM domain. Devices
+-  and sub-domains have their own idle-states independent of the parent
+-  domain's idle states. In the absence of this property, the domain would be
+-  considered as capable of being powered-on or powered-off.
+-
+-- operating-points-v2 : Phandles to the OPP tables of power domains provided by
+-  a power domain provider. If the provider provides a single power domain only
+-  or all the power domains provided by the provider have identical OPP tables,
+-  then this shall contain a single phandle. Refer to ../opp/opp.txt for more
+-  information.
+-
+-Example:
+-
+-	power: power-controller@12340000 {
+-		compatible = "foo,power-controller";
+-		reg = <0x12340000 0x1000>;
+-		#power-domain-cells = <1>;
+-	};
+-
+-The node above defines a power controller that is a PM domain provider and
+-expects one cell as its phandle argument.
+-
+-Example 2:
+-
+-	parent: power-controller@12340000 {
+-		compatible = "foo,power-controller";
+-		reg = <0x12340000 0x1000>;
+-		#power-domain-cells = <1>;
+-	};
+-
+-	child: power-controller@12341000 {
+-		compatible = "foo,power-controller";
+-		reg = <0x12341000 0x1000>;
+-		power-domains = <&parent 0>;
+-		#power-domain-cells = <1>;
+-	};
+-
+-The nodes above define two power controllers: 'parent' and 'child'.
+-Domains created by the 'child' power controller are subdomains of '0' power
+-domain provided by the 'parent' power controller.
+-
+-Example 3:
+-	parent: power-controller@12340000 {
+-		compatible = "foo,power-controller";
+-		reg = <0x12340000 0x1000>;
+-		#power-domain-cells = <0>;
+-		domain-idle-states = <&DOMAIN_RET>, <&DOMAIN_PWR_DN>;
+-	};
+-
+-	child: power-controller@12341000 {
+-		compatible = "foo,power-controller";
+-		reg = <0x12341000 0x1000>;
+-		power-domains = <&parent>;
+-		#power-domain-cells = <0>;
+-		domain-idle-states = <&DOMAIN_PWR_DN>;
+-	};
+-
+-	DOMAIN_RET: state@0 {
+-		compatible = "domain-idle-state";
+-		reg = <0x0>;
+-		entry-latency-us = <1000>;
+-		exit-latency-us = <2000>;
+-		min-residency-us = <10000>;
+-	};
+-
+-	DOMAIN_PWR_DN: state@1 {
+-		compatible = "domain-idle-state";
+-		reg = <0x1>;
+-		entry-latency-us = <5000>;
+-		exit-latency-us = <8000>;
+-		min-residency-us = <7000>;
+-	};
+-
+-==PM domain consumers==
+-
+-Required properties:
+- - power-domains : A list of PM domain specifiers, as defined by bindings of
+-		the power controller that is the PM domain provider.
+-
+-Optional properties:
+- - power-domain-names : A list of power domain name strings sorted in the same
+-		order as the power-domains property. Consumers drivers will use
+-		power-domain-names to match power domains with power-domains
+-		specifiers.
+-
+-Example:
+-
+-	leaky-device@12350000 {
+-		compatible = "foo,i-leak-current";
+-		reg = <0x12350000 0x1000>;
+-		power-domains = <&power 0>;
+-		power-domain-names = "io";
+-	};
+-
+-	leaky-device@12351000 {
+-		compatible = "foo,i-leak-current";
+-		reg = <0x12351000 0x1000>;
+-		power-domains = <&power 0>, <&power 1> ;
+-		power-domain-names = "io", "clk";
+-	};
+-
+-The first example above defines a typical PM domain consumer device, which is
+-located inside a PM domain with index 0 of a power controller represented by a
+-node with the label "power".
+-In the second example the consumer device are partitioned across two PM domains,
+-the first with index 0 and the second with index 1, of a power controller that
+-is represented by a node with the label "power".
+-
+-Optional properties:
+-- required-opps: This contains phandle to an OPP node in another device's OPP
+-  table. It may contain an array of phandles, where each phandle points to an
+-  OPP of a different device. It should not contain multiple phandles to the OPP
+-  nodes in the same OPP table. This specifies the minimum required OPP of the
+-  device(s), whose OPP's phandle is present in this property, for the
+-  functioning of the current device at the current OPP (where this property is
+-  present).
+-
+-Example:
+-- OPP table for domain provider that provides two domains.
+-
+-	domain0_opp_table: opp-table0 {
+-		compatible = "operating-points-v2";
+-
+-		domain0_opp_0: opp-1000000000 {
+-			opp-hz = /bits/ 64 <1000000000>;
+-			opp-microvolt = <975000 970000 985000>;
+-		};
+-		domain0_opp_1: opp-1100000000 {
+-			opp-hz = /bits/ 64 <1100000000>;
+-			opp-microvolt = <1000000 980000 1010000>;
+-		};
+-	};
+-
+-	domain1_opp_table: opp-table1 {
+-		compatible = "operating-points-v2";
+-
+-		domain1_opp_0: opp-1200000000 {
+-			opp-hz = /bits/ 64 <1200000000>;
+-			opp-microvolt = <975000 970000 985000>;
+-		};
+-		domain1_opp_1: opp-1300000000 {
+-			opp-hz = /bits/ 64 <1300000000>;
+-			opp-microvolt = <1000000 980000 1010000>;
+-		};
+-	};
+-
+-	power: power-controller@12340000 {
+-		compatible = "foo,power-controller";
+-		reg = <0x12340000 0x1000>;
+-		#power-domain-cells = <1>;
+-		operating-points-v2 = <&domain0_opp_table>, <&domain1_opp_table>;
+-	};
+-
+-	leaky-device0@12350000 {
+-		compatible = "foo,i-leak-current";
+-		reg = <0x12350000 0x1000>;
+-		power-domains = <&power 0>;
+-		required-opps = <&domain0_opp_0>;
+-	};
+-
+-	leaky-device1@12350000 {
+-		compatible = "foo,i-leak-current";
+-		reg = <0x12350000 0x1000>;
+-		power-domains = <&power 1>;
+-		required-opps = <&domain1_opp_1>;
+-	};
+-
+-[1]. Documentation/devicetree/bindings/power/domain-idle-state.txt
+diff --git a/Documentation/devicetree/bindings/power/qcom,rpmpd.txt b/Documentation/devicetree/bindings/power/qcom,rpmpd.txt
+index eb35b22f9e23..386eeed6a887 100644
+--- a/Documentation/devicetree/bindings/power/qcom,rpmpd.txt
++++ b/Documentation/devicetree/bindings/power/qcom,rpmpd.txt
+@@ -12,7 +12,7 @@ Required Properties:
+  - #power-domain-cells: number of cells in Power domain specifier
+ 	must be 1.
+  - operating-points-v2: Phandle to the OPP table for the Power domain.
+-	Refer to Documentation/devicetree/bindings/power/power_domain.txt
++	Refer to Documentation/devicetree/bindings/power/power-domain-consumers.yaml
+ 	and Documentation/devicetree/bindings/opp/opp.txt for more details
+ 
+ Refer to <dt-bindings/power/qcom-rpmpd.h> for the level values for
+diff --git a/Documentation/devicetree/bindings/power/renesas,rcar-sysc.txt b/Documentation/devicetree/bindings/power/renesas,rcar-sysc.txt
+index eae2a880155a..8cd804980119 100644
+--- a/Documentation/devicetree/bindings/power/renesas,rcar-sysc.txt
++++ b/Documentation/devicetree/bindings/power/renesas,rcar-sysc.txt
+@@ -43,7 +43,7 @@ Example:
+ 
+ Devices residing in a power area must refer to that power area, as documented
+ by the generic PM domain bindings in
+-Documentation/devicetree/bindings/power/power_domain.txt.
++Documentation/devicetree/bindings/power/power-domain-consumers.yaml.
+ 
+ Required properties:
+   - power-domains: A phandle and symbolic PM domain specifier, as defined in
+diff --git a/Documentation/devicetree/bindings/power/renesas,sysc-rmobile.txt b/Documentation/devicetree/bindings/power/renesas,sysc-rmobile.txt
+index beda7d2efc30..49aba15dff8b 100644
+--- a/Documentation/devicetree/bindings/power/renesas,sysc-rmobile.txt
++++ b/Documentation/devicetree/bindings/power/renesas,sysc-rmobile.txt
+@@ -29,7 +29,7 @@ Optional nodes:
+ 
+ Each of the PM domain nodes represents a PM domain, as documented by the
+ generic PM domain bindings in
+-Documentation/devicetree/bindings/power/power_domain.txt.
++Documentation/devicetree/bindings/power/power-domain.yaml.
+ 
+ The nodes should be named by the real power area names, and thus their names
+ should be unique.
+diff --git a/Documentation/devicetree/bindings/power/xlnx,zynqmp-genpd.txt b/Documentation/devicetree/bindings/power/xlnx,zynqmp-genpd.txt
+index 8d1b8200ebd0..54b9f9d0f90f 100644
+--- a/Documentation/devicetree/bindings/power/xlnx,zynqmp-genpd.txt
++++ b/Documentation/devicetree/bindings/power/xlnx,zynqmp-genpd.txt
+@@ -4,7 +4,7 @@ Device Tree Bindings for the Xilinx Zynq MPSoC PM domains
+ The binding for zynqmp-power-controller follow the common
+ generic PM domain binding[1].
+ 
+-[1] Documentation/devicetree/bindings/power/power_domain.txt
++[1] Documentation/devicetree/bindings/power/power-domain.yaml
+ 
+ == Zynq MPSoC Generic PM Domain Node ==
+ 
+diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.txt b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.txt
+index 3b7d32956391..72ff033565e5 100644
+--- a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.txt
++++ b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.txt
+@@ -26,7 +26,7 @@ Optional properties:
+     system power.  This node follows the power controller bindings[3].
+ 
+ [1] Documentation/devicetree/bindings/reset/reset.txt
+-[2] Documentation/devicetree/bindings/power/power_domain.txt
++[2] Documentation/devicetree/bindings/power/power-domain.yaml
+ [3] Documentation/devicetree/bindings/power/power-controller.txt
+ 
+ Example:
+diff --git a/Documentation/devicetree/bindings/soc/mediatek/scpsys.txt b/Documentation/devicetree/bindings/soc/mediatek/scpsys.txt
+index 876693a7ada5..8f469d85833b 100644
+--- a/Documentation/devicetree/bindings/soc/mediatek/scpsys.txt
++++ b/Documentation/devicetree/bindings/soc/mediatek/scpsys.txt
+@@ -8,7 +8,7 @@ The System Power Manager (SPM) inside the SCPSYS is for the MTCMOS power
+ domain control.
+ 
+ The driver implements the Generic PM domain bindings described in
+-power/power_domain.txt. It provides the power domains defined in
++power/power-domain.yaml. It provides the power domains defined in
+ - include/dt-bindings/power/mt8173-power.h
+ - include/dt-bindings/power/mt6797-power.h
+ - include/dt-bindings/power/mt2701-power.h
+diff --git a/Documentation/devicetree/bindings/soc/ti/sci-pm-domain.txt b/Documentation/devicetree/bindings/soc/ti/sci-pm-domain.txt
+index f541d1f776a2..6217e64309de 100644
+--- a/Documentation/devicetree/bindings/soc/ti/sci-pm-domain.txt
++++ b/Documentation/devicetree/bindings/soc/ti/sci-pm-domain.txt
+@@ -12,7 +12,7 @@ PM Domain Node
+ ==============
+ The PM domain node represents the global PM domain managed by the PMMC, which
+ in this case is the implementation as documented by the generic PM domain
+-bindings in Documentation/devicetree/bindings/power/power_domain.txt.  Because
++bindings in Documentation/devicetree/bindings/power/power-domain.yaml.  Because
+ this relies on the TI SCI protocol to communicate with the PMMC it must be a
+ child of the pmmc node.
+ 
+diff --git a/Documentation/devicetree/bindings/usb/nvidia,tegra124-xusb.txt b/Documentation/devicetree/bindings/usb/nvidia,tegra124-xusb.txt
+index 5bfcc0b4d6b9..ee0d6c28978f 100644
+--- a/Documentation/devicetree/bindings/usb/nvidia,tegra124-xusb.txt
++++ b/Documentation/devicetree/bindings/usb/nvidia,tegra124-xusb.txt
+@@ -64,12 +64,12 @@ For Tegra210:
+ For Tegra210 and Tegra186:
+ - power-domains: A list of PM domain specifiers that reference each power-domain
+   used by the xHCI controller. This list must comprise of a specifier for the
+-  XUSBA and XUSBC power-domains. See ../power/power_domain.txt and
++  XUSBA and XUSBC power-domains. See ../power/power-domain-consumers.yaml and
+   ../arm/tegra/nvidia,tegra20-pmc.txt for details.
+ - power-domain-names: A list of names that represent each of the specifiers in
+   the 'power-domains' property. Must include 'xusb_ss' and 'xusb_host' which
+   represent the power-domains XUSBA and XUSBC, respectively. See
+-  ../power/power_domain.txt for details.
++  ../power/power-domain-consumers.yaml for details.
+ 
+ Optional properties:
+ --------------------
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 296de2b51c83..a1a2237c1cc6 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -6883,7 +6883,7 @@ L:	linux-pm@vger.kernel.org
+ S:	Supported
+ F:	drivers/base/power/domain*.c
+ F:	include/linux/pm_domain.h
+-F:	Documentation/devicetree/bindings/power/power_domain.txt
++F:	Documentation/devicetree/bindings/power/power-domain*.yaml
+ 
+ GENERIC RESISTIVE TOUCHSCREEN ADC DRIVER
+ M:	Eugen Hristev <eugen.hristev@microchip.com>
+-- 
+2.17.1
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
