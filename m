@@ -2,183 +2,88 @@ Return-Path: <SRS0=WwkR=X4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-14.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3C981C10F14
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Oct 2019 10:43:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8A5A6C10F14
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Oct 2019 13:08:59 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0C70021848
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Oct 2019 10:43:56 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5F5BC2133F
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Oct 2019 13:08:59 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="sJR81ByX";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=microchiptechnology.onmicrosoft.com header.i=@microchiptechnology.onmicrosoft.com header.b="vb8BKKii"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0C70021848
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=microchip.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jrbTmgDI";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="X/kzO0Mf"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5F5BC2133F
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
-	References:Message-ID:Date:Subject:To:From:Reply-To:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=U7E0gz569L1351Nlalx3QN/pzTi+e6Ni+G0cqeUdKDs=; b=sJR81ByXEdMytv
-	W5ddeiTH309TDJ9nDNLf7RH8o8QlWpT2tJbpn9CYH+SGGydJTMqcnDn2vMbfB7U+t2uRog6efCO1s
-	ABxUgl1L4NlceA2J/m7iOT583K+aLNF6bB4lKpd4rt8D4swVfZwU76wHlmRHGEJSMzdoOJaZpv+R0
-	+8q/A5n6fjjLfdfponpFQcqHZQVpp9NHZenZ4ANUNjr/ihtDFHEP2MpNyW6PU5v7wnG0G9JL02iyk
-	HBMWyB+oflWXRJndi+3FafXgTdzQL3+R2p1LgwkGTRxiVO36Dko5pHSXvGpnqNrxetHpHI9HAPzJt
-	puWUOIfASHJOPHAGz4RQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=JutFO1wYqbkxDznUAmcS8HQ9LtiZCTHAed8qKtQuuTY=; b=jrbTmgDICZVs61
+	UYdrSPNQTy3dRiEkPRT4f8WeDobY6QX0zhSMFX5GZ/ZzuyAZHFnA8K0wk2ws4BX6jN/Q5KZjPofwf
+	8mbUY2Ceghb2760WMbUxWzIHfLTDDBTt5B2clem8/HCe0KlrQnzdCsnaVEyL5Th9H29WLer2HbLfb
+	5dn+O2duEW8lqZBdCbsJzWJkhYDFj00UP8Rdv/gNrJw/7BByz1hDxOiw/xss71lD5lPldioaZoNyU
+	zbkYO6pY5RzABNGNgQIiLPtrrz6KucRdGC91z1yGLoJlmKK7AQ9Gg+KhNygDMLYP/cd4i3P6XrQXR
+	Loz+VymDQ/Y4r221LLDg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iFyaG-0005CF-6j; Thu, 03 Oct 2019 10:43:44 +0000
-Received: from esa6.microchip.iphmx.com ([216.71.154.253])
+	id 1iG0qf-0002EL-Cv; Thu, 03 Oct 2019 13:08:49 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iFyaC-0005A0-F4; Thu, 03 Oct 2019 10:43:42 +0000
-Received-SPF: Pass (esa6.microchip.iphmx.com: domain of
- Claudiu.Beznea@microchip.com designates 198.175.253.82 as
- permitted sender) identity=mailfrom;
- client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
- envelope-from="Claudiu.Beznea@microchip.com";
- x-sender="Claudiu.Beznea@microchip.com";
- x-conformance=spf_only; x-record-type="v=spf1";
- x-record-text="v=spf1 mx a:ushub1.microchip.com
- a:smtpout.microchip.com a:mx1.microchip.iphmx.com
- a:mx2.microchip.iphmx.com include:servers.mcsv.net
- include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa6.microchip.iphmx.com: no sender
- authenticity information available from domain of
- postmaster@email.microchip.com) identity=helo;
- client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
- envelope-from="Claudiu.Beznea@microchip.com";
- x-sender="postmaster@email.microchip.com"; x-conformance=spf_only
-Authentication-Results: esa6.microchip.iphmx.com;
- spf=Pass smtp.mailfrom=Claudiu.Beznea@microchip.com;
- spf=None smtp.helo=postmaster@email.microchip.com;
- dkim=pass (signature verified) header.i=@microchiptechnology.onmicrosoft.com;
- dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: Kh5AeDeYqy3qrgTU4+YVPpMhCxxzB7hpqC16ge+KzRXkC0j0Bj0ul837NXkdfC9hUDJ+UtcRl8
- u2vAeewPQELKMvISXpy4NhV2u7Xs7hN1SoV+PTkr37nCXJXftE4BPNsB0L6c+Orb7h0QucDCU0
- JyWt1moq/7d0mX5owx65ZKAt5x9AdpaHEzgutpiQCcGZ0O2kgx4WcbVUhQXwIhGNBdn8YBONy3
- /+12fXqBd/METlGevr8NNE977B7mvwDVsfEBtH93LKfQ0zluSwMB0yFpNPRLp/zRdpPXd7gzdR
- CFk=
-X-IronPort-AV: E=Sophos;i="5.67,251,1566889200"; d="scan'208";a="48625222"
-Received: from smtpout.microchip.com (HELO email.microchip.com)
- ([198.175.253.82])
- by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
- 03 Oct 2019 03:43:35 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 3 Oct 2019 03:43:17 -0700
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
- via Frontend Transport; Thu, 3 Oct 2019 03:43:17 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NmBcVLKEhij8qewyyT7i4CpKzD9t0NZqIkyY9+eOFAOrZhGpQdacVveONQFcG171NiLlVnKm1yn/5+pYyXUHcfHXlHiiRkSXPtUi4VErkQ0tJDomfxu+q1iGmtV7XVjn8lYAAhsSR+Vx+DyNLk/UUOd2HpDctIgdSB/v81zPbZ3HFb9sRI4vG1H9dnZpTNm+snKSkou5sfFjmJJ54qg+bDmBs7VFh1D7VmZ5OdO2jhASG71wbeIPkoiCpQXDP1VNQocH8+fjgDBrM99xT5W9yA0exuyS+lLiCrSu4v0H79S8o+kxr5aLd9IuDR9EbYKlv6iWFvRDpwtFikVhTka/dg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4z6O/TIUCmreGOqJOF86HxnnUsT7MBXi3SZECPGHZWY=;
- b=ipEsxUSmODC7eAYRu8BHncOy46qmydHd2ekcvaia5/ff2ievfAKKuDn3+FTABuch0QB5CkeH9eontv16kfrLH7XCITNaUfJFE+Zb151+W1pr+/KfhSWcZsCVYS7xtrFr3566KftZNmVJlXpWLEMRoVyuN1oNfgyS9mr67+H3L4DZKNZ17RKb9lhugoXH07hBU9P6wamrOhL3CQWhZnmWJrro8HEjZfLkzUjQENbyCNmFHck9bsOE1pcCveRD9kdqqTIgnPLSVFdUYPCmf83QXEPugTUFy2sb6vct4kCYeN7jUH3+pFSUv3ty8sCXJwHIj9oAszaOzvmIcNAHXMYSsA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+ id 1iG0qb-0002DT-HD
+ for linux-amlogic@lists.infradead.org; Thu, 03 Oct 2019 13:08:47 +0000
+Received: by mail-wr1-x442.google.com with SMTP id y19so2850852wrd.3
+ for <linux-amlogic@lists.infradead.org>; Thu, 03 Oct 2019 06:08:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4z6O/TIUCmreGOqJOF86HxnnUsT7MBXi3SZECPGHZWY=;
- b=vb8BKKiiVyYfgsS4n8v6vqtYiJ+6Oa1ExfDLHe3pDxZxpwct6FkuKFhgqilSaiPxqAhQZ8Fo4At0x52LPpW9tEVk77CvPh5yc29/NYI8LLCFeBNQGcTRPrcP4GFM2iQGXO286nGyl+0hgmpiL77yjs/j/fHY/wiCEON97aYpRu0=
-Received: from DM6PR11MB3225.namprd11.prod.outlook.com (20.176.120.85) by
- DM6PR11MB3321.namprd11.prod.outlook.com (20.176.122.26) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2305.17; Thu, 3 Oct 2019 10:43:14 +0000
-Received: from DM6PR11MB3225.namprd11.prod.outlook.com
- ([fe80::3874:9f3c:5325:d22]) by DM6PR11MB3225.namprd11.prod.outlook.com
- ([fe80::3874:9f3c:5325:d22%6]) with mapi id 15.20.2305.023; Thu, 3 Oct 2019
- 10:43:14 +0000
-From: <Claudiu.Beznea@microchip.com>
-To: <daniel.lezcano@linaro.org>, <robh+dt@kernel.org>, <mark.rutland@arm.com>, 
- <linux@armlinux.org.uk>, <nsekhar@ti.com>, <bgolaszewski@baylibre.com>,
- <monstr@monstr.eu>, <john@phrozen.org>, <ralf@linux-mips.org>,
- <paul.burton@mips.com>, <jhogan@kernel.org>, <lftan@altera.com>,
- <tglx@linutronix.de>, <vgupta@synopsys.com>, <marc.zyngier@arm.com>,
- <patrice.chotard@st.com>, <mcoquelin.stm32@gmail.com>,
- <alexandre.torgue@st.com>, <eric@anholt.net>, <wahrenst@gmx.net>,
- <f.fainelli@gmail.com>, <rjui@broadcom.com>, <sbranden@broadcom.com>,
- <bcm-kernel-feedback-list@broadcom.com>, <linus.walleij@linaro.org>,
- <shc_work@mail.ru>, <kgene@kernel.org>, <krzk@kernel.org>,
- <ysato@users.sourceforge.jp>, <liviu.dudau@arm.com>, <sudeep.holla@arm.com>,
- <lorenzo.pieralisi@arm.com>, <shawnguo@kernel.org>, <s.hauer@pengutronix.de>, 
- <kernel@pengutronix.de>, <festevam@gmail.com>, <linux-imx@nxp.com>,
- <baohua@kernel.org>, <Nicolas.Ferre@microchip.com>,
- <alexandre.belloni@bootlin.com>, <Ludovic.Desroches@microchip.com>,
- <baruch@tkos.co.il>, <u.kleine-koenig@pengutronix.de>, <guoren@kernel.org>,
- <kaloz@openwrt.org>, <khalasa@piap.pl>, <ssantosh@kernel.org>,
- <vz@mleia.com>, <slemieux.tyco@gmail.com>, <khilman@baylibre.com>,
- <avifishman70@gmail.com>, <tmaimon77@gmail.com>, <tali.perry1@gmail.com>,
- <venture@google.com>, <yuenn@google.com>, <benjaminfair@google.com>,
- <afaerber@suse.de>, <manivannan.sadhasivam@linaro.org>,
- <narmstrong@baylibre.com>, <agross@kernel.org>, <palmer@sifive.com>,
- <aou@eecs.berkeley.edu>, <heiko@sntech.de>, <orsonzhai@gmail.com>,
- <baolin.wang@linaro.org>, <zhang.lyra@gmail.com>,
- <maxime.ripard@bootlin.com>, <wens@csie.org>, <thierry.reding@gmail.com>,
- <jonathanh@nvidia.com>, <linux@prisktech.co.nz>, <john.stultz@linaro.org>,
- <sboyd@kernel.org>, <matthias.bgg@gmail.com>
-Subject: Re: [PATCH 0/7] add support for clocksource/clockevent DT selection
-Thread-Topic: [PATCH 0/7] add support for clocksource/clockevent DT selection
-Thread-Index: AQHVc8VbrLXkUp4vH02J/Sk0g3X+4Kc9pRwAgAm/1ICAAWIegA==
-Date: Thu, 3 Oct 2019 10:43:14 +0000
-Message-ID: <187d7020-fbe9-7984-2358-8a70faef019f@microchip.com>
-References: <1568123236-767-1-git-send-email-claudiu.beznea@microchip.com>
- <c3a68a08-d134-cd28-c8af-f757628e07f1@linaro.org>
- <72edc5fd-df05-cba5-5aa7-39da1709415b@microchip.com>
- <620a19d5-73b8-709d-9eec-49274ac23e51@microchip.com>
-In-Reply-To: <620a19d5-73b8-709d-9eec-49274ac23e51@microchip.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: VI1PR07CA0173.eurprd07.prod.outlook.com
- (2603:10a6:802:3e::21) To DM6PR11MB3225.namprd11.prod.outlook.com
- (2603:10b6:5:59::21)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tagtoolbar-keys: D20191003134249853
-x-originating-ip: [94.177.32.156]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a69bb484-2581-4090-3e6f-08d747ee7e34
-x-ms-traffictypediagnostic: DM6PR11MB3321:
-x-ms-exchange-purlcount: 1
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM6PR11MB33210DD9F544189800B49B2D879F0@DM6PR11MB3321.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 01792087B6
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10009020)(346002)(396003)(366004)(39860400002)(376002)(136003)(51914003)(189003)(199004)(6436002)(6116002)(76176011)(25786009)(2501003)(5660300002)(316002)(53546011)(3846002)(386003)(6506007)(110136005)(8936002)(476003)(486006)(71200400001)(81166006)(966005)(81156014)(102836004)(2171002)(71190400001)(99286004)(1191002)(52116002)(2616005)(6246003)(7336002)(14444005)(186003)(2906002)(7366002)(256004)(6306002)(6512007)(561944003)(229853002)(2201001)(26005)(14454004)(7416002)(31696002)(86362001)(6486002)(4326008)(54906003)(7736002)(64756008)(66446008)(66476007)(66556008)(66946007)(305945005)(8676002)(478600001)(446003)(36756003)(66066001)(11346002)(7406005)(31686004)(921003)(1121003);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR11MB3321;
- H:DM6PR11MB3225.namprd11.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: microchip.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 5PBf28dhTyEM+9xzweuKzLQ5Hf71K1eZ/d6kOgcgTpKsRjJCItVUlQZAeGuknztE3Q/o6x8QM65SOoyfcCo8Z2+Beih+T5rCxCW2HvbE7GOQac8vkdo2sRP5SnHjNFCE3RNBLdIOsAl+hl/uaQVOSpCxsA8d0TSoWnoeqJQ8la5s8Xs5NdRtMztgqsVs+xl8l+R7Nd9/5n39dKx1FOMScLpbkQaBdomNYHIPxsvmO8cUEr/MRSYT8P5CyK6kX1TJOpdw1aacriChcEaFgodmtYjZU9PsaD52Pj3neWGWBfuPne4hASiO+Aw5OeWtoJ1KaaB3DrO3hPscVSs+mV7DWPkS8rrSmdRVlE2O0yRDGTejpczZOi/L6URBqmvHMEWDZuue5C7tmYXewfnUJX+WFRtcafraXBkrRM5wmqXQL/8XAlMCaYuv4/p8Bdpa0HMahD3ms2znwq1mwEIlvVOCVw==
-Content-ID: <51816439DDB2EA498830860703402E31@namprd11.prod.outlook.com>
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Gw44OhLwQH/CUylU7AC4CHwJnvlb/yfwJWpgjG0sVUc=;
+ b=X/kzO0Mf8rp6JZbTiG3DaCWVH2uV5D1spjhSzxDM04qlnvV1ZoRN3QOzZ/9nqxa/zp
+ tdwHcsd3l+4EYuqpn5cBFbk0o84KyVO9d7lERByJbO2rJAbm0BLvjt1ldyaFFMLdgN1X
+ 7UZTdiJbnxHzLwGG6IWoqiwEb98+1sTYoA6VT8l08diTELNCv8xpUGcv6hP8ma1dPbp9
+ X31T1cBs89lfR86fvQrZRVc6/q6zxcxMFFlhrZ0yjs75d5fPTvbzdsLnNonrvRSICnv0
+ nXhT6m+ns+AObjmTCJL6XiI5tCPE6iFFqow3usBNluC+056y/CLuizemf28eEXii3L7R
+ QBGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Gw44OhLwQH/CUylU7AC4CHwJnvlb/yfwJWpgjG0sVUc=;
+ b=I3tPzWdZ8O+6MI5xxAVY8Zf7sItf1u4fh6M/XehXsD1A94cvvSIsiFiAGQjN7PHBb+
+ uUVcISnKasx1RkskR4xhtM15KH6KZ8rEk+Zr+3hbWR2N4DlQJ6fzyHwdikPT9nzekH9i
+ Y06RWrps1I+/r0XNNZbv84z/DGfEI7iMecNsEY1ZpJePKZn/02Qf//k9neQ3L1yIasz+
+ a5bEgrQTsyjbWVskxMa5VHtnlJsfyLo+DiSaU0amtpygELtJQiyJWig25hEgl59wF5SJ
+ Z8gmxXwCmrHD7rX0pwSQOhbDC7jzRc2Y6l0LTDluvK0IOAY8wQjMNdjnKzibUg7gCXim
+ aBIw==
+X-Gm-Message-State: APjAAAVYtivle5xaHNRMkdffrse9r1V5o5h/oYPTn8dSjriJyvcuCFZ4
+ pNkboFpuYQQUY/bS5JW8K1pAgQ==
+X-Google-Smtp-Source: APXvYqyeIE9AetKtVnUHsr637KtU42j4dmzDlDnD4GEC3YwDwFMKDCM+icveVvh1Nm7BM1NCsLRREg==
+X-Received: by 2002:a5d:458b:: with SMTP id p11mr7388306wrq.196.1570108123645; 
+ Thu, 03 Oct 2019 06:08:43 -0700 (PDT)
+Received: from bender.baylibre.local
+ (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id 90sm3868870wrr.1.2019.10.03.06.08.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 03 Oct 2019 06:08:43 -0700 (PDT)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: khilman@baylibre.com
+Subject: [PATCH] arm64: dts: meson-g12: add support for simplefb
+Date: Thu,  3 Oct 2019 15:08:41 +0200
+Message-Id: <20191003130841.8412-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: a69bb484-2581-4090-3e6f-08d747ee7e34
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Oct 2019 10:43:14.7902 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 0CMnEwf05eZLlk9enoiVzUG4uHDU/anYqc9xKhCaWxWNmd36ZMXcfz6M1182SPjNMZEmzvgm531qYuHGQL4T1UyEkDN54kgtrooQKtkZGhA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB3321
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191003_034340_621709_02F98A79 
-X-CRM114-Status: GOOD (  11.35  )
+X-CRM114-CacheID: sfid-20191003_060845_618894_FDBCA1A4 
+X-CRM114-Status: UNSURE (   9.82  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -190,68 +95,114 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: uclinux-h8-devel@lists.sourceforge.jp, devicetree@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, openbmc@lists.ozlabs.org, linux-oxnas@groups.io,
- linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
- linux-unisoc@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-tegra@vger.kernel.org, nios2-dev@lists.rocketboards.org,
- linux-riscv@lists.infradead.org, linux-snps-arc@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org
+Cc: Maxime Jourdan <mjourdan@baylibre.com>, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+SimpleFB allows transferring a framebuffer from the firmware/bootloader
+to the kernel, while making sure the related clocks and power supplies
+stay enabled.
+
+Add nodes for CVBS and HDMI Simple Framebuffers, based on the GXBB/GXL/GXM
+support at [1].
+
+[1] 03b370357907 ("arm64: dts: meson-gx: add support for simplef")
+
+Cc: Maxime Jourdan <mjourdan@baylibre.com>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+This will be handled in the in-review U-Boot Video support for G12A at [1]
+and the simplefb handling code at [2] and simplefb removal in DRM driver at [3].
+
+[1] https://patchwork.ozlabs.org/cover/1155898/
+[2] https://gitlab.denx.de/u-boot/u-boot/blob/v2019.07/drivers/video/meson/meson_vpu.c#L145
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/meson/meson_drv.c?h=v5.3#n158
+
+ .../boot/dts/amlogic/meson-g12-common.dtsi    | 26 +++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-g12.dtsi    |  8 ++++++
+ arch/arm64/boot/dts/amlogic/meson-sm1.dtsi    |  8 ++++++
+ 3 files changed, 42 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index f76773cabdb1..21c155f4508c 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -16,6 +16,32 @@
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
++	chosen {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		simplefb_cvbs: framebuffer-cvbs {
++			compatible = "amlogic,simple-framebuffer",
++				     "simple-framebuffer";
++			amlogic,pipeline = "vpu-cvbs";
++			clocks = <&clkc CLKID_HDMI>,
++				 <&clkc CLKID_HTX_PCLK>,
++				 <&clkc CLKID_VPU_INTR>;
++			status = "disabled";
++		};
++
++		simplefb_hdmi: framebuffer-hdmi {
++			compatible = "amlogic,simple-framebuffer",
++				    "simple-framebuffer";
++			amlogic,pipeline = "vpu-hdmi";
++			clocks = <&clkc CLKID_HDMI>,
++				 <&clkc CLKID_HTX_PCLK>,
++				 <&clkc CLKID_VPU_INTR>;
++			status = "disabled";
++		};
++	};
++
+ 	efuse: efuse {
+ 		compatible = "amlogic,meson-gxbb-efuse";
+ 		clocks = <&clkc CLKID_EFUSE>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
+index 0d9df29994f3..d80d8a982917 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
+@@ -342,3 +342,11 @@
+ &sd_emmc_a {
+ 	amlogic,dram-access-quirk;
+ };
++
++&simplefb_cvbs {
++	power-domains = <&pwrc PWRC_G12A_VPU_ID>;
++};
++
++&simplefb_hdmi {
++	power-domains = <&pwrc PWRC_G12A_VPU_ID>;
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+index 1fdc5af5ae23..f89d744c9648 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
+@@ -147,6 +147,14 @@
+ 	compatible = "amlogic,meson-sm1-pwrc";
+ };
+ 
++&simplefb_cvbs {
++	power-domains = <&pwrc PWRC_SM1_VPU_ID>;
++};
++
++&simplefb_hdmi {
++	power-domains = <&pwrc PWRC_SM1_VPU_ID>;
++};
++
+ &vpu {
+ 	power-domains = <&pwrc PWRC_SM1_VPU_ID>;
+ };
+-- 
+2.22.0
 
 
-On 02.10.2019 16:35, Claudiu Beznea wrote:
-> Hi Daniel,
-> 
-> Taking into account that Rob doesn't agree with the solution proposed in
-> this series do you think there is a chance to merge this driver as is?
-
-Sorry, I was talking here about the driver at [1].
-
-[1] https://lore.kernel.org/lkml/1552580772-8499-1-git-send-email-claudiu.beznea@microchip.com/
-
-> 
-> If you have other suggestion I am open to try it.
-> 
-> Thank you,
-> Claudiu Beznea
-> 
-> On 26.09.2019 11:42, Claudiu Beznea wrote:
->>
->>
->> On 25.09.2019 20:19, Daniel Lezcano wrote:
->>> External E-Mail
->>>
->>>
->>> Hi Claudiu,
->>>
->>> On 10/09/2019 15:47, Claudiu Beznea wrote:
->>>> Hi,
->>>>
->>>> This series adds support to permit the selection of clocksource/clockevent
->>>> via DT.
->>>
->>> Thanks for the proposal and taking care of making some progress on this.
->>>
->>> I just wanted to let you know I've been traveling but the series is in
->>> my pipe and I did not forget it. I'll comment it next week.
->>
->> Hi Daniel,
->>
->> No problem. Thank you for letting me know.
->>
->> Claudiu
->>
->>>
->>>  -- Daniel
->>>
->>>
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
