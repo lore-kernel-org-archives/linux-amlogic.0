@@ -2,85 +2,66 @@ Return-Path: <SRS0=WwkR=X4=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A664BC10F14
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Oct 2019 18:13:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 45AC1C10F14
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Oct 2019 18:16:09 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7B89D20862
-	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Oct 2019 18:13:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1FD4120830
+	for <linux-amlogic@archiver.kernel.org>; Thu,  3 Oct 2019 18:16:09 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ndkIspSh";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="SS8ITlKQ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7B89D20862
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cOH1FVQY";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="2gRfkDNa"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1FD4120830
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:To:From:
+	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=AZ7cflePYIHZb/Xj3jWiEcOBCw7g+v4CXfD/Y1+ZYkc=; b=ndkIspShPeIOuS
-	kplBmpxdptzCztJvMxagQqRr+LYcPbNysAaplz18xRCmdGasDfUYquupkSf3f9TO6brD00yz5k2Wm
-	ErIwAC9r89rh8b15/bFSxgn/r+9z31MG99CaBqVQzqCVdfuRfH5xS4/nRTjuzczcSsFJmDWFFa+Zt
-	qFxycxDRblyVfujNQmtacIwtvdZa1Wb5FEkIJB4uiDlu9PFO3Lb75hp2LqAtyiIAklrKCdsLn7GW4
-	u6LY1kf0KY4aL17Hvr4pZ6D8t8A6sE2v7/fXWaIfrNk55cfmu85HqU8nwAL1icsGuSaLaBJdhrDYa
-	EPhb4BQ/qBjwQmyjkMvg==;
+	List-Owner; bh=SIMJKKkOkLUvtxFvZBmA30x82NzxIoq8fZASxZwJOF8=; b=cOH1FVQYnsAPx9
+	6RJTesjyxVGTOLW4hIZ6xDt4XrFZJyT2AXVKg5dt4t6uk22WgyEBC5lpNtAWfwTeseo59w4DLmx/Y
+	ZiMjHGYmKvnSlQjr2iL4MvjCz5RG1CXHrtjOdl57GTiJErpmEG+r2hlWEQcNNH6QHzoyI2tJHU9cs
+	rXeLJ37Z1OQVvwdbEKPmsSHx9mOA5NL2dTwFiBxNtM6zgK7kDoN/vfO3iQj+YUnJXx6QyEXtprjKF
+	wF13vnT4MHtNL2a2uajHozRRDyllkxO2r81LOr7mVIJ4XeR6NVTd/OmNbKt+YEK2xmC4seUFb5Qj5
+	l0W8G1jPcxU+o2xCbA+Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iG5bB-0002al-F4; Thu, 03 Oct 2019 18:13:09 +0000
-Received: from mail-pf1-x441.google.com ([2607:f8b0:4864:20::441])
+	id 1iG5e0-0004tN-5c; Thu, 03 Oct 2019 18:16:04 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iG5b8-0002Pr-71
- for linux-amlogic@lists.infradead.org; Thu, 03 Oct 2019 18:13:07 +0000
-Received: by mail-pf1-x441.google.com with SMTP id 205so2277784pfw.2
- for <linux-amlogic@lists.infradead.org>; Thu, 03 Oct 2019 11:13:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=5ijW82wqEyt50B/p7BmRF9XDSziktvxTJK/8Iy++vOE=;
- b=SS8ITlKQvqVuJU6DaryZFkNa9oHm8I6oJ6WYZI1b3WOVoNUQTwTmly3kah5Jc1VhxV
- OAfDnS4OADGWY4KamAHVz4GQzMn21dgeeZgwrMKTsBV7Kr0rdPMqIrMn5vYFHBw4Fkof
- +JHevQa6Hgb59t0XU3WTewtsQyQzZAGdXVhov4VTsFTLOqIUTSFfnWEDH3CSLHX5umJa
- KHx8pgjifYrbZXYxEAyLOLhl1xKyJV0GKk2h/+Ce30eI926m1R0vUKjikJC0Qr7AGOt1
- 57/RJFjW5PmDC1nXGHoFjpBO+OLW/sf1JkhMjO9matHvYV4uEuCA0fH2E1EIxv8v5wmW
- LqMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=5ijW82wqEyt50B/p7BmRF9XDSziktvxTJK/8Iy++vOE=;
- b=TqF+/gM7xerX4chy8P2P7KxE+pjGHd6OZlJKp8xnwgjBETE5eRCHSnhQdjVI/d9HhY
- ZTBAFZrRMkeaohjtqOPzlF2zAQ5YYRpIYwTEwKkgUpmNHkjwIsYR+leRMCz6AopwhTM8
- fu5Ks5dCiRTm6EJXrfne2ijxr/+OCCmgkSBtN4DyWNzFZwn5jzgSEQp8qIXaGNVVuzOQ
- FwTIbSUW7XWEk+lCwRfL8c5HIrPSlDCCoWKAdZ+8ixXLMIO5bp3tq2O2PBZyRLXCOyJ9
- VGp74kR3+j2aC2S8Jcs8CNrMapnbpCs2otIXCv8UU9o0DPbjJ+SaC/FxmUGbhx9Ktbwn
- WeZg==
-X-Gm-Message-State: APjAAAXl3L4QG4hb38qo2ClBA91G1JFwq1amF+FJ3Z6KWxO3w3AYfd8b
- aUgK91AVUxfI0wScxOFs34ryGw==
-X-Google-Smtp-Source: APXvYqxvCuQEnHzAam3ZE2fCm+0SADsW+/L6538BpVWWRoA8JBVstrzxK625nTHVnkYYHMxGfyBxbA==
-X-Received: by 2002:aa7:8bc2:: with SMTP id s2mr11957989pfd.13.1570126385442; 
- Thu, 03 Oct 2019 11:13:05 -0700 (PDT)
-Received: from localhost ([2601:602:9200:a1a5:a084:116f:9da0:2d6c])
- by smtp.gmail.com with ESMTPSA id b5sm3968458pfp.38.2019.10.03.11.13.04
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Thu, 03 Oct 2019 11:13:04 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH] arm64: dts: meson-g12: add support for simplefb
-In-Reply-To: <20191003130841.8412-1-narmstrong@baylibre.com>
-References: <20191003130841.8412-1-narmstrong@baylibre.com>
-Date: Thu, 03 Oct 2019 11:13:04 -0700
-Message-ID: <7hmuehvgsv.fsf@baylibre.com>
+ id 1iG5dw-0004se-U7; Thu, 03 Oct 2019 18:16:02 +0000
+Received: from kernel.org (unknown [104.132.0.74])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 7D6F22070B;
+ Thu,  3 Oct 2019 18:16:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1570126560;
+ bh=nY0LFXVk/SNSsj/nGuYEk8lLimBHZ/kip/5QktLE30M=;
+ h=In-Reply-To:References:From:To:Cc:Subject:Date:From;
+ b=2gRfkDNay4GQ8GVL40xt/FVRFNW/T6303w/jbXj7QQJVtdz7LzvfbC54mYR4mS8r6
+ KQrbne3Qg2j5ZURd8qpfR/Rh1gEJ2uKXn/h1RYTKEuhbn9SwE6Q8jFz72JIOLIqf2W
+ RxAgIOfeWXuJqXwwCg4HHAy4gJrGQtAqfIWHrd38=
 MIME-Version: 1.0
+In-Reply-To: <20191002164047.14499-1-krzk@kernel.org>
+References: <20191002164047.14499-1-krzk@kernel.org>
+From: Stephen Boyd <sboyd@kernel.org>
+To: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>, Krzysztof Kozlowski <krzk@kernel.org>, Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org, linux-mediatek@lists.infradead.org, linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-rpi-kernel@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: pwm: Convert PWM bindings to
+ json-schema
+User-Agent: alot/0.8.1
+Date: Thu, 03 Oct 2019 11:15:59 -0700
+Message-Id: <20191003181600.7D6F22070B@mail.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191003_111306_260459_E91FEAAE 
-X-CRM114-Status: UNSURE (   9.55  )
+X-CRM114-CacheID: sfid-20191003_111600_990143_AEBC3E4C 
+X-CRM114-Status: UNSURE (   7.49  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -93,41 +74,32 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Maxime Jourdan <mjourdan@baylibre.com>, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Neil Armstrong <narmstrong@baylibre.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
-
-> SimpleFB allows transferring a framebuffer from the firmware/bootloader
-> to the kernel, while making sure the related clocks and power supplies
-> stay enabled.
->
-> Add nodes for CVBS and HDMI Simple Framebuffers, based on the GXBB/GXL/GXM
-> support at [1].
->
-> [1] 03b370357907 ("arm64: dts: meson-gx: add support for simplef")
->
-> Cc: Maxime Jourdan <mjourdan@baylibre.com>
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Quoting Krzysztof Kozlowski (2019-10-02 09:40:46)
+> Convert generic PWM bindings to DT schema format using json-schema.  The
+> consumer bindings are split to separate file.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> 
 > ---
-> This will be handled in the in-review U-Boot Video support for G12A at [1]
-> and the simplefb handling code at [2] and simplefb removal in DRM driver at [3].
+> 
+> Changes since v2:
+> 1. Change also pwm-sprd.txt
+> 
+> Changes since v1:
+> 1. Indent example with four spaces (more readable),
+> 2. Change pattern for pwm nodes,
+> 3. Remove $ref from #cells.
+> ---
+>  .../devicetree/bindings/clock/pwm-clock.txt   |  2 +-
 
-Nice!  This will help for the corner cases of the VPU power domain
-handling.
+Acked-by: Stephen Boyd <sboyd@kernel.org>
 
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-
-Queuing for v5.5,
-
-Thanks,
-
-Kevin
 
 _______________________________________________
 linux-amlogic mailing list
