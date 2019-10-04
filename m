@@ -2,88 +2,121 @@ Return-Path: <SRS0=++Ji=X5=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2274FC47404
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Oct 2019 14:47:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9E1C5C4360C
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Oct 2019 14:53:45 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EA3D320659
-	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Oct 2019 14:47:30 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 714A62084D
+	for <linux-amlogic@archiver.kernel.org>; Fri,  4 Oct 2019 14:53:45 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CeFk7VKL";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="aOqqM0bS"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EA3D320659
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="szDmsRL6";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=amdcloud.onmicrosoft.com header.i=@amdcloud.onmicrosoft.com header.b="W09EnaQ6"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 714A62084D
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amd.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=ybqprg0o8DEhQCXOPxg8cFCAfUnpHneZPTXpNpPt0+c=; b=CeFk7VKLSy2aW4
-	fSK+z3LAxCetcvbyDQkPJc0LnRBhzI2XcyBhjv1kkuOTQSp68Rj7yBKTMysB7cw5GKyUcWAPDIeOn
-	SCzAZ8YFP3Up6hdtnMqGQyak3ZkzM9T47FThs9SRj6mH4fIr9tjjSrfP3ys3Oj3UtSkTFmDMGNrCg
-	QjVGrcJiqh/XbSUpUW+hnhJ8YiNsk4qKAVfFYIN+/PPrVJv6ng5dn07ra4EJ3n6seReMOUNbiyBwh
-	XZlmyDM15m8dN/6Q8nbZYInYuTY90HV5J06VkzzPkpyHztlHy3pT7HfRuIQsew7sz7cFien4eK8Yu
-	IKZEc+/u84LVR6LVoYvw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
+	References:Message-ID:Date:Subject:To:From:Reply-To:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=QMADfEpfC/UtlSBZXXohTeOnmyKQLtszzVHUWgzmBBk=; b=szDmsRL6bt8PHt
+	b29Sno62y+QECoujaJSTKdBfb23OJX4ml+0Ci8QvN3lNT5WOr/4SEsPxuYPLQPsj1ideYlNlpJc4E
+	2ab5TF1AsvgFzU37fRp3pPONdtqLlMrxB/h1kOLk7rx6dAhFOewNIU8yTQs/JJI4b4g9+blcPMPmI
+	y7CyPVW7SQyuQRDXHJr+T4yuhDbKRqeSkiGMnu5hJpDMo7IpTs86NBRg0Qkul7AzzoHEo+L23K4QT
+	OgjTPt+RW6Q3cd/5X3SD5ABhZNH+LJbBbSpD886hNpcBIRdMmcYrzukrWeguv++Q519XMckWUn2M5
+	m0vIjOh4ekLfBiWrUtIg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iGOre-0002fe-87; Fri, 04 Oct 2019 14:47:26 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1iGOxg-00052c-3l; Fri, 04 Oct 2019 14:53:40 +0000
+Received: from mail-eopbgr710040.outbound.protection.outlook.com
+ ([40.107.71.40] helo=NAM05-BY2-obe.outbound.protection.outlook.com)
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iGOrb-0002ep-Gm
- for linux-amlogic@lists.infradead.org; Fri, 04 Oct 2019 14:47:25 +0000
-Received: by mail-wm1-x344.google.com with SMTP id r19so6145224wmh.2
- for <linux-amlogic@lists.infradead.org>; Fri, 04 Oct 2019 07:47:22 -0700 (PDT)
+ id 1iGOxd-00051h-6T
+ for linux-amlogic@lists.infradead.org; Fri, 04 Oct 2019 14:53:38 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lysfVY40Pz9swsYdtcSi3PqV/3f1ddM2hB/ldcEK3KAC0nzFsvA+sOQmx1d2XC/2iBdNDeaQ2wgz+y0NhfQLzSFKgx1/HvwZuf97GBD1I3q654PRkK4kDrv/VY2o2DjodIFttI/EjeTbW9OuUF1kSvTyWNOVaQD6UnmOld4iT+nWQa+biQY+4L/lgNF2eubzaOkJ2Yjw2YPgIZ6tS8x0T8HQlofpxXM4bS8LtnuBtH2c0Vf/pj4AKTsJTpkMxKyzxdrlZLhfvTibMTyqCVAfLOHYIW9uuyfUESBt354UCzZsDfkypZxk3uuEGh9FrNWf/WXbT1KVKLKZOSwwd7nhpA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+JELZhQpDfGwCTK9yQOc5mIET8MmAjxo6dU5jMiZSPI=;
+ b=LGq3dUd3n7KCjsnA7wDPpIgdH7x79jDhDMw1t0c/pV9JNlmgNq4THOYjvZiCAMJ3i7lxVCrTcP/h49EfXS8YRSzKQvlCLcaS1v3w2VFpt5lPJff80R8/j8RENpsK/h8chJsULEr44qTm7kTF4pqO/DD65YyZPH2fUjTOpCTzq7RjM27wUiONgbcVeulZzqCLvWAnmokff9OYeQG7yg4b1exPFP3NWZdqXc6CCCxFNr8HGS0RqwHrZvKGrcUezxXtHN+wH/2QH09CIoxygf9zcd9pHgj4radVwIq3AnGAE9g9G3JIi2/uxkiqqsBmqIT7fAUGLTUPq+0Sp0v9yXUmZQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=9118eAxchplUEC3wD7+/3Rk7lFGR/BWjlZfUOnVUzi4=;
- b=aOqqM0bS+MNrX5woXn55Y6mMlkKHv2N9o9db3txnnVtJ/nke80mmIWIvF4LFxgztWp
- aCHW21RbuNKSOtkC2usNceZWmNQbVMu3vio8AU9aQ9vtSghL/TKWzE+AUkrXsLt+MjoO
- FOJUV+BMsGCYjhIVsUXKaYWhHd2pBoKNWaZS9gRabsmXtcLEUIdClfZjBFskufa6VUoB
- 55W9zLTKDh3op8RIV4/ZkippwzLFEH+aOL/1E8TeiDqnhD71GN2semNSMNCdy36DLtzW
- OhM0GoKQXTnGj/o24dpb6aA8ODMjONBmawqhnT/jjTkfqXF5vDCYf9/TsV0/7Ub0KjXM
- 212w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=9118eAxchplUEC3wD7+/3Rk7lFGR/BWjlZfUOnVUzi4=;
- b=b+bC85RJdOY2+isyckxEqZaHAf6NJ8YzrPPmFXU75bxvWlKll/K6E+bL+kPdam0/+l
- kqo+li5Uy0cxCVKZOBxoa4NOGvpDW25OijUHo3ImpEbrhQcgJG0/VudIA8vsT3Opu8vH
- MzBulo8HYzPZ4ZAqvy8lA9dxJsR84lsfKLSce8vZEBkZupSfqI75s72vADBA9OOPpTf8
- lvxGe/N8PRqdnRZgKFIjLmJVjm9IdHk45CLWoHXP66vsG5d3c/8LtbPmv+EXU+WZOMPl
- 7c6FlXRCTRTWav9r83KRO6Ylj9sefX3zqdbo04rTNgiEub2b1fALRoeSsIERrwDVFiV8
- i6WQ==
-X-Gm-Message-State: APjAAAWwA7Dq5oibIgM9gEb55y9kXizJ9Dg6OcfPsuGP5Qqtqck/Ems1
- pTdTwMKzQ4sovg8uqC+CJdynYA==
-X-Google-Smtp-Source: APXvYqzxGEB/Jmd5uNbft2qfT6qV6TItO3w9WvQSn/rY8jn52H+gVkuWobFmoGKb7/SQ8cXphGH4lA==
-X-Received: by 2002:a7b:cd08:: with SMTP id f8mr10287319wmj.87.1570200441202; 
- Fri, 04 Oct 2019 07:47:21 -0700 (PDT)
-Received: from bender.baylibre.local
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id y5sm7994776wma.14.2019.10.04.07.47.20
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Oct 2019 07:47:20 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: Hans Verkuil <hverkuil@xs4all.nl>
-Subject: [PATCH] media: meson/ao-cec: move cec_notifier_cec_adap_register
- after hw setup
-Date: Fri,  4 Oct 2019 16:47:19 +0200
-Message-Id: <20191004144719.11006-1-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+JELZhQpDfGwCTK9yQOc5mIET8MmAjxo6dU5jMiZSPI=;
+ b=W09EnaQ6tZvDfzl1XQjvTTGhxiwSpRR29xxqTcBmMdbbRBwGL894LEej2mg1Zg1os5yl+YofqeU5BpKP70rtLnLrMPWtdbpr++Y0vJvBebAttToTA9TPou6UiNXexsVjFa9h+E0X4spXmJRKsxWiqn/oofS3410pyQivUBTjkRs=
+Received: from MWHPR12MB1453.namprd12.prod.outlook.com (10.172.55.22) by
+ MWHPR12MB1151.namprd12.prod.outlook.com (10.169.204.15) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2305.17; Fri, 4 Oct 2019 14:53:32 +0000
+Received: from MWHPR12MB1453.namprd12.prod.outlook.com
+ ([fe80::4803:438a:eb1d:d6a6]) by MWHPR12MB1453.namprd12.prod.outlook.com
+ ([fe80::4803:438a:eb1d:d6a6%10]) with mapi id 15.20.2305.023; Fri, 4 Oct 2019
+ 14:53:32 +0000
+From: "Grodzovsky, Andrey" <Andrey.Grodzovsky@amd.com>
+To: Neil Armstrong <narmstrong@baylibre.com>, Hillf Danton <hdanton@sina.com>
+Subject: Re: drm_sched with panfrost crash on T820
+Thread-Topic: drm_sched with panfrost crash on T820
+Thread-Index: AQHVdQtdjrcnE/APhki/CyOIa6xfH6c/vsAAgASUhACAAyEmgIABLDGAgAH8RAA=
+Date: Fri, 4 Oct 2019 14:53:31 +0000
+Message-ID: <94096e4e-0f60-79d1-69b5-c7c3e59a4d78@amd.com>
+References: <e450fbe6-dec7-2704-59c2-db7e869d67f5@baylibre.com>
+ <f0ab487e-8d49-987b-12b8-7a115a6543e1@amd.com>
+ <20190930145228.14000-1-hdanton@sina.com>
+ <d2888614-8644-7d04-b73b-3ab7c6623e9a@amd.com>
+ <7339b7a1-2d1c-4379-89a0-daf8b28d81c8@baylibre.com>
+In-Reply-To: <7339b7a1-2d1c-4379-89a0-daf8b28d81c8@baylibre.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: YTOPR0101CA0072.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00:14::49) To MWHPR12MB1453.namprd12.prod.outlook.com
+ (2603:10b6:301:e::22)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Andrey.Grodzovsky@amd.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [165.204.55.251]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a545f729-8bba-48b6-af20-08d748da9fc1
+x-ms-office365-filtering-ht: Tenant
+x-ms-traffictypediagnostic: MWHPR12MB1151:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <MWHPR12MB115188229513CFF65D3251BBEA9E0@MWHPR12MB1151.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1247;
+x-forefront-prvs: 018093A9B5
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(979002)(4636009)(136003)(376002)(366004)(396003)(346002)(39860400002)(199004)(189003)(76176011)(71200400001)(71190400001)(36756003)(8676002)(31696002)(6246003)(81166006)(478600001)(86362001)(6486002)(102836004)(66946007)(81156014)(66446008)(31686004)(229853002)(66476007)(66556008)(6436002)(64756008)(446003)(14454004)(6512007)(8936002)(486006)(7416002)(3846002)(52116002)(256004)(53546011)(6506007)(386003)(26005)(5660300002)(6116002)(14444005)(476003)(66066001)(4326008)(25786009)(66574012)(110136005)(316002)(2616005)(2906002)(99286004)(305945005)(11346002)(54906003)(7736002)(186003)(969003)(989001)(999001)(1009001)(1019001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:MWHPR12MB1151;
+ H:MWHPR12MB1453.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: M9gSh7fs2Zk+S1AinnOnjXKXoHSzOtffgGIFjw4EbPHCKgiQliMlSAy6uLwLshAaQxnOgPxHO+dN33CNcLWloYbFa0CCkdv7vTmbRM1yFYDAivlcZFtF90B7AdbGf+pNj1J4vbSmcX4XtbvLPs7IR2d6n6RKR8VqYg4yb4tkUPDuo/7H3KyGe32kL/5I8rw9rXGX5521+GDvX95Fl0kydXFIsh4JbL+dHsWXr8VVyoOH18tUtIbn716m0J1blPWD3XlHP8QKWS0HwercHzj1GwjNyVArmiywhKqCIbXZZqiOBwdfT0oUXlCvuYM5kO9UOHI7CeN9zlW/eFXV6VCMT9ZMHSBLgXPO5ExFTGgpXYlGTg69RZkx7Ph7OI2Hibx5VCb2dopYGby6pVHPkCmgvaZAnI04b1FWREaoVw83ljc=
+Content-ID: <BBE56AB76943D44E999E0BB62F75D345@namprd12.prod.outlook.com>
 MIME-Version: 1.0
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a545f729-8bba-48b6-af20-08d748da9fc1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Oct 2019 14:53:31.9414 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: LgjAS57Jp9TnyRnWmG75G+gl6zum8k5l9CO40nNRsXGObcJMayWaPE+AUMX0zYDU9GEBeYWwZyuTJDCEP6Uhdw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1151
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191004_074723_555958_A8B33D90 
-X-CRM114-Status: GOOD (  10.46  )
+X-CRM114-CacheID: sfid-20191004_075337_301834_3B13FEEF 
+X-CRM114-Status: GOOD (  15.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,242 +128,59 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Christian Hewitt <christianshewitt@gmail.com>, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-media@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Rob Herring <robh@kernel.org>, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+ "airlied@linux.ie" <airlied@linux.ie>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "steven.price@arm.com" <steven.price@arm.com>,
+ "daniel@ffwll.ch" <daniel@ffwll.ch>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>, "Koenig,
+ Christian" <Christian.Koenig@amd.com>, Erico Nunes <nunes.erico@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-When probed after the HDMI notifier, calling cec_notifier_cec_adap_register()
-calls the enable() adapter callback, but the HW is not yet set up.
-
-Moving cec_notifier_cec_adap_register() right before cec_register_adapter()
-fixes the following crash:
-Ignoring spurious kernel translation fault at virtual address 0000000000000008
-[...]
-Hardware name: Khadas VIM (DT)
-[...]
-pc : __do_kernel_fault+0xdc/0x120
-lr : __do_kernel_fault+0xdc/0x120
-[...]
-Call trace:
- __do_kernel_fault+0xdc/0x120
- do_page_fault+0x180/0x458
- do_translation_fault+0x64/0x70
- do_mem_abort+0x3c/0x98
- el1_da+0x20/0x94
- meson_ao_cec_adap_enable+0x30/0x218 [ao_cec]
- __cec_s_phys_addr+0x184/0x270
- cec_s_phys_addr+0x44/0x60
- cec_notifier_cec_adap_register+0x68/0x90
- meson_ao_cec_probe+0xb0/0x288 [ao_cec]
-[...]
- el0_svc_compat+0x8/0x10
-
-Reported-by: Christian Hewitt <christianshewitt@gmail.com>
-Suggested-by: Hans Verkuil <hverkuil@xs4all.nl>
-Fixes: 20958f9d5c48 ("media: meson/ao-cec: use cec_notifier_cec_adap_(un)register")
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/media/platform/meson/ao-cec-g12a.c | 36 +++++++++++-----------
- drivers/media/platform/meson/ao-cec.c      | 30 +++++++++---------
- 2 files changed, 33 insertions(+), 33 deletions(-)
-
-diff --git a/drivers/media/platform/meson/ao-cec-g12a.c b/drivers/media/platform/meson/ao-cec-g12a.c
-index 3b39e875292e..3d8fe854feb0 100644
---- a/drivers/media/platform/meson/ao-cec-g12a.c
-+++ b/drivers/media/platform/meson/ao-cec-g12a.c
-@@ -662,34 +662,27 @@ static int meson_ao_cec_g12a_probe(struct platform_device *pdev)
- 	if (IS_ERR(ao_cec->adap))
- 		return PTR_ERR(ao_cec->adap);
- 
--	ao_cec->notify = cec_notifier_cec_adap_register(hdmi_dev, NULL,
--							ao_cec->adap);
--	if (!ao_cec->notify) {
--		ret = -ENOMEM;
--		goto out_probe_adapter;
--	}
--
- 	ao_cec->adap->owner = THIS_MODULE;
- 
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	base = devm_ioremap_resource(&pdev->dev, res);
- 	if (IS_ERR(base)) {
- 		ret = PTR_ERR(base);
--		goto out_probe_notify;
-+		goto out_probe_adapter;
- 	}
- 
- 	ao_cec->regmap = devm_regmap_init_mmio(&pdev->dev, base,
- 					       &meson_ao_cec_g12a_regmap_conf);
- 	if (IS_ERR(ao_cec->regmap)) {
- 		ret = PTR_ERR(ao_cec->regmap);
--		goto out_probe_notify;
-+		goto out_probe_adapter;
- 	}
- 
- 	ao_cec->regmap_cec = devm_regmap_init(&pdev->dev, NULL, ao_cec,
- 					   &meson_ao_cec_g12a_cec_regmap_conf);
- 	if (IS_ERR(ao_cec->regmap_cec)) {
- 		ret = PTR_ERR(ao_cec->regmap_cec);
--		goto out_probe_notify;
-+		goto out_probe_adapter;
- 	}
- 
- 	irq = platform_get_irq(pdev, 0);
-@@ -699,45 +692,52 @@ static int meson_ao_cec_g12a_probe(struct platform_device *pdev)
- 					0, NULL, ao_cec);
- 	if (ret) {
- 		dev_err(&pdev->dev, "irq request failed\n");
--		goto out_probe_notify;
-+		goto out_probe_adapter;
- 	}
- 
- 	ao_cec->oscin = devm_clk_get(&pdev->dev, "oscin");
- 	if (IS_ERR(ao_cec->oscin)) {
- 		dev_err(&pdev->dev, "oscin clock request failed\n");
- 		ret = PTR_ERR(ao_cec->oscin);
--		goto out_probe_notify;
-+		goto out_probe_adapter;
- 	}
- 
- 	ret = meson_ao_cec_g12a_setup_clk(ao_cec);
- 	if (ret)
--		goto out_probe_notify;
-+		goto out_probe_adapter;
- 
- 	ret = clk_prepare_enable(ao_cec->core);
- 	if (ret) {
- 		dev_err(&pdev->dev, "core clock enable failed\n");
--		goto out_probe_notify;
-+		goto out_probe_adapter;
- 	}
- 
- 	device_reset_optional(&pdev->dev);
- 
- 	platform_set_drvdata(pdev, ao_cec);
- 
-+	ao_cec->notify = cec_notifier_cec_adap_register(hdmi_dev, NULL,
-+							ao_cec->adap);
-+	if (!ao_cec->notify) {
-+		ret = -ENOMEM;
-+		goto out_probe_core_clk;
-+	}
-+
- 	ret = cec_register_adapter(ao_cec->adap, &pdev->dev);
- 	if (ret < 0)
--		goto out_probe_core_clk;
-+		goto out_probe_notify;
- 
- 	/* Setup Hardware */
- 	regmap_write(ao_cec->regmap, CECB_GEN_CNTL_REG, CECB_GEN_CNTL_RESET);
- 
- 	return 0;
- 
--out_probe_core_clk:
--	clk_disable_unprepare(ao_cec->core);
--
- out_probe_notify:
- 	cec_notifier_cec_adap_unregister(ao_cec->notify);
- 
-+out_probe_core_clk:
-+	clk_disable_unprepare(ao_cec->core);
-+
- out_probe_adapter:
- 	cec_delete_adapter(ao_cec->adap);
- 
-diff --git a/drivers/media/platform/meson/ao-cec.c b/drivers/media/platform/meson/ao-cec.c
-index 64ed549bf012..03600e8b3ef0 100644
---- a/drivers/media/platform/meson/ao-cec.c
-+++ b/drivers/media/platform/meson/ao-cec.c
-@@ -624,20 +624,13 @@ static int meson_ao_cec_probe(struct platform_device *pdev)
- 	if (IS_ERR(ao_cec->adap))
- 		return PTR_ERR(ao_cec->adap);
- 
--	ao_cec->notify = cec_notifier_cec_adap_register(hdmi_dev, NULL,
--							ao_cec->adap);
--	if (!ao_cec->notify) {
--		ret = -ENOMEM;
--		goto out_probe_adapter;
--	}
--
- 	ao_cec->adap->owner = THIS_MODULE;
- 
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	ao_cec->base = devm_ioremap_resource(&pdev->dev, res);
- 	if (IS_ERR(ao_cec->base)) {
- 		ret = PTR_ERR(ao_cec->base);
--		goto out_probe_notify;
-+		goto out_probe_adapter;
- 	}
- 
- 	irq = platform_get_irq(pdev, 0);
-@@ -647,20 +640,20 @@ static int meson_ao_cec_probe(struct platform_device *pdev)
- 					0, NULL, ao_cec);
- 	if (ret) {
- 		dev_err(&pdev->dev, "irq request failed\n");
--		goto out_probe_notify;
-+		goto out_probe_adapter;
- 	}
- 
- 	ao_cec->core = devm_clk_get(&pdev->dev, "core");
- 	if (IS_ERR(ao_cec->core)) {
- 		dev_err(&pdev->dev, "core clock request failed\n");
- 		ret = PTR_ERR(ao_cec->core);
--		goto out_probe_notify;
-+		goto out_probe_adapter;
- 	}
- 
- 	ret = clk_prepare_enable(ao_cec->core);
- 	if (ret) {
- 		dev_err(&pdev->dev, "core clock enable failed\n");
--		goto out_probe_notify;
-+		goto out_probe_adapter;
- 	}
- 
- 	ret = clk_set_rate(ao_cec->core, CEC_CLK_RATE);
-@@ -674,9 +667,16 @@ static int meson_ao_cec_probe(struct platform_device *pdev)
- 	ao_cec->pdev = pdev;
- 	platform_set_drvdata(pdev, ao_cec);
- 
-+	ao_cec->notify = cec_notifier_cec_adap_register(hdmi_dev, NULL,
-+							ao_cec->adap);
-+	if (!ao_cec->notify) {
-+		ret = -ENOMEM;
-+		goto out_probe_clk;
-+	}
-+
- 	ret = cec_register_adapter(ao_cec->adap, &pdev->dev);
- 	if (ret < 0)
--		goto out_probe_clk;
-+		goto out_probe_notify;
- 
- 	/* Setup Hardware */
- 	writel_relaxed(CEC_GEN_CNTL_RESET,
-@@ -684,12 +684,12 @@ static int meson_ao_cec_probe(struct platform_device *pdev)
- 
- 	return 0;
- 
--out_probe_clk:
--	clk_disable_unprepare(ao_cec->core);
--
- out_probe_notify:
- 	cec_notifier_cec_adap_unregister(ao_cec->notify);
- 
-+out_probe_clk:
-+	clk_disable_unprepare(ao_cec->core);
-+
- out_probe_adapter:
- 	cec_delete_adapter(ao_cec->adap);
- 
--- 
-2.22.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+DQpPbiAxMC8zLzE5IDQ6MzQgQU0sIE5laWwgQXJtc3Ryb25nIHdyb3RlOg0KPiBIaSBBbmRyZXks
+DQo+DQo+IExlIDAyLzEwLzIwMTkgw6AgMTY6NDAsIEdyb2R6b3Zza3ksIEFuZHJleSBhIMOpY3Jp
+dCA6DQo+PiBPbiA5LzMwLzE5IDEwOjUyIEFNLCBIaWxsZiBEYW50b24gd3JvdGU6DQo+Pj4gT24g
+TW9uLCAzMCBTZXAgMjAxOSAxMToxNzo0NSArMDIwMCBOZWlsIEFybXN0cm9uZyB3cm90ZToNCj4+
+Pj4gRGlkIGEgbmV3IHJ1biBmcm9tIDUuMzoNCj4+Pj4NCj4+Pj4gWyAgIDM1Ljk3MTk3Ml0gQ2Fs
+bCB0cmFjZToNCj4+Pj4gWyAgIDM1Ljk3NDM5MV0gIGRybV9zY2hlZF9pbmNyZWFzZV9rYXJtYSsw
+eDVjLzB4ZjANCj4+Pj4gCQkJZmZmZjAwMDAxMDY2N2YzOAlGRkZGMDAwMDEwNjY3Rjk0DQo+Pj4+
+IAkJCWRyaXZlcnMvZ3B1L2RybS9zY2hlZHVsZXIvc2NoZWRfbWFpbi5jOjMzNQ0KPj4+Pg0KPj4+
+PiBUaGUgY3Jhc2hpbmcgbGluZSBpcyA6DQo+Pj4+ICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICBpZiAoYmFkLT5zX2ZlbmNlLT5zY2hlZHVsZWQuY29udGV4dCA9PQ0KPj4+PiAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGVudGl0eS0+ZmVuY2VfY29udGV4dCkg
+ew0KPj4+Pg0KPj4+PiBEb2Vzbid0IHNlZW0gcmVsYXRlZCB0byBndWlsdHkgam9iLg0KPj4+IEJh
+aWwgb3V0IGlmIHNfZmVuY2UgaXMgbm8gbG9uZ2VyIGZyZXNoLg0KPj4+DQo+Pj4gLS0tIGEvZHJp
+dmVycy9ncHUvZHJtL3NjaGVkdWxlci9zY2hlZF9tYWluLmMNCj4+PiArKysgYi9kcml2ZXJzL2dw
+dS9kcm0vc2NoZWR1bGVyL3NjaGVkX21haW4uYw0KPj4+IEBAIC0zMzMsNiArMzMzLDEwIEBAIHZv
+aWQgZHJtX3NjaGVkX2luY3JlYXNlX2thcm1hKHN0cnVjdCBkcm0NCj4+PiAgICANCj4+PiAgICAJ
+CQlzcGluX2xvY2soJnJxLT5sb2NrKTsNCj4+PiAgICAJCQlsaXN0X2Zvcl9lYWNoX2VudHJ5X3Nh
+ZmUoZW50aXR5LCB0bXAsICZycS0+ZW50aXRpZXMsIGxpc3QpIHsNCj4+PiArCQkJCWlmICghc21w
+X2xvYWRfYWNxdWlyZSgmYmFkLT5zX2ZlbmNlKSkgew0KPj4+ICsJCQkJCXNwaW5fdW5sb2NrKCZy
+cS0+bG9jayk7DQo+Pj4gKwkJCQkJcmV0dXJuOw0KPj4+ICsJCQkJfQ0KPj4+ICAgIAkJCQlpZiAo
+YmFkLT5zX2ZlbmNlLT5zY2hlZHVsZWQuY29udGV4dCA9PQ0KPj4+ICAgIAkJCQkgICAgZW50aXR5
+LT5mZW5jZV9jb250ZXh0KSB7DQo+Pj4gICAgCQkJCQlpZiAoYXRvbWljX3JlYWQoJmJhZC0+a2Fy
+bWEpID4NCj4+PiBAQCAtNTQzLDcgKzU0Nyw3IEBAIEVYUE9SVF9TWU1CT0woZHJtX3NjaGVkX2pv
+Yl9pbml0KTsNCj4+PiAgICB2b2lkIGRybV9zY2hlZF9qb2JfY2xlYW51cChzdHJ1Y3QgZHJtX3Nj
+aGVkX2pvYiAqam9iKQ0KPj4+ICAgIHsNCj4+PiAgICAJZG1hX2ZlbmNlX3B1dCgmam9iLT5zX2Zl
+bmNlLT5maW5pc2hlZCk7DQo+Pj4gLQlqb2ItPnNfZmVuY2UgPSBOVUxMOw0KPj4+ICsJc21wX3N0
+b3JlX3JlbGVhc2UoJmpvYi0+c19mZW5jZSwgMCk7DQo+Pj4gICAgfQ0KPj4+ICAgIEVYUE9SVF9T
+WU1CT0woZHJtX3NjaGVkX2pvYl9jbGVhbnVwKTsNCj4gVGhpcyBmaXhlZCB0aGUgcHJvYmxlbSBv
+biB0aGUgMTAgQ0kgcnVucy4NCj4NCj4gTmVpbA0KDQoNClRoZXNlIGFyZSBnb29kIG5ld3MgYnV0
+IEkgc3RpbGwgZmFpbCB0byBzZWUgaG93IHRoaXMgZml4ZXMgdGhlIHByb2JsZW0gLSANCkhpbGxm
+LCBkbyB5b3UgbWluZCBleHBsYWluaW5nIGhvdyB5b3UgY2FtZSB1cCB3aXRoIHRoaXMgcGFydGlj
+dWxhciBmaXggLSANCndoYXQgd2FzIHRoZSBidWcgeW91IHNhdyA/DQoNCkFuZHJleQ0KDQo+DQo+
+PiBEb2VzIHRoaXMgY2hhbmdlIGhlbHAgdGhlIHByb2JsZW0gPyBOb3RlIHRoYXQgZHJtX3NjaGVk
+X2pvYl9jbGVhbnVwIGlzDQo+PiBjYWxsZWQgZnJvbSBzY2hlZHVsZXIgdGhyZWFkIHdoaWNoIGlz
+IHN0b3BwZWQgYXQgYWxsIHRpbWVzIHdoZW4gd29ya190ZHINCj4+IHRocmVhZCBpcyBydW5uaW5n
+IGFuZCBhbnl3YXkgdGhlICdiYWQnIGpvYiBpcyBzdGlsbCBpbiB0aGUNCj4+IHJpbmdfbWlycm9y
+X2xpc3Qgd2hpbGUgaXQncyBiZWluZyBhY2Nlc3NlZCBmcm9tDQo+PiBkcm1fc2NoZWRfaW5jcmVh
+c2Vfa2FybWEgc28gSSBkb24ndCB0aGluayBkcm1fc2NoZWRfam9iX2NsZWFudXAgY2FuIGJlDQo+
+PiBjYWxsZWQgZm9yIGl0IEJFRk9SRSBvciB3aGlsZSBkcm1fc2NoZWRfaW5jcmVhc2Vfa2FybWEg
+aXMgZXhlY3V0ZWQuDQo+Pg0KPj4gQW5kcmV5DQo+Pg0KPj4NCj4+PiAgICANCj4+PiAtLQ0KPj4+
+DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1h
+bWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0
+cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
