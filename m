@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ED6D0C10F14
-	for <linux-amlogic@archiver.kernel.org>; Sun,  6 Oct 2019 10:36:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0B1B4ECE58D
+	for <linux-amlogic@archiver.kernel.org>; Sun,  6 Oct 2019 10:36:51 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C17992064A
-	for <linux-amlogic@archiver.kernel.org>; Sun,  6 Oct 2019 10:36:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CD6DB20867
+	for <linux-amlogic@archiver.kernel.org>; Sun,  6 Oct 2019 10:36:50 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YxTohW4c"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C17992064A
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="r69MsmLv"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CD6DB20867
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=huawei.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,24 +25,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dhfyzyUnyPheVtzqXfKD81llqE1X0JQP9uDcZ81eCnY=; b=YxTohW4cPsXe+U
-	+LR21Ftqeh4d7eBBFFkXb0hZYRRr+le492Bom84WDELcfo6bff5UOMoeAi/PTzwi7envvcIoHcMxR
-	8K1OXnIzwdI8HYJscMtm8hyUwmsmvYiwi89AISZmT7IzUtAKu05dOmwsrLjw3hSJJut2mSDkhmAhQ
-	POaXoxWnjfpmi6UX0psLzu44sMqrnu7VVx5hl8OuPoAv539gYzuwukA1tHRNZv8J95DZbzzvYZb76
-	8XYDESFJvfhSalVgYiMZJWXuRS2IqDlXriG6bUpYxETWgw/kqEeFRG6yWw43VCUl18BdRcoG8s9Cb
-	go8LDKCmV5xPPDNYZB2A==;
+	List-Owner; bh=hoFiIRMCuFQDtDJzxUI+YtNPevuCzSXJFWqgV3yO9gQ=; b=r69MsmLv88Q3Qo
+	UE6EgM9BDtI9qm+7yEPdQjEsV+n8engf+XusODhAGhgGu1bKvabF6HSaccejx0n0J7U9eZkU/Iou+
+	brIchYQpCsG6ksfuKypb0xYFeumdUp8Hs5wvtP59r5zHrPZqC/rTMwt3yag2qE3gSPhmib2AXvvcL
+	1u5FfvlfOoFIYEh69QKsqjK8/1SEbkIaVm7ld6S5fpo8FZkdENduXWl2IMlCmvgb/2rBLtkRabsnF
+	kCsbquRTMonlR6CestopzIpmyUNpsF6ECeNoY+m9VpGolpWcvMkOND7g34eyIjK1EGvAvJ9euj6l+
+	wQnHR3oPxFmGHRkqQUKw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iH3ta-00020p-Dq; Sun, 06 Oct 2019 10:36:10 +0000
-Received: from szxga07-in.huawei.com ([45.249.212.35] helo=huawei.com)
+	id 1iH3u9-0002eD-ST; Sun, 06 Oct 2019 10:36:45 +0000
+Received: from szxga04-in.huawei.com ([45.249.212.190] helo=huawei.com)
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iH3qH-0006JV-It; Sun, 06 Oct 2019 10:32:47 +0000
-Received: from DGGEMS414-HUB.china.huawei.com (unknown [172.30.72.60])
- by Forcepoint Email with ESMTP id 1E90A458F908C584EBC8;
- Sun,  6 Oct 2019 18:32:44 +0800 (CST)
-Received: from localhost (10.133.213.239) by DGGEMS414-HUB.china.huawei.com
- (10.3.19.214) with Microsoft SMTP Server id 14.3.439.0; Sun, 6 Oct 2019
- 18:32:34 +0800
+ id 1iH3qM-0006MK-0K; Sun, 06 Oct 2019 10:32:54 +0000
+Received: from DGGEMS402-HUB.china.huawei.com (unknown [172.30.72.59])
+ by Forcepoint Email with ESMTP id 99A32D975090B94E3882;
+ Sun,  6 Oct 2019 18:32:46 +0800 (CST)
+Received: from localhost (10.133.213.239) by DGGEMS402-HUB.china.huawei.com
+ (10.3.19.202) with Microsoft SMTP Server id 14.3.439.0; Sun, 6 Oct 2019
+ 18:32:37 +0800
 From: YueHaibing <yuehaibing@huawei.com>
 To: <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>, <joel@jms.id.au>, 
  <andrew@aj.id.au>, <nicolas.ferre@microchip.com>,
@@ -56,10 +56,10 @@ To: <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>, <joel@jms.id.au>,
  <mcoquelin.stm32@gmail.com>, <alexandre.torgue@st.com>, <mripard@kernel.org>, 
  <wens@csie.org>, <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
  <linux@prisktech.co.nz>, <michal.simek@xilinx.com>
-Subject: [PATCH -next 10/34] rtc: ds1511: use devm_platform_ioremap_resource()
+Subject: [PATCH -next 11/34] rtc: ds1553: use devm_platform_ioremap_resource()
  to simplify code
-Date: Sun, 6 Oct 2019 18:29:29 +0800
-Message-ID: <20191006102953.57536-11-yuehaibing@huawei.com>
+Date: Sun, 6 Oct 2019 18:29:30 +0800
+Message-ID: <20191006102953.57536-12-yuehaibing@huawei.com>
 X-Mailer: git-send-email 2.10.2.windows.1
 In-Reply-To: <20191006102953.57536-1-yuehaibing@huawei.com>
 References: <20191006102953.57536-1-yuehaibing@huawei.com>
@@ -67,8 +67,8 @@ MIME-Version: 1.0
 X-Originating-IP: [10.133.213.239]
 X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191006_033245_815056_148E2C95 
-X-CRM114-Status: UNSURE (   8.35  )
+X-CRM114-CacheID: sfid-20191006_033250_268939_4C092788 
+X-CRM114-Status: UNSURE (   7.77  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -96,31 +96,31 @@ This is detected by coccinelle.
 
 Signed-off-by: YueHaibing <yuehaibing@huawei.com>
 ---
- drivers/rtc/rtc-ds1511.c | 4 +---
+ drivers/rtc/rtc-ds1553.c | 4 +---
  1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/drivers/rtc/rtc-ds1511.c b/drivers/rtc/rtc-ds1511.c
-index b6a4775..a63872c 100644
---- a/drivers/rtc/rtc-ds1511.c
-+++ b/drivers/rtc/rtc-ds1511.c
-@@ -414,7 +414,6 @@ static int ds1511_nvram_write(void *priv, unsigned int pos, void *buf,
+diff --git a/drivers/rtc/rtc-ds1553.c b/drivers/rtc/rtc-ds1553.c
+index 219d6b5..cdf5e05 100644
+--- a/drivers/rtc/rtc-ds1553.c
++++ b/drivers/rtc/rtc-ds1553.c
+@@ -249,7 +249,6 @@ static int ds1553_nvram_write(void *priv, unsigned int pos, void *val,
  
- static int ds1511_rtc_probe(struct platform_device *pdev)
+ static int ds1553_rtc_probe(struct platform_device *pdev)
  {
 -	struct resource *res;
+ 	unsigned int cen, sec;
  	struct rtc_plat_data *pdata;
- 	int ret = 0;
- 	struct nvmem_config ds1511_nvmem_cfg = {
-@@ -431,8 +430,7 @@ static int ds1511_rtc_probe(struct platform_device *pdev)
+ 	void __iomem *ioaddr;
+@@ -268,8 +267,7 @@ static int ds1553_rtc_probe(struct platform_device *pdev)
  	if (!pdata)
  		return -ENOMEM;
  
 -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	ds1511_base = devm_ioremap_resource(&pdev->dev, res);
-+	ds1511_base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(ds1511_base))
- 		return PTR_ERR(ds1511_base);
- 	pdata->ioaddr = ds1511_base;
+-	ioaddr = devm_ioremap_resource(&pdev->dev, res);
++	ioaddr = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(ioaddr))
+ 		return PTR_ERR(ioaddr);
+ 	pdata->ioaddr = ioaddr;
 -- 
 2.7.4
 
