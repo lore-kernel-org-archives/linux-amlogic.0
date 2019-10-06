@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 21007C4360C
-	for <linux-amlogic@archiver.kernel.org>; Sun,  6 Oct 2019 10:43:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 67386C10F14
+	for <linux-amlogic@archiver.kernel.org>; Sun,  6 Oct 2019 10:43:54 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D92D020867
-	for <linux-amlogic@archiver.kernel.org>; Sun,  6 Oct 2019 10:43:50 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 38E6A2133F
+	for <linux-amlogic@archiver.kernel.org>; Sun,  6 Oct 2019 10:43:54 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nixiFVT1"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D92D020867
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oQjwUIwy"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 38E6A2133F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=huawei.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,24 +25,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=NwDNWGMvKn3myPpkBtvlXxWqxmkLtx+fujhuQMz0Bwo=; b=nixiFVT1qgbHYb
-	VLmJo1gWYB3e9hkclIbcsapRrJ+STlTuRcQbwO9FCORMCMvS05kLKBF35Hkj6UrYrN8UAT3Sk7S22
-	0sIj/E/NK6xMqULhw6oE7xBPo7QjK7d6lMa6zsHM9bTD4aj9TQfTn3QTcJAasoTSuT+n8KHoa8Q54
-	jjXSUDm1TRZPgJuMHYaVZ+ZF7yFWtHI8rCCUcU5YNUmBcKrTYdDi39p8LAv1Y5L/Z5vTY98P0GO22
-	QMx7j1qUkbUNLAL5zeEAjBf1M4uc6TUTDD6xz/CJYzRDOXACFcGVlWd9oXEP/I5EbG0LU7Uj7JUv/
-	XRwS0zHIMa26s6Y6sfnA==;
+	List-Owner; bh=Vq1GEUYUOat54xJo2fZlS2T/3LHlMI1zjXi3KLpDO0A=; b=oQjwUIwySMj0KI
+	M0NN9mGz4QAvTFwGVwQBs130B9iOBPHcwQvIzFzwZtbmLJCENFGVyloLqFWyuM3xM73Hp+1W5aqUr
+	oBOi0jnJYlBowjKSiaSpxMHkp8rnHhWI2IuIyow+KSyCx0O6loz2DkXIqxp2yYeKDFwB1A7XEb7F8
+	7SUqdDwyCDY59p8JFeiy0ZAxALrGWDqgmG8WNWIHFzko2hxXPwGciJN41imomqqjCNlZhCnfQ7wWI
+	mWzNhDiF2optIztMEz7aBxIKWLBxryKXfJVvj2nNTO4E1gbuROU+D/iDC55TP2sRZAisoAnZLZoK/
+	LR8MyO+QO5J+EfOa4tsA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iH40v-0002nS-75; Sun, 06 Oct 2019 10:43:45 +0000
-Received: from szxga05-in.huawei.com ([45.249.212.191] helo=huawei.com)
+	id 1iH40y-0002qO-AO; Sun, 06 Oct 2019 10:43:48 +0000
+Received: from szxga07-in.huawei.com ([45.249.212.35] helo=huawei.com)
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iH3rb-0007US-0J; Sun, 06 Oct 2019 10:34:08 +0000
-Received: from DGGEMS403-HUB.china.huawei.com (unknown [172.30.72.60])
- by Forcepoint Email with ESMTP id 0BF3DE12BDB1CF4DC750;
- Sun,  6 Oct 2019 18:34:05 +0800 (CST)
-Received: from localhost (10.133.213.239) by DGGEMS403-HUB.china.huawei.com
- (10.3.19.203) with Microsoft SMTP Server id 14.3.439.0; Sun, 6 Oct 2019
- 18:33:56 +0800
+ id 1iH3rc-0007Wh-OA; Sun, 06 Oct 2019 10:34:10 +0000
+Received: from DGGEMS413-HUB.china.huawei.com (unknown [172.30.72.58])
+ by Forcepoint Email with ESMTP id 18EA8E99386BAB02B13E;
+ Sun,  6 Oct 2019 18:34:07 +0800 (CST)
+Received: from localhost (10.133.213.239) by DGGEMS413-HUB.china.huawei.com
+ (10.3.19.213) with Microsoft SMTP Server id 14.3.439.0; Sun, 6 Oct 2019
+ 18:33:59 +0800
 From: YueHaibing <yuehaibing@huawei.com>
 To: <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>, <joel@jms.id.au>, 
  <andrew@aj.id.au>, <nicolas.ferre@microchip.com>,
@@ -56,10 +56,10 @@ To: <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>, <joel@jms.id.au>,
  <mcoquelin.stm32@gmail.com>, <alexandre.torgue@st.com>, <mripard@kernel.org>, 
  <wens@csie.org>, <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
  <linux@prisktech.co.nz>, <michal.simek@xilinx.com>
-Subject: [PATCH -next 32/34] rtc: vt8500: use devm_platform_ioremap_resource()
+Subject: [PATCH -next 33/34] rtc: xgene: use devm_platform_ioremap_resource()
  to simplify code
-Date: Sun, 6 Oct 2019 18:29:51 +0800
-Message-ID: <20191006102953.57536-33-yuehaibing@huawei.com>
+Date: Sun, 6 Oct 2019 18:29:52 +0800
+Message-ID: <20191006102953.57536-34-yuehaibing@huawei.com>
 X-Mailer: git-send-email 2.10.2.windows.1
 In-Reply-To: <20191006102953.57536-1-yuehaibing@huawei.com>
 References: <20191006102953.57536-1-yuehaibing@huawei.com>
@@ -67,8 +67,8 @@ MIME-Version: 1.0
 X-Originating-IP: [10.133.213.239]
 X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191006_033407_238843_BB1479FE 
-X-CRM114-Status: UNSURE (   8.43  )
+X-CRM114-CacheID: sfid-20191006_033408_969953_5BDF462A 
+X-CRM114-Status: UNSURE (   7.81  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -96,30 +96,30 @@ This is detected by coccinelle.
 
 Signed-off-by: YueHaibing <yuehaibing@huawei.com>
 ---
- drivers/rtc/rtc-vt8500.c | 4 +---
+ drivers/rtc/rtc-xgene.c | 4 +---
  1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/drivers/rtc/rtc-vt8500.c b/drivers/rtc/rtc-vt8500.c
-index d5d14cf..11859b9 100644
---- a/drivers/rtc/rtc-vt8500.c
-+++ b/drivers/rtc/rtc-vt8500.c
-@@ -200,7 +200,6 @@ static const struct rtc_class_ops vt8500_rtc_ops = {
- static int vt8500_rtc_probe(struct platform_device *pdev)
+diff --git a/drivers/rtc/rtc-xgene.c b/drivers/rtc/rtc-xgene.c
+index 9683fbf..603c4e4 100644
+--- a/drivers/rtc/rtc-xgene.c
++++ b/drivers/rtc/rtc-xgene.c
+@@ -137,7 +137,6 @@ static irqreturn_t xgene_rtc_interrupt(int irq, void *id)
+ static int xgene_rtc_probe(struct platform_device *pdev)
  {
- 	struct vt8500_rtc *vt8500_rtc;
--	struct resource	*res;
+ 	struct xgene_rtc_dev *pdata;
+-	struct resource *res;
  	int ret;
+ 	int irq;
  
- 	vt8500_rtc = devm_kzalloc(&pdev->dev,
-@@ -215,8 +214,7 @@ static int vt8500_rtc_probe(struct platform_device *pdev)
- 	if (vt8500_rtc->irq_alarm < 0)
- 		return vt8500_rtc->irq_alarm;
+@@ -147,8 +146,7 @@ static int xgene_rtc_probe(struct platform_device *pdev)
+ 	platform_set_drvdata(pdev, pdata);
+ 	pdata->dev = &pdev->dev;
  
 -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	vt8500_rtc->regbase = devm_ioremap_resource(&pdev->dev, res);
-+	vt8500_rtc->regbase = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(vt8500_rtc->regbase))
- 		return PTR_ERR(vt8500_rtc->regbase);
+-	pdata->csr_base = devm_ioremap_resource(&pdev->dev, res);
++	pdata->csr_base = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(pdata->csr_base))
+ 		return PTR_ERR(pdata->csr_base);
  
 -- 
 2.7.4
