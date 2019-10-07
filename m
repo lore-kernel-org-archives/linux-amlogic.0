@@ -2,61 +2,79 @@ Return-Path: <SRS0=9NnP=YA=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 18B6BC47404
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 12:47:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B6614C47404
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 13:00:59 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DF44920867
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 12:47:49 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 898002070B
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 13:00:59 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Hpj5BcI2"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DF44920867
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arm.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Vqns7rpC";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O6cRczrm"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 898002070B
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=K6PMddNwtvEB4z3Pudn7OZAJCvepQT7wPBjp9w2lMkI=; b=Hpj5BcI2brMx7K
-	OWbMZXpoT4WrcDVb3GW5KordUPoHtz0uRbA4mYr3Y0pRQhAlHIgwIz0Xag7clwPzWUvje1cX7d5QG
-	4bN7Dt6kFooOnQoSslWJCO2gQtr5oR9JP0Nx/VqkESPXt8LYCu9MoUwjFgWCAwkTnxFf/byEXZnoc
-	MYM3CGDy3EWGDIUFejVIx749zKjXRZEH/j2RMS/wEyPmEtJnNmqwnts+EnwXMX+nKC9YgDy0bfxFG
-	ecRx0M9L1p9vUUAI9/FWWVRTZxpQjhI3xWclYIL7LjyeqeiLyf8lckwa48aI9RIWqlZwR/U5PxonQ
-	cOyWN9OOZa3pZ7LlGYwA==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	MIME-Version:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=vYJVww5GSFWGXJRtxufJaemruHycKUjwUXaTAi9eea8=; b=Vqn
+	s7rpCApoOlI76NFN4pz75bXopw5wiLR9Fezz7vGlmEyxSEi4jFyjU6HwUbbW4F8KaYRsTmXMvxIRI
+	eVValFBr2uEi8KuKZcu8ZlnptG6oCC91c5AID6vlKkX8AxWySqlFaROGbMhbg3yZrb5UeimYd0mjg
+	kz+LqFEbM8MeC6ZTA/CIw/9aqBHSEJwjJBHhO/1Jr3yJ4Bx3OXJDQHLkF5+sl9wRKf9M/aAAM6+lQ
+	P6M8y1Bdzfm61b/ZKMwYdX9SoIUapSWVmW+/pzepPYeOfsRVLvfsyIHNn4fHAacrGUvaDcLcHkDFr
+	5tgfsvjinkjq8JxxUjwpsBnEMd8edmw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iHSQO-0005aS-4t; Mon, 07 Oct 2019 12:47:40 +0000
-Received: from foss.arm.com ([217.140.110.172])
- by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iHSQL-0005Ys-98
- for linux-amlogic@lists.infradead.org; Mon, 07 Oct 2019 12:47:38 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 268591570;
- Mon,  7 Oct 2019 05:47:34 -0700 (PDT)
-Received: from [10.1.196.133] (e112269-lin.cambridge.arm.com [10.1.196.133])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 051253F706;
- Mon,  7 Oct 2019 05:47:32 -0700 (PDT)
-Subject: Re: drm_sched with panfrost crash on T820
-To: "Koenig, Christian" <Christian.Koenig@amd.com>
-References: <8e003dfd-2761-4941-8b5b-ecc186222229@email.android.com>
-From: Steven Price <steven.price@arm.com>
-Message-ID: <cf6c7130-51ea-155b-cbe7-9f05281be360@arm.com>
-Date: Mon, 7 Oct 2019 13:47:30 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+	id 1iHSdC-00031J-6D; Mon, 07 Oct 2019 13:00:54 +0000
+Received: from mail-io1-xd43.google.com ([2607:f8b0:4864:20::d43])
+ by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
+ id 1iHSd8-00030s-GT
+ for linux-amlogic@lists.infradead.org; Mon, 07 Oct 2019 13:00:52 +0000
+Received: by mail-io1-xd43.google.com with SMTP id a1so28275981ioc.6
+ for <linux-amlogic@lists.infradead.org>; Mon, 07 Oct 2019 06:00:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=ZhVtXAtsH3fgjr9TvXCrmuPEdyX+AOiCNVZ8SeSKxhg=;
+ b=O6cRczrm3O2N4Ze00/Z/xooX1O35ZNr4U8gZeT7opZV3rWyHDM0a33hfyinxrRqFf/
+ SggEkeiE5Eu8XcsjqyHEaS5xGs4HmW6H3KlELS7PcmETtaafICMTLzVAvZaeROA4ozE0
+ Leoz95ZpXHYapQ9cIyMaTzoXa4ZP9ULaMMZivHQRERgGAK59+yrDkt/g5Im6m8y4pbfi
+ QbBzKYMpKRS/zVfHZP/MYd8oWAgR+QxsWXBrO9sELZ7JigJF8mciHlhoLwAf8irimXks
+ fPWU5Rpi84RPI10MjW9iwTanp0CoWIkJS+7JRVXCQIYyRni3wg2+tjNAGmOI9EDmm0UM
+ 9DTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=ZhVtXAtsH3fgjr9TvXCrmuPEdyX+AOiCNVZ8SeSKxhg=;
+ b=e9BbWFof6bUYq4pXRxBwSKZNL3o3f2BiBv50OiJOERdA1CWQwjW0d5uRaheaXy0xkW
+ muFp80U5fagk4yRXh22Krl6VB4kcviv4c7OaEiJJQ9pXaLOud3lp8X3abXBJ654n887N
+ yn1HBdopy90/hY0yK3xSO/HcGwk6BIsjcj4yY4oNMPUss1S776EzoeY2fSMvmWZYt0nI
+ 5ZikVj6YSxXePXymgB0syoYfnW+JLzYaJja2cgx3vQGmtEMjmRm9Qh6fLy8R3zILxdlQ
+ 0k3DK30TY6coeacXuIFp4ntgTnjr0QeGoBE2RSNHimDoqKJKEb5htrt+iYSxdAOQj/Io
+ gXrw==
+X-Gm-Message-State: APjAAAUp+HlllhL18o9Gk58Vyqzdx+mD1jakQNs2lr5K0quJBxgqPRTG
+ GvdjEtbBO4fnQHbIL89irscZMclLwzQ0OHXbP+2bcNBQk1A=
+X-Google-Smtp-Source: APXvYqxtU4pIZ77vqSBUiYohBQpTMjCgIn52DvXih8BorMtxM3AgWPgL8j8YbQaZUX8Ihcbs/ehagC1ogr8/RU+4nww=
+X-Received: by 2002:a5e:c742:: with SMTP id g2mr23071812iop.94.1570453248150; 
+ Mon, 07 Oct 2019 06:00:48 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <8e003dfd-2761-4941-8b5b-ecc186222229@email.android.com>
-Content-Language: en-GB
+From: Piero <ottuzzi@gmail.com>
+Date: Mon, 7 Oct 2019 15:00:38 +0200
+Message-ID: <CAPo5REFrudDW0vx-RfsNahPfHgFjKJMkPNQji-Bm0E+bjGH-vQ@mail.gmail.com>
+Subject: [odroidc1] Kernel dump while copying large files via network
+To: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191007_054737_406062_5162ACA4 
-X-CRM114-Status: GOOD (  21.18  )
+X-CRM114-CacheID: sfid-20191007_060050_546806_80AA115E 
+X-CRM114-Status: UNSURE (   5.70  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,101 +86,245 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Hillf Danton <hdanton@sina.com>, Tomeu Vizoso <tomeu.vizoso@collabora.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- "airlied@linux.ie" <airlied@linux.ie>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Erico Nunes <nunes.erico@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMDQvMTAvMjAxOSAxNzozMywgS29lbmlnLCBDaHJpc3RpYW4gd3JvdGU6Cj4gCj4gCj4gQW0g
-MDQuMTAuMjAxOSAxODowMiBzY2hyaWViIFN0ZXZlbiBQcmljZSA8c3RldmVuLnByaWNlQGFybS5j
-b20+Ogo+IE9uIDA0LzEwLzIwMTkgMTY6MzQsIEtvZW5pZywgQ2hyaXN0aWFuIHdyb3RlOgo+PiBB
-bSAwNC4xMC4xOSB1bSAxNzoyNyBzY2hyaWViIFN0ZXZlbiBQcmljZToKPj4+IE9uIDA0LzEwLzIw
-MTkgMTY6MDMsIE5laWwgQXJtc3Ryb25nIHdyb3RlOgo+Pj4+IE9uIDA0LzEwLzIwMTkgMTY6NTMs
-IEdyb2R6b3Zza3ksIEFuZHJleSB3cm90ZToKPj4+Pj4gT24gMTAvMy8xOSA0OjM0IEFNLCBOZWls
-IEFybXN0cm9uZyB3cm90ZToKPj4+Pj4+IEhpIEFuZHJleSwKPj4+Pj4+Cj4+Pj4+PiBMZSAwMi8x
-MC8yMDE5IMOgIDE2OjQwLCBHcm9kem92c2t5LCBBbmRyZXkgYSDDqWNyaXQgOgo+Pj4+Pj4+IE9u
-IDkvMzAvMTkgMTA6NTIgQU0sIEhpbGxmIERhbnRvbiB3cm90ZToKPj4+Pj4+Pj4gT24gTW9uLCAz
-MCBTZXAgMjAxOSAxMToxNzo0NSArMDIwMCBOZWlsIEFybXN0cm9uZyB3cm90ZToKPj4+Pj4+Pj4+
-IERpZCBhIG5ldyBydW4gZnJvbSA1LjM6Cj4+Pj4+Pj4+Pgo+Pj4+Pj4+Pj4gWyAgIDM1Ljk3MTk3
-Ml0gQ2FsbCB0cmFjZToKPj4+Pj4+Pj4+IFsgICAzNS45NzQzOTFdICBkcm1fc2NoZWRfaW5jcmVh
-c2Vfa2FybWErMHg1Yy8weGYwCj4+Pj4+Pj4+PiAgICAgICAgICAgICAgICAgICAgICAgICBmZmZm
-MDAwMDEwNjY3ZjM4ICAgICAgICBGRkZGMDAwMDEwNjY3Rjk0Cj4+Pj4+Pj4+PiAgICAgICAgICAg
-ICAgICAgICAgICAgICBkcml2ZXJzL2dwdS9kcm0vc2NoZWR1bGVyL3NjaGVkX21haW4uYzozMzUK
-Pj4+Pj4+Pj4+Cj4+Pj4+Pj4+PiBUaGUgY3Jhc2hpbmcgbGluZSBpcyA6Cj4+Pj4+Pj4+PiAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlmIChiYWQtPnNfZmVuY2UtPnNjaGVkdWxl
-ZC5jb250ZXh0ID09Cj4+Pj4+Pj4+PiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICBlbnRpdHktPmZlbmNlX2NvbnRleHQpIHsKPj4+Pj4+Pj4+Cj4+Pj4+Pj4+PiBEb2Vzbid0
-IHNlZW0gcmVsYXRlZCB0byBndWlsdHkgam9iLgo+Pj4+Pj4+PiBCYWlsIG91dCBpZiBzX2ZlbmNl
-IGlzIG5vIGxvbmdlciBmcmVzaC4KPj4+Pj4+Pj4KPj4+Pj4+Pj4gLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL3NjaGVkdWxlci9zY2hlZF9tYWluLmMKPj4+Pj4+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJt
-L3NjaGVkdWxlci9zY2hlZF9tYWluLmMKPj4+Pj4+Pj4gQEAgLTMzMyw2ICszMzMsMTAgQEAgdm9p
-ZCBkcm1fc2NoZWRfaW5jcmVhc2Vfa2FybWEoc3RydWN0IGRybQo+Pj4+Pj4+Pgo+Pj4+Pj4+PiAg
-ICAgICAgICAgICAgICAgICAgICAgICAgc3Bpbl9sb2NrKCZycS0+bG9jayk7Cj4+Pj4+Pj4+ICAg
-ICAgICAgICAgICAgICAgICAgICAgICBsaXN0X2Zvcl9lYWNoX2VudHJ5X3NhZmUoZW50aXR5LCB0
-bXAsICZycS0+ZW50aXRpZXMsIGxpc3QpIHsKPj4+Pj4+Pj4gKyAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICBpZiAoIXNtcF9sb2FkX2FjcXVpcmUoJmJhZC0+c19mZW5jZSkpIHsKPj4+Pj4+
-Pj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHNwaW5fdW5sb2NrKCZy
-cS0+bG9jayk7Cj4+Pj4+Pj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICByZXR1cm47Cj4+Pj4+Pj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfQo+Pj4+
-Pj4+PiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBpZiAoYmFkLT5zX2ZlbmNlLT5z
-Y2hlZHVsZWQuY29udGV4dCA9PQo+Pj4+Pj4+PiAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgZW50aXR5LT5mZW5jZV9jb250ZXh0KSB7Cj4+Pj4+Pj4+ICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgaWYgKGF0b21pY19yZWFkKCZiYWQtPmthcm1hKSA+
-Cj4+Pj4+Pj4+IEBAIC01NDMsNyArNTQ3LDcgQEAgRVhQT1JUX1NZTUJPTChkcm1fc2NoZWRfam9i
-X2luaXQpOwo+Pj4+Pj4+PiAgICAgdm9pZCBkcm1fc2NoZWRfam9iX2NsZWFudXAoc3RydWN0IGRy
-bV9zY2hlZF9qb2IgKmpvYikKPj4+Pj4+Pj4gICAgIHsKPj4+Pj4+Pj4gICAgICAgICAgZG1hX2Zl
-bmNlX3B1dCgmam9iLT5zX2ZlbmNlLT5maW5pc2hlZCk7Cj4+Pj4+Pj4+IC0gICAgICAgam9iLT5z
-X2ZlbmNlID0gTlVMTDsKPj4+Pj4+Pj4gKyAgICAgICBzbXBfc3RvcmVfcmVsZWFzZSgmam9iLT5z
-X2ZlbmNlLCAwKTsKPj4+Pj4+Pj4gICAgIH0KPj4+Pj4+Pj4gICAgIEVYUE9SVF9TWU1CT0woZHJt
-X3NjaGVkX2pvYl9jbGVhbnVwKTsKPj4+Pj4+IFRoaXMgZml4ZWQgdGhlIHByb2JsZW0gb24gdGhl
-IDEwIENJIHJ1bnMuCj4+Pj4+Pgo+Pj4+Pj4gTmVpbAo+Pj4+Pgo+Pj4+PiBUaGVzZSBhcmUgZ29v
-ZCBuZXdzIGJ1dCBJIHN0aWxsIGZhaWwgdG8gc2VlIGhvdyB0aGlzIGZpeGVzIHRoZSBwcm9ibGVt
-IC0KPj4+Pj4gSGlsbGYsIGRvIHlvdSBtaW5kIGV4cGxhaW5pbmcgaG93IHlvdSBjYW1lIHVwIHdp
-dGggdGhpcyBwYXJ0aWN1bGFyIGZpeCAtCj4+Pj4+IHdoYXQgd2FzIHRoZSBidWcgeW91IHNhdyA/
-Cj4+Pj4gQXMgU3RldmVuIGV4cGxhaW5lZCwgc2VlbXMgdGhlIHNhbWUgam9iIHdhcyBzdWJtaXR0
-ZWQgb24gYm90aCBIVyBzbG90cywKPj4+PiBhbmQgdGhlbiB3aGVuIHRpbWVvdXQgb2NjdXJzIGVh
-Y2ggdGhyZWFkIGNhbGxzIHBhbmZyb3N0X2pvYl90aW1lZG91dAo+Pj4+IHdoaWNoIGxlYWRzIHRv
-IGRybV9zY2hlZF9zdG9wKCkgb24gdGhlIGZpcnN0IGNhbGwgYW5kIG9uIHRoZQo+Pj4+IHNlY29u
-ZCBjYWxsIHRoZSBqb2Igd2FzIGFscmVhZHkgZnJlZWQuCj4+Pj4KPj4+PiBTdGV2ZW4gcHJvcG9z
-ZWQgYSB3b3JraW5nIGZpeCwgYW5kIHRoaXMgb25lIGRvZXMgdGhlIHNhbWUgYnV0IG9uCj4+Pj4g
-dGhlIGRybV9zY2hlZCBzaWRlLiBUaGlzIG9uZSBsb29rcyBjbGVhbmVyLCBidXQgcGFuZnJvc3Qg
-c2hvdWxkCj4+Pj4gbm90IGNhbGwgZHJtX3NjaGVkX3N0b3AoKSB0d2ljZSBmb3IgdGhlIHNhbWUg
-am9iLgo+Pj4gSSdtIG5vdCBzdXJlIHRoYXQgSGlsbGYncyBmaXggaXMgc3VmZmljaWVudC4gSW4g
-cGFydGljdWxhciBpbgo+Pj4gZHJtX3NjaGVkX2luY3JlYXNlX2thcm1hKCkgSSBkb24ndCB1bmRl
-cnN0YW5kIGhvdyB0aGUgc21wX2xvYWRfYWNxdWlyZSgpCj4+PiBjYWxsIHByZXZlbnRzIGJhZC0+
-c19mZW5jZSBiZWNvbWluZyBOVUxMIGltbWVkaWF0ZWx5IGFmdGVyd2FyZHMgKGJ1dAo+Pj4gYWRt
-aXR0ZWRseSB0aGUgd2luZG93IGlzIG11Y2ggc21hbGxlcikuIEJ1dCByZWFsbHkgdGhpcyBpcyBq
-dXN0IGEKPj4+IFBhbmZyb3N0IGJ1ZyAoY2FsbGluZyBkcm1fc2NoZWRfc3RvcCgpIHR3aWNlIG9u
-IHRoZSBzYW1lIGpvYikuCj4+Pgo+Pj4gVGhlIHBhcnQgb2YgbXkgY2hhbmdlIHRoYXQgSSdkIHdl
-bGNvbWUgZmVlZGJhY2sgb24gaXMgY2hhbmdpbmcKPj4+IGNhbmNlbF9kZWxheWVkX3dvcmsoKSB0
-byBjYW5jZWxfZGVsYXllZF93b3JrX3N5bmMoKSBpbiBkcm1fc2NoZWRfc3RvcCgpCj4+PiB3aGVu
-IGNhbGxlZCBvbiBkaWZmZXJlbnQgc2NoZWR1bGVyIHRvIHRoZSBiYWQgam9iLiBJdCdzIG5vdCBj
-bGVhciB0byBtZQo+Pj4gZXhhY3RseSB3aGF0IHRoZSBzZW1hbnRpY3Mgb2YgdGhlIGZ1bmN0aW9u
-IHNob3VsZCBiZSwgYW5kIEkgaGF2ZW4ndAo+Pj4gdGVzdGVkIHRoZSBlZmZlY3Qgb2YgdGhlIGNo
-YW5nZSBvbiBkcml2ZXJzIG90aGVyIHRoYW4gUGFuZnJvc3QuCj4+Cj4+IFllYWgsIGF0IGxlYXN0
-IG9mIGhhbmQgdGhhdCBjaGFuZ2UgZG9lc24ndCBzZWVtIHRvIG1ha2Ugc2Vuc2UgdG8gbWUuCj4g
-Cj4gV2UgbmVlZCB0byBlbnN1cmUgdGhhdCBhbnkgb3RoZXIgdGltZW91dHMgdGhhdCBtaWdodCBo
-YXZlIHN0YXJ0ZWQKPiBwcm9jZXNzaW5nIGFyZSBjb21wbGV0ZSBiZWZvcmUgYWN0dWFsbHkgcmVz
-ZXR0aW5nIHRoZSBoYXJkd2FyZS4KPiBPdGhlcndpc2UgYWZ0ZXIgdGhlIHJlc2V0IGFub3RoZXIg
-dGhyZWFkIGNvdWxkIGNvbWUgYWxvbmcgYW5kIGF0dGVtcHQgdG8KPiByZXNldCB0aGUgaGFyZHdh
-cmUgYWdhaW4gKGFuZCBjYXVzZSBhIGRvdWJsZSBmcmVlIG9mIGEgam9iKS4KPiAKPiBUaGlzIGlz
-IGludGVudGlvbmFsIGJlaGF2aW91ci4gSWYgeW91IGRvbid0IHdhbnQgdGhlIGRvdWJsZSByZXNl
-dCBpbiBQYW5mcm9zdCB5b3Ugc2hvdWxkIHByb2JhYmx5IGNhbGwgdGhlIGNhbmNlbF9zeW5jIHlv
-dXJzZWxmLgoKSXQncyBsZXNzIHRoZSBkb3VibGUgcmVzZXQgdGhhdCBpcyB0aGUgcHJvYmxlbSwg
-bW9yZSB0aGF0IHRoZSBqb2IgZ2V0cwpjbGVhbmVkIHVwIHR3aWNlOiBkcm1fc2NoZWRfc3RvcCgp
-IHdpbGwgZWl0aGVyIGZyZWUgdGhlIGpvYiBvciBtYXJrIGl0CnRvIGJlIGZyZWVkIGxhdGVyLiBC
-eSBoYXZpbmcgdHdvIHRocmVhZHMgYm90aCBkcm1fc2NoZWRfc3RvcCgpaW5nIGFsbApzbG90cyB5
-b3UgZW5kIHVwIHdpdGggdGhlIGd1aWx0eSBqb2IocykgcG90ZW50aWFsbHkgYmVpbmcgZG91Ymxl
-IGZyZWVkLgoKSSd2ZSBtb3ZlIHRoZSBjYWxsIHRvIGNhbmNlbF9kZWxheWVkX3dvcmtfc3luYygp
-IGludG8gUGFuZnJvc3Qgc2luY2UgSSdtCm5vdCBzdXJlIHdoZXRoZXIgdGhpcyBpcyBnZW5lcmlj
-YWxseSB1c2VmdWwgdG8gb3RoZXIgZHJpdmVycy4KClN0ZXZlCgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdAps
-aW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+Hi,
+
+I'm using mainline kernel 5.3.3 on Odroid C1 and while copying large
+files via network (samba) the kernel dumps and the system/network
+become very slow (still responding ma very very sluggish).
+Here is the kernel dump:
+
+[ 1793.786626] rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
+[ 1793.787183] rcu:     1-....: (82 ticks this GP)
+idle=c42/1/0x40000004 softirq=7315/7315 fqs=70
+[ 1793.787435]  (detected by 3, t=2123 jiffies, g=23589, q=1733)
+[ 1793.787662] Sending NMI from CPU 3 to CPUs 1:
+[ 1793.809268] NMI backtrace for cpu 1
+[ 1793.809458] CPU: 1 PID: 31 Comm: kworker/1:1 Not tainted
+5.3.3-odroidc1 #5.98.191003
+[ 1793.809573] Hardware name: Amlogic Meson platform
+[ 1793.809677] Workqueue: events dbs_work_handler
+[ 1793.809860] PC is at skb_zerocopy_clone+0xc/0x110
+[ 1793.809964] LR is at skb_split+0x48/0x224
+[ 1793.810096] pc : [<c0cf6e38>]    lr : [<c0cf6f84>]    psr: a00b0113
+[ 1793.810209] sp : ea0b7960  ip : 00000000  fp : 000005b4
+[ 1793.810323] r10: 00000000  r9 : e8a35b00  r8 : 266f0114
+[ 1793.810455] r7 : 00000000  r6 : e9d98600  r5 : 00000b68  r4 : e9d98480
+[ 1793.810585] r3 : 00000000  r2 : 00000000  r1 : e9d98480  r0 : e9d98600
+[ 1793.810721] Flags: NzCv  IRQs on  FIQs on  Mode SVC_32  ISA ARM  Segment none
+[ 1793.810841] Control: 10c5387d  Table: 283f804a  DAC: 00000051
+[ 1793.810985] CPU: 1 PID: 31 Comm: kworker/1:1 Not tainted
+5.3.3-odroidc1 #5.98.191003
+[ 1793.811096] Hardware name: Amlogic Meson platform
+[ 1793.811190] Workqueue: events dbs_work_handler
+[ 1793.811404] [<c031183c>] (unwind_backtrace) from [<c030c890>]
+(show_stack+0x10/0x14)
+[ 1793.811547] [<c030c890>] (show_stack) from [<c0e89c38>]
+(dump_stack+0xb4/0xc8)
+[ 1793.811692] [<c0e89c38>] (dump_stack) from [<c0e90604>]
+(nmi_cpu_backtrace+0x74/0xc4)
+[ 1793.811840] [<c0e90604>] (nmi_cpu_backtrace) from [<c030fa48>]
+(handle_IPI+0xe4/0x3dc)
+[ 1793.811983] [<c030fa48>] (handle_IPI) from [<c08d34e0>]
+(gic_handle_irq+0x8c/0x90)
+[ 1793.812123] [<c08d34e0>] (gic_handle_irq) from [<c0301a8c>]
+(__irq_svc+0x6c/0x90)
+[ 1793.812235] Exception stack(0xea0b7910 to 0xea0b7958)
+[ 1793.812387] 7900:                                     e9d98600
+e9d98480 00000000 00000000
+[ 1793.812537] 7920: e9d98480 00000b68 e9d98600 00000000 266f0114
+e8a35b00 00000000 000005b4
+[ 1793.812670] 7940: 00000000 ea0b7960 c0cf6f84 c0cf6e38 a00b0113 ffffffff
+[ 1793.812820] [<c0301a8c>] (__irq_svc) from [<c0cf6e38>]
+(skb_zerocopy_clone+0xc/0x110)
+[ 1793.812964] [<c0cf6e38>] (skb_zerocopy_clone) from [<c0cf6f84>]
+(skb_split+0x48/0x224)
+[ 1793.813108] [<c0cf6f84>] (skb_split) from [<c0d8e054>]
+(tcp_write_xmit+0x518/0x1174)
+[ 1793.813269] [<c0d8e054>] (tcp_write_xmit) from [<c0d8ece0>]
+(__tcp_push_pending_frames+0x30/0xd8)
+[ 1793.813435] [<c0d8ece0>] (__tcp_push_pending_frames) from
+[<c0d8977c>] (tcp_rcv_established+0x674/0x6f8)
+[ 1793.813590] [<c0d8977c>] (tcp_rcv_established) from [<c0d92f24>]
+(tcp_v4_do_rcv+0x174/0x1fc)
+[ 1793.813735] [<c0d92f24>] (tcp_v4_do_rcv) from [<c0d95ab4>]
+(tcp_v4_rcv+0xbd8/0xe10)
+[ 1793.813887] [<c0d95ab4>] (tcp_v4_rcv) from [<c0d6b700>]
+(ip_protocol_deliver_rcu+0x30/0x30c)
+[ 1793.814052] [<c0d6b700>] (ip_protocol_deliver_rcu) from
+[<c0d6ba28>] (ip_local_deliver_finish+0x4c/0x58)
+[ 1793.814211] [<c0d6ba28>] (ip_local_deliver_finish) from
+[<c0d6ba94>] (ip_local_deliver+0x60/0xf4)
+[ 1793.814349] [<c0d6ba94>] (ip_local_deliver) from [<c0d6bb78>]
+(ip_rcv+0x50/0xb0)
+[ 1793.814506] [<c0d6bb78>] (ip_rcv) from [<c0d0d770>]
+(__netif_receive_skb_one_core+0x50/0x6c)
+[ 1793.814670] [<c0d0d770>] (__netif_receive_skb_one_core) from
+[<c0d0ec40>] (process_backlog+0x80/0x13c)
+[ 1793.814818] [<c0d0ec40>] (process_backlog) from [<c0d0e8d8>]
+(net_rx_action+0x120/0x408)
+[ 1793.814964] [<c0d0e8d8>] (net_rx_action) from [<c0302298>]
+(__do_softirq+0x130/0x3c8)
+[ 1793.815101] [<c0302298>] (__do_softirq) from [<c033ae38>]
+(irq_exit+0xbc/0xd8)
+[ 1793.815245] [<c033ae38>] (irq_exit) from [<c0391d10>]
+(__handle_domain_irq+0x60/0xb4)
+[ 1793.815397] [<c0391d10>] (__handle_domain_irq) from [<c08d34a0>]
+(gic_handle_irq+0x4c/0x90)
+[ 1793.815536] [<c08d34a0>] (gic_handle_irq) from [<c0301a8c>]
+(__irq_svc+0x6c/0x90)
+[ 1793.815649] Exception stack(0xea0b7c88 to 0xea0b7cd0)
+[ 1793.815801] 7c80:                   00000000 600b0013 c02fdb00
+ea0b7cd8 000088c8 c023acc0
+[ 1793.815951] 7ca0: c022f000 c14ff3e8 00000000 c023acc0 00000000
+eb67c050 00000000 ea0b7cd8
+[ 1793.816064] 7cc0: c02fdb00 c0944680 600b0013 ffffffff
+[ 1793.816209] [<c0301a8c>] (__irq_svc) from [<c0944680>]
+(clk_prepare_lock+0x28/0xf8)
+[ 1793.816369] [<c0944680>] (clk_prepare_lock) from [<c0946ea4>]
+(clk_core_disable_unprepare+0x10/0x20)
+[ 1793.816538] [<c0946ea4>] (clk_core_disable_unprepare) from
+[<c0946efc>] (__clk_set_parent_after+0x48/0x4c)
+[ 1793.816705] [<c0946efc>] (__clk_set_parent_after) from [<c09481b0>]
+(clk_core_set_parent_nolock+0x16c/0x2a0)
+[ 1793.816868] [<c09481b0>] (clk_core_set_parent_nolock) from
+[<c094831c>] (clk_set_parent+0x38/0x90)
+[ 1793.817026] [<c094831c>] (clk_set_parent) from [<c094ea98>]
+(meson8b_cpu_clk_notifier_cb+0x44/0x88)
+[ 1793.817191] [<c094ea98>] (meson8b_cpu_clk_notifier_cb) from
+[<c0357074>] (notifier_call_chain+0x48/0x84)
+[ 1793.817357] [<c0357074>] (notifier_call_chain) from [<c035743c>]
+(__srcu_notifier_call_chain+0x44/0x98)
+[ 1793.817526] [<c035743c>] (__srcu_notifier_call_chain) from
+[<c03574a8>] (srcu_notifier_call_chain+0x18/0x20)
+[ 1793.817686] [<c03574a8>] (srcu_notifier_call_chain) from
+[<c0944b10>] (__clk_notify+0x7c/0xa8)
+[ 1793.817843] [<c0944b10>] (__clk_notify) from [<c0944bc8>]
+(clk_propagate_rate_change+0x8c/0xbc)
+[ 1793.818009] [<c0944bc8>] (clk_propagate_rate_change) from
+[<c0944bb8>] (clk_propagate_rate_change+0x7c/0xbc)
+[ 2063.834737] rcu: INFO: rcu_sched self-detected stall on CPU
+[ 2063.835267] rcu:     1-....: (673 ticks this GP)
+idle=8ca/1/0x40000004 softirq=8230/8231 fqs=988
+[ 2063.835481]  (t=2100 jiffies g=27185 q=1726)
+[ 2063.835645] NMI backtrace for cpu 1
+[ 2063.835951] CPU: 1 PID: 31 Comm: kworker/1:1 Not tainted
+5.3.3-odroidc1 #5.98.191003
+[ 2063.836092] Hardware name: Amlogic Meson platform
+[ 2063.836532] Workqueue: events dbs_work_handler
+[ 2063.837301] [<c031183c>] (unwind_backtrace) from [<c030c890>]
+(show_stack+0x10/0x14)
+[ 2063.837767] [<c030c890>] (show_stack) from [<c0e89c38>]
+(dump_stack+0xb4/0xc8)
+[ 2063.838336] [<c0e89c38>] (dump_stack) from [<c0e90650>]
+(nmi_cpu_backtrace+0xc0/0xc4)
+[ 2063.838915] [<c0e90650>] (nmi_cpu_backtrace) from [<c0e90740>]
+(nmi_trigger_cpumask_backtrace+0xec/0x130)
+[ 2063.839550] [<c0e90740>] (nmi_trigger_cpumask_backtrace) from
+[<c03aa080>] (rcu_dump_cpu_stacks+0xac/0xd4)
+[ 2063.840079] [<c03aa080>] (rcu_dump_cpu_stacks) from [<c03a9384>]
+(rcu_sched_clock_irq+0x74c/0x94c)
+[ 2063.840624] [<c03a9384>] (rcu_sched_clock_irq) from [<c03b0c64>]
+(update_process_times+0x34/0x5c)
+[ 2063.841238] [<c03b0c64>] (update_process_times) from [<c03c3ad0>]
+(tick_sched_timer+0x4c/0xa8)
+[ 2063.841780] [<c03c3ad0>] (tick_sched_timer) from [<c03b1880>]
+(__hrtimer_run_queues+0x1a4/0x39c)
+[ 2063.842291] [<c03b1880>] (__hrtimer_run_queues) from [<c03b2760>]
+(hrtimer_interrupt+0x104/0x2c4)
+[ 2063.842806] [<c03b2760>] (hrtimer_interrupt) from [<c03108a0>]
+(twd_handler+0x30/0x40)
+[ 2063.843309] [<c03108a0>] (twd_handler) from [<c03975f4>]
+(handle_percpu_devid_irq+0x8c/0x240)
+[ 2063.843861] [<c03975f4>] (handle_percpu_devid_irq) from
+[<c0391720>] (generic_handle_irq+0x24/0x34)
+[ 2063.844387] [<c0391720>] (generic_handle_irq) from [<c0391d0c>]
+(__handle_domain_irq+0x5c/0xb4)
+[ 2063.845029] [<c0391d0c>] (__handle_domain_irq) from [<c08d34a0>]
+(gic_handle_irq+0x4c/0x90)
+[ 2063.845533] [<c08d34a0>] (gic_handle_irq) from [<c0301a8c>]
+(__irq_svc+0x6c/0x90)
+[ 2063.845728] Exception stack(0xea0b7870 to 0xea0b78b8)
+[ 2063.846040] 7860:                                     08e367e9
+00000001 00000000 00000000
+[ 2063.846478] 7880: e8a37000 00000004 e9dbed80 e8a37000 02699230
+e84ef180 c1404c48 02699d98
+[ 2063.846845] 78a0: 0002afa9 ea0b78c0 c0d86c70 c0d8c18c 60030113 ffffffff
+[ 2063.847417] [<c0301a8c>] (__irq_svc) from [<c0d8c18c>]
+(tcp_schedule_loss_probe+0x58/0x184)
+[ 2063.847933] [<c0d8c18c>] (tcp_schedule_loss_probe) from
+[<c0d86c70>] (tcp_ack+0xefc/0x14ac)
+[ 2063.848404] [<c0d86c70>] (tcp_ack) from [<c0d89744>]
+(tcp_rcv_established+0x63c/0x6f8)
+[ 2063.848934] [<c0d89744>] (tcp_rcv_established) from [<c0d92f24>]
+(tcp_v4_do_rcv+0x174/0x1fc)
+[ 2063.849479] [<c0d92f24>] (tcp_v4_do_rcv) from [<c0d95ab4>]
+(tcp_v4_rcv+0xbd8/0xe10)
+[ 2063.850048] [<c0d95ab4>] (tcp_v4_rcv) from [<c0d6b700>]
+(ip_protocol_deliver_rcu+0x30/0x30c)
+[ 2063.850554] [<c0d6b700>] (ip_protocol_deliver_rcu) from
+[<c0d6ba28>] (ip_local_deliver_finish+0x4c/0x58)
+[ 2063.851033] [<c0d6ba28>] (ip_local_deliver_finish) from
+[<c0d6ba94>] (ip_local_deliver+0x60/0xf4)
+[ 2063.851482] [<c0d6ba94>] (ip_local_deliver) from [<c0d6bb78>]
+(ip_rcv+0x50/0xb0)
+[ 2063.852023] [<c0d6bb78>] (ip_rcv) from [<c0d0d770>]
+(__netif_receive_skb_one_core+0x50/0x6c)
+[ 2063.852545] [<c0d0d770>] (__netif_receive_skb_one_core) from
+[<c0d0ec40>] (process_backlog+0x80/0x13c)
+[ 2063.853023] [<c0d0ec40>] (process_backlog) from [<c0d0e8d8>]
+(net_rx_action+0x120/0x408)
+[ 2063.853495] [<c0d0e8d8>] (net_rx_action) from [<c0302298>]
+(__do_softirq+0x130/0x3c8)
+[ 2063.853966] [<c0302298>] (__do_softirq) from [<c033ae38>]
+(irq_exit+0xbc/0xd8)
+[ 2063.854480] [<c033ae38>] (irq_exit) from [<c0391d10>]
+(__handle_domain_irq+0x60/0xb4)
+[ 2063.855061] [<c0391d10>] (__handle_domain_irq) from [<c08d34a0>]
+(gic_handle_irq+0x4c/0x90)
+[ 2063.855540] [<c08d34a0>] (gic_handle_irq) from [<c0301a8c>]
+(__irq_svc+0x6c/0x90)
+[ 2063.855728] Exception stack(0xea0b7c88 to 0xea0b7cd0)
+[ 2063.856098] 7c80:                   00b71b00 00000002 00000001
+00000000 c023c6c0 00000002
+[ 2063.856526] 7ca0: 15752a00 c14ff3e8 00000000 c023acc0 00000000
+eb67c050 60030013 ea0b7cd8
+[ 2063.856813] 7cc0: c094abb4 c0945578 60030013 ffffffff
+[ 2063.857384] [<c0301a8c>] (__irq_svc) from [<c0945578>]
+(__clk_recalc_rates+0x24/0x84)
+[ 2063.857931] [<c0945578>] (__clk_recalc_rates) from [<c09455a8>]
+(__clk_recalc_rates+0x54/0x84)
+[ 2063.858420] [<c09455a8>] (__clk_recalc_rates) from [<c09481bc>]
+(clk_core_set_parent_nolock+0x178/0x2a0)
+[ 2063.858846] [<c09481bc>] (clk_core_set_parent_nolock) from
+[<c094831c>] (clk_set_parent+0x38/0x90)
+[ 2063.859393] [<c094831c>] (clk_set_parent) from [<c094ea98>]
+(meson8b_cpu_clk_notifier_cb+0x44/0x88)
+[ 2063.859869] [<c094ea98>] (meson8b_cpu_clk_notifier_cb) from
+[<c0357074>] (notifier_call_chain+0x48/0x84)
+[ 2063.860302] [<c0357074>] (notifier_call_chain) from [<c035743c>]
+(__srcu_notifier_call_chain+0x44/0x98)
+[ 2063.860724] [<c035743c>] (__srcu_notifier_call_chain) from
+[<c03574a8>] (srcu_notifier_call_chain+0x18/0x20)
+[ 2063.861176] [<c03574a8>] (srcu_notifier_call_chain) from
+[<c0944b10>] (__clk_notify+0x7c/0xa8)
+[ 2063.861679] [<c0944b10>] (__clk_notify) from [<c0944bc8>]
+(clk_propagate_rate_change+0x8c/0xbc)
+[ 2063.862198] [<c0944bc8>] (clk_propagate_rate_change) from
+[<c0944bb8>] (clk_propagate_rate_change+0x7c/0xbc)
+
+
+Can anyone point me in the right direction to solve this?
+
+Thanks in advance
+*Ciao
+Piero
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
