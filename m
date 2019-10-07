@@ -5,19 +5,19 @@ X-Spam-Level:
 X-Spam-Status: No, score=-6.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1127CECE58C
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 15:31:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 68371ECE58C
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 15:53:24 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D810B21721
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 15:31:12 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 399D720679
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 15:53:24 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MfGtdfK3";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XNQKHVR2"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D810B21721
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KiHkHI4I";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jFJtBjNc"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 399D720679
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dnvVFPsn84tw6lUDomY64bGz26mu1gcgf7s/4Ph0cJ4=; b=MfGtdfK3yN7alu
-	4dHTXN+YqUOT9ETURxAMUlZMECc5RG2hCqa0hKRX2E1904XpLVVSK7ZtSghJTqnke9FT67AQqcGwk
-	Nm+3Ws449/3JAUS/V2FgwTWGXTWqC2Yc3+Cevtshm2Eeqx1R7pfvaxxUqavBkkmqrLa6plKLBP1Ve
-	jFhHT2UoyzmitO3EXwdDhG6IncpwqXMfw7X/cFNvyC9MybwnAHNkM/yk+nGXm39OopK56mm0Z8sJX
-	D0KyDs4unfBtHrp2CyAEy5+1gXsj097opKY4i0WB8Eo9aNiUZrSVgQgzvrD+gx8zw5/k8T8bImmot
-	YqhQgKW2NI8HpDDDi49g==;
+	List-Owner; bh=NGBRtbtrcliOjHbseqAADQNwD0B8vDVg0nkHtMbG7Uo=; b=KiHkHI4I9nGQNq
+	ykZPHV+8djxI/iT5Orwj5HpPKfj/h8Km2MS7GIHglYRZCnYctDSBDuJFQqo8hyggepmhsbWEmPy8Z
+	JYsDYp4NgC6LalhMIX5ZF5ZKIYBQaQEfkWpj6489rdUlVG8x9iCSTGQtrVCu73PVq0dHpg+mb61yZ
+	9Mqm7LqG2YkSpSLs5iD2ClV1nfINIlubhiDDZfuVTLZE/TFOFtd3QxJCUvD1CWGmqJb/zWjcg6W+E
+	A8RqsEbf3Es5IvcAx9x73F7erCd0y47XTzNSmPbJZyeEwhKu58KJJ2QF+vTSNPzBEU0x4ykKl24sH
+	oqXJ1UHQ8uWxs4SWKyDg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iHUyZ-0000BF-W7; Mon, 07 Oct 2019 15:31:08 +0000
+	id 1iHVK3-0007ps-Bk; Mon, 07 Oct 2019 15:53:19 +0000
 Received: from mail-io1-xd44.google.com ([2607:f8b0:4864:20::d44])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iHUyQ-0008SA-GP; Mon, 07 Oct 2019 15:30:59 +0000
-Received: by mail-io1-xd44.google.com with SMTP id q1so29575571ion.1;
- Mon, 07 Oct 2019 08:30:57 -0700 (PDT)
+ id 1iHVJu-0007hF-BC; Mon, 07 Oct 2019 15:53:12 +0000
+Received: by mail-io1-xd44.google.com with SMTP id w12so29580268iol.11;
+ Mon, 07 Oct 2019 08:53:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=d4hcT7mBp35uXHSVwUqNeV4V+B+eaf0dc/DbaSlAph0=;
- b=XNQKHVR2uoPGMAtS9PckZVazA5sBYNsa9mhHeQTYCZd507obrqq6yzVn3muywbCC9w
- wo+ndKBZ9UNVa4cy8iVCLIBtWXPPg0w5lcKPxdlUDRIEVruo44+BLb4j4hyD5q6DpGm4
- Gji7iCC918Xgnv4XLUVr4MJsooi9nkyLDUvIvAgddW+2TXByJq7yy6eH4o2vf5TFnGg+
- w2jCz3XCjqXKhv4jNCb3v1C1u7OHGuhC+cQk3ZZNQpZx1VkfMCXduNdJhB+H3drb0Xky
- xFD31ivqnGuNn2XnILy/HvPnx0CYesxQCm9vRSiSssFm6ruTBbiOrKq1nZCpecYt49gN
- ZD9g==
+ :cc; bh=Y0+KKOJG+TisZYwANPRDxoGgI9F6Pi0RrxyV+mcRIhQ=;
+ b=jFJtBjNcMzZT/dfV5DNd+SYdyhKORKldayK714j3ON/TvF4lEz54VZg0ohvI4G5pqF
+ lAWdRi7RPMXntGegumJYq6RIQrmDTg4porBhN27Lbv7Sk/7cJgqCZaCS2KEFkh/DrEaU
+ LG9AUPnMp1r3a8dLLYjdd+V1jld8BVZ4BY6JSnKVz+X5a0nXZfoiM5bwiQsJKqde/8BI
+ c6rJAW38SVFX+bvt4NqsXXg8Ra1WppUYCjZnx8ruBLTXBoEM9uhU1ezFtSRJV7TsPrkG
+ f5rSu/ObEDrsieCcbZrOtmnVt1Yi4ZHZt2KRd5ih6mqMcCroRAGJqtnXERea7kprkZ4t
+ JJeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=d4hcT7mBp35uXHSVwUqNeV4V+B+eaf0dc/DbaSlAph0=;
- b=m0dLNBhzj6dhcJy/Qld3pvDNXOLZABF51g2H8laf6dLKZAr2xB41vho1hFJhGskwcI
- 8PxWCxsYMcXs58ZKGmjokXlrVyvyHmfIv7OUjdnQijB9KUX15Wy0eccbNTlsNtSQXnKM
- N+qXpONbv4azaSFUgkwcY7sRXxsMu6QWypooMgpb85Z19yVYwUdwQRffRwMlmJ981yg3
- evlEpCpAyXwUd5NsX3M8NKGjA8mAgK3plINeXiJpRjTfE0SA80d/1OQJtzuFA2PsLD0S
- lbktQcSJ8t8nkxjHlY2Faqgk+zvraNaaRbSgsVzb5WC/C7P3vm/71FSu//C1UHwXIAnY
- LpuQ==
-X-Gm-Message-State: APjAAAV6THrF7U1Yd+lTLmC3R3wLctksEira1ckVgd9WVUWBvVgAX7rt
- lh/lWjpB/vc+tJwDeSOqt3zEvhsVf8wi4PET1nY=
-X-Google-Smtp-Source: APXvYqxpe2durmFMtM3vpWDBRud3gbR8qLIzCHYB0na4/zQaLD4Xtara1qgDIzbl+85++yeu5iQDy5tir7B4sAyQU60=
-X-Received: by 2002:a92:3ac3:: with SMTP id i64mr29073302ilf.221.1570462256975; 
- Mon, 07 Oct 2019 08:30:56 -0700 (PDT)
+ bh=Y0+KKOJG+TisZYwANPRDxoGgI9F6Pi0RrxyV+mcRIhQ=;
+ b=mz9e15DH9sDS0N+TwTaHC2/WID4sDj5OXrqCcb9Tz6zVd9CKqr4UBMpsUu9/rpOztE
+ Q2jllxr4LxqC4uzOwJzb9dDzqmGLCOakvbQijzVM7Vg4tV6zTQ2wbX+hSmDRl3sjSbKc
+ zA9WlJS97CeyHu3XnqeAefoDkoEN0rL+wob3+ifRjD7j3dt2f7t4I0whfzcEqtshXOUz
+ ljz5tBEaFq9MIFWAILE5eEB8w4NQMF52y2uTjqKsEPjMxA0/ElSQUxPSsysbQUCZhfRA
+ /j18ko0tfqQRR+O/FoBKpv6uMAMpaqnljhSk0ODZty/dptcyEWvbfN9TjhQiV0VTFXWv
+ OLqQ==
+X-Gm-Message-State: APjAAAX/FRUmTQWIXd96ENwsYomHYJKnwJ7lgLSqr1yqma5rsBSn1Jwt
+ CQpP5dBy7Zj6duK/JS/hZW4wGREkJ7p0fuEQBbk=
+X-Google-Smtp-Source: APXvYqwUmomEUUz3nspO76GFofpEr9Y5lkrzEIBCKloUqkS8g5O/eiwEu29XJ6ktN11Av8YdVnKFAgPHLckXUaGYYDE=
+X-Received: by 2002:a02:245:: with SMTP id 66mr2498022jau.30.1570463588898;
+ Mon, 07 Oct 2019 08:53:08 -0700 (PDT)
 MIME-Version: 1.0
 References: <20191007131649.1768-1-linux.amoon@gmail.com>
- <20191007131649.1768-3-linux.amoon@gmail.com>
- <8a74834e-5cfa-3f3b-9ba6-e88e265b67a0@baylibre.com>
-In-Reply-To: <8a74834e-5cfa-3f3b-9ba6-e88e265b67a0@baylibre.com>
+ <20191007131649.1768-6-linux.amoon@gmail.com>
+ <74ab98c7-0071-60e9-7613-56d15ad8c0ab@baylibre.com>
+In-Reply-To: <74ab98c7-0071-60e9-7613-56d15ad8c0ab@baylibre.com>
 From: Anand Moon <linux.amoon@gmail.com>
-Date: Mon, 7 Oct 2019 21:00:44 +0530
-Message-ID: <CANAwSgS=r_Rz0fc6GDsD7Rk6udq3LcYtB-Ag_=kjVa-EApchJQ@mail.gmail.com>
-Subject: Re: [RFCv1 2/5] arm64: dts: meson: Add missing pwm control gpio
- signal for pwm-regulator
+Date: Mon, 7 Oct 2019 21:22:56 +0530
+Message-ID: <CANAwSgRStPUi=naKOw+E=X-b699DnZ0Q0hYAGrUB8VKtN-fFqQ@mail.gmail.com>
+Subject: Re: [RFCv1 5/5] arm64/ARM: configs: Change CONFIG_PWM_MESON from m to
+ y
 To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191007_083058_547943_D23A1999 
-X-CRM114-Status: GOOD (  15.32  )
+X-CRM114-CacheID: sfid-20191007_085310_410592_0D44F6DD 
+X-CRM114-Status: GOOD (  19.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,54 +106,79 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi Neil,
 
-On Mon, 7 Oct 2019 at 19:50, Neil Armstrong <narmstrong@baylibre.com> wrote:
+On Mon, 7 Oct 2019 at 19:55, Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
 > On 07/10/2019 15:16, Anand Moon wrote:
-> > As per schematics add missing VDDCPUA_PWM and VDDCPUB_PWM
-> > gpio signal use to enable/disable the pwm regulator for DVFS.
+> > Using microSD card we cannot get the mainline kernel to boot
+>
+> What's the link with microSD card here ?
+
+Well I thought that the PWM failed stop's booting further on linux kernel.
+But looking into kernelcli.org it seem to be working fine, but not at my end.
+[0] https://storage.kernelci.org/media/master/v5.4-rc1-82-gc0e284ccfeda/arm64/defconfig/gcc-8/lab-baylibre/boot-meson-g12b-odroid-n2.txt
+
+>
+> > using mainline u-boot it fails with below logs.
+> > Build PWM_MESSON as build-in solve the issue.
 > >
-> > Fixes: d14734a04a8a (arm64: dts: meson-g12b-odroid-n2: enable DVFS)
+> > [    1.569240] meson-gx-mmc ffe05000.sd: Got CD GPIO
+> > [    1.599227] pwm-regulator regulator-vddcpu-a: Failed to get PWM: -517
+> > [    1.600605] pwm-regulator regulator-vddcpu-b: Failed to get PWM: -517
+> > [    1.607166] pwm-regulator regulator-vddcpu-a: Failed to get PWM: -517
+> > [    1.613273] pwm-regulator regulator-vddcpu-b: Failed to get PWM: -517
+> > [    1.619931] hctosys: unable to open rtc device (rtc0)
+> >
 > > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > > Cc: Jerome Brunet <jbrunet@baylibre.com>
 > > Cc: Neil Armstrong <narmstrong@baylibre.com>
 > > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 > > ---
-> >  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> > index a9a661258886..66262a6ab3fe 100644
-> > --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> > +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> > @@ -135,6 +135,8 @@
-> >
-> >               regulator-boot-on;
-> >               regulator-always-on;
-> > +             /* VDDCPUA_PWM */
-> > +             enable-gpios = <&gpio GPIOE_1 GPIO_ACTIVE_HIGH>;
-> >       };
-> >
-> >       vddcpu_b: regulator-vddcpu-b {
-> > @@ -154,6 +156,8 @@
-> >
-> >               regulator-boot-on;
-> >               regulator-always-on;
-> > +             /* VDDCPUB_PWM */
-> > +             enable-gpios = <&gpio GPIOE_2 GPIO_ACTIVE_HIGH>;
-> >       };
-> >
-> >       hub_5v: regulator-hub_5v {
-> >
+> > Odroid N2 Schematics says "GPIOC_6 should not pulled low if GPIOC is not
+> > work as SDCARD"
 >
-> Same as 5V_EN, This GPIO is handled by the BL301 SCP firmware, I'm personally against
-> adding this to the DT since it's out of control of Linux or any OS.
+> Sorry, what's the link with the PWM build-in, and your case ?
 >
-> This GPIO id controlles by the PSCI call to SCP to enable/disable
-> the CPU clusters.
->
-> Neil
 
-Thanks for your input's.
+Sorry I linked two issues with this commit message.
+
+> This comment is linked to the comment in the datasheet:
+> ""
+> If GPIOC is not work as SDIO port, please do not pull CARD_DET(GPIOC_6) low when system booting
+> up, to avoid romcode trying to boot from SD CARD.
+> ""
+> Seems pretty explicit for me.
+>
+
+Ok I will recheck this at my end.
+
+> > Is their any other approch to help resolve this issue.
+> >
+> > Boot log failed with cold boot:
+> > [0] https://pastebin.com/cEtWq2iX
+> > ---
+> >  arch/arm64/configs/defconfig | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> > index c9a867ac32d4..72f6a7dca0d6 100644
+> > --- a/arch/arm64/configs/defconfig
+> > +++ b/arch/arm64/configs/defconfig
+> > @@ -774,7 +774,7 @@ CONFIG_MPL3115=m
+> >  CONFIG_PWM=y
+> >  CONFIG_PWM_BCM2835=m
+> >  CONFIG_PWM_CROS_EC=m
+> > -CONFIG_PWM_MESON=m
+> > +CONFIG_PWM_MESON=y
+> >  CONFIG_PWM_RCAR=m
+> >  CONFIG_PWM_ROCKCHIP=y
+> >  CONFIG_PWM_SAMSUNG=y
+> >
+>
+> For these changes without the microSD fail description in the commit log :
+> Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+
+Thanks. I will rephrase this without linking the microSD card, with
+better commit message.
 
 Best Regards
 -Anand
