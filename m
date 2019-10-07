@@ -2,74 +2,76 @@ Return-Path: <SRS0=9NnP=YA=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-9.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6FFFBECE58C
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 13:17:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EC079ECE58C
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 13:17:55 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2F7172084D
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 13:17:20 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B9F332084D
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 13:17:55 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TN2BDChs";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U93WlJGy"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2F7172084D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="WRdClG79";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fBinECWV"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B9F332084D
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=P11QU0a/S2XsddYSfAf/T7cEYg0D2/JU9X2qouJotcw=; b=TN2BDChsKfTtYJ
-	ryT1DR5L7RZw/Ev3xq0zWXgeB0/KYf9WHF7XV1SPmgcThWjoP/okL/8IxgMvwYmW3sshPJ+4kUaje
-	huLML8NiqAR0N4qkr5ktoRvksrsirxoN14eA3OlMJDKf9yrbxmhfwdD87t4vROW1rPefaMWPAdIzx
-	PJdpDTTApQdd3EOkzQoxbv3UqG9brojqOONicIyO+SnB/eyQGU+UfzGyGAF44t80+LaAYG6APlz+q
-	U5fUzpPYPg/BHkOrBz8adIjg5/5J/Zf2Qq1HNZynfGSEaGfZ8fzo2zeb6qJQx/Ix1lBa4vf17arry
-	yRHzJcT+wgdPp8xYy/Dg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=GtdLDuMJyTfK32aa1+VW1l5OAbjRC/Jv4237HJF0wLs=; b=WRdClG791NOEPC
+	zSC02cTOP3fm/uJw+7JQIm9ZBxL9Mjole42XYadwf0RR4C4BDG3C+ScRUsbBWc31z5+iRVDRJ7pMk
+	7J2U9RgrsY5DXo9XT/6fJ91BXdc4YT258mE/YVlrzZnyxwjmuxzVEotFd8cdhVbXgOrJQCkt6C2Qd
+	eWF3zl+VbW9J0aRyh71cU3h9rSxoGJLz8+KBMUT2MWr12AuXqZb6I2BpBf4fZMWpoor0n13HVK3Zj
+	YOsBeR8iPP9vvuHXrYopUN+kq9GubnSUDSvsNHw4MDVGqV++d2i37JiSk+LD8RtPPUDSzaCtT3oQQ
+	ZB+ygDSh6qK13lv/D63w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iHSsv-0001ID-Cb; Mon, 07 Oct 2019 13:17:09 +0000
-Received: from mail-pf1-x444.google.com ([2607:f8b0:4864:20::444])
+	id 1iHStZ-00025N-Rm; Mon, 07 Oct 2019 13:17:49 +0000
+Received: from mail-pg1-x544.google.com ([2607:f8b0:4864:20::544])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iHSsl-00018n-Jx; Mon, 07 Oct 2019 13:17:01 +0000
-Received: by mail-pf1-x444.google.com with SMTP id a2so8638585pfo.10;
- Mon, 07 Oct 2019 06:16:58 -0700 (PDT)
+ id 1iHSt1-0001PK-Tk; Mon, 07 Oct 2019 13:17:19 +0000
+Received: by mail-pg1-x544.google.com with SMTP id 23so8218274pgk.3;
+ Mon, 07 Oct 2019 06:17:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=PwiaLPNEero/RDkqXHKNpda6jyXODSLqhlH8GfScxo4=;
- b=U93WlJGywOW4GYdmFpjLSbINCeD5e5GpJ2UlnKRkpeLbKA45F/xZjIQjq0CqmxWaRc
- rYF0hBu+qMVKCBEvYbVAEykbc/A21OMZHembtBRw3nR29KuAVu8WLk1p3euuN3vDw0H9
- h9tzVebTCZgobqlu8/sjCsg9Pq9stdW/1AYzLxTmNBLHnRJ6srFQrpw44A3TgwUHnbwt
- W7YQJpxSa4WvSTanPX6pG+mVVKLdr9OdP5PqhKoVXp8VbPAg2FRoSFb5qRayfQisyMf7
- iEnYEWz46FCUjnTIM1/pUI9OHquzBjIVoNtejSSZckTud93bBGD7/TqoMDuFTzu3QbWI
- ThEw==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=aQptgICcCtWSSBgk772ZatoxsYgICaTNG3vZM+tN2JI=;
+ b=fBinECWVUCIqe34f6Zm6eVHxOd/IF8rHVCJXk63l1nCydtUcpyb2geWtuN+s+Ay4gU
+ IYQjoki5Gx0y7dqhznL3n+0H0tkinm2T/CN9NHGCk9vudJJxYJdUrpB0OwWS/qXUivMC
+ xB0CuWqI5T8ka+YYVaSXrrfA/WjJHKvkNImhg79hHxu6RaHhy0FIW0y6uYG1MoVnIbkP
+ 1b2C0xnlTfa8ddknz2jCcTmGEUPTAeITZ6YjXFfbjR/Emrtso122HF7IOeC6DiU9zUFv
+ q30VrZtsw3M1yntt8ev2mhejPd5LRVFYqomJYMnX0ryYMAV8zu2Po9vZJOdttW1LnNHL
+ Mxlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=PwiaLPNEero/RDkqXHKNpda6jyXODSLqhlH8GfScxo4=;
- b=dt7J6khXCFI7D4ULlV0BbrBLf0sRZVgWTp5jp9js2ivSk5mBUYIbPNVxpB+wYdFqHE
- 57S7KMLxZJZs/ZHo7QsIXdYOyAqyDxbPF5pcMh4OYupM88RCMXIwDT8HG823OUNbh7/W
- 7P+ND6DQurjJ6wq0jO6GX9zSln00Oe/McH+DKHNo4PFvoJMwPSToA+xh/iqUjBGp5bte
- DL1r5CbLmhklIFYPsUWhiyIKBr+6mPY+dGF1M1iempVe3/DAGjiNBleDe69Nr6jkjjrz
- BlnQhQebjghwK9BPoyqzE6CmI8WnPB32S78R6Kih+jqd8ns2zMJKtXXHmkTa38Dw8cqS
- MVLw==
-X-Gm-Message-State: APjAAAUrg9hZz+Ns73/oVX7IK6p8+YjycNf9LxJ3e5tP/gE51R9b8idr
- 2pVibVUfgEbVsz2WBksnW6k=
-X-Google-Smtp-Source: APXvYqyvHEaEyr+JjSbY/h5Ukr9XMbNo6ALxq6sKOkJD/pII8Vb1ifPUfHXL2MqvRnu0ESu3/zKdCA==
-X-Received: by 2002:a62:82c8:: with SMTP id w191mr31574553pfd.99.1570454218199; 
- Mon, 07 Oct 2019 06:16:58 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=aQptgICcCtWSSBgk772ZatoxsYgICaTNG3vZM+tN2JI=;
+ b=VPzOhySXC27zf4yLcw/qHcjp94ZFcC+ZCR/4jH1iHCDw8xt8LZ51B2rJSiZWmnXWD7
+ SW0+0l+KNSP1pPDRUe66U6qoev2qF5FQV6tHJ6gUj8TpdoV/vF7M2vTsrYiodPohlZAv
+ P06/YG7L/zkr1Xv42AQF8nTHr98GQXNn4kw3sPPXCF+JBlkGA5cOtNxEQ7VEkVKfDUEu
+ AX8SAYuypkrVEfZXmzXXo3jqv5XXchC6WaUte3j+5VRL+9MNIFDYbsG2JoGKk9C4NlCX
+ URoGQfUFlykWeCToc7dYOW06JJVzIQiwsaqdHa5cokqV/7ftONRdhK4llP3+zfPEI7Vx
+ 9rdQ==
+X-Gm-Message-State: APjAAAVW/rh/R06B3rk59oWVe/oj0XkzJbae7nRkKFQEpHN3iRoybqh4
+ 5BsD185cwCKBVDnAHIcJbgzpwCUU
+X-Google-Smtp-Source: APXvYqzfY9skP87J/Jepml3CjVgEOVUZCdNt5zbuEYhEafhjGqPWB7v6/VCcFrt0DeUtkWOl/eN25Q==
+X-Received: by 2002:a17:90a:380a:: with SMTP id
+ w10mr33937550pjb.104.1570454232768; 
+ Mon, 07 Oct 2019 06:17:12 -0700 (PDT)
 Received: from localhost.localdomain ([103.51.74.138])
- by smtp.gmail.com with ESMTPSA id r186sm16938650pfr.40.2019.10.07.06.16.54
+ by smtp.gmail.com with ESMTPSA id r186sm16938650pfr.40.2019.10.07.06.17.09
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 07 Oct 2019 06:16:57 -0700 (PDT)
+ Mon, 07 Oct 2019 06:17:12 -0700 (PDT)
 From: Anand Moon <linux.amoon@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>,
@@ -77,14 +79,17 @@ To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Jerome Brunet <jbrunet@baylibre.com>,
  Neil Armstrong <narmstrong@baylibre.com>,
  Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Subject: [RFCv1 0/5] Odroid N2 failes to boot using upstream kernel & u-boot
-Date: Mon,  7 Oct 2019 13:16:44 +0000
-Message-Id: <20191007131649.1768-1-linux.amoon@gmail.com>
+Subject: [RFCv1 1/5] arm64: dts: meson: Add missing 5V_EN gpio signal for
+ VCC5V regulator
+Date: Mon,  7 Oct 2019 13:16:45 +0000
+Message-Id: <20191007131649.1768-2-linux.amoon@gmail.com>
 X-Mailer: git-send-email 2.23.0
+In-Reply-To: <20191007131649.1768-1-linux.amoon@gmail.com>
+References: <20191007131649.1768-1-linux.amoon@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191007_061659_652857_6B588446 
-X-CRM114-Status: GOOD (  10.26  )
+X-CRM114-CacheID: sfid-20191007_061716_390047_3A20BFF4 
+X-CRM114-Status: GOOD (  11.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,42 +108,32 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-We am trying to build the upstream u-boot and upstream kernel,
-but it fails to pass the initialization of PWM_MESON driver.
-So these patches help boot the kernel on microSD card.
+As per schematics add missing 5V_EN gpio signal to enable
+VCC5V regulator node.
 
-Patchs based on Linux 5.4-rc2
+Fixes: c35f6dc5c377 (arm64: dts: meson: Add minimal support for Odroid-N2)
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Boot log failed are shown below.
-[0] https://pastebin.com/cEtWq2iX
-
-[    1.569240] meson-gx-mmc ffe05000.sd: Got CD GPIO
-[    1.599227] pwm-regulator regulator-vddcpu-a: Failed to get PWM: -517
-[    1.600605] pwm-regulator regulator-vddcpu-b: Failed to get PWM: -517
-[    1.607166] pwm-regulator regulator-vddcpu-a: Failed to get PWM: -517
-[    1.613273] pwm-regulator regulator-vddcpu-b: Failed to get PWM: -517
-[    1.619931] hctosys: unable to open rtc device (rtc0)
-
-My guess their is not much issue with eMMC module, if their is
-other approach to resolve this issue, I will give this a try.
-
-Best Regards
--Anand
-
-Anand Moon (5):
-  arm64: dts: meson: Add missing 5V_EN gpio signal for VCC5V regulator
-  arm64: dts: meson: Add missing pwm control gpio signal for
-    pwm-regulator
-  arm64: dts: meson: Add missing regulator linked to VDDAO_3V3 regulator
-    to FLASH_VDD
-  arm64: dts: meson: Add missing regulator linked to VCCV5 regulator to
-    VDDIO_C/TF_IO
-  arm64/ARM: configs: Change CONFIG_PWM_MESON from m to y
-
- .../arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts | 13 +++++++++++++
- arch/arm64/configs/defconfig                        |  2 +-
- 2 files changed, 14 insertions(+), 1 deletion(-)
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+index 42f15405750c..a9a661258886 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+@@ -94,6 +94,9 @@
+ 		regulator-max-microvolt = <5000000>;
+ 		regulator-always-on;
+ 		vin-supply = <&main_12v>;
++		/* U12 NB679GD 5V_EN */
++		gpio = <&gpio GPIOH_8 GPIO_OPEN_DRAIN>;
++		enable-active-high;
+ 	};
+ 
+ 	vcc_1v8: regulator-vcc_1v8 {
 -- 
 2.23.0
 
