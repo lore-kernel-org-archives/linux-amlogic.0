@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 014C6ECE58C
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 14:21:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 85147ECE58C
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 14:25:32 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B890D206C2
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 14:21:41 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4413A2070B
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 14:25:32 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="u56oowv/";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="bnz/aAt5"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B890D206C2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="h/lHg47/";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="efZgUZF5"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4413A2070B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,64 +26,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vW7g8X/yGaaLeyz3+AsssxAKQesZGEhdMjGUTHNzvgg=; b=u56oowv/WIm9fJ
-	SGdtnC41gAvQ6E+x1DslFCJdDQ/mSYpBMMrjeRM8BOz7d1XYU2/Qx9DLQOvTkHnL6R2l2gQp9mq3N
-	HrtVlYA+C4ygM/1hcs77MuvFPW8+4Jr51pLRK3SKUk3CMzFvLcpSsZGzehFemQJYAMG4XyN/x5/6s
-	k7xGc8Xrkk4BRolsVeP8TVcnhGaN7X5f0VKvLSlr2rXfk0YPMl3ELDvGKbDn12Eba4H2den5HCqTm
-	hZW3ILhh3FEAH5cEmjm0BTV9z9FkMEOF2/19F2/VibClCEKEdscVkzbejf4io3Bg96GpIugcvSpN3
-	K/28mIgqzbjZb9I6WNEA==;
+	List-Owner; bh=SAHHT5qCosoazVvQfA2gbLsE2i7hwunGrV/Mr3BVcBY=; b=h/lHg47/So/k9V
+	dpUNEhoitcWaTZgF3uIqRe8EFZ+cdQh7R1lVJJSaqZyIzvKoEt7LxlYMl2epspbByfW5kzeyWNjGl
+	K/oRBDtnUL/Vr+03sNOsrSzofOVUByoR9hdqqU3fUG0nDTKgvhte4TI1BrLbMw2n4R2HdnhKJwl/f
+	/FQdtnOAB8tGUKdYaJ3gOWp58QeaCva/Ls95XLs0Ufn+GCXArZhwuvzkXYwffcLjT2/EFeUstvagG
+	f2jx//GyJBlKto6wmGIuVaXJsG5/JhJNLZklCAGbE+wyvtd3fOIR66fqghvIX85XBnZlXM59GI3Zz
+	ZccWjIzQ3/GEJu2R3seg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iHTtI-0001uv-1F; Mon, 07 Oct 2019 14:21:36 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1iHTx0-0003jy-Ea; Mon, 07 Oct 2019 14:25:26 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iHTss-0001VL-Cr
- for linux-amlogic@lists.infradead.org; Mon, 07 Oct 2019 14:21:12 +0000
-Received: by mail-wm1-x335.google.com with SMTP id f22so12558725wmc.2
- for <linux-amlogic@lists.infradead.org>; Mon, 07 Oct 2019 07:21:09 -0700 (PDT)
+ id 1iHTwo-0003Yg-WD
+ for linux-amlogic@lists.infradead.org; Mon, 07 Oct 2019 14:25:19 +0000
+Received: by mail-wr1-x441.google.com with SMTP id h4so6832624wrv.7
+ for <linux-amlogic@lists.infradead.org>; Mon, 07 Oct 2019 07:25:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=iEeU8q9Ahnt7r8NKzqzD34t4+E1vKmRH7RDHSVHwQp0=;
- b=bnz/aAt5cOFIhG74a5eXZmNcNS33345zgr8jzrq97SQOm8JEV4TAki6SNofAxfp7Pg
- UjIy/iNQm+eE8UVx+HJUGuXMhHj7YQLluLbZyCx39bCKOsHLapRq4Z4YLXP3e9esLlOX
- 1k3K5fCoyeulElNe1SUyuNJwkdHWjadimt5pW0xhJGwCu2LqxZlm0m+6EiKL0OlC9yjx
- CnhFesg2kp/RUncn5MWUKA5pOFo3TC38F+pQszU1UAxkLvHJeOKoavXiIvRbruVywxKg
- OG/zifyKdRvZDFpi4FOVJpgezroEVunRaagsjB1cgd0G9ojD3O3Ge3eIFAndAg8KQxEn
- nGIA==
+ bh=cGgqU5FZ9hPrtGJRd2I+1Ap7rhf7EjIt9QYpwcuLk/Y=;
+ b=efZgUZF5cLVYHSOO60cnyBk+FsMfnraD46TWyPXiy5hzShPHbYd5eEY73xm4gjuavp
+ Qwz1SuRsmwK+o9kdO5Sunh5ezOnCJi7oTHA69CB4QzFrYv1LYgNgiQLRyXY7TC7zrd59
+ 7RCk6C3ELKNRztGQMkd/gAREldSDx7NztVAa8djpakoTTo7C4+wlLdhr4sWiW1qw5zrd
+ /Uo9dSd68WFjED2zOavuztcGuvAb22S9l9nxXWMju+XsKZAs6G0C93+rsye3UlnvrwfE
+ W7W5xJNE9QPWr1ghlfoiEZ8PsBKLmvaLbp8qlHYeV9VYL0lNQB17lUngj90rWS+2Lwgs
+ g/BQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=iEeU8q9Ahnt7r8NKzqzD34t4+E1vKmRH7RDHSVHwQp0=;
- b=luGbQ5+e2XH96OygjCxe0R/LNU0KouxPIqrCBvnBnFyyQROMn3sHT1sbFThxBcdrwG
- lEi9dO1s2yCmIY4bA1E9LNA/5ywvba4vIKLZSZOS1rAX4pOfcfravBwrhN65DvArG62c
- RsHJWGRYRhOwgAvFiCX0wG7Errh/7qvwmNiCIGyJoEBg6df6FIj+zlfl2qSYUuLVgagr
- jlL+H8U7wAS8NvQbilQbuSS0Xc2UAIGIvlwuEHdA25Z7AOuKpIzmc40BaHLJuqgbXhin
- xCNjRfxuGdUc4+/DjLrx7db+afH57lxFi9A8KEFfqFwAW4QWD+z6VDRvz3N1Z1Igfg7A
- XkGg==
-X-Gm-Message-State: APjAAAVeKwqQF8nUEJB0TR7VinaXTtgOkDK22zY9rY0WsjgpuAd5dbYi
- Jk2Zh211Ic/txW6TuVEOq0BP2Q==
-X-Google-Smtp-Source: APXvYqxmaX3UmXJxvo6c0XK64HIMMHWXSeDTCJy0Q43C6A1JK3g0BjmDGXNq/qQrsYucE9S6vVhSSg==
-X-Received: by 2002:a1c:968b:: with SMTP id y133mr20215452wmd.56.1570458068193; 
- Mon, 07 Oct 2019 07:21:08 -0700 (PDT)
+ bh=cGgqU5FZ9hPrtGJRd2I+1Ap7rhf7EjIt9QYpwcuLk/Y=;
+ b=PRsk+1FmM3aKdyzAQJCuWrbOa+64dmmpdPWBUiQTcH7wkQzgS2au3Xj27z+hTkMLcj
+ wr5GlDETmvH6JOQjEYoppZdcWetmgVJhvb1IFwhMrIP/eiGGHb762xKKdBCnMxaNZUFf
+ ITxLIjp0NXLAfG6AymMK5riqTpadiFy1OxlhBHC5782IVi4lW/esSeqwUQX1wW2n3gJf
+ Fian6MWQGIOEP2qRP/7jf60b2ySeqCWuChBTX/3+XKfTDSLcUiMjwqfaUnWVKZwf1RlS
+ KtxaHK8LBkcquDmw7RI2EYE+nDjnGlIAPOa8N71v0L2o78hfaviBjlZHANXwBrXmv/o4
+ fZPg==
+X-Gm-Message-State: APjAAAU9Ch4t0QZXziLSaI1T8JnwJfEbXobeIfqaM7KExrQ9b5TWqIOB
+ qYv39b+rg6JCWvpDQcJBCRTuYw==
+X-Google-Smtp-Source: APXvYqzXBzT3O/f52LaKNS6iSa3cUa6jFPkUtfY+WCetJdRXbm+/0KX2QdCilrvAlzl1U4iFEIYTdQ==
+X-Received: by 2002:adf:f684:: with SMTP id v4mr20196261wrp.155.1570458312748; 
+ Mon, 07 Oct 2019 07:25:12 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id y13sm21141436wrg.8.2019.10.07.07.21.07
+ by smtp.gmail.com with ESMTPSA id m18sm31554792wrg.97.2019.10.07.07.25.11
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 07 Oct 2019 07:21:07 -0700 (PDT)
-Subject: Re: [RFCv1 4/5] arm64: dts: meson: Add missing regulator linked to
- VCCV5 regulator to VDDIO_C/TF_IO
+ Mon, 07 Oct 2019 07:25:11 -0700 (PDT)
+Subject: Re: [RFCv1 5/5] arm64/ARM: configs: Change CONFIG_PWM_MESON from m to
+ y
 To: Anand Moon <linux.amoon@gmail.com>, Rob Herring <robh+dt@kernel.org>,
  Mark Rutland <mark.rutland@arm.com>, Kevin Hilman <khilman@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Jerome Brunet <jbrunet@baylibre.com>,
  Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
 References: <20191007131649.1768-1-linux.amoon@gmail.com>
- <20191007131649.1768-5-linux.amoon@gmail.com>
+ <20191007131649.1768-6-linux.amoon@gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -136,16 +136,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <a6daf5e5-fadf-ca72-fc7b-1789abaab605@baylibre.com>
-Date: Mon, 7 Oct 2019 16:21:07 +0200
+Message-ID: <74ab98c7-0071-60e9-7613-56d15ad8c0ab@baylibre.com>
+Date: Mon, 7 Oct 2019 16:25:11 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20191007131649.1768-5-linux.amoon@gmail.com>
+In-Reply-To: <20191007131649.1768-6-linux.amoon@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191007_072110_460131_547A3E22 
-X-CRM114-Status: GOOD (  17.10  )
+X-CRM114-CacheID: sfid-20191007_072515_055647_C02270C0 
+X-CRM114-Status: GOOD (  19.42  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -165,40 +165,62 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 07/10/2019 15:16, Anand Moon wrote:
-> As per schematics add missing VCCV5 power supply to VDDIO_C/TF_IO
-> regulator. Also add TF_3V3N_1V8_EN signal name to gpio pin.
+> Using microSD card we cannot get the mainline kernel to boot
+
+What's the link with microSD card here ?
+
+> using mainline u-boot it fails with below logs.
+> Build PWM_MESSON as build-in solve the issue.
 > 
-> Fixes: c35f6dc5c377 (arm64: dts: meson: Add minimal support for Odroid-N2)
+> [    1.569240] meson-gx-mmc ffe05000.sd: Got CD GPIO
+> [    1.599227] pwm-regulator regulator-vddcpu-a: Failed to get PWM: -517
+> [    1.600605] pwm-regulator regulator-vddcpu-b: Failed to get PWM: -517
+> [    1.607166] pwm-regulator regulator-vddcpu-a: Failed to get PWM: -517
+> [    1.613273] pwm-regulator regulator-vddcpu-b: Failed to get PWM: -517
+> [    1.619931] hctosys: unable to open rtc device (rtc0)
+> 
 > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > Cc: Jerome Brunet <jbrunet@baylibre.com>
 > Cc: Neil Armstrong <narmstrong@baylibre.com>
 > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts | 3 +++
->  1 file changed, 3 insertions(+)
+> Odroid N2 Schematics says "GPIOC_6 should not pulled low if GPIOC is not
+> work as SDCARD"
+
+Sorry, what's the link with the PWM build-in, and your case ?
+
+This comment is linked to the comment in the datasheet:
+""
+If GPIOC is not work as SDIO port, please do not pull CARD_DET(GPIOC_6) low when system booting
+up, to avoid romcode trying to boot from SD CARD.
+""
+Seems pretty explicit for me.
+
+> Is their any other approch to help resolve this issue.
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> index 6bd23a1e7e1d..5daf176452f7 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> @@ -66,11 +66,14 @@
->  		regulator-min-microvolt = <1800000>;
->  		regulator-max-microvolt = <3300000>;
->  
-> +		/* TF_3V3N_1V8_EN */
->  		gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
->  		gpios-states = <0>;
->  
->  		states = <3300000 0>,
->  			 <1800000 1>;
-> +		/* U16 RT9179GB */
-> +		vin-supply = <&vcc_5v>;
->  	};
->  
->  	flash_1v8: regulator-flash_1v8 {
+> Boot log failed with cold boot:
+> [0] https://pastebin.com/cEtWq2iX
+> ---
+>  arch/arm64/configs/defconfig | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index c9a867ac32d4..72f6a7dca0d6 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -774,7 +774,7 @@ CONFIG_MPL3115=m
+>  CONFIG_PWM=y
+>  CONFIG_PWM_BCM2835=m
+>  CONFIG_PWM_CROS_EC=m
+> -CONFIG_PWM_MESON=m
+> +CONFIG_PWM_MESON=y
+>  CONFIG_PWM_RCAR=m
+>  CONFIG_PWM_ROCKCHIP=y
+>  CONFIG_PWM_SAMSUNG=y
 > 
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+For these changes without the microSD fail description in the commit log :
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
