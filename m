@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-9.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D5255C47404
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 13:18:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C2F5BECE58C
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 13:18:20 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A86082084D
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 13:18:00 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 85BDE2084D
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 13:18:20 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="h2NrT6hB";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YwWpqvPJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A86082084D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="aAE5Pu0/";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fuq8L5e8"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 85BDE2084D
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,51 +27,51 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zKUDBgijz9/Jq+Yi0djhGS6J9cGKl4eXYNgrGPsvamI=; b=h2NrT6hBYf1i1g
-	yAskzoj7GUrtPCwwyqhlWub0KiEpXPnL1n68UiPCvCGNIh24vETz9UBxl2W3PqU2s6wtYmAsn3lki
-	iTH2P/alQMGys6uisX42eey6zazue7/8gaMY30djO9fVukswyDGZnzOLNN3o3xFbT/TuvofBSQz9g
-	WdtEda6tEP12S6bgbODW5BQ9vMIn6Q/uVk40hH4CRT5msOEPSOUGC+gjTpRk/zZ3hbS4FxC92kagV
-	qdE2jg8qq0+S+2Gv5P3ZmURqwNnr8VMF7K9qjUDWWkglEi4jOFKtd1B7+VqGATF1m67u9SXZZG8Iz
-	oc9k1bgxMccz4K9XfA6w==;
+	List-Owner; bh=uAgLKKnVMN5q0ATqZu8TinZfPpWNV0ASButIUmrr2g0=; b=aAE5Pu0/H9ec2h
+	uEgYyizwlP0U1aoTOYg/5fbxef7GNicNILtkzpCx6wczXRC7dkEtnA5jV2S+3ELm9JHObjaiVrVSM
+	i9tsrVl7gpxErpE3HZRq07WkeGALr2qgGOviimO83PjRRKpKzhmi2Y9RkakCEPFtox739wKAU7xor
+	dodDswEctbpPmo9Gn7W46vLmW24zYjqxar5idxmfYD/vbtt6lc5sQY7FcXordYzyPxPEAbyroPmBm
+	/8TJQSRGl2jm636FFjEYnupLxy1gLGM6S48V/35MWcfni9wjktOVl4gZxIESDHp2VrGKwPpOktkjW
+	XHo6YUuqP7CeqdurNJwQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iHStf-0002A0-Kg; Mon, 07 Oct 2019 13:17:55 +0000
-Received: from mail-pg1-x542.google.com ([2607:f8b0:4864:20::542])
+	id 1iHSty-0002TZ-Ds; Mon, 07 Oct 2019 13:18:14 +0000
+Received: from mail-pf1-x442.google.com ([2607:f8b0:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iHSt3-0001X5-IV; Mon, 07 Oct 2019 13:17:21 +0000
-Received: by mail-pg1-x542.google.com with SMTP id i32so901716pgl.10;
- Mon, 07 Oct 2019 06:17:17 -0700 (PDT)
+ id 1iHSt7-0001bl-BR; Mon, 07 Oct 2019 13:17:22 +0000
+Received: by mail-pf1-x442.google.com with SMTP id y72so8617451pfb.12;
+ Mon, 07 Oct 2019 06:17:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=c9wnC908x8Dc2ovfvaEIwhdZFAXDuGhcSt8cyx50jRo=;
- b=YwWpqvPJtwEpzVZMlfk5DEXF+OvWK+s+K9aWVNRyvA/uzd2w3N0n9BHxibOLIGgpCX
- 9s8gt/Ru3gD0HTSBH79mBN6zJfcBsR1iQ19s1RSO5KuCIerBSnosMeqwsQYIRuBfTSXt
- j9T/Yz9zT2f7e2FZas6Li+b3i3O304LBu65wWHGUf3iPY9tpKo1A7BmKhE8d72L+DWyg
- eriv8XF4lneIamLiwQvSHqWgp1QOFDQLtjY2faLQJ7gARQ0Q4+tXv2n1rHX8XgwnEtBo
- OMWuoj+Nw7ehynSS3DSR1pNTu8PGFdRVBl9m3yZPZx6xSlPYFLILx+mxq+dAcu0Q6DBo
- smBQ==
+ bh=KoaZxzLVm/DwefngcDmoS+KKvyssprZYYbYsX24hxTA=;
+ b=fuq8L5e8HT5X5j5AtOK4CFur/2UqrGH8CyIA/PG4EG4QYDarWYNEvGf6D3BzesNav9
+ ZgRBRvgF6dkQp5IioSG+FFLw5bWQR2+dFhqrdD09l2NvpGnH3aIY7s5CG2WSU2rZhFtw
+ LDArsDCvRAVINmC3xzbXglsRf2yRyMoDOq3uq2w4t3TZXl9iqEqqnWCSzGRPBFvFxiE8
+ dqB+UAbnJhwH5osdIri6HrZuROnQk36NSrsebN6r60EvqVetqIx7aRPp+SIWt0c3BJV/
+ KVDAFY13Ci5eDCgobHwIN2YnNgUKZkujuk7bViJN2cviZQxgdmvrtlmAwXA1qvbz3O58
+ IUrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=c9wnC908x8Dc2ovfvaEIwhdZFAXDuGhcSt8cyx50jRo=;
- b=jRLzOVzrDwmQEviTBQmB+qI6MubLufAZ/QzToRuLJuKtoGGcjjVyK6KBaqDMgLeWRm
- ApDtWM4ATjfxRLFjxUGoBe+25PYzVgdEgV/N6wZr8mog5iJPH3Bh8nL5FV3I/+aaoApn
- 0P1BIrv50o8Gurx0dBKvrIllUZCp6jXOuGI9LCJH5NmREhEuM04y3HjcWQ2yUbQmdOYt
- N36+2Ko1aop+NfzzDslfvv625x/YWamplgu+PkQmG+EBhjfU96PX+7qYpW0D4GMksXPh
- ViMvSX6+jCv77izNsGsClz/uELOrUCCTIPeqWIpQLGPPOGXZXluJZvz/7IGl1lXo7bqu
- 7bnw==
-X-Gm-Message-State: APjAAAUmPgYZ0ecWdxgtMM6LD2s/Z9IxRIoOLVb46MApG52pyb4q3NM/
- PqLzlVxq5m56bU8qn/UxUNM=
-X-Google-Smtp-Source: APXvYqy6LK+V/L4wpvKfrkRzRZD8R95qPwJMkTBR0Y0ZiyfkdL06PzRvWTUvyg1QUlf2W/7+0HzEIw==
-X-Received: by 2002:a17:90a:2744:: with SMTP id
- o62mr32896684pje.139.1570454236533; 
- Mon, 07 Oct 2019 06:17:16 -0700 (PDT)
+ bh=KoaZxzLVm/DwefngcDmoS+KKvyssprZYYbYsX24hxTA=;
+ b=TjHHDi3LF1gyywV5CCoZoYPieldA2WN70cQ/zRdi/FXNU1v9kyxP+s1ScxqdgtmoYF
+ iOKMrdx0GcVpvRJNJhnxgtgo3gHvZ12HLvZCw2FtqmWspjh8ge7Fyo94dxMMSfMwZEh7
+ /JUyQqJyty+c8hK78HTJDyr1aWPdwP8wrHIg0zIno/YRrpeIgld2whuJT7nvKdSRCsAQ
+ 83HBcD4APmUItEyfuNHbqtvqnDZsB1MNN2CTinRgMN03gzTrgh8eHlizF3D50ympAzim
+ 86AcDALaRHijWc4iBTGcPKPn5ccXEWASHxv/i1GRBPksrclSQA3NikQrxIDgdJpwPojQ
+ qprQ==
+X-Gm-Message-State: APjAAAVF+DGru6KvJP/34cRtdXuVL2jMnzLxdBTWpcpIl1ces+fXlZZB
+ wlYyiPjR80PumoImfQX9KmE=
+X-Google-Smtp-Source: APXvYqx797i05121y81HVrKKU0fXm5V5dGZoKCAXND16sYYS7D7G9dCUXRYLbrJW45fVkM4bXjS7mQ==
+X-Received: by 2002:a17:90a:2687:: with SMTP id
+ m7mr32683118pje.25.1570454240627; 
+ Mon, 07 Oct 2019 06:17:20 -0700 (PDT)
 Received: from localhost.localdomain ([103.51.74.138])
- by smtp.gmail.com with ESMTPSA id r186sm16938650pfr.40.2019.10.07.06.17.13
+ by smtp.gmail.com with ESMTPSA id r186sm16938650pfr.40.2019.10.07.06.17.16
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 07 Oct 2019 06:17:16 -0700 (PDT)
+ Mon, 07 Oct 2019 06:17:20 -0700 (PDT)
 From: Anand Moon <linux.amoon@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>,
@@ -79,17 +79,17 @@ To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Jerome Brunet <jbrunet@baylibre.com>,
  Neil Armstrong <narmstrong@baylibre.com>,
  Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Subject: [RFCv1 2/5] arm64: dts: meson: Add missing pwm control gpio signal
- for pwm-regulator
-Date: Mon,  7 Oct 2019 13:16:46 +0000
-Message-Id: <20191007131649.1768-3-linux.amoon@gmail.com>
+Subject: [RFCv1 3/5] arm64: dts: meson: Add missing regulator linked to
+ VDDAO_3V3 regulator to FLASH_VDD
+Date: Mon,  7 Oct 2019 13:16:47 +0000
+Message-Id: <20191007131649.1768-4-linux.amoon@gmail.com>
 X-Mailer: git-send-email 2.23.0
 In-Reply-To: <20191007131649.1768-1-linux.amoon@gmail.com>
 References: <20191007131649.1768-1-linux.amoon@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191007_061717_950457_42E729F3 
-X-CRM114-Status: GOOD (  10.56  )
+X-CRM114-CacheID: sfid-20191007_061721_408836_6A2C218A 
+X-CRM114-Status: GOOD (  11.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,40 +108,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-As per schematics add missing VDDCPUA_PWM and VDDCPUB_PWM
-gpio signal use to enable/disable the pwm regulator for DVFS.
+As per schematics add missing VDDAO_3V3 power supply to FLASH_VDD
+regulator. Also add TFLASH_VDD_EN signal name to gpio pin.
 
-Fixes: d14734a04a8a (arm64: dts: meson-g12b-odroid-n2: enable DVFS)
+Fixes: c35f6dc5c377 (arm64: dts: meson: Add minimal support for Odroid-N2)
 Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc: Jerome Brunet <jbrunet@baylibre.com>
 Cc: Neil Armstrong <narmstrong@baylibre.com>
 Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-index a9a661258886..66262a6ab3fe 100644
+index 66262a6ab3fe..6bd23a1e7e1d 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
 +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-@@ -135,6 +135,8 @@
+@@ -51,9 +51,12 @@
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
  
- 		regulator-boot-on;
++		/* TFLASH_VDD_EN */
+ 		gpio = <&gpio_ao GPIOAO_8 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
  		regulator-always-on;
-+		/* VDDCPUA_PWM */
-+		enable-gpios = <&gpio GPIOE_1 GPIO_ACTIVE_HIGH>;
++		/* U18 FC8731-09VF05NRR */
++		vin-supply = <&vddao_3v3>;
  	};
  
- 	vddcpu_b: regulator-vddcpu-b {
-@@ -154,6 +156,8 @@
- 
- 		regulator-boot-on;
- 		regulator-always-on;
-+		/* VDDCPUB_PWM */
-+		enable-gpios = <&gpio GPIOE_2 GPIO_ACTIVE_HIGH>;
- 	};
- 
- 	hub_5v: regulator-hub_5v {
+ 	tf_io: gpio-regulator-tf_io {
 -- 
 2.23.0
 
