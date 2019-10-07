@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-6.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2A205ECE58C
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 15:54:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E0CDDC47404
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 15:55:18 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F047720679
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 15:54:17 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B53602070B
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 15:55:18 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GXv5NWJ2";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GIm5xSbR"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F047720679
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="cPW20QOf";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ckvqu/Vo"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B53602070B
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,59 +26,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FSldB8hXrJqfEA1pX0Wng0t/MNbD9WGgkl9TomE0Wf8=; b=GXv5NWJ2owgnyS
-	WZKnfzd3lsITmDLMxajryBxzx4TYh/6Rfwr1vfWYhtTzdAO3hcWKTvAn9E+gHkVMLLYvQmeykDO0L
-	DnKf2O1ITk6u9l0onBCbEDJa9Zg3Glh18oyihDFTscFE3IRH5lXPKj88I2gdmvleR1hzcEmW+eAcT
-	iEbFmP68gogTGWf+PpuFMTvdT9EvOgTdASYEa2bl5tir/i76SO9c4ABapH8LLaj3w35oW00QGqo+g
-	/Xso3CecOKz9mNynoBkeP0TcQZPqy6bpYvujCWAgIPAUmzyCnr4+e1scOSv9oGW0gfcNJsjWBUiPM
-	96HmwXLyItu7tFsxcdMQ==;
+	List-Owner; bh=ab7lj9sGWVsPOje3gl4uV+tzHfJfJuWbR+NRAeeXAss=; b=cPW20QOfD4Pfc0
+	aVrEjc9GFgSHWyT6yfC+3GlPAs3yIhEXyvSeXEKwA0hDnCSiae4llkfnruEOCeDW3wd3C6VWsEsKL
+	F3cAazhRqlls007Gt+cUthQMfGJQCmom3WfmssHxayMWLaJ+qUm51tEoJtI079SkP1S4WcJ6gD2WL
+	2A96Gr8n+NEHCKiYeaE6HKcFFP7LxP3M1TQLMfKies3v1/9RJ8sMInIT1C1+Dr9z5EZodoPLZp6uX
+	n1SDS+NVBzc8f6rmxjDJzAMAMraL7gjrX8EAZVEvlGExd4F+FiD/ihk3LgDPDpb9a1+9OBGkN4oim
+	h+ff85LMevJd1Se06S5Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iHVKv-000894-Rs; Mon, 07 Oct 2019 15:54:13 +0000
-Received: from mail-io1-xd44.google.com ([2607:f8b0:4864:20::d44])
+	id 1iHVLu-0001Je-48; Mon, 07 Oct 2019 15:55:14 +0000
+Received: from mail-io1-xd41.google.com ([2607:f8b0:4864:20::d41])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iHVKo-00081A-FP; Mon, 07 Oct 2019 15:54:07 +0000
-Received: by mail-io1-xd44.google.com with SMTP id q1so29760550ion.1;
- Mon, 07 Oct 2019 08:54:06 -0700 (PDT)
+ id 1iHVLZ-0008Jy-Q4; Mon, 07 Oct 2019 15:54:55 +0000
+Received: by mail-io1-xd41.google.com with SMTP id n26so29615384ioj.8;
+ Mon, 07 Oct 2019 08:54:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=oOKcZv1B2M+ysN8LJmTMwi1RT7cbsvdwnRry27TboAA=;
- b=GIm5xSbRI50sJepzUbwycg7NDvMt3BT+3RYQ1Ak3PHk03MA/wlw9SqTNGY2DfIZkI3
- vzloLLiQdo1Im+2BoTX2drQ9SytWBxd+eHhHN+oxkN83GrWLEW2lR8fnp2/7fI3yPVJk
- ZxOm4F1VeDXgpPbLMuAjDt3XlVRxikDPzHve8KYJuOw5hyLbMGGgxDCmn4YkVI3ivd7q
- +qC9HjO+buQM/o2qZs44GNytFS6dr+QBe4nE9YfUXJ9tYuB3aUliVkTo2PYIw168NusB
- jYzgE62kDvg5lylYW9+xxyGY9aRNG6dfE/sjjE4tsJNb9Fkc+4mHngnT1fhm2fIWSs2U
- RT8Q==
+ :cc; bh=lvpOYPT25Dz/vPtn4WUNNAsTQj8w9iYHYk37s9wmbRA=;
+ b=Ckvqu/VoFwKFHldPlCQQ7rGN0El4oSw62jZdcCzu59LwyF2msfcDQM63j0TmFd2YxT
+ WAe3o/ieROixTeOWj5cRNIdhGzfdb3SSQ3c2/0hAmI4vacwT/AjZ4HdH47oBJz13v1Xr
+ Zu8ism2Y1fiki6FPQl3fWyevesoLjP1eV251spvajxesKUS2hbYoN6+cWKrr9CAo71KK
+ tRL3LBH1bAqTsv2FhLoatmnhFgfI8Mfg4LHc7RACVt965MBiLo30hVr5jrP8l7NJI/kw
+ p3e7Ti728xG16cOQ5s+unqsH4DBrAZ3fE9TTt05hfU0+FOECcfP4b/OA8wKIHm+CJuwV
+ 9tVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=oOKcZv1B2M+ysN8LJmTMwi1RT7cbsvdwnRry27TboAA=;
- b=TjPmXVGuCV3Pz3VNEwdWCwyG3j1rE3uI0ekSqfcSCpNWnwvXHlE0mmbCx2DKCYmtBB
- 8SQJnSII2n/o0EMDX2aoUkzkk1Q2i80Q8fz85Nupr7rqRFgabydWP9/dIq+mgrKTd08B
- LOSMjZ4Az4HavbPA3ZtegbiEe4tp2738zvJFatLOXfsZ35B6doPqDuOT+wvZceH2hna3
- OZPAyzL71Xg16xOO2/A576l4nW9UHhxji7na1ntCZdbrFBO5YjJWtjKUv9vT+/pDMveW
- bBByR3Nrz3Q3oSY8EyqsEJ3Fa043yAooEM60jAL0DA3rJ3JfxdmwBrAT0XZHuDbEpoLw
- HySA==
-X-Gm-Message-State: APjAAAUNrX4kxq4XIouN/1SiHtx94sLMMX5qPVBuT7N2Eliy6RLn0iXz
- Gi3HaNxAL2yDAVzDNzEv/I3O6eWFION/zjynWBc=
-X-Google-Smtp-Source: APXvYqw9T09ClSC4idvRRaaJZz/xKErgE5SB3WxVYBhzuMFYdqY2HrLZiaXgYCS9faKiSyduxgwe6sfmi9HXu2ybLSY=
-X-Received: by 2002:a02:c983:: with SMTP id b3mr27831643jap.120.1570463645906; 
- Mon, 07 Oct 2019 08:54:05 -0700 (PDT)
+ bh=lvpOYPT25Dz/vPtn4WUNNAsTQj8w9iYHYk37s9wmbRA=;
+ b=fQZD1nS//aqYq2sROjHvRwxgyyvMWmwKuUuuCsAcTH08K1UuVfVNFnsVtZMzn5+Agi
+ neIK8c0ADlSTUl88kTybhVb6yYQpdXphmvHZ9oJn9U9ZQv7dq2bkUx0yWed/73meImZI
+ WA4FMm1+pDl7HLWUPZZ6XrhYGdCM3NeQj6M9Hxcv8ZlHmtmCIsg/e8ec8QI2tfdN5Twz
+ eiq+wRFfo0xdjE635+lzWdjlknypI5vEl6TeJnOjL/Z7Y9wdiZE7d4bDXUTgDE8DEUAC
+ TDQApLixEKnodcE7lHwqnx/PLXOtdqTLlKKkPOuGq8fpIpenIlXO5j9N2fpnX79zyLzV
+ 3aMg==
+X-Gm-Message-State: APjAAAUCcF9crTMZ9nZlLRbKVGt9WUBJb3652lpcvnYWwWe298PVuIA5
+ 9rvO3hMNX/kwgGiPj1NXtwMXlOMuHck803Mgwbk=
+X-Google-Smtp-Source: APXvYqxi4nNcdgpdM7NsVyNP5M/JKLLRb6BMM4Kll8kUSaYi7x+Qj5bGG21aaEgdWhPttIekzf3iOaMHq7JDv5ThOfI=
+X-Received: by 2002:a02:2b2e:: with SMTP id h46mr27703157jaa.141.1570463693043; 
+ Mon, 07 Oct 2019 08:54:53 -0700 (PDT)
 MIME-Version: 1.0
 References: <20191007131649.1768-1-linux.amoon@gmail.com>
- <20191007131649.1768-4-linux.amoon@gmail.com>
- <b73a1302-90ae-f1db-ff43-84d56ca4ba39@baylibre.com>
-In-Reply-To: <b73a1302-90ae-f1db-ff43-84d56ca4ba39@baylibre.com>
+ <20191007131649.1768-5-linux.amoon@gmail.com>
+ <a6daf5e5-fadf-ca72-fc7b-1789abaab605@baylibre.com>
+In-Reply-To: <a6daf5e5-fadf-ca72-fc7b-1789abaab605@baylibre.com>
 From: Anand Moon <linux.amoon@gmail.com>
-Date: Mon, 7 Oct 2019 21:23:53 +0530
-Message-ID: <CANAwSgQjKRAKV2wycZ7QFq1CS5jr_ABgvFb+pGMHWTxgFR8wPQ@mail.gmail.com>
-Subject: Re: [RFCv1 3/5] arm64: dts: meson: Add missing regulator linked to
- VDDAO_3V3 regulator to FLASH_VDD
+Date: Mon, 7 Oct 2019 21:24:41 +0530
+Message-ID: <CANAwSgQBMzkdnuHc8_hFx0+Es2PWmCwgeqykCTieZ3BtTK1W7A@mail.gmail.com>
+Subject: Re: [RFCv1 4/5] arm64: dts: meson: Add missing regulator linked to
+ VCCV5 regulator to VDDIO_C/TF_IO
 To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191007_085406_519004_67607AD7 
-X-CRM114-Status: GOOD (  13.19  )
+X-CRM114-CacheID: sfid-20191007_085453_848705_AF2D323A 
+X-CRM114-Status: GOOD (  13.29  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,8 +109,8 @@ Hi Neil,
 On Mon, 7 Oct 2019 at 19:51, Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
 > On 07/10/2019 15:16, Anand Moon wrote:
-> > As per schematics add missing VDDAO_3V3 power supply to FLASH_VDD
-> > regulator. Also add TFLASH_VDD_EN signal name to gpio pin.
+> > As per schematics add missing VCCV5 power supply to VDDIO_C/TF_IO
+> > regulator. Also add TF_3V3N_1V8_EN signal name to gpio pin.
 > >
 > > Fixes: c35f6dc5c377 (arm64: dts: meson: Add minimal support for Odroid-N2)
 > > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
@@ -122,22 +122,24 @@ On Mon, 7 Oct 2019 at 19:51, Neil Armstrong <narmstrong@baylibre.com> wrote:
 > >  1 file changed, 3 insertions(+)
 > >
 > > diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> > index 66262a6ab3fe..6bd23a1e7e1d 100644
+> > index 6bd23a1e7e1d..5daf176452f7 100644
 > > --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
 > > +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> > @@ -51,9 +51,12 @@
-> >               regulator-min-microvolt = <3300000>;
+> > @@ -66,11 +66,14 @@
+> >               regulator-min-microvolt = <1800000>;
 > >               regulator-max-microvolt = <3300000>;
 > >
-> > +             /* TFLASH_VDD_EN */
-> >               gpio = <&gpio_ao GPIOAO_8 GPIO_ACTIVE_HIGH>;
-> >               enable-active-high;
-> >               regulator-always-on;
-> > +             /* U18 FC8731-09VF05NRR */
-> > +             vin-supply = <&vddao_3v3>;
+> > +             /* TF_3V3N_1V8_EN */
+> >               gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
+> >               gpios-states = <0>;
+> >
+> >               states = <3300000 0>,
+> >                        <1800000 1>;
+> > +             /* U16 RT9179GB */
+> > +             vin-supply = <&vcc_5v>;
 > >       };
 > >
-> >       tf_io: gpio-regulator-tf_io {
+> >       flash_1v8: regulator-flash_1v8 {
 > >
 >
 > Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
