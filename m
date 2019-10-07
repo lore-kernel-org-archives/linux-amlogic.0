@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6C1CBECE58C
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 14:21:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 014C6ECE58C
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 14:21:42 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3ECB72173B
-	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 14:21:10 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B890D206C2
+	for <linux-amlogic@archiver.kernel.org>; Mon,  7 Oct 2019 14:21:41 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jE9NY51g";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="yTafRmvi"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3ECB72173B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="u56oowv/";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="bnz/aAt5"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B890D206C2
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,64 +26,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Nf9rUL/nci+23hnCbeLMYiLJ059SWBYxQW3iv1VHRbw=; b=jE9NY51gvz5l6a
-	EGUwap7DMzM9IV1/2CnNC+axWPMTpAB9aTGRE2Ep04GtIYKdSewQWXIaUmGhDNITga46LKqE094QJ
-	9lOlYJc5wL4oKU1va2Ell2sDfKHfhmj2XNZSd03LcCRzSs8D2c70jYSOSAjyXgp/b+w2d1ph/o9ya
-	FJvu3sbNHDp6uPk86da7zEzz0hf8TYNoSK5L9A/queWmFAhJV7Tp9WVSRxVDVSfgrsFA4W0u3DuYl
-	pORQaJifrlb3vMX7mg26hXtuCnu6lMYobqyVom/jm4SYnSYIyB8viJhOOxSRiY9uqO11XQS9MGbDj
-	cnvLV8UcApSqUuw4s+iw==;
+	List-Owner; bh=vW7g8X/yGaaLeyz3+AsssxAKQesZGEhdMjGUTHNzvgg=; b=u56oowv/WIm9fJ
+	SGdtnC41gAvQ6E+x1DslFCJdDQ/mSYpBMMrjeRM8BOz7d1XYU2/Qx9DLQOvTkHnL6R2l2gQp9mq3N
+	HrtVlYA+C4ygM/1hcs77MuvFPW8+4Jr51pLRK3SKUk3CMzFvLcpSsZGzehFemQJYAMG4XyN/x5/6s
+	k7xGc8Xrkk4BRolsVeP8TVcnhGaN7X5f0VKvLSlr2rXfk0YPMl3ELDvGKbDn12Eba4H2den5HCqTm
+	hZW3ILhh3FEAH5cEmjm0BTV9z9FkMEOF2/19F2/VibClCEKEdscVkzbejf4io3Bg96GpIugcvSpN3
+	K/28mIgqzbjZb9I6WNEA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iHTsn-0001RW-Mi; Mon, 07 Oct 2019 14:21:05 +0000
-Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
+	id 1iHTtI-0001uv-1F; Mon, 07 Oct 2019 14:21:36 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iHTsk-0001QW-I5
- for linux-amlogic@lists.infradead.org; Mon, 07 Oct 2019 14:21:04 +0000
-Received: by mail-wr1-x432.google.com with SMTP id n14so15503795wrw.9
- for <linux-amlogic@lists.infradead.org>; Mon, 07 Oct 2019 07:21:01 -0700 (PDT)
+ id 1iHTss-0001VL-Cr
+ for linux-amlogic@lists.infradead.org; Mon, 07 Oct 2019 14:21:12 +0000
+Received: by mail-wm1-x335.google.com with SMTP id f22so12558725wmc.2
+ for <linux-amlogic@lists.infradead.org>; Mon, 07 Oct 2019 07:21:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=MKirgQbMXeaXSPyMq/4AOs9NDhHjTOzq15XOPIFCYr4=;
- b=yTafRmvifcoPDIwT72cFHLtvjpLPVxvqq1mDRA0eE3rVMWy5lIMc1hZLWHcRNDpSTU
- 4X+ysZP82jzMdgBkyIDKvTmRc9wSTha97E9dGKNq2GkGCzIfooMlMqWw39KtUX3ivVkr
- Iq3v2IEVWX8hciNQhhQzjLWYIi9m/4P7Ebw8g/ciHzhV2g7bcr5c8yOeFwSNFK/+FhqX
- ppgA+mZXB1b14Rnu27ymjugZHSj5DK8yH7bL2VAvLf0Ulb7UDFu8IdLgjTBZqNCWw/nP
- oKonaoP8+LSKJWKT4KkA+6ICC7roqQ5GkUXvTJp8eiOg4Ef2ji8Jfww+ky81Mdmg1ekV
- M9Tg==
+ bh=iEeU8q9Ahnt7r8NKzqzD34t4+E1vKmRH7RDHSVHwQp0=;
+ b=bnz/aAt5cOFIhG74a5eXZmNcNS33345zgr8jzrq97SQOm8JEV4TAki6SNofAxfp7Pg
+ UjIy/iNQm+eE8UVx+HJUGuXMhHj7YQLluLbZyCx39bCKOsHLapRq4Z4YLXP3e9esLlOX
+ 1k3K5fCoyeulElNe1SUyuNJwkdHWjadimt5pW0xhJGwCu2LqxZlm0m+6EiKL0OlC9yjx
+ CnhFesg2kp/RUncn5MWUKA5pOFo3TC38F+pQszU1UAxkLvHJeOKoavXiIvRbruVywxKg
+ OG/zifyKdRvZDFpi4FOVJpgezroEVunRaagsjB1cgd0G9ojD3O3Ge3eIFAndAg8KQxEn
+ nGIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=MKirgQbMXeaXSPyMq/4AOs9NDhHjTOzq15XOPIFCYr4=;
- b=EtDwLYnehfsNSczpNRWrZtAWLL3AIZgh8yYbd65YrRpAQIeRDJnWxIQiCGHaRl4hBv
- MdxrY1EhT62PbV6sNOn19JP79qalkC6s8Or6nmYXqlqN3k+Awh/9ZGKodsjbYjes6Xey
- zZEK0tjvxEjko+AZiBGX/dXM5afyqVN8Swrs4HPIm5vryAsLNEbnbH6ecnJtb6ymLuPu
- XVS2powIqvnwk1/ZIR7aTpYRNQeHFGnu7mNcHL+/6fdTjUUXVWjDHCy7vcmnLVAb44pW
- MJa/8EVQ43dpEPtJRnXtiL5tDQeAi4rbxJNZXDhpUjvSqF4yQ87KdK19Wg0WE4CExZJA
- zOPg==
-X-Gm-Message-State: APjAAAW1FJEWpVTIMBaIwSaJTSQan222F9yMftliVhNdcBakgY/bpHvF
- en8APF02HPmOIR2/oysJOMth/A==
-X-Google-Smtp-Source: APXvYqyoIQpIiXxBchkoknxbg0wVL9NHFlZswKKy065XHBS3t86F7A7mKKqBeeuXoi7UUA0w3f7K1A==
-X-Received: by 2002:a5d:4ed0:: with SMTP id s16mr23080434wrv.248.1570458060492; 
- Mon, 07 Oct 2019 07:21:00 -0700 (PDT)
+ bh=iEeU8q9Ahnt7r8NKzqzD34t4+E1vKmRH7RDHSVHwQp0=;
+ b=luGbQ5+e2XH96OygjCxe0R/LNU0KouxPIqrCBvnBnFyyQROMn3sHT1sbFThxBcdrwG
+ lEi9dO1s2yCmIY4bA1E9LNA/5ywvba4vIKLZSZOS1rAX4pOfcfravBwrhN65DvArG62c
+ RsHJWGRYRhOwgAvFiCX0wG7Errh/7qvwmNiCIGyJoEBg6df6FIj+zlfl2qSYUuLVgagr
+ jlL+H8U7wAS8NvQbilQbuSS0Xc2UAIGIvlwuEHdA25Z7AOuKpIzmc40BaHLJuqgbXhin
+ xCNjRfxuGdUc4+/DjLrx7db+afH57lxFi9A8KEFfqFwAW4QWD+z6VDRvz3N1Z1Igfg7A
+ XkGg==
+X-Gm-Message-State: APjAAAVeKwqQF8nUEJB0TR7VinaXTtgOkDK22zY9rY0WsjgpuAd5dbYi
+ Jk2Zh211Ic/txW6TuVEOq0BP2Q==
+X-Google-Smtp-Source: APXvYqxmaX3UmXJxvo6c0XK64HIMMHWXSeDTCJy0Q43C6A1JK3g0BjmDGXNq/qQrsYucE9S6vVhSSg==
+X-Received: by 2002:a1c:968b:: with SMTP id y133mr20215452wmd.56.1570458068193; 
+ Mon, 07 Oct 2019 07:21:08 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id x5sm13428794wrt.75.2019.10.07.07.20.59
+ by smtp.gmail.com with ESMTPSA id y13sm21141436wrg.8.2019.10.07.07.21.07
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 07 Oct 2019 07:21:00 -0700 (PDT)
-Subject: Re: [RFCv1 3/5] arm64: dts: meson: Add missing regulator linked to
- VDDAO_3V3 regulator to FLASH_VDD
+ Mon, 07 Oct 2019 07:21:07 -0700 (PDT)
+Subject: Re: [RFCv1 4/5] arm64: dts: meson: Add missing regulator linked to
+ VCCV5 regulator to VDDIO_C/TF_IO
 To: Anand Moon <linux.amoon@gmail.com>, Rob Herring <robh+dt@kernel.org>,
  Mark Rutland <mark.rutland@arm.com>, Kevin Hilman <khilman@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Jerome Brunet <jbrunet@baylibre.com>,
  Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
 References: <20191007131649.1768-1-linux.amoon@gmail.com>
- <20191007131649.1768-4-linux.amoon@gmail.com>
+ <20191007131649.1768-5-linux.amoon@gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -136,16 +136,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <b73a1302-90ae-f1db-ff43-84d56ca4ba39@baylibre.com>
-Date: Mon, 7 Oct 2019 16:20:59 +0200
+Message-ID: <a6daf5e5-fadf-ca72-fc7b-1789abaab605@baylibre.com>
+Date: Mon, 7 Oct 2019 16:21:07 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20191007131649.1768-4-linux.amoon@gmail.com>
+In-Reply-To: <20191007131649.1768-5-linux.amoon@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191007_072102_600549_3245602B 
-X-CRM114-Status: GOOD (  17.14  )
+X-CRM114-CacheID: sfid-20191007_072110_460131_547A3E22 
+X-CRM114-Status: GOOD (  17.10  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -165,8 +165,8 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 07/10/2019 15:16, Anand Moon wrote:
-> As per schematics add missing VDDAO_3V3 power supply to FLASH_VDD
-> regulator. Also add TFLASH_VDD_EN signal name to gpio pin.
+> As per schematics add missing VCCV5 power supply to VDDIO_C/TF_IO
+> regulator. Also add TF_3V3N_1V8_EN signal name to gpio pin.
 > 
 > Fixes: c35f6dc5c377 (arm64: dts: meson: Add minimal support for Odroid-N2)
 > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
@@ -178,22 +178,24 @@ On 07/10/2019 15:16, Anand Moon wrote:
 >  1 file changed, 3 insertions(+)
 > 
 > diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> index 66262a6ab3fe..6bd23a1e7e1d 100644
+> index 6bd23a1e7e1d..5daf176452f7 100644
 > --- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
 > +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-> @@ -51,9 +51,12 @@
->  		regulator-min-microvolt = <3300000>;
+> @@ -66,11 +66,14 @@
+>  		regulator-min-microvolt = <1800000>;
 >  		regulator-max-microvolt = <3300000>;
 >  
-> +		/* TFLASH_VDD_EN */
->  		gpio = <&gpio_ao GPIOAO_8 GPIO_ACTIVE_HIGH>;
->  		enable-active-high;
->  		regulator-always-on;
-> +		/* U18 FC8731-09VF05NRR */
-> +		vin-supply = <&vddao_3v3>;
+> +		/* TF_3V3N_1V8_EN */
+>  		gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
+>  		gpios-states = <0>;
+>  
+>  		states = <3300000 0>,
+>  			 <1800000 1>;
+> +		/* U16 RT9179GB */
+> +		vin-supply = <&vcc_5v>;
 >  	};
 >  
->  	tf_io: gpio-regulator-tf_io {
+>  	flash_1v8: regulator-flash_1v8 {
 > 
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
