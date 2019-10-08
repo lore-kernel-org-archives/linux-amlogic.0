@@ -2,65 +2,85 @@ Return-Path: <SRS0=0688=YB=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_2 autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E0B02C10F14
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Oct 2019 14:23:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3B504C4360C
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Oct 2019 14:39:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B681A20673
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Oct 2019 14:23:25 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 10AF221721
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Oct 2019 14:39:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="R3i4rnLP"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B681A20673
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="OUSJ8wCo";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ftirfNjK"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 10AF221721
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Mime-Version:References:In-Reply-To:
-	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=wkl8uaAVlcd+NANU37Yfn4jlRhFJvD4/CA2wQ/fpvq4=; b=R3i4rnLPRPXsI2
-	dHXeDanELR4Ej4BN7jmUTghx3KBRlyrzjIC18l5adVgQHoCR+jH6uL4FAhZeRq6khJNjvqwK8i4yF
-	XeW/+A5kkTjbW138LsPp16XG5ORZL3I3WU8GpO+LMkQsCVzpLiafUNGeNm7OepgzvXz6wRrP2qcPM
-	NtmslCvg202Nw7BZLOB8lRuUgiWFwTOJ30CW6qF5QBMoHQu8skjLiOTiGVJc9n7Wdj6TabfER50dn
-	9ub6vMRUKC7GndZ9r4Wx+JY7gA+IowKSHpYomfHikRBEQLbTYTOgPmsIDkTRmx7MPvmZLDZnCepMZ
-	xuXmKX00ZG1uO67u572g==;
+	List-Owner; bh=X+C06B6XfEP7siZ/I+VePmiqqrTq6xNv/Bip0vRHoqc=; b=OUSJ8wCoTWshXU
+	VZ+/J6/kLf9ktQLljDui4vMsSTtynaOilb03gVKNLOs/2lkDnLDSi/MG0VEUF1vzCBHLz7A053Gv1
+	m3oK/lLk0owKRrpAWpVWqcwZdr/yx/lPXWfrzrPRcoDzdINXPpXvY8NlCe2SeXUMY7u/jCnXmEEVT
+	dWspQ4XDqBirGaQHGBl6I1UwdUjZ/qcIGdrCnUEh6gNHWt67SjvXcYMtpv/uyFDct0fSLi+03jybC
+	dXHvF4trSAupl5c8E1SWoXPPuoKVmF9n8p3cJc9rNBtAZO2ULRaFL5TfTIxevwu0kHpE5Dm1743s4
+	x4vvzC2U+/gisE3Lpz+w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iHqOW-0000Cp-W3; Tue, 08 Oct 2019 14:23:20 +0000
-Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
+	id 1iHqdt-0007Uj-Np; Tue, 08 Oct 2019 14:39:13 +0000
+Received: from mail-io1-xd42.google.com ([2607:f8b0:4864:20::d42])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iHqOU-0000CO-Fy
- for linux-amlogic@lists.infradead.org; Tue, 08 Oct 2019 14:23:19 +0000
-Received: from lupine.hi.pengutronix.de
- ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
- by metis.ext.pengutronix.de with esmtp (Exim 4.92)
- (envelope-from <p.zabel@pengutronix.de>)
- id 1iHqOJ-0007ME-4O; Tue, 08 Oct 2019 16:23:07 +0200
-Message-ID: <1570544586.18914.9.camel@pengutronix.de>
-Subject: Re: [PATCH v3 0/3] reset: meson: add Meson-A1 SoC support
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Xingyu Chen <xingyu.chen@amlogic.com>, Kevin Hilman
- <khilman@baylibre.com>,  Neil Armstrong <narmstrong@baylibre.com>
-Date: Tue, 08 Oct 2019 16:23:06 +0200
-In-Reply-To: <1569738255-3941-1-git-send-email-xingyu.chen@amlogic.com>
-References: <1569738255-3941-1-git-send-email-xingyu.chen@amlogic.com>
-X-Mailer: Evolution 3.22.6-1+deb9u2 
-Mime-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+ id 1iHqdi-0007LW-MW; Tue, 08 Oct 2019 14:39:04 +0000
+Received: by mail-io1-xd42.google.com with SMTP id w12so36885632iol.11;
+ Tue, 08 Oct 2019 07:39:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=uiceJE125UAsY9qV5J3iJSofyaHXglRUBpS3y2nKZWo=;
+ b=ftirfNjK2WvYeOLN3JGalhD5g5IP5PhtLP1nYd34nYOC4PQE14lYKtIHcMhdQfsQzd
+ PUf8t+hGR91Zg5h0Uc0ZtX0imJe/ZEI75qcXfrD0/4I2LECkgNqZs7ALkw04R9E2TfJ7
+ crrrbaAHFXnvZqSazXMbtCZDI9+4TTCsmG9NpJbouWfgoqnF3EZ/qpaj8jXm50P2rbab
+ YKqAw3cpYyI1q9L96+6TJ4qTtzx6nlvoSssux4yiSUBHQmxJr5C3xTLd5tbeBmh3Fv+2
+ 3v+hXhSbAschBfZuXUu6s+nCuPuW0hppiGUVjYil3c/R0Lx6XNdcTeQR/tbHEUuUJukX
+ V8vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=uiceJE125UAsY9qV5J3iJSofyaHXglRUBpS3y2nKZWo=;
+ b=t7oHSq+tFMzzsz0W/LBH3KhZCCwZuFusX1Bu779fGlLOndZKnjU/I3Q6kbFgPRk39N
+ BOxFM+cu31w4+LC5y9NEYfIwPne4tdHnikaLDW+Eq02fORYxLy89NVsuZ4NR5ZGbrJbo
+ lkV5lROJuMZeOkUMmcxEUacj3OHNFMBO2wJZHQ2CTC4zNXAP/K4nhJb8soPtpqYyJjFV
+ P9/uJNpnipKUcAKx+soNWLtZNUKYpgb8mUiRR1bereP+pqXiQ0YS7ayA/7gfTETQoV/U
+ xoea7+5JKWbohcXKXf7UqL97jsnv0uKAO50lOVSnjzki5J2ygxHN1CH+uOtTGRVFbOgy
+ +CyQ==
+X-Gm-Message-State: APjAAAUqMbcesuru2SREAXf3PFMZFwP33/qKTDjdatpTT/tUpmWFsb+b
+ nZUJ5CO2CIFqylh6YSUqF6GlRnp+iJUgHBKjNII=
+X-Google-Smtp-Source: APXvYqxpf6FluAbTLJWNi5zkpLIoDzexhO/UEjXqiJfh8iDu67wsDgsJ1oy3lEfx/04ZIk4fPelVZzcjWE7uZpgBnWI=
+X-Received: by 2002:a05:6602:2803:: with SMTP id
+ d3mr18366937ioe.75.1570545541296; 
+ Tue, 08 Oct 2019 07:39:01 -0700 (PDT)
+MIME-Version: 1.0
+References: <20191007131649.1768-1-linux.amoon@gmail.com>
+ <20191007131649.1768-6-linux.amoon@gmail.com>
+ <CAFBinCAoJLZj9Kh+SfF4Q+0OCzac2+huon_BU=Q3yE7Fu38U3w@mail.gmail.com>
+ <7hsgo4cgeg.fsf@baylibre.com>
+In-Reply-To: <7hsgo4cgeg.fsf@baylibre.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Tue, 8 Oct 2019 20:08:49 +0530
+Message-ID: <CANAwSgRfcFa6uBNtpqz6y=9Uwsa4gcp_4tDD+Chhg4SynJCq0Q@mail.gmail.com>
+Subject: Re: [RFCv1 5/5] arm64/ARM: configs: Change CONFIG_PWM_MESON from m to
+ y
+To: Kevin Hilman <khilman@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191008_072318_533873_EFA2DAAB 
-X-CRM114-Status: GOOD (  13.81  )
+X-CRM114-CacheID: sfid-20191008_073902_734335_64DE2852 
+X-CRM114-Status: GOOD (  21.88  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,52 +92,140 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Hanjie Lin <hanjie.lin@amlogic.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>, linux-kernel@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Cc: Mark Rutland <mark.rutland@arm.com>,
+ devicetree <devicetree@vger.kernel.org>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Linux Kernel <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ linux-amlogic@lists.infradead.org, Will Deacon <will@kernel.org>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Xingyu,
+Hi Kevin / Martin,
 
-On Sun, 2019-09-29 at 14:24 +0800, Xingyu Chen wrote:
-> This patchset adds support for Meson-A1 SoC Reset Controller. A new struct
-> meson_reset_param is introduced to describe the register differences between
-> Meson-A1 and previous SoCs.
+On Tue, 8 Oct 2019 at 04:28, Kevin Hilman <khilman@baylibre.com> wrote:
 >
-> Changes since v2 at [1]:
-> - add comments in header file to indicate holes
-> - reorder the Signed-off-by and Reviewed-by
-> - remove Jianxin's Signed-off-by
-> - add Kevin's Reviewed-by
+> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+>
+> > On Mon, Oct 7, 2019 at 3:17 PM Anand Moon <linux.amoon@gmail.com> wrote:
+> > [...]
+> >> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> >> index c9a867ac32d4..72f6a7dca0d6 100644
+> >> --- a/arch/arm64/configs/defconfig
+> >> +++ b/arch/arm64/configs/defconfig
+> >> @@ -774,7 +774,7 @@ CONFIG_MPL3115=m
+> >>  CONFIG_PWM=y
+> >>  CONFIG_PWM_BCM2835=m
+> >>  CONFIG_PWM_CROS_EC=m
+> >> -CONFIG_PWM_MESON=m
+> >> +CONFIG_PWM_MESON=y
+> >
+> > some time ago I submitted a similar patch for the 32-bit SoCs
+> > it turned that that pwm-meson can be built as module because the
+> > kernel will run without CPU DVFS as long as the clock and regulator
+> > drivers are returning -EPROBE_DEFER (-517)
+>
+> On 64-bit SoCs, the kernel boots with PWM as a module also, but DVFS
+> only works sometimes, and making it built-in fixes the problem.
+> Actually, it doesn't fix, it just hides the problem, which is likely a
+> race or timeout happening during deferred probing.
+>
+> > did you check whether there's some other problem like some unused
+> > clock which is being disabled at that moment?
+> > I've been hunting weird problems in the past where it turned out that
+> > changing kernel config bits changed the boot timing - that masked the
+> > original problem
+>
+> Right, I would definitely prefer to not make this built-in without a lot
+> more information to *why* this is needed.  In figuring that out, we'll
+> probably find the race/timeout that's the root cause.
+>
+> Kevin
+>
+>
 
-Thank you, I have applied patches 2 and 3 to reset/next.
+Kevin,
 
-regards
-Philipp
+As per my understanding from the kernelci.org logs it seen that
+pwm-meson driver is requested more than once before it finally load the module.
 
-> Changes since v1 at [0]:
-> - rebase on linux-next
-> - add Neil's Reviewed-by
-> 
-> [0] https://lore.kernel.org/linux-amlogic/1568808746-1153-1-git-send-email-xingyu.chen@amlogic.com
-> [1] https://lore.kernel.org/linux-amlogic/1569227661-4261-1-git-send-email-xingyu.chen@amlogic.com
-> 
-> Xingyu Chen (3):
->   arm64: dts: meson: add reset controller for Meson-A1 SoC
->   dt-bindings: reset: add bindings for the Meson-A1 SoC Reset Controller
->   reset: add support for the Meson-A1 SoC Reset Controller
-> 
->  .../bindings/reset/amlogic,meson-reset.yaml        |  1 +
->  arch/arm64/boot/dts/amlogic/meson-a1.dtsi          |  6 ++
->  drivers/reset/reset-meson.c                        | 35 ++++++++--
->  include/dt-bindings/reset/amlogic,meson-a1-reset.h | 74 ++++++++++++++++++++++
->  4 files changed, 109 insertions(+), 7 deletions(-)
->  create mode 100644 include/dt-bindings/reset/amlogic,meson-a1-reset.h
-> 
+[0] https://storage.kernelci.org/next/master/next-20191008/arm64/defconfig/gcc-8/lab-baylibre/boot-meson-g12b-odroid-n2.txt
+
+Hi Martin,
+
+I have tired your Martin's patch [1] and still the boot fails to move
+ahead with below logs.
+[1] https://lore.kernel.org/patchwork/patch/1034186/
+
+[    1.543928] xhci-hcd xhci-hcd.0.auto: Host supports USB 3.0 SuperSpeed
+[    1.550422] usb usb2: We don't know the algorithms for LPM for this
+host, disabling LPM.
+[    1.558702] hub 2-0:1.0: USB hub found
+[    1.562131] hub 2-0:1.0: 1 port detected
+[    1.566206] dwc3-meson-g12a ffe09000.usb: switching to Device Mode
+[    1.573252] meson-gx-mmc ffe05000.sd: Got CD GPIO
+[    1.607405] hctosys: unable to open rtc device (rtc0)
+
+I have put some more prints in pwm-meson.c it fails to load the module
+as microsSD card is not completely initialized.
+
+Here is what I have tried to enable sd_emmc_b node, but still it fails
+to initialize this driver..
+
+-       max-frequency = <50000000>;
++       sd-uhs-sdr12;
++       sd-uhs-sdr25;
++       sd-uhs-sdr50;
++       sd-uhs-ddr50;
++       max-frequency = <100000000>;
+        disable-wp;
+
+Below are the boot logs.
+
+[    1.729877] meson-gx-mmc ffe05000.sd: Anand mmc proble start1
+[    1.734658] meson-gx-mmc ffe05000.sd: Got CD GPIO
+[    1.739237] meson-gx-mmc ffe05000.sd: Anand mmc proble start2
+[    1.744900] meson-gx-mmc ffe05000.sd: Anand mmc proble start3
+[    1.750594] meson-gx-mmc ffe05000.sd: Anand mmc proble start4
+[    1.756292] meson-gx-mmc ffe05000.sd: Anand mmc proble start5
+[    1.761987] meson-gx-mmc ffe05000.sd: Anand mmc proble start6
+[    1.767668] meson-gx-mmc ffe05000.sd: Anand mmc proble start7
+[    1.773356] meson-gx-mmc ffe05000.sd: Anand mmc proble start8
+[    1.779050] meson-gx-mmc ffe05000.sd: Anand mmc proble start9
+[    1.784748] meson-gx-mmc ffe05000.sd: Anand mmc proble start10
+[    1.790523] meson-gx-mmc ffe05000.sd: Anand mmc proble start11
+[    1.796578] meson-gx-mmc ffe05000.sd: Anand mmc proble start12
+[    1.802150] meson-gx-mmc ffe05000.sd: Anand mmc proble start13
+[    1.807980] meson-gx-mmc ffe05000.sd: Anand mmc proble start14
+[    1.813642] meson-gx-mmc ffe05000.sd: Anand mmc proble start15
+[    1.819416] meson-gx-mmc ffe05000.sd: Anand mmc proble start17
+[    1.825491] meson-gx-mmc ffe05000.sd: Anand mmc proble start18
+[    1.830984] meson-gx-mmc ffe05000.sd: Anand mmc proble start19
+[    1.862000] meson-gx-mmc ffe05000.sd: Anand mmc Final proble good to go
+[    1.863323] pwm-regulator regulator-vddcpu-a: Anand :
+dutycycle_unit 100: dutycycle_range 100:0
+[    1.871617] pwm-regulator regulator-vddcpu-a: Failed to get PWM: -517
+[    1.878560] pwm-regulator regulator-vddcpu-b: Anand :
+dutycycle_unit 100: dutycycle_range 100:0
+[    1.886613] pwm-regulator regulator-vddcpu-b: Failed to get PWM: -517
+[    1.894094] pwm-regulator regulator-vddcpu-a: Anand :
+dutycycle_unit 100: dutycycle_range 100:0
+[    1.901771] pwm-regulator regulator-vddcpu-a: Failed to get PWM: -517
+[    1.909089] pwm-regulator regulator-vddcpu-b: Anand :
+dutycycle_unit 100: dutycycle_range 100:0
+[    1.916658] pwm-regulator regulator-vddcpu-b: Failed to get PWM: -517
+[    1.924147] hctosys: unable to open rtc device (rtc0)
+
+sd_emmc_b probe function return success but still not able to progress further.
+
+Best Regards
+
+-Anand
 
 _______________________________________________
 linux-amlogic mailing list
