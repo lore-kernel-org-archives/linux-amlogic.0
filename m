@@ -2,85 +2,90 @@ Return-Path: <SRS0=0688=YB=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3B504C4360C
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Oct 2019 14:39:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EE77DC10F14
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Oct 2019 15:06:11 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 10AF221721
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Oct 2019 14:39:21 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C0659206BB
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Oct 2019 15:06:11 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="OUSJ8wCo";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ftirfNjK"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 10AF221721
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="meF1bfIK";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="G8uczl3R"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C0659206BB
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=X+C06B6XfEP7siZ/I+VePmiqqrTq6xNv/Bip0vRHoqc=; b=OUSJ8wCoTWshXU
-	VZ+/J6/kLf9ktQLljDui4vMsSTtynaOilb03gVKNLOs/2lkDnLDSi/MG0VEUF1vzCBHLz7A053Gv1
-	m3oK/lLk0owKRrpAWpVWqcwZdr/yx/lPXWfrzrPRcoDzdINXPpXvY8NlCe2SeXUMY7u/jCnXmEEVT
-	dWspQ4XDqBirGaQHGBl6I1UwdUjZ/qcIGdrCnUEh6gNHWt67SjvXcYMtpv/uyFDct0fSLi+03jybC
-	dXHvF4trSAupl5c8E1SWoXPPuoKVmF9n8p3cJc9rNBtAZO2ULRaFL5TfTIxevwu0kHpE5Dm1743s4
-	x4vvzC2U+/gisE3Lpz+w==;
+	List-Owner; bh=jN7DbkAWRcKkXhGQin0lNJRSEG8fhJFykOHk/YUZd8s=; b=meF1bfIKP+sH/I
+	MVIqB4pwJt+6/wC4kJnkGRJbusMz8NSLKJbNT4RpOWHaLfat1vkc95AHUnbSfKjbtpQofyjy7OO6O
+	nio8e/kK/CnXbc6vpwHYcLGEJ50j5worxyTYnt2dTG3hiNKtlJL85ccO6HR47VpyD1SClrG0IcMD6
+	owW+oSiDnzHBj8bpfk8LkaXZ4dMZAGFvIyk4ADPkX6xH3Tk6cWJvI6Rdr6cLvlwKpVPq4J/MSkLIj
+	Y37lE2AQwkDD0EDw0KdRgmh5W9Kt1qvrbRZJwcY/fD8XOwiKG1f/Wrn1lZAylUR0mURcNnmeNce9C
+	sGnbxkyq/R+raFu27/FQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iHqdt-0007Uj-Np; Tue, 08 Oct 2019 14:39:13 +0000
-Received: from mail-io1-xd42.google.com ([2607:f8b0:4864:20::d42])
+	id 1iHr3s-0001hK-9H; Tue, 08 Oct 2019 15:06:04 +0000
+Received: from mail-pf1-x444.google.com ([2607:f8b0:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iHqdi-0007LW-MW; Tue, 08 Oct 2019 14:39:04 +0000
-Received: by mail-io1-xd42.google.com with SMTP id w12so36885632iol.11;
- Tue, 08 Oct 2019 07:39:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=uiceJE125UAsY9qV5J3iJSofyaHXglRUBpS3y2nKZWo=;
- b=ftirfNjK2WvYeOLN3JGalhD5g5IP5PhtLP1nYd34nYOC4PQE14lYKtIHcMhdQfsQzd
- PUf8t+hGR91Zg5h0Uc0ZtX0imJe/ZEI75qcXfrD0/4I2LECkgNqZs7ALkw04R9E2TfJ7
- crrrbaAHFXnvZqSazXMbtCZDI9+4TTCsmG9NpJbouWfgoqnF3EZ/qpaj8jXm50P2rbab
- YKqAw3cpYyI1q9L96+6TJ4qTtzx6nlvoSssux4yiSUBHQmxJr5C3xTLd5tbeBmh3Fv+2
- 3v+hXhSbAschBfZuXUu6s+nCuPuW0hppiGUVjYil3c/R0Lx6XNdcTeQR/tbHEUuUJukX
- V8vg==
+ id 1iHr3o-0001gQ-S3
+ for linux-amlogic@lists.infradead.org; Tue, 08 Oct 2019 15:06:02 +0000
+Received: by mail-pf1-x444.google.com with SMTP id a2so10916698pfo.10
+ for <linux-amlogic@lists.infradead.org>; Tue, 08 Oct 2019 08:06:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=tzsRg9pgEa9ifvg41ObkDkwx5TvwMyRk1wxFJpblvlg=;
+ b=G8uczl3RULQcRPZNuuCGSUomb/snylYiJ6arGsUloQ3Wa2+dSUqI/YENI2cilQPHq+
+ eA3+zmXi0bCaRtlqrEy+DS9RnTMUiUNxO7mtjIW0Oiv+ayXsEwyO1XyYkZs+MHOgW5wu
+ oo7eY39CvJcRKrVWmog/2bO2uGO+77/Ey6dQDwRu2cePnp97SenCamFTlNwEhPwdn30b
+ eKObB9wkms+pp9bQfr6USpdBqSs/idPOEUXkd5ziVWpP5BZomIUV9TSOmhWqXpWjNkHv
+ 7mqwMZ5Q2KRhss4E0XnwCxFBcGdvFhuBOHQT+4vIwhLu6XPGYqhiiyZVyUyltufgpUw1
+ LQNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=uiceJE125UAsY9qV5J3iJSofyaHXglRUBpS3y2nKZWo=;
- b=t7oHSq+tFMzzsz0W/LBH3KhZCCwZuFusX1Bu779fGlLOndZKnjU/I3Q6kbFgPRk39N
- BOxFM+cu31w4+LC5y9NEYfIwPne4tdHnikaLDW+Eq02fORYxLy89NVsuZ4NR5ZGbrJbo
- lkV5lROJuMZeOkUMmcxEUacj3OHNFMBO2wJZHQ2CTC4zNXAP/K4nhJb8soPtpqYyJjFV
- P9/uJNpnipKUcAKx+soNWLtZNUKYpgb8mUiRR1bereP+pqXiQ0YS7ayA/7gfTETQoV/U
- xoea7+5JKWbohcXKXf7UqL97jsnv0uKAO50lOVSnjzki5J2ygxHN1CH+uOtTGRVFbOgy
- +CyQ==
-X-Gm-Message-State: APjAAAUqMbcesuru2SREAXf3PFMZFwP33/qKTDjdatpTT/tUpmWFsb+b
- nZUJ5CO2CIFqylh6YSUqF6GlRnp+iJUgHBKjNII=
-X-Google-Smtp-Source: APXvYqxpf6FluAbTLJWNi5zkpLIoDzexhO/UEjXqiJfh8iDu67wsDgsJ1oy3lEfx/04ZIk4fPelVZzcjWE7uZpgBnWI=
-X-Received: by 2002:a05:6602:2803:: with SMTP id
- d3mr18366937ioe.75.1570545541296; 
- Tue, 08 Oct 2019 07:39:01 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=tzsRg9pgEa9ifvg41ObkDkwx5TvwMyRk1wxFJpblvlg=;
+ b=bggEm/6ya2k4rZASD2CSrMh0+SF14ZC0Nx7dN5ZBAVzKr51Vw+X1pyYXQ5NKFNDizW
+ 9ew5epkoa9Ad7ZSFGlgag37iz+pLLYIbJxLUHDJK9n+lum3frRU87/IDxrhfkfqi5RVp
+ Gx2HvDNWK3ljdLc3P5T2ihytWya0plaIcj4O6vIW4z47YRXesQT+JVzi7XFtospor0KF
+ XaNAt4gmZNC8AnNkLq43MyAlZWe4TpV17KvN3oJUFXDZvdTEuH6cj+y72/irBz9s1P5x
+ 2NrXs1gTYzNBJXV2Qg2HA1Ft/p3IT1HEasK3Dblnjn9caylNbUFId8Ah5Y7mWxcpS6kG
+ Ec7w==
+X-Gm-Message-State: APjAAAWNdmB1M8nbQgnFxegZE3opBg2SYNWoVKMRzJI7oJKQBedOmS68
+ 6VmZwwtTbBdUGr/c36bhDD4sCw==
+X-Google-Smtp-Source: APXvYqxhixa3F/cEc785OVOZs0F2stbVxXL2Q91Zz8G3dA0FQLAg7s6F+eNuzgo0xQ6EBlfs3p8Uew==
+X-Received: by 2002:a65:48ca:: with SMTP id o10mr7551202pgs.116.1570547160188; 
+ Tue, 08 Oct 2019 08:06:00 -0700 (PDT)
+Received: from localhost ([2601:602:9200:a1a5:8d4b:adae:e1eb:fe8e])
+ by smtp.gmail.com with ESMTPSA id u3sm17330522pfn.134.2019.10.08.08.05.59
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Tue, 08 Oct 2019 08:05:59 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Saurav Girepunje <saurav.girepunje@gmail.com>, balbi@kernel.org,
+ gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] usb: dwc3: dwc3-meson-g12a.c: use
+ devm_platform_ioremap_resource()
+In-Reply-To: <20191008102751.GA10401@saurav>
+References: <20191008102751.GA10401@saurav>
+Date: Tue, 08 Oct 2019 08:05:58 -0700
+Message-ID: <7h7e5f5lbd.fsf@baylibre.com>
 MIME-Version: 1.0
-References: <20191007131649.1768-1-linux.amoon@gmail.com>
- <20191007131649.1768-6-linux.amoon@gmail.com>
- <CAFBinCAoJLZj9Kh+SfF4Q+0OCzac2+huon_BU=Q3yE7Fu38U3w@mail.gmail.com>
- <7hsgo4cgeg.fsf@baylibre.com>
-In-Reply-To: <7hsgo4cgeg.fsf@baylibre.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Tue, 8 Oct 2019 20:08:49 +0530
-Message-ID: <CANAwSgRfcFa6uBNtpqz6y=9Uwsa4gcp_4tDD+Chhg4SynJCq0Q@mail.gmail.com>
-Subject: Re: [RFCv1 5/5] arm64/ARM: configs: Change CONFIG_PWM_MESON from m to
- y
-To: Kevin Hilman <khilman@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191008_073902_734335_64DE2852 
-X-CRM114-Status: GOOD (  21.88  )
+X-CRM114-CacheID: sfid-20191008_080600_932904_62D38FAA 
+X-CRM114-Status: GOOD (  11.57  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,140 +97,49 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>,
- devicetree <devicetree@vger.kernel.org>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Linux Kernel <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
- linux-amlogic@lists.infradead.org, Will Deacon <will@kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: saurav.girepunje@hotmail.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Kevin / Martin,
+Saurav Girepunje <saurav.girepunje@gmail.com> writes:
 
-On Tue, 8 Oct 2019 at 04:28, Kevin Hilman <khilman@baylibre.com> wrote:
+> Use the new helper that wraps the calls to platform_get_resource()
+> and devm_ioremap_resource() together in dwc3_meson_g12a_probe().
 >
-> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+> Signed-off-by: Saurav Girepunje <saurav.girepunje@gmail.com>
+
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+
+> ---
+>  drivers/usb/dwc3/dwc3-meson-g12a.c | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
 >
-> > On Mon, Oct 7, 2019 at 3:17 PM Anand Moon <linux.amoon@gmail.com> wrote:
-> > [...]
-> >> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> >> index c9a867ac32d4..72f6a7dca0d6 100644
-> >> --- a/arch/arm64/configs/defconfig
-> >> +++ b/arch/arm64/configs/defconfig
-> >> @@ -774,7 +774,7 @@ CONFIG_MPL3115=m
-> >>  CONFIG_PWM=y
-> >>  CONFIG_PWM_BCM2835=m
-> >>  CONFIG_PWM_CROS_EC=m
-> >> -CONFIG_PWM_MESON=m
-> >> +CONFIG_PWM_MESON=y
-> >
-> > some time ago I submitted a similar patch for the 32-bit SoCs
-> > it turned that that pwm-meson can be built as module because the
-> > kernel will run without CPU DVFS as long as the clock and regulator
-> > drivers are returning -EPROBE_DEFER (-517)
->
-> On 64-bit SoCs, the kernel boots with PWM as a module also, but DVFS
-> only works sometimes, and making it built-in fixes the problem.
-> Actually, it doesn't fix, it just hides the problem, which is likely a
-> race or timeout happening during deferred probing.
->
-> > did you check whether there's some other problem like some unused
-> > clock which is being disabled at that moment?
-> > I've been hunting weird problems in the past where it turned out that
-> > changing kernel config bits changed the boot timing - that masked the
-> > original problem
->
-> Right, I would definitely prefer to not make this built-in without a lot
-> more information to *why* this is needed.  In figuring that out, we'll
-> probably find the race/timeout that's the root cause.
->
-> Kevin
->
->
-
-Kevin,
-
-As per my understanding from the kernelci.org logs it seen that
-pwm-meson driver is requested more than once before it finally load the module.
-
-[0] https://storage.kernelci.org/next/master/next-20191008/arm64/defconfig/gcc-8/lab-baylibre/boot-meson-g12b-odroid-n2.txt
-
-Hi Martin,
-
-I have tired your Martin's patch [1] and still the boot fails to move
-ahead with below logs.
-[1] https://lore.kernel.org/patchwork/patch/1034186/
-
-[    1.543928] xhci-hcd xhci-hcd.0.auto: Host supports USB 3.0 SuperSpeed
-[    1.550422] usb usb2: We don't know the algorithms for LPM for this
-host, disabling LPM.
-[    1.558702] hub 2-0:1.0: USB hub found
-[    1.562131] hub 2-0:1.0: 1 port detected
-[    1.566206] dwc3-meson-g12a ffe09000.usb: switching to Device Mode
-[    1.573252] meson-gx-mmc ffe05000.sd: Got CD GPIO
-[    1.607405] hctosys: unable to open rtc device (rtc0)
-
-I have put some more prints in pwm-meson.c it fails to load the module
-as microsSD card is not completely initialized.
-
-Here is what I have tried to enable sd_emmc_b node, but still it fails
-to initialize this driver..
-
--       max-frequency = <50000000>;
-+       sd-uhs-sdr12;
-+       sd-uhs-sdr25;
-+       sd-uhs-sdr50;
-+       sd-uhs-ddr50;
-+       max-frequency = <100000000>;
-        disable-wp;
-
-Below are the boot logs.
-
-[    1.729877] meson-gx-mmc ffe05000.sd: Anand mmc proble start1
-[    1.734658] meson-gx-mmc ffe05000.sd: Got CD GPIO
-[    1.739237] meson-gx-mmc ffe05000.sd: Anand mmc proble start2
-[    1.744900] meson-gx-mmc ffe05000.sd: Anand mmc proble start3
-[    1.750594] meson-gx-mmc ffe05000.sd: Anand mmc proble start4
-[    1.756292] meson-gx-mmc ffe05000.sd: Anand mmc proble start5
-[    1.761987] meson-gx-mmc ffe05000.sd: Anand mmc proble start6
-[    1.767668] meson-gx-mmc ffe05000.sd: Anand mmc proble start7
-[    1.773356] meson-gx-mmc ffe05000.sd: Anand mmc proble start8
-[    1.779050] meson-gx-mmc ffe05000.sd: Anand mmc proble start9
-[    1.784748] meson-gx-mmc ffe05000.sd: Anand mmc proble start10
-[    1.790523] meson-gx-mmc ffe05000.sd: Anand mmc proble start11
-[    1.796578] meson-gx-mmc ffe05000.sd: Anand mmc proble start12
-[    1.802150] meson-gx-mmc ffe05000.sd: Anand mmc proble start13
-[    1.807980] meson-gx-mmc ffe05000.sd: Anand mmc proble start14
-[    1.813642] meson-gx-mmc ffe05000.sd: Anand mmc proble start15
-[    1.819416] meson-gx-mmc ffe05000.sd: Anand mmc proble start17
-[    1.825491] meson-gx-mmc ffe05000.sd: Anand mmc proble start18
-[    1.830984] meson-gx-mmc ffe05000.sd: Anand mmc proble start19
-[    1.862000] meson-gx-mmc ffe05000.sd: Anand mmc Final proble good to go
-[    1.863323] pwm-regulator regulator-vddcpu-a: Anand :
-dutycycle_unit 100: dutycycle_range 100:0
-[    1.871617] pwm-regulator regulator-vddcpu-a: Failed to get PWM: -517
-[    1.878560] pwm-regulator regulator-vddcpu-b: Anand :
-dutycycle_unit 100: dutycycle_range 100:0
-[    1.886613] pwm-regulator regulator-vddcpu-b: Failed to get PWM: -517
-[    1.894094] pwm-regulator regulator-vddcpu-a: Anand :
-dutycycle_unit 100: dutycycle_range 100:0
-[    1.901771] pwm-regulator regulator-vddcpu-a: Failed to get PWM: -517
-[    1.909089] pwm-regulator regulator-vddcpu-b: Anand :
-dutycycle_unit 100: dutycycle_range 100:0
-[    1.916658] pwm-regulator regulator-vddcpu-b: Failed to get PWM: -517
-[    1.924147] hctosys: unable to open rtc device (rtc0)
-
-sd_emmc_b probe function return success but still not able to progress further.
-
-Best Regards
-
--Anand
+> diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
+> index bca7e92a10e9..d73ccd9e1366 100644
+> --- a/drivers/usb/dwc3/dwc3-meson-g12a.c
+> +++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
+> @@ -386,7 +386,6 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+>  	struct device		*dev = &pdev->dev;
+>  	struct device_node	*np = dev->of_node;
+>  	void __iomem *base;
+> -	struct resource *res;
+>  	enum phy_mode otg_id;
+>  	int ret, i, irq;
+>  
+> @@ -394,8 +393,7 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+>  	if (!priv)
+>  		return -ENOMEM;
+>  
+> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> -	base = devm_ioremap_resource(dev, res);
+> +	base = devm_platform_ioremap_resource(pdev, 0);
+>  	if (IS_ERR(base))
+>  		return PTR_ERR(base);
+>  
+> -- 
+> 2.20.1
 
 _______________________________________________
 linux-amlogic mailing list
