@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
 	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E55EC10F14
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Oct 2019 17:29:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1A69FC4360C
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Oct 2019 17:41:18 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1D035217D7
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Oct 2019 17:29:54 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E8F752070B
+	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Oct 2019 17:41:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XDgr4HQD";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="G9y99tj3"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1D035217D7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="iplCoeIx";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="A48ymLIK"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E8F752070B
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,60 +26,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uWAlDcZ2FN3KmQeby3bhHH4i+jovSpKbXyq6TqwC4P0=; b=XDgr4HQDALuPaG
-	otV8jByVMxr4obsJEOiAhTbxBxIVead7xjBuUZ6fBHs/AK0QAK5yeipNSxd5pNjlfe1oLNy0pEIsj
-	H90EkQgwuKDA00dfDRpwzX5KWrhwyMsrfqjsKesrMVM7cuVM2dkkQF90SdUaWaWbz2B+Ud1ciesmX
-	izgS7BZcquPvWczAWUm8bZiLLragnXDgnppmpzk38K0LxIZPzuRBIftopLpHgmKFnJNgkqw6E7WzW
-	+HPGt1mwOUgcm+OoDzAiZ0cKdT7ufXjXDA7iV/lNKQ1qmnIAMG1N2gmcWBrLO3JV7t+B99ggcVESK
-	r0WQDrZ0IpiNrQxjU2VQ==;
+	List-Owner; bh=oFJcYurMbgxsYtcwRwkD+kH1Eil2EpyoyTd6mUuO63Q=; b=iplCoeIxwRwZQZ
+	yYXfDQFhiFPRrz5bGb4A2jiBOQkJ68ViqabHT481KVKsGODgbjUCDN4ug2jBhF/AR6BZcPK0iTHFj
+	UjsVtBgt2b5VO4qudSVogUpxMwOQiJofPyXZre7avm8sW84qXXz9LfXF1RrS/aYG1GeTLMzAesqGF
+	tnb43/TU32TMtmHFWxs/3hQZe32mqfu5tnVok8BfjYeSW3oYOLFjFTmbTC0QifEYOum5tmoBvodLX
+	5SQZnNtp4AVVeRC7PlkUhhGU4D2OhnyxJeQL91j9vDOs+qg4+lSSKtCXfscqzYFKJ4UDrzE6bsAlm
+	4wW5QaN4FVqB5SHSlh+A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iHtIy-000814-C4; Tue, 08 Oct 2019 17:29:48 +0000
+	id 1iHtTz-0004tr-Gc; Tue, 08 Oct 2019 17:41:11 +0000
 Received: from mail-ot1-x341.google.com ([2607:f8b0:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iHtIp-0007sX-WE; Tue, 08 Oct 2019 17:29:41 +0000
-Received: by mail-ot1-x341.google.com with SMTP id 60so14757389otu.0;
- Tue, 08 Oct 2019 10:29:39 -0700 (PDT)
+ id 1iHtTq-0004lG-0S; Tue, 08 Oct 2019 17:41:03 +0000
+Received: by mail-ot1-x341.google.com with SMTP id 89so14714206oth.13;
+ Tue, 08 Oct 2019 10:41:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=eKu2yueVNgRFpAUd8185a7uHA6JiCaBaoe2JcBRlEts=;
- b=G9y99tj3v+V4iLG0bqYPs3+tPbnpm+K8PGhBA4ulOWisBfs2mqDJ5CCVcxua9X0Bzx
- TVb6f0KBhJy1bc0l/MMaIsdrzarm2gYuYU9syVv1oPFNOeThISGEZ7Te3Nl1Do4fcAts
- 6aNd2x2aW8/U3xy9lGvYlbPdehJm7w5ixP6MhLXb6OZ4g6U97xVFakR9uCo7wfBxUEvM
- CVsTNGDcMCWPv/2wa7pmOUIdy3fSENuSbsO9XA2/gPYh8ehyc5qK0NkzRqq1oUdLiifS
- oZae8ODfAnBk743TO+QxLUlcXA+oX+61WnMPrOhKnethMHPGIsmV2T15IM39OkAhV1fQ
- KZlg==
+ :cc; bh=xOC0mpKmGEmRikgCRd9gsgQ9erZ8EhH2ac4zF2SOvfc=;
+ b=A48ymLIK2rb7BiQ9QuBri46T6nbKFuIQJxa7IZOrx9u7UZZjm57jzAFIIYzYvWLrix
+ m+nDdkRVAO2+gOSlB5xS91WBrGwrPIYdmbS1o615tpr57WuZBLJC3B6ckf/LOptWZ1Ub
+ gJYtq5XNt82fMCqHor/KL47/Zfi03r9Lcu7ah4JpxQzHWRQAXsmiufKaM507CHWwWDzX
+ wuksd3+2wJ5/sXreoS2epnF9sTqEmrgFgSyR/Z9C3JNv6wJ+IrfIXn6AFIFTduTFLAjS
+ itBaUhBVZ9Qzu3Pkd74h4T4/qeYmEeqsrAAtBlj6UkpmRgDydVnCnFwNreL37zzt2K7l
+ PqYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=eKu2yueVNgRFpAUd8185a7uHA6JiCaBaoe2JcBRlEts=;
- b=Gq0kMDXU+ePQdcLgMk2CweH0L6OpxEvpIFEHpj3A7VuaGSJSlOahP7rFGdkzDs9KZX
- f18JZf0dM5H81epclKSB3ydFA7LYXPpc+qu7JmEb4VTazpyRfBw2wrLnE5hBHVC/QSZG
- Cl1pdPmSszAbYzN3zOsO7rSphThm9XENCA572PMPYMrrA2vtnn5LbCJl8Qn7mituZgCi
- wmVaO5KpWg6cz6XZsAj1CmSjm6rBHaU8qENOQ3UIpsY+l7MkS2z67SdPAkYArYHLM1IY
- FfqyOZsRJXQaDijSJHEjou9XsHqUFmHSAQY9fc5bzuYES33jBojylJWfaair6b542tck
- 2B8Q==
-X-Gm-Message-State: APjAAAX77tKCi6qQR/s+Qz96/VaHH0Q3B81NHqLNSIPqBjfte7M6q5/F
- Cghx1uypaxeu1BJZL7VFS4PodFDbUsdeRdStHD8=
-X-Google-Smtp-Source: APXvYqzPWuVdtFGE/YccaquQ9QBrKyV7COFmAU7bcwEA7+/a8q74QRmUfb+jPHM6v3jDSj1K4d99J4XdiezQ+Ultij4=
+ bh=xOC0mpKmGEmRikgCRd9gsgQ9erZ8EhH2ac4zF2SOvfc=;
+ b=Y7zTwcRK1qqJq49JZnHXmm0vunh5RG/Mifz9pthkPBNj7LQx9NpaBxxyq3AClYzkTu
+ DroJqoVs/zFJLfWHqW8jZ4axzdDPsdHWHE9yx6oot+IhMXdUxqq3hQnGjeWvMx1qfvpV
+ /he7OQkXPnOuILNJQK48JhNH4BcrUodBHI+vRxiOxfEPSWfBcZLikbrND2h4JdU2/jz0
+ PRStc6cmKBXuP/okZndZtsx2PN3+q/73cBGdwqZDyUw3vCUF9lX3vWjqgszSPPrhecKo
+ 01VSixPuzxgds/lWzCqn5R5qG1x2ERLs0Ij6hgzXtWGUfx9JGaQt7BoX6CCBqcOxNYrg
+ 5WJQ==
+X-Gm-Message-State: APjAAAWlz0RkfsvVFJQ5xUQ9AIc4G9e+OEEU+0d0qVQJUiK58SepaAhw
+ GwpK1eFAc8z6QxVBamGIhs0z1la/htRlCsp6/y8=
+X-Google-Smtp-Source: APXvYqxqhXwAynybsN9Gz27KPhjj5btFKvK2S66P8tFQ842KPj4fHqw45egk61mlamGvOAvK6sbk0VhqSQzJff+YD4E=
 X-Received: by 2002:a05:6830:150d:: with SMTP id
- k13mr25811500otp.98.1570555778900; 
- Tue, 08 Oct 2019 10:29:38 -0700 (PDT)
+ k13mr25847326otp.98.1570556460961; 
+ Tue, 08 Oct 2019 10:41:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <20191008102751.GA10401@saurav> <7h7e5f5lbd.fsf@baylibre.com>
-In-Reply-To: <7h7e5f5lbd.fsf@baylibre.com>
+References: <20191007131649.1768-1-linux.amoon@gmail.com>
+ <20191007131649.1768-6-linux.amoon@gmail.com>
+ <CAFBinCAoJLZj9Kh+SfF4Q+0OCzac2+huon_BU=Q3yE7Fu38U3w@mail.gmail.com>
+ <7hsgo4cgeg.fsf@baylibre.com>
+ <CANAwSgRfcFa6uBNtpqz6y=9Uwsa4gcp_4tDD+Chhg4SynJCq0Q@mail.gmail.com>
+In-Reply-To: <CANAwSgRfcFa6uBNtpqz6y=9Uwsa4gcp_4tDD+Chhg4SynJCq0Q@mail.gmail.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 8 Oct 2019 19:29:28 +0200
-Message-ID: <CAFBinCBxwcuSd7RYpJ0PvLM3-O1SHuXsbvaLFwO48z-hRs+hsQ@mail.gmail.com>
-Subject: Re: [PATCH] usb: dwc3: dwc3-meson-g12a.c: use
- devm_platform_ioremap_resource()
-To: Saurav Girepunje <saurav.girepunje@gmail.com>
+Date: Tue, 8 Oct 2019 19:40:50 +0200
+Message-ID: <CAFBinCA6ZoeR4m4bhj08HF1DqxY1qB5mygpaQCGbo3d8M+Wr9Q@mail.gmail.com>
+Subject: Re: [RFCv1 5/5] arm64/ARM: configs: Change CONFIG_PWM_MESON from m to
+ y
+To: Anand Moon <linux.amoon@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191008_102940_032400_E2743953 
-X-CRM114-Status: UNSURE (   7.19  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20191008_104102_054050_7F5D3778 
+X-CRM114-Status: GOOD (  27.76  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,34 +94,128 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: balbi@kernel.org, gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, saurav.girepunje@hotmail.com,
- Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+Cc: Mark Rutland <mark.rutland@arm.com>,
+ devicetree <devicetree@vger.kernel.org>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Linux Kernel <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, linux-amlogic@lists.infradead.org,
+ Will Deacon <will@kernel.org>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Saurav,
+Hi Anand,
 
-On Tue, Oct 8, 2019 at 5:06 PM Kevin Hilman <khilman@baylibre.com> wrote:
+On Tue, Oct 8, 2019 at 4:39 PM Anand Moon <linux.amoon@gmail.com> wrote:
 >
-> Saurav Girepunje <saurav.girepunje@gmail.com> writes:
+> Hi Kevin / Martin,
 >
-> > Use the new helper that wraps the calls to platform_get_resource()
-> > and devm_ioremap_resource() together in dwc3_meson_g12a_probe().
+> On Tue, 8 Oct 2019 at 04:28, Kevin Hilman <khilman@baylibre.com> wrote:
 > >
-> > Signed-off-by: Saurav Girepunje <saurav.girepunje@gmail.com>
-the following commit is already in mainline:
+> > Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+> >
+> > > On Mon, Oct 7, 2019 at 3:17 PM Anand Moon <linux.amoon@gmail.com> wrote:
+> > > [...]
+> > >> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> > >> index c9a867ac32d4..72f6a7dca0d6 100644
+> > >> --- a/arch/arm64/configs/defconfig
+> > >> +++ b/arch/arm64/configs/defconfig
+> > >> @@ -774,7 +774,7 @@ CONFIG_MPL3115=m
+> > >>  CONFIG_PWM=y
+> > >>  CONFIG_PWM_BCM2835=m
+> > >>  CONFIG_PWM_CROS_EC=m
+> > >> -CONFIG_PWM_MESON=m
+> > >> +CONFIG_PWM_MESON=y
+> > >
+> > > some time ago I submitted a similar patch for the 32-bit SoCs
+> > > it turned that that pwm-meson can be built as module because the
+> > > kernel will run without CPU DVFS as long as the clock and regulator
+> > > drivers are returning -EPROBE_DEFER (-517)
+> >
+> > On 64-bit SoCs, the kernel boots with PWM as a module also, but DVFS
+> > only works sometimes, and making it built-in fixes the problem.
+> > Actually, it doesn't fix, it just hides the problem, which is likely a
+> > race or timeout happening during deferred probing.
+> >
+> > > did you check whether there's some other problem like some unused
+> > > clock which is being disabled at that moment?
+> > > I've been hunting weird problems in the past where it turned out that
+> > > changing kernel config bits changed the boot timing - that masked the
+> > > original problem
+> >
+> > Right, I would definitely prefer to not make this built-in without a lot
+> > more information to *why* this is needed.  In figuring that out, we'll
+> > probably find the race/timeout that's the root cause.
+> >
+> > Kevin
+> >
+> >
+>
+> Kevin,
+>
+> As per my understanding from the kernelci.org logs it seen that
+> pwm-meson driver is requested more than once before it finally load the module.
+>
+> [0] https://storage.kernelci.org/next/master/next-20191008/arm64/defconfig/gcc-8/lab-baylibre/boot-meson-g12b-odroid-n2.txt
+my understanding is that:
+- the PWM regulator driver is built in (=y)
+- the Meson PWM controller driver is built as module (=m)
+- during boot the PWM regulator node is found and it has a matching
+driver (built-in)
+- the PWM regulator driver tries to find the PWM controller but cannot
+find it yet (and reports "Failed to get PWM: -517")
+- (this repeats a few times)
+- then the filesystem / initramfs is loaded where the modules are located
+- now the Meson PWM controller driver is loaded
+- the PWM regulator driver tries to find the PWM controller -> now it found it
 
-commit c6e4999cd930b8bd11dd8d4767e871b47f502845
-Author: YueHaibing <yuehaibing@huawei.com>
-Date:   Fri Aug 2 21:04:08 2019 +0800
-   usb: dwc3: meson-g12a: use devm_platform_ioremap_resource() to simplify code
+> Hi Martin,
+>
+> I have tired your Martin's patch [1] and still the boot fails to move
+> ahead with below logs.
+> [1] https://lore.kernel.org/patchwork/patch/1034186/
+this patch only silences the "Failed to get PWM: -517" message
+Mark didn't apply it back then because without that message it would
+be harder to debug these issues
+
+> [    1.543928] xhci-hcd xhci-hcd.0.auto: Host supports USB 3.0 SuperSpeed
+> [    1.550422] usb usb2: We don't know the algorithms for LPM for this
+> host, disabling LPM.
+> [    1.558702] hub 2-0:1.0: USB hub found
+> [    1.562131] hub 2-0:1.0: 1 port detected
+> [    1.566206] dwc3-meson-g12a ffe09000.usb: switching to Device Mode
+> [    1.573252] meson-gx-mmc ffe05000.sd: Got CD GPIO
+> [    1.607405] hctosys: unable to open rtc device (rtc0)
+>
+> I have put some more prints in pwm-meson.c it fails to load the module
+> as microsSD card is not completely initialized.
+what makes you think that there's a problem with pwm-meson?
+
+can you please share a boot log with the command line parameter
+"initcall_debug" [0]?
+from Documentation/admin-guide/kernel-parameters.txt:
+ initcall_debug [KNL] Trace initcalls as they are executed.  Useful
+ for working out where the kernel is dying during
+ startup.
+
+you can also try the command line parameter "clk_ignore_unused" (it's
+just a gut feeling: maybe a "critical" clock is being disabled because
+it's not wired up correctly).
+
+back when I was working out the CPU clock tree for the 32-bit SoCs I
+had a bad parent clock in one of the muxes which resulted in sporadic
+lockups if CPU DVFS was enabled.
+you can try to disable CPU DVFS by dropping the OPP table and it's
+references from the .dtsi
 
 
 Martin
+
+
+[0] https://elinux.org/Initcall_Debug
 
 _______________________________________________
 linux-amlogic mailing list
