@@ -1,90 +1,85 @@
-Return-Path: <SRS0=0688=YB=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=pqGQ=YC=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0B6A0C4360C
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Oct 2019 23:46:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E8A15C47404
+	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Oct 2019 07:47:04 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D257620873
-	for <linux-amlogic@archiver.kernel.org>; Tue,  8 Oct 2019 23:46:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9696D20B7C
+	for <linux-amlogic@archiver.kernel.org>; Wed,  9 Oct 2019 07:47:04 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TBogSdIe";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="I+N5hkvP"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D257620873
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=sifive.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EazGx20R";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wjvQivs+"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9696D20B7C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:Message-ID:
-	In-Reply-To:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZnbT4X1b0uQvEkTspJNTnGT2+D+dH2M37HgaLw9enqc=; b=TBogSdIewN/OPE
-	8acaw8z1DHYmhPuhpk2wddNhtn/Jfe9y3IVk3s96qAklQqnSiGAwX/3xedtCWchWh/EmRaOrOmlGy
-	4RDhU+TDzHeeC3cEPXU5Yj0Rw82SgeTdnie94gZL0rIhx4bX1oQZwhqzzzCCU6/jaUj8BhCj5vVr5
-	mLZl8exy86wkqeRxlammUOloTKRDM4JEz5ISvxl7JZBjG1/mLpLO0fd6hDlvl/GtHCD51/k1uk8QA
-	21Ww98L6dPczpCqT8neM/1e7/OI/DDLf3OIfQJY3/MyyHrW1T/o5i94EccMMNWSwNKVg+3NvppqJu
-	5spy6/C/2qb5twtJOBzA==;
+	List-Owner; bh=pvWHqBrOmGVYLxNYRX0ekq0gWk1YDM/7Qarmr2hZiPI=; b=EazGx20R6ICZES
+	lfcmJPdQe+Sr4RUSfy0VGS8LVF2ZEjZ7HnGT1s7Tv4QJ+SRGYpDquhR9pJ26iprP/HjoqB6SYY01K
+	cmHJqUN4tBONPR6NvTJHWOgV69o0M2KGDSEDZxGSJVLoyJ3vwuEDpLel0If882neq0kgQ+5AIE9pk
+	uGH6W+VEvgMzy8fjsb4x536vE6nL19kaIUnbOlPvVHQucswpWZwpULbUBHee3ELvXcc4stRjxDWXa
+	zqMCApqeJ+II1JFZ0Owt7aaf+vMPWhB1fU1PcvjU0O16mUtuKapbHJdzZM/UUWyEvyd85Nrahcf+M
+	pGPpvec2VL+A+BZvcBZA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iHzBL-00044S-8e; Tue, 08 Oct 2019 23:46:19 +0000
-Received: from mail-io1-xd44.google.com ([2607:f8b0:4864:20::d44])
+	id 1iI6gR-0003RO-Rr; Wed, 09 Oct 2019 07:46:55 +0000
+Received: from mail-lj1-x243.google.com ([2a00:1450:4864:20::243])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iHzBG-0003zo-Ki
- for linux-amlogic@lists.infradead.org; Tue, 08 Oct 2019 23:46:17 +0000
-Received: by mail-io1-xd44.google.com with SMTP id n197so840288iod.9
- for <linux-amlogic@lists.infradead.org>; Tue, 08 Oct 2019 16:46:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sifive.com; s=google;
- h=date:from:to:cc:subject:in-reply-to:message-id:references
- :user-agent:mime-version;
- bh=SPl3L4+4Zy9QlJN3K7IuqOc2JedlA0ldY7i+AP0Siqo=;
- b=I+N5hkvPCF8K1LY460NnH3Bs+ppv36e7pHAAko5cPGtVK7Q1xpMFtMk1sbwX3EL9Ae
- UX5ufwjfjE2WsQxxVvaJrkkGtrrD1A1swJroeZ6oWYFiFUD/gbGKkY6710T0F0X5S5Xo
- BF95rAFQKdDZy+9dBrgr05QKn2VguSytZtPaHPhpxauj1vAvK0o8UX1wBJzBZa1yl7EV
- jLHoqHF7Hse1l/Ohr1dGC6ATYWRzE6EftbRk42hoGB79bBRXmsmPeyS2gmRpO97jk05b
- X+CS58w6j5DGF3spjHV4AncNibrgaK8A9wTUdRqszmiSN3PwPwqQA/IsTfJ60gtOiuUB
- 4Xrw==
+ id 1iI6gC-0003Dt-M6
+ for linux-amlogic@lists.infradead.org; Wed, 09 Oct 2019 07:46:42 +0000
+Received: by mail-lj1-x243.google.com with SMTP id b20so1447591ljj.5
+ for <linux-amlogic@lists.infradead.org>; Wed, 09 Oct 2019 00:46:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=hZEfc+r3FkjJNXGg5OrQndZ7EVhjrXvy0Arp8Ba6y3Y=;
+ b=wjvQivs+C+mNfu/kBT+oqZ7KD4q6+IZ5Kth6hhfGFbltlKdqAJ38C7ajvyZ31te4gJ
+ C5EqhO//ZRTNxmVHsnWpL4FPvGmq6RGPaLctgOfRFcn64vZmRPcZzkMMWQJ5TtpYGxOS
+ ++ZFPLLjrWzBCECqMtnDgmicGmA0oWmKIWQeYM/ZOxDhwuAVKbdEN/zSfWvAA3hLQZZq
+ ubaT/P3ZZ59MYBEbi3oE/Ge+OFG+iQYKsWIiR5Ef3yKK7kivB5XTNZls9k74vNap0dO9
+ ytr/crl5hSQEYBvLZjmMXVpBhkzUNMwtOdUVNlFdxRC9uu49L9C1IMRlaxaQ+WnE44XU
+ dFHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
- :references:user-agent:mime-version;
- bh=SPl3L4+4Zy9QlJN3K7IuqOc2JedlA0ldY7i+AP0Siqo=;
- b=H6aEOp8fvbPiCz/h9x8oPuP3bCLqlTOApmQsnh2nu8KWdioRbRyBwzJ4p8nBUTyFJP
- Fk6LRlOIQOrxoTHa/Oqnzw2ZugRClsk14YrQ4aw/i7mJEXYNiDYeeqd3q60Y/0S+Welm
- kr2kk+BUAbrAy8pUqsRwo58hhRkdPZIW3zhiBEk0RvRGvEgkmA3/E08XTsUN4PVNL5zU
- CIUbGU30nJm7Smb3mN8XzjA/C5XmprF1X836Fpnad00/RIaB4N0+wZGFQk730LK+o5sH
- BqTMUEkHbhyCzf+oa3tAVbhvbsdG+x577ih+AtjPtUb1jzYJym1PGy07RpHHjLrkTohY
- 03lA==
-X-Gm-Message-State: APjAAAUDb0glk735hMI4mQOlX/F266t5QFz3n2l48AiEBH+fP3Jbj+6M
- N9r71NmX+QUrij16vpB2BzlvoA==
-X-Google-Smtp-Source: APXvYqz97nlCIt/+/P4PPfxa3nO+CVIeqE66+NVgtpZhnKj/IpAG2fhUxvCWOIqX/CoRt6DSjpBBFw==
-X-Received: by 2002:a92:d084:: with SMTP id h4mr287013ilh.223.1570578372595;
- Tue, 08 Oct 2019 16:46:12 -0700 (PDT)
-Received: from localhost ([64.62.168.194])
- by smtp.gmail.com with ESMTPSA id m11sm250603ioq.5.2019.10.08.16.46.10
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 08 Oct 2019 16:46:12 -0700 (PDT)
-Date: Tue, 8 Oct 2019 16:46:06 -0700 (PDT)
-From: Paul Walmsley <paul.walmsley@sifive.com>
-X-X-Sender: paulw@viisi.sifive.com
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: pwm: Convert PWM bindings to
- json-schema
-In-Reply-To: <20191002164047.14499-1-krzk@kernel.org>
-Message-ID: <alpine.DEB.2.21.9999.1910081643220.11044@viisi.sifive.com>
-References: <20191002164047.14499-1-krzk@kernel.org>
-User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=hZEfc+r3FkjJNXGg5OrQndZ7EVhjrXvy0Arp8Ba6y3Y=;
+ b=MaVzjCwr7meWG3/s+iLconKyqFWFXPLL6F0jGAIsz/dU7dhCxwKJeRmLB/pZ+8dj0Y
+ igedCbhYmKHy8bzTP/qi3EYs8PwsoGPQAub/SlXOw31Q9mY+ry/+4wWnnM1kNnDzeCW/
+ oWlvSZRs2A3Rq/AugXgKyPzACVsuzHK61zGAqQ4dlaY7xeQmED1HljVwc+p901eYV/ZC
+ w/UeViiK+tPxoFDZgKr1kLK9XJh9aczFybGsy9sU8VQqYtmynzXYHZsaZJ3TPKjYAJEf
+ WEyDdUVlSQuaAQPamYcCW+6Mg2YdF3XPaxqGnhM1tb7EipzhXmrkEbhR0GSbmOA3FgR0
+ 5jVg==
+X-Gm-Message-State: APjAAAXG3b/fVowFx61Rhugl/dmsCZ/krG5OftLpzjYsclggxY/z/XfX
+ PwgQNExV9+aFwmYZKk3w1VNhF2Y45hUeVoHW3LoIgg==
+X-Google-Smtp-Source: APXvYqzKb6yyez5/a7eDQjEjte0+mGMXwCtZbVyeffNWrWYP4x2euviqJJy4ezdD4TVfujVbQ0UR4GcHrwjyGqp8gXQ=
+X-Received: by 2002:a2e:80d1:: with SMTP id r17mr1435527ljg.118.1570607198839; 
+ Wed, 09 Oct 2019 00:46:38 -0700 (PDT)
 MIME-Version: 1.0
+References: <20191006102953.57536-1-yuehaibing@huawei.com>
+ <20191006102953.57536-7-yuehaibing@huawei.com>
+In-Reply-To: <20191006102953.57536-7-yuehaibing@huawei.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 9 Oct 2019 09:46:27 +0200
+Message-ID: <CACRpkdY5x3wG4h6Wm_L5OXWXB7SPqHimUFOQa2jOeqDETWciYg@mail.gmail.com>
+Subject: Re: [PATCH -next 06/34] rtc: coh901331: use
+ devm_platform_ioremap_resource() to simplify code
+To: YueHaibing <yuehaibing@huawei.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191008_164614_699559_A3C868FD 
-X-CRM114-Status: GOOD (  11.81  )
+X-CRM114-CacheID: sfid-20191009_004640_733330_A75CD47A 
+X-CRM114-Status: UNSURE (   9.11  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,53 +91,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
- linux-pwm@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-rockchip@lists.infradead.org,
- Rob Herring <robh+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
- linux-arm-kernel@lists.infradead.org,
- =?ISO-8859-15?Q?Uwe_Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
- linux-tegra@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
- linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-leds@vger.kernel.org,
- linux-rpi-kernel@lists.infradead.org
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ linux-aspeed <linux-aspeed@lists.ozlabs.org>, Baruch Siach <baruch@tkos.co.il>,
+ Patrice CHOTARD <patrice.chotard@st.com>, Paul Cercueil <paul@crapouillou.net>,
+ linux-tegra@vger.kernel.org,
+ "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+ Michal Simek <michal.simek@xilinx.com>, linux-rtc@vger.kernel.org,
+ Florian Fainelli <f.fainelli@gmail.com>, Kevin Hilman <khilman@baylibre.com>,
+ Chen-Yu Tsai <wens@csie.org>, Jon Hunter <jonathanh@nvidia.com>,
+ Ludovic Desroches <ludovic.desroches@microchip.com>,
+ bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+ Joel Stanley <joel@jms.id.au>, Sylvain Lemieux <slemieux.tyco@gmail.com>,
+ Alexandre TORGUE <alexandre.torgue@st.com>, Sean Wang <sean.wang@mediatek.com>,
+ Maxime Ripard <mripard@kernel.org>, Vladimir Zapolskiy <vz@mleia.com>,
+ "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
+ Gregory Fong <gregory.0xf0@gmail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ huang eddie <eddie.huang@mediatek.com>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>,
+ Alessandro Zummo <a.zummo@towertech.it>, Andrew Jeffery <andrew@aj.id.au>,
+ linux-stm32@st-md-mailman.stormreply.com,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Tony Prisk <linux@prisktech.co.nz>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Brian Norris <computersforpeace@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, 2 Oct 2019, Krzysztof Kozlowski wrote:
+On Sun, Oct 6, 2019 at 12:32 PM YueHaibing <yuehaibing@huawei.com> wrote:
 
-> Convert generic PWM bindings to DT schema format using json-schema.  The
-> consumer bindings are split to separate file.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
-> ---
-> 
+> Use devm_platform_ioremap_resource() to simplify the code a bit.
+> This is detected by coccinelle.
+>
+> Signed-off-by: YueHaibing <yuehaibing@huawei.com>
 
-[ ... ]
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-sifive.txt b/Documentation/devicetree/bindings/pwm/pwm-sifive.txt
-> index 36447e3c9378..3d1dd7b06efc 100644
-> --- a/Documentation/devicetree/bindings/pwm/pwm-sifive.txt
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-sifive.txt
-> @@ -17,7 +17,7 @@ Required properties:
->    Please refer to sifive-blocks-ip-versioning.txt for details.
->  - reg: physical base address and length of the controller's registers
->  - clocks: Should contain a clock identifier for the PWM's parent clock.
-> -- #pwm-cells: Should be 3. See pwm.txt in this directory
-> +- #pwm-cells: Should be 3. See pwm.yaml in this directory
->    for a description of the cell format.
->  - interrupts: one interrupt per PWM channel
-
-For the SiFive PWM driver documentation:
-
-Acked-by: Paul Walmsley <paul.walmsley@sifive.com>
-
-
-- Paul
+Yours,
+Linus Walleij
 
 _______________________________________________
 linux-amlogic mailing list
