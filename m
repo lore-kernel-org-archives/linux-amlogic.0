@@ -2,147 +2,181 @@ Return-Path: <SRS0=8dHl=YD=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5AD69ECE597
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Oct 2019 13:41:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6177DC10F14
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Oct 2019 17:32:35 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 29F922067B
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Oct 2019 13:41:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 36F6020659
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Oct 2019 17:32:35 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LBVBGRO2";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="RHqraRb1"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 29F922067B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MfLSVVL/";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=armh.onmicrosoft.com header.i=@armh.onmicrosoft.com header.b="UC01vWCR";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=armh.onmicrosoft.com header.i=@armh.onmicrosoft.com header.b="UC01vWCR"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 36F6020659
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arm.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RWmYR+sjKzy2MKUIWSp7MtpCwKyJr1Pe5rZms9x+U2E=; b=LBVBGRO2bKwHco
-	LzFquqcifP4uQnF4soQmlauuaMuJ6RLF92dmeZtVAY+0hEFBRcXge0jBch3SBHF4fZY51qSuICRgt
-	klqtDs/bzSJxgktzWiU9puMUQPYoG4b2hMT9+88l/ah2//hVMFP0ol27XJ33o66CKR7wFOIGiqpAk
-	+GMz93BFnlu/FnIuPsS0j5zHpduWHsl+/OvE0b/eGM8vfMA+eIXloNsqzRGIBXUZh61hPVSRGAO5Z
-	aAaTbJabAYHnNwBu01RyUGSTO1L9RQx97nlrDyzK7kIzfm/8NKJQhpzM79XKclDPES1pDtxkoQTGh
-	oqm+SPSMSm3wWe30LkHg==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
+	References:Message-ID:Date:Subject:To:From:Reply-To:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=68WRQlHXFe9YUxohB+7UK/0jEVzuU5DoSwhcez24t64=; b=MfLSVVL/zFDfLV
+	JLZ7HxE26ZIL0iZSNvlHVfTvEMUk7iE5NGJtCIB86hExqKhzHsQ22MU9/ctZNWld8kkkbtoqTYfBk
+	qglL5rWvwgDJ/sNbvEsvBbtMMS+LhJkiL3SVaAtkDyWSmmmyRr+dz+v+SaPfAxIyA6WTvtehTSZNR
+	JguoSZ7NoYF4Hmq6WcZwLmvYl2AqyvNlryYD4aB4VBCEAGotg7jUHPx0JD7bhbq9YAFmVz6qWWeW4
+	RKi05XULS/pLJ1XT3KeXpnrqcek+soAgfqkMq42wruXJz1d4Vd+SBZ6YCVr+h63cDC1sLNH0HZMdF
+	RHDciR1+ePkcwMjktafw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iIYh0-0004Vf-Rz; Thu, 10 Oct 2019 13:41:22 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1iIcIW-0006b1-Ts; Thu, 10 Oct 2019 17:32:20 +0000
+Received: from mail-eopbgr70048.outbound.protection.outlook.com ([40.107.7.48]
+ helo=EUR04-HE1-obe.outbound.protection.outlook.com)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iIYgw-0004CZ-Nt
- for linux-amlogic@lists.infradead.org; Thu, 10 Oct 2019 13:41:21 +0000
-Received: by mail-wr1-x442.google.com with SMTP id p14so7972480wro.4
- for <linux-amlogic@lists.infradead.org>; Thu, 10 Oct 2019 06:41:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=y9ZSUXFOySh5/9QQwPjG938Sxy6yK9RUTjHSznX4FyM=;
- b=RHqraRb18DB+8tW8A1SykAf9isRoRKictzhBNw4u9Ft/wAQWF28y27JxpnpoJsffBG
- h1/OBmXrvpeE7fKZr8mzveEX1Uda0Dv+W9rCUg+tyUpvJTHfpzBPqspasdTc/HqhRKTc
- Vygu4eLR2o84/DOqf6lnLiV1fM5sbXh7dX1NwEUWtaqtmaDZKTGN+zoothcTUF+k+S6e
- pehx1MEjpMj9apdxu86w93lOuqs206TPp+wuhEakkq0cDjSj9pzPkSd6bEtyYn36DsQI
- EH/c6VjGew5uFhVpEkao5LZMIcNVU/n+xICq1CBXK09Ic0oJJt4tNNl5GsnEtTW88nZ3
- t+og==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=y9ZSUXFOySh5/9QQwPjG938Sxy6yK9RUTjHSznX4FyM=;
- b=od759RhkPgWpMtaEdlba04uVM4AHOpEWy8jBYrtNYitmePaWWzt4oJ0ZnsOaBRVMNG
- NLwjoLYhI9HnzsraZiA7RqosHdSNINBFdOMxr+wmKJ0Z4wrov39G9WXQ9XvZDt+w4ut3
- gIAQtDzAsHvLKq9Bs2wIfW4f1oBQm70Vrrfqxx5aMFVAA6uVFr8yS/Uuz6U9NvW7jfxx
- fPlxrlhtdSHWRVksNeC3Q65WfszmMTravqUrNfevn3V0Y3qQCKwj0Uvto24ZwqcUOjEb
- yF15a7+EnjSfzm6rNbr7ddKhN24CgZu4Ct/bSvMsG+OfGqXzI4s0z6XxNbIyLpB3ELx+
- ZicQ==
-X-Gm-Message-State: APjAAAW6P7NACttBrbKwZ31yxZ4T3Z0FH5y2uU03ZMBAukEcA1IMAg/I
- OHdeHdyGXxofvfl7Yh3GrbJz5A==
-X-Google-Smtp-Source: APXvYqxESLeybnYagv8QoHJ9+EByhRUqz5N+JOi+x1oCsakjxoAaOOCTNvLxvRn+rrQ8Kxgy2WA/UQ==
-X-Received: by 2002:adf:8296:: with SMTP id 22mr8227794wrc.255.1570714876476; 
- Thu, 10 Oct 2019 06:41:16 -0700 (PDT)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id f143sm8112750wme.40.2019.10.10.06.41.15
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Thu, 10 Oct 2019 06:41:16 -0700 (PDT)
+ id 1iIcIM-0006Tc-Kn; Thu, 10 Oct 2019 17:32:13 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com; 
+ s=selector2-armh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PUMRCcM9QzNb+fOw3U0IY8LmiJ2LQfE1inz2gEUn6tY=;
+ b=UC01vWCRlKvOfW/G9A56ZQUnhQvKUFMLDNElG7xz3adX4/j4iwtA4HIBrbdbs0yKGiKK0bbUIBzfjjz/1sOkbVHzsfNT5OWT2s3bRGMwSTNQ+tFol/RuERsMaU+kFaeTrxRFx0IN1W06lZdnHdQboaDM5BlhgGQlex/JmH1rq8I=
+Received: from VI1PR0801CA0082.eurprd08.prod.outlook.com
+ (2603:10a6:800:7d::26) by AM0PR08MB5235.eurprd08.prod.outlook.com
+ (2603:10a6:208:163::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2347.18; Thu, 10 Oct
+ 2019 17:32:05 +0000
+Received: from VE1EUR03FT038.eop-EUR03.prod.protection.outlook.com
+ (2a01:111:f400:7e09::206) by VI1PR0801CA0082.outlook.office365.com
+ (2603:10a6:800:7d::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2347.18 via Frontend
+ Transport; Thu, 10 Oct 2019 17:32:05 +0000
+Authentication-Results: spf=temperror (sender IP is 63.35.35.123)
+ smtp.mailfrom=arm.com; lists.infradead.org; dkim=pass (signature was
+ verified) header.d=armh.onmicrosoft.com;lists.infradead.org; dmarc=none
+ action=none header.from=arm.com;
+Received-SPF: TempError (protection.outlook.com: error in processing during
+ lookup of arm.com: DNS Timeout)
+Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
+ VE1EUR03FT038.mail.protection.outlook.com (10.152.19.112) with
+ Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.2305.15 via Frontend Transport; Thu, 10 Oct 2019 17:32:03 +0000
+Received: ("Tessian outbound 6481c7fa5a3c:v33");
+ Thu, 10 Oct 2019 17:32:01 +0000
+X-CheckRecipientChecked: true
+X-CR-MTA-CID: 73a1704631083130
+X-CR-MTA-TID: 64aa7808
+Received: from e2cf33147698.1 (ip-172-16-0-2.eu-west-1.compute.internal
+ [104.47.14.54]) by 64aa7808-outbound-1.mta.getcheckrecipient.com id
+ 95264C51-1FE5-4B87-A231-5B097AD745FF.1; 
+ Thu, 10 Oct 2019 17:31:55 +0000
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com
+ (mail-vi1eur04lp2054.outbound.protection.outlook.com [104.47.14.54])
+ by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id e2cf33147698.1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384);
+ Thu, 10 Oct 2019 17:31:55 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WUcWmBa702eYbOjl3NUc4Vm4352HLIlRvIbXfnNvrN6MwopA/ma08JI9IrAaXo/3okP+BJBq5YPIseXm3jX3DfJjvBpzsUXjbfc+++VI19szpbaRRly5udnqamm4Aj1DMgpnoG0hxuUPaAVF0uTsJXSsVUPX0ECp3u4PiUQWAdspEpnBNL6aBjnnG7YgYGUTcRQXd1prW0kym3PJKiiocIYykQLlsEBW+yuIkCjOdUsgY1Dldw7KvdSrv9lVAry4p9jwFThl6wzROWdm30YVaThgmc6iM7ixAb7lVnFa6RWyEfifPkFOn1RIcdmVqU2/26VE8thcf/8yPPmyY/vnNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PUMRCcM9QzNb+fOw3U0IY8LmiJ2LQfE1inz2gEUn6tY=;
+ b=f022mN8iDWcz0330hvBC9wkQMtXlqv7h4DPC6oQNJCJ6nVAIeNb2ckIfZ7H9+XtYSICo2zd5R32l5Dm83AC6ZOgoaI+SEFdC+gKWCzFa7EiZC9uPYKo/e+LOzIHTb78Zq8mMn8KORhL7wUnYNmzFGj6T8TnWIhg9/4NVB4RT01Hcy/nfbPX98SAMtq2HsoxOq61BlpYl7ymKe5SPsoXyK0XhLESeXKsmrQVQzyZA1//ui5PpBOLW32hUWUq8erUKsfULN/rua85uMULeF6gYe6unsi+jAEZL1CRQbuIwNu/9jxCUSll058VnETBECWQpz6FG/etjpWBOiwhylsoXvA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
+ header.d=arm.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com; 
+ s=selector2-armh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PUMRCcM9QzNb+fOw3U0IY8LmiJ2LQfE1inz2gEUn6tY=;
+ b=UC01vWCRlKvOfW/G9A56ZQUnhQvKUFMLDNElG7xz3adX4/j4iwtA4HIBrbdbs0yKGiKK0bbUIBzfjjz/1sOkbVHzsfNT5OWT2s3bRGMwSTNQ+tFol/RuERsMaU+kFaeTrxRFx0IN1W06lZdnHdQboaDM5BlhgGQlex/JmH1rq8I=
+Received: from AM0PR08MB5345.eurprd08.prod.outlook.com (52.132.215.213) by
+ AM0PR08MB4388.eurprd08.prod.outlook.com (20.179.33.206) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2347.16; Thu, 10 Oct 2019 17:31:53 +0000
+Received: from AM0PR08MB5345.eurprd08.prod.outlook.com
+ ([fe80::f009:c530:6569:cf6f]) by AM0PR08MB5345.eurprd08.prod.outlook.com
+ ([fe80::f009:c530:6569:cf6f%4]) with mapi id 15.20.2347.016; Thu, 10 Oct 2019
+ 17:31:53 +0000
+From: Ayan Halder <Ayan.Halder@arm.com>
+To: Neil Armstrong <narmstrong@baylibre.com>
 Subject: Re: [PATCH 4/7] drm/meson: plane: add support for AFBC mode for OSD1
  plane
-To: Ayan Halder <Ayan.Halder@arm.com>
+Thread-Topic: [PATCH 4/7] drm/meson: plane: add support for AFBC mode for OSD1
+ plane
+Thread-Index: AQHVf0yriLjFzO5S+ESDJ/ifpM4kuqdT3eqAgAAEQoCAAEBvAA==
+Date: Thu, 10 Oct 2019 17:31:53 +0000
+Message-ID: <20191010173152.GA575@arm.com>
 References: <20191010092526.10419-1-narmstrong@baylibre.com>
  <20191010092526.10419-5-narmstrong@baylibre.com>
  <20191010132601.GA10110@arm.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <44f1771f-d640-f23d-995f-7bfcadd213bc@baylibre.com>
-Date: Thu, 10 Oct 2019 15:41:15 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <20191010132601.GA10110@arm.com>
+ <44f1771f-d640-f23d-995f-7bfcadd213bc@baylibre.com>
+In-Reply-To: <44f1771f-d640-f23d-995f-7bfcadd213bc@baylibre.com>
+Accept-Language: en-US
 Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: LNXP123CA0005.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:d2::17) To AM0PR08MB5345.eurprd08.prod.outlook.com
+ (2603:10a6:208:18c::21)
+Authentication-Results-Original: spf=none (sender IP is )
+ smtp.mailfrom=Ayan.Halder@arm.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [217.140.106.53]
+x-ms-publictraffictype: Email
+X-MS-Office365-Filtering-Correlation-Id: 0d6bda7f-8b1c-4ca0-9242-08d74da7c3bc
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-TrafficTypeDiagnostic: AM0PR08MB4388:|AM0PR08MB5235:
+X-MS-Exchange-PUrlCount: 1
+X-Microsoft-Antispam-PRVS: <AM0PR08MB5235BF0F220CE1F3FE44032CE4940@AM0PR08MB5235.eurprd08.prod.outlook.com>
+x-checkrecipientrouted: true
+x-ms-oob-tlc-oobclassifiers: OLM:8273;OLM:8273;
+x-forefront-prvs: 018632C080
+X-Forefront-Antispam-Report-Untrusted: SFV:NSPM;
+ SFS:(10009020)(4636009)(136003)(366004)(376002)(346002)(396003)(39860400002)(189003)(199004)(6916009)(476003)(6512007)(8936002)(25786009)(229853002)(81166006)(8676002)(81156014)(14444005)(305945005)(7736002)(256004)(486006)(14454004)(2616005)(6436002)(86362001)(966005)(66066001)(36756003)(6306002)(66476007)(66556008)(64756008)(66946007)(11346002)(446003)(66446008)(71190400001)(71200400001)(6486002)(186003)(478600001)(5660300002)(386003)(316002)(3846002)(53546011)(26005)(30864003)(33656002)(4326008)(6116002)(44832011)(6246003)(76176011)(99286004)(54906003)(52116002)(6506007)(2906002)(102836004)(1076003);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:AM0PR08MB4388;
+ H:AM0PR08MB5345.eurprd08.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: arm.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: vZZswzz94Hi+1R2NmpvaipRd5WWRlP7EqDqGrzL+EDMsXTroa2dEpPK1XmX4hnHWYcRJgodQwnPtmM1O8Sl+N1azznVS2oCAZ5rslTIkbYqQLmXRt8f4oe5KG+bG7P0FC8oSIg2wW9HmI1DbTg72qxTav0RzuHrY1zE/W3H3X7SSZPhUZkK1TYFUP78rFWKXJRjq20CoxSy/HTCHiROi5cszuiaLIJ9v2gZfdtBxeAm8S/SW61aaafchBBVEIN/KOlCU7t1rY8RDlZvI590SRN5uucLEh59YhJeSuZkwSyRlnEFMgTVwq5X52e96lRMaW5ky/aJNQhR1jNH9hF+iPd26sGP50zG8L9gM52yXqiHQObSi4Lqb2BV4H0J2YZSLeKqKr55ZfFG0lDNINmh8KQiR5NNaSRfc7wAvV66I2zE9MshIRLeYlkBZeOajDrPMcWr5jdkBOiVkbDSXjc08fg==
+x-ms-exchange-transport-forked: True
+Content-ID: <C02FDDF69D101C4AB60CF9322DFEA6A6@eurprd08.prod.outlook.com>
+MIME-Version: 1.0
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR08MB4388
+Original-Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Ayan.Halder@arm.com; 
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: VE1EUR03FT038.eop-EUR03.prod.protection.outlook.com
+X-Forefront-Antispam-Report: CIP:63.35.35.123; IPV:CAL; SCL:-1; CTRY:IE;
+ EFV:NLI; SFV:NSPM;
+ SFS:(10009020)(4636009)(39860400002)(396003)(346002)(136003)(376002)(199004)(189003)(7736002)(6116002)(450100002)(36756003)(76130400001)(53546011)(6506007)(6862004)(97756001)(386003)(76176011)(70586007)(305945005)(26005)(478600001)(102836004)(25786009)(316002)(70206006)(14444005)(5660300002)(46406003)(3846002)(23726003)(2906002)(86362001)(4326008)(50466002)(8676002)(81166006)(22756006)(1076003)(6246003)(8936002)(8746002)(66066001)(47776003)(356004)(6306002)(6512007)(30864003)(446003)(14454004)(63350400001)(33656002)(11346002)(486006)(99286004)(966005)(229853002)(186003)(336012)(54906003)(2616005)(476003)(26826003)(81156014)(6486002)(126002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:AM0PR08MB5235;
+ H:64aa7808-outbound-1.mta.getcheckrecipient.com; FPR:; SPF:TempError; LANG:en;
+ PTR:ec2-63-35-35-123.eu-west-1.compute.amazonaws.com; A:1; MX:1; 
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 4b206749-98d8-4fe0-a6e1-08d74da7bd5e
+NoDisclaimer: True
+X-Forefront-PRVS: 018632C080
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: vJxJLNRQL2sXPYXe2Kd1619cro0jn0UPLJ+EVG6lq2NBL3iMIgrtUKOgcieDbw3Uv2EC8aqBehXYg9SljAZkMK6PcfZuPoKll/b3FADuCF8Ga2qnsCdk50HPMg2iQ/cNvcqs9TNGSmI+m3ldMnVTJdNksJJEUHTWRJcwzReq7uTPrCM1cpErJ/QxVS8kLQvvVyPyQIgFG5pxJ6CQg4vRHaWy9rZinkg9WCB4aHaWzFfvWmJJLQ2/yAlYnvQGCQAU2sD6cTfCO/toQw5ZEWFZ+qOQT83DJWgZawGqRIMJEZo7ky8Cd0vFBN9nVvSjc6bTRgLOdWCAnM+JcGX1evgrAB7RpzU0sDFj6KoN8Ox5qC3gOMP6oeXONYCFMcOzvQxpyIFSSBAbf18T4ps5ISI/Kn4sb8l4J8e8ufy6QJiLxmjEe6EQorAh7GalrR0+gsNLOdeFdqMQEeMs2L7tRjUytg==
+X-OriginatorOrg: arm.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2019 17:32:03.3585 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0d6bda7f-8b1c-4ca0-9242-08d74da7c3bc
+X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d; Ip=[63.35.35.123];
+ Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR08MB5235
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191010_064118_940001_4522EEF8 
-X-CRM114-Status: GOOD (  24.62  )
+X-CRM114-CacheID: sfid-20191010_103210_906555_0C95C0F7 
+X-CRM114-Status: GOOD (  18.77  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,279 +198,294 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Ayan,
-
-On 10/10/2019 15:26, Ayan Halder wrote:
-> On Thu, Oct 10, 2019 at 11:25:23AM +0200, Neil Armstrong wrote:
->> This adds all the OSD configuration plumbing to support the AFBC decoders
->> path to display of the OSD1 plane.
->>
->> The Amlogic GXM and G12A AFBC decoders are integrated very differently.
->>
->> The Amlogic GXM has a direct output path to the OSD1 VIU pixel input,
->> because the GXM AFBC decoder seem to be a custom IP developed by Amlogic.
->>
->> On the other side, the Amlogic G12A AFBC decoder seems to be an external
->> IP that emit pixels on an AXI master hooked to a "Mali Unpack" block
->> feeding the OSD1 VIU pixel input.
->> This uses a weird "0x1000000" internal HW physical address on both
->> sides to transfer the pixels.
->>
->> For Amlogic GXM, the supported pixel formats are the same as the normal
->> linear OSD1 mode.
->>
->> On the other side, Amlogic added support for all AFBC v1.2 formats for
->> the G12A AFBC integration.
->>
->> For simplicity, we stick to the already supported formats for now.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  drivers/gpu/drm/meson/meson_crtc.c  |   2 +
->>  drivers/gpu/drm/meson/meson_drv.h   |   4 +
->>  drivers/gpu/drm/meson/meson_plane.c | 215 ++++++++++++++++++++++++----
->>  3 files changed, 190 insertions(+), 31 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/meson/meson_crtc.c b/drivers/gpu/drm/meson/meson_crtc.c
->> index 57ae1c13d1e6..d478fa232951 100644
->> --- a/drivers/gpu/drm/meson/meson_crtc.c
->> +++ b/drivers/gpu/drm/meson/meson_crtc.c
->> @@ -281,6 +281,8 @@ void meson_crtc_irq(struct meson_drm *priv)
->>  	if (priv->viu.osd1_enabled && priv->viu.osd1_commit) {
->>  		writel_relaxed(priv->viu.osd1_ctrl_stat,
->>  				priv->io_base + _REG(VIU_OSD1_CTRL_STAT));
->> +		writel_relaxed(priv->viu.osd1_ctrl_stat2,
->> +				priv->io_base + _REG(VIU_OSD1_CTRL_STAT2));
->>  		writel_relaxed(priv->viu.osd1_blk0_cfg[0],
->>  				priv->io_base + _REG(VIU_OSD1_BLK0_CFG_W0));
->>  		writel_relaxed(priv->viu.osd1_blk0_cfg[1],
->> diff --git a/drivers/gpu/drm/meson/meson_drv.h b/drivers/gpu/drm/meson/meson_drv.h
->> index 60f13c6f34e5..de25349be8aa 100644
->> --- a/drivers/gpu/drm/meson/meson_drv.h
->> +++ b/drivers/gpu/drm/meson/meson_drv.h
->> @@ -53,8 +53,12 @@ struct meson_drm {
->>  		bool osd1_enabled;
->>  		bool osd1_interlace;
->>  		bool osd1_commit;
->> +		bool osd1_afbcd;
->>  		uint32_t osd1_ctrl_stat;
->> +		uint32_t osd1_ctrl_stat2;
->>  		uint32_t osd1_blk0_cfg[5];
->> +		uint32_t osd1_blk1_cfg4;
->> +		uint32_t osd1_blk2_cfg4;
->>  		uint32_t osd1_addr;
->>  		uint32_t osd1_stride;
->>  		uint32_t osd1_height;
->> diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
->> index 5e798c276037..412941aa8402 100644
->> --- a/drivers/gpu/drm/meson/meson_plane.c
->> +++ b/drivers/gpu/drm/meson/meson_plane.c
->> @@ -23,6 +23,7 @@
->>  #include "meson_plane.h"
->>  #include "meson_registers.h"
->>  #include "meson_viu.h"
->> +#include "meson_osd_afbcd.h"
->>  
->>  /* OSD_SCI_WH_M1 */
->>  #define SCI_WH_M1_W(w)			FIELD_PREP(GENMASK(28, 16), w)
->> @@ -92,12 +93,38 @@ static int meson_plane_atomic_check(struct drm_plane *plane,
->>  						   false, true);
->>  }
->>  
->> +#define MESON_MOD_AFBC_VALID_BITS (AFBC_FORMAT_MOD_BLOCK_SIZE_16x16 |	\
->> +				   AFBC_FORMAT_MOD_BLOCK_SIZE_32x8 |	\
->> +				   AFBC_FORMAT_MOD_YTR |		\
->> +				   AFBC_FORMAT_MOD_SPARSE |		\
->> +				   AFBC_FORMAT_MOD_SPLIT)
->> +
->>  /* Takes a fixed 16.16 number and converts it to integer. */
->>  static inline int64_t fixed16_to_int(int64_t value)
->>  {
->>  	return value >> 16;
->>  }
->>  
->> +static u32 meson_g12a_afbcd_line_stride(struct meson_drm *priv)
->> +{
->> +	u32 line_stride = 0;
->> +
->> +	switch (priv->afbcd.format) {
->> +	case DRM_FORMAT_RGB565:
->> +		line_stride = ((priv->viu.osd1_width << 4) + 127) >> 7;
->> +		break;
->> +	case DRM_FORMAT_RGB888:
->> +	case DRM_FORMAT_XRGB8888:
->> +	case DRM_FORMAT_ARGB8888:
->> +	case DRM_FORMAT_XBGR8888:
->> +	case DRM_FORMAT_ABGR8888:
-> Please have a look at
-> https://www.kernel.org/doc/html/latest/gpu/afbc.html for our
-> recommendation. We suggest that *X* formats are avoided.
+On Thu, Oct 10, 2019 at 03:41:15PM +0200, Neil Armstrong wrote:
+> Hi Ayan,
 > 
-> Also, for interoperability and maximum compression efficiency (with
-> AFBC_FORMAT_MOD_YTR), we suggest the following order :-
+> On 10/10/2019 15:26, Ayan Halder wrote:
+> > On Thu, Oct 10, 2019 at 11:25:23AM +0200, Neil Armstrong wrote:
+> >> This adds all the OSD configuration plumbing to support the AFBC decoders
+> >> path to display of the OSD1 plane.
+> >>
+> >> The Amlogic GXM and G12A AFBC decoders are integrated very differently.
+> >>
+> >> The Amlogic GXM has a direct output path to the OSD1 VIU pixel input,
+> >> because the GXM AFBC decoder seem to be a custom IP developed by Amlogic.
+> >>
+> >> On the other side, the Amlogic G12A AFBC decoder seems to be an external
+> >> IP that emit pixels on an AXI master hooked to a "Mali Unpack" block
+> >> feeding the OSD1 VIU pixel input.
+> >> This uses a weird "0x1000000" internal HW physical address on both
+> >> sides to transfer the pixels.
+> >>
+> >> For Amlogic GXM, the supported pixel formats are the same as the normal
+> >> linear OSD1 mode.
+> >>
+> >> On the other side, Amlogic added support for all AFBC v1.2 formats for
+> >> the G12A AFBC integration.
+> >>
+> >> For simplicity, we stick to the already supported formats for now.
+> >>
+> >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> >> ---
+> >>  drivers/gpu/drm/meson/meson_crtc.c  |   2 +
+> >>  drivers/gpu/drm/meson/meson_drv.h   |   4 +
+> >>  drivers/gpu/drm/meson/meson_plane.c | 215 ++++++++++++++++++++++++----
+> >>  3 files changed, 190 insertions(+), 31 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/meson/meson_crtc.c b/drivers/gpu/drm/meson/meson_crtc.c
+> >> index 57ae1c13d1e6..d478fa232951 100644
+> >> --- a/drivers/gpu/drm/meson/meson_crtc.c
+> >> +++ b/drivers/gpu/drm/meson/meson_crtc.c
+> >> @@ -281,6 +281,8 @@ void meson_crtc_irq(struct meson_drm *priv)
+> >>  	if (priv->viu.osd1_enabled && priv->viu.osd1_commit) {
+> >>  		writel_relaxed(priv->viu.osd1_ctrl_stat,
+> >>  				priv->io_base + _REG(VIU_OSD1_CTRL_STAT));
+> >> +		writel_relaxed(priv->viu.osd1_ctrl_stat2,
+> >> +				priv->io_base + _REG(VIU_OSD1_CTRL_STAT2));
+> >>  		writel_relaxed(priv->viu.osd1_blk0_cfg[0],
+> >>  				priv->io_base + _REG(VIU_OSD1_BLK0_CFG_W0));
+> >>  		writel_relaxed(priv->viu.osd1_blk0_cfg[1],
+> >> diff --git a/drivers/gpu/drm/meson/meson_drv.h b/drivers/gpu/drm/meson/meson_drv.h
+> >> index 60f13c6f34e5..de25349be8aa 100644
+> >> --- a/drivers/gpu/drm/meson/meson_drv.h
+> >> +++ b/drivers/gpu/drm/meson/meson_drv.h
+> >> @@ -53,8 +53,12 @@ struct meson_drm {
+> >>  		bool osd1_enabled;
+> >>  		bool osd1_interlace;
+> >>  		bool osd1_commit;
+> >> +		bool osd1_afbcd;
+> >>  		uint32_t osd1_ctrl_stat;
+> >> +		uint32_t osd1_ctrl_stat2;
+> >>  		uint32_t osd1_blk0_cfg[5];
+> >> +		uint32_t osd1_blk1_cfg4;
+> >> +		uint32_t osd1_blk2_cfg4;
+> >>  		uint32_t osd1_addr;
+> >>  		uint32_t osd1_stride;
+> >>  		uint32_t osd1_height;
+> >> diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
+> >> index 5e798c276037..412941aa8402 100644
+> >> --- a/drivers/gpu/drm/meson/meson_plane.c
+> >> +++ b/drivers/gpu/drm/meson/meson_plane.c
+> >> @@ -23,6 +23,7 @@
+> >>  #include "meson_plane.h"
+> >>  #include "meson_registers.h"
+> >>  #include "meson_viu.h"
+> >> +#include "meson_osd_afbcd.h"
+> >>  
+> >>  /* OSD_SCI_WH_M1 */
+> >>  #define SCI_WH_M1_W(w)			FIELD_PREP(GENMASK(28, 16), w)
+> >> @@ -92,12 +93,38 @@ static int meson_plane_atomic_check(struct drm_plane *plane,
+> >>  						   false, true);
+> >>  }
+> >>  
+> >> +#define MESON_MOD_AFBC_VALID_BITS (AFBC_FORMAT_MOD_BLOCK_SIZE_16x16 |	\
+> >> +				   AFBC_FORMAT_MOD_BLOCK_SIZE_32x8 |	\
+> >> +				   AFBC_FORMAT_MOD_YTR |		\
+> >> +				   AFBC_FORMAT_MOD_SPARSE |		\
+> >> +				   AFBC_FORMAT_MOD_SPLIT)
+> >> +
+> >>  /* Takes a fixed 16.16 number and converts it to integer. */
+> >>  static inline int64_t fixed16_to_int(int64_t value)
+> >>  {
+> >>  	return value >> 16;
+> >>  }
+> >>  
+> >> +static u32 meson_g12a_afbcd_line_stride(struct meson_drm *priv)
+> >> +{
+> >> +	u32 line_stride = 0;
+> >> +
+> >> +	switch (priv->afbcd.format) {
+> >> +	case DRM_FORMAT_RGB565:
+> >> +		line_stride = ((priv->viu.osd1_width << 4) + 127) >> 7;
+> >> +		break;
+> >> +	case DRM_FORMAT_RGB888:
+> >> +	case DRM_FORMAT_XRGB8888:
+> >> +	case DRM_FORMAT_ARGB8888:
+> >> +	case DRM_FORMAT_XBGR8888:
+> >> +	case DRM_FORMAT_ABGR8888:
+> > Please have a look at
+> > https://www.kernel.org/doc/html/latest/gpu/afbc.html for our
+> > recommendation. We suggest that *X* formats are avoided.
+> > 
+> > Also, for interoperability and maximum compression efficiency (with
+> > AFBC_FORMAT_MOD_YTR), we suggest the following order :-
+> > 
+> >         Component 0: R
+> >         Component 1: G
+> >         Component 2: B
+> >         Component 3: A (if available)
 > 
->         Component 0: R
->         Component 1: G
->         Component 2: B
->         Component 3: A (if available)
+> 
+> Sorry I don't understand, you ask me to limit AFBC to ABGR8888 ?
 
+Apologies for the confusion, as per the link, the formats which are
+suggested with AFBC_FORMAT_MOD_YTR are the BGR/ABGR formats (as
+listed in the 'AFBC formats' table)
 
-Sorry I don't understand, you ask me to limit AFBC to ABGR8888 ?
-
-But why if the HW (GPU and DPU) is capable of ?
-
-Isn't it an userspace choice ? I understand XRGB8888 is a waste
-of memory space and compression efficiency, but this is not the
-kernel driver's to decide this, right ?
-
-For interoperability I'll understand recommending a minimal set
-of modifiers and formats. But here, each platform is also limited
-by it's GPU capabilites aswell.
-
-Limiting to ABGR8888 would discard like every non-Android renderers,
-using AFBC, I'm not sure it's the kernels driver's responsibility.
+Thus, any other permutation of the components might make it incompatible
+with some other AFBC producers/consumers.
 
 > 
-> Thus, DRM_FORMAT_ABGR, DRM_FORMAT_BGR should only be allowed.
->> +		line_stride = ((priv->viu.osd1_width << 5) + 127) >> 7;
->> +		break;
->> +	}
->> +
->> +	return ((line_stride + 1) >> 1) << 1;
->> +}
->> +
->>  static void meson_plane_atomic_update(struct drm_plane *plane,
->>  				      struct drm_plane_state *old_state)
->>  {
+> But why if the HW (GPU and DPU) is capable of ?
+> 
+> Isn't it an userspace choice ? I understand XRGB8888 is a waste
+> of memory space and compression efficiency, but this is not the
+> kernel driver's to decide this, right ?
+It is a reccomendation by the AFBC spec. As far as I understand, it
+depends upon the implementor of the AFBC spec(ie dpu, gpu, vpu, etc)
+to allow/disallow *X* formats for AFBC encoding/decoding.
 
-[...]
+> 
+> For interoperability I'll understand recommending a minimal set
+> of modifiers and formats. But here, each platform is also limited
+> by it's GPU capabilites aswell.
+Agreed
 
->>  
->> +static bool meson_plane_format_mod_supported(struct drm_plane *plane,
->> +					     u32 format, u64 modifier)
->> +{
->> +	struct meson_plane *meson_plane = to_meson_plane(plane);
->> +	struct meson_drm *priv = meson_plane->priv;
->> +	int i;
->> +
->> +	if (modifier == DRM_FORMAT_MOD_INVALID)
->> +		return false;
->> +
->> +	if (modifier == DRM_FORMAT_MOD_LINEAR)
->> +		return true;
->> +
->> +	if (!meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM) &&
->> +	    !meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
->> +		return false;
->> +
->> +	if (modifier & ~DRM_FORMAT_MOD_ARM_AFBC(MESON_MOD_AFBC_VALID_BITS))
->> +		return false;
->> +
->> +	for (i = 0 ; i < plane->modifier_count ; ++i)
->> +		if (plane->modifiers[i] == modifier)
->> +			break;
->> +
->> +	if (i == plane->modifier_count) {
->> +		DRM_DEBUG_KMS("Unsupported modifier\n");
->> +		return false;
->> +	}
-
-I can add a warn_once here, would it be enough ?
-
->> +
->> +	if (priv->afbcd.ops && priv->afbcd.ops->supported_fmt)
->> +		return priv->afbcd.ops->supported_fmt(modifier, format);
->> +
->> +	DRM_DEBUG_KMS("AFBC Unsupported\n");
->> +	return false;
->> +}
->> +
->>  static const struct drm_plane_funcs meson_plane_funcs = {
->>  	.update_plane		= drm_atomic_helper_update_plane,
->>  	.disable_plane		= drm_atomic_helper_disable_plane,
->> @@ -353,6 +457,7 @@ static const struct drm_plane_funcs meson_plane_funcs = {
->>  	.reset			= drm_atomic_helper_plane_reset,
->>  	.atomic_duplicate_state = drm_atomic_helper_plane_duplicate_state,
->>  	.atomic_destroy_state	= drm_atomic_helper_plane_destroy_state,
->> +	.format_mod_supported   = meson_plane_format_mod_supported,
->>  };
->>  
->>  static const uint32_t supported_drm_formats[] = {
->> @@ -364,10 +469,53 @@ static const uint32_t supported_drm_formats[] = {
->>  	DRM_FORMAT_RGB565,
->>  };
->>  
->> +static const uint64_t format_modifiers_afbc_gxm[] = {
->> +	DRM_FORMAT_MOD_ARM_AFBC(AFBC_FORMAT_MOD_BLOCK_SIZE_16x16 |
->> +				AFBC_FORMAT_MOD_SPARSE |
->> +				AFBC_FORMAT_MOD_YTR),
->> +	/* SPLIT mandates SPARSE, RGB modes mandates YTR */
->> +	DRM_FORMAT_MOD_ARM_AFBC(AFBC_FORMAT_MOD_BLOCK_SIZE_16x16 |
->> +				AFBC_FORMAT_MOD_YTR |
->> +				AFBC_FORMAT_MOD_SPARSE |
->> +				AFBC_FORMAT_MOD_SPLIT),
->> +	DRM_FORMAT_MOD_LINEAR,
->> +	DRM_FORMAT_MOD_INVALID,
->> +};
->> +
->> +static const uint64_t format_modifiers_afbc_g12a[] = {
->> +	/*
->> +	 * - TOFIX Support AFBC modifiers for YUV formats (16x16 + TILED)
->> +	 * - AFBC_FORMAT_MOD_YTR is mandatory since we only support RGB
->> +	 * - SPLIT is mandatory for performances reasons when in 16x16
->> +	 *   block size
->> +	 * - 32x8 block size + SPLIT is mandatory with 4K frame size
->> +	 *   for performances reasons
->> +	 */
->> +	DRM_FORMAT_MOD_ARM_AFBC(AFBC_FORMAT_MOD_BLOCK_SIZE_16x16 |
->> +				AFBC_FORMAT_MOD_YTR |
->> +				AFBC_FORMAT_MOD_SPARSE |
->> +				AFBC_FORMAT_MOD_SPLIT),
->> +	DRM_FORMAT_MOD_ARM_AFBC(AFBC_FORMAT_MOD_BLOCK_SIZE_32x8 |
->> +				AFBC_FORMAT_MOD_YTR |
->> +				AFBC_FORMAT_MOD_SPARSE),
->> +	DRM_FORMAT_MOD_ARM_AFBC(AFBC_FORMAT_MOD_BLOCK_SIZE_32x8 |
->> +				AFBC_FORMAT_MOD_YTR |
->> +				AFBC_FORMAT_MOD_SPARSE |
->> +				AFBC_FORMAT_MOD_SPLIT),
->> +	DRM_FORMAT_MOD_LINEAR,
->> +	DRM_FORMAT_MOD_INVALID,
->> +};
->> +
->> +static const uint64_t format_modifiers_default[] = {
->> +	DRM_FORMAT_MOD_LINEAR,
->> +	DRM_FORMAT_MOD_INVALID,
->> +};
->> +
->>  int meson_plane_create(struct meson_drm *priv)
->>  {
->>  	struct meson_plane *meson_plane;
->>  	struct drm_plane *plane;
->> +	const uint64_t *format_modifiers = format_modifiers_default;
->>  
->>  	meson_plane = devm_kzalloc(priv->drm->dev, sizeof(*meson_plane),
->>  				   GFP_KERNEL);
->> @@ -377,11 +525,16 @@ int meson_plane_create(struct meson_drm *priv)
->>  	meson_plane->priv = priv;
->>  	plane = &meson_plane->base;
->>  
->> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM))
->> +		format_modifiers = format_modifiers_afbc_gxm;
->> +	else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
->> +		format_modifiers = format_modifiers_afbc_g12a;
->> +
->>  	drm_universal_plane_init(priv->drm, plane, 0xFF,
->>  				 &meson_plane_funcs,
->>  				 supported_drm_formats,
->>  				 ARRAY_SIZE(supported_drm_formats),
->> -				 NULL,
->> +				 format_modifiers,
->>  				 DRM_PLANE_TYPE_PRIMARY, "meson_primary_plane");
->>  
->>  	drm_plane_helper_add(plane, &meson_plane_helper_funcs);
->> -- 
->> 2.22.0
-
+>
+> Limiting to ABGR8888 would discard like every non-Android renderers,
+> using AFBC, I'm not sure it's the kernels driver's responsibility.
+I am not familiar with non-Android renderers.
+> 
+> > 
+> > Thus, DRM_FORMAT_ABGR, DRM_FORMAT_BGR should only be allowed.
+> >> +		line_stride = ((priv->viu.osd1_width << 5) + 127) >> 7;
+> >> +		break;
+> >> +	}
+> >> +
+> >> +	return ((line_stride + 1) >> 1) << 1;
+> >> +}
+> >> +
+> >>  static void meson_plane_atomic_update(struct drm_plane *plane,
+> >>  				      struct drm_plane_state *old_state)
+> >>  {
+> 
+> [...]
+> 
+> >>  
+> >> +static bool meson_plane_format_mod_supported(struct drm_plane *plane,
+> >> +					     u32 format, u64 modifier)
+> >> +{
+> >> +	struct meson_plane *meson_plane = to_meson_plane(plane);
+> >> +	struct meson_drm *priv = meson_plane->priv;
+> >> +	int i;
+> >> +
+> >> +	if (modifier == DRM_FORMAT_MOD_INVALID)
+> >> +		return false;
+> >> +
+> >> +	if (modifier == DRM_FORMAT_MOD_LINEAR)
+> >> +		return true;
+> >> +
+> >> +	if (!meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM) &&
+> >> +	    !meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
+> >> +		return false;
+> >> +
+> >> +	if (modifier & ~DRM_FORMAT_MOD_ARM_AFBC(MESON_MOD_AFBC_VALID_BITS))
+> >> +		return false;
+> >> +
+> >> +	for (i = 0 ; i < plane->modifier_count ; ++i)
+> >> +		if (plane->modifiers[i] == modifier)
+> >> +			break;
+> >> +
+> >> +	if (i == plane->modifier_count) {
+> >> +		DRM_DEBUG_KMS("Unsupported modifier\n");
+> >> +		return false;
+> >> +	}
+> 
+> I can add a warn_once here, would it be enough ?
+> 
+> >> +
+> >> +	if (priv->afbcd.ops && priv->afbcd.ops->supported_fmt)
+> >> +		return priv->afbcd.ops->supported_fmt(modifier, format);
+> >> +
+> >> +	DRM_DEBUG_KMS("AFBC Unsupported\n");
+> >> +	return false;
+> >> +}
+> >> +
+> >>  static const struct drm_plane_funcs meson_plane_funcs = {
+> >>  	.update_plane		= drm_atomic_helper_update_plane,
+> >>  	.disable_plane		= drm_atomic_helper_disable_plane,
+> >> @@ -353,6 +457,7 @@ static const struct drm_plane_funcs meson_plane_funcs = {
+> >>  	.reset			= drm_atomic_helper_plane_reset,
+> >>  	.atomic_duplicate_state = drm_atomic_helper_plane_duplicate_state,
+> >>  	.atomic_destroy_state	= drm_atomic_helper_plane_destroy_state,
+> >> +	.format_mod_supported   = meson_plane_format_mod_supported,
+> >>  };
+> >>  
+> >>  static const uint32_t supported_drm_formats[] = {
+> >> @@ -364,10 +469,53 @@ static const uint32_t supported_drm_formats[] = {
+> >>  	DRM_FORMAT_RGB565,
+> >>  };
+> >>  
+> >> +static const uint64_t format_modifiers_afbc_gxm[] = {
+> >> +	DRM_FORMAT_MOD_ARM_AFBC(AFBC_FORMAT_MOD_BLOCK_SIZE_16x16 |
+> >> +				AFBC_FORMAT_MOD_SPARSE |
+> >> +				AFBC_FORMAT_MOD_YTR),
+> >> +	/* SPLIT mandates SPARSE, RGB modes mandates YTR */
+> >> +	DRM_FORMAT_MOD_ARM_AFBC(AFBC_FORMAT_MOD_BLOCK_SIZE_16x16 |
+> >> +				AFBC_FORMAT_MOD_YTR |
+> >> +				AFBC_FORMAT_MOD_SPARSE |
+> >> +				AFBC_FORMAT_MOD_SPLIT),
+> >> +	DRM_FORMAT_MOD_LINEAR,
+> >> +	DRM_FORMAT_MOD_INVALID,
+> >> +};
+> >> +
+> >> +static const uint64_t format_modifiers_afbc_g12a[] = {
+> >> +	/*
+> >> +	 * - TOFIX Support AFBC modifiers for YUV formats (16x16 + TILED)
+> >> +	 * - AFBC_FORMAT_MOD_YTR is mandatory since we only support RGB
+> >> +	 * - SPLIT is mandatory for performances reasons when in 16x16
+> >> +	 *   block size
+> >> +	 * - 32x8 block size + SPLIT is mandatory with 4K frame size
+> >> +	 *   for performances reasons
+> >> +	 */
+> >> +	DRM_FORMAT_MOD_ARM_AFBC(AFBC_FORMAT_MOD_BLOCK_SIZE_16x16 |
+> >> +				AFBC_FORMAT_MOD_YTR |
+> >> +				AFBC_FORMAT_MOD_SPARSE |
+> >> +				AFBC_FORMAT_MOD_SPLIT),
+> >> +	DRM_FORMAT_MOD_ARM_AFBC(AFBC_FORMAT_MOD_BLOCK_SIZE_32x8 |
+> >> +				AFBC_FORMAT_MOD_YTR |
+> >> +				AFBC_FORMAT_MOD_SPARSE),
+> >> +	DRM_FORMAT_MOD_ARM_AFBC(AFBC_FORMAT_MOD_BLOCK_SIZE_32x8 |
+> >> +				AFBC_FORMAT_MOD_YTR |
+> >> +				AFBC_FORMAT_MOD_SPARSE |
+> >> +				AFBC_FORMAT_MOD_SPLIT),
+> >> +	DRM_FORMAT_MOD_LINEAR,
+> >> +	DRM_FORMAT_MOD_INVALID,
+> >> +};
+> >> +
+> >> +static const uint64_t format_modifiers_default[] = {
+> >> +	DRM_FORMAT_MOD_LINEAR,
+> >> +	DRM_FORMAT_MOD_INVALID,
+> >> +};
+> >> +
+> >>  int meson_plane_create(struct meson_drm *priv)
+> >>  {
+> >>  	struct meson_plane *meson_plane;
+> >>  	struct drm_plane *plane;
+> >> +	const uint64_t *format_modifiers = format_modifiers_default;
+> >>  
+> >>  	meson_plane = devm_kzalloc(priv->drm->dev, sizeof(*meson_plane),
+> >>  				   GFP_KERNEL);
+> >> @@ -377,11 +525,16 @@ int meson_plane_create(struct meson_drm *priv)
+> >>  	meson_plane->priv = priv;
+> >>  	plane = &meson_plane->base;
+> >>  
+> >> +	if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM))
+> >> +		format_modifiers = format_modifiers_afbc_gxm;
+> >> +	else if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_G12A))
+> >> +		format_modifiers = format_modifiers_afbc_g12a;
+> >> +
+> >>  	drm_universal_plane_init(priv->drm, plane, 0xFF,
+> >>  				 &meson_plane_funcs,
+> >>  				 supported_drm_formats,
+> >>  				 ARRAY_SIZE(supported_drm_formats),
+> >> -				 NULL,
+> >> +				 format_modifiers,
+> >>  				 DRM_PLANE_TYPE_PRIMARY, "meson_primary_plane");
+> >>  
+> >>  	drm_plane_helper_add(plane, &meson_plane_helper_funcs);
+> >> -- 
+> >> 2.22.0
 
 _______________________________________________
 linux-amlogic mailing list
