@@ -2,22 +2,22 @@ Return-Path: <SRS0=8dHl=YD=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,UPPERCASE_50_75,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 71EE8C4360C
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Oct 2019 09:26:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6AD4BC4360C
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Oct 2019 09:26:31 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 418C42067B
-	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Oct 2019 09:26:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 355332064A
+	for <linux-amlogic@archiver.kernel.org>; Thu, 10 Oct 2019 09:26:31 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FgDZ6nre";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="OV3XMqTC"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 418C42067B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jZ///UYr";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="LirWXDC/"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 355332064A
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=93JngmhXOryvC4z6Hj8Nbml/aupfjmiNNjjTMVBONv4=; b=FgDZ6nreyE69Er
-	kW85tgGinMyIiYFyf0hZKTvnOcPZ1/Ag3ki6UnWr4UsaxuK1uvs54sbpeCCTKLeoNt9DvB3+/C9Z0
-	0ir0vxksQbZojY1zP84zyNzLC1mbxTWL7vrFP8A7E1SGAQzC0/0CXCj4tyCtzHpkqddT9ChXJtVA6
-	2KciLjv44kMMJoPf9JuAUrzYEUfAcTZ7OtioUx6edYgjT+MDlH90vz/McteaAc76B6QNQIO232oAc
-	Lx45mHpDnnWzwZ/4WVYh04RyHg4JYjnYFHlS3NfcpFJxeAxlQ4mxUAdpLvBE+O72G6ABVkgYTN5y3
-	O1FGtZwI81/Uw5kLnNDA==;
+	List-Owner; bh=CucNkfxf0ujb4mFA0A5SICe4Zan/K3b8i5w0ARsS0cg=; b=jZ///UYrQITc/W
+	Tq8QbIr2fHMSd3RCAFiqysFVqB8aU8ibqasyQ3ziliv3ftZWXAW4ScIS32clKtGTQRLc0KYDKPUAg
+	jokBQEaESHS9z5fW1XldUNt8EhtSh3/jicIyL/5gGjXgXN3apGMkohNkbMlQJ7qwGn+Yvz/1MD6/1
+	hEtKtZbNp4nKbQFUWVqdhvighrIGlTMDjLZEMwlkocW9OvZDVZhBD+3/3gRh5Sbe16BXN3pYUcH7E
+	2bspIl7+QdQc5MyXrqirV2KnIFwUXPL8VUe7nHYPYNhwqASoA654QyCwuRRsEtA+2Ji57MJDiLw4D
+	QgNl5/QG4aRQdyt25gog==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.2 #3 (Red Hat Linux))
-	id 1iIUi1-0006TU-BV; Thu, 10 Oct 2019 09:26:09 +0000
-Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
+	id 1iIUiH-0006mt-9t; Thu, 10 Oct 2019 09:26:25 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92.2 #3 (Red Hat Linux))
- id 1iIUhQ-0005xz-Gx
- for linux-amlogic@lists.infradead.org; Thu, 10 Oct 2019 09:25:36 +0000
-Received: by mail-wr1-x444.google.com with SMTP id n14so6908078wrw.9
- for <linux-amlogic@lists.infradead.org>; Thu, 10 Oct 2019 02:25:31 -0700 (PDT)
+ id 1iIUhR-0005yq-BZ
+ for linux-amlogic@lists.infradead.org; Thu, 10 Oct 2019 09:25:37 +0000
+Received: by mail-wm1-x343.google.com with SMTP id 3so5971036wmi.3
+ for <linux-amlogic@lists.infradead.org>; Thu, 10 Oct 2019 02:25:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=AqhW5k3ySjd1hFd2vpnnIfAfZ6Fo2KBSUYqgeAq0k9Y=;
- b=OV3XMqTCSHBkdwwKpFWrtsAsslnaP76fYTjygBaoOd5Nnu9gLqZuEbKr4v6IpmdAMw
- CrJy+JjXvXnpuhRfFdu+1NSBuyuLiaFTC3vt9JIP0zIePNWIWNSWwLZtDb3Gq7naceaX
- 0VxPUvKI4HsX+OGmEtfOxJmdKjDEtzvDdxGmciB8Ce0sonmJzHS8LNiCiyaFMEnhHmaq
- 6n82nBS0UgILR0zLxtfY9EURZC/29axNUDls7iMJUOPoneajCwNik1rycsHkRqhoh4CU
- wA3/cbNIDb+ZZa6KT0E5jna55M96ePzFtj/ErZ94485BdujdnxZBtDfuuon5HOwGibOK
- LGqQ==
+ bh=jNOW6VFMFnuOEHBHUTNnkLO8G+eFUm1jKDuBa5pJiKw=;
+ b=LirWXDC/uJCGfPj6YwT8MzFZ/H8e3/V/KIYk6xg9HSOap4IKAfXvSPWxCbXaqk84nJ
+ qnZ+HIRKaUknvCY9Wy7uMsfe+3HD6Rr5rhnpifac91CnRM2o4j6AI0rQuQ8be/WaRTHu
+ hgsgTBGLXPnRkw9+Jx2bwqwN/CPI/6IyjvA8NHAtMW+m85dX5as7MwHgTZNNyn4Cm4y3
+ Lb4te3Ce/SGrkF5TA+s1mrxx85RJ4DyxdGGrjuHIqJ3P6QtVXoMhqdb0KL+dsqtDX9ev
+ L8Od8xDxC0HFUGQw5E6kRabxnZ1bevJqX90cD67QSLoCrJG/wUt00KhxIhVEPd7q47H6
+ r0Vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=AqhW5k3ySjd1hFd2vpnnIfAfZ6Fo2KBSUYqgeAq0k9Y=;
- b=Z6KA4bBC50s9k0XrD/FMqnW7bknLY8Gl9ikbMXenavqKyPxijpTrJdX9nxBWjATPKB
- 96LoC2irgZ9xZOsiCpXyMrngChZc3dkm2btbp772wD2kdibXqZ9uxzlu12ckRk8849OP
- PPwUWlV0c1EDDZhMjhdj7Qu4vwO5zVHYxiQYtbCwblkliHZmV6FX/4+l2uk66znVKnCp
- IFEd+DkGfDX6MSDMic3LQCYk5GYx4Mshhu7L1datTM43h/hDi5umULQkzWQ9/ZvuADXT
- fcKXpqy3odaPTu9nUdcAq7mrCMfSrHx6hKVyXs1li9x4o3ThvB+jlLDEq5M+KrYhiuo+
- 6GCQ==
-X-Gm-Message-State: APjAAAWYLKeL87M8uClNSi8FMbHC8mcWyEff/BXWTGIIzkNnw2Ql/+wz
- FSLFRr/WAYfJKXXwPyZvPcY0Qg==
-X-Google-Smtp-Source: APXvYqxY42bqPWQ7JlNtihvJQ8YP1yJ5B15mI5N2iRbQzomAtThvN4aTF5AfM1xBn3N6qmDov1rUHg==
-X-Received: by 2002:a5d:5270:: with SMTP id l16mr3118537wrc.201.1570699530439; 
- Thu, 10 Oct 2019 02:25:30 -0700 (PDT)
+ bh=jNOW6VFMFnuOEHBHUTNnkLO8G+eFUm1jKDuBa5pJiKw=;
+ b=k1DJR+uAJbaWdjnSgeIRUpI9wk4qi5GlxbdtFJbjPLM+1vVwXt/BdH4Zy27zVSnNER
+ 3pAOuAl/eBfugs1GOTmS0MSBsMDiuaq4c+2SxcN+nT5g8J7B1Wk0Ii0GwDz4nPu21xDr
+ 8fKOA3ksvv28rAA4G9oTjOYmazC+1uXCwKpOSU+y5BcAP4I2WtYTVCnHIJsrpIYbj0cs
+ PT3SC59ZKdsWIAnApnQRKTtYvN1xUiy2YASnytTT/5mng15TdkXw3G3ENsIWxc5h9t7T
+ aNAL5wPHKkcrl3IA+Y360cTJa/4GyXkLAY4M0Ob93lLua5Kg6XMFHJmwsudZuPpKq5ss
+ yOTA==
+X-Gm-Message-State: APjAAAVwe3zIB7xaJRYsl6WqFwJ7inWM39051vtEMppOytqQ+GXwuUw0
+ 4bz9bMuW+CACjkp9dTTGpbNir+IRnUJ7hA==
+X-Google-Smtp-Source: APXvYqwrx9k09Qz9beA56ra3SmYtiEFiO6W6iJpVpbX/4MiFYrKQUlpbm22UU2M2mqGVU9vMVtpwwA==
+X-Received: by 2002:a05:600c:c1:: with SMTP id u1mr6233756wmm.87.1570699531768; 
+ Thu, 10 Oct 2019 02:25:31 -0700 (PDT)
 Received: from bender.baylibre.local
  (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id s10sm8373770wmf.48.2019.10.10.02.25.29
+ by smtp.gmail.com with ESMTPSA id s10sm8373770wmf.48.2019.10.10.02.25.31
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 10 Oct 2019 02:25:30 -0700 (PDT)
+ Thu, 10 Oct 2019 02:25:31 -0700 (PDT)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: dri-devel@lists.freedesktop.org
-Subject: [PATCH 1/7] drm/meson: add AFBC decoder registers for GXM and G12A
-Date: Thu, 10 Oct 2019 11:25:20 +0200
-Message-Id: <20191010092526.10419-2-narmstrong@baylibre.com>
+Subject: [PATCH 3/7] drm/meson: Add AFBCD module driver
+Date: Thu, 10 Oct 2019 11:25:22 +0200
+Message-Id: <20191010092526.10419-4-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20191010092526.10419-1-narmstrong@baylibre.com>
 References: <20191010092526.10419-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191010_022532_576369_7DD6CE20 
-X-CRM114-Status: UNSURE (   8.15  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20191010_022533_531170_CACD229A 
+X-CRM114-Status: GOOD (  22.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,195 +104,586 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the registers used to program the ARM Framebuffer Compression decoders
-used in the Amlogic GXM and G12A SoCs families.
+This adds the driver for the ARM Framebuffer Compression decoders found
+in the Amlogic GXM and G12A SoCs.
 
-This also adds the routing and pipeline configuration bits and registers
-needed to enable AFBC support.
+The Amlogic GXM and G12A AFBC decoder are totally different, the GXM only
+handling only the AFBC v1.0 modes and the G12A decoder handling the
+AFBC v1.2 modes.
+
+The G12A AFBC decoder is an external IP integrated in the video pipeline,
+and the GXM AFBC decoder seems to the an Amlogic custom decoder more
+tighly integrated in the video pipeline.
+
+The GXM AFBC decoder can handle only one AFBC plane for 2 available
+OSD planes available in HW, and the G12A AFBC decoder can handle up
+to 4 AFBC planes for up to 3 OSD planes available in HW.
+
+The Amlogic GXM supports 16x16 SPARSE and 16x16 SPLIT AFBC buffers up
+to 4k.
+
+On the other side, for G12A SPLIT is mandatory in 16x16 block mode, but
+for 4k modes 32x8+SPLIT AFBC buffers is manadatory for performances reasons.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/gpu/drm/meson/meson_registers.h | 61 +++++++++++++++++++++++++
- drivers/gpu/drm/meson/meson_viu.h       | 15 ++++++
- 2 files changed, 76 insertions(+)
+ drivers/gpu/drm/meson/Makefile          |   1 +
+ drivers/gpu/drm/meson/meson_drv.c       |  38 ++-
+ drivers/gpu/drm/meson/meson_drv.h       |  12 +
+ drivers/gpu/drm/meson/meson_osd_afbcd.c | 370 ++++++++++++++++++++++++
+ drivers/gpu/drm/meson/meson_osd_afbcd.h |  28 ++
+ 5 files changed, 443 insertions(+), 6 deletions(-)
+ create mode 100644 drivers/gpu/drm/meson/meson_osd_afbcd.c
+ create mode 100644 drivers/gpu/drm/meson/meson_osd_afbcd.h
 
-diff --git a/drivers/gpu/drm/meson/meson_registers.h b/drivers/gpu/drm/meson/meson_registers.h
-index 05fce48ceee0..69e566acb8b9 100644
---- a/drivers/gpu/drm/meson/meson_registers.h
-+++ b/drivers/gpu/drm/meson/meson_registers.h
-@@ -138,14 +138,19 @@
- #define VIU_ADDR_START 0x1a00
- #define VIU_ADDR_END 0x1aff
- #define VIU_SW_RESET 0x1a01
-+#define		VIU_SW_RESET_OSD1_AFBCD		BIT(31)
-+#define		VIU_SW_RESET_G12A_OSD1_AFBCD	BIT(21)
-+#define		VIU_SW_RESET_G12A_AFBC_ARB	BIT(19)
- #define		VIU_SW_RESET_OSD1               BIT(0)
- #define VIU_MISC_CTRL0 0x1a06
- #define		VIU_CTRL0_VD1_AFBC_MASK         0x170000
- #define VIU_MISC_CTRL1 0x1a07
-+#define		MALI_AFBC_MISC			GENMASK(15, 8)
- #define D2D3_INTF_LENGTH 0x1a08
- #define D2D3_INTF_CTRL0 0x1a09
- #define VIU_OSD1_CTRL_STAT 0x1a10
- #define		VIU_OSD1_OSD_BLK_ENABLE         BIT(0)
-+#define		VIU_OSD1_OSD_MEM_MODE_LINEAR	BIT(2)
- #define		VIU_OSD1_POSTBLD_SRC_VD1        (1 << 8)
- #define		VIU_OSD1_POSTBLD_SRC_VD2        (2 << 8)
- #define		VIU_OSD1_POSTBLD_SRC_OSD1       (3 << 8)
-@@ -181,6 +186,16 @@
- #define VIU_OSD1_FIFO_CTRL_STAT 0x1a2b
- #define VIU_OSD1_TEST_RDDATA 0x1a2c
- #define VIU_OSD1_PROT_CTRL 0x1a2e
-+#define VIU_OSD1_MALI_UNPACK_CTRL 0x1a2f
-+#define		VIU_OSD1_MALI_UNPACK_EN		BIT(31)
-+#define		VIU_OSD1_MALI_AFBCD_R_REORDER	GENMASK(15, 12)
-+#define		VIU_OSD1_MALI_AFBCD_G_REORDER	GENMASK(11, 8)
-+#define		VIU_OSD1_MALI_AFBCD_B_REORDER	GENMASK(7, 4)
-+#define		VIU_OSD1_MALI_AFBCD_A_REORDER	GENMASK(3, 0)
-+#define		VIU_OSD1_MALI_REORDER_R		1
-+#define		VIU_OSD1_MALI_REORDER_G		2
-+#define		VIU_OSD1_MALI_REORDER_B		3
-+#define		VIU_OSD1_MALI_REORDER_A		4
- #define VIU_OSD2_CTRL_STAT 0x1a30
- #define VIU_OSD2_CTRL_STAT2 0x1a4d
- #define VIU_OSD2_COLOR_ADDR 0x1a31
-@@ -1595,15 +1610,33 @@
+diff --git a/drivers/gpu/drm/meson/Makefile b/drivers/gpu/drm/meson/Makefile
+index c389e2399133..b1fa055aaed3 100644
+--- a/drivers/gpu/drm/meson/Makefile
++++ b/drivers/gpu/drm/meson/Makefile
+@@ -1,6 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ meson-drm-y := meson_drv.o meson_plane.o meson_crtc.o meson_venc_cvbs.o
+ meson-drm-y += meson_viu.o meson_vpp.o meson_venc.o meson_vclk.o meson_overlay.o
++meson-drm-y += meson_osd_afbcd.o
  
- /* osd afbcd on gxtvbb */
- #define OSD1_AFBCD_ENABLE 0x31a0
-+#define		OSD1_AFBCD_ID_FIFO_THRD			GENMASK(15, 9)
-+#define		OSD1_AFBCD_DEC_ENABLE			BIT(8)
-+#define		OSD1_AFBCD_FRM_START			BIT(0)
- #define OSD1_AFBCD_MODE 0x31a1
-+#define		OSD1_AFBCD_SOFT_RESET			BIT(31)
-+#define		OSD1_AFBCD_AXI_REORDER_MODE		BIT(28)
-+#define		OSD1_AFBCD_MIF_URGENT			GENMASK(25, 24)
-+#define		OSD1_AFBCD_HOLD_LINE_NUM		GENMASK(22, 16)
-+#define		OSD1_AFBCD_RGBA_EXCHAN_CTRL		GENMASK(15, 8)
-+#define		OSD1_AFBCD_HREG_BLOCK_SPLIT		BIT(6)
-+#define		OSD1_AFBCD_HREG_HALF_BLOCK		BIT(5)
-+#define		OSD1_AFBCD_HREG_PIXEL_PACKING_FMT	GENMASK(4, 0)
- #define OSD1_AFBCD_SIZE_IN 0x31a2
-+#define		OSD1_AFBCD_HREG_VSIZE_IN		GENMASK(31, 16)
-+#define		OSD1_AFBCD_HREG_HSIZE_IN		GENMASK(15, 0)
- #define OSD1_AFBCD_HDR_PTR 0x31a3
- #define OSD1_AFBCD_FRAME_PTR 0x31a4
- #define OSD1_AFBCD_CHROMA_PTR 0x31a5
- #define OSD1_AFBCD_CONV_CTRL 0x31a6
-+#define		OSD1_AFBCD_CONV_LBUF_LEN		GENMASK(15, 0)
- #define OSD1_AFBCD_STATUS 0x31a8
- #define OSD1_AFBCD_PIXEL_HSCOPE 0x31a9
-+#define		OSD1_AFBCD_DEC_PIXEL_BGN_H		GENMASK(31, 16)
-+#define		OSD1_AFBCD_DEC_PIXEL_END_H		GENMASK(15, 0)
- #define OSD1_AFBCD_PIXEL_VSCOPE 0x31aa
-+#define		OSD1_AFBCD_DEC_PIXEL_BGN_V		GENMASK(31, 16)
-+#define		OSD1_AFBCD_DEC_PIXEL_END_V		GENMASK(15, 0)
+ obj-$(CONFIG_DRM_MESON) += meson-drm.o
+ obj-$(CONFIG_DRM_MESON_DW_HDMI) += meson_dw_hdmi.o
+diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+index a24f8dec5adc..0f31e70bb94f 100644
+--- a/drivers/gpu/drm/meson/meson_drv.c
++++ b/drivers/gpu/drm/meson/meson_drv.c
+@@ -28,6 +28,7 @@
+ #include "meson_drv.h"
+ #include "meson_overlay.h"
+ #include "meson_plane.h"
++#include "meson_osd_afbcd.h"
+ #include "meson_registers.h"
+ #include "meson_venc_cvbs.h"
+ #include "meson_viu.h"
+@@ -184,6 +185,7 @@ static void meson_remove_framebuffers(void)
+ static int meson_drv_bind_master(struct device *dev, bool has_components)
+ {
+ 	struct platform_device *pdev = to_platform_device(dev);
++	const struct meson_drm_match_data *match;
+ 	struct meson_drm *priv;
+ 	struct drm_device *drm;
+ 	struct resource *res;
+@@ -196,6 +198,10 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+ 		return -ENODEV;
+ 	}
  
- /* add for gxm and 962e dv core2 */
- #define DOLBY_CORE2A_SWAP_CTRL1	0x3434
-@@ -1615,12 +1648,34 @@
- #define VPU_MAFBC_IRQ_CLEAR 0x3a02
- #define VPU_MAFBC_IRQ_MASK 0x3a03
- #define VPU_MAFBC_IRQ_STATUS 0x3a04
-+#define		VPU_MAFBC_IRQ_SECURE_ID_ERROR		BIT(5)
-+#define		VPU_MAFBC_IRQ_AXI_ERROR			BIT(4)
-+#define		VPU_MAFBC_IRQ_DETILING_ERROR		BIT(3)
-+#define		VPU_MAFBC_IRQ_DECODE_ERROR		BIT(2)
-+#define		VPU_MAFBC_IRQ_CONFIGURATION_SWAPPED	BIT(1)
-+#define		VPU_MAFBC_IRQ_SURFACES_COMPLETED	BIT(0)
- #define VPU_MAFBC_COMMAND 0x3a05
-+#define		VPU_MAFBC_PENDING_SWAP	BIT(1)
-+#define		VPU_MAFBC_DIRECT_SWAP	BIT(0)
- #define VPU_MAFBC_STATUS 0x3a06
-+#define		VPU_MAFBC_ERROR		BIT(2)
-+#define		VPU_MAFBC_SWAPPING	BIT(1)
-+#define		VPU_MAFBC_ACTIVE	BIT(0)
- #define VPU_MAFBC_SURFACE_CFG 0x3a07
-+#define		VPU_MAFBC_CONTINUOUS_DECODING_ENABLE	BIT(16)
-+#define		VPU_MAFBC_S3_ENABLE			BIT(3)
-+#define		VPU_MAFBC_S2_ENABLE			BIT(2)
-+#define		VPU_MAFBC_S1_ENABLE			BIT(1)
-+#define		VPU_MAFBC_S0_ENABLE			BIT(0)
- #define VPU_MAFBC_HEADER_BUF_ADDR_LOW_S0 0x3a10
- #define VPU_MAFBC_HEADER_BUF_ADDR_HIGH_S0 0x3a11
- #define VPU_MAFBC_FORMAT_SPECIFIER_S0 0x3a12
-+#define		VPU_MAFBC_PAYLOAD_LIMIT_EN	BIT(19)
-+#define		VPU_MAFBC_TILED_HEADER_EN	BIT(18)
-+#define		VPU_MAFBC_SUPER_BLOCK_ASPECT	GENMASK(17, 16)
-+#define		VPU_MAFBC_BLOCK_SPLIT		BIT(9)
-+#define		VPU_MAFBC_YUV_TRANSFORM		BIT(8)
-+#define		VPU_MAFBC_PIXEL_FORMAT		GENMASK(3, 0)
- #define VPU_MAFBC_BUFFER_WIDTH_S0 0x3a13
- #define VPU_MAFBC_BUFFER_HEIGHT_S0 0x3a14
- #define VPU_MAFBC_BOUNDING_BOX_X_START_S0 0x3a15
-@@ -1631,6 +1686,8 @@
- #define VPU_MAFBC_OUTPUT_BUF_ADDR_HIGH_S0 0x3a1a
- #define VPU_MAFBC_OUTPUT_BUF_STRIDE_S0 0x3a1b
- #define VPU_MAFBC_PREFETCH_CFG_S0 0x3a1c
-+#define		VPU_MAFBC_PREFETCH_READ_DIRECTION_Y	BIT(1)
-+#define		VPU_MAFBC_PREFETCH_READ_DIRECTION_X	BIT(0)
- 
- #define VPU_MAFBC_HEADER_BUF_ADDR_LOW_S1 0x3a30
- #define VPU_MAFBC_HEADER_BUF_ADDR_HIGH_S1 0x3a31
-@@ -1677,7 +1734,11 @@
- #define DOLBY_PATH_CTRL 0x1a0c
- #define		DOLBY_BYPASS_EN(val)            (val & 0xf)
- #define OSD_PATH_MISC_CTRL 0x1a0e
-+#define		OSD_PATH_OSD_AXI_SEL_OSD1_AFBCD	BIT(4)
-+#define		OSD_PATH_OSD_AXI_SEL_OSD2_AFBCD	BIT(5)
-+#define		OSD_PATH_OSD_AXI_SEL_OSD3_AFBCD	BIT(6)
- #define MALI_AFBCD_TOP_CTRL 0x1a0f
-+#define		MALI_AFBCD_MANUAL_RESET		BIT(23)
- 
- #define VIU_OSD_BLEND_CTRL 0x39b0
- #define		VIU_OSD_BLEND_REORDER(dest, src)      ((src) << (dest * 4))
-diff --git a/drivers/gpu/drm/meson/meson_viu.h b/drivers/gpu/drm/meson/meson_viu.h
-index a112e8d18850..e297772d967f 100644
---- a/drivers/gpu/drm/meson/meson_viu.h
-+++ b/drivers/gpu/drm/meson/meson_viu.h
-@@ -10,6 +10,8 @@
- #define __MESON_VIU_H
- 
- /* OSDx_BLKx_CFG */
-+#define OSD_MALI_SRC_EN		BIT(30)
++	match = of_device_get_match_data(dev);
++	if (!match)
++		return -ENODEV;
 +
- #define OSD_CANVAS_SEL		16
+ 	drm = drm_dev_alloc(&meson_driver, dev);
+ 	if (IS_ERR(drm))
+ 		return PTR_ERR(drm);
+@@ -208,8 +214,8 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+ 	drm->dev_private = priv;
+ 	priv->drm = drm;
+ 	priv->dev = dev;
+-
+-	priv->compat = (enum vpu_compatible)of_device_get_match_data(priv->dev);
++	priv->compat = match->compat;
++	priv->afbcd.ops = match->afbcd_ops;
  
- #define OSD_ENDIANNESS_LE	BIT(15)
-@@ -33,19 +35,32 @@
- #define OSD_COLOR_MATRIX_16_RGB655	(0x00 << 2)
- #define OSD_COLOR_MATRIX_16_RGB565	(0x04 << 2)
+ 	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "vpu");
+ 	regs = devm_ioremap_resource(dev, res);
+@@ -289,6 +295,8 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+ 	meson_venc_init(priv);
+ 	meson_vpp_init(priv);
+ 	meson_viu_init(priv);
++	if (priv->afbcd.ops)
++		priv->afbcd.ops->init(priv);
  
-+#define OSD_MALI_COLOR_MODE_R8		(0 << 8)
-+#define OSD_MALI_COLOR_MODE_YUV422	(1 << 8)
-+#define OSD_MALI_COLOR_MODE_RGB565	(2 << 8)
-+#define OSD_MALI_COLOR_MODE_RGBA5551	(3 << 8)
-+#define OSD_MALI_COLOR_MODE_RGBA4444	(4 << 8)
-+#define OSD_MALI_COLOR_MODE_RGBA8888	(5 << 8)
-+#define OSD_MALI_COLOR_MODE_RGB888	(7 << 8)
-+#define OSD_MALI_COLOR_MODE_YUV422_10B	(8 << 8)
-+#define OSD_MALI_COLOR_MODE_RGBA1010102	(9 << 8)
+ 	/* Encoder Initialization */
+ 
+@@ -454,15 +462,33 @@ static int meson_drv_probe(struct platform_device *pdev)
+ 	return 0;
+ };
+ 
++static struct meson_drm_match_data meson_drm_gxbb_data = {
++	.compat = VPU_COMPATIBLE_GXBB,
++};
 +
- #define OSD_INTERLACE_ENABLED	BIT(1)
- #define OSD_INTERLACE_ODD	BIT(0)
- #define OSD_INTERLACE_EVEN	(0)
++static struct meson_drm_match_data meson_drm_gxl_data = {
++	.compat = VPU_COMPATIBLE_GXL,
++};
++
++static struct meson_drm_match_data meson_drm_gxm_data = {
++	.compat = VPU_COMPATIBLE_GXM,
++	.afbcd_ops = &meson_afbcd_gxm_ops,
++};
++
++static struct meson_drm_match_data meson_drm_g12a_data = {
++	.compat = VPU_COMPATIBLE_G12A,
++	.afbcd_ops = &meson_afbcd_g12a_ops,
++};
++
+ static const struct of_device_id dt_match[] = {
+ 	{ .compatible = "amlogic,meson-gxbb-vpu",
+-	  .data       = (void *)VPU_COMPATIBLE_GXBB },
++	  .data       = (void *)&meson_drm_gxbb_data },
+ 	{ .compatible = "amlogic,meson-gxl-vpu",
+-	  .data       = (void *)VPU_COMPATIBLE_GXL },
++	  .data       = (void *)&meson_drm_gxl_data },
+ 	{ .compatible = "amlogic,meson-gxm-vpu",
+-	  .data       = (void *)VPU_COMPATIBLE_GXM },
++	  .data       = (void *)&meson_drm_gxm_data },
+ 	{ .compatible = "amlogic,meson-g12a-vpu",
+-	  .data       = (void *)VPU_COMPATIBLE_G12A },
++	  .data       = (void *)&meson_drm_g12a_data },
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, dt_match);
+diff --git a/drivers/gpu/drm/meson/meson_drv.h b/drivers/gpu/drm/meson/meson_drv.h
+index 3287282450a9..60f13c6f34e5 100644
+--- a/drivers/gpu/drm/meson/meson_drv.h
++++ b/drivers/gpu/drm/meson/meson_drv.h
+@@ -16,6 +16,7 @@ struct drm_crtc;
+ struct drm_device;
+ struct drm_plane;
+ struct meson_drm;
++struct meson_afbcd_ops;
  
- /* OSDx_CTRL_STAT */
- #define OSD_ENABLE		BIT(21)
-+#define OSD_MEM_LINEAR_ADDR	BIT(2)
- #define OSD_BLK0_ENABLE		BIT(0)
+ enum vpu_compatible {
+ 	VPU_COMPATIBLE_GXBB = 0,
+@@ -24,6 +25,11 @@ enum vpu_compatible {
+ 	VPU_COMPATIBLE_G12A = 3,
+ };
  
- #define OSD_GLOBAL_ALPHA_SHIFT	12
++struct meson_drm_match_data {
++	enum vpu_compatible compat;
++	struct meson_afbcd_ops *afbcd_ops;
++};
++
+ struct meson_drm {
+ 	struct device *dev;
+ 	enum vpu_compatible compat;
+@@ -123,6 +129,12 @@ struct meson_drm {
+ 		bool venc_repeat;
+ 		bool hdmi_use_enci;
+ 	} venc;
++
++	struct {
++		struct meson_afbcd_ops *ops;
++		u64 modifier;
++		u32 format;
++	} afbcd;
+ };
  
- /* OSDx_CTRL_STAT2 */
-+#define OSD_DPATH_MALI_AFBCD	BIT(15)
- #define OSD_REPLACE_EN		BIT(14)
- #define OSD_REPLACE_SHIFT	6
-+#define OSD_PENDING_STAT_CLEAN	BIT(1)
- 
- void meson_viu_osd1_reset(struct meson_drm *priv);
- void meson_viu_init(struct meson_drm *priv);
+ static inline int meson_vpu_is_compatible(struct meson_drm *priv,
+diff --git a/drivers/gpu/drm/meson/meson_osd_afbcd.c b/drivers/gpu/drm/meson/meson_osd_afbcd.c
+new file mode 100644
+index 000000000000..36caf5716e8c
+--- /dev/null
++++ b/drivers/gpu/drm/meson/meson_osd_afbcd.c
+@@ -0,0 +1,370 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Copyright (C) 2019 BayLibre, SAS
++ * Author: Neil Armstrong <narmstrong@baylibre.com>
++ */
++
++#include <linux/bitfield.h>
++
++#include <drm/drm_print.h>
++#include <drm/drm_fourcc.h>
++
++#include "meson_drv.h"
++#include "meson_registers.h"
++#include "meson_viu.h"
++#include "meson_osd_afbcd.h"
++
++/*
++ * DOC: Driver for the ARM FrameBuffer Compression Decoders
++ *
++ * The Amlogic GXM and G12A SoC families embeds an AFBC Decoder,
++ * to decode compressed buffers generated by the ARM Mali GPU.
++ *
++ * For the GXM Family, Amlogic designed their own Decoder, named in
++ * the vendor source as "MESON_AFBC", and a single decoder is available
++ * for the 2 OSD planes.
++ * This decoder is compatible with the AFBC 1.0 specifications and the
++ * Mali T820 GPU capabilities.
++ * It supports :
++ * - basic AFBC buffer for RGB32 only, thus YTR feature is mandatory
++ * - SPARSE layout and SPLIT layout
++ * - only 16x16 superblock
++ *
++ * The decoder reads the data from the SDRAM, decodes and sends the
++ * decoded pixel stream to the OSD1 Plane pixel composer.
++ *
++ * For the G12A Family, Amlogic integrated an ARM AFBC Decoder, named
++ * in the vendor source as "MALI_AFBC", and the decoder can decode up
++ * to 4 surfaces, one for each of the 4 available OSDs.
++ * This decoder is compatible with the AFBC 1.2 specifications for the
++ * Mali G31 and G52 GPUs.
++ * Is supports :
++ * - basic AFBC buffer for multiple RGB and YUV pixel formats
++ * - SPARSE layout and SPLIT layout
++ * - 16x16 and 32x8 "wideblk" superblocks
++ * - Tiled header
++ *
++ * The ARM AFBC Decoder independent from the VPU Pixel Pipeline, so
++ * the ARM AFBC Decoder reads the data from the SDRAM then decodes
++ * into a private internal physical address where the OSD1 Plane pixel
++ * composer unpacks the decoded data.
++ */
++
++/* Amlogic AFBC Decoder for GXM Family */
++
++#define OSD1_AFBCD_RGB32	0x15
++
++static int meson_gxm_afbcd_pixel_fmt(u64 modifier, uint32_t format)
++{
++	switch (format) {
++	case DRM_FORMAT_XRGB8888:
++	case DRM_FORMAT_ARGB8888:
++	case DRM_FORMAT_XBGR8888:
++	case DRM_FORMAT_ABGR8888:
++		return OSD1_AFBCD_RGB32;
++	/* TOFIX support mode formats */
++	default:
++		DRM_DEBUG("unsupported afbc format[%08x]\n", format);
++		return -EINVAL;
++	}
++}
++
++static bool meson_gxm_afbcd_supported_fmt(u64 modifier, uint32_t format)
++{
++	if (modifier & AFBC_FORMAT_MOD_BLOCK_SIZE_32x8)
++		return false;
++
++	if (!(modifier & AFBC_FORMAT_MOD_YTR))
++		return false;
++
++	return meson_gxm_afbcd_pixel_fmt(modifier, format) >= 0;
++}
++
++static int meson_gxm_afbcd_init(struct meson_drm *priv)
++{
++	return 0;
++}
++
++static int meson_gxm_afbcd_reset(struct meson_drm *priv)
++{
++	writel_relaxed(VIU_SW_RESET_OSD1_AFBCD,
++		       priv->io_base + _REG(VIU_SW_RESET));
++	writel_relaxed(0, priv->io_base + _REG(VIU_SW_RESET));
++
++	return 0;
++}
++
++static int meson_gxm_afbcd_enable(struct meson_drm *priv)
++{
++	writel_relaxed(FIELD_PREP(OSD1_AFBCD_ID_FIFO_THRD, 0x40) |
++		       OSD1_AFBCD_DEC_ENABLE,
++		       priv->io_base + _REG(OSD1_AFBCD_ENABLE));
++
++	return 0;
++}
++
++static int meson_gxm_afbcd_disable(struct meson_drm *priv)
++{
++	writel_bits_relaxed(OSD1_AFBCD_DEC_ENABLE, 0,
++			    priv->io_base + _REG(OSD1_AFBCD_ENABLE));
++
++	return 0;
++}
++
++static int meson_gxm_afbcd_setup(struct meson_drm *priv)
++{
++	u32 conv_lbuf_len;
++	u32 mode = FIELD_PREP(OSD1_AFBCD_MIF_URGENT, 3) |
++		   FIELD_PREP(OSD1_AFBCD_HOLD_LINE_NUM, 4) |
++		   FIELD_PREP(OSD1_AFBCD_RGBA_EXCHAN_CTRL, 0x34) |
++		   meson_gxm_afbcd_pixel_fmt(priv->afbcd.modifier,
++					     priv->afbcd.format);
++
++	if (priv->afbcd.modifier & AFBC_FORMAT_MOD_SPARSE)
++		mode |= OSD1_AFBCD_HREG_HALF_BLOCK;
++
++	if (priv->afbcd.modifier & AFBC_FORMAT_MOD_SPLIT)
++		mode |= OSD1_AFBCD_HREG_BLOCK_SPLIT;
++
++	writel_relaxed(mode, priv->io_base + _REG(OSD1_AFBCD_MODE));
++
++	writel_relaxed(FIELD_PREP(OSD1_AFBCD_HREG_VSIZE_IN,
++				  priv->viu.osd1_width) |
++		       FIELD_PREP(OSD1_AFBCD_HREG_HSIZE_IN,
++				  priv->viu.osd1_height),
++		       priv->io_base + _REG(OSD1_AFBCD_SIZE_IN));
++
++	writel_relaxed(priv->viu.osd1_addr >> 4,
++		       priv->io_base + _REG(OSD1_AFBCD_HDR_PTR));
++	writel_relaxed(priv->viu.osd1_addr >> 4,
++		       priv->io_base + _REG(OSD1_AFBCD_FRAME_PTR));
++	/* TOFIX: bits 31:24 are not documented, nor the meaning of 0xe4 */
++	writel_relaxed((0xe4 << 24) | (priv->viu.osd1_addr & 0xffffff),
++		       priv->io_base + _REG(OSD1_AFBCD_CHROMA_PTR));
++
++	if (priv->viu.osd1_width <= 128)
++		conv_lbuf_len = 32;
++	else if (priv->viu.osd1_width <= 256)
++		conv_lbuf_len = 64;
++	else if (priv->viu.osd1_width <= 512)
++		conv_lbuf_len = 128;
++	else if (priv->viu.osd1_width <= 1024)
++		conv_lbuf_len = 256;
++	else if (priv->viu.osd1_width <= 2048)
++		conv_lbuf_len = 512;
++	else
++		conv_lbuf_len = 1024;
++
++	writel_relaxed(conv_lbuf_len,
++		       priv->io_base + _REG(OSD1_AFBCD_CONV_CTRL));
++
++	writel_relaxed(FIELD_PREP(OSD1_AFBCD_DEC_PIXEL_BGN_H, 0) |
++		       FIELD_PREP(OSD1_AFBCD_DEC_PIXEL_END_H,
++				  priv->viu.osd1_width - 1),
++		       priv->io_base + _REG(OSD1_AFBCD_PIXEL_HSCOPE));
++
++	writel_relaxed(FIELD_PREP(OSD1_AFBCD_DEC_PIXEL_BGN_V, 0) |
++		       FIELD_PREP(OSD1_AFBCD_DEC_PIXEL_END_V,
++				  priv->viu.osd1_height - 1),
++		       priv->io_base + _REG(OSD1_AFBCD_PIXEL_VSCOPE));
++
++	return 0;
++}
++
++struct meson_afbcd_ops meson_afbcd_gxm_ops = {
++	.init = meson_gxm_afbcd_init,
++	.reset = meson_gxm_afbcd_reset,
++	.enable = meson_gxm_afbcd_enable,
++	.disable = meson_gxm_afbcd_disable,
++	.setup = meson_gxm_afbcd_setup,
++	.supported_fmt = meson_gxm_afbcd_supported_fmt,
++};
++
++/* ARM AFBC Decoder for G12A Family */
++
++/* Amlogic G12A Mali AFBC Decoder supported formats */
++enum {
++	MAFBC_FMT_RGB565 = 0,
++	MAFBC_FMT_RGBA5551,
++	MAFBC_FMT_RGBA1010102,
++	MAFBC_FMT_YUV420_10B,
++	MAFBC_FMT_RGB888,
++	MAFBC_FMT_RGBA8888,
++	MAFBC_FMT_RGBA4444,
++	MAFBC_FMT_R8,
++	MAFBC_FMT_RG88,
++	MAFBC_FMT_YUV420_8B,
++	MAFBC_FMT_YUV422_8B = 11,
++	MAFBC_FMT_YUV422_10B = 14,
++};
++
++static int meson_g12a_afbcd_pixel_fmt(u64 modifier, uint32_t format)
++{
++	switch (format) {
++	case DRM_FORMAT_XRGB8888:
++	case DRM_FORMAT_ARGB8888:
++	case DRM_FORMAT_XBGR8888:
++	case DRM_FORMAT_ABGR8888:
++		return MAFBC_FMT_RGBA8888;
++	case DRM_FORMAT_RGB888:
++		return MAFBC_FMT_RGB888;
++	case DRM_FORMAT_RGB565:
++		return MAFBC_FMT_RGB565;
++	/* TOFIX support mode formats */
++	default:
++		DRM_DEBUG("unsupported afbc format[%08x]\n", format);
++		return -EINVAL;
++	}
++}
++
++static int meson_g12a_afbcd_bpp(uint32_t format)
++{
++	switch (format) {
++	case DRM_FORMAT_XRGB8888:
++	case DRM_FORMAT_ARGB8888:
++	case DRM_FORMAT_XBGR8888:
++	case DRM_FORMAT_ABGR8888:
++		return 32;
++	case DRM_FORMAT_RGB888:
++		return 24;
++	case DRM_FORMAT_RGB565:
++		return 16;
++	/* TOFIX support mode formats */
++	default:
++		DRM_ERROR("unsupported afbc format[%08x]\n", format);
++		return 0;
++	}
++}
++
++static int meson_g12a_afbcd_fmt_to_blk_mode(u64 modifier, uint32_t format)
++{
++	switch (format) {
++	case DRM_FORMAT_XRGB8888:
++	case DRM_FORMAT_ARGB8888:
++	case DRM_FORMAT_XBGR8888:
++	case DRM_FORMAT_ABGR8888:
++		return OSD_MALI_COLOR_MODE_RGBA8888;
++	case DRM_FORMAT_RGB888:
++		return OSD_MALI_COLOR_MODE_RGB888;
++	case DRM_FORMAT_RGB565:
++		return OSD_MALI_COLOR_MODE_RGB565;
++	/* TOFIX support mode formats */
++	default:
++		DRM_DEBUG("unsupported afbc format[%08x]\n", format);
++		return -EINVAL;
++	}
++}
++
++static bool meson_g12a_afbcd_supported_fmt(u64 modifier, uint32_t format)
++{
++	if (!(modifier & AFBC_FORMAT_MOD_YTR))
++		return false;
++
++	return meson_g12a_afbcd_pixel_fmt(modifier, format) >= 0;
++}
++
++static int meson_g12a_afbcd_init(struct meson_drm *priv)
++{
++	/* Handle AFBC Decoder reset manually */
++	writel_bits_relaxed(MALI_AFBCD_MANUAL_RESET, MALI_AFBCD_MANUAL_RESET,
++			    priv->io_base + _REG(MALI_AFBCD_TOP_CTRL));
++
++	return 0;
++}
++
++static int meson_g12a_afbcd_reset(struct meson_drm *priv)
++{
++	writel_relaxed(VIU_SW_RESET_G12A_AFBC_ARB |
++		       VIU_SW_RESET_G12A_OSD1_AFBCD,
++		       priv->io_base + _REG(VIU_SW_RESET));
++	writel_relaxed(0, priv->io_base + _REG(VIU_SW_RESET));
++
++	return 0;
++}
++
++static int meson_g12a_afbcd_enable(struct meson_drm *priv)
++{
++	writel_relaxed(VPU_MAFBC_IRQ_SURFACES_COMPLETED |
++		       VPU_MAFBC_IRQ_CONFIGURATION_SWAPPED |
++		       VPU_MAFBC_IRQ_DECODE_ERROR |
++		       VPU_MAFBC_IRQ_DETILING_ERROR,
++		       priv->io_base + _REG(VPU_MAFBC_IRQ_MASK));
++
++	writel_bits_relaxed(VPU_MAFBC_S0_ENABLE, VPU_MAFBC_S0_ENABLE,
++			    priv->io_base + _REG(VPU_MAFBC_SURFACE_CFG));
++
++	writel_relaxed(VPU_MAFBC_DIRECT_SWAP,
++		       priv->io_base + _REG(VPU_MAFBC_COMMAND));
++
++	return 0;
++}
++
++static int meson_g12a_afbcd_disable(struct meson_drm *priv)
++{
++	writel_bits_relaxed(VPU_MAFBC_S0_ENABLE, 0,
++			    priv->io_base + _REG(VPU_MAFBC_SURFACE_CFG));
++
++	return 0;
++}
++
++static int meson_g12a_afbcd_setup(struct meson_drm *priv)
++{
++	u32 format = meson_g12a_afbcd_pixel_fmt(priv->afbcd.modifier,
++						priv->afbcd.format);
++
++	if (priv->afbcd.modifier & AFBC_FORMAT_MOD_YTR)
++		format |= VPU_MAFBC_YUV_TRANSFORM;
++
++	if (priv->afbcd.modifier & AFBC_FORMAT_MOD_SPLIT)
++		format |= VPU_MAFBC_BLOCK_SPLIT;
++
++	if (priv->afbcd.modifier & AFBC_FORMAT_MOD_TILED)
++		format |= VPU_MAFBC_TILED_HEADER_EN;
++
++	if ((priv->afbcd.modifier & AFBC_FORMAT_MOD_BLOCK_SIZE_MASK) ==
++		AFBC_FORMAT_MOD_BLOCK_SIZE_32x8)
++		format |= FIELD_PREP(VPU_MAFBC_SUPER_BLOCK_ASPECT, 1);
++
++	writel_relaxed(format,
++		       priv->io_base + _REG(VPU_MAFBC_FORMAT_SPECIFIER_S0));
++
++	writel_relaxed(priv->viu.osd1_addr,
++		       priv->io_base + _REG(VPU_MAFBC_HEADER_BUF_ADDR_LOW_S0));
++	writel_relaxed(0,
++		       priv->io_base + _REG(VPU_MAFBC_HEADER_BUF_ADDR_HIGH_S0));
++
++	writel_relaxed(priv->viu.osd1_width,
++		       priv->io_base + _REG(VPU_MAFBC_BUFFER_WIDTH_S0));
++	writel_relaxed(ALIGN(priv->viu.osd1_height, 32),
++		       priv->io_base + _REG(VPU_MAFBC_BUFFER_HEIGHT_S0));
++
++	writel_relaxed(0,
++		       priv->io_base + _REG(VPU_MAFBC_BOUNDING_BOX_X_START_S0));
++	writel_relaxed(priv->viu.osd1_width - 1,
++		       priv->io_base + _REG(VPU_MAFBC_BOUNDING_BOX_X_END_S0));
++	writel_relaxed(0,
++		       priv->io_base + _REG(VPU_MAFBC_BOUNDING_BOX_Y_START_S0));
++	writel_relaxed(priv->viu.osd1_height - 1,
++		       priv->io_base + _REG(VPU_MAFBC_BOUNDING_BOX_Y_END_S0));
++
++	writel_relaxed(MESON_G12A_AFBCD_OUT_ADDR,
++		       priv->io_base + _REG(VPU_MAFBC_OUTPUT_BUF_ADDR_LOW_S0));
++	writel_relaxed(0,
++		       priv->io_base + _REG(VPU_MAFBC_OUTPUT_BUF_ADDR_HIGH_S0));
++
++	writel_relaxed(priv->viu.osd1_width *
++		       (meson_g12a_afbcd_bpp(priv->afbcd.format) / 8),
++		       priv->io_base + _REG(VPU_MAFBC_OUTPUT_BUF_STRIDE_S0));
++
++	return 0;
++}
++
++struct meson_afbcd_ops meson_afbcd_g12a_ops = {
++	.init = meson_g12a_afbcd_init,
++	.reset = meson_g12a_afbcd_reset,
++	.enable = meson_g12a_afbcd_enable,
++	.disable = meson_g12a_afbcd_disable,
++	.setup = meson_g12a_afbcd_setup,
++	.fmt_to_blk_mode = meson_g12a_afbcd_fmt_to_blk_mode,
++	.supported_fmt = meson_g12a_afbcd_supported_fmt,
++};
+diff --git a/drivers/gpu/drm/meson/meson_osd_afbcd.h b/drivers/gpu/drm/meson/meson_osd_afbcd.h
+new file mode 100644
+index 000000000000..5e5523304f42
+--- /dev/null
++++ b/drivers/gpu/drm/meson/meson_osd_afbcd.h
+@@ -0,0 +1,28 @@
++/* SPDX-License-Identifier: GPL-2.0+ */
++/*
++ * Copyright (C) 2019 BayLibre, SAS
++ * Author: Neil Armstrong <narmstrong@baylibre.com>
++ */
++
++#ifndef __MESON_OSD_AFBCD_H
++#define __MESON_OSD_AFBCD_H
++
++#include "meson_drv.h"
++
++/* This is an internal address used to transfer pixel from AFBC to the VIU */
++#define MESON_G12A_AFBCD_OUT_ADDR	0x1000000
++
++struct meson_afbcd_ops {
++	int (*init)(struct meson_drm *priv);
++	int (*reset)(struct meson_drm *priv);
++	int (*enable)(struct meson_drm *priv);
++	int (*disable)(struct meson_drm *priv);
++	int (*setup)(struct meson_drm *priv);
++	int (*fmt_to_blk_mode)(u64 modifier, uint32_t format);
++	bool (*supported_fmt)(u64 modifier, uint32_t format);
++};
++
++extern struct meson_afbcd_ops meson_afbcd_gxm_ops;
++extern struct meson_afbcd_ops meson_afbcd_g12a_ops;
++
++#endif /* __MESON_OSD_AFBCD_H */
 -- 
 2.22.0
 
