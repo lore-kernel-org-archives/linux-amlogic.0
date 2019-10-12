@@ -1,84 +1,59 @@
-Return-Path: <SRS0=6gbJ=YE=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=gqBQ=YF=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B3F14ECE58D
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Oct 2019 17:59:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 246BBC4360C
+	for <linux-amlogic@archiver.kernel.org>; Sat, 12 Oct 2019 10:05:41 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 86A76206A1
-	for <linux-amlogic@archiver.kernel.org>; Fri, 11 Oct 2019 17:59:26 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id EAD7D21D7E
+	for <linux-amlogic@archiver.kernel.org>; Sat, 12 Oct 2019 10:05:40 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tJ/8HHmj";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=codeaurora.org header.i=@codeaurora.org header.b="Ykg12PFZ";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=codeaurora.org header.i=@codeaurora.org header.b="erwjxUld"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 86A76206A1
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="B57h39eF"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EAD7D21D7E
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:Subject:To:From:
-	Date:MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=MswgABlYUfxv8wqoCdkMIFf1XrV3YbH6FyaEU7Gv7ZE=; b=tJ/8HHmj8NglKZz52w8dW5kYe
-	2Sz3P9vnvj0176dz4SJmONB2018OFgC8Q5ajWknmzOhq614obDuhCt54g+8Ye0X75lqflroNuc8Vw
-	tDNOAGU7tig3t4wMQH1Y/+RkEkRuO0+iC9MpVUIq28jD5pkErtKI0sLpv19iRAPaameaOUywNtDec
-	kpG/l2zGXSLK+a0ESeh1QYK+bS0DYAIxRUNGD7eC+jrLEIlSJvJjLRuf+zG1a0qHi+h+PV4vcpwvP
-	qI6yR8pS3r9jJeK/3l0H8zjuQjsF165A6npkUzP4jmKbkMNoQaOFEzP4hbvVcso+NCrDC+e+ViJKs
-	3a7J9raLQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=XS6dSEwvsA754CVoleIYtGuAhOw3/+vIZKhZ8OlPO7o=; b=B57h39eFYcgmKX
+	jyEDWBfB0Z6i8trERXc6peIZ3Dh8jcqE2Od/m5LjqL43C3otxIvUcRMeUuPG3PfCXXxtQgNCp38bg
+	pWe3DH7qg9gCSOM3feF/gMXSotgKkpThVI1IzI5arkaR3pL6H0cDbWlR36LMPLuOBH8YXjZbPWjru
+	JJv5+uPIm7qfodlDOteXIyRxw3kB9DCO1eoftsCaeO/EemTPgODS3SeawHcxTKlMrxr9L+54lwk6y
+	KWKWqZRfow7BfgbV2J8mX6YaNc+HQp2pqC3ki2A63ApNHIwHS07MXu4g2uGjlodhYzyeiJ+ot/cIw
+	OFDLy3bN+GEJCWfr3l3g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iIzC9-00073W-4E; Fri, 11 Oct 2019 17:59:17 +0000
-Received: from smtp.codeaurora.org ([198.145.29.96])
+	id 1iJEHD-0001Tn-HS; Sat, 12 Oct 2019 10:05:31 +0000
+Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iIzC5-000733-V4; Fri, 11 Oct 2019 17:59:16 +0000
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
- id 1E83A60AA8; Fri, 11 Oct 2019 17:59:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
- s=default; t=1570816753;
- bh=dEIHNtPJMeVe0/U1DX6bBGn/UKV/780n6No7ph7w8yw=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=Ykg12PFZxT3nlVFtqTIhn/ikrDlmLyXYQarYtasJm3LbVyNw1Fz57B12hB+1YPDM9
- 6LJGerahP2a6tl7FZJHSWwMkodCM0qAt/hwJxmR+DthNHoGHCAuw2tg2L5ZsqP4E/Q
- 6wPXvWTDQ399qJ7dp/et0vHhzJTHV5V3MkzPxiPw=
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
- by smtp.codeaurora.org (Postfix) with ESMTP id C154460AA8;
- Fri, 11 Oct 2019 17:59:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
- s=default; t=1570816751;
- bh=dEIHNtPJMeVe0/U1DX6bBGn/UKV/780n6No7ph7w8yw=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=erwjxUldW6GlHm6A6jcnS4u/PE5qvU7lC+CFWLChnB2fTSNBAayRrlR3yr02FrHtL
- j9sbYg75buj9H5hd5WKvylgrlxFaYqV9WhnuGQok/00O3pJmTuhNuBDbeVPav3XpNk
- NLLhdJFUZEa6OwgZ9YkDGijCyM85w2BdKE5zuUVw=
+ id 1iJEHB-0001Sr-Nk; Sat, 12 Oct 2019 10:05:30 +0000
+Received: from droid12-sz.software.amlogic (10.28.8.22) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10;
+ Sat, 12 Oct 2019 18:05:30 +0800
+From: Xingyu Chen <xingyu.chen@amlogic.com>
+To: Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, Kevin Hilman <khilman@baylibre.com>, Neil Armstrong
+ <narmstrong@baylibre.com>
+Subject: [PATCH 0/4] add meson secure watchdog driver
+Date: Sat, 12 Oct 2019 18:05:17 +0800
+Message-ID: <1570874721-36077-1-git-send-email-xingyu.chen@amlogic.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Date: Fri, 11 Oct 2019 10:59:11 -0700
-From: Jeykumar Sankaran <jsanka@codeaurora.org>
-To: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH] drm/meson: fix max mode_config height/width
-In-Reply-To: <20191009104727.GX16989@phenom.ffwll.local>
-References: <1538642563-22465-1-git-send-email-narmstrong@baylibre.com>
- <20181004100958.GI31561@phenom.ffwll.local>
- <0ef7fa13-ce77-f8a5-f5f3-6568be3d6145@baylibre.com>
- <CAKMK7uHxiDF3z19cMBb0o2o4Ev0DFJkhMR7Ny6U2776Ry4oc=A@mail.gmail.com>
- <8e980de4-5a52-8f3d-fba2-734617e40d1b@baylibre.com>
- <CAKMK7uE71OeOdDPb+5-cs9bByD-unYPxBV_R1t+4A0Nb4H6CAw@mail.gmail.com>
- <5dbd6337-7e08-f3f7-6d4a-d6bcaddfd3be@baylibre.com>
- <91cd8a2aebefd4ea3e9bcee5a4ef796a@codeaurora.org>
- <20191009104727.GX16989@phenom.ffwll.local>
-Message-ID: <27976f3eca6bd96dcea071db97c229b1@codeaurora.org>
-X-Sender: jsanka@codeaurora.org
-User-Agent: Roundcube Webmail/1.2.5
+X-Originating-IP: [10.28.8.22]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191011_105914_044908_A856E86E 
-X-CRM114-Status: GOOD (  29.74  )
+X-CRM114-CacheID: sfid-20191012_030529_772290_DF62AB78 
+X-CRM114-Status: UNSURE (   8.47  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,238 +65,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, linux-amlogic@lists.infradead.org,
- Linux ARM <linux-arm-kernel@lists.infradead.org>
+Cc: Qianggui Song <qianggui.song@amlogic.com>, linux-watchdog@vger.kernel.org,
+ Jianxin Pan <jianxin.pan@amlogic.com>, linux-kernel@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, Jian Hu <jian.hu@amlogic.com>,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ Xingyu Chen <xingyu.chen@amlogic.com>, Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 2019-10-09 03:47, Daniel Vetter wrote:
-> On Tue, Sep 24, 2019 at 10:28:48AM -0700, Jeykumar Sankaran wrote:
->> Reviving this thread from the context of the below conversion:
->> 
->> 
-> https://lore.kernel.org/linux-arm-msm/db26145b-3f64-a334-f698-76f972332881
-> @baylibre.com/T/#u
->> 
->> On 2018-10-05 01:19, Neil Armstrong wrote:
->> > On 05/10/2018 09:58, Daniel Vetter wrote:
->> > > On Fri, Oct 5, 2018 at 9:39 AM Neil Armstrong
->> > > <narmstrong@baylibre.com> wrote:
->> > > >
->> >
->> > [...]
->> >
->> > > > OK, won't this be enough ?
->> > > > --- a/include/drm/drm_mode_config.h
->> > > > +++ b/include/drm/drm_mode_config.h
->> > > > @@ -333,6 +333,8 @@ struct drm_mode_config_funcs {
->> > > >   * @min_height: minimum fb pixel height on this device
->> > > >   * @max_width: maximum fb pixel width on this device
->> > > >   * @max_height: maximum fb pixel height on this device
->> > > > + * @max_fb_width: maximum fb buffer width if differs from
-> max_width
->> > > > + * @max_fb_height: maximum fb buffer height if differs from
->> > > > max_height
->> > > >   * @funcs: core driver provided mode setting functions
->> > > >   * @fb_base: base address of the framebuffer
->> > > >   * @poll_enabled: track polling support for this device
->> > > > @@ -508,6 +510,7 @@ struct drm_mode_config {
->> > > >
->> > > >         int min_width, min_height;
->> > > >         int max_width, max_height;
->> > > > +       int max_fb_width, max_fb_height;
->> > > >         const struct drm_mode_config_funcs *funcs;
->> > > >         resource_size_t fb_base;
->> > > >
->> > > > --- a/drivers/gpu/drm/drm_framebuffer.c
->> > > > +++ b/drivers/gpu/drm/drm_framebuffer.c
->> > > > @@ -283,14 +283,20 @@ drm_internal_framebuffer_create(struct
->> > > > drm_device *dev,
->> > > >                 return ERR_PTR(-EINVAL);
->> > > >         }
->> > > >
->> > > > -       if ((config->min_width > r->width) || (r->width >
->> > > > config->max_width)) {
->> > > > +       if ((config->min_width > r->width) ||
->> > > > +           (!config->max_fb_width && r->width >
->> > > > config->max_width) ||
->> > > > +           (config->max_fb_width && r->width >
->> > > > config->max_fb_width)) {
->> > > >                 DRM_DEBUG_KMS("bad framebuffer width %d, should
->> > > > be >= %d && <= %d\n",
->> > > > -                         r->width, config->min_width,
->> > > > config->max_width);
->> > > > +                         r->width, config->min_width,
->> > > > config->max_fb_width ?
->> > > > +                         config->max_fb_width :
-> config->max_width);
->> > > >                 return ERR_PTR(-EINVAL);
->> > > >         }
->> > > > -       if ((config->min_height > r->height) || (r->height >
->> > > > config->max_height)) {
->> > > > +       if ((config->min_height > r->height) ||
->> > > > +           (!config->max_fb_height && r->height >
->> > > > config->max_height) ||
->> > > > +           (config->max_fb_height && r->height >
->> > > > config->max_fb_height)) {
->> > > >                 DRM_DEBUG_KMS("bad framebuffer height %d, should
->> > > > be >= %d && <= %d\n",
->> > > > -                         r->height, config->min_height,
->> > > > config->max_height);
->> > > > +                         r->height, config->min_height,
->> > > > config->max_fb_height ?
->> > > > +                         config->max_fb_height :
->> > > > config->max_height);
->> > > >                 return ERR_PTR(-EINVAL);
->> > > >         }
->> > > >
->> > > > and in the driver :
->> > > >
->> > > > +       drm->mode_config.max_width = 4096;
->> > > > +       drm->mode_config.max_height = 3840;
->> > > > +       drm->mode_config.max_fb_width = 16384;
->> > > > +       drm->mode_config.max_fb_height = 8192;
->> > > >
->> > > > With this I leave the mode filtering intact.
->> > >
->> > > Not enough. See
->> > >
-> https://dri.freedesktop.org/docs/drm/gpu/drm-kms-helpers.html#c.drm_connec
-> tor_helper_funcs
->> > > and scroll down to mode_valid. You need to filter modes both in the
->> > > detect paths, and the atomic_check paths.
->> > >
->> > > Detect is explicitly filtered out, but atomic_check was only
->> > > implicitly filtered, through the max fb size checks. Ok, you could
->> > > light up a mode that's bigger than max fb, but in practice, no
->> > > userspace ever did that.
->> 
->> Daniel, MSM and few other vendor hardware have upscale blocks where 
->> the
->> driver can expose fb sizes smaller than
->> the mode resolution and use h/w upscaling to fill the screen. This 
->> would
->> optimize the fetch bandwidth.
->> 
->> But with your code we're missing crucial
->> > > validation now, and userspace could fall over that. What I think we
->> > > need is to add mode filter against mode_config.max_width/height in
->> > > drm_atomic_helper_check_modeset(). Probably best to stuff that into
->> > > the mode_valid() function.
->> >
->> Agreed! Since the above patch from Niel is taking care of cases where
->> max/min fb values
->> are not set, by checking against the original max/min values, can we
->> separate out this
->> core change from the driver level mode_valid changes? If Niel couldn't
-> find
->> the time, I can
->> repost the above change.
-> 
-> Sure, I think Neil wouldn't mind if you take this over and get it ready
-> for merging. Just need to make sure we're not leaving any validation 
-> gaps
-> in core/helper code.
-> -Daniel
-> 
-I guess you are a bit late for the party!
+The watchdog controller on the Meson-A/C series SoCs is moved to secure world,
+We have to call SMC instruction to trap the ATF for watchdog operation. These
+operations are different from previous SoCs, so we introduce a new watchdog
+driver to support this kind of SoCs.
 
-I did post the patch on the forum. The latest on the thread can be found 
-here: https://lkml.org/lkml/2019/10/2/369
+Xingyu Chen (4):
+  firmware: meson_sm: add new SMC ID support for accessing secure
+    watchdog
+  dt-bindings: watchdog: add new binding for meson secure watchdog
+  watchdog: add meson secure watchdog driver
+  arm64: dts: a1: add secure watchdog controller
 
-The basic concern is if FB limits are different (especially smaller) 
-than the display (mode) limits, it
-will break the existing user space, who are creating unscaled FB's out 
-of exposed mode limits.
-
-Thanks and Regards,
-Jeykumar S.
-
->> 
->> Thanks and Regards,
->> Jeykumar S.
->> 
->> > Ok I understood now, thanks for pointer, I'll try to add this.
->> >
->> > Neil
->> >
->> > >
->> > > Cheers, Daniel
->> > > >
->> > > > Neil
->> > > >
->> > > >
->> > > > > -Daniel
->> > > > >
->> > > > > >
->> > > > > > Neil
->> > > > > >
->> > > > > > >
->> > > > > > > Bunch of igt to make sure we're not missing anything
->> > > > > > > would be sweet on
->> > > > > > > top, e.g. e.g. trying to set a mode over the limit
->> > > > > > > and making sure it
->> > > > > > > fails.
->> > > > > > >
->> > > > > > > Cheers, Daniel
->> > > > > > >
->> > > > > > > > ---
->> > > > > > > >  drivers/gpu/drm/meson/meson_drv.c | 4 ++--
->> > > > > > > >  1 file changed, 2 insertions(+), 2 deletions(-)
->> > > > > > > >
->> > > > > > > > diff --git a/drivers/gpu/drm/meson/meson_drv.c
->> > > > > > > > b/drivers/gpu/drm/meson/meson_drv.c
->> > > > > > > > index d344312..2e29968 100644
->> > > > > > > > --- a/drivers/gpu/drm/meson/meson_drv.c
->> > > > > > > > +++ b/drivers/gpu/drm/meson/meson_drv.c
->> > > > > > > > @@ -243,8 +243,8 @@ static int
->> > > > > > > > meson_drv_bind_master(struct device *dev, bool
->> > > > > > > > has_components)
->> > > > > > > >              goto free_drm;
->> > > > > > > >
->> > > > > > > >      drm_mode_config_init(drm);
->> > > > > > > > -    drm->mode_config.max_width = 3840;
->> > > > > > > > -    drm->mode_config.max_height = 2160;
->> > > > > > > > +    drm->mode_config.max_width = 16384;
->> > > > > > > > +    drm->mode_config.max_height = 8192;
->> > > > > > > >      drm->mode_config.funcs = &meson_mode_config_funcs;
->> > > > > > > >
->> > > > > > > >      /* Hardware Initialization */
->> > > > > > > > --
->> > > > > > > > 2.7.4
->> > > > > > > >
->> > > > > > > > _______________________________________________
->> > > > > > > > dri-devel mailing list
->> > > > > > > > dri-devel@lists.freedesktop.org
->> > > > > > > > https://lists.freedesktop.org/mailman/listinfo/dri-devel
->> > > > > > >
->> > > > > >
->> > > > > > _______________________________________________
->> > > > > > dri-devel mailing list
->> > > > > > dri-devel@lists.freedesktop.org
->> > > > > > https://lists.freedesktop.org/mailman/listinfo/dri-devel
->> > > > >
->> > > > >
->> > > > >
->> > > >
->> > >
->> > >
->> >
->> > _______________________________________________
->> > dri-devel mailing list
->> > dri-devel@lists.freedesktop.org
->> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
->> 
->> --
->> Jeykumar S
+ .../bindings/watchdog/amlogic,meson-sec-wdt.yaml   |  34 ++++
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi          |   6 +
+ drivers/firmware/meson/meson_sm.c                  |   1 +
+ drivers/watchdog/Kconfig                           |  16 ++
+ drivers/watchdog/Makefile                          |   1 +
+ drivers/watchdog/meson_sec_wdt.c                   | 205 +++++++++++++++++++++
+ include/linux/firmware/meson/meson_sm.h            |   1 +
+ 7 files changed, 264 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/amlogic,meson-sec-wdt.yaml
+ create mode 100644 drivers/watchdog/meson_sec_wdt.c
 
 -- 
-Jeykumar S
+2.7.4
+
 
 _______________________________________________
 linux-amlogic mailing list
