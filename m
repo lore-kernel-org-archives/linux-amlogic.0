@@ -1,94 +1,89 @@
-Return-Path: <SRS0=gqBQ=YF=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=IGRl=YG=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A449C10F14
-	for <linux-amlogic@archiver.kernel.org>; Sat, 12 Oct 2019 14:29:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AF716C10F14
+	for <linux-amlogic@archiver.kernel.org>; Sun, 13 Oct 2019 01:09:03 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C951C206CD
-	for <linux-amlogic@archiver.kernel.org>; Sat, 12 Oct 2019 14:29:41 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7E1D72089F
+	for <linux-amlogic@archiver.kernel.org>; Sun, 13 Oct 2019 01:09:03 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UopM+wPJ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E9MGv9kY"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C951C206CD
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tBdihUVm";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=ndufresne-ca.20150623.gappssmtp.com header.i=@ndufresne-ca.20150623.gappssmtp.com header.b="fpT712Tj"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7E1D72089F
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=ndufresne.ca
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=mF/x2A7i6lartGcPC3HuTSQDQ9/wsL74cR1IcYR2o2Y=; b=UopM+wPJBvNqCBuGFANFYlv1J
-	wdzt0xJctGXoxNC/qhUPdyESHxCYkvDvsKV3zUOdWhRWkCsbkVUAerd2MznBsSiKH6Z2vBD+rBjd2
-	HaTdzzUx9eTGDMCQEm+mJPfHH5SEVrZ8ZN25psHGkvc7GLMiDlbmf5ELlWfOX2H80DKlZfadS+VH2
-	wQMd5PZW3QaRM7GC+jAj9I159HbmkkeANENl557uNSspgZKS2I3+4gPVTRLbbffcR5M6nWe2wR6lF
-	4Hry3DiyARfcFxMnHy+iInX2VkfNgDq4GkQGtnnDlTMV3eJXtz9/U1HVffN1EXDQcJlodZKfXpX2m
-	Fq8+r5ldA==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=9xF9Zr0ErPsOJEBJXZNLolGGMITbQ1ClDPOR2IhQlPg=; b=tBdihUVmnfpC+p
+	iyCJYM470vM9JjtIS06+FlYX+7fabqxCc24FtD1o/lDUuwS1euU0cw+mA5CGxe+OdNui4ZXgegnvZ
+	xXZb0TwScVxzPOzx60xjkxsZE16woOBfiG9QUtOlBrMIQV9EqR5psUOHRoKIHu93ZbODW37TCSS4g
+	NXlYBsBdzMvLXzhp3WX9vye0kU7aEkOoGsl3GYQc1uV8Dp2JZVCyEmRYw0AG7+47tGekv7Gjst5Sz
+	0WVNugxeLw3zoA3WWcYYvI0J3NzU9ZGUCEZXwfi15Rpp4YRotCE22zJwi/6O8afwzWhyvpfAS3R7W
+	Wv/b0sjxvsQhqSL4OSeQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iJIOg-0005OW-OM; Sat, 12 Oct 2019 14:29:30 +0000
-Received: from mail-pf1-x442.google.com ([2607:f8b0:4864:20::442])
+	id 1iJSNM-0000T8-Eu; Sun, 13 Oct 2019 01:08:48 +0000
+Received: from mail-qt1-x842.google.com ([2607:f8b0:4864:20::842])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iJIOW-0005HM-Ln; Sat, 12 Oct 2019 14:29:22 +0000
-Received: by mail-pf1-x442.google.com with SMTP id h195so7793248pfe.5;
- Sat, 12 Oct 2019 07:29:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=sender:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=wFyrE4sJHknnmugam0lljEG4OV3Sn7PQE66jy+Yciqg=;
- b=E9MGv9kYieDKfFWbqE5FwUfJUM5++tBgIQvj3HKqKOgPv43YdfdXMth7sZeg7VBwvC
- yk0jSZIxDigDYE3hrQY8ZPLGpC1C+WiE+7P2g3hRx9lZwBR7W0KrRL+ITA16ubR6adJF
- rQoKDHD6YIbsb3pFG8d+F0B2/PEq37Isz3C6Oglg6hJELf5pTjQskYn9fSGxTbyncnR9
- tM4xavzdY1/iaSDcNb462vgTajdbr6sqhxv8vQbBsRx/8YIBhuoayKl864djph3g2Nv2
- u+Rt62saXcJzH4BwkjkIB63q9VRxUG4NZY1+26BCDb4KMt6eyK/EoI5iBA/mDUeCuTiw
- hKNg==
+ id 1iJSNA-0000KW-Px
+ for linux-amlogic@lists.infradead.org; Sun, 13 Oct 2019 01:08:39 +0000
+Received: by mail-qt1-x842.google.com with SMTP id m15so19799744qtq.2
+ for <linux-amlogic@lists.infradead.org>; Sat, 12 Oct 2019 18:08:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ndufresne-ca.20150623.gappssmtp.com; s=20150623;
+ h=message-id:subject:from:to:cc:date:in-reply-to:references
+ :user-agent:mime-version:content-transfer-encoding;
+ bh=RiiTwpQS0mYXMCffosrGRNKPibt05f52ictxLJwzvMU=;
+ b=fpT712Tjpp9uPzY85eDF0u+LnkZ1H6ejeS1YrHZD9pKSCvqNQrio4Zr+6YsMZZOMIO
+ kOZ+hnsfdXLEHLe/cycvv7n8ROM5xDNotmBPVC+U8w/9k3CpuX6UU1ojQGIaH+d286Ck
+ oRWxh3t3PSylyyysnTSRUEGuGmXmNn232Eey3AeSzxBvZPG+FKQfbRb35RJHB5qekQ08
+ 66zpa3f5445bql3MNKROPZ29uqWYvyrA+k7LKE2r6e+6pYlxfOKLRWir4I3LPONDQY9X
+ txW/oNKUYGeGoU395gE9hqKvnnucgGNH3GbgxrOoxupTwBjfECjhOHS4XugtFyjaCbH4
+ b5dA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
- :date:user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=wFyrE4sJHknnmugam0lljEG4OV3Sn7PQE66jy+Yciqg=;
- b=OGjjd9SpYiR631QEU6+v2gWnT3Hoxv6VnWaNhFHNNUAK2nAcL2jV6pk9WwTuIZA5Ms
- fVvxNOJL+l5IOOhKhOEfO4VKK+9QaTIKNbuV68Py+ofVlkiFOgtcxsOHmDxXBoshHPCb
- nPFvuIKtfz4P97cTPmZQexf7a96Pb4q9qPDgUycoYnhOG1h+wzFmmznluHi4Z9XmQLkQ
- JkzgIHNGIOFq804hlkm3OByWEGOYHy28mDhdP6wwxXsOAyMFeClD72dbLqH+KLKy1tiQ
- MIz1qeWJxSSRrnd1aWq0VAFHHKRgA/2DjYYk2rliiEaPsl/kYngrQAvvDWjJ4gPuo2xd
- 1jrQ==
-X-Gm-Message-State: APjAAAUM1PfOduJ8YzKPyQ/B2WvvnMBdcI3Yc2xbD0c7WDCe08kJyhH8
- p4kaMMEamnzQfRO36jQDC4A=
-X-Google-Smtp-Source: APXvYqxPHup9PSwGxijToNsQGC3Z5sdQTsb9RH+Ajc7G6sO7cQwSJey0vCuxBByAKPHw6GFrGaa67Q==
-X-Received: by 2002:aa7:9525:: with SMTP id c5mr22152324pfp.22.1570890559108; 
- Sat, 12 Oct 2019 07:29:19 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
- by smtp.gmail.com with ESMTPSA id
- u3sm12501348pfn.134.2019.10.12.07.29.16
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sat, 12 Oct 2019 07:29:17 -0700 (PDT)
-Subject: Re: [PATCH 3/4] watchdog: add meson secure watchdog driver
-To: Xingyu Chen <xingyu.chen@amlogic.com>,
- Wim Van Sebroeck <wim@linux-watchdog.org>,
- Kevin Hilman <khilman@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>
-References: <1570874721-36077-1-git-send-email-xingyu.chen@amlogic.com>
- <1570874721-36077-4-git-send-email-xingyu.chen@amlogic.com>
-From: Guenter Roeck <linux@roeck-us.net>
-Message-ID: <07e8aef0-c991-f212-d500-c5ce77b3dea3@roeck-us.net>
-Date: Sat, 12 Oct 2019 07:29:15 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:user-agent:mime-version:content-transfer-encoding;
+ bh=RiiTwpQS0mYXMCffosrGRNKPibt05f52ictxLJwzvMU=;
+ b=LoylszgRTYroQXUtbXWPZSMwNaGxuIqel36/OqYsxTT0a20dfzo8QAMMujs3QDcswb
+ 2qbjq4GWQpPMYqkgAfKB/1yW2IhekSKTKBHgsAoR5aVnt3K7np8Is5xVo1vpZ0LWfnAJ
+ bJeYm/x7GIS52Di9JMOBXgNcUX43VGWpoLYO08vAF5MXnTc/ZhquUKxUwyrsgDScnxWC
+ JwzqqQmQRCQQJStg7Ep0BKUpCnSuhHOQR59jcxGuG+8B75huNbSN+jcxGU35hvfLHeWD
+ p/V14d7oPJy313D5E5eGUf5Ld1215mvXebueNN4WYAY5vwJk75j0uH6wS/vL+7WCL7Hh
+ q05A==
+X-Gm-Message-State: APjAAAXmeuhuet+wZ5VKTf6TIDzfS8RDXHKpNtp6fJCNiWJO0MljgUtD
+ g5dmlBNiyfYwgr2LNXDdc5/q5g==
+X-Google-Smtp-Source: APXvYqw5Qlzus9NC2+DxGhuvgV3/CCP1I0biun6Wwc03PRi5rg3PVvDhH04cGhtGm00ois8o47RN9A==
+X-Received: by 2002:ac8:708f:: with SMTP id y15mr25342761qto.247.1570928913106; 
+ Sat, 12 Oct 2019 18:08:33 -0700 (PDT)
+Received: from skullcanyon ([192.222.193.21])
+ by smtp.gmail.com with ESMTPSA id u39sm6944344qtj.34.2019.10.12.18.08.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 12 Oct 2019 18:08:31 -0700 (PDT)
+Message-ID: <bf072b400ce7d5a9f52cf7ca7ac0b36b22fff24f.camel@ndufresne.ca>
+Subject: Re: [PATCH 0/2] media: meson: vdec: Add compliant H264 support
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: Maxime Jourdan <mjourdan@baylibre.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Hans Verkuil <hans.verkuil@cisco.com>
+Date: Sat, 12 Oct 2019 21:08:29 -0400
+In-Reply-To: <20191007145909.29979-1-mjourdan@baylibre.com>
+References: <20191007145909.29979-1-mjourdan@baylibre.com>
+User-Agent: Evolution 3.32.4 (3.32.4-1.fc30) 
 MIME-Version: 1.0
-In-Reply-To: <1570874721-36077-4-git-send-email-xingyu.chen@amlogic.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191012_072920_743863_8C5774C2 
-X-CRM114-Status: GOOD (  27.94  )
+X-CRM114-CacheID: sfid-20191012_180837_003645_4AC61144 
+X-CRM114-Status: GOOD (  20.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,327 +95,143 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Qianggui Song <qianggui.song@amlogic.com>, linux-watchdog@vger.kernel.org,
- Jianxin Pan <jianxin.pan@amlogic.com>, linux-kernel@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, Jian Hu <jian.hu@amlogic.com>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>,
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 10/12/19 3:05 AM, Xingyu Chen wrote:
-> The watchdog controller on the Meson-A/C series SoCs is moved to secure
-> world, watchdog operation needs to be done in secure EL3 mode via ATF,
-> Non-secure world can call SMC instruction to trap to AFT for watchdog
-> operation.
-> 
-> Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
-> ---
->   drivers/watchdog/Kconfig         |  16 +++
->   drivers/watchdog/Makefile        |   1 +
->   drivers/watchdog/meson_sec_wdt.c | 205 +++++++++++++++++++++++++++++++++++++++
->   3 files changed, 222 insertions(+)
->   create mode 100644 drivers/watchdog/meson_sec_wdt.c
-> 
-> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-> index 58e7c10..e6b0707 100644
-> --- a/drivers/watchdog/Kconfig
-> +++ b/drivers/watchdog/Kconfig
-> @@ -826,6 +826,22 @@ config MESON_GXBB_WATCHDOG
->   	  To compile this driver as a module, choose M here: the
->   	  module will be called meson_gxbb_wdt.
->   
-> +config MESON_SEC_WATCHDOG
-> +	tristate "Amlogic Meson Secure watchdog support"
-> +	depends on ARCH_MESON || COMPILE_TEST
-
-Did you try COMPILE_TEST (eg allmodconfig) on, say x86_64 ?
-AFAICS the meson sm calls are only available if MESON_SM is
-enabled, and that depends on both ARCH_MESON and ARM64_4K_PAGES.
-This dependency is not expressed here, and neither is enabled
-with COMPILE_TEST.
-
-> +	select WATCHDOG_CORE
-> +	help
-> +	  The watchdog controller on the Meson-A/C series SoCs is moved to
-> +	  secure world, watchdog operation needs to be done in secure EL3
-> +	  mode via ATF, non-secure world can call SMC instruction to trap
-> +	  to ATF for the watchdog operation.
-> +
-> +	  Say Y here if watchdog controller on Meson SoCs is located in
-> +	  secure world.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called meson_sec_wdt.
-> +
->   config MESON_WATCHDOG
->   	tristate "Amlogic Meson SoCs watchdog support"
->   	depends on ARCH_MESON || COMPILE_TEST
-> diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-> index 2ee352b..5e6b73d 100644
-> --- a/drivers/watchdog/Makefile
-> +++ b/drivers/watchdog/Makefile
-> @@ -78,6 +78,7 @@ obj-$(CONFIG_QCOM_WDT) += qcom-wdt.o
->   obj-$(CONFIG_BCM_KONA_WDT) += bcm_kona_wdt.o
->   obj-$(CONFIG_TEGRA_WATCHDOG) += tegra_wdt.o
->   obj-$(CONFIG_MESON_GXBB_WATCHDOG) += meson_gxbb_wdt.o
-> +obj-$(CONFIG_MESON_SEC_WATCHDOG) += meson_sec_wdt.o
->   obj-$(CONFIG_MESON_WATCHDOG) += meson_wdt.o
->   obj-$(CONFIG_MEDIATEK_WATCHDOG) += mtk_wdt.o
->   obj-$(CONFIG_DIGICOLOR_WATCHDOG) += digicolor_wdt.o
-> diff --git a/drivers/watchdog/meson_sec_wdt.c b/drivers/watchdog/meson_sec_wdt.c
-> new file mode 100644
-> index 00000000..2b5357c
-> --- /dev/null
-> +++ b/drivers/watchdog/meson_sec_wdt.c
-> @@ -0,0 +1,205 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-> + * Author: Xingyu Chen <xingyu.chen@amlogic.com>
-> + *
-> + */
-> +#include <linux/err.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/types.h>
-> +#include <linux/watchdog.h>
-> +#include <linux/firmware/meson/meson_sm.h>
-> +
-> +#define MESON_SIP_WDT_DISABLE		0x1
-> +#define MESON_SIP_WDT_ENABLE		0x2
-> +#define MESON_SIP_WDT_PING		0x3
-> +#define MESON_SIP_WDT_INIT		0x4
-> +#define MESON_SIP_WDT_RESETNOW		0x5
-> +#define MESON_SIP_WDT_SETTIMEOUT	0x6
-> +#define MESON_SIP_WDT_GETTIMELEFT	0x7
-> +
-> +#define DEFAULT_TIMEOUT			30 /* seconds */
-> +
-> +/*
-> + * Watchdog timer tick is set to 1ms in secfw side, and tick count is
-> + * stored in the bit[16-31] of WATCHDOG_CNT register, so the maximum
-> + * timeout value is 0xffff ms.
-> + */
-> +#define MAX_TIMEOUT_MS			0xFFFF
-> +
-> +struct meson_sec_wdt {
-> +	struct watchdog_device wdt_dev;
-> +	struct meson_sm_firmware *fw;
-> +};
-> +
-> +static int meson_sec_wdt_start(struct watchdog_device *wdt_dev)
-> +{
-> +	int ret;
-> +	struct meson_sec_wdt *data = watchdog_get_drvdata(wdt_dev);
-> +
-> +	ret = meson_sm_call(data->fw, SM_WATCHDOG_OPS, NULL,
-> +			    MESON_SIP_WDT_ENABLE, 0, 0, 0, 0); > +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-
-This is equivalent to
-	return ret;
-or even
-	return meson_sm_call(...);
-
-> +}
-> +
-> +static int meson_sec_wdt_stop(struct watchdog_device *wdt_dev)
-> +{
-> +	int ret;
-> +	struct meson_sec_wdt *data = watchdog_get_drvdata(wdt_dev);
-> +
-> +	ret = meson_sm_call(data->fw, SM_WATCHDOG_OPS, NULL,
-> +			    MESON_SIP_WDT_DISABLE, 0, 0, 0, 0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-
-Same as above.
-
-> +}
-> +
-> +static int meson_sec_wdt_ping(struct watchdog_device *wdt_dev)
-> +{
-> +	struct meson_sec_wdt *data = watchdog_get_drvdata(wdt_dev);
-> +
-> +	meson_sm_call(data->fw, SM_WATCHDOG_OPS, NULL,
-> +		      MESON_SIP_WDT_PING, 0, 0, 0, 0);
-> +
-> +	return 0;
-
-Why ignore errors ?
-
-> +}
-> +
-> +static int meson_sec_wdt_set_timeout(struct watchdog_device *wdt_dev,
-> +				     unsigned int timeout)
-> +{
-> +	int ret;
-> +	struct meson_sec_wdt *data = watchdog_get_drvdata(wdt_dev);
-> +
-> +	wdt_dev->timeout = timeout;
-> +	meson_sec_wdt_ping(wdt_dev);
-> +
-
-Unconditionally ? Also, the core does that after setting the timeout.
-
-> +	ret = meson_sm_call(data->fw, SM_WATCHDOG_OPS, NULL,
-> +			    MESON_SIP_WDT_SETTIMEOUT,
-> +			    wdt_dev->timeout, 0, 0, 0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-
-same as above.
-
-> +}
-> +
-> +static unsigned int meson_sec_wdt_get_timeleft(struct watchdog_device *wdt_dev)
-> +{
-> +	int ret;
-> +	int timeleft;
-> +	struct meson_sec_wdt *data = watchdog_get_drvdata(wdt_dev);
-> +
-> +	ret = meson_sm_call(data->fw, SM_WATCHDOG_OPS, &timeleft,
-> +			    MESON_SIP_WDT_GETTIMELEFT, 0, 0, 0, 0);
-> +
-> +	if (ret)
-> +		return 0;
-
-Really ? Why ? 0 is most definitely incorrect here.
-
-> +
-> +	return timeleft;
-> +}
-> +
-> +static const struct watchdog_ops meson_sec_wdt_ops = {
-> +	.start = meson_sec_wdt_start,
-> +	.stop = meson_sec_wdt_stop,
-> +	.ping = meson_sec_wdt_ping,
-> +	.set_timeout = meson_sec_wdt_set_timeout,
-> +	.get_timeleft = meson_sec_wdt_get_timeleft,
-> +};
-> +
-> +static const struct watchdog_info meson_sec_wdt_info = {
-> +	.identity = "Meson Secure Watchdog Timer",
-> +	.options = WDIOF_SETTIMEOUT | WDIOF_KEEPALIVEPING | WDIOF_MAGICCLOSE,
-> +};
-> +
-> +static int __maybe_unused meson_sec_wdt_resume(struct device *dev)
-> +{
-> +	struct meson_sec_wdt *data = dev_get_drvdata(dev);
-> +
-> +	if (watchdog_active(&data->wdt_dev))
-> +		meson_sec_wdt_start(&data->wdt_dev);
-
-No error return ?
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused meson_sec_wdt_suspend(struct device *dev)
-> +{
-> +	struct meson_sec_wdt *data = dev_get_drvdata(dev);
-> +
-> +	if (watchdog_active(&data->wdt_dev))
-> +		meson_sec_wdt_stop(&data->wdt_dev);
-
-No error return ?
-
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct dev_pm_ops meson_sec_wdt_pm_ops = {
-> +	SET_SYSTEM_SLEEP_PM_OPS(meson_sec_wdt_suspend, meson_sec_wdt_resume)
-> +};
-> +
-> +static const struct of_device_id meson_sec_wdt_dt_ids[] = {
-> +	 { .compatible = "amlogic,meson-sec-wdt", },
-> +	 { /* sentinel */ },
-> +};
-> +MODULE_DEVICE_TABLE(of, meson_sec_wdt_dt_ids);
-> +
-> +static int meson_sec_wdt_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct meson_sec_wdt *data;
-> +	struct device_node *sm_np;
-> +	int ret;
-> +
-> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	sm_np = of_parse_phandle(pdev->dev.of_node, "secure-monitor", 0);
-> +	if (!sm_np) {
-> +		dev_err(&pdev->dev, "no secure-monitor node\n");
-> +		return -ENODEV;
-
-ENODEV is wrong here.
-
-> +	}
-> +
-> +	data->fw = meson_sm_get(sm_np);
-> +	of_node_put(sm_np);
-> +	if (!data->fw)
-> +		return -EPROBE_DEFER;
-
-How do you know ?
-
-> +
-> +	platform_set_drvdata(pdev, data);
-> +
-> +	data->wdt_dev.parent = dev;
-> +	data->wdt_dev.info = &meson_sec_wdt_info;
-> +	data->wdt_dev.ops = &meson_sec_wdt_ops;
-> +	data->wdt_dev.max_hw_heartbeat_ms = MAX_TIMEOUT_MS;
-> +	data->wdt_dev.min_timeout = 1;
-> +	data->wdt_dev.timeout = DEFAULT_TIMEOUT;
-> +	watchdog_set_drvdata(&data->wdt_dev, data);
-> +
-No watchdog_init_timeout() ? Any special reason for not supporting
-to set the timeout with a devicetree property ?
-
-> +	ret = meson_sm_call(data->fw, SM_WATCHDOG_OPS, NULL,
-> +			    MESON_SIP_WDT_INIT,
-> +			    data->wdt_dev.timeout, 0, 0, 0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	watchdog_stop_on_reboot(&data->wdt_dev);
-> +
-> +	return devm_watchdog_register_device(dev, &data->wdt_dev);
-> +}
-> +
-> +static struct platform_driver meson_sec_wdt_driver = {
-> +	.probe	= meson_sec_wdt_probe,
-> +	.driver = {
-> +		.name = "meson-sec-wdt",
-> +		.pm = &meson_sec_wdt_pm_ops,
-> +		.of_match_table	= meson_sec_wdt_dt_ids,
-> +	},
-> +};
-> +
-> +module_platform_driver(meson_sec_wdt_driver);
-> +
-> +MODULE_AUTHOR("Xingyu Chen <xingyu.chen@amlogic.com>");
-> +MODULE_DESCRIPTION("Amlogic Secure Watchdog Timer Driver");
-> +MODULE_LICENSE("Dual BSD/GPL");
-> 
-BSD or MIT ? This should match the license identifier.
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+TGUgbHVuZGkgMDcgb2N0b2JyZSAyMDE5IMOgIDE2OjU5ICswMjAwLCBNYXhpbWUgSm91cmRhbiBh
+IMOpY3JpdCA6Cj4gSGVsbG8sCj4gCj4gVGhpcyBwYXRjaCBzZXJpZXMgYWltcyB0byBicmluZyBI
+LjI2NCBzdXBwb3J0IGFzIHdlbGwgYXMgY29tcGxpYW5jZSB1cGRhdGUKPiB0byB0aGUgYW1sb2dp
+YyBzdGF0ZWZ1bCB2aWRlbyBkZWNvZGVyIGRyaXZlci4KPiAKPiBUaGVyZSBpcyAxIGlzc3VlIHRo
+YXQgcmVtYWlucyBjdXJyZW50bHk6Cj4gCj4gIC0gVGhlIGZvbGxvd2luZyBjb2RlcGF0aCBoYWQg
+dG8gYmUgY29tbWVudGVkIG91dCBmcm9tIHY0bDItY29tcGxpYW5jZSBhcwo+IGl0IGxlZCB0byBz
+dGFsbGluZzoKPiAKPiBpZiAobm9kZS0+Y29kZWNfbWFzayAmIFNUQVRFRlVMX0RFQ09ERVIpIHsK
+PiAJc3RydWN0IHY0bDJfZGVjb2Rlcl9jbWQgY21kOwo+IAlidWZmZXIgYnVmX2NhcChtMm1fcSk7
+Cj4gCj4gCW1lbXNldCgmY21kLCAwLCBzaXplb2YoY21kKSk7Cj4gCWNtZC5jbWQgPSBWNEwyX0RF
+Q19DTURfU1RPUDsKPiAKPiAJLyogTm8gYnVmZmVycyBhcmUgcXVldWVkLCBjYWxsIFNUUkVBTU9O
+LCB0aGVuIFNUT1AgKi8KPiAJZmFpbF9vbl90ZXN0KG5vZGUtPnN0cmVhbW9uKHEuZ190eXBlKCkp
+KTsKPiAJZmFpbF9vbl90ZXN0KG5vZGUtPnN0cmVhbW9uKG0ybV9xLmdfdHlwZSgpKSk7Cj4gCWZh
+aWxfb25fdGVzdChkb2lvY3RsKG5vZGUsIFZJRElPQ19ERUNPREVSX0NNRCwgJmNtZCkpOwo+IAo+
+IAlmYWlsX29uX3Rlc3QoYnVmX2NhcC5xdWVyeWJ1Zihub2RlLCAwKSk7Cj4gCWZhaWxfb25fdGVz
+dChidWZfY2FwLnFidWYobm9kZSkpOwo+IAlmYWlsX29uX3Rlc3QoYnVmX2NhcC5kcWJ1Zihub2Rl
+KSk7Cj4gCWZhaWxfb25fdGVzdCghKGJ1Zl9jYXAuZ19mbGFncygpICYgVjRMMl9CVUZfRkxBR19M
+QVNUKSk7Cj4gCWZvciAodW5zaWduZWQgcCA9IDA7IHAgPCBidWZfY2FwLmdfbnVtX3BsYW5lcygp
+OyBwKyspCj4gCQlmYWlsX29uX3Rlc3QoYnVmX2NhcC5nX2J5dGVzdXNlZChwKSk7Cj4gCWZhaWxf
+b25fdGVzdChub2RlLT5zdHJlYW1vZmYocS5nX3R5cGUoKSkpOwo+IAlmYWlsX29uX3Rlc3Qobm9k
+ZS0+c3RyZWFtb2ZmKG0ybV9xLmdfdHlwZSgpKSk7Cj4gCj4gCS8qIENhbGwgU1RSRUFNT04sIHF1
+ZXVlIG9uZSBDQVBUVVJFIGJ1ZmZlciwgdGhlbiBTVE9QICovCj4gCWZhaWxfb25fdGVzdChub2Rl
+LT5zdHJlYW1vbihxLmdfdHlwZSgpKSk7Cj4gCWZhaWxfb25fdGVzdChub2RlLT5zdHJlYW1vbiht
+Mm1fcS5nX3R5cGUoKSkpOwo+IAlmYWlsX29uX3Rlc3QoYnVmX2NhcC5xdWVyeWJ1Zihub2RlLCAw
+KSk7Cj4gCWZhaWxfb25fdGVzdChidWZfY2FwLnFidWYobm9kZSkpOwo+IAlmYWlsX29uX3Rlc3Qo
+ZG9pb2N0bChub2RlLCBWSURJT0NfREVDT0RFUl9DTUQsICZjbWQpKTsKPiAKPiAJZmFpbF9vbl90
+ZXN0KGJ1Zl9jYXAuZHFidWYobm9kZSkpOwo+IAlmYWlsX29uX3Rlc3QoIShidWZfY2FwLmdfZmxh
+Z3MoKSAmIFY0TDJfQlVGX0ZMQUdfTEFTVCkpOwo+IAlmb3IgKHVuc2lnbmVkIHAgPSAwOyBwIDwg
+YnVmX2NhcC5nX251bV9wbGFuZXMoKTsgcCsrKQo+IAkJZmFpbF9vbl90ZXN0KGJ1Zl9jYXAuZ19i
+eXRlc3VzZWQocCkpOwo+IAlmYWlsX29uX3Rlc3Qobm9kZS0+c3RyZWFtb2ZmKHEuZ190eXBlKCkp
+KTsKPiAJZmFpbF9vbl90ZXN0KG5vZGUtPnN0cmVhbW9mZihtMm1fcS5nX3R5cGUoKSkpOwo+IH0K
+PiAKPiBUaGUgcmVhc29uIGZvciB0aGlzIGlzIGJlY2F1c2UgdGhlIGRyaXZlciBoYXMgYSBsaW1p
+dGF0aW9uIHdoZXJlIGFsbAo+IGNhcHR1cmVidWZmZXJzIG11c3QgYmUgcXVldWVkIHRvIHRoZSBk
+cml2ZXIgYmVmb3JlIFNUUkVBTU9OIGlzIGVmZmVjdGl2ZS4KPiBUaGUgZmlybXdhcmUgbmVlZHMg
+dG8ga25vdyBpbiBhZHZhbmNlIHdoYXQgYWxsIHRoZSBidWZmZXJzIGFyZSBiZWZvcmUKPiBzdGFy
+dGluZyB0byBkZWNvZGUuCj4gVGhpcyBsaW1pdGF0aW9uIGlzIGVuZm9yY2VkIHZpYSBxLT5taW5f
+YnVmZmVyc19uZWVkZWQuCj4gQXMgc3VjaCwgaW4gdGhpcyBjb21wbGlhbmNlIGNvZGVwYXRoLCBT
+VFJFQU1PTiBpcyBuZXZlciBhY3R1YWxseSBjYWxsZWQKPiBkcml2ZXItc2lkZSBhbmQgdGhlcmUg
+aXMgYSBzdGFsbCBvbiBmYWlsX29uX3Rlc3QoYnVmX2NhcC5kcWJ1Zihub2RlKSk7Cj4gCj4gCj4g
+T25lIGxhc3QgZGV0YWlsOiBWNEwyX0ZNVF9GTEFHX0RZTl9SRVNPTFVUSU9OIGlzIGN1cnJlbnRs
+eSBub3QgcmVjb2duaXplZAo+IGJ5IHY0bDItY29tcGxpYW5jZSwgc28gaXQgd2FzIGxlZnQgb3V0
+IGZvciB0aGUgdGVzdC4gSG93ZXZlciwgaXQgaXMKPiBwcmVzZW50IGluIHRoZSBwYXRjaCBzZXJp
+ZXMuCj4gCj4gVGhlIHNlY29uZCBwYXRjaCBoYXMgMyAiQWxpZ25tZW50IHNob3VsZCBtYXRjaCBv
+cGVuIHBhcmVudGhlc2lzIiBsaW5lcwo+IHdoZXJlIEkgcHJlZmVycmVkIHRvIGtlZXAgdGhlbSB0
+aGF0IHdheS4KPiAKPiBUaGFua3MgU3RhbmltaXIgZm9yIHNoYXJpbmcgeW91ciBIRFIgZmlsZSBj
+cmVhdGlvbiB0b29scywgdGhpcyB3YXMgdmVyeQo+IGhlbHBmdWwgOikuCgpJIHRyaWVkIHRvIHRl
+c3QgdGhpcyB3aXRoIGEgcGVuZGluZyBicmFuY2ggb2YgR1N0cmVhbWVyIHN1cHBvcnRpbmcKZHlu
+YW1pYyByZXNvbHV0aW9uIGNoYW5nZXMuIFRoZSBldmVuIGRyaXZlciBtZWNoYW5pc20gZG9lcyBu
+b3Qgc2VlbSB0bwp3b3JrIHdpdGggdGhpcyBkcml2ZXIuIEkndmUgZ3JlcHBlZCB0aGUgY29kZSwg
+YW5kIGRvbid0IHNlZSBhbnkgcGxhY2VzCndlcmUgdGhlIGV2ZW50IHdvdWxkIGJlIGVtaXR0ZWQu
+CgpUaGVuIEkgZ3JlcHBlZCwgYW5kIGl0IHNlZW1zIHRoZSBkcml2ZXIgYWNjZXB0IHNvdXJjZV9j
+aGFuZ2UKc3Vic2NyaXB0aW9uIGJ1dCBkb2VzIG5vdCBzZXQgVjRMMl9GTVRfRkxBR19EWU5fUkVT
+T0xVVElPTi4gSSBiZWxpZXZlCnRoZXNlIHR3byB0aGluZ3MgYXJlIGJpdCByZWR1bmRhbnQgYW5k
+IGNvbmZ1c2luZywgSSdsbCBmaXggdGhlIHByb3Bvc2VkCnBhdGNoIG5ldmVyIHRoZSBsZXNzLCBh
+bmQgc2VlIGlmIHRoYXQgbWFrZXMgaXQgd29yay4KCj4gCj4gTWF4aW1lCj4gCj4gIyB2NGwyLWNv
+bXBsaWFuY2UgLS1zdHJlYW0tZnJvbS1oZHIgdGVzdC0yNWZwcy5oMjY0LmhkciAtczI1MAo+IHY0
+bDItY29tcGxpYW5jZSBTSEE6IGExNjIyNDRkNDdkNGJiMDFkMDY5MmRhODc5ZGNlNWEwNzBmMTE4
+ZTcsIDY0IGJpdHMKPiAKPiBDb21wbGlhbmNlIHRlc3QgZm9yIG1lc29uLXZkZWMgZGV2aWNlIC9k
+ZXYvdmlkZW8wOgo+IAo+IERyaXZlciBJbmZvOgo+IAlEcml2ZXIgbmFtZSAgICAgIDogbWVzb24t
+dmRlYwo+IAlDYXJkIHR5cGUgICAgICAgIDogQW1sb2dpYyBWaWRlbyBEZWNvZGVyCj4gCUJ1cyBp
+bmZvICAgICAgICAgOiBwbGF0Zm9ybTptZXNvbi12ZGVjCj4gCURyaXZlciB2ZXJzaW9uICAgOiA1
+LjQuMAo+IAlDYXBhYmlsaXRpZXMgICAgIDogMHg4NDIwNDAwMAo+IAkJVmlkZW8gTWVtb3J5LXRv
+LU1lbW9yeSBNdWx0aXBsYW5hcgo+IAkJU3RyZWFtaW5nCj4gCQlFeHRlbmRlZCBQaXggRm9ybWF0
+Cj4gCQlEZXZpY2UgQ2FwYWJpbGl0aWVzCj4gCURldmljZSBDYXBzICAgICAgOiAweDA0MjA0MDAw
+Cj4gCQlWaWRlbyBNZW1vcnktdG8tTWVtb3J5IE11bHRpcGxhbmFyCj4gCQlTdHJlYW1pbmcKPiAJ
+CUV4dGVuZGVkIFBpeCBGb3JtYXQKPiAJRGV0ZWN0ZWQgU3RhdGVmdWwgRGVjb2Rlcgo+IAo+IFJl
+cXVpcmVkIGlvY3RsczoKPiAJdGVzdCBWSURJT0NfUVVFUllDQVA6IE9LCj4gCj4gQWxsb3cgZm9y
+IG11bHRpcGxlIG9wZW5zOgo+IAl0ZXN0IHNlY29uZCAvZGV2L3ZpZGVvMCBvcGVuOiBPSwo+IAl0
+ZXN0IFZJRElPQ19RVUVSWUNBUDogT0sKPiAJdGVzdCBWSURJT0NfRy9TX1BSSU9SSVRZOiBPSwo+
+IAl0ZXN0IGZvciB1bmxpbWl0ZWQgb3BlbnM6IE9LCj4gCj4gRGVidWcgaW9jdGxzOgo+IAl0ZXN0
+IFZJRElPQ19EQkdfRy9TX1JFR0lTVEVSOiBPSyAoTm90IFN1cHBvcnRlZCkKPiAJdGVzdCBWSURJ
+T0NfTE9HX1NUQVRVUzogT0sgKE5vdCBTdXBwb3J0ZWQpCj4gCj4gSW5wdXQgaW9jdGxzOgo+IAl0
+ZXN0IFZJRElPQ19HL1NfVFVORVIvRU5VTV9GUkVRX0JBTkRTOiBPSyAoTm90IFN1cHBvcnRlZCkK
+PiAJdGVzdCBWSURJT0NfRy9TX0ZSRVFVRU5DWTogT0sgKE5vdCBTdXBwb3J0ZWQpCj4gCXRlc3Qg
+VklESU9DX1NfSFdfRlJFUV9TRUVLOiBPSyAoTm90IFN1cHBvcnRlZCkKPiAJdGVzdCBWSURJT0Nf
+RU5VTUFVRElPOiBPSyAoTm90IFN1cHBvcnRlZCkKPiAJdGVzdCBWSURJT0NfRy9TL0VOVU1JTlBV
+VDogT0sgKE5vdCBTdXBwb3J0ZWQpCj4gCXRlc3QgVklESU9DX0cvU19BVURJTzogT0sgKE5vdCBT
+dXBwb3J0ZWQpCj4gCUlucHV0czogMCBBdWRpbyBJbnB1dHM6IDAgVHVuZXJzOiAwCj4gCj4gT3V0
+cHV0IGlvY3RsczoKPiAJdGVzdCBWSURJT0NfRy9TX01PRFVMQVRPUjogT0sgKE5vdCBTdXBwb3J0
+ZWQpCj4gCXRlc3QgVklESU9DX0cvU19GUkVRVUVOQ1k6IE9LIChOb3QgU3VwcG9ydGVkKQo+IAl0
+ZXN0IFZJRElPQ19FTlVNQVVET1VUOiBPSyAoTm90IFN1cHBvcnRlZCkKPiAJdGVzdCBWSURJT0Nf
+Ry9TL0VOVU1PVVRQVVQ6IE9LIChOb3QgU3VwcG9ydGVkKQo+IAl0ZXN0IFZJRElPQ19HL1NfQVVE
+T1VUOiBPSyAoTm90IFN1cHBvcnRlZCkKPiAJT3V0cHV0czogMCBBdWRpbyBPdXRwdXRzOiAwIE1v
+ZHVsYXRvcnM6IDAKPiAKPiBJbnB1dC9PdXRwdXQgY29uZmlndXJhdGlvbiBpb2N0bHM6Cj4gCXRl
+c3QgVklESU9DX0VOVU0vRy9TL1FVRVJZX1NURDogT0sgKE5vdCBTdXBwb3J0ZWQpCj4gCXRlc3Qg
+VklESU9DX0VOVU0vRy9TL1FVRVJZX0RWX1RJTUlOR1M6IE9LIChOb3QgU3VwcG9ydGVkKQo+IAl0
+ZXN0IFZJRElPQ19EVl9USU1JTkdTX0NBUDogT0sgKE5vdCBTdXBwb3J0ZWQpCj4gCXRlc3QgVklE
+SU9DX0cvU19FRElEOiBPSyAoTm90IFN1cHBvcnRlZCkKPiAKPiBDb250cm9sIGlvY3RsczoKPiAJ
+dGVzdCBWSURJT0NfUVVFUllfRVhUX0NUUkwvUVVFUllNRU5VOiBPSwo+IAl0ZXN0IFZJRElPQ19R
+VUVSWUNUUkw6IE9LCj4gCXRlc3QgVklESU9DX0cvU19DVFJMOiBPSwo+IAl0ZXN0IFZJRElPQ19H
+L1MvVFJZX0VYVF9DVFJMUzogT0sKPiAJdGVzdCBWSURJT0NfKFVOKVNVQlNDUklCRV9FVkVOVC9E
+UUVWRU5UOiBPSwo+IAl0ZXN0IFZJRElPQ19HL1NfSlBFR0NPTVA6IE9LIChOb3QgU3VwcG9ydGVk
+KQo+IAlTdGFuZGFyZCBDb250cm9sczogMiBQcml2YXRlIENvbnRyb2xzOiAwCj4gCj4gRm9ybWF0
+IGlvY3RsczoKPiAJdGVzdCBWSURJT0NfRU5VTV9GTVQvRlJBTUVTSVpFUy9GUkFNRUlOVEVSVkFM
+UzogT0sKPiAJdGVzdCBWSURJT0NfRy9TX1BBUk06IE9LIChOb3QgU3VwcG9ydGVkKQo+IAl0ZXN0
+IFZJRElPQ19HX0ZCVUY6IE9LIChOb3QgU3VwcG9ydGVkKQo+IAl0ZXN0IFZJRElPQ19HX0ZNVDog
+T0sKPiAJdGVzdCBWSURJT0NfVFJZX0ZNVDogT0sKPiAJdGVzdCBWSURJT0NfU19GTVQ6IE9LCj4g
+CXRlc3QgVklESU9DX0dfU0xJQ0VEX1ZCSV9DQVA6IE9LIChOb3QgU3VwcG9ydGVkKQo+IAl0ZXN0
+IENyb3BwaW5nOiBPSyAoTm90IFN1cHBvcnRlZCkKPiAJdGVzdCBDb21wb3Npbmc6IE9LIChOb3Qg
+U3VwcG9ydGVkKQo+IAl0ZXN0IFNjYWxpbmc6IE9LCj4gCj4gQ29kZWMgaW9jdGxzOgo+IAl0ZXN0
+IFZJRElPQ18oVFJZXylFTkNPREVSX0NNRDogT0sgKE5vdCBTdXBwb3J0ZWQpCj4gCXRlc3QgVklE
+SU9DX0dfRU5DX0lOREVYOiBPSyAoTm90IFN1cHBvcnRlZCkKPiAJdGVzdCBWSURJT0NfKFRSWV8p
+REVDT0RFUl9DTUQ6IE9LCj4gCj4gQnVmZmVyIGlvY3RsczoKPiAJdGVzdCBWSURJT0NfUkVRQlVG
+Uy9DUkVBVEVfQlVGUy9RVUVSWUJVRjogT0sKPiAJdGVzdCBWSURJT0NfRVhQQlVGOiBPSwo+IAl0
+ZXN0IFJlcXVlc3RzOiBPSyAoTm90IFN1cHBvcnRlZCkKPiAKPiBUZXN0IGlucHV0IDA6Cj4gCj4g
+U3RyZWFtaW5nIGlvY3RsczoKPiAJdGVzdCByZWFkL3dyaXRlOiBPSyAoTm90IFN1cHBvcnRlZCkK
+PiAJdGVzdCBibG9ja2luZyB3YWl0OiBPSwo+IAlWaWRlbyBDYXB0dXJlIE11bHRpcGxhbmFyOiBD
+YXB0dXJlZCAyNTAgYnVmZmVycyAgIAo+IAl0ZXN0IE1NQVAgKHNlbGVjdCk6IE9LCj4gCVZpZGVv
+IENhcHR1cmUgTXVsdGlwbGFuYXI6IENhcHR1cmVkIDI1MCBidWZmZXJzICAgCj4gCXRlc3QgTU1B
+UCAoZXBvbGwpOiBPSwo+IAl0ZXN0IFVTRVJQVFIgKHNlbGVjdCk6IE9LIChOb3QgU3VwcG9ydGVk
+KQo+IAl0ZXN0IERNQUJVRjogQ2Fubm90IHRlc3QsIHNwZWNpZnkgLS1leHBidWYtZGV2aWNlCj4g
+Cj4gVG90YWwgZm9yIG1lc29uLXZkZWMgZGV2aWNlIC9kZXYvdmlkZW8wOiA0OSwgU3VjY2VlZGVk
+OiA0OSwgRmFpbGVkOiAwLCBXYXJuaW5nczogMAo+IAo+IE1heGltZSBKb3VyZGFuICgyKToKPiAg
+IG1lZGlhOiBtZXNvbjogdmRlYzogYnJpbmcgdXAgdG8gY29tcGxpYW5jZQo+ICAgbWVkaWE6IG1l
+c29uOiB2ZGVjOiBhZGQgSC4yNjQgZGVjb2Rpbmcgc3VwcG9ydAo+IAo+ICBkcml2ZXJzL3N0YWdp
+bmcvbWVkaWEvbWVzb24vdmRlYy9NYWtlZmlsZSAgICAgfCAgIDIgKy0KPiAgZHJpdmVycy9zdGFn
+aW5nL21lZGlhL21lc29uL3ZkZWMvY29kZWNfaDI2NC5jIHwgNDgyICsrKysrKysrKysrKysrKysr
+Kwo+ICBkcml2ZXJzL3N0YWdpbmcvbWVkaWEvbWVzb24vdmRlYy9jb2RlY19oMjY0LmggfCAgMTQg
+Kwo+ICBkcml2ZXJzL3N0YWdpbmcvbWVkaWEvbWVzb24vdmRlYy9lc3BhcnNlci5jICAgfCAgMzQg
+Ky0KPiAgZHJpdmVycy9zdGFnaW5nL21lZGlhL21lc29uL3ZkZWMvdmRlYy5jICAgICAgIHwgIDcw
+ICsrLQo+ICBkcml2ZXJzL3N0YWdpbmcvbWVkaWEvbWVzb24vdmRlYy92ZGVjLmggICAgICAgfCAg
+MTQgKy0KPiAgLi4uL3N0YWdpbmcvbWVkaWEvbWVzb24vdmRlYy92ZGVjX2hlbHBlcnMuYyAgIHwg
+IDg1ICsrLQo+ICAuLi4vc3RhZ2luZy9tZWRpYS9tZXNvbi92ZGVjL3ZkZWNfaGVscGVycy5oICAg
+fCAgIDYgKy0KPiAgLi4uL3N0YWdpbmcvbWVkaWEvbWVzb24vdmRlYy92ZGVjX3BsYXRmb3JtLmMg
+IHwgIDQzICsrCj4gIDkgZmlsZXMgY2hhbmdlZCwgNjU0IGluc2VydGlvbnMoKyksIDk2IGRlbGV0
+aW9ucygtKQo+ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9zdGFnaW5nL21lZGlhL21lc29u
+L3ZkZWMvY29kZWNfaDI2NC5jCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL3N0YWdpbmcv
+bWVkaWEvbWVzb24vdmRlYy9jb2RlY19oMjY0LmgKPiAKCgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51
+eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
