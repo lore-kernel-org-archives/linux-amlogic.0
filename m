@@ -2,89 +2,153 @@ Return-Path: <SRS0=EyFj=YI=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DA88FC10F14
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Oct 2019 11:34:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F3873ECE588
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Oct 2019 11:47:07 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A567B21848
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Oct 2019 11:34:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C4A1A2064B
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Oct 2019 11:47:07 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TVvni7KT";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="l5IXnpYG"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A567B21848
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HQpdwOcU";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="VjizehmN"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C4A1A2064B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0wpkzise5+4hAa5IcVOJMNRoo6Pl2QJJnzP7rWEXQoI=; b=TVvni7KTxScGiR
-	6AlPmP8k0KvaYGW4hFNZ1LiGRr3OAYbnVQ79zTCX7mCkKZX4PMFTffn683WKkld7cp/2porQglRfC
-	enluV42KsTGjFBqFQc/m7GaZuuzIO/ewywn6RwzKa+3U+EPq07go+GlbWaEKvbZvftFSubHb3JgDP
-	a+Uh+doFwZq9KZN/u2OPzODAfgA3X/b1ZPWH3B2NfQlHBW3zpX5NGnMUIWaAwgPYbqir06mFX1i9w
-	ETbHpIwtYR02jt74vRX52QAZ2C3ojEPBv+5NYeYd/gPCiuugcN7gElkErTGxE6ShP2/WuS+ZagBSG
-	ynQSRae57aDCxw8BgzQQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=RMADqn+6CdB+PQOaRHwg7pBM/teUJPqKA+Uvg6p3SzM=; b=HQpdwOcUWOX2lA
+	p8fYA3HX57Ea4sZD+ICuhGINRZEPFuPIYB9Q9UEtggQawJItztuLFvy5aAtaZIyv2R70aWrWcospd
+	GKdbm07bnzrgvnBza4nYZcM5gOb8K64G0uEXh6v66bLC8rr1mgCygG89zilfqsv7tID7dB2hzzEqj
+	eQD67bSKbUXoDXtg7MeK/7LSjlpse4DYNew9L7RXD4djEVJhPvMcVRJmpyOyVUfmjkVCmzx/BoLOL
+	wT5kbDhrs1DrcakOx9VZapzQXquaNwnizLyQq4lESvrqFlZby9VmooDYv8QIC2NswTrPgxKQmSLrK
+	yu/+k0xB50o65oe6M/hQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iKL5e-0004OU-Mp; Tue, 15 Oct 2019 11:34:10 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1iKLI2-0002hp-L7; Tue, 15 Oct 2019 11:46:58 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iKL4t-0003e3-0Z
- for linux-amlogic@lists.infradead.org; Tue, 15 Oct 2019 11:33:27 +0000
-Received: by mail-wm1-x342.google.com with SMTP id a6so20446829wma.5
- for <linux-amlogic@lists.infradead.org>; Tue, 15 Oct 2019 04:33:22 -0700 (PDT)
+ id 1iKLI0-0002hC-Dt
+ for linux-amlogic@lists.infradead.org; Tue, 15 Oct 2019 11:46:57 +0000
+Received: by mail-wm1-x343.google.com with SMTP id 3so19945683wmi.3
+ for <linux-amlogic@lists.infradead.org>; Tue, 15 Oct 2019 04:46:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=KGLJVsNqev2Pu0SrD3On1A2o4/VJ1lpv7UIRH8Pz9IM=;
- b=l5IXnpYGo3Y6+5Ol9NmoMngdaTzKCwQ1j6TfH4/PaDlVfRX0bKuSvifFb4BCW2dnJn
- C/Vw0/attmUWpVUPr7UGHwndNl4jgHWjquQ0NZq4DtuxqJT0khDV+sjIeZRHQVPUbpsX
- j8QCKdzuEL9w9pijBhzfAVm46CEKGO9k2YT3hMKEdnfd7LmvRaGKubWu9BZjWCx9lMtQ
- LhKOIH1JcgKdAQN1jNLAkU16iHE98x0DT2B/wYafaTaRNrJFBnrlOsj2JTwIpFKagYu8
- ZyMp0qQrGsEkp3IvoPpo8EwlxhLdUWornqgjGUmi4UBLdbBRKjg0U9FUsMOLH5qBv7sm
- K3gg==
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=4zelbzKgVDVBwk81v7buJVDFvSf6vHsLsJcsmpqmrPI=;
+ b=VjizehmN0uOxhlOUKSK0mqVotk5XxIUrRgm2wP/aanx6zX6P6gIKLbzQyv/VXAJPhP
+ fMdv0/7RvB0kNmmXF5wfAC/eifKbsc/b6DtSR7CLHt/ZBBjBKdVRhrLVPTSAtB/z+pmh
+ RJVoowni62uvdQeH855va18w0jm1qSXkcz2AOe9r6ffj+Xe7Cl2PNJOkNIiOI97bvk6P
+ fPuX3lfIU6tb2oQW6BVnC0A4eZgRc0UWgGmW03wyBOCv+eXetdoS6bClE/fM16pkm5is
+ Qnsf1SL9ROSKvne8a6LkYmQWe95r6nF3iUA94HYOHXEuNUYl4N/COYiT3UnUCpzW4+VJ
+ Yflw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=KGLJVsNqev2Pu0SrD3On1A2o4/VJ1lpv7UIRH8Pz9IM=;
- b=e66P4ALde3DwPNicECPc1aiJ2MKPD9H787sFfAezvfhyob3g8NDYM1nHqCQZ6CtBMm
- CoMUZRgORAl9zYGfX/moQx/f776I/wv/oI3X9p7vVs0F9ABtCBRT/IRZq0BR4oHo4215
- syZHWO+diOTON/UKit50MlFkF7dAM+8qWEUUjeu49SoMpAl5gcCgnz5lYqC8dJjY3qqs
- j8BN72V8tx8BwaFyN0wNvCe082/XPWPuUc+1+WbrMcPhxFQ5ZoOzmOMJNBCQ8v/DfnN8
- s9E508bhWQeWBMFT7nGl6XVieU6ydT+YxkKJONmd0NZlFyVZTB1Es8ihDFjXc+3FabwI
- ElrQ==
-X-Gm-Message-State: APjAAAVBNXo1v20A3hTP8e6benu2Igr6sPIUwZM06ZXnVJCXKspw3RCo
- tQVjjV1V992n64TIe7VjSuqOtA==
-X-Google-Smtp-Source: APXvYqzZdAXaUpGAPplnWQNtzhFSJwWdMt0J26CbY0jWOEEM95qMYh3DeBdhVnwqT9/M00AH/gVeTQ==
-X-Received: by 2002:a7b:ce12:: with SMTP id m18mr18640193wmc.108.1571139201527; 
- Tue, 15 Oct 2019 04:33:21 -0700 (PDT)
-Received: from bender.baylibre.local
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id 63sm32395096wri.25.2019.10.15.04.33.20
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 15 Oct 2019 04:33:21 -0700 (PDT)
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=4zelbzKgVDVBwk81v7buJVDFvSf6vHsLsJcsmpqmrPI=;
+ b=RwnWEK0y9jKnNkB1HF3cLeFNldA03txrhyfgxaPV5yr3X3Dw2HqD9pi6M8wsNZsXEt
+ qADlhIisHnHZ9VdS70Q3EI2/4pJPqerVPGxg+1YgkpSRXX77NEBKBLf+0LELz+DyLmFT
+ FoTEPa5eDeZ4JTr8kwPd0oyTBoOjZfEn2xmMCiaA/U/jRJdvdyxx/Fxp77AmGloNskqR
+ kvGyMxdmyq9CfQLxrYGOM9qa2pQR+N6a6vYj2VCMMXfkFLf5kDJ81Rl+r6Snt1yspaCg
+ M2qySTpikYxJl+MJD0d1xFutGpZlpfTGfpvscttYWNRttyztTJXK6wUWcwCp30uj+E46
+ Awxw==
+X-Gm-Message-State: APjAAAXes3YDc8FkMw1loflO6BHIDgVB96ysRAeZEnm+XwaRHPpdyQsv
+ yU6VONanvs/KamIDkx8lSJRTtHmWBM9uxw==
+X-Google-Smtp-Source: APXvYqzLnkJN9zRYZ21Y1M8YN4dbJd0EC5sTlVOGdoe+wAXsdl3nXKYGJgtoav7TkFmWi/KS+MDhtg==
+X-Received: by 2002:a1c:7c0a:: with SMTP id x10mr19229567wmc.48.1571140014611; 
+ Tue, 15 Oct 2019 04:46:54 -0700 (PDT)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id r13sm31730589wrn.0.2019.10.15.04.46.53
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Tue, 15 Oct 2019 04:46:54 -0700 (PDT)
+Subject: Re: [PATCH 4/7] drm/meson: plane: add support for AFBC mode for OSD1
+ plane
+To: Brian Starkey <Brian.Starkey@arm.com>
+References: <20191010092526.10419-1-narmstrong@baylibre.com>
+ <20191010092526.10419-5-narmstrong@baylibre.com>
+ <20191010132601.GA10110@arm.com>
+ <44f1771f-d640-f23d-995f-7bfcadd213bc@baylibre.com>
+ <20191011084108.i7lfh2d7asfmcdk4@DESKTOP-E1NTVVP.localdomain>
+ <c9d4f840-a3da-0f40-3a1c-c4aa522daf0f@baylibre.com>
+ <20191011105559.clttghy52wfdmb34@DESKTOP-E1NTVVP.localdomain>
+ <d1010021-cbd8-4328-4b21-7481cba5485e@baylibre.com>
+ <20191015111812.vl2yabdoncz77xh6@DESKTOP-E1NTVVP.localdomain>
 From: Neil Armstrong <narmstrong@baylibre.com>
-To: dri-devel@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/meson: use RDMA to reconfigure AFBC on vsync
-Date: Tue, 15 Oct 2019 13:33:17 +0200
-Message-Id: <20191015113317.8870-4-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20191015113317.8870-1-narmstrong@baylibre.com>
-References: <20191015113317.8870-1-narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <828ac069-35db-e356-add3-55a2900b4336@baylibre.com>
+Date: Tue, 15 Oct 2019 13:46:53 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
+In-Reply-To: <20191015111812.vl2yabdoncz77xh6@DESKTOP-E1NTVVP.localdomain>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191015_043323_102386_814D8C96 
-X-CRM114-Status: GOOD (  17.28  )
+X-CRM114-CacheID: sfid-20191015_044656_466550_10CB42DA 
+X-CRM114-Status: GOOD (  17.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,252 +160,78 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: khilman@baylibre.com, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Neil Armstrong <narmstrong@baylibre.com>
+Cc: Ayan Halder <Ayan.Halder@arm.com>,
+ "khilman@baylibre.com" <khilman@baylibre.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+ nd <nd@arm.com>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The VPU embeds a "Register DMA" that can write a sequence of registers
-on the VPU AHB bus, either manually or triggered by an internal IRQ
-event like VSYNC or a line input counter.
+On 15/10/2019 13:18, Brian Starkey wrote:
+> Hi Neil,
+> 
+> On Fri, Oct 11, 2019 at 02:07:01PM +0200, Neil Armstrong wrote:
+>> On 11/10/2019 12:56, Brian Starkey wrote:
+>>> Hi,
+>>>
+>>> On Fri, Oct 11, 2019 at 11:14:43AM +0200, Neil Armstrong wrote:
+>>>> Hi Brian,
+>>>>
+>>>> On 11/10/2019 10:41, Brian Starkey wrote:
+>>>>> Hi Neil,
+>>>>>
+>>>>> On Thu, Oct 10, 2019 at 03:41:15PM +0200, Neil Armstrong wrote:
+> 
+> [snip]
+> 
+>>>> You'll have to tell us if the closed libMali handling AFBC would accept
+>>>> ARGB8888 as format to render with AFBC enabled, if not you're right
+>>>> I'll discard XRGB8888/ARGB8888 for AFBC buffers completely.
+>>>>
+>>>> But it the libMali chooses tt generate an ARGB8888 buffer whatever
+>>>> ARGB8888/XRGB8888/ABGR888/XBGR888 is asked, then no I'll keep it that way.
+>>>>
+>>>
+>>> Yeah, I'll try and get clarity on this. It's not at all clear to me
+>>> either. When you say "accept ARGB8888 as format to render with AFBC
+>>> enabled", which API are you referring to, just so I can be clear? Do
+>>> you have an example of some code you're using to render AFBC with the
+>>> GPU blob?
+>>
+>> Let's take kmscube using EGL and GBM.
+>>
+>> The buffer is allocated using gbm_surface_create_with_modifiers(),
+>> but the gbm implementation is vendor specified.
+>>
+>> Then the surface is passed to eglCreateWindowSurface().
+>> Then the format is matched using eglGetConfigAttrib() with the
+>> returned configs.
+>>
+>> Here support on the gbm and EGL implementation.
+>>
+> 
+> Is this a use-case that works on your platform today?
 
-The RDMA is used here to reset and program the AFBC decoder unit
-on each vsync without involving the interrupt handler that can
-be masked for a long period of time, producing display glitches.
+Amlogic gave ma a libMali for miniGBM with AFBC enabled, but I haven't
+been able to enable AFBC yet.
 
-For this we use the meson_rdma_writel_sync() which adds the register
-write tuple (VPU register offset and register value) to the RDMA buffer
-and write the value to the HW.
+> 
+> I went and asked around. An Arm gbm implementation supporting AFBC
+> will reject AFBC allocations for orders other than (DRM-convention)
+> BGR.
 
-When enabled, the RDMA is enabled to rewritte the same sequence at the
-next VSYNC event, until a new buffer is committed to the OSD plane.
+I trust you on this point, thanks for asking around.
 
-The the Amlogic G12A is switched to RDMA, the Amlogic GXM Decoder
-doesn't need a reset/reprogram at each vsync.
+Neil
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/gpu/drm/meson/meson_crtc.c      |  27 ++-----
- drivers/gpu/drm/meson/meson_osd_afbcd.c | 100 ++++++++++++++----------
- 2 files changed, 64 insertions(+), 63 deletions(-)
-
-diff --git a/drivers/gpu/drm/meson/meson_crtc.c b/drivers/gpu/drm/meson/meson_crtc.c
-index d28efd0dbf11..8e0cf03e45eb 100644
---- a/drivers/gpu/drm/meson/meson_crtc.c
-+++ b/drivers/gpu/drm/meson/meson_crtc.c
-@@ -23,6 +23,7 @@
- #include "meson_registers.h"
- #include "meson_venc.h"
- #include "meson_viu.h"
-+#include "meson_rdma.h"
- #include "meson_vpp.h"
- #include "meson_osd_afbcd.h"
- 
-@@ -39,8 +40,6 @@ struct meson_crtc {
- 	void (*enable_osd1_afbc)(struct meson_drm *priv);
- 	void (*disable_osd1_afbc)(struct meson_drm *priv);
- 	unsigned int viu_offset;
--	bool vsync_forced;
--	bool vsync_disabled;
- };
- #define to_meson_crtc(x) container_of(x, struct meson_crtc, base)
- 
-@@ -51,7 +50,6 @@ static int meson_crtc_enable_vblank(struct drm_crtc *crtc)
- 	struct meson_crtc *meson_crtc = to_meson_crtc(crtc);
- 	struct meson_drm *priv = meson_crtc->priv;
- 
--	meson_crtc->vsync_disabled = false;
- 	meson_venc_enable_vsync(priv);
- 
- 	return 0;
-@@ -62,10 +60,7 @@ static void meson_crtc_disable_vblank(struct drm_crtc *crtc)
- 	struct meson_crtc *meson_crtc = to_meson_crtc(crtc);
- 	struct meson_drm *priv = meson_crtc->priv;
- 
--	if (!meson_crtc->vsync_forced) {
--		meson_crtc->vsync_disabled = true;
--		meson_venc_disable_vsync(priv);
--	}
-+	meson_venc_disable_vsync(priv);
- }
- 
- static const struct drm_crtc_funcs meson_crtc_funcs = {
-@@ -368,10 +363,11 @@ void meson_crtc_irq(struct meson_drm *priv)
- 		if (meson_crtc->enable_osd1)
- 			meson_crtc->enable_osd1(priv);
- 
--		if (priv->viu.osd1_afbcd)
--			meson_crtc->vsync_forced = true;
--		else
--			meson_crtc->vsync_forced = false;
-+		if (priv->viu.osd1_afbcd) {
-+			priv->afbcd.ops->reset(priv);
-+			priv->afbcd.ops->setup(priv);
-+			priv->afbcd.ops->enable(priv);
-+		}
- 
- 		priv->viu.osd1_commit = false;
- 	}
-@@ -595,15 +591,6 @@ void meson_crtc_irq(struct meson_drm *priv)
- 		priv->viu.vd1_commit = false;
- 	}
- 
--	if (meson_crtc->vsync_forced && priv->viu.osd1_afbcd) {
--		priv->afbcd.ops->reset(priv);
--		priv->afbcd.ops->setup(priv);
--		priv->afbcd.ops->enable(priv);
--	}
--
--	if (meson_crtc->vsync_disabled)
--		return;
--
- 	drm_crtc_handle_vblank(priv->crtc);
- 
- 	spin_lock_irqsave(&priv->drm->event_lock, flags);
-diff --git a/drivers/gpu/drm/meson/meson_osd_afbcd.c b/drivers/gpu/drm/meson/meson_osd_afbcd.c
-index aae4341bedaf..6d97bb4be3ca 100644
---- a/drivers/gpu/drm/meson/meson_osd_afbcd.c
-+++ b/drivers/gpu/drm/meson/meson_osd_afbcd.c
-@@ -12,6 +12,7 @@
- #include "meson_drv.h"
- #include "meson_registers.h"
- #include "meson_viu.h"
-+#include "meson_rdma.h"
- #include "meson_osd_afbcd.h"
- 
- /*
-@@ -270,6 +271,14 @@ static bool meson_g12a_afbcd_supported_fmt(u64 modifier, uint32_t format)
- 
- static int meson_g12a_afbcd_init(struct meson_drm *priv)
- {
-+	int ret;
-+
-+	ret = meson_rdma_init(priv);
-+	if (ret)
-+		return ret;
-+
-+	meson_rdma_setup(priv);
-+
- 	/* Handle AFBC Decoder reset manually */
- 	writel_bits_relaxed(MALI_AFBCD_MANUAL_RESET, MALI_AFBCD_MANUAL_RESET,
- 			    priv->io_base + _REG(MALI_AFBCD_TOP_CTRL));
-@@ -279,27 +288,32 @@ static int meson_g12a_afbcd_init(struct meson_drm *priv)
- 
- static int meson_g12a_afbcd_reset(struct meson_drm *priv)
- {
--	writel_relaxed(VIU_SW_RESET_G12A_AFBC_ARB |
--		       VIU_SW_RESET_G12A_OSD1_AFBCD,
--		       priv->io_base + _REG(VIU_SW_RESET));
--	writel_relaxed(0, priv->io_base + _REG(VIU_SW_RESET));
-+	meson_rdma_stop(priv);
-+
-+	meson_rdma_writel_sync(priv, VIU_SW_RESET_G12A_AFBC_ARB |
-+			       VIU_SW_RESET_G12A_OSD1_AFBCD,
-+			       VIU_SW_RESET);
-+	meson_rdma_writel_sync(priv, 0, VIU_SW_RESET);
- 
- 	return 0;
- }
- 
- static int meson_g12a_afbcd_enable(struct meson_drm *priv)
- {
--	writel_relaxed(VPU_MAFBC_IRQ_SURFACES_COMPLETED |
--		       VPU_MAFBC_IRQ_CONFIGURATION_SWAPPED |
--		       VPU_MAFBC_IRQ_DECODE_ERROR |
--		       VPU_MAFBC_IRQ_DETILING_ERROR,
--		       priv->io_base + _REG(VPU_MAFBC_IRQ_MASK));
-+	meson_rdma_writel_sync(priv, VPU_MAFBC_IRQ_SURFACES_COMPLETED |
-+			       VPU_MAFBC_IRQ_CONFIGURATION_SWAPPED |
-+			       VPU_MAFBC_IRQ_DECODE_ERROR |
-+			       VPU_MAFBC_IRQ_DETILING_ERROR,
-+			       VPU_MAFBC_IRQ_MASK);
- 
--	writel_bits_relaxed(VPU_MAFBC_S0_ENABLE, VPU_MAFBC_S0_ENABLE,
--			    priv->io_base + _REG(VPU_MAFBC_SURFACE_CFG));
-+	meson_rdma_writel_sync(priv, VPU_MAFBC_S0_ENABLE,
-+			       VPU_MAFBC_SURFACE_CFG);
-+
-+	meson_rdma_writel_sync(priv, VPU_MAFBC_DIRECT_SWAP,
-+			       VPU_MAFBC_COMMAND);
- 
--	writel_relaxed(VPU_MAFBC_DIRECT_SWAP,
--		       priv->io_base + _REG(VPU_MAFBC_COMMAND));
-+	/* This will enable the RDMA replaying the register writes on vsync */
-+	meson_rdma_flush(priv);
- 
- 	return 0;
- }
-@@ -330,36 +344,36 @@ static int meson_g12a_afbcd_setup(struct meson_drm *priv)
- 		AFBC_FORMAT_MOD_BLOCK_SIZE_32x8)
- 		format |= FIELD_PREP(VPU_MAFBC_SUPER_BLOCK_ASPECT, 1);
- 
--	writel_relaxed(format,
--		       priv->io_base + _REG(VPU_MAFBC_FORMAT_SPECIFIER_S0));
--
--	writel_relaxed(priv->viu.osd1_addr,
--		       priv->io_base + _REG(VPU_MAFBC_HEADER_BUF_ADDR_LOW_S0));
--	writel_relaxed(0,
--		       priv->io_base + _REG(VPU_MAFBC_HEADER_BUF_ADDR_HIGH_S0));
--
--	writel_relaxed(priv->viu.osd1_width,
--		       priv->io_base + _REG(VPU_MAFBC_BUFFER_WIDTH_S0));
--	writel_relaxed(ALIGN(priv->viu.osd1_height, 32),
--		       priv->io_base + _REG(VPU_MAFBC_BUFFER_HEIGHT_S0));
--
--	writel_relaxed(0,
--		       priv->io_base + _REG(VPU_MAFBC_BOUNDING_BOX_X_START_S0));
--	writel_relaxed(priv->viu.osd1_width - 1,
--		       priv->io_base + _REG(VPU_MAFBC_BOUNDING_BOX_X_END_S0));
--	writel_relaxed(0,
--		       priv->io_base + _REG(VPU_MAFBC_BOUNDING_BOX_Y_START_S0));
--	writel_relaxed(priv->viu.osd1_height - 1,
--		       priv->io_base + _REG(VPU_MAFBC_BOUNDING_BOX_Y_END_S0));
--
--	writel_relaxed(MESON_G12A_AFBCD_OUT_ADDR,
--		       priv->io_base + _REG(VPU_MAFBC_OUTPUT_BUF_ADDR_LOW_S0));
--	writel_relaxed(0,
--		       priv->io_base + _REG(VPU_MAFBC_OUTPUT_BUF_ADDR_HIGH_S0));
--
--	writel_relaxed(priv->viu.osd1_width *
--		       (meson_g12a_afbcd_bpp(priv->afbcd.format) / 8),
--		       priv->io_base + _REG(VPU_MAFBC_OUTPUT_BUF_STRIDE_S0));
-+	meson_rdma_writel_sync(priv, format,
-+			       VPU_MAFBC_FORMAT_SPECIFIER_S0);
-+
-+	meson_rdma_writel_sync(priv, priv->viu.osd1_addr,
-+			       VPU_MAFBC_HEADER_BUF_ADDR_LOW_S0);
-+	meson_rdma_writel_sync(priv, 0,
-+			       VPU_MAFBC_HEADER_BUF_ADDR_HIGH_S0);
-+
-+	meson_rdma_writel_sync(priv, priv->viu.osd1_width,
-+			       VPU_MAFBC_BUFFER_WIDTH_S0);
-+	meson_rdma_writel_sync(priv, ALIGN(priv->viu.osd1_height, 32),
-+			       VPU_MAFBC_BUFFER_HEIGHT_S0);
-+
-+	meson_rdma_writel_sync(priv, 0,
-+			       VPU_MAFBC_BOUNDING_BOX_X_START_S0);
-+	meson_rdma_writel_sync(priv, priv->viu.osd1_width - 1,
-+			       VPU_MAFBC_BOUNDING_BOX_X_END_S0);
-+	meson_rdma_writel_sync(priv, 0,
-+			       VPU_MAFBC_BOUNDING_BOX_Y_START_S0);
-+	meson_rdma_writel_sync(priv, priv->viu.osd1_height - 1,
-+			       VPU_MAFBC_BOUNDING_BOX_Y_END_S0);
-+
-+	meson_rdma_writel_sync(priv, MESON_G12A_AFBCD_OUT_ADDR,
-+			       VPU_MAFBC_OUTPUT_BUF_ADDR_LOW_S0);
-+	meson_rdma_writel_sync(priv, 0,
-+			       VPU_MAFBC_OUTPUT_BUF_ADDR_HIGH_S0);
-+
-+	meson_rdma_writel_sync(priv, priv->viu.osd1_width *
-+			       (meson_g12a_afbcd_bpp(priv->afbcd.format) / 8),
-+			       VPU_MAFBC_OUTPUT_BUF_STRIDE_S0);
- 
- 	return 0;
- }
--- 
-2.22.0
+> 
+> Thanks,
+> -Brian
+> 
 
 
 _______________________________________________
