@@ -2,87 +2,82 @@ Return-Path: <SRS0=EyFj=YI=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=unavailable
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7A84AECE58F
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Oct 2019 22:35:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1C0E3ECE59D
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Oct 2019 23:21:05 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4C4D92064A
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Oct 2019 22:35:02 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DFE7C2084B
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Oct 2019 23:21:04 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YdAwXr04";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XE5sn3iX"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4C4D92064A
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="S1Lmm3X1";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eDOzDhVM"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DFE7C2084B
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=4ZbgTefpHQN20JfbCk8Pp8rziW7XIcnce9XAc3dliZM=; b=YdAwXr04aHcrmH
-	cMNh6CdAw4b7A1MBNfQonziHVNIiZ+a12+6/9uqP2JWpML2aDo6At2gNEaZfuqF2aD7ieLP49wuGr
-	Ui/E6NvUB81/sb1TJ3Tz0n80IP9S7uBQsi8c3zs4iW9V90U8oWsiLiuwymiysQtXt6Jfh5I+oQaVz
-	vYLEtudOdJihuvVt75FXwD/KHYbEN1NBjweftbget6e1zasfSHVhOdXRwVUkPO0yHLBOTsjoRU665
-	NtRR0WlaczZ3m7Hy7EL9BTdxUmnF9oEPrXdZKXTiUUhoAcRrR/nQJYp6RXDl/SiZgTluzdefyBwG9
-	bsoceH7skLrVrpjhKBng==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=TDrnIaqXugA9xxFo07weG3USDYo0a8l5IIEpTjcG1cE=; b=S1Lmm3X1a7x0mb
+	p0ofox8wsuOSDE9MGFS1LTiLbudgD1pcuQEGmgOHEsytUOvrklqolE22coBrK6TjBPxNaEDyfPqsc
+	vM1apNgXyoOS/HDESiplRrLEFP1b6KKIgtOFpZ8XEyg1rWfhmiySQJ7uFZ8MSG22v+6//qzrj4uOy
+	vOYgSJpbqD8ZQg6kGr/LKl2uGOBr1xatLyc7KzqgvK2eLxdImxx6C+OQvIKh2CGRgMkl7m6Z9TitL
+	hlIYaZMPZBjsgZoe+iJoW42TvLUFCEOB34MI0zDELBQzFBKXQ96MVETI0PyoYD2JBgXlsA7+GdX6B
+	gI09YEaOH/KcWQdeFjXg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iKVP3-00068Y-5m; Tue, 15 Oct 2019 22:34:53 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1iKW7f-0002wj-6c; Tue, 15 Oct 2019 23:20:59 +0000
+Received: from mail-vs1-xe41.google.com ([2607:f8b0:4864:20::e41])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iKVP0-00067e-9N
- for linux-amlogic@lists.infradead.org; Tue, 15 Oct 2019 22:34:51 +0000
-Received: by mail-wm1-x344.google.com with SMTP id 3so649129wmi.3
- for <linux-amlogic@lists.infradead.org>; Tue, 15 Oct 2019 15:34:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=BR/+JcLXGlF7qNlnYNXPVWo3Nql+mobYo3ybFiUKVk4=;
- b=XE5sn3iXKdNmwXYBgSR/Fm7Fn+i5kb49u8oZLnlZNLAqvDO/yQY3vXi0OryQZUyTyz
- 1Rqv3gw8NiClH2JJsSE6iIGkl/rPMP9B5ndr7PlbXe8b4bwU8b1Lw9LLhUSqPuL1ATdP
- m0iWdn8fkmAC9HeT8IZWVRJ49WmpPdU44Rb5zGopErJYhidVQlOaOctQ+Fgp9D+kDgHj
- h0zXwqMNPIbo0tzROn/kplccKVmXownn0VSmLlqB3zlxfB/txeQ0L+MOgjN2C6khacyw
- YVtmSb86Uh/LpT6tqbeIkHhVzDHH1hjbX5uTnFE9/0A6QibobxjJqtQd9LSGnkSk954Y
- pRPA==
+ id 1iKW7Q-0002gQ-Bf
+ for linux-amlogic@lists.infradead.org; Tue, 15 Oct 2019 23:20:45 +0000
+Received: by mail-vs1-xe41.google.com with SMTP id v10so14353433vsc.7
+ for <linux-amlogic@lists.infradead.org>; Tue, 15 Oct 2019 16:20:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=7Luzeu61JUpCQk5lttonbL70KSFby5OvdNNxzg/MFQ8=;
+ b=eDOzDhVMybk0i/+feqo0X+49gsS5JqJW8Ry8hE/JpXVc3WdVLD8WqJn9dDxRuwCehy
+ QvBk66yW4mH2kDlYuzMBwPUkP7IEFj9ZOCyD/4jTGGzyqm14Z6beV+SiRvogqh3bul4S
+ iB5C2XFuK7HRXnTP1fLCtCvORAdxwIVNNPgEfK7/yPQBrFJLj5U8IlVLAnGbma2My+bA
+ WBSOGcGHMJNm8DROoKh3HDAVOdcniv422vxJwA1eHO+j7o/CCl3KJUcbsWYelqWlID+T
+ ADHbasV+eQpUbByIGOW8dLaZ/+35eAnKAiGRw80ERMmbEtCmUY0OfB7tcC1PPQ9bI1JZ
+ KYPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=BR/+JcLXGlF7qNlnYNXPVWo3Nql+mobYo3ybFiUKVk4=;
- b=ZpeHWxx55UMRUvvjMkJmyRXAz2bst7Bi4Zh7XbeuRl+2DtaK4Nh0wZV4zykka5rKOv
- L3Bojjxwfxfoz5UOVcp2WAYysMMtBkHij6gsdM4/F/ZzuuncnAypuylU4j+yeaT9bU1Y
- 7pn/few4NtrGznO1n7lJM8UkqPngllAUzmS5EG1RKf066whcLOno3Zj+pHZCzQe11WU5
- qNZjT9oDOKpLDQR8XpJen5W1ELIdO7CIG2zjTvphCa7jZL9/M0fhgz/anoE/X43JZb4+
- s/XTZKFR+kaiQFfOVf0yFH57cEUK0NSIkGeSDWV4rzG9cFMZxWDoesFPaNiQqD3oSqm8
- uiBw==
-X-Gm-Message-State: APjAAAVBP5D9xtJiBuYkAPgY7VtEOyhHB+J1ruHJyZQnpFbgN3yRaf3/
- YVLYsLWun/ER+FwwNLdO86YK0mj2eu8tkmY=
-X-Google-Smtp-Source: APXvYqzqUGoPSLX+7JYm9yA0K6F9C1MPGaKFQPDRoDB+p/yP/3sBWaNiiSzVRo6x6Tx4Npz6Ljp4fQ==
-X-Received: by 2002:a1c:7219:: with SMTP id n25mr543117wmc.33.1571178887899;
- Tue, 15 Oct 2019 15:34:47 -0700 (PDT)
-Received: from ninjahub.lan (host-2-102-13-201.as13285.net. [2.102.13.201])
- by smtp.googlemail.com with ESMTPSA id m18sm35667084wrg.97.2019.10.15.15.34.47
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 15 Oct 2019 15:34:47 -0700 (PDT)
-From: Jules Irenge <jbi.octave@gmail.com>
-To: outreachy-kernel@googlegroups.com
-Subject: [PATCH] staging: meson: add space to fix check warning
-Date: Tue, 15 Oct 2019 23:34:33 +0100
-Message-Id: <20191015223433.18784-1-jbi.octave@gmail.com>
-X-Mailer: git-send-email 2.21.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=7Luzeu61JUpCQk5lttonbL70KSFby5OvdNNxzg/MFQ8=;
+ b=K9FoNkamy6sLoHxjt1Tl2cobTZ1aTkG7lfB0JzW1vGNM1NPJ6QxDwee+7jP3+vJM9i
+ PtrEf0A9plbf4V1YiXJlGRUHutdklK7cE19549vVJK9FCgboAvrQ5vqoy4Lmqf5y+5VY
+ nZ4OPWz4PSaS0rSnh1Nvgkotm5Z19bG5qSebsQ6C5SUF3HB/QbBnbmE/tezOi6fT/axf
+ XVF/yqv1lc1SgcBjIhrXwDkTooI9E37i3np/54WOriH75fhDkZVrr2CWtKKCdC28h5FP
+ adkozdXwakC8tKz6HS6dOKJEAHYzPDLBd90naGvVt0fYR5XXA49CeuuFCoWhySrShPZP
+ /0hA==
+X-Gm-Message-State: APjAAAV7LdG4/+2VzHk899Rg56I6hOejiGqeqg6aNu86UpdKB0x7N4VY
+ IEBiX9OsRt5epwRwJAazkxw124x4nm9cJBG8KaIzzA==
+X-Google-Smtp-Source: APXvYqygrun7u9zevVDKfu0sa7amxsriNbVYF4wbVRpuSP6Re4yc+jB0Mmyyr6iQQ2WpPrkisEClAIRglX6AbvGsZDk=
+X-Received: by 2002:a67:dc16:: with SMTP id x22mr1767729vsj.159.1571181642542; 
+ Tue, 15 Oct 2019 16:20:42 -0700 (PDT)
 MIME-Version: 1.0
+References: <20191004090114.30694-1-glaroque@baylibre.com>
+ <20191004090114.30694-5-glaroque@baylibre.com>
+In-Reply-To: <20191004090114.30694-5-glaroque@baylibre.com>
+From: Amit Kucheria <amit.kucheria@linaro.org>
+Date: Wed, 16 Oct 2019 04:50:31 +0530
+Message-ID: <CAHLCerOzZ6kc0nrGL+XMi37WuBKUv6E0yzE26wUZ5XoRMS8q6w@mail.gmail.com>
+Subject: Re: [PATCH v7 4/7] arm64: dts: meson: g12: Add minimal thermal zone
+To: Guillaume La Roque <glaroque@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191015_153450_336502_785870D4 
-X-CRM114-Status: UNSURE (   9.10  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20191015_162044_410628_0357E6C1 
+X-CRM114-Status: GOOD (  15.07  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,39 +89,122 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mjourdan@baylibre.com, devel@driverdev.osuosl.org,
- Jules Irenge <jbi.octave@gmail.com>, gregkh@linuxfoundation.org,
- khilman@baylibre.com, linux-amlogic@lists.infradead.org, mchehab@kernel.org,
- linux-media@vger.kernel.org
+Cc: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, Linux PM list <linux-pm@vger.kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ LKML <linux-kernel@vger.kernel.org>, Eduardo Valentin <edubezval@gmail.com>,
+ linux-amlogic@lists.infradead.org, Zhang Rui <rui.zhang@intel.com>,
+ lakml <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Fix "alignment should mactch open parenthesis" check.
-Issue detected by checkpatch tool
+On Fri, Oct 4, 2019 at 2:31 PM Guillaume La Roque <glaroque@baylibre.com> wrote:
+>
+> Add minimal thermal zone for two temperature sensor
+> One is located close to the DDR and the other one is
+> located close to the PLLs (between the CPU and GPU)
+>
+> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+> Tested-by: Christian Hewitt <christianshewitt@gmail.com>
+> Tested-by: Kevin Hilman <khilman@baylibre.com>
+> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+> ---
+>  .../boot/dts/amlogic/meson-g12-common.dtsi    | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> index 0660d9ef6a86..a98c16e163c2 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> @@ -12,6 +12,7 @@
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
+>  #include <dt-bindings/reset/amlogic,meson-g12a-reset.h>
+> +#include <dt-bindings/thermal/thermal.h>
+>
+>  / {
+>         interrupt-parent = <&gic>;
+> @@ -94,6 +95,61 @@
+>                 #size-cells = <2>;
+>                 ranges;
+>
+> +               thermal-zones {
+> +                       cpu_thermal: cpu-thermal {
+> +                               polling-delay = <1000>;
+> +                               polling-delay-passive = <100>;
 
-Signed-off-by: Jules Irenge <jbi.octave@gmail.com>
----
- drivers/staging/media/meson/vdec/codec_mpeg12.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Ordinarily, you would need to set these delays to 0 in interrupt mode
+to prevent polling overhead. I've just submitted a patch to of-thermal
+that should fix this requirement. Could you check if it works for you?
 
-diff --git a/drivers/staging/media/meson/vdec/codec_mpeg12.c b/drivers/staging/media/meson/vdec/codec_mpeg12.c
-index 48869cc3d973..21e93a13356c 100644
---- a/drivers/staging/media/meson/vdec/codec_mpeg12.c
-+++ b/drivers/staging/media/meson/vdec/codec_mpeg12.c
-@@ -81,7 +81,7 @@ static int codec_mpeg12_start(struct amvdec_session *sess)
- 	}
- 
- 	ret = amvdec_set_canvases(sess, (u32[]){ AV_SCRATCH_0, 0 },
--					(u32[]){ 8, 0 });
-+				  (u32[]){ 8, 0 });
- 	if (ret)
- 		goto free_workspace;
- 
--- 
-2.21.0
-
+> +                               thermal-sensors = <&cpu_temp>;
+> +
+> +                               trips {
+> +                                       cpu_passive: cpu-passive {
+> +                                               temperature = <85000>; /* millicelsius */
+> +                                               hysteresis = <2000>; /* millicelsius */
+> +                                               type = "passive";
+> +                                       };
+> +
+> +                                       cpu_hot: cpu-hot {
+> +                                               temperature = <95000>; /* millicelsius */
+> +                                               hysteresis = <2000>; /* millicelsius */
+> +                                               type = "hot";
+> +                                       };
+> +
+> +                                       cpu_critical: cpu-critical {
+> +                                               temperature = <110000>; /* millicelsius */
+> +                                               hysteresis = <2000>; /* millicelsius */
+> +                                               type = "critical";
+> +                                       };
+> +                               };
+> +                       };
+> +
+> +                       ddr_thermal: ddr-thermal {
+> +                               polling-delay = <1000>;
+> +                               polling-delay-passive = <100>;
+> +                               thermal-sensors = <&ddr_temp>;
+> +
+> +                               trips {
+> +                                       ddr_passive: ddr-passive {
+> +                                               temperature = <85000>; /* millicelsius */
+> +                                               hysteresis = <2000>; /* millicelsius */
+> +                                               type = "passive";
+> +                                       };
+> +
+> +                                       ddr_critical: ddr-critical {
+> +                                               temperature = <110000>; /* millicelsius */
+> +                                               hysteresis = <2000>; /* millicelsius */
+> +                                               type = "critical";
+> +                                       };
+> +                               };
+> +
+> +                               cooling-maps {
+> +                                       map {
+> +                                               trip = <&ddr_passive>;
+> +                                               cooling-device = <&mali THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +                                       };
+> +                               };
+> +                       };
+> +               };
+> +
+>                 ethmac: ethernet@ff3f0000 {
+>                         compatible = "amlogic,meson-axg-dwmac",
+>                                      "snps,dwmac-3.70a",
+> @@ -2412,6 +2468,7 @@
+>                         assigned-clock-rates = <0>, /* Do Nothing */
+>                                                <800000000>,
+>                                                <0>; /* Do Nothing */
+> +                       #cooling-cells = <2>;
+>                 };
+>         };
+>
+> --
+> 2.17.1
+>
 
 _______________________________________________
 linux-amlogic mailing list
