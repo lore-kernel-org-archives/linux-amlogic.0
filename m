@@ -4,19 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E540AECE588
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Oct 2019 14:02:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 19C61ECE588
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Oct 2019 16:57:04 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B1F5320854
-	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Oct 2019 14:02:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DE61721928
+	for <linux-amlogic@archiver.kernel.org>; Tue, 15 Oct 2019 16:57:03 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZLO+oWed"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B1F5320854
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="uyraj/4f"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DE61721928
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arm.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,38 +25,37 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hWjlVlPwWWKfHL3x8LhWSCni4Yg3ljRTuXBvkN75584=; b=ZLO+oWedwciYGM
-	MutB7KIBF3nQh7YwYjQn8S/0UJj9jciPaA8b7gkDd9xe9RUA1XhUTiP3NOffa7qqROcg5zLWbIiPy
-	oNSVx0xKWJKu6mdmSxFmdU6NDievMcPir9CSnHOYCSL+VyZ3Hdp/zSUF1OgiMGfT0lIQ0sPBxIcMS
-	2LhWAbejIoHthopJjsQHHeA/QYe1eFUlQ5wcbCiEjrD8mLEobGwoImj/ZWyGmxM/oYQeCGQsJVz7+
-	B5qRF8Em6dbRrAo4UsNJT6982hRKc+em6B8nHaQ+w/OBujG1UWPmVoZZnxG9jcL7PzzWEahJDiG6d
-	yqurFWvdRm6om1zW/rUA==;
+	List-Owner; bh=0EpWQbNSCxIwCqNV8KrSRMjb1h8w6Y4DPEQCmbn+doQ=; b=uyraj/4fLcm2l8
+	Qya5bqlAvR98X3hyCeRayOJ+WsPjUEo4YaXq/yiaxJbW4y6FsE3Vzc1OPbJqlMCTlu+3D4wZqytaC
+	hrmZd0UolCKigjt8299eSCncrWUwNc9t/+jU3ERbYhc50Nyfz8ev6y9zjP55CdYR1kSCV6dN0aQLI
+	ccQvZf8Kvc4OEAdKfom2kyui2Wxo8V0/gS/MIXXPido4uEgJN7alZqqpVBQRah6hsWyaJmopKo5er
+	3VXpm0qRBMOgTEb1+EFJ3Yv9mW7OOtUVImEfC7wHkmQH3W4YiOWSA6IZLi9wQADd/UpLAb8iCujCg
+	70fBQz/xt6R0smr4smjg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iKNP5-0005Rs-Oe; Tue, 15 Oct 2019 14:02:23 +0000
+	id 1iKQ7z-0004OG-L8; Tue, 15 Oct 2019 16:56:55 +0000
 Received: from foss.arm.com ([217.140.110.172])
  by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iKNP2-0005R8-NI
- for linux-amlogic@lists.infradead.org; Tue, 15 Oct 2019 14:02:22 +0000
+ id 1iKQ7x-0004Nc-2U; Tue, 15 Oct 2019 16:56:54 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0C822337;
- Tue, 15 Oct 2019 07:02:19 -0700 (PDT)
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D4DFA337;
+ Tue, 15 Oct 2019 09:56:51 -0700 (PDT)
 Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2436B3F718;
- Tue, 15 Oct 2019 07:02:18 -0700 (PDT)
-Date: Tue, 15 Oct 2019 15:02:13 +0100
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B74A23F68E;
+ Tue, 15 Oct 2019 09:56:49 -0700 (PDT)
+Date: Tue, 15 Oct 2019 17:56:47 +0100
 From: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To: Remi Pommarel <repk@triplefau.lt>
-Subject: Re: [PATCH] PCI: amlogic: Fix reset assertion via gpio descriptor
-Message-ID: <20191015140213.GA18503@e121166-lin.cambridge.arm.com>
-References: <20190901133915.12899-1-repk@triplefau.lt>
+To: Markus Elfring <Markus.Elfring@web.de>
+Subject: Re: [PATCH] PCI: dwc: Use PTR_ERR_OR_ZERO() in five functions
+Message-ID: <20191015165647.GD25674@e121166-lin.cambridge.arm.com>
+References: <95c9dfae-af81-82ad-e989-1fdf5f29808e@web.de>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20190901133915.12899-1-repk@triplefau.lt>
+In-Reply-To: <95c9dfae-af81-82ad-e989-1fdf5f29808e@web.de>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191015_070220_803422_55351A49 
-X-CRM114-Status: GOOD (  14.73  )
+X-CRM114-CacheID: sfid-20191015_095653_204105_8E97A42A 
+X-CRM114-Status: GOOD (  15.25  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,53 +67,114 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, Kevin Hilman <khilman@baylibre.com>,
- linux-amlogic@lists.infradead.org, linux-pci@vger.kernel.org,
- Yue Wang <yue.wang@Amlogic.com>
+Cc: linux-samsung-soc@vger.kernel.org, YueHaibing <yuehaibing@huawei.com>,
+ linux-pci@vger.kernel.org, Binghui Wang <wangbinghui@hisilicon.com>,
+ kernel-janitors@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Yue Wang <yue.wang@Amlogic.com>,
+ Kukjin Kim <kgene@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jingoo Han <jingoohan1@gmail.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ linux-amlogic@lists.infradead.org, zhong jiang <zhongjiang@huawei.com>,
+ Xiaowei Song <songxiaowei@hisilicon.com>, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, Sep 01, 2019 at 03:39:15PM +0200, Remi Pommarel wrote:
-> Normally asserting reset signal on gpio would be achieved with:
-> 	gpiod_set_value_cansleep(reset_gpio, 1);
+On Fri, Sep 06, 2019 at 08:50:07PM +0200, Markus Elfring wrote:
+> From: Markus Elfring <elfring@users.sourceforge.net>
+> Date: Fri, 6 Sep 2019 20:40:06 +0200
 > 
-> Meson PCI driver set reset value to '0' instead of '1' as it takes into
-> account the PERST# signal polarity. The polarity should be taken care
-> in the device tree instead.
+> Simplify these function implementations by using a known function.
 > 
-> This fixes the reset assertion meaning and moves out the polarity
-> configuration in DT (please note that there is no DT currently using
-> this driver).
+> Generated by: scripts/coccinelle/api/ptr_ret.cocci
 > 
-> Signed-off-by: Remi Pommarel <repk@triplefau.lt>
+> Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
 > ---
->  drivers/pci/controller/dwc/pci-meson.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  drivers/pci/controller/dwc/pci-exynos.c |  5 +----
+>  drivers/pci/controller/dwc/pci-meson.c  | 10 ++--------
+>  drivers/pci/controller/dwc/pcie-kirin.c | 10 ++--------
+>  3 files changed, 5 insertions(+), 20 deletions(-)
 
-Applied to pci/meson, thanks.
+https://lore.kernel.org/linux-pci/20190527140952.GB7202@ulmo/
+
+Dropped, sorry.
 
 Lorenzo
 
+> diff --git a/drivers/pci/controller/dwc/pci-exynos.c b/drivers/pci/controller/dwc/pci-exynos.c
+> index cee5f2f590e2..b6ab1cc5d895 100644
+> --- a/drivers/pci/controller/dwc/pci-exynos.c
+> +++ b/drivers/pci/controller/dwc/pci-exynos.c
+> @@ -92,10 +92,7 @@ static int exynos5440_pcie_get_mem_resources(struct platform_device *pdev,
+> 
+>  	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>  	ep->mem_res->elbi_base = devm_ioremap_resource(dev, res);
+> -	if (IS_ERR(ep->mem_res->elbi_base))
+> -		return PTR_ERR(ep->mem_res->elbi_base);
+> -
+> -	return 0;
+> +	return PTR_ERR_OR_ZERO(ep->mem_res->elbi_base);
+>  }
+> 
+>  static int exynos5440_pcie_get_clk_resources(struct exynos_pcie *ep)
 > diff --git a/drivers/pci/controller/dwc/pci-meson.c b/drivers/pci/controller/dwc/pci-meson.c
-> index e35e9eaa50ee..541f37a6f6a5 100644
+> index e35e9eaa50ee..713059918002 100644
 > --- a/drivers/pci/controller/dwc/pci-meson.c
 > +++ b/drivers/pci/controller/dwc/pci-meson.c
-> @@ -287,9 +287,9 @@ static inline void meson_cfg_writel(struct meson_pcie *mp, u32 val, u32 reg)
->  
->  static void meson_pcie_assert_reset(struct meson_pcie *mp)
->  {
-> -	gpiod_set_value_cansleep(mp->reset_gpio, 0);
-> -	udelay(500);
->  	gpiod_set_value_cansleep(mp->reset_gpio, 1);
-> +	udelay(500);
-> +	gpiod_set_value_cansleep(mp->reset_gpio, 0);
+> @@ -182,10 +182,7 @@ static int meson_pcie_get_mems(struct platform_device *pdev,
+> 
+>  	/* Meson SoC has two PCI controllers use same phy register*/
+>  	mp->mem_res.phy_base = meson_pcie_get_mem_shared(pdev, mp, "phy");
+> -	if (IS_ERR(mp->mem_res.phy_base))
+> -		return PTR_ERR(mp->mem_res.phy_base);
+> -
+> -	return 0;
+> +	return PTR_ERR_OR_ZERO(mp->mem_res.phy_base);
 >  }
->  
->  static void meson_pcie_init_dw(struct meson_pcie *mp)
-> -- 
-> 2.20.1
+> 
+>  static void meson_pcie_power_on(struct meson_pcie *mp)
+> @@ -259,10 +256,7 @@ static int meson_pcie_probe_clocks(struct meson_pcie *mp)
+>  		return PTR_ERR(res->general_clk);
+> 
+>  	res->clk = meson_pcie_probe_clock(dev, "pcie", 0);
+> -	if (IS_ERR(res->clk))
+> -		return PTR_ERR(res->clk);
+> -
+> -	return 0;
+> +	return PTR_ERR_OR_ZERO(res->clk);
+>  }
+> 
+>  static inline void meson_elb_writel(struct meson_pcie *mp, u32 val, u32 reg)
+> diff --git a/drivers/pci/controller/dwc/pcie-kirin.c b/drivers/pci/controller/dwc/pcie-kirin.c
+> index c19617a912bd..75b1f1dde747 100644
+> --- a/drivers/pci/controller/dwc/pcie-kirin.c
+> +++ b/drivers/pci/controller/dwc/pcie-kirin.c
+> @@ -138,10 +138,7 @@ static long kirin_pcie_get_clk(struct kirin_pcie *kirin_pcie,
+>  		return PTR_ERR(kirin_pcie->apb_sys_clk);
+> 
+>  	kirin_pcie->pcie_aclk = devm_clk_get(dev, "pcie_aclk");
+> -	if (IS_ERR(kirin_pcie->pcie_aclk))
+> -		return PTR_ERR(kirin_pcie->pcie_aclk);
+> -
+> -	return 0;
+> +	return PTR_ERR_OR_ZERO(kirin_pcie->pcie_aclk);
+>  }
+> 
+>  static long kirin_pcie_get_resource(struct kirin_pcie *kirin_pcie,
+> @@ -174,10 +171,7 @@ static long kirin_pcie_get_resource(struct kirin_pcie *kirin_pcie,
+> 
+>  	kirin_pcie->sysctrl =
+>  		syscon_regmap_lookup_by_compatible("hisilicon,hi3660-sctrl");
+> -	if (IS_ERR(kirin_pcie->sysctrl))
+> -		return PTR_ERR(kirin_pcie->sysctrl);
+> -
+> -	return 0;
+> +	return PTR_ERR_OR_ZERO(kirin_pcie->sysctrl);
+>  }
+> 
+>  static int kirin_pcie_phy_init(struct kirin_pcie *kirin_pcie)
+> --
+> 2.23.0
 > 
 
 _______________________________________________
