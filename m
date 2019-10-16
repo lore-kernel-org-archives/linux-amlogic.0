@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
 	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2185DFA372A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Oct 2019 10:49:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F109FA372A
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Oct 2019 10:49:20 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EB9512067D
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Oct 2019 10:49:16 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 024A82067D
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Oct 2019 10:49:20 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="F6k8o2fk"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EB9512067D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="SbdE/yDh"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 024A82067D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=huawei.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,24 +25,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=acSnpUIU0MBFnWE9FC16Kg0QdPh5QV/8Dp45mopd67I=; b=F6k8o2fk/NQaRL
-	EJ1VzBTwXxZks2Sybik7sxCwoON8sVW1HMhzwzzoMFcWngLhkVzthaovKsweM+mARnRuN9o04DyNz
-	OPutdqP9oE2uU0D6BCGORR8O67hKjMBB4g1FJxrxt1wHOyPZVZQHlyTXMoj5aiiUlSdoJrOLJ0KOZ
-	iOVjS43vQa5JeVClOHjQ3bEOaKpaHZ6byjgRc5Xq57tBzaNDx0yUcsLmmWCTROuYB92Ixbn7H5ZG5
-	5nhy7rWdl2aU3t6SHmAl5ghUKSCH/ffp1dS16M2Ky0EGmzFUx2PWzt3IG8MuwsRdyozXh9Lzwf7kZ
-	zBBGusBjutCGKr/EkHFA==;
+	List-Owner; bh=xSJxfWYLyxAdqdhGhZgiT+41Kg4Y7rBRGjUEat1ry5U=; b=SbdE/yDh9SzmpL
+	UmI+neXO6zvkW7ze9yrnzTdEiex1ITa7dbFOcERDATIjlChn4dAL482yYZB8PNabfTY2WN0H2nSND
+	U/R/KMh5Pdfpa9v2JdCYVWEur/tmAXKd10vnnD2mFYXchaNqOWeIVNTFMDPZQ+7annkcWkZDlKJwJ
+	PnwrL2Ix2CpgMMhJn0R/9BCJaCJdoXzhF+Pvip1mI/qbivy4+o1pYUjsE289BLukSPI7g25S01wEI
+	z+UFcf5poBKnlbW7Y3iVH+ZzznwUwCnP8GaQp7aklSbFkt40aKDEKwiqdKkZePf8K4njJ5T4GkZh8
+	cNzuTKr8HW3IzrHlF4JQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iKgrf-0003Ud-9z; Wed, 16 Oct 2019 10:49:11 +0000
-Received: from szxga04-in.huawei.com ([45.249.212.190] helo=huawei.com)
+	id 1iKgri-0003Wo-0E; Wed, 16 Oct 2019 10:49:14 +0000
+Received: from szxga05-in.huawei.com ([45.249.212.191] helo=huawei.com)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iKgpc-0001Zw-KR; Wed, 16 Oct 2019 10:47:06 +0000
-Received: from DGGEMS406-HUB.china.huawei.com (unknown [172.30.72.60])
- by Forcepoint Email with ESMTP id 96F77AF0CE8A6DB49ED9;
- Wed, 16 Oct 2019 18:47:00 +0800 (CST)
-Received: from localhost (10.133.213.239) by DGGEMS406-HUB.china.huawei.com
- (10.3.19.206) with Microsoft SMTP Server id 14.3.439.0; Wed, 16 Oct 2019
- 18:46:50 +0800
+ id 1iKgpe-0001cR-6j; Wed, 16 Oct 2019 10:47:08 +0000
+Received: from DGGEMS414-HUB.china.huawei.com (unknown [172.30.72.58])
+ by Forcepoint Email with ESMTP id 97CE53AA7BC64B30075C;
+ Wed, 16 Oct 2019 18:47:04 +0800 (CST)
+Received: from localhost (10.133.213.239) by DGGEMS414-HUB.china.huawei.com
+ (10.3.19.214) with Microsoft SMTP Server id 14.3.439.0; Wed, 16 Oct 2019
+ 18:46:57 +0800
 From: YueHaibing <yuehaibing@huawei.com>
 To: <herbert@gondor.apana.org.au>, <mpm@selenic.com>, <arnd@arndb.de>,
  <gregkh@linuxfoundation.org>, <nicolas.ferre@microchip.com>,
@@ -52,10 +52,10 @@ To: <herbert@gondor.apana.org.au>, <mpm@selenic.com>, <arnd@arndb.de>,
  <wahrenst@gmx.net>, <l.stelmach@samsung.com>, <kgene@kernel.org>,
  <krzk@kernel.org>, <khilman@baylibre.com>, <dsaxena@plexity.net>,
  <patrice.chotard@st.com>
-Subject: [PATCH -next 07/13] hwrng: npcm - use
+Subject: [PATCH -next 10/13] hwrng: pic32 - use
  devm_platform_ioremap_resource() to simplify code
-Date: Wed, 16 Oct 2019 18:46:15 +0800
-Message-ID: <20191016104621.26056-8-yuehaibing@huawei.com>
+Date: Wed, 16 Oct 2019 18:46:18 +0800
+Message-ID: <20191016104621.26056-11-yuehaibing@huawei.com>
 X-Mailer: git-send-email 2.10.2.windows.1
 In-Reply-To: <20191016104621.26056-1-yuehaibing@huawei.com>
 References: <20191016104621.26056-1-yuehaibing@huawei.com>
@@ -63,8 +63,8 @@ MIME-Version: 1.0
 X-Originating-IP: [10.133.213.239]
 X-CFilter-Loop: Reflected
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191016_034704_853275_206EA70A 
-X-CRM114-Status: UNSURE (   8.35  )
+X-CRM114-CacheID: sfid-20191016_034706_826568_F2680657 
+X-CRM114-Status: UNSURE (   8.52  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -91,21 +91,22 @@ This is detected by coccinelle.
 
 Signed-off-by: YueHaibing <yuehaibing@huawei.com>
 ---
- drivers/char/hw_random/npcm-rng.c | 4 +---
+ drivers/char/hw_random/pic32-rng.c | 4 +---
  1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/drivers/char/hw_random/npcm-rng.c b/drivers/char/hw_random/npcm-rng.c
-index b7c8c7e..01d0440 100644
---- a/drivers/char/hw_random/npcm-rng.c
-+++ b/drivers/char/hw_random/npcm-rng.c
-@@ -87,15 +87,13 @@ static int npcm_rng_read(struct hwrng *rng, void *buf, size_t max, bool wait)
- static int npcm_rng_probe(struct platform_device *pdev)
+diff --git a/drivers/char/hw_random/pic32-rng.c b/drivers/char/hw_random/pic32-rng.c
+index 90f498c..81080cb 100644
+--- a/drivers/char/hw_random/pic32-rng.c
++++ b/drivers/char/hw_random/pic32-rng.c
+@@ -70,7 +70,6 @@ static int pic32_rng_read(struct hwrng *rng, void *buf, size_t max,
+ static int pic32_rng_probe(struct platform_device *pdev)
  {
- 	struct npcm_rng *priv;
+ 	struct pic32_rng *priv;
 -	struct resource *res;
+ 	u32 v;
  	int ret;
  
- 	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
+@@ -78,8 +77,7 @@ static int pic32_rng_probe(struct platform_device *pdev)
  	if (!priv)
  		return -ENOMEM;
  
