@@ -2,84 +2,89 @@ Return-Path: <SRS0=vLcw=YJ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-9.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C735AFA372A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Oct 2019 17:08:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8DFDBFA372A
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Oct 2019 17:09:14 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 883B72067D
-	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Oct 2019 17:08:54 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 629FA2067D
+	for <linux-amlogic@archiver.kernel.org>; Wed, 16 Oct 2019 17:09:14 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oHaMahbB";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZGYmSpcC"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 883B72067D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kz6OBghZ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j+a1VT2O"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 629FA2067D
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=uNGr+xs4pGEjIEuAZi4zcF5kiPoz43kSds7sAYsyVjI=; b=oHa
-	MahbBFGx7lr3P+9fK6Ag4EG/EzQj/uVOXJGrODdkl5N8YM1AHa+Lhkf73lHAHJef8JjZdUX9OIN5P
-	q1D8QalzuYNuW8ct8JncNTRaUUwEWTMpiu2m3AJH949z1ay3LuXYZcdrcMlQyonDopClj0oKyfhfh
-	q6gCmUyA8JZx6TQYN6bSgINV45Sp2nGocto/xF+QZ5/mtRhXn6OKA8Ws46bPzy9PGa+gA67VX6D8H
-	J4fX0xdt30N6xphrxWYoKgM1lIE6kolI2MniGr4BcWBg6ORb6123XAdUlwk1QqLMnD9liXyX4QwRH
-	WpfECQPpucgW7doV9G66KBSGOKTiAjw==;
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:References:
+	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=7LUA+2Ke3sVll8fcvuevG2ZAS29Oufi9U0FpJ1yO8jE=; b=kz6OBghZKSXuK70f48AUpCsUzW
+	c9rV6BIPU64OAQ4UnsqpHAMOWma++EKmJ25+MjzqZMVHQ9l88RT8Z0jswrX+HjEU0uvwUkcFZ0ziw
+	wSP1aH5LSLHZ1XbFX2lxBQz4dSUJhPakmhQkIzQlzY7bUajk/Itux168l8ZQOrFDg8dU7069s6bA1
+	0aQloHylm8/SqHAEsTZ6s+GiGq8pck8tjc75v//Ua13Rs3VOG5BgMBVvl1X//cIj3cNwbCaEJOY+L
+	oB/2L5DzTylBOLBVl8zDLcAwL4brUlZJYnkWMuKe1IIBJ9MKT3DMuIq9kutb/Du63OwXO/PVrEeHJ
+	O5mmtdtQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iKmn1-000416-Ji; Wed, 16 Oct 2019 17:08:47 +0000
-Received: from mail-lf1-x143.google.com ([2a00:1450:4864:20::143])
+	id 1iKmnN-0004M2-5g; Wed, 16 Oct 2019 17:09:09 +0000
+Received: from mail-lf1-x144.google.com ([2a00:1450:4864:20::144])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iKmmj-0003mi-HG; Wed, 16 Oct 2019 17:08:31 +0000
-Received: by mail-lf1-x143.google.com with SMTP id a19so5219838lfg.12;
- Wed, 16 Oct 2019 10:08:28 -0700 (PDT)
+ id 1iKmml-0003n0-Aw; Wed, 16 Oct 2019 17:08:32 +0000
+Received: by mail-lf1-x144.google.com with SMTP id a19so5219925lfg.12;
+ Wed, 16 Oct 2019 10:08:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id;
- bh=2P/J10KlExGhDcB/BIJubTdscdcTfMDb1fvy/oTWkxE=;
- b=ZGYmSpcC+3Ytg3A4d6uhwt45ZuOLxHufU1G0+taRHgxS3toGOBjb2JzbcSWfMNmpTU
- KeFH2531iE4BbVgauuva6vCMqk6x1S+j2FGJ7d0qxr18PUOa0ShTbfsqI/IfX5VZY56E
- V4GW/AFw9LXBobpOBAibIjTVR05CM5vsrXocFOVmvr8d0XVtkQb0GPMyNaETKXecPXge
- 6IwX8fwx79qyuk63skOebNKrBeVxgS62nCUSPSenSY1JBm5m/9LwA9gaADdn1bCzyX98
- u4RvdYPMryzI6wAXT3UR3zJvI5CIHgO4kFjeDF9Z8kdJ/k6KxBbdksBz23uYBMlvXT+m
- XhrA==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references;
+ bh=FuDtedlY48DcctCZGWagsRf8MsM87uwA3mMuVGQ2AP8=;
+ b=j+a1VT2OS4bm7ECykAC43ju60WarYAfWCbRzuFLrL1hxbpgI3Z4j7pRhUEai/49rJ9
+ i48Z56uH5ua66STUHM58TXOltWf4jqVt4q70XzNx6Xa/pb+7PaTc9wej5Uc6Wn5/krkQ
+ Vb5+qH2HJrsvo4vOpu/boufSBlQMCwGX9+hcTLZy3E696r2y0B23YccJG92eOKxRjjzJ
+ fvBSjdk9kz2z5Rin4tvxtefT/UsjzQ9A2Vht8QkBkV33orbNGrGwyM5GMDqwjZP8Jlgj
+ qKETLs4Jb5W07NgAbvDu2uVy5YSvJHNegP8luJGJOGZUHoKkAQ9Dvqv6sVk1rmMfwZP/
+ zr2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id;
- bh=2P/J10KlExGhDcB/BIJubTdscdcTfMDb1fvy/oTWkxE=;
- b=QyIUiQ7mNdOaZluZ6NSpqZ8JWnD9YTe1nmN9ytJMmT062oRyJ4h5GSWHcXPLR4fbhQ
- 61zlQECHVhx/q7tfAhE4XBs820CjvwzYIfGBEVhDjn6zwfWs9W56790SYLIDQYzt/AVP
- ePh2+SiA4LW/RJl66Aot+f57mJUSZtjTdPYrmsYQYztYHo/FODW3SIQ0RAaqXnpTbLr+
- AJMmfOCc+Lude+Y4xqIlDvp3NP/J/ZpprwI2Bua71VXzg0ikySyaCRdTWc8zGL94V0nm
- 5xiq1FoNxSek/ZBupwWRRYEKW80Nn2/Kuamtn2MjyK7OahDZuWG1zo0v3HuxcXuyR4VL
- w1tg==
-X-Gm-Message-State: APjAAAUyAFTbLf3jHXTR4RZPW2FEpyewlR59hbvDiQQCVws29Fgjc3F6
- 2v2H+7P0R+hPZNfaNNvT6ew=
-X-Google-Smtp-Source: APXvYqzlz5fV6bpUwwy0e8WQAyU1+u5vJPm1G3iUaorsGa524M1CGUWd8NgCE96FPsw76VqbLrnH9w==
-X-Received: by 2002:ac2:4550:: with SMTP id j16mr8421098lfm.126.1571245707268; 
- Wed, 16 Oct 2019 10:08:27 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references;
+ bh=FuDtedlY48DcctCZGWagsRf8MsM87uwA3mMuVGQ2AP8=;
+ b=g9kMrnehqXaI2m0LAtbKkII3u2Otbin07CoeAOWamgNN7oSdVKNYCB5QC7LpgSJd1D
+ hIw2ZPVH7M9vzwwzMIIDFGDQeau6WMEqRYXhkYmu/WnwgJ9YQkGFkx4iIdII/41x53q5
+ 96u1Ds+w7soscMafHqyHs9aB2A6V5knHiFopMIXAwjJ/9t8k/9PVhhEvtO5qyft51deU
+ k+rrrmPNIjeUEAJgZdXiPt75wpcQ5WpsTvl3NCHbKlmywvEldXDoeWUJi253Te10V3RL
+ LNUvULEIK5aAobzfHnw2FL0aaK8Cmb3bNG1i8HDnzfCJif6BkXFjXZaa/2r7GsO0zJuR
+ JFbg==
+X-Gm-Message-State: APjAAAWUpVmlOhq+ZqMhwKpmC0VKlUSpliE4SEQYC9SiAR1vev51F4su
+ Zpv6grIbUGUGyWtVM27bN5w=
+X-Google-Smtp-Source: APXvYqybaFGO1u4fZEPYMstx4sfISrbUPkeIsHhbcRYljDhIpvBSINMvFHrAxe5eS+JI8E/hZaMnnA==
+X-Received: by 2002:a19:6a08:: with SMTP id u8mr1490535lfu.74.1571245709687;
+ Wed, 16 Oct 2019 10:08:29 -0700 (PDT)
 Received: from localhost.localdomain ([87.101.228.250])
- by smtp.gmail.com with ESMTPSA id q24sm6299182ljj.6.2019.10.16.10.08.24
+ by smtp.gmail.com with ESMTPSA id q24sm6299182ljj.6.2019.10.16.10.08.27
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
- Wed, 16 Oct 2019 10:08:26 -0700 (PDT)
+ Wed, 16 Oct 2019 10:08:29 -0700 (PDT)
 From: Christian Hewitt <christianshewitt@gmail.com>
 To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
  Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  linux-kernel@vger.kernel.org
-Subject: [PATCH 0/2] arm64: dts: meson: Tronsmart Vega ir keymap updates
-Date: Wed, 16 Oct 2019 21:07:35 +0400
-Message-Id: <1571245657-4471-1-git-send-email-christianshewitt@gmail.com>
+Subject: [PATCH 1/2] arm64: dts: meson-gxm-vega-s96: set rc-vega-s9x ir keymap
+Date: Wed, 16 Oct 2019 21:07:36 +0400
+Message-Id: <1571245657-4471-2-git-send-email-christianshewitt@gmail.com>
 X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1571245657-4471-1-git-send-email-christianshewitt@gmail.com>
+References: <1571245657-4471-1-git-send-email-christianshewitt@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191016_100829_597166_37A5B5DD 
-X-CRM114-Status: UNSURE (   8.33  )
+X-CRM114-CacheID: sfid-20191016_100831_376832_1628D92B 
+X-CRM114-Status: UNSURE (   9.98  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -99,20 +104,25 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-The Tronsmart Vega S95 (S905) and S96 (S912) Android STBs use the
-same IR remote. The rc-vega-s9x keymap has been accepted for Linux
-v5.5 [0] so add the keymap to the respective dts.
+Add an IR node to the Vega S96 dts to include the rc-vega-s9x keymap.
 
-[0] https://patchwork.linuxtv.org/patch/59434/
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-gxm-vega-s96.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Christian Hewitt (2):
-  arm64: dts: meson-gxm-vega-s96: set rc-vega-s9x ir keymap
-  arm64: dts: meson-gxbb-vega-s95: set rc-vega-s9x ir keymap
-
- arch/arm64/boot/dts/amlogic/meson-gxbb-vega-s95.dtsi | 1 +
- arch/arm64/boot/dts/amlogic/meson-gxm-vega-s96.dts   | 4 ++++
- 2 files changed, 5 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-vega-s96.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-vega-s96.dts
+index e2ea675..0bdf51d 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-vega-s96.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-vega-s96.dts
+@@ -35,3 +35,7 @@
+ 		reg = <0>;
+ 	};
+ };
++
++&ir {
++	linux,rc-map-name = "rc-vega-s9x";
++};
 -- 
 2.7.4
 
