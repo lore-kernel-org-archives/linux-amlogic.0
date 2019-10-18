@@ -2,91 +2,93 @@ Return-Path: <SRS0=E9O4=YL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C2DBCCA9EA0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Oct 2019 15:22:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B7ADDCA9EA9
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Oct 2019 16:17:13 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9528B222BD
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Oct 2019 15:22:25 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7F9BA21852
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Oct 2019 16:17:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="m5SG8kFJ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TX7Lj4fp"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9528B222BD
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ghtkZFjC";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="gZNchhad"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7F9BA21852
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=FHVL7J3zsvX1c8AoszBsJgzqOeBrTJq6M1k0qs9k8LA=; b=m5SG8kFJAhvrRy
-	qWxfHmNyYxC8MppWMq2rEmp6s1PxzHOZuQsHR13xF7vhQG2fEeuFIKZn19RMGpq9O7EFN2QfTS9fF
-	bqZ/nGC3ojCbJYRIElOFLRHEX4wdrkIiXHssHwN3MnCgsJjx5nh+Cq93934Mf1aZ6aWCaV4GPpWzr
-	BZnKAVLFfH1Dlbxqlx35SeF1xav/AKEw0fV2yxe5e+2v+yxmzcLBiG3uAuYNZxmcC8OgjyHVD0F9s
-	XUelH0ri2hxAmN0OeeBNJMbx/ffgr4/Ve8QPHr9UIhlnKZD8nmRTtcClToxM8TRBnIMug0kcV6VAJ
-	0MS9XxAYlUgbdLyrxWBg==;
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
+	In-reply-to:Subject:To:From:References:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=9Ex4smFcIQ7koJGUMsV+oBXaczSwVtpIdOii/4bfi2Y=; b=ghtkZFjCTVYfBjJuaNmfcSEKxf
+	eZRSdChqhKlCPyKJqtj1gjzuFTyeQebYb541dpsEICyX304F7AUEb2/2/vS8f+SD0uGdjiqxQsDY6
+	SqtVdHiliA5hNQz23VSUgKz2hczboIPoUNdLDpsXs7gAWMpkSb7dyiJIIfNvkENZZbMe9fdPDgjSc
+	SGBlklp7JuExikyxrxKntfjmaC8ZzVBBwWeStJ35yEtjbqHnuNWnpJMpHoR+HA75aJfdO/JtVSzgv
+	Mfw4jFdmUqrFtjHJzZ3Ws/8QU3PT06ovTHsVjnVNeA1+Kpx0DCzSdcd+aRRT0AzdFVN9UJmZkTc6L
+	ckoJCKtA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iLU55-00084j-JP; Fri, 18 Oct 2019 15:22:19 +0000
-Received: from mail-io1-xd43.google.com ([2607:f8b0:4864:20::d43])
+	id 1iLUw5-0008QH-GO; Fri, 18 Oct 2019 16:17:05 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iLU4u-0007vD-GN; Fri, 18 Oct 2019 15:22:10 +0000
-Received: by mail-io1-xd43.google.com with SMTP id c25so7847957iot.12;
- Fri, 18 Oct 2019 08:22:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=6aWYf2EJ6T3lEMsTnZ85l374tBYCs4qR6iBnDivBEd4=;
- b=TX7Lj4fpNaw+rPLdWCLGA+/mqMT0HXgsnWfnMBYLb8tnQvu8/szGyx5oR1ijczOcvR
- U4XFvHBasVLmxX7FVJ5xzubfHofrzKvdpQY0sWTOt1VtlRPmi4pOpGp+iVi2RQE4PquB
- eb+t4LcEDGC503ZWFBi/0chC8eGTK4DF2fdW8s8ip9JgNTwlAe0rjzujRC4TCIV60AT2
- VMHXqj9QceAAi+70kuzo1+5QIpJ7gw8aUZEGINUlPFtTv/kJiDaFeqKjKDPPWPr3dD94
- F5TjFwjSOS/l2lNRhCU1Lriyd5I3Iem5mt41D7bSZsEmZZBdXM2JhFExX+dTh5V+Vn1A
- DB9A==
+ id 1iLUtM-0004mK-6e
+ for linux-amlogic@lists.infradead.org; Fri, 18 Oct 2019 16:14:18 +0000
+Received: by mail-wr1-x443.google.com with SMTP id o28so6883146wro.7
+ for <linux-amlogic@lists.infradead.org>; Fri, 18 Oct 2019 09:14:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=references:user-agent:from:to:subject:in-reply-to:date:message-id
+ :mime-version; bh=0Cv5HxbYsKs88qKdDqqwy2GcVJ7JGGNauSIpovXmWjE=;
+ b=gZNchhaduGtAYNPyOyjo0Q/R9PH//aDDplRrAmvdTTPx0Kmxn8NFK+7uAx8JKgIEeX
+ CmgKuBT7wpTX5XgrppkFVgSvyCiZu9C7R70WHNEiHuYGIAt+FX3H7nG5/jkh44Rz1OeZ
+ +Oo06tmY7t+R2wCBMZC5VxXtyEFPzndgMtS0AaJNXfn7Z92k0ZvHBesNFCCpAyIBKLGr
+ S2lLW1EaKwt8i9PnSNjyZo3zC4zUjbt3z3L0mrfzR6prmno+8o5h44MIVZcom3MjiDPJ
+ giuQ9ZZ5Bvd2l9TyhJ2tWXibsW3ZYIKbYwAhsEv/jwRDgeS+z2dmIppYCe9Hu/GeFRL3
+ hzoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=6aWYf2EJ6T3lEMsTnZ85l374tBYCs4qR6iBnDivBEd4=;
- b=EWc9OkWwFyushBryjxvlJJlNGU6y3bimONQyO+X9UIsRwdWyoQcSYWUN9yVa+N6BU7
- Q9ORtBxcZT37J2FE5dlGMlSilAGMWa7T3gzzZNdSKipBPoVbPrLJVXz5ENP/6qvYVqwT
- WJqxwhLZEEmxyx9rLfifkfF+e5TKNcxeDZs6gqjiMGq8LJ9LVjVeqtpoX2UYFkwc/ORJ
- mFYAguDA68miUjqpyWhNu4ny0V/J7rtsuY8eMroy78JhMUlX6xhKgMoILjSEvxiazsoY
- EJcGTR0uHO5Kf6UgQTX3ExYFTiIjLjKynZa/ls6ZrsSy8Gx02zvRZHCenv7+HSlb0TD7
- eJZw==
-X-Gm-Message-State: APjAAAUOPwMOiUVw0lkayophqZbDJ0yxWnFypSwzjBVZDhQqx084zw+v
- nuIZpRlwXldGGogzghdK+9w46uwUS8uic/P4KMM=
-X-Google-Smtp-Source: APXvYqzKP3eWnLIodD8BQ96h1uueunpugA3ee1X9sSaev9gUaslu2v+ETYGgUTRIX0Wlj4SxjQBXVE0aOt1x9ISXt2Y=
-X-Received: by 2002:a02:c646:: with SMTP id k6mr6271439jan.141.1571412123645; 
- Fri, 18 Oct 2019 08:22:03 -0700 (PDT)
+ h=x-gm-message-state:references:user-agent:from:to:subject
+ :in-reply-to:date:message-id:mime-version;
+ bh=0Cv5HxbYsKs88qKdDqqwy2GcVJ7JGGNauSIpovXmWjE=;
+ b=nxZ3ALHv7gvT4KHk3WFSw8C/cf7hqSdj+NlIi8Jur1UPC3b5POKzLyiqEp3QOOwuM2
+ iQltmxNlzgu6FF0B5doowcX+VxJZZV1Awzf6XoxaTK+R4H1doCez5rIQsJNMqEWTT4oG
+ U8TnULuETbB4VAPj5KTuq5Wc/HiqanISFMbF6E3GzcFCwaf66jTbNvnYV/kXdI79eOuE
+ umc/uZSFVkLC2v8V21CfqBDw6mzizLDFqlq5wFOyCCX2O84s7BaR3jVIZeHg5E/9+Ryp
+ /20pAEDYdkduDuAUkIBlqmhDFRl8AmTxssKvbmRBiQQbCkfWZu+VwaMDeLOGONWGAybp
+ HOMg==
+X-Gm-Message-State: APjAAAWvpIfCOiAq5RgHvFj21iC3Lkp6tVDPfEQ0Q1bsapnd94Og7O+A
+ 4fFVcg6Hu+MbUHnn7qlbsrxz7w==
+X-Google-Smtp-Source: APXvYqxahX2Eo67G58sg7nvdDRQg5C58GloUqLjP/ZxQkAa40VhAeVwwcIp6pZ/sy3jdITFMe4NWDg==
+X-Received: by 2002:adf:df05:: with SMTP id y5mr9222772wrl.84.1571415253811;
+ Fri, 18 Oct 2019 09:14:13 -0700 (PDT)
+Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id a204sm7706251wmh.21.2019.10.18.09.14.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 18 Oct 2019 09:14:12 -0700 (PDT)
+References: <1571393152-3698-1-git-send-email-christianshewitt@gmail.com>
+User-agent: mu4e 1.3.3; emacs 26.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Christian Hewitt <christianshewitt@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: meson: khadas-vim3l: enable audio
+In-reply-to: <1571393152-3698-1-git-send-email-christianshewitt@gmail.com>
+Date: Fri, 18 Oct 2019 18:14:11 +0200
+Message-ID: <1jd0euf2uk.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-References: <20191007131649.1768-1-linux.amoon@gmail.com>
- <20191007131649.1768-6-linux.amoon@gmail.com>
- <CAFBinCAoJLZj9Kh+SfF4Q+0OCzac2+huon_BU=Q3yE7Fu38U3w@mail.gmail.com>
- <7hsgo4cgeg.fsf@baylibre.com>
- <CANAwSgRfcFa6uBNtpqz6y=9Uwsa4gcp_4tDD+Chhg4SynJCq0Q@mail.gmail.com>
- <CAFBinCA6ZoeR4m4bhj08HF1DqxY1qB5mygpaQCGbo3d8M+Wr9Q@mail.gmail.com>
- <CANAwSgSeYTnUkLnjw-RORw76Fyj3_WT0cdM9D0vFsY8g=9L94Q@mail.gmail.com>
- <1jwode9lba.fsf@starbuckisacylon.baylibre.com>
- <CANAwSgSoK4X3_QbO3YpZRXNTpPJ+zVeid=w93f14Eyk8Dd32EQ@mail.gmail.com>
- <1496ed3e-e91b-3f09-d359-f36a8944e6b0@baylibre.com>
-In-Reply-To: <1496ed3e-e91b-3f09-d359-f36a8944e6b0@baylibre.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Fri, 18 Oct 2019 20:51:50 +0530
-Message-ID: <CANAwSgRwLp02u1_u6oX_dXAueb2nASL_iiMmAt1Q3t9JfxiDPg@mail.gmail.com>
-Subject: Re: [RFCv1 5/5] arm64/ARM: configs: Change CONFIG_PWM_MESON from m to
- y
-To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191018_082208_542936_4B4173DE 
-X-CRM114-Status: GOOD (  22.53  )
+X-CRM114-CacheID: sfid-20191018_091416_289180_26549976 
+X-CRM114-Status: GOOD (  14.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,115 +100,219 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree <devicetree@vger.kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Linux Kernel <linux-kernel@vger.kernel.org>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil,
 
-On Fri, 18 Oct 2019 at 19:43, Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> On 18/10/2019 16:04, Anand Moon wrote:
-> > Hi Jerome / Neil / Martin,
-> >
-> > On Wed, 9 Oct 2019 at 17:34, Jerome Brunet <jbrunet@baylibre.com> wrote:
-> >>
-> >>
-> >> On Wed 09 Oct 2019 at 10:48, Anand Moon <linux.amoon@gmail.com> wrote:
-> >>>
-> >>> Kernel command line: console=ttyAML0,115200n8
-> >>> root=PARTUUID=45d7d61e-01 rw rootwait
-> >>> earlyprintk=serial,ttyAML0,115200 initcall_debug printk.time=y
-> >>>
-> >>> [0] https://pastebin.com/eBgJrSKe
-> >>>
-> >>>> you can also try the command line parameter "clk_ignore_unused" (it's
-> >>>> just a gut feeling: maybe a "critical" clock is being disabled because
-> >>>> it's not wired up correctly).
-> >>>>
-> >>>
-> >>> It look like some clk issue after I added the *clk_ignore_unused* to
-> >>> kernel command line
-> >>> it booted further to login prompt and cpufreq DVFS seem to be loaded.
-> >>> So I could conclude this is clk issue.below is the boot log
-> >>>
-> >>> Kernel command line: console=ttyAML0,115200n8
-> >>> root=PARTUUID=45d7d61e-01 rw rootwait
-> >>> earlyprintk=serial,ttyAML0,115200 initcall_debug printk.time=y
-> >>> clk_ignore_unused
-> >>>
-> >>> [1] https://pastebin.com/Nsk0wZQJ
-> >>>
-> >>
-> >> Next step it to try narrow down the clock causing the issue.
-> >> Remove clk_ignore_unused from the command line and add CLK_INGORE_UNUSED
-> >> to the flag of some clocks your clock controller (g12a I think) until
-> >>
-> >> The peripheral clock gates already have this flag (something we should
-> >> fix someday) so don't bother looking there.
-> >>
-> >> Most likely the source of the pwm is getting disabled between the
-> >> late_init call and the probe of the PWM module. Since the pwm is already
-> >> active (w/o a driver), gating the clock source shuts dowm the power to
-> >> the cores.
-> >>
-> >> Looking a the possible inputs in pwm driver, I'd bet on fdiv4.
-> >>
-> >
-> > I had give this above steps a try but with little success.
-> > I am still looking into this much close.
-> >
-> > Well I am not the expert in clk or bus configuration.
-> > but after looking into the datasheet of for clk configuration
-> > I found some bus are not configured correctly.
-> >
-> > As per Amlogic's kernel S922X (Hardkernel)
-> > below link share the bus controller.
-> >
-> > [0] https://github.com/hardkernel/linux/blob/odroidn2-4.9.y/arch/arm64/boot/dts/amlogic/mesong12b.dtsi#L295-L315
-> >
-> > looking in to current dts changes it looks bit wrong to me.
-> >
-> > *As per 6.1 Memory Map*
-> > apb_efuse: bus@30000  --> apb_efuse: bus@ff630000
-> > periphs: bus@34400    --> periphs: bus@ff634400
-> > dmc: bus@38000        --> dmc: bus@ff638000
-> > hiu: bus@3c000        --> hiu: bus@ff63c0000
->
-> If these was wrong, the drivers simply won't work, at all
->
-> >
-> > Also the order of these is not correct.
->
-> The order is correct, actually
->
-> >
-> > Down the line in the datasheet some of the interrupt GIC bit are not
-> > mapped correctly for example.
-> >
-> > *As per 6.9.2 Interrupt Control Source*
-> > 223 SD_EMMC_C
-> > 222 SD_EMMC_B
-> > 221 SD_EMMC_A
->
-> There is an offset between the doc and the actual GIC_SPI line,
-> they start the datasheet numbers from the GIC_PPI numbers (+32).
->
-Ok. Thanks.
+On Fri 18 Oct 2019 at 12:05, Christian Hewitt <christianshewitt@gmail.com> wrote:
 
-> Neil
+> Add and enable the audio nodes on the VIM3L. This is based on the recent
+> submission for the SEI610 device [1] and the existing VIM3 dts.
 >
-Thanks for answering my query.
+> [1] https://patchwork.kernel.org/patch/11180785/
+>
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>  .../boot/dts/amlogic/meson-sm1-khadas-vim3l.dts    | 147 +++++++++++++++++++++
+>  1 file changed, 147 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+> index dbbf29a..d07f0cf 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+> @@ -8,6 +8,7 @@
+>  
+>  #include "meson-sm1.dtsi"
+>  #include "meson-khadas-vim3.dtsi"
+> +#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+>  
+>  / {
+>  	compatible = "khadas,vim3l", "amlogic,sm1";
+> @@ -31,6 +32,86 @@
+>  		regulator-boot-on;
+>  		regulator-always-on;
+>  	};
+> +
+> +	sound {
+> +		compatible = "amlogic,axg-sound-card";
+> +		model = "SM1-KHADAS-VIM3L";
+> +		audio-aux-devs = <&tdmout_a>, <&tdmout_b>,
+> +				 <&tdmin_a>, <&tdmin_b>;
+> +		audio-routing = "TDMOUT_A IN 0", "FRDDR_A OUT 0",
+> +				"TDMOUT_A IN 1", "FRDDR_B OUT 0",
+> +				"TDMOUT_A IN 2", "FRDDR_C OUT 0",
+> +				"TDM_A Playback", "TDMOUT_A OUT",
 
-Best Regards
--Anand
+The route above are useless since you are not using TDM A in this card
+
+> +				"TDMOUT_B IN 0", "FRDDR_A OUT 1",
+> +				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
+> +				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
+> +				"TDM_B Playback", "TDMOUT_B OUT";
+> +
+> +		assigned-clocks = <&clkc CLKID_MPLL2>,
+> +				  <&clkc CLKID_MPLL0>,
+> +				  <&clkc CLKID_MPLL1>;
+> +		assigned-clock-parents = <0>, <0>, <0>;
+> +		assigned-clock-rates = <294912000>,
+> +				       <270950400>,
+> +				       <393216000>;
+> +		status = "okay";
+> +
+> +		dai-link-0 {
+> +			sound-dai = <&frddr_a>;
+> +		};
+> +
+> +		dai-link-1 {
+> +			sound-dai = <&frddr_b>;
+> +		};
+> +
+> +		dai-link-2 {
+> +			sound-dai = <&frddr_c>;
+> +		};
+
+You have only one output, so one FRDDR is enough.
+So either enable a put just one, or put them all (including FRDDR D)
+
+> +
+> +		dai-link-3 {
+> +			sound-dai = <&toddr_a>;
+> +		};
+> +
+> +		dai-link-4 {
+> +			sound-dai = <&toddr_b>;
+> +		};
+> +
+> +		dai-link-5 {
+> +			sound-dai = <&toddr_c>;
+> +		};
+
+There is no capture Backend, to the TODDR are useless
+
+> +
+> +		/* 8ch hdmi interface */
+> +		dai-link-6 {
+> +			sound-dai = <&tdmif_b>;
+
+Any particular reason for using TDM B interface ? What is khadas doing
+in there own code ?
+
+> +			dai-format = "i2s";
+> +			dai-tdm-slot-tx-mask-0 = <1 1>;
+> +			dai-tdm-slot-tx-mask-1 = <1 1>;
+> +			dai-tdm-slot-tx-mask-2 = <1 1>;
+> +			dai-tdm-slot-tx-mask-3 = <1 1>;
+> +			mclk-fs = <256>;
+> +
+> +			codec {
+> +				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
+> +			};
+> +		};
+> +
+> +		/* hdmi glue */
+> +		dai-link-7 {
+> +			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
+> +
+> +			codec {
+> +				sound-dai = <&hdmi_tx>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&arb {
+> +	status = "okay";
+> +};
+> +
+> +&clkc_audio {
+> +	status = "okay";
+>  };
+>  
+>  &cpu0 {
+> @@ -61,6 +142,24 @@
+>  	clock-latency = <50000>;
+>  };
+>  
+> +&frddr_a {
+> +	status = "okay";
+> +};
+> +
+> +&frddr_b {
+> +	status = "okay";
+> +};
+> +
+> +&frddr_c {
+> +	status = "okay";
+> +};
+> +
+> +&pdm {
+> +	pinctrl-0 = <&pdm_din0_z_pins>, <&pdm_dclk_z_pins>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +};
+
+Why do you enable PDM ? does this board provide some digital mics ?
+There is no links using PDM in your card. Please clarify
+
+> +
+>  &pwm_AO_cd {
+>  	pinctrl-0 = <&pwm_ao_d_e_pins>;
+>  	pinctrl-names = "default";
+> @@ -93,3 +192,51 @@
+>  	phy-names = "usb2-phy0", "usb2-phy1";
+>  };
+>   */
+> +
+> +&tdmif_a {
+> +	pinctrl-0 = <&tdm_a_dout0_pins>, <&tdm_a_fs_pins>, <&tdm_a_sclk_pins>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +
+> +	assigned-clocks = <&clkc_audio AUD_CLKID_TDM_SCLK_PAD0>,
+> +			  <&clkc_audio AUD_CLKID_TDM_LRCLK_PAD0>;
+> +	assigned-clock-parents = <&clkc_audio AUD_CLKID_MST_A_SCLK>,
+> +				 <&clkc_audio AUD_CLKID_MST_A_LRCLK>;
+> +	assigned-clock-rates = <0>, <0>;
+> +};
+> +
+> +&tdmif_b {
+> +	status = "okay";
+> +};
+> +
+> +&tdmin_a {
+> +	status = "okay";
+> +};
+> +
+> +&tdmin_b {
+> +	status = "okay";
+> +};
+> +
+> +&tdmout_a {
+> +	status = "okay";
+> +};
+> +
+> +&tdmout_b {
+> +	status = "okay";
+> +};
+> +
+> +&toddr_a {
+> +	status = "okay";
+> +};
+> +
+> +&toddr_b {
+> +	status = "okay";
+> +};
+> +
+> +&toddr_c {
+> +	status = "okay";
+> +};
+> +
+> +&tohdmitx {
+> +	status = "okay";
+> +};
+
 
 _______________________________________________
 linux-amlogic mailing list
