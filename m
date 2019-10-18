@@ -2,90 +2,91 @@ Return-Path: <SRS0=E9O4=YL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 872CBCA9EA0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Oct 2019 18:12:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 76E2DCA9EA9
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Oct 2019 18:19:51 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5BFBB20640
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Oct 2019 18:12:22 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4FF3B20820
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Oct 2019 18:19:51 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Ht3L9F71";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="AUDeot5s"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5BFBB20640
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="WqWUp54S";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="hJcc17Pd"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4FF3B20820
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=dLk+Mml8CaWN+5pjpsVoX/QEUUWHw7TpyLeAmCKPUVc=; b=Ht3L9F71L9Qswk
-	h9lN/ND7X15syqsMoW+gAvadfWMn0cBtWHOUp43Pmk0s+T4diJx4AdhwY9gIBn09ze/ZcJesGl5sD
-	IjV9j2qTU5KFrDV5ZdsatrywFkB4KOAjOZ3WTf1n9ucAPpngpA14uFlPZn7yl19ZcdNIZU2zly74p
-	pVjWxZUyoriDPuxJG/4sLPITXxU32nkOX/Sv/2/Z2RFmd6HqHgkD1s5XN+pGNMjpViKoLMiDSE+3p
-	n0g1oqIEqLT3dmirKOTQhJzTjBA+KfU72uqrO6wv2pZ+ZR9Rz4+NEUmqFnNleq8Wrv+90mGzoi6GT
-	qTnqDTM1uZK/zvDXmU0Q==;
+	List-Owner; bh=x4zGEMVS9oNCSpWZH58Cqqd+gqsz9KLF87B01mS4w00=; b=WqWUp54SRaSy/g
+	GTTSx2g8QcgiQrBePe7Hsn6rTwVthlT3+vz+M+HCpYKDRyRnmFRMT8MTjG1MgaEc0t6egXdIx3zWT
+	UIeK6ybYsPo5cMxR2AJkFp7RtUdPOhNZzztG9mdwJ80zGWE+UrLUatd/GVhVj59XLDYf3GN/hCK0x
+	87ou9y82HnyJkACPNoB3IC/9k3VJ/61pQB5jInaa06NrXWV8UP7jt2Pk4NqrYYyYwHH9Enf4i9jFj
+	/leHHwWFUbX8c78oLY9JZQ6cX1YJe2Ez871gnrd4D3mBmXDpm5oRDLEXcoMqkjgEAMkRKpEse1Euy
+	YQ58NpgYMzLr+QOr7Brw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iLWjX-0004yi-1V; Fri, 18 Oct 2019 18:12:15 +0000
-Received: from mail-oi1-x241.google.com ([2607:f8b0:4864:20::241])
+	id 1iLWqo-0001e1-1d; Fri, 18 Oct 2019 18:19:46 +0000
+Received: from mail-pl1-x642.google.com ([2607:f8b0:4864:20::642])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iLWiG-0003lz-Op; Fri, 18 Oct 2019 18:10:58 +0000
-Received: by mail-oi1-x241.google.com with SMTP id t84so5943228oih.10;
- Fri, 18 Oct 2019 11:10:56 -0700 (PDT)
+ id 1iLWoo-00085K-IR
+ for linux-amlogic@lists.infradead.org; Fri, 18 Oct 2019 18:17:45 +0000
+Received: by mail-pl1-x642.google.com with SMTP id q15so3218008pll.11
+ for <linux-amlogic@lists.infradead.org>; Fri, 18 Oct 2019 11:17:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=bWo85hzC3rFDGBh+qfuz6zjPF4f2jpRFQQPWDuhwYqs=;
- b=AUDeot5sdk8RXpqa2rRBSsuSmgFYWqs4lpAV51+6KaztZ2cT8TxjYsmYUF0t+KLaws
- MyMhetN8cI7rdsro2aCR1NACcoyC3E90+149x4CJrHprRW//SMJFooy5OWzUwo+Gc3X3
- mvEGoOI6/3weRp7A8SxaVTEyl7vsLYU5a49cDY4zzu53bLRVpDpyQSFtIWfZIgFcwDtL
- 7srgiyNKud5QR/upaeFGc+LTNl10WIdL/wcn22Gz5u6hp6Y+n/pHoDWNWxf30s2enTB6
- d9EasecpycxXWpiBvYl6h8Z2TPNZ5755OAWiV0nPmPlN+FJX0VW/sfrkpwPiWeccacxg
- R0ew==
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=v9YW7BHNgsQ/SyyPbXQbYasZCLbj5buK6hp2Stw/kRY=;
+ b=hJcc17Pd04cJA9HC+GwMAMjYVUY11jji7LMtJg0uX3pJdY5BbI2BFW0vbvi+yrWNz2
+ 8nDsrbt4SefCcegWAfhpV1uSHk8BJ9PXRXnyjzPdYtazh1O5lcgZhGE6zCb2lJOfdree
+ xXRnqRdH7uKj9Pms/4+rIb+CNct97IEgJLAe2neoEwUUc0VcAdAotoXBAS0q7OW67pCV
+ N2ARLR1P9E732WCxfon75MUVThi+EwBib+mU6HGk1+FNlVkb9cS5GbchqGqmQGfTYyMp
+ mnI9CNShj6oOspxWy0WylGQJg99plx0jN7qJz+d+UeHSh6+NnqGdqu9qgxYjVnswNoBE
+ wy5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=bWo85hzC3rFDGBh+qfuz6zjPF4f2jpRFQQPWDuhwYqs=;
- b=s9ncrYqxQ/jgPVBR+s3LTf2+m//SZVWSR3ZT+3xnChorjcNlgWxKxvfv7PtzAHhUCe
- Fxi+21sdPkk8K1g0hiI+UB00Mcki1CpVho+iHiCklLhLHOBRL6A/rqermjuSGQtJpvPp
- ZKa2lDT30Ovkv2QZhIvHoJ1SSrOgu4z9i+2PqUoZ5pbaDi+5YmubR63L2se/kU1DpE4y
- RBvQgq/IE5i1ROB7MCWbiOktwe3ZJl121My3Uoy3xV2LRLVm76jJD/iv29P5BlFwYaZT
- fM5Li57/gqXjJEAG//7v52kGk8PvsKaap77FR8szD/cx+3UXKH78BUdPKnf3vtwcq1wp
- myAQ==
-X-Gm-Message-State: APjAAAXUmewY0IK0q7jpQ9JAXzSMwUbm/9A/QGNhNdjznbdxU0QijXAs
- J9zSaaVUY2uBjNW0VdYYDl7hRJVO0dcXab4S2Bg=
-X-Google-Smtp-Source: APXvYqwEibktI+IxVNP8RRKtYl//H8Q1mpai1qab+3Ui3eiyhRWcHSzDlv+gK9gKLi9CwTMnjb/N6KWMP6Cc/KSQGW8=
-X-Received: by 2002:a05:6808:87:: with SMTP id s7mr9359708oic.47.1571422255246; 
- Fri, 18 Oct 2019 11:10:55 -0700 (PDT)
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=v9YW7BHNgsQ/SyyPbXQbYasZCLbj5buK6hp2Stw/kRY=;
+ b=Cj33A7baxYMsYpGhCzlEQKI1wjJ12NYAjYoCCi2YsdKx1aaSPN9NBkZqaLijmSG3Z9
+ Lhq/+CSw4oy1cTucy+HsVMGIkrcnM7IkL9hZKa0AdkNfPurKdy6XZZe5sGeZqnbtj4IR
+ 0HEQ1mVqos8UCwVyhkmofVfT51o1RQJKx0yVUDF7IeDVuEWO9QI5zSwSvMI9RoRpe9JD
+ LFxJBcehI5rcuUHsqBFavNJqvGaaomUp7Z/RwilZ6HGtjq7uhWvmnSxNzIHHDQGSLWHQ
+ 8iZBCvqLb3dTm7qcyttJONgWynbhoJj5uklBZ2TZO5dvjE/Hh43O25jkrD0bpe16t1z8
+ +WTw==
+X-Gm-Message-State: APjAAAWIH/i2Xly8Bsm/44lRl+6cgoOIJxnhUrpNHldBg3aJZpOQ55r8
+ uZd8BXIEL/3zj3bUZXO8ItXkjQ==
+X-Google-Smtp-Source: APXvYqwAW1evszJK3zfKVU5qC+kUrzT5nkGmV8rakyUXPWbliiBzm+rVT0a7YhJdlz/GJxIQ+EvtqA==
+X-Received: by 2002:a17:902:9a88:: with SMTP id
+ w8mr11523945plp.129.1571422651552; 
+ Fri, 18 Oct 2019 11:17:31 -0700 (PDT)
+Received: from localhost ([2601:602:9200:a1a5:4083:538b:22e5:c2ac])
+ by smtp.gmail.com with ESMTPSA id h8sm7654640pfo.64.2019.10.18.11.17.30
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Fri, 18 Oct 2019 11:17:31 -0700 (PDT)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH] arm64: dts: meson-g12b-khadas-vim3: add missing frddr_a
+ status property
+In-Reply-To: <1jbluef2sd.fsf@starbuckisacylon.baylibre.com>
+References: <20191018140216.4257-1-narmstrong@baylibre.com>
+ <1jbluef2sd.fsf@starbuckisacylon.baylibre.com>
+Date: Fri, 18 Oct 2019 11:17:30 -0700
+Message-ID: <7hbludc405.fsf@baylibre.com>
 MIME-Version: 1.0
-References: <20191007131649.1768-1-linux.amoon@gmail.com>
- <20191007131649.1768-6-linux.amoon@gmail.com>
- <CAFBinCAoJLZj9Kh+SfF4Q+0OCzac2+huon_BU=Q3yE7Fu38U3w@mail.gmail.com>
- <7hsgo4cgeg.fsf@baylibre.com>
- <CANAwSgRfcFa6uBNtpqz6y=9Uwsa4gcp_4tDD+Chhg4SynJCq0Q@mail.gmail.com>
- <CAFBinCA6ZoeR4m4bhj08HF1DqxY1qB5mygpaQCGbo3d8M+Wr9Q@mail.gmail.com>
- <CANAwSgSeYTnUkLnjw-RORw76Fyj3_WT0cdM9D0vFsY8g=9L94Q@mail.gmail.com>
- <1jwode9lba.fsf@starbuckisacylon.baylibre.com>
- <CANAwSgSoK4X3_QbO3YpZRXNTpPJ+zVeid=w93f14Eyk8Dd32EQ@mail.gmail.com>
-In-Reply-To: <CANAwSgSoK4X3_QbO3YpZRXNTpPJ+zVeid=w93f14Eyk8Dd32EQ@mail.gmail.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Fri, 18 Oct 2019 20:10:43 +0200
-Message-ID: <CAFBinCBdwqxA2kLMAA9gtOcXevYK-J4x12odHwpQOAWakgWiEg@mail.gmail.com>
-Subject: Re: [RFCv1 5/5] arm64/ARM: configs: Change CONFIG_PWM_MESON from m to
- y
-To: Anand Moon <linux.amoon@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191018_111056_845072_9FFA5BE4 
-X-CRM114-Status: GOOD (  17.71  )
+X-CRM114-CacheID: sfid-20191018_111742_741330_DCAF7D8E 
+X-CRM114-Status: UNSURE (   9.51  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,64 +98,52 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree <devicetree@vger.kernel.org>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Linux Kernel <linux-kernel@vger.kernel.org>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, christianshewitt@gmail.com,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Anand,
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-On Fri, Oct 18, 2019 at 4:04 PM Anand Moon <linux.amoon@gmail.com> wrote:
-[...]
-> > Next step it to try narrow down the clock causing the issue.
-> > Remove clk_ignore_unused from the command line and add CLK_INGORE_UNUSED
-> > to the flag of some clocks your clock controller (g12a I think) until
-> >
-> > The peripheral clock gates already have this flag (something we should
-> > fix someday) so don't bother looking there.
-> >
-> > Most likely the source of the pwm is getting disabled between the
-> > late_init call and the probe of the PWM module. Since the pwm is already
-> > active (w/o a driver), gating the clock source shuts dowm the power to
-> > the cores.
-> >
-> > Looking a the possible inputs in pwm driver, I'd bet on fdiv4.
-> >
+> On Fri 18 Oct 2019 at 16:02, Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
-> I had give this above steps a try but with little success.
-> I am still looking into this much close.
-it's not clear to me if you have only tested with the PWM and/or
-FCLK_DIV4 clocks. can you please describe what you have tested so far?
+>> In the process of moving the VIM3 audio nodes to a G12B specific dtsi
+>> for enabling the SM1 based VIM3L, the frddr_a status = "okay" property
+>> got dropped.
+>> This re-enables the frddr_a node to fix audio support.
+>>
+>> Fixes: 4f26cc1c96c9 ("arm64: dts: khadas-vim3: move common nodes into meson-khadas-vim3.dtsi")
+>> Reported-by: Christian Hewitt <christianshewitt@gmail.com>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>  arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi | 4 ++++
+>>  1 file changed, 4 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi
+>> index 554863429aa6..e2094575f528 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi
+>> @@ -152,6 +152,10 @@
+>>  	clock-latency = <50000>;
+>>  };
+>>  
+>> +&frddr_a {
+>> +	status = "okay";
+>> +};
+>> +
+>>  &frddr_b {
+>>  	status = "okay";
+>>  };
+>
+> Acked-by: Jerome Brunet <jbrunet@baylibre.com>
 
-for reference - my way of debugging this in the past was:
-1. add some printks to clk_disable_unused_subtree (right after the
-clk_core_is_enabled check) to see which clocks are being disabled
-2. add CLK_IGNORE_UNUSED or CLK_IS_CRITICAL to the clocks which are
-being disabled based on the information from step #1
-3. (at some point I had a working kernel with lots of clocks with
-CLK_IGNORE_UNUSED/CLK_IS_CRITICAL)
-4. start dropping the CLK_IGNORE_UNUSED/CLK_IS_CRITICAL flags again
-until you have traced it down to the clocks that are the actual issue
-(so far I always had only one clock which caused issues, but it may be
-multiple)
-5. investigate (and/or ask on the mailing list, Amlogic developers are
-reading the mails here as well) for the few clocks from step #4
+Queued as a fix for v5.4-rc,
 
-> Well I am not the expert in clk or bus configuration.
-> but after looking into the datasheet of for clk configuration
-> I found some bus are not configured correctly.
-did you find any reason which indicates that the problem is related to a bus?
-the issues I had were due to clocks not being assigned to their
-consumers in .dts - that can be anything (from a bus to something
-different).
+Thanks,
 
-
-Martin
+Kevin
 
 _______________________________________________
 linux-amlogic mailing list
