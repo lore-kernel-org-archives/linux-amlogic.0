@@ -2,57 +2,58 @@ Return-Path: <SRS0=E9O4=YL=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C13D3CA9EA0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Oct 2019 07:15:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 28D6ECA9EA3
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Oct 2019 07:15:39 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3A4E7222BD
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Oct 2019 07:15:04 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id EA4E521D80
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Oct 2019 07:15:38 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="fkCN7NZJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3A4E7222BD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PlkrayLT"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EA4E521D80
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=RyzrwPRC37tNswweGRo2xVlOUz9G5/jTrJ6yESjdU+U=; b=fkCN7NZJv0lfLy
-	d+xtifGFkPHidiTOPgE5lKG+O4KTCrtrtvjy3+dEXRS+2iivLdU3wZ9M1XQ+4R1Dhvxg8F+SdtbLN
-	Q/nX52c3Di004dqY9rXYpxNS81vTPn8BvAZqJPbxkDL38Foojt0K8rMej24OyU8GLzysZQevElvEB
-	SKJBoF1A4WruvDGzQbJzgsMEqXTYbU8D1xSU/kswSUmuZcV3CNkD2Fkn/nIT9RiKXuz/7moeqZKnh
-	1HUCh6KEFgkHDBrIBiqqD6hqc/krcK/5UxHhg1Q7S7wOE7CsytHiPB56zEhh9nK6sVRDMDncNl+jZ
-	Fi1ZKwee21HyEXwFpISw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=HjZcfquNaOA33v83oic1b1JjwmXqHyMJPyAN/nySwuo=; b=PlkrayLTD5vieM
+	xwPGe+SxpIuLmFsOT6f8Pas+lQqy8L3kfwomH8qb1YPfEVK2chIWPx17uYyYZ4m2lcTPm8sTs8oX9
+	mDNXW2BjmnRD/OOovpPEHbTxNu13sbanNppuBJ5wdSn9K0ka+jUq4wri9PNg9OlAA0nL5hfQnfnem
+	22AUiQKEflIQBeU+brnfDZDGr9mC2yCjvWeQQwSdX/1gGQiz4LquNMzuU744nkriYJntfmKaNvzvj
+	N6O9qGgljwnjVIaZ4n7ZrZf94wT3b/5e9SoCeO0rQq3tE8EfWzTrTQSzvVZ73mmuj2Gr8OKKcPG5F
+	gEy0rXgy9VjC6HY8/P5g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iLMTM-0002em-6e; Fri, 18 Oct 2019 07:14:52 +0000
+	id 1iLMU0-0004Pc-Uf; Fri, 18 Oct 2019 07:15:32 +0000
 Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iLMTC-0002WT-Pf; Fri, 18 Oct 2019 07:14:44 +0000
+ id 1iLMTJ-0002WT-6p; Fri, 18 Oct 2019 07:14:50 +0000
 Received: from droid15-sz.amlogic.com (10.28.8.25) by mail-sz.amlogic.com
  (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Fri, 18 Oct 2019
  15:14:38 +0800
 From: Jian Hu <jian.hu@amlogic.com>
 To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
  <narmstrong@baylibre.com>
-Subject: [PATCH v2 0/3] add Amlogic A1 clock controller driver
-Date: Fri, 18 Oct 2019 15:14:22 +0800
-Message-ID: <1571382865-41978-1-git-send-email-jian.hu@amlogic.com>
+Subject: [PATCH v2 2/3] clk: meson: add support for A1 PLL clock ops
+Date: Fri, 18 Oct 2019 15:14:24 +0800
+Message-ID: <1571382865-41978-3-git-send-email-jian.hu@amlogic.com>
 X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1571382865-41978-1-git-send-email-jian.hu@amlogic.com>
+References: <1571382865-41978-1-git-send-email-jian.hu@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.28.8.25]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191018_001442_833005_4462729F 
-X-CRM114-Status: UNSURE (   8.20  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20191018_001449_272232_C952B987 
+X-CRM114-Status: GOOD (  14.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,46 +79,118 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-add support for Amlogic A1 clock driver, the clock includes 
-three parts: peripheral clocks, pll clocks, CPU clocks.
-sys pll and CPU clocks will be sent in next patch.
+The A1 PLL design is different with previous SoCs. The PLL
+internal analog modules Power-on sequence is different
+with previous, and thus requires a strict register sequence to
+enable the PLL. Unlike the previous series, the maximum frequency
+is 6G in G12A, for A1 the maximum is 1536M.
 
-Changes since v1 at [1]:
--place A1 config alphabetically
--add actual reason for RO ops, CLK_IS_CRITICAL, CLK_IGNORE_UNUSED
--separate the driver into two driver: peripheral and pll driver
--delete CLK_IGNORE_UNUSED flag for pwm b/c/d/e/f clock, dsp clock
--delete the change in Kconfig.platforms, address to Kevin alone
--remove the useless comments
--modify the meson pll driver to support A1 PLLs
+Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+---
+ drivers/clk/meson/clk-pll.c | 66 ++++++++++++++++++++++++++++++++++++++++-----
+ drivers/clk/meson/clk-pll.h |  1 +
+ 2 files changed, 61 insertions(+), 6 deletions(-)
 
-[1] https://lkml.kernel.org/r/1569411888-98116-1-git-send-email-jian.hu@amlogic.com
-
-Jian Hu (3):
-  dt-bindings: clock: meson: add A1 clock controller bindings
-  clk: meson: add support for A1 PLL clock ops
-  clk: meson: a1: add support for Amlogic A1 clock driver
-
- .../devicetree/bindings/clock/amlogic,a1-clkc.yaml |  143 ++
- drivers/clk/meson/Kconfig                          |   10 +
- drivers/clk/meson/Makefile                         |    1 +
- drivers/clk/meson/a1-pll.c                         |  345 +++
- drivers/clk/meson/a1-pll.h                         |   56 +
- drivers/clk/meson/a1.c                             | 2264 ++++++++++++++++++++
- drivers/clk/meson/a1.h                             |  120 ++
- drivers/clk/meson/clk-pll.c                        |   66 +-
- drivers/clk/meson/clk-pll.h                        |    1 +
- include/dt-bindings/clock/a1-clkc.h                |   98 +
- include/dt-bindings/clock/a1-pll-clkc.h            |   16 +
- 11 files changed, 3114 insertions(+), 6 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
- create mode 100644 drivers/clk/meson/a1-pll.c
- create mode 100644 drivers/clk/meson/a1-pll.h
- create mode 100644 drivers/clk/meson/a1.c
- create mode 100644 drivers/clk/meson/a1.h
- create mode 100644 include/dt-bindings/clock/a1-clkc.h
- create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
-
+diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+index ddb1e56..b440e62 100644
+--- a/drivers/clk/meson/clk-pll.c
++++ b/drivers/clk/meson/clk-pll.c
+@@ -349,6 +349,56 @@ static void meson_clk_pll_disable(struct clk_hw *hw)
+ 	meson_parm_write(clk->map, &pll->en, 0);
+ }
+ 
++/*
++ * The A1 design is different with previous SoCs.The PLL
++ * internal analog modules Power-on sequence is different with
++ * previous, different PLL has the different sequence, and
++ * thus requires a strict register sequence to enable the PLL.
++ * When set a new target frequency, the sequence should keep
++ * the same with the initial sequence. Unlike the previous series,
++ * the maximum frequency is 6G in G12A, for A1 the maximum
++ * is 1536M.
++ */
++static void meson_params_update_with_init_seq(struct clk_regmap *clk,
++				       struct meson_clk_pll_data *pll,
++				       unsigned int m, unsigned int n,
++				       unsigned int frac)
++{
++	struct parm *pm = &pll->m;
++	struct parm *pn = &pll->n;
++	struct parm *pfrac = &pll->frac;
++	const struct reg_sequence *init_regs = pll->init_regs;
++	unsigned int i, val;
++
++	for (i = 0; i < pll->init_count; i++) {
++		if (pn->reg_off == init_regs[i].reg) {
++			/* Clear M N bits and Update M N value */
++			val = init_regs[i].def;
++			val &= CLRPMASK(pn->width, pn->shift);
++			val &= CLRPMASK(pm->width, pm->shift);
++			val |= n << pn->shift;
++			val |= m << pm->shift;
++			regmap_write(clk->map, pn->reg_off, val);
++		} else if (MESON_PARM_APPLICABLE(&pll->frac) &&
++			   (pfrac->reg_off == init_regs[i].reg)) {
++			/* Clear Frac bits and Update Frac value */
++			val = init_regs[i].def;
++			val &= CLRPMASK(pfrac->width, pfrac->shift);
++			val |= frac << pfrac->shift;
++			regmap_write(clk->map, pfrac->reg_off, val);
++		} else {
++			/*
++			 * According to the PLL hardware constraint,
++			 * the left registers should be setted again.
++			 */
++			val = init_regs[i].def;
++			regmap_write(clk->map, init_regs[i].reg, val);
++		}
++		if (init_regs[i].delay_us)
++			udelay(init_regs[i].delay_us);
++	}
++}
++
+ static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+ 				  unsigned long parent_rate)
+ {
+@@ -366,16 +416,20 @@ static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+ 	if (ret)
+ 		return ret;
+ 
++	if (MESON_PARM_APPLICABLE(&pll->frac))
++		frac = __pll_params_with_frac(rate, parent_rate, m, n, pll);
++
+ 	enabled = meson_parm_read(clk->map, &pll->en);
+ 	if (enabled)
+ 		meson_clk_pll_disable(hw);
+ 
+-	meson_parm_write(clk->map, &pll->n, n);
+-	meson_parm_write(clk->map, &pll->m, m);
+-
+-	if (MESON_PARM_APPLICABLE(&pll->frac)) {
+-		frac = __pll_params_with_frac(rate, parent_rate, m, n, pll);
+-		meson_parm_write(clk->map, &pll->frac, frac);
++	if (pll->strict_sequence)
++		meson_params_update_with_init_seq(clk, pll, m, n, frac);
++	else {
++		meson_parm_write(clk->map, &pll->n, n);
++		meson_parm_write(clk->map, &pll->m, m);
++		if (MESON_PARM_APPLICABLE(&pll->frac))
++			meson_parm_write(clk->map, &pll->frac, frac);
+ 	}
+ 
+ 	/* If the pll is stopped, bail out now */
+diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
+index 367efd0..d5789cef 100644
+--- a/drivers/clk/meson/clk-pll.h
++++ b/drivers/clk/meson/clk-pll.h
+@@ -41,6 +41,7 @@ struct meson_clk_pll_data {
+ 	const struct pll_params_table *table;
+ 	const struct pll_mult_range *range;
+ 	u8 flags;
++	bool strict_sequence;
+ };
+ 
+ extern const struct clk_ops meson_clk_pll_ro_ops;
 -- 
 1.9.1
 
