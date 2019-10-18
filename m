@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DCDFBCA9EA9
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Oct 2019 22:06:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3737BCA9EA0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Oct 2019 22:08:36 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id AFD6A222D1
-	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Oct 2019 22:06:48 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0BEE922466
+	for <linux-amlogic@archiver.kernel.org>; Fri, 18 Oct 2019 22:08:36 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NWereWJP";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="hkx25FtZ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AFD6A222D1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MCAVeaaF";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZcqajXV6"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0BEE922466
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,48 +26,48 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=RoZ0zyjSKAy93MKoSr1b9F0d17NogkabvOsKLyHpCwg=; b=NWereWJPmAkdrc
-	RiIzBDBH5toIDMzOIjLpJGvQ//OgUQLovF35YMcLy3SFdU8w2lUpvqUlUw8tmnRaNHrYpRSip+mwF
-	4hTeTNSIhKzKRq0Kk95u7v+p2m32gJKLs4lCyqCLyfkLOZoyV/8wuy75/xQ2Z1pKxuQMAMsokL0y+
-	Vp7Mg+AaThufd1rl3kbxTuxDn/XkXhgl6/Dkbf+8/AAKJDax3mOHBD92fTje/9/NaFRHsv/JYcfbo
-	7VxO78JDBbQ1xAslSqx7GOrDaeUfz1m1/lEpERUSeiUOIn0heE0I56GGTX9X/sFFOW2ALWxvOTXSn
-	mXz0SI5kz4gL96l1awBg==;
+	List-Owner; bh=9BjlAkoLQYZq8iOElwC2ubDEhsUGkPWBhlMudZTyS0w=; b=MCAVeaaF2BdUud
+	7YBdORSE8BGgzAscMmO16ywZRyc0RtHlCKy4m0EFJ8tIjUKSXAbkgUKnjh+2gNp0AzscnyNXkytub
+	/PNH3etVfT8HwDeeHg2doGdRU2DrYEQfPi3Ko+Q8p5BuADuEkp9xEGneYAEqRRYjGu4KDF2uT/uPi
+	UuTz2W3LdKAVaCoVPZ8g4UqI+bNEBQ58Nf3y4BNWFVUqes0owZu+a4gRwE3b/qkwweu7rrCF+DZxf
+	dZz1G54wYV1cn2+IloYfm8xgqzGbfpy24In8qh59rsYN6Orgy+HfrVF9USlXEqWAfT25bla6qyb3f
+	vQSFeXivDFET8O3Wtsgg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iLaOS-0002ug-F4; Fri, 18 Oct 2019 22:06:44 +0000
+	id 1iLaQB-0003FI-7p; Fri, 18 Oct 2019 22:08:31 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iLaOP-0002ts-Em
- for linux-amlogic@lists.infradead.org; Fri, 18 Oct 2019 22:06:42 +0000
+ id 1iLaQ8-0003Ep-Vh
+ for linux-amlogic@lists.infradead.org; Fri, 18 Oct 2019 22:08:30 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 23593205F4;
- Fri, 18 Oct 2019 22:06:40 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id 9DBB0222C2;
+ Fri, 18 Oct 2019 22:08:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1571436401;
- bh=vj/8ObRPRjWFmRGY3nBsYaYGTcbH47acTDF/rjhkA78=;
+ s=default; t=1571436508;
+ bh=HDsv24RpewDnlRB22Fo8IdX8RsS0btuV9oTMySaKPco=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=hkx25FtZKWcgOsdqfgzcy59H7Z6HKj/W1D/UUEv14LGyX+Rl0eIci4fGACCntHmKB
- Uo6OTtzHxvr2MZ/uGyy0WVUdr3xdRxo3sOiRBAFIj1Be02+2b9PMNgEjtxs69m8081
- 4uEQwd6gjRyQnOwIP692TE3kMR9A2Or+jEEdSuB8=
+ b=ZcqajXV60nD2r+DiBGM/ZeVpWdf1OiJoWv4xjCWVxm/XernE1nBX+Ioc61k5UPncb
+ xlkLRkDkl2fDDWtCi2+5p/1vb7WnVm4POCt96IoI7LvKA6apEh2sU173hhdWWTOmaZ
+ 6D48VoWi4HO1Y9JjrkvXzfcHTjbUREWqImAFBTsE=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 050/100] iio: adc: meson_saradc: Fix memory
+Subject: [PATCH AUTOSEL 4.14 19/56] iio: adc: meson_saradc: Fix memory
  allocation order
-Date: Fri, 18 Oct 2019 18:04:35 -0400
-Message-Id: <20191018220525.9042-50-sashal@kernel.org>
+Date: Fri, 18 Oct 2019 18:07:16 -0400
+Message-Id: <20191018220753.10002-19-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191018220525.9042-1-sashal@kernel.org>
-References: <20191018220525.9042-1-sashal@kernel.org>
+In-Reply-To: <20191018220753.10002-1-sashal@kernel.org>
+References: <20191018220753.10002-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191018_150641_516083_1DC4148C 
-X-CRM114-Status: GOOD (  11.61  )
+X-CRM114-CacheID: sfid-20191018_150829_042772_3F148230 
+X-CRM114-Status: GOOD (  11.70  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,27 +115,27 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/iio/adc/meson_saradc.c b/drivers/iio/adc/meson_saradc.c
-index 5dd104cf0939b..6e0ef9bb2497f 100644
+index 2515badf8b280..9b2121f249263 100644
 --- a/drivers/iio/adc/meson_saradc.c
 +++ b/drivers/iio/adc/meson_saradc.c
-@@ -1023,6 +1023,11 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
+@@ -976,6 +976,11 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
  	if (IS_ERR(base))
  		return PTR_ERR(base);
  
 +	priv->regmap = devm_regmap_init_mmio(&pdev->dev, base,
-+					     priv->data->param->regmap_config);
++					     priv->data->regmap_config);
 +	if (IS_ERR(priv->regmap))
 +		return PTR_ERR(priv->regmap);
 +
  	irq = irq_of_parse_and_map(pdev->dev.of_node, 0);
  	if (!irq)
  		return -EINVAL;
-@@ -1032,11 +1037,6 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
+@@ -985,11 +990,6 @@ static int meson_sar_adc_probe(struct platform_device *pdev)
  	if (ret)
  		return ret;
  
 -	priv->regmap = devm_regmap_init_mmio(&pdev->dev, base,
--					     priv->data->param->regmap_config);
+-					     priv->data->regmap_config);
 -	if (IS_ERR(priv->regmap))
 -		return PTR_ERR(priv->regmap);
 -
