@@ -5,84 +5,81 @@ X-Spam-Level:
 X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=3.4.0
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 17F81CA9EB5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 07:55:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 54BADCA9EB5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 07:58:06 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DDF9020830
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 07:55:20 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2A90020830
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 07:58:06 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="P1Jo1Rqu";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="oqf8LRw+"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DDF9020830
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TAjnzjDX";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="s1eer8uG"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2A90020830
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=J0hc++k+y37/Qu3nVIohncKCF91oQd82Ssd2QHIiX4k=; b=P1Jo1RquvPR0wFRgsRZHsEyv34
-	kt2Z3EgjoGFyhsw6jbEMWRc5NW/Kw6s73fYVdAyb/DuqJJC85dzW46zzAyEN8U9HPpdNG0kLNPRo5
-	WlSyacQbAHyVrkJf38oqt9eWyEQFhbHMG+8sYMk/uHmBPrLUSmgK9m8wOsTnB+veRUWQYL/zDExPY
-	tWGYcCZFrK7SH48wG0MkkTWYPtjhT9X6R78R0z3JixD+cL7tweNNoqJJUJWlYkspMQmD0CUcq3tJ5
-	R5yUvU26sE2OJwWBXYH3VGpbk2XCq6Zz+8iozMjZph/MsdaSxsYLKT2iDv2ENMwV+JaPQ11ZMCWm/
-	3d/0Ve8g==;
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=hdmh5VDM8OnnW09zwG/2QCl/0EaHteMoFpf24qcVcjM=; b=TAjnzjDXVZIHnr
+	Wa64wswpwZ/2MRJlaqn2kZ3jeasyGFNF1ZsnsALhX+9+8wLdsc508LMqqpb/NgKQYGX+U21YHnQ/m
+	XAXDRuXq9Q1B+Xlsl5hPzzfE9UhjuFgPFVdHCxGF9TXY0oVpuHez84bDIFKwg6zdeszDqTwyuuwgS
+	to2Ll7yqrSy98U18hPpwN44EutmgLnRxuPiQrE3gtt6wEvTfzrKceOWZzByQRNigog9G1LQguGazP
+	WpPlNp7uTBRIxS4cF009cZP6c5/bYxG8HWspppooQEMnfLm2PyDdLsvM/qo/b3c0JSDBX3krMiK7w
+	+fMxCYimskpP5PtQOddQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iMSX5-0005tl-30; Mon, 21 Oct 2019 07:55:15 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1iMSZl-0007AW-1a; Mon, 21 Oct 2019 07:58:01 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iMSWh-0004X2-W4
- for linux-amlogic@lists.infradead.org; Mon, 21 Oct 2019 07:54:53 +0000
-Received: by mail-wr1-x443.google.com with SMTP id r1so2867397wrs.9
- for <linux-amlogic@lists.infradead.org>; Mon, 21 Oct 2019 00:54:51 -0700 (PDT)
+ id 1iMSZi-00074A-HU
+ for linux-amlogic@lists.infradead.org; Mon, 21 Oct 2019 07:57:59 +0000
+Received: by mail-wm1-x344.google.com with SMTP id r19so12098503wmh.2
+ for <linux-amlogic@lists.infradead.org>; Mon, 21 Oct 2019 00:57:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:references:from:openpgp:autocrypt:organization
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=72pYb4l2fMKweOJ3niofsL2Dbilv36pH7MR65o3ftaU=;
- b=oqf8LRw+TDH5j0LqqOJWUtTpVcOIzGj7szug0ewxV+/mwoX2bZL+5f3vBThVD/h3uh
- GqooIdlPP5AGr0UPQ6sobDpyUyNzlnI83ziYSQZt9uT1Px14NTc7v+3D9fznh0ewpqM7
- f6EgRBnbrpJUtW8PHA9LbjGpNHjx5oaK3ZfQ+Ip75B+Sf3sUM443MiJaNWwfrMgmNndw
- BlWh+Z0TRxvMloRfZ7bA6sUT2Qtz0ppxfEyb3kwsvKQy/qj/oZw4lbL9cXh/oq3FpGCM
- OygFjqlQWKavvud5Oa0rFIXjshZ8WSUQG1dZ01KeR2ezrOlYuzJA34mAtufIO0oLozqP
- u7hg==
+ bh=GN7buNa9ZgduQOqaaamlZXOBVnbCVqQeHYpaeGGP5R0=;
+ b=s1eer8uGqixJLnsWIPQGOlou7m8t7158Gwy8V+UFzgFZJXBq8Cr06Kw+FMZvahs4kk
+ XMfRTeQv+ogCyEOc70s3u06/0bU6gyk0Yu2cKx9bvFwAR2Ybg6+YnLU7pY93qnPI38OZ
+ wAMaFFPz1UTZlm8uJBCi5cOlf6mIy6LnoFgKyU1ExvAipwurgtgyEkHSKyWooFMHq9q/
+ fT4rdyGLUUyzbenWVdsehfC10LWD7gUqBZPLRLjbwZnVxdg3ZZm1Y/BA8h79irM6htyJ
+ GPcmJVkfcYSemaeBsWClBvlSR9yJgqYlxrH8g0usZckZFVjAHVi2nd9bfsV67Jl1cJz9
+ FxQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=72pYb4l2fMKweOJ3niofsL2Dbilv36pH7MR65o3ftaU=;
- b=NbrcPAYmYPk+tk0xTk+sFluPMkVvRffKAHM2cjV9QQz9TWbtCXwN5c0oBocvCeL9Ew
- 5gSmivQ9EpObYOWjkVa336XTaUbWSW+9EfhvC8ecKAvM9ypJI4riFEOZz63HBq08MQdk
- 8RSz1E+8tpqH3TN6DZ1tZvlbucCDWmJnCiK0jrG0VbumgwPR0YvoKne08bMaPuIxB7e5
- P7IHhcqMtvt8mFYxjt59nlnDyXmwGbbIrh4xu90yehkUU3J3DHzkabJklqD5HKfRirwS
- UZIB0yDgvKr+DaN0HcqH2pxDJEzNXZ+Mh2HUUmY0bUgqwKlMHqSHlIpEFBnGO6HFdcIQ
- z43Q==
-X-Gm-Message-State: APjAAAWoFRm5DclNpOFL0+296UMWUW6CW1H3n6cCvLnMVCQApZjgLcXs
- 4WUqUljFhhDm6qOsiveFHxZ1Rg==
-X-Google-Smtp-Source: APXvYqxjgSplbuVQE31KeNQ9Zuhsdg0bEgG9pqlV8/umWnmNCONojV5OxHcVHVy3/9gmCgpzQ6zOvA==
-X-Received: by 2002:a5d:5227:: with SMTP id i7mr9324998wra.39.1571644489759;
- Mon, 21 Oct 2019 00:54:49 -0700 (PDT)
+ bh=GN7buNa9ZgduQOqaaamlZXOBVnbCVqQeHYpaeGGP5R0=;
+ b=FrnC0HH+phPN/WP+Bfs+DUEmDn7f2aVr/8r+oXwsJe5BvtiTpP9z5P6wcV4JLP7/a+
+ tE++d/uhFzOHmQqS0o9CiTME7Rn18+p94pszqSeKLQy9ZjiI57xLjh56lFYKSV0BQsuq
+ oQMlcvoMn8eDTqdXKpQAiZE41Xcm4pb9QYeav6K7epWYjCq7HM69phtdMg4PiasAvSt8
+ qs2XDhgmmyDDVs4vPRNIgo02yGzikJ85bzUAW9Rw7de6nkjdJhnzcjlDDbyImGS4D6F8
+ cCWYZsJN7f4vhMhgP4pylmmFYzm5T3PEi+XuOtYlaS1/FiIihsttfxGnshQ4mZiB0NRf
+ hMaw==
+X-Gm-Message-State: APjAAAXn59eVnw0IrBXT3tb9LwupIST2wCjkXUJUm5ZrLNAum7Wtf5dB
+ 4IToXl4qi11ppFOxGjfYpn+LWQ==
+X-Google-Smtp-Source: APXvYqzqXMe/IcqlWLVKOYlUhWJQq60ZS61FCFtTV8Gam/xPe+O/o73mxiYpX5zY5y1Q6hwfYIdKZg==
+X-Received: by 2002:a1c:208e:: with SMTP id
+ g136mr12966145wmg.107.1571644675990; 
+ Mon, 21 Oct 2019 00:57:55 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id f8sm13503742wmb.37.2019.10.21.00.54.48
+ by smtp.gmail.com with ESMTPSA id 65sm6072784wrs.9.2019.10.21.00.57.55
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 21 Oct 2019 00:54:49 -0700 (PDT)
-Subject: Re: [PATCH] soc: amlogic: meson-gx-socinfo: Fix S905D3 ID for VIM3L
-To: Christian Hewitt <christianshewitt@gmail.com>,
- Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <1571634295-20154-1-git-send-email-christianshewitt@gmail.com>
+ Mon, 21 Oct 2019 00:57:55 -0700 (PDT)
+Subject: Re: [PATCH] mmc: fix mmc dma operation
+To: Jianxin Pan <jianxin.pan@amlogic.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Kevin Hilman <khilman@baylibre.com>
+References: <1571637541-119016-1-git-send-email-jianxin.pan@amlogic.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -135,16 +132,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <f5b6f47b-2a2d-a0c5-b777-9e4cb39ecf1d@baylibre.com>
-Date: Mon, 21 Oct 2019 09:54:48 +0200
+Message-ID: <fc1f61e1-b156-11e6-3f21-c498d2f0a8c6@baylibre.com>
+Date: Mon, 21 Oct 2019 09:57:55 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <1571634295-20154-1-git-send-email-christianshewitt@gmail.com>
+In-Reply-To: <1571637541-119016-1-git-send-email-jianxin.pan@amlogic.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191021_005452_173715_DE96E5C6 
-X-CRM114-Status: GOOD (  16.95  )
+X-CRM114-CacheID: sfid-20191021_005758_587604_1F3B76FD 
+X-CRM114-Status: GOOD (  19.76  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,6 +153,9 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: Victor Wan <victor.wan@amlogic.com>, linux-mmc@vger.kernel.org,
+ Nan Li <nan.li@amlogic.com>, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
@@ -163,36 +163,82 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi,
 
-On 21/10/2019 07:04, Christian Hewitt wrote:
-> Chip on the board is S905D3 not S905X3.
+Thanks for the fix.
+
+First, you should add "mmc: meson-gx:" in the subject.
+
+On 21/10/2019 07:59, Jianxin Pan wrote:
+> From: Nan Li <nan.li@amlogic.com>
 > 
-> Fixes: 1d7c541b8a5b ("soc: amlogic: meson-gx-socinfo: Add S905X3 ID for VIM3L")
+> In MMC dma transfer, the region requested by dma_map_sg() may be released
+> by dma_unmap_sg() before the transfer is completed.
 > 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> Put the unmap operation in front of mmc_request_done() to avoid this.
+
+
+You should add a "Fixes:" tag so it can be backported on stable kernels.
+
+> 
+> Signed-off-by: Nan Li <nan.li@amlogic.com>
+> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
 > ---
->  drivers/soc/amlogic/meson-gx-socinfo.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/mmc/host/meson-gx-mmc.c | 15 ++++++++-------
+>  1 file changed, 8 insertions(+), 7 deletions(-)
 > 
-> diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
-> index 87ed558..e612dae 100644
-> --- a/drivers/soc/amlogic/meson-gx-socinfo.c
-> +++ b/drivers/soc/amlogic/meson-gx-socinfo.c
-> @@ -69,7 +69,7 @@ static const struct meson_gx_package_id {
->  	{ "S922X", 0x29, 0x40, 0xf0 },
->  	{ "A311D", 0x29, 0x10, 0xf0 },
->  	{ "S905X3", 0x2b, 0x5, 0xf },
-> -	{ "S905X3", 0x2b, 0xb0, 0xf2 },
-> +	{ "S905D3", 0x2b, 0xb0, 0xf2 },
-
-Why is the mask 0xf2 ? What is reported in dmesg ?
-
->  	{ "A113L", 0x2c, 0x0, 0xf8 },
+> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> index e712315..7667e8a 100644
+> --- a/drivers/mmc/host/meson-gx-mmc.c
+> +++ b/drivers/mmc/host/meson-gx-mmc.c
+> @@ -173,6 +173,7 @@ struct meson_host {
+>  	int irq;
+>  
+>  	bool vqmmc_enabled;
+> +	bool needs_pre_post_req;
 >  };
 >  
-> 
-
+>  #define CMD_CFG_LENGTH_MASK GENMASK(8, 0)
+> @@ -654,6 +655,8 @@ static void meson_mmc_request_done(struct mmc_host *mmc,
+>  	struct meson_host *host = mmc_priv(mmc);
+>  
+>  	host->cmd = NULL;
+> +	if (host->needs_pre_post_req)
+> +		meson_mmc_post_req(mmc, mrq, 0);
+>  	mmc_request_done(host->mmc, mrq);
+>  }
+>  
+> @@ -803,25 +806,23 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
+>  static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
+>  {
+>  	struct meson_host *host = mmc_priv(mmc);
+> -	bool needs_pre_post_req = mrq->data &&
+> +
+> +	host->needs_pre_post_req = mrq->data &&
+>  			!(mrq->data->host_cookie & SD_EMMC_PRE_REQ_DONE);
+>  
+> -	if (needs_pre_post_req) {
+> +	if (host->needs_pre_post_req) {
+>  		meson_mmc_get_transfer_mode(mmc, mrq);
+>  		if (!meson_mmc_desc_chain_mode(mrq->data))
+> -			needs_pre_post_req = false;
+> +			host->needs_pre_post_req = false;
+>  	}
+>  
+> -	if (needs_pre_post_req)
+> +	if (host->needs_pre_post_req)
+>  		meson_mmc_pre_req(mmc, mrq);
+>  
+>  	/* Stop execution */
+>  	writel(0, host->regs + SD_EMMC_START);
+>  
+>  	meson_mmc_start_cmd(mmc, mrq->sbc ?: mrq->cmd);
+> -
+> -	if (needs_pre_post_req)
+> -		meson_mmc_post_req(mmc, mrq, 0);
+>  }
+>  
+>  static void meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
+>
 Neil
-
 
 _______________________________________________
 linux-amlogic mailing list
