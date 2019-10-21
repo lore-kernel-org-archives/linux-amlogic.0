@@ -2,89 +2,93 @@ Return-Path: <SRS0=mlCU=YO=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 79CD4C47E49
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 09:19:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E36CECA9EB5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 09:19:51 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4C866214AE
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 09:19:30 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B07FF20659
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 09:19:51 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dohUwaNi";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ER00yFIn"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4C866214AE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="p3aSih4G";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="p4S4M34g"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B07FF20659
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=n4hb1okdiefsktUnV1mqFdPwxNAkSQiapQuoxIUh7SA=; b=dohUwaNiWltIGq
-	OVW4mfPcnnHt1ZGsXd0l5C/I2XNbyrmalTbk7ZHQDoeEt+F6OeS6I5iGuKbxT70EeaDzER7QFarne
-	qB1D9kEIgnrhucIwLTfZb3u217ZTUK2FE3UkobQriYIlA6JdFC/W3BxT9iwNDuilBwfwtJVTBNUka
-	jAUjNSiVgT26S6rrwY5g81TU4Ow1UGrX3l6UrmPVSO/QXiYTVbSmxPgY1Azp0OsWL9igDlqa6YxO4
-	Ba6OarKJGL1ctF15eHV0RdSbIAuFZnZCWTp5v9OxAz66gRKwMgbBDVl4w+t0+CnqtE+T2Uo1snP5p
-	nyQevuzpWqhu7vvjPpHw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
+	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=I8GNSw+XdC60QrNw/cgTBRnIancXuBwaPlnXhxq6VcY=; b=p3aSih4G/Uz81DonXU6/XdnTyo
+	pdsoZzVa8aey6OAHF8I83CYjIjlWwpNB8E5+PChx/2R3C/7jWxlsi1a5pGj3ekvZqC7MRs87++AtI
+	fXG6xBH0utKtjxXoO6AAdhKrgZ7UdUyM130e0M0wZGB67ROloK34vCf/mKua/wqlmqqoCp32ZPn1M
+	Jra6BxZoRPhcpN6pX/U5gC8pEwgo/l5C4QyfD3XL52rKzfIDiE2AsA028Ezf+dy+a0KqDIidREmwO
+	MNRmSjL+L1eqBXFHTAu/bBaN2w6UcF3lk5cAmgXcUXqhRbREb/zMGU8Mg/Z1yZmo81k0oHQ8wMy8e
+	tz62rlkQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iMTqX-0005m4-Dr; Mon, 21 Oct 2019 09:19:25 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1iMTqs-00068P-9S; Mon, 21 Oct 2019 09:19:46 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iMTma-0002kN-IE
- for linux-amlogic@lists.infradead.org; Mon, 21 Oct 2019 09:15:28 +0000
-Received: by mail-wm1-x344.google.com with SMTP id i16so12381047wmd.3
- for <linux-amlogic@lists.infradead.org>; Mon, 21 Oct 2019 02:15:20 -0700 (PDT)
+ id 1iMToW-0004A6-VL
+ for linux-amlogic@lists.infradead.org; Mon, 21 Oct 2019 09:17:24 +0000
+Received: by mail-wm1-x342.google.com with SMTP id f22so11953657wmc.2
+ for <linux-amlogic@lists.infradead.org>; Mon, 21 Oct 2019 02:17:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=BI7/GGnf7LyKGTIxdHfJEkCTbGlJPGbjilZnBILY85c=;
- b=ER00yFInnm2n+UrJGw6fSOXxdGwLgCwHMOoyd15c4MEBVt0/lH1dhBMwlPTfTEr6Ee
- ngHglotiy5TmUP7YrDOkwVX3FuwVcsbF2RqsedolqLyiqQo31pXn1FRXtuXfEFU+IrpQ
- LwkQW4OUW5VqmQIGuz9OAffD90RB8x73MnSUDQlaXV2HaGA++7EP192vUy0BxnwKRseA
- 9BQp7atfM/UnXYf6VDuAHXNPbOa/W3LeVrWzSKuaq8/Axg6Ow7ZkzpiD0lbXMkTvn2X1
- ag5pzZgLM1Pk02kyDzNKg0fnFF6eiOYS6ndxt69PbFV3YQLdmzLPZ+TKq02f+dCFrqCT
- JDQg==
+ h=references:user-agent:from:to:cc:subject:in-reply-to:date
+ :message-id:mime-version;
+ bh=fyXVzNh3bAaYBk42fBdJzICclG09jxX+kSBbHAatABk=;
+ b=p4S4M34gvq7oiAB7J7289QTGzutBGVytHXmZcMwYdJALNOpROj/preCC22gLSwW5TA
+ SZs3A+KB5ZLSMPlDwl+QqnbvsdWVWFULUMjp9tYBU0MwSYNvYf9UUTMNbRmzMM1EnayT
+ 578LwJ+f5/z6e/UV0xFr1Tgnd3uik7trySc2j5I4N0yn8wCA9nzqA/oR4CQk7UXXjaTP
+ +VKoQ4TUgX0iNs0XTVtH+X7HcNzxcButh2wy1rSmARSZmcuZm14bzgbx8Vq7CvY2qMMX
+ f/lEMkuP1Evq6gn2STPlsSqrhq3BURnK3x9rCVJ2tO/KCFF3HQ/jv3lr8L34ooUyPPHi
+ u5lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=BI7/GGnf7LyKGTIxdHfJEkCTbGlJPGbjilZnBILY85c=;
- b=gqwOVH+tdvChTxqP80vMt/ltdgfPoLdB2H+G7xGECKdJZ0Swmyl75P0/2e39/XY4KN
- O3OXmzGearQuZNpdgs/O7NiO5xkKWJ9tcJKiy4r/OeKb3b3XR/WtLE7A2lpOQOQ884IH
- /ZTYDGbaWWKJlansTkmqJM+LUzuY940suveRX+pqQE2p+2RmXOszNPwvBb8UYozccKLk
- wlVKEluwn0WCXZYhwXOkXLPZUwtK3nkYtUYeCFaZGj00ddysNUnHnfj8qM6YnXpRcd4m
- H1h5WegbJw6Ou2+w4aUYtw6sPQu3luQ78eCUjDYZcAcfpHQatQxO+pJIC3WatjyLPXIv
- hnJA==
-X-Gm-Message-State: APjAAAUSpLRU6WMgllbxGCCdQjWdvviGkqkH58uMJs3NJDLOboqWDt5R
- ZGk1SNpFR4FrQw+QbWsKiB0I0g==
-X-Google-Smtp-Source: APXvYqz5kg405DoTSLqWUJdxrTCmpf7doYKj695/q7infDCDeYEQdJqYii08eWdp4wLiFzTD2WKxIg==
-X-Received: by 2002:a1c:a657:: with SMTP id p84mr5141637wme.35.1571649318821; 
- Mon, 21 Oct 2019 02:15:18 -0700 (PDT)
-Received: from localhost.localdomain
- (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id t13sm20281595wra.70.2019.10.21.02.15.18
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:date:message-id:mime-version;
+ bh=fyXVzNh3bAaYBk42fBdJzICclG09jxX+kSBbHAatABk=;
+ b=jzjV7fdit+9AQHvrzX+liDQ4G1UB3aKvy6DYjXIzas5gPbidGPnS9N3BUCFNpksXLl
+ kHaQaGLh+9KgaUf7ddhu9IGTwsmTgx7onSyMdBBhXZ9mwL4zGCKcqjVMk4AZ4LDV3lFo
+ GIzns6sm0toX8rvqGcmM1a2TPqBaAyJfthRZEFAUCOi8uNvsLcYqYxKgLpQbee03F33M
+ G5f6epWs4N8ecSYPrfiiHpryqYVwfIej6PJyihy8M4YYkqzj3/F0tj3ZTeLyGsqgRlFH
+ 7fXQ4AaowtbzRWvNDfGvx++m5+R2HemEj+Romw38nYbOv4smRjBZPi4WrHCQ5Xix+50n
+ r20A==
+X-Gm-Message-State: APjAAAUknSR4FJv/PpzeeB/YdMbaZB+8e8kIyvrmPZx6FzOrg3XZc74R
+ oEKppd7o7qEVTwNYyVlZ8NDGZQ==
+X-Google-Smtp-Source: APXvYqw+pd4xa5lgOL/v6WOYLZfNpXm5PjaGaVCXIE4K2rWe5kR78a5m76bsxJwfBU9kEbLI6J5SiA==
+X-Received: by 2002:a1c:ed04:: with SMTP id l4mr19199540wmh.116.1571649437343; 
+ Mon, 21 Oct 2019 02:17:17 -0700 (PDT)
+Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id f6sm13170666wrm.61.2019.10.21.02.17.16
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 21 Oct 2019 02:15:18 -0700 (PDT)
-From: Neil Armstrong <narmstrong@baylibre.com>
-To: dri-devel@lists.freedesktop.org
-Subject: [PATCH v3 9/9] drm/meson: crtc: add OSD1 plane AFBC commit
-Date: Mon, 21 Oct 2019 11:15:09 +0200
-Message-Id: <20191021091509.3864-10-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20191021091509.3864-1-narmstrong@baylibre.com>
-References: <20191021091509.3864-1-narmstrong@baylibre.com>
+ Mon, 21 Oct 2019 02:17:16 -0700 (PDT)
+References: <1571637541-119016-1-git-send-email-jianxin.pan@amlogic.com>
+ <fc1f61e1-b156-11e6-3f21-c498d2f0a8c6@baylibre.com>
+User-agent: mu4e 1.3.3; emacs 26.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [PATCH] mmc: fix mmc dma operation
+In-reply-to: <fc1f61e1-b156-11e6-3f21-c498d2f0a8c6@baylibre.com>
+Date: Mon, 21 Oct 2019 11:17:15 +0200
+Message-ID: <1jwocybgpw.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191021_021520_645420_6C7C849C 
-X-CRM114-Status: GOOD (  14.60  )
+X-CRM114-CacheID: sfid-20191021_021721_200855_3115EC14 
+X-CRM114-Status: GOOD (  18.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,186 +100,119 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: khilman@baylibre.com, linux-amlogic@lists.infradead.org,
- ayan.halder@arm.com, linux-arm-kernel@lists.infradead.org,
- Neil Armstrong <narmstrong@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, linux-mmc@vger.kernel.org,
+ Nan Li <nan.li@amlogic.com>, Victor Wan <victor.wan@amlogic.com>,
+ linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Finally, setup the VIU registers and start the AFBC decoder to support
-displaying AFBC encoded buffers on Amlogic GXM and G12A SoCs.
 
-The RDMA is used here to reset and program the AFBC decoder unit
-on each vsync without involving the interrupt handler that can
-be masked for a long period of time, producing display glitches.
+On Mon 21 Oct 2019 at 09:57, Neil Armstrong <narmstrong@baylibre.com> wrote:
 
-The vsync irq must still be left enabled otherwise the RDMA modules isn't
-trigerred when the interrupt line is masked.
+> Hi,
+>
+> Thanks for the fix.
+>
+> First, you should add "mmc: meson-gx:" in the subject.
+>
+> On 21/10/2019 07:59, Jianxin Pan wrote:
+>> From: Nan Li <nan.li@amlogic.com>
+>> 
+>> In MMC dma transfer, the region requested by dma_map_sg() may be released
+>> by dma_unmap_sg() before the transfer is completed.
+>> 
+>> Put the unmap operation in front of mmc_request_done() to avoid this.
+>
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/gpu/drm/meson/meson_crtc.c | 77 ++++++++++++++++++++++++++++--
- 1 file changed, 72 insertions(+), 5 deletions(-)
+Since we have seen this problem (yet), could you briefly how you've
+triggered it ?
 
-diff --git a/drivers/gpu/drm/meson/meson_crtc.c b/drivers/gpu/drm/meson/meson_crtc.c
-index d478fa232951..8366a0ed37af 100644
---- a/drivers/gpu/drm/meson/meson_crtc.c
-+++ b/drivers/gpu/drm/meson/meson_crtc.c
-@@ -23,7 +23,9 @@
- #include "meson_registers.h"
- #include "meson_venc.h"
- #include "meson_viu.h"
-+#include "meson_rdma.h"
- #include "meson_vpp.h"
-+#include "meson_osd_afbcd.h"
- 
- #define MESON_G12A_VIU_OFFSET	0x5ec0
- 
-@@ -35,7 +37,11 @@ struct meson_crtc {
- 	struct meson_drm *priv;
- 	void (*enable_osd1)(struct meson_drm *priv);
- 	void (*enable_vd1)(struct meson_drm *priv);
-+	void (*enable_osd1_afbc)(struct meson_drm *priv);
-+	void (*disable_osd1_afbc)(struct meson_drm *priv);
- 	unsigned int viu_offset;
-+	bool vsync_forced;
-+	bool vsync_disabled;
- };
- #define to_meson_crtc(x) container_of(x, struct meson_crtc, base)
- 
-@@ -46,6 +52,7 @@ static int meson_crtc_enable_vblank(struct drm_crtc *crtc)
- 	struct meson_crtc *meson_crtc = to_meson_crtc(crtc);
- 	struct meson_drm *priv = meson_crtc->priv;
- 
-+	meson_crtc->vsync_disabled = false;
- 	meson_venc_enable_vsync(priv);
- 
- 	return 0;
-@@ -56,7 +63,10 @@ static void meson_crtc_disable_vblank(struct drm_crtc *crtc)
- 	struct meson_crtc *meson_crtc = to_meson_crtc(crtc);
- 	struct meson_drm *priv = meson_crtc->priv;
- 
--	meson_venc_disable_vsync(priv);
-+	if (!meson_crtc->vsync_forced) {
-+		meson_crtc->vsync_disabled = true;
-+		meson_venc_disable_vsync(priv);
-+	}
- }
- 
- static const struct drm_crtc_funcs meson_crtc_funcs = {
-@@ -236,6 +246,26 @@ static void meson_crtc_enable_osd1(struct meson_drm *priv)
- 			    priv->io_base + _REG(VPP_MISC));
- }
- 
-+static void meson_crtc_g12a_enable_osd1_afbc(struct meson_drm *priv)
-+{
-+	writel_relaxed(priv->viu.osd1_blk2_cfg4,
-+		       priv->io_base + _REG(VIU_OSD1_BLK2_CFG_W4));
-+
-+	writel_bits_relaxed(OSD_MEM_LINEAR_ADDR, OSD_MEM_LINEAR_ADDR,
-+			    priv->io_base + _REG(VIU_OSD1_CTRL_STAT));
-+
-+	writel_relaxed(priv->viu.osd1_blk1_cfg4,
-+		       priv->io_base + _REG(VIU_OSD1_BLK1_CFG_W4));
-+
-+	meson_viu_g12a_enable_osd1_afbc(priv);
-+
-+	writel_bits_relaxed(OSD_MEM_LINEAR_ADDR, OSD_MEM_LINEAR_ADDR,
-+			    priv->io_base + _REG(VIU_OSD1_CTRL_STAT));
-+
-+	writel_bits_relaxed(OSD_MALI_SRC_EN, OSD_MALI_SRC_EN,
-+			    priv->io_base + _REG(VIU_OSD1_BLK0_CFG_W0));
-+}
-+
- static void meson_g12a_crtc_enable_osd1(struct meson_drm *priv)
- {
- 	writel_relaxed(priv->viu.osd_blend_din0_scope_h,
-@@ -293,6 +323,20 @@ void meson_crtc_irq(struct meson_drm *priv)
- 				priv->io_base + _REG(VIU_OSD1_BLK0_CFG_W3));
- 		writel_relaxed(priv->viu.osd1_blk0_cfg[4],
- 				priv->io_base + _REG(VIU_OSD1_BLK0_CFG_W4));
-+
-+		if (priv->viu.osd1_afbcd) {
-+			if (meson_crtc->enable_osd1_afbc)
-+				meson_crtc->enable_osd1_afbc(priv);
-+		} else {
-+			if (meson_crtc->disable_osd1_afbc)
-+				meson_crtc->disable_osd1_afbc(priv);
-+			if (priv->afbcd.ops) {
-+				priv->afbcd.ops->reset(priv);
-+				priv->afbcd.ops->disable(priv);
-+			}
-+			meson_crtc->vsync_forced = false;
-+		}
-+
- 		writel_relaxed(priv->viu.osd_sc_ctrl0,
- 				priv->io_base + _REG(VPP_OSD_SC_CTRL0));
- 		writel_relaxed(priv->viu.osd_sc_i_wh_m1,
-@@ -314,15 +358,25 @@ void meson_crtc_irq(struct meson_drm *priv)
- 		writel_relaxed(priv->viu.osd_sc_v_ctrl0,
- 				priv->io_base + _REG(VPP_OSD_VSC_CTRL0));
- 
--		meson_canvas_config(priv->canvas, priv->canvas_id_osd1,
--				priv->viu.osd1_addr, priv->viu.osd1_stride,
--				priv->viu.osd1_height, MESON_CANVAS_WRAP_NONE,
--				MESON_CANVAS_BLKMODE_LINEAR, 0);
-+		if (!priv->viu.osd1_afbcd)
-+			meson_canvas_config(priv->canvas, priv->canvas_id_osd1,
-+					    priv->viu.osd1_addr,
-+					    priv->viu.osd1_stride,
-+					    priv->viu.osd1_height,
-+					    MESON_CANVAS_WRAP_NONE,
-+					    MESON_CANVAS_BLKMODE_LINEAR, 0);
- 
- 		/* Enable OSD1 */
- 		if (meson_crtc->enable_osd1)
- 			meson_crtc->enable_osd1(priv);
- 
-+		if (priv->viu.osd1_afbcd) {
-+			priv->afbcd.ops->reset(priv);
-+			priv->afbcd.ops->setup(priv);
-+			priv->afbcd.ops->enable(priv);
-+			meson_crtc->vsync_forced = true;
-+		}
-+
- 		priv->viu.osd1_commit = false;
- 	}
- 
-@@ -545,6 +599,9 @@ void meson_crtc_irq(struct meson_drm *priv)
- 		priv->viu.vd1_commit = false;
- 	}
- 
-+	if (meson_crtc->vsync_disabled)
-+		return;
-+
- 	drm_crtc_handle_vblank(priv->crtc);
- 
- 	spin_lock_irqsave(&priv->drm->event_lock, flags);
-@@ -581,10 +638,20 @@ int meson_crtc_create(struct meson_drm *priv)
- 		meson_crtc->enable_osd1 = meson_g12a_crtc_enable_osd1;
- 		meson_crtc->enable_vd1 = meson_g12a_crtc_enable_vd1;
- 		meson_crtc->viu_offset = MESON_G12A_VIU_OFFSET;
-+		meson_crtc->enable_osd1_afbc =
-+					meson_crtc_g12a_enable_osd1_afbc;
-+		meson_crtc->disable_osd1_afbc =
-+					meson_viu_g12a_disable_osd1_afbc;
- 		drm_crtc_helper_add(crtc, &meson_g12a_crtc_helper_funcs);
- 	} else {
- 		meson_crtc->enable_osd1 = meson_crtc_enable_osd1;
- 		meson_crtc->enable_vd1 = meson_crtc_enable_vd1;
-+		if (meson_vpu_is_compatible(priv, VPU_COMPATIBLE_GXM)) {
-+			meson_crtc->enable_osd1_afbc =
-+					meson_viu_gxm_enable_osd1_afbc;
-+			meson_crtc->disable_osd1_afbc =
-+					meson_viu_gxm_disable_osd1_afbc;
-+		}
- 		drm_crtc_helper_add(crtc, &meson_crtc_helper_funcs);
- 	}
- 
--- 
-2.22.0
+>
+> You should add a "Fixes:" tag so it can be backported on stable kernels.
+>
+>> 
+>> Signed-off-by: Nan Li <nan.li@amlogic.com>
+>> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+>> ---
+>>  drivers/mmc/host/meson-gx-mmc.c | 15 ++++++++-------
+>>  1 file changed, 8 insertions(+), 7 deletions(-)
+>> 
+>> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+>> index e712315..7667e8a 100644
+>> --- a/drivers/mmc/host/meson-gx-mmc.c
+>> +++ b/drivers/mmc/host/meson-gx-mmc.c
+>> @@ -173,6 +173,7 @@ struct meson_host {
+>>  	int irq;
+>>  
+>>  	bool vqmmc_enabled;
+>> +	bool needs_pre_post_req;
+>>  };
+>>  
+>>  #define CMD_CFG_LENGTH_MASK GENMASK(8, 0)
+>> @@ -654,6 +655,8 @@ static void meson_mmc_request_done(struct mmc_host *mmc,
+>>  	struct meson_host *host = mmc_priv(mmc);
+>>  
+>>  	host->cmd = NULL;
+>> +	if (host->needs_pre_post_req)
+>> +		meson_mmc_post_req(mmc, mrq, 0);
+>>  	mmc_request_done(host->mmc, mrq);
+>>  }
+>>  
+>> @@ -803,25 +806,23 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
+>>  static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
+>>  {
+>>  	struct meson_host *host = mmc_priv(mmc);
+>> -	bool needs_pre_post_req = mrq->data &&
+>> +
+>> +	host->needs_pre_post_req = mrq->data &&
+>>  			!(mrq->data->host_cookie & SD_EMMC_PRE_REQ_DONE);
+>>  
+>> -	if (needs_pre_post_req) {
+>> +	if (host->needs_pre_post_req) {
+>>  		meson_mmc_get_transfer_mode(mmc, mrq);
+>>  		if (!meson_mmc_desc_chain_mode(mrq->data))
+>> -			needs_pre_post_req = false;
+>> +			host->needs_pre_post_req = false;
+>>  	}
+>>  
+>> -	if (needs_pre_post_req)
+>> +	if (host->needs_pre_post_req)
+>>  		meson_mmc_pre_req(mmc, mrq);
+>>  
+>>  	/* Stop execution */
+>>  	writel(0, host->regs + SD_EMMC_START);
+>>  
+>>  	meson_mmc_start_cmd(mmc, mrq->sbc ?: mrq->cmd);
+>> -
+>> -	if (needs_pre_post_req)
+>> -		meson_mmc_post_req(mmc, mrq, 0);
+>>  }
+
+The code around all this is getting quite difficult to follow eventhough
+it does not actually do much
+
+The root of the problem seems be that meson_mmc_pre_req() and
+meson_mmc_post_req() are passed to framework but also called manually
+from meson_mmc_request().
+
+Because of this, some code is added to make sure we don't do things twice.
+Maybe I'm missing something but it look weird ? Ulf, could you give us
+your view ?
+
+As far as I can tell:
+ * pre_req : determine if we use CHAIN_MODE or not AND
+             dma_map_sg() if we do
+ * post_req : dma_unmap_sg() if previously allocated
+
+Do we really need to do all this meson_mmc_request() ? Shouldn't we let the
+framework do the calls to pre/post_req for us ?
+
+>>  
+>>  static void meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
+>>
+> Neil
 
 
 _______________________________________________
