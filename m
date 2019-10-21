@@ -2,68 +2,89 @@ Return-Path: <SRS0=mlCU=YO=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIM_SIGNED,DKIM_VALID,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A67F9C47E49
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 13:14:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9C909CA9EB0
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 13:23:37 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 76F32214AE
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 13:14:20 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 72A79214AE
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 13:23:37 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZrcT6hV6"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 76F32214AE
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=xs4all.nl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="neoopJot";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="WNtwQkYb"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 72A79214AE
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=k2+4Hf12R0wS1XHq26ZR54a+sTiXDBWgTmnv/ELs+7o=; b=ZrcT6hV6zjjKlk
-	S0xf9adbXzxIgfPjfEilESOI3ennmVsU22agJ58FJ/0sUMEcYGaynyjixISU72p+q95gsoGyZELRQ
-	6f1wz17D38QxLaHMZNdqci6Hr6SQj8b8F8SI4tnGAGBlpJkl1FkZQAcfuqgFas2ZlHVk9l3vLQ8cG
-	MgvS0XV4+IYKL15CKkSkq0XQNfxFE02N2/DFn3YUqHajMhzHpFc/G3zn0+hw3QNBFaKbHvMwmFVn8
-	aQMuiQrkAFKfoOL1ps4V3ZtNpD2wG2t5c3V7Qad4iZNj7G4TNIqAQBEpcm9ir+pU8e0jIUHBTXjij
-	bbIb7sXEd2Ho2fmpuT/w==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=OZIQNBnenrdDR6227o3Zvg+wnQpaEn7lIYelDHdl8GU=; b=neoopJotc854xz
+	gx9f09+WUCr/c6PdooJxo2j8o7bW9QeNofxjfBPmTQBmitQtMzHQ7R70CMRAX/bCOAYMnaTpXriAV
+	DQIOSUcsWIN1Ps/2qGU4jto6V9d9AYYK/lXReGVXUM7fjAUR0v7Oz6SSfXQaOGazUDxR0P07KX4y8
+	IlYo04eAIOB4GFfGy+Rtz0AKXKRsZq3eqJUJRu815yiqCtJmXrLdfPJsUj6CH0LYs7Cy7lXWoT51t
+	enthUN8qCzgkPuD7i7JS8PUbpdaIk+wwlHlJfUuy5o3xalbZ+OhUTfNUZMq3jpLuboCoJHyU42zBL
+	heGDyAvzP0HIGG1cKy5g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iMXVl-0002Mi-Mq; Mon, 21 Oct 2019 13:14:13 +0000
-Received: from lb2-smtp-cloud7.xs4all.net ([194.109.24.28])
+	id 1iMXek-0006yn-PD; Mon, 21 Oct 2019 13:23:30 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iMXVb-00029F-Q2; Mon, 21 Oct 2019 13:14:05 +0000
-Received: from [192.168.2.10] ([46.9.232.237])
- by smtp-cloud7.xs4all.net with ESMTPA
- id MXVRiV2Nbo1ZhMXVUiMOId; Mon, 21 Oct 2019 15:13:58 +0200
-Subject: Re: [PATCH 0/2] media: meson: vdec: Add compliant H264 support
-To: Maxime Jourdan <mjourdan@baylibre.com>
-References: <20191007145909.29979-1-mjourdan@baylibre.com>
- <8563127e-fe2c-a633-556b-8a883cebb171@xs4all.nl>
- <977c48e8-8275-c96a-688b-ccfbb873eb79@baylibre.com>
- <65a88bfc-d82b-1487-7983-507149b11673@xs4all.nl>
- <acef4f1e-0b59-30f5-f31f-9fc22f393072@baylibre.com>
- <fb6edb95-069e-abeb-416e-2327da0a87ab@xs4all.nl>
- <CAMO6nazotuiZQROoA4+b8tHZ-qpR4TS1RZWV6=fyPVCdsxz1Zg@mail.gmail.com>
-From: Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <92571553-392c-6c39-89a7-7fc5d311e6fc@xs4all.nl>
-Date: Mon, 21 Oct 2019 15:13:53 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+ id 1iMXeh-0006xw-2h
+ for linux-amlogic@lists.infradead.org; Mon, 21 Oct 2019 13:23:29 +0000
+Received: by mail-wm1-x331.google.com with SMTP id q13so3274087wmj.0
+ for <linux-amlogic@lists.infradead.org>; Mon, 21 Oct 2019 06:23:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=CDpQCC3yQaQMDA2jPXME+EFagP8LNoO6pNZidHidAbs=;
+ b=WNtwQkYbCYYxfHd5g5Gg7/NxW/2r1vdfDzKQVM1p0GqmijVDR7ay0t8fQd49OhlVH8
+ v1xTzmO7RCzs8DIzM+GC1R+O/e9f4IXYhWphWBnRs1g9+uSjZ/UW9LNNQ6R6Xe054ORJ
+ rZW1kH/clT1ugXzyFKnFBKBW/sYlqn3lsi+OjTQ52Ws6u5zyNAJmXuHGRrGD/FU/o34N
+ 6VMaoced7C9knxUN7e5A0DpnK4WQdf+FwmTioMRySDT67OUqbhIt1+3pNerW9RgQp6Rt
+ 0DUE2wRdqWq04NS2c5o1sne3YLzKdy0wiW05agOS2RdADaTvlKraAjujh/a4cgF4HKUu
+ o6nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=CDpQCC3yQaQMDA2jPXME+EFagP8LNoO6pNZidHidAbs=;
+ b=oCnvcuFQFGZ11Ez1EW8iXvlKxYuIQwxjqk8a18DlKRV9d13pJq3OCK66m8xTO8g3+v
+ ++ZgDujMjlRwE8et3J+mdrldEEhmJYQ/AoJzesJLTt/uZgB9hUUc1Lj2R+AP9KW5fBHx
+ lkbtWa617Lrku1xxjf4efqtMd6XXwVxi2VZFgzJ3PcmoL08lL+OP2Lb4IHHEzDlJlhQA
+ 4eT6jsfpormN3yTIHUCzohq312NmLVHvuzxBtwzV0cASLBey0AY0EiaEi1ZrBVRUejej
+ F69uES7MajfwSUBaMQqYFi7RyCGaCiP0ZWRh++GqnjwhjL9lVCGYLCvuZrpN6v1By+jR
+ ijRg==
+X-Gm-Message-State: APjAAAUNh1ec1BzjymR43wBSMX42MuD5ewq+hRqTb6R2YrVJS2ThzesE
+ XJHWFa2ZHYFAZg3p57Ux6FkDOPb+ygzV5g==
+X-Google-Smtp-Source: APXvYqzMvhIv/kFvCKgvdmqwvVk+AwoAtWuBDkfvwp/J9cbsOyOGAGd2wS++y4H9TfIXc0XMmtYvFg==
+X-Received: by 2002:a05:600c:3cb:: with SMTP id
+ z11mr17883575wmd.134.1571664204796; 
+ Mon, 21 Oct 2019 06:23:24 -0700 (PDT)
+Received: from localhost.localdomain
+ (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id k8sm29169887wrg.15.2019.10.21.06.23.23
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 21 Oct 2019 06:23:24 -0700 (PDT)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: robh+dt@kernel.org
+Subject: [PATCH] dt-bindings: usb: dwc3: Move Amlogic G12A DWC3 Glue Bindings
+ to YAML schemas
+Date: Mon, 21 Oct 2019 15:23:22 +0200
+Message-Id: <20191021132322.25256-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-In-Reply-To: <CAMO6nazotuiZQROoA4+b8tHZ-qpR4TS1RZWV6=fyPVCdsxz1Zg@mail.gmail.com>
-Content-Language: en-US
-X-CMAE-Envelope: MS4wfCQT1FobNixHI0o87HlV/5RxUjJJ9LfxkepsjS/0tVIOf38xhZbKTitY70US27np3BGtVuCh6NeffOlTSi/ziGHapsCog7Kv55IdfGGTZt3dEMCBpoMH
- qviia/ZxqTaXUT2wV9pEDqtCd95P1AsLaW80iEXddDtI0IGXs2vcNN4JuQfXbOme0WNAQU5g5kG0KpKw9KSC4/ZARovPUfzsH57di8rMy81bkLGSegATEtHF
- Z5/RKPztwmw3ehpmDdZB9I3tTPDZnNS3pVxrncwwKvuL1JcNN/C84+w4fYTKqq9fvGGcNsO6VcPu4wQBZg1bLhLEa3IUkB/oR0xOIU2oDRx8qPS2axg559mg
- ZQLZ5CUOMDTZ8y7dq2zr/aC+8yHBEXChJWMZTZVmuH5YZPx5BVI0qYIAjp8MTj4tKDlYuN47p7//mfKtuN3IjC/8hH+ciFKXBQ90UoH759tejHAC6B561TJ+
- WThmxoY2IzVGUV1xAKwdn+6pEN/Z9Nae05iiXCMBkSw71YVl4Gb1fNzVlf22eEwpCYOCW+9chbcztY/+2xxmNOad16dUiYrtwEV2vw==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191021_061404_005488_243C1B2E 
-X-CRM114-Status: GOOD (  20.98  )
+X-CRM114-CacheID: sfid-20191021_062327_184598_3FEDDC50 
+X-CRM114-Status: GOOD (  16.82  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,172 +96,261 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Linux Media Mailing List <linux-media@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Hans Verkuil <hans.verkuil@cisco.com>, linux-amlogic@lists.infradead.org,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Cc: devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 10/18/19 9:50 AM, Maxime Jourdan wrote:
-> On Wed, Oct 9, 2019 at 2:01 PM Hans Verkuil <hverkuil@xs4all.nl> wrote:
->>
->> On 10/8/19 3:40 PM, Maxime Jourdan wrote:
->>> On 07/10/2019 18:39, Hans Verkuil wrote:
->>>> On 10/7/19 6:24 PM, Maxime Jourdan wrote:
->>>>> On 07/10/2019 17:12, Hans Verkuil wrote:
->>>>>> On 10/7/19 4:59 PM, Maxime Jourdan wrote:
->>>>>>> Hello,
->>>>>>>
->>>>>>> This patch series aims to bring H.264 support as well as compliance update
->>>>>>> to the amlogic stateful video decoder driver.
->>>>>>>
->>>>>>> There is 1 issue that remains currently:
->>>>>>>
->>>>>>>    - The following codepath had to be commented out from v4l2-compliance as
->>>>>>> it led to stalling:
->>>>>>>
->>>>>>> if (node->codec_mask & STATEFUL_DECODER) {
->>>>>>>      struct v4l2_decoder_cmd cmd;
->>>>>>>      buffer buf_cap(m2m_q);
->>>>>>>
->>>>>>>      memset(&cmd, 0, sizeof(cmd));
->>>>>>>      cmd.cmd = V4L2_DEC_CMD_STOP;
->>>>>>>
->>>>>>>      /* No buffers are queued, call STREAMON, then STOP */
->>>>>>>      fail_on_test(node->streamon(q.g_type()));
->>>>>>>      fail_on_test(node->streamon(m2m_q.g_type()));
->>>>>>>      fail_on_test(doioctl(node, VIDIOC_DECODER_CMD, &cmd));
->>>>>>>
->>>>>>>      fail_on_test(buf_cap.querybuf(node, 0));
->>>>>>>      fail_on_test(buf_cap.qbuf(node));
->>>>>>>      fail_on_test(buf_cap.dqbuf(node));
->>>>>>>      fail_on_test(!(buf_cap.g_flags() & V4L2_BUF_FLAG_LAST));
->>>>>>>      for (unsigned p = 0; p < buf_cap.g_num_planes(); p++)
->>>>>>>          fail_on_test(buf_cap.g_bytesused(p));
->>>>>>>      fail_on_test(node->streamoff(q.g_type()));
->>>>>>>      fail_on_test(node->streamoff(m2m_q.g_type()));
->>>>>>>
->>>>>>>      /* Call STREAMON, queue one CAPTURE buffer, then STOP */
->>>>>>>      fail_on_test(node->streamon(q.g_type()));
->>>>>>>      fail_on_test(node->streamon(m2m_q.g_type()));
->>>>>>>      fail_on_test(buf_cap.querybuf(node, 0));
->>>>>>>      fail_on_test(buf_cap.qbuf(node));
->>>>>>>      fail_on_test(doioctl(node, VIDIOC_DECODER_CMD, &cmd));
->>>>>>>
->>>>>>>      fail_on_test(buf_cap.dqbuf(node));
->>>>>>>      fail_on_test(!(buf_cap.g_flags() & V4L2_BUF_FLAG_LAST));
->>>>>>>      for (unsigned p = 0; p < buf_cap.g_num_planes(); p++)
->>>>>>>          fail_on_test(buf_cap.g_bytesused(p));
->>>>>>>      fail_on_test(node->streamoff(q.g_type()));
->>>>>>>      fail_on_test(node->streamoff(m2m_q.g_type()));
->>>>>>> }
->>>>>>>
->>>>>>> The reason for this is because the driver has a limitation where all
->>>>>>> capturebuffers must be queued to the driver before STREAMON is effective.
->>>>>>> The firmware needs to know in advance what all the buffers are before
->>>>>>> starting to decode.
->>>>>>> This limitation is enforced via q->min_buffers_needed.
->>>>>>> As such, in this compliance codepath, STREAMON is never actually called
->>>>>>> driver-side and there is a stall on fail_on_test(buf_cap.dqbuf(node));
->>>>>>
->>>>>> That's interesting. I will have to look more closely at this.
->>
->> This requires a helper function in videobuf2-v4l2.c.
->>
->> In vdec_decoder_cmd you would need code like this:
->>
->>         if (!vb2_start_streaming_called(&capture_queue)) {
->>                 vb2_dequeue_empty_last_buf(&capture_queue);
->>                 return 0;
->>         }
->>
->> The vb2_dequeue_empty_last_buf (function name can probably be improved upon!)
->> does nothing if no capture buffers were queued, otherwise it takes the first
->> buffer, sets the LAST flag and sets bytesused to 0 and marks it as DONE.
->>
->> The driver cannot do this directly, since the buffers were never queued to the
->> driver and are owned by vb2.
->>
->> This is something that needs to be done for any codec driver that sets
->> min_buffers_needed to a value > 1.
->>
->> The vb2 function would look something like this:
->>
->> void vb2_dqbuf_empty_last_buf(struct vb2_queue *q)
->> {
->>         struct vb2_buffer *vb;
->>         struct vb2_v4l2_buffer *vbuf;
->>         unsigned int i;
->>
->>         if (WARN_ON(q->is_output))
->>                 return;
->>         if (list_empty(&q->queued_list))
->>                 return;
->>         vb = list_first_entry(&q->queued_list, struct vb2_buffer, queued_entry);
->>         list_del(&vb->queued_entry);
->>         for (i = 0; i < vb->num_planes; i++)
->>                 vb2_set_plane_payload(vb, i, 0)
->>         vbuf = to_vb2_v4l2_buffer(vb);
->>         vbuf->flags |= V4L2_BUF_FLAG_LAST;
->>         vb2_buffer_done(vb, VB2_BUF_STATE_DONE);
->> }
->> EXPORT_SYMBOL_GPL(vb2_dqbuf_empty_last_buf);
->>
->> Neither compiled, nor tested, and I think this should be in v4l2-mem2mem.c instead of
->> in videobuf2-v4l2.c since this is very m2m specific.
->>
->> So see this as a suggestion :-)
->>
->> Anyway, the key take-away from this is that userspace does not know if your driver
->> behaves the way it does, so STOP should still produce a sane expected result.
->>
->> Which in this is just a single empty capture buffer marked LAST.
-> 
-> Thanks, this makes sense. It doesn't quite fit the current usage
-> unfortunately as the test in v4l2-compliance goes like this:
-> 
-> fail_on_test(doioctl(node, VIDIOC_DECODER_CMD, &cmd));
-> fail_on_test(buf_cap.querybuf(node, 0));
-> fail_on_test(buf_cap.qbuf(node));
-> fail_on_test(buf_cap.dqbuf(node));
-> fail_on_test(!(buf_cap.g_flags() & V4L2_BUF_FLAG_LAST));
-> 
-> Since the buffer is queued after issuing the stop cmd, it is not
-> possible to flag it as DONE in vdec_decoder_cmd.
-> 
-> A solution would be to hijack vidioc_qbuf and flag the buffer if a
-> stop has been issued previously and the capture queue is not
-> streaming. Would that be okay ?
+Now that we have the DT validation in place, let's convert the device tree
+bindings for the Amlogic G12A DWC3 Glue Bindings over to a YAML schemas,
+the AXG and GXL glue bindings will be converted later.
 
-Actually, I am wondering if this shouldn't be integrated into
-v4l2-mem2mem.c. The corner case where you need to use an empty
-last buffer is really awkward for drivers. So perhaps this should
-be integrated into v4l2-mem2mem.c where you can mark that the
-next queued buffer shall be immediately returned as an empty buffer
-with the LAST flag set.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ .../devicetree/bindings/usb/amlogic,dwc3.txt  |  88 ------------
+ .../usb/amlogic,meson-g12a-usb-ctrl.yaml      | 132 ++++++++++++++++++
+ 2 files changed, 132 insertions(+), 88 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
 
-Since v4l2-mem2mem already has its own vidioc_qbuf function it can
-easily be added there, and I think that's a much better place than
-having to touch vb2 itself.
-
-Regards,
-
-	Hans
-
-> 
-> Maxime
-> 
->>
->> Regards,
->>
->>         Hans
+diff --git a/Documentation/devicetree/bindings/usb/amlogic,dwc3.txt b/Documentation/devicetree/bindings/usb/amlogic,dwc3.txt
+index b9f04e617eb7..9a8b631904fd 100644
+--- a/Documentation/devicetree/bindings/usb/amlogic,dwc3.txt
++++ b/Documentation/devicetree/bindings/usb/amlogic,dwc3.txt
+@@ -40,91 +40,3 @@ Example device nodes:
+ 				phy-names = "usb2-phy", "usb3-phy";
+ 			};
+ 		};
+-
+-Amlogic Meson G12A DWC3 USB SoC Controller Glue
+-
+-The Amlogic G12A embeds a DWC3 USB IP Core configured for USB2 and USB3
+-in host-only mode, and a DWC2 IP Core configured for USB2 peripheral mode
+-only.
+-
+-A glue connects the DWC3 core to USB2 PHYs and optionnaly to an USB3 PHY.
+-
+-One of the USB2 PHY can be re-routed in peripheral mode to a DWC2 USB IP.
+-
+-The DWC3 Glue controls the PHY routing and power, an interrupt line is
+-connected to the Glue to serve as OTG ID change detection.
+-
+-Required properties:
+-- compatible:	Should be "amlogic,meson-g12a-usb-ctrl"
+-- clocks:	a handle for the "USB" clock
+-- resets:	a handle for the shared "USB" reset line
+-- reg:		The base address and length of the registers
+-- interrupts:	the interrupt specifier for the OTG detection
+-- phys: 	handle to used PHYs on the system
+-	- a <0> phandle can be used if a PHY is not used
+-- phy-names:	names of the used PHYs on the system :
+-	- "usb2-phy0" for USB2 PHY0 if USBHOST_A port is used
+-	- "usb2-phy1" for USB2 PHY1 if USBOTG_B port is used
+-	- "usb3-phy0" for USB3 PHY if USB3_0 is used
+-- dr_mode:	should be "host", "peripheral", or "otg" depending on
+-	the usage and configuration of the OTG Capable port.
+-	- "host" and "peripheral" means a fixed Host or Device only connection
+-	- "otg" means the port can be used as both Host or Device and
+-	  be switched automatically using the OTG ID pin.
+-
+-Optional properties:
+-- vbus-supply:	should be a phandle to the regulator controlling the VBUS
+-		power supply when used in OTG switchable mode
+-
+-Required child nodes:
+-
+-A child node must exist to represent the core DWC3 IP block. The name of
+-the node is not important. The content of the node is defined in dwc3.txt.
+-
+-A child node must exist to represent the core DWC2 IP block. The name of
+-the node is not important. The content of the node is defined in dwc2.txt.
+-
+-PHY documentation is provided in the following places:
+-- Documentation/devicetree/bindings/phy/meson-g12a-usb2-phy.txt
+-- Documentation/devicetree/bindings/phy/meson-g12a-usb3-pcie-phy.txt
+-
+-Example device nodes:
+-	usb: usb@ffe09000 {
+-			compatible = "amlogic,meson-g12a-usb-ctrl";
+-			reg = <0x0 0xffe09000 0x0 0xa0>;
+-			interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+-			#address-cells = <2>;
+-			#size-cells = <2>;
+-			ranges;
+-
+-			clocks = <&clkc CLKID_USB>;
+-			resets = <&reset RESET_USB>;
+-
+-			dr_mode = "otg";
+-
+-			phys = <&usb2_phy0>, <&usb2_phy1>,
+-			       <&usb3_pcie_phy PHY_TYPE_USB3>;
+-			phy-names = "usb2-phy0", "usb2-phy1", "usb3-phy0";
+-
+-			dwc2: usb@ff400000 {
+-				compatible = "amlogic,meson-g12a-usb", "snps,dwc2";
+-				reg = <0x0 0xff400000 0x0 0x40000>;
+-				interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+-				clocks = <&clkc CLKID_USB1_DDR_BRIDGE>;
+-				clock-names = "ddr";
+-				phys = <&usb2_phy1>;
+-				dr_mode = "peripheral";
+-				g-rx-fifo-size = <192>;
+-				g-np-tx-fifo-size = <128>;
+-				g-tx-fifo-size = <128 128 16 16 16>;
+-			};
+-
+-			dwc3: usb@ff500000 {
+-				compatible = "snps,dwc3";
+-				reg = <0x0 0xff500000 0x0 0x100000>;
+-				interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
+-				dr_mode = "host";
+-				snps,dis_u2_susphy_quirk;
+-				snps,quirk-frame-length-adjustment;
+-			};
+-	};
+diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+new file mode 100644
+index 000000000000..45bcc98ee9a4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+@@ -0,0 +1,132 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2019 BayLibre, SAS
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/usb/amlogic,meson-g12a-usb-ctrl.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Amlogic Meson G12A DWC3 USB SoC Controller Glue
++
++maintainers:
++  - Neil Armstrong <narmstrong@baylibre.com>
++
++description: |
++  The Amlogic G12A embeds a DWC3 USB IP Core configured for USB2 and USB3
++  in host-only mode, and a DWC2 IP Core configured for USB2 peripheral mode
++  only.
++
++  A glue connects the DWC3 core to USB2 PHYs and optionnaly to an USB3 PHY.
++
++  One of the USB2 PHY can be re-routed in peripheral mode to a DWC2 USB IP.
++
++  The DWC3 Glue controls the PHY routing and power, an interrupt line is
++  connected to the Glue to serve as OTG ID change detection.
++
++properties:
++  compatible:
++    enum:
++      - amlogic,meson-g12a-usb-ctrl
++
++  ranges: true
++
++  "#address-cells":
++    enum: [ 1, 2 ]
++
++  "#size-cells":
++    enum: [ 1, 2 ]
++
++  clocks:
++    minItems: 1
++
++  resets:
++    minItems: 1
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  phy-names:
++    items:
++      - const: usb2-phy0 # USB2 PHY0 if USBHOST_A port is used
++      - const: usb2-phy1 # USB2 PHY1 if USBOTG_B port is used
++      - const: usb3-phy0 # USB3 PHY if USB3_0 is used
++
++  phys:
++    minItems: 1
++    maxItems: 3
++
++  dr_mode:
++    enum:
++      - host # fixed Host connection
++      - peripheral # fixed Device connection
++      - otg # Host or Device and switched automatically using the OTG ID pin
++
++  power-domains:
++    maxItems: 1
++
++  vbus-supply:
++    description: VBUS power supply when used in OTG switchable mode
++    maxItems: 1
++
++patternProperties:
++  "^usb@[0-9a-f]+$":
++    type: object
++
++additionalProperties: false
++
++required:
++  - compatible
++  - "#address-cells"
++  - "#size-cells"
++  - ranges
++  - clocks
++  - resets
++  - reg
++  - interrupts
++  - phy-names
++  - phys
++  - dr_mode
++
++examples:
++  - |
++    usb: usb@ffe09000 {
++          compatible = "amlogic,meson-g12a-usb-ctrl";
++          reg = <0x0 0xffe09000 0x0 0xa0>;
++          interrupts = <16>;
++          #address-cells = <1>;
++          #size-cells = <1>;
++          ranges;
++
++          clocks = <&clkc_usb>;
++          resets = <&reset_usb>;
++
++          dr_mode = "otg";
++
++          phys = <&usb2_phy0>, <&usb2_phy1>, <&usb3_phy0>;
++          phy-names = "usb2-phy0", "usb2-phy1", "usb3-phy0";
++
++          dwc2: usb@ff400000 {
++              compatible = "amlogic,meson-g12a-usb", "snps,dwc2";
++              reg = <0xff400000 0x40000>;
++              interrupts = <31>;
++              clocks = <&clkc_usb1>;
++              clock-names = "ddr";
++              phys = <&usb2_phy1>;
++              dr_mode = "peripheral";
++              g-rx-fifo-size = <192>;
++              g-np-tx-fifo-size = <128>;
++              g-tx-fifo-size = <128 128 16 16 16>;
++          };
++
++          dwc3: usb@ff500000 {
++              compatible = "snps,dwc3";
++              reg = <0xff500000 0x100000>;
++              interrupts = <30>;
++              dr_mode = "host";
++              snps,dis_u2_susphy_quirk;
++              snps,quirk-frame-length-adjustment;
++          };
++    };
++
+-- 
+2.22.0
 
 
 _______________________________________________
