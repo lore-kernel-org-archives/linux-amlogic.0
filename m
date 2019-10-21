@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E36CECA9EB5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 09:19:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7A4B8CA9EAF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 10:44:14 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B07FF20659
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 09:19:51 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 440B920882
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 10:44:14 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="p3aSih4G";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="p4S4M34g"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B07FF20659
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="P0iRNTxy";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="dysGK81O"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 440B920882
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,68 +27,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=I8GNSw+XdC60QrNw/cgTBRnIancXuBwaPlnXhxq6VcY=; b=p3aSih4G/Uz81DonXU6/XdnTyo
-	pdsoZzVa8aey6OAHF8I83CYjIjlWwpNB8E5+PChx/2R3C/7jWxlsi1a5pGj3ekvZqC7MRs87++AtI
-	fXG6xBH0utKtjxXoO6AAdhKrgZ7UdUyM130e0M0wZGB67ROloK34vCf/mKua/wqlmqqoCp32ZPn1M
-	Jra6BxZoRPhcpN6pX/U5gC8pEwgo/l5C4QyfD3XL52rKzfIDiE2AsA028Ezf+dy+a0KqDIidREmwO
-	MNRmSjL+L1eqBXFHTAu/bBaN2w6UcF3lk5cAmgXcUXqhRbREb/zMGU8Mg/Z1yZmo81k0oHQ8wMy8e
-	tz62rlkQ==;
+	bh=Dy6lYL2j08WNr7I1pSGP5tq+eTU3huERncd/vurIiYc=; b=P0iRNTxydRuN7LdQg1biqohEFf
+	UnMRFhn4H5ewDDd6Yx0e5gD+LGalDdTPi/pHTyVgQL4iDX+yEdgW3Mad3hnhFOS0y33g1xeKjUZ0y
+	1kNbH5e4EBnqyC4tqPT2O3L36VPXEVUu0khrIMFD80JseMqylt4y0jUPgaSym+KTL2EK0djeZh78D
+	HURFQpMjSXGZHBMqWL+M5GrqyDLodBS7zH6RS/QaKWwdwd9AEp8ZmyZf+zW2FglZyDZLxzGmIFbV2
+	dkS6K67CTOPkawu0KaJzkbi0SkP6gdJsVYgWXbdhJpQKHCSxCPFO3kcYXokMpMOvwIk2wRdPOEGce
+	T5rcIbnQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iMTqs-00068P-9S; Mon, 21 Oct 2019 09:19:46 +0000
+	id 1iMVAT-0001yX-Ls; Mon, 21 Oct 2019 10:44:05 +0000
 Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iMToW-0004A6-VL
- for linux-amlogic@lists.infradead.org; Mon, 21 Oct 2019 09:17:24 +0000
-Received: by mail-wm1-x342.google.com with SMTP id f22so11953657wmc.2
- for <linux-amlogic@lists.infradead.org>; Mon, 21 Oct 2019 02:17:19 -0700 (PDT)
+ id 1iMVAN-0001x6-Ja
+ for linux-amlogic@lists.infradead.org; Mon, 21 Oct 2019 10:44:03 +0000
+Received: by mail-wm1-x342.google.com with SMTP id c22so3138677wmd.1
+ for <linux-amlogic@lists.infradead.org>; Mon, 21 Oct 2019 03:43:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=references:user-agent:from:to:cc:subject:in-reply-to:date
  :message-id:mime-version;
- bh=fyXVzNh3bAaYBk42fBdJzICclG09jxX+kSBbHAatABk=;
- b=p4S4M34gvq7oiAB7J7289QTGzutBGVytHXmZcMwYdJALNOpROj/preCC22gLSwW5TA
- SZs3A+KB5ZLSMPlDwl+QqnbvsdWVWFULUMjp9tYBU0MwSYNvYf9UUTMNbRmzMM1EnayT
- 578LwJ+f5/z6e/UV0xFr1Tgnd3uik7trySc2j5I4N0yn8wCA9nzqA/oR4CQk7UXXjaTP
- +VKoQ4TUgX0iNs0XTVtH+X7HcNzxcButh2wy1rSmARSZmcuZm14bzgbx8Vq7CvY2qMMX
- f/lEMkuP1Evq6gn2STPlsSqrhq3BURnK3x9rCVJ2tO/KCFF3HQ/jv3lr8L34ooUyPPHi
- u5lw==
+ bh=scLxrXB2JkKl6vta+3mTkAzs1I5wCAnHIXFyhshFKsc=;
+ b=dysGK81OTtl6t75l0UEaZDJAkBvHfbMOONSr32fRuIoZnukYBsO03bIEDhFRqiRLuF
+ 1ETEdcHV+Uxpa9tn5lLintCYd1hQu3+wyFUWH+7+7Hhmh0yEBQOa5G22W5d1qIqA29lV
+ 416Z9dw+VYQcV/4MPjeU6oSSKLXxy/gb6+Yh7iKyPL1cCBdS7JR3gtCXDJjULMwSh9dT
+ 3zgirFv2ndbYtCiDgvDrMKG7ZF6iQJcRvTqo5hPvbCRUubbMCs4aI3wz1CsqSN6YEFnA
+ E3/41go93Dw5cVjmfhOpEMVeGQJPGi2Oj8tRzI+EXfijisFpWvSyOByOzEi+lvvPSWJH
+ 23WA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:references:user-agent:from:to:cc:subject
  :in-reply-to:date:message-id:mime-version;
- bh=fyXVzNh3bAaYBk42fBdJzICclG09jxX+kSBbHAatABk=;
- b=jzjV7fdit+9AQHvrzX+liDQ4G1UB3aKvy6DYjXIzas5gPbidGPnS9N3BUCFNpksXLl
- kHaQaGLh+9KgaUf7ddhu9IGTwsmTgx7onSyMdBBhXZ9mwL4zGCKcqjVMk4AZ4LDV3lFo
- GIzns6sm0toX8rvqGcmM1a2TPqBaAyJfthRZEFAUCOi8uNvsLcYqYxKgLpQbee03F33M
- G5f6epWs4N8ecSYPrfiiHpryqYVwfIej6PJyihy8M4YYkqzj3/F0tj3ZTeLyGsqgRlFH
- 7fXQ4AaowtbzRWvNDfGvx++m5+R2HemEj+Romw38nYbOv4smRjBZPi4WrHCQ5Xix+50n
- r20A==
-X-Gm-Message-State: APjAAAUknSR4FJv/PpzeeB/YdMbaZB+8e8kIyvrmPZx6FzOrg3XZc74R
- oEKppd7o7qEVTwNYyVlZ8NDGZQ==
-X-Google-Smtp-Source: APXvYqw+pd4xa5lgOL/v6WOYLZfNpXm5PjaGaVCXIE4K2rWe5kR78a5m76bsxJwfBU9kEbLI6J5SiA==
-X-Received: by 2002:a1c:ed04:: with SMTP id l4mr19199540wmh.116.1571649437343; 
- Mon, 21 Oct 2019 02:17:17 -0700 (PDT)
+ bh=scLxrXB2JkKl6vta+3mTkAzs1I5wCAnHIXFyhshFKsc=;
+ b=BYTC4xdpdfzrTvlO6DC6uThNTWlIZlfF/BXQKLHfSkB/zJq/0hSqk0DjDx+G6OJOVk
+ 46ba/5BHfGjwflrZaxnNRr81atYtyMEzd9fwmvj7EAnxil5ylcnm2QbH7L8hdIg4vZwH
+ JyeZbssnwjVq2xy8ohfklbLakxlFHo53Ug8VYAfQI7Y51wuzFJ8zp03DFylKt9qulKeL
+ jKQKVSb3RyvlgTSojBpFJjz+wr69XpK4FDXc6UJfSeqY+BHra+NJfERVonQFaLZXBxgV
+ aDqOIyijU++p3ThKdJmO992UzSIWnzW8Fy2Bc4LeYaGDNiDTUJRFEmFRyc7pxzcXoZ9y
+ pCJQ==
+X-Gm-Message-State: APjAAAXZ733eYa/YtKe17RxnS41P/UYLRTO4hGjtuzm6AIqgsU71F783
+ BfJz1uKBil7nnbD2KDypjdODZw==
+X-Google-Smtp-Source: APXvYqyTGarYEKrL+o0UJk/nvWo3S5am2f5UZDs/T+KV0lTBla79+NMRHygXnrDNivC0+YnaU0B/kg==
+X-Received: by 2002:a05:600c:387:: with SMTP id
+ w7mr19099737wmd.138.1571654637571; 
+ Mon, 21 Oct 2019 03:43:57 -0700 (PDT)
 Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id f6sm13170666wrm.61.2019.10.21.02.17.16
+ by smtp.gmail.com with ESMTPSA id q66sm15277735wme.39.2019.10.21.03.43.56
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 21 Oct 2019 02:17:16 -0700 (PDT)
-References: <1571637541-119016-1-git-send-email-jianxin.pan@amlogic.com>
- <fc1f61e1-b156-11e6-3f21-c498d2f0a8c6@baylibre.com>
+ Mon, 21 Oct 2019 03:43:56 -0700 (PDT)
+References: <1571382865-41978-1-git-send-email-jian.hu@amlogic.com>
+ <1571382865-41978-2-git-send-email-jian.hu@amlogic.com>
 User-agent: mu4e 1.3.3; emacs 26.2
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Neil Armstrong <narmstrong@baylibre.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>, Ulf Hansson <ulf.hansson@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [PATCH] mmc: fix mmc dma operation
-In-reply-to: <fc1f61e1-b156-11e6-3f21-c498d2f0a8c6@baylibre.com>
-Date: Mon, 21 Oct 2019 11:17:15 +0200
-Message-ID: <1jwocybgpw.fsf@starbuckisacylon.baylibre.com>
+To: Jian Hu <jian.hu@amlogic.com>, Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: clock: meson: add A1 clock controller
+ bindings
+In-reply-to: <1571382865-41978-2-git-send-email-jian.hu@amlogic.com>
+Date: Mon, 21 Oct 2019 12:43:55 +0200
+Message-ID: <1jv9sibcpg.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191021_021721_200855_3115EC14 
-X-CRM114-Status: GOOD (  18.18  )
+X-CRM114-CacheID: sfid-20191021_034359_674438_FAE83F82 
+X-CRM114-Status: GOOD (  15.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,119 +100,315 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-mmc@vger.kernel.org,
- Nan Li <nan.li@amlogic.com>, Victor Wan <victor.wan@amlogic.com>,
- linux-kernel@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Victor Wan <victor.wan@amlogic.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, devicetree@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
+ Stephen Boyd <sboyd@kernel.org>, Qiufang Dai <qiufang.dai@amlogic.com>,
+ Chandle Zou <chandle.zou@amlogic.com>, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Mon 21 Oct 2019 at 09:57, Neil Armstrong <narmstrong@baylibre.com> wrote:
+On Fri 18 Oct 2019 at 09:14, Jian Hu <jian.hu@amlogic.com> wrote:
 
-> Hi,
+> Add the documentation to support Amlogic A1 clock driver,
+> and add A1 clock controller bindings.
 >
-> Thanks for the fix.
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> ---
+>  .../devicetree/bindings/clock/amlogic,a1-clkc.yaml | 143
+> +++++++++++++++++++++
+
+Those are 2 different controllers, not variants.
+One description (one file) per controller please
+
+>  include/dt-bindings/clock/a1-clkc.h                |  98 ++++++++++++++
+>  include/dt-bindings/clock/a1-pll-clkc.h            |  16 +++
+>  3 files changed, 257 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/a1-clkc.h
+>  create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
 >
-> First, you should add "mmc: meson-gx:" in the subject.
->
-> On 21/10/2019 07:59, Jianxin Pan wrote:
->> From: Nan Li <nan.li@amlogic.com>
->> 
->> In MMC dma transfer, the region requested by dma_map_sg() may be released
->> by dma_unmap_sg() before the transfer is completed.
->> 
->> Put the unmap operation in front of mmc_request_done() to avoid this.
->
-
-Since we have seen this problem (yet), could you briefly how you've
-triggered it ?
-
->
-> You should add a "Fixes:" tag so it can be backported on stable kernels.
->
->> 
->> Signed-off-by: Nan Li <nan.li@amlogic.com>
->> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
->> ---
->>  drivers/mmc/host/meson-gx-mmc.c | 15 ++++++++-------
->>  1 file changed, 8 insertions(+), 7 deletions(-)
->> 
->> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
->> index e712315..7667e8a 100644
->> --- a/drivers/mmc/host/meson-gx-mmc.c
->> +++ b/drivers/mmc/host/meson-gx-mmc.c
->> @@ -173,6 +173,7 @@ struct meson_host {
->>  	int irq;
->>  
->>  	bool vqmmc_enabled;
->> +	bool needs_pre_post_req;
->>  };
->>  
->>  #define CMD_CFG_LENGTH_MASK GENMASK(8, 0)
->> @@ -654,6 +655,8 @@ static void meson_mmc_request_done(struct mmc_host *mmc,
->>  	struct meson_host *host = mmc_priv(mmc);
->>  
->>  	host->cmd = NULL;
->> +	if (host->needs_pre_post_req)
->> +		meson_mmc_post_req(mmc, mrq, 0);
->>  	mmc_request_done(host->mmc, mrq);
->>  }
->>  
->> @@ -803,25 +806,23 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
->>  static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
->>  {
->>  	struct meson_host *host = mmc_priv(mmc);
->> -	bool needs_pre_post_req = mrq->data &&
->> +
->> +	host->needs_pre_post_req = mrq->data &&
->>  			!(mrq->data->host_cookie & SD_EMMC_PRE_REQ_DONE);
->>  
->> -	if (needs_pre_post_req) {
->> +	if (host->needs_pre_post_req) {
->>  		meson_mmc_get_transfer_mode(mmc, mrq);
->>  		if (!meson_mmc_desc_chain_mode(mrq->data))
->> -			needs_pre_post_req = false;
->> +			host->needs_pre_post_req = false;
->>  	}
->>  
->> -	if (needs_pre_post_req)
->> +	if (host->needs_pre_post_req)
->>  		meson_mmc_pre_req(mmc, mrq);
->>  
->>  	/* Stop execution */
->>  	writel(0, host->regs + SD_EMMC_START);
->>  
->>  	meson_mmc_start_cmd(mmc, mrq->sbc ?: mrq->cmd);
->> -
->> -	if (needs_pre_post_req)
->> -		meson_mmc_post_req(mmc, mrq, 0);
->>  }
-
-The code around all this is getting quite difficult to follow eventhough
-it does not actually do much
-
-The root of the problem seems be that meson_mmc_pre_req() and
-meson_mmc_post_req() are passed to framework but also called manually
-from meson_mmc_request().
-
-Because of this, some code is added to make sure we don't do things twice.
-Maybe I'm missing something but it look weird ? Ulf, could you give us
-your view ?
-
-As far as I can tell:
- * pre_req : determine if we use CHAIN_MODE or not AND
-             dma_map_sg() if we do
- * post_req : dma_unmap_sg() if previously allocated
-
-Do we really need to do all this meson_mmc_request() ? Shouldn't we let the
-framework do the calls to pre/post_req for us ?
-
->>  
->>  static void meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
->>
-> Neil
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+> new file mode 100644
+> index 0000000..b382eebe
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+> @@ -0,0 +1,143 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> +/*
+> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+> + */
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/clock/amlogic,a1-clkc.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Amlogic Meson A/C serials Clock Control Unit Device Tree Bindings
+> +
+> +maintainers:
+> +  - Neil Armstrong <narmstrong@baylibre.com>
+> +  - Jerome Brunet <jbrunet@baylibre.com>
+> +  - Jian Hu <jian.hu@jian.hu.com>
+> +
+> +description: |+
+> +  The clock controller node should be the child of a syscon node with the
+> +  required property:
+> +
+> +  - compatible:         Should be one of the following:
+> +                        "amlogic,meson-a-analog-sysctrl", "syscon", "simple-mfd"
+> +                        "amlogic,meson-a-periphs-sysctrl", "syscon", "simple-mfd"
+> +
+> +  Refer to the the bindings described in
+> +  Documentation/devicetree/bindings/mfd/syscon.txt
+> +
+> +properties:
+> +  "#clock-cells":
+> +    const: 1
+> +  compatible:
+> +    - enum:
+> +        - amlogic,a1-periphs-clkc
+> +        - amlogic,a1-pll-clkc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 2
+> +    maxItems: 6
+> +
+> +  clock-names:
+> +    minItems: 2
+> +    maxItems: 6
+> +
+> +required:
+> +  - "#clock-cells"
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +if:
+> +  properties:
+> +    compatible:
+> +      enum:
+> +        - amlogic,a1-periphs-clkc
+> +
+> +then:
+> +  properties:
+> +    clocks:
+> +      minItems: 2
+> +      maxItems: 2
+> +    items:
+> +     - description: fixed pll gate clock
+> +     - description: hifi pll gate clock
+> +
+> +    clock-names:
+> +      minItems: 2
+> +      maxItems: 2
+> +      items:
+> +        - const: xtal_fixpll
+> +        - const: xtal_hifipll
+> +
+> +else:
+> +  if:
+> +    properties:
+> +      compatible:
+> +        const: amlogic,a1-pll-clkc
+> +
+> +  then:
+> +    properties:
+> +      clocks:
+> +        minItems: 6
+> +        maxItems: 6
+> +        items:
+> +         - description: Input fixed pll div2
+> +         - description: Input fixed pll div3
+> +         - description: Input fixed pll div5
+> +         - description: Input fixed pll div7
+> +         - description: Periph Hifi pll
+> +         - description: Input Oscillator (usually at 24MHz)
+> +
+> +      clock-names:
+> +        minItems: 6
+> +        maxItems: 6
+> +        items:
+> +         - const: fclk_div2
+> +         - const: fclk_div3
+> +         - const: fclk_div5
+> +         - const: fclk_div7
+> +         - const: hifi_pll
+> +         - const: xtal
+> +
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    analog: system-controller@0 {
+> +        compatible = "amlogic,meson-a-analog-sysctrl",
+> +                     "simple-mfd", "syscon";
+> +        reg = <0 0x7c00 0 0x21c>;
+> +
+> +        clkc_pll: pll-clock-controller {
+> +                compatible = "amlogic,a1-pll-clkc";
+> +                #clock-cells = <1>;
+> +                clocks = <&clkc_periphs CLKID_XTAL_FIXPLL>,
+> +                         <&clkc_periphs CLKID_XTAL_HIFIPLL>;
+> +                clock-names = "xtal_fixpll", "xtal_hifipll";
+> +        };
+> +    };
+> +
+> +  - |
+> +    periphs: system-controller@1 {
+> +        compatible = "amlogic,meson-a-periphs-sysctrl",
+> +                     "simple-mfd", "syscon";
+> +        reg = <0 0x800 0 0x104>;
+> +
+> +        clkc_periphs: periphs-clock-controller {
+> +                compatible = "amlogic,a1-periphs-clkc";
+> +                #clock-cells = <1>;
+> +                clocks = <&clkc_pll CLKID_FCLK_DIV2>,
+> +                        <&clkc_pll CLKID_FCLK_DIV3>,
+> +                        <&clkc_pll CLKID_FCLK_DIV5>,
+> +                        <&clkc_pll CLKID_FCLK_DIV7>,
+> +                        <&clkc_pll CLKID_HIFI_PLL>,
+> +                        <&xtal>;
+> +                clock-names = "fclk_div2", "fclk_div3", "fclk_div5",
+> +                              "fclk_div7", "hifi_pll", "xtal";
+> +        };
+> +    };
+> diff --git a/include/dt-bindings/clock/a1-clkc.h b/include/dt-bindings/clock/a1-clkc.h
+> new file mode 100644
+> index 0000000..1ba0112
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/a1-clkc.h
+> @@ -0,0 +1,98 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> +/*
+> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+> + */
+> +
+> +#ifndef __A1_CLKC_H
+> +#define __A1_CLKC_H
+> +
+> +#define CLKID_XTAL_FIXPLL			1
+> +#define CLKID_XTAL_USB_PHY			2
+> +#define CLKID_XTAL_USB_CTRL			3
+> +#define CLKID_XTAL_HIFIPLL			4
+> +#define CLKID_XTAL_SYSPLL			5
+> +#define CLKID_XTAL_DDS				6
+> +#define CLKID_SYS_CLK				7
+> +#define CLKID_CLKTREE				8
+> +#define CLKID_RESET_CTRL			9
+> +#define CLKID_ANALOG_CTRL			10
+> +#define CLKID_PWR_CTRL				11
+> +#define CLKID_PAD_CTRL				12
+> +#define CLKID_SYS_CTRL				13
+> +#define CLKID_TEMP_SENSOR			14
+> +#define CLKID_AM2AXI_DIV			15
+> +#define CLKID_SPICC_B				16
+> +#define CLKID_SPICC_A				17
+> +#define CLKID_CLK_MSR				18
+> +#define CLKID_AUDIO				19
+> +#define CLKID_JTAG_CTRL				20
+> +#define CLKID_SARADC				21
+> +#define CLKID_PWM_EF				22
+> +#define CLKID_PWM_CD				23
+> +#define CLKID_PWM_AB				24
+> +#define CLKID_CEC				25
+> +#define CLKID_I2C_S				26
+> +#define CLKID_IR_CTRL				27
+> +#define CLKID_I2C_M_D				28
+> +#define CLKID_I2C_M_C				29
+> +#define CLKID_I2C_M_B				30
+> +#define CLKID_I2C_M_A				31
+> +#define CLKID_ACODEC				32
+> +#define CLKID_OTP				33
+> +#define CLKID_SD_EMMC_A				34
+> +#define CLKID_USB_PHY				35
+> +#define CLKID_USB_CTRL				36
+> +#define CLKID_SYS_DSPB				37
+> +#define CLKID_SYS_DSPA				38
+> +#define CLKID_DMA				39
+> +#define CLKID_IRQ_CTRL				40
+> +#define CLKID_NIC				41
+> +#define CLKID_GIC				42
+> +#define CLKID_UART_C				43
+> +#define CLKID_UART_B				44
+> +#define CLKID_UART_A				45
+> +#define CLKID_SYS_PSRAM				46
+> +#define CLKID_RSA				47
+> +#define CLKID_CORESIGHT				48
+> +#define CLKID_AM2AXI_VAD			49
+> +#define CLKID_AUDIO_VAD				50
+> +#define CLKID_AXI_DMC				51
+> +#define CLKID_AXI_PSRAM				52
+> +#define CLKID_RAMB				53
+> +#define CLKID_RAMA				54
+> +#define CLKID_AXI_SPIFC				55
+> +#define CLKID_AXI_NIC				56
+> +#define CLKID_AXI_DMA				57
+> +#define CLKID_CPU_CTRL				58
+> +#define CLKID_ROM				59
+> +#define CLKID_PROC_I2C				60
+> +#define CLKID_DSPA_SEL				61
+> +#define CLKID_DSPB_SEL				62
+> +#define CLKID_DSPA_EN_DSPA			63
+> +#define CLKID_DSPA_EN_NIC			64
+> +#define CLKID_DSPB_EN_DSPB			65
+> +#define CLKID_DSPB_EN_NIC			66
+> +#define CLKID_RTC_CLK				67
+> +#define CLKID_CECA_32K				68
+> +#define CLKID_CECB_32K				69
+> +#define CLKID_24M				70
+> +#define CLKID_12M				71
+> +#define CLKID_FCLK_DIV2_DIVN			72
+> +#define CLKID_GEN				73
+> +#define CLKID_SARADC_SEL			74
+> +#define CLKID_SARADC_CLK			75
+> +#define CLKID_PWM_A				76
+> +#define CLKID_PWM_B				77
+> +#define CLKID_PWM_C				78
+> +#define CLKID_PWM_D				79
+> +#define CLKID_PWM_E				80
+> +#define CLKID_PWM_F				81
+> +#define CLKID_SPICC				82
+> +#define CLKID_TS				83
+> +#define CLKID_SPIFC				84
+> +#define CLKID_USB_BUS				85
+> +#define CLKID_SD_EMMC				86
+> +#define CLKID_PSRAM				87
+> +#define CLKID_DMC				88
+> +
+> +#endif /* __A1_CLKC_H */
+> diff --git a/include/dt-bindings/clock/a1-pll-clkc.h b/include/dt-bindings/clock/a1-pll-clkc.h
+> new file mode 100644
+> index 0000000..58eae23
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/a1-pll-clkc.h
+> @@ -0,0 +1,16 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> +/*
+> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+> + */
+> +
+> +#ifndef __A1_PLL_CLKC_H
+> +#define __A1_PLL_CLKC_H
+> +
+> +#define CLKID_FIXED_PLL				1
+> +#define CLKID_FCLK_DIV2				6
+> +#define CLKID_FCLK_DIV3				7
+> +#define CLKID_FCLK_DIV5				8
+> +#define CLKID_FCLK_DIV7				9
+> +#define CLKID_HIFI_PLL				10
+> +
+> +#endif /* __A1_PLL_CLKC_H */
 
 
 _______________________________________________
