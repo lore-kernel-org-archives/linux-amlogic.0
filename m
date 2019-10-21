@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7A4B8CA9EAF
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 10:44:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F146CCA9EAF
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 11:31:53 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 440B920882
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 10:44:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C42DD2089C
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 11:31:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="P0iRNTxy";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="dysGK81O"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 440B920882
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mmB/f5vs";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="PvVi5E3b"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C42DD2089C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,68 +27,67 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=Dy6lYL2j08WNr7I1pSGP5tq+eTU3huERncd/vurIiYc=; b=P0iRNTxydRuN7LdQg1biqohEFf
-	UnMRFhn4H5ewDDd6Yx0e5gD+LGalDdTPi/pHTyVgQL4iDX+yEdgW3Mad3hnhFOS0y33g1xeKjUZ0y
-	1kNbH5e4EBnqyC4tqPT2O3L36VPXEVUu0khrIMFD80JseMqylt4y0jUPgaSym+KTL2EK0djeZh78D
-	HURFQpMjSXGZHBMqWL+M5GrqyDLodBS7zH6RS/QaKWwdwd9AEp8ZmyZf+zW2FglZyDZLxzGmIFbV2
-	dkS6K67CTOPkawu0KaJzkbi0SkP6gdJsVYgWXbdhJpQKHCSxCPFO3kcYXokMpMOvwIk2wRdPOEGce
-	T5rcIbnQ==;
+	bh=yLYsogBWfEwPVYoFd+DcHDmKMvZh5LbRl6MyXsxlXVo=; b=mmB/f5vsXBN9vKVs43i0/LMIsl
+	H9a4wGb40VTLsgtUd5LcsKkVcOQW44CqYr+6oFmtoMuGpLQEvgIGSJUu1KRqJzaLkMesTHU4p7ip/
+	zrImR6do+KU0rAEKBd4SOMWsWfZUvreQT7D94tFqTvblzZYvz77dtZ0ZyJOaV5TgiRdHRr0wk1GH9
+	mJk7sSXK4gNCRpa2QjxFOKR7nu5zdOI0WhO38jMQRcqprVyWnuz/cdbMTWy41xreylrmyFYl7tx7v
+	IkIRAo3+BM+IyH5ehNeSXAAHrx+p/6ueYVC577rk7mQQiT9m5ay2nP1XArKZWN54jKabs7hj7m2Va
+	Hyw+fwcw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iMVAT-0001yX-Ls; Mon, 21 Oct 2019 10:44:05 +0000
+	id 1iMVue-0001dT-3p; Mon, 21 Oct 2019 11:31:48 +0000
 Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iMVAN-0001x6-Ja
- for linux-amlogic@lists.infradead.org; Mon, 21 Oct 2019 10:44:03 +0000
-Received: by mail-wm1-x342.google.com with SMTP id c22so3138677wmd.1
- for <linux-amlogic@lists.infradead.org>; Mon, 21 Oct 2019 03:43:58 -0700 (PDT)
+ id 1iMVuR-0001SD-Qv
+ for linux-amlogic@lists.infradead.org; Mon, 21 Oct 2019 11:31:37 +0000
+Received: by mail-wm1-x342.google.com with SMTP id r141so2817454wme.4
+ for <linux-amlogic@lists.infradead.org>; Mon, 21 Oct 2019 04:31:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=references:user-agent:from:to:cc:subject:in-reply-to:date
  :message-id:mime-version;
- bh=scLxrXB2JkKl6vta+3mTkAzs1I5wCAnHIXFyhshFKsc=;
- b=dysGK81OTtl6t75l0UEaZDJAkBvHfbMOONSr32fRuIoZnukYBsO03bIEDhFRqiRLuF
- 1ETEdcHV+Uxpa9tn5lLintCYd1hQu3+wyFUWH+7+7Hhmh0yEBQOa5G22W5d1qIqA29lV
- 416Z9dw+VYQcV/4MPjeU6oSSKLXxy/gb6+Yh7iKyPL1cCBdS7JR3gtCXDJjULMwSh9dT
- 3zgirFv2ndbYtCiDgvDrMKG7ZF6iQJcRvTqo5hPvbCRUubbMCs4aI3wz1CsqSN6YEFnA
- E3/41go93Dw5cVjmfhOpEMVeGQJPGi2Oj8tRzI+EXfijisFpWvSyOByOzEi+lvvPSWJH
- 23WA==
+ bh=HROsPL2ByDXym6i/NHIHjJkM5kNiw9jG1m8a8LCeIIQ=;
+ b=PvVi5E3b/QEtjs/7GPTJkHEgTng108xrwCrEq3OeVnQI/O2sSx9Y5Hr8Q8GGsQ0k2c
+ OwivZCXGkcoAyDW3o+/DoYU75IjkTvv2Qpi4X94sUOe+LMSI0rFp0pwmRduwBWfM6qDj
+ KK+spBf+D/bMw2wS+NIGSJTt+0iIVP+gqX5uEuC7cI1X+n1WypYrGryTFXxeI6FTVmEb
+ qlwTGE5oFYvkYi4YEZXNFQ3kq8Aehp1No+gJ9JrI2dYSj+R+rWT7o2z/M8UQSU7wRn2F
+ TsO2LqfKosoQW6t9QnXaMW9J3LCu4QPbJisQNIA/eQ79jMD+g8nih6SrmAFJsQV5H20r
+ aY6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:references:user-agent:from:to:cc:subject
  :in-reply-to:date:message-id:mime-version;
- bh=scLxrXB2JkKl6vta+3mTkAzs1I5wCAnHIXFyhshFKsc=;
- b=BYTC4xdpdfzrTvlO6DC6uThNTWlIZlfF/BXQKLHfSkB/zJq/0hSqk0DjDx+G6OJOVk
- 46ba/5BHfGjwflrZaxnNRr81atYtyMEzd9fwmvj7EAnxil5ylcnm2QbH7L8hdIg4vZwH
- JyeZbssnwjVq2xy8ohfklbLakxlFHo53Ug8VYAfQI7Y51wuzFJ8zp03DFylKt9qulKeL
- jKQKVSb3RyvlgTSojBpFJjz+wr69XpK4FDXc6UJfSeqY+BHra+NJfERVonQFaLZXBxgV
- aDqOIyijU++p3ThKdJmO992UzSIWnzW8Fy2Bc4LeYaGDNiDTUJRFEmFRyc7pxzcXoZ9y
- pCJQ==
-X-Gm-Message-State: APjAAAXZ733eYa/YtKe17RxnS41P/UYLRTO4hGjtuzm6AIqgsU71F783
- BfJz1uKBil7nnbD2KDypjdODZw==
-X-Google-Smtp-Source: APXvYqyTGarYEKrL+o0UJk/nvWo3S5am2f5UZDs/T+KV0lTBla79+NMRHygXnrDNivC0+YnaU0B/kg==
-X-Received: by 2002:a05:600c:387:: with SMTP id
- w7mr19099737wmd.138.1571654637571; 
- Mon, 21 Oct 2019 03:43:57 -0700 (PDT)
+ bh=HROsPL2ByDXym6i/NHIHjJkM5kNiw9jG1m8a8LCeIIQ=;
+ b=iv7+dyMSRtyQ55LvM+l4n6Q7mVbEtlz1nQfADLLFZ4KaolEUyArW1aSikxLnn3IJX7
+ CK8BE8eTvpxydB3iPIIyQzp+4QRIkXxe2llxJRDVrh0durLFIDzA2vHIY4cJnGSjMB6B
+ BGFJdaLZshrDEdiLWr4i2j/FgFRYQYaE5x6w3V1saYUqi6FcvCHniXDQy2gIaSUqb31i
+ chDpquXkSCpiVMSypD+d13xh3CiqnPFg/H/ZfghaKU6vAcpjO6S7j2wLR+xdhaHN2LcS
+ /0tlgTUUx6E3EexZkAI74eMYAH9KScNX0k5QqDFic56YQ2XgRNStNo7NyMo25Zsh+erA
+ NdSw==
+X-Gm-Message-State: APjAAAUyneo6Ejmzk3TGt9rdi9prWYWZsgVSqthJbLIoEPbaViXVKsU+
+ V1TrBqWZYrQK8rOv/BMTuHkttg==
+X-Google-Smtp-Source: APXvYqz1au/AUOhj6ismuX2RR7PZXMJCNaAO/iedIYnZZsH6iJy5FEzKuwxsm7YEMvrMJQEsfA7hCQ==
+X-Received: by 2002:a05:600c:1107:: with SMTP id
+ b7mr20230104wma.151.1571657494379; 
+ Mon, 21 Oct 2019 04:31:34 -0700 (PDT)
 Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id q66sm15277735wme.39.2019.10.21.03.43.56
+ by smtp.gmail.com with ESMTPSA id e3sm13450131wme.39.2019.10.21.04.31.33
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 21 Oct 2019 03:43:56 -0700 (PDT)
+ Mon, 21 Oct 2019 04:31:33 -0700 (PDT)
 References: <1571382865-41978-1-git-send-email-jian.hu@amlogic.com>
- <1571382865-41978-2-git-send-email-jian.hu@amlogic.com>
+ <1571382865-41978-3-git-send-email-jian.hu@amlogic.com>
 User-agent: mu4e 1.3.3; emacs 26.2
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Jian Hu <jian.hu@amlogic.com>, Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: clock: meson: add A1 clock controller
- bindings
-In-reply-to: <1571382865-41978-2-git-send-email-jian.hu@amlogic.com>
-Date: Mon, 21 Oct 2019 12:43:55 +0200
-Message-ID: <1jv9sibcpg.fsf@starbuckisacylon.baylibre.com>
+Subject: Re: [PATCH v2 2/3] clk: meson: add support for A1 PLL clock ops
+In-reply-to: <1571382865-41978-3-git-send-email-jian.hu@amlogic.com>
+Date: Mon, 21 Oct 2019 13:31:32 +0200
+Message-ID: <1jtv82bai3.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191021_034359_674438_FAE83F82 
-X-CRM114-Status: GOOD (  15.71  )
+X-CRM114-CacheID: sfid-20191021_043135_876648_6412D1C4 
+X-CRM114-Status: GOOD (  23.68  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,299 +115,142 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 On Fri 18 Oct 2019 at 09:14, Jian Hu <jian.hu@amlogic.com> wrote:
 
-> Add the documentation to support Amlogic A1 clock driver,
-> and add A1 clock controller bindings.
+> The A1 PLL design is different with previous SoCs. The PLL
+> internal analog modules Power-on sequence is different
+> with previous, and thus requires a strict register sequence to
+> enable the PLL. Unlike the previous series, the maximum frequency
+> is 6G in G12A, for A1 the maximum is 1536M.
 >
 > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 > ---
->  .../devicetree/bindings/clock/amlogic,a1-clkc.yaml | 143
-> +++++++++++++++++++++
-
-Those are 2 different controllers, not variants.
-One description (one file) per controller please
-
->  include/dt-bindings/clock/a1-clkc.h                |  98 ++++++++++++++
->  include/dt-bindings/clock/a1-pll-clkc.h            |  16 +++
->  3 files changed, 257 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
->  create mode 100644 include/dt-bindings/clock/a1-clkc.h
->  create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
+>  drivers/clk/meson/clk-pll.c | 66 ++++++++++++++++++++++++++++++++++++++++-----
+>  drivers/clk/meson/clk-pll.h |  1 +
+>  2 files changed, 61 insertions(+), 6 deletions(-)
 >
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
-> new file mode 100644
-> index 0000000..b382eebe
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
-> @@ -0,0 +1,143 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+> index ddb1e56..b440e62 100644
+> --- a/drivers/clk/meson/clk-pll.c
+> +++ b/drivers/clk/meson/clk-pll.c
+> @@ -349,6 +349,56 @@ static void meson_clk_pll_disable(struct clk_hw *hw)
+>  	meson_parm_write(clk->map, &pll->en, 0);
+>  }
+>  
 > +/*
-> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+> + * The A1 design is different with previous SoCs.The PLL
+> + * internal analog modules Power-on sequence is different with
+> + * previous, different PLL has the different sequence, and
+> + * thus requires a strict register sequence to enable the PLL.
+> + * When set a new target frequency, the sequence should keep
+> + * the same with the initial sequence. Unlike the previous series,
+> + * the maximum frequency is 6G in G12A, for A1 the maximum
+> + * is 1536M.
+
+The comment about the max frequency belongs in your a1 driver, not in
+the PLL driver
+
 > + */
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/clock/amlogic,a1-clkc.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +static void meson_params_update_with_init_seq(struct clk_regmap *clk,
+> +				       struct meson_clk_pll_data *pll,
+> +				       unsigned int m, unsigned int n,
+> +				       unsigned int frac)
+> +{
+> +	struct parm *pm = &pll->m;
+> +	struct parm *pn = &pll->n;
+> +	struct parm *pfrac = &pll->frac;
+> +	const struct reg_sequence *init_regs = pll->init_regs;
+> +	unsigned int i, val;
 > +
-> +title: Amlogic Meson A/C serials Clock Control Unit Device Tree Bindings
+> +	for (i = 0; i < pll->init_count; i++) {
+> +		if (pn->reg_off == init_regs[i].reg) {
+> +			/* Clear M N bits and Update M N value */
+> +			val = init_regs[i].def;
+> +			val &= CLRPMASK(pn->width, pn->shift);
+> +			val &= CLRPMASK(pm->width, pm->shift);
+> +			val |= n << pn->shift;
+> +			val |= m << pm->shift;
+> +			regmap_write(clk->map, pn->reg_off, val);
+> +		} else if (MESON_PARM_APPLICABLE(&pll->frac) &&
+> +			   (pfrac->reg_off == init_regs[i].reg)) {
+> +			/* Clear Frac bits and Update Frac value */
+> +			val = init_regs[i].def;
+> +			val &= CLRPMASK(pfrac->width, pfrac->shift);
+> +			val |= frac << pfrac->shift;
+> +			regmap_write(clk->map, pfrac->reg_off, val);
+> +		} else {
+> +			/*
+> +			 * According to the PLL hardware constraint,
+> +			 * the left registers should be setted again.
+> +			 */
+> +			val = init_regs[i].def;
+> +			regmap_write(clk->map, init_regs[i].reg, val);
+> +		}
+> +		if (init_regs[i].delay_us)
+> +			udelay(init_regs[i].delay_us);
+> +	}
+
+So:
+
+1) All the code above this there make the PLL lock, IOW enable the
+PLL. It does not belong in the set_rate() callback but in enable() or
+prepare() maybe.
+
+2) All the above is works but it is a bit over complicated for what it
+does. From the a1_hifi_init_regs I see, all you really need to do is
+  * toggle BIT(6) in CTRL2
+  * toggle BIT(28) in CTRL0 (enable PARM)
+  * toggle BIT(26) in CTRL0
+
+You could use PARM 'rst' for one them and introduce another parm for the
+other one. You would not need to repoke the whole sequence this way.
+
+> +}
 > +
-> +maintainers:
-> +  - Neil Armstrong <narmstrong@baylibre.com>
-> +  - Jerome Brunet <jbrunet@baylibre.com>
-> +  - Jian Hu <jian.hu@jian.hu.com>
+>  static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+>  				  unsigned long parent_rate)
+>  {
+> @@ -366,16 +416,20 @@ static int meson_clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+>  	if (ret)
+>  		return ret;
+>  
+> +	if (MESON_PARM_APPLICABLE(&pll->frac))
+> +		frac = __pll_params_with_frac(rate, parent_rate, m, n, pll);
 > +
-> +description: |+
-> +  The clock controller node should be the child of a syscon node with the
-> +  required property:
-> +
-> +  - compatible:         Should be one of the following:
-> +                        "amlogic,meson-a-analog-sysctrl", "syscon", "simple-mfd"
-> +                        "amlogic,meson-a-periphs-sysctrl", "syscon", "simple-mfd"
-> +
-> +  Refer to the the bindings described in
-> +  Documentation/devicetree/bindings/mfd/syscon.txt
-> +
-> +properties:
-> +  "#clock-cells":
-> +    const: 1
-> +  compatible:
-> +    - enum:
-> +        - amlogic,a1-periphs-clkc
-> +        - amlogic,a1-pll-clkc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 2
-> +    maxItems: 6
-> +
-> +  clock-names:
-> +    minItems: 2
-> +    maxItems: 6
-> +
-> +required:
-> +  - "#clock-cells"
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +
-> +if:
-> +  properties:
-> +    compatible:
-> +      enum:
-> +        - amlogic,a1-periphs-clkc
-> +
-> +then:
-> +  properties:
-> +    clocks:
-> +      minItems: 2
-> +      maxItems: 2
-> +    items:
-> +     - description: fixed pll gate clock
-> +     - description: hifi pll gate clock
-> +
-> +    clock-names:
-> +      minItems: 2
-> +      maxItems: 2
-> +      items:
-> +        - const: xtal_fixpll
-> +        - const: xtal_hifipll
-> +
-> +else:
-> +  if:
-> +    properties:
-> +      compatible:
-> +        const: amlogic,a1-pll-clkc
-> +
-> +  then:
-> +    properties:
-> +      clocks:
-> +        minItems: 6
-> +        maxItems: 6
-> +        items:
-> +         - description: Input fixed pll div2
-> +         - description: Input fixed pll div3
-> +         - description: Input fixed pll div5
-> +         - description: Input fixed pll div7
-> +         - description: Periph Hifi pll
-> +         - description: Input Oscillator (usually at 24MHz)
-> +
-> +      clock-names:
-> +        minItems: 6
-> +        maxItems: 6
-> +        items:
-> +         - const: fclk_div2
-> +         - const: fclk_div3
-> +         - const: fclk_div5
-> +         - const: fclk_div7
-> +         - const: hifi_pll
-> +         - const: xtal
-> +
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    analog: system-controller@0 {
-> +        compatible = "amlogic,meson-a-analog-sysctrl",
-> +                     "simple-mfd", "syscon";
-> +        reg = <0 0x7c00 0 0x21c>;
-> +
-> +        clkc_pll: pll-clock-controller {
-> +                compatible = "amlogic,a1-pll-clkc";
-> +                #clock-cells = <1>;
-> +                clocks = <&clkc_periphs CLKID_XTAL_FIXPLL>,
-> +                         <&clkc_periphs CLKID_XTAL_HIFIPLL>;
-> +                clock-names = "xtal_fixpll", "xtal_hifipll";
-> +        };
-> +    };
-> +
-> +  - |
-> +    periphs: system-controller@1 {
-> +        compatible = "amlogic,meson-a-periphs-sysctrl",
-> +                     "simple-mfd", "syscon";
-> +        reg = <0 0x800 0 0x104>;
-> +
-> +        clkc_periphs: periphs-clock-controller {
-> +                compatible = "amlogic,a1-periphs-clkc";
-> +                #clock-cells = <1>;
-> +                clocks = <&clkc_pll CLKID_FCLK_DIV2>,
-> +                        <&clkc_pll CLKID_FCLK_DIV3>,
-> +                        <&clkc_pll CLKID_FCLK_DIV5>,
-> +                        <&clkc_pll CLKID_FCLK_DIV7>,
-> +                        <&clkc_pll CLKID_HIFI_PLL>,
-> +                        <&xtal>;
-> +                clock-names = "fclk_div2", "fclk_div3", "fclk_div5",
-> +                              "fclk_div7", "hifi_pll", "xtal";
-> +        };
-> +    };
-> diff --git a/include/dt-bindings/clock/a1-clkc.h b/include/dt-bindings/clock/a1-clkc.h
-> new file mode 100644
-> index 0000000..1ba0112
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/a1-clkc.h
-> @@ -0,0 +1,98 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> +/*
-> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +#ifndef __A1_CLKC_H
-> +#define __A1_CLKC_H
-> +
-> +#define CLKID_XTAL_FIXPLL			1
-> +#define CLKID_XTAL_USB_PHY			2
-> +#define CLKID_XTAL_USB_CTRL			3
-> +#define CLKID_XTAL_HIFIPLL			4
-> +#define CLKID_XTAL_SYSPLL			5
-> +#define CLKID_XTAL_DDS				6
-> +#define CLKID_SYS_CLK				7
-> +#define CLKID_CLKTREE				8
-> +#define CLKID_RESET_CTRL			9
-> +#define CLKID_ANALOG_CTRL			10
-> +#define CLKID_PWR_CTRL				11
-> +#define CLKID_PAD_CTRL				12
-> +#define CLKID_SYS_CTRL				13
-> +#define CLKID_TEMP_SENSOR			14
-> +#define CLKID_AM2AXI_DIV			15
-> +#define CLKID_SPICC_B				16
-> +#define CLKID_SPICC_A				17
-> +#define CLKID_CLK_MSR				18
-> +#define CLKID_AUDIO				19
-> +#define CLKID_JTAG_CTRL				20
-> +#define CLKID_SARADC				21
-> +#define CLKID_PWM_EF				22
-> +#define CLKID_PWM_CD				23
-> +#define CLKID_PWM_AB				24
-> +#define CLKID_CEC				25
-> +#define CLKID_I2C_S				26
-> +#define CLKID_IR_CTRL				27
-> +#define CLKID_I2C_M_D				28
-> +#define CLKID_I2C_M_C				29
-> +#define CLKID_I2C_M_B				30
-> +#define CLKID_I2C_M_A				31
-> +#define CLKID_ACODEC				32
-> +#define CLKID_OTP				33
-> +#define CLKID_SD_EMMC_A				34
-> +#define CLKID_USB_PHY				35
-> +#define CLKID_USB_CTRL				36
-> +#define CLKID_SYS_DSPB				37
-> +#define CLKID_SYS_DSPA				38
-> +#define CLKID_DMA				39
-> +#define CLKID_IRQ_CTRL				40
-> +#define CLKID_NIC				41
-> +#define CLKID_GIC				42
-> +#define CLKID_UART_C				43
-> +#define CLKID_UART_B				44
-> +#define CLKID_UART_A				45
-> +#define CLKID_SYS_PSRAM				46
-> +#define CLKID_RSA				47
-> +#define CLKID_CORESIGHT				48
-> +#define CLKID_AM2AXI_VAD			49
-> +#define CLKID_AUDIO_VAD				50
-> +#define CLKID_AXI_DMC				51
-> +#define CLKID_AXI_PSRAM				52
-> +#define CLKID_RAMB				53
-> +#define CLKID_RAMA				54
-> +#define CLKID_AXI_SPIFC				55
-> +#define CLKID_AXI_NIC				56
-> +#define CLKID_AXI_DMA				57
-> +#define CLKID_CPU_CTRL				58
-> +#define CLKID_ROM				59
-> +#define CLKID_PROC_I2C				60
-> +#define CLKID_DSPA_SEL				61
-> +#define CLKID_DSPB_SEL				62
-> +#define CLKID_DSPA_EN_DSPA			63
-> +#define CLKID_DSPA_EN_NIC			64
-> +#define CLKID_DSPB_EN_DSPB			65
-> +#define CLKID_DSPB_EN_NIC			66
-> +#define CLKID_RTC_CLK				67
-> +#define CLKID_CECA_32K				68
-> +#define CLKID_CECB_32K				69
-> +#define CLKID_24M				70
-> +#define CLKID_12M				71
-> +#define CLKID_FCLK_DIV2_DIVN			72
-> +#define CLKID_GEN				73
-> +#define CLKID_SARADC_SEL			74
-> +#define CLKID_SARADC_CLK			75
-> +#define CLKID_PWM_A				76
-> +#define CLKID_PWM_B				77
-> +#define CLKID_PWM_C				78
-> +#define CLKID_PWM_D				79
-> +#define CLKID_PWM_E				80
-> +#define CLKID_PWM_F				81
-> +#define CLKID_SPICC				82
-> +#define CLKID_TS				83
-> +#define CLKID_SPIFC				84
-> +#define CLKID_USB_BUS				85
-> +#define CLKID_SD_EMMC				86
-> +#define CLKID_PSRAM				87
-> +#define CLKID_DMC				88
-> +
-> +#endif /* __A1_CLKC_H */
-> diff --git a/include/dt-bindings/clock/a1-pll-clkc.h b/include/dt-bindings/clock/a1-pll-clkc.h
-> new file mode 100644
-> index 0000000..58eae23
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/a1-pll-clkc.h
-> @@ -0,0 +1,16 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> +/*
-> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +#ifndef __A1_PLL_CLKC_H
-> +#define __A1_PLL_CLKC_H
-> +
-> +#define CLKID_FIXED_PLL				1
-> +#define CLKID_FCLK_DIV2				6
-> +#define CLKID_FCLK_DIV3				7
-> +#define CLKID_FCLK_DIV5				8
-> +#define CLKID_FCLK_DIV7				9
-> +#define CLKID_HIFI_PLL				10
-> +
-> +#endif /* __A1_PLL_CLKC_H */
+>  	enabled = meson_parm_read(clk->map, &pll->en);
+>  	if (enabled)
+>  		meson_clk_pll_disable(hw);
+>  
+> -	meson_parm_write(clk->map, &pll->n, n);
+> -	meson_parm_write(clk->map, &pll->m, m);
+> -
+> -	if (MESON_PARM_APPLICABLE(&pll->frac)) {
+> -		frac = __pll_params_with_frac(rate, parent_rate, m, n, pll);
+> -		meson_parm_write(clk->map, &pll->frac, frac);
+> +	if (pll->strict_sequence)
+> +		meson_params_update_with_init_seq(clk, pll, m, n, frac);
+> +	else {
+> +		meson_parm_write(clk->map, &pll->n, n);
+> +		meson_parm_write(clk->map, &pll->m, m);
+> +		if (MESON_PARM_APPLICABLE(&pll->frac))
+> +			meson_parm_write(clk->map, &pll->frac, frac);
+>  	}
+>  
+>  	/* If the pll is stopped, bail out now */
+> diff --git a/drivers/clk/meson/clk-pll.h b/drivers/clk/meson/clk-pll.h
+> index 367efd0..d5789cef 100644
+> --- a/drivers/clk/meson/clk-pll.h
+> +++ b/drivers/clk/meson/clk-pll.h
+> @@ -41,6 +41,7 @@ struct meson_clk_pll_data {
+>  	const struct pll_params_table *table;
+>  	const struct pll_mult_range *range;
+>  	u8 flags;
+> +	bool strict_sequence;
+
+Don't introduce parameter for this We have ops to tune the behavior of
+the clock driver. Properly refactor the code if some of it is common.
+
+>  };
+>  
+>  extern const struct clk_ops meson_clk_pll_ro_ops;
 
 
 _______________________________________________
