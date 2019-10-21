@@ -2,150 +2,186 @@ Return-Path: <SRS0=mlCU=YO=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C67DCA9EB5
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 08:29:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 75348CA9EB5
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 08:58:31 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3E41F2064A
-	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 08:29:43 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4363C206C2
+	for <linux-amlogic@archiver.kernel.org>; Mon, 21 Oct 2019 08:58:31 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lZxSM8Br";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="VVzpKYIJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3E41F2064A
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EQa5CkOE";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=microchiptechnology.onmicrosoft.com header.i=@microchiptechnology.onmicrosoft.com header.b="pxr9UaNp"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4363C206C2
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=microchip.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=/praI5/bURx3Glo0QpMaFyxQ6OqYM/ky5SyV/e42jJY=; b=lZxSM8Br7dHLY1WyrJMoHilPBf
-	JrWJlUbW8Bw9fOHwcot9KAVSZYG9vpXH1y+upgkKxO9rm+q7GgrH+cxSEfGIYS8bUQCTCdibP/IsQ
-	B8OXbdtFWviXtdPhxtZSqxV6TVGaTw+cqIuZrN7bIJxg5sM6d/OFRM6i2te1DFUdgtuiTAUE4KQ2y
-	SUFuLIlYUjcv3/NGuUgL80LHg1mQAXkp0VbG3QKXIm8QwNL6xL07hjscgacmXYeHQzwJmQu9yfT7H
-	40C1Q8SAcPCxdmdUlc+JFZmJ+j2iGUPfJf7bBLQdeI+IuBMn8Hh5THVlWzQvIiWpvRCMz/PrmZHuw
-	BMMiRJAg==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
+	References:Message-ID:Date:Subject:To:From:Reply-To:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=+6O0Ljt5M0nOAUlxUkUR9o2zFqVFaqi+YrHUKpVvwUI=; b=EQa5CkOE76kP5Z
+	EZ/uW6D1P+bv9xb4zh9aY6RNGU7Ucf0QuVEv7hdrzrP4W3S2nZT9Janz7KqfaALmg2mYXXHnezwpm
+	0A27FfLsP0kr+ZmgUe7/XJIvloJ39kpoHbojuVIRtGc9IN2EyTlxYzreMWTaKNqZ38QnKSPuZ0aZF
+	5McSwfX4u9Jofq5Ce6YNXBDAx2vfpf5N+ZvUgP0BRKt1ZcfbLCKPSJZki4aB71R6snwr8Y7ozd2u4
+	5veGepbuXnRrxaUGUq2XKeJcBwdmA7KxZOt96lchwzBW+JbDPOFkpNGHcbyz6ScCGxDj/5waKvy4Y
+	GA5LWWx9VM2aA7hxjaRA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iMT4L-0004Lx-7H; Mon, 21 Oct 2019 08:29:37 +0000
-Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
+	id 1iMTWC-0002ZE-N7; Mon, 21 Oct 2019 08:58:24 +0000
+Received: from esa1.microchip.iphmx.com ([68.232.147.91])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iMT4A-0004DX-TY
- for linux-amlogic@lists.infradead.org; Mon, 21 Oct 2019 08:29:28 +0000
-Received: by mail-wm1-x343.google.com with SMTP id q13so2159529wmj.0
- for <linux-amlogic@lists.infradead.org>; Mon, 21 Oct 2019 01:29:25 -0700 (PDT)
+ id 1iMTW8-0002W1-Dp; Mon, 21 Oct 2019 08:58:21 +0000
+Received-SPF: Pass (esa1.microchip.iphmx.com: domain of
+ Claudiu.Beznea@microchip.com designates 198.175.253.82 as
+ permitted sender) identity=mailfrom;
+ client-ip=198.175.253.82; receiver=esa1.microchip.iphmx.com;
+ envelope-from="Claudiu.Beznea@microchip.com";
+ x-sender="Claudiu.Beznea@microchip.com";
+ x-conformance=spf_only; x-record-type="v=spf1";
+ x-record-text="v=spf1 mx a:ushub1.microchip.com
+ a:smtpout.microchip.com a:mx1.microchip.iphmx.com
+ a:mx2.microchip.iphmx.com include:servers.mcsv.net
+ include:mktomail.com include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa1.microchip.iphmx.com: no sender
+ authenticity information available from domain of
+ postmaster@email.microchip.com) identity=helo;
+ client-ip=198.175.253.82; receiver=esa1.microchip.iphmx.com;
+ envelope-from="Claudiu.Beznea@microchip.com";
+ x-sender="postmaster@email.microchip.com"; x-conformance=spf_only
+Authentication-Results: esa1.microchip.iphmx.com;
+ spf=Pass smtp.mailfrom=Claudiu.Beznea@microchip.com;
+ spf=None smtp.helo=postmaster@email.microchip.com;
+ dkim=pass (signature verified) header.i=@microchiptechnology.onmicrosoft.com;
+ dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: WEj1RSGINlH0YP7nNoiViAPn5fKFEykpOmUAsfeXVHQ0ptRTq9IpWZydSiG1TTXVqc+rNAMCa/
+ 9g8VAxylPb52ieSRnXN023ATEiHh15sJrP9LRA/gLvEfORXrjE8Ff4VovtElpoPzXALRS2RyKR
+ UTafdxNN4tSsDQl7Ysd8k345wN1/xMrGFno4nYmeH6fMCcZlPmhuetz3JpZ4FubkklDDCD3lVe
+ zYQdyHnncGWMnn7IPVTn7h96BeUeQdnMwgkzIWrgvfPEvPUdaJJ7hA0PLu/s3eaa9nqXhHUS7P
+ E08=
+X-IronPort-AV: E=Sophos;i="5.67,323,1566889200"; d="scan'208";a="54996746"
+Received: from smtpout.microchip.com (HELO email.microchip.com)
+ ([198.175.253.82])
+ by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 21 Oct 2019 01:58:14 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 21 Oct 2019 01:58:12 -0700
+Received: from NAM04-CO1-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Mon, 21 Oct 2019 01:58:12 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UVxpEboKD5DSydpkrO0hbX/rigOqbuO5TP6ccH+2DzAFCGEaO5ljvmIbi9Fu1Jo53ItQGCCUz5JSZV0Ib8u+NlWkjfyUTQRz9t+msHA2hqkhmlrnoU/llKTMp+J9SJ+ZgRJjGykn8azB+YrdH+4kTKKyfGfzUechUffjngE7m6GKtCAcr4UuKMYxCNF2kOHu7a+yK9ZPpXo3uI/J0xAw0YaYa/T60PdL8t9AK3IQ3NI5Ax3EKBENOAl+VH1MlCj1x+40F+v54pSuUilkCE8DCECziiuPx3wMEkoB8qTE4Loe1fakmb5ZZ8eRWzgHYA6sEzgnVL60z8dhtwcWREy3Fg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Wpk8sLUcO1HMbgN1/NAq9gdAZbl2KgQ3dc/W6Au6XM0=;
+ b=LKmKWGJmAsZaXX3+cpB4qWFxtZdyXFdbJIeIlMIJl2zf+7l+TJ+C+bznjNHBWur1PnqY45GpcCpwBopzStdU7c7QJH9dEa83PsmlFcC/M4oaqnE5FyAq8fixilRSKb3BT9NL/NTbf+G2JHP7j2hFIpdXvpW8cfPNDmwe8ZrQMUlCp0Hl8RJ+LT6967I00ajrJbDHX0hwscoSTwIKPVikxcVrUfCDL833NXmHBlfYkX1SG8Wc/TCfV2bJ3Yqk8DncLuNNi7+N/VtWLtVkM7uxlcJeskQnrMPq1p1nRX2xR+yCws9cpSY1TZVOTQQH5NYsiRDxQcV1M08RBe51lpMbdg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=coXvyfIqdHK/We6V/H3RTuVXLMy1eJQlx9ttStPuOrw=;
- b=VVzpKYIJGVij00KCpp98F515pIzOj1ZpKqRxowfpIm9Xo+lf/GSiaXB1EnPxrjhvQh
- XsSeMjH+mBOf2yyKHtEaICvmvKp/spv4NRKNE0K2THD+/rybdlpS6TUnv2lHrRFzWJEi
- GhbXWLGED34qPHRJVz2s3H/EQJrC1KTqQB/+MIXO3Gd6Fn+cqe4BKiskkA0CivlYyWCJ
- UEcuR9s4D+R3ockdP+HkE8xgAXeXvePDfoRQX/KMiFIZJSWyPra/Kmvr68Tu8f4epsxo
- FGDR98FDPWYL1v9UXvZQ83AeKoBGMRhbLLTe9kJEbSdBpmU3aRynYe07942NtkV1fUec
- /ioQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=coXvyfIqdHK/We6V/H3RTuVXLMy1eJQlx9ttStPuOrw=;
- b=JvGiZwaOYGKpH2b6iDpdKU4KqFpPlroniVPr57JmstbC+M2mOwJT7Q5oGczpvNLOkT
- jrGG08mEtMng97vD+XKNMVyJJNtsZJbHxJW9l8RYYQHotiZfsqrJe3TuTXgPQGetDsKs
- imMK/LiP3WOMtWbnq+xkCgbxEN+/1V7STTTL49npUjlPrm0Sq+oW2AGv344KRuMKA3lH
- B8syKvuSU2ElBSC7XhRIvjp9fYjL8es95vJR1KtcRrmjd4t9v7Vd+10pgev0fghg/y1m
- bsT0Ud5f889D7ReFo7qlnfMCZ6tgUlIUNVnAdTtRvyJfHE0jElCzmfuY0ER14CLcxMEr
- B5og==
-X-Gm-Message-State: APjAAAUBRHB4BmZPzmD7/fQgyX8TzXbjiW7vB67GLLiRoPxaV+eoX60a
- rkHwNxaERKCqtxmfvYYBK4fYNQ==
-X-Google-Smtp-Source: APXvYqzjBSLPJrXO23eiYpzCuLxigE0b3+VXjylLTHBwDcAKbyN+SwtxhwmKn1UZfN3HphuHnR0dBQ==
-X-Received: by 2002:a7b:caea:: with SMTP id t10mr19002070wml.38.1571646563828; 
- Mon, 21 Oct 2019 01:29:23 -0700 (PDT)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id a71sm13415679wme.11.2019.10.21.01.29.23
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 21 Oct 2019 01:29:23 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: meson: khadas-vim3: move audio nodes to
- common dtsi
-To: Christian Hewitt <christianshewitt@gmail.com>,
- Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <1571416185-6449-1-git-send-email-christianshewitt@gmail.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <94b2292f-3399-ab63-9b5b-1b37da93be1a@baylibre.com>
-Date: Mon, 21 Oct 2019 10:29:22 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <1571416185-6449-1-git-send-email-christianshewitt@gmail.com>
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Wpk8sLUcO1HMbgN1/NAq9gdAZbl2KgQ3dc/W6Au6XM0=;
+ b=pxr9UaNpSC7Br5tgOLkO3zHprkIgLGONPrpbtdj2C45CdFZnAwPkknwXUKT0HqMmb+e3UMmEqtFsLITRZH0xhOJsj8EO8rgfFo4QfBQlL7+Vj7eg4qD7WLXp0CE7N/zFiOa3VmQiyRqkS5e3hANOIFZlhDOIHBhKiQw1IvecwNA=
+Received: from DM6PR11MB3225.namprd11.prod.outlook.com (20.176.120.85) by
+ DM6PR11MB4234.namprd11.prod.outlook.com (52.132.249.203) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2347.17; Mon, 21 Oct 2019 08:58:11 +0000
+Received: from DM6PR11MB3225.namprd11.prod.outlook.com
+ ([fe80::3874:9f3c:5325:d22]) by DM6PR11MB3225.namprd11.prod.outlook.com
+ ([fe80::3874:9f3c:5325:d22%6]) with mapi id 15.20.2347.029; Mon, 21 Oct 2019
+ 08:58:11 +0000
+From: <Claudiu.Beznea@microchip.com>
+To: <daniel.lezcano@linaro.org>, <robh+dt@kernel.org>, <mark.rutland@arm.com>, 
+ <linux@armlinux.org.uk>, <nsekhar@ti.com>, <bgolaszewski@baylibre.com>,
+ <monstr@monstr.eu>, <john@phrozen.org>, <ralf@linux-mips.org>,
+ <paul.burton@mips.com>, <jhogan@kernel.org>, <lftan@altera.com>,
+ <tglx@linutronix.de>, <vgupta@synopsys.com>, <marc.zyngier@arm.com>,
+ <patrice.chotard@st.com>, <mcoquelin.stm32@gmail.com>,
+ <alexandre.torgue@st.com>, <eric@anholt.net>, <wahrenst@gmx.net>,
+ <f.fainelli@gmail.com>, <rjui@broadcom.com>, <sbranden@broadcom.com>,
+ <bcm-kernel-feedback-list@broadcom.com>, <linus.walleij@linaro.org>,
+ <shc_work@mail.ru>, <kgene@kernel.org>, <krzk@kernel.org>,
+ <ysato@users.sourceforge.jp>, <liviu.dudau@arm.com>, <sudeep.holla@arm.com>,
+ <lorenzo.pieralisi@arm.com>, <shawnguo@kernel.org>, <s.hauer@pengutronix.de>, 
+ <kernel@pengutronix.de>, <festevam@gmail.com>, <linux-imx@nxp.com>,
+ <baohua@kernel.org>, <Nicolas.Ferre@microchip.com>,
+ <alexandre.belloni@bootlin.com>, <Ludovic.Desroches@microchip.com>,
+ <baruch@tkos.co.il>, <u.kleine-koenig@pengutronix.de>, <guoren@kernel.org>,
+ <kaloz@openwrt.org>, <khalasa@piap.pl>, <ssantosh@kernel.org>,
+ <vz@mleia.com>, <slemieux.tyco@gmail.com>, <khilman@baylibre.com>,
+ <avifishman70@gmail.com>, <tmaimon77@gmail.com>, <tali.perry1@gmail.com>,
+ <venture@google.com>, <yuenn@google.com>, <benjaminfair@google.com>,
+ <afaerber@suse.de>, <manivannan.sadhasivam@linaro.org>,
+ <narmstrong@baylibre.com>, <agross@kernel.org>, <palmer@sifive.com>,
+ <aou@eecs.berkeley.edu>, <heiko@sntech.de>, <orsonzhai@gmail.com>,
+ <baolin.wang@linaro.org>, <zhang.lyra@gmail.com>,
+ <maxime.ripard@bootlin.com>, <wens@csie.org>, <thierry.reding@gmail.com>,
+ <jonathanh@nvidia.com>, <linux@prisktech.co.nz>, <john.stultz@linaro.org>,
+ <sboyd@kernel.org>, <matthias.bgg@gmail.com>
+Subject: Re: [PATCH 0/7] add support for clocksource/clockevent DT selection
+Thread-Topic: [PATCH 0/7] add support for clocksource/clockevent DT selection
+Thread-Index: AQHVc8VbrLXkUp4vH02J/Sk0g3X+4A==
+Date: Mon, 21 Oct 2019 08:58:10 +0000
+Message-ID: <215a1cd3-b1a8-5171-d70c-8d8081038e7f@microchip.com>
+References: <1568123236-767-1-git-send-email-claudiu.beznea@microchip.com>
+ <c3a68a08-d134-cd28-c8af-f757628e07f1@linaro.org>
+ <72edc5fd-df05-cba5-5aa7-39da1709415b@microchip.com>
+ <620a19d5-73b8-709d-9eec-49274ac23e51@microchip.com>
+ <187d7020-fbe9-7984-2358-8a70faef019f@microchip.com>
+ <14df6e5d-19ef-4ebc-fd11-9953bc3fc44e@linaro.org>
+ <7071b6fa-f7ed-c879-4a43-44100dbe6121@microchip.com>
+ <8e9f709f-2ded-c666-26e0-9235d6107c34@linaro.org>
+In-Reply-To: <8e9f709f-2ded-c666-26e0-9235d6107c34@linaro.org>
+Accept-Language: en-US
 Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: LO2P265CA0421.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:a0::25) To DM6PR11MB3225.namprd11.prod.outlook.com
+ (2603:10b6:5:59::21)
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tagtoolbar-keys: D20191021115748754
+x-originating-ip: [94.177.32.156]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 3810ac50-35e2-4d42-7e6a-08d75604cc1f
+x-ms-traffictypediagnostic: DM6PR11MB4234:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM6PR11MB42347F81DD4DE1159ECD573287690@DM6PR11MB4234.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-forefront-prvs: 0197AFBD92
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(366004)(396003)(39860400002)(136003)(376002)(346002)(189003)(199004)(1191002)(36756003)(316002)(478600001)(5660300002)(14444005)(256004)(8676002)(2501003)(31686004)(6486002)(31696002)(229853002)(66066001)(102836004)(81156014)(6512007)(81166006)(6436002)(3846002)(52116002)(4326008)(99286004)(7406005)(2906002)(7336002)(6116002)(7366002)(2201001)(7416002)(110136005)(66446008)(66556008)(66946007)(66476007)(76176011)(6246003)(54906003)(86362001)(8936002)(71190400001)(71200400001)(25786009)(14454004)(11346002)(2616005)(446003)(476003)(386003)(6506007)(53546011)(7736002)(486006)(186003)(26005)(64756008)(2171002)(305945005)(921003)(1121003);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR11MB4234;
+ H:DM6PR11MB3225.namprd11.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: microchip.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: BrURRVHxFOouoiEdT0XbRFhNbwLrjgICSsKdC1OVvjMDSPo2aviQut/pZmL6HMZKpmcEV97WzzAl7rTGFjlLCOoePFDwzRYPak3rKuYeuLRsIRO3gW7ayTGeDDucDl9w/XQG+vAup3pdj1PQJVZunDjh+4/+TGPP1DhTC625LXkUP0XrUptDb5rCpri00nNsoRpPSGdIW8UzSrhqXeuyLBkTLoQISGV1uyRV+PdI+rOyUI6WmRgMRXO95grqzacoGYQqRGoX0iDlhpbXvbHva803pt9flPrVjd+V6dLrjm6+EAa4L23DAe1MqTf/qDrY0EZh8GCP7PDr96MqIH38pXDhJAuFssZzo1l3wxv9mk8flNfDWzNGn3D8ylRo4lbZA8QDzObqbkeIU/74rIXVUclo14lTM2XsZITYDK8IbroE/uSqDKFwTk6tbmCdUad5
+Content-ID: <60F94980C60DF447B0B88B0D90F5A4BE@namprd11.prod.outlook.com>
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3810ac50-35e2-4d42-7e6a-08d75604cc1f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Oct 2019 08:58:10.4876 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: XTVZQGsCKvIe/8hNUSvF0owHehWJYzdiVDOMD3guyXcrA6p8GMydRkwxoWKIu99kzwLS+96zH72X1Ru6hK3krIEC608LEOoTiq4/TfVr4Bs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4234
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191021_012926_957810_0808DA75 
-X-CRM114-Status: GOOD (  17.99  )
+X-CRM114-CacheID: sfid-20191021_015820_532263_B8F2727C 
+X-CRM114-Status: GOOD (  11.31  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,274 +193,85 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
+Cc: uclinux-h8-devel@lists.sourceforge.jp, devicetree@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, openbmc@lists.ozlabs.org, linux-oxnas@groups.io,
+ linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+ linux-unisoc@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-rpi-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-tegra@vger.kernel.org, nios2-dev@lists.rocketboards.org,
+ linux-riscv@lists.infradead.org, linux-snps-arc@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 18/10/2019 18:29, Christian Hewitt wrote:
-> Move VIM3 audio nodes to meson-khadas-vim3.dtsi to enable audio for all
-> boards in the VIM3 family including VIM3L.
+Hi Daniel,
+
+On 18.10.2019 23:24, Daniel Lezcano wrote:
+> Hi Claudiu,
 > 
-> This change depends on [1] being merged/applied first.
+> On 15/10/2019 11:23, Claudiu.Beznea@microchip.com wrote:
 > 
-> [1] https://patchwork.kernel.org/patch/11198535/
+> [ ... ]
 > 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
->  .../boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi   | 89 ----------------------
->  arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi | 88 +++++++++++++++++++++
->  2 files changed, 88 insertions(+), 89 deletions(-)
+>> The timer clock source could be divided by MR.PRES + 1.
+>>
+>> So, I used the clock-frequency DT binding to let user choose the timer's
+>> frequency. Based on the value provided via this DT binding the best clock
+>> source and prescaler is chosen via mchp_pit64b_pres_prepare() function.
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi
-> index 69019d0..190e934 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi
-> @@ -5,8 +5,6 @@
->   * Copyright (c) 2019 Christian Hewitt <christianshewitt@gmail.com>
->   */
->  
-> -#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-> -
->  / {
->  	vddcpu_a: regulator-vddcpu-a {
->  		/*
-> @@ -45,69 +43,6 @@
->  		regulator-boot-on;
->  		regulator-always-on;
->  	};
-> -
-> -	sound {
-> -		compatible = "amlogic,axg-sound-card";
-> -		model = "G12A-KHADAS-VIM3";
-> -		audio-aux-devs = <&tdmout_b>;
-> -		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-> -				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-> -				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-> -				"TDM_B Playback", "TDMOUT_B OUT";
-> -
-> -		assigned-clocks = <&clkc CLKID_MPLL2>,
-> -				  <&clkc CLKID_MPLL0>,
-> -				  <&clkc CLKID_MPLL1>;
-> -		assigned-clock-parents = <0>, <0>, <0>;
-> -		assigned-clock-rates = <294912000>,
-> -				       <270950400>,
-> -				       <393216000>;
-> -		status = "okay";
-> -
-> -		dai-link-0 {
-> -			sound-dai = <&frddr_a>;
-> -		};
-> -
-> -		dai-link-1 {
-> -			sound-dai = <&frddr_b>;
-> -		};
-> -
-> -		dai-link-2 {
-> -			sound-dai = <&frddr_c>;
-> -		};
-> -
-> -		/* 8ch hdmi interface */
-> -		dai-link-3 {
-> -			sound-dai = <&tdmif_b>;
-> -			dai-format = "i2s";
-> -			dai-tdm-slot-tx-mask-0 = <1 1>;
-> -			dai-tdm-slot-tx-mask-1 = <1 1>;
-> -			dai-tdm-slot-tx-mask-2 = <1 1>;
-> -			dai-tdm-slot-tx-mask-3 = <1 1>;
-> -			mclk-fs = <256>;
-> -
-> -			codec {
-> -				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-> -			};
-> -		};
-> -
-> -		/* hdmi glue */
-> -		dai-link-4 {
-> -			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-> -
-> -			codec {
-> -				sound-dai = <&hdmi_tx>;
-> -			};
-> -		};
-> -	};
-> -};
-> -
-> -&arb {
-> -	status = "okay";
-> -};
-> -
-> -&clkc_audio {
-> -	status = "okay";
->  };
->  
->  &cpu0 {
-> @@ -152,18 +87,6 @@
->  	clock-latency = <50000>;
->  };
->  
-> -&frddr_a {
-> -        status = "okay";
-> -};
-> -
-> -&frddr_b {
-> -	status = "okay";
-> -};
-> -
-> -&frddr_c {
-> -	status = "okay";
-> -};
-> -
->  &pwm_ab {
->  	pinctrl-0 = <&pwm_a_e_pins>;
->  	pinctrl-names = "default";
-> @@ -179,15 +102,3 @@
->  	clock-names = "clkin1";
->  	status = "okay";
->  };
-> -
-> -&tdmif_b {
-> -	status = "okay";
-> -};
-> -
-> -&tdmout_b {
-> -	status = "okay";
-> -};
-> -
-> -&tohdmitx {
-> -	status = "okay";
-> -};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> index 90815fa..3f5c373 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> @@ -7,6 +7,7 @@
->  
->  #include <dt-bindings/input/input.h>
->  #include <dt-bindings/gpio/meson-g12a-gpio.h>
-> +#include <dt-bindings/sound/meson-g12a-tohdmitx.h>
->  
->  / {
->  	model = "Khadas VIM3";
-> @@ -76,6 +77,61 @@
->  		clock-names = "ext_clock";
->  	};
->  
-> +	sound {
-> +		compatible = "amlogic,axg-sound-card";
-> +		model = "G12A-KHADAS-VIM3";
-> +		audio-aux-devs = <&tdmout_b>;
-> +		audio-routing = "TDMOUT_B IN 0", "FRDDR_A OUT 1",
-> +				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-> +				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-> +				"TDM_B Playback", "TDMOUT_B OUT";
-> +
-> +		assigned-clocks = <&clkc CLKID_MPLL2>,
-> +				  <&clkc CLKID_MPLL0>,
-> +				  <&clkc CLKID_MPLL1>;
-> +		assigned-clock-parents = <0>, <0>, <0>;
-> +		assigned-clock-rates = <294912000>,
-> +				       <270950400>,
-> +				       <393216000>;
-> +		status = "okay";
-> +
-> +		dai-link-0 {
-> +			sound-dai = <&frddr_a>;
-> +		};
-> +
-> +		dai-link-1 {
-> +			sound-dai = <&frddr_b>;
-> +		};
-> +
-> +		dai-link-2 {
-> +			sound-dai = <&frddr_c>;
-> +		};
-> +
-> +		/* 8ch hdmi interface */
-> +		dai-link-3 {
-> +			sound-dai = <&tdmif_b>;
-> +			dai-format = "i2s";
-> +			dai-tdm-slot-tx-mask-0 = <1 1>;
-> +			dai-tdm-slot-tx-mask-1 = <1 1>;
-> +			dai-tdm-slot-tx-mask-2 = <1 1>;
-> +			dai-tdm-slot-tx-mask-3 = <1 1>;
-> +			mclk-fs = <256>;
-> +
-> +			codec {
-> +				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-> +			};
-> +		};
-> +
-> +		/* hdmi glue */
-> +		dai-link-4 {
-> +			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
-> +
-> +			codec {
-> +				sound-dai = <&hdmi_tx>;
-> +			};
-> +		};
-> +	};
-> +
->  	dc_in: regulator-dc_in {
->  		compatible = "regulator-fixed";
->  		regulator-name = "DC_IN";
-> @@ -171,6 +227,14 @@
->  	};
->  };
->  
-> +&arb {
-> +	status = "okay";
-> +};
-> +
-> +&clkc_audio {
-> +	status = "okay";
-> +};
-> +
->  &cec_AO {
->  	pinctrl-0 = <&cec_ao_a_h_pins>;
->  	pinctrl-names = "default";
-> @@ -206,6 +270,18 @@
->          amlogic,tx-delay-ns = <2>;
->  };
->  
-> +&frddr_a {
-> +	status = "okay";
-> +};
-> +
-> +&frddr_b {
-> +	status = "okay";
-> +};
-> +
-> +&frddr_c {
-> +	status = "okay";
-> +};
-> +
->  &hdmi_tx {
->  	status = "okay";
->  	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
-> @@ -328,6 +404,18 @@
->  	vqmmc-supply = <&emmc_1v8>;
->  };
->  
-> +&tdmif_b {
-> +	status = "okay";
-> +};
-> +
-> +&tdmout_b {
-> +	status = "okay";
-> +};
-> +
-> +&tohdmitx {
-> +	status = "okay";
-> +};
-> +
->  &uart_A {
->  	status = "okay";
->  	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
+> I'm willing to take the driver but I doubt the purpose of the
+> clock-frequency is to let the user choose the frequency.
 > 
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+I found this approach in the following already integrated drivers:
+drivers/clocksource/armv7m_systick.c
+drivers/clocksource/bcm2835_timer.c
+drivers/clocksource/bcm_kona_timer.c
+drivers/clocksource/mips-gic-timer.c
+drivers/clocksource/mps2-timer.c
+drivers/clocksource/timer-qcom.c
+drivers/clocksource/arm_arch_timer.c
 
+Looking through the documentation of these, most of them document this DT
+property as the frequency of the clock that drivers the timer, but none of
+them seems to have some IP internal dividers so that the timer to tick at
+different frequency than the clock that feeds the IP. From the
+documentation of the above drivers;
+drivers/clocksource/armv7m_systick.c
+	- clock-frequency : The rate in HZ in input of the ARM SysTick
+
+drivers/clocksource/bcm2835_timer.c
+	- clock-frequency : The frequency of the clock that drives the counter, in
+Hz.
+drivers/clocksource/bcm_kona_timer.c
+	- clock-frequency: frequency that the clock operates
+
+drivers/clocksource/mips-gic-timer.c
+	clock-frequency : Clock frequency at which the GIC timers operate.
+drivers/clocksource/mps2-timer.c
+	- clock-frequency : The rate in HZ in input of the ARM MPS2 timer
+
+drivers/clocksource/timer-qcom.c
+	- clock-frequency : The frequency of the debug timer and the general
+purpose
+                    timer(s) in Hz in that order.
+
+
+This is why I also chose this DT bindings.
+
+If you want I can stick to a fixed frequency hard coded in the driver.
+Please let me know if this would be OK for you.
+
+Thank you,
+Claudiu Beznea
+
+> 
+> [ ... ]
+> 
+> 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
