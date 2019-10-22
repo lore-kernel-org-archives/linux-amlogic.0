@@ -2,21 +2,22 @@ Return-Path: <SRS0=Y6TM=YP=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4D7FECA9EA0
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Oct 2019 11:41:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 986A8CA9EA0
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Oct 2019 19:52:53 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id C4D8E21872
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Oct 2019 11:41:01 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 55F0921906
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Oct 2019 19:52:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NaqNhCmp"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C4D8E21872
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qcXlI7wC";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="SbSsk/ek"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 55F0921906
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
@@ -24,49 +25,53 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7AlXtPCuSWFL4XG4S4xar4u6VCEKaD+wT3msIjQQleA=; b=NaqNhCmpe0+7Tn
-	Ny7JgAsd/lmLxlpmtSmAmgZXaDZjF18mA1bFSKVbzV8NysgsHEpRMwN+7sbv2zAws0lL7occ39vzR
-	A/qQ1u2WFC3NpKwww4xiQKadDDI2+ShWMQHNsWMZeaBpnoCGmUvNMW8CFeW8gGReM09GMhuzqYeIm
-	bFs+cZ0XqG4VprLukN8Nce5J+RGXaJd8yFMhARThLVAVE3um92HpUDUUXRJUKaFPoi5gaY7KTzOCO
-	lSHmQRXnBHW9bx5mrYz9nRyG/qsdZktK6cXrigdqoHMD9k98egfV3UQeAMdtiHed20kn3t4jo+AVD
-	rMLJtmldiiu4TdbB9vAA==;
+	List-Owner; bh=DourKZPZzOUUR5RenuxzEO4GwkHovpSWKTI2rP0Rdzw=; b=qcXlI7wCReLpo8
+	CsmilWqtpPkvzyvNWXygrZwaHofVcER2ipxZ1+XFoiSEpar8cjgYqd8KcXqVgVNjZRbsmHftFLhvu
+	yn2mgsQAjsRLLZkN93/HfbZefiY5NbIgsz2vwvHCfnTBTBJI3PWO0bYZZdGpz1eQW7mwHnlDB4Adt
+	eApX5aeVK23aAgN2zBjNLryHghaL4WPk6dsOBJ2NPhAiymT9LvqeRQQxYyKae0EGRx95KAcfXcNHH
+	wpC9Ktfjj1oA40gnt3JzwUha80YTDm8Ah8Q+Re9xL+7WtiVx8m0bbfaEC0ZjWaIcdzK9gzF1/dROC
+	kF6tsR9z8xhaUt7gqqcA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iMsWy-0001rN-MG; Tue, 22 Oct 2019 11:40:52 +0000
-Received: from mail-oi1-f195.google.com ([209.85.167.195])
+	id 1iN0Cy-0002TV-Gw; Tue, 22 Oct 2019 19:52:44 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iMsWv-0001pj-1Q; Tue, 22 Oct 2019 11:40:50 +0000
-Received: by mail-oi1-f195.google.com with SMTP id a15so13893945oic.0;
- Tue, 22 Oct 2019 04:40:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=MTkUrxhJaaygKpYFG6XKyORLB/6UsrnNnAcZ2HEl3vA=;
- b=j7e/zRyXU5L0j2HfQBbiPRz1FpuWUq8OpkY1fEgg+b6eFMpCFxxa0wxK5igcfbKDzn
- 0fjgfODFh85mRztti513M90VKEGQDozP6DZEl25T3X3Iy4djigU6eXU/ITq6h8aeyL7V
- LAqP5IUgr5LTF7qI4BZQslJBkP2eW6WxQGGtostoG6/DVsy3P5h9xgSsDzlmJEyhYhVT
- R3DD4GkxWGbDM8rVnTS3BTBcBpJaZrIy+uDLc1jivmv9cfCgMeyQZXYsVYHGxG1ICltD
- rGbvZyqQ4osi2/pZHZ/7Rnqd4CaUHgH/V8RoEwOMrreJvEqnOtXcypGTFGWJtrcb/lU0
- S17w==
-X-Gm-Message-State: APjAAAVeDIySB0nVGznHacrGOS95zpZ36M8Atl9htX5+7bGtkEjdRRjl
- eqn5OtYlv0a53ZuWqk0xefPqx+DbDNEiRGMbTxA=
-X-Google-Smtp-Source: APXvYqzhQ8cZ06PtyQQYS8VBvz7ZAfya04dDgTKpedBCyvYLKvYUP4z21wflkhBwZ+Lx/Betkfre5JCQCLddcCfBX8w=
-X-Received: by 2002:aca:882:: with SMTP id 124mr2542881oii.54.1571744447771;
- Tue, 22 Oct 2019 04:40:47 -0700 (PDT)
+ id 1iN0Cw-0002Sp-EN; Tue, 22 Oct 2019 19:52:43 +0000
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com
+ [209.85.160.176])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id DDDC821D81;
+ Tue, 22 Oct 2019 19:52:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1571773962;
+ bh=lVep/kGw+Qm/9BH6yFF5Ta8I/nos5oV6cOnqMoFM8O4=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=SbSsk/ekDVLBB454r0f1fvmvvTfmN03c5NGb9PdZ9IvpRX8d1DtgQ08Z0bcIFwtzs
+ VJWkSkAkUUYtQwyf9KuPhqlpVOF4v4w2h5TXmW4XmSDy7Bzdam3XJW9stl7dqdpFvB
+ VeMeIZqvsNaRGBObR2DhS1fZ9eyDJP3dVFLqhiSw=
+Received: by mail-qt1-f176.google.com with SMTP id d17so14058651qto.3;
+ Tue, 22 Oct 2019 12:52:41 -0700 (PDT)
+X-Gm-Message-State: APjAAAWFRztYI5DuJGiRUNffRn1tmvtxVdCUean9PJmT74wIG6OMZAIe
+ Fzq4mz/3bCf51LsiEVSEMJtN9Bsk7u4ZGqZdNA==
+X-Google-Smtp-Source: APXvYqwfTFQvEWZsi+fmlXq4bJ/93h8u27YyErOcN6+jtvSG/aNt4UCbC5GoUws1bleVICB9W55vYXnUR58eU0hZLWI=
+X-Received: by 2002:ac8:741a:: with SMTP id p26mr5266590qtq.143.1571773960946; 
+ Tue, 22 Oct 2019 12:52:40 -0700 (PDT)
 MIME-Version: 1.0
 References: <20191021214550.1461-1-robh@kernel.org>
  <20191021214550.1461-5-robh@kernel.org>
  <20191022113001.GG4756@pendragon.ideasonboard.com>
-In-Reply-To: <20191022113001.GG4756@pendragon.ideasonboard.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 22 Oct 2019 13:40:36 +0200
-Message-ID: <CAMuHMdXCq9urRDCSmLueVpsv9-FxJ6pxQf-9Ua=vT-TrRs++fQ@mail.gmail.com>
+ <CAMuHMdXCq9urRDCSmLueVpsv9-FxJ6pxQf-9Ua=vT-TrRs++fQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdXCq9urRDCSmLueVpsv9-FxJ6pxQf-9Ua=vT-TrRs++fQ@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 22 Oct 2019 14:52:29 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJwJgNHy4wr0as0n-R3ist_yKp3ytyBw4bPXjtSOSMOXQ@mail.gmail.com>
+Message-ID: <CAL_JsqJwJgNHy4wr0as0n-R3ist_yKp3ytyBw4bPXjtSOSMOXQ@mail.gmail.com>
 Subject: Re: [PATCH 4/6] drm/cma-helper: Support DRM_MODE_DUMB_KERNEL_MAP flag
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191022_044049_083408_F929B8F4 
-X-CRM114-Status: GOOD (  10.25  )
+X-CRM114-CacheID: sfid-20191022_125242_527486_8A00404F 
+X-CRM114-Status: GOOD (  11.90  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,8 +89,10 @@ Cc: Daniel Vetter <daniel@ffwll.ch>,
  Liviu Dudau <liviu.dudau@arm.com>,
  DRI Development <dri-devel@lists.freedesktop.org>,
  Philippe Cornu <philippe.cornu@st.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
  Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- linux-stm32@st-md-mailman.stormreply.com, Rob Herring <robh@kernel.org>,
+ linux-stm32@st-md-mailman.stormreply.com,
+ Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
  Kevin Hilman <khilman@baylibre.com>, Chen-Yu Tsai <wens@csie.org>,
  Xinliang Liu <z.liuxinliang@hisilicon.com>,
  "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
@@ -95,8 +102,8 @@ Cc: Daniel Vetter <daniel@ffwll.ch>,
  Alexandre Torgue <alexandre.torgue@st.com>,
  Chen Feng <puck.chen@hisilicon.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
- Maxime Ripard <mripard@kernel.org>, linux-mediatek@lists.infradead.org,
+ Maxime Ripard <mripard@kernel.org>,
+ "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
  Vincent Abriou <vincent.abriou@st.com>,
  Matthias Brugger <matthias.bgg@gmail.com>,
  "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
@@ -111,37 +118,35 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Laurent,
-
-On Tue, Oct 22, 2019 at 1:30 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
-> On Mon, Oct 21, 2019 at 04:45:48PM -0500, Rob Herring wrote:
-
-> > --- a/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
-> > +++ b/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
-> > @@ -419,6 +419,7 @@ int rockchip_gem_dumb_create(struct drm_file *file_priv,
-> >        * align to 64 bytes since Mali requires it.
-> >        */
-> >       args->pitch = ALIGN(min_pitch, 64);
-> > +     args->flags = DRM_MODE_DUMB_KERNEL_MAP;
-> >       args->size = args->pitch * args->height;
+On Tue, Oct 22, 2019 at 6:40 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 >
-> My OCD gets triggered by flags appearing in the middle here while it is
-> at the end in other drivers :-)
+> Hi Laurent,
+>
+> On Tue, Oct 22, 2019 at 1:30 PM Laurent Pinchart
+> <laurent.pinchart@ideasonboard.com> wrote:
+> > On Mon, Oct 21, 2019 at 04:45:48PM -0500, Rob Herring wrote:
+>
+> > > --- a/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
+> > > +++ b/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
+> > > @@ -419,6 +419,7 @@ int rockchip_gem_dumb_create(struct drm_file *file_priv,
+> > >        * align to 64 bytes since Mali requires it.
+> > >        */
+> > >       args->pitch = ALIGN(min_pitch, 64);
+> > > +     args->flags = DRM_MODE_DUMB_KERNEL_MAP;
+> > >       args->size = args->pitch * args->height;
+> >
+> > My OCD gets triggered by flags appearing in the middle here while it is
+> > at the end in other drivers :-)
+>
+> ... while "flags" appears before "pitch" and "size" in the actual struct
+> definition... Aaarghl ;-)
 
-... while "flags" appears before "pitch" and "size" in the actual struct
-definition... Aaarghl ;-)
+There was some reasoning here as my CMA helper conversion patch is
+going to insert code between flags and size.
 
-Gr{oetje,eeting}s,
+But to keep everyone's OCD in check, I can set flags first.
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Rob
 
 _______________________________________________
 linux-amlogic mailing list
