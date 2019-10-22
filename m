@@ -5,71 +5,63 @@ X-Spam-Level:
 X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=3.4.0
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5D257CA9EAF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Oct 2019 02:45:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 30F09CA9EA0
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Oct 2019 05:30:45 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2768A20882
-	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Oct 2019 02:45:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 000EA21872
+	for <linux-amlogic@archiver.kernel.org>; Tue, 22 Oct 2019 05:30:44 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="OPiylgip"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2768A20882
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="T7wrGijR"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 000EA21872
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
-	References:Message-ID:Date:Subject:To:From:Reply-To:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=DcEIuShBXsQIFXQdVisl3S58INAFwXK7W/UOl22hgrg=; b=OPiylgipPA+823
-	0cvHTCCaNbjFeZTJBlyGLU4LDYQJ/ryyRqoFXzF5Ajor5uqkuMpfuIjcg0oc8aSaRVj3WaEVYyDpc
-	admiFlTWUbzLdeNWRzwCHwCXYbVOgNUF7mU0zqMnWsoZJo38MEgJV9N8n8uHgYMrOfoRZhe5Uyxjk
-	vSgF79Br3lpu4wndGBkW6X6HXD7LkuKoHwFlGICgHdxXuRwgisYUWBGsdQU9pRZkcDMJwSsl5pmoR
-	oJ5Xw87zmGUPMi9WPEVG954PsxE8kaBY92FdMPTiZTliaZ/oHHttNPEP9r/Vubs/oBPHWaNaihOQ2
-	3MdO/ylTZ/sDSLY2Da3Q==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=+XBtljx73De7Qmx4X1ZOOcMbCKrWpcIUOqKiT4JhPXM=; b=T7wrGijRw3Y0R2BgwZ8wPEoeg
+	6fB4hDkhjmRl1Z/usUFYbDjSeb/4Rchr/QmNltEGzQ8IrDpRisuM2NUlnnucAtojZAsgGFtCnuJcO
+	zE81T0ahZN7H84hJQf23AnvC7bsdSgqeJXS7R9q6BXHWF6EzKf6nfTSqfT7nZwUnWh1nJfT+DLhp3
+	Th0O0yChJoFuHSySCBsvSeutviT9d5Hdm2s3RqcIKcrRt4D+Sa3f8rOJZ9IXD0gYXJBxSOgtznW/W
+	AuhAfjfsPUQfAmioLdduRGEoZlECWQtkVUtthHRYZEQelpOiWTpXAkb70rzrWro9FzXBU/H81HGE7
+	kK13WTBKg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iMkAU-0006u3-2X; Tue, 22 Oct 2019 02:45:06 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1iMmkh-0002U8-2J; Tue, 22 Oct 2019 05:30:39 +0000
+Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iMkAQ-00067S-OT
- for linux-amlogic@lists.infradead.org; Tue, 22 Oct 2019 02:45:04 +0000
-Received: from mail-sz.amlogic.com (10.28.11.5) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ id 1iMmkT-0002Lc-M3; Tue, 22 Oct 2019 05:30:29 +0000
+Received: from [10.28.19.114] (10.28.19.114) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Tue, 22 Oct
- 2019 10:45:02 +0800
-Received: from mail-sz.amlogic.com ([fe80::ed49:2000:aa3e:d8d6]) by
- mail-sz.amlogic.com ([fe80::ed49:2000:aa3e:d8d6%4]) with mapi id
- 15.01.1591.008; Tue, 22 Oct 2019 10:45:02 +0800
-From: Nan Li <Nan.Li@amlogic.com>
+ 2019 13:30:31 +0800
+Subject: Re: [PATCH v2 1/3] dt-bindings: clock: meson: add A1 clock controller
+ bindings
 To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
- <narmstrong@baylibre.com>, Jianxin Pan <Jianxin.Pan@amlogic.com>, Ulf Hansson
- <ulf.hansson@linaro.org>, Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [PATCH] mmc: fix mmc dma operation
-Thread-Topic: [PATCH] mmc: fix mmc dma operation
-Thread-Index: AQHVh9Sr7hMU2KXmREa05uz490zVL6dkNLiAgAAWKoCAASS2AA==
-Date: Tue, 22 Oct 2019 02:45:02 +0000
-Message-ID: <8fc785d5-78a7-6933-8462-22d4afa24068@amlogic.com>
-References: <1571637541-119016-1-git-send-email-jianxin.pan@amlogic.com>
- <fc1f61e1-b156-11e6-3f21-c498d2f0a8c6@baylibre.com>
- <1jwocybgpw.fsf@starbuckisacylon.baylibre.com>
-In-Reply-To: <1jwocybgpw.fsf@starbuckisacylon.baylibre.com>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.2
-x-originating-ip: [10.28.18.42]
-Content-ID: <21F36A73DE7F4C4491A23F3C776498B7@amlogic.com>
+ <narmstrong@baylibre.com>
+References: <1571382865-41978-1-git-send-email-jian.hu@amlogic.com>
+ <1571382865-41978-2-git-send-email-jian.hu@amlogic.com>
+ <1jv9sibcpg.fsf@starbuckisacylon.baylibre.com>
+From: Jian Hu <jian.hu@amlogic.com>
+Message-ID: <32cba835-5336-a787-c750-473125420e97@amlogic.com>
+Date: Tue, 22 Oct 2019 13:30:31 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
+In-Reply-To: <1jv9sibcpg.fsf@starbuckisacylon.baylibre.com>
+Content-Language: en-US
+X-Originating-IP: [10.28.19.114]
+X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
+ (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191021_194502_805491_6BF90C77 
-X-CRM114-Status: GOOD (  21.45  )
+X-CRM114-CacheID: sfid-20191021_223025_727506_6D03E41D 
+X-CRM114-Status: GOOD (  13.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,84 +73,326 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
- "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Victor Wan <victor.wan@amlogic.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Rob Herring <robh@kernel.org>, Victor Wan <victor.wan@amlogic.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, devicetree@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
+ Stephen Boyd <sboyd@kernel.org>, Qiufang Dai <qiufang.dai@amlogic.com>,
+ Chandle Zou <chandle.zou@amlogic.com>, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-5ZyoIDIwMTkvMTAvMjEgMTc6MTcsIEplcm9tZSBCcnVuZXQg5YaZ6YGTOg0KPiBPbiBNb24gMjEg
-T2N0IDIwMTkgYXQgMDk6NTcsIE5laWwgQXJtc3Ryb25nIDxuYXJtc3Ryb25nQGJheWxpYnJlLmNv
-bT4gd3JvdGU6DQo+DQo+PiBIaSwNCj4+DQo+PiBUaGFua3MgZm9yIHRoZSBmaXguDQo+Pg0KPj4g
-Rmlyc3QsIHlvdSBzaG91bGQgYWRkICJtbWM6IG1lc29uLWd4OiIgaW4gdGhlIHN1YmplY3QuDQo+
-Pg0KPj4gT24gMjEvMTAvMjAxOSAwNzo1OSwgSmlhbnhpbiBQYW4gd3JvdGU6DQo+Pj4gRnJvbTog
-TmFuIExpIDxuYW4ubGlAYW1sb2dpYy5jb20+DQo+Pj4NCj4+PiBJbiBNTUMgZG1hIHRyYW5zZmVy
-LCB0aGUgcmVnaW9uIHJlcXVlc3RlZCBieSBkbWFfbWFwX3NnKCkgbWF5IGJlIHJlbGVhc2VkDQo+
-Pj4gYnkgZG1hX3VubWFwX3NnKCkgYmVmb3JlIHRoZSB0cmFuc2ZlciBpcyBjb21wbGV0ZWQuDQo+
-Pj4NCj4+PiBQdXQgdGhlIHVubWFwIG9wZXJhdGlvbiBpbiBmcm9udCBvZiBtbWNfcmVxdWVzdF9k
-b25lKCkgdG8gYXZvaWQgdGhpcy4NCj4gU2luY2Ugd2UgaGF2ZSBzZWVuIHRoaXMgcHJvYmxlbSAo
-eWV0KSwgY291bGQgeW91IGJyaWVmbHkgaG93IHlvdSd2ZQ0KPiB0cmlnZ2VyZWQgaXQgPw0KDQpU
-aGUgcHJvYmxlbSB3ZSBmb3VuZCBpbiB0aGUgc3RyZXNzIHRlc3Qgd2FzIHRoYXQgdGhlIHNkaW8g
-ZGV2aWNlIHdhcyANCmNvbnN0YW50bHkgb3BlcmF0ZWQgb24gYW5kIG9mZiBlbGVjdHJpY2l0eSB0
-byBtYWtlIGl0IHJlcGVhdGVkbHkgDQppbml0aWFsaXplZC4NCg0KRHVyaW5nIHRoZSB0ZXN0LCB3
-ZSBmb3VuZCB0aGF0IHRoZXJlIHdhcyBhIGNoYW5jZSB0aGF0IHRoZSBpbmZvcm1hdGlvbiANCnJl
-YWQgYnkgdGhlIGNvbnRyb2xsZXIgZnJvbSB0aGUgc2RpbyBkZXZpY2Ugc2lkZSB3YXMgd3Jvbmcs
-IHdoaWNoIG1hZGUgDQp0aGUgc2RpbyBpbml0aWFsaXphdGlvbiBmYWlsLg0KDQo+PiBZb3Ugc2hv
-dWxkIGFkZCBhICJGaXhlczoiIHRhZyBzbyBpdCBjYW4gYmUgYmFja3BvcnRlZCBvbiBzdGFibGUg
-a2VybmVscy4NCj4+DQo+Pj4gU2lnbmVkLW9mZi1ieTogTmFuIExpIDxuYW4ubGlAYW1sb2dpYy5j
-b20+DQo+Pj4gU2lnbmVkLW9mZi1ieTogSmlhbnhpbiBQYW4gPGppYW54aW4ucGFuQGFtbG9naWMu
-Y29tPg0KPj4+IC0tLQ0KPj4+ICAgZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1neC1tbWMuYyB8IDE1
-ICsrKysrKysrLS0tLS0tLQ0KPj4+ICAgMSBmaWxlIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwg
-NyBkZWxldGlvbnMoLSkNCj4+Pg0KPj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL21tYy9ob3N0L21l
-c29uLWd4LW1tYy5jIGIvZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1neC1tbWMuYw0KPj4+IGluZGV4
-IGU3MTIzMTUuLjc2NjdlOGEgMTAwNjQ0DQo+Pj4gLS0tIGEvZHJpdmVycy9tbWMvaG9zdC9tZXNv
-bi1neC1tbWMuYw0KPj4+ICsrKyBiL2RyaXZlcnMvbW1jL2hvc3QvbWVzb24tZ3gtbW1jLmMNCj4+
-PiBAQCAtMTczLDYgKzE3Myw3IEBAIHN0cnVjdCBtZXNvbl9ob3N0IHsNCj4+PiAgIAlpbnQgaXJx
-Ow0KPj4+ICAgDQo+Pj4gICAJYm9vbCB2cW1tY19lbmFibGVkOw0KPj4+ICsJYm9vbCBuZWVkc19w
-cmVfcG9zdF9yZXE7DQo+Pj4gICB9Ow0KPj4+ICAgDQo+Pj4gICAjZGVmaW5lIENNRF9DRkdfTEVO
-R1RIX01BU0sgR0VOTUFTSyg4LCAwKQ0KPj4+IEBAIC02NTQsNiArNjU1LDggQEAgc3RhdGljIHZv
-aWQgbWVzb25fbW1jX3JlcXVlc3RfZG9uZShzdHJ1Y3QgbW1jX2hvc3QgKm1tYywNCj4+PiAgIAlz
-dHJ1Y3QgbWVzb25faG9zdCAqaG9zdCA9IG1tY19wcml2KG1tYyk7DQo+Pj4gICANCj4+PiAgIAlo
-b3N0LT5jbWQgPSBOVUxMOw0KPj4+ICsJaWYgKGhvc3QtPm5lZWRzX3ByZV9wb3N0X3JlcSkNCj4+
-PiArCQltZXNvbl9tbWNfcG9zdF9yZXEobW1jLCBtcnEsIDApOw0KPj4+ICAgCW1tY19yZXF1ZXN0
-X2RvbmUoaG9zdC0+bW1jLCBtcnEpOw0KPj4+ICAgfQ0KPj4+ICAgDQo+Pj4gQEAgLTgwMywyNSAr
-ODA2LDIzIEBAIHN0YXRpYyB2b2lkIG1lc29uX21tY19zdGFydF9jbWQoc3RydWN0IG1tY19ob3N0
-ICptbWMsIHN0cnVjdCBtbWNfY29tbWFuZCAqY21kKQ0KPj4+ICAgc3RhdGljIHZvaWQgbWVzb25f
-bW1jX3JlcXVlc3Qoc3RydWN0IG1tY19ob3N0ICptbWMsIHN0cnVjdCBtbWNfcmVxdWVzdCAqbXJx
-KQ0KPj4+ICAgew0KPj4+ICAgCXN0cnVjdCBtZXNvbl9ob3N0ICpob3N0ID0gbW1jX3ByaXYobW1j
-KTsNCj4+PiAtCWJvb2wgbmVlZHNfcHJlX3Bvc3RfcmVxID0gbXJxLT5kYXRhICYmDQo+Pj4gKw0K
-Pj4+ICsJaG9zdC0+bmVlZHNfcHJlX3Bvc3RfcmVxID0gbXJxLT5kYXRhICYmDQo+Pj4gICAJCQkh
-KG1ycS0+ZGF0YS0+aG9zdF9jb29raWUgJiBTRF9FTU1DX1BSRV9SRVFfRE9ORSk7DQo+Pj4gICAN
-Cj4+PiAtCWlmIChuZWVkc19wcmVfcG9zdF9yZXEpIHsNCj4+PiArCWlmIChob3N0LT5uZWVkc19w
-cmVfcG9zdF9yZXEpIHsNCj4+PiAgIAkJbWVzb25fbW1jX2dldF90cmFuc2Zlcl9tb2RlKG1tYywg
-bXJxKTsNCj4+PiAgIAkJaWYgKCFtZXNvbl9tbWNfZGVzY19jaGFpbl9tb2RlKG1ycS0+ZGF0YSkp
-DQo+Pj4gLQkJCW5lZWRzX3ByZV9wb3N0X3JlcSA9IGZhbHNlOw0KPj4+ICsJCQlob3N0LT5uZWVk
-c19wcmVfcG9zdF9yZXEgPSBmYWxzZTsNCj4+PiAgIAl9DQo+Pj4gICANCj4+PiAtCWlmIChuZWVk
-c19wcmVfcG9zdF9yZXEpDQo+Pj4gKwlpZiAoaG9zdC0+bmVlZHNfcHJlX3Bvc3RfcmVxKQ0KPj4+
-ICAgCQltZXNvbl9tbWNfcHJlX3JlcShtbWMsIG1ycSk7DQo+Pj4gICANCj4+PiAgIAkvKiBTdG9w
-IGV4ZWN1dGlvbiAqLw0KPj4+ICAgCXdyaXRlbCgwLCBob3N0LT5yZWdzICsgU0RfRU1NQ19TVEFS
-VCk7DQo+Pj4gICANCj4+PiAgIAltZXNvbl9tbWNfc3RhcnRfY21kKG1tYywgbXJxLT5zYmMgPzog
-bXJxLT5jbWQpOw0KPj4+IC0NCj4+PiAtCWlmIChuZWVkc19wcmVfcG9zdF9yZXEpDQo+Pj4gLQkJ
-bWVzb25fbW1jX3Bvc3RfcmVxKG1tYywgbXJxLCAwKTsNCj4+PiAgIH0NCj4gVGhlIGNvZGUgYXJv
-dW5kIGFsbCB0aGlzIGlzIGdldHRpbmcgcXVpdGUgZGlmZmljdWx0IHRvIGZvbGxvdyBldmVudGhv
-dWdoDQo+IGl0IGRvZXMgbm90IGFjdHVhbGx5IGRvIG11Y2gNCj4NCj4gVGhlIHJvb3Qgb2YgdGhl
-IHByb2JsZW0gc2VlbXMgYmUgdGhhdCBtZXNvbl9tbWNfcHJlX3JlcSgpIGFuZA0KPiBtZXNvbl9t
-bWNfcG9zdF9yZXEoKSBhcmUgcGFzc2VkIHRvIGZyYW1ld29yayBidXQgYWxzbyBjYWxsZWQgbWFu
-dWFsbHkNCj4gZnJvbSBtZXNvbl9tbWNfcmVxdWVzdCgpLg0KPg0KPiBCZWNhdXNlIG9mIHRoaXMs
-IHNvbWUgY29kZSBpcyBhZGRlZCB0byBtYWtlIHN1cmUgd2UgZG9uJ3QgZG8gdGhpbmdzIHR3aWNl
-Lg0KPiBNYXliZSBJJ20gbWlzc2luZyBzb21ldGhpbmcgYnV0IGl0IGxvb2sgd2VpcmQgPyBVbGYs
-IGNvdWxkIHlvdSBnaXZlIHVzDQo+IHlvdXIgdmlldyA/DQo+DQo+IEFzIGZhciBhcyBJIGNhbiB0
-ZWxsOg0KPiAgICogcHJlX3JlcSA6IGRldGVybWluZSBpZiB3ZSB1c2UgQ0hBSU5fTU9ERSBvciBu
-b3QgQU5EDQo+ICAgICAgICAgICAgICAgZG1hX21hcF9zZygpIGlmIHdlIGRvDQo+ICAgKiBwb3N0
-X3JlcSA6IGRtYV91bm1hcF9zZygpIGlmIHByZXZpb3VzbHkgYWxsb2NhdGVkDQo+DQo+IERvIHdl
-IHJlYWxseSBuZWVkIHRvIGRvIGFsbCB0aGlzIG1lc29uX21tY19yZXF1ZXN0KCkgPyBTaG91bGRu
-J3Qgd2UgbGV0IHRoZQ0KPiBmcmFtZXdvcmsgZG8gdGhlIGNhbGxzIHRvIHByZS9wb3N0X3JlcSBm
-b3IgdXMgPw0KPg0KPj4+ICAgDQo+Pj4gICBzdGF0aWMgdm9pZCBtZXNvbl9tbWNfcmVhZF9yZXNw
-KHN0cnVjdCBtbWNfaG9zdCAqbW1jLCBzdHJ1Y3QgbW1jX2NvbW1hbmQgKmNtZCkNCj4+Pg0KPj4g
-TmVpbA0KDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFk
-Lm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFt
-bG9naWMK
+Hi, Jerome
+
+Thanks for your review.
+
+On 2019/10/21 18:43, Jerome Brunet wrote:
+> 
+> On Fri 18 Oct 2019 at 09:14, Jian Hu <jian.hu@amlogic.com> wrote:
+> 
+>> Add the documentation to support Amlogic A1 clock driver,
+>> and add A1 clock controller bindings.
+>>
+>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>> ---
+>>   .../devicetree/bindings/clock/amlogic,a1-clkc.yaml | 143
+>> +++++++++++++++++++++
+> 
+> Those are 2 different controllers, not variants.
+> One description (one file) per controller please
+OK, I will describe for periphs and PLLs controller separately.
+> 
+>>   include/dt-bindings/clock/a1-clkc.h                |  98 ++++++++++++++
+>>   include/dt-bindings/clock/a1-pll-clkc.h            |  16 +++
+>>   3 files changed, 257 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+>>   create mode 100644 include/dt-bindings/clock/a1-clkc.h
+>>   create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+>> new file mode 100644
+>> index 0000000..b382eebe
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-clkc.yaml
+>> @@ -0,0 +1,143 @@
+>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+>> +/*
+>> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+>> + */
+>> +%YAML 1.2
+>> +---
+>> +$id: "http://devicetree.org/schemas/clock/amlogic,a1-clkc.yaml#"
+>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>> +
+>> +title: Amlogic Meson A/C serials Clock Control Unit Device Tree Bindings
+>> +
+>> +maintainers:
+>> +  - Neil Armstrong <narmstrong@baylibre.com>
+>> +  - Jerome Brunet <jbrunet@baylibre.com>
+>> +  - Jian Hu <jian.hu@jian.hu.com>
+>> +
+>> +description: |+
+>> +  The clock controller node should be the child of a syscon node with the
+>> +  required property:
+>> +
+>> +  - compatible:         Should be one of the following:
+>> +                        "amlogic,meson-a-analog-sysctrl", "syscon", "simple-mfd"
+>> +                        "amlogic,meson-a-periphs-sysctrl", "syscon", "simple-mfd"
+>> +
+>> +  Refer to the the bindings described in
+>> +  Documentation/devicetree/bindings/mfd/syscon.txt
+>> +
+>> +properties:
+>> +  "#clock-cells":
+>> +    const: 1
+>> +  compatible:
+>> +    - enum:
+>> +        - amlogic,a1-periphs-clkc
+>> +        - amlogic,a1-pll-clkc
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    minItems: 2
+>> +    maxItems: 6
+>> +
+>> +  clock-names:
+>> +    minItems: 2
+>> +    maxItems: 6
+>> +
+>> +required:
+>> +  - "#clock-cells"
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +
+>> +if:
+>> +  properties:
+>> +    compatible:
+>> +      enum:
+>> +        - amlogic,a1-periphs-clkc
+>> +
+>> +then:
+>> +  properties:
+>> +    clocks:
+>> +      minItems: 2
+>> +      maxItems: 2
+>> +    items:
+>> +     - description: fixed pll gate clock
+>> +     - description: hifi pll gate clock
+>> +
+>> +    clock-names:
+>> +      minItems: 2
+>> +      maxItems: 2
+>> +      items:
+>> +        - const: xtal_fixpll
+>> +        - const: xtal_hifipll
+>> +
+>> +else:
+>> +  if:
+>> +    properties:
+>> +      compatible:
+>> +        const: amlogic,a1-pll-clkc
+>> +
+>> +  then:
+>> +    properties:
+>> +      clocks:
+>> +        minItems: 6
+>> +        maxItems: 6
+>> +        items:
+>> +         - description: Input fixed pll div2
+>> +         - description: Input fixed pll div3
+>> +         - description: Input fixed pll div5
+>> +         - description: Input fixed pll div7
+>> +         - description: Periph Hifi pll
+>> +         - description: Input Oscillator (usually at 24MHz)
+>> +
+>> +      clock-names:
+>> +        minItems: 6
+>> +        maxItems: 6
+>> +        items:
+>> +         - const: fclk_div2
+>> +         - const: fclk_div3
+>> +         - const: fclk_div5
+>> +         - const: fclk_div7
+>> +         - const: hifi_pll
+>> +         - const: xtal
+>> +
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    analog: system-controller@0 {
+>> +        compatible = "amlogic,meson-a-analog-sysctrl",
+>> +                     "simple-mfd", "syscon";
+>> +        reg = <0 0x7c00 0 0x21c>;
+>> +
+>> +        clkc_pll: pll-clock-controller {
+>> +                compatible = "amlogic,a1-pll-clkc";
+>> +                #clock-cells = <1>;
+>> +                clocks = <&clkc_periphs CLKID_XTAL_FIXPLL>,
+>> +                         <&clkc_periphs CLKID_XTAL_HIFIPLL>;
+>> +                clock-names = "xtal_fixpll", "xtal_hifipll";
+>> +        };
+>> +    };
+>> +
+>> +  - |
+>> +    periphs: system-controller@1 {
+>> +        compatible = "amlogic,meson-a-periphs-sysctrl",
+>> +                     "simple-mfd", "syscon";
+>> +        reg = <0 0x800 0 0x104>;
+>> +
+>> +        clkc_periphs: periphs-clock-controller {
+>> +                compatible = "amlogic,a1-periphs-clkc";
+>> +                #clock-cells = <1>;
+>> +                clocks = <&clkc_pll CLKID_FCLK_DIV2>,
+>> +                        <&clkc_pll CLKID_FCLK_DIV3>,
+>> +                        <&clkc_pll CLKID_FCLK_DIV5>,
+>> +                        <&clkc_pll CLKID_FCLK_DIV7>,
+>> +                        <&clkc_pll CLKID_HIFI_PLL>,
+>> +                        <&xtal>;
+>> +                clock-names = "fclk_div2", "fclk_div3", "fclk_div5",
+>> +                              "fclk_div7", "hifi_pll", "xtal";
+>> +        };
+>> +    };
+>> diff --git a/include/dt-bindings/clock/a1-clkc.h b/include/dt-bindings/clock/a1-clkc.h
+>> new file mode 100644
+>> index 0000000..1ba0112
+>> --- /dev/null
+>> +++ b/include/dt-bindings/clock/a1-clkc.h
+>> @@ -0,0 +1,98 @@
+>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+>> +/*
+>> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+>> + */
+>> +
+>> +#ifndef __A1_CLKC_H
+>> +#define __A1_CLKC_H
+>> +
+>> +#define CLKID_XTAL_FIXPLL			1
+>> +#define CLKID_XTAL_USB_PHY			2
+>> +#define CLKID_XTAL_USB_CTRL			3
+>> +#define CLKID_XTAL_HIFIPLL			4
+>> +#define CLKID_XTAL_SYSPLL			5
+>> +#define CLKID_XTAL_DDS				6
+>> +#define CLKID_SYS_CLK				7
+>> +#define CLKID_CLKTREE				8
+>> +#define CLKID_RESET_CTRL			9
+>> +#define CLKID_ANALOG_CTRL			10
+>> +#define CLKID_PWR_CTRL				11
+>> +#define CLKID_PAD_CTRL				12
+>> +#define CLKID_SYS_CTRL				13
+>> +#define CLKID_TEMP_SENSOR			14
+>> +#define CLKID_AM2AXI_DIV			15
+>> +#define CLKID_SPICC_B				16
+>> +#define CLKID_SPICC_A				17
+>> +#define CLKID_CLK_MSR				18
+>> +#define CLKID_AUDIO				19
+>> +#define CLKID_JTAG_CTRL				20
+>> +#define CLKID_SARADC				21
+>> +#define CLKID_PWM_EF				22
+>> +#define CLKID_PWM_CD				23
+>> +#define CLKID_PWM_AB				24
+>> +#define CLKID_CEC				25
+>> +#define CLKID_I2C_S				26
+>> +#define CLKID_IR_CTRL				27
+>> +#define CLKID_I2C_M_D				28
+>> +#define CLKID_I2C_M_C				29
+>> +#define CLKID_I2C_M_B				30
+>> +#define CLKID_I2C_M_A				31
+>> +#define CLKID_ACODEC				32
+>> +#define CLKID_OTP				33
+>> +#define CLKID_SD_EMMC_A				34
+>> +#define CLKID_USB_PHY				35
+>> +#define CLKID_USB_CTRL				36
+>> +#define CLKID_SYS_DSPB				37
+>> +#define CLKID_SYS_DSPA				38
+>> +#define CLKID_DMA				39
+>> +#define CLKID_IRQ_CTRL				40
+>> +#define CLKID_NIC				41
+>> +#define CLKID_GIC				42
+>> +#define CLKID_UART_C				43
+>> +#define CLKID_UART_B				44
+>> +#define CLKID_UART_A				45
+>> +#define CLKID_SYS_PSRAM				46
+>> +#define CLKID_RSA				47
+>> +#define CLKID_CORESIGHT				48
+>> +#define CLKID_AM2AXI_VAD			49
+>> +#define CLKID_AUDIO_VAD				50
+>> +#define CLKID_AXI_DMC				51
+>> +#define CLKID_AXI_PSRAM				52
+>> +#define CLKID_RAMB				53
+>> +#define CLKID_RAMA				54
+>> +#define CLKID_AXI_SPIFC				55
+>> +#define CLKID_AXI_NIC				56
+>> +#define CLKID_AXI_DMA				57
+>> +#define CLKID_CPU_CTRL				58
+>> +#define CLKID_ROM				59
+>> +#define CLKID_PROC_I2C				60
+>> +#define CLKID_DSPA_SEL				61
+>> +#define CLKID_DSPB_SEL				62
+>> +#define CLKID_DSPA_EN_DSPA			63
+>> +#define CLKID_DSPA_EN_NIC			64
+>> +#define CLKID_DSPB_EN_DSPB			65
+>> +#define CLKID_DSPB_EN_NIC			66
+>> +#define CLKID_RTC_CLK				67
+>> +#define CLKID_CECA_32K				68
+>> +#define CLKID_CECB_32K				69
+>> +#define CLKID_24M				70
+>> +#define CLKID_12M				71
+>> +#define CLKID_FCLK_DIV2_DIVN			72
+>> +#define CLKID_GEN				73
+>> +#define CLKID_SARADC_SEL			74
+>> +#define CLKID_SARADC_CLK			75
+>> +#define CLKID_PWM_A				76
+>> +#define CLKID_PWM_B				77
+>> +#define CLKID_PWM_C				78
+>> +#define CLKID_PWM_D				79
+>> +#define CLKID_PWM_E				80
+>> +#define CLKID_PWM_F				81
+>> +#define CLKID_SPICC				82
+>> +#define CLKID_TS				83
+>> +#define CLKID_SPIFC				84
+>> +#define CLKID_USB_BUS				85
+>> +#define CLKID_SD_EMMC				86
+>> +#define CLKID_PSRAM				87
+>> +#define CLKID_DMC				88
+>> +
+>> +#endif /* __A1_CLKC_H */
+>> diff --git a/include/dt-bindings/clock/a1-pll-clkc.h b/include/dt-bindings/clock/a1-pll-clkc.h
+>> new file mode 100644
+>> index 0000000..58eae23
+>> --- /dev/null
+>> +++ b/include/dt-bindings/clock/a1-pll-clkc.h
+>> @@ -0,0 +1,16 @@
+>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+>> +/*
+>> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+>> + */
+>> +
+>> +#ifndef __A1_PLL_CLKC_H
+>> +#define __A1_PLL_CLKC_H
+>> +
+>> +#define CLKID_FIXED_PLL				1
+>> +#define CLKID_FCLK_DIV2				6
+>> +#define CLKID_FCLK_DIV3				7
+>> +#define CLKID_FCLK_DIV5				8
+>> +#define CLKID_FCLK_DIV7				9
+>> +#define CLKID_HIFI_PLL				10
+>> +
+>> +#endif /* __A1_PLL_CLKC_H */
+> 
+> .
+> 
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
