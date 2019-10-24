@@ -1,79 +1,57 @@
-Return-Path: <SRS0=Dnil=YQ=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=/s/K=YR=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B7922CA9EB9
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Oct 2019 20:12:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2B17BCA9EAF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Oct 2019 19:04:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8903E20650
-	for <linux-amlogic@archiver.kernel.org>; Wed, 23 Oct 2019 20:12:06 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 00BEB2070B
+	for <linux-amlogic@archiver.kernel.org>; Thu, 24 Oct 2019 19:04:20 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UFVaLVk+"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8903E20650
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HZPduu40"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 00BEB2070B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=the-dreams.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=QLueSl3s7TjV8GZmGCODrC1LvK9+k3snVOFoLsYoBfU=; b=UFVaLVk+eohLgR
-	DC0ttkePOnNQ21Z3vw2cB8cIxJMqeWxkactk21eoRkv3Nw/OGTDvyXvsbztGBr7IcLBRCY08IJdmD
-	7k4kZxa6WrAzFIXSpIdEDk4CuY0vRyDp/i4XnIl5D8aZ9Htp7+cedXSrOkXBYGUTabeRFudEnnuux
-	aBbcDaQsK9K1kwFk2V7wrUP27E+h1/ILyX8oyghyujgJ55FLxvI2MDwDy3KvbE0EdL6rf8srQY3dB
-	809nz51J52DMnx9NU3BsCNTmZPMsgvSVsyPn58Yhp9qdSEOOHBH6+M3KQgDl+9WB7dEiDIM1kHICb
-	sZneGgcka6Wtk0gkOuoA==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=Ai/T7xQbFSkC8A87l7BH+jbg8QFdSwOov93wgWtx3sk=; b=HZPduu400yJqZ19m+TkfRUiE5
+	f/jxtADZGZb+mFemiNO2CuyzW4lOgh6W/ggoXCfuMOuMvum7ph7q4KUHUB5dcPPEtD17QBkmzPCUM
+	q9ACSRLnzrBHOkHH1h+XjMVud70fswzY2amTJKziP4tmBB7XPgvC66zbHjbV+CM4svGWa4yRldO/C
+	TVdTd2yxWjIytO8gJscV2H6T3bN5VsiP+nGOScqYJKhM9HxyImhVbWhrteV4hngrSFbRuDsv43DDs
+	PjfxCJgX+FWOcPP4ImRKwFPOcZBCXz7nbT+HeYWDeYTj+YJTBzbthLF0O1HPg/+Wow0qz6LPCtogR
+	zMSOwy7fg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iNMz7-0007hQ-OW; Wed, 23 Oct 2019 20:11:57 +0000
-Received: from mail-oi1-f195.google.com ([209.85.167.195])
- by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iNMyt-0007N7-Vg; Wed, 23 Oct 2019 20:11:45 +0000
-Received: by mail-oi1-f195.google.com with SMTP id g81so18535992oib.8;
- Wed, 23 Oct 2019 13:11:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to:user-agent;
- bh=ssgTw4r4WsQxJaQ0k03EQpF6DWzjNZA4/vVMy3/jAcM=;
- b=ZImRdKqJ7EPD/yiKvL5hEyrQmLi9eEXAQo9EqQ2qZRunZM5UpomdCZkloDjYeGtesV
- CiRU/ZrPGe4Zqpd336LMGD9c2mEml+g/+mPJ+kTu0QfSPA3BM8k2QlxY6E/ZZ1th9LL/
- cVf/Tkejshq0liT8pPwjlL0P/Z9YBfq9fEUxHvDXuoH12hU6ks/9D+OQbszjOmczS1O6
- OAmahcK/fyBc1eZZcfaMUkxtYIoYWBnG/4pivkiOebPcZaajuoRPryt67aEXLQ+Wr0yC
- 0KgLro0/fv2Pf4D+s2Zu7FCTW7flfFf5G8HovkPndq8ysuRVblPh94iNmwbhJ7vmn0tC
- wzxA==
-X-Gm-Message-State: APjAAAU+WGSkIUPDb/cooQzqn/uQ3MD2eNVXhAEzSvmeUmP0NewzkeW2
- tFbyW8BPXbhdUELt7Xk+FOVSOtg=
-X-Google-Smtp-Source: APXvYqwwKmIXhOF7O4GFPIsSTdhEVmGYoVwlyXr/mkWIGXxrFLlArngzjnMcD7Lh9nvgON2DEJ3P2w==
-X-Received: by 2002:aca:cf92:: with SMTP id f140mr1557736oig.57.1571861502798; 
- Wed, 23 Oct 2019 13:11:42 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net.
- [24.155.109.49])
- by smtp.gmail.com with ESMTPSA id a69sm5985960oib.14.2019.10.23.13.11.42
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 23 Oct 2019 13:11:42 -0700 (PDT)
-Date: Wed, 23 Oct 2019 15:11:41 -0500
-From: Rob Herring <robh@kernel.org>
+	id 1iNiP6-0007XR-6A; Thu, 24 Oct 2019 19:04:12 +0000
+Received: from sauhun.de ([88.99.104.3] helo=pokefinder.org)
+ by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1iNiP3-0007Wx-2S; Thu, 24 Oct 2019 19:04:10 +0000
+Received: from localhost (x4d0bc9de.dyn.telefonica.de [77.11.201.222])
+ by pokefinder.org (Postfix) with ESMTPSA id 4C7302C011D;
+ Thu, 24 Oct 2019 21:04:08 +0200 (CEST)
+Date: Thu, 24 Oct 2019 21:04:07 +0200
+From: Wolfram Sang <wsa@the-dreams.de>
 To: Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH 1/3] doc: dt: bindings: usb: dwc3: Update entries for
- disabling SS instances in park mode
-Message-ID: <20191023201141.GA21235@bogus>
-References: <20191014141718.22603-1-narmstrong@baylibre.com>
- <20191014141718.22603-2-narmstrong@baylibre.com>
+Subject: Re: [PATCH] dt-bindings: i2c: meson: convert to yaml
+Message-ID: <20191024190407.GG1870@kunai>
+References: <20191021140053.9525-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191014141718.22603-2-narmstrong@baylibre.com>
+In-Reply-To: <20191021140053.9525-1-narmstrong@baylibre.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191023_131144_058513_60550759 
-X-CRM114-Status: UNSURE (   9.51  )
+X-CRM114-CacheID: sfid-20191024_120409_262057_0DEF1A2B 
+X-CRM114-Status: UNSURE (   5.41  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -86,34 +64,69 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: balbi@kernel.org, Jianxin Pan <jianxin.pan@amlogic.com>,
- devicetree@vger.kernel.org, khilman@baylibre.com, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, Tim <elatllat@gmail.com>,
- Dongjin Kim <tobetter@gmail.com>, linux-amlogic@lists.infradead.org,
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Beniamino Galvani <b.galvani@gmail.com>, robh+dt@kernel.org,
+ linux-i2c@vger.kernel.org, linux-amlogic@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============4911028081679079750=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Mon, Oct 14, 2019 at 04:17:16PM +0200, Neil Armstrong wrote:
-> This patch updates the documentation with the information related
-> to the quirks that needs to be added for disabling all SuperSpeed XHCi
-> instances in park mode.
-> 
-> CC: Dongjin Kim <tobetter@gmail.com>
-> Cc: Jianxin Pan <jianxin.pan@amlogic.com>
-> Reported-by: Tim <elatllat@gmail.com>
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/usb/dwc3.txt | 2 ++
->  1 file changed, 2 insertions(+)
 
-Sigh, what's one more to the never ending list of quirks...
+--===============4911028081679079750==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="df+09Je9rNq3P+GE"
+Content-Disposition: inline
 
-Acked-by: Rob Herring <robh@kernel.org>
+
+--df+09Je9rNq3P+GE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+
+> +maintainers:
+> +  - Neil Armstrong <narmstrong@baylibre.com>
+> +  - Beniamino Galvani <b.galvani@gmail.com>
+
+I need an ack from Beniamino for this.
+
+Also, do you want to maintain only this file or also the driver? The
+latter would be much appreciated, of course!
+
+
+--df+09Je9rNq3P+GE
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl2x9aMACgkQFA3kzBSg
+KbYdvg/+I66+7PaxoK7MBHF/nRgJqPVDLQhjQDooZshe6FUVx8HXsHSFQDULtRqi
+tIw9QoVOtDxrcF+Z+v6XqdOXEZhN1d8pai4kIQqwT1v3xoAcmxIubyws2E8YqCGp
+IXaQmA8BY/cDVmPzTlbJwFVGoMWMsNCCAJV4iwJtwAlVUZIrxTsvg768wgdW5LIf
+NVhBmLpzL/Hsq5G21rQA2oYk4FNZDCSjFARRTxGRVC05mzqRHTmyM3SMC94HKDS9
+i5X37Hxxa/0SlrdE/33pg6mqULeZ87tP8BADAsKpbAuCFQqZ2OrUNbZwn8wajOLE
+E4Z4svOFOhXryo7N4T4wWW7wcOAXhybE65YrHFrLcqfTrYaXqc4gKDdOyC0ve5g+
+EtYxDjsJe+7YGIl/HDw9/YiGglcCwAYnIKAtVn+RFwtCWvfJWJ+mBQcOj4B/GWl2
+zaOhW6y4mAgiFezJg2B6j7BbZKUYI5usECiGU2QCI862/OTicX5nliEO1KYl4XXi
+BIPVmSdQSgjT/OqzrzgwsZlhRIzH1ON/aFKI+BaWC4a5vuUmB0vJa8/x5wnDQxNU
+RUWY2dmH/3FeBpz2h6lqBfIJZmxYxRopUJyPsXe/rR+11Hgch/zjyt2LOvCWlcP0
+sPNMJmBFnW+hFz2fGNdlIlzzOTP3zNX6pJftw2lROMWtn6VhDT8=
+=GtGt
+-----END PGP SIGNATURE-----
+
+--df+09Je9rNq3P+GE--
+
+
+--===============4911028081679079750==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============4911028081679079750==--
+
