@@ -2,91 +2,94 @@ Return-Path: <SRS0=/Gxn=YT=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-3.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 90736CA9EB9
-	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Oct 2019 11:46:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 96A6CCA9EB9
+	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Oct 2019 18:56:39 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 61C9A205F4
-	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Oct 2019 11:46:46 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6C7DE20679
+	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Oct 2019 18:56:39 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="MtYDwfg9";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="W4ZHEiZI"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 61C9A205F4
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bVTOeYoI";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IiNuPZq9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6C7DE20679
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fSffY4jxCgFPP6P4K22EHhSEviYse0FOELK7xtWcq40=; b=MtYDwfg9mylKZ5
-	7EG2z8V6iVxv2uEakuQ5LvAYruwu/cY185gOD3of34wK7EcrDy5iDuoHgTJZKSigY3V2hbRha0F7A
-	isCfP5F5N8ftaEXYDNoZVymv13PkqJsmWCMZCkCuhGUlFXUTcAomJ0QH+j7CzRasBkyctA5ZZ+8w4
-	HFMdDbf3QuhPVUuqD5RNsgNPb9zRNNRVO0qRTUXd13tkCMqqSYwkC6kSx3xRT1S4TbJX+48Csy6Tn
-	rhOaVGRJPuoGOb8bUkYZdJpv7fkJFfMi/kUS1mQnU5FF8q7P04FWKukYzO4CAPozBiAnRGPMLLlGf
-	Kdu1r334lxp4O6fDVJFA==;
+	List-Owner; bh=9GA4dXNt74bImi8ymtCi4l5xFDvR7rjcy+cKeW+rVuc=; b=bVTOeYoIVg6Kw4
+	SbgrXOIGuWJ9UyiXgOaKHzS/cfoseDLFhCuAkXhbPcJxkKXb6XswRWzYOif9ARC/PxLmKOdoYr9nA
+	R2BaGp8wBPB3etX4WrTrDnWayj1bmcHa9ARApYRWL7QQ3JJtJS3XVwZvxotfy1ROGj49epbnSLe81
+	x6hc0PChhMS6ke3Y3g+dVtUvok00g1Y+jz072qs6cpKw/GblmfUtFrRbBaqXMBZnBFVqIEF5UK75a
+	vF9pjhXI5Do0zJCIk+4+K1syYam75NmmIO90YoAMeWMwCWHu9OSI4j3N49xQITRRuFKT6XOcZgeoI
+	EBMFxYiYAFyty4lnPp+A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iOKWk-0001HB-OT; Sat, 26 Oct 2019 11:46:38 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1iOREj-0003dG-Sm; Sat, 26 Oct 2019 18:56:29 +0000
+Received: from mail-io1-xd42.google.com ([2607:f8b0:4864:20::d42])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iOKWZ-00017l-E6
- for linux-amlogic@lists.infradead.org; Sat, 26 Oct 2019 11:46:29 +0000
-Received: by mail-wm1-x341.google.com with SMTP id 22so4453432wms.3
- for <linux-amlogic@lists.infradead.org>; Sat, 26 Oct 2019 04:46:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=WvV3v05v3ZEEVXEmLYdFb7lylJednPWrhNA9CKc5BuQ=;
- b=W4ZHEiZIpNqE3hsCeGHeX4lyrYRkFJ8+N2pzP5EIW+H2uFC30kwXAhqq34aA7o+DDB
- BmU1dchLy+sQVZesfH/mgQBQDsdBbSDqrjHp4rrvN/hygQxIKYOORGF6JIgpFkpPKVlt
- UX1ZC79a1kG1Tb5S12311GoebWaT7Ub492bZ3+7A2UGgJVGEzG5ccbJhAnhhApB30gp6
- 2Yqv04+sNcM7GWXQPNdhpABEuHMIeuWBCyxbJaIKRZFaUFVHsK2SJ0wyxH1aC4ARqZoq
- AL38hGrSHCxmYez764UcYWBgdjsfFclVsenwWzYKCLW3HlF04rxnTaEz+TXd8tgEc2TJ
- nAKw==
+ id 1iOREV-0003SP-A7; Sat, 26 Oct 2019 18:56:17 +0000
+Received: by mail-io1-xd42.google.com with SMTP id h9so6186966ioh.2;
+ Sat, 26 Oct 2019 11:56:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=x7cDLkomUpCufb0t+qyZB5k3lTMumkzgQK5hQePCbK8=;
+ b=IiNuPZq9yOuXf1VfOCRxN3XTRjVfgIswJpmackxKJ+RenfnfpCjtW1Ud7cxLQ/lBxr
+ VpI6Sb4Mno24tjICFANt0nuXewNbHbnxYmwxMWhhsOiRrWBVY9I4wIjxsxiBXNaWV5rk
+ rCmzNvFfcIjLRR0ErYIbxMxsIKnNvawWFgc8sqXzEpAW9K0uIk0tfs+JvvFt3eXIx8NT
+ 2BAUYTL7CuoU/KGV9bFCRpbr3RnjDJrVUvgeQreLI35JhfXU7sujKcKOtsNqCzmqtIC6
+ FV9QzTmoR8FXyR2d8s22Xy/UmGjxuB5FXFsPqdi+GmlVA3BtgHrnhrw4wjOdHOuXCU0W
+ JALQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=WvV3v05v3ZEEVXEmLYdFb7lylJednPWrhNA9CKc5BuQ=;
- b=VtNGTKH170sHHQ0arUSCMA9j/axsGctoA+arSDB/8AEbkrxfTTNAm4FfKZHuMu/jED
- fvwXAiPXLEVdHUvfYRzB/qDppLtat18ETQxVzw/qOaR2ypfZsRwcr4xHRRuisIXnHHBD
- XsHEqahVKpCco+1wNhCv9TCpS+NSltzQvdkJPUcs+xPyt2y7Vk9ugokwgIm5wRGhqEbn
- 4P9RaVEYwuayiepDibb9QfDjaQaszwXCzgGuWHFyjpnYXO7g4G6VNTo5Eni8KMaWQnnO
- PMPPjHEYj4b8NhW3QcWyP7+YbRQfG9+8Gy/iCh/LrTp88huiHf8GYC9lUd9QyNy0ut8s
- pdxA==
-X-Gm-Message-State: APjAAAWh/9Nyf9bAmUmFfsmJGBeCt6MTYIZrMmnpnM+CoFdS3Z6xXNcN
- g6rnh1710glIR/fSxNs9yP5/XZC5bcQxZA==
-X-Google-Smtp-Source: APXvYqzIGA1fzbnD59EkfsIe3VNpri1WAOprW76nJRcZAdCg/+VTJ8MZ+ItfjZ0R+iC4V6eP5dKUrg==
-X-Received: by 2002:a05:600c:2387:: with SMTP id
- m7mr7366917wma.137.1572090385092; 
- Sat, 26 Oct 2019 04:46:25 -0700 (PDT)
-Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id o73sm5340728wme.34.2019.10.26.04.46.23
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Sat, 26 Oct 2019 04:46:24 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Corentin Labbe <clabbe@baylibre.com>, davem@davemloft.net,
- herbert@gondor.apana.org.au, mark.rutland@arm.com, robh+dt@kernel.org
-Subject: Re: [PATCH v3 4/4] ARM64: dts: amlogic: adds crypto hardware node
-In-Reply-To: <1571288786-34601-5-git-send-email-clabbe@baylibre.com>
-References: <1571288786-34601-1-git-send-email-clabbe@baylibre.com>
- <1571288786-34601-5-git-send-email-clabbe@baylibre.com>
-Date: Sat, 26 Oct 2019 13:46:22 +0200
-Message-ID: <7ho8y3g25t.fsf@baylibre.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=x7cDLkomUpCufb0t+qyZB5k3lTMumkzgQK5hQePCbK8=;
+ b=aRmcKFDAySITveL6FwokRBHa8U6KHUeeTcYlpoNK3xy3pAXYJSBi9BPBCZC62WStVm
+ oLz8jr51oMzkrIPJw1nmDX4d/frHHt6wePwOibIWWvBBACaAPDTJ3Of2FHE1CIcKOjyq
+ ZT1agPEt+9FBaEu/0/UzuIwPy0BOUkrWnZT1hPVqzE3zDgE5OiHYXzDIGSxObS9gNFBm
+ xnBqoOKV9IE0495XFneH6+RfUyalOUc+igtGlx5UWgULCuGahr2A1I/CJ00beXnkNA04
+ 9hxUI13KHlQL7ceiGqZTbyC6pf4rhl1yA6oPXXjLUw47LiSdecVqgUcF4HfpQEpwBl/9
+ zhcA==
+X-Gm-Message-State: APjAAAVLwCQI4XY5RK6D8gx5yZN/UJFahzBlXSTLzUMGvo0/t6kAjPrM
+ zweDTCC4/b4xWjGnxzkmyfuXG8RNU++hwNFuiZQ=
+X-Google-Smtp-Source: APXvYqzEzHENdTMD+ax5PmTOJZRJGHZ3jBXmGRZx4Ns2ZkiyQpg1AuGK59Jx4vizK/5iI3mJBXN8JFdlL94rgqOd9ag=
+X-Received: by 2002:a05:6602:2428:: with SMTP id
+ g8mr10205784iob.246.1572116174047; 
+ Sat, 26 Oct 2019 11:56:14 -0700 (PDT)
 MIME-Version: 1.0
+References: <20191007131649.1768-1-linux.amoon@gmail.com>
+ <20191007131649.1768-6-linux.amoon@gmail.com>
+ <CAFBinCAoJLZj9Kh+SfF4Q+0OCzac2+huon_BU=Q3yE7Fu38U3w@mail.gmail.com>
+ <7hsgo4cgeg.fsf@baylibre.com>
+ <CANAwSgRfcFa6uBNtpqz6y=9Uwsa4gcp_4tDD+Chhg4SynJCq0Q@mail.gmail.com>
+ <CAFBinCA6ZoeR4m4bhj08HF1DqxY1qB5mygpaQCGbo3d8M+Wr9Q@mail.gmail.com>
+ <CANAwSgSeYTnUkLnjw-RORw76Fyj3_WT0cdM9D0vFsY8g=9L94Q@mail.gmail.com>
+ <1jwode9lba.fsf@starbuckisacylon.baylibre.com>
+ <CANAwSgSoK4X3_QbO3YpZRXNTpPJ+zVeid=w93f14Eyk8Dd32EQ@mail.gmail.com>
+ <CAFBinCBdwqxA2kLMAA9gtOcXevYK-J4x12odHwpQOAWakgWiEg@mail.gmail.com>
+ <CANAwSgRs2DUXwvhJD5qpXg04qEdP_Nt-wQqRbD2FpY2SWnHpAA@mail.gmail.com>
+ <1a98c5f0-de8a-53bc-cfb7-c9b3255667c6@baylibre.com>
+ <CANAwSgRD-Vd-D1H5cDYMyTLRMfzdkrFuiy4KfXYt6S+0goF-2w@mail.gmail.com>
+In-Reply-To: <CANAwSgRD-Vd-D1H5cDYMyTLRMfzdkrFuiy4KfXYt6S+0goF-2w@mail.gmail.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Sun, 27 Oct 2019 00:26:03 +0530
+Message-ID: <CANAwSgRKO2trabH635HhNR34mbL3n+4cs+Gg4GO_Zc6vuYW5JA@mail.gmail.com>
+Subject: Re: [RFCv1 5/5] arm64/ARM: configs: Change CONFIG_PWM_MESON from m to
+ y
+To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191026_044627_579089_D5DEC655 
-X-CRM114-Status: UNSURE (   5.11  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20191026_115615_355128_02016789 
+X-CRM114-Status: GOOD (  28.67  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,26 +101,138 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Corentin Labbe <clabbe@baylibre.com>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org
+Cc: devicetree <devicetree@vger.kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Linux Kernel <linux-kernel@vger.kernel.org>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Corentin Labbe <clabbe@baylibre.com> writes:
+Hi Neil,
 
-> This patch adds the GXL crypto hardware node for all GXL SoCs.
+On Mon, 21 Oct 2019 at 21:11, Anand Moon <linux.amoon@gmail.com> wrote:
 >
-> Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> Hi Neil,
+>
+> On Mon, 21 Oct 2019 at 19:55, Neil Armstrong <narmstrong@baylibre.com> wrote:
+> >
+> > Hi Anand,
+> >
+> > On 21/10/2019 16:11, Anand Moon wrote:
+> > > Hi Martin,
+> > >
+> > > On Fri, 18 Oct 2019 at 23:40, Martin Blumenstingl
+> > > <martin.blumenstingl@googlemail.com> wrote:
+> > >>
+> > >> Hi Anand,
+> > >>
+> > >> On Fri, Oct 18, 2019 at 4:04 PM Anand Moon <linux.amoon@gmail.com> wrote:
+> > >> [...]
+> > >>>> Next step it to try narrow down the clock causing the issue.
+> > >>>> Remove clk_ignore_unused from the command line and add CLK_INGORE_UNUSED
+> > >>>> to the flag of some clocks your clock controller (g12a I think) until
+> > >>>>
+> > >>>> The peripheral clock gates already have this flag (something we should
+> > >>>> fix someday) so don't bother looking there.
+> > >>>>
+> > >>>> Most likely the source of the pwm is getting disabled between the
+> > >>>> late_init call and the probe of the PWM module. Since the pwm is already
+> > >>>> active (w/o a driver), gating the clock source shuts dowm the power to
+> > >>>> the cores.
+> > >>>>
+> > >>>> Looking a the possible inputs in pwm driver, I'd bet on fdiv4.
+> > >>>>
+> > >>>
+> > >>> I had give this above steps a try but with little success.
+> > >>> I am still looking into this much close.
+> > >> it's not clear to me if you have only tested with the PWM and/or
+> > >> FCLK_DIV4 clocks. can you please describe what you have tested so far?
+> > >>
+> > > Sorry for delayed response.
+> > >
+> > > I had just looked into clk related to SD_EMMC_A/B/C,
+> > > with adding CLK_IGNORE/CRITICAL.
+> > > Also looked into clk_summary for eMMC and microSD card,
+> > > to identify the root cause, but I failed to move ahead.
+> > >
+> > >> for reference - my way of debugging this in the past was:
+> > >> 1. add some printks to clk_disable_unused_subtree (right after the
+> > >> clk_core_is_enabled check) to see which clocks are being disabled
+> > >> 2. add CLK_IGNORE_UNUSED or CLK_IS_CRITICAL to the clocks which are
+> > >> being disabled based on the information from step #1
+> > >> 3. (at some point I had a working kernel with lots of clocks with
+> > >> CLK_IGNORE_UNUSED/CLK_IS_CRITICAL)
+> > >> 4. start dropping the CLK_IGNORE_UNUSED/CLK_IS_CRITICAL flags again
+> > >> until you have traced it down to the clocks that are the actual issue
+> > >> (so far I always had only one clock which caused issues, but it may be
+> > >> multiple)
+> > >> 5. investigate (and/or ask on the mailing list, Amlogic developers are
+> > >> reading the mails here as well) for the few clocks from step #4
+> > >>
+> > >
+> > > Thanks for you valuable suggestion. I have your patch to debug this
+> > > [0]  https://patchwork.kernel.org/patch/9725921/mbox/
+> > >
+> > > So from the fist step I could identify that all the clk were getting closed
+> > > after some core cpu clk was failing. Here is the log.
+> > >
+> > > step1: [1] https://pastebin.com/p13F9HGG
+> > >
+> > > so I marked these clk as CLK_IGNORE_UNUSED and finally
+> > > I made it to boot using microSD card.
+> > >
+> > > After this just I converted these CLK to CLK_IS_CRITICAL
+> > > as mostly these are used the CPU clk for now.
+> > > Here is boot log successful for as of now.
+> > >
+> > > Finally: [2]  https://pastebin.com/qB6pMyGQ
+> > >
+> > > I know clk maintainer are against marking flags as *CLK_IS_CRITICAL*
+> > > But this is just the step to move ahead.
+> >
+> > Thanks for the extensive debug.
+> >
+> > >
+> > > Attach is my local clk and dts patch.Just for testing.
+> > > [3] clk_critical.patch
+> >
+> >
+> > Could you test with only the following changes:
+> > diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
+> > index ea4c791f106d..f49f5463363e 100644
+> > --- a/drivers/clk/meson/g12a.c
+> > +++ b/drivers/clk/meson/g12a.c
+> > @@ -298,6 +298,7 @@ static struct clk_regmap g12a_fclk_div2 = {
+> >                         &g12a_fclk_div2_div.hw
+> >                 },
+> >                 .num_parents = 1,
+> > +               .flags = CLK_IS_CRITICAL,
+> >         },
+> >  };
+> >
+> > @@ -672,7 +673,7 @@ static struct clk_regmap g12b_cpub_clk = {
+> >                         &g12a_sys_pll.hw
+> >                 },
+> >                 .num_parents = 2,
+> > -               .flags = CLK_SET_RATE_PARENT,
+> > +               .flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+> >         },
+> >  };
+> >
+>
+I am blocked with my eMMC is not working with latest u-boot so that
+I could not verify that nothing break with this changes.
 
-Queued for v5.5,
+Could you send this patch upstream with adding my.
 
-Thanks,
+Tested-by: Anand Moon <linux.amoon@gmail.com>
 
-Kevin
+Best Regards
+-Anand
 
 _______________________________________________
 linux-amlogic mailing list
