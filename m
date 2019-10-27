@@ -1,95 +1,90 @@
-Return-Path: <SRS0=/Gxn=YT=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=6csC=YU=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,FSL_HELO_FAKE,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 96A6CCA9EB9
-	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Oct 2019 18:56:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8121ECA9EAF
+	for <linux-amlogic@archiver.kernel.org>; Sun, 27 Oct 2019 10:13:51 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 6C7DE20679
-	for <linux-amlogic@archiver.kernel.org>; Sat, 26 Oct 2019 18:56:39 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 52A0020717
+	for <linux-amlogic@archiver.kernel.org>; Sun, 27 Oct 2019 10:13:51 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bVTOeYoI";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IiNuPZq9"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6C7DE20679
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mPFl7jJ2";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hXSrnSic"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 52A0020717
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9GA4dXNt74bImi8ymtCi4l5xFDvR7rjcy+cKeW+rVuc=; b=bVTOeYoIVg6Kw4
-	SbgrXOIGuWJ9UyiXgOaKHzS/cfoseDLFhCuAkXhbPcJxkKXb6XswRWzYOif9ARC/PxLmKOdoYr9nA
-	R2BaGp8wBPB3etX4WrTrDnWayj1bmcHa9ARApYRWL7QQ3JJtJS3XVwZvxotfy1ROGj49epbnSLe81
-	x6hc0PChhMS6ke3Y3g+dVtUvok00g1Y+jz072qs6cpKw/GblmfUtFrRbBaqXMBZnBFVqIEF5UK75a
-	vF9pjhXI5Do0zJCIk+4+K1syYam75NmmIO90YoAMeWMwCWHu9OSI4j3N49xQITRRuFKT6XOcZgeoI
-	EBMFxYiYAFyty4lnPp+A==;
+	List-Owner; bh=HvHNVVI5aqIAbEYDo8np8/5iLeHTx6U1ubg6tDR3pLI=; b=mPFl7jJ29noVVU
+	3v8X8FuIIj92jubDFulxQBXcEQwgqe6mdUe5MQi57IxRuB5LQ8n+y8raHz06oFCLtIoEoTYSAdP+k
+	qn2Ou4i5D5L2+NMFMBvWi0LYeCA20VupkG/i/yDbC1QwvGuZsfgeS8AWEYTspF1V3Da6EanUqaMTD
+	V9QtxVWHDcVRDhkcw8AnqaQlpFDPgH+RvbT8oh0wlzr6t1pZ8EMEkWsyMYXRkLBxnptVMKaOfDPtr
+	0xOaQy5ZEDq8tZc1y0FBUQsYy8phRdTuOi9qUvy+92crMEkHxUhKi1qFW8PkyWTvl/TzTX9cat8eT
+	JufQ1OWRq3cmBSCfIP6w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iOREj-0003dG-Sm; Sat, 26 Oct 2019 18:56:29 +0000
-Received: from mail-io1-xd42.google.com ([2607:f8b0:4864:20::d42])
+	id 1iOfYK-0000BI-AX; Sun, 27 Oct 2019 10:13:40 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iOREV-0003SP-A7; Sat, 26 Oct 2019 18:56:17 +0000
-Received: by mail-io1-xd42.google.com with SMTP id h9so6186966ioh.2;
- Sat, 26 Oct 2019 11:56:14 -0700 (PDT)
+ id 1iOfYH-0000At-0g; Sun, 27 Oct 2019 10:13:38 +0000
+Received: by mail-wr1-x442.google.com with SMTP id c2so6837858wrr.10;
+ Sun, 27 Oct 2019 03:13:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=x7cDLkomUpCufb0t+qyZB5k3lTMumkzgQK5hQePCbK8=;
- b=IiNuPZq9yOuXf1VfOCRxN3XTRjVfgIswJpmackxKJ+RenfnfpCjtW1Ud7cxLQ/lBxr
- VpI6Sb4Mno24tjICFANt0nuXewNbHbnxYmwxMWhhsOiRrWBVY9I4wIjxsxiBXNaWV5rk
- rCmzNvFfcIjLRR0ErYIbxMxsIKnNvawWFgc8sqXzEpAW9K0uIk0tfs+JvvFt3eXIx8NT
- 2BAUYTL7CuoU/KGV9bFCRpbr3RnjDJrVUvgeQreLI35JhfXU7sujKcKOtsNqCzmqtIC6
- FV9QzTmoR8FXyR2d8s22Xy/UmGjxuB5FXFsPqdi+GmlVA3BtgHrnhrw4wjOdHOuXCU0W
- JALQ==
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=3IpxudYqh0cSrXHsSd20R7gPXReXwAlu/vXTGneJYeA=;
+ b=hXSrnSicmffaawvfQsBwMScW37guK9vJsdCcRiACwyis734sAiZI/nTCvDoOIDsET7
+ TxtFjanFZ02nUA7cHDwWPIFp3Wx9wPk9pHfz4krCdEpKEoPX88wY3FMAVOWGpc/OX7B7
+ Bh1E0NNOMzTeVp4Ue0NCazljr31u3LzQ5gMLo8SsI4wQzZaKYBiglONEya/fahW+Ur24
+ LYh1aPSCIPEnF5yPeMBKq7cfSMD04Tn75BpyUpRxCuL7HuhYqTCa0qEi32R38iOoOK4r
+ CEYbDUa53uUuTladP7ghiETvoYMGUus48sJzOtcbbKyTm+HJp9KLFhdzkdxw26oeLZoq
+ lZSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=x7cDLkomUpCufb0t+qyZB5k3lTMumkzgQK5hQePCbK8=;
- b=aRmcKFDAySITveL6FwokRBHa8U6KHUeeTcYlpoNK3xy3pAXYJSBi9BPBCZC62WStVm
- oLz8jr51oMzkrIPJw1nmDX4d/frHHt6wePwOibIWWvBBACaAPDTJ3Of2FHE1CIcKOjyq
- ZT1agPEt+9FBaEu/0/UzuIwPy0BOUkrWnZT1hPVqzE3zDgE5OiHYXzDIGSxObS9gNFBm
- xnBqoOKV9IE0495XFneH6+RfUyalOUc+igtGlx5UWgULCuGahr2A1I/CJ00beXnkNA04
- 9hxUI13KHlQL7ceiGqZTbyC6pf4rhl1yA6oPXXjLUw47LiSdecVqgUcF4HfpQEpwBl/9
- zhcA==
-X-Gm-Message-State: APjAAAVLwCQI4XY5RK6D8gx5yZN/UJFahzBlXSTLzUMGvo0/t6kAjPrM
- zweDTCC4/b4xWjGnxzkmyfuXG8RNU++hwNFuiZQ=
-X-Google-Smtp-Source: APXvYqzEzHENdTMD+ax5PmTOJZRJGHZ3jBXmGRZx4Ns2ZkiyQpg1AuGK59Jx4vizK/5iI3mJBXN8JFdlL94rgqOd9ag=
-X-Received: by 2002:a05:6602:2428:: with SMTP id
- g8mr10205784iob.246.1572116174047; 
- Sat, 26 Oct 2019 11:56:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <20191007131649.1768-1-linux.amoon@gmail.com>
- <20191007131649.1768-6-linux.amoon@gmail.com>
- <CAFBinCAoJLZj9Kh+SfF4Q+0OCzac2+huon_BU=Q3yE7Fu38U3w@mail.gmail.com>
- <7hsgo4cgeg.fsf@baylibre.com>
- <CANAwSgRfcFa6uBNtpqz6y=9Uwsa4gcp_4tDD+Chhg4SynJCq0Q@mail.gmail.com>
- <CAFBinCA6ZoeR4m4bhj08HF1DqxY1qB5mygpaQCGbo3d8M+Wr9Q@mail.gmail.com>
- <CANAwSgSeYTnUkLnjw-RORw76Fyj3_WT0cdM9D0vFsY8g=9L94Q@mail.gmail.com>
- <1jwode9lba.fsf@starbuckisacylon.baylibre.com>
- <CANAwSgSoK4X3_QbO3YpZRXNTpPJ+zVeid=w93f14Eyk8Dd32EQ@mail.gmail.com>
- <CAFBinCBdwqxA2kLMAA9gtOcXevYK-J4x12odHwpQOAWakgWiEg@mail.gmail.com>
- <CANAwSgRs2DUXwvhJD5qpXg04qEdP_Nt-wQqRbD2FpY2SWnHpAA@mail.gmail.com>
- <1a98c5f0-de8a-53bc-cfb7-c9b3255667c6@baylibre.com>
- <CANAwSgRD-Vd-D1H5cDYMyTLRMfzdkrFuiy4KfXYt6S+0goF-2w@mail.gmail.com>
-In-Reply-To: <CANAwSgRD-Vd-D1H5cDYMyTLRMfzdkrFuiy4KfXYt6S+0goF-2w@mail.gmail.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Sun, 27 Oct 2019 00:26:03 +0530
-Message-ID: <CANAwSgRKO2trabH635HhNR34mbL3n+4cs+Gg4GO_Zc6vuYW5JA@mail.gmail.com>
-Subject: Re: [RFCv1 5/5] arm64/ARM: configs: Change CONFIG_PWM_MESON from m to
- y
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=3IpxudYqh0cSrXHsSd20R7gPXReXwAlu/vXTGneJYeA=;
+ b=frDmxrBRwwHooSDH3w8owcc4SD088UEir5jJ60kjxKb4SAXiQVwMYe/eC+pgvZtuD3
+ rMvY2mpeufEErQ7eJz3x3CLZHhT63DRz/dHfwLFZI4Te4GgJcltmyJ3G60QfQX2sgHJ5
+ giN0ZraorOx1jKawm++XSwkqn/TVrhzLVOR3bCk2Gm5Mdkxi0eppmfrbDVE+Uux2clxP
+ d3Qh+2IkriHSRuMM98FCgFyvQ6D5Y8HNLE3DXkCCRMRcKrQFHfnI7GGJCzcDRU3oaNni
+ VgAPB2DJz7LjwbhRZ5pHbG0YvPwk6VJ6l2DwF8njAQnhpvoSU9MJ+tFa/Vs2O+JJ2ijI
+ K1jQ==
+X-Gm-Message-State: APjAAAURlouZ66a0PRZWDmMG33g9BE2K9nZz0WzHS2/H0SMtEgHKHMZk
+ 4jwSQBTsj5a0MOn6eaaRDDVU34FRyPg=
+X-Google-Smtp-Source: APXvYqw1cxLvV4/3XED3x2mClTOpoL5pylt99SzhNdORtAzzBZRNtAnqcjg/6X+pCOpQ4725HtypWQ==
+X-Received: by 2002:a5d:4589:: with SMTP id p9mr10044913wrq.397.1572171214637; 
+ Sun, 27 Oct 2019 03:13:34 -0700 (PDT)
+Received: from gmail.com (host159-41-dynamic.116-80-r.retail.telecomitalia.it.
+ [80.116.41.159])
+ by smtp.gmail.com with ESMTPSA id d199sm8235130wmd.35.2019.10.27.03.13.32
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 27 Oct 2019 03:13:33 -0700 (PDT)
+Date: Sun, 27 Oct 2019 11:12:45 +0100
+From: Beniamino Galvani <b.galvani@gmail.com>
 To: Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH] dt-bindings: i2c: meson: convert to yaml
+Message-ID: <20191027101245.GA2194@gmail.com>
+References: <20191021140053.9525-1-narmstrong@baylibre.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20191021140053.9525-1-narmstrong@baylibre.com>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191026_115615_355128_02016789 
-X-CRM114-Status: GOOD (  28.67  )
+X-CRM114-CacheID: sfid-20191027_031337_082675_F0793940 
+X-CRM114-Status: GOOD (  18.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,138 +96,128 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree <devicetree@vger.kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Linux Kernel <linux-kernel@vger.kernel.org>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ robh+dt@kernel.org, linux-i2c@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Neil,
+On Mon, Oct 21, 2019 at 04:00:53PM +0200, Neil Armstrong wrote:
+> Now that we have the DT validation in place, let's convert the device tree
+> bindings for the Amlogic I2C Controller over to YAML schemas.
 
-On Mon, 21 Oct 2019 at 21:11, Anand Moon <linux.amoon@gmail.com> wrote:
->
-> Hi Neil,
->
-> On Mon, 21 Oct 2019 at 19:55, Neil Armstrong <narmstrong@baylibre.com> wrote:
-> >
-> > Hi Anand,
-> >
-> > On 21/10/2019 16:11, Anand Moon wrote:
-> > > Hi Martin,
-> > >
-> > > On Fri, 18 Oct 2019 at 23:40, Martin Blumenstingl
-> > > <martin.blumenstingl@googlemail.com> wrote:
-> > >>
-> > >> Hi Anand,
-> > >>
-> > >> On Fri, Oct 18, 2019 at 4:04 PM Anand Moon <linux.amoon@gmail.com> wrote:
-> > >> [...]
-> > >>>> Next step it to try narrow down the clock causing the issue.
-> > >>>> Remove clk_ignore_unused from the command line and add CLK_INGORE_UNUSED
-> > >>>> to the flag of some clocks your clock controller (g12a I think) until
-> > >>>>
-> > >>>> The peripheral clock gates already have this flag (something we should
-> > >>>> fix someday) so don't bother looking there.
-> > >>>>
-> > >>>> Most likely the source of the pwm is getting disabled between the
-> > >>>> late_init call and the probe of the PWM module. Since the pwm is already
-> > >>>> active (w/o a driver), gating the clock source shuts dowm the power to
-> > >>>> the cores.
-> > >>>>
-> > >>>> Looking a the possible inputs in pwm driver, I'd bet on fdiv4.
-> > >>>>
-> > >>>
-> > >>> I had give this above steps a try but with little success.
-> > >>> I am still looking into this much close.
-> > >> it's not clear to me if you have only tested with the PWM and/or
-> > >> FCLK_DIV4 clocks. can you please describe what you have tested so far?
-> > >>
-> > > Sorry for delayed response.
-> > >
-> > > I had just looked into clk related to SD_EMMC_A/B/C,
-> > > with adding CLK_IGNORE/CRITICAL.
-> > > Also looked into clk_summary for eMMC and microSD card,
-> > > to identify the root cause, but I failed to move ahead.
-> > >
-> > >> for reference - my way of debugging this in the past was:
-> > >> 1. add some printks to clk_disable_unused_subtree (right after the
-> > >> clk_core_is_enabled check) to see which clocks are being disabled
-> > >> 2. add CLK_IGNORE_UNUSED or CLK_IS_CRITICAL to the clocks which are
-> > >> being disabled based on the information from step #1
-> > >> 3. (at some point I had a working kernel with lots of clocks with
-> > >> CLK_IGNORE_UNUSED/CLK_IS_CRITICAL)
-> > >> 4. start dropping the CLK_IGNORE_UNUSED/CLK_IS_CRITICAL flags again
-> > >> until you have traced it down to the clocks that are the actual issue
-> > >> (so far I always had only one clock which caused issues, but it may be
-> > >> multiple)
-> > >> 5. investigate (and/or ask on the mailing list, Amlogic developers are
-> > >> reading the mails here as well) for the few clocks from step #4
-> > >>
-> > >
-> > > Thanks for you valuable suggestion. I have your patch to debug this
-> > > [0]  https://patchwork.kernel.org/patch/9725921/mbox/
-> > >
-> > > So from the fist step I could identify that all the clk were getting closed
-> > > after some core cpu clk was failing. Here is the log.
-> > >
-> > > step1: [1] https://pastebin.com/p13F9HGG
-> > >
-> > > so I marked these clk as CLK_IGNORE_UNUSED and finally
-> > > I made it to boot using microSD card.
-> > >
-> > > After this just I converted these CLK to CLK_IS_CRITICAL
-> > > as mostly these are used the CPU clk for now.
-> > > Here is boot log successful for as of now.
-> > >
-> > > Finally: [2]  https://pastebin.com/qB6pMyGQ
-> > >
-> > > I know clk maintainer are against marking flags as *CLK_IS_CRITICAL*
-> > > But this is just the step to move ahead.
-> >
-> > Thanks for the extensive debug.
-> >
-> > >
-> > > Attach is my local clk and dts patch.Just for testing.
-> > > [3] clk_critical.patch
-> >
-> >
-> > Could you test with only the following changes:
-> > diff --git a/drivers/clk/meson/g12a.c b/drivers/clk/meson/g12a.c
-> > index ea4c791f106d..f49f5463363e 100644
-> > --- a/drivers/clk/meson/g12a.c
-> > +++ b/drivers/clk/meson/g12a.c
-> > @@ -298,6 +298,7 @@ static struct clk_regmap g12a_fclk_div2 = {
-> >                         &g12a_fclk_div2_div.hw
-> >                 },
-> >                 .num_parents = 1,
-> > +               .flags = CLK_IS_CRITICAL,
-> >         },
-> >  };
-> >
-> > @@ -672,7 +673,7 @@ static struct clk_regmap g12b_cpub_clk = {
-> >                         &g12a_sys_pll.hw
-> >                 },
-> >                 .num_parents = 2,
-> > -               .flags = CLK_SET_RATE_PARENT,
-> > +               .flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
-> >         },
-> >  };
-> >
->
-I am blocked with my eMMC is not working with latest u-boot so that
-I could not verify that nothing break with this changes.
+Acked-by: Beniamino Galvani <b.galvani@gmail.com>
 
-Could you send this patch upstream with adding my.
 
-Tested-by: Anand Moon <linux.amoon@gmail.com>
-
-Best Regards
--Anand
+> Cc: Beniamino Galvani <b.galvani@gmail.com>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  .../bindings/i2c/amlogic,meson6-i2c.yaml      | 53 +++++++++++++++++++
+>  .../devicetree/bindings/i2c/i2c-meson.txt     | 30 -----------
+>  2 files changed, 53 insertions(+), 30 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-meson.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml b/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml
+> new file mode 100644
+> index 000000000000..49cad273c8e5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/amlogic,meson6-i2c.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2019 BayLibre, SAS
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/i2c/amlogic,meson6-i2c.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Amlogic Meson I2C Controller
+> +
+> +maintainers:
+> +  - Neil Armstrong <narmstrong@baylibre.com>
+> +  - Beniamino Galvani <b.galvani@gmail.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/i2c/i2c-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - amlogic,meson6-i2c # Meson6, Meson8 and compatible SoCs
+> +      - amlogic,meson-gxbb-i2c # GXBB and compatible SoCs
+> +      - amlogic,meson-axg-i2c # AXG and compatible SoCs
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +
+> +examples:
+> +  - |
+> +    i2c@c8100500 {
+> +        compatible = "amlogic,meson6-i2c";
+> +        reg = <0xc8100500 0x20>;
+> +        interrupts = <92>;
+> +        clocks = <&clk81>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        eeprom@52 {
+> +            compatible = "atmel,24c32";
+> +            reg = <0x52>;
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-meson.txt b/Documentation/devicetree/bindings/i2c/i2c-meson.txt
+> deleted file mode 100644
+> index 13d410de077c..000000000000
+> --- a/Documentation/devicetree/bindings/i2c/i2c-meson.txt
+> +++ /dev/null
+> @@ -1,30 +0,0 @@
+> -Amlogic Meson I2C controller
+> -
+> -Required properties:
+> - - compatible: must be:
+> -	"amlogic,meson6-i2c" for Meson8 and compatible SoCs
+> -	"amlogic,meson-gxbb-i2c" for GXBB and compatible SoCs
+> -	"amlogic,meson-axg-i2c"for AXG and compatible SoCs
+> -
+> - - reg: physical address and length of the device registers
+> - - interrupts: a single interrupt specifier
+> - - clocks: clock for the device
+> - - #address-cells: should be <1>
+> - - #size-cells: should be <0>
+> -
+> -For details regarding the following core I2C bindings see also i2c.txt.
+> -
+> -Optional properties:
+> -- clock-frequency: the desired I2C bus clock frequency in Hz; in
+> -  absence of this property the default value is used (100 kHz).
+> -
+> -Examples:
+> -
+> -	i2c@c8100500 {
+> -		compatible = "amlogic,meson6-i2c";
+> -		reg = <0xc8100500 0x20>;
+> -		interrupts = <0 92 1>;
+> -		clocks = <&clk81>;
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -	};
+> -- 
+> 2.22.0
+> 
 
 _______________________________________________
 linux-amlogic mailing list
