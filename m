@@ -2,65 +2,87 @@ Return-Path: <SRS0=U197=YW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-10.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PULL_REQUEST,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 65083CA9EAE
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Oct 2019 12:09:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D812FCA9EAE
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Oct 2019 14:13:23 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 367F4208E3
-	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Oct 2019 12:09:53 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A54B92087E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 29 Oct 2019 14:13:23 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PN+NRtXz"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 367F4208E3
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="S5e8FNWT";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="qdbylPBM"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A54B92087E
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=6qsYlwOe14OxAGo1kd66MI2yi/L4dS6YNDxOwqymKB0=; b=PN+NRtXzOOBKCT
-	ppuoboJPg9qU7oXDykqPzQnzUPm89jjguEOC5k16pFGQueLm7fQTNotl5CqQ/NYSmnQIf4jn656tF
-	sWee9Z5oBApFgZwRjcYgBVbdJF2m6l84FEsmUGImwmuJWVEI5GaxKVM7lx1e/89xk/tukgpsuU55v
-	qM0UPXiHmSNqgG6VU2rUCWVp88lj22fNa0KdZFf6WLjzdVWCQI9JNHIvAd7RrgxXIOrn7CmvJDS/V
-	zOQw02D9pLbxEfX522cIaThm0XorHx9/7WwbGOpkvc5U2jo7mQuZFhWLQjSNfzHm7vK8BYougQXZF
-	qQfsfbv0nJHP9Jvo2WKw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=c2BuKIqka8on5EpDmcnUfg4e5blvE7zZZ7FGbfXhxfM=; b=S5e8FNWT2AAfHJ
+	ekekDQTXMI1YkJCKQd9Bsfifw460yGzm1cnjESSw6kHPAmnutoaUbBs4S0QjgFb0UQspT1WUGAkrG
+	DK9e/42lTmnfXbT/Dn4Y4k54xgMOt+J8qOFDDzrJLmv2GknV1CRx3A4IQwmVVB2aR1Z7AfDblkDXK
+	t9NAzTClE+GyBATn0r6eFJYFQlfsAj13mChMfJM4hH1LzxehTg20+2l3TjifsKJ4ef3e+m/mn/wbz
+	FLQahIsQmQeE0RHx44ExV+USGZxZOEU6mN25YSl2JyeiQ2CTvUxzn5x6BIeLMCg0hb1LBypDOObg1
+	sDZcAMYjagWjmS9kyipQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iPQJk-0002kt-0S; Tue, 29 Oct 2019 12:09:44 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1iPSFL-0000jx-4I; Tue, 29 Oct 2019 14:13:19 +0000
+Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iPQJY-0002be-Rv; Tue, 29 Oct 2019 12:09:34 +0000
-Received: from [10.18.29.227] (10.18.29.227) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Tue, 29 Oct
- 2019 20:09:39 +0800
-Subject: Re: [PATCH v3 1/4] dt-bindings: power: add Amlogic secure power
- domains bindings
-To: Rob Herring <robh@kernel.org>
-References: <1571391167-79679-1-git-send-email-jianxin.pan@amlogic.com>
- <1571391167-79679-2-git-send-email-jianxin.pan@amlogic.com>
- <20191029020125.GA11182@bogus>
-From: Jianxin Pan <jianxin.pan@amlogic.com>
-Message-ID: <07f0ed9d-0b1a-d84f-de8b-1967e56bbd21@amlogic.com>
-Date: Tue, 29 Oct 2019 20:09:39 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+ id 1iPSFH-0000ia-D8
+ for linux-amlogic@lists.infradead.org; Tue, 29 Oct 2019 14:13:17 +0000
+Received: by mail-wm1-x333.google.com with SMTP id x5so2600556wmi.0
+ for <linux-amlogic@lists.infradead.org>; Tue, 29 Oct 2019 07:13:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=user-agent:from:to:cc:subject:date:message-id:mime-version;
+ bh=FFSlQWpI7UYBhGJZmYafwOetjRk3Pi2G+CPwDCZIHmk=;
+ b=qdbylPBMd1wiIcELFTDTOf1UntxHVkifMPuvGD2tFgeXoXWvxRR0hp8kmcyJnQaaki
+ z7LaKmVCcU+M9IfswnizRiX8kVDl5bhhKGsxom+0rVpq1w2VQpfaeLEK0JyhP8UyrIad
+ 49aMB56iQGf1ixij6VE8Ggk7UaIUXZheAq3Fpj9HhcaV47oRyQb0TN97FsUMl9rE/UM8
+ xAloxhFrTrxbAui4CkHuGEqg80SHGB/2C81LEOqgbo+BS68b8vYQOKK2WG6DBCeNqrrY
+ XJ2z7or15l7F0xLUj7FXgpSZXswbSNHS24lKUcjIWe6BaAKBCXwpO1QflS1mM0/69wC0
+ 4VfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:user-agent:from:to:cc:subject:date:message-id
+ :mime-version;
+ bh=FFSlQWpI7UYBhGJZmYafwOetjRk3Pi2G+CPwDCZIHmk=;
+ b=ZmGzC5jZl+2EyxrtPL39+AukqrZqN4AMHjKxGRL1la0gAzP5zGSeHBUyKBuNWfCt4H
+ /DRr7cQviG0kY0KGXmo1aBWafT0RWzII0uCdvbyjoftAcxNRF5lMD3abWNrO9FpoUolt
+ Pc7IBtQhltymo2/DR+kjf4Whrn1ZJxNPUZoW7+52pTb9YD/KLOoxX5pDUlV1q+wBm4RP
+ lN1rZcEDUP/fmU3rgJu3PNw4pmV7YFF1IlJzYUqsDiTW8T6QKF5AKR/SBFqm3NuCSGjk
+ hzJgXqUu1GhYQkOnW5VaJFWCj51OvZeHLrtY/W235CdDur1pCCTdFdgXEd1c50KNIY+N
+ 3zNw==
+X-Gm-Message-State: APjAAAWHYHR/c1nyFFvLvGsfgNYb4efDqYaA9s2NwgSi1JAHGpGmMkmA
+ sm4CmFfPVxupOLyQpEJZjvaFtQ==
+X-Google-Smtp-Source: APXvYqyB45wTMPlw7B5AIHR/+zcb1QJV0BIuol4jBgYN1VBZzXNW8RGW0TvGK2DCsMW7t4r4pLQelg==
+X-Received: by 2002:a1c:1b07:: with SMTP id b7mr4325462wmb.111.1572358393542; 
+ Tue, 29 Oct 2019 07:13:13 -0700 (PDT)
+Received: from localhost (uluru.liltaz.com. [163.172.81.188])
+ by smtp.gmail.com with ESMTPSA id t16sm16546074wrq.52.2019.10.29.07.13.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 29 Oct 2019 07:13:13 -0700 (PDT)
+User-agent: mu4e 1.3.3; emacs 26.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Stephen Boyd <sboyd@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>
+Subject: [GIT PULL]: Amlogic clock updates for v5.5
+Date: Tue, 29 Oct 2019 15:13:12 +0100
+Message-ID: <1jftjbljwn.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20191029020125.GA11182@bogus>
-Content-Language: en-US
-X-Originating-IP: [10.18.29.227]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191029_050932_900934_FFCF5985 
-X-CRM114-Status: GOOD (  11.33  )
+X-CRM114-CacheID: sfid-20191029_071315_589970_C535E9A7 
+X-CRM114-Status: UNSURE (   7.80  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,87 +94,60 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Hanjie Lin <hanjie.lin@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>, linux-pm@vger.kernel.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>,
- linux-kernel@vger.kernel.org, Jian Hu <jian.hu@amlogic.com>,
- Xingyu Chen <xingyu.chen@amlogic.com>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Cc: Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jerome,
 
-Could you give some advice about this?
+Hi Stephen,
 
-In a1/c1, watchdog and powerdomain are the same, they use secure monitor [0] and
-there is no share memory needed.
+Here are our updates for Amlogic clock for this cycle.
+The main topic is sm1 soc family support in the audio
+clock controller
+Please pull.
 
-[0]
-https://lore.kernel.org/linux-amlogic/20190731082339.20163-1-ccaione@baylibre.com/
+Thanks
+Jerome
 
-On 2019/10/29 10:01, Rob Herring wrote:
-> On Fri, Oct 18, 2019 at 05:32:44PM +0800, Jianxin Pan wrote:
->> Add the bindings for the Amlogic Secure power domains, controlling the
->> secure power domains.
->>
->> The bindings targets the Amlogic A1 and C1 compatible SoCs, in which the
->> power domain registers are in secure world.
->>
->> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
->> ---
->>  .../bindings/power/amlogic,meson-sec-pwrc.yaml     | 42 ++++++++++++++++++++++
->>  include/dt-bindings/power/meson-a1-power.h         | 32 +++++++++++++++++
->>  2 files changed, 74 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
->>  create mode 100644 include/dt-bindings/power/meson-a1-power.h
->>
->> diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
->> new file mode 100644
->> index 00000000..88d8261
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
->> @@ -0,0 +1,42 @@
->> +# SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +# Copyright (c) 2019 Amlogic, Inc
->> +# Author: Jianxin Pan <jianxin.pan@amlogic.com>
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/power/amlogic,meson-sec-pwrc.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->> +
->> +title: Amlogic Meson Secure Power Domains
->> +
->> +maintainers:
->> +  - Jianxin Pan <jianxin.pan@amlogic.com>
->> +
->> +description: |+
->> +  Meson Secure Power Domains used in A1/C1 SoCs.
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - amlogic,meson-a1-pwrc
->> +
->> +  "#power-domain-cells":
->> +    const: 1
->> +
->> +  secure-monitor:
->> +    description: phandle to the secure-monitor node
->> +    $ref: /schemas/types.yaml#/definitions/phandle
-> 
-> Like the watchdog, make this a child or the secure firmware node. Or 
-> just add '#power-domain-cells' to it. You don't really need a child node 
-> here if there's not other resources in DT for this.
-> 
-> Rob
-> 
-> .
-> 
+The following changes since commit 90b171f6035688236a3f09117a683020be45603a:
 
+  clk: meson: g12a: set CLK_MUX_ROUND_CLOSEST on the cpu clock muxes (2019-10-01 14:51:15 +0200)
+
+are available in the Git repository at:
+
+  git://github.com/BayLibre/clk-meson.git tags/clk-meson-v5.5-1
+
+for you to fetch changes up to 50bf025b75902d326fdb8078be3d278e1b693576:
+
+  clk: meson: axg-audio: use devm_platform_ioremap_resource() to simplify code (2019-10-14 17:06:27 +0200)
+
+----------------------------------------------------------------
+First round of amlogic clock update for v5.5:
+Add sm1 support in the audio clock controller
+
+----------------------------------------------------------------
+Jerome Brunet (8):
+      dt-bindings: clk: axg-audio: add sm1 bindings
+      dt-bindings: clock: meson: add sm1 resets to the axg-audio controller
+      Merge branch 'v5.5/dt' into v5.5/drivers
+      clk: meson: axg-audio: remove useless defines
+      clk: meson: axg-audio: fix regmap last register
+      clk: meson: axg-audio: prepare sm1 addition
+      clk: meson: axg-audio: provide clk top signal name
+      clk: meson: axg_audio: add sm1 support
+
+YueHaibing (1):
+      clk: meson: axg-audio: use devm_platform_ioremap_resource() to simplify code
+
+ .../bindings/clock/amlogic,axg-audio-clkc.txt      |    3 +-
+ drivers/clk/meson/axg-audio.c                      | 2025 +++++++++++++-------
+ drivers/clk/meson/axg-audio.h                      |   21 +-
+ include/dt-bindings/clock/axg-audio-clkc.h         |   10 +
+ .../reset/amlogic,meson-g12a-audio-reset.h         |   15 +
+ 5 files changed, 1374 insertions(+), 700 deletions(-)
 
 _______________________________________________
 linux-amlogic mailing list
