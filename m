@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 53EDACA9ECF
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Nov 2019 07:59:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 90D98CA9ECF
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Nov 2019 08:08:32 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 23405218BA
-	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Nov 2019 07:59:44 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 15A7021744
+	for <linux-amlogic@archiver.kernel.org>; Mon,  4 Nov 2019 08:08:32 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="IHP2qgea";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="PTpN+Zwu"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 23405218BA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GNODuMVG";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="kewSJ4AF"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 15A7021744
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,67 +27,69 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=+PvWqjIb0kWUBOfraKo/3L+ZRGs5Nletkz0Cdy6QlgI=; b=IHP2qgeakAMqFuGWkptZmRTvdM
-	/9UBhjSuva68NOpNDSrehPqs3kU45orDuXgjXKahRITCrvWqp6rul1vLL1t3okjUHrf4SQ+SjvjB7
-	YJa2X/D9EhuPljkIJIhirfJ9Jl0vS62AcCcZDbU4xbXkKb8B7PJPiJ0IP2cF4/PrTZVFN+0NAudg+
-	n+3OH25w+T36fu2hAVQBbj1p7FHUMHz86uo1nJi5l73qJHobTKHRpaTn7s+yeUg+qtSIpGwW1Q2c+
-	Qu5a75jh8/xXqWJ6hqLw1p7zBzFaDsFVBLuHazgc6MXwsSQb8SQqkk7IohBXGTcZsDjHPvKWBLbhH
-	KJyAFYIg==;
+	bh=FgjkuBXlxOnqURYO42o63slRBRT4fWJ4YEWxHO7KETk=; b=GNODuMVGCAcWbvDhHlhvuoTZoN
+	Y8V8cUZ8Sq1CeCQwoAaaUVUs5YZv8OfC3YEA9mz/u8vWK3MyZfe96aPFZoA0QbiOaziFPeSW2xoEe
+	YBCgofOMZ1D3K4j6odEAsh6RQk7URVf5Xnq08ayTn4whB/8nyWkDcr/CH0zfiMdf+lOOTsIK9J+zc
+	yXGVLm2zfszvvOleag98lsbWgIGiDf73W7RzGnGqKMB2xeToYPRSJyogy1g60N1cMH2bUOnRSoGxs
+	qqxQultV9xQye9vlTSzQY4GTweIC7wptaQF+fNflovmRn982EDBtCqUEh8bkJ2LqMVJL8eCW5Wt1w
+	nVi/xveQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iRXGu-0004ka-AM; Mon, 04 Nov 2019 07:59:32 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1iRXPV-0001I6-AK; Mon, 04 Nov 2019 08:08:25 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iRXGq-0004j9-0p
- for linux-amlogic@lists.infradead.org; Mon, 04 Nov 2019 07:59:30 +0000
-Received: by mail-wr1-x442.google.com with SMTP id a15so15809053wrf.9
- for <linux-amlogic@lists.infradead.org>; Sun, 03 Nov 2019 23:59:27 -0800 (PST)
+ id 1iRXPO-0001AW-1Q
+ for linux-amlogic@lists.infradead.org; Mon, 04 Nov 2019 08:08:19 +0000
+Received: by mail-wm1-x344.google.com with SMTP id c22so14957514wmd.1
+ for <linux-amlogic@lists.infradead.org>; Mon, 04 Nov 2019 00:08:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=references:user-agent:from:to:cc:subject:in-reply-to:date
  :message-id:mime-version;
- bh=hSqKVwc6bJDp4a89lIu+lMczQX467huhHqDN052faFc=;
- b=PTpN+ZwuBfKdTAnpKvgXZbCQQz8WC79oxCbnZC40CQUEiVfD2FtrVOMZ5NN9Bo1E6n
- JiK5bdp5cK+hp+p/9TNcOFtm9nhIUavOaMwWe8ax6rOSeoktiO6dhHb9Bl1kxwAqsL0q
- r4TyWsvBdiQDG1raUx51YG7ig11HGrErgih91DR/ntB8ScPFh7XOPUfNAljcjYH3FsES
- JRJdZjSKE1bkEqj23pOcnFEwBZhvF5hyw4lwezIFVO+0pqeOYlMh7mVb2TrxZ4+vHztR
- OCIDgOSYRU530s60ouz5Sx2assCn2tEWmMo6fmK2DLnmHZLtanyVk+iz0E88GmhX5AoM
- ktBQ==
+ bh=MCuKFJgt4493oVJusvtutFHlaoTvavsZO8OJ49Du7VQ=;
+ b=kewSJ4AFdAdRg/ZA6mLKuKRCk4bKbhlSTcqaSp7a2ryiUk2AlUFfTYKXidGLLGFfHk
+ TxgM6dvj+/h7nA2J857CUctnbap52/xArAt7DGAtBzT8GkAGsfvbFAlpEvP80USUKUMN
+ 4DhnSx0sx1T9AJraMBE71iz1o9d7Wq1lf6rrjkGXRt0LGrgWDGoSndUdxXcorFdI9yRl
+ udZnNZuP0hbTGXHdBQRkdWoasWX7vtkG1beb4HPz2bEBbLaR52Lt/UMndlo/m+iuFnrR
+ n5pCuFobN/w0Gx6VTFfepZY99s1w7xH2eVqhYGBReLAKcwRoFiacjAiLDSX+yxVOSsD0
+ x5Xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:references:user-agent:from:to:cc:subject
  :in-reply-to:date:message-id:mime-version;
- bh=hSqKVwc6bJDp4a89lIu+lMczQX467huhHqDN052faFc=;
- b=IvN51HiDoigLgbXMiLxEX1YBxVfD/bwdMp+UvZRzsz3fevXXSw4fImtBGtn8fVefTP
- vxNauzCoJkOpDZc5zgPOU2Xwbi+Gp7B9v+eqyE1lkqUBnI9/71gIwvJdyvazurO6qJXq
- 5pemaCzcMXXNrVvhK00NcWNIGPJLbKgOn7bUQMolOqs45yoyPdCACJqgTeWOgVMaHnpE
- jp2c1U2uSaFz3lQkcXROuyBcwSv6yobj/cV14Xshx2OyMmJlDRH+yMNcidHxSYK0Eq9p
- JoPfbw8ezImNhwx94OlUdUToORHj/dyPL0RG6QIn9gipW//qbNR+SXt+eC3vtPi7HESc
- kn6Q==
-X-Gm-Message-State: APjAAAXcDJtUzPjFQv3x+c7SJik1vJYFj6zM0h0Hs7cUrDfbIvCFQ8R4
- xaDptEireLWQQYytuEwiHOD6Og==
-X-Google-Smtp-Source: APXvYqy9al4urCFA6fpYb/D7VafuMc4Y5ZvLTdzSKfLU5CvIPNYPDX/9vIxtpAlJPzcLdVUySVhz8w==
-X-Received: by 2002:adf:fb0b:: with SMTP id c11mr22574436wrr.50.1572854365762; 
- Sun, 03 Nov 2019 23:59:25 -0800 (PST)
+ bh=MCuKFJgt4493oVJusvtutFHlaoTvavsZO8OJ49Du7VQ=;
+ b=LzYLgFy07TuqEU/r0foj18Dkz2Bo1hpDcs9cqOCP+RBfKtaAmN4TrneVU7kQVog0z6
+ dwz9rI7hO/gBauG2OggDIl0feU+Huybwg2/Kra4o5/kFXKBVj5BZEvIMJQQWIkmbsYNR
+ K07elwIimQI283KRuB1wd8bBnvjHAe6VGcnxXE99/CG0ECs0Pj3OZkotVOuTEfBItiWK
+ YGyrwTzXaCcVbO0GPxdqo9oqcoRhB+9rZ+OpRImb0nnQT7Tw/QoUhbnfKCtkOIy2XxPR
+ Qn2K4V9Uy4stwe4giu0tE5R1r+jhaomRNv0lOIADoLImhIbkReykjnaWTSoKxQdvDKVO
+ dBWw==
+X-Gm-Message-State: APjAAAWNJGqAXfZcsoT30l+aMhZECYLMS0ofktD0iYA78/onB0q7U+3O
+ JXQ8vgRaG/0U0hGnX4/Byeo+OQ==
+X-Google-Smtp-Source: APXvYqy1R3nOCfQIXOAHxdlReFUWyMsMXJ1hvWq6zkqkU2Wqn4kMxDTTJDjub+A3plJqlpINWy3O3Q==
+X-Received: by 2002:a1c:7905:: with SMTP id l5mr17673710wme.76.1572854896300; 
+ Mon, 04 Nov 2019 00:08:16 -0800 (PST)
 Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id o81sm7133638wmb.38.2019.11.03.23.59.24
+ by smtp.gmail.com with ESMTPSA id t12sm14949737wrx.93.2019.11.04.00.08.15
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 03 Nov 2019 23:59:24 -0800 (PST)
-References: <1572004167-24150-1-git-send-email-qianggui.song@amlogic.com>
- <1572004167-24150-3-git-send-email-qianggui.song@amlogic.com>
+ Mon, 04 Nov 2019 00:08:15 -0800 (PST)
+References: <20191027161805.1176321-1-martin.blumenstingl@googlemail.com>
+ <20191027161805.1176321-4-martin.blumenstingl@googlemail.com>
 User-agent: mu4e 1.3.3; emacs 26.2
 From: Jerome Brunet <jbrunet@baylibre.com>
-To: Qianggui Song <qianggui.song@amlogic.com>,
- Linus Walleij <linus.walleij@linaro.org>, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] pinctrl: meson: add a new callback for SoCs fixup
-In-reply-to: <1572004167-24150-3-git-send-email-qianggui.song@amlogic.com>
-Date: Mon, 04 Nov 2019 08:59:23 +0100
-Message-ID: <1jeeyo3wdg.fsf@starbuckisacylon.baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ narmstrong@baylibre.com, linux-amlogic@lists.infradead.org,
+ khilman@baylibre.com
+Subject: Re: [PATCH v2 3/5] clk: meson: meson8b: change references to the XTAL
+ clock to use the name
+In-reply-to: <20191027161805.1176321-4-martin.blumenstingl@googlemail.com>
+Date: Mon, 04 Nov 2019 09:08:14 +0100
+Message-ID: <1jd0e83vyp.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191103_235928_210817_294B9932 
-X-CRM114-Status: GOOD (  17.99  )
+X-CRM114-CacheID: sfid-20191104_000818_080768_69125D11 
+X-CRM114-Status: GOOD (  17.68  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,299 +101,192 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark
- Rutland <mark.rutland@arm.com>, Hanjie Lin <hanjie.lin@amlogic.com>, Jianxin
- Pan <jianxin.pan@amlogic.com>, Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org, Rob
- Herring <robh+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
- Xingyu Chen <xingyu.chen@amlogic.com>
+Cc: mark.rutland@arm.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, robh+dt@kernel.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 
-On Fri 25 Oct 2019 at 13:49, Qianggui Song <qianggui.song@amlogic.com> wrote:
+On Sun 27 Oct 2019 at 17:18, Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
 
-> In meson_pinctrl_parse_dt, it contains two parts: reg parsing and
-> SoC relative fixup for AO. Several fixups in the same code make it hard
-> to maintain, so move all fixups to each SoC's callback and make
-> meson_pinctrl_parse_dt just do the reg parsing, separate these two
-> parts.Overview of all current Meson SoCs fixup is as below:
+> The XTAL clock is an actual crystal which is mounted on the PCB. Thus
+> the meson8b clock controller driver should not provide the XTAL clock.
 >
-> +------+--------------------------------------+--------------------------+
-> |      |                                      |                          |
-> | SoC  |                EE domain             |        AO domain         |
-> +------+--------------------------------------+--------------------------+
-> |m8    | parse regs:                          | parse regs:              |
-> |m8b   |   gpio,mux,pull,pull-enable(skip ds) |    gpio,mux,pull(skip ds)|
-> |gxl   | fixup:                               | fixup:                   |
-> |gxbb  |   no                                 |     pull-enable = pull   |
-> |axg   |                                      |                          |
-> +------+--------------------------------------+--------------------------+
-> |g12a  | parse regs:                          | parse regs:              |
-> |sm1   |   gpio,mux,pull,pull-enable,ds       |   gpio,mux,ds            |
-> |      | fixup:                               | fixup:                   |
-> |      |   no                                 |   pull = gpio            |
-> |      |                                      |   pull-enable = gpio     |
-> +------+--------------------------------------+--------------------------+
-> |a1 or | parse regs:                                                     |
-> |later |  gpio/mux (without ao domain)                                   |
-> |SoCs  | fixup:                                                          |
-> |      |  pull=gpio; pull-enable=gpio; ds=gpio                           |
-> +------+-----------------------------------------------------------------+
+> The meson8b clock controller driver must not use references to
+> the meson8b_xtal clock anymore before we can provide the XTAL clock
+> via OF. Replace the references to the meson8b_xtal.hw by using
+> clk_parent_data.name = "xtal" (along with index = -1) because this works
+> regardless how the XTAL clock is registered (either as fixed-clock in
+> the .dtb or - if missing - when registered in the meson8b clock
+> controller driver).
 >
-> Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->  drivers/pinctrl/meson/pinctrl-meson-axg.c  | 11 +++++++++++
->  drivers/pinctrl/meson/pinctrl-meson-g12a.c |  9 +++++++++
->  drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 11 +++++++++++
->  drivers/pinctrl/meson/pinctrl-meson-gxl.c  | 11 +++++++++++
->  drivers/pinctrl/meson/pinctrl-meson.c      |  9 +++++----
->  drivers/pinctrl/meson/pinctrl-meson.h      |  3 +++
->  drivers/pinctrl/meson/pinctrl-meson8.c     | 11 +++++++++++
->  drivers/pinctrl/meson/pinctrl-meson8b.c    | 11 +++++++++++
->  8 files changed, 72 insertions(+), 4 deletions(-)
+>  drivers/clk/meson/meson8b.c | 73 ++++++++++++++++++++-----------------
+>  1 file changed, 39 insertions(+), 34 deletions(-)
 >
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson-axg.c b/drivers/pinctrl/meson/pinctrl-meson-axg.c
-> index ad502eda4afa..9c07f4423c37 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson-axg.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson-axg.c
-> @@ -1040,6 +1040,16 @@
->  	.num_pmx_banks = ARRAY_SIZE(meson_axg_aobus_pmx_banks),
->  };
->  
-> +static int meson_axg_aobus_parse_dt_extra(struct meson_pinctrl *pc)
-> +{
-> +	if (!pc->reg_pull)
-> +		return -EINVAL;
-> +
-> +	pc->reg_pullen = pc->reg_pull;
-> +
-> +	return 0;
-> +}
-> +
->  static struct meson_pinctrl_data meson_axg_periphs_pinctrl_data = {
->  	.name		= "periphs-banks",
->  	.pins		= meson_axg_periphs_pins,
-> @@ -1066,6 +1076,7 @@
->  	.num_banks	= ARRAY_SIZE(meson_axg_aobus_banks),
->  	.pmx_ops	= &meson_axg_pmx_ops,
->  	.pmx_data	= &meson_axg_aobus_pmx_banks_data,
-> +	.parse_dt	= meson_axg_aobus_parse_dt_extra,
->  };
->  
->  static const struct of_device_id meson_axg_pinctrl_dt_match[] = {
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson-g12a.c b/drivers/pinctrl/meson/pinctrl-meson-g12a.c
-> index 582665fd362a..41850e3c0091 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson-g12a.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson-g12a.c
-> @@ -1362,6 +1362,14 @@
->  	.num_pmx_banks	= ARRAY_SIZE(meson_g12a_aobus_pmx_banks),
->  };
->  
-> +static int meson_g12a_aobus_parse_dt_extra(struct meson_pinctrl *pc)
-> +{
-> +	pc->reg_pull = pc->reg_gpio;
-> +	pc->reg_pullen = pc->reg_gpio;
-> +
-> +	return 0;
-> +}
-> +
->  static struct meson_pinctrl_data meson_g12a_periphs_pinctrl_data = {
->  	.name		= "periphs-banks",
->  	.pins		= meson_g12a_periphs_pins,
-> @@ -1388,6 +1396,7 @@
->  	.num_banks	= ARRAY_SIZE(meson_g12a_aobus_banks),
->  	.pmx_ops	= &meson_axg_pmx_ops,
->  	.pmx_data	= &meson_g12a_aobus_pmx_banks_data,
-> +	.parse_dt	= meson_g12a_aobus_parse_dt_extra,
->  };
->  
->  static const struct of_device_id meson_g12a_pinctrl_dt_match[] = {
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-> index 5bfa56f3847e..f5494a948200 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
-> @@ -827,6 +827,16 @@
->  	BANK("AO",   GPIOAO_0,  GPIOAO_13, 0, 13, 0,  16, 0, 0,   0,  0,  0, 16,  1,  0),
->  };
->  
-> +static int meson_gxbb_aobus_parse_dt_extra(struct meson_pinctrl *pc)
-> +{
-> +	if (!pc->reg_pull)
-> +		return -EINVAL;
-> +
-> +	pc->reg_pullen = pc->reg_pull;
-> +
-> +	return 0;
-> +}
+> diff --git a/drivers/clk/meson/meson8b.c b/drivers/clk/meson/meson8b.c
+> index d376f80e806d..b785b67baf2b 100644
+> --- a/drivers/clk/meson/meson8b.c
+> +++ b/drivers/clk/meson/meson8b.c
+> @@ -97,8 +97,9 @@ static struct clk_regmap meson8b_fixed_pll_dco = {
+>  	.hw.init = &(struct clk_init_data){
+>  		.name = "fixed_pll_dco",
+>  		.ops = &meson_clk_pll_ro_ops,
+> -		.parent_hws = (const struct clk_hw *[]) {
+> -			&meson8b_xtal.hw
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.name = "xtal",
+> +			.index = -1,
 
-Can you share the definition of this function instead of repeating it ?
+if I got correctly, when transitioning to DT, you can specify both
+"fw_name" and "name". CCF should try to get the clock through DT and
+fallback to global name matching if not available
 
-> +
->  static struct meson_pinctrl_data meson_gxbb_periphs_pinctrl_data = {
->  	.name		= "periphs-banks",
->  	.pins		= meson_gxbb_periphs_pins,
-> @@ -851,6 +861,7 @@
->  	.num_funcs	= ARRAY_SIZE(meson_gxbb_aobus_functions),
->  	.num_banks	= ARRAY_SIZE(meson_gxbb_aobus_banks),
->  	.pmx_ops	= &meson8_pmx_ops,
-> +	.parse_dt	= meson_gxbb_aobus_parse_dt_extra,
+>  		},
+>  		.num_parents = 1,
+>  	},
+> @@ -162,8 +163,9 @@ static struct clk_regmap meson8b_hdmi_pll_dco = {
+>  		/* sometimes also called "HPLL" or "HPLL PLL" */
+>  		.name = "hdmi_pll_dco",
+>  		.ops = &meson_clk_pll_ro_ops,
+> -		.parent_hws = (const struct clk_hw *[]) {
+> -			&meson8b_xtal.hw
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.name = "xtal",
+> +			.index = -1,
+>  		},
+>  		.num_parents = 1,
+>  	},
+> @@ -237,8 +239,9 @@ static struct clk_regmap meson8b_sys_pll_dco = {
+>  	.hw.init = &(struct clk_init_data){
+>  		.name = "sys_pll_dco",
+>  		.ops = &meson_clk_pll_ops,
+> -		.parent_hws = (const struct clk_hw *[]) {
+> -			&meson8b_xtal.hw
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.name = "xtal",
+> +			.index = -1,
+>  		},
+>  		.num_parents = 1,
+>  	},
+> @@ -631,9 +634,9 @@ static struct clk_regmap meson8b_cpu_in_sel = {
+>  	.hw.init = &(struct clk_init_data){
+>  		.name = "cpu_in_sel",
+>  		.ops = &clk_regmap_mux_ops,
+> -		.parent_hws = (const struct clk_hw *[]) {
+> -			&meson8b_xtal.hw,
+> -			&meson8b_sys_pll.hw,
+> +		.parent_data = (const struct clk_parent_data[]) {
+> +			{ .name = "xtal", .index = -1, },
+> +			{ .hw = &meson8b_sys_pll.hw, },
+>  		},
+>  		.num_parents = 2,
+>  		.flags = (CLK_SET_RATE_PARENT |
+> @@ -736,9 +739,9 @@ static struct clk_regmap meson8b_cpu_clk = {
+>  	.hw.init = &(struct clk_init_data){
+>  		.name = "cpu_clk",
+>  		.ops = &clk_regmap_mux_ops,
+> -		.parent_hws = (const struct clk_hw *[]) {
+> -			&meson8b_xtal.hw,
+> -			&meson8b_cpu_scale_out_sel.hw,
+> +		.parent_data = (const struct clk_parent_data[]) {
+> +			{ .name = "xtal", .index = -1, },
+> +			{ .hw = &meson8b_cpu_scale_out_sel.hw, },
+>  		},
+>  		.num_parents = 2,
+>  		.flags = (CLK_SET_RATE_PARENT |
+> @@ -758,12 +761,12 @@ static struct clk_regmap meson8b_nand_clk_sel = {
+>  		.name = "nand_clk_sel",
+>  		.ops = &clk_regmap_mux_ops,
+>  		/* FIXME all other parents are unknown: */
+> -		.parent_hws = (const struct clk_hw *[]) {
+> -			&meson8b_fclk_div4.hw,
+> -			&meson8b_fclk_div3.hw,
+> -			&meson8b_fclk_div5.hw,
+> -			&meson8b_fclk_div7.hw,
+> -			&meson8b_xtal.hw,
+> +		.parent_data = (const struct clk_parent_data[]) {
+> +			{ .hw = &meson8b_fclk_div4.hw, },
+> +			{ .hw = &meson8b_fclk_div3.hw, },
+> +			{ .hw = &meson8b_fclk_div5.hw, },
+> +			{ .hw = &meson8b_fclk_div7.hw, },
+> +			{ .name = "xtal", .index = -1, },
+>  		},
+>  		.num_parents = 5,
+>  		.flags = CLK_SET_RATE_PARENT,
+> @@ -1721,8 +1724,9 @@ static struct clk_regmap meson8b_hdmi_sys_sel = {
+>  		.name = "hdmi_sys_sel",
+>  		.ops = &clk_regmap_mux_ro_ops,
+>  		/* FIXME: all other parents are unknown */
+> -		.parent_hws = (const struct clk_hw *[]) {
+> -			&meson8b_xtal.hw
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.name = "xtal",
+> +			.index = -1,
+>  		},
+>  		.num_parents = 1,
+>  		.flags = CLK_SET_RATE_NO_REPARENT,
+> @@ -1767,14 +1771,14 @@ static struct clk_regmap meson8b_hdmi_sys = {
+>   * muxed by a glitch-free switch on Meson8b and Meson8m2. Meson8 only
+>   * has mali_0 and no glitch-free mux.
+>   */
+> -static const struct clk_hw *meson8b_mali_0_1_parent_hws[] = {
+> -	&meson8b_xtal.hw,
+> -	&meson8b_mpll2.hw,
+> -	&meson8b_mpll1.hw,
+> -	&meson8b_fclk_div7.hw,
+> -	&meson8b_fclk_div4.hw,
+> -	&meson8b_fclk_div3.hw,
+> -	&meson8b_fclk_div5.hw,
+> +static const struct clk_parent_data meson8b_mali_0_1_parent_data[] = {
+> +	{ .name = "xtal", .index = -1, },
+> +	{ .hw = &meson8b_mpll2.hw, },
+> +	{ .hw = &meson8b_mpll1.hw, },
+> +	{ .hw = &meson8b_fclk_div7.hw, },
+> +	{ .hw = &meson8b_fclk_div4.hw, },
+> +	{ .hw = &meson8b_fclk_div3.hw, },
+> +	{ .hw = &meson8b_fclk_div5.hw, },
 >  };
 >  
->  static const struct of_device_id meson_gxbb_pinctrl_dt_match[] = {
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-> index 72c5373c8dc1..943fb27dab08 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
-> @@ -796,6 +796,16 @@
->  	BANK("AO",   GPIOAO_0,  GPIOAO_9, 0, 9, 0,  16, 0, 0,   0,  0,  0, 16,  1,  0),
->  };
->  
-> +static int meson_gxl_aobus_parse_dt_extra(struct meson_pinctrl *pc)
-> +{
-> +	if (!pc->reg_pull)
-> +		return -EINVAL;
-> +
-> +	pc->reg_pullen = pc->reg_pull;
-> +
-> +	return 0;
-> +}
-
-Same
-
-> +
->  static struct meson_pinctrl_data meson_gxl_periphs_pinctrl_data = {
->  	.name		= "periphs-banks",
->  	.pins		= meson_gxl_periphs_pins,
-> @@ -820,6 +830,7 @@
->  	.num_funcs	= ARRAY_SIZE(meson_gxl_aobus_functions),
->  	.num_banks	= ARRAY_SIZE(meson_gxl_aobus_banks),
->  	.pmx_ops	= &meson8_pmx_ops,
-> +	.parse_dt 	= meson_gxl_aobus_parse_dt_extra,
->  };
->  
->  static const struct of_device_id meson_gxl_pinctrl_dt_match[] = {
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
-> index 8bba9d053d9f..e182583422a4 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson.c
-> @@ -677,14 +677,12 @@ static int meson_pinctrl_parse_dt(struct meson_pinctrl *pc,
->  	}
->  
->  	pc->reg_pull = meson_map_resource(pc, gpio_np, "pull");
-> -	/* Use gpio region if pull one is not present */
->  	if (IS_ERR(pc->reg_pull))
-> -		pc->reg_pull = pc->reg_gpio;
-> +		pc->reg_pull = NULL;
-
-Instead of doing this fixup, could modifhy meson_map_ressourse() to
-return NULL instead of -ENOENT ?
-
-Then you should IS_ERR_OR_NULL() for "mux" and "gpio" and just IS_ERR()
-for the rest
-
->  
->  	pc->reg_pullen = meson_map_resource(pc, gpio_np, "pull-enable");
-> -	/* Use pull region if pull-enable one is not present */
->  	if (IS_ERR(pc->reg_pullen))
-> -		pc->reg_pullen = pc->reg_pull;
-> +		pc->reg_pullen = NULL;
->  
->  	pc->reg_ds = meson_map_resource(pc, gpio_np, "ds");
->  	if (IS_ERR(pc->reg_ds)) {
-> @@ -692,6 +690,9 @@ static int meson_pinctrl_parse_dt(struct meson_pinctrl *pc,
->  		pc->reg_ds = NULL;
->  	}
->  
-> +	if (pc->data->parse_dt)
-> +		return pc->data->parse_dt(pc);
-> +
->  	return 0;
->  }
->  
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson.h b/drivers/pinctrl/meson/pinctrl-meson.h
-> index c696f3241a36..d570f7c53045 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson.h
-> +++ b/drivers/pinctrl/meson/pinctrl-meson.h
-> @@ -11,6 +11,8 @@
->  #include <linux/regmap.h>
->  #include <linux/types.h>
->  
-> +struct meson_pinctrl;
-> +
->  /**
->   * struct meson_pmx_group - a pinmux group
->   *
-> @@ -114,6 +116,7 @@ struct meson_pinctrl_data {
->  	unsigned int num_banks;
->  	const struct pinmux_ops *pmx_ops;
->  	void *pmx_data;
-> +	int (*parse_dt)(struct meson_pinctrl *pc);
->  };
->  
->  struct meson_pinctrl {
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson8.c b/drivers/pinctrl/meson/pinctrl-meson8.c
-> index 0b97befa6335..65c70c9b7070 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson8.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson8.c
-> @@ -1079,6 +1079,16 @@
->  	BANK("AO",   GPIOAO_0, GPIO_TEST_N, 0, 13, 0, 16,  0,  0,  0,  0,  0, 16,  1,  0),
->  };
->  
-> +static int meson8_aobus_parse_dt_extra(struct meson_pinctrl *pc)
-> +{
-> +	if (!pc->reg_pull)
-> +		return -EINVAL;
-> +
-> +	pc->reg_pullen = pc->reg_pull;
-> +
-> +	return 0;
-> +}
-> +
->  static struct meson_pinctrl_data meson8_cbus_pinctrl_data = {
->  	.name		= "cbus-banks",
->  	.pins		= meson8_cbus_pins,
-> @@ -1103,6 +1113,7 @@
->  	.num_funcs	= ARRAY_SIZE(meson8_aobus_functions),
->  	.num_banks	= ARRAY_SIZE(meson8_aobus_banks),
->  	.pmx_ops	= &meson8_pmx_ops,
-> +	.parse_dt	= &meson8_aobus_parse_dt_extra,
->  };
->  
->  static const struct of_device_id meson8_pinctrl_dt_match[] = {
-> diff --git a/drivers/pinctrl/meson/pinctrl-meson8b.c b/drivers/pinctrl/meson/pinctrl-meson8b.c
-> index a7de388388e6..85dc12e0c839 100644
-> --- a/drivers/pinctrl/meson/pinctrl-meson8b.c
-> +++ b/drivers/pinctrl/meson/pinctrl-meson8b.c
-> @@ -938,6 +938,16 @@
->  	BANK("AO",   GPIOAO_0, GPIO_TEST_N, 0, 13, 0,  16, 0, 0,  0,  0,  0, 16,  1,  0),
->  };
->  
-> +static int meson8b_aobus_parse_dt_extra(struct meson_pinctrl *pc)
-> +{
-> +	if (!pc->reg_pull)
-> +		return -EINVAL;
-> +
-> +	pc->reg_pullen = pc->reg_pull;
-> +
-> +	return 0;
-> +}
-> +
->  static struct meson_pinctrl_data meson8b_cbus_pinctrl_data = {
->  	.name		= "cbus-banks",
->  	.pins		= meson8b_cbus_pins,
-> @@ -962,6 +972,7 @@
->  	.num_funcs	= ARRAY_SIZE(meson8b_aobus_functions),
->  	.num_banks	= ARRAY_SIZE(meson8b_aobus_banks),
->  	.pmx_ops	= &meson8_pmx_ops,
-> +	.parse_dt	= &meson8b_aobus_parse_dt_extra,
->  };
->  
->  static const struct of_device_id meson8b_pinctrl_dt_match[] = {
+>  static u32 meson8b_mali_0_1_mux_table[] = { 0, 2, 3, 4, 5, 6, 7 };
+> @@ -1789,8 +1793,8 @@ static struct clk_regmap meson8b_mali_0_sel = {
+>  	.hw.init = &(struct clk_init_data){
+>  		.name = "mali_0_sel",
+>  		.ops = &clk_regmap_mux_ops,
+> -		.parent_hws = meson8b_mali_0_1_parent_hws,
+> -		.num_parents = ARRAY_SIZE(meson8b_mali_0_1_parent_hws),
+> +		.parent_data = meson8b_mali_0_1_parent_data,
+> +		.num_parents = ARRAY_SIZE(meson8b_mali_0_1_parent_data),
+>  		/*
+>  		 * Don't propagate rate changes up because the only changeable
+>  		 * parents are mpll1 and mpll2 but we need those for audio and
+> @@ -1844,8 +1848,8 @@ static struct clk_regmap meson8b_mali_1_sel = {
+>  	.hw.init = &(struct clk_init_data){
+>  		.name = "mali_1_sel",
+>  		.ops = &clk_regmap_mux_ops,
+> -		.parent_hws = meson8b_mali_0_1_parent_hws,
+> -		.num_parents = ARRAY_SIZE(meson8b_mali_0_1_parent_hws),
+> +		.parent_data = meson8b_mali_0_1_parent_data,
+> +		.num_parents = ARRAY_SIZE(meson8b_mali_0_1_parent_data),
+>  		/*
+>  		 * Don't propagate rate changes up because the only changeable
+>  		 * parents are mpll1 and mpll2 but we need those for audio and
+> @@ -1944,8 +1948,9 @@ static struct clk_regmap meson8m2_gp_pll_dco = {
+>  	.hw.init = &(struct clk_init_data){
+>  		.name = "gp_pll_dco",
+>  		.ops = &meson_clk_pll_ops,
+> -		.parent_hws = (const struct clk_hw *[]) {
+> -			&meson8b_xtal.hw
+> +		.parent_data = &(const struct clk_parent_data) {
+> +			.name = "xtal",
+> +			.index = -1,
+>  		},
+>  		.num_parents = 1,
+>  	},
 
 
 _______________________________________________
