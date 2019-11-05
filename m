@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 537DDC47E49
-	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Nov 2019 08:54:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A0B17C1747C
+	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Nov 2019 13:39:22 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 29D062084D
-	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Nov 2019 08:54:56 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4937021D6C
+	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Nov 2019 13:39:22 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="aNdBMr+S";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="BsQ63bXJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 29D062084D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="q8jFnvY6";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="gxr0AMfy"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4937021D6C
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,70 +27,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=/vDBsVBkuso4I71a8S6DfQKdq3Vnnxplh13FjYumdXg=; b=aNdBMr+SfwUkTE6m5qFUL56z9e
-	Y5bwUwLUZf+Du2TWGRyHSl14gSzj5PGkXmHc/N7wIAM1aL+Z1Rr6921hkCWRLJtUYyNOh0mJEwa11
-	/zcXX6JV8IGDyI+BGhNOa56swm40XCi7c8qVrGodDHq1go/k2GdlzK8wE/fxoj/l3qg62psD88epe
-	w4eaqwZpSRFmcW1kACp4JtxKCInBan8h+FdWbW0DtkmBHPBUOIzSANLtkGOwlLQhy9mOZcdY2xX0v
-	MQVOhacbsh7hyj9BxO0E3I28Kdo3bAujWE/cJaJyxB1zat5a5XiBP9jjBBGwXwOZ3ghdd5a2vRflD
-	78S35x+A==;
+	bh=4FYA513+vNER2wLNEM3pHiwErcMrVuk926hPnhlX4I8=; b=q8jFnvY63EaAVaSkWpaMPFX5PD
+	cdkKHQww1GSi3Gdrhsy07bsrNB1F9eASjs1lf7gTRhPOMQC6LYHK2magYxUxwh49Rlf0CU/QZZqlq
+	JYXNNbwWmoOYslO1aIfnXuoHGUzm0hvbBpGo/qtAwb/wZohsVulmgO+IK/tLEoPLfV1jZcfS84UbC
+	bLB0BxTys3FiLJoTKMcai48UyeyYpfitrrQx6Kc2g8C1/gaK3GUkdu0DkwsXRJRciDtZpEDXn2bHO
+	pQaOsy+1klz8K4l4okZuZTI1f3QWpdq30+tY52b7+bk1Ti+ItN+BL6nLC2iX6WqOk9tke/pgwpurF
+	iMpeVnAA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iRubs-0000JF-7Z; Tue, 05 Nov 2019 08:54:44 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1iRz3C-0002Yb-38; Tue, 05 Nov 2019 13:39:14 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iRubo-0000IM-AI
- for linux-amlogic@lists.infradead.org; Tue, 05 Nov 2019 08:54:42 +0000
-Received: by mail-wm1-x342.google.com with SMTP id z26so6691988wmi.4
- for <linux-amlogic@lists.infradead.org>; Tue, 05 Nov 2019 00:54:39 -0800 (PST)
+ id 1iRyuq-0002mE-IM
+ for linux-amlogic@lists.infradead.org; Tue, 05 Nov 2019 13:30:39 +0000
+Received: by mail-wm1-x344.google.com with SMTP id 8so13123305wmo.0
+ for <linux-amlogic@lists.infradead.org>; Tue, 05 Nov 2019 05:30:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version;
- bh=bceDJHtyc/Gkpk2vkbmTb36e6CcHkOGhOjOBn4t9oXE=;
- b=BsQ63bXJSBOvzsjA7Jg0wTxrVHCNvgB2K/zGBlEUeHdSaIjrGH2fSQ/stDcujWWpvN
- NjVnwf4Io22VUXNP5xyNo96XQEeuh/cpSE5ZpoHbHzUwE+kLb5vdeDX2Dd0anIucf+Cw
- kLX7nqsnA5L4SZrI3Ow1zQmQclrRIsnJG0RiZDpgsKv8mO2cUqncFscJIXR3Zrld8Mw5
- bNKfi5hrQ0dQ3D9TmzYvDTwOF+UMOowZPoYZPZ/sSUwgP4k082zs1ofz4Y8SfPvmikib
- gPs8WC/qQO3Wtv64xHUTluH2ODQP7J7YgxVitXgd0KFaeoOS/ie/KMSuH5A+5cGpxpmU
- xnKA==
+ :message-id:mime-version:content-transfer-encoding;
+ bh=7bY4KphWSIiQfsBHhvP2l5N05pChZGN4x1skVb4keco=;
+ b=gxr0AMfyg8FLU288ML4cbLVIRbmkjpN07ap2/D6WbJgkFQRNcX52D8AVY/3jh5W/91
+ z5NUmfNUSHBixXXAso6ts4ep3eR1lr3lDLkvDUBG0Ztw5BAm8GYmJNVr2LE5dpMem3oS
+ SkZM1SxUu7tbZJWf49j1044PMtpXeZ+V7aWzqYuU2U8KXCO2UTLXYPbxQBFyRhKWyANR
+ 19zO8BwrCS4HlFOolJbs+HXtYy8dRf0TKC87iX1UETUeRydD1yhrjuBohyfEHdzoOgeb
+ Qh/p27SpabPJ+vbQMjMtaSsmaIkCH878Fm3ojtfQyIBolibRi3UaaEuChTZl5IxGJbmM
+ 8YmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version;
- bh=bceDJHtyc/Gkpk2vkbmTb36e6CcHkOGhOjOBn4t9oXE=;
- b=Xi5lakXhV3ICosS9Z51NtqxfSK173qooINTVI0WQplXDQdOhbIde/huI4SgzKAkBXJ
- 1tqx8vYb//EafLJBItUrgXyjjSNPbmocRxtLu2YthDBz2uCvu6G6+SzNisBbqkQO5aeM
- 8kYQIyOKrWnXzgzXSuzXhergL7OnNWaq4uD7iZ1Xhld7QXohzwe/y3nAGmgOCPv9rGNf
- eh73YNwZAdz86IYnF+KPEX/WwVHFFftS+Y93Lm8R6A7llay9KcqmOC9lzLdAPA4pSDbZ
- Bkd+CNdqzQe4Cebed1qTa23kWrzSbPlvMB8G5/tFNgisHpDSq6sR3DZqTbfnDmSS/pvv
- 4BIg==
-X-Gm-Message-State: APjAAAXG7RyuwugcUOiNOfzToCqlffTAGL1ZkAoYBIT02ZbDLegt1OrT
- SQaRUG7T6le/tNkuAUXh0DOXqg==
-X-Google-Smtp-Source: APXvYqxlZQTgjwBbU5U3hS0UOPR3njYlFwK9eM9pu7ZTObIRHu2SYqJhwmdcdBzMvNbhjUgkajEH8w==
-X-Received: by 2002:a1c:e91a:: with SMTP id q26mr2934616wmc.32.1572944078270; 
- Tue, 05 Nov 2019 00:54:38 -0800 (PST)
+ :in-reply-to:date:message-id:mime-version:content-transfer-encoding;
+ bh=7bY4KphWSIiQfsBHhvP2l5N05pChZGN4x1skVb4keco=;
+ b=Raa/gWCeEgqgHUt3z2NXkj17eRpRmO/YS5zJHLA5YPwWqARlm2lbQc8AEYEq44+R/S
+ SmK6exCdKKCWzeoxoeWZIAgpITwGTNMVPSlfssQbwFI/28zgRG/SXfKuQjaAbyyOS+i3
+ bALkQ2DLCnURdGBbLvwo5zjXaE//fDZEj+nauujLqyuzjEErCBIlllSxig8i6LdBgctS
+ tq4YxYc5199JRuK2B370e4gif1XLJ2OEewjOXahYWzTXR7E1c83RUmJT911kMHoFdBoH
+ LXmrXJ88GIPA8yy1LEG2DPmKOxtqknS9TVHRcc34FxJr079G9QW6UxF6Dd1pWsjxy5uB
+ mBCw==
+X-Gm-Message-State: APjAAAW1KmyHVwX3iw3RDRT1GPsLqXothGUQVPZygH7b+wli5FipaxH+
+ mxWEXaUtA3+KdgqnTF70bsRE1w==
+X-Google-Smtp-Source: APXvYqwiK8qiVvqMWU1Nuzw13cCoMSODLVCQe3/syYFV/mdZArg/Y4Tmn3AV+FE1y+VvW+sTJd0F/Q==
+X-Received: by 2002:a1c:62c5:: with SMTP id w188mr2302432wmb.77.1572960634860; 
+ Tue, 05 Nov 2019 05:30:34 -0800 (PST)
 Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id b66sm22614377wmh.39.2019.11.05.00.54.37
+ by smtp.gmail.com with ESMTPSA id m9sm21158502wro.66.2019.11.05.05.30.33
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 05 Nov 2019 00:54:37 -0800 (PST)
+ Tue, 05 Nov 2019 05:30:33 -0800 (PST)
 References: <1572868495-84816-1-git-send-email-jianxin.pan@amlogic.com>
  <1ja79b4mje.fsf@starbuckisacylon.baylibre.com>
  <e80cb817-e58a-68ce-a3c6-d82636aaf7d3@amlogic.com>
  <1j8sou4u1g.fsf@starbuckisacylon.baylibre.com>
  <7ec2e682-cfec-395e-cf38-58f050440c40@amlogic.com>
+ <1j7e4e4sab.fsf@starbuckisacylon.baylibre.com>
+ <dee789ae-6825-3f4c-16e7-227e064562d6@amlogic.com>
 User-agent: mu4e 1.3.3; emacs 26.2
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Nan Li <Nan.Li@amlogic.com>, Jianxin Pan <Jianxin.Pan@amlogic.com>,
  Ulf Hansson <ulf.hansson@linaro.org>, Kevin Hilman <khilman@baylibre.com>
 Subject: Re: [PATCH v2] mmc: meson-gx: fix mmc dma operation
-In-reply-to: <7ec2e682-cfec-395e-cf38-58f050440c40@amlogic.com>
-Date: Tue, 05 Nov 2019 09:54:36 +0100
-Message-ID: <1j7e4e4sab.fsf@starbuckisacylon.baylibre.com>
+In-reply-to: <dee789ae-6825-3f4c-16e7-227e064562d6@amlogic.com>
+Date: Tue, 05 Nov 2019 14:30:32 +0100
+Message-ID: <1j5zjy4fif.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191105_005440_362119_95556128 
-X-CRM114-Status: GOOD (  25.92  )
+X-CRM114-CacheID: sfid-20191105_053036_689763_66677B93 
+X-CRM114-Status: GOOD (  30.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,219 +108,150 @@ Cc: "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
  "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
  "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
  Victor Wan <victor.wan@amlogic.com>, Neil Armstrong <narmstrong@baylibre.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-On Tue 05 Nov 2019 at 09:30, Nan Li <Nan.Li@amlogic.com> wrote:
-
-
->
-> Based on Uffe comment I tried something else.
->
-> Basically, it enables chained mode in the driver only when the framework
-> calls pre/post_req callback. As far as understood, the framework calls
-> this when there is more than one request pending ... which seems to be
-> when chained mode actually make sense
->
-> Jerome, what you are talking about is the system framework problem when you call pre/post_req,
->
-> which is not related to the patch I submitted.
->
->
->
-> I strongly disagree.
-> As far as I understand from your description, the problem was with the
-> life cycle of the dma mapping. This is tighly related with pre/post req.
-> Just the variable names you have picked clearly show that.
->
->
->
-> As you said, pre/post_req is called only when there is data to implement the chained mode,
->
-> but it is also possible to cause memory consistency problems,
-> resulting in incorrect data.
->
->
->
-> The life cycle of the mapping is also taken care of with patch,
-> since dma mapping is no longer handled in .request(). IOW the mapping,
-> if any, will be released after the request is done using .post_req()
->
-> If you think otherwise, please elaborate.
->
->
-> I see what you mean. You want to pull the pre/post_req operation out of the request interface and invoke it at the top.
->
-> I didn't notice the following modification of patch in your last email and reply in time. I'm really sorry.
->
-> The following patch removes all pre/post_req operations,
-
-No it does not. Callbacks are still provided to the MMC framework.
-
-> but you do not send out the operation patch added to the upper layer
-> together.
-
-There is no modification needed in the upper layer
-
->
-> Then the patch is incomplete, which will affect the dma data transfer function in start_cmd function and affect the multi-block write operation.
->
-
-No it is not incomplete. pre and post request are correctly called. You
-can check that with ftrace if you want.
-
-Maybe you could try it ?
-
-> Please send your complete patch, including core layer modification,
-> thank you.
->
->
->
->
->
-> Therefore, this patch is added to make memory consistent and obtain real effective information.
->
->
->
-> ----8<-----
-> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> index e712315c7e8d..399604b4124d 100644
-> --- a/drivers/mmc/host/meson-gx-mmc.c
-> +++ b/drivers/mmc/host/meson-gx-mmc.c
-> @@ -126,8 +126,7 @@
->  #define SD_EMMC_CFG_CMD_GAP 16 /* in clock cycles */
->  #define SD_EMMC_DESC_BUF_LEN PAGE_SIZE
->
-> -#define SD_EMMC_PRE_REQ_DONE BIT(0)
-> -#define SD_EMMC_DESC_CHAIN_MODE BIT(1)
-> +#define SD_EMMC_DESC_CHAIN_MODE BIT(0)
->
->  #define MUX_CLK_NUM_PARENTS 2
->
-> @@ -228,7 +227,6 @@ static void meson_mmc_get_transfer_mode(struct mmc_host *mmc,
->         struct mmc_data *data = mrq->data;
->         struct scatterlist *sg;
->         int i;
-> -       bool use_desc_chain_mode = true;
->
->         /*
->          * When Controller DMA cannot directly access DDR memory, disable
-> @@ -251,12 +249,11 @@ static void meson_mmc_get_transfer_mode(struct mmc_host *mmc,
->                 /* check for 8 byte alignment */
->                 if (sg->offset & 7) {
->                         WARN_ONCE(1, "unaligned scatterlist buffer\n");
-> -                       use_desc_chain_mode = false;
-> -                       break;
-> +                       return;
->                 }
->
-> -       if (use_desc_chain_mode)
-> -               data->host_cookie |= SD_EMMC_DESC_CHAIN_MODE;
-> +       /* The planets are aligned, let's chain them up */
-> +       data->host_cookie |= SD_EMMC_DESC_CHAIN_MODE;
->  }
->
->  static inline bool meson_mmc_desc_chain_mode(const struct mmc_data *data)
-> @@ -278,7 +275,6 @@ static void meson_mmc_pre_req(struct mmc_host *mmc, struct mmc_request *mrq)
->                 return;
->
->         meson_mmc_get_transfer_mode(mmc, mrq);
-> -       data->host_cookie |= SD_EMMC_PRE_REQ_DONE;
->
->         if (!meson_mmc_desc_chain_mode(data))
->                 return;
-> @@ -803,25 +799,11 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
->  static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
->  {
->         struct meson_host *host = mmc_priv(mmc);
-> -       bool needs_pre_post_req = mrq->data &&
-> -                       !(mrq->data->host_cookie & SD_EMMC_PRE_REQ_DONE);
-> -
-> -       if (needs_pre_post_req) {
-> -               meson_mmc_get_transfer_mode(mmc, mrq);
-> -               if (!meson_mmc_desc_chain_mode(mrq->data))
-> -                       needs_pre_post_req = false;
-> -       }
-> -
-> -       if (needs_pre_post_req)
-> -               meson_mmc_pre_req(mmc, mrq);
->
->         /* Stop execution */
->         writel(0, host->regs + SD_EMMC_START);
->
->         meson_mmc_start_cmd(mmc, mrq->sbc ?: mrq->cmd);
-> -
-> -       if (needs_pre_post_req)
-> -               meson_mmc_post_req(mmc, mrq, 0);
->  }
->
->  static void meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
-> ---->8-----
->
-> No performance hit AFAICT.
-> From your description, it should address your problem too.
->
->
->
->
-> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-> index e712315..7667e8a 100644
-> --- a/drivers/mmc/host/meson-gx-mmc.c
-> +++ b/drivers/mmc/host/meson-gx-mmc.c
-> @@ -173,6 +173,7 @@ struct meson_host {
->         int irq;
->
->         bool vqmmc_enabled;
-> +       bool needs_pre_post_req;
->  };
->
->  #define CMD_CFG_LENGTH_MASK GENMASK(8, 0)
-> @@ -654,6 +655,8 @@ static void meson_mmc_request_done(struct mmc_host *mmc,
->         struct meson_host *host = mmc_priv(mmc);
->
->         host->cmd = NULL;
-> +       if (host->needs_pre_post_req)
-> +               meson_mmc_post_req(mmc, mrq, 0);
->         mmc_request_done(host->mmc, mrq);
->  }
->
-> @@ -803,25 +806,23 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
->  static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
->  {
->         struct meson_host *host = mmc_priv(mmc);
-> -       bool needs_pre_post_req = mrq->data &&
-> +
-> +       host->needs_pre_post_req = mrq->data &&
->                         !(mrq->data->host_cookie & SD_EMMC_PRE_REQ_DONE);
->
-> -       if (needs_pre_post_req) {
-> +       if (host->needs_pre_post_req) {
->                 meson_mmc_get_transfer_mode(mmc, mrq);
->                 if (!meson_mmc_desc_chain_mode(mrq->data))
-> -                       needs_pre_post_req = false;
-> +                       host->needs_pre_post_req = false;
->         }
->
-> -       if (needs_pre_post_req)
-> +       if (host->needs_pre_post_req)
->                 meson_mmc_pre_req(mmc, mrq);
->
->         /* Stop execution */
->         writel(0, host->regs + SD_EMMC_START);
->
->         meson_mmc_start_cmd(mmc, mrq->sbc ?: mrq->cmd);
-> -
-> -       if (needs_pre_post_req)
-> -               meson_mmc_post_req(mmc, mrq, 0);
->  }
->
->  static void meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Ck9uIFR1ZSAwNSBOb3YgMjAxOSBhdCAxMDowNSwgTmFuIExpIDxOYW4uTGlAYW1sb2dpYy5jb20+
+IHdyb3RlOgoKTmFuIExpLCBwbGVhc2UgZml4IHlvdXIgbWFpbGVyIHRvIHVzZSBwbGFpbiB0ZXh0
+IHByb3Blcmx5LCB5b3VyIHJlcGx5CmFyZSBuZWFyIGltcG9zc2libGUgdG8gcmVhZAoKPiDlnKgg
+MjAxOS8xMS81IDE2OjU0LCBKZXJvbWUgQnJ1bmV0IOWGmemBkzoKPgo+Cj4gT24gVHVlIDA1IE5v
+diAyMDE5IGF0IDA5OjMwLCBOYW4gTGkgPE5hbi5MaUBhbWxvZ2ljLmNvbT48bWFpbHRvOk5hbi5M
+aUBhbWxvZ2ljLmNvbT4gd3JvdGU6Cj4KPgo+Cj4KPgo+IEJhc2VkIG9uIFVmZmUgY29tbWVudCBJ
+IHRyaWVkIHNvbWV0aGluZyBlbHNlLgo+Cj4gQmFzaWNhbGx5LCBpdCBlbmFibGVzIGNoYWluZWQg
+bW9kZSBpbiB0aGUgZHJpdmVyIG9ubHkgd2hlbiB0aGUgZnJhbWV3b3JrCj4gY2FsbHMgcHJlL3Bv
+c3RfcmVxIGNhbGxiYWNrLiBBcyBmYXIgYXMgdW5kZXJzdG9vZCwgdGhlIGZyYW1ld29yayBjYWxs
+cwo+IHRoaXMgd2hlbiB0aGVyZSBpcyBtb3JlIHRoYW4gb25lIHJlcXVlc3QgcGVuZGluZyAuLi4g
+d2hpY2ggc2VlbXMgdG8gYmUKPiB3aGVuIGNoYWluZWQgbW9kZSBhY3R1YWxseSBtYWtlIHNlbnNl
+Cj4KPiBKZXJvbWUsIHdoYXQgeW91IGFyZSB0YWxraW5nIGFib3V0IGlzIHRoZSBzeXN0ZW0gZnJh
+bWV3b3JrIHByb2JsZW0gd2hlbiB5b3UgY2FsbCBwcmUvcG9zdF9yZXEsCj4KPiB3aGljaCBpcyBu
+b3QgcmVsYXRlZCB0byB0aGUgcGF0Y2ggSSBzdWJtaXR0ZWQuCj4KPgo+Cj4gSSBzdHJvbmdseSBk
+aXNhZ3JlZS4KPiBBcyBmYXIgYXMgSSB1bmRlcnN0YW5kIGZyb20geW91ciBkZXNjcmlwdGlvbiwg
+dGhlIHByb2JsZW0gd2FzIHdpdGggdGhlCj4gbGlmZSBjeWNsZSBvZiB0aGUgZG1hIG1hcHBpbmcu
+IFRoaXMgaXMgdGlnaGx5IHJlbGF0ZWQgd2l0aCBwcmUvcG9zdCByZXEuCj4gSnVzdCB0aGUgdmFy
+aWFibGUgbmFtZXMgeW91IGhhdmUgcGlja2VkIGNsZWFybHkgc2hvdyB0aGF0Lgo+Cj4KPgo+IEFz
+IHlvdSBzYWlkLCBwcmUvcG9zdF9yZXEgaXMgY2FsbGVkIG9ubHkgd2hlbiB0aGVyZSBpcyBkYXRh
+IHRvIGltcGxlbWVudCB0aGUgY2hhaW5lZCBtb2RlLAo+Cj4gYnV0IGl0IGlzIGFsc28gcG9zc2li
+bGUgdG8gY2F1c2UgbWVtb3J5IGNvbnNpc3RlbmN5IHByb2JsZW1zLAo+IHJlc3VsdGluZyBpbiBp
+bmNvcnJlY3QgZGF0YS4KPgo+Cj4KPiBUaGUgbGlmZSBjeWNsZSBvZiB0aGUgbWFwcGluZyBpcyBh
+bHNvIHRha2VuIGNhcmUgb2Ygd2l0aCBwYXRjaCwKPiBzaW5jZSBkbWEgbWFwcGluZyBpcyBubyBs
+b25nZXIgaGFuZGxlZCBpbiAucmVxdWVzdCgpLiBJT1cgdGhlIG1hcHBpbmcsCj4gaWYgYW55LCB3
+aWxsIGJlIHJlbGVhc2VkIGFmdGVyIHRoZSByZXF1ZXN0IGlzIGRvbmUgdXNpbmcgLnBvc3RfcmVx
+KCkKPgo+IElmIHlvdSB0aGluayBvdGhlcndpc2UsIHBsZWFzZSBlbGFib3JhdGUuCj4KPgo+IEkg
+c2VlIHdoYXQgeW91IG1lYW4uIFlvdSB3YW50IHRvIHB1bGwgdGhlIHByZS9wb3N0X3JlcSBvcGVy
+YXRpb24gb3V0IG9mIHRoZSByZXF1ZXN0IGludGVyZmFjZSBhbmQgaW52b2tlIGl0IGF0IHRoZSB0
+b3AuCj4KPiBJIGRpZG4ndCBub3RpY2UgdGhlIGZvbGxvd2luZyBtb2RpZmljYXRpb24gb2YgcGF0
+Y2ggaW4geW91ciBsYXN0IGVtYWlsIGFuZCByZXBseSBpbiB0aW1lLiBJJ20gcmVhbGx5IHNvcnJ5
+Lgo+Cj4gVGhlIGZvbGxvd2luZyBwYXRjaCByZW1vdmVzIGFsbCBwcmUvcG9zdF9yZXEgb3BlcmF0
+aW9ucywKPgo+Cj4KPiBObyBpdCBkb2VzIG5vdC4gQ2FsbGJhY2tzIGFyZSBzdGlsbCBwcm92aWRl
+ZCB0byB0aGUgTU1DIGZyYW1ld29yay4KPgo+Cj4KPiBidXQgeW91IGRvIG5vdCBzZW5kIG91dCB0
+aGUgb3BlcmF0aW9uIHBhdGNoIGFkZGVkIHRvIHRoZSB1cHBlciBsYXllcgo+IHRvZ2V0aGVyLgo+
+Cj4KPgo+IFRoZXJlIGlzIG5vIG1vZGlmaWNhdGlvbiBuZWVkZWQgaW4gdGhlIHVwcGVyIGxheWVy
+Cj4KPgo+Cj4KPiBUaGVuIHRoZSBwYXRjaCBpcyBpbmNvbXBsZXRlLCB3aGljaCB3aWxsIGFmZmVj
+dCB0aGUgZG1hIGRhdGEgdHJhbnNmZXIgZnVuY3Rpb24gaW4gc3RhcnRfY21kIGZ1bmN0aW9uIGFu
+ZCBhZmZlY3QgdGhlIG11bHRpLWJsb2NrIHdyaXRlIG9wZXJhdGlvbi4KPgo+Cj4KPgo+IE5vIGl0
+IGlzIG5vdCBpbmNvbXBsZXRlLiBwcmUgYW5kIHBvc3QgcmVxdWVzdCBhcmUgY29ycmVjdGx5IGNh
+bGxlZC4gWW91Cj4gY2FuIGNoZWNrIHRoYXQgd2l0aCBmdHJhY2UgaWYgeW91IHdhbnQuCj4KPiBN
+YXliZSB5b3UgY291bGQgdHJ5IGl0ID8KPgo+Cj4gSSdtIHNvcnJ5LCBJIGRpZG4ndCBjYXRjaCB5
+b3VyIG1lYW5pbmcuSG93IGRvIEkgdXNlIHByZS9wb3N0X3JlcQo+IHByb3Blcmx5PwoKVGhvc2Ug
+Y2FsbGJhY2tzIGFyZSBwcm92aWRlZCB0byB0aGUgZnJhbWV3b3JrIGFzIHdlbGwuIElmIHlvdSBo
+YXZlCnRyb3VibGUgZm9sbG93aW5nLCBwbGVhc2UgYXBwbHkgdGhlIHBhdGNoIGFuZCBsb29rIGF0
+IHRoZSBkcml2ZXIKCkhhdmUgYSBsb29rIGF0ICJtZXNvbl9tbWNfb3BzIgoKPgo+IERvIHlvdSBt
+ZWFuIEkgbmVlZCB0byBhZGQgYSBjYWxsIHRvIHByZS9wb3N0X3JlcSBvbiB0b3Agb2YgdGhlIGNo
+YW5nZXMKPiB5b3UgcHJvdmlkZWQgYmVsb3c/CgpObywgeW91IHNob3VsZCBub3QKCj4KPiBJZiBu
+b3QsIHlvdXIgY2hhbmdlcyBoYXZlIGRlbGV0ZWQgYWxsIHByZS9wb3N0X3JlcSBjYWxscy4KCk5v
+LCBpdCBkb2VzIG5vdC4gSXQgcmVsaWVzIG9uIHRoZSBmcmFtZXdvcmsgdG8gYWN0aXZhdGUgdGhl
+IGNoYWluZWQgbW9kZQpvciBub3QuIEFnYWluLCBpZiB5b3UgaGF2ZSB0cm91YmxlIGZvbGxvd2lu
+ZyB5b3UgY2FuIHRyeSB0byBlbmFibGUKZnRyYWNlIGFuZCB0cmFjZSB0aGUgbW1jIGZ1bmN0aW9u
+cy4KCj4KPgo+Cj4KPiBQbGVhc2Ugc2VuZCB5b3VyIGNvbXBsZXRlIHBhdGNoLCBpbmNsdWRpbmcg
+Y29yZSBsYXllciBtb2RpZmljYXRpb24sCj4gdGhhbmsgeW91Lgo+Cj4KPgo+Cj4KPiBUaGVyZWZv
+cmUsIHRoaXMgcGF0Y2ggaXMgYWRkZWQgdG8gbWFrZSBtZW1vcnkgY29uc2lzdGVudCBhbmQgb2J0
+YWluIHJlYWwgZWZmZWN0aXZlIGluZm9ybWF0aW9uLgo+Cj4KPgo+IC0tLS04PC0tLS0tCj4gZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvbW1jL2hvc3QvbWVzb24tZ3gtbW1jLmMgYi9kcml2ZXJzL21tYy9o
+b3N0L21lc29uLWd4LW1tYy5jCj4gaW5kZXggZTcxMjMxNWM3ZThkLi4zOTk2MDRiNDEyNGQgMTAw
+NjQ0Cj4gLS0tIGEvZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1neC1tbWMuYwo+ICsrKyBiL2RyaXZl
+cnMvbW1jL2hvc3QvbWVzb24tZ3gtbW1jLmMKPiBAQCAtMTI2LDggKzEyNiw3IEBACj4gICNkZWZp
+bmUgU0RfRU1NQ19DRkdfQ01EX0dBUCAxNiAvKiBpbiBjbG9jayBjeWNsZXMgKi8KPiAgI2RlZmlu
+ZSBTRF9FTU1DX0RFU0NfQlVGX0xFTiBQQUdFX1NJWkUKPgo+IC0jZGVmaW5lIFNEX0VNTUNfUFJF
+X1JFUV9ET05FIEJJVCgwKQo+IC0jZGVmaW5lIFNEX0VNTUNfREVTQ19DSEFJTl9NT0RFIEJJVCgx
+KQo+ICsjZGVmaW5lIFNEX0VNTUNfREVTQ19DSEFJTl9NT0RFIEJJVCgwKQo+Cj4gICNkZWZpbmUg
+TVVYX0NMS19OVU1fUEFSRU5UUyAyCj4KPiBAQCAtMjI4LDcgKzIyNyw2IEBAIHN0YXRpYyB2b2lk
+IG1lc29uX21tY19nZXRfdHJhbnNmZXJfbW9kZShzdHJ1Y3QgbW1jX2hvc3QgKm1tYywKPiAgICAg
+ICAgIHN0cnVjdCBtbWNfZGF0YSAqZGF0YSA9IG1ycS0+ZGF0YTsKPiAgICAgICAgIHN0cnVjdCBz
+Y2F0dGVybGlzdCAqc2c7Cj4gICAgICAgICBpbnQgaTsKPiAtICAgICAgIGJvb2wgdXNlX2Rlc2Nf
+Y2hhaW5fbW9kZSA9IHRydWU7Cj4KPiAgICAgICAgIC8qCj4gICAgICAgICAgKiBXaGVuIENvbnRy
+b2xsZXIgRE1BIGNhbm5vdCBkaXJlY3RseSBhY2Nlc3MgRERSIG1lbW9yeSwgZGlzYWJsZQo+IEBA
+IC0yNTEsMTIgKzI0OSwxMSBAQCBzdGF0aWMgdm9pZCBtZXNvbl9tbWNfZ2V0X3RyYW5zZmVyX21v
+ZGUoc3RydWN0IG1tY19ob3N0ICptbWMsCj4gICAgICAgICAgICAgICAgIC8qIGNoZWNrIGZvciA4
+IGJ5dGUgYWxpZ25tZW50ICovCj4gICAgICAgICAgICAgICAgIGlmIChzZy0+b2Zmc2V0ICYgNykg
+ewo+ICAgICAgICAgICAgICAgICAgICAgICAgIFdBUk5fT05DRSgxLCAidW5hbGlnbmVkIHNjYXR0
+ZXJsaXN0IGJ1ZmZlclxuIik7Cj4gLSAgICAgICAgICAgICAgICAgICAgICAgdXNlX2Rlc2NfY2hh
+aW5fbW9kZSA9IGZhbHNlOwo+IC0gICAgICAgICAgICAgICAgICAgICAgIGJyZWFrOwo+ICsgICAg
+ICAgICAgICAgICAgICAgICAgIHJldHVybjsKPiAgICAgICAgICAgICAgICAgfQo+Cj4gLSAgICAg
+ICBpZiAodXNlX2Rlc2NfY2hhaW5fbW9kZSkKPiAtICAgICAgICAgICAgICAgZGF0YS0+aG9zdF9j
+b29raWUgfD0gU0RfRU1NQ19ERVNDX0NIQUlOX01PREU7Cj4gKyAgICAgICAvKiBUaGUgcGxhbmV0
+cyBhcmUgYWxpZ25lZCwgbGV0J3MgY2hhaW4gdGhlbSB1cCAqLwo+ICsgICAgICAgZGF0YS0+aG9z
+dF9jb29raWUgfD0gU0RfRU1NQ19ERVNDX0NIQUlOX01PREU7Cj4gIH0KPgo+ICBzdGF0aWMgaW5s
+aW5lIGJvb2wgbWVzb25fbW1jX2Rlc2NfY2hhaW5fbW9kZShjb25zdCBzdHJ1Y3QgbW1jX2RhdGEg
+KmRhdGEpCj4gQEAgLTI3OCw3ICsyNzUsNiBAQCBzdGF0aWMgdm9pZCBtZXNvbl9tbWNfcHJlX3Jl
+cShzdHJ1Y3QgbW1jX2hvc3QgKm1tYywgc3RydWN0IG1tY19yZXF1ZXN0ICptcnEpCj4gICAgICAg
+ICAgICAgICAgIHJldHVybjsKPgo+ICAgICAgICAgbWVzb25fbW1jX2dldF90cmFuc2Zlcl9tb2Rl
+KG1tYywgbXJxKTsKPiAtICAgICAgIGRhdGEtPmhvc3RfY29va2llIHw9IFNEX0VNTUNfUFJFX1JF
+UV9ET05FOwo+Cj4gICAgICAgICBpZiAoIW1lc29uX21tY19kZXNjX2NoYWluX21vZGUoZGF0YSkp
+Cj4gICAgICAgICAgICAgICAgIHJldHVybjsKPiBAQCAtODAzLDI1ICs3OTksMTEgQEAgc3RhdGlj
+IHZvaWQgbWVzb25fbW1jX3N0YXJ0X2NtZChzdHJ1Y3QgbW1jX2hvc3QgKm1tYywgc3RydWN0IG1t
+Y19jb21tYW5kICpjbWQpCj4gIHN0YXRpYyB2b2lkIG1lc29uX21tY19yZXF1ZXN0KHN0cnVjdCBt
+bWNfaG9zdCAqbW1jLCBzdHJ1Y3QgbW1jX3JlcXVlc3QgKm1ycSkKPiAgewo+ICAgICAgICAgc3Ry
+dWN0IG1lc29uX2hvc3QgKmhvc3QgPSBtbWNfcHJpdihtbWMpOwo+IC0gICAgICAgYm9vbCBuZWVk
+c19wcmVfcG9zdF9yZXEgPSBtcnEtPmRhdGEgJiYKPiAtICAgICAgICAgICAgICAgICAgICAgICAh
+KG1ycS0+ZGF0YS0+aG9zdF9jb29raWUgJiBTRF9FTU1DX1BSRV9SRVFfRE9ORSk7Cj4gLQo+IC0g
+ICAgICAgaWYgKG5lZWRzX3ByZV9wb3N0X3JlcSkgewo+IC0gICAgICAgICAgICAgICBtZXNvbl9t
+bWNfZ2V0X3RyYW5zZmVyX21vZGUobW1jLCBtcnEpOwo+IC0gICAgICAgICAgICAgICBpZiAoIW1l
+c29uX21tY19kZXNjX2NoYWluX21vZGUobXJxLT5kYXRhKSkKPiAtICAgICAgICAgICAgICAgICAg
+ICAgICBuZWVkc19wcmVfcG9zdF9yZXEgPSBmYWxzZTsKPiAtICAgICAgIH0KPiAtCj4gLSAgICAg
+ICBpZiAobmVlZHNfcHJlX3Bvc3RfcmVxKQo+IC0gICAgICAgICAgICAgICBtZXNvbl9tbWNfcHJl
+X3JlcShtbWMsIG1ycSk7Cj4KPiAgICAgICAgIC8qIFN0b3AgZXhlY3V0aW9uICovCj4gICAgICAg
+ICB3cml0ZWwoMCwgaG9zdC0+cmVncyArIFNEX0VNTUNfU1RBUlQpOwo+Cj4gICAgICAgICBtZXNv
+bl9tbWNfc3RhcnRfY21kKG1tYywgbXJxLT5zYmMgPzogbXJxLT5jbWQpOwo+IC0KPiAtICAgICAg
+IGlmIChuZWVkc19wcmVfcG9zdF9yZXEpCj4gLSAgICAgICAgICAgICAgIG1lc29uX21tY19wb3N0
+X3JlcShtbWMsIG1ycSwgMCk7Cj4gIH0KPgo+ICBzdGF0aWMgdm9pZCBtZXNvbl9tbWNfcmVhZF9y
+ZXNwKHN0cnVjdCBtbWNfaG9zdCAqbW1jLCBzdHJ1Y3QgbW1jX2NvbW1hbmQgKmNtZCkKPiAtLS0t
+PjgtLS0tLQo+Cj4gTm8gcGVyZm9ybWFuY2UgaGl0IEFGQUlDVC4KPiBGcm9tIHlvdXIgZGVzY3Jp
+cHRpb24sIGl0IHNob3VsZCBhZGRyZXNzIHlvdXIgcHJvYmxlbSB0b28uCj4KPgo+Cj4KPiBkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1neC1tbWMuYyBiL2RyaXZlcnMvbW1jL2hv
+c3QvbWVzb24tZ3gtbW1jLmMKPiBpbmRleCBlNzEyMzE1Li43NjY3ZThhIDEwMDY0NAo+IC0tLSBh
+L2RyaXZlcnMvbW1jL2hvc3QvbWVzb24tZ3gtbW1jLmMKPiArKysgYi9kcml2ZXJzL21tYy9ob3N0
+L21lc29uLWd4LW1tYy5jCj4gQEAgLTE3Myw2ICsxNzMsNyBAQCBzdHJ1Y3QgbWVzb25faG9zdCB7
+Cj4gICAgICAgICBpbnQgaXJxOwo+Cj4gICAgICAgICBib29sIHZxbW1jX2VuYWJsZWQ7Cj4gKyAg
+ICAgICBib29sIG5lZWRzX3ByZV9wb3N0X3JlcTsKPiAgfTsKPgo+ICAjZGVmaW5lIENNRF9DRkdf
+TEVOR1RIX01BU0sgR0VOTUFTSyg4LCAwKQo+IEBAIC02NTQsNiArNjU1LDggQEAgc3RhdGljIHZv
+aWQgbWVzb25fbW1jX3JlcXVlc3RfZG9uZShzdHJ1Y3QgbW1jX2hvc3QgKm1tYywKPiAgICAgICAg
+IHN0cnVjdCBtZXNvbl9ob3N0ICpob3N0ID0gbW1jX3ByaXYobW1jKTsKPgo+ICAgICAgICAgaG9z
+dC0+Y21kID0gTlVMTDsKPiArICAgICAgIGlmIChob3N0LT5uZWVkc19wcmVfcG9zdF9yZXEpCj4g
+KyAgICAgICAgICAgICAgIG1lc29uX21tY19wb3N0X3JlcShtbWMsIG1ycSwgMCk7Cj4gICAgICAg
+ICBtbWNfcmVxdWVzdF9kb25lKGhvc3QtPm1tYywgbXJxKTsKPiAgfQo+Cj4gQEAgLTgwMywyNSAr
+ODA2LDIzIEBAIHN0YXRpYyB2b2lkIG1lc29uX21tY19zdGFydF9jbWQoc3RydWN0IG1tY19ob3N0
+ICptbWMsIHN0cnVjdCBtbWNfY29tbWFuZCAqY21kKQo+ICBzdGF0aWMgdm9pZCBtZXNvbl9tbWNf
+cmVxdWVzdChzdHJ1Y3QgbW1jX2hvc3QgKm1tYywgc3RydWN0IG1tY19yZXF1ZXN0ICptcnEpCj4g
+IHsKPiAgICAgICAgIHN0cnVjdCBtZXNvbl9ob3N0ICpob3N0ID0gbW1jX3ByaXYobW1jKTsKPiAt
+ICAgICAgIGJvb2wgbmVlZHNfcHJlX3Bvc3RfcmVxID0gbXJxLT5kYXRhICYmCj4gKwo+ICsgICAg
+ICAgaG9zdC0+bmVlZHNfcHJlX3Bvc3RfcmVxID0gbXJxLT5kYXRhICYmCj4gICAgICAgICAgICAg
+ICAgICAgICAgICAgIShtcnEtPmRhdGEtPmhvc3RfY29va2llICYgU0RfRU1NQ19QUkVfUkVRX0RP
+TkUpOwo+Cj4gLSAgICAgICBpZiAobmVlZHNfcHJlX3Bvc3RfcmVxKSB7Cj4gKyAgICAgICBpZiAo
+aG9zdC0+bmVlZHNfcHJlX3Bvc3RfcmVxKSB7Cj4gICAgICAgICAgICAgICAgIG1lc29uX21tY19n
+ZXRfdHJhbnNmZXJfbW9kZShtbWMsIG1ycSk7Cj4gICAgICAgICAgICAgICAgIGlmICghbWVzb25f
+bW1jX2Rlc2NfY2hhaW5fbW9kZShtcnEtPmRhdGEpKQo+IC0gICAgICAgICAgICAgICAgICAgICAg
+IG5lZWRzX3ByZV9wb3N0X3JlcSA9IGZhbHNlOwo+ICsgICAgICAgICAgICAgICAgICAgICAgIGhv
+c3QtPm5lZWRzX3ByZV9wb3N0X3JlcSA9IGZhbHNlOwo+ICAgICAgICAgfQo+Cj4gLSAgICAgICBp
+ZiAobmVlZHNfcHJlX3Bvc3RfcmVxKQo+ICsgICAgICAgaWYgKGhvc3QtPm5lZWRzX3ByZV9wb3N0
+X3JlcSkKPiAgICAgICAgICAgICAgICAgbWVzb25fbW1jX3ByZV9yZXEobW1jLCBtcnEpOwo+Cj4g
+ICAgICAgICAvKiBTdG9wIGV4ZWN1dGlvbiAqLwo+ICAgICAgICAgd3JpdGVsKDAsIGhvc3QtPnJl
+Z3MgKyBTRF9FTU1DX1NUQVJUKTsKPgo+ICAgICAgICAgbWVzb25fbW1jX3N0YXJ0X2NtZChtbWMs
+IG1ycS0+c2JjID86IG1ycS0+Y21kKTsKPiAtCj4gLSAgICAgICBpZiAobmVlZHNfcHJlX3Bvc3Rf
+cmVxKQo+IC0gICAgICAgICAgICAgICBtZXNvbl9tbWNfcG9zdF9yZXEobW1jLCBtcnEsIDApOwo+
+ICB9Cj4KPiAgc3RhdGljIHZvaWQgbWVzb25fbW1jX3JlYWRfcmVzcChzdHJ1Y3QgbW1jX2hvc3Qg
+Km1tYywgc3RydWN0IG1tY19jb21tYW5kICpjbWQpCgoKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgt
+YW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21h
+aWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
