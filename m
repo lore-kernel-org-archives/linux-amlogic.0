@@ -2,22 +2,22 @@ Return-Path: <SRS0=swgy=Y5=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A30A7CA9ED6
-	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Nov 2019 08:17:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 537DDC47E49
+	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Nov 2019 08:54:56 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7438920818
-	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Nov 2019 08:17:06 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 29D062084D
+	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Nov 2019 08:54:56 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="R/Fat3l0";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="1o+Vki9b"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7438920818
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="aNdBMr+S";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="BsQ63bXJ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 29D062084D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -27,68 +27,70 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=nI6K2Jwog3d67Xyg/pfYt6cYSkEyL5uR128/5lnWt4I=; b=R/Fat3l0CgTLXJfe/eYxL2nNE3
-	o58weuaMHvaQIScPZedjovb5F1jv/lNpmRl37D9h76pVKfiTZhSmGeUt+hfMpTqQQRjUgV4cG8kNj
-	yXY5/7DgNXbsRw7ULE8EcDkpwCigWt1tdf0m+4aECoAEAemgy/ak1xJT9OmgwFlkdaKsm4Pao6aCa
-	Q+L1FF7PmDkTLdCa1/LIrqzBOWLuT5iZM6i8CIspY+DsSe7yYg+Iv6ldHnnuYLnmoKEZSMehcJlHb
-	yAV501wMpApUoRaJvPn0o5uZ4oxRnATKBNhwH0yKwYeyNH4MojArBuUYvYHD+1ff/8F8R+qrJZ2MM
-	TAlog8KQ==;
+	bh=/vDBsVBkuso4I71a8S6DfQKdq3Vnnxplh13FjYumdXg=; b=aNdBMr+SfwUkTE6m5qFUL56z9e
+	Y5bwUwLUZf+Du2TWGRyHSl14gSzj5PGkXmHc/N7wIAM1aL+Z1Rr6921hkCWRLJtUYyNOh0mJEwa11
+	/zcXX6JV8IGDyI+BGhNOa56swm40XCi7c8qVrGodDHq1go/k2GdlzK8wE/fxoj/l3qg62psD88epe
+	w4eaqwZpSRFmcW1kACp4JtxKCInBan8h+FdWbW0DtkmBHPBUOIzSANLtkGOwlLQhy9mOZcdY2xX0v
+	MQVOhacbsh7hyj9BxO0E3I28Kdo3bAujWE/cJaJyxB1zat5a5XiBP9jjBBGwXwOZ3ghdd5a2vRflD
+	78S35x+A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iRu1C-0002JB-FL; Tue, 05 Nov 2019 08:16:50 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1iRubs-0000JF-7Z; Tue, 05 Nov 2019 08:54:44 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iRu19-0002If-5K
- for linux-amlogic@lists.infradead.org; Tue, 05 Nov 2019 08:16:49 +0000
-Received: by mail-wm1-x341.google.com with SMTP id f3so7891983wmc.5
- for <linux-amlogic@lists.infradead.org>; Tue, 05 Nov 2019 00:16:46 -0800 (PST)
+ id 1iRubo-0000IM-AI
+ for linux-amlogic@lists.infradead.org; Tue, 05 Nov 2019 08:54:42 +0000
+Received: by mail-wm1-x342.google.com with SMTP id z26so6691988wmi.4
+ for <linux-amlogic@lists.infradead.org>; Tue, 05 Nov 2019 00:54:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version:content-transfer-encoding;
- bh=yLYbU+ioLdHpduS2+SV48BMIdueyibxBfUOqQksqAmQ=;
- b=1o+Vki9bQnfd1f2oHu34q5CzWHjkTRQAFccbqny8oIrpTelg9WWnZFudkTt/tnvgPq
- 9sZ5VZe/7UE2WjnchHGVzGOFtZ72BCfb70+i+b1g6naOxrWh8Jat8QrVaca0X5dDaKiI
- p8HERYToE5Jd6dgFUGdeQKIjHq296Pwco/HTpD3L7s6RT01PqN2NnFFkkEkz3PYsyV92
- ZgVayzSqYJFeWqfBStTf0XmosBpfwQyTtblXwExV8/O+SdgSVFyVqp+5uNPy230Fovmw
- CEIr9njwjcxp2aOTXx48/FyKZlyz18Y2gxNz2KgMMkCZaetUqJuNIV86erbdp4wpbiNl
- Vppw==
+ :message-id:mime-version;
+ bh=bceDJHtyc/Gkpk2vkbmTb36e6CcHkOGhOjOBn4t9oXE=;
+ b=BsQ63bXJSBOvzsjA7Jg0wTxrVHCNvgB2K/zGBlEUeHdSaIjrGH2fSQ/stDcujWWpvN
+ NjVnwf4Io22VUXNP5xyNo96XQEeuh/cpSE5ZpoHbHzUwE+kLb5vdeDX2Dd0anIucf+Cw
+ kLX7nqsnA5L4SZrI3Ow1zQmQclrRIsnJG0RiZDpgsKv8mO2cUqncFscJIXR3Zrld8Mw5
+ bNKfi5hrQ0dQ3D9TmzYvDTwOF+UMOowZPoYZPZ/sSUwgP4k082zs1ofz4Y8SfPvmikib
+ gPs8WC/qQO3Wtv64xHUTluH2ODQP7J7YgxVitXgd0KFaeoOS/ie/KMSuH5A+5cGpxpmU
+ xnKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version:content-transfer-encoding;
- bh=yLYbU+ioLdHpduS2+SV48BMIdueyibxBfUOqQksqAmQ=;
- b=X+bUwxU9XhUcilb1fk3Co5poHpDwuMVfGSJBnVNKWcn78kIwfTDgWOOeQq+YTOsgwZ
- MhXrIaYM+qWF1k2vtxQd94gk1PQfUsYftAqgd0hHV2bh0t4jSHAo1S5lZ7wbIM2gV9z2
- H0IHkGjHeyGqlvgTIymbQbdgiz/c9+4ylaJI/B+6TKJwHehkIL9+ZCNXLOlsA1xAH/0u
- nzpmkB27BK3x37PTDveINd4wq1LJcYok+kTbReXSFLMXz3iOCMnZkkPyzlMxLpeR36dL
- z0WjuTOx6p3kSolwIBcm3tn+XgpWyfwi9Ivlj6tCEF7+fTtqf9kKftmw+8l2YtpatkGG
- Y0gg==
-X-Gm-Message-State: APjAAAWeK6yb/PKU4NzZBwe9xkNyFNWv76MoCfJb+atJlt4mGFdMdU1w
- GjNrJJd8cXowH8LBME1Wn49VOXfPRDo=
-X-Google-Smtp-Source: APXvYqwBAJS3V1xnunLNc/diPAwAY4KZsGHDXElZbjOwCou2gipAdGTliK+daK8J64br4gsiAh5PFQ==
-X-Received: by 2002:a1c:3c43:: with SMTP id j64mr2938924wma.13.1572941804913; 
- Tue, 05 Nov 2019 00:16:44 -0800 (PST)
+ :in-reply-to:date:message-id:mime-version;
+ bh=bceDJHtyc/Gkpk2vkbmTb36e6CcHkOGhOjOBn4t9oXE=;
+ b=Xi5lakXhV3ICosS9Z51NtqxfSK173qooINTVI0WQplXDQdOhbIde/huI4SgzKAkBXJ
+ 1tqx8vYb//EafLJBItUrgXyjjSNPbmocRxtLu2YthDBz2uCvu6G6+SzNisBbqkQO5aeM
+ 8kYQIyOKrWnXzgzXSuzXhergL7OnNWaq4uD7iZ1Xhld7QXohzwe/y3nAGmgOCPv9rGNf
+ eh73YNwZAdz86IYnF+KPEX/WwVHFFftS+Y93Lm8R6A7llay9KcqmOC9lzLdAPA4pSDbZ
+ Bkd+CNdqzQe4Cebed1qTa23kWrzSbPlvMB8G5/tFNgisHpDSq6sR3DZqTbfnDmSS/pvv
+ 4BIg==
+X-Gm-Message-State: APjAAAXG7RyuwugcUOiNOfzToCqlffTAGL1ZkAoYBIT02ZbDLegt1OrT
+ SQaRUG7T6le/tNkuAUXh0DOXqg==
+X-Google-Smtp-Source: APXvYqxlZQTgjwBbU5U3hS0UOPR3njYlFwK9eM9pu7ZTObIRHu2SYqJhwmdcdBzMvNbhjUgkajEH8w==
+X-Received: by 2002:a1c:e91a:: with SMTP id q26mr2934616wmc.32.1572944078270; 
+ Tue, 05 Nov 2019 00:54:38 -0800 (PST)
 Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id g5sm11278267wmf.37.2019.11.05.00.16.43
+ by smtp.gmail.com with ESMTPSA id b66sm22614377wmh.39.2019.11.05.00.54.37
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 05 Nov 2019 00:16:44 -0800 (PST)
+ Tue, 05 Nov 2019 00:54:37 -0800 (PST)
 References: <1572868495-84816-1-git-send-email-jianxin.pan@amlogic.com>
  <1ja79b4mje.fsf@starbuckisacylon.baylibre.com>
  <e80cb817-e58a-68ce-a3c6-d82636aaf7d3@amlogic.com>
+ <1j8sou4u1g.fsf@starbuckisacylon.baylibre.com>
+ <7ec2e682-cfec-395e-cf38-58f050440c40@amlogic.com>
 User-agent: mu4e 1.3.3; emacs 26.2
 From: Jerome Brunet <jbrunet@baylibre.com>
 To: Nan Li <Nan.Li@amlogic.com>, Jianxin Pan <Jianxin.Pan@amlogic.com>,
  Ulf Hansson <ulf.hansson@linaro.org>, Kevin Hilman <khilman@baylibre.com>
 Subject: Re: [PATCH v2] mmc: meson-gx: fix mmc dma operation
-In-reply-to: <e80cb817-e58a-68ce-a3c6-d82636aaf7d3@amlogic.com>
-Date: Tue, 05 Nov 2019 09:16:43 +0100
-Message-ID: <1j8sou4u1g.fsf@starbuckisacylon.baylibre.com>
+In-reply-to: <7ec2e682-cfec-395e-cf38-58f050440c40@amlogic.com>
+Date: Tue, 05 Nov 2019 09:54:36 +0100
+Message-ID: <1j7e4e4sab.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191105_001647_354551_C3CE3516 
-X-CRM114-Status: GOOD (  24.41  )
+X-CRM114-CacheID: sfid-20191105_005440_362119_95556128 
+X-CRM114-Status: GOOD (  25.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,134 +106,219 @@ Cc: "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
  "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
  "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
  Victor Wan <victor.wan@amlogic.com>, Neil Armstrong <narmstrong@baylibre.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Ck9uIFR1ZSAwNSBOb3YgMjAxOSBhdCAwMjo0NSwgTmFuIExpIDxOYW4uTGlAYW1sb2dpYy5jb20+
-IHdyb3RlOgoKPiDlnKggMjAxOS8xMS81IDA6NDYsIEplcm9tZSBCcnVuZXQg5YaZ6YGTOgo+Cj4K
-PiBPbiBNb24gMDQgTm92IDIwMTkgYXQgMTI6NTQsIEppYW54aW4gUGFuIDxqaWFueGluLnBhbkBh
-bWxvZ2ljLmNvbT48bWFpbHRvOmppYW54aW4ucGFuQGFtbG9naWMuY29tPiB3cm90ZToKPgo+Cj4K
-PiBGcm9tOiBOYW4gTGkgPG5hbi5saUBhbWxvZ2ljLmNvbT48bWFpbHRvOm5hbi5saUBhbWxvZ2lj
-LmNvbT4KPgo+IEluIE1NQyBkbWEgdHJhbnNmZXIsIHRoZSByZWdpb24gcmVxdWVzdGVkIGJ5IGRt
-YV9tYXBfc2coKSBtYXkgYmUgcmVsZWFzZWQKPiBieSBkbWFfdW5tYXBfc2coKSBiZWZvcmUgdGhl
-IHRyYW5zZmVyIGlzIGNvbXBsZXRlZC4KPgo+IFB1dCB0aGUgdW5tYXAgb3BlcmF0aW9uIGluIGZy
-b250IG9mIG1tY19yZXF1ZXN0X2RvbmUoKSB0byBhdm9pZCB0aGlzLgo+Cj4KPgo+IEluIHRoZSBw
-cmV2aW91cyB0aHJlYWQsIHlvdSBoYXZlIGRlc2NyaWJlZCB3aGF0IHdhcyB0aGUgaXNzdWUgeW91
-IGZvdW5kLgo+IEl0IHdvdWxkIGJlIG5pY2UgdG8gaGF2ZSB0aGlzIGluZm9ybWF0aW9uIGhlcmUK
-Pgo+Cj4KPgo+IEZpeGVzOiA3OWVkMDVlMzI5YzMgKCJtbWM6IG1lc29uLWd4OiBhZGQgc3VwcG9y
-dCBmb3IgZGVzY3JpcHRvciBjaGFpbiBtb2RlIikKPiBTaWduZWQtb2ZmLWJ5OiBOYW4gTGkgPG5h
-bi5saUBhbWxvZ2ljLmNvbT48bWFpbHRvOm5hbi5saUBhbWxvZ2ljLmNvbT4KPiBTaWduZWQtb2Zm
-LWJ5OiBKaWFueGluIFBhbiA8amlhbnhpbi5wYW5AYW1sb2dpYy5jb20+PG1haWx0bzpqaWFueGlu
-LnBhbkBhbWxvZ2ljLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1neC1tbWMu
-YyB8IDE1ICsrKysrKysrLS0tLS0tLQo+ICAxIGZpbGUgY2hhbmdlZCwgOCBpbnNlcnRpb25zKCsp
-LCA3IGRlbGV0aW9ucygtKQo+Cj4KPgo+IEJhc2VkIG9uIFVmZmUgY29tbWVudCBJIHRyaWVkIHNv
-bWV0aGluZyBlbHNlLgo+Cj4gQmFzaWNhbGx5LCBpdCBlbmFibGVzIGNoYWluZWQgbW9kZSBpbiB0
-aGUgZHJpdmVyIG9ubHkgd2hlbiB0aGUgZnJhbWV3b3JrCj4gY2FsbHMgcHJlL3Bvc3RfcmVxIGNh
-bGxiYWNrLiBBcyBmYXIgYXMgdW5kZXJzdG9vZCwgdGhlIGZyYW1ld29yayBjYWxscwo+IHRoaXMg
-d2hlbiB0aGVyZSBpcyBtb3JlIHRoYW4gb25lIHJlcXVlc3QgcGVuZGluZyAuLi4gd2hpY2ggc2Vl
-bXMgdG8gYmUKPiB3aGVuIGNoYWluZWQgbW9kZSBhY3R1YWxseSBtYWtlIHNlbnNlCj4KPiBKZXJv
-bWUsIHdoYXQgeW91IGFyZSB0YWxraW5nIGFib3V0IGlzIHRoZSBzeXN0ZW0gZnJhbWV3b3JrIHBy
-b2JsZW0gd2hlbiB5b3UgY2FsbCBwcmUvcG9zdF9yZXEsCj4KPiB3aGljaCBpcyBub3QgcmVsYXRl
-ZCB0byB0aGUgcGF0Y2ggSSBzdWJtaXR0ZWQuCgpJIHN0cm9uZ2x5IGRpc2FncmVlLgpBcyBmYXIg
-YXMgSSB1bmRlcnN0YW5kIGZyb20geW91ciBkZXNjcmlwdGlvbiwgdGhlIHByb2JsZW0gd2FzIHdp
-dGggdGhlCmxpZmUgY3ljbGUgb2YgdGhlIGRtYSBtYXBwaW5nLiBUaGlzIGlzIHRpZ2hseSByZWxh
-dGVkIHdpdGggcHJlL3Bvc3QgcmVxLgpKdXN0IHRoZSB2YXJpYWJsZSBuYW1lcyB5b3UgaGF2ZSBw
-aWNrZWQgY2xlYXJseSBzaG93IHRoYXQuCgo+IEFzIHlvdSBzYWlkLCBwcmUvcG9zdF9yZXEgaXMg
-Y2FsbGVkIG9ubHkgd2hlbiB0aGVyZSBpcyBkYXRhIHRvIGltcGxlbWVudCB0aGUgY2hhaW5lZCBt
-b2RlLAo+Cj4gYnV0IGl0IGlzIGFsc28gcG9zc2libGUgdG8gY2F1c2UgbWVtb3J5IGNvbnNpc3Rl
-bmN5IHByb2JsZW1zLAo+IHJlc3VsdGluZyBpbiBpbmNvcnJlY3QgZGF0YS4KClRoZSBsaWZlIGN5
-Y2xlIG9mIHRoZSBtYXBwaW5nIGlzIGFsc28gdGFrZW4gY2FyZSBvZiB3aXRoIHBhdGNoLApzaW5j
-ZSBkbWEgbWFwcGluZyBpcyBubyBsb25nZXIgaGFuZGxlZCBpbiAucmVxdWVzdCgpLiBJT1cgdGhl
-IG1hcHBpbmcsCmlmIGFueSwgd2lsbCBiZSByZWxlYXNlZCBhZnRlciB0aGUgcmVxdWVzdCBpcyBk
-b25lIHVzaW5nIC5wb3N0X3JlcSgpCgpJZiB5b3UgdGhpbmsgb3RoZXJ3aXNlLCBwbGVhc2UgZWxh
-Ym9yYXRlLgoKPgo+IFRoZXJlZm9yZSwgdGhpcyBwYXRjaCBpcyBhZGRlZCB0byBtYWtlIG1lbW9y
-eSBjb25zaXN0ZW50IGFuZCBvYnRhaW4gcmVhbCBlZmZlY3RpdmUgaW5mb3JtYXRpb24uCj4KPgo+
-Cj4gLS0tLTg8LS0tLS0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1neC1t
-bWMuYyBiL2RyaXZlcnMvbW1jL2hvc3QvbWVzb24tZ3gtbW1jLmMKPiBpbmRleCBlNzEyMzE1Yzdl
-OGQuLjM5OTYwNGI0MTI0ZCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL21tYy9ob3N0L21lc29uLWd4
-LW1tYy5jCj4gKysrIGIvZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1neC1tbWMuYwo+IEBAIC0xMjYs
-OCArMTI2LDcgQEAKPiAgI2RlZmluZSBTRF9FTU1DX0NGR19DTURfR0FQIDE2IC8qIGluIGNsb2Nr
-IGN5Y2xlcyAqLwo+ICAjZGVmaW5lIFNEX0VNTUNfREVTQ19CVUZfTEVOIFBBR0VfU0laRQo+Cj4g
-LSNkZWZpbmUgU0RfRU1NQ19QUkVfUkVRX0RPTkUgQklUKDApCj4gLSNkZWZpbmUgU0RfRU1NQ19E
-RVNDX0NIQUlOX01PREUgQklUKDEpCj4gKyNkZWZpbmUgU0RfRU1NQ19ERVNDX0NIQUlOX01PREUg
-QklUKDApCj4KPiAgI2RlZmluZSBNVVhfQ0xLX05VTV9QQVJFTlRTIDIKPgo+IEBAIC0yMjgsNyAr
-MjI3LDYgQEAgc3RhdGljIHZvaWQgbWVzb25fbW1jX2dldF90cmFuc2Zlcl9tb2RlKHN0cnVjdCBt
-bWNfaG9zdCAqbW1jLAo+ICAgICAgICAgc3RydWN0IG1tY19kYXRhICpkYXRhID0gbXJxLT5kYXRh
-Owo+ICAgICAgICAgc3RydWN0IHNjYXR0ZXJsaXN0ICpzZzsKPiAgICAgICAgIGludCBpOwo+IC0g
-ICAgICAgYm9vbCB1c2VfZGVzY19jaGFpbl9tb2RlID0gdHJ1ZTsKPgo+ICAgICAgICAgLyoKPiAg
-ICAgICAgICAqIFdoZW4gQ29udHJvbGxlciBETUEgY2Fubm90IGRpcmVjdGx5IGFjY2VzcyBERFIg
-bWVtb3J5LCBkaXNhYmxlCj4gQEAgLTI1MSwxMiArMjQ5LDExIEBAIHN0YXRpYyB2b2lkIG1lc29u
-X21tY19nZXRfdHJhbnNmZXJfbW9kZShzdHJ1Y3QgbW1jX2hvc3QgKm1tYywKPiAgICAgICAgICAg
-ICAgICAgLyogY2hlY2sgZm9yIDggYnl0ZSBhbGlnbm1lbnQgKi8KPiAgICAgICAgICAgICAgICAg
-aWYgKHNnLT5vZmZzZXQgJiA3KSB7Cj4gICAgICAgICAgICAgICAgICAgICAgICAgV0FSTl9PTkNF
-KDEsICJ1bmFsaWduZWQgc2NhdHRlcmxpc3QgYnVmZmVyXG4iKTsKPiAtICAgICAgICAgICAgICAg
-ICAgICAgICB1c2VfZGVzY19jaGFpbl9tb2RlID0gZmFsc2U7Cj4gLSAgICAgICAgICAgICAgICAg
-ICAgICAgYnJlYWs7Cj4gKyAgICAgICAgICAgICAgICAgICAgICAgcmV0dXJuOwo+ICAgICAgICAg
-ICAgICAgICB9Cj4KPiAtICAgICAgIGlmICh1c2VfZGVzY19jaGFpbl9tb2RlKQo+IC0gICAgICAg
-ICAgICAgICBkYXRhLT5ob3N0X2Nvb2tpZSB8PSBTRF9FTU1DX0RFU0NfQ0hBSU5fTU9ERTsKPiAr
-ICAgICAgIC8qIFRoZSBwbGFuZXRzIGFyZSBhbGlnbmVkLCBsZXQncyBjaGFpbiB0aGVtIHVwICov
-Cj4gKyAgICAgICBkYXRhLT5ob3N0X2Nvb2tpZSB8PSBTRF9FTU1DX0RFU0NfQ0hBSU5fTU9ERTsK
-PiAgfQo+Cj4gIHN0YXRpYyBpbmxpbmUgYm9vbCBtZXNvbl9tbWNfZGVzY19jaGFpbl9tb2RlKGNv
-bnN0IHN0cnVjdCBtbWNfZGF0YSAqZGF0YSkKPiBAQCAtMjc4LDcgKzI3NSw2IEBAIHN0YXRpYyB2
-b2lkIG1lc29uX21tY19wcmVfcmVxKHN0cnVjdCBtbWNfaG9zdCAqbW1jLCBzdHJ1Y3QgbW1jX3Jl
-cXVlc3QgKm1ycSkKPiAgICAgICAgICAgICAgICAgcmV0dXJuOwo+Cj4gICAgICAgICBtZXNvbl9t
-bWNfZ2V0X3RyYW5zZmVyX21vZGUobW1jLCBtcnEpOwo+IC0gICAgICAgZGF0YS0+aG9zdF9jb29r
-aWUgfD0gU0RfRU1NQ19QUkVfUkVRX0RPTkU7Cj4KPiAgICAgICAgIGlmICghbWVzb25fbW1jX2Rl
-c2NfY2hhaW5fbW9kZShkYXRhKSkKPiAgICAgICAgICAgICAgICAgcmV0dXJuOwo+IEBAIC04MDMs
-MjUgKzc5OSwxMSBAQCBzdGF0aWMgdm9pZCBtZXNvbl9tbWNfc3RhcnRfY21kKHN0cnVjdCBtbWNf
-aG9zdCAqbW1jLCBzdHJ1Y3QgbW1jX2NvbW1hbmQgKmNtZCkKPiAgc3RhdGljIHZvaWQgbWVzb25f
-bW1jX3JlcXVlc3Qoc3RydWN0IG1tY19ob3N0ICptbWMsIHN0cnVjdCBtbWNfcmVxdWVzdCAqbXJx
-KQo+ICB7Cj4gICAgICAgICBzdHJ1Y3QgbWVzb25faG9zdCAqaG9zdCA9IG1tY19wcml2KG1tYyk7
-Cj4gLSAgICAgICBib29sIG5lZWRzX3ByZV9wb3N0X3JlcSA9IG1ycS0+ZGF0YSAmJgo+IC0gICAg
-ICAgICAgICAgICAgICAgICAgICEobXJxLT5kYXRhLT5ob3N0X2Nvb2tpZSAmIFNEX0VNTUNfUFJF
-X1JFUV9ET05FKTsKPiAtCj4gLSAgICAgICBpZiAobmVlZHNfcHJlX3Bvc3RfcmVxKSB7Cj4gLSAg
-ICAgICAgICAgICAgIG1lc29uX21tY19nZXRfdHJhbnNmZXJfbW9kZShtbWMsIG1ycSk7Cj4gLSAg
-ICAgICAgICAgICAgIGlmICghbWVzb25fbW1jX2Rlc2NfY2hhaW5fbW9kZShtcnEtPmRhdGEpKQo+
-IC0gICAgICAgICAgICAgICAgICAgICAgIG5lZWRzX3ByZV9wb3N0X3JlcSA9IGZhbHNlOwo+IC0g
-ICAgICAgfQo+IC0KPiAtICAgICAgIGlmIChuZWVkc19wcmVfcG9zdF9yZXEpCj4gLSAgICAgICAg
-ICAgICAgIG1lc29uX21tY19wcmVfcmVxKG1tYywgbXJxKTsKPgo+ICAgICAgICAgLyogU3RvcCBl
-eGVjdXRpb24gKi8KPiAgICAgICAgIHdyaXRlbCgwLCBob3N0LT5yZWdzICsgU0RfRU1NQ19TVEFS
-VCk7Cj4KPiAgICAgICAgIG1lc29uX21tY19zdGFydF9jbWQobW1jLCBtcnEtPnNiYyA/OiBtcnEt
-PmNtZCk7Cj4gLQo+IC0gICAgICAgaWYgKG5lZWRzX3ByZV9wb3N0X3JlcSkKPiAtICAgICAgICAg
-ICAgICAgbWVzb25fbW1jX3Bvc3RfcmVxKG1tYywgbXJxLCAwKTsKPiAgfQo+Cj4gIHN0YXRpYyB2
-b2lkIG1lc29uX21tY19yZWFkX3Jlc3Aoc3RydWN0IG1tY19ob3N0ICptbWMsIHN0cnVjdCBtbWNf
-Y29tbWFuZCAqY21kKQo+IC0tLS0+OC0tLS0tCj4KPiBObyBwZXJmb3JtYW5jZSBoaXQgQUZBSUNU
-Lgo+IEZyb20geW91ciBkZXNjcmlwdGlvbiwgaXQgc2hvdWxkIGFkZHJlc3MgeW91ciBwcm9ibGVt
-IHRvby4KPgo+Cj4KPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL21tYy9ob3N0L21lc29uLWd4LW1t
-Yy5jIGIvZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1neC1tbWMuYwo+IGluZGV4IGU3MTIzMTUuLjc2
-NjdlOGEgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1neC1tbWMuYwo+ICsr
-KyBiL2RyaXZlcnMvbW1jL2hvc3QvbWVzb24tZ3gtbW1jLmMKPiBAQCAtMTczLDYgKzE3Myw3IEBA
-IHN0cnVjdCBtZXNvbl9ob3N0IHsKPiAgICAgICAgIGludCBpcnE7Cj4KPiAgICAgICAgIGJvb2wg
-dnFtbWNfZW5hYmxlZDsKPiArICAgICAgIGJvb2wgbmVlZHNfcHJlX3Bvc3RfcmVxOwo+ICB9Owo+
-Cj4gICNkZWZpbmUgQ01EX0NGR19MRU5HVEhfTUFTSyBHRU5NQVNLKDgsIDApCj4gQEAgLTY1NCw2
-ICs2NTUsOCBAQCBzdGF0aWMgdm9pZCBtZXNvbl9tbWNfcmVxdWVzdF9kb25lKHN0cnVjdCBtbWNf
-aG9zdCAqbW1jLAo+ICAgICAgICAgc3RydWN0IG1lc29uX2hvc3QgKmhvc3QgPSBtbWNfcHJpdiht
-bWMpOwo+Cj4gICAgICAgICBob3N0LT5jbWQgPSBOVUxMOwo+ICsgICAgICAgaWYgKGhvc3QtPm5l
-ZWRzX3ByZV9wb3N0X3JlcSkKPiArICAgICAgICAgICAgICAgbWVzb25fbW1jX3Bvc3RfcmVxKG1t
-YywgbXJxLCAwKTsKPiAgICAgICAgIG1tY19yZXF1ZXN0X2RvbmUoaG9zdC0+bW1jLCBtcnEpOwo+
-ICB9Cj4KPiBAQCAtODAzLDI1ICs4MDYsMjMgQEAgc3RhdGljIHZvaWQgbWVzb25fbW1jX3N0YXJ0
-X2NtZChzdHJ1Y3QgbW1jX2hvc3QgKm1tYywgc3RydWN0IG1tY19jb21tYW5kICpjbWQpCj4gIHN0
-YXRpYyB2b2lkIG1lc29uX21tY19yZXF1ZXN0KHN0cnVjdCBtbWNfaG9zdCAqbW1jLCBzdHJ1Y3Qg
-bW1jX3JlcXVlc3QgKm1ycSkKPiAgewo+ICAgICAgICAgc3RydWN0IG1lc29uX2hvc3QgKmhvc3Qg
-PSBtbWNfcHJpdihtbWMpOwo+IC0gICAgICAgYm9vbCBuZWVkc19wcmVfcG9zdF9yZXEgPSBtcnEt
-PmRhdGEgJiYKPiArCj4gKyAgICAgICBob3N0LT5uZWVkc19wcmVfcG9zdF9yZXEgPSBtcnEtPmRh
-dGEgJiYKPiAgICAgICAgICAgICAgICAgICAgICAgICAhKG1ycS0+ZGF0YS0+aG9zdF9jb29raWUg
-JiBTRF9FTU1DX1BSRV9SRVFfRE9ORSk7Cj4KPiAtICAgICAgIGlmIChuZWVkc19wcmVfcG9zdF9y
-ZXEpIHsKPiArICAgICAgIGlmIChob3N0LT5uZWVkc19wcmVfcG9zdF9yZXEpIHsKPiAgICAgICAg
-ICAgICAgICAgbWVzb25fbW1jX2dldF90cmFuc2Zlcl9tb2RlKG1tYywgbXJxKTsKPiAgICAgICAg
-ICAgICAgICAgaWYgKCFtZXNvbl9tbWNfZGVzY19jaGFpbl9tb2RlKG1ycS0+ZGF0YSkpCj4gLSAg
-ICAgICAgICAgICAgICAgICAgICAgbmVlZHNfcHJlX3Bvc3RfcmVxID0gZmFsc2U7Cj4gKyAgICAg
-ICAgICAgICAgICAgICAgICAgaG9zdC0+bmVlZHNfcHJlX3Bvc3RfcmVxID0gZmFsc2U7Cj4gICAg
-ICAgICB9Cj4KPiAtICAgICAgIGlmIChuZWVkc19wcmVfcG9zdF9yZXEpCj4gKyAgICAgICBpZiAo
-aG9zdC0+bmVlZHNfcHJlX3Bvc3RfcmVxKQo+ICAgICAgICAgICAgICAgICBtZXNvbl9tbWNfcHJl
-X3JlcShtbWMsIG1ycSk7Cj4KPiAgICAgICAgIC8qIFN0b3AgZXhlY3V0aW9uICovCj4gICAgICAg
-ICB3cml0ZWwoMCwgaG9zdC0+cmVncyArIFNEX0VNTUNfU1RBUlQpOwo+Cj4gICAgICAgICBtZXNv
-bl9tbWNfc3RhcnRfY21kKG1tYywgbXJxLT5zYmMgPzogbXJxLT5jbWQpOwo+IC0KPiAtICAgICAg
-IGlmIChuZWVkc19wcmVfcG9zdF9yZXEpCj4gLSAgICAgICAgICAgICAgIG1lc29uX21tY19wb3N0
-X3JlcShtbWMsIG1ycSwgMCk7Cj4gIH0KPgo+ICBzdGF0aWMgdm9pZCBtZXNvbl9tbWNfcmVhZF9y
-ZXNwKHN0cnVjdCBtbWNfaG9zdCAqbW1jLCBzdHJ1Y3QgbW1jX2NvbW1hbmQgKmNtZCkKCgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2lj
-IG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xp
-c3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
+
+On Tue 05 Nov 2019 at 09:30, Nan Li <Nan.Li@amlogic.com> wrote:
+
+
+>
+> Based on Uffe comment I tried something else.
+>
+> Basically, it enables chained mode in the driver only when the framework
+> calls pre/post_req callback. As far as understood, the framework calls
+> this when there is more than one request pending ... which seems to be
+> when chained mode actually make sense
+>
+> Jerome, what you are talking about is the system framework problem when you call pre/post_req,
+>
+> which is not related to the patch I submitted.
+>
+>
+>
+> I strongly disagree.
+> As far as I understand from your description, the problem was with the
+> life cycle of the dma mapping. This is tighly related with pre/post req.
+> Just the variable names you have picked clearly show that.
+>
+>
+>
+> As you said, pre/post_req is called only when there is data to implement the chained mode,
+>
+> but it is also possible to cause memory consistency problems,
+> resulting in incorrect data.
+>
+>
+>
+> The life cycle of the mapping is also taken care of with patch,
+> since dma mapping is no longer handled in .request(). IOW the mapping,
+> if any, will be released after the request is done using .post_req()
+>
+> If you think otherwise, please elaborate.
+>
+>
+> I see what you mean. You want to pull the pre/post_req operation out of the request interface and invoke it at the top.
+>
+> I didn't notice the following modification of patch in your last email and reply in time. I'm really sorry.
+>
+> The following patch removes all pre/post_req operations,
+
+No it does not. Callbacks are still provided to the MMC framework.
+
+> but you do not send out the operation patch added to the upper layer
+> together.
+
+There is no modification needed in the upper layer
+
+>
+> Then the patch is incomplete, which will affect the dma data transfer function in start_cmd function and affect the multi-block write operation.
+>
+
+No it is not incomplete. pre and post request are correctly called. You
+can check that with ftrace if you want.
+
+Maybe you could try it ?
+
+> Please send your complete patch, including core layer modification,
+> thank you.
+>
+>
+>
+>
+>
+> Therefore, this patch is added to make memory consistent and obtain real effective information.
+>
+>
+>
+> ----8<-----
+> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> index e712315c7e8d..399604b4124d 100644
+> --- a/drivers/mmc/host/meson-gx-mmc.c
+> +++ b/drivers/mmc/host/meson-gx-mmc.c
+> @@ -126,8 +126,7 @@
+>  #define SD_EMMC_CFG_CMD_GAP 16 /* in clock cycles */
+>  #define SD_EMMC_DESC_BUF_LEN PAGE_SIZE
+>
+> -#define SD_EMMC_PRE_REQ_DONE BIT(0)
+> -#define SD_EMMC_DESC_CHAIN_MODE BIT(1)
+> +#define SD_EMMC_DESC_CHAIN_MODE BIT(0)
+>
+>  #define MUX_CLK_NUM_PARENTS 2
+>
+> @@ -228,7 +227,6 @@ static void meson_mmc_get_transfer_mode(struct mmc_host *mmc,
+>         struct mmc_data *data = mrq->data;
+>         struct scatterlist *sg;
+>         int i;
+> -       bool use_desc_chain_mode = true;
+>
+>         /*
+>          * When Controller DMA cannot directly access DDR memory, disable
+> @@ -251,12 +249,11 @@ static void meson_mmc_get_transfer_mode(struct mmc_host *mmc,
+>                 /* check for 8 byte alignment */
+>                 if (sg->offset & 7) {
+>                         WARN_ONCE(1, "unaligned scatterlist buffer\n");
+> -                       use_desc_chain_mode = false;
+> -                       break;
+> +                       return;
+>                 }
+>
+> -       if (use_desc_chain_mode)
+> -               data->host_cookie |= SD_EMMC_DESC_CHAIN_MODE;
+> +       /* The planets are aligned, let's chain them up */
+> +       data->host_cookie |= SD_EMMC_DESC_CHAIN_MODE;
+>  }
+>
+>  static inline bool meson_mmc_desc_chain_mode(const struct mmc_data *data)
+> @@ -278,7 +275,6 @@ static void meson_mmc_pre_req(struct mmc_host *mmc, struct mmc_request *mrq)
+>                 return;
+>
+>         meson_mmc_get_transfer_mode(mmc, mrq);
+> -       data->host_cookie |= SD_EMMC_PRE_REQ_DONE;
+>
+>         if (!meson_mmc_desc_chain_mode(data))
+>                 return;
+> @@ -803,25 +799,11 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
+>  static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
+>  {
+>         struct meson_host *host = mmc_priv(mmc);
+> -       bool needs_pre_post_req = mrq->data &&
+> -                       !(mrq->data->host_cookie & SD_EMMC_PRE_REQ_DONE);
+> -
+> -       if (needs_pre_post_req) {
+> -               meson_mmc_get_transfer_mode(mmc, mrq);
+> -               if (!meson_mmc_desc_chain_mode(mrq->data))
+> -                       needs_pre_post_req = false;
+> -       }
+> -
+> -       if (needs_pre_post_req)
+> -               meson_mmc_pre_req(mmc, mrq);
+>
+>         /* Stop execution */
+>         writel(0, host->regs + SD_EMMC_START);
+>
+>         meson_mmc_start_cmd(mmc, mrq->sbc ?: mrq->cmd);
+> -
+> -       if (needs_pre_post_req)
+> -               meson_mmc_post_req(mmc, mrq, 0);
+>  }
+>
+>  static void meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
+> ---->8-----
+>
+> No performance hit AFAICT.
+> From your description, it should address your problem too.
+>
+>
+>
+>
+> diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
+> index e712315..7667e8a 100644
+> --- a/drivers/mmc/host/meson-gx-mmc.c
+> +++ b/drivers/mmc/host/meson-gx-mmc.c
+> @@ -173,6 +173,7 @@ struct meson_host {
+>         int irq;
+>
+>         bool vqmmc_enabled;
+> +       bool needs_pre_post_req;
+>  };
+>
+>  #define CMD_CFG_LENGTH_MASK GENMASK(8, 0)
+> @@ -654,6 +655,8 @@ static void meson_mmc_request_done(struct mmc_host *mmc,
+>         struct meson_host *host = mmc_priv(mmc);
+>
+>         host->cmd = NULL;
+> +       if (host->needs_pre_post_req)
+> +               meson_mmc_post_req(mmc, mrq, 0);
+>         mmc_request_done(host->mmc, mrq);
+>  }
+>
+> @@ -803,25 +806,23 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
+>  static void meson_mmc_request(struct mmc_host *mmc, struct mmc_request *mrq)
+>  {
+>         struct meson_host *host = mmc_priv(mmc);
+> -       bool needs_pre_post_req = mrq->data &&
+> +
+> +       host->needs_pre_post_req = mrq->data &&
+>                         !(mrq->data->host_cookie & SD_EMMC_PRE_REQ_DONE);
+>
+> -       if (needs_pre_post_req) {
+> +       if (host->needs_pre_post_req) {
+>                 meson_mmc_get_transfer_mode(mmc, mrq);
+>                 if (!meson_mmc_desc_chain_mode(mrq->data))
+> -                       needs_pre_post_req = false;
+> +                       host->needs_pre_post_req = false;
+>         }
+>
+> -       if (needs_pre_post_req)
+> +       if (host->needs_pre_post_req)
+>                 meson_mmc_pre_req(mmc, mrq);
+>
+>         /* Stop execution */
+>         writel(0, host->regs + SD_EMMC_START);
+>
+>         meson_mmc_start_cmd(mmc, mrq->sbc ?: mrq->cmd);
+> -
+> -       if (needs_pre_post_req)
+> -               meson_mmc_post_req(mmc, mrq, 0);
+>  }
+>
+>  static void meson_mmc_read_resp(struct mmc_host *mmc, struct mmc_command *cmd)
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
