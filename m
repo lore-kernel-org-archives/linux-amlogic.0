@@ -2,65 +2,93 @@ Return-Path: <SRS0=swgy=Y5=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A89D9CA9ED3
-	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Nov 2019 02:39:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A30A7CA9ED6
+	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Nov 2019 08:17:06 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7C80B214D8
-	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Nov 2019 02:39:07 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7438920818
+	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Nov 2019 08:17:06 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="TY39tArV"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7C80B214D8
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="R/Fat3l0";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="1o+Vki9b"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7438920818
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Skx/+DLbo497u7IBFfDH860TFv3XmR7SuUQF14K1WHE=; b=TY39tArVCmz04w
-	dBCEhlwNV6TKfniUlXo47iUtOllvzdMSOHqPAjWzeiyZppQI6/Uy7TKCrLwaKcKjH7NakUxyEHitJ
-	/yX/zHaW0vTLcABtw8PMvm9PfLYPDwH1W4bey+tqgGvphbhlS1Gn8u1ezdDBDEWUOVtD9VIDxsmdE
-	VSswrR4h99Qy5zBpbdVzOx2w7FIKzIosqo5/z1EiUli7tYWe0uZLqt8poI0mImVOHFai5ghtMb9Z7
-	OS+RCx+E0U1PdVTZBHOkY8SIUyOMVVUWJo4HH2FD6erx+yhyOgtFP5bvZsgajTqWDQQxtS7Rc/yxg
-	9iT+mRRssq6d9Bl1RjzQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
+	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=nI6K2Jwog3d67Xyg/pfYt6cYSkEyL5uR128/5lnWt4I=; b=R/Fat3l0CgTLXJfe/eYxL2nNE3
+	o58weuaMHvaQIScPZedjovb5F1jv/lNpmRl37D9h76pVKfiTZhSmGeUt+hfMpTqQQRjUgV4cG8kNj
+	yXY5/7DgNXbsRw7ULE8EcDkpwCigWt1tdf0m+4aECoAEAemgy/ak1xJT9OmgwFlkdaKsm4Pao6aCa
+	Q+L1FF7PmDkTLdCa1/LIrqzBOWLuT5iZM6i8CIspY+DsSe7yYg+Iv6ldHnnuYLnmoKEZSMehcJlHb
+	yAV501wMpApUoRaJvPn0o5uZ4oxRnATKBNhwH0yKwYeyNH4MojArBuUYvYHD+1ff/8F8R+qrJZ2MM
+	TAlog8KQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iRokE-0007sh-WD; Tue, 05 Nov 2019 02:38:59 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1iRu1C-0002JB-FL; Tue, 05 Nov 2019 08:16:50 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iRokC-0007rW-BG; Tue, 05 Nov 2019 02:38:58 +0000
-Received: from [10.28.18.45] (10.28.18.45) by mail-sz.amlogic.com (10.28.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Tue, 5 Nov
- 2019 10:39:04 +0800
-Subject: Re: [PATCH v4 2/4] pinctrl: meson: add a new callback for SoCs fixup
-To: Jerome Brunet <jbrunet@baylibre.com>, Linus Walleij
- <linus.walleij@linaro.org>, <linux-gpio@vger.kernel.org>
-References: <1572004167-24150-1-git-send-email-qianggui.song@amlogic.com>
- <1572004167-24150-3-git-send-email-qianggui.song@amlogic.com>
- <1jeeyo3wdg.fsf@starbuckisacylon.baylibre.com>
-From: Qianggui Song <qianggui.song@amlogic.com>
-Message-ID: <25885aef-1ea6-600e-c022-6f0385d78559@amlogic.com>
-Date: Tue, 5 Nov 2019 10:39:04 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+ id 1iRu19-0002If-5K
+ for linux-amlogic@lists.infradead.org; Tue, 05 Nov 2019 08:16:49 +0000
+Received: by mail-wm1-x341.google.com with SMTP id f3so7891983wmc.5
+ for <linux-amlogic@lists.infradead.org>; Tue, 05 Nov 2019 00:16:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=references:user-agent:from:to:cc:subject:in-reply-to:date
+ :message-id:mime-version:content-transfer-encoding;
+ bh=yLYbU+ioLdHpduS2+SV48BMIdueyibxBfUOqQksqAmQ=;
+ b=1o+Vki9bQnfd1f2oHu34q5CzWHjkTRQAFccbqny8oIrpTelg9WWnZFudkTt/tnvgPq
+ 9sZ5VZe/7UE2WjnchHGVzGOFtZ72BCfb70+i+b1g6naOxrWh8Jat8QrVaca0X5dDaKiI
+ p8HERYToE5Jd6dgFUGdeQKIjHq296Pwco/HTpD3L7s6RT01PqN2NnFFkkEkz3PYsyV92
+ ZgVayzSqYJFeWqfBStTf0XmosBpfwQyTtblXwExV8/O+SdgSVFyVqp+5uNPy230Fovmw
+ CEIr9njwjcxp2aOTXx48/FyKZlyz18Y2gxNz2KgMMkCZaetUqJuNIV86erbdp4wpbiNl
+ Vppw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:date:message-id:mime-version:content-transfer-encoding;
+ bh=yLYbU+ioLdHpduS2+SV48BMIdueyibxBfUOqQksqAmQ=;
+ b=X+bUwxU9XhUcilb1fk3Co5poHpDwuMVfGSJBnVNKWcn78kIwfTDgWOOeQq+YTOsgwZ
+ MhXrIaYM+qWF1k2vtxQd94gk1PQfUsYftAqgd0hHV2bh0t4jSHAo1S5lZ7wbIM2gV9z2
+ H0IHkGjHeyGqlvgTIymbQbdgiz/c9+4ylaJI/B+6TKJwHehkIL9+ZCNXLOlsA1xAH/0u
+ nzpmkB27BK3x37PTDveINd4wq1LJcYok+kTbReXSFLMXz3iOCMnZkkPyzlMxLpeR36dL
+ z0WjuTOx6p3kSolwIBcm3tn+XgpWyfwi9Ivlj6tCEF7+fTtqf9kKftmw+8l2YtpatkGG
+ Y0gg==
+X-Gm-Message-State: APjAAAWeK6yb/PKU4NzZBwe9xkNyFNWv76MoCfJb+atJlt4mGFdMdU1w
+ GjNrJJd8cXowH8LBME1Wn49VOXfPRDo=
+X-Google-Smtp-Source: APXvYqwBAJS3V1xnunLNc/diPAwAY4KZsGHDXElZbjOwCou2gipAdGTliK+daK8J64br4gsiAh5PFQ==
+X-Received: by 2002:a1c:3c43:: with SMTP id j64mr2938924wma.13.1572941804913; 
+ Tue, 05 Nov 2019 00:16:44 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id g5sm11278267wmf.37.2019.11.05.00.16.43
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 05 Nov 2019 00:16:44 -0800 (PST)
+References: <1572868495-84816-1-git-send-email-jianxin.pan@amlogic.com>
+ <1ja79b4mje.fsf@starbuckisacylon.baylibre.com>
+ <e80cb817-e58a-68ce-a3c6-d82636aaf7d3@amlogic.com>
+User-agent: mu4e 1.3.3; emacs 26.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Nan Li <Nan.Li@amlogic.com>, Jianxin Pan <Jianxin.Pan@amlogic.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Kevin Hilman <khilman@baylibre.com>
+Subject: Re: [PATCH v2] mmc: meson-gx: fix mmc dma operation
+In-reply-to: <e80cb817-e58a-68ce-a3c6-d82636aaf7d3@amlogic.com>
+Date: Tue, 05 Nov 2019 09:16:43 +0100
+Message-ID: <1j8sou4u1g.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <1jeeyo3wdg.fsf@starbuckisacylon.baylibre.com>
-Content-Language: en-US
-X-Originating-IP: [10.28.18.45]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191104_183856_389154_A493BD56 
-X-CRM114-Status: GOOD (  18.50  )
+X-CRM114-CacheID: sfid-20191105_001647_354551_C3CE3516 
+X-CRM114-Status: GOOD (  24.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,312 +100,138 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Hanjie Lin <hanjie.lin@amlogic.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
- Xingyu Chen <xingyu.chen@amlogic.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+ "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Victor Wan <victor.wan@amlogic.com>, Neil Armstrong <narmstrong@baylibre.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-
-
-On 2019/11/4 15:59, Jerome Brunet wrote:
-> 
-> On Fri 25 Oct 2019 at 13:49, Qianggui Song <qianggui.song@amlogic.com> wrote:
-> 
->> In meson_pinctrl_parse_dt, it contains two parts: reg parsing and
->> SoC relative fixup for AO. Several fixups in the same code make it hard
->> to maintain, so move all fixups to each SoC's callback and make
->> meson_pinctrl_parse_dt just do the reg parsing, separate these two
->> parts.Overview of all current Meson SoCs fixup is as below:
->>
->> +------+--------------------------------------+--------------------------+
->> |      |                                      |                          |
->> | SoC  |                EE domain             |        AO domain         |
->> +------+--------------------------------------+--------------------------+
->> |m8    | parse regs:                          | parse regs:              |
->> |m8b   |   gpio,mux,pull,pull-enable(skip ds) |    gpio,mux,pull(skip ds)|
->> |gxl   | fixup:                               | fixup:                   |
->> |gxbb  |   no                                 |     pull-enable = pull   |
->> |axg   |                                      |                          |
->> +------+--------------------------------------+--------------------------+
->> |g12a  | parse regs:                          | parse regs:              |
->> |sm1   |   gpio,mux,pull,pull-enable,ds       |   gpio,mux,ds            |
->> |      | fixup:                               | fixup:                   |
->> |      |   no                                 |   pull = gpio            |
->> |      |                                      |   pull-enable = gpio     |
->> +------+--------------------------------------+--------------------------+
->> |a1 or | parse regs:                                                     |
->> |later |  gpio/mux (without ao domain)                                   |
->> |SoCs  | fixup:                                                          |
->> |      |  pull=gpio; pull-enable=gpio; ds=gpio                           |
->> +------+-----------------------------------------------------------------+
->>
->> Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
->> ---
->>  drivers/pinctrl/meson/pinctrl-meson-axg.c  | 11 +++++++++++
->>  drivers/pinctrl/meson/pinctrl-meson-g12a.c |  9 +++++++++
->>  drivers/pinctrl/meson/pinctrl-meson-gxbb.c | 11 +++++++++++
->>  drivers/pinctrl/meson/pinctrl-meson-gxl.c  | 11 +++++++++++
->>  drivers/pinctrl/meson/pinctrl-meson.c      |  9 +++++----
->>  drivers/pinctrl/meson/pinctrl-meson.h      |  3 +++
->>  drivers/pinctrl/meson/pinctrl-meson8.c     | 11 +++++++++++
->>  drivers/pinctrl/meson/pinctrl-meson8b.c    | 11 +++++++++++
->>  8 files changed, 72 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/pinctrl/meson/pinctrl-meson-axg.c b/drivers/pinctrl/meson/pinctrl-meson-axg.c
->> index ad502eda4afa..9c07f4423c37 100644
->> --- a/drivers/pinctrl/meson/pinctrl-meson-axg.c
->> +++ b/drivers/pinctrl/meson/pinctrl-meson-axg.c
->> @@ -1040,6 +1040,16 @@
->>  	.num_pmx_banks = ARRAY_SIZE(meson_axg_aobus_pmx_banks),
->>  };
->>  
->> +static int meson_axg_aobus_parse_dt_extra(struct meson_pinctrl *pc)
->> +{
->> +	if (!pc->reg_pull)
->> +		return -EINVAL;
->> +
->> +	pc->reg_pullen = pc->reg_pull;
->> +
->> +	return 0;
->> +}
->> +
->>  static struct meson_pinctrl_data meson_axg_periphs_pinctrl_data = {
->>  	.name		= "periphs-banks",
->>  	.pins		= meson_axg_periphs_pins,
->> @@ -1066,6 +1076,7 @@
->>  	.num_banks	= ARRAY_SIZE(meson_axg_aobus_banks),
->>  	.pmx_ops	= &meson_axg_pmx_ops,
->>  	.pmx_data	= &meson_axg_aobus_pmx_banks_data,
->> +	.parse_dt	= meson_axg_aobus_parse_dt_extra,
->>  };
->>  
->>  static const struct of_device_id meson_axg_pinctrl_dt_match[] = {
->> diff --git a/drivers/pinctrl/meson/pinctrl-meson-g12a.c b/drivers/pinctrl/meson/pinctrl-meson-g12a.c
->> index 582665fd362a..41850e3c0091 100644
->> --- a/drivers/pinctrl/meson/pinctrl-meson-g12a.c
->> +++ b/drivers/pinctrl/meson/pinctrl-meson-g12a.c
->> @@ -1362,6 +1362,14 @@
->>  	.num_pmx_banks	= ARRAY_SIZE(meson_g12a_aobus_pmx_banks),
->>  };
->>  
->> +static int meson_g12a_aobus_parse_dt_extra(struct meson_pinctrl *pc)
->> +{
->> +	pc->reg_pull = pc->reg_gpio;
->> +	pc->reg_pullen = pc->reg_gpio;
->> +
->> +	return 0;
->> +}
->> +
->>  static struct meson_pinctrl_data meson_g12a_periphs_pinctrl_data = {
->>  	.name		= "periphs-banks",
->>  	.pins		= meson_g12a_periphs_pins,
->> @@ -1388,6 +1396,7 @@
->>  	.num_banks	= ARRAY_SIZE(meson_g12a_aobus_banks),
->>  	.pmx_ops	= &meson_axg_pmx_ops,
->>  	.pmx_data	= &meson_g12a_aobus_pmx_banks_data,
->> +	.parse_dt	= meson_g12a_aobus_parse_dt_extra,
->>  };
->>  
->>  static const struct of_device_id meson_g12a_pinctrl_dt_match[] = {
->> diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
->> index 5bfa56f3847e..f5494a948200 100644
->> --- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
->> +++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
->> @@ -827,6 +827,16 @@
->>  	BANK("AO",   GPIOAO_0,  GPIOAO_13, 0, 13, 0,  16, 0, 0,   0,  0,  0, 16,  1,  0),
->>  };
->>  
->> +static int meson_gxbb_aobus_parse_dt_extra(struct meson_pinctrl *pc)
->> +{
->> +	if (!pc->reg_pull)
->> +		return -EINVAL;
->> +
->> +	pc->reg_pullen = pc->reg_pull;
->> +
->> +	return 0;
->> +}
-> 
-> Can you share the definition of this function instead of repeating it ?
-> 
-Seems like this common function can only be placed in pinctrl-meson.c, I
-will try to write a meson_aobus_parse_dt_extra in pinctrl-meson.c and
-assign it to each SoCs  driver before g12a.
->> +
->>  static struct meson_pinctrl_data meson_gxbb_periphs_pinctrl_data = {
->>  	.name		= "periphs-banks",
->>  	.pins		= meson_gxbb_periphs_pins,
->> @@ -851,6 +861,7 @@
->>  	.num_funcs	= ARRAY_SIZE(meson_gxbb_aobus_functions),
->>  	.num_banks	= ARRAY_SIZE(meson_gxbb_aobus_banks),
->>  	.pmx_ops	= &meson8_pmx_ops,
->> +	.parse_dt	= meson_gxbb_aobus_parse_dt_extra,
->>  };
->>  
->>  static const struct of_device_id meson_gxbb_pinctrl_dt_match[] = {
->> diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
->> index 72c5373c8dc1..943fb27dab08 100644
->> --- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
->> +++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
->> @@ -796,6 +796,16 @@
->>  	BANK("AO",   GPIOAO_0,  GPIOAO_9, 0, 9, 0,  16, 0, 0,   0,  0,  0, 16,  1,  0),
->>  };
->>  
->> +static int meson_gxl_aobus_parse_dt_extra(struct meson_pinctrl *pc)
->> +{
->> +	if (!pc->reg_pull)
->> +		return -EINVAL;
->> +
->> +	pc->reg_pullen = pc->reg_pull;
->> +
->> +	return 0;
->> +}
-> 
-> Same
-will do it for above and below other platform.
-> 
->> +
->>  static struct meson_pinctrl_data meson_gxl_periphs_pinctrl_data = {
->>  	.name		= "periphs-banks",
->>  	.pins		= meson_gxl_periphs_pins,
->> @@ -820,6 +830,7 @@
->>  	.num_funcs	= ARRAY_SIZE(meson_gxl_aobus_functions),
->>  	.num_banks	= ARRAY_SIZE(meson_gxl_aobus_banks),
->>  	.pmx_ops	= &meson8_pmx_ops,
->> +	.parse_dt 	= meson_gxl_aobus_parse_dt_extra,
->>  };
->>  
->>  static const struct of_device_id meson_gxl_pinctrl_dt_match[] = {
->> diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
->> index 8bba9d053d9f..e182583422a4 100644
->> --- a/drivers/pinctrl/meson/pinctrl-meson.c
->> +++ b/drivers/pinctrl/meson/pinctrl-meson.c
->> @@ -677,14 +677,12 @@ static int meson_pinctrl_parse_dt(struct meson_pinctrl *pc,
->>  	}
->>  
->>  	pc->reg_pull = meson_map_resource(pc, gpio_np, "pull");
->> -	/* Use gpio region if pull one is not present */
->>  	if (IS_ERR(pc->reg_pull))
->> -		pc->reg_pull = pc->reg_gpio;
->> +		pc->reg_pull = NULL;
-> 
-> Instead of doing this fixup, could modifhy meson_map_ressourse() to
-> return NULL instead of -ENOENT ?
-> 
-> Then you should IS_ERR_OR_NULL() for "mux" and "gpio" and just IS_ERR()
-> for the rest
-> 
-Ok, will modify this in the next patch set
->>  
->>  	pc->reg_pullen = meson_map_resource(pc, gpio_np, "pull-enable");
->> -	/* Use pull region if pull-enable one is not present */
->>  	if (IS_ERR(pc->reg_pullen))
->> -		pc->reg_pullen = pc->reg_pull;
->> +		pc->reg_pullen = NULL;
->>  
->>  	pc->reg_ds = meson_map_resource(pc, gpio_np, "ds");
->>  	if (IS_ERR(pc->reg_ds)) {
->> @@ -692,6 +690,9 @@ static int meson_pinctrl_parse_dt(struct meson_pinctrl *pc,
->>  		pc->reg_ds = NULL;
->>  	}
->>  
->> +	if (pc->data->parse_dt)
->> +		return pc->data->parse_dt(pc);
->> +
->>  	return 0;
->>  }
->>  
->> diff --git a/drivers/pinctrl/meson/pinctrl-meson.h b/drivers/pinctrl/meson/pinctrl-meson.h
->> index c696f3241a36..d570f7c53045 100644
->> --- a/drivers/pinctrl/meson/pinctrl-meson.h
->> +++ b/drivers/pinctrl/meson/pinctrl-meson.h
->> @@ -11,6 +11,8 @@
->>  #include <linux/regmap.h>
->>  #include <linux/types.h>
->>  
->> +struct meson_pinctrl;
->> +
->>  /**
->>   * struct meson_pmx_group - a pinmux group
->>   *
->> @@ -114,6 +116,7 @@ struct meson_pinctrl_data {
->>  	unsigned int num_banks;
->>  	const struct pinmux_ops *pmx_ops;
->>  	void *pmx_data;
->> +	int (*parse_dt)(struct meson_pinctrl *pc);
->>  };
->>  
->>  struct meson_pinctrl {
->> diff --git a/drivers/pinctrl/meson/pinctrl-meson8.c b/drivers/pinctrl/meson/pinctrl-meson8.c
->> index 0b97befa6335..65c70c9b7070 100644
->> --- a/drivers/pinctrl/meson/pinctrl-meson8.c
->> +++ b/drivers/pinctrl/meson/pinctrl-meson8.c
->> @@ -1079,6 +1079,16 @@
->>  	BANK("AO",   GPIOAO_0, GPIO_TEST_N, 0, 13, 0, 16,  0,  0,  0,  0,  0, 16,  1,  0),
->>  };
->>  
->> +static int meson8_aobus_parse_dt_extra(struct meson_pinctrl *pc)
->> +{
->> +	if (!pc->reg_pull)
->> +		return -EINVAL;
->> +
->> +	pc->reg_pullen = pc->reg_pull;
->> +
->> +	return 0;
->> +}
->> +
->>  static struct meson_pinctrl_data meson8_cbus_pinctrl_data = {
->>  	.name		= "cbus-banks",
->>  	.pins		= meson8_cbus_pins,
->> @@ -1103,6 +1113,7 @@
->>  	.num_funcs	= ARRAY_SIZE(meson8_aobus_functions),
->>  	.num_banks	= ARRAY_SIZE(meson8_aobus_banks),
->>  	.pmx_ops	= &meson8_pmx_ops,
->> +	.parse_dt	= &meson8_aobus_parse_dt_extra,
->>  };
->>  
->>  static const struct of_device_id meson8_pinctrl_dt_match[] = {
->> diff --git a/drivers/pinctrl/meson/pinctrl-meson8b.c b/drivers/pinctrl/meson/pinctrl-meson8b.c
->> index a7de388388e6..85dc12e0c839 100644
->> --- a/drivers/pinctrl/meson/pinctrl-meson8b.c
->> +++ b/drivers/pinctrl/meson/pinctrl-meson8b.c
->> @@ -938,6 +938,16 @@
->>  	BANK("AO",   GPIOAO_0, GPIO_TEST_N, 0, 13, 0,  16, 0, 0,  0,  0,  0, 16,  1,  0),
->>  };
->>  
->> +static int meson8b_aobus_parse_dt_extra(struct meson_pinctrl *pc)
->> +{
->> +	if (!pc->reg_pull)
->> +		return -EINVAL;
->> +
->> +	pc->reg_pullen = pc->reg_pull;
->> +
->> +	return 0;
->> +}
->> +
->>  static struct meson_pinctrl_data meson8b_cbus_pinctrl_data = {
->>  	.name		= "cbus-banks",
->>  	.pins		= meson8b_cbus_pins,
->> @@ -962,6 +972,7 @@
->>  	.num_funcs	= ARRAY_SIZE(meson8b_aobus_functions),
->>  	.num_banks	= ARRAY_SIZE(meson8b_aobus_banks),
->>  	.pmx_ops	= &meson8_pmx_ops,
->> +	.parse_dt	= &meson8b_aobus_parse_dt_extra,
->>  };
->>  
->>  static const struct of_device_id meson8b_pinctrl_dt_match[] = {
-> 
-> .
-> 
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Ck9uIFR1ZSAwNSBOb3YgMjAxOSBhdCAwMjo0NSwgTmFuIExpIDxOYW4uTGlAYW1sb2dpYy5jb20+
+IHdyb3RlOgoKPiDlnKggMjAxOS8xMS81IDA6NDYsIEplcm9tZSBCcnVuZXQg5YaZ6YGTOgo+Cj4K
+PiBPbiBNb24gMDQgTm92IDIwMTkgYXQgMTI6NTQsIEppYW54aW4gUGFuIDxqaWFueGluLnBhbkBh
+bWxvZ2ljLmNvbT48bWFpbHRvOmppYW54aW4ucGFuQGFtbG9naWMuY29tPiB3cm90ZToKPgo+Cj4K
+PiBGcm9tOiBOYW4gTGkgPG5hbi5saUBhbWxvZ2ljLmNvbT48bWFpbHRvOm5hbi5saUBhbWxvZ2lj
+LmNvbT4KPgo+IEluIE1NQyBkbWEgdHJhbnNmZXIsIHRoZSByZWdpb24gcmVxdWVzdGVkIGJ5IGRt
+YV9tYXBfc2coKSBtYXkgYmUgcmVsZWFzZWQKPiBieSBkbWFfdW5tYXBfc2coKSBiZWZvcmUgdGhl
+IHRyYW5zZmVyIGlzIGNvbXBsZXRlZC4KPgo+IFB1dCB0aGUgdW5tYXAgb3BlcmF0aW9uIGluIGZy
+b250IG9mIG1tY19yZXF1ZXN0X2RvbmUoKSB0byBhdm9pZCB0aGlzLgo+Cj4KPgo+IEluIHRoZSBw
+cmV2aW91cyB0aHJlYWQsIHlvdSBoYXZlIGRlc2NyaWJlZCB3aGF0IHdhcyB0aGUgaXNzdWUgeW91
+IGZvdW5kLgo+IEl0IHdvdWxkIGJlIG5pY2UgdG8gaGF2ZSB0aGlzIGluZm9ybWF0aW9uIGhlcmUK
+Pgo+Cj4KPgo+IEZpeGVzOiA3OWVkMDVlMzI5YzMgKCJtbWM6IG1lc29uLWd4OiBhZGQgc3VwcG9y
+dCBmb3IgZGVzY3JpcHRvciBjaGFpbiBtb2RlIikKPiBTaWduZWQtb2ZmLWJ5OiBOYW4gTGkgPG5h
+bi5saUBhbWxvZ2ljLmNvbT48bWFpbHRvOm5hbi5saUBhbWxvZ2ljLmNvbT4KPiBTaWduZWQtb2Zm
+LWJ5OiBKaWFueGluIFBhbiA8amlhbnhpbi5wYW5AYW1sb2dpYy5jb20+PG1haWx0bzpqaWFueGlu
+LnBhbkBhbWxvZ2ljLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1neC1tbWMu
+YyB8IDE1ICsrKysrKysrLS0tLS0tLQo+ICAxIGZpbGUgY2hhbmdlZCwgOCBpbnNlcnRpb25zKCsp
+LCA3IGRlbGV0aW9ucygtKQo+Cj4KPgo+IEJhc2VkIG9uIFVmZmUgY29tbWVudCBJIHRyaWVkIHNv
+bWV0aGluZyBlbHNlLgo+Cj4gQmFzaWNhbGx5LCBpdCBlbmFibGVzIGNoYWluZWQgbW9kZSBpbiB0
+aGUgZHJpdmVyIG9ubHkgd2hlbiB0aGUgZnJhbWV3b3JrCj4gY2FsbHMgcHJlL3Bvc3RfcmVxIGNh
+bGxiYWNrLiBBcyBmYXIgYXMgdW5kZXJzdG9vZCwgdGhlIGZyYW1ld29yayBjYWxscwo+IHRoaXMg
+d2hlbiB0aGVyZSBpcyBtb3JlIHRoYW4gb25lIHJlcXVlc3QgcGVuZGluZyAuLi4gd2hpY2ggc2Vl
+bXMgdG8gYmUKPiB3aGVuIGNoYWluZWQgbW9kZSBhY3R1YWxseSBtYWtlIHNlbnNlCj4KPiBKZXJv
+bWUsIHdoYXQgeW91IGFyZSB0YWxraW5nIGFib3V0IGlzIHRoZSBzeXN0ZW0gZnJhbWV3b3JrIHBy
+b2JsZW0gd2hlbiB5b3UgY2FsbCBwcmUvcG9zdF9yZXEsCj4KPiB3aGljaCBpcyBub3QgcmVsYXRl
+ZCB0byB0aGUgcGF0Y2ggSSBzdWJtaXR0ZWQuCgpJIHN0cm9uZ2x5IGRpc2FncmVlLgpBcyBmYXIg
+YXMgSSB1bmRlcnN0YW5kIGZyb20geW91ciBkZXNjcmlwdGlvbiwgdGhlIHByb2JsZW0gd2FzIHdp
+dGggdGhlCmxpZmUgY3ljbGUgb2YgdGhlIGRtYSBtYXBwaW5nLiBUaGlzIGlzIHRpZ2hseSByZWxh
+dGVkIHdpdGggcHJlL3Bvc3QgcmVxLgpKdXN0IHRoZSB2YXJpYWJsZSBuYW1lcyB5b3UgaGF2ZSBw
+aWNrZWQgY2xlYXJseSBzaG93IHRoYXQuCgo+IEFzIHlvdSBzYWlkLCBwcmUvcG9zdF9yZXEgaXMg
+Y2FsbGVkIG9ubHkgd2hlbiB0aGVyZSBpcyBkYXRhIHRvIGltcGxlbWVudCB0aGUgY2hhaW5lZCBt
+b2RlLAo+Cj4gYnV0IGl0IGlzIGFsc28gcG9zc2libGUgdG8gY2F1c2UgbWVtb3J5IGNvbnNpc3Rl
+bmN5IHByb2JsZW1zLAo+IHJlc3VsdGluZyBpbiBpbmNvcnJlY3QgZGF0YS4KClRoZSBsaWZlIGN5
+Y2xlIG9mIHRoZSBtYXBwaW5nIGlzIGFsc28gdGFrZW4gY2FyZSBvZiB3aXRoIHBhdGNoLApzaW5j
+ZSBkbWEgbWFwcGluZyBpcyBubyBsb25nZXIgaGFuZGxlZCBpbiAucmVxdWVzdCgpLiBJT1cgdGhl
+IG1hcHBpbmcsCmlmIGFueSwgd2lsbCBiZSByZWxlYXNlZCBhZnRlciB0aGUgcmVxdWVzdCBpcyBk
+b25lIHVzaW5nIC5wb3N0X3JlcSgpCgpJZiB5b3UgdGhpbmsgb3RoZXJ3aXNlLCBwbGVhc2UgZWxh
+Ym9yYXRlLgoKPgo+IFRoZXJlZm9yZSwgdGhpcyBwYXRjaCBpcyBhZGRlZCB0byBtYWtlIG1lbW9y
+eSBjb25zaXN0ZW50IGFuZCBvYnRhaW4gcmVhbCBlZmZlY3RpdmUgaW5mb3JtYXRpb24uCj4KPgo+
+Cj4gLS0tLTg8LS0tLS0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1neC1t
+bWMuYyBiL2RyaXZlcnMvbW1jL2hvc3QvbWVzb24tZ3gtbW1jLmMKPiBpbmRleCBlNzEyMzE1Yzdl
+OGQuLjM5OTYwNGI0MTI0ZCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL21tYy9ob3N0L21lc29uLWd4
+LW1tYy5jCj4gKysrIGIvZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1neC1tbWMuYwo+IEBAIC0xMjYs
+OCArMTI2LDcgQEAKPiAgI2RlZmluZSBTRF9FTU1DX0NGR19DTURfR0FQIDE2IC8qIGluIGNsb2Nr
+IGN5Y2xlcyAqLwo+ICAjZGVmaW5lIFNEX0VNTUNfREVTQ19CVUZfTEVOIFBBR0VfU0laRQo+Cj4g
+LSNkZWZpbmUgU0RfRU1NQ19QUkVfUkVRX0RPTkUgQklUKDApCj4gLSNkZWZpbmUgU0RfRU1NQ19E
+RVNDX0NIQUlOX01PREUgQklUKDEpCj4gKyNkZWZpbmUgU0RfRU1NQ19ERVNDX0NIQUlOX01PREUg
+QklUKDApCj4KPiAgI2RlZmluZSBNVVhfQ0xLX05VTV9QQVJFTlRTIDIKPgo+IEBAIC0yMjgsNyAr
+MjI3LDYgQEAgc3RhdGljIHZvaWQgbWVzb25fbW1jX2dldF90cmFuc2Zlcl9tb2RlKHN0cnVjdCBt
+bWNfaG9zdCAqbW1jLAo+ICAgICAgICAgc3RydWN0IG1tY19kYXRhICpkYXRhID0gbXJxLT5kYXRh
+Owo+ICAgICAgICAgc3RydWN0IHNjYXR0ZXJsaXN0ICpzZzsKPiAgICAgICAgIGludCBpOwo+IC0g
+ICAgICAgYm9vbCB1c2VfZGVzY19jaGFpbl9tb2RlID0gdHJ1ZTsKPgo+ICAgICAgICAgLyoKPiAg
+ICAgICAgICAqIFdoZW4gQ29udHJvbGxlciBETUEgY2Fubm90IGRpcmVjdGx5IGFjY2VzcyBERFIg
+bWVtb3J5LCBkaXNhYmxlCj4gQEAgLTI1MSwxMiArMjQ5LDExIEBAIHN0YXRpYyB2b2lkIG1lc29u
+X21tY19nZXRfdHJhbnNmZXJfbW9kZShzdHJ1Y3QgbW1jX2hvc3QgKm1tYywKPiAgICAgICAgICAg
+ICAgICAgLyogY2hlY2sgZm9yIDggYnl0ZSBhbGlnbm1lbnQgKi8KPiAgICAgICAgICAgICAgICAg
+aWYgKHNnLT5vZmZzZXQgJiA3KSB7Cj4gICAgICAgICAgICAgICAgICAgICAgICAgV0FSTl9PTkNF
+KDEsICJ1bmFsaWduZWQgc2NhdHRlcmxpc3QgYnVmZmVyXG4iKTsKPiAtICAgICAgICAgICAgICAg
+ICAgICAgICB1c2VfZGVzY19jaGFpbl9tb2RlID0gZmFsc2U7Cj4gLSAgICAgICAgICAgICAgICAg
+ICAgICAgYnJlYWs7Cj4gKyAgICAgICAgICAgICAgICAgICAgICAgcmV0dXJuOwo+ICAgICAgICAg
+ICAgICAgICB9Cj4KPiAtICAgICAgIGlmICh1c2VfZGVzY19jaGFpbl9tb2RlKQo+IC0gICAgICAg
+ICAgICAgICBkYXRhLT5ob3N0X2Nvb2tpZSB8PSBTRF9FTU1DX0RFU0NfQ0hBSU5fTU9ERTsKPiAr
+ICAgICAgIC8qIFRoZSBwbGFuZXRzIGFyZSBhbGlnbmVkLCBsZXQncyBjaGFpbiB0aGVtIHVwICov
+Cj4gKyAgICAgICBkYXRhLT5ob3N0X2Nvb2tpZSB8PSBTRF9FTU1DX0RFU0NfQ0hBSU5fTU9ERTsK
+PiAgfQo+Cj4gIHN0YXRpYyBpbmxpbmUgYm9vbCBtZXNvbl9tbWNfZGVzY19jaGFpbl9tb2RlKGNv
+bnN0IHN0cnVjdCBtbWNfZGF0YSAqZGF0YSkKPiBAQCAtMjc4LDcgKzI3NSw2IEBAIHN0YXRpYyB2
+b2lkIG1lc29uX21tY19wcmVfcmVxKHN0cnVjdCBtbWNfaG9zdCAqbW1jLCBzdHJ1Y3QgbW1jX3Jl
+cXVlc3QgKm1ycSkKPiAgICAgICAgICAgICAgICAgcmV0dXJuOwo+Cj4gICAgICAgICBtZXNvbl9t
+bWNfZ2V0X3RyYW5zZmVyX21vZGUobW1jLCBtcnEpOwo+IC0gICAgICAgZGF0YS0+aG9zdF9jb29r
+aWUgfD0gU0RfRU1NQ19QUkVfUkVRX0RPTkU7Cj4KPiAgICAgICAgIGlmICghbWVzb25fbW1jX2Rl
+c2NfY2hhaW5fbW9kZShkYXRhKSkKPiAgICAgICAgICAgICAgICAgcmV0dXJuOwo+IEBAIC04MDMs
+MjUgKzc5OSwxMSBAQCBzdGF0aWMgdm9pZCBtZXNvbl9tbWNfc3RhcnRfY21kKHN0cnVjdCBtbWNf
+aG9zdCAqbW1jLCBzdHJ1Y3QgbW1jX2NvbW1hbmQgKmNtZCkKPiAgc3RhdGljIHZvaWQgbWVzb25f
+bW1jX3JlcXVlc3Qoc3RydWN0IG1tY19ob3N0ICptbWMsIHN0cnVjdCBtbWNfcmVxdWVzdCAqbXJx
+KQo+ICB7Cj4gICAgICAgICBzdHJ1Y3QgbWVzb25faG9zdCAqaG9zdCA9IG1tY19wcml2KG1tYyk7
+Cj4gLSAgICAgICBib29sIG5lZWRzX3ByZV9wb3N0X3JlcSA9IG1ycS0+ZGF0YSAmJgo+IC0gICAg
+ICAgICAgICAgICAgICAgICAgICEobXJxLT5kYXRhLT5ob3N0X2Nvb2tpZSAmIFNEX0VNTUNfUFJF
+X1JFUV9ET05FKTsKPiAtCj4gLSAgICAgICBpZiAobmVlZHNfcHJlX3Bvc3RfcmVxKSB7Cj4gLSAg
+ICAgICAgICAgICAgIG1lc29uX21tY19nZXRfdHJhbnNmZXJfbW9kZShtbWMsIG1ycSk7Cj4gLSAg
+ICAgICAgICAgICAgIGlmICghbWVzb25fbW1jX2Rlc2NfY2hhaW5fbW9kZShtcnEtPmRhdGEpKQo+
+IC0gICAgICAgICAgICAgICAgICAgICAgIG5lZWRzX3ByZV9wb3N0X3JlcSA9IGZhbHNlOwo+IC0g
+ICAgICAgfQo+IC0KPiAtICAgICAgIGlmIChuZWVkc19wcmVfcG9zdF9yZXEpCj4gLSAgICAgICAg
+ICAgICAgIG1lc29uX21tY19wcmVfcmVxKG1tYywgbXJxKTsKPgo+ICAgICAgICAgLyogU3RvcCBl
+eGVjdXRpb24gKi8KPiAgICAgICAgIHdyaXRlbCgwLCBob3N0LT5yZWdzICsgU0RfRU1NQ19TVEFS
+VCk7Cj4KPiAgICAgICAgIG1lc29uX21tY19zdGFydF9jbWQobW1jLCBtcnEtPnNiYyA/OiBtcnEt
+PmNtZCk7Cj4gLQo+IC0gICAgICAgaWYgKG5lZWRzX3ByZV9wb3N0X3JlcSkKPiAtICAgICAgICAg
+ICAgICAgbWVzb25fbW1jX3Bvc3RfcmVxKG1tYywgbXJxLCAwKTsKPiAgfQo+Cj4gIHN0YXRpYyB2
+b2lkIG1lc29uX21tY19yZWFkX3Jlc3Aoc3RydWN0IG1tY19ob3N0ICptbWMsIHN0cnVjdCBtbWNf
+Y29tbWFuZCAqY21kKQo+IC0tLS0+OC0tLS0tCj4KPiBObyBwZXJmb3JtYW5jZSBoaXQgQUZBSUNU
+Lgo+IEZyb20geW91ciBkZXNjcmlwdGlvbiwgaXQgc2hvdWxkIGFkZHJlc3MgeW91ciBwcm9ibGVt
+IHRvby4KPgo+Cj4KPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL21tYy9ob3N0L21lc29uLWd4LW1t
+Yy5jIGIvZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1neC1tbWMuYwo+IGluZGV4IGU3MTIzMTUuLjc2
+NjdlOGEgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1neC1tbWMuYwo+ICsr
+KyBiL2RyaXZlcnMvbW1jL2hvc3QvbWVzb24tZ3gtbW1jLmMKPiBAQCAtMTczLDYgKzE3Myw3IEBA
+IHN0cnVjdCBtZXNvbl9ob3N0IHsKPiAgICAgICAgIGludCBpcnE7Cj4KPiAgICAgICAgIGJvb2wg
+dnFtbWNfZW5hYmxlZDsKPiArICAgICAgIGJvb2wgbmVlZHNfcHJlX3Bvc3RfcmVxOwo+ICB9Owo+
+Cj4gICNkZWZpbmUgQ01EX0NGR19MRU5HVEhfTUFTSyBHRU5NQVNLKDgsIDApCj4gQEAgLTY1NCw2
+ICs2NTUsOCBAQCBzdGF0aWMgdm9pZCBtZXNvbl9tbWNfcmVxdWVzdF9kb25lKHN0cnVjdCBtbWNf
+aG9zdCAqbW1jLAo+ICAgICAgICAgc3RydWN0IG1lc29uX2hvc3QgKmhvc3QgPSBtbWNfcHJpdiht
+bWMpOwo+Cj4gICAgICAgICBob3N0LT5jbWQgPSBOVUxMOwo+ICsgICAgICAgaWYgKGhvc3QtPm5l
+ZWRzX3ByZV9wb3N0X3JlcSkKPiArICAgICAgICAgICAgICAgbWVzb25fbW1jX3Bvc3RfcmVxKG1t
+YywgbXJxLCAwKTsKPiAgICAgICAgIG1tY19yZXF1ZXN0X2RvbmUoaG9zdC0+bW1jLCBtcnEpOwo+
+ICB9Cj4KPiBAQCAtODAzLDI1ICs4MDYsMjMgQEAgc3RhdGljIHZvaWQgbWVzb25fbW1jX3N0YXJ0
+X2NtZChzdHJ1Y3QgbW1jX2hvc3QgKm1tYywgc3RydWN0IG1tY19jb21tYW5kICpjbWQpCj4gIHN0
+YXRpYyB2b2lkIG1lc29uX21tY19yZXF1ZXN0KHN0cnVjdCBtbWNfaG9zdCAqbW1jLCBzdHJ1Y3Qg
+bW1jX3JlcXVlc3QgKm1ycSkKPiAgewo+ICAgICAgICAgc3RydWN0IG1lc29uX2hvc3QgKmhvc3Qg
+PSBtbWNfcHJpdihtbWMpOwo+IC0gICAgICAgYm9vbCBuZWVkc19wcmVfcG9zdF9yZXEgPSBtcnEt
+PmRhdGEgJiYKPiArCj4gKyAgICAgICBob3N0LT5uZWVkc19wcmVfcG9zdF9yZXEgPSBtcnEtPmRh
+dGEgJiYKPiAgICAgICAgICAgICAgICAgICAgICAgICAhKG1ycS0+ZGF0YS0+aG9zdF9jb29raWUg
+JiBTRF9FTU1DX1BSRV9SRVFfRE9ORSk7Cj4KPiAtICAgICAgIGlmIChuZWVkc19wcmVfcG9zdF9y
+ZXEpIHsKPiArICAgICAgIGlmIChob3N0LT5uZWVkc19wcmVfcG9zdF9yZXEpIHsKPiAgICAgICAg
+ICAgICAgICAgbWVzb25fbW1jX2dldF90cmFuc2Zlcl9tb2RlKG1tYywgbXJxKTsKPiAgICAgICAg
+ICAgICAgICAgaWYgKCFtZXNvbl9tbWNfZGVzY19jaGFpbl9tb2RlKG1ycS0+ZGF0YSkpCj4gLSAg
+ICAgICAgICAgICAgICAgICAgICAgbmVlZHNfcHJlX3Bvc3RfcmVxID0gZmFsc2U7Cj4gKyAgICAg
+ICAgICAgICAgICAgICAgICAgaG9zdC0+bmVlZHNfcHJlX3Bvc3RfcmVxID0gZmFsc2U7Cj4gICAg
+ICAgICB9Cj4KPiAtICAgICAgIGlmIChuZWVkc19wcmVfcG9zdF9yZXEpCj4gKyAgICAgICBpZiAo
+aG9zdC0+bmVlZHNfcHJlX3Bvc3RfcmVxKQo+ICAgICAgICAgICAgICAgICBtZXNvbl9tbWNfcHJl
+X3JlcShtbWMsIG1ycSk7Cj4KPiAgICAgICAgIC8qIFN0b3AgZXhlY3V0aW9uICovCj4gICAgICAg
+ICB3cml0ZWwoMCwgaG9zdC0+cmVncyArIFNEX0VNTUNfU1RBUlQpOwo+Cj4gICAgICAgICBtZXNv
+bl9tbWNfc3RhcnRfY21kKG1tYywgbXJxLT5zYmMgPzogbXJxLT5jbWQpOwo+IC0KPiAtICAgICAg
+IGlmIChuZWVkc19wcmVfcG9zdF9yZXEpCj4gLSAgICAgICAgICAgICAgIG1lc29uX21tY19wb3N0
+X3JlcShtbWMsIG1ycSwgMCk7Cj4gIH0KPgo+ICBzdGF0aWMgdm9pZCBtZXNvbl9tbWNfcmVhZF9y
+ZXNwKHN0cnVjdCBtbWNfaG9zdCAqbW1jLCBzdHJ1Y3QgbW1jX2NvbW1hbmQgKmNtZCkKCgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpsaW51eC1hbWxvZ2lj
+IG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5vcmcKaHR0cDovL2xp
+c3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxvZ2ljCg==
