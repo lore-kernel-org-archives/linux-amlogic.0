@@ -1,98 +1,89 @@
-Return-Path: <SRS0=swgy=Y5=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=HwYM=Y6=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no
-	version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A0B17C1747C
-	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Nov 2019 13:39:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C175CC5DF62
+	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Nov 2019 10:45:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 4937021D6C
-	for <linux-amlogic@archiver.kernel.org>; Tue,  5 Nov 2019 13:39:22 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 92015217F5
+	for <linux-amlogic@archiver.kernel.org>; Wed,  6 Nov 2019 10:45:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="q8jFnvY6";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="gxr0AMfy"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4937021D6C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="n4VY85ss";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="0Djt5Com"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 92015217F5
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
-	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=4FYA513+vNER2wLNEM3pHiwErcMrVuk926hPnhlX4I8=; b=q8jFnvY63EaAVaSkWpaMPFX5PD
-	cdkKHQww1GSi3Gdrhsy07bsrNB1F9eASjs1lf7gTRhPOMQC6LYHK2magYxUxwh49Rlf0CU/QZZqlq
-	JYXNNbwWmoOYslO1aIfnXuoHGUzm0hvbBpGo/qtAwb/wZohsVulmgO+IK/tLEoPLfV1jZcfS84UbC
-	bLB0BxTys3FiLJoTKMcai48UyeyYpfitrrQx6Kc2g8C1/gaK3GUkdu0DkwsXRJRciDtZpEDXn2bHO
-	pQaOsy+1klz8K4l4okZuZTI1f3QWpdq30+tY52b7+bk1Ti+ItN+BL6nLC2iX6WqOk9tke/pgwpurF
-	iMpeVnAA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=0mwGpsA72X3MK7y0Px2BTzLLxEyBc/k759+rtm7qUlU=; b=n4VY85ss5uQAtU
+	e7deurM9xK7FLXYzS15U8HngIaakHumZ43Jx1J1WMrTohNP7QJhLo14xmSESsOyhNkU7lIosflVJ8
+	to/zksmDlQ9zi2iPcGXd3xdZNopEZ+wT8hdx9O2GMWQNueDD0+EBwtZE57lvnvN3WL+goXAi3Q+Bp
+	SWJl4KiT8E/aU7wciqFuRkqsjwgzpUHMpINvJ1TrnEBzVOJF12SBxg5o7rewt02Et2m2/90+Mqnbo
+	4Jd0JRT+GHM6GuPFfy9LZVAOz++exvWxglbMYXKKptyR3IJS073CI3wenoT1eMeq8bWFpteNhcrwe
+	lgHcLL5P2uQ+lnl6ZIeA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iRz3C-0002Yb-38; Tue, 05 Nov 2019 13:39:14 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1iSIoO-0002Xs-0P; Wed, 06 Nov 2019 10:45:16 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iRyuq-0002mE-IM
- for linux-amlogic@lists.infradead.org; Tue, 05 Nov 2019 13:30:39 +0000
-Received: by mail-wm1-x344.google.com with SMTP id 8so13123305wmo.0
- for <linux-amlogic@lists.infradead.org>; Tue, 05 Nov 2019 05:30:36 -0800 (PST)
+ id 1iSIoB-0001Dc-25
+ for linux-amlogic@lists.infradead.org; Wed, 06 Nov 2019 10:45:06 +0000
+Received: by mail-wr1-x444.google.com with SMTP id a15so25120351wrf.9
+ for <linux-amlogic@lists.infradead.org>; Wed, 06 Nov 2019 02:45:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=references:user-agent:from:to:cc:subject:in-reply-to:date
- :message-id:mime-version:content-transfer-encoding;
- bh=7bY4KphWSIiQfsBHhvP2l5N05pChZGN4x1skVb4keco=;
- b=gxr0AMfyg8FLU288ML4cbLVIRbmkjpN07ap2/D6WbJgkFQRNcX52D8AVY/3jh5W/91
- z5NUmfNUSHBixXXAso6ts4ep3eR1lr3lDLkvDUBG0Ztw5BAm8GYmJNVr2LE5dpMem3oS
- SkZM1SxUu7tbZJWf49j1044PMtpXeZ+V7aWzqYuU2U8KXCO2UTLXYPbxQBFyRhKWyANR
- 19zO8BwrCS4HlFOolJbs+HXtYy8dRf0TKC87iX1UETUeRydD1yhrjuBohyfEHdzoOgeb
- Qh/p27SpabPJ+vbQMjMtaSsmaIkCH878Fm3ojtfQyIBolibRi3UaaEuChTZl5IxGJbmM
- 8YmQ==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=ho0IuXnlLSu0S9dl4tyqWJ4wOPukxzFH+rPw8w9IP3U=;
+ b=0Djt5Com4Nw6nawSJY2BCWzsF4s4Xk8wxOoGPh18FDbcUJ4GQQiII9UXR5UWrhl9Ho
+ 1+hy5If3cGGw6wPamrAt2Ck9f3cdm537ILzhsx/nhU40El7Bti+8EM3DtzCwD0lcdJVq
+ FsOzwh1Lcgt8dIoSZ2KacYGB0OmM198fRKZq1pTGk9mqNz1pKhSmpGx/4skJR6qKeQH/
+ q6yJAgMA1lNxdvJ5c3cg8pzFOPAs5SAPbUukBlMw5+trLF5gSTdqtRrRu8ROe22nAZXh
+ 8yF6WN0msw88arX4YfEa+tQBnzkjmrmiQ2cIKVPbH6zBTa2Sz+d5UUDMWbYvrs4kVPHw
+ y1vQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:references:user-agent:from:to:cc:subject
- :in-reply-to:date:message-id:mime-version:content-transfer-encoding;
- bh=7bY4KphWSIiQfsBHhvP2l5N05pChZGN4x1skVb4keco=;
- b=Raa/gWCeEgqgHUt3z2NXkj17eRpRmO/YS5zJHLA5YPwWqARlm2lbQc8AEYEq44+R/S
- SmK6exCdKKCWzeoxoeWZIAgpITwGTNMVPSlfssQbwFI/28zgRG/SXfKuQjaAbyyOS+i3
- bALkQ2DLCnURdGBbLvwo5zjXaE//fDZEj+nauujLqyuzjEErCBIlllSxig8i6LdBgctS
- tq4YxYc5199JRuK2B370e4gif1XLJ2OEewjOXahYWzTXR7E1c83RUmJT911kMHoFdBoH
- LXmrXJ88GIPA8yy1LEG2DPmKOxtqknS9TVHRcc34FxJr079G9QW6UxF6Dd1pWsjxy5uB
- mBCw==
-X-Gm-Message-State: APjAAAW1KmyHVwX3iw3RDRT1GPsLqXothGUQVPZygH7b+wli5FipaxH+
- mxWEXaUtA3+KdgqnTF70bsRE1w==
-X-Google-Smtp-Source: APXvYqwiK8qiVvqMWU1Nuzw13cCoMSODLVCQe3/syYFV/mdZArg/Y4Tmn3AV+FE1y+VvW+sTJd0F/Q==
-X-Received: by 2002:a1c:62c5:: with SMTP id w188mr2302432wmb.77.1572960634860; 
- Tue, 05 Nov 2019 05:30:34 -0800 (PST)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
- [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id m9sm21158502wro.66.2019.11.05.05.30.33
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=ho0IuXnlLSu0S9dl4tyqWJ4wOPukxzFH+rPw8w9IP3U=;
+ b=NaYkfCqFiy58CSP7JLeZRXDg/uZvO9K1PSCIn3Q6wuwwLCFPSQQ69GO2+CQF2eV4Hg
+ PezqV1mlVkgExd4d8H79xxIta4mGe4t9KAF4/QzHjJqtoffefbzvCIqbdb5HyoHsAZwn
+ ggWlhlTILrIdIsvdmjjeVWu26+AOoySw3zIhexTzaAwC3U2OupIYyPNu9CGZAZfl4Wzj
+ KIRQRore6Eplmbpa5rEb5zCSwI1i3TBBCMUpEI2lqEL+KweRYv0kkTfow9KPrEPJAmOk
+ A45nZ8gmuw64qYrsOev4sB4r7jebT5tolQXtbYlZjn6qlOhepZ7QfB2FQN0N6Pl6U3a7
+ V3RQ==
+X-Gm-Message-State: APjAAAU58w+m6t4iuDx675Jc0CD4qGJu7057502riXsAooBEXHkhXkWG
+ 3lRUYxg9GV7qA+o1KL5+jLQ7dA==
+X-Google-Smtp-Source: APXvYqxmFcDntelzvf5oc2kIZGTaA8RcxUIN9ppLG7GpMdMZTeYZT5cyAcYce2korwDEVDossgvHyA==
+X-Received: by 2002:adf:fe90:: with SMTP id l16mr1948950wrr.81.1573037100615; 
+ Wed, 06 Nov 2019 02:45:00 -0800 (PST)
+Received: from bender.baylibre.local
+ (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id u187sm2483023wme.15.2019.11.06.02.44.59
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 05 Nov 2019 05:30:33 -0800 (PST)
-References: <1572868495-84816-1-git-send-email-jianxin.pan@amlogic.com>
- <1ja79b4mje.fsf@starbuckisacylon.baylibre.com>
- <e80cb817-e58a-68ce-a3c6-d82636aaf7d3@amlogic.com>
- <1j8sou4u1g.fsf@starbuckisacylon.baylibre.com>
- <7ec2e682-cfec-395e-cf38-58f050440c40@amlogic.com>
- <1j7e4e4sab.fsf@starbuckisacylon.baylibre.com>
- <dee789ae-6825-3f4c-16e7-227e064562d6@amlogic.com>
-User-agent: mu4e 1.3.3; emacs 26.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Nan Li <Nan.Li@amlogic.com>, Jianxin Pan <Jianxin.Pan@amlogic.com>,
- Ulf Hansson <ulf.hansson@linaro.org>, Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [PATCH v2] mmc: meson-gx: fix mmc dma operation
-In-reply-to: <dee789ae-6825-3f4c-16e7-227e064562d6@amlogic.com>
-Date: Tue, 05 Nov 2019 14:30:32 +0100
-Message-ID: <1j5zjy4fif.fsf@starbuckisacylon.baylibre.com>
+ Wed, 06 Nov 2019 02:45:00 -0800 (PST)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: robh+dt@kernel.org
+Subject: [PATCH v2] dt-bindings: usb: dwc3: Move Amlogic G12A DWC3 Glue
+ Bindings to YAML schemas
+Date: Wed,  6 Nov 2019 11:44:58 +0100
+Message-Id: <20191106104458.23698-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191105_053036_689763_66677B93 
-X-CRM114-Status: GOOD (  30.41  )
+X-CRM114-CacheID: sfid-20191106_024503_136848_B7945119 
+X-CRM114-Status: GOOD (  16.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,154 +95,266 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
- "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Victor Wan <victor.wan@amlogic.com>, Neil Armstrong <narmstrong@baylibre.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: devicetree@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Ck9uIFR1ZSAwNSBOb3YgMjAxOSBhdCAxMDowNSwgTmFuIExpIDxOYW4uTGlAYW1sb2dpYy5jb20+
-IHdyb3RlOgoKTmFuIExpLCBwbGVhc2UgZml4IHlvdXIgbWFpbGVyIHRvIHVzZSBwbGFpbiB0ZXh0
-IHByb3Blcmx5LCB5b3VyIHJlcGx5CmFyZSBuZWFyIGltcG9zc2libGUgdG8gcmVhZAoKPiDlnKgg
-MjAxOS8xMS81IDE2OjU0LCBKZXJvbWUgQnJ1bmV0IOWGmemBkzoKPgo+Cj4gT24gVHVlIDA1IE5v
-diAyMDE5IGF0IDA5OjMwLCBOYW4gTGkgPE5hbi5MaUBhbWxvZ2ljLmNvbT48bWFpbHRvOk5hbi5M
-aUBhbWxvZ2ljLmNvbT4gd3JvdGU6Cj4KPgo+Cj4KPgo+IEJhc2VkIG9uIFVmZmUgY29tbWVudCBJ
-IHRyaWVkIHNvbWV0aGluZyBlbHNlLgo+Cj4gQmFzaWNhbGx5LCBpdCBlbmFibGVzIGNoYWluZWQg
-bW9kZSBpbiB0aGUgZHJpdmVyIG9ubHkgd2hlbiB0aGUgZnJhbWV3b3JrCj4gY2FsbHMgcHJlL3Bv
-c3RfcmVxIGNhbGxiYWNrLiBBcyBmYXIgYXMgdW5kZXJzdG9vZCwgdGhlIGZyYW1ld29yayBjYWxs
-cwo+IHRoaXMgd2hlbiB0aGVyZSBpcyBtb3JlIHRoYW4gb25lIHJlcXVlc3QgcGVuZGluZyAuLi4g
-d2hpY2ggc2VlbXMgdG8gYmUKPiB3aGVuIGNoYWluZWQgbW9kZSBhY3R1YWxseSBtYWtlIHNlbnNl
-Cj4KPiBKZXJvbWUsIHdoYXQgeW91IGFyZSB0YWxraW5nIGFib3V0IGlzIHRoZSBzeXN0ZW0gZnJh
-bWV3b3JrIHByb2JsZW0gd2hlbiB5b3UgY2FsbCBwcmUvcG9zdF9yZXEsCj4KPiB3aGljaCBpcyBu
-b3QgcmVsYXRlZCB0byB0aGUgcGF0Y2ggSSBzdWJtaXR0ZWQuCj4KPgo+Cj4gSSBzdHJvbmdseSBk
-aXNhZ3JlZS4KPiBBcyBmYXIgYXMgSSB1bmRlcnN0YW5kIGZyb20geW91ciBkZXNjcmlwdGlvbiwg
-dGhlIHByb2JsZW0gd2FzIHdpdGggdGhlCj4gbGlmZSBjeWNsZSBvZiB0aGUgZG1hIG1hcHBpbmcu
-IFRoaXMgaXMgdGlnaGx5IHJlbGF0ZWQgd2l0aCBwcmUvcG9zdCByZXEuCj4gSnVzdCB0aGUgdmFy
-aWFibGUgbmFtZXMgeW91IGhhdmUgcGlja2VkIGNsZWFybHkgc2hvdyB0aGF0Lgo+Cj4KPgo+IEFz
-IHlvdSBzYWlkLCBwcmUvcG9zdF9yZXEgaXMgY2FsbGVkIG9ubHkgd2hlbiB0aGVyZSBpcyBkYXRh
-IHRvIGltcGxlbWVudCB0aGUgY2hhaW5lZCBtb2RlLAo+Cj4gYnV0IGl0IGlzIGFsc28gcG9zc2li
-bGUgdG8gY2F1c2UgbWVtb3J5IGNvbnNpc3RlbmN5IHByb2JsZW1zLAo+IHJlc3VsdGluZyBpbiBp
-bmNvcnJlY3QgZGF0YS4KPgo+Cj4KPiBUaGUgbGlmZSBjeWNsZSBvZiB0aGUgbWFwcGluZyBpcyBh
-bHNvIHRha2VuIGNhcmUgb2Ygd2l0aCBwYXRjaCwKPiBzaW5jZSBkbWEgbWFwcGluZyBpcyBubyBs
-b25nZXIgaGFuZGxlZCBpbiAucmVxdWVzdCgpLiBJT1cgdGhlIG1hcHBpbmcsCj4gaWYgYW55LCB3
-aWxsIGJlIHJlbGVhc2VkIGFmdGVyIHRoZSByZXF1ZXN0IGlzIGRvbmUgdXNpbmcgLnBvc3RfcmVx
-KCkKPgo+IElmIHlvdSB0aGluayBvdGhlcndpc2UsIHBsZWFzZSBlbGFib3JhdGUuCj4KPgo+IEkg
-c2VlIHdoYXQgeW91IG1lYW4uIFlvdSB3YW50IHRvIHB1bGwgdGhlIHByZS9wb3N0X3JlcSBvcGVy
-YXRpb24gb3V0IG9mIHRoZSByZXF1ZXN0IGludGVyZmFjZSBhbmQgaW52b2tlIGl0IGF0IHRoZSB0
-b3AuCj4KPiBJIGRpZG4ndCBub3RpY2UgdGhlIGZvbGxvd2luZyBtb2RpZmljYXRpb24gb2YgcGF0
-Y2ggaW4geW91ciBsYXN0IGVtYWlsIGFuZCByZXBseSBpbiB0aW1lLiBJJ20gcmVhbGx5IHNvcnJ5
-Lgo+Cj4gVGhlIGZvbGxvd2luZyBwYXRjaCByZW1vdmVzIGFsbCBwcmUvcG9zdF9yZXEgb3BlcmF0
-aW9ucywKPgo+Cj4KPiBObyBpdCBkb2VzIG5vdC4gQ2FsbGJhY2tzIGFyZSBzdGlsbCBwcm92aWRl
-ZCB0byB0aGUgTU1DIGZyYW1ld29yay4KPgo+Cj4KPiBidXQgeW91IGRvIG5vdCBzZW5kIG91dCB0
-aGUgb3BlcmF0aW9uIHBhdGNoIGFkZGVkIHRvIHRoZSB1cHBlciBsYXllcgo+IHRvZ2V0aGVyLgo+
-Cj4KPgo+IFRoZXJlIGlzIG5vIG1vZGlmaWNhdGlvbiBuZWVkZWQgaW4gdGhlIHVwcGVyIGxheWVy
-Cj4KPgo+Cj4KPiBUaGVuIHRoZSBwYXRjaCBpcyBpbmNvbXBsZXRlLCB3aGljaCB3aWxsIGFmZmVj
-dCB0aGUgZG1hIGRhdGEgdHJhbnNmZXIgZnVuY3Rpb24gaW4gc3RhcnRfY21kIGZ1bmN0aW9uIGFu
-ZCBhZmZlY3QgdGhlIG11bHRpLWJsb2NrIHdyaXRlIG9wZXJhdGlvbi4KPgo+Cj4KPgo+IE5vIGl0
-IGlzIG5vdCBpbmNvbXBsZXRlLiBwcmUgYW5kIHBvc3QgcmVxdWVzdCBhcmUgY29ycmVjdGx5IGNh
-bGxlZC4gWW91Cj4gY2FuIGNoZWNrIHRoYXQgd2l0aCBmdHJhY2UgaWYgeW91IHdhbnQuCj4KPiBN
-YXliZSB5b3UgY291bGQgdHJ5IGl0ID8KPgo+Cj4gSSdtIHNvcnJ5LCBJIGRpZG4ndCBjYXRjaCB5
-b3VyIG1lYW5pbmcuSG93IGRvIEkgdXNlIHByZS9wb3N0X3JlcQo+IHByb3Blcmx5PwoKVGhvc2Ug
-Y2FsbGJhY2tzIGFyZSBwcm92aWRlZCB0byB0aGUgZnJhbWV3b3JrIGFzIHdlbGwuIElmIHlvdSBo
-YXZlCnRyb3VibGUgZm9sbG93aW5nLCBwbGVhc2UgYXBwbHkgdGhlIHBhdGNoIGFuZCBsb29rIGF0
-IHRoZSBkcml2ZXIKCkhhdmUgYSBsb29rIGF0ICJtZXNvbl9tbWNfb3BzIgoKPgo+IERvIHlvdSBt
-ZWFuIEkgbmVlZCB0byBhZGQgYSBjYWxsIHRvIHByZS9wb3N0X3JlcSBvbiB0b3Agb2YgdGhlIGNo
-YW5nZXMKPiB5b3UgcHJvdmlkZWQgYmVsb3c/CgpObywgeW91IHNob3VsZCBub3QKCj4KPiBJZiBu
-b3QsIHlvdXIgY2hhbmdlcyBoYXZlIGRlbGV0ZWQgYWxsIHByZS9wb3N0X3JlcSBjYWxscy4KCk5v
-LCBpdCBkb2VzIG5vdC4gSXQgcmVsaWVzIG9uIHRoZSBmcmFtZXdvcmsgdG8gYWN0aXZhdGUgdGhl
-IGNoYWluZWQgbW9kZQpvciBub3QuIEFnYWluLCBpZiB5b3UgaGF2ZSB0cm91YmxlIGZvbGxvd2lu
-ZyB5b3UgY2FuIHRyeSB0byBlbmFibGUKZnRyYWNlIGFuZCB0cmFjZSB0aGUgbW1jIGZ1bmN0aW9u
-cy4KCj4KPgo+Cj4KPiBQbGVhc2Ugc2VuZCB5b3VyIGNvbXBsZXRlIHBhdGNoLCBpbmNsdWRpbmcg
-Y29yZSBsYXllciBtb2RpZmljYXRpb24sCj4gdGhhbmsgeW91Lgo+Cj4KPgo+Cj4KPiBUaGVyZWZv
-cmUsIHRoaXMgcGF0Y2ggaXMgYWRkZWQgdG8gbWFrZSBtZW1vcnkgY29uc2lzdGVudCBhbmQgb2J0
-YWluIHJlYWwgZWZmZWN0aXZlIGluZm9ybWF0aW9uLgo+Cj4KPgo+IC0tLS04PC0tLS0tCj4gZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvbW1jL2hvc3QvbWVzb24tZ3gtbW1jLmMgYi9kcml2ZXJzL21tYy9o
-b3N0L21lc29uLWd4LW1tYy5jCj4gaW5kZXggZTcxMjMxNWM3ZThkLi4zOTk2MDRiNDEyNGQgMTAw
-NjQ0Cj4gLS0tIGEvZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1neC1tbWMuYwo+ICsrKyBiL2RyaXZl
-cnMvbW1jL2hvc3QvbWVzb24tZ3gtbW1jLmMKPiBAQCAtMTI2LDggKzEyNiw3IEBACj4gICNkZWZp
-bmUgU0RfRU1NQ19DRkdfQ01EX0dBUCAxNiAvKiBpbiBjbG9jayBjeWNsZXMgKi8KPiAgI2RlZmlu
-ZSBTRF9FTU1DX0RFU0NfQlVGX0xFTiBQQUdFX1NJWkUKPgo+IC0jZGVmaW5lIFNEX0VNTUNfUFJF
-X1JFUV9ET05FIEJJVCgwKQo+IC0jZGVmaW5lIFNEX0VNTUNfREVTQ19DSEFJTl9NT0RFIEJJVCgx
-KQo+ICsjZGVmaW5lIFNEX0VNTUNfREVTQ19DSEFJTl9NT0RFIEJJVCgwKQo+Cj4gICNkZWZpbmUg
-TVVYX0NMS19OVU1fUEFSRU5UUyAyCj4KPiBAQCAtMjI4LDcgKzIyNyw2IEBAIHN0YXRpYyB2b2lk
-IG1lc29uX21tY19nZXRfdHJhbnNmZXJfbW9kZShzdHJ1Y3QgbW1jX2hvc3QgKm1tYywKPiAgICAg
-ICAgIHN0cnVjdCBtbWNfZGF0YSAqZGF0YSA9IG1ycS0+ZGF0YTsKPiAgICAgICAgIHN0cnVjdCBz
-Y2F0dGVybGlzdCAqc2c7Cj4gICAgICAgICBpbnQgaTsKPiAtICAgICAgIGJvb2wgdXNlX2Rlc2Nf
-Y2hhaW5fbW9kZSA9IHRydWU7Cj4KPiAgICAgICAgIC8qCj4gICAgICAgICAgKiBXaGVuIENvbnRy
-b2xsZXIgRE1BIGNhbm5vdCBkaXJlY3RseSBhY2Nlc3MgRERSIG1lbW9yeSwgZGlzYWJsZQo+IEBA
-IC0yNTEsMTIgKzI0OSwxMSBAQCBzdGF0aWMgdm9pZCBtZXNvbl9tbWNfZ2V0X3RyYW5zZmVyX21v
-ZGUoc3RydWN0IG1tY19ob3N0ICptbWMsCj4gICAgICAgICAgICAgICAgIC8qIGNoZWNrIGZvciA4
-IGJ5dGUgYWxpZ25tZW50ICovCj4gICAgICAgICAgICAgICAgIGlmIChzZy0+b2Zmc2V0ICYgNykg
-ewo+ICAgICAgICAgICAgICAgICAgICAgICAgIFdBUk5fT05DRSgxLCAidW5hbGlnbmVkIHNjYXR0
-ZXJsaXN0IGJ1ZmZlclxuIik7Cj4gLSAgICAgICAgICAgICAgICAgICAgICAgdXNlX2Rlc2NfY2hh
-aW5fbW9kZSA9IGZhbHNlOwo+IC0gICAgICAgICAgICAgICAgICAgICAgIGJyZWFrOwo+ICsgICAg
-ICAgICAgICAgICAgICAgICAgIHJldHVybjsKPiAgICAgICAgICAgICAgICAgfQo+Cj4gLSAgICAg
-ICBpZiAodXNlX2Rlc2NfY2hhaW5fbW9kZSkKPiAtICAgICAgICAgICAgICAgZGF0YS0+aG9zdF9j
-b29raWUgfD0gU0RfRU1NQ19ERVNDX0NIQUlOX01PREU7Cj4gKyAgICAgICAvKiBUaGUgcGxhbmV0
-cyBhcmUgYWxpZ25lZCwgbGV0J3MgY2hhaW4gdGhlbSB1cCAqLwo+ICsgICAgICAgZGF0YS0+aG9z
-dF9jb29raWUgfD0gU0RfRU1NQ19ERVNDX0NIQUlOX01PREU7Cj4gIH0KPgo+ICBzdGF0aWMgaW5s
-aW5lIGJvb2wgbWVzb25fbW1jX2Rlc2NfY2hhaW5fbW9kZShjb25zdCBzdHJ1Y3QgbW1jX2RhdGEg
-KmRhdGEpCj4gQEAgLTI3OCw3ICsyNzUsNiBAQCBzdGF0aWMgdm9pZCBtZXNvbl9tbWNfcHJlX3Jl
-cShzdHJ1Y3QgbW1jX2hvc3QgKm1tYywgc3RydWN0IG1tY19yZXF1ZXN0ICptcnEpCj4gICAgICAg
-ICAgICAgICAgIHJldHVybjsKPgo+ICAgICAgICAgbWVzb25fbW1jX2dldF90cmFuc2Zlcl9tb2Rl
-KG1tYywgbXJxKTsKPiAtICAgICAgIGRhdGEtPmhvc3RfY29va2llIHw9IFNEX0VNTUNfUFJFX1JF
-UV9ET05FOwo+Cj4gICAgICAgICBpZiAoIW1lc29uX21tY19kZXNjX2NoYWluX21vZGUoZGF0YSkp
-Cj4gICAgICAgICAgICAgICAgIHJldHVybjsKPiBAQCAtODAzLDI1ICs3OTksMTEgQEAgc3RhdGlj
-IHZvaWQgbWVzb25fbW1jX3N0YXJ0X2NtZChzdHJ1Y3QgbW1jX2hvc3QgKm1tYywgc3RydWN0IG1t
-Y19jb21tYW5kICpjbWQpCj4gIHN0YXRpYyB2b2lkIG1lc29uX21tY19yZXF1ZXN0KHN0cnVjdCBt
-bWNfaG9zdCAqbW1jLCBzdHJ1Y3QgbW1jX3JlcXVlc3QgKm1ycSkKPiAgewo+ICAgICAgICAgc3Ry
-dWN0IG1lc29uX2hvc3QgKmhvc3QgPSBtbWNfcHJpdihtbWMpOwo+IC0gICAgICAgYm9vbCBuZWVk
-c19wcmVfcG9zdF9yZXEgPSBtcnEtPmRhdGEgJiYKPiAtICAgICAgICAgICAgICAgICAgICAgICAh
-KG1ycS0+ZGF0YS0+aG9zdF9jb29raWUgJiBTRF9FTU1DX1BSRV9SRVFfRE9ORSk7Cj4gLQo+IC0g
-ICAgICAgaWYgKG5lZWRzX3ByZV9wb3N0X3JlcSkgewo+IC0gICAgICAgICAgICAgICBtZXNvbl9t
-bWNfZ2V0X3RyYW5zZmVyX21vZGUobW1jLCBtcnEpOwo+IC0gICAgICAgICAgICAgICBpZiAoIW1l
-c29uX21tY19kZXNjX2NoYWluX21vZGUobXJxLT5kYXRhKSkKPiAtICAgICAgICAgICAgICAgICAg
-ICAgICBuZWVkc19wcmVfcG9zdF9yZXEgPSBmYWxzZTsKPiAtICAgICAgIH0KPiAtCj4gLSAgICAg
-ICBpZiAobmVlZHNfcHJlX3Bvc3RfcmVxKQo+IC0gICAgICAgICAgICAgICBtZXNvbl9tbWNfcHJl
-X3JlcShtbWMsIG1ycSk7Cj4KPiAgICAgICAgIC8qIFN0b3AgZXhlY3V0aW9uICovCj4gICAgICAg
-ICB3cml0ZWwoMCwgaG9zdC0+cmVncyArIFNEX0VNTUNfU1RBUlQpOwo+Cj4gICAgICAgICBtZXNv
-bl9tbWNfc3RhcnRfY21kKG1tYywgbXJxLT5zYmMgPzogbXJxLT5jbWQpOwo+IC0KPiAtICAgICAg
-IGlmIChuZWVkc19wcmVfcG9zdF9yZXEpCj4gLSAgICAgICAgICAgICAgIG1lc29uX21tY19wb3N0
-X3JlcShtbWMsIG1ycSwgMCk7Cj4gIH0KPgo+ICBzdGF0aWMgdm9pZCBtZXNvbl9tbWNfcmVhZF9y
-ZXNwKHN0cnVjdCBtbWNfaG9zdCAqbW1jLCBzdHJ1Y3QgbW1jX2NvbW1hbmQgKmNtZCkKPiAtLS0t
-PjgtLS0tLQo+Cj4gTm8gcGVyZm9ybWFuY2UgaGl0IEFGQUlDVC4KPiBGcm9tIHlvdXIgZGVzY3Jp
-cHRpb24sIGl0IHNob3VsZCBhZGRyZXNzIHlvdXIgcHJvYmxlbSB0b28uCj4KPgo+Cj4KPiBkaWZm
-IC0tZ2l0IGEvZHJpdmVycy9tbWMvaG9zdC9tZXNvbi1neC1tbWMuYyBiL2RyaXZlcnMvbW1jL2hv
-c3QvbWVzb24tZ3gtbW1jLmMKPiBpbmRleCBlNzEyMzE1Li43NjY3ZThhIDEwMDY0NAo+IC0tLSBh
-L2RyaXZlcnMvbW1jL2hvc3QvbWVzb24tZ3gtbW1jLmMKPiArKysgYi9kcml2ZXJzL21tYy9ob3N0
-L21lc29uLWd4LW1tYy5jCj4gQEAgLTE3Myw2ICsxNzMsNyBAQCBzdHJ1Y3QgbWVzb25faG9zdCB7
-Cj4gICAgICAgICBpbnQgaXJxOwo+Cj4gICAgICAgICBib29sIHZxbW1jX2VuYWJsZWQ7Cj4gKyAg
-ICAgICBib29sIG5lZWRzX3ByZV9wb3N0X3JlcTsKPiAgfTsKPgo+ICAjZGVmaW5lIENNRF9DRkdf
-TEVOR1RIX01BU0sgR0VOTUFTSyg4LCAwKQo+IEBAIC02NTQsNiArNjU1LDggQEAgc3RhdGljIHZv
-aWQgbWVzb25fbW1jX3JlcXVlc3RfZG9uZShzdHJ1Y3QgbW1jX2hvc3QgKm1tYywKPiAgICAgICAg
-IHN0cnVjdCBtZXNvbl9ob3N0ICpob3N0ID0gbW1jX3ByaXYobW1jKTsKPgo+ICAgICAgICAgaG9z
-dC0+Y21kID0gTlVMTDsKPiArICAgICAgIGlmIChob3N0LT5uZWVkc19wcmVfcG9zdF9yZXEpCj4g
-KyAgICAgICAgICAgICAgIG1lc29uX21tY19wb3N0X3JlcShtbWMsIG1ycSwgMCk7Cj4gICAgICAg
-ICBtbWNfcmVxdWVzdF9kb25lKGhvc3QtPm1tYywgbXJxKTsKPiAgfQo+Cj4gQEAgLTgwMywyNSAr
-ODA2LDIzIEBAIHN0YXRpYyB2b2lkIG1lc29uX21tY19zdGFydF9jbWQoc3RydWN0IG1tY19ob3N0
-ICptbWMsIHN0cnVjdCBtbWNfY29tbWFuZCAqY21kKQo+ICBzdGF0aWMgdm9pZCBtZXNvbl9tbWNf
-cmVxdWVzdChzdHJ1Y3QgbW1jX2hvc3QgKm1tYywgc3RydWN0IG1tY19yZXF1ZXN0ICptcnEpCj4g
-IHsKPiAgICAgICAgIHN0cnVjdCBtZXNvbl9ob3N0ICpob3N0ID0gbW1jX3ByaXYobW1jKTsKPiAt
-ICAgICAgIGJvb2wgbmVlZHNfcHJlX3Bvc3RfcmVxID0gbXJxLT5kYXRhICYmCj4gKwo+ICsgICAg
-ICAgaG9zdC0+bmVlZHNfcHJlX3Bvc3RfcmVxID0gbXJxLT5kYXRhICYmCj4gICAgICAgICAgICAg
-ICAgICAgICAgICAgIShtcnEtPmRhdGEtPmhvc3RfY29va2llICYgU0RfRU1NQ19QUkVfUkVRX0RP
-TkUpOwo+Cj4gLSAgICAgICBpZiAobmVlZHNfcHJlX3Bvc3RfcmVxKSB7Cj4gKyAgICAgICBpZiAo
-aG9zdC0+bmVlZHNfcHJlX3Bvc3RfcmVxKSB7Cj4gICAgICAgICAgICAgICAgIG1lc29uX21tY19n
-ZXRfdHJhbnNmZXJfbW9kZShtbWMsIG1ycSk7Cj4gICAgICAgICAgICAgICAgIGlmICghbWVzb25f
-bW1jX2Rlc2NfY2hhaW5fbW9kZShtcnEtPmRhdGEpKQo+IC0gICAgICAgICAgICAgICAgICAgICAg
-IG5lZWRzX3ByZV9wb3N0X3JlcSA9IGZhbHNlOwo+ICsgICAgICAgICAgICAgICAgICAgICAgIGhv
-c3QtPm5lZWRzX3ByZV9wb3N0X3JlcSA9IGZhbHNlOwo+ICAgICAgICAgfQo+Cj4gLSAgICAgICBp
-ZiAobmVlZHNfcHJlX3Bvc3RfcmVxKQo+ICsgICAgICAgaWYgKGhvc3QtPm5lZWRzX3ByZV9wb3N0
-X3JlcSkKPiAgICAgICAgICAgICAgICAgbWVzb25fbW1jX3ByZV9yZXEobW1jLCBtcnEpOwo+Cj4g
-ICAgICAgICAvKiBTdG9wIGV4ZWN1dGlvbiAqLwo+ICAgICAgICAgd3JpdGVsKDAsIGhvc3QtPnJl
-Z3MgKyBTRF9FTU1DX1NUQVJUKTsKPgo+ICAgICAgICAgbWVzb25fbW1jX3N0YXJ0X2NtZChtbWMs
-IG1ycS0+c2JjID86IG1ycS0+Y21kKTsKPiAtCj4gLSAgICAgICBpZiAobmVlZHNfcHJlX3Bvc3Rf
-cmVxKQo+IC0gICAgICAgICAgICAgICBtZXNvbl9tbWNfcG9zdF9yZXEobW1jLCBtcnEsIDApOwo+
-ICB9Cj4KPiAgc3RhdGljIHZvaWQgbWVzb25fbW1jX3JlYWRfcmVzcChzdHJ1Y3QgbW1jX2hvc3Qg
-Km1tYywgc3RydWN0IG1tY19jb21tYW5kICpjbWQpCgoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QKbGludXgt
-YW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21h
-aWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+Now that we have the DT validation in place, let's convert the device tree
+bindings for the Amlogic G12A DWC3 Glue Bindings over to a YAML schemas,
+the AXG and GXL glue bindings will be converted later.
+
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+Changes since v1:
+- fixed typo in description
+- removed dr-mode definition in favor of "true"
+
+ .../devicetree/bindings/usb/amlogic,dwc3.txt  |  88 ------------
+ .../usb/amlogic,meson-g12a-usb-ctrl.yaml      | 128 ++++++++++++++++++
+ 2 files changed, 128 insertions(+), 88 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+
+diff --git a/Documentation/devicetree/bindings/usb/amlogic,dwc3.txt b/Documentation/devicetree/bindings/usb/amlogic,dwc3.txt
+index b9f04e617eb7..9a8b631904fd 100644
+--- a/Documentation/devicetree/bindings/usb/amlogic,dwc3.txt
++++ b/Documentation/devicetree/bindings/usb/amlogic,dwc3.txt
+@@ -40,91 +40,3 @@ Example device nodes:
+ 				phy-names = "usb2-phy", "usb3-phy";
+ 			};
+ 		};
+-
+-Amlogic Meson G12A DWC3 USB SoC Controller Glue
+-
+-The Amlogic G12A embeds a DWC3 USB IP Core configured for USB2 and USB3
+-in host-only mode, and a DWC2 IP Core configured for USB2 peripheral mode
+-only.
+-
+-A glue connects the DWC3 core to USB2 PHYs and optionnaly to an USB3 PHY.
+-
+-One of the USB2 PHY can be re-routed in peripheral mode to a DWC2 USB IP.
+-
+-The DWC3 Glue controls the PHY routing and power, an interrupt line is
+-connected to the Glue to serve as OTG ID change detection.
+-
+-Required properties:
+-- compatible:	Should be "amlogic,meson-g12a-usb-ctrl"
+-- clocks:	a handle for the "USB" clock
+-- resets:	a handle for the shared "USB" reset line
+-- reg:		The base address and length of the registers
+-- interrupts:	the interrupt specifier for the OTG detection
+-- phys: 	handle to used PHYs on the system
+-	- a <0> phandle can be used if a PHY is not used
+-- phy-names:	names of the used PHYs on the system :
+-	- "usb2-phy0" for USB2 PHY0 if USBHOST_A port is used
+-	- "usb2-phy1" for USB2 PHY1 if USBOTG_B port is used
+-	- "usb3-phy0" for USB3 PHY if USB3_0 is used
+-- dr_mode:	should be "host", "peripheral", or "otg" depending on
+-	the usage and configuration of the OTG Capable port.
+-	- "host" and "peripheral" means a fixed Host or Device only connection
+-	- "otg" means the port can be used as both Host or Device and
+-	  be switched automatically using the OTG ID pin.
+-
+-Optional properties:
+-- vbus-supply:	should be a phandle to the regulator controlling the VBUS
+-		power supply when used in OTG switchable mode
+-
+-Required child nodes:
+-
+-A child node must exist to represent the core DWC3 IP block. The name of
+-the node is not important. The content of the node is defined in dwc3.txt.
+-
+-A child node must exist to represent the core DWC2 IP block. The name of
+-the node is not important. The content of the node is defined in dwc2.txt.
+-
+-PHY documentation is provided in the following places:
+-- Documentation/devicetree/bindings/phy/meson-g12a-usb2-phy.txt
+-- Documentation/devicetree/bindings/phy/meson-g12a-usb3-pcie-phy.txt
+-
+-Example device nodes:
+-	usb: usb@ffe09000 {
+-			compatible = "amlogic,meson-g12a-usb-ctrl";
+-			reg = <0x0 0xffe09000 0x0 0xa0>;
+-			interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+-			#address-cells = <2>;
+-			#size-cells = <2>;
+-			ranges;
+-
+-			clocks = <&clkc CLKID_USB>;
+-			resets = <&reset RESET_USB>;
+-
+-			dr_mode = "otg";
+-
+-			phys = <&usb2_phy0>, <&usb2_phy1>,
+-			       <&usb3_pcie_phy PHY_TYPE_USB3>;
+-			phy-names = "usb2-phy0", "usb2-phy1", "usb3-phy0";
+-
+-			dwc2: usb@ff400000 {
+-				compatible = "amlogic,meson-g12a-usb", "snps,dwc2";
+-				reg = <0x0 0xff400000 0x0 0x40000>;
+-				interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+-				clocks = <&clkc CLKID_USB1_DDR_BRIDGE>;
+-				clock-names = "ddr";
+-				phys = <&usb2_phy1>;
+-				dr_mode = "peripheral";
+-				g-rx-fifo-size = <192>;
+-				g-np-tx-fifo-size = <128>;
+-				g-tx-fifo-size = <128 128 16 16 16>;
+-			};
+-
+-			dwc3: usb@ff500000 {
+-				compatible = "snps,dwc3";
+-				reg = <0x0 0xff500000 0x0 0x100000>;
+-				interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
+-				dr_mode = "host";
+-				snps,dis_u2_susphy_quirk;
+-				snps,quirk-frame-length-adjustment;
+-			};
+-	};
+diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+new file mode 100644
+index 000000000000..2b2dae2e6b7f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+@@ -0,0 +1,128 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2019 BayLibre, SAS
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/usb/amlogic,meson-g12a-usb-ctrl.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Amlogic Meson G12A DWC3 USB SoC Controller Glue
++
++maintainers:
++  - Neil Armstrong <narmstrong@baylibre.com>
++
++description: |
++  The Amlogic G12A embeds a DWC3 USB IP Core configured for USB2 and USB3
++  in host-only mode, and a DWC2 IP Core configured for USB2 peripheral mode
++  only.
++
++  A glue connects the DWC3 core to USB2 PHYs and optionally to an USB3 PHY.
++
++  One of the USB2 PHYs can be re-routed in peripheral mode to a DWC2 USB IP.
++
++  The DWC3 Glue controls the PHY routing and power, an interrupt line is
++  connected to the Glue to serve as OTG ID change detection.
++
++properties:
++  compatible:
++    enum:
++      - amlogic,meson-g12a-usb-ctrl
++
++  ranges: true
++
++  "#address-cells":
++    enum: [ 1, 2 ]
++
++  "#size-cells":
++    enum: [ 1, 2 ]
++
++  clocks:
++    minItems: 1
++
++  resets:
++    minItems: 1
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  phy-names:
++    items:
++      - const: usb2-phy0 # USB2 PHY0 if USBHOST_A port is used
++      - const: usb2-phy1 # USB2 PHY1 if USBOTG_B port is used
++      - const: usb3-phy0 # USB3 PHY if USB3_0 is used
++
++  phys:
++    minItems: 1
++    maxItems: 3
++
++  dr_mode: true
++
++  power-domains:
++    maxItems: 1
++
++  vbus-supply:
++    description: VBUS power supply when used in OTG switchable mode
++    maxItems: 1
++
++patternProperties:
++  "^usb@[0-9a-f]+$":
++    type: object
++
++additionalProperties: false
++
++required:
++  - compatible
++  - "#address-cells"
++  - "#size-cells"
++  - ranges
++  - clocks
++  - resets
++  - reg
++  - interrupts
++  - phy-names
++  - phys
++  - dr_mode
++
++examples:
++  - |
++    usb: usb@ffe09000 {
++          compatible = "amlogic,meson-g12a-usb-ctrl";
++          reg = <0x0 0xffe09000 0x0 0xa0>;
++          interrupts = <16>;
++          #address-cells = <1>;
++          #size-cells = <1>;
++          ranges;
++
++          clocks = <&clkc_usb>;
++          resets = <&reset_usb>;
++
++          dr_mode = "otg";
++
++          phys = <&usb2_phy0>, <&usb2_phy1>, <&usb3_phy0>;
++          phy-names = "usb2-phy0", "usb2-phy1", "usb3-phy0";
++
++          dwc2: usb@ff400000 {
++              compatible = "amlogic,meson-g12a-usb", "snps,dwc2";
++              reg = <0xff400000 0x40000>;
++              interrupts = <31>;
++              clocks = <&clkc_usb1>;
++              clock-names = "ddr";
++              phys = <&usb2_phy1>;
++              dr_mode = "peripheral";
++              g-rx-fifo-size = <192>;
++              g-np-tx-fifo-size = <128>;
++              g-tx-fifo-size = <128 128 16 16 16>;
++          };
++
++          dwc3: usb@ff500000 {
++              compatible = "snps,dwc3";
++              reg = <0xff500000 0x100000>;
++              interrupts = <30>;
++              dr_mode = "host";
++              snps,dis_u2_susphy_quirk;
++              snps,quirk-frame-length-adjustment;
++          };
++    };
++
+-- 
+2.22.0
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
