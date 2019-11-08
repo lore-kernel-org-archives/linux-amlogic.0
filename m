@@ -6,17 +6,17 @@ X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
 	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D0F7DFC6196
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Nov 2019 11:39:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AA03BC5DF60
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Nov 2019 11:42:08 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A1C5A21D6C
-	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Nov 2019 11:39:55 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8055521D7B
+	for <linux-amlogic@archiver.kernel.org>; Fri,  8 Nov 2019 11:42:08 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="opWNE5CH";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="rlySRmJ7"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A1C5A21D6C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Lt3LaJHx";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="jgQFdD6F"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8055521D7B
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,39 +25,39 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2gNYGfUHm3QRDwucQxo0Cb1s6DMjOPxLYpJ93V/hTNo=; b=opWNE5CH2lLvmN
-	NsxhLCaIgvFxcco0A7JylYIVvqZU35pmwm10G48bhPP9s+x64L/Y7dToukVVtYDXnayuogaHGxN8k
-	67vRbB4yi+yvSQAYoR+PhKmBNtNEmnf/8DRtOq68/JL8MUT1Zm4AFxY1M5SaEFRL9ZQGNub3V1mtr
-	kxZ4sEYfHe7xzDnDAROuenzgv4jLFDQbsFmOqf2ofkbHc230fkZTZq3vgVp32tbgwvYqp4yyNdr3h
-	vw9BlpIuH6xPbsOzEQVs1/yAXOUpgcpOR1n3jaKBcJQAmEqud+bc6HERR9L2fJuKYftFk5d4ldz4Q
-	tOwbiKTcrNzTml46jBRw==;
+	List-Owner; bh=UZQX9qmKCXbTx4svJxVjiWHbSVQTD3lkrzqqAggliHY=; b=Lt3LaJHx72oep4
+	+Pf9MX1FoxtoGTdQ/kdBR/26Op+HQTlvvCR8TQ577u+L2AJVRvRadZ3Uq0LdZo1TwLOTnMj6HrK2d
+	ZDIiuenXwWGEJncr7kvy8HN+6nCp/JPhEpL1oVuUfDD1YmG6vN4vVAQzsjohGmuzpkfeXGaoFv/lA
+	YQDdy0TzBAh5oWr++SRaQd1yb476vzt2yexIrbn3dTziZdcSsXbj/h3r8D12W/mVeEmyMA8KoCTTE
+	1+zUMbLc4fUKyNJBbyGNlNXsjJNh86Jh7+P2iqBGqHNfs+/7IEzaGxhS84dh1xgpcdEAIlWQz2Pn6
+	tJ2iKMmSs4xF+65nqmRw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iT2cK-0007cq-O1; Fri, 08 Nov 2019 11:39:52 +0000
+	id 1iT2eS-0002bk-LM; Fri, 08 Nov 2019 11:42:04 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iT2cH-0007a4-K2
- for linux-amlogic@lists.infradead.org; Fri, 08 Nov 2019 11:39:50 +0000
+ id 1iT2eN-0002Xc-V1
+ for linux-amlogic@lists.infradead.org; Fri, 08 Nov 2019 11:42:01 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 845D2222C6;
- Fri,  8 Nov 2019 11:39:48 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id BB9BD222C5;
+ Fri,  8 Nov 2019 11:41:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1573213189;
- bh=1lS/UyAtBNQsiqwWb7YJnxOKYosA1o14gN2Xh6864as=;
+ s=default; t=1573213319;
+ bh=ypa3wOs131kORiY+6JAWO3HBW3gIyp6YubYc/0p5glQ=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=rlySRmJ7dFJE/53CUFKqx0ccIP1X07TKmgThaZpmrG3/O50F4BS3/eXDBQvduMqRv
- 7g+64joarbD6QSeIcXwkeTgaI0Qn9nsbjx+Idk1dc/NUQOH5Bzm7FYMbKFdCyO3C60
- UKebh9z8vQWZE7ngnVvRseslsWpflILdShNELSkY=
+ b=jgQFdD6FIjxxD50NenAKo5J9DY47ASepMhQkAWC29TCB48waRVy4O1GxHoDm83t3A
+ qDSy7tIkSfIDbHW6gEy4UD1G/F8neMWHd0foiUhX/tc/YBoke5KWd67TLVXKLmZBuS
+ DE9SZVLvMJhuogv5XgpHyTL6L5uSh3T5l3a0uR5k=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 079/205] ARM: dts: meson8b: fix the clock
- controller register size
-Date: Fri,  8 Nov 2019 06:35:46 -0500
-Message-Id: <20191108113752.12502-79-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 163/205] arm64: dts: meson: libretech: update
+ board model
+Date: Fri,  8 Nov 2019 06:37:10 -0500
+Message-Id: <20191108113752.12502-163-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20191108113752.12502-1-sashal@kernel.org>
 References: <20191108113752.12502-1-sashal@kernel.org>
@@ -65,8 +65,9 @@ MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191108_033949_674751_356B2C41 
-X-CRM114-Status: GOOD (  11.24  )
+X-CRM114-CacheID: sfid-20191108_034200_038177_E0D35307 
+X-CRM114-Status: UNSURE (   9.74  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,50 +80,42 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
- Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org
+ Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
+ Da Xue <da@lessconfused.com>, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+From: Jerome Brunet <jbrunet@baylibre.com>
 
-[ Upstream commit f31094fe8c16fbd2ca47921acf93b744b045aace ]
+[ Upstream commit b7eb0e26cc4a212fde09144cd49d4103170d2b9e ]
 
-The clock controller registers are not 0x460 wide because the reset
-controller starts at CBUS 0x4404. This currently overlaps with the
-clock controller (which is at CBUS 0x4000).
+There is actually several different libretech board with the CC suffix
+so the model name is not appropriate here. Update to something more
+specific
 
-There is no public documentation available on the actual size of the
-clock controller's register area (also called "HHI"). However, in
-Amlogic's GPL kernel sources the last "HHI" register is
-HHI_HDMI_PHY_CNTL2 at CBUS + 0x43a8. 0x400 was chosen because that size
-doesn't seem unlikely.
-
-Fixes: 4a69fcd3a10803 ("ARM: meson: Add DTS for Odroid-C1 and Tronfy MXQ boards")
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Reported-by: Da Xue <da@lessconfused.com>
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 Signed-off-by: Kevin Hilman <khilman@baylibre.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/meson8b.dtsi | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index 5b3e5c50c72f7..4293047a4b76b 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -163,7 +163,7 @@
- 		#clock-cells = <1>;
- 		#reset-cells = <1>;
- 		compatible = "amlogic,meson8b-clkc";
--		reg = <0x8000 0x4>, <0x4000 0x460>;
-+		reg = <0x8000 0x4>, <0x4000 0x400>;
- 	};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+index f63bceb88caaf..90a56af967a7f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
+@@ -13,7 +13,7 @@
  
- 	reset: reset-controller@4404 {
+ / {
+ 	compatible = "libretech,cc", "amlogic,s905x", "amlogic,meson-gxl";
+-	model = "Libre Technology CC";
++	model = "Libre Computer Board AML-S905X-CC";
+ 
+ 	aliases {
+ 		serial0 = &uart_AO;
 -- 
 2.20.1
 
