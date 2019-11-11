@@ -2,85 +2,65 @@ Return-Path: <SRS0=GSYe=ZD=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1C0D3C43331
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Nov 2019 01:59:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8B5BFC43331
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Nov 2019 06:44:28 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E13F5206C3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Nov 2019 01:59:02 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5C7AF214E0
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Nov 2019 06:44:28 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LN8+N4i5";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ODWQhV8M"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E13F5206C3
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="gU96R7MR"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5C7AF214E0
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Ym1/7PtFIvEeQUm5l5sgZ5FF+zor1lMKAUfASdXcceM=; b=LN8+N4i5kqpW45
-	wj4YnGfLdaGyH54V0WoIC/cnYYSoOjFbGfkb0+TYXIYU5d00c9rgpHX4tJJSULFFZNB4H6BW72OVU
-	u7Vx7ks0eZ9GHUUEfyLxe6Q+JuPx/9Pht5eMDapMIGi3HTs29Wid0sBBjkFvZvx4d8Sb1yb3fxwv+
-	VvpaB8jGangjXVS/enlMzpHkVEHEwXN3uUKdGIKtFfaa9max4hOU/XvxbO0+EXB4fXFhBN7bSFyFh
-	QkvLv8voRbbHb3MSCBWiHh8f9ighGzIyvExU8ky5K2nasSJTkYyHH/MHGldfePLED8C1kEKiu9g1T
-	JSGdnUfIGfqc3A61Ky+Q==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Ve3y3Scsrj/ZuHGnI62b8BykReSkcUgKdKIn09SCfV8=; b=gU96R7MR0WyfzM
+	rQYhA/OuoQ+tp1NHtorVP2l8APCcvKWC5Ot/xZSfW3J6tGSyLKSSROKVmPRxUHzyFVzhNNHMeEeEW
+	/rbjtiMJE34aBj7MuxxEK4TVpuYcowGU5FqC6oGL+bNi54aCYHYLgy4AaDL/09CQ8WWkD9Nmrusgo
+	GyyajFSeOQYlhd5ViMVnJE3Msi8ofWRMq2uCb6SNyKABSJN60wNy29QV5iDT1Uk7CNORTQxncRbj4
+	shxCLxOFJYXZpHYUb9DQJ7mjeK1iDESPfB4TB+TZf5+xOZeR1e2N17UatCFAeBjgdkhFbuce3uPgX
+	BcjXxG3g+lhlI8Cdyi+Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iTyyk-0001UF-88; Mon, 11 Nov 2019 01:58:54 +0000
-Received: from mail-vs1-xe44.google.com ([2607:f8b0:4864:20::e44])
+	id 1iU3Qw-0005Ca-LR; Mon, 11 Nov 2019 06:44:18 +0000
+Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iTyyh-0001St-Mt; Mon, 11 Nov 2019 01:58:53 +0000
-Received: by mail-vs1-xe44.google.com with SMTP id y23so7724266vso.1;
- Sun, 10 Nov 2019 17:58:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=prm6F9A7udBbbazHidVJSyKNJBPGpqmhX/YTquSVgcw=;
- b=ODWQhV8MgF9c7o2guJEdbXplM5OnBK3aAKfrW4wQcPGsMEl4Z1wvYslIzvIUcEgeeS
- JJpHxAGdzB+eevhMgOAa01uxY9/0JXlx7cRn4sKtalwS/zGLHsKZUOjyhpRCgkA12YZv
- nYluLOPOTobquw72QvmHrEj94j5bE0JE73BWUXfvdYNl5l9LJlvyTiRwc5ZxcW2fDzLm
- 9S+yDvimVKg1gHiaOblPU0k64pP3JOs7TXIp/T16hfAMpaSpGCsKD8YOIKnuaAhmWCkR
- 9AweewCfBrOrsfcO6qvDiMQI8D8S7bnwOY64Wj7h90XUPeP1qSwpRX0vszGgc/PhxY5K
- NeXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=prm6F9A7udBbbazHidVJSyKNJBPGpqmhX/YTquSVgcw=;
- b=YHIf30fxqESMEYImIqfxhPsSNcm1be1mjAUEzO0UBP/YO+QEWqvpgT5Q5Z2sT/NIXZ
- TZKv0T/ZIFxmaT4DZAV3a77sojSJnfjuqTBcqv5RDv3g3/ur38ka034NJf3qYF3LWL/m
- ZRij6qyLUX6gSSl7/6ogItSZKLWvm8mUz5NOQuhWKEsy1mJoO8/kZTnGBK5oJeGp4cDr
- wZT9pfhmy5iyZOvQktJttEFbryuSi2FFGGNsJl49t/+smWN+COoOxDjJRI1vxZ8y3eME
- D/qE39H/AjI/Ey3Q4OgZCGb650NC9YIFhmwR/0quKAXLODFOyX+YmTjy/h9u7CW7zU+z
- hMKQ==
-X-Gm-Message-State: APjAAAXU2E8yP9f7pFP0PiQ8pv7j9xtZFiU/qPGCUAR4G/nnoppfqq9V
- aNSn0sTOyvN+nQUZDGWfsF7biIzPqPI9zi8qhOU=
-X-Google-Smtp-Source: APXvYqyQNbwOgzWwHpNa70qjjCceQD8KL2Ro68PHn1EFxoYrLUZtoN9TvfX6fwO+a8rioZNWR4k1ii/lh3Pjou1tRf0=
-X-Received: by 2002:a67:f44b:: with SMTP id r11mr2704022vsn.23.1573437528995; 
- Sun, 10 Nov 2019 17:58:48 -0800 (PST)
+ id 1iU3Qt-0005Bc-Jp; Mon, 11 Nov 2019 06:44:17 +0000
+Received: from [10.28.39.106] (10.28.39.106) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Mon, 11 Nov
+ 2019 14:44:28 +0800
+Subject: Re: [PATCH v5 1/3] pinctrl: meson: add a new callback for SoCs fixup
+To: Neil Armstrong <narmstrong@baylibre.com>, Linus Walleij
+ <linus.walleij@linaro.org>, <linux-gpio@vger.kernel.org>
+References: <1573203636-7436-1-git-send-email-qianggui.song@amlogic.com>
+ <1573203636-7436-2-git-send-email-qianggui.song@amlogic.com>
+ <54809378-d4b0-2013-eb22-d6570eff2a8c@baylibre.com>
+From: Qianggui Song <qianggui.song@amlogic.com>
+Message-ID: <ce76e0e0-62b4-ca89-5d56-982b021af72c@amlogic.com>
+Date: Mon, 11 Nov 2019 14:44:28 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.1
 MIME-Version: 1.0
-References: <20191014141718.22603-1-narmstrong@baylibre.com>
- <20191014141718.22603-2-narmstrong@baylibre.com>
- <20191023201141.GA21235@bogus>
- <CA+3zgmsJPsvXgsjDQKKrSG+UNdY3SK+hKCTD2X3hGG+OXejHig@mail.gmail.com>
-In-Reply-To: <CA+3zgmsJPsvXgsjDQKKrSG+UNdY3SK+hKCTD2X3hGG+OXejHig@mail.gmail.com>
-From: Jun Li <lijun.kernel@gmail.com>
-Date: Mon, 11 Nov 2019 09:58:37 +0800
-Message-ID: <CAKgpwJWU3jB0DWEKE09TOV+YLceBFJ75ZirAXQbuhj8v3FwjXg@mail.gmail.com>
-Subject: Re: [PATCH 1/3] doc: dt: bindings: usb: dwc3: Update entries for
- disabling SS instances in park mode
-To: Tim <elatllat@gmail.com>
+In-Reply-To: <54809378-d4b0-2013-eb22-d6570eff2a8c@baylibre.com>
+Content-Language: en-US
+X-Originating-IP: [10.28.39.106]
+X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
+ (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191110_175851_773241_F9AD9E70 
-X-CRM114-Status: GOOD (  16.73  )
+X-CRM114-CacheID: sfid-20191110_224415_659414_0E901506 
+X-CRM114-Status: GOOD (  17.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,42 +72,263 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Felipe Balbi <balbi@kernel.org>, Jianxin Pan <jianxin.pan@amlogic.com>,
- devicetree@vger.kernel.org, khilman@baylibre.com, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
- Dongjin Kim <tobetter@gmail.com>, linux-amlogic@lists.infradead.org,
- Rob Herring <robh@kernel.org>, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Mark Rutland <mark.rutland@arm.com>, Hanjie Lin <hanjie.lin@amlogic.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
+ Xingyu Chen <xingyu.chen@amlogic.com>, Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgTmVpbAoKQXMgSSBnb3QgdGhlIGluZm9ybWF0aW9uIGZyb20gU3lub3BzeXMsIHRoaXMgYnVn
-IGV4aXN0cyBvbiBjdXJyZW50IElQIHZlcnNpb25zLAphbmQgcGVyIG15IHRlc3RzIHdpdGggZXh0
-ZXJuYWwgVVNCMyBodWIgKyAyIFN1cGVyIHNwZWVkIHVkaXNrcyBvbiBkYXRhCnJlYWQgYnkgZGQs
-IEkgY2FuIHJlcHJvZHVjZSB0aGlzIGlzc3VlIHdpdGggZGlmZmVyZW50IGtlcm5lbCB2ZXJzaW9u
-cywgYWxzbyBJCmRpZG4ndCBzZWUgb2J2aW91cyBwZXJmb3JtYW5jZSBkcm9wIGJ5IGRkIHRlc3Rz
-IGFmdGVyIGRpc2FibGUgcGFyayBtb2RlIGZvcgpzdXBlciBzcGVlZCwgc28gc2hvdWxkIHdlIGp1
-c3QgZGlzYWJsZSBpdCBieSBkZWZhdWx0IHNvIG5vIG5lZWQgYSBxdWlyaz8KCkxpIEp1bgoKVGlt
-IDxlbGF0bGxhdEBnbWFpbC5jb20+IOS6jjIwMTnlubQxMeaciDEx5pel5ZGo5LiAIOS4iuWNiDg6
-NDLlhpnpgZPvvJoKPgo+IFRoYW5rcyBmb3Igd29ya2luZyBvbiB0aGlzIE5laWwsCj4gSXMgdGhl
-cmUgc29tZXRoaW5nIHRoYXQgbmVlZHMgZG9pbmcgZm9yIHRoaXMgcGF0Y2ggdG8gbWFrZSBpdCBp
-bnRvIDUuMyBvciA1LjQ/Cj4gQXMgcHJldmlvdXNseSBtZW50aW9uZWQgdGhlIHBhdGNoIHNldCBm
-aXhlcyB0aGUgaXNzdWUgb24gYWZmZWN0ZWQgaGFyZHdhcmU7Cj4gICAgIGh0dHBzOi8vcGF0Y2h3
-b3JrLmtlcm5lbC5vcmcvcGF0Y2gvMTExNjQ1MTUvCj4KPgo+Cj4gT24gV2VkLCBPY3QgMjMsIDIw
-MTkgYXQgNDoxMSBQTSBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3JnPiB3cm90ZToKPiA+Cj4g
-PiBPbiBNb24sIE9jdCAxNCwgMjAxOSBhdCAwNDoxNzoxNlBNICswMjAwLCBOZWlsIEFybXN0cm9u
-ZyB3cm90ZToKPiA+ID4gVGhpcyBwYXRjaCB1cGRhdGVzIHRoZSBkb2N1bWVudGF0aW9uIHdpdGgg
-dGhlIGluZm9ybWF0aW9uIHJlbGF0ZWQKPiA+ID4gdG8gdGhlIHF1aXJrcyB0aGF0IG5lZWRzIHRv
-IGJlIGFkZGVkIGZvciBkaXNhYmxpbmcgYWxsIFN1cGVyU3BlZWQgWEhDaQo+ID4gPiBpbnN0YW5j
-ZXMgaW4gcGFyayBtb2RlLgo+ID4gPgo+ID4gPiBDQzogRG9uZ2ppbiBLaW0gPHRvYmV0dGVyQGdt
-YWlsLmNvbT4KPiA+ID4gQ2M6IEppYW54aW4gUGFuIDxqaWFueGluLnBhbkBhbWxvZ2ljLmNvbT4K
-PiA+ID4gUmVwb3J0ZWQtYnk6IFRpbSA8ZWxhdGxsYXRAZ21haWwuY29tPgo+ID4gPiBTaWduZWQt
-b2ZmLWJ5OiBOZWlsIEFybXN0cm9uZyA8bmFybXN0cm9uZ0BiYXlsaWJyZS5jb20+Cj4gPiA+IC0t
-LQo+ID4gPiAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi9kd2MzLnR4dCB8
-IDIgKysKPiA+ID4gIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKykKPiA+Cj4gPiBTaWdo
-LCB3aGF0J3Mgb25lIG1vcmUgdG8gdGhlIG5ldmVyIGVuZGluZyBsaXN0IG9mIHF1aXJrcy4uLgo+
-ID4KPiA+IEFja2VkLWJ5OiBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3JnPgoKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWls
-aW5nIGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5p
-bmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+
+
+On 2019/11/8 20:50, Neil Armstrong wrote:
+> Hi,
+> 
+> On 08/11/2019 10:00, Qianggui Song wrote:
+>> In meson_pinctrl_parse_dt, it contains two parts: reg parsing and
+>> SoC relative fixup for AO. Several fixups in the same code make it hard
+>> to maintain, so move all fixups to each SoC's callback and make
+>> meson_pinctrl_parse_dt just do the reg parsing, separate these two
+>> parts.Overview of all current Meson SoCs fixup is as below:
+>>
+>> +------+--------------------------------------+--------------------------+
+>> |      |                                      |                          |
+>> | SoC  |                EE domain             |        AO domain         |
+>> +------+--------------------------------------+--------------------------+
+>> |m8    | parse regs:                          | parse regs:              |
+>> |m8b   |   gpio,mux,pull,pull-enable(skip ds) |    gpio,mux,pull(skip ds)|
+>> |gxl   | fixup:                               | fixup:                   |
+>> |gxbb  |   no                                 |     pull-enable = pull;  |
+>> |axg   |                                      |                          |
+>> +------+--------------------------------------+--------------------------+
+>> |g12a  | parse regs:                          | parse regs:              |
+>> |sm1   |   gpio,mux,pull,pull-enable,ds       |   gpio,mux,ds            |
+>> |      | fixup:                               | fixup:                   |
+>> |      |   no                                 |   pull = gpio;           |
+>> |      |                                      |   pull-enable = gpio;    |
+>> +------+--------------------------------------+--------------------------+
+>> |a1 or | parse regs:                                                     |
+>> |later |  gpio/mux (without ao domain)                                   |
+>> |SoCs  | fixup:                                                          |
+>> |      |  pull = gpio; pull-enable = gpio; ds = gpio;                    |
+>> +------+-----------------------------------------------------------------+
+>> Since m8-axg share the same ao fixup, make a common function
+>> meson8_aobus_parse_dt_extra to do the job.
+>>
+>> Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
+>> ---
+>>  drivers/pinctrl/meson/pinctrl-meson-axg.c  |  1 +
+>>  drivers/pinctrl/meson/pinctrl-meson-g12a.c |  9 +++++++++
+>>  drivers/pinctrl/meson/pinctrl-meson-gxbb.c |  1 +
+>>  drivers/pinctrl/meson/pinctrl-meson-gxl.c  |  1 +
+>>  drivers/pinctrl/meson/pinctrl-meson.c      | 25 ++++++++++++++++++-------
+>>  drivers/pinctrl/meson/pinctrl-meson.h      |  5 +++++
+>>  drivers/pinctrl/meson/pinctrl-meson8.c     |  1 +
+>>  drivers/pinctrl/meson/pinctrl-meson8b.c    |  1 +
+>>  8 files changed, 37 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/pinctrl/meson/pinctrl-meson-axg.c b/drivers/pinctrl/meson/pinctrl-meson-axg.c
+>> index ad502eda4afa..072765db93d7 100644
+>> --- a/drivers/pinctrl/meson/pinctrl-meson-axg.c
+>> +++ b/drivers/pinctrl/meson/pinctrl-meson-axg.c
+>> @@ -1066,6 +1066,7 @@
+>>  	.num_banks	= ARRAY_SIZE(meson_axg_aobus_banks),
+>>  	.pmx_ops	= &meson_axg_pmx_ops,
+>>  	.pmx_data	= &meson_axg_aobus_pmx_banks_data,
+>> +	.parse_dt	= meson8_aobus_parse_dt_extra,
+>>  };
+>>  
+>>  static const struct of_device_id meson_axg_pinctrl_dt_match[] = {
+>> diff --git a/drivers/pinctrl/meson/pinctrl-meson-g12a.c b/drivers/pinctrl/meson/pinctrl-meson-g12a.c
+>> index 582665fd362a..41850e3c0091 100644
+>> --- a/drivers/pinctrl/meson/pinctrl-meson-g12a.c
+>> +++ b/drivers/pinctrl/meson/pinctrl-meson-g12a.c
+>> @@ -1362,6 +1362,14 @@
+>>  	.num_pmx_banks	= ARRAY_SIZE(meson_g12a_aobus_pmx_banks),
+>>  };
+>>  
+>> +static int meson_g12a_aobus_parse_dt_extra(struct meson_pinctrl *pc)
+>> +{
+>> +	pc->reg_pull = pc->reg_gpio;
+>> +	pc->reg_pullen = pc->reg_gpio;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>  static struct meson_pinctrl_data meson_g12a_periphs_pinctrl_data = {
+>>  	.name		= "periphs-banks",
+>>  	.pins		= meson_g12a_periphs_pins,
+>> @@ -1388,6 +1396,7 @@
+>>  	.num_banks	= ARRAY_SIZE(meson_g12a_aobus_banks),
+>>  	.pmx_ops	= &meson_axg_pmx_ops,
+>>  	.pmx_data	= &meson_g12a_aobus_pmx_banks_data,
+>> +	.parse_dt	= meson_g12a_aobus_parse_dt_extra,
+>>  };
+>>  
+>>  static const struct of_device_id meson_g12a_pinctrl_dt_match[] = {
+>> diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+>> index 5bfa56f3847e..926b9997159a 100644
+>> --- a/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+>> +++ b/drivers/pinctrl/meson/pinctrl-meson-gxbb.c
+>> @@ -851,6 +851,7 @@
+>>  	.num_funcs	= ARRAY_SIZE(meson_gxbb_aobus_functions),
+>>  	.num_banks	= ARRAY_SIZE(meson_gxbb_aobus_banks),
+>>  	.pmx_ops	= &meson8_pmx_ops,
+>> +	.parse_dt	= meson8_aobus_parse_dt_extra,
+>>  };
+>>  
+>>  static const struct of_device_id meson_gxbb_pinctrl_dt_match[] = {
+>> diff --git a/drivers/pinctrl/meson/pinctrl-meson-gxl.c b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+>> index 72c5373c8dc1..8b1a49f5da43 100644
+>> --- a/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+>> +++ b/drivers/pinctrl/meson/pinctrl-meson-gxl.c
+>> @@ -820,6 +820,7 @@
+>>  	.num_funcs	= ARRAY_SIZE(meson_gxl_aobus_functions),
+>>  	.num_banks	= ARRAY_SIZE(meson_gxl_aobus_banks),
+>>  	.pmx_ops	= &meson8_pmx_ops,
+>> +	.parse_dt 	= meson8_aobus_parse_dt_extra,
+>>  };
+>>  
+>>  static const struct of_device_id meson_gxl_pinctrl_dt_match[] = {
+>> diff --git a/drivers/pinctrl/meson/pinctrl-meson.c b/drivers/pinctrl/meson/pinctrl-meson.c
+>> index 8bba9d053d9f..a812c6d986d9 100644
+>> --- a/drivers/pinctrl/meson/pinctrl-meson.c
+>> +++ b/drivers/pinctrl/meson/pinctrl-meson.c
+>> @@ -625,7 +625,7 @@ static struct regmap *meson_map_resource(struct meson_pinctrl *pc,
+>>  
+>>  	i = of_property_match_string(node, "reg-names", name);
+>>  	if (of_address_to_resource(node, i, &res))
+>> -		return ERR_PTR(-ENOENT);
+>> +		return NULL;
+>>  
+>>  	base = devm_ioremap_resource(pc->dev, &res);
+>>  	if (IS_ERR(base))
+>> @@ -665,26 +665,24 @@ static int meson_pinctrl_parse_dt(struct meson_pinctrl *pc,
+>>  	pc->of_node = gpio_np;
+>>  
+>>  	pc->reg_mux = meson_map_resource(pc, gpio_np, "mux");
+>> -	if (IS_ERR(pc->reg_mux)) {
+>> +	if (IS_ERR_OR_NULL(pc->reg_mux)) {
+>>  		dev_err(pc->dev, "mux registers not found\n");
+>>  		return PTR_ERR(pc->reg_mux);
+> 
+> If pc->reg_mux is NULL, it will return "0" here, which is wrong.
+> 
+> Either keep the return ERR_PTR(-ENOENT); in meson_map_resource, or
+> 	return pc->reg_mux ? -ENOENT : PTR_ERR(pc->reg_mux);
+> 
+ Thanks. ERR_PTR(-ENOENT) to NULL make below region easy to handle, I
+will change to "return pc->reg_mux ? -ENOENT : PTR_ERR(pc->reg_mux);"
+
+>>  	}
+>>  
+>>  	pc->reg_gpio = meson_map_resource(pc, gpio_np, "gpio");
+>> -	if (IS_ERR(pc->reg_gpio)) {
+>> +	if (IS_ERR_OR_NULL(pc->reg_gpio)) {
+>>  		dev_err(pc->dev, "gpio registers not found\n");
+>>  		return PTR_ERR(pc->reg_gpio);
+> 
+> Ditto
+will do as above.
+> 
+>>  	}
+>>  
+>>  	pc->reg_pull = meson_map_resource(pc, gpio_np, "pull");
+>> -	/* Use gpio region if pull one is not present */
+>>  	if (IS_ERR(pc->reg_pull))
+>> -		pc->reg_pull = pc->reg_gpio;
+>> +		pc->reg_pull = NULL;
+>>  
+>>  	pc->reg_pullen = meson_map_resource(pc, gpio_np, "pull-enable");
+>> -	/* Use pull region if pull-enable one is not present */
+>>  	if (IS_ERR(pc->reg_pullen))
+>> -		pc->reg_pullen = pc->reg_pull;
+>> +		pc->reg_pullen = NULL;
+>>  
+>>  	pc->reg_ds = meson_map_resource(pc, gpio_np, "ds");
+>>  	if (IS_ERR(pc->reg_ds)) {
+>> @@ -692,6 +690,19 @@ static int meson_pinctrl_parse_dt(struct meson_pinctrl *pc,
+>>  		pc->reg_ds = NULL;
+>>  	}
+>>  
+>> +	if (pc->data->parse_dt)
+>> +		return pc->data->parse_dt(pc);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +int meson8_aobus_parse_dt_extra(struct meson_pinctrl *pc)
+>> +{
+>> +	if (!pc->reg_pull)
+>> +		return -EINVAL;
+>> +
+>> +	pc->reg_pullen = pc->reg_pull;
+>> +
+>>  	return 0;
+>>  }
+>>  
+>> diff --git a/drivers/pinctrl/meson/pinctrl-meson.h b/drivers/pinctrl/meson/pinctrl-meson.h
+>> index c696f3241a36..bfa1d3599333 100644
+>> --- a/drivers/pinctrl/meson/pinctrl-meson.h
+>> +++ b/drivers/pinctrl/meson/pinctrl-meson.h
+>> @@ -11,6 +11,8 @@
+>>  #include <linux/regmap.h>
+>>  #include <linux/types.h>
+>>  
+>> +struct meson_pinctrl;
+>> +
+>>  /**
+>>   * struct meson_pmx_group - a pinmux group
+>>   *
+>> @@ -114,6 +116,7 @@ struct meson_pinctrl_data {
+>>  	unsigned int num_banks;
+>>  	const struct pinmux_ops *pmx_ops;
+>>  	void *pmx_data;
+>> +	int (*parse_dt)(struct meson_pinctrl *pc);
+>>  };
+>>  
+>>  struct meson_pinctrl {
+>> @@ -171,3 +174,5 @@ int meson_pmx_get_groups(struct pinctrl_dev *pcdev,
+>>  
+>>  /* Common probe function */
+>>  int meson_pinctrl_probe(struct platform_device *pdev);
+>> +/* Common ao groups extra dt parse function for SoCs before g12a  */
+>> +int meson8_aobus_parse_dt_extra(struct meson_pinctrl *pc);
+>> diff --git a/drivers/pinctrl/meson/pinctrl-meson8.c b/drivers/pinctrl/meson/pinctrl-meson8.c
+>> index 0b97befa6335..dd17100efdcf 100644
+>> --- a/drivers/pinctrl/meson/pinctrl-meson8.c
+>> +++ b/drivers/pinctrl/meson/pinctrl-meson8.c
+>> @@ -1103,6 +1103,7 @@
+>>  	.num_funcs	= ARRAY_SIZE(meson8_aobus_functions),
+>>  	.num_banks	= ARRAY_SIZE(meson8_aobus_banks),
+>>  	.pmx_ops	= &meson8_pmx_ops,
+>> +	.parse_dt	= &meson8_aobus_parse_dt_extra,
+>>  };
+>>  
+>>  static const struct of_device_id meson8_pinctrl_dt_match[] = {
+>> diff --git a/drivers/pinctrl/meson/pinctrl-meson8b.c b/drivers/pinctrl/meson/pinctrl-meson8b.c
+>> index a7de388388e6..2d5339edd0b7 100644
+>> --- a/drivers/pinctrl/meson/pinctrl-meson8b.c
+>> +++ b/drivers/pinctrl/meson/pinctrl-meson8b.c
+>> @@ -962,6 +962,7 @@
+>>  	.num_funcs	= ARRAY_SIZE(meson8b_aobus_functions),
+>>  	.num_banks	= ARRAY_SIZE(meson8b_aobus_banks),
+>>  	.pmx_ops	= &meson8_pmx_ops,
+>> +	.parse_dt	= &meson8_aobus_parse_dt_extra,
+>>  };
+>>  
+>>  static const struct of_device_id meson8b_pinctrl_dt_match[] = {
+>>
+> 
+> .
+> 
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
