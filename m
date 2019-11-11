@@ -2,21 +2,21 @@ Return-Path: <SRS0=GSYe=ZD=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+X-Spam-Status: No, score=-5.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A09EC43331
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Nov 2019 10:46:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4CA60C43331
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Nov 2019 11:53:31 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CC00E20856
-	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Nov 2019 10:46:45 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1EE0F21655
+	for <linux-amlogic@archiver.kernel.org>; Mon, 11 Nov 2019 11:53:31 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="EtHQfj+Q"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CC00E20856
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="G3hdLWD2"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1EE0F21655
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,42 +25,42 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ji8Khjixdtyeddnc6Eo3UAIyaPht+d1kaUx6p2CfAUk=; b=EtHQfj+QxnsXO9
-	1SEW5xoxE5hZXAvAthm47TrcqtmbEp5HU1XWtfUCpgmcQaPtZ3Z4+3HcJ2MYG0Lf+VQyuK7TkNGM2
-	EwnH7IlWV8OQH6ybXg07RH5WLO+x83X+/q3Bot1jmxztKbrzKM87RUiWfIJzrziZYqIUlNupX1NUv
-	V7Q5KCPH8NLTjqSLrvy8wRwvQ/g0j8bQh+7mWxZZJiXoxrZ2paKyBzQXfsyBRLtCNVf8h9kyb5i37
-	lqvgPGcf0t3J8O52SAyH9k/GVGTrmn3BPf0fVKIiE6e4FGLc/wmKFYud4LU3SEN0ybZVIeZ/vp6/v
-	H/gK2S0Sq4/bhi5096qg==;
+	List-Owner; bh=ayIxX/8lfEbziYyzIN/yVJdYMIjWbACCtzu5ZVx3nQI=; b=G3hdLWD2gUBxl5
+	enOHfvw9sl+akWVr+JVl/LH7cdHeKx+kfFSI29sABomp6vWKFr/E73MLZnWfSylX6mX4wyzzwsVaq
+	Tdb2D6WCftsun/fhi2t4x+pFVzrBlG+KAmWwQBmqxSICGqLRtGjDYq5pBIR35IBxECz3biLndj2Mg
+	oRC8B/fGY+OK9gvqBgBVn+w8GMFAlbzohks7nTiuvuexDOSl8ukk7zGQqEZwzjKiiaTJAF952O9DE
+	gbmTusdS4SofcReQmZw4Z1Ao9S1koo039UGdn2kamfl9ney74PwoZBjSsNFDGvuO9iJ5hrTUQ9HKy
+	0X4qwDfFfKqdoMo165hw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iU7DM-0003Ud-Tt; Mon, 11 Nov 2019 10:46:33 +0000
+	id 1iU8G5-0003rk-Aa; Mon, 11 Nov 2019 11:53:25 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iU7Cn-0003Ss-Lu; Mon, 11 Nov 2019 10:46:17 +0000
+ id 1iU8Fu-0003hr-Ca; Mon, 11 Nov 2019 11:53:15 +0000
 Received: from [10.18.29.227] (10.18.29.227) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Mon, 11 Nov
- 2019 18:46:03 +0800
-Subject: Re: [PATCH v4 2/4] firmware: meson_sm: Add secure power domain support
+ 2019 19:53:21 +0800
+Subject: Re: [PATCH v4 3/4] soc: amlogic: Add support for Secure power domains
+ controller
 To: Kevin Hilman <khilman@baylibre.com>, <linux-amlogic@lists.infradead.org>
 References: <1572868028-73076-1-git-send-email-jianxin.pan@amlogic.com>
- <1572868028-73076-3-git-send-email-jianxin.pan@amlogic.com>
- <7hk188stcy.fsf@baylibre.com>
+ <1572868028-73076-4-git-send-email-jianxin.pan@amlogic.com>
+ <7hmud4stfo.fsf@baylibre.com>
 From: Jianxin Pan <jianxin.pan@amlogic.com>
-Message-ID: <420073b1-0a3f-1bfd-4422-34f8cd7e0d2d@amlogic.com>
-Date: Mon, 11 Nov 2019 18:46:03 +0800
+Message-ID: <57b9c706-c341-c7cf-698a-66335b34442b@amlogic.com>
+Date: Mon, 11 Nov 2019 19:53:21 +0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <7hk188stcy.fsf@baylibre.com>
+In-Reply-To: <7hmud4stfo.fsf@baylibre.com>
 Content-Language: en-US
 X-Originating-IP: [10.18.29.227]
 X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
  (10.18.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191111_024600_119028_C4432A8C 
-X-CRM114-Status: UNSURE (   9.44  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20191111_035314_421617_2C6B4140 
+X-CRM114-Status: GOOD (  18.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,42 +86,135 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 Hi Kevin,
 
-Please see my comments below:
+Thanks for the review, please see the comments below:
 
-On 2019/11/10 4:11, Kevin Hilman wrote:
+2019/11/10 4:09, Kevin Hilman wrote:
+> Hi Jianxin,
+> 
 > Jianxin Pan <jianxin.pan@amlogic.com> writes:
 > 
->> The Amlogic Meson A1/C1 Secure Monitor implements calls to control power
->> domain.
+>> Add support for the Amlogic Secure Power controller. In A1/C1 series, power
+>> control registers are in secure domain, and should be accessed by smc.
 >>
 >> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
->> ---
->>  drivers/firmware/meson/meson_sm.c       | 2 ++
->>  include/linux/firmware/meson/meson_sm.h | 2 ++
->>  2 files changed, 4 insertions(+)
->>
-[...]
->> diff --git a/include/linux/firmware/meson/meson_sm.h b/include/linux/firmware/meson/meson_sm.h
->> index 6669e2a..4ed3989 100644
->> --- a/include/linux/firmware/meson/meson_sm.h
->> +++ b/include/linux/firmware/meson/meson_sm.h
->> @@ -12,6 +12,8 @@ enum {
->>  	SM_EFUSE_WRITE,
->>  	SM_EFUSE_USER_MAX,
->>  	SM_GET_CHIP_ID,
->> +	SM_PWRC_SET,
->> +	SM_PWRC_GET,
 > 
-> These new IDs are unique to the A1/C1 family.  Maybe we should add a
-> prefix to better indicate that.  Maybe:
+> This driver is looking pretty good.  A few more minor comments below.
 > 
->        SM_A1_PWRC_SET,
->        SM_A1_PWRC_GET,
+> [...]
 > 
-> Thoughts?
+>> +static bool pwrc_secure_is_off(struct meson_secure_pwrc_domain *pwrc_domain)
+>> +{
+>> +	int sts = 1;
 > 
-I consulted with the internal VLSI team, and it's likely that the latter new SOC will follow A1/C1.
-And then it may become common function in the future.
+> What does 'sts' mean?  status?  or something else?  Please use a more
+> descriptive name.
+> 
+>> +	if (meson_sm_call(pwrc_domain->pwrc->fw, SM_PWRC_GET, &sts,
+>> +			  pwrc_domain->index, 0, 0, 0, 0) < 0)
+>> +		pr_err("failed to get power domain status\n");
+> 
+> Does any bit in this register mean the power domain is off?  I think it
+> would be better (and more future proof) if you checked the specific bit
+> (or mask)
+> 
+sts=1 means, the domain is powered off. I can rename it to is_off in the next version.
+now, only bit[0] is used in BL31, so I can use sts directly instead of !!sts.
+>> +	return !!sts;
+> 
+> and then:
+> 
+>     return sts & bitmask;
+>     
+>> +}
+>> +
+>> +static int meson_secure_pwrc_off(struct generic_pm_domain *domain)
+>> +{
+>> +	int sts = 0;
+> 
+> Like above, what does sts mean?
+> 
+>> +	struct meson_secure_pwrc_domain *pwrc_domain =
+>> +		container_of(domain, struct meson_secure_pwrc_domain, base);
+>> +
+>> +	if (meson_sm_call(pwrc_domain->pwrc->fw, SM_PWRC_SET, NULL,
+>> +			  pwrc_domain->index, PWRC_OFF, 0, 0, 0) < 0) {
+>> +		pr_err("failed to set power domain off\n");
+>> +		sts = -EINVAL;
+>> +	}
+>> +
+>> +	return sts;
+> 
+> It looks to me like sts is only used as a return code, so maybe call it
+> ret for clarity?  or rename it to something more descriptive.
+> 
+sts here indicates if smc call is failed (such as due to inlvaid command id). I can rename it to ret in the next version.
+>> +}
+>> +
+>> +static int meson_secure_pwrc_on(struct generic_pm_domain *domain)
+>> +{
+>> +	int sts = 0;
+>> +	struct meson_secure_pwrc_domain *pwrc_domain =
+>> +		container_of(domain, struct meson_secure_pwrc_domain, base);
+>> +
+>> +	if (meson_sm_call(pwrc_domain->pwrc->fw, SM_PWRC_SET, NULL,
+>> +			  pwrc_domain->index, PWRC_ON, 0, 0, 0) < 0) {
+>> +		pr_err("failed to set power domain on\n");
+>> +		sts = -EINVAL;
+>> +	}
+>> +
+>> +	return sts;
+> 
+> same comment as above.
+> 
+OK, I will fix it.
+>> +}
+>> +
+>> +#define SEC_PD(__name, __flag)			\
+>> +[PWRC_##__name##_ID] =				\
+>> +{						\
+>> +	.name = #__name,			\
+>> +	.index = PWRC_##__name##_ID,		\
+>> +	.is_off = pwrc_secure_is_off,	\
+>> +	.flags = __flag,			\
+>> +}
+>> +
+>> +static struct meson_secure_pwrc_domain_desc a1_pwrc_domains[] = {
+>> +	SEC_PD(DSPA,	0),
+>> +	SEC_PD(DSPB,	0),
+>> +	/* UART should keep working in ATF after suspend and before resume */
+>> +	SEC_PD(UART,	GENPD_FLAG_ALWAYS_ON),
+>> +	/* DMC is for DDR PHY ana/dig and DMC, and should be always on */
+>> +	SEC_PD(DMC,	GENPD_FLAG_ALWAYS_ON),
+>> +	SEC_PD(I2C,	0),
+>> +	SEC_PD(PSRAM,	0),
+>> +	SEC_PD(ACODEC,	0),
+>> +	SEC_PD(AUDIO,	0),
+>> +	SEC_PD(OTP,	0),
+>> +	SEC_PD(DMA,	0),
+>> +	SEC_PD(SD_EMMC,	0),
+>> +	SEC_PD(RAMA,	0),
+>> +	/* SRAMB is used as AFT runtime memory, and should be always on */
+> 
+> AFT?  I assume you mean ATF?
+> 
+Yes, I will fix it, thank  you.
+>> +	SEC_PD(RAMB,	GENPD_FLAG_ALWAYS_ON),
+>> +	SEC_PD(IR,	0),
+>> +	SEC_PD(SPICC,	0),
+>> +	SEC_PD(SPIFC,	0),
+>> +	SEC_PD(USB,	0),
+>> +	/* NIC is for NIC400, and should be always on */
+> 
+> Why?
+> 
+NIC domain is for ARM CoreLink NIC-400 Network Interconnect, and should be always on since bootloader.
+>> +	SEC_PD(NIC,	GENPD_FLAG_ALWAYS_ON),
+>> +	SEC_PD(PDMIN,	0),
+>> +	SEC_PD(RSA,	0),
+>> +};
+> 
+> [...]
+> 
 > Kevin
 > 
 > .
