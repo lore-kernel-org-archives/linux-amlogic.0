@@ -2,74 +2,61 @@ Return-Path: <SRS0=vjaz=ZE=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E4FD5C43331
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Nov 2019 07:30:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 681D9C43331
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Nov 2019 08:11:57 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B3EFE2067B
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Nov 2019 07:30:00 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3DABD2196E
+	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Nov 2019 08:11:57 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YSSGL15G"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B3EFE2067B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="P8sHFTxY"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3DABD2196E
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=suse.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=LtIVLVTyspASaYFO2wMAIEX9tut8R5TY+1IM2R2qJvg=; b=YSSGL15GG2iNdY
-	uruHKk8TbIlaOnJAt2834HIdCk5n9lX/g8AQJZ0cxmobnxUpQYQ3oGw1NrjdydeWBYWY/rGFn1Lco
-	NVf2XyqBHeu04vkeXHYGa3a2/7smWzffRMDg+j+OhQgr2CZgtq+txDeYIv/bRNn71l1/SPhHWiHxE
-	0Tlboz+SV9GwgQ7S+smPKI2Wi+yRikTEzeMsLDu9N4a38Bvl3rSplsAPvIpTO682ikTaLummRiYUw
-	UeYgvM86vwoYOwDePyLMrHKTb+fLCInJJQVIELs9aVheoHT1i6bpl0P/ICjrMHgQat4MCGf/Wfg4Z
-	omh99aw2kelznlxRyrHQ==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=FdyhPaH4chX/5+MlxeH9gu4j1BNT5oOmrvHQZP/5VnA=; b=P8sHFTxY0ueWA4
+	hqZ4YM8mNNd69Wx4tBJNtGYfh//jHsOWcS/GjmVWxEHwQyVMvvLTpxOTynoQfFnmn+0zR9hPDdOQj
+	Kv3jdsZPeLZWu2F2+9iY5slmErrV4ySlzdvLMdqeedO8asxAVjhhzF0jBpDRo4G24UZOpQiq7PorJ
+	rdYhF/cLJ+kcdb4kcjO3IR1illKAdGZ9+to7ZWuD0qzleFBkaLcnK4MXaeRPfnBoyc7M3ipgug9KJ
+	T+lVavq3cZ0JYsyCaCZSWeZExWe2eTqL1l/s685dO3DV5WZt/UeKpI0db1Xhu1E4/DV+J/rFu5g3I
+	eEk183MdOzOPNPZE3ZIw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iUQcV-0007Ey-OC; Tue, 12 Nov 2019 07:29:47 +0000
-Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
+	id 1iURHD-0008QZ-Lk; Tue, 12 Nov 2019 08:11:51 +0000
+Received: from mx2.suse.de ([195.135.220.15] helo=mx1.suse.de)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iUQcS-0007Dr-Eo
- for linux-amlogic@lists.infradead.org; Tue, 12 Nov 2019 07:29:45 +0000
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
- by metis.ext.pengutronix.de with esmtps
- (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <ukl@pengutronix.de>)
- id 1iUQcG-0001qJ-9e; Tue, 12 Nov 2019 08:29:32 +0100
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
- (envelope-from <ukl@pengutronix.de>)
- id 1iUQcA-0001xe-RB; Tue, 12 Nov 2019 08:29:26 +0100
-Date: Tue, 12 Nov 2019 08:29:26 +0100
-From: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
+ id 1iURH9-0008PF-1Z; Tue, 12 Nov 2019 08:11:48 +0000
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+ by mx1.suse.de (Postfix) with ESMTP id 1AEE8B2E9;
+ Tue, 12 Nov 2019 08:11:42 +0000 (UTC)
+Subject: Re: [PATCH] soc: amlogic: socinfo: Avoid soc_device_to_device()
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH] base: soc: Export soc_device_to_device() helper
-Message-ID: <20191112072926.isjxfa4ci6akhx56@pengutronix.de>
-References: <20191103013645.9856-3-afaerber@suse.de>
- <20191111045609.7026-1-afaerber@suse.de>
- <20191111052741.GB3176397@kroah.com>
- <586fa37c-6292-aca4-fa7c-73064858afaf@suse.de>
- <20191111064040.GA3502217@kroah.com>
- <a88442df-dc6b-07e5-8dee-9e308bdda450@suse.de>
- <20191112052347.GA1197504@kroah.com>
+References: <20191111221521.1587-1-afaerber@suse.de>
+ <20191112054003.GD1210104@kroah.com>
+From: =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
+Organization: SUSE Software Solutions Germany GmbH
+Message-ID: <0673ba51-108c-76c4-5c71-00804d8ea661@suse.de>
+Date: Tue, 12 Nov 2019 09:11:41 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191112052347.GA1197504@kroah.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+In-Reply-To: <20191112054003.GD1210104@kroah.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191111_232944_490141_58146F58 
-X-CRM114-Status: GOOD (  24.45  )
+X-CRM114-CacheID: sfid-20191112_001147_377283_D4415FF6 
+X-CRM114-Status: GOOD (  18.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,117 +68,66 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
- linux-realtek-soc@lists.infradead.org, Tony Lindgren <tony@atomide.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Bjorn Andersson <bjorn.andersson@linaro.org>,
- Thierry Reding <thierry.reding@gmail.com>, Lee Jones <lee.jones@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Michal Simek <michal.simek@xilinx.com>, Jonathan Hunter <jonathanh@nvidia.com>,
- NXP Linux Team <linux-imx@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
- linux-amlogic@lists.infradead.org, linux-omap@vger.kernel.org,
- Alexander Sverdlin <alexander.sverdlin@gmail.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Hartley Sweeten <hsweeten@visionengravers.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>,
- Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Nov 12, 2019 at 06:23:47AM +0100, Greg Kroah-Hartman wrote:
-> On Mon, Nov 11, 2019 at 09:10:41PM +0100, Andreas F=E4rber wrote:
-> > Am 11.11.19 um 07:40 schrieb Greg Kroah-Hartman:
-> > > On Mon, Nov 11, 2019 at 06:42:05AM +0100, Andreas F=E4rber wrote:
-> > >> Hi Greg,
-> > >>
-> > >> Am 11.11.19 um 06:27 schrieb Greg Kroah-Hartman:
-> > >>> On Mon, Nov 11, 2019 at 05:56:09AM +0100, Andreas F=E4rber wrote:
-> > >>>> Use of soc_device_to_device() in driver modules causes a build fai=
-lure.
-> > >>>> Given that the helper is nicely documented in include/linux/sys_so=
-c.h,
-> > >>>> let's export it as GPL symbol.
-> > >>>
-> > >>> I thought we were fixing the soc drivers to not need this.  What
-> > >>> happened to that effort?  I thought I had patches in my tree (or
-> > >>> someone's tree) that did some of this work already, such that this
-> > >>> symbol isn't needed anymore.
-> > >>
-> > >> I do still see this function used in next-20191108 in drivers/soc/.
-> > >>
-> > >> I'll be happy to adjust my RFC driver if someone points me to how!
-> > > =
-
-> > > Look at c31e73121f4c ("base: soc: Handle custom soc information sysfs
-> > > entries") for how you can just use the default attributes for the soc=
- to
-> > > create the needed sysfs files, instead of having to do it "by hand"
-> > > which is racy and incorrect.
-> > =
-
-> > Unrelated.
-> > =
-
-> > >> Given the current struct layout, a type cast might work (but ugly).
-> > >> Or if we stay with my current RFC driver design, we could use the
-> > >> platform_device instead of the soc_device (which would clutter the
-> > >> screen more than "soc soc0:") or resort to pr_info() w/o device.
-> > > =
-
-> > > Ick, no, don't cast blindly.  What do you need the pointer for?  Is t=
-his
-> > > for in-tree code?
-> > =
-
-> > No, an RFC patchset: https://patchwork.kernel.org/cover/11224261/
-> > =
-
-> > As I indicated above, I used it for a dev_info(), which I can easily
-> > avoid by using pr_info() instead:
-> > =
-
-> > diff --git a/drivers/soc/realtek/chip.c b/drivers/soc/realtek/chip.c
-> > index e5078c6731fd..f9380e831659 100644
-> > --- a/drivers/soc/realtek/chip.c
-> > +++ b/drivers/soc/realtek/chip.c
-> > @@ -178,8 +178,7 @@ static int rtd_soc_probe(struct platform_device *pd=
-ev)
-> > =
-
-> >         platform_set_drvdata(pdev, soc_dev);
-> > =
-
-> > -       dev_info(soc_device_to_device(soc_dev),
-> > -               "%s %s (0x%08x) rev %s (0x%08x) detected\n",
-> > +       pr_info("%s %s (0x%08x) rev %s (0x%08x) detected\n",
-> >                 soc_dev_attr->family, soc_dev_attr->soc_id, chip_id,
-> >                 soc_dev_attr->revision, chip_rev);
-> =
-
-> First off, the driver should not be spitting out noise for when all goes
-> well like this :)
-
-I didn't follow the discussion closely, but I think I want to object
-here a bit. While I agree that each driver emitting some stuff to the
-log buffer is hardly helpful, seeing the exact SoC details is indeed
-useful at times. With my Debian kernel team member hat on, I'd say
-keep this information. This way the SoC details make it into kernel bug
-reports without effort on our side.
-
-Best regards
-Uwe
-
--- =
-
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+QW0gMTIuMTEuMTkgdW0gMDY6NDAgc2NocmllYiBHcmVnIEtyb2FoLUhhcnRtYW46Cj4gT24gTW9u
+LCBOb3YgMTEsIDIwMTkgYXQgMTE6MTU6MjFQTSArMDEwMCwgQW5kcmVhcyBGw6RyYmVyIHdyb3Rl
+Ogo+PiBUaGUgaGVscGVyIHNvY19kZXZpY2VfdG9fZGV2aWNlKCkgaXMgY29uc2lkZXJlZCBkZXBy
+ZWNhdGVkLgo+PiBGb3IgYSBkcml2ZXIgX19pbml0IGZ1bmN0aW9uIHRoZSBwcmVkaWN0YWJsZSBw
+cmVmaXggdGV4dAo+PiAic29jIHNvYzA6IiBmcm9tIGRldl9pbmZvKCkgZG9lcyBub3QgYWRkIHJl
+YWwgdmFsdWUsIHNvIHVzZQo+PiBwcl9pbmZvKCkgdG8gZW1pdCB0aGUgaW5mbyB0ZXh0IHdpdGhv
+dXQgc3VjaCBwcmVmaXguCj4+Cj4+IFdoaWxlIGF0IGl0LCBub3JtYWxpemUgdGhlIGNhc2luZyBv
+ZiAiZGV0ZWN0ZWQiIGZvciBHWC4KPj4KPj4gQ2M6IEdyZWcgS3JvYWgtSGFydG1hbiA8Z3JlZ2to
+QGxpbnV4Zm91bmRhdGlvbi5vcmc+Cj4+IENjOiBNYXJ0aW4gQmx1bWVuc3RpbmdsIDxtYXJ0aW4u
+Ymx1bWVuc3RpbmdsQGdvb2dsZW1haWwuY29tPgo+PiBDYzogTmVpbCBBcm1zdHJvbmcgPG5hcm1z
+dHJvbmdAYmF5bGlicmUuY29tPgo+PiBTaWduZWQtb2ZmLWJ5OiBBbmRyZWFzIEbDpHJiZXIgPGFm
+YWVyYmVyQHN1c2UuZGU+Cj4+IC0tLQo+PiAgZHJpdmVycy9zb2MvYW1sb2dpYy9tZXNvbi1neC1z
+b2NpbmZvLmMgfCA0ICstLS0KPj4gIGRyaXZlcnMvc29jL2FtbG9naWMvbWVzb24tbXgtc29jaW5m
+by5jIHwgNCArKy0tCj4+ICAyIGZpbGVzIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgNSBkZWxl
+dGlvbnMoLSkKPj4KPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvc29jL2FtbG9naWMvbWVzb24tZ3gt
+c29jaW5mby5jIGIvZHJpdmVycy9zb2MvYW1sb2dpYy9tZXNvbi1neC1zb2NpbmZvLmMKPj4gaW5k
+ZXggMDFmYzBkMjBhNzBkLi4xMDViODE5YmJkNWYgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvc29j
+L2FtbG9naWMvbWVzb24tZ3gtc29jaW5mby5jCj4+ICsrKyBiL2RyaXZlcnMvc29jL2FtbG9naWMv
+bWVzb24tZ3gtc29jaW5mby5jCj4+IEBAIC0xMjksNyArMTI5LDYgQEAgc3RhdGljIGludCBfX2lu
+aXQgbWVzb25fZ3hfc29jaW5mb19pbml0KHZvaWQpCj4+ICAJc3RydWN0IGRldmljZV9ub2RlICpu
+cDsKPj4gIAlzdHJ1Y3QgcmVnbWFwICpyZWdtYXA7Cj4+ICAJdW5zaWduZWQgaW50IHNvY2luZm87
+Cj4+IC0Jc3RydWN0IGRldmljZSAqZGV2Owo+PiAgCWludCByZXQ7Cj4+ICAKPj4gIAkvKiBsb29r
+IHVwIGZvciBjaGlwaWQgbm9kZSAqLwo+PiBAQCAtMTkyLDkgKzE5MSw4IEBAIHN0YXRpYyBpbnQg
+X19pbml0IG1lc29uX2d4X3NvY2luZm9faW5pdCh2b2lkKQo+PiAgCQlrZnJlZShzb2NfZGV2X2F0
+dHIpOwo+PiAgCQlyZXR1cm4gUFRSX0VSUihzb2NfZGV2KTsKPj4gIAl9Cj4+IC0JZGV2ID0gc29j
+X2RldmljZV90b19kZXZpY2Uoc29jX2Rldik7Cj4+ICAKPj4gLQlkZXZfaW5mbyhkZXYsICJBbWxv
+Z2ljIE1lc29uICVzIFJldmlzaW9uICV4OiV4ICgleDoleCkgRGV0ZWN0ZWRcbiIsCj4+ICsJcHJf
+aW5mbygiQW1sb2dpYyBNZXNvbiAlcyBSZXZpc2lvbiAleDoleCAoJXg6JXgpIGRldGVjdGVkXG4i
+LAo+IAo+IFRoaXMgc2hvdWxkIG1lc3NhZ2Ugc2hvdWxkIGp1c3QgYmUgcmVtb3ZlZCBlbnRpcmVs
+eS4KPiAKPj4gIAkJCXNvY19kZXZfYXR0ci0+c29jX2lkLAo+PiAgCQkJc29jaW5mb190b19tYWpv
+cihzb2NpbmZvKSwKPj4gIAkJCXNvY2luZm9fdG9fbWlub3Ioc29jaW5mbyksCj4+IGRpZmYgLS1n
+aXQgYS9kcml2ZXJzL3NvYy9hbWxvZ2ljL21lc29uLW14LXNvY2luZm8uYyBiL2RyaXZlcnMvc29j
+L2FtbG9naWMvbWVzb24tbXgtc29jaW5mby5jCj4+IGluZGV4IDc4ZjBmMWFlY2E1Ny4uN2RiMmM5
+NGE3MTMwIDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL3NvYy9hbWxvZ2ljL21lc29uLW14LXNvY2lu
+Zm8uYwo+PiArKysgYi9kcml2ZXJzL3NvYy9hbWxvZ2ljL21lc29uLW14LXNvY2luZm8uYwo+PiBA
+QCAtMTY3LDggKzE2Nyw4IEBAIHN0YXRpYyBpbnQgX19pbml0IG1lc29uX214X3NvY2luZm9faW5p
+dCh2b2lkKQo+PiAgCQlyZXR1cm4gUFRSX0VSUihzb2NfZGV2KTsKPj4gIAl9Cj4+ICAKPj4gLQlk
+ZXZfaW5mbyhzb2NfZGV2aWNlX3RvX2RldmljZShzb2NfZGV2KSwgIkFtbG9naWMgJXMgJXMgZGV0
+ZWN0ZWRcbiIsCj4+IC0JCSBzb2NfZGV2X2F0dHItPnNvY19pZCwgc29jX2Rldl9hdHRyLT5yZXZp
+c2lvbik7Cj4+ICsJcHJfaW5mbygiQW1sb2dpYyAlcyAlcyBkZXRlY3RlZFxuIiwKPj4gKwkJc29j
+X2Rldl9hdHRyLT5zb2NfaWQsIHNvY19kZXZfYXR0ci0+cmV2aXNpb24pOwo+IAo+IFNhbWUgaGVy
+ZSwgbm8gbmVlZCB0byBwb2x1dGUgdGhlIGtlcm5lbCBsb2cgZm9yIHdoZW4gYWxsIGlzIGdvaW5n
+IGp1c3QKPiBmaW5lLgo+IAo+IFRoYXQncyB3aHkgd2UgY3JlYXRlZCAiY29tbW9uIiBkcml2ZXIg
+aW5pdCBoZWxwZXJzLCB0byBwcmV2ZW50IHRoZQo+IGFiaWxpdHkgZm9yIHRoaXMgdHlwZSBvZiBu
+b2lzZSBmcm9tIGV2ZW4gYmVpbmcgYWJsZSB0byBiZSBjcmVhdGVkIGF0Cj4gYWxsLgoKTGV0J3Mg
+aGF2ZSB0aGF0IGRpc2N1c3Npb24gaW4gdGhlIGNlbnRyYWwgdGhyZWFkIHBsZWFzZS4KCkZhY3Qg
+aGVyZSBpcyB0aGF0IEFtbG9naWMgR1gncyBrZXJuZWwgb3V0cHV0IChhbmQgdGhpcyBjb2RlIGdl
+dHRpbmcKbWlycm9yZWQgaW50byBVLUJvb3QpIG1hZGUgbWUgYXdhcmUgb2YgdGhpcyBkcml2ZXIg
+aW4gdGhlIGZpcnN0IHBsYWNlLgoKUmVnYXJkcywKQW5kcmVhcwoKLS0gClNVU0UgU29mdHdhcmUg
+U29sdXRpb25zIEdlcm1hbnkgR21iSApNYXhmZWxkc3RyLiA1LCA5MDQwOSBOw7xybmJlcmcsIEdl
+cm1hbnkKR0Y6IEZlbGl4IEltZW5kw7ZyZmZlcgpIUkIgMzY4MDkgKEFHIE7DvHJuYmVyZykKCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9n
+aWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8v
+bGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
