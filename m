@@ -1,87 +1,82 @@
-Return-Path: <SRS0=vjaz=ZE=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=7cY6=ZF=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.6 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6D115C43331
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Nov 2019 20:52:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 66501C43331
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Nov 2019 06:04:47 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3A0CA21872
-	for <linux-amlogic@archiver.kernel.org>; Tue, 12 Nov 2019 20:52:59 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 37064206BA
+	for <linux-amlogic@archiver.kernel.org>; Wed, 13 Nov 2019 06:04:47 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="K5vfRp5x";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="gjNesBSf"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3A0CA21872
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mMguzppy"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 37064206BA
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
+	References:Message-ID:Date:Subject:To:From:Reply-To:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=du3IrO57HtPAKxPzc//Si15s/iptEvvIjRkV+veuTu0=; b=K5vfRp5xTVj/7j
-	qcOkcT5TpFoHSyqGnbhmfMxQc2VLR0woNVWKvw9WxWFbsivutGjFUcxegcF62z0E/B95IfPo5Ggxo
-	slspU4kmn6GB4pOjOXU7SjLW+4qrwUyLRxWby28A+3cpkQxmdYaQFA426sMBW1ia709UsfMnM0NJ8
-	QYgLo2wb/llmrmQKx4eQTeGrBX9J7cBV/BpoazGqOHfQQZUKQbaPrM6M5h4b4mwaJ+NKw+nHSFF+9
-	VbqfXaH47Z/IWv9K/aU4m97C9IBnZaTjYQTSeP+3ReRhkMjET7f/uFz7F77XwJze9COtxAvRU0GfZ
-	b4hURnZkX/sJCSmGrsQg==;
+	List-Owner; bh=3sDN1q2aYCVkcVm34mkQQ6uZonD4HENpXkCdSFnoSLg=; b=mMguzppyKdeZ6X
+	fYILqC/49ioTY3heDv/3TD9TXG2Rx4uxxwT2GVu793sYtdSGV3QuFQm6WEjwbQxRF2T/gUaMYP4UC
+	cSO/Z15sxfbshrfjdIcyjuDPQC6IYbjWwf03ZSIjdE4I4u1swvawLKHwOGUPfCoQKLg0WBM/QUURN
+	sg4ucL0FFogdojP4Jv+hok4ZumlIcMTsmnftDVrtXHn/MBYQJ0JuenltnbRMAXlBHOXeLALzAva+b
+	66dr+o9zKWDQ5TFF+kATbk6Mjwi9jRBVkJqMUASyRIAj+hTf1Tlmuo8QTrWHnQuHuRxShqsneudLF
+	8lwmKqvR4YjphtMzE/cg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iUd9h-0005YP-Ky; Tue, 12 Nov 2019 20:52:53 +0000
-Received: from mail-oi1-x243.google.com ([2607:f8b0:4864:20::243])
+	id 1iUllX-0004xP-K1; Wed, 13 Nov 2019 06:04:31 +0000
+Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iUd9e-0005XY-AC; Tue, 12 Nov 2019 20:52:51 +0000
-Received: by mail-oi1-x243.google.com with SMTP id i185so16146669oif.9;
- Tue, 12 Nov 2019 12:52:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=V2BRORY0hBHLizKfzIfi2QGRpqicf8QMY3QuvWoI+ds=;
- b=gjNesBSfjAvc4kesedeMADClQCu4hYTWbOTzUGLfZvlLFHPbuM4uJjGELh0sbQgDWN
- 8lrWkP3Yvl8mvcsN4mKb4KCZ3qe4W6A0A7z9ixxdQE383EV8AEXqsi6eCrI5JEytcBvH
- vHA+l6bcOI//BOa+LE7IUWgnSHG9QZwKwI/3YrPNpoUOah6UEQSffUi+8IzTzuDDYU92
- LkFRFw9yqI50wotbSj3BbpSdI2AI/irw9T4DcvU56MUdwu0JW0gIfdH+y+PHsEDXvZx9
- J0EYZEmpPKTRcSTm0s1R3uKbwhfWEINfK24+MPxL/QAyKUNs+iDoATkUt1gjVy3EDP13
- iQsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=V2BRORY0hBHLizKfzIfi2QGRpqicf8QMY3QuvWoI+ds=;
- b=NdJd05StLHo5YDusqGfmHQdEeMHHKyq0gFYAfyGW6PT5YNYxpuf/gntAu8ZV12OOnp
- m321vwMtYGjxs017051yX78Da5Fti0lqu0Ia3+IBqexlJP/dzEEAUq4FfCRXehQeQbC5
- gj2e5XSujH5Tu6AM8HkCOGr87W25FcpJJYSNywzTJ+S3DwjOsjXeKsSYK35T1d5kF13F
- 9mNtuYJgdsKTGn5N9ypYt26ULVoJx3aIP9jIhW+xLNeZpANtlybgf2v6MR9zlBZMlF+7
- vgz4UYBleiRGD1eI/p5mmFLFtFZSsynb/KxIvNVArjmaPdska3hlkK6nksnclv2X29TI
- yHWA==
-X-Gm-Message-State: APjAAAXUL1JbFyHuj21BKNCH6myus1Y8xX2cLLvimySpqcQIXoQE+3Yg
- S7sYE7ucdgB7qpjRdj6QhdcWBwcdc0w3hI3mLjo=
-X-Google-Smtp-Source: APXvYqxRmF9qWBGxWM/Cn8ef+fuoL+vr7DkcDUoMRHpMSQl4VaTZvY3t+hLVbva6IXpLe8AdpMoa1ZtmkoCdXt1j/qw=
-X-Received: by 2002:a05:6808:20f:: with SMTP id
- l15mr852673oie.39.1573591968888; 
- Tue, 12 Nov 2019 12:52:48 -0800 (PST)
+ id 1iUllU-0004va-4q
+ for linux-amlogic@lists.infradead.org; Wed, 13 Nov 2019 06:04:29 +0000
+Received: from mail-sz.amlogic.com (10.28.11.5) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Wed, 13 Nov
+ 2019 14:04:34 +0800
+Received: from mail-sz.amlogic.com ([fe80::ed49:2000:aa3e:d8d6]) by
+ mail-sz.amlogic.com ([fe80::ed49:2000:aa3e:d8d6%4]) with mapi id
+ 15.01.1591.008; Wed, 13 Nov 2019 14:04:34 +0800
+From: Nan Li <Nan.Li@amlogic.com>
+To: Jerome Brunet <jbrunet@baylibre.com>, Jianxin Pan
+ <Jianxin.Pan@amlogic.com>, Ulf Hansson <ulf.hansson@linaro.org>, Kevin Hilman
+ <khilman@baylibre.com>
+Subject: Re: [PATCH v2] mmc: meson-gx: fix mmc dma operation
+Thread-Topic: [PATCH v2] mmc: meson-gx: fix mmc dma operation
+Thread-Index: AQHVkwa5AzBtskG6eEysgtiGF2SGpqd6sqWAgACWuoCAAG0ugIAAA9SAgAAGwQCAAAMtAIAASewAgADp/gCAClRwAIAA154A
+Date: Wed, 13 Nov 2019 06:04:34 +0000
+Message-ID: <bef7d514-874f-e70d-63ac-9db1a46b478c@amlogic.com>
+References: <1572868495-84816-1-git-send-email-jianxin.pan@amlogic.com>
+ <1ja79b4mje.fsf@starbuckisacylon.baylibre.com>
+ <e80cb817-e58a-68ce-a3c6-d82636aaf7d3@amlogic.com>
+ <1j8sou4u1g.fsf@starbuckisacylon.baylibre.com>
+ <7ec2e682-cfec-395e-cf38-58f050440c40@amlogic.com>
+ <1j7e4e4sab.fsf@starbuckisacylon.baylibre.com>
+ <dee789ae-6825-3f4c-16e7-227e064562d6@amlogic.com>
+ <1j5zjy4fif.fsf@starbuckisacylon.baylibre.com>
+ <ec705819-9763-b0d2-9480-949e7ccd1cb9@amlogic.com>
+ <1jeeydf27h.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <1jeeydf27h.fsf@starbuckisacylon.baylibre.com>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
+x-originating-ip: [10.28.39.107]
+Content-ID: <6F2D462936CE644781F034542D8ACFB4@amlogic.com>
 MIME-Version: 1.0
-References: <20191027162328.1177402-1-martin.blumenstingl@googlemail.com>
- <20191027162328.1177402-3-martin.blumenstingl@googlemail.com>
- <20191108221652.32FA2206C3@mail.kernel.org>
- <1jd0dxf1uz.fsf@starbuckisacylon.baylibre.com>
-In-Reply-To: <1jd0dxf1uz.fsf@starbuckisacylon.baylibre.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 12 Nov 2019 21:52:38 +0100
-Message-ID: <CAFBinCBnUs0JdHT3TS+1++NMHtgbMvoT7RYRCnB0eNgs4L-2CA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] clk: meson: add a driver for the Meson8/8b/8m2 DDR
- clock controller
-To: Jerome Brunet <jbrunet@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191112_125250_377248_478621EB 
-X-CRM114-Status: GOOD (  13.34  )
+X-CRM114-CacheID: sfid-20191112_220428_185040_2611DF8D 
+X-CRM114-Status: GOOD (  18.49  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,45 +88,98 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mark.rutland@arm.com, devicetree@vger.kernel.org,
- Neil Armstrong <narmstrong@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- khilman@baylibre.com, linux-kernel@vger.kernel.org, robh+dt@kernel.org,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
+Cc: "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+ "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Victor Wan <victor.wan@amlogic.com>, Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jerome,
+On 2019/11/13 1:12, Jerome Brunet wrote:
+> 
+> On Wed 06 Nov 2019 at 04:28, Nan Li <Nan.Li@amlogic.com> wrote:
+> 
+>>
+>> I see what you mean, pre/post_req already provides callbacks in meson_mmc_ops for the framework to decide whether to invoke the chain mode or not.
+>>
+>> However, I searched the frame of MMC and found the use of mmc_pre_req() for this callback in the block layer mmc_blk_mq_issue_rw_rq().
+>>
+>> Block layer mmc_blk_mq_issue_rw_rq() may be useful for emmc and SD card devices.
+>>
+>> But it may not be useful for reading and writing operations of sdio wifi, and the sdio device communication may not use the chain mode.
+>>
+>>
+>> Our chain-mode is a way to transfer data using dma.
+>>
+>> This approach is very efficient for reading and writing large amounts of data.
+>>
+>> If you don't do it that way, you'll do it the other way, the bounce buf way, which is limited by the size of the buf, so when you do big data reads and writes, it affects the transfer rate.
+>>
+>> Therefore, our chain mode means that emmc, SD card or sdio device will use dma to transfer data when reading and writing operations, so our previous driver and the patch behind me all ensure this.
+>>
+> 
+> I see.
+> The problem is that you are providing the same function to pre/post_req
+> callbacks and the request()
+> 
+> IOW, things mapped in the pre_req() callback might be unmapped by
+> request_done() instead post_req() which, I think, is not great.
+> 
+> It's been like that so far, your patch is not making much worse, so I
+> guess you can go ahead with it but we need to look a this before it
+> blows again
+> 
+> In the future, we should probably use the cookie to distinguish the 2
+> cases ... or drop pre/post_req in the ops.
+> 
 
-On Tue, Nov 12, 2019 at 6:20 PM Jerome Brunet <jbrunet@baylibre.com> wrote:
->
->
-> >> +static const struct of_device_id meson8_ddr_clkc_match_table[] = {
-> >> +       { .compatible = "amlogic,meson8-ddr-clkc" },
-> >> +       { .compatible = "amlogic,meson8b-ddr-clkc" },
-> >> +       { /* sentinel */ },
-> >
-> > Super nitpick, drop the comma above so that nothing can follow this.
->
-> I don't think it is worth reposting the series Martin.
-> If it is ok with you, I'll just apply it with Stephen comments
-I am more than happy with this.
-just to confirm, you would address all three comments from Stephen:
-- including clk-provider.h
-- use devm_platform_ioremap_resource
-- trailing comma after the sentinel
+Yes, you are right. The previous version of kernel did not have the 
+callback of pre/post_req, so our drivers all took dma operation, which 
+would improve the interaction efficiency.
 
-> In the future, I would prefer if you could separate the series for clock
-> (intended for Neil and myself) and the DT one (intended for Kevin)
-sorry, we discussed this previously but I completely forgot about it
-when I re-sent this series
-I'll be more careful next time
+I still have a doubt. In kernel, block layer calls the callback of 
+pre/post_req to complete the mode selection, so the call of sdio is 
+omitted. Since the read and write operation of sdio does not go through 
+the interface of block layer, is this the function loss of the framework?
 
+You are concerned that the umap_sg() operation will be repeated in 
+request_done(), which is risky.So we can restrict that.
+For example:
+1. Add conditions in the driver. When only operating on sdio devices, 
+pre/post_req interface is called in the driver.
+2. Determine whether host_cookie has been assigned 
+SD_EMMC_DESC_CHAIN_MODE before calling pre/post_req. If host_cookie has 
+been assigned, it means that the block layer has called pre/post_req 
+callback.
+This should prevent duplicate calls.What do you think?
 
+----8<-----
+diff --git a/drivers/mmc/host/meson-gx-mmc.c 
+b/drivers/mmc/host/meson-gx-mmc.c 
 
-Martin
+index f7ac88c..3eaae4d 100644
+--- a/drivers/mmc/host/meson-gx-mmc.c
++++ b/drivers/mmc/host/meson-gx-mmc.c
+@@ -282,6 +282,11 @@ static void meson_mmc_pre_req(struct mmc_host *mmc, 
+struct mmc_request *mrq)
+     if (!data)
+         return;
+
++   if (meson_mmc_desc_chain_mode(data)) {
++       host->needs_pre_post_req = false;
++       return;
++   }
++
+     meson_mmc_get_transfer_mode(mmc, mrq);
+     data->host_cookie |= SD_EMMC_PRE_REQ_DONE;
+---->8-----
+
+> Regards
+> Jerome
+> 
+
 
 _______________________________________________
 linux-amlogic mailing list
