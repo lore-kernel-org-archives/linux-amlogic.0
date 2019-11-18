@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-8.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
 	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 65A18C432C3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Nov 2019 10:05:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1D490C432C0
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Nov 2019 10:26:33 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3B53C20730
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Nov 2019 10:05:10 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E5E7D2071B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Nov 2019 10:26:32 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="JkwkpW5z";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="1rFC3N+s"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3B53C20730
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="CJyJI4QH";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="VSo9cxpn"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E5E7D2071B
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,63 +26,62 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yV7B/ZV1GwR5GFU09z54UqqgnRTKBrFtrYHHKhmUYF4=; b=JkwkpW5zNf2bMM
-	+43aK/vYR1S3nB3NIiD3LJED3eDh7i80A0tKJ+XVA99Du87s55JuiZi8ccO9jWW9SEpkXrh03VXOK
-	e/DnnE8Hixt/5U0UR5X5hcQpWPtSgNFYdMk8IbSQIGgiweAS4xGAOTNNy0y5E4n9S6RbGYv0HQC5V
-	Q1Oyy4Mmo+rxVmpf14s8/7N8iMny8+XRhR2e0REfKQm1pGpV9EVurwUBBMnzIIL0OjgTQM47m8aZn
-	x1NBZhnFQpH8bmYaq/+VV4EdvVDioGKWKP3ZGZwuiLuyxxV947jmczSGEHu0Kwdu7icTM0hut+6og
-	FRsY31mBgm+GWT/IC3oQ==;
+	List-Owner; bh=dXiqjHtyIttUuemP22hRGsCHP5sOFsHfCTbBdLxOY/A=; b=CJyJI4QHB1hn1r
+	dgZdq5BivJVIJD5w0SOziptz93BmdPL2FR7OjzGfQjNOe4+yx6z8xfwx3eenrHTxRs8HhZrQPSoOd
+	NV6Ba50utATA56rrZKS6r/TnNbsVwjd74TCemr+xhZhjNri99vIKAI+GUrU3Y8H7ATd4u6dLvAKJJ
+	J1YIBu88Gp0ySp3E/V/4Y9fRHzZsbfAQcEwY47Uf4EeU3Xyk/+/+bpOW+AkajK1m26alee7F62BAE
+	U7J3PC+YX55MMD8ENf2lK510SUn/BnGP7XLePbnTGyvfVzgrSOq392q+0NiIFB/i8qWJg5Z+4MxBe
+	EXs6Kdgk9fMeytUYnDEA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iWdu4-0008PT-7P; Mon, 18 Nov 2019 10:05:04 +0000
+	id 1iWeEk-0000lL-Jr; Mon, 18 Nov 2019 10:26:26 +0000
 Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iWdu1-0008CC-1n
- for linux-amlogic@lists.infradead.org; Mon, 18 Nov 2019 10:05:02 +0000
-Received: by mail-wr1-x444.google.com with SMTP id z10so18638728wrs.12
- for <linux-amlogic@lists.infradead.org>; Mon, 18 Nov 2019 02:05:00 -0800 (PST)
+ id 1iWeEi-0000l1-6Z
+ for linux-amlogic@lists.infradead.org; Mon, 18 Nov 2019 10:26:26 +0000
+Received: by mail-wr1-x444.google.com with SMTP id a15so18746830wrf.9
+ for <linux-amlogic@lists.infradead.org>; Mon, 18 Nov 2019 02:26:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=uHDOMZ37yNgCR7vTGPsGK7epgcWZ/WmdIAqGlnpnBD8=;
- b=1rFC3N+s0Tubu8STaAwRxgoSAy2c+Js/SotPR7rhzKjy51lyPInmz4/gWcbZUS28KL
- lOIkzf6WP4zOQntrgTMrfMp45cllMkJt27I563cLtyaCqL+f0QrONW4nI/t8OewZHVLS
- wwUZL6D8maNkaCYaarSUyIYV7hzLUEMraICw021RqpkdurIvpfkddV1XegZNpTCr/8+c
- 3EDKgyA+LU8cOFhvV4m4Thjp/m7saUjNuJP7obvA892/Dmw28BVQybWBBA1Kh/pbmKHN
- MhPXnDi6nbff/Cic8pctB/11r1JyfxEh7dFU/eeh3aST7CAg7gdDDYxSxidjA1INfYf5
- RcDw==
+ bh=EXbo335K53vzs1uCsZgpup3jav51R7GjRxQwLB4qaZ8=;
+ b=VSo9cxpn/qpKXPBSibPxZvIeo4pLppyU0GsKrbs8OApm3etprelVIIw3vLUmAmQB4E
+ mDgfu2k0Z3IAA66JdKqJv3kZXWT9gFW5ImseEr5KiqYOU2sND1LlnwWIJuNhvNoUhkGZ
+ 9H+WDUtGrb7BM/CjEMdhyx35AhUc1E3VcuzCcI+ezw2EPqTCW2E1pwL/O6Yh5FL9PHs5
+ e+HX0HsJFjkD2CsDxRdOiZT7EG555N0n+En8dVP2UF4oB3pIQdPRrAoCBOnmAUBvu5LU
+ GXzHLVxejYiyWFgfAHCzErtNdZ4mn9ttHLkFwTjeUarYF6SxD9WEaAG10rLfBasBP8pf
+ uLmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=uHDOMZ37yNgCR7vTGPsGK7epgcWZ/WmdIAqGlnpnBD8=;
- b=um9j4Pb3wquydTUyNqjh8azqArGu/7hGjCzoba4q5Mq3cvV3RfLWFRhO3fP4I5kMvh
- jcAdewQw8wCmX3LbF41+TuMGq4ny0S5MvN78801sJ+mnEaUQzIkIl0upyQzWZLd5cXCC
- K6Lf3kWI/eyE9/RDzEAmxUUhUov7rOliXaR1CFaGqNan1qKmgT9EXmGWJ6D00iFImB/W
- TeUfdsZuL0jYs3xBhpVu3M4msIgUIa3TkldBxpBvkItB80vg/bDQW2jmSeTToW8xFeg3
- UKzmRQco0Bd69EiHfr4Djgns70TjvSyQ3vlSd3eaDFtBBYZEyFF7QfN2iSEV837Wu/zy
- aVoQ==
-X-Gm-Message-State: APjAAAUGHE1IWOsOmTYMX4qfo0lKSLOIYZWzjWxhgqN258InIKUWfmfE
- RpCb9Ox20nAzPtV92jKmiy/fOg==
-X-Google-Smtp-Source: APXvYqxXUJhjPMRUsqsGwHWXoxs7Q5d+PyVeqZ3q38j9rR1PrZt9Hem+eKHzwFtwZ/a0J7jCfXXaiQ==
-X-Received: by 2002:adf:b1cb:: with SMTP id r11mr20165524wra.246.1574071498805; 
- Mon, 18 Nov 2019 02:04:58 -0800 (PST)
+ bh=EXbo335K53vzs1uCsZgpup3jav51R7GjRxQwLB4qaZ8=;
+ b=XD3cm4tfmd7+QqmQGr5VJXqPxv09xgVQgm0xbO+VftklV+jG0hqXDZIk68M9eGFGOs
+ 7zIEFFNsH1ZZaRpZJGzrtuuvXybPXZA6d5lxBdNrgqzHYzv250CsOc+fF7PEgflLojrC
+ QVSfeT8hDV0MwUENSnsUHeo8tcilbItiJGH+FQdys0IRc3uUWiSYc3fg30dj7xjLrbBU
+ 8cZIJfu25tpuh9R4pKyccXi6A5M3p9fxovzSv8c0D6lON7hpXqvT/SzCmNx/iqoQrlbn
+ 9DqoclLLozaTB8yT84c6DktwVT+jgu9Ccur3SRNHhOiYGu51qp2qKE7S3cS2o5iEphoP
+ xHGQ==
+X-Gm-Message-State: APjAAAV5gYGreVu6YCXce5jhD199UOFovY0+ZKPc1W+rNJyV81Qou0Rd
+ juftp2ebknSz9Ge7dwjihYRWwA==
+X-Google-Smtp-Source: APXvYqyHrXyXgR4NWhNYPGO99U2jVvDDJczON9ILfP4ARiHqjZ05xradsbeXgmO8jM5Obj6SSpLJUQ==
+X-Received: by 2002:adf:e94e:: with SMTP id m14mr29985048wrn.233.1574072782449; 
+ Mon, 18 Nov 2019 02:26:22 -0800 (PST)
 Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
  by smtp.gmail.com with ESMTPSA id
- g11sm20029644wmh.27.2019.11.18.02.04.57
+ n17sm21734417wrp.40.2019.11.18.02.26.21
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 18 Nov 2019 02:04:58 -0800 (PST)
-Subject: Re: [RFC PATCH 4/4] Bluetooth: btbcm: Add entry for BCM4335A0 UART
- bluetooth
+ Mon, 18 Nov 2019 02:26:21 -0800 (PST)
+Subject: Re: [RFC PATCH 3/4] arm64: dts: meson-gxbb: add support for
+ Videostrong KII Pro
 To: Mohammad Rasim <mohammad.rasim96@gmail.com>,
- linux-amlogic@lists.infradead.org, linux-bluetooth@vger.kernel.org,
- Johan Hedberg <johan.hedberg@gmail.com>,
- Marcel Holtmann <marcel@holtmann.org>
+ linux-amlogic@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+ devicetree@vger.kernel.org
 References: <20191117175606.5050-1-mohammad.rasim96@gmail.com>
- <20191117175606.5050-5-mohammad.rasim96@gmail.com>
+ <20191117175606.5050-4-mohammad.rasim96@gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -135,16 +134,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <de37f562-77eb-755d-5f27-c534ec028356@baylibre.com>
-Date: Mon, 18 Nov 2019 11:04:57 +0100
+Message-ID: <65a64f28-c1fe-0ce2-d954-e96bc1924001@baylibre.com>
+Date: Mon, 18 Nov 2019 11:26:21 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <20191117175606.5050-5-mohammad.rasim96@gmail.com>
+In-Reply-To: <20191117175606.5050-4-mohammad.rasim96@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191118_020501_099905_841EDF7F 
-X-CRM114-Status: GOOD (  17.04  )
+X-CRM114-CacheID: sfid-20191118_022624_270117_DEC83243 
+X-CRM114-Status: GOOD (  18.34  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,65 +163,77 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 17/11/2019 18:56, Mohammad Rasim wrote:
-> This patch adds the device ID for the BCM4335A0 module (part of the AMPAK AP6335 WIFI/Bluetooth combo)
-> 
-> hciconfig output:
-> ```
-> hci1:   Type: Primary  Bus: UART
->         BD Address: 43:35:B0:07:1F:AC  ACL MTU: 1021:8  SCO MTU: 64:1
->         UP RUNNING
->         RX bytes:5079 acl:0 sco:0 events:567 errors:0
->         TX bytes:69065 acl:0 sco:0 commands:567 errors:0
->         Features: 0xbf 0xfe 0xcf 0xff 0xdf 0xff 0x7b 0x87
->         Packet type: DM1 DM3 DM5 DH1 DH3 DH5 HV1 HV2 HV3
->         Link policy: RSWITCH SNIFF
->         Link mode: SLAVE ACCEPT
->         Name: 'alarm'
->         Class: 0x000000
->         Service Classes: Unspecified
->         Device Class: Miscellaneous,
->         HCI Version: 4.0 (0x6)  Revision: 0x161
->         LMP Version: 4.0 (0x6)  Subversion: 0x4106
->         Manufacturer: Broadcom Corporation (15)
-> ```
+> This patch adds support for the Videostrong KII Pro tv box which is based on the gxbb-p201 reference design
 > 
 > Signed-off-by: Mohammad Rasim <mohammad.rasim96@gmail.com>
 > ---
->  drivers/bluetooth/btbcm.c   | 1 +
->  drivers/bluetooth/hci_bcm.c | 1 +
->  2 files changed, 2 insertions(+)
+>  arch/arm64/boot/dts/amlogic/Makefile          |  1 +
+>  .../boot/dts/amlogic/meson-gxbb-kii-pro.dts   | 39 +++++++++++++++++++
+>  2 files changed, 40 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
 > 
-> diff --git a/drivers/bluetooth/btbcm.c b/drivers/bluetooth/btbcm.c
-> index 2d2e6d862068..22464bf8cda3 100644
-> --- a/drivers/bluetooth/btbcm.c
-> +++ b/drivers/bluetooth/btbcm.c
-> @@ -339,6 +339,7 @@ static const struct bcm_subver_table bcm_uart_subver_table[] = {
->  	{ 0x220e, "BCM20702A1"  },	/* 001.002.014 */
->  	{ 0x4217, "BCM4329B1"   },	/* 002.002.023 */
->  	{ 0x6106, "BCM4359C0"	},	/* 003.001.006 */
-> +	{ 0x4106, "BCM4335A0"	},	/* 002.001.006 */
+> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+> index 84afecba9ec0..a795a170dcab 100644
+> --- a/arch/arm64/boot/dts/amlogic/Makefile
+> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+> @@ -6,6 +6,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-g12b-s922x-khadas-vim3.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-kii-pro.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nanopi-k2.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nexbox-a95x.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-odroidc2.dtb
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
+> new file mode 100644
+> index 000000000000..b63dabb7bf97
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
+> @@ -0,0 +1,39 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> +/* Copyright (c) 2019 Mohammad Rasim <mohammad.rasim96@gmail.com>
+> +*/
+> +
+> +/dts-v1/;
+> +
+> +#include "meson-gxbb-p20x.dtsi"
+> +
+> +/ {
+> +	compatible = "videostrong,kii-pro", "amlogic,p201", "amlogic,s905", "amlogic,meson-gxbb";
+> +	model = "Videostrong KII Pro";
+> +
+> +
+> +};
+> +
+> +&uart_A {
+> +	status = "okay";
+> +	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
+> +	pinctrl-names = "default";
+> +	uart-has-rtscts;
+> +
+> +	bluetooth {
+> +		compatible = "brcm,bcm4335a0";
 
-Ack for this one
+Use "brcm,bcm43438-bt" here if the I/F is compatible.
 
->  	{ }
->  };
->  
-> diff --git a/drivers/bluetooth/hci_bcm.c b/drivers/bluetooth/hci_bcm.c
-> index 7646636f2d18..7eba10b0ae6c 100644
-> --- a/drivers/bluetooth/hci_bcm.c
-> +++ b/drivers/bluetooth/hci_bcm.c
-> @@ -1422,6 +1422,7 @@ static const struct of_device_id bcm_bluetooth_of_match[] = {
->  	{ .compatible = "brcm,bcm4345c5" },
->  	{ .compatible = "brcm,bcm4330-bt" },
->  	{ .compatible = "brcm,bcm43438-bt" },
-> +	{ .compatible = "brcm,bcm4335a0" },
-
-This could be omitted if the I/F is the same as "brcm,bcm43438-bt".
-
->  	{ },
->  };
->  MODULE_DEVICE_TABLE(of, bcm_bluetooth_of_match);
+> +	};
+> +};
+> +
+> +&ethmac {
+> +	status = "okay";
+> +	pinctrl-0 = <&eth_rmii_pins>;
+> +	pinctrl-names = "default";
+> +	phy-mode = "rmii";
+> +
+> +	snps,reset-gpio = <&gpio GPIOZ_14 0>;
+> +	snps,reset-delays-us = <0>, <10000>, <1000000>;
+> +	snps,reset-active-low> +};
+> +
+> +
 > 
+
+Did you try to determine the PHY and add a PHY node aswell ? The reset stuff could go in the PHY node.
 
 Neil
 
