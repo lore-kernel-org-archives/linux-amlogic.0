@@ -2,22 +2,22 @@ Return-Path: <SRS0=GMFV=ZK=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-8.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2B9CDC432C0
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Nov 2019 10:03:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7AFEFC432C3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Nov 2019 10:04:07 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EF75E20726
-	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Nov 2019 10:03:35 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 5227A20898
+	for <linux-amlogic@archiver.kernel.org>; Mon, 18 Nov 2019 10:04:07 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YtCs3E3z";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="NNYiAKOZ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EF75E20726
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PMTxSwz4";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="QmIKMFTC"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5227A20898
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,62 +26,62 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Xrjoec1mCzGKcAnB7Ne/smg2eObAyPRftwvGtcI+Cp4=; b=YtCs3E3zF0LaTM
-	+bAx0f7D6UvmyzSPoWkT4ZfRSDln8eUJ5djuwg6M+meTSPNlEMpST6/Oc3bIgx2KM0PBRQtShsC2p
-	hBlH/AKfP+oluiaeyHN4GJSsMM2wk//Z/xvYsA8+MpGSyrxRlCJxVA0EoA/bkVAX5rC+Cm79z4FWt
-	P3haQ1rzE6ttfYjaToJUpGWAevpymYq0Ey7GDZYmgoDIS4Zdo67jUXoBpWVLJwGOsXWyUCYzbyioK
-	DYPQ9XUI/3UQgUGy8QOyxkEMt/3421uVcBg2HHMbrAClkvXV47y3mtCVnsqx49LogOF59uRxR5u1V
-	4OsrsSf5JiAi9DhxuXCg==;
+	List-Owner; bh=xy2d26uqQRQwvItulBa83v7xp72BBeq/2364iP9Gdjg=; b=PMTxSwz4Z+EJu2
+	a0W4LBGkhC/2CpU6gejCX6TBFerVR64bdDpTboUHbcKFmXmfb8MuC0Gs5QgTHFL2PQBid1B4+q4xl
+	ra5ViyJ76dJFZs9jH/btSHZd9orDAp4Dpt/vmPw7XGrbK/FEUGNSNOwbxImLXpmMaAFtCo+I3tT9H
+	+Zjo9L6SBOiu+H6r2a5pUfaJfK0WxfteudJXsSUUUhq+sn2ci2e+RscTImCTdhakUDPisq9QhFFIx
+	znZ/hCenXwpZUihDkxE3TYFvJxzOmfAdz7nH/ylQ3ZM4M/hQyOJTsjPr+spYz/LaX3XyEagRi5OzX
+	6yNiJgGTLA8zvwl2kJ+g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iWdsY-0007Yj-CP; Mon, 18 Nov 2019 10:03:30 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1iWdt5-0007fg-5G; Mon, 18 Nov 2019 10:04:03 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iWdsV-0007YN-6Y
- for linux-amlogic@lists.infradead.org; Mon, 18 Nov 2019 10:03:28 +0000
-Received: by mail-wr1-x442.google.com with SMTP id i12so18664059wro.5
- for <linux-amlogic@lists.infradead.org>; Mon, 18 Nov 2019 02:03:26 -0800 (PST)
+ id 1iWdt2-0007cv-Ii
+ for linux-amlogic@lists.infradead.org; Mon, 18 Nov 2019 10:04:02 +0000
+Received: by mail-wr1-x441.google.com with SMTP id t1so18656302wrv.4
+ for <linux-amlogic@lists.infradead.org>; Mon, 18 Nov 2019 02:04:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=0TWFJW2krnyaObJVLMyE0NmrTkQiHL20ohLIEC4U72I=;
- b=NNYiAKOZMmH0Giy5JuhB61/sVjd9+iAElmWpnzCY6WhVPLurj3wlEPeoploaKc90Vn
- nyXQUOMvWaRpdkw98Qj828EKrep0EsiJ+Z1xsyHMhhpZnObMqy0d6mF5YxxuVL1CfeJL
- zKwP40w/3kz+IFfAViiEaJXX3E7k61p0UzN9M4k7ASvB/b9zArKioxqLoyxNHhryXipL
- tBiO0cL4IJW75AWCQUTLb7b3wHdNKXcUTKQL0L7nSAUzxrUOBoiA+nAMzjq13xJcbT6w
- cTuCHdrpD80zwJS8/mEV0OayUh8XZo9xtrFOzPqMtBVPu+UU4/Zu3k35zks/VIn+V4Lv
- zGQQ==
+ bh=4Wqv+uX/8kHQzWtfn2CsXpGYkiMjRw4EUmdLGI7cSCE=;
+ b=QmIKMFTCPKTpsVugiT9374+cX/Li1FtzIQedUmrv291hkTlgB/GEnnl6ujm+Eg1WSR
+ iX0mz90zOPGUu66/8WSuxR42orht4vHoix+7mZ4BSVzLaAPbyojybhfuuE9iC4UdTar7
+ 6diSX0K3QRP3eiaJH2qUd8q7kpI+1GaTwlUapCnDmf6yATDNro6fnn2m4+GKZMyp9WmF
+ 25pdwc8xaBY/60S7Bf5fhZKsgv7Rv3wzrK5pT0R4Cc5XJps9AAmvdxLwlyULaA5v0g7k
+ avvK4bFVcVbd2K6TO0mvF0toDaP8V8UVO57rtrvBQmh2Ax4L7RqTpiNNCaUkf/JXlgmH
+ r+rQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=0TWFJW2krnyaObJVLMyE0NmrTkQiHL20ohLIEC4U72I=;
- b=MQWTuagC1kcAb/4S16V6AyK0FHn4q+CW4ZQN7oUw+AvVMQXImwWTPJ4g5BDCmmaSn4
- QY+KgyN7FzbV9ySIcgYcrj29tB35C8VMFF0pDYYcmf3tdZPK4tZppdJCIdfpzxZL+0HD
- WpwT3vk0ebPxLNVpJ0uOLufskGvXFA0xmmtE/HZP4mZc2PG9vLRZFGDyLRkzFdrBXDGh
- BuhG78XBHasSqE50sQ5v5Pn1nc/OsgJOlytJ9dNe7iSM1KGOz5vNjOmJXwCQQg1JN+JN
- LBF+aySsvix3/LNOKH92ltWi2Qa2+jr6CXyAsDTbfr6t3TETMPpC/u9Nqug/d48tdF+2
- b0Cg==
-X-Gm-Message-State: APjAAAXO1RkcwtBCD2IvFcflOW7+gcqkY7vyD4WF/msotskxNGV7O2Lc
- Y0KBKeH570+IZus+s5wCsfGmzA==
-X-Google-Smtp-Source: APXvYqzncsW71aFh80xExAG8gFMGG1BBv35MZygzI19HDdYFImno8YOjpbIY3bCbP/F+6pskMaMXVA==
-X-Received: by 2002:a5d:4f06:: with SMTP id c6mr13963510wru.211.1574071405092; 
- Mon, 18 Nov 2019 02:03:25 -0800 (PST)
+ bh=4Wqv+uX/8kHQzWtfn2CsXpGYkiMjRw4EUmdLGI7cSCE=;
+ b=a/BH4yjaRj53HAqFYU+EMZXOv4SaW8OhXu3a2Q1rndMpTLe0d/VUvARWT8VRnvsnM0
+ ko5rnZYpfvikj6ytsGbuhfZw0q4beIJyAeZES0OpbhVfCICEhfowaxhqXPEoRkNLB2W6
+ +E77zhWiwc4pxAX6b5pY8AhKiYxmGhRzx10XfLAk3NkIJB9nujObVvBLCIrDiwoim8TX
+ NgGti9WieDZ+/goggsNcR/mCb5yxPvm3OcKYS3iYiNcczHKpKb1RrpwLRhmAUwCeSCY/
+ k1df2UwaFjRccFKmEHASQT0gJQ+MKJ2536MWOrHUAWbS0xGWydlAAneuocObiXTGgE8n
+ Pw1A==
+X-Gm-Message-State: APjAAAW0Zxxv+L8wR+GQ8XxTaClBsUcKRx765EuD4cc3z7RYwbbguQ9J
+ IhXwSMyEHP4bGwJsy7/qWcMIMg==
+X-Google-Smtp-Source: APXvYqxap9gQZ76dtuMnth+n6Zqf7RFjYrzzgDAi6lJ/PmGiHErBkKmD9Qz9gP7FasRWLbfvKZgycQ==
+X-Received: by 2002:adf:ef0e:: with SMTP id e14mr19739312wro.204.1574071438868; 
+ Mon, 18 Nov 2019 02:03:58 -0800 (PST)
 Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
  by smtp.gmail.com with ESMTPSA id
- c9sm18732751wmb.42.2019.11.18.02.03.24
+ t14sm22024576wrw.87.2019.11.18.02.03.58
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Mon, 18 Nov 2019 02:03:24 -0800 (PST)
-Subject: Re: [RFC PATCH 2/4] dt-bindings: net: Add compatible for BCM4335A0
- bluetooth module
+ Mon, 18 Nov 2019 02:03:58 -0800 (PST)
+Subject: Re: [RFC PATCH 1/4] dt-bindings: Add vendor prefix for Videostrong
+ Technology Co., Ltd.
 To: Mohammad Rasim <mohammad.rasim96@gmail.com>,
  linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, Marcel Holtmann <marcel@holtmann.org>
+ Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>
 References: <20191117175606.5050-1-mohammad.rasim96@gmail.com>
- <20191117175606.5050-3-mohammad.rasim96@gmail.com>
+ <20191117175606.5050-2-mohammad.rasim96@gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -134,16 +134,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <94c5d608-304f-68b8-9595-4d011b60c7e8@baylibre.com>
-Date: Mon, 18 Nov 2019 11:03:23 +0100
+Message-ID: <d83ccdbf-eefd-69b2-9381-4689f6d92406@baylibre.com>
+Date: Mon, 18 Nov 2019 11:03:57 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <20191117175606.5050-3-mohammad.rasim96@gmail.com>
+In-Reply-To: <20191117175606.5050-2-mohammad.rasim96@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191118_020327_242597_4C0F08F0 
-X-CRM114-Status: GOOD (  16.27  )
+X-CRM114-CacheID: sfid-20191118_020400_632140_8D9430AB 
+X-CRM114-Status: GOOD (  12.78  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,38 +162,30 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi,
-
 On 17/11/2019 18:56, Mohammad Rasim wrote:
-> 
-> Available in the Ampak AP6335 WiFi/Bluetooth combo
+> Videostrong Technology Co., Ltd., A manufacturer of Android Players & STB( Android with DVB Hybrid box &DVB-T2/S2/C/ISDB-T/DTMB-TH/ATSC,,)as well as HD media players.
 > 
 > Signed-off-by: Mohammad Rasim <mohammad.rasim96@gmail.com>
 > ---
->  Documentation/devicetree/bindings/net/broadcom-bluetooth.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt b/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-> index 4fa00e2eafcf..0717399191a2 100644
-> --- a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-> +++ b/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-> @@ -14,6 +14,7 @@ Required properties:
->     * "brcm,bcm4330-bt"
->     * "brcm,bcm43438-bt"
->     * "brcm,bcm4345c5"
-> +   * "brcm,bcm4335a0"
-
-Is there a specific reason to add a new compatible here ? it the BT interface of the BCM4335A0 different for the actual compatible modules ?
-
-If not, simply use a common "brcm,bcm43438-bt" compatible string.
-
-Neil
-
->  
->  Optional properties:
->  
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 967e78c5ec0a..e4bd0a9fd4e5 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -1006,6 +1006,8 @@ patternProperties:
+>      description: Variscite Ltd.
+>    "^via,.*":
+>      description: VIA Technologies, Inc.
+> +  "^videostrong,.*":
+> +    description: Videostrong Technology Co., Ltd.
+>    "^virtio,.*":
+>      description: Virtual I/O Device Specification, developed by the OASIS consortium
+>    "^vishay,.*":
 > 
 
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
 _______________________________________________
 linux-amlogic mailing list
