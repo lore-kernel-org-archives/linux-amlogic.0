@@ -4,20 +4,19 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=3.4.0
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AEA29C432C0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Nov 2019 05:56:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D8245C432C3
+	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Nov 2019 06:02:19 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 78A6120659
-	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Nov 2019 05:56:57 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 990712070B
+	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Nov 2019 06:02:19 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="d2NLt88C";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pp4+H8G6"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 78A6120659
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lRbhTk7A";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="ElvO9VLv"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 990712070B
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,47 +25,47 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=sZjFYQmCQsrgXkwdb9SsdLtzPMZI2valUGxA0K+quY8=; b=d2NLt88C23Xcy9
-	Ao/DysnvfVRSKwv6m3VkY9PbjYZ+mVT5BdF5Arx+oefe5jHDo3p0OQacndSgnRuknvmVsU70VJk0v
-	MybAEB+tam5jJqXbYDQwNHQwJn1h2IAiq1af27CopxpzLEMiySy0C9XhfL7mB+Itz7P+kq72qfiHI
-	iXUYzNObFp3+e99v19ztxC/iN9NtlXVZivktLI6VmjPAVA9feYegE+IzvvMYGKhdN3d6pppce2zu4
-	ZP3rKXWroEprM3VGG70mhDl66PS4Pel8F0X25WvbxfMkzcBLdRZkPmCPtOSVbLEHg+D1WND8YYpLL
-	YYna2G6ty4Q0VzZi85gQ==;
+	List-Owner; bh=/Ufln1rfzyrXmmVq9iyYPIDu9Vigy7vzrUSvbu/3TV0=; b=lRbhTk7AprE1tU
+	ZDocdEB+Fe1xW5G/FmwoQdNQLeyZC86Ov5YOSYNV94RriWuDnfOEoA4Z9pKIMseeEhqC1oN+ztCgY
+	1t+6sYQTDTjYvxUlfj9rgLYPbxmvx2iwf8qkgjmUMb9VNJeLewpcWk+21tB8EbHa/6sV7SPLjjAxz
+	lyPdkGv+MvamrXr7vD1aYqvUdgQTW+kCSQEqYBuiooBc+sKQl/H4Si1Co5aJgcCcs+4ipBR25Coib
+	593ZDJFTgOlVvKxH9lqSl5kYq/QyQ1pBGEJl6i/eLqYwapTNBYQmSpI24zJ5HcHuXp1LGD8fX2j9S
+	92l18OpFAN+Rrs14eACg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iY1w0-0000UB-2G; Fri, 22 Nov 2019 05:56:48 +0000
+	id 1iY21C-0007D8-Oq; Fri, 22 Nov 2019 06:02:10 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iY1pq-00028I-71; Fri, 22 Nov 2019 05:50:28 +0000
+ id 1iY1vW-00009e-Aq; Fri, 22 Nov 2019 05:56:23 +0000
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
  [73.47.72.35])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id DBB6B20721;
- Fri, 22 Nov 2019 05:50:24 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id E4D022071B;
+ Fri, 22 Nov 2019 05:56:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1574401825;
- bh=Xpod03aAcBRpWGTIRjqOESwaKMqTlQogNqXT861zjPk=;
+ s=default; t=1574402177;
+ bh=tvhl9kyVKBPUjlXSbo4Uzz5kMf+FA/S+X+C4Y9Z0N8I=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Pp4+H8G6QtWEs7HmUbpPFZZ7C6LQ5wL1uuzdW4/R9ZFDLchUovxfr/LVxIYXOOnKh
- EiLb14IcQzjBhH+iwe0H1hghUW2l7H9C3UW0ueOx0DJ3en08ian/XeB+GF4FcbgSru
- aRVBc6YCSruxhh0XBVXFphHvwFJ0Q6Kdv+uUPkAc=
+ b=ElvO9VLvLu27oAFx8Iv60IA7t1gPLWbp9zWD3RJBBiR3FltXUFvdjkzstPnnzKs5k
+ t4l/JnRYEdJiLQi1kcD72059JVCoMdGNfCDw6nWt5cTMbOPZyJV1yOiMrknLN+wIYd
+ fO7MOCMdwU2XDxk6RspogVbkkB+9kNJEtiJMCyh0=
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 068/219] mmc: meson-gx: make sure the descriptor
+Subject: [PATCH AUTOSEL 4.14 029/127] mmc: meson-gx: make sure the descriptor
  is stopped on errors
-Date: Fri, 22 Nov 2019 00:46:40 -0500
-Message-Id: <20191122054911.1750-61-sashal@kernel.org>
+Date: Fri, 22 Nov 2019 00:54:07 -0500
+Message-Id: <20191122055544.3299-28-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191122054911.1750-1-sashal@kernel.org>
-References: <20191122054911.1750-1-sashal@kernel.org>
+In-Reply-To: <20191122055544.3299-1-sashal@kernel.org>
+References: <20191122055544.3299-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191121_215026_353048_BE284915 
-X-CRM114-Status: GOOD (  16.12  )
+X-CRM114-CacheID: sfid-20191121_215619_018131_0E96B973 
+X-CRM114-Status: GOOD (  16.05  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,7 +106,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 63 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/mmc/host/meson-gx-mmc.c b/drivers/mmc/host/meson-gx-mmc.c
-index ddd98cdd33bcd..72f34a58928ca 100644
+index 08a55c2e96e1b..53ce1bb83d2c5 100644
 --- a/drivers/mmc/host/meson-gx-mmc.c
 +++ b/drivers/mmc/host/meson-gx-mmc.c
 @@ -21,6 +21,7 @@
@@ -118,7 +117,7 @@ index ddd98cdd33bcd..72f34a58928ca 100644
  #include <linux/device.h>
  #include <linux/of_device.h>
  #include <linux/platform_device.h>
-@@ -90,9 +91,11 @@
+@@ -74,9 +75,11 @@
  #define   CFG_CLK_ALWAYS_ON BIT(18)
  #define   CFG_CHK_DS BIT(20)
  #define   CFG_AUTO_CLK BIT(23)
@@ -130,7 +129,7 @@ index ddd98cdd33bcd..72f34a58928ca 100644
  #define   STATUS_DATI GENMASK(23, 16)
  
  #define SD_EMMC_IRQ_EN 0x4c
-@@ -930,6 +933,7 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
+@@ -905,6 +908,7 @@ static void meson_mmc_start_cmd(struct mmc_host *mmc, struct mmc_command *cmd)
  
  	cmd_cfg |= FIELD_PREP(CMD_CFG_CMD_INDEX_MASK, cmd->opcode);
  	cmd_cfg |= CMD_CFG_OWNER;  /* owned by CPU */
@@ -138,7 +137,7 @@ index ddd98cdd33bcd..72f34a58928ca 100644
  
  	meson_mmc_set_response_bits(cmd, &cmd_cfg);
  
-@@ -1024,6 +1028,17 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+@@ -999,6 +1003,17 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
  	u32 irq_en, status, raw_status;
  	irqreturn_t ret = IRQ_NONE;
  
@@ -156,7 +155,7 @@ index ddd98cdd33bcd..72f34a58928ca 100644
  	if (WARN_ON(!host) || WARN_ON(!host->cmd))
  		return IRQ_NONE;
  
-@@ -1031,22 +1046,18 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+@@ -1006,22 +1021,18 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
  
  	cmd = host->cmd;
  	data = cmd->data;
@@ -181,7 +180,7 @@ index ddd98cdd33bcd..72f34a58928ca 100644
  		goto out;
  	}
  
-@@ -1071,17 +1082,49 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
+@@ -1046,17 +1057,49 @@ static irqreturn_t meson_mmc_irq(int irq, void *dev_id)
  	/* ack all enabled interrupts */
  	writel(irq_en, host->regs + SD_EMMC_STATUS);
  
@@ -235,7 +234,7 @@ index ddd98cdd33bcd..72f34a58928ca 100644
  static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
  {
  	struct meson_host *host = dev_id;
-@@ -1092,6 +1135,13 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
+@@ -1067,6 +1110,13 @@ static irqreturn_t meson_mmc_irq_thread(int irq, void *dev_id)
  	if (WARN_ON(!cmd))
  		return IRQ_NONE;
  
@@ -249,7 +248,7 @@ index ddd98cdd33bcd..72f34a58928ca 100644
  	data = cmd->data;
  	if (meson_mmc_bounce_buf_read(data)) {
  		xfer_bytes = data->blksz * data->blocks;
-@@ -1132,6 +1182,9 @@ static void meson_mmc_cfg_init(struct meson_host *host)
+@@ -1107,6 +1157,9 @@ static void meson_mmc_cfg_init(struct meson_host *host)
  	cfg |= FIELD_PREP(CFG_RC_CC_MASK, ilog2(SD_EMMC_CFG_CMD_GAP));
  	cfg |= FIELD_PREP(CFG_BLK_LEN_MASK, ilog2(SD_EMMC_CFG_BLK_SIZE));
  
