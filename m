@@ -5,18 +5,18 @@ X-Spam-Level:
 X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=3.4.0
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 15599C432C0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Nov 2019 06:58:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 82435C432C0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Nov 2019 06:58:19 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B7B312068F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Nov 2019 06:58:14 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 57B1F2068F
+	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Nov 2019 06:58:19 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qVXiDEYR"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B7B312068F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qqjQ0RNJ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 57B1F2068F
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,18 +25,18 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ezHwe3vgaTFEW0bOKE8dlBV0F3GaROYjWiswoxCwHZ0=; b=qVXiDEYRmZ00Rg
-	LCRsd6c2FxYu1PDfggAJ7ALv9xBGPeC6W7c2jojXKRZFZXY1C7UgrpC5osoyfFvoqNo+X4nVOm9ZM
-	uODlgowuBXc/58novTvOSyLTHQ35SdrfS7T6MQiRBpElyzu3I20wW7PH7Puz8AyvnwFeq7xVce1OZ
-	ajvWNgZtB2vek8nweGNNJvwVzZSK6V4TpKOII4YIVpFbB0Ye3hxCE+eIR6WeoaEQHchn3fo916kRf
-	+jKwNb0/A4dHik5RzQVjIzcAtAYOyIIf5tECTFADU0enDwTCixDTuABbZrOumXQZ2Au2aJc+AsWtF
-	Xv1GRsrqCL7tC+ZvEYog==;
+	List-Owner; bh=vvZCkXeZTR7/ICvuRGx0sCeROWUcGxUDVbGUC7H8rKc=; b=qqjQ0RNJZFD4JN
+	rAx8OOKhhikn4DyfUyIXE59TMBJDs9kIPzoScyEiWkW8HpAzY/uX3rOh56H6aI+frVYEpc2MT/l3Z
+	cyXMAjyc5pZRHKuTH80bDyHIOsCcmefxgL7WV9a0XUMuIl75pxFc4KW8Hi6fFJ8RkIZfP9OPvlDu7
+	XWj1vgaOn7lH8UFFVutCwqaDSEkjUpwDXVrktwrD6lXSj7zwOtjovHZ3BIwp9LkRqTPh3QYfAu9Al
+	JcFO6VjLVAzmw5H0tIi1DuqNNggXMZbUrmea4aNEjxgU5wwezZdbHFM0SgkVaZWjBcr360YVsb5Vs
+	qOIjJOgGlrwxFRmrf/3A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iY2tL-0003NQ-0D; Fri, 22 Nov 2019 06:58:07 +0000
+	id 1iY2tS-0003TI-6q; Fri, 22 Nov 2019 06:58:14 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iY2rb-0001XO-9F; Fri, 22 Nov 2019 06:56:21 +0000
+ id 1iY2rf-0001XO-Od; Fri, 22 Nov 2019 06:56:25 +0000
 Received: from droid10.amlogic.com (10.18.11.213) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.1591.10; Fri, 22 Nov 2019
  14:56:25 +0800
@@ -45,17 +45,18 @@ To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
  <narmstrong@baylibre.com>, Rob Herring <robh@kernel.org>, Greg Kroah-Hartman
  <gregkh@linuxfoundation.org>, Felipe Balbi <felipe.balbi@linux.intel.com>,
  Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH 4/6] usb: dwc3: Add Amlogic A1 DWC3 glue
-Date: Fri, 22 Nov 2019 14:55:55 +0800
-Message-ID: <1574405757-76184-5-git-send-email-hanjie.lin@amlogic.com>
+Subject: [PATCH 6/6] arm64: dts: meson: a1: Enable DWC3 controller
+Date: Fri, 22 Nov 2019 14:55:57 +0800
+Message-ID: <1574405757-76184-7-git-send-email-hanjie.lin@amlogic.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1574405757-76184-1-git-send-email-hanjie.lin@amlogic.com>
 References: <1574405757-76184-1-git-send-email-hanjie.lin@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.18.11.213]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191121_225619_358713_C2163E4E 
-X-CRM114-Status: GOOD (  14.00  )
+X-CRM114-CacheID: sfid-20191121_225623_812461_ED661962 
+X-CRM114-Status: UNSURE (   7.02  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,459 +82,64 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Adds support for Amlogic A1 USB Control Glue HW.
+Enable DWC3 controller for Meson A1 SoC.
 
-The Amlogic A1 SoC Family embeds 1 USB Controllers:
-- a DWC3 IP configured as Host for USB2 and USB3
-
-A glue connects the controllers to the USB2 PHY of A1 SoC.
-
+Change-Id: Ibbbfb44fc211f926adf91a548776bc6bca6fa35c
 Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
 Signed-off-by: Yue Wang <yue.wang@amlogic.com>
 ---
- drivers/usb/dwc3/Kconfig         |  11 ++
- drivers/usb/dwc3/Makefile        |   1 +
- drivers/usb/dwc3/dwc3-meson-a1.c | 397 +++++++++++++++++++++++++++++++++++++++
- 3 files changed, 409 insertions(+)
- create mode 100644 drivers/usb/dwc3/dwc3-meson-a1.c
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
 
-diff --git a/drivers/usb/dwc3/Kconfig b/drivers/usb/dwc3/Kconfig
-index 556a876..9bfb159 100644
---- a/drivers/usb/dwc3/Kconfig
-+++ b/drivers/usb/dwc3/Kconfig
-@@ -96,6 +96,17 @@ config USB_DWC3_KEYSTONE
- 	  Support of USB2/3 functionality in TI Keystone2 and AM654 platforms.
- 	  Say 'Y' or 'M' here if you have one such device
+diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+index 3b61717..f3d93cd 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+@@ -6,6 +6,9 @@
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/power/meson-a1-power.h>
++#include <dt-bindings/clock/a1-clkc.h>
++#include <dt-bindings/reset/amlogic,meson-a1-reset.h>
++#include <dt-bindings/clock/a1-pll-clkc.h>
  
-+config USB_DWC3_MESON_A1
-+	tristate "Amlogic Meson A1 Platforms"
-+	depends on OF && COMMON_CLK
-+	depends on ARCH_MESON || COMPILE_TEST
-+	default USB_DWC3
-+	help
-+	  Support USB2 functionality in MESON A1 platforms.
-+	  The MESON A1 USB2 support a DWC3 USB IP Core configured for USB2 in
-+	  host-only mode.
-+	  Say 'Y' or 'M' if you have one such device.
-+
- config USB_DWC3_MESON_G12A
-        tristate "Amlogic Meson G12A Platforms"
-        depends on OF && COMMON_CLK
-diff --git a/drivers/usb/dwc3/Makefile b/drivers/usb/dwc3/Makefile
-index ae86da0..a3fc655 100644
---- a/drivers/usb/dwc3/Makefile
-+++ b/drivers/usb/dwc3/Makefile
-@@ -47,6 +47,7 @@ obj-$(CONFIG_USB_DWC3_EXYNOS)		+= dwc3-exynos.o
- obj-$(CONFIG_USB_DWC3_PCI)		+= dwc3-pci.o
- obj-$(CONFIG_USB_DWC3_HAPS)		+= dwc3-haps.o
- obj-$(CONFIG_USB_DWC3_KEYSTONE)		+= dwc3-keystone.o
-+obj-$(CONFIG_USB_DWC3_MESON_A1)		+= dwc3-meson-a1.o
- obj-$(CONFIG_USB_DWC3_MESON_G12A)	+= dwc3-meson-g12a.o
- obj-$(CONFIG_USB_DWC3_OF_SIMPLE)	+= dwc3-of-simple.o
- obj-$(CONFIG_USB_DWC3_ST)		+= dwc3-st.o
-diff --git a/drivers/usb/dwc3/dwc3-meson-a1.c b/drivers/usb/dwc3/dwc3-meson-a1.c
-new file mode 100644
-index 00000000..db2b99a
---- /dev/null
-+++ b/drivers/usb/dwc3/dwc3-meson-a1.c
-@@ -0,0 +1,397 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * USB Glue for Amlogic A1 SoCs
-+ *
-+ * Copyright (c) 2019 Amlogic, Inc. All rights reserved
-+ * Author: Yue Wang <yue.wang@amlogic.com>
-+ */
-+
-+/*
-+ * The USB is organized with a glue around the DWC3 Controller IP as :
-+ * - Control registers for each USB2 Ports
-+ * - Control registers for the USB PHY layer
-+ */
-+
-+#include <linux/module.h>
-+#include <linux/kernel.h>
-+#include <linux/platform_device.h>
-+#include <linux/clk.h>
-+#include <linux/of.h>
-+#include <linux/of_platform.h>
-+#include <linux/pm_domain.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/regmap.h>
-+#include <linux/bitfield.h>
-+#include <linux/bitops.h>
-+#include <linux/reset.h>
-+#include <linux/phy/phy.h>
-+#include <linux/usb/otg.h>
-+#include <linux/usb/role.h>
-+#include <linux/regulator/consumer.h>
-+
-+/* USB2 Ports Control Registers */
-+#define U2P_R0							0x20
-+	#define U2P_R0_HOST_DEVICE				BIT(0)
-+	#define U2P_R0_POWER_OK					BIT(1)
-+	#define U2P_R0_HAST_MODE				BIT(2)
-+	#define U2P_R0_POWER_ON_RESET				BIT(3)
-+	#define U2P_R0_ID_PULLUP				BIT(4)
-+	#define U2P_R0_DRV_VBUS					BIT(5)
-+
-+#define U2P_R1							0x24
-+	#define U2P_R1_PHY_READY				BIT(0)
-+	#define U2P_R1_ID_DIG					BIT(1)
-+	#define U2P_R1_OTG_SESSION_VALID			BIT(2)
-+	#define U2P_R1_VBUS_VALID				BIT(3)
-+
-+/* USB Glue Control Registers */
-+
-+#define USB_R0							0x80
-+	#define USB_R0_P30_LANE0_TX2RX_LOOPBACK			BIT(17)
-+	#define USB_R0_P30_LANE0_EXT_PCLK_REQ			BIT(18)
-+	#define USB_R0_P30_PCS_RX_LOS_MASK_VAL_MASK		GENMASK(28, 19)
-+	#define USB_R0_U2D_SS_SCALEDOWN_MODE_MASK		GENMASK(30, 29)
-+	#define USB_R0_U2D_ACT					BIT(31)
-+
-+#define USB_R1							0x84
-+	#define USB_R1_U3H_BIGENDIAN_GS				BIT(0)
-+	#define USB_R1_U3H_PME_ENABLE				BIT(1)
-+	#define USB_R1_U3H_HUB_PORT_OVERCURRENT_MASK		GENMASK(4, 2)
-+	#define USB_R1_U3H_HUB_PORT_PERM_ATTACH_MASK		GENMASK(9, 7)
-+	#define USB_R1_U3H_HOST_U2_PORT_DISABLE_MASK		GENMASK(13, 12)
-+	#define USB_R1_U3H_HOST_U3_PORT_DISABLE			BIT(16)
-+	#define USB_R1_U3H_HOST_PORT_POWER_CONTROL_PRESENT	BIT(17)
-+	#define USB_R1_U3H_HOST_MSI_ENABLE			BIT(18)
-+	#define USB_R1_U3H_FLADJ_30MHZ_REG_MASK			GENMASK(24, 19)
-+	#define USB_R1_P30_PCS_TX_SWING_FULL_MASK		GENMASK(31, 25)
-+
-+#define USB_R2							0x88
-+	#define USB_R2_P30_PCS_TX_DEEMPH_3P5DB_MASK		GENMASK(25, 20)
-+	#define USB_R2_P30_PCS_TX_DEEMPH_6DB_MASK		GENMASK(31, 26)
-+
-+#define USB_R3							0x8c
-+	#define USB_R3_P30_SSC_ENABLE				BIT(0)
-+	#define USB_R3_P30_SSC_RANGE_MASK			GENMASK(3, 1)
-+	#define USB_R3_P30_SSC_REF_CLK_SEL_MASK			GENMASK(12, 4)
-+	#define USB_R3_P30_REF_SSP_EN				BIT(13)
-+
-+#define USB_R4							0x90
-+	#define USB_R4_P21_PORT_RESET_0				BIT(0)
-+	#define USB_R4_P21_SLEEP_M0				BIT(1)
-+	#define USB_R4_MEM_PD_MASK				GENMASK(3, 2)
-+	#define USB_R4_P21_ONLY					BIT(4)
-+
-+#define USB_R5							0x94
-+	#define USB_R5_ID_DIG_SYNC				BIT(0)
-+	#define USB_R5_ID_DIG_REG				BIT(1)
-+	#define USB_R5_ID_DIG_CFG_MASK				GENMASK(3, 2)
-+	#define USB_R5_ID_DIG_EN_0				BIT(4)
-+	#define USB_R5_ID_DIG_EN_1				BIT(5)
-+	#define USB_R5_ID_DIG_CURR				BIT(6)
-+	#define USB_R5_ID_DIG_IRQ				BIT(7)
-+	#define USB_R5_ID_DIG_TH_MASK				GENMASK(15, 8)
-+	#define USB_R5_ID_DIG_CNT_MASK				GENMASK(23, 16)
-+
-+static const char *phy_names = {
-+	"usb2-phy0",
-+};
-+
-+struct dwc3_meson_a1 {
-+	struct device		*dev;
-+	struct regmap		*regmap;
-+	struct clk		*clk_usb_ctrl;
-+	struct clk		*clk_usb_bus;
-+	struct clk		*clk_xtal_usb_phy;
-+	struct clk		*clk_xtal_usb_ctrl;
-+	struct reset_control	*reset;
-+	struct phy		*phys;
-+	unsigned int		usb2_ports;
-+};
-+
-+static void dwc3_meson_a1_usb_init(struct dwc3_meson_a1 *priv)
-+{
-+	regmap_update_bits(priv->regmap, U2P_R0,
-+			   U2P_R0_POWER_ON_RESET,
-+			   U2P_R0_POWER_ON_RESET);
-+
-+	regmap_update_bits(priv->regmap, U2P_R0,
-+			   U2P_R0_HOST_DEVICE,
-+			   U2P_R0_HOST_DEVICE);
-+
-+	regmap_update_bits(priv->regmap, U2P_R0,
-+			   U2P_R0_POWER_ON_RESET, 0);
-+
-+	regmap_update_bits(priv->regmap, USB_R1,
-+			   USB_R1_U3H_FLADJ_30MHZ_REG_MASK,
-+			   FIELD_PREP(USB_R1_U3H_FLADJ_30MHZ_REG_MASK, 0x20));
-+
-+	regmap_update_bits(priv->regmap, USB_R0,
-+			   USB_R0_U2D_ACT, 0);
-+
-+	regmap_update_bits(priv->regmap, USB_R4,
-+			   USB_R4_P21_SLEEP_M0, 0);
-+}
-+
-+static const struct regmap_config phy_meson_a1_usb_regmap_conf = {
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+	.max_register = USB_R5,
-+};
-+
-+static int dwc3_meson_a1_get_phys(struct dwc3_meson_a1 *priv)
-+{
-+	priv->phys = devm_phy_optional_get(priv->dev, phy_names);
-+	if (IS_ERR(priv->phys))
-+		return PTR_ERR(priv->phys);
-+
-+	priv->usb2_ports++;
-+
-+	dev_info(priv->dev, "USB2 ports: %d\n", priv->usb2_ports);
-+
-+	return 0;
-+}
-+
-+static int dwc3_meson_a1_enable_clk(struct dwc3_meson_a1 *priv)
-+{
-+	int ret;
-+
-+	ret = clk_prepare_enable(priv->clk_usb_ctrl);
-+	if (ret < 0) {
-+		dev_err(priv->dev, "can't enable usb_ctrl clock.\n");
-+		return ret;
-+	}
-+
-+	ret = clk_prepare_enable(priv->clk_usb_bus);
-+	if (ret < 0) {
-+		dev_err(priv->dev, "can't enable usb_bus clock.\n");
-+		goto disable_clk_usb_ctrl;
-+	}
-+
-+	ret = clk_prepare_enable(priv->clk_xtal_usb_phy);
-+	if (ret < 0) {
-+		dev_err(priv->dev, "can't enable xtal_usb_phy clock.\n");
-+		goto disable_clk_usb_bus;
-+	}
-+
-+	ret = clk_prepare_enable(priv->clk_xtal_usb_ctrl);
-+	if (ret < 0) {
-+		dev_err(priv->dev, "can't enable xtal_usb_ctrl clock.\n");
-+		goto disable_clk_xtal_usb_phy;
-+	}
-+
-+	return 0;
-+
-+disable_clk_xtal_usb_phy:
-+	clk_disable_unprepare(priv->clk_xtal_usb_phy);
-+disable_clk_usb_bus:
-+	clk_disable_unprepare(priv->clk_usb_bus);
-+disable_clk_usb_ctrl:
-+	clk_disable_unprepare(priv->clk_usb_ctrl);
-+
-+	return ret;
-+}
-+
-+static void dwc3_meson_a1_disable_clk(struct dwc3_meson_a1 *priv)
-+{
-+	clk_disable_unprepare(priv->clk_usb_ctrl);
-+	clk_disable_unprepare(priv->clk_usb_bus);
-+	clk_disable_unprepare(priv->clk_xtal_usb_phy);
-+	clk_disable_unprepare(priv->clk_xtal_usb_ctrl);
-+}
-+
-+static int dwc3_meson_a1_setup_clk(struct dwc3_meson_a1 *priv)
-+{
-+	int ret;
-+
-+	priv->clk_usb_ctrl = devm_clk_get(priv->dev, "usb_ctrl");
-+	if (IS_ERR(priv->clk_usb_ctrl)) {
-+		dev_err(priv->dev, "can't get usb_ctrl clock.\n");
-+		return PTR_ERR(priv->clk_usb_ctrl);
-+	}
-+
-+	priv->clk_usb_bus = devm_clk_get(priv->dev, "usb_bus");
-+	if (IS_ERR(priv->clk_usb_bus)) {
-+		dev_err(priv->dev, "can't get usb_bus clock.\n");
-+		return PTR_ERR(priv->clk_usb_bus);
-+	}
-+
-+	priv->clk_xtal_usb_phy = devm_clk_get(priv->dev, "xtal_usb_phy");
-+	if (IS_ERR(priv->clk_xtal_usb_phy)) {
-+		dev_err(priv->dev, "can't get xtal_usb_phy clock.\n");
-+		return PTR_ERR(priv->clk_xtal_usb_phy);
-+	}
-+
-+	priv->clk_xtal_usb_ctrl = devm_clk_get(priv->dev, "xtal_usb_ctrl");
-+	if (IS_ERR(priv->clk_xtal_usb_ctrl)) {
-+		dev_err(priv->dev, "can't get xtal_usb_ctrl clock.\n");
-+		return PTR_ERR(priv->clk_xtal_usb_ctrl);
-+	}
-+
-+	ret = dwc3_meson_a1_enable_clk(priv);
-+	if (ret)
-+		return ret;
-+
-+	devm_add_action_or_reset(priv->dev,
-+				 (void(*)(void *))clk_disable_unprepare,
-+				 priv->clk_usb_ctrl);
-+	devm_add_action_or_reset(priv->dev,
-+				 (void(*)(void *))clk_disable_unprepare,
-+				 priv->clk_usb_bus);
-+	devm_add_action_or_reset(priv->dev,
-+				 (void(*)(void *))clk_disable_unprepare,
-+				 priv->clk_xtal_usb_phy);
-+	devm_add_action_or_reset(priv->dev,
-+				 (void(*)(void *))clk_disable_unprepare,
-+				 priv->clk_xtal_usb_ctrl);
-+
-+	return 0;
-+}
-+
-+static int dwc3_meson_a1_probe(struct platform_device *pdev)
-+{
-+	struct dwc3_meson_a1	*priv;
-+	struct device		*dev = &pdev->dev;
-+	struct device_node	*np = dev->of_node;
-+	void __iomem *base;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, priv);
-+	priv->dev = dev;
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	priv->regmap = devm_regmap_init_mmio(dev, base,
-+					     &phy_meson_a1_usb_regmap_conf);
-+	if (IS_ERR(priv->regmap))
-+		return PTR_ERR(priv->regmap);
-+
-+	ret = dwc3_meson_a1_setup_clk(priv);
-+	if (ret)
-+		return ret;
-+
-+	priv->reset = devm_reset_control_get(dev, NULL);
-+	if (IS_ERR(priv->reset)) {
-+		ret = PTR_ERR(priv->reset);
-+		dev_err(dev, "failed to get device reset, err=%d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = reset_control_reset(priv->reset);
-+	if (ret)
-+		return ret;
-+
-+	ret = dwc3_meson_a1_get_phys(priv);
-+	if (ret)
-+		return ret;
-+
-+	dwc3_meson_a1_usb_init(priv);
-+
-+	/* Init PHYs */
-+	ret = phy_init(priv->phys);
-+	if (ret)
-+		return ret;
-+
-+	/* Set PHY Power */
-+	ret = phy_power_on(priv->phys);
-+	if (ret)
-+		goto err_phys_exit;
-+
-+	ret = of_platform_populate(np, NULL, NULL, dev);
-+	if (ret)
-+		goto err_phys_power;
-+
-+	return 0;
-+
-+err_phys_power:
-+	phy_power_off(priv->phys);
-+
-+err_phys_exit:
-+	phy_exit(priv->phys);
-+
-+	return ret;
-+}
-+
-+static int dwc3_meson_a1_remove(struct platform_device *pdev)
-+{
-+	struct dwc3_meson_a1 *priv = platform_get_drvdata(pdev);
-+	struct device *dev = &pdev->dev;
-+
-+	of_platform_depopulate(dev);
-+
-+	phy_power_off(priv->phys);
-+	phy_exit(priv->phys);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused dwc3_meson_a1_suspend(struct device *dev)
-+{
-+	struct dwc3_meson_a1 *priv = dev_get_drvdata(dev);
-+
-+	phy_power_off(priv->phys);
-+	phy_exit(priv->phys);
-+
-+	reset_control_assert(priv->reset);
-+
-+	dwc3_meson_a1_disable_clk(priv);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused dwc3_meson_a1_resume(struct device *dev)
-+{
-+	struct dwc3_meson_a1 *priv = dev_get_drvdata(dev);
-+	int ret;
-+
-+	ret = dwc3_meson_a1_enable_clk(priv);
-+	if (ret)
-+		return ret;
-+
-+	reset_control_deassert(priv->reset);
-+
-+	dwc3_meson_a1_usb_init(priv);
-+
-+	/* Init PHYs */
-+	ret = phy_init(priv->phys);
-+	if (ret)
-+		return ret;
-+
-+	/* Set PHY Power */
-+	ret = phy_power_on(priv->phys);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static const struct dev_pm_ops dwc3_meson_a1_dev_pm_ops = {
-+	SET_SYSTEM_SLEEP_PM_OPS(dwc3_meson_a1_suspend, dwc3_meson_a1_resume)
-+};
-+
-+static const struct of_device_id dwc3_meson_a1_match[] = {
-+	{ .compatible = "amlogic,meson-a1-usb-ctrl" },
-+	{ /* Sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, dwc3_meson_a1_match);
-+
-+static struct platform_driver dwc3_meson_a1_driver = {
-+	.probe		= dwc3_meson_a1_probe,
-+	.remove		= dwc3_meson_a1_remove,
-+	.driver		= {
-+		.name	= "dwc3-meson-a1",
-+		.of_match_table = dwc3_meson_a1_match,
-+		.pm	= &dwc3_meson_a1_dev_pm_ops,
-+	},
-+};
-+
-+module_platform_driver(dwc3_meson_a1_driver);
-+MODULE_LICENSE("GPL v2");
-+MODULE_DESCRIPTION("Amlogic Meson A1 USB Glue Layer");
-+MODULE_AUTHOR("Yue Wang <yue.wang@amlogic.com>");
+ / {
+ 	compatible = "amlogic,a1";
+@@ -130,6 +133,34 @@
+ 			#interrupt-cells = <3>;
+ 			#address-cells = <0>;
+ 		};
++
++		usb: usb@ffe09000 {
++			status = "okay";
++			compatible = "amlogic,meson-a1-usb-ctrl";
++			reg = <0x0 0xffe09000 0x0 0xa0>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges;
++
++			clocks = <&clkc_periphs CLKID_USB_CTRL>,
++				 <&clkc_periphs CLKID_USB_BUS>,
++				 <&clkc_periphs CLKID_XTAL_USB_PHY>,
++				 <&clkc_periphs CLKID_XTAL_USB_CTRL>;
++			clock-names = "usb_ctrl", "usb_bus", "xtal_usb_phy",
++				      "xtal_usb_ctrl";
++			resets = <&reset RESET_USBCTRL>;
++			phys = <&usb2_phy0>;
++			phy-names = "usb2-phy0";
++
++			dwc3: usb@ff400000 {
++				compatible = "snps,dwc3";
++				reg = <0x0 0xff400000 0x0 0x100000>;
++				interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
++				dr_mode = "host";
++				snps,dis_u2_susphy_quirk;
++				snps,quirk-frame-length-adjustment = <0x20>;
++			};
++		};
+ 	};
+ 
+ 	timer {
 -- 
 2.7.4
 
