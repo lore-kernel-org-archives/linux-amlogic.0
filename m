@@ -2,82 +2,150 @@ Return-Path: <SRS0=YewT=ZO=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9EDEDC432C0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Nov 2019 07:52:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C6C58C432C0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Nov 2019 08:52:37 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 696A320659
-	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Nov 2019 07:52:25 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 989F020708
+	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Nov 2019 08:52:37 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="moL+FgZQ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="PgrQz9rj"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 696A320659
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NhxYgPjl";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="yEDyOG7p"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 989F020708
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hpO3kzS7QU/SpfJn7ChJ8YW4ADdwHu+vADU9268yBrg=; b=moL+FgZQGs6ba+
-	fWLRpz9PNp0LJ/9DA4Y3soDjQgxxYQJtMrdvVkXg5V6UimyGVIT4bYXNiPilCWsL8jnYE0zMHZ9we
-	avCpFbXA5In073ND8FlqvgoVvY0+db9e8xwIs8IoBl8vrOglwTnMTY8UhDNhgueZjjCCUPUIozRUk
-	dWtzZ1N9lLjMMf2vELCOA83MJNX4qmee3pT+lVL5pjCYEcCuJKEiz57kbE6RM3S9nivo9bbe0SN3z
-	Bj7HgGIAwum9uFVvDNYWNNM4xni5UTQ4Bh/d/FYociIq61qIk4xtWI19bgvNfcYoBiTf634fwc2aF
-	thdUeSnoA5PX03aLTPZg==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=8xz2e5rL1pCWUrMQ2LCLnIlY4U/TB/tE2FEKrxeU+dQ=; b=NhxYgPjlFcC0Cz
+	Dk8hOxmR5fc86ysV6jXXwK8KaY46V5B4h7XIky/VoWCmPZ92N9zBnLBdbbEBbbn+5fUJVrWhQ2xet
+	Swaw1dYZ4hg5e/AjIWCI+mOQ3FWSdY+m0+FygigEKZLnzaeIahyZVtZi9EtmUdyxGJFDnGjTdl9Ob
+	g6DYxwwrBds+Xe4BsvJjzZF3GOmLeBpUjtO6cuVBS3sfvabt+uTUBnLkc2RHQRrNUsBtSKuoDTHZG
+	Zabf+Ept5e7KD9Uy0WKK8eog3Aa+0MS6t6IBiC+eFgZFs14uYgN0OMqpak9v8wG3zOPbmNEgG1TcI
+	f3wZTGWIqeLWgz2HFg4Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iY3jm-0007vQ-Hm; Fri, 22 Nov 2019 07:52:18 +0000
-Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
+	id 1iY4g3-0005z2-8l; Fri, 22 Nov 2019 08:52:31 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iY3jk-0007v2-FG; Fri, 22 Nov 2019 07:52:17 +0000
-Received: by mail-ot1-x344.google.com with SMTP id u13so5446846ote.0;
- Thu, 21 Nov 2019 23:52:15 -0800 (PST)
+ id 1iY4ft-0005p8-0M
+ for linux-amlogic@lists.infradead.org; Fri, 22 Nov 2019 08:52:23 +0000
+Received: by mail-wm1-x342.google.com with SMTP id 8so6663260wmo.0
+ for <linux-amlogic@lists.infradead.org>; Fri, 22 Nov 2019 00:52:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=6CId69ZN8zw9ohBvU0FF7D9FcvCyDU1hZuuZbIs9xAk=;
- b=PgrQz9rjrPYZ3pN21PUePSus0Hm7Ex00MnpWWh+EGlQaEENkCr3yOLM3yDfYHWbblQ
- HOb4YnlLrWToHw9YIfP/xz9Td70mOM/w9HJn2rKpov5QOs7jtTaI9jX5F4bpG3CutoVd
- uoi90EAPJuxx8v8Zf1d4i9CgE1mJR2TjNapHNly5J/S5FnJ49gOYj5U0UQY5c6uOGOlo
- AUO0MhH7SX8/pl1qICwScMBngGfSb01TVj1ROQGMAtuoICBM4UpBO0Ty6BCjP+Vr/dEO
- rDuEprwXAsTDP0dYHmvhMDQa4pZRKndT+en6x+jE2O06OQIjZBogDi398DpnI09Y2Mau
- wW7Q==
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=VLujAY+88BSOb76CMcCgkVoqi9J6jk/Juu0sTNbfFrc=;
+ b=yEDyOG7p9b1boQO+yPx7T/orbtvdzS9mIWpquOyfMJ9T+E7hiwrWie93xwU1xvSViD
+ bvudjI7Eq1xbenQ+82Ev17QXB9xQsOV0S8u0Aktao9baaIhS8eMQk3FktAdFybHCd3Bu
+ kt+xSebTl/zAzI2oOpjKDxVRIt8+2qbzsYLewFCQaFi9/+hHk08CRmkI9kaLx/wDrxFv
+ 4h7GLulDtIIaaklXc93q6fwcm2eHriSRXc+ynHAMm3oEUEP3b0Ut6mmHKw2gEacTXmTO
+ 3K0EGm/AsE5DR5uS0b4ffNpnmx+FTzepNUVTUX8iTg7F0V4JrTGeCQSlYxu9K9ZtP2u1
+ X6pQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=6CId69ZN8zw9ohBvU0FF7D9FcvCyDU1hZuuZbIs9xAk=;
- b=qsnz4pOAFrXzjDDb0YjrTJICjaaHEYOZs2f8wTsmTv9Q/50/QLkKUfR0wECM4vbeTg
- kSW/XOGA4dM2Uxk+glQN6IbxBSDkM5rB4l5C4NXLz94A51FiqZO37hR5v1eZn+IJTeup
- q5KczxoZF2SVqLlSrBEIFh9JyQWU7JEsqXBlwMh6S8PEN++aey9anfN+IEh29BOxQxTg
- IwfRLfh3cibKmxU3ZaGAkGGtwfVqyfWFSLBhPbkXOM6s1dUqwOCAvWIaeqqJyTl3gXtE
- cM3H9q4Y3m2Gld4gR7lbfTq8pRNv9RWjFEuA2k9kM5J6edKtJPU/bYKTIe8CWz+vQqkJ
- rsoQ==
-X-Gm-Message-State: APjAAAWS+DsQ5JDN6G7pRPqn4plsFET05c3hpm1un2ckphlo6YrwsmQr
- EsaryFTRn/Z0XjMRH/iVQWaXCmdR8SxJhBWt1fk=
-X-Google-Smtp-Source: APXvYqzeFxfrw01grEvs/XEDH0mG+F6i0yHJyLr4ROGX1swFEompn0SBsemnA3Zd+YXdUloDWqSTQ1PHx0UrFRvl8K4=
-X-Received: by 2002:a9d:3e53:: with SMTP id h19mr9832272otg.98.1574409134946; 
- Thu, 21 Nov 2019 23:52:14 -0800 (PST)
-MIME-Version: 1.0
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=VLujAY+88BSOb76CMcCgkVoqi9J6jk/Juu0sTNbfFrc=;
+ b=auFSTs4wSrtddWAqjR4K7IoJLwVY3AvSvQiBOce5tsx21WG4z249a7X/qvCZQifCQw
+ rrpoSSd93LVLY0XLcLsK3neZfNhi94RfCL4Qezxr5gWcd8TukcS/qhZe8rwB64PxuUz6
+ A6pA/zmkUhUYsTjC56xPdliwZem7heDjXgr2FSMP+ODMSYDyszA9fu9BhY3rZfalxQgO
+ OT+KlgP6JwzsqUISfRS2HZXYmYDtD+qAODYWbhqd1PXiwps/WF4Z4CxbFHcjjB0cezFD
+ Z1qwdO72pX/K1grJy7EO8G2LLrNx+EsrjQBfKXLzgOyyREbYBz+e2lDeHE8srFBpwRns
+ ND7Q==
+X-Gm-Message-State: APjAAAVLV4+xXYPvPFMdySWXoJqMS49F5IdJsNpK96oYuwfjHQ7ht6XG
+ Ccbo2vKJwBZiOGWcR8xcQBwbhw==
+X-Google-Smtp-Source: APXvYqwwlH0gGZvD3X21WS+3zwwM2jmNykWqZjk3TmIFC2gjpoeu8T5W97x0a8ioyXpmeVYWqCEblg==
+X-Received: by 2002:a1c:200f:: with SMTP id g15mr15378140wmg.96.1574412739032; 
+ Fri, 22 Nov 2019 00:52:19 -0800 (PST)
+Received: from [192.168.1.68] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr.
+ [176.150.251.154])
+ by smtp.gmail.com with ESMTPSA id v6sm6946456wrt.13.2019.11.22.00.52.17
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 22 Nov 2019 00:52:18 -0800 (PST)
+Subject: Re: [PATCH 2/6] dt-bindings: usb: dwc3: Add the Amlogic A1 Family
+ DWC3 Glue Bindings
+To: Hanjie Lin <hanjie.lin@amlogic.com>, Jerome Brunet
+ <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Felipe Balbi <felipe.balbi@linux.intel.com>,
+ Kevin Hilman <khilman@baylibre.com>
 References: <1574405757-76184-1-git-send-email-hanjie.lin@amlogic.com>
-In-Reply-To: <1574405757-76184-1-git-send-email-hanjie.lin@amlogic.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Fri, 22 Nov 2019 08:52:04 +0100
-Message-ID: <CAFBinCDA=ZekRC0hgQnPLRZM3LMnqBZ6TWCvXhyixAmgDyTAsw@mail.gmail.com>
-Subject: Re: [PATCH 0/6] arm64: meson: Add support for USB on Amlogic A1
-To: Hanjie Lin <hanjie.lin@amlogic.com>
+ <1574405757-76184-3-git-send-email-hanjie.lin@amlogic.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <462c13a6-a2ea-44c7-d43d-46ac82d43bf7@baylibre.com>
+Date: Fri, 22 Nov 2019 09:52:17 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+MIME-Version: 1.0
+In-Reply-To: <1574405757-76184-3-git-send-email-hanjie.lin@amlogic.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191121_235216_533575_311B1170 
-X-CRM114-Status: UNSURE (   8.93  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20191122_005221_076245_A7F900CC 
+X-CRM114-Status: GOOD (  20.52  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,48 +157,102 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Victor Wan <victor.wan@amlogic.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>,
- Felipe Balbi <felipe.balbi@linux.intel.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Kevin Hilman <khilman@baylibre.com>,
+Cc: devicetree@vger.kernel.org, Victor Wan <victor.wan@amlogic.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, Stephen Boyd <sboyd@kernel.org>,
  Michael Turquette <mturquette@baylibre.com>, linux-usb@vger.kernel.org,
- Yue Wang <yue.wang@amlogic.com>, Qiufang Dai <qiufang.dai@amlogic.com>,
- devicetree@vger.kernel.org, Liang Yang <liang.yang@amlogic.com>,
- Jian Hu <jian.hu@amlogic.com>, Xingyu Chen <xingyu.chen@amlogic.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+ Yue Wang <yue.wang@amlogic.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Liang Yang <liang.yang@amlogic.com>, Qiufang Dai <qiufang.dai@amlogic.com>,
+ Xingyu Chen <xingyu.chen@amlogic.com>, Carlo Caione <carlo@caione.org>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Jian Hu <jian.hu@amlogic.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello Hanjie,
-
-On Fri, Nov 22, 2019 at 7:55 AM Hanjie Lin <hanjie.lin@amlogic.com> wrote:
-[...]
->   dt-bindings: phy: Add Amlogic G12A USB2 PHY Bindings
->   dt-bindings: usb: dwc3: Add the Amlogic A1 Family DWC3 Glue Bindings
->   phy: amlogic: Add Amlogic A1 USB2 PHY Driver
-drivers/phy/amlogic/phy-meson-g12a-usb2.c seems very similar to the A1
-USB2 PHY you are introducing here.
-
->   usb: dwc3: Add Amlogic A1 DWC3 glue
-drivers/usb/dwc3/dwc3-meson-g12a.c is also very similar to the dwc3 glue.
-
-I have two questions:
-- how is the PHY and the dwc3 glue different from G12A (or SM1)?
-- why do we need a separate set of new drivers (instead of updating
-the existing drivers)?
-
-We try to use one driver for the same IP block, even if there are
-several revisions with small differences (for example the SAR ADC
-driver supports all SoC generations from Meson8 to G12A/G12B/SM1,
-because 80-90% of the code is shared across all revisions).
+Hi,
 
 
-Martin
+On 22/11/2019 07:55, Hanjie Lin wrote:
+> The Amlogic A1 SoC Family embeds 1 USB Controllers:
+>  - a DWC3 IP configured as Host for USB2 and USB3
+> 
+> A glue connects the controllers to the USB2 PHY of A1 SoC.
+> 
+> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
+> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
+> ---
+>  .../devicetree/bindings/usb/amlogic,dwc3.txt       | 53 ++++++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/amlogic,dwc3.txt b/Documentation/devicetree/bindings/usb/amlogic,dwc3.txt
+> index 6ffb09b..63dc60b 100644
+> --- a/Documentation/devicetree/bindings/usb/amlogic,dwc3.txt
+> +++ b/Documentation/devicetree/bindings/usb/amlogic,dwc3.txt
+> @@ -128,3 +128,56 @@ Example device nodes:
+>  				snps,quirk-frame-length-adjustment;
+>  			};
+>  	};
+> +
+> +Amlogic Meson A1 DWC3 USB SoC Controller Glue
+> +
+> +The Amlogic A1 embeds a DWC3 USB IP Core configured for USB2 in
+> +host-only mode.
+> +
+> +Required properties:
+> +- compatible:	Should be "amlogic,meson-a1-usb-ctrl"
+> +- clocks:       The clocks needed by the usb controller
+> +- clock-names:  Should contain the name of the clocks: "usb_ctrl", "usb_bus",
+> +                "xtal_usb_phy", "xtal_usb_ctrl"
+> +- resets:	a handle for the shared "USB" reset line
+> +- reg:		The base address and length of the registers
+> +- phys: 	handle to used PHYs on the system
+> +	- a <0> phandle can be used if a PHY is not used
+> +- phy-names:	names of the used PHYs on the system :
+> +	- "usb2-phy0" for USB2 PHY if USBHOST port is used
+> +
+> +Required child nodes:
+> +
+> +A child node must exist to represent the core DWC3 IP block. The name of
+> +the node is not important. The content of the node is defined in dwc3.txt.
+> +
+> +PHY documentation is provided in the following places:
+> +- Documentation/devicetree/bindings/phy/amlogic,meson-a1-usb2-phy.yaml
+> +
+> +Example device nodes:
+> +	usb: usb@ffe09000 {
+> +			status = "okay";
+> +			compatible = "amlogic,meson-a1-usb-ctrl";
+> +			reg = <0x0 0xffe09000 0x0 0xa0>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +
+> +			clocks = <&clkc_periphs CLKID_USB_CTRL>,
+> +				 <&clkc_periphs CLKID_USB_BUS>,
+> +				 <&clkc_periphs CLKID_XTAL_USB_PHY>,
+> +				 <&clkc_periphs CLKID_XTAL_USB_CTRL>;
+> +			clock-names = "usb_ctrl", "usb_bus", "xtal_usb_phy", "xtal_usb_ctrl";
+> +			resets = <&reset RESET_USBCTRL>;
+> +			phys = <&usb2_phy0>;
+> +			phy-names = "usb2-phy0";
+> +
+> +			dwc3: usb@ff400000 {
+> +					compatible = "snps,dwc3";
+> +					reg = <0x0 0xff400000 0x0 0x100000>;
+> +					interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
+> +					dr_mode = "host";
+> +					snps,dis_u2_susphy_quirk;
+> +					snps,quirk-frame-length-adjustment = <0x20>;
+> +			};
+> +	};
+> 
+
+This seems very similar to the g12a bindings, seems you could update the yaml g12a bindings
+with specific clocks and required for amlogic,meson-a1-usb-ctrl.
+
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
