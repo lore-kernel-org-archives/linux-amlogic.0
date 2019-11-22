@@ -2,60 +2,81 @@ Return-Path: <SRS0=YewT=ZO=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 82435C432C0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Nov 2019 06:58:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9EDEDC432C0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Nov 2019 07:52:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 57B1F2068F
-	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Nov 2019 06:58:19 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 696A320659
+	for <linux-amlogic@archiver.kernel.org>; Fri, 22 Nov 2019 07:52:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qqjQ0RNJ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 57B1F2068F
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="moL+FgZQ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="PgrQz9rj"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 696A320659
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=vvZCkXeZTR7/ICvuRGx0sCeROWUcGxUDVbGUC7H8rKc=; b=qqjQ0RNJZFD4JN
-	rAx8OOKhhikn4DyfUyIXE59TMBJDs9kIPzoScyEiWkW8HpAzY/uX3rOh56H6aI+frVYEpc2MT/l3Z
-	cyXMAjyc5pZRHKuTH80bDyHIOsCcmefxgL7WV9a0XUMuIl75pxFc4KW8Hi6fFJ8RkIZfP9OPvlDu7
-	XWj1vgaOn7lH8UFFVutCwqaDSEkjUpwDXVrktwrD6lXSj7zwOtjovHZ3BIwp9LkRqTPh3QYfAu9Al
-	JcFO6VjLVAzmw5H0tIi1DuqNNggXMZbUrmea4aNEjxgU5wwezZdbHFM0SgkVaZWjBcr360YVsb5Vs
-	qOIjJOgGlrwxFRmrf/3A==;
+	List-Owner; bh=hpO3kzS7QU/SpfJn7ChJ8YW4ADdwHu+vADU9268yBrg=; b=moL+FgZQGs6ba+
+	fWLRpz9PNp0LJ/9DA4Y3soDjQgxxYQJtMrdvVkXg5V6UimyGVIT4bYXNiPilCWsL8jnYE0zMHZ9we
+	avCpFbXA5In073ND8FlqvgoVvY0+db9e8xwIs8IoBl8vrOglwTnMTY8UhDNhgueZjjCCUPUIozRUk
+	dWtzZ1N9lLjMMf2vELCOA83MJNX4qmee3pT+lVL5pjCYEcCuJKEiz57kbE6RM3S9nivo9bbe0SN3z
+	Bj7HgGIAwum9uFVvDNYWNNM4xni5UTQ4Bh/d/FYociIq61qIk4xtWI19bgvNfcYoBiTf634fwc2aF
+	thdUeSnoA5PX03aLTPZg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iY2tS-0003TI-6q; Fri, 22 Nov 2019 06:58:14 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1iY3jm-0007vQ-Hm; Fri, 22 Nov 2019 07:52:18 +0000
+Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iY2rf-0001XO-Od; Fri, 22 Nov 2019 06:56:25 +0000
-Received: from droid10.amlogic.com (10.18.11.213) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.1591.10; Fri, 22 Nov 2019
- 14:56:25 +0800
-From: Hanjie Lin <hanjie.lin@amlogic.com>
-To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
- <narmstrong@baylibre.com>, Rob Herring <robh@kernel.org>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Felipe Balbi <felipe.balbi@linux.intel.com>,
- Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH 6/6] arm64: dts: meson: a1: Enable DWC3 controller
-Date: Fri, 22 Nov 2019 14:55:57 +0800
-Message-ID: <1574405757-76184-7-git-send-email-hanjie.lin@amlogic.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1574405757-76184-1-git-send-email-hanjie.lin@amlogic.com>
-References: <1574405757-76184-1-git-send-email-hanjie.lin@amlogic.com>
+ id 1iY3jk-0007v2-FG; Fri, 22 Nov 2019 07:52:17 +0000
+Received: by mail-ot1-x344.google.com with SMTP id u13so5446846ote.0;
+ Thu, 21 Nov 2019 23:52:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=6CId69ZN8zw9ohBvU0FF7D9FcvCyDU1hZuuZbIs9xAk=;
+ b=PgrQz9rjrPYZ3pN21PUePSus0Hm7Ex00MnpWWh+EGlQaEENkCr3yOLM3yDfYHWbblQ
+ HOb4YnlLrWToHw9YIfP/xz9Td70mOM/w9HJn2rKpov5QOs7jtTaI9jX5F4bpG3CutoVd
+ uoi90EAPJuxx8v8Zf1d4i9CgE1mJR2TjNapHNly5J/S5FnJ49gOYj5U0UQY5c6uOGOlo
+ AUO0MhH7SX8/pl1qICwScMBngGfSb01TVj1ROQGMAtuoICBM4UpBO0Ty6BCjP+Vr/dEO
+ rDuEprwXAsTDP0dYHmvhMDQa4pZRKndT+en6x+jE2O06OQIjZBogDi398DpnI09Y2Mau
+ wW7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=6CId69ZN8zw9ohBvU0FF7D9FcvCyDU1hZuuZbIs9xAk=;
+ b=qsnz4pOAFrXzjDDb0YjrTJICjaaHEYOZs2f8wTsmTv9Q/50/QLkKUfR0wECM4vbeTg
+ kSW/XOGA4dM2Uxk+glQN6IbxBSDkM5rB4l5C4NXLz94A51FiqZO37hR5v1eZn+IJTeup
+ q5KczxoZF2SVqLlSrBEIFh9JyQWU7JEsqXBlwMh6S8PEN++aey9anfN+IEh29BOxQxTg
+ IwfRLfh3cibKmxU3ZaGAkGGtwfVqyfWFSLBhPbkXOM6s1dUqwOCAvWIaeqqJyTl3gXtE
+ cM3H9q4Y3m2Gld4gR7lbfTq8pRNv9RWjFEuA2k9kM5J6edKtJPU/bYKTIe8CWz+vQqkJ
+ rsoQ==
+X-Gm-Message-State: APjAAAWS+DsQ5JDN6G7pRPqn4plsFET05c3hpm1un2ckphlo6YrwsmQr
+ EsaryFTRn/Z0XjMRH/iVQWaXCmdR8SxJhBWt1fk=
+X-Google-Smtp-Source: APXvYqzeFxfrw01grEvs/XEDH0mG+F6i0yHJyLr4ROGX1swFEompn0SBsemnA3Zd+YXdUloDWqSTQ1PHx0UrFRvl8K4=
+X-Received: by 2002:a9d:3e53:: with SMTP id h19mr9832272otg.98.1574409134946; 
+ Thu, 21 Nov 2019 23:52:14 -0800 (PST)
 MIME-Version: 1.0
-X-Originating-IP: [10.18.11.213]
+References: <1574405757-76184-1-git-send-email-hanjie.lin@amlogic.com>
+In-Reply-To: <1574405757-76184-1-git-send-email-hanjie.lin@amlogic.com>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Fri, 22 Nov 2019 08:52:04 +0100
+Message-ID: <CAFBinCDA=ZekRC0hgQnPLRZM3LMnqBZ6TWCvXhyixAmgDyTAsw@mail.gmail.com>
+Subject: Re: [PATCH 0/6] arm64: meson: Add support for USB on Amlogic A1
+To: Hanjie Lin <hanjie.lin@amlogic.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191121_225623_812461_ED661962 
-X-CRM114-Status: UNSURE (   7.02  )
+X-CRM114-CacheID: sfid-20191121_235216_533575_311B1170 
+X-CRM114-Status: UNSURE (   8.93  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -68,81 +89,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Hanjie Lin <hanjie.lin@amlogic.com>,
- Victor Wan <victor.wan@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
- Stephen Boyd <sboyd@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
- linux-usb@vger.kernel.org, Yue Wang <yue.wang@amlogic.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Liang Yang <liang.yang@amlogic.com>, Qiufang Dai <qiufang.dai@amlogic.com>,
- Xingyu Chen <xingyu.chen@amlogic.com>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Jian Hu <jian.hu@amlogic.com>
+Cc: Rob Herring <robh@kernel.org>, Victor Wan <victor.wan@amlogic.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>,
+ Felipe Balbi <felipe.balbi@linux.intel.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, linux-usb@vger.kernel.org,
+ Yue Wang <yue.wang@amlogic.com>, Qiufang Dai <qiufang.dai@amlogic.com>,
+ devicetree@vger.kernel.org, Liang Yang <liang.yang@amlogic.com>,
+ Jian Hu <jian.hu@amlogic.com>, Xingyu Chen <xingyu.chen@amlogic.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Enable DWC3 controller for Meson A1 SoC.
+Hello Hanjie,
 
-Change-Id: Ibbbfb44fc211f926adf91a548776bc6bca6fa35c
-Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
-Signed-off-by: Yue Wang <yue.wang@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 31 +++++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+On Fri, Nov 22, 2019 at 7:55 AM Hanjie Lin <hanjie.lin@amlogic.com> wrote:
+[...]
+>   dt-bindings: phy: Add Amlogic G12A USB2 PHY Bindings
+>   dt-bindings: usb: dwc3: Add the Amlogic A1 Family DWC3 Glue Bindings
+>   phy: amlogic: Add Amlogic A1 USB2 PHY Driver
+drivers/phy/amlogic/phy-meson-g12a-usb2.c seems very similar to the A1
+USB2 PHY you are introducing here.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index 3b61717..f3d93cd 100644
---- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -6,6 +6,9 @@
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/power/meson-a1-power.h>
-+#include <dt-bindings/clock/a1-clkc.h>
-+#include <dt-bindings/reset/amlogic,meson-a1-reset.h>
-+#include <dt-bindings/clock/a1-pll-clkc.h>
- 
- / {
- 	compatible = "amlogic,a1";
-@@ -130,6 +133,34 @@
- 			#interrupt-cells = <3>;
- 			#address-cells = <0>;
- 		};
-+
-+		usb: usb@ffe09000 {
-+			status = "okay";
-+			compatible = "amlogic,meson-a1-usb-ctrl";
-+			reg = <0x0 0xffe09000 0x0 0xa0>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			clocks = <&clkc_periphs CLKID_USB_CTRL>,
-+				 <&clkc_periphs CLKID_USB_BUS>,
-+				 <&clkc_periphs CLKID_XTAL_USB_PHY>,
-+				 <&clkc_periphs CLKID_XTAL_USB_CTRL>;
-+			clock-names = "usb_ctrl", "usb_bus", "xtal_usb_phy",
-+				      "xtal_usb_ctrl";
-+			resets = <&reset RESET_USBCTRL>;
-+			phys = <&usb2_phy0>;
-+			phy-names = "usb2-phy0";
-+
-+			dwc3: usb@ff400000 {
-+				compatible = "snps,dwc3";
-+				reg = <0x0 0xff400000 0x0 0x100000>;
-+				interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-+				dr_mode = "host";
-+				snps,dis_u2_susphy_quirk;
-+				snps,quirk-frame-length-adjustment = <0x20>;
-+			};
-+		};
- 	};
- 
- 	timer {
--- 
-2.7.4
+>   usb: dwc3: Add Amlogic A1 DWC3 glue
+drivers/usb/dwc3/dwc3-meson-g12a.c is also very similar to the dwc3 glue.
 
+I have two questions:
+- how is the PHY and the dwc3 glue different from G12A (or SM1)?
+- why do we need a separate set of new drivers (instead of updating
+the existing drivers)?
+
+We try to use one driver for the same IP block, even if there are
+several revisions with small differences (for example the SAR ADC
+driver supports all SoC generations from Meson8 to G12A/G12B/SM1,
+because 80-90% of the code is shared across all revisions).
+
+
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
