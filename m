@@ -2,87 +2,92 @@ Return-Path: <SRS0=RHkW=ZS=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-6.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 83C02C432C3
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Nov 2019 11:22:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D7FDC432C0
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Nov 2019 11:22:53 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 5B23220727
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Nov 2019 11:22:51 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 10C4820727
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Nov 2019 11:22:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Zcb2pPt/";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OUeyWwDy"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 5B23220727
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="geYJlsxr";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="soPDOoMq"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 10C4820727
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=517c4o3k2inPMZEgGRTKw8njPHTyWCs2q3hMRtRbKKU=; b=Zcb2pPt/YX27ZL
-	nWNu7PT8pJAIdzOdZUAZD+IsWxbvorloaOmMwAoutoEbt4ZrrWNd+1Q0uhJFSJIYfByLVvq8ppWYt
-	b+htVy7AK0JsZhFrISAJFVmwN2uYoEiLLSqsCeT2KZx0I8dhlN48dqjnxPTf0YqznSSE16wKjabZ0
-	sOn8q4lpMxROBxhcU9orw5++IIV8v3r6DRbDkq4rS+pvQi7fwO338DXC5NgcaD/GDdWb7AayGeIlV
-	WM42iPcrr559DJILGjE9BAqJjToJqN5dhYbM00vx63q98c9rYG5cgwerYdkrU34ClbgybqLtmcuR4
-	j6d/bkGcPLecnQHig9dA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=uqSbVuSWgHq2gVe/Rl3+Uc/rhq/PphbGSNQtz8F0Ejc=; b=geYJlsxrUDFg+o
+	gWg9LyGZoiS6FfiKCKSVQ6qCCGNZhE3JI4/p86ELKkWBhi0FQeCn5rubk5Qw7eASjMBSNghZmkNsz
+	WabM63UfTD0t45gSaLFpeTw+lAI8w+144iGHBOO+I/aIS5jMjwFwrStOQp5O7QbYvakq/Ki3JmsE1
+	awbJtaTeLYVt92+YrngYBRMAvg0y8fPavPxZQN7Rs7D5cP8uwzVOr4/FSs49BulJbV4+v5MD6yJaP
+	3yGeTM+2Atry/7gXEwjG7df3Re7QshBePljboSl1abq7zyKsJ7jYxN5VA8FAIjGSTbojMhfoQrPVO
+	V18XNmFsAjGhNfHiyvHg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iZYvb-0001h3-VG; Tue, 26 Nov 2019 11:22:43 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1iZYvf-0001ov-5o; Tue, 26 Nov 2019 11:22:47 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iZYvY-0001Hu-MH
- for linux-amlogic@lists.infradead.org; Tue, 26 Nov 2019 11:22:42 +0000
-Received: by mail-wr1-x442.google.com with SMTP id s5so21974410wrw.2
- for <linux-amlogic@lists.infradead.org>; Tue, 26 Nov 2019 03:22:40 -0800 (PST)
+ id 1iZYva-0001Wx-Tl
+ for linux-amlogic@lists.infradead.org; Tue, 26 Nov 2019 11:22:44 +0000
+Received: by mail-wm1-x341.google.com with SMTP id g206so2801476wme.1
+ for <linux-amlogic@lists.infradead.org>; Tue, 26 Nov 2019 03:22:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=J2u1YuOaCIT9IPgSCCv6B83qHSO4LlBZZoVaYs+UiMo=;
- b=OUeyWwDyQlgr5cEtxpmk3oN06gWuDism/XNnLtDrS+E6xrqBUy1V/yS51YsA9A8yXY
- B2hzD3qkUfV8kD+hmPnAfb5tjf0dIHrdYZUBLg7XffKg7geOa7kz3RzV1X2sJC2fwFse
- uCmaMkoPwGF0sgKUlSHMEVH7Q+MA3rbZXN1PLpFuj2nEZdfQsvnBYhyW/BwPih/OmQjN
- Rrv0cU+w5Pa5scFdQ5AMfnsmtqmHFSmpqQXtZBcmE9IsENEmy5kU2qMX7Di0cFHrPzmb
- X+jkpqVizS6KZVVKBMN2q1/rYKDKo5knUnHCLMgfwMx2es5h3PBolPiFnJsLDwDOmB+Z
- 3Y+A==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=oKGzby8P8zqSIN7PWp3MhkkCn5+ssHtpMy31CDyRRnM=;
+ b=soPDOoMqrrNqbH7MyNVNlH5kSjHiZNWIoDFyGbh2IDQ0kkb3XVHj2Gl783W2KQ6pM1
+ +EYP6ImYgpPJn0I/Q2NuxbXhPqg8vHoInqT88vIwBrACURx8ezBp1hZOAY7pu/MbFMPb
+ CExoj5OuqVrSFHxBZKjIlzhN44MjlW//Sh+Vdy7jFpD9QNZ559Edde1ySvm4q1aCZsFw
+ 9zUjes7IGt6sKsbrOHTZ0HvMDNdL32or5WLgmctWB8fYLyFxJ6nzj6pVmYX/HkDm0hOK
+ t8p112Dm6vInLhvOHqOTdYRYw4N1st9X3HNmShLkIthGYEc3Yp2ntJo5ZMdo5/Un8FcQ
+ qfew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=J2u1YuOaCIT9IPgSCCv6B83qHSO4LlBZZoVaYs+UiMo=;
- b=qC+hb2yiagVC6sadWTwzh3K4BY7yuJ+zo54XZDBAOurHVLx3DTTfVnmWBnIMoCOZFq
- AMdGmRCG4zI6MdpZkCIswy/8hkSTFfq44QaS2AxJd3XXZTTRKCbsOBIXUCtdVHBB0n2X
- b/nZGymZVKJFM6DXT61i9gC5kykP7e+7g80qCu6z80we7SjX0FadsGOgvJ10Yvo+Qwad
- nfew+VJSH/8OpIPQHJp+NyebC9QY56JlwJOk3sIE1Va9FZFZIUelRkh+I5Xuo2U5Mn7Z
- CuWFwp6RZngkXQ4McyBYtP8nbswzgvcHqXunnu+XspztvF41eZe0FTyL72cqJwjN6K3s
- 0LZA==
-X-Gm-Message-State: APjAAAUzgtDnG68zyLdYA17Al2sHv4Oj1pS3KjXXoubq3lkoqmJDYvZR
- LHLm5Mo+1kqsPMrCQRb5nU9LptO9
-X-Google-Smtp-Source: APXvYqzXolr9IywwigwSca1+KQHyoJnn3pQfkjRQiubs/nxn596TkXB6Ywf8tNV/JvhH5rNP5IzyAw==
-X-Received: by 2002:a5d:50ce:: with SMTP id f14mr20031396wrt.219.1574767358836; 
- Tue, 26 Nov 2019 03:22:38 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=oKGzby8P8zqSIN7PWp3MhkkCn5+ssHtpMy31CDyRRnM=;
+ b=CTmTurB7AiccJ4IUK8xLSPjjvwNfyf3NkCDuQmCy8TMbkbCmQJ3TcX/RqgLblTqSb0
+ YGb74GMHg4T7PJBFtC6EPMtFMG3CxFJQIDo4Wjv66lcCrZ2k4EjR/VyA/dqUZ8C38hFd
+ C+djM8y9uEZ6124cDewAuUMtk22klDhv80GpVRm73rCpbhnqX3qZE7rKDEvNGcK91hqx
+ qDxepRovxa8QF9qmAjwQL4KsJW3LT//gZ3B/VaLXuJMRBvCFSoaGyuf/Injk8Ej1F2O7
+ KvzgNQlSWjvq+y2Uw33Z9MATPiW6RxxhDxmHKTfNQd0MBMA3xQKuYkHEA878gFpi6yeP
+ zPUg==
+X-Gm-Message-State: APjAAAUMFIcruBFzSi6bwPm6EgSd8zMEHuYYZG8Imh0BTaciTEgbdl15
+ Kh789F+XnugV0v8f71gimx8=
+X-Google-Smtp-Source: APXvYqyNeJ7HOIOPvphZa5VxQ4vjsn71PNUZAPjH6hlZf8qtdLpqY20RV4ar4ZbIbtZV0fguM5jrcw==
+X-Received: by 2002:a1c:1b85:: with SMTP id b127mr3591449wmb.108.1574767361432; 
+ Tue, 26 Nov 2019 03:22:41 -0800 (PST)
 Received: from localhost ([37.238.189.12])
- by smtp.gmail.com with ESMTPSA id c144sm2714684wmd.1.2019.11.26.03.22.37
+ by smtp.gmail.com with ESMTPSA id f1sm13746609wru.6.2019.11.26.03.22.40
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 26 Nov 2019 03:22:38 -0800 (PST)
+ Tue, 26 Nov 2019 03:22:40 -0800 (PST)
 From: Mohammad Rasim <mohammad.rasim96@gmail.com>
-To: linux-amlogic@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>,
+To: devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ Rob Herring <robh+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
  Neil Armstrong <narmstrong@baylibre.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v2 0/2] add support for videostrong KII Pro
-Date: Tue, 26 Nov 2019 14:22:33 +0300
-Message-Id: <20191126112235.11390-1-mohammad.rasim96@gmail.com>
+Subject: [PATCH v2 1/2] dt-bindings: Add vendor prefix for Videostrong
+Date: Tue, 26 Nov 2019 14:22:34 +0300
+Message-Id: <20191126112235.11390-2-mohammad.rasim96@gmail.com>
 X-Mailer: git-send-email 2.24.0
+In-Reply-To: <20191126112235.11390-1-mohammad.rasim96@gmail.com>
+References: <20191126112235.11390-1-mohammad.rasim96@gmail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191126_032240_796029_ECD91E83 
-X-CRM114-Status: GOOD (  10.62  )
+X-CRM114-CacheID: sfid-20191126_032242_975025_3E26E6EF 
+X-CRM114-Status: UNSURE (   8.13  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,56 +99,35 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mohammad Rasim <mohammad.rasim96@gmail.com>
+Cc: Mark Rutland <mark.rutland@arm.com>,
+ Mohammad Rasim <mohammad.rasim96@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This patchset adds support for the Videostrong KII Pro tv box which is
-based on the gxbb-p201 reference design.
+Videostrong Technology Co., Ltd., A manufacturer of Android Players & STB
+(Android with DVB Hybrid box & DVB-T2/S2/C/ISDB-T/DTMB-TH/ATSC )as well as
+HD media players.
 
-Device specifications:
-- SOC: Amlogic S905
-- RAM: 2GB DDR3
-- Storage: 16GB
-- Connectivity:
-	- 10/100M Ethernet (IC Plus IP101GR)
-	- 802.11 b/g/n/ac Wi-Fi (Ampak AP6335 BT/WIFI combo)
-	- Bluetooth 4.0 (Ampak AP6335 BT/WIFI combo)
-- Video out: HDMI 2.0 up to 4K @ 60Hz, and 3.5mm AV (composite video) jack
-- Audio out: HDMI, AV (stereo audio) and optical S/PDIF
-- Tuner: AVL6862 DVB-C/T/T2 + DVB-S/S2 demod and Rafael Micro R848 tuner
-- Ports:
-	- x1 micro SD card slot up to 32GB
-	- 4x USB 2.0 host ports
--Misc:
-    - Power button and LED, IR receiver
+Signed-off-by: Mohammad Rasim <mohammad.rasim96@gmail.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Changes since RFC v1:
-- add commit description to the cover letter
-- update bluetooth bindings
-- use lowercase name for the dts filename,vendor prefix and compatible
-- add copyrights to the new files
-- include "meson-gxbb-p20x.dtsi" instead of "meson-gxbb-p201.dts"
-
-Changes since RFC v2:
-- Fix styling issues
-
-Changes since v1:
-- add leds node to the device tree
-- add gpio-keys-polled  node to the device tree
-
-Mohammad Rasim (2):
-  dt-bindings: Add vendor prefix for Videostrong
-  arm64: dts: meson-gxbb: add support for Videostrong KII Pro
-
- .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
- arch/arm64/boot/dts/amlogic/Makefile          |  1 +
- .../boot/dts/amlogic/meson-gxbb-kii-pro.dts   | 58 +++++++++++++++++++
- 3 files changed, 61 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 05b3904a995b..a7e5b4bf8c4b 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1008,6 +1008,8 @@ patternProperties:
+     description: Variscite Ltd.
+   "^via,.*":
+     description: VIA Technologies, Inc.
++  "^videostrong,.*":
++    description: Videostrong Technology Co., Ltd.
+   "^virtio,.*":
+     description: Virtual I/O Device Specification, developed by the OASIS consortium
+   "^vishay,.*":
 -- 
 2.24.0
 
