@@ -2,89 +2,78 @@ Return-Path: <SRS0=RHkW=ZS=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C5B9BC432C0
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Nov 2019 01:22:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C7DFCC432C0
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Nov 2019 02:35:23 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 9DAB52071E
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Nov 2019 01:22:38 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8D3E4207FD
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Nov 2019 02:35:23 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="o+NlFoMV";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ZsjGN9G3"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9DAB52071E
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rAzaY6qG"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8D3E4207FD
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ItyAYKpAJ0GRJyK8+tW1dIAzPw7YJ5yF/1brtL5/pZg=; b=o+NlFoMVVfkoQg
-	Kg3bLG9gLdeB7sVyqf167GftywTSUawkD0ubbA+czTLi1WNKnlEJoFWPC59pahj7IGeKt0u0EtrhL
-	JvBWYk2rt5X9C5B1ePNmN+E9/OpxdFwdErd0UDyLRsKpJU8ZmfpvxkYRs84Nejjo0wGP/NaEp1Ua1
-	YCvUp3Ui8cXRo2zvvUZe6U9gXc22a4RTX0d+2kDbpe3l8jwfjCLMrr+jGo8rHtXwNURtqB0Nxufar
-	bHe1/T7OWK8kF3GdM61IyiWpyX77S0ChgWRcsjhQhOUiZJC/ANV1sKVjRkBcCoZCB0iv9ckLRbRcv
-	ZnUeCqlXrGhLTIX5TvEw==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:References:
+	To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=FcwAtZkSYeEbQCYcwP8X0WjYYkA7HPazi4M3wOGCcYI=; b=rAzaY6qGb7ixng3BUlXiW8hod
+	6TXusxV3prF8xfHKWeJ2RSO2ujmI845TN4QvPtQKSPcxF6tco32EdD8lAkJ5meZbpKPQkOukthmsQ
+	nqtHBZUnEFzVVmlsDSOBFnCX+2iG4e6hX3/PEm/mY6mnHrKcLxxGpM+BSbMMSSYVPUU4945o4gdNU
+	I9oq7u2Bjv5krIKuCZFjhSDankso3hrZc+W5dQmGF3JXRvi5O9SOIGVKuDks0Q8Rx15UO1/rdbINr
+	2+vfYCSN176EIfTldmEu+qqNjNuIERsd4Dd+ulgT/vvfpk+ZU+P03RmE48ZvGiOd5m3y2406MP8OK
+	MQg4lvhHA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iZPYl-0002n9-MY; Tue, 26 Nov 2019 01:22:31 +0000
-Received: from mail-pg1-x535.google.com ([2607:f8b0:4864:20::535])
+	id 1iZQh9-00026o-Rv; Tue, 26 Nov 2019 02:35:15 +0000
+Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iZPYi-0002lm-4j
- for linux-amlogic@lists.infradead.org; Tue, 26 Nov 2019 01:22:30 +0000
-Received: by mail-pg1-x535.google.com with SMTP id t3so7668502pgl.5
- for <linux-amlogic@lists.infradead.org>; Mon, 25 Nov 2019 17:22:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=AtPRMYJsiWkwHiFFHZwBcUcKfK6FWEVPRzt0kULjoMk=;
- b=ZsjGN9G3y6QPq/SuMUBdQdPjWMaaqGTsg369cIOxGzFWf76C6KhXoa28fC3PDPNsv+
- 7QWs10eF6lz9is8be53GzoigIeoomf7xOruNp1Y/bJBePCpSOXYLOA4H2/KJ77cRhk05
- x0KvyJoRGbdZ9bbhy/XpP674iOcUGGYfS/H2W20tUStvBWi2ytsJmsFm0cuVxx0LrVhE
- fJVgEsvqgV4FirojN5oa+BaOcKBvYRvapbjhDDbYa7cJEo8dtqNlxLA6y+V/jXxspakD
- Spg4rGfGWHPFYnszQbpNq8GQ03LpilTeTOS2V8qw2dZ1gjduJRffPZoij6u5G0iQYIDa
- y3mQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=AtPRMYJsiWkwHiFFHZwBcUcKfK6FWEVPRzt0kULjoMk=;
- b=ivu9RTpLqa8VFivv9m6QoLBuqLrkCb0tcETgV2RhrJke+fcIYGoj2eA49ZkgRrmp3w
- vksGkqoaBVhRXzqCuvv6oNBAUfqh2EiVeVWmYbzzam1N6jTjSbFNYc6Z0Mw+rBMIRYdu
- APcGpVIUv08cfuj2tJNzbaFLIlDcnQuNJb4rOqRI33VmUBwfzfmPg7ae93enwDcc/oCI
- En2uE4/mQ3iyPMg5CYtALEcjpEqJVbAvefQBDMIsnrgXlFszvMQseZn49qOBCM+ZRlpk
- buQ7SeEz35augR5E4nNOHeZx/Z18doB2waauaWHtkv3N+LuCKm6w7sHFczDhy/Kpc5GD
- Gvpw==
-X-Gm-Message-State: APjAAAWvXBeL2WrrkT2BHFIxWfp+iX503qQt20C6ZMTEPt8lwSfC7fEI
- LY1RVUIc/2giXOqoiwGFCv3xWA==
-X-Google-Smtp-Source: APXvYqzCduZpVjmTaqiZExnNw3OMBfwJqTBjnW12KeeSXsvhWXRVkr9xrQzORP/oWCYG2oNVoKbw8g==
-X-Received: by 2002:a63:6a47:: with SMTP id f68mr35998951pgc.35.1574731346647; 
- Mon, 25 Nov 2019 17:22:26 -0800 (PST)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id r15sm9985094pfh.81.2019.11.25.17.22.25
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 25 Nov 2019 17:22:25 -0800 (PST)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- linux-mmc@vger.kernel.org, robh+dt@kernel.org, ulf.hansson@linaro.org
-Subject: Re: Amlogic 32-bit Meson SoC SDHC MMC controller driver
-In-Reply-To: <20191117142716.154764-1-martin.blumenstingl@googlemail.com>
-References: <20191117142716.154764-1-martin.blumenstingl@googlemail.com>
-Date: Mon, 25 Nov 2019 17:22:25 -0800
-Message-ID: <7htv6rh1ny.fsf@baylibre.com>
+ id 1iZQgq-0000jJ-E0; Tue, 26 Nov 2019 02:34:57 +0000
+Received: from [10.28.39.99] (10.28.39.99) by mail-sz.amlogic.com (10.28.11.5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Tue, 26 Nov
+ 2019 10:35:17 +0800
+Subject: Re: [PATCH v2 3/3] clk: meson: a1: add support for Amlogic A1 clock
+ driver
+From: Jian Hu <jian.hu@amlogic.com>
+To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
+ <narmstrong@baylibre.com>
+References: <1571382865-41978-1-git-send-email-jian.hu@amlogic.com>
+ <1571382865-41978-4-git-send-email-jian.hu@amlogic.com>
+ <1jsgnmba1a.fsf@starbuckisacylon.baylibre.com>
+ <49b33e94-910b-3fd9-4da1-050742d07e93@amlogic.com>
+ <1jblts3v7e.fsf@starbuckisacylon.baylibre.com>
+ <f02b6fb2-5b98-0930-6d47-a3e65840fb82@amlogic.com>
+ <1jh839f2ue.fsf@starbuckisacylon.baylibre.com>
+ <20d04452-fc63-9e9e-220f-146b493a860f@amlogic.com>
+ <1695e9b0-1730-eef6-491d-fe90ac897ee9@amlogic.com>
+ <1jtv6yftmm.fsf@starbuckisacylon.baylibre.com>
+ <9e652ed1-384e-f630-f2a4-0aa4486df577@amlogic.com>
+ <1j7e3oqn36.fsf@starbuckisacylon.baylibre.com>
+ <9ec317e8-136e-1ab4-4e9b-21210e7f3e05@amlogic.com>
+ <1j5zj8qgsl.fsf@starbuckisacylon.baylibre.com>
+ <7a3f1e14-e5a5-407a-335a-eb68d3082eb9@amlogic.com>
+Message-ID: <1ca0c5e1-8417-c5dc-7ad1-80ea707554b2@amlogic.com>
+Date: Tue, 26 Nov 2019 10:35:17 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.1
 MIME-Version: 1.0
+In-Reply-To: <7a3f1e14-e5a5-407a-335a-eb68d3082eb9@amlogic.com>
+Content-Language: en-US
+X-Originating-IP: [10.28.39.99]
+X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
+ (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191125_172228_247116_AFA9BE4F 
-X-CRM114-Status: UNSURE (   6.25  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20191125_183456_472382_8375DEFA 
+X-CRM114-Status: GOOD (  21.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,28 +85,179 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mark.rutland@arm.com, jianxin.pan@amlogic.com,
+Cc: Rob Herring <robh@kernel.org>, Victor Wan <victor.wan@amlogic.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, yinxin_1989@aliyun.com,
- linux-arm-kernel@lists.infradead.org, lnykww@gmail.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
+ Stephen Boyd <sboyd@kernel.org>, Qiufang Dai <qiufang.dai@amlogic.com>,
+ Chandle Zou <chandle.zou@amlogic.com>, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="windows-1252"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
 
-Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-> this is the first non-RFC version of the driver for the Amlogic "SDHC"
-> MMC controller found on Meson6, Meson8, Meson8b and Meson8m2 SoCs.
+On 2019/11/25 21:51, Jian Hu wrote:
+> =
 
-This will need to be reviewed/merged by the MMC maintainers, but to get
-some broader testing (including in KernelCI) I've added this series to
-the 'testing' branch of my tree so it will be included in my 'integ'
-branch.
+> =
 
-Kevin
+> On 2019/11/25 20:30, Jerome Brunet wrote:
+>>
+>> On Mon 25 Nov 2019 at 13:01, Jian Hu <jian.hu@amlogic.com> wrote:
+>>
+>>> On 2019/11/25 18:14, Jerome Brunet wrote:
+>>>>
+>>>> On Thu 21 Nov 2019 at 04:21, Jian Hu <jian.hu@amlogic.com> wrote:
+>>>>
+>>>>> Hi, Jerome
+>>>>>
+>>>>> On 2019/11/20 23:35, Jerome Brunet wrote:
+>>>>>>
+>>>>>> On Wed 20 Nov 2019 at 10:28, Jian Hu <jian.hu@amlogic.com> wrote:
+>>>>>>
+>>>>>>> Hi, jerome
+>>>>>>>
+>>>>>>> Is there any problem about fixed_pll_dco's parent_data?
+>>>>>>>
+>>>>>>> Now both name and fw_name are described in parent_data.
+>>>>>>
+>>>>>> Yes, there is a problem.=A0 This approach is incorrect, as I've =
+
+>>>>>> tried to
+>>>>>> explain a couple times already. Let me try to re-summarize why this
+>>>>>> approach is incorrect.
+>>>>>>
+>>>>>> Both fw_name and name should be provided when it is possible that
+>>>>>> the DT does not describe the input clock. IOW, it is only for =
+
+>>>>>> controllers
+>>>>>> which relied on the global name so far and are now starting to =
+
+>>>>>> describe
+>>>>>> the clock input in DT
+>>>>>>
+>>>>>> This is not your case.
+>>>>>> Your controller is new and DT will have the correct
+>>>>>> info
+>>>>>>
+>>>>>> You are trying work around an ordering issue by providing both =
+
+>>>>>> fw_name
+>>>>>> and name. This is not correct and I'll continue to nack it.
+>>>>>>
+>>>>>> If the orphan clock is not reparented as you would expect, I =
+
+>>>>>> suggest you
+>>>>>> try to look a bit further at how the reparenting of orphans is =
+
+>>>>>> done in
+>>>>>> CCF and why it does not match your expectation.
+>>>>>>
+>>>>> I have debugged the handle for orphan clock in CCF, Maybe you are =
+
+>>>>> missing
+>>>>> the last email.
+>>>>
+>>>> Nope, got it the first time
+>>>>
+>>>>> Even though the clock index exit, it will get failed for the orphan =
+
+>>>>> clock's
+>>>>> parent clock due to it has not beed added to the provider.
+>>>>
+>>>> If the provider is not registered yet, of course any query to it won't
+>>>> work. This why I have suggested to this debug *further* :
+>>>>
+>>>> * Is the orphan reparenting done when a new provider is registered ?
+>>>> * If not, should it be done ? is this your problem ?
+>>>>
+>>
+>> Apparently, I was not clear enough so I'll rephrase
+>>
+>>> Yes, the orphan reparenting is done when the new provider is
+>>> registered.
+>>
+>> No it is not done yet. Please check the code.
+>>
+>> The reparenting of orphan is done only on clock registration, not on
+>> provider registeration. Now that clocks can be specified by DT, this
+>> probably needs to added.The action of reparenting the orphan is before =
+
+>> the provider registration =
+
+> with the current code.
+>>
+>> That is your problem.
+> Yes, if the provider is registered before the clock registration, it
+> will reparent successfully.
+>>
+>> Please fix the underlying issue, then you can post your series again.
+>>
+>>>
+>>> Reparenting the orphan will be done when each clock is registered by
+>>> devm_clk_hw_register. And at this time the provider has not been
+>>> registered. After all clocks are registered by devm_clk_hw_register, the
+>>> provider will be registered by devm_of_clk_add_hw_provider.
+>>>
+>>> Reparenting the orphan will fail when fw_name is added alone, the =
+
+>>> couse is
+>>> that devm_clk_hw_register is always running ahead of
+>>> devm_of_clk_add_hw_provider.
+>>
+>> Please stop bringing the topic of "fw_name" and "name" field together, I
+>> told you 3 times why this is wrong. It is not going to change.
+>>
+>>>
+>>> That is why it will failed to get parent for the orphan clock.
+>>
+>> It fails because the provider is not registered when you try to reparent
+>> the orphan.
+>>
+>> It shows that you should try again once the provider is registered.
+>>
+> OK, I have exchanged the position for devm_clk_hw_register and =
+
+> devm_of_clk_add_hw_provider in meson-eeclk.c.
+> =
+
+> It reparents successfully for orphan clock.
+> =
+
+> Is is ok that put devm_of_clk_add_hw_provider ahead?
+> =
+
+> As far as I am concerned, there is no any effect.Sorry, If the provider i=
+s registered first, I find it will affect the =
+
+assigned-clock-parents and assigned-clock-rates configurations in DT =
+
+when the provider is registered.
+
+It will fail to set the assigned parent and assigned rate for one clock =
+
+because of the related clocks are not registered yet.
+
+Moreover, registering provider is always after clock registration in =
+
+other vendor clock drivers.
+
+Maybe registering provider is better after the clock registration.
+
+
+>>>
+>>>
+>>>
+>>>>
+>>>> .
+>>>>
+>>
+>> .
+>>
 
 _______________________________________________
 linux-amlogic mailing list
