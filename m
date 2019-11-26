@@ -2,78 +2,90 @@ Return-Path: <SRS0=RHkW=ZS=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT autolearn=no autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C7DFCC432C0
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Nov 2019 02:35:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 67FA7C432C0
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Nov 2019 09:37:54 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8D3E4207FD
-	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Nov 2019 02:35:23 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 371BA20722
+	for <linux-amlogic@archiver.kernel.org>; Tue, 26 Nov 2019 09:37:54 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rAzaY6qG"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8D3E4207FD
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="A7eKIn2H";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="tAq0BQX9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 371BA20722
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:References:
-	To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=FcwAtZkSYeEbQCYcwP8X0WjYYkA7HPazi4M3wOGCcYI=; b=rAzaY6qGb7ixng3BUlXiW8hod
-	6TXusxV3prF8xfHKWeJ2RSO2ujmI845TN4QvPtQKSPcxF6tco32EdD8lAkJ5meZbpKPQkOukthmsQ
-	nqtHBZUnEFzVVmlsDSOBFnCX+2iG4e6hX3/PEm/mY6mnHrKcLxxGpM+BSbMMSSYVPUU4945o4gdNU
-	I9oq7u2Bjv5krIKuCZFjhSDankso3hrZc+W5dQmGF3JXRvi5O9SOIGVKuDks0Q8Rx15UO1/rdbINr
-	2+vfYCSN176EIfTldmEu+qqNjNuIERsd4Dd+ulgT/vvfpk+ZU+P03RmE48ZvGiOd5m3y2406MP8OK
-	MQg4lvhHA==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=QB4xfXkYtx2aUhDzmvuxqCMpGHo58D3sCRwK/0M5H7A=; b=A7eKIn2HMrHtyA
+	GGxzo0tSwZDF+eGAahOLg125TRXj8OZUpHw9XmSfM8xNZzx/QlDSxWqMbqHgD5t55uiPE3o/M1qyK
+	zERt/ee1Id+4dKwjYJ9dXSeZUEtf49t7cqlkPut3Pw/hDKRQ+8JuLgZGlML8/VjpbkXe2SnbrXDJG
+	+7xw0paTBjSnuoD+oTzCHzecyrHECwEg7QyadJBkRZZs1FlO2KdvcyaubR2AT0gEWaXeZ53cHB1aJ
+	d44aBcmqW/FfXiP2Rqo1SEgRj1XhN/XZDZBrcWi3PiUqozjloxXnmlDjB4ri5PEbZsIj3wEQ7kSsn
+	+s49klSDYErN45VYzHUQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iZQh9-00026o-Rv; Tue, 26 Nov 2019 02:35:15 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1iZXHx-0006bb-Sk; Tue, 26 Nov 2019 09:37:41 +0000
+Received: from mail-wr1-x42b.google.com ([2a00:1450:4864:20::42b])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iZQgq-0000jJ-E0; Tue, 26 Nov 2019 02:34:57 +0000
-Received: from [10.28.39.99] (10.28.39.99) by mail-sz.amlogic.com (10.28.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Tue, 26 Nov
- 2019 10:35:17 +0800
-Subject: Re: [PATCH v2 3/3] clk: meson: a1: add support for Amlogic A1 clock
- driver
-From: Jian Hu <jian.hu@amlogic.com>
-To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
- <narmstrong@baylibre.com>
-References: <1571382865-41978-1-git-send-email-jian.hu@amlogic.com>
- <1571382865-41978-4-git-send-email-jian.hu@amlogic.com>
- <1jsgnmba1a.fsf@starbuckisacylon.baylibre.com>
- <49b33e94-910b-3fd9-4da1-050742d07e93@amlogic.com>
- <1jblts3v7e.fsf@starbuckisacylon.baylibre.com>
- <f02b6fb2-5b98-0930-6d47-a3e65840fb82@amlogic.com>
- <1jh839f2ue.fsf@starbuckisacylon.baylibre.com>
- <20d04452-fc63-9e9e-220f-146b493a860f@amlogic.com>
- <1695e9b0-1730-eef6-491d-fe90ac897ee9@amlogic.com>
- <1jtv6yftmm.fsf@starbuckisacylon.baylibre.com>
- <9e652ed1-384e-f630-f2a4-0aa4486df577@amlogic.com>
- <1j7e3oqn36.fsf@starbuckisacylon.baylibre.com>
- <9ec317e8-136e-1ab4-4e9b-21210e7f3e05@amlogic.com>
- <1j5zj8qgsl.fsf@starbuckisacylon.baylibre.com>
- <7a3f1e14-e5a5-407a-335a-eb68d3082eb9@amlogic.com>
-Message-ID: <1ca0c5e1-8417-c5dc-7ad1-80ea707554b2@amlogic.com>
-Date: Tue, 26 Nov 2019 10:35:17 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.1
+ id 1iZXHt-0006Xc-JU
+ for linux-amlogic@lists.infradead.org; Tue, 26 Nov 2019 09:37:40 +0000
+Received: by mail-wr1-x42b.google.com with SMTP id a15so21565855wrf.9
+ for <linux-amlogic@lists.infradead.org>; Tue, 26 Nov 2019 01:37:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=UzhDyQ56LBzm46HNNl3HQXj0Cwtw/+D8lGNvZCeLFfU=;
+ b=tAq0BQX9fU6dNUlVbcSM20CfwA1J8XWvdziNBxNa2ERzJKecEWe4GyQ/n6mc0Bu1kA
+ BK+RtS5EftHYJO/GOLGcR1sEzvmtEz+2e0fCsqNSbt4js84jN2bbfHTv3UWwonqchUJL
+ BFjopSZEY7sTyFj0u88jTvB663o0wheQk7+Yd6Zs9rJPpwGIr7HvCyaWm1obmoNZMpnI
+ EQnWdlvUOK5EdRn2+FwCiqAlEnC2fxv1w9oP8NKfYVsmPx38Zi76d9B+qzLrogW6yPfb
+ n8XyiiTi2YF5r1+6zuPVXA8lY45qKWjEInTyPOlJNEZ5XFZiVs+hDcIutvI9ckRLdzxS
+ Jp4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=UzhDyQ56LBzm46HNNl3HQXj0Cwtw/+D8lGNvZCeLFfU=;
+ b=PmNNw2Ty1tfKspru8pqdp4vBugp6dAslmrcb2/2Syv6yWlsleM3L0eN10dTm8v4cAV
+ xPiWhNLR/hMGDGxXBiIWuhaQCxnA7VU5jFHsHjdSRPgdPP1ja7GvFy8KQv9PM4hXOjHV
+ 1G8khJfubfi7WUak8LqakCME58CUiVgfwNgfG7/k1Hypvk/uRFKqoOdexpFqBJQGuYsr
+ i/CfJExxFV1wL2hAk1ur/9EqSWZUh/LTl8tNoIpyO7UOfCfsatTeTshFXFsFMF0N8p+7
+ dCQ87q9JSc6vEpJ1KdWfkC8IOv09cvybypETqzSiCi3ePbVbD047zVShejmZhatL3401
+ wQOg==
+X-Gm-Message-State: APjAAAVpFSXbwnDi1A8oLttp+ggP41+19LY+P0f9LRiX118ekRPena6+
+ FdwooGgM/L+mWXIhdc/Yhj9YBw==
+X-Google-Smtp-Source: APXvYqwpcan2QJ1uHURAp0mno8I427wdib6hDOxjlnDdGOsDgMqMmd6oqGy2A4ymy5A8BZJ5B73VoQ==
+X-Received: by 2002:a05:6000:103:: with SMTP id
+ o3mr3709043wrx.80.1574761055575; 
+ Tue, 26 Nov 2019 01:37:35 -0800 (PST)
+Received: from bender.baylibre.local (176-150-251-154.abo.bbox.fr.
+ [176.150.251.154])
+ by smtp.gmail.com with ESMTPSA id y67sm2464082wmy.31.2019.11.26.01.37.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 26 Nov 2019 01:37:34 -0800 (PST)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: mchehab@kernel.org,
+	hans.verkuil@cisco.com
+Subject: [PATCH v2 0/3] media: meson: vdec: Add compliant H264 support
+Date: Tue, 26 Nov 2019 10:37:30 +0100
+Message-Id: <20191126093733.32404-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-In-Reply-To: <7a3f1e14-e5a5-407a-335a-eb68d3082eb9@amlogic.com>
-Content-Language: en-US
-X-Originating-IP: [10.28.39.99]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191125_183456_472382_8375DEFA 
-X-CRM114-Status: GOOD (  21.96  )
+X-CRM114-CacheID: sfid-20191126_013737_714473_21317E86 
+X-CRM114-Status: UNSURE (   9.57  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,179 +97,164 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Victor Wan <victor.wan@amlogic.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
- Stephen Boyd <sboyd@kernel.org>, Qiufang Dai <qiufang.dai@amlogic.com>,
- Chandle Zou <chandle.zou@amlogic.com>, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="windows-1252"; Format="flowed"
+Cc: linux-amlogic@lists.infradead.org, linux-media@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hello,
 
+This patch series aims to bring H.264 support as well as compliance update
+to the amlogic stateful video decoder driver.
 
-On 2019/11/25 21:51, Jian Hu wrote:
-> =
+The issue in the V1 patchset at [1] is solved by patch #1 following comments
+and requirements from hans.
 
-> =
+With this, it passes v4l2-compliance with streaming on Amlogic G12A and
+Amlogic SM1 SoCs successfully.
 
-> On 2019/11/25 20:30, Jerome Brunet wrote:
->>
->> On Mon 25 Nov 2019 at 13:01, Jian Hu <jian.hu@amlogic.com> wrote:
->>
->>> On 2019/11/25 18:14, Jerome Brunet wrote:
->>>>
->>>> On Thu 21 Nov 2019 at 04:21, Jian Hu <jian.hu@amlogic.com> wrote:
->>>>
->>>>> Hi, Jerome
->>>>>
->>>>> On 2019/11/20 23:35, Jerome Brunet wrote:
->>>>>>
->>>>>> On Wed 20 Nov 2019 at 10:28, Jian Hu <jian.hu@amlogic.com> wrote:
->>>>>>
->>>>>>> Hi, jerome
->>>>>>>
->>>>>>> Is there any problem about fixed_pll_dco's parent_data?
->>>>>>>
->>>>>>> Now both name and fw_name are described in parent_data.
->>>>>>
->>>>>> Yes, there is a problem.=A0 This approach is incorrect, as I've =
+This patchset depends on G12A and SM1 enablement series at [2] and [3].
 
->>>>>> tried to
->>>>>> explain a couple times already. Let me try to re-summarize why this
->>>>>> approach is incorrect.
->>>>>>
->>>>>> Both fw_name and name should be provided when it is possible that
->>>>>> the DT does not describe the input clock. IOW, it is only for =
+The compliance log is:
+# v4l2-compliance --stream-from-hdr test-25fps.h264.hdr -s 200
+v4l2-compliance SHA: 7ead0e1856b89f2e19369af452bb03fd0cd16793, 64 bits
 
->>>>>> controllers
->>>>>> which relied on the global name so far and are now starting to =
+Compliance test for meson-vdec device /dev/video0:
 
->>>>>> describe
->>>>>> the clock input in DT
->>>>>>
->>>>>> This is not your case.
->>>>>> Your controller is new and DT will have the correct
->>>>>> info
->>>>>>
->>>>>> You are trying work around an ordering issue by providing both =
+Driver Info:
+	Driver name      : meson-vdec
+	Card type        : Amlogic Video Decoder
+	Bus info         : platform:meson-vdec
+	Driver version   : 5.4.0
+	Capabilities     : 0x84204000
+		Video Memory-to-Memory Multiplanar
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04204000
+		Video Memory-to-Memory Multiplanar
+		Streaming
+		Extended Pix Format
+	Detected Stateful Decoder
 
->>>>>> fw_name
->>>>>> and name. This is not correct and I'll continue to nack it.
->>>>>>
->>>>>> If the orphan clock is not reparented as you would expect, I =
+Required ioctls:
+	test VIDIOC_QUERYCAP: OK
 
->>>>>> suggest you
->>>>>> try to look a bit further at how the reparenting of orphans is =
+Allow for multiple opens:
+	test second /dev/video0 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
 
->>>>>> done in
->>>>>> CCF and why it does not match your expectation.
->>>>>>
->>>>> I have debugged the handle for orphan clock in CCF, Maybe you are =
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
 
->>>>> missing
->>>>> the last email.
->>>>
->>>> Nope, got it the first time
->>>>
->>>>> Even though the clock index exit, it will get failed for the orphan =
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
 
->>>>> clock's
->>>>> parent clock due to it has not beed added to the provider.
->>>>
->>>> If the provider is not registered yet, of course any query to it won't
->>>> work. This why I have suggested to this debug *further* :
->>>>
->>>> * Is the orphan reparenting done when a new provider is registered ?
->>>> * If not, should it be done ? is this your problem ?
->>>>
->>
->> Apparently, I was not clear enough so I'll rephrase
->>
->>> Yes, the orphan reparenting is done when the new provider is
->>> registered.
->>
->> No it is not done yet. Please check the code.
->>
->> The reparenting of orphan is done only on clock registration, not on
->> provider registeration. Now that clocks can be specified by DT, this
->> probably needs to added.The action of reparenting the orphan is before =
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
 
->> the provider registration =
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
 
-> with the current code.
->>
->> That is your problem.
-> Yes, if the provider is registered before the clock registration, it
-> will reparent successfully.
->>
->> Please fix the underlying issue, then you can post your series again.
->>
->>>
->>> Reparenting the orphan will be done when each clock is registered by
->>> devm_clk_hw_register. And at this time the provider has not been
->>> registered. After all clocks are registered by devm_clk_hw_register, the
->>> provider will be registered by devm_of_clk_add_hw_provider.
->>>
->>> Reparenting the orphan will fail when fw_name is added alone, the =
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+	test VIDIOC_QUERYCTRL: OK
+	test VIDIOC_G/S_CTRL: OK
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 2 Private Controls: 0
 
->>> couse is
->>> that devm_clk_hw_register is always running ahead of
->>> devm_of_clk_add_hw_provider.
->>
->> Please stop bringing the topic of "fw_name" and "name" field together, I
->> told you 3 times why this is wrong. It is not going to change.
->>
->>>
->>> That is why it will failed to get parent for the orphan clock.
->>
->> It fails because the provider is not registered when you try to reparent
->> the orphan.
->>
->> It shows that you should try again once the provider is registered.
->>
-> OK, I have exchanged the position for devm_clk_hw_register and =
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
 
-> devm_of_clk_add_hw_provider in meson-eeclk.c.
-> =
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK
 
-> It reparents successfully for orphan clock.
-> =
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK (Not Supported)
 
-> Is is ok that put devm_of_clk_add_hw_provider ahead?
-> =
+Test input 0:
 
-> As far as I am concerned, there is no any effect.Sorry, If the provider i=
-s registered first, I find it will affect the =
+Streaming ioctls:
+	test read/write: OK (Not Supported)
+	test blocking wait: OK
+	Video Capture Multiplanar: Captured 200 buffers   
+	test MMAP (select): OK
+	Video Capture Multiplanar: Captured 200 buffers   
+	test MMAP (epoll): OK
+	test USERPTR (select): OK (Not Supported)
+	test DMABUF: Cannot test, specify --expbuf-device
 
-assigned-clock-parents and assigned-clock-rates configurations in DT =
+Total for meson-vdec device /dev/video0: 49, Succeeded: 49, Failed: 0, Warnings: 0
 
-when the provider is registered.
+Changes since v1 at [1]:
+- fixed output_size is never used reported by hans
+- rebased on G12A and SM1 patches
+- added handling of qbuf after STREAMON and STOP before enought buffer queued
 
-It will fail to set the assigned parent and assigned rate for one clock =
+[1] https://lore.kernel.org/linux-media/20191007145909.29979-1-mjourdan@baylibre.com
+[2] https://lore.kernel.org/linux-media/20191120111430.29552-1-narmstrong@baylibre.com
+[3] https://lore.kernel.org/linux-media/20191121101429.23831-1-narmstrong@baylibre.com
 
-because of the related clocks are not registered yet.
+Maxime Jourdan (2):
+  media: meson: vdec: bring up to compliance
+  media: meson: vdec: add H.264 decoding support
 
-Moreover, registering provider is always after clock registration in =
+Neil Armstrong (1):
+  media: v4l2-mem2mem: mark DONE any OUTPUT queued buffer after CMD_STOP
 
-other vendor clock drivers.
+ drivers/media/v4l2-core/v4l2-mem2mem.c        |  61 ++-
+ drivers/staging/media/meson/vdec/Makefile     |   2 +-
+ drivers/staging/media/meson/vdec/codec_h264.c | 482 ++++++++++++++++++
+ drivers/staging/media/meson/vdec/codec_h264.h |  14 +
+ drivers/staging/media/meson/vdec/esparser.c   |  58 +--
+ drivers/staging/media/meson/vdec/vdec.c       |  92 ++--
+ drivers/staging/media/meson/vdec/vdec.h       |  14 +-
+ .../staging/media/meson/vdec/vdec_helpers.c   |  85 ++-
+ .../staging/media/meson/vdec/vdec_helpers.h   |   6 +-
+ .../staging/media/meson/vdec/vdec_platform.c  |  71 +++
+ include/media/v4l2-mem2mem.h                  |  14 +
+ 11 files changed, 779 insertions(+), 120 deletions(-)
+ create mode 100644 drivers/staging/media/meson/vdec/codec_h264.c
+ create mode 100644 drivers/staging/media/meson/vdec/codec_h264.h
 
-Maybe registering provider is better after the clock registration.
+-- 
+2.22.0
 
-
->>>
->>>
->>>
->>>>
->>>> .
->>>>
->>
->> .
->>
 
 _______________________________________________
 linux-amlogic mailing list
