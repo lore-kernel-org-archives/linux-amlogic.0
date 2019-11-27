@@ -6,70 +6,66 @@ X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
 	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9CEB5C43215
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Nov 2019 21:13:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DC7B8C432C0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Nov 2019 21:33:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 720D62176D
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Nov 2019 21:13:23 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id AD8D920665
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Nov 2019 21:33:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="sVRvhy34"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 720D62176D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="h2O4JWgB"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org AD8D920665
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=perches.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=l8hZhEnlilhLHv4SRJiNt6OP7ibwzKCMlNZyCfiIa2g=; b=sVRvhy34nef9J1
-	bLiL09OPA5AP3lh1bVYu9zT9xff9UCtEazN/qJAp3nXheVE5kPAFSV2f99oSfgDXWCn5avHve3Kgd
-	vklN+5C1n1OLs5uLn2JEH1rrcwEwIV+Ovy0Pl7kJtydLBtfXis/VLiKZX5utWDNfxAU+GtVtRUb2w
-	LnnZrmOqhYjuF2YudmkrOTRP6tQKFlIJpqxkhT4tNGGrtip79n5VogII84XdLET5gkLUQJBK4XCtM
-	4RZG4ytdclnOut9axF0GkzYkb37n3wcistNXOM3xtzLkE7McL5IAiTyewJR3MbKE1hAJBt/OHRAyV
-	TWBmcu8iQdRZxuRgHe4Q==;
+	List-Owner; bh=ywqarMfoPI4kk4BgvtgHOEckg12h3ivEYVP2Q+RbDy8=; b=h2O4JWgBy+I9xv
+	YHrubWNc8lgkoG2l1atce1OX80FD5bnhaAlq7Kd6d0C+WnS3XJSUPCnWEqLvXLPfazdQAirxkvMNO
+	qW7G4hie1h418RBLlBEGL8vWCrq2FoWFHjAmCWoSIVOHOEdCyXzLIHNUkVjLOeWek6VRBRwRG1pB1
+	l/SP59q2m6zzYzMNDeyy0SFk7v6jh66TK7uBsQyqP3I6qoo1T0EaFIkF2gjP5/xwLqDuMlMR5WH8U
+	SD0rQPQmUHT7i4xv8N2HwhBLBMRqzphvo+onnG31Pf6Wq9UlbSdsDaNWQrMSRoF7SGCsFmY8xhaD1
+	Ow7wUv7T0I/i0LZsVXxA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ia4cd-0004C9-RV; Wed, 27 Nov 2019 21:13:15 +0000
-Received: from mail-ot1-f65.google.com ([209.85.210.65])
+	id 1ia4w0-0004f1-65; Wed, 27 Nov 2019 21:33:16 +0000
+Received: from smtprelay0174.hostedemail.com ([216.40.44.174]
+ helo=smtprelay.hostedemail.com)
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ia4cM-0003tG-1B; Wed, 27 Nov 2019 21:12:59 +0000
-Received: by mail-ot1-f65.google.com with SMTP id d7so3465915otq.3;
- Wed, 27 Nov 2019 13:12:52 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=cImB892YXUVPGGhFezh816WamO3nmCEALpwjUr8+dkg=;
- b=URuEKuGU3+cA8pxaBoBfWAp2a6mTtTkpnCZ9KxFYjCdRqp97acC4wbDRR3t9roLQe8
- ZrNOm4GVLrg9wI5afCblrHZhRLWH6rtjWyhVaFeT+zKqo7YUT9/iAlAAmughAPJMLd5U
- 9N4owjUKHTxsELJKUamUockR20Q11a9DAFLJTQoT2fXSpkN4qtyKvSZUfsD1AZJaTh4p
- VCd8hXC/Un+TlTuvY8GQSOcRLBSoLmBIvYuKuXXxFYOQ+aMGE6t/nPxMP8nFbCTGXtkS
- 5kGBB0LL2b9QxP/oVy8kBroL1sTwNeZa5xKOXtfEtsGtkq+1mQc48jVptWoDcS1xh5Tg
- wLfg==
-X-Gm-Message-State: APjAAAW3GsJG5PHQP1czh9GL5osvV+8T7q2dj2AaGf7Uj6Q14TPt8Z3q
- w0cJ+0CPRKqk/6WjZE+O4mfYsR+36a01PXWfemc=
-X-Google-Smtp-Source: APXvYqxh3g09zK8yoW4/yyNAk1QlyeyoV8wcshHdQWMv3ezyM47GygheulvdavD9PmPbPqN6RamYKOqEfquQDCZNc+o=
-X-Received: by 2002:a9d:17ca:: with SMTP id j68mr5270571otj.250.1574889171373; 
- Wed, 27 Nov 2019 13:12:51 -0800 (PST)
-MIME-Version: 1.0
+ id 1ia4vx-0004ed-64; Wed, 27 Nov 2019 21:33:14 +0000
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
+ [216.40.38.60])
+ by smtprelay04.hostedemail.com (Postfix) with ESMTP id 49DF1180020E4;
+ Wed, 27 Nov 2019 21:33:08 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-HE-Tag: cows61_381bf37cb8f3e
+X-Filterd-Recvd-Size: 2684
+Received: from XPS-9350.home (unknown [47.151.135.224])
+ (Authenticated sender: joe@perches.com)
+ by omf19.hostedemail.com (Postfix) with ESMTPA;
+ Wed, 27 Nov 2019 21:33:05 +0000 (UTC)
+Message-ID: <b2cbe247a33dd9f6c747fce180f964b88d5dc70a.camel@perches.com>
+Subject: Re: [PATCH 4/5] pinctrl: sh-pfc: Use the correct style for SPDX
+ License Identifier
+From: Joe Perches <joe@perches.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 27 Nov 2019 13:32:39 -0800
+In-Reply-To: <CAMuHMdUSSHvQ74c156tuhWShp05TQuSmXa-kY3HNbYj0VL_d4g@mail.gmail.com>
 References: <cover.1574871463.git.nishadkamdar@gmail.com>
  <5a7ed2e4b58ba7ff2f0638a2435a3a1e1c62c9f6.1574871463.git.nishadkamdar@gmail.com>
  <CAMuHMdUqfRioTBV27AKx9zv9YuSqEod6x+A4aguf=h20TDXr6w@mail.gmail.com>
  <9bacc7d9-6bd9-0b7c-18cd-d614796397dd@suse.de>
  <ae40eb808f420f5de4a140b8757dfbc426a8cf90.camel@perches.com>
-In-Reply-To: <ae40eb808f420f5de4a140b8757dfbc426a8cf90.camel@perches.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 27 Nov 2019 22:12:39 +0100
-Message-ID: <CAMuHMdUSSHvQ74c156tuhWShp05TQuSmXa-kY3HNbYj0VL_d4g@mail.gmail.com>
-Subject: Re: [PATCH 4/5] pinctrl: sh-pfc: Use the correct style for SPDX
- License Identifier
-To: Joe Perches <joe@perches.com>
+ <CAMuHMdUSSHvQ74c156tuhWShp05TQuSmXa-kY3HNbYj0VL_d4g@mail.gmail.com>
+User-Agent: Evolution 3.34.1-2 
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191127_131258_073306_CB397623 
-X-CRM114-Status: UNSURE (   8.79  )
+X-CRM114-CacheID: sfid-20191127_133313_287774_224443AA 
+X-CRM114-Status: UNSURE (   8.34  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -94,32 +90,41 @@ Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
  Maxime Coquelin <mcoquelin.stm32@gmail.com>,
  Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
  Matthias Brugger <matthias.bgg@gmail.com>,
- =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
  linux-amlogic <linux-amlogic@lists.infradead.org>,
- =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+ Andreas =?ISO-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
  Linux ARM <linux-arm-kernel@lists.infradead.org>,
  Alexandre Torgue <alexandre.torgue@st.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gV2VkLCBOb3YgMjcsIDIwMTkgYXQgOTo1OSBQTSBKb2UgUGVyY2hlcyA8am9lQHBlcmNoZXMu
-Y29tPiB3cm90ZToKPiBPbiBXZWQsIDIwMTktMTEtMjcgYXQgMjE6NTUgKzAxMDAsIEFuZHJlYXMg
-RsOkcmJlciB3cm90ZToKPiA+IEhvd2V2ZXIsIGlmIHdlJ3JlIHRvdWNoaW5nIHRoZXNlIGxpbmVz
-IGFueXdheSwgc2hvdWxkbid0IHdlIGJlIHVwZGF0aW5nCj4gPiB0aGUgU1BEWCBJZGVudGlmaWVy
-IHRvIEdQTC0yLjAtb25seSB3aGlsZSBhdCBpdD8KPgo+IFByb2JhYmx5IGJldHRlciB0byBkbyB0
-aGF0IHdpdGggYSB0cmVld2lkZSBzY3JpcHQgb25lIGRheS4KClllYWguLi4gQnV0IGl0J3MgYWxy
-ZWFkeSBtb3JlIHRoYW4gb25lIHllYXIgYWZ0ZXIKCj4gaHR0cHM6Ly9sa21sLm9yZy9sa21sLzIw
-MTgvOC8xNi80ODcKCmFuZCBEb2N1bWVudGF0aW9uL3Byb2Nlc3MvbGljZW5zZS1ydWxlcy5yc3Qg
-KHdoaWNoIGlzIHRoZSBhdXRob3JpdGl2ZQpydWxlPykgc3RpbGwgaGFzbid0IGJlZW4gdXBkYXRl
-ZC4uLgoKR3J7b2V0amUsZWV0aW5nfXMsCgogICAgICAgICAgICAgICAgICAgICAgICBHZWVydAoK
-LS0gCkdlZXJ0IFV5dHRlcmhvZXZlbiAtLSBUaGVyZSdzIGxvdHMgb2YgTGludXggYmV5b25kIGlh
-MzIgLS0gZ2VlcnRAbGludXgtbTY4ay5vcmcKCkluIHBlcnNvbmFsIGNvbnZlcnNhdGlvbnMgd2l0
-aCB0ZWNobmljYWwgcGVvcGxlLCBJIGNhbGwgbXlzZWxmIGEgaGFja2VyLiBCdXQKd2hlbiBJJ20g
-dGFsa2luZyB0byBqb3VybmFsaXN0cyBJIGp1c3Qgc2F5ICJwcm9ncmFtbWVyIiBvciBzb21ldGhp
-bmcgbGlrZSB0aGF0LgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC0tIExpbnVzIFRv
-cnZhbGRzCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwps
-aW51eC1hbWxvZ2ljIG1haWxpbmcgbGlzdApsaW51eC1hbWxvZ2ljQGxpc3RzLmluZnJhZGVhZC5v
-cmcKaHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hbWxv
-Z2ljCg==
+On Wed, 2019-11-27 at 22:12 +0100, Geert Uytterhoeven wrote:
+> On Wed, Nov 27, 2019 at 9:59 PM Joe Perches <joe@perches.com> wrote:
+> > On Wed, 2019-11-27 at 21:55 +0100, Andreas F=E4rber wrote:
+> > > However, if we're touching these lines anyway, shouldn't we be updati=
+ng
+> > > the SPDX Identifier to GPL-2.0-only while at it?
+> > =
+
+> > Probably better to do that with a treewide script one day.
+> =
+
+> Yeah... But it's already more than one year after
+> =
+
+> > https://lkml.org/lkml/2018/8/16/487
+> =
+
+> and Documentation/process/license-rules.rst (which is the authoritive
+> rule?) still hasn't been updated...
+
+The patch still applies today...
+
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
