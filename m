@@ -2,67 +2,95 @@ Return-Path: <SRS0=w3Gc=ZT=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F6E1C432C0
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Nov 2019 07:11:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F0BACC432C0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Nov 2019 16:39:27 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E650020656
-	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Nov 2019 07:11:17 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C37C4206F0
+	for <linux-amlogic@archiver.kernel.org>; Wed, 27 Nov 2019 16:39:27 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pbIvBBW3"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E650020656
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="l8WM6n/v";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="q6/t6QHF"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C37C4206F0
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oBtJ4SLkrhHQr5iaS+U1k5DiaFWszdWsj3owVkydApU=; b=pbIvBBW3pRAVZf
-	AeCZaqZhWque+ITA4HuvrkTSOa1k8UEdpmXceHIFTB6Ob/TUgVHiHfav5/v/ByRcVWeDrvG210WwE
-	9SaNViaOIHPGKEl8Gcv0NbanEHsAMspfZAVohJk0GVjk1fpZN8q9C4jIJQGOMWGhC9UYcL5ZzSQm3
-	kEhpzwoJt2HrAzhWaQkYCduhnS6QUOfRkHsdB026ovCIuKT0NlaS8BWm+7mjs8QxeUaqpa4SKRbsX
-	e/OfRieXSlD+rA+ZDWkhBgV1jXudhjXundoW4XDvTKPrSG2ZK0/HuBzftlxyncRbIfWmjvSVr8nZm
-	MYjTfEVR/dbLR1ZYEmng==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Subject:To:From
+	:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=Alm9xQqHgBuBBf8w1P3bMuTwi1wAsziQZFBDzI0/Fvs=; b=l8WM6n/voX0Sza
+	XaBzAAMgH6k0nnapEEgxRuRoVMulsyH0Jt9S2YFPMcQdYClooEdzOQi3IJFF1PoLpWJ+851Rj93wX
+	iDRgiam39//6aqKbwjWdT6EPFrhqPxXNv6WGqSbcynrFccjXIC+oCyZ4etlOBGprUmzan4SQokBcB
+	1Y5fAkgFC5onte83QnhwHavhj0gFT0rY+lZdFFcmGdCWiUR5GNIcMJkIIcYkyvejvfU/MF9hiLokA
+	/RctGPSspANTMvixh6SEijYBwxX3TmYLoaIEVbEjXCAFyMoqedEKajzFo8coFyLxNW67OYJeEuksh
+	1ZZaYhr1getDtiE2ld/w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iZrTl-0003lY-7C; Wed, 27 Nov 2019 07:11:13 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1ia0LS-0007X1-BI; Wed, 27 Nov 2019 16:39:14 +0000
+Received: from mail-pf1-x444.google.com ([2607:f8b0:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iZrTh-0003kM-Ae; Wed, 27 Nov 2019 07:11:11 +0000
-Received: from [10.18.38.198] (10.18.38.198) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Wed, 27 Nov
- 2019 15:11:35 +0800
-Subject: Re: [PATCH 0/6] arm64: meson: Add support for USB on Amlogic A1
-To: Neil Armstrong <narmstrong@baylibre.com>, Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>
-References: <1574405757-76184-1-git-send-email-hanjie.lin@amlogic.com>
- <CAFBinCDA=ZekRC0hgQnPLRZM3LMnqBZ6TWCvXhyixAmgDyTAsw@mail.gmail.com>
- <5c0029ec-7377-4c1a-0062-3b59a87f8dea@amlogic.com>
- <CAFBinCBypbB4W42GOAc8ejAYHVQLTDRdat_z_L92TZvC2p+5rQ@mail.gmail.com>
- <272a7442-38b3-346c-4749-2b163464bd01@baylibre.com>
-From: Hanjie Lin <hanjie.lin@amlogic.com>
-Message-ID: <5d364ce2-8851-0741-759a-baaac0a0fe14@amlogic.com>
-Date: Wed, 27 Nov 2019 15:11:34 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.1
+ id 1ia0LH-0007NE-3q; Wed, 27 Nov 2019 16:39:04 +0000
+Received: by mail-pf1-x444.google.com with SMTP id x28so11286575pfo.6;
+ Wed, 27 Nov 2019 08:39:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:mime-version:content-disposition
+ :user-agent; bh=a5uCI8sDk06L3eBN4lbKYbKhhJe2khqKsQK/HeBIflE=;
+ b=q6/t6QHFrX/IIKybww/twC4NWcDBGujHbbW6ZuVds6JG9ulrqK5lGwr1HEBFZ4qBMz
+ KqP6zyPrBs3/04rc8fYDrdNoQdEevLJOUBc8uPUWa+zRDeHtu8gR8xl/QIibsnwYu0yL
+ UoN8lGq5hVtEUcpRqBZH8G0VcwLCbbVIwQNS/gH4HJ2CfGuoozN/DCE7dcd32FEsYFb4
+ 0EzrAg0jCspjpo+faC6Swl+nwb9tiK0BlLK9a+ro9ULbguCqhX1B5Hgz+HaxnPV0DafW
+ ov01MNMyPRgxNBLbfpIaQoX5yHLNMiAgPGNW2CvWdKalrlQc+yPBiubqa6nDWJtJDMfy
+ RKeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+ :content-disposition:user-agent;
+ bh=a5uCI8sDk06L3eBN4lbKYbKhhJe2khqKsQK/HeBIflE=;
+ b=TfaoOVoUyFCR8xxLMWP8WDtf/p71+WXca6QPLN8m99Qsxet1xYfibH0VR89uWXglyQ
+ pUmnFxcv/emlXXITEOPnvyPzR/NLA5dPONQJR2tAzmdzATUA/tBzhcZ3FJsjp92jrjBy
+ Abp99gIUNTQd0m83FvM9U+liMDC9hHPGs6QlIAv8fp8zIsvX8pXjKSwTUfS+ZigoPlvu
+ 1hlRSMR6oaNwoLjqOKFurxyAfk9Lmg9SYTTJ06Y0/9ly6ebcrQuOf8qsnA94kQxtsR0V
+ qqWY+0pKeXrtW46LM7/IDQFsbrejST3gE0SPVA1BhbxvRw1C0ZbBXWdkV7l6kphPsV3m
+ wM+A==
+X-Gm-Message-State: APjAAAWlzfBwRmGaNfAdbUrqRD/4ORZNlqI9XH8c3NRhcikifMbj+Y+n
+ vRXmoLOub6XTgsoTI4zqoW8=
+X-Google-Smtp-Source: APXvYqyhFzYRUOGgpal+39IdvGP69h56LXE8h32YtVVh0FuJl/Vspv8GKTCoDBf/zWCNFBX2XPiQ7g==
+X-Received: by 2002:a62:aa0a:: with SMTP id e10mr47148355pff.46.1574872741931; 
+ Wed, 27 Nov 2019 08:39:01 -0800 (PST)
+Received: from nishad ([106.51.232.103])
+ by smtp.gmail.com with ESMTPSA id c17sm17084710pfo.42.2019.11.27.08.38.54
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Wed, 27 Nov 2019 08:39:01 -0800 (PST)
+Date: Wed, 27 Nov 2019 22:08:50 +0530
+From: Nishad Kamdar <nishadkamdar@gmail.com>
+To: Andreas =?utf-8?Q?F=C3=A4rber?= <afaerber@suse.de>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Sean Wang <sean.wang@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@st.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Joe Perches <joe@perches.com>,
+ Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Subject: [PATCH 0/5] pinctrl: Use the correct style for SPDX License Identifier
+Message-ID: <cover.1574871463.git.nishadkamdar@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <272a7442-38b3-346c-4749-2b163464bd01@baylibre.com>
-Content-Language: en-US
-X-Originating-IP: [10.18.38.198]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
+Content-Disposition: inline
+User-Agent: Mutt/1.9.4 (2018-02-28)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191126_231109_375471_EBAA95AB 
-X-CRM114-Status: GOOD (  27.30  )
+X-CRM114-CacheID: sfid-20191127_083903_164404_7FCE1E9F 
+X-CRM114-Status: UNSURE (   8.79  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,195 +102,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Victor Wan <victor.wan@amlogic.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>,
- Felipe Balbi <felipe.balbi@linux.intel.com>, devicetree@vger.kernel.org,
- Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, linux-usb@vger.kernel.org,
- Yue Wang <yue.wang@amlogic.com>, Qiufang Dai <qiufang.dai@amlogic.com>,
- Liang Yang <liang.yang@amlogic.com>, Jian Hu <jian.hu@amlogic.com>,
- Xingyu Chen <xingyu.chen@amlogic.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Carlo Caione <carlo@caione.org>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+This patch corrects the SPDX License Identifier style
+in the pinctrl driver related files.
 
+Changes made by using a script provided by Joe Perches here:
+https://lkml.org/lkml/2019/2/7/46
+and some manual changes.
 
-On 2019/11/26 21:11, Neil Armstrong wrote:
-> On 25/11/2019 23:02, Martin Blumenstingl wrote:
->> Hi Hanjie,
->>
->> On Mon, Nov 25, 2019 at 8:53 AM Hanjie Lin <hanjie.lin@amlogic.com> wrote:
->>>
->>>
->>>
->>> On 2019/11/22 15:52, Martin Blumenstingl wrote:
->>>> Hello Hanjie,
->>>>
->>>> On Fri, Nov 22, 2019 at 7:55 AM Hanjie Lin <hanjie.lin@amlogic.com> wrote:
->>>> [...]
->>>>>   dt-bindings: phy: Add Amlogic G12A USB2 PHY Bindings
->>>>>   dt-bindings: usb: dwc3: Add the Amlogic A1 Family DWC3 Glue Bindings
->>>>>   phy: amlogic: Add Amlogic A1 USB2 PHY Driver
->>>> drivers/phy/amlogic/phy-meson-g12a-usb2.c seems very similar to the A1
->>>> USB2 PHY you are introducing here.
->>>>
->>>>>   usb: dwc3: Add Amlogic A1 DWC3 glue
->>>> drivers/usb/dwc3/dwc3-meson-g12a.c is also very similar to the dwc3 glue.
->>>>
->>>> I have two questions:
->>>> - how is the PHY and the dwc3 glue different from G12A (or SM1)?
->>>> - why do we need a separate set of new drivers (instead of updating
->>>> the existing drivers)?
->>>>
->>>> We try to use one driver for the same IP block, even if there are
->>>> several revisions with small differences (for example the SAR ADC
->>>> driver supports all SoC generations from Meson8 to G12A/G12B/SM1,
->>>> because 80-90% of the code is shared across all revisions).
->>>>
->>>>
->>>> Martin
->>>>
->>>> .
->>>>
->>>
->>> Hi Martin,
->>>
->>> thanks for the comment.
->>>
->>> 1, G12A have usb2-phy0/usb2-phy1/usb3-phy0 three phys and an interrupt to support host/peripheral/otg modes.
->>>    A1 has one usb2-phy0 phy and only support host mode.
->> dwc3-meson-g12a treats PHYs as optional
->> so if you only pass "usb2-phy0" and skip usb2-phy1/usb3-phy0 then it
->> will still work fine
->> (I didn't check whether the binding also reflects this)
-> 
-> Exact, a simple match data could make max-phys to 1 for A1.
-> 
->>
->>> 2, G12A glue/phy drivers are for G12A SoCs, there are some diffrences to A1.
->>>    G12A glue driver have dr_mode and interrupts two attributes to support otg mode while A1 hasn't this requirement.
->> dwc3-meson-g12a ignores the interrupt for HOST-only mode
->> (I didn't check whether the IRQ is optional in the dt-binding)
-> 
-> Interrupt support and OTG manual switch is optional and can be easily bypassed.
-> 
->>
->>>    G12A glue driver has a hard coding vbus regulator code to support otg mode while A1 hasn't this requirement.
->> my understanding is that whether a board has a VBUS regulator depends
->> on the board design. it has nothing to do with the SoC itself
->>
->>>    G12A glue driver has a hard coding support phys while A1 only supports host mode.
->>>         enum {
->>>                 USB2_HOST_PHY = 0,
->>>                 USB2_OTG_PHY,
->>>                 USB3_HOST_PHY,
->>>                 PHY_COUNT,
->>>                 };
->> this goes together with comment #1 - you can skip USB2_OTG_PHY and
->> USB3_HOST_PHY and the driver should still work fine
-> 
-> Exact
-> 
->>
->>>    G12A glue driver only supports one clock while A1 needs four clocks.
->> indeed, the dwc3-meson-g12a needs to be updated to support this
->> I don't think that I have used it myself yet but there's the
->> clk_bulk_data framework
->> it seems to fit this use-case pretty well: define an arbitrary number
->> of clocks for G12A/B an another set of clocks for A1 - then use the
->> clk_bulk_data framework to enable/disable them all at once
-> 
-> Exact, a simple conversion to clk_bulk_* would be enough
-> 
->>
->>>    G12A and A1 phy drivers have different register configurations since hardware differences.
->> other drivers have similar requirements: (mostly) identical register
->> layout but different values per SoC
->> here are two examples (I'm not sure if they are good examples though):
->> Lantiq/Intel SoC [0] and Allwinner SoCs [1]
->>
->> I compared your driver with phy-meson-g12a-usb2 and only found four differences:
->> 1) PHY_CTRL_R18_MPLL_DCO_CLK_SEL is set for A1
->> 2) PHY_CTRL_R13_UPDATE_PMA_SIGNALS is not set for A1
->> 3) PHY_CTRL_R21 is updated twice for A1 (once for earlier gen SoCs)
->> 4) A1 doesn't reference the "xtal" clock
->>
->> Difference 4) seems to be a general problem because there seems to be
->> a PLL inside the PHY registers and that PLL must be fed by some input
->> clock
->> So I believe that there is some clock input (which is currently
->> missing from your A1 USB2 PHY driver)
-> 
-> These differences are trivial to add with a match data structure.
-> 
->>
->>> 3, We have estimated these differences and we thought it's more clear and readable to have a dedicated glue/phy
->>>    driver for A1 SoCs, so also dedicated dt-bindings.
->> I think we should separate the driver and dt-bindings
->>
->> Based on what I have seen so far my preference for the PHY is:
->> - use the existing dt-binding, because it seems to be the same IP
->> block with different register configuration
->> - use the existing driver because there are only three different
->> register values (to me it feels like a dedicated driver for these
->> means more overhead for little benefit)
->>
->> for the glue I think:
->> - extend the existing dt-bindings and make some of the PHYs and the
->> interrupt line optional. making the PHYs optional will be needed when
->> adding GXL/GXM/AXG support anyways
->> - use the existing driver and make the clock inputs depend on the SoC
->> - everything else should already work as is
->>
->> please let me know if I missed something:
->> comparing/reviewing the new and existing drivers is harder than just
->> copying the existing one and modifying that copy
->> (this is one of the reasons why I think that duplicating code makes
->> the drivers harder to maintain)
->>
->> I also thought about the negative consequences of extending the
->> existing driver(s).
->> modifying the existing code could break the driver for existing boards.
->> however, I think that is not a problem because BayLibre's Kernel CI
->> labs have good coverage for G12A, G12B and SM1.
->> so if you add some A1 boards there (or host your own lab with A1
->> boards) any breakage will be found early (the Kernel CI bot even does
->> git bisect and sends emails)
-> The overall architecture is the same since the GXL SoCs, we also plan to
-> move the GXL/GXM USB complex into the G12A usb-ctrl driver because the architecture
-> is very similar.
-> 
-> For A1, the changes will be quite minimal, please try and post a RFC version so we
-> can evaluate.
-> 
-> Thanks,
-> 
-> Neil
-> 
->>
->>
->> Martin
->>
->>
->> [0] https://github.com/torvalds/linux/blob/d2912cb15bdda8ba4a5dd73396ad62641af2f520/drivers/phy/lantiq/phy-lantiq-rcu-usb2.c#L47
->> [1] https://github.com/torvalds/linux/blob/c942fddf8793b2013be8c901b47d0a8dc02bf99f/drivers/phy/allwinner/phy-sun4i-usb.c#L862
->>
-> 
-> .
-> 
+Nishad Kamdar (5):
+  pinctrl: actions: Use the correct style for SPDX License Identifier
+  pinctrl: mediatek: Use the correct style for SPDX License Identifier
+  pinctrl: meson-axg: Use the correct style for SPDX License Identifier
+  pinctrl: sh-pfc: Use the correct style for SPDX License Identifier
+  pinctrl: stm32: Use the correct style for SPDX License Identifier
 
+ drivers/pinctrl/actions/pinctrl-owl.h         | 2 +-
+ drivers/pinctrl/mediatek/pinctrl-mtk-mt2712.h | 2 +-
+ drivers/pinctrl/meson/pinctrl-meson-axg-pmx.h | 2 +-
+ drivers/pinctrl/sh-pfc/core.h                 | 4 ++--
+ drivers/pinctrl/sh-pfc/sh_pfc.h               | 4 ++--
+ drivers/pinctrl/stm32/pinctrl-stm32.h         | 2 +-
+ 6 files changed, 8 insertions(+), 8 deletions(-)
 
-Hi Neil:
+-- 
+2.17.1
 
-Okay.
-We will try to move A1 usb phy/ctrl driver into G12A driver and send a V2 patch later.
-
-Thanks.
 
 _______________________________________________
 linux-amlogic mailing list
