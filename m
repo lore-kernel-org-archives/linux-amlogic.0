@@ -2,21 +2,21 @@ Return-Path: <SRS0=h6Hi=ZV=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 46F66C432C0
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Nov 2019 14:47:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A7101C432C0
+	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Nov 2019 14:47:30 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 19B4F21736
-	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Nov 2019 14:47:16 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 78E0D21736
+	for <linux-amlogic@archiver.kernel.org>; Fri, 29 Nov 2019 14:47:30 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rbP5/rTV"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 19B4F21736
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bqu+VbMB"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 78E0D21736
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,37 +25,36 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2Flq5zSc3N3GyxDTqk0RjssvRvVw2ldu+zZN+3ak324=; b=rbP5/rTVu3KU6X
-	4TmebuFrM668z4zJQYfCLYTMMLrsOr6MYVUv5LDKHavM3dLKArLjL+SQJSNo2g5ip38PvINXDkSnd
-	6wPmz5x60QicdZNNOe1VPOf4MzTlabojJrvEvXY5CwlEKktfc6WeyfAULDw8pNZsCFMiaDFIf7fIq
-	7ZHUCBLIHFwJcAioT1auGGWcgrLWMV0c1BFhlm3PfTLln1NkqKL77lmyuX/mG23CuAdY3ORC1Xjo8
-	/mC4lq5wdmC5xsodvym0hjufrh4kVFbj8LMzz6VXiJY35V+uwuZ6I0CYda5iINTzrWQ3IZnazxnb/
-	PfnzDaKgwdfTSqBfqomg==;
+	List-Owner; bh=+2QmVR6WmfSEDJ46AxkvMLf7Aa0kFrmtLmMSYVlHfKI=; b=bqu+VbMBiMWQsR
+	ED1iKzBYLMWoNksy1T6tDHjGY8Cu8KEICsmvLV6tXVOLjwVOW8v/Je4KL7KeR6Jn1WwBZw1It0pQ5
+	R83iZKd+PMA2cq7qFNrby48XmLBe/oQbilJESx/jZCwMMAvFKVRVqFYqd6YXhTcFU7+QqPLehFiAj
+	yhx/GSMUAN6upMELemeQ4IyktY8BI7IlFQ9wG2joVWujOxCuQzk+NUwkHosACvf6iwGsqldGgc5JX
+	oi9dESI5+afTlgBMez4AI8qt1K74FQmoTKWnkRivuXprXqbD4f0my6Z/mM5b62/W9m2db5fC1fhCC
+	jWJig6JOFMEiO6OYUO1A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iahY5-0004Cm-NW; Fri, 29 Nov 2019 14:47:09 +0000
+	id 1iahYM-0004Ub-9N; Fri, 29 Nov 2019 14:47:26 +0000
 Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iahXb-0003gZ-6m; Fri, 29 Nov 2019 14:46:44 +0000
+ id 1iahXk-0003gZ-GU; Fri, 29 Nov 2019 14:46:50 +0000
 Received: from droid15-sz.amlogic.com (10.28.8.25) by mail-sz.amlogic.com
  (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Fri, 29 Nov 2019
- 22:46:36 +0800
+ 22:46:37 +0800
 From: Jian Hu <jian.hu@amlogic.com>
 To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
  <narmstrong@baylibre.com>
-Subject: [PATCH v3 1/7] dt-bindings: clock: meson: add A1 PLL clock controller
- bindings
-Date: Fri, 29 Nov 2019 22:45:59 +0800
-Message-ID: <20191129144605.182774-2-jian.hu@amlogic.com>
+Subject: [PATCH v3 3/7] clk: meson: eeclk: refactor eeclk common driver to
+ support A1
+Date: Fri, 29 Nov 2019 22:46:01 +0800
+Message-ID: <20191129144605.182774-4-jian.hu@amlogic.com>
 X-Mailer: git-send-email 2.24.0
 In-Reply-To: <20191129144605.182774-1-jian.hu@amlogic.com>
 References: <20191129144605.182774-1-jian.hu@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.28.8.25]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191129_064640_382830_D43FB5E0 
-X-CRM114-Status: UNSURE (   9.38  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20191129_064648_642903_781A1420 
+X-CRM114-Status: GOOD (  10.01  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,7 +67,7 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Rob Herring <robh@kernel.org>, Victor Wan <victor.wan@amlogic.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>, devicetree@vger.kernel.org,
+ Jianxin Pan <jianxin.pan@amlogic.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Kevin Hilman <khilman@baylibre.com>,
  Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
@@ -81,101 +80,112 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the documentation to support Amlogic A1 PLL clock driver,
-and add A1 PLL clock controller bindings.
-
-Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+Introduce a common probe function for A1 series, the way to get
+regmap is different between A1 series and the previous series.
+The register region is only for one clock driver, the function of
+meson_eeclkc_probe is not fit for A1, So it is necessary to
+introduce a new function.
 ---
- .../bindings/clock/amlogic,a1-pll-clkc.yaml   | 56 +++++++++++++++++++
- include/dt-bindings/clock/a1-pll-clkc.h       | 16 ++++++
- 2 files changed, 72 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
- create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
+ drivers/clk/meson/meson-eeclk.c | 59 +++++++++++++++++++++++++++------
+ drivers/clk/meson/meson-eeclk.h |  2 ++
+ 2 files changed, 51 insertions(+), 10 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-new file mode 100644
-index 000000000000..d008bfeb3c3a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-@@ -0,0 +1,56 @@
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-+/*
-+ * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-+ */
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/clock/amlogic,a1-pll-clkc.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+diff --git a/drivers/clk/meson/meson-eeclk.c b/drivers/clk/meson/meson-eeclk.c
+index a7cb1e7aedc4..6f9c8ee38c20 100644
+--- a/drivers/clk/meson/meson-eeclk.c
++++ b/drivers/clk/meson/meson-eeclk.c
+@@ -13,25 +13,37 @@
+ #include "clk-regmap.h"
+ #include "meson-eeclk.h"
+ 
+-int meson_eeclkc_probe(struct platform_device *pdev)
++static struct regmap_config clkc_regmap_config = {
++	.reg_bits       = 32,
++	.val_bits       = 32,
++	.reg_stride     = 4,
++};
 +
-+title: Amlogic Meson A/C serials PLL Clock Control Unit Device Tree Bindings
++struct regmap *meson_regmap_resource(struct platform_device *pdev)
++{
++	struct resource *res;
++	void __iomem *base;
++	struct device *dev = &pdev->dev;
 +
-+maintainers:
-+  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Jerome Brunet <jbrunet@baylibre.com>
-+  - Jian Hu <jian.hu@jian.hu.com>
++	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 +
-+properties:
-+  compatible:
-+    - enum:
-+        - amlogic,a1-pll-clkc
-+  "#clock-cells":
-+    const: 1
++	base = devm_ioremap_resource(dev, res);
++	if (IS_ERR(base))
++		return ERR_CAST(base);
 +
-+  reg:
-+    maxItems: 1
++	return devm_regmap_init_mmio(dev, base, &clkc_regmap_config);
++}
 +
-+clocks:
-+  minItems: 2
-+  maxItems: 2
-+  items:
-+   - description: Input xtal_fixpll
-+   - description: Input xtal_hifipll
++int meson_common_probe(struct platform_device *pdev, struct regmap *map)
+ {
+ 	const struct meson_eeclkc_data *data;
+ 	struct device *dev = &pdev->dev;
+-	struct regmap *map;
+ 	int ret, i;
+ 
+ 	data = of_device_get_match_data(dev);
+ 	if (!data)
+ 		return -EINVAL;
+ 
+-	/* Get the hhi system controller node */
+-	map = syscon_node_to_regmap(of_get_parent(dev->of_node));
+-	if (IS_ERR(map)) {
+-		dev_err(dev,
+-			"failed to get HHI regmap\n");
+-		return PTR_ERR(map);
+-	}
+-
+ 	if (data->init_count)
+ 		regmap_multi_reg_write(map, data->init_regs, data->init_count);
+ 
+@@ -54,3 +66,30 @@ int meson_eeclkc_probe(struct platform_device *pdev)
+ 	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+ 					   data->hw_onecell_data);
+ }
 +
-+clock-names:
-+  minItems: 2
-+  maxItems: 2
-+  items:
-+     - const: xtal_fixpll
-+     - const: xtal_hifipll
++int meson_eeclkc_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct regmap *map;
 +
-+required:
-+  - compatible
-+  - "#clock-cells"
-+  - reg
-+  - clocks
-+  - clock-names
++	/* Get the hhi system controller node */
++	map = syscon_node_to_regmap(of_get_parent(dev->of_node));
++	if (IS_ERR(map)) {
++		dev_err(dev,
++			"failed to get HHI regmap\n");
++		return PTR_ERR(map);
++	}
 +
-+additionalProperties: false
++	return meson_common_probe(pdev, map);
++}
 +
-+examples:
-+  - |
-+    clkc_pll: pll-clock-controller {
-+                compatible = "amlogic,a1-pll-clkc";
-+                reg = <0 0x7c80 0 0x18c>;
-+                #clock-cells = <1>;
-+    };
-diff --git a/include/dt-bindings/clock/a1-pll-clkc.h b/include/dt-bindings/clock/a1-pll-clkc.h
-new file mode 100644
-index 000000000000..58eae237e503
---- /dev/null
-+++ b/include/dt-bindings/clock/a1-pll-clkc.h
-@@ -0,0 +1,16 @@
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-+/*
-+ * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-+ */
++int meson_clkc_probe(struct platform_device *pdev)
++{
++	struct regmap *map;
 +
-+#ifndef __A1_PLL_CLKC_H
-+#define __A1_PLL_CLKC_H
++	map = meson_regmap_resource(pdev);
++	if (IS_ERR(map))
++		return PTR_ERR(map);
 +
-+#define CLKID_FIXED_PLL				1
-+#define CLKID_FCLK_DIV2				6
-+#define CLKID_FCLK_DIV3				7
-+#define CLKID_FCLK_DIV5				8
-+#define CLKID_FCLK_DIV7				9
-+#define CLKID_HIFI_PLL				10
-+
-+#endif /* __A1_PLL_CLKC_H */
++	return meson_common_probe(pdev, map);
++}
+diff --git a/drivers/clk/meson/meson-eeclk.h b/drivers/clk/meson/meson-eeclk.h
+index 77316207bde1..db0bfba8f6b3 100644
+--- a/drivers/clk/meson/meson-eeclk.h
++++ b/drivers/clk/meson/meson-eeclk.h
+@@ -20,6 +20,8 @@ struct meson_eeclkc_data {
+ 	struct clk_hw_onecell_data	*hw_onecell_data;
+ };
+ 
++struct regmap *meson_regmap_resource(struct platform_device *pdev);
+ int meson_eeclkc_probe(struct platform_device *pdev);
++int meson_clkc_probe(struct platform_device *pdev);
+ 
+ #endif /* __MESON_CLKC_H */
 -- 
 2.24.0
 
