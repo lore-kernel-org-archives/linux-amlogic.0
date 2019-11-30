@@ -2,93 +2,87 @@ Return-Path: <SRS0=VwQk=ZW=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-0.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-	version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A0928C432C3
-	for <linux-amlogic@archiver.kernel.org>; Sat, 30 Nov 2019 19:12:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 51D47C432C0
+	for <linux-amlogic@archiver.kernel.org>; Sat, 30 Nov 2019 19:25:47 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 7428A2073C
-	for <linux-amlogic@archiver.kernel.org>; Sat, 30 Nov 2019 19:12:20 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 25E502072C
+	for <linux-amlogic@archiver.kernel.org>; Sat, 30 Nov 2019 19:25:47 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="epkAKwWi";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LKG+8PTd"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7428A2073C
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Lr+SPXm/";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="gpX5A2aC"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 25E502072C
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=emgeLahivFx0CTjiSJB+L+sT2Nm+U+CawRsimfVecWg=; b=epkAKwWicF8pYy
-	lf7K3AN9Hi23Cmwa5jlzXXGMTWPFCMwAldG+wWmsHIddrs4CnsaszvTmgdpWdxxzS6hX1088hTmvo
-	cVsrvd7yCHN5Ez3/CPcCBUocBRkOuOBX6fO5pWzSqi2eLkut4kRW0TJ8Kvb8dcZ0/6liJU3XDmkNr
-	opGg9I8s9toPh1IlDG91puZUSAopUNwYgr/Ssl4GKODuAvzMjESZHYMfGb8P+jW+fhXwPAcx6sOy4
-	5ZJbBPZPgXbRkMTaN2UGbH4jTovRWuOsaOcgpQtR3P3R2svwluO5MmTxO7WtsEn0BmgySsCYS+iaI
-	0ijobK2ICUOECcKukSSg==;
+	List-Owner; bh=rPO0WudIizkIt/M/IXersoFum2Bo3X2yKLVonStkAjc=; b=Lr+SPXm/FxmM+F
+	7jFJvpUXGkPF48KQ8MGoejTJSU2O/0yuyYWzv5sMCOqxd9RnF+FKxFmN/emj9+TlwFG6+Mv5rLBX+
+	bbPLSHpIiQqQPVIyGUEx+15iFqPON4iSSQdfT3tYmPfW893fzCbnAZvNVqF7X5C+ER/lMnnjH82lI
+	HmV1KM6YCxbEs/IR5EVILvTuL7X3wSnZDHBGHcGyRfTF/IMQv24uPC0ovYuFAnAa3/17Bvuo0mibu
+	4Njj0sNrl4UnY8FQosxynCon0w3bmZ7hR+X2HuVt0y5kenk/6qM3XmsJKPjHE1mZQrsrFHzXChTTU
+	r6vYm5NN0SUoV0zWHquw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ib8A9-0002x8-3r; Sat, 30 Nov 2019 19:12:13 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1ib8NA-0007CA-SA; Sat, 30 Nov 2019 19:25:40 +0000
+Received: from mail-oi1-x241.google.com ([2607:f8b0:4864:20::241])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ib8A6-0002wg-Mc
- for linux-amlogic@lists.infradead.org; Sat, 30 Nov 2019 19:12:12 +0000
-Received: by mail-wm1-x344.google.com with SMTP id f129so18488951wmf.2
- for <linux-amlogic@lists.infradead.org>; Sat, 30 Nov 2019 11:12:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=Fj8/eGhmkpNCrv6hZSNiJUAn6YzH6LdgGOzoOyH71EE=;
- b=LKG+8PTdFRfZ9P9GkvlNavQ7GuCPR/m2t3Q1rQoQpK1IouBEnv2f6A1EDHn6xgYNEi
- 3aPHyN8w2dc1XNAQLstI2dSGYzCyQva0Xks2OMcTu+f1N0Dd2SHX5eUw3h5eDbhBH/Im
- +cOqXNhb8Ma/XaOlhPyJgLvWMryu1BG8rqFFt6u71f3fuQoBiM7ZJE0eZABbLd5j5PZE
- l14uNvJCcGwjPAy9fIUhsPkPvTXtEIRL4YXfCbrrUnisg+ljH0z8Aqpi974uma9AAqPL
- 6+gM2a6Q5u5UfktHz4fO5C2wtVdJn2ZGFSJItDWYPEjYctfNB6SGLMxFNvKn16SsrN6C
- bUew==
+ id 1ib8N8-0007Br-Fx
+ for linux-amlogic@lists.infradead.org; Sat, 30 Nov 2019 19:25:39 +0000
+Received: by mail-oi1-x241.google.com with SMTP id a124so5187244oii.13
+ for <linux-amlogic@lists.infradead.org>; Sat, 30 Nov 2019 11:25:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=BnMc24+B70/Q5ugWCE/LR1YkmepW1gWZgz/E3ooHThA=;
+ b=gpX5A2aCEhk8sEvvIUDdtD9GglmIYsxqJrEtQj4mwza+JfgX28m0m+KJed0n4m4yBr
+ di7TIw5RfjMvPicZEptNPcCAX3kF4ttUrHHx6GFCH8nMe94n/hWbwr8yd7G3NwzS3Zvm
+ eQE9Tm91b90+X27Ai6OqJITulFTSTQZI2SDlsggoPnxrz032yGIPTvdHRQsVVStyYyP0
+ RPp9UewzFVZAczmqyiQzJ+00LNJzMPpF+Z2zOGRbYLBz2NuzwASU0v5R/bELuKlT51bm
+ 4BYuBhDVP4hELFlb/HL5I6xHbp/WloD1P5O23IGYNVbCgICJ8hAVL0kLhbCOhDetUMTc
+ FU8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=Fj8/eGhmkpNCrv6hZSNiJUAn6YzH6LdgGOzoOyH71EE=;
- b=DQB4fq4WKw74fhvrqMN7cSQ3DHoOigm+XyKR5zyieaS3ex6aN2Xe+4QMCIzoCnstbK
- g7RZdifNX8kC2PkKDOku/K5cAcso8BCl6ciy5NtpsxEe4dmAkgovYRvyVTrh4cqR426H
- U6XDbXsko2EtN2G5wVCj+UKw7CDjBFfAydgQ8s7Q1d00ohoJjByUbS/av15eXIT5bGTB
- vVUZQaFXJkoWN3GO9EmKGzxAlDGzxkxsb6X8PPe279caA4cuIc42q9XPryDgE/CxCOm0
- DqWKaDYq7xs0kPiFvJ+dOCqdER13w59zZv49AAm7yXkLyJfUt0iL2idPSFZ6vZSGPT+E
- N1VA==
-X-Gm-Message-State: APjAAAUxJm4ZiNiwYol3wZ9VxAXuXVj5yKOtpoq8PnPGMr4EXvIJfEaW
- nv3ZOiIJnjJcDyMkiAN49WA=
-X-Google-Smtp-Source: APXvYqzezjuu5zMYba0nW1uzpSCAihRGx0BNdo15JVbqbUcCHgab1YklrqzGqfSEK2q6wiF/aV1r9A==
-X-Received: by 2002:a1c:9602:: with SMTP id y2mr19504528wmd.23.1575141128884; 
- Sat, 30 Nov 2019 11:12:08 -0800 (PST)
-Received: from localhost ([37.238.188.27])
- by smtp.gmail.com with ESMTPSA id s82sm17945337wms.28.2019.11.30.11.12.07
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 30 Nov 2019 11:12:08 -0800 (PST)
-Date: Sat, 30 Nov 2019 22:12:06 +0300
-From: Mohammad Rasim <mohammad.rasim96@gmail.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH v3 2/2] arm64: dts: meson-gxbb: add support for
-Message-ID: <20191130191206.74qcibnf4v3wwrez@manjaro.localdomain>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=BnMc24+B70/Q5ugWCE/LR1YkmepW1gWZgz/E3ooHThA=;
+ b=V2+HBgSFLM8jvy8BGhJ2DQKFCmW+iM1A9RdrI7Mpyu3oDFyxsJqiHwT/OdDswyvtug
+ +1xotjzIEwpHAubw0Orfxf4a1jHBiwAok18x+EeFukkrE0hdnNr8qk/Xz2YVEDXW6s0X
+ jD3BjdtSVMZDsjKUIKocFYBcXw7dsw/BmBde82b0j8oys+WplroLICg7rkac/9JoHW3N
+ T8hVP69SfFsuyfbQauy6SljP0lmXW0W8tyCroE22NHuDL+sOOjBpfg8LgzQBI9+F7IUz
+ t3um3mKJXFN9jj9KHpcMkIhTDp1wntaS52KkXWVph6qLr+t0Tus3vTRikbsXhLDuhqJ8
+ Vvog==
+X-Gm-Message-State: APjAAAWWcsvLz0ZINihG4Vuy9ah12tiQiTu4FDRdbQIePSH+qujuflxW
+ WglYcx8tenbU5a0RkkcXFHM0kEoljEI5ZhO6n+k=
+X-Google-Smtp-Source: APXvYqyrlrd69onpSTv26wSUvL4E3A2ZXS9gVikG2aKU4RwOanHbThAgXtbeLWh2SzevU2xow5kWcn8kSx12D3twlhE=
+X-Received: by 2002:aca:dc45:: with SMTP id t66mr1767282oig.39.1575141937114; 
+ Sat, 30 Nov 2019 11:25:37 -0800 (PST)
+MIME-Version: 1.0
 References: <20191130115824.31778-1-mohammad.rasim96@gmail.com>
  <20191130115824.31778-3-mohammad.rasim96@gmail.com>
  <CAFBinCAxt5v6K3qcWeaECnqufRpb-0OK-Q+QFR+qph_tPVaXvg@mail.gmail.com>
  <20191130174753.6ajv5spl6n3ojhqy@manjaro.localdomain>
  <CAFBinCBdGHX2dR89C+sy+v_ZmPPeu95GGDu1t0E03TYg33SChQ@mail.gmail.com>
  <20191130190702.52zjhlh65gpq2ugj@manjaro.localdomain>
-MIME-Version: 1.0
-Content-Disposition: inline
 In-Reply-To: <20191130190702.52zjhlh65gpq2ugj@manjaro.localdomain>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Sat, 30 Nov 2019 20:25:26 +0100
+Message-ID: <CAFBinCD4otHpey+A3G2sdo1K-Z8Ed6OSa2BerW-q7t9irZPnvg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] arm64: dts: meson-gxbb: add support for
+To: Mohammad Rasim <mohammad.rasim96@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191130_111210_764462_753797AC 
-X-CRM114-Status: GOOD (  31.29  )
+X-CRM114-CacheID: sfid-20191130_112538_556330_632D3EE5 
+X-CRM114-Status: GOOD (  18.47  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,69 +102,9 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 19/11/30 10:07PM, Mohammad Rasim wrote:
-> On 19/11/30 07:57PM, Martin Blumenstingl wrote:
-> > On Sat, Nov 30, 2019 at 6:47 PM Mohammad Rasim
-> > <mohammad.rasim96@gmail.com> wrote:
-> > >
-> > > On 19/11/30 02:59PM, Martin Blumenstingl wrote:
-> > > > Hi Mohammad,
-> > > >
-> > > > this patch should be third in the series.
-> > > > the currently missing patch for the dt-bindings should be patch two.
-> > > > you can take the following commit as an example:
-> > > > effdd8a6b6ecb30b088f36ed0a1fb67cdc7610a9 ("dt-bindings: arm: amlogic:
-> > > > add SEI Robotics SEI610 bindings")
-> > > >
-> > > > On Sat, Nov 30, 2019 at 12:58 PM Mohammad Rasim
-> > > > <mohammad.rasim96@gmail.com> wrote:
-> > > > >
-> > > > > This patch adds support for the Videostrong KII Pro tv box which is
-> > > > > based on the gxbb-p201 reference design
-> > > > >
-> > > > > The device tree includes a new compatible for bluetooth "brcm,bcm4335a0"
-> > > > > which was merged recently into torvalds tree
-> > > > >
-> > > > > Signed-off-by: Mohammad Rasim <mohammad.rasim96@gmail.com>
-> > > > > ---
-> > > > >  arch/arm64/boot/dts/amlogic/Makefile          |  1 +
-> > > > >  .../boot/dts/amlogic/meson-gxbb-kii-pro.dts   | 76 +++++++++++++++++++
-> > > > >  2 files changed, 77 insertions(+)
-> > > > >  create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
-> > > > >
-> > > > > diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> > > > > index 84afecba9ec0..a795a170dcab 100644
-> > > > > --- a/arch/arm64/boot/dts/amlogic/Makefile
-> > > > > +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> > > > > @@ -6,6 +6,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
-> > > > >  dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3.dtb
-> > > > >  dtb-$(CONFIG_ARCH_MESON) += meson-g12b-s922x-khadas-vim3.dtb
-> > > > >  dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2.dtb
-> > > > > +dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-kii-pro.dtb
-> > > > >  dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nanopi-k2.dtb
-> > > > >  dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nexbox-a95x.dtb
-> > > > >  dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-odroidc2.dtb
-> > > > > diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
-> > > > > new file mode 100644
-> > > > > index 000000000000..5d120e6ca338
-> > > > > --- /dev/null
-> > > > > +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-kii-pro.dts
-> > > > > @@ -0,0 +1,76 @@
-> > > > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > > > > +/*
-> > > > > + * Copyright (c) 2019 Mohammad Rasim <mohammad.rasim96@gmail.com>
-> > > > > + */
-> > > > > +
-> > > > > +/dts-v1/;
-> > > > > +
-> > > > > +#include "meson-gxbb-p20x.dtsi"
-> > > > > +
-> > > > > +#include <dt-bindings/gpio/gpio.h>
-> > > > > +#include <dt-bindings/input/input.h>
-> > > > > +/ {
-> > > > > +       compatible = "videostrong,kii-pro", "amlogic,p201", "amlogic,s905", "amlogic,meson-gxbb";
-> > > > > +       model = "Videostrong KII Pro";
-> > > > > +
+On Sat, Nov 30, 2019 at 8:07 PM Mohammad Rasim
+<mohammad.rasim96@gmail.com> wrote:
+[...]
 > > > > > +       leds {
 > > > > > +               compatible = "gpio-leds";
 > > > > > +               red {
@@ -193,29 +127,21 @@ On 19/11/30 10:07PM, Mohammad Rasim wrote:
 > Yes, I've already tested it but I'm just not sure what should be in the
 > function property, LED_FUNCTION_STATUS and LED_FUNCTION_ACTIVITY both
 > seem like good choices,
-> in my tests this property was prepended to the label
-Scratch that, I was confused because i changed the node name, the labled
-is generated from the color property and the node name.
-although my question regarding userspace usage still applies.
-> So the following:
->
-> 		status {
-> 			gpios = <&gpio_ao GPIOAO_13 GPIO_ACTIVE_LOW>;
-> 			default-state = "off";
-> 			color = <LED_COLOR_ID_RED>;
-> 			function = LED_FUNCTION_STATUS;
-> 		};
-> resulted in a led labeled red:status
-> [root@alarm ~]# ls /sys/class/leds/
-> input1::capslock  input1::numlock  input1::scrolllock  red:status
->
+I haven't considered "activity" before, but most of our boards with
+some kind of status LED use status in the label
+unless someone objects: choose the one you like most
+
+[...]
 > if this property only used to lable the led then LED_FUNCTION_STATUS is
 > ok, but maybe this is used by userspace to trigger the led ?!
->
-> Regards
-> >
-> >
-> > Martin
+in general devicetree describes hardware
+I don't know if userspace does something "automatically" based on the
+function. however, my expectation is that the trigger from
+"linux,default-trigger" is used (if set) and that you can change the
+trigger from userspace manually (if you wish)
+
+
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
