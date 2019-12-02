@@ -2,57 +2,67 @@ Return-Path: <SRS0=PXou=ZY=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 28A44C432C3
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Dec 2019 11:13:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 18649C432C0
+	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Dec 2019 18:19:40 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BF2DC20748
-	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Dec 2019 11:13:19 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E3AD720717
+	for <linux-amlogic@archiver.kernel.org>; Mon,  2 Dec 2019 18:19:39 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tBu3n6o5"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BF2DC20748
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KXQ8Uft4";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q/YlT+Dq"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E3AD720717
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=0qdRVclsxFDileVmbkMGKL+UtgBLgZIhbom8t+N8iWI=; b=tBu3n6o5uaGIRd
-	uQfhWnCQq9wJvOgciHtZbMFqrLVLuUCq379CA2S3EShSxF1mS9hilDwbIuttb2FIMSsafdetX7F60
-	YiGYKIs7AgfWbz9YycNc9zW/wGcUdiM56e//M3SJGuymm3YPrxWV8qfl5BMTTNLVGnSVMnYNcPwGy
-	/c9id3SLJw9yv+JEW7Wbs2Gemd2My3XcRkokGhvoFkDHPfXCZHCaUR4hkfObl8Au25S3C1E8yYzFd
-	KGDi1ix2JRKnvUZ5AXMNqZuK05FPRAPjC4RlWEgFi7yE2rTGtgDwaq1MSIHM4rJVoAo2AdsYHHtbF
-	nidaK3v6j1EEQnexnYlw==;
+	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:From:To:Subject:
+	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Zq2qjh4TCx0JFLW12FtXWsHIc6l4+5lPVgYFbEysSEU=; b=KXQ8Uft45KadZh
+	l8Sm+St6S1c1QjREPH4h9XwqjTOsax0RvwIVqTO5A0YMr2sMYNNkeI2rJ8LkIvzINW5DcqdJ/uhfL
+	jWidl65isD6pjPGilJZEGCr0H76eeGvoP99aMc2zP8AN6wHFvADY5GoKxAz6I0y2WIhe6fn5Uvf2Z
+	QcxXddZMZJJELY83v8CuXt6AUBmU8oJF58Qg1mnRH3qvAkObzy6WF5LCHz0Jm9qWYEMFq+NX2SU9g
+	/1joLdxaUWpvu0occ4XTHrkPEgGpOh3eaZa3tGJBDwOWSo6TNLS2yfSx94IWsntM5S6gq4qXgQM+8
+	ePrIcS7lDAdMLMo+bK8w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ibjde-0007Hl-Ph; Mon, 02 Dec 2019 11:13:10 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1ibqIA-0002rD-Vo; Mon, 02 Dec 2019 18:19:26 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ibjdb-0007Gs-O2; Mon, 02 Dec 2019 11:13:09 +0000
-Received: from droid15-sz.amlogic.com (10.28.8.25) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Mon, 2 Dec 2019
- 19:13:26 +0800
-From: Jian Hu <jian.hu@amlogic.com>
-To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
- <narmstrong@baylibre.com>
-Subject: [PATCH] arm64: dts: meson-a1: add I2C nodes
-Date: Mon, 2 Dec 2019 19:12:52 +0800
-Message-ID: <20191202111253.94872-1-jian.hu@amlogic.com>
-X-Mailer: git-send-email 2.24.0
+ id 1ibqI8-0002qs-4H
+ for linux-amlogic@lists.infradead.org; Mon, 02 Dec 2019 18:19:25 +0000
+Received: from kernel.org (unknown [104.132.0.74])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 4D26D20717;
+ Mon,  2 Dec 2019 18:19:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1575310763;
+ bh=Mxs13Bq2Hc395fEDycCp4i58HTi6qNbE8hBTBrlz/Vk=;
+ h=In-Reply-To:References:Subject:To:From:Cc:Date:From;
+ b=Q/YlT+Dq1E8auTOdqK2zgTCyqjrXkH7Qs4t9Afs/PDOP5MK95Qw2QeP4iaEiz7TT2
+ uOh0Re1R14g1AD1HhkohYGrDRbu/TSxt81UpEtNxodTU+7p2KO2nmJxIT4rxDvpI7S
+ EhLgJm10101qxvcLruG3RmRCZJOrAa/MyBBXtUjM=
 MIME-Version: 1.0
-X-Originating-IP: [10.28.8.25]
+In-Reply-To: <20191129161658.344517-1-jbrunet@baylibre.com>
+References: <20191129161658.344517-1-jbrunet@baylibre.com>
+Subject: Re: [PATCH] clk: walk orphan list on clock provider registration
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>
+From: Stephen Boyd <sboyd@kernel.org>
+User-Agent: alot/0.8.1
+Date: Mon, 02 Dec 2019 10:19:22 -0800
+Message-Id: <20191202181923.4D26D20717@mail.kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191202_031307_782342_6E9938A6 
-X-CRM114-Status: UNSURE (   7.29  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20191202_101924_208468_D74CB3AD 
+X-CRM114-Status: GOOD (  20.89  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,202 +74,152 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>,
- Jianxin Pan <jianxin.pan@amlogic.com>, Wolfram Sang <wsa@the-dreams.de>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Jian Hu <jian.hu@amlogic.com>,
- linux-i2c@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+Cc: Kevin Hilman <khilman@baylibre.com>, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-There are four I2C controllers in A1 series,
-Share the same comptible with AXG.The I2C nodes
-depend on pinmux and clock controller.
+Quoting Jerome Brunet (2019-11-29 08:16:58)
+> So far, we walked the orphan list every time a new clock was registered
+> in CCF. This was fine since the clocks were only referenced by name.
+> 
+> Now that the clock can be referenced through DT, it is not enough:
+> * Controller A register first a reference clocks from controller B
+>   through DT.
+> * Controller B register all its clocks then register the provider.
+> 
+> Each time controller B registers a new clock, the orphan list is walked
+> but it can't match since the provider is registered yet. When the
+> provider is finally registered, the orphan list is not walked unless
+> another clock is registered afterward.
+> 
+> This can lead to situation where some clocks remain orphaned even if
+> the parent is available.
+> 
+> Walking the orphan list on provider registration solves the problem.
+> 
+> Fixes: fc0c209c147f ("clk: Allow parents to be specified without string names")
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
 
-Signed-off-by: Jian Hu <jian.hu@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 149 ++++++++++++++++++++++
- 1 file changed, 149 insertions(+)
+Sounds right. Thanks for making the fix!
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index eab2ecd36aa8..d0a73d953f5e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -16,6 +16,13 @@
- 	#address-cells = <2>;
- 	#size-cells = <2>;
- 
-+	aliases {
-+		i2c0 = &i2c0;
-+		i2c1 = &i2c1;
-+		i2c2 = &i2c2;
-+		i2c3 = &i2c3;
-+	};
-+
- 	cpus {
- 		#address-cells = <2>;
- 		#size-cells = <0>;
-@@ -117,6 +124,46 @@
- 				};
- 			};
- 
-+			i2c0: i2c@1400 {
-+				compatible = "amlogic,meson-axg-i2c";
-+				reg = <0x0 0x1400 0x0 0x24>;
-+				interrupts = <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks = <&clkc_periphs CLKID_I2C_M_A>;
-+				status = "disabled";
-+			};
-+
-+			i2c1: i2c@5c00 {
-+				compatible = "amlogic,meson-axg-i2c";
-+				reg = <0x0 0x5c00 0x0 0x24>;
-+				interrupts = <GIC_SPI 68 IRQ_TYPE_EDGE_RISING>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks = <&clkc_periphs CLKID_I2C_M_B>;
-+				status = "disabled";
-+			};
-+
-+			i2c2: i2c@6800 {
-+				compatible = "amlogic,meson-axg-i2c";
-+				reg = <0x0 0x6800 0x0 0x24>;
-+				interrupts = <GIC_SPI 76 IRQ_TYPE_EDGE_RISING>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks = <&clkc_periphs CLKID_I2C_M_C>;
-+				status = "disabled";
-+			};
-+
-+			i2c3: i2c@6c00 {
-+				compatible = "amlogic,meson-axg-i2c";
-+				reg = <0x0 0x6c00 0x0 0x24>;
-+				interrupts = <GIC_SPI 78 IRQ_TYPE_EDGE_RISING>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks = <&clkc_periphs CLKID_I2C_M_D>;
-+				status = "disabled";
-+			};
-+
- 			uart_AO: serial@1c00 {
- 				compatible = "amlogic,meson-gx-uart",
- 					     "amlogic,meson-ao-uart";
-@@ -171,3 +218,105 @@
- 		#clock-cells = <0>;
- 	};
- };
-+
-+&periphs_pinctrl {
-+	i2c0_f11_pins:i2c0-f11 {
-+		mux {
-+			groups = "i2c0_sck_f11",
-+				"i2c0_sda_f12";
-+			function = "i2c0";
-+			bias-pull-up;
-+			drive-strength-microamp = <3000>;
-+		};
-+	};
-+
-+	i2c0_f9_pins:i2c0-f9 {
-+		mux {
-+			groups = "i2c0_sck_f9",
-+				"i2c0_sda_f10";
-+			function = "i2c0";
-+			bias-pull-up;
-+			drive-strength-microamp = <3000>;
-+		};
-+	};
-+
-+	i2c1_x_pins:i2c1-x {
-+		mux {
-+			groups = "i2c1_sck_x",
-+				"i2c1_sda_x";
-+			function = "i2c1";
-+			bias-pull-up;
-+			drive-strength-microamp = <3000>;
-+		};
-+	};
-+
-+	i2c1_a_pins:i2c1-a {
-+		mux {
-+			groups = "i2c1_sck_a",
-+				"i2c1_sda_a";
-+			function = "i2c1";
-+			bias-pull-up;
-+			drive-strength-microamp = <3000>;
-+		};
-+	};
-+
-+	i2c2_x0_pins:i2c2-x0 {
-+		mux {
-+			groups = "i2c2_sck_x0",
-+				"i2c2_sda_x1";
-+			function = "i2c2";
-+			bias-pull-up;
-+			drive-strength-microamp = <3000>;
-+		};
-+	};
-+
-+	i2c2_x15_pins:i2c2-x15 {
-+		mux {
-+			groups = "i2c2_sck_x15",
-+				"i2c2_sda_x16";
-+			function = "i2c2";
-+			bias-pull-up;
-+			drive-strength-microamp = <3000>;
-+		};
-+	};
-+
-+	i2c2_a4_pins:i2c2-a4 {
-+		mux {
-+			groups = "i2c2_sck_a4",
-+				"i2c2_sda_a5";
-+			function = "i2c2";
-+			bias-pull-up;
-+			drive-strength-microamp = <3000>;
-+		};
-+	};
-+
-+	i2c2_a8_pins:i2c2-a8 {
-+		mux {
-+			groups = "i2c2_sck_a8",
-+				"i2c2_sda_a9";
-+			function = "i2c2";
-+			bias-pull-up;
-+			drive-strength-microamp = <3000>;
-+		};
-+	};
-+
-+	i2c3_x_pins:i2c3-x {
-+		mux {
-+			groups = "i2c3_sck_x",
-+				"i2c3_sda_x";
-+			function = "i2c3";
-+			bias-pull-up;
-+			drive-strength-microamp = <3000>;
-+		};
-+	};
-+
-+	i2c3_f_pins:i2c3-f {
-+		mux {
-+			groups = "i2c3_sck_f",
-+				"i2c3_sda_f";
-+			function = "i2c3";
-+			bias-pull-up;
-+			drive-strength-microamp = <3000>;
-+		};
-+	};
-+};
--- 
-2.24.0
+I suspect there should be a reported-by tag though?
 
+>  drivers/clk/clk.c | 59 +++++++++++++++++++++++++++++------------------
+>  1 file changed, 37 insertions(+), 22 deletions(-)
+> 
+> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+> index ef4416721777..917ba37c3b9d 100644
+> --- a/drivers/clk/clk.c
+> +++ b/drivers/clk/clk.c
+> @@ -3249,6 +3249,34 @@ static inline void clk_debug_unregister(struct clk_core *core)
+>  }
+>  #endif
+>  
+> +static void __clk_core_reparent_orphan(void)
+
+Maybe drop the double underscore. clk_core prefix already means "private
+to this file".
+
+> +{
+> +       struct clk_core *orphan;
+> +       struct hlist_node *tmp2;
+> +
+> +       /*
+> +        * walk the list of orphan clocks and reparent any that newly finds a
+> +        * parent.
+> +        */
+> +       hlist_for_each_entry_safe(orphan, tmp2, &clk_orphan_list, child_node) {
+> +               struct clk_core *parent = __clk_init_parent(orphan);
+> +
+> +               /*
+> +                * We need to use __clk_set_parent_before() and _after() to
+> +                * to properly migrate any prepare/enable count of the orphan
+> +                * clock. This is important for CLK_IS_CRITICAL clocks, which
+> +                * are enabled during init but might not have a parent yet.
+> +                */
+> +               if (parent) {
+> +                       /* update the clk tree topology */
+> +                       __clk_set_parent_before(orphan, parent);
+> +                       __clk_set_parent_after(orphan, parent, NULL);
+> +                       __clk_recalc_accuracies(orphan);
+> +                       __clk_recalc_rates(orphan, 0);
+> +               }
+> +       }
+> +}
+> +
+>  /**
+>   * __clk_core_init - initialize the data structures in a struct clk_core
+>   * @core:      clk_core being initialized
+> @@ -3259,8 +3287,6 @@ static inline void clk_debug_unregister(struct clk_core *core)
+>  static int __clk_core_init(struct clk_core *core)
+>  {
+>         int ret;
+> -       struct clk_core *orphan;
+> -       struct hlist_node *tmp2;
+>         unsigned long rate;
+>  
+>         if (!core)
+> @@ -3416,27 +3442,8 @@ static int __clk_core_init(struct clk_core *core)
+>                 clk_enable_unlock(flags);
+>         }
+>  
+> -       /*
+> -        * walk the list of orphan clocks and reparent any that newly finds a
+> -        * parent.
+> -        */
+> -       hlist_for_each_entry_safe(orphan, tmp2, &clk_orphan_list, child_node) {
+> -               struct clk_core *parent = __clk_init_parent(orphan);
+> +       __clk_core_reparent_orphan();
+>  
+> -               /*
+> -                * We need to use __clk_set_parent_before() and _after() to
+> -                * to properly migrate any prepare/enable count of the orphan
+> -                * clock. This is important for CLK_IS_CRITICAL clocks, which
+> -                * are enabled during init but might not have a parent yet.
+> -                */
+> -               if (parent) {
+> -                       /* update the clk tree topology */
+> -                       __clk_set_parent_before(orphan, parent);
+> -                       __clk_set_parent_after(orphan, parent, NULL);
+> -                       __clk_recalc_accuracies(orphan);
+> -                       __clk_recalc_rates(orphan, 0);
+> -               }
+> -       }
+>  
+>         kref_init(&core->ref);
+>  out:
+> @@ -4288,6 +4295,10 @@ int of_clk_add_provider(struct device_node *np,
+>         mutex_unlock(&of_clk_mutex);
+>         pr_debug("Added clock from %pOF\n", np);
+>  
+> +       clk_prepare_lock();
+> +       __clk_core_reparent_orphan();
+> +       clk_prepare_unlock();
+> +
+
+Maybe make a locked version of this function and an unlocked version?
+
+>         ret = of_clk_set_defaults(np, true);
+>         if (ret < 0)
+>                 of_clk_del_provider(np);
+> @@ -4323,6 +4334,10 @@ int of_clk_add_hw_provider(struct device_node *np,
+>         mutex_unlock(&of_clk_mutex);
+>         pr_debug("Added clk_hw provider from %pOF\n", np);
+>  
+> +       clk_prepare_lock();
+> +       __clk_core_reparent_orphan();
+> +       clk_prepare_unlock();
+> +
+
+So we don't duplicate this twice.
+
+>         ret = of_clk_set_defaults(np, true);
+>         if (ret < 0)
 
 _______________________________________________
 linux-amlogic mailing list
