@@ -2,89 +2,87 @@ Return-Path: <SRS0=15i7=ZZ=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DE2E2C432C0
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Dec 2019 08:08:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A8187C432C0
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Dec 2019 20:58:50 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B0A3720675
-	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Dec 2019 08:08:46 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 769FE20803
+	for <linux-amlogic@archiver.kernel.org>; Tue,  3 Dec 2019 20:58:50 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="h8G0V9BE";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ACE03k+J"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B0A3720675
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dkRylEx/";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="SZ+1pVHo"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 769FE20803
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=EcuptSNeCVkGUC7N8WppOcV0jfc67naD2KkYfacpNrs=; b=h8G0V9BEI3N5hb
-	4cdCjnR3D2PbyRGW7ieBhguEu+pEUKn+Px29cWdNyZhk4WGYWcVu5qn7VYyklCAP4wwRvI57UN8Kp
-	hVPGO2i3KN/0vg2/nXaSKFfIWeDvsy0l3J24wNQDgSPJTjmYKF8krPW7hhBl5kjoopGEHBOL7Xuit
-	tWtJ7fkDXOOBKygofQDM2CadW4UvmA2J/VcRB53DlugwzQfkpjDSLTkD0H8fKl4Hfvod5STK+KIon
-	Fwkwpju30ITOGmaA1w88Cu0S+ZyKwPC1scXcH7L6HE9/Y0BmNqkVAeC0LYqDO8+w/ONHJcejUsTjZ
-	MV9ReeZlzF0o6G/D9ieQ==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=Oesi80yEpWCt3TB5Y9qX6ZT9mvNFG0XjI8ZE712oFYI=; b=dkRylEx/qr+46G
+	3MBMsYpA2Pd0KJ2y+X8gIqUFPoZADy7ZII3TAHpkU3zjp8ZJ0EQkWsQ4ZYyv2jF09Luf6HDOacRzW
+	BtGsFBKYgeRRhT8r5z2VGEp6BSP/eluE8x4BwYAi3O1nf/4hRhPh6FN/6vban2Vj6RwhxZlPnRuU+
+	aKFs2Wd5aKX1IHsTdCwPnfgV+9Bkm+6h4X2glHFWjLWorJY9TSNRIsxZCQd3aND3MosfWTSu20Ke0
+	+oLhflzzzpyWU9Fb+8/NkhhwkAzdsfdfC5DvQFzVqigPsvnCuuZGmw+M2XuQd27eifmmTcvvAASNg
+	OobfWIotckttOTl08+dA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ic3Ec-0000Ny-QF; Tue, 03 Dec 2019 08:08:38 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1icFFf-0000iR-PN; Tue, 03 Dec 2019 20:58:31 +0000
+Received: from mail-oi1-x241.google.com ([2607:f8b0:4864:20::241])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ic3EZ-0000Ko-M5
- for linux-amlogic@lists.infradead.org; Tue, 03 Dec 2019 08:08:37 +0000
-Received: by mail-wr1-x443.google.com with SMTP id q10so2380243wrm.11
- for <linux-amlogic@lists.infradead.org>; Tue, 03 Dec 2019 00:08:35 -0800 (PST)
+ id 1icFFc-0000ho-JT
+ for linux-amlogic@lists.infradead.org; Tue, 03 Dec 2019 20:58:30 +0000
+Received: by mail-oi1-x241.google.com with SMTP id i1so625862oie.8
+ for <linux-amlogic@lists.infradead.org>; Tue, 03 Dec 2019 12:58:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=0R64hlt7XwI/N3fKuGoKmEX8pew5cHbSg5pee7ssZ9M=;
- b=ACE03k+J3bQYPwGdDs/MDRbltZ5w+dOYRY4LzkdTknCOZD557nirzb765JXZ7FZ8Ul
- xv4aFc5ZN8JbbPfx/TescvxkpcO7bwV5Q8vW+IeHNgueM1NWrW7XVJM1r7A4LjDFK/k6
- E+si2lf4uiq4Az948pp/rkYSasS92LC/fdTWYktd/Qt/Y0yitT/ok2VM9yx5xeeUSkW+
- sLiRHq5pTyxiPkTvLa0o35awHgg8mNV27eVd/hm/W7aNs36bbOat00hLv8ycdIQ4Eahl
- t7VPgrfpdsHwLOOYOTIOq8nrR6GQT4WGjgqCDJt6/0/Pv7j+SqmKkyuyhL+uKqodPUmi
- 8lXA==
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=k08Tu4R7mIdBXzzLXcb2VOjUxXP2lhnZ8WU4w9CSb54=;
+ b=SZ+1pVHornoIyHgteIvpizx7VVGkZbpRZvPvjReQPLduQiBvNYZk1Ot9au5iF5E4bZ
+ dpeQba9uAoujZK1Agd0uNM5PjzqvSiIDdnITi4l3Rslwa/+1bhYsrexxLLt6n2EaycjW
+ SRUYRcykSdmrwx/2QZg188o7zY5R96hoEmRxHUWmGu8B+VGvaqQ5YHKc6ECJCD1fxo+i
+ HVmfjrBKAoxJyY/M19Mv54fNX7zNzB4edGxuM07q0jHkuV5MHgEOGNIM6GqLf+S9RaSv
+ VGZ1bkvfzHSv80jIock3FXEuVjxhO3y42LuKkkD9uts7YySn0/7/22rA1pm3+fWtcrCf
+ A1Iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=0R64hlt7XwI/N3fKuGoKmEX8pew5cHbSg5pee7ssZ9M=;
- b=aQNvNd6rtjS4dJteKC2Rd6ZWp5Qpwi7s9HRkj7R2Zo8FZ9b5aR2xFHkGj3CnZtvDsz
- 27/kbKKIf/5l2Cw+994CeUMmzMEHCPK7jJ+a95IubkYqINR1p4ey1D5C9jKgz35shKNa
- PP9NJKhBtBHQfkE8FM7P6LAtytjj1so3+DGrXkvYuI3Gfldt95YIMJshtMrbXiTjBUQA
- mkq9YV3h3UDqyKm3kDRu72IfwRNe4yjuyHtAZ7hWOizR7IMtcRzp4eWkACYaGLkGXqDW
- 3dvrNEqQrd98IL5zEeuzYUniPOdkQjQecgLvUsdFsg/FR0RUd6G/KLe3ayaw+91l/bZl
- 51iQ==
-X-Gm-Message-State: APjAAAWJeMMkHGHKVjfIXfmm6AYcWPHJQJ/+5le7aBf4DE4iNS6ouRCU
- yIyi96wvEq+x6DJAoVXUZruUTg==
-X-Google-Smtp-Source: APXvYqz8AVR9cMm++hDehzZTHRh4xWczw0r4rSWNjQHKTYEvMNTRYnQzW4NwG/numStsR1+76rhwSw==
-X-Received: by 2002:adf:ebc6:: with SMTP id v6mr3569496wrn.75.1575360513938;
- Tue, 03 Dec 2019 00:08:33 -0800 (PST)
-Received: from localhost.localdomain (cag06-3-82-243-161-21.fbx.proxad.net.
- [82.243.161.21])
- by smtp.googlemail.com with ESMTPSA id w12sm2084204wmi.17.2019.12.03.00.08.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Dec 2019 00:08:33 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Stephen Boyd <sboyd@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>
-Subject: [PATCH v2] clk: walk orphan list on clock provider registration
-Date: Tue,  3 Dec 2019 09:08:05 +0100
-Message-Id: <20191203080805.104628-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.23.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=k08Tu4R7mIdBXzzLXcb2VOjUxXP2lhnZ8WU4w9CSb54=;
+ b=q1M73XBM0YBjsa6uwC2W0gsqU/1TIEyOU8FraGG7fsdxZUh+91oUKphAIClrf2hkXP
+ UAaBawAzi5Gc5PMdjn4mR/9E18XiwCudPnOiFeVji+FAO2bbLHX3YG7jtbG9B7ZcEm3q
+ a9YaCdXJb7JRe32+6SiQFQwWdqgy48BUbnLV3wkK5NQfbdDtsFiR96xhOzIFbsBpf4ul
+ z9Af/WDkjaEJ1kq8vg6kNQJRD1Lnl6YBRCLdMLnnIiRCG5iZtkpx9EIqDXc3254UEkc6
+ rlp/9RzkZR6DYOoohifgeCRZPJVknspa3FuL65LIEQ3Lywq/qr5k+0JXYYsSr5AWFsE+
+ 0ogw==
+X-Gm-Message-State: APjAAAVj6BKle+2g8E1vj8aXgXA1kCDxocRxhE44XiDir/w+cvKQaGKX
+ EobaESyHc9HKoaNJpfl/x+UH4fiozO8WDYcaX+s=
+X-Google-Smtp-Source: APXvYqzcYa9U4pz5mY+YRFjfuWn85Y+s31Sn24jyMw4/wNe2W1wUT+pJWipghG1lTF5ijOBmH9WCCDQVyIFDd9hbg5s=
+X-Received: by 2002:aca:dc45:: with SMTP id t66mr8073oig.39.1575406706818;
+ Tue, 03 Dec 2019 12:58:26 -0800 (PST)
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+References: <20191130195335.17740-1-mohammad.rasim96@gmail.com>
+ <20191130195335.17740-4-mohammad.rasim96@gmail.com>
+ <CAFBinCCYzThAM_DkQyDZ2LrF-6bJoxeNZDtfADmWOxLH+B3AUw@mail.gmail.com>
+ <20191202080203.js5fciajlf7qkgvw@manjaro.localdomain>
+In-Reply-To: <20191202080203.js5fciajlf7qkgvw@manjaro.localdomain>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Tue, 3 Dec 2019 21:58:15 +0100
+Message-ID: <CAFBinCA+yCKwj4qc_b-EOhkVDpvnOn-tDUE3TcGtC1r5_jOxGg@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] arm64: dts: meson-gxbb: add support for
+ Videostrong KII Pro
+To: Mohammad Rasim <mohammad.rasim96@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191203_000835_963111_480FF423 
-X-CRM114-Status: GOOD (  15.01  )
+X-CRM114-CacheID: sfid-20191203_125828_668132_52A9EE96 
+X-CRM114-Status: UNSURE (   9.71  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,144 +94,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- Jian Hu <jian.hu@amlogic.com>, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
+Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Rob Herring <robh+dt@kernel.org>, linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-So far, we walked the orphan list every time a new clock was registered
-in CCF. This was fine since the clocks were only referenced by name.
+On Mon, Dec 2, 2019 at 9:02 AM Mohammad Rasim
+<mohammad.rasim96@gmail.com> wrote:
+>
+> On 19/12/01 11:21PM, Martin Blumenstingl wrote:
+> > [...]
+> > > +       leds {
+> > > +               compatible = "gpio-leds";
+> > > +               status {
+> > > +                       gpios = <&gpio_ao GPIOAO_13 GPIO_ACTIVE_LOW>;
+> > > +                       default-state = "off";
+> > > +                       color = <LED_COLOR_ID_RED>;
+> > > +                       function = LED_FUNCTION_STATUS;
+> > why is LED_FUNCTION_STATUS not enclosed in <> like color above?
+> >
+> Well, the examples in the documentation enclose the color and don't
+> enclose function
+> https://github.com/torvalds/linux/blob/596cf45cbf6e4fa7bcb0df33e373a7d062b644b5/Documentation/devicetree/bindings/leds/common.txt#L140
+sorry for the noise, only now I realize that the LED_FUNCTION_*s are
+string definitions and not numeric values
+in this case all is fine
 
-Now that the clock can be referenced through DT, it is not enough:
-* Controller A register first a reference clocks from controller B
-  through DT.
-* Controller B register all its clocks then register the provider.
+I learnt something new today ;)
 
-Each time controller B registers a new clock, the orphan list is walked
-but it can't match since the provider is registered yet. When the
-provider is finally registered, the orphan list is not walked unless
-another clock is registered afterward.
 
-This can lead to situation where some clocks remain orphaned even if
-the parent is available.
-
-Walking the orphan list on provider registration solves the problem.
-
-Reported-by: Jian Hu <jian.hu@amlogic.com>
-Fixes: fc0c209c147f ("clk: Allow parents to be specified without string names")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- drivers/clk/clk.c | 62 ++++++++++++++++++++++++++++++-----------------
- 1 file changed, 40 insertions(+), 22 deletions(-)
-
-diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
-index ef4416721777..df16a535e800 100644
---- a/drivers/clk/clk.c
-+++ b/drivers/clk/clk.c
-@@ -3249,6 +3249,41 @@ static inline void clk_debug_unregister(struct clk_core *core)
- }
- #endif
- 
-+static void clk_core_reparent_orphans_nolock(void)
-+{
-+	struct clk_core *orphan;
-+	struct hlist_node *tmp2;
-+
-+	/*
-+	 * walk the list of orphan clocks and reparent any that newly finds a
-+	 * parent.
-+	 */
-+	hlist_for_each_entry_safe(orphan, tmp2, &clk_orphan_list, child_node) {
-+		struct clk_core *parent = __clk_init_parent(orphan);
-+
-+		/*
-+		 * We need to use __clk_set_parent_before() and _after() to
-+		 * to properly migrate any prepare/enable count of the orphan
-+		 * clock. This is important for CLK_IS_CRITICAL clocks, which
-+		 * are enabled during init but might not have a parent yet.
-+		 */
-+		if (parent) {
-+			/* update the clk tree topology */
-+			__clk_set_parent_before(orphan, parent);
-+			__clk_set_parent_after(orphan, parent, NULL);
-+			__clk_recalc_accuracies(orphan);
-+			__clk_recalc_rates(orphan, 0);
-+		}
-+	}
-+}
-+
-+static void clk_core_reparent_orphans(void)
-+{
-+	clk_prepare_lock();
-+	clk_core_reparent_orphans_nolock();
-+	clk_prepare_unlock();
-+}
-+
- /**
-  * __clk_core_init - initialize the data structures in a struct clk_core
-  * @core:	clk_core being initialized
-@@ -3259,8 +3294,6 @@ static inline void clk_debug_unregister(struct clk_core *core)
- static int __clk_core_init(struct clk_core *core)
- {
- 	int ret;
--	struct clk_core *orphan;
--	struct hlist_node *tmp2;
- 	unsigned long rate;
- 
- 	if (!core)
-@@ -3416,27 +3449,8 @@ static int __clk_core_init(struct clk_core *core)
- 		clk_enable_unlock(flags);
- 	}
- 
--	/*
--	 * walk the list of orphan clocks and reparent any that newly finds a
--	 * parent.
--	 */
--	hlist_for_each_entry_safe(orphan, tmp2, &clk_orphan_list, child_node) {
--		struct clk_core *parent = __clk_init_parent(orphan);
-+	clk_core_reparent_orphans_nolock();
- 
--		/*
--		 * We need to use __clk_set_parent_before() and _after() to
--		 * to properly migrate any prepare/enable count of the orphan
--		 * clock. This is important for CLK_IS_CRITICAL clocks, which
--		 * are enabled during init but might not have a parent yet.
--		 */
--		if (parent) {
--			/* update the clk tree topology */
--			__clk_set_parent_before(orphan, parent);
--			__clk_set_parent_after(orphan, parent, NULL);
--			__clk_recalc_accuracies(orphan);
--			__clk_recalc_rates(orphan, 0);
--		}
--	}
- 
- 	kref_init(&core->ref);
- out:
-@@ -4288,6 +4302,8 @@ int of_clk_add_provider(struct device_node *np,
- 	mutex_unlock(&of_clk_mutex);
- 	pr_debug("Added clock from %pOF\n", np);
- 
-+	clk_core_reparent_orphans();
-+
- 	ret = of_clk_set_defaults(np, true);
- 	if (ret < 0)
- 		of_clk_del_provider(np);
-@@ -4323,6 +4339,8 @@ int of_clk_add_hw_provider(struct device_node *np,
- 	mutex_unlock(&of_clk_mutex);
- 	pr_debug("Added clk_hw provider from %pOF\n", np);
- 
-+	clk_core_reparent_orphans();
-+
- 	ret = of_clk_set_defaults(np, true);
- 	if (ret < 0)
- 		of_clk_del_provider(np);
--- 
-2.23.0
-
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
