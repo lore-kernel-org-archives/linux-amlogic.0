@@ -2,93 +2,88 @@ Return-Path: <SRS0=R0qk=Z3=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DDDF1C43603
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Dec 2019 02:39:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1A13DC2BD09
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Dec 2019 08:06:28 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A69F4214B2
-	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Dec 2019 02:39:18 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E3D252464F
+	for <linux-amlogic@archiver.kernel.org>; Thu,  5 Dec 2019 08:06:27 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DuW4vT0I";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="2AEXe14i"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A69F4214B2
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="uccsaXjR";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nmGXMlWX"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E3D252464F
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=t8m1OaxuKChh4agZ53PvApIm3FXGNpKhLrFcYCQIYgw=; b=DuW4vT0IJGN+G/
-	08gE+/K7ucgTfafDoKryns02XOzeQ+y9wgyAbis8piyUGdCDwQpKqaSJ2ymSkRmq3Ku7WLsF1O90v
-	MQnQKj3U5GJZQ4agaMHpW7OytXHeukewT4AiFoxTBZ7K3yxxipiWMzfJdLWf/dakveecg508cuORL
-	bsSefEoSw//1L9UyJ9Vhpgb/VeAtRV9rRh0xpmT2StERdQZbKojfrX0RmyLjspiDUrAagxxrdqBNP
-	eWKujD+yBnjzZF8OLcQq2XKTZrptyxoPRrVgYMTm78QBbrg3p7EbYnPdlI95JAhfiFH2uKb32BQOp
-	Yowr0EG9OXLuay72smxA==;
+	List-Owner; bh=yowmOlluyzd4vbXgVK90bjoen/Bqpbh8RNf8vIibXPw=; b=uccsaXjR2v7+sv
+	ogx8PLYGy4A/1sQWSMBSjiujUBzoklYxsiN3ssSXCbPwtplFWjiWIt0LAhQo+Lko00WLdkLLYFznV
+	14gFu3atL4qGVXZsqP9VvZShIi8oCLMBuf/Hc5/furFeQx4YlpAbq5ROkGMcbzI4gSQadgluLRm4F
+	+4/zckc9P8cyZ6fGfLM+FuzaaxQM+KDfkjGSqmn2yccdsJnGySPZ8iOFpbQUZOrvqWMPXoDnuYY4S
+	NSO50QqN8TBAnGTLSLOKsQbU8bAlTpiyXpvKFPJZqvQ40phUD5+e0rMJG82Kl2thA8gPN/Z09rKIO
+	jT9Lo92x0ll64oMS1WnQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ich2t-00007c-JJ; Thu, 05 Dec 2019 02:39:11 +0000
+	id 1icm9S-0003oH-Ls; Thu, 05 Dec 2019 08:06:18 +0000
 Received: from mail-pg1-x544.google.com ([2607:f8b0:4864:20::544])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ich2r-00006e-1L
- for linux-amlogic@lists.infradead.org; Thu, 05 Dec 2019 02:39:10 +0000
-Received: by mail-pg1-x544.google.com with SMTP id r11so853165pgf.1
- for <linux-amlogic@lists.infradead.org>; Wed, 04 Dec 2019 18:39:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=27jaH0vN7Z1055mM7vLy7qQTaIl7MlRb9ifdmBrbZDM=;
- b=2AEXe14iZdFWfADVPMho1nGLswqsSNlAEnAUgFieMyEajydA5UtIA2BcOw3cvQHdZO
- +7SSE0yQn7fq3n4nHsbvSjKepiS29Gm5WR9rq8NTOvdFdi1YqxhsWZNbYk8a14XIStKF
- hb74QE/F9ENthSZE3yzn0ZQDkHdLNmssNPXh/EW0qy0yWmB7IFhwbQ7Hy2WVvJXW05oI
- H1C0sUhnHCdN0aF6ajXMtxjjgQBm0bYucIo02eLqXp6IojHQsBo24gGBGz9ZhVJZDdLp
- 4LhMKEeYfNiw1x190FxFAVW9rFhpjJNh7tIG1Cx/l25+RJ0xiWa5+IVfaItxv51z2fvq
- fu0w==
+ id 1icm9P-0003nI-P9; Thu, 05 Dec 2019 08:06:17 +0000
+Received: by mail-pg1-x544.google.com with SMTP id k3so588213pgc.3;
+ Thu, 05 Dec 2019 00:06:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=sbOWUl/LYyug4BpNjD/sLnbb5ya8VzzTl8Cu9V2yvRY=;
+ b=nmGXMlWXu2JCqHKwG7oK8kS1mCgH+HBN4/eM/NOEeCk2in3RGF5oWu656B48kWYzV4
+ mY3bSWyZ30MR/SPNmvS/GgUUll2YMsfMQo4qX+RVLHY0NPjYtazSfiBM5ugleCHjtKdG
+ /Pbz/f5x5rYSo2Hy4VnzwlqqGlLPdKzWeC6AtTnUUMau3dNCpKjv7aAy3QyOCwm8dRb9
+ s41ylI9rrYu3yOGBb4X3BRQLyBLwUu77hjkAhn3AKb1ti3c9OPbwoPdLzlc1yuCbLZrO
+ P8A/jaKiNBktktPIGGLu3Ewlo84+vLm4GxiQksazqDrPb7d4VxWAHjyWP95q5eFbVCuR
+ KDNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=27jaH0vN7Z1055mM7vLy7qQTaIl7MlRb9ifdmBrbZDM=;
- b=rUc6ADYdoJ6qwTx/PVN56AlbGHEGI3wX1r10EHlhhWLsvpbnYpl2pC9UmNePkfOP3c
- I4kPufieNbFQLngxEXIViqQO2E63ZrnckRk5oL6Si3naia9KXu5/2l9nwwOpMmj6igN0
- jFtPHfRGr673O1XJSGnILy14A4QitkJThLulz4+0Eh51imkFSa8LyhFeKC9/th4koAcO
- zADH71DQ9B1jOtjHwZOPIPy+qQIFk/2ZrmyUX7B5ZXVZAX2C/oYILvkaf9DV9XVsKhYX
- XCj3k94vAGacDtU4jPcWof1vEmtDDAxtdklAJCcTR7eQ/i/o7Oeso6sb/Dy0AI7XGObg
- oqrg==
-X-Gm-Message-State: APjAAAVd0aKKRszVuztUtJvmWjKJIulp+yykjoqPWoE+U/IOhN3/8kxS
- ZZRViZd3Lhj576/lfIvklkXnfg==
-X-Google-Smtp-Source: APXvYqyArhAsoFW/09BUx58Mqa57A85qEfp9wqhmY84drnrMDAvAJYGziHESSDaQZke2fKs6Z2jx+w==
-X-Received: by 2002:a62:6884:: with SMTP id d126mr6446169pfc.109.1575513548166; 
- Wed, 04 Dec 2019 18:39:08 -0800 (PST)
-Received: from localhost ([2601:602:9200:a1a5:18db:9496:e12f:2012])
- by smtp.gmail.com with ESMTPSA id k21sm8765676pgt.22.2019.12.04.18.39.07
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=sbOWUl/LYyug4BpNjD/sLnbb5ya8VzzTl8Cu9V2yvRY=;
+ b=q3+IxsjLU2HZHTisIutDuFleuRC+FCAx+0LWTVNKFgzGTGMtnd44zwsXf8vNRg7PrH
+ 7G078XjthGe1VIVg7ksA5BEqABRwuzOyxtnXoQhm8TYaPXrffZzpJguSP4izvY83/HYa
+ MWel0bdOb02UydeYLOnqyRxjY9Y8fFSz+b3oX8K/WxGMGP0a0NpRDdd2SI48Lz/8KgXh
+ OowlRjWL/3Uj+GTVnCJbvgvn0ZNm4ze2krbnx2iUV7jM9LJUmZKz0dgI/TB+LSTe5dlI
+ sP1bGEHJQMbfSRf7Ff+82bEPZ4ZIBtMov7QsiJsK8dQW8yAj+ch2Fxvl4nwRsh8Ft0mA
+ RuUA==
+X-Gm-Message-State: APjAAAWAy9cD5VHlXqnTaX7fJnv0BdNgNyPL0yLko5PXgsCnxlYq7SDV
+ FSXASeYkgQWlVyi51e8fpCk=
+X-Google-Smtp-Source: APXvYqyk7FdG4hnofsNwSjWrXOupDwiMK/1MsIp6Jp00Uhte+xvNi4jEmcD2YJExVKTWuST0cGuFFg==
+X-Received: by 2002:a63:3cb:: with SMTP id 194mr8219400pgd.123.1575533173934; 
+ Thu, 05 Dec 2019 00:06:13 -0800 (PST)
+Received: from localhost ([2401:fa00:8f:203:250d:e71d:5a0a:9afe])
+ by smtp.gmail.com with ESMTPSA id w4sm8996292pjt.21.2019.12.05.00.06.12
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 04 Dec 2019 18:39:07 -0800 (PST)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Colin King <colin.king@canonical.com>,
- Maxime Jourdan <mjourdan@baylibre.com>,
- Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>, linux-media@vger.kernel.org,
- linux-amlogic@lists.infradead.org, devel@driverdev.osuosl.org,
- linux-arm-kernel@lists.infradead.org
+ Thu, 05 Dec 2019 00:06:12 -0800 (PST)
+Date: Thu, 5 Dec 2019 17:06:11 +0900
+From: Sergey Senozhatsky <sergey.senozhatsky.work@gmail.com>
+To: Colin King <colin.king@canonical.com>
 Subject: Re: [PATCH] media: meson: add missing allocation failure check on
  new_buf
-In-Reply-To: <20191204141159.1432387-1-colin.king@canonical.com>
+Message-ID: <20191205080611.GY93017@google.com>
 References: <20191204141159.1432387-1-colin.king@canonical.com>
-Date: Wed, 04 Dec 2019 18:39:06 -0800
-Message-ID: <m2a7877ayd.fsf@baylibre.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20191204141159.1432387-1-colin.king@canonical.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191204_183909_224033_93603CC2 
-X-CRM114-Status: UNSURE (   7.02  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20191205_000615_819623_FB9E29B0 
+X-CRM114-Status: GOOD (  10.07  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,26 +95,35 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Maxime Jourdan <mjourdan@baylibre.com>, devel@driverdev.osuosl.org,
+ Kevin Hilman <khilman@baylibre.com>, kernel-janitors@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-media@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Colin King <colin.king@canonical.com> writes:
-
-> From: Colin Ian King <colin.king@canonical.com>
+On (19/12/04 14:11), Colin King wrote:
+[..]
+> diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
+> index 0a1a04fd5d13..8dd1396909d7 100644
+> --- a/drivers/staging/media/meson/vdec/vdec.c
+> +++ b/drivers/staging/media/meson/vdec/vdec.c
+> @@ -133,6 +133,8 @@ vdec_queue_recycle(struct amvdec_session *sess, struct vb2_buffer *vb)
+>  	struct amvdec_buffer *new_buf;
 >
-> Currently if the allocation of new_buf fails then a null pointer
-> dereference occurs when assiging new_buf->vb. Avoid this by returning
-> early on a memory allocation failure as there is not much more can
-> be done at this point.
->
-> Addresses-Coverity: ("Dereference null return")
-> Fixes: 3e7f51bd9607 ("media: meson: add v4l2 m2m video decoder driver")
-> Signed-off-by: Colin Ian King <colin.king@canonical.com>
+>  	new_buf = kmalloc(sizeof(*new_buf), GFP_KERNEL);
+> +	if (!new_buf)
+> +		return;
+>  	new_buf->vb = vb;
 
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+So the buffer is not getting recycled? IOW is leaked?
+
+	-ss
 
 _______________________________________________
 linux-amlogic mailing list
