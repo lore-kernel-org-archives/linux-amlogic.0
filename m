@@ -4,74 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0C5B4C2D0BF
-	for <linux-amlogic@archiver.kernel.org>; Sun,  8 Dec 2019 20:56:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 361B9C43603
+	for <linux-amlogic@archiver.kernel.org>; Sun,  8 Dec 2019 21:14:07 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id D8260206D5
-	for <linux-amlogic@archiver.kernel.org>; Sun,  8 Dec 2019 20:56:06 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 0C67D20637
+	for <linux-amlogic@archiver.kernel.org>; Sun,  8 Dec 2019 21:14:07 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bwIfV0K3";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="KM/zNa/c"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D8260206D5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="P1Jk1O0r"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0C67D20637
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=triplefau.lt
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=fRPVBlK9Ezw+LuZTaT2pdOZeL1xWRtcyBDArzVggur4=; b=bwIfV0K3uEq8mM
-	4208owVXSgI/VzWCRz4BiIskJL9S2Lr8d4ArHLu79qAlkrfvFTcIyiL9PVOIoBJqqhWXPkK4Et7c8
-	IvPsuicP+im94QBWxiM3zYm4RcrEUOQQNFVcwhJ+lkxesGznU5A+bbEfS8atNVqHjinHzkgJa3jck
-	EhNxkTDvDfyL4swE4X6nvZ/T7ns/7cb9O71FUeYzstpg7WXMkxsWcxpCvIpf1zPBV16i/1jEEUI2O
-	4QCu/S/IcpWW/4F8d6eAcasWDIZHnwwCZMEa8IeHnrMJ4U24mKF8HK8eLGNfOb2Td3p3WWMV3xe0t
-	zd40zgN9EH2/9b9qeqhQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=ApUAh6AuaxmHThk/cVtP9jnHyDl2E3UNpoPmR0vgxLE=; b=P1Jk1O0r1axHuZ
+	AmvYOjUKfv8k/nsqGtWgY7e+mITroJgP4SyoEdzlzNAPlexet+w/dFpNiJzIxe4DLBQ1yDCUnkJTu
+	ePj9qmCzSWtNi3S7Jhz2/P8R7A0mZMi8+rtVobx+TEdVhR50HgHEunz3xLQDpiE5zphzQUTIRap1E
+	fkA8ZXKjVOVtlveVQ+herDwM74D9Z+WA9vKzlBa7VkYCzxvwQDBP9vHFApzD/KtZSU8yyzm7qCCbI
+	iDzHPCqxAw/+9sJu0895i1M1Hi8nt/eUqX+k4SLP1ndkg01oUYmsPLa/vL2xvHayrjoSRv2eZWZIY
+	J3zLR4OXJt/E2n1KDiaw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ie3b0-0006tv-84; Sun, 08 Dec 2019 20:56:02 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1ie3sN-0003kF-R5; Sun, 08 Dec 2019 21:13:59 +0000
+Received: from relay12.mail.gandi.net ([217.70.178.232])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ie3az-0006tS-9Y; Sun, 08 Dec 2019 20:56:01 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
- References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
- Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=7hKGw58ILqckxLS6Lqao62LAcoLIpMmoX9aFw/dvBCE=; b=KM/zNa/clE8J0Y3OeUGpK/I6bj
- PdwCKbvlLRzNjmcnMLqJmyg5P2kphUmpWeyJ8RXFsSxzJZPD8sjhm6cpXDBnBjGlPr7fIa5B8GmmC
- SVWgTOMoZ/+pg+BDSbKGrX7lKaPMo9K01m8V6GfBbtkyjJReEndwzeb7I6eelHJ9TCssizEO/eFZX
- E1fD8nC4dYTWgIQP0zy8aqXOyTLKRf5DpUPigVdIWPc3ozXY7GdgvaNCEJ8F3+E1BRnf+/xdMnas2
- PgAPkX3samKAGxSjSSfPjCUFW+ZlNv6QVqD8xGyeYToezLcgNz+2l4ZfX+oLMFQ3YUliqC7X5wE5G
- 2yBSDDFA==;
-Received: from relay7-d.mail.gandi.net ([217.70.183.200])
- by casper.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ie3bO-0005CV-O3; Sun, 08 Dec 2019 20:56:28 +0000
-X-Originating-IP: 88.190.179.123
+ id 1ie3sL-0003ii-7h; Sun, 08 Dec 2019 21:13:58 +0000
 Received: from localhost (unknown [88.190.179.123])
  (Authenticated sender: repk@triplefau.lt)
- by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 56DA720005;
- Sun,  8 Dec 2019 20:55:18 +0000 (UTC)
+ by relay12.mail.gandi.net (Postfix) with ESMTPSA id 4C24A200006;
+ Sun,  8 Dec 2019 21:13:41 +0000 (UTC)
 From: Remi Pommarel <repk@triplefau.lt>
 To: Neil Armstrong <narmstrong@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Yue Wang <yue.wang@Amlogic.com>
-Subject: [PATCH 1/2] clk: meson: axg: add pcie pll cml gating
-Date: Sun,  8 Dec 2019 22:03:19 +0100
-Message-Id: <20191208210320.15539-2-repk@triplefau.lt>
+ Jerome Brunet <jbrunet@baylibre.com>
+Subject: [PATCH] clk: meson: pll: Fix by 0 division in __pll_params_to_rate()
+Date: Sun,  8 Dec 2019 22:22:06 +0100
+Message-Id: <20191208212206.16808-1-repk@triplefau.lt>
 X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191208210320.15539-1-repk@triplefau.lt>
-References: <20191208210320.15539-1-repk@triplefau.lt>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191208_205626_843031_32AF72E6 
-X-CRM114-Status: GOOD (  11.43  )
+X-CRM114-CacheID: sfid-20191208_131357_411338_3CBC5D23 
+X-CRM114-Status: UNSURE (   6.52  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,8 +64,7 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Stephen Boyd <sboyd@kernel.org>, linux-pci@vger.kernel.org,
+Cc: Stephen Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
  Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
  Remi Pommarel <repk@triplefau.lt>, linux-amlogic@lists.infradead.org,
  linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
@@ -93,68 +73,62 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-PCIE_PLL_CML_ENABLE is used to enable or disable pcie clock PAD
-output reliably on AXG platforms.
+Some meson pll registers can be initialized with 0 as N value, introducing
+the following division by 0 when computing rate :
 
+  UBSAN: Undefined behaviour in drivers/clk/meson/clk-pll.c:75:9
+  division by zero
+  CPU: 0 PID: 1 Comm: swapper/0 Not tainted 5.4.0-rc3-608075-g86c9af8630e1-dirty #400
+  Call trace:
+   dump_backtrace+0x0/0x1c0
+   show_stack+0x14/0x20
+   dump_stack+0xc4/0x100
+   ubsan_epilogue+0x14/0x68
+   __ubsan_handle_divrem_overflow+0x98/0xb8
+   __pll_params_to_rate+0xdc/0x140
+   meson_clk_pll_recalc_rate+0x278/0x3a0
+   __clk_register+0x7c8/0xbb0
+   devm_clk_hw_register+0x54/0xc0
+   meson_eeclkc_probe+0xf4/0x1a0
+   platform_drv_probe+0x54/0xd8
+   really_probe+0x16c/0x438
+   driver_probe_device+0xb0/0xf0
+   device_driver_attach+0x94/0xa0
+   __driver_attach+0x70/0x108
+   bus_for_each_dev+0xd8/0x128
+   driver_attach+0x30/0x40
+   bus_add_driver+0x1b0/0x2d8
+   driver_register+0xbc/0x1d0
+   __platform_driver_register+0x78/0x88
+   axg_driver_init+0x18/0x20
+   do_one_initcall+0xc8/0x24c
+   kernel_init_freeable+0x2b0/0x344
+   kernel_init+0x10/0x128
+   ret_from_fork+0x10/0x18
+
+This checks if N is null before doing the division.
+
+Fixes: 8289aafa4f36 ("clk: meson: improve pll driver results with frac")
 Signed-off-by: Remi Pommarel <repk@triplefau.lt>
 ---
- drivers/clk/meson/axg.c              | 3 +++
- drivers/clk/meson/axg.h              | 2 +-
- include/dt-bindings/clock/axg-clkc.h | 1 +
- 3 files changed, 5 insertions(+), 1 deletion(-)
+ drivers/clk/meson/clk-pll.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/clk/meson/axg.c b/drivers/clk/meson/axg.c
-index 13fc0006f63d..ac9ab7f75ee8 100644
---- a/drivers/clk/meson/axg.c
-+++ b/drivers/clk/meson/axg.c
-@@ -1142,6 +1142,7 @@ static MESON_GATE(axg_vpu_intr, HHI_GCLK_MPEG2, 25);
- static MESON_GATE(axg_sec_ahb_ahb3_bridge, HHI_GCLK_MPEG2, 26);
- static MESON_GATE(axg_gic, HHI_GCLK_MPEG2, 30);
- static MESON_GATE(axg_mipi_enable, HHI_MIPI_CNTL0, 29);
-+static MESON_GATE(axg_pcie_pll_cml_enable, HHI_MIPI_CNTL0, 26);
+diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
+index ddb1e5634739..6649659f216a 100644
+--- a/drivers/clk/meson/clk-pll.c
++++ b/drivers/clk/meson/clk-pll.c
+@@ -66,6 +66,10 @@ static unsigned long __pll_params_to_rate(unsigned long parent_rate,
+ 					 (1 << pll->frac.width));
+ 	}
  
- /* Always On (AO) domain gates */
++	/* Avoid by zero division */
++	if (n == 0)
++		return 0;
++
+ 	return DIV_ROUND_UP_ULL(rate, n);
+ }
  
-@@ -1246,6 +1247,7 @@ static struct clk_hw_onecell_data axg_hw_onecell_data = {
- 		[CLKID_HIFI_PLL_DCO]		= &axg_hifi_pll_dco.hw,
- 		[CLKID_PCIE_PLL_DCO]		= &axg_pcie_pll_dco.hw,
- 		[CLKID_PCIE_PLL_OD]		= &axg_pcie_pll_od.hw,
-+		[CLKID_PCIE_PLL_CML_ENABLE]	= &axg_pcie_pll_cml_enable.hw,
- 		[NR_CLKS]			= NULL,
- 	},
- 	.num = NR_CLKS,
-@@ -1341,6 +1343,7 @@ static struct clk_regmap *const axg_clk_regmaps[] = {
- 	&axg_hifi_pll_dco,
- 	&axg_pcie_pll_dco,
- 	&axg_pcie_pll_od,
-+	&axg_pcie_pll_cml_enable,
- };
- 
- static const struct meson_eeclkc_data axg_clkc_data = {
-diff --git a/drivers/clk/meson/axg.h b/drivers/clk/meson/axg.h
-index 0431dabac629..d65670d6c607 100644
---- a/drivers/clk/meson/axg.h
-+++ b/drivers/clk/meson/axg.h
-@@ -140,7 +140,7 @@
- #define CLKID_PCIE_PLL_DCO			89
- #define CLKID_PCIE_PLL_OD			90
- 
--#define NR_CLKS					91
-+#define NR_CLKS					92
- 
- /* include the CLKIDs that have been made part of the DT binding */
- #include <dt-bindings/clock/axg-clkc.h>
-diff --git a/include/dt-bindings/clock/axg-clkc.h b/include/dt-bindings/clock/axg-clkc.h
-index fd1f938c38d1..218a05ff508d 100644
---- a/include/dt-bindings/clock/axg-clkc.h
-+++ b/include/dt-bindings/clock/axg-clkc.h
-@@ -72,5 +72,6 @@
- #define CLKID_PCIE_CML_EN1			80
- #define CLKID_MIPI_ENABLE			81
- #define CLKID_GEN_CLK				84
-+#define CLKID_PCIE_PLL_CML_ENABLE		91
- 
- #endif /* __AXG_CLKC_H */
 -- 
 2.24.0
 
