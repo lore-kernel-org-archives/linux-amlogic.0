@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E2CBEC2D0D8
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2019 22:54:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B22A3C2D0C5
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2019 22:56:49 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B5EC720721
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2019 22:54:38 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 83579206D5
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2019 22:56:49 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nmTmJmEF";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="mUW88DZZ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B5EC720721
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bCcQJfvA";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="JgkAL/tQ"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 83579206D5
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,65 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=JceTc/ReNslNOwhTlvkx8PZjehI214mnXY3Gv9mhXSU=; b=nmTmJmEFr02gD0
-	h9PouCAZagMA3XLVKCN8UI4Zzd/Dzosfa2fQBFm7Ibdg2FufudJzca5QSwAwmPwuNjMnuFc10hR6b
-	px6G3AqV3M9SQC/3QWt/U4qwqySrnKupGTFXe1+Hqeu9GHes5q9pQHo6wOyXfRxHjI7fusy9fGy1V
-	S08lk/vXUgyYmU5mg7euPguUOOdw2gryIcjKoC15MVF2XlQoY6aNQCp0Pu5/DP1WOsBagZ3HffCeM
-	baoCBdA+7PHmR0iXnU2SqB71NVt+bEttR+JUDswiOrMVQjkNeOW7UqjdHH5KQmpYvRncqyVxwM2zj
-	gsudb1LTqKLKL9WwhohA==;
+	List-Owner; bh=uUy6oAPAH+OlIdw6yPTlmLBRld6SfuZsRA107fxM5U0=; b=bCcQJfvAPwmI2U
+	glRWje9HbeC38uBALmhDE4YUP3Tjz34LIewf3wtX7d8+otXnyaGUipqDK/SNPwaWWk3LENJR+u/lg
+	qVC4I5g7pbLAm+eDeLWoxbTvaYFv6ZnGD1037m58a9HZRaPvk9vFt7yIrkhCTqzPiTApB4hO4adgu
+	s5wRQ1A/k6ZUWYxKudrLZWggNFUS4QuTvbCbVTGkgXs6VX9q1zmaNCseVYMcZIEx5InQyX4AD3YRW
+	GW6qibv1rX332ULYHXfk4uNGtPKhE3uvXo/poh+qyJLczN0O37esll8sH6edhtk35VAexI0+rwFpt
+	cDh2DWPIFAnTAfPlljrQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ieRvE-0005lZ-Aq; Mon, 09 Dec 2019 22:54:32 +0000
-Received: from mail-pj1-x1043.google.com ([2607:f8b0:4864:20::1043])
+	id 1ieRxM-0007sU-QX; Mon, 09 Dec 2019 22:56:44 +0000
+Received: from mail-pj1-x1042.google.com ([2607:f8b0:4864:20::1042])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ieRv2-0005YG-Ty
- for linux-amlogic@lists.infradead.org; Mon, 09 Dec 2019 22:54:22 +0000
-Received: by mail-pj1-x1043.google.com with SMTP id w23so6530574pjd.2
- for <linux-amlogic@lists.infradead.org>; Mon, 09 Dec 2019 14:54:20 -0800 (PST)
+ id 1ieRxC-0007jE-SB
+ for linux-amlogic@lists.infradead.org; Mon, 09 Dec 2019 22:56:36 +0000
+Received: by mail-pj1-x1042.google.com with SMTP id v93so6525689pjb.6
+ for <linux-amlogic@lists.infradead.org>; Mon, 09 Dec 2019 14:56:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=GZbS2xfEltGE7F6nx/Sqk3zKGRtEeNKmrbNzg2JwiAc=;
- b=mUW88DZZcUm77HMOxXwdlW6E09GhqoZdMi73UXyZvqXuxha8a/66J2NeEmajC50CRk
- uppHSqsk6KZHN5slwK1hx8E1lS59JSJvffgtzvzQCCxoXvGEDs9g6yOrYKjrRQc0U2VJ
- F14XddSIXzsYYLvZsaRRw8i6eGlXsRTa8DVQOtQgFAg4WGiZIXhzticlJkngYIiqZUiS
- zYvyRcJUcIUxVNQf3PvH7XVTAVQq++X8LmuBCfi53vTg7GhZ2oC5qsbIOHt1PGov85IV
- P+2JlSX9fuav7dYzPqKnHewt2fbwfzjZ+dAb5juXdJEkLzYajGr6Yer6SwKDajIRbAit
- eEXg==
+ :mime-version; bh=A4KHxg3gak/AwtAzed2CDRcu2q9WfrU2oLQqZp0iE2c=;
+ b=JgkAL/tQtnHUIJMXDnJ5JRXCF1Z71qc3TDDuhsTpEFP3RllanM9RKF62rKGTwwyE/r
+ 3F+sOGcm/Qoo6PW/gV1WjGbEzl/FeQLN+9Cq8B6o/Q5lXLaIFwTagn+oFLmSHZSxT5wq
+ b6JzhAPMN4dgoOvUd1T3L/akyP5q6rTfPhBp8ysDtUbavt46I8knRWQ1TyRgkUNuONAt
+ qVaaz5V4bS8bcd0C+ZgUiZqe9VyiD+g9s7SdS3JyZKfqnWVaMR7XIgdMTaMdsMH6huO/
+ MRbO40lHiN8iUZ5O6HRQubJqB+jrkEfqlDhDNoF58bhwN74s2mubGrtzDOFQSagWQg9K
+ 07zQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=GZbS2xfEltGE7F6nx/Sqk3zKGRtEeNKmrbNzg2JwiAc=;
- b=pPYzMdyr0KOC/jSENTrI7Y1m88/WpcU8fLyS4Gg5a0yGGSz/8zXwKoJUpYfjh0scRc
- vREQ1Mc0UvJCuyPuOHu5q6bmGh2JFRdBPq5HuR5n5GHzu5xrT8Y7aHenV7tsMR5yqzq8
- 8sX9nYLGfZevQ90in+AX/JxeVybHHvRFbo0Tzl3I1al4IdAf+ZcpzNGJkJaaxsxXz8uc
- 1+dpfCWNC2m9xOvNSaX3GGCmf9ARHJhGFqVUCYqLDR5vxTLWNItJgJGpINnyvcj/86BF
- XKyMrDkWdmCfmK5p3kztmRPCY9giMlQUHTcdZnWYrU/bVbmbnwpvWlMI/ZAznJN8sMAk
- 3htw==
-X-Gm-Message-State: APjAAAU0BP8lCCp4Xb+su5maEyC+vt8NAOPS3gyV+WCulq6sP55ln2pR
- C2T/jQhZ2xrLKvkCBu/pmm3vQg==
-X-Google-Smtp-Source: APXvYqwNJMLkK5JvNCFW6hNtE0esgiRwTzkpNVJU4zltb0IL3k5qCFuUjWhWC1FqrZ+fqHmQWyHuQg==
-X-Received: by 2002:a17:902:d883:: with SMTP id
- b3mr1804416plz.231.1575932059858; 
- Mon, 09 Dec 2019 14:54:19 -0800 (PST)
+ bh=A4KHxg3gak/AwtAzed2CDRcu2q9WfrU2oLQqZp0iE2c=;
+ b=Lbu6Z9ccyNgSO11HUBzqPQCD445+L3vq/GC3j835ufI5eGsHBYN2TS/f8ugYXrlPkt
+ TQIZ7ZWuEtBZF1GG9syGhhuGqGxAcd71870fwHKB0Vn7jQhUlbaOT26NsqAO6JwbPvog
+ Wv0Ohy1X4fl9yMWM4/X0X3tZz9+6X3JdtyxIyP7f8eZzGtYYyMez/i6U2892wtP4V+Am
+ 0MlA0urKXU3bd52DNVMN57VGiG3jR272xpSv3tiN7ULjzlJCbdIi7a8s+0gkwl1JM3qj
+ 6MOKOmFAeeVfUERM4sA3nwF4ZJY1z0QRDYaaU4WilspaA9he6OAuvI/bElyegWnU8OCi
+ Z+Sw==
+X-Gm-Message-State: APjAAAXbKBSXc0Fvj0Gigi4eQmq7G5Ge2jHT6vlci+xtzQAskXf/6NT1
+ 26wJhJ3gDworkgUEwSSs8eaqMg==
+X-Google-Smtp-Source: APXvYqwfy57KUmDE1VA2LS08T92dACffdsdnOJYy9Qvwq4eLq3TN5C71lFIUbtBnAecTSV5jsNQ1Bg==
+X-Received: by 2002:a17:902:7884:: with SMTP id
+ q4mr30505852pll.285.1575932193897; 
+ Mon, 09 Dec 2019 14:56:33 -0800 (PST)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
  [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id a25sm499720pfo.116.2019.12.09.14.54.18
+ by smtp.gmail.com with ESMTPSA id g19sm504235pfh.134.2019.12.09.14.56.33
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 09 Dec 2019 14:54:19 -0800 (PST)
+ Mon, 09 Dec 2019 14:56:33 -0800 (PST)
 From: Kevin Hilman <khilman@baylibre.com>
-To: Jian Hu <jian.hu@amlogic.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH] arm64: dts: meson-a1: add I2C nodes
-In-Reply-To: <20191202111253.94872-1-jian.hu@amlogic.com>
-References: <20191202111253.94872-1-jian.hu@amlogic.com>
-Date: Mon, 09 Dec 2019 14:54:18 -0800
-Message-ID: <7hsgltqfdx.fsf@baylibre.com>
+To: Xingyu Chen <xingyu.chen@amlogic.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH] arm64: dts: a1: add saradc controller
+In-Reply-To: <1575358332-44866-1-git-send-email-xingyu.chen@amlogic.com>
+References: <1575358332-44866-1-git-send-email-xingyu.chen@amlogic.com>
+Date: Mon, 09 Dec 2019 14:56:32 -0800
+Message-ID: <7hpngxqfa7.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191209_145420_974498_92703190 
-X-CRM114-Status: GOOD (  14.71  )
+X-CRM114-CacheID: sfid-20191209_145634_915390_6D44B1B3 
+X-CRM114-Status: GOOD (  11.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,120 +97,48 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Rob
- Herring <robh@kernel.org>, Jianxin Pan <jianxin.pan@amlogic.com>,
- Wolfram Sang <wsa@the-dreams.de>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Jian Hu <jian.hu@amlogic.com>,
- linux-i2c@vger.kernel.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
+Cc: Qianggui Song <qianggui.song@amlogic.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Jianxin Pan <jianxin.pan@amlogic.com>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Rob Herring <robh+dt@kernel.org>, Jian Hu <jian.hu@amlogic.com>,
+ Xingyu Chen <xingyu.chen@amlogic.com>, linux-amlogic@lists.infradead.org,
+ Jonathan Cameron <jic23@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jian,
+Xingyu Chen <xingyu.chen@amlogic.com> writes:
 
-Jian Hu <jian.hu@amlogic.com> writes:
-
-> There are four I2C controllers in A1 series,
-> Share the same comptible with AXG.The I2C nodes
-> depend on pinmux and clock controller.
+> The saradc controller in Meson-A1 is the same as the Meson-G12 series SoCs,
+> so we use the same compatible string.
 >
-> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
+>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 149 ++++++++++++++++++++++
->  1 file changed, 149 insertions(+)
+> This patch is based on A1 clock patchset at [0].
+>
+> [0] https://lore.kernel.org/linux-amlogic/20191129144605.182774-1-jian.hu@amlogic.com
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 >
 > diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> index eab2ecd36aa8..d0a73d953f5e 100644
+> index 7210ad0..cad1756 100644
 > --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
 > +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> @@ -16,6 +16,13 @@
->  	#address-cells = <2>;
->  	#size-cells = <2>;
->  
-> +	aliases {
-> +		i2c0 = &i2c0;
-> +		i2c1 = &i2c1;
-> +		i2c2 = &i2c2;
-> +		i2c3 = &i2c3;
-> +	};
-> +
->  	cpus {
->  		#address-cells = <2>;
->  		#size-cells = <0>;
-> @@ -117,6 +124,46 @@
->  				};
+> @@ -93,6 +93,21 @@
+>  				clock-names = "xtal", "pclk", "baud";
+>  				status = "disabled";
 >  			};
->  
-> +			i2c0: i2c@1400 {
-> +				compatible = "amlogic,meson-axg-i2c";
-> +				reg = <0x0 0x1400 0x0 0x24>;
+> +
+> +			saradc: adc@2c00 {
+> +				compatible = "amlogic,meson-g12a-saradc",
+> +					     "amlogic,meson-saradc";
+> +				reg = <0x0 0x2c00 0x0 0x48>;
 
-The AXG DT files use 0x20 for the length.  You are using 0x24.  I don't
-see any additional registers added to the driver, so this doesn't look right.
-
-> +				interrupts = <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				clocks = <&clkc_periphs CLKID_I2C_M_A>;
-> +				status = "disabled";
-> +			};
-> +
-> +			i2c1: i2c@5c00 {
-> +				compatible = "amlogic,meson-axg-i2c";
-> +				reg = <0x0 0x5c00 0x0 0x24>;
-> +				interrupts = <GIC_SPI 68 IRQ_TYPE_EDGE_RISING>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				clocks = <&clkc_periphs CLKID_I2C_M_B>;
-> +				status = "disabled";
-> +			};
-> +
-> +			i2c2: i2c@6800 {
-> +				compatible = "amlogic,meson-axg-i2c";
-> +				reg = <0x0 0x6800 0x0 0x24>;
-> +				interrupts = <GIC_SPI 76 IRQ_TYPE_EDGE_RISING>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				clocks = <&clkc_periphs CLKID_I2C_M_C>;
-> +				status = "disabled";
-> +			};
-> +
-> +			i2c3: i2c@6c00 {
-> +				compatible = "amlogic,meson-axg-i2c";
-> +				reg = <0x0 0x6c00 0x0 0x24>;
-> +				interrupts = <GIC_SPI 78 IRQ_TYPE_EDGE_RISING>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				clocks = <&clkc_periphs CLKID_I2C_M_D>;
-> +				status = "disabled";
-> +			};
-> +
->  			uart_AO: serial@1c00 {
->  				compatible = "amlogic,meson-gx-uart",
->  					     "amlogic,meson-ao-uart";
-> @@ -171,3 +218,105 @@
->  		#clock-cells = <0>;
->  	};
->  };
-> +
-> +&periphs_pinctrl {
-> +	i2c0_f11_pins:i2c0-f11 {
-> +		mux {
-> +			groups = "i2c0_sck_f11",
-> +				"i2c0_sda_f12";
-> +			function = "i2c0";
-> +			bias-pull-up;
-> +			drive-strength-microamp = <3000>;
-
-Can you also add some comment to the changelog about the need for
-drive-strength compared to AXG.
-
-> +		};
-> +	};
+Why 0x48 here?  AXG uses 0x38 and you're not adding any more registers
+to this driver.
 
 Kevin
 
