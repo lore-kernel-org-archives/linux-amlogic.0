@@ -2,22 +2,22 @@ Return-Path: <SRS0=O3JJ=Z7=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DBAC1C04E30
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2019 22:12:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7EDE9C43603
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2019 22:13:59 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B0A18206E0
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2019 22:12:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3D752206D5
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2019 22:13:59 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AjPLuKt8";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="PLTuiULk"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B0A18206E0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="P5f2l7Ho";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="FkEM7j7v"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3D752206D5
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +26,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
 	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CZUfhyh09ZLKC8uufbgbEGNCM71hJLo2KwuopTQ7iRg=; b=AjPLuKt8y2Vtf1
-	OoxiFxBmhgvOTjV+tF6S1pawKvYldsb360CVk7K1/ZzSxowH+fbqJq5BP1N+qU2G9IMu6gf+SmEQ+
-	mjHRIBNEu3wAYZac3E6jDFdJHmYJl87pGlquRJx7yntJ0gpyApRHRmZemOvLQuvUG/1lRQZVsKPIi
-	WpAWAJHkmPFqFfmPksR0XYeRJ+Of9TfBrVaLQiZmBSAEVxieCe0cXKPKyByrCBkpXgNIFK4ep5oWr
-	YjUzMrsqpLPcWONL3gmyQ0neYlp6EhXoed/JtBopHX29lwHKQpnt9qEVvkuJwQxo5q76RChsYsTc9
-	1B7dNQQt/nmb23GbVbgw==;
+	List-Owner; bh=EafnGtC2CZn8n+QLDGZe9xpxIJlJ2nvy3I97Ha9+MoA=; b=P5f2l7HoALAvtn
+	xWtIlhwMYm8bT82CpwCk1MKXRzWg1cKzUwmoHfqNYIocpEHjdIg4Ayn1+39Yf/5KPEUSSobY1K6cM
+	0dz/rc75cRQYNGflxqitSbtOE/mRhzrxWiURoqnphqxz02+1s8MUTfdfPgRJPmxlAZBaUCMKCFSoX
+	W9F1GUEVpTZ1n3QpGPhueF5QhVAkwAG5MGzSgjlM6jszxO+xxbMCC3liMNjGBsovh/pqkoSyrUd1M
+	/de+wH7FfM756Xp9EiU9vHgRuOz/ytaFx0ocAWLcNbOsSVEjXtUivggdfysyWFIYY0CGV6xCi43gD
+	t7wOX4ifSXriY4OGBKqw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ieRGk-0006x0-6N; Mon, 09 Dec 2019 22:12:42 +0000
-Received: from mail-pl1-x642.google.com ([2607:f8b0:4864:20::642])
+	id 1ieRHu-0007GV-2Y; Mon, 09 Dec 2019 22:13:54 +0000
+Received: from mail-pf1-x444.google.com ([2607:f8b0:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ieRGg-0006vb-R9
- for linux-amlogic@lists.infradead.org; Mon, 09 Dec 2019 22:12:40 +0000
-Received: by mail-pl1-x642.google.com with SMTP id o8so6379518pls.5
- for <linux-amlogic@lists.infradead.org>; Mon, 09 Dec 2019 14:12:38 -0800 (PST)
+ id 1ieRHr-0007Fr-4J
+ for linux-amlogic@lists.infradead.org; Mon, 09 Dec 2019 22:13:53 +0000
+Received: by mail-pf1-x444.google.com with SMTP id 2so7916394pfg.12
+ for <linux-amlogic@lists.infradead.org>; Mon, 09 Dec 2019 14:13:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=ItZ6nMPESHqLIASUC8LoX6fE4/wm+TwTGtRQ1RnKUZ0=;
- b=PLTuiULkvl88lhZJ7eXEZyEeyBFYh9ogHEt4KRJu32M2cSkg+0HS26NQbqT2+JfAs8
- dFf9qlMcSwGgR4627eFALudbNGexXTuCa6SEd7v3Hx7SK9dSKEmEDuk0v3Y9NsZMgpq/
- mxKlvx6opX6J7hpzmDQ29YK/mcz6eYhMYpvY7riVO3pCebZFVxPLkDvLO1gjPrP4dbl0
- qw0SWvQc7uOLp3QQ6G2B5Umx3KsUyg6T/YMGTRGxF0aoJzaXX7Q/e5NoJnusYIyu4tta
- Y4nffcrao80vVYOpikWwtkLJbMFNjwwLDRDUfSTT/wF3gKdXO1iPaFge9FbUtvSWhNtK
- rqrg==
+ :mime-version; bh=yo0DBQP6olVYld+QqR40EIZ5CI+nDeXH2q0W73K+blw=;
+ b=FkEM7j7vlMlRR5kkXg7Lw6n3otl6GTo1gNNix7MzWjYhwNXDX5VIbIhRkHtDakXNMN
+ VOy6fpqHbaD7XOe2pxchZyHnaK7VMGuxaS6VJMBnFFR1RknopH1ZwExvX+hxzmiuSvHa
+ lRUpxSAd1n+Djf8VFnHvJKnNjuXIK1iKbP/MGsDO38YcM+ziX1JAOA7l0ykkiuqxjpR/
+ ii+k9csh4TQ6HIDkIbpzeTenjOu4sS2D1CYLNUqgQB3qBC3fs8OpHxbCqeUZGEk2z+wa
+ rdwR0E9eubjgdtpInyV9ZuSIPtEEnuNuDIFGulim0khaqEzuAz7M608sVgkrAGJ7Re40
+ z3AA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
  :message-id:mime-version;
- bh=ItZ6nMPESHqLIASUC8LoX6fE4/wm+TwTGtRQ1RnKUZ0=;
- b=EYf33nSRpOMI9nDfFjJ3dN4ygLWsKGliqM/FUHOjtbnbcv4tsav94aA7tp6GHWnBVv
- U5HAWn6HFdTVNvcNWe+NH5WoyNHNtV7gCvYlLyKMslIc896gnfaSfk6LmyUB6PFnPhok
- 8tfcLN6B8e10Az4+oShJpubOciinA6G57ddIfxLmXsHygA/zTF7/Yv6jGPbLe8IALcaE
- n1mlexGXjnn0MD0oJYOeJyir6m6GTpyclCZ6xyPRvAsouFYy2Z+0IBIw/scj/vFC9hmq
- NJ8OGU8A2AruGpwpIn9Izr0dLq24iWTq04sJ7HMvnpYeRs6Ychz8zUwpgro2/4IbfUs9
- QGyQ==
-X-Gm-Message-State: APjAAAVpmxnKXOtbfPvaaoMsRIOuSLg3PJN16pBe2qsnSp4Cje70FT6F
- jJvNhbO9cojneiN1gzzgFBZa8A==
-X-Google-Smtp-Source: APXvYqx22xb5jLxK6hTsSuOBQ53SZCEaDbusHD9ujqDQUXDe6tywX359eNJglK+iOHzOxi2uui8Ynw==
-X-Received: by 2002:a17:902:a614:: with SMTP id
- u20mr31864485plq.107.1575929557672; 
- Mon, 09 Dec 2019 14:12:37 -0800 (PST)
+ bh=yo0DBQP6olVYld+QqR40EIZ5CI+nDeXH2q0W73K+blw=;
+ b=LEOCEp3eoiNxgvtDATjJP9dKbVFe+/9XNG6XIFn8MQWvkSjVUjk8rs7tabbQs41QE+
+ lQ34klOmTRoz3UUPUnw9o/RKbJsVRS0VZnmyYQeHj/vhIQaqCJmnz6q9NpJmW4GKQZia
+ G5YOS60pUQUaWIJAqYu5lFVJ/jH+huZE9YWutga0GA/6SIReXoXSih1Yaq/lDG0Bfk2D
+ 7t0X0yCg15J2OITUS2+aYpTIgSqESXZfiltN3Up7d4rKExYtJKwrp1EFgBW3JoBMuS7X
+ 2yfbSMxiWg70y4v2yYPOpcpCBC01jBpdHO4F35iDGcWXkvdS1toR0IOK03BIDDHKNy/x
+ gvsw==
+X-Gm-Message-State: APjAAAVuElRD1ieq13eSgj7Mp0tQV44gXmY2voQagkU5gANvL0yrjUc/
+ aOm7KIKCfKFIOJY6lip7KgrWUA==
+X-Google-Smtp-Source: APXvYqznSmUwaFhrmZSWkKFtOvv3dESgDaEoltHBEfbR1FsrJQp0ICXI9xzzy4t1Ej6BfYNGIOHqmg==
+X-Received: by 2002:a63:d901:: with SMTP id r1mr21047882pgg.328.1575929630414; 
+ Mon, 09 Dec 2019 14:13:50 -0800 (PST)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
  [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id q13sm345574pjc.4.2019.12.09.14.12.36
+ by smtp.gmail.com with ESMTPSA id j3sm477409pfi.8.2019.12.09.14.13.49
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 09 Dec 2019 14:12:37 -0800 (PST)
+ Mon, 09 Dec 2019 14:13:49 -0800 (PST)
 From: Kevin Hilman <khilman@baylibre.com>
-To: Anand Moon <linux.amoon@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [RFC-next 0/1] Odroid C2: Enable DVFS for cpu
-In-Reply-To: <20191101143126.2549-1-linux.amoon@gmail.com>
-References: <20191101143126.2549-1-linux.amoon@gmail.com>
-Date: Mon, 09 Dec 2019 14:12:36 -0800
-Message-ID: <7hfthtrvvv.fsf@baylibre.com>
+To: Neil Armstrong <narmstrong@baylibre.com>,
+ Qianggui Song <qianggui.song@amlogic.com>,
+ Linus Walleij <linus.walleij@linaro.org>, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v6 3/3] arm64: dts: meson: a1: add pinctrl controller
+ support
+In-Reply-To: <5fb2a7f9-bd5b-2ac2-0158-cae1ca743bf9@baylibre.com>
+References: <1573819429-6937-1-git-send-email-qianggui.song@amlogic.com>
+ <1573819429-6937-4-git-send-email-qianggui.song@amlogic.com>
+ <5fb2a7f9-bd5b-2ac2-0158-cae1ca743bf9@baylibre.com>
+Date: Mon, 09 Dec 2019 14:13:49 -0800
+Message-ID: <7hblshrvtu.fsf@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191209_141238_904828_6944F6E6 
-X-CRM114-Status: UNSURE (   8.47  )
+X-CRM114-CacheID: sfid-20191209_141351_172589_CB6F42A9 
+X-CRM114-Status: UNSURE (   8.80  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -98,43 +100,69 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+ Hanjie Lin <hanjie.lin@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, Carlo Caione <carlo@caione.org>,
+ linux-amlogic@lists.infradead.org, Xingyu Chen <xingyu.chen@amlogic.com>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Anand Moon <linux.amoon@gmail.com> writes:
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-> Some how this patch got lost, so resend this again.
+> On 15/11/2019 13:03, Qianggui Song wrote:
+>> add peripheral pinctrl controller to a1 SoC
+>> 
+>> Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
+>> ---
+>>  arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 18 ++++++++++++++++++
+>>  1 file changed, 18 insertions(+)
+>> 
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+>> index 7210ad049d1d..0965259af869 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+>> @@ -5,6 +5,7 @@
+>>  
+>>  #include <dt-bindings/interrupt-controller/irq.h>
+>>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +#include <dt-bindings/gpio/meson-a1-gpio.h>
+>>  
+>>  / {
+>>  	compatible = "amlogic,a1";
+>> @@ -74,6 +75,23 @@
+>>  			#size-cells = <2>;
+>>  			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x1000000>;
+>>  
+>> +			periphs_pinctrl: pinctrl@0400 {
+>> +				compatible = "amlogic,meson-a1-periphs-pinctrl";
+>> +				#address-cells = <2>;
+>> +				#size-cells = <2>;
+>> +				ranges;
+>> +
+>> +				gpio: bank@0400 {
+>> +					reg = <0x0 0x0400 0x0 0x003c>,
+>> +					      <0x0 0x0480 0x0 0x0118>;
+>> +					reg-names = "mux", "gpio";
+>> +					gpio-controller;
+>> +					#gpio-cells = <2>;
+>> +					gpio-ranges = <&periphs_pinctrl 0 0 62>;
+>> +				};
+>> +
+>> +			};
+>> +
+>>  			uart_AO: serial@1c00 {
+>>  				compatible = "amlogic,meson-gx-uart",
+>>  					     "amlogic,meson-ao-uart";
+>> 
 >
-> [0] https://patchwork.kernel.org/patch/11136545/
->
-> This patch enable DVFS on GXBB Odroid C2.
->
-> DVFS has been tested by running the arm64 cpuburn
-> [1] https://github.com/ssvb/cpuburn-arm/blob/master/cpuburn-a53.S
-> PM-QA testing
-> [2] https://git.linaro.org/power/pm-qa.git [cpufreq testcase]
->
-> Tested on latest U-Boot 2019.07-1 (Aug 01 2019 - 23:58:01 +0000) Arch Linux ARM
+> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Have you tested with the Harkernel u-boot?
-
-Last I remember, enabling CPUfreq will cause system hangs with the
-Hardkernel u-boot because of improperly enabled frequencies, so I'm not
-terribly inclined to merge this patch.
-
-> Patch based on my next-20191031 for 5.5.x kernel.
-> Hope this is not late entry.
-
-Re: "too late".  FYI... when you post things as RFC, it means you're
-looking for comments (Request For Comment) but that it's not intended
-for merging.
-
-I didn't see any comments on this, but I also didn't see a non-RFC
-follow-up, so I didn't queue it for v5.5.
+Queued for v5.6 with Neil's tag.
 
 Kevin
 
