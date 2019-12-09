@@ -2,90 +2,94 @@ Return-Path: <SRS0=O3JJ=Z7=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4EE46C43603
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2019 14:39:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D368FC43603
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2019 14:44:36 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 223F32080D
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2019 14:39:02 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 96EA7207FD
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2019 14:44:36 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="s9IRwZUy";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="taKlf62F"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 223F32080D
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="aVQYkuRo";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jn4MUAeB"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 96EA7207FD
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=8cD/94wW6B2smv8PhAtjC7I4eJpBccfljzgfPd/EmPA=; b=s9IRwZUyQpt2R5
-	m04rWqr93/1Hy1GoB5LQmHAZifsZhLn5RtFtmjCI7RTpBTZUs1LRF0ALQJbfc4sqMgmjaTQr7LBvQ
-	IG31trqAO+z5vFmi19WETYrtPiz+1yBlMnohoXFMHxpMyVUeoB3pWtbuBkivv/heF1Fsl7zceLNMY
-	mBwvET6pwLVM/fapsIrW/KfgHmlU6VBT2cVE9z+k+de78NotIj6JWRenhHs2iy9G8p7lqR8ke15sU
-	8l8jxNs+lHo+jV991l2oEeBWeFqqNJBAKUg3/+4BfwEPTF/qa55YZHiZTrrFuyo9tpYAhLPxvN8O9
-	7rQlWwcGJZaQVi+RAEgg==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=Iv/fCCxJGQW3fqdu/gd3PVHtVnno+XiCFQ/hBXSejNI=; b=aVQYkuRoss3KymVrgLP3u+f6L
+	SLUHyJzxkyG2rLED/nApeF9F/qc22gn4nGZLHTdNQZNSmrrQko4gSvR5vqvubYUQH2jou+eeCE77g
+	n8K5AghBizNvkygaQo6kqg/pMxteYlH4VzmgpfI8lfcZ4DwFVsPUw2/tVxFT7ZCYoYDIkLgyayL2f
+	yNMnlyPFRbRrASeZUgyRO1puj8v9LD1W3zPxUOQKRRZF0ObsdssvLWQNu0Cmj0Z3D5RsDM+YZiobp
+	Kk9+R59WwiNaNDfYrQdEFMUhC69Yt5TG2IKXFvOWXnSxYVpFQVApaFCKQo0j6GAsUOSv9rubnB3PV
+	MUOS++Ueg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ieKBb-000231-Fk; Mon, 09 Dec 2019 14:38:55 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1ieKH0-0004TP-JK; Mon, 09 Dec 2019 14:44:30 +0000
+Received: from mail-pf1-x442.google.com ([2607:f8b0:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ieKBR-0001tE-Jr
- for linux-amlogic@lists.infradead.org; Mon, 09 Dec 2019 14:38:48 +0000
-Received: by mail-wm1-x341.google.com with SMTP id b11so15744448wmj.4
- for <linux-amlogic@lists.infradead.org>; Mon, 09 Dec 2019 06:38:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=5f00ndsZ1k2MFbpZ0LNbhanpj7ZrY6XSbUCoYVs0tqA=;
- b=taKlf62F59GYXHBu9CK3loD6ZFOWkfd2nFPLH7KNYgVvbHqMy4TYxNvmBcJcRClWyI
- vRpxM9kWdmsurDf/ZftCPCzMydqW+3Ie4aT3UUc8aHXLwqEphm/jJFYpLoLr57a6RmAM
- GjJzYCCvdfBVMoVAU3K+mlCTpTQsYXVG0J0vQCCUkQx9vxp8RArIislNaebz2OnxFuEj
- V+a9MqtjlqbJaNwyOhocMQa7ygeyt1B9ZtpvKBwn2EIdMuUlhizskOZpjIH5ZolYExcj
- HQK/Ayj3RsJTC0PyL69UqRMpnW7Ohd40ZfTLZdz60fPQz9nUCow+AjEqWvjaSpPoKpO4
- zC1g==
+ id 1ieKGd-00044y-Vs; Mon, 09 Dec 2019 14:44:10 +0000
+Received: by mail-pf1-x442.google.com with SMTP id 4so7337099pfz.9;
+ Mon, 09 Dec 2019 06:44:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=sender:subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=h55xV1JUKoiB6QW2vaNEH5xJwQ0EHPReaPgdnu6qzo0=;
+ b=Jn4MUAeBJVPgcOqvY3S2u3i3jlGbO293BT5opgCtEw64cQeGJ6OCionpqyHAnE9bH/
+ UnTVzQF4EofxR9QEtVrIqsIwilvn3rEItJf/vRlY/e5vbcKMefEw3fSPXfs12o1enrgv
+ woCW2hnOgKdkasN5t/R1W9Px7bJY5YSEIppBoUjMYB6g/PisLfV9BT+z0Rqzw/7pSLe7
+ WfJpkdvfWHbVhqVrA5CoJzdaobWwjrDveuYB+pk725IFwICuDNqT4kr3eLddJXCoYvQk
+ fkKVGevP70XBiru7Ht/mXB+mzhLKZRmecGmN4DIYoVT5ZbFKVZCPd4DokKC3uLRYw0mU
+ vjdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=5f00ndsZ1k2MFbpZ0LNbhanpj7ZrY6XSbUCoYVs0tqA=;
- b=AoUcaId56mkwGdTWEfADlf+iYEJyP3iFIi31qwqvwjresh9waGl591UE04gbB96SWK
- RBN788oTkez9LV1uZTmX51LQzLIkksghrrSfKbCd3kztMKw4VOz+7uxw5XDC9wlDXjUV
- +3Bg0RZBKxQivTT1uM6/uhaTNA8Lu6zMhJ3sEh0PbV5yQJQ8SJuLlEop7hwIWvDXz6c/
- n6kESEoktCNFKs8ftAN8XnI9KMDDF94ze8E3hmAZ6ghFKvTLQgNfv6N/iavDn+0Q4DoM
- LqD6zTYQEu6dzYB5ut2TuEvkQvq6+xG3wNJI60HZZh7Vv93D9Gq/YhiLMrsPat5HBPuh
- Bb8w==
-X-Gm-Message-State: APjAAAXINOchLSdyf/7eqbB1UX6P5Ao6nlBjzBQsKbIx+ZKMGjHVWqae
- 7kX8m2K97E8QzQLoAFpCV9ETvg==
-X-Google-Smtp-Source: APXvYqyZlpiLN0/rvSZ0q2sbrNN6HKdhVyOyW7x5D1bwqlswfFNTMy+h/uo2eT38+sww8RNmOFrVZQ==
-X-Received: by 2002:a7b:c761:: with SMTP id x1mr24386449wmk.37.1575902324172; 
- Mon, 09 Dec 2019 06:38:44 -0800 (PST)
-Received: from starbuck.baylibre.local
- (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.googlemail.com with ESMTPSA id a1sm1904165wrr.80.2019.12.09.06.38.43
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 09 Dec 2019 06:38:43 -0800 (PST)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH v2 4/4] arm64: dts: meson: add libretech-pc boards support
-Date: Mon,  9 Dec 2019 15:38:36 +0100
-Message-Id: <20191209143836.825990-5-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20191209143836.825990-1-jbrunet@baylibre.com>
-References: <20191209143836.825990-1-jbrunet@baylibre.com>
+ h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=h55xV1JUKoiB6QW2vaNEH5xJwQ0EHPReaPgdnu6qzo0=;
+ b=j5fjSxj7cqMfNrXMD25ExQBZTdlSsRQRO1k6+0v2S4HMBG8kA3fDZqYINxbVqKD3LZ
+ WKplGtFU64BM9EtKmgX33r9iNfZqVdLnGKWWOGEYxSA5ru1LpZ+2w0koRQWZ2E5Aoybw
+ yuflwvmtIb3OCBybdsHXrLAKzDRMcDGzJPcO3M+IxnLmr7UIzRV+RQJCbuLCUrKJL/Hq
+ 46oA1KTVe3I92XdGiyaLN1PvR1+gyMRNQCwBwYdpzg+0n7LEemiBG6idJsnIu8lP8k9v
+ yCYr0dyTntZWurvqUI6zTIoOLwMmHUeX1bxujmmYULWFN8yUPUVRNX6Gifp4DzfErDao
+ 01wA==
+X-Gm-Message-State: APjAAAXs9vYAQ8OEBRiMgEeH119fUd1jfjQ7mt4vtkKcp/9AT2o2dtJ5
+ wpnWhxSEFzPwuSTd4dA0A50=
+X-Google-Smtp-Source: APXvYqzGnOCt9CvRtMuAxjqcYyLigNB9xts1YWYYPifV2LPZrDWALZOP5kUSLY0mB70BBxA0MRoqXg==
+X-Received: by 2002:aa7:9313:: with SMTP id 19mr28670167pfj.160.1575902646933; 
+ Mon, 09 Dec 2019 06:44:06 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+ by smtp.gmail.com with ESMTPSA id
+ q6sm26940255pfh.127.2019.12.09.06.44.05
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 09 Dec 2019 06:44:06 -0800 (PST)
+Subject: Re: [PATCH v4 2/2] watchdog: add meson secure watchdog driver
+To: Xingyu Chen <xingyu.chen@amlogic.com>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Kevin Hilman <khilman@baylibre.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, Rob Herring <robh+dt@kernel.org>
+References: <1574685218-31164-1-git-send-email-xingyu.chen@amlogic.com>
+ <1574685218-31164-3-git-send-email-xingyu.chen@amlogic.com>
+From: Guenter Roeck <linux@roeck-us.net>
+Message-ID: <53661e11-b5b2-b2e8-47b6-9b357beff375@roeck-us.net>
+Date: Mon, 9 Dec 2019 06:44:04 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.1
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+In-Reply-To: <1574685218-31164-3-git-send-email-xingyu.chen@amlogic.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191209_063845_763959_0E6BE2DB 
-X-CRM114-Status: GOOD (  17.32  )
+X-CRM114-CacheID: sfid-20191209_064408_059034_0E1B196B 
+X-CRM114-Status: GOOD (  26.79  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,519 +101,292 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="us-ascii"
+Cc: Qianggui Song <qianggui.song@amlogic.com>, linux-watchdog@vger.kernel.org,
+ Jianxin Pan <jianxin.pan@amlogic.com>, linux-kernel@vger.kernel.org,
+ Jian Hu <jian.hu@amlogic.com>, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add support for the the amlogic libretech-pc platform, aka tartiflette.
-There is 2 variants of the platform, one with the s905d, the other with
-the s912.
+On 11/25/19 4:33 AM, Xingyu Chen wrote:
+> The watchdog controller on the Meson-A/C series SoCs is moved to secure
+> world, watchdog operation needs to be done in secure EL3 mode via ATF,
+> Non-secure world can call SMC instruction to trap to AFT for watchdog
+> operation.
+> 
+> Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
+> ---
+>   drivers/watchdog/Kconfig         |  16 +++
+>   drivers/watchdog/Makefile        |   1 +
+>   drivers/watchdog/meson_sec_wdt.c | 207 +++++++++++++++++++++++++++++++++++++++
+>   3 files changed, 224 insertions(+)
+>   create mode 100644 drivers/watchdog/meson_sec_wdt.c
+> 
+> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
+> index 58e7c10..e305fba 100644
+> --- a/drivers/watchdog/Kconfig
+> +++ b/drivers/watchdog/Kconfig
+> @@ -826,6 +826,22 @@ config MESON_GXBB_WATCHDOG
+>   	  To compile this driver as a module, choose M here: the
+>   	  module will be called meson_gxbb_wdt.
+>   
+> +config MESON_SEC_WATCHDOG
+> +	tristate "Amlogic Meson Secure watchdog support"
+> +	depends on MESON_SM
+> +	select WATCHDOG_CORE
+> +	help
+> +	  The watchdog controller on the Meson-A/C series SoCs is moved to
+> +	  secure world, watchdog operation needs to be done in secure EL3
+> +	  mode via ATF, non-secure world can call SMC instruction to trap
+> +	  to ATF for the watchdog operation.
+> +
+> +	  Say Y here if watchdog controller on Meson SoCs is located in
+> +	  secure world.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called meson_sec_wdt.
+> +
+>   config MESON_WATCHDOG
+>   	tristate "Amlogic Meson SoCs watchdog support"
+>   	depends on ARCH_MESON || COMPILE_TEST
+> diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
+> index 2ee352b..5e6b73d 100644
+> --- a/drivers/watchdog/Makefile
+> +++ b/drivers/watchdog/Makefile
+> @@ -78,6 +78,7 @@ obj-$(CONFIG_QCOM_WDT) += qcom-wdt.o
+>   obj-$(CONFIG_BCM_KONA_WDT) += bcm_kona_wdt.o
+>   obj-$(CONFIG_TEGRA_WATCHDOG) += tegra_wdt.o
+>   obj-$(CONFIG_MESON_GXBB_WATCHDOG) += meson_gxbb_wdt.o
+> +obj-$(CONFIG_MESON_SEC_WATCHDOG) += meson_sec_wdt.o
+>   obj-$(CONFIG_MESON_WATCHDOG) += meson_wdt.o
+>   obj-$(CONFIG_MEDIATEK_WATCHDOG) += mtk_wdt.o
+>   obj-$(CONFIG_DIGICOLOR_WATCHDOG) += digicolor_wdt.o
+> diff --git a/drivers/watchdog/meson_sec_wdt.c b/drivers/watchdog/meson_sec_wdt.c
+> new file mode 100644
+> index 00000000..c022d6d
+> --- /dev/null
+> +++ b/drivers/watchdog/meson_sec_wdt.c
+> @@ -0,0 +1,207 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+> + * Author: Xingyu Chen <xingyu.chen@amlogic.com>
+> + *
+> + */
+> +#include <linux/err.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/types.h>
+> +#include <linux/watchdog.h>
+> +#include <linux/firmware/meson/meson_sm.h>
+> +
+> +#define MESON_SIP_WDT_DISABLE		0x1
+> +#define MESON_SIP_WDT_ENABLE		0x2
+> +#define MESON_SIP_WDT_PING		0x3
+> +#define MESON_SIP_WDT_INIT		0x4
+> +#define MESON_SIP_WDT_RESETNOW		0x5
+> +#define MESON_SIP_WDT_SETTIMEOUT	0x6
+> +#define MESON_SIP_WDT_GETTIMELEFT	0x7
+> +
+> +#define DEFAULT_TIMEOUT			30 /* seconds */
+> +
+> +/*
+> + * Watchdog timer tick is set to 1ms in secfw side, and tick count is
+> + * stored in the bit[16-31] of WATCHDOG_CNT register, so the maximum
+> + * timeout value is 0xffff ms.
+> + */
+> +#define MAX_TIMEOUT_MS			0xFFFF
+> +#define DRV_NAME			"meson-sec-wdt"
+> +
+> +static struct platform_device *platform_device;
+> +struct meson_sec_wdt {
+> +	struct watchdog_device wdt_dev;
+> +	struct meson_sm_firmware *fw;
+> +};
+> +
+> +static int meson_sec_wdt_start(struct watchdog_device *wdt_dev)
+> +{
+> +	struct meson_sec_wdt *data = watchdog_get_drvdata(wdt_dev);
+> +
+> +	return meson_sm_call(data->fw, SM_A1_WATCHDOG_OPS, NULL,
+> +			     MESON_SIP_WDT_ENABLE, 0, 0, 0, 0);
+> +}
+> +
+> +static int meson_sec_wdt_stop(struct watchdog_device *wdt_dev)
+> +{
+> +	struct meson_sec_wdt *data = watchdog_get_drvdata(wdt_dev);
+> +
+> +	return meson_sm_call(data->fw, SM_A1_WATCHDOG_OPS, NULL,
+> +			     MESON_SIP_WDT_DISABLE, 0, 0, 0, 0);
+> +}
+> +
+> +static int meson_sec_wdt_ping(struct watchdog_device *wdt_dev)
+> +{
+> +	struct meson_sec_wdt *data = watchdog_get_drvdata(wdt_dev);
+> +
+> +	return meson_sm_call(data->fw, SM_A1_WATCHDOG_OPS, NULL,
+> +			     MESON_SIP_WDT_PING, 0, 0, 0, 0);
+> +}
+> +
+> +static int meson_sec_wdt_set_timeout(struct watchdog_device *wdt_dev,
+> +				     unsigned int timeout)
+> +{
+> +	struct meson_sec_wdt *data = watchdog_get_drvdata(wdt_dev);
+> +
+> +	wdt_dev->timeout = timeout;
+> +
+> +	return meson_sm_call(data->fw, SM_A1_WATCHDOG_OPS, NULL,
+> +			     MESON_SIP_WDT_SETTIMEOUT,
+> +			     wdt_dev->timeout * 1000, 0, 0, 0);
+> +}
+> +
+> +static unsigned int meson_sec_wdt_get_timeleft(struct watchdog_device *wdt_dev)
+> +{
+> +	int ret;
+> +	unsigned int timeleft;
+> +	struct meson_sec_wdt *data = watchdog_get_drvdata(wdt_dev);
+> +
+> +	ret = meson_sm_call(data->fw, SM_A1_WATCHDOG_OPS, &timeleft,
+> +			    MESON_SIP_WDT_GETTIMELEFT, 0, 0, 0, 0);
+> +
+> +	if (ret)
+> +		return 0;
+> +
+> +	return timeleft;
+> +}
+> +
+> +static const struct watchdog_ops meson_sec_wdt_ops = {
+> +	.start = meson_sec_wdt_start,
+> +	.stop = meson_sec_wdt_stop,
+> +	.ping = meson_sec_wdt_ping,
+> +	.set_timeout = meson_sec_wdt_set_timeout,
+> +	.get_timeleft = meson_sec_wdt_get_timeleft,
+> +};
+> +
+> +static const struct watchdog_info meson_sec_wdt_info = {
+> +	.identity = "Meson Secure Watchdog Timer",
+> +	.options = WDIOF_SETTIMEOUT | WDIOF_KEEPALIVEPING | WDIOF_MAGICCLOSE,
+> +};
+> +
+> +static int __maybe_unused meson_sec_wdt_resume(struct device *dev)
+> +{
+> +	struct meson_sec_wdt *data = dev_get_drvdata(dev);
+> +
+> +	if (watchdog_active(&data->wdt_dev))
+> +		return meson_sec_wdt_start(&data->wdt_dev);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused meson_sec_wdt_suspend(struct device *dev)
+> +{
+> +	struct meson_sec_wdt *data = dev_get_drvdata(dev);
+> +
+> +	if (watchdog_active(&data->wdt_dev))
+> +		return meson_sec_wdt_stop(&data->wdt_dev);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct dev_pm_ops meson_sec_wdt_pm_ops = {
+> +	SET_SYSTEM_SLEEP_PM_OPS(meson_sec_wdt_suspend, meson_sec_wdt_resume)
+> +};
+> +
+> +static int meson_sec_wdt_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct meson_sec_wdt *data;
+> +	struct device_node *sm_np;
+> +	int ret;
+> +
+> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	sm_np = of_find_compatible_node(NULL, NULL, "amlogic,meson-gxbb-sm");
+> +	if (!sm_np) {
+> +		dev_err(&pdev->dev, "no secure-monitor node\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	data->fw = meson_sm_get(sm_np);
+> +	of_node_put(sm_np);
+> +	if (!data->fw)
+> +		return -EPROBE_DEFER;
+> +
+> +	platform_set_drvdata(pdev, data);
+> +
+> +	data->wdt_dev.parent = dev;
+> +	data->wdt_dev.info = &meson_sec_wdt_info;
+> +	data->wdt_dev.ops = &meson_sec_wdt_ops;
+> +	data->wdt_dev.max_hw_heartbeat_ms = MAX_TIMEOUT_MS;
+> +	data->wdt_dev.min_timeout = 1;
+> +	data->wdt_dev.timeout = DEFAULT_TIMEOUT;
+> +	watchdog_set_drvdata(&data->wdt_dev, data);
+> +
+> +	ret = meson_sm_call(data->fw, SM_A1_WATCHDOG_OPS, NULL,
+> +			    MESON_SIP_WDT_INIT,
+> +			    data->wdt_dev.timeout * 1000, 0, 0, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	watchdog_stop_on_reboot(&data->wdt_dev);
+> +
+> +	return devm_watchdog_register_device(dev, &data->wdt_dev);
+> +}
+> +
+> +static struct platform_driver meson_sec_wdt_driver = {
+> +	.probe	= meson_sec_wdt_probe,
+> +	.driver = {
+> +		.name = DRV_NAME,
+> +		.pm = &meson_sec_wdt_pm_ops,
+> +	},
+> +};
+> +
+> +static int __init meson_sec_wdt_init(void)
+> +{
+> +	int ret;
+> +
+> +	ret = platform_driver_register(&meson_sec_wdt_driver);
+> +	if (ret)
+> +		return ret;
+> +
+> +	platform_device = platform_device_register_simple(DRV_NAME,
+> +							  -1, NULL, 0);
+> +	if (IS_ERR(platform_device)) {
+> +		ret = PTR_ERR(platform_device);
+> +		platform_driver_unregister(&meson_sec_wdt_driver);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static void __exit meson_sec_wdt_exit(void)
+> +{
+> +	platform_device_unregister(platform_device);
+> +	platform_driver_unregister(&meson_sec_wdt_driver);
+> +}
+> +
+> +module_init(meson_sec_wdt_init);
+> +module_exit(meson_sec_wdt_exit);
+> +
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/Makefile          |   2 +
- .../dts/amlogic/meson-gx-libretech-pc.dtsi    | 375 ++++++++++++++++++
- .../amlogic/meson-gxl-s905d-libretech-pc.dts  |  16 +
- .../amlogic/meson-gxm-s912-libretech-pc.dts   |  62 +++
- 4 files changed, 455 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxl-s905d-libretech-pc.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-s912-libretech-pc.dts
+Driver instantiation is wrong. It tries to instantiate itself as soon
+as the module is loaded and then it bails out in the probe funmction.
+It should be instantiated either through a devicetree node or through
+some platform code, but it should not instantiate itself. If there
+is no watchdog node, the driver needs to be instantiated from
+drivers/firmware/meson/meson_sm.c.
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 63400538d39f..6071a4081eb2 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -29,11 +29,13 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-phicomm-n1.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s805x-p241.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-p281.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905w-tx3-mini.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905d-libretech-pc.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-khadas-vim2.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-nexbox-a1.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-q200.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-q201.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-rbox-pro.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-gxm-s912-libretech-pc.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-vega-s96.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-khadas-vim3l.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi
-new file mode 100644
-index 000000000000..248b018c83d5
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gx-libretech-pc.dtsi
-@@ -0,0 +1,375 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2019 BayLibre SAS.
-+ * Author: Jerome Brunet <jbrunet@baylibre.com>
-+ */
-+
-+/* Libretech Amlogic GX PC form factor - AKA: Tartiflette */
-+
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	adc-keys {
-+		compatible = "adc-keys";
-+		io-channels = <&saradc 0>;
-+		io-channel-names = "buttons";
-+		keyup-threshold-microvolt = <1800000>;
-+
-+		update-button {
-+			label = "update";
-+			linux,code = <KEY_VENDOR>;
-+			press-threshold-microvolt = <1300000>;
-+		};
-+	};
-+
-+	aliases {
-+		serial0 = &uart_AO;
-+		ethernet0 = &ethmac;
-+		spi0 = &spifc;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	cvbs-connector {
-+		compatible = "composite-video-connector";
-+		status = "disabled";
-+
-+		port {
-+			cvbs_connector_in: endpoint {
-+				remote-endpoint = <&cvbs_vdac_out>;
-+			};
-+		};
-+	};
-+
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible = "mmc-pwrseq-emmc";
-+		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_tmds_out>;
-+			};
-+		};
-+	};
-+
-+	gpio-keys-polled {
-+		compatible = "gpio-keys-polled";
-+		poll-interval = <100>;
-+
-+		power-button {
-+			label = "power";
-+			linux,code = <KEY_POWER>;
-+			gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x80000000>;
-+	};
-+
-+	ao_5v: regulator-ao_5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "AO_5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&dc_in>;
-+		regulator-always-on;
-+	};
-+
-+	dc_in: regulator-dc_in {
-+		compatible = "regulator-fixed";
-+		regulator-name = "DC_IN";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		green {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_DISK_ACTIVITY;
-+			gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "disk-activity";
-+		};
-+
-+		blue {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio GPIODV_28 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			panic-indicator;
-+		};
-+	};
-+
-+	vcc_card: regulator-vcc_card {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_CARD";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vddio_ao3v3>;
-+
-+		gpio = <&gpio GPIODV_4 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	vcc5v: regulator-vcc5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&ao_5v>;
-+
-+		gpio = <&gpio GPIOH_3 GPIO_OPEN_DRAIN>;
-+	};
-+
-+	vddio_ao18: regulator-vddio_ao18 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_AO18";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&ao_5v>;
-+		regulator-always-on;
-+	};
-+
-+	vddio_ao3v3: regulator-vddio_ao3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_AO3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&ao_5v>;
-+		regulator-always-on;
-+	};
-+
-+	vddio_boot: regulator-vddio_boot {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDDIO_BOOT";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vddio_ao3v3>;
-+		regulator-always-on;
-+	};
-+
-+	vddio_card: regulator-vddio-card {
-+		compatible = "regulator-gpio";
-+		regulator-name = "VDDIO_CARD";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpios = <&gpio GPIODV_5 GPIO_ACTIVE_HIGH>;
-+		gpios-states = <0>;
-+
-+		states = <3300000 0>,
-+			 <1800000 1>;
-+
-+		regulator-settling-time-up-us = <200>;
-+		regulator-settling-time-down-us = <50000>;
-+	};
-+};
-+
-+&cec_AO {
-+	pinctrl-0 = <&ao_cec_pins>;
-+	pinctrl-names = "default";
-+	hdmi-phandle = <&hdmi_tx>;
-+	status = "okay";
-+};
-+
-+&cvbs_vdac_port {
-+	cvbs_vdac_out: endpoint {
-+		remote-endpoint = <&cvbs_connector_in>;
-+	};
-+};
-+
-+&ethmac {
-+	pinctrl-0 = <&eth_pins>, <&eth_phy_irq_pins>;
-+	pinctrl-names = "default";
-+	phy-handle = <&external_phy>;
-+	amlogic,tx-delay-ns = <2>;
-+	phy-mode = "rgmii";
-+	status = "okay";
-+};
-+
-+&external_mdio {
-+	external_phy: ethernet-phy@0 {
-+		reg = <0>;
-+		max-speed = <1000>;
-+		reset-assert-us = <10000>;
-+		reset-deassert-us = <30000>;
-+		reset-gpios = <&gpio GPIOZ_14 GPIO_ACTIVE_LOW>;
-+		interrupt-parent = <&gpio_intc>;
-+		interrupts = <25 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+};
-+
-+&pinctrl_periphs {
-+	/*
-+	 * Make sure the reset pin of the usb HUB is driven high to take
-+	 * it out of reset.
-+	 */
-+	usb1_rst_pins: usb1_rst_irq {
-+		mux {
-+			groups = "GPIODV_3";
-+			function = "gpio_periphs";
-+			bias-disable;
-+			output-high;
-+		};
-+	};
-+
-+	/* Make sure the phy irq pin is properly configured as input */
-+	eth_phy_irq_pins: eth_phy_irq {
-+		mux {
-+			groups = "GPIOZ_15";
-+			function = "gpio_periphs";
-+			bias-disable;
-+			output-disable;
-+		};
-+	};
-+};
-+
-+&hdmi_tx {
-+	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
-+	pinctrl-names = "default";
-+	hdmi-supply = <&vcc5v>;
-+	status = "okay";
-+};
-+
-+&hdmi_tx_tmds_port {
-+	hdmi_tx_tmds_out: endpoint {
-+		remote-endpoint = <&hdmi_connector_in>;
-+	};
-+};
-+
-+&ir {
-+	pinctrl-0 = <&remote_input_ao_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&i2c_C {
-+	pinctrl-0 = <&i2c_c_dv18_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	rtc: rtc@51 {
-+		reg = <0x51>;
-+		compatible = "nxp,pcf8563";
-+		#clock-cells = <0>;
-+		clock-output-names = "rtc_clkout";
-+	};
-+};
-+
-+&pwm_AO_ab {
-+	pinctrl-0 = <&pwm_ao_a_3_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&clkc CLKID_FCLK_DIV4>;
-+	clock-names = "clkin0";
-+	status = "okay";
-+};
-+
-+&pwm_ab {
-+	pinctrl-0 = <&pwm_b_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&clkc CLKID_FCLK_DIV4>;
-+	clock-names = "clkin0";
-+	status = "okay";
-+};
-+
-+&pwm_ef {
-+	pinctrl-0 = <&pwm_e_pins>, <&pwm_f_clk_pins>;
-+	pinctrl-names = "default";
-+	clocks = <&clkc CLKID_FCLK_DIV4>;
-+	clock-names = "clkin0";
-+	status = "okay";
-+};
-+
-+&saradc {
-+	vref-supply = <&vddio_ao18>;
-+	status = "okay";
-+};
-+
-+/* SD card */
-+&sd_emmc_b {
-+	pinctrl-0 = <&sdcard_pins>;
-+	pinctrl-1 = <&sdcard_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	sd-uhs-sdr12;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr50;
-+	sd-uhs-ddr50;
-+	max-frequency = <200000000>;
-+	disable-wp;
-+
-+	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
-+
-+	vmmc-supply = <&vcc_card>;
-+	vqmmc-supply = <&vddio_card>;
-+
-+	status = "okay";
-+};
-+
-+/* eMMC */
-+&sd_emmc_c {
-+	pinctrl-0 = <&emmc_pins>;
-+	pinctrl-1 = <&emmc_clk_gate_pins>;
-+	pinctrl-names = "default", "clk-gate";
-+
-+	bus-width = <8>;
-+	cap-mmc-highspeed;
-+	mmc-ddr-1_8v;
-+	mmc-hs200-1_8v;
-+	max-frequency = <200000000>;
-+	disable-wp;
-+
-+	mmc-pwrseq = <&emmc_pwrseq>;
-+	vmmc-supply = <&vddio_ao3v3>;
-+	vqmmc-supply = <&vddio_boot>;
-+
-+	status = "okay";
-+};
-+
-+&spifc {
-+	pinctrl-0 = <&nor_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	gd25lq128: spi-flash@0 {
-+		compatible = "jedec,spi-nor";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		reg = <0>;
-+		spi-max-frequency = <12000000>;
-+	};
-+};
-+
-+&uart_AO {
-+	pinctrl-0 = <&uart_ao_a_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	status = "okay";
-+};
-+
-+&usb2_phy0 {
-+	pinctrl-0 = <&usb1_rst_pins>;
-+	pinctrl-names = "default";
-+	phy-supply = <&vcc5v>;
-+};
-+
-+&usb2_phy1 {
-+	phy-supply = <&vcc5v>;
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-libretech-pc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-libretech-pc.dts
-new file mode 100644
-index 000000000000..100a1cfeea15
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-libretech-pc.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2019 BayLibre SAS. All rights reserved.
-+ * Author: Jerome Brunet <jbrunet@baylibre.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-gxl-s905d.dtsi"
-+#include "meson-gx-libretech-pc.dtsi"
-+
-+/ {
-+	compatible = "libretech,aml-s905d-pc", "amlogic,s905d",
-+		     "amlogic,meson-gxl";
-+	model = "Libre Computer AML-S905D-PC";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-s912-libretech-pc.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-s912-libretech-pc.dts
-new file mode 100644
-index 000000000000..444c249863cb
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-s912-libretech-pc.dts
-@@ -0,0 +1,62 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2019 BayLibre SAS. All rights reserved.
-+ * Author: Jerome Brunet <jbrunet@baylibre.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-gxm.dtsi"
-+#include "meson-gx-libretech-pc.dtsi"
-+
-+/ {
-+	compatible = "libretech,aml-s912-pc", "amlogic,s912",
-+		     "amlogic,meson-gxm";
-+	model = "Libre Computer AML-S912-PC";
-+
-+	typec2_vbus: regulator-typec2_vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "TYPEC2_VBUS";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc5v>;
-+
-+		gpio = <&gpio GPIODV_1 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+};
-+
-+&pinctrl_periphs {
-+	/*
-+	 * Make sure the irq pin of the TYPE C controller is not driven
-+	 * by the SoC.
-+	 */
-+	fusb302_irq_pins: fusb302_irq {
-+		mux {
-+			groups = "GPIODV_0";
-+			function = "gpio_periphs";
-+			bias-pull-up;
-+			output-disable;
-+		};
-+	};
-+};
-+
-+&i2c_C {
-+	fusb302@22 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+
-+		pinctrl-0 = <&fusb302_irq_pins>;
-+		pinctrl-names = "default";
-+		interrupt-parent = <&gpio_intc>;
-+		interrupts = <59 IRQ_TYPE_LEVEL_LOW>;
-+
-+		vbus-supply = <&typec2_vbus>;
-+
-+		status = "okay";
-+	};
-+};
-+
-+&usb2_phy2 {
-+	phy-supply = <&typec2_vbus>;
-+};
--- 
-2.23.0
+Guenter
+
+> +MODULE_AUTHOR("Xingyu Chen <xingyu.chen@amlogic.com>");
+> +MODULE_DESCRIPTION("Amlogic Secure Watchdog Timer Driver");
+> +MODULE_LICENSE("Dual MIT/GPL");
+> 
 
 
 _______________________________________________
