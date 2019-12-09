@@ -2,90 +2,61 @@ Return-Path: <SRS0=O3JJ=Z7=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-6.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B22A3C2D0C5
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2019 22:56:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2E85EC43603
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2019 23:48:08 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 83579206D5
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2019 22:56:49 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id F38FB206D5
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2019 23:48:07 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="bCcQJfvA";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="JgkAL/tQ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 83579206D5
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tR8WSEO4";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="KI18xK3Y"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F38FB206D5
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
-	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:In-Reply-To:References:Date:
+	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uUy6oAPAH+OlIdw6yPTlmLBRld6SfuZsRA107fxM5U0=; b=bCcQJfvAPwmI2U
-	glRWje9HbeC38uBALmhDE4YUP3Tjz34LIewf3wtX7d8+otXnyaGUipqDK/SNPwaWWk3LENJR+u/lg
-	qVC4I5g7pbLAm+eDeLWoxbTvaYFv6ZnGD1037m58a9HZRaPvk9vFt7yIrkhCTqzPiTApB4hO4adgu
-	s5wRQ1A/k6ZUWYxKudrLZWggNFUS4QuTvbCbVTGkgXs6VX9q1zmaNCseVYMcZIEx5InQyX4AD3YRW
-	GW6qibv1rX332ULYHXfk4uNGtPKhE3uvXo/poh+qyJLczN0O37esll8sH6edhtk35VAexI0+rwFpt
-	cDh2DWPIFAnTAfPlljrQ==;
+	List-Owner; bh=Ezua93lJnKq84BwP5sDftjjD235IHfZjCg9ztO/gFk8=; b=tR8WSEO41Lg17D
+	uLDjAEyJoFC/G9p3RYqvbxXMYyE18zuqNg6kfrclnqVPleUFxtchd45mjbQJbetvWPLfFLHQ1tmkM
+	v3+591zEthFCy/QHz2XVZ/bKr6bZ8Fr6htS47hYGNYG7tDaIEFm8DPfM5f2zcAg3vXfYKmDQCaSSD
+	uvl9LAPEJOAmuqYNfL5ncPdeL2UgXEvTiy6jomWbpZ5UkfiQRt0pvXOohyUGPpVjaIideuY/tNZw7
+	JbO2Xuf6UZFP1haK1EOPu5tjaSixEIZsGAvLglNyBo2JDmrPeE/SFybtoEPIw+El4NcPxvOv1dNZn
+	mAXp+4onuA74TUJ4cMxQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ieRxM-0007sU-QX; Mon, 09 Dec 2019 22:56:44 +0000
-Received: from mail-pj1-x1042.google.com ([2607:f8b0:4864:20::1042])
+	id 1ieSl1-0002eJ-T1; Mon, 09 Dec 2019 23:48:03 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ieRxC-0007jE-SB
- for linux-amlogic@lists.infradead.org; Mon, 09 Dec 2019 22:56:36 +0000
-Received: by mail-pj1-x1042.google.com with SMTP id v93so6525689pjb.6
- for <linux-amlogic@lists.infradead.org>; Mon, 09 Dec 2019 14:56:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:in-reply-to:references:date:message-id
- :mime-version; bh=A4KHxg3gak/AwtAzed2CDRcu2q9WfrU2oLQqZp0iE2c=;
- b=JgkAL/tQtnHUIJMXDnJ5JRXCF1Z71qc3TDDuhsTpEFP3RllanM9RKF62rKGTwwyE/r
- 3F+sOGcm/Qoo6PW/gV1WjGbEzl/FeQLN+9Cq8B6o/Q5lXLaIFwTagn+oFLmSHZSxT5wq
- b6JzhAPMN4dgoOvUd1T3L/akyP5q6rTfPhBp8ysDtUbavt46I8knRWQ1TyRgkUNuONAt
- qVaaz5V4bS8bcd0C+ZgUiZqe9VyiD+g9s7SdS3JyZKfqnWVaMR7XIgdMTaMdsMH6huO/
- MRbO40lHiN8iUZ5O6HRQubJqB+jrkEfqlDhDNoF58bhwN74s2mubGrtzDOFQSagWQg9K
- 07zQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
- :message-id:mime-version;
- bh=A4KHxg3gak/AwtAzed2CDRcu2q9WfrU2oLQqZp0iE2c=;
- b=Lbu6Z9ccyNgSO11HUBzqPQCD445+L3vq/GC3j835ufI5eGsHBYN2TS/f8ugYXrlPkt
- TQIZ7ZWuEtBZF1GG9syGhhuGqGxAcd71870fwHKB0Vn7jQhUlbaOT26NsqAO6JwbPvog
- Wv0Ohy1X4fl9yMWM4/X0X3tZz9+6X3JdtyxIyP7f8eZzGtYYyMez/i6U2892wtP4V+Am
- 0MlA0urKXU3bd52DNVMN57VGiG3jR272xpSv3tiN7ULjzlJCbdIi7a8s+0gkwl1JM3qj
- 6MOKOmFAeeVfUERM4sA3nwF4ZJY1z0QRDYaaU4WilspaA9he6OAuvI/bElyegWnU8OCi
- Z+Sw==
-X-Gm-Message-State: APjAAAXbKBSXc0Fvj0Gigi4eQmq7G5Ge2jHT6vlci+xtzQAskXf/6NT1
- 26wJhJ3gDworkgUEwSSs8eaqMg==
-X-Google-Smtp-Source: APXvYqwfy57KUmDE1VA2LS08T92dACffdsdnOJYy9Qvwq4eLq3TN5C71lFIUbtBnAecTSV5jsNQ1Bg==
-X-Received: by 2002:a17:902:7884:: with SMTP id
- q4mr30505852pll.285.1575932193897; 
- Mon, 09 Dec 2019 14:56:33 -0800 (PST)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
- [71.197.186.152])
- by smtp.gmail.com with ESMTPSA id g19sm504235pfh.134.2019.12.09.14.56.33
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Mon, 09 Dec 2019 14:56:33 -0800 (PST)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Xingyu Chen <xingyu.chen@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH] arm64: dts: a1: add saradc controller
-In-Reply-To: <1575358332-44866-1-git-send-email-xingyu.chen@amlogic.com>
-References: <1575358332-44866-1-git-send-email-xingyu.chen@amlogic.com>
-Date: Mon, 09 Dec 2019 14:56:32 -0800
-Message-ID: <7hpngxqfa7.fsf@baylibre.com>
+ id 1ieSky-0002ct-2t
+ for linux-amlogic@lists.infradead.org; Mon, 09 Dec 2019 23:48:01 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1575935279;
+ bh=fRhwpiAA9MCg3kGPOQGyXeEbgONV6AvWZIiG/cBdGh4=;
+ h=Subject:From:Date:References:In-Reply-To:To:Cc:Cc:From;
+ b=KI18xK3YjFL9s5SrlKLrqvoeNhL8q2HaRDptIj7nJenzBr8sHjKMKsWLvwQDXaT94
+ 1wPMLGebfGTxcfcHFAPCwe8f+baERSbH1LsrXXpdD+XmQGqSzKbIrg3F6coUUIbKKb
+ scXBP8GJiLSNk15Gh2kw7ZAQ8/85EJORkBOQ5ez0=
 MIME-Version: 1.0
+Subject: Re: [PATCH RESEND v1 0/2] amlogic: meson-ee-pwrc: two small fixes
+From: patchwork-bot+linux-amlogic@kernel.org
+Message-Id: <157593527929.1710.8769316629836541133.git-patchwork-notify@kernel.org>
+Date: Mon, 09 Dec 2019 23:47:59 +0000
+References: <20191130145821.1490349-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20191130145821.1490349-1-martin.blumenstingl@googlemail.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191209_145634_915390_6D44B1B3 
-X-CRM114-Status: GOOD (  11.98  )
+X-CRM114-CacheID: sfid-20191209_154800_148073_176DF499 
+X-CRM114-Status: UNSURE (   5.83  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,50 +68,39 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Qianggui Song <qianggui.song@amlogic.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Jianxin Pan <jianxin.pan@amlogic.com>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>, Jian Hu <jian.hu@amlogic.com>,
- Xingyu Chen <xingyu.chen@amlogic.com>, linux-amlogic@lists.infradead.org,
- Jonathan Cameron <jic23@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org, khilman@kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Xingyu Chen <xingyu.chen@amlogic.com> writes:
+Hello:
 
-> The saradc controller in Meson-A1 is the same as the Meson-G12 series SoCs,
-> so we use the same compatible string.
->
-> Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
->
-> ---
-> This patch is based on A1 clock patchset at [0].
->
-> [0] https://lore.kernel.org/linux-amlogic/20191129144605.182774-1-jian.hu@amlogic.com
-> ---
->  arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> index 7210ad0..cad1756 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> @@ -93,6 +93,21 @@
->  				clock-names = "xtal", "pclk", "baud";
->  				status = "disabled";
->  			};
-> +
-> +			saradc: adc@2c00 {
-> +				compatible = "amlogic,meson-g12a-saradc",
-> +					     "amlogic,meson-saradc";
-> +				reg = <0x0 0x2c00 0x0 0x48>;
+This series was applied to khilman/linux-amlogic.git (refs/heads/for-next).
 
-Why 0x48 here?  AXG uses 0x38 and you're not adding any more registers
-to this driver.
+On Sat, 30 Nov 2019 15:58:19 +0100 you wrote:
+> While working on power domain support for the 32-bit SoCs I had some
+> crashes when trying to actually use the power domains. Turns out I had
+> a bug in my patches which add support for the older SoCs to
+> meson-ee-pwrc. However, I didn't notice these because the driver probed
+> just fine.
+> 
+> This is my attempt to spot "problems" (bugs in my code) earlier.
+> 
+> [...]
 
-Kevin
+
+Here is a summary with links:
+  - [RESEND,v1,1/2] soc: amlogic: meson-ee-pwrc: propagate PD provider registration errors
+    https://git.kernel.org/khilman/linux-amlogic/c/0766d65e6afaea8b80205a468207de9f18cd7ec8
+  - [RESEND,v1,2/2] soc: amlogic: meson-ee-pwrc: propagate errors from pm_genpd_init()
+    https://git.kernel.org/khilman/linux-amlogic/c/c67aafd60d7e323fe74bf45fab60148f84cf9b95
+
+You are awesome, thank you!
+
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.wiki.kernel.org/userdoc/pwbot
 
 _______________________________________________
 linux-amlogic mailing list
