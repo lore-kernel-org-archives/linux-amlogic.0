@@ -6,17 +6,17 @@ X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
 	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 02432C43603
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2019 07:22:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6BE95C43603
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2019 07:26:26 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id CC1BC206E0
-	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2019 07:22:43 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3B378205C9
+	for <linux-amlogic@archiver.kernel.org>; Mon,  9 Dec 2019 07:26:26 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Xr5CEP2L";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="xrpDfcFR"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CC1BC206E0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Wv+fOhT7";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="fDjFZ4nU"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3B378205C9
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,55 +25,55 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=yK4aeq5SdDQseno4jGUxt/orfxsUEoSUhgGGGzVQtrY=; b=Xr5CEP2LBuJctU
-	eauCuEA6Osvzmbnk0rvgl83YNakGqztb9STDz3jrFYYkU4x+17qpTxJ79aqsI1WTJR72pK8nqdXdU
-	/Gitl5HaA0taIE27V5v1vPwmC5s/YFULlqa4BzBjQYYaTGAjAlk9isaouHBQZvf56T86Cm+j7fsBO
-	HRr2NVRtQka5eWnZ2bA30xvgwepIadJiyG+u/DiKnaO4ifdeI4sqkRXBcZBhrD0AVvfeA8kaj+CCU
-	Lt/dYkP1kAViZhCd3lBrpOfxkLQTs6skoOue2goZduwkGgGIWfECEXOmno2JyAeiP20omIUJ3rvUi
-	6nRpowrrLh62x+EbynBQ==;
+	List-Owner; bh=bba1ZubidvXbOfRDAJaFB80fdxW2ul/hMcK5gSnDZi8=; b=Wv+fOhT7exTkJu
+	Fc68BiiltVh2eYSYCdEhVvJ27x0Szg+pHPDjMOqmmxv1vHyi2hjxe02PCFFKVqVvphs7mNMsXbQ6R
+	GMpzPfUViTy2I/JlAJytSldeK5nctqKD0tol8Q3jsOfrcB+G5n1R3UGWALidjkSuRLuDYEczu4zHN
+	XYwLITQvCPxhnUbC5d96VYDZkcX5rqcm+IhJqx6/mivuV/GmMOzK3/mlP5WU6nAHGsb09NSub2YbV
+	K6b6ln8ovh7r50uudjYHOokLgjcYzOdn0djUKAEpp1MMvZi4Amz4lk62So47Ea4Qt5OfoIqD4JhRt
+	AoZyQc0M3vlZhyk5Tp0A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ieDNK-0005ZM-Sn; Mon, 09 Dec 2019 07:22:34 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1ieDQz-0007UH-Be; Mon, 09 Dec 2019 07:26:21 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ieDNC-0005Ml-S7
- for linux-amlogic@lists.infradead.org; Mon, 09 Dec 2019 07:22:29 +0000
-Received: by mail-wr1-x441.google.com with SMTP id a15so14861094wrf.9
- for <linux-amlogic@lists.infradead.org>; Sun, 08 Dec 2019 23:22:25 -0800 (PST)
+ id 1ieDQq-0007LW-DJ
+ for linux-amlogic@lists.infradead.org; Mon, 09 Dec 2019 07:26:13 +0000
+Received: by mail-wr1-x442.google.com with SMTP id y11so14888002wrt.6
+ for <linux-amlogic@lists.infradead.org>; Sun, 08 Dec 2019 23:26:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=512J5j7kNfrRp7NcxzfcfOkrLZywAq7rSyEonnsoYq0=;
- b=xrpDfcFRb9Z5HkGZhNPVr2C1ykthYG0GUcLy9oP7g+dGkvia+tn7Ul8dVE9k99uXHq
- RGxB+ThQpAnKkb3boTpA/fK6243iOZkg27zmYqq3W5xW0dllU0ahebzzgejHZ/+Woo85
- nc4Xh33fbgen1AvyaBJkOEgSPkHvPTPgII2ocDhv/wedUZo/cy0ZAaeCti14ZUlzlNhB
- SCFxRMptMsavtS0yzkkjWYjjcxEFhlayiAWK0exeSyex1GpbXBO9nGxL09WSafJwich1
- yQfqUtPR/XusRBJZoVaRoxJ716bk97KJA8eEXQDqvqYw+MUeL/96OXCAGNQLT7jCNqcM
- 4OAQ==
+ bh=DkgP3tr+u0GOhGMReKoFV4Qzqh16I93viwjUtetMiRc=;
+ b=fDjFZ4nUdvvhPDwqLehZobt3LHgrYAhTs/YbYInvDXppNfnVH5cC0dEMC6YItMGpxU
+ gEZIoGxdd0T6TMR6hDkNV07iUpW6DPYtMB9dXYampbzNNdpjjBF8AollGwBt8kw5gNeq
+ eRKlPs2DXEJEjFn/5QebYHqfdvt0iE7NjEQilzxuaiVAAJrXqn40RjZR0+1k+CzPUvUy
+ KgKnGDccaqOQ3OhIqOlz9FrsnQaJt/INFkaoOQ7p32j01HT8fgKVkNYVf1BdR4eUyizo
+ YPen3JYbFpCNaDiQPqn4N7s7SZveFO4wKfTZRIGvhvmJqYD1EdL48rLkRYb7Cp9G58bW
+ HIPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=512J5j7kNfrRp7NcxzfcfOkrLZywAq7rSyEonnsoYq0=;
- b=iQ4/elV8VsPoi6Rus7f03XdQGwrrQjpgE5BMOFLNi8bvVtr4+NncgSAvq9XpaemXyN
- mcpSV1go8ZZWYEucNwKJR+P4ksSz6Wb2pSeyMriWUkIF9a08AjKiG5/49cd0dZX3tzei
- vBS83N1DIp9S4HJ04gKC3eF8HM/M0FY3jD7efP26o8txDOyiDXKWNb94xEQm3fSFZj8F
- a4rlIplgu9giVmkN5FzMx96hxB+Xrcf3bSgv3B2zvl6BF1ryVs+zk3BHyWyL8QwdGErg
- VUKLaUfFSPgO3XCMQclO+wvrsZK1E3aj9SbdiHewSQN6wAQaf9fxyGmBP7EqZ5vd7M1q
- yfOw==
-X-Gm-Message-State: APjAAAXgjsgbUYs++W+mD9eQStWLLJSOrgsn52yuS7263Lcg99IBR89S
- KLd2HmkaktTubPC0IMYWtvqP2A==
-X-Google-Smtp-Source: APXvYqwDo7Au6y7Sz80Dkh6zLJpvD8B14WlCi/RH+pxnK99V6SVKzv8BO4WGl9ODEhOKBbYJ5g+Kiw==
-X-Received: by 2002:a5d:6708:: with SMTP id o8mr334625wru.296.1575876144378;
- Sun, 08 Dec 2019 23:22:24 -0800 (PST)
+ bh=DkgP3tr+u0GOhGMReKoFV4Qzqh16I93viwjUtetMiRc=;
+ b=YM1sEkVVkREA4fxm+DjRBY7XpeD8PansEGzDxI2R4HOvyoNsyriZAvBN3euGfD2rjy
+ zzzonOHTtGZfQ0wZq9lqMsP6P6MNX+/X/MXizjO4BoQSXBUgdMd7/AV3f5XJC/C3/HAE
+ JZHpUkS6hlj+Cql2upTcC7d99ljpe66g7CponPI+MxByrsB9esGyS6UgvRIlxnBiXBxp
+ FSERd1iqtN6df2KtRZhk6JC2mwuiQGrROd8UJZSA1Vnj5r/TPkpV4ae87rZLj2Rb1y0n
+ vE+7y+F/tSHe7GH7xE/U8O1DAG82A7m5B6cBiYmwuNLgQ6rzvXXV0ADCqZKeZsjRyDIO
+ MsuQ==
+X-Gm-Message-State: APjAAAXj8Y/PwrE3QbPlsdbePH5a8Y08EiodWD8zT5RbKB7GdNxLa2l9
+ Llt+R8iGaqNm0xsDnKmRlFuxSQ==
+X-Google-Smtp-Source: APXvYqx8LvV+z/524sUB3qCQXocHg1Js1V+RkzXBzZrznh+w3JoOoARVx/R0HW2HhFxEE7bAjrvu2A==
+X-Received: by 2002:a5d:4692:: with SMTP id u18mr368996wrq.206.1575876370543; 
+ Sun, 08 Dec 2019 23:26:10 -0800 (PST)
 Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr.
  [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id e12sm1474895wrn.56.2019.12.08.23.22.23
+ by smtp.gmail.com with ESMTPSA id v3sm12247212wml.47.2019.12.08.23.26.09
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sun, 08 Dec 2019 23:22:23 -0800 (PST)
+ Sun, 08 Dec 2019 23:26:10 -0800 (PST)
 Subject: Re: [PATCH v2 0/2] Meson VPU: fix CVBS output
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  linux-amlogic@lists.infradead.org
@@ -130,16 +130,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <0468e839-3905-53d3-9211-5ecbdf58f7b3@baylibre.com>
-Date: Mon, 9 Dec 2019 08:22:23 +0100
+Message-ID: <7cee86ab-5296-b944-49e0-54609c07eee4@baylibre.com>
+Date: Mon, 9 Dec 2019 08:26:09 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.0
 MIME-Version: 1.0
 In-Reply-To: <20191208171832.1064772-1-martin.blumenstingl@googlemail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191208_232227_052299_EF42AA3F 
-X-CRM114-Status: GOOD (  12.50  )
+X-CRM114-CacheID: sfid-20191208_232612_448711_BBFBC4BD 
+X-CRM114-Status: GOOD (  13.18  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,8 +157,6 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
-
-Hi Martin !
 
 On 08/12/2019 18:18, Martin Blumenstingl wrote:
 > The goal of this series is to fix the CVBS output with the Meson VPU
@@ -182,10 +180,9 @@ On 08/12/2019 18:18, Martin Blumenstingl wrote:
 >  1 file changed, 27 insertions(+), 21 deletions(-)
 > 
 
-For both:
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Hmm seems you are not registered to the dri-devel ML, so I must wait for the ML moderator to accept your mails so they appear on https://patchwork.freedesktop.org/.
 
-I'll squash them to permit an easier backporting to stable kernel !
+Could you register and disable emails reception from dri-devel ? I will be easier in the future.
 
 Neil
 
