@@ -2,144 +2,82 @@ Return-Path: <SRS0=AlqK=2A=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E6163C43603
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Dec 2019 11:01:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B9063C43603
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Dec 2019 14:50:34 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B607920663
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Dec 2019 11:01:53 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8A6BE20637
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Dec 2019 14:50:34 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="b4OltAax";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="smK6rGXm"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B607920663
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="o+JweGbD";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="vYOET9ni"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8A6BE20637
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=+JxhtXtdic7+dOjw77DptDrGwfcv54oyzYXpearzJWs=; b=b4OltAaxA3wZx2
-	cYVk/B7IiWVj8sCVd3Ib9BBwoRlIrji2FEFYDHFubZvo79XUg1tMVskAaT8IAvtKBzpI2dXP+USAD
-	m+gQN91MOu835n11TnYF23/jaVkxgp0ItNC8DvB71lmLEVyeSNhcaMEOd8SjhArVNBF5VuUU1evtV
-	qyezOVkwoyFQkA0zdYk1bxpmlYwzLNB+dW8xgOkGkyNKaBjOEaqIVJEGVYLFQXyN5jf9oaLUfZWbO
-	+KEAB/cT+nV/tSrHDV3SPR1/H02D+Ep8pBG2llhhN0qIHC1FkY2VyTrgm6g0N+Wnd/I8li5ABUF0B
-	5PMbO3GKTYAJZDPFwyFw==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=21r0BJw2wkM3/ehrytdRksF7LZoY95/w6c/hzS7vkm8=; b=o+JweGbDwXbqmc
+	w0KkyEcBpwn23yGW5GE7BrHUzV5xCtNasMfkvdWnYOXG8K6uIipc9MwFWziyrYw1UAeSHXgY0Ut32
+	KcofMJE/T2qVzGw1inQ9ygr7Ps4U6KCcpFo0msXUsG5VNcuTOdx9F1gZ410RB7JNPZ+rHtgL0LVnO
+	MPfYuSEMhJ1U8mwDKVRVUo24W33lHYAHsqCwlY14FiUDl4NiiDC6V8MO4lTW3hF7hN8KOHZF6hoh/
+	XpB7DEDPDgo+BTudQYLgbxetlID+naBNaq4kudjwS7ezTHjWq4VV0i73B3d34cSm4SAv5GW8DbNPI
+	3CVQRQeNmGfE2tf1KTeg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iedH1-0003XY-1a; Tue, 10 Dec 2019 11:01:47 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1iegqJ-0004eK-Ud; Tue, 10 Dec 2019 14:50:27 +0000
+Received: from mail-io1-xd44.google.com ([2607:f8b0:4864:20::d44])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iedGs-0003Ke-2f
- for linux-amlogic@lists.infradead.org; Tue, 10 Dec 2019 11:01:39 +0000
-Received: by mail-wr1-x442.google.com with SMTP id j42so19463718wrj.12
- for <linux-amlogic@lists.infradead.org>; Tue, 10 Dec 2019 03:01:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=Rv8ejHYsaFZybwVO6uUzP4+XwTEENn6Dnpdro3k/0Uo=;
- b=smK6rGXm+/6XlBrT7/oxE8mPSBlz41ByYXFTmwzMx/YtC8mg4X2W4szoX+ymqpdxBg
- abTRD/GfQ/7cOz6OCm3iFJvsFiKOwoHAKJ55idYxaH63SW0CRnarbjdvftoEu5k066wr
- 8iGR+jC34nCjj5m39o8KzvqH4G7qiw92ZBhRYDPPJmqZg6J4iwCal2+MevPhkpesohIy
- 45s1y2oxo2IfhthzrwRWcJH1kZCfQ5kDKOt66b0Ox0plq4g0k55oTmeMmz8zb+MfjOOE
- DRjx5aINff4Tyl/aE+VT4JgJGfGBie3WGFzShie4pm2a44k0JQwWfB3hQhCFUD6oolTm
- dqMA==
+ id 1iegq9-0004VQ-Sh; Tue, 10 Dec 2019 14:50:19 +0000
+Received: by mail-io1-xd44.google.com with SMTP id v3so2031752ioj.5;
+ Tue, 10 Dec 2019 06:50:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=EopU7gHpRZaFwvjzHn1zzfgni4g/N/UohJ2TWwA1/m0=;
+ b=vYOET9ni2r/x+WsiXrE22CAhuCTJnazMZnB6tLnbsJJvL+/CzhU1nqV1u6g92L2TNW
+ 9sAEay9IDtRMUHOayxwKfjT2r9lN4koXTLKoLVKDzZBZDWLgiNin4xODz2NgytLN1/72
+ hSSQLiWGAvpQ7f2Y//zUXwIJC82LiIBHDcfAmnjHonbk5FQwzEZiOjSEo0561jYZhJQq
+ 9yWghFa/pG9x9CtBfd3VU/Oe4JciVfoezbgYDgf4VpZQxVfHPdKyvhhMhqOAQUU3XcXu
+ VPxq27c1c96xJRk8NXIqa8i9pLr3WYopimSbG/2WEAdS8VXGN5q5zikx6CNmL00QOCP9
+ dCMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=Rv8ejHYsaFZybwVO6uUzP4+XwTEENn6Dnpdro3k/0Uo=;
- b=HRLwfhAlwClF229t/iqmEVvgZ4mVHUMMQiaoveVd+dWAbzvi2orUed7jVREG8g6NAk
- CVDoiHPpku+rNMM8jUgLJ0m932Y1WoH/UeNKQHyQtIz7h9JMUKgIIqnBefSutAtdeMAU
- EeGIe2G5w9FZgldNaageiRcLCAjTv5tBi3++MrFD/87gqbnPg1G8R4a1GpVJnTw4e+ga
- AY333NARvQA/hqOrgKdslKwGhuUK392Ul3PjNb/c3G9n+7YKmu4JzapOn/HqjtwlQXON
- coGceT+WrOKKdfcPzUzmw3ig4nAycsCJ1x3Z4pjkFHavWpxZmax6b50rDG2MB9wH8DKn
- 8zcA==
-X-Gm-Message-State: APjAAAW15EMpqZzzjL/UBqM9UeMGdEh8PFlvmRk83MFoOrk9j2lSJlH7
- Ohw32anY0h/8jqHqWvdv2axg1IDt5BLXxQ==
-X-Google-Smtp-Source: APXvYqzi+gI1mR/IeFhp54XAhudd0MHCrMGtaxkswp7FXhXGNzT4x1o80CwNeDOhqVcP/qXL15Ki2Q==
-X-Received: by 2002:adf:ffc7:: with SMTP id x7mr2495768wrs.159.1575975692590; 
- Tue, 10 Dec 2019 03:01:32 -0800 (PST)
-Received: from [10.2.4.229] (lfbn-1-7161-157.w90-116.abo.wanadoo.fr.
- [90.116.92.157])
- by smtp.gmail.com with ESMTPSA id l4sm2601132wml.33.2019.12.10.03.01.31
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 10 Dec 2019 03:01:32 -0800 (PST)
-Subject: Re: [PATCH v3 0/9] drm/meson: add AFBC support
-To: Kevin Hilman <khilman@baylibre.com>, dri-devel@lists.freedesktop.org
-References: <20191021091509.3864-1-narmstrong@baylibre.com>
- <7hk175rw11.fsf@baylibre.com>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <c9e7a62f-0571-4e98-1a80-952d4e1c554b@baylibre.com>
-Date: Tue, 10 Dec 2019 12:01:31 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=EopU7gHpRZaFwvjzHn1zzfgni4g/N/UohJ2TWwA1/m0=;
+ b=XlbbMlwjjB2P1+8xjF8aGVZOYAqZw7JdxKFKGsTE6Okts41O3sQWkMNjA1qgs/nDOF
+ yu7XOUMvXuSRpgekk8cN2IgSCxyLim/ousX07ZTk7gHuD7cXnij+zrdp8J8vlxmRx/N4
+ JRrSC7K1mTT5R5DfLPH902On62+hp/zo80OX76sih397TDtx7L1JdBjO7UVKfTI376AH
+ 8EJiXQvn1dpsrhhu04Y7OHFg/qfJKqvP6LvcQX/b45WN7Xjg+XqhiwOCRoH2eULdtmpt
+ vXAR73Aqb0Wo+5dqgyVq+v4fEvAeDbImg40WIanCBatnU0/KFbJqGrcu8siIuJo96vZF
+ /fUQ==
+X-Gm-Message-State: APjAAAWAzIzIRBW66L0Jlxkc4iqRMUgYKpbC5Smh02apgD816SuSAroI
+ bXuOWGnUQqtPvxBbAOcsf/b08shn7D1lGkyhwFI=
+X-Google-Smtp-Source: APXvYqyg+Q4PiSVD+TRIfNYYQb9a80Ve7CWTpf0XRMvR2kxSQvCVSYQFM+LAKN06jjFUHKWALrHPxHKTq7zl/ShAp7s=
+X-Received: by 2002:a6b:e008:: with SMTP id z8mr24398133iog.246.1575989416712; 
+ Tue, 10 Dec 2019 06:50:16 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <7hk175rw11.fsf@baylibre.com>
-Content-Language: en-US
+References: <20191101143126.2549-1-linux.amoon@gmail.com>
+ <7hfthtrvvv.fsf@baylibre.com>
+ <c89791de-0a46-3ce2-b3e2-3640c364cd0f@baylibre.com>
+In-Reply-To: <c89791de-0a46-3ce2-b3e2-3640c364cd0f@baylibre.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Tue, 10 Dec 2019 20:20:05 +0530
+Message-ID: <CANAwSgQx3LjQe60TGgKyk6B5BD5y1caS2tA+O+GFES7=qCFeKg@mail.gmail.com>
+Subject: Re: [RFC-next 0/1] Odroid C2: Enable DVFS for cpu
+To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191210_030138_121531_032D29D6 
-X-CRM114-Status: GOOD (  16.20  )
+X-CRM114-CacheID: sfid-20191210_065017_951976_7E1F284C 
+X-CRM114-Status: GOOD (  13.83  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,93 +89,111 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, ayan.halder@arm.com,
- linux-arm-kernel@lists.infradead.org
+Cc: devicetree <devicetree@vger.kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Linux Kernel <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 09/12/2019 23:09, Kevin Hilman wrote:
-> Neil Armstrong <narmstrong@baylibre.com> writes:
-> 
->> This adds support for the ARM Framebuffer Compression decoders found
->> in the Amlogic GXM and G12A SoCs.
->>
->> This patchset is a merge of v2 "drm/meson: add AFBC support" at [3] and v2
->> "drm/meson: implement RDMA for AFBC reset on vsync" at [4].
-> 
-> Oops, replied to the wrong series earlier...
-> 
->> The VPU embeds a "Register DMA" that can write a sequence of registers
->> on the VPU AHB bus, either manually or triggered by an internal IRQ
->> event like VSYNC or a line input counter.
->>
->> The Amlogic GXM and G12A AFBC decoder are totally different, the GXM only
->> handling only the AFBC v1.0 modes and the G12A decoder handling the
->> AFBC v1.2 modes.
->>
->> The G12A AFBC decoder is an external IP integrated in the video pipeline,
->> and the GXM AFBC decoder seems to the an Amlogic custom decoder more
->> tighly integrated in the video pipeline.
->>
->> The GXM AFBC decoder can handle only one AFBC plane for 2 available
->> OSD planes available in HW, and the G12A AFBC decoder can handle up
->> to 4 AFBC planes for up to 3 OSD planes available in HW.
->>
->> The Amlogic GXM supports 16x16 SPARSE and 16x16 SPLIT AFBC buffers up
->> to 4k.
->>
->> On the other side, for G12A SPLIT is mandatory in 16x16 block mode, but
->> for 4k modes 32x8+SPLIT AFBC buffers is manadatory for performances reasons.
->>
->> The Amlogic GXM and G12A AFBC decoders are integrated very differently.
->>
->> The Amlogic GXM has a direct output path to the OSD1 VIU pixel input,
->> because the GXM AFBC decoder seem to be a custom IP developed by Amlogic.
->>
->> On the other side, the Amlogic G12A AFBC decoder seems to be an external
->> IP that emit pixels on an AXI master hooked to a "Mali Unpack" block
->> feeding the OSD1 VIU pixel input.
->> This uses a weird "0x1000000" internal HW physical address on both
->> sides to transfer the pixels.
->>
->> For Amlogic GXM, the supported pixel formats are the same as the normal
->> linear OSD1 mode.
->>
->> On the other side, Amlogic added support for all AFBC v1.2 formats for
->> the G12A AFBC integration.
->>
->> The initial RDMA implementation handles a single channel (over 8), triggered
->> by the VSYNC irq and does not handle the RDMA irq.
->>
->> The RDMA will be usefull to reset and program the AFBC decoder unit
->> on each vsync without involving the interrupt handler that can
->> be masked for a long period of time, producing display glitches.
->>
->> For this we use the meson_rdma_writel_sync() which adds the register
->> write tuple (VPU register offset and register value) to the RDMA buffer
->> and write the value to the HW.
->>
->> When enabled, the RDMA is enabled to rewritte the same sequence at the
->> next VSYNC event, until a new buffer is committed to the OSD plane.
->>
->> For testing, the only available AFBC buffer generation is the Android
->> Yukawa Dvalin Android Mali blobs found at [1].
->>
->> Both SoCs has been tested using buffers generated under AOSP, but only
->> G12A was tested using a runtime stream of AFBC buffers, GXM was only
->> tested using static buffers loaded from files.
-> 
-> Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-> 
-> Kevin
-> 
+Hi Neil / Kevin,
 
-Thanks,
-Applied to drm-misc-next with typo fixup in patches 8 & 9 and review tags
+On Tue, 10 Dec 2019 at 14:13, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> On 09/12/2019 23:12, Kevin Hilman wrote:
+> > Anand Moon <linux.amoon@gmail.com> writes:
+> >
+> >> Some how this patch got lost, so resend this again.
+> >>
+> >> [0] https://patchwork.kernel.org/patch/11136545/
+> >>
+> >> This patch enable DVFS on GXBB Odroid C2.
+> >>
+> >> DVFS has been tested by running the arm64 cpuburn
+> >> [1] https://github.com/ssvb/cpuburn-arm/blob/master/cpuburn-a53.S
+> >> PM-QA testing
+> >> [2] https://git.linaro.org/power/pm-qa.git [cpufreq testcase]
+> >>
+> >> Tested on latest U-Boot 2019.07-1 (Aug 01 2019 - 23:58:01 +0000) Arch Linux ARM
+> >
+> > Have you tested with the Harkernel u-boot?
+> >
+> > Last I remember, enabling CPUfreq will cause system hangs with the
+> > Hardkernel u-boot because of improperly enabled frequencies, so I'm not
+> > terribly inclined to merge this patch.
 
-Neil
+HK u-boot have many issue with loading the kernel, with load address
+*it's really hard to build the kernel for HK u-boot*,
+to get the configuration correctly.
+
+Well I have tested with mainline u-boot with latest ATF .
+I would prefer mainline u-boot for all the Amlogic SBC, since
+they sync with latest driver changes.
+
+>
+> Same, since the bootloader boots with the max supported freq of the board,
+> there is not real need of DVFS except for specific low-power use-cases.
+>
+> And still, some early boards still use the bad SCPI freq table, we can't break them.
+>
+> Neil
+>
+I will leave this to your expert domain knowledge if you want to
+enable this now.
+
+Here is output of on the latest kernel.
+*cpupower*
+#  cpupower frequency-info
+analyzing CPU 0:
+  driver: scpi-cpufreq
+  CPUs which run at the same hardware frequency: 0 1 2 3
+  CPUs which need to have their frequency coordinated by software: 0 1 2 3
+  maximum transition latency: 200 us
+  hardware limits: 100.0 MHz - 1.54 GHz
+  available frequency steps:  100.0 MHz, 250 MHz, 500 MHz, 1000 MHz,
+1.30 GHz, 1.54 GHz
+  available cpufreq governors: conservative ondemand userspace
+powersave performance schedutil
+  current policy: frequency should be within 100.0 MHz and 100.0 MHz.
+                  The governor "ondemand" may decide which speed to use
+                  within this range.
+  current CPU frequency: 100.0 MHz (asserted by call to hardware)
+
+*powertop*
+# powertop
+            Package |            CPU 0
+ 100 MHz    47.1%   |  100 MHz    41.5%
+ 250 MHz     0.0%   |  250 MHz     0.0%
+ 500 MHz     0.0%   |  500 MHz     0.0%
+1000 MHz     0.0%   | 1000 MHz     0.0%
+1296 MHz     0.0%   | 1296 MHz     0.0%
+1.54 GHz     0.0%   | 1.54 GHz     0.0%
+Idle        52.9%   | Idle        58.5%
+
+> >
+> >> Patch based on my next-20191031 for 5.5.x kernel.
+> >> Hope this is not late entry.
+> >
+> > Re: "too late".  FYI... when you post things as RFC, it means you're
+> > looking for comments (Request For Comment) but that it's not intended
+> > for merging.
+
+Ok  thanks for this input.
+
+> >
+> > I didn't see any comments on this, but I also didn't see a non-RFC
+> > follow-up, so I didn't queue it for v5.5.
+No problem.
+> >
+> > Kevin
+> >
+>
+-Anand
 
 _______________________________________________
 linux-amlogic mailing list
