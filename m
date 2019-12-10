@@ -2,70 +2,93 @@ Return-Path: <SRS0=AlqK=2A=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A4F92C2D0BF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Dec 2019 21:08:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6FD75C43603
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Dec 2019 21:47:24 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 78C3424687
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Dec 2019 21:08:35 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3B648205C9
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Dec 2019 21:47:24 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="b+z8LUFo";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="kNM+BG8w"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 78C3424687
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Q/M8Dyrr";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="EFHEE4np"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3B648205C9
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=67dTcNhKPp7hG1s2Unxqr7GvuKEKzEVd4sJVeRx2R2U=; b=b+z8LUFoSHAVaM
-	MzPYtTzrwb0MVdhf4RwLUe2TemXT31V6kYgIazoTiy/0ttqYhMmja/64SbpmZmHDA/ODbi+DhMgTN
-	iixBHvInhpXvjZZbQB3Bk9XMlqJYS2saPEpd783A+9fHVV93M1j/AuGXDZHdHFtgvEsQ8W3O7ykGF
-	aQeA1hgTVQ3zBrVhgHoDAQsv4JQO4wpQ2dNc0oTTuUigfKRolZCgJlxo/ZsIDhxHQ8sT7eOk2Cf0z
-	B6Ho0+xdAfcC5InfBw+5ChuUbHGA7Qm+tUAIieiEFVSe7LKD2m/J8341cRpkvbGMHFgFaJ8Wl6jut
-	Nq3sAhiheg4q5g/G+cnA==;
+	List-Owner; bh=HwArU0TjD1P2lYeuvhLurDdmY4jKMJ5Cm5mY7REdXZY=; b=Q/M8DyrrDv0wRx
+	AshBHNCXXHU+UDP6OsT9UEkNGIobx7ln8FTJU0Pxxibg0q7DiyZNNZXCXGmO+V3mJQF7fPykIisRI
+	v4Nzbt38YnILvc7hsJcZqG4/HaqC/Us4YWh4dmQ9M1T3NDvXQveW4xXN3aw42w/I+hOj3FfZKBb+x
+	GGu/GX+VeAhEPsLG5Q5vyyr2eDCqzfD4MrET2ap8hLysGh8H/RGpwGERG7Fgscpp1vddKYwVLhuHC
+	O1b6t/7ivpIYpxFo8XLSI9ilWzhN4rOB8oLdLZN8BtVPcsmah81MAv5921nxg7FCwaTyhFwRLcTrB
+	t59b5gsKewckV1/D0d6w==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iemk8-0001iU-Hq; Tue, 10 Dec 2019 21:08:28 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1ienLf-0001uo-V3; Tue, 10 Dec 2019 21:47:15 +0000
+Received: from mail-pl1-x643.google.com ([2607:f8b0:4864:20::643])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iemjr-0001UT-NA; Tue, 10 Dec 2019 21:08:15 +0000
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net
- [73.47.72.35])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 5B4AF20836;
- Tue, 10 Dec 2019 21:08:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1576012091;
- bh=NzH5TClbBu5462yRYw6EnxsG/S/iQa3NNe+nix4WRqQ=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=kNM+BG8wCiLQlbGqkGHBZAhTGr36z2cvL3riXJXnxFVtfKtVJ/PwyG0wshyPfmjIt
- NEmxW0SonhacuPaFV+LDT1V95srEngMztAyekShcJ4acZhKwgLOUuV7Tdg+RIAfK88
- xf4bd2DOvqTVpeh3Mr+hWUILZVsIN6MDnRVnU2r0=
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 068/350] media: meson/ao-cec: move
- cec_notifier_cec_adap_register after hw setup
-Date: Tue, 10 Dec 2019 16:02:53 -0500
-Message-Id: <20191210210735.9077-29-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20191210210735.9077-1-sashal@kernel.org>
-References: <20191210210735.9077-1-sashal@kernel.org>
+ id 1ienLc-0001u0-E8
+ for linux-amlogic@lists.infradead.org; Tue, 10 Dec 2019 21:47:14 +0000
+Received: by mail-pl1-x643.google.com with SMTP id k20so380396pll.13
+ for <linux-amlogic@lists.infradead.org>; Tue, 10 Dec 2019 13:47:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=iqFEfJ5VTHI7kv90uHb92Xkx2XtyoVgSFCJnm1RQLQU=;
+ b=EFHEE4npHM3CozjgfjX1aweI4Bpjv9tMkX7xoMDlYeDvYISZA1sB3lk/hc1BhVkwtP
+ dIuPZnj/E+ceF7h3Lg/s6mSR+sX02nUmEwnoilqX5KdbLwi4R8FOG1pyrZwWvIxQul4l
+ yDXbRQB8pTU8Q6o4BhW36BY/0LNhm55Qyx66I1fZVehSiVDY4Dy1hEe75GmrPHauDAn3
+ CYyTr50CFdq/4RtMbtJitPUhC98IGnL0uiQ87KciKaY12CPMslMMGAOlsmfy8DFhva2W
+ Z5IaHcTcHflle6A/9NHtMDvq0Kxrofj54cjqMwbMsl2tqxES0SWNEBT+iqIYuS5mhuYB
+ BTQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=iqFEfJ5VTHI7kv90uHb92Xkx2XtyoVgSFCJnm1RQLQU=;
+ b=sr2eHkZbz6T6XLS0kaIqxpjWda8kV8pcbxzy3XFJQHULRa8gFr5uk4miSDH8tfo6eH
+ fxkr7fftzx6Z/JUjEMxk8io6Zhl/IkVAQSUM4NDEBTLpNGIR5Q7AjmRI0IeByHqeCXuV
+ CTn8E1caR6zrCZPZGo+0UhKK1wd8VS/983NABxwPelJaybxFs5tt4uQfl5bwQMWmSaA9
+ PCdeaIsGgZ1BV3sL8VismMTxMdScTYmWXBCmTmfCmWjQpJhMgDBJ+QmtnHvd+ETUHHDo
+ Pu/V7HtXPkL6/mks6LLieDJlMuLn12D9+2GRw4rKS5oCMTBectvQUDYJdqbZvOPqiWRt
+ tL1Q==
+X-Gm-Message-State: APjAAAUBrPQjLT3NMPR2RRxNowHyVTUZsjSSXmB/VxotD8xcDmjzsww/
+ jiJH0vTJrUIb4RFjlaxUIL5PAw==
+X-Google-Smtp-Source: APXvYqyWouSgn/WCq+jtqr4txQVR8xZ2GAJa0L6IdvZrZdsbAFw3Sl3H8rvTIGgfc48jOCynsAqafw==
+X-Received: by 2002:a17:90a:86c7:: with SMTP id
+ y7mr7936504pjv.102.1576014431457; 
+ Tue, 10 Dec 2019 13:47:11 -0800 (PST)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
+ [71.197.186.152])
+ by smtp.gmail.com with ESMTPSA id z1sm4338pfk.61.2019.12.10.13.47.10
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Tue, 10 Dec 2019 13:47:10 -0800 (PST)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [RFC-next 0/1] Odroid C2: Enable DVFS for cpu
+In-Reply-To: <CAFBinCBfgxXhPKpBLdoq9AimrpaneYFgzgJoDyC-2xhbHmihpA@mail.gmail.com>
+References: <20191101143126.2549-1-linux.amoon@gmail.com>
+ <7hfthtrvvv.fsf@baylibre.com>
+ <c89791de-0a46-3ce2-b3e2-3640c364cd0f@baylibre.com>
+ <CANAwSgQx3LjQe60TGgKyk6B5BD5y1caS2tA+O+GFES7=qCFeKg@mail.gmail.com>
+ <7hfthsqcap.fsf@baylibre.com>
+ <CAFBinCBfgxXhPKpBLdoq9AimrpaneYFgzgJoDyC-2xhbHmihpA@mail.gmail.com>
+Date: Tue, 10 Dec 2019 13:47:09 -0800
+Message-ID: <7hpngvontu.fsf@baylibre.com>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191210_130812_862131_E099BBAF 
-X-CRM114-Status: GOOD (  11.49  )
+X-CRM114-CacheID: sfid-20191210_134712_531759_4268BA23 
+X-CRM114-Status: GOOD (  15.23  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,247 +100,77 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, Neil Armstrong <narmstrong@baylibre.com>,
- Christian Hewitt <christianshewitt@gmail.com>,
- Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
+Cc: devicetree <devicetree@vger.kernel.org>,
+ Neil Armstrong <narmstrong@baylibre.com>, Anand Moon <linux.amoon@gmail.com>,
+ Linux Kernel <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-From: Neil Armstrong <narmstrong@baylibre.com>
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
 
-[ Upstream commit 3e84a18a259e1df35e5b549ab92ec3baf82ff010 ]
+> On Tue, Dec 10, 2019 at 7:13 PM Kevin Hilman <khilman@baylibre.com> wrote:
+>>
+>> Anand Moon <linux.amoon@gmail.com> writes:
+>>
+>> > Hi Neil / Kevin,
+>> >
+>> > On Tue, 10 Dec 2019 at 14:13, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>> >>
+>> >> On 09/12/2019 23:12, Kevin Hilman wrote:
+>> >> > Anand Moon <linux.amoon@gmail.com> writes:
+>> >> >
+>> >> >> Some how this patch got lost, so resend this again.
+>> >> >>
+>> >> >> [0] https://patchwork.kernel.org/patch/11136545/
+>> >> >>
+>> >> >> This patch enable DVFS on GXBB Odroid C2.
+>> >> >>
+>> >> >> DVFS has been tested by running the arm64 cpuburn
+>> >> >> [1] https://github.com/ssvb/cpuburn-arm/blob/master/cpuburn-a53.S
+>> >> >> PM-QA testing
+>> >> >> [2] https://git.linaro.org/power/pm-qa.git [cpufreq testcase]
+>> >> >>
+>> >> >> Tested on latest U-Boot 2019.07-1 (Aug 01 2019 - 23:58:01 +0000) Arch Linux ARM
+>> >> >
+>> >> > Have you tested with the Harkernel u-boot?
+>> >> >
+>> >> > Last I remember, enabling CPUfreq will cause system hangs with the
+>> >> > Hardkernel u-boot because of improperly enabled frequencies, so I'm not
+>> >> > terribly inclined to merge this patch.
+>> >
+>> > HK u-boot have many issue with loading the kernel, with load address
+>> > *it's really hard to build the kernel for HK u-boot*,
+>> > to get the configuration correctly.
+>> >
+>> > Well I have tested with mainline u-boot with latest ATF .
+>> > I would prefer mainline u-boot for all the Amlogic SBC, since
+>> > they sync with latest driver changes.
+>>
+>> Yes, we would all prefer mainline u-boot, but the mainline kernel needs
+>> to support the vendor u-boot that is shipping with the boards.  So
+>> until Hardkernel (and other vendors) switch to mainline u-boot we do not
+>> want to have upstream kernel defaults that will not boot with the vendor
+>> u-boot.
+>>
+>> We can always support these features, but they just cannot be enabled
+>> by default.
+> (I don't have an Odroid-C2 but I'm curious)
+> should Anand submit a patch to mainline u-boot instead?
 
-When probed after the HDMI notifier, calling cec_notifier_cec_adap_register()
-calls the enable() adapter callback, but the HW is not yet set up.
+It would be in addition to $SUBJECT patch, not instead, I think.
 
-Moving cec_notifier_cec_adap_register() right before cec_register_adapter()
-fixes the following crash:
-Ignoring spurious kernel translation fault at virtual address 0000000000000008
-[...]
-Hardware name: Khadas VIM (DT)
-[...]
-pc : __do_kernel_fault+0xdc/0x120
-lr : __do_kernel_fault+0xdc/0x120
-[...]
-Call trace:
- __do_kernel_fault+0xdc/0x120
- do_page_fault+0x180/0x458
- do_translation_fault+0x64/0x70
- do_mem_abort+0x3c/0x98
- el1_da+0x20/0x94
- meson_ao_cec_adap_enable+0x30/0x218 [ao_cec]
- __cec_s_phys_addr+0x184/0x270
- cec_s_phys_addr+0x44/0x60
- cec_notifier_cec_adap_register+0x68/0x90
- meson_ao_cec_probe+0xb0/0x288 [ao_cec]
-[...]
- el0_svc_compat+0x8/0x10
+> the &scpi_clocks node could be enabled at runtime by mainline u-boot
 
-Reported-by: Christian Hewitt <christianshewitt@gmail.com>
-Suggested-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Fixes: 20958f9d5c48 ("media: meson/ao-cec: use cec_notifier_cec_adap_(un)register")
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- drivers/media/platform/meson/ao-cec-g12a.c | 36 +++++++++++-----------
- drivers/media/platform/meson/ao-cec.c      | 30 +++++++++---------
- 2 files changed, 33 insertions(+), 33 deletions(-)
+That would work, but I don't know about u-boot maintainers opinions on
+this kind of thing, so let's see what Neil thinks.
 
-diff --git a/drivers/media/platform/meson/ao-cec-g12a.c b/drivers/media/platform/meson/ao-cec-g12a.c
-index 3b39e875292e4..3d8fe854feb0a 100644
---- a/drivers/media/platform/meson/ao-cec-g12a.c
-+++ b/drivers/media/platform/meson/ao-cec-g12a.c
-@@ -662,34 +662,27 @@ static int meson_ao_cec_g12a_probe(struct platform_device *pdev)
- 	if (IS_ERR(ao_cec->adap))
- 		return PTR_ERR(ao_cec->adap);
- 
--	ao_cec->notify = cec_notifier_cec_adap_register(hdmi_dev, NULL,
--							ao_cec->adap);
--	if (!ao_cec->notify) {
--		ret = -ENOMEM;
--		goto out_probe_adapter;
--	}
--
- 	ao_cec->adap->owner = THIS_MODULE;
- 
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	base = devm_ioremap_resource(&pdev->dev, res);
- 	if (IS_ERR(base)) {
- 		ret = PTR_ERR(base);
--		goto out_probe_notify;
-+		goto out_probe_adapter;
- 	}
- 
- 	ao_cec->regmap = devm_regmap_init_mmio(&pdev->dev, base,
- 					       &meson_ao_cec_g12a_regmap_conf);
- 	if (IS_ERR(ao_cec->regmap)) {
- 		ret = PTR_ERR(ao_cec->regmap);
--		goto out_probe_notify;
-+		goto out_probe_adapter;
- 	}
- 
- 	ao_cec->regmap_cec = devm_regmap_init(&pdev->dev, NULL, ao_cec,
- 					   &meson_ao_cec_g12a_cec_regmap_conf);
- 	if (IS_ERR(ao_cec->regmap_cec)) {
- 		ret = PTR_ERR(ao_cec->regmap_cec);
--		goto out_probe_notify;
-+		goto out_probe_adapter;
- 	}
- 
- 	irq = platform_get_irq(pdev, 0);
-@@ -699,45 +692,52 @@ static int meson_ao_cec_g12a_probe(struct platform_device *pdev)
- 					0, NULL, ao_cec);
- 	if (ret) {
- 		dev_err(&pdev->dev, "irq request failed\n");
--		goto out_probe_notify;
-+		goto out_probe_adapter;
- 	}
- 
- 	ao_cec->oscin = devm_clk_get(&pdev->dev, "oscin");
- 	if (IS_ERR(ao_cec->oscin)) {
- 		dev_err(&pdev->dev, "oscin clock request failed\n");
- 		ret = PTR_ERR(ao_cec->oscin);
--		goto out_probe_notify;
-+		goto out_probe_adapter;
- 	}
- 
- 	ret = meson_ao_cec_g12a_setup_clk(ao_cec);
- 	if (ret)
--		goto out_probe_notify;
-+		goto out_probe_adapter;
- 
- 	ret = clk_prepare_enable(ao_cec->core);
- 	if (ret) {
- 		dev_err(&pdev->dev, "core clock enable failed\n");
--		goto out_probe_notify;
-+		goto out_probe_adapter;
- 	}
- 
- 	device_reset_optional(&pdev->dev);
- 
- 	platform_set_drvdata(pdev, ao_cec);
- 
-+	ao_cec->notify = cec_notifier_cec_adap_register(hdmi_dev, NULL,
-+							ao_cec->adap);
-+	if (!ao_cec->notify) {
-+		ret = -ENOMEM;
-+		goto out_probe_core_clk;
-+	}
-+
- 	ret = cec_register_adapter(ao_cec->adap, &pdev->dev);
- 	if (ret < 0)
--		goto out_probe_core_clk;
-+		goto out_probe_notify;
- 
- 	/* Setup Hardware */
- 	regmap_write(ao_cec->regmap, CECB_GEN_CNTL_REG, CECB_GEN_CNTL_RESET);
- 
- 	return 0;
- 
--out_probe_core_clk:
--	clk_disable_unprepare(ao_cec->core);
--
- out_probe_notify:
- 	cec_notifier_cec_adap_unregister(ao_cec->notify);
- 
-+out_probe_core_clk:
-+	clk_disable_unprepare(ao_cec->core);
-+
- out_probe_adapter:
- 	cec_delete_adapter(ao_cec->adap);
- 
-diff --git a/drivers/media/platform/meson/ao-cec.c b/drivers/media/platform/meson/ao-cec.c
-index 64ed549bf0120..03600e8b3ef00 100644
---- a/drivers/media/platform/meson/ao-cec.c
-+++ b/drivers/media/platform/meson/ao-cec.c
-@@ -624,20 +624,13 @@ static int meson_ao_cec_probe(struct platform_device *pdev)
- 	if (IS_ERR(ao_cec->adap))
- 		return PTR_ERR(ao_cec->adap);
- 
--	ao_cec->notify = cec_notifier_cec_adap_register(hdmi_dev, NULL,
--							ao_cec->adap);
--	if (!ao_cec->notify) {
--		ret = -ENOMEM;
--		goto out_probe_adapter;
--	}
--
- 	ao_cec->adap->owner = THIS_MODULE;
- 
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	ao_cec->base = devm_ioremap_resource(&pdev->dev, res);
- 	if (IS_ERR(ao_cec->base)) {
- 		ret = PTR_ERR(ao_cec->base);
--		goto out_probe_notify;
-+		goto out_probe_adapter;
- 	}
- 
- 	irq = platform_get_irq(pdev, 0);
-@@ -647,20 +640,20 @@ static int meson_ao_cec_probe(struct platform_device *pdev)
- 					0, NULL, ao_cec);
- 	if (ret) {
- 		dev_err(&pdev->dev, "irq request failed\n");
--		goto out_probe_notify;
-+		goto out_probe_adapter;
- 	}
- 
- 	ao_cec->core = devm_clk_get(&pdev->dev, "core");
- 	if (IS_ERR(ao_cec->core)) {
- 		dev_err(&pdev->dev, "core clock request failed\n");
- 		ret = PTR_ERR(ao_cec->core);
--		goto out_probe_notify;
-+		goto out_probe_adapter;
- 	}
- 
- 	ret = clk_prepare_enable(ao_cec->core);
- 	if (ret) {
- 		dev_err(&pdev->dev, "core clock enable failed\n");
--		goto out_probe_notify;
-+		goto out_probe_adapter;
- 	}
- 
- 	ret = clk_set_rate(ao_cec->core, CEC_CLK_RATE);
-@@ -674,9 +667,16 @@ static int meson_ao_cec_probe(struct platform_device *pdev)
- 	ao_cec->pdev = pdev;
- 	platform_set_drvdata(pdev, ao_cec);
- 
-+	ao_cec->notify = cec_notifier_cec_adap_register(hdmi_dev, NULL,
-+							ao_cec->adap);
-+	if (!ao_cec->notify) {
-+		ret = -ENOMEM;
-+		goto out_probe_clk;
-+	}
-+
- 	ret = cec_register_adapter(ao_cec->adap, &pdev->dev);
- 	if (ret < 0)
--		goto out_probe_clk;
-+		goto out_probe_notify;
- 
- 	/* Setup Hardware */
- 	writel_relaxed(CEC_GEN_CNTL_RESET,
-@@ -684,12 +684,12 @@ static int meson_ao_cec_probe(struct platform_device *pdev)
- 
- 	return 0;
- 
--out_probe_clk:
--	clk_disable_unprepare(ao_cec->core);
--
- out_probe_notify:
- 	cec_notifier_cec_adap_unregister(ao_cec->notify);
- 
-+out_probe_clk:
-+	clk_disable_unprepare(ao_cec->core);
-+
- out_probe_adapter:
- 	cec_delete_adapter(ao_cec->adap);
- 
--- 
-2.20.1
+Kevin
+
 
 
 _______________________________________________
