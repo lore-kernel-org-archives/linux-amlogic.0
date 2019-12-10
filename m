@@ -7,60 +7,59 @@ X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 297FDC43603
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Dec 2019 02:07:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3072CC43603
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Dec 2019 02:46:34 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E989720409
-	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Dec 2019 02:07:50 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 028F6206E0
+	for <linux-amlogic@archiver.kernel.org>; Tue, 10 Dec 2019 02:46:34 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="npZs6C8R"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E989720409
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ervRDMxb"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 028F6206E0
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zQqEQpX+Ng8D0DrbyorutNTvB7DhkQXaVEDTJRmgSFs=; b=npZs6C8RLGuZ/m
-	amZ2ySiM5UgepSiXkzNAKVELhN1U832iXuFrg+uP7nbYWc2YvZbam2lyi6bVq+t85rC8Env80esrA
-	47wN2maQNPGngDm4ehf/cDhKti/lkrM101ppRonesLKbIJyzKXMw21xWErZ4AYJXvmksx3id1zSlR
-	6HYEYuxCR+RXRkiol7AjvYfEHdbXHszrWGsq5QgzvF+y+QKyTI/HAuD5c6VytC84s75vLj2+/3cQO
-	n9WLnSQ20dcw1FzzEjOmlab7DXiEB30s840A8d8n8J6UojktJJWoMwFCaflicjcA338B2eJHl3c3I
-	P0z0G/ZLrjyHRfGOE5sw==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=yufYr+HKuxBApArZnPSDBz3tPhgPCz2bz3GURLCjtxc=; b=ervRDMxbYO+qrd1jvZEvsc2AT
+	uiawdCrU9nqkgxu3jwkE+FbJAin4l+Q6ZyopjabPZoDQkdTfpW1NTDyFKzIB2szgfjzXl8S6w/4Vz
+	WXCa/G7fOphHckIhMei/5k0Ux74TjQPU68Z4AFmRJoyvrGFF/aplydG1lBLdKl9GER0GgCmSy6PGp
+	5FKx8YXxqtY+k+xhnaNggur/wda8CCKUeAh/Hyw1az2n0zSk9dyP2DmLQbP26ojpTaRccZUWEZl1b
+	pO+cccsJ6gq8LFN3Vfl9dIBxElSwvjrr8UqeVZ7EKZACqyZXxG0LJ5gfepnClMxMmgM4QbFD5+qo8
+	WreZBS+NA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ieUw9-0006sq-BB; Tue, 10 Dec 2019 02:07:41 +0000
+	id 1ieVXf-0003RR-3D; Tue, 10 Dec 2019 02:46:27 +0000
 Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ieUw5-0006me-Kk; Tue, 10 Dec 2019 02:07:40 +0000
-Received: from [10.28.39.106] (10.28.39.106) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ id 1ieVXP-0003Cs-VY; Tue, 10 Dec 2019 02:46:13 +0000
+Received: from [10.28.39.99] (10.28.39.99) by mail-sz.amlogic.com (10.28.11.5)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Tue, 10 Dec
- 2019 10:08:05 +0800
-Subject: Re: [PATCH 2/4] irqchip/meson-gpio: rework meson irqchip driver to
- support meson-A1 SoCs
-To: Marc Zyngier <maz@kernel.org>
-References: <20191206121714.14579-1-qianggui.song@amlogic.com>
- <20191206121714.14579-3-qianggui.song@amlogic.com>
- <542e3e819e584d6e433d2c4276c3b379@www.loen.fr>
-From: Qianggui Song <qianggui.song@amlogic.com>
-Message-ID: <2551e382-d373-dad8-7294-80f2a15c0ad4@amlogic.com>
-Date: Tue, 10 Dec 2019 10:08:04 +0800
+ 2019 10:46:42 +0800
+Subject: Re: [PATCH] arm64: dts: meson-a1: add I2C nodes
+To: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Neil Armstrong <narmstrong@baylibre.com>
+References: <20191202111253.94872-1-jian.hu@amlogic.com>
+ <7hsgltqfdx.fsf@baylibre.com>
+From: Jian Hu <jian.hu@amlogic.com>
+Message-ID: <e90e00e1-c868-ce09-6f79-deb62da72b43@amlogic.com>
+Date: Tue, 10 Dec 2019 10:46:41 +0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.1
 MIME-Version: 1.0
-In-Reply-To: <542e3e819e584d6e433d2c4276c3b379@www.loen.fr>
+In-Reply-To: <7hsgltqfdx.fsf@baylibre.com>
 Content-Language: en-US
-X-Originating-IP: [10.28.39.106]
+X-Originating-IP: [10.28.39.99]
 X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
  (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191209_180737_685959_34698E3D 
-X-CRM114-Status: GOOD (  20.81  )
+X-CRM114-CacheID: sfid-20191209_184612_018247_30FEF196 
+X-CRM114-Status: GOOD (  15.74  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,284 +71,135 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Hanjie Lin <hanjie.lin@amlogic.com>, Jason Cooper <jason@lakedaemon.net>,
- Jianxin Pan <jianxin.pan@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, Thomas Gleixner <tglx@linutronix.de>,
- Xingyu Chen <xingyu.chen@amlogic.com>, Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="us-ascii"
+Cc: Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, Wolfram Sang <wsa@the-dreams.de>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi, Marc
-     Thank you for your review
+Hi Kevin
 
-On 2019/12/6 21:13, Marc Zyngier wrote:
-> On 2019-12-06 12:17, Qianggui Song wrote:
->> Since Meson-A1 Socs register layout of gpio interrupt controller have
->> difference with previous chips, registers to decide irq line and 
->> offset
->> of trigger method are all changed, the current driver should be 
->> modified.
+Thanks for your review
+
+On 2019/12/10 6:54, Kevin Hilman wrote:
+> Hi Jian,
+> 
+> Jian Hu <jian.hu@amlogic.com> writes:
+> 
+>> There are four I2C controllers in A1 series,
+>> Share the same comptible with AXG.The I2C nodes
+>> depend on pinmux and clock controller.
 >>
->> Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
+>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 >> ---
->>  drivers/irqchip/irq-meson-gpio.c | 79 
->> ++++++++++++++++++++++++--------
->>  1 file changed, 60 insertions(+), 19 deletions(-)
+>>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 149 ++++++++++++++++++++++
+>>   1 file changed, 149 insertions(+)
 >>
->> diff --git a/drivers/irqchip/irq-meson-gpio.c
->> b/drivers/irqchip/irq-meson-gpio.c
->> index 829084b568fa..1824ffc30de2 100644
->> --- a/drivers/irqchip/irq-meson-gpio.c
->> +++ b/drivers/irqchip/irq-meson-gpio.c
->> @@ -30,44 +30,74 @@
->>   * stuck at 0. Bits 8 to 15 are responsive and have the expected
->>   * effect.
->>   */
->> -#define REG_EDGE_POL_EDGE(x)	BIT(x)
->> -#define REG_EDGE_POL_LOW(x)	BIT(16 + (x))
->> -#define REG_BOTH_EDGE(x)	BIT(8 + (x))
->> -#define REG_EDGE_POL_MASK(x)    (	\
->> -		REG_EDGE_POL_EDGE(x) |	\
->> -		REG_EDGE_POL_LOW(x)  |	\
->> -		REG_BOTH_EDGE(x))
->> +#define REG_EDGE_POL_EDGE(params, 
->> x)	BIT((params)->edge_single_offset + (x))
->> +#define REG_EDGE_POL_LOW(params, x)	BIT((params)->pol_low_offset + 
->> (x))
->> +#define REG_BOTH_EDGE(params, x)	BIT((params)->edge_both_offset + 
->> (x))
->> +#define REG_EDGE_POL_MASK(params, x)    (	\
->> +		REG_EDGE_POL_EDGE(params, x) |	\
->> +		REG_EDGE_POL_LOW(params, x)  |	\
->> +		REG_BOTH_EDGE(params, x))
->>  #define REG_PIN_SEL_SHIFT(x)	(((x) % 4) * 8)
->>  #define REG_FILTER_SEL_SHIFT(x)	((x) * 4)
->>
->> +#define INIT_MESON8_COMMON_DATA					\
->> +	.edge_single_offset = 0,				\
->> +	.pol_low_offset = 16,					\
->> +	.pin_sel_mask = 0xff,					\
->> +	.ops = {						\
->> +		.gpio_irq_sel_pin = meson8_gpio_irq_sel_pin,	\
->> +	},
-> 
-> Please place the #defines that operate on the various data structures
-> *after* the definition of the structures. It would greatly help
-> reading the changes.
-> 
-OK, will place it below the definition of struct meson_gpio_irq_params
-in the next patch.
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+>> index eab2ecd36aa8..d0a73d953f5e 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+>> @@ -16,6 +16,13 @@
+>>   	#address-cells = <2>;
+>>   	#size-cells = <2>;
+>>   
+>> +	aliases {
+>> +		i2c0 = &i2c0;
+>> +		i2c1 = &i2c1;
+>> +		i2c2 = &i2c2;
+>> +		i2c3 = &i2c3;
+>> +	};
 >> +
->> +struct meson_gpio_irq_controller;
->> +static void meson8_gpio_irq_sel_pin(struct meson_gpio_irq_controller 
->> *ctl,
->> +				    unsigned int channel, unsigned long hwirq);
->> +struct irq_ctl_ops {
->> +	void (*gpio_irq_sel_pin)(struct meson_gpio_irq_controller *ctl,
->> +					 unsigned int channel,
->> +					 unsigned long hwirq);
->> +	void (*gpio_irq_init)(struct meson_gpio_irq_controller *ctl);
->> +};
+>>   	cpus {
+>>   		#address-cells = <2>;
+>>   		#size-cells = <0>;
+>> @@ -117,6 +124,46 @@
+>>   				};
+>>   			};
+>>   
+>> +			i2c0: i2c@1400 {
+>> +				compatible = "amlogic,meson-axg-i2c";
+>> +				reg = <0x0 0x1400 0x0 0x24>;
+> 
+> The AXG DT files use 0x20 for the length.  You are using 0x24.  I don't
+> see any additional registers added to the driver, so this doesn't look right.
+In fact, For G12 series and A1, the length should be 0x24. A new 
+register is added, And it is for IRQ handler timeout. If the 
+transmission is exceeding a limited time, it will abort the 
+transmission.Now the function is not used, There is completion to deal 
+the timeout in the driver. I will set the length 0x20 becouse of the new 
+register is not used.
+> 
+>> +				interrupts = <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>;
+>> +				#address-cells = <1>;
+>> +				#size-cells = <0>;
+>> +				clocks = <&clkc_periphs CLKID_I2C_M_A>;
+>> +				status = "disabled";
+>> +			};
 >> +
->>  struct meson_gpio_irq_params {
->>  	unsigned int nr_hwirq;
->>  	bool support_edge_both;
->> +	unsigned int edge_both_offset;
->> +	unsigned int edge_single_offset;
->> +	unsigned int pol_low_offset;
->> +	unsigned int pin_sel_mask;
->> +	struct irq_ctl_ops ops;
->>  };
->>
->>  static const struct meson_gpio_irq_params meson8_params = {
->>  	.nr_hwirq = 134,
->> +	INIT_MESON8_COMMON_DATA
->>  };
->>
->>  static const struct meson_gpio_irq_params meson8b_params = {
->>  	.nr_hwirq = 119,
->> +	INIT_MESON8_COMMON_DATA
->>  };
->>
->>  static const struct meson_gpio_irq_params gxbb_params = {
->>  	.nr_hwirq = 133,
->> +	INIT_MESON8_COMMON_DATA
->>  };
->>
->>  static const struct meson_gpio_irq_params gxl_params = {
->>  	.nr_hwirq = 110,
->> +	INIT_MESON8_COMMON_DATA
->>  };
->>
->>  static const struct meson_gpio_irq_params axg_params = {
->>  	.nr_hwirq = 100,
->> +	INIT_MESON8_COMMON_DATA
->>  };
->>
->>  static const struct meson_gpio_irq_params sm1_params = {
->>  	.nr_hwirq = 100,
->>  	.support_edge_both = true,
->> +	.edge_both_offset = 8,
->> +	INIT_MESON8_COMMON_DATA
->>  };
-> 
-> OK, this isn't great. The least you could do is to make
-> your initializer parametric, so that it takes the nr_hwirq as
-> a parameter.
-> 
-> Then, any additional member that overrides common behaviour
-> should come after the main initializer.
-> 
-> Also, do you need 'support_edge_both'? Isn't a non-zero
-> 'edge_both_offset' enough to detect the feature?
-> 
-
-Sorry, but I am not very clear that "make your initializer parametric,
-so that it takes the nr_hwirq as a parameter". Is that
-initializer(initial function in .ops ? ) as a parameter of struct
-meson_gpio_irq_params ? If nr_hwirq as a parameter of init function of
-.ops then will make lot of init function for each platform.
-
-How about move .ops from  macro like below:
-#define INIT_MESON8_COMMON_DATA					\
-	.edge_single_offset = 0,				\
-	.pol_low_offset = 16,					\
-	.pin_sel_mask = 0xff,
-
-static const struct meson_gpio_irq_params sm1_params = {
- 	.nr_hwirq = 100,//main initializer
-	.ops = {
-              .gpio_irq_sel_pin = meson8_gpio_irq_sel_pin,
-               /*in below to assign support_edge_both
-                * edge_both_offset
-                * call after main initializer to additional
-                * member
-                */
-              .gpio_irq_init = meson_sm1_irq_init,
-	},
-  	INIT_MESON8_COMMON_DATA// m8 to sm1 are the same.
-};
-
-About support_edge_both
-support_edge_both & edge_both_offset are used for sm1 or later chip, but
-the value are different with A1 which this patch set support.For SM1 is
-8, but A1 is 16, so I am not one hundred percent sure that later chip
-design will change to edge_both_offet to zero to set both edge trigger.
-Let' s see edge_single_offset, it is set to 0 in A1 from 16 which is
-previous chip use.I think support_edge_bot should be kept.
-
->>
->>  static const struct of_device_id meson_irq_gpio_matches[] = {
->> @@ -100,9 +130,18 @@ static void meson_gpio_irq_update_bits(struct
->> meson_gpio_irq_controller *ctl,
->>  	writel_relaxed(tmp, ctl->base + reg);
->>  }
->>
->> -static unsigned int meson_gpio_irq_channel_to_reg(unsigned int 
->> channel)
->> +static void meson8_gpio_irq_sel_pin(struct meson_gpio_irq_controller 
->> *ctl,
->> +				    unsigned int channel, unsigned long hwirq)
->>  {
->> -	return (channel < 4) ? REG_PIN_03_SEL : REG_PIN_47_SEL;
->> +	unsigned int reg_offset;
->> +	unsigned int bit_offset;
+>> +			i2c1: i2c@5c00 {
+>> +				compatible = "amlogic,meson-axg-i2c";
+>> +				reg = <0x0 0x5c00 0x0 0x24>;
+>> +				interrupts = <GIC_SPI 68 IRQ_TYPE_EDGE_RISING>;
+>> +				#address-cells = <1>;
+>> +				#size-cells = <0>;
+>> +				clocks = <&clkc_periphs CLKID_I2C_M_B>;
+>> +				status = "disabled";
+>> +			};
 >> +
->> +	reg_offset = (channel < 4) ? REG_PIN_03_SEL : REG_PIN_47_SEL;
->> +	bit_offset = REG_PIN_SEL_SHIFT(channel);
+>> +			i2c2: i2c@6800 {
+>> +				compatible = "amlogic,meson-axg-i2c";
+>> +				reg = <0x0 0x6800 0x0 0x24>;
+>> +				interrupts = <GIC_SPI 76 IRQ_TYPE_EDGE_RISING>;
+>> +				#address-cells = <1>;
+>> +				#size-cells = <0>;
+>> +				clocks = <&clkc_periphs CLKID_I2C_M_C>;
+>> +				status = "disabled";
+>> +			};
 >> +
->> +	meson_gpio_irq_update_bits(ctl, reg_offset,
->> +				   ctl->params->pin_sel_mask << bit_offset,
->> +				   hwirq << bit_offset);
->>  }
->>
->>  static int
->> @@ -110,7 +149,7 @@ meson_gpio_irq_request_channel(struct
->> meson_gpio_irq_controller *ctl,
->>  			       unsigned long  hwirq,
->>  			       u32 **channel_hwirq)
->>  {
->> -	unsigned int reg, idx;
->> +	unsigned int idx;
->>
->>  	spin_lock(&ctl->lock);
->>
->> @@ -129,10 +168,7 @@ meson_gpio_irq_request_channel(struct
->> meson_gpio_irq_controller *ctl,
->>  	 * Setup the mux of the channel to route the signal of the pad
->>  	 * to the appropriate input of the GIC
->>  	 */
->> -	reg = meson_gpio_irq_channel_to_reg(idx);
->> -	meson_gpio_irq_update_bits(ctl, reg,
->> -				   0xff << REG_PIN_SEL_SHIFT(idx),
->> -				   hwirq << REG_PIN_SEL_SHIFT(idx));
->> +	ctl->params->ops.gpio_irq_sel_pin(ctl, idx, hwirq);
->>
->>  	/*
->>  	 * Get the hwirq number assigned to this channel through
->> @@ -173,7 +209,9 @@ static int meson_gpio_irq_type_setup(struct
->> meson_gpio_irq_controller *ctl,
->>  {
->>  	u32 val = 0;
->>  	unsigned int idx;
->> +	const struct meson_gpio_irq_params *params;
->>
->> +	params = ctl->params;
->>  	idx = meson_gpio_irq_get_channel_idx(ctl, channel_hwirq);
->>
->>  	/*
->> @@ -190,22 +228,22 @@ static int meson_gpio_irq_type_setup(struct
->> meson_gpio_irq_controller *ctl,
->>  	 * precedence over the other edge/polarity settings
->>  	 */
->>  	if (type == IRQ_TYPE_EDGE_BOTH) {
->> -		if (!ctl->params->support_edge_both)
->> +		if (!params->support_edge_both)
->>  			return -EINVAL;
->>
->> -		val |= REG_BOTH_EDGE(idx);
->> +		val |= REG_BOTH_EDGE(params, idx);
->>  	} else {
->>  		if (type & (IRQ_TYPE_EDGE_RISING | IRQ_TYPE_EDGE_FALLING))
->> -			val |= REG_EDGE_POL_EDGE(idx);
->> +			val |= REG_EDGE_POL_EDGE(params, idx);
->>
->>  		if (type & (IRQ_TYPE_LEVEL_LOW | IRQ_TYPE_EDGE_FALLING))
->> -			val |= REG_EDGE_POL_LOW(idx);
->> +			val |= REG_EDGE_POL_LOW(params, idx);
->>  	}
->>
->>  	spin_lock(&ctl->lock);
->>
->>  	meson_gpio_irq_update_bits(ctl, REG_EDGE_POL,
->> -				   REG_EDGE_POL_MASK(idx), val);
->> +				   REG_EDGE_POL_MASK(params, idx), val);
->>
->>  	spin_unlock(&ctl->lock);
->>
->> @@ -371,6 +409,9 @@ static int __init meson_gpio_irq_parse_dt(struct
->> device_node *node,
->>  		return ret;
->>  	}
->>
->> +	if (ctl->params->ops.gpio_irq_init)
->> +		ctl->params->ops.gpio_irq_init(ctl);
-> 
-> It would make sense to provide a dummy init() method, since
-> you have all the infrastructure already.
-> 
-Okay
+>> +			i2c3: i2c@6c00 {
+>> +				compatible = "amlogic,meson-axg-i2c";
+>> +				reg = <0x0 0x6c00 0x0 0x24>;
+>> +				interrupts = <GIC_SPI 78 IRQ_TYPE_EDGE_RISING>;
+>> +				#address-cells = <1>;
+>> +				#size-cells = <0>;
+>> +				clocks = <&clkc_periphs CLKID_I2C_M_D>;
+>> +				status = "disabled";
+>> +			};
 >> +
->>  	return 0;
->>  }
+>>   			uart_AO: serial@1c00 {
+>>   				compatible = "amlogic,meson-gx-uart",
+>>   					     "amlogic,meson-ao-uart";
+>> @@ -171,3 +218,105 @@
+>>   		#clock-cells = <0>;
+>>   	};
+>>   };
+>> +
+>> +&periphs_pinctrl {
+>> +	i2c0_f11_pins:i2c0-f11 {
+>> +		mux {
+>> +			groups = "i2c0_sck_f11",
+>> +				"i2c0_sda_f12";
+>> +			function = "i2c0";
+>> +			bias-pull-up;
+>> +			drive-strength-microamp = <3000>;
 > 
-> Thanks,
+> Can you also add some comment to the changelog about the need for
+> drive-strength compared to AXG.
+OK, Drive strength function is added for GPIO pins from G12 series.
+So does A1 series.
 > 
->          M.
+>> +		};
+>> +	};
+> 
+> Kevin
+> 
+> .
 > 
 
 _______________________________________________
