@@ -2,70 +2,94 @@ Return-Path: <SRS0=S6c6=2B=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIMWL_WL_HIGH,
+	DKIM_ADSP_CUSTOM_MED,DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_GIT
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 75437C43603
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Dec 2019 17:26:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8BA50C43603
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Dec 2019 19:28:14 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 48E6E206A5
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Dec 2019 17:26:51 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 55ABA222C4
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Dec 2019 19:28:14 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KdkbGUUA"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 48E6E206A5
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Q8M+jBg6";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=google.com header.i=@google.com header.b="BHEbvjoH"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 55ABA222C4
+Authentication-Results: mail.kernel.org; dmarc=fail (p=reject dis=none) header.from=google.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Message-ID:References:In-Reply-To:From:Date:
-	MIME-Version:Subject:To:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=2M42lB/F+f9uzdJurl4crn+W6j7eXwQvorF89TYIqnA=; b=KdkbGUUATa6jVsK9b3IcmmBh9
-	sdMPci2F5Ie+ktiZp/Oqht+edxYLiqYW4pvaSm+kWqhPhm78LaRT9HpBMr9eeYlrjfkK1BvB7NSwj
-	eRdQvOhK3cLndXVc1gFtaJyILM50q2l5tNAy9mbQz7R31T4AZWvk/ASOjky7CoE7QMItuO1vNCTh4
-	FCc02AUfQLxbYPSMby5aim2H9GUEmh9z6QTunO4qvW6LRZ9VARgOea8svhlplhtBGBMwty5LZVVSa
-	Wbm0/rhOpIM937nWEUFK8TdupdK/wilTDl7s27JAeCF0ZhvVp3L53WmP/jqTsuCsIEzYpzRv69FUk
-	a9odrIOfQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:From:Subject:Mime-Version:Message-Id
+	:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=PI73JVZsxPjr1HWD1ulfFV8Y5AZz5E3Q8K8rTii0dPE=; b=Q8M+jBg6fHM2+s
+	XBxdD0w0SXOaFKRO+DdS2uSfRwFj4i4DETRtVzF24OwxY4FoDaAXmIWsYcVDPYrOzpuqXmS1z+GYr
+	F6xOu7oXweE9g/+KGLbeGLQZDwwjy+k0971OGgAkTylxwNCud6WKq2gjSBkWdpHy63NDvIicsp+EP
+	+ZW/B5ZLS0VV6fjXXduzU3bpVZOXuxHYBwrUOBN+yPe4SRT5CrCHh+QiC4qMI4s3z59Sncf58CJjT
+	yzsKDI3kVYaUr8acU/hlfsiI6hA5xomerXoLfiep8I5mtD9Q/gGvN/nKZZ9XY+u59hzcYOpWXGkU3
+	0jn6WUWLY7h9cx0GxClw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1if5l2-0003xI-JB; Wed, 11 Dec 2019 17:26:40 +0000
-Received: from inca-roads.misterjones.org ([213.251.177.50])
+	id 1if7eX-00049l-Gk; Wed, 11 Dec 2019 19:28:05 +0000
+Received: from mail-pg1-x54a.google.com ([2607:f8b0:4864:20::54a])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1if5km-0003nR-Fs; Wed, 11 Dec 2019 17:26:28 +0000
-Received: from www-data by cheepnis.misterjones.org with local (Exim 4.80)
- (envelope-from <maz@kernel.org>)
- id 1if5kg-0007zE-BR; Wed, 11 Dec 2019 18:26:18 +0100
-To: Qianggui Song <qianggui.song@amlogic.com>
-Subject: Re: [PATCH 2/4] irqchip/meson-gpio: rework meson irqchip driver to
- support meson-A1 SoCs
-X-PHP-Originating-Script: 0:main.inc
-MIME-Version: 1.0
-Date: Wed, 11 Dec 2019 17:26:18 +0000
-From: Marc Zyngier <maz@kernel.org>
-In-Reply-To: <2551e382-d373-dad8-7294-80f2a15c0ad4@amlogic.com>
-References: <20191206121714.14579-1-qianggui.song@amlogic.com>
- <20191206121714.14579-3-qianggui.song@amlogic.com>
- <542e3e819e584d6e433d2c4276c3b379@www.loen.fr>
- <2551e382-d373-dad8-7294-80f2a15c0ad4@amlogic.com>
-Message-ID: <0cbbb895b50a838fd1dfa9e59528367d@www.loen.fr>
-X-Sender: maz@kernel.org
-User-Agent: Roundcube Webmail/0.7.2
-X-SA-Exim-Connect-IP: <locally generated>
-X-SA-Exim-Rcpt-To: qianggui.song@amlogic.com, tglx@linutronix.de,
- jason@lakedaemon.net, khilman@baylibre.com, narmstrong@baylibre.com,
- jbrunet@baylibre.com, jianxin.pan@amlogic.com, xingyu.chen@amlogic.com,
- hanjie.lin@amlogic.com, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on cheepnis.misterjones.org);
- SAEximRunCond expanded to false
+ id 1if7eJ-0003vx-7N
+ for linux-amlogic@lists.infradead.org; Wed, 11 Dec 2019 19:27:54 +0000
+Received: by mail-pg1-x54a.google.com with SMTP id g20so12001461pgb.18
+ for <linux-amlogic@lists.infradead.org>; Wed, 11 Dec 2019 11:27:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+ h=date:message-id:mime-version:subject:from:to:cc;
+ bh=KFmQdAdZh8/B/wh1g4c+i5ALsP3kFx6ncDBf/RCXchM=;
+ b=BHEbvjoHWqZ7Nv64QnvdKu9CN/PsQfHYxZZQz1Q10KydrF+m2IHzcnK5CrZKkXxx4b
+ 2YMOz+hd3HzxKnkbWedNtKO00vtCc2M3iMLn8LoGBw3qqR4py04EUe+8nahF6KzgWO/b
+ vx1yhOmUkc/tCU9SZaP784yXIevMeiNK8sTRWzHqze2L7IbBFAHJC4itwqTKgrxGtnjj
+ YeOhn/aOPE4f5oqAfM8DBWqmaHF/yW9Y7gmPjj650DnJ/PPd/Wng33I4+uBaDrD616/p
+ ZRtT+uj/OzuuvRgRQ2d0fDYsZ2aGXgohBEYAYMIdTYa6aIe9iYQrbTB4SE+EyIfKIqoL
+ sEbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+ bh=KFmQdAdZh8/B/wh1g4c+i5ALsP3kFx6ncDBf/RCXchM=;
+ b=iGlmcaEjyuE25kFAjRd/cy2SQYZ4f3/KbwQ5JxOeuwSA64egVPSrNuBzEFLTGz4TQQ
+ NVrFAK93SgWintxOu77uvzwlDaHd+4XEFPQvekI5S8Vv7/4/tLRqLoAsRb9lXyu5uAoN
+ nASw2dKs0E4S5liqNjTkdnr3ld2XFS12pgCdc0n0B+oMUSqEv95HJdGQqiRqwe44B2Fn
+ sNl6Z1Go+66aFEFVSkk41frUX/dLgx13EntNkYxAAHmZ6uasYiIirthxV5bgekwuwCGg
+ ZNjEcVrQCb6C8lQLBKEN2Usze7Vegf3KmYEtJJLV4W/Cc4+EFTmCQd/FJOsOe28uoZG8
+ clCQ==
+X-Gm-Message-State: APjAAAVFkjvkdASuot+hzZRy5tiHx+Us0HiuownlskPbOqJ2j8SEkydi
+ tD2rfBSaNFDIFRyvFRFY3XNI7n6PUW4d/hbjWmtCmg==
+X-Google-Smtp-Source: APXvYqycyWWqOB+1R/dWpmqnOlhdQUifRBeUd7lNrtDIGomABUXQd06geDk/YSSdxQdhxW6XmQloW5ZXtQ6ql5pkVCc82w==
+X-Received: by 2002:a63:f60:: with SMTP id 32mr5943939pgp.206.1576092468990;
+ Wed, 11 Dec 2019 11:27:48 -0800 (PST)
+Date: Wed, 11 Dec 2019 11:27:35 -0800
+Message-Id: <20191211192742.95699-1-brendanhiggins@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.24.0.525.g8f36a354ae-goog
+Subject: [PATCH v1 0/7] uml: add unspecified HAS_IOMEM dependencies
+From: Brendan Higgins <brendanhiggins@google.com>
+To: jdike@addtoit.com, richard@nod.at, anton.ivanov@cambridgegreys.com, 
+ "David S. Miller" <davem@davemloft.net>, Alistar Popple <alistair@popple.id.au>,
+ Andrew Jeffery <andrew@aj.id.au>, Antoine Tenart <antoine.tenart@bootlin.com>, 
+ Arnd Bergmann <arnd@arndb.de>,
+ Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>, 
+ Boris Brezillon <bbrezillon@kernel.org>, Corentin Labbe <clabbe@baylibre.com>, 
+ Eddie James <eajames@linux.ibm.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Herbert Xu <herbert@gondor.apana.org.au>, Jeremy Kerr <jk@ozlabs.org>, 
+ Joel Stanley <joel@jms.id.au>, Linus Walleij <linus.walleij@linaro.org>, 
+ Michal Simek <michal.simek@xilinx.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Moses Christopher <moseschristopherb@gmail.com>,
+ Piotr Sroka <piotrs@cadence.com>, 
+ Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191211_092626_520504_5608013B 
-X-CRM114-Status: GOOD (  19.42  )
+X-CRM114-CacheID: sfid-20191211_112751_278053_26FE39E7 
+X-CRM114-Status: GOOD (  12.41  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,284 +101,127 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Hanjie Lin <hanjie.lin@amlogic.com>, Jason Cooper <jason@lakedaemon.net>,
- Jianxin Pan <jianxin.pan@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, Thomas Gleixner <tglx@linutronix.de>,
- Xingyu Chen <xingyu.chen@amlogic.com>, Jerome Brunet <jbrunet@baylibre.com>
+Cc: devel@driverdev.osuosl.org, linux-aspeed@lists.ozlabs.org,
+ linux-um@lists.infradead.org, Brendan Higgins <brendanhiggins@google.com>,
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-mtd@lists.infradead.org, linux-crypto@vger.kernel.org,
+ davidgow@google.com, netdev@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-fsi@lists.ozlabs.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 2019-12-10 02:08, Qianggui Song wrote:
-> Hi, Marc
->      Thank you for your review
->
-> On 2019/12/6 21:13, Marc Zyngier wrote:
->> On 2019-12-06 12:17, Qianggui Song wrote:
->>> Since Meson-A1 Socs register layout of gpio interrupt controller 
->>> have
->>> difference with previous chips, registers to decide irq line and
->>> offset
->>> of trigger method are all changed, the current driver should be
->>> modified.
->>>
->>> Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
->>> ---
->>>  drivers/irqchip/irq-meson-gpio.c | 79
->>> ++++++++++++++++++++++++--------
->>>  1 file changed, 60 insertions(+), 19 deletions(-)
->>>
->>> diff --git a/drivers/irqchip/irq-meson-gpio.c
->>> b/drivers/irqchip/irq-meson-gpio.c
->>> index 829084b568fa..1824ffc30de2 100644
->>> --- a/drivers/irqchip/irq-meson-gpio.c
->>> +++ b/drivers/irqchip/irq-meson-gpio.c
->>> @@ -30,44 +30,74 @@
->>>   * stuck at 0. Bits 8 to 15 are responsive and have the expected
->>>   * effect.
->>>   */
->>> -#define REG_EDGE_POL_EDGE(x)	BIT(x)
->>> -#define REG_EDGE_POL_LOW(x)	BIT(16 + (x))
->>> -#define REG_BOTH_EDGE(x)	BIT(8 + (x))
->>> -#define REG_EDGE_POL_MASK(x)    (	\
->>> -		REG_EDGE_POL_EDGE(x) |	\
->>> -		REG_EDGE_POL_LOW(x)  |	\
->>> -		REG_BOTH_EDGE(x))
->>> +#define REG_EDGE_POL_EDGE(params,
->>> x)	BIT((params)->edge_single_offset + (x))
->>> +#define REG_EDGE_POL_LOW(params, x)	BIT((params)->pol_low_offset +
->>> (x))
->>> +#define REG_BOTH_EDGE(params, x)	BIT((params)->edge_both_offset +
->>> (x))
->>> +#define REG_EDGE_POL_MASK(params, x)    (	\
->>> +		REG_EDGE_POL_EDGE(params, x) |	\
->>> +		REG_EDGE_POL_LOW(params, x)  |	\
->>> +		REG_BOTH_EDGE(params, x))
->>>  #define REG_PIN_SEL_SHIFT(x)	(((x) % 4) * 8)
->>>  #define REG_FILTER_SEL_SHIFT(x)	((x) * 4)
->>>
->>> +#define INIT_MESON8_COMMON_DATA					\
->>> +	.edge_single_offset = 0,				\
->>> +	.pol_low_offset = 16,					\
->>> +	.pin_sel_mask = 0xff,					\
->>> +	.ops = {						\
->>> +		.gpio_irq_sel_pin = meson8_gpio_irq_sel_pin,	\
->>> +	},
->>
->> Please place the #defines that operate on the various data 
->> structures
->> *after* the definition of the structures. It would greatly help
->> reading the changes.
->>
-> OK, will place it below the definition of struct 
-> meson_gpio_irq_params
-> in the next patch.
->>> +
->>> +struct meson_gpio_irq_controller;
->>> +static void meson8_gpio_irq_sel_pin(struct 
->>> meson_gpio_irq_controller
->>> *ctl,
->>> +				    unsigned int channel, unsigned long hwirq);
->>> +struct irq_ctl_ops {
->>> +	void (*gpio_irq_sel_pin)(struct meson_gpio_irq_controller *ctl,
->>> +					 unsigned int channel,
->>> +					 unsigned long hwirq);
->>> +	void (*gpio_irq_init)(struct meson_gpio_irq_controller *ctl);
->>> +};
->>> +
->>>  struct meson_gpio_irq_params {
->>>  	unsigned int nr_hwirq;
->>>  	bool support_edge_both;
->>> +	unsigned int edge_both_offset;
->>> +	unsigned int edge_single_offset;
->>> +	unsigned int pol_low_offset;
->>> +	unsigned int pin_sel_mask;
->>> +	struct irq_ctl_ops ops;
->>>  };
->>>
->>>  static const struct meson_gpio_irq_params meson8_params = {
->>>  	.nr_hwirq = 134,
->>> +	INIT_MESON8_COMMON_DATA
->>>  };
->>>
->>>  static const struct meson_gpio_irq_params meson8b_params = {
->>>  	.nr_hwirq = 119,
->>> +	INIT_MESON8_COMMON_DATA
->>>  };
->>>
->>>  static const struct meson_gpio_irq_params gxbb_params = {
->>>  	.nr_hwirq = 133,
->>> +	INIT_MESON8_COMMON_DATA
->>>  };
->>>
->>>  static const struct meson_gpio_irq_params gxl_params = {
->>>  	.nr_hwirq = 110,
->>> +	INIT_MESON8_COMMON_DATA
->>>  };
->>>
->>>  static const struct meson_gpio_irq_params axg_params = {
->>>  	.nr_hwirq = 100,
->>> +	INIT_MESON8_COMMON_DATA
->>>  };
->>>
->>>  static const struct meson_gpio_irq_params sm1_params = {
->>>  	.nr_hwirq = 100,
->>>  	.support_edge_both = true,
->>> +	.edge_both_offset = 8,
->>> +	INIT_MESON8_COMMON_DATA
->>>  };
->>
->> OK, this isn't great. The least you could do is to make
->> your initializer parametric, so that it takes the nr_hwirq as
->> a parameter.
->>
->> Then, any additional member that overrides common behaviour
->> should come after the main initializer.
->>
->> Also, do you need 'support_edge_both'? Isn't a non-zero
->> 'edge_both_offset' enough to detect the feature?
->>
->
-> Sorry, but I am not very clear that "make your initializer 
-> parametric,
-> so that it takes the nr_hwirq as a parameter". Is that
-> initializer(initial function in .ops ? ) as a parameter of struct
-> meson_gpio_irq_params ? If nr_hwirq as a parameter of init function 
-> of
-> .ops then will make lot of init function for each platform.
->
-> How about move .ops from  macro like below:
-> #define INIT_MESON8_COMMON_DATA					\
-> 	.edge_single_offset = 0,				\
-> 	.pol_low_offset = 16,					\
-> 	.pin_sel_mask = 0xff,
->
-> static const struct meson_gpio_irq_params sm1_params = {
->  	.nr_hwirq = 100,//main initializer
-> 	.ops = {
->               .gpio_irq_sel_pin = meson8_gpio_irq_sel_pin,
->                /*in below to assign support_edge_both
->                 * edge_both_offset
->                 * call after main initializer to additional
->                 * member
->                 */
->               .gpio_irq_init = meson_sm1_irq_init,
-> 	},
->   	INIT_MESON8_COMMON_DATA// m8 to sm1 are the same.
-> };
+# TL;DR
 
-No, what I'm suggesting is something like this:
+This patchset adds a missing HAS_IOMEM dependency to several drivers in
+an attempt to get allyesconfig closer to working for ARCH=um.
 
-diff --git a/drivers/irqchip/irq-meson-gpio.c 
-b/drivers/irqchip/irq-meson-gpio.c
-index 8478100706a6..27a3207a944d 100644
---- a/drivers/irqchip/irq-meson-gpio.c
-+++ b/drivers/irqchip/irq-meson-gpio.c
-@@ -43,24 +43,27 @@
-  /* Below is used for Meson-A1 series like chips*/
-  #define REG_PIN_A1_SEL	0x04
+# What am I trying to do?
 
--#define INIT_MESON8_COMMON_DATA					\
--	.edge_single_offset = 0,				\
--	.pol_low_offset = 16,					\
--	.pin_sel_mask = 0xff,					\
--	.ops = {						\
--		.gpio_irq_sel_pin = meson8_gpio_irq_sel_pin,	\
--	},
--
--#define INIT_MESON_A1_COMMON_DATA				\
--	.support_edge_both = true,				\
--	.edge_both_offset = 16,					\
--	.edge_single_offset = 8,				\
--	.pol_low_offset = 0,					\
--	.pin_sel_mask = 0x7f,					\
--	.ops = {						\
--		.gpio_irq_sel_pin = meson_a1_gpio_irq_sel_pin,	\
--		.gpio_irq_init = meson_a1_gpio_irq_init,	\
--	},
-+#define INIT_MESON_COMMON(irqs, init, sel)		\
-+	.nr_hwirq = irqs,				\
-+	.ops = {					\
-+		.gpio_irq_sel_pin = sel,		\
-+		.gpio_irq_init = init,			\
-+	}
-+
-+#define INIT_MESON8_COMMON_DATA(irqs)			\
-+	INIT_MESON_COMMON(irqs, NULL,			\
-+			  meson8_gpio_irq_sel_pin),	\
-+	.pol_low_offset = 16,				\
-+	.pin_sel_mask = 0xff,
-+
-+#define INIT_MESON_A1_COMMON_DATA(irqs)			\
-+	INIT_MESON_COMMON(irqs, meson_a1_gpio_irq_init,	\
-+			  meson_a1_gpio_irq_sel_pin),	\
-+	.support_edge_both = true,			\
-+	.edge_both_offset = 16,				\
-+	.edge_single_offset = 8,			\
-+	.pol_low_offset = 0,				\
-+	.pin_sel_mask = 0x7f,
+This patchset is part of my attempt to get `make ARCH=um allyesconfig`
+to produce a config that will build *and* boot to init, so that I can
+use it as a mechanism to run tests[1].
 
-  struct meson_gpio_irq_controller;
-  static void meson8_gpio_irq_sel_pin(struct meson_gpio_irq_controller 
-*ctl,
-@@ -89,40 +92,33 @@ struct meson_gpio_irq_params {
-  };
+This patchset is attempting to deal with
 
-  static const struct meson_gpio_irq_params meson8_params = {
--	.nr_hwirq = 134,
--	INIT_MESON8_COMMON_DATA
-+	INIT_MESON8_COMMON_DATA(134),
-  };
+CONFIG_PINCTRL_EQUILIBRIUM=y
+CONFIG_MTD_NAND_CADENCE=y
+CONFIG_FSI_MASTER_ASPEED=y
+CONFIG_CRYPTO_DEV_SAFEXCEL=y
+CONFIG_XIL_AXIS_FIFO=y
+CONFIG_CRYPTO_DEV_AMLOGIC_GXL=y
+CONFIG_XILINX_AXI_EMAC=y
 
-  static const struct meson_gpio_irq_params meson8b_params = {
--	.nr_hwirq = 119,
--	INIT_MESON8_COMMON_DATA
-+	INIT_MESON8_COMMON_DATA(119),
-  };
+which are selected by `make ARCH=um allyesconfig`, but prevent it from
+building.
 
-  static const struct meson_gpio_irq_params gxbb_params = {
--	.nr_hwirq = 133,
--	INIT_MESON8_COMMON_DATA
-+	INIT_MESON8_COMMON_DATA(133),
-  };
+# How far away are we from an allyesconfig UML kernel?
 
-  static const struct meson_gpio_irq_params gxl_params = {
--	.nr_hwirq = 110,
--	INIT_MESON8_COMMON_DATA
-+	INIT_MESON8_COMMON_DATA(110),
-  };
+I have identified 33 Kconfigs that are selected by allyesconfig, but
+will either not build on UML, or prevent it from booting. They are:
 
-  static const struct meson_gpio_irq_params axg_params = {
--	.nr_hwirq = 100,
--	INIT_MESON8_COMMON_DATA
-+	INIT_MESON8_COMMON_DATA(100),
-  };
+CONFIG_STATIC_LINK=y
+CONFIG_UML_NET_PCAP=y
+CONFIG_NET_PTP_CLASSIFY=y
+CONFIG_IP_VS=y
+CONFIG_BRIDGE_EBT_BROUTE=y
+CONFIG_BRIDGE_EBT_T_FILTER=y
+CONFIG_BRIDGE_EBT_T_NAT=y
+CONFIG_MTD_NAND_CADENCE=y
+CONFIG_MTD_NAND_NANDSIM=y
+CONFIG_BLK_DEV_NULL_BLK=y
+CONFIG_BLK_DEV_RAM=y
+CONFIG_SCSI_DEBUG=y
+CONFIG_NET_VENDOR_XILINX=y
+CONFIG_NULL_TTY=y
+CONFIG_PTP_1588_CLOCK=y
+CONFIG_PINCTRL_EQUILIBRIUM=y
+CONFIG_DMABUF_SELFTESTS=y
+CONFIG_COMEDI=y
+CONFIG_XIL_AXIS_FIFO=y
+CONFIG_EXFAT_FS=y
+CONFIG_STM_DUMMY=y
+CONFIG_FSI_MASTER_ASPEED=y
+CONFIG_JFS_FS=y
+CONFIG_UBIFS_FS=y
+CONFIG_CRAMFS=y
+CONFIG_CRYPTO_DEV_SAFEXCEL=y
+CONFIG_CRYPTO_DEV_AMLOGIC_GXL=y
+CONFIG_KCOV=y
+CONFIG_LKDTM=y
+CONFIG_REED_SOLOMON_TEST=y
+CONFIG_TEST_RHASHTABLE=y
+CONFIG_TEST_MEMINIT=y
+CONFIG_NETWORK_PHY_TIMESTAMPING=y
 
-  static const struct meson_gpio_irq_params sm1_params = {
--	.nr_hwirq = 100,
-+	INIT_MESON8_COMMON_DATA(100),
-  	.support_edge_both = true,
-  	.edge_both_offset = 8,
--	INIT_MESON8_COMMON_DATA
-  };
+CONFIG_STATIC_LINK=y and CONFIG_UML_NET_PCAP=y already have fixes on
+their way.
 
-  static const struct meson_gpio_irq_params a1_params = {
--	.nr_hwirq = 62,
--	INIT_MESON_A1_COMMON_DATA
-+	INIT_MESON_A1_COMMON_DATA(62),
-  };
+I also have a patchset that just got accepted to fix
+CONFIG_EXFAT_FS=y[2].
 
-  static const struct of_device_id meson_irq_gpio_matches[] = {
+So with this patchset and these other three fixes mentioned here, we
+will be about a third of the way there. There is only one more broken
+config that prevents UML from building, CONFIG_LKDTM=y. After this there
+will still be 22 broken configs which will prevent the UML allyesconfig
+kernel from reaching the end of init; nevertheless, this is a good
+milestone where, once reached, we can stop some of this bleeding by
+adding a build test.
 
+# Why won't allyesconfig break again after this series of fixes?
 
-Thanks,
+As I mentioned above, I am using UML for testing the kernel, and I am
+currently working on getting my tests to run on KernelCI. As part of our
+testing procedure for KernelCI, we are planning on building a UML kernel
+using allyesconfig and running our tests on it. Thus, we will find out
+very quickly once someone breaks allyesconfig again once we get this all
+working.
 
-         M.
+Brendan Higgins (7):
+  pinctrl: equilibrium: add unspecified HAS_IOMEM dependency
+  mtd: rawnand: add unspecified HAS_IOMEM dependency
+  net: axienet: add unspecified HAS_IOMEM dependency
+  crypto: inside-secure: add unspecified HAS_IOMEM dependency
+  crypto: amlogic: add unspecified HAS_IOMEM dependency
+  staging: axis-fifo: add unspecified HAS_IOMEM dependency
+  fsi: aspeed: add unspecified HAS_IOMEM dependency
+
+ drivers/crypto/Kconfig              | 2 +-
+ drivers/crypto/amlogic/Kconfig      | 1 +
+ drivers/fsi/Kconfig                 | 1 +
+ drivers/mtd/nand/raw/Kconfig        | 2 +-
+ drivers/net/ethernet/xilinx/Kconfig | 1 +
+ drivers/pinctrl/Kconfig             | 1 +
+ drivers/staging/axis-fifo/Kconfig   | 2 +-
+ 7 files changed, 7 insertions(+), 3 deletions(-)
+
+[1] https://bugzilla.kernel.org/show_bug.cgi?id=205223
+[2] https://patchwork.kernel.org/patch/11273771/
+
 -- 
-Jazz is not dead. It just smells funny...
+2.24.0.525.g8f36a354ae-goog
+
 
 _______________________________________________
 linux-amlogic mailing list
