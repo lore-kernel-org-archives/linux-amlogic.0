@@ -2,22 +2,22 @@ Return-Path: <SRS0=S6c6=2B=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C94A0C43603
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Dec 2019 08:50:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 97FAAC43603
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Dec 2019 08:54:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 709BB2077B
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Dec 2019 08:50:03 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 69BB6208C3
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Dec 2019 08:54:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="GW6LKFFf";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="fkV13MPN"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 709BB2077B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="C6+dQF/F";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="c8ARjWzA"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 69BB6208C3
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,65 +26,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=TkXX30g7WchwVbXOIqA/+k0sZAf/Sdvdn1RIgOpGbG4=; b=GW6LKFFfCn99DN
-	CEtUpwGS0ECoJr998U5eG9RNN9UdgonWp/uflx8u0IMmA2gGJXBbCe38YhDcSLCsr7LjGd2uqY1DQ
-	HL0yFUEqkyv1v1OxGF4Ld5IXe/NCI7CmhxWxN04TI5Q0NPOn/mwL7oTrE5sy+4UUIA/TDBO8a1bBD
-	I5PiuwzzVnSYeyGuNjoDEM+EnpGgJSFtGFxNROIz7gE+sdI12c2RQEeeRcli710DKfI0qmYqsQq1w
-	yMd9gNTi4TAI7FH19U4Xh+f3E/JXwnnzQHQhyO7xOkZpHOi4KrZXrBHNlMQErwN/TMTRgDpLBQtTn
-	Q48ptT743Rxh/+ZXIdxg==;
+	List-Owner; bh=tsYVuoeIKzkFkAsYB2SInpZZrBytsf0Vqgeb/zGAQuc=; b=C6+dQF/FhJBVgu
+	91cQO5OJyd9J4veZeZYjyzJVRzWBQ8Zvtw0kkRtTp6kP8ewY19yR74ilCi8ggCdSj56yJm3NGta7e
+	G3HE0xgqz+JLA/m2Hi75nyd/KJHj1lvWbIFX34oSUATj1C1lKgPE7onck1H4WBZbxLO1XYusXslz6
+	gN7AinVKYrcvt0zmn527bjGsbAqHgOpgM4sgSOrJ4gO8qfMxTezo++KXM64RvoFV5ShVOiH1UIft5
+	oshEk8lxQLEXq8s/CpyGrbCj4eUkPw/bbeRFb15tjp47Y0G2gY974LLa9bkMXWqc3TewwBBSJhB5S
+	BpiPvUDk/u7wYytvpdMQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iexgy-0007mA-RJ; Wed, 11 Dec 2019 08:49:56 +0000
-Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
+	id 1iexl4-0001lI-II; Wed, 11 Dec 2019 08:54:10 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iexgu-0007kE-Jj
- for linux-amlogic@lists.infradead.org; Wed, 11 Dec 2019 08:49:55 +0000
-Received: by mail-wr1-x443.google.com with SMTP id w15so23159115wru.4
- for <linux-amlogic@lists.infradead.org>; Wed, 11 Dec 2019 00:49:51 -0800 (PST)
+ id 1iexku-0001Zi-BC
+ for linux-amlogic@lists.infradead.org; Wed, 11 Dec 2019 08:54:02 +0000
+Received: by mail-wr1-x444.google.com with SMTP id z7so22982748wrl.13
+ for <linux-amlogic@lists.infradead.org>; Wed, 11 Dec 2019 00:53:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:openpgp:autocrypt:organization
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=4R24ntszuyj6kFcy2bkKHmfof1u+l61AIa0Jznn7nN0=;
- b=fkV13MPNrAmIqCyKrhsIiXMxkSEC8PpmYORYYeyoJCfRjwsyyVxCSCzTGOQplQaoCn
- e6EdHOD+fGB5rvO/jVDLPF9wOmcg6CDa2zHBqVmGCs+XtY/nJ5/rO7wy0F8v9xozOiS0
- 6O7oFu2s+ejQsgMupCttpv5auLgY7wRIphmBLxq/xzGuR5ebJ37jp2xrISuVZ173bxJ8
- T+IzaEjF+XqSw2mkUxv9ceuv6W6bIcjm0CXpzrmi0FWOHEaU+FkedQh0e5T2/Ago7Oi/
- o2V5kq+QigfXom0dZnufuLTl3gc+VOa+zmkrvqpwwurOV3VnNPRfMwa5JLdFdH8J2Rhq
- zfew==
+ bh=5iP6qLz80iBtx8uj1NS/MPhGSpmZTCTVh6sCTJysrc8=;
+ b=c8ARjWzAt6axhISj3z4yZRPa4j50bI+OmBH8uaPMftZ9ezYqgHHmGBCM9dTVcpw4nH
+ W5Y8hWQ1FYH/k1PTJClQ5Eh0C4Ju6bfW6LzdtC4yRNPNe8iAJI6vrEIEdoDzDThI2nMa
+ L/eouCnlfJ5j0BP9q4pefV+7kA3GCgBlXUFIU7j77G/inHiIX5YB0g9UVBs1UUObhoDP
+ 43q2Xl17ocUeMvX37J/mqZ2TXKEc1JcE8KNyartpFCpJOe/2nrH87pUkIFoOnOyPGd+I
+ q8NEaeHRr7kH/SbsqVDTA/tI/wvbrD7dO6op2+ylbCO0r6cvaQN+LWHZaMD+FDVmheIJ
+ a6qQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=4R24ntszuyj6kFcy2bkKHmfof1u+l61AIa0Jznn7nN0=;
- b=W3GaAR2amHmnvGxh0zswyWB+SbV4O5KKkFGmDh3+E8OYRP+dIKPokXBO7hAj7AD28X
- ViBpd3hBoMGb9Y44Ts8dCE1/tSK2iSp3Z+0dqStCSI8MZgHMZi6BPJzPxzDtw1t4l2lV
- bADNl29Of2ZRf4/dj3MKQf0ixwiVRmx7haBBzWJp8xjtKE/J8TYELLT6cwqevOdgaidP
- hLmEqemsI56Nb/7MRG1gKmqm3TBKwCeP/muTmWYfK8862JPAH1GbgB/JM+e656u7WHkI
- /jwLUjyLzBYhuyXWFQKbE4FUbaoq+IeWvz2JH/aMxpFW/ZwFMWHvn+dudyfVmRlMlf7O
- 825A==
-X-Gm-Message-State: APjAAAWGrfiotu5v93eg9lWlxKzFqU2qUCI9BiCZoaDGlcr4ohA7PcW5
- 0ejDgjlr9M6C45FUwif5l0w24A==
-X-Google-Smtp-Source: APXvYqzO428TcmQ1sH6DcJsA9ow0CcwV7CoG805pSPiBXWV6DZFGTKXNpFdW6luh2XbFPmzNZ8Xfzg==
-X-Received: by 2002:a5d:4e0a:: with SMTP id p10mr2363092wrt.229.1576054190319; 
- Wed, 11 Dec 2019 00:49:50 -0800 (PST)
+ bh=5iP6qLz80iBtx8uj1NS/MPhGSpmZTCTVh6sCTJysrc8=;
+ b=sxtT8EwFNFWaS4ebdu20/o2GUuhfqgklucYqt7r9uxrvxhcGb3RAgd43HJxSfJNWOV
+ IqykQzwAvb1qigHYrNjaBz4+7hsaXaRUA17Avaram2wEclAG8UwRXQALot9tjZvBIKkB
+ BDZXSE1M/fPlXT5XOtXMAEebKPHVZ1A1HDIk2dQAZPdRXV66eckdqL3/3FsTIYZxMvlx
+ JUaoQxSIQdOk4+nju5f+UQnoreQ+cnA8i6Wlx78IgE+8NuebpqIFdmn/Rc1xklKmABQT
+ jc1tPzPsk1F9SmpODH8ccJ+a6oN4EjvEnCnSzV06BjfZBGMwzPG4+KULf7WIw9ZZzDix
+ y3LQ==
+X-Gm-Message-State: APjAAAUcq92TZ78eFPutcRQSXlZlVMI5BooLeWaB9wn/Qd543jDhQK2W
+ 7Iri2Y141d7syq/K3VrQWuor3g==
+X-Google-Smtp-Source: APXvYqw7oj1/5xynuU2wcErQC7AhNFHU3qJy1sNOsKCmruWaGx2kAo1GkI1bmKuWnqJ3li9xBiLgDA==
+X-Received: by 2002:a5d:6408:: with SMTP id z8mr2487559wru.122.1576054438340; 
+ Wed, 11 Dec 2019 00:53:58 -0800 (PST)
 Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
  by smtp.gmail.com with ESMTPSA id
- f5sm1462572wmh.12.2019.12.11.00.49.49
+ a127sm1515519wmh.43.2019.12.11.00.53.57
  (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 11 Dec 2019 00:49:49 -0800 (PST)
-Subject: Re: [RFC-next 0/1] Odroid C2: Enable DVFS for cpu
-To: Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20191101143126.2549-1-linux.amoon@gmail.com>
- <7hfthtrvvv.fsf@baylibre.com>
- <c89791de-0a46-3ce2-b3e2-3640c364cd0f@baylibre.com>
- <CANAwSgQx3LjQe60TGgKyk6B5BD5y1caS2tA+O+GFES7=qCFeKg@mail.gmail.com>
- <7hfthsqcap.fsf@baylibre.com>
- <CAFBinCBfgxXhPKpBLdoq9AimrpaneYFgzgJoDyC-2xhbHmihpA@mail.gmail.com>
- <7hpngvontu.fsf@baylibre.com>
+ Wed, 11 Dec 2019 00:53:57 -0800 (PST)
+Subject: Re: [PATCHv1 0/3] Enable crypto module on Amlogic GXBB SoC platform
+To: Anand Moon <linux.amoon@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>, Corentin Labbe <clabbe@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S . Miller" <davem@davemloft.net>
+References: <20191211084112.971-1-linux.amoon@gmail.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -137,16 +135,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <4e1339b4-c751-3edc-3a2e-36931ad1c503@baylibre.com>
-Date: Wed, 11 Dec 2019 09:49:49 +0100
+Message-ID: <a4610efc-844a-2d43-5db1-cf813102e701@baylibre.com>
+Date: Wed, 11 Dec 2019 09:53:56 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <7hpngvontu.fsf@baylibre.com>
+In-Reply-To: <20191211084112.971-1-linux.amoon@gmail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191211_004952_712837_968280F2 
-X-CRM114-Status: GOOD (  16.92  )
+X-CRM114-CacheID: sfid-20191211_005400_382694_5F892E71 
+X-CRM114-Status: GOOD (  13.94  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,109 +156,54 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree <devicetree@vger.kernel.org>, Anand Moon <linux.amoon@gmail.com>,
- Linux Kernel <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
- linux-amlogic@lists.infradead.org,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 10/12/2019 22:47, Kevin Hilman wrote:
-> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+hi,
+
+
+On 11/12/2019 09:41, Anand Moon wrote:
+> Below changes enable cryto module on Amlogic GXBB SoC.
 > 
->> On Tue, Dec 10, 2019 at 7:13 PM Kevin Hilman <khilman@baylibre.com> wrote:
->>>
->>> Anand Moon <linux.amoon@gmail.com> writes:
->>>
->>>> Hi Neil / Kevin,
->>>>
->>>> On Tue, 10 Dec 2019 at 14:13, Neil Armstrong <narmstrong@baylibre.com> wrote:
->>>>>
->>>>> On 09/12/2019 23:12, Kevin Hilman wrote:
->>>>>> Anand Moon <linux.amoon@gmail.com> writes:
->>>>>>
->>>>>>> Some how this patch got lost, so resend this again.
->>>>>>>
->>>>>>> [0] https://patchwork.kernel.org/patch/11136545/
->>>>>>>
->>>>>>> This patch enable DVFS on GXBB Odroid C2.
->>>>>>>
->>>>>>> DVFS has been tested by running the arm64 cpuburn
->>>>>>> [1] https://github.com/ssvb/cpuburn-arm/blob/master/cpuburn-a53.S
->>>>>>> PM-QA testing
->>>>>>> [2] https://git.linaro.org/power/pm-qa.git [cpufreq testcase]
->>>>>>>
->>>>>>> Tested on latest U-Boot 2019.07-1 (Aug 01 2019 - 23:58:01 +0000) Arch Linux ARM
->>>>>>
->>>>>> Have you tested with the Harkernel u-boot?
->>>>>>
->>>>>> Last I remember, enabling CPUfreq will cause system hangs with the
->>>>>> Hardkernel u-boot because of improperly enabled frequencies, so I'm not
->>>>>> terribly inclined to merge this patch.
->>>>
->>>> HK u-boot have many issue with loading the kernel, with load address
->>>> *it's really hard to build the kernel for HK u-boot*,
->>>> to get the configuration correctly.
->>>>
->>>> Well I have tested with mainline u-boot with latest ATF .
->>>> I would prefer mainline u-boot for all the Amlogic SBC, since
->>>> they sync with latest driver changes.
->>>
->>> Yes, we would all prefer mainline u-boot, but the mainline kernel needs
->>> to support the vendor u-boot that is shipping with the boards.  So
->>> until Hardkernel (and other vendors) switch to mainline u-boot we do not
->>> want to have upstream kernel defaults that will not boot with the vendor
->>> u-boot.
->>>
->>> We can always support these features, but they just cannot be enabled
->>> by default.
->> (I don't have an Odroid-C2 but I'm curious)
->> should Anand submit a patch to mainline u-boot instead?
+> I was realy happy to get this feature working on Odroid C2 SBC.
+> I will try on other SBC in the future.
 > 
-> It would be in addition to $SUBJECT patch, not instead, I think.
+> Tested with loading tcrypt module.
+> # sudo modprobe tcrypt sec=1 mode=200
+> [sudo] password for alarm:
+> [  903.867059] tcrypt:
+> [  903.867059] testing speed of async ecb(aes) (ecb(aes-arm64)) encryption
+> [  903.870265] tcrypt: test 0 (128 bit key, 16 byte blocks): 1922107 operations in 1 seconds (30753712 bytes)
+> [  904.872802] tcrypt: test 1 (128 bit key, 64 byte blocks): 679032 operations in 1 seconds (43458048 bytes)
+> [  905.872717] tcrypt: test 2 (128 bit key, 256 byte blocks): 190190 operations in 1 seconds (48688640 bytes)
+> [  906.872793] tcrypt: test 3 (128 bit key, 1024 byte blocks): 49014 operations in 1 seconds (50190336 bytes)
+> [  907.872808] tcrypt: test 4 (128 bit key, 1472 byte blocks): 34342 operations in 1 seconds (50551424 bytes)
+> [  908.876828] tcrypt: test 5 (128 bit key, 8192 byte blocks): 6199 operations in 1 seconds (50782208 bytes)
 > 
->> the &scpi_clocks node could be enabled at runtime by mainline u-boot
+> -Anand
 > 
-> That would work, but I don't know about u-boot maintainers opinions on
-> this kind of thing, so let's see what Neil thinks.
+> Anand Moon (3):
+>   arm64: dts: amlogic: adds crypto hardware node for GXBB SoCs
+>   dt-bindings: crypto: Add compatible string for amlogic GXBB SoC
+>   crypto: amlogic: Add new compatible string for amlogic GXBB SoC
+> 
+>  .../devicetree/bindings/crypto/amlogic,gxl-crypto.yaml |  1 +
+>  arch/arm64/boot/dts/amlogic/meson-gxbb.dtsi            | 10 ++++++++++
+>  drivers/crypto/amlogic/amlogic-gxl-core.c              |  1 +
+>  3 files changed, 12 insertions(+)
+> 
 
-U-Boot doesn't anything to do with SCPI, SCPI discusses directly with the SCP
-processor, and the CPU clock is set to 1,56GHz by the BL2 boot stage before
-U-boot starts.
+Wow, I'm surprised it works on GXBB, Amlogic completely removed HW crypto for GXBB in all their
+vendor BSPs, in Linux, U-Boot and ATF chain.
 
-The only viable solution I see now is to find if we could add a DT OPP table
-only for Odroid-C2 dts to bypass the SCPI OPP table.
-
-The arm,scpi-clocks driver registers a clk for this CPU clock, using SCPI to set
-the rate, right now this is ok.
-
-But, arm,scpi-clocks also registers a "scpi-cpufreq" device, which calls
-scpi_ops->add_opps_to_device() which gets the SCPI OPPs and adds them to the CPU.
-
-A way to handle this would be to check if DT has OPPs in drivers/cpufreq/scpi-cpufreq.c
-_before/instead_ calling scpi_ops->add_opps_to_device() to use the DT OPPs instead
-of the firmware OPPs, like in drivers/cpufreq/cpufreq-dt.c.
-
-calling:
-
-	ret = dev_pm_opp_of_get_sharing_cpus()
-	if (ret) {
-		scpi_ops->add_opps_to_device()
-		scpi_get_sharing_cpus()
-	}
-
-would maybe work.
+Could you run more tests to be sure it's really functional ?
 
 Neil
-
-> 
-> Kevin
-> 
-> 
-
 
 _______________________________________________
 linux-amlogic mailing list
