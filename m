@@ -2,146 +2,90 @@ Return-Path: <SRS0=S6c6=2B=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E21B3C43603
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Dec 2019 09:32:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C3A43C43603
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Dec 2019 09:34:32 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B25022054F
-	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Dec 2019 09:32:30 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 93CFF20637
+	for <linux-amlogic@archiver.kernel.org>; Wed, 11 Dec 2019 09:34:32 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rDLlkRAq";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="OKAqHUBI"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B25022054F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="PzpTuLKE";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="VzDedKeM"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 93CFF20637
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=e/QqJZ1ydd5et4453BooPX+t5ojXIPQnhvqprucW8YE=; b=rDLlkRAq7s3E5o
-	Pbqmp0v6fftv5wfYWqKbyJXeOvxyRNLh+njR0ekZgckoDjJoehIk9Y4q6f8jHUU6V5iq/wgLICwK1
-	VR+6vJkpG1kDL2DBs3HhlW4F8UllKeVUaKxZSt3sgu3Vwh7ykJrbK/MspRapseEeVgWz16IjdHVqN
-	PK9jIikwtHxo92R+nBR4JR5GaYk4CFuQQ0vGMQcZW8rpBeAANP6F+K5ZnqRBfXHLymy7bNgdpw2of
-	sdsX6uRCylTQSwiWJlcLc7sECJSzzYozVQGy0rdlTSyJ2dqjEecRDrhp+kNkLPp2Kz9LyizHCGalp
-	Ox6PVLgYvT8A8pp7x1QA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
+	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=Lz/Rtb2LqqwD7uGTqJwYWyjy+zpZoNuWszqAdvdchAQ=; b=PzpTuLKEOaDZVNtI8i68tv13AZ
+	rB1Yxf7Mg4LJB1/RgaWxmpC/egxQGC8syOfTfN0boH6PZ1LTzKYKm5DldHB74tUALgprdu+M/IAgj
+	zsP7LbzpdRYrfFsGeLkIyyMkKnV5zmZJP+4V2bj9+2tPorYDKWJgUpkz/+aJP5iR2T+3EsRzk4YMi
+	efDTRS7Cdx6eBvBKccshketG/8oaf4fokoDJqlb5+cf6gEwPV7PuWTP2M7YoVSZndXizymCp9gZjJ
+	Z7JhG9u3xB6+XZy6QVdgrQvdOTFx/HhxFBFm1qj0E8Vn2OFa/3SxPn2+Ddp9i/bZt9ruvxCiFo2zT
+	l8+jMaHA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ieyM4-0003px-Me; Wed, 11 Dec 2019 09:32:24 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1ieyO1-0004SV-Lw; Wed, 11 Dec 2019 09:34:25 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ieyLk-0003Zs-JO
- for linux-amlogic@lists.infradead.org; Wed, 11 Dec 2019 09:32:07 +0000
-Received: by mail-wr1-x441.google.com with SMTP id q10so23213287wrm.11
- for <linux-amlogic@lists.infradead.org>; Wed, 11 Dec 2019 01:32:03 -0800 (PST)
+ id 1ieyNv-0004M6-1B
+ for linux-amlogic@lists.infradead.org; Wed, 11 Dec 2019 09:34:21 +0000
+Received: by mail-wm1-x342.google.com with SMTP id q9so6246084wmj.5
+ for <linux-amlogic@lists.infradead.org>; Wed, 11 Dec 2019 01:34:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=tEGXARkAalI1UN2S550i2+Cl76AfIaIcHKN3Ub/pCj4=;
- b=OKAqHUBIu8mgIjGy4JMOtSQFb87nbEYuG1MaClZphX50LClnOypLxt/cnht756ewhU
- 8JGvC3WhCB0tNx5ZXhRk7gHU92flLTxA/FuA+q4oCcjKZbSjrI+dhbysc5hWqfF97Foi
- RLexicbSZ1vt0BHEpkVWwrntWcQNSo0VH+RrOSFKMOwHaFPM/IxCuaArqUK0/+GZUkNh
- w/TMSFB4kZX09kCbyecCZ1Gz3SKZ42C1HJVB2RFdncbkOHdqI0sC/OJXDFcYe8x6DbWP
- lHL4lTA+y8tGotj/Vs7BOC/H4yxcakH6u+iSdUgFMgw6z18rX8KxbzNARA2iPoMe7ayb
- ry6g==
+ h=references:user-agent:from:to:cc:subject:in-reply-to:date
+ :message-id:mime-version;
+ bh=2aHze3eD3qXxFb1do0AXNxi5Ns/Q9Iwwz2n3HPpJOcs=;
+ b=VzDedKeMxQaNjEiczxGBTICIPaIV8PnAeFP1Rr1OgYLJI0XPPZ8hsic40cqjmiTyo3
+ wYTDItCB0zXtkyaI42IJsnUV4D0yQCvnTnWO3F00uZ7dPqoIFPgzSDJBLe65rRZm3OVe
+ OBqCyUpJ+xq6g5nVO5nm6OYpdhun8nWnR8INhbYMnRBLIoascaSdvzMpS+J6p25Kre8e
+ 3KkQ/rMdUKCU6OmbCGynjh0CgUo5q/5lFiY9bc8rvWo4BnD7+Xts/5+fBpVBAtTHkOU5
+ Syju8hBbNEbXRwgUmdisOR4FPwKw6Ut1p/I1D6tKeY03HyZFcugKDOCcrRv1IzQ5jJwx
+ QY2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=tEGXARkAalI1UN2S550i2+Cl76AfIaIcHKN3Ub/pCj4=;
- b=ex+vUWHDZXqMlb7r4mBz857k9ouKJUaHofQInsNBWzrdyYMUBkXKA0EvY+GgK+XhDG
- vjwHG66GwJ8muc0eqTqE8xR8DPeTMgM02FzFMlu/qeWUcI1i3Y9pY1lbwU+waNbQBBFK
- 7f+nuKgRERoJRs3VZc9Wy/HNUT2gcCGdK6nwAiiWrA2Gpo9YOvNf6wey9d5mHdnEz4kr
- BHeTQ9bjgqxfB+u9MgImxZ7KxvULx2M19qXdLryZmBT6Hep3TVPENINmMSL5lmDlWe4X
- gGLuKzvhw1ZSl79zlKmJRUrL6Ist7fri6pkIriJfUuwqTcrLacbGM5d8jY0RLLxyqS3x
- KLjQ==
-X-Gm-Message-State: APjAAAXRgz0EQW0Cl4JVK2/quZs1dueMdev3UEFE1N1MBIziNxaxnPum
- +EY8HAeoeVmlMfB5c/wAeFCwOw==
-X-Google-Smtp-Source: APXvYqykmhYgF4/B8N4O7WUvLpw2Z0fsHw44P/YgTMv7nQw6NYLdi8VDdjZe4+1qcfOLCAuov1zRow==
-X-Received: by 2002:adf:f8c4:: with SMTP id f4mr2549615wrq.243.1576056722617; 
- Wed, 11 Dec 2019 01:32:02 -0800 (PST)
-Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
- by smtp.gmail.com with ESMTPSA id
- b63sm1532226wmb.40.2019.12.11.01.32.01
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 11 Dec 2019 01:32:02 -0800 (PST)
-Subject: Re: [PATCHv1 0/3] Enable crypto module on Amlogic GXBB SoC platform
-To: Herbert Xu <herbert@gondor.apana.org.au>
-References: <20191211084112.971-1-linux.amoon@gmail.com>
- <a4610efc-844a-2d43-5db1-cf813102e701@baylibre.com>
- <20191211092741.totwucrkversjbav@gondor.apana.org.au>
-From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <d2b54743-87da-091e-8d62-288ee29a54b0@baylibre.com>
-Date: Wed, 11 Dec 2019 10:32:01 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:date:message-id:mime-version;
+ bh=2aHze3eD3qXxFb1do0AXNxi5Ns/Q9Iwwz2n3HPpJOcs=;
+ b=HS0axMJWFS4xiAr8H5oWWlAmOhlL7bDDOnVqPjDU1GImdYn+nr/mVmvnnYbSqcWLqX
+ R8vKKTUgEZYkclu40RD72jqS5IZNXpTnmNcSQfFiJHvhQOooXKoHlKjomkQ3zb95eXe9
+ AP4pIYU37/doNpBotQ5Jb2v2GpAbw9KrwblJoXJETPaLGJaRKNhe7fUAQbHlJ+K0gP6a
+ G8eT1JyRwLB4qDlYUNcnlJWx0KUIfSzbkJf2DK0DMt6B0IRGwFYoRSH3knmlFK5D6jHd
+ 4mKzq5CdVkqvxeuvJbNcdyuPDfIuZGeolGzCziigha3wce9NcsMFDDxfTO0x0ZWlgeyx
+ v7iQ==
+X-Gm-Message-State: APjAAAV7yZlMJjJ+MN72ynY9XsRH6SyVIi74E7ITA1fTemFg5zpIYTgG
+ kcO38MeN/iG5ONCTUGo/iKEa4w==
+X-Google-Smtp-Source: APXvYqyaiVVPEaixzSy9hFWroTUOlG1fayabOrFMoHshKKilcKu2iFPikVV+wuyvp7vTFK3Tb0XS2Q==
+X-Received: by 2002:a1c:9e49:: with SMTP id h70mr2604822wme.79.1576056857130; 
+ Wed, 11 Dec 2019 01:34:17 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id y10sm1594428wmm.3.2019.12.11.01.34.16
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 11 Dec 2019 01:34:16 -0800 (PST)
+References: <20191211032802.83309-1-jian.hu@amlogic.com>
+User-agent: mu4e 1.3.3; emacs 26.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jian Hu <jian.hu@amlogic.com>, Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH v2] arm64: dts: meson-a1: add I2C nodes
+In-reply-to: <20191211032802.83309-1-jian.hu@amlogic.com>
+Date: Wed, 11 Dec 2019 10:34:16 +0100
+Message-ID: <1jk173kxyf.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20191211092741.totwucrkversjbav@gondor.apana.org.au>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191211_013204_635523_A575A187 
-X-CRM114-Status: GOOD (  11.46  )
+X-CRM114-CacheID: sfid-20191211_013419_092516_5453AB06 
+X-CRM114-Status: GOOD (  15.93  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,42 +97,247 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
- Anand Moon <linux.amoon@gmail.com>, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org,
+Cc: Mark Rutland <mark.rutland@arm.com>, Rob
+ Herring <robh@kernel.org>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ Wolfram Sang <wsa@the-dreams.de>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh+dt@kernel.org>, Corentin Labbe <clabbe@baylibre.com>,
- linux-amlogic@lists.infradead.org, "David S . Miller" <davem@davemloft.net>,
- linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 11/12/2019 10:27, Herbert Xu wrote:
-> On Wed, Dec 11, 2019 at 09:53:56AM +0100, Neil Armstrong wrote:
->>
->> On 11/12/2019 09:41, Anand Moon wrote:
->>> [sudo] password for alarm:
->>> [  903.867059] tcrypt:
->>> [  903.867059] testing speed of async ecb(aes) (ecb(aes-arm64)) encryption
->>
->> Wow, I'm surprised it works on GXBB, Amlogic completely removed HW crypto for GXBB in all their
->> vendor BSPs, in Linux, U-Boot and ATF chain.
->>
->> Could you run more tests to be sure it's really functional ?
-> 
-> Well as you can see from the tcrypt output, it's actually using
-> aes-arm64 which is certainly not the amlogic driver.  Presumably
-> the amlogic driver failed to load/register.
 
-Nice catch... thanks Herbert.
+On Wed 11 Dec 2019 at 04:28, Jian Hu <jian.hu@amlogic.com> wrote:
 
-Neil
+> There are four I2C controllers in A1 series,
+> Share the same comptible with AXG. Compared to AXG,
+> Drive strength feature is newly added in A1.
 
-> 
-> Cheers,
-> 
+Until here, OK
+
+> This patch depends on A1 clock driver.
+
+This last sentence is a valuable piece of information for the maintainer
+but should not appear is the commit description as it is something we
+want is the history
+
+Please move this bellow the '---' *AND*
+Add a link like " https://lkml.kernel.org/r/..." to help the maintainer
+locate the related series
+
+
+>
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>
+> ---
+> This patch depends on A1 clock patchset at[0]
+>
+> Changes since v1 at [1]:
+> -change reg length to 0x20
+> -assign i2c bus alias in dts file
+> -add new feature note compared to AXG in changelog
+>
+> [0] https://lkml.kernel.org/r/20191206074052.15557-1-jian.hu@amlogic.com
+> [1] https://lkml.kernel.org/r/20191202111253.94872-1-jian.hu@amlogic.com
+> ---
+> ---
+>  .../arm64/boot/dts/amlogic/meson-a1-ad401.dts |   4 +
+>  arch/arm64/boot/dts/amlogic/meson-a1.dtsi     | 142 ++++++++++++++++++
+>  2 files changed, 146 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1-ad401.dts b/arch/arm64/boot/dts/amlogic/meson-a1-ad401.dts
+> index 69c25c68c358..2d0457976233 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-a1-ad401.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-a1-ad401.dts
+> @@ -13,6 +13,10 @@
+>  
+>  	aliases {
+>  		serial0 = &uart_AO_B;
+> +		i2c0 = &i2c0;
+> +		i2c1 = &i2c1;
+> +		i2c2 = &i2c2;
+> +		i2c3 = &i2c3;
+
+It is not necessary to define alias for all the possible buses,
+especially it some won't be used on the platform.
+
+Will this platform use all 4 busses ?
+
+In any case, the aliases can added later, as needed when the related i2c
+bus is enabled on the board
+
+>  	};
+>  
+>  	chosen {
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> index eab2ecd36aa8..66d5206a57de 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> @@ -117,6 +117,46 @@
+>  				};
+>  			};
+>  
+> +			i2c0: i2c@1400 {
+> +				compatible = "amlogic,meson-axg-i2c";
+> +				reg = <0x0 0x1400 0x0 0x20>;
+> +				interrupts = <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +				clocks = <&clkc_periphs CLKID_I2C_M_A>;
+> +				status = "disabled";
+> +			};
+> +
+> +			i2c1: i2c@5c00 {
+
+Please order nodes by address when then have one.
+The 3 following i2c busses should appear after the uarts
+
+> +				compatible = "amlogic,meson-axg-i2c";
+> +				reg = <0x0 0x5c00 0x0 0x20>;
+> +				interrupts = <GIC_SPI 68 IRQ_TYPE_EDGE_RISING>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +				clocks = <&clkc_periphs CLKID_I2C_M_B>;
+> +				status = "disabled";
+> +			};
+> +
+> +			i2c2: i2c@6800 {
+> +				compatible = "amlogic,meson-axg-i2c";
+> +				reg = <0x0 0x6800 0x0 0x20>;
+> +				interrupts = <GIC_SPI 76 IRQ_TYPE_EDGE_RISING>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +				clocks = <&clkc_periphs CLKID_I2C_M_C>;
+> +				status = "disabled";
+> +			};
+> +
+> +			i2c3: i2c@6c00 {
+> +				compatible = "amlogic,meson-axg-i2c";
+> +				reg = <0x0 0x6c00 0x0 0x20>;
+> +				interrupts = <GIC_SPI 78 IRQ_TYPE_EDGE_RISING>;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +				clocks = <&clkc_periphs CLKID_I2C_M_D>;
+> +				status = "disabled";
+> +			};
+> +
+>  			uart_AO: serial@1c00 {
+>  				compatible = "amlogic,meson-gx-uart",
+>  					     "amlogic,meson-ao-uart";
+> @@ -171,3 +211,105 @@
+>  		#clock-cells = <0>;
+>  	};
+>  };
+> +
+> +&periphs_pinctrl {
+> +	i2c0_f11_pins:i2c0-f11 {
+> +		mux {
+> +			groups = "i2c0_sck_f11",
+> +				"i2c0_sda_f12";
+> +			function = "i2c0";
+> +			bias-pull-up;
+> +			drive-strength-microamp = <3000>;
+> +		};
+> +	};
+> +
+> +	i2c0_f9_pins:i2c0-f9 {
+
+When the nodes don't have an address, please order them
+alpha-numerically by node name.
+
+> +		mux {
+> +			groups = "i2c0_sck_f9",
+> +				"i2c0_sda_f10";
+> +			function = "i2c0";
+> +			bias-pull-up;
+> +			drive-strength-microamp = <3000>;
+> +		};
+> +	};
+> +
+> +	i2c1_x_pins:i2c1-x {
+> +		mux {
+> +			groups = "i2c1_sck_x",
+> +				"i2c1_sda_x";
+> +			function = "i2c1";
+> +			bias-pull-up;
+> +			drive-strength-microamp = <3000>;
+> +		};
+> +	};
+> +
+> +	i2c1_a_pins:i2c1-a {
+> +		mux {
+> +			groups = "i2c1_sck_a",
+> +				"i2c1_sda_a";
+> +			function = "i2c1";
+> +			bias-pull-up;
+> +			drive-strength-microamp = <3000>;
+> +		};
+> +	};
+> +
+> +	i2c2_x0_pins:i2c2-x0 {
+> +		mux {
+> +			groups = "i2c2_sck_x0",
+> +				"i2c2_sda_x1";
+> +			function = "i2c2";
+> +			bias-pull-up;
+> +			drive-strength-microamp = <3000>;
+> +		};
+> +	};
+> +
+> +	i2c2_x15_pins:i2c2-x15 {
+> +		mux {
+> +			groups = "i2c2_sck_x15",
+> +				"i2c2_sda_x16";
+> +			function = "i2c2";
+> +			bias-pull-up;
+> +			drive-strength-microamp = <3000>;
+> +		};
+> +	};
+> +
+> +	i2c2_a4_pins:i2c2-a4 {
+> +		mux {
+> +			groups = "i2c2_sck_a4",
+> +				"i2c2_sda_a5";
+> +			function = "i2c2";
+> +			bias-pull-up;
+> +			drive-strength-microamp = <3000>;
+> +		};
+> +	};
+> +
+> +	i2c2_a8_pins:i2c2-a8 {
+> +		mux {
+> +			groups = "i2c2_sck_a8",
+> +				"i2c2_sda_a9";
+> +			function = "i2c2";
+> +			bias-pull-up;
+> +			drive-strength-microamp = <3000>;
+> +		};
+> +	};
+> +
+> +	i2c3_x_pins:i2c3-x {
+> +		mux {
+> +			groups = "i2c3_sck_x",
+> +				"i2c3_sda_x";
+> +			function = "i2c3";
+> +			bias-pull-up;
+> +			drive-strength-microamp = <3000>;
+> +		};
+> +	};
+> +
+> +	i2c3_f_pins:i2c3-f {
+> +		mux {
+> +			groups = "i2c3_sck_f",
+> +				"i2c3_sda_f";
+> +			function = "i2c3";
+> +			bias-pull-up;
+> +			drive-strength-microamp = <3000>;
+> +		};
+> +	};
+> +};
 
 
 _______________________________________________
