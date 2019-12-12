@@ -2,87 +2,92 @@ Return-Path: <SRS0=UZyj=2C=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 50FCDC43603
-	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Dec 2019 06:23:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2D58BC43603
+	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Dec 2019 09:57:50 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 1F71722527
-	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Dec 2019 06:23:36 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id F1CB5214AF
+	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Dec 2019 09:57:49 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HaCgYF3K";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j5SWiyDV"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1F71722527
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RI4ZcTeH";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="yd5bVEFt"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F1CB5214AF
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=3FUGm2+hf2rjGdWRuDmwI1f39ByLjkyZHAEsfcbfnFw=; b=HaCgYF3KAl+KDi
-	JgU/IfgULXaA3KlrMxdQ83DK1Gz970QFJmYkOyR7B6vEy6D/6yCFB+jTlI6ENVf5EiZmj2WIjhYdf
-	fCH0OxjF1/05m3kiNJVUliarxP/3EulvB7bb4iVkLItV2lpwt46hEx+Rdj8ZM2SGH786Kow4ogBgT
-	ta3cbkvKmvUvRBKW3ObbXF9Mdo9Z8iPUv9w9apXQ9I6m+mTOIY5grP4TvlKoXYyVVDVAE47X6LZrl
-	f/Cik85Zx0GRazH3Lbe6krwDwLw5JSnIn95sPaDgDjqTMm6dQqgSL+7CcAaGnZ6r0sxAKVjHxcnvS
-	lo0zExlzTFe1tcML56PQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
+	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=Y8OMnqF4DeAR1f8QKxxsa2YOK+5VoHUHCrzumXX6FAc=; b=RI4ZcTeH36JH+QS6ii14hp/u8y
+	aCsxQ4FRr/0EpvZY8vJi4T8Sb4B0cmUD1lEqEYH51rO0+m6eXfumA1VsF9wHBxzLbaUi2XJSxThhu
+	2uSYx9UBMU20XYWjD/NNJWy0lqRBIXw1edV/4/kGFoywk44iX0ofKQdgMT/zqqeqUpEo1fQCn7Z2f
+	5CIpT+B24EUQuHbAtmQ0bHPHNg6mW0rDc6J+a4BUGjOAU8GUnEKx6iMytk7pVmwViygYMRe4LOihQ
+	agXYrrYrLVk8V0AgJ6FMv/Eeb8j3xRpsfN9XQhdvyutGordZ/jR/PRjoHs7l7YAHIaky/to3UdF3u
+	73508xxw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ifHsm-0001tH-Cc; Thu, 12 Dec 2019 06:23:28 +0000
-Received: from mail-io1-xd32.google.com ([2607:f8b0:4864:20::d32])
+	id 1ifLE5-0008J4-BI; Thu, 12 Dec 2019 09:57:41 +0000
+Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ifHsj-0001sZ-BZ; Thu, 12 Dec 2019 06:23:27 +0000
-Received: by mail-io1-xd32.google.com with SMTP id b10so702527iof.11;
- Wed, 11 Dec 2019 22:23:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=v6NmxBZ8vV201dlBtVW07bjKFin+mwj/uirkjZ9u0AY=;
- b=j5SWiyDVBNqZT1PcE6iXH6kE4RXdm62NrmqGIGv09+lSo4LTU5s7rWwFFmSGdpfUNi
- sukpKFsgP7aFXfbDSo7gsCtzYOPCJbv4q4vWY41dBTOabdpeSYTXBy/5+BMQEItJ15Sy
- y09om1CxA57hk3TMln3XC75K+AYNnnV77NfqUChNDt1uXAAZ8M3dDrpgwaDVin3vILWY
- 5RhPY8iXSQ6NpUwvysBTC2YAUy5KsFKZcjVT/rzBCfpILNNiqZf0DlCEupx7Mc3WCoUP
- QkifWL5/1ME7tcmUiqm0xDlRvNYzSVtT/CW4k6muK0LK6CZCnxvYuOVBQdpJXln2+9kU
- bFWQ==
+ id 1ifLE0-0008Hw-6T
+ for linux-amlogic@lists.infradead.org; Thu, 12 Dec 2019 09:57:40 +0000
+Received: by mail-wm1-x344.google.com with SMTP id p17so1781163wmb.0
+ for <linux-amlogic@lists.infradead.org>; Thu, 12 Dec 2019 01:57:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=references:user-agent:from:to:cc:subject:in-reply-to:date
+ :message-id:mime-version;
+ bh=gx1Mdi7/CFmOT7RiIEVg3kQRBdQoHiJa4CnAd9qCJmg=;
+ b=yd5bVEFtgIODavE5Wy5kl2EwUKPgntf/ynutV1/iuGWUD7bN9CmysWNJgtp9Bs3vVf
+ bLKRuIOtbxscxmKQ5AoUrdctD3vjekNCRBG20Z+21i36dxmQjJB/kqpJqM4j1IXiVrHV
+ zdgK0zjx2IJXCdHzkWC4Srs79kGXf7TVq6kSzAU1yPNnVlB/hdCu/RuOOAYwqI0jFs9J
+ uyHCMuKtD3XZ6Ymbz+aL/YawKQkgEXAmQybExIjwVLXb0+TmAuwCLWKsOCNi/1ON8PGZ
+ cQP6rBl5ZNcF8PU0F29ZGw+9Ze1ZBnASA1cVQ4X37+jSlUKGtkv9rT0Lv/9/tf9PjGuv
+ j0RQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=v6NmxBZ8vV201dlBtVW07bjKFin+mwj/uirkjZ9u0AY=;
- b=q524Mn5tyy+/XZg8sp4YeMrm1/KmZ6WfCIuqewM2mWRXSYQtaTOtdY+HlkcF0Bpu8+
- HNg92pJJvs8IYGX7c56OSFImS24bF0lYCgMf3qVstTw1Wd3rD8QivpUTatm1WtgVYKFm
- mWLbjuGvcv1Q58nc2TghU9DLns5Tz/GICM37QtN0bOJZuT5ZePiK+1ne5tyeuKXnPXhk
- iWuddAuqEJCPIDXutjyCLvJTEbDPzk02GFzCdi5mtov1P/0lTTHGZG+SQ4N2l0XSUgp4
- Z9ontWbZUiyL1Ldp53yUUn/OlqwwBUvyIEcEvFGxf99O6y3l9xDqPgoiPtMnDPvdMGv9
- W+pQ==
-X-Gm-Message-State: APjAAAUE0i1Haghd29QJbIPrFg110RMEBIzqS0g3EWNWH0T3B7v1Yzzi
- LK4YdR06zk/BmIGCreBLDoKOzBvpOV8KMSafNTw=
-X-Google-Smtp-Source: APXvYqwX8wJ8S7PF+1+fB9M3X5vS3O9OPKaGmpvdWd2oR7M6q2o4l+sGHZnsLdxEECGes2O5N5+2Naz6XZS/VC/A84o=
-X-Received: by 2002:a6b:4401:: with SMTP id r1mr1649395ioa.243.1576131803998; 
- Wed, 11 Dec 2019 22:23:23 -0800 (PST)
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:date:message-id:mime-version;
+ bh=gx1Mdi7/CFmOT7RiIEVg3kQRBdQoHiJa4CnAd9qCJmg=;
+ b=EuriPFscz8AknBdpkP33cY33s6LyGddc3FOVnmaACrvx1w3VfEs567FMLnR26f+/SE
+ cMciRannhVxB3dry7iiQtN17SFwP0K15dACng/gflAM0Xp6Me7RbEQi1vKpfwo43GZUQ
+ pEPevdl6UGUzsHDJ7IHIP+CAx1BJGcC4ASP4fbeld72xaExCLRRz3GC/IQZ8sWUdJLR8
+ IblS3oFAGV9hvDQ8eDm08p7ovpHfeSeLj62DDgJPNABjIO3ILEPApvzcEFAgbwKrK6h/
+ Dk/wic+0v4nWIgIMONGr7TJyjgdLKUo1y6kWlipKZyVxjlpqgwnLPX231ZgxxsKyiAkI
+ ebYw==
+X-Gm-Message-State: APjAAAVk00M/bF6x33x2A5U0BfRt/48GfLOs5hRvm/TCX2CcrnqE492l
+ lkbNbj8ytPRJyzxT6jp4ATUl5Q==
+X-Google-Smtp-Source: APXvYqwk4QDlI0ODXXgdLTi/EXbqG6DwiTR8OW5NiylFbyhT0VLdogLil3eQ5czc90Dbh6YAj+YurA==
+X-Received: by 2002:a1c:541b:: with SMTP id i27mr5740102wmb.137.1576144653403; 
+ Thu, 12 Dec 2019 01:57:33 -0800 (PST)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
+ [90.63.244.31])
+ by smtp.gmail.com with ESMTPSA id k19sm5248320wmi.42.2019.12.12.01.57.32
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 12 Dec 2019 01:57:32 -0800 (PST)
+References: <20191206074052.15557-1-jian.hu@amlogic.com>
+ <20191206074052.15557-2-jian.hu@amlogic.com>
+User-agent: mu4e 1.3.3; emacs 26.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jian Hu <jian.hu@amlogic.com>, Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCH v4 1/6] dt-bindings: clock: meson: add A1 PLL clock
+ controller bindings
+In-reply-to: <20191206074052.15557-2-jian.hu@amlogic.com>
+Date: Thu, 12 Dec 2019 10:57:31 +0100
+Message-ID: <1jblsdlvck.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-References: <20191211084112.971-1-linux.amoon@gmail.com>
- <a4610efc-844a-2d43-5db1-cf813102e701@baylibre.com>
- <CANAwSgQOTA0mSvFW5otaCzFPHidhY7VFcrXZHjCD-1XkQpcx3w@mail.gmail.com>
- <20191211095043.3kngq7wh77xvadge@gondor.apana.org.au>
- <CANAwSgR-fT21uBSP747MVkXf2GYqm_6kcne059pX-OegftLSZA@mail.gmail.com>
- <CAKv+Gu8HQ7RY9WSYZrLUR7tNjuybF5sp7xe94VLQpJrDSRg4NA@mail.gmail.com>
- <1229236701.11947072.1576070229564@mail.yahoo.com>
- <CAFBinCAxq-uW+gsmb-8wqxHGXt2W+4w9iD++2fL=FQ7S-RsAkw@mail.gmail.com>
-In-Reply-To: <CAFBinCAxq-uW+gsmb-8wqxHGXt2W+4w9iD++2fL=FQ7S-RsAkw@mail.gmail.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Thu, 12 Dec 2019 11:53:12 +0530
-Message-ID: <CANAwSgR0nrVJKGxO3_Tv6g=1dKgnSJN3VJ0WxAdxGhzhWx1jkg@mail.gmail.com>
-Subject: Re: [PATCHv1 0/3] Enable crypto module on Amlogic GXBB SoC platform
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191211_222325_422926_BB77C42E 
-X-CRM114-Status: GOOD (  13.09  )
+X-CRM114-CacheID: sfid-20191212_015736_297490_D5BE5105 
+X-CRM114-Status: GOOD (  12.62  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,134 +99,124 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>,
- devicetree <devicetree@vger.kernel.org>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- Ard Biesheuvel <ard.biesheuvel@linaro.org>,
- Linux Kernel <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Corentin Labbe <clabbe@baylibre.com>, Anand Moon <moon.linux@yahoo.com>,
- linux-amlogic@lists.infradead.org, "David S . Miller" <davem@davemloft.net>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- "open list:HARDWARE RANDOM NUMBER GENERATOR CORE"
- <linux-crypto@vger.kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Victor Wan <victor.wan@amlogic.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, devicetree@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
+ Stephen Boyd <sboyd@kernel.org>, Qiufang Dai <qiufang.dai@amlogic.com>,
+ Chandle Zou <chandle.zou@amlogic.com>, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Martin,
 
-On Thu, 12 Dec 2019 at 05:00, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> Hi Anand,
->
-> On Wed, Dec 11, 2019 at 2:17 PM Anand Moon <moon.linux@yahoo.com> wrote:
-> [...]
-> > Sorry once again I send my logs too early.
-> > I still having some issue with the Hardware glx cryto module.
-> I'm surprised to see that you managed to get the GXL crypto driver to
-> load at all on GXBB
-> as far as I know GXBB uses an older crypto IP block (BLKMV) than GXL
-> (and newer SoCs, called "DMA"): [0]
->
-> so my understanding is that a new crypto driver is needed for GXBB
-> (BLKMV registers) support.
-> the 32-bit SoCs use the same BLKMV IP block as far as I can tell, so
-> these would also benefit from this other driver.
-> (I don't know if anyone is working on a BLKMV crypto driver - all I
-> can tell is that I'm not working on one)
->
->
-> Martin
->
->
-> [0] https://github.com/khadas/linux/blob/195ea69f96d9bddc1386737e89769ff350762aea/drivers/amlogic/crypto/Kconfig
+On Fri 06 Dec 2019 at 08:40, Jian Hu <jian.hu@amlogic.com> wrote:
 
-*You are absolutely correct. current crypto GLX driver might not work for GXBB*
-Yes new crypto driver is needed for this board. I will try to study on
-this feature.
+> Add the documentation to support Amlogic A1 PLL clock driver,
+> and add A1 PLL clock controller bindings.
+>
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> ---
+>  .../bindings/clock/amlogic,a1-pll-clkc.yaml   | 59 +++++++++++++++++++
+>  include/dt-bindings/clock/a1-pll-clkc.h       | 16 +++++
+>  2 files changed, 75 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
+>
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> new file mode 100644
+> index 000000000000..7feeef5abf1b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
+> @@ -0,0 +1,59 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
 
-But both S805 and S905 share the same crypto IP block for.sure see below link.
-[0]  https://github.com/khadas/linux/blob/195ea69f96d9bddc1386737e89769ff350762aea/Documentation/devicetree/bindings/crypto/aml-crypto.txt#L1-L61
+Rob commented on the above in v1 and it remains unaddressed
 
-It's not working see the debug logs.
-[alarm@alarm ~]$ sudo modprobe tcrypt sec=1 mode=500
-[sudo] password for alarm:
-[   39.567302] tcrypt:
-[   39.567302] testing speed of async ecb(aes) (ecb-aes-gxl) encryption
-[   39.570171] tcrypt: test 0 (128 bit key, 16 byte blocks):
-[   39.570229] gxl-crypto c8832000.crypto: meson_cipher ecb(aes) 16 1
-IV(0) key=16 flow=1
-[   41.598687] gxl-crypto c8832000.crypto: DMA timeout for flow 1
-[   41.598900] tcrypt: encryption() failed flags=0
-[   41.603383] tcrypt: test 0 (192 bit key, 16 byte blocks):
-[   41.603424] gxl-crypto c8832000.crypto: meson_cipher ecb(aes) 16 1
-IV(0) key=24 flow=0
-[   43.646686] gxl-crypto c8832000.crypto: DMA timeout for flow 0
-[   43.646900] tcrypt: encryption() failed flags=0
-[   43.651378] tcrypt: test 0 (256 bit key, 16 byte blocks):
-[   43.651419] gxl-crypto c8832000.crypto: meson_cipher ecb(aes) 16 1
-IV(0) key=32 flow=1
-[   45.694691] gxl-crypto c8832000.crypto: DMA timeout for flow 1
-[   45.694902] tcrypt: encryption() failed flags=0
-[   45.699419] tcrypt:
-[   45.699419] testing speed of async ecb(aes) (ecb-aes-gxl) decryption
-[   45.707838] tcrypt: test 0 (128 bit key, 16 byte blocks):
-[   45.707872] gxl-crypto c8832000.crypto: meson_cipher ecb(aes) 16 0
-IV(0) key=16 flow=0
-[   47.742677] gxl-crypto c8832000.crypto: DMA timeout for flow 0
-[   47.742879] tcrypt: decryption() failed flags=0
-[   47.747366] tcrypt: test 0 (192 bit key, 16 byte blocks):
-[   47.747402] gxl-crypto c8832000.crypto: meson_cipher ecb(aes) 16 0
-IV(0) key=24 flow=1
-[   49.790684] gxl-crypto c8832000.crypto: DMA timeout for flow 1
-[   49.790898] tcrypt: decryption() failed flags=0
-[   49.795380] tcrypt: test 0 (256 bit key, 16 byte blocks):
-[   49.795420] gxl-crypto c8832000.crypto: meson_cipher ecb(aes) 16 0
-IV(0) key=32 flow=0
-[   51.838680] gxl-crypto c8832000.crypto: DMA timeout for flow 0
-[   51.838894] tcrypt: decryption() failed flags=0
-[   51.852005] tcrypt:
-[   51.852005] testing speed of async cbc(aes) (cbc-aes-gxl) encryption
-[   51.854903] tcrypt: test 0 (128 bit key, 16 byte blocks):
-[   51.854941] gxl-crypto c8832000.crypto: meson_cipher cbc(aes) 16 1
-IV(16) key=16 flow=1
-[   53.886678] gxl-crypto c8832000.crypto: DMA timeout for flow 1
-[   53.886882] tcrypt: encryption() failed flags=0
-[   53.891385] tcrypt: test 0 (192 bit key, 16 byte blocks):
-[   53.891428] gxl-crypto c8832000.crypto: meson_cipher cbc(aes) 16 1
-IV(16) key=24 flow=0
-[   55.934686] gxl-crypto c8832000.crypto: DMA timeout for flow 0
-[   55.934901] tcrypt: encryption() failed flags=0
-[   55.939410] tcrypt: test 0 (256 bit key, 16 byte blocks):
-[   55.939447] gxl-crypto c8832000.crypto: meson_cipher cbc(aes) 16 1
-IV(16) key=32 flow=1
-[   57.982684] gxl-crypto c8832000.crypto: DMA timeout for flow 1
-[   57.982899] tcrypt: encryption() failed flags=0
-[   57.987429] tcrypt:
-[   57.987429] testing speed of async cbc(aes) (cbc-aes-gxl) decryption
-[   57.995832] tcrypt: test 0 (128 bit key, 16 byte blocks):
-[   57.995864] gxl-crypto c8832000.crypto: meson_cipher cbc(aes) 16 0
-IV(16) key=16 flow=0
-[   60.030680] gxl-crypto c8832000.crypto: DMA timeout for flow 0
-[   60.030880] tcrypt: decryption() failed flags=0
-[   60.035369] tcrypt: test 0 (192 bit key, 16 byte blocks):
-[   60.035406] gxl-crypto c8832000.crypto: meson_cipher cbc(aes) 16 0
-IV(16) key=24 flow=1
-[   62.078678] gxl-crypto c8832000.crypto: DMA timeout for flow 1
-[   62.078888] tcrypt: decryption() failed flags=0
-[   62.083377] tcrypt: test 0 (256 bit key, 16 byte blocks):
-[   62.083416] gxl-crypto c8832000.crypto: meson_cipher cbc(aes) 16 0
-IV(16) key=32 flow=0
-[   64.126684] gxl-crypto c8832000.crypto: DMA timeout for flow 0
-[   64.126899] tcrypt: decryption() failed flags=0
-[   64.143285] tcrypt: failed to load transform for lrw(aes): -2
-[   64.155243] tcrypt: failed to load transform for lrw(aes): -2
-[   64.167318] tcrypt:
+> +/*
+> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+> + */
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/clock/amlogic,a1-pll-clkc.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Amlogic Meson A/C serials PLL Clock Control Unit Device Tree Bindings
+> +
+> +maintainers:
+> +  - Neil Armstrong <narmstrong@baylibre.com>
+> +  - Jerome Brunet <jbrunet@baylibre.com>
+> +  - Jian Hu <jian.hu@jian.hu.com>
+> +
+> +properties:
+> +  compatible:
+> +    - enum:
+> +        - amlogic,a1-pll-clkc
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +clocks:
+> +  minItems: 2
+> +  maxItems: 2
+> +  items:
+> +   - description: Input xtal_fixpll
+> +   - description: Input xtal_hifipll
+> +
+> +clock-names:
+> +  minItems: 2
+> +  maxItems: 2
+> +  items:
+> +     - const: xtal_fixpll
+> +     - const: xtal_hifipll
+> +
+> +required:
+> +  - compatible
+> +  - "#clock-cells"
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    clkc_pll: pll-clock-controller@7c80 {
+> +                compatible = "amlogic,a1-pll-clkc";
+> +                reg = <0 0x7c80 0 0x18c>;
+> +                #clock-cells = <1>;
+> +                clocks = <&clkc_periphs CLKID_XTAL_FIXPLL>,
+> +                         <&clkc_periphs CLKID_XTAL_HIFIPLL>;
+> +                clock-names = "xtal_fixpll", "xtal_hifipll";
+> +    };
+> diff --git a/include/dt-bindings/clock/a1-pll-clkc.h b/include/dt-bindings/clock/a1-pll-clkc.h
+> new file mode 100644
+> index 000000000000..58eae237e503
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/a1-pll-clkc.h
+> @@ -0,0 +1,16 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> +/*
+> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+> + */
+> +
+> +#ifndef __A1_PLL_CLKC_H
+> +#define __A1_PLL_CLKC_H
+> +
+> +#define CLKID_FIXED_PLL				1
+> +#define CLKID_FCLK_DIV2				6
+> +#define CLKID_FCLK_DIV3				7
+> +#define CLKID_FCLK_DIV5				8
+> +#define CLKID_FCLK_DIV7				9
+> +#define CLKID_HIFI_PLL				10
+> +
+> +#endif /* __A1_PLL_CLKC_H */
 
--Anand
 
 _______________________________________________
 linux-amlogic mailing list
