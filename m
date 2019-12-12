@@ -6,17 +6,17 @@ X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
 	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2B44DC43603
-	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Dec 2019 10:31:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B8B36C2D0C8
+	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Dec 2019 10:33:45 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id EB932206DA
-	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Dec 2019 10:31:24 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8C2C8206DA
+	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Dec 2019 10:33:45 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hBP/kljT";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fZDuU0N+"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org EB932206DA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="b0b5dS2d";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JHNgQG4J"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8C2C8206DA
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,59 +25,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=oufxfZsVvsfgpncY+ysYOXHghIjtbRV3m62zKWenhdg=; b=hBP/kljTJOlJQh
-	drAx+QzHMPUzd85HIVxxpEjjbVXTG21DrQvlHHaB8fMEAaV5iCGHbibAlzJtIMUFLYaJXubYzqPDw
-	GasUzF1SdOrRQSRlqH4Vlr5Xt2IJIMuMQlraDKxVJteQlvn5k9SBHjC3e/lX/QQy3LztBfmOzxf/j
-	Yefsih3uUP3yOEtA48e6tKNpbLeIwYQj/i5HQZqiweYRd/IdBhd3vLGNOP76VbvY1JyueX/hgDGkx
-	1mLvI0yJ69c3GPtplC7qGGlokjZrUcTmcjohfNKjSh1jKpvoLiu58G9OkYT/N7G3Z0ugEaSTTkLnm
-	99cuV+FnsVYoACIJmlUw==;
+	List-Owner; bh=79+UMjsLhPaH/pfmnhrsGGyLVIYtmwAdm5LKVi4bTPY=; b=b0b5dS2dPLfL3r
+	P5EeA8MFzJ0QNlE3l5ngYJyQ7cmfzFmLOKlOtuzDW/wH6BcNwO5VZaQsiGgf7CQBqfTpoknORdV2u
+	i5d5RwjF6Sfd2Oeyt6QV+IQ05ba8oi/2DUYB16N+6VQ7kBfeRF2l516iDO0hAkdpK6G2jKLfI/chY
+	S3Nwwin0j7TOEWbeLeyYjSfNpRXUg7gSFEmm5R+twjK2ZKksJMcqvZmdMvu/kmbE6wKbhwN9Ha8rI
+	qfKoBpfSjoNzWRWicF8ZEW3BgPQ5tOrK75YOkRq38RDKFys4fo10uSZeISwtZ4NTtsHxYVI94iLk2
+	3kB2wxZMc4bUQB6C7XFQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ifLke-0006ox-0B; Thu, 12 Dec 2019 10:31:20 +0000
-Received: from mail-lj1-x242.google.com ([2a00:1450:4864:20::242])
+	id 1ifLms-000834-Ru; Thu, 12 Dec 2019 10:33:38 +0000
+Received: from mail-lf1-x143.google.com ([2a00:1450:4864:20::143])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ifLkb-0006n8-B4
- for linux-amlogic@lists.infradead.org; Thu, 12 Dec 2019 10:31:18 +0000
-Received: by mail-lj1-x242.google.com with SMTP id e28so1663987ljo.9
- for <linux-amlogic@lists.infradead.org>; Thu, 12 Dec 2019 02:31:16 -0800 (PST)
+ id 1ifLm8-0007If-7u
+ for linux-amlogic@lists.infradead.org; Thu, 12 Dec 2019 10:32:53 +0000
+Received: by mail-lf1-x143.google.com with SMTP id y19so1284268lfl.9
+ for <linux-amlogic@lists.infradead.org>; Thu, 12 Dec 2019 02:32:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=f/qSsW2S4gXfFEnforjNWu8lIQGXL5dRAyt8kzqxpuE=;
- b=fZDuU0N+AhTbnEh57bnDJj1EoCK+XXOdr6IRYznjCaZ2psiaZrAXliK0OpPjZIvzbF
- J+bGHQCln9OElsWj5qV/aJmku0MM8+XM5E1VOo2lxS8DAKTrACMxIs8ly2lo3lJMjcGc
- yo36UrIw5c75fA5bjgLBm5l9+rj3f5JY37InHawthBG412gcb2xpPSWo/i1ebUH3/xqO
- iIvPB9blatrrjcfYXaqOd3ODAcYy/fbPaETF0PDm8BDsZLug0WpCfUiszAwRaO5Qgapk
- oGVZxlK0RdrD3aAxV9d6zrPmFqNrTcAAJKIgHtP2y99az+o0mkkeGORazWBi+vTKRuxW
- CyIQ==
+ :cc; bh=VWL9+V2LMiT9o2FJLi3yEGGm0mbcqGKTZCNZjA3DyVQ=;
+ b=JHNgQG4JaflzNKZS6SjnLq+BGIY0xKcrhawJ4qSCLadAe7hUlYSTTM6yg9Y3InFPme
+ 65GvyKU8ZgeTTvHCUQpLz3gdVifxv2sx5EB0maUrWRtmXnyQeQ2RzH4e6AwIIFn/Ocv0
+ HbafD0hIdo8H/uCHiT0TBp2VElIGTB/axXoF4ZoG9VakftAWgZS11IgoT8MI8CaJ2S5P
+ 2tfrszsvlyNzhBe6mtgHXMJKQChMyGr5KV9reluXUNs2LuGTjNveZegBli/WGzmT/qJ3
+ sLkdgkiLdb9gNFrmBa8EmK7AzxkqHOHCD9MBb052/a9h6FU3fjQSTfjAoXXWV9ze1b1q
+ ZwyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=f/qSsW2S4gXfFEnforjNWu8lIQGXL5dRAyt8kzqxpuE=;
- b=BcPhPSf9a3EatSHRxCjG06cow4aYtiMm1Egi5MYgDkQOAzqlVdYaGBmx3EecDNEmpt
- 3sOu+QUy9ZEoQClybTW45p4q8uQIYcNXEQCj3K7k/4gDRlOkb4Ce+R12nxQdXEBbPM8q
- OqZEDkkJ3tIAbblHAS4c2MJkiVuja0Fy2cRWNyTG6uRTT60P7I6nWukeOEufBtgCC5Uz
- nbmKqPpQGbwLjkZe/st9rySH4RSmpBZiF94z+6F2VOvT9pP2LKr0/6a5MGap6FYnnDe3
- QdH5ovPPPK5jzYNjO9ecNii3Je7GUhvGT3Qt/9gy6cnI6EUVS6CkMIyv4wJkGTV1JnvC
- 5zdQ==
-X-Gm-Message-State: APjAAAUGN6dHmWca6+fp+lKeaeBPr2sbr9I/qmOufK3qqIrn+aY+9gh8
- 165jqWbx3Rv+PhaFPEB6I2xIcBQLIyfcYNy0ReODMA==
-X-Google-Smtp-Source: APXvYqwfr5GivrQVvdc97Yn6qfrHgDDWWu2K/jPDNAvjTKnSaqEL3i8x5+An5WIHWQfkD9wCG6V18D2mfqh9hPgEK8s=
-X-Received: by 2002:a2e:9ec4:: with SMTP id h4mr5428950ljk.77.1576146674969;
- Thu, 12 Dec 2019 02:31:14 -0800 (PST)
+ bh=VWL9+V2LMiT9o2FJLi3yEGGm0mbcqGKTZCNZjA3DyVQ=;
+ b=RHBOC+16566xRlvQ8LWn3cDuktlXmcaApE0aP7FozaEh3TM6eONfO+yj13AP9g03Wo
+ 6GpUehC4zNjrEyqYbYJxa79Vm21D+8PwQPan0sITwGS+Ln7cXczqb/JHoV1dfp/V07uC
+ L69oeiKtlD/OqPnmiUksUHaIQu5OLwmuG9jy4f0g7qmmfoqVSQ8queitEVkqLb+sLOgN
+ 3dxtyy6/hO++MDMtcFoTuIHO/CkvANxrZLrpVXbxpuc845WbnPDrihVXqAxZrV1DkKjj
+ MZYk9pT8CKOy3+Ypssk1P3IS3NyqLNKNSxoNeAE+tGbKFbMbBybTYkIcG0Wa/Vc09h+B
+ xYvQ==
+X-Gm-Message-State: APjAAAX4eLmZNw8KWVqJ4q1HfcPk7JE9hHczIQflPdoSaNPwQCUKX+Yu
+ ImevzQNAFq7++oCyMIKt3gfYhuQa7/OeOVJu3gJiQw==
+X-Google-Smtp-Source: APXvYqywDQNwDMe4Gb7wNrl8nlViHTFAYbbKR8mGbYLzjghxmd/DxWHrpL44HVqLtiyMfWxK6a/Gv0MgTOUFix3M9V4=
+X-Received: by 2002:a19:c0b:: with SMTP id 11mr5269617lfm.135.1576146770206;
+ Thu, 12 Dec 2019 02:32:50 -0800 (PST)
 MIME-Version: 1.0
 References: <cover.1574871463.git.nishadkamdar@gmail.com>
- <2994fb2f3375790e832396cdbb0a279dc8c8839f.1574871463.git.nishadkamdar@gmail.com>
-In-Reply-To: <2994fb2f3375790e832396cdbb0a279dc8c8839f.1574871463.git.nishadkamdar@gmail.com>
+ <5a7ed2e4b58ba7ff2f0638a2435a3a1e1c62c9f6.1574871463.git.nishadkamdar@gmail.com>
+In-Reply-To: <5a7ed2e4b58ba7ff2f0638a2435a3a1e1c62c9f6.1574871463.git.nishadkamdar@gmail.com>
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 12 Dec 2019 11:31:03 +0100
-Message-ID: <CACRpkdbgmY7ozr3auxQqB6vUvWAj+21-3aypGRG43+94W75wWQ@mail.gmail.com>
-Subject: Re: [PATCH 2/5] pinctrl: mediatek: Use the correct style for SPDX
+Date: Thu, 12 Dec 2019 11:32:39 +0100
+Message-ID: <CACRpkdaDaM6wSfeeo6NARC0VibLMWWDDsN2LbLRooih3uGTvog@mail.gmail.com>
+Subject: Re: [PATCH 4/5] pinctrl: sh-pfc: Use the correct style for SPDX
  License Identifier
 To: Nishad Kamdar <nishadkamdar@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191212_023117_399297_7C049BD7 
-X-CRM114-Status: UNSURE (   7.36  )
+X-CRM114-CacheID: sfid-20191212_023252_302170_13C10111 
+X-CRM114-Status: UNSURE (   7.39  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -113,13 +113,11 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Nov 27, 2019 at 5:42 PM Nishad Kamdar <nishadkamdar@gmail.com> wrote:
+On Wed, Nov 27, 2019 at 5:46 PM Nishad Kamdar <nishadkamdar@gmail.com> wrote:
 
 > This patch corrects the SPDX License Identifier style in
-> header file related mediatek mt2712 pinctrl driver.
-> For C header files Documentation/process/license-rules.rst
-> mandates C-like comments (opposed to C source files where
-> C++ style should be used).
+> header files related to Reneses Soc pinctrl driver.
+> It assigns explicit block comment for the SPDX License Identifier.
 >
 > Changes made by using a script provided by Joe Perches here:
 > https://lkml.org/lkml/2019/2/7/46.
@@ -127,7 +125,8 @@ On Wed, Nov 27, 2019 at 5:42 PM Nishad Kamdar <nishadkamdar@gmail.com> wrote:
 > Suggested-by: Joe Perches <joe@perches.com>
 > Signed-off-by: Nishad Kamdar <nishadkamdar@gmail.com>
 
-Patch applied.
+I leave it to Geert to decide if he wants to pick this up for
+sh-pfc or not.
 
 Yours,
 Linus Walleij
