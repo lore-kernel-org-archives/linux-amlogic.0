@@ -2,89 +2,84 @@ Return-Path: <SRS0=UZyj=2C=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 66249C2D0C9
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6EEDAC00454
 	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Dec 2019 14:59:49 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3CC892054F
+	by mail.kernel.org (Postfix) with ESMTPS id 42D0F206C3
 	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Dec 2019 14:59:49 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="flzT4SBa";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="BAjhFYlB"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3CC892054F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="McWapTe/";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="swMATU3v"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 42D0F206C3
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:References:
-	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=xbp0OWzgK/nTEjGrTht96r8sumwNTKS9lkpG7XoKshY=; b=flzT4SBa+bGjG84CWENBDcPHoY
-	JrScU/NvGQIEY8l09A8xdcWF8Rm0aH/ZSY/Ueai2GCCjMpPJprsH+pJiEnKEq93nz54oFFg+egnkq
-	zE3jpC04r99mdZrmMUxKfdvoZJr8zxeru/m4FrhQ61Y4bZ1E0T1vUCeZCbob2eCE7Nvhx7gfGBlw1
-	U3XIqtlhexz/qeUB2WmgwodYmMlTdD36FvYrecXHvtvRA2h5dqRCDpGpdL/PI0jCqiOWo3IWXPpgb
-	+YAGT/kTMbmoAFcwH4E18a+SCR93Y2Fr1scHKllynkkZW+wmdoah0AZ2/rqoELO54JO3OivTHWbG9
-	iKj4YDDw==;
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=6tuu+kWXxPn6WeW+FxiKLXt2CWxMtUi3sjAu968j+ss=; b=McW
+	apTe/TdCqQXtSnR2wZSc/WQdlk24xnE2y/dHwcUmsUZ8YNqHjs1uaAWfgxPCTxOVdJpxsWlzrtJi1
+	s+IiqNgBw656i1r90myHf1AqGdwPI85WLLmvs3QoenKh93WoZQoTeY1nOXqDrzydGBKnYe9hKfTJ0
+	IXT6J0fQOdG/F/mf3OWbV+u/6WLRDh82C0Pb81pCH8G8SplfdC5D0+0Yb/fTxg4j305s2qXgXJLaL
+	c4ZDs30ZppfDQYFTLWXRLM8m56+8HbMBHTdqIw65bSmUKsC/8x8wq20oT5CgHPlQU/mcJTxtIbv/u
+	SM/5MLr2rfHl6i2ig6sodpIBBDL31yg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ifPwL-0006Gb-8M; Thu, 12 Dec 2019 14:59:41 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1ifPwN-0006Iw-5U; Thu, 12 Dec 2019 14:59:43 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ifPwA-00065I-8v
- for linux-amlogic@lists.infradead.org; Thu, 12 Dec 2019 14:59:31 +0000
-Received: by mail-wm1-x341.google.com with SMTP id d139so3815808wmd.0
- for <linux-amlogic@lists.infradead.org>; Thu, 12 Dec 2019 06:59:30 -0800 (PST)
+ id 1ifPwA-000654-AV
+ for linux-amlogic@lists.infradead.org; Thu, 12 Dec 2019 14:59:32 +0000
+Received: by mail-wm1-x342.google.com with SMTP id n9so2707092wmd.3
+ for <linux-amlogic@lists.infradead.org>; Thu, 12 Dec 2019 06:59:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=38rJqXHZjcXBB4mvoplhT0cjvb8m/n1ml03uGyFv6p8=;
- b=BAjhFYlBWOTrrPM/C9ckV2izA+EnfWmSdK6mkCEW2UgO0HYqc9UsNUNvlR9dMjSz3d
- JN/hsxtteUqQnVmCQTq47mq1PGsivh5lrl/L9IxXalWCBN+PXyN1IRn2UAAiLCZy38Ib
- QM7JI6e1KmIZiTlPr1iQ9AwNLxdAhXvlMLoh0s918vX8BQa4T0PQZ5BvkTtSn9nkH7KZ
- Gb1uPRkKtyaYYHcrghm7sgUeBUkwrVRz4szHrNowHW4erZxBSSKN3cj3CG2BHxAXBYBG
- FDEIJd0nCGmfF1olDD6WX+uLg16Yr9YeUh7CT1T7ghUV/2KZC9h1gZ+lgpux9niZU7zw
- /+Qw==
+ h=from:to:cc:subject:date:message-id;
+ bh=Q8cDD1h6Kbt+wm67+7ymZTLscWfxx20xc71x85bi1V8=;
+ b=swMATU3v8KmM1+9GIdXKQR6jSiOWRMCOPd5Xl01rpFArfJ3XAfwd8XMvQ1jGf7EYvH
+ S7MyPMiaWUjl2NpRaTx0B/o0QlP/ReDBkqJZ494uKUJZM04o8MM4jHdRMtaA9rGbcxH5
+ md7ZfDoyr0+K5+Ds4FRCXnDr05l58y/YgLN/xVSuCdUTQ6J3M0y9atPTykJGq013MPKy
+ taPvYnxGEb/o4PfaH6zsEyDl7nndMkomGvzcJKRL7jDZPI79kpFik1saoJHdGqJNgh+u
+ lyqOOG8mSXuI/iktQ2xEuGxTypgZB83oAz+GqolP2EGv77BXqSSbpi/2IpH756bGcB87
+ 2MtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=38rJqXHZjcXBB4mvoplhT0cjvb8m/n1ml03uGyFv6p8=;
- b=msEJ7IWJqLNq1kieBFWTY14qvXCfvTCDJ8DYB6nE1jyRXKFaRZawW4EexbMQnm+nML
- oVEv2ryZi8Lr2psEV7C8ABeIsB/Axq4UF49c2x7dX33C4oS6iYkn+Tb2Ehbsht31p74x
- YKXx+XFT7wXsJqG/8Ou+vXNAtSxgwEyX9nv+/d5OcDdMiGGnkaIWl9HQfqavBmKs4444
- eIy3gIEeu2IIEEuAP2xKh8ggZuF2l40CTGpSYx0iQ46Io2n0e/WVNs1ckVwiL+ru+251
- iSi2PMRQRaM1+v8bTW8btnB0imRSqCxycda4ERpAWbYBruvpZXNL/F1D7keN6p3Ojiol
- 8AnQ==
-X-Gm-Message-State: APjAAAW+QQBxMQKjxSwy030tHRJXK7pJVPKcmJgs9QBOE95VkI9f2Q0C
- 8RCo1BN1Rp9MhIQLNS2ClUGncw==
-X-Google-Smtp-Source: APXvYqwKa3+rSD2mxWWJuNz1Hup01RbVsGslqsIbH/oJIm8YXhIy9SEHl7lcDD/GNrjJTphnr+Qgdw==
-X-Received: by 2002:a7b:c416:: with SMTP id k22mr6750643wmi.10.1576162769121; 
- Thu, 12 Dec 2019 06:59:29 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=Q8cDD1h6Kbt+wm67+7ymZTLscWfxx20xc71x85bi1V8=;
+ b=ML2JBGyVcsZYzUdgsa1hegUUJwqOuqX64MqyuK3WeB337C0UKHgNBIKOzd19DDRzzZ
+ +uzijsOOdmpEwzzHdqU+DEYub3tmYDAsGvNnFHFbzC1bB0WNIIYgxx7EAQrGOi8YwnDU
+ 8tgiZ2LcP42OzwoGtunbQDDRV7ptAEZhCSikRy3b6q7xsMH5CHpB+nIcDfQsJoN8Q+GR
+ qVP0XOgxpkKjAvL7Oqyn6ndbGtzU2Ga/4bmg/ah+r0dtWTTE8fOxlQKvpbr/rYnMK4Bu
+ rll/gUm4MBfKyFVeN8+YbSLf1MAyOIAyG9kvzAIva/oF9yY8ZAdU5iZEsnM6zvqCDxCX
+ Ms7g==
+X-Gm-Message-State: APjAAAXRz6UTtIHJMdqGQioDqZhtC2XVvclE5uEgsCBez+ijssROQRYS
+ CFJbHBejq7vO3wq2h4WKkkU/iA==
+X-Google-Smtp-Source: APXvYqxQvIfo9ValD2pZteRv78WUJy9Ja4QFpldqUrLBkg8LV7Tf3HWrTT9klIIijQsPl9BRZGoXrA==
+X-Received: by 2002:a1c:1987:: with SMTP id 129mr6978284wmz.112.1576162767185; 
+ Thu, 12 Dec 2019 06:59:27 -0800 (PST)
 Received: from glaroque-ThinkPad-T480.baylibre.local
  (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id h8sm6670292wrx.63.2019.12.12.06.59.28
+ by smtp.gmail.com with ESMTPSA id h8sm6670292wrx.63.2019.12.12.06.59.26
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 12 Dec 2019 06:59:28 -0800 (PST)
+ Thu, 12 Dec 2019 06:59:26 -0800 (PST)
 From: Guillaume La Roque <glaroque@baylibre.com>
 To: narmstrong@baylibre.com, mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
  khilman@baylibre.com, devicetree@vger.kernel.org
-Subject: [PATCH 2/3] arm64: dts: meson-g12g12: add syscon phandle in cec node
-Date: Thu, 12 Dec 2019 15:59:24 +0100
-Message-Id: <20191212145925.32123-3-glaroque@baylibre.com>
+Subject: [PATCH 0/3] Add support of CEC wakeup on Amlogic G12 and SM1 SoCs
+Date: Thu, 12 Dec 2019 15:59:22 +0100
+Message-Id: <20191212145925.32123-1-glaroque@baylibre.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191212145925.32123-1-glaroque@baylibre.com>
-References: <20191212145925.32123-1-glaroque@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191212_065930_308890_CE31F8A4 
-X-CRM114-Status: UNSURE (   8.98  )
+X-CRM114-CacheID: sfid-20191212_065930_365984_9C9DD5D3 
+X-CRM114-Status: UNSURE (   6.37  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -105,25 +100,21 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-add syscon phandle in cec node to activate wakeup support
+this patchset add support of CEC wakeup.
+We need to set logical address and activate some options in registers before going in suspend.
+Registers address and options values come from amlogic driver.
 
-Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+Guillaume La Roque (3):
+  media: dt-bindings: media: meson-ao-cec: Add support of ao-sysctrl
+    syscon
+  arm64: dts: meson-g12g12: add syscon phandle in cec node
+  media: platform: meson-ao-cec-g12a: add wakeup support
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 7fabc8d9654a..98c6a1d1d035 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -1899,6 +1899,7 @@
- 				interrupts = <GIC_SPI 203 IRQ_TYPE_EDGE_RISING>;
- 				clocks = <&clkc_AO CLKID_AO_CTS_OSCIN>;
- 				clock-names = "oscin";
-+				amlogic,ao-sysctrl = <&rti>;
- 				status = "disabled";
- 			};
- 
+ .../media/amlogic,meson-gx-ao-cec.yaml        |  4 +++
+ .../boot/dts/amlogic/meson-g12-common.dtsi    |  1 +
+ drivers/media/platform/meson/ao-cec-g12a.c    | 33 +++++++++++++++++++
+ 3 files changed, 38 insertions(+)
+
 -- 
 2.17.1
 
