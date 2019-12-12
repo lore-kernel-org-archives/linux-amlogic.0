@@ -2,57 +2,87 @@ Return-Path: <SRS0=UZyj=2C=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URI_NOVOWEL,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1C568C43603
-	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Dec 2019 03:43:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 50FCDC43603
+	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Dec 2019 06:23:36 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id E17EC21655
-	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Dec 2019 03:43:22 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 1F71722527
+	for <linux-amlogic@archiver.kernel.org>; Thu, 12 Dec 2019 06:23:36 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="OD9BWcPv"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E17EC21655
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=suse.de
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HaCgYF3K";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j5SWiyDV"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 1F71722527
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=uU5ahWWfe6wnnQbqbYM69pwWsKmnZKC0G9ZZA+6Tt+I=; b=OD9BWcPvF7hN7M
-	sZVNKoGGF3RtXaH6ge1tF9CDKsgOozT6gzM0EYiq0HnOvPl59ct1ZpsAMKPzGq0EDwO70rJsleiDV
-	3zxRpOsNUqE1v2CJoKP5AE0mhSj7fxtRPbv7Neh5yC8hU9+5USxbZ/u6hZ0EqcXvnbQ+iQhhQnHNI
-	NifFawAu/MvOF8m9qhdL/8ALYqMj8zRZAd9CE71lw208kjYwaU5+Khwz0R2XNhChKxe3zF2A0V/Xp
-	5gYf+yiO2vwQ4mkL/8daYIvErzxe3NH3YRvphpEL8ilOKujE80lQn5uNMZzaFYwv0VqGCJ2gyU0n2
-	eT9sVugFjYDOB5SD2ALg==;
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=3FUGm2+hf2rjGdWRuDmwI1f39ByLjkyZHAEsfcbfnFw=; b=HaCgYF3KAl+KDi
+	JgU/IfgULXaA3KlrMxdQ83DK1Gz970QFJmYkOyR7B6vEy6D/6yCFB+jTlI6ENVf5EiZmj2WIjhYdf
+	fCH0OxjF1/05m3kiNJVUliarxP/3EulvB7bb4iVkLItV2lpwt46hEx+Rdj8ZM2SGH786Kow4ogBgT
+	ta3cbkvKmvUvRBKW3ObbXF9Mdo9Z8iPUv9w9apXQ9I6m+mTOIY5grP4TvlKoXYyVVDVAE47X6LZrl
+	f/Cik85Zx0GRazH3Lbe6krwDwLw5JSnIn95sPaDgDjqTMm6dQqgSL+7CcAaGnZ6r0sxAKVjHxcnvS
+	lo0zExlzTFe1tcML56PQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ifFNc-0004UF-Pp; Thu, 12 Dec 2019 03:43:08 +0000
-Received: from mx2.suse.de ([195.135.220.15] helo=mx1.suse.de)
+	id 1ifHsm-0001tH-Cc; Thu, 12 Dec 2019 06:23:28 +0000
+Received: from mail-io1-xd32.google.com ([2607:f8b0:4864:20::d32])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ifFKb-0000OZ-0D; Thu, 12 Dec 2019 03:40:11 +0000
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx1.suse.de (Postfix) with ESMTP id EA039AE34;
- Thu, 12 Dec 2019 03:39:58 +0000 (UTC)
-From: =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>
-To: linux-realtek-soc@lists.infradead.org,
-	linux-leds@vger.kernel.org
-Subject: [RFC 00/25] arm64: realtek: Add Xnano X5 and implement
- TM1628/FD628/AiP1618 LED controllers
-Date: Thu, 12 Dec 2019 04:39:27 +0100
-Message-Id: <20191212033952.5967-1-afaerber@suse.de>
-X-Mailer: git-send-email 2.16.4
+ id 1ifHsj-0001sZ-BZ; Thu, 12 Dec 2019 06:23:27 +0000
+Received: by mail-io1-xd32.google.com with SMTP id b10so702527iof.11;
+ Wed, 11 Dec 2019 22:23:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=v6NmxBZ8vV201dlBtVW07bjKFin+mwj/uirkjZ9u0AY=;
+ b=j5SWiyDVBNqZT1PcE6iXH6kE4RXdm62NrmqGIGv09+lSo4LTU5s7rWwFFmSGdpfUNi
+ sukpKFsgP7aFXfbDSo7gsCtzYOPCJbv4q4vWY41dBTOabdpeSYTXBy/5+BMQEItJ15Sy
+ y09om1CxA57hk3TMln3XC75K+AYNnnV77NfqUChNDt1uXAAZ8M3dDrpgwaDVin3vILWY
+ 5RhPY8iXSQ6NpUwvysBTC2YAUy5KsFKZcjVT/rzBCfpILNNiqZf0DlCEupx7Mc3WCoUP
+ QkifWL5/1ME7tcmUiqm0xDlRvNYzSVtT/CW4k6muK0LK6CZCnxvYuOVBQdpJXln2+9kU
+ bFWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=v6NmxBZ8vV201dlBtVW07bjKFin+mwj/uirkjZ9u0AY=;
+ b=q524Mn5tyy+/XZg8sp4YeMrm1/KmZ6WfCIuqewM2mWRXSYQtaTOtdY+HlkcF0Bpu8+
+ HNg92pJJvs8IYGX7c56OSFImS24bF0lYCgMf3qVstTw1Wd3rD8QivpUTatm1WtgVYKFm
+ mWLbjuGvcv1Q58nc2TghU9DLns5Tz/GICM37QtN0bOJZuT5ZePiK+1ne5tyeuKXnPXhk
+ iWuddAuqEJCPIDXutjyCLvJTEbDPzk02GFzCdi5mtov1P/0lTTHGZG+SQ4N2l0XSUgp4
+ Z9ontWbZUiyL1Ldp53yUUn/OlqwwBUvyIEcEvFGxf99O6y3l9xDqPgoiPtMnDPvdMGv9
+ W+pQ==
+X-Gm-Message-State: APjAAAUE0i1Haghd29QJbIPrFg110RMEBIzqS0g3EWNWH0T3B7v1Yzzi
+ LK4YdR06zk/BmIGCreBLDoKOzBvpOV8KMSafNTw=
+X-Google-Smtp-Source: APXvYqwX8wJ8S7PF+1+fB9M3X5vS3O9OPKaGmpvdWd2oR7M6q2o4l+sGHZnsLdxEECGes2O5N5+2Naz6XZS/VC/A84o=
+X-Received: by 2002:a6b:4401:: with SMTP id r1mr1649395ioa.243.1576131803998; 
+ Wed, 11 Dec 2019 22:23:23 -0800 (PST)
 MIME-Version: 1.0
+References: <20191211084112.971-1-linux.amoon@gmail.com>
+ <a4610efc-844a-2d43-5db1-cf813102e701@baylibre.com>
+ <CANAwSgQOTA0mSvFW5otaCzFPHidhY7VFcrXZHjCD-1XkQpcx3w@mail.gmail.com>
+ <20191211095043.3kngq7wh77xvadge@gondor.apana.org.au>
+ <CANAwSgR-fT21uBSP747MVkXf2GYqm_6kcne059pX-OegftLSZA@mail.gmail.com>
+ <CAKv+Gu8HQ7RY9WSYZrLUR7tNjuybF5sp7xe94VLQpJrDSRg4NA@mail.gmail.com>
+ <1229236701.11947072.1576070229564@mail.yahoo.com>
+ <CAFBinCAxq-uW+gsmb-8wqxHGXt2W+4w9iD++2fL=FQ7S-RsAkw@mail.gmail.com>
+In-Reply-To: <CAFBinCAxq-uW+gsmb-8wqxHGXt2W+4w9iD++2fL=FQ7S-RsAkw@mail.gmail.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Thu, 12 Dec 2019 11:53:12 +0530
+Message-ID: <CANAwSgR0nrVJKGxO3_Tv6g=1dKgnSJN3VJ0WxAdxGhzhWx1jkg@mail.gmail.com>
+Subject: Re: [PATCHv1 0/3] Enable crypto module on Amlogic GXBB SoC platform
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191211_194001_367703_32E23402 
-X-CRM114-Status: GOOD (  24.09  )
+X-CRM114-CacheID: sfid-20191211_222325_422926_BB77C42E 
+X-CRM114-Status: GOOD (  13.09  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,197 +94,136 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-rtc@vger.kernel.org, Alessandro Zummo <a.zummo@towertech.it>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>, Roc He <hepeng@zidoo.tv>,
- csd@princeton.com.tw, devicetree@vger.kernel.org, sales@fdhisi.com,
- Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
- linux-spi@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- Jacek Anaszewski <jacek.anaszewski@gmail.com>, Pavel Machek <pavel@ucw.cz>,
- zypeng@titanmec.com, linux-amlogic@lists.infradead.org,
- =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
- linux-arm-kernel@lists.infradead.org, Dan Murphy <dmurphy@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Mark Rutland <mark.rutland@arm.com>,
+ devicetree <devicetree@vger.kernel.org>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+ Linux Kernel <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Corentin Labbe <clabbe@baylibre.com>, Anand Moon <moon.linux@yahoo.com>,
+ linux-amlogic@lists.infradead.org, "David S . Miller" <davem@davemloft.net>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ "open list:HARDWARE RANDOM NUMBER GENERATOR CORE"
+ <linux-crypto@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGVsbG8sCgpUaGlzIHBhdGNoIHNlcmllcyBpbXBsZW1lbnRzIHRoZSBMRUQgY29udHJvbGxlcnMg
-Zm91bmQgaW4gc29tZSBSVEQxMjk1IGJhc2VkClRWIHNldC10b3AgYm94ZXMuCgpFdmVyIHNpbmNl
-IEkndmUgaGFkIG1haW5saW5lIExpbnV4IGtlcm5lbHMgYm9vdGluZyBvbiBteSBaaWRvbyBYOVMg
-VFYgYm94LAppdCdzIGJlZW4gYnVnZ2luZyBtZSB0aGF0IGl0IGtlcHQgZGlzcGxheWluZyAiYm9v
-dCIgb24gaXRzIGZyb250IGRpc3BsYXkuCkEgaG90IGxlYWQgd2FzIGEgVE0xNjI4IGNoaXAgb24g
-dGhlIGZyb250IGRpc3BsYXkncyBkYXVnaHRlcmJvYXJkLCB3aGljaApFbmdsaXNoIGFuZCBDaGlu
-ZXNlIGRhdGFzaGVldHMgd2VyZSBhdmFpbGFibGUgZm9yLiBUaGUgYmlnZ2VzdCBodXJkbGUKdG8g
-b3ZlcmNvbWUgd2FzIHdoZXRoZXIgYW5kIGhvdyB0aGlzIGNoaXAgd2FzIGNvbm5lY3RlZCB0byB0
-aGUgU29DLgpDb25mdXNpbmdseSB0aGUgZGF0YXNoZWV0IHRhbGtzIGFib3V0ICJTZXJpYWwgSW50
-ZXJmYWNlIiBhbmQgc2hvd3MgcGlucwpESU8sIFNDTEsgYW5kIFNUQjsgd2hlcmVhcyBuZWl0aGVy
-IFVBUlQgbm9yIFNQSSBEVCBub2RlcyBzZWVtZWQgdG8gYmUgaW4gdXNlCmZvciB0aGlzLCBubyBt
-ZW50aW9uIG9mIHN1Y2ggY2hpcHNldCBpbiB0aGUgYmluYXJ5IHZlbmRvciBEVCwgYW5kIG9ubHkg
-b25lCnNlZW1pbmdseSB1bnJlbGF0ZWQgZXhwb3J0ZWQgR1BJTy4gU2FkbHkgWmlkb28gaGF2ZSBy
-ZWZ1c2VkIHRvIHNoYXJlIEdQTApzb3VyY2Vjb2RlIHdpdGggbWUsIGFuZCB0aGUgcHVibGljIEdQ
-TCBjb2RlIGRyb3BzIGZyb20gTkFTIGFuZCBTQkMgdmVuZG9ycwpkaWRuJ3Qgc2VlbSB0byBpbmNs
-dWRlIGRyaXZlcnMgZm9yIHRoaXMgY2hpcC4gTGFzdCB3ZWVrZW5kLCByZXZpZXcgb2YgdmVuZG9y
-CkRUIHBpbmN0cmwgbm9kZXMgcmV2ZWFsZWQgYSAic3BpQDEiIHBpbmN0cmwgbm9kZSBpbiB1c2Ug
-YnkgdGhlIHBpbmN0cmwgbm9kZQppdHNlbGYsIGRlc3BpdGUgdGhlcmUgYmVpbmcgb25seSBvbmUg
-R1NQSSBibG9jayBvbiB0aGUgU29DLiBkZWJ1Z2ZzIHVuZGVyCkFuZHJvaWQgcmV2ZWFsZWQgR1BJ
-TyBwaW5zIG5hbWVkICJmcF9zdGIiLCAiZnBfZGF0YSIgYW5kICJmcF9jbGsiIChvbiBYNToKM3gg
-InZmZHRlc3QiLCB1bmhlbHBmdWxseSkuIFNvIEkgaGVyZWJ5IHByZXNlbnQgbXkgZmlyc3QgMy13
-aXJlIFNQSSBzbGF2ZSwKdXNpbmcgc3RhbmRhcmQgc3BpLWdwaW8gZHJpdmVyLgoKVGhpcyByZXF1
-aXJlZCB0byBleHRlbmQgdGhlIHNwaS1ncGlvIGRyaXZlciB3aXRoIExpdHRsZSBFbmRpYW4gc3Vw
-cG9ydC4KClRNMTYyOCBhbmQgcmVsYXRlZCBjaGlwc2V0cyBoYXZlIGFuIGludGVybmFsIERpc3Bs
-YXkgUkFNLCBmcm9tIHdoaWNoIHRoZXkKY29udHJvbCBhIHR3by1kaW1lbnNpb25hbCBhcnJheSBv
-ZiBMRUQgY29tcG9uZW50cywgb2Z0ZW4gdXNlZCBmb3IKc2V2ZW4tc2VnbWVudCBkaXNwbGF5cywg
-aS5lLiBjbG9jayBkaXNwbGF5LCBidXQgYWxzbyBmb3IgaW5kaWNhdG9ycy4KSW5kaXZpZHVhbCBM
-RURzIGNhbiBiZSB0dXJuZWQgb24vb2ZmLCBidXQgYnJpZ2h0bmVzcyBpcyBhcHBsaWVkIGdsb2Jh
-bGx5LgpTb21lIGNoaXBzZXRzIGFsc28gc3VwcG9ydCBwb2xsaW5nIGEgdHdvLWRpbWVuc2lvbmFs
-IGtleSBwYWQuCgpUaGlzIGluaXRpYWwgUkZDIGltcGxlbWVudHMgYSBTUEkgc2xhdmUgZHJpdmVy
-IHdpdGhpbiBMaW51eCBsZWRzIHN1YnN5c3RlbQphbmQgbGV0cyBEVCBleHBvc2UgaW5kaXZpZHVh
-bCBMRUQgY29tcG9uZW50cyBhcyB0d28tc3RhdGUgTEVEcywgYWxsb3dpbmcKdG8gYXNzaWduIHN0
-YW5kYXJkIExpbnV4IExFRCB0cmlnZ2VycyBhbmQgdG8gY29udHJvbCB0aGVtIHZpYSBzeXNmcy4K
-Ckl0IGdvZXMgb24gdG8gYWRkIGEgInRleHQiIGF0dHJpYnV0ZSB0byB0aGUgZHJpdmVyIHRoYXQg
-ZW5hYmxlcyBEVC1jb25maWd1cmVkCnNldmVuLXNlZ21lbnQgZGlzcGxheXM7IEkgd2FzIGV4cGVj
-dGluZyB0byBmaW5kIHByZWNlZGVuY2UgaW4gYXV4ZGlzcGxheQpzdWJzeXN0ZW0gYnV0IGNhbWUg
-dXAgZW1wdHkuIFNvIG15IGRyaXZlciBjdXJyZW50bHkgaW50ZWdyYXRlcyBpdHMgb3duCmdlbmVy
-aWMgKGJ1dCBpbmNvbXBsZXRlKSBjaGFyYWN0ZXItdG8tOC1zZWdtZW50cyBtYXBwaW5nLCBhcyB3
-ZWxsIGFzIGluIGEKc2Vjb25kIHN0ZXAgYSBjb21iaW5lZC1jaGFyYWN0ZXJzLXRvLTgtc2VnbWVu
-dHMgbWFwcGluZywgd2hpY2ggdGhlbiBnZXRzCm1hcHBlZCB0byB0aGUgY2hpcHNldCdzIGF2YWls
-YWJsZSBvdXRwdXQgbGluZXMuIERvaW5nIHRoaXMgYXMgc3lzZnMgZGV2aWNlCmF0dHJpYnV0ZSBo
-YWQgdGhlIGFkdmFudGFnZSBvZiBiZWluZyBhYmxlIHRvIHRlc3QgaXQgcXVpY2tseTsgaXQgYWxz
-byBsZWF2ZXMKdGltZXpvbmUgbWFuYWdlbWVudCB0byB1c2Vyc3BhY2UgYW5kIGxldHMgaXQgY2hv
-b3NlIGJldHdlZW4gd2FsbCBjbG9jayBhbmQKcGxheWJhY2sgdGltZSBhcyBuZWVkZWQuIExFRCB0
-cmlnZ2VycyBhcHBlYXJlZCB0byBiZSBwZXItTEVEOyBvdGhlcndpc2UgYW4KUlRDLWltcGxlbWVu
-dGVkIGludGVycnVwdCBiYXNlZCBMRUQgdHJpZ2dlciB3b3VsZCd2ZSBiZWVuIG5pY2UgZm9yIFJU
-RDExOTUrLApzaW5jZSBteSBwZW5kaW5nIGlycWNoaXAgZHJpdmVyIGV4cG9zZXMgaW50ZXJydXB0
-cyBkb3duIHRvIGhhbGYtc2Vjb25kIHRoYXQKd291bGQgc2VlbSBpZGVhbCBmb3IgYWNjdXJhdGVs
-eSBkcml2aW5nIHN1Y2ggYSBkaXNwbGF5LCB3aXRoIGJsaW5raW5nIGNvbG9uLgoKRmluYWxseSwg
-aXQgc2tldGNoZXMgaG93IGtleXBhZCBoYW5kbGluZyBjb3VsZCBiZSBpbnRlZ3JhdGVkIGludG8g
-dGhlIGxlZHMKZHJpdmVyLCBidXQgSSBhbSBsYWNraW5nIGEgdGVzdCBjYXNlIGZvciB0aGF0IGZ1
-bmN0aW9uYWxpdHkuCkRpc3Rpbmd1aXNoaW5nIExFRHMgYW5kIGtleSBpbnB1dHMgaW4gRFQgbWF5
-IGdldCBkaWZmaWN1bHQuLi4KCkZvciBicmlnaHRuZXNzIGNvbnRyb2wgSSBhbSBzdGlsbCBpbnZl
-c3RpZ2F0aW5nIHRoZSBiYWNrbGlnaHQgQVBJIGFuZApkZWZhdWx0aW5nIHRvIHRoZSBjaGlwc2V0
-J3MgZGVmYXVsdCAobG93ZXN0KSBicmlnaHRuZXNzLgoKUHJlcGVuZGVkIGlzIGEgbmV3IERUIGZv
-ciBYbmFubyBYNSBPVFQgVFYgQm94LCBmZWF0dXJpbmcgYW4gRkQ2MjggZGlzcGxheS4KCkRpc3Bs
-YXlzIGNvbm5lY3RlZCB0byB0aGVzZSBjb250cm9sbGVycyBkaWRuJ3QgaGF2ZSBhbnkgbW9kZWwg
-b3IgdmVuZG9yCnVzdWFsbHksIGFuZCBmb3IgdGhlIGxlbmd0aHkgbnVtYmVycyBmcm9tIG15IFg5
-UywgR29vZ2xlIGZvdW5kIG5vIGhpdHMuClRoZXJlZm9yZSBJJ3ZlIGJlZW4gdW5hYmxlIHRvIGNv
-bWUgdXAgd2l0aCBjb21wYXRpYmxlIHN0cmluZ3MgZm9yIHRob3NlCmRpc3BsYXlzIGFuZCBuZWVk
-IHRvIGNvbmZpZ3VyZSBpdCBwZXIgLmR0cywgZXZlbiB0aG91Z2ggc29tZSBtYXkgYmUgdXNpbmcK
-dGhlIHNhbWUsIGUuZy4sICI4ODo4OCIgdHlwZSBkaXNwbGF5IG1vZGVsLgpXaGVyZWFzIHRoZSBz
-YW1lIGRpc3BsYXkgbWlnaHQgYmUgY29ubmVjdGVkIHRvIGRpZmZlcmVudCBMRUQgY29udHJvbGxl
-cnMsCnRodXMgaXMgb3J0aG9nb25hbCB0byB0aGUgY29udHJvbGxlcidzIGNvbXBhdGlibGUgc3Ry
-aW5nLgoKQW5vdGhlciBhc3BlY3QgaGVyZSBpcyB0aGF0IHRoZSBsZWRzIGJpbmRpbmcgZXhwZWN0
-cyB0byBoYXZlIGNoaWxkIG5vZGVzCnBlciBMRUQgZGlyZWN0bHkgb24gdGhlIExFRCBjb250cm9s
-bGVyIG5vZGUuIFNvIEkndmUgZ29uZSB0byBsZW5ndGhzIHRvCnNob2Vob3JuIG15IGRpc3BsYXkg
-Y2hpbGQgbm9kZSBpbnRvIHRoYXQgc2NoZW1lIHZpYSB3aWxkY2FyZCByZWcgcHJvcGVydHkuCgpU
-aGUgYWx0ZXJuYXRpdmUgd291bGQgYmUgdG8gZGVmaW5lIHNvbWUgc3BlY2lhbCBjaGlsZCBub2Rl
-LCBhcyBkb25lIGZvciB0aGUKU1BJIGNvbnRyb2xsZXIncyAic2xhdmUiIG5vZGUsIHRvIHVzZSBh
-cyBkaXNwbGF5LiBCdXQgaW4gdGhlb3J5IHRoZXJlIG1pZ2h0CmJlIG11bHRpcGxlIGRpc3BsYXlz
-IGNvbm5lY3RlZCB0byBvbmUgY29udHJvbGxlciAod2hpY2ggaXMgbmVnbGVjdGVkIGhlcmUpLgpB
-bmQgaW4gdGhlb3J5IHRoZSBzYW1lIGRpc3BsYXkgbWlnaHQgYmUgd2lyZWQgdXAgZGlmZmVyZW50
-bHksIHNvIGF0IG1vc3QKdGhlIGRpc3BsYXkgbW9kZWwgY291bGQgdGVsbCB1cyBhYm91dCBsYXlv
-dXQgYW5kIGF2YWlsYWJpbGl0eSBvZiBMRURzLCBidXQKd2UnZCBzdGlsbCBuZWVkIGEgbWFwcGlu
-ZyBmcm9tIHRoZSBMRUQgY29udHJvbGxlcidzIHRvIHRoZSBkaXNwbGF5J3MgcGlucy4KU28gZmFy
-IG5laXRoZXIgb2YgdGhlIHR3byBkaXNwbGF5cyB0ZXN0ZWQgYWN0dWFsbHkgdXNlIHRoZSBzZWdt
-ZW50IGxpbmVzCmZvciB0aGUgc2VnbWVudHMsIGJ1dCByYXRoZXIgc3dpdGNoIHNlZ21lbnQgYW5k
-IGdyaWQgbGluZXMuCgpTbyBpbiB0aGVvcnkgd2UgbWlnaHQgY29uc2lkZXIgdGhlIGRpc3BsYXkg
-YXMgTEVEIGNvbnRyb2xsZXIgYW5kIGltcGxlbWVudApiaW5kaW5nL2RyaXZlciBvbiB0aGF0IGxl
-dmVsIChtb3ZpbmcgaXQgdG8gRFQgcm9vdCBub2RlIGxpa2UgZ3Bpby1sZWRzKSwKaWYgd2UgY2Fu
-IGhvb2sgaXQgdXAgdG8gdGhlIGFjdHVhbCBMRUQgY29udHJvbGxlciBpbiB0aGlzIGNhc2Ugb24g
-U1BJIGJ1cz8KQXNzdW1pbmcgd2UgY2FuIGFjdHVhbGx5IGlkZW50aWZ5IHRoZSBkaXNwbGF5IHdp
-dGggc29tZSBjb21wYXRpYmxlIHN0cmluZywKdGhhdCBpcy4KSG93ZXZlciwgdXBkYXRlIGVmZmlj
-aWVuY3kgaGFzIGJlZW4gYSBjb25jZXJuLCB3aXRoIGNsb2NrIGRpc3BsYXkgaW4gbWluZC4KVGh1
-cywgZm9yY2luZyB0d28gU1BJIGNvbW1hbmRzICh0aHJlZSBTUEkgdHJhbnNmZXJzKSBwZXIgTEVE
-IHNlZ21lbnQsIGFzIHRoZQp0aGUgY3VycmVudCBMRUQgQVBJIHdvdWxkIGVudGFpbCwgc2hvdWxk
-IGJldHRlciBiZSBhdm9pZGVkLiBUaGlzIGxlZCB0byB0aGUKY3VycmVudCBkZXNpZ24gb2YgaGF2
-aW5nIGV2ZXJ5dGhpbmcgaW4gdG0xNjI4IGRyaXZlciwgc28gdGhhdCB3ZSBjYW4gZWFzaWx5CmRl
-dGVybWluZSB0aGUgc2NvcGUgb2YgYW4gdXBkYXRlIG9wZXJhdGlvbiB0aGVyZSAob25lIHBlciBM
-RUQ7IGFsbCBmb3IgdGV4dCwKdG8gYmUgb3B0aW1pemVkIHRocm91Z2ggYml0IGZpZWxkIG9mIGRp
-cnRpZWQgYnl0ZXMpLgoKTG9ja2luZyBpcyBjb21wbGV0ZWx5IG1pc3Npbmcgc3RpbGwuIFdlJ2xs
-IG5lZWQgYXQgbGVhc3QgYSBtdXRleCB0byBhdm9pZCwKZS5nLiwgYSBoZWFydGJlYXQgTEVEIHRy
-aWdnZXIgYW5kIGEgdGV4dCB1cGRhdGUgY29uZmxpY3Rpbmcgb24gU1BJIGJ1cyBvcgoiaGF6YXJk
-cyIgYmVjb21pbmcgdmlzaWJsZSBvbiB0aGUgZGlzcGxheSBkdXJpbmcgY29uZmxpY3RpbmcgYnl0
-ZSB1cGRhdGVzLgoKTW9kdWxlIHJlbW92ZSBzdXBwb3J0IGlzIG1pc3NpbmcsIHRvby4KCldlIG1h
-eSBhbHNvIG5lZWQgdG8gcmV2aXNpdCBteSBlcnJvciBjaGVja2luZyBhbmQgZWl0aGVyIGlubGlu
-ZSBmdW5jdGlvbnMKb3IgZHJvcCBjaGVja3Mgb24gdGhlIExFRCBiaXQgbGV2ZWwsIGlmIGl0IGJl
-Y29tZXMgYSBwZXJmb3JtYW5jZSBib3R0bGVuZWNrLgoKT24gdGhlIGNvc21ldGljIHNpZGUsIHNv
-bWUgbGluZXMgYXJlIHN0aWxsIGJleW9uZCA4MCBjaGFyYWN0ZXJzLgoKU29tZSBtb3JlIG5vdGVz
-OgoqIFB1YmxpYyBUTTE2MjggVjEuMSBkYXRhc2hlZXQgaXMgaW4gQ2hpbmVzZSBvbmx5IGFuZCBk
-aWZmZXJzIGZyb20gdGhlCiAgdW52ZXJzaW9uZWQgRW5nbGlzaCB2ZXJzaW9uIGZvdW5kIGVsc2V3
-aGVyZSBvbiBkYXRhc2hlZXQgc2l0ZXMgYnkKICBkb2N1bWVudGluZyBtb3JlIGRpc3BsYXkgbW9k
-ZXMsIGluY2x1ZGVkIGhlcmUgKGd1ZXNzZWQgZnJvbSBBcmFiaWMgbnVtYmVycykuCiogUHVibGlj
-IEZENjI4IGRhdGFzaGVldCBpcyBDaGluZXNlIG9ubHkgKGd1ZXNzZXMgYmFzZWQgb24gQXJhYmlj
-IG51bWJlcnMpLgogIEZENjIzIGFwcGVhcnMgdG8gaGF2ZSBtb3JlIG91dHB1dCBsaW5lcywgd2hp
-Y2ggd291bGQgZml0IGN1cnJlbnQgZGF0YSB0eXBlcy4KKiBBaVAxNjE4IGxpbmtzIHdlcmUgYWxs
-IGJyb2tlbiAoNDA0KTsgdHJ5IEdvb2dsZSAic2l0ZTpzemZkd2R6LmNvbSIgc2VhcmNoCiAgdG8g
-YWN0dWFsbHkgZmluZCB0aGUgZG9jdW1lbnRzIGF2YWlsYWJsZSBvbiB0aGVpciBzaXRlLgoqIFBy
-aW5jZXRvbiBQVDY5NjQgaXMgYW5vdGhlciByZWxhdGVkIExFRCBjb250cm9sbGVyIHdpdGggcHVi
-bGljIGRhdGFzaGVldAogIHRoYXQgSSBkaWQgbm90IGVuY291bnRlciBpbiBteSBUViBib3hlcyB5
-ZXQsIHRodXMgbm90IGluY2x1ZGVkIGhlcmUuCiAgRGF0YXNoZWV0cyBhcmUgbGlua2VkIG9ubHkg
-Zm9yIFBUNjk1OSBhbmQgUFQ2OTY3LCBidXQgUFQ2OTY0IFYxLjMgYW5kIFYxLjQKICBhcmUgYXZh
-aWxhYmxlIGVsc2V3aGVyZS4gUFQ2OTY3IGhhcyBtb3JlIG91dHB1dCBsaW5lcywgd2hpY2ggbXkg
-Y3VycmVudAogIGRhdGEgdHlwZXMgY291bGQgYmFyZWx5IGhvbGQuIE1heWJlIGJ1bXAgdGhlbSBh
-bGwgdG8gdTMyIHR5cGUgcmlnaHQgYXdheT8KKiBUTTE2MjggaXMgYWxzbyBmb3VuZCBvbiBNZUxF
-IFY5IFRWIGJveCwgdG8gYmUgdGVzdGVkLgoqIEZENjI4IGlzIGFsc28gZm91bmQgb24gQW1sb2dp
-YyBTOTA1WDIgYmFzZWQgVm9udGFyIFg5NiBNYXggVFYgYm94LAogIHRvIGJlIHRlc3RlZCAob25j
-ZSBVQVJUIGlzIHNvbGRlcmVkKS4KKiBBaVAxNjE4IHdhcyBmb3VuZCBvbiBBdmEgYW5kIExha2Ug
-SSBUViBib3hlcywgdG8gYmUgdGVzdGVkLgoqIEl0IHJlbWFpbmVkIHVuY2xlYXIgdG8gbWUgd2hp
-Y2ggb2YgdGhlc2UgbWFueSBzaW1pbGFyIGNoaXBzZXRzIHdhcyBmaXJzdC4KICBNeSBkcml2ZXIg
-bmFtZSBpcyB0aGVyZWZvcmUgYmFzZWQgb24gdGhlIGNoaXAgSSBlbmNvdW50ZXJlZCBmaXJzdC4K
-ClRoaXMgc2VyaWVzIGlzIGJhc2VkIG9uIG15IG5vdC15ZXQtcG9zdGVkIFJURDEyOTUgcGluY3Ry
-bCBhbmQgR1BJTyBkcml2ZXJzLgoKTGF0ZXN0IGV4cGVyaW1lbnRhbCBwYXRjaGVzIGF0OgpodHRw
-czovL2dpdGh1Yi5jb20vYWZhZXJiZXIvbGludXgvY29tbWl0cy9ydGQxMjk1LW5leHQKCkhhdmUg
-YSBsb3Qgb2YgZnVuIQoKQ2hlZXJzLApBbmRyZWFzCgpDYzogbGludXgtbGVkc0B2Z2VyLmtlcm5l
-bC5vcmcKQ2M6IEphY2VrIEFuYXN6ZXdza2kgPGphY2VrLmFuYXN6ZXdza2lAZ21haWwuY29tPgpD
-YzogUGF2ZWwgTWFjaGVrIDxwYXZlbEB1Y3cuY3o+CkNjOiBEYW4gTXVycGh5IDxkbXVycGh5QHRp
-LmNvbT4KCkNjOiBsaW51eC1ydGNAdmdlci5rZXJuZWwub3JnCkNjOiBBbGVzc2FuZHJvIFp1bW1v
-IDxhLnp1bW1vQHRvd2VydGVjaC5pdD4KQ2M6IEFsZXhhbmRyZSBCZWxsb25pIDxhbGV4YW5kcmUu
-YmVsbG9uaUBib290bGluLmNvbT4KCkNjOiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZwpDYzog
-Um9iIEhlcnJpbmcgPHJvYmgrZHRAa2VybmVsLm9yZz4KCkNjOiBsaW51eC1zcGlAdmdlci5rZXJu
-ZWwub3JnCkNjOiBNYXJrIEJyb3duIDxicm9vbmllQGtlcm5lbC5vcmc+CgpDYzogbGludXgtYW1s
-b2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCgpDYzogUm9jIEhlIDxoZXBlbmdAemlkb28udHY+CiMg
-Tm8gZW1haWwgZm9yIFhuYW5vCgpDYzogenlwZW5nQHRpdGFubWVjLmNvbQpDYzogc2FsZXNAZmRo
-aXNpLmNvbQojIE5vIGVtYWlsIGZvciBzemZkd2R6LmNvbQpDYzogY3NkQHByaW5jZXRvbi5jb20u
-dHcKCkFuZHJlYXMgRsOkcmJlciAoMjUpOgogIGR0LWJpbmRpbmdzOiB2ZW5kb3ItcHJlZml4ZXM6
-IEFkZCBYbmFubwogIGR0LWJpbmRpbmdzOiBhcm06IHJlYWx0ZWs6IEFkZCBYbmFubyBYNQogIGFy
-bTY0OiBkdHM6IHJlYWx0ZWs6IHJ0ZDEyOTU6IEFkZCBYbmFubyBYNQogIHNwaTogZ3BpbzogSW1w
-bGVtZW50IExTQiBGaXJzdCBiaXRiYW5nIHN1cHBvcnQKICBkdC1iaW5kaW5nczogdmVuZG9yLXBy
-ZWZpeGVzOiBBZGQgVGl0YW4gTWljcm8gRWxlY3Ryb25pY3MKICBkdC1iaW5kaW5nczogbGVkczog
-QWRkIFRpdGFuIE1pY3JvIEVsZWN0cm9uaWNzIFRNMTYyOAogIGxlZHM6IEFkZCBUaXRhbiBNaWNy
-byBFbGVjdHJvbmljcyBUTTE2MjgKICBhcm02NDogZHRzOiByZWFsdGVrOiBydGQxMjl4LXppZG9v
-LXg5czogQWRkIFRNMTYyOCBMRUQgY29udHJvbGxlcgogIGFybTY0OiBkdHM6IHJlYWx0ZWs6IHJ0
-ZDEyOTUtemlkb28teDlzOiBBZGQgcmVndWxhciBMRURzIHRvIFRNMTYyOAogIGR0LWJpbmRpbmdz
-OiB2ZW5kb3ItcHJlZml4ZXM6IEFkZCBGdWRhIEhpc2kgTWljcm9lbGVjdHJvbmljcwogIGR0LWJp
-bmRpbmdzOiBsZWRzOiB0bTE2Mjg6IEFkZCBGdWRhIEhpc2kgTWljcm9lbGVjdHJvbmljcyBGRDYy
-OAogIGxlZHM6IHRtMTYyODogQWRkIEZ1ZGEgSGlzaSBNaWNyb2VsZWN0cm9uaWNzIEZENjI4CiAg
-YXJtNjQ6IGR0czogcmVhbHRlazogcnRkMTI5NS14bmFuby14NTogQWRkIEZENjI4IExFRCBjb250
-cm9sbGVyCiAgYXJtNjQ6IGR0czogcmVhbHRlazogcnRkMTI5NS14bmFuby14NTogQWRkIHJlZ3Vs
-YXIgTEVEcyB0byBGRDYyOAogIGR0LWJpbmRpbmdzOiB2ZW5kb3ItcHJlZml4ZXM6IEFkZCBGdWRl
-IE1pY3JvZWxlY3Ryb25pY3MKICBkdC1iaW5kaW5nczogbGVkczogdG0xNjI4OiBBZGQgRnVkZSBN
-aWNyb2VsZWN0cm9uaWNzIEFpUDE2MTgKICBsZWRzOiB0bTE2Mjg6IFByZXBhcmUgRnVkZSBNaWNy
-b2VsZWN0cm9uaWNzIEFpUDE2MTgKICBkdC1iaW5kaW5nczogbGVkczogdG0xNjI4OiBEZWZpbmUg
-ZGlzcGxheSBjaGlsZCBub2RlcwogIGxlZHM6IHRtMTYyODogQWRkIDctc2VnbWVudCBkaXNwbGF5
-IHN1cHBvcnQKICBhcm02NDogZHRzOiByZWFsdGVrOiBydGQxMjk1LXppZG9vLXg5czogQWRkIGRp
-c3BsYXkgdG8gVE0xNjI4CiAgYXJtNjQ6IGR0czogcmVhbHRlazogcnRkMTI5NS14bmFuby14NTog
-QWRkIGRpc3BsYXkgdG8gRkQ2MjgKICBsZWRzOiB0bTE4MjY6IEFkZCBjb21iaW5lZCBnbHlwaCBz
-dXBwb3J0CiAgV0lQOiBsZWRzOiB0bTE2Mjg6IFByZXBhcmUgVE0xNjI4IGtleXMKICBXSVA6IGxl
-ZHM6IHRtMTYyODogUHJlcGFyZSBGRDYyOCBrZXlzCiAgV0lQOiBsZWRzOiB0bTE2Mjg6IFByZXBh
-cmUgQWlQMTYxOCBrZXlzCgogRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9y
-ZWFsdGVrLnlhbWwgfCAgIDEgKwogLi4uL2RldmljZXRyZWUvYmluZGluZ3MvbGVkcy90aXRhbm1l
-Yyx0bTE2MjgueWFtbCAgfCAxMzQgKysrKwogLi4uL2RldmljZXRyZWUvYmluZGluZ3MvdmVuZG9y
-LXByZWZpeGVzLnlhbWwgICAgICAgfCAgIDggKwogYXJjaC9hcm02NC9ib290L2R0cy9yZWFsdGVr
-L01ha2VmaWxlICAgICAgICAgICAgICAgfCAgIDEgKwogYXJjaC9hcm02NC9ib290L2R0cy9yZWFs
-dGVrL3J0ZDEyOTUteG5hbm8teDUuZHRzICAgfCAxMDggKysrCiBhcmNoL2FybTY0L2Jvb3QvZHRz
-L3JlYWx0ZWsvcnRkMTI5NS16aWRvby14OXMuZHRzICB8ICAzNiArLQogZHJpdmVycy9sZWRzL0tj
-b25maWcgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgMTIgKwogZHJpdmVycy9sZWRz
-L01ha2VmaWxlICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDEgKwogZHJpdmVycy9s
-ZWRzL2xlZHMtdG0xNjI4LmMgICAgICAgICAgICAgICAgICAgICAgICAgfCA3MjcgKysrKysrKysr
-KysrKysrKysrKysrCiBkcml2ZXJzL3NwaS9zcGktYml0YmFuZy10eHJ4LmggICAgICAgICAgICAg
-ICAgICAgICB8ICA2OCArLQogZHJpdmVycy9zcGkvc3BpLWdwaW8uYyAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgfCAgNDIgKy0KIDExIGZpbGVzIGNoYW5nZWQsIDExMjYgaW5zZXJ0aW9ucygr
-KSwgMTIgZGVsZXRpb25zKC0pCiBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZp
-Y2V0cmVlL2JpbmRpbmdzL2xlZHMvdGl0YW5tZWMsdG0xNjI4LnlhbWwKIGNyZWF0ZSBtb2RlIDEw
-MDY0NCBhcmNoL2FybTY0L2Jvb3QvZHRzL3JlYWx0ZWsvcnRkMTI5NS14bmFuby14NS5kdHMKIGNy
-ZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2xlZHMvbGVkcy10bTE2MjguYwoKLS0gCjIuMTYuNAoK
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFt
-bG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRw
-Oi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
+Hi Martin,
+
+On Thu, 12 Dec 2019 at 05:00, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> Hi Anand,
+>
+> On Wed, Dec 11, 2019 at 2:17 PM Anand Moon <moon.linux@yahoo.com> wrote:
+> [...]
+> > Sorry once again I send my logs too early.
+> > I still having some issue with the Hardware glx cryto module.
+> I'm surprised to see that you managed to get the GXL crypto driver to
+> load at all on GXBB
+> as far as I know GXBB uses an older crypto IP block (BLKMV) than GXL
+> (and newer SoCs, called "DMA"): [0]
+>
+> so my understanding is that a new crypto driver is needed for GXBB
+> (BLKMV registers) support.
+> the 32-bit SoCs use the same BLKMV IP block as far as I can tell, so
+> these would also benefit from this other driver.
+> (I don't know if anyone is working on a BLKMV crypto driver - all I
+> can tell is that I'm not working on one)
+>
+>
+> Martin
+>
+>
+> [0] https://github.com/khadas/linux/blob/195ea69f96d9bddc1386737e89769ff350762aea/drivers/amlogic/crypto/Kconfig
+
+*You are absolutely correct. current crypto GLX driver might not work for GXBB*
+Yes new crypto driver is needed for this board. I will try to study on
+this feature.
+
+But both S805 and S905 share the same crypto IP block for.sure see below link.
+[0]  https://github.com/khadas/linux/blob/195ea69f96d9bddc1386737e89769ff350762aea/Documentation/devicetree/bindings/crypto/aml-crypto.txt#L1-L61
+
+It's not working see the debug logs.
+[alarm@alarm ~]$ sudo modprobe tcrypt sec=1 mode=500
+[sudo] password for alarm:
+[   39.567302] tcrypt:
+[   39.567302] testing speed of async ecb(aes) (ecb-aes-gxl) encryption
+[   39.570171] tcrypt: test 0 (128 bit key, 16 byte blocks):
+[   39.570229] gxl-crypto c8832000.crypto: meson_cipher ecb(aes) 16 1
+IV(0) key=16 flow=1
+[   41.598687] gxl-crypto c8832000.crypto: DMA timeout for flow 1
+[   41.598900] tcrypt: encryption() failed flags=0
+[   41.603383] tcrypt: test 0 (192 bit key, 16 byte blocks):
+[   41.603424] gxl-crypto c8832000.crypto: meson_cipher ecb(aes) 16 1
+IV(0) key=24 flow=0
+[   43.646686] gxl-crypto c8832000.crypto: DMA timeout for flow 0
+[   43.646900] tcrypt: encryption() failed flags=0
+[   43.651378] tcrypt: test 0 (256 bit key, 16 byte blocks):
+[   43.651419] gxl-crypto c8832000.crypto: meson_cipher ecb(aes) 16 1
+IV(0) key=32 flow=1
+[   45.694691] gxl-crypto c8832000.crypto: DMA timeout for flow 1
+[   45.694902] tcrypt: encryption() failed flags=0
+[   45.699419] tcrypt:
+[   45.699419] testing speed of async ecb(aes) (ecb-aes-gxl) decryption
+[   45.707838] tcrypt: test 0 (128 bit key, 16 byte blocks):
+[   45.707872] gxl-crypto c8832000.crypto: meson_cipher ecb(aes) 16 0
+IV(0) key=16 flow=0
+[   47.742677] gxl-crypto c8832000.crypto: DMA timeout for flow 0
+[   47.742879] tcrypt: decryption() failed flags=0
+[   47.747366] tcrypt: test 0 (192 bit key, 16 byte blocks):
+[   47.747402] gxl-crypto c8832000.crypto: meson_cipher ecb(aes) 16 0
+IV(0) key=24 flow=1
+[   49.790684] gxl-crypto c8832000.crypto: DMA timeout for flow 1
+[   49.790898] tcrypt: decryption() failed flags=0
+[   49.795380] tcrypt: test 0 (256 bit key, 16 byte blocks):
+[   49.795420] gxl-crypto c8832000.crypto: meson_cipher ecb(aes) 16 0
+IV(0) key=32 flow=0
+[   51.838680] gxl-crypto c8832000.crypto: DMA timeout for flow 0
+[   51.838894] tcrypt: decryption() failed flags=0
+[   51.852005] tcrypt:
+[   51.852005] testing speed of async cbc(aes) (cbc-aes-gxl) encryption
+[   51.854903] tcrypt: test 0 (128 bit key, 16 byte blocks):
+[   51.854941] gxl-crypto c8832000.crypto: meson_cipher cbc(aes) 16 1
+IV(16) key=16 flow=1
+[   53.886678] gxl-crypto c8832000.crypto: DMA timeout for flow 1
+[   53.886882] tcrypt: encryption() failed flags=0
+[   53.891385] tcrypt: test 0 (192 bit key, 16 byte blocks):
+[   53.891428] gxl-crypto c8832000.crypto: meson_cipher cbc(aes) 16 1
+IV(16) key=24 flow=0
+[   55.934686] gxl-crypto c8832000.crypto: DMA timeout for flow 0
+[   55.934901] tcrypt: encryption() failed flags=0
+[   55.939410] tcrypt: test 0 (256 bit key, 16 byte blocks):
+[   55.939447] gxl-crypto c8832000.crypto: meson_cipher cbc(aes) 16 1
+IV(16) key=32 flow=1
+[   57.982684] gxl-crypto c8832000.crypto: DMA timeout for flow 1
+[   57.982899] tcrypt: encryption() failed flags=0
+[   57.987429] tcrypt:
+[   57.987429] testing speed of async cbc(aes) (cbc-aes-gxl) decryption
+[   57.995832] tcrypt: test 0 (128 bit key, 16 byte blocks):
+[   57.995864] gxl-crypto c8832000.crypto: meson_cipher cbc(aes) 16 0
+IV(16) key=16 flow=0
+[   60.030680] gxl-crypto c8832000.crypto: DMA timeout for flow 0
+[   60.030880] tcrypt: decryption() failed flags=0
+[   60.035369] tcrypt: test 0 (192 bit key, 16 byte blocks):
+[   60.035406] gxl-crypto c8832000.crypto: meson_cipher cbc(aes) 16 0
+IV(16) key=24 flow=1
+[   62.078678] gxl-crypto c8832000.crypto: DMA timeout for flow 1
+[   62.078888] tcrypt: decryption() failed flags=0
+[   62.083377] tcrypt: test 0 (256 bit key, 16 byte blocks):
+[   62.083416] gxl-crypto c8832000.crypto: meson_cipher cbc(aes) 16 0
+IV(16) key=32 flow=0
+[   64.126684] gxl-crypto c8832000.crypto: DMA timeout for flow 0
+[   64.126899] tcrypt: decryption() failed flags=0
+[   64.143285] tcrypt: failed to load transform for lrw(aes): -2
+[   64.155243] tcrypt: failed to load transform for lrw(aes): -2
+[   64.167318] tcrypt:
+
+-Anand
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
