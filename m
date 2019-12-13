@@ -2,21 +2,24 @@ Return-Path: <SRS0=Q7B6=2D=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-5.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BCCC3C00454
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Dec 2019 22:29:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5E95EC43603
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Dec 2019 22:30:44 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 940A520706
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Dec 2019 22:29:40 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 31B5420706
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Dec 2019 22:30:44 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Rrn5MmTY"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 940A520706
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YAvlVfi4";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WA/Nl5/q"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 31B5420706
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
@@ -24,51 +27,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
 	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=d8RP00PSE843qRdWh7kRkdsq/6CnUuqRL1dhpJ6ElDc=; b=Rrn5MmTYt+i5jj
-	58JvwLkhxx4Z6Z0THG4hKZa/CKf8jLDeuVWxsv+ls/1LF8MVO/4iTtn8dVpGVm/879PDxZfNvk5CS
-	FvDnOWy2GVyj++Ra+8LTq793rOFOqGSrA3D89rZ6opIFN0+ZzjHtU45OHnkjYNbhGedVPTysVlBSD
-	kg3Ieb0tyZpqX3UiWo6kGplkP5DflFNo9w+nMnsZr1J407Q0nqFVsaSzeC8NstV7jALdiITza7sjd
-	yTe3AAX5Thyd21A4g7sFbQocYehWbET0xcDGH7Fu/33ksllU5CgzyCaiem05Wi2r5w6xZbz7ovToE
-	K6ymlYHDd57PTdpJZrtA==;
+	List-Owner; bh=ecLm+YIdW14rIHeQmygju6bsDMPTr5ZA5/1BYmVfoq0=; b=YAvlVfi4qNKjLW
+	cgPCfohtnnuAkjCuxUaBP060J/yS5qLs94JLaxMoLB1a1SV0ytuMwOxqrk2dQZEbmE+SPvEaNl6hC
+	8G7w62NMbNiuSadNTR9dIMeCZuZd6Q3R91e/ikrBLwJZU0/YkAmb4AguFWQ6iqVCCuM2iNPIkieFf
+	Chc5UTda77sMCHAX7HWAdMSBt/XcMFN6mhyI5z3BxmZJ3WXONi2V0snh3dLz+gxM7VUlbDofK1w4k
+	K75ThkrJgpX3b4rlNpDMc8+FoQYw3YXV5Qe3pLUITHTZ33Px3d8zbYMBQTAo13md9bZCrRUMi2Kcq
+	D7UtcY3KpdtIaC+owWNA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ifm3e-0002Eh-MK; Fri, 13 Dec 2019 14:36:42 +0000
-Received: from mail-ot1-f68.google.com ([209.85.210.68])
+	id 1iflrD-0005Cv-6H; Fri, 13 Dec 2019 14:23:51 +0000
+Received: from mail-io1-xd42.google.com ([2607:f8b0:4864:20::d42])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ifm3Y-0002Bh-Py; Fri, 13 Dec 2019 14:36:41 +0000
-Received: by mail-ot1-f68.google.com with SMTP id g18so6654289otj.13;
- Fri, 13 Dec 2019 06:36:35 -0800 (PST)
+ id 1iflr1-00054u-93; Fri, 13 Dec 2019 14:23:41 +0000
+Received: by mail-io1-xd42.google.com with SMTP id t26so2512723ioi.13;
+ Fri, 13 Dec 2019 06:23:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=oY4foPWzvMWBhrOb3ctOq9TVV5hU0NFwbmMTS0Zd/UU=;
+ b=WA/Nl5/qzxziow27rNFDBN6AR0i/0NcNiRvRVp80t0u9W0JQMaMjKJ1FXpSIJvFRsA
+ 9XNtyo7R3tvMIJvxC8oiNyOk4J2wtKS7B3Ts81LXhTeznVpJDzP2bBwTq3eNp8TT5jGC
+ JeJnDQdKIfDwUHRy+/BauHNwzMIsrHZwY1yL13K6S1JG3p8bmPr43mrdPMlvRX974Db3
+ sejJ6jhmsn/JNHCDsnNqd+DX6Vt5JKtCkrXbQGX1nBV17cl/Lwbv1gGNky1WX5xz6cB9
+ qNaJLQ5sYArh6IQ72EsTE5mzorok1Y/tT0dn2XFjhtREMCr3CwECOoTe5T6M5fG+Ice6
+ rw+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=GGDHCjU3MM6dIoUZbPeaqvOt8azxG8D7bJ42yMYhguQ=;
- b=K6JNAh8KHY/2MGxpBASKzIufM0LrT8Y1JDjYrkb7OW9ssyPpu186y8m8wVhxRz18Tn
- xpLkhvtMwx3lZ+VMWoiGgTxaUj/JKZV2N+X3ug3J1Y9+kYe48BttazVnJhzimECnsMSN
- UapTHwBLgl/RYO+vXLRNB13PfNdbE2qIrnJxygMVQGrMefBaAuPdyir/ZNoa+63goaoc
- lzG0C/GEa8p0AVLrUNpEGVdkV6PjvO9xy0CUpjmObh/0f424DspbHjGJzfLaaU81eWwg
- Fmmb5iidSB0+5HIuWZGGS3eAuxiha/orkS1RkAfsqbpn6nGN7cX2qMDqZq82YJoVctdf
- a/yA==
-X-Gm-Message-State: APjAAAUZTyEqaZWk10yqyPt/rXt5gXC7bZSrGK97MIJdUCRCUMA4EN8s
- q+YKTDh0yeFfHE1tt9bBB+IjTPfuJAcOsWshuLo=
-X-Google-Smtp-Source: APXvYqwKdL1VCGK4Oe8rL01hvhyHoDgd/HFUlME0PAelLe/cixzON7bfU2Iq4k7pCixPL7UT2s6qDca45N2N5QcrkBo=
-X-Received: by 2002:a9d:7984:: with SMTP id h4mr15219004otm.297.1576247795212; 
- Fri, 13 Dec 2019 06:36:35 -0800 (PST)
+ :message-id:subject:to:cc;
+ bh=oY4foPWzvMWBhrOb3ctOq9TVV5hU0NFwbmMTS0Zd/UU=;
+ b=pYqriNq1VAF9zPFZSUtjkBZ+kXKu7KIM1kII/QOgT78uDmi7ND5JLNCAnC6Qx4azjE
+ OuLm879dsqBIJyEys4jtz703hTEKFjmUMso2jx5fi17hEu9zbavON3X3/azaJ9BeuJST
+ H4BxT/SjeqZdZnjn6O/+vXm+LFsMWangsdNgW3QjogMLIcIZhGfqyF8mryVW+fHCtidG
+ EsrQibc9KEF7cBThOhdocBItK4aoSrHCTZ+9VOX8sayZzapjcQM5q8Khn6C70pO1XLi2
+ HH+fnMOw8uDXresgw3ElULTTTE7H6P5pg/qfTj/xXZlczf2OZIh7TAqrqdt9BTAkH33e
+ DhHA==
+X-Gm-Message-State: APjAAAV+0kAgogyKfJj0sKEhpcy3WgqbLpgNe1yIO4heO/yhoJdEPLRO
+ ypGBTmEe+XMrEAfolEXte8YXm/TE5U7F6vYC+a4=
+X-Google-Smtp-Source: APXvYqw9fo8CyH8rZgTkDXi/QpomXN7jj5DggXjh44v4tlkbINHuyaaFmy+kLmhjIEG8wBfM6tVMJ2kyLjCLt4kAyek=
+X-Received: by 2002:a02:844e:: with SMTP id l14mr2634809jah.30.1576247017731; 
+ Fri, 13 Dec 2019 06:23:37 -0800 (PST)
 MIME-Version: 1.0
-References: <20191212033952.5967-1-afaerber@suse.de>
- <7110806f-ddbd-f055-e107-7a1f7e223102@arm.com>
- <c86c6bc0-b0e5-c46e-da87-9d910b95f9f3@suse.de>
- <04e7d7cd-a8bc-621b-9205-1a058521cabe@arm.com>
-In-Reply-To: <04e7d7cd-a8bc-621b-9205-1a058521cabe@arm.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 13 Dec 2019 15:36:24 +0100
-Message-ID: <CAMuHMdXddQ4v8-by_SmcS09EYykoBZ2G2vcFUpqPadHFaasy7A@mail.gmail.com>
-Subject: Re: [RFC 00/25] arm64: realtek: Add Xnano X5 and implement
- TM1628/FD628/AiP1618 LED controllers
-To: Robin Murphy <robin.murphy@arm.com>
+References: <20191101143126.2549-1-linux.amoon@gmail.com>
+ <7hfthtrvvv.fsf@baylibre.com>
+ <c89791de-0a46-3ce2-b3e2-3640c364cd0f@baylibre.com>
+ <CANAwSgQx3LjQe60TGgKyk6B5BD5y1caS2tA+O+GFES7=qCFeKg@mail.gmail.com>
+ <7hfthsqcap.fsf@baylibre.com>
+ <CAFBinCBfgxXhPKpBLdoq9AimrpaneYFgzgJoDyC-2xhbHmihpA@mail.gmail.com>
+ <7hpngvontu.fsf@baylibre.com>
+ <4e1339b4-c751-3edc-3a2e-36931ad1c503@baylibre.com>
+ <CAFBinCCgKcwXSLxS_CRvz9JZvQo8PcUGm=egBbabVZSrkSc30Q@mail.gmail.com>
+ <CANAwSgSFR3kftWLPqyoYfyxdQ5dcp2W7NgRCaFNkMj-xEDY1Kw@mail.gmail.com>
+ <83791a71-a45c-383d-0406-b0f4e0a0c215@baylibre.com>
+In-Reply-To: <83791a71-a45c-383d-0406-b0f4e0a0c215@baylibre.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Fri, 13 Dec 2019 19:53:26 +0530
+Message-ID: <CANAwSgSsJ8oc--SxtOnsqAfRHQwtBi=ExWg0hqWX7QKga=OYRw@mail.gmail.com>
+Subject: Re: [RFC-next 0/1] Odroid C2: Enable DVFS for cpu
+To: Neil Armstrong <narmstrong@baylibre.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191213_063636_844219_A0E6B6E9 
-X-CRM114-Status: GOOD (  17.47  )
+X-CRM114-CacheID: sfid-20191213_062339_345036_0DC16271 
+X-CRM114-Status: GOOD (  28.37  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,63 +98,174 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-rtc@vger.kernel.org, Alessandro Zummo <a.zummo@towertech.it>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>, csd@princeton.com.tw,
- linux-realtek-soc@lists.infradead.org,
- "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
- sales@fdhisi.com, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Rob Herring <robh+dt@kernel.org>, linux-spi <linux-spi@vger.kernel.org>,
- Dan Murphy <dmurphy@ti.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, Mark Brown <broonie@kernel.org>,
- Jacek Anaszewski <jacek.anaszewski@gmail.com>, Pavel Machek <pavel@ucw.cz>,
- zypeng@titanmec.com,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>, linux-leds@vger.kernel.org,
- Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: devicetree <devicetree@vger.kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Linux Kernel <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGkgUm9iaW4sCgpPbiBGcmksIERlYyAxMywgMjAxOSBhdCAzOjA4IFBNIFJvYmluIE11cnBoeSA8
-cm9iaW4ubXVycGh5QGFybS5jb20+IHdyb3RlOgo+IE9uIDEyLzEyLzIwMTkgODo1NSBwbSwgQW5k
-cmVhcyBGw6RyYmVyIHdyb3RlOgo+ID4gQW0gMTIuMTIuMTkgdW0gMTQ6MTQgc2NocmllYiBSb2Jp
-biBNdXJwaHk6Cj4gPj4gYW5kIGFzIGZhciBhcyBJCj4gPj4gY291bGQgdGVsbCB0aGUgY29tbWFu
-ZCBzZXQgYXBwZWFycyB0byBkZXJpdmUgZnJvbSAob3IgaXMgYXQgbGVhc3QgY29tbW9uCj4gPj4g
-dG8pIHNvbWUgb2xkIEhvbHRlayBWRkQgY29udHJvbGxlcnMuCj4gPgo+ID4gSG1tLCBIVDE2NTE1
-IGxvb2tzIHNpbWlsYXIgYW5kIGhhcyBtb3JlIGxpbmVzLCBSQU0gYW5kIG1vZGUgYml0cyB0aGFu
-IEkKPiA+IHByZXBhcmVkIGhlcmUuCj4gPiBodHRwczovL3d3dy5ob2x0ZWsuY29tL3Byb2R1Y3Rk
-ZXRhaWwvLS92Zy9odDE2NTE1Cj4gPgo+ID4gU28gSSdkIG5lZWQgdG8gbWFrZSBtb3JlIG51bWJl
-cnMgbW9kZWwtZGVwZW5kZW50IGFuZCBhbGxvY2F0ZSB0aGUKPiA+IERpc3BsYXkgUkFNIGJ1ZmZl
-ciBkeW5hbWljYWxseS4KPiA+Cj4gPiBXaGVyZWFzIEhUMTZEMzVBIHNlZW1zIGluY29tcGF0aWJs
-ZSBjb21tYW5kLXdpc2UsIGFuZCBIVDE2NTI4IGFwcGVhcnMgdG8KPiA+IGJlIG91dCBvZiBzY29w
-ZSwgZm9yIGRvdCBkaXNwbGF5cyBhbmQgd2l0aCBmYW5jeSBlbWJlZGRlZCBjaGFyYWN0ZXIgbWFw
-Lgo+ID4KPiA+IE5vIEhvbHRlayBlbWFpbCBhbGlhcyB0aGF0IEkgY2FuIHF1aWNrbHkgc3BvdC4K
-PiA+Cj4gPiBCdXQgZ2l2ZW4gdGhhdCBJJ20gcHJvcG9zaW5nIHZlbmRvci1zcGVjaWZpYyBjb21w
-YXRpYmxlcyBqdXN0IGluIGNhc2UsCj4gPiB0aGUgbWFpbiBkZWNpc2lvbnMgd2lsbCBiZSB0aGUg
-S2NvbmZpZyBzeW1ib2wgYW5kIG1vZHVsZSBuYW1lLiBUaGUKPiA+IGRyaXZlciBjb2RlIGl0c2Vs
-ZiB3ZSBjb3VsZCBhbHdheXMgcmVmYWN0b3IgYWZ0ZXIgbWVyZ2luZywgYW5kIHJlbmFtaW5nCj4g
-PiB0aGUgc2NoZW1hIGZpbGUgKGFzIG9wcG9zZWQgdG8gY29tcGF0aWJsZSkgc2hvdWxkIGFsc28g
-YmUgcG9zc2libGUuCj4KPiBZZWFoLCBJJ20gbm90IHN1cmUgdGhhdCBpdCByZWFsbHkgbWF0dGVy
-cywgYXMgSSBkb3VidCB0aGVyZSBhcmUgbWFueQo+IExpbnV4LWNhcGFibGUgZGV2aWNlcyB3aXRo
-IGEgcmVhbCBWRkQgYW55d2F5OyBpdCBqdXN0IHNlZW1lZCBsaWtlIGFuCj4gaW50ZXJlc3Rpbmcg
-ZGF0YXBvaW50IHRoYXQgZmVsbCBvdXQgb2Ygc2NvdXJpbmcgdGhlIHdlYiB0cnlpbmcgdG8gZmlu
-ZAo+IGFueSBldmlkZW5jZSBmb3Igd2hpY2ggdGhlICJjYW5vbmljYWwiIDE2MTggbWlnaHQgYmUg
-KGFuZCB0aGUgSG9sdGVrCj4gY29ubmVjdGlvbiB3YXMgYWN0dWFsbHkgYSBjb2luY2lkZW5jZSBm
-cm9tIGEgbWlzaWRlbnRpZmljYXRpb24gb2YgdGhlCj4gQVJUU0NISVAgcGFydCBudW1iZXIpLgoK
-TXkgU29ueSBCbHUtUmF5L0hvbWUgVGhlYXRyZSBoYXMgYSBuaWNlIG9uZSAoMTQtc2VnbWVudCEp
-LCBhbHNvIGRyaXZlbgpieSBhbiBIVDE2NTE1LiAgV2hpbGUgdGhlIHNwZWNpZmljIG1vZGVsIHBy
-ZWRhdGVzIHRoZSBhcnJpdmFsIG9mIExpbnV4CmluIHRoZSBuZXh0IHN0ZXBwaW5nIG9mIHRoZSBo
-YXJkd2FyZSwgaXQgc2hvdWxkIGJlIHN1ZmZpY2llbnRseSBwb3dlcmZ1bAp0byBydW4gTGludXgu
-CgpVbmZvcnR1bmF0ZWx5IGl0J3MgaW4gYWN0aXZlIHVzZSwgc28gaGFja2luZyBleHBlcmltZW50
-cyB3b3VsZCBiZSB2ZXRvZWQgYnkKdGhlIGZhbWlseSA7LSkKCkdye29ldGplLGVldGluZ31zLAoK
-ICAgICAgICAgICAgICAgICAgICAgICAgR2VlcnQKCi0tIApHZWVydCBVeXR0ZXJob2V2ZW4gLS0g
-VGhlcmUncyBsb3RzIG9mIExpbnV4IGJleW9uZCBpYTMyIC0tIGdlZXJ0QGxpbnV4LW02OGsub3Jn
-CgpJbiBwZXJzb25hbCBjb252ZXJzYXRpb25zIHdpdGggdGVjaG5pY2FsIHBlb3BsZSwgSSBjYWxs
-IG15c2VsZiBhIGhhY2tlci4gQnV0CndoZW4gSSdtIHRhbGtpbmcgdG8gam91cm5hbGlzdHMgSSBq
-dXN0IHNheSAicHJvZ3JhbW1lciIgb3Igc29tZXRoaW5nIGxpa2UgdGhhdC4KICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAtLSBMaW51cyBUb3J2YWxkcwoKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5nIGxpc3QK
-bGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQu
-b3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+Hi Neil
+
+On Fri, 13 Dec 2019 at 18:54, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> On 13/12/2019 12:28, Anand Moon wrote:
+> > Hi Martin
+> >
+> > On Fri, 13 Dec 2019 at 01:40, Martin Blumenstingl
+> > <martin.blumenstingl@googlemail.com> wrote:
+> >>
+> >> Hi Neil,
+> >>
+> >> On Wed, Dec 11, 2019 at 9:49 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+> >>>
+> >>> On 10/12/2019 22:47, Kevin Hilman wrote:
+> >>>> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+> >>>>
+> >>>>> On Tue, Dec 10, 2019 at 7:13 PM Kevin Hilman <khilman@baylibre.com> wrote:
+> >>>>>>
+> >>>>>> Anand Moon <linux.amoon@gmail.com> writes:
+> >>>>>>
+> >>>>>>> Hi Neil / Kevin,
+> >>>>>>>
+> >>>>>>> On Tue, 10 Dec 2019 at 14:13, Neil Armstrong <narmstrong@baylibre.com> wrote:
+> >>>>>>>>
+> >>>>>>>> On 09/12/2019 23:12, Kevin Hilman wrote:
+> >>>>>>>>> Anand Moon <linux.amoon@gmail.com> writes:
+> >>>>>>>>>
+> >>>>>>>>>> Some how this patch got lost, so resend this again.
+> >>>>>>>>>>
+> >>>>>>>>>> [0] https://patchwork.kernel.org/patch/11136545/
+> >>>>>>>>>>
+> >>>>>>>>>> This patch enable DVFS on GXBB Odroid C2.
+> >>>>>>>>>>
+> >>>>>>>>>> DVFS has been tested by running the arm64 cpuburn
+> >>>>>>>>>> [1] https://github.com/ssvb/cpuburn-arm/blob/master/cpuburn-a53.S
+> >>>>>>>>>> PM-QA testing
+> >>>>>>>>>> [2] https://git.linaro.org/power/pm-qa.git [cpufreq testcase]
+> >>>>>>>>>>
+> >>>>>>>>>> Tested on latest U-Boot 2019.07-1 (Aug 01 2019 - 23:58:01 +0000) Arch Linux ARM
+> >>>>>>>>>
+> >>>>>>>>> Have you tested with the Harkernel u-boot?
+> >>>>>>>>>
+> >>>>>>>>> Last I remember, enabling CPUfreq will cause system hangs with the
+> >>>>>>>>> Hardkernel u-boot because of improperly enabled frequencies, so I'm not
+> >>>>>>>>> terribly inclined to merge this patch.
+> >>>>>>>
+> >>>>>>> HK u-boot have many issue with loading the kernel, with load address
+> >>>>>>> *it's really hard to build the kernel for HK u-boot*,
+> >>>>>>> to get the configuration correctly.
+> >>>>>>>
+> >>>>>>> Well I have tested with mainline u-boot with latest ATF .
+> >>>>>>> I would prefer mainline u-boot for all the Amlogic SBC, since
+> >>>>>>> they sync with latest driver changes.
+> >>>>>>
+> >>>>>> Yes, we would all prefer mainline u-boot, but the mainline kernel needs
+> >>>>>> to support the vendor u-boot that is shipping with the boards.  So
+> >>>>>> until Hardkernel (and other vendors) switch to mainline u-boot we do not
+> >>>>>> want to have upstream kernel defaults that will not boot with the vendor
+> >>>>>> u-boot.
+> >>>>>>
+> >>>>>> We can always support these features, but they just cannot be enabled
+> >>>>>> by default.
+> >>>>> (I don't have an Odroid-C2 but I'm curious)
+> >>>>> should Anand submit a patch to mainline u-boot instead?
+> >>>>
+> >>>> It would be in addition to $SUBJECT patch, not instead, I think.
+> >>>>
+> >>>>> the &scpi_clocks node could be enabled at runtime by mainline u-boot
+> >>>>
+> >>>> That would work, but I don't know about u-boot maintainers opinions on
+> >>>> this kind of thing, so let's see what Neil thinks.
+> >>>
+> >>> U-Boot doesn't anything to do with SCPI, SCPI discusses directly with the SCP
+> >>> processor, and the CPU clock is set to 1,56GHz by the BL2 boot stage before
+> >>> U-boot starts.
+> >>>
+> >>> The only viable solution I see now is to find if we could add a DT OPP table
+> >>> only for Odroid-C2 dts to bypass the SCPI OPP table.
+> >> my understanding is that mainline u-boot (with whatever SCP firmware
+> >> it uses) provides the *correct* OPP table
+> >
+> > Right now I am not sure how this OPP table is populated.
+> > But I saw the same freq table used in 3.16.x kernel after enable the clk.
+> >
+> >> in this case it would be "safe" to have SCPI enabled with mainline u-boot
+> >> @Anand: please correct me if I misunderstood you
+> >>
+> >
+> > As per my understanding DVFS OPP frequency table for SCPI firmware set
+> > for 1.536 GHz
+> > somewhere in BL2 as pointed by Neil.
+> >
+> > Arm Trusted firmware added new secure SCPI communication with
+> > Cortex-M3 co processor.
+> > [0] https://github.com/ARM-software/arm-trusted-firmware/blob/master/docs/plat/meson-gxbb.rst
+> > [1] https://github.com/ARM-software/arm-trusted-firmware/blob/master/plat/amlogic/common/aml_scpi.c
+> >
+> > ATF generated the *bl1.bin* which is replace the Amlogic's bl1.bin
+> > while preparing
+> > the new u-boot *u-boot.gxbb* image.
+> >
+> >> my idea to "enable SCPI with mainline u-boot" is to have u-boot update
+> >> the "status" property of the scpi_clocks node.
+> >> u-boot does something similar with the mac-address property of the
+> >> Ethernet controller for example.
+> >> as result of this users of mainline u-boot would have working CPU
+> >> DVFS, while users of the old vendor u-boot would run at fixed 1.54GHz.
+> >>
+> >>
+> >> Martin
+> >
+> > Right now as per my understanding 1.536 GHz max is bit under clocked.
+> >
+> > Some time ago on Odroid Forum tried to over clock the cpu to 2GHz.
+>
+> This is the point, the Odroid-C2 is *not* stable at 2GHz,
+> a large amount of board doesn't support 2GHz, this is why Amlogic
+> dropped the freq > 1.536 GHz for the GXBB family.
+>
+> But HardKernel still delivers the SCPI table with > 1.536 GHz which breaks
+> on most of the boards, but doesn't on 3.14 since they have a hack disabling
+> higher freqs with a cmdline set in boot.ini.
+>
+> > [3] https://forum.odroid.com/viewtopic.php?f=139&t=18738
+> > So more investigation need to done in this line.
+> >
+> > I also tried the same with HardKernel Image, with modifying the boot.ini
+> > I could increase the max DVFS cpu frequency to 1.90 GHz,
+> > This is just proof of concept.
+> >
+> > odroid:~# cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies
+> > 100000 250000 500000 1000000 1296000 1536000 1656000 1680000 1752000 1896000
+> >
+> > I have some minimal stress testing attached are the results for HK
+> > 3.16.x kernel.
+> >
+> > For now we should not enable this clock.
+> > Until we can possible to check for higher clock frequency to work stable
+> > on all Amlogic S905X SBC.
+> >
+> > I like the Neil's approach to use it's own dts OPP table for SCPI protocol.
+>
+> The various tests gave very little perf enhancement by going > 1,536 GHz, seriously
+> it's not worth the pain.
+>
+> Neil
+>
+
+Ok Thanks for your expert knowledge.
+I agree with you completely on this to set max freq to 1,536 GHz for
+all S905 SoC.
+
+-Anand
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
