@@ -2,98 +2,61 @@ Return-Path: <SRS0=Q7B6=2D=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 67853C2D0BF
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Dec 2019 10:39:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 824A7C43603
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Dec 2019 22:21:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3CB01206B7
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Dec 2019 10:39:13 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 4F76F2073D
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Dec 2019 22:21:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="elchotGQ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=cerno.tech header.i=@cerno.tech header.b="QHDINjIr";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="asgqDt7u"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3CB01206B7
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=cerno.tech
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kj/QWKiT";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="CCJOiJu+"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 4F76F2073D
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=bYIvyL9qXCUaXw5+B+voAl2Y0erYYEOUUuA+ij4jgo4=; b=elchotGQKuzeP8itB3ufoH/yr
-	kzUZU7sqQko1z2AzfxHwdCk6ID3OXgWVdWEoOPWr7Isx9bbo19j/udsl5ZIsJ6drPXgNco52Z5P1k
-	Y4O3DPAvHAfO63Xuy+yWCy1C+BS/Z+t74/w5dBHJzs5kv+I/Sn5/kdt+dvMUqlmkiQK8ICwhNb3n/
-	YqqKY7gdXVtCx9ZE0/+YmDQ3OzoQFZkvWQfc9Gykv1hy/M5u1s6F5TGgKosseoaf5r7az++jo+tNY
-	h/Yl74FEy6XCvHJKHV+PzoO5cdCAcoUKaYbFuYkej542yBywJiFIGh8n7sh+EsxH16fCY39MohsBr
-	1aWgYKJrg==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:To:In-Reply-To:References:Date:
+	Message-Id:From:Subject:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=VmbeY096D5Bo/Z4ufaAPA+/ZjpOcVto8VofqWymRT4I=; b=kj/QWKiT2FV/6R
+	s2OYJWxQKjH751A3t8sb1J30yqylTAM5Hl+mLH77V/BQIRiBRzLWi4ci7fHrZgrpVhRs41Svkmg7V
+	DwXZaWGDNK58CbSkVrMCwXzERiWy80ARRGGRNlPgE1OSg+jdzSvpRTYL3Wpud4h9GRgeWCcJrh5TM
+	IdSZIoezlo6YZAM9YGOX7lLyEnR3TScRdP+6T1nqwNyOMpIaamg1JaggylhZ0FmQ1XfBFrtlryPYx
+	4t1u4Qus+5xNl80+ZA+P9G2y8NIGmYgTscyaHHsoZrZX2p6aZH3fIrN6U7lVXc5YVsn0D+Rh906jO
+	6vGfHbUtGmNHF3Ha/ZGg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ifiLj-00023h-HD; Fri, 13 Dec 2019 10:39:07 +0000
-Received: from new1-smtp.messagingengine.com ([66.111.4.221])
+	id 1iftJB-0002HI-52; Fri, 13 Dec 2019 22:21:13 +0000
+Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ifiLd-00022v-CD; Fri, 13 Dec 2019 10:39:05 +0000
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailnew.nyi.internal (Postfix) with ESMTP id C1DEE61CD;
- Fri, 13 Dec 2019 05:38:59 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute3.internal (MEProxy); Fri, 13 Dec 2019 05:38:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
- date:from:to:cc:subject:message-id:references:mime-version
- :content-type:in-reply-to; s=fm1; bh=OFLMYUJQRntH92DcW9hNVdTnxB5
- r5T3CVZUfgI5FQn4=; b=QHDINjIrZXXk5J6lmOgGbzCh2IXf4nTciC6rBLRgz3S
- xcO6T9oDfo1sYHp67eyywjFsZ5WfvjxlGpmDdYK5DC2KAis1UXcaMtH39Qp+tcuN
- 5NS8cCQ/njpLfm9Cxu+Krc51Gh/wS44nLWYgP1kODjWFOy4+MxAwFgEwbThTR9pk
- mAl7eclxSC6p7DGQnLFuf5oFthQwN6ReZ7kRu12NpOmkxyzPBYWRCQuqQw5j3cva
- jmmKUjA3cQzrmHUhHga2m5BQT6/fmISIq2kiE8fBMboi+yV6X7GOP4N016Y2sEew
- ehjnFRFDYkLE4aFm8fU8Rz1aK3yvYSLXF4maTcw0Ueg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=OFLMYU
- JQRntH92DcW9hNVdTnxB5r5T3CVZUfgI5FQn4=; b=asgqDt7uZu8BOxSsEa2v7T
- JowPq8yCUHb/3S8UgYd2Jc7Z/VYlcZH+4UXCrZ5646cbBVlwchr+LFC2cklJ/58f
- XXjE+V22ypLhcIpAa9LueqzwyGka/+Ylp1SwQC9R3R7pIEUhEZa8nTLCFEryGM50
- od7QCkHqXHS1YrRHcUlH0BZIVihD9DImQS9KJz6AIx/BrrKnVTfwdXR0ocPIPE7V
- BKkkFIihbG18jsq6ZWk9jTv2t2rWryXQhT1zDsFMDV74FPWvJtVs4jvdQylxFvYL
- 5QSKfriPmwzRICBLm8PaNLg/Bu2/AfC1wO907I3cBpUitatuCaSveEfzWmdWTxQw
- ==
-X-ME-Sender: <xms:Q2rzXUhVUy5YAlSnFzgpAIJZKG_2lcDSc05oMDouc_VRV-p5Zk89mg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrudelledgudekucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
- vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuffhomhgrih
- hnpeguvghvihgtvghtrhgvvgdrohhrghdphhhurdgtohhmnecukfhppeeltddrkeelrdei
- kedrjeeinecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrth
- gvtghhnecuvehluhhsthgvrhfuihiivgeptd
-X-ME-Proxy: <xmx:Q2rzXYYyZ0O9FoCwc8xMG2PhFHXIQTsSc1zcS9_eW6Fvu_SFYC4L1Q>
- <xmx:Q2rzXZ3pREFwehwkkWoV3OETw1uU9rouuYPqx_P7wJa18et7p-ABMw>
- <xmx:Q2rzXby8JQWmjYqMaOeEleqCSHWVVYW1BDkrQVMc0NOLhptBofYI8w>
- <xmx:Q2rzXaAOsx9D7wRCdl2gz9FaiP_phsSCYkneQd3QJHWsKDlEsA3wZw>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
- [90.89.68.76])
- by mail.messagingengine.com (Postfix) with ESMTPA id D794780063;
- Fri, 13 Dec 2019 05:38:58 -0500 (EST)
-Date: Fri, 13 Dec 2019 11:38:56 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Jian Hu <jian.hu@amlogic.com>
-Subject: Re: [PATCH v4 1/6] dt-bindings: clock: meson: add A1 PLL clock
- controller bindings
-Message-ID: <20191213103856.qo7vlnuk4ajz3vq5@gilmour.lan>
-References: <20191206074052.15557-1-jian.hu@amlogic.com>
- <20191206074052.15557-2-jian.hu@amlogic.com>
+ id 1iftJ7-0002Gg-BK
+ for linux-amlogic@lists.infradead.org; Fri, 13 Dec 2019 22:21:11 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1576275668;
+ bh=QwV+rei94UqxRJG4nwHsO0xk2eRKUzhTPWLQqVa1FiU=;
+ h=Subject:From:Date:References:In-Reply-To:To:Cc:Cc:From;
+ b=CCJOiJu+I1o4eHOIOZekcNmreELtEumJ5TXowpDJoSQK9Tkqpst/6Xv5G17636yP9
+ VGd2iB452hvtTZaG8R11KoGfEaVMgpnKwVHuNXEcx0ifC/ipcp19mqYszfhR0I2rOy
+ a3+IWeTjbU3I2SNYM02PzbcDrbY74An+7/iHB4IE=
 MIME-Version: 1.0
-In-Reply-To: <20191206074052.15557-2-jian.hu@amlogic.com>
+Subject: Re: [PATCH 0/3] ARM: dts: meson: clock updates
+From: patchwork-bot+linux-amlogic@kernel.org
+Message-Id: <157627566854.23333.5192495307369932108.git-patchwork-notify@kernel.org>
+Date: Fri, 13 Dec 2019 22:21:08 +0000
+References: <20191208180525.1076152-1-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20191208180525.1076152-1-martin.blumenstingl@googlemail.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191213_023901_554620_1AA2F1AE 
-X-CRM114-Status: GOOD (  14.41  )
+X-CRM114-CacheID: sfid-20191213_142109_409282_D4D5D011 
+X-CRM114-Status: UNSURE (   5.65  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,132 +68,42 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Victor Wan <victor.wan@amlogic.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
- Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
- Qiufang Dai <qiufang.dai@amlogic.com>, Chandle Zou <chandle.zou@amlogic.com>,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: multipart/mixed; boundary="===============3448786933510311157=="
+Cc: linux-amlogic@lists.infradead.org, khilman@kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hello:
 
---===============3448786933510311157==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="rosr3cxhl5siv7sy"
-Content-Disposition: inline
+This series was applied to khilman/linux-amlogic.git (refs/heads/for-next).
 
-
---rosr3cxhl5siv7sy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-Hi,
-
-On Fri, Dec 06, 2019 at 03:40:47PM +0800, Jian Hu wrote:
-> Add the documentation to support Amlogic A1 PLL clock driver,
-> and add A1 PLL clock controller bindings.
->
-> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-> ---
->  .../bindings/clock/amlogic,a1-pll-clkc.yaml   | 59 +++++++++++++++++++
->  include/dt-bindings/clock/a1-pll-clkc.h       | 16 +++++
->  2 files changed, 75 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
->  create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
->
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> new file mode 100644
-> index 000000000000..7feeef5abf1b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> @@ -0,0 +1,59 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> +/*
-> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-> + */
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/clock/amlogic,a1-pll-clkc.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Amlogic Meson A/C serials PLL Clock Control Unit Device Tree Bindings
-> +
-> +maintainers:
-> +  - Neil Armstrong <narmstrong@baylibre.com>
-> +  - Jerome Brunet <jbrunet@baylibre.com>
-> +  - Jian Hu <jian.hu@jian.hu.com>
-> +
-> +properties:
-> +  compatible:
-> +    - enum:
-> +        - amlogic,a1-pll-clkc
-
-I'm not sure this works, compatible shouldn't contain a list.
-
-You can write this like:
-compatible:
-  const: amlogic,a1-pll-clkc
-
-> +  "#clock-cells":
-> +    const: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +clocks:
-> +  minItems: 2
-> +  maxItems: 2
-
-This is redundant, it will be added automatically by the tools ...
-
-> +  items:
-> +   - description: Input xtal_fixpll
-> +   - description: Input xtal_hifipll
-
-... When you have a list of items :)
-
-> +
-> +clock-names:
-> +  minItems: 2
-> +  maxItems: 2
-> +  items:
-> +     - const: xtal_fixpll
-> +     - const: xtal_hifipll
-
-Same story here
-
-Maxime
-
---rosr3cxhl5siv7sy
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXfNqQAAKCRDj7w1vZxhR
-xd/wAQDsoznX44ibe0uCLaFPCOdrFkUP48DCrvyPmdP3KkeSoAEAqcgJwk/1XeqC
-famgLadEPF6JXGccjcYncc1mLjCARA0=
-=lykG
------END PGP SIGNATURE-----
-
---rosr3cxhl5siv7sy--
+On Sun,  8 Dec 2019 19:05:22 +0100 you wrote:
+> This series moves the XTAL clock out of the main (HHI) clock controller
+> because it's an actual dedicated crystal on the PCBs.
+> 
+> The last two patches add the DDR clock controller whose output is used
+> as input for some of the audio clocks.
+> 
+> 
+> [...]
 
 
---===============3448786933510311157==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Here is a summary with links:
+  - [1/3] ARM: dts: meson: provide the XTAL clock using a fixed-clock
+    https://git.kernel.org/khilman/linux-amlogic/c/630ea3108adf0446b6b4194f3f42bc0bfe245d1d
+  - [2/3] ARM: dts: meson8: add the DDR clock controller
+    https://git.kernel.org/khilman/linux-amlogic/c/c4ac5c37a4a5c5ce94f70542d006568bd4b7d685
+  - [3/3] ARM: dts: meson8b: add the DDR clock controller
+    https://git.kernel.org/khilman/linux-amlogic/c/6d549ff55c3717c4f5b0202a22c7404395559cec
+
+You are awesome, thank you!
+
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.wiki.kernel.org/userdoc/pwbot
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============3448786933510311157==--
-
