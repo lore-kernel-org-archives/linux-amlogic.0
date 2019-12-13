@@ -2,88 +2,154 @@ Return-Path: <SRS0=Q7B6=2D=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,URIBL_BLOCKED,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-7.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED,USER_AGENT_SANE_1
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AF78BC43603
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Dec 2019 22:29:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5343AC43603
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Dec 2019 22:29:28 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8511822527
-	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Dec 2019 22:29:08 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 26DEB2253D
+	for <linux-amlogic@archiver.kernel.org>; Fri, 13 Dec 2019 22:29:28 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="uWAlgCsd";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="nZ9BQpSu"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8511822527
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dJpTtaP4";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="IDMTrz+r"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 26DEB2253D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:References:
-	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Owner;
-	bh=5AL99e+8gfAC91pCGYQiZJ6gTcYiG6Yq9pBKQnKd+vQ=; b=uWAlgCsdjnY/Ogtky/restJQGE
-	RXfav5NWNGAncZPIBov+kn39lPJ71QwVJssCmG+HaBDCinzCKVhX0hPJ0DuG0yCvV384Mm22YV/Xj
-	Yb9cQOdAp9WU2zvNtMu3w7ZVWTeJSj1obZar1FyVMgl/iEAWYuwJLTNA0zDzGQmMpAjJlGtlRRjGS
-	wutEZ8rXPQWEH4RtUJzfl4ElKuTdeTeBXGrb/nxkZM2VfHd4tR8XE99sXfv/sz3EdzLo3DH0mAoFb
-	mXZaenxNJ+YJ7Tctm4i6ywosl69xr08Bc4YlPiNz5MrKauhiQg1zg6WIbsKW0nVxMZ3T+9SZhA7Aw
-	p/VItDSg==;
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=M62g9V7tx97ES0if1a5SHod82Ivq2pWgGyu04Ual/WM=; b=dJpTtaP4q1XiaJ
+	KA7lOaZFnBSh1P+oRyuR06HDlu3TnzQBSB+1zd/EauIwmEiHvUQeTFHvG08ARrtu0GQJ+PTVg6NH8
+	b0Vd09lsmzeR6aVhzc3xmlIMHnTRM9rIvene+Fd9VUGwK4eVRJ8vBXhLLfyDpd148UaPK+ZZ4Bcnp
+	zpEXn0W532b+lirMxSEc1rY0SP3+MBJaJgb8jVZ7sS+O+5udlioSF7zZY+wzr6IK0c93Zk203kLqP
+	M1RahlK3ZGLYJUEwHbNCoFpBLyOCFDwf/Od/vKBP5f7RTg1DuxFDGqfu2mTqt9qM6JNlrvyykRwTy
+	0rzbberIo1NHSww1LPWg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ifl29-0000R6-2y; Fri, 13 Dec 2019 13:31:05 +0000
-Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
+	id 1ifkvq-0004lZ-Da; Fri, 13 Dec 2019 13:24:34 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ifl19-0006sn-S8
- for linux-amlogic@lists.infradead.org; Fri, 13 Dec 2019 13:30:06 +0000
-Received: by mail-wm1-x342.google.com with SMTP id f129so6578822wmf.2
- for <linux-amlogic@lists.infradead.org>; Fri, 13 Dec 2019 05:30:03 -0800 (PST)
+ id 1ifkvm-0004kl-Th
+ for linux-amlogic@lists.infradead.org; Fri, 13 Dec 2019 13:24:33 +0000
+Received: by mail-wr1-x444.google.com with SMTP id j42so6594863wrj.12
+ for <linux-amlogic@lists.infradead.org>; Fri, 13 Dec 2019 05:24:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=VXzCIVNIyEIalSwrDVu1JlYLLJVG8LUdZccZXShpYsw=;
- b=nZ9BQpSuWb9dDeJykWlitqmovokkBjW/QjlPbblKCvaHm0mccziJSL6ajoVWDfotQt
- XnXJBWVcWNLc5JqFW+o9Tl23W+/w+x5W/n0yEqrgk6z0/klrDcJ9SfNGCgMevbuYx1lG
- PrEHbPePlNDmwl725H0hAvDzGoMTkkksqbQhhcoCR03XcDFG3miJ7j1meXOF47Dlzqj/
- PhoneeU8HryDHVuUxDu+S7zYoeFUXDwS9XIFegBzSCM1Iacw2SqzmaHN/hkDNLrrDDuR
- oN6lS4cBVlahfCWW3hMbLY9yQzsgKZp/9i5oJV08NN4dEaKFVgf18DKoGYD6cvDudgHb
- zQMw==
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=TeKkRgU0jXGjzT9DCm0fTUy/QIiQKl1xy36a8E5Fwws=;
+ b=IDMTrz+rS8XuFRKTldFBWE+ElzWuH1NR0eGoEwbDDKuN1121QIhN3WWEz1ZtXDCcnb
+ bJak3I7EerNSQXdO1bSgrWofohg3jl/87TdgLr6Hv6rcfGXROtrR/LYbPbGX6tMFtrsh
+ DTLJKETX1i9ZWI5j6wXFwVuy4CppJ8Y1Cwf44XMqrhy/E6Vjfzt7rcbBTgrcTifwV56Z
+ 8q8Qyu6O4uwHecv8nlEdQq/yzO+/6xJY5DnJ2RrnPExk0NnUdCcLVcNZJ53BH535dXQY
+ QIrAqPOvcVr9D/lVLtNUVkSr3OSilRaBIbC6bRf7mDAia71xdBS3uNs/eMaUEA3qA44H
+ IoJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=VXzCIVNIyEIalSwrDVu1JlYLLJVG8LUdZccZXShpYsw=;
- b=TgHh8P/BlUQdng4lJ51eyeWe0QbKqgfiprT5iQXI72g66LFZhplO6GT538RfUCrg9l
- vIRnnFkHQMiYHJqKcM3p9Agmnklqop+KXdYazw3o4E52kflz1U/+GyL3+pr2lO2dMl2o
- WJ2QOm/BJLTEM3rTIlF0XtaxqlrSi08utZ7LPMICAsRQcS2TCkapQJPxZKm7XWOV8lF4
- LUjPkRIXqd0sdM+4flS2wAsrFMzF6HiDpJpSs/+AFTsEb5e3fxdhmrNWtvLS6CtGUfFn
- YC2kOaoYYd1bNHv6CJNR3kc0kBQpo67xhdNCbP+CtdiISOLjIrxMA4c2Nc8WoHzH3ODQ
- IFew==
-X-Gm-Message-State: APjAAAXaT9y9pzpleqNN/k5XZ+TRK4Y+JdC5kaeiyslXrDUur8myRo8U
- GwTvT5FHDc+V9csa8G7JRMF0bQ==
-X-Google-Smtp-Source: APXvYqySye0Al7ofzrrLCFePLmE9J5EDhkpPFb1QMhV+Eca0/HHqNuayvmb667XyzUHwTfXeZTWmWA==
-X-Received: by 2002:a1c:8086:: with SMTP id b128mr13635797wmd.80.1576243802038; 
- Fri, 13 Dec 2019 05:30:02 -0800 (PST)
-Received: from localhost.localdomain ([2a01:cb1d:6e7:d500:82a9:347a:43f3:d2ca])
- by smtp.gmail.com with ESMTPSA id n3sm10540543wmc.27.2019.12.13.05.30.01
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 13 Dec 2019 05:30:01 -0800 (PST)
-From: Guillaume La Roque <glaroque@baylibre.com>
-To: narmstrong@baylibre.com, mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
- khilman@baylibre.com, devicetree@vger.kernel.org
-Subject: [PATCH v2 3/3] media: platform: meson-ao-cec-g12a: add wakeup support
-Date: Fri, 13 Dec 2019 14:29:56 +0100
-Message-Id: <20191213132956.11074-4-glaroque@baylibre.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191213132956.11074-1-glaroque@baylibre.com>
-References: <20191213132956.11074-1-glaroque@baylibre.com>
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=TeKkRgU0jXGjzT9DCm0fTUy/QIiQKl1xy36a8E5Fwws=;
+ b=Z8w1DZSXhN50vG6nsMTMEMLO1f3seMsfjGo8/xPBQWinTmhJIcsYmLdJy5xEm3DVQG
+ X8/vMIX/Qkq+/k3zAuik3/Pt9bSUrmsJlF7WTAn8V+l6nBe0O2bqWtVMK0zQvwmw++vB
+ O+C8Xpnp62uNWnPkm6ojRMr1OFQlnbgoGCNIVBAfOZsmwgSaw/mHFb5amGQ5dF6Sdqiy
+ Ltkecsj8KNKUzCLOw2hFki83B3Mxwh66bnFtYjBvyW7xkRa0gMBSAXmg9UMMCaAHEpYD
+ hUdiSO4cRZ034iSl0Eo54E0BJk0OAsPSum8KEv4mgdlpgMfic2EzG31223UAnRPO8RWm
+ GmiQ==
+X-Gm-Message-State: APjAAAUBjIfrJ6IaZJSFEJpgQZBCrENMmsrjtqQWG8zkQoDadb9Y4pxf
+ tQBk9A/tu/xp0Qs9mWRgaFkrcg==
+X-Google-Smtp-Source: APXvYqwdFZ2qNVDI1LIj0hzn0dE3lZy0iGZ3yIt2DB53spn18lP29RlgKMpWV5Ijfr4VLxOnCAl/7Q==
+X-Received: by 2002:a5d:46c1:: with SMTP id g1mr12547902wrs.200.1576243465558; 
+ Fri, 13 Dec 2019 05:24:25 -0800 (PST)
+Received: from [10.2.4.229] (lfbn-nic-1-505-157.w90-116.abo.wanadoo.fr.
+ [90.116.92.157])
+ by smtp.gmail.com with ESMTPSA id f1sm10029376wro.85.2019.12.13.05.24.24
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Fri, 13 Dec 2019 05:24:25 -0800 (PST)
+Subject: Re: [RFC-next 0/1] Odroid C2: Enable DVFS for cpu
+To: Anand Moon <linux.amoon@gmail.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20191101143126.2549-1-linux.amoon@gmail.com>
+ <7hfthtrvvv.fsf@baylibre.com>
+ <c89791de-0a46-3ce2-b3e2-3640c364cd0f@baylibre.com>
+ <CANAwSgQx3LjQe60TGgKyk6B5BD5y1caS2tA+O+GFES7=qCFeKg@mail.gmail.com>
+ <7hfthsqcap.fsf@baylibre.com>
+ <CAFBinCBfgxXhPKpBLdoq9AimrpaneYFgzgJoDyC-2xhbHmihpA@mail.gmail.com>
+ <7hpngvontu.fsf@baylibre.com>
+ <4e1339b4-c751-3edc-3a2e-36931ad1c503@baylibre.com>
+ <CAFBinCCgKcwXSLxS_CRvz9JZvQo8PcUGm=egBbabVZSrkSc30Q@mail.gmail.com>
+ <CANAwSgSFR3kftWLPqyoYfyxdQ5dcp2W7NgRCaFNkMj-xEDY1Kw@mail.gmail.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <83791a71-a45c-383d-0406-b0f4e0a0c215@baylibre.com>
+Date: Fri, 13 Dec 2019 14:24:24 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+MIME-Version: 1.0
+In-Reply-To: <CANAwSgSFR3kftWLPqyoYfyxdQ5dcp2W7NgRCaFNkMj-xEDY1Kw@mail.gmail.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191213_053003_956693_2E0D9F35 
-X-CRM114-Status: GOOD (  10.67  )
+X-CRM114-CacheID: sfid-20191213_052430_963620_13B37A30 
+X-CRM114-Status: GOOD (  24.98  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,103 +161,164 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
-MIME-Version: 1.0
+Cc: devicetree <devicetree@vger.kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Linux Kernel <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ linux-amlogic@lists.infradead.org,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-add register configuration to activate wakeup feature in bl301
+On 13/12/2019 12:28, Anand Moon wrote:
+> Hi Martin
+> 
+> On Fri, 13 Dec 2019 at 01:40, Martin Blumenstingl
+> <martin.blumenstingl@googlemail.com> wrote:
+>>
+>> Hi Neil,
+>>
+>> On Wed, Dec 11, 2019 at 9:49 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>>
+>>> On 10/12/2019 22:47, Kevin Hilman wrote:
+>>>> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+>>>>
+>>>>> On Tue, Dec 10, 2019 at 7:13 PM Kevin Hilman <khilman@baylibre.com> wrote:
+>>>>>>
+>>>>>> Anand Moon <linux.amoon@gmail.com> writes:
+>>>>>>
+>>>>>>> Hi Neil / Kevin,
+>>>>>>>
+>>>>>>> On Tue, 10 Dec 2019 at 14:13, Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>>>>>>>
+>>>>>>>> On 09/12/2019 23:12, Kevin Hilman wrote:
+>>>>>>>>> Anand Moon <linux.amoon@gmail.com> writes:
+>>>>>>>>>
+>>>>>>>>>> Some how this patch got lost, so resend this again.
+>>>>>>>>>>
+>>>>>>>>>> [0] https://patchwork.kernel.org/patch/11136545/
+>>>>>>>>>>
+>>>>>>>>>> This patch enable DVFS on GXBB Odroid C2.
+>>>>>>>>>>
+>>>>>>>>>> DVFS has been tested by running the arm64 cpuburn
+>>>>>>>>>> [1] https://github.com/ssvb/cpuburn-arm/blob/master/cpuburn-a53.S
+>>>>>>>>>> PM-QA testing
+>>>>>>>>>> [2] https://git.linaro.org/power/pm-qa.git [cpufreq testcase]
+>>>>>>>>>>
+>>>>>>>>>> Tested on latest U-Boot 2019.07-1 (Aug 01 2019 - 23:58:01 +0000) Arch Linux ARM
+>>>>>>>>>
+>>>>>>>>> Have you tested with the Harkernel u-boot?
+>>>>>>>>>
+>>>>>>>>> Last I remember, enabling CPUfreq will cause system hangs with the
+>>>>>>>>> Hardkernel u-boot because of improperly enabled frequencies, so I'm not
+>>>>>>>>> terribly inclined to merge this patch.
+>>>>>>>
+>>>>>>> HK u-boot have many issue with loading the kernel, with load address
+>>>>>>> *it's really hard to build the kernel for HK u-boot*,
+>>>>>>> to get the configuration correctly.
+>>>>>>>
+>>>>>>> Well I have tested with mainline u-boot with latest ATF .
+>>>>>>> I would prefer mainline u-boot for all the Amlogic SBC, since
+>>>>>>> they sync with latest driver changes.
+>>>>>>
+>>>>>> Yes, we would all prefer mainline u-boot, but the mainline kernel needs
+>>>>>> to support the vendor u-boot that is shipping with the boards.  So
+>>>>>> until Hardkernel (and other vendors) switch to mainline u-boot we do not
+>>>>>> want to have upstream kernel defaults that will not boot with the vendor
+>>>>>> u-boot.
+>>>>>>
+>>>>>> We can always support these features, but they just cannot be enabled
+>>>>>> by default.
+>>>>> (I don't have an Odroid-C2 but I'm curious)
+>>>>> should Anand submit a patch to mainline u-boot instead?
+>>>>
+>>>> It would be in addition to $SUBJECT patch, not instead, I think.
+>>>>
+>>>>> the &scpi_clocks node could be enabled at runtime by mainline u-boot
+>>>>
+>>>> That would work, but I don't know about u-boot maintainers opinions on
+>>>> this kind of thing, so let's see what Neil thinks.
+>>>
+>>> U-Boot doesn't anything to do with SCPI, SCPI discusses directly with the SCP
+>>> processor, and the CPU clock is set to 1,56GHz by the BL2 boot stage before
+>>> U-boot starts.
+>>>
+>>> The only viable solution I see now is to find if we could add a DT OPP table
+>>> only for Odroid-C2 dts to bypass the SCPI OPP table.
+>> my understanding is that mainline u-boot (with whatever SCP firmware
+>> it uses) provides the *correct* OPP table
+> 
+> Right now I am not sure how this OPP table is populated.
+> But I saw the same freq table used in 3.16.x kernel after enable the clk.
+> 
+>> in this case it would be "safe" to have SCPI enabled with mainline u-boot
+>> @Anand: please correct me if I misunderstood you
+>>
+> 
+> As per my understanding DVFS OPP frequency table for SCPI firmware set
+> for 1.536 GHz
+> somewhere in BL2 as pointed by Neil.
+> 
+> Arm Trusted firmware added new secure SCPI communication with
+> Cortex-M3 co processor.
+> [0] https://github.com/ARM-software/arm-trusted-firmware/blob/master/docs/plat/meson-gxbb.rst
+> [1] https://github.com/ARM-software/arm-trusted-firmware/blob/master/plat/amlogic/common/aml_scpi.c
+> 
+> ATF generated the *bl1.bin* which is replace the Amlogic's bl1.bin
+> while preparing
+> the new u-boot *u-boot.gxbb* image.
+> 
+>> my idea to "enable SCPI with mainline u-boot" is to have u-boot update
+>> the "status" property of the scpi_clocks node.
+>> u-boot does something similar with the mac-address property of the
+>> Ethernet controller for example.
+>> as result of this users of mainline u-boot would have working CPU
+>> DVFS, while users of the old vendor u-boot would run at fixed 1.54GHz.
+>>
+>>
+>> Martin
+> 
+> Right now as per my understanding 1.536 GHz max is bit under clocked.
+> 
+> Some time ago on Odroid Forum tried to over clock the cpu to 2GHz.
 
-Tested-by: Kevin Hilman <khilman@baylibre.com>
-Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
----
- drivers/media/platform/meson/ao-cec-g12a.c | 33 ++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+This is the point, the Odroid-C2 is *not* stable at 2GHz,
+a large amount of board doesn't support 2GHz, this is why Amlogic
+dropped the freq > 1.536 GHz for the GXBB family.
 
-diff --git a/drivers/media/platform/meson/ao-cec-g12a.c b/drivers/media/platform/meson/ao-cec-g12a.c
-index 891533060d49..85850b974126 100644
---- a/drivers/media/platform/meson/ao-cec-g12a.c
-+++ b/drivers/media/platform/meson/ao-cec-g12a.c
-@@ -25,6 +25,7 @@
- #include <media/cec.h>
- #include <media/cec-notifier.h>
- #include <linux/clk-provider.h>
-+#include <linux/mfd/syscon.h>
- 
- /* CEC Registers */
- 
-@@ -168,6 +169,18 @@
- 
- #define CECB_WAKEUPCTRL		0x31
- 
-+#define CECB_FUNC_CFG_REG		0xA0
-+#define CECB_FUNC_CFG_MASK		GENMASK(6, 0)
-+#define CECB_FUNC_CFG_CEC_ON		0x01
-+#define CECB_FUNC_CFG_OTP_ON		0x02
-+#define CECB_FUNC_CFG_AUTO_STANDBY	0x04
-+#define CECB_FUNC_CFG_AUTO_POWER_ON	0x08
-+#define CECB_FUNC_CFG_ALL		0x2f
-+#define CECB_FUNC_CFG_NONE		0x0
-+
-+#define CECB_LOG_ADDR_REG	0xA4
-+#define CECB_LOG_ADDR_MASK	GENMASK(22, 16)
-+
- struct meson_ao_cec_g12a_data {
- 	/* Setup the internal CECB_CTRL2 register */
- 	bool				ctrl2_setup;
-@@ -177,6 +190,7 @@ struct meson_ao_cec_g12a_device {
- 	struct platform_device		*pdev;
- 	struct regmap			*regmap;
- 	struct regmap			*regmap_cec;
-+	struct regmap			*regmap_ao_sysctrl;
- 	spinlock_t			cec_reg_lock;
- 	struct cec_notifier		*notify;
- 	struct cec_adapter		*adap;
-@@ -518,6 +532,13 @@ meson_ao_cec_g12a_set_log_addr(struct cec_adapter *adap, u8 logical_addr)
- 					 BIT(logical_addr - 8));
- 	}
- 
-+	if (ao_cec->regmap_ao_sysctrl)
-+		ret |= regmap_update_bits(ao_cec->regmap_ao_sysctrl,
-+					 CECB_LOG_ADDR_REG,
-+					 CECB_LOG_ADDR_MASK,
-+					 FIELD_PREP(CECB_LOG_ADDR_MASK,
-+						    logical_addr));
-+
- 	/* Always set Broadcast/Unregistered 15 address */
- 	ret |= regmap_update_bits(ao_cec->regmap_cec, CECB_LADD_HIGH,
- 				  BIT(CEC_LOG_ADDR_UNREGISTERED - 8),
-@@ -618,6 +639,13 @@ static int meson_ao_cec_g12a_adap_enable(struct cec_adapter *adap, bool enable)
- 		regmap_write(ao_cec->regmap_cec, CECB_CTRL2,
- 			     FIELD_PREP(CECB_CTRL2_RISE_DEL_MAX, 2));
- 
-+	if (ao_cec->regmap_ao_sysctrl) {
-+		regmap_update_bits(ao_cec->regmap_ao_sysctrl,
-+				   CECB_FUNC_CFG_REG,
-+				   CECB_FUNC_CFG_MASK,
-+				   CECB_FUNC_CFG_ALL);
-+	}
-+
- 	meson_ao_cec_g12a_irq_setup(ao_cec, true);
- 
- 	return 0;
-@@ -685,6 +713,11 @@ static int meson_ao_cec_g12a_probe(struct platform_device *pdev)
- 		goto out_probe_adapter;
- 	}
- 
-+	ao_cec->regmap_ao_sysctrl = syscon_regmap_lookup_by_phandle
-+		(pdev->dev.of_node, "amlogic,ao-sysctrl");
-+	if (IS_ERR(ao_cec->regmap_ao_sysctrl))
-+		dev_warn(&pdev->dev, "ao-sysctrl syscon regmap lookup failed.\n");
-+
- 	irq = platform_get_irq(pdev, 0);
- 	ret = devm_request_threaded_irq(&pdev->dev, irq,
- 					meson_ao_cec_g12a_irq,
--- 
-2.17.1
+But HardKernel still delivers the SCPI table with > 1.536 GHz which breaks
+on most of the boards, but doesn't on 3.14 since they have a hack disabling
+higher freqs with a cmdline set in boot.ini.
+
+> [3] https://forum.odroid.com/viewtopic.php?f=139&t=18738
+> So more investigation need to done in this line.
+> 
+> I also tried the same with HardKernel Image, with modifying the boot.ini
+> I could increase the max DVFS cpu frequency to 1.90 GHz,
+> This is just proof of concept.
+> 
+> odroid:~# cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies
+> 100000 250000 500000 1000000 1296000 1536000 1656000 1680000 1752000 1896000
+> 
+> I have some minimal stress testing attached are the results for HK
+> 3.16.x kernel.
+> 
+> For now we should not enable this clock.
+> Until we can possible to check for higher clock frequency to work stable
+> on all Amlogic S905X SBC.
+> 
+> I like the Neil's approach to use it's own dts OPP table for SCPI protocol.
+
+The various tests gave very little perf enhancement by going > 1,536 GHz, seriously
+it's not worth the pain.
+
+Neil
+
+> 
+> -Anand
+> 
 
 
 _______________________________________________
