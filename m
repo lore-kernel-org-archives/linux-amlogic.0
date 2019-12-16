@@ -2,96 +2,55 @@ Return-Path: <SRS0=UcGz=2G=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
+	SPF_PASS,UNPARSEABLE_RELAY,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A04CCC43603
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Dec 2019 13:30:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CE544C43603
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Dec 2019 15:48:26 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 75C95206CB
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Dec 2019 13:30:25 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id A21EA20717
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Dec 2019 15:48:26 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mGEl8EFb";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WU2LMml9"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 75C95206CB
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Bo8VwIfW"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A21EA20717
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=collabora.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=CZF2eU2h+/9ltSRmZY39INqf/vvoIM45c4nYdjgXzgE=; b=mGEl8EFb7IR+f6G+jf3Ol8rnD
-	VklO6m6uGGu9F5xed/4UaW6IfOuzZ4n7ub2UzSdz1R6Y75G8f90LJCwgMaXJuzMgIZUMNd6lq4XVs
-	ONMaSOUN10e0NIaxXeVcHBMqyVX92hHtVPlKaqtwH2W8Dtu8doQ63IqVEWt7FuW0KpcPsFvEf6H6m
-	V0uzC455PJwTe67eLJoS+QM+CL4g6cpY8NCNQ7tzKLmRGFmLQClUmW3Geb1qjyNSaW+/3eAuCC9FY
-	0erKrquazxu+2xLaP/6+bEr8er4m1mbG7tIlUhH62kS2eNnGO4lMTTIXJXh1u347x4Yhwzu2Pukyf
-	F6zNv2qVA==;
+	 bh=MvFisVDdyHHYNra0jFO8U6vIkWU4717KWLXkLkxjFMY=; b=Bo8VwIfW2PPYQeL9p3hBgaen0
+	Dlazu3uNPSmEbsrKeGWvLEHPboMjglCkXGenT7AAzeNZYHhboUS49i2F8TTelKPbCb/7IrjwVYUjH
+	2cp91PfXzfxP4N5J3DTmLWwsXYtjEhJ9cww/t0pONEnRQeuSC5AqrBoTJTL/Hm2dxC3ITY2FmrrlR
+	kL3xWu5IViWpJIs0cHdR6roOO/Abt05M1nanqsaRSxuMQ8apYRO3R2ZWTtmuX43rURj5+t+bFGOUr
+	87C6YVrQ3JSo+vq/NO9ttFIe4TtVcnYGErVWgCGimOflakWt/TilEf0guV53DE2GYVatSHZZx9Utv
+	m/vZRJJzQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1igqS0-00033h-I0; Mon, 16 Dec 2019 13:30:16 +0000
-Received: from mail-pl1-x642.google.com ([2607:f8b0:4864:20::642])
+	id 1igsbc-0001Rl-1R; Mon, 16 Dec 2019 15:48:20 +0000
+Received: from bhuna.collabora.co.uk ([46.235.227.227])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1igqRw-00032r-WE; Mon, 16 Dec 2019 13:30:14 +0000
-Received: by mail-pl1-x642.google.com with SMTP id g6so4467456plp.7;
- Mon, 16 Dec 2019 05:30:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=sender:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=c6k2uM/4KQBTBeEC+JGE88itWoiZaxFzfzDFaOUPwN4=;
- b=WU2LMml9ybURvvoAkKn84Ls2pu5xuXxxs5xMy9YIAIuH+QpEBES7Fx3AEg2Awx0eZC
- eOP9lj+obKAHaeQTG8x7AKkZRmJVsKhTCrmDoU+lTu4fD7hbjbbB0TDh8anWmiR4NE8Q
- 0vRnJFCI88IlQ/i2lgF5OkFvvmdA4xSVQw46d82pfn1UYopKvLJdYUDFZEOie4D29ofs
- jhr83+VsoL5WyjrRsBkdTtIISTH1IF0nFzXfQYAZkctwUem7bQamJ24XBDBIj+xvPmhA
- AGv5C2QbcM9PBGJxMstdHAuE0iPKFOisBpolMprqccxSmygVz+ynNZOFYWIQiWOsIKW0
- X9QQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
- :date:user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=c6k2uM/4KQBTBeEC+JGE88itWoiZaxFzfzDFaOUPwN4=;
- b=l3aVgRH9G13XOdiXbfHROffox0aOaeXWgo12i3Ujia2smp9gSf836OWqVRHpvBRm1A
- tbUXB06cfXL1iH/MHBj0xQJxMchbUuXKg+wQ0dm2qIijLWvUulKrryNItz2vWkNaqveF
- z4KwserLiMIQQUgIrrQrev5shpG8MFkEX8PBoeaY6gLXXNaWDhJJjq6yGm0kgp7k+rzm
- Elj6NYdRcYBIdB44brcMDiUqgqj990Tty94eu/cGUmReN8GtqmcNTa5AeupAO0j62tGk
- 871tROgHO/k0w4lVsq2LckK30EnV3EO2EslzNdM/YTFQIDwcPc2ruQX5OJLa7z/wKScg
- sJBw==
-X-Gm-Message-State: APjAAAUb2x71jU2K3N6g8Gxkvqqcn5EVfZCl9aAX9zQ7RgbVcSy0mKtx
- 6i51upLDKUFE9okrUKabbOE=
-X-Google-Smtp-Source: APXvYqyJ6TZHpyv2Kz7CGI3OHria7rp9vvxislgxfsCZuO3kdTuBGJfZKrdme0Kw7m9+Qlmwh7TBjw==
-X-Received: by 2002:a17:902:d915:: with SMTP id
- c21mr15807890plz.295.1576503011717; 
- Mon, 16 Dec 2019 05:30:11 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
- by smtp.gmail.com with ESMTPSA id
- 13sm5365907pfi.78.2019.12.16.05.30.09
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 16 Dec 2019 05:30:10 -0800 (PST)
-Subject: Re: [PATCH v5 2/4] dt-bindings: watchdog: add new binding for meson
- secure watchdog
-To: Xingyu Chen <xingyu.chen@amlogic.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh+dt@kernel.org>
-References: <1576153187-28378-1-git-send-email-xingyu.chen@amlogic.com>
- <1576153187-28378-3-git-send-email-xingyu.chen@amlogic.com>
- <CAFBinCBHLqgPExPsVaSWdSOr0Oj-jeYa4Z82U-pJ=fS+D1wGnA@mail.gmail.com>
- <f7b0afe7-e317-2422-de7e-878837f9f238@amlogic.com>
-From: Guenter Roeck <linux@roeck-us.net>
-Message-ID: <a8f5ab1d-264c-5b2c-e72b-3774b9f44c22@roeck-us.net>
-Date: Mon, 16 Dec 2019 05:30:08 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+ id 1igsbY-0001RK-O8; Mon, 16 Dec 2019 15:48:18 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ (Authenticated sender: alyssa) with ESMTPSA id 6F214260667
+Date: Mon, 16 Dec 2019 10:48:03 -0500
+From: Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [RFC v1 0/1] drm: lima: devfreq and cooling device support
+Message-ID: <20191216154803.GA3921@kevin>
+References: <20191215211223.1451499-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
-In-Reply-To: <f7b0afe7-e317-2422-de7e-878837f9f238@amlogic.com>
-Content-Language: en-US
+In-Reply-To: <20191215211223.1451499-1-martin.blumenstingl@googlemail.com>
+User-Agent: Mutt/1.12.2 (2019-09-21)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191216_053013_062870_CC25A774 
-X-CRM114-Status: GOOD (  14.95  )
+X-CRM114-CacheID: sfid-20191216_074817_055501_00A226D9 
+X-CRM114-Status: GOOD (  18.02  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,42 +62,107 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Qianggui Song <qianggui.song@amlogic.com>, devicetree@vger.kernel.org,
- linux-watchdog@vger.kernel.org, Jianxin Pan <jianxin.pan@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org, Jian Hu <jian.hu@amlogic.com>,
- linux-amlogic@lists.infradead.org, Wim Van Sebroeck <wim@linux-watchdog.org>,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: robh@kernel.org, tomeu.vizoso@collabora.com, lima@lists.freedesktop.org,
+ airlied@linux.ie, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, steven.price@arm.com,
+ linux-rockchip@lists.infradead.org, wens@csie.org, yuq825@gmail.com,
+ daniel@ffwll.ch, linux-amlogic@lists.infradead.org
+Content-Type: multipart/mixed; boundary="===============0556752803314520206=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-T24gMTIvMTUvMTkgMTA6MDMgUE0sIFhpbmd5dSBDaGVuIHdyb3RlOgo+IEhpLCBNYXJ0aW4KPiAK
-PiBTb3JyeSBmb3IgdGhlIGxhdGUgcmVwbHkuCj4gCj4gT24gMjAxOS8xMi8xMyA0OjA1LCBNYXJ0
-aW4gQmx1bWVuc3RpbmdsIHdyb3RlOgo+PiBIaSBYaW5neXUgYW5kIFJvYiwKPj4KPj4gT24gVGh1
-LCBEZWMgMTIsIDIwMTkgYXQgMToyMCBQTSBYaW5neXUgQ2hlbiA8eGluZ3l1LmNoZW5AYW1sb2dp
-Yy5jb20+IHdyb3RlOgo+PiBbLi4uXQo+Pj4gK2V4YW1wbGVzOgo+Pj4gK8KgIC0gfAo+Pj4gK8Kg
-wqDCoCB3YXRjaGRvZyB7Cj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgIGNvbXBhdGlibGUgPSAiYW1s
-b2dpYyxtZXNvbi1zZWMtd2R0IjsKPj4+ICvCoMKgwqDCoMKgwqDCoMKgwqAgdGltZW91dC1zZWMg
-PSA8NjA+Owo+Pj4gK8KgwqDCoCB9Owo+PiBpbiB2MyBvZiB0aGlzIHBhdGNoIFJvYiBjb21tZW50
-ZWQgdGhhdCB0aGVyZSBzaG91bGRuJ3QgYmUgYW4gT0Ygbm9kZQo+PiBpZiB0aGVyZSBhcmUgbm8g
-YWRkaXRpb25hbCBwcm9wZXJ0aWVzCj4+IHdpdGggdGltZW91dC1zZWMgdGhlcmUncyBub3cgYW4g
-YWRkaXRpb25hbCBwcm9wZXJ0eSBzbyBteQo+PiB1bmRlcnN0YW5kaW5nIGlzIHRoYXQgaXQncyBm
-aW5lIHRvIGhhdmUgYW4gT0Ygbm9kZQo+IFlvdXIgdW5kZXJzdGFuZGluZyBpcyBjb3JyZWN0Lgo+
-Pgo+PiB3aGF0IEkgZG9uJ3QgdW5kZXJzdGFuZCB5ZXQgaXMgd2hlcmUgdGhpcyBub2RlIHNob3Vs
-ZCBiZSBwbGFjZWQuCj4+IGlzIGl0IHN1cHBvc2VkIHRvIGJlIGEgY2hpbGQgbm9kZSBvZiB0aGUg
-c2VjdXJlIG1vbml0b3Igbm9kZSAoZm9yCj4+IHdoaWNoIHdlIGFscmVhZHkgaGF2ZSBhIGJpbmRp
-bmcgaGVyZToKPj4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Zpcm13YXJlL21l
-c29uL21lc29uX3NtLnR4dCkgb3IKPj4gd2hlcmUgZWxzZSB3b3VsZCB3ZSBwbGFjZSBpdCBpbnNp
-ZGUgdGhlIC5kdHM/Cj4gSU1PLMKgIEFsdGhvdWdoIHRoZSB3YXRjaGRvZyBub2RlIG5lZWQgdG8g
-cmVmZXJlbmNlIHRoZSBtZXNvbl9zbSBub2RlLCB0aGVyZSBpcyBubwo+IGJ1cy1saWtlIGRlcGVu
-ZGVuY2llcyBiZXR3ZWVuIHRoZSBkZXZpY2VzIHdoaWNoIHRoZSB0d28gbm9kZXMgY29ycmVzcG9u
-ZGluZyB0by4KPiBzbyBpIHRoaW5rIHRoYXQgdGhlIHdhdGNoZG9nIG5vZGUgYXMgY2hpbGQgbm9k
-ZSBvZiBtZXNvbl9zbSBtYXliZSBub3QgYXBwcm9wcmlhdGUuCgpUaGUgd2F0Y2hkb2cgZHJpdmVy
-IG5lZWRzIHRoZSBtZXNvbiBTTSdzIGR0IG5vZGUsIGFuZCBpdCBkZXBlbmRzIG9uIHRoZSBleGlz
-dGVuY2UKb2YgdGhhdCBub2RlLiBUaGF0IHNlZW1zIGVub3VnaCBvZiBhIHJlbGF0aW9uc2hpcCB0
-byB3YXJyYW50IGhhdmluZyBpdCBhcyBjaGlsZCBub3RlLgoKR3VlbnRlcgoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5n
-IGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
-YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
+
+--===============0556752803314520206==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="CE+1k2dSO48ffgeK"
+Content-Disposition: inline
+
+
+--CE+1k2dSO48ffgeK
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+If so much code is being duplicated over, I'm wondering if it makes
+sense for us to move some of the common devfreq code to core DRM
+helpers?
+
+On Sun, Dec 15, 2019 at 10:12:22PM +0100, Martin Blumenstingl wrote:
+> This is my attempt at adding devfreq (and cooling device) support to
+> the lima driver.
+> I didn't have much time to do in-depth testing. However, I'm sending
+> this out early because there are many SoCs with Mali-400/450 GPU so
+> I want to avoid duplicating the work with somebody else.
+>=20
+> The code is derived from panfrost_devfreq.c which is why I kept the
+> Collabora copyright in lima_devfreq.c. Please let me know if I should
+> drop this or how I can make it more clear that I "borrowed" the code
+> from panfrost.
+>=20
+> I am seeking comments in two general areas:
+> - regarding the integration into the existing lima code
+> - for the actual devfreq code (I had to adapt the panfrost code
+>   slightly, because lima uses a bus and a GPU/core clock)
+>=20
+> My own TODO list includes "more" testing on various Amlogic SoCs.
+> So far I have tested this on Meson8b and Meson8m2 (which both have a
+> GPU OPP table defined). However, I still need to test this on a GXL
+> board (which is currently missing the GPU OPP table).
+>=20
+>=20
+> Martin Blumenstingl (1):
+>   drm/lima: Add optional devfreq support
+>=20
+>  drivers/gpu/drm/lima/Kconfig        |   1 +
+>  drivers/gpu/drm/lima/Makefile       |   3 +-
+>  drivers/gpu/drm/lima/lima_devfreq.c | 162 ++++++++++++++++++++++++++++
+>  drivers/gpu/drm/lima/lima_devfreq.h |  15 +++
+>  drivers/gpu/drm/lima/lima_device.c  |   4 +
+>  drivers/gpu/drm/lima/lima_device.h  |  11 ++
+>  drivers/gpu/drm/lima/lima_drv.c     |  14 ++-
+>  drivers/gpu/drm/lima/lima_sched.c   |   7 ++
+>  drivers/gpu/drm/lima/lima_sched.h   |   3 +
+>  9 files changed, 217 insertions(+), 3 deletions(-)
+>  create mode 100644 drivers/gpu/drm/lima/lima_devfreq.c
+>  create mode 100644 drivers/gpu/drm/lima/lima_devfreq.h
+>=20
+> --=20
+> 2.24.1
+>=20
+
+--CE+1k2dSO48ffgeK
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEQ17gm7CvANAdqvY4/v5QWgr1WA0FAl33py4ACgkQ/v5QWgr1
+WA0Caw/8DBkpxsfWejzUF5wK7xq5rkmaLL+RmwJzt9xgNwWgsJ8p2XWt+hgzJSAr
+hNy9KVAEE62SXJHfpziY9CEkQycM+b7cQASYGf2q8/C2XNYfZHv80N8SZv1Gaqmh
+NzCfRSsfgc1BvPjbiKu0E1gdsX4RxlB3TXQV0dmSYbOSQ6yyHaYHgrEImW8HVblc
+/xkW7pOSkBs9ZdQKMFETaKJlQ6iQvkvUUlaywl2rBO4PvidyCVp5TXgRIYUQzXY/
+ls7vy/jU8eWchvp9hlztfssMGtE20BcQeASrHjkKfRUWsaSKt0g9Wh17jbIMf/fj
+BfGKqV+KwkKuMDUubvp7EBaJkwxAG8pTr1jv7+QdxOdm/KVnKMu1NSl2DJmTl8Fa
+o9mIdlNQCoMJo+TG6i92JuHMZ5VL11NBm6uazi1iJIH8KEYg8UPnePbQttHnDnZq
+DqTpy9w0r+T3zu9AH5pQjZCXCcKK+oV4qCTBK5zGe3UtcPigssiTVo912VsGEbb/
+Y8LPtySaWSjCI/hfgz4M9ENfrmNX4yqvIewZnAMMPj6vv5sslfRBBGKBCoCtqcQx
+T9Iy3c57pp9B/Prrc1llotEuqyd2Mi7mws7gSPfGZXaTC/TPNKCikvph39wdRPdp
+WP+lq3rH1n5kMcc3D09p62TZGuaO0uiHmUgxshzPQa3FxXsHqZo=
+=QSX1
+-----END PGP SIGNATURE-----
+
+--CE+1k2dSO48ffgeK--
+
+
+--===============0556752803314520206==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============0556752803314520206==--
+
