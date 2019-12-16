@@ -2,62 +2,65 @@ Return-Path: <SRS0=UcGz=2G=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 382FAC43603
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Dec 2019 03:51:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E1403C43603
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Dec 2019 06:02:54 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 0E49024676
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Dec 2019 03:51:17 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B08E62072B
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Dec 2019 06:02:54 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Ki3h62UK"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 0E49024676
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=huawei.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mePViYG+"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B08E62072B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=+LBDuZ6AKzCUu2z0OCGHcsZsqBXX1QIQb3QLLpOS0cE=; b=Ki3h62UKv0r0xt
-	nzLj3p+MCxxrYyWrGkplPSEOE0zZEb2sp2DXvJNMlOO+LwzxBefXOr4jezPdgAtkVxob0um9ewO0c
-	FrZn29sWPScYYMGNCJJ2m9vP83Bw+kuyAAMZvsxzi/AAKfwsvG7lfQ8My75pYBu8Fatb9drGP/Fm2
-	nSCiWWyveNI9/NLXNMLBpqj6dpumzv+6eOHxNf+U37fvP9Msh6dqzIU0Yih4vIkXYLxKN1jTdLK6B
-	iNBEA7i7T/2iXosZuJfbc6BjHW7FPaSdNNKM1azuMlzSZpbsRVsy8VXzDzlQV6abP5w6kp1EtvpCv
-	2tcNbZ9n0tJsfacQs4FQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=2mNsu8ZwO/LjEim/1a6h1XABwaEWwK/ufjDjy++4uZs=; b=mePViYG+r/PN6L3hiFlh6WW3C
+	HxM+0IHxafjXCuzbHXxr1tTc8v3/pqgjGL1rDbmxmbwzC5TZjhwPYpbV6BpdVJKrtzfZZxdCS0Ugs
+	Tr1QjmRFBC5Ubvlz3KiOm+2HFehcse16a4w2UKzv/GI8U6Ml/Sqgwz/23N4bC82nitYZDJoBUTAAi
+	4tVXeTnGA1NhhWoMH4FDT7IEFoHdlgrBTCAbdj5ZOVTx+Z4FLk8Z+fI5uqstpWkGAQDD3IMS74q2j
+	ef5DVC/0q/s4ZfMEV9323pYfIR8QlFxx1WFt9QoXIxMXM+emGKFVhuW68UeiR2Dy/CMFjmaNq/b+o
+	8ZvDM/pQQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ighPb-0008S2-SA; Mon, 16 Dec 2019 03:51:11 +0000
-Received: from szxga04-in.huawei.com ([45.249.212.190] helo=huawei.com)
+	id 1igjSw-00016x-69; Mon, 16 Dec 2019 06:02:46 +0000
+Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ighPZ-0008RN-8J; Mon, 16 Dec 2019 03:51:10 +0000
-Received: from DGGEMS414-HUB.china.huawei.com (unknown [172.30.72.60])
- by Forcepoint Email with ESMTP id 234B35DFD79CB752036B;
- Mon, 16 Dec 2019 11:51:07 +0800 (CST)
-Received: from huawei.com (10.90.53.225) by DGGEMS414-HUB.china.huawei.com
- (10.3.19.214) with Microsoft SMTP Server id 14.3.439.0; Mon, 16 Dec 2019
- 11:50:59 +0800
-From: zhengbin <zhengbin13@huawei.com>
-To: <narmstrong@baylibre.com>, <airlied@linux.ie>, <daniel@ffwll.ch>,
- <khilman@baylibre.com>, <linux-amlogic@lists.infradead.org>,
- <dri-devel@lists.freedesktop.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH] drm: meson: Remove unneeded semicolon
-Date: Mon, 16 Dec 2019 11:58:21 +0800
-Message-ID: <1576468701-69717-1-git-send-email-zhengbin13@huawei.com>
-X-Mailer: git-send-email 2.7.4
+ id 1igjSt-000164-Bk; Mon, 16 Dec 2019 06:02:44 +0000
+Received: from [10.28.19.135] (10.28.19.135) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Mon, 16 Dec
+ 2019 14:03:07 +0800
+Subject: Re: [PATCH v5 2/4] dt-bindings: watchdog: add new binding for meson
+ secure watchdog
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Rob Herring
+ <robh+dt@kernel.org>
+References: <1576153187-28378-1-git-send-email-xingyu.chen@amlogic.com>
+ <1576153187-28378-3-git-send-email-xingyu.chen@amlogic.com>
+ <CAFBinCBHLqgPExPsVaSWdSOr0Oj-jeYa4Z82U-pJ=fS+D1wGnA@mail.gmail.com>
+From: Xingyu Chen <xingyu.chen@amlogic.com>
+Message-ID: <f7b0afe7-e317-2422-de7e-878837f9f238@amlogic.com>
+Date: Mon, 16 Dec 2019 14:03:07 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.1
 MIME-Version: 1.0
-X-Originating-IP: [10.90.53.225]
-X-CFilter-Loop: Reflected
+In-Reply-To: <CAFBinCBHLqgPExPsVaSWdSOr0Oj-jeYa4Z82U-pJ=fS+D1wGnA@mail.gmail.com>
+Content-Language: en-GB
+X-Originating-IP: [10.28.19.135]
+X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
+ (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191215_195109_475178_F1BC0A00 
-X-CRM114-Status: UNSURE (   8.57  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20191215_220243_401544_157B4FD8 
+X-CRM114-Status: GOOD (  11.61  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,55 +72,40 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: zhengbin13@huawei.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Qianggui Song <qianggui.song@amlogic.com>, devicetree@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, Jianxin Pan <jianxin.pan@amlogic.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ linux-kernel@vger.kernel.org, Jian Hu <jian.hu@amlogic.com>,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>,
+ Jerome Brunet <jbrunet@baylibre.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Fixes coccicheck warning:
-
-drivers/gpu/drm/meson/meson_crtc.c:360:3-4: Unneeded semicolon
-drivers/gpu/drm/meson/meson_plane.c:181:2-3: Unneeded semicolon
-
-Reported-by: Hulk Robot <hulkci@huawei.com>
-Signed-off-by: zhengbin <zhengbin13@huawei.com>
----
- drivers/gpu/drm/meson/meson_crtc.c  | 2 +-
- drivers/gpu/drm/meson/meson_plane.c | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/meson/meson_crtc.c b/drivers/gpu/drm/meson/meson_crtc.c
-index 57ae1c1..eefefc4 100644
---- a/drivers/gpu/drm/meson/meson_crtc.c
-+++ b/drivers/gpu/drm/meson/meson_crtc.c
-@@ -357,7 +357,7 @@ void meson_crtc_irq(struct meson_drm *priv)
- 					    MESON_CANVAS_WRAP_NONE,
- 					    MESON_CANVAS_BLKMODE_LINEAR,
- 					    MESON_CANVAS_ENDIAN_SWAP64);
--		};
-+		}
-
- 		writel_relaxed(priv->viu.vd1_if0_gen_reg,
- 				priv->io_base + meson_crtc->viu_offset +
-diff --git a/drivers/gpu/drm/meson/meson_plane.c b/drivers/gpu/drm/meson/meson_plane.c
-index ed54322..b96fa43 100644
---- a/drivers/gpu/drm/meson/meson_plane.c
-+++ b/drivers/gpu/drm/meson/meson_plane.c
-@@ -178,7 +178,7 @@ static void meson_plane_atomic_update(struct drm_plane *plane,
- 		priv->viu.osd1_blk0_cfg[0] |= OSD_BLK_MODE_16 |
- 					      OSD_COLOR_MATRIX_16_RGB565;
- 		break;
--	};
-+	}
-
- 	/* Default scaler parameters */
- 	vsc_bot_rcv_num = 0;
---
-2.7.4
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+SGksIE1hcnRpbgoKU29ycnkgZm9yIHRoZSBsYXRlIHJlcGx5LgoKT24gMjAxOS8xMi8xMyA0OjA1
+LCBNYXJ0aW4gQmx1bWVuc3RpbmdsIHdyb3RlOgo+IEhpIFhpbmd5dSBhbmQgUm9iLAo+Cj4gT24g
+VGh1LCBEZWMgMTIsIDIwMTkgYXQgMToyMCBQTSBYaW5neXUgQ2hlbiA8eGluZ3l1LmNoZW5AYW1s
+b2dpYy5jb20+IHdyb3RlOgo+IFsuLi5dCj4+ICtleGFtcGxlczoKPj4gKyAgLSB8Cj4+ICsgICAg
+d2F0Y2hkb2cgewo+PiArICAgICAgICAgIGNvbXBhdGlibGUgPSAiYW1sb2dpYyxtZXNvbi1zZWMt
+d2R0IjsKPj4gKyAgICAgICAgICB0aW1lb3V0LXNlYyA9IDw2MD47Cj4+ICsgICAgfTsKPiBpbiB2
+MyBvZiB0aGlzIHBhdGNoIFJvYiBjb21tZW50ZWQgdGhhdCB0aGVyZSBzaG91bGRuJ3QgYmUgYW4g
+T0Ygbm9kZQo+IGlmIHRoZXJlIGFyZSBubyBhZGRpdGlvbmFsIHByb3BlcnRpZXMKPiB3aXRoIHRp
+bWVvdXQtc2VjIHRoZXJlJ3Mgbm93IGFuIGFkZGl0aW9uYWwgcHJvcGVydHkgc28gbXkKPiB1bmRl
+cnN0YW5kaW5nIGlzIHRoYXQgaXQncyBmaW5lIHRvIGhhdmUgYW4gT0Ygbm9kZQpZb3VyIHVuZGVy
+c3RhbmRpbmcgaXMgY29ycmVjdC4KPgo+IHdoYXQgSSBkb24ndCB1bmRlcnN0YW5kIHlldCBpcyB3
+aGVyZSB0aGlzIG5vZGUgc2hvdWxkIGJlIHBsYWNlZC4KPiBpcyBpdCBzdXBwb3NlZCB0byBiZSBh
+IGNoaWxkIG5vZGUgb2YgdGhlIHNlY3VyZSBtb25pdG9yIG5vZGUgKGZvcgo+IHdoaWNoIHdlIGFs
+cmVhZHkgaGF2ZSBhIGJpbmRpbmcgaGVyZToKPiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvZmlybXdhcmUvbWVzb24vbWVzb25fc20udHh0KSBvcgo+IHdoZXJlIGVsc2Ugd291bGQg
+d2UgcGxhY2UgaXQgaW5zaWRlIHRoZSAuZHRzPwpJTU8swqAgQWx0aG91Z2ggdGhlIHdhdGNoZG9n
+IG5vZGUgbmVlZCB0byByZWZlcmVuY2UgdGhlIG1lc29uX3NtIG5vZGUsIAp0aGVyZSBpcyBubwpi
+dXMtbGlrZSBkZXBlbmRlbmNpZXMgYmV0d2VlbiB0aGUgZGV2aWNlcyB3aGljaCB0aGUgdHdvIG5v
+ZGVzIApjb3JyZXNwb25kaW5nIHRvLgpzbyBpIHRoaW5rIHRoYXQgdGhlIHdhdGNoZG9nIG5vZGUg
+YXMgY2hpbGQgbm9kZSBvZiBtZXNvbl9zbSBtYXliZSBub3QgCmFwcHJvcHJpYXRlLgo+Cj4KPiBN
+YXJ0aW4KPgo+Cj4gWzBdIGh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcGF0Y2gvMTEyMTEz
+OTkvCj4KPiAuCj4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFk
+ZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4
+LWFtbG9naWMK
