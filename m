@@ -2,65 +2,92 @@ Return-Path: <SRS0=UcGz=2G=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
+	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E1403C43603
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Dec 2019 06:02:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A0B40C43603
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Dec 2019 08:48:49 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B08E62072B
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Dec 2019 06:02:54 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7024B206D3
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Dec 2019 08:48:49 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mePViYG+"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B08E62072B
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="OPtmHv9x";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="Mspx/K+Q"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7024B206D3
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=2mNsu8ZwO/LjEim/1a6h1XABwaEWwK/ufjDjy++4uZs=; b=mePViYG+r/PN6L3hiFlh6WW3C
-	HxM+0IHxafjXCuzbHXxr1tTc8v3/pqgjGL1rDbmxmbwzC5TZjhwPYpbV6BpdVJKrtzfZZxdCS0Ugs
-	Tr1QjmRFBC5Ubvlz3KiOm+2HFehcse16a4w2UKzv/GI8U6Ml/Sqgwz/23N4bC82nitYZDJoBUTAAi
-	4tVXeTnGA1NhhWoMH4FDT7IEFoHdlgrBTCAbdj5ZOVTx+Z4FLk8Z+fI5uqstpWkGAQDD3IMS74q2j
-	ef5DVC/0q/s4ZfMEV9323pYfIR8QlFxx1WFt9QoXIxMXM+emGKFVhuW68UeiR2Dy/CMFjmaNq/b+o
-	8ZvDM/pQQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:
+	In-reply-to:Subject:To:From:References:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=8IZq/izwiaHFwBhGTAiTxL0ULXHQSJ/3BbfTROjMFmo=; b=OPtmHv9x9l7aqBPa4hUEtgM2Dx
+	YWB2av83Bi1oHMWljOpOSO0IbWBY+Kspsm+n88zK4qQsk2lZFxSAlibvVmrNgebDHyVZremb5LWal
+	Wq1hZERuD1npLMqnPEhE0TsLS3xzaFsQHWZs/eoisTbcibcpVIxjgDgYcHqc+glosVQybuuCJQG2t
+	WrbZ1RtBMQ7ROllP4XzCLQ3BEQ3h3pA1QrtCybjqdJ2t5WisERlnJSxbLi2ss3NB0xxqNw8ec1lPI
+	6MRYmP/o0cM1L3H1LT3Ri4AhGU79aHuHwEX2DCXjJsuiQvQJWw5hYr92zdUeA10+jNBo81KxIYnyo
+	XCAv3dpA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1igjSw-00016x-69; Mon, 16 Dec 2019 06:02:46 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1igm3S-0004s5-EW; Mon, 16 Dec 2019 08:48:38 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1igjSt-000164-Bk; Mon, 16 Dec 2019 06:02:44 +0000
-Received: from [10.28.19.135] (10.28.19.135) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Mon, 16 Dec
- 2019 14:03:07 +0800
-Subject: Re: [PATCH v5 2/4] dt-bindings: watchdog: add new binding for meson
- secure watchdog
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Rob Herring
- <robh+dt@kernel.org>
-References: <1576153187-28378-1-git-send-email-xingyu.chen@amlogic.com>
- <1576153187-28378-3-git-send-email-xingyu.chen@amlogic.com>
- <CAFBinCBHLqgPExPsVaSWdSOr0Oj-jeYa4Z82U-pJ=fS+D1wGnA@mail.gmail.com>
-From: Xingyu Chen <xingyu.chen@amlogic.com>
-Message-ID: <f7b0afe7-e317-2422-de7e-878837f9f238@amlogic.com>
-Date: Mon, 16 Dec 2019 14:03:07 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.1
+ id 1igm2Z-0004Bp-GK
+ for linux-amlogic@lists.infradead.org; Mon, 16 Dec 2019 08:47:46 +0000
+Received: by mail-wr1-x442.google.com with SMTP id q6so6145328wro.9
+ for <linux-amlogic@lists.infradead.org>; Mon, 16 Dec 2019 00:47:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=references:user-agent:from:to:cc:subject:in-reply-to:date
+ :message-id:mime-version;
+ bh=UCb1aLRLTzlVhWNMjZXZKGwuML6x7jOTgc2nDzZf58E=;
+ b=Mspx/K+QfHmNRZPHL6k5AJMceeZwtVPDzqXbxtrPfcHZCmPaxeuVIFSA4Rgd3YhD76
+ fT1t/dd8PunfVmAPihW8z0V8ypiLOnVwMbhLN4+gap6qinf7YXJvcPpIeGJRt3jqvGMP
+ 3L8w5kf1WLsdAvw1jjEl1qSFmI63h9J4n93J7R3Y0Qvg/KFDNSb2eFhUeaKcTUaB1jsa
+ zEIaqTjvq2F8nfDEBLolbmA+4K+N1iHBaF7kroMNF6OpMRIEiSp934EJ5jmxrXlU4ZUS
+ D9xcCyfF7GBak9VY4qWm+AmbxpIupPIY1r/KSd43sD5ioVrT3JoOFBgx4Zsazft7dbYf
+ dssw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:references:user-agent:from:to:cc:subject
+ :in-reply-to:date:message-id:mime-version;
+ bh=UCb1aLRLTzlVhWNMjZXZKGwuML6x7jOTgc2nDzZf58E=;
+ b=ZYYwwqeOo5DzK0EIbDW/3zRzA5kb8Bpid6k2vRpwCzEpokFGStVNRAECl2582BjcrN
+ pKw5xWlIw/9ca0z/5yf7RsXR74r7yzrgUCh5uw3NNeMdFKs14cIIA2HEtM/cOA7iEWY5
+ n4XdDmcbbp75KxYxWpGkLU+BmrzMVrAkrKsTb6l4NB8b0DDxetxMWDbjvwCd5QshWrU+
+ hmGY1LFCnaGKcp+Sg1+MqlZDElsHkFP8SLxnbwqOgneNUD3J78ZD07O1VRMyrq6CvjAB
+ H3jHIX71Mz2tm9rgeR6RpmmIhWYumBEfUPwsaMCnQxCdJQfHzHxkcxRse+KGcXAp0vej
+ gwNA==
+X-Gm-Message-State: APjAAAV+u5vM4MJ9Qm4z+fCp4oDyhv4rMtB/2TtgctQFTFadGMfVmd+z
+ wtwvHrMK4CI3hO44iJjLJ90G5g==
+X-Google-Smtp-Source: APXvYqyLnlEaVpkiF1HI78n8G1vzJZongnJIMYz+ifesrg0LxQphKWK8bFoJHiH4Wxje2YoxtG06rw==
+X-Received: by 2002:adf:fc03:: with SMTP id i3mr29498932wrr.306.1576486061156; 
+ Mon, 16 Dec 2019 00:47:41 -0800 (PST)
+Received: from localhost (cag06-3-82-243-161-21.fbx.proxad.net.
+ [82.243.161.21])
+ by smtp.gmail.com with ESMTPSA id z18sm19958406wmf.21.2019.12.16.00.47.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 16 Dec 2019 00:47:40 -0800 (PST)
+References: <20191208210320.15539-1-repk@triplefau.lt>
+ <1jpngxew6l.fsf@starbuckisacylon.baylibre.com>
+ <20191215113634.GB7304@voidbox>
+User-agent: mu4e 1.3.3; emacs 26.3
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Remi Pommarel <repk@triplefau.lt>
+Subject: Re: [PATCH 0/2] PCI: amlogic: Make PCIe working reliably on AXG
+ platforms
+In-reply-to: <20191215113634.GB7304@voidbox>
+Date: Mon, 16 Dec 2019 09:47:39 +0100
+Message-ID: <1jsglkbqs4.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCBHLqgPExPsVaSWdSOr0Oj-jeYa4Z82U-pJ=fS+D1wGnA@mail.gmail.com>
-Content-Language: en-GB
-X-Originating-IP: [10.28.19.135]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191215_220243_401544_157B4FD8 
-X-CRM114-Status: GOOD (  11.61  )
+X-CRM114-CacheID: sfid-20191216_004743_649910_B6C8B7FE 
+X-CRM114-Status: GOOD (  21.51  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,40 +99,130 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Qianggui Song <qianggui.song@amlogic.com>, devicetree@vger.kernel.org,
- linux-watchdog@vger.kernel.org, Jianxin Pan <jianxin.pan@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org, Jian Hu <jian.hu@amlogic.com>,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>,
- Jerome Brunet <jbrunet@baylibre.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
+ Yue Wang <yue.wang@amlogic.com>, linux-pci@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-SGksIE1hcnRpbgoKU29ycnkgZm9yIHRoZSBsYXRlIHJlcGx5LgoKT24gMjAxOS8xMi8xMyA0OjA1
-LCBNYXJ0aW4gQmx1bWVuc3RpbmdsIHdyb3RlOgo+IEhpIFhpbmd5dSBhbmQgUm9iLAo+Cj4gT24g
-VGh1LCBEZWMgMTIsIDIwMTkgYXQgMToyMCBQTSBYaW5neXUgQ2hlbiA8eGluZ3l1LmNoZW5AYW1s
-b2dpYy5jb20+IHdyb3RlOgo+IFsuLi5dCj4+ICtleGFtcGxlczoKPj4gKyAgLSB8Cj4+ICsgICAg
-d2F0Y2hkb2cgewo+PiArICAgICAgICAgIGNvbXBhdGlibGUgPSAiYW1sb2dpYyxtZXNvbi1zZWMt
-d2R0IjsKPj4gKyAgICAgICAgICB0aW1lb3V0LXNlYyA9IDw2MD47Cj4+ICsgICAgfTsKPiBpbiB2
-MyBvZiB0aGlzIHBhdGNoIFJvYiBjb21tZW50ZWQgdGhhdCB0aGVyZSBzaG91bGRuJ3QgYmUgYW4g
-T0Ygbm9kZQo+IGlmIHRoZXJlIGFyZSBubyBhZGRpdGlvbmFsIHByb3BlcnRpZXMKPiB3aXRoIHRp
-bWVvdXQtc2VjIHRoZXJlJ3Mgbm93IGFuIGFkZGl0aW9uYWwgcHJvcGVydHkgc28gbXkKPiB1bmRl
-cnN0YW5kaW5nIGlzIHRoYXQgaXQncyBmaW5lIHRvIGhhdmUgYW4gT0Ygbm9kZQpZb3VyIHVuZGVy
-c3RhbmRpbmcgaXMgY29ycmVjdC4KPgo+IHdoYXQgSSBkb24ndCB1bmRlcnN0YW5kIHlldCBpcyB3
-aGVyZSB0aGlzIG5vZGUgc2hvdWxkIGJlIHBsYWNlZC4KPiBpcyBpdCBzdXBwb3NlZCB0byBiZSBh
-IGNoaWxkIG5vZGUgb2YgdGhlIHNlY3VyZSBtb25pdG9yIG5vZGUgKGZvcgo+IHdoaWNoIHdlIGFs
-cmVhZHkgaGF2ZSBhIGJpbmRpbmcgaGVyZToKPiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3MvZmlybXdhcmUvbWVzb24vbWVzb25fc20udHh0KSBvcgo+IHdoZXJlIGVsc2Ugd291bGQg
-d2UgcGxhY2UgaXQgaW5zaWRlIHRoZSAuZHRzPwpJTU8swqAgQWx0aG91Z2ggdGhlIHdhdGNoZG9n
-IG5vZGUgbmVlZCB0byByZWZlcmVuY2UgdGhlIG1lc29uX3NtIG5vZGUsIAp0aGVyZSBpcyBubwpi
-dXMtbGlrZSBkZXBlbmRlbmNpZXMgYmV0d2VlbiB0aGUgZGV2aWNlcyB3aGljaCB0aGUgdHdvIG5v
-ZGVzIApjb3JyZXNwb25kaW5nIHRvLgpzbyBpIHRoaW5rIHRoYXQgdGhlIHdhdGNoZG9nIG5vZGUg
-YXMgY2hpbGQgbm9kZSBvZiBtZXNvbl9zbSBtYXliZSBub3QgCmFwcHJvcHJpYXRlLgo+Cj4KPiBN
-YXJ0aW4KPgo+Cj4gWzBdIGh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcGF0Y2gvMTEyMTEz
-OTkvCj4KPiAuCj4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFk
-ZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4
-LWFtbG9naWMK
+
+On Sun 15 Dec 2019 at 12:36, Remi Pommarel <repk@triplefau.lt> wrote:
+
+> On Mon, Dec 09, 2019 at 09:32:18AM +0100, Jerome Brunet wrote:
+>> 
+>> On Sun 08 Dec 2019 at 22:03, Remi Pommarel <repk@triplefau.lt> wrote:
+>> 
+>> > PCIe device probing failures have been seen on some AXG platforms and were
+>> > due to unreliable clock signal output. Setting HHI_MIPI_CNTL0[26] bit
+>> > solved the problem. After being contacted about this, vendor reported that
+>> > this bit was linked to PCIe PLL CML output.
+>> 
+>> Thanks for reporting the problem.
+>> 
+>> As Martin pointed out, the CML outputs already exist in the AXG clock
+>> controller but are handled using HHI_PCIE_PLL_CNTL6. Although
+>> incomplete, it seems to be aligned with the datasheet I have (v0.9)
+>> 
+>> According to the same document, HHI_MIPI_CNTL0 belong to the MIPI Phy.
+>> Unfortunately bit 26 is not documented
+>> 
+>> AFAICT, the clock controller is not appropriate driver to deal with this
+>> register/bit
+>> 
+>
+> Regarding both @Martin's and your remark.
+>
+> Unfortunately the documentation I have and vendor feedback are a bit
+> vague to me. I do agree that CLKID_PCIE_PLL_CML_ENABLE is not a proper
+> name for this bit because this register is MIPI related.
+>
+> Here is the information I got from the vendor [1]. As you can see
+> HHI_MIPI_CNTL0[29] and HHI_MIPI_CNTL0[26] are related together, and
+> HHI_MIPI_CNTL0[29] is implemented in the clock controller as
+> axg_mipi_enable which is why I used this driver for HHI_MIPI_CNTL0[26].
+>
+
+Seems I should have paid more attention when axg_mipi_enable.
+Bit 29 is yet another undocumented bit
+
+> So maybe I could rename this bit to something MIPI related ?
+
+This register region is simply not part of the main clock
+controller. The bits in it are not related to this controller but the
+MIPI PHY. It should not have been mapped in this way to begin with.
+
+I can see how it would be convient to model this with a gate to just
+flip the bit when needed but it is just wrong.
+
+The documentation says the register are for the MIPI analog PHY, it
+should be implemented as such and used by the PCIe as needed.
+
+Of course, fixing this (remapping the region and removing
+axg_mipi_enable) will be a bit messy. If you want to make that MIPI Phy
+driver, I can help you with the clock part.
+
+>
+>> >
+>> > This serie adds a way to set this bit through AXG clock gating logic.
+>> > Platforms having this kind of issue could make use of this gating by
+>> > applying a patch to their devicetree similar to:
+>> >
+>> >                 clocks = <&clkc CLKID_USB
+>> >                         &clkc CLKID_MIPI_ENABLE
+>> >                         &clkc CLKID_PCIE_A
+>> > -                       &clkc CLKID_PCIE_CML_EN0>;
+>> > +                       &clkc CLKID_PCIE_CML_EN0
+>> > +                       &clkc CLKID_PCIE_PLL_CML_ENABLE>;
+>> >                 clock-names = "pcie_general",
+>> >                                 "pcie_mipi_en",
+>> >                                 "pcie",
+>> > -                               "port";
+>> > +                               "port",
+>> > +                               "pll_cml_en";
+>> >                 resets = <&reset RESET_PCIE_PHY>,
+>> >                         <&reset RESET_PCIE_A>,
+>> >                         <&reset RESET_PCIE_APB>;
+>> 
+>> A few remarks for your future patches:
+>> 
+>> * You need to document any need binding you introduce:
+>>   It means that there should have been a patch in
+>>   Documentation/devicetree/... before using your newclock name in the
+>>   pcie driver. As Martin pointed out, dt-bindings should be dealt with
+>>   in their own patches
+>> 
+>> >
+>> >
+>> > Remi Pommarel (2):
+>> >   clk: meson: axg: add pcie pll cml gating
+>> 
+>> Whenever possible, patches intended for different maintainers should be
+>> sent separately (different series)
+>
+> Thanks, will do both of the above remarks.
+>
+>> 
+>> >   PCI: amlogic: Use PCIe pll gate when available
+>> >
+>> >  drivers/clk/meson/axg.c                | 3 +++
+>> >  drivers/clk/meson/axg.h                | 2 +-
+>> >  drivers/pci/controller/dwc/pci-meson.c | 5 +++++
+>> >  include/dt-bindings/clock/axg-clkc.h   | 1 +
+>> >  4 files changed, 10 insertions(+), 1 deletion(-)
+>> 
+>
+> Thanks for reviewing this.
+>
+> [1] https://i.snipboard.io/bHMPeq.jpg
+
+
+_______________________________________________
+linux-amlogic mailing list
+linux-amlogic@lists.infradead.org
+http://lists.infradead.org/mailman/listinfo/linux-amlogic
