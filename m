@@ -2,60 +2,96 @@ Return-Path: <SRS0=UcGz=2G=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 367D6C43603
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Dec 2019 12:38:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A04CCC43603
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Dec 2019 13:30:25 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 094CA206D3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Dec 2019 12:38:46 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 75C95206CB
+	for <linux-amlogic@archiver.kernel.org>; Mon, 16 Dec 2019 13:30:25 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qUY4lm8/"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 094CA206D3
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mGEl8EFb";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WU2LMml9"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 75C95206CB
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=rbNtMxKaMMUfUQmRd19PlxxTMNHOWjQD9jY9FDs0tHE=; b=qUY4lm8/vLifxq
-	Qv6OvXftYaZTpnmrmvzpaJH4c05PlXeyU1/aSdTg8w7hBogTHqHqDIUPX8BYypobIIC0YPP16ocat
-	HlKTId6gjPANnzSBDw5gJek5DUthXLWzWxGCQS0T3XfplEM2J9BQLMd9VjZ4DWnAKIg6sUjcZTuPx
-	8d10EbhRxtSLsdw3npgFr8mTFWLuA1vTNpg0CzqPIee83q4roz3VbJmVdetFeBmceyKV4fVjaJX0W
-	DLKSsjh5NvDDUiuVmTC0ZyJJ3LWMVOr+FtXtqde6F6V+dbPsGS3NDlaQ0UI2hgb6RmVRdk9bEydi2
-	1wo6je9F+4yNoPa5JjWg==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=CZF2eU2h+/9ltSRmZY39INqf/vvoIM45c4nYdjgXzgE=; b=mGEl8EFb7IR+f6G+jf3Ol8rnD
+	VklO6m6uGGu9F5xed/4UaW6IfOuzZ4n7ub2UzSdz1R6Y75G8f90LJCwgMaXJuzMgIZUMNd6lq4XVs
+	ONMaSOUN10e0NIaxXeVcHBMqyVX92hHtVPlKaqtwH2W8Dtu8doQ63IqVEWt7FuW0KpcPsFvEf6H6m
+	V0uzC455PJwTe67eLJoS+QM+CL4g6cpY8NCNQ7tzKLmRGFmLQClUmW3Geb1qjyNSaW+/3eAuCC9FY
+	0erKrquazxu+2xLaP/6+bEr8er4m1mbG7tIlUhH62kS2eNnGO4lMTTIXJXh1u347x4Yhwzu2Pukyf
+	F6zNv2qVA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1igpe5-0005YD-S2; Mon, 16 Dec 2019 12:38:41 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1igqS0-00033h-I0; Mon, 16 Dec 2019 13:30:16 +0000
+Received: from mail-pl1-x642.google.com ([2607:f8b0:4864:20::642])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1igpcS-0003t0-Mw; Mon, 16 Dec 2019 12:37:02 +0000
-Received: from localhost.localdomain (10.28.8.19) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Mon, 16 Dec 2019
- 20:37:25 +0800
-From: Qianggui Song <qianggui.song@amlogic.com>
-To: Thomas Gleixner <tglx@linutronix.de>, Jason Cooper <jason@lakedaemon.net>, 
- Marc Zyngier <maz@kernel.org>
-Subject: [PATCH v2 4/4] arm64: dts: meson: a1: add gpio interrupt controller
- support
-Date: Mon, 16 Dec 2019 20:36:45 +0800
-Message-ID: <20191216123645.10099-5-qianggui.song@amlogic.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20191216123645.10099-1-qianggui.song@amlogic.com>
-References: <20191216123645.10099-1-qianggui.song@amlogic.com>
+ id 1igqRw-00032r-WE; Mon, 16 Dec 2019 13:30:14 +0000
+Received: by mail-pl1-x642.google.com with SMTP id g6so4467456plp.7;
+ Mon, 16 Dec 2019 05:30:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=sender:subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=c6k2uM/4KQBTBeEC+JGE88itWoiZaxFzfzDFaOUPwN4=;
+ b=WU2LMml9ybURvvoAkKn84Ls2pu5xuXxxs5xMy9YIAIuH+QpEBES7Fx3AEg2Awx0eZC
+ eOP9lj+obKAHaeQTG8x7AKkZRmJVsKhTCrmDoU+lTu4fD7hbjbbB0TDh8anWmiR4NE8Q
+ 0vRnJFCI88IlQ/i2lgF5OkFvvmdA4xSVQw46d82pfn1UYopKvLJdYUDFZEOie4D29ofs
+ jhr83+VsoL5WyjrRsBkdTtIISTH1IF0nFzXfQYAZkctwUem7bQamJ24XBDBIj+xvPmhA
+ AGv5C2QbcM9PBGJxMstdHAuE0iPKFOisBpolMprqccxSmygVz+ynNZOFYWIQiWOsIKW0
+ X9QQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+ :date:user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=c6k2uM/4KQBTBeEC+JGE88itWoiZaxFzfzDFaOUPwN4=;
+ b=l3aVgRH9G13XOdiXbfHROffox0aOaeXWgo12i3Ujia2smp9gSf836OWqVRHpvBRm1A
+ tbUXB06cfXL1iH/MHBj0xQJxMchbUuXKg+wQ0dm2qIijLWvUulKrryNItz2vWkNaqveF
+ z4KwserLiMIQQUgIrrQrev5shpG8MFkEX8PBoeaY6gLXXNaWDhJJjq6yGm0kgp7k+rzm
+ Elj6NYdRcYBIdB44brcMDiUqgqj990Tty94eu/cGUmReN8GtqmcNTa5AeupAO0j62tGk
+ 871tROgHO/k0w4lVsq2LckK30EnV3EO2EslzNdM/YTFQIDwcPc2ruQX5OJLa7z/wKScg
+ sJBw==
+X-Gm-Message-State: APjAAAUb2x71jU2K3N6g8Gxkvqqcn5EVfZCl9aAX9zQ7RgbVcSy0mKtx
+ 6i51upLDKUFE9okrUKabbOE=
+X-Google-Smtp-Source: APXvYqyJ6TZHpyv2Kz7CGI3OHria7rp9vvxislgxfsCZuO3kdTuBGJfZKrdme0Kw7m9+Qlmwh7TBjw==
+X-Received: by 2002:a17:902:d915:: with SMTP id
+ c21mr15807890plz.295.1576503011717; 
+ Mon, 16 Dec 2019 05:30:11 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+ by smtp.gmail.com with ESMTPSA id
+ 13sm5365907pfi.78.2019.12.16.05.30.09
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 16 Dec 2019 05:30:10 -0800 (PST)
+Subject: Re: [PATCH v5 2/4] dt-bindings: watchdog: add new binding for meson
+ secure watchdog
+To: Xingyu Chen <xingyu.chen@amlogic.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Herring <robh+dt@kernel.org>
+References: <1576153187-28378-1-git-send-email-xingyu.chen@amlogic.com>
+ <1576153187-28378-3-git-send-email-xingyu.chen@amlogic.com>
+ <CAFBinCBHLqgPExPsVaSWdSOr0Oj-jeYa4Z82U-pJ=fS+D1wGnA@mail.gmail.com>
+ <f7b0afe7-e317-2422-de7e-878837f9f238@amlogic.com>
+From: Guenter Roeck <linux@roeck-us.net>
+Message-ID: <a8f5ab1d-264c-5b2c-e72b-3774b9f44c22@roeck-us.net>
+Date: Mon, 16 Dec 2019 05:30:08 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-X-Originating-IP: [10.28.8.19]
+In-Reply-To: <f7b0afe7-e317-2422-de7e-878837f9f238@amlogic.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191216_043700_776628_E43D09A5 
-X-CRM114-Status: UNSURE (   6.61  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20191216_053013_062870_CC25A774 
+X-CRM114-Status: GOOD (  14.95  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,49 +104,41 @@ List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
 Cc: Qianggui Song <qianggui.song@amlogic.com>, devicetree@vger.kernel.org,
- Hanjie Lin <hanjie.lin@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ linux-watchdog@vger.kernel.org, Jianxin Pan <jianxin.pan@amlogic.com>,
  Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- Mark Rutland <mark.rutland@arm.com>, Xingyu Chen <xingyu.chen@amlogic.com>,
- Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ linux-kernel@vger.kernel.org, Jian Hu <jian.hu@amlogic.com>,
+ linux-amlogic@lists.infradead.org, Wim Van Sebroeck <wim@linux-watchdog.org>,
+ linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-add gpio interrupt controller node to a1 SoC
-
-Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index 4dec518c4dde..e580d3e96c67 100644
---- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -99,6 +99,15 @@ gpio: bank@0400 {
- 
- 			};
- 
-+			gpio_intc: interrupt-controller@0440 {
-+				compatible = "amlogic,meson-gpio-intc",
-+					     "amlogic,meson-a1-gpio-intc";
-+				reg = <0x0 0x0440 0x0 0x14>;
-+				interrupt-controller;
-+				#interrupt-cells = <2>;
-+				amlogic,channel-interrupts = <49 50 51 52 53 54 55 56>;
-+			};
-+
- 			uart_AO: serial@1c00 {
- 				compatible = "amlogic,meson-gx-uart",
- 					     "amlogic,meson-ao-uart";
--- 
-2.24.0
-
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gMTIvMTUvMTkgMTA6MDMgUE0sIFhpbmd5dSBDaGVuIHdyb3RlOgo+IEhpLCBNYXJ0aW4KPiAK
+PiBTb3JyeSBmb3IgdGhlIGxhdGUgcmVwbHkuCj4gCj4gT24gMjAxOS8xMi8xMyA0OjA1LCBNYXJ0
+aW4gQmx1bWVuc3RpbmdsIHdyb3RlOgo+PiBIaSBYaW5neXUgYW5kIFJvYiwKPj4KPj4gT24gVGh1
+LCBEZWMgMTIsIDIwMTkgYXQgMToyMCBQTSBYaW5neXUgQ2hlbiA8eGluZ3l1LmNoZW5AYW1sb2dp
+Yy5jb20+IHdyb3RlOgo+PiBbLi4uXQo+Pj4gK2V4YW1wbGVzOgo+Pj4gK8KgIC0gfAo+Pj4gK8Kg
+wqDCoCB3YXRjaGRvZyB7Cj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgIGNvbXBhdGlibGUgPSAiYW1s
+b2dpYyxtZXNvbi1zZWMtd2R0IjsKPj4+ICvCoMKgwqDCoMKgwqDCoMKgwqAgdGltZW91dC1zZWMg
+PSA8NjA+Owo+Pj4gK8KgwqDCoCB9Owo+PiBpbiB2MyBvZiB0aGlzIHBhdGNoIFJvYiBjb21tZW50
+ZWQgdGhhdCB0aGVyZSBzaG91bGRuJ3QgYmUgYW4gT0Ygbm9kZQo+PiBpZiB0aGVyZSBhcmUgbm8g
+YWRkaXRpb25hbCBwcm9wZXJ0aWVzCj4+IHdpdGggdGltZW91dC1zZWMgdGhlcmUncyBub3cgYW4g
+YWRkaXRpb25hbCBwcm9wZXJ0eSBzbyBteQo+PiB1bmRlcnN0YW5kaW5nIGlzIHRoYXQgaXQncyBm
+aW5lIHRvIGhhdmUgYW4gT0Ygbm9kZQo+IFlvdXIgdW5kZXJzdGFuZGluZyBpcyBjb3JyZWN0Lgo+
+Pgo+PiB3aGF0IEkgZG9uJ3QgdW5kZXJzdGFuZCB5ZXQgaXMgd2hlcmUgdGhpcyBub2RlIHNob3Vs
+ZCBiZSBwbGFjZWQuCj4+IGlzIGl0IHN1cHBvc2VkIHRvIGJlIGEgY2hpbGQgbm9kZSBvZiB0aGUg
+c2VjdXJlIG1vbml0b3Igbm9kZSAoZm9yCj4+IHdoaWNoIHdlIGFscmVhZHkgaGF2ZSBhIGJpbmRp
+bmcgaGVyZToKPj4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Zpcm13YXJlL21l
+c29uL21lc29uX3NtLnR4dCkgb3IKPj4gd2hlcmUgZWxzZSB3b3VsZCB3ZSBwbGFjZSBpdCBpbnNp
+ZGUgdGhlIC5kdHM/Cj4gSU1PLMKgIEFsdGhvdWdoIHRoZSB3YXRjaGRvZyBub2RlIG5lZWQgdG8g
+cmVmZXJlbmNlIHRoZSBtZXNvbl9zbSBub2RlLCB0aGVyZSBpcyBubwo+IGJ1cy1saWtlIGRlcGVu
+ZGVuY2llcyBiZXR3ZWVuIHRoZSBkZXZpY2VzIHdoaWNoIHRoZSB0d28gbm9kZXMgY29ycmVzcG9u
+ZGluZyB0by4KPiBzbyBpIHRoaW5rIHRoYXQgdGhlIHdhdGNoZG9nIG5vZGUgYXMgY2hpbGQgbm9k
+ZSBvZiBtZXNvbl9zbSBtYXliZSBub3QgYXBwcm9wcmlhdGUuCgpUaGUgd2F0Y2hkb2cgZHJpdmVy
+IG5lZWRzIHRoZSBtZXNvbiBTTSdzIGR0IG5vZGUsIGFuZCBpdCBkZXBlbmRzIG9uIHRoZSBleGlz
+dGVuY2UKb2YgdGhhdCBub2RlLiBUaGF0IHNlZW1zIGVub3VnaCBvZiBhIHJlbGF0aW9uc2hpcCB0
+byB3YXJyYW50IGhhdmluZyBpdCBhcyBjaGlsZCBub3RlLgoKR3VlbnRlcgoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGludXgtYW1sb2dpYyBtYWlsaW5n
+IGxpc3QKbGludXgtYW1sb2dpY0BsaXN0cy5pbmZyYWRlYWQub3JnCmh0dHA6Ly9saXN0cy5pbmZy
+YWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtYW1sb2dpYwo=
