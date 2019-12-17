@@ -2,22 +2,22 @@ Return-Path: <SRS0=0C1t=2H=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-7.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D2F4DC2D0C8
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Dec 2019 11:20:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BB456C43603
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Dec 2019 11:21:05 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 93EB520733
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Dec 2019 11:20:48 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 7654320733
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Dec 2019 11:21:05 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZDF4vRLJ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="r4xyi05Z"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 93EB520733
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="A1yiVroL";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="No3qZrC3"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 7654320733
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,68 +26,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=ZLZ/Sq7nAAhfEpb3OLs7oTvimlNivtkCBmiE6RJfYbo=; b=ZDF4vRLJBGWBpp
-	ZNB5p7+Ex7seJhwJJ+9EW8vJOtvOexbji9UTdXFbw0tmj8se4kgf5UDIBDSAx8YMX3+RlZCOni0ba
-	qk9uVL5bbgU2HevT7eXn7FN+pZzFELe83/twXzyhERdieDiSMKBGO+9TTL1ZmpD4SDvwBoq/xPb3j
-	+Lxm0zzOnaBQRdqYkYZ9U57ty3zYo4mzRoz2ubBrlWMZyB0zKFT1LvyiXSHzx3+Wk+xez1+EcovIa
-	TjVPIpz4D1Pd/N1m8Eh/VjiPYD1LF2LEpVq6ZDU1gqnPlg2W4IR+vGqGMR140So/z0APa9E0FWdnf
-	t901PGE5zBxBxYgU+nVA==;
+	List-Owner; bh=LVAHThrSw62izetHWwekXKv3Ry71UzrdNImnQARnawI=; b=A1yiVroLxSKkM0
+	blyZ/FhZ1g/2SINfWvl5teW+LyxRLKbih0UyXRTq/hJmh8Ea9CyIV/MlgdvWsdyYqQulDFZWYo4jS
+	0Dc3YV35qTPZdmIPoYNtIeQQQa+ROmr4/pBPuXHR9L/HrCS6IsZC2+tRS0fvq6uHzeveX3hKj0Nwz
+	zXIjqZDSdnqEOyrxXjslGjRsHNxXJcEWn/JiK5iofR4cVl8bHMcfriFXQjVFeZme97lbe0xvyj0lW
+	ouMDVY8IXqx94FmLOC3zmPgHRT7zWILP0a/xvB5adogKT9p9r5wEr+kvdXa7MBpkNTmRonljqxhmU
+	tQbeFMEHAhOr7Z40eccw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ihAuB-000683-3m; Tue, 17 Dec 2019 11:20:43 +0000
-Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
+	id 1ihAuR-0006RH-Rq; Tue, 17 Dec 2019 11:20:59 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ihAtG-0004KB-9o
- for linux-amlogic@lists.infradead.org; Tue, 17 Dec 2019 11:19:49 +0000
-Received: by mail-wr1-x442.google.com with SMTP id g17so10878153wro.2
- for <linux-amlogic@lists.infradead.org>; Tue, 17 Dec 2019 03:19:44 -0800 (PST)
+ id 1ihAtG-0004LJ-QP
+ for linux-amlogic@lists.infradead.org; Tue, 17 Dec 2019 11:19:54 +0000
+Received: by mail-wr1-x444.google.com with SMTP id w15so10890199wru.4
+ for <linux-amlogic@lists.infradead.org>; Tue, 17 Dec 2019 03:19:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=Q8VsecRt+zfmEiQATRM3jixSlKuyuB/bDX0OonY2El4=;
- b=r4xyi05Z0qWvrnPsw0oetund2ec5x63QF9JMKUGqjuGRCPP/hY6McWKa3X6zDdvono
- ZWjSxLQQtLNkGZ+ct4x843+eT4sxgb1QgwdLMX83Mzmuh4Xj98lX0BggikOBpFwk9leQ
- hlfSzXTvzpWzz0+tIdxtafXKJfZa4eFa/QcamwaFxVwiKyFGNsGJarDxJlQ1Yt5TTUHk
- d/+0KjrBaBVa0RnEr/gLOYSf6d9tdfI2a3tSnwNvUd6kvjrtuRRIFEvagiv/vWp6BXnm
- KB2YAAZrb67IoP6B8X4o1DlZQhrEQv+3AARAsdM1SXwmhWsCJzKXQbBhoOuyo4qNDmhy
- 0rgA==
+ bh=w9gKfIBpn0HsMwIamk7TKGYu8T1J+7a0xddCR9Sd07U=;
+ b=No3qZrC3BV6PGhAiXUbi3oz5gBtIdXCvAkbJaioMAa8EbQGCDN3iKXEXjRaBh35rNb
+ Px8xpd8tzlcFny8o5Q0/3vOT6UZLu/+jFJoMALHm7aqUIbGZ3fxgu8RuvF4AuhNgcE0K
+ nEK//mye23CYOb7ZRmlwoe3MU0e/eZj+ke8hHL7rJD50Jh+C/KHHieNrVn4C3+m/A0Ez
+ H9UkpqeMUAEOCiBd8wgifpvkW7jRKvmt+5KK3lEoe9LR71h7/AfAIzQ5cgn+FkSECV/P
+ xm8emnOBKWOMqnXMp7nLngEcpLXduqrohQG6xnKH7iQQN1xtE46QE94vvX0kdIFEouub
+ ukpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=Q8VsecRt+zfmEiQATRM3jixSlKuyuB/bDX0OonY2El4=;
- b=qASRMaAKehdZJ7+euAlmS3yc9JMYBJwXk9PLCuB3nJl+VkZoBewtVLS/sMkbwY6LOT
- 7YtR2479pHxbOVRYarcuBc3lWq2y5ITBvFJr0d7A90MtlM6h+xoXfJhKGV+2VjtizNWR
- OlSpWbgyZwU8oxjjZnc1YXbKeWIcgzuec1AlXtrNxNw6DMBSVHf+z8Y42vUEsrC5oIjW
- wfLN4ivdkKvAj6g86iRL8CuhJJ3lTLZBs8TmbwZ6QUnCFeP7bUdWLNjq8nRUxGtCaqD7
- 5nLOiP56NERCgIsLJGJQ4sbUclgpaL7/JoqO/W9QWIUVHw/1uceyXDHfHUYdfuMX4WOF
- ufrA==
-X-Gm-Message-State: APjAAAVEUj/5Sm8fjiPfjmpfZE3qfMZnDocHUA1Lo5d0lKwnt9TTHuEy
- tUYuMw1npbRPNhKS8EakQWsU8A==
-X-Google-Smtp-Source: APXvYqzANxopZZDEUqRVRjmMrW4GDF1rSth1AhKzw2hBAkcpYmorJqw3yZKxPiKlZofK2y8ICgKTQA==
-X-Received: by 2002:adf:fe50:: with SMTP id m16mr34832312wrs.217.1576581583518; 
- Tue, 17 Dec 2019 03:19:43 -0800 (PST)
+ bh=w9gKfIBpn0HsMwIamk7TKGYu8T1J+7a0xddCR9Sd07U=;
+ b=sx1hSU97V6Z1aB7bhvm0ym2bNI/qEk5YrQBNoaBMcK+OLKtQ370CNhMi8Y/nLn4tjd
+ uGbZrGXl0Wm2mMYFZ4ZecDZVZ1jX55/QhZBqj20hh+Y8/fdpAEdukvux5jXPT4joOrzN
+ dx5ktjvoKyqECLp/+DavCBibmTOBNlvogqf08OBaYdYnRrWlGk69u8dfa5ZgzwHTyH3g
+ gK0k2cosxsWK+ui0hZ+o6aHRCwrmQ670JaXZkgUXpDe0h0UG2dj15nUDByvaEcG5r/qf
+ 6IHGjH4e7ZEocI9GNpW6kqqDnZkaeAkBA5ik0jFsuVr2rROBRvnR6Uq5BSHMfDD+JH89
+ +CGA==
+X-Gm-Message-State: APjAAAW1mBLXO2tgqYmt8b/5MxP0bL3JWZZxjjUi2pXnx4jmbnS6iLoI
+ MCSDBgbm7M22cHrebyp/hVtd156pJLyviQ==
+X-Google-Smtp-Source: APXvYqyPNY0HxpmkFS2BugPedkH7nJagVTtJWTZob3IB3D1s+LswGVqukEF0jQQLBwUaPuGGqsRq3g==
+X-Received: by 2002:adf:c446:: with SMTP id a6mr34997358wrg.218.1576581585380; 
+ Tue, 17 Dec 2019 03:19:45 -0800 (PST)
 Received: from bender.baylibre.local
  (lfbn-nic-1-505-157.w90-116.abo.wanadoo.fr. [90.116.92.157])
- by smtp.gmail.com with ESMTPSA id a184sm2713113wmf.29.2019.12.17.03.19.42
+ by smtp.gmail.com with ESMTPSA id a184sm2713113wmf.29.2019.12.17.03.19.44
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 17 Dec 2019 03:19:43 -0800 (PST)
+ Tue, 17 Dec 2019 03:19:44 -0800 (PST)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: mchehab@kernel.org,
 	hans.verkuil@cisco.com
-Subject: [PATCH v2 2/5] media: meson: vdec: add helpers for lossless
- framebuffer compression buffers
-Date: Tue, 17 Dec 2019 12:19:36 +0100
-Message-Id: <20191217111939.10387-3-narmstrong@baylibre.com>
+Subject: [PATCH v2 4/5] media: meson: vdec: add VP9 input support
+Date: Tue, 17 Dec 2019 12:19:38 +0100
+Message-Id: <20191217111939.10387-5-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20191217111939.10387-1-narmstrong@baylibre.com>
 References: <20191217111939.10387-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191217_031946_356207_A4E947F9 
-X-CRM114-Status: UNSURE (   8.84  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20191217_031946_862208_51420D7B 
+X-CRM114-Status: GOOD (  16.13  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,70 +108,206 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 From: Maxime Jourdan <mjourdan@baylibre.com>
 
-Add helpers to support the lossless framebuffer compression format that
-will be used in HEVC & VP9 decoders when decoding 10bit content for
-downsampling to 8bit NV12 and later proper compressed buffer support.
+Amlogic VP9 decoder requires an additional 16-byte payload before every
+frame header.
+
+The source buffer is updated in-place, then given to the Parser FIFO DMA.
+
+The FIFO DMA copies the blocks into the 16MiB parser ring buffer, then parses
+and copies the slice into the decoder "workspace".
 
 Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- .../staging/media/meson/vdec/vdec_helpers.c   | 27 +++++++++++++++++++
- .../staging/media/meson/vdec/vdec_helpers.h   |  4 +++
- 2 files changed, 31 insertions(+)
+ drivers/staging/media/meson/vdec/esparser.c | 142 +++++++++++++++++++-
+ 1 file changed, 138 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.c b/drivers/staging/media/meson/vdec/vdec_helpers.c
-index fc59d8801643..818064b6b4d0 100644
---- a/drivers/staging/media/meson/vdec/vdec_helpers.c
-+++ b/drivers/staging/media/meson/vdec/vdec_helpers.c
-@@ -50,6 +50,33 @@ void amvdec_write_parser(struct amvdec_core *core, u32 reg, u32 val)
+diff --git a/drivers/staging/media/meson/vdec/esparser.c b/drivers/staging/media/meson/vdec/esparser.c
+index adc5c1e81a4c..aeb68f6c732a 100644
+--- a/drivers/staging/media/meson/vdec/esparser.c
++++ b/drivers/staging/media/meson/vdec/esparser.c
+@@ -52,6 +52,7 @@
+ #define PARSER_VIDEO_HOLE	0x90
+ 
+ #define SEARCH_PATTERN_LEN	512
++#define VP9_HEADER_SIZE		16
+ 
+ static DECLARE_WAIT_QUEUE_HEAD(wq);
+ static int search_done;
+@@ -74,14 +75,121 @@ static irqreturn_t esparser_isr(int irq, void *dev)
+ 	return IRQ_HANDLED;
  }
- EXPORT_SYMBOL_GPL(amvdec_write_parser);
  
-+/* 4 KiB per 64x32 block */
-+u32 amvdec_am21c_body_size(u32 width, u32 height)
++/**
++ * VP9 frame headers need to be appended by a 16-byte long
++ * Amlogic custom header
++ */
++static int vp9_update_header(struct amvdec_core *core, struct vb2_buffer *buf)
 +{
-+	u32 width_64 = ALIGN(width, 64) / 64;
-+	u32 height_32 = ALIGN(height, 32) / 32;
++	u8 *dp;
++	u8 marker;
++	int dsize;
++	int num_frames, cur_frame;
++	int cur_mag, mag, mag_ptr;
++	int frame_size[8], tot_frame_size[8];
++	int total_datasize = 0;
++	int new_frame_size;
++	unsigned char *old_header = NULL;
 +
-+	return SZ_4K * width_64 * height_32;
++	dp = (uint8_t *)vb2_plane_vaddr(buf, 0);
++	dsize = vb2_get_plane_payload(buf, 0);
++
++	if (dsize == vb2_plane_size(buf, 0)) {
++		dev_warn(core->dev, "%s: unable to update header\n", __func__);
++		return 0;
++	}
++
++	marker = dp[dsize - 1];
++	if ((marker & 0xe0) == 0xc0) {
++		num_frames = (marker & 0x7) + 1;
++		mag = ((marker >> 3) & 0x3) + 1;
++		mag_ptr = dsize - mag * num_frames - 2;
++		if (dp[mag_ptr] != marker)
++			return 0;
++
++		mag_ptr++;
++		for (cur_frame = 0; cur_frame < num_frames; cur_frame++) {
++			frame_size[cur_frame] = 0;
++			for (cur_mag = 0; cur_mag < mag; cur_mag++) {
++				frame_size[cur_frame] |=
++					(dp[mag_ptr] << (cur_mag * 8));
++				mag_ptr++;
++			}
++			if (cur_frame == 0)
++				tot_frame_size[cur_frame] =
++					frame_size[cur_frame];
++			else
++				tot_frame_size[cur_frame] =
++					tot_frame_size[cur_frame - 1] +
++					frame_size[cur_frame];
++			total_datasize += frame_size[cur_frame];
++		}
++	} else {
++		num_frames = 1;
++		frame_size[0] = dsize;
++		tot_frame_size[0] = dsize;
++		total_datasize = dsize;
++	}
++
++	new_frame_size = total_datasize + num_frames * VP9_HEADER_SIZE;
++
++	if (new_frame_size >= vb2_plane_size(buf, 0)) {
++		dev_warn(core->dev, "%s: unable to update header\n", __func__);
++		return 0;
++	}
++
++	for (cur_frame = num_frames - 1; cur_frame >= 0; cur_frame--) {
++		int framesize = frame_size[cur_frame];
++		int framesize_header = framesize + 4;
++		int oldframeoff = tot_frame_size[cur_frame] - framesize;
++		int outheaderoff =  oldframeoff + cur_frame * VP9_HEADER_SIZE;
++		u8 *fdata = dp + outheaderoff;
++		u8 *old_framedata = dp + oldframeoff;
++
++		memmove(fdata + VP9_HEADER_SIZE, old_framedata, framesize);
++
++		fdata[0] = (framesize_header >> 24) & 0xff;
++		fdata[1] = (framesize_header >> 16) & 0xff;
++		fdata[2] = (framesize_header >> 8) & 0xff;
++		fdata[3] = (framesize_header >> 0) & 0xff;
++		fdata[4] = ((framesize_header >> 24) & 0xff) ^ 0xff;
++		fdata[5] = ((framesize_header >> 16) & 0xff) ^ 0xff;
++		fdata[6] = ((framesize_header >> 8) & 0xff) ^ 0xff;
++		fdata[7] = ((framesize_header >> 0) & 0xff) ^ 0xff;
++		fdata[8] = 0;
++		fdata[9] = 0;
++		fdata[10] = 0;
++		fdata[11] = 1;
++		fdata[12] = 'A';
++		fdata[13] = 'M';
++		fdata[14] = 'L';
++		fdata[15] = 'V';
++
++		if (!old_header) {
++			/* nothing */
++		} else if (old_header > fdata + 16 + framesize) {
++			dev_dbg(core->dev, "%s: data has gaps, setting to 0\n",
++				__func__);
++			memset(fdata + 16 + framesize, 0,
++			       (old_header - fdata + 16 + framesize));
++		} else if (old_header < fdata + 16 + framesize) {
++			dev_err(core->dev, "%s: data overwritten\n", __func__);
++		}
++		old_header = fdata;
++	}
++
++	return new_frame_size;
 +}
-+EXPORT_SYMBOL_GPL(amvdec_am21c_body_size);
 +
-+/* 32 bytes per 128x64 block */
-+u32 amvdec_am21c_head_size(u32 width, u32 height)
-+{
-+	u32 width_128 = ALIGN(width, 128) / 128;
-+	u32 height_64 = ALIGN(height, 64) / 64;
-+
-+	return 32 * width_128 * height_64;
-+}
-+EXPORT_SYMBOL_GPL(amvdec_am21c_head_size);
-+
-+u32 amvdec_am21c_size(u32 width, u32 height)
-+{
-+	return ALIGN(amvdec_am21c_body_size(width, height) +
-+		     amvdec_am21c_head_size(width, height), SZ_64K);
-+}
-+EXPORT_SYMBOL_GPL(amvdec_am21c_size);
-+
- static int canvas_alloc(struct amvdec_session *sess, u8 *canvas_id)
+ /* Pad the packet to at least 4KiB bytes otherwise the VDEC unit won't trigger
+  * ISRs.
+  * Also append a start code 000001ff at the end to trigger
+  * the ESPARSER interrupt.
+  */
+-static u32 esparser_pad_start_code(struct amvdec_core *core, struct vb2_buffer *vb)
++static u32 esparser_pad_start_code(struct amvdec_core *core,
++				   struct vb2_buffer *vb,
++				   u32 payload_size)
  {
- 	int ret;
-diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.h b/drivers/staging/media/meson/vdec/vdec_helpers.h
-index 165e6293ffba..cfaed52ab526 100644
---- a/drivers/staging/media/meson/vdec/vdec_helpers.h
-+++ b/drivers/staging/media/meson/vdec/vdec_helpers.h
-@@ -27,6 +27,10 @@ void amvdec_clear_dos_bits(struct amvdec_core *core, u32 reg, u32 val);
- u32 amvdec_read_parser(struct amvdec_core *core, u32 reg);
- void amvdec_write_parser(struct amvdec_core *core, u32 reg, u32 val);
+-	u32 payload_size = vb2_get_plane_payload(vb, 0);
+ 	u32 pad_size = 0;
+ 	u8 *vaddr = vb2_plane_vaddr(vb, 0);
  
-+u32 amvdec_am21c_body_size(u32 width, u32 height);
-+u32 amvdec_am21c_head_size(u32 width, u32 height);
-+u32 amvdec_am21c_size(u32 width, u32 height);
+@@ -186,13 +294,27 @@ esparser_queue(struct amvdec_session *sess, struct vb2_v4l2_buffer *vbuf)
+ 	int ret;
+ 	struct vb2_buffer *vb = &vbuf->vb2_buf;
+ 	struct amvdec_core *core = sess->core;
++	struct amvdec_codec_ops *codec_ops = sess->fmt_out->codec_ops;
+ 	u32 payload_size = vb2_get_plane_payload(vb, 0);
+ 	dma_addr_t phy = vb2_dma_contig_plane_dma_addr(vb, 0);
++	u32 num_dst_bufs = 0;
+ 	u32 offset;
+ 	u32 pad_size;
+ 
+-	if (esparser_vififo_get_free_space(sess) < payload_size)
++	if (sess->fmt_out->pixfmt == V4L2_PIX_FMT_VP9) {
++		if (codec_ops->num_pending_bufs)
++			num_dst_bufs = codec_ops->num_pending_bufs(sess);
 +
- /**
-  * amvdec_dst_buf_done_idx() - Signal that a buffer is done decoding
-  *
++		num_dst_bufs += v4l2_m2m_num_dst_bufs_ready(sess->m2m_ctx);
++		if (sess->fmt_out->pixfmt == V4L2_PIX_FMT_VP9)
++			num_dst_bufs -= 2;
++
++		if (esparser_vififo_get_free_space(sess) < payload_size ||
++		    atomic_read(&sess->esparser_queued_bufs) >= num_dst_bufs)
++			return -EAGAIN;
++	} else if (esparser_vififo_get_free_space(sess) < payload_size) {
+ 		return -EAGAIN;
++	}
+ 
+ 	v4l2_m2m_src_buf_remove_by_buf(sess->m2m_ctx, vbuf);
+ 
+@@ -206,7 +328,19 @@ esparser_queue(struct amvdec_session *sess, struct vb2_v4l2_buffer *vbuf)
+ 	vbuf->field = V4L2_FIELD_NONE;
+ 	vbuf->sequence = sess->sequence_out++;
+ 
+-	pad_size = esparser_pad_start_code(core, vb);
++	if (sess->fmt_out->pixfmt == V4L2_PIX_FMT_VP9) {
++		payload_size = vp9_update_header(core, vb);
++
++		/* If unable to alter buffer to add headers */
++		if (payload_size == 0) {
++			amvdec_remove_ts(sess, vb->timestamp);
++			v4l2_m2m_buf_done(vbuf, VB2_BUF_STATE_ERROR);
++
++			return 0;
++		}
++	}
++
++	pad_size = esparser_pad_start_code(core, vb, payload_size);
+ 	ret = esparser_write_data(core, phy, payload_size + pad_size);
+ 
+ 	if (ret <= 0) {
 -- 
 2.22.0
 
