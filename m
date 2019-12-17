@@ -2,66 +2,91 @@ Return-Path: <SRS0=0C1t=2H=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 70E14C43603
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Dec 2019 09:36:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C7A1AC43603
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Dec 2019 11:20:29 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 44AFF207FF
-	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Dec 2019 09:36:01 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 96BD520733
+	for <linux-amlogic@archiver.kernel.org>; Tue, 17 Dec 2019 11:20:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="btCP15hL"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 44AFF207FF
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="A1gSp7L4";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="JkP2cBOd"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 96BD520733
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=gCmuGeXC/fFGCrlwQM7/sD7dOIIw6YNO8P8U47Iwn1w=; b=btCP15hLETZxt6K4rccFoG28m
-	sI/tccKjSLauR+THKEgmPr1ee2m0xB2eaUSEF5QZaX4o9bVMQd2Zy7SLwjzBaKR+357L/WFZVKZsK
-	BtHDTbt8ZYajG7q/mvH5zEbJEJZSSz+EuSm5xabD0ps62il/AQK9aNYiU0600heVBcxmkpWyinXYm
-	d2GB5gEp56MEfyYK4SoCgLg081lB77IoLVczbjhcfC4w9+0o7hfNOXynU2DB/YOVcFmreaJBDj86Y
-	Nc/Ne2xMTXCwqQA0F0tLNWsQpsFhcAKXdTQhBJbmtIT0zRvmc/J1dWLY/bT0AehWLvyNhEwGljTMf
-	Lz6uDK4hA==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=oG5rYh9VRwdLCK8RMqVKgxTbG53A++KqphGWc5FJ4zc=; b=A1gSp7L4I2eH+O
+	Z/mFqxYHNZtSauUG2J9Ry6a0XAKCQbYyW2ZqinHX7yOuMjfaOv0XCHLu2d5kRCG2JY6Yw9zhr44FF
+	SiJ7FrpMYt/NcIjkNB3jjai1uauleNHpJnU1LZ9nWz6wwfnrVcLZNzM/vnQlsvUrIj94Xt8nYDbhN
+	ByDzCQ2lsmIK9bYFMsESbl8+7VHlQ2TnaMIxkftwzLXr3eK0SLF/WfRYNM9aBZDwKUjGJAmXIe3SO
+	6wwHqLAqEmgzg5G+DtH4H4jAhR5ISfQ2byLmgPruW6SgGV2T1otjMoBCBvlfwbRpQQbElas7yQmDr
+	m9auQL13kxfuI/rprmOg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ih9Gm-0007Cq-7s; Tue, 17 Dec 2019 09:35:56 +0000
-Received: from mail-sz.amlogic.com ([211.162.65.117])
+	id 1ihAtn-0005oj-7e; Tue, 17 Dec 2019 11:20:19 +0000
+Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ih9GZ-00072F-CR; Tue, 17 Dec 2019 09:35:44 +0000
-Received: from [10.28.39.99] (10.28.39.99) by mail-sz.amlogic.com (10.28.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Tue, 17 Dec
- 2019 17:36:17 +0800
-Subject: Re: [PATCH v4 3/6] clk: meson: eeclk: refactor eeclk common driver to
- support A1
-To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
- <narmstrong@baylibre.com>
-References: <20191206074052.15557-1-jian.hu@amlogic.com>
- <20191206074052.15557-4-jian.hu@amlogic.com>
- <1j7e31lub4.fsf@starbuckisacylon.baylibre.com>
-From: Jian Hu <jian.hu@amlogic.com>
-Message-ID: <4cb9088c-bacb-ea3b-df43-103ce8902376@amlogic.com>
-Date: Tue, 17 Dec 2019 17:36:17 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.1
+ id 1ihAtF-0004K8-FH
+ for linux-amlogic@lists.infradead.org; Tue, 17 Dec 2019 11:19:48 +0000
+Received: by mail-wm1-x341.google.com with SMTP id f129so2686703wmf.2
+ for <linux-amlogic@lists.infradead.org>; Tue, 17 Dec 2019 03:19:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=nq23CNv+1Mccfg53lZf4BbmhYzh0ats8L7b+6kh1lhM=;
+ b=JkP2cBOdB1jizFRg1waiD4qV7ueEblfSlWDYkogvCG9zIEqtulTxydzio6qhq9ONoy
+ k4KKwRtj8XYwmjolQg1cgjCxQTWEck5bqRQp9Lv6/VgtqUITpWapRM75azFpkFzQin7m
+ rX7hfKpVrVGqQB3t0LtAqV1km8r2HQXp6/DaBhgv13tm/DrkNd/TposlDwEMG395qO+y
+ r37a8fSNxAv0dLHEx8kN5nY2XD3C0JgwEp8ESHOzdPFsQ5tTjfnu26uHAZis+lGPNAwH
+ 7cAFBcKAc3mMk3Wc+I5l1ca0JifPkUqH0XrRjK/HaP//pO6QZnjOq7AqikGQ9Vkqu3oa
+ wmqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=nq23CNv+1Mccfg53lZf4BbmhYzh0ats8L7b+6kh1lhM=;
+ b=slKPAcHXhipsoL+J06Hk6U8JW7kPUbhCAIMuGnEufvd+Mlw5lk6Jqj6NJZzWnKimrm
+ mWqAQPnzIHMCqWaOkc1AcwHm6v4jNPcJWdaP9FqfFEwXaXEjef8ALwxdt2gB3w4Lj6E+
+ wGZ6HgCWMymYKNfGfDKYnLsadNv4S39pzQxAmVKtsRHF0Odp7Hl08nus2QE+BIITEGgr
+ C9FqAkJutdv3ALqApSCPXeqvar8xDKiCsbEdHJhAFQiRY7cIjB17WRGIG/8tdbhOZYgM
+ 7fA/4yUm6WrNJ5N2Rf9kifF1+T6xbWphgFh5dG9QTq2ToYYcPUdDzbxZiQ6Fx5nPBVj6
+ hp8g==
+X-Gm-Message-State: APjAAAVAkQy6Y7Y7XX9LQSEy2Cjb767nxH4UvxYHNPLP4H6zzW/I5qP5
+ Ie+Fk8WAO7FvwMhvX6sH83ESsg==
+X-Google-Smtp-Source: APXvYqy9goZ1j0cNPEceJSpdmJLFMACjHYGJdKCXZXrKYvBR8MdlhGzlXmaLhM56FCaykJyKN3NTxw==
+X-Received: by 2002:a1c:9a44:: with SMTP id c65mr5171515wme.30.1576581582745; 
+ Tue, 17 Dec 2019 03:19:42 -0800 (PST)
+Received: from bender.baylibre.local
+ (lfbn-nic-1-505-157.w90-116.abo.wanadoo.fr. [90.116.92.157])
+ by smtp.gmail.com with ESMTPSA id a184sm2713113wmf.29.2019.12.17.03.19.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 17 Dec 2019 03:19:42 -0800 (PST)
+From: Neil Armstrong <narmstrong@baylibre.com>
+To: mchehab@kernel.org,
+	hans.verkuil@cisco.com
+Subject: [PATCH v2 1/5] media: meson: vdec: align stride on 32 bytes
+Date: Tue, 17 Dec 2019 12:19:35 +0100
+Message-Id: <20191217111939.10387-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20191217111939.10387-1-narmstrong@baylibre.com>
+References: <20191217111939.10387-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <1j7e31lub4.fsf@starbuckisacylon.baylibre.com>
-Content-Language: en-US
-X-Originating-IP: [10.28.39.99]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191217_013543_424062_FD456B31 
-X-CRM114-Status: GOOD (  15.55  )
+X-CRM114-CacheID: sfid-20191217_031945_509319_969337B5 
+X-CRM114-Status: UNSURE (   9.93  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,145 +98,85 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Victor Wan <victor.wan@amlogic.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
- Stephen Boyd <sboyd@kernel.org>, Qiufang Dai <qiufang.dai@amlogic.com>,
- Chandle Zou <chandle.zou@amlogic.com>, linux-amlogic@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, linux-media@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Neil Armstrong <narmstrong@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+The HEVC/VP9 aligns the plane stride on 32, so align the planes stride
+for all codecs to 32 to satisfy HEVC/VP9 decoding using the "HEVC" HW.
 
+This fixes VP9 decoding of streams with following (not limited) widths:
+- 264
+ -288
+- 350
+- 352
+- 472
+- 480
+- 528
+- 600
+- 720
+- 800
+- 848
+- 1440
 
-On 2019/12/12 18:19, Jerome Brunet wrote:
-> 
-> On Fri 06 Dec 2019 at 08:40, Jian Hu <jian.hu@amlogic.com> wrote:
-> 
->> Introduce a common probe function for A1 series, the way to get
->> regmap is different between A1 series and the previous series.
->> The register region is only for one clock driver, the function of
->> meson_eeclkc_probe is not fit for A1, So it is necessary to
->> introduce a new function.
-> 
-> Please drop this patch
-> 
-> #1 you are patching the EE driver for something that is no longer an EE
->   driver
-> #2 Let's get the basics right, you can move (re)factoring afterward
-> 
-> Your probe function is simple enough. Just properly write it in each
-> driver for now.
-OK, I will realize it in each driver.
-> 
->>
->> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
->> ---
->>   drivers/clk/meson/meson-eeclk.c | 59 +++++++++++++++++++++++++++------
->>   drivers/clk/meson/meson-eeclk.h |  1 +
->>   2 files changed, 50 insertions(+), 10 deletions(-)
->>
->> diff --git a/drivers/clk/meson/meson-eeclk.c b/drivers/clk/meson/meson-eeclk.c
->> index a7cb1e7aedc4..12ceb1caabd8 100644
->> --- a/drivers/clk/meson/meson-eeclk.c
->> +++ b/drivers/clk/meson/meson-eeclk.c
->> @@ -13,25 +13,37 @@
->>   #include "clk-regmap.h"
->>   #include "meson-eeclk.h"
->>   
->> -int meson_eeclkc_probe(struct platform_device *pdev)
->> +static struct regmap_config clkc_regmap_config = {
->> +	.reg_bits       = 32,
->> +	.val_bits       = 32,
->> +	.reg_stride     = 4,
->> +};
->> +
->> +static struct regmap *meson_regmap_resource(struct platform_device *pdev)
->> +{
->> +	struct resource *res;
->> +	void __iomem *base;
->> +	struct device *dev = &pdev->dev;
->> +
->> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->> +
->> +	base = devm_ioremap_resource(dev, res);
->> +	if (IS_ERR(base))
->> +		return ERR_CAST(base);
->> +
->> +	return devm_regmap_init_mmio(dev, base, &clkc_regmap_config);
->> +}
->> +
->> +static int meson_common_probe(struct platform_device *pdev, struct regmap *map)
->>   {
->>   	const struct meson_eeclkc_data *data;
->>   	struct device *dev = &pdev->dev;
->> -	struct regmap *map;
->>   	int ret, i;
->>   
->>   	data = of_device_get_match_data(dev);
->>   	if (!data)
->>   		return -EINVAL;
->>   
->> -	/* Get the hhi system controller node */
->> -	map = syscon_node_to_regmap(of_get_parent(dev->of_node));
->> -	if (IS_ERR(map)) {
->> -		dev_err(dev,
->> -			"failed to get HHI regmap\n");
->> -		return PTR_ERR(map);
->> -	}
->> -
->>   	if (data->init_count)
->>   		regmap_multi_reg_write(map, data->init_regs, data->init_count);
->>   
->> @@ -54,3 +66,30 @@ int meson_eeclkc_probe(struct platform_device *pdev)
->>   	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
->>   					   data->hw_onecell_data);
->>   }
->> +
->> +int meson_eeclkc_probe(struct platform_device *pdev)
->> +{
->> +	struct device *dev = &pdev->dev;
->> +	struct regmap *map;
->> +
->> +	/* Get the hhi system controller node */
->> +	map = syscon_node_to_regmap(of_get_parent(dev->of_node));
->> +	if (IS_ERR(map)) {
->> +		dev_err(dev,
->> +			"failed to get HHI regmap\n");
->> +		return PTR_ERR(map);
->> +	}
->> +
->> +	return meson_common_probe(pdev, map);
->> +}
->> +
->> +int meson_clkc_probe(struct platform_device *pdev)
->> +{
->> +	struct regmap *map;
->> +
->> +	map = meson_regmap_resource(pdev);
->> +	if (IS_ERR(map))
->> +		return PTR_ERR(map);
->> +
->> +	return meson_common_probe(pdev, map);
->> +}
->> diff --git a/drivers/clk/meson/meson-eeclk.h b/drivers/clk/meson/meson-eeclk.h
->> index 77316207bde1..a2e9ab3a4f6b 100644
->> --- a/drivers/clk/meson/meson-eeclk.h
->> +++ b/drivers/clk/meson/meson-eeclk.h
->> @@ -21,5 +21,6 @@ struct meson_eeclkc_data {
->>   };
->>   
->>   int meson_eeclkc_probe(struct platform_device *pdev);
->> +int meson_clkc_probe(struct platform_device *pdev);
->>   
->>   #endif /* __MESON_CLKC_H */
-> 
-> .
-> 
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/staging/media/meson/vdec/vdec.c         | 10 +++++-----
+ drivers/staging/media/meson/vdec/vdec_helpers.c |  4 ++--
+ 2 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/staging/media/meson/vdec/vdec.c b/drivers/staging/media/meson/vdec/vdec.c
+index f03d9eba6e23..bd59d32b92ae 100644
+--- a/drivers/staging/media/meson/vdec/vdec.c
++++ b/drivers/staging/media/meson/vdec/vdec.c
+@@ -525,20 +525,20 @@ vdec_try_fmt_common(struct amvdec_session *sess, u32 size,
+ 		memset(pfmt[1].reserved, 0, sizeof(pfmt[1].reserved));
+ 		if (pixmp->pixelformat == V4L2_PIX_FMT_NV12M) {
+ 			pfmt[0].sizeimage = output_size;
+-			pfmt[0].bytesperline = ALIGN(pixmp->width, 64);
++			pfmt[0].bytesperline = ALIGN(pixmp->width, 32);
+ 
+ 			pfmt[1].sizeimage = output_size / 2;
+-			pfmt[1].bytesperline = ALIGN(pixmp->width, 64);
++			pfmt[1].bytesperline = ALIGN(pixmp->width, 32);
+ 			pixmp->num_planes = 2;
+ 		} else if (pixmp->pixelformat == V4L2_PIX_FMT_YUV420M) {
+ 			pfmt[0].sizeimage = output_size;
+-			pfmt[0].bytesperline = ALIGN(pixmp->width, 64);
++			pfmt[0].bytesperline = ALIGN(pixmp->width, 32);
+ 
+ 			pfmt[1].sizeimage = output_size / 4;
+-			pfmt[1].bytesperline = ALIGN(pixmp->width, 64) / 2;
++			pfmt[1].bytesperline = ALIGN(pixmp->width, 32) / 2;
+ 
+ 			pfmt[2].sizeimage = output_size / 2;
+-			pfmt[2].bytesperline = ALIGN(pixmp->width, 64) / 2;
++			pfmt[2].bytesperline = ALIGN(pixmp->width, 32) / 2;
+ 			pixmp->num_planes = 3;
+ 		}
+ 	}
+diff --git a/drivers/staging/media/meson/vdec/vdec_helpers.c b/drivers/staging/media/meson/vdec/vdec_helpers.c
+index ff4333074197..fc59d8801643 100644
+--- a/drivers/staging/media/meson/vdec/vdec_helpers.c
++++ b/drivers/staging/media/meson/vdec/vdec_helpers.c
+@@ -154,8 +154,8 @@ int amvdec_set_canvases(struct amvdec_session *sess,
+ {
+ 	struct v4l2_m2m_buffer *buf;
+ 	u32 pixfmt = sess->pixfmt_cap;
+-	u32 width = ALIGN(sess->width, 64);
+-	u32 height = ALIGN(sess->height, 64);
++	u32 width = ALIGN(sess->width, 32);
++	u32 height = ALIGN(sess->height, 32);
+ 	u32 reg_cur = reg_base[0];
+ 	u32 reg_num_cur = 0;
+ 	u32 reg_base_cur = 0;
+-- 
+2.22.0
+
 
 _______________________________________________
 linux-amlogic mailing list
