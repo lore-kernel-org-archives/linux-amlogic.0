@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-12.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8F194C43603
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Dec 2019 20:05:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BB0E7C2D0BF
+	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Dec 2019 20:05:55 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 57831227BF
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Dec 2019 20:05:53 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8DCA02176D
+	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Dec 2019 20:05:55 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YIrcu35I"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 57831227BF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pZvzCikU"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8DCA02176D
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,37 +25,37 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:
 	In-Reply-To:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	References:List-Owner; bh=YUP8DCh8yYzBdpnqiPTBSxffX1nJpC1IKWoOFFUul9g=; b=YIr
-	cu35I5f7IkR/LO+hHuIuCXYYQI2/el1C/Z+BKZq5L6pJTV9LnEDF3sl1feeyAqMUvxnTbfzLvAnjP
-	1Uvi+31b+R6Wb/KYz75MvdnsBvE9YE+TyoZL9x8UKh+SFlNFh0nEQrBR/1Bd0y2zmltLg0WAQkWWA
-	bIBRR/zJBnFSG5uCH2l7Vcvqx44GlNWj5rDSMPg/vLdHYeADqW62Wd9aSqhLh5urXOkuqgWetMr9j
-	CrarN1mefmt3ZMTMKL8xLZZ+2PNO0l5QliRPCOm0stc85HT+9eyKln7p0Hl9tQf/5EM+66uvuLe9r
-	eqXC+SPQjQUmQVFEF7fBnYzf04MFCyA==;
+	References:List-Owner; bh=eFz2ZiBFbTzbg4FTmd2++AhkO7dSqKDb1GYAleGZH8k=; b=pZv
+	zCikUe2XaExo2N4ONHMs8KVlI6t4athRptziI5JX8BCbN/VDdRdHnSKiGLdaB3GYloSnXDTenY0MS
+	5kSbiPdDK5DeGLxR/pK2Y2YRZSCt0ojXuoOtzIBSDRIHQ0VyLvQf1ljp8zotK/6w3zr8NPrYmAvy3
+	h3xQ8BmnUPynCCoT2A//ISBd5KpkXWFzwokVDCOzqrXizytCEFTekaW+jqD7mKqlSTT+gZIQa7Tvy
+	uiWYZ3hm9jfEnmgGueuooocCcC5XN3IVPit19riL6aRr2vOX1w2Y7NokfSqyRobrxlEeB9BhIpNDm
+	g8esS1ANJA41iB0L2XRYeu4Is0zMbKg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ihfZs-0006Wq-G9; Wed, 18 Dec 2019 20:05:48 +0000
+	id 1ihfZv-0006ZW-SG; Wed, 18 Dec 2019 20:05:51 +0000
 Received: from foss.arm.com ([217.140.110.172])
  by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ihfZo-0006Sj-5P
- for linux-amlogic@lists.infradead.org; Wed, 18 Dec 2019 20:05:46 +0000
+ id 1ihfZs-0006Wi-F8
+ for linux-amlogic@lists.infradead.org; Wed, 18 Dec 2019 20:05:50 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 004B811B3;
- Wed, 18 Dec 2019 12:05:43 -0800 (PST)
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E714811B3;
+ Wed, 18 Dec 2019 12:05:47 -0800 (PST)
 Received: from localhost (unknown [10.37.6.21])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 717933F67D;
- Wed, 18 Dec 2019 12:05:42 -0800 (PST)
-Date: Wed, 18 Dec 2019 20:05:40 +0000
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 65D8D3F67D;
+ Wed, 18 Dec 2019 12:05:47 -0800 (PST)
+Date: Wed, 18 Dec 2019 20:05:45 +0000
 From: Mark Brown <broonie@kernel.org>
 To: Jerome Brunet <jbrunet@baylibre.com>
-Subject: Applied "ASoC: meson: axg-fifo: fix fifo threshold setup" to the asoc
- tree
-In-Reply-To: <20191218172420.1199117-2-jbrunet@baylibre.com>
-Message-Id: <applied-20191218172420.1199117-2-jbrunet@baylibre.com>
+Subject: Applied "ASoC: meson: axg-fifo: add fifo depth to the bindings
+ documentation" to the asoc tree
+In-Reply-To: <20191218172420.1199117-3-jbrunet@baylibre.com>
+Message-Id: <applied-20191218172420.1199117-3-jbrunet@baylibre.com>
 X-Patchwork-Hint: ignore
 X-Bad-Reply: In-Reply-To but no 'Re:' in Subject.
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191218_120544_331792_BF5A7432 
-X-CRM114-Status: GOOD (  21.44  )
+X-CRM114-CacheID: sfid-20191218_120548_585179_0D3C438B 
+X-CRM114-Status: GOOD (  12.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,7 +70,7 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
 Cc: devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
  Kevin Hilman <khilman@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>,
  linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
- Alden DSouza <aldend@google.com>, linux-amlogic@lists.infradead.org
+ linux-amlogic@lists.infradead.org
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -79,7 +79,7 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 The patch
 
-   ASoC: meson: axg-fifo: fix fifo threshold setup
+   ASoC: meson: axg-fifo: add fifo depth to the bindings documentation
 
 has been applied to the asoc tree at
 
@@ -104,249 +104,43 @@ to this mail.
 Thanks,
 Mark
 
-From 864cee90d4bd870e5d5e5a0b1a6f055f4f951350 Mon Sep 17 00:00:00 2001
+From fb522dbb4531c14193115a09905c6c31b37dbfc5 Mon Sep 17 00:00:00 2001
 From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Wed, 18 Dec 2019 18:24:17 +0100
-Subject: [PATCH] ASoC: meson: axg-fifo: fix fifo threshold setup
+Date: Wed, 18 Dec 2019 18:24:18 +0100
+Subject: [PATCH] ASoC: meson: axg-fifo: add fifo depth to the bindings
+ documentation
 
-On TODDR sm1, the fifo threshold register field is slightly different
-compared to the other SoCs. This leads to the fifo A being flushed to
-memory every 8kB. If the period is smaller than that, several periods
-are pushed to memory and notified at once. This is not ideal.
+Add a new property with the depth of the fifo in bytes. This is useful
+since some instance of the fifo, even on the same SoC, may have different
+depth. The depth is useful is set some parameters of the fifo.
 
-Fix the register field update. With this, the fifos are flushed every
-128B. We could still do better, like adapt the threshold depending on
-the period size, but at least it consistent across the different
-SoC/fifos
-
-Fixes: 5ac825c3d85e ("ASoC: meson: axg-toddr: add sm1 support")
-Reported-by: Alden DSouza <aldend@google.com>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Link: https://lore.kernel.org/r/20191218172420.1199117-2-jbrunet@baylibre.com
+Link: https://lore.kernel.org/r/20191218172420.1199117-3-jbrunet@baylibre.com
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- sound/soc/meson/axg-fifo.c  | 27 +++++++++++++++++++++++++--
- sound/soc/meson/axg-fifo.h  |  6 ++++--
- sound/soc/meson/axg-frddr.c | 24 ++++++++++++------------
- sound/soc/meson/axg-toddr.c | 21 +++++++++------------
- 4 files changed, 50 insertions(+), 28 deletions(-)
+ Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/sound/soc/meson/axg-fifo.c b/sound/soc/meson/axg-fifo.c
-index 772eda857019..4365086c9a31 100644
---- a/sound/soc/meson/axg-fifo.c
-+++ b/sound/soc/meson/axg-fifo.c
-@@ -113,8 +113,10 @@ int axg_fifo_pcm_hw_params(struct snd_soc_component *component,
- {
- 	struct snd_pcm_runtime *runtime = ss->runtime;
- 	struct axg_fifo *fifo = axg_fifo_data(ss);
-+	unsigned int burst_num, period, threshold;
- 	dma_addr_t end_ptr;
--	unsigned int burst_num;
-+
-+	period = params_period_bytes(params);
+diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
+index 3080979350a0..fa4545ed81ca 100644
+--- a/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
++++ b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
+@@ -17,6 +17,9 @@ Required properties:
+   * "arb" : memory ARB line (required)
+   * "rst" : dedicated device reset line (optional)
+ - #sound-dai-cells: must be 0.
++- amlogic,fifo-depth: The size of the controller's fifo in bytes. This
++  		      is useful for determining certain configuration such
++		      as the flush threshold of the fifo
  
- 	/* Setup dma memory pointers */
- 	end_ptr = runtime->dma_addr + runtime->dma_bytes - AXG_FIFO_BURST;
-@@ -122,9 +124,25 @@ int axg_fifo_pcm_hw_params(struct snd_soc_component *component,
- 	regmap_write(fifo->map, FIFO_FINISH_ADDR, end_ptr);
+ Example of FRDDR A on the A113 SoC:
  
- 	/* Setup interrupt periodicity */
--	burst_num = params_period_bytes(params) / AXG_FIFO_BURST;
-+	burst_num = period / AXG_FIFO_BURST;
- 	regmap_write(fifo->map, FIFO_INT_ADDR, burst_num);
- 
-+	/*
-+	 * Start the fifo request on the smallest of the following:
-+	 * - Half the fifo size
-+	 * - Half the period size
-+	 */
-+	threshold = min(period / 2,
-+			(unsigned int)AXG_FIFO_MIN_DEPTH / 2);
-+
-+	/*
-+	 * With the threshold in bytes, register value is:
-+	 * V = (threshold / burst) - 1
-+	 */
-+	threshold /= AXG_FIFO_BURST;
-+	regmap_field_write(fifo->field_threshold,
-+			   threshold ? threshold - 1 : 0);
-+
- 	/* Enable block count irq */
- 	regmap_update_bits(fifo->map, FIFO_CTRL0,
- 			   CTRL0_INT_EN(FIFO_INT_COUNT_REPEAT),
-@@ -347,6 +365,11 @@ int axg_fifo_probe(struct platform_device *pdev)
- 		return fifo->irq;
- 	}
- 
-+	fifo->field_threshold =
-+		devm_regmap_field_alloc(dev, fifo->map, data->field_threshold);
-+	if (IS_ERR(fifo->field_threshold))
-+		return PTR_ERR(fifo->field_threshold);
-+
- 	return devm_snd_soc_register_component(dev, data->component_drv,
- 					       data->dai_drv, 1);
- }
-diff --git a/sound/soc/meson/axg-fifo.h b/sound/soc/meson/axg-fifo.h
-index cf928d43b558..c442195ba191 100644
---- a/sound/soc/meson/axg-fifo.h
-+++ b/sound/soc/meson/axg-fifo.h
-@@ -9,7 +9,9 @@
- 
- struct clk;
- struct platform_device;
-+struct reg_field;
- struct regmap;
-+struct regmap_field;
- struct reset_control;
- 
- struct snd_soc_component_driver;
-@@ -50,8 +52,6 @@ struct snd_soc_pcm_runtime;
- #define  CTRL1_STATUS2_SEL_MASK		GENMASK(11, 8)
- #define  CTRL1_STATUS2_SEL(x)		((x) << 8)
- #define   STATUS2_SEL_DDR_READ		0
--#define  CTRL1_THRESHOLD_MASK		GENMASK(23, 16)
--#define  CTRL1_THRESHOLD(x)		((x) << 16)
- #define  CTRL1_FRDDR_DEPTH_MASK		GENMASK(31, 24)
- #define  CTRL1_FRDDR_DEPTH(x)		((x) << 24)
- #define FIFO_START_ADDR			0x08
-@@ -67,12 +67,14 @@ struct axg_fifo {
- 	struct regmap *map;
- 	struct clk *pclk;
- 	struct reset_control *arb;
-+	struct regmap_field *field_threshold;
- 	int irq;
+@@ -27,4 +30,5 @@ frddr_a: audio-controller@1c0 {
+ 	interrupts = <GIC_SPI 88 IRQ_TYPE_EDGE_RISING>;
+ 	clocks = <&clkc_audio AUD_CLKID_FRDDR_A>;
+ 	resets = <&arb AXG_ARB_FRDDR_A>;
++	fifo-depth = <512>;
  };
- 
- struct axg_fifo_match_data {
- 	const struct snd_soc_component_driver *component_drv;
- 	struct snd_soc_dai_driver *dai_drv;
-+	struct reg_field field_threshold;
- };
- 
- int axg_fifo_pcm_open(struct snd_soc_component *component,
-diff --git a/sound/soc/meson/axg-frddr.c b/sound/soc/meson/axg-frddr.c
-index 0a7d41257a38..df104303351f 100644
---- a/sound/soc/meson/axg-frddr.c
-+++ b/sound/soc/meson/axg-frddr.c
-@@ -50,7 +50,7 @@ static int axg_frddr_dai_startup(struct snd_pcm_substream *substream,
- 				 struct snd_soc_dai *dai)
- {
- 	struct axg_fifo *fifo = snd_soc_dai_get_drvdata(dai);
--	unsigned int fifo_depth, fifo_threshold;
-+	unsigned int fifo_depth;
- 	int ret;
- 
- 	/* Enable pclk to access registers and clock the fifo ip */
-@@ -68,11 +68,8 @@ static int axg_frddr_dai_startup(struct snd_pcm_substream *substream,
- 	 * Depth and threshold are zero based.
- 	 */
- 	fifo_depth = AXG_FIFO_MIN_CNT - 1;
--	fifo_threshold = (AXG_FIFO_MIN_CNT / 2) - 1;
--	regmap_update_bits(fifo->map, FIFO_CTRL1,
--			   CTRL1_FRDDR_DEPTH_MASK | CTRL1_THRESHOLD_MASK,
--			   CTRL1_FRDDR_DEPTH(fifo_depth) |
--			   CTRL1_THRESHOLD(fifo_threshold));
-+	regmap_update_bits(fifo->map, FIFO_CTRL1, CTRL1_FRDDR_DEPTH_MASK,
-+			   CTRL1_FRDDR_DEPTH(fifo_depth));
- 
- 	return 0;
- }
-@@ -158,8 +155,9 @@ static const struct snd_soc_component_driver axg_frddr_component_drv = {
- };
- 
- static const struct axg_fifo_match_data axg_frddr_match_data = {
--	.component_drv	= &axg_frddr_component_drv,
--	.dai_drv	= &axg_frddr_dai_drv
-+	.field_threshold	= REG_FIELD(FIFO_CTRL1, 16, 23),
-+	.component_drv		= &axg_frddr_component_drv,
-+	.dai_drv		= &axg_frddr_dai_drv
- };
- 
- static const struct snd_soc_dai_ops g12a_frddr_ops = {
-@@ -281,8 +279,9 @@ static const struct snd_soc_component_driver g12a_frddr_component_drv = {
- };
- 
- static const struct axg_fifo_match_data g12a_frddr_match_data = {
--	.component_drv	= &g12a_frddr_component_drv,
--	.dai_drv	= &g12a_frddr_dai_drv
-+	.field_threshold	= REG_FIELD(FIFO_CTRL1, 16, 23),
-+	.component_drv		= &g12a_frddr_component_drv,
-+	.dai_drv		= &g12a_frddr_dai_drv
- };
- 
- /* On SM1, the output selection in on CTRL2 */
-@@ -350,8 +349,9 @@ static const struct snd_soc_component_driver sm1_frddr_component_drv = {
- };
- 
- static const struct axg_fifo_match_data sm1_frddr_match_data = {
--	.component_drv	= &sm1_frddr_component_drv,
--	.dai_drv	= &g12a_frddr_dai_drv
-+	.field_threshold	= REG_FIELD(FIFO_CTRL1, 16, 23),
-+	.component_drv		= &sm1_frddr_component_drv,
-+	.dai_drv		= &g12a_frddr_dai_drv
- };
- 
- static const struct of_device_id axg_frddr_of_match[] = {
-diff --git a/sound/soc/meson/axg-toddr.c b/sound/soc/meson/axg-toddr.c
-index f6023397c8fe..e711abcf8c12 100644
---- a/sound/soc/meson/axg-toddr.c
-+++ b/sound/soc/meson/axg-toddr.c
-@@ -89,7 +89,6 @@ static int axg_toddr_dai_startup(struct snd_pcm_substream *substream,
- 				 struct snd_soc_dai *dai)
- {
- 	struct axg_fifo *fifo = snd_soc_dai_get_drvdata(dai);
--	unsigned int fifo_threshold;
- 	int ret;
- 
- 	/* Enable pclk to access registers and clock the fifo ip */
-@@ -107,11 +106,6 @@ static int axg_toddr_dai_startup(struct snd_pcm_substream *substream,
- 	/* Apply single buffer mode to the interface */
- 	regmap_update_bits(fifo->map, FIFO_CTRL0, CTRL0_TODDR_PP_MODE, 0);
- 
--	/* TODDR does not have a configurable fifo depth */
--	fifo_threshold = AXG_FIFO_MIN_CNT - 1;
--	regmap_update_bits(fifo->map, FIFO_CTRL1, CTRL1_THRESHOLD_MASK,
--			   CTRL1_THRESHOLD(fifo_threshold));
--
- 	return 0;
- }
- 
-@@ -190,8 +184,9 @@ static const struct snd_soc_component_driver axg_toddr_component_drv = {
- };
- 
- static const struct axg_fifo_match_data axg_toddr_match_data = {
--	.component_drv	= &axg_toddr_component_drv,
--	.dai_drv	= &axg_toddr_dai_drv
-+	.field_threshold	= REG_FIELD(FIFO_CTRL1, 16, 23),
-+	.component_drv		= &axg_toddr_component_drv,
-+	.dai_drv		= &axg_toddr_dai_drv
- };
- 
- static const struct snd_soc_dai_ops g12a_toddr_ops = {
-@@ -228,8 +223,9 @@ static const struct snd_soc_component_driver g12a_toddr_component_drv = {
- };
- 
- static const struct axg_fifo_match_data g12a_toddr_match_data = {
--	.component_drv	= &g12a_toddr_component_drv,
--	.dai_drv	= &g12a_toddr_dai_drv
-+	.field_threshold	= REG_FIELD(FIFO_CTRL1, 16, 23),
-+	.component_drv		= &g12a_toddr_component_drv,
-+	.dai_drv		= &g12a_toddr_dai_drv
- };
- 
- static const char * const sm1_toddr_sel_texts[] = {
-@@ -297,8 +293,9 @@ static const struct snd_soc_component_driver sm1_toddr_component_drv = {
- };
- 
- static const struct axg_fifo_match_data sm1_toddr_match_data = {
--	.component_drv	= &sm1_toddr_component_drv,
--	.dai_drv	= &g12a_toddr_dai_drv
-+	.field_threshold	= REG_FIELD(FIFO_CTRL1, 12, 23),
-+	.component_drv		= &sm1_toddr_component_drv,
-+	.dai_drv		= &g12a_toddr_dai_drv
- };
- 
- static const struct of_device_id axg_toddr_of_match[] = {
 -- 
 2.20.1
 
