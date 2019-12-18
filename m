@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C4824C2D0BF
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Dec 2019 15:46:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 41FEEC2D0D1
+	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Dec 2019 15:47:01 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 919BF20717
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Dec 2019 15:46:58 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 083AA24650
+	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Dec 2019 15:47:01 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="FPuPDIqs";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="fNXpv0MQ"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 919BF20717
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eL7pSZuQ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="fDwnwLMt"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 083AA24650
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,67 +26,68 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=P5irm13K0mrtozrbpGnwjAYzcL9PjAaOstX/SRYqVMU=; b=FPuPDIqsIS49tD
-	DALWgHU3SMIW6wfne3cuqqrMdvf7woyaBal90GboPpM1DGY2DtwNyhud0W2jFJrzTuOB0zu6xKVAP
-	XO/qdXjZKhAe7nyOSwsdAcc6UwHXjY4XDtKv50N3+lN+AyNhW3MnIKzUw5OeXfbajyoPSzvWkNsoF
-	QdZnn29qir+N86I6vl9kgaN7nxejlgiHY6TeueTZt7OoULuPfZs0678KNvUh1B/C73U253GvwSkO/
-	LssxKmrACkCQUvQIFtnxznHoSJM00x6WUYRPzQUp2DCN/auU12uXSXXIhCfJC9bqLEbv0iZrCz4d1
-	uAq62ocxaMmZrmuxEwow==;
+	List-Owner; bh=fMQD8YwlRUAhB7SXFeii1M3u467usm9UFUYxhm45YtU=; b=eL7pSZuQal1lCt
+	EmFfmVl44A7Q3pNKhyurtLGhkPZy4XJGShpYa0Jc83Qi0fpty6fqZMXlw6/8jTFJhP3g5QCcfxIe6
+	wX00ld5Djf6GMWWewc4mZ/s+jzCxsT147BlHIfaYVTZLOHxBYVmAYbrEJlnzD9ySeFLY1znUgdwkn
+	r5g4CSAxJDhq6Tg0BKXFk9bXFgP/j2s1pEuz8rFx2WBm2VRkzJoucVqHNzL1v9AZVekXsyL4bRt1D
+	ExQ5+mvUkW0U+DRxINZ/ZaRVZaUDIPEZ/gjsh1RSPeIHQIhl5UwghP8iVVS5Msa9Kf9myc2K16G+I
+	FjGThNXsO7Qze+obPudA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ihbXJ-00087c-D0; Wed, 18 Dec 2019 15:46:53 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1ihbXL-0008As-DR; Wed, 18 Dec 2019 15:46:55 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ihbXB-0007zi-VX
- for linux-amlogic@lists.infradead.org; Wed, 18 Dec 2019 15:46:48 +0000
-Received: by mail-wm1-x341.google.com with SMTP id p17so2440914wmb.0
+ id 1ihbXC-0007zj-HV
+ for linux-amlogic@lists.infradead.org; Wed, 18 Dec 2019 15:46:49 +0000
+Received: by mail-wm1-x343.google.com with SMTP id p9so2339791wmc.2
  for <linux-amlogic@lists.infradead.org>; Wed, 18 Dec 2019 07:46:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=EWqOf/5UfTccr1sJk8zcGA3/YrXns3N3R5vrlaa1tsw=;
- b=fNXpv0MQigpQq9QWpaECPWq/TJQPRlMCrAFYKp9+bYz326CfY2XlV/ljb4s9go9jQv
- ICmG56WGtG23fdKhDuBsc+dEolIomKAP+HQEyzsh7hEsWUJQsEeWSwXiIsL6hgY/vXln
- 2RacogP8lrdod3tGWHd4P8R/Dbq9l0XKPiTBhPFnvv9HrEV21Dk3sz14YIIRNIi/bxDv
- NpTJbM+PJPOrDz0xtDSUmZvOwZbHckLe7ICJyaiHnzj4f+mml5x2A4xtUuY+yWGFXv5h
- jiC6OCr1tXBQu4mWAUwI433cMtpP56CJxfS77vVbWDseUugL1ZJ6K9i3Jij5kK0HERin
- Xpgw==
+ bh=HS90VjGTEgPLwoS07O26nuJB7gxxS9CD1cnSI1IU66I=;
+ b=fDwnwLMtw3uOHsVJkA+Sxz35a/DRK14VjnfBHoxmw+sub14JCsrV3biDAx5fbrQ30n
+ bzbtOHe5126TPWkHhYQKOWlwX38XHenTKd7WCgPbXfmj2geKxFlou39QgO5VHTLUbA9e
+ 70Si2uXmHxGHZEC9XAZZT04cy2SjuOAJrJfQb+gR3/LeMRF8RLdd7lJUNeiiPwqIYaS0
+ GQ3e3jiqyoH3xcO12avGq3Yt5/6OemFDqKKrxovlc2roINAJetJ0o6urhqLfpX/oBSup
+ 4TF6u8afr1873ygcxCRYuey9XoBBSa25fpoijdK8HNqoXDcBjYGX8S2wgzYNT5Rikw4n
+ RYyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=EWqOf/5UfTccr1sJk8zcGA3/YrXns3N3R5vrlaa1tsw=;
- b=Dth0c311ZHg/D1F/TVRNgF53KKc6iaekgACqDpqEXBENgF8rKrudp1/IB1V1VIfIKM
- X5j1FduOTBPCh+o3UMTW306Pw8igI0CSvzb1wNw4deMW6L+dMXkHOy3TPr8WVFl+7nqN
- kWcHMCBMgkGrhLNahOrxHf96gHZYxxu2ao2Ww90TROUyvbzKWKjO88KiKuJAiFCtVhz4
- wr8rhVvgjhNMC8+QZlwDpGUSRO0jEp+ThDJitmbmgpaw/rvLT02+Zoj7JURScQkXzCIx
- /s/oYu8BzMF9xkFrSfej9xLO8QIBVm5tkT5c6uBEeBQRmkkZ7Q0iuaoPDwUA6YTUwSpj
- nE4A==
-X-Gm-Message-State: APjAAAU1h3SayQOLR27QQanPmq5qPB6HcizzHmS03DY4tjAwi118uwaR
- IApfe9zS049KoEaAerrPFyN5Cg==
-X-Google-Smtp-Source: APXvYqwNIo0BhhB8Os+El8dDodmlGQql13R1ahhp8EAPzPhOFlgUl6OqEUvz8hKxOnkipdjEHGjwDQ==
-X-Received: by 2002:a7b:c38c:: with SMTP id s12mr4029068wmj.96.1576684003606; 
- Wed, 18 Dec 2019 07:46:43 -0800 (PST)
+ bh=HS90VjGTEgPLwoS07O26nuJB7gxxS9CD1cnSI1IU66I=;
+ b=Irdp6ct+ic6sw0AtpkNuQi89LeTsw0O6m3t+pcR7TeJGIaAPkHHJg//cZyxTV+k5uX
+ iaTXgTZTmmxSdRrlYvPWq0d09W23XTIR2mZMeqe2V0sYIHBK+O9r6n2V5Bl2XMri1FEc
+ JvSchW6WyeVs/O+p3X/ys6hCWKrpvLsoFf9HksJSD2LuCsD69aQsj+UK5zH7Qh/pfJYa
+ 0hXjjLElb5ijPoYuJjuibo5F0ClJVmWUSjvfD7VyoQ5CffumX35S922AIT48fXF6QRa7
+ RjDB/JCNYd5WGuPMu9rcR64x1KFqDcKajUX8M0gft7KMnIXlmuHGojwYtWRqWv1h+nED
+ y9lg==
+X-Gm-Message-State: APjAAAV6VhuTbN+Cbp7zh2elqSNFUwofKp98XgLBhOw8Jbj/tbJKi3Zw
+ lTmXdfgR5wPS6L9rlQWctt9UVA==
+X-Google-Smtp-Source: APXvYqzMxHZU54rjVdvdQilWUCjDI7zSWqhv9fM1JYbrPdMsusPqlZYyBJj6ngYbYwqGl/RqMDtDfw==
+X-Received: by 2002:a1c:5419:: with SMTP id i25mr4119475wmb.150.1576684004437; 
+ Wed, 18 Dec 2019 07:46:44 -0800 (PST)
 Received: from bender.baylibre.local
  (lfbn-nic-1-505-157.w90-116.abo.wanadoo.fr. [90.116.92.157])
- by smtp.gmail.com with ESMTPSA id x1sm2891492wru.50.2019.12.18.07.46.42
+ by smtp.gmail.com with ESMTPSA id x1sm2891492wru.50.2019.12.18.07.46.43
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 18 Dec 2019 07:46:42 -0800 (PST)
+ Wed, 18 Dec 2019 07:46:43 -0800 (PST)
 From: Neil Armstrong <narmstrong@baylibre.com>
 To: a.hajda@samsung.com, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
  jernej.skrabec@siol.net, boris.brezillon@collabora.com
-Subject: [PATCH v3 03/10] drm/bridge: synopsys: dw-hdmi: add bus format
- negociation
-Date: Wed, 18 Dec 2019 16:46:30 +0100
-Message-Id: <20191218154637.17509-4-narmstrong@baylibre.com>
+Subject: [PATCH v3 04/10] drm/bridge: synopsys: dw-hdmi: allow ycbcr420 modes
+ for >= 0x200a
+Date: Wed, 18 Dec 2019 16:46:31 +0100
+Message-Id: <20191218154637.17509-5-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20191218154637.17509-1-narmstrong@baylibre.com>
 References: <20191218154637.17509-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191218_074646_014219_6F287140 
-X-CRM114-Status: GOOD (  15.34  )
+X-CRM114-CacheID: sfid-20191218_074646_624673_0162F416 
+X-CRM114-Status: UNSURE (   9.04  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,329 +106,46 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Add the atomic_get_output_bus_fmts, atomic_get_input_bus_fmts to negociate
-the possible output and input formats for the current mode and monitor,
-and use the negotiated formats in a basic atomic_check callback.
+Now the DW-HDMI Controller supports the HDMI2.0 modes, enable support
+for these modes in the connector if the platform supports them.
+We limit these modes to DW-HDMI IP version >= 0x200a which
+are designed to support HDMI2.0 display modes.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 272 +++++++++++++++++++++-
- 1 file changed, 268 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 6 ++++++
+ include/drm/bridge/dw_hdmi.h              | 1 +
+ 2 files changed, 7 insertions(+)
 
 diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-index e7a0600f8cc5..8c1f7e5e6698 100644
+index 8c1f7e5e6698..bb87b87c752e 100644
 --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
 +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
-@@ -2069,11 +2069,10 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
- 	hdmi->hdmi_data.video_mode.mpixelrepetitionoutput = 0;
- 	hdmi->hdmi_data.video_mode.mpixelrepetitioninput = 0;
- 
--	/* TOFIX: Get input format from plat data or fallback to RGB888 */
- 	if (hdmi->plat_data->input_bus_format)
- 		hdmi->hdmi_data.enc_in_bus_format =
- 			hdmi->plat_data->input_bus_format;
--	else
-+	else if (hdmi->hdmi_data.enc_in_bus_format == MEDIA_BUS_FMT_FIXED)
- 		hdmi->hdmi_data.enc_in_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
- 
- 	/* TOFIX: Get input encoding from plat data or fallback to none */
-@@ -2083,8 +2082,8 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi, struct drm_display_mode *mode)
- 	else
- 		hdmi->hdmi_data.enc_in_encoding = V4L2_YCBCR_ENC_DEFAULT;
- 
--	/* TOFIX: Default to RGB888 output format */
--	hdmi->hdmi_data.enc_out_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
-+	if (hdmi->hdmi_data.enc_out_bus_format == MEDIA_BUS_FMT_FIXED)
-+		hdmi->hdmi_data.enc_out_bus_format = MEDIA_BUS_FMT_RGB888_1X24;
- 
- 	hdmi->hdmi_data.pix_repet_factor = 0;
- 	hdmi->hdmi_data.hdcp_enable = 0;
-@@ -2350,6 +2349,267 @@ static const struct drm_connector_helper_funcs dw_hdmi_connector_helper_funcs =
- 	.atomic_check = dw_hdmi_connector_atomic_check,
- };
- 
-+/*
-+ * Possible output formats :
-+ * - MEDIA_BUS_FMT_UYYVYY16_0_5X48,
-+ * - MEDIA_BUS_FMT_UYYVYY12_0_5X36,
-+ * - MEDIA_BUS_FMT_UYYVYY10_0_5X30,
-+ * - MEDIA_BUS_FMT_UYYVYY8_0_5X24,
-+ * - MEDIA_BUS_FMT_YUV16_1X48,
-+ * - MEDIA_BUS_FMT_RGB161616_1X48,
-+ * - MEDIA_BUS_FMT_UYVY12_1X24,
-+ * - MEDIA_BUS_FMT_YUV12_1X36,
-+ * - MEDIA_BUS_FMT_RGB121212_1X36,
-+ * - MEDIA_BUS_FMT_UYVY10_1X20,
-+ * - MEDIA_BUS_FMT_YUV10_1X30,
-+ * - MEDIA_BUS_FMT_RGB101010_1X30,
-+ * - MEDIA_BUS_FMT_UYVY8_1X16,
-+ * - MEDIA_BUS_FMT_YUV8_1X24,
-+ * - MEDIA_BUS_FMT_RGB888_1X24,
-+ */
-+
-+/* Can return a maximum of 12 possible output formats for a mode/connector */
-+#define MAX_OUTPUT_SEL_FORMATS	12
-+
-+static u32 *dw_hdmi_bridge_atomic_get_output_bus_fmts(struct drm_bridge *bridge,
-+					struct drm_bridge_state *bridge_state,
-+					struct drm_crtc_state *crtc_state,
-+					struct drm_connector_state *conn_state,
-+					unsigned int *num_output_fmts)
-+{
-+	struct drm_connector *conn = conn_state->connector;
-+	struct drm_display_info *info = &conn->display_info;
-+	struct drm_display_mode *mode = &crtc_state->mode;
-+	u8 max_bpc = conn_state->max_requested_bpc;
-+	bool is_hdmi2_sink = info->hdmi.scdc.supported ||
-+			     (info->color_formats & DRM_COLOR_FORMAT_YCRCB420);
-+	u32 *output_fmts;
-+	int i = 0;
-+
-+	*num_output_fmts = 0;
-+
-+	output_fmts = kcalloc(MAX_OUTPUT_SEL_FORMATS, sizeof(*output_fmts),
-+			      GFP_KERNEL);
-+	if (!output_fmts)
-+		return NULL;
-+
-+	/*
-+	 * If the current mode enforces 4:2:0, force the output but format
-+	 * to 4:2:0 and do not add the YUV422/444/RGB formats
-+	 */
-+	if (conn->ycbcr_420_allowed &&
-+	    (drm_mode_is_420_only(info, mode) ||
-+	     (is_hdmi2_sink && drm_mode_is_420_also(info, mode)))) {
-+
-+		/* Order bus formats from 16bit to 8bit if supported */
-+		if (max_bpc >= 16 && info->bpc == 16 &&
-+		    (info->hdmi.y420_dc_modes & DRM_EDID_YCBCR420_DC_48))
-+			output_fmts[i++] = MEDIA_BUS_FMT_UYYVYY16_0_5X48;
-+
-+		if (max_bpc >= 12 && info->bpc >= 12 &&
-+		    (info->hdmi.y420_dc_modes & DRM_EDID_YCBCR420_DC_36))
-+			output_fmts[i++] = MEDIA_BUS_FMT_UYYVYY12_0_5X36;
-+
-+		if (max_bpc >= 10 && info->bpc >= 10 &&
-+		    (info->hdmi.y420_dc_modes & DRM_EDID_YCBCR420_DC_30))
-+			output_fmts[i++] = MEDIA_BUS_FMT_UYYVYY10_0_5X30;
-+
-+		/* Default 8bit fallback */
-+		output_fmts[i++] = MEDIA_BUS_FMT_UYYVYY8_0_5X24;
-+
-+		*num_output_fmts = i;
-+
-+		return output_fmts;
-+	}
-+
-+	/*
-+	 * Order bus formats from 16bit to 8bit and from YUV422 to RGB
-+	 * if supported. In any case the default RGB888 format is added
-+	 */
-+
-+	if (max_bpc >= 16 && info->bpc == 16) {
-+		if (info->color_formats & DRM_COLOR_FORMAT_YCRCB444)
-+			output_fmts[i++] = MEDIA_BUS_FMT_YUV16_1X48;
-+
-+		output_fmts[i++] = MEDIA_BUS_FMT_RGB161616_1X48;
-+	}
-+
-+	if (max_bpc >= 12 && info->bpc >= 12) {
-+		if (info->color_formats & DRM_COLOR_FORMAT_YCRCB422)
-+			output_fmts[i++] = MEDIA_BUS_FMT_UYVY12_1X24;
-+
-+		if (info->color_formats & DRM_COLOR_FORMAT_YCRCB444)
-+			output_fmts[i++] = MEDIA_BUS_FMT_YUV12_1X36;
-+
-+		output_fmts[i++] = MEDIA_BUS_FMT_RGB121212_1X36;
-+	}
-+
-+	if (max_bpc >= 10 && info->bpc >= 10) {
-+		if (info->color_formats & DRM_COLOR_FORMAT_YCRCB422)
-+			output_fmts[i++] = MEDIA_BUS_FMT_UYVY10_1X20;
-+
-+		if (info->color_formats & DRM_COLOR_FORMAT_YCRCB444)
-+			output_fmts[i++] = MEDIA_BUS_FMT_YUV10_1X30;
-+
-+		output_fmts[i++] = MEDIA_BUS_FMT_RGB101010_1X30;
-+	}
-+
-+	if (info->color_formats & DRM_COLOR_FORMAT_YCRCB422)
-+		output_fmts[i++] = MEDIA_BUS_FMT_UYVY8_1X16;
-+
-+	if (info->color_formats & DRM_COLOR_FORMAT_YCRCB444)
-+		output_fmts[i++] = MEDIA_BUS_FMT_YUV8_1X24;
-+
-+	/* Default 8bit RGB fallback */
-+	output_fmts[i++] = MEDIA_BUS_FMT_RGB888_1X24;
-+
-+	*num_output_fmts = i;
-+
-+	return output_fmts;
-+}
-+
-+/*
-+ * Possible input formats :
-+ * - MEDIA_BUS_FMT_RGB888_1X24
-+ * - MEDIA_BUS_FMT_YUV8_1X24
-+ * - MEDIA_BUS_FMT_UYVY8_1X16
-+ * - MEDIA_BUS_FMT_UYYVYY8_0_5X24
-+ * - MEDIA_BUS_FMT_RGB101010_1X30
-+ * - MEDIA_BUS_FMT_YUV10_1X30
-+ * - MEDIA_BUS_FMT_UYVY10_1X20
-+ * - MEDIA_BUS_FMT_UYYVYY10_0_5X30
-+ * - MEDIA_BUS_FMT_RGB121212_1X36
-+ * - MEDIA_BUS_FMT_YUV12_1X36
-+ * - MEDIA_BUS_FMT_UYVY12_1X24
-+ * - MEDIA_BUS_FMT_UYYVYY12_0_5X36
-+ * - MEDIA_BUS_FMT_RGB161616_1X48
-+ * - MEDIA_BUS_FMT_YUV16_1X48
-+ * - MEDIA_BUS_FMT_UYYVYY16_0_5X48
-+ */
-+
-+/* Can return a maximum of 4 possible input formats for an output format */
-+#define MAX_INPUT_SEL_FORMATS	4
-+
-+static u32 *dw_hdmi_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
-+					struct drm_bridge_state *bridge_state,
-+					struct drm_crtc_state *crtc_state,
-+					struct drm_connector_state *conn_state,
-+					u32 output_fmt,
-+					unsigned int *num_input_fmts)
-+{
-+	u32 *input_fmts;
-+	int i = 0;
-+
-+	*num_input_fmts = 0;
-+
-+	input_fmts = kcalloc(MAX_INPUT_SEL_FORMATS, sizeof(*input_fmts),
-+			     GFP_KERNEL);
-+	if (!input_fmts)
-+		return NULL;
-+
-+	switch (output_fmt) {
-+	/* 8bit */
-+	case MEDIA_BUS_FMT_RGB888_1X24:
-+		input_fmts[i++] = MEDIA_BUS_FMT_RGB888_1X24;
-+		input_fmts[i++] = MEDIA_BUS_FMT_YUV8_1X24;
-+		input_fmts[i++] = MEDIA_BUS_FMT_UYVY8_1X16;
-+		break;
-+	case MEDIA_BUS_FMT_YUV8_1X24:
-+		input_fmts[i++] = MEDIA_BUS_FMT_YUV8_1X24;
-+		input_fmts[i++] = MEDIA_BUS_FMT_UYVY8_1X16;
-+		input_fmts[i++] = MEDIA_BUS_FMT_RGB888_1X24;
-+		break;
-+	case MEDIA_BUS_FMT_UYVY8_1X16:
-+		input_fmts[i++] = MEDIA_BUS_FMT_UYVY8_1X16;
-+		input_fmts[i++] = MEDIA_BUS_FMT_YUV8_1X24;
-+		input_fmts[i++] = MEDIA_BUS_FMT_RGB888_1X24;
-+		break;
-+
-+	/* 10bit */
-+	case MEDIA_BUS_FMT_RGB101010_1X30:
-+		input_fmts[i++] = MEDIA_BUS_FMT_RGB101010_1X30;
-+		input_fmts[i++] = MEDIA_BUS_FMT_YUV10_1X30;
-+		input_fmts[i++] = MEDIA_BUS_FMT_UYVY10_1X20;
-+		break;
-+	case MEDIA_BUS_FMT_YUV10_1X30:
-+		input_fmts[i++] = MEDIA_BUS_FMT_YUV10_1X30;
-+		input_fmts[i++] = MEDIA_BUS_FMT_UYVY10_1X20;
-+		input_fmts[i++] = MEDIA_BUS_FMT_RGB101010_1X30;
-+		break;
-+	case MEDIA_BUS_FMT_UYVY10_1X20:
-+		input_fmts[i++] = MEDIA_BUS_FMT_UYVY10_1X20;
-+		input_fmts[i++] = MEDIA_BUS_FMT_YUV10_1X30;
-+		input_fmts[i++] = MEDIA_BUS_FMT_RGB101010_1X30;
-+		break;
-+
-+	/* 12bit */
-+	case MEDIA_BUS_FMT_RGB121212_1X36:
-+		input_fmts[i++] = MEDIA_BUS_FMT_RGB121212_1X36;
-+		input_fmts[i++] = MEDIA_BUS_FMT_YUV12_1X36;
-+		input_fmts[i++] = MEDIA_BUS_FMT_UYVY12_1X24;
-+		break;
-+	case MEDIA_BUS_FMT_YUV12_1X36:
-+		input_fmts[i++] = MEDIA_BUS_FMT_YUV12_1X36;
-+		input_fmts[i++] = MEDIA_BUS_FMT_UYVY12_1X24;
-+		input_fmts[i++] = MEDIA_BUS_FMT_RGB121212_1X36;
-+		break;
-+	case MEDIA_BUS_FMT_UYVY12_1X24:
-+		input_fmts[i++] = MEDIA_BUS_FMT_UYVY12_1X24;
-+		input_fmts[i++] = MEDIA_BUS_FMT_YUV12_1X36;
-+		input_fmts[i++] = MEDIA_BUS_FMT_RGB121212_1X36;
-+		break;
-+
-+	/* 16bit */
-+	case MEDIA_BUS_FMT_RGB161616_1X48:
-+		input_fmts[i++] = MEDIA_BUS_FMT_RGB161616_1X48;
-+		input_fmts[i++] = MEDIA_BUS_FMT_YUV16_1X48;
-+		break;
-+	case MEDIA_BUS_FMT_YUV16_1X48:
-+		input_fmts[i++] = MEDIA_BUS_FMT_YUV16_1X48;
-+		input_fmts[i++] = MEDIA_BUS_FMT_RGB161616_1X48;
-+		break;
-+
-+	/* 420 */
-+	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
-+	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
-+	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
-+	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
-+		input_fmts[i++] = output_fmt;
-+		break;
-+	}
-+
-+	*num_input_fmts = i;
-+
-+	if (*num_input_fmts == 0) {
-+		kfree(input_fmts);
-+		input_fmts = NULL;
-+	}
-+
-+	return input_fmts;
-+}
-+
-+static int dw_hdmi_bridge_atomic_check(struct drm_bridge *bridge,
-+				       struct drm_bridge_state *bridge_state,
-+				       struct drm_crtc_state *crtc_state,
-+				       struct drm_connector_state *conn_state)
-+{
-+	struct dw_hdmi *hdmi = bridge->driver_private;
-+
-+	dev_dbg(hdmi->dev, "selected output format %x\n",
-+			bridge_state->output_bus_cfg.format);
-+
-+	hdmi->hdmi_data.enc_out_bus_format =
-+			bridge_state->output_bus_cfg.format;
-+
-+	dev_dbg(hdmi->dev, "selected input format %x\n",
-+			bridge_state->input_bus_cfg.format);
-+
-+	hdmi->hdmi_data.enc_in_bus_format =
-+			bridge_state->input_bus_cfg.format;
-+
-+	return 0;
-+}
-+
- static int dw_hdmi_bridge_attach(struct drm_bridge *bridge)
- {
- 	struct dw_hdmi *hdmi = bridge->driver_private;
-@@ -2458,6 +2718,9 @@ static void dw_hdmi_bridge_enable(struct drm_bridge *bridge)
- static const struct drm_bridge_funcs dw_hdmi_bridge_funcs = {
- 	.attach = dw_hdmi_bridge_attach,
- 	.detach = dw_hdmi_bridge_detach,
-+	.atomic_check = dw_hdmi_bridge_atomic_check,
-+	.atomic_get_output_bus_fmts = dw_hdmi_bridge_atomic_get_output_bus_fmts,
-+	.atomic_get_input_bus_fmts = dw_hdmi_bridge_atomic_get_input_bus_fmts,
- 	.enable = dw_hdmi_bridge_enable,
- 	.disable = dw_hdmi_bridge_disable,
- 	.mode_set = dw_hdmi_bridge_mode_set,
-@@ -2921,6 +3184,7 @@ __dw_hdmi_probe(struct platform_device *pdev,
- 
- 	hdmi->bridge.driver_private = hdmi;
- 	hdmi->bridge.funcs = &dw_hdmi_bridge_funcs;
-+
- #ifdef CONFIG_OF
+@@ -3189,6 +3189,12 @@ __dw_hdmi_probe(struct platform_device *pdev,
  	hdmi->bridge.of_node = pdev->dev.of_node;
  #endif
+ 
++	if (hdmi->version >= 0x200a)
++		hdmi->connector.ycbcr_420_allowed =
++			hdmi->plat_data->ycbcr_420_allowed;
++	else
++		hdmi->connector.ycbcr_420_allowed = false;
++
+ 	memset(&pdevinfo, 0, sizeof(pdevinfo));
+ 	pdevinfo.parent = dev;
+ 	pdevinfo.id = PLATFORM_DEVID_AUTO;
+diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
+index fbf3812c4326..19e30cdd35bf 100644
+--- a/include/drm/bridge/dw_hdmi.h
++++ b/include/drm/bridge/dw_hdmi.h
+@@ -127,6 +127,7 @@ struct dw_hdmi_plat_data {
+ 	unsigned long input_bus_format;
+ 	unsigned long input_bus_encoding;
+ 	bool use_drm_infoframe;
++	bool ycbcr_420_allowed;
+ 
+ 	/* Vendor PHY support */
+ 	const struct dw_hdmi_phy_ops *phy_ops;
 -- 
 2.22.0
 
