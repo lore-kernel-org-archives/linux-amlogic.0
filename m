@@ -2,100 +2,150 @@ Return-Path: <SRS0=A4ao=2I=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-11.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4469AC43603
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Dec 2019 12:58:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 16412C43603
+	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Dec 2019 13:13:31 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 07025218AC
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Dec 2019 12:58:10 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D4E2424650
+	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Dec 2019 13:13:30 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="H5hIyNvu";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=cerno.tech header.i=@cerno.tech header.b="SSl8U52f";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="gHEDPS3D"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 07025218AC
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=cerno.tech
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Js5wcffN";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="lttaK0Hs"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D4E2424650
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=Et5lQjtM05daOvjFm3jydzxSUFp8KOGwhD0z60+YJaI=; b=H5hIyNvu1fEO5xQajPg4dpPYB
-	xVECIhpSNj/RU9uGRkZjCbgK984HAkxQ5z5NIHQdfy5EiH4x/R1yl9V3FsOyZCtFOavYNFNcP9Pj0
-	jyrrFRyMjyfAJtc2F69mZ+32zUr0yYhlB7aqQsLMj4kLBYk2kqR4uSu1GK4POWRgAQJrsE40pcvRc
-	asUN5leo7baiaPNUplLOA1HcsPR4kHlc9kXK7jP2vr+UfwDxTa7Rmrg6j39ZCw8vnibAgXrdIt3Km
-	LCpf85HUG20JNXet+94jv36bv/SRG1lPB9TXmSmRmkBpskqPUvIXAaQceSDlKkJDClLz/mzyfKI3X
-	eCLZ2Yzig==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=UDkduUThHaSLj1ysos7jA1OrC95gqBu5YaKpz1TxJo4=; b=Js5wcffN2Fival
+	rMzSiIlKeORVmuyOOUeNe1dvNRmUVvyyk0qsSoAgQpBEYctbsYAu4oqV+ovcX2jtyUXm4UoRzbaDt
+	J6/FydfOjsTyHBiN77Wl/CICS0zPn25QDif7guQxU+8JsMpmoVdd7Ytxtnsh6IOSTkVT3HyMPHNs7
+	EG6TkhI3Kx8DTC4SQGSGI2zM1wYjwjSykA8C/o4OAG5mly+o/uS8CIO+hHQ44v0iAPcvlXsoZAcRZ
+	4CbD0/6KN6m5tkRKjRTyRkoqB/kQdFPD8L9PH/VQ8Dq7r0K+6uEK+b//JeiUh7XtLi0ZXkBU6yDvr
+	a1RJTcOenM/JXwzkh+uA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ihYtt-0006QP-Ol; Wed, 18 Dec 2019 12:58:01 +0000
-Received: from new2-smtp.messagingengine.com ([66.111.4.224])
+	id 1ihZ8n-0004hr-8B; Wed, 18 Dec 2019 13:13:25 +0000
+Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ihYto-0006LS-4d; Wed, 18 Dec 2019 12:58:00 +0000
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailnew.nyi.internal (Postfix) with ESMTP id 2F00F6CB0;
- Wed, 18 Dec 2019 07:57:52 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute3.internal (MEProxy); Wed, 18 Dec 2019 07:57:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
- date:from:to:cc:subject:message-id:references:mime-version
- :content-type:in-reply-to; s=fm1; bh=frvGpADLITedq/sG6F8ewcZ3U6K
- M9hdUCVrbvmzN2gI=; b=SSl8U52f5KAoi+pLP9eCdIoDHqsojMT+TPEP43X6GQt
- tjLZtZ5sNWyQ5Y+6sVadQjwodLbeyTkyAUYIkzPsagKhHCJUx7FPfRAIExiPvSYK
- E6LK0oXPoDlH4mbIwgqVQBVO5bSSjXJ9WdPQCMKtrtG7XthOPeqWt5+iyLI06lAf
- HSYjLrCQ320fhhCFlTGubhGY18AgGQi9V+QW3qF+lHKAlthjvwGx1JLczSZGE/h6
- 44kkjuB4VGhd8mlGTxOYjBdqoPnypH+/AXojQVkb9fqgypqUfx4VbrSzb8s+kd52
- cqCylUbHNNfmDMMgB/uB0HrcEq2QedFx2XQuiQVgEhQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=frvGpA
- DLITedq/sG6F8ewcZ3U6KM9hdUCVrbvmzN2gI=; b=gHEDPS3DOQoyIWF+CI9uhZ
- 4C5q4pCME3HKYCY99OPH6VUMRRGcXmvQrR2H45px9vtj2qoEAtLG8FwKIKtNMZWi
- orj8/U/30+sPVPc3aSiazVALG9t6R6ety7SKOOySYMxcbmoqNlLrxeyKSQ0P5NEO
- eFmtPI86/TfRMeampRGWT4q0tQIGoUpNIa4sKjI0Bf75+TqAus2qNv9VQjqNGbQN
- r9aeqGRaWwEgxm82KRokYSbliLeVCQo7Up85g7CHheYUCOGvfg9m5rO1K2kynmBq
- V0Z4FkBGCfPFZV+jcOEgQsY+NguyvkL2gSpfd3jrc68niY378N9GajUSah2j1HBw
- ==
-X-ME-Sender: <xms:TiL6XThp7Xp-qBzFtMENMp_AFajDnec-Es1rsgWInFOVS3b10xhFsQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrvddtledggeegucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
- vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuffhomhgrih
- hnpeguvghvihgtvghtrhgvvgdrohhrghdpghhithhhuhgsrdgtohhmpdhhuhdrtghomhen
- ucfkphepledtrdekledrieekrdejieenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgi
- himhgvsegtvghrnhhordhtvggthhenucevlhhushhtvghrufhiiigvpedt
-X-ME-Proxy: <xmx:TiL6Xd4iE6xuYSlhXG6sYl-s-q_EqWfiZLcoQT1kv1Gc3IhbmQa9PQ>
- <xmx:TiL6XcLA9smXakFS_IXH8ko3w9DGYVZPqtfizTqKpbeccXzr19OFpQ>
- <xmx:TiL6XRi8KDldoGXgKLdeGUU7Xg7J32g59kXC6DQ0x8LWhLlMW0KyFg>
- <xmx:UCL6XVPLDyYb7At6LBHuEGDVD3Or8j5gPOrxe2YI4-zEDS8CGKhN4w>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
- [90.89.68.76])
- by mail.messagingengine.com (Postfix) with ESMTPA id 6AA4F80063;
- Wed, 18 Dec 2019 07:57:50 -0500 (EST)
-Date: Wed, 18 Dec 2019 13:57:48 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Jian Hu <jian.hu@amlogic.com>
-Subject: Re: [PATCH v4 1/6] dt-bindings: clock: meson: add A1 PLL clock
- controller bindings
-Message-ID: <20191218125748.xacfkuhfabbtivsk@gilmour.lan>
-References: <20191206074052.15557-1-jian.hu@amlogic.com>
- <20191206074052.15557-2-jian.hu@amlogic.com>
- <20191213103856.qo7vlnuk4ajz3vq5@gilmour.lan>
- <ba16b846-1d5f-3d1e-e8e2-420687d11e8a@amlogic.com>
+ id 1ihZ8k-0004gY-IL
+ for linux-amlogic@lists.infradead.org; Wed, 18 Dec 2019 13:13:24 +0000
+Received: by mail-wr1-x444.google.com with SMTP id b6so2272842wrq.0
+ for <linux-amlogic@lists.infradead.org>; Wed, 18 Dec 2019 05:13:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=subject:to:cc:references:from:openpgp:autocrypt:organization
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=t+4jzB6sE+fqrmVWu+/FVUEbgglpQkdz/+ilf8BHhZk=;
+ b=lttaK0HsF40qk2FpUmiMWTdU9a07UDhhNazB4yD7NVPvOQfHDs34tm+sFvgTmaV0bg
+ 6n9AHTYVJR+1JjbpVISj78B05DD64jN5NYBhmshCVDFic5cUBMEPN2huseaQiTAtgosd
+ eDJB1RfX9ixrbwWyeLjSFrp4+gaW+ai/E/goCNuepBBKoh21orF02y3y0J9ffMqG7mu4
+ HGW2Y1oee973PTtpNkg+LaFKcBrUoQFR7qibn5oY+XudfU9lwUJ+R7OrHZun/QZVH+yV
+ Hc5PAC4CrEGzewdxsSZHeaob3ekY8G2Qdl4rAjc0gXe0mhO1WPcGh85GTBgB6Jvx9m2O
+ Bv6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+ :organization:message-id:date:user-agent:mime-version:in-reply-to
+ :content-language:content-transfer-encoding;
+ bh=t+4jzB6sE+fqrmVWu+/FVUEbgglpQkdz/+ilf8BHhZk=;
+ b=i7x3nXmP055241IzBjp0vnAMuDRTXU302/ZXg0kRWQRSeDFnzVRv+iy0bXYCUhkeQC
+ G7bMN/gc7nBYaJ3u06Il2xvWpDnvC/Y4mGT/PP+sGpO1C7uMpXAaXEWOh7prOHK4TA51
+ Uo0pLBJG0/bKPtCnJ3M76iEJG6I4xANG7pxgwKcaG0PZ5HtjK6HFmRHM/auwu0XalopW
+ rzm+fpHyyTmq4FedZWKUw35ytnPjMxmtpYT6Ru5ZEA/QKoto8xQl046lPNQWApG7RYGZ
+ Im4lL0fxXE8fZuKClfSPTzY7uuEykkHqDWJJo8NbNnLqB43HEOjNfD2rTmnyBY7tgXhu
+ tuTA==
+X-Gm-Message-State: APjAAAVkUc4+gLiMd5I7r6TF9f2Ho3hGCsx1oSM/AQGayM3ttPlCEV5W
+ oKuT3+PQaXx9eSw6kwos/yP7+w==
+X-Google-Smtp-Source: APXvYqxqg+jKaLJfUv8PDKCFelPCaeSnIR17IQsZYdfZiSJa/cL7ZMRBaeW6tXH5dJd+PsBR5Pt3gA==
+X-Received: by 2002:adf:f1d0:: with SMTP id z16mr2702891wro.209.1576674800190; 
+ Wed, 18 Dec 2019 05:13:20 -0800 (PST)
+Received: from [10.2.4.229] (lfbn-nic-1-505-157.w90-116.abo.wanadoo.fr.
+ [90.116.92.157])
+ by smtp.gmail.com with ESMTPSA id b67sm2560851wmc.38.2019.12.18.05.13.18
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Wed, 18 Dec 2019 05:13:19 -0800 (PST)
+Subject: Re: [PATCH v2 2/6] dt-bindings: usb: dwc3: Add the Amlogic A1 Family
+ DWC3 Glue Bindings
+To: Hanjie Lin <hanjie.lin@amlogic.com>, Jerome Brunet
+ <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Felipe Balbi <felipe.balbi@linux.intel.com>,
+ Kevin Hilman <khilman@baylibre.com>
+References: <1576636944-196192-1-git-send-email-hanjie.lin@amlogic.com>
+ <1576636944-196192-3-git-send-email-hanjie.lin@amlogic.com>
+From: Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <daa67976-e2ad-e114-b5fd-87eb5ae00eeb@baylibre.com>
+Date: Wed, 18 Dec 2019 14:13:18 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <ba16b846-1d5f-3d1e-e8e2-420687d11e8a@amlogic.com>
+In-Reply-To: <1576636944-196192-3-git-send-email-hanjie.lin@amlogic.com>
+Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191218_045756_612733_C1C714A1 
-X-CRM114-Status: GOOD (  23.60  )
+X-CRM114-CacheID: sfid-20191218_051322_642011_3A5F335D 
+X-CRM114-Status: GOOD (  17.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,157 +157,106 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Victor Wan <victor.wan@amlogic.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
+Cc: devicetree@vger.kernel.org, Victor Wan <victor.wan@amlogic.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>, Stephen Boyd <sboyd@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, linux-usb@vger.kernel.org,
+ Yue Wang <yue.wang@amlogic.com>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
- Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
- Qiufang Dai <qiufang.dai@amlogic.com>, Chandle Zou <chandle.zou@amlogic.com>,
- linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: multipart/mixed; boundary="===============4706384799310652745=="
+ Liang Yang <liang.yang@amlogic.com>, Qiufang Dai <qiufang.dai@amlogic.com>,
+ Xingyu Chen <xingyu.chen@amlogic.com>, Carlo Caione <carlo@caione.org>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Jian Hu <jian.hu@amlogic.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hi,
 
---===============4706384799310652745==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="bbp7a3fcwjlmdl47"
-Content-Disposition: inline
+On 18/12/2019 03:42, Hanjie Lin wrote:
+> The Amlogic A1 SoC Family embeds 1 USB Controllers:
+>  - a DWC3 IP configured as Host for USB2 and USB3
+> 
+> A glue connects the controllers to the USB2 PHY of A1 SoC.
+> 
+> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
+> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
+> ---
+>  .../bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml  | 32 ++++++++++++++++++++++
+>  1 file changed, 32 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+> index 4efb77b..9740027 100644
+> --- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+> +++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+> @@ -9,6 +9,8 @@ title: Amlogic Meson G12A DWC3 USB SoC Controller Glue
+>  
+>  maintainers:
+>    - Neil Armstrong <narmstrong@baylibre.com>
+> +  - Hanjie Lin <hanjie.lin@amlogic.com>
+> +  - Yue Wang <yue.wang@amlogic.com>
+>  
+>  description: |
+>    The Amlogic G12A embeds a DWC3 USB IP Core configured for USB2 and USB3
+> @@ -22,10 +24,14 @@ description: |
+>    The DWC3 Glue controls the PHY routing and power, an interrupt line is
+>    connected to the Glue to serve as OTG ID change detection.
+>  
+> +  The Amlogic A1 embeds a DWC3 USB IP Core configured for USB2 in
+> +  host-only mode.
+> +
+>  properties:
+>    compatible:
+>      enum:
+>        - amlogic,meson-g12a-usb-ctrl
+> +      - amlogic,meson-a1-usb-ctrl
+>  
+>    ranges: true
+>  
+> @@ -124,4 +130,30 @@ examples:
+>                snps,quirk-frame-length-adjustment;
+>            };
+>      };
+> +  - |
+> +    usb: usb@ffe09000 {
+> +          status = "okay";
+> +          compatible = "amlogic,meson-a1-usb-ctrl";
+> +          reg = <0x0 0xffe09000 0x0 0xa0>;
+> +          #address-cells = <2>;
+> +          #size-cells = <2>;
+> +          ranges;
+>  
+> +          clocks = <&clkc_periphs CLKID_USB_CTRL>,
+> +           <&clkc_periphs CLKID_USB_BUS>,
+> +           <&clkc_periphs CLKID_XTAL_USB_PHY>,
+> +           <&clkc_periphs CLKID_XTAL_USB_CTRL>;
+> +          clock-names = "usb_ctrl", "usb_bus", "xtal_usb_phy", "xtal_usb_ctrl";
+> +          resets = <&reset RESET_USBCTRL>;
+> +          phys = <&usb2_phy0>;
+> +          phy-names = "usb2-phy0";
+> +
+> +          dwc3: usb@ff400000 {
+> +                  compatible = "snps,dwc3";
+> +                  reg = <0x0 0xff400000 0x0 0x100000>;
+> +                  interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
+> +                  dr_mode = "host";
+> +                  snps,dis_u2_susphy_quirk;
+> +                  snps,quirk-frame-length-adjustment = <0x20>;
+> +          };
+> +  };
+> 
 
-
---bbp7a3fcwjlmdl47
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Wed, Dec 18, 2019 at 04:00:20PM +0800, Jian Hu wrote:
-> Hi Maxime
->
-> Thanks for your review
->
-> On 2019/12/13 18:38, Maxime Ripard wrote:
-> > Hi,
-> >
-> > On Fri, Dec 06, 2019 at 03:40:47PM +0800, Jian Hu wrote:
-> > > Add the documentation to support Amlogic A1 PLL clock driver,
-> > > and add A1 PLL clock controller bindings.
-> > >
-> > > Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-> > > ---
-> > >   .../bindings/clock/amlogic,a1-pll-clkc.yaml   | 59 +++++++++++++++++++
-> > >   include/dt-bindings/clock/a1-pll-clkc.h       | 16 +++++
-> > >   2 files changed, 75 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> > >   create mode 100644 include/dt-bindings/clock/a1-pll-clkc.h
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> > > new file mode 100644
-> > > index 000000000000..7feeef5abf1b
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-pll-clkc.yaml
-> > > @@ -0,0 +1,59 @@
-> > > +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> > > +/*
-> > > + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-> > > + */
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: "http://devicetree.org/schemas/clock/amlogic,a1-pll-clkc.yaml#"
-> > > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > > +
-> > > +title: Amlogic Meson A/C serials PLL Clock Control Unit Device Tree Bindings
-> > > +
-> > > +maintainers:
-> > > +  - Neil Armstrong <narmstrong@baylibre.com>
-> > > +  - Jerome Brunet <jbrunet@baylibre.com>
-> > > +  - Jian Hu <jian.hu@jian.hu.com>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    - enum:
-> > > +        - amlogic,a1-pll-clkc
-> >
-> > I'm not sure this works, compatible shouldn't contain a list.
-> >
-> I refered to
-> Documentation/devicetree/bindings/clock/allwinner,sun4i-a10-ccu.yaml.
->
-> I have used 'dt-doc-validate' tools to check, it will report something wrong
-> below.
->
-> properties:compatible: [{'enum': ['amlogic,a1-pll-clkc']}] is not of type
-> 'object', 'boolean'
->
-> Refer to
-> https://github.com/robherring/dt-schema/blob/master/example-schema.yaml
->
-> I will change it like this:
->
-> properties:
->   compatible:
->     oneOf:
->       - enum:
->          - amlogic,a1-pll-clkc
->
-> And It has been passed by 'dt-doc-validate' tools.
->
-> Is it right?
-
-You can simply do
-
-properties:
-  compatible:
-    const: amlogic,a1-pll-clkc
-
-> > You can write this like:
-> > compatible:
-> >    const: amlogic,a1-pll-clkc
-> >
-> > > +  "#clock-cells":
-> > > +    const: 1
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +clocks:
-> > > +  minItems: 2
-> > > +  maxItems: 2
-> >
-> > This is redundant, it will be added automatically by the tools ...
-> If I remove the minItems, it will pass by dt-doc-validate.
->
-> Would please tell how to use dt-schema to generate automatically it?
-
-You don't have to do anything, it's just done at the tools runtime.
-
-Maxime
-
---bbp7a3fcwjlmdl47
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXfoiTAAKCRDj7w1vZxhR
-xerFAQDOLKhGK6KP3ibCZZanzPijGZZtzYdosl6gUdzpZnNVngD5ASqg8zZV0ayF
-sEdXHgcGOt+HcE9xLntYb/gB3k+t3AY=
-=9Edw
------END PGP SIGNATURE-----
-
---bbp7a3fcwjlmdl47--
+I doubt this passed the dt_binding_check !
 
 
---===============4706384799310652745==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Please add the clock-names only for amlogic,meson-a1-usb-ctrl,
+set the phys maxItems to 1 for amlogic,meson-a1-usb-ctrl,
+and set dr_mode as host in the example or make it required only
+for amlogic,meson-g12a-usb-ctrl.
+
+Neil
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
---===============4706384799310652745==--
-
