@@ -2,146 +2,91 @@ Return-Path: <SRS0=A4ao=2I=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E4206C2D0C3
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Dec 2019 14:38:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E40E9C2D0D1
+	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Dec 2019 15:46:54 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B307E21582
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Dec 2019 14:38:31 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id BA95B20717
+	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Dec 2019 15:46:54 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="LGSPHGih";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="knd9bEo5"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B307E21582
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZH5pqHpd";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="FHCAjQd4"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BA95B20717
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=hdsxCTKA4bDRAPUPxURLEZ6vRhbfIOO9q6SGSSuwfWo=; b=LGSPHGihQyJSwf
-	Yuh3rjJvL9Iuosw7Y7bEvps0yKEIxQ1xIr+Ub/i1/NEHlQG316WYoB7ULSxHkNApFtmnHbcrdNikF
-	KeM5mYLleirkt43NQ37JIVIx55+jQeHZN1UoBNunrDZfHRTfSGTf+M9vhSNBB2k1Y4c1+pVoY44YY
-	2DPlupeFZkWY4oXqpA4y1JE2t/87VQ4/pvewDh75z/k8SJyjIL61UMjhgp0w65EMSh6uU8HQMkdEo
-	6MkY4RQ+8sDyn+JzPXpvWVkYz9Whaml/IV+UFvgW0I1Fw5AHAsiZiheLSaw05gkgS36XEaGX6eK26
-	dp00UCbaP0ywJvUbB6kA==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=i352vMDxAnJlujtI6uy5hBZGq/xslgy7T9lxxrseb/4=; b=ZH5pqHpdaenj4T
+	qbZA9DdOirM5kc/VLi/U/CgpJgaCOG3SfafHULJpCEk2i0OxHWKwcxBD3Z2hCEXVO/GmmMWeFml+e
+	lkQ389idMJMCXZpRQOLQNeDDmolgEpJhafIiCxoZEj0i7fqmAMbn8faouagd0O9e/FQLnUc5Ayd2h
+	bSXJfiDzCurEVNZb7icR+E5iFDMiiFWUgmkp1GHOEPhQJ/thSmztVDzzp51Oeqtfv9vg9e22mv4cM
+	z3+9LrIDBwukYCcnK9PvSG9BLTFoaGePJIAYN9Mn3YkIovE1xUPFK1QaCpuQYJ/WyRQnn0xL/P7mx
+	uQIbmgsO6ecb8XGQaA5g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ihaT4-0008Dh-Ei; Wed, 18 Dec 2019 14:38:26 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1ihbXD-00081r-Pj; Wed, 18 Dec 2019 15:46:47 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ihaT0-0008Cn-HH
- for linux-amlogic@lists.infradead.org; Wed, 18 Dec 2019 14:38:24 +0000
-Received: by mail-wm1-x341.google.com with SMTP id p17so2172005wmb.0
- for <linux-amlogic@lists.infradead.org>; Wed, 18 Dec 2019 06:38:22 -0800 (PST)
+ id 1ihbXA-0007zC-5f
+ for linux-amlogic@lists.infradead.org; Wed, 18 Dec 2019 15:46:45 +0000
+Received: by mail-wr1-x443.google.com with SMTP id c9so2803329wrw.8
+ for <linux-amlogic@lists.infradead.org>; Wed, 18 Dec 2019 07:46:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
- h=subject:to:cc:references:from:openpgp:autocrypt:organization
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=yy+FADW4iN0jE8T/SzaOGxnR0Z3+644d/IF/P/DHgTU=;
- b=knd9bEo54IjnlbaVOJER2OLdn6+y5Xc0Iry1HEq9yXFxd5ogXjT5pKLCMCn+1mQMyh
- Tsu+/Wc9YPq+P8wTYu34bUPTTd3rLBET6V881DECDUQMF7WoDcOWl0pmbY67/zioVjGa
- n42pjdY6VFkcb9jXxvodDzr+xo0tnE313O8qeKEwwDAqo/lIhmL9xI3KR2GsOGD6xIuM
- y2n80rYTrHDmfzfMMH6kxBF9dcBkooJL7KlG1CdiedmTPP8UGA3hNt4ON44jnxhOXDSC
- PI4zRgIReH6OLNDVEpAk5DjfyYsUzGVapmGzSga7z0jxP+qdJyCHDxRmPAS27ejPd5eS
- X9mg==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=O9tdpVSfl48TElavVgqhWWyanYwTXJeuWxrfu0hiAW4=;
+ b=FHCAjQd4y3iLKbv9a4+0jgFrCRVKlJcXXyEE8djCrmS1HqnAQOSIzjRPhU58PIOqSP
+ qLQGfl8t/kpeSD0jjGyEVg1gzI7FEKVnZAyyu39Tk6J/jW7uzg1fwpsQc2fyyl23X2yQ
+ vx2zPKIvq/gYsfcl93bHNdkA2/unThznbtJ2q2ZKLbNEnXIQ5oxLximvIxutQNUADsdL
+ BwiZ4sdCrvm5dC0Eebf8yxE+oGqYOpmKb8L9WZ0aEGYZfHzh65OS5C6JY2duUiV03LH1
+ CJRX/8PaypTs/svctTJXJCDjVfDFrXgCpW7vljEnXhEOYVbMN/BioNDaVzE/VFhKtnzp
+ M6Wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
- :organization:message-id:date:user-agent:mime-version:in-reply-to
- :content-language:content-transfer-encoding;
- bh=yy+FADW4iN0jE8T/SzaOGxnR0Z3+644d/IF/P/DHgTU=;
- b=ALV4aRE4eOhaiN6x0N6iDoXFbB5i6hnlQcsXiknn9IBf+LQYnguAEMB28SxFNH6PHK
- lctSJAE66PN3B8DcOA0BI5iroqPp+1I7TDB//bY7cqUmgke5wPg9fkvM+eWA6mLVk4fC
- j3BIZyaO+/AciOGCTe7RO6GdLwXkPrCqiBB7QTVUQmOnR7eBXI+mpPAC3HTHQIV89oWo
- 5u3q33yaoXrPpIq6FKnMGENhmnwtGm+utMPxCS+ATYbbEqx3WuNLORCZgHtGq16pA1j8
- Mi3EaA8V0p23VTXMmFNmt3Hy+KnxkLABCHw6bALj+n8sNCEsO8QnUVrt4fMF3syZkaKX
- 1u4Q==
-X-Gm-Message-State: APjAAAVQKwzLnYcmPf5gJXL8xqUj20oVFLO0VvIjv8a4NpeCqdC6zu9h
- RqQfF/uSS7ajYJUK80hbqHm5Fw==
-X-Google-Smtp-Source: APXvYqxsUceJIcjVgPuOiVZLqMGfVJHnlpAce65+tvQaqB2uenr+OBD0uttpplrmZoEsigBKvcaQ7g==
-X-Received: by 2002:a1c:a404:: with SMTP id n4mr3376304wme.109.1576679901002; 
- Wed, 18 Dec 2019 06:38:21 -0800 (PST)
-Received: from [10.2.4.229] (lfbn-nic-1-505-157.w90-116.abo.wanadoo.fr.
- [90.116.92.157])
- by smtp.gmail.com with ESMTPSA id m126sm2686706wmf.7.2019.12.18.06.38.20
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Wed, 18 Dec 2019 06:38:20 -0800 (PST)
-Subject: Re: [PATCH] dt-bindings: usb: amlogic, meson-g12a-usb-ctrl: fix clock
- names
-To: Benjamin Gaignard <benjamin.gaignard@st.com>, gregkh@linuxfoundation.org, 
- robh+dt@kernel.org, mark.rutland@arm.com, khilman@baylibre.com
-References: <20191218142613.13683-1-benjamin.gaignard@st.com>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=O9tdpVSfl48TElavVgqhWWyanYwTXJeuWxrfu0hiAW4=;
+ b=ieqiuyzx0h2oRPSjLkfRrsgUJdtoIN25WTEa9BWc4nJFlxWDMasI0GlzwsJlpDfK2A
+ hNQGQP7q6TCehuZF6TSGX79RGBhXayWQ5dRNau/jdiRyMoN/26IemdsB2LE8s893wio8
+ DyR24TwgRexarLYFb9Sx42Nc4LVHY/Tc4qEMRg5dFk0Q2DYR6DOJx90GIxVYOnPqgINB
+ TLVK9Vg8AT2if7AMAbHF33Qkn+ZtV1woQusniNkorVduaNjs3iPk96JTdHooz1KrwIAo
+ eEn31CZKk0IXzrUapMe7u/m0wUskPwIWYmw3G6omNNFRdxqtKsalGvMwYDif+xOy8G5a
+ 1MmQ==
+X-Gm-Message-State: APjAAAXTNaxGs3aVdvEF71iZiQkW9hrfrR8psvvmYnYHtqyg30J+NtYZ
+ mZ4t3waT7h8ueve+20YvdwEDNQ==
+X-Google-Smtp-Source: APXvYqzuM/qSpRgPBzy3PCHjbAbAOHl0IflSqZ5d6XsQf2QHxW6iMGwcohpjIcXJFGEUXP4EJk3xAA==
+X-Received: by 2002:a5d:46c7:: with SMTP id g7mr3545462wrs.11.1576684001310;
+ Wed, 18 Dec 2019 07:46:41 -0800 (PST)
+Received: from bender.baylibre.local
+ (lfbn-nic-1-505-157.w90-116.abo.wanadoo.fr. [90.116.92.157])
+ by smtp.gmail.com with ESMTPSA id x1sm2891492wru.50.2019.12.18.07.46.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 18 Dec 2019 07:46:40 -0800 (PST)
 From: Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <675bc964-8dfc-fd89-7f03-af5a83ab3b3c@baylibre.com>
-Date: Wed, 18 Dec 2019 15:38:19 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+To: a.hajda@samsung.com, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@siol.net, boris.brezillon@collabora.com
+Subject: [PATCH v3 01/10] drm/bridge: dw-hdmi: set mtmdsclock for deep color
+Date: Wed, 18 Dec 2019 16:46:28 +0100
+Message-Id: <20191218154637.17509-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20191218154637.17509-1-narmstrong@baylibre.com>
+References: <20191218154637.17509-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20191218142613.13683-1-benjamin.gaignard@st.com>
-Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191218_063822_620111_FBF7FB85 
-X-CRM114-Status: GOOD (  14.37  )
+X-CRM114-CacheID: sfid-20191218_074644_209106_83127953 
+X-CRM114-Status: UNSURE (   8.33  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,39 +98,58 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
+Cc: linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Neil Armstrong <narmstrong@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On 18/12/2019 15:26, Benjamin Gaignard wrote:
-> dwc2 bindings require clock-names to be "otg".
-> Fix the example in amlogic,meson-g12a-usb-ctrl to follow this requirement.
-> 
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@st.com>
-> ---
->  Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-> index 4efb77b653ab..267fce165994 100644
-> --- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-> +++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-> @@ -107,7 +107,7 @@ examples:
->                reg = <0xff400000 0x40000>;
->                interrupts = <31>;
->                clocks = <&clkc_usb1>;
-> -              clock-names = "ddr";
-> +              clock-names = "otg";
->                phys = <&usb2_phy1>;
->                dr_mode = "peripheral";
->                g-rx-fifo-size = <192>;
-> 
+From: Jonas Karlman <jonas@kwiboo.se>
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Configure the correct mtmdsclock for deep colors to prepare support
+for 10, 12 & 16bit output.
+
+Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+index dbe38a54870b..6a0b4b3a6739 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi.c
+@@ -1792,9 +1792,26 @@ static void hdmi_av_composer(struct dw_hdmi *hdmi,
+ 
+ 	dev_dbg(hdmi->dev, "final pixclk = %d\n", vmode->mpixelclock);
+ 
++	if (!hdmi_bus_fmt_is_yuv422(hdmi->hdmi_data.enc_out_bus_format)) {
++		switch (hdmi_bus_fmt_color_depth(
++				hdmi->hdmi_data.enc_out_bus_format)) {
++		case 16:
++			vmode->mtmdsclock = (u64)vmode->mpixelclock * 2;
++			break;
++		case 12:
++			vmode->mtmdsclock = (u64)vmode->mpixelclock * 3 / 2;
++			break;
++		case 10:
++			vmode->mtmdsclock = (u64)vmode->mpixelclock * 5 / 4;
++			break;
++		}
++	}
++
+ 	if (hdmi_bus_fmt_is_yuv420(hdmi->hdmi_data.enc_out_bus_format))
+ 		vmode->mtmdsclock /= 2;
+ 
++	dev_dbg(hdmi->dev, "final tmdsclk = %d\n", vmode->mtmdsclock);
++
+ 	/* Set up HDMI_FC_INVIDCONF */
+ 	inv_val = (hdmi->hdmi_data.hdcp_enable ||
+ 		   (dw_hdmi_support_scdc(hdmi) &&
+-- 
+2.22.0
+
 
 _______________________________________________
 linux-amlogic mailing list
