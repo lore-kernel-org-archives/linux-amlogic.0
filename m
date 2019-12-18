@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CAE41C43603
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Dec 2019 02:44:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CD716C43603
+	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Dec 2019 02:45:17 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A072A21775
-	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Dec 2019 02:44:50 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 9FB4821775
+	for <linux-amlogic@archiver.kernel.org>; Wed, 18 Dec 2019 02:45:17 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qOx4uvQV"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A072A21775
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="i3hzjPs6"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 9FB4821775
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,18 +25,18 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=9Abfq1LZca+7vX/2SlCUXWLJTsBfeH3oC+6AMDZRiW8=; b=qOx4uvQV0Sq3P4
-	6zen86eId0cRYgVfhuTkyo8rvnY3uw7NUqTXFDG2scD6Lrg2pGS70SapJBSYMePOwTp72e2IbAcSj
-	grVTV1y9u8+u5H0VL62gc12wBW4i3bAkRNIXpdx5++axPjISUdVq7hckCKx6HZW2dIQMH6RO8unbX
-	hMWOWwFmj7O3OE7swxCxT76eQgN63OOzVFFMEDpdPrQrgoEi5qfx83xigaWxzA1G4i2eb4uk1J4lP
-	4qra/orQjmmYWsw48M+8BMbT1k0OiXwvoCAiSwq2+lnXVhpg6b90TAAseHVGWGvCC5Q933OSIMMuy
-	ii4gANrkX/XG4l2/nchg==;
+	List-Owner; bh=ZvSKyxsahewh/0kyKsyrOb5f+ujNqziJ5gjdZ1YTCgY=; b=i3hzjPs6Uh0VzL
+	1hI8zEQgHBM1J39P700x2tpaEtMbe+4lwhMv7ROSWCLSx0MVB9lM+C24zB2WfBHPLlNNKt7qd+TfG
+	v2JbPGC4gKF0jt3dD3aQMhRzGappC0CdLOS1jv8h7QkgYUz4fX1PLIcPCmIyVaboAicGbApECHyqR
+	NBqKTIqjR16XDmv+CYuyD0eYzxE5Y+seh8XaHBCKPuulKiJYxcOLjX5PI8sUVQD3uZptQlYh4cmUL
+	SsVW0k0JpFxJRQWaE99mZ9diJLYADH3D5WwGHg0lXg8xJTbML9ViFxUIo15i9w9J13Ov+DM13yqjI
+	B+sa6K6B6dvGdpnEdRhw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ihPKP-0000CT-G9; Wed, 18 Dec 2019 02:44:45 +0000
+	id 1ihPKq-00017t-34; Wed, 18 Dec 2019 02:45:12 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ihPIp-0006uW-Im; Wed, 18 Dec 2019 02:43:09 +0000
+ id 1ihPIr-0006uW-L1; Wed, 18 Dec 2019 02:43:10 +0000
 Received: from droid10.amlogic.com (10.18.11.213) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.1591.10; Wed, 18 Dec 2019
  10:43:25 +0800
@@ -45,17 +45,17 @@ To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
  <narmstrong@baylibre.com>, Rob Herring <robh@kernel.org>, Greg Kroah-Hartman
  <gregkh@linuxfoundation.org>, Felipe Balbi <felipe.balbi@linux.intel.com>,
  Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH v2 5/6] arm64: dts: meson: a1: Enable USB2 PHY
-Date: Wed, 18 Dec 2019 10:42:23 +0800
-Message-ID: <1576636944-196192-6-git-send-email-hanjie.lin@amlogic.com>
+Subject: [PATCH v2 6/6] arm64: dts: meson: a1: Enable DWC3 controller
+Date: Wed, 18 Dec 2019 10:42:24 +0800
+Message-ID: <1576636944-196192-7-git-send-email-hanjie.lin@amlogic.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1576636944-196192-1-git-send-email-hanjie.lin@amlogic.com>
 References: <1576636944-196192-1-git-send-email-hanjie.lin@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.18.11.213]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191217_184307_662153_3EB06C5B 
-X-CRM114-Status: UNSURE (   7.29  )
+X-CRM114-CacheID: sfid-20191217_184309_716115_EAB5B5C0 
+X-CRM114-Status: UNSURE (   7.71  )
 X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
@@ -82,43 +82,65 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Enable USB2 PHY for Meson A1 SoC.
+Enable DWC3 controller for Meson A1 SoC.
 
 Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
 Signed-off-by: Yue Wang <yue.wang@amlogic.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 33 +++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-index 6fdc0dd..bd63374a 100644
+index bd63374a..76f787d 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -6,6 +6,7 @@
- #include <dt-bindings/interrupt-controller/irq.h>
+@@ -7,6 +7,8 @@
  #include <dt-bindings/interrupt-controller/arm-gic.h>
  #include <dt-bindings/power/meson-a1-power.h>
-+#include <dt-bindings/reset/amlogic,meson-a1-reset.h>
+ #include <dt-bindings/reset/amlogic,meson-a1-reset.h>
++#include <dt-bindings/clock/a1-pll-clkc.h>
++#include <dt-bindings/clock/a1-clkc.h>
  
  / {
  	compatible = "amlogic,a1";
-@@ -100,6 +101,16 @@
- 				#power-domain-cells = <1>;
- 				status = "okay";
- 			};
-+
-+			usb2_phy1: phy@40000 {
-+				status = "okay";
-+				compatible = "amlogic,a1-usb2-phy";
-+				reg = <0x0 0x40000 0x0 0x2000>;
-+				resets = <&reset RESET_USBPHY>;
-+				reset-names = "phy";
-+				#phy-cells = <0>;
-+				power-domains = <&pwrc PWRC_USB_ID>;
-+			};
+@@ -125,6 +127,37 @@
+ 			#interrupt-cells = <3>;
+ 			#address-cells = <0>;
  		};
++
++		usb: usb@ffe09000 {
++			status = "okay";
++			compatible = "amlogic,meson-a1-usb-ctrl";
++			reg = <0x0 0xffe09000 0x0 0xa0>;
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges;
++
++			clocks = <&clkc_periphs CLKID_USB_CTRL>,
++				 <&clkc_periphs CLKID_USB_BUS>,
++				 <&clkc_periphs CLKID_XTAL_USB_PHY>,
++				 <&clkc_periphs CLKID_XTAL_USB_CTRL>;
++			clock-names = "usb_ctrl", "usb_bus", "xtal_usb_phy",
++					"xtal_usb_ctrl";
++			resets = <&reset RESET_USBCTRL>;
++
++			dr_mode = "host";
++
++			phys = <&usb2_phy1>;
++			phy-names = "usb2-phy1";
++
++			dwc3: usb@ff400000 {
++				compatible = "snps,dwc3";
++				reg = <0x0 0xff400000 0x0 0x100000>;
++				interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
++				dr_mode = "host";
++				snps,dis_u2_susphy_quirk;
++				snps,quirk-frame-length-adjustment = <0x20>;
++			};
++		};
+ 	};
  
- 		gic: interrupt-controller@ff901000 {
+ 	timer {
 -- 
 2.7.4
 
