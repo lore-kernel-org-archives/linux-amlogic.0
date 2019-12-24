@@ -2,70 +2,88 @@ Return-Path: <SRS0=kiAd=2O=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EAECDC2D0C3
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Dec 2019 03:36:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6E4FCC2D0CF
+	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Dec 2019 10:08:54 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B9DEB206B7
-	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Dec 2019 03:36:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 40F312071A
+	for <linux-amlogic@archiver.kernel.org>; Tue, 24 Dec 2019 10:08:54 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="nw41pYfq";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="hHtreC+y"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B9DEB206B7
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ecWWZZri";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=ti.com header.i=@ti.com header.b="VU+4pYsP"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 40F312071A
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:Subject:To:From:
-	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=EC0JeKAGZF7Pf42FxQul/UsckKZG7XeJCgM7S76PLxQ=; b=nw41pYfq/03m6B
-	uoaI2Z2amsY64ZautbpsdeNwd0eKCDfXIVgoe5JFqidC+VdyJmyNF5V3EsaEbZHND57zPD/0hVjxP
-	C5FaJPUG0tzF2lk+dzCyLawg/tStAWZGrezeup5kdu39dt3riDPlzrHijK4SUhaB+A4mpz0YLX/za
-	lKilFtClbK777WxpCFna6C+SifpS+tdJN+mF1GuJ7Ozn1GMe7GhhUyUhfxOF5NGBwMEy7alAyfezI
-	uxg4Kc817qQS3qxNc8n09ZFDiCIu9ZuhsUIDp3SsKGMaStSbnM+70NuVtN/3yy5CLtXdRd57msMwQ
-	h1LboCUCiYCDs9FhO+pw==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=WOZXg/eRAakvOEgt5uFtM9eg7SjprPEKGB6/n8h4H4s=; b=ecWWZZrikU3GfU
+	u/VP0oeSEQ99DU6/1UI0eIHV4OCsedtxvme2JNDpDtHqTRMEvW07vdNb2YBA2EV9ESN0ejPWXU8Ue
+	LE0NFPD1MY14OwCt3cyfORMiVhAQZqxgdl7uUpFox5TwYGLzgqgvnXLKQ5EihKfRX651J0oRMEqm9
+	TAd8cuO8NULxCMX/lUnlvM2poMEDb2th8Dt5kGETi21opP+JiAd7LAs7T0PfW3CbdjPF1Kc/GXcGu
+	vkxBOpBaMeM5oCsytm3ywGcf2GOF8nx5et+aR6hRaEK/rF05StdU79SUNntySZXOOKB9oJHTlJL1e
+	bboVmhkMD6SiBPvQRvRw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ijazv-0006i6-BV; Tue, 24 Dec 2019 03:36:39 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1ijh7N-0008RO-Hk; Tue, 24 Dec 2019 10:08:45 +0000
+Received: from lelv0142.ext.ti.com ([198.47.23.249])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ijazs-0006hk-OK; Tue, 24 Dec 2019 03:36:38 +0000
-Received: from kernel.org (unknown [104.132.0.74])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 1BB3F206B7;
- Tue, 24 Dec 2019 03:36:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1577158596;
- bh=hKOk/K7hTl+yIynX4qaqBR8jYeq8G7LYQWQa8oBkIlg=;
- h=In-Reply-To:References:Cc:From:To:Subject:Date:From;
- b=hHtreC+yvNjl49/8yHJTSGyyOzkmVhJrs1i0vH3I48Q//kO9OhuqlsYbFZGZS7UD9
- qF0SxC4zVszjRT+VAwWZk0iEidiQxCbragcL3l+teGxjSjc766HzB2K4bdsAaELmKj
- qbAK1MUf9hu4AjzTbfwKLPgpXxAodx8v5psEzWvs=
+ id 1ijh7J-0008Qq-K1
+ for linux-amlogic@lists.infradead.org; Tue, 24 Dec 2019 10:08:43 +0000
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+ by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBOA8Sjb001388;
+ Tue, 24 Dec 2019 04:08:28 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+ s=ti-com-17Q1; t=1577182108;
+ bh=or8fipxbRc2a8M90fDUSpMJz30EauQq+xaBHouDa29w=;
+ h=Subject:To:CC:References:From:Date:In-Reply-To;
+ b=VU+4pYsPAjeQIi1aQQkda9hB+6xqQNu5/ro5CqPGHmvAIc/bvGlhPmag4BDTPyYr0
+ by3trbAOCVKwLLqB7J6vR1ezHzXGHH/y1AGMLSChgbprGowolCJuNM9l3aHyhgtlO+
+ PTnw0ac7prZdDM3G2hZclXzdzuY2vUkqhnw1Jkq8=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+ by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBOA8Svs025637
+ (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+ Tue, 24 Dec 2019 04:08:28 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3; Tue, 24
+ Dec 2019 04:08:27 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+ Frontend Transport; Tue, 24 Dec 2019 04:08:27 -0600
+Received: from [10.24.69.159] (ileax41-snat.itg.ti.com [10.172.224.153])
+ by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBOA8OcH097407;
+ Tue, 24 Dec 2019 04:08:24 -0600
+Subject: Re: [PATCH v2 1/3] phy: amlogic: Add Amlogic AXG MIPI/PCIE PHY Driver
+To: Remi Pommarel <repk@triplefau.lt>, Yue Wang <yue.wang@Amlogic.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>, Andrew Murray
+ <andrew.murray@arm.com>, Kevin Hilman <khilman@baylibre.com>, Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>, Neil Armstrong
+ <narmstrong@baylibre.com>
+References: <20191223214529.20377-1-repk@triplefau.lt>
+ <20191223214529.20377-2-repk@triplefau.lt>
+From: Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <a2445a16-651c-457c-9e3c-23899c639a1a@ti.com>
+Date: Tue, 24 Dec 2019 15:40:20 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <1jlfrcaxmm.fsf@starbuckisacylon.baylibre.com>
-References: <20191215210153.1449067-1-martin.blumenstingl@googlemail.com>
- <1jr214bpl0.fsf@starbuckisacylon.baylibre.com>
- <20191216175015.2A642206EC@mail.kernel.org>
- <1jlfrcaxmm.fsf@starbuckisacylon.baylibre.com>
-From: Stephen Boyd <sboyd@kernel.org>
-To: Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, narmstrong@baylibre.com
-Subject: Re: [PATCH 0/1] clk: Meson8/8b/8m2: fix the mali clock flags
-User-Agent: alot/0.8.1
-Date: Mon, 23 Dec 2019 19:36:35 -0800
-Message-Id: <20191224033636.1BB3F206B7@mail.kernel.org>
+In-Reply-To: <20191223214529.20377-2-repk@triplefau.lt>
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191223_193636_834019_AC021A4E 
-X-CRM114-Status: GOOD (  30.36  )
+X-CRM114-CacheID: sfid-20191224_020841_761368_1D73EC08 
+X-CRM114-Status: GOOD (  25.65  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,108 +95,235 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: mturquette@baylibre.com, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc: linux-pci@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Jerome Brunet (2019-12-16 11:17:21)
-> 
-> On Mon 16 Dec 2019 at 18:50, Stephen Boyd <sboyd@kernel.org> wrote:
-> 
-> > Quoting Jerome Brunet (2019-12-16 01:13:31)
-> >> 
-> >> *updated last* which crucial to your use case.
-> >> 
-> >> I just wonder if this crucial part something CCF guarantee and you can
-> >> rely on it ... or if it might break in the future.
-> >> 
-> >> Stephen, any thoughts on this ?
-> >
-> > We have problems with the order in which we call the set_rate clk_op.
-> > Sometimes clk providers want us to call from leaf to root but instead we
-> > call from root to leaf because of implementation reasons. Controlling
-> > the order in which clk operations are done is an unsolved problem. But
-> > yes, in the future I'd like to see us introduce the vaporware that is
-> > coordinated clk rates that would allow clk providers to decide what this
-> > order should be, instead of having to do this "root-to-leaf" update.
-> > Doing so would help us with the clk dividers that have some parent
-> > changing rate that causes the downstream device to be overclocked while
-> > we change the parent before the divider.
-> >
-> > If there are more assumptions like this about how the CCF is implemented
-> > then we'll have to be extra careful to not disturb the "normal" order of
-> > operations when introducing something that allows clk providers to
-> > modify it.
-> 
-> I understand that CCR would, in theory, allow to define that sort of
-> details. Still defining (and documenting) the default behavior would be
-> nice.
-> 
-> So the question is:
->  * Can we rely set_rate() doing a root-to-leaf update until CCR comes
->    around ?
->  * If not, for use cases like the one described by Martin, I guess we
->    are stuck with the notifier ? Or would you have something else to
->    propose ?
+Hi,
 
-I suppose we should just state that clk_set_rate() should do a
-root-to-leaf update. It's not like anyone is interested in changing
-this behavior. The notifier is not ideal. I've wanted to add a new
-clk_op that would cover some amount of the notifier users by having a
-'pre_set_rate' clk op that can mux the clk over to something safe or
-setup a divider to something that is known to be safe and work. Then we
-can avoid having to register for a notifier just to do something right
-before the root-to-leaf update happens.
+On 24/12/19 3:15 AM, Remi Pommarel wrote:
+> This adds support for the MIPI PHY also needed for PCIE found in the
+> Amlogic AXG SoC Family.
+> 
+> MIPI or PCIE selection is done by the #phy-cells, making the mode
+> static and exclusive.
+> 
+> For now only PCIE fonctionality is supported.
+> 
+> This PHY will be used to replace the mipi_enable clock gating logic
+> which was mistakenly added in the clock subsystem. This also activate
+> a non documented band gap bit in those registers that allows reliable
+> PCIE clock signal generation on AXG platforms.
+> 
+> Signed-off-by: Remi Pommarel <repk@triplefau.lt>
+> ---
+>  drivers/phy/amlogic/Kconfig                   |  11 ++
+>  drivers/phy/amlogic/Makefile                  |   1 +
+>  drivers/phy/amlogic/phy-meson-axg-mipi-pcie.c | 176 ++++++++++++++++++
+>  3 files changed, 188 insertions(+)
+>  create mode 100644 drivers/phy/amlogic/phy-meson-axg-mipi-pcie.c
+> 
+> diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
+> index af774ac2b934..1eeb75d018e3 100644
+> --- a/drivers/phy/amlogic/Kconfig
+> +++ b/drivers/phy/amlogic/Kconfig
+> @@ -59,3 +59,14 @@ config PHY_MESON_G12A_USB3_PCIE
+>  	  Enable this to support the Meson USB3 + PCIE Combo PHY found
+>  	  in Meson G12A SoCs.
+>  	  If unsure, say N.
+> +
+> +config PHY_MESON_AXG_MIPI_PCIE
+> +	tristate "Meson AXG MIPI + PCIE PHY driver"
+> +	default ARCH_MESON
+> +	depends on OF && (ARCH_MESON || COMPILE_TEST)
+> +	select GENERIC_PHY
+> +	select MFD_SYSCON
+> +	help
+> +	  Enable this to support the Meson MIPI + PCIE PHY found
+> +	  in Meson AXG SoCs.
+> +	  If unsure, say N.
+> diff --git a/drivers/phy/amlogic/Makefile b/drivers/phy/amlogic/Makefile
+> index 11d1c42ac2be..2167330a0ae8 100644
+> --- a/drivers/phy/amlogic/Makefile
+> +++ b/drivers/phy/amlogic/Makefile
+> @@ -4,3 +4,4 @@ obj-$(CONFIG_PHY_MESON_GXL_USB2)	+= phy-meson-gxl-usb2.o
+>  obj-$(CONFIG_PHY_MESON_G12A_USB2)	+= phy-meson-g12a-usb2.o
+>  obj-$(CONFIG_PHY_MESON_GXL_USB3)	+= phy-meson-gxl-usb3.o
+>  obj-$(CONFIG_PHY_MESON_G12A_USB3_PCIE)	+= phy-meson-g12a-usb3-pcie.o
+> +obj-$(CONFIG_PHY_MESON_AXG_MIPI_PCIE)	+= phy-meson-axg-mipi-pcie.o
+> diff --git a/drivers/phy/amlogic/phy-meson-axg-mipi-pcie.c b/drivers/phy/amlogic/phy-meson-axg-mipi-pcie.c
+> new file mode 100644
+> index 000000000000..006aa8cdfc47
+> --- /dev/null
+> +++ b/drivers/phy/amlogic/phy-meson-axg-mipi-pcie.c
+> @@ -0,0 +1,176 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Amlogic AXG MIPI + PCIE PHY driver
+> + *
+> + * Copyright (C) 2019 Remi Pommarel <repk@triplefau.lt>
+> + */
+> +#include <linux/module.h>
+> +#include <linux/phy/phy.h>
+> +#include <linux/regmap.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/platform_device.h>
+> +#include <dt-bindings/phy/phy.h>
+> +
+> +#define HHI_MIPI_CNTL0 0x00
+> +#define		HHI_MIPI_CNTL0_COMMON_BLOCK	GENMASK(31, 28)
+> +#define		HHI_MIPI_CNTL0_ENABLE		BIT(29)
+> +#define		HHI_MIPI_CNTL0_BANDGAP		BIT(26)
+> +#define		HHI_MIPI_CNTL0_DECODE_TO_RTERM	GENMASK(15, 12)
+> +#define		HHI_MIPI_CNTL0_OUTPUT_EN	BIT(3)
+> +
+> +#define HHI_MIPI_CNTL1 0x01
+> +#define		HHI_MIPI_CNTL1_CH0_CML_PDR_EN	BIT(12)
+> +#define		HHI_MIPI_CNTL1_LP_ABILITY	GENMASK(5, 4)
+> +#define		HHI_MIPI_CNTL1_LP_RESISTER	BIT(3)
+> +#define		HHI_MIPI_CNTL1_INPUT_SETTING	BIT(2)
+> +#define		HHI_MIPI_CNTL1_INPUT_SEL	BIT(1)
+> +#define		HHI_MIPI_CNTL1_PRBS7_EN		BIT(0)
+> +
+> +#define HHI_MIPI_CNTL2 0x02
+> +#define		HHI_MIPI_CNTL2_CH_PU		GENMASK(31, 25)
+> +#define		HHI_MIPI_CNTL2_CH_CTL		GENMASK(24, 19)
+> +#define		HHI_MIPI_CNTL2_CH0_DIGDR_EN	BIT(18)
+> +#define		HHI_MIPI_CNTL2_CH_DIGDR_EN	BIT(17)
+> +#define		HHI_MIPI_CNTL2_LPULPS_EN	BIT(16)
+> +#define		HHI_MIPI_CNTL2_CH_EN(n)		BIT(15 - (n))
+> +#define		HHI_MIPI_CNTL2_CH0_LP_CTL	GENMASK(10, 1)
+> +
+> +struct phy_axg_mipi_pcie_priv {
+> +	struct phy *phy;
+> +	unsigned int mode;
+> +	struct regmap *regmap;
+> +};
+> +
+> +static const struct regmap_config phy_axg_mipi_pcie_regmap_conf = {
+> +	.reg_bits = 8,
+> +	.val_bits = 32,
+> +	.reg_stride = 4,
+> +	.max_register = HHI_MIPI_CNTL2,
+> +};
+> +
+> +static int phy_axg_mipi_pcie_power_on(struct phy *phy)
+> +{
+> +	struct phy_axg_mipi_pcie_priv *priv = phy_get_drvdata(phy);
+> +
+> +	/* MIPI not supported yet */
+> +	if (priv->mode != PHY_TYPE_PCIE)
+> +		return 0;
+> +
+> +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> +			   HHI_MIPI_CNTL0_BANDGAP, HHI_MIPI_CNTL0_BANDGAP);
+> +
+> +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> +			   HHI_MIPI_CNTL0_ENABLE, HHI_MIPI_CNTL0_ENABLE);
+> +	return 0;
+> +}
+> +
+> +static int phy_axg_mipi_pcie_power_off(struct phy *phy)
+> +{
+> +	struct phy_axg_mipi_pcie_priv *priv = phy_get_drvdata(phy);
+> +
+> +	/* MIPI not supported yet */
+> +	if (priv->mode != PHY_TYPE_PCIE)
+> +		return 0;
+> +
+> +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> +			   HHI_MIPI_CNTL0_BANDGAP, 0);
+> +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
+> +			   HHI_MIPI_CNTL0_ENABLE, 0);
+> +	return 0;
+> +}
+> +
+> +static int phy_axg_mipi_pcie_init(struct phy *phy)
+> +{
+> +	return 0;
+> +}
+> +
+> +static int phy_axg_mipi_pcie_exit(struct phy *phy)
+> +{
+> +	return 0;
+> +}
+> +
+> +static const struct phy_ops phy_axg_mipi_pcie_ops = {
+> +	.init = phy_axg_mipi_pcie_init,
+> +	.exit = phy_axg_mipi_pcie_exit,
+> +	.power_on = phy_axg_mipi_pcie_power_on,
+> +	.power_off = phy_axg_mipi_pcie_power_off,
+> +	.owner = THIS_MODULE,
+> +};
+> +
+> +static struct phy *phy_axg_mipi_pcie_xlate(struct device *dev,
+> +					   struct of_phandle_args *args)
+> +{
+> +	struct phy_axg_mipi_pcie_priv *priv = dev_get_drvdata(dev);
+> +	unsigned int mode;
+> +
+> +	if (args->args_count != 1) {
+> +		dev_err(dev, "invalid number of arguments\n");
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	mode = args->args[0];
+> +
+> +	/* MIPI mode is not supported yet */
+> +	if (mode != PHY_TYPE_PCIE) {
+> +		dev_err(dev, "invalid phy mode select argument\n");
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	priv->mode = mode;
+> +	return priv->phy;
+> +}
+> +
+> +static int phy_axg_mipi_pcie_probe(struct platform_device *pdev)
+> +{
+> +	struct phy_provider *pphy;
+> +	struct device *dev = &pdev->dev;
+> +	struct phy_axg_mipi_pcie_priv *priv;
+> +	struct device_node *np = dev->of_node;
+> +	int ret;
+> +
+> +	priv = devm_kmalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	/* Get the hhi system controller node */
+> +	priv->regmap = syscon_node_to_regmap(of_get_parent(dev->of_node));
+> +	if (IS_ERR(priv->regmap)) {
+> +		dev_err(dev, "failed to get HHI regmap\n");
+> +		return PTR_ERR(priv->regmap);
+> +	}
+> +
+> +	priv->phy = devm_phy_create(dev, np, &phy_axg_mipi_pcie_ops);
+> +	if (IS_ERR(priv->phy)) {
+> +		ret = PTR_ERR(priv->phy);
+> +		if (ret != -EPROBE_DEFER)
+> +			dev_err(dev, "failed to create PHY\n");
+> +		return ret;
+> +	}
+> +
+> +	phy_set_drvdata(priv->phy, priv);
+> +	dev_set_drvdata(dev, priv);
+> +	pphy = devm_of_phy_provider_register(dev, phy_axg_mipi_pcie_xlate);
+> +
+> +	return PTR_ERR_OR_ZERO(pphy);
+> +}
+> +
+> +static const struct of_device_id phy_axg_mipi_pcie_of_match[] = {
+> +	{
+> +		.compatible = "amlogic,axg-mipi-pcie-phy",
 
->    
-> >
-> > Also, isn't CLK_SET_RATE_GATE broken in the case that clk_set_rate()
-> > isn't called on that particular clk? I seem to recall that the flag only
-> > matters when it's applied to the "leaf" or entry point into the CCF from
-> > a consumer API.
-> 
-> It did but not anymore
-> 
-> > I've wanted to fix that but never gotten around to it.
-> 
-> I fixed that already :P
-> CLK_SET_RATE_GATE is a special case of clock protect. The clock is
-> protecting itself so it is going down through the tree.
-> 
+Is there a dt-binding documentation for this?
 
-Ahaha ok. As you can see I'm trying to forget clock protect ;-)
-
-
-> 
-> > The whole flag sort of irks me because I don't understand what consumers
-> > are supposed to do when this flag is set on a clk. How do they discover
-> > it?
-> 
-> Actually (ATM) the consumer is not even aware of it. If a clock with
-> CLK_SET_RATE_GATE is enabled, it will return the current rate to
-> .round_rate() and .set_rate() ... as if it was fixed.
-
-And then when the clk is disabled it will magically "unstick" and start
-to accept the same rate request again?
-
-> 
-> > They're supposed to "just know" and turn off the clk first and then
-> > call clk_set_rate()?
-> 
-> ATM, yes ... if CCF cannot switch to another "unlocked" subtree (the
-> case here)
-> 
-> > Why can't the framework do this all in the clk_set_rate() call?
-> 
-> When there is multiple consumers the behavior would become a bit
-> difficult to predict and drivers may have troubles anticipating that,
-> maybe, the clock is locked.
-
-Fun times!
-
+Thanks
+Kishon
 
 _______________________________________________
 linux-amlogic mailing list
