@@ -2,67 +2,84 @@ Return-Path: <SRS0=1Qmn=2P=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-0.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 45DE3C2D0DA
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Dec 2019 15:09:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6D8D6C2D0DA
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Dec 2019 15:34:10 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 14BB72072A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Dec 2019 15:09:13 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 409C22072A
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Dec 2019 15:34:10 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Bx4/NrFZ";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="zTEfMuOo"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 14BB72072A
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=lunn.ch
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lE7mzt6j";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="maKl18Yn"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 409C22072A
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BTicEZ7ewc8TPFki6M9K+TvBBBdkS3Px3Ir0xrmR8P8=; b=Bx4/NrFZ+VI6HP
-	HbNoHMcnrd26vPUTQTHMohsEdfY6xLaDBJYV7JcxJnOhQN2FWiTyt4BEiw7enDxtmQz7Eq+Pk89ea
-	wTprr5qW8FSKJvhLelQUa8yHaWl/v+MR/gQNOcfqPS3i+Z91RKjDzWsr9VvwEGZHt+9+D2+SisUEu
-	/wCWzlAfED1bC0a9B+3SorQc47FvY8hXUQ0HDCgAERxMkeUVVyiphLbZD4+XQZmJHvn1IY8cuE6Wf
-	TbnVnNDR1Oc6uOjJcgJAb0A/btgkaoMs+BHs2DuiO1M8SR/ypehP2z9cAKzGVTFR51XhOkLmpNkaf
-	UWqk9thQ52uaSm8o85IA==;
+	List-Owner; bh=22kOhLbv4bXO66oat0OmwzvWAcsSkw0T9aCD6zwhry0=; b=lE7mzt6j/ehvfH
+	TiQfBZTxp9iBEu0MMPCpv0Y8snIKf/aVNk4MqQM9Fjva4upI0dRlwIr8oDxvP/CMVpBJPt1EZ+Bnb
+	gmbzmRJdTOKk7i1RamOwHpwMaMc0NuR5QXDccBNv2QZ5dI1GvHb5h0xiWtsrDtpHAbZeSqyKCSA4v
+	mAbcHgC1iOEioTV61/5S0x0wjRvjO+PtakpCzxM6oP9M/Be0UPXW1L6aZ8y6TM7493il/l8mA1iKJ
+	Wk3SDbB4Hv4Nm9Si+6h3dh3blLqBLqBFyAkuw1GkPMS8PCnSwcDMSr1vExSzb9denvxfFn3565/xi
+	arW/ulN9IA4mYM/oZU7g==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ik8HW-0000j8-Np; Wed, 25 Dec 2019 15:09:02 +0000
-Received: from vps0.lunn.ch ([185.16.172.187])
+	id 1ik8fh-0007tj-MM; Wed, 25 Dec 2019 15:34:01 +0000
+Received: from mail-ed1-x541.google.com ([2a00:1450:4864:20::541])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ik8HT-0000ig-RQ; Wed, 25 Dec 2019 15:09:01 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
- s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
- Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=jQM1mPv2ronZJbcInLqrwGfsm7Z5m5AylYfzZgE2JXA=; b=zTEfMuOoUE9MwHB3sP2D4Xd29U
- B+ejTbVH8L+m+Y7bydqkF8Dm/oDIF0kTrd+TKU5JrmBdJkTJbF1cPtIa5qlI4XdJcYZcJR2eZKCfI
- NTTb5UzoFmrjvo0NuqfqIaHH1JhkSOviMTwD8hDle1tN/hewSV9OhQeSRTHZtCZwz6aw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
- (envelope-from <andrew@lunn.ch>)
- id 1ik8HF-0004Zd-42; Wed, 25 Dec 2019 16:08:45 +0100
-Date: Wed, 25 Dec 2019 16:08:45 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH 1/3] net: stmmac: dwmac-meson8b: Fix the RGMII TX delay
- on Meson8b/8m2 SoCs
-Message-ID: <20191225150845.GA16671@lunn.ch>
+ id 1ik8fe-0007tK-I5; Wed, 25 Dec 2019 15:34:00 +0000
+Received: by mail-ed1-x541.google.com with SMTP id c26so20143002eds.8;
+ Wed, 25 Dec 2019 07:33:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=IQuzNAwmqgU7RYVLn7PTMJDVE0GkXT3f08VIotAoPf8=;
+ b=maKl18YnhUUwUWP34Z6+xmQFT4wWqYgGuloO+Qfp31P46l/mqFeex62X+uUYBEm0Mo
+ wHj3kE01FUyhYyaKwLfvVZBK8cP6LSV8H3m9C75Y+/eBEBqhwN35q+fuW6zQXhvoCPz1
+ un7GRiTmnZJewA/yQSAPonkVILnYGbWjaMWGyjMuFGqB05+ChJQDdKb5TUmJg5o3+4l7
+ s1jsnQi+RIp07ucvGziUVeq590FbZ9CBblMiBlAOQCaQyvQkCU3j3VYy3DBt0ItJ7WR+
+ w1r1odrANJYueogE9h94yCZ6/I8A4sPpuVMZjdCT24qSZWDPU0Y4wYQK+cm5w7H5eSkS
+ xjVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=IQuzNAwmqgU7RYVLn7PTMJDVE0GkXT3f08VIotAoPf8=;
+ b=UJqFqOqo9onHgq6H08ox8I/QwPiO+Gp645uNk/UZHvCEYK1D1P5UryeimYt0OdcWwt
+ 52rXVYhZ+LG0nx76iajq2RHq5p0mY3bO2xk0Lep4yJllZ4MqnJjgYlmpwwqEnkxHiDJJ
+ hOVHie6MFbTKOtvAU+sW2AbOK52r/SiqvXNB5OuhG6S4Fi3OT1noBIPzY+xq3bj/3OBa
+ REzJKaWEPxYp85QpNilxMeursM6QNJ9WLihgMdnpK+tJxD5+CRXVdH2MikaUX7tSPFNU
+ JTJRiTH78isYJ3FuXMKlQ6TwZrIoFFQClYiG4U8KH1wIHPK4wthy46+ph6HoB6lawTjs
+ 5Uwg==
+X-Gm-Message-State: APjAAAW341Fkh5Na1WtJaP8uZazyVZyM+YlELgXY/Upp5bljn0fAu6fR
+ tzaR8KTb6TLJ7Q8Vh91MEJcjLxEmm+n4lpcpvBc=
+X-Google-Smtp-Source: APXvYqycWgQrP2PDwcVEuoLkCCTA3pbXwZSoDU21360+ihalDIq0VLY6VnQxJCDFoH/GxYuVOPQ1BtRm6wr/QHLgmWM=
+X-Received: by 2002:a50:fb96:: with SMTP id e22mr44962782edq.18.1577288035378; 
+ Wed, 25 Dec 2019 07:33:55 -0800 (PST)
+MIME-Version: 1.0
 References: <20191225005655.1502037-1-martin.blumenstingl@googlemail.com>
  <20191225005655.1502037-2-martin.blumenstingl@googlemail.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191225005655.1502037-2-martin.blumenstingl@googlemail.com>
+ <20191225150845.GA16671@lunn.ch>
+In-Reply-To: <20191225150845.GA16671@lunn.ch>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Wed, 25 Dec 2019 16:33:44 +0100
+Message-ID: <CAFBinCA4X1e5_5nBiHmNiB40uJyr9Nm1b2VkF9NqM+wb7-1xmw@mail.gmail.com>
+Subject: Re: [PATCH 1/3] net: stmmac: dwmac-meson8b: Fix the RGMII TX delay on
+ Meson8b/8m2 SoCs
+To: Andrew Lunn <andrew@lunn.ch>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191225_070859_887484_F74CA231 
-X-CRM114-Status: GOOD (  10.37  )
+X-CRM114-CacheID: sfid-20191225_073358_623024_B574B33A 
+X-CRM114-Status: GOOD (  21.92  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,72 +100,95 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Wed, Dec 25, 2019 at 01:56:53AM +0100, Martin Blumenstingl wrote:
-> GXBB and newer SoCs use the fixed FCLK_DIV2 (1GHz) clock as input for
-> the m250_sel clock. Meson8b and Meson8m2 use MPLL2 instead, whose rate
-> can be adjusted at runtime.
-> 
-> So far we have been running MPLL2 with ~250MHz (and the internal
-> m250_div with value 1), which worked enough that we could transfer data
-> with an TX delay of 4ns. Unfortunately there is high packet loss with
-> an RGMII PHY when transferring data (receiving data works fine though).
-> Odroid-C1's u-boot is running with a TX delay of only 2ns as well as
-> the internal m250_div set to 2 - no lost (TX) packets can be observed
-> with that setting in u-boot.
-> 
-> Manual testing has shown that the TX packet loss goes away when using
-> the following settings in Linux:
-> - MPLL2 clock set to ~500MHz
-> - m250_div set to 2
-> - TX delay set to 2ns
+Hi Andrew,
 
-Hi Martin
+thank you as always for taking a close look at my patches :-)
 
-The delay will depend on the PHY, the value of phy-mode, and the PCB
-layout.
+On Wed, Dec 25, 2019 at 4:08 PM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> On Wed, Dec 25, 2019 at 01:56:53AM +0100, Martin Blumenstingl wrote:
+> > GXBB and newer SoCs use the fixed FCLK_DIV2 (1GHz) clock as input for
+> > the m250_sel clock. Meson8b and Meson8m2 use MPLL2 instead, whose rate
+> > can be adjusted at runtime.
+> >
+> > So far we have been running MPLL2 with ~250MHz (and the internal
+> > m250_div with value 1), which worked enough that we could transfer data
+> > with an TX delay of 4ns. Unfortunately there is high packet loss with
+> > an RGMII PHY when transferring data (receiving data works fine though).
+> > Odroid-C1's u-boot is running with a TX delay of only 2ns as well as
+> > the internal m250_div set to 2 - no lost (TX) packets can be observed
+> > with that setting in u-boot.
+> >
+> > Manual testing has shown that the TX packet loss goes away when using
+> > the following settings in Linux:
+> > - MPLL2 clock set to ~500MHz
+> > - m250_div set to 2
+> > - TX delay set to 2ns
+>
+> Hi Martin
+>
+> The delay will depend on the PHY, the value of phy-mode, and the PCB
+> layout.
+>
+> https://ethernetfmc.com/rgmii-interface-timing-considerations/
+>
+> RGMII requires a delay of 2ns between the data and the clock
+> signal. There are at least three ways this can happen.
+>
+> 1) The MAC adds the delay
+>
+> 2) The PCB adds the delay by making the clock line longer than the
+> data line.
+>
+> 3) The PHY adds the delay.
+>
+> In linux you configure this using the phy-mode in DT.
+>
+>       # RX and TX delays are added by the MAC when required
+>       - rgmii
+>
+>       # RGMII with internal RX and TX delays provided by the PHY,
+>       # the MAC should not add the RX or TX delays in this case
+>       - rgmii-id
+>
+>       # RGMII with internal RX delay provided by the PHY, the MAC
+>       # should not add an RX delay in this case
+>       - rgmii-rxid
+>
+>       # RGMII with internal TX delay provided by the PHY, the MAC
+>       # should not add an TX delay in this case
+>       - rgmii-txid
+>
+> So ideally, you want the MAC to add no delay at all, and then use the
+> correct phy-mode so the PHY adds the correct delay. This gives you the
+> most flexibility in terms of PHY and PCB design. This does however
+> require that the PHY implements the delay, which not all do.
+these boards (with RGMII PHY) that I am aware of are using an RTL8211F
+PHY which implements a 2ns PHY TX delay
+however, the 3.10 vendor kernel also supports Micrel RGMII (and RMII)
+PHYs where I don't know if they implement a (configurable) TX delay.
 
-https://ethernetfmc.com/rgmii-interface-timing-considerations/
+> Looking at patches 2 and 3, the phy-mode is set to rgmii. What you
+> might actually need to do is set this to rgmii-txid, or maybe
+> rgmii-id, once you have the MAC not inserting any delay.
+please let us split this discussion:
+1) I believe that this patch is still correct and required whenever
+the MAC *has to* generate the TX delay (one use-case could be the
+Micrel PHYs I mentioned above)
+2) the correct phy-mode and where the TX delay is being generated. I
+have tried "rgmii-txid" on my own Odroid-C1 and it's working fine
+there. however, it's the only board with RGMII PHY that I have from
+this generation of SoCs (and other testers are typically rare for this
+platform, because it's an older SoC). so my idea was to use the same
+settings as the 3.10 vendor kernel because these seem to be the "known
+working" ones.
 
-RGMII requires a delay of 2ns between the data and the clock
-signal. There are at least three ways this can happen.
+what do you think about 2)? my main concern is that this *could* break
+Ethernet on other people's boards.
+on the other hand I have no idea how likely that actually is.
 
-1) The MAC adds the delay
 
-2) The PCB adds the delay by making the clock line longer than the
-data line.
-
-3) The PHY adds the delay.
-
-In linux you configure this using the phy-mode in DT.
-
-      # RX and TX delays are added by the MAC when required
-      - rgmii
-
-      # RGMII with internal RX and TX delays provided by the PHY,
-      # the MAC should not add the RX or TX delays in this case
-      - rgmii-id
-
-      # RGMII with internal RX delay provided by the PHY, the MAC
-      # should not add an RX delay in this case
-      - rgmii-rxid
-
-      # RGMII with internal TX delay provided by the PHY, the MAC
-      # should not add an TX delay in this case
-      - rgmii-txid
-
-So ideally, you want the MAC to add no delay at all, and then use the
-correct phy-mode so the PHY adds the correct delay. This gives you the
-most flexibility in terms of PHY and PCB design. This does however
-require that the PHY implements the delay, which not all do.
-
-Looking at patches 2 and 3, the phy-mode is set to rgmii. What you
-might actually need to do is set this to rgmii-txid, or maybe
-rgmii-id, once you have the MAC not inserting any delay.
-
-With MAC/PHY issues, it is a good idea to Cc: the PHY maintainers.
-
-	Andrew
-
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
