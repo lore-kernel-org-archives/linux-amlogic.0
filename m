@@ -2,84 +2,80 @@ Return-Path: <SRS0=1Qmn=2P=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6D8D6C2D0DA
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Dec 2019 15:34:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 91510C2D0C8
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Dec 2019 18:55:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 409C22072A
-	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Dec 2019 15:34:10 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 66E072073B
+	for <linux-amlogic@archiver.kernel.org>; Wed, 25 Dec 2019 18:55:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lE7mzt6j";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="maKl18Yn"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 409C22072A
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AuVJCCva";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="kHniXevL"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 66E072073B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=triplefau.lt
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=22kOhLbv4bXO66oat0OmwzvWAcsSkw0T9aCD6zwhry0=; b=lE7mzt6j/ehvfH
-	TiQfBZTxp9iBEu0MMPCpv0Y8snIKf/aVNk4MqQM9Fjva4upI0dRlwIr8oDxvP/CMVpBJPt1EZ+Bnb
-	gmbzmRJdTOKk7i1RamOwHpwMaMc0NuR5QXDccBNv2QZ5dI1GvHb5h0xiWtsrDtpHAbZeSqyKCSA4v
-	mAbcHgC1iOEioTV61/5S0x0wjRvjO+PtakpCzxM6oP9M/Be0UPXW1L6aZ8y6TM7493il/l8mA1iKJ
-	Wk3SDbB4Hv4Nm9Si+6h3dh3blLqBLqBFyAkuw1GkPMS8PCnSwcDMSr1vExSzb9denvxfFn3565/xi
-	arW/ulN9IA4mYM/oZU7g==;
+	List-Owner; bh=paQ7iq114SW47qy2o/CM6a//5pinHghWchDMG/2apgw=; b=AuVJCCva9zPdik
+	FMRQMcFj8nu1nDIaRHqHubmcuDzpgZmN1XhYeWjv1L5XXhfztiG86C1oK1nP2lKHEONNttmdXfw6s
+	KNtNyNHjNx2DrRjh5Xk3eg8Y1aDrIYhfLxwtepwZMZiq+wkXaIwnr1JpItXvbMONhgYO/UhkcDZSg
+	NRA+inJeZEp+o4gi/yJH+uFGF8GQD7hOXOdVRIj97cQxxw476fAvxg9jn/b0SxBmNbQ/qKCJV60gy
+	1wfCvRzzTomRQCkos6x+HMtrXEexJBeQDjQ62X5c9SXksLNHhqGkPomXyprf+Q1qi1lz/xixj30YX
+	4ScR7Ay7sxZqThOklAHg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ik8fh-0007tj-MM; Wed, 25 Dec 2019 15:34:01 +0000
-Received: from mail-ed1-x541.google.com ([2a00:1450:4864:20::541])
+	id 1ikBoO-0001Pu-41; Wed, 25 Dec 2019 18:55:12 +0000
+Received: from merlin.infradead.org ([2001:8b0:10b:1231::1])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ik8fe-0007tK-I5; Wed, 25 Dec 2019 15:34:00 +0000
-Received: by mail-ed1-x541.google.com with SMTP id c26so20143002eds.8;
- Wed, 25 Dec 2019 07:33:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=IQuzNAwmqgU7RYVLn7PTMJDVE0GkXT3f08VIotAoPf8=;
- b=maKl18YnhUUwUWP34Z6+xmQFT4wWqYgGuloO+Qfp31P46l/mqFeex62X+uUYBEm0Mo
- wHj3kE01FUyhYyaKwLfvVZBK8cP6LSV8H3m9C75Y+/eBEBqhwN35q+fuW6zQXhvoCPz1
- un7GRiTmnZJewA/yQSAPonkVILnYGbWjaMWGyjMuFGqB05+ChJQDdKb5TUmJg5o3+4l7
- s1jsnQi+RIp07ucvGziUVeq590FbZ9CBblMiBlAOQCaQyvQkCU3j3VYy3DBt0ItJ7WR+
- w1r1odrANJYueogE9h94yCZ6/I8A4sPpuVMZjdCT24qSZWDPU0Y4wYQK+cm5w7H5eSkS
- xjVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=IQuzNAwmqgU7RYVLn7PTMJDVE0GkXT3f08VIotAoPf8=;
- b=UJqFqOqo9onHgq6H08ox8I/QwPiO+Gp645uNk/UZHvCEYK1D1P5UryeimYt0OdcWwt
- 52rXVYhZ+LG0nx76iajq2RHq5p0mY3bO2xk0Lep4yJllZ4MqnJjgYlmpwwqEnkxHiDJJ
- hOVHie6MFbTKOtvAU+sW2AbOK52r/SiqvXNB5OuhG6S4Fi3OT1noBIPzY+xq3bj/3OBa
- REzJKaWEPxYp85QpNilxMeursM6QNJ9WLihgMdnpK+tJxD5+CRXVdH2MikaUX7tSPFNU
- JTJRiTH78isYJ3FuXMKlQ6TwZrIoFFQClYiG4U8KH1wIHPK4wthy46+ph6HoB6lawTjs
- 5Uwg==
-X-Gm-Message-State: APjAAAW341Fkh5Na1WtJaP8uZazyVZyM+YlELgXY/Upp5bljn0fAu6fR
- tzaR8KTb6TLJ7Q8Vh91MEJcjLxEmm+n4lpcpvBc=
-X-Google-Smtp-Source: APXvYqycWgQrP2PDwcVEuoLkCCTA3pbXwZSoDU21360+ihalDIq0VLY6VnQxJCDFoH/GxYuVOPQ1BtRm6wr/QHLgmWM=
-X-Received: by 2002:a50:fb96:: with SMTP id e22mr44962782edq.18.1577288035378; 
- Wed, 25 Dec 2019 07:33:55 -0800 (PST)
+ id 1ikBoM-0001Od-PY
+ for linux-amlogic@bombadil.infradead.org; Wed, 25 Dec 2019 18:55:10 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=merlin.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=V5zqjNU8lWxhx4T8vgAchYsOb6MwZXLIgZ6zmI6PMTY=; b=kHniXevLPZPcl6Ui2/g6/I9OH
+ iNTiiFJJERojciV+Nwqx+p02SQPCLKmA1ozn6IBxPeDZ4taPTklkICiY57V69Vo8jn+Zv71p7ezRy
+ Tx4Err03gmHl3QVGK/9RZVcao+93lgsuQFAU1tChnjqqZx59eLbfJXUdD3jKcpBI7bdci4K8kf0o7
+ Twqp7U6b9fY8HpHahVmSo5xEANlJ9O7k2glDq/bUL/7x9YQXVoHrh0gjUSNQ7e31gJa5VoNTRZ81b
+ 1Op4PE6TrcAHTBByzSoULLdIN8v8kZfYdtBO+wbn8/81VZI3lb0xEPn6BPP1uxFfcvrx9VkSy4QkL
+ KE8fKCZGg==;
+Received: from relay1-d.mail.gandi.net ([217.70.183.193])
+ by merlin.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1ikBoI-0000QH-Iz
+ for linux-amlogic@lists.infradead.org; Wed, 25 Dec 2019 18:55:08 +0000
+X-Originating-IP: 88.190.179.123
+Received: from localhost (unknown [88.190.179.123])
+ (Authenticated sender: repk@triplefau.lt)
+ by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id CF474240003;
+ Wed, 25 Dec 2019 18:54:17 +0000 (UTC)
+Date: Wed, 25 Dec 2019 20:02:20 +0100
+From: Remi Pommarel <repk@triplefau.lt>
+To: Kishon Vijay Abraham I <kishon@ti.com>, Yue Wang <yue.wang@amlogic.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Andrew Murray <andrew.murray@arm.com>,
+ Neil Armstrong <narmstrong@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH v3 5/5] dt-bindings: Add AXG PCIE PHY bindings
+Message-ID: <20191225190220.GF7304@voidbox>
+References: <20191224173942.18160-1-repk@triplefau.lt>
+ <20191224173942.18160-6-repk@triplefau.lt>
 MIME-Version: 1.0
-References: <20191225005655.1502037-1-martin.blumenstingl@googlemail.com>
- <20191225005655.1502037-2-martin.blumenstingl@googlemail.com>
- <20191225150845.GA16671@lunn.ch>
-In-Reply-To: <20191225150845.GA16671@lunn.ch>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Wed, 25 Dec 2019 16:33:44 +0100
-Message-ID: <CAFBinCA4X1e5_5nBiHmNiB40uJyr9Nm1b2VkF9NqM+wb7-1xmw@mail.gmail.com>
-Subject: Re: [PATCH 1/3] net: stmmac: dwmac-meson8b: Fix the RGMII TX delay on
- Meson8b/8m2 SoCs
-To: Andrew Lunn <andrew@lunn.ch>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191225_073358_623024_B574B33A 
-X-CRM114-Status: GOOD (  21.92  )
+Content-Disposition: inline
+In-Reply-To: <20191224173942.18160-6-repk@triplefau.lt>
+User-Agent: Mutt/1.12.2 (2019-09-21)
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,104 +87,91 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linus.luessing@c0d3.blue, balbes-150@yandex.ru, khilman@baylibre.com,
- linux-kernel@vger.kernel.org, ingrassia@epigenesys.com, netdev@vger.kernel.org,
- linux-amlogic@lists.infradead.org, davem@davemloft.net,
- linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
+Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Andrew,
+On Tue, Dec 24, 2019 at 06:39:42PM +0100, Remi Pommarel wrote:
+> Add documentation for PCIE PHYs found in AXG SoCs.
+> 
+> Signed-off-by: Remi Pommarel <repk@triplefau.lt>
+> ---
+>  .../bindings/phy/amlogic,meson-axg-pcie.yaml  | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-axg-pcie.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-axg-pcie.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson-axg-pcie.yaml
+> new file mode 100644
+> index 000000000000..c622a1b38ffc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/amlogic,meson-axg-pcie.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2019 BayLibre, SAS
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/phy/amlogic,meson-axg-pcie.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Amlogic AXG PCIE PHY
+> +
+> +maintainers:
+> +  - Remi Pommarel <repk@triplefau.lt>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - amlogic,axg-pcie-phy
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  aml,hhi-gpr:
+> +    maxItems: 1
 
-thank you as always for taking a close look at my patches :-)
+My bad, I didn't know about devicetree schemas and their verification,
+I will fix the missing $ref: '/schemas/types.yaml#/definitions/phandle'
+here, add a description and add the missing include for reset in the
+example below in v4 along with upcoming comments on the other patches.
 
-On Wed, Dec 25, 2019 at 4:08 PM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> On Wed, Dec 25, 2019 at 01:56:53AM +0100, Martin Blumenstingl wrote:
-> > GXBB and newer SoCs use the fixed FCLK_DIV2 (1GHz) clock as input for
-> > the m250_sel clock. Meson8b and Meson8m2 use MPLL2 instead, whose rate
-> > can be adjusted at runtime.
-> >
-> > So far we have been running MPLL2 with ~250MHz (and the internal
-> > m250_div with value 1), which worked enough that we could transfer data
-> > with an TX delay of 4ns. Unfortunately there is high packet loss with
-> > an RGMII PHY when transferring data (receiving data works fine though).
-> > Odroid-C1's u-boot is running with a TX delay of only 2ns as well as
-> > the internal m250_div set to 2 - no lost (TX) packets can be observed
-> > with that setting in u-boot.
-> >
-> > Manual testing has shown that the TX packet loss goes away when using
-> > the following settings in Linux:
-> > - MPLL2 clock set to ~500MHz
-> > - m250_div set to 2
-> > - TX delay set to 2ns
->
-> Hi Martin
->
-> The delay will depend on the PHY, the value of phy-mode, and the PCB
-> layout.
->
-> https://ethernetfmc.com/rgmii-interface-timing-considerations/
->
-> RGMII requires a delay of 2ns between the data and the clock
-> signal. There are at least three ways this can happen.
->
-> 1) The MAC adds the delay
->
-> 2) The PCB adds the delay by making the clock line longer than the
-> data line.
->
-> 3) The PHY adds the delay.
->
-> In linux you configure this using the phy-mode in DT.
->
->       # RX and TX delays are added by the MAC when required
->       - rgmii
->
->       # RGMII with internal RX and TX delays provided by the PHY,
->       # the MAC should not add the RX or TX delays in this case
->       - rgmii-id
->
->       # RGMII with internal RX delay provided by the PHY, the MAC
->       # should not add an RX delay in this case
->       - rgmii-rxid
->
->       # RGMII with internal TX delay provided by the PHY, the MAC
->       # should not add an TX delay in this case
->       - rgmii-txid
->
-> So ideally, you want the MAC to add no delay at all, and then use the
-> correct phy-mode so the PHY adds the correct delay. This gives you the
-> most flexibility in terms of PHY and PCB design. This does however
-> require that the PHY implements the delay, which not all do.
-these boards (with RGMII PHY) that I am aware of are using an RTL8211F
-PHY which implements a 2ns PHY TX delay
-however, the 3.10 vendor kernel also supports Micrel RGMII (and RMII)
-PHYs where I don't know if they implement a (configurable) TX delay.
+Sorry about that.
 
-> Looking at patches 2 and 3, the phy-mode is set to rgmii. What you
-> might actually need to do is set this to rgmii-txid, or maybe
-> rgmii-id, once you have the MAC not inserting any delay.
-please let us split this discussion:
-1) I believe that this patch is still correct and required whenever
-the MAC *has to* generate the TX delay (one use-case could be the
-Micrel PHYs I mentioned above)
-2) the correct phy-mode and where the TX delay is being generated. I
-have tried "rgmii-txid" on my own Odroid-C1 and it's working fine
-there. however, it's the only board with RGMII PHY that I have from
-this generation of SoCs (and other testers are typically rare for this
-platform, because it's an older SoC). so my idea was to use the same
-settings as the 3.10 vendor kernel because these seem to be the "known
-working" ones.
-
-what do you think about 2)? my main concern is that this *could* break
-Ethernet on other people's boards.
-on the other hand I have no idea how likely that actually is.
-
-
-Martin
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    items:
+> +      - const: phy
+> +
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - aml,hhi-gpr
+> +  - resets
+> +  - reset-names
+> +  - "#phy-cells"
+> +
+> +examples:
+> +  - |
+> +    pcie_phy: pcie-phy@ff644000 {
+> +          compatible = "amlogic,axg-pcie-phy";
+> +          reg = <0x0 0xff644000 0x0 0x2000>;
+> +          aml,hhi-gpr = <&sysctrl>;
+> +          resets = <&reset RESET_PCIE_PHY>;
+> +          reset-names = "phy";
+> +          #phy-cells = <0>;
+> +    };
+> -- 
+> 2.24.0
+> 
 
 _______________________________________________
 linux-amlogic mailing list
