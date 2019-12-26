@@ -2,89 +2,88 @@ Return-Path: <SRS0=sGw/=2Q=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-3.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 23A88C2D0DA
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Dec 2019 18:17:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D279C2D0DC
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Dec 2019 18:52:38 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id F01702080D
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Dec 2019 18:17:31 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 17B7F20828
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Dec 2019 18:52:38 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="d1wcixZJ";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="bdk9f8SU"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F01702080D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ETvms7TQ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="F/35XYsC"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 17B7F20828
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=cXbzowfIt9TKW2fRdxrbDrYspIh5daMZovHyn9WDAhA=; b=d1wcixZJ+qzo4s
-	J9UXVLNZXeXgHUhgnsFX/GzQG5EJCtRiJbdZYzBLR+/xx4T37bgnpCNqmFQOL5ZET1cUhi4N0PyeB
-	s4k2D6mm1lDdGULyu8jdBbp3P+oU61nCuTIHiF3citoAdLGUswkoV4FPJcO26ofcQV2coRDf6Vtk/
-	W67UG/oj5UZJ16ZrgbvxLHt5uafzilmCGt76Jcyxre0cyV9Qgt1XNd1Ev5jsLy/HP+rnq7o24KBFG
-	Jzt4FRG27etxLtEI6BFZqRPzetDhgcVkgwvtntlEgh2qxl8inwCApg2qAWeRFnZaZapMrIncSsfGh
-	i0ova0o3zht6UXOLpmeQ==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=MOhFF0O1tO/vnL81Dk7qlhURgmjEpsz+ZWCoMXWVQG8=; b=ETvms7TQZTa7jV
+	6UIYXdTevhWgB7Q1hjBIf+96bYjofWAgZqgFz5FUlaq/+XpSDGgTrkABxcNut0TIHRz5FVHRWXl9o
+	qI4eYVqBZKOIwQYuXC/k0v7PqIA8ru1EOvEUzwDWvE0Qr45tBJ80ANPt5NyV3kgnEWomLk8mrF7Vf
+	Ug5kdKxoI4wcY17hykjtMar2RQ7AgLDWWUu9rPcDlk2o7qwvyOvUQT4Zi+8dTSsmFVrhySrJjI7FK
+	DNVWsvgiLcWsqnXubfNlRNiQbkYPtFHlDfty42vmNuWz3KU8B5W+H+RgDINer4amXHZMEDbRjjpjc
+	qp3tbaeY4FqVdj7ls7LA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ikXhJ-0007f7-SX; Thu, 26 Dec 2019 18:17:21 +0000
-Received: from mail-ed1-x542.google.com ([2a00:1450:4864:20::542])
+	id 1ikYFM-0002M4-W4; Thu, 26 Dec 2019 18:52:33 +0000
+Received: from mail-wm1-x342.google.com ([2a00:1450:4864:20::342])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ikXhG-0007ee-MF; Thu, 26 Dec 2019 18:17:21 +0000
-Received: by mail-ed1-x542.google.com with SMTP id r21so23342774edq.0;
- Thu, 26 Dec 2019 10:17:17 -0800 (PST)
+ id 1ikYFH-0002IH-Up; Thu, 26 Dec 2019 18:52:30 +0000
+Received: by mail-wm1-x342.google.com with SMTP id u2so6651561wmc.3;
+ Thu, 26 Dec 2019 10:52:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=/kVUvUUlIv+S4KgB8PAilg5eRolltdkQ40GkTlROLJs=;
- b=bdk9f8SUF43t/ZpP5zxB4uQXnDLufOuMHu/wIWWmDxL7aVjosImu7uDnGwroYAo9hR
- eJCnfI7jptFKeuPCfVOoo7DiYO5i6BKr4kO6hw5GyLhjfhklx2fPmTYgv6vRDCEfICc6
- N3X3vUhbgwMXiacZqdUHI4AqL0uF0koIJCoO4qJCciRnbmP6Jx5g3AXukI/Fw4JQ/wAv
- o4aL+uNzuC/mo44CJ2xatye3EAhKVbrD6a4UjOkCtB4+olUufm7vbM6mvjvPR9c991vv
- jaTnyHZiCSrclPaFEMixAatFZ8y0GsfV++VqW1GaPDsCrplp7O/+sv4lIfufoL5CcUB6
- HCRQ==
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Ypv1P+w8u0b0xjjfk63+8/r3fcQQ50esgG/WxnES284=;
+ b=F/35XYsCTf2aMj5zaXMWHKeSm3rrKNRco1feL0oBX2a3PYEiLiNAXf+YLSBNl5Xxlg
+ orKHkmAhn5ACBZOz8ibgXQ18cgBNFtC1XwNvIT7Gr3H1SCjXScO0jOqAHKh1qUXXybvv
+ xmPAcEhIgSXuAwALHZFy8OzlTezEQpwlqYOqGfvd5sglTbwFM/IXpk8yritCeSViRWbw
+ m6yRCsaBiubozEzpqnmaxZUE9wuqBx1rrjxW8fD75pFWb45MeAYlFsJa0xk/WitRlMDd
+ SlTU8M1IwGO0PJayZ8hPxsc7Cp5kfVsm4LNJup58YKp2g4c+jEf1Wd8nQ9rnZ/IujWa6
+ kXBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=/kVUvUUlIv+S4KgB8PAilg5eRolltdkQ40GkTlROLJs=;
- b=V50z7BFBKIFiKtvHUxiKzgu7TM7W5CEo4W6kwLo4rZCZZCX2QmH7x0WEMBPRV+8M6v
- m0eo+jQ/t2mlQs03raWTsqkFqHug89tc05Yrj1IXS9Atlx6KvjZEIhKoAYLwp1N0jwTK
- 5Uaa+GIzJgv1u3U2sHcWgHpzROXSxKkez8JYo/vOOxRn/QLNklRllFnRwIETZ+ow0DEQ
- vFbNRZBcje9zRpTYPAZNFf+ycf99kU8fL0enh/O5aW3MYsxgPbetaIhT/N9Ja3tKbNyx
- xI9lyhwj0wUZKh9+ioE8y20lNXwwWbed/qCQTOUNnli/k5BxLY2Fvv7fS2ahTMbHWSRu
- pvaw==
-X-Gm-Message-State: APjAAAX0881abrdFHeHYVa/qe69urYnXEHmNisaoENU+nhXZJfHuEDLE
- +TSe/TS6kj0HCTW41nnQAo+a3PSdwom5A9IiAIQ=
-X-Google-Smtp-Source: APXvYqyIG6a7r9M4dZcMeoqoNvL9c1xsxC7MdJXKs8s6dyYvgPlDylAr5Jg+h9P+QsIDTu+cgoDJlTOe781mQBrq0i0=
-X-Received: by 2002:a17:906:260b:: with SMTP id
- h11mr49327361ejc.327.1577384236409; 
- Thu, 26 Dec 2019 10:17:16 -0800 (PST)
-MIME-Version: 1.0
-References: <20191225005655.1502037-1-martin.blumenstingl@googlemail.com>
- <20191225005655.1502037-2-martin.blumenstingl@googlemail.com>
- <20191225150845.GA16671@lunn.ch>
- <CAFBinCA4X1e5_5nBiHmNiB40uJyr9Nm1b2VkF9NqM+wb7-1xmw@mail.gmail.com>
- <20191226105044.GC1480@lunn.ch>
- <CAFBinCB8YQ-tuGBixO_85NFXDdrH5keDURFgri5tFLdrAwUJKg@mail.gmail.com>
- <20191226120133.GI1480@lunn.ch>
-In-Reply-To: <20191226120133.GI1480@lunn.ch>
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Ypv1P+w8u0b0xjjfk63+8/r3fcQQ50esgG/WxnES284=;
+ b=dLpdkudEfKDUlZCDBsudbmzgW63FUdrHBd6iW8s2rNJbWmXKHDZxWszOBFLW37ufjL
+ i4s+ueAXQQvMSSwTjiCwrRZ7XviXDwVESoK3Le+lB4yKJuLYWiWkznyO8GNZ1B1Roo2y
+ 0DkRV9K510wIanOsTABpw1XyYXKzLo9apGpyFRH1dw+0Z3rtbKSLEvPc5hfnhuOPa851
+ 559HjyrNmFD/5KGjQQLUMKPA0bL2lRQy7YF6Jak+oQf3RhbfXKjHpMxDT6wE+8eonPvU
+ IeN/S2hTiDB2QqXA4o6WPa+IUD+IF72jeZZqD1UKpOEyDlTPvid8+06C/Llu1aiUA5nP
+ 9qpg==
+X-Gm-Message-State: APjAAAV/vXzo3B6DOZio8o/NjoC8U7fTQzmsqwCbCY+IRpZukPbqcAcF
+ 47FTMMFWsHAAVvLUT0OuW98=
+X-Google-Smtp-Source: APXvYqwMKe4kUhbmqrhzGeJU3YnHO6wYl9UjKxkT1wrIQ6Yam19y77XrTS8FzO1pKIASH4l19LKEqQ==
+X-Received: by 2002:a7b:cfc9:: with SMTP id f9mr15914955wmm.1.1577386346270;
+ Thu, 26 Dec 2019 10:52:26 -0800 (PST)
+Received: from localhost.localdomain
+ (p200300F1373A1900428D5CFFFEB99DB8.dip0.t-ipconnect.de.
+ [2003:f1:373a:1900:428d:5cff:feb9:9db8])
+ by smtp.googlemail.com with ESMTPSA id j12sm32129352wrt.55.2019.12.26.10.52.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 26 Dec 2019 10:52:25 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Thu, 26 Dec 2019 19:17:05 +0100
-Message-ID: <CAFBinCC9KioCC8HzPOFm3x3ZjTiQm_gr-aemnziLnTN8Ets_+A@mail.gmail.com>
-Subject: Re: [PATCH 1/3] net: stmmac: dwmac-meson8b: Fix the RGMII TX delay on
- Meson8b/8m2 SoCs
-To: Andrew Lunn <andrew@lunn.ch>
+To: andrew@lunn.ch, f.fainelli@gmail.com, davem@davemloft.net,
+ netdev@vger.kernel.org, linux-amlogic@lists.infradead.org
+Subject: [PATCH 0/2] RTL8211F: RGMII RX/TX delay configuration improvements
+Date: Thu, 26 Dec 2019 19:51:46 +0100
+Message-Id: <20191226185148.3764251-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.24.1
+MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191226_101719_352159_D30E5216 
-X-CRM114-Status: GOOD (  27.96  )
+X-CRM114-CacheID: sfid-20191226_105227_990700_92BA6079 
+X-CRM114-Status: GOOD (  10.35  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,114 +95,50 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Florian Fainelli <f.fainelli@gmail.com>, linus.luessing@c0d3.blue,
- balbes-150@yandex.ru, khilman@baylibre.com, linux-kernel@vger.kernel.org,
- ingrassia@epigenesys.com, netdev@vger.kernel.org,
- linux-amlogic@lists.infradead.org, davem@davemloft.net,
- linux-arm-kernel@lists.infradead.org, jbrunet@baylibre.com
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Andrew,
+In discussion with Andrew [0] we figured out that it would be best to
+make the RX delay of the RTL8211F PHY configurable (just like the TX
+delay is already configurable).
 
-On Thu, Dec 26, 2019 at 1:01 PM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> > the MAC is not capable of generating an RX delay (at least as far as I know).
->
-> So that immediately means rgmii is invalid as a phy-mode, since the
-> documentation implies the MAC needs to add RX delay.
-things turned out even more confusing thanks to your persistence (keep
-reading, it will get better though) :-)
+While here I took the opportunity to add some logging to the TX delay
+configuration as well.
 
-I have tested the following on my Odroid-C1 which has an RTL8211F PHY.
-With patch #1 from this series I knew that the following was working:
-- phy-mode = "rgmii" and 2ns TX delay on the MAC (RX delay is
-seemingly not configured anywhere)
-- phy-mode = "rgmii-txid" (again, the RX delay is seemingly not
-configured anywhere)
+There is no public documentation for the RX and TX delay registers.
+I received this information a while ago (and created this RfC patch
+back then: [1]). Realtek gave me permission to take the information
+from the datasheet extracts and phase them in my own words and publish
+that (I am not allowed to publish the datasheet extracts).
 
-with the patch to change the RX delay on the RTL8211F PHY I decided to
-try out phy-mode = "rgmii-id": this broke Ethernet.
-then I looked at the MAC registers and spotted that bits 13
-(adj_enable) and 14 (adj_setup) are set (first time I'm noticing
-this). unsetting them makes phy-mode = "rgmii-id" work!
-I also confirmed the opposite case: unsetting bit 13 and 14 breaks
-Ethernet with phy-mode = "rgmii-txid".
-
-so it seems that there *is* a way to configure the RX delay on Meson8b
-and Meson8m2 SoCs (at least).
-I will spin up a RfC patch to discuss this with the Amlogic team and
-because I don't know what these bits do exactly
-
-> > it's mostly "broken" (high TX packet loss, slow TX speeds) for the two
-> > supported boards with an RGMII PHY (meson8b-odroidc1.dts and
-> > meson8m2-mxiii-plus.dts)
-> > examples on the many ways it was broken will follow - feel free to
-> > skip this part
->
-> That is actually good. If it never worked, we don't need to worry
-> about breaking it! We can spend our time getting this correct, and not
-> have to worry about backwards compatibility, etc.
-ACK
-
-> > > What we normally say is make the MAC add no delays, and pass the
-> > > correct configuration to the PHY so it adds the delay. But due to the
-> > > strapping pin on the rtl8211f, we are in a bit of a grey area. I would
-> > > suggest the MAC adds no delay, phy-mode is set to rmgii-id, the PHY
-> > > driver adds TX delay in software, we assume the strapping pin is set
-> > > to add RX delay, and we add a big fat comment in the DT.
-> > >
-> > > For the Micrel PHY, we do the same, plus add the vendor properties to
-> > > configure the clock skew.
-> > >
-> > > But as i said, we are in a bit of a grey area. We can consider other
-> > > options, but everything needs to be self consistent, between what the
-> > > MAC is doing, what the PHY is doing, and what phy-mode is set to in
-> > > DT.
->
-> > do you think it's worth the effort to get clarification from Realtek
-> > on the RX delay behavior (and whether there's a register to control
-> > it)?
->
-> You can ask. There are also datasheet here:
->
-> http://files.pine64.org/doc/datasheet/rock64/RTL8211F-CG-Realtek.pdf
-> https://datasheet.lcsc.com/szlcsc/1909021205_Realtek-Semicon-RTL8211F-CG_C187932.pdf
->
-> It looks like both RX and TX delay can be controlled via
-> strapping. But the register for controlling the TX delay is not
-> documented.
-I checked the mails I got from Realtek I while ago and they even
-included the RX delay bits!
-I even sent a patch two years ago but I must have dropped it at some
-point (maybe I assumed that it wasn't relevant anymore - I don't
-remember): [0]
-
-> > you mentioned that there was breakage earlier this year, so I'm not sure anymore
-> > (that leaves me thinking: asking them is still useful to get out of
-> > this grey area)
->
-> It was an Atheros PHY with breakage.
->
-> If we can fully control the RX and TX delays, that would be great. It
-> would also be useful if there was a way to determine how the PHY has
-> been strapped. If we cannot fully control the delays but we can find
-> out what delays it is using, we can check the requested configuration
-> against the strapped configuration, and warn if they are different.
-I am currently testing whether the pin strapping configuration can be
-read back by the RX and TX delay registers
-my Odroid-C1 has both strapped to GND which means off
-but my Khadas VIM2 has TX delay strapped to ETH_VDDIO which means on
-(RX delay is still strapped to GND)
-once I am done testing I will send patches for the RTL8211F PHY driver
+I have tested these patches on two boards:
+- Amlogic Meson8b Odroid-C1
+- Amlogic GXM Khadas VIM2
+Both still behave as before these changes (iperf3 speeds are the same
+in both directions: RX and TX), which is expected because they are
+currently using phy-mode = "rgmii" with the RX delay not being generated
+by the PHY.
 
 
-Martin
+[0] https://patchwork.ozlabs.org/patch/1215313/
+[1] https://patchwork.ozlabs.org/patch/843946/
 
 
-[0] https://patchwork.ozlabs.org/patch/843946/
+Martin Blumenstingl (2):
+  net: phy: realtek: add logging for the RGMII TX delay configuration
+  net: phy: realtek: add support for configuring the RX delay on
+    RTL8211F
+
+ drivers/net/phy/realtek.c | 59 +++++++++++++++++++++++++++++++++------
+ 1 file changed, 51 insertions(+), 8 deletions(-)
+
+-- 
+2.24.1
+
 
 _______________________________________________
 linux-amlogic mailing list
