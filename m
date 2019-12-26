@@ -2,78 +2,83 @@ Return-Path: <SRS0=sGw/=2Q=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-6.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7AD67C2D0C0
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Dec 2019 20:03:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B5AA3C2D0C0
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Dec 2019 20:11:19 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 40D24206CB
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Dec 2019 20:03:41 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 89CA020740
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Dec 2019 20:11:19 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="kOQkNqgf";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="YmxajTGp"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 40D24206CB
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=triplefau.lt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="OA6y3mXJ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="dkoPDMmR"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 89CA020740
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=CrnFoYyVk1voc1tckniVCa/T/ycjiKwYUY2EBeustM8=; b=kOQkNqgfnhNng/
-	DG7jie/LUxXN6saVG0Kj1ksS52DARTWGqfkoioggNC5nlWX0PLY2qC7KWYgcmKSImEEGVc7G9xAWA
-	fq8/LNplua236XltkqLIBPzkVvuejqq7nyELal+O242C60kLakF1m4NlLAS/WiZARCOwe4QjYdrPP
-	+UrNZdGwavCoQjc+wcD7IzrN/rYLEJ73t+mmasHCAdVACddEabI8ygR+POTKpD3L0avrMbFjR0d3D
-	BU7KLSie0t+cZQdvrSkLmrbRpPsMteFMlZWM9BfHV0HlgNWj/3UPRnk47cFoFGdZ1Y51sFJaRvyLJ
-	0AYfVaEvBypA6ZZs6KfQ==;
+	List-Owner; bh=r24h5hRpUFnl2IVFOVLNUSZVC8zKXY9kptaZyVMUda0=; b=OA6y3mXJ3KkzJn
+	+CNKQXoy4RhFTK/CZue0ZYDpxqJmHhM/L4l1Dm8LdwowzROKzJ5GzX/6qtLY5uknrR3HCYZ5O9wAB
+	mF681oYNTfNffohqlNsFx9yzm4HEK/ehiM7plDWYL1RtnGDVXS+tRu7eoDbOW/zk1hnv27bLSXxgr
+	KYCTRKcJIurt1r/1wmvx3sKJrP84U3I2KY8zlzlJzC5KylP2rGlRGNDYqM+MOAHDRiV6Ucn++H1R9
+	WBBvb829hPJVx5JUlY31RWfw+Quq+xWfL2rwdE8v+zWhVuxZGfK9DzV34HzSha4O3JCoaAHHJeLtI
+	z4/96PvNdO+KVbE9P56A==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ikZM5-0002Nc-Pv; Thu, 26 Dec 2019 20:03:33 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1ikZTW-00054D-6N; Thu, 26 Dec 2019 20:11:14 +0000
+Received: from mail-ed1-x543.google.com ([2a00:1450:4864:20::543])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ikZM4-0002NM-61
- for linux-amlogic@bombadil.infradead.org; Thu, 26 Dec 2019 20:03:32 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Gx06v/2ND2urrfD8atr1gVBJVk2Bs2MUKVh+A4nqffY=; b=YmxajTGpDEmYE/ZcPPExlCEZ4
- 4IPGhchBkLpLV+r8GxOdOfwhjN/UCPF/nV0emZgPII5jTE8IK3I3EnFRUSa/4RLN69zq1fCyq93VD
- 8XAHv30KU21+eiL56r9qOwP9Hnjv94W41FXlCGNRKckVhYpyjAI6Tt3cBARRPG1pV2Elg3vQOpKCH
- 8rPeSjirNlbBn9UIDoLTB6gr1yVvN/+MlGvL3/NA8KlOuamsy3vpyZCUY+klOQkaLg9eb+ShT3WPM
- 6lR0r26tkc2R2PA91ZAuqSLmRZOvX020bR84Hbd+dcxNPR7sZiT8n7iDtPvR0mwYrnYQ68L20qhcL
- 5yrBWrTrA==;
-Received: from relay4-d.mail.gandi.net ([217.70.183.196])
- by casper.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ikZMQ-00005Y-UO
- for linux-amlogic@lists.infradead.org; Thu, 26 Dec 2019 20:03:57 +0000
-X-Originating-IP: 88.190.179.123
-Received: from localhost (unknown [88.190.179.123])
- (Authenticated sender: repk@triplefau.lt)
- by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id AE615E0006;
- Thu, 26 Dec 2019 20:02:45 +0000 (UTC)
-Date: Thu, 26 Dec 2019 21:11:46 +0100
-From: Remi Pommarel <repk@triplefau.lt>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Subject: Re: [PATCH v2 1/3] phy: amlogic: Add Amlogic AXG MIPI/PCIE PHY Driver
-Message-ID: <20191226201146.GA1803@voidbox>
-References: <20191223214529.20377-1-repk@triplefau.lt>
- <20191223214529.20377-2-repk@triplefau.lt>
- <1jeewrpgrr.fsf@starbuckisacylon.baylibre.com>
+ id 1ikZTT-00053t-6t
+ for linux-amlogic@lists.infradead.org; Thu, 26 Dec 2019 20:11:12 +0000
+Received: by mail-ed1-x543.google.com with SMTP id cy15so23635450edb.4
+ for <linux-amlogic@lists.infradead.org>; Thu, 26 Dec 2019 12:11:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=DKyS0Vzar44g5nZVMq7w89sJBVTVVQr7IhBAjNIROrI=;
+ b=dkoPDMmRO2eMwq7TMq1HtLGXctYNZZjUXuFpwJaYLHjL4DHZBgoqJoj2hhpUurQB86
+ quqctLUkVeEctiVeMOgGlQKlzRsXqBY2H2rp9rluW2Ub29W0vqIMPXGP+zlhb+8UJmBD
+ NSl/EdBjv3zKh1ruJhqdiuFdRG813PmDhGNiz+al4f34WHfimfbMB8AlJCQVI/WhMSfz
+ 7kMLzUho23PWWhN6nGDqRlnyl5bOKDsKbnmG/QVlKaVotqfucxZCUwe+mp+f52OcZpnR
+ ec0YYHCFTvIhPXxhSWEyhNw5FkVMpPcjhLiNnsQBSClPmjXpKatN6p2YCq8M+5eNPBYE
+ 1vLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=DKyS0Vzar44g5nZVMq7w89sJBVTVVQr7IhBAjNIROrI=;
+ b=Bh7EpiBg3KILJRGAncVY69fWMXErtOGbHnI1PqdvVbRFAUSJHiiBQu8K7KdRKuOJkn
+ EHJ4sE7Z8qLid3kK+8HkXo0ha4L2ZA3qvR5xY5O9JUXkwiPcJucmBUC0ahTx6TQm8VM6
+ 7/ifu3oXgOE0sx/PTJd4fEBhQw3q/ZxfCIXEGh4tNsve4EINEqrDLGntyyNJALl0CGU7
+ jl1uA+VEPJYaqqdMUDaySUvAy6DyGu2g8EohuR17oBgC9OsVmC8VSqLCOo+o1HGfP+u8
+ vMFDbZzVEQPwiLfLr6MQ6C+XzutFHDO/ary66Sq3+NLf0sU7BmzBaeDREG9HJP8PTgKl
+ CZww==
+X-Gm-Message-State: APjAAAVqpnl59h+fddj8MaiHAJfD8QmYOvDvOwovjGCc64ZPE9wcKhH9
+ KX2kTma4GxUa6WmrU/ZvxRV+dQlxYcN8dcsdG5I=
+X-Google-Smtp-Source: APXvYqyOHd8m4jOZ18liraS1LmkJgDRRTlRaa1TAnpybzR7ymvltec/WOyoBzbMMK/SVycz37m9EThbBbClEbuEt25k=
+X-Received: by 2002:a50:fb96:: with SMTP id e22mr51700477edq.18.1577391069615; 
+ Thu, 26 Dec 2019 12:11:09 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <1jeewrpgrr.fsf@starbuckisacylon.baylibre.com>
+References: <20191224173942.18160-1-repk@triplefau.lt>
+ <20191224173942.18160-6-repk@triplefau.lt>
+In-Reply-To: <20191224173942.18160-6-repk@triplefau.lt>
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date: Thu, 26 Dec 2019 21:10:58 +0100
+Message-ID: <CAFBinCBzt6SRGx+8iT=NHW00ip_gtg2cW7T8z9aqjeGPH8f7OQ@mail.gmail.com>
+Subject: Re: [PATCH v3 5/5] dt-bindings: Add AXG PCIE PHY bindings
+To: Remi Pommarel <repk@triplefau.lt>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191226_200355_028738_DC675B6C 
-X-CRM114-Status: GOOD (  40.90  )
+X-CRM114-CacheID: sfid-20191226_121111_279513_A3A3BF93 
+X-CRM114-Status: GOOD (  12.58  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,281 +90,61 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, linux-kernel@vger.kernel.org,
- Yue Wang <yue.wang@amlogic.com>, linux-pci@vger.kernel.org,
- Andrew Murray <andrew.murray@arm.com>, linux-amlogic@lists.infradead.org,
- Kishon Vijay Abraham I <kishon@ti.com>
+Cc: devicetree@vger.kernel.org, Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Yue Wang <yue.wang@amlogic.com>, linux-amlogic@lists.infradead.org,
+ Andrew Murray <andrew.murray@arm.com>, Kishon Vijay Abraham I <kishon@ti.com>,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Dec 26, 2019 at 10:39:36AM +0100, Jerome Brunet wrote:
-> 
-> On Mon 23 Dec 2019 at 22:45, Remi Pommarel <repk@triplefau.lt> wrote:
-> 
-> > This adds support for the MIPI PHY also needed for PCIE found in the
-> > Amlogic AXG SoC Family.
-> >
-> > MIPI or PCIE selection is done by the #phy-cells, making the mode
-> > static and exclusive.
-> >
-> > For now only PCIE fonctionality is supported.
-> >
-> > This PHY will be used to replace the mipi_enable clock gating logic
-> > which was mistakenly added in the clock subsystem. This also activate
-> > a non documented band gap bit in those registers that allows reliable
-> > PCIE clock signal generation on AXG platforms.
-> >
-> > Signed-off-by: Remi Pommarel <repk@triplefau.lt>
-> > ---
-> >  drivers/phy/amlogic/Kconfig                   |  11 ++
-> >  drivers/phy/amlogic/Makefile                  |   1 +
-> >  drivers/phy/amlogic/phy-meson-axg-mipi-pcie.c | 176 ++++++++++++++++++
-> >  3 files changed, 188 insertions(+)
-> >  create mode 100644 drivers/phy/amlogic/phy-meson-axg-mipi-pcie.c
-> >
-> > diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
-> > index af774ac2b934..1eeb75d018e3 100644
-> > --- a/drivers/phy/amlogic/Kconfig
-> > +++ b/drivers/phy/amlogic/Kconfig
-> > @@ -59,3 +59,14 @@ config PHY_MESON_G12A_USB3_PCIE
-> >  	  Enable this to support the Meson USB3 + PCIE Combo PHY found
-> >  	  in Meson G12A SoCs.
-> >  	  If unsure, say N.
-> > +
-> > +config PHY_MESON_AXG_MIPI_PCIE
-> > +	tristate "Meson AXG MIPI + PCIE PHY driver"
-> > +	default ARCH_MESON
-> > +	depends on OF && (ARCH_MESON || COMPILE_TEST)
-> > +	select GENERIC_PHY
-> > +	select MFD_SYSCON
-> > +	help
-> > +	  Enable this to support the Meson MIPI + PCIE PHY found
-> > +	  in Meson AXG SoCs.
-> > +	  If unsure, say N.
-> > diff --git a/drivers/phy/amlogic/Makefile b/drivers/phy/amlogic/Makefile
-> > index 11d1c42ac2be..2167330a0ae8 100644
-> > --- a/drivers/phy/amlogic/Makefile
-> > +++ b/drivers/phy/amlogic/Makefile
-> > @@ -4,3 +4,4 @@ obj-$(CONFIG_PHY_MESON_GXL_USB2)	+= phy-meson-gxl-usb2.o
-> >  obj-$(CONFIG_PHY_MESON_G12A_USB2)	+= phy-meson-g12a-usb2.o
-> >  obj-$(CONFIG_PHY_MESON_GXL_USB3)	+= phy-meson-gxl-usb3.o
-> >  obj-$(CONFIG_PHY_MESON_G12A_USB3_PCIE)	+= phy-meson-g12a-usb3-pcie.o
-> > +obj-$(CONFIG_PHY_MESON_AXG_MIPI_PCIE)	+= phy-meson-axg-mipi-pcie.o
-> > diff --git a/drivers/phy/amlogic/phy-meson-axg-mipi-pcie.c b/drivers/phy/amlogic/phy-meson-axg-mipi-pcie.c
-> > new file mode 100644
-> > index 000000000000..006aa8cdfc47
-> > --- /dev/null
-> > +++ b/drivers/phy/amlogic/phy-meson-axg-mipi-pcie.c
-> > @@ -0,0 +1,176 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Amlogic AXG MIPI + PCIE PHY driver
-> > + *
-> > + * Copyright (C) 2019 Remi Pommarel <repk@triplefau.lt>
-> > + */
-> > +#include <linux/module.h>
-> > +#include <linux/phy/phy.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/mfd/syscon.h>
-> > +#include <linux/platform_device.h>
-> > +#include <dt-bindings/phy/phy.h>
-> > +
-> > +#define HHI_MIPI_CNTL0 0x00
-> > +#define		HHI_MIPI_CNTL0_COMMON_BLOCK	GENMASK(31, 28)
-> > +#define		HHI_MIPI_CNTL0_ENABLE		BIT(29)
-> > +#define		HHI_MIPI_CNTL0_BANDGAP		BIT(26)
-> > +#define		HHI_MIPI_CNTL0_DECODE_TO_RTERM	GENMASK(15, 12)
-> > +#define		HHI_MIPI_CNTL0_OUTPUT_EN	BIT(3)
-> > +
-> > +#define HHI_MIPI_CNTL1 0x01
-> > +#define		HHI_MIPI_CNTL1_CH0_CML_PDR_EN	BIT(12)
-> > +#define		HHI_MIPI_CNTL1_LP_ABILITY	GENMASK(5, 4)
-> > +#define		HHI_MIPI_CNTL1_LP_RESISTER	BIT(3)
-> > +#define		HHI_MIPI_CNTL1_INPUT_SETTING	BIT(2)
-> > +#define		HHI_MIPI_CNTL1_INPUT_SEL	BIT(1)
-> > +#define		HHI_MIPI_CNTL1_PRBS7_EN		BIT(0)
-> > +
-> > +#define HHI_MIPI_CNTL2 0x02
-> > +#define		HHI_MIPI_CNTL2_CH_PU		GENMASK(31, 25)
-> > +#define		HHI_MIPI_CNTL2_CH_CTL		GENMASK(24, 19)
-> > +#define		HHI_MIPI_CNTL2_CH0_DIGDR_EN	BIT(18)
-> > +#define		HHI_MIPI_CNTL2_CH_DIGDR_EN	BIT(17)
-> > +#define		HHI_MIPI_CNTL2_LPULPS_EN	BIT(16)
-> > +#define		HHI_MIPI_CNTL2_CH_EN(n)		BIT(15 - (n))
-> > +#define		HHI_MIPI_CNTL2_CH0_LP_CTL	GENMASK(10, 1)
-> > +
-> > +struct phy_axg_mipi_pcie_priv {
-> > +	struct phy *phy;
-> > +	unsigned int mode;
-> > +	struct regmap *regmap;
-> > +};
-> > +
-> > +static const struct regmap_config phy_axg_mipi_pcie_regmap_conf = {
-> > +	.reg_bits = 8,
-> > +	.val_bits = 32,
-> > +	.reg_stride = 4,
-> > +	.max_register = HHI_MIPI_CNTL2,
-> > +};
-> > +
-> > +static int phy_axg_mipi_pcie_power_on(struct phy *phy)
-> > +{
-> > +	struct phy_axg_mipi_pcie_priv *priv = phy_get_drvdata(phy);
-> > +
-> > +	/* MIPI not supported yet */
-> > +	if (priv->mode != PHY_TYPE_PCIE)
-> > +		return 0;
-> > +
-> > +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
-> > +			   HHI_MIPI_CNTL0_BANDGAP, HHI_MIPI_CNTL0_BANDGAP);
-> > +
-> > +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
-> > +			   HHI_MIPI_CNTL0_ENABLE, HHI_MIPI_CNTL0_ENABLE);
-> > +	return 0;
-> > +}
-> > +
-> > +static int phy_axg_mipi_pcie_power_off(struct phy *phy)
-> > +{
-> > +	struct phy_axg_mipi_pcie_priv *priv = phy_get_drvdata(phy);
-> > +
-> > +	/* MIPI not supported yet */
-> > +	if (priv->mode != PHY_TYPE_PCIE)
-> > +		return 0;
-> > +
-> > +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
-> > +			   HHI_MIPI_CNTL0_BANDGAP, 0);
-> > +	regmap_update_bits(priv->regmap, HHI_MIPI_CNTL0,
-> > +			   HHI_MIPI_CNTL0_ENABLE, 0);
-> > +	return 0;
-> > +}
-> > +
-> > +static int phy_axg_mipi_pcie_init(struct phy *phy)
-> > +{
-> > +	return 0;
-> > +}
-> > +
-> > +static int phy_axg_mipi_pcie_exit(struct phy *phy)
-> > +{
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct phy_ops phy_axg_mipi_pcie_ops = {
-> > +	.init = phy_axg_mipi_pcie_init,
-> > +	.exit = phy_axg_mipi_pcie_exit,
-> > +	.power_on = phy_axg_mipi_pcie_power_on,
-> > +	.power_off = phy_axg_mipi_pcie_power_off,
-> > +	.owner = THIS_MODULE,
-> > +};
-> > +
-> > +static struct phy *phy_axg_mipi_pcie_xlate(struct device *dev,
-> > +					   struct of_phandle_args *args)
-> > +{
-> > +	struct phy_axg_mipi_pcie_priv *priv = dev_get_drvdata(dev);
-> > +	unsigned int mode;
-> > +
-> > +	if (args->args_count != 1) {
-> > +		dev_err(dev, "invalid number of arguments\n");
-> > +		return ERR_PTR(-EINVAL);
-> > +	}
-> > +
-> > +	mode = args->args[0];
-> > +
-> > +	/* MIPI mode is not supported yet */
-> > +	if (mode != PHY_TYPE_PCIE) {
-> > +		dev_err(dev, "invalid phy mode select argument\n");
-> > +		return ERR_PTR(-EINVAL);
-> > +	}
-> > +
-> > +	priv->mode = mode;
-> > +	return priv->phy;
-> > +}
-> > +
-> > +static int phy_axg_mipi_pcie_probe(struct platform_device *pdev)
-> > +{
-> > +	struct phy_provider *pphy;
-> > +	struct device *dev = &pdev->dev;
-> > +	struct phy_axg_mipi_pcie_priv *priv;
-> > +	struct device_node *np = dev->of_node;
-> > +	int ret;
-> > +
-> > +	priv = devm_kmalloc(dev, sizeof(*priv), GFP_KERNEL);
-> > +	if (!priv)
-> > +		return -ENOMEM;
-> > +
-> > +	/* Get the hhi system controller node */
-> > +	priv->regmap = syscon_node_to_regmap(of_get_parent(dev->of_node));
-> > +	if (IS_ERR(priv->regmap)) {
-> > +		dev_err(dev, "failed to get HHI regmap\n");
-> > +		return PTR_ERR(priv->regmap);
-> > +	}
-> 
-> Remi,
-> 
-> Unless we are absolutely sure this will be *AXG ONLY*, I would
-> prefer if you get the registers without the syscon.
-> 
-> Having it introduce some kind of dependency between the 2 which is
-> likely to make this driver SoC specific.
-> 
-> It was clearly wrong for the clock controller to map these regiters, and
-> if there is a possibility that this driver is used on other SoCs, I
-> would prefer if we did not carry that mistake over. I would prefer if we
-> fixed the clock controller so you don't need syscon here.
+On Tue, Dec 24, 2019 at 6:32 PM Remi Pommarel <repk@triplefau.lt> wrote:
+>
+> Add documentation for PCIE PHYs found in AXG SoCs.
+>
+> Signed-off-by: Remi Pommarel <repk@triplefau.lt>
+> ---
+>  .../bindings/phy/amlogic,meson-axg-pcie.yaml  | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-axg-pcie.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-axg-pcie.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson-axg-pcie.yaml
+> new file mode 100644
+> index 000000000000..c622a1b38ffc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/amlogic,meson-axg-pcie.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2019 BayLibre, SAS
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/phy/amlogic,meson-axg-pcie.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Amlogic AXG PCIE PHY
+> +
+> +maintainers:
+> +  - Remi Pommarel <repk@triplefau.lt>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - amlogic,axg-pcie-phy
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  aml,hhi-gpr:
+> +    maxItems: 1
+nit-pick (as I didn't have time to review the whole series yet):
+we have at least two other IP blocks that need this. they use
+"amlogic,hhi-sysctrl" for the property name
 
-Jerome thank you for reviewing this,
 
-Sure I will remove access to the registers through syscon system. Just
-to be sure we are on the same page here. What you suggest is keeping the
-two PHYs approach from this patchset (instead of the one PHY in v3),
-even if there is not exactly two PHYs, right ?
-
-Thanks,
-
--- 
-Remi
-
-> 
-> > +
-> > +	priv->phy = devm_phy_create(dev, np, &phy_axg_mipi_pcie_ops);
-> > +	if (IS_ERR(priv->phy)) {
-> > +		ret = PTR_ERR(priv->phy);
-> > +		if (ret != -EPROBE_DEFER)
-> > +			dev_err(dev, "failed to create PHY\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	phy_set_drvdata(priv->phy, priv);
-> > +	dev_set_drvdata(dev, priv);
-> > +	pphy = devm_of_phy_provider_register(dev, phy_axg_mipi_pcie_xlate);
-> > +
-> > +	return PTR_ERR_OR_ZERO(pphy);
-> > +}
-> > +
-> > +static const struct of_device_id phy_axg_mipi_pcie_of_match[] = {
-> > +	{
-> > +		.compatible = "amlogic,axg-mipi-pcie-phy",
-> > +	},
-> > +	{ },
-> > +};
-> > +MODULE_DEVICE_TABLE(of, phy_axg_mipi_pcie_of_match);
-> > +
-> > +static struct platform_driver phy_axg_mipi_pcie_driver = {
-> > +	.probe = phy_axg_mipi_pcie_probe,
-> > +	.driver = {
-> > +		.name = "phy-axg-mipi-pcie",
-> > +		.of_match_table = phy_axg_mipi_pcie_of_match,
-> > +	},
-> > +};
-> > +module_platform_driver(phy_axg_mipi_pcie_driver);
-> > +
-> > +MODULE_AUTHOR("Remi Pommarel <repk@triplefau.lt>");
-> > +MODULE_DESCRIPTION("Amlogic AXG MIPI + PCIE PHY driver");
-> > +MODULE_LICENSE("GPL v2");
-> 
+Martin
 
 _______________________________________________
 linux-amlogic mailing list
