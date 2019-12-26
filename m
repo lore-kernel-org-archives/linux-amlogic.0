@@ -7,17 +7,17 @@ X-Spam-Status: No, score=-5.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
 	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E13A3C2D0C0
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Dec 2019 20:55:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5A406C2D0C0
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Dec 2019 20:55:41 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B08D120740
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Dec 2019 20:55:00 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 2B51720740
+	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Dec 2019 20:55:41 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="dKiHgiHy";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="rTW9SBgi"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B08D120740
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="J32sJocK";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="uCWWK6X/"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2B51720740
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,58 +26,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=Zum9VxnjnbaU6cSW/2lyQoi6tXO//BD3hPxWyy/YjS8=; b=dKiHgiHydbNB5W
-	8MKvR5zhSLrvaXOtX7gLZMDyP9XMBqjPj5khvQaVWIdWDbS1sgWtRPHxabnbfBAVZZnSQPvNFfHpC
-	DTHdqxHx0uYlSS0VsKYUJdavMq1Rnyo5/erNwVTyGediVS+ehxZjjwSQG5lZdSaUECW2oKV/Ng4Sk
-	l6tnprOxqRsdQNj7yUUwl9ks6CyvgULHrXAUoxUYZvJ0TCRuh1TmAU9gBGFGy/7X9czFp+gnPoNx8
-	cue5hE0VEjte2nL7cPr5h78oEbGZuTWqyBN+UnuVHX0p/jhz8eTKhVM2U5c7+wKztCOdc2Cvh5xrF
-	PzBxli4Y1MgT6OGGo61Q==;
+	List-Owner; bh=rph1ga3lZmd1qj2mYvflqRv/m53c1vFx3fpPkNY+9ug=; b=J32sJocKocNDSy
+	de/hKz5h3+FJxEiWIiIKViZSb25M/DhaKPEowBWngzayDFZZCunN++Q6R1VKaiODY/z9HZ/ETD+jF
+	LyIoP2zBuxh3v2pmLeBuYcyCk2IgbehvHtlo1X7vVCcl2Q+jb/UWo68rNpRP+/slkjbk3dCqO7KYI
+	knliiG57dTt2zAfcVIXIDw86ysPUwBJG5SpXOy8E+ilIcIIRJ/k+Y/axhEr55l+QB59W48HzfehUs
+	hjlDbxIbi4bPfCmWyx3yYDSWCCTQGcKMuYR3QoM12lR3Xp4V+JbLjJ7rQwDvYkgsxZn4DAbDn+9Hk
+	PBGyrXj/VURf3L6B2UmQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ika9n-0002TR-DU; Thu, 26 Dec 2019 20:54:55 +0000
-Received: from mail-pg1-x541.google.com ([2607:f8b0:4864:20::541])
+	id 1ikaAT-0003z1-3w; Thu, 26 Dec 2019 20:55:37 +0000
+Received: from mail-pf1-x444.google.com ([2607:f8b0:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ika9d-0002K8-Qv; Thu, 26 Dec 2019 20:54:47 +0000
-Received: by mail-pg1-x541.google.com with SMTP id k3so13397819pgc.3;
- Thu, 26 Dec 2019 12:54:45 -0800 (PST)
+ id 1ikaAH-0003on-OJ; Thu, 26 Dec 2019 20:55:27 +0000
+Received: by mail-pf1-x444.google.com with SMTP id p14so13715116pfn.4;
+ Thu, 26 Dec 2019 12:55:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
  :mime-version:in-reply-to:content-language:content-transfer-encoding;
- bh=eHX8zpcgJuEQPZJ2h4zqcCJFzc58YVmiFDRcJtSTKgo=;
- b=rTW9SBgiBWmNdcZRjsrmCYV9eUibq6Pj/R6/F62b+CgXrUYTG6I7l3/Jgw51xaxC45
- YNt3befcorJQMvOa7cO4AfBCObLwmaQ3pGfyjvWrte6HqZmDteLS+spzGhyX92RCVIhI
- Jk/lyUZj7U15KhDoZAnEfN9IAOst76Lp0CbmptoIYThC7ynpA5bdwV7NrHnUuaxPKM4j
- LAxoXqTTVFX4cZ+llQrQJrZMeD+5ifirGWPOr4D2nskLTPLXAV9CliXa7anzrqgfkJGG
- 1l7THSFEjMHF2pFs3WRtx3Y+31pgXK59ARQvtnWHf76zO/HtUJskiIxjWH4TuOdYns31
- 8Rng==
+ bh=ls1jpyu5ovX4GvKDoC0M9qL5iwqWEQEsc9nX4yNDJgw=;
+ b=uCWWK6X/Wxdhm5YIVFnVbQidM8ngXAYE9oCHR2EsAmwKcm7rzpBaAeFLR0zeo49DXj
+ tPpqXU1XkJ3/NtTs98IqmLug6Xzc22HIHQ8asKkbphkoFaJmgMec2lJoh8NuW6kG3OEC
+ EHUEAo1DEITmz58/SgkpohQ6McqOqXpPsV8e8qlk1TIAt/ZkXvKrcU2+yk93NIV0OmCK
+ /uilnSzY26pl7APkDxpAk9GsjY7TbLiGxEt8E/DisbgOWgy/sIgLwIq96dYoPgeo3PIO
+ DU+aUjk0LXNylTVJ/zlP4Zk9hg8XDyu3uqBGoqaBsmaLGDr6pKsthwzJH9hzebmYeESb
+ hbzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=eHX8zpcgJuEQPZJ2h4zqcCJFzc58YVmiFDRcJtSTKgo=;
- b=ZWHGHYQ+ArDXF1DITPl2mcri4dk312ncpGGfqe7+1zaDCFSqKZX6x9zk7/T2MYioc+
- wuA0MH65D/THUZd7KSQcbO4r+/3jPKUljzLZf/K0Z9gTE6oSJ4H6V5cpvK9P8b0moy0V
- idhQb19SRzItv7jVxDy/Ebv6Z3rkJML36rHf9YPfCQyowxQkjcRS/V2hsVZfX99dOPZs
- Ipf4lompihgwF5oZZL5wJEUJY5R9Wl9I8GkveSI8F+P/VpXRAmDDPBY64YGURKWZiE3z
- LXMDiaT2XznxksoN7QuyPFXTJH/EBzJpzmLoMV3s15ZqQkUK3YwWAUItZhZc3OsiQQ/T
- GyWw==
-X-Gm-Message-State: APjAAAV598bVjeczUdEvEwPkxe8N6SJjJIv1X0xqku/65jF9rMK4P4qm
- fmhCoWJWncVdLkQ8pHMxTXwiGw4e
-X-Google-Smtp-Source: APXvYqziecMYsLN34st5VNE6YLjms1uEwnQiv1twd7dNGRPBfbuv8jQbu0+0F/6um9xIEDoFraFmOw==
-X-Received: by 2002:aa7:8299:: with SMTP id s25mr49460840pfm.261.1577393684784; 
- Thu, 26 Dec 2019 12:54:44 -0800 (PST)
+ bh=ls1jpyu5ovX4GvKDoC0M9qL5iwqWEQEsc9nX4yNDJgw=;
+ b=oHtFBbHmnRTTy4bj75nzH52OgYe249KOgDG4aUuGHK0dkazAiszQL3w0jDbdQ6sBq6
+ HtvwDo4afj8aDHJ3hI+TccCV+XnEcx6182f/+EmpjinQGV7dnrzBT4oQEFadyHWhDmks
+ O0wpCiJGpaX1fh+v4rP6lwOmXOU89bBWQOkkAwbV2LFq73XRqK0hsrlxaxMnX1LfokvO
+ dR2PdNOnI7oASH+p3obC8NCUIh27n80+1ryLLTG0+6iePPPkxN6wQWhcYwTO/TKNgRYq
+ w93us9t+ZBImZdLvUnoMtGcUljdel+BuM6w45l7Wj9wmRw6DNqlzbJrbeKA6CvwkNl2s
+ UmDw==
+X-Gm-Message-State: APjAAAVzj3vIZPpFkMXyPg4WoJse6HTjNJWdpN2y/Je5fLsFH558SWYZ
+ mhx8aYpE9KAYlCkJbfDbGwXSUlLQ
+X-Google-Smtp-Source: APXvYqwqmXWUHtAKJwoKAO6BicMH8+vjW43MlGEkruI8Pso25k4g/HdN1r7Wsv8lRSaK9wCMVdYmKQ==
+X-Received: by 2002:a63:d62:: with SMTP id 34mr52536513pgn.268.1577393724753; 
+ Thu, 26 Dec 2019 12:55:24 -0800 (PST)
 Received: from [10.230.28.123] ([192.19.223.252])
- by smtp.gmail.com with ESMTPSA id p5sm34273774pgs.28.2019.12.26.12.54.43
+ by smtp.gmail.com with ESMTPSA id b65sm35593928pgc.18.2019.12.26.12.55.23
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 26 Dec 2019 12:54:44 -0800 (PST)
-Subject: Re: [PATCH 1/2] net: phy: realtek: add logging for the RGMII TX delay
- configuration
+ Thu, 26 Dec 2019 12:55:24 -0800 (PST)
+Subject: Re: [PATCH 2/2] net: phy: realtek: add support for configuring the RX
+ delay on RTL8211F
 To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, andrew@lunn.ch, 
  davem@davemloft.net, netdev@vger.kernel.org,
  linux-amlogic@lists.infradead.org
 References: <20191226185148.3764251-1-martin.blumenstingl@googlemail.com>
- <20191226185148.3764251-2-martin.blumenstingl@googlemail.com>
+ <20191226185148.3764251-3-martin.blumenstingl@googlemail.com>
 From: Florian Fainelli <f.fainelli@gmail.com>
 Autocrypt: addr=f.fainelli@gmail.com; keydata=
  mQGiBEjPuBIRBACW9MxSJU9fvEOCTnRNqG/13rAGsj+vJqontvoDSNxRgmafP8d3nesnqPyR
@@ -133,16 +133,16 @@ Autocrypt: addr=f.fainelli@gmail.com; keydata=
  caxTGgc5zzQHeX67eMzrGomG3ZnIxmd1sAbgvJUDaD2GrYlulfwGWwWyTNbWRvMighVdPkSF
  6XFgQaosWxkV0OELLy2N485YrTr2Uq64VKyxpncLh50e2RnyAJ9qfUATKC9NgZjRvBztfqy4
  a9BQwACgnzGuH1BVeT2J0Ra+ZYgkx7DaPR0=
-Message-ID: <e21320b3-6e99-25a4-20d9-e8c5aa1aff03@gmail.com>
-Date: Thu, 26 Dec 2019 12:54:42 -0800
+Message-ID: <df249d8b-01db-730a-d1e1-615acf7949b5@gmail.com>
+Date: Thu, 26 Dec 2019 12:55:23 -0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
  Thunderbird/68.3.1
 MIME-Version: 1.0
-In-Reply-To: <20191226185148.3764251-2-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20191226185148.3764251-3-martin.blumenstingl@googlemail.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191226_125445_892705_8DB158FD 
-X-CRM114-Status: GOOD (  14.18  )
+X-CRM114-CacheID: sfid-20191226_125525_872172_D2E000FE 
+X-CRM114-Status: GOOD (  12.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,21 +163,21 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 
 On 12/26/2019 10:51 AM, Martin Blumenstingl wrote:
-> RGMII requires a delay of 2ns between the data and the clock signal.
-> There are at least three ways this can happen. One possibility is by
-> having the PHY generate this delay.
-> This is a common source for problems (for example with slow TX speeds or
-> packet loss when sending data). The TX delay configuration of the
-> RTL8211F PHY can be set either by pin-strappping the RXD1 pin (HIGH
-> means enabled, LOW means disabled) or through configuring a paged
-> register. The setting from the RXD1 pin is also reflected in the
-> register.
+> On RTL8211F the RX and TX delays (2ns) can be configured in two ways:
+> - pin strapping (RXD1 for the TX delay and RXD0 for the RX delay, LOW
+>   means "off" and HIGH means "on") which is read during PHY reset
+> - using software to configure the TX and RX delay registers
 > 
-> Add debug logging to the TX delay configuration on RTL8211F so it's
-> easier to spot these issues (for example if the TX delay is enabled for
-> both, the RTL8211F PHY and the MAC).
-> This is especially helpful because there is no public datasheet for the
-> RTL8211F PHY available with all the RX/TX delay specifics.
+> So far only the configuration using pin strapping has been supported.
+> Add support for enabling or disabling the RGMII RX delay based on the
+> phy-mode to be able to get the RX delay into a known state. This is
+> important because the RX delay has to be coordinated between the PHY,
+> MAC and the PCB design (trace length). With an invalid RX delay applied
+> (for example if both PHY and MAC add a 2ns RX delay) Ethernet may not
+> work at all.
+> 
+> Also add debug logging when configuring the RX delay (just like the TX
+> delay) because this is a common source of problems.
 > 
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
