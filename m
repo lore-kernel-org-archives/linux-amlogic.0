@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F69FC2D0C3
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Dec 2019 06:38:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 979D8C2D0C3
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Dec 2019 06:38:45 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 02038206CB
-	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Dec 2019 06:38:21 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 67C69206CB
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Dec 2019 06:38:45 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rwrQQdTr"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 02038206CB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="sepltU4g"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 67C69206CB
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,18 +25,18 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
 	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=zxFhH2Bs1mBhCsqnL/p0qtttqfIWSJPvmKN0Oc4fX7E=; b=rwrQQdTr71iqk8
-	h9HqPwhgH14Sw/CAM5ffx/Nw01FphvV/2DrVIv3yw+0gJFigdTRqcSscjHl07/dFzCoxHMrUtBeCe
-	VBewPc7+75Utfck6syAfC1XMJKzwQVXAO0O4Ruhn9fMSIiDf3qJrN1kD9GK0O5A/3tFt/x6SlWWsq
-	btlKE4UzKE+HUM6idDm37D1iwbk4z7co7bhvINfzpD4uciSJxcykTm+UY6tIiDT1dDpzrQRiCG4bk
-	NZvHGyjPEQmamRWY4kQHBG71ItcWoFum2NRM5X9K5z1N48Nxcq+Q/NJnh6Pe8h2UqeB1JtPIv/glW
-	5zQbTdAa/eLK+GONNrbw==;
+	List-Owner; bh=20i/KzL2tJoJWMAbKwOVqhJ7Krsmnm6ecclGtipiTWI=; b=sepltU4gOScrw2
+	B0n+D/hhwG9Yykf67C0c6bx2QUgqu1TlMVvJBaB8oITZKThih5QWZx+zMXzsy83ZgHU8/mA68Uq9j
+	vO3dmTo7Kzonxq+mHiw/syGuZarHbaTfmTz5hzlJUB5B1iBri7yF2xppkpRDXJxieOI0NmIZTuL5i
+	k9tUAbiZxLrCdgHGuD7KiqF5oniniiqdJPXZyj8BYYU0l4M9yd3LH/+Ul3riNoj2k6hsN1LoXHbI1
+	R7CU9keqnys6gJ2J6251o7ae7Fa22ByzDrh1s9C9GZ6u9DIbz6uQqWV2S1RLekxDVl2mxz4GZxAIv
+	wUw+x2eM5GKn4sW5D1Dg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ikjGJ-0000G4-Ji; Fri, 27 Dec 2019 06:38:15 +0000
+	id 1ikjGh-0000dt-4A; Fri, 27 Dec 2019 06:38:39 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ikjFD-0007c3-TD; Fri, 27 Dec 2019 06:37:09 +0000
+ id 1ikjFG-0007c3-5U; Fri, 27 Dec 2019 06:37:11 +0000
 Received: from droid10.amlogic.com (10.18.11.213) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server id 15.1.1591.10; Fri, 27 Dec 2019
  14:37:18 +0800
@@ -44,17 +44,17 @@ From: Hanjie Lin <hanjie.lin@amlogic.com>
 To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
  <narmstrong@baylibre.com>, Rob Herring <robh@kernel.org>, Greg Kroah-Hartman
  <gregkh@linuxfoundation.org>, Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH v3 3/6] phy: amlogic: Add Amlogic A1 USB2 PHY Driver
-Date: Fri, 27 Dec 2019 14:36:43 +0800
-Message-ID: <1577428606-69855-4-git-send-email-hanjie.lin@amlogic.com>
+Subject: [PATCH v3 4/6] usb: dwc3: Add Amlogic A1 DWC3 glue
+Date: Fri, 27 Dec 2019 14:36:44 +0800
+Message-ID: <1577428606-69855-5-git-send-email-hanjie.lin@amlogic.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1577428606-69855-1-git-send-email-hanjie.lin@amlogic.com>
 References: <1577428606-69855-1-git-send-email-hanjie.lin@amlogic.com>
 MIME-Version: 1.0
 X-Originating-IP: [10.18.11.213]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191226_223707_982291_B68A7F86 
-X-CRM114-Status: GOOD (  12.27  )
+X-CRM114-CacheID: sfid-20191226_223710_221538_DB140449 
+X-CRM114-Status: GOOD (  14.14  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,172 +80,267 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-This adds support for the USB2 PHY found in the Amlogic A1 SoC Family.
+Adds support for Amlogic A1 USB Control Glue HW.
 
-It supports host mode only.
+The Amlogic A1 SoC Family embeds 1 USB Controllers:
+- a DWC3 IP configured as Host for USB2 and USB3
+
+A glue connects the controllers to the USB2 PHY of A1 SoC.
 
 Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
 Signed-off-by: Yue Wang <yue.wang@amlogic.com>
 ---
- drivers/phy/amlogic/phy-meson-g12a-usb2.c | 93 +++++++++++++++++++++----------
- 1 file changed, 64 insertions(+), 29 deletions(-)
+ drivers/usb/dwc3/dwc3-meson-g12a.c | 105 +++++++++++++++++++++++++++----------
+ 1 file changed, 78 insertions(+), 27 deletions(-)
 
-diff --git a/drivers/phy/amlogic/phy-meson-g12a-usb2.c b/drivers/phy/amlogic/phy-meson-g12a-usb2.c
-index 9065ffc..a564747 100644
---- a/drivers/phy/amlogic/phy-meson-g12a-usb2.c
-+++ b/drivers/phy/amlogic/phy-meson-g12a-usb2.c
-@@ -146,11 +146,17 @@
- #define RESET_COMPLETE_TIME					1000
- #define PLL_RESET_COMPLETE_TIME					100
+diff --git a/drivers/usb/dwc3/dwc3-meson-g12a.c b/drivers/usb/dwc3/dwc3-meson-g12a.c
+index 8a3ec1a..916a200 100644
+--- a/drivers/usb/dwc3/dwc3-meson-g12a.c
++++ b/drivers/usb/dwc3/dwc3-meson-g12a.c
+@@ -96,6 +96,11 @@
+ 	#define USB_R5_ID_DIG_TH_MASK				GENMASK(15, 8)
+ 	#define USB_R5_ID_DIG_CNT_MASK				GENMASK(23, 16)
  
 +enum meson_soc_id {
-+	MESON_SOC_G12A  = 0,
++	MESON_SOC_G12A = 0,
 +	MESON_SOC_A1,
 +};
 +
- struct phy_meson_g12a_usb2_priv {
+ enum {
+ 	USB2_HOST_PHY = 0,
+ 	USB2_OTG_PHY,
+@@ -107,10 +112,22 @@ static const char *phy_names[PHY_COUNT] = {
+ 	"usb2-phy0", "usb2-phy1", "usb3-phy0",
+ };
+ 
++static const struct clk_bulk_data meson_g12a_clocks[] = {
++	{ .id = NULL},
++};
++
++static const struct clk_bulk_data meson_a1_clocks[] = {
++	{ .id = "usb_ctrl"},
++	{ .id = "usb_bus"},
++	{ .id = "xtal_usb_phy"},
++	{ .id = "xtal_usb_ctrl"},
++};
++
+ struct dwc3_meson_g12a {
  	struct device		*dev;
  	struct regmap		*regmap;
- 	struct clk		*clk;
+-	struct clk		*clk;
++	struct clk_bulk_data    *clks;
++	int num_clks;
  	struct reset_control	*reset;
+ 	struct phy		*phys[PHY_COUNT];
+ 	enum usb_dr_mode	otg_mode;
+@@ -120,6 +137,7 @@ struct dwc3_meson_g12a {
+ 	struct regulator	*vbus;
+ 	struct usb_role_switch_desc switch_desc;
+ 	struct usb_role_switch	*role_switch;
 +	int                     soc_id;
  };
  
- static const struct regmap_config phy_meson_g12a_usb2_regmap_conf = {
-@@ -164,6 +170,7 @@ static int phy_meson_g12a_usb2_init(struct phy *phy)
+ static void dwc3_meson_g12a_usb2_set_mode(struct dwc3_meson_g12a *priv,
+@@ -138,10 +156,13 @@ static int dwc3_meson_g12a_usb2_init(struct dwc3_meson_g12a *priv)
  {
- 	struct phy_meson_g12a_usb2_priv *priv = phy_get_drvdata(phy);
+ 	int i;
+ 
+-	if (priv->otg_mode == USB_DR_MODE_PERIPHERAL)
+-		priv->otg_phy_mode = PHY_MODE_USB_DEVICE;
+-	else
+-		priv->otg_phy_mode = PHY_MODE_USB_HOST;
++	/* only G12A supports otg mode */
++	if (priv->soc_id == MESON_SOC_G12A) {
++		if (priv->otg_mode == USB_DR_MODE_PERIPHERAL)
++			priv->otg_phy_mode = PHY_MODE_USB_DEVICE;
++		else
++			priv->otg_phy_mode = PHY_MODE_USB_HOST;
++	}
+ 
+ 	for (i = 0 ; i < USB3_HOST_PHY ; ++i) {
+ 		if (!priv->phys[i])
+@@ -151,7 +172,7 @@ static int dwc3_meson_g12a_usb2_init(struct dwc3_meson_g12a *priv)
+ 				   U2P_R0_POWER_ON_RESET,
+ 				   U2P_R0_POWER_ON_RESET);
+ 
+-		if (i == USB2_OTG_PHY) {
++		if (priv->soc_id == MESON_SOC_G12A && i == USB2_OTG_PHY) {
+ 			regmap_update_bits(priv->regmap,
+ 				U2P_R0 + (U2P_REG_SIZE * i),
+ 				U2P_R0_ID_PULLUP | U2P_R0_DRV_VBUS,
+@@ -295,7 +316,8 @@ static int dwc3_meson_g12a_otg_mode_set(struct dwc3_meson_g12a *priv,
+ {
  	int ret;
-+	unsigned int value;
+ 
+-	if (!priv->phys[USB2_OTG_PHY])
++	/* only G12A supports otg mode */
++	if (priv->soc_id != MESON_SOC_G12A || !priv->phys[USB2_OTG_PHY])
+ 		return -EINVAL;
+ 
+ 	if (mode == PHY_MODE_USB_HOST)
+@@ -409,17 +431,32 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+ 		priv->vbus = NULL;
+ 	}
+ 
+-	priv->clk = devm_clk_get(dev, NULL);
+-	if (IS_ERR(priv->clk))
+-		return PTR_ERR(priv->clk);
++	priv->soc_id = (enum meson_soc_id)of_device_get_match_data(&pdev->dev);
++
++	if (priv->soc_id == MESON_SOC_G12A) {
++		priv->clks = devm_kmemdup(dev, meson_g12a_clocks,
++					  sizeof(meson_g12a_clocks),
++					  GFP_KERNEL);
++		priv->num_clks = ARRAY_SIZE(meson_g12a_clocks);
++	} else if (priv->soc_id == MESON_SOC_A1) {
++		priv->clks = devm_kmemdup(dev, meson_a1_clocks,
++					  sizeof(meson_a1_clocks),
++					  GFP_KERNEL);
++		priv->num_clks = ARRAY_SIZE(meson_a1_clocks);
++	} else {
++		return -EINVAL;
++	}
++
++	if (!priv->clks)
++		return -ENOMEM;
+ 
+-	ret = clk_prepare_enable(priv->clk);
++	ret = devm_clk_bulk_get(dev, priv->num_clks, priv->clks);
+ 	if (ret)
+ 		return ret;
+ 
+-	devm_add_action_or_reset(dev,
+-				 (void(*)(void *))clk_disable_unprepare,
+-				 priv->clk);
++	ret = clk_bulk_prepare_enable(priv->num_clks, priv->clks);
++	if (ret)
++		return ret;
+ 
+ 	platform_set_drvdata(pdev, priv);
+ 	priv->dev = dev;
+@@ -433,22 +470,23 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
  
  	ret = reset_control_reset(priv->reset);
  	if (ret)
-@@ -192,18 +199,22 @@ static int phy_meson_g12a_usb2_init(struct phy *phy)
- 		     FIELD_PREP(PHY_CTRL_R17_MPLL_FILTER_PVT2, 2) |
- 		     FIELD_PREP(PHY_CTRL_R17_MPLL_FILTER_PVT1, 9));
+-		return ret;
++		goto err_disable_clks;
  
--	regmap_write(priv->regmap, PHY_CTRL_R18,
--		     FIELD_PREP(PHY_CTRL_R18_MPLL_LKW_SEL, 1) |
--		     FIELD_PREP(PHY_CTRL_R18_MPLL_LK_W, 9) |
--		     FIELD_PREP(PHY_CTRL_R18_MPLL_LK_S, 0x27) |
--		     FIELD_PREP(PHY_CTRL_R18_MPLL_PFD_GAIN, 1) |
--		     FIELD_PREP(PHY_CTRL_R18_MPLL_ROU, 7) |
--		     FIELD_PREP(PHY_CTRL_R18_MPLL_DATA_SEL, 3) |
--		     FIELD_PREP(PHY_CTRL_R18_MPLL_BIAS_ADJ, 1) |
--		     FIELD_PREP(PHY_CTRL_R18_MPLL_BB_MODE, 0) |
--		     FIELD_PREP(PHY_CTRL_R18_MPLL_ALPHA, 3) |
--		     FIELD_PREP(PHY_CTRL_R18_MPLL_ADJ_LDO, 1) |
--		     PHY_CTRL_R18_MPLL_ACG_RANGE);
-+	value = FIELD_PREP(PHY_CTRL_R18_MPLL_LKW_SEL, 1) |
-+		FIELD_PREP(PHY_CTRL_R18_MPLL_LK_W, 9) |
-+		FIELD_PREP(PHY_CTRL_R18_MPLL_LK_S, 0x27) |
-+		FIELD_PREP(PHY_CTRL_R18_MPLL_PFD_GAIN, 1) |
-+		FIELD_PREP(PHY_CTRL_R18_MPLL_ROU, 7) |
-+		FIELD_PREP(PHY_CTRL_R18_MPLL_DATA_SEL, 3) |
-+		FIELD_PREP(PHY_CTRL_R18_MPLL_BIAS_ADJ, 1) |
-+		FIELD_PREP(PHY_CTRL_R18_MPLL_BB_MODE, 0) |
-+		FIELD_PREP(PHY_CTRL_R18_MPLL_ALPHA, 3) |
-+		FIELD_PREP(PHY_CTRL_R18_MPLL_ADJ_LDO, 1) |
-+		PHY_CTRL_R18_MPLL_ACG_RANGE;
+ 	ret = dwc3_meson_g12a_get_phys(priv);
+ 	if (ret)
+-		return ret;
++		goto err_disable_clks;
+ 
+ 	if (priv->vbus) {
+ 		ret = regulator_enable(priv->vbus);
+ 		if (ret)
+-			return ret;
++			goto err_disable_clks;
+ 	}
+ 
+ 	/* Get dr_mode */
+ 	priv->otg_mode = usb_get_dr_mode(dev);
+ 
+-	if (priv->otg_mode == USB_DR_MODE_OTG) {
++	if (priv->soc_id == MESON_SOC_G12A &&
++	    priv->otg_mode == USB_DR_MODE_OTG) {
+ 		/* Ack irq before registering */
+ 		regmap_update_bits(priv->regmap, USB_R5,
+ 				   USB_R5_ID_DIG_IRQ, 0);
+@@ -458,7 +496,7 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+ 						dwc3_meson_g12a_irq_thread,
+ 						IRQF_ONESHOT, pdev->name, priv);
+ 		if (ret)
+-			return ret;
++			goto err_disable_clks;
+ 	}
+ 
+ 	dwc3_meson_g12a_usb_init(priv);
+@@ -467,7 +505,7 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+ 	for (i = 0 ; i < PHY_COUNT ; ++i) {
+ 		ret = phy_init(priv->phys[i]);
+ 		if (ret)
+-			return ret;
++			goto err_disable_clks;
+ 	}
+ 
+ 	/* Set PHY Power */
+@@ -478,10 +516,11 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+ 	}
+ 
+ 	ret = of_platform_populate(np, NULL, NULL, dev);
+-	if (ret) {
+-		clk_disable_unprepare(priv->clk);
++	if (ret)
+ 		goto err_phys_power;
+-	}
 +
-+	if (priv->soc_id == MESON_SOC_A1)
-+		value |= PHY_CTRL_R18_MPLL_DCO_CLK_SEL;
++	if (priv->soc_id != MESON_SOC_G12A)
++		goto setup_pm_runtime;
+ 
+ 	/* Setup OTG mode corresponding to the ID pin */
+ 	if (priv->otg_mode == USB_DR_MODE_OTG) {
+@@ -504,6 +543,7 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+ 	if (IS_ERR(priv->role_switch))
+ 		dev_warn(dev, "Unable to register Role Switch\n");
+ 
++setup_pm_runtime:
+ 	pm_runtime_set_active(dev);
+ 	pm_runtime_enable(dev);
+ 	pm_runtime_get_sync(dev);
+@@ -518,6 +558,9 @@ static int dwc3_meson_g12a_probe(struct platform_device *pdev)
+ 	for (i = 0 ; i < PHY_COUNT ; ++i)
+ 		phy_exit(priv->phys[i]);
+ 
++err_disable_clks:
++	clk_bulk_disable_unprepare(priv->num_clks, priv->clks);
 +
-+	regmap_write(priv->regmap, PHY_CTRL_R18, value);
+ 	return ret;
+ }
  
- 	udelay(PLL_RESET_COMPLETE_TIME);
+@@ -527,7 +570,8 @@ static int dwc3_meson_g12a_remove(struct platform_device *pdev)
+ 	struct device *dev = &pdev->dev;
+ 	int i;
  
-@@ -227,13 +238,24 @@ static int phy_meson_g12a_usb2_init(struct phy *phy)
- 		     FIELD_PREP(PHY_CTRL_R20_USB2_BGR_VREF_4_0, 0) |
- 		     FIELD_PREP(PHY_CTRL_R20_USB2_BGR_DBG_1_0, 0));
- 
--	regmap_write(priv->regmap, PHY_CTRL_R4,
--		     FIELD_PREP(PHY_CTRL_R4_CALIB_CODE_7_0, 0xf) |
--		     FIELD_PREP(PHY_CTRL_R4_CALIB_CODE_15_8, 0xf) |
--		     FIELD_PREP(PHY_CTRL_R4_CALIB_CODE_23_16, 0xf) |
--		     PHY_CTRL_R4_TEST_BYPASS_MODE_EN |
--		     FIELD_PREP(PHY_CTRL_R4_I_C2L_BIAS_TRIM_1_0, 0) |
--		     FIELD_PREP(PHY_CTRL_R4_I_C2L_BIAS_TRIM_3_2, 0));
+-	usb_role_switch_unregister(priv->role_switch);
 +	if (priv->soc_id == MESON_SOC_G12A)
-+		regmap_write(priv->regmap, PHY_CTRL_R4,
-+			     FIELD_PREP(PHY_CTRL_R4_CALIB_CODE_7_0, 0xf) |
-+			     FIELD_PREP(PHY_CTRL_R4_CALIB_CODE_15_8, 0xf) |
-+			     FIELD_PREP(PHY_CTRL_R4_CALIB_CODE_23_16, 0xf) |
-+			     PHY_CTRL_R4_TEST_BYPASS_MODE_EN |
-+			     FIELD_PREP(PHY_CTRL_R4_I_C2L_BIAS_TRIM_1_0, 0) |
-+			     FIELD_PREP(PHY_CTRL_R4_I_C2L_BIAS_TRIM_3_2, 0));
-+	else if (priv->soc_id == MESON_SOC_A1) {
-+		regmap_write(priv->regmap, PHY_CTRL_R21,
-+			     PHY_CTRL_R21_USB2_CAL_ACK_EN |
-+			     PHY_CTRL_R21_USB2_TX_STRG_PD |
-+			     FIELD_PREP(PHY_CTRL_R21_USB2_OTG_ACA_TRIM_1_0, 2));
-+
-+		/* Analog Settings */
-+		regmap_write(priv->regmap, PHY_CTRL_R13,
-+			     FIELD_PREP(PHY_CTRL_R13_MIN_COUNT_FOR_SYNC_DET, 7));
-+	}
++		usb_role_switch_unregister(priv->role_switch);
  
- 	/* Tuning Disconnect Threshold */
- 	regmap_write(priv->regmap, PHY_CTRL_R3,
-@@ -241,11 +263,13 @@ static int phy_meson_g12a_usb2_init(struct phy *phy)
- 		     FIELD_PREP(PHY_CTRL_R3_HSDIC_REF, 1) |
- 		     FIELD_PREP(PHY_CTRL_R3_DISC_THRESH, 3));
+ 	of_platform_depopulate(dev);
  
--	/* Analog Settings */
--	regmap_write(priv->regmap, PHY_CTRL_R14, 0);
--	regmap_write(priv->regmap, PHY_CTRL_R13,
--		     PHY_CTRL_R13_UPDATE_PMA_SIGNALS |
--		     FIELD_PREP(PHY_CTRL_R13_MIN_COUNT_FOR_SYNC_DET, 7));
-+	if (priv->soc_id == MESON_SOC_G12A) {
-+		/* Analog Settings */
-+		regmap_write(priv->regmap, PHY_CTRL_R14, 0);
-+		regmap_write(priv->regmap, PHY_CTRL_R13,
-+			     PHY_CTRL_R13_UPDATE_PMA_SIGNALS |
-+			     FIELD_PREP(PHY_CTRL_R13_MIN_COUNT_FOR_SYNC_DET, 7));
-+	}
+@@ -547,7 +591,7 @@ static int __maybe_unused dwc3_meson_g12a_runtime_suspend(struct device *dev)
+ {
+ 	struct dwc3_meson_g12a	*priv = dev_get_drvdata(dev);
+ 
+-	clk_disable(priv->clk);
++	clk_bulk_disable_unprepare(priv->num_clks, priv->clks);
  
  	return 0;
  }
-@@ -286,14 +310,18 @@ static int phy_meson_g12a_usb2_probe(struct platform_device *pdev)
- 	if (IS_ERR(base))
- 		return PTR_ERR(base);
+@@ -556,7 +600,7 @@ static int __maybe_unused dwc3_meson_g12a_runtime_resume(struct device *dev)
+ {
+ 	struct dwc3_meson_g12a	*priv = dev_get_drvdata(dev);
  
-+	priv->soc_id = (enum meson_soc_id)of_device_get_match_data(&pdev->dev);
-+
- 	priv->regmap = devm_regmap_init_mmio(dev, base,
- 					     &phy_meson_g12a_usb2_regmap_conf);
- 	if (IS_ERR(priv->regmap))
- 		return PTR_ERR(priv->regmap);
- 
--	priv->clk = devm_clk_get(dev, "xtal");
--	if (IS_ERR(priv->clk))
--		return PTR_ERR(priv->clk);
-+	if (priv->soc_id == MESON_SOC_G12A) {
-+		priv->clk = devm_clk_get(dev, "xtal");
-+		if (IS_ERR(priv->clk))
-+			return PTR_ERR(priv->clk);
-+	}
- 
- 	priv->reset = devm_reset_control_get(dev, "phy");
- 	if (IS_ERR(priv->reset))
-@@ -321,8 +349,15 @@ static int phy_meson_g12a_usb2_probe(struct platform_device *pdev)
+-	return clk_enable(priv->clk);
++	return clk_bulk_prepare_enable(priv->num_clks, priv->clks);
  }
  
- static const struct of_device_id phy_meson_g12a_usb2_of_match[] = {
--	{ .compatible = "amlogic,g12a-usb2-phy", },
--	{ },
+ static int __maybe_unused dwc3_meson_g12a_suspend(struct device *dev)
+@@ -619,7 +663,14 @@ static const struct dev_pm_ops dwc3_meson_g12a_dev_pm_ops = {
+ };
+ 
+ static const struct of_device_id dwc3_meson_g12a_match[] = {
+-	{ .compatible = "amlogic,meson-g12a-usb-ctrl" },
 +	{
-+		.compatible = "amlogic,g12a-usb2-phy",
++		.compatible = "amlogic,meson-g12a-usb-ctrl",
 +		.data = (void *)MESON_SOC_G12A,
 +	},
 +	{
-+		.compatible = "amlogic,a1-usb2-phy",
++		.compatible = "amlogic,meson-a1-usb-ctrl",
 +		.data = (void *)MESON_SOC_A1,
 +	},
-+	{ /* Sentinel */ }
+ 	{ /* Sentinel */ }
  };
- MODULE_DEVICE_TABLE(of, phy_meson_g12a_usb2_of_match);
- 
+ MODULE_DEVICE_TABLE(of, dwc3_meson_g12a_match);
 -- 
 2.7.4
 
