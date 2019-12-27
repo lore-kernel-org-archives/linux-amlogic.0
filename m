@@ -1,68 +1,58 @@
-Return-Path: <SRS0=sGw/=2Q=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=RZf2=2R=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EA501C2D0C0
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Dec 2019 21:36:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 70E8CC2D0C3
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Dec 2019 06:37:35 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id BA843206CB
-	for <linux-amlogic@archiver.kernel.org>; Thu, 26 Dec 2019 21:36:34 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 30B04206CB
+	for <linux-amlogic@archiver.kernel.org>; Fri, 27 Dec 2019 06:37:35 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="rw5qZfh6";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ZTxVZbP8"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org BA843206CB
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=lunn.ch
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="drCqHTPb"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 30B04206CB
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
-	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=7OEYqkKb3+Cl16uFAZip63G7HlAZu+ciyuRR9OhRpok=; b=rw5qZfh6Gvyw97
-	LdCBurRvGxq1fH7oFnIthstpebbQS51sfOWFQaW72vX+OlBnAwFBA4CBeY+PB7tmsc2X+myNqalmB
-	NwhjHGCplxC/uQZuQSnaTItAcsWb1Vnzx3HCoTlBu/edc2DjKlNdUHN2g5maLmkS7TA2EBFm/alTS
-	b0qqwkqYP24ZGVihzogKOgizWrj6F3Tko1MFzVC/FGfKYNCgTvUEfTaEE9Q5edjxwES1qv0zzB1SM
-	W68btm/GJxb6KdI3RGMMhQPMoAvh/BYAN+RcvN9jV+Ynh7B98lgjh8ppjaMx47baoNoqO+eac36Ee
-	+fNbOdNojEXvMT3qsr6g==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=aERcdf/Y6YiUSB363vcad82Sza/HfVPkHe9J5CLXl0M=; b=drCqHTPbt8odJN
+	v5NsJ4vjxUiWyTx7CP0o8sZJWwm594vP9eziLK7tx7/pr2B9BPWZVjmQo/3a3BG9iHdsPky3ImNjr
+	qM/H1I6Of+TuI1F5FbbqYUAVR6ERMEz30okUP78PL6ISjp/VrHM6taP2BEzPl29eCFjWJlKU9JiTl
+	bnOaAVUKArMDIFQWG76E8ppKVenwWx6zD2NGRdaCKGzyNCFrz93wb/c7nECJB+OTrzpQM2IiNotu9
+	H32JK6llmSy6y6XYW+MHxqovrIKWZOGvZdBzOr8NmfQIiMfkhhRr0b2BU0/J4yZRsM+U/32NUn4sF
+	hBE5kob/bM7KuJEF7wSA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ikanz-0007zn-DW; Thu, 26 Dec 2019 21:36:27 +0000
-Received: from vps0.lunn.ch ([185.16.172.187])
+	id 1ikjFS-0007qu-RK; Fri, 27 Dec 2019 06:37:22 +0000
+Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ikanw-0007z5-No; Thu, 26 Dec 2019 21:36:26 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
- s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
- Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=bZoxgAannd2tkNNwwKV808Ug99KBWslN4hI308jxAhg=; b=ZTxVZbP8jHh4LUydfIbDacSml9
- p6f862RCdnk35tCi5JKeLOO+fJT/giHdSgS1id+hipPbF65+xyiR7b/hqkEhs15n15sqduE+4zPFP
- GnsJ3c5yflBU/GhXqC41Lr6fy1BdKK2kA2FLoIgAXAAFOwssipmQ4yHGNajKopjJNuFY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.93)
- (envelope-from <andrew@lunn.ch>)
- id 1ikanm-0000Ho-Fy; Thu, 26 Dec 2019 22:36:14 +0100
-Date: Thu, 26 Dec 2019 22:36:14 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH v2 1/1] net: stmmac: dwmac-meson8b: Fix the RGMII TX
- delay on Meson8b/8m2 SoCs
-Message-ID: <20191226213614.GC32477@lunn.ch>
-References: <20191226190101.3766479-1-martin.blumenstingl@googlemail.com>
- <20191226190101.3766479-2-martin.blumenstingl@googlemail.com>
+ id 1ikjF6-0007c3-OD; Fri, 27 Dec 2019 06:37:02 +0000
+Received: from droid10.amlogic.com (10.18.11.213) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.1591.10; Fri, 27 Dec 2019
+ 14:37:14 +0800
+From: Hanjie Lin <hanjie.lin@amlogic.com>
+To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
+ <narmstrong@baylibre.com>, Rob Herring <robh@kernel.org>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCH v3 0/6] arm64: meson: Add support for USB on Amlogic A1
+Date: Fri, 27 Dec 2019 14:36:40 +0800
+Message-ID: <1577428606-69855-1-git-send-email-hanjie.lin@amlogic.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20191226190101.3766479-2-martin.blumenstingl@googlemail.com>
+X-Originating-IP: [10.18.11.213]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191226_133624_772536_BE91F483 
-X-CRM114-Status: GOOD (  10.75  )
+X-CRM114-CacheID: sfid-20191226_223700_790063_9FA13261 
+X-CRM114-Status: UNSURE (   7.67  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,53 +64,78 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: f.fainelli@gmail.com, netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, davem@davemloft.net,
- linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org, Hanjie Lin <hanjie.lin@amlogic.com>,
+ Victor Wan <victor.wan@amlogic.com>, Jianxin Pan <jianxin.pan@amlogic.com>,
+ Stephen Boyd <sboyd@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+ linux-usb@vger.kernel.org, Yue Wang <yue.wang@amlogic.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Liang Yang <liang.yang@amlogic.com>, Qiufang Dai <qiufang.dai@amlogic.com>,
+ Xingyu Chen <xingyu.chen@amlogic.com>, Carlo Caione <carlo@caione.org>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Jian Hu <jian.hu@amlogic.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Dec 26, 2019 at 08:01:01PM +0100, Martin Blumenstingl wrote:
-> GXBB and newer SoCs use the fixed FCLK_DIV2 (1GHz) clock as input for
-> the m250_sel clock. Meson8b and Meson8m2 use MPLL2 instead, whose rate
-> can be adjusted at runtime.
-> 
-> So far we have been running MPLL2 with ~250MHz (and the internal
-> m250_div with value 1), which worked enough that we could transfer data
-> with an TX delay of 4ns. Unfortunately there is high packet loss with
-> an RGMII PHY when transferring data (receiving data works fine though).
-> Odroid-C1's u-boot is running with a TX delay of only 2ns as well as
-> the internal m250_div set to 2 - no lost (TX) packets can be observed
-> with that setting in u-boot.
-> 
-> Manual testing has shown that the TX packet loss goes away when using
-> the following settings in Linux (the vendor kernel uses the same
-> settings):
-> - MPLL2 clock set to ~500MHz
-> - m250_div set to 2
-> - TX delay set to 2ns on the MAC side
-> 
-> Update the m250_div divider settings to only accept dividers greater or
-> equal 2 to fix the TX delay generated by the MAC.
-> 
-> iperf3 results before the change:
-> [ ID] Interval           Transfer     Bitrate         Retr
-> [  5]   0.00-10.00  sec   182 MBytes   153 Mbits/sec  514      sender
-> [  5]   0.00-10.00  sec   182 MBytes   152 Mbits/sec           receiver
-> 
-> iperf3 results after the change (including an updated TX delay of 2ns):
-> [ ID] Interval           Transfer     Bitrate         Retr  Cwnd
-> [  5]   0.00-10.00  sec   927 MBytes   778 Mbits/sec    0      sender
-> [  5]   0.00-10.01  sec   927 MBytes   777 Mbits/sec           receiver
-> 
-> Fixes: 4f6a71b84e1afd ("net: stmmac: dwmac-meson8b: fix internal RGMII clock configuration")
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+This patchset adds support for USB on Amlogic A1 SoCs.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+This patchset is composed with :
+- bindings of the PHY
+- bindings of the USB Control Glue
+- PHY Driver
+- USB Control Glue driver
+- dts of the PHY
+- dts of the USB Controller
 
-    Andrew
+The Amlogic A1 USB Complex is composed of :
+- 1 DWC3 USB controller for USB2 Host functionality
+- 1 USB2 PHY for USB2 Host functionality
+
+The USB Control Glue setups the clocks and the reset about DWC3 USB
+controller, and binds to the USB2 PHY. It also configures the 8bit
+UTMI interfaces for the USB2 PHY, including setting USB2 phy mode.
+
+The USB2 PHY driver initializes the phy analog settings, phy PLL 
+setup and phy tuning.
+
+This patchset is based on A1 clock/power domain/reset series at [0].
+
+Changes since v1:[1]
+ - integrate glue and phy drivers into g12a's
+ 
+Changes since v2:[2]
+ - modify amlogic,meson-g12a-usb-ctrl.yaml with dt_binding_check tool
+ - phy/glue driver use of_device_get_match_data to distinguish A1 from G12A
+
+[0]
+https://patchwork.kernel.org/project/linux-amlogic/list/?series=185477
+https://patchwork.kernel.org/project/linux-amlogic/list/?series=180055
+https://patchwork.kernel.org/project/linux-amlogic/list/?series=189643
+
+[1] : https://lore.kernel.org/linux-amlogic/1574405757-76184-1-git-send-email-hanjie.lin@amlogic.com/
+
+[2] : https://lore.kernel.org/linux-amlogic/1576636944-196192-1-git-send-email-hanjie.lin@amlogic.com/
+
+Hanjie Lin (6):
+  dt-bindings: phy: Add Amlogic A1 USB2 PHY Bindings
+  dt-bindings: usb: dwc3: Add the Amlogic A1 Family DWC3 Glue Bindings
+  phy: amlogic: Add Amlogic A1 USB2 PHY Driver
+  usb: dwc3: Add Amlogic A1 DWC3 glue
+  arm64: dts: meson: a1: Enable USB2 PHY
+  arm64: dts: meson: a1: Enable DWC3 controller
+
+ .../bindings/phy/amlogic,meson-a1-usb2-phy.yaml    |  55 +++++++++++
+ .../bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml  |  57 +++++++++--
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi          |  44 +++++++++
+ drivers/phy/amlogic/phy-meson-g12a-usb2.c          |  93 ++++++++++++------
+ drivers/usb/dwc3/dwc3-meson-g12a.c                 | 105 +++++++++++++++------
+ 5 files changed, 292 insertions(+), 62 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-a1-usb2-phy.yaml
+
+-- 
+2.7.4
+
 
 _______________________________________________
 linux-amlogic mailing list
