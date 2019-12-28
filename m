@@ -2,77 +2,89 @@ Return-Path: <SRS0=KhJ2=2S=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.2 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,USER_AGENT_SANE_2
-	autolearn=ham autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-6.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BC5ECC2D0C3
-	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Dec 2019 02:54:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AE13CC2D0C6
+	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Dec 2019 17:39:53 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8CC1A207E0
-	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Dec 2019 02:54:43 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8240220838
+	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Dec 2019 17:39:53 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="lkBKh3mT";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="Xqb8qm4V"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8CC1A207E0
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=mediatek.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="W2+zUML4";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="stqjHdMI"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8240220838
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
-	Date:To:From:Subject:Message-ID:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=sqsXZx2+im6hNUi2LF+db9Vh6JFoc4llXI7HDohk8Nw=; b=lkBKh3mTB+78lY
-	uds7VuwGwoBAfrGIqST+FEfJ1pi0tvFIOStj+zoKE4APTa1eskVh31fWL2OwH22kyXo/YfmRaaAaX
-	y3dDpsAbU92Kccud9ZGqDQQW1uW+0YgDDQo1FfOTsTyp5XeANQetuT5WOXuwPLvFJ9rlgphGcB4U8
-	S2ZtKNq2yO/mNffNhsVJjyzcJn2RJdiGVb0oTlwRyCNtTorVD/a1z3S/12+WvskJZlPfj+gHFWHPY
-	c0oWCwOoomY/IGh8VZsb8TlbPHUuXT792j7jbJkGlAGFgf2F5CjILkvWCatUWEJ3sd24aH+NSbzf9
-	WadKx15PW2XU4c6/13wg==;
+	List-Owner; bh=5I2Y0yjZEAJI6GvTRJXqd4xgo5jJ/xdWcU8W+EyEEN0=; b=W2+zUML4UXdYsq
+	HZ1Ak6xF+HymVfr/b/SJuIlR309j5Sq32GWWhuICuANnyYB2OKgLYQrZ6KWxQN84YowssKSlfoKp9
+	fa+G+fMP/pKWQJQWd9FBUaOpD6noe0zoQLiRVvBE4ZKjRaSdmZGvZ8fs9RFM4sIVYC6YFEFUzkd5d
+	2HtrMHFC5fnjAt1tNoHU90Y4b+Ui/ht+AiGfe7Y29hGyQKxLQuGB9gr8yXr27T+kPBLRlkvcEWiXc
+	YcjSj+M4DkcMJ8ce3kqgoLpepEXOrZ9/t8GuHk3Es8Nsn9xhvBWgF3UPDq/0DNBv0WdGulemeuMct
+	eA5cdQ9RFwwXCtf93UuA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1il2FQ-0007Kj-Dy; Sat, 28 Dec 2019 02:54:36 +0000
-Received: from mailgw02.mediatek.com ([216.200.240.185])
+	id 1ilG3y-0003kK-QP; Sat, 28 Dec 2019 17:39:42 +0000
+Received: from mail-io1-xd42.google.com ([2607:f8b0:4864:20::d42])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1il2FE-0007BA-K7; Sat, 28 Dec 2019 02:54:25 +0000
-X-UUID: 8f72a633fe8e4b2c964a2f6bb7712a5d-20191227
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com;
- s=dk; 
- h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID;
- bh=DuK72F7gBZXvEYq3y3vW4ZuOMFEZduG7ni5TClqn+Jw=; 
- b=Xqb8qm4VIFCwJy9or7rS3RLV8gGOtdoZSvTFnFmjX0rcv8HHXjTmhsDuT6K4czVKSUes1e5HDS62BaaMNCTRZJxaRyEk5xR+5yjZy1d+sGewC/wYEiyycvQlt2wLzYOAuzoRTqU1VdyYMxUGH3sM97AWxddrvudiryLpj9rru98=;
-X-UUID: 8f72a633fe8e4b2c964a2f6bb7712a5d-20191227
-Received: from mtkcas67.mediatek.inc [(172.29.193.45)] by mailgw02.mediatek.com
- (envelope-from <chunfeng.yun@mediatek.com>)
- (musrelay.mediatek.com ESMTP with TLS)
- with ESMTP id 1038913153; Fri, 27 Dec 2019 18:54:19 -0800
-Received: from MTKMBS32N1.mediatek.inc (172.27.4.71) by
- MTKMBS62DR.mediatek.inc (172.29.94.18) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 27 Dec 2019 18:54:24 -0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS32N1.mediatek.inc
- (172.27.4.71) with Microsoft SMTP Server (TLS) id 15.0.1395.4;
- Sat, 28 Dec 2019 10:53:43 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Sat, 28 Dec 2019 10:54:44 +0800
-Message-ID: <1577501595.21256.8.camel@mhfsdcap03>
-Subject: Re: [PATCH v3 3/6] phy: amlogic: Add Amlogic A1 USB2 PHY Driver
-From: Chunfeng Yun <chunfeng.yun@mediatek.com>
-To: Hanjie Lin <hanjie.lin@amlogic.com>
-Date: Sat, 28 Dec 2019 10:53:15 +0800
-In-Reply-To: <1577428606-69855-4-git-send-email-hanjie.lin@amlogic.com>
-References: <1577428606-69855-1-git-send-email-hanjie.lin@amlogic.com>
- <1577428606-69855-4-git-send-email-hanjie.lin@amlogic.com>
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+ id 1ilG3q-0003dO-8s; Sat, 28 Dec 2019 17:39:35 +0000
+Received: by mail-io1-xd42.google.com with SMTP id r13so18222540ioa.3;
+ Sat, 28 Dec 2019 09:39:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=nkCMArF5O7FXPw9BK2mgjdrIaTyHpsDk1hbsnTlNyJs=;
+ b=stqjHdMIvlCCQU7QSqBhhrLQXtLp4MjfeRb6tc8UaWpblVQe6np+9BiXPqJ4FM+lCs
+ 60yIPCesMBN/wWiJiAb/UrVnMfND7ZNzcTOQv8NTHRm9wqQp/Z2B3sLhGpjRnJzjzfFq
+ 1rPAFgLDUk5BylE/oIzVbfUub9tQLyIiedJL6E4NH8RAbNTI4ASDEwM8loFlLcAg6BRw
+ ug9Vof8O1H3TXd8hOmCok9FwhAGsJLZ3o5EFhr4BoxOGrruWfIgGNS/A0qbdGod3YtHh
+ wACkY8OpHm//bPKKEL6nXtEOyYslQqOoaXnMPSQJG4JvdO0PR5nCqAmMp6ngAQXiYLXa
+ LSOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=nkCMArF5O7FXPw9BK2mgjdrIaTyHpsDk1hbsnTlNyJs=;
+ b=E4QXxo31u0UOF1vvMAr10aKujw/4xaBU1cvd2nVyGf4Js0LGHpRWHxDNOZ/gr5V4Xx
+ WnroEMKltlRu4gc4PIsqLTUa62y4ArRKg0C0A1T3LrrD48+InCCipXZzYovC7Aau/BEH
+ 7ZwDpwpEMZbBPWvszKBKsl4mfJdU2b9YlAydrqn1fL7TVZEUzBZinGgoum1BqRaUfN19
+ OdilpuS7FAN7vAS7P+mQwtz1zTxUep1mbyJpsY7u81EE0/fNjyrhEp+0V8LyV3f52iOt
+ LGbc/gQOao2ZVZXspOdIHmsbpMa/aXMc7qq2srthMayrF5r6AczFYdG5NfWyrXAPa4jH
+ g1HA==
+X-Gm-Message-State: APjAAAWi29fulCnM8cvRlYuhtKwmDcPg2qhGTbsfLrj95HLTMGbKBFla
+ yFTf2pH4GevcMVCN9M1P8OJOrC6Xja1Ity0orOw=
+X-Google-Smtp-Source: APXvYqyr/5wjv0CAn42AahOFrX+6N7JwDXAu/FKvMB0E9bGBOizVAHxY7kmasrb40gVuFjrfidmQTqq1aCWHimSjN84=
+X-Received: by 2002:a6b:c410:: with SMTP id y16mr36580386ioa.18.1577554773160; 
+ Sat, 28 Dec 2019 09:39:33 -0800 (PST)
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 7D6A139BDF8753CECA92F2F08A4142A8071CBE782207FE70DB2AA7114E397CFB2000:8
-X-MTK: N
+References: <20191210203149.7115-1-tiny.windzz@gmail.com>
+In-Reply-To: <20191210203149.7115-1-tiny.windzz@gmail.com>
+From: Frank Lee <tiny.windzz@gmail.com>
+Date: Sun, 29 Dec 2019 01:39:21 +0800
+Message-ID: <CAEExFWvd1Md-guT=wgZ1-G69r71KBn64k2yGh0Vqjh_-D8yGuQ@mail.gmail.com>
+Subject: Re: [PATCH] drivers: add devm_platform_ioremap_resource_byname()
+ helper
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Srini Kandagatla <srinivas.kandagatla@linaro.org>, vz@mleia.com,
+ khilman@baylibre.com, 
+ Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ andriy.shevchenko@linux.intel.com, 
+ Mauro Carvalho Chehab <mchehab+samsung@kernel.org>, mans@mansr.com,
+ treding@nvidia.com, 
+ suzuki.poulose@arm.com, bgolaszewski@baylibre.com, tglx@linutronix.de
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191227_185424_668926_3EDC882C 
-X-CRM114-Status: GOOD (  12.13  )
+X-CRM114-CacheID: sfid-20191228_093934_340351_F3130EE9 
+X-CRM114-Status: GOOD (  14.97  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,61 +96,93 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>, Victor Wan <victor.wan@amlogic.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Stephen
- Boyd <sboyd@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Michael Turquette <mturquette@baylibre.com>, linux-usb@vger.kernel.org,
- Yue Wang <yue.wang@amlogic.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org, Liang Yang <liang.yang@amlogic.com>,
- Qiufang Dai <qiufang.dai@amlogic.com>, Xingyu
- Chen <xingyu.chen@amlogic.com>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, Jian Hu <jian.hu@amlogic.com>,
- linux-arm-kernel@lists.infradead.org, Jerome Brunet <jbrunet@baylibre.com>
+Cc: linux-amlogic@lists.infradead.org,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, 2019-12-27 at 14:36 +0800, Hanjie Lin wrote:
-> This adds support for the USB2 PHY found in the Amlogic A1 SoC Family.
-> 
-> It supports host mode only.
-> 
-> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
-> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
-> ---
->  drivers/phy/amlogic/phy-meson-g12a-usb2.c | 93 +++++++++++++++++++++----------
->  1 file changed, 64 insertions(+), 29 deletions(-)
-> 
-> diff --git a/drivers/phy/amlogic/phy-meson-g12a-usb2.c b/drivers/phy/amlogic/phy-meson-g12a-usb2.c
-> index 9065ffc..a564747 100644
-> --- a/drivers/phy/amlogic/phy-meson-g12a-usb2.c
-> +++ b/drivers/phy/amlogic/phy-meson-g12a-usb2.c
-> @@ -146,11 +146,17 @@
-[...]
-> +	priv->soc_id = (enum meson_soc_id)of_device_get_match_data(&pdev->dev);
-> +
->  	priv->regmap = devm_regmap_init_mmio(dev, base,
->  					     &phy_meson_g12a_usb2_regmap_conf);
->  	if (IS_ERR(priv->regmap))
->  		return PTR_ERR(priv->regmap);
->  
-> -	priv->clk = devm_clk_get(dev, "xtal");
-> -	if (IS_ERR(priv->clk))
-> -		return PTR_ERR(priv->clk);
-> +	if (priv->soc_id == MESON_SOC_G12A) {
-> +		priv->clk = devm_clk_get(dev, "xtal");
-> +		if (IS_ERR(priv->clk))
-> +			return PTR_ERR(priv->clk);
-> +	}
-How about use devm_clk_get_optional(), then make it as optional clock
-also in dt-binding
->  
+ping...
 
->  
+On Wed, Dec 11, 2019 at 4:31 AM Yangtao Li <tiny.windzz@gmail.com> wrote:
+>
+> There are currently 300+ instances of using platform_get_resource_byname()
+> and devm_ioremap_resource() together in the kernel tree.
+>
+> This patch wraps these two calls in a single helper.
+>
+> Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
+> ---
+>  drivers/base/platform.c         | 22 +++++++++++++++++++++-
+>  include/linux/platform_device.h |  3 +++
+>  2 files changed, 24 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/base/platform.c b/drivers/base/platform.c
+> index b6c6c7d97d5b..9c4f5e229600 100644
+> --- a/drivers/base/platform.c
+> +++ b/drivers/base/platform.c
+> @@ -60,6 +60,7 @@ struct resource *platform_get_resource(struct platform_device *dev,
+>  }
+>  EXPORT_SYMBOL_GPL(platform_get_resource);
+>
+> +#ifdef CONFIG_HAS_IOMEM
+>  /**
+>   * devm_platform_ioremap_resource - call devm_ioremap_resource() for a platform
+>   *                                 device
+> @@ -68,7 +69,7 @@ EXPORT_SYMBOL_GPL(platform_get_resource);
+>   *        resource management
+>   * @index: resource index
+>   */
+> -#ifdef CONFIG_HAS_IOMEM
+> +
+>  void __iomem *devm_platform_ioremap_resource(struct platform_device *pdev,
+>                                              unsigned int index)
+>  {
+> @@ -78,6 +79,25 @@ void __iomem *devm_platform_ioremap_resource(struct platform_device *pdev,
+>         return devm_ioremap_resource(&pdev->dev, res);
+>  }
+>  EXPORT_SYMBOL_GPL(devm_platform_ioremap_resource);
+> +
+> +/**
+> + * devm_platform_ioremap_resource_byname - call devm_ioremap_resource() for
+> + *                                        a platform device
+> + *
+> + * @pdev: platform device to use both for memory resource lookup as well as
+> + *        resource managemend
+> + * @name: resource name
+> + */
+> +void __iomem *
+> +devm_platform_ioremap_resource_byname(struct platform_device *pdev,
+> +                                     const char *name)
+> +{
+> +       struct resource *res;
+> +
+> +       res = platform_get_resource_byname(pdev, IORESOURCE_MEM, name);
+> +       return devm_ioremap_resource(&pdev->dev, res);
+> +}
+> +EXPORT_SYMBOL_GPL(devm_platform_ioremap_resource_byname);
+>  #endif /* CONFIG_HAS_IOMEM */
+>
+>  static int __platform_get_irq(struct platform_device *dev, unsigned int num)
+> diff --git a/include/linux/platform_device.h b/include/linux/platform_device.h
+> index 1b5cec067533..24ff5da9c532 100644
+> --- a/include/linux/platform_device.h
+> +++ b/include/linux/platform_device.h
+> @@ -63,6 +63,9 @@ extern int platform_irq_count(struct platform_device *);
+>  extern struct resource *platform_get_resource_byname(struct platform_device *,
+>                                                      unsigned int,
+>                                                      const char *);
+> +extern void __iomem *
+> +devm_platform_ioremap_resource_byname(struct platform_device *pdev,
+> +                                     const char *name);
+>  extern int platform_get_irq_byname(struct platform_device *, const char *);
+>  extern int platform_add_devices(struct platform_device **, int);
+>
+> --
+> 2.17.1
+>
 
 _______________________________________________
 linux-amlogic mailing list
