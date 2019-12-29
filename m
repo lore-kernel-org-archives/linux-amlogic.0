@@ -1,90 +1,100 @@
-Return-Path: <SRS0=KhJ2=2S=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=/omC=2T=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-9.6 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.0
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AE13CC2D0C6
-	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Dec 2019 17:39:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7D919C2D0C6
+	for <linux-amlogic@archiver.kernel.org>; Sun, 29 Dec 2019 08:07:30 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 8240220838
-	for <linux-amlogic@archiver.kernel.org>; Sat, 28 Dec 2019 17:39:53 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 46C5020748
+	for <linux-amlogic@archiver.kernel.org>; Sun, 29 Dec 2019 08:07:30 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="W2+zUML4";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="stqjHdMI"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8240220838
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="WGlcwuxQ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JG6H1yvX"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 46C5020748
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=5I2Y0yjZEAJI6GvTRJXqd4xgo5jJ/xdWcU8W+EyEEN0=; b=W2+zUML4UXdYsq
-	HZ1Ak6xF+HymVfr/b/SJuIlR309j5Sq32GWWhuICuANnyYB2OKgLYQrZ6KWxQN84YowssKSlfoKp9
-	fa+G+fMP/pKWQJQWd9FBUaOpD6noe0zoQLiRVvBE4ZKjRaSdmZGvZ8fs9RFM4sIVYC6YFEFUzkd5d
-	2HtrMHFC5fnjAt1tNoHU90Y4b+Ui/ht+AiGfe7Y29hGyQKxLQuGB9gr8yXr27T+kPBLRlkvcEWiXc
-	YcjSj+M4DkcMJ8ce3kqgoLpepEXOrZ9/t8GuHk3Es8Nsn9xhvBWgF3UPDq/0DNBv0WdGulemeuMct
-	eA5cdQ9RFwwXCtf93UuA==;
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
+	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+	References:List-Owner; bh=yvDZ0ynrnQDLBxRvQg9nuaEvnWfFhhq/vDPWz0HDX6g=; b=WGl
+	cwuxQCF26elU1t1h5ZHyEmxRIyI9o/lj7B6jYBSmKE7t5zC/V0SkSMUrZICPqWNRKP6iPOjYMaekX
+	cQcpW58+QGlj0FcP1930hNaBK6oAqXmwfgXrOwiCoyEgPHwX5V6Gko00A2dKdFV8XNFJLsZmgFRXY
+	d1NDV5NaSKL2WvUyO/zbr4c9F04ONGR9gogeFe1Cl54n8DRvAo2cWNgjRvlltuIFF7jXRJlnc7qa1
+	s095WIwiNLVPmCZQcDoa89ywUD/IH/kM7UwoXo5odZHcAc5me+k15Zj3ywDWErjDwpXwI5FUzdu5o
+	o7cwBHhqnKlhgTXFxwDa0l29OWT5PAg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ilG3y-0003kK-QP; Sat, 28 Dec 2019 17:39:42 +0000
-Received: from mail-io1-xd42.google.com ([2607:f8b0:4864:20::d42])
+	id 1ilTbb-0001Zl-48; Sun, 29 Dec 2019 08:07:19 +0000
+Received: from mail-pj1-x1042.google.com ([2607:f8b0:4864:20::1042])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ilG3q-0003dO-8s; Sat, 28 Dec 2019 17:39:35 +0000
-Received: by mail-io1-xd42.google.com with SMTP id r13so18222540ioa.3;
- Sat, 28 Dec 2019 09:39:33 -0800 (PST)
+ id 1ilTaZ-0000m7-Oy; Sun, 29 Dec 2019 08:06:17 +0000
+Received: by mail-pj1-x1042.google.com with SMTP id t101so6880795pjb.4;
+ Sun, 29 Dec 2019 00:06:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=nkCMArF5O7FXPw9BK2mgjdrIaTyHpsDk1hbsnTlNyJs=;
- b=stqjHdMIvlCCQU7QSqBhhrLQXtLp4MjfeRb6tc8UaWpblVQe6np+9BiXPqJ4FM+lCs
- 60yIPCesMBN/wWiJiAb/UrVnMfND7ZNzcTOQv8NTHRm9wqQp/Z2B3sLhGpjRnJzjzfFq
- 1rPAFgLDUk5BylE/oIzVbfUub9tQLyIiedJL6E4NH8RAbNTI4ASDEwM8loFlLcAg6BRw
- ug9Vof8O1H3TXd8hOmCok9FwhAGsJLZ3o5EFhr4BoxOGrruWfIgGNS/A0qbdGod3YtHh
- wACkY8OpHm//bPKKEL6nXtEOyYslQqOoaXnMPSQJG4JvdO0PR5nCqAmMp6ngAQXiYLXa
- LSOA==
+ h=from:to:cc:subject:date:message-id;
+ bh=+3pBLd50yZ31QGDnQXQDHmLfpHXmqi0l43iIkO1V9Fk=;
+ b=JG6H1yvXtza6zd1BLy2dsQbEIHwG3IcGFnYTmJb+HGx740diEoe5JAn+t24q8VoSuV
+ 5fbcviVM5CcY0TyjCuQXa6qCbooh7tfB+LrHt3/Ug6YFtCT5k5V2gwou5opqsGC6PwHc
+ eurPwx50PDqmxEW1q+ynKJ0KnCQeyzQX7xW2SvY2itaOb+xiBEMYtX6IObjqWLKo9teF
+ Q8zj04fwbhQU/UpdXgs6LRdOgn+M5RnZG84uXVM3HPgc9uiEjx0BMuG3GLmG4PD1Qm+A
+ hyzMraA1AY+YuWSnreOvwjqLS2dumP9P/mjJBIQS5Ru3J260j9Ci2chSfkQQqO0ydswt
+ R3SQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=nkCMArF5O7FXPw9BK2mgjdrIaTyHpsDk1hbsnTlNyJs=;
- b=E4QXxo31u0UOF1vvMAr10aKujw/4xaBU1cvd2nVyGf4Js0LGHpRWHxDNOZ/gr5V4Xx
- WnroEMKltlRu4gc4PIsqLTUa62y4ArRKg0C0A1T3LrrD48+InCCipXZzYovC7Aau/BEH
- 7ZwDpwpEMZbBPWvszKBKsl4mfJdU2b9YlAydrqn1fL7TVZEUzBZinGgoum1BqRaUfN19
- OdilpuS7FAN7vAS7P+mQwtz1zTxUep1mbyJpsY7u81EE0/fNjyrhEp+0V8LyV3f52iOt
- LGbc/gQOao2ZVZXspOdIHmsbpMa/aXMc7qq2srthMayrF5r6AczFYdG5NfWyrXAPa4jH
- g1HA==
-X-Gm-Message-State: APjAAAWi29fulCnM8cvRlYuhtKwmDcPg2qhGTbsfLrj95HLTMGbKBFla
- yFTf2pH4GevcMVCN9M1P8OJOrC6Xja1Ity0orOw=
-X-Google-Smtp-Source: APXvYqyr/5wjv0CAn42AahOFrX+6N7JwDXAu/FKvMB0E9bGBOizVAHxY7kmasrb40gVuFjrfidmQTqq1aCWHimSjN84=
-X-Received: by 2002:a6b:c410:: with SMTP id y16mr36580386ioa.18.1577554773160; 
- Sat, 28 Dec 2019 09:39:33 -0800 (PST)
-MIME-Version: 1.0
-References: <20191210203149.7115-1-tiny.windzz@gmail.com>
-In-Reply-To: <20191210203149.7115-1-tiny.windzz@gmail.com>
-From: Frank Lee <tiny.windzz@gmail.com>
-Date: Sun, 29 Dec 2019 01:39:21 +0800
-Message-ID: <CAEExFWvd1Md-guT=wgZ1-G69r71KBn64k2yGh0Vqjh_-D8yGuQ@mail.gmail.com>
-Subject: Re: [PATCH] drivers: add devm_platform_ioremap_resource_byname()
- helper
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Srini Kandagatla <srinivas.kandagatla@linaro.org>, vz@mleia.com,
- khilman@baylibre.com, 
- Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- andriy.shevchenko@linux.intel.com, 
- Mauro Carvalho Chehab <mchehab+samsung@kernel.org>, mans@mansr.com,
- treding@nvidia.com, 
- suzuki.poulose@arm.com, bgolaszewski@baylibre.com, tglx@linutronix.de
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=+3pBLd50yZ31QGDnQXQDHmLfpHXmqi0l43iIkO1V9Fk=;
+ b=inmZwBahr4mNTuG+Zlk52De+YFn4n7zSVAqf4BkR5O1PKeXnMdiJahSGFClBmkmB+H
+ 9o/vVo+wU66tUto+FK2pupmiQTGkfztlqJ+ohzXWd+0tIs6Ye1yz2Rcq4UYvDpBFRQ/6
+ dwoDZc3nhKXE+q+k6LO7rsJBCVcVmfEyCNgt+ENkC4tsV1p7OoEDnceWHAmIQW3e8euU
+ rDD2VIQSTQHFxiEzCT4jCySoG8c4NglGREKutnRF/XXxlwYV29jcRQdpvb0CzsRG8vm0
+ sMnNvbSNknyW5VgD90wx2F/aGH20oaMRyfxnJgDe/Kx25wLJK7BJzyc3ae26lGOYzMzM
+ stxA==
+X-Gm-Message-State: APjAAAU3A+AJhvTj4BD3QHpQ0w8vHnOEyjvHiN/S0lmxrMCar8lQF0P1
+ Vbk55cp1e+UVIW/0R1Iblgk=
+X-Google-Smtp-Source: APXvYqxnI5XBWy+NXM/GB41OB70ppiFg3j0a/LZfYu0PTXzqYRRbkm4zUSrtO9fzojgrIm7DOwlwvw==
+X-Received: by 2002:a17:902:7296:: with SMTP id
+ d22mr64069643pll.55.1577606774630; 
+ Sun, 29 Dec 2019 00:06:14 -0800 (PST)
+Received: from localhost ([2001:19f0:6001:12c8:5400:2ff:fe72:6403])
+ by smtp.gmail.com with ESMTPSA id f127sm48271863pfa.112.2019.12.29.00.06.13
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Sun, 29 Dec 2019 00:06:13 -0800 (PST)
+From: Yangtao Li <tiny.windzz@gmail.com>
+To: claudiu.beznea@microchip.com, thierry.reding@gmail.com,
+ u.kleine-koenig@pengutronix.de, nicolas.ferre@microchip.com,
+ alexandre.belloni@bootlin.com, ludovic.desroches@microchip.com,
+ rjui@broadcom.com, sbranden@broadcom.com,
+ bcm-kernel-feedback-list@broadcom.com, f.fainelli@gmail.com,
+ nsaenzjulienne@suse.de, shc_work@mail.ru, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ linux-imx@nxp.com, vz@mleia.com, slemieux.tyco@gmail.com,
+ khilman@baylibre.com, matthias.bgg@gmail.com, heiko@sntech.de,
+ palmer@dabbelt.com, paul.walmsley@sifive.com, mripard@kernel.org,
+ wens@csie.org, jonathanh@nvidia.com, linux@prisktech.co.nz,
+ linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org,
+ linux-tegra@vger.kernel.org
+Subject: [PATCH 01/32] pwm: sun4i: convert to devm_platform_ioremap_resource
+Date: Sun, 29 Dec 2019 08:05:39 +0000
+Message-Id: <20191229080610.7597-1-tiny.windzz@gmail.com>
+X-Mailer: git-send-email 2.17.1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191228_093934_340351_F3130EE9 
-X-CRM114-Status: GOOD (  14.97  )
+X-CRM114-CacheID: sfid-20191229_000615_836436_63091427 
+X-CRM114-Status: UNSURE (   8.30  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,93 +106,45 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>
+Cc: Yangtao Li <tiny.windzz@gmail.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-ping...
+Use devm_platform_ioremap_resource() to simplify code.
 
-On Wed, Dec 11, 2019 at 4:31 AM Yangtao Li <tiny.windzz@gmail.com> wrote:
->
-> There are currently 300+ instances of using platform_get_resource_byname()
-> and devm_ioremap_resource() together in the kernel tree.
->
-> This patch wraps these two calls in a single helper.
->
-> Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
-> ---
->  drivers/base/platform.c         | 22 +++++++++++++++++++++-
->  include/linux/platform_device.h |  3 +++
->  2 files changed, 24 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/base/platform.c b/drivers/base/platform.c
-> index b6c6c7d97d5b..9c4f5e229600 100644
-> --- a/drivers/base/platform.c
-> +++ b/drivers/base/platform.c
-> @@ -60,6 +60,7 @@ struct resource *platform_get_resource(struct platform_device *dev,
->  }
->  EXPORT_SYMBOL_GPL(platform_get_resource);
->
-> +#ifdef CONFIG_HAS_IOMEM
->  /**
->   * devm_platform_ioremap_resource - call devm_ioremap_resource() for a platform
->   *                                 device
-> @@ -68,7 +69,7 @@ EXPORT_SYMBOL_GPL(platform_get_resource);
->   *        resource management
->   * @index: resource index
->   */
-> -#ifdef CONFIG_HAS_IOMEM
-> +
->  void __iomem *devm_platform_ioremap_resource(struct platform_device *pdev,
->                                              unsigned int index)
->  {
-> @@ -78,6 +79,25 @@ void __iomem *devm_platform_ioremap_resource(struct platform_device *pdev,
->         return devm_ioremap_resource(&pdev->dev, res);
->  }
->  EXPORT_SYMBOL_GPL(devm_platform_ioremap_resource);
-> +
-> +/**
-> + * devm_platform_ioremap_resource_byname - call devm_ioremap_resource() for
-> + *                                        a platform device
-> + *
-> + * @pdev: platform device to use both for memory resource lookup as well as
-> + *        resource managemend
-> + * @name: resource name
-> + */
-> +void __iomem *
-> +devm_platform_ioremap_resource_byname(struct platform_device *pdev,
-> +                                     const char *name)
-> +{
-> +       struct resource *res;
-> +
-> +       res = platform_get_resource_byname(pdev, IORESOURCE_MEM, name);
-> +       return devm_ioremap_resource(&pdev->dev, res);
-> +}
-> +EXPORT_SYMBOL_GPL(devm_platform_ioremap_resource_byname);
->  #endif /* CONFIG_HAS_IOMEM */
->
->  static int __platform_get_irq(struct platform_device *dev, unsigned int num)
-> diff --git a/include/linux/platform_device.h b/include/linux/platform_device.h
-> index 1b5cec067533..24ff5da9c532 100644
-> --- a/include/linux/platform_device.h
-> +++ b/include/linux/platform_device.h
-> @@ -63,6 +63,9 @@ extern int platform_irq_count(struct platform_device *);
->  extern struct resource *platform_get_resource_byname(struct platform_device *,
->                                                      unsigned int,
->                                                      const char *);
-> +extern void __iomem *
-> +devm_platform_ioremap_resource_byname(struct platform_device *pdev,
-> +                                     const char *name);
->  extern int platform_get_irq_byname(struct platform_device *, const char *);
->  extern int platform_add_devices(struct platform_device **, int);
->
-> --
-> 2.17.1
->
+Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
+---
+ drivers/pwm/pwm-sun4i.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/drivers/pwm/pwm-sun4i.c b/drivers/pwm/pwm-sun4i.c
+index 581d23287333..f2afd312f77c 100644
+--- a/drivers/pwm/pwm-sun4i.c
++++ b/drivers/pwm/pwm-sun4i.c
+@@ -344,7 +344,6 @@ MODULE_DEVICE_TABLE(of, sun4i_pwm_dt_ids);
+ static int sun4i_pwm_probe(struct platform_device *pdev)
+ {
+ 	struct sun4i_pwm_chip *pwm;
+-	struct resource *res;
+ 	int ret;
+ 
+ 	pwm = devm_kzalloc(&pdev->dev, sizeof(*pwm), GFP_KERNEL);
+@@ -355,8 +354,7 @@ static int sun4i_pwm_probe(struct platform_device *pdev)
+ 	if (!pwm->data)
+ 		return -ENODEV;
+ 
+-	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	pwm->base = devm_ioremap_resource(&pdev->dev, res);
++	pwm->base = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(pwm->base))
+ 		return PTR_ERR(pwm->base);
+ 
+-- 
+2.17.1
+
 
 _______________________________________________
 linux-amlogic mailing list
