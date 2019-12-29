@@ -8,17 +8,17 @@ X-Spam-Status: No, score=-9.6 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F3A43C2D0C6
-	for <linux-amlogic@archiver.kernel.org>; Sun, 29 Dec 2019 08:19:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 81183C2D0DA
+	for <linux-amlogic@archiver.kernel.org>; Sun, 29 Dec 2019 08:19:52 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B8F78206A4
-	for <linux-amlogic@archiver.kernel.org>; Sun, 29 Dec 2019 08:19:37 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 27B6C20748
+	for <linux-amlogic@archiver.kernel.org>; Sun, 29 Dec 2019 08:19:52 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DY+c7IrI";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bssl8EsN"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B8F78206A4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="OG94DHEP";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gn2BXtUa"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 27B6C20748
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -28,50 +28,50 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:List-Owner;
-	bh=wGqsBm6HJnqKlVlSlI0cyg8xZlXWMEIj6gAcVGRLKec=; b=DY+c7IrIwk+3KNfhLZTCL+2YFX
-	8tGvhzS8dKzdYKd6ObyPTo4TOG7OiZkiyVNQHeTFE//cxQXiknNFofxomy64ottM4SXerSXEXGt66
-	dF9/RtAWY4s1QM8Wyb7Qxpqy+9C8rst1SheGOiSKzXY5ajJbuzWQd19kvxErGIo87T8krymTjZ+KX
-	3kHX5zy7NhuARKE2m30O+zg5E8+FCy7SwIdrHXoHvGaXjPlu8eGKWRAm+8meSt2tmfYaWve39TuM6
-	4fesd/shvg/FjO9y+17A9RtolnIhUUZBDOWrO3R9ijqfowx8R3OwBR9pD/bLzpA8Tf02kU2cNOFtN
-	1o1KzE3Q==;
+	bh=6eZrwQzMg60oEL0db230e6EWc42ebS28Fox/R2URqkw=; b=OG94DHEPKJQVOOeu/6qjS1knb3
+	iCC503gxkgKGlREj1Efpc9xzbBLOvfVaRph4AO/MgDdOHRTugmdRhjWZr30JjFTb2f8QvufK0jEsU
+	aVN5viHxSiU/qL5lHSr771fKajN4OcngW6s+NN9nlkhChLuQC15rMFN7XmFw9L8IlDLuCJVuy1pFK
+	ILqS0MMuxwvgooSLFXLqbxBiPR9IJeBkR+atS/n/05b/wQ5A+rxufkm6nkbYLJbAbc6fHTIFOoXTg
+	QyuNXM4P5p8+XN7mrljgOY0x60oia4iYHujF23i1do5cr+BTaWLQ9QVP9NCt8nIMeZaqPo/Dhu/ox
+	DFGobB/Q==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ilTnN-0006Py-R5; Sun, 29 Dec 2019 08:19:29 +0000
-Received: from mail-pl1-x642.google.com ([2607:f8b0:4864:20::642])
+	id 1ilTne-0006m8-ST; Sun, 29 Dec 2019 08:19:46 +0000
+Received: from mail-pl1-x643.google.com ([2607:f8b0:4864:20::643])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ilTb8-0001Gh-Ad; Sun, 29 Dec 2019 08:06:52 +0000
-Received: by mail-pl1-x642.google.com with SMTP id a6so12765826plm.3;
- Sun, 29 Dec 2019 00:06:49 -0800 (PST)
+ id 1ilTbA-0001Hn-5L; Sun, 29 Dec 2019 08:06:54 +0000
+Received: by mail-pl1-x643.google.com with SMTP id x17so13507422pln.1;
+ Sun, 29 Dec 2019 00:06:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=CJr4HqPkZ3pPTSYRcWOsbHXVxGnqGh2WnBscj80axwQ=;
- b=Bssl8EsNZrOgZVwJDooD7AhI5/dzQdq+ZTBUU2dvaMZSgYTCPJU3Yz/3DLrUeaKs+G
- +6FliSf51Fd2rj9rX9QwjoIItp4EfY7B3nNLhzaz+KmaT6TwRRPzv5xkeMHNkUhF/RAw
- To0N2ay9kdtzm3eGOklyBFbKtIHYz4pox4UduOryF4FiXnNUjORl27obUdurhX4oF6sf
- 7Q6JnRHAdm9g4PdcQQR4yjSLoJOxTQuCvjPo6ofwb6ykDGj+5X+H5OXKv5j0zAehUEYd
- WaGLC2L4XSGjjLBLj9C75l10/Jk6/z+MDRhSUiQMn54Lg8Duz4tsplT4Ppk8xHjFyLFX
- tIYA==
+ bh=ybrin7Bm43ghD4JohutI1MKUWkgtrAiHaUYHCnbL3nc=;
+ b=gn2BXtUaFi/tdX1Dv0Kl80fKucwAwOVC6rPzfhtY434YtZp11KCEm0WtOZfPRQDLKv
+ 4d/zGvTV1a3bsBkgx0+eByWAf393IXyEXrYsBuuC6EIod+6nICrvtppd1Txm2BD9sjeT
+ 02se04wl2qG9EdES/0qypQAZidiOyQl6iBgaF2ADkxvZKJuLbV4HupX0ULRQtMyoYzEZ
+ Ul+63P/ZIyl3/TFMpqF9GrigjSTGBvHvMos20n9olUn0HLuRB2OK93c/YdCL3TCZuBlq
+ v3cXN/dMPkC9gQfiWFyhUSpQMpgynoRRTuham8wPXHm8unCGGrdewhY+LWLWcTPpIwR6
+ HviQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references;
- bh=CJr4HqPkZ3pPTSYRcWOsbHXVxGnqGh2WnBscj80axwQ=;
- b=U0LC7F4hWFZXsQhk/dzeEWT2hzYqEFs2sqKyu5q29qfYriPMPh9TmykUPCww7nYPUp
- LeU25s+fKIWBxKP4+XIXO6iTpZzyU5ZcV5r33c2MHHBBxmII+a5+0/OUy0wRA0Qdo340
- E/lcoA6Z6chlsejLYO6fAGDSc4vAWU0Gku/fRvb3hfkhnkoI54wMDRez+fZwd5mQs2zo
- Pc6Idv80eIj5ICqjwJgJ3aZrtzNOSG3N28GLnMzRGEE2Dnhy2uhLH0uHsUsC8ZyIPwwM
- UCJtxr8uu98bGerHD+buPFN0t7Efhm93m+SgbVhffcp1k77kMDcmEMRp7wl+uHYi4x8I
- V74g==
-X-Gm-Message-State: APjAAAVYpPzlq3P3OwbCshcoYz1BWJCwxeeARhAco04lBOFaq37nxqSg
- Xa7lqZ/VDW4G5yTrqUPyryE=
-X-Google-Smtp-Source: APXvYqwAyE3gieezb7OcD6zcyUg+EE5n2ZTOPezezbkBULlCQmyLEcIJI5oqgk7T4KhbBdJCruCC+w==
-X-Received: by 2002:a17:90a:930f:: with SMTP id
- p15mr38599124pjo.2.1577606809372; 
- Sun, 29 Dec 2019 00:06:49 -0800 (PST)
+ bh=ybrin7Bm43ghD4JohutI1MKUWkgtrAiHaUYHCnbL3nc=;
+ b=NxH4Whytq7BSinonZZ6Sumk5gf0OQZ1Nb1x317994w0XMXH4E4XEcNsxfZ+PXrV36P
+ cpU1oAy6HmDoFbmlKkXn+UinXBglmRReO3EO19Ckp6HSljhTUiD68BFuO7/ZGJanxh+0
+ ma/R5oqDoP9mU/wKuc3ESPpXYs5ta8Yy72sc5wOuamCz1Vd+IVytw28MgbunM8bI9ZSb
+ FcPnht0MgmoaDXi116JufUfv6NnKwko0KkMjUuj6vZWyBvpXU65IiLGUKHHpRy4nPG5R
+ 9w2/EZYXywOv92Zl3bXWWYgsFAAZpBTMYFggBuPK8dV4kqez87PDgF8SV2Sg6TCvSqRs
+ tzWA==
+X-Gm-Message-State: APjAAAXhFM4fr8xB2yDknw3XNuYo+wFTeRflU4kyQfSWNkhNX8jjM4L6
+ voLNJDlDI1cH40nLTqMwZqs=
+X-Google-Smtp-Source: APXvYqzgIbRZSeM6NnV/+qUyWrlWhkxW/F56U+gtXAWCgPTjTFIZU7kTdkeI0S+qki+zI2ZQYb7QnA==
+X-Received: by 2002:a17:902:7484:: with SMTP id
+ h4mr59426080pll.206.1577606810385; 
+ Sun, 29 Dec 2019 00:06:50 -0800 (PST)
 Received: from localhost ([2001:19f0:6001:12c8:5400:2ff:fe72:6403])
- by smtp.gmail.com with ESMTPSA id s1sm42817742pgv.87.2019.12.29.00.06.48
+ by smtp.gmail.com with ESMTPSA id d129sm24524981pfd.115.2019.12.29.00.06.49
  (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Sun, 29 Dec 2019 00:06:48 -0800 (PST)
+ Sun, 29 Dec 2019 00:06:49 -0800 (PST)
 From: Yangtao Li <tiny.windzz@gmail.com>
 To: claudiu.beznea@microchip.com, thierry.reding@gmail.com,
  u.kleine-koenig@pengutronix.de, nicolas.ferre@microchip.com,
@@ -89,15 +89,16 @@ To: claudiu.beznea@microchip.com, thierry.reding@gmail.com,
  linux-amlogic@lists.infradead.org, linux-mediatek@lists.infradead.org,
  linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org,
  linux-tegra@vger.kernel.org
-Subject: [PATCH 30/32] pwm: hibvt: do some cleanup
-Date: Sun, 29 Dec 2019 08:06:08 +0000
-Message-Id: <20191229080610.7597-30-tiny.windzz@gmail.com>
+Subject: [PATCH 31/32] pwm: sifive: convert to devm_platform_ioremap_resource
+Date: Sun, 29 Dec 2019 08:06:09 +0000
+Message-Id: <20191229080610.7597-31-tiny.windzz@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20191229080610.7597-1-tiny.windzz@gmail.com>
 References: <20191229080610.7597-1-tiny.windzz@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191229_000650_406908_007D9C79 
-X-CRM114-Status: GOOD (  10.22  )
+X-CRM114-CacheID: sfid-20191229_000652_337027_D2CAFE80 
+X-CRM114-Status: UNSURE (   9.42  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,38 +118,33 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 Use devm_platform_ioremap_resource() to simplify code.
-'i' and 'ret' are variables of the same type and there is no
-need to use two lines.
 
 Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
 ---
- drivers/pwm/pwm-hibvt.c | 7 ++-----
- 1 file changed, 2 insertions(+), 5 deletions(-)
+ drivers/pwm/pwm-sifive.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/drivers/pwm/pwm-hibvt.c b/drivers/pwm/pwm-hibvt.c
-index ad205fdad372..a1900d0a872e 100644
---- a/drivers/pwm/pwm-hibvt.c
-+++ b/drivers/pwm/pwm-hibvt.c
-@@ -190,9 +190,7 @@ static int hibvt_pwm_probe(struct platform_device *pdev)
- 	const struct hibvt_pwm_soc *soc =
- 				of_device_get_match_data(&pdev->dev);
- 	struct hibvt_pwm_chip *pwm_chip;
+diff --git a/drivers/pwm/pwm-sifive.c b/drivers/pwm/pwm-sifive.c
+index cc63f9baa481..cb9134d7197b 100644
+--- a/drivers/pwm/pwm-sifive.c
++++ b/drivers/pwm/pwm-sifive.c
+@@ -232,7 +232,6 @@ static int pwm_sifive_probe(struct platform_device *pdev)
+ 	struct device *dev = &pdev->dev;
+ 	struct pwm_sifive_ddata *ddata;
+ 	struct pwm_chip *chip;
 -	struct resource *res;
--	int ret;
--	int i;
-+	int ret, i;
+ 	int ret;
  
- 	pwm_chip = devm_kzalloc(&pdev->dev, sizeof(*pwm_chip), GFP_KERNEL);
- 	if (pwm_chip == NULL)
-@@ -213,8 +211,7 @@ static int hibvt_pwm_probe(struct platform_device *pdev)
- 	pwm_chip->chip.of_pwm_n_cells = 3;
- 	pwm_chip->soc = soc;
+ 	ddata = devm_kzalloc(dev, sizeof(*ddata), GFP_KERNEL);
+@@ -248,8 +247,7 @@ static int pwm_sifive_probe(struct platform_device *pdev)
+ 	chip->base = -1;
+ 	chip->npwm = 4;
  
 -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	pwm_chip->base = devm_ioremap_resource(&pdev->dev, res);
-+	pwm_chip->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(pwm_chip->base))
- 		return PTR_ERR(pwm_chip->base);
+-	ddata->regs = devm_ioremap_resource(dev, res);
++	ddata->regs = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(ddata->regs))
+ 		return PTR_ERR(ddata->regs);
  
 -- 
 2.17.1
