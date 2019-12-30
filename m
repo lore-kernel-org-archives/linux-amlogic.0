@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-10.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=3.4.0
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4EAE2C2D0D3
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Dec 2019 17:21:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C0517C2D0C2
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Dec 2019 17:21:58 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 271EF206DB
-	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Dec 2019 17:21:37 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 92235206DB
+	for <linux-amlogic@archiver.kernel.org>; Mon, 30 Dec 2019 17:21:58 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="hOxfC/U+";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ga+N7QV2"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 271EF206DB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="tN4ak+Bf";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="EKqJvBpz"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 92235206DB
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	Subject:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
-	References:List-Owner; bh=WhlfeFwbPrAZoN5RWSIFFUQd5iScipegmo2PszNi4lw=; b=hOx
-	fC/U+Z+o1vQLK4DW3YyRf1DD+LyJaISOhUJECpCAu+wz0a15wYJf9heqoofyPJOHfae9gt8cnR8Wx
-	2VhZEHRXCD/4ju3tncVZ1aVJnDJ6LSIUjCPxEMX9DJLV7RkpQgi7A/ED60D8aGMmL2Q/WX7lFsr5O
-	bu1E82UxV9EK0wCqyaJL83CzIwaBt3fV1CO8yjRRP07hYDWmpTUhvcUJEkjX72dDuMVsI5xGjrN0P
-	a/5j74DMQj/+w3xpU/txap4JMByl1X0oSQ9B7qiIU7yiqZ1hRSfaE7A9CpLIxbhXfRC/L4+NB0m6S
-	vZTDSUuOZNZI+f3/ohaYtdoQFOun8Ng==;
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:References:
+	In-Reply-To:Message-Id:Date:Subject:To:From:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Owner;
+	bh=pjOFcmEmkJpL2NrhQCrf2GJomoo1H3bBCWoTI9bmbf0=; b=tN4ak+BfnbU+dxWMa5EAenMtG9
+	BWE/yL6DsFh5mJn4r1n1bRozcUHeAgegxZrpqG6l14w9S71tr91Zam6TqvNmbvo35QxuknxnFX2V7
+	VyowdLRL0JbSssT3NsYKh3EajyCTlgcz/DbLx6G01hdCUSv2frUocvxZMTOes12SaCJuROh//kSCt
+	hUkONlKchBF5a1y5+8m6gA8HN7eyOPCDLnboeFHSbwHIIz8s/BHUWjeOqImZcSeA5ONlc1YOw3Ruk
+	C98BOX7Q6nJNWsOtdcLC/yj/pXuyvua1ig2x33h/Jo1XMc0lp1DQdo/4Inx5PRYB9qpgVeKxyERad
+	++dVFTtg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ilyjR-00073X-Uu; Mon, 30 Dec 2019 17:21:29 +0000
+	id 1ilyjp-0007R7-Ic; Mon, 30 Dec 2019 17:21:53 +0000
 Received: from mail.kernel.org ([198.145.29.99])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ilyjO-00072i-RF; Mon, 30 Dec 2019 17:21:28 +0000
+ id 1ilyjW-00078S-CG; Mon, 30 Dec 2019 17:21:36 +0000
 Received: from localhost.localdomain (unknown [194.230.155.138])
  (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
  (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 2393420718;
- Mon, 30 Dec 2019 17:21:22 +0000 (UTC)
+ by mail.kernel.org (Postfix) with ESMTPSA id BFA1A2071E;
+ Mon, 30 Dec 2019 17:21:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1577726486;
- bh=16Vm2+4bOHtwFPrZ/Vs4bLTz4LXA5yWYbJqpA0iY+e8=;
- h=From:To:Cc:Subject:Date:From;
- b=Ga+N7QV2jpHzzuMqRwqfmYcncnpQgMfPYcpoG9EdfkQ6s37hUOof4OYzE08ndjlWv
- aktqnm77s9ZkoefUY3VIVMFVfWZ5zriRi45vTDGWQkFHNQDKDuFtBub2CBw7vPzvUS
- RKfsShogNTWooDzeVgbJkAuU0lk/y4Jq0m8wN8jE=
+ s=default; t=1577726493;
+ bh=e/gvJO5s9HFPQBYMAs10A6ZLymzdOsgN0GewiWTGEzk=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=EKqJvBpzzpOYneGnhs8+1kBprz2jBvn9qBcEnJWm6i9ypCO1aVp42ozM7U3ccQuZX
+ xMN1HY+mA9JNqWBU58Pk8fnRWNYWdf3Uv6QmOdgK++8ndBn9uGB5ubIA4eBXDUGKlu
+ Z5I+qeirfMdyB/IfeSN2xxeDnQeNODnX0SdxOZSQ=
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Thierry Reding <thierry.reding@gmail.com>,
  =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
@@ -59,14 +60,15 @@ To: Thierry Reding <thierry.reding@gmail.com>,
  linux-mediatek@lists.infradead.org, linux-rockchip@lists.infradead.org,
  linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
  linux-tegra@vger.kernel.org
-Subject: [PATCH 1/2] pwm: Fix minor Kconfig whitespace issues
-Date: Mon, 30 Dec 2019 18:21:12 +0100
-Message-Id: <20191230172113.17222-1-krzk@kernel.org>
+Subject: [PATCH 2/2] pwm: Enable compile testing for some of drivers
+Date: Mon, 30 Dec 2019 18:21:13 +0100
+Message-Id: <20191230172113.17222-2-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20191230172113.17222-1-krzk@kernel.org>
+References: <20191230172113.17222-1-krzk@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191230_092126_906489_78158C35 
-X-CRM114-Status: UNSURE (   8.22  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20191230_092134_506530_577C08CF 
+X-CRM114-Status: GOOD (  10.39  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,35 +87,228 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Remove double whitespace after "config" keyword.
+Some of the PWM drivers can be compile tested to increase build
+coverage.
+
+The Meson PWM driver requires COMMON_CLK dependency.
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
- drivers/pwm/Kconfig | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/pwm/Kconfig | 48 +++++++++++++++++++++++----------------------
+ 1 file changed, 25 insertions(+), 23 deletions(-)
 
 diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index bd21655c37a6..c865d688f6b4 100644
+index c865d688f6b4..d5661a227321 100644
 --- a/drivers/pwm/Kconfig
 +++ b/drivers/pwm/Kconfig
-@@ -490,7 +490,7 @@ config PWM_TEGRA
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-tegra.
+@@ -44,7 +44,7 @@ config PWM_AB8500
  
--config  PWM_TIECAP
-+config PWM_TIECAP
+ config PWM_ATMEL
+ 	tristate "Atmel PWM support"
+-	depends on ARCH_AT91 && OF
++	depends on (ARCH_AT91 || COMPILE_TEST) && OF
+ 	help
+ 	  Generic PWM framework driver for Atmel SoC.
+ 
+@@ -100,7 +100,7 @@ config PWM_BCM_KONA
+ 
+ config PWM_BCM2835
+ 	tristate "BCM2835 PWM support"
+-	depends on ARCH_BCM2835
++	depends on ARCH_BCM2835 || COMPILE_TEST
+ 	help
+ 	  PWM framework driver for BCM2835 controller (Raspberry Pi)
+ 
+@@ -109,7 +109,7 @@ config PWM_BCM2835
+ 
+ config PWM_BERLIN
+ 	tristate "Marvell Berlin PWM support"
+-	depends on ARCH_BERLIN
++	depends on ARCH_BERLIN || COMPILE_TEST
+ 	help
+ 	  PWM framework driver for Marvell Berlin SoCs.
+ 
+@@ -118,7 +118,7 @@ config PWM_BERLIN
+ 
+ config PWM_BRCMSTB
+ 	tristate "Broadcom STB PWM support"
+-	depends on ARCH_BRCMSTB || BMIPS_GENERIC
++	depends on ARCH_BRCMSTB || BMIPS_GENERIC || COMPILE_TEST
+ 	help
+ 	  Generic PWM framework driver for the Broadcom Set-top-Box
+ 	  SoCs (BCM7xxx).
+@@ -152,7 +152,7 @@ config PWM_CROS_EC
+ 
+ config PWM_EP93XX
+ 	tristate "Cirrus Logic EP93xx PWM support"
+-	depends on ARCH_EP93XX
++	depends on ARCH_EP93XX || COMPILE_TEST
+ 	help
+ 	  Generic PWM framework driver for Cirrus Logic EP93xx.
+ 
+@@ -195,7 +195,7 @@ config PWM_IMG
+ 
+ config PWM_IMX1
+ 	tristate "i.MX1 PWM support"
+-	depends on ARCH_MXC
++	depends on ARCH_MXC || COMPILE_TEST
+ 	help
+ 	  Generic PWM framework driver for i.MX1 and i.MX21
+ 
+@@ -204,7 +204,7 @@ config PWM_IMX1
+ 
+ config PWM_IMX27
+ 	tristate "i.MX27 PWM support"
+-	depends on ARCH_MXC
++	depends on ARCH_MXC || COMPILE_TEST
+ 	help
+ 	  Generic PWM framework driver for i.MX27 and later i.MX SoCs.
+ 
+@@ -244,7 +244,7 @@ config PWM_LP3943
+ 
+ config PWM_LPC18XX_SCT
+ 	tristate "LPC18xx/43xx PWM/SCT support"
+-	depends on ARCH_LPC18XX
++	depends on ARCH_LPC18XX || COMPILE_TEST
+ 	help
+ 	  Generic PWM framework driver for NXP LPC18xx PWM/SCT which
+ 	  supports 16 channels.
+@@ -256,7 +256,7 @@ config PWM_LPC18XX_SCT
+ 
+ config PWM_LPC32XX
+ 	tristate "LPC32XX PWM support"
+-	depends on ARCH_LPC32XX
++	depends on ARCH_LPC32XX || COMPILE_TEST
+ 	help
+ 	  Generic PWM framework driver for LPC32XX. The LPC32XX SOC has two
+ 	  PWM controllers.
+@@ -289,7 +289,8 @@ config PWM_LPSS_PLATFORM
+ 
+ config PWM_MESON
+ 	tristate "Amlogic Meson PWM driver"
+-	depends on ARCH_MESON
++	depends on ARCH_MESON || COMPILE_TEST
++	depends on COMMON_CLK
+ 	help
+ 	  The platform driver for Amlogic Meson PWM controller.
+ 
+@@ -318,7 +319,7 @@ config PWM_MEDIATEK
+ 
+ config PWM_MXS
+ 	tristate "Freescale MXS PWM support"
+-	depends on ARCH_MXS && OF
++	depends on (ARCH_MXS && OF) || COMPILE_TEST
+ 	select STMP_DEVICE
+ 	help
+ 	  Generic PWM framework driver for Freescale MXS.
+@@ -328,7 +329,8 @@ config PWM_MXS
+ 
+ config PWM_OMAP_DMTIMER
+ 	tristate "OMAP Dual-Mode Timer PWM support"
+-	depends on OF && ARCH_OMAP && OMAP_DM_TIMER
++	depends on (ARCH_OMAP && OMAP_DM_TIMER) || COMPILE_TEST
++	depends on OF
+ 	help
+ 	  Generic PWM framework driver for OMAP Dual-Mode Timer PWM output
+ 
+@@ -356,7 +358,7 @@ config PWM_PUV3
+ 
+ config PWM_PXA
+ 	tristate "PXA PWM support"
+-	depends on ARCH_PXA
++	depends on ARCH_PXA || COMPILE_TEST
+ 	help
+ 	  Generic PWM framework driver for PXA.
+ 
+@@ -387,14 +389,14 @@ config PWM_RENESAS_TPU
+ 
+ config PWM_ROCKCHIP
+ 	tristate "Rockchip PWM support"
+-	depends on ARCH_ROCKCHIP
++	depends on ARCH_ROCKCHIP || COMPILE_TEST
+ 	help
+ 	  Generic PWM framework driver for the PWM controller found on
+ 	  Rockchip SoCs.
+ 
+ config PWM_SAMSUNG
+ 	tristate "Samsung PWM support"
+-	depends on PLAT_SAMSUNG || ARCH_EXYNOS
++	depends on PLAT_SAMSUNG || ARCH_EXYNOS || COMPILE_TEST
+ 	help
+ 	  Generic PWM framework driver for Samsung.
+ 
+@@ -414,7 +416,7 @@ config PWM_SIFIVE
+ 
+ config PWM_SPEAR
+ 	tristate "STMicroelectronics SPEAr PWM support"
+-	depends on PLAT_SPEAR
++	depends on PLAT_SPEAR || COMPILE_TEST
+ 	depends on OF
+ 	help
+ 	  Generic PWM framework driver for the PWM controller on ST
+@@ -436,7 +438,7 @@ config PWM_SPRD
+ 
+ config PWM_STI
+ 	tristate "STiH4xx PWM support"
+-	depends on ARCH_STI
++	depends on ARCH_STI || COMPILE_TEST
+ 	depends on OF
+ 	help
+ 	  Generic PWM framework driver for STiH4xx SoCs.
+@@ -446,7 +448,7 @@ config PWM_STI
+ 
+ config PWM_STM32
+ 	tristate "STMicroelectronics STM32 PWM"
+-	depends on MFD_STM32_TIMERS
++	depends on MFD_STM32_TIMERS || COMPILE_TEST
+ 	help
+ 	  Generic PWM framework driver for STM32 SoCs.
+ 
+@@ -482,7 +484,7 @@ config PWM_SUN4I
+ 
+ config PWM_TEGRA
+ 	tristate "NVIDIA Tegra PWM support"
+-	depends on ARCH_TEGRA
++	depends on ARCH_TEGRA || COMPILE_TEST
+ 	help
+ 	  Generic PWM framework driver for the PWFM controller found on NVIDIA
+ 	  Tegra SoCs.
+@@ -492,7 +494,7 @@ config PWM_TEGRA
+ 
+ config PWM_TIECAP
  	tristate "ECAP PWM support"
- 	depends on ARCH_OMAP2PLUS || ARCH_DAVINCI_DA8XX || ARCH_KEYSTONE || ARCH_K3
+-	depends on ARCH_OMAP2PLUS || ARCH_DAVINCI_DA8XX || ARCH_KEYSTONE || ARCH_K3
++	depends on ARCH_OMAP2PLUS || ARCH_DAVINCI_DA8XX || ARCH_KEYSTONE || ARCH_K3 || COMPILE_TEST
  	help
-@@ -499,7 +499,7 @@ config  PWM_TIECAP
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-tiecap.
+ 	  PWM driver support for the ECAP APWM controller found on TI SOCs
  
--config  PWM_TIEHRPWM
-+config PWM_TIEHRPWM
+@@ -501,7 +503,7 @@ config PWM_TIECAP
+ 
+ config PWM_TIEHRPWM
  	tristate "EHRPWM PWM support"
- 	depends on ARCH_OMAP2PLUS || ARCH_DAVINCI_DA8XX || ARCH_K3
+-	depends on ARCH_OMAP2PLUS || ARCH_DAVINCI_DA8XX || ARCH_K3
++	depends on ARCH_OMAP2PLUS || ARCH_DAVINCI_DA8XX || ARCH_K3 || COMPILE_TEST
  	help
+ 	  PWM driver support for the EHRPWM controller found on TI SOCs
+ 
+@@ -528,7 +530,7 @@ config PWM_TWL_LED
+ 
+ config PWM_VT8500
+ 	tristate "vt8500 PWM support"
+-	depends on ARCH_VT8500
++	depends on ARCH_VT8500 || COMPILE_TEST
+ 	help
+ 	  Generic PWM framework driver for vt8500.
+ 
+@@ -537,7 +539,7 @@ config PWM_VT8500
+ 
+ config PWM_ZX
+ 	tristate "ZTE ZX PWM support"
+-	depends on ARCH_ZX
++	depends on ARCH_ZX || COMPILE_TEST
+ 	help
+ 	  Generic PWM framework driver for ZTE ZX family SoCs.
+ 
 -- 
 2.17.1
 
