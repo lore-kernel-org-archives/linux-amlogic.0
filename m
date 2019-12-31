@@ -2,85 +2,65 @@ Return-Path: <SRS0=Y1av=2V=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 44430C2D0C2
-	for <linux-amlogic@archiver.kernel.org>; Tue, 31 Dec 2019 14:53:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0B600C2D0C2
+	for <linux-amlogic@archiver.kernel.org>; Tue, 31 Dec 2019 16:40:22 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 108FE206E6
-	for <linux-amlogic@archiver.kernel.org>; Tue, 31 Dec 2019 14:53:47 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id D1FEE206DB
+	for <linux-amlogic@archiver.kernel.org>; Tue, 31 Dec 2019 16:40:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RL2fBGHA";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="qZop3MAq"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 108FE206E6
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="eSpdybMo"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org D1FEE206DB
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arm.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=2996fDrLHwXmkhYa1lPD+1UtbjKQ4Ami7u0u+XeCZMw=; b=RL2fBGHA88Pqxe
-	2RKWF1lQ3NHbTXFw3YoZFRqvlDxeQ3FOyBwZR/UFxPGlNRqz+UWwn4+KtAAxE70PBuhsBbhb9STWu
-	vaONZy1NYQw3mXZFJDt4vXGxlwnqN+ykV9BUhlbeLVzV36O1o/Ld5m78PwKTIwcNR/Xo7p2Ym7F5x
-	4PTCZoP94DElpZfiWNoR1wQvLtIjCgyeUqugdZcQsTlpivjNH1RNuChK4KQAOHBqwkPYsbcJn6fTW
-	wB/27kwZyNG/2DPJ/5DuuFjhQiUtWG5eUcsBM0zakS9Fyn/1MVXDWwQyrBZMjzZYUIAlN3VspLYUy
-	tZpndjUWw1g0LhfIJP7w==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
+	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
+	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=eWiMFmWWdf63bMAJJAX9nuVisubtfEu1Ygf7IZwtNRM=; b=eSpdybMomaGr2nIYUP3p59r+5
+	lM1Egmj7EpK2rhZ11o7qUC6K7ViwquqULqovhW13uUziDsAXqPp7CdJuPbuBUF4uU26gEx/xOL4Yd
+	4Gzf16owL/Q5r+/SuuXAAzhSeIcDZDdyx+83974roL0/I/Nda6+MVLeao2d4cfq2NamAy65MfHbqb
+	eb4CiHVG3MRTQTmbgLhQBq5MvoiuTWkUyIQZqkilV6NwoaT89Mnarr+1qwpFr8wwqcvbd3Gz0UTjp
+	3ffcuMzXiarRMG9SXlMwGhGGmSBx0V21g+qiVaZ3qxv0C9ylw2kdNuaJRCarGorDS9WQXHb5JgZi3
+	RHAJyJHmw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1imItw-0000po-MO; Tue, 31 Dec 2019 14:53:40 +0000
-Received: from mail-ed1-x543.google.com ([2a00:1450:4864:20::543])
- by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1imIte-0000Xr-Of; Tue, 31 Dec 2019 14:53:24 +0000
-Received: by mail-ed1-x543.google.com with SMTP id e10so35426374edv.9;
- Tue, 31 Dec 2019 06:53:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=o/MjM9n8lcw4go9hM9V6jfDtkHJJ9OY553EV40YViXc=;
- b=qZop3MAqC3vJeWXvQ48WeOe+IeamgtW3qBOEjDwmEpVxBcnmJMTPgqOyQjUAtfN4ws
- vEIG7JargoFBvhQ9uuWn4t6Fh7zgo5kHmkDFP+pdZB1+gbIfvRiEY+1YcStU57vtJCOR
- cCM9RJ1nExvM2Fb4OTh3RUlCARr00OQfescAOxBB7kGwB8ni49HlpP3hqrbEFEkL853I
- qEDOGbXotw0i9Wb/p/mqsXIQ9hLInoXcG0eIEboa/OaqZq/n7LGouKlUyzdlg+Hl1x1S
- cwnVWh7S94xFfcslXraNfh/ONokmVplLzBH0nv2QDn0mvWBJb8qVgEHMzY0Q4N1TdFOr
- EMig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=o/MjM9n8lcw4go9hM9V6jfDtkHJJ9OY553EV40YViXc=;
- b=MMxSA0MpHgXg9c6/z8oZ0d/1W8pCDo9CjfmVvz66QFqVZ/U2meeedATjCNtuRWtdx0
- 4Vn4ZvYu3VwETpIbY6vXmBDuY0TJz34tgeO4Dy01Zub+010I3izw2S+Rdf7bMDBFmfkk
- HeX0TuGI8FNVkblpzUQRfuJjhHzSIGeJwsGxMh2F3Bjc17VwVZoSV9t7SjDT17MQmsnA
- S4GIxE4izTUainvPuun3/Hq7RFG76f8R2zpfp/cnZ1/JVr6u82fqQA5gA7mTrwnEa2OA
- W2cOMleYs1jxcCRuE8cPlYi1B0Gk5Qww5Nu+SZnwRsluHv3oTbH+YSwaq3xPtNmpwmmL
- kelA==
-X-Gm-Message-State: APjAAAVG9aE+KBuvhIXJR8iwQtxuzhG4c47+cUVA0s61sdJzT53yJFXg
- CYGZ5Eb+VbGS/cFNQI+3XzpXXSzDzGgANIHWy1I=
-X-Google-Smtp-Source: APXvYqwmgH8ITwrdnbYcdkYHW7Lk6bOY4+gRvm+01zIYN0XFhQlFKFAcuRI5Kn2qdPxicg93ogpO/C0grXYHfQadKM0=
-X-Received: by 2002:a17:906:339a:: with SMTP id
- v26mr77372625eja.2.1577804000760; 
- Tue, 31 Dec 2019 06:53:20 -0800 (PST)
+	id 1imKZ4-00047P-C6; Tue, 31 Dec 2019 16:40:14 +0000
+Received: from foss.arm.com ([217.140.110.172])
+ by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1imKYy-00035k-H2; Tue, 31 Dec 2019 16:40:10 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F0C84328;
+ Tue, 31 Dec 2019 08:40:00 -0800 (PST)
+Received: from [192.168.1.123] (unknown [172.31.20.19])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 263263F68F;
+ Tue, 31 Dec 2019 08:39:59 -0800 (PST)
+Subject: Re: [RFC v2 1/1] drm/lima: Add optional devfreq support
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20191227173707.20413-1-martin.blumenstingl@googlemail.com>
+ <20191227173707.20413-2-martin.blumenstingl@googlemail.com>
+ <dd38ff5c-6a14-bb6a-4df5-d706f99234e9@arm.com>
+ <CAFBinCDs3a8TJcQKgHUkDvssMR6Y2Kys38p50P0q=2KOiDTNHg@mail.gmail.com>
+ <fe45f4f8-8c67-ded2-90bf-8d5fd6874876@arm.com>
+ <CAFBinCByzLLdVTL0v=eC-TbZQnwnDY7cBLf4jyWq7N4PA1rr+A@mail.gmail.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Message-ID: <ff2bdd26-3c34-63db-beb5-8f7c9fc7e790@arm.com>
+Date: Tue, 31 Dec 2019 16:39:58 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.1
 MIME-Version: 1.0
-References: <20191229080610.7597-1-tiny.windzz@gmail.com>
- <20191229080610.7597-14-tiny.windzz@gmail.com>
-In-Reply-To: <20191229080610.7597-14-tiny.windzz@gmail.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 31 Dec 2019 15:53:09 +0100
-Message-ID: <CAFBinCDQGGyYxDS9L5iJQpXMpp_+7WW227jVcxWcHhEWcUJLbA@mail.gmail.com>
-Subject: Re: [PATCH 14/32] pwm: meson: convert to
- devm_platform_ioremap_resource
-To: Yangtao Li <tiny.windzz@gmail.com>
+In-Reply-To: <CAFBinCByzLLdVTL0v=eC-TbZQnwnDY7cBLf4jyWq7N4PA1rr+A@mail.gmail.com>
+Content-Language: en-GB
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20191231_065322_817892_04B00EB3 
-X-CRM114-Status: UNSURE (   5.36  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20191231_084008_658220_6AEE764B 
+X-CRM114-Status: GOOD (  21.15  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,38 +72,79 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: alexandre.belloni@bootlin.com, heiko@sntech.de,
- linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
- thierry.reding@gmail.com, linux-riscv@lists.infradead.org,
- Fabio Estevam <festevam@gmail.com>, f.fainelli@gmail.com, shc_work@mail.ru,
- khilman@baylibre.com, wens@csie.org, jonathanh@nvidia.com,
- linux-rockchip@lists.infradead.org, ludovic.desroches@microchip.com,
- bcm-kernel-feedback-list@broadcom.com, linux-imx@nxp.com,
- slemieux.tyco@gmail.com, linux-pwm@vger.kernel.org, rjui@broadcom.com,
- s.hauer@pengutronix.de, u.kleine-koenig@pengutronix.de, mripard@kernel.org,
- vz@mleia.com, linux-mediatek@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org, paul.walmsley@sifive.com,
- matthias.bgg@gmail.com, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, sbranden@broadcom.com,
- nicolas.ferre@microchip.com, linux@prisktech.co.nz, palmer@dabbelt.com,
- kernel@pengutronix.de, shawnguo@kernel.org, claudiu.beznea@microchip.com,
- nsaenzjulienne@suse.de
-Content-Type: text/plain; charset="us-ascii"
+Cc: robh@kernel.org, tomeu.vizoso@collabora.com, airlied@linux.ie,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ steven.price@arm.com, linux-rockchip@lists.infradead.org, wens@csie.org,
+ yuq825@gmail.com, daniel@ffwll.ch, linux-amlogic@lists.infradead.org,
+ alyssa.rosenzweig@collabora.com
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Sun, Dec 29, 2019 at 9:16 AM Yangtao Li <tiny.windzz@gmail.com> wrote:
->
-> Use devm_platform_ioremap_resource() to simplify code.
->
-> Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On 2019-12-31 2:17 pm, Martin Blumenstingl wrote:
+> Hi Robin,
+> 
+> On Mon, Dec 30, 2019 at 1:47 AM Robin Murphy <robin.murphy@arm.com> wrote:
+>>
+>> On 2019-12-29 11:19 pm, Martin Blumenstingl wrote:
+>>> Hi Robin,
+>>>
+>>> On Sun, Dec 29, 2019 at 11:58 PM Robin Murphy <robin.murphy@arm.com> wrote:
+>>>>
+>>>> Hi Martin,
+>>>>
+>>>> On 2019-12-27 5:37 pm, Martin Blumenstingl wrote:
+>>>>> Most platforms with a Mali-400 or Mali-450 GPU also have support for
+>>>>> changing the GPU clock frequency. Add devfreq support so the GPU clock
+>>>>> rate is updated based on the actual GPU usage when the
+>>>>> "operating-points-v2" property is present in the board.dts.
+>>>>>
+>>>>> The actual devfreq code is taken from panfrost_devfreq.c and modified so
+>>>>> it matches what the lima hardware needs:
+>>>>> - a call to dev_pm_opp_set_clkname() during initialization because there
+>>>>>      are two clocks on Mali-4x0 IPs. "core" is the one that actually clocks
+>>>>>      the GPU so we need to control it using devfreq.
+>>>>> - locking when reading or writing the devfreq statistics because (unlike
+>>>>>      than panfrost) we have multiple PP and GP IRQs which may finish jobs
+>>>>>      concurrently.
+>>>>
+>>>> I gave this a quick try on my RK3328, and the clock scaling indeed kicks
+>>>> in nicely on the glmark2 scenes that struggle, however something appears
+>>>> to be missing in terms of regulator association, as the appropriate OPP
+>>>> voltages aren't reflected in the GPU supply (fortunately the initial
+>>>> voltage seems close enough to that of the highest OPP not to cause major
+>>>> problems, on my box at least). With panfrost on RK3399 I do see the
+>>>> supply voltage scaling accordingly, but I don't know my way around
+>>>> devfreq well enough to know what matters in the difference :/
+>>> first of all: thank you for trying this out! :-)
+>>>
+>>> does your kernel include commit 221bc77914cbcc ("drm/panfrost: Use
+>>> generic code for devfreq") for your panfrost test?
+>>> if I understand the devfreq API correct then I suspect with that
+>>> commit panfrost also won't change the voltage anymore.
+>>
+>> Oh, you're quite right - I was already considering that change as
+>> ancient history, but indeed it's only in 5.5-rc, while that board is
+>> still on 5.4.y release kernels. No wonder I couldn't make sense of how
+>> the (current) code could possibly be working :)
+>>
+>> I'll try the latest -rc kernel tomorrow to confirm (now that PCIe is
+>> hopefully fixed), but I'm already fairly confident you've called it
+>> correctly.
+> I just tested it with the lima driver (by undervolting the GPU by
+> 0.05V) and it seems that dev_pm_opp_set_regulators is really needed.
+> I'll fix this in the next version of this patch and also submit a fix
+> for panfrost (I won't be able to test that though, so help is
+> appreciated in terms of testing :))
 
-thank you for taking care of this cleanup!
+Yeah, I started hacking something up for panfrost yesterday, but at the 
+point of realising the core OPP code wants refactoring to actually 
+handle optional regulators without spewing errors, decided that was 
+crossing the line into "work" and thus could wait until next week :D
 
-
-Martin
+Cheers,
+Robin.
 
 _______________________________________________
 linux-amlogic mailing list
