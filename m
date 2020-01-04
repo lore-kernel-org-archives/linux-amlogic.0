@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-8.5 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SPF_PASS,UNPARSEABLE_RELAY,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
 	version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 55965C00523
-	for <linux-amlogic@archiver.kernel.org>; Sat,  4 Jan 2020 00:28:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A0B2AC00523
+	for <linux-amlogic@archiver.kernel.org>; Sat,  4 Jan 2020 00:32:24 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2A06D21835
-	for <linux-amlogic@archiver.kernel.org>; Sat,  4 Jan 2020 00:28:18 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 6033421835
+	for <linux-amlogic@archiver.kernel.org>; Sat,  4 Jan 2020 00:32:24 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="pIE/kref"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2A06D21835
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="o4+PC4KX"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 6033421835
 Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,59 +25,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=uZIq8QuNFvU0ybii5QT0j9Fo5GzyYqk6lgm8e18SNeg=; b=pIE/krefbicM5H
-	rXiNYoOL3S4LQVkEEUF2zb3Hnmy9fG6/FTNkQh6aF2rNAmXIgzhV39FE2sN7Vq1Owp/R8Xumwh5Uv
-	wAWR+gZvt/ng804E+8dsw9ShoLuZk9mj60TOHVFbmYg+Toxop7BWqa25ijkSOa4LrbKH89LeOF2at
-	3lVHx2o5Jp+8MYOD1gZyYOAi+dQigC5NFSezObWef9uIcEKaOE0OVrH8UjeTSSvRTgGNnHYiNJAz/
-	AhHb1GXHALohylecVuWWeH/ZWIwOXweZHFiN08vvs9EAq22xHkvzEVL5jb8XRv2Nz0mxi1kQ6vNkF
-	ibaPT1gJwjzQOIrHkR7A==;
+	List-Owner; bh=a6PCc26CDNc2hI5ivQJ5tE7XUyrNkQ4XVh4TI5TIIGc=; b=o4+PC4KXtZC/nY
+	R0YgGvWhBJcFNIt9FgCrgQcwU3HOFvLbAqsqQ/1tTvikiiSXL3E7VD7lR1rH9QaMLuxsjoOaoR/kc
+	3qc3H+tsgSzLNl49yeqXoxcQOahiKq3DA9F4cM28Isp6w6E52RX7CFd8GsIkretl+261BLaJvwOCo
+	Ih83MvmjdAXuUZ908tB8Ntd95/pJ+u1n5ZhrmMzOclXXzGaoXavFnko02z1doQYqKDarFlSpKMz2t
+	joiCl84bNNXJDQzUmne8m+fPRv/HQFj3Xz+7aI41olp0qy+WY5pLAZsCvBUQByB27L1epQv6sg9mR
+	QytcHr4YwnzGQ0FLZ6Og==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1inXIb-00010Z-7k; Sat, 04 Jan 2020 00:28:13 +0000
-Received: from mail-il1-f196.google.com ([209.85.166.196])
+	id 1inXMX-0002dt-RJ; Sat, 04 Jan 2020 00:32:17 +0000
+Received: from mail-il1-f195.google.com ([209.85.166.195])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1inXIY-000108-Ed
- for linux-amlogic@lists.infradead.org; Sat, 04 Jan 2020 00:28:12 +0000
-Received: by mail-il1-f196.google.com with SMTP id z12so1540657iln.11
- for <linux-amlogic@lists.infradead.org>; Fri, 03 Jan 2020 16:28:09 -0800 (PST)
+ id 1inXMU-0002dH-V3
+ for linux-amlogic@lists.infradead.org; Sat, 04 Jan 2020 00:32:16 +0000
+Received: by mail-il1-f195.google.com with SMTP id g12so38040548ild.2
+ for <linux-amlogic@lists.infradead.org>; Fri, 03 Jan 2020 16:32:13 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to:user-agent;
- bh=7In7Tco29iuCsOLy3g6JjgD5lKC+PYNDMM0DSnAitvg=;
- b=G+r1LpyCncTJyKGKM7cSlKPJccJQuSeXXrClokdJ1Fst0HaHg/30MKbIRIsU3s+Tb2
- fGswa2bUvc4/crBPFJ2IpgmJTwcF8M9pO+miEc7cM/ZBFXhO6Vi4ddzowmo0VXRnsGDN
- Zvm/w0ZPqv9sEiLdU3iaF8sj1TOQIGh4WUAIPHGpC2dNWWiy48AZ/1hQMmuwqaNrnMYq
- gqaZYJ6JfGb+n6nys5gNxi4DF+TIKNhjLNeYfIBAWWLqFPyor0O9U5JJykOBKVpdSRdp
- 64kewBQWH3iIKJCxZEQ+JSSTPEd0V+Fa01QzljqS7v1DHaBgTpw8rpxZZR8Dw73lATje
- Pw3g==
-X-Gm-Message-State: APjAAAWv7/yFibN+i0ZLEyTUYZX+6BmPsh3NSaicNXeOwx6en/snGULx
- fWSx0LO0GDJ/rIr3jd5Mjdb5Gds=
-X-Google-Smtp-Source: APXvYqxDZKKPYPAca+mZ6KEuh0jDF3JVVVE596c3g3x7TWibWv6HOZg5YWavSd1V5kWodnISJws+aw==
-X-Received: by 2002:a92:cc42:: with SMTP id t2mr77405821ilq.111.1578097688906; 
- Fri, 03 Jan 2020 16:28:08 -0800 (PST)
+ bh=OkEhI0mGAaFruOBaLTQQRQIQxA1NVDP05WMjkcVPHmI=;
+ b=m4WXNFKp+MCtcXFqNqk2qsczmSz/ObMC2jRyjVwidOXIgnGAwk4pfja0NEZXmg5lfz
+ X5B74iG6qJrJt5uxD0aB9IFF91EJOmEIoY1E4lKXJM0p5VXjo6hSxnvST1+2lTi6WHRL
+ lidhxjTIel9zpyJAMJzuQrM1x6zikG7TGjzLYYhQqgYmlVshLaxhKQLS2eEbDTncvZgf
+ r2N0hbQKtMMVAPOCbe0j/j37NiUGu43+2xDeUxktq6xiNWRRmMxOQS4PcwBwfn0ltdrF
+ /4nFwh/Uv7F6NmsnEKSCWz2zboheOW7GXQsWkbi7dn1CYF5nhbFW0seEAdmAWas31477
+ itsw==
+X-Gm-Message-State: APjAAAXLUhdu9GpIbNyCFIjIaDMDjLfpCbh88v++0u7b0Zw1wr5g5KSN
+ I3oVuu1QqowyD1kIBHIMvEp1+TE=
+X-Google-Smtp-Source: APXvYqz9zPF3qjXkzjIPO/hILm9HI5GEUadKISTarEgA2AGYyQRmyMlh76NSyoKC3HaG2ITz1CV52A==
+X-Received: by 2002:a92:3cd4:: with SMTP id j81mr81487949ilf.77.1578097932687; 
+ Fri, 03 Jan 2020 16:32:12 -0800 (PST)
 Received: from rob-hp-laptop ([64.188.179.251])
- by smtp.gmail.com with ESMTPSA id a3sm14976882iot.87.2020.01.03.16.28.07
+ by smtp.gmail.com with ESMTPSA id g23sm18674125ila.15.2020.01.03.16.32.11
  for <linux-amlogic@lists.infradead.org>
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 03 Jan 2020 16:28:07 -0800 (PST)
-Received: from rob (uid 1000) (envelope-from rob@rob-hp-laptop) id 2219b7
+ Fri, 03 Jan 2020 16:32:12 -0800 (PST)
+Received: from rob (uid 1000) (envelope-from rob@rob-hp-laptop) id 2219a5
  by rob-hp-laptop (DragonFly Mail Agent v0.11);
- Fri, 03 Jan 2020 17:28:06 -0700
-Date: Fri, 3 Jan 2020 17:28:06 -0700
+ Fri, 03 Jan 2020 17:32:10 -0700
+Date: Fri, 3 Jan 2020 17:32:10 -0700
 From: Rob Herring <robh@kernel.org>
 To: Hanjie Lin <hanjie.lin@amlogic.com>
-Subject: Re: [PATCH v3 1/6] dt-bindings: phy: Add Amlogic A1 USB2 PHY Bindings
-Message-ID: <20200104002806.GA24214@bogus>
+Subject: Re: [PATCH v3 2/6] dt-bindings: usb: dwc3: Add the Amlogic A1 Family
+ DWC3 Glue Bindings
+Message-ID: <20200104003210.GA29074@bogus>
 References: <1577428606-69855-1-git-send-email-hanjie.lin@amlogic.com>
- <1577428606-69855-2-git-send-email-hanjie.lin@amlogic.com>
+ <1577428606-69855-3-git-send-email-hanjie.lin@amlogic.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <1577428606-69855-2-git-send-email-hanjie.lin@amlogic.com>
+In-Reply-To: <1577428606-69855-3-git-send-email-hanjie.lin@amlogic.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200103_162810_493791_AF980ACC 
-X-CRM114-Status: GOOD (  14.69  )
+X-CRM114-CacheID: sfid-20200103_163215_000196_49FE4FF8 
+X-CRM114-Status: GOOD (  16.99  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,87 +107,143 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Fri, Dec 27, 2019 at 02:36:41PM +0800, Hanjie Lin wrote:
-> Add the Amlogic A1 Family USB2 PHY Bindings
+On Fri, Dec 27, 2019 at 02:36:42PM +0800, Hanjie Lin wrote:
+> The Amlogic A1 SoC Family embeds 1 USB Controllers:
+>  - a DWC3 IP configured as Host for USB2 and USB3
 > 
-> It supports Host mode only.
+> A glue connects the controllers to the USB2 PHY of A1 SoC.
 > 
 > Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
 > Signed-off-by: Yue Wang <yue.wang@amlogic.com>
 > ---
->  .../bindings/phy/amlogic,meson-a1-usb2-phy.yaml    | 55 ++++++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-a1-usb2-phy.yaml
+>  .../bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml  | 57 +++++++++++++++++++---
+>  1 file changed, 51 insertions(+), 6 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-a1-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson-a1-usb2-phy.yaml
-> new file mode 100644
-> index 00000000..2b2c526
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/amlogic,meson-a1-usb2-phy.yaml
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2019 Amlogic, Inc
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/phy/amlogic,meson-a1-usb2-phy.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Amlogic A1 USB2 PHY
-> +
-> +maintainers:
+> diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+> index 4efb77b..6103cc2 100644
+> --- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+> +++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+> @@ -9,6 +9,8 @@ title: Amlogic Meson G12A DWC3 USB SoC Controller Glue
+>  
+>  maintainers:
+>    - Neil Armstrong <narmstrong@baylibre.com>
+> +  - Hanjie Lin <hanjie.lin@amlogic.com>
 > +  - Yue Wang <yue.wang@amlogic.com>
+>  
+>  description: |
+>    The Amlogic G12A embeds a DWC3 USB IP Core configured for USB2 and USB3
+> @@ -22,10 +24,14 @@ description: |
+>    The DWC3 Glue controls the PHY routing and power, an interrupt line is
+>    connected to the Glue to serve as OTG ID change detection.
+>  
+> +  The Amlogic A1 embeds a DWC3 USB IP Core configured for USB2 in
+> +  host-only mode.
 > +
-> +properties:
-> +  compatible:
+>  properties:
+>    compatible:
+>      enum:
+>        - amlogic,meson-g12a-usb-ctrl
+> +      - amlogic,meson-a1-usb-ctrl
+>  
+>    ranges: true
+>  
+> @@ -37,6 +43,11 @@ properties:
+>  
+>    clocks:
+>      minItems: 1
+> +    maxItems: 4
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 4
+>  
+>    resets:
+>      minItems: 1
+> @@ -47,17 +58,22 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> +  phys:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+>    phy-names:
+>      items:
+>        - const: usb2-phy0 # USB2 PHY0 if USBHOST_A port is used
+>        - const: usb2-phy1 # USB2 PHY1 if USBOTG_B port is used
+>        - const: usb3-phy0 # USB3 PHY if USB3_0 is used
+>  
+> -  phys:
+> -    minItems: 1
+> -    maxItems: 3
+> -
+
+Why the unnecessary move?
+
+> -  dr_mode: true
+> +  dr_mode:
+> +    description: usb mode for G12A
 > +    enum:
-> +      - amlogic,meson-a1-usb2-phy
+> +      - host
+> +      - peripheral
+> +      - otg
 
-Use 'const' if there's only 1.
+No, this is a common property that doesn't need to be redefined here. It 
+was correct as-is.
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    items:
-> +      - const: phy
+>  
+>    power-domains:
+>      maxItems: 1
+> @@ -80,9 +96,9 @@ required:
+>    - resets
+>    - reg
+>    - interrupts
+> -  - phy-names
+>    - phys
+>    - dr_mode
+> +  - phy-names
 
-Don't need *-names when there's a single entry.
+Again, unnecessary change.
 
-> +
-> +  "#phy-cells":
-> +    const: 0
-> +
-> +  power-domains:
-> +     maxItems: 1
-> +     description:
-> +       a phandle to respective power domain node as described by generic
-> +       PM domain bindings (see power/power_domain.txt for more information).
-
-Drop the generic description. No need to duplicate everywhere.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - resets
-> +  - reset-names
-> +  - "#phy-cells"
-> +  - power-domains
-> +
-> +examples:
+>  
+>  examples:
+>    - |
+> @@ -124,4 +140,33 @@ examples:
+>                snps,quirk-frame-length-adjustment;
+>            };
+>      };
 > +  - |
-> +    usb2_phy1: phy@40000 {
-> +      status = "okay";
-> +      compatible = "amlogic,a1-usb2-phy";
-> +      reg = <0x0 0x40000 0x0 0x2000>;
-> +      resets = <&reset RESET_USBPHY>;
-> +      reset-names = "phy";
-> +      #phy-cells = <0>;
-> +      power-domains = <&pwrc PWRC_USB_ID>;
+> +    a1_usb: usb@ffe09000 {
+
+You are only adding a compatible. No need for a whole new example.
+
+> +          status = "okay";
+> +          compatible = "amlogic,meson-a1-usb-ctrl";
+> +          reg = <0 0xffe09000 0x0 0xa0>;
+> +          #address-cells = <1>;
+> +          #size-cells = <1>;
+> +          ranges;
+>  
+> +          clocks = <&clkc_periphs 36>,
+> +                   <&clkc_periphs 85>,
+> +                   <&clkc_periphs 2>,
+> +                   <&clkc_periphs 3>;
+> +          clock-names = "usb_ctrl", "usb_bus", "xtal_usb_phy",
+> +                        "xtal_usb_ctrl";
+> +
+> +          resets = <&reset 36>;
+> +
+> +          phys = <&usb2_phy1>;
+> +          phy-names = "usb2-phy1";
+> +
+> +          a1_dwc3: usb@ff400000 {
+> +                  compatible = "snps,dwc3";
+> +                  reg = <0xff400000 0x100000>;
+> +                  interrupts = <0 90 4>;
+> +                  dr_mode = "host";
+> +                  snps,dis_u2_susphy_quirk;
+> +                  snps,quirk-frame-length-adjustment = <0x20>;
+> +          };
 > +    };
 > -- 
 > 2.7.4
