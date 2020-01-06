@@ -2,68 +2,157 @@ Return-Path: <SRS0=vBZN=23=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DDE7CC33C9A
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jan 2020 03:03:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F3F8C32771
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jan 2020 09:54:14 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id B042320801
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jan 2020 03:03:23 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id F3859207FD
+	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jan 2020 09:54:13 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="DvM0vfcx";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=kernel.org header.i=@kernel.org header.b="B8jLcelH"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B042320801
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="HtQ0MHq0";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=microchiptechnology.onmicrosoft.com header.i=@microchiptechnology.onmicrosoft.com header.b="ObK9NWuO"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org F3859207FD
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=microchip.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:From:Subject:To:
-	References:In-Reply-To:MIME-Version:Reply-To:Content-ID:Content-Description:
+	Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-ID:In-Reply-To:
+	References:Message-ID:Date:Subject:To:From:Reply-To:Cc:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=qfOc6znSJkoGpJF/H33HnyZSphLEpiiKGcjYEBAxxXs=; b=DvM0vfcxk75jGy
-	GOEzhIDwyJQ84a0s41SRMWK/OEwSi6+VWOrlr58ztHhy+eHD1M2rwizab6oz1PdBC8N6uCKn2fHAz
-	T94npqgqk7QGbJNSUTL6c7pm+0f3CpbBLwxoX57DsS2qRMf7GpGdiqx2eH5BNJrTul+Rfok2ztuIR
-	pQTKvBanuFaIFf94BcCk0dc0zRa4WTtR2AAMBId8ZzrHPpAWch1teComKr3pRE8f697k9rBw5IsSu
-	f7u4t0mao0+vBX1NtA2NZXyIwqTlQSy1zLv4UvtqxMyCqXgM5/MKnJVhxugKDGmWjVoQw+10AOndb
-	Q3hLMnCHAq2r+1ngxlQA==;
+	List-Owner; bh=Zo/zxSZijSAT5+6EB7/8pPvsxVaSwnISPlrFcwtHqM8=; b=HtQ0MHq0UmxenC
+	BiWMr/U1luBhQwFbiSwmPJg2DDKVBN1bUgzx4Yh8lZkBPQ0fGltLJsvm/56ZAD/Q/yj0TzZqmnwob
+	eYLyl1/NS/tA/d4fzDK5dnNOuA6VAdFXM5XYq2s0BSoasHVlrfb/Hp5Segh1YU4CYzRgsC+x/g7G2
+	G8INnDgaWusUG1tp0mZl8UYVg4a4yDbudj5FTSVTo8uhxLHAbTV4LPc1OTwG1gB26aQJgFJNSni1O
+	nvQRn9eNr9Adf/nJ26w4Z35OqaEDoL6jxuRNi/WZPm1t8kqj8RwHIt/slZg5hGKNMfuaJ9ROi+kJO
+	Rp3JCxmkkRKMz8Q0cUxA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ioIfi-0005hE-4T; Mon, 06 Jan 2020 03:03:14 +0000
-Received: from mail.kernel.org ([198.145.29.99])
+	id 1ioP5I-00036x-QT; Mon, 06 Jan 2020 09:54:04 +0000
+Received: from esa3.microchip.iphmx.com ([68.232.153.233])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ioIff-0005gk-Q9; Mon, 06 Jan 2020 03:03:13 +0000
-Received: from kernel.org (unknown [104.132.0.74])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 6538820801;
- Mon,  6 Jan 2020 03:03:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1578279791;
- bh=CNeeKXcxdQM66JWLklaMOAzOty0uI/w8076uzZzgDRI=;
- h=In-Reply-To:References:Cc:To:Subject:From:Date:From;
- b=B8jLcelHLRRSOCy+vJWPw+k53NEYrT9FYA57S9bX/rSFrb1QnF7jiZzenQE97Bki8
- bmLxQ9wbVrMV+s3MvgbJ7IelLc0T3WRD4sygIpTAo27zyJ0oW184daAwo9vXsqoCR7
- UJnYZl57w2F4em23l0WDNz1ohcgOJFr4qSBL+IXY=
+ id 1ioP5B-0002zK-KM; Mon, 06 Jan 2020 09:53:58 +0000
+Received-SPF: Pass (esa3.microchip.iphmx.com: domain of
+ Claudiu.Beznea@microchip.com designates 198.175.253.82 as
+ permitted sender) identity=mailfrom;
+ client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
+ envelope-from="Claudiu.Beznea@microchip.com";
+ x-sender="Claudiu.Beznea@microchip.com";
+ x-conformance=spf_only; x-record-type="v=spf1";
+ x-record-text="v=spf1 mx a:ushub1.microchip.com
+ a:smtpout.microchip.com -exists:%{i}.spf.microchip.iphmx.com
+ include:servers.mcsv.net include:mktomail.com
+ include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa3.microchip.iphmx.com: no sender
+ authenticity information available from domain of
+ postmaster@email.microchip.com) identity=helo;
+ client-ip=198.175.253.82; receiver=esa3.microchip.iphmx.com;
+ envelope-from="Claudiu.Beznea@microchip.com";
+ x-sender="postmaster@email.microchip.com"; x-conformance=spf_only
+Authentication-Results: esa3.microchip.iphmx.com;
+ spf=Pass smtp.mailfrom=Claudiu.Beznea@microchip.com;
+ spf=None smtp.helo=postmaster@email.microchip.com;
+ dkim=pass (signature verified) header.i=@microchiptechnology.onmicrosoft.com;
+ dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: zRYaw4MeO4BFWFLdqJXvUY4C8JTd6rsGJCwIJ8YlLTugfq0JmWZaPogmdcwBHuWUZ++ko7DEGD
+ BJJGNFA57Sl79e73vBQSMa6SCMiY4i9i91fTHYXugjtElNw5uB78HquFSr8yexIUHXrkYEksaY
+ YvegeIvKQ+aitDPClbUEfrYNlhUCrbKtKUrmTH155eMDQljBsWiXKOrNC3/Ri4FJfVnyTjtadA
+ KYRORygrteaJ/5RBN6OIwm3rcfgKZiqIdTgpy7okIqMBSSt1X2VAIhDb3/zWQobDcwsmUwkdp+
+ GYk=
+X-IronPort-AV: E=Sophos;i="5.69,402,1571727600"; d="scan'208";a="62304574"
+Received: from smtpout.microchip.com (HELO email.microchip.com)
+ ([198.175.253.82])
+ by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256;
+ 06 Jan 2020 02:53:56 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 6 Jan 2020 02:53:55 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Mon, 6 Jan 2020 02:53:55 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=M6+sOCUNgE+sv79pOH7kUbSG9qURMPA1dAm5fxhtIfOdllB7j8oOQUXuq4UVPDH3K6kyZ84lRz2s5YVfeQPPQR8QIQAY9l+Ux86ST8Ct7iVL2dLyLxKY1quJKVFTo6ttkmzgQqo8Rp6PMu7N3ufe+8TD6KoaKS5ZreGOxG9UjmMgx6DzVWKJyCzr77teNi69BbgzQ4/mno0VE+/lJinyVtU2IdF43ljxiOADQjJhBzRQnhSD3iQW5miSz5gXILRA4kehDRaXYzW72mH6WNSGuFpEk6wB3le/4EYQgiByvjr54XzOdeu/T8wDVRlgVZTKMjyzx/Ru0Pn2YoQfdbhfZg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+gm1Br1CHUtUOfgm+A45dSW91JgI1NL3xTYIa8s1JGo=;
+ b=a0U49dyvkiMBMRgGGE00g5gvxs8k7jlVrAdhhlRinlVULsPnQTDXEguRKZkL1KONA7HTvyN9sn/J83CUm84GhGAwQqDWutNz3BkFQ/KixS3MWq7dN5sOZe3OFL4HllS4IkrpAF9PWZ0fDZ43P7KjqsAIF8g1wGNA3DOpWnesICVwV05CRTk9bHmguTgrVdu6T5Wu9l/k3NzEjYfH7GZvQblk1lME19wIAxCxMcnN8ggPNXUB4NBD/WciEaOfVoDvvwCgGZmv7kfVy6TkePwvynMC6j+dFeESgb9rPag5Wzi+Oi1QXVdcPdC5CCOkOPxGCy1biZatXK9+TOydK+Qfrw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+gm1Br1CHUtUOfgm+A45dSW91JgI1NL3xTYIa8s1JGo=;
+ b=ObK9NWuOUA2Ra5xdx/mS3cPhEFFH1X0iYxOt9W+7P5FUopxHqJOk0L7ZjvI1nKqNtyOBL8UGJvMnC+AwMskDCxkQ+RH7pvnpXckbg+aKZomFbpBhTEyJ7weDynWu1hszOHfmSZZ5TjRssoZBKQDThbIM5FWS/nyb61QnU6pZjyU=
+Received: from DM6PR11MB3225.namprd11.prod.outlook.com (20.176.120.224) by
+ DM6PR11MB3868.namprd11.prod.outlook.com (10.255.61.13) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2602.10; Mon, 6 Jan 2020 09:53:53 +0000
+Received: from DM6PR11MB3225.namprd11.prod.outlook.com
+ ([fe80::106f:424f:ac54:1dbb]) by DM6PR11MB3225.namprd11.prod.outlook.com
+ ([fe80::106f:424f:ac54:1dbb%7]) with mapi id 15.20.2602.015; Mon, 6 Jan 2020
+ 09:53:53 +0000
+From: <Claudiu.Beznea@microchip.com>
+To: <krzk@kernel.org>, <thierry.reding@gmail.com>,
+ <u.kleine-koenig@pengutronix.de>, <linux-pwm@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <bcm-kernel-feedback-list@broadcom.com>,
+ <linux-rpi-kernel@lists.infradead.org>, <linux-amlogic@lists.infradead.org>,
+ <linux-mediatek@lists.infradead.org>, <linux-rockchip@lists.infradead.org>,
+ <linux-riscv@lists.infradead.org>,
+ <linux-stm32@st-md-mailman.stormreply.com>, <linux-tegra@vger.kernel.org>
+Subject: Re: [PATCH 2/2] pwm: Enable compile testing for some of drivers
+Thread-Topic: [PATCH 2/2] pwm: Enable compile testing for some of drivers
+Thread-Index: AQHVxHc0gN2UoP7Gc0Ocsx6/BxJUcA==
+Date: Mon, 6 Jan 2020 09:53:53 +0000
+Message-ID: <145f61f5-941b-d0f4-7abd-33ce7f005fca@microchip.com>
+References: <20191230172113.17222-1-krzk@kernel.org>
+ <20191230172113.17222-2-krzk@kernel.org>
+In-Reply-To: <20191230172113.17222-2-krzk@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [94.177.32.156]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: cd98d837-f71d-4669-e076-08d7928e56fe
+x-ms-traffictypediagnostic: DM6PR11MB3868:
+x-microsoft-antispam-prvs: <DM6PR11MB386839E19F8AE22C56AED43D873C0@DM6PR11MB3868.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5516;
+x-forefront-prvs: 0274272F87
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(396003)(346002)(376002)(39860400002)(136003)(366004)(189003)(199004)(66476007)(478600001)(66556008)(64756008)(8676002)(2616005)(66446008)(31686004)(6506007)(66946007)(53546011)(91956017)(76116006)(26005)(186003)(71200400001)(7416002)(110136005)(316002)(6486002)(8936002)(2906002)(558084003)(86362001)(5660300002)(6512007)(31696002)(36756003)(81156014)(81166006)(921003)(1121003);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR11MB3868;
+ H:DM6PR11MB3225.namprd11.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: microchip.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: wOMKXiNGziR8dv9gol0oOsf6AU3jg0EgTcvPeER6oGWQ/VHSV6mZ4G35IavOvUWvfJowh6rCgEhlk8dQaHqqGFPgluMQ/mqNOqzZVUbtBXvd+M8DHE4Ih/QhaACanEKd2yY2+hKwmKfmIpxc1EDyNlGPemaiqh/eovfKhRtnMxavwU1Rh5GcI/Bfjng/YCxdkty/e8RkHg/iDVeRjL+c/LvR4hzUbhvVz3lKSJuB5ISxB3wNgEJGnvL8HRHkVq0weTLXARW5wg0/ogGuGqlsHjEi26ZJ9uuAZdKfXOph3zN5gzzRsREIrYqQtIndwiq3oYxJ7K+SEPHCJN1cZszNc3RUqF6sq9ENqwWlsZVSQaJswTwMjrUgUQEtDbwvv2LYq+67tv/sGjVbjPS4m9b4PUGsbsVMg053jU9TpUZuCpkkSbnD/5hZPBztOan2HJK8UmTIUVrmLulShBaKbP3pI4lxjuCXzYZMVtW9YYwU/x5yVUIMoaO/gPvVe18u5JSW
+x-ms-exchange-transport-forked: True
+Content-ID: <C6A04D4974AB244693C3B9F0D1537D34@namprd11.prod.outlook.com>
 MIME-Version: 1.0
-In-Reply-To: <20191226191224.3785282-3-martin.blumenstingl@googlemail.com>
-References: <20191226191224.3785282-1-martin.blumenstingl@googlemail.com>
- <20191226191224.3785282-3-martin.blumenstingl@googlemail.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- jbrunet@baylibre.com, linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] clk: clarify that clk_set_rate() does updates from
- top to bottom
-From: Stephen Boyd <sboyd@kernel.org>
-User-Agent: alot/0.8.1
-Date: Sun, 05 Jan 2020 19:03:10 -0800
-Message-Id: <20200106030311.6538820801@mail.kernel.org>
+X-MS-Exchange-CrossTenant-Network-Message-Id: cd98d837-f71d-4669-e076-08d7928e56fe
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jan 2020 09:53:53.6461 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 3t7GXAiHVzcYWfgg7rs7BGYg4AhBXFOdWKJswiYpNOQZcRLxnjLB8thujRLTCNbSdB/NeinF2BmkaKx5I9MFDTEFmIV3xzqyWRswi5WXJcE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB3868
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200105_190311_875312_72880A1E 
-X-CRM114-Status: GOOD (  10.92  )
+X-CRM114-CacheID: sfid-20200106_015357_678495_F691050E 
+X-CRM114-Status: UNSURE (   4.88  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,43 +164,23 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: narmstrong@baylibre.com,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- mturquette@baylibre.com, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Quoting Martin Blumenstingl (2019-12-26 11:12:24)
-> clk_set_rate() currently starts updating the rate for a clock at the
-> top-most affected clock and then walks down the tree to update the
-> bottom-most affected clock last.
-> This behavior is important for protected clocks where we can switch
-> between multiple parents to achieve the same output.
+
+
+On 30.12.2019 19:21, Krzysztof Kozlowski wrote:
+> Some of the PWM drivers can be compile tested to increase build
+> coverage.
 > 
-> An example for this is the mali clock tree on Amlogic SoCs:
->   mali_0_mux (must not change when enabled)
->     mali_0_div (must not change when enabled)
->      mali_0 (gate)
->   mali_1_mux (must not change when enabled)
->     mali_1_div (must not change when enabled)
->       mali_1 (gate)
-> The final output can either use mali_0_gate or mali_1. To change the
-> final output we must switch to the "inactive" tree. Assuming mali_0 is
-> active, then we need to prepare mali_1 with the new desired rate and
-> finally switch the output to the mali_1 tree. This process will then
-> protect the mali_1 tree and at the same time unprotect the mali_0 tree.
-> The next call to clk_set_rate() will then switch from the mali_1 tree
-> back to mali_0.
+> The Meson PWM driver requires COMMON_CLK dependency.
 > 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Acked-by: Stephen Boyd <sboyd@kernel.org>
-
-
+for PWM_ATMEL:
+Acked-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
