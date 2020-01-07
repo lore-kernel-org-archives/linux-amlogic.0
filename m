@@ -1,88 +1,65 @@
-Return-Path: <SRS0=vBZN=23=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
+Return-Path: <SRS0=YAuX=24=lists.infradead.org=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
-	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=3.4.0
+X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2E92CC33C8C
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jan 2020 19:30:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 104C2C32771
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 02:35:30 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 00776207FD
-	for <linux-amlogic@archiver.kernel.org>; Mon,  6 Jan 2020 19:30:06 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DACD220715
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 02:35:29 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="mBnjrc6G";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MFDHoVhh"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 00776207FD
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="s9OIm22d"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DACD220715
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=89cgIB5HlDb2I4iTttzHAUYk94MUSAaT2AEXpvjAJDE=; b=mBnjrc6Gy9iAMT
-	lne+XSeI6NxcyEGKoOUifNWQxjVbY0MarlOXLwHW5fhiiIjO3TpUSgch81QI3heZ5DmyogE41IjS2
-	LKmbxz8p9YREJ0X/KxjoSxhrN8E66qu+CVp0I4dxfLnTNxEiVcvIPK8ZrhxargF+CExe2RuVkMNzo
-	hXBWXi20rUPCgUw9j+9ZC/bImvuoE9vWy0BvQrNWywasTi0UDUQLhabXW+27fgRkMDlbtC2v4LxmM
-	5lgH+Iol9hHzW73U1EXRMwy7qlA6oGbLM1ommJAykyT1prFzOxOo32KQpjlLU5b2z/UyS/fn+GX+D
-	s+RlgYD2z17y1d8aC65g==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
+	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=0RrN9ngUkoxUjITbdOO7eHw3GFzgWPx6tG/gIPQeBwM=; b=s9OIm22dOfAcBJ
+	WyGDkYWAnWT685VCiB2A4n8/dJLvZ7wLR93zq5W//xhbDUiJ82f9lHBykC24CqiOr5QoYosWRYQ3y
+	5hf3QeGknvuJCknKWsl3UQd5UzK2UsC2pzs00rmTNAVExT6jKLhfVxZGCSDysSFPJFzp3TSVeu81H
+	1mSvDypQCaqQIFa49z8u5Gmn7Gb2vfkc19FCWyGk9nopKSeQAcL/VxJ5TIoPauqI+arHRR9bXrsNV
+	w82wulkHTt8fct/v1QSn/rsqdNssrdCZXBYllpGHhu5s4xjqVLsD5aoH0BgVasBdG4cImTXZ5cHm6
+	z7/a618ubs3cnFihHwqA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ioY4d-0008AS-Kl; Mon, 06 Jan 2020 19:29:59 +0000
-Received: from mail-wm1-x344.google.com ([2a00:1450:4864:20::344])
+	id 1ioeiI-0003iz-3i; Tue, 07 Jan 2020 02:35:22 +0000
+Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ioY4b-00089n-4m
- for linux-amlogic@lists.infradead.org; Mon, 06 Jan 2020 19:29:58 +0000
-Received: by mail-wm1-x344.google.com with SMTP id c127so12589591wme.1
- for <linux-amlogic@lists.infradead.org>; Mon, 06 Jan 2020 11:29:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=9Ur3CxFG0cQbKNwUJ75Zx2lXsthVwW+wWDfRyfXmnKM=;
- b=MFDHoVhhfNfJOoS+7B7TS0SyZvJrXkAmv9gGVyRrLcFaG6lMwTT7g8Nw48eUSo/ihd
- iE09TrqHNUuJ1yrNx8eqPe/Bf6gJegD+DVCBYVFa3za5W8hLkWvdoLTpZDEEiHtar4+Q
- pKqqaX4vnkREBw8bLnRfq2kh5v610vdQecjHN/TN8/sSUkLUv+JvKm8Jsa/rdrblmhq0
- uhLdN8vIor7xFd3r94ysMJs7hOqQZN08M/sKaaagiqHpkuGpBI7l5slMNOoFkja7LlFr
- 5lUstKr4VwNTFvhDrVj8RMeFN1GPti+JFk5/Hjf9t0KfwFGuOpMcuYVstzFEf8e8EJkN
- F22Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=9Ur3CxFG0cQbKNwUJ75Zx2lXsthVwW+wWDfRyfXmnKM=;
- b=qQPhdUPoMsvsgU9d2CukIwU9859TqatMH1SnTrZvkekTdxmntIRxFea1Dk2WreO0bt
- pCD2n/L1u/S54H6MrTatwUoLSJIAJejD2g3CwmzlqlCdu3yEGqzvgSVOpCkMx5i0/NVU
- 7G1wK9F6//q0DBPuQ/Jmrrf4zRQC9B5p0LNbwK4uoZE6mjD4e0kksw74U4sdGwaAycmH
- tS8sM4mLinfSdoVNcmCk7itJHz50cofmJi7m7y1Rg516xiQVRRTjyFlV60m2s+szXvXs
- +LvACnlw15R2/Afntx6ItBWkaSU7IXUZOtyEubgG0EA74mnlltHrGZA3qS+53V47/gti
- bQLQ==
-X-Gm-Message-State: APjAAAVfuqk7uAKGGw84URMNJS9uSoCXyf4sG0XPXD6739T3y9rglZlQ
- CQ2OfZAGcNs0ZtfmrRUt1Fc=
-X-Google-Smtp-Source: APXvYqyQllloLFr5JAArKfaDOfayLtkqaScpZ+uJ6DkBjZ3d+DoyF58NzIDEURVT4mhNYEGilCH9JA==
-X-Received: by 2002:a1c:1dd7:: with SMTP id d206mr34934742wmd.5.1578338994696; 
- Mon, 06 Jan 2020 11:29:54 -0800 (PST)
-Received: from Red.localdomain ([2a01:cb1d:147:7200:2e56:dcff:fed2:c6d6])
- by smtp.googlemail.com with ESMTPSA id g21sm23802398wmh.17.2020.01.06.11.29.53
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 06 Jan 2020 11:29:54 -0800 (PST)
-From: Corentin Labbe <clabbe.montjoie@gmail.com>
-To: davem@davemloft.net, herbert@gondor.apana.org.au, narmstrong@baylibre.com
-Subject: [PATCH] crypto: amlogic: fix removal of module
-Date: Mon,  6 Jan 2020 20:29:50 +0100
-Message-Id: <20200106192950.23475-1-clabbe.montjoie@gmail.com>
-X-Mailer: git-send-email 2.24.1
+ id 1ioeiF-0003hn-Lb; Tue, 07 Jan 2020 02:35:21 +0000
+Received: from [10.18.38.198] (10.18.38.198) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Tue, 7 Jan
+ 2020 10:35:34 +0800
+Subject: Re: [PATCH v3 1/6] dt-bindings: phy: Add Amlogic A1 USB2 PHY Bindings
+To: Rob Herring <robh@kernel.org>
+References: <1577428606-69855-1-git-send-email-hanjie.lin@amlogic.com>
+ <1577428606-69855-2-git-send-email-hanjie.lin@amlogic.com>
+ <20200104002806.GA24214@bogus>
+From: Hanjie Lin <hanjie.lin@amlogic.com>
+Message-ID: <dca2c600-fb07-4071-4cf0-0392e64f450c@amlogic.com>
+Date: Tue, 7 Jan 2020 10:35:34 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.1
 MIME-Version: 1.0
+In-Reply-To: <20200104002806.GA24214@bogus>
+Content-Language: en-US
+X-Originating-IP: [10.18.38.198]
+X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
+ (10.18.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200106_112957_186126_D53DE925 
-X-CRM114-Status: UNSURE (   9.71  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200106_183519_707572_3E6D5164 
+X-CRM114-Status: GOOD (  12.08  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,49 +71,127 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: linux-amlogic@lists.infradead.org,
- Corentin Labbe <clabbe.montjoie@gmail.com>, linux-crypto@vger.kernel.org,
- linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org, Victor Wan <victor.wan@amlogic.com>,
+ Jianxin Pan <jianxin.pan@amlogic.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Michael Turquette <mturquette@baylibre.com>, linux-usb@vger.kernel.org,
+ Yue Wang <yue.wang@amlogic.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jian Hu <jian.hu@amlogic.com>, Liang Yang <liang.yang@amlogic.com>,
+ Qiufang Dai <qiufang.dai@amlogic.com>, Xingyu Chen <xingyu.chen@amlogic.com>,
+ Kevin Hilman <khilman@baylibre.com>, Carlo Caione <carlo@caione.org>,
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Jerome Brunet <jbrunet@baylibre.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Removing the driver cause an oops due to the fact we clean an extra
-channel.
-Let's give the right index to the cleaning function.
-Fixes: 48fe583fe541 ("crypto: amlogic - Add crypto accelerator for amlogic GXL")
 
-Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
----
- drivers/crypto/amlogic/amlogic-gxl-core.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/crypto/amlogic/amlogic-gxl-core.c
-index fa05fce1c0de..9d4ead2f7ebb 100644
---- a/drivers/crypto/amlogic/amlogic-gxl-core.c
-+++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
-@@ -289,7 +289,7 @@ static int meson_crypto_probe(struct platform_device *pdev)
- error_alg:
- 	meson_unregister_algs(mc);
- error_flow:
--	meson_free_chanlist(mc, MAXFLOW);
-+	meson_free_chanlist(mc, MAXFLOW - 1);
- 	clk_disable_unprepare(mc->busclk);
- 	return err;
- }
-@@ -304,7 +304,7 @@ static int meson_crypto_remove(struct platform_device *pdev)
- 
- 	meson_unregister_algs(mc);
- 
--	meson_free_chanlist(mc, MAXFLOW);
-+	meson_free_chanlist(mc, MAXFLOW - 1);
- 
- 	clk_disable_unprepare(mc->busclk);
- 	return 0;
--- 
-2.24.1
+On 2020/1/4 8:28, Rob Herring wrote:
+> On Fri, Dec 27, 2019 at 02:36:41PM +0800, Hanjie Lin wrote:
+>> Add the Amlogic A1 Family USB2 PHY Bindings
+>>
+>> It supports Host mode only.
+>>
+>> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
+>> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
+>> ---
+>>  .../bindings/phy/amlogic,meson-a1-usb2-phy.yaml    | 55 ++++++++++++++++++++++
+>>  1 file changed, 55 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-a1-usb2-phy.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-a1-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson-a1-usb2-phy.yaml
+>> new file mode 100644
+>> index 00000000..2b2c526
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/phy/amlogic,meson-a1-usb2-phy.yaml
+>> @@ -0,0 +1,55 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +# Copyright 2019 Amlogic, Inc
+>> +%YAML 1.2
+>> +---
+>> +$id: "http://devicetree.org/schemas/phy/amlogic,meson-a1-usb2-phy.yaml#"
+>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>> +
+>> +title: Amlogic A1 USB2 PHY
+>> +
+>> +maintainers:
+>> +  - Yue Wang <yue.wang@amlogic.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - amlogic,meson-a1-usb2-phy
+> 
+> Use 'const' if there's only 1.
+> 
 
+Ok
+
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  resets:
+>> +    maxItems: 1
+>> +
+>> +  reset-names:
+>> +    items:
+>> +      - const: phy
+> 
+> Don't need *-names when there's a single entry.
+> 
+
+Ok
+
+>> +
+>> +  "#phy-cells":
+>> +    const: 0
+>> +
+>> +  power-domains:
+>> +     maxItems: 1
+>> +     description:
+>> +       a phandle to respective power domain node as described by generic
+>> +       PM domain bindings (see power/power_domain.txt for more information).
+> 
+> Drop the generic description. No need to duplicate everywhere.
+> 
+
+Ok, I will modify these issues.
+
+Thanks
+
+Hanjie
+
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - resets
+>> +  - reset-names
+>> +  - "#phy-cells"
+>> +  - power-domains
+>> +
+>> +examples:
+>> +  - |
+>> +    usb2_phy1: phy@40000 {
+>> +      status = "okay";
+>> +      compatible = "amlogic,a1-usb2-phy";
+>> +      reg = <0x0 0x40000 0x0 0x2000>;
+>> +      resets = <&reset RESET_USBPHY>;
+>> +      reset-names = "phy";
+>> +      #phy-cells = <0>;
+>> +      power-domains = <&pwrc PWRC_USB_ID>;
+>> +    };
+>> -- 
+>> 2.7.4
+>>
+> 
+> .
+> 
 
 _______________________________________________
 linux-amlogic mailing list
