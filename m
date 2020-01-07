@@ -2,22 +2,23 @@ Return-Path: <SRS0=YAuX=24=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 69CADC282DD
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 21:47:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BCB81C282DD
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 23:07:01 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 2A12C206DB
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 21:47:19 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8E4A120715
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 23:07:01 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="XLwOAfKi"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 2A12C206DB
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arndb.de
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="QWu/pPWY";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="dENCSx36"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8E4A120715
+Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
@@ -25,50 +26,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
 	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=2B+GAw8NjKmJNM6PZI35WM7sV7+ZOV+fvtlLvd1MJHs=; b=XLwOAfKiNSe4f0
-	5/k3yqZJ5KRvzkMgnVkBQuSSVAzdd6iyI3GbhLa8HJLHxlgOj3quwmh59FDDFlGfCkJo6D1a8QNGM
-	Pld1w76zNPGtQL5WOyp6vgX4zaqahwVcj3XgkizXUbXn56aw9W2MPblTM6FY+God0ZbdQ4tX85eKf
-	Mzr/o0jHBXlD3IHv9puYQKpAz3wiCqIxpAliZg+0moONP+4J5rBGpYimRVO+NeL2d4RePGUKExNrB
-	Pj2Cwd3IUVcMzS1Mr0VkehI1ZcMfej8/nRH0JPAiFLLz/RjOdQmKa+nDb02Eu48OuZqma5k8vKmIW
-	Oca3aePucBZsgm4LDqhw==;
+	List-Owner; bh=ajsk4CFwe+qKnZUDNQN9kRORW1anLue4qRWrS3nJxTg=; b=QWu/pPWYTdUWKH
+	oLRXDLpIqP/TT7sOgT0SAnLaiY1mrCAc2FBQ2Zn2eu1QUBNquXILuQ0om3KRVZTdW7CPBjLvAnyI6
+	diZYYrq+F10Zk46ae9WvBuekWwFsxaW8qYBvrnEA5is1QiMKqE5dmVOyWD0DevY1rnwnSvOwQwQYI
+	vQ4pDbj3m+RqOsnUlz4SjAqCwNHwbSy8KnP6c0ZebnWjbyMKjALUcYBzA+Xu/Q3b/PpS4Fxn8tmw/
+	MElVxIQVDWMiZjlylFxJP+QCjAWHvePETfxfAIANt2IERhneTSyu0TJ+nh+FmGX9bPdkZAPaFIgyi
+	uernLDlnMz3+inzDmWgA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iowgu-0006I6-Gu; Tue, 07 Jan 2020 21:47:08 +0000
-Received: from mout.kundenserver.de ([212.227.126.131])
+	id 1ioxw5-0003y9-2r; Tue, 07 Jan 2020 23:06:53 +0000
+Received: from mail-wr1-x442.google.com ([2a00:1450:4864:20::442])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iowgr-0006Hh-Fa; Tue, 07 Jan 2020 21:47:07 +0000
-Received: from threadripper.lan ([149.172.19.189]) by mrelayeu.kundenserver.de
- (mreue011 [212.227.15.129]) with ESMTPA (Nemesis) id
- 1MGiF0-1itqW425oI-00Dkb4; Tue, 07 Jan 2020 22:46:54 +0100
-From: Arnd Bergmann <arnd@arndb.de>
-To: Neil Armstrong <narmstrong@baylibre.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>, Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH] drm: meson: fix address type confusion
-Date: Tue,  7 Jan 2020 22:46:37 +0100
-Message-Id: <20200107214653.1173199-1-arnd@arndb.de>
-X-Mailer: git-send-email 2.20.0
+ id 1ioxw1-0003wj-Mn; Tue, 07 Jan 2020 23:06:51 +0000
+Received: by mail-wr1-x442.google.com with SMTP id g17so1435148wro.2;
+ Tue, 07 Jan 2020 15:06:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=googlemail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=k53sXXKoetFWE8GEEtNytoJYTuHWX23InQV8Qtu4GW8=;
+ b=dENCSx36Ej5yYSporQHM0EZQIerJ0te/h42mTZ93EZeOg3JsA0ESBCTSif6qckRHaK
+ rxYMyDM0wGr41OJ2wQeUr7uJj/nCJ8ALhT6f97PH0oGrtASQk3eYzqvQOtRH3qQWWWwx
+ Ho396dQoJvVeasv15P595WzKK8uGDMOS1Gb7xy1PCzg5rStuXm783K0aXg8PvyEsqwcc
+ 0Kv2PcFCaSI0VcA/G9ZJ0gRUOB1v2TJnFP2eDUKvRyDpbozAEjmrT1BmVFLBNrGXTkxO
+ khCbSxJQEspIlT9GtOklM+pRR9sEXoxc6beW7uWvF23m/lxNCBKzBu4R931JQ2k4H5DN
+ O2dA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=k53sXXKoetFWE8GEEtNytoJYTuHWX23InQV8Qtu4GW8=;
+ b=FNPvPFv8i8krC6Ct1rrcwnTL3HQ/7ySTlKJKZI4UPDA1UVwPiIO86qtT8z3PNnSkQw
+ G0nJDT4z9lemu2hTbNjdXaCLhDKsoRlCatWXzG5AK9RXkHpbkkeA3iQQKwbtmVaLgphH
+ Td3N2em7jjp8In9cLalihB9V7A2W5lvTD8JO9nZKpPUUM0yV7nG9pT89Qp+NLkpAXKpP
+ H6GD8Aj7AZMxR0oQiaCK9l+YpHpiBy3edB9waU5bHKyk9nvi388QWBuKF+wHbQM0zln0
+ j/kdDn9I2yw/1Pb6VIyOxGhkbXVNd8V7Ov/eGXPpayeT+JBS1iJitdvppREcLuv5Jn0i
+ ftng==
+X-Gm-Message-State: APjAAAXuxupaaqmR0WhudusUEN21g2QueQgbc+5d3YnBC+LfXhITWjWe
+ J2Im8rIyVh6b+zorvx6XKzg=
+X-Google-Smtp-Source: APXvYqyl3Me0mVoi+rzI0uDTtUjURQ5KbxgWv7vhF2OviRpzvAMJ9EZQEFf+m7UCcWGXNpC/5ZwHsw==
+X-Received: by 2002:a5d:6a88:: with SMTP id s8mr1270198wru.173.1578438408111; 
+ Tue, 07 Jan 2020 15:06:48 -0800 (PST)
+Received: from localhost.localdomain
+ (p200300F1373A1900428D5CFFFEB99DB8.dip0.t-ipconnect.de.
+ [2003:f1:373a:1900:428d:5cff:feb9:9db8])
+ by smtp.googlemail.com with ESMTPSA id g21sm1335912wmh.17.2020.01.07.15.06.47
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 07 Jan 2020 15:06:47 -0800 (PST)
+From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To: dri-devel@lists.freedesktop.org, alyssa@rosenzweig.io,
+ steven.price@arm.com, tomeu.vizoso@collabora.com, robh@kernel.org
+Subject: [PATCH RFT v1 0/3] devfreq fixes for panfrost
+Date: Wed,  8 Jan 2020 00:06:23 +0100
+Message-Id: <20200107230626.885451-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-X-Provags-ID: V03:K1:wHU1alzZM7DUOfIZA4V+q1kUWQ9fSj1sLyOxLkGIVefuXaF2Qf4
- 0dWqG0koLC5sMSKZHs+Rq7VqJm9Ltr92efomWHYthb8SJbz30aSIm2vEYsmA+97gL+0lnCx
- RlYZYHnM2e/PazBB4zFGuQ+AvaidFU0+gFveFb9bhX0wB6sU7IURnkayUHVZyGyOBsWg0tD
- xMwmar+1tDp7m2L/vGK7Q==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:IEWNgCfP+i0=:V2b+bPHrEXB28s1CzTWRgv
- axFsPGMB6o0KEZ8t0nuWBf9k87EuD8qG/QWgNwehlloljoKtn4wc1xtK4+uaqxhU5xmFjIK1K
- MNsv+Er4YSGOSsAXJITPBU1RSYliRA+C20aBiZG4IxApbgyLu45j+or4C9YxER7VkdSm386Ym
- H0nznJw1Odi65hqIrAgHo2jBYKwkAE2eG5goQHQGAWWG4oGGOUl/JzKmdOHs504TchgGaUIXt
- 5Uhrmp3FV96v9kVYa/fQfsvLWlJHOcD4/43Is5uu5iEhZ6zPIf/7kGhlcmVIs9FqkLmlvmiFh
- XlMbZqXsSVQUnsYh22IoHQl1rDSiqqENOFrXlC8ywI2knKcOjJ4xw8ut9Rv8NUpQ7dDZTBm9/
- udby0QyJJXj6JAALwk4yZm3poSpV44ag7MU6PwdPSQqX0zaejIuBFFHvaL0U7I6xQBmvMLdSu
- RT9dhzdPgoDancPKFOoh97eXXyAqKjH+PCqTAbzFlzQDDJLSS+GSKVhjlQ/Js4fPEHslermL9
- 6C10LSKFrVWMNthk6Dc79xwMbSAzt0688ektXtF1ZyWHgL1EvmL1mKni/VUX6mae0uue0V5i5
- HTIblp9oDE3JQZZlWQm2RW+nSrD6xv5jO+phorJY8VR+fVGks0DKoziB74qZEbOpVYqrZMWtV
- 63kPKqcGO0ruLLevV4q996JD6MKRO8H5dM9mYkZpBZRUWuz7BNmxSCOs5SP3TBQRUQXtHQEqw
- WzFpg9VHq/a6WMAdDCB9pXX9x+oiskQ40cw3kvTqb3hf7LN1n9VJHxer8qghK7cn2yIhlSqXs
- HLql5WXFGkvzPRPmUEMz6M6gyGd5VX9VdRp8yoGmx+wx9G4xuNgpGi1dQKr1SWHTq0zorA+sy
- SM7kHj54PjL65KJceAiA==
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200107_134705_812640_8DF3AD6B 
-X-CRM114-Status: GOOD (  12.28  )
+X-CRM114-CacheID: sfid-20200107_150649_768900_EAB8F093 
+X-CRM114-Status: UNSURE (   8.43  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,97 +96,38 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Julien Masson <jmasson@baylibre.com>,
- Maxime Jourdan <mjourdan@baylibre.com>, Arnd Bergmann <arnd@arndb.de>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-amlogic@lists.infradead.org, Sam Ravnborg <sam@ravnborg.org>,
- linux-arm-kernel@lists.infradead.org
+Cc: airlied@linux.ie, linux-kernel@vger.kernel.org,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-rockchip@lists.infradead.org, daniel@ffwll.ch,
+ linux-amlogic@lists.infradead.org, robin.murphy@arm.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Casting a pointer to dma_addr_t produces a warning:
+These are a bunch of devfreq fixes for panfrost that came up in a
+discussion with Robin Murphy during the code-review of the lima
+devfreq patches: [0]
 
-drivers/gpu/drm/meson/meson_rdma.c: In function 'meson_rdma_free':
-drivers/gpu/drm/meson/meson_rdma.c:59:25: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]
-  priv->rdma.addr_phys = (dma_addr_t)NULL;
+I am only able to test patch #1 properly because the only boards with
+panfrost GPU that I have are using an Amlogic SoC. We don't have
+support for the OPP tables or dynamic clock changes there yet.
+So patches #2 and #3 are compile-tested only.
 
-In this case, it's worse because the variable name has the suffix
-'_phys', which often indicates a phys_addr_t rather than dma_addr_t,
-i.e. yet another incompatible type.
 
-Change it to use consistent naming and avoid NULL.
+[0] https://patchwork.freedesktop.org/patch/346898/
 
-Fixes: 63fba242c464 ("drm/meson: add RDMA module driver")
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
----
- drivers/gpu/drm/meson/meson_drv.h  |  2 +-
- drivers/gpu/drm/meson/meson_rdma.c | 12 ++++++------
- 2 files changed, 7 insertions(+), 7 deletions(-)
+Martin Blumenstingl (3):
+  drm/panfrost: enable devfreq based the "operating-points-v2" property
+  drm/panfrost: call dev_pm_opp_of_remove_table() in all error-paths
+  drm/panfrost: Use the mali-supply regulator for control again
 
-diff --git a/drivers/gpu/drm/meson/meson_drv.h b/drivers/gpu/drm/meson/meson_drv.h
-index f9a0c8e9d4d0..04fdf3826643 100644
---- a/drivers/gpu/drm/meson/meson_drv.h
-+++ b/drivers/gpu/drm/meson/meson_drv.h
-@@ -135,7 +135,7 @@ struct meson_drm {
- 	} venc;
- 
- 	struct {
--		dma_addr_t addr_phys;
-+		dma_addr_t addr_dma;
- 		uint32_t *addr;
- 		unsigned int offset;
- 	} rdma;
-diff --git a/drivers/gpu/drm/meson/meson_rdma.c b/drivers/gpu/drm/meson/meson_rdma.c
-index 25b34b1e72a7..130382178c63 100644
---- a/drivers/gpu/drm/meson/meson_rdma.c
-+++ b/drivers/gpu/drm/meson/meson_rdma.c
-@@ -27,7 +27,7 @@ int meson_rdma_init(struct meson_drm *priv)
- 		/* Allocate a PAGE buffer */
- 		priv->rdma.addr =
- 			dma_alloc_coherent(priv->dev, SZ_4K,
--					   &priv->rdma.addr_phys,
-+					   &priv->rdma.addr_dma,
- 					   GFP_KERNEL);
- 		if (!priv->rdma.addr)
- 			return -ENOMEM;
-@@ -47,16 +47,16 @@ int meson_rdma_init(struct meson_drm *priv)
- 
- void meson_rdma_free(struct meson_drm *priv)
- {
--	if (!priv->rdma.addr && !priv->rdma.addr_phys)
-+	if (!priv->rdma.addr && !priv->rdma.addr_dma)
- 		return;
- 
- 	meson_rdma_stop(priv);
- 
- 	dma_free_coherent(priv->dev, SZ_4K,
--			  priv->rdma.addr, priv->rdma.addr_phys);
-+			  priv->rdma.addr, priv->rdma.addr_dma);
- 
- 	priv->rdma.addr = NULL;
--	priv->rdma.addr_phys = (dma_addr_t)NULL;
-+	priv->rdma.addr_dma = (dma_addr_t)0;
- }
- 
- void meson_rdma_setup(struct meson_drm *priv)
-@@ -118,11 +118,11 @@ void meson_rdma_flush(struct meson_drm *priv)
- 	meson_rdma_stop(priv);
- 
- 	/* Start of Channel 1 register writes buffer */
--	writel(priv->rdma.addr_phys,
-+	writel(priv->rdma.addr_dma,
- 	       priv->io_base + _REG(RDMA_AHB_START_ADDR_1));
- 
- 	/* Last byte on Channel 1 register writes buffer */
--	writel(priv->rdma.addr_phys + (priv->rdma.offset * RDMA_DESC_SIZE) - 1,
-+	writel(priv->rdma.addr_dma + (priv->rdma.offset * RDMA_DESC_SIZE) - 1,
- 	       priv->io_base + _REG(RDMA_AHB_END_ADDR_1));
- 
- 	/* Trigger Channel 1 on VSYNC event */
+ drivers/gpu/drm/panfrost/panfrost_devfreq.c | 33 ++++++++++++++++++---
+ drivers/gpu/drm/panfrost/panfrost_device.h  |  1 +
+ 2 files changed, 30 insertions(+), 4 deletions(-)
+
 -- 
-2.20.0
+2.24.1
 
 
 _______________________________________________
