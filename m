@@ -2,21 +2,21 @@ Return-Path: <SRS0=YAuX=24=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-1.0 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BEB0BC33C99
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 11:34:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E6311C33C8C
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 11:54:43 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 92C642081E
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 11:34:15 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id B73712077B
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 11:54:43 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="JyZry7l0"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 92C642081E
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="YZEKVYzb"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org B73712077B
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
@@ -24,50 +24,59 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
 	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=gs2p+bji4zLVLR9+SzAq3OpiFQJcJym1llDan/tIjwg=; b=JyZry7l0URKM1D
-	OWkmZyjOMJUszFsVvhDbxVvCxuxeUmoISIBev6UE4VqKSjuQkpqwQmLH7wqAUp/NUoKnOMpUg9PI3
-	54PcTfVYW0f+B2rTw9/kOZqIG7dPO1zW0EzVFeSIzblPZbksTWFFagTn/KkEaQ0sr1qKftJqqAs4I
-	ry8Y6dZh95By4BQWiGKRM9YoURU48UKffllw7Korkm6OXFNP+rV4qoLjQNWjtjR26bukrKVPOQkTO
-	qNFJHDpgCfN64vCBXicWesy2nUx9eBsY+jok3kTFvDsqUc/k88voirFglkZHOnX5RY616M0RtPRJx
-	GrapJFlrSP52laSUKClw==;
+	List-Owner; bh=iLjS0Hg+ort8J9MiGKsfS5kI+CpYtXSaCDjtbrkGFks=; b=YZEKVYzbBoyn8h
+	VTLq2/tPssC27XamQabHLAKy3URDhC00W4zcr8Yn/F4Essjs9Mm+z3B7RKeNI74wOwZTmt/TunnfW
+	VuYcf7B2kaQSGkkgxwV0v87r8oKiGEDq+YZrSHE0NJaK9ux5vKuxDyIPKHlAImofcikWmlKxr5i+Z
+	sosIqKcAzmhR1bZ4yWp5+VtHRn0JE29x3YIJUYJg9LmEgSA52GLJ+qzocnDYrS53sbtCSObvZ9JUY
+	vdUr04OMbJqyiCVNsSRI2gJRZTLhomyI3zdnID/jWyVyG/dUjiUDlWPo2V2F9y3Iq8JxDsXaU799q
+	Ijuo+bB8rO5hbVVIJdrw==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ion7h-0006a6-Hw; Tue, 07 Jan 2020 11:34:09 +0000
-Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
+	id 1ionRW-0007Bj-Om; Tue, 07 Jan 2020 11:54:38 +0000
+Received: from mail-ed1-f67.google.com ([209.85.208.67])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ion7c-0006VT-PP
- for linux-amlogic@lists.infradead.org; Tue, 07 Jan 2020 11:34:07 +0000
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
- by metis.ext.pengutronix.de with esmtps
- (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
- (envelope-from <ukl@pengutronix.de>)
- id 1ion7T-0002sF-BX; Tue, 07 Jan 2020 12:33:55 +0100
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.89)
- (envelope-from <ukl@pengutronix.de>)
- id 1ion7S-0007gx-AY; Tue, 07 Jan 2020 12:33:54 +0100
-Date: Tue, 7 Jan 2020 12:33:54 +0100
-From: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>
+ id 1ionRS-00079j-AM; Tue, 07 Jan 2020 11:54:36 +0000
+Received: by mail-ed1-f67.google.com with SMTP id dc19so50085905edb.10;
+ Tue, 07 Jan 2020 03:54:33 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=/Gn0sKgSVl88I9a03JnH76quh+NEJOSZxLuBtN1E4nM=;
+ b=XOtvi0rQH+8Hdy3gr7K0bqX+yNcm+Z45k+3g55aVJqH1N10rAAcv4wDZlp12GzKgv+
+ yuxzyH5R44S8R/M36RgjsW8U2Iys1vOr7iEbqVelTbQbGPaaOcucuzR6AxuFR0spkTzt
+ o9ZFx44gCIwKgzVBLkNlP++yep2pIJxZhl7BKrGAMDTpPvm4fZPl1pKZQD0lDrAx2j7P
+ WXO6pzxNwQj1BRjqOC7/uHV6wSDJkFnqqVnebfxPgt76Y0qtyN2vldTNrlD2C0toXso4
+ FxgajkH8JX2GFR/wcLOL5qvysk3iG3/CCiOJGQ5p7j1kCzmmj2uOtZ2XsNPY/zESlN2Q
+ HANw==
+X-Gm-Message-State: APjAAAXzjfy6FlluRXdYlqD6NBzi2r1/HXChvXzHqZ/CpwihJndoYHtD
+ oZY76kTylpG3oJc7f23DqN4=
+X-Google-Smtp-Source: APXvYqx1yeqLv4KsAcheDnbCECVEgnRO87Tbb4/fx7f3mlExaDwzc4evn6w18FnCcsfNgAflvXHFmw==
+X-Received: by 2002:aa7:cf81:: with SMTP id z1mr114422714edx.157.1578398072576; 
+ Tue, 07 Jan 2020 03:54:32 -0800 (PST)
+Received: from pi3 ([194.230.155.149])
+ by smtp.googlemail.com with ESMTPSA id cw15sm7677487edb.44.2020.01.07.03.54.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 07 Jan 2020 03:54:31 -0800 (PST)
+Date: Tue, 7 Jan 2020 12:54:29 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
 Subject: Re: [PATCH 2/2] pwm: Enable compile testing for some of drivers
-Message-ID: <20200107113354.ggq6zarewq5ip354@pengutronix.de>
+Message-ID: <20200107115429.GA32632@pi3>
 References: <20191230172113.17222-1-krzk@kernel.org>
  <20191230172113.17222-2-krzk@kernel.org>
  <20200107072645.ko247bwhh3ibdu73@pengutronix.de>
  <20200107082539.GA31827@pi3>
  <20200107104234.wq74fska3szrg4ii@pengutronix.de>
  <20200107110359.GA32423@pi3>
+ <20200107113354.ggq6zarewq5ip354@pengutronix.de>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200107110359.GA32423@pi3>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
+In-Reply-To: <20200107113354.ggq6zarewq5ip354@pengutronix.de>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200107_033404_861225_77B06000 
-X-CRM114-Status: GOOD (  19.09  )
+X-CRM114-CacheID: sfid-20200107_035434_360518_C7B24D2A 
+X-CRM114-Status: GOOD (  21.96  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,86 +96,68 @@ Cc: linux-pwm@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
  linux-tegra@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
  linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
  linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Tue, Jan 07, 2020 at 12:03:59PM +0100, Krzysztof Kozlowski wrote:
-> On Tue, Jan 07, 2020 at 11:42:34AM +0100, Uwe Kleine-K=F6nig wrote:
-> > > I guess other solution would be to add stubs for few clk functions...
-> > > =
-
-> > > > Also HAS_IOMEM is a typical requirement, but I tested with an ARCH=
-=3Dum
-> > > > config (which does't have HAS_IOMEM) and they all compile fine.
-> > > =
-
-> > > Because of !HAS_IOMEM, since some time ARCH=3Dum does not support
-> > > COMPILE_TEST. Therefore HAS_IOMEM dependency is not needed for compile
-> > > testing (and for regular build it is selected by ARCH).
-> > =
-
-> > Hehe, I didn't notice because for testing I just dropped the "depends on
-> > ..." lines in Kconfig instead of adding "|| COMPILE_TEST" :-) Still they
-> > compile fine on UML.
-> > =
-
-> > Ah, since bc083a64b6c0 ("init/Kconfig: make COMPILE_TEST depend on
-> > !UML") =3D=3D v4.8-rc1~52^2~83 COMPILE_TEST cannot be enabled on UML, b=
-ut
-> > later 1bcbfbfdeb00 ("um: add dummy ioremap and iounmap functions")
-> > =3D=3D v4.13-rc1~8^2~6 UM got a dummy implementation. So maybe we could
-> > revert bc083a64b6c0 today? (And if not, a comment about why near the
-> > "depends on !UML" in init/Kconfig would be great.)
-> > =
-
-> > Orthogonal to that, I wonder if depending on HAS_IOMEM is right even
-> > though the compile testers won't notice it missing. Or should HAS_IOMEM
-> > be dropped?
-> =
-
-> I think yes, it can be dropped, but this would require:
-> 1. Fixing any dependencies on HAS_IOMEM, e.g.:
->     WARNING: unmet direct dependencies detected for MFD_SYSCON
->       Depends on [n]: HAS_IOMEM [=3Dn]
->       Selected by [y]:
->       - PHY_DA8XX_USB [=3Dy] && (ARCH_DAVINCI_DA8XX || COMPILE_TEST [=3Dy=
-])
-
-I don't understand that warning. What did you modify to trigger that?
-Probably related to the big "if HAS_IOMEM" in drivers/mfd/Kconfig?!
-
-> 2. Checking if all of stubs are implemented (not only IOMEM but maybe
->    DMA as well). Also 1bcbfbfdeb00 brought only few stubs. Still we
->    need devm_ioremap_resource() and others.
-
-A problem is that it's unclear (to me at least) what the presence of
-HAS_IOMEM actually implies. I thought it's about ioremap + readl +
-writel (including their respective variants). Does it really include dma
-stuff, too?
-
-> Quick test shows mentioned "unmet direct dependencies" and:
->     phy-pxa-usb.c:(.text+0x2f5): undefined reference to `devm_ioremap_res=
-ource'
->     dma-iommu.c:(.text+0x179): undefined reference to `dma_pgprot'
-
-dma_pgprot seems to depend on HAS_DMA though, not HAS_IOMEM.
-
-(Oh, HAS_DMA is defined using "depends on !NO_DMA" + "default y".
-NO_DMA has three different definitions. Two of them (in
-drivers/crypto/ccree/cc_hw_queue_defs.h and arch/arm/include/asm/dma.h)
-unrelated.)
-
-Best regards
-Uwe
-
--- =
-
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
-_______________________________________________
-linux-amlogic mailing list
-linux-amlogic@lists.infradead.org
-http://lists.infradead.org/mailman/listinfo/linux-amlogic
+T24gVHVlLCBKYW4gMDcsIDIwMjAgYXQgMTI6MzM6NTRQTSArMDEwMCwgVXdlIEtsZWluZS1Lw7Zu
+aWcgd3JvdGU6Cj4gT24gVHVlLCBKYW4gMDcsIDIwMjAgYXQgMTI6MDM6NTlQTSArMDEwMCwgS3J6
+eXN6dG9mIEtvemxvd3NraSB3cm90ZToKPiA+IE9uIFR1ZSwgSmFuIDA3LCAyMDIwIGF0IDExOjQy
+OjM0QU0gKzAxMDAsIFV3ZSBLbGVpbmUtS8O2bmlnIHdyb3RlOgo+ID4gPiA+IEkgZ3Vlc3Mgb3Ro
+ZXIgc29sdXRpb24gd291bGQgYmUgdG8gYWRkIHN0dWJzIGZvciBmZXcgY2xrIGZ1bmN0aW9ucy4u
+Lgo+ID4gPiA+IAo+ID4gPiA+ID4gQWxzbyBIQVNfSU9NRU0gaXMgYSB0eXBpY2FsIHJlcXVpcmVt
+ZW50LCBidXQgSSB0ZXN0ZWQgd2l0aCBhbiBBUkNIPXVtCj4gPiA+ID4gPiBjb25maWcgKHdoaWNo
+IGRvZXMndCBoYXZlIEhBU19JT01FTSkgYW5kIHRoZXkgYWxsIGNvbXBpbGUgZmluZS4KPiA+ID4g
+PiAKPiA+ID4gPiBCZWNhdXNlIG9mICFIQVNfSU9NRU0sIHNpbmNlIHNvbWUgdGltZSBBUkNIPXVt
+IGRvZXMgbm90IHN1cHBvcnQKPiA+ID4gPiBDT01QSUxFX1RFU1QuIFRoZXJlZm9yZSBIQVNfSU9N
+RU0gZGVwZW5kZW5jeSBpcyBub3QgbmVlZGVkIGZvciBjb21waWxlCj4gPiA+ID4gdGVzdGluZyAo
+YW5kIGZvciByZWd1bGFyIGJ1aWxkIGl0IGlzIHNlbGVjdGVkIGJ5IEFSQ0gpLgo+ID4gPiAKPiA+
+ID4gSGVoZSwgSSBkaWRuJ3Qgbm90aWNlIGJlY2F1c2UgZm9yIHRlc3RpbmcgSSBqdXN0IGRyb3Bw
+ZWQgdGhlICJkZXBlbmRzIG9uCj4gPiA+IC4uLiIgbGluZXMgaW4gS2NvbmZpZyBpbnN0ZWFkIG9m
+IGFkZGluZyAifHwgQ09NUElMRV9URVNUIiA6LSkgU3RpbGwgdGhleQo+ID4gPiBjb21waWxlIGZp
+bmUgb24gVU1MLgo+ID4gPiAKPiA+ID4gQWgsIHNpbmNlIGJjMDgzYTY0YjZjMCAoImluaXQvS2Nv
+bmZpZzogbWFrZSBDT01QSUxFX1RFU1QgZGVwZW5kIG9uCj4gPiA+ICFVTUwiKSA9PSB2NC44LXJj
+MX41Ml4yfjgzIENPTVBJTEVfVEVTVCBjYW5ub3QgYmUgZW5hYmxlZCBvbiBVTUwsIGJ1dAo+ID4g
+PiBsYXRlciAxYmNiZmJmZGViMDAgKCJ1bTogYWRkIGR1bW15IGlvcmVtYXAgYW5kIGlvdW5tYXAg
+ZnVuY3Rpb25zIikKPiA+ID4gPT0gdjQuMTMtcmMxfjheMn42IFVNIGdvdCBhIGR1bW15IGltcGxl
+bWVudGF0aW9uLiBTbyBtYXliZSB3ZSBjb3VsZAo+ID4gPiByZXZlcnQgYmMwODNhNjRiNmMwIHRv
+ZGF5PyAoQW5kIGlmIG5vdCwgYSBjb21tZW50IGFib3V0IHdoeSBuZWFyIHRoZQo+ID4gPiAiZGVw
+ZW5kcyBvbiAhVU1MIiBpbiBpbml0L0tjb25maWcgd291bGQgYmUgZ3JlYXQuKQo+ID4gPiAKPiA+
+ID4gT3J0aG9nb25hbCB0byB0aGF0LCBJIHdvbmRlciBpZiBkZXBlbmRpbmcgb24gSEFTX0lPTUVN
+IGlzIHJpZ2h0IGV2ZW4KPiA+ID4gdGhvdWdoIHRoZSBjb21waWxlIHRlc3RlcnMgd29uJ3Qgbm90
+aWNlIGl0IG1pc3NpbmcuIE9yIHNob3VsZCBIQVNfSU9NRU0KPiA+ID4gYmUgZHJvcHBlZD8KPiA+
+IAo+ID4gSSB0aGluayB5ZXMsIGl0IGNhbiBiZSBkcm9wcGVkLCBidXQgdGhpcyB3b3VsZCByZXF1
+aXJlOgo+ID4gMS4gRml4aW5nIGFueSBkZXBlbmRlbmNpZXMgb24gSEFTX0lPTUVNLCBlLmcuOgo+
+ID4gICAgIFdBUk5JTkc6IHVubWV0IGRpcmVjdCBkZXBlbmRlbmNpZXMgZGV0ZWN0ZWQgZm9yIE1G
+RF9TWVNDT04KPiA+ICAgICAgIERlcGVuZHMgb24gW25dOiBIQVNfSU9NRU0gWz1uXQo+ID4gICAg
+ICAgU2VsZWN0ZWQgYnkgW3ldOgo+ID4gICAgICAgLSBQSFlfREE4WFhfVVNCIFs9eV0gJiYgKEFS
+Q0hfREFWSU5DSV9EQThYWCB8fCBDT01QSUxFX1RFU1QgWz15XSkKPiAKPiBJIGRvbid0IHVuZGVy
+c3RhbmQgdGhhdCB3YXJuaW5nLiBXaGF0IGRpZCB5b3UgbW9kaWZ5IHRvIHRyaWdnZXIgdGhhdD8K
+PiBQcm9iYWJseSByZWxhdGVkIHRvIHRoZSBiaWcgImlmIEhBU19JT01FTSIgaW4gZHJpdmVycy9t
+ZmQvS2NvbmZpZz8hCgpPSywgdGhhdCdzIGFjdHVhbGx5IGZyb20gbXkgb3RoZXIgcGF0Y2ggdG8g
+aWxsdXN0cmF0ZSB0aGUgcHJvYmxlbToKaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgtYXJt
+LWtlcm5lbC8yMDIwMDEwMzE2NDcxMC40ODI5LTIta3J6a0BrZXJuZWwub3JnLwoKQWZ0ZXIgcmV2
+ZXJ0aW5nIG9mIGJjMDgzYTY0YjZjMCwgZXZlcnkgZHJpdmVyIHRoYXQgc2VsZWN0cyBNRkRfU1lT
+Q09OCihvciBzb21lIG90aGVyIHBhcnRzKSBoYXMgdG8gZGVwZW5kIG9uIEhBU19JT01FTS4KCj4g
+Cj4gPiAyLiBDaGVja2luZyBpZiBhbGwgb2Ygc3R1YnMgYXJlIGltcGxlbWVudGVkIChub3Qgb25s
+eSBJT01FTSBidXQgbWF5YmUKPiA+ICAgIERNQSBhcyB3ZWxsKS4gQWxzbyAxYmNiZmJmZGViMDAg
+YnJvdWdodCBvbmx5IGZldyBzdHVicy4gU3RpbGwgd2UKPiA+ICAgIG5lZWQgZGV2bV9pb3JlbWFw
+X3Jlc291cmNlKCkgYW5kIG90aGVycy4KPiAKPiBBIHByb2JsZW0gaXMgdGhhdCBpdCdzIHVuY2xl
+YXIgKHRvIG1lIGF0IGxlYXN0KSB3aGF0IHRoZSBwcmVzZW5jZSBvZgo+IEhBU19JT01FTSBhY3R1
+YWxseSBpbXBsaWVzLiBJIHRob3VnaHQgaXQncyBhYm91dCBpb3JlbWFwICsgcmVhZGwgKwo+IHdy
+aXRlbCAoaW5jbHVkaW5nIHRoZWlyIHJlc3BlY3RpdmUgdmFyaWFudHMpLiBEb2VzIGl0IHJlYWxs
+eSBpbmNsdWRlIGRtYQo+IHN0dWZmLCB0b28/Cj4gCj4gPiBRdWljayB0ZXN0IHNob3dzIG1lbnRp
+b25lZCAidW5tZXQgZGlyZWN0IGRlcGVuZGVuY2llcyIgYW5kOgo+ID4gICAgIHBoeS1weGEtdXNi
+LmM6KC50ZXh0KzB4MmY1KTogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgZGV2bV9pb3JlbWFwX3Jl
+c291cmNlJwo+ID4gICAgIGRtYS1pb21tdS5jOigudGV4dCsweDE3OSk6IHVuZGVmaW5lZCByZWZl
+cmVuY2UgdG8gYGRtYV9wZ3Byb3QnCj4gCj4gZG1hX3BncHJvdCBzZWVtcyB0byBkZXBlbmQgb24g
+SEFTX0RNQSB0aG91Z2gsIG5vdCBIQVNfSU9NRU0uCj4gCj4gKE9oLCBIQVNfRE1BIGlzIGRlZmlu
+ZWQgdXNpbmcgImRlcGVuZHMgb24gIU5PX0RNQSIgKyAiZGVmYXVsdCB5Ii4KPiBOT19ETUEgaGFz
+IHRocmVlIGRpZmZlcmVudCBkZWZpbml0aW9ucy4gVHdvIG9mIHRoZW0gKGluCj4gZHJpdmVycy9j
+cnlwdG8vY2NyZWUvY2NfaHdfcXVldWVfZGVmcy5oIGFuZCBhcmNoL2FybS9pbmNsdWRlL2FzbS9k
+bWEuaCkKPiB1bnJlbGF0ZWQuKQoKWWVzLCBIQVNfRE1BIGlzIHRoZSBzZWNvbmQgbWlzc2luZyBw
+aWVjZSBmb3IgVU0uCgpCZXN0IHJlZ2FyZHMsCktyenlzenRvZgoKCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmxpbnV4LWFtbG9naWMgbWFpbGluZyBsaXN0
+CmxpbnV4LWFtbG9naWNAbGlzdHMuaW5mcmFkZWFkLm9yZwpodHRwOi8vbGlzdHMuaW5mcmFkZWFk
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LWFtbG9naWMK
