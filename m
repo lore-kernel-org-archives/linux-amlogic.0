@@ -7,16 +7,16 @@ X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 104C2C32771
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 02:35:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3F52FC32771
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 02:43:46 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DACD220715
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 02:35:29 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id DE36B206E6
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 02:43:45 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="s9OIm22d"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DACD220715
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Ho0QKkXY"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DE36B206E6
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -25,41 +25,42 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=0RrN9ngUkoxUjITbdOO7eHw3GFzgWPx6tG/gIPQeBwM=; b=s9OIm22dOfAcBJ
-	WyGDkYWAnWT685VCiB2A4n8/dJLvZ7wLR93zq5W//xhbDUiJ82f9lHBykC24CqiOr5QoYosWRYQ3y
-	5hf3QeGknvuJCknKWsl3UQd5UzK2UsC2pzs00rmTNAVExT6jKLhfVxZGCSDysSFPJFzp3TSVeu81H
-	1mSvDypQCaqQIFa49z8u5Gmn7Gb2vfkc19FCWyGk9nopKSeQAcL/VxJ5TIoPauqI+arHRR9bXrsNV
-	w82wulkHTt8fct/v1QSn/rsqdNssrdCZXBYllpGHhu5s4xjqVLsD5aoH0BgVasBdG4cImTXZ5cHm6
-	z7/a618ubs3cnFihHwqA==;
+	List-Owner; bh=PLDNXk2iWKyJeejxCWFOkEqIFdHIsmCKn+woiErkOh0=; b=Ho0QKkXYxPcp2x
+	87kuIIujuuIJrPVliQfd32OfDPROy1PK0TJ0NzkXvTw/7B498bZ5B2b/MLAi+i3FEfSkh38KAnyX/
+	cm4tw/erkuCxXnSbO5sfma7dx3dRMWA+WV8kwinZ3koObplfM8efofCskhYusUWijhSKDoYDtO23j
+	Rc6fHjNQIRrho9yf5Fn/n0Pr0JrdJ1QMBMm890yI6OViznCz+WSUaht+dhGg1LfRO65cVy0uFfoXU
+	jeUOgietXiBKg0wfnIPuvZoNcPDYmw3AImFpgC4y7zEJ+dCZ6JhjP+BW7KlvAZRGp6avw+L6FQkGk
+	LwvrM5Gr1z5XnUF1kEbA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ioeiI-0003iz-3i; Tue, 07 Jan 2020 02:35:22 +0000
+	id 1ioeqK-0006C4-8s; Tue, 07 Jan 2020 02:43:40 +0000
 Received: from mail-sh.amlogic.com ([58.32.228.43])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ioeiF-0003hn-Lb; Tue, 07 Jan 2020 02:35:21 +0000
+ id 1ioeqH-0006BI-0D; Tue, 07 Jan 2020 02:43:38 +0000
 Received: from [10.18.38.198] (10.18.38.198) by mail-sh.amlogic.com
  (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Tue, 7 Jan
- 2020 10:35:34 +0800
-Subject: Re: [PATCH v3 1/6] dt-bindings: phy: Add Amlogic A1 USB2 PHY Bindings
+ 2020 10:43:58 +0800
+Subject: Re: [PATCH v3 2/6] dt-bindings: usb: dwc3: Add the Amlogic A1 Family
+ DWC3 Glue Bindings
 To: Rob Herring <robh@kernel.org>
 References: <1577428606-69855-1-git-send-email-hanjie.lin@amlogic.com>
- <1577428606-69855-2-git-send-email-hanjie.lin@amlogic.com>
- <20200104002806.GA24214@bogus>
+ <1577428606-69855-3-git-send-email-hanjie.lin@amlogic.com>
+ <20200104003210.GA29074@bogus>
 From: Hanjie Lin <hanjie.lin@amlogic.com>
-Message-ID: <dca2c600-fb07-4071-4cf0-0392e64f450c@amlogic.com>
-Date: Tue, 7 Jan 2020 10:35:34 +0800
+Message-ID: <11875bd0-0248-4c68-964a-004e1d15ab83@amlogic.com>
+Date: Tue, 7 Jan 2020 10:43:58 +0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
  Thunderbird/68.3.1
 MIME-Version: 1.0
-In-Reply-To: <20200104002806.GA24214@bogus>
+In-Reply-To: <20200104003210.GA29074@bogus>
 Content-Language: en-US
 X-Originating-IP: [10.18.38.198]
 X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
  (10.18.11.5)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200106_183519_707572_3E6D5164 
-X-CRM114-Status: GOOD (  12.08  )
+X-CRM114-CacheID: sfid-20200106_184337_050781_F0837062 
+X-CRM114-Status: GOOD (  14.06  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,101 +91,160 @@ Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infrade
 
 
 
-On 2020/1/4 8:28, Rob Herring wrote:
-> On Fri, Dec 27, 2019 at 02:36:41PM +0800, Hanjie Lin wrote:
->> Add the Amlogic A1 Family USB2 PHY Bindings
+On 2020/1/4 8:32, Rob Herring wrote:
+> On Fri, Dec 27, 2019 at 02:36:42PM +0800, Hanjie Lin wrote:
+>> The Amlogic A1 SoC Family embeds 1 USB Controllers:
+>>  - a DWC3 IP configured as Host for USB2 and USB3
 >>
->> It supports Host mode only.
+>> A glue connects the controllers to the USB2 PHY of A1 SoC.
 >>
 >> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
 >> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
 >> ---
->>  .../bindings/phy/amlogic,meson-a1-usb2-phy.yaml    | 55 ++++++++++++++++++++++
->>  1 file changed, 55 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-a1-usb2-phy.yaml
+>>  .../bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml  | 57 +++++++++++++++++++---
+>>  1 file changed, 51 insertions(+), 6 deletions(-)
 >>
->> diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-a1-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson-a1-usb2-phy.yaml
->> new file mode 100644
->> index 00000000..2b2c526
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/phy/amlogic,meson-a1-usb2-phy.yaml
->> @@ -0,0 +1,55 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +# Copyright 2019 Amlogic, Inc
->> +%YAML 1.2
->> +---
->> +$id: "http://devicetree.org/schemas/phy/amlogic,meson-a1-usb2-phy.yaml#"
->> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->> +
->> +title: Amlogic A1 USB2 PHY
->> +
->> +maintainers:
+>> diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+>> index 4efb77b..6103cc2 100644
+>> --- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+>> +++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+>> @@ -9,6 +9,8 @@ title: Amlogic Meson G12A DWC3 USB SoC Controller Glue
+>>  
+>>  maintainers:
+>>    - Neil Armstrong <narmstrong@baylibre.com>
+>> +  - Hanjie Lin <hanjie.lin@amlogic.com>
 >> +  - Yue Wang <yue.wang@amlogic.com>
+>>  
+>>  description: |
+>>    The Amlogic G12A embeds a DWC3 USB IP Core configured for USB2 and USB3
+>> @@ -22,10 +24,14 @@ description: |
+>>    The DWC3 Glue controls the PHY routing and power, an interrupt line is
+>>    connected to the Glue to serve as OTG ID change detection.
+>>  
+>> +  The Amlogic A1 embeds a DWC3 USB IP Core configured for USB2 in
+>> +  host-only mode.
 >> +
->> +properties:
->> +  compatible:
+>>  properties:
+>>    compatible:
+>>      enum:
+>>        - amlogic,meson-g12a-usb-ctrl
+>> +      - amlogic,meson-a1-usb-ctrl
+>>  
+>>    ranges: true
+>>  
+>> @@ -37,6 +43,11 @@ properties:
+>>  
+>>    clocks:
+>>      minItems: 1
+>> +    maxItems: 4
+>> +
+>> +  clock-names:
+>> +    minItems: 1
+>> +    maxItems: 4
+>>  
+>>    resets:
+>>      minItems: 1
+>> @@ -47,17 +58,22 @@ properties:
+>>    interrupts:
+>>      maxItems: 1
+>>  
+>> +  phys:
+>> +    minItems: 1
+>> +    maxItems: 3
+>> +
+>>    phy-names:
+>>      items:
+>>        - const: usb2-phy0 # USB2 PHY0 if USBHOST_A port is used
+>>        - const: usb2-phy1 # USB2 PHY1 if USBOTG_B port is used
+>>        - const: usb3-phy0 # USB3 PHY if USB3_0 is used
+>>  
+>> -  phys:
+>> -    minItems: 1
+>> -    maxItems: 3
+>> -
+> 
+> Why the unnecessary move?
+> 
+
+I saw most "phys" attributes are front of "phy-names" in dts, maybe looks pretty no other reasons.
+
+>> -  dr_mode: true
+>> +  dr_mode:
+>> +    description: usb mode for G12A
 >> +    enum:
->> +      - amlogic,meson-a1-usb2-phy
+>> +      - host
+>> +      - peripheral
+>> +      - otg
 > 
-> Use 'const' if there's only 1.
+> No, this is a common property that doesn't need to be redefined here. It 
+> was correct as-is.
+> 
+
+Ok, I will modify it.
+
+>>  
+>>    power-domains:
+>>      maxItems: 1
+>> @@ -80,9 +96,9 @@ required:
+>>    - resets
+>>    - reg
+>>    - interrupts
+>> -  - phy-names
+>>    - phys
+>>    - dr_mode
+>> +  - phy-names
+> 
+> Again, unnecessary change.
 > 
 
 Ok
 
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  resets:
->> +    maxItems: 1
->> +
->> +  reset-names:
->> +    items:
->> +      - const: phy
+>>  
+>>  examples:
+>>    - |
+>> @@ -124,4 +140,33 @@ examples:
+>>                snps,quirk-frame-length-adjustment;
+>>            };
+>>      };
+>> +  - |
+>> +    a1_usb: usb@ffe09000 {
 > 
-> Don't need *-names when there's a single entry.
-> 
-
-Ok
-
->> +
->> +  "#phy-cells":
->> +    const: 0
->> +
->> +  power-domains:
->> +     maxItems: 1
->> +     description:
->> +       a phandle to respective power domain node as described by generic
->> +       PM domain bindings (see power/power_domain.txt for more information).
-> 
-> Drop the generic description. No need to duplicate everywhere.
+> You are only adding a compatible. No need for a whole new example.
 > 
 
-Ok, I will modify these issues.
+Ok, I will fix it.
 
-Thanks
+Thanks, 
 
 Hanjie
 
+>> +          status = "okay";
+>> +          compatible = "amlogic,meson-a1-usb-ctrl";
+>> +          reg = <0 0xffe09000 0x0 0xa0>;
+>> +          #address-cells = <1>;
+>> +          #size-cells = <1>;
+>> +          ranges;
+>>  
+>> +          clocks = <&clkc_periphs 36>,
+>> +                   <&clkc_periphs 85>,
+>> +                   <&clkc_periphs 2>,
+>> +                   <&clkc_periphs 3>;
+>> +          clock-names = "usb_ctrl", "usb_bus", "xtal_usb_phy",
+>> +                        "xtal_usb_ctrl";
 >> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - resets
->> +  - reset-names
->> +  - "#phy-cells"
->> +  - power-domains
+>> +          resets = <&reset 36>;
 >> +
->> +examples:
->> +  - |
->> +    usb2_phy1: phy@40000 {
->> +      status = "okay";
->> +      compatible = "amlogic,a1-usb2-phy";
->> +      reg = <0x0 0x40000 0x0 0x2000>;
->> +      resets = <&reset RESET_USBPHY>;
->> +      reset-names = "phy";
->> +      #phy-cells = <0>;
->> +      power-domains = <&pwrc PWRC_USB_ID>;
+>> +          phys = <&usb2_phy1>;
+>> +          phy-names = "usb2-phy1";
+>> +
+>> +          a1_dwc3: usb@ff400000 {
+>> +                  compatible = "snps,dwc3";
+>> +                  reg = <0xff400000 0x100000>;
+>> +                  interrupts = <0 90 4>;
+>> +                  dr_mode = "host";
+>> +                  snps,dis_u2_susphy_quirk;
+>> +                  snps,quirk-frame-length-adjustment = <0x20>;
+>> +          };
 >> +    };
 >> -- 
 >> 2.7.4
