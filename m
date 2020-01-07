@@ -2,65 +2,69 @@ Return-Path: <SRS0=YAuX=24=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
-	autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3F52FC32771
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 02:43:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6B867C33C99
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 07:27:16 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id DE36B206E6
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 02:43:45 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 3BAC82075A
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 07:27:16 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Ho0QKkXY"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org DE36B206E6
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="oU8txv5l"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3BAC82075A
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
-	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
-	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=PLDNXk2iWKyJeejxCWFOkEqIFdHIsmCKn+woiErkOh0=; b=Ho0QKkXYxPcp2x
-	87kuIIujuuIJrPVliQfd32OfDPROy1PK0TJ0NzkXvTw/7B498bZ5B2b/MLAi+i3FEfSkh38KAnyX/
-	cm4tw/erkuCxXnSbO5sfma7dx3dRMWA+WV8kwinZ3koObplfM8efofCskhYusUWijhSKDoYDtO23j
-	Rc6fHjNQIRrho9yf5Fn/n0Pr0JrdJ1QMBMm890yI6OViznCz+WSUaht+dhGg1LfRO65cVy0uFfoXU
-	jeUOgietXiBKg0wfnIPuvZoNcPDYmw3AImFpgC4y7zEJ+dCZ6JhjP+BW7KlvAZRGp6avw+L6FQkGk
-	LwvrM5Gr1z5XnUF1kEbA==;
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=utLaqEP9RWJZBKlTnFqybzemBfO1gHA2xc5h4PkClRw=; b=oU8txv5lPtNOZL
+	JqfZC4MkLHUt9pbGImmw/dxgpwr9jQZZF4Dh8jhsGQRTQKN2FHu17au9P0ZiAtMLWdXydfCmUpW9b
+	2liGcB/tcx3igXntNBU9YK7awTtaZ4rNH6ffmvM4RiiyOwheL1i3zbXmybMhNvA6lZ+dWCA/0ZrBu
+	r7GyjJXuDArkSypHsMDl4o+yZ3P1VP++55pnJ0Pxl3FJueROVaZM89vZYufCPxWW93MU9qxZtUsyC
+	mDYyZDzM0sRFTMjYFzGlK3qLiwlUxuvz5m6m/w5j8M2o/0DSckdWbSSIdzpAueNpGJAizR5BIB9Yo
+	Tsx7eIQ2nuB3w4cjsynQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ioeqK-0006C4-8s; Tue, 07 Jan 2020 02:43:40 +0000
-Received: from mail-sh.amlogic.com ([58.32.228.43])
+	id 1iojGb-0003g8-6o; Tue, 07 Jan 2020 07:27:05 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ioeqH-0006BI-0D; Tue, 07 Jan 2020 02:43:38 +0000
-Received: from [10.18.38.198] (10.18.38.198) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Tue, 7 Jan
- 2020 10:43:58 +0800
-Subject: Re: [PATCH v3 2/6] dt-bindings: usb: dwc3: Add the Amlogic A1 Family
- DWC3 Glue Bindings
-To: Rob Herring <robh@kernel.org>
-References: <1577428606-69855-1-git-send-email-hanjie.lin@amlogic.com>
- <1577428606-69855-3-git-send-email-hanjie.lin@amlogic.com>
- <20200104003210.GA29074@bogus>
-From: Hanjie Lin <hanjie.lin@amlogic.com>
-Message-ID: <11875bd0-0248-4c68-964a-004e1d15ab83@amlogic.com>
-Date: Tue, 7 Jan 2020 10:43:58 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.1
+ id 1iojGT-0003Vy-8E
+ for linux-amlogic@lists.infradead.org; Tue, 07 Jan 2020 07:26:58 +0000
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+ by metis.ext.pengutronix.de with esmtps
+ (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1iojGI-0000qU-CN; Tue, 07 Jan 2020 08:26:46 +0100
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.89)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1iojGH-00029v-Ic; Tue, 07 Jan 2020 08:26:45 +0100
+Date: Tue, 7 Jan 2020 08:26:45 +0100
+From: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 2/2] pwm: Enable compile testing for some of drivers
+Message-ID: <20200107072645.ko247bwhh3ibdu73@pengutronix.de>
+References: <20191230172113.17222-1-krzk@kernel.org>
+ <20191230172113.17222-2-krzk@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20200104003210.GA29074@bogus>
-Content-Language: en-US
-X-Originating-IP: [10.18.38.198]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
+Content-Disposition: inline
+In-Reply-To: <20191230172113.17222-2-krzk@kernel.org>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
+ SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200106_184337_050781_F0837062 
-X-CRM114-Status: GOOD (  14.06  )
+X-CRM114-CacheID: sfid-20200106_232657_298422_384A7C2F 
+X-CRM114-Status: UNSURE (   9.37  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,186 +76,63 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: devicetree@vger.kernel.org, Victor Wan <victor.wan@amlogic.com>,
- Jianxin Pan <jianxin.pan@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Michael Turquette <mturquette@baylibre.com>, linux-usb@vger.kernel.org,
- Yue Wang <yue.wang@amlogic.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jian Hu <jian.hu@amlogic.com>, Liang Yang <liang.yang@amlogic.com>,
- Qiufang Dai <qiufang.dai@amlogic.com>, Xingyu Chen <xingyu.chen@amlogic.com>,
- Kevin Hilman <khilman@baylibre.com>, Carlo Caione <carlo@caione.org>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-pwm@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ Thierry Reding <thierry.reding@gmail.com>,
+ bcm-kernel-feedback-list@broadcom.com, linux-rpi-kernel@lists.infradead.org,
+ linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
+Hello Krzysztof,
 
+On Mon, Dec 30, 2019 at 06:21:13PM +0100, Krzysztof Kozlowski wrote:
+> Some of the PWM drivers can be compile tested to increase build
+> coverage.
+> =
 
-On 2020/1/4 8:32, Rob Herring wrote:
-> On Fri, Dec 27, 2019 at 02:36:42PM +0800, Hanjie Lin wrote:
->> The Amlogic A1 SoC Family embeds 1 USB Controllers:
->>  - a DWC3 IP configured as Host for USB2 and USB3
->>
->> A glue connects the controllers to the USB2 PHY of A1 SoC.
->>
->> Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
->> Signed-off-by: Yue Wang <yue.wang@amlogic.com>
->> ---
->>  .../bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml  | 57 +++++++++++++++++++---
->>  1 file changed, 51 insertions(+), 6 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
->> index 4efb77b..6103cc2 100644
->> --- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
->> +++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
->> @@ -9,6 +9,8 @@ title: Amlogic Meson G12A DWC3 USB SoC Controller Glue
->>  
->>  maintainers:
->>    - Neil Armstrong <narmstrong@baylibre.com>
->> +  - Hanjie Lin <hanjie.lin@amlogic.com>
->> +  - Yue Wang <yue.wang@amlogic.com>
->>  
->>  description: |
->>    The Amlogic G12A embeds a DWC3 USB IP Core configured for USB2 and USB3
->> @@ -22,10 +24,14 @@ description: |
->>    The DWC3 Glue controls the PHY routing and power, an interrupt line is
->>    connected to the Glue to serve as OTG ID change detection.
->>  
->> +  The Amlogic A1 embeds a DWC3 USB IP Core configured for USB2 in
->> +  host-only mode.
->> +
->>  properties:
->>    compatible:
->>      enum:
->>        - amlogic,meson-g12a-usb-ctrl
->> +      - amlogic,meson-a1-usb-ctrl
->>  
->>    ranges: true
->>  
->> @@ -37,6 +43,11 @@ properties:
->>  
->>    clocks:
->>      minItems: 1
->> +    maxItems: 4
->> +
->> +  clock-names:
->> +    minItems: 1
->> +    maxItems: 4
->>  
->>    resets:
->>      minItems: 1
->> @@ -47,17 +58,22 @@ properties:
->>    interrupts:
->>      maxItems: 1
->>  
->> +  phys:
->> +    minItems: 1
->> +    maxItems: 3
->> +
->>    phy-names:
->>      items:
->>        - const: usb2-phy0 # USB2 PHY0 if USBHOST_A port is used
->>        - const: usb2-phy1 # USB2 PHY1 if USBOTG_B port is used
->>        - const: usb3-phy0 # USB3 PHY if USB3_0 is used
->>  
->> -  phys:
->> -    minItems: 1
->> -    maxItems: 3
->> -
-> 
-> Why the unnecessary move?
-> 
+> The Meson PWM driver requires COMMON_CLK dependency.
 
-I saw most "phys" attributes are front of "phy-names" in dts, maybe looks pretty no other reasons.
+I'm surprised that there are not more that need this. Is HAVE_CLK not
+enough?
 
->> -  dr_mode: true
->> +  dr_mode:
->> +    description: usb mode for G12A
->> +    enum:
->> +      - host
->> +      - peripheral
->> +      - otg
-> 
-> No, this is a common property that doesn't need to be redefined here. It 
-> was correct as-is.
-> 
+Also HAS_IOMEM is a typical requirement, but I tested with an ARCH=3Dum
+config (which does't have HAS_IOMEM) and they all compile fine.
 
-Ok, I will modify it.
+> @@ -318,7 +319,7 @@ config PWM_MEDIATEK
+>  =
 
->>  
->>    power-domains:
->>      maxItems: 1
->> @@ -80,9 +96,9 @@ required:
->>    - resets
->>    - reg
->>    - interrupts
->> -  - phy-names
->>    - phys
->>    - dr_mode
->> +  - phy-names
-> 
-> Again, unnecessary change.
-> 
+>  config PWM_MXS
+>  	tristate "Freescale MXS PWM support"
+> -	depends on ARCH_MXS && OF
+> +	depends on (ARCH_MXS && OF) || COMPILE_TEST
+>  	select STMP_DEVICE
+>  	help
+>  	  Generic PWM framework driver for Freescale MXS.
+> @@ -328,7 +329,8 @@ config PWM_MXS
+>  =
 
-Ok
+>  config PWM_OMAP_DMTIMER
+>  	tristate "OMAP Dual-Mode Timer PWM support"
+> -	depends on OF && ARCH_OMAP && OMAP_DM_TIMER
+> +	depends on (ARCH_OMAP && OMAP_DM_TIMER) || COMPILE_TEST
+> +	depends on OF
 
->>  
->>  examples:
->>    - |
->> @@ -124,4 +140,33 @@ examples:
->>                snps,quirk-frame-length-adjustment;
->>            };
->>      };
->> +  - |
->> +    a1_usb: usb@ffe09000 {
-> 
-> You are only adding a compatible. No need for a whole new example.
-> 
+I'm surprised that OF isn't required for PWM_MXS but is is for
+PWM_OMAP_DMTIMER. pwm-mxs compiles without CONFIG_OF, didn't test
+pwm-omap-dmtimer.
 
-Ok, I will fix it.
+Best regards
+Uwe
 
-Thanks, 
+-- =
 
-Hanjie
-
->> +          status = "okay";
->> +          compatible = "amlogic,meson-a1-usb-ctrl";
->> +          reg = <0 0xffe09000 0x0 0xa0>;
->> +          #address-cells = <1>;
->> +          #size-cells = <1>;
->> +          ranges;
->>  
->> +          clocks = <&clkc_periphs 36>,
->> +                   <&clkc_periphs 85>,
->> +                   <&clkc_periphs 2>,
->> +                   <&clkc_periphs 3>;
->> +          clock-names = "usb_ctrl", "usb_bus", "xtal_usb_phy",
->> +                        "xtal_usb_ctrl";
->> +
->> +          resets = <&reset 36>;
->> +
->> +          phys = <&usb2_phy1>;
->> +          phy-names = "usb2-phy1";
->> +
->> +          a1_dwc3: usb@ff400000 {
->> +                  compatible = "snps,dwc3";
->> +                  reg = <0xff400000 0x100000>;
->> +                  interrupts = <0 90 4>;
->> +                  dr_mode = "host";
->> +                  snps,dis_u2_susphy_quirk;
->> +                  snps,quirk-frame-length-adjustment = <0x20>;
->> +          };
->> +    };
->> -- 
->> 2.7.4
->>
-> 
-> .
-> 
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            =
+|    | https://www.pengutronix.de/ |
 
 _______________________________________________
 linux-amlogic mailing list
