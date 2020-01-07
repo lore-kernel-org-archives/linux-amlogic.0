@@ -2,22 +2,23 @@ Return-Path: <SRS0=YAuX=24=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-9.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AB4C1C3F68F
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 23:21:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F284FC33C9E
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 23:29:21 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 776D42087F
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 23:21:08 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id C0C352087F
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 23:29:21 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="Qh57Wqoi";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="ef4VoKVq"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 776D42087F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="NSW/LGmf";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="fqh5U2fC"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org C0C352087F
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,66 +27,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
 	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=A6OZxF5ehwlZD+bcGv+ArlP6lRpAH/UdSpLF+rCvafY=; b=Qh57Wqoizl9uYQ
-	aNTWtzIxXXwz+K4+6EyOc13Dc7s4oHt+bXuNygSEkTSLMhE65Jh0VyAE3RintX8EFsZfe0WslYAWM
-	n21qBCWzNCyHaRXCVmtSQKZfXTrqbCwanl3tgUzIOPw1UOCvUvXC3LfmGEnHeAcpdzJW5C7Q3k4n8
-	+hcD9igkZ7e1NZIivs7MKFOYrimk61VZAeq6R9RDRYw6csWpJ8SaxZmfzXrRPlUi/zN4j3xMd/WEg
-	z1LZiG5sRElx8ABg1gsy+xizaTBVww3/1Y14e6tQ5G76kJRsLMAxSD6vEtddQRnNP96j+FdNL6Wsk
-	EDpDemsVMHgzImgqa3vg==;
+	List-Owner; bh=amMPQmz9lK5jM+vggYHxxtVlw93fWwbSfQMR7hQZE7Q=; b=NSW/LGmfefPJnD
+	KtWlS8votbboN8rMOesD+bg2cgx9kGXz0p8kQfK0nxhicWFPxMtGCQdKSqqCz3sRKI7A+WNEoE0L6
+	fZJT3MVC7cVVtKfcAxbl1C1NNIwRWcUcYexJr8HGUibOBGeLvuaFrAAmSlmIlczoVwxXd1+MMex1B
+	7+i1DMSAuFoRlc3MpRsjZeKmW48siNhy7Dz+Tab7zCAlfXQCFKxmBsA+q7StAjWGtymI3lLcloirF
+	CNLEDPHNC1voZ7x53RsMOL65XH3bUMHx21FfOPddU29tQBifnA6PqlXLdifd+oQzQz+F/GQrFmneU
+	4+CVB3qyoZyn8YbAUpYg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ioy9n-0000xs-10; Tue, 07 Jan 2020 23:21:03 +0000
+	id 1ioyHj-0003UC-Je; Tue, 07 Jan 2020 23:29:15 +0000
 Received: from mail-wr1-x444.google.com ([2a00:1450:4864:20::444])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ioy9j-0000vd-Tp
- for linux-amlogic@lists.infradead.org; Tue, 07 Jan 2020 23:21:01 +0000
-Received: by mail-wr1-x444.google.com with SMTP id q10so1391140wrm.11
- for <linux-amlogic@lists.infradead.org>; Tue, 07 Jan 2020 15:20:57 -0800 (PST)
+ id 1ioyHh-0003Tn-DY; Tue, 07 Jan 2020 23:29:15 +0000
+Received: by mail-wr1-x444.google.com with SMTP id w15so1465051wru.4;
+ Tue, 07 Jan 2020 15:29:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=n8Xx2TMo98HOlnNXLfC+Sqmt0X1ycOlUNLncTAwPcpw=;
- b=ef4VoKVqe4g5ezm4iwoyskM7fNVE5Pe8ZwAriX4UoHXrg2UenS01yC3mdQNhCDlOFi
- zMx+THsG9CmCaNAh0KTvTGRQuxcIVdbfM/jMDy3hDLru3fXQF7n0SUZzSTbuy1p4ukPD
- zD6XYUTu9BErJHwbe8waeqaTPy5qvqEOl95iEfhnWn1Y68mM7OTNr+Zmj/Xf7Gp0ubnc
- Bo76HZDwI8IBpQjT9XVBxgEnfXQGS3M1qjgY5ifNX1KNEVOCECG47GvDbDaZItHdlLNH
- /6CmVCU868YRshLAfM8IZZzpljxZnrGt5u6aaVyxyxRACP2q/P5BtyhDzdYx4iKEJnYv
- vgVg==
+ bh=1tW6HmVMiDgLM2CovlrlsfjuFYlon1yNOi28H4tR49g=;
+ b=fqh5U2fC4UTSDw9CbE6H1ohLxAJ9RdXme36gItZ/Gt4BTBe5ptN6v5SZyUnkgUGr7R
+ RbV0SOUOkw2j37tf26eow4UcUsd1w4+eNBL+we7Jkd2kV+4bJ/hBO0k5/AFmZPm2P7zm
+ L3rkCqNGELtYbgCQxb+NRyqWHeIYTW/iKwJVX/VRFV5K+IBPt++AxqEa8fmWIqodg13E
+ YoZUmPqlSvdvWoo1iqB88gYWRIfORC6tnRFv0vUOSLl3QbRFYYB5OpKEyr6CVIfw78LJ
+ BdmA25HOu5JsAYQ560uPmsiNOisrWDvJNWLo0ulxR1lrH6Q+Kr6HNpX4mUhIZOd8yNEB
+ C4+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
  :content-transfer-encoding;
- bh=n8Xx2TMo98HOlnNXLfC+Sqmt0X1ycOlUNLncTAwPcpw=;
- b=SCorR250loBPQtzCm+7MRtFYA410ks1puxu/LHMbNqfJ7Ym7ZABUC4wOjH6XwltPvP
- ukwMhxrRSoG3j1oNbm0aW6CrdcsFETRsr559nXo/DCs+IvFwr4FnoLjqrxUGatHbOHiS
- SmjuGoHxIzFuSsXJ5F4Njirgw45mraMZ+w/amgJyX+nMp0mvKmUKjZr7szse0/3D0WhU
- PDTvzTr31c6LyiKJ3F9MMpJCMAmTPOFc7ayAobQk4yur9I+2jVbdmy6ABm/0dyEOqFWb
- AEbwb1tV2xn5PtJ8vDQT5W1DcN29nvF8ADavLMskD9AwOzUn0DsJnpVIHQspTiXEzkvN
- 8qzg==
-X-Gm-Message-State: APjAAAW2qzZkwkM+ijW8d7l0hlGM7tiJgU2J0V1KAFRVRQguyJCOct93
- bNERa0nmsGXosqcFvZICRaM=
-X-Google-Smtp-Source: APXvYqy6aZ57xs+O3szbAeVwXJr7Jzj0ibfQay91BV98G3in0RgnjJOoPl8vF91zzF2H+4FTVXGR8A==
-X-Received: by 2002:adf:dfc2:: with SMTP id q2mr1313257wrn.251.1578439256295; 
- Tue, 07 Jan 2020 15:20:56 -0800 (PST)
+ bh=1tW6HmVMiDgLM2CovlrlsfjuFYlon1yNOi28H4tR49g=;
+ b=Wcx7Yh8+qtiaIe8XAm+QCgOADUVNjb8hWwPFrT7I3BiamdPCk7jENunkWNLsULFc/H
+ pmpUdXdcZakMQaXSlgXW5asmL+eO+sJncIjL4t9IkwLLu9+n5bIqDXHRhYjv+f4K0C5b
+ MViMCB5+a77vap8Bg5NIyFS3bdcRgkrKiU6PHIFzx3nmd8X4vT/W0Jy7sp+B9qSZqf7t
+ 6ATytMRXdB5K0gTPUMAwJPMU6zXv8wCB3VQUS9L1XylrfFdIUBlYjMKLEl/mDfJksI3X
+ BWs1Jd5zG5QhXUBNPpbF1SrlwBlABBYcUiEk6WHsjJpHZjvD+IE1NXU9ogGPy0KZfY+M
+ sutw==
+X-Gm-Message-State: APjAAAVa+U9Td8DPp9sg+WpR2/537rVzAtvOUsUenZs45aphBoGrp+vQ
+ jfnMuIpqD7MYA6elR07Xn3I=
+X-Google-Smtp-Source: APXvYqy414W/mvEzb9sLPeO3N9gkDzA+wEZN6OvA6Cds/IsShTOMuCZUlBnSZJPKh9rkCEmf+VB3tg==
+X-Received: by 2002:adf:dc86:: with SMTP id r6mr1540773wrj.68.1578439752099;
+ Tue, 07 Jan 2020 15:29:12 -0800 (PST)
 Received: from localhost.localdomain
  (p200300F1373A1900428D5CFFFEB99DB8.dip0.t-ipconnect.de.
  [2003:f1:373a:1900:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id n3sm1669577wrs.8.2020.01.07.15.20.55
+ by smtp.googlemail.com with ESMTPSA id k13sm1714127wrx.59.2020.01.07.15.29.11
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 07 Jan 2020 15:20:55 -0800 (PST)
+ Tue, 07 Jan 2020 15:29:11 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: rui.zhang@intel.com, daniel.lezcano@linaro.org,
- amit.kucheria@verdurent.com, linux-pm@vger.kernel.org
-Subject: [PATCH 0/2] make generic-adc-thermal less noisy
-Date: Wed,  8 Jan 2020 00:20:42 +0100
-Message-Id: <20200107232044.889075-1-martin.blumenstingl@googlemail.com>
+To: linux-i2c@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ wsa@the-dreams.de
+Subject: [PATCH] i2c: meson: implement the master_xfer_atomic callback
+Date: Wed,  8 Jan 2020 00:29:01 +0100
+Message-Id: <20200107232901.891177-1-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200107_152059_956454_00D824E2 
-X-CRM114-Status: UNSURE (   9.31  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200107_152913_461717_F95A3BB0 
+X-CRM114-Status: GOOD (  17.71  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,39 +96,214 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: edubezval@gmail.com, linux-amlogic@lists.infradead.org,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-kernel@vger.kernel.org, jeff.dagenais@gmail.com
+Cc: narmstrong@baylibre.com,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, khilman@baylibre.com,
+ linux-kernel@vger.kernel.org, b.galvani@gmail.com, jian.hu@amlogic.com,
+ linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-I want to use generic-adc-thermal on the 32-bit Amlogic SoCs in the
-future. These have a thermal sensors which can be read through the
-SAR ADC (for which we have an IIO driver) on those SoCs.
+Boards with some of the 32-bit SoCs (mostly Meson8 and Meson8m2) use a
+Ricoh RN5T618 PMU which acts as system power controller. The driver for
+the system power controller may need to the I2C bus just before shutting
+down or rebooting the system. At this stage the interrupts may be
+disabled already.
 
-While testing I found the generic-adc-thermal driver to be a bit
-noisy when operating in well supported environment:
-- the SoC temperature sensor on the 32-bit Amlogic SoCs is typically
-  loaded late because of it's dependencies (it needs data from the
-  eFuse and a syscon to calibrate). Yet I still got a message stating
-  there's no lookup table for the generic-adc-thermal defined (which
-  is expected and perfectly valid on these Amlogic SoCs, as the IIO
-  channel returns the temperature).
-- the IIO channel is correctly defined with type IIO_TEMP, yet the
-  generic-adc-thermal driver still prints a message which first lead
-  me to believe that I passed an incorrect IIO channel (one that
-  returns a voltage).
+Implement the master_xfer_atomic callback so the driver for the RN5T618
+PMU can communicate properly with the PMU when shutting down or
+rebooting the board. The CTRL register has a status bit which can be
+polled to determine when processing has completed. According to the
+public S805 datasheet the value 0 means "idle" and 1 means "running".
 
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/i2c/busses/i2c-meson.c | 97 +++++++++++++++++++++++-----------
+ 1 file changed, 65 insertions(+), 32 deletions(-)
 
-Martin Blumenstingl (2):
-  thermal: generic-adc: silence "no lookup table" on deferred probe
-  thermal: generic-adc: silence info message for IIO_TEMP channels
-
- drivers/thermal/thermal-generic-adc.c | 20 ++++++++++++--------
- 1 file changed, 12 insertions(+), 8 deletions(-)
-
+diff --git a/drivers/i2c/busses/i2c-meson.c b/drivers/i2c/busses/i2c-meson.c
+index 1e2647f9a2a7..7486b46e475f 100644
+--- a/drivers/i2c/busses/i2c-meson.c
++++ b/drivers/i2c/busses/i2c-meson.c
+@@ -10,6 +10,7 @@
+ #include <linux/i2c.h>
+ #include <linux/interrupt.h>
+ #include <linux/io.h>
++#include <linux/iopoll.h>
+ #include <linux/kernel.h>
+ #include <linux/module.h>
+ #include <linux/of.h>
+@@ -213,6 +214,30 @@ static void meson_i2c_prepare_xfer(struct meson_i2c *i2c)
+ 	writel(i2c->tokens[1], i2c->regs + REG_TOK_LIST1);
+ }
+ 
++static void meson_i2c_transfer_complete(struct meson_i2c *i2c, u32 ctrl)
++{
++	if (ctrl & REG_CTRL_ERROR) {
++		/*
++		 * The bit is set when the IGNORE_NAK bit is cleared
++		 * and the device didn't respond. In this case, the
++		 * I2C controller automatically generates a STOP
++		 * condition.
++		 */
++		dev_dbg(i2c->dev, "error bit set\n");
++		i2c->error = -ENXIO;
++		i2c->state = STATE_IDLE;
++	} else {
++		if (i2c->state == STATE_READ && i2c->count)
++			meson_i2c_get_data(i2c, i2c->msg->buf + i2c->pos,
++					   i2c->count);
++
++		i2c->pos += i2c->count;
++
++		if (i2c->pos >= i2c->msg->len)
++			i2c->state = STATE_IDLE;
++	}
++}
++
+ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
+ {
+ 	struct meson_i2c *i2c = dev_id;
+@@ -232,27 +257,9 @@ static irqreturn_t meson_i2c_irq(int irqno, void *dev_id)
+ 		return IRQ_NONE;
+ 	}
+ 
+-	if (ctrl & REG_CTRL_ERROR) {
+-		/*
+-		 * The bit is set when the IGNORE_NAK bit is cleared
+-		 * and the device didn't respond. In this case, the
+-		 * I2C controller automatically generates a STOP
+-		 * condition.
+-		 */
+-		dev_dbg(i2c->dev, "error bit set\n");
+-		i2c->error = -ENXIO;
+-		i2c->state = STATE_IDLE;
+-		complete(&i2c->done);
+-		goto out;
+-	}
+-
+-	if (i2c->state == STATE_READ && i2c->count)
+-		meson_i2c_get_data(i2c, i2c->msg->buf + i2c->pos, i2c->count);
++	meson_i2c_transfer_complete(i2c, ctrl);
+ 
+-	i2c->pos += i2c->count;
+-
+-	if (i2c->pos >= i2c->msg->len) {
+-		i2c->state = STATE_IDLE;
++	if (i2c->state == STATE_IDLE) {
+ 		complete(&i2c->done);
+ 		goto out;
+ 	}
+@@ -279,10 +286,11 @@ static void meson_i2c_do_start(struct meson_i2c *i2c, struct i2c_msg *msg)
+ }
+ 
+ static int meson_i2c_xfer_msg(struct meson_i2c *i2c, struct i2c_msg *msg,
+-			      int last)
++			      int last, bool atomic)
+ {
+ 	unsigned long time_left, flags;
+ 	int ret = 0;
++	u32 ctrl;
+ 
+ 	i2c->msg = msg;
+ 	i2c->last = last;
+@@ -300,13 +308,24 @@ static int meson_i2c_xfer_msg(struct meson_i2c *i2c, struct i2c_msg *msg,
+ 
+ 	i2c->state = (msg->flags & I2C_M_RD) ? STATE_READ : STATE_WRITE;
+ 	meson_i2c_prepare_xfer(i2c);
+-	reinit_completion(&i2c->done);
++
++	if (!atomic)
++		reinit_completion(&i2c->done);
+ 
+ 	/* Start the transfer */
+ 	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START, REG_CTRL_START);
+ 
+-	time_left = msecs_to_jiffies(I2C_TIMEOUT_MS);
+-	time_left = wait_for_completion_timeout(&i2c->done, time_left);
++	if (atomic) {
++		ret = readl_poll_timeout_atomic(i2c->regs + REG_CTRL, ctrl,
++						!(ctrl & REG_CTRL_STATUS),
++						10, I2C_TIMEOUT_MS * 1000);
++	} else {
++		time_left = msecs_to_jiffies(I2C_TIMEOUT_MS);
++		time_left = wait_for_completion_timeout(&i2c->done, time_left);
++
++		if (!time_left)
++			ret = -ETIMEDOUT;
++	}
+ 
+ 	/*
+ 	 * Protect access to i2c struct and registers from interrupt
+@@ -315,13 +334,14 @@ static int meson_i2c_xfer_msg(struct meson_i2c *i2c, struct i2c_msg *msg,
+ 	 */
+ 	spin_lock_irqsave(&i2c->lock, flags);
+ 
++	if (atomic && !ret)
++		meson_i2c_transfer_complete(i2c, ctrl);
++
+ 	/* Abort any active operation */
+ 	meson_i2c_set_mask(i2c, REG_CTRL, REG_CTRL_START, 0);
+ 
+-	if (!time_left) {
++	if (ret)
+ 		i2c->state = STATE_IDLE;
+-		ret = -ETIMEDOUT;
+-	}
+ 
+ 	if (i2c->error)
+ 		ret = i2c->error;
+@@ -331,8 +351,8 @@ static int meson_i2c_xfer_msg(struct meson_i2c *i2c, struct i2c_msg *msg,
+ 	return ret;
+ }
+ 
+-static int meson_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs,
+-			  int num)
++static int meson_i2c_xfer_messages(struct i2c_adapter *adap,
++				   struct i2c_msg *msgs, int num, bool atomic)
+ {
+ 	struct meson_i2c *i2c = adap->algo_data;
+ 	int i, ret = 0;
+@@ -340,7 +360,7 @@ static int meson_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs,
+ 	clk_enable(i2c->clk);
+ 
+ 	for (i = 0; i < num; i++) {
+-		ret = meson_i2c_xfer_msg(i2c, msgs + i, i == num - 1);
++		ret = meson_i2c_xfer_msg(i2c, msgs + i, i == num - 1, atomic);
+ 		if (ret)
+ 			break;
+ 	}
+@@ -350,14 +370,27 @@ static int meson_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs,
+ 	return ret ?: i;
+ }
+ 
++static int meson_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs,
++			  int num)
++{
++	return meson_i2c_xfer_messages(adap, msgs, num, false);
++}
++
++static int meson_i2c_xfer_atomic(struct i2c_adapter *adap,
++				 struct i2c_msg *msgs, int num)
++{
++	return meson_i2c_xfer_messages(adap, msgs, num, true);
++}
++
+ static u32 meson_i2c_func(struct i2c_adapter *adap)
+ {
+ 	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
+ }
+ 
+ static const struct i2c_algorithm meson_i2c_algorithm = {
+-	.master_xfer	= meson_i2c_xfer,
+-	.functionality	= meson_i2c_func,
++	.master_xfer		= meson_i2c_xfer,
++	.master_xfer_atomic	= meson_i2c_xfer_atomic,
++	.functionality		= meson_i2c_func,
+ };
+ 
+ static int meson_i2c_probe(struct platform_device *pdev)
 -- 
 2.24.1
 
