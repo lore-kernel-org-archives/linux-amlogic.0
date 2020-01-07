@@ -2,83 +2,70 @@ Return-Path: <SRS0=YAuX=24=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6B5C1C33C99
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 10:22:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DFAFFC33C99
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 10:43:03 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3CB33207E0
-	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 10:22:19 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8AF622077B
+	for <linux-amlogic@archiver.kernel.org>; Tue,  7 Jan 2020 10:43:03 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="WwJB25M9";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VtGCkan5"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3CB33207E0
-Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=linaro.org
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="RvqZ4ZRh"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8AF622077B
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
+	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:References:
+	Message-ID:Subject:To:From:Date:Reply-To:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=bMtZwLghpq9ClkIzhWkR89kktmI91VyegO3bvRkM9xI=; b=WwJB25M9TH6s02
-	/Kqc68T1H/QeCDvDMxDkkfyWRDq7y71YBiZNCL/rJWB6W9sUWNkcixLtvKzgnavXz9jn2sYNDRl18
-	JkE3O2gkPM0eaZOKZD8FlTKgfJwCrErFxSScWpFrvdWxlJQCPb8XfzgQH2KJHu1QjRYzFpVlFAWCg
-	rM94USfiPj5et69lVzyI4p1lrXUZi8gQApfyfTTKcaPQxIVQOEYCAkTgwJ7Ppx1aNF9h8+Hn3p+Dl
-	0Gqz0IGrMVQKSiJWJ/106q1IavR8oVJgYpSK2emucmW61JQm9exHKei2FeyZQUUdzbQQAlNBJ4CwV
-	gFxvszkJ4rYHkgajs9+g==;
+	List-Owner; bh=F/fxoEeLE9WEsxFSJ9gjm62yCJ33DQdMsTn0EAllbl0=; b=RvqZ4ZRhebxRPe
+	QRj2QiZdKmAERpX3p9gE0XmMp5lEaq5F9fPFq7T/AKSjRQY07l1AquarHPLa0xrKLa7SVKmojL7Xe
+	rNAPle0FXBD/Z3pEngUm3+ZM29zSbc8h/qIjREIioTDY7vE0iq3RJMKOeo2waZMTW0MN7yLb2xxMd
+	/zjF8PWLQzxcLRY6kVR7afFFuZvkJZ7VvA34bxOE9/qfkiMfDSEM8jx//kolr8R0W+yMTX/yj7+GQ
+	NfqaeewlTgBDaH65U0uY3ss4Z0nyAvH4I4ODwOu5QvTOYXHmV9INsGL/IyXjUO4eKWvNoF3qNleMr
+	uJOJfywFoMHHEDQFBEmQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iom05-0006iA-AE; Tue, 07 Jan 2020 10:22:13 +0000
-Received: from mail-lj1-x242.google.com ([2a00:1450:4864:20::242])
+	id 1iomK8-0000TK-QU; Tue, 07 Jan 2020 10:42:56 +0000
+Received: from metis.ext.pengutronix.de ([2001:67c:670:201:290:27ff:fe1d:cc33])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iolzt-0006XM-RS
- for linux-amlogic@lists.infradead.org; Tue, 07 Jan 2020 10:22:03 +0000
-Received: by mail-lj1-x242.google.com with SMTP id w1so32167725ljh.5
- for <linux-amlogic@lists.infradead.org>; Tue, 07 Jan 2020 02:22:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=feoOXtnj/48eID5q4+nHQx+NhKQCedVmAZE1CGkwypE=;
- b=VtGCkan5np3byUChW4aFxnm5yaN4zsovrbrrNL2pV3TXPJ8ug9aSzneEr0kuM1Tj0P
- edzvWeTniw0GUWQofo54Pp1v4q8dV8I68CAwW2CuiGggie2uyBCFnBJNFXABB/wFknWN
- aHv6ds9bHX7S8mm+0nC+ZNjKMsuF0rQ+cVM+sSOHXBaIob0AVlMAA6GpBALgkvTJfIbP
- jJ285SLdjWpvbeYjQ4VK8HZgyKPdySbY5rr5DSjF4q8dsImHeDow2p8j7M6s6Hs0VnAe
- tmf4/r7N14nCP0rjiRyD6k3uq9pQJBEracEo9Mz1Q/jiJXL0gQbJtosbb02O2M+Zk3rP
- K2dg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=feoOXtnj/48eID5q4+nHQx+NhKQCedVmAZE1CGkwypE=;
- b=m4NO1vhvbYe/8q5prPpnV8xLt1El89q+vGY8Stey4CxOa6UkcaTx+VudaA2ZCptne/
- diSPvfuuXpsRMb8wX6CG4CTVP43KUN8tbtb1nZAKAE06AxE7o37SkMDQsskj42tsnh0n
- vi6EKhuzP0ZYI00Au1KO9zAhzaOV9Lcu9iobHaJ8d2trPel9zT9COCDeN/HDM498LxzP
- 8AAcuQA2XNK5JgJZuh6+Dzk5s1sLULqC7oi40rSCqii3QPuR4pjmlMBCpx5YcZ0MTlj0
- kmF1aPHUUD3K9lRvTDI6ymCwreU7Aci1Wt+v5EK+giPF1243p7EOpOSu2DTCxBK0koVi
- btZQ==
-X-Gm-Message-State: APjAAAX5UU9Mow603hw611ZCu8VbDXj0+4kvmI3GIZQZhONld2mPydCt
- 9qe5CjKe79ushfgc7UeUgJXJvpV0zqs3ZwCCGe3n1g==
-X-Google-Smtp-Source: APXvYqxXuZipIZnMlieWvK5RQa1ocYuWDkqnEH6fOTVKgMsnd3pBbW5G5g/YQfew1w9JZF43RyZBTUs4rRB/hKpVxec=
-X-Received: by 2002:a05:651c:1049:: with SMTP id
- x9mr61861878ljm.233.1578392519784; 
- Tue, 07 Jan 2020 02:21:59 -0800 (PST)
+ id 1iomJt-0000HD-6V
+ for linux-amlogic@lists.infradead.org; Tue, 07 Jan 2020 10:42:42 +0000
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+ by metis.ext.pengutronix.de with esmtps
+ (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256) (Exim 4.92)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1iomJn-0005TW-KM; Tue, 07 Jan 2020 11:42:35 +0100
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.89)
+ (envelope-from <ukl@pengutronix.de>)
+ id 1iomJm-0004iE-4c; Tue, 07 Jan 2020 11:42:34 +0100
+Date: Tue, 7 Jan 2020 11:42:34 +0100
+From: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 2/2] pwm: Enable compile testing for some of drivers
+Message-ID: <20200107104234.wq74fska3szrg4ii@pengutronix.de>
+References: <20191230172113.17222-1-krzk@kernel.org>
+ <20191230172113.17222-2-krzk@kernel.org>
+ <20200107072645.ko247bwhh3ibdu73@pengutronix.de>
+ <20200107082539.GA31827@pi3>
 MIME-Version: 1.0
-References: <20191226023734.9631-1-qianggui.song@amlogic.com>
-In-Reply-To: <20191226023734.9631-1-qianggui.song@amlogic.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 7 Jan 2020 11:21:48 +0100
-Message-ID: <CACRpkdYCGcUNuDOG2qSjRhZm-3c8eTUE4ib-tVAxsaCzU-RqfQ@mail.gmail.com>
-Subject: Re: [PATCH] pinctrl: meson: Fix wrong shift value when get
- drive-strength
-To: Qianggui Song <qianggui.song@amlogic.com>
+Content-Disposition: inline
+In-Reply-To: <20200107082539.GA31827@pi3>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
+ SAEximRunCond expanded to false
+X-PTX-Original-Recipient: linux-amlogic@lists.infradead.org
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200107_022201_886040_7777B37D 
-X-CRM114-Status: UNSURE (   6.43  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20200107_024241_296138_2047E97D 
+X-CRM114-Status: GOOD (  17.68  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,37 +77,108 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: Jianxin Pan <jianxin.pan@amlogic.com>,
- Neil Armstrong <narmstrong@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
- Guillaume La Roque <glaroque@baylibre.com>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
- Xingyu Chen <xingyu.chen@amlogic.com>, Jerome Brunet <jbrunet@baylibre.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-pwm@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+ Richard Weinberger <richard@nod.at>, linux-mediatek@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ Thierry Reding <thierry.reding@gmail.com>,
+ bcm-kernel-feedback-list@broadcom.com, linux-rpi-kernel@lists.infradead.org,
+ kernel@pengutronix.de, linux-tegra@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-riscv@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-On Thu, Dec 26, 2019 at 3:37 AM Qianggui Song <qianggui.song@amlogic.com> wrote:
+Hello Krzysztof,
 
-> In meson_pinconf_get_drive_strength, variable bit is calculated by
-> meson_calc_reg_and_bit, this value is the offset from the first pin of a
-> certain bank to current pin, while Meson SoCs use two bits for each pin
-> to depict drive-strength. So a left shift by 1 should be done or node
-> pinconf-pins shows wrong message.
->
-> Fixes: 6ea3e3bbef37 ("pinctrl: meson: add support of drive-strength-microamp")
->
-> Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
+On Tue, Jan 07, 2020 at 09:25:39AM +0100, Krzysztof Kozlowski wrote:
+> On Tue, Jan 07, 2020 at 08:26:45AM +0100, Uwe Kleine-K=F6nig wrote:
+> > On Mon, Dec 30, 2019 at 06:21:13PM +0100, Krzysztof Kozlowski wrote:
+> > > Some of the PWM drivers can be compile tested to increase build
+> > > coverage.
+> > > =
 
-Patch applied.
+> > > The Meson PWM driver requires COMMON_CLK dependency.
+> > =
 
-Yours,
-Linus Walleij
+> > I'm surprised that there are not more that need this. Is HAVE_CLK not
+> > enough?
+> =
+
+> Nope. E.g. for alpha architecture, HAVE_CLK is not set and without
+> COMMON_CLK:
+> =
+
+> drivers/pwm/pwm-meson.o: In function `meson_pwm_init_channels':
+> (.text+0x244): undefined reference to `devm_clk_register'
+
+I see. devm_clk_register() only exists in include/linux/clk-provider.h.
+
+> I guess other solution would be to add stubs for few clk functions...
+> =
+
+> > Also HAS_IOMEM is a typical requirement, but I tested with an ARCH=3Dum
+> > config (which does't have HAS_IOMEM) and they all compile fine.
+> =
+
+> Because of !HAS_IOMEM, since some time ARCH=3Dum does not support
+> COMPILE_TEST. Therefore HAS_IOMEM dependency is not needed for compile
+> testing (and for regular build it is selected by ARCH).
+
+Hehe, I didn't notice because for testing I just dropped the "depends on
+..." lines in Kconfig instead of adding "|| COMPILE_TEST" :-) Still they
+compile fine on UML.
+
+Ah, since bc083a64b6c0 ("init/Kconfig: make COMPILE_TEST depend on
+!UML") =3D=3D v4.8-rc1~52^2~83 COMPILE_TEST cannot be enabled on UML, but
+later 1bcbfbfdeb00 ("um: add dummy ioremap and iounmap functions")
+=3D=3D v4.13-rc1~8^2~6 UM got a dummy implementation. So maybe we could
+revert bc083a64b6c0 today? (And if not, a comment about why near the
+"depends on !UML" in init/Kconfig would be great.)
+
+Orthogonal to that, I wonder if depending on HAS_IOMEM is right even
+though the compile testers won't notice it missing. Or should HAS_IOMEM
+be dropped?
+
+> > > @@ -318,7 +319,7 @@ config PWM_MEDIATEK
+> > >  =
+
+> > >  config PWM_MXS
+> > >  	tristate "Freescale MXS PWM support"
+> > > -	depends on ARCH_MXS && OF
+> > > +	depends on (ARCH_MXS && OF) || COMPILE_TEST
+> > >  	select STMP_DEVICE
+> > >  	help
+> > >  	  Generic PWM framework driver for Freescale MXS.
+> > > @@ -328,7 +329,8 @@ config PWM_MXS
+> > >  =
+
+> > >  config PWM_OMAP_DMTIMER
+> > >  	tristate "OMAP Dual-Mode Timer PWM support"
+> > > -	depends on OF && ARCH_OMAP && OMAP_DM_TIMER
+> > > +	depends on (ARCH_OMAP && OMAP_DM_TIMER) || COMPILE_TEST
+> > > +	depends on OF
+> > =
+
+> > I'm surprised that OF isn't required for PWM_MXS but is is for
+> > PWM_OMAP_DMTIMER. pwm-mxs compiles without CONFIG_OF, didn't test
+> > pwm-omap-dmtimer.
+> =
+
+> Since some time !OF has all necessary stubs so OF is actually needed
+> only for binding, not compiling.
+
+That doesn't explain why you handle PWM_MXS and PWM_OMAP_DMTIMER
+differently though.
+
+Best regards
+Uwe
+
+-- =
+
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
 _______________________________________________
 linux-amlogic mailing list
