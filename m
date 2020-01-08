@@ -2,64 +2,88 @@ Return-Path: <SRS0=zLcP=25=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
-	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
+X-Spam-Status: No, score=-3.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D8659C282DD
-	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Jan 2020 14:20:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A94DCC282DD
+	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Jan 2020 18:53:08 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A55A82070E
-	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Jan 2020 14:20:34 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 8119120678
+	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Jan 2020 18:53:08 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="AbIc57gk"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A55A82070E
-Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=arm.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="vCuAqm1K";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="hpES8SdR"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 8119120678
+Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=KDkMM5lT5M+GDQUDkePp+xfnO7NWAVA1LDRnuL7nSzs=; b=AbIc57gkBEbQDd6L+GK+WRrsh
-	burOrL1AxveXCJGK1TveKZfU9Eok9QJPqlINxgcAy2HHso3Dk91uqok61LNNDZtvXSwykBQjfBVRQ
-	bWM4YxxhXZXg7PWCzd6F8iT93eggEs/o9B/eEExeibkD8I/7ax2/C0UxgY3uOKuN1Da0GGs62GIKc
-	wAHdo6H2VksjI7WNsbWcGvvkwiiTpxMX4Aa6LcFUJ0RtbA/vxBgn/4z4l6o6eYD/XHMOfzAhaXtmN
-	I7opajjo1DDVjt57w+TTIud6+5p32pAFvtzFXaKa7n0GZgcUxolVXi2Jf+JgbboD9kuLpmx0J6GVh
-	rPQ5qt79Q==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:References
+	:In-Reply-To:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=xxDcGsBmYp9sWSNR1pZ9IRquREEKTUS+efkYjWxvCbs=; b=vCuAqm1KuIf3X1
+	K4fUbU8wS6rZl8wTI/TN5R+ZzWcV0PaYRSskppZsEqyyAP5fUf0PjpBRjJd1kE39vK/vQTrV3TF70
+	YAGrvj4ppMxhhWXF+ykYR/4nKSOsW32jirtUXYPvApS3ezXzOwK4BgAoBlnGygi3ZTxo1pn3HATl3
+	DPpKyREbIhEtsI4FyDPYGdRLKnXAbTJ+7DxloDvhCaVVtclpO45tBxjaDMNcM82+LnMgpd6Gwitrz
+	OMe5Ps/yY0QqCvVIXbwyBA0sFMeae7M/GLa1o7rTQ1EiHvS6knTPVp4XchqR+VRe9FcvDlyYKXJ4b
+	ksJdJJIKFDbfslgOcpNQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ipCCD-0006B7-1i; Wed, 08 Jan 2020 14:20:29 +0000
-Received: from foss.arm.com ([217.140.110.172])
- by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ipCC9-0006AI-7D; Wed, 08 Jan 2020 14:20:28 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8F23B31B;
- Wed,  8 Jan 2020 06:20:24 -0800 (PST)
-Received: from [10.1.196.37] (e121345-lin.cambridge.arm.com [10.1.196.37])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0E4533F703;
- Wed,  8 Jan 2020 06:20:22 -0800 (PST)
-Subject: Re: [PATCH RFT v1 1/3] drm/panfrost: enable devfreq based the
- "operating-points-v2" property
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20200107230626.885451-1-martin.blumenstingl@googlemail.com>
- <20200107230626.885451-2-martin.blumenstingl@googlemail.com>
- <a85f2063-f412-9762-58d1-47fdffb24af9@arm.com>
- <CAFBinCBYrNC+ULV6Y=77qogowkDZwM+H0bxOqPN4sT6q3krGfw@mail.gmail.com>
-From: Robin Murphy <robin.murphy@arm.com>
-Message-ID: <be59a20b-af08-5b55-fa69-f87d5aa9f277@arm.com>
-Date: Wed, 8 Jan 2020 14:20:21 +0000
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+	id 1ipGRw-0004to-Fb; Wed, 08 Jan 2020 18:53:00 +0000
+Received: from mail-pj1-x1042.google.com ([2607:f8b0:4864:20::1042])
+ by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1ipGRt-0004sL-GD
+ for linux-amlogic@lists.infradead.org; Wed, 08 Jan 2020 18:52:59 +0000
+Received: by mail-pj1-x1042.google.com with SMTP id n59so12475pjb.1
+ for <linux-amlogic@lists.infradead.org>; Wed, 08 Jan 2020 10:52:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+ h=from:to:cc:subject:in-reply-to:references:date:message-id
+ :mime-version; bh=hCOCHoRkkp5UhkO13eAqohn7PL1ou6ER+9SiJJ5LA7k=;
+ b=hpES8SdR9Uct+j5WAd8zNLCHlHLI0Dpp7FDalu+Q8dq7QprTl2szIsh+6DBrWb4NNz
+ xRrBGudrw+X/Ehs59ly2N8d8DSql+Fw7Ppwdjr4XpX75C+4sgM5xKFuqbIkO+z3QChEl
+ iQYQ0JNOqgh+OuuWj0mFms7QubXPP6Q/OqvExcsyRbIwKARY9jgHP2914Gc3gDTgacjJ
+ CR7FlFxLhEsgcA9/zQ4FxzryADWNeNR+68ozE/oMrV3BXa3+q5U8PWFc9AiE31Wd81R0
+ 25Cgh1ITcxRibM6EOVZlV9vd99Nz5cGzZQ82KxKqCxpzlKEY6ZSH/lut8bdb5+a1U84z
+ Zw8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+ :message-id:mime-version;
+ bh=hCOCHoRkkp5UhkO13eAqohn7PL1ou6ER+9SiJJ5LA7k=;
+ b=N+i2qH2VAytYSEGFxnljk19XXmgdCbXtllA69JmEjAZXXPjENf4vZUoKShiRo36g3I
+ NYUK9XMKU1pjvLLUgb/ZxV67MhUyZCkazwLPgZQv+pNu129qJXQqZWqCj3yalKr0WWTt
+ JiLcQJIO4wzdi7bQfpWnZV9liel/LhiHCc8IDGKsiS34hVPBX+wu4pMwWMMje3MvO9au
+ jVmNIbCveTNhqspv/3V3HkZQFjyJiMg6ynm14lA5roL7ottIG6b9WXITrkqeT45pkb60
+ C7KLlNsxBwHqiy6/f3MtDL4YSwSwfpizaNIuHLqKC6FVlTJ5w45HwGk59w4GL1HFIEWq
+ rjXg==
+X-Gm-Message-State: APjAAAXt0f73EZXZHoykYA8wXrrSvCZlRIBUGxF5gm93PxQy+Db8X5uu
+ 3nnRJCIn8aW6p1xP+8fOV2++uA==
+X-Google-Smtp-Source: APXvYqyaHwgFqHkdB1vUFNMuHsw49pWnr1JXRS+Ome1dK+LyPoCS43sUUsv8UcMPR7AbUHvBPCKp0g==
+X-Received: by 2002:a17:902:34a:: with SMTP id
+ 68mr6646218pld.250.1578509576062; 
+ Wed, 08 Jan 2020 10:52:56 -0800 (PST)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net.
+ [71.197.186.152])
+ by smtp.gmail.com with ESMTPSA id m3sm4429923pfh.116.2020.01.08.10.52.55
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Wed, 08 Jan 2020 10:52:55 -0800 (PST)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Subject: Re: [PATCH] arm64: dts: meson: add audio fifo depths
+In-Reply-To: <20191218202452.1288378-1-jbrunet@baylibre.com>
+References: <20191218202452.1288378-1-jbrunet@baylibre.com>
+Date: Wed, 08 Jan 2020 10:52:54 -0800
+Message-ID: <7himllg4qh.fsf@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCBYrNC+ULV6Y=77qogowkDZwM+H0bxOqPN4sT6q3krGfw@mail.gmail.com>
-Content-Language: en-GB
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200108_062027_081206_9CA037C1 
-X-CRM114-Status: GOOD (  15.05  )
+X-CRM114-CacheID: sfid-20200108_105257_573989_F68DA49D 
+X-CRM114-Status: UNSURE (   6.64  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,48 +95,30 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: robh@kernel.org, tomeu.vizoso@collabora.com, airlied@linux.ie,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- steven.price@arm.com, linux-rockchip@lists.infradead.org, daniel@ffwll.ch,
- Sudeep Holla <sudeep.holla@arm.com>, linux-amlogic@lists.infradead.org,
- alyssa@rosenzweig.io
+Cc: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-[ +Sudeep ]
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-On 08/01/2020 12:38 pm, Martin Blumenstingl wrote:
-> Hi Robin,
-> 
-> On Wed, Jan 8, 2020 at 12:18 PM Robin Murphy <robin.murphy@arm.com> wrote:
->>
->> On 07/01/2020 11:06 pm, Martin Blumenstingl wrote:
->>> Decouple the check to see whether we want to enable devfreq for the GPU
->>> from dev_pm_opp_set_regulators(). This is preparation work for adding
->>> back support for regulator control (which means we need to call
->>> dev_pm_opp_set_regulators() before dev_pm_opp_of_add_table(), which
->>> means having a check for "is devfreq enabled" that is not tied to
->>> dev_pm_opp_of_add_table() makes things easier).
->>
->> Hmm, what about cases like the SCMI DVFS protocol where the OPPs are
->> dynamically discovered rather than statically defined in DT?
-> where can I find such an example (Amlogic SoCs use SCPI instead of
-> SCMI, so I don't think that I have any board with SCMI support) or
-> some documentation?
-> (I could only find SCPI clock and CPU DVFS implementations, but no
-> generic "OPPs for any device" implementation)
+> Add the property describing the depth of the audio fifo on the axg, g12a
+> and sm1 SoC family
+>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+> ---
+>  Hi Kevin,
+>
+>  The binding documentation for this new property will be merged through Mark's ASoC tree [0]
+> [0]: https://lkml.kernel.org/r/applied-20191218172420.1199117-3-jbrunet@baylibre.com
 
-On closer inspection I think this applies to the SCPI DVFS protocol 
-too[1]. AIUI the fact that neither is wired up to a devfreq driver yet 
-is merely due to lack of demand and suitable systems to develop/test on 
-so far - the panfrost devfreq code is only now looking like the first 
-viable upstream use-case ;)
+Queued for v5.6,
 
-Robin.
+Thanks,
 
-[1] http://infocenter.arm.com/help/topic/com.arm.doc.dui0922g/BABFEBCD.html
+Kevin
 
 _______________________________________________
 linux-amlogic mailing list
