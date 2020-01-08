@@ -2,85 +2,88 @@ Return-Path: <SRS0=zLcP=25=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-5.0 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=no autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SIGNED_OFF_BY,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 68C46C282DD
-	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Jan 2020 12:38:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 229CFC282DD
+	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Jan 2020 13:07:37 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3C28920705
-	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Jan 2020 12:38:21 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id E6D1520643
+	for <linux-amlogic@archiver.kernel.org>; Wed,  8 Jan 2020 13:07:36 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="D5QG+5L5";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="DVTb0EFt"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3C28920705
-Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="qXrKW6O8";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gE1Ze7d2"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org E6D1520643
+Authentication-Results: mail.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
-	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=62VEzc8n29IGJsexRdnnKo3F3AQhs2RGvBhDMyg1N10=; b=D5QG+5L5WmjHe3
-	S1YZDB+fCVr+x6c+kQnLUW8+PtnDAdf+3YsqTxDOzLs9yVsvVyk3LgQE/o/mTEbL+XMy0raJczfrk
-	Y5DWAzXj3JOfXFas4REHjSehMmOKNaP2xa89oZHkEK5vRqZL4p4wbAgRpR6RA38HZu1iB07BcTuT+
-	+ioGmCvI3gpq9/Gbl7nEuWTqIL9OGfymUY9LX8Qnr1oT15oCtVzH6qBXJmQgFHEQZNhY1VvDKO2p6
-	ME5nfdba19YuhL/Z84ZDsiWZz3indH+plBBJy9lo+lSZjAZpa7c1ZeS0xhpmW+G5T4MMnRPuZ4H6d
-	MzTzZQ7VeQJT2WB/B10Q==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:Cc:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	In-Reply-To:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	 bh=zvK5MMrVI8k6lKvWTgqDTz5Uj6ixuUGe4WNVR+VJu7g=; b=qXrKW6O8DmAwSas6D+lZDX3Bj
+	0YSqzaxBO/kI9sM8pDb2pKaEt6GQdZjr89tKqw1/zgggYi429hc17dJXKX1ScDheiE7wc2yx25GV3
+	uFEqFZb7S3Ytg/T8CWS24F69mwus97oCf04zuHm7FyxRCnCmVrCPhJJUTZL4McEj2rwB/vnbwt1Vw
+	i8NPstrSqNU88yVX0vw4GdrV5IIN/xWQJ0DIcr4YsZHSiNZBdXa4xyENZuVNQH5YV5aiLUA55ns41
+	ZRVhnjAy2kcIMvXdpwVWD1U/ABXs5fnqNC8alAsgY7hzc3ctxUl6kvY6ygBnmh4RylNRT8OPP+csM
+	ne5htKwdA==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ipAbG-00026f-PT; Wed, 08 Jan 2020 12:38:14 +0000
-Received: from mail-ed1-x544.google.com ([2a00:1450:4864:20::544])
+	id 1ipB3a-0006UF-PU; Wed, 08 Jan 2020 13:07:30 +0000
+Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ipAbE-000268-HW; Wed, 08 Jan 2020 12:38:13 +0000
-Received: by mail-ed1-x544.google.com with SMTP id v28so2384584edw.12;
- Wed, 08 Jan 2020 04:38:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=RotMCjOJKktSIUBCGAb4BBJvwMzxDTEukuKk1C8nR/Y=;
- b=DVTb0EFtmqEPjuV03pnzZK8BsOoSGErBVKLIgk8UCu08OyrkYyp+HrCskvsX5sy5Ff
- 7dgC90WFdqalh7qU8HwYisvMIeBkmy+stiyz7LUL0LjF2/5fICa+Z4jUYnRAwAV4kksQ
- 7dZZUA2bit+LnZ4BIwweatxdmsnogHTuTJ2y1kqqYR2/oD1hUVcpiVL6nExK6EfOAQIE
- bqcVrcApy0/mju2Mt+SP/RFG4is3ocgdJpHtYhpE74dGn55SZ2FCKUSQmnx5qLeY5PyP
- qt9S8KPXnqjmbCkZ7ZHnvoc+ZArLCNgibMc4uWYw8FFqFFLTlLcbfckZ9XhF/1HEvSog
- eEMA==
+ id 1ipAxE-0008AT-KT; Wed, 08 Jan 2020 13:00:58 +0000
+Received: by mail-wr1-x441.google.com with SMTP id b6so3340358wrq.0;
+ Wed, 08 Jan 2020 05:00:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to:user-agent;
+ bh=8s6MBY17dmKuqB1spd1Y2svCKY1mGBybzjzWrguhdKw=;
+ b=gE1Ze7d22HE5Q5vnTBA9TJ3sklMoxYoqc4qi5fHipRECxI0AbbTe7yOGYletjJPSmG
+ +ni93Xnu1tzfiZFnXRrNN7/9U4sSHQNRhWB3u0H5/5LgIBx8y6JZ2dvG6K9UzFfeIs+t
+ ucmWMwc34F1bCjWif80BBpDX+NigheLltnGLMjReolPZ5SDW/DH4dUm+wUq5r/jUmJ7s
+ e2m0AP/4myXBS3YYO7G6r3U33CARN3WLrhMxJEK0ZB3mfe/XXCblny9ZEPEACVa0kLmj
+ 3U+hwLGgcCpRcrE4b/ohDwhGIOeoYtr9t3UJp9qpLX3nPDKIaslKdYClYnIKHOhib/Rq
+ UFDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=RotMCjOJKktSIUBCGAb4BBJvwMzxDTEukuKk1C8nR/Y=;
- b=OnnWk4ZYJ42wnJX0Ylbr4JYbzIVZfG8jrFq86m/MomSXuIUUNO7Q2yVixX2B6jTx1D
- MRwxQd2YMXinAh2vmdk26yoPb7QEcWobfvjfNklZbJ3JW1IYCGUhxludH8t4QT3hlKU4
- 3M683exlNtbNtpbvkUXisZQhdpoHYHwsHj0ds0DWvK1fc6p03bSYil9lNgxMj7tpSqYg
- V6yTZBOJUzT1SZRXDJyNNsIie1CbdzrZ0/nHHmwzt3vsm1AXbjPEW+Uc10cOC2X+z8N6
- IYmSEJ/lYV7y8Hwdlenf/XrnmDzks5oFtSWTHFuxFE7+T2VPr7NH2AAXDaYqCtSCoWZo
- LaAQ==
-X-Gm-Message-State: APjAAAUDJYh5vv5HdnEhoI0xZpyI62g7VLX6SfEjP8an8PuKFG5k2udG
- DezKsnEVjM3PpjkaegS4LS1HC/LQCixG3P3EKVU=
-X-Google-Smtp-Source: APXvYqzi0WPsidDDmVj1R0p4gUv6jfBMcq5h5l5TD4QO3F5rD/GE1j0AN/0+zT53es3eTRwo2dDerj4WmIdMbbc4SpY=
-X-Received: by 2002:a17:906:1a50:: with SMTP id
- j16mr4721042ejf.106.1578487090894; 
- Wed, 08 Jan 2020 04:38:10 -0800 (PST)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to:user-agent;
+ bh=8s6MBY17dmKuqB1spd1Y2svCKY1mGBybzjzWrguhdKw=;
+ b=rslTwfNAAYU4y25qpeu0whfxi8ZJLu2S+0Oi1mggdCmB4U8P+nBN727NMAgqyl9buS
+ DHhtElSmB6fRdlRwV5/EKmQZQhSaHfHDW0QLaH5YRWA6S1v7x7bM+dM18KhvL3GcPsTa
+ fZIlFK+e5QnaryTrwZVOUbC4f4BD/sFjzmrNxRIpXivMv0vuS5TvAXf07zePu+k6SEfk
+ o6lPSxHj7mI5KwZAUBY82BG8TQMlKsTI6AbDi10UKiIqri47tKOYJIEEotNF7oGVEbsl
+ vpXx8t0oCozd02hkr5RU1jsd3b6pJrSY2/H6uFOHYnljnY6V3J+XKp7a7piwlntuePTu
+ 3Y3A==
+X-Gm-Message-State: APjAAAV2AVOXjdxmERxlMl0GgOBJSFXB+scqZgtqdwxsW3SUhD3SVhTJ
+ BaR08QXQ1Xh5Xy+T3HKvTn8=
+X-Google-Smtp-Source: APXvYqyiUk9DjLJLQC9p0jB9yqPCOOzRwx8SecHw6EXXSg6lP6Y/JDhW00O/AZmFm6lHLnBCa9UkDg==
+X-Received: by 2002:a05:6000:cf:: with SMTP id
+ q15mr4321652wrx.393.1578488454567; 
+ Wed, 08 Jan 2020 05:00:54 -0800 (PST)
+Received: from localhost (p2E5BEF3F.dip0.t-ipconnect.de. [46.91.239.63])
+ by smtp.gmail.com with ESMTPSA id x7sm3931711wrq.41.2020.01.08.05.00.52
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 08 Jan 2020 05:00:53 -0800 (PST)
+Date: Wed, 8 Jan 2020 14:00:52 +0100
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 1/2] pwm: Fix minor Kconfig whitespace issues
+Message-ID: <20200108130052.GF1993114@ulmo>
+References: <20191230172113.17222-1-krzk@kernel.org>
 MIME-Version: 1.0
-References: <20200107230626.885451-1-martin.blumenstingl@googlemail.com>
- <20200107230626.885451-2-martin.blumenstingl@googlemail.com>
- <a85f2063-f412-9762-58d1-47fdffb24af9@arm.com>
-In-Reply-To: <a85f2063-f412-9762-58d1-47fdffb24af9@arm.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Wed, 8 Jan 2020 13:38:00 +0100
-Message-ID: <CAFBinCBYrNC+ULV6Y=77qogowkDZwM+H0bxOqPN4sT6q3krGfw@mail.gmail.com>
-Subject: Re: [PATCH RFT v1 1/3] drm/panfrost: enable devfreq based the
- "operating-points-v2" property
-To: Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20191230172113.17222-1-krzk@kernel.org>
+User-Agent: Mutt/1.13.1 (2019-12-14)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200108_043812_580842_1943D317 
-X-CRM114-Status: GOOD (  12.07  )
+X-CRM114-CacheID: sfid-20200108_050056_675232_801B406D 
+X-CRM114-Status: UNSURE (   9.05  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,39 +95,74 @@ List-Post: <mailto:linux-amlogic@lists.infradead.org>
 List-Help: <mailto:linux-amlogic-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-amlogic>,
  <mailto:linux-amlogic-request@lists.infradead.org?subject=subscribe>
-Cc: robh@kernel.org, tomeu.vizoso@collabora.com, airlied@linux.ie,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- steven.price@arm.com, linux-rockchip@lists.infradead.org, daniel@ffwll.ch,
- linux-amlogic@lists.infradead.org, alyssa@rosenzweig.io
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-pwm@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ bcm-kernel-feedback-list@broadcom.com, linux-rpi-kernel@lists.infradead.org,
+ Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ linux-tegra@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: multipart/mixed; boundary="===============6703457998756360757=="
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Robin,
 
-On Wed, Jan 8, 2020 at 12:18 PM Robin Murphy <robin.murphy@arm.com> wrote:
->
-> On 07/01/2020 11:06 pm, Martin Blumenstingl wrote:
-> > Decouple the check to see whether we want to enable devfreq for the GPU
-> > from dev_pm_opp_set_regulators(). This is preparation work for adding
-> > back support for regulator control (which means we need to call
-> > dev_pm_opp_set_regulators() before dev_pm_opp_of_add_table(), which
-> > means having a check for "is devfreq enabled" that is not tied to
-> > dev_pm_opp_of_add_table() makes things easier).
->
-> Hmm, what about cases like the SCMI DVFS protocol where the OPPs are
-> dynamically discovered rather than statically defined in DT?
-where can I find such an example (Amlogic SoCs use SCPI instead of
-SCMI, so I don't think that I have any board with SCMI support) or
-some documentation?
-(I could only find SCPI clock and CPU DVFS implementations, but no
-generic "OPPs for any device" implementation)
+--===============6703457998756360757==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="+jhVVhN62yS6hEJ8"
+Content-Disposition: inline
 
 
-Martin
+--+jhVVhN62yS6hEJ8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Dec 30, 2019 at 06:21:12PM +0100, Krzysztof Kozlowski wrote:
+> Remove double whitespace after "config" keyword.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  drivers/pwm/Kconfig | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+
+Applied, thanks.
+
+Thierry
+
+--+jhVVhN62yS6hEJ8
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl4V0oQACgkQ3SOs138+
+s6GW+RAAqt7l9DVUT1XZy2TgE7UeLRkeCbnVtYRqr1q4kqqjW1uRyRc2gbd6Q15a
+Orl53tUGiuE+Fr/t+UpQSLOmsc93zRIqkhbyMdfyTXJRGhzU5UCx2BuBDkelvmZ/
+ZcTgvi8IkXRVh7SJx6E2i956iFXifCQQKd/pbS3oPZbUCeRPJuhCTgmfD7NAKvCR
+YsaDo4MWHuuulx05CCLeZ+g915YEGXCV5nKr5RdY9/uf1ifS1waeUZK8+C+uwAy6
+17J7Ee4+27mydyVzsutgTLAWfnNf3wcwDzbYaR61G4dKZXHWZBlzjq1hAlyfLrfI
+Ue9fAv71KPfLULXpotqvoVkzKeTzW5SSnbtsi22wLJfmu5RI2ZCS2gXdRN0Z5f8y
+9M59CBmSSOvoQ7b/nBbOCxxlUqZTXGjnlJCXqrqGmomCMQvKZIJBNBILlFoQDDtZ
+wCVV+XXEHq3j4qvgsjgkAHLGyxkjmryg6fOFe9mqCGwk1huV5NYbI4aP1xiSCmTt
+00wLZMd67PnKuPv1GAgvRW+BLif97N1U7g2OP5ewhYXPj7cd1DVQHsgwbKnKkz1H
+UWG3gn+7n3KcstFfKsgS3X8fhKQ2+HalnX9hBfeORhPef5cCtIURILtOU/sS/pvZ
+f30UWoLal+Aylqbsc01nUJmxg27i/m0q4+v7waQmAJlE0L+1c6o=
+=p5N4
+-----END PGP SIGNATURE-----
+
+--+jhVVhN62yS6hEJ8--
+
+
+--===============6703457998756360757==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 linux-amlogic mailing list
 linux-amlogic@lists.infradead.org
 http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+--===============6703457998756360757==--
+
