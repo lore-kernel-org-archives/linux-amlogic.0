@@ -4,20 +4,20 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 X-Spam-Level: 
 X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7ED40C32771
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Jan 2020 09:22:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 070B6C32771
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Jan 2020 09:23:19 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 3D4272067D
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Jan 2020 09:22:05 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id CA3182067D
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Jan 2020 09:23:18 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="jile1b0/";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="PLZCOuNn"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 3D4272067D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="KcbIhWu0";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=baylibre-com.20150623.gappssmtp.com header.i=@baylibre-com.20150623.gappssmtp.com header.b="ZgYmT+pD"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org CA3182067D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -26,63 +26,62 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	List-Archive:List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:
 	Message-ID:From:References:To:Subject:Reply-To:Content-ID:Content-Description
 	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Owner; bh=BFbuIrT2okzMlTvrzDZavERXfpQXa3BJyd1hvNyZ23o=; b=jile1b0/7SlTZa
-	qyYqHz0iiy1JIqGfvQWCUbuocdkCbkGgXdrklROoy0WyKWbzjqXfQfpa5fOHn9o0ISLoHSP4ZuYSv
-	x4gG/nfFJmZbPtWfwBXPJKLy48q7UVNQe3N8bcaaE5pBLQNoRR6bE8kMPIMkN9O1aha8+zFfm9h+U
-	tz4/QuSggW5dL1XwtXGJhbnQaZCmKn1BS14AtEIgi1XCUFkmv6Zyun2NfoTathtL21K0XgH94UITb
-	6XnbhFc1AJKAB/84ROf2e1l2sJ6QLUM+UR++5liHCtzwEZzX9cvgBC9FM3DcYNv7+XK7tQf4TmfK/
-	UsfmVQF6hK251VrbVOyg==;
+	List-Owner; bh=JVwGqSFTonsH+2rgvObV4xwljbKlx0Qnxc/lpWTDCEE=; b=KcbIhWu0t6gg2v
+	Dmabs5FkhNf5Ip9cN9DA1gKySuUNXfn9VK37xxMFrMp/diWC4ZM2cQXq7MY39AmwOkpPT2vCsMQ64
+	+SH975IGAqmNoJiMhZmsnYeoJj/5wNG1/SVDnBkrcyBu5iLdpNEF5UT2Uya3STGylJr9ZC7givZI5
+	WbxFiTxjatHsrhQM2pMF3y+htQdkSfI8cQIErkNBa/l5S4ChEFwB183DoaeR+PQQPRa/0XxJsZxyX
+	8jaWUNfzgUHvnrSmfiwzYV7AHoudqFpRN8GRrecohhYVGQk9Og1NcDhlhTJkGjNzfnN0gVeMd5ddr
+	n0DgduBwohRGAqc/2cKQ==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ipU0r-0005tj-La; Thu, 09 Jan 2020 09:21:57 +0000
-Received: from mail-wm1-x341.google.com ([2a00:1450:4864:20::341])
+	id 1ipU23-0007JB-S8; Thu, 09 Jan 2020 09:23:11 +0000
+Received: from mail-wr1-x443.google.com ([2a00:1450:4864:20::443])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ipU0c-0005el-P8
- for linux-amlogic@lists.infradead.org; Thu, 09 Jan 2020 09:21:44 +0000
-Received: by mail-wm1-x341.google.com with SMTP id p17so1982153wma.1
- for <linux-amlogic@lists.infradead.org>; Thu, 09 Jan 2020 01:21:42 -0800 (PST)
+ id 1ipU1t-0006yM-Rg
+ for linux-amlogic@lists.infradead.org; Thu, 09 Jan 2020 09:23:03 +0000
+Received: by mail-wr1-x443.google.com with SMTP id b6so6621397wrq.0
+ for <linux-amlogic@lists.infradead.org>; Thu, 09 Jan 2020 01:23:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=baylibre-com.20150623.gappssmtp.com; s=20150623;
  h=subject:to:cc:references:from:autocrypt:organization:message-id
  :date:user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=t6UNQFtRacKJyEDWwFPJhdMqRhPoesdyIbzHGHay9SE=;
- b=PLZCOuNnQimBu5ob7CqBR0wDv6BEk8+CaXb0CD4ikJ+9ZpHYx+PfdqdMJl3AXescoo
- QsQd9oEE/wTkzS4FLy2NqXTLKKNpBYxMLj43FT/liklKdXEKYow11XyRICJx8G6AqGNR
- J4FSJo4cf1D/w0NVeQ590+yoWxt8mToFw0C1IkrcQ1RHFbC7b2cDhfpvq5aEKlIa0YiE
- vJo3Pul83a1c8Nlvm0bSMdM7NuJhUPRWz4h482FrzKE0DIqwnq0EQJhfmPt85hde9BSp
- RKpXDINB5vG/c53ErnB1Zl6wvln37KI7JZCC/C2Xh1iDVXfifja4AozmLQCWDIZA3HeY
- 9Y5A==
+ bh=bQWIjmzKCo5jsoadXfIpjXVBnYAeA5AyDiSipSTFVfc=;
+ b=ZgYmT+pDGIgLaDITTK4ntKE72E9HLYzv+x/VnSVZ3KwAWl4nOFZU2cHx1W/uCmv3J7
+ VFgUkR6ECWZ9v7GIdP/zLmaFUV89ZxFTgKN/jR66056pD7t8MI2bS34cyJ47FYkO8k9a
+ f8oteqyCcgfBafb0cvfF6z2MsEeazMsIM9/t3+1VRWMBi8TyEGcHv7JLVbcg9kUs1/pJ
+ aBV8AOQaBe79C7DVTWGHKPXnDUMqrf9iT5HZM2bp2FN4bY+oT54dwAa3bKmgXUSQSJCz
+ 9VxJ/55GcPjA/VNaQWzGumNm5D4awAIDag1WPROuX0383dE8XsBnDhrXCN3R6fpxdQ1m
+ zTUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:autocrypt
  :organization:message-id:date:user-agent:mime-version:in-reply-to
  :content-language:content-transfer-encoding;
- bh=t6UNQFtRacKJyEDWwFPJhdMqRhPoesdyIbzHGHay9SE=;
- b=GXJ4KkN4NaZxbez1ucypXOTZz17JUU6tUK8ktR7JdXNboKTJou8dpVh7diHjopKVq/
- RU8mRLvXXoG2IsPlYFVL2rD93NdBCPeKoPzasQ5BWeemOEoy03cEw/gAT/X3BXLBwKl7
- YdjCtRkrv65r76yYe2bUpvFXXd13B2LuKw4KxfuN3OICPutstj7+5qgZYuJMlWusc26P
- K2wCnpvMD4z8shZxhWbxF0VhsADJ948St1KDTB9OUkkUAoElfue1eprw9GzfoWynknwj
- QpQFZ15tO6Yf9BxzpU81XdtgXY2e8vGMZtgb7hQAkyYEs8JSjlTUPu9m57oLK71g5VYm
- WjRw==
-X-Gm-Message-State: APjAAAXh80/SHdOkUyJWexSUNA36GtPz4nnzRllp0heXWUgTdAIZnpjI
- OGs+PrnE65QCAtMUbwi/QT6THQ==
-X-Google-Smtp-Source: APXvYqzR5nO41yNToUvTq5mKGuJ+qBRgV5QaavHu4mL4vLjOb9C5d7kiXti+VFogFpbpXN87AE999g==
-X-Received: by 2002:a05:600c:48a:: with SMTP id
- d10mr3584601wme.87.1578561701085; 
- Thu, 09 Jan 2020 01:21:41 -0800 (PST)
+ bh=bQWIjmzKCo5jsoadXfIpjXVBnYAeA5AyDiSipSTFVfc=;
+ b=tWh8PPXs66qv2maksf84n31bbVuVAwSY/2gpBTKKWRaJhLtS8nsn5/0OxYWa0RNbJZ
+ JqOhn1n/bmOpz4YYegMsBRSRG+lR+lmLNsKj8n+TteF3VuSvirn5SMPSCFYRujgHAWYr
+ nlxDRIYpVmLM7eB10zJK7fa3f/pOYrESCP7PGfkhHVNPeJEwRpgFLCphXZD42BLQ2O0v
+ ovFJJngGQWiCyX6vrqSMUnjGQxLNE/jWzQsQewG+bBuKrg/OjeAgwyOg02CnncBJ5QHm
+ Eg2SUQCbHXc7ML4UR3azpngQmUBe9ZVHi5ZvSVUm3SgXLlhlNi7ebh34rRgOdX9QR01H
+ Qvmw==
+X-Gm-Message-State: APjAAAW9OBGW98L9Yam9tllG8IiJoMFxaZ+ggIJpw45HFLjIl8s45Nef
+ b8pPzmzCIM/reIjKuMCHvW/Nwg==
+X-Google-Smtp-Source: APXvYqxw+a7VpgqPYd55m4QetSRe6avpM1KADG3MME7QSAsWgN9dSDAWNyU7mA8K9b1eLPYPoKM2ZA==
+X-Received: by 2002:adf:9c8f:: with SMTP id d15mr9805515wre.390.1578561780101; 
+ Thu, 09 Jan 2020 01:23:00 -0800 (PST)
 Received: from [10.1.2.12] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr.
  [90.63.244.31])
- by smtp.gmail.com with ESMTPSA id c17sm7391547wrr.87.2020.01.09.01.21.39
+ by smtp.gmail.com with ESMTPSA id h8sm7672101wrx.63.2020.01.09.01.22.59
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 09 Jan 2020 01:21:40 -0800 (PST)
-Subject: Re: [PATCH v4 1/6] dt-bindings: phy: Add Amlogic A1 USB2 PHY Bindings
+ Thu, 09 Jan 2020 01:22:59 -0800 (PST)
+Subject: Re: [PATCH v4 3/6] phy: amlogic: Add Amlogic A1 USB2 PHY Driver
 To: Hanjie Lin <hanjie.lin@amlogic.com>, Jerome Brunet
  <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Kevin Hilman <khilman@baylibre.com>
 References: <1578537045-23260-1-git-send-email-hanjie.lin@amlogic.com>
- <1578537045-23260-2-git-send-email-hanjie.lin@amlogic.com>
+ <1578537045-23260-4-git-send-email-hanjie.lin@amlogic.com>
 From: Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -134,16 +133,16 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <f69e38e8-4f31-3297-9f21-9ceb5be27f6e@baylibre.com>
-Date: Thu, 9 Jan 2020 10:21:39 +0100
+Message-ID: <da0a5130-f4f4-1262-382c-b0420211f39e@baylibre.com>
+Date: Thu, 9 Jan 2020 10:22:58 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.2.2
 MIME-Version: 1.0
-In-Reply-To: <1578537045-23260-2-git-send-email-hanjie.lin@amlogic.com>
+In-Reply-To: <1578537045-23260-4-git-send-email-hanjie.lin@amlogic.com>
 Content-Language: en-US
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200109_012142_860423_76EDF739 
-X-CRM114-Status: GOOD (  14.84  )
+X-CRM114-CacheID: sfid-20200109_012301_907937_CA793D1E 
+X-CRM114-Status: GOOD (  20.33  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,86 +169,189 @@ Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
 On 09/01/2020 03:30, Hanjie Lin wrote:
-> Add the Amlogic A1 Family USB2 PHY Bindings
+> This adds support for the USB2 PHY found in the Amlogic A1 SoC Family.
 > 
-> It supports Host mode only.
+> It supports host mode only.
 > 
 > Signed-off-by: Hanjie Lin <hanjie.lin@amlogic.com>
 > Signed-off-by: Yue Wang <yue.wang@amlogic.com>
 > ---
->  .../bindings/phy/amlogic,meson-a1-usb2-phy.yaml    | 56 ++++++++++++++++++++++
->  1 file changed, 56 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-a1-usb2-phy.yaml
+>  drivers/phy/amlogic/phy-meson-g12a-usb2.c | 99 +++++++++++++++++++++----------
+>  1 file changed, 69 insertions(+), 30 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-a1-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson-a1-usb2-phy.yaml
-> new file mode 100644
-> index 00000000..dd2e3a6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/amlogic,meson-a1-usb2-phy.yaml
-> @@ -0,0 +1,56 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2019 Amlogic, Inc
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/phy/amlogic,meson-a1-usb2-phy.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> diff --git a/drivers/phy/amlogic/phy-meson-g12a-usb2.c b/drivers/phy/amlogic/phy-meson-g12a-usb2.c
+> index 9065ffc..16a1c0e 100644
+> --- a/drivers/phy/amlogic/phy-meson-g12a-usb2.c
+> +++ b/drivers/phy/amlogic/phy-meson-g12a-usb2.c
+> @@ -146,11 +146,17 @@
+>  #define RESET_COMPLETE_TIME					1000
+>  #define PLL_RESET_COMPLETE_TIME					100
+>  
+> +enum meson_soc_id {
+> +	MESON_SOC_G12A  = 0,
+> +	MESON_SOC_A1,
+> +};
 > +
-> +title: Amlogic A1 USB2 PHY
+>  struct phy_meson_g12a_usb2_priv {
+>  	struct device		*dev;
+>  	struct regmap		*regmap;
+>  	struct clk		*clk;
+>  	struct reset_control	*reset;
+> +	int                     soc_id;
+>  };
+>  
+>  static const struct regmap_config phy_meson_g12a_usb2_regmap_conf = {
+> @@ -164,6 +170,7 @@ static int phy_meson_g12a_usb2_init(struct phy *phy)
+>  {
+>  	struct phy_meson_g12a_usb2_priv *priv = phy_get_drvdata(phy);
+>  	int ret;
+> +	unsigned int value;
+>  
+>  	ret = reset_control_reset(priv->reset);
+>  	if (ret)
+> @@ -192,18 +199,22 @@ static int phy_meson_g12a_usb2_init(struct phy *phy)
+>  		     FIELD_PREP(PHY_CTRL_R17_MPLL_FILTER_PVT2, 2) |
+>  		     FIELD_PREP(PHY_CTRL_R17_MPLL_FILTER_PVT1, 9));
+>  
+> -	regmap_write(priv->regmap, PHY_CTRL_R18,
+> -		     FIELD_PREP(PHY_CTRL_R18_MPLL_LKW_SEL, 1) |
+> -		     FIELD_PREP(PHY_CTRL_R18_MPLL_LK_W, 9) |
+> -		     FIELD_PREP(PHY_CTRL_R18_MPLL_LK_S, 0x27) |
+> -		     FIELD_PREP(PHY_CTRL_R18_MPLL_PFD_GAIN, 1) |
+> -		     FIELD_PREP(PHY_CTRL_R18_MPLL_ROU, 7) |
+> -		     FIELD_PREP(PHY_CTRL_R18_MPLL_DATA_SEL, 3) |
+> -		     FIELD_PREP(PHY_CTRL_R18_MPLL_BIAS_ADJ, 1) |
+> -		     FIELD_PREP(PHY_CTRL_R18_MPLL_BB_MODE, 0) |
+> -		     FIELD_PREP(PHY_CTRL_R18_MPLL_ALPHA, 3) |
+> -		     FIELD_PREP(PHY_CTRL_R18_MPLL_ADJ_LDO, 1) |
+> -		     PHY_CTRL_R18_MPLL_ACG_RANGE);
+> +	value = FIELD_PREP(PHY_CTRL_R18_MPLL_LKW_SEL, 1) |
+> +		FIELD_PREP(PHY_CTRL_R18_MPLL_LK_W, 9) |
+> +		FIELD_PREP(PHY_CTRL_R18_MPLL_LK_S, 0x27) |
+> +		FIELD_PREP(PHY_CTRL_R18_MPLL_PFD_GAIN, 1) |
+> +		FIELD_PREP(PHY_CTRL_R18_MPLL_ROU, 7) |
+> +		FIELD_PREP(PHY_CTRL_R18_MPLL_DATA_SEL, 3) |
+> +		FIELD_PREP(PHY_CTRL_R18_MPLL_BIAS_ADJ, 1) |
+> +		FIELD_PREP(PHY_CTRL_R18_MPLL_BB_MODE, 0) |
+> +		FIELD_PREP(PHY_CTRL_R18_MPLL_ALPHA, 3) |
+> +		FIELD_PREP(PHY_CTRL_R18_MPLL_ADJ_LDO, 1) |
+> +		PHY_CTRL_R18_MPLL_ACG_RANGE;
 > +
-> +maintainers:
-> +  - Yue Wang <yue.wang@amlogic.com>
+> +	if (priv->soc_id == MESON_SOC_A1)
+> +		value |= PHY_CTRL_R18_MPLL_DCO_CLK_SEL;
 > +
-> +properties:
-> +  compatible:
-> +    const: amlogic,meson-a1-usb2-phy
+> +	regmap_write(priv->regmap, PHY_CTRL_R18, value);
+>  
+>  	udelay(PLL_RESET_COMPLETE_TIME);
+>  
+> @@ -227,13 +238,24 @@ static int phy_meson_g12a_usb2_init(struct phy *phy)
+>  		     FIELD_PREP(PHY_CTRL_R20_USB2_BGR_VREF_4_0, 0) |
+>  		     FIELD_PREP(PHY_CTRL_R20_USB2_BGR_DBG_1_0, 0));
+>  
+> -	regmap_write(priv->regmap, PHY_CTRL_R4,
+> -		     FIELD_PREP(PHY_CTRL_R4_CALIB_CODE_7_0, 0xf) |
+> -		     FIELD_PREP(PHY_CTRL_R4_CALIB_CODE_15_8, 0xf) |
+> -		     FIELD_PREP(PHY_CTRL_R4_CALIB_CODE_23_16, 0xf) |
+> -		     PHY_CTRL_R4_TEST_BYPASS_MODE_EN |
+> -		     FIELD_PREP(PHY_CTRL_R4_I_C2L_BIAS_TRIM_1_0, 0) |
+> -		     FIELD_PREP(PHY_CTRL_R4_I_C2L_BIAS_TRIM_3_2, 0));
+> +	if (priv->soc_id == MESON_SOC_G12A)
+> +		regmap_write(priv->regmap, PHY_CTRL_R4,
+> +			     FIELD_PREP(PHY_CTRL_R4_CALIB_CODE_7_0, 0xf) |
+> +			     FIELD_PREP(PHY_CTRL_R4_CALIB_CODE_15_8, 0xf) |
+> +			     FIELD_PREP(PHY_CTRL_R4_CALIB_CODE_23_16, 0xf) |
+> +			     PHY_CTRL_R4_TEST_BYPASS_MODE_EN |
+> +			     FIELD_PREP(PHY_CTRL_R4_I_C2L_BIAS_TRIM_1_0, 0) |
+> +			     FIELD_PREP(PHY_CTRL_R4_I_C2L_BIAS_TRIM_3_2, 0));
+> +	else if (priv->soc_id == MESON_SOC_A1) {
+> +		regmap_write(priv->regmap, PHY_CTRL_R21,
+> +			     PHY_CTRL_R21_USB2_CAL_ACK_EN |
+> +			     PHY_CTRL_R21_USB2_TX_STRG_PD |
+> +			     FIELD_PREP(PHY_CTRL_R21_USB2_OTG_ACA_TRIM_1_0, 2));
 > +
-> +  reg:
-> +    maxItems: 1
+> +		/* Analog Settings */
+> +		regmap_write(priv->regmap, PHY_CTRL_R13,
+> +			     FIELD_PREP(PHY_CTRL_R13_MIN_COUNT_FOR_SYNC_DET, 7));
+> +	}
+>  
+>  	/* Tuning Disconnect Threshold */
+>  	regmap_write(priv->regmap, PHY_CTRL_R3,
+> @@ -241,11 +263,13 @@ static int phy_meson_g12a_usb2_init(struct phy *phy)
+>  		     FIELD_PREP(PHY_CTRL_R3_HSDIC_REF, 1) |
+>  		     FIELD_PREP(PHY_CTRL_R3_DISC_THRESH, 3));
+>  
+> -	/* Analog Settings */
+> -	regmap_write(priv->regmap, PHY_CTRL_R14, 0);
+> -	regmap_write(priv->regmap, PHY_CTRL_R13,
+> -		     PHY_CTRL_R13_UPDATE_PMA_SIGNALS |
+> -		     FIELD_PREP(PHY_CTRL_R13_MIN_COUNT_FOR_SYNC_DET, 7));
+> +	if (priv->soc_id == MESON_SOC_G12A) {
+> +		/* Analog Settings */
+> +		regmap_write(priv->regmap, PHY_CTRL_R14, 0);
+> +		regmap_write(priv->regmap, PHY_CTRL_R13,
+> +			     PHY_CTRL_R13_UPDATE_PMA_SIGNALS |
+> +			     FIELD_PREP(PHY_CTRL_R13_MIN_COUNT_FOR_SYNC_DET, 7));
+> +	}
+>  
+>  	return 0;
+>  }
+> @@ -286,16 +310,24 @@ static int phy_meson_g12a_usb2_probe(struct platform_device *pdev)
+>  	if (IS_ERR(base))
+>  		return PTR_ERR(base);
+>  
+> +	priv->soc_id = (enum meson_soc_id)of_device_get_match_data(&pdev->dev);
 > +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: xtal_usb_phy
-> +
-> +  resets:
-> +    maxItems: 1
+>  	priv->regmap = devm_regmap_init_mmio(dev, base,
+>  					     &phy_meson_g12a_usb2_regmap_conf);
+>  	if (IS_ERR(priv->regmap))
+>  		return PTR_ERR(priv->regmap);
+>  
+> -	priv->clk = devm_clk_get(dev, "xtal");
+> -	if (IS_ERR(priv->clk))
+> -		return PTR_ERR(priv->clk);
+> +	if (priv->soc_id == MESON_SOC_G12A) {
+> +		priv->clk = devm_clk_get(dev, "xtal");
+> +		if (IS_ERR(priv->clk))
+> +			return PTR_ERR(priv->clk);
+> +	} else if (priv->soc_id == MESON_SOC_A1) {
+> +		priv->clk = devm_clk_get(dev, "xtal_usb_phy");
+> +		if (IS_ERR(priv->clk))
+> +			return PTR_ERR(priv->clk);
+> +	}
+>  
+> -	priv->reset = devm_reset_control_get(dev, "phy");
+> +	priv->reset = devm_reset_control_get(dev, NULL);
 
-Please use reset-names like the g12a bindings.
+
+PLease keep the reset-names in the bindings and leave this as-is.
+
+>  	if (IS_ERR(priv->reset))
+>  		return PTR_ERR(priv->reset);
+>  
+> @@ -321,8 +353,15 @@ static int phy_meson_g12a_usb2_probe(struct platform_device *pdev)
+>  }
+>  
+>  static const struct of_device_id phy_meson_g12a_usb2_of_match[] = {
+> -	{ .compatible = "amlogic,g12a-usb2-phy", },
+> -	{ },
+> +	{
+> +		.compatible = "amlogic,g12a-usb2-phy",
+> +		.data = (void *)MESON_SOC_G12A,
+> +	},
+> +	{
+> +		.compatible = "amlogic,a1-usb2-phy",
+> +		.data = (void *)MESON_SOC_A1,
+> +	},
+> +	{ /* Sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, phy_meson_g12a_usb2_of_match);
+>  
+> 
+
+With the devm_reset_control_get change reverted:
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
 Neil
-
-> +
-> +  "#phy-cells":
-> +    const: 0
-> +
-> +  power-domains:
-> +     maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - "#phy-cells"
-> +  - power-domains
-> +
-> +examples:
-> +  - |
-> +    usb2_phy1: phy@40000 {
-> +      status = "okay";
-> +      compatible = "amlogic,a1-usb2-phy";
-> +      clocks = <&clkc_periphs 2>;
-> +      clock-names = "xtal_usb_phy";
-> +      reg = <0x0 0x40000 0x0 0x2000>;
-> +      resets = <&reset RESET_USBPHY>;
-> +      #phy-cells = <0>;
-> +      power-domains = <&pwrc PWRC_USB_ID>;
-> +    };
-> 
-
 
 _______________________________________________
 linux-amlogic mailing list
