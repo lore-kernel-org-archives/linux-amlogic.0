@@ -2,64 +2,57 @@ Return-Path: <SRS0=t54K=26=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-8.3 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+X-Spam-Status: No, score=-9.8 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
 	DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
+	SIGNED_OFF_BY,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D1AB6C33C9E
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Jan 2020 02:43:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4F53FC33CA2
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Jan 2020 03:18:16 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id A8A9F20705
-	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Jan 2020 02:43:22 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 181EA2067D
+	for <linux-amlogic@archiver.kernel.org>; Thu,  9 Jan 2020 03:18:16 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="afclmLS3"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org A8A9F20705
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="UyVfJ0uO"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 181EA2067D
 Authentication-Results: mail.kernel.org; dmarc=none (p=none dis=none) header.from=amlogic.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20170209; h=Sender:Content-Type:
-	Content-Transfer-Encoding:Cc:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:In-Reply-To:MIME-Version:Date:Message-ID:From:
-	References:To:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	 bh=kevCLaA1EbvQxZ6JssqXEWMOLq8o64H/NGaeIAml1lE=; b=afclmLS3AGIREWnAbSog5A+Ty
-	1deBpp7+uF8nXlPSenbsoIvpAxCiasZ3/5v6r+iWdvDkALyzI9KlEOzxU6og+vvmR+SyL7u8ucYxG
-	2MUW00MGVosXjSWaYfW8/5l/WnUvFze+ct1cjxADohBtHjy6UanVLxVvps4wM+BvzA6Cj7DyHpCxb
-	fZ3JlfBRv6FbJkYg73kVr1nRqJOeEpj+qJauVEw8lHjSYgV1DDdZn3HrT0C42rGUSFYwa0XQEswrQ
-	SmIv024aLNK3cqoa6xJK/PpHi3EAQUkKeI4VcD3nenLkrTgrTmQW6REMMnZXH2aPNtVYqBP1IyWRo
-	wHTT4yEGQ==;
+	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
+	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-ID:Date:Subject:To
+	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Owner; bh=wo2thk/32+5lxeDJC+MxWhYTNDDjkGxh7MCk6lGimcs=; b=UyVfJ0uOEYOrhi
+	sjFkrHSnx/w0ex0bG/dVZc1S7stwdpsgnCDk+7a9rNxFkWcL46rSYsQWV8h85PqFbwvW0CaXkv35i
+	DwkYYXMgpS25/wE/o28qb5oJRukaxWOudwHuBpqkagVtcIH/7MLLWDnCEnjIaKr95+znPnAUnKSVU
+	2ee1B1g+0KK9AUbOYV31AnswMgsu9KWVNY9YbBc8QZ6Ev8cXj3Ro2DCq2pZwTdZmME4Ima1/8OTrT
+	Sl3X/Eq/wEE2v8kl7gO+8fsIG1Eh1eM9TGtGWOjoOLtxoxb2nBga+9GVvZCccJuf2TtvsYLoTXwyf
+	LMmPvjv4Rv7I4Oabb7Xg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1ipNn3-0000w3-15; Thu, 09 Jan 2020 02:43:17 +0000
+	id 1ipOKo-000479-T4; Thu, 09 Jan 2020 03:18:10 +0000
 Received: from mail-sz.amlogic.com ([211.162.65.117])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1ipNmu-0000o2-7S; Thu, 09 Jan 2020 02:43:09 +0000
-Received: from [10.28.39.63] (10.28.39.63) by mail-sz.amlogic.com (10.28.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Thu, 9 Jan
- 2020 10:43:14 +0800
-Subject: Re: [PATCH v3] arm64: dts: meson-a1: add I2C nodes
+ id 1ipOKf-0003mO-73; Thu, 09 Jan 2020 03:18:09 +0000
+Received: from droid15-sz.amlogic.com (10.28.8.25) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.1591.10; Thu, 9 Jan 2020
+ 11:18:24 +0800
+From: Jian Hu <jian.hu@amlogic.com>
 To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
  <narmstrong@baylibre.com>
-References: <20191220091611.36319-1-jian.hu@amlogic.com>
- <1ja76zsi4r.fsf@starbuckisacylon.baylibre.com>
-From: Jian Hu <jian.hu@amlogic.com>
-Message-ID: <484f2273-80d2-87fe-2637-33f5313c580d@amlogic.com>
-Date: Thu, 9 Jan 2020 10:43:13 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.1
+Subject: [PATCH v4] arm64: dts: meson-a1: add I2C nodes
+Date: Thu, 9 Jan 2020 11:17:56 +0800
+Message-ID: <20200109031756.176547-1-jian.hu@amlogic.com>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-In-Reply-To: <1ja76zsi4r.fsf@starbuckisacylon.baylibre.com>
-Content-Language: en-US
-X-Originating-IP: [10.28.39.63]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
+X-Originating-IP: [10.28.8.25]
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200108_184308_271541_3E863873 
-X-CRM114-Status: GOOD (  16.44  )
+X-CRM114-CacheID: sfid-20200108_191801_275910_2132B06F 
+X-CRM114-Status: UNSURE (   8.35  )
+X-CRM114-Notice: Please train this message.
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,236 +69,209 @@ Cc: Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>,
  Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
  Kevin Hilman <khilman@baylibre.com>,
  Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-i2c@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+ devicetree@vger.kernel.org, Jian Hu <jian.hu@amlogic.com>,
+ linux-i2c@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hi Jerome
+There are four I2C controllers in A1 series,
+Share the same comptible with AXG. Compared to AXG,
+Drive strength feature is newly added in A1.
 
-Thanks for your review
+Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 
-On 2020/1/7 17:58, Jerome Brunet wrote:
-> 
-> On Fri 20 Dec 2019 at 10:16, Jian Hu <jian.hu@amlogic.com> wrote:
-> 
->> There are four I2C controllers in A1 series,
->> Share the same comptible with AXG. Compared to AXG,
->> Drive strength feature is newly added in A1.
->>
->> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
->>
->> ---
->> This patch depends on A1 clock patchset at [0][3]
->>
->> Changes since v1 at [1]:
->> -change reg length to 0x20
->> -assign i2c bus alias in dts file
->> -add new feature note compared to AXG in changelog
->>
->> Changes since v2 at [2]:
->> -remove the dependence the commit description
->> -remove i2c alias in dtsi
->> -reorder the i2c nodes
->> -reorder the i2c pins
->>
->> [0] https://lkml.kernel.org/r/20191206074052.15557-1-jian.hu@amlogic.com
->> [1] https://lkml.kernel.org/r/20191202111253.94872-1-jian.hu@amlogic.com
->> [2] https://lkml.kernel.org/r/20191211032802.83309-1-jian.hu@amlogic.com
->> [3] https://lkml.kernel.org/r/20191206074052.15557-1-jian.hu@amlogic.com
->> ---
->> ---
->>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 142 ++++++++++++++++++++++
->>   1 file changed, 142 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
->> index eab2ecd36aa8..1542eeee699d 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
->> @@ -117,6 +117,16 @@
->>   				};
->>   			};
->>   
->> +			i2c0: i2c@1400 {
->> +				compatible = "amlogic,meson-axg-i2c";
->> +				reg = <0x0 0x1400 0x0 0x20>;
->> +				interrupts = <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>;
->> +				#address-cells = <1>;
->> +				#size-cells = <0>;
->> +				clocks = <&clkc_periphs CLKID_I2C_M_A>;
->> +				status = "disabled";
->> +			};
->> +
->>   			uart_AO: serial@1c00 {
->>   				compatible = "amlogic,meson-gx-uart",
->>   					     "amlogic,meson-ao-uart";
->> @@ -136,6 +146,36 @@
->>   				clock-names = "xtal", "pclk", "baud";
->>   				status = "disabled";
->>   			};
->> +
->> +			i2c1: i2c@5c00 {
->> +				compatible = "amlogic,meson-axg-i2c";
->> +				reg = <0x0 0x5c00 0x0 0x20>;
->> +				interrupts = <GIC_SPI 68 IRQ_TYPE_EDGE_RISING>;
->> +				#address-cells = <1>;
->> +				#size-cells = <0>;
->> +				clocks = <&clkc_periphs CLKID_I2C_M_B>;
->> +				status = "disabled";
->> +			};
->> +
->> +			i2c2: i2c@6800 {
->> +				compatible = "amlogic,meson-axg-i2c";
->> +				reg = <0x0 0x6800 0x0 0x20>;
->> +				interrupts = <GIC_SPI 76 IRQ_TYPE_EDGE_RISING>;
->> +				#address-cells = <1>;
->> +				#size-cells = <0>;
->> +				clocks = <&clkc_periphs CLKID_I2C_M_C>;
->> +				status = "disabled";
->> +			};
->> +
->> +			i2c3: i2c@6c00 {
->> +				compatible = "amlogic,meson-axg-i2c";
->> +				reg = <0x0 0x6c00 0x0 0x20>;
->> +				interrupts = <GIC_SPI 78 IRQ_TYPE_EDGE_RISING>;
->> +				#address-cells = <1>;
->> +				#size-cells = <0>;
->> +				clocks = <&clkc_periphs CLKID_I2C_M_D>;
->> +				status = "disabled";
->> +			};
->>   		};
->>   
->>   		gic: interrupt-controller@ff901000 {
->> @@ -171,3 +211,105 @@
->>   		#clock-cells = <0>;
->>   	};
->>   };
->> +
->> +&periphs_pinctrl {
-> 
-> Why is this not directly under the periphs_pinctrl node ?
-> 
-OK, I will put them under periphs_pinctrl node
->> +	i2c0_f9_pins:i2c0-f9 {
->                       ^
->                       Missing space here. Same for the other nodes
-> 
->> +		mux {
->> +			groups = "i2c0_sck_f9",
->> +				"i2c0_sda_f10";
->> +			function = "i2c0";
->> +			bias-pull-up;
-> 
-> Most device we have seen so far have the pull-up on the PCB.
-> 
-> If you look at the other dts file, the i2c pad bias is disabled. If the
-> pull-up resistor is missing on the PCB, this setting can overloaded in
-> the board dt.
-> 
-> Bottom line please put "bias-disable" or justify why a1 is different
-> from the SoC.
-Yes, there is pull-up resistor on PCB, I will replace it as
-'bias-disable'
-> 
->> +			drive-strength-microamp = <3000>;
->> +		};
->> +	};
->> +
->> +	i2c0_f11_pins:i2c0-f11 {
->> +		mux {
->> +			groups = "i2c0_sck_f11",
->> +				"i2c0_sda_f12";
->> +			function = "i2c0";
->> +			bias-pull-up;
->> +			drive-strength-microamp = <3000>;
->> +		};
->> +	};
->> +
->> +	i2c1_a_pins:i2c1-a {
->> +		mux {
->> +			groups = "i2c1_sck_a",
->> +				"i2c1_sda_a";
->> +			function = "i2c1";
->> +			bias-pull-up;
->> +			drive-strength-microamp = <3000>;
->> +		};
->> +	};
->> +
->> +	i2c1_x_pins:i2c1-x {
->> +		mux {
->> +			groups = "i2c1_sck_x",
->> +				"i2c1_sda_x";
->> +			function = "i2c1";
->> +			bias-pull-up;
->> +			drive-strength-microamp = <3000>;
->> +		};
->> +	};
->> +
->> +	i2c2_a4_pins:i2c2-a4 {
->> +		mux {
->> +			groups = "i2c2_sck_a4",
->> +				"i2c2_sda_a5";
->> +			function = "i2c2";
->> +			bias-pull-up;
->> +			drive-strength-microamp = <3000>;
->> +		};
->> +	};
->> +
->> +	i2c2_a8_pins:i2c2-a8 {
->> +		mux {
->> +			groups = "i2c2_sck_a8",
->> +				"i2c2_sda_a9";
->> +			function = "i2c2";
->> +			bias-pull-up;
->> +			drive-strength-microamp = <3000>;
->> +		};
->> +	};
->> +
->> +	i2c2_x0_pins:i2c2-x0 {
->> +		mux {
->> +			groups = "i2c2_sck_x0",
->> +				"i2c2_sda_x1";
->> +			function = "i2c2";
->> +			bias-pull-up;
->> +			drive-strength-microamp = <3000>;
->> +		};
->> +	};
->> +
->> +	i2c2_x15_pins:i2c2-x15 {
->> +		mux {
->> +			groups = "i2c2_sck_x15",
->> +				"i2c2_sda_x16";
->> +			function = "i2c2";
->> +			bias-pull-up;
->> +			drive-strength-microamp = <3000>;
->> +		};
->> +	};
->> +
->> +	i2c3_f_pins:i2c3-f {
->> +		mux {
->> +			groups = "i2c3_sck_f",
->> +				"i2c3_sda_f";
->> +			function = "i2c3";
->> +			bias-pull-up;
->> +			drive-strength-microamp = <3000>;
->> +		};
->> +	};
->> +
->> +	i2c3_x_pins:i2c3-x {
->> +		mux {
->> +			groups = "i2c3_sck_x",
->> +				"i2c3_sda_x";
->> +			function = "i2c3";
->> +			bias-pull-up;
->> +			drive-strength-microamp = <3000>;
->> +		};
->> +	};
->> +};
-> 
-> .
-> 
+---
+This patch depends on A1 clock patchset at [0][3]
+
+Changes since v3 at [4]:
+-put the i2c pins under periphs_pinctrl
+-replace bias-pull-up as bias-disable
+-add missing space in i2c pins node
+
+Changes since v2 at [2]:
+-remove the dependence the commit description
+-remove i2c alias in dtsi
+-reorder the i2c nodes
+-reorder the i2c pins
+
+Changes since v1 at [1]:
+-change reg length to 0x20
+-assign i2c bus alias in dts file
+-add new feature note compared to AXG in changelog
+
+[0] https://lkml.kernel.org/r/20191206074052.15557-1-jian.hu@amlogic.com
+[1] https://lkml.kernel.org/r/20191202111253.94872-1-jian.hu@amlogic.com
+[2] https://lkml.kernel.org/r/20191211032802.83309-1-jian.hu@amlogic.com
+[3] https://lkml.kernel.org/r/20191206074052.15557-1-jian.hu@amlogic.com
+[4] https://lkml.kernel.org/r/20191220091611.36319-1-jian.hu@amlogic.com
+---
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 140 ++++++++++++++++++++++
+ 1 file changed, 140 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+index eab2ecd36aa8..009c8c496b58 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+@@ -115,6 +115,116 @@
+ 				       #gpio-cells = <2>;
+ 				       gpio-ranges = <&periphs_pinctrl 0 0 62>;
+ 				};
++
++				i2c0_f9_pins: i2c0-f9 {
++					mux {
++						groups = "i2c0_sck_f9",
++							"i2c0_sda_f10";
++						function = "i2c0";
++						bias-disable;
++						drive-strength-microamp = <3000>;
++					};
++				};
++
++				i2c0_f11_pins: i2c0-f11 {
++					mux {
++						groups = "i2c0_sck_f11",
++							"i2c0_sda_f12";
++						function = "i2c0";
++						bias-disable;
++						drive-strength-microamp = <3000>;
++					};
++				};
++
++				i2c1_a_pins: i2c1-a {
++					mux {
++						groups = "i2c1_sck_a",
++							"i2c1_sda_a";
++						function = "i2c1";
++						bias-disable;
++						drive-strength-microamp = <3000>;
++					};
++				};
++
++				i2c1_x_pins: i2c1-x {
++					mux {
++						groups = "i2c1_sck_x",
++							"i2c1_sda_x";
++						function = "i2c1";
++						bias-disable;
++						drive-strength-microamp = <3000>;
++					};
++				};
++
++				i2c2_a4_pins: i2c2-a4 {
++					mux {
++						groups = "i2c2_sck_a4",
++							"i2c2_sda_a5";
++						function = "i2c2";
++						bias-disable;
++						drive-strength-microamp = <3000>;
++					};
++				};
++
++				i2c2_a8_pins: i2c2-a8 {
++					mux {
++						groups = "i2c2_sck_a8",
++							"i2c2_sda_a9";
++						function = "i2c2";
++						bias-disable;
++						drive-strength-microamp = <3000>;
++					};
++				};
++
++				i2c2_x0_pins: i2c2-x0 {
++					mux {
++						groups = "i2c2_sck_x0",
++							"i2c2_sda_x1";
++						function = "i2c2";
++						bias-disable;
++						drive-strength-microamp = <3000>;
++					};
++				};
++
++				i2c2_x15_pins: i2c2-x15 {
++					mux {
++						groups = "i2c2_sck_x15",
++							"i2c2_sda_x16";
++						function = "i2c2";
++						bias-disable;
++						drive-strength-microamp = <3000>;
++					};
++				};
++
++				i2c3_f_pins: i2c3-f {
++					mux {
++						groups = "i2c3_sck_f",
++							"i2c3_sda_f";
++						function = "i2c3";
++						bias-disable;
++						drive-strength-microamp = <3000>;
++					};
++				};
++
++				i2c3_x_pins: i2c3-x {
++					mux {
++						groups = "i2c3_sck_x",
++							"i2c3_sda_x";
++						function = "i2c3";
++						bias-disable;
++						drive-strength-microamp = <3000>;
++					};
++				};
++			};
++
++			i2c0: i2c@1400 {
++				compatible = "amlogic,meson-axg-i2c";
++				reg = <0x0 0x1400 0x0 0x20>;
++				interrupts = <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&clkc_periphs CLKID_I2C_M_A>;
++				status = "disabled";
+ 			};
+ 
+ 			uart_AO: serial@1c00 {
+@@ -136,6 +246,36 @@
+ 				clock-names = "xtal", "pclk", "baud";
+ 				status = "disabled";
+ 			};
++
++			i2c1: i2c@5c00 {
++				compatible = "amlogic,meson-axg-i2c";
++				reg = <0x0 0x5c00 0x0 0x20>;
++				interrupts = <GIC_SPI 68 IRQ_TYPE_EDGE_RISING>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&clkc_periphs CLKID_I2C_M_B>;
++				status = "disabled";
++			};
++
++			i2c2: i2c@6800 {
++				compatible = "amlogic,meson-axg-i2c";
++				reg = <0x0 0x6800 0x0 0x20>;
++				interrupts = <GIC_SPI 76 IRQ_TYPE_EDGE_RISING>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&clkc_periphs CLKID_I2C_M_C>;
++				status = "disabled";
++			};
++
++			i2c3: i2c@6c00 {
++				compatible = "amlogic,meson-axg-i2c";
++				reg = <0x0 0x6c00 0x0 0x20>;
++				interrupts = <GIC_SPI 78 IRQ_TYPE_EDGE_RISING>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&clkc_periphs CLKID_I2C_M_D>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		gic: interrupt-controller@ff901000 {
+-- 
+2.24.0
+
 
 _______________________________________________
 linux-amlogic mailing list
