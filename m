@@ -2,88 +2,92 @@ Return-Path: <SRS0=nr/o=3B=lists.infradead.org=linux-amlogic-bounces+linux-amlog
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
+X-Spam-Status: No, score=-9.5 required=3.0 tests=DKIM_ADSP_CUSTOM_MED,
 	DKIM_SIGNED,DKIM_VALID,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=no autolearn_force=no version=3.4.0
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,SIGNED_OFF_BY,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=3.4.0
 Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 53DE8C33CAA
-	for <linux-amlogic@archiver.kernel.org>; Sun, 12 Jan 2020 00:25:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4510AC33CA7
+	for <linux-amlogic@archiver.kernel.org>; Sun, 12 Jan 2020 00:25:57 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPS id 229C52071A
-	for <linux-amlogic@archiver.kernel.org>; Sun, 12 Jan 2020 00:25:32 +0000 (UTC)
+	by mail.kernel.org (Postfix) with ESMTPS id 14D342071A
+	for <linux-amlogic@archiver.kernel.org>; Sun, 12 Jan 2020 00:25:57 +0000 (UTC)
 Authentication-Results: mail.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="ZhmReiyc";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="ArkxWsHL"
-DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 229C52071A
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.b="sry/EYx7";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="ZRgUYoXs"
+DMARC-Filter: OpenDMARC Filter v1.3.2 mail.kernel.org 14D342071A
 Authentication-Results: mail.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=googlemail.com
 Authentication-Results: mail.kernel.org; spf=none smtp.mailfrom=linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20170209; h=Sender:
 	Content-Transfer-Encoding:Content-Type:Cc:List-Subscribe:List-Help:List-Post:
-	List-Archive:List-Unsubscribe:List-Id:MIME-Version:Message-Id:Date:Subject:To
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Owner; bh=1kZHhIodTJFYLD2jfBg9UTyiyoG3Tg3Tjf12dEZB6rQ=; b=ZhmReiyc8ImKhP
-	e/YwNx8p0+BSJszJMzJ4cW6K4HncqXSBZV45Xt/TydhsYrXAKoSAeE8C12/Z8Sf4mZsLQfLSeRgsq
-	npwxUl0tO0fGyP9b8WxTmj6jTWXkub89pBRAFv6728L2S8hb5AlItziCbW9J7TGJgcc/Phi/nS4Ld
-	21p0kdeTIsc6KtiPPZWOiKmYWMifbtfBq/jWvqHG40lNE4ydOHBndXmf+Sl4q2unxSxoLs7tFCFoL
-	A61xQFYo3roc4SHh/ZKgV9nTf5sTB+PB72DO6kqI1mk4/NDsdln1cu/0QgzZYjhKx2NydOuBYMhG9
-	e68f7LBIIilEGqn+BlNw==;
+	List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+	Message-Id:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Owner; bh=+rVoyEbGk82tnECZpVOTs9jkaWpXdXxfFMZyO5Aj0ZA=; b=sry/EYx7BlJM1N
+	yEPw8DXjHOWqzUvD1VDprIGrrWWf6QsGcPJHAajlshuSRFzEETcjZY9+YKrOGUWBO8/fVEqxYAW6b
+	UWKbjHJSH+WivIBaoaNdoSjqq5uj+ZaQMvtcP1Bx9cOoRc0O5HQXWBjt6ju0wWcB5YdR7iAjGFvbT
+	yRJltOweUJBmN2B32dmuKV/vaStnMI6PblD/qwBmwellgtNjATs56GkmrynWwFuBjNdr6Y4xTi/pG
+	ygrl+5HhK/rwpZixLvbhwFP2sEWlYYA5VRgQ4CiyOJ9oGOn8VCTw0fB/BJmrhUjJeIYQdFUMVceEm
+	EHjMY7EqC0CXfoGm3gxg==;
 Received: from localhost ([127.0.0.1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.92.3 #3 (Red Hat Linux))
-	id 1iqR4I-0000eY-I8; Sun, 12 Jan 2020 00:25:26 +0000
-Received: from mail-wr1-x441.google.com ([2a00:1450:4864:20::441])
+	id 1iqR4h-00019H-No; Sun, 12 Jan 2020 00:25:51 +0000
+Received: from mail-wm1-x343.google.com ([2a00:1450:4864:20::343])
  by bombadil.infradead.org with esmtps (Exim 4.92.3 #3 (Red Hat Linux))
- id 1iqR4E-0000c7-0J; Sun, 12 Jan 2020 00:25:23 +0000
-Received: by mail-wr1-x441.google.com with SMTP id d16so5181654wre.10;
- Sat, 11 Jan 2020 16:25:20 -0800 (PST)
+ id 1iqR4F-0000cc-Co; Sun, 12 Jan 2020 00:25:25 +0000
+Received: by mail-wm1-x343.google.com with SMTP id w5so7053226wmi.1;
+ Sat, 11 Jan 2020 16:25:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=googlemail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=wAWyALOSBn7tzzbJwWZbezVclSVN3Btt3DEixhDkQII=;
- b=ArkxWsHLmXqGxa1xxpcAewKDkopPwoqRQ7Sjvi4wr/dZmFyo6BGIZf+NkgvpfZsGpJ
- lwYzzi3Vq4uSIXp06HKX/2z+nzbEz/sVLzH99QYWZc0F7m83wAW+0SHvXQCrUevzYGIj
- Io8kio+2MSj/PkepGFUnLmhr91JIfkVLJ8+OiQIMPibdBRag7Rshnw06wBn1ZNvGawfT
- GIQLE6QHORS7QOl4/6HL6zGsWWH+QytT9ZZJ7zdoTM+y+gNcTxZjtlBF//Ld8TaVMdas
- K28Y5imMrNB2RQhUIGEBV+cxZCY2xhwL6bkKBMUEpgBQx0YOPrKsO/xWLCfgxA6LmFkJ
- ZyzQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=5VdRKjItMpumgPEbU2M/gS1dTA+2qT6+UNLOZfpz4CY=;
+ b=ZRgUYoXsvppeu9aw6D+lrz1iTB1jmm9E0gkoVkF7OVrU3eN0ZteuWZWGY0JbNFnhh6
+ NWSsM+Jc87Gwqsk1INbY929UI5epVCg6YfCia6Mf5nO9/hsi14sUAajgmj1AMcFqeG+R
+ FrzDT/+3tkXdJsaofZ8fodL9J47xbxWnfoRS+u+c+hT4XK1nFvnF9HOEE9HNcvkRSxMU
+ xPlSOLpL5AfhHXiH46lOocOICK6vLngJEhoLH9yHtfqelFfsnoHbYoQWpGrzfC9tk1mz
+ ka7yqzDzP758umhpVAvB6AlgEQ7El9HgyeYz0E3a3Bqb4whi79d/9G5ESfG/1SMZH0j1
+ Ma+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=wAWyALOSBn7tzzbJwWZbezVclSVN3Btt3DEixhDkQII=;
- b=Q4NrAXqW9X9L+slCe1Z3cJyBy+K0n/t+jNkzQcsmpi4zy/mSDYiBmlqISfo/1H9vDY
- yhCbLF+R1hzYBj0bI14dgk/JKk6JAxxk9H22L2Iry0a2ATuCCMt3Zmznu0SrmMu3TUy7
- aDBfgQrMNBVy3BnhyFJXWXJ8k1LEVG+ZhL93kp2x1605vvhxxZy0/oU5wT4yTyf5Z00h
- d7NZ0wgGCOucDuhdQhPcHfIfEtPfAU5Tex7+SHHn2TN7YsU1Zuj3hfPQti/Kuq221S0t
- ymF2VbrlQ6x/wo2QbIdAacVuiFtUAYuY4dgRb8CZMgFTJknxNUgEkjMizcYeCfPDwQtV
- Yamw==
-X-Gm-Message-State: APjAAAXxmTRe5dz93wmFjdGA+WKrZZeqoJz5vrQzyAXhEwOegoGlRH8w
- UD8ZtqNGKUdjsN7UbXzBB1CLDgYO
-X-Google-Smtp-Source: APXvYqyqzfmZato1T8Am2AwdE0KKjdA9VaLATr7JDYJTE28SkegxKFwsYTzvgGymCNZnpbtnOunttw==
-X-Received: by 2002:a5d:5091:: with SMTP id a17mr10663002wrt.362.1578788719231; 
- Sat, 11 Jan 2020 16:25:19 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=5VdRKjItMpumgPEbU2M/gS1dTA+2qT6+UNLOZfpz4CY=;
+ b=rTGbZvh8KuUNeA/fbfjSRfZ/QWY27sUoA0OrfYxAKUfGEcmYKH5NF2BXWJL1C4EZqz
+ sRpGI1btTZ08/cZfvzBK6AldQltyNvbckSPtclw6ordHa3N+DGp745GeTvaf98H9Mndx
+ O2e/aHJujhFBs+FkoYrX4HPYwMCL4umb+YpFeYjP2aowIz2+mAoCnDDQwlypjbANeUXz
+ kDDQK62foSsi3dgsK9Vrfv3i7kKeqyn2eOD6jX+rddSe2fuJQzB+ZsOQHHDGto9MhFXd
+ kGbeCZl593rwPGeHf2e/U5QNvIvd7F1H5DOlZywAYBUM2k84QlW9fHazj4lZGECtlGNo
+ H/KQ==
+X-Gm-Message-State: APjAAAXng90vIF4UWch9oqZSwBAPdHKOTpCwoVRrxRiwBFbIiKaMDjjR
+ XDySjq18l+rOyCKXv565VdLLNwDI
+X-Google-Smtp-Source: APXvYqyQVIntHVKZIibeZHGPgSR0YMD0CeoJtnMcEPSlpwN0OsWd7gxeVOlO+jVkP/txUKXy6SSLNQ==
+X-Received: by 2002:a1c:7f4f:: with SMTP id a76mr12228413wmd.77.1578788721667; 
+ Sat, 11 Jan 2020 16:25:21 -0800 (PST)
 Received: from localhost.localdomain
  (p200300F1373A1900428D5CFFFEB99DB8.dip0.t-ipconnect.de.
  [2003:f1:373a:1900:428d:5cff:feb9:9db8])
- by smtp.googlemail.com with ESMTPSA id t5sm8407389wrr.35.2020.01.11.16.25.18
+ by smtp.googlemail.com with ESMTPSA id t5sm8407389wrr.35.2020.01.11.16.25.20
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 11 Jan 2020 16:25:18 -0800 (PST)
+ Sat, 11 Jan 2020 16:25:21 -0800 (PST)
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 To: linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
  linux-mmc@vger.kernel.org, ulf.hansson@linaro.org, robh+dt@kernel.org
-Subject: [PATCH v4 0/3] Amlogic 32-bit Meson SoC SDHC MMC controller driver
-Date: Sun, 12 Jan 2020 01:24:56 +0100
-Message-Id: <20200112002459.2124850-1-martin.blumenstingl@googlemail.com>
+Subject: [PATCH v4 2/3] clk: meson: add a driver for the Meson8/8b/8m2 SDHC
+ clock controller
+Date: Sun, 12 Jan 2020 01:24:58 +0100
+Message-Id: <20200112002459.2124850-3-martin.blumenstingl@googlemail.com>
 X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20200112002459.2124850-1-martin.blumenstingl@googlemail.com>
+References: <20200112002459.2124850-1-martin.blumenstingl@googlemail.com>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20200111_162522_075947_61F8D5AB 
-X-CRM114-Status: GOOD (  17.14  )
+X-CRM114-CacheID: sfid-20200111_162523_434312_4A0F66BD 
+X-CRM114-Status: GOOD (  17.50  )
 X-BeenThere: linux-amlogic@lists.infradead.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,95 +108,272 @@ Content-Transfer-Encoding: 7bit
 Sender: "linux-amlogic" <linux-amlogic-bounces@lists.infradead.org>
 Errors-To: linux-amlogic-bounces+linux-amlogic=archiver.kernel.org@lists.infradead.org
 
-Hello,
+The SDHC (MMC) controller embeds a clock controller inside one of the
+SDHC registers. The outputs of thisclock controller are dedicated to the
+SDHC controller.
 
-this is the patchset for a driver for the Amlogic "SDHC" MMC controller
-found on Meson6, Meson8, Meson8b and Meson8m2 SoCs.
+Implement a dedicated clock controller driver so we can keep all the
+clock specific logic outside of the MMC controller driver. There is no
+dedicated clock controller OF node because the hardware is a big SDHC IP
+block with an embedded clock controller (so the .dts doesn't need a
+separate clock controller node). Instead this driver re-uses the regmap
+as registered by the (platform_device) parent.
 
-The public S805 (Meson8b) datasheet has some documentation starting on
-page 74: [0]
-
-It's performance is still not as good as the driver from Amlogic's 3.10
-kernel, but it does not corrupt data anymore (as RFC v1 did).
-
-Special thanks to the people who supported me off-list - you are
-amazing and deserve to be mentioned here:
-- Xin Yin who helped me fix two more write corruption problems. I am
-  hoping that he will reply with Reviewed-by, Tested-by and Bug-fixed-by
-- Jianxin Pan for sharing some of the internal workings of this MMC
-  controller with me
-- Wei Wang for spotting the initial write corruption problem and helping
-  test this driver on his board. I have his permission to add his
-  Tested-by (off-list, he's Cc'ed so if there's any problem he can speak
-  up)
-
-
-Changes since v3 at [3]:
-- split the clock bits into a separate clock controller driver because
-  of two reasons: 1) it keeps the MMC controller driver mostly clean of
-  the clock bits 2) the pure clock controller can use
-  devm_clk_hw_register() (instead of devm_clk_register(), which is
-  deprecated) and the MMC controller can act as a pure clock consumer.
-  This also affects the dt-bindings which is why I dropped Rob's
-  Reviewed-by. Thanks to Ulf for the suggestions
-
-Changes since v2 at [2]:
-- rebased on top of v5.5-rc1
-- added Rob's and Xin Yin's Reviewed-by and Tested-by (thank you!)
-- (note: Kevin had v2 of this series in -next for a few days so the
-   build test robots could play with it. I haven't received any negative
-   feedback in that time)
-
-Changes since RFC v1 at [1]:
-- don't set MESON_SDHC_MISC_MANUAL_STOP to fix one of three write
-  corruption problems. the out-of-tree 3.10 "reference" driver doesn't
-  set it either
-- check against data->flags instead of cmd->flags when testing for
-  MMC_DATA_WRITE as spotted by Xin Yin (many thanks!). This fixes
-  another write corruption problem
-- clear the FIFOs after successfully transferring data as suggested by
-  Xin Yin (many thanks!). This is what the 3.10 driver did and fixes yet
-  another write corruption problem
-- integrate the clock suggestions from Jianxin Pan so the driver is now
-  able to set up the clocks correctly for all known cases. documentation
-  is also added to the patch description. Thank you Jianxin for the
-  help!
-- set the correct max_busy_timeout as suggested by Jianxin Pan (thanks!)
-- convert the dt-bindings to .yaml (which is why I didn't add Rob's
-  Reviewed-by)
-- switch to struct clk_parent_data as part of newer common clock
-  framework APIs to simplify the clock setup
-- dropped CMD23 support because it seems to hurt read and write
-  performance by 10-20% in my tests. it's not clear why, but for now we
-  can live without this.
-- use devm_platform_ioremap_resource instead of open-coding it
-
-
-[0] https://dn.odroid.com/S805/Datasheet/S805_Datasheet%20V0.8%2020150126.pdf
-[1] https://patchwork.kernel.org/cover/11035505/
-[2] http://lists.infradead.org/pipermail/linux-amlogic/2019-November/014576.html
-[3] https://patchwork.kernel.org/cover/11283179/
-
-
-Martin Blumenstingl (3):
-  dt-bindings: mmc: Document the Amlogic Meson SDHC MMC host controller
-  clk: meson: add a driver for the Meson8/8b/8m2 SDHC clock controller
-  mmc: host: meson-mx-sdhc: new driver for the Amlogic Meson SDHC host
-
- .../bindings/mmc/amlogic,meson-mx-sdhc.yaml   |   83 ++
- drivers/clk/meson/Kconfig                     |    9 +
- drivers/clk/meson/Makefile                    |    1 +
- drivers/clk/meson/meson-mx-sdhc.c             |  212 ++++
- drivers/mmc/host/Kconfig                      |   14 +
- drivers/mmc/host/Makefile                     |    1 +
- drivers/mmc/host/meson-mx-sdhc.c              | 1064 +++++++++++++++++
- .../dt-bindings/clock/meson-mx-sdhc-clkc.h    |    8 +
- 8 files changed, 1392 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdhc.yaml
+Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ drivers/clk/meson/Kconfig         |   9 ++
+ drivers/clk/meson/Makefile        |   1 +
+ drivers/clk/meson/meson-mx-sdhc.c | 212 ++++++++++++++++++++++++++++++
+ 3 files changed, 222 insertions(+)
  create mode 100644 drivers/clk/meson/meson-mx-sdhc.c
- create mode 100644 drivers/mmc/host/meson-mx-sdhc.c
- create mode 100644 include/dt-bindings/clock/meson-mx-sdhc-clkc.h
 
+diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
+index dabeb435d067..8769335d2d46 100644
+--- a/drivers/clk/meson/Kconfig
++++ b/drivers/clk/meson/Kconfig
+@@ -53,6 +53,15 @@ config COMMON_CLK_MESON8B
+ 	  S805 (Meson8b) and S812 (Meson8m2) devices. Say Y if you
+ 	  want peripherals and CPU frequency scaling to work.
+ 
++config COMMON_CLK_MESON_MX_SDHC
++	tristate "Meson MX SDHC MMC Clock Controller Driver"
++	depends on ARCH_MESON
++	select COMMON_CLK_MESON_REGMAP
++	help
++	  Support for the SDHC clock controller on Amlogic Meson8/8b/8m2 SoCs
++	  devices. Say Y or M if you want to use the SDHC MMC controller.
++	  Otherwise say N.
++
+ config COMMON_CLK_GXBB
+ 	bool
+ 	depends on ARCH_MESON
+diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
+index 6eca2a406ee3..b71c7ae78dbd 100644
+--- a/drivers/clk/meson/Makefile
++++ b/drivers/clk/meson/Makefile
+@@ -19,3 +19,4 @@ obj-$(CONFIG_COMMON_CLK_AXG_AUDIO) += axg-audio.o
+ obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
+ obj-$(CONFIG_COMMON_CLK_G12A) += g12a.o g12a-aoclk.o
+ obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o meson8-ddr.o
++obj-$(CONFIG_COMMON_CLK_MESON_MX_SDHC) += meson-mx-sdhc.o
+diff --git a/drivers/clk/meson/meson-mx-sdhc.c b/drivers/clk/meson/meson-mx-sdhc.c
+new file mode 100644
+index 000000000000..b98a35d99f65
+--- /dev/null
++++ b/drivers/clk/meson/meson-mx-sdhc.c
+@@ -0,0 +1,212 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Amlogic Meson SDHC clock controller
++ *
++ * Copyright (C) 2019 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
++ */
++
++#include <dt-bindings/clock/meson-mx-sdhc-clkc.h>
++
++#include <linux/clk-provider.h>
++#include <linux/device.h>
++#include <linux/module.h>
++#include <linux/platform_device.h>
++
++#include "clk-regmap.h"
++#include "clk-pll.h"
++
++#define MESON_SDHC_CLKC			0x10
++
++static const struct clk_regmap meson_mx_sdhc_src_sel = {
++	.data = &(struct clk_regmap_mux_data){
++		.offset = MESON_SDHC_CLKC,
++		.mask = 0x3,
++		.shift = 16,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "sdhc_src_sel",
++		.ops = &clk_regmap_mux_ops,
++		.parent_data = (const struct clk_parent_data[]) {
++			{ .fw_name = "clkin0", .index = -1, },
++			{ .fw_name = "clkin1", .index = -1, },
++			{ .fw_name = "clkin2", .index = -1, },
++			{ .fw_name = "clkin3", .index = -1, },
++		},
++		.num_parents = 4,
++	},
++};
++
++static const struct clk_div_table meson_mx_sdhc_div_table[] = {
++	{ .div = 6, .val = 5, },
++	{ .div = 8, .val = 7, },
++	{ .div = 9, .val = 8, },
++	{ .div = 10, .val = 9, },
++	{ .div = 12, .val = 11, },
++	{ .div = 16, .val = 15, },
++	{ .div = 18, .val = 17, },
++	{ .div = 34, .val = 33, },
++	{ .div = 142, .val = 141, },
++	{ .div = 850, .val = 849, },
++	{ .div = 2126, .val = 2125, },
++	{ .div = 4096, .val = 4095, },
++	{ /* sentinel */ }
++};
++
++static const struct clk_regmap meson_mx_sdhc_div = {
++	.data = &(struct clk_regmap_div_data){
++		.offset = MESON_SDHC_CLKC,
++		.shift = 0,
++		.width = 12,
++		.table = meson_mx_sdhc_div_table,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "sdhc_div",
++		.ops = &clk_regmap_divider_ops,
++		.parent_data = (const struct clk_parent_data[]) {
++			{ .name = "sdhc_src_sel", .index = -1, },
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT,
++	},
++};
++
++static const struct clk_regmap meson_mx_sdhc_mod_clk_en = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = MESON_SDHC_CLKC,
++		.bit_idx = 15,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "sdhc_mod_clk_on",
++		.ops = &clk_regmap_gate_ops,
++		.parent_data = (const struct clk_parent_data[]) {
++			{ .name = "sdhc_div", .index = -1, },
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_GATE,
++	},
++};
++
++static const struct clk_regmap meson_mx_sdhc_tx_clk_en = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = MESON_SDHC_CLKC,
++		.bit_idx = 14,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "sdhc_tx_clk_on",
++		.ops = &clk_regmap_gate_ops,
++		.parent_data = (const struct clk_parent_data[]) {
++			{ .name = "sdhc_div", .index = -1, },
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_GATE,
++	},
++};
++
++static const struct clk_regmap meson_mx_sdhc_rx_clk_en = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = MESON_SDHC_CLKC,
++		.bit_idx = 13,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "sdhc_rx_clk_on",
++		.ops = &clk_regmap_gate_ops,
++		.parent_data = (const struct clk_parent_data[]) {
++			{ .name = "sdhc_div", .index = -1, },
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_GATE,
++	},
++};
++
++static const struct clk_regmap meson_mx_sdhc_sd_clk_en = {
++	.data = &(struct clk_regmap_gate_data){
++		.offset = MESON_SDHC_CLKC,
++		.bit_idx = 12,
++	},
++	.hw.init = &(struct clk_init_data){
++		.name = "sdhc_sd_clk_on",
++		.ops = &clk_regmap_gate_ops,
++		.parent_data = (const struct clk_parent_data[]) {
++			{ .name = "sdhc_div", .index = -1, },
++		},
++		.num_parents = 1,
++		.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_GATE,
++	},
++};
++
++static const struct clk_regmap *meson_mx_sdhc_clk_regmaps[] = {
++	[SDHC_CLKID_SRC_SEL]	= &meson_mx_sdhc_src_sel,
++	[SDHC_CLKID_DIV]	= &meson_mx_sdhc_div,
++	[SDHC_CLKID_MOD_CLK]	= &meson_mx_sdhc_mod_clk_en,
++	[SDHC_CLKID_SD_CLK]	= &meson_mx_sdhc_sd_clk_en,
++	[SDHC_CLKID_TX_CLK]	= &meson_mx_sdhc_tx_clk_en,
++	[SDHC_CLKID_RX_CLK]	= &meson_mx_sdhc_rx_clk_en,
++};
++
++#define MESON_MX_SDHC_NUM_CLKS ARRAY_SIZE(meson_mx_sdhc_clk_regmaps)
++
++static int meson_mx_sdhc_clkc_probe(struct platform_device *pdev)
++{
++	struct device *parent = pdev->dev.parent;
++	struct clk_hw_onecell_data *onecell_data;
++	struct clk_regmap *clk_regmap;
++	struct regmap *regmap;
++	int i, ret;
++
++	regmap = dev_get_regmap(parent, NULL);
++	if (IS_ERR(regmap))
++		return PTR_ERR(regmap);
++
++	clk_regmap = devm_kcalloc(parent, sizeof(*clk_regmap),
++				  MESON_MX_SDHC_NUM_CLKS, GFP_KERNEL);
++	if (!clk_regmap)
++		return -ENOMEM;
++
++	onecell_data = devm_kzalloc(parent,
++				    struct_size(onecell_data, hws,
++						MESON_MX_SDHC_NUM_CLKS),
++				    GFP_KERNEL);
++	if (!onecell_data)
++		return -ENOMEM;
++
++	for (i = 0; i < MESON_MX_SDHC_NUM_CLKS; i++) {
++		memcpy(&clk_regmap[i], meson_mx_sdhc_clk_regmaps[i],
++		       sizeof(*clk_regmap));
++
++		clk_regmap[i].map = regmap;
++		onecell_data->hws[i] = &clk_regmap[i].hw;
++
++		ret = devm_clk_hw_register(parent, onecell_data->hws[i]);
++		if (ret) {
++			dev_err(parent,
++				"Registration of SDHC clock %d failed\n", i);
++			return ret;
++		}
++	}
++
++	onecell_data->num = MESON_MX_SDHC_NUM_CLKS;
++
++	return devm_of_clk_add_hw_provider(parent, of_clk_hw_onecell_get,
++					   onecell_data);
++}
++
++static const struct platform_device_id meson_mx_sdhc_clkc_ids[] = {
++	{ "meson8-sdhc-clkc" },
++	{ "meson8b-sdhc-clkc" },
++	{ "meson8m2-sdhc-clkc" },
++	{ /* sentinel */ }
++};
++MODULE_DEVICE_TABLE(platform, meson_mx_sdhc_clkc_ids);
++
++static struct platform_driver meson_mx_sdhc_clkc_driver = {
++	.id_table	= meson_mx_sdhc_clkc_ids,
++	.probe		= meson_mx_sdhc_clkc_probe,
++	.driver		= {
++		.name	= "meson-mx-sdhc-clkc",
++	},
++};
++module_platform_driver(meson_mx_sdhc_clkc_driver);
++
++MODULE_DESCRIPTION("Amlogic Meson8/8b/8m2 SDHC clock controller driver");
++MODULE_AUTHOR("Martin Blumenstingl <martin.blumenstingl@googlemail.com>");
++MODULE_LICENSE("GPL v2");
 -- 
 2.24.1
 
